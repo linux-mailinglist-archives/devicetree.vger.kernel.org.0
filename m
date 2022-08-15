@@ -2,239 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39FF5592828
-	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 05:35:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A74C459286B
+	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 06:12:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230321AbiHODfP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 Aug 2022 23:35:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41806 "EHLO
+        id S230487AbiHOEM6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Aug 2022 00:12:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230288AbiHODfL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Aug 2022 23:35:11 -0400
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-eopbgr60051.outbound.protection.outlook.com [40.107.6.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E85C913EBF;
-        Sun, 14 Aug 2022 20:35:08 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Wg3ccS5ZaJX2Aub/3ZT5htwHr9Vc9GRs2/ysruuedkww/MSWUywCuXbIlcix7H65WJkUU5OLdMl5RygHLJpzYHa+VJxcTb5jwV075awoChKcVIdFfcHI2s7C7QvNNaecbhNWo92Ej1L0bHSigYMN9Z+WHHJRqR47uZWNdajfLyiH9o1n+yFNtSrEONy8arumuyizQ/L059ZUrcxAZI8H52FxH0J84ynX56jfMIeRJJkDG2hqv8wId7nTGfDQBMXXjjTDeS9fw9woNwlVDAJRaS5MbODZM5+qS2WI+SS/peE1+q1woTDjzaG1CLxMvi5mbntsjAh0108H/sz6lcE09g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9SShr/A1KzZVZQQJJDM4D7iGB5IZ5mv1RAAD/noK+hY=;
- b=LRspXWoTfCQrbfUyL/uMUgavDVyBDvCnk8kvt0tygBk5FFnZNq7vfI5lKffKH8vpcdwmO49ovS6wYwLvkOVEZdnGa1gUPckRMXdudZ0Ptum9yJ9XR0GYolVmT3oXLeu/lx3kcf1GL4DyzJLkuHv8V6ZsRna/7EcgxA2F16oKIjkJzqfbN0aun9QGDnL8BZoYHAxaqpjswXIpvs2L1YLjVOYx4TBJHTGa7EKXmQ8a/vhmraJk4i5KI1kLrJJHWwIBS+cS90hrSBMNV8xfgwGpja7khU3YM4XwGmFGfb9TRHs8t0h3BG2AIGeN5P7yfH8JLILiVgLM5yPs5NcSSc60aQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9SShr/A1KzZVZQQJJDM4D7iGB5IZ5mv1RAAD/noK+hY=;
- b=jGieG4r6coH+XwnRxUrWdPsezXv5f+PEb3uUURyezw4ad0sy8hM0NX1oiIoeq5zj0D/own96R5lNFW7PxUyh+mZZaQEDr0ADu/yXfdjiN1CD8HU3vyrcBkmGgUE1iJ3HIuUCtH3aLSlQFvdAB+3bIJohKKry5iXtPyBbe4fB7us=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by DBAPR04MB7480.eurprd04.prod.outlook.com (2603:10a6:10:1a3::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.28; Mon, 15 Aug
- 2022 03:35:06 +0000
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::3c6c:b7e6:a93d:d442]) by DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::3c6c:b7e6:a93d:d442%4]) with mapi id 15.20.5525.011; Mon, 15 Aug 2022
- 03:35:06 +0000
-From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-To:     abelvesa@kernel.org, abel.vesa@linaro.org, mturquette@baylibre.com,
-        sboyd@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-imx@nxp.com, linux-clk@vger.kernel.org,
+        with ESMTP id S230186AbiHOEM5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 00:12:57 -0400
+Received: from wout1-smtp.messagingengine.com (wout1-smtp.messagingengine.com [64.147.123.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEF2813E39;
+        Sun, 14 Aug 2022 21:12:53 -0700 (PDT)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailout.west.internal (Postfix) with ESMTP id 49F6A32000EB;
+        Mon, 15 Aug 2022 00:12:51 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute5.internal (MEProxy); Mon, 15 Aug 2022 00:12:52 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
+        :message-id:mime-version:reply-to:sender:subject:subject:to:to;
+         s=fm2; t=1660536770; x=1660623170; bh=BLGvhPXJZwyKlOHCPFA0QFQvR
+        du4sjNkhCzDGkbfI/g=; b=geEopUJJtlAkPnRH3NSENE0S+CXA6KECTI8oRgBXb
+        VOpePec/5bzDFoeFD5eUWSmC7hOeCtbiiiOK6jWMLtF5YLh04hRR8eA1rX6XxJWe
+        5WyPn4q4Q38Htmvpmb69smOazGRCmnzGvPqxZ1lNOulH/LYTaVpdX8y/xc5aluo6
+        JlyrACs0cFiHN0AKNQ62ZC665r/oj7W6wgjD7B4QtDAPoKx4wocpRylHj52VFiHe
+        qJG2ODhaFn3QLeeWDFT8MkfFJJ3mgs5cXn5yjCDPoDTMjDp0dmnIgQcIW4wG84Z3
+        xWfCcud+2iwUp10daZ+fAWoKQ7S99JkBmMcpoCyBL/F6w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
+        :feedback-id:feedback-id:from:from:in-reply-to:message-id
+        :mime-version:reply-to:sender:subject:subject:to:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
+        1660536770; x=1660623170; bh=BLGvhPXJZwyKlOHCPFA0QFQvRdu4sjNkhCz
+        DGkbfI/g=; b=3EjOrYzX6+bXout+6iHugtmlSio9O5YB3rPS7spf4yMt4OejPpM
+        TgtVODs55ytfAJEumyrChHD7G6AAnh2LnRSQqNIt8nfbuJxbZCd2h7wl4HpA6uH4
+        PEqRgY7AKgig41CmxLZc984uP3BMl/GLVv9JFna1/57lUBf2LIC0jkx53HSnW7aj
+        j8cEtYfWEU804eyCAL9nSPPs6iL0O/TFgjfTy8fv/PTtQ9GLAg3ndvbz5HTa8jne
+        CO9hNwhVJE+Fo3H439KPZFbQtTAINwxIrQd7mu/j0rkCh/2G+xq2A6PqcO6gF8D4
+        HUR0yo1jOh29qRy2pmwNzduziMAGZykY7uw==
+X-ME-Sender: <xms:wsf5YvCrq__oRv3iJB9RYQnBClxYVF5w3qER5HTMCt1FayKRorOsjA>
+    <xme:wsf5YljxxwFVU1UmjUOsiFD7zECE5_Al2VyvjA-pfNU7tkDdMzFhvmd5WoiK5p7KF
+    cvVm4zcSNNTn-YZPQ>
+X-ME-Received: <xmr:wsf5YqkqdylLOaKH4bUARZU-prCWofTfPhUWLw69SuBCO2t__bhEVZlf57GxhVd4EnSiuTWa-xDsN7RpH4HPr_yJGHuD5iyK9DhS77lkAJRovyAMb3B6AuCHh-0w-bqdp3lTOA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdehuddgkeehucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffvvefufffkofgggfestdekredtredttdenucfhrhhomhepufgrmhhuvghl
+    ucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecuggftrf
+    grthhtvghrnhepkeevlefhjeeuleeltedvjedvfeefteegleehueejffehgffffeekhefh
+    hfekkeegnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+    epshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
+X-ME-Proxy: <xmx:wsf5YhxswN4EKKntiR0Q5r83QyIA3mIt3Lp7gJy2ZJ9-ILRBQFSdKw>
+    <xmx:wsf5YkT0Iuf-ODo4hINOhdhYx9v4uVuL3TvqqYPdjPt0nJUwbXLehQ>
+    <xmx:wsf5Yka17Xje2BpeEHZSfxRIc_IfnqPwHEP2Hrjnkid9l5oU2-Cgvg>
+    <xmx:wsf5YoalEzJoW-jEPXqquOELfwgYIw7DgJCuQ3iFng_DrUKuT6YHRA>
+Feedback-ID: i0ad843c9:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 15 Aug 2022 00:12:49 -0400 (EDT)
+From:   Samuel Holland <samuel@sholland.org>
+To:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc:     Samuel Holland <samuel@sholland.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-Subject: [PATCH 2/2] clk: imx: support fsl,protected-clocks
-Date:   Mon, 15 Aug 2022 11:36:32 +0800
-Message-Id: <20220815033632.1687854-3-peng.fan@oss.nxp.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220815033632.1687854-1-peng.fan@oss.nxp.com>
-References: <20220815033632.1687854-1-peng.fan@oss.nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SG3P274CA0024.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:be::36)
- To DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+        linux-sunxi@lists.linux.dev
+Subject: [PATCH v2 00/10] soc: sunxi: sram: Fixes and D1 support
+Date:   Sun, 14 Aug 2022 23:12:37 -0500
+Message-Id: <20220815041248.53268-1-samuel@sholland.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 078589c4-ea7f-4b5f-df94-08da7e6f255e
-X-MS-TrafficTypeDiagnostic: DBAPR04MB7480:EE_
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Via2pEfetorEPFcrrgJUfgjVnwlp00Ol+7GVfGOFZS0+zvSOsknpRzDR3BQA87ntlhoXfZIrY0gOGn0pxipuKhO42MWjPsVstoZz52emdIzU8XEZ3zg6G9zzJGKeg2JtgA1RHyBn7+msMZQcr7jVP2PBNhsH7ozx4GzGkzWhnwFdTeIhzHrRadvMaX/f+T3tlzC7IYaTh/ppmo2FOV0QfLWau8M6SdNEy0Rh+MXenxIfZaqK3GfUKDettx4bgR1NZH/QrKwFn+xGREd49o7utZpEg+9WNn42vbiE32NayAXJhGxVo/ER3rfHeQnEJsIQCQmPk2qmUQPr17+O+ZzeEsGIiyx5HXxYVuhuT/KvkPvWp4wZO6OdDp64NHEr9aPEYVK+s5SPxmZDvb/gVzP7M5nwWVDEWzFO6jjb5KpBH/MBvvEg57ruDZCwdi/O6lHbnH0NKl5GD+cSY5M+VLNQHgLrjY18v6f2UjG4alDIBDQ0CqvC6lJVSnJojsgb6WS4I0/VxcNfg3zbs34wKvY0A9KansHA0amB8S1WMOtynVBMQ2u/s3SHSGHBRK9pvV9udLlbWcAjaTIoODpB7mnbDkcbZ67XN11XsM3cSY9S/A43ZTXUIgJGE+rB/t4xFBq8fr8QHtB8Nc4VlYfgzj/mpZME/Kb5CgWv6X5+NbAo2QFtxtDjo+G6Gp7cH7IBTDhhxbhbYv3Ge5AhxsDGYtyAbYc6dSiI7T78BEqQfNvTZsDIlGGBYi+Htt6ydH2pkm3ncismVGM4Copt0eVxpsU3RdFgAQLIM6MiZVvIEtNI7eDNZ23AEluefZBo1y8fYNLPq0ID5gcO0rpEBDHaXbLiBg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(396003)(346002)(366004)(376002)(39860400002)(136003)(52116002)(26005)(6666004)(6512007)(6506007)(316002)(86362001)(6486002)(478600001)(186003)(41300700001)(2616005)(921005)(38350700002)(38100700002)(83380400001)(1076003)(8936002)(7416002)(66946007)(66556008)(66476007)(8676002)(4326008)(5660300002)(2906002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?t4qwY66YuTQ3M8gy44HU5CjiWpGu/lXVamG5aTWws4FCxsacqCqYOudTDphK?=
- =?us-ascii?Q?q4cV8lvxFbKFUw9swf5VDARmixZTuo9qNCq0c9glLaowlu0vMoEKeD/ajzAt?=
- =?us-ascii?Q?gibgKoEgBpodZhxvslKBkQEQUHFATzuKlH/jmRAk4oDcTKwjY/ww8+iee9Qe?=
- =?us-ascii?Q?rK05uhdHyMA9LHrEZvodn4YtxMyWkoSB3YEwDyF2FK0HtxwUuLdau2mjQyT8?=
- =?us-ascii?Q?EYl5t4PQXu6n4zBncGWMjx+jnB2q6fs3h+g2UsSHZwOcmalQfQdAxhdfhpVY?=
- =?us-ascii?Q?SJo9ElSpfO1/T7UJDUHWvWyza3pbDvquBxRP3R3ZtlJLtBltC9YsV8VP7T6a?=
- =?us-ascii?Q?THG8d8LNoe6TvOCsLw4nRsjUQ9JRZWYG2wARs+jIceOcOBCcIueRO8TtgJfS?=
- =?us-ascii?Q?7RScAvh18BU6enEktD+dM8oyvMWpUUL/ig/jVUD9/a2wLy0Ab/p/6ynsvS1A?=
- =?us-ascii?Q?l/IvEeA/1cl/RgOUkkKKbjKKcpCGrHHGmlqp1JhrSWlr668b37iTx5fuiW9e?=
- =?us-ascii?Q?42ijYSHdosFVuP3BoqAB3VROeDmDaj6JHU34ZgPvGIeGklcrcFOCrK0s5wGp?=
- =?us-ascii?Q?NDSMsI1g2wMpt6aMfFaw0nZaKtlyCmchqz3KfC/knCUw3W8vIsQnRU44vO/m?=
- =?us-ascii?Q?YtWBUAifqc+ktcd1of1MFHDs3/nI5JJgboiLI+cQtPwSRV9Djdjaz/aT/Aj/?=
- =?us-ascii?Q?cYRS2wJEYC8p3BI+Rl2rEymVOvQGbkW69/5iq+IkS7Nekre0J51OlaNWRGlx?=
- =?us-ascii?Q?71BCMJcm9duTAIU9s57ty1vAwref/k1vaCClM5DXrqMpHXk0EePeGev3gMmB?=
- =?us-ascii?Q?VvvE2FTV0KQr4UF2QJZbj9LeYHsK2FCGZJfieK9yZvgkQsnrlamLs2asB0Ax?=
- =?us-ascii?Q?fMI/z9QZ9Flmk4mCQOH5lX89Z4ZU5y41WstMsGJctOgk2p1k6vr0ITgfxsI8?=
- =?us-ascii?Q?DRgSjbYzVYMFVUZruj/uEoOUwc8frMzeFzR0q4h10Qg5XUHGvF+ZhztA+D3H?=
- =?us-ascii?Q?KNPdanbavWXn3qmgZufmWcj6LB7N5YzpzFMsbqOZIEkmnVf1tvmtgtlZDV2p?=
- =?us-ascii?Q?aB6Put3LJQqb+iIY5zXChKCDCHqNz2RmeB0WMxHRGPnK/u9F+STMcbF3WRZf?=
- =?us-ascii?Q?F/qFrNbDCzMgX/33LiUswcxxRfDgm3VxFyQh6L0iCF7++dianmFfzQqOuLkY?=
- =?us-ascii?Q?oYdMRbrbZPB6AiDa8396zqazqsO4b8Ln1lT9qp35YBa00gLBCDqkJQ45APGh?=
- =?us-ascii?Q?yiP7KtSjGiPIp5Ml/I8z/NJY4VQwaN5Tsz4Y0vrtA60kyCE4SOTigfhJOWPw?=
- =?us-ascii?Q?W30hEOUiHPrujjNWTy+yUbC9X8YdA6sZnpt6yn0gSapWJwV5ECuw0kb/tI62?=
- =?us-ascii?Q?NS2WbUImJsEEwcK7HdLK+jzPfkpDNIeSy5x6axPw0wW0Ui31dA8aBRi8bm8i?=
- =?us-ascii?Q?C0OjqiLmG5OIFQAJFQbujYkPvvrZAeFivqfhIcLZSVQgnQkLEM+YixYlEDEL?=
- =?us-ascii?Q?LHR8SNWkdj6uNULSXP9zRIRYaROKLB10frWwlL7TDkPNZDbYr13R82w6VIO0?=
- =?us-ascii?Q?RzLxb+Nid6j04JPMHWfeW/4F4e7AGNXWuEhhvPLd?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 078589c4-ea7f-4b5f-df94-08da7e6f255e
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Aug 2022 03:35:06.2446
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Py4IPEsWy1hRoAHSN4Q3bfSBJgX6KKHyPufpEs0JlXpT5otzdehXjkAgHOnI4sf9U4Uv2H47dJyBTWUOkQX4LA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR04MB7480
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Peng Fan <peng.fan@nxp.com>
+This series cleans up a few issues in the system controller driver, and
+then expands the exported regmap to support one of the pairs of LDOs
+built in to the D1 SoC.
 
-For the clocks listed in fsl,protected-clocks, enable them to avoid
-Linux disable them. This will benifit root Linux and inmate cell run
-on top of Jailhouse hypervisor, and benifit AMP case.
+Eventually, we will need to update the SRAM region claiming API so
+ownership can be swapped back and forth by consumer drivers. This will
+be necessary for uploading firmware to the R329/D1 DSPs, but it is not
+needed for initial bringup.
 
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
----
- drivers/clk/imx/clk-imx8mm.c |  2 ++
- drivers/clk/imx/clk-imx8mn.c |  2 ++
- drivers/clk/imx/clk-imx8mp.c |  2 ++
- drivers/clk/imx/clk-imx8mq.c |  2 ++
- drivers/clk/imx/clk.c        | 21 +++++++++++++++++++++
- drivers/clk/imx/clk.h        |  2 ++
- 6 files changed, 31 insertions(+)
+Changes in v2:
+ - New patch to first clean up the binding
 
-diff --git a/drivers/clk/imx/clk-imx8mm.c b/drivers/clk/imx/clk-imx8mm.c
-index b6d275855b36..24ddb1620bce 100644
---- a/drivers/clk/imx/clk-imx8mm.c
-+++ b/drivers/clk/imx/clk-imx8mm.c
-@@ -611,6 +611,8 @@ static int imx8mm_clocks_probe(struct platform_device *pdev)
- 
- 	imx_register_uart_clocks(4);
- 
-+	imx_clk_protect(dev, hws);
-+
- 	return 0;
- 
- unregister_hws:
-diff --git a/drivers/clk/imx/clk-imx8mn.c b/drivers/clk/imx/clk-imx8mn.c
-index d37c45b676ab..57c486317d28 100644
---- a/drivers/clk/imx/clk-imx8mn.c
-+++ b/drivers/clk/imx/clk-imx8mn.c
-@@ -604,6 +604,8 @@ static int imx8mn_clocks_probe(struct platform_device *pdev)
- 
- 	imx_register_uart_clocks(4);
- 
-+	imx_clk_protect(dev, hws);
-+
- 	return 0;
- 
- unregister_hws:
-diff --git a/drivers/clk/imx/clk-imx8mp.c b/drivers/clk/imx/clk-imx8mp.c
-index 652ae58c2735..a95862cc04a4 100644
---- a/drivers/clk/imx/clk-imx8mp.c
-+++ b/drivers/clk/imx/clk-imx8mp.c
-@@ -713,6 +713,8 @@ static int imx8mp_clocks_probe(struct platform_device *pdev)
- 
- 	imx_register_uart_clocks(4);
- 
-+	imx_clk_protect(dev, hws);
-+
- 	return 0;
- }
- 
-diff --git a/drivers/clk/imx/clk-imx8mq.c b/drivers/clk/imx/clk-imx8mq.c
-index 882dcad4817d..2868e2390667 100644
---- a/drivers/clk/imx/clk-imx8mq.c
-+++ b/drivers/clk/imx/clk-imx8mq.c
-@@ -603,6 +603,8 @@ static int imx8mq_clocks_probe(struct platform_device *pdev)
- 
- 	imx_register_uart_clocks(4);
- 
-+	imx_clk_protect(dev, hws);
-+
- 	return 0;
- 
- unregister_hws:
-diff --git a/drivers/clk/imx/clk.c b/drivers/clk/imx/clk.c
-index 5582f18dd632..307da8bd5243 100644
---- a/drivers/clk/imx/clk.c
-+++ b/drivers/clk/imx/clk.c
-@@ -2,6 +2,7 @@
- #include <linux/bits.h>
- #include <linux/clk.h>
- #include <linux/clk-provider.h>
-+#include <linux/device.h>
- #include <linux/err.h>
- #include <linux/io.h>
- #include <linux/module.h>
-@@ -214,4 +215,24 @@ static int __init imx_clk_disable_uart(void)
- late_initcall_sync(imx_clk_disable_uart);
- #endif
- 
-+int imx_clk_protect(struct device *dev, struct clk_hw * const clks[])
-+{
-+	struct device_node *np = dev->of_node;
-+	struct property *prop;
-+	const __be32 *p;
-+	u32 i;
-+	int ret;
-+
-+	of_property_for_each_u32(np, "fsl,protected-clocks", prop, p, i) {
-+		ret = clk_prepare_enable(clks[i]->clk);
-+		if (ret) {
-+			dev_err(dev, "failed to enable %s\n", clk_hw_get_name(clks[i]));
-+			return ret;
-+		}
-+	}
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL_GPL(imx_clk_protect);
-+
- MODULE_LICENSE("GPL v2");
-diff --git a/drivers/clk/imx/clk.h b/drivers/clk/imx/clk.h
-index dd49f90110e8..3f8099190b99 100644
---- a/drivers/clk/imx/clk.h
-+++ b/drivers/clk/imx/clk.h
-@@ -22,6 +22,8 @@ void imx_mmdc_mask_handshake(void __iomem *ccm_base, unsigned int chn);
- void imx_unregister_clocks(struct clk *clks[], unsigned int count);
- void imx_unregister_hw_clocks(struct clk_hw *hws[], unsigned int count);
- 
-+int imx_clk_protect(struct device *dev, struct clk_hw * const clks[]);
-+
- extern void imx_cscmr1_fixup(u32 *val);
- 
- enum imx_pllv1_type {
+Samuel Holland (10):
+  dt-bindings: sram: sunxi-sram: Clean up the compatible lists
+  dt-bindings: sram: sunxi-sram: Add D1 compatible string
+  soc: sunxi: sram: Actually claim SRAM regions
+  soc: sunxi: sram: Prevent the driver from being unbound
+  soc: sunxi: sram: Fix probe function ordering issues
+  soc: sunxi: sram: Fix debugfs info for A64 SRAM C
+  soc: sunxi: sram: Return void from the release function
+  soc: sunxi: sram: Save a pointer to the OF match data
+  soc: sunxi: sram: Export the LDO control register
+  soc: sunxi: sram: Add support for the D1 system control
+
+ .../allwinner,sun4i-a10-system-control.yaml   | 82 ++++++++-----------
+ drivers/soc/sunxi/sunxi_sram.c                | 74 +++++++++--------
+ include/linux/soc/sunxi/sunxi_sram.h          |  2 +-
+ 3 files changed, 73 insertions(+), 85 deletions(-)
+
 -- 
-2.37.1
+2.35.1
 
