@@ -2,71 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 701A0592BC8
-	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 12:50:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09D20592D10
+	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 12:52:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231685AbiHOI4J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Aug 2022 04:56:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47806 "EHLO
+        id S240393AbiHOI6w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Aug 2022 04:58:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230390AbiHOI4I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 04:56:08 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 750241838F
-        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 01:56:07 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id s11-20020a1cf20b000000b003a52a0945e8so3615133wmc.1
-        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 01:56:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc;
-        bh=v5hR97e/qTREUkp5JZeR/iRVGz5CsnRy8vmciOBHjlI=;
-        b=nmPrt2V6VgsW7SCOA20K6CehQN/O7Juwc1O2ZngeAd9mWmzoPYhYUW6bwTwfF03V1H
-         s+I34LqBn1oEouADmpyiA/eWgjhGbL2B11VCxoTbANpD8mcD0dD7lbx5xesnrsHFuHNm
-         MzbZ9fmtoDvk44LscDAX1CO92FIo6G2yU23nkNJQAvw+tOkON0EAQLaEIcd2cHdlMpzz
-         fTb1wVLWjRUTQ9yAehBVPwlCnwfSVQtmpWrl2maZh2Ru5a+QQKTF4/S24KBPMMn47ExB
-         jC8Nc//yS84Gfg5QOaI/TSqOrF47k0xGkANlbGuWnuXb4qbB4Z+rPPIgfeevZ3o98Mk6
-         06Sg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=v5hR97e/qTREUkp5JZeR/iRVGz5CsnRy8vmciOBHjlI=;
-        b=2t5F5iY1G4bWYTT0sN/RwNj1h0YyK7S1KvJSu8yaAjZbpkpPA3wCJcd2/mXgzaZ73Y
-         HXv2tD6kSqBRDSLT6RLsUEKkneBD4SP/6vYeGX8IOXJK7ftpgfqHzn5tlfMOuusk9DBo
-         NvHS6t81MVJmJurbdBPc8hipJUN86Bzh2fFtuoyqzOCdRc54jyEs1DF5z5DB2PQlx8ny
-         xeeNh8uO8aEXJeUxG+PyinLAU+9r/pLyfenJrKIC1Hj9V9rncj7InrZVAa2RRI4mRqxc
-         pFj7XOzG6S+Gy0AfCUB5NSX3YxcYv3qBTyUZiw0o+38F0xbNECqtiRrfekzBD6pHtl/u
-         6k9w==
-X-Gm-Message-State: ACgBeo2SDWBsj3BbJzGZwuckFiNr48ZHfEs3EeHD033YepKAPsXo4UpH
-        FhDOEk10sGCfwiUfOutjK2ApTQ==
-X-Google-Smtp-Source: AA6agR7qfrrl8M+Apau2RszgGLt5YMKpBoE+Es60MUI4fRPgameuYNGPb0cwHhsRNYevaowyh4n8Tw==
-X-Received: by 2002:a05:600c:1549:b0:3a5:e92f:cc68 with SMTP id f9-20020a05600c154900b003a5e92fcc68mr4135239wmg.29.1660553766016;
-        Mon, 15 Aug 2022 01:56:06 -0700 (PDT)
-Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id l40-20020a05600c1d2800b003a5b6086381sm9287547wms.48.2022.08.15.01.56.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Aug 2022 01:56:05 -0700 (PDT)
-Date:   Mon, 15 Aug 2022 11:56:03 +0300
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, abelvesa@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
-        Ye Li <ye.li@nxp.com>, Jacky Bai <ping.bai@nxp.com>
-Subject: Re: [PATCH V2 4/8] clk: imx: clk-composite-93: check white_list
-Message-ID: <YvoKI5GeiUrZLJHs@linaro.org>
-References: <20220815013039.474970-1-peng.fan@oss.nxp.com>
- <20220815013039.474970-5-peng.fan@oss.nxp.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220815013039.474970-5-peng.fan@oss.nxp.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        with ESMTP id S230468AbiHOI6v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 04:58:51 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5BE520F53;
+        Mon, 15 Aug 2022 01:58:50 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6B91460F7E;
+        Mon, 15 Aug 2022 08:58:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B403BC433D7;
+        Mon, 15 Aug 2022 08:58:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1660553929;
+        bh=BqH/4KtYjxbCwUUl+LU32sSE5MD8q5kMSnS0XBF9Bt4=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=gEn5jVDeyFy0f1Io+cvIpMoR/lZuNLQOEtYhEh/MsTFrdSQLsgfxtZLyxTXlmjiNf
+         JPs985fMu1hoSw0YKEj6UAySKrouzovKRCjqeAS693zmQ42rM1jwm/Rznh6NZH/9a5
+         sZ2U3Di0ZbWeTZwegrxUqtaytvG9QiLfFe/Wci/0R/YlZkTwOj0YsrOu8FHwdqS3NX
+         7gKm6Q0hnAWni1rZvl4mtCa3Lrqqy01yTc3kKNCMTJvQBHehiWrTSQfZ19OdSmu4XU
+         TUFLpUwEta0ZV5WPxkXicDE+gJgLu23iDU7g18gx5brJT7IByoRz+BdqDiJuH91PuR
+         OD2Mc8Us324Xw==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1oNVvr-0032af-A2;
+        Mon, 15 Aug 2022 09:58:47 +0100
+Date:   Mon, 15 Aug 2022 09:58:46 +0100
+Message-ID: <87czd1vq61.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Frank Li <frank.li@nxp.com>
+Cc:     "tglx@linutronix.de" <tglx@linutronix.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kw@linux.com" <kw@linux.com>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        Peng Fan <peng.fan@nxp.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        "jdmason@kudzu.us" <jdmason@kudzu.us>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "kishon@ti.com" <kishon@ti.com>,
+        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
+        "ntb@lists.linux.dev" <ntb@lists.linux.dev>,
+        "lznuaa@gmail.com" <lznuaa@gmail.com>
+Subject: Re: [EXT] Re: [PATCH v4 2/4] irqchip: imx mu worked as msi controller
+In-Reply-To: <PAXPR04MB918614DF535DA7FBADC956F988699@PAXPR04MB9186.eurprd04.prod.outlook.com>
+References: <20220812215242.2255824-1-Frank.Li@nxp.com>
+        <20220812215242.2255824-3-Frank.Li@nxp.com>
+        <875yiwsdq2.wl-maz@kernel.org>
+        <PAXPR04MB918614DF535DA7FBADC956F988699@PAXPR04MB9186.eurprd04.prod.outlook.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: frank.li@nxp.com, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org, s.hauer@pengutronix.de, kw@linux.com, bhelgaas@google.com, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, peng.fan@nxp.com, aisheng.dong@nxp.com, jdmason@kudzu.us, kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com, kishon@ti.com, lorenzo.pieralisi@arm.com, ntb@lists.linux.dev, lznuaa@gmail.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -75,100 +88,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-08-15 09:30:35, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> The CCM ROOT AUTHEN register WHITE_LIST indicate:
-> Each bit in this field represent for one domain. Bit16~Bit31 represent
-> for DOMAIN0~DOMAIN15 respectively. Only corresponding bit of the domains
-> is set to 1 can change the registers of this Clock Root.
-> 
-> i.MX93 DID is 3, so if BIT(3 + WHITE_LIST_SHIFT) is 0, the clk should be
-> set to read only. To make the imx93_clk_composite_flags be reusable,
-> add a new parameter named did(domain id);
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> Reviewed-by: Ye Li <ye.li@nxp.com>
-> Reviewed-by: Jacky Bai <ping.bai@nxp.com>
+On Sun, 14 Aug 2022 04:12:01 +0100,
+Frank Li <frank.li@nxp.com> wrote:
 
-Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
+> > > new file mode 100644
+> > > index 0000000000000..bb111412d598f
+> > > --- /dev/null
+> > > +++ b/drivers/irqchip/irq-imx-mu-msi.c
+> > > @@ -0,0 +1,443 @@
+> > > +// SPDX-License-Identifier: GPL-2.0-only
+> > > +/*
+> > > + * NXP MU worked as MSI controller
+> > 
+> > Freescale? Or NXP? Please make up your mind.
+> 
+> 
+> [Frank Li] NXP and freescale is the same thing. 
+> It is mux used at many place.
 
-> ---
->  drivers/clk/imx/clk-composite-93.c | 8 ++++++--
->  drivers/clk/imx/clk-imx93.c        | 2 +-
->  drivers/clk/imx/clk.h              | 5 +++--
->  3 files changed, 10 insertions(+), 5 deletions(-)
+Pick one, and stick to it. Having two names for the same thing is
+pointlessly confusing.
+
+> > > +static struct irq_chip imx_mu_msi_irq_chip = {
+> > > +     .name = "MU-MSI",
+> > > +     .irq_ack = irq_chip_ack_parent,
+> > 
+> > Crucially, no irq_write_msi_msg callback. So we happily inherit
+> > platform_msi_write_msg() and use the per descriptor write_msg()
+> > callback. Who sets this? Nobody.
 > 
-> diff --git a/drivers/clk/imx/clk-composite-93.c b/drivers/clk/imx/clk-composite-93.c
-> index 19f4037e6cca..74a66b0203e4 100644
-> --- a/drivers/clk/imx/clk-composite-93.c
-> +++ b/drivers/clk/imx/clk-composite-93.c
-> @@ -28,6 +28,8 @@
->  #define TZ_NS_SHIFT	9
->  #define TZ_NS_MASK	BIT(9)
->  
-> +#define WHITE_LIST_SHIFT	16
-> +
->  static int imx93_clk_composite_wait_ready(struct clk_hw *hw, void __iomem *reg)
->  {
->  	int ret;
-> @@ -180,7 +182,7 @@ static const struct clk_ops imx93_clk_composite_mux_ops = {
->  };
->  
->  struct clk_hw *imx93_clk_composite_flags(const char *name, const char * const *parent_names,
-> -					 int num_parents, void __iomem *reg,
-> +					 int num_parents, void __iomem *reg, u32 domain_id,
->  					 unsigned long flags)
->  {
->  	struct clk_hw *hw = ERR_PTR(-ENOMEM), *mux_hw;
-> @@ -189,6 +191,7 @@ struct clk_hw *imx93_clk_composite_flags(const char *name, const char * const *p
->  	struct clk_gate *gate = NULL;
->  	struct clk_mux *mux = NULL;
->  	bool clk_ro = false;
-> +	u32 authen;
->  
->  	mux = kzalloc(sizeof(*mux), GFP_KERNEL);
->  	if (!mux)
-> @@ -211,7 +214,8 @@ struct clk_hw *imx93_clk_composite_flags(const char *name, const char * const *p
->  	div->lock = &imx_ccm_lock;
->  	div->flags = CLK_DIVIDER_ROUND_CLOSEST;
->  
-> -	if (!(readl(reg + AUTHEN_OFFSET) & TZ_NS_MASK))
-> +	authen = readl(reg + AUTHEN_OFFSET);
-> +	if (!(authen & TZ_NS_MASK) || !(authen & BIT(WHITE_LIST_SHIFT + domain_id)))
->  		clk_ro = true;
->  
->  	if (clk_ro) {
-> diff --git a/drivers/clk/imx/clk-imx93.c b/drivers/clk/imx/clk-imx93.c
-> index 5099048b7916..0d5c11bb3659 100644
-> --- a/drivers/clk/imx/clk-imx93.c
-> +++ b/drivers/clk/imx/clk-imx93.c
-> @@ -293,7 +293,7 @@ static int imx93_clocks_probe(struct platform_device *pdev)
->  		root = &root_array[i];
->  		clks[root->clk] = imx93_clk_composite_flags(root->name,
->  							    parent_names[root->sel],
-> -							    4, base + root->off,
-> +							    4, base + root->off, 3,
->  							    root->flags);
->  	}
->  
-> diff --git a/drivers/clk/imx/clk.h b/drivers/clk/imx/clk.h
-> index 5061a06468df..396a5ea75083 100644
-> --- a/drivers/clk/imx/clk.h
-> +++ b/drivers/clk/imx/clk.h
-> @@ -445,9 +445,10 @@ struct clk_hw *imx93_clk_composite_flags(const char *name,
->  					 const char * const *parent_names,
->  					 int num_parents,
->  					 void __iomem *reg,
-> +					 u32 domain_id,
->  					 unsigned long flags);
-> -#define imx93_clk_composite(name, parent_names, num_parents, reg) \
-> -	imx93_clk_composite_flags(name, parent_names, num_parents, reg, \
-> +#define imx93_clk_composite(name, parent_names, num_parents, reg, domain_id) \
-> +	imx93_clk_composite_flags(name, parent_names, num_parents, reg, domain_id \
->  				  CLK_SET_RATE_NO_REPARENT | CLK_OPS_PARENT_ENABLE)
->  
->  struct clk_hw *imx_clk_hw_divider_gate(const char *name, const char *parent_name,
-> -- 
-> 2.37.1
+> [Frank Li] when set flag MSI_FLAG_USE_DEF_CHIP_OPS, 
+>  irq_write_msi_msg callback will be set at function platform_msi_update_chip_ops();
+
+That wasn't my question. But never mind, I found the call to
+platform_msi_domain_alloc_irqs() in patch #4.
+
+> > > +
+> > > +     /* Initialize MSI domain parent */
+> > > +     msi_data->parent = irq_domain_create_linear(fwnodes,
+> > > +                                                 IMX_MU_CHANS,
+> > > +                                                 &imx_mu_msi_domain_ops,
+> > > +                                                 msi_data);
+> > 
+> > Consider setting the bus_token attribute for this domain to something
+> > that isn't the default, as it otherwise clashes with the following
+> > creation.
 > 
+> [Frank Li] Any suggestion? Which bus_token is good?
+
+DOMAIN_BUS_NEXUS is what other drivers use.
+
+> > > +     priv->pd_a = dev_pm_domain_attach_by_name(dev, "a");
+> > 
+> > I'm sorry, but you'll have to come up with something slightly more
+> > descriptive than "a" or "b". At least add a qualifier to it. Same
+> > thing for the DT by the way.
+> 
+> [Frank Li] MU spec using  term "A side" and "B side".  So I think "a" and "b"
+> is enough.
+
+No, it really isn't.
+
+> 
+> Or do you think "a-side" is better?
+
+No, I would like something fully descriptive. The DT actually has
+"Processor A-facing", which seems like a reasonable description.
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
