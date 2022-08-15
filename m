@@ -2,336 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27FBF5929A7
-	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 08:37:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 820CB5929BE
+	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 08:43:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231320AbiHOGhR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Aug 2022 02:37:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38938 "EHLO
+        id S240264AbiHOGnO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Aug 2022 02:43:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231335AbiHOGhP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 02:37:15 -0400
-Received: from smtp.smtpout.orange.fr (smtp-23.smtpout.orange.fr [80.12.242.23])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DED51ADBB
-        for <devicetree@vger.kernel.org>; Sun, 14 Aug 2022 23:37:11 -0700 (PDT)
-Received: from [192.168.1.18] ([90.11.190.129])
-        by smtp.orange.fr with ESMTPA
-        id NTilozE1IUoLVNTilo20hb; Mon, 15 Aug 2022 08:37:08 +0200
-X-ME-Helo: [192.168.1.18]
-X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Mon, 15 Aug 2022 08:37:08 +0200
-X-ME-IP: 90.11.190.129
-Message-ID: <6d551cf9-94b4-653b-122a-938ee5504150@wanadoo.fr>
-Date:   Mon, 15 Aug 2022 08:37:06 +0200
+        with ESMTP id S239893AbiHOGnH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 02:43:07 -0400
+Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com [66.111.4.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CCDE1AF3F;
+        Sun, 14 Aug 2022 23:43:04 -0700 (PDT)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.nyi.internal (Postfix) with ESMTP id E4D2C5C00B9;
+        Mon, 15 Aug 2022 02:43:01 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Mon, 15 Aug 2022 02:43:01 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm3; t=1660545781; x=1660632181; bh=8v1UNNv97h
+        9J2L3WvxkH00sK+2Af+0MdgE0J1dhPpWA=; b=QBYvXoFE2expmhkMkPUa5b9q5J
+        PJJ2hvuYdIuDuAStEHtfVpFxuE0rm9pi0n2MqT8brNudqMCmcIs9iMMb7udhtyQu
+        Jku39EGmJVm1Ssj6AamPCjWZzdFFfLjumzy9QPcewvh8JfdmkDJ72G42IUMCw4FS
+        dY4zC1H7DdhPpwZMMXrYLllHVJNk4cfil++OCi6mg3uIMKgtfIqhLTYzAI3s4CSZ
+        bhjbP6E7sPa4hdayqvNaqYbabL06vdMam6fahFpUOQRojr4F8QBCosgYl9Dyx/NM
+        Mo1XAE48Hm8nDCGZRWoClZnluZ4o7XD1+Ek+uFF8npJE7bCs2PTFxRE4RBag==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm1; t=1660545781; x=1660632181; bh=8v1UNNv97h9J2L3WvxkH00sK+2Af
+        +0MdgE0J1dhPpWA=; b=mYi0k5szCs5yZozk29RRx8q5qgOTdLBRsL8hGMEWLfnH
+        ez8RFhJdZEdDQOdWsSA/wMS270RyUrecpyaq7QjdnNyttVRBu1quc4+SD867LYro
+        41Gr25rR0YctXAS0odKzpWTU8nY+23p+681+AmJwC5EW23NI1YaKhH9BkP5EwiAs
+        0lqhSPE6Id/EJ7TOOqf397/CPpWxA/txw8bCu09H7Md8jvNWABv2oFXgqqRbwt1b
+        Mn6kBMDGLy67+47x6LXSwTvxDMjCFZjkv70itsEjcM6uXHs4U15dzrMoRhBuy+TC
+        AAaaxtH845XqkVGyhhIR/lgsXSh8uZxVy4yNVFXiiw==
+X-ME-Sender: <xms:9er5YmbPDT0JdOfn9FMUEzoXns9jT0o6gk3Kvl416ecLoTlZ5CQInA>
+    <xme:9er5YpYONVVk6v9MGzUWveEA27hHAy-pGy9Ne_p5GQOBxk6cm6Bwg5-7BD6Pe3tBD
+    s2BIFHWwue-w9C64s4>
+X-ME-Received: <xmr:9er5Yg9SWnCsZZjs9aeDVnuGso9ndQG1WSNZa8u-tEayhh4HVu2M7MdLyN3O>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdehuddgudduhecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpeffhffvvefukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgig
+    ihhmvgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrf
+    grthhtvghrnhepteefffefgfektdefgfeludfgtdejfeejvddttdekteeiffejvdfgheeh
+    fffhvedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+    epmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:9er5YorW5eieMVy2cljIB4lVcVYjdRVQptdswd1VCSBAU2maX4hE1A>
+    <xmx:9er5YhoZGFiNdqZxuHq_5t9vxVZD_3NCg6kRG6RtG-Bqh1mVVIXouA>
+    <xmx:9er5YmSorlkhw-ItEgf4iwovSGC9316WpxYvm4b-_XmfNz4T_bbe7Q>
+    <xmx:9er5YiScjy43Usltq-fQC9u7FMsF0LG3ru--gDdz_rjhDCxwBLnKvg>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 15 Aug 2022 02:43:00 -0400 (EDT)
+Date:   Mon, 15 Aug 2022 08:42:48 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH 3/4] drm/sun4i: dsi: Add a variant structure
+Message-ID: <20220815064248.4ujitfpvtw6y3k4k@houat>
+References: <20220812074257.58254-1-samuel@sholland.org>
+ <20220812074257.58254-4-samuel@sholland.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v4 6/7] remoteproc: qcom: Add support for memory sandbox
-Content-Language: en-US
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-References: <1660308466-410-1-git-send-email-quic_srivasam@quicinc.com>
- <1660308466-410-7-git-send-email-quic_srivasam@quicinc.com>
-From:   Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Cc:     agross@kernel.org, bgoswami@quicinc.com,
-        bjorn.andersson@linaro.org, broonie@kernel.org,
-        devicetree@vger.kernel.org, judyhsiao@chromium.org,
-        lgirdwood@gmail.com, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        perex@perex.cz, quic_plai@quicinc.com, quic_rohkumar@quicinc.com,
-        robh+dt@kernel.org, srinivas.kandagatla@linaro.org,
-        swboyd@chromium.org, tiwai@suse.com
-In-Reply-To: <1660308466-410-7-git-send-email-quic_srivasam@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="fe5pr2l7i2tpjvdm"
+Content-Disposition: inline
+In-Reply-To: <20220812074257.58254-4-samuel@sholland.org>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le 12/08/2022 à 14:47, Srinivasa Rao Mandadapu a écrit :
-> Update pil driver with SMMU mapping for allowing authorised
-> memory access to ADSP firmware, by reading required memory
-> regions either from device tree file or from resource table
-> embedded in ADSP binary header.
-> 
-> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam-jfJNa2p1gH1BDgjK7y7TUQ@public.gmane.org>
+
+--fe5pr2l7i2tpjvdm
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi Samuel,
+
+On Fri, Aug 12, 2022 at 02:42:55AM -0500, Samuel Holland wrote:
+> Replace the ad-hoc calls to of_device_is_compatible() with a structure
+> describing the differences between variants. This is in preparation for
+> adding more variants to the driver.
+>=20
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
 > ---
-> Changes since V3:
-> 	-- Rename is_adsp_sb_needed to adsp_sandbox_needed.
-> 	-- Add smmu unmapping in error case and in adsp stop.
-> Changes since V2:
-> 	-- Replace platform_bus_type with adsp->dev->bus.
-> 	-- Use API of_parse_phandle_with_args() instead of of_parse_phandle_with_fixed_args().
-> 	-- Replace adsp->is_wpss with adsp->is_adsp.
-> 	-- Update error handling in adsp_start().
-> 
->   drivers/remoteproc/qcom_q6v5_adsp.c | 172 +++++++++++++++++++++++++++++++++++-
->   1 file changed, 170 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/remoteproc/qcom_q6v5_adsp.c b/drivers/remoteproc/qcom_q6v5_adsp.c
-> index b0a63a0..ca45d2c 100644
-> --- a/drivers/remoteproc/qcom_q6v5_adsp.c
-> +++ b/drivers/remoteproc/qcom_q6v5_adsp.c
-> @@ -9,6 +9,7 @@
->   #include <linux/firmware.h>
->   #include <linux/interrupt.h>
->   #include <linux/io.h>
-> +#include <linux/iommu.h>
->   #include <linux/iopoll.h>
->   #include <linux/kernel.h>
->   #include <linux/mfd/syscon.h>
-> @@ -48,6 +49,8 @@
->   #define LPASS_PWR_ON_REG		0x10
->   #define LPASS_HALTREQ_REG		0x0
->   
-> +#define SID_MASK_DEFAULT        0xF
+>=20
+>  drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c | 50 +++++++++++++++++---------
+>  drivers/gpu/drm/sun4i/sun6i_mipi_dsi.h |  7 ++++
+>  2 files changed, 40 insertions(+), 17 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c b/drivers/gpu/drm/sun=
+4i/sun6i_mipi_dsi.c
+> index b4dfa166eccd..6479ade416b9 100644
+> --- a/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c
+> +++ b/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c
+> @@ -1101,12 +1101,16 @@ static const struct component_ops sun6i_dsi_ops =
+=3D {
+> =20
+>  static int sun6i_dsi_probe(struct platform_device *pdev)
+>  {
+> +	const struct sun6i_dsi_variant *variant;
+>  	struct device *dev =3D &pdev->dev;
+> -	const char *bus_clk_name =3D NULL;
+>  	struct sun6i_dsi *dsi;
+>  	void __iomem *base;
+>  	int ret;
+> =20
+> +	variant =3D device_get_match_data(dev);
+> +	if (!variant)
+> +		return -EINVAL;
 > +
->   #define QDSP6SS_XO_CBCR		0x38
->   #define QDSP6SS_CORE_CBCR	0x20
->   #define QDSP6SS_SLEEP_CBCR	0x3c
-> @@ -78,7 +81,7 @@ struct adsp_pil_data {
->   struct qcom_adsp {
->   	struct device *dev;
->   	struct rproc *rproc;
+>  	dsi =3D devm_kzalloc(dev, sizeof(*dsi), GFP_KERNEL);
+>  	if (!dsi)
+>  		return -ENOMEM;
+> @@ -1114,10 +1118,7 @@ static int sun6i_dsi_probe(struct platform_device =
+*pdev)
+>  	dsi->dev =3D dev;
+>  	dsi->host.ops =3D &sun6i_dsi_host_ops;
+>  	dsi->host.dev =3D dev;
 > -
-> +	struct iommu_domain *iommu_dom;
->   	struct qcom_q6v5 q6v5;
->   
->   	struct clk *xo;
-> @@ -333,6 +336,155 @@ static int adsp_load(struct rproc *rproc, const struct firmware *fw)
->   	return 0;
->   }
->   
-> +static void adsp_of_unmap_smmu(struct iommu_domain *iommu_dom, const __be32 *prop, int len)
-> +{
-> +	unsigned long mem_phys;
-> +	unsigned long iova;
-> +	unsigned int mem_size;
-> +	int access_level;
-> +	int i;
-> +
-> +	for (i = 0; i < len; i++) {
-> +		iova = be32_to_cpu(prop[i++]);
-> +		mem_phys = be32_to_cpu(prop[i++]);
-> +		mem_size = be32_to_cpu(prop[i++]);
-> +		access_level = be32_to_cpu(prop[i]);
-> +		iommu_unmap(iommu_dom, iova, mem_size);
+> -	if (of_device_is_compatible(dev->of_node,
+> -				    "allwinner,sun6i-a31-mipi-dsi"))
+> -		bus_clk_name =3D "bus";
+> +	dsi->variant =3D variant;
+> =20
+>  	base =3D devm_platform_ioremap_resource(pdev, 0);
+>  	if (IS_ERR(base)) {
+> @@ -1142,7 +1143,7 @@ static int sun6i_dsi_probe(struct platform_device *=
+pdev)
+>  		return PTR_ERR(dsi->regs);
+>  	}
+> =20
+> -	dsi->bus_clk =3D devm_clk_get(dev, bus_clk_name);
+> +	dsi->bus_clk =3D devm_clk_get(dev, variant->has_mod_clk ? "bus" : NULL);
+>  	if (IS_ERR(dsi->bus_clk))
+>  		return dev_err_probe(dev, PTR_ERR(dsi->bus_clk),
+>  				     "Couldn't get the DSI bus clock\n");
+> @@ -1151,21 +1152,21 @@ static int sun6i_dsi_probe(struct platform_device=
+ *pdev)
+>  	if (ret)
+>  		return ret;
+> =20
+> -	if (of_device_is_compatible(dev->of_node,
+> -				    "allwinner,sun6i-a31-mipi-dsi")) {
+> +	if (variant->has_mod_clk) {
+>  		dsi->mod_clk =3D devm_clk_get(dev, "mod");
+>  		if (IS_ERR(dsi->mod_clk)) {
+>  			dev_err(dev, "Couldn't get the DSI mod clock\n");
+>  			ret =3D PTR_ERR(dsi->mod_clk);
+>  			goto err_attach_clk;
+>  		}
+> -	}
+> =20
+> -	/*
+> -	 * In order to operate properly, that clock seems to be always
+> -	 * set to 297MHz.
+> -	 */
+> -	clk_set_rate_exclusive(dsi->mod_clk, 297000000);
+> +		/*
+> +		 * In order to operate properly, the module clock on the
+> +		 * A31 variant always seems to be set to 297MHz.
+> +		 */
+> +		if (variant->set_mod_clk)
+> +			clk_set_rate_exclusive(dsi->mod_clk, 297000000);
 > +	}
-> +}
-> +
-> +static void adsp_rproc_unmap_smmu(struct rproc *rproc, int len)
-> +{
-> +	struct fw_rsc_devmem *rsc_fw;
-> +	struct fw_rsc_hdr *hdr;
-> +	int offset;
-> +	int i;
-> +
-> +	for (i = 0; i < len; i++) {
-> +		offset = rproc->table_ptr->offset[i];
-> +		hdr = (void *)rproc->table_ptr + offset;
-> +		rsc_fw = (struct fw_rsc_devmem *)hdr + sizeof(*hdr);
-> +
-> +		iommu_unmap(rproc->domain, rsc_fw->da, rsc_fw->len);
-> +	}
-> +}
-> +
-> +static void adsp_unmap_smmu(struct rproc *rproc)
-> +{
+>
+>
+>  	dsi->dphy =3D devm_phy_get(dev, "dphy");
+>  	if (IS_ERR(dsi->dphy)) {
+> @@ -1205,16 +1206,31 @@ static int sun6i_dsi_remove(struct platform_devic=
+e *pdev)
+> =20
+>  	component_del(&pdev->dev, &sun6i_dsi_ops);
+>  	mipi_dsi_host_unregister(&dsi->host);
+> -	clk_rate_exclusive_put(dsi->mod_clk);
+> +	if (dsi->variant->has_mod_clk && dsi->variant->set_mod_clk)
+> +		clk_rate_exclusive_put(dsi->mod_clk);
 
-When I proposed a adsp_unmap_smmu() function, the idea was to undo 
-everything that is donne by adsp_map_smmu().
-iommu_domain_alloc() and iommu_map(adsp->iommu_dom, ..) are not undone here.
+There's also a clk_rate_exclusive_put call in the bind error path
 
-If this make sense, it would improve the semantic, simplify the 
-'adsp_smmu_unmap' label in adsp_start() and avoid what looks like a leak 
-to me in adsp_stop().
+Maxime
 
+--fe5pr2l7i2tpjvdm
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +	struct qcom_adsp *adsp = (struct qcom_adsp *)rproc->priv;
-> +	const __be32 *prop;
-> +	unsigned int len;
-> +
-> +	prop = of_get_property(adsp->dev->of_node, "qcom,adsp-memory-regions", &len);
-> +	if (prop) {
+-----BEGIN PGP SIGNATURE-----
 
-In the allocation path, you have a "len /= sizeof(__be32);" which is not 
-here. Is it needed?
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYvnq6AAKCRDj7w1vZxhR
+xRUgAQC+Q6FefSqQzlCuirg8gH0Zff7RElCM+/kmmzZdz/QEiwEA1K0JgOyS8Xbv
+pApMRj4LRfKxndHBOk/R4DCvHbcNxwk=
+=pvGf
+-----END PGP SIGNATURE-----
 
-You call adsp_unmap_smmu() from the error handling path of 
-adsp_map_smmu(). If needed, maybe it should be part of adsp_of_unmap_smmu()?
-
-> +		adsp_of_unmap_smmu(adsp->iommu_dom, prop, len);
-> +	} else {
-> +		if (rproc->table_ptr)
-> +			adsp_rproc_unmap_smmu(rproc, rproc->table_ptr->num);
-> +	}
-> +}
-> +
-> +static int adsp_map_smmu(struct qcom_adsp *adsp, struct rproc *rproc)
-> +{
-> +	struct of_phandle_args args;
-> +	struct fw_rsc_devmem *rsc_fw;
-> +	struct fw_rsc_hdr *hdr;
-> +	const __be32 *prop;
-> +	long long sid;
-> +	unsigned long mem_phys;
-> +	unsigned long iova;
-> +	unsigned int mem_size;
-> +	unsigned int flag;
-> +	unsigned int len;
-> +	int access_level;
-> +	int offset;
-> +	int ret;
-> +	int rc;
-
-Are ret and rc both needed?
-
-> +	int i;
-> +
-> +	rc = of_parse_phandle_with_args(adsp->dev->of_node, "iommus", "#iommu-cells", 0, &args);
-> +	if (rc < 0)
-> +		sid = -1;
-> +	else
-> +		sid = args.args[0] & SID_MASK_DEFAULT;
-> +
-> +	adsp->iommu_dom = iommu_domain_alloc(adsp->dev->bus);
-> +	if (!adsp->iommu_dom) {
-> +		dev_err(adsp->dev, "failed to allocate iommu domain\n");
-> +		ret = -ENOMEM;
-> +		goto domain_free;
-> +	}
-> +
-> +	ret = iommu_attach_device(adsp->iommu_dom, adsp->dev);
-> +	if (ret) {
-> +		dev_err(adsp->dev, "could not attach device ret = %d\n", ret);
-> +		ret = -EBUSY;
-> +		goto detach_device;
-> +	}
-> +
-> +	/* Add SID configuration for ADSP Firmware to SMMU */
-> +	adsp->mem_phys =  adsp->mem_phys | (sid << 32);
-> +
-> +	ret = iommu_map(adsp->iommu_dom, adsp->mem_phys, adsp->mem_phys,
-> +			adsp->mem_size,	IOMMU_READ | IOMMU_WRITE);
-> +	if (ret) {
-> +		dev_err(adsp->dev, "Unable to map ADSP Physical Memory\n");
-> +		goto sid_unmap;
-> +	}
-> +
-> +	prop = of_get_property(adsp->dev->of_node, "qcom,adsp-memory-regions", &len);
-> +	if (prop) {
-> +		len /= sizeof(__be32);
-> +		for (i = 0; i < len; i++) {
-> +			iova = be32_to_cpu(prop[i++]);
-> +			mem_phys = be32_to_cpu(prop[i++]);
-> +			mem_size = be32_to_cpu(prop[i++]);
-> +			access_level = be32_to_cpu(prop[i]);
-> +
-> +			if (access_level)
-> +				flag = IOMMU_READ | IOMMU_WRITE;
-> +			else
-> +				flag = IOMMU_READ;
-> +
-> +			ret = iommu_map(adsp->iommu_dom, iova, mem_phys, mem_size, flag);
-> +			if (ret) {
-> +				dev_err(adsp->dev, "failed to map addr = %p mem_size = %x\n",
-> +						&(mem_phys), mem_size);
-> +				goto smmu_unmap;
-> +			}
-> +		}
-> +	} else {
-> +		if (!rproc->table_ptr)
-> +			goto sid_unmap;
-> +
-> +		for (i = 0; i < rproc->table_ptr->num; i++) {
-> +			offset = rproc->table_ptr->offset[i];
-> +			hdr = (void *)rproc->table_ptr + offset;
-> +			rsc_fw = (struct fw_rsc_devmem *)hdr + sizeof(*hdr);
-> +
-> +			ret = iommu_map(rproc->domain, rsc_fw->da, rsc_fw->pa,
-> +						rsc_fw->len, rsc_fw->flags);
-> +			if (ret) {
-> +				pr_err("%s; unable to map adsp memory address\n", __func__);
-> +				goto rproc_smmu_unmap;
-> +			}
-> +		}
-> +	}
-
-If you introduce a adsp_of_unmap_smmu() and adsp_rproc_unmap_smmu(), 
-would it make things more readable to have the same kind of functions 
-when allocating the resources?
-
-Symmetry often helps.
-
-> +	return 0;
-
-Add an empty new line here?
-
-> +rproc_smmu_unmap:
-> +	adsp_rproc_unmap_smmu(rproc, i);
-> +	goto sid_unmap;
-> +smmu_unmap:
-> +	adsp_of_unmap_smmu(adsp->iommu_dom, prop, i);
-> +sid_unmap:
-> +	iommu_unmap(adsp->iommu_dom, adsp->mem_phys, adsp->mem_size);
-> +detach_device:
-> +	iommu_domain_free(adsp->iommu_dom);
-> +domain_free:
-> +	return ret;
-> +}
-> +
-> +
->   static int adsp_start(struct rproc *rproc)
->   {
->   	struct qcom_adsp *adsp = (struct qcom_adsp *)rproc->priv;
-> @@ -343,9 +495,16 @@ static int adsp_start(struct rproc *rproc)
->   	if (ret)
->   		return ret;
->   
-> +	if (adsp->adsp_sandbox_needed) {
-> +		ret = adsp_map_smmu(adsp, rproc);
-> +		if (ret) {
-> +			dev_err(adsp->dev, "ADSP smmu mapping failed\n");
-> +			goto disable_irqs;
-> +		}
-> +	}
->   	ret = clk_prepare_enable(adsp->xo);
->   	if (ret)
-> -		goto disable_irqs;
-> +		goto adsp_smmu_unmap;
->   
->   	ret = qcom_rproc_pds_enable(adsp, adsp->proxy_pds,
->   				    adsp->proxy_pd_count);
-> @@ -401,6 +560,12 @@ static int adsp_start(struct rproc *rproc)
->   	qcom_rproc_pds_disable(adsp, adsp->proxy_pds, adsp->proxy_pd_count);
->   disable_xo_clk:
->   	clk_disable_unprepare(adsp->xo);
-> +adsp_smmu_unmap:
-> +	if (adsp->adsp_sandbox_needed) {
-> +		iommu_unmap(adsp->iommu_dom, adsp->mem_phys, adsp->mem_size);
-> +		adsp_unmap_smmu(rproc);
-> +		iommu_domain_free(adsp->iommu_dom);
-> +	}
->   disable_irqs:
->   	qcom_q6v5_unprepare(&adsp->q6v5);
->   
-> @@ -429,6 +594,9 @@ static int adsp_stop(struct rproc *rproc)
->   	if (ret)
->   		dev_err(adsp->dev, "failed to shutdown: %d\n", ret);
->   
-> +	if (adsp->adsp_sandbox_needed)
-> +		adsp_unmap_smmu(rproc);
-
-No need to call iommu_unmap() and iommu_domain_free() here?
-(this is the same comment as the one in adsp_rproc_unmap_smmu(). This is 
-just a blind guess based on symmetry of the code.)
-
-> +
->   	handover = qcom_q6v5_unprepare(&adsp->q6v5);
->   	if (handover)
->   		qcom_adsp_pil_handover(&adsp->q6v5);
-
+--fe5pr2l7i2tpjvdm--
