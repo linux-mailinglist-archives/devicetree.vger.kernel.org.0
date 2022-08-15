@@ -2,65 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EF7C5937B7
-	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 21:29:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECACF5937CB
+	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 21:29:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243521AbiHOSrG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Aug 2022 14:47:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49892 "EHLO
+        id S244005AbiHOSu1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Aug 2022 14:50:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244195AbiHOSqo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 14:46:44 -0400
-Received: from mail-oa1-x2c.google.com (mail-oa1-x2c.google.com [IPv6:2001:4860:4864:20::2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E6A141992
-        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 11:28:20 -0700 (PDT)
-Received: by mail-oa1-x2c.google.com with SMTP id 586e51a60fabf-10cf9f5b500so9036610fac.2
-        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 11:28:20 -0700 (PDT)
+        with ESMTP id S244006AbiHOSsl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 14:48:41 -0400
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48D5D42AE8
+        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 11:28:42 -0700 (PDT)
+Received: by mail-oi1-x22b.google.com with SMTP id j5so9424888oih.6
+        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 11:28:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc;
-        bh=nzkiEUN15yoqYwUDSmfmqqu1RJj8u2Ige+qgLeq8dNM=;
-        b=FnOF2oSIHjQvZrwpfABWIYj5vm/rL+xzLQN5tdxF2TYxqZl7qfG/TuxzlBQYurEeLV
-         I7stWMJfvgdP2wA7mAtXJl9tEcWoBK6sRrn29p4ZXtpm86Xn1LRa07Zfat736zBxea/S
-         s8FIVp85dDCCT3qWBTQjjrkzZfdG/qlXPvPclxM6ugvyfNVmBxHVIwuDgaRtCz2eoMnX
-         BnF8b9Joa5itybCca04tGBL0/1r9KU/W10Q048cHl6o7ETTrp/cMXBqvk8MpjULc+rw9
-         aEgf54uj6sh0mhJTk7OKhGYLUOP6Gy7n7d+zCu8cqJAWwsGvDGE80moCkuDC4Ea4SJzP
-         ndAQ==
+        bh=xr6JHD6AFlrXJM6hu6thcV+Az5D3BSvwhjamyNOLK2U=;
+        b=ZL6j2aZKnPT9BzOcJXtmGblq+Cr4dfi/Nv9LSagWsbWX1e4NdbYHodjiedJL70lrR9
+         IQQap1hMa3NR0CwTrdB1Wf42NhJ/kfhJcATdkjdgjcruyhjVBaHrXyaNcQppJ1Li2kQb
+         JE0ye0LdvPw69kByyeqX4ASHgTEnred0IXglQPommePBsHtGhcL4e2s8ro5YPmvxmN3/
+         D2V9b+2BA4s5wGQyfKgceRV9sjm3k9MBN1lWTI/q4jk3HNlYxsmutp55rRKkPa51qQ/0
+         Uu5yMgpCmDioN8eDLnwDa4mRm5ld+CdNaYNUkjSdAKj2mBs4dEaBNx6p8Akae0KHGEY7
+         kgdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc;
-        bh=nzkiEUN15yoqYwUDSmfmqqu1RJj8u2Ige+qgLeq8dNM=;
-        b=oWX6B5ABsM+0nISiB3+ckp6cGD/XrhFQhY3O82ev0YfSPj3ohh8GIxv7/y90YcNXNK
-         vidDkLvXxNVKt7r6PCdTdpCmLxNV0K/LjT8zg8SNdPHb12QavxvOHcYj+67anvPWeXrk
-         FqDEWLTyjfaFBxbJEw80TKbRzvGwpZ8lOnSKANa6avbsvK05kHVAs//OrySVHRyq0L/n
-         OmvkwjNW+y7xYw1/L1/noEEQM7gNxdqbwkNgIlNBUhiY/nzsFqD7DWJAd5UzfmqOQIUO
-         W9lnmPUslVJXDKsIScfKzVeFarXZzLn3j1K+PF9ZKP2VglF1w9yIP44YjDj6tJvEFd26
-         ZYfQ==
-X-Gm-Message-State: ACgBeo2uOkGIbsK1J40fkOwD+OutcP7ku72x0bBQilfOz8uH84QLPjsf
-        Twnb9Y9Qmevqw3bYWzexdF0vHHPpKJ1rWDdfkla8VRnbWSU=
-X-Google-Smtp-Source: AA6agR4FscaLC2K7CnGdFK/q1e0Cm8YfPFt5HcTAN/4NAB1QfTL5GPe7+vLFjgDWtK8eYVDrTdv0xm2Bk5gFEK24ec4=
-X-Received: by 2002:a05:6870:a18c:b0:118:5b96:1cc6 with SMTP id
- a12-20020a056870a18c00b001185b961cc6mr6865278oaf.105.1660588099459; Mon, 15
- Aug 2022 11:28:19 -0700 (PDT)
+        bh=xr6JHD6AFlrXJM6hu6thcV+Az5D3BSvwhjamyNOLK2U=;
+        b=gDakPn2kL5SX8AVt0VJpPin7TPMZ3hZ4hM/t9FKijMWJBeVFdgl9zBZBPZViabz9vU
+         nWjJXXqA9Ecz9hsdVFUzXAC9VkcLLN9JdqY1u0zEwGT7mT61WrgIBSqFcvt0CwbP/6IX
+         yoIPxOwA3822hXtTwMbCTcK4LDz4yQeDwv4p6lvCKpzp50iSPCmwTLJ4YFzTx3tEivhO
+         AFfsvWj9uldDR+KHoPXKsfyudvvrbe9GXSRqpCrWKIgMQI4T0WVfXEkdXjASxggithU4
+         /9AsJtJkpT0BEbP75lErQO649F1wz+pGhc5eIdGytyQFgV4Gpsu5ydibkE/u3jqlzztJ
+         Xh0w==
+X-Gm-Message-State: ACgBeo1pmYb4gmA7ldeT2P2BgpBH63MLJfv+D3aRWfSLo7t3hk+eY7vH
+        jymtfLVm4EG5+4wao62EsjqL4in7mFK7X8SH9DE85w==
+X-Google-Smtp-Source: AA6agR4v3x1WhnxjKeasF3bXPDPg2zd7s5kes2dQkr2E98b6hUIgSzGyPCj88i2ddzks+sDf7pzB6zRpG9Hi7SrPdxs=
+X-Received: by 2002:a05:6808:1c06:b0:33a:9b3b:b3ce with SMTP id
+ ch6-20020a0568081c0600b0033a9b3bb3cemr7429087oib.53.1660588120827; Mon, 15
+ Aug 2022 11:28:40 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220726084520.2895454-1-bhupesh.sharma@linaro.org>
-In-Reply-To: <20220726084520.2895454-1-bhupesh.sharma@linaro.org>
+References: <20220727164202.385531-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220727164202.385531-1-krzysztof.kozlowski@linaro.org>
 From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Mon, 15 Aug 2022 20:27:42 +0200
-Message-ID: <CAPDyKFqK3ywB9HW_FDdHTLNJ0rcVt3t7uMfJsBwfC1p0YhLrXg@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: mmc: Set maximum documented operating
- frequency as 384MHz
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, robh@kernel.org,
-        bhupesh.linux@gmail.com, linux-kernel@vger.kernel.org,
-        bjorn.andersson@linaro.org, agross@kernel.org
+Date:   Mon, 15 Aug 2022 20:27:58 +0200
+Message-ID: <CAPDyKFoDNkLk_FLuYRSdGVmCK809v8m_R_tLbgTTRP5tfaz08A@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mmc: mmc-spi-slot: drop unneeded spi-max-frequency
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,25 +67,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 26 Jul 2022 at 10:45, Bhupesh Sharma <bhupesh.sharma@linaro.org> wrote:
+On Wed, 27 Jul 2022 at 18:42, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 >
-> As Ulf noted in [1], the maximum operating frequency
-> documented in the mmc-controller device-tree bindings
-> should be updated to the maximum frequency supported
-> by the mmc controller(s).
+> spi-max-frequency comes from spi-peripheral-props.yaml.
 >
-> Without this fix in place, the 'make dtbs_check' reports
-> issues with 'max-frequency' value for ipq8074 sdhci node:
->
->   arch/arm64/boot/dts/qcom/ipq8074-hk01.dtb: mmc@7824900:
->    max-frequency:0:0: 384000000 is greater than the maximum of 200000000
->
-> [1]. https://www.spinics.net/lists/kernel/msg4442049.html
->
-> Cc: Ulf Hansson <ulf.hansson@linaro.org>
-> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Cc: Rob Herring <robh@kernel.org>
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Applied for next, thanks!
 
@@ -95,38 +81,22 @@ Uffe
 
 
 > ---
->  - v1 can be viewed here: https://lore.kernel.org/linux-arm-msm/20220725180916.2850228-1-bhupesh.sharma@linaro.org/
->  - Rebased on linux-next/master
+>  Documentation/devicetree/bindings/mmc/mmc-spi-slot.yaml | 2 --
+>  1 file changed, 2 deletions(-)
 >
->  .../devicetree/bindings/mmc/mmc-controller.yaml     | 13 ++++++++++---
->  1 file changed, 10 insertions(+), 3 deletions(-)
+> diff --git a/Documentation/devicetree/bindings/mmc/mmc-spi-slot.yaml b/Documentation/devicetree/bindings/mmc/mmc-spi-slot.yaml
+> index c45b91099325..c0662ce9946d 100644
+> --- a/Documentation/devicetree/bindings/mmc/mmc-spi-slot.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/mmc-spi-slot.yaml
+> @@ -23,8 +23,6 @@ properties:
+>    reg:
+>      maxItems: 1
 >
-> diff --git a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-> index ff5ce89e5111..802e3ca8be4d 100644
-> --- a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-> @@ -88,11 +88,18 @@ properties:
->      default: 1
+> -  spi-max-frequency: true
+> -
+>    interrupts:
+>      maxItems: 1
 >
->    max-frequency:
-> -    description:
-> -      Maximum operating frequency of the bus.
-> +    description: |
-> +      Maximum operating frequency of the bus:
-> +        - for eMMC, the maximum supported frequency is 200MHz,
-> +        - for SD/SDIO cards the SDR104 mode has a max supported
-> +          frequency of 208MHz,
-> +        - some mmc host controllers do support a max frequency upto
-> +          384MHz.
-> +      So, lets keep the maximum supported value here.
-> +
->      $ref: /schemas/types.yaml#/definitions/uint32
->      minimum: 400000
-> -    maximum: 200000000
-> +    maximum: 384000000
->
->    disable-wp:
->      $ref: /schemas/types.yaml#/definitions/flag
 > --
-> 2.35.3
+> 2.34.1
 >
