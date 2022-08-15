@@ -2,81 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA993592D82
-	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 12:53:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5741C592C79
+	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 12:51:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242221AbiHOJ5o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Aug 2022 05:57:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48780 "EHLO
+        id S233464AbiHOKDT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Aug 2022 06:03:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242219AbiHOJ5n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 05:57:43 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 813A81CB08
-        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 02:57:41 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id gk3so12671682ejb.8
-        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 02:57:41 -0700 (PDT)
+        with ESMTP id S231239AbiHOKDT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 06:03:19 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C550513D6E
+        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 03:03:17 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id i14so12688249ejg.6
+        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 03:03:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc;
-        bh=r1NsrzieKJbz0xeysq9ijMttBXf0JDgLn0ohifJ6FV0=;
-        b=gFptx6rdf1WmUqIRWVe+56U/Fl2x7Vlevj+kn9aSdpUpmlTGT8zizF89evlAIXSLr0
-         qcp4N/y8VKls98M6J9BBaplfbsqSiDbFZuWf/4hACiKKSOAj6QuMMsxoRfyLjRCS5ynX
-         BWgAPx00uVspe9NbSXzukFJptl4K6fbbFVi56ECvPsX9N45wwEt6GA7TRgYueiGoIbMe
-         N4YA5FtvIMKaIU/XuIm+47VmJ99k7WMAhXmNwaVK1qMMcmUI18SymK23LPQ4RCIGRy2p
-         627xhWBGUoql2p8Lz/bjmhKdXNE6u+YdFOiEN7OT2QnaPqX9PwFExEDljV42PTk4A6EH
-         Nk/w==
+        bh=NJX8jO1pYzzhVEPoTBTkL7Gt5+R43W0llgP4O+NknEE=;
+        b=4CsAeheZqpI88jrVCMl2Ai+HIPg1QRU2T31EcirAw8ECrKiz+vC+xtLbqswoQ0fOB0
+         8noIF8f7rSWmO43r3ua8N1XNq9wi67SqgVtQwjW0t1V0KNfR2uKcuew3vUilbZ5RonY4
+         kkIBtBqo/juDP+45QnPwpgeQqMXJwW25ciwd3F6kMhtr9p98qdPdtg9+FDegeaEewrPN
+         JAG4DOtpz+fl5YZl3xCUwuw0QAxEs4lq7LqeT2co9rwdHpclvIyKbjLw6KpEAFMmX5V7
+         vZr4qyplJqFHV+M6vmeUJ03UBhrqXY67cs4BOFqLx3AqJSBAtlEc3nQKKB73fHOJPhWP
+         TYNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc;
-        bh=r1NsrzieKJbz0xeysq9ijMttBXf0JDgLn0ohifJ6FV0=;
-        b=oT5GqYyLEKkSVZReuq6MMQ4iitXWSd9lCpx/h2WqtrwKLsosxgUJqH1wsZkQ7tUjZt
-         GvVvpCRogl2EQhxSVIcLNRY9pcLaDJfm9FDmaYf6XaLxZs3kSOLQis6QZurYC27H3jGM
-         yPN6qLorHasNSfx5BQW4UD5LIVQfCSF1lLkKzsxIr1A/4V3PMcqD1qbhQO3UbrzTDIEt
-         Q+EoPHjmeO4ZMuIqLOypY9dShTbw8O+b8mPIMfGFk+yrLfAZUidyJkRY5ylL+7/o9Muo
-         dNb15+xkaGBxD72h++DM+CGCRvNTXGRvJ7b8uHglyuX6Lpwx/oF1E8FCfY8Brow1kemu
-         b+2g==
-X-Gm-Message-State: ACgBeo3TbyubQ8/XMuCcp4jajauxmfypdSjOAl4Haw4s36GCfnHqKRqF
-        tunTfqY0t9A4JMpQscb89RXBsrk9C2fjSNRCnWTKdg==
-X-Google-Smtp-Source: AA6agR42gGHsKm0sw1MEgLwBiUC1pxf/08kt1kKkLbCwyDpNq+KcaYcUtN0ZKxYuGENxjoXyk9gWqGn/QTO3a8wYKnE=
+        bh=NJX8jO1pYzzhVEPoTBTkL7Gt5+R43W0llgP4O+NknEE=;
+        b=6Ua4G8LhV0YOlf4v5hU7fmEbguf59rbmywz1mXboFgYh3GqfB/fYXNoHmj69d5UHYR
+         LXxjOB7NqaxBiBQXMnPYvLh9/D9PoyvSIjPqd1/7NI8ac+WyOCscVLWRcwTcAr0MdVKc
+         8UuFp6dQPYPj4oPHmmc5FcX3c9qvQmtzJqzN+w3PFWdUG62VKRjeVHPDruJ8qSwEWkZY
+         ZEcn4YlHmfs7RlFZc9ew7SwzvB1RmH3hpOpdeRDi7OeROQ1iQ1n77h0m+TcSqCckBZ98
+         KtYyNmZ4ewZEUXs+CZWtNQrxC4LBC2yJl1XmoEX2KrDxWxXe4EeVzj5wzvtIZtnWe3EX
+         59hw==
+X-Gm-Message-State: ACgBeo239Wl2SYFOrfIg6hu+bPHwqzV7BvI38q4hlfnWERaOk6iIr5Bl
+        wGgjLYd0ZZNH7VjrrpquyBBZko6TCIwBhrGJK68ngQ==
+X-Google-Smtp-Source: AA6agR5hGQYDC8LGpVf58AajIYUmJAZOmVsl7JaDj51K6a6u15Jz5PUBvnJPwL0XuxQ4THkDa5RL10/XBiP2v+NWaSo=
 X-Received: by 2002:a17:907:7254:b0:731:61c6:ecf9 with SMTP id
- ds20-20020a170907725400b0073161c6ecf9mr10009999ejc.101.1660557460076; Mon, 15
- Aug 2022 02:57:40 -0700 (PDT)
+ ds20-20020a170907725400b0073161c6ecf9mr10022260ejc.101.1660557796390; Mon, 15
+ Aug 2022 03:03:16 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220810060040.321697-1-saravanak@google.com> <20220810060040.321697-5-saravanak@google.com>
-In-Reply-To: <20220810060040.321697-5-saravanak@google.com>
+References: <20220810124109.34157-1-srinivas.neeli@xilinx.com>
+In-Reply-To: <20220810124109.34157-1-srinivas.neeli@xilinx.com>
 From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Mon, 15 Aug 2022 11:57:29 +0200
-Message-ID: <CAMRc=Md=8TQf=EPKaTbOUF2=fuXVzC_dvV1SUo3Y2Tx-5hnzew@mail.gmail.com>
-Subject: Re: [PATCH v1 4/9] gpiolib: Clear the gpio_device's fwnode
- initialized flag before adding
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
+Date:   Mon, 15 Aug 2022 12:03:05 +0200
+Message-ID: <CAMRc=Me_xqOG64yfQHygS=eBbYaqwqGKt6DK1D1DWr+xkM-N3A@mail.gmail.com>
+Subject: Re: [PATCH V2] dt-bindings: gpio: gpio-xilinx: Convert Xilinx axi
+ gpio binding to YAML
+To:     Srinivas Neeli <srinivas.neeli@xilinx.com>
+Cc:     Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>,
+        Michal Simek <michal.simek@xilinx.com>,
         Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Len Brown <lenb@kernel.org>, Abel Vesa <abel.vesa@linaro.org>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        John Stultz <jstultz@google.com>,
-        Doug Anderson <dianders@chromium.org>,
-        Guenter Roeck <linux@roeck-us.net>, kernel-team@android.com,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        srinivas.neeli@amd.com,
         "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
         devicetree <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        git@xilinx.com, git@amd.com
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
@@ -88,38 +75,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 10, 2022 at 8:00 AM Saravana Kannan <saravanak@google.com> wrote:
+On Wed, Aug 10, 2022 at 2:41 PM Srinivas Neeli
+<srinivas.neeli@xilinx.com> wrote:
 >
-> Registering an irqdomain sets the flag for the fwnode. But having the
-> flag set when a device is added is interpreted by fw_devlink to mean the
-> device has already been initialized and will never probe. This prevents
-> fw_devlink from creating device links with the gpio_device as a
-> supplier. So, clear the flag before adding the device.
+> Convert Xilinx axi gpio binding documentation to YAML.
 >
-> Signed-off-by: Saravana Kannan <saravanak@google.com>
+> Signed-off-by: Srinivas Neeli <srinivas.neeli@xilinx.com>
 > ---
->  drivers/gpio/gpiolib.c | 6 ++++++
->  1 file changed, 6 insertions(+)
->
-> diff --git a/drivers/gpio/gpiolib.c b/drivers/gpio/gpiolib.c
-> index cc9c0a12259e..1d57d6f24632 100644
-> --- a/drivers/gpio/gpiolib.c
-> +++ b/drivers/gpio/gpiolib.c
-> @@ -522,6 +522,12 @@ static int gpiochip_setup_dev(struct gpio_device *gdev)
->  {
->         int ret;
->
-> +       /*
-> +        * If fwnode doesn't belong to another device, it's safe to clear its
-> +        * initialized flag.
-> +        */
-> +       if (!gdev->dev.fwnode->dev)
-> +               fwnode_dev_initialized(gdev->dev.fwnode, false);
->         ret = gcdev_register(gdev, gpio_devt);
->         if (ret)
->                 return ret;
-> --
-> 2.37.1.559.g78731f0fdb-goog
->
 
-Acked-by: Bartosz Golaszewski <brgl@bgdev.pl>
+Applied, thanks!
+
+Bart
