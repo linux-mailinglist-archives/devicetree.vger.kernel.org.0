@@ -2,51 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19046592EC2
-	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 14:15:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51624592EDB
+	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 14:25:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229987AbiHOMPQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Aug 2022 08:15:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56058 "EHLO
+        id S229969AbiHOMZa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Aug 2022 08:25:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231468AbiHOMPP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 08:15:15 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 8BF9D26130;
-        Mon, 15 Aug 2022 05:15:13 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 20CCB12FC;
-        Mon, 15 Aug 2022 05:15:14 -0700 (PDT)
-Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 81B913F66F;
-        Mon, 15 Aug 2022 05:15:11 -0700 (PDT)
-Date:   Mon, 15 Aug 2022 13:15:04 +0100
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v2 01/10] dt-bindings: sram: sunxi-sram: Clean up the
- compatible lists
-Message-ID: <20220815131504.65f7b92f@donnerap.cambridge.arm.com>
-In-Reply-To: <20220815041248.53268-2-samuel@sholland.org>
-References: <20220815041248.53268-1-samuel@sholland.org>
-        <20220815041248.53268-2-samuel@sholland.org>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+        with ESMTP id S241847AbiHOMZ2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 08:25:28 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4602B26AD8;
+        Mon, 15 Aug 2022 05:25:13 -0700 (PDT)
+X-UUID: 50c300657e1f4d69a339e5c30807e3dc-20220815
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=s4Kcd+rkVLrqPY1boQicbU5RlczH2V6/bPYBfFWQSeE=;
+        b=riBDeLO6akDi87eLDQLW+JtKQOQ4YOkDiNl79meC37C3ZZPl8ZmDXkMdEs78Es+jHHIem5o2OrnwSj90YGx4Z0banJ+GBdDEr7M+2LhPfSkbzxe1/v9zzsu2p8mezCgH0059xVLNAF1BBMsHmU9Ri7lFGqnKxAt93NUZTBs0Qgc=;
+X-CID-UNFAMILIAR: 1
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.9,REQID:f8081439-3053-484c-b093-1881fb281e52,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:100,FILE:0,BULK:0,RULE:Releas
+        e_Ham,ACTION:release,TS:95
+X-CID-INFO: VERSION:1.1.9,REQID:f8081439-3053-484c-b093-1881fb281e52,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:100,FILE:0,BULK:0,RULE:Spam_GS9
+        81B3D,ACTION:quarantine,TS:95
+X-CID-META: VersionHash:3d8acc9,CLOUDID:b8a85afd-9e71-4a0f-ba6b-417998daea35,C
+        OID:a1104740697b,Recheck:0,SF:28|16|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 50c300657e1f4d69a339e5c30807e3dc-20220815
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <allen-kh.cheng@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1140131084; Mon, 15 Aug 2022 20:25:06 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Mon, 15 Aug 2022 20:25:04 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.15 via Frontend Transport; Mon, 15 Aug 2022 20:25:04 +0800
+From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Guodong Liu <guodong.liu@mediatek.com>
+Subject: [PATCH] dt-bindings: pinctrl: mt8186: Fix 'reg-names' for pinctrl nodes
+Date:   Mon, 15 Aug 2022 20:25:03 +0800
+Message-ID: <20220815122503.2768-1-allen-kh.cheng@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-0.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,MAY_BE_FORGED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -54,140 +70,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 14 Aug 2022 23:12:38 -0500
-Samuel Holland <samuel@sholland.org> wrote:
+There are 8 GPIO physical address bases in mt8186, corresponding to the
+items of 'reg-names' with the pinctrl driver. but the order of
+'reg-names' is not correct. The mt8186 pinctrl driver would get the
+wrong address, causing the system to restart when regulator initializes
+. we fix 'reg-names' for pinctrl nodes and the pinctrl-mt8186 example
+in bindings.
 
-> Use enumerations where appropriate to combine "const" choices and
-> deduplicate fallback compatible strings.
-> 
-> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
+Fixes: 338e953f1bd1 ("dt-bindings: pinctrl: mt8186: add pinctrl file and binding document")
+Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Signed-off-by: Guodong Liu <guodong.liu@mediatek.com>
+---
+ .../bindings/pinctrl/pinctrl-mt8186.yaml         | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-Verified to be a pure transformation.
-
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-
-Cheers,
-Andre
-
-> ---
-> 
-> Changes in v2:
->  - New patch to first clean up the binding
-> 
->  .../allwinner,sun4i-a10-system-control.yaml   | 81 +++++++------------
->  1 file changed, 31 insertions(+), 50 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/sram/allwinner,sun4i-a10-system-control.yaml b/Documentation/devicetree/bindings/sram/allwinner,sun4i-a10-system-control.yaml
-> index 1c426c211e36..5055c9081059 100644
-> --- a/Documentation/devicetree/bindings/sram/allwinner,sun4i-a10-system-control.yaml
-> +++ b/Documentation/devicetree/bindings/sram/allwinner,sun4i-a10-system-control.yaml
-> @@ -24,32 +24,30 @@ properties:
->  
->    compatible:
->      oneOf:
-> -      - const: allwinner,sun4i-a10-sram-controller
-> +      - enum:
-> +          - allwinner,sun4i-a10-sram-controller
-> +          - allwinner,sun50i-a64-sram-controller
->          deprecated: true
-> -      - const: allwinner,sun4i-a10-system-control
-> -      - const: allwinner,sun5i-a13-system-control
-> +      - enum:
-> +          - allwinner,sun4i-a10-system-control
-> +          - allwinner,sun5i-a13-system-control
-> +          - allwinner,sun8i-a23-system-control
-> +          - allwinner,sun8i-h3-system-control
-> +          - allwinner,sun50i-a64-system-control
-> +          - allwinner,sun50i-h5-system-control
-> +          - allwinner,sun50i-h616-system-control
->        - items:
-> -          - const: allwinner,sun7i-a20-system-control
-> +          - enum:
-> +              - allwinner,suniv-f1c100s-system-control
-> +              - allwinner,sun7i-a20-system-control
-> +              - allwinner,sun8i-r40-system-control
->            - const: allwinner,sun4i-a10-system-control
-> -      - const: allwinner,sun8i-a23-system-control
-> -      - const: allwinner,sun8i-h3-system-control
->        - items:
->            - const: allwinner,sun8i-v3s-system-control
->            - const: allwinner,sun8i-h3-system-control
-> -      - items:
-> -          - const: allwinner,sun8i-r40-system-control
-> -          - const: allwinner,sun4i-a10-system-control
-> -      - const: allwinner,sun50i-a64-sram-controller
-> -        deprecated: true
-> -      - const: allwinner,sun50i-a64-system-control
-> -      - const: allwinner,sun50i-h5-system-control
->        - items:
->            - const: allwinner,sun50i-h6-system-control
->            - const: allwinner,sun50i-a64-system-control
-> -      - items:
-> -          - const: allwinner,suniv-f1c100s-system-control
-> -          - const: allwinner,sun4i-a10-system-control
-> -      - const: allwinner,sun50i-h616-system-control
->  
->    reg:
->      maxItems: 1
-> @@ -76,43 +74,26 @@ patternProperties:
->                - const: allwinner,sun4i-a10-sram-d
->                - const: allwinner,sun50i-a64-sram-c
->                - items:
-> -                  - const: allwinner,sun5i-a13-sram-a3-a4
-> -                  - const: allwinner,sun4i-a10-sram-a3-a4
-> -              - items:
-> -                  - const: allwinner,sun7i-a20-sram-a3-a4
-> +                  - enum:
-> +                      - allwinner,sun5i-a13-sram-a3-a4
-> +                      - allwinner,sun7i-a20-sram-a3-a4
->                    - const: allwinner,sun4i-a10-sram-a3-a4
->                - items:
-> -                  - const: allwinner,sun5i-a13-sram-c1
-> -                  - const: allwinner,sun4i-a10-sram-c1
-> -              - items:
-> -                  - const: allwinner,sun7i-a20-sram-c1
-> -                  - const: allwinner,sun4i-a10-sram-c1
-> -              - items:
-> -                  - const: allwinner,sun8i-a23-sram-c1
-> -                  - const: allwinner,sun4i-a10-sram-c1
-> -              - items:
-> -                  - const: allwinner,sun8i-h3-sram-c1
-> +                  - enum:
-> +                      - allwinner,sun5i-a13-sram-c1
-> +                      - allwinner,sun7i-a20-sram-c1
-> +                      - allwinner,sun8i-a23-sram-c1
-> +                      - allwinner,sun8i-h3-sram-c1
-> +                      - allwinner,sun8i-r40-sram-c1
-> +                      - allwinner,sun50i-a64-sram-c1
-> +                      - allwinner,sun50i-h5-sram-c1
-> +                      - allwinner,sun50i-h6-sram-c1
->                    - const: allwinner,sun4i-a10-sram-c1
->                - items:
-> -                  - const: allwinner,sun8i-r40-sram-c1
-> -                  - const: allwinner,sun4i-a10-sram-c1
-> -              - items:
-> -                  - const: allwinner,sun50i-a64-sram-c1
-> -                  - const: allwinner,sun4i-a10-sram-c1
-> -              - items:
-> -                  - const: allwinner,sun50i-h5-sram-c1
-> -                  - const: allwinner,sun4i-a10-sram-c1
-> -              - items:
-> -                  - const: allwinner,sun50i-h6-sram-c1
-> -                  - const: allwinner,sun4i-a10-sram-c1
-> -              - items:
-> -                  - const: allwinner,sun5i-a13-sram-d
-> -                  - const: allwinner,sun4i-a10-sram-d
-> -              - items:
-> -                  - const: allwinner,sun7i-a20-sram-d
-> -                  - const: allwinner,sun4i-a10-sram-d
-> -              - items:
-> -                  - const: allwinner,suniv-f1c100s-sram-d
-> +                  - enum:
-> +                      - allwinner,suniv-f1c100s-sram-d
-> +                      - allwinner,sun5i-a13-sram-d
-> +                      - allwinner,sun7i-a20-sram-d
->                    - const: allwinner,sun4i-a10-sram-d
->                - items:
->                    - const: allwinner,sun50i-h6-sram-c
+diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8186.yaml b/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8186.yaml
+index 1eeb885ce0c6..604445e390a7 100644
+--- a/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8186.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8186.yaml
+@@ -41,12 +41,12 @@ properties:
+       Gpio base register names.
+     items:
+       - const: iocfg0
+-      - const: iocfg_bm
+-      - const: iocfg_bl
+-      - const: iocfg_br
++      - const: iocfg_lt
+       - const: iocfg_lm
++      - const: iocfg_lb
++      - const: iocfg_bl
+       - const: iocfg_rb
+-      - const: iocfg_tl
++      - const: iocfg_rt
+       - const: eint
+ 
+   interrupt-controller: true
+@@ -232,12 +232,12 @@ examples:
+             <0x10002200 0x0200>,
+             <0x10002400 0x0200>,
+             <0x10002600 0x0200>,
+-            <0x10002A00 0x0200>,
++            <0x10002a00 0x0200>,
+             <0x10002c00 0x0200>,
+             <0x1000b000 0x1000>;
+-      reg-names = "iocfg0", "iocfg_bm", "iocfg_bl",
+-                  "iocfg_br", "iocfg_lm", "iocfg_rb",
+-                  "iocfg_tl", "eint";
++      reg-names = "iocfg0", "iocfg_lt", "iocfg_lm",
++                  "iocfg_lb", "iocfg_bl", "iocfg_rb",
++                  "iocfg_rt", "eint";
+       gpio-controller;
+       #gpio-cells = <2>;
+       gpio-ranges = <&pio 0 0 185>;
+-- 
+2.18.0
 
