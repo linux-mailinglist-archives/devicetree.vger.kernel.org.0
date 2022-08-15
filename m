@@ -2,95 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 797AD592D50
-	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 12:53:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 842A3592DB6
+	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 13:02:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233142AbiHOKdH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Aug 2022 06:33:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50474 "EHLO
+        id S230469AbiHOLCw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Aug 2022 07:02:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229752AbiHOKdG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 06:33:06 -0400
-Received: from muru.com (muru.com [72.249.23.125])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1329A2181E;
-        Mon, 15 Aug 2022 03:33:06 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id B44A680FB;
-        Mon, 15 Aug 2022 10:26:14 +0000 (UTC)
-Date:   Mon, 15 Aug 2022 13:33:04 +0300
-From:   Tony Lindgren <tony@atomide.com>
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
+        with ESMTP id S242006AbiHOLCe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 07:02:34 -0400
+Received: from mail.fris.de (mail.fris.de [IPv6:2a01:4f8:c2c:390b::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2698224095;
+        Mon, 15 Aug 2022 04:02:30 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B8926BFC15;
+        Mon, 15 Aug 2022 13:02:25 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fris.de; s=dkim;
+        t=1660561347; h=from:subject:date:message-id:to:cc:mime-version:
+         content-transfer-encoding; bh=di9qAzMMt0Uch8kPIvSmTcNkx/O6Br+B8hRhRF4lYGs=;
+        b=krvljssHeJ6ZlYsMS9O9emhoDvEBaxp0Pugx2H+g7k3oMNwALh8w3y+bwJ7C1rKPSbNl4m
+        +pJOuJwF+2LJ1FGq0/Ke1iuDLy0SpYnOExZD01nfhYM0Z8wfj1BGs/9Lamt2jtWnUuJljV
+        pVozdiXnlFSxcJlUQ3HpmNFXNdgP9lx37NhtZ+Sl/6IADT/9nkLa13Gl0Q4PlOgPIz4qo5
+        +k89kX7ekkge0zBDegRb2rPx2dDUVfXM1XQbaeFccdWoOKNVkXkMaBpmFaZ5OQNyWEVub1
+        4bRl1TvcDkYETHiou+xZ5rC5FcSsDtxdKXPyuojPNPvP3RbiGn6HSZIo9Cyduw==
+From:   Frieder Schrempf <frieder@fris.de>
+To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Li Yang <leoyang.li@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>
+Cc:     Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Len Brown <lenb@kernel.org>, Abel Vesa <abel.vesa@linaro.org>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        John Stultz <jstultz@google.com>,
-        Doug Anderson <dianders@chromium.org>,
-        Guenter Roeck <linux@roeck-us.net>, kernel-team@android.com,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-acpi@vger.kernel.org
-Subject: Re: [PATCH v1 0/9] fw_devlink improvements
-Message-ID: <Yvog4K0barAvvVeb@atomide.com>
-References: <20220810060040.321697-1-saravanak@google.com>
- <YvYiF36M09dX9ASm@atomide.com>
- <CAGETcx-t0O0B+5i0FWwm5w2=ccOD5zVAaUvgQoP8PT9SOT_btw@mail.gmail.com>
+        Sascha Hauer <s.hauer@pengutronix.de>
+Subject: [PATCH v3 0/8] arm64: dts: imx8mm-kontron: Improvements and OSM board support
+Date:   Mon, 15 Aug 2022 13:01:23 +0200
+Message-Id: <20220815110134.49683-1-frieder@fris.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAGETcx-t0O0B+5i0FWwm5w2=ccOD5zVAaUvgQoP8PT9SOT_btw@mail.gmail.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Saravana Kannan <saravanak@google.com> [220813 00:45]:
-> On Fri, Aug 12, 2022 at 2:49 AM Tony Lindgren <tony@atomide.com> wrote:
-> >
-> > * Saravana Kannan <saravanak@google.com> [220810 05:54]:
-> > > Tony,
-> > >
-> > > This should handle the odd case of the child being the supplier of the
-> > > parent. Can you please give this a shot? I want to make sure the cycle
-> > > detection code handles this properly and treats it like it's NOT a cycle.
-> >
-> > Yup, this series works for me, so feel free to add:
-> >
-> > Tested-by: Tony Lindgren <tony@atomide.com>
-> 
-> Thanks for testing!
-> 
-> Btw, out of curiosity, how many different boards did you test this on?
-> IIRC you had an issue only in one board, right? Not to say I didn't
-> break anything else, I'm just trying to see how much confidence we
-> have on this series so far. I'm hoping the rest of the folks I listed
-> in the email will get around to testing this series.
+From: Frieder Schrempf <frieder.schrempf@kontron.de>
 
-Sorry if I was not clear earlier. The issue affects several generations
-of TI 32-bit SoCs at least, not just one board.
+This set contains a few improvements for the imx8mm-kontron devicetrees
+(patch 3-7) and support for a new SoM (patch 8, including baseboard) that
+complies to the Open Standard Module (OSM) 1.0 hardware specification, size S
+(https://sget.org/standards/osm).
 
-> > I have some concerns though on how do we get a working -rc1 with the
-> > earlier series applied? See the comments in the last patch of this
-> > series.
-> 
-> I tried to reply, but not sure if it helps. We'll continue the discussion there.
+It also includes binding changes in patch 1 and 2.
 
-Ack.
+Changes in v3:
+* drop patch for 2 which was applied separately
+* rebase on v6.0-rc1
+* rename compatibles and file names
 
-Tony
+Changes in v2:
+* move binding changes to beginning of patchset
+* Allow arbitrary regulator names in PCA9450 bindings
+* Use voltage rail names from schematic for PMIC regulator-names
+* Add SPI NOR partition layout to devicetree
+* Remove unneeded header include
+* Add tags
+
+Frieder Schrempf (8):
+  dt-bindings: arm: fsl: Rename compatibles for Kontron i.MX8MM
+    SoM/board
+  dt-bindings: arm: fsl: Add Kontron BL i.MX8MM OSM-S board
+  arm64: dts: imx8mm-kontron: Adjust compatibles, file names and model
+    strings
+  arm64: dts: imx8mm-kontron: Use the VSELECT signal to switch SD card
+    IO voltage
+  arm64: dts: imx8mm-kontron: Remove low DDRC operating point
+  arm64: dts: imx8mm-kontron: Use voltage rail names from schematic for
+    PMIC regulator-names
+  arm64: dts: imx8mm-kontron: Add SPI NOR partition layout
+  arm64: dts: Add support for Kontron SL/BL i.MX8MM OSM-S
+
+ .../devicetree/bindings/arm/fsl.yaml          |  13 +-
+ arch/arm64/boot/dts/freescale/Makefile        |   3 +-
+ .../dts/freescale/imx8mm-kontron-bl-osm-s.dts | 376 ++++++++++++++++++
+ ...tron-n801x-s.dts => imx8mm-kontron-bl.dts} |   7 +-
+ .../dts/freescale/imx8mm-kontron-osm-s.dtsi   | 330 +++++++++++++++
+ ...-n801x-som.dtsi => imx8mm-kontron-sl.dtsi} |  53 ++-
+ 6 files changed, 757 insertions(+), 25 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-kontron-bl-osm-s.dts
+ rename arch/arm64/boot/dts/freescale/{imx8mm-kontron-n801x-s.dts => imx8mm-kontron-bl.dts} (96%)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-kontron-osm-s.dtsi
+ rename arch/arm64/boot/dts/freescale/{imx8mm-kontron-n801x-som.dtsi => imx8mm-kontron-sl.dtsi} (87%)
+
+-- 
+2.37.1
+
