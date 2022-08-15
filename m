@@ -2,71 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B7B20593998
-	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 21:34:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F274593768
+	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 21:28:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239994AbiHOSwC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Aug 2022 14:52:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34472 "EHLO
+        id S240185AbiHOSwD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Aug 2022 14:52:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244389AbiHOSvE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 14:51:04 -0400
-Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com [IPv6:2607:f8b0:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C417B43E42
-        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 11:29:04 -0700 (PDT)
-Received: by mail-ot1-x32d.google.com with SMTP id bk13-20020a056830368d00b0063723999f31so5973919otb.8
-        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 11:29:04 -0700 (PDT)
+        with ESMTP id S244635AbiHOSvg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 14:51:36 -0400
+Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3AB346DAB
+        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 11:29:26 -0700 (PDT)
+Received: by mail-oi1-x22d.google.com with SMTP id w197so9428355oie.5
+        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 11:29:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc;
-        bh=+2lJJE7hfrkayt0qzi/fmG2izz2GLSD8nOH7tC1AeLo=;
-        b=Lc4mNTi56/32O+lgEowursl3S1QdLAWj1FpOC5XA+F8Rx3hlrgkYOxG1d54XP1PQRd
-         mRXvLbXoAcxba3284ULxJIFBNCvTT393HISNfqbcZuOLFtg+LqNpWh6FTFFT1Kn55/rk
-         zAZXdzx4ceCx8rckPOQCS1eQ62LLF9XQdJtL4mfhlygbh3m8UIe1cBmEMwyCyVggoqQ5
-         0AQrM/A7lyijOyzdtN6eZC5x/J5rIMS+uFtUFMAl/SWgdp5wlh8OC3/0n6nNp5sceRpk
-         UgecbFyp9AiB0Vs0GSuanHfZWxpaVLDqfOE02iJGWyO2aUyx6mnP3+zKwWw4DwnIGAqg
-         KVsg==
+        bh=kKQFgWHEbY+p2ZFCCe57naXRy0LRcwbgkfnnHiuAaKI=;
+        b=dXTeuhXE2fMa8lJrfwZYFIdaVIzgrPygmU0f1QQ0c5f8eDvL0TaRVpZkemuok3gkSV
+         cByWuo3hoGYzk92+fWoo8RZAX4Kkx7J5UOerAAZd2iROc3GuDEiDLWwNL/0QcDfJmEd6
+         MCkjP9g7ZjL6DmyA3R7NGbIZt7bH/+Z6G67LsDWhqqhRhDYjUj7hDY5gFZBw29oB+Dwr
+         IC+bUkyLsAai3ke2ZbDWnyljOK7N7c59WY/CJQWwuHoDNVXdG8Zv8ehjVpG6nqyUY5+g
+         M8S/WJTHFFb5qxzxVa5GkHPgKR3IDAELKrBwlF03airGtJYG/xyZxuj5tMZ6NycqnZLk
+         8dAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc;
-        bh=+2lJJE7hfrkayt0qzi/fmG2izz2GLSD8nOH7tC1AeLo=;
-        b=0BgdeZ/WHrDH6+0jIjkwUfq3i9+QkaquIwO/BXDmTPJgn3x95WgyD3i/WD0+RG82uo
-         l5OB9T0flrXh+1vHQPrtB3Dzy5AHhpD+/qvmtmt/gUAke7jWK7G8yV/lUp8ROcCAWfoK
-         bI49hHRjMvf+4vmyncJTTyy+Qo0peYawm8dsCbMO8eFZ3L8VOagQVR3uACbIUlJ5i0Zx
-         +3o46BFr4Ku/WOAXNIwZgKYxLiTJMavWryxMxrMeK5wm/AI++/mcNkXpUZw3xBu4OwYy
-         ZzbchHYUA7ZZ4CDRY5zttxXf3gR53P120H0dZVxNwMvblMOGchavTRejtCV4LbmXcvVp
-         8hcg==
-X-Gm-Message-State: ACgBeo3wTHnkfg5D5V3o8OmHGxe2Gp5Z6VsFuv8d1ev3uekNnthy17o2
-        g2nvyAteAlsRXZ6vm6rHM6aC/DLJzgNNAcRfi53ZYA==
-X-Google-Smtp-Source: AA6agR76AJA44USeULweUjdFYUfN/+GbzCosXIK/UxZ4AEkVDK/VEN27cHeW+w+gAM3CyEeE2422VPU3VsRAqluGTjk=
-X-Received: by 2002:a9d:490:0:b0:636:825e:3b6 with SMTP id 16-20020a9d0490000000b00636825e03b6mr6661546otm.91.1660588143705;
- Mon, 15 Aug 2022 11:29:03 -0700 (PDT)
+        bh=kKQFgWHEbY+p2ZFCCe57naXRy0LRcwbgkfnnHiuAaKI=;
+        b=kL2Hxen851OcjDA4nwXN9p6ZYuKF8JpnMv4NimkRVMHM/3J//GeNVRHTyZCok+/3Au
+         TEkKS8EZyYkPIInrThCCud7DFCqdl6yRhhwlCiwJAqKtiKDHo6ve6c2ytId1+hZMgDRl
+         BZxK964tvshuDkzxC26ULlC/B3rftiGfvQCUi5WbbYDN2V1c3Pko2K/nNvKbOME0AwXU
+         U+Vro++YeoolJ7oATfZXeJ6jAaWq/bZJDlTnn0TcUVr6tN9Asf+P9MQivydYoFWsFcXw
+         qLChKwQDgOlZoINd0m3+cfeK+hxcelgpPRoCZJ1mw1puuxRiBS8Sm2cFpcIp2xVXnEt/
+         6/0w==
+X-Gm-Message-State: ACgBeo3hRu+4P/zXuTcjRLIErHzYLW8qQoXzapGPtOf5UgLhZUtjUWJO
+        yhebYunSUpDgAUgbDFYhtqShPxxXQYPTBjUx8ZTWlg==
+X-Google-Smtp-Source: AA6agR6mHgLUwhhSGDDVkPAeBPIKfkAX3M0vhyj+SC2VMmz19Px/LCYhJDzW/ocV6X5KfhKTBwhnrixkhl4hvuHusSw=
+X-Received: by 2002:aca:5e89:0:b0:344:80ab:1351 with SMTP id
+ s131-20020aca5e89000000b0034480ab1351mr4591083oib.105.1660588165502; Mon, 15
+ Aug 2022 11:29:25 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220729104441.39177-1-angelogioacchino.delregno@collabora.com> <20220729104441.39177-3-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220729104441.39177-3-angelogioacchino.delregno@collabora.com>
+References: <20220811204024.182453-1-mail@conchuod.ie>
+In-Reply-To: <20220811204024.182453-1-mail@conchuod.ie>
 From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Mon, 15 Aug 2022 20:28:07 +0200
-Message-ID: <CAPDyKFqqb=FC85PAMPtrfp=vn5HWB2tXqUCY4Yjd_twxL8sY=w@mail.gmail.com>
-Subject: Re: [PATCH 2/8] dt-bindings: mmc: Add compatible for MT6795 Helio X10 SoC
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        vkoul@kernel.org, chaotian.jing@mediatek.com,
-        matthias.bgg@gmail.com, hsinyi@chromium.org,
-        nfraprado@collabora.com, allen-kh.cheng@mediatek.com,
-        fparent@baylibre.com, sam.shih@mediatek.com,
-        sean.wang@mediatek.com, long.cheng@mediatek.com,
-        wenbin.mei@mediatek.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
+Date:   Mon, 15 Aug 2022 20:28:28 +0200
+Message-ID: <CAPDyKFrefLiR=QtuRuCdXgo1Y=vuwF6ok=kVK0hYgzVtaGHrSQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mmc: cdns: remove Piotr Sroka as a maintainer
+To:     Conor Dooley <mail@conchuod.ie>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Piotr Sroka <piotrs@cadence.com>, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Conor Dooley <conor.dooley@microchip.com>
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,12 +69,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 29 Jul 2022 at 12:44, AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
+On Thu, 11 Aug 2022 at 22:41, Conor Dooley <mail@conchuod.ie> wrote:
 >
-> Add a compatible string for the MT6795 SoC's mtk-sd mmc controllers.
+> From: Conor Dooley <conor.dooley@microchip.com>
 >
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Mails to Piotr bounce with a :550 5.1.1 User Unknown and the last
+> mention of him on lore is the orphaning of Cadence NFC drivers.
+> Remove him from the binding too.
+>
+> Link: https://lore.kernel.org/all/20200510122430.19105-1-miquel.raynal@bootlin.com/
+
+This link doesn't work, so I decided to simply drop it.
+
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 
 Applied for next, thanks!
 
@@ -88,21 +90,21 @@ Uffe
 
 
 > ---
->  Documentation/devicetree/bindings/mmc/mtk-sd.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml | 1 -
+>  1 file changed, 1 deletion(-)
 >
-> diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> index be366cefffc2..e1ceefe0ae48 100644
-> --- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> @@ -20,6 +20,7 @@ properties:
->            - mediatek,mt2701-mmc
->            - mediatek,mt2712-mmc
->            - mediatek,mt6779-mmc
-> +          - mediatek,mt6795-mmc
->            - mediatek,mt7620-mmc
->            - mediatek,mt7622-mmc
->            - mediatek,mt8135-mmc
+> diff --git a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+> index 99f89eb19356..7124e77617c9 100644
+> --- a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+> @@ -8,7 +8,6 @@ title: Cadence SD/SDIO/eMMC Host Controller (SD4HC)
+>
+>  maintainers:
+>    - Masahiro Yamada <yamada.masahiro@socionext.com>
+> -  - Piotr Sroka <piotrs@cadence.com>
+>
+>  allOf:
+>    - $ref: mmc-controller.yaml
 > --
-> 2.35.1
+> 2.37.1
 >
