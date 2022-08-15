@@ -2,85 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D607B59333E
-	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 18:27:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DB16593342
+	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 18:29:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233019AbiHOQ1f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Aug 2022 12:27:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39870 "EHLO
+        id S230041AbiHOQ3K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Aug 2022 12:29:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236058AbiHOQZe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 12:25:34 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89F74275DA
-        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 09:23:26 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 2D9FAB80FEE
-        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 16:23:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0972FC433C1;
-        Mon, 15 Aug 2022 16:23:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1660580603;
-        bh=7V+endEttnNu6oxaF3HKatJcXsg7TXNiTQ5xwRdEMlo=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=o3QlHTQ+RKrNDBzNNBnd+uDpMhEj0MRGvXgSGZe9NjqxNhdn6F6kT26tSBdqnU0nB
-         fwx3yLQCO4TmcWVRnTsH/j3XI8I/14HDR1pIrVoOwlIGxJJpF5zwecicLguPy6ZIeO
-         7uhcyW/GrhhFYp9pSLZomonOIeh+pHZ6SA1zBm5mIO6kGKpJ0VZ9FrUefiqIEUaoaF
-         k9dsBapJ95LJiFRJOlZSgy4cEHae/JLldXS1+R3vylL+071ANZGIkuOTZNFjcotUFP
-         /cJFTX6JNIiCjcH8UmjLMON/wJJDkyY/j2Wq+ZmoeSTIemkaGpok1lvR62AQBrKYAY
-         0AiJUF8KSs8wA==
-From:   Mark Brown <broonie@kernel.org>
-To:     devicetree@vger.kernel.org, Matt Flax <flatmax@flatmax.com>
-Cc:     robh@kernel.org, alsa-devel@alsa-project.org
-In-Reply-To: <20220814222218.119786-1-flatmax@flatmax.com>
-References: <20220814222218.119786-1-flatmax@flatmax.com>
-Subject: Re: [PATCH v4] ASoC: codecs: dt bind. doc for the new TI SRC4392 codec
-Message-Id: <166058060275.769843.4261026899082443606.b4-ty@kernel.org>
-Date:   Mon, 15 Aug 2022 17:23:22 +0100
+        with ESMTP id S229459AbiHOQ3J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 12:29:09 -0400
+Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com [IPv6:2607:f8b0:4864:20::829])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6EC66312
+        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 09:29:08 -0700 (PDT)
+Received: by mail-qt1-x829.google.com with SMTP id h21so5838148qta.3
+        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 09:29:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=NVdbXDDqt8OLuQLqClAaHnuBSzQXULtNPdEas2SrLJY=;
+        b=gggYPfYCcZrz3KKyz6DVR+Swe51KgJItmUNgu0M9NHQfWWqXLRLoqWgNrflb24LvVq
+         xcw1w86Vmq6OoZWjBE1JUPlLygkB8ijz53I/N7/8hK09levGgssM7nf3sHzC6b3NBVhW
+         iA4kg5/OCyLeQxLxNUhl1MQIVyL0u9qRfrOO9qvkYhzcNWG0hc2z6LR7AQKJEL3qBiXM
+         U4Ezv+avFSC7RtJhoomfXqFYpbhErgcW06VjKn2e61Xz9ceTMXsoui1OaeFTngV+5pRk
+         TvMci2XKG2o6nBhkI2vewzFgGyW54cAwtZYjtYahkYFkQ4mDVLdFfsAT0ObXo/pl7Dip
+         qbvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=NVdbXDDqt8OLuQLqClAaHnuBSzQXULtNPdEas2SrLJY=;
+        b=PnZR6T5fEM3CCzPd2do8kDXVxBY3uIvBmrhFnn2/Hr7a6BU09FEH0fenR3aOB34SaJ
+         0XfeK5mpnklDugRUmNfnyOXznY1jfcnSAIAWKP4pvlnCz1xiCbOK98UQvSZo7Rc9kA1E
+         Fs/eiKZrnbtdkaajCJJlQ7Qlys3PVPIJu136SmozZRZV/dVmeg11qaDSsIqyKZ3o9818
+         Ic71UwiVdfJQ2OmYWJmHY5LC9wtbFHWxuiy9kQrtnaxVKtt8PaA75VOpr7EPBgTzRAvt
+         VhBAsTK20wv3jv9MOD2bDBoAoP1OeRZFJF3HPASukUq3TOgNEJBxoQnXvnxk5DmCVQm1
+         AS3Q==
+X-Gm-Message-State: ACgBeo3ZPU1SN00KA4+X5/ckBsipx5PGSFN3S4fAOI/DZyYKWsgyQ9cy
+        NSxlA5ZXPHdpfDGK0/HWIfzO1V1a8MjMmVrgay6p4w==
+X-Google-Smtp-Source: AA6agR6illJXJezPnUlYRSvrzzoS5CAYf4IUEm95n/U6inIK5fOcXEH6F1mNmBMwtsRq0xclG5MWykhUOUCpEetI2Pg=
+X-Received: by 2002:a05:622a:1013:b0:344:5b66:fe15 with SMTP id
+ d19-20020a05622a101300b003445b66fe15mr5314154qte.66.1660580947982; Mon, 15
+ Aug 2022 09:29:07 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.10.0-dev-fe10a
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <CABMhjYp3xUyQ9q6nXHvEA2zuzhYi0ETn6UETeH1apWf2n2eP7A@mail.gmail.com>
+ <7ba0c325-bc1f-f6e4-dd8a-b5d13a04ef93@microchip.com> <CABMhjYrDyOoDusE4-y4VzM87Vg=NhPbow_dQ+1C4EcX50LrMHw@mail.gmail.com>
+ <fb861221-2e9d-7d4a-dd52-b16b3b581fd6@microchip.com> <dd128dec-6092-7aeb-6e66-eb45cea3b0cd@microchip.com>
+In-Reply-To: <dd128dec-6092-7aeb-6e66-eb45cea3b0cd@microchip.com>
+From:   Atul Khare <atulkhare@rivosinc.com>
+Date:   Mon, 15 Aug 2022 09:28:57 -0700
+Message-ID: <CABMhjYrB+Qn9ZuJ3Lqpu0KVFGeg6avxkYqD=SQWyLjdQ3wSpjg@mail.gmail.com>
+Subject: Re: [PATCH v2 0/2] dt-bindings: sifive: fix dt-schema errors
+To:     Conor.Dooley@microchip.com
+Cc:     palmer@rivosinc.com, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-riscv@lists.infradead.org,
+        robh@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 15 Aug 2022 08:22:18 +1000, Matt Flax wrote:
-> 
+Conor,
+
+Thanks -- really appreciate the help. Dell had to come out twice to
+fix my laptop, and it's finally done (hopefully), but moving back and
+forth between  the different distros has been really disruptive.
 
 
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[1/1] ASoC: codecs: dt bind. doc for the new TI SRC4392 codec
-      commit: 020adbfb2edae4dd90d7774d08936261e218c171
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+On Tue, Jul 26, 2022 at 9:42 AM <Conor.Dooley@microchip.com> wrote:
+>
+> On 01/07/2022 21:00, Conor Dooley wrote:
+> > On 01/07/2022 20:49, Atul Khare wrote:
+> >> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+> >>
+> >> Conor,
+> >>
+> >> Apologies for the delay, but my laptop died a couple of weeks ago, and
+> >> I have been scrambling to get things up and running on the
+> >> replacement. I will try and get back to it ASAP.
+> >
+> > Nothing you can do about your laptop dying :)
+> >
+> >
+>
+> Hey Atul,
+> Been another couple weeks so I am going to send a v3 of these
+> patches (although without any changes to the v2) and we can
+> resume discussion about the cache binding change there.
+> Thanks,
+> Conor.
