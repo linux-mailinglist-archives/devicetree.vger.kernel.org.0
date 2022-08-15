@@ -2,96 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E07BC595224
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 07:41:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47BF359525B
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 08:09:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229977AbiHPFlH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 01:41:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54028 "EHLO
+        id S229542AbiHPGJs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 02:09:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232078AbiHPFkt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 01:40:49 -0400
-X-Greylist: delayed 68 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 15 Aug 2022 15:27:20 PDT
-Received: from proxmox1.postmarketos.org (proxmox1.postmarketos.org [IPv6:2a01:4f8:a0:821d::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9E706CD1;
-        Mon, 15 Aug 2022 15:27:20 -0700 (PDT)
-Received: from [192.168.0.12] (cpc76482-cwma10-2-0-cust629.7-3.cable.virginm.net [86.14.22.118])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by proxmox1.postmarketos.org (Postfix) with ESMTPSA id 614F414015B;
-        Mon, 15 Aug 2022 22:27:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-        s=donut; t=1660602439;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=s4c/Vn6NcaEIBanYavvPzdPCSkOe7p2YV5ZnRO6hBVo=;
-        b=K+yGhokSqhjDbxedPjnTfMtnzoCBVOpwha9JSweOL3UkbsYYHBHuYqieLGLtus9nWhgMss
-        9j+68mD0P+dZKPBizNlr2eSWRMpb5XkXkQFx9ps4Nv3SO/5+cibj4TBjvcJSYEakViwRTi
-        W1GKZNRo9smsI1+IBrYYoJOgER6/luM=
-Message-ID: <5ea0a9d7-cd14-1acc-3bd8-828c7b5e55ad@postmarketos.org>
-Date:   Mon, 15 Aug 2022 23:27:19 +0100
+        with ESMTP id S229684AbiHPGJX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 02:09:23 -0400
+Received: from mail-il1-x12d.google.com (mail-il1-x12d.google.com [IPv6:2607:f8b0:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16F832F7F86;
+        Mon, 15 Aug 2022 16:48:35 -0700 (PDT)
+Received: by mail-il1-x12d.google.com with SMTP id i18so3458307ila.12;
+        Mon, 15 Aug 2022 16:48:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=GnjYZoPrOvqe0tvfDPHrHG6WFLEYg63zoMdPDc+FwkQ=;
+        b=pebHBj1Fh9oMsZP4JDQnEsell1or/JyvS/qrqEwn3tPv6bLnLeUktS1AQuN0/gvGrV
+         xF8POsYz2iMVJVb/4vUmpV+B9TT6Ex9Ki4Qz8X+Jqzx+euVlmOTrZJ8BnKZWVy6kFiWQ
+         G7QuM9Pr+EPYYokoLWQvr/gnFxgrm874Og0zi6hwYGI04C+jJPr73Lodjv1LELmLaGum
+         7xcvcYvdENFe/HbDcUTzrkiXjz9BnnrxIGP2H7Hno3BHIeSzFPX2c0UgMqJpG3jX34FC
+         xsUsF0VF0AZa84HKhV8SVcocW8lzU9qW6XNq0ieWU+uSxXfx70cde/5740FPybhwtJCB
+         s6FA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=GnjYZoPrOvqe0tvfDPHrHG6WFLEYg63zoMdPDc+FwkQ=;
+        b=YTeXBfiq76czicCtLeMLKDSwf2I2lfYTFkvGmO3/hhjTyf74ctIux18N0gLRivsB4D
+         z11o5JZWmIX9CnNMdP94Ej2EDVr2Nc60srQa4D3KGRBS6s9CsnwSbpjHgDfEREEAQbmo
+         OvcuG0UT+j5y3OZzF9dUZxXIujEESOmFuPgJU/CQ6Dq+FL59tmSNUUAIklZQPDSAmK0C
+         v9T2453dVjZR519VDW3BEEWh8PjpwWFEmBkMZMAohsiX+5ufo6J8jPEsMF1saifMaxtN
+         Y5zLTBreUKNjD4e+zriWb6skI0kzzf95eOePnYVhOfBCMP8iyC/5Pp2GK8n3upM/3eYG
+         LfBg==
+X-Gm-Message-State: ACgBeo1k+5SEbPHQcASUO1WO4fjXbEVFOh1fG+X6VlDzq/LAhuRT/QMZ
+        YRVJFm5eGlvumlxCctW+lMY=
+X-Google-Smtp-Source: AA6agR49+UWBtN/y8LyoFT9mWepPjC8TKlglg/6ksaHFoi/H320BSJVyfC6a9Z+/mVboLAcaMzYBgw==
+X-Received: by 2002:a05:6e02:1a64:b0:2e5:cbab:bbdb with SMTP id w4-20020a056e021a6400b002e5cbabbbdbmr2494043ilv.268.1660607311351;
+        Mon, 15 Aug 2022 16:48:31 -0700 (PDT)
+Received: from hestia.gfnd.rcn-ee.org (208-107-176-7-dynamic.midco.net. [208.107.176.7])
+        by smtp.gmail.com with ESMTPSA id c16-20020a92cf50000000b002e5f6199babsm439965ilr.38.2022.08.15.16.48.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Aug 2022 16:48:30 -0700 (PDT)
+From:   Robert Nelson <robertcnelson@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     Robert Nelson <robertcnelson@gmail.com>,
+        Rob Herring <robh@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Jason Kridner <jkridner@beagleboard.org>,
+        Drew Fustini <drew@beagleboard.org>
+Subject: [PATCH] dt-bindings: arm: ti: Add bindings for BeagleBone AI-64
+Date:   Mon, 15 Aug 2022 18:48:24 -0500
+Message-Id: <20220815234824.772836-1-robertcnelson@gmail.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm: rockchip: Add PinePhone Pro
- bindings
-Content-Language: en-US
-To:     Tom Fitzhenry <tom@tom-fitzhenry.me.uk>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de
-Cc:     martijn@brixit.nl, ayufan@ayufan.eu, megi@xff.cz,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, phone-devel@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220815123004.252014-1-tom@tom-fitzhenry.me.uk>
- <4zqDGP71uKXjwgNqkEOaMdU5T3XKr7axd17DLLCEvoOEw1B_fov8tUyaGeNDyu9A1YYUkpRW2G33Uzs0CIkDoQ==@protonmail.internalid>
- <20220815123004.252014-2-tom@tom-fitzhenry.me.uk>
-From:   Caleb Connolly <kc@postmarketos.org>
-In-Reply-To: <20220815123004.252014-2-tom@tom-fitzhenry.me.uk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This board is based on the ti,j721e
 
+Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
+CC: Rob Herring <robh@kernel.org>
+CC: Nishanth Menon <nm@ti.com>
+CC: Jason Kridner <jkridner@beagleboard.org>
+CC: Drew Fustini <drew@beagleboard.org>
+---
+ Documentation/devicetree/bindings/arm/ti/k3.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-On 15/08/2022 13:30, Tom Fitzhenry wrote:
-> Document board compatible names for Pine64 PinePhonePro.
-> 
-> https://wiki.pine64.org/wiki/PinePhone_Pro
-> 
-> Signed-off-by: Tom Fitzhenry <tom@tom-fitzhenry.me.uk>
+diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+index 61c6ab4f52e2..ecb5fa9d4644 100644
+--- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
++++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+@@ -36,6 +36,7 @@ properties:
+               - enum:
+                   - ti,j721e-evm
+                   - ti,j721e-sk
++                  - beagle,j721e-beagleboneai64
+               - const: ti,j721e
+ 
+       - description: K3 J7200 SoC
+-- 
+2.30.2
 
-Reviewed-by: Caleb Connolly <kc@postmarketos.org>
-> ---
->   Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
->   1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> index 7811ba64149cb..8ddedbd1ce317 100644
-> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> @@ -494,6 +494,11 @@ properties:
->             - const: pine64,pinenote
->             - const: rockchip,rk3566
-> 
-> +      - description: Pine64 PinePhonePro
-> +        items:
-> +          - const: pine64,pinephone-pro
-> +          - const: rockchip,rk3399
-> +
->         - description: Pine64 Rock64
->           items:
->             - const: pine64,rock64
-> --
-> 2.37.1
-> 
