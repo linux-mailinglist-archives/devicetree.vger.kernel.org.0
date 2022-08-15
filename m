@@ -2,61 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CB8C593064
-	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 16:01:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D82A59306F
+	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 16:06:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231644AbiHOOBw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Aug 2022 10:01:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45906 "EHLO
+        id S233146AbiHOOGk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Aug 2022 10:06:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231584AbiHOOBw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 10:01:52 -0400
-Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com [209.85.219.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FDA6220C6;
-        Mon, 15 Aug 2022 07:01:51 -0700 (PDT)
-Received: by mail-qv1-f50.google.com with SMTP id mk9so5383918qvb.11;
-        Mon, 15 Aug 2022 07:01:51 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=message-id:date:subject:references:in-reply-to:cc:to:from
-         :x-gm-message-state:from:to:cc;
-        bh=dKfzpcSJcyLaUeyLXairrh0uvdiYsvVZa/B4hAX3xzE=;
-        b=ruJny7kPNGTZt2cVQJSFUU66WH7m0vXI1oBJEJwoBHPht/RLmwD7kNRYxlGldODBJh
-         GL1aH7qwIcZbQlNgpQTRHYbiKFSeK3AOA2UbL879cxznR0gI7fHXl0FeIyOywNj+jxjI
-         S5TYYXdM5d6tbfMjKkt6/sxIVivRZUtIqyRMUWmqf9B++NfJ6ml71Qh1b66WeTq+4shX
-         xaIDtcCZIX9BHTtCOR3WmZrr8K6I8Hsi/TPvFhCEwTndC82iwpXO/Vd7XbkBXYAB9ZjB
-         6Zyc1XRB/nhT+p/JSFRmyBTJU3d7A9pw+X0c5Bu6baIvYdiw7uiChnaolV3CLji0oEjx
-         e00w==
-X-Gm-Message-State: ACgBeo3MCST4Sl92Dhawe6wEKsQvH6npAyyFJwZgTYWEtm6IkI+obzOq
-        zs8i2GImHoV3gf6+BzK/1g==
-X-Google-Smtp-Source: AA6agR5+zNDBXvl94ryaYajiHWUcq2LRnBtS5fKnVsr31dTCfohTIhxzYK5K4DDtpF/JFQwd4bjNPA==
-X-Received: by 2002:a05:6214:5099:b0:477:4ed2:633d with SMTP id kk25-20020a056214509900b004774ed2633dmr13604542qvb.16.1660572109711;
-        Mon, 15 Aug 2022 07:01:49 -0700 (PDT)
-Received: from robh.at.kernel.org ([50.206.145.23])
-        by smtp.gmail.com with ESMTPSA id x2-20020ac87302000000b00342b7e4241fsm8057678qto.77.2022.08.15.07.01.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Aug 2022 07:01:49 -0700 (PDT)
-Received: (nullmailer pid 1103614 invoked by uid 1000);
-        Mon, 15 Aug 2022 14:01:47 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S232495AbiHOOGk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 10:06:40 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1FEF1183B;
+        Mon, 15 Aug 2022 07:06:37 -0700 (PDT)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1oNajc-00043b-0N; Mon, 15 Aug 2022 16:06:28 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Chen-Yu Tsai <wens@csie.org>,
         Jernej Skrabec <jernej.skrabec@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Samuel Holland <samuel@sholland.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
-        Maxime Ripard <mripard@kernel.org>
-In-Reply-To: <20220815043436.20170-4-samuel@sholland.org>
-References: <20220815043436.20170-1-samuel@sholland.org> <20220815043436.20170-4-samuel@sholland.org>
-Subject: Re: [PATCH v3 3/4] dt-bindings: sram: sunxi-sram: Add optional regulators child
-Date:   Mon, 15 Aug 2022 08:01:47 -0600
-Message-Id: <1660572107.469120.1103613.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@lists.linux.dev, Samuel Holland <samuel@sholland.org>
+Subject: Re: [PATCH v2 05/10] soc: sunxi: sram: Fix probe function ordering issues
+Date:   Mon, 15 Aug 2022 16:06:27 +0200
+Message-ID: <6807552.18pcnM708K@diego>
+In-Reply-To: <20220815041248.53268-6-samuel@sholland.org>
+References: <20220815041248.53268-1-samuel@sholland.org> <20220815041248.53268-6-samuel@sholland.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,47 +49,87 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 14 Aug 2022 23:34:34 -0500, Samuel Holland wrote:
-> Some sunxi SoCs have in-package regulators controlled by a register in
-> the system control MMIO block. Allow a child node for these regulators
-> in addition to SRAM child nodes.
+Am Montag, 15. August 2022, 06:12:42 CEST schrieb Samuel Holland:
+> Errors from debugfs are intended to be non-fatal, and should not prevent
+> the driver from probing.
 > 
+> Since debugfs file creation is treated as infallible, move it below the
+> parts of the probe function that can fail. This prevents an error
+> elsewhere in the probe function from causing the file to leak. Do the
+> same for the call to of_platform_populate().
+> 
+> Finally, checkpatch suggests an octal literal for the file permissions.
+> 
+> Fixes: 4af34b572a85 ("drivers: soc: sunxi: Introduce SoC driver to map SRAMs")
+> Fixes: 5828729bebbb ("soc: sunxi: export a regmap for EMAC clock reg on A64")
+> Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 > Signed-off-by: Samuel Holland <samuel@sholland.org>
+
+Tested-by: Heiko Stuebner <heiko@sntech.de>
+
+but one thing below
+
 > ---
 > 
-> Changes in v3:
->  - Require the regulators node to have a unit address
->  - Reference the regulator schema from the SRAM controller schema
->  - Move the system LDOs example to the SRAM controller schema
->  - Reorder the patches so the example passes validation
+> (no changes since v1)
 > 
-> Changes in v2:
->  - New patch for v2
+>  drivers/soc/sunxi/sunxi_sram.c | 13 +++++--------
+>  1 file changed, 5 insertions(+), 8 deletions(-)
 > 
->  .../allwinner,sun4i-a10-system-control.yaml   | 29 +++++++++++++++++++
->  1 file changed, 29 insertions(+)
+> diff --git a/drivers/soc/sunxi/sunxi_sram.c b/drivers/soc/sunxi/sunxi_sram.c
+> index a858a37fcdd4..52d07bed7664 100644
+> --- a/drivers/soc/sunxi/sunxi_sram.c
+> +++ b/drivers/soc/sunxi/sunxi_sram.c
+> @@ -332,9 +332,9 @@ static struct regmap_config sunxi_sram_emac_clock_regmap = {
+>  
+>  static int __init sunxi_sram_probe(struct platform_device *pdev)
+>  {
+> -	struct dentry *d;
+>  	struct regmap *emac_clock;
+>  	const struct sunxi_sramc_variant *variant;
+> +	struct device *dev = &pdev->dev;
+>  
+>  	sram_dev = &pdev->dev;
+>  
+> @@ -346,13 +346,6 @@ static int __init sunxi_sram_probe(struct platform_device *pdev)
+>  	if (IS_ERR(base))
+>  		return PTR_ERR(base);
+>  
+> -	of_platform_populate(pdev->dev.of_node, NULL, NULL, &pdev->dev);
+> -
+> -	d = debugfs_create_file("sram", S_IRUGO, NULL, NULL,
+> -				&sunxi_sram_fops);
+> -	if (!d)
+> -		return -ENOMEM;
+> -
+>  	if (variant->num_emac_clocks > 0) {
+>  		emac_clock = devm_regmap_init_mmio(&pdev->dev, base,
+>  						   &sunxi_sram_emac_clock_regmap);
+> @@ -361,6 +354,10 @@ static int __init sunxi_sram_probe(struct platform_device *pdev)
+>  			return PTR_ERR(emac_clock);
+>  	}
+>  
+> +	of_platform_populate(dev->of_node, NULL, NULL, dev);
+
+hmm, of_platform_populate() can actually fail [0] it just looks a bit like
+sunxi driver seem to ignore that by {chance, design?} [1] .
+
+So I guess this might want to have handling for probably unlikely
+possible errors instead?
+
+
+Heiko
+
+[0] https://elixir.bootlin.com/linux/latest/source/drivers/of/platform.c#L463
+[1] https://elixir.bootlin.com/linux/latest/source/drivers/bus/sun50i-de2.c#L22
+> +
+> +	debugfs_create_file("sram", 0444, NULL, NULL, &sunxi_sram_fops);
+> +
+>  	return 0;
+>  }
+>  
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-yamllint warnings/errors:
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/sram/allwinner,sun4i-a10-system-control.example.dtb:0:0: /example-1/syscon@3000000: failed to match any schema with compatible: ['allwinner,sun20i-d1-system-control']
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
 
