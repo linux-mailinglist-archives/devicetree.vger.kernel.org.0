@@ -2,48 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4519E593252
-	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 17:45:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 456CF59324C
+	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 17:45:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229547AbiHOPpD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Aug 2022 11:45:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60638 "EHLO
+        id S232860AbiHOPpP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Aug 2022 11:45:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232600AbiHOPpC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 11:45:02 -0400
+        with ESMTP id S232933AbiHOPpJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 11:45:09 -0400
 Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C109D17074;
-        Mon, 15 Aug 2022 08:44:59 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8816167F9;
+        Mon, 15 Aug 2022 08:45:06 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 6F6E4B80F02;
-        Mon, 15 Aug 2022 15:44:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1BECC433C1;
-        Mon, 15 Aug 2022 15:44:54 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 1A13EB80F02;
+        Mon, 15 Aug 2022 15:45:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E9D4C433D7;
+        Mon, 15 Aug 2022 15:45:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1660578297;
-        bh=OkFapyn4xOtZLGADcDAUVjgBIurU3qGxIAY1Mkf6qoE=;
+        s=k20201202; t=1660578303;
+        bh=bpJOSnaaKOFAV4EJIOWKkYzEss+zMhG5h5JyLxDFoSc=;
         h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=ETeBHPMcFW3ZDtXQq936zJ20nAAFxeqmLmaRBQ78pLjnmCtE+wKyAxpr/vEsbTF32
-         U6alnnwfxlxSjV0KG/bUUB+PkFp5Hyjc1sEmQZhTZ+YaEwrcsqJMQwAcI/A+b8j8dN
-         CwzmcDtCRPQCzHSdBEqd2FloiDNc6hjuTt3fgCxCYHjAw7ZdEutqYvWFOoxpTzmqTC
-         +NV2Szgwgp47qSg477gWDW05sQV0bYufwwxhc7I70kLH6cFPOV1u6AGN346hRU7WTL
-         6f57hy60QsKe4PF2JAVwnWRAADqEgrqMGd0QE+t3O0TLVjFnw0/sE/v7A1G3dfgZRB
-         wSREOaVjJMj5Q==
+        b=qY35Wod6KXCNVH5eOCOreFlNufFt2Xd3iFUepG5dxwqNzP267qyYxIu5y058Fcx9E
+         qbOC6Qg+6W8WscGW0gDtemMdW4KBq684+Jfc+/iRScSXf5SWiveRP9bHyHzY9WLE7B
+         ArWYMRhwC5Mg6fA3axlKhmT8OGQ1r7QaRzppgQUR4ujnFPKJawyPLnzEj9PM+lxU7H
+         HPljmhloXy4sAAR1/0hJiSoMVdPrtmKT+Q1M8Q9jnFt4mwx9ojzqbPRBYlnQAZz2K6
+         YTkxhFsySct8yGkBty4284JS77uKY4TIRid+Rkbnkrsnc2gxoNpNc6gBR1J7nczzL1
+         OGOLofxg99VKg==
 From:   Mark Brown <broonie@kernel.org>
-To:     venture@google.com, avifishman70@gmail.com,
-        krzysztof.kozlowski+dt@linaro.org,
-        Tomer Maimon <tmaimon77@gmail.com>, yuenn@google.com,
-        benjaminfair@google.com, tali.perry1@gmail.com, robh+dt@kernel.org,
-        joel@jms.id.au
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        openbmc@lists.ozlabs.org, linux-spi@vger.kernel.org
-In-Reply-To: <20220722114136.251415-1-tmaimon77@gmail.com>
-References: <20220722114136.251415-1-tmaimon77@gmail.com>
-Subject: Re: [PATCH v2 0/2] spi: npcm-pspi: add Arbel NPCM8XX support
-Message-Id: <166057829444.697678.15497743196363589755.b4-ty@kernel.org>
-Date:   Mon, 15 Aug 2022 16:44:54 +0100
+To:     Naga Sureshkumar Relli <nagasuresh.relli@microchip.com>,
+        krzysztof.kozlowski+dt@linaro.org, conor.dooley@microchip.com,
+        robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Valentina.FernandezAlanis@microchip.com
+In-Reply-To: <20220808064603.1174906-1-nagasuresh.relli@microchip.com>
+References: <20220808064603.1174906-1-nagasuresh.relli@microchip.com>
+Subject: Re: [PATCH v4 0/4] Add support for Microchip QSPI controller
+Message-Id: <166057830190.697678.8659830218813922446.b4-ty@kernel.org>
+Date:   Mon, 15 Aug 2022 16:45:01 +0100
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -58,15 +57,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 22 Jul 2022 14:41:34 +0300, Tomer Maimon wrote:
-> This patch set adds Arbel NPCM8XX Peripheral SPI (PSPI) support to PSPI NPCM
-> driver.
+On Mon, 8 Aug 2022 12:15:59 +0530, Naga Sureshkumar Relli wrote:
+> This patch enables the Microchip's FPGA QSPI and Polarfire SoC QSPI
+> controller support.
 > 
-> This patch set was separated from the full duplex patch.
-> https://lore.kernel.org/lkml/YtlES7MX6nJr8l+L@sirena.org.uk/
+> Tested spi-nand (W25N01GV) and spi-nor (MT25QL256A) on Microchip's
+> ICICLE kit. tested using both FPGA QSPI and Polarfie SoC QSPI.
 > 
-> Addressed comments from:
->  - Mark Brown : https://www.spinics.net/lists/kernel/msg4447178.html
+> changes in v4
+> -------------
+> 1. Removed microchip,mpfs-qspi compatible from the driver
+> 2. Changed platform_get_irq() return value check from <=0 to <0
+> 3. Fixed dt_binding_check warning by installing latest yamllint
 > 
 > [...]
 
@@ -76,10 +78,14 @@ Applied to
 
 Thanks!
 
-[1/2] dt-binding: spi: npcm-pspi: Add npcm845 compatible
-      commit: ac2c55e2260e0ae019119e1b2a52dda138039841
-[2/2] spi: npcm-pspi: Add NPCM845 peripheral SPI support
-      commit: 6db8595a3e1996654a130760d363912cdd28706d
+[1/4] spi: dt-binding: document microchip coreQSPI
+      commit: a5890c12ecce2696f90ef7d2b8fbb33387f735de
+[2/4] spi: dt-binding: add coreqspi as a fallback for mpfs-qspi
+      commit: 2ba464e5a3b5743e8f935b5a02b9a7c3d2bd9549
+[3/4] spi: microchip-core-qspi: Add support for microchip fpga qspi controllers
+      commit: 8596124c4c1bc7561454cee0463c16eca70b5d25
+[4/4] MAINTAINERS: add qspi to Polarfire SoC entry
+      commit: 1f7d00a7565c8468bbfef87f9fbfebb047003942
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
