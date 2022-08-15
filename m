@@ -2,217 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 820CB5929BE
-	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 08:43:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8421D5929D8
+	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 08:50:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240264AbiHOGnO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Aug 2022 02:43:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44538 "EHLO
+        id S241077AbiHOGuv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Aug 2022 02:50:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239893AbiHOGnH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 02:43:07 -0400
-Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com [66.111.4.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CCDE1AF3F;
-        Sun, 14 Aug 2022 23:43:04 -0700 (PDT)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.nyi.internal (Postfix) with ESMTP id E4D2C5C00B9;
-        Mon, 15 Aug 2022 02:43:01 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Mon, 15 Aug 2022 02:43:01 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm3; t=1660545781; x=1660632181; bh=8v1UNNv97h
-        9J2L3WvxkH00sK+2Af+0MdgE0J1dhPpWA=; b=QBYvXoFE2expmhkMkPUa5b9q5J
-        PJJ2hvuYdIuDuAStEHtfVpFxuE0rm9pi0n2MqT8brNudqMCmcIs9iMMb7udhtyQu
-        Jku39EGmJVm1Ssj6AamPCjWZzdFFfLjumzy9QPcewvh8JfdmkDJ72G42IUMCw4FS
-        dY4zC1H7DdhPpwZMMXrYLllHVJNk4cfil++OCi6mg3uIMKgtfIqhLTYzAI3s4CSZ
-        bhjbP6E7sPa4hdayqvNaqYbabL06vdMam6fahFpUOQRojr4F8QBCosgYl9Dyx/NM
-        Mo1XAE48Hm8nDCGZRWoClZnluZ4o7XD1+Ek+uFF8npJE7bCs2PTFxRE4RBag==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; t=1660545781; x=1660632181; bh=8v1UNNv97h9J2L3WvxkH00sK+2Af
-        +0MdgE0J1dhPpWA=; b=mYi0k5szCs5yZozk29RRx8q5qgOTdLBRsL8hGMEWLfnH
-        ez8RFhJdZEdDQOdWsSA/wMS270RyUrecpyaq7QjdnNyttVRBu1quc4+SD867LYro
-        41Gr25rR0YctXAS0odKzpWTU8nY+23p+681+AmJwC5EW23NI1YaKhH9BkP5EwiAs
-        0lqhSPE6Id/EJ7TOOqf397/CPpWxA/txw8bCu09H7Md8jvNWABv2oFXgqqRbwt1b
-        Mn6kBMDGLy67+47x6LXSwTvxDMjCFZjkv70itsEjcM6uXHs4U15dzrMoRhBuy+TC
-        AAaaxtH845XqkVGyhhIR/lgsXSh8uZxVy4yNVFXiiw==
-X-ME-Sender: <xms:9er5YmbPDT0JdOfn9FMUEzoXns9jT0o6gk3Kvl416ecLoTlZ5CQInA>
-    <xme:9er5YpYONVVk6v9MGzUWveEA27hHAy-pGy9Ne_p5GQOBxk6cm6Bwg5-7BD6Pe3tBD
-    s2BIFHWwue-w9C64s4>
-X-ME-Received: <xmr:9er5Yg9SWnCsZZjs9aeDVnuGso9ndQG1WSNZa8u-tEayhh4HVu2M7MdLyN3O>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdehuddgudduhecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpeffhffvvefukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgig
-    ihhmvgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrf
-    grthhtvghrnhepteefffefgfektdefgfeludfgtdejfeejvddttdekteeiffejvdfgheeh
-    fffhvedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
-    epmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:9er5YorW5eieMVy2cljIB4lVcVYjdRVQptdswd1VCSBAU2maX4hE1A>
-    <xmx:9er5YhoZGFiNdqZxuHq_5t9vxVZD_3NCg6kRG6RtG-Bqh1mVVIXouA>
-    <xmx:9er5YmSorlkhw-ItEgf4iwovSGC9316WpxYvm4b-_XmfNz4T_bbe7Q>
-    <xmx:9er5YiScjy43Usltq-fQC9u7FMsF0LG3ru--gDdz_rjhDCxwBLnKvg>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 15 Aug 2022 02:43:00 -0400 (EDT)
-Date:   Mon, 15 Aug 2022 08:42:48 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH 3/4] drm/sun4i: dsi: Add a variant structure
-Message-ID: <20220815064248.4ujitfpvtw6y3k4k@houat>
-References: <20220812074257.58254-1-samuel@sholland.org>
- <20220812074257.58254-4-samuel@sholland.org>
+        with ESMTP id S241086AbiHOGun (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 02:50:43 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 20C99645B
+        for <devicetree@vger.kernel.org>; Sun, 14 Aug 2022 23:50:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1660546241;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=fH5UwWIX9OQs+lDeT8kxr/N3oertTip+Q2crz6TCHlw=;
+        b=hqZcnnR7VM7YPZPCOlYJ5rQtDE7he27thvCqGzifel0N0C0TXyxXUm/Fum3gKyTO6VPz6F
+        hPdH+NxA6pj4ho50ldRazt3r983Qtqbm6bhHHuaYIS9rTqPvpmESkKVVIfg+UWDxejuTbq
+        BFVitD90GUUKLD4FBQgXrDrVR+APY9E=
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com
+ [209.85.214.199]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-274-G6jie-OqNpaSRJdQ99RR6Q-1; Mon, 15 Aug 2022 02:50:40 -0400
+X-MC-Unique: G6jie-OqNpaSRJdQ99RR6Q-1
+Received: by mail-pl1-f199.google.com with SMTP id m5-20020a170902f64500b0016d313f3ce7so4503103plg.23
+        for <devicetree@vger.kernel.org>; Sun, 14 Aug 2022 23:50:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+        bh=fH5UwWIX9OQs+lDeT8kxr/N3oertTip+Q2crz6TCHlw=;
+        b=jAFk2u4+5gI5LXnAuM4lds4XZm7SHA13L/AFb/2kzGElwBrOLbhbsusT31sq1wuzbH
+         4Ge3mAccxgkHucHB3rL2cSg8eh2BwIx8ckIedo9hup/vx3NC23CuI4+I+7mTL5iSgaIQ
+         +vKVCJoxgqDtpAtw3iafymmeqiHvL1qDq+iQkioX6mzz8veyWWKGjur4gMMsHNnerlGg
+         qBJ26poMtbzzXn8qwSI7aFjOXyWz2BRnspJjYD1Rf2XZ2rSMsu+IlCbC39A42vp8R726
+         gmJMqdVG/8/cgS5w0i7Lg9tIEA2GY77kVZbGVl7prjEcWID9xtTo4KHBfEiDI/jbVH3+
+         VdYA==
+X-Gm-Message-State: ACgBeo14KP6tCb9s9NOntvTI5fpItEyIPEt5aMwmXShSOnhKg6zU5hFe
+        rZqgV7B5MhadEB7AjrAhhku6lCsK2aCJhTXZVAuZ4Il6AQyjZ+6psC+4liU6N4yJKbaPjiFoVW0
+        eTktOFU+UZ8ZePto9ng58nQ==
+X-Received: by 2002:a05:6a00:1a49:b0:528:6ea0:14e2 with SMTP id h9-20020a056a001a4900b005286ea014e2mr14838997pfv.22.1660546238690;
+        Sun, 14 Aug 2022 23:50:38 -0700 (PDT)
+X-Google-Smtp-Source: AA6agR4PQGZOnNvpKrm4VdqdTXnzXqXIyQPGqkluzieKE/EdGg9J7TGEQ7aCkqPIvuBbI8mBEFkBhw==
+X-Received: by 2002:a05:6a00:1a49:b0:528:6ea0:14e2 with SMTP id h9-20020a056a001a4900b005286ea014e2mr14838964pfv.22.1660546237888;
+        Sun, 14 Aug 2022 23:50:37 -0700 (PDT)
+Received: from localhost ([240e:3a1:2ea:acc0:8cff:e01c:2dbf:2ae8])
+        by smtp.gmail.com with ESMTPSA id d1-20020a623601000000b00534abad34easm2744569pfa.51.2022.08.14.23.50.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 14 Aug 2022 23:50:37 -0700 (PDT)
+Date:   Mon, 15 Aug 2022 14:48:13 +0800
+From:   Coiby Xu <coxu@redhat.com>
+To:     Stefan Berger <stefanb@linux.ibm.com>
+Cc:     kexec@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, nayna@linux.ibm.com,
+        nasastry@in.ibm.com, mpe@ellerman.id.au
+Subject: Re: [PATCH v7 0/6] tpm: Preserve TPM measurement log across kexec
+ (ppc64)
+Message-ID: <20220815064813.77g6icbkygrbmapa@Rk>
+References: <20220812164305.2056641-1-stefanb@linux.ibm.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="fe5pr2l7i2tpjvdm"
+Content-Type: text/plain; charset=us-ascii; format=flowed
 Content-Disposition: inline
-In-Reply-To: <20220812074257.58254-4-samuel@sholland.org>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220812164305.2056641-1-stefanb@linux.ibm.com>
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+I can confirm this patch set fixes an issue that guest kdump kernel
+crashes on POWER9 host by applying it to 5.19.1 (there is a conflict
+when applying this patch set to latest kernel i.e. 6.0.0-rc1).
 
---fe5pr2l7i2tpjvdm
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Tested-by: Coiby Xu <coxu@redhat.com>
 
-Hi Samuel,
+Previously, the issue can be reproduced as follows,
 
-On Fri, Aug 12, 2022 at 02:42:55AM -0500, Samuel Holland wrote:
-> Replace the ad-hoc calls to of_device_is_compatible() with a structure
-> describing the differences between variants. This is in preparation for
-> adding more variants to the driver.
->=20
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
-> ---
->=20
->  drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c | 50 +++++++++++++++++---------
->  drivers/gpu/drm/sun4i/sun6i_mipi_dsi.h |  7 ++++
->  2 files changed, 40 insertions(+), 17 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c b/drivers/gpu/drm/sun=
-4i/sun6i_mipi_dsi.c
-> index b4dfa166eccd..6479ade416b9 100644
-> --- a/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c
-> +++ b/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c
-> @@ -1101,12 +1101,16 @@ static const struct component_ops sun6i_dsi_ops =
-=3D {
-> =20
->  static int sun6i_dsi_probe(struct platform_device *pdev)
->  {
-> +	const struct sun6i_dsi_variant *variant;
->  	struct device *dev =3D &pdev->dev;
-> -	const char *bus_clk_name =3D NULL;
->  	struct sun6i_dsi *dsi;
->  	void __iomem *base;
->  	int ret;
-> =20
-> +	variant =3D device_get_match_data(dev);
-> +	if (!variant)
-> +		return -EINVAL;
-> +
->  	dsi =3D devm_kzalloc(dev, sizeof(*dsi), GFP_KERNEL);
->  	if (!dsi)
->  		return -ENOMEM;
-> @@ -1114,10 +1118,7 @@ static int sun6i_dsi_probe(struct platform_device =
-*pdev)
->  	dsi->dev =3D dev;
->  	dsi->host.ops =3D &sun6i_dsi_host_ops;
->  	dsi->host.dev =3D dev;
-> -
-> -	if (of_device_is_compatible(dev->of_node,
-> -				    "allwinner,sun6i-a31-mipi-dsi"))
-> -		bus_clk_name =3D "bus";
-> +	dsi->variant =3D variant;
-> =20
->  	base =3D devm_platform_ioremap_resource(pdev, 0);
->  	if (IS_ERR(base)) {
-> @@ -1142,7 +1143,7 @@ static int sun6i_dsi_probe(struct platform_device *=
-pdev)
->  		return PTR_ERR(dsi->regs);
->  	}
-> =20
-> -	dsi->bus_clk =3D devm_clk_get(dev, bus_clk_name);
-> +	dsi->bus_clk =3D devm_clk_get(dev, variant->has_mod_clk ? "bus" : NULL);
->  	if (IS_ERR(dsi->bus_clk))
->  		return dev_err_probe(dev, PTR_ERR(dsi->bus_clk),
->  				     "Couldn't get the DSI bus clock\n");
-> @@ -1151,21 +1152,21 @@ static int sun6i_dsi_probe(struct platform_device=
- *pdev)
->  	if (ret)
->  		return ret;
-> =20
-> -	if (of_device_is_compatible(dev->of_node,
-> -				    "allwinner,sun6i-a31-mipi-dsi")) {
-> +	if (variant->has_mod_clk) {
->  		dsi->mod_clk =3D devm_clk_get(dev, "mod");
->  		if (IS_ERR(dsi->mod_clk)) {
->  			dev_err(dev, "Couldn't get the DSI mod clock\n");
->  			ret =3D PTR_ERR(dsi->mod_clk);
->  			goto err_attach_clk;
->  		}
-> -	}
-> =20
-> -	/*
-> -	 * In order to operate properly, that clock seems to be always
-> -	 * set to 297MHz.
-> -	 */
-> -	clk_set_rate_exclusive(dsi->mod_clk, 297000000);
-> +		/*
-> +		 * In order to operate properly, the module clock on the
-> +		 * A31 variant always seems to be set to 297MHz.
-> +		 */
-> +		if (variant->set_mod_clk)
-> +			clk_set_rate_exclusive(dsi->mod_clk, 297000000);
-> +	}
+1. revert commit 7c5ed82b800d ("powerpc: Set crashkernel offset to mid
+    of RMA region") which masks the issue
+2. build & boot the kernel with crashkernel=512M 
+3. load kdump kernel and trigger kernel crash,
+[    4.209792] Oops: Kernel access of bad area, sig: 11 [#1]
+[    4.210373] LE PAGE_SIZE=64K MMU=Radix SMP NR_CPUS=2048 NUMA pSeries
+[    4.210985] Modules linked in:
+[    4.211570] CPU: 12 PID: 1 Comm: swapper/12 Not tainted 6.0.0-rc1+ #3
+[    4.212204] NIP:  c0000000080a6540 LR: c00000000840c630 CTR: 0000000000000800
+[    4.212871] REGS: c00000000e66b130 TRAP: 0300   Not tainted  (6.0.0-rc1+)
+[    4.213529] MSR:  800000000280b033 <SF,VEC,VSX,EE,FP,ME,IR,DR,RI,LE>  CR: 24000280  XER: 0000005b
+[    4.214242] CFAR: c0000000080a6528 DAR: c00000002ffb0000 DSISR: 40000000 IRQMASK: 0 
+[    4.214242] GPR00: 000000000e000000 c00000000e66b3d0 c00000000aa69a00 c0000000117c0000 
+[    4.214242] GPR04: c00000002ffb0000 0000000000040000 0000000000000800 03fffffffee84000 
+[    4.214242] GPR08: 0000000080000000 0000000000000010 0000000000000020 0000000000000030 
+[    4.214242] GPR12: 0000000000000040 c00000000ad61000 0000000000000050 0000000000000060 
+[    4.214242] GPR16: 0000000000000070 0000000000000000 0000000000000000 0000000000000000 
+[    4.214242] GPR20: 0000000000000000 0000000000000000 c000000008f7ebd8 c00000000e418420 
+[    4.214242] GPR24: c00000000ad3c389 c000000008f7ed60 c00000000ecc9000 c000000011271848 
+[    4.214242] GPR28: c000000027fcee5c c00000002ffb0000 0000000000040000 c0000000117c0000 
+[    4.220176] NIP [c0000000080a6540] memcpy_power7+0x400/0x7d0
+[    4.220808] LR [c00000000840c630] kmemdup+0x50/0x80
+[    4.221428] Call Trace:
+[    4.222006] [c00000000e66b3d0] [c0000000080a63b4] memcpy_power7+0x274/0x7d0 (unreliable)
+[    4.222662] [c00000000e66b4d0] [c00000000840c630] kmemdup+0x50/0x80
+[    4.223293] [c00000000e66b510] [c000000008973ee0] tpm_read_log_of+0x110/0x1f0
+[    4.223929] [c00000000e66b5a0] [c000000008973020] tpm_bios_log_setup+0x80/0x250
+[    4.224552] [c00000000e66b630] [c00000000896b938] tpm_chip_register.part.0+0x38/0x2a0
+[    4.225170] [c00000000e66b6b0] [c000000008979a80] tpm_ibmvtpm_probe+0x530/0x7d0
+[    4.225777] [c00000000e66b790] [c0000000081055e4] vio_bus_probe+0x94/0x150
+[    4.226366] [c00000000e66b7e0] [c0000000089936d4] really_probe+0x104/0x550
+[    4.226947] [c00000000e66b860] [c000000008993bd4] __driver_probe_device+0xb4/0x240
+[    4.227560] [c00000000e66b8e0] [c000000008993db4] driver_probe_device+0x54/0x130
+[    4.228159] [c00000000e66b920] [c000000008994a88] __driver_attach+0x128/0x2d0
+[    4.228748] [c00000000e66b9a0] [c00000000898fcf8] bus_for_each_dev+0xa8/0x130
+[    4.229325] [c00000000e66ba00] [c000000008992bd4] driver_attach+0x34/0x50
+[    4.229887] [c00000000e66ba20] [c0000000089922d8] bus_add_driver+0x218/0x300
+[    4.230453] [c00000000e66bab0] [c000000008995f94] driver_register+0xb4/0x1c0
+[    4.231012] [c00000000e66bb20] [c000000008103fb0] __vio_register_driver+0x80/0xf0
+[    4.231569] [c00000000e66bba0] [c00000000a06807c] ibmvtpm_module_init+0x34/0x48
+[    4.232119] [c00000000e66bbc0] [c000000008011c14] do_one_initcall+0x64/0x300
+[    4.232664] [c00000000e66bca0] [c00000000a0053f0] do_initcalls+0x13c/0x190
+[    4.233183] [c00000000e66bd50] [c00000000a00570c] kernel_init_freeable+0x22c/0x2a0
+[    4.233706] [c00000000e66bdb0] [c000000008012240] kernel_init+0x30/0x1a0
+[    4.234204] [c00000000e66be10] [c00000000800ca54] ret_from_kernel_thread+0x5c/0x64
+[    4.234721] Instruction dump:
+[    4.235191] fa010080 39800040 39c00050 39e00060 3a000070 7cc903a6 48000018 60000000 
+[    4.235738] 60000000 60000000 60000000 60000000 <7ce020ce> 7cc448ce 7ca450ce 7c8458ce 
+[    4.236302] ---[ end trace 0000000000000000 ]---
+
+On Fri, Aug 12, 2022 at 12:42:59PM -0400, Stefan Berger wrote:
+>The of-tree subsystem does not currently preserve the IBM vTPM 1.2 and
+>vTPM 2.0 measurement logs across a kexec on PowerVM and PowerKVM. This
+>series fixes this for the kexec_file_load() syscall using the flattened
+>device tree (fdt) to carry the TPM measurement log's buffer across kexec.
+>
+>   Stefan
+>
+>v7:
+> - Added Nageswara's Tested-by tags
+> - Added back original comment to inline function and removed Jarkko's R-b tag
+>
+>v6:
+> - Add __init to get_kexec_buffer as suggested by Jonathan
+> - Fixed issue detected by kernel test robot
+>
+>v5:
+> - Rebased on 1 more patch that would otherwise create merge conflicts
+>
+>v4:
+> - Rebased on 2 patches that would otherwise create merge conflicts;
+>   posting these patches in this series with several tags removed so
+>   krobot can test the series already
+> - Changes to individual patches documented in patch descripitons
+>
+>v3:
+> - Moved TPM Open Firmware related function to drivers/char/tpm/eventlog/tpm_of.c
+>
+>v2:
+> - rearranged patches
+> - fixed compilation issues for x86
 >
 >
->  	dsi->dphy =3D devm_phy_get(dev, "dphy");
->  	if (IS_ERR(dsi->dphy)) {
-> @@ -1205,16 +1206,31 @@ static int sun6i_dsi_remove(struct platform_devic=
-e *pdev)
-> =20
->  	component_del(&pdev->dev, &sun6i_dsi_ops);
->  	mipi_dsi_host_unregister(&dsi->host);
-> -	clk_rate_exclusive_put(dsi->mod_clk);
-> +	if (dsi->variant->has_mod_clk && dsi->variant->set_mod_clk)
-> +		clk_rate_exclusive_put(dsi->mod_clk);
+>Jonathan McDowell (1):
+>  x86/kexec: Carry forward IMA measurement log on kexec
+>
+>Palmer Dabbelt (1):
+>  drivers: of: kexec ima: Support 32-bit platforms
+>
+>Stefan Berger (3):
+>  tpm: of: Make of-tree specific function commonly available
+>  of: kexec: Refactor IMA buffer related functions to make them reusable
+>  tpm/kexec: Duplicate TPM measurement log in of-tree for kexec
+>
+>Vaibhav Jain (1):
+>  of: check previous kernel's ima-kexec-buffer against memory bounds
+>
+> arch/x86/Kconfig                      |   1 +
+> arch/x86/include/uapi/asm/bootparam.h |   9 +
+> arch/x86/kernel/e820.c                |   6 +-
+> arch/x86/kernel/kexec-bzimage64.c     |  42 +++-
+> arch/x86/kernel/setup.c               |  63 +++++
+> drivers/char/tpm/eventlog/of.c        |  31 +--
+> drivers/of/kexec.c                    | 342 ++++++++++++++++++++++----
+> include/linux/ima.h                   |   5 +
+> include/linux/kexec.h                 |   6 +
+> include/linux/of.h                    |  11 +-
+> include/linux/tpm.h                   |  36 +++
+> kernel/kexec_file.c                   |   6 +
+> security/integrity/ima/ima_kexec.c    |   2 +-
+> 13 files changed, 478 insertions(+), 82 deletions(-)
+>
+>
+>base-commit: 3d7cb6b04c3f3115719235cc6866b10326de34cd
+>-- 
+>2.35.1
+>
+>
+>_______________________________________________
+>kexec mailing list
+>kexec@lists.infradead.org
+>http://lists.infradead.org/mailman/listinfo/kexec
+>
 
-There's also a clk_rate_exclusive_put call in the bind error path
+-- 
+Best regards,
+Coiby
 
-Maxime
-
---fe5pr2l7i2tpjvdm
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYvnq6AAKCRDj7w1vZxhR
-xRUgAQC+Q6FefSqQzlCuirg8gH0Zff7RElCM+/kmmzZdz/QEiwEA1K0JgOyS8Xbv
-pApMRj4LRfKxndHBOk/R4DCvHbcNxwk=
-=pvGf
------END PGP SIGNATURE-----
-
---fe5pr2l7i2tpjvdm--
