@@ -2,71 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B41D5933EB
-	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 19:14:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1EB959340C
+	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 19:30:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229901AbiHOROJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Aug 2022 13:14:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33972 "EHLO
+        id S230387AbiHORaI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Aug 2022 13:30:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229730AbiHOROJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 13:14:09 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BEB927CF0;
-        Mon, 15 Aug 2022 10:14:06 -0700 (PDT)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1oNdf2-0005Ey-N0; Mon, 15 Aug 2022 19:13:56 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        linux-sunxi@lists.linux.dev, Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        linux-riscv@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Samuel Holland <samuel@sholland.org>
-Subject: Re: [PATCH 05/12] riscv: Add the Allwinner SoC family Kconfig option
-Date:   Mon, 15 Aug 2022 19:13:55 +0200
-Message-ID: <2195565.3ZeAukHxDK@diego>
-In-Reply-To: <20220815050815.22340-6-samuel@sholland.org>
-References: <20220815050815.22340-1-samuel@sholland.org> <20220815050815.22340-6-samuel@sholland.org>
+        with ESMTP id S229808AbiHORaH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 13:30:07 -0400
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1D6F10FE0;
+        Mon, 15 Aug 2022 10:30:06 -0700 (PDT)
+Received: by mail-pl1-x632.google.com with SMTP id 17so6907817plj.10;
+        Mon, 15 Aug 2022 10:30:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc;
+        bh=F0hCBcrwh8QkXDe6xrNwIb9T4L2AxzqLMvkfnlDeEVA=;
+        b=WghDQPv2e+/ZQECJxdKOFSv8PuR9eM4UDstNVw2Jss0pSIeC7ULV/S58XTOsbZTd93
+         o0WaxxrLJh53Bfj3GBFf6CEjKuDkRecNlLJoAc36gni8XgpTxfmRhfsnnb2AC1o95Uid
+         h4JNKdf8j9XcrlN2qly/VqxmzsifhMRRShxwpEMTeHe+/m3XSOeXNHhGX1Ud3d+yFZTk
+         YzHniPfiBTICkOmXHWx5fmQGuAS67c75+hlzOtWmjKmCPJbeaHfQdh3Uhw6hCT+ZHS4s
+         QiE1pNUwS7QOzVobAoeMfdtRR+c1RNVZpdsRt+sm9BmRj+QKFCkM8p87eIXDweTMeJ0/
+         EoAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+        bh=F0hCBcrwh8QkXDe6xrNwIb9T4L2AxzqLMvkfnlDeEVA=;
+        b=3KEZvlszcQOW8vAFPfILVBw6NmMtwpkRlbjezKIEcWgoQn6kZbdGjZvAgxkY2NoXag
+         e9BdA6rZ9rBQDU8PhjrodbwfFcAnQCoY3N90wbWhm8auMoLdJTsmij8zE6YTChI460ec
+         F+L4t7JwWWPVXB+5GqCAIU0zgXE1A224Pbn8GKfs7iNM5WTVvFRoK4L1WYk7ZOBqwrTF
+         XU5UzLXiXco+iN3CsDZfyy/tHecefQCXRkfCD+2V10Z4ppGzg6qgRv2oWjJ+bIlSYuyG
+         e7ePt2di+CSo6R6BlXbdSue2egQEV/xN2WdaJJ0bmvKjD+2iW+es+//inEgweBTV7a2D
+         96HQ==
+X-Gm-Message-State: ACgBeo0dj5bnknEVmvegjLTvt0YuOa0QKgYJWJCcadqTrmZCvRKY8SYa
+        x3mDyNn8cPeB70HARh5BC/qZhv2wfi8=
+X-Google-Smtp-Source: AA6agR6F0vIW0KBSJjTs3GzGC3tSc5bnsZJBUjG+nATrNDkJpjv7sg7wdeMs1+faN2Y7CtDf3N4Hkg==
+X-Received: by 2002:a17:903:24e:b0:172:6c9d:14e0 with SMTP id j14-20020a170903024e00b001726c9d14e0mr6884114plh.84.1660584606237;
+        Mon, 15 Aug 2022 10:30:06 -0700 (PDT)
+Received: from 9a2d8922b8f1 ([122.161.52.254])
+        by smtp.gmail.com with ESMTPSA id dw3-20020a17090b094300b001f312e7665asm4742099pjb.47.2022.08.15.10.30.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Aug 2022 10:30:05 -0700 (PDT)
+Date:   Mon, 15 Aug 2022 23:00:00 +0530
+From:   Kuldeep Singh <singh.kuldeep87k@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/4] ARM: dts: integratorap: Update spi node properties
+Message-ID: <20220815173000.GA45630@9a2d8922b8f1>
+References: <20220312113853.63446-1-singh.kuldeep87k@gmail.com>
+ <20220312113853.63446-2-singh.kuldeep87k@gmail.com>
+ <CACRpkdafQ4G=a1E=G6GK3W2zAD4Nh96GiQiYbYkn4ctVu3c04w@mail.gmail.com>
+ <CAL_JsqJ2p+4R=-HcKJ=UdXFcATrZgwwpfRnJES+-bHxRohorHA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqJ2p+4R=-HcKJ=UdXFcATrZgwwpfRnJES+-bHxRohorHA@mail.gmail.com>
+X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Montag, 15. August 2022, 07:08:08 CEST schrieb Samuel Holland:
-> Allwinner manufactures the sunxi family of application processors. This
-> includes the "sun8i" series of ARMv7 SoCs, the "sun50i" series of ARMv8
-> SoCs, and now the "sun20i" series of 64-bit RISC-V SoCs.
+> > This and patches 2, 3/4 applied to the versatile DTS branch.
 > 
-> The first SoC in the sun20i series is D1, containing a single T-HEAD
-> C906 core. D1s is a low-pin-count variant of D1 with co-packaged DRAM.
-> 
-> Most peripherals are shared across the entire chip family. In fact, the
-> ARMv7 T113 SoC is pin-compatible and almost entirely register-compatible
-> with the D1s.
-> 
-> This means many existing device drivers can be reused. To facilitate
-> this reuse, name the symbol ARCH_SUNXI, since that is what the existing
-> drivers have as their dependency.
-> 
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
+> What happened to this?
 
-Reviewed-by: Heiko Stuebner <heiko@sntech.de>
-Tested-by: Heiko Stuebner <heiko@sntech.de>
+Thanks Rob for pointing this out, I lost track for these changes.
+I just noticed Linus applied ste-dbx change only and skipped others(integrator,
+realview, versatile).
 
+These patches fix clock-name as per pl022 binding which causes no harm.
+Linus, Any reason to skip others?
 
+Regards
+Kuldeep
