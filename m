@@ -2,82 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 01699592BA3
-	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 12:50:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06823592C3F
+	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 12:51:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241577AbiHOI27 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Aug 2022 04:28:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53322 "EHLO
+        id S230269AbiHOIc6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Aug 2022 04:32:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241214AbiHOI2v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 04:28:51 -0400
-Received: from mail.fris.de (mail.fris.de [IPv6:2a01:4f8:c2c:390b::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B01581F637;
-        Mon, 15 Aug 2022 01:28:50 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D64CDBFAE8;
-        Mon, 15 Aug 2022 10:28:47 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fris.de; s=dkim;
-        t=1660552128; h=from:subject:date:message-id:to:cc:mime-version:
-         content-transfer-encoding:in-reply-to:references;
-        bh=24xyn2EcGe3/F2/wyHYU1Hh1pGAy3aJpsHHcjneCMio=;
-        b=jLgnQEyT2ttQLDmozy84ZlASXmp3bBjEUrwipGpYZKNexyXqYSh+RsammlyLDqANMW47xb
-        ABjit/9qwJikLTZS8AII7idywFlN9W78Vu90UWfWJp85fx4rC60mV/7akDwk7ZDg5z13xV
-        8fI9hSTD+gVXBYIWJuAOgol05yqlUNB4wNHqmZsUbHh9/B1OYpcEgHhAWGhQAYi8riJUvZ
-        sI6leRXbwFenvjrMEQ/cKDzrz0s1hXJJMdASqOossktTNgmyc/Bz7IqBfxPOxnX0Jo7O8q
-        4AQPsfwh59C4qzEt2my67D0P98MUqVMPjKVrC1nb5USGdk17K7aDpfk5g7gr/w==
-From:   Frieder Schrempf <frieder@fris.de>
-To:     Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Olof Johansson <olof@lixom.net>,
-        Rob Herring <robh+dt@kernel.org>, soc@kernel.org
-Cc:     Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Denys Drozdov <denys.drozdov@toradex.com>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Luca Weiss <luca@z3ntu.xyz>, Shawn Guo <shawnguo@kernel.org>,
-        Thierry Reding <treding@nvidia.com>
-Subject: [PATCH v3 3/3] ARM: dts: imx6ul-kontron: Add imx6ull-kontron-bl to Makefile
-Date:   Mon, 15 Aug 2022 10:28:12 +0200
-Message-Id: <20220815082814.27651-4-frieder@fris.de>
-In-Reply-To: <20220815082814.27651-1-frieder@fris.de>
-References: <20220815082814.27651-1-frieder@fris.de>
+        with ESMTP id S230153AbiHOIc5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 04:32:57 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF72D1FCE2
+        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 01:32:55 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id z16so8236999wrh.12
+        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 01:32:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc;
+        bh=EXcUj6FUGMW2MlOtvV9/2PElSz+xwYewruvcgvdHfEI=;
+        b=E+a4ffEeT4ZE69D3v3rLDGnXGAvAneqQiKTSOUhWZoeEWxqK+CFjMXxsFy1IAn4Wtn
+         rIMYWZmEb/mqrLK/nAOKnkiwLG8cJuGYE9bgjjoglIp02wsesEkBq3NLkntaNEbsu6jI
+         3wbQhyMul1lUBDNcHVvf2GnFxeOsCbDcHmsbKL1nImj3KLg+ws4SnQir2K0k5Q5iDapf
+         TUsSOjcoApfw48ane2ipyMEEPqwDAqS8HT35M5Y/k/ajpfz2OwWj+O1dnCPhSr/I8zIx
+         CKW3+aNTiGK/AYKoYzE8Y3WO67ZprZa1uzjMiwZXB3zTnPxH9Az3AdYMFVbSkAx4j95W
+         EOLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+        bh=EXcUj6FUGMW2MlOtvV9/2PElSz+xwYewruvcgvdHfEI=;
+        b=mtbb+MXXqXegk8/MYJv1axn/s3hcF/uAHFZgrBBzSCBHe85WBn0BeVYFwg4Wfp8b91
+         v0zFNsA+n1RKuqqEBL2rf4z9rGHpKVp81zQ83SaL6ETUo7mncQVtXWmEQPwBsuoT7Ip2
+         hHrlHgTibL9DVPT7qGQ/0IJybS8z9v9JVY0nAVicdlP/izUtqsIlWA4qhllmXctW+YSc
+         pvFW7fk7iQ9S5S0FPvSOqR+YN+nErQbTkj4Bj/XyKRdlpbXwyA+2n50PwDtv8rIDW10B
+         VC2/6+lE2YtFCwdAq45SqoEbyZlTOrzORC7uV3Z4xtYrf9CyyR5JZDlrXHfK3lZ1uyaW
+         cCLQ==
+X-Gm-Message-State: ACgBeo1I//H4EbhfsLVOBLoM+e8yz67S7NjTKZH/h6GwqwKtVVmEHZGC
+        Z8z6GUDkl6diqEOQ/Ok46ix5aA==
+X-Google-Smtp-Source: AA6agR6VhKLPX5i7Rn7Iy/3Orf0DZCRUMR3GZVnyS56g6AwGZI40CXBX8nlzjn+iA74ifxnIGCNYBg==
+X-Received: by 2002:a05:6000:1092:b0:21f:13e7:3cc with SMTP id y18-20020a056000109200b0021f13e703ccmr8544750wrw.671.1660552374551;
+        Mon, 15 Aug 2022 01:32:54 -0700 (PDT)
+Received: from linaro.org ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id r187-20020a1c44c4000000b003a5f2cc2f1dsm4138540wma.42.2022.08.15.01.32.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Aug 2022 01:32:53 -0700 (PDT)
+Date:   Mon, 15 Aug 2022 11:32:52 +0300
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     abelvesa@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-imx@nxp.com,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH 2/2] clk: imx: support fsl,protected-clocks
+Message-ID: <YvoEtKd7GCL865C3@linaro.org>
+References: <20220815033632.1687854-1-peng.fan@oss.nxp.com>
+ <20220815033632.1687854-3-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220815033632.1687854-3-peng.fan@oss.nxp.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Frieder Schrempf <frieder.schrempf@kontron.de>
+On 22-08-15 11:36:32, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> For the clocks listed in fsl,protected-clocks, enable them to avoid
+> Linux disable them. This will benifit root Linux and inmate cell run
+> on top of Jailhouse hypervisor, and benifit AMP case.
 
-The imx6ull-kontron-bl.dtb wasn't build as part of the
-CONFIG_SOC_IMX6UL option. Add it to the list.
+Nitpick: s/benifit/benefit/
 
-Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
----
- arch/arm/boot/dts/Makefile | 1 +
- 1 file changed, 1 insertion(+)
+AMP?
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 6627aed26fd6..1d0c79f61072 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -726,6 +726,7 @@ dtb-$(CONFIG_SOC_IMX6UL) += \
- 	imx6ull-colibri-wifi-iris.dtb \
- 	imx6ull-colibri-wifi-iris-v2.dtb \
- 	imx6ull-jozacp.dtb \
-+	imx6ull-kontron-bl.dtb \
- 	imx6ull-myir-mys-6ulx-eval.dtb \
- 	imx6ull-opos6uldev.dtb \
- 	imx6ull-phytec-segin-ff-rdk-nand.dtb \
--- 
-2.37.1
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  drivers/clk/imx/clk-imx8mm.c |  2 ++
+>  drivers/clk/imx/clk-imx8mn.c |  2 ++
+>  drivers/clk/imx/clk-imx8mp.c |  2 ++
+>  drivers/clk/imx/clk-imx8mq.c |  2 ++
+>  drivers/clk/imx/clk.c        | 21 +++++++++++++++++++++
+>  drivers/clk/imx/clk.h        |  2 ++
+>  6 files changed, 31 insertions(+)
+> 
+> diff --git a/drivers/clk/imx/clk-imx8mm.c b/drivers/clk/imx/clk-imx8mm.c
+> index b6d275855b36..24ddb1620bce 100644
+> --- a/drivers/clk/imx/clk-imx8mm.c
+> +++ b/drivers/clk/imx/clk-imx8mm.c
+> @@ -611,6 +611,8 @@ static int imx8mm_clocks_probe(struct platform_device *pdev)
+>  
+>  	imx_register_uart_clocks(4);
+>  
+> +	imx_clk_protect(dev, hws);
+> +
+>  	return 0;
+>  
+>  unregister_hws:
+> diff --git a/drivers/clk/imx/clk-imx8mn.c b/drivers/clk/imx/clk-imx8mn.c
+> index d37c45b676ab..57c486317d28 100644
+> --- a/drivers/clk/imx/clk-imx8mn.c
+> +++ b/drivers/clk/imx/clk-imx8mn.c
+> @@ -604,6 +604,8 @@ static int imx8mn_clocks_probe(struct platform_device *pdev)
+>  
+>  	imx_register_uart_clocks(4);
+>  
+> +	imx_clk_protect(dev, hws);
+> +
+>  	return 0;
+>  
+>  unregister_hws:
+> diff --git a/drivers/clk/imx/clk-imx8mp.c b/drivers/clk/imx/clk-imx8mp.c
+> index 652ae58c2735..a95862cc04a4 100644
+> --- a/drivers/clk/imx/clk-imx8mp.c
+> +++ b/drivers/clk/imx/clk-imx8mp.c
+> @@ -713,6 +713,8 @@ static int imx8mp_clocks_probe(struct platform_device *pdev)
+>  
+>  	imx_register_uart_clocks(4);
+>  
+> +	imx_clk_protect(dev, hws);
+> +
+>  	return 0;
+>  }
+>  
+> diff --git a/drivers/clk/imx/clk-imx8mq.c b/drivers/clk/imx/clk-imx8mq.c
+> index 882dcad4817d..2868e2390667 100644
+> --- a/drivers/clk/imx/clk-imx8mq.c
+> +++ b/drivers/clk/imx/clk-imx8mq.c
+> @@ -603,6 +603,8 @@ static int imx8mq_clocks_probe(struct platform_device *pdev)
+>  
+>  	imx_register_uart_clocks(4);
+>  
+> +	imx_clk_protect(dev, hws);
+> +
+>  	return 0;
+>  
+>  unregister_hws:
+> diff --git a/drivers/clk/imx/clk.c b/drivers/clk/imx/clk.c
+> index 5582f18dd632..307da8bd5243 100644
+> --- a/drivers/clk/imx/clk.c
+> +++ b/drivers/clk/imx/clk.c
+> @@ -2,6 +2,7 @@
+>  #include <linux/bits.h>
+>  #include <linux/clk.h>
+>  #include <linux/clk-provider.h>
+> +#include <linux/device.h>
+>  #include <linux/err.h>
+>  #include <linux/io.h>
+>  #include <linux/module.h>
+> @@ -214,4 +215,24 @@ static int __init imx_clk_disable_uart(void)
+>  late_initcall_sync(imx_clk_disable_uart);
+>  #endif
+>  
+> +int imx_clk_protect(struct device *dev, struct clk_hw * const clks[])
+> +{
+> +	struct device_node *np = dev->of_node;
+> +	struct property *prop;
+> +	const __be32 *p;
+> +	u32 i;
+> +	int ret;
+> +
+> +	of_property_for_each_u32(np, "fsl,protected-clocks", prop, p, i) {
+> +		ret = clk_prepare_enable(clks[i]->clk);
 
+I might be wrong here, but wouldn't CLK_IGNORE_UNUSED have the same effect?
+
+I don't think we should circumvent that by adding vendor specific dts properties.
+
+> +		if (ret) {
+> +			dev_err(dev, "failed to enable %s\n", clk_hw_get_name(clks[i]));
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_GPL(imx_clk_protect);
+> +
+>  MODULE_LICENSE("GPL v2");
+> diff --git a/drivers/clk/imx/clk.h b/drivers/clk/imx/clk.h
+> index dd49f90110e8..3f8099190b99 100644
+> --- a/drivers/clk/imx/clk.h
+> +++ b/drivers/clk/imx/clk.h
+> @@ -22,6 +22,8 @@ void imx_mmdc_mask_handshake(void __iomem *ccm_base, unsigned int chn);
+>  void imx_unregister_clocks(struct clk *clks[], unsigned int count);
+>  void imx_unregister_hw_clocks(struct clk_hw *hws[], unsigned int count);
+>  
+> +int imx_clk_protect(struct device *dev, struct clk_hw * const clks[]);
+> +
+>  extern void imx_cscmr1_fixup(u32 *val);
+>  
+>  enum imx_pllv1_type {
+> -- 
+> 2.37.1
+> 
