@@ -2,159 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03EEF592CFF
-	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 12:52:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56B83592D42
+	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 12:52:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231467AbiHOIYC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Aug 2022 04:24:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49390 "EHLO
+        id S231592AbiHOI20 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Aug 2022 04:28:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231442AbiHOIYB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 04:24:01 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFF441F611
-        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 01:23:59 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id l4so8206833wrm.13
-        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 01:23:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc;
-        bh=ccR4jofJWS4WjddLtDejUK8NNWJJwrLYpOoeEAK37hk=;
-        b=Z4OrasUxwxONGoGSbJZ7h5ZiVDJCbioDFPaHHgazEMdyqJJQyiku6tGWNWKTBxDDij
-         0XFLBmX+VKlhOW3GlHqttMscBJR/jHcG+2v12k6Saa+CiBcOnZdA3V1wyJLfs2NW9luD
-         OI12bNtPzaSOi2q8S34U+cWSx6mFLjiXHMgGEyxjYoxR9ewN8DqFLFMGEaOLtkFCU7K6
-         uMw0JCmAI4mkcpndUwsHxNzg4EGDXfB1SNKIN6iinjKhq5AiHj8qzTYoZaIWD/5JRuWL
-         LT68U7GpoBQsbC/iS1pWAanZb98vASc0qbmjpZsf2YHcQ/Bm6TdkViWsHUFj4DVL48Kn
-         eXDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=ccR4jofJWS4WjddLtDejUK8NNWJJwrLYpOoeEAK37hk=;
-        b=DRlqhtI2QSdk1mrdeBCDqWT/T9SlsQhD/Vk/xBtzpPmpbKrYQ3FSmWrQNkKLZ944Oq
-         gh9XLpkshnGMwldYFugvitcynFJBPyG4krU8opSthaltWRCTHhh8AU1YrlBwHLa74ciD
-         jLQwZ/qyij43adjqAFb5LBAbWa+wplYn04veJmm4UB+eEZqJyjW9PYLFCNZM9Q7wl7yE
-         yMcxeiQDVlzlkNEHKu6+SK9HSv2YZexJDc5Nw30wYwpAd0Cp1hBta15y+doHr3amW04+
-         B8rI2Xn9HcKDK6MCEFvmkn8KH+fNLvFHFhM8vgRZqjKWlR8qhqcXAEqxpiLjY/fTU0VP
-         85fw==
-X-Gm-Message-State: ACgBeo2p8pTOaTCbSeNC3ZU8P6m+QjxCsddc63VEwz23B1LZJ4dgCHbJ
-        YZeYe2y+SjgYmBprDH9eBzJpUQ==
-X-Google-Smtp-Source: AA6agR6vOZElDps4UHQbfw36ab2JeSARI3ajaEksSEKZIFJEVKaK27WUb3W9MKgJkVPPBd8kJfPTEQ==
-X-Received: by 2002:a5d:5b17:0:b0:220:7cec:2953 with SMTP id bx23-20020a5d5b17000000b002207cec2953mr8158320wrb.697.1660551838382;
-        Mon, 15 Aug 2022 01:23:58 -0700 (PDT)
-Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id q65-20020a1c4344000000b003a54d610e5fsm9033154wma.26.2022.08.15.01.23.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Aug 2022 01:23:57 -0700 (PDT)
-Date:   Mon, 15 Aug 2022 11:23:56 +0300
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Peng Fan <peng.fan@nxp.com>
-Cc:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "abelvesa@kernel.org" <abelvesa@kernel.org>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        kernel test robot <lkp@intel.com>
-Subject: Re: [PATCH V2 2/8] clk: imx93: guard imx93_clk_of_match with
- CONFIG_OF
-Message-ID: <YvoCnLb1azLr4bno@linaro.org>
-References: <20220815013039.474970-1-peng.fan@oss.nxp.com>
- <20220815013039.474970-3-peng.fan@oss.nxp.com>
- <YvoAwL9qhmE03kgi@linaro.org>
- <DU0PR04MB941789A6D3600233D878BBCB88689@DU0PR04MB9417.eurprd04.prod.outlook.com>
+        with ESMTP id S230208AbiHOI2Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 04:28:25 -0400
+Received: from mail.fris.de (mail.fris.de [116.203.77.234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1ED731F2D6;
+        Mon, 15 Aug 2022 01:28:23 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E393FBFADB;
+        Mon, 15 Aug 2022 10:28:17 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fris.de; s=dkim;
+        t=1660552100; h=from:subject:date:message-id:to:cc:mime-version:
+         content-transfer-encoding; bh=zj3e45wE4VaaixX25Yhb3oPW7wVrr1tETt65ii38iRQ=;
+        b=QFC3+N8y5nSoOQ5LTNqHHDMYGCf1cm9blxBA6e6Sp87YVd+UiWIWKNMmmA0G8w04TiAaNI
+        UscwJd/C4GEA/XS8FlMbIkz44mMAGUKbmROdd72J3Jh5WAWN71NnKg12TMA2pE+PJnvr+u
+        GWzaJBFRM+ZpoRiYDDoF409SpGvTaUsjBDgTIdPXlJPVVbhVdsQTLRLZLNFPOd2S/w7JrW
+        qLYoOvQTEG26ITVpoK4hAwz5Et/z8h00Witn7pvGfCLlXF0q6PKBfe4x1EVzehllabgObS
+        rs7Ev89LWXjU1dg/4XiiWneiDOCXxSUQSAwYIc0PkByaXLx1lERVCDzGaqyCRA==
+From:   Frieder Schrempf <frieder@fris.de>
+To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Li Yang <leoyang.li@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>
+Cc:     Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Olof Johansson <olof@lixom.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>, soc@kernel.org
+Subject: [PATCH v3 0/3] ARM: dts: imx6ul-kontron: Improve devicetrees
+Date:   Mon, 15 Aug 2022 10:28:09 +0200
+Message-Id: <20220815082814.27651-1-frieder@fris.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DU0PR04MB941789A6D3600233D878BBCB88689@DU0PR04MB9417.eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-08-15 08:19:52, Peng Fan wrote:
-> > Subject: Re: [PATCH V2 2/8] clk: imx93: guard imx93_clk_of_match with
-> > CONFIG_OF
-> > 
-> > On 22-08-15 09:30:33, Peng Fan (OSS) wrote:
-> > > From: Peng Fan <peng.fan@nxp.com>
-> > >
-> > > There is build warning when CONFIG_OF is not selected.
-> > > >> drivers/clk/imx/clk-imx93.c:324:34: warning: 'imx93_clk_of_match'
-> > > >> defined but not used [-Wunused-const-variable=]
-> > >      324 | static const struct of_device_id imx93_clk_of_match[] = {
-> > >          |                                  ^~~~~~~~~~~~~~~~~~
-> > >
-> > > Use CONFIG_OF to guard imx93_clk_of_match to avoid build warning.
-> > >
-> > > Fixes: 24defbe194b6 ("clk: imx: add i.MX93 clk")
-> > > Reported-by: kernel test robot <lkp@intel.com>
-> > > Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> > > ---
-> > >  drivers/clk/imx/clk-imx93.c | 2 ++
-> > >  1 file changed, 2 insertions(+)
-> > >
-> > > diff --git a/drivers/clk/imx/clk-imx93.c b/drivers/clk/imx/clk-imx93.c
-> > > index f5c9fa40491c..5099048b7916 100644
-> > > --- a/drivers/clk/imx/clk-imx93.c
-> > > +++ b/drivers/clk/imx/clk-imx93.c
-> > > @@ -321,11 +321,13 @@ static int imx93_clocks_probe(struct
-> > platform_device *pdev)
-> > >  	return ret;
-> > >  }
-> > >
-> > > +#ifdef CONFIG_OF
-> > 
-> > Hmm, I'm not sure if we should do this or rather should we make this driver
-> > depend somehow on CONFIG_OF in Kconfig.
-> > 
-> > Looking at the other i.MX clock drivers, it would seem we need this for all
-> > them too.
-> 
-> No. It is i.MX93 use of_match_ptr, I could drop it as i.MX8M.
-> 
-> Thanks,
-> Peng.
+From: Frieder Schrempf <frieder.schrempf@kontron.de>
 
-Right. Thanks for pointing that out.
+This series contains some simplifications to the devicetree file structure
+and updates the model names, compatibles and devicetree file names to match
+what is used officially by the Kontron marketing.
 
-> 
-> > 
-> > I fairly OK with this, but maybe Stephen suggests something different.
-> > 
-> > Reviewed-by: Abel Vesa <abel.vesa@nxp.com>
-> > 
+This is a somewhat breaking change (for out-of-tree devicetrees that include
+the SoM files) but it reduces the complexity quite a bit, makes things easier
+to read and lets people discover the devicetree matching their hardware more
+easily.
 
-Oups, wrong address here too.
+The first patch also updates the bindings to match up with the changes applied
+in the following patches.
+---
+Changes in v3:
+* Add A-b tag from Krzysztof (thanks!)
+* Improve diff for patch 2
+* Improve commit messages and cover letter
 
-Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
+Changes in v2:
+* Also rename compatibles to get rid of N6xxx notation
+* Also rename devicetree files for consistency
+* Squash model renaming patch into patch 2
+* Move part of Makefile changes to patch 2
 
-> > >  static const struct of_device_id imx93_clk_of_match[] = {
-> > >  	{ .compatible = "fsl,imx93-ccm" },
-> > >  	{ /* Sentinel */ },
-> > >  };
-> > >  MODULE_DEVICE_TABLE(of, imx93_clk_of_match);
-> > > +#endif
-> > >
-> > >  static struct platform_driver imx93_clk_driver = {
-> > >  	.probe = imx93_clocks_probe,
-> > > --
-> > > 2.37.1
-> > >
+Frieder Schrempf (3):
+  dt-bindings: arm: fsl: imx6ul-kontron: Update bindings
+  ARM: dts: imx6ul-kontron: Simplify devicetree structure
+  ARM: dts: imx6ul-kontron: Add imx6ull-kontron-bl to Makefile
+
+ .../devicetree/bindings/arm/fsl.yaml          | 31 ++++++--------
+ arch/arm/boot/dts/Makefile                    |  5 ++-
+ ...6310-s-43.dts => imx6ul-kontron-bl-43.dts} |  8 ++--
+ ...x-s.dtsi => imx6ul-kontron-bl-common.dtsi} |  0
+ ...tron-n6310-s.dts => imx6ul-kontron-bl.dts} |  9 ++---
+ .../boot/dts/imx6ul-kontron-n6311-som.dtsi    | 40 -------------------
+ ...mon.dtsi => imx6ul-kontron-sl-common.dtsi} | 15 +++++++
+ ...-n6310-som.dtsi => imx6ul-kontron-sl.dtsi} | 33 ++-------------
+ ...ron-n6411-s.dts => imx6ull-kontron-bl.dts} |  9 ++---
+ .../boot/dts/imx6ull-kontron-n6411-som.dtsi   | 40 -------------------
+ ...on-n6311-s.dts => imx6ull-kontron-sl.dtsi} | 11 ++---
+ 11 files changed, 49 insertions(+), 152 deletions(-)
+ rename arch/arm/boot/dts/{imx6ul-kontron-n6310-s-43.dts => imx6ul-kontron-bl-43.dts} (93%)
+ rename arch/arm/boot/dts/{imx6ul-kontron-n6x1x-s.dtsi => imx6ul-kontron-bl-common.dtsi} (100%)
+ rename arch/arm/boot/dts/{imx6ul-kontron-n6310-s.dts => imx6ul-kontron-bl.dts} (52%)
+ delete mode 100644 arch/arm/boot/dts/imx6ul-kontron-n6311-som.dtsi
+ rename arch/arm/boot/dts/{imx6ul-kontron-n6x1x-som-common.dtsi => imx6ul-kontron-sl-common.dtsi} (90%)
+ rename arch/arm/boot/dts/{imx6ul-kontron-n6310-som.dtsi => imx6ul-kontron-sl.dtsi} (28%)
+ rename arch/arm/boot/dts/{imx6ull-kontron-n6411-s.dts => imx6ull-kontron-bl.dts} (43%)
+ delete mode 100644 arch/arm/boot/dts/imx6ull-kontron-n6411-som.dtsi
+ rename arch/arm/boot/dts/{imx6ul-kontron-n6311-s.dts => imx6ull-kontron-sl.dtsi} (41%)
+
+-- 
+2.37.1
+
