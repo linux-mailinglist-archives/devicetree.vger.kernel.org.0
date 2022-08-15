@@ -2,103 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90779595115
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 06:52:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06E8D595190
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 07:01:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231777AbiHPEwQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 00:52:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41944 "EHLO
+        id S232282AbiHPFBt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 01:01:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233741AbiHPEvn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 00:51:43 -0400
-Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09937DB07C
-        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 13:49:16 -0700 (PDT)
-Received: by mail-qk1-x733.google.com with SMTP id g21so2819940qka.5
-        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 13:49:16 -0700 (PDT)
+        with ESMTP id S234658AbiHPFBT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 01:01:19 -0400
+Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 811B450062
+        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 13:56:44 -0700 (PDT)
+Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-32a17d3bba2so102824367b3.9
+        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 13:56:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc;
-        bh=ej3T27wdcOl5hgxFKEEvscpLUDARFbq7IX1O4+1Fbq8=;
-        b=BEFvQCt0f63kw5eeVup3KAVBKhpf++rbLrvVI0tD1CxTVWuv5Rudcu+JjjUDGbdZ32
-         YlBbbScJ1mi3sD5XJfJ1PGAMu6KOv/S7Sbi1HGJIu543q1cnpLlKXcmALmfvy/tNxRP5
-         Q64GyzEPju1ZJykHQFTXx8uINrt5K3TTj9J6h9AoiK4QAdzQ9SufLteRWF7TPz17ZVw8
-         VEAG6avDIVw5xoEe5rv1EfSAc+zoXzCSo5fdQtBoGbuaDnTaKgrkPqN37iAjkS9o6BBf
-         LNN8WNPLUH90Am1EuQaYuPaRRdCK2hxPkrmqFghps44ys9/Pp5i+vRG6Xc1d+BEwyxej
-         I02w==
+        d=google.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=D0fn3micXKWrfIVT3rhbLog8MKgivLXDeSRBFlVQCe0=;
+        b=pWNCA5tjhz3ifbg/zoi8mxeHNbQqyS6Wr+tkXqszwau/3juKJt1cJiDeWd/xTUYikf
+         3m+lUs8TRS/ONqZP2kr37pSkam/ltj8dFUHNbQSVUtOocrZd8kNivuozAsPDZGUebja5
+         8qoXrSub6bi/48WY6kMdn5wD62DzaKBuNTtBjPgC1vqE2ofoH7+pemKiSTDhtCXK+BKg
+         tM0mwmFWdjDKI5x8PolzvWsp9Wa9f7ueMXN26rQ8TanPpj13nakHNrDAbc0WTCILPcKm
+         sITU3U2AXFoq3SQH3e7W+zw/P6tvdNfqQuIWIBXSOdodHIwUTxZT8vAAFSIly2OhmtPn
+         X4/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=to:subject:message-id:date:from:reply-to:mime-version
-         :x-gm-message-state:from:to:cc;
-        bh=ej3T27wdcOl5hgxFKEEvscpLUDARFbq7IX1O4+1Fbq8=;
-        b=4Xlv22Mt7ZEDvapLMBSDa7ZmmqLb0XDf/G+efjQqWQCAbM5l00Wyy1YsWfQ/v7kcO1
-         wO3C5p+MP+gSW89vh+IdG2d1fNy8+QUwWzxUNau63OR9WxAa6T1TzK0AUh+HSgyMD6Xc
-         eG8AuTyEcv9z6tamzkxaHdEwHw0nQsRK23+3kY3ni46NX6k3p4e+J0vnaCErzbI4Sb7l
-         M2xBZGEqKV9+Rx0BV0OxIZyQb94PE4X+ykxhbfUrodUcx83841yMf8bRu9Km+v7SLWHn
-         UKP23yDs1kh6lJsFgGHNmBVoBktb2zowT3fI5w2DW0tQsNsW7dfpQjGprILM7iNRHmLR
-         kycw==
-X-Gm-Message-State: ACgBeo34LoqcwNgDNxKqHnhwMBhCyS6253W/bSqIhnDEYzOqcrmCBGlx
-        Qc/YOZiLc4hUxqjypUHWYkL3/78KlOf+EOj9sm0=
-X-Google-Smtp-Source: AA6agR7ndOrZjMDBJwIxxDqcamWI0ULmp0y7gaZJ2pOjsC8D1v4MDjLRzOokz6xmZ8oifLQeyIah3K/su8jEPklZWYI=
-X-Received: by 2002:a37:5481:0:b0:6b9:573e:a813 with SMTP id
- i123-20020a375481000000b006b9573ea813mr12478593qkb.197.1660596550234; Mon, 15
- Aug 2022 13:49:10 -0700 (PDT)
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=D0fn3micXKWrfIVT3rhbLog8MKgivLXDeSRBFlVQCe0=;
+        b=679kkyNLbDC4dTcZjuZzAfUDf08z6ecF8jlfFpCZN+kY5KOUwV5LPlNEkNkR3GerJE
+         bhVC1QT9dZJsmrIEDXH0imMpis3rU+4zfl/cK37FAiGCuNRNsFQM1Yb1Cp63eI1P0Fqs
+         dJZxDjYfsSQ6WYJE8pvcrImYSJj/3wODeGogcjcvwdJk33MZXqYXb8W0iQI2hJLeJUKk
+         s9I6Svexrj7c6ETcI8KYSo4zl2+ZnkCcGIGRkzItcPzst/bNw38GkoYotGq4Oaj/nb5M
+         w1m0BPhJyPLDH4lDnztURuwiWFAxI2dLraJoFx+xvsodc1offZUaYO+ypWloVO3OV52F
+         VVyA==
+X-Gm-Message-State: ACgBeo0z+ydyt592rPEKCzu6W8itME+Q8n0aBEKnowg7X0Icl/r+GcrD
+        9su9Z117N6yOdyFkGooOMIFXIH/PzrE2/1bTs0ggrA==
+X-Google-Smtp-Source: AA6agR4LEloPmUVOkPnMV81xQJEVCPf91bSwXVvWmCOFrRCoq8LfZMc0EKGNipgQdo+jv9Jrr6eZZKs9QGFjnp+Twkw=
+X-Received: by 2002:a0d:efc1:0:b0:32a:8e40:cd70 with SMTP id
+ y184-20020a0defc1000000b0032a8e40cd70mr14737568ywe.83.1660597003258; Mon, 15
+ Aug 2022 13:56:43 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 2002:ab3:ef88:0:b0:46d:3a61:256e with HTTP; Mon, 15 Aug 2022
- 13:49:08 -0700 (PDT)
-Reply-To: wijh555@gmail.com
-From:   "Prof. Chin Guang" <dmitrybogdanv07@gmail.com>
-Date:   Mon, 15 Aug 2022 13:49:08 -0700
-Message-ID: <CAPi14yJvGA2=bmp3J6Jke-6XMMcPdNT_WT5w9yJCSznB-X6FRw@mail.gmail.com>
-Subject: Good Day,
-To:     undisclosed-recipients:;
+References: <20220810060040.321697-1-saravanak@google.com> <3601760.iIbC2pHGDl@steina-w>
+ <CAGETcx_tSndU0xerz=DF9JQxYFRC2aaxyOE-bR2JpM0L0ht=sw@mail.gmail.com>
+In-Reply-To: <CAGETcx_tSndU0xerz=DF9JQxYFRC2aaxyOE-bR2JpM0L0ht=sw@mail.gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Mon, 15 Aug 2022 13:56:07 -0700
+Message-ID: <CAGETcx-JUV1nj8wBJrTPfyvM7=Mre5j_vkVmZojeiumUGG6QZQ@mail.gmail.com>
+Subject: Re: [PATCH v1 0/9] fw_devlink improvements
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Len Brown <lenb@kernel.org>, Abel Vesa <abel.vesa@linaro.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        John Stultz <jstultz@google.com>,
+        Doug Anderson <dianders@chromium.org>,
+        Guenter Roeck <linux@roeck-us.net>, kernel-team@android.com,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-acpi@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: Yes, score=5.2 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        UNDISC_FREEM autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Report: *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-        *      [score: 0.5000]
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
-        *      digit
-        *      [wijh555[at]gmail.com]
-        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-        *      provider
-        *      [dmitrybogdanv07[at]gmail.com]
-        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
-        *       in digit
-        *      [dmitrybogdanv07[at]gmail.com]
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-        *      https://www.dnswl.org/, no trust
-        *      [2607:f8b0:4864:20:0:0:0:733 listed in]
-        [list.dnswl.org]
-        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
-        *  3.1 UNDISC_FREEM Undisclosed recipients + freemail reply-to
-        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
-        *      different freemails
-X-Spam-Level: *****
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
--- 
-Hello,
-We the Board Directors believe you are in good health, doing great and
-with the hope that this mail will meet you in good condition, We are
-privileged and delighted to reach you via email" And we are urgently
-waiting to hear from you. and again your number is not connecting.
+On Mon, Aug 15, 2022 at 12:17 PM Saravana Kannan <saravanak@google.com> wrote:
+>
+> On Mon, Aug 15, 2022 at 5:39 AM Alexander Stein
+> <alexander.stein@ew.tq-group.com> wrote:
+> >
+> > Hello Saravana,
+> >
+> > Am Mittwoch, 10. August 2022, 08:00:29 CEST schrieb Saravana Kannan:
+> > > Alexander,
+> > >
+> > > This should fix your issue where the power domain device not having a
+> > > compatible property. Can you give it a shot please?
+> >
+> > thanks for the update. Unfortunately this does not work:
+> >
+> > > [    0.774838] PM: Added domain provider from /soc@0/bus@30000000/
+> > gpc@303a0000/pgc/power-domain@0
+> > > [    0.775100] imx-pgc imx-pgc-domain.1: __genpd_dev_pm_attach() failed to
+> > find PM domain: -2
+> > > [    0.775324] PM: Added domain provider from /soc@0/bus@30000000/
+> > gpc@303a0000/pgc/power-domain@2
+> > > [    0.775601] PM: Added domain provider from /soc@0/bus@30000000/
+> > gpc@303a0000/pgc/power-domain@3
+> > > [    0.775842] PM: Added domain provider from /soc@0/bus@30000000/
+> > gpc@303a0000/pgc/power-domain@4
+> > > [    0.776642] PM: Added domain provider from /soc@0/bus@30000000/
+> > gpc@303a0000/pgc/power-domain@7
+> > > [    0.776897] PM: Added domain provider from /soc@0/bus@30000000/
+> > gpc@303a0000/pgc/power-domain@8
+> > > [    0.777158] PM: Added domain provider from /soc@0/bus@30000000/
+> > gpc@303a0000/pgc/power-domain@9
+> > > [    0.777405] PM: Added domain provider from /soc@0/bus@30000000/
+> > gpc@303a0000/pgc/power-domain@a
+> > > [    0.779342] genpd genpd:0:38320000.blk-ctrl: __genpd_dev_pm_attach()
+> > failed to find PM domain: -2
+> > > [    0.779422] imx8m-blk-ctrl 38320000.blk-ctrl: error -ENODEV: failed to
+> > attach power domain "bus"
+> > > [    0.848785] etnaviv-gpu 38000000.gpu: __genpd_dev_pm_attach() failed to
+> > find PM domain: -2
+> > > [    1.114220] pfuze100-regulator 0-0008: Full layer: 2, Metal layer: 1
+> > > [    1.122267] pfuze100-regulator 0-0008: FAB: 0, FIN: 0
+> > > [    1.132970] pfuze100-regulator 0-0008: pfuze100 found.
+> > > [    1.157011] imx-gpcv2 303a0000.gpc: Failed to create device link with
+> > 0-0008
+> > > [    1.164094] imx-gpcv2 303a0000.gpc: Failed to create device link with
+> > 0-0008
+> >
+> > The required power-supply for the power domains is still not yet available.
+> > Does this series require some other patches as well?
+>
+> Ah sorry, yeah, this needs additional patches. The one I gave in the
+> other thread when I debugged this and I also noticed another issue.
+> Here's the combined diff of what's needed. Can you add this on top of
+> the series and test it?
+>
+> diff --git a/drivers/irqchip/irq-imx-gpcv2.c b/drivers/irqchip/irq-imx-gpcv2.c
+> index b9c22f764b4d..8a0e82067924 100644
+> --- a/drivers/irqchip/irq-imx-gpcv2.c
+> +++ b/drivers/irqchip/irq-imx-gpcv2.c
+> @@ -283,6 +283,7 @@ static int __init imx_gpcv2_irqchip_init(struct
+> device_node *node,
+>          * later the GPC power domain driver will not be skipped.
+>          */
+>         of_node_clear_flag(node, OF_POPULATED);
+> +       fwnode_dev_initialized(domain->fwnode, false);
+>         return 0;
+>  }
+>
+> diff --git a/drivers/soc/imx/gpcv2.c b/drivers/soc/imx/gpcv2.c
+> index 6383a4edc360..181fbfe5bd4d 100644
+> --- a/drivers/soc/imx/gpcv2.c
+> +++ b/drivers/soc/imx/gpcv2.c
+> @@ -1513,6 +1513,7 @@ static int imx_gpcv2_probe(struct platform_device *pdev)
+>
+>                 pd_pdev->dev.parent = dev;
+>                 pd_pdev->dev.of_node = np;
+> +               pd_pdev->dev.fwnode = of_fwnode_handle(np);
+>
+>                 ret = platform_device_add(pd_pdev);
+>                 if (ret) {
+>
+> With this patch, I'd really expect the power domain dependency to be
+> handled correctly.
+>
+> > Whats worse, starting with commit 9/9 [of: property: Simplify
+> > of_link_to_phandle()], other drivers fail to probe waiting for pinctrl to be
+> > available.
+>
+> Heh, Patch 9/9 and all its other dependencies in this series was to
+> fix your use case. Ironic that it's causing you more issues.
+>
+> > > $ cat /sys/kernel/debug/devices_deferred
+> > > gpio-leds       platform: wait for supplier gpioledgrp
+> > > extcon-usbotg0  platform: wait for supplier usb0congrp
+> > > gpio-keys       platform: wait for supplier gpiobuttongrp
+> > > regulator-otg-vbus      platform: wait for supplier reggotgvbusgrp
+> > > regulator-vdd-arm       platform: wait for supplier dvfsgrp
+> >
+> > Apparently for some reason they are not probed again, once the pinctrl driver
+> > probed.
+>
+> I'm hoping that this is just some issue due to the missing patch
+> above, but doesn't sound like it if you say that the pinctrl ended up
+> probing eventually.
+>
+> So when device_links_driver_bound() calls
+> __fw_devlink_pickup_dangling_consumers(), it should have picked up the
+> consumers of node like gpiobuttongrp and moved it to the pinctrl
+> device. And right after that we call __fw_devlink_link_to_consumers()
+> that would have created the device links. And then right after that,
+> we go through all the consumers and add them to the deferred probe
+> list. After that deferred probe should have run... either because it's
+> enabled at late_initcall() or because a new device probed
+> successfully.
+>
+> Can you check which one of my expectations isn't true in your case?
 
-Sincerely,
-Prof. Chin Guang
+Actually I have a hypothesis on what might be happening. It could be a
+case of the consumer device getting added after the supplier has been
+initialized.
+
+If the patch above doesn't fix everything, can you add this diff on
+top of the patch above and see if that fixes everything? If it fixes
+the pinctrl issue, can you check my hypothesis be checking in what
+order the devices get added and get probed?
+
+diff --git a/drivers/base/core.c b/drivers/base/core.c
+index 2f012e826986..866755d8ad95 100644
+--- a/drivers/base/core.c
++++ b/drivers/base/core.c
+@@ -2068,7 +2068,11 @@ static int fw_devlink_create_devlink(struct device *con,
+                device_links_write_unlock();
+        }
+
+-       sup_dev = get_dev_from_fwnode(sup_handle);
++       if (sup_handle->flags & FWNODE_FLAG_NOT_DEVICE)
++               sup_dev = fwnode_get_next_parent_dev(sup_handle);
++       else
++               sup_dev = get_dev_from_fwnode(sup_handle);
++
+        if (sup_dev) {
+                /*
+                 * If it's one of those drivers that don't actually bind to
+
+Thanks,
+Saravana
