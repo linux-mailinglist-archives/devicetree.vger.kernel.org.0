@@ -2,532 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B99A592EE7
-	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 14:30:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C39E0592F0C
+	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 14:39:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242489AbiHOMaw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Aug 2022 08:30:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42134 "EHLO
+        id S231339AbiHOMjb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Aug 2022 08:39:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242201AbiHOMau (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 08:30:50 -0400
-Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com [64.147.123.21])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A88856402;
-        Mon, 15 Aug 2022 05:30:47 -0700 (PDT)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.west.internal (Postfix) with ESMTP id 2C468320094A;
-        Mon, 15 Aug 2022 08:30:46 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute3.internal (MEProxy); Mon, 15 Aug 2022 08:30:47 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        tom-fitzhenry.me.uk; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm1; t=1660566644; x=1660653044; bh=cv5+ERoN6T
-        Yoti2zJz1zD407RAX8NoikXtca5DAyxCw=; b=cSjplW+EgdoDQfm7y3u+DNjMeA
-        0ndj8BgM4s//VYU5kx+fSVWlrTxAHw+9X+Rom1nxreUY7VRu1OnM/NfZl4dzKYL9
-        ni0w5IcPYdAIhttxjPYOQPuUT/rPsv7BmyYSnRdepWvB1sS5Y4DtktpLK+gJS/8r
-        IWOiwuKMqmwHF68nqkCTT61WIDqF3zK3cLZCQbB5agU7hFgpEteBwDm8kzoGNMKh
-        4Cg5htRj5l2eTmzJCt1RwBEbezyyy/Nxw5Gn8Kb6LVBPcV8IV2SXrJYsZNEL20gK
-        E2qnmXmSc6lEOoyNtvuAYOucYL8Kh4U7hE9OA3UEUBvCBG0kJLn7R4qb43CQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:feedback-id:feedback-id:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1660566644; x=
-        1660653044; bh=cv5+ERoN6TYoti2zJz1zD407RAX8NoikXtca5DAyxCw=; b=Q
-        PPFX3TmwAeKPOGG3+BI02urDhlp4T9zX0DBlkfpxBiCPMp9xa9iUlKxqnk1Xgqk3
-        oudLYsHOdMoYAvXjD9YrWGkonoTzhObMKkPX2k7P1SD8UzgGrzAjqKYOXEpM9w6E
-        jkkJgNjMw7o5Mrx0AKo16gfowD/sXT8FPv2wE5jW3+A6BTWwKd5/HJt1+8P0YhD0
-        LDV19IEymDoADCoifPUEucKYfZs7Dk/nWfI15zEJtRbHYYLJ/7VZGuw7N6uEPyrf
-        Pea5wTf6rveELQv4P0UJELvVpHdyFX3Sqn5nhc0z0Ba60Y2SsE3liMliult6xIjN
-        kHL2Jj1TYRnfg9pjLkAvg==
-X-ME-Sender: <xms:dDz6YrIxWpfImpfnXIM9aUg3YFV6_dO5CXrzx7gVLOJchfN7bPqyyw>
-    <xme:dDz6YvIwG-7p0QNABNyM-rUKXqQVfQbPvm0SnfS9R6umuH6ONcWrVZ_24x-N2Y8Xb
-    E1jp6yKTJ164RGjJA>
-X-ME-Received: <xmr:dDz6YjubBcIIOm9H8K-exgwPpvH4gmemaC-Jxo3hqKK93Zop8KA9LvM1ZEpWWfW0ki77-iVU8lx9NXyR_QvZrJPeX0vUpgs7NCk>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdehvddgheefucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucenucfjughrpefhvfevufffkffojghfgggtgfesth
-    ekredtredtjeenucfhrhhomhepvfhomhcuhfhithiihhgvnhhrhicuoehtohhmsehtohhm
-    qdhfihhtiihhvghnrhihrdhmvgdruhhkqeenucggtffrrghtthgvrhhnpefgkeehudeife
-    egkeekueelheeggfevhffgjeeffeetieduieeguddugfeigfeuueenucffohhmrghinhep
-    phhinhgvieegrdhorhhgpdhgihhtlhgrsgdrtghomhdpmhgvghhouhhsrdgtohhmnecuve
-    hluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepthhomhesthho
-    mhdqfhhithiihhgvnhhrhidrmhgvrdhukh
-X-ME-Proxy: <xmx:dDz6YkaGIS9wr13vay1rmiFxFcpSX0jpW5f2dhwmHI1efQXl81c2Yg>
-    <xmx:dDz6YibUtOj1DP4wjaWSdl9fQ1prvjUZADiPiP5YtZtLF0A_l-RC-w>
-    <xmx:dDz6YoAUh5NFEb08ZVySaGwe1V9EnMCbGLYEB3KiGta_bLvWkPnefw>
-    <xmx:dDz6YoyqHi6FoRrRaNB4KrOPMGrJ8ghjRsrLneLfut8_ZX-FQ99tcw>
-Feedback-ID: iefc945ae:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 15 Aug 2022 08:30:40 -0400 (EDT)
-From:   Tom Fitzhenry <tom@tom-fitzhenry.me.uk>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        heiko@sntech.de
-Cc:     martijn@brixit.nl, ayufan@ayufan.eu, megi@xff.cz,
-        tom@tom-fitzhenry.me.uk, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, phone-devel@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v3 2/2] arm64: dts: rockchip: Add initial support for Pine64 PinePhone Pro
-Date:   Mon, 15 Aug 2022 22:30:04 +1000
-Message-Id: <20220815123004.252014-3-tom@tom-fitzhenry.me.uk>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220815123004.252014-1-tom@tom-fitzhenry.me.uk>
-References: <20220815123004.252014-1-tom@tom-fitzhenry.me.uk>
+        with ESMTP id S232239AbiHOMja (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 08:39:30 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 511C2237DD;
+        Mon, 15 Aug 2022 05:39:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1660567167; x=1692103167;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=ZoeSgVqYecYa8dOXcwGrIo4k9Ip/Bxok4jHfP0iqk0s=;
+  b=RxRiPoIBIcCDT1kDI/YX1hV7vf8ExuPtme+aHhJIqCHSN8ma928khbT0
+   Eez9zl6oULI6EzEc1HCuHizcE+GVmv55luGurc9EbZ7aaPlBIjOysGqpU
+   K0TDS1l28lWsFi7tNBeVCKOwDp9uzgJdVd2sBxjhVQvA4IsSlqLFmxFKi
+   fSuMJjCIYbpIdkhUOo298dO4riLw/bMH6swlbwPo5Zr7+ckxEepLwxfo6
+   X8+2yFDghGyJZElnIjW8hvzznBoL2jke5nlQbGUn0py3/ptpTWXuopu39
+   ncLvisAFh8kMFtxWy0k1/8xxG6CFbGDqHe4aDHoEx36J4yQOckGtnQS8u
+   A==;
+X-IronPort-AV: E=Sophos;i="5.93,238,1654552800"; 
+   d="scan'208";a="25605305"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 15 Aug 2022 14:39:24 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Mon, 15 Aug 2022 14:39:24 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Mon, 15 Aug 2022 14:39:24 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1660567164; x=1692103164;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=ZoeSgVqYecYa8dOXcwGrIo4k9Ip/Bxok4jHfP0iqk0s=;
+  b=SRYuP5tro2Iq3C5Ct21jG0BwrComttqC0+848iBBB5Rxzj5oLDsXCf6s
+   JF4ghFCSvsmxuLGW+HEaie5rlZKfJbykLh2zr/AmAuAzLYPXuzbyhFC8c
+   gVFgpEOhr6GMabGQXphj25oizxKT7ZQSl5xHXv10/G2N7Zum0ngCeXUYZ
+   lwclTWC/9linzmcWvJdWWPLJW5J6c86I/hUkkZGJxOkWPNCEcb3lOsqqZ
+   Ja81xBdUzxOJ3b50lS6fahYhKG2h614sQKfCxRzqb5jM9n0H1BmEjivYd
+   x3YI1hJlrFdY9QQBKUFPSoSXGqhZOCT240LZiirg3gv82dbhYXSgcNs0U
+   g==;
+X-IronPort-AV: E=Sophos;i="5.93,238,1654552800"; 
+   d="scan'208";a="25605304"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 15 Aug 2022 14:39:24 +0200
+Received: from steina-w.localnet (unknown [10.123.49.11])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id DCF8A280056;
+        Mon, 15 Aug 2022 14:39:23 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Len Brown <lenb@kernel.org>,
+        Saravana Kannan <saravanak@google.com>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        John Stultz <jstultz@google.com>,
+        Doug Anderson <dianders@chromium.org>,
+        Guenter Roeck <linux@roeck-us.net>, kernel-team@android.com,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-acpi@vger.kernel.org
+Subject: Re: [PATCH v1 0/9] fw_devlink improvements
+Date:   Mon, 15 Aug 2022 14:39:23 +0200
+Message-ID: <3601760.iIbC2pHGDl@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20220810060040.321697-1-saravanak@google.com>
+References: <20220810060040.321697-1-saravanak@google.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Martijn Braam <martijn@brixit.nl>
+Hello Saravana,
 
-This is a basic DT containing regulators and UART, intended to be a
-base that myself and others can add additional nodes in future patches.
+Am Mittwoch, 10. August 2022, 08:00:29 CEST schrieb Saravana Kannan:
+> Alexander,
+> 
+> This should fix your issue where the power domain device not having a
+> compatible property. Can you give it a shot please?
 
-Tested to work: booting from eMMC, output over UART.
+thanks for the update. Unfortunately this does not work:
 
-https://wiki.pine64.org/wiki/PinePhone_Pro
+> [    0.774838] PM: Added domain provider from /soc@0/bus@30000000/
+gpc@303a0000/pgc/power-domain@0
+> [    0.775100] imx-pgc imx-pgc-domain.1: __genpd_dev_pm_attach() failed to 
+find PM domain: -2
+> [    0.775324] PM: Added domain provider from /soc@0/bus@30000000/
+gpc@303a0000/pgc/power-domain@2
+> [    0.775601] PM: Added domain provider from /soc@0/bus@30000000/
+gpc@303a0000/pgc/power-domain@3
+> [    0.775842] PM: Added domain provider from /soc@0/bus@30000000/
+gpc@303a0000/pgc/power-domain@4
+> [    0.776642] PM: Added domain provider from /soc@0/bus@30000000/
+gpc@303a0000/pgc/power-domain@7
+> [    0.776897] PM: Added domain provider from /soc@0/bus@30000000/
+gpc@303a0000/pgc/power-domain@8
+> [    0.777158] PM: Added domain provider from /soc@0/bus@30000000/
+gpc@303a0000/pgc/power-domain@9
+> [    0.777405] PM: Added domain provider from /soc@0/bus@30000000/
+gpc@303a0000/pgc/power-domain@a
+> [    0.779342] genpd genpd:0:38320000.blk-ctrl: __genpd_dev_pm_attach() 
+failed to find PM domain: -2
+> [    0.779422] imx8m-blk-ctrl 38320000.blk-ctrl: error -ENODEV: failed to 
+attach power domain "bus"
+> [    0.848785] etnaviv-gpu 38000000.gpu: __genpd_dev_pm_attach() failed to 
+find PM domain: -2
+> [    1.114220] pfuze100-regulator 0-0008: Full layer: 2, Metal layer: 1
+> [    1.122267] pfuze100-regulator 0-0008: FAB: 0, FIN: 0
+> [    1.132970] pfuze100-regulator 0-0008: pfuze100 found.
+> [    1.157011] imx-gpcv2 303a0000.gpc: Failed to create device link with 
+0-0008
+> [    1.164094] imx-gpcv2 303a0000.gpc: Failed to create device link with 
+0-0008
 
-This is derived from
-https://gitlab.com/pine64-org/linux/-/commit/261d3b5f8ac503f97da810986d1d6422430c8531
-with fixes from https://megous.com/git/linux.
+The required power-supply for the power domains is still not yet available.
+Does this series require some other patches as well?
 
-Signed-off-by: Martijn Braam <martijn@brixit.nl>
-Co-developed-by: Kamil Trzciński <ayufan@ayufan.eu>
-[no SoB, but Kamil is happy for this patch to be submitted]
-Co-developed-by: Ondrej Jirman <megi@xff.cz>
-Signed-off-by: Ondrej Jirman <megi@xff.cz>
-Co-developed-by: Tom Fitzhenry <tom@tom-fitzhenry.me.uk>
-Signed-off-by: Tom Fitzhenry <tom@tom-fitzhenry.me.uk>
----
- arch/arm64/boot/dts/rockchip/Makefile         |   1 +
- .../dts/rockchip/rk3399-pinephone-pro.dts     | 394 ++++++++++++++++++
- 2 files changed, 395 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+Whats worse, starting with commit 9/9 [of: property: Simplify 
+of_link_to_phandle()], other drivers fail to probe waiting for pinctrl to be 
+available.
+> $ cat /sys/kernel/debug/devices_deferred
+> gpio-leds       platform: wait for supplier gpioledgrp
+> extcon-usbotg0  platform: wait for supplier usb0congrp
+> gpio-keys       platform: wait for supplier gpiobuttongrp
+> regulator-otg-vbus      platform: wait for supplier reggotgvbusgrp
+> regulator-vdd-arm       platform: wait for supplier dvfsgrp
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index ef79a672804a1..cb42e0a15808e 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -42,6 +42,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-nanopi-neo4.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-nanopi-r4s.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-orangepi.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-pinebook-pro.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-pinephone-pro.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-puma-haikou.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-roc-pc.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-roc-pc-mezzanine.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-new file mode 100644
-index 0000000000000..f9f1dcd4f6494
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-@@ -0,0 +1,394 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2020 Martijn Braam <martijn@brixit.nl>
-+ * Copyright (c) 2021 Kamil Trzciński <ayufan@ayufan.eu>
-+ */
-+
-+/* PinePhone Pro datasheet:
-+ * https://files.pine64.org/doc/PinePhonePro/PinephonePro-Schematic-V1.0-20211127.pdf
-+ */
-+
-+/dts-v1/;
-+#include <dt-bindings/input/linux-event-codes.h>
-+#include "rk3399.dtsi"
-+#include "rk3399-opp.dtsi"
-+
-+/ {
-+	model = "Pine64 PinePhonePro";
-+	compatible = "pine64,pinephone-pro", "rockchip,rk3399";
-+	chassis-type = "handset";
-+
-+	aliases {
-+		mmc0 = &sdio0;
-+		mmc1 = &sdmmc;
-+		mmc2 = &sdhci;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial2:115200n8";
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pwrbtn_pin>;
-+
-+		power {
-+			debounce-interval = <20>;
-+			gpios = <&gpio0 RK_PA5 GPIO_ACTIVE_LOW>;
-+			label = "Power";
-+			linux,code = <KEY_POWER>;
-+			wakeup-source;
-+		};
-+	};
-+
-+	vcc_sysin: vcc-sysin-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_sysin";
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vcc3v3_sys: vcc3v3-sys-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3_sys";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc_sysin>;
-+	};
-+
-+	vcca1v8_s3: vcc1v8-s3-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcca1v8_s3";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc3v3_sys>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+};
-+
-+&cpu_l0 {
-+	cpu-supply = <&vdd_cpu_l>;
-+};
-+
-+&cpu_l1 {
-+	cpu-supply = <&vdd_cpu_l>;
-+};
-+
-+&cpu_l2 {
-+	cpu-supply = <&vdd_cpu_l>;
-+};
-+
-+&cpu_l3 {
-+	cpu-supply = <&vdd_cpu_l>;
-+};
-+
-+&cpu_b0 {
-+	cpu-supply = <&vdd_cpu_b>;
-+};
-+
-+&cpu_b1 {
-+	cpu-supply = <&vdd_cpu_b>;
-+};
-+
-+&emmc_phy {
-+	status = "okay";
-+};
-+
-+&i2c0 {
-+	clock-frequency = <400000>;
-+	i2c-scl-rising-time-ns = <168>;
-+	i2c-scl-falling-time-ns = <4>;
-+	status = "okay";
-+
-+	rk818: pmic@1c {
-+		compatible = "rockchip,rk818";
-+		reg = <0x1c>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <RK_PC5 IRQ_TYPE_LEVEL_LOW>;
-+		#clock-cells = <1>;
-+		clock-output-names = "xin32k", "rk808-clkout2";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pmic_int_l>;
-+		rockchip,system-power-controller;
-+		wakeup-source;
-+
-+		vcc1-supply = <&vcc_sysin>;
-+		vcc2-supply = <&vcc_sysin>;
-+		vcc3-supply = <&vcc_sysin>;
-+		vcc4-supply = <&vcc_sysin>;
-+		vcc6-supply = <&vcc_sysin>;
-+		vcc7-supply = <&vcc3v3_sys>;
-+		vcc8-supply = <&vcc_sysin>;
-+		vcc9-supply = <&vcc3v3_sys>;
-+
-+		regulators {
-+			vdd_cpu_l: DCDC_REG1 {
-+				regulator-name = "vdd_cpu_l";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <750000>;
-+				regulator-max-microvolt = <1350000>;
-+				regulator-ramp-delay = <6001>;
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdd_center: DCDC_REG2 {
-+				regulator-name = "vdd_center";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <1350000>;
-+				regulator-ramp-delay = <6001>;
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcc_ddr: DCDC_REG3 {
-+				regulator-name = "vcc_ddr";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+				};
-+			};
-+
-+			vcc_1v8: vcc_wl: DCDC_REG4 {
-+				regulator-name = "vcc_1v8";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+				};
-+			};
-+
-+			vcca3v0_codec: LDO_REG1 {
-+				regulator-name = "vcca3v0_codec";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <3000000>;
-+				regulator-max-microvolt = <3000000>;
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+				};
-+			};
-+
-+			vcc3v0_touch: LDO_REG2 {
-+				regulator-name = "vcc3v0_touch";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <3000000>;
-+				regulator-max-microvolt = <3000000>;
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcca1v8_codec: LDO_REG3 {
-+				regulator-name = "vcca1v8_codec";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+				};
-+			};
-+
-+			vcc_power_on: LDO_REG4 {
-+				regulator-name = "vcc_power_on";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+				};
-+			};
-+
-+			vcc_3v0: LDO_REG5 {
-+				regulator-name = "vcc_3v0";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <3000000>;
-+				regulator-max-microvolt = <3000000>;
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+				};
-+			};
-+
-+			vcc_1v5: LDO_REG6 {
-+				regulator-name = "vcc_1v5";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1500000>;
-+				regulator-max-microvolt = <1500000>;
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+				};
-+			};
-+
-+			vcc1v8_dvp: LDO_REG7 {
-+				regulator-name = "vcc1v8_dvp";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+			};
-+
-+			vcc3v3_s3: LDO_REG8 {
-+				regulator-name = "vcc3v3_s3";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vccio_sd: LDO_REG9 {
-+				regulator-name = "vccio_sd";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+			};
-+
-+			vcc3v3_s0: SWITCH_REG {
-+				regulator-name = "vcc3v3_s0";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+				};
-+			};
-+		};
-+	};
-+
-+	vdd_cpu_b: regulator@40 {
-+		compatible = "silergy,syr827";
-+		reg = <0x40>;
-+		fcs,suspend-voltage-selector = <1>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vsel1_pin>;
-+		regulator-name = "vdd_cpu_b";
-+		regulator-min-microvolt = <712500>;
-+		regulator-max-microvolt = <1500000>;
-+		regulator-ramp-delay = <1000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+
-+		regulator-state-mem {
-+			regulator-off-in-suspend;
-+		};
-+	};
-+
-+	vdd_gpu: regulator@41 {
-+		compatible = "silergy,syr828";
-+		reg = <0x41>;
-+		fcs,suspend-voltage-selector = <1>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vsel2_pin>;
-+		regulator-name = "vdd_gpu";
-+		regulator-min-microvolt = <712500>;
-+		regulator-max-microvolt = <1500000>;
-+		regulator-ramp-delay = <1000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+
-+		regulator-state-mem {
-+			regulator-off-in-suspend;
-+		};
-+	};
-+};
-+
-+&cluster0_opp {
-+	opp04 {
-+		status = "disabled";
-+	};
-+
-+	opp05 {
-+		status = "disabled";
-+	};
-+};
-+
-+&cluster1_opp {
-+	opp06 {
-+		status = "disabled";
-+	};
-+
-+	opp07 {
-+		status = "disabled";
-+	};
-+};
-+
-+&io_domains {
-+	status = "okay";
-+
-+	bt656-supply = <&vcc1v8_dvp>;
-+	audio-supply = <&vcca1v8_codec>;
-+	sdmmc-supply = <&vccio_sd>;
-+	gpio1830-supply = <&vcc_3v0>;
-+};
-+
-+&pmu_io_domains {
-+	pmu1830-supply = <&vcc_1v8>;
-+	status = "okay";
-+};
-+
-+&pinctrl {
-+	buttons {
-+		pwrbtn_pin: pwrbtn-pin {
-+			rockchip,pins = <0 RK_PA5 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+	};
-+
-+	pmic {
-+		pmic_int_l: pmic-int-l {
-+			rockchip,pins = <1 RK_PC5 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+
-+		vsel1_pin: vsel1-pin {
-+			rockchip,pins = <1 RK_PC1 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+
-+		vsel2_pin: vsel2-pin {
-+			rockchip,pins = <1 RK_PB6 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+	};
-+};
-+
-+&sdmmc {
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	cd-gpios = <&gpio0 RK_PA7 GPIO_ACTIVE_LOW>;
-+	disable-wp;
-+	max-frequency = <150000000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&sdmmc_clk &sdmmc_cmd &sdmmc_cd &sdmmc_bus4>;
-+	vmmc-supply = <&vcc3v3_sys>;
-+	vqmmc-supply = <&vccio_sd>;
-+	status = "okay";
-+};
-+
-+&sdhci {
-+	bus-width = <8>;
-+	mmc-hs200-1_8v;
-+	non-removable;
-+	status = "okay";
-+};
-+
-+&tsadc {
-+	rockchip,hw-tshut-mode = <1>;
-+	rockchip,hw-tshut-polarity = <1>;
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	status = "okay";
-+};
--- 
-2.37.1
+Apparently for some reason they are not probed again, once the pinctrl driver 
+probed.
+
+Best reagrds,
+Alexander
+
+
 
