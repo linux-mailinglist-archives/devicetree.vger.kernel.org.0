@@ -2,126 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B917592D23
-	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 12:52:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6131C592BD7
+	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 12:51:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231760AbiHOJMk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Aug 2022 05:12:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38126 "EHLO
+        id S241644AbiHOJUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Aug 2022 05:20:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44610 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241838AbiHOJMi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 05:12:38 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 036D5220D8
-        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 02:12:37 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id b4so5249216wrn.4
-        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 02:12:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc;
-        bh=mZGNEIa1pqWi28sYb3bc4F38nKBbuQz26ll0NQAydIc=;
-        b=VhLb3fH+gl+hRv8bCbnX9IKPW+Z4faV4V6Ta2OZT+8e/NlnviwsfWIcwQaPbz5lldW
-         EcXJyhqjJHrT1YRTYnn6yar+BRSHvON/LyFf4cwvV8skNiKHl8KOq8nAkOofCnUfJtHl
-         fCx3gr52DU8RXMCJX8iEjwDR9jpIMkjqtE+nxm46NCuluM59G1d4UeBQAvYy0c5O9abe
-         r1+CZalq6T3OI67sUotRCxM68nhDxvNMKle/X7APXs+ERgk2NIiK926XrXaG9kL7wpAt
-         p7aTH9lCAekFv7+rcYA0Jalnf3TvwuNXkKVKJV4zj2XpNBqUXZp6c2yyQW6Om2duSXz7
-         3i1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=mZGNEIa1pqWi28sYb3bc4F38nKBbuQz26ll0NQAydIc=;
-        b=iNCPiGXXN3SXzJQjnxvJh5tUSrcroWn6e2FjeARsneBS8M8LGkfcCialTsTiMmTogC
-         eOJ/qDk9tNxjAhglnYwzZTKODSaxgkyyGt6H+T0cUa/KoXlSjKpwb3qDT3sCGezJQ3Yk
-         ZGML0jom9RoPZcsz3oWGDLZUgsSQXuxSvF6opcJCczosfcQmUJzZ9n15lHMjzZym5UcW
-         8rtJZHV8GE4+KkKmJoaxNp6RAd87b8OQ9ZHj89emI5VL2YQzibEIYOtbGOEDtaQwciZM
-         XNQipGJMd59mToZulTyaMr73H69/XYLBwXDVOj4J/X/jWp/UxRaJHnelqEmh1zy0QbbK
-         qqGA==
-X-Gm-Message-State: ACgBeo0YjDXsPidtv3ZbEKjSahtSv1mX//SzDaSxNgiHmSvvitKHzYHC
-        MJTv7HgiPtbyhNvq20bHrXT+3g==
-X-Google-Smtp-Source: AA6agR5eXQemuYfviMG9u2GM6Erb8/7KMsoyHCidkfaSXGw3KPxNvEbaJ+VcyGH4MM8tz9h/JWb8VA==
-X-Received: by 2002:adf:fd4f:0:b0:220:60bc:3fc9 with SMTP id h15-20020adffd4f000000b0022060bc3fc9mr8217875wrs.398.1660554755381;
-        Mon, 15 Aug 2022 02:12:35 -0700 (PDT)
-Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id b5-20020adff905000000b002205ffe88edsm6705381wrr.31.2022.08.15.02.12.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Aug 2022 02:12:34 -0700 (PDT)
-Date:   Mon, 15 Aug 2022 12:12:33 +0300
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, abelvesa@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH V2 8/8] clk: imx93: add SAI IPG clk
-Message-ID: <YvoOAYvLF9TTfK+w@linaro.org>
-References: <20220815013039.474970-1-peng.fan@oss.nxp.com>
- <20220815013039.474970-9-peng.fan@oss.nxp.com>
+        with ESMTP id S241267AbiHOJUK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 05:20:10 -0400
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3567222A2;
+        Mon, 15 Aug 2022 02:20:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
+        Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=qCyz2ar8wIO0jnhd0FJSdqr3cK2p0Nehzl1i+J9pSbI=; b=tbb5hqrCr/LfK0sDqVCdsKFwkD
+        ZL9r2f2XHI+LNPtQbOvg/Ys7lG30BKI1HgXOY7CneC4Z3ezpqbXuq62RuMhlYlHsNbzKZmNR4gbfe
+        86kV9d3RcFwpkHUW0eZj8sN72rbAwNsW0BbpdT98D7EuYgsrp0e/++zWC8mDJRiRFwDoO35q7CqeR
+        sf/cTuSAuLdcEX21X0VaV5d1C+Y+PkC3eekswUNA3OBOYW3pG3RBz/JT2QUhdW5X6T2FHwlQmyN3T
+        vI/LhCvBnCL/wZosMDWuaPoO+o1Dsm8GzF/VPFy4YCayrqUnq29DFZKo7+kWNNrNSefI+S2aIL0PM
+        8AjxQ3Jg==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:33794)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1oNWGI-0002nI-U5; Mon, 15 Aug 2022 10:19:54 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1oNWGF-0003jh-4P; Mon, 15 Aug 2022 10:19:51 +0100
+Date:   Mon, 15 Aug 2022 10:19:51 +0100
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Wei Fang <wei.fang@nxp.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "andrew@lunn.ch" <andrew@lunn.ch>,
+        "hkallweit1@gmail.com" <hkallweit1@gmail.com>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "edumazet@google.com" <edumazet@google.com>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "pabeni@redhat.com" <pabeni@redhat.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH net 1/2] dt: ar803x: Document disable-hibernation property
+Message-ID: <YvoPt4h8m1fnVb6O@shell.armlinux.org.uk>
+References: <20220812145009.1229094-1-wei.fang@nxp.com>
+ <20220812145009.1229094-2-wei.fang@nxp.com>
+ <0cd22a17-3171-b572-65fb-e9d3def60133@linaro.org>
+ <DB9PR04MB81060AF4890DEA9E2378940288679@DB9PR04MB8106.eurprd04.prod.outlook.com>
+ <14cf568e-d7ee-886e-5122-69b2e58b8717@linaro.org>
+ <DB9PR04MB8106851412412A65DF0A6F5388689@DB9PR04MB8106.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20220815013039.474970-9-peng.fan@oss.nxp.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <DB9PR04MB8106851412412A65DF0A6F5388689@DB9PR04MB8106.eurprd04.prod.outlook.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-08-15 09:30:39, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+On Mon, Aug 15, 2022 at 08:51:32AM +0000, Wei Fang wrote:
 > 
-> The clk topology is as below:
-> bus_aon_root------>\                  /--->SAI IPG
->                     -->SAI LPCG gate-->
-> sai[x]_clk_root--->/                  \--->SAI MCLK
 > 
-> So use shared count as i.MX93 MU_B gate.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> > -----Original Message-----
+> > From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Sent: 2022年8月12日 19:26
+> > To: Wei Fang <wei.fang@nxp.com>; andrew@lunn.ch; hkallweit1@gmail.com;
+> > linux@armlinux.org.uk; davem@davemloft.net; edumazet@google.com;
+> > kuba@kernel.org; pabeni@redhat.com; robh+dt@kernel.org;
+> > krzysztof.kozlowski+dt@linaro.org; f.fainelli@gmail.com;
+> > netdev@vger.kernel.org; devicetree@vger.kernel.org;
+> > linux-kernel@vger.kernel.org
+> > Subject: Re: [PATCH net 1/2] dt: ar803x: Document disable-hibernation
+> > property
+> > 
+> > On 12/08/2022 12:02, Wei Fang wrote:
+> > >
+> > >
+> > >> -----Original Message-----
+> > >> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > >> Sent: 2022年8月12日 15:28
+> > >> To: Wei Fang <wei.fang@nxp.com>; andrew@lunn.ch;
+> > >> hkallweit1@gmail.com; linux@armlinux.org.uk; davem@davemloft.net;
+> > >> edumazet@google.com; kuba@kernel.org; pabeni@redhat.com;
+> > >> robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
+> > >> f.fainelli@gmail.com; netdev@vger.kernel.org;
+> > >> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org
+> > >> Subject: Re: [PATCH net 1/2] dt: ar803x: Document disable-hibernation
+> > >> property
+> > >>
+> > >> On 12/08/2022 17:50, wei.fang@nxp.com wrote:
+> > >>> From: Wei Fang <wei.fang@nxp.com>
+> > >>>
+> > >>
+> > >> Please use subject prefix matching subsystem.
+> > >>
+> > > Ok, I'll add the subject prefix.
+> > >
+> > >>> The hibernation mode of Atheros AR803x PHYs is default enabled.
+> > >>> When the cable is unplugged, the PHY will enter hibernation mode and
+> > >>> the PHY clock does down. For some MACs, it needs the clock to
+> > >>> support it's logic. For instance, stmmac needs the PHY inputs clock
+> > >>> is present for software reset completion. Therefore, It is
+> > >>> reasonable to add a DT property to disable hibernation mode.
+> > >>>
+> > >>> Signed-off-by: Wei Fang <wei.fang@nxp.com>
+> > >>> ---
+> > >>>  Documentation/devicetree/bindings/net/qca,ar803x.yaml | 6 ++++++
+> > >>>  1 file changed, 6 insertions(+)
+> > >>>
+> > >>> diff --git a/Documentation/devicetree/bindings/net/qca,ar803x.yaml
+> > >>> b/Documentation/devicetree/bindings/net/qca,ar803x.yaml
+> > >>> index b3d4013b7ca6..d08431d79b83 100644
+> > >>> --- a/Documentation/devicetree/bindings/net/qca,ar803x.yaml
+> > >>> +++ b/Documentation/devicetree/bindings/net/qca,ar803x.yaml
+> > >>> @@ -40,6 +40,12 @@ properties:
+> > >>>        Only supported on the AR8031.
+> > >>>      type: boolean
+> > >>>
+> > >>> +  qca,disable-hibernation:
+> > >>> +    description: |
+> > >>> +    If set, the PHY will not enter hibernation mode when the cable is
+> > >>> +    unplugged.
+> > >>
+> > >> Wrong indentation. Did you test the bindings?
+> > >>
+> > > Sorry, I just checked the patch and forgot to check the dt-bindings.
+> > >
+> > >> Unfortunately the property describes driver behavior not hardware, so
+> > >> it is not suitable for DT. Instead describe the hardware
+> > >> characteristics/features/bugs/constraints. Not driver behavior. Both
+> > >> in property name and property description.
+> > >>
+> > > Thanks for your review and feedback. Actually, the hibernation mode is a
+> > feature of hardware, I will modify the property name and description to be
+> > more in line with the requirements of the DT property.
+> > 
+> > hibernation is a feature, but 'disable-hibernation' is not. DTS describes the
+> > hardware, not policy or driver bejhvior. Why disabling hibernation is a property
+> > of hardware? How you described, it's not, therefore either property is not for
+> > DT or it has to be phrased correctly to describe the hardware.
+> > 
+> Sorry, I'm a little confused. Hibernation mode is a feature of PHY hardware, the
+> mode defaults to be enabled. We can configure it enabled or not through the
+> register which the PHY provided. Now some MACs need the PHY clocks always
+> output a valid clock so that MACs can operate correctly. And I add the property
+> to disable hibernation mode to avoid this case. And I noticed that there are 
+> some similar properties existed in the qca,ar803x,yaml, such as
+> "qca,disable-smarteee" and "qca,keep-pll-enabled". So why can't I use the
+> "qca,disable-hibernation" property? How should I do? 
 
-Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
+To me, your proposal is entirely reasonable and in keeping with DT's
+mandate, which is to describe not only how the hardware is connected
+but also how the hardware needs to be configured to inter-operate. I
+don't see any need for you to change your proposed property.
 
-> ---
->  drivers/clk/imx/clk-imx93.c | 12 +++++++++---
->  1 file changed, 9 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/clk/imx/clk-imx93.c b/drivers/clk/imx/clk-imx93.c
-> index 4008ab075dfe..6a76b9fdf18d 100644
-> --- a/drivers/clk/imx/clk-imx93.c
-> +++ b/drivers/clk/imx/clk-imx93.c
-> @@ -28,6 +28,9 @@ enum clk_sel {
->  	MAX_SEL
->  };
->  
-> +static u32 share_count_sai1;
-> +static u32 share_count_sai2;
-> +static u32 share_count_sai3;
->  static u32 share_count_mub;
->  
->  static const char *parent_names[MAX_SEL][4] = {
-> @@ -215,9 +218,12 @@ static const struct imx93_clk_ccgr {
->  	{ IMX93_CLK_USDHC1_GATE,	"usdhc1",	"usdhc1_root",		0x9380, },
->  	{ IMX93_CLK_USDHC2_GATE,	"usdhc2",	"usdhc2_root",		0x93c0, },
->  	{ IMX93_CLK_USDHC3_GATE,	"usdhc3",	"usdhc3_root",		0x9400, },
-> -	{ IMX93_CLK_SAI1_GATE,		"sai1",		"sai1_root",		0x9440, },
-> -	{ IMX93_CLK_SAI2_GATE,		"sai2",		"sai2_root",		0x9480, },
-> -	{ IMX93_CLK_SAI3_GATE,		"sai3",		"sai3_root",		0x94c0, },
-> +	{ IMX93_CLK_SAI1_GATE,          "sai1",         "sai1_root",            0x9440, 0, &share_count_sai1},
-> +	{ IMX93_CLK_SAI1_IPG,		"sai1_ipg_clk", "bus_aon_root",		0x9440, 0, &share_count_sai1},
-> +	{ IMX93_CLK_SAI2_GATE,          "sai2",         "sai2_root",            0x9480, 0, &share_count_sai2},
-> +	{ IMX93_CLK_SAI2_IPG,		"sai2_ipg_clk", "bus_wakeup_root",	0x9480, 0, &share_count_sai2},
-> +	{ IMX93_CLK_SAI3_GATE,          "sai3",         "sai3_root",            0x94c0, 0, &share_count_sai3},
-> +	{ IMX93_CLK_SAI3_IPG,		"sai3_ipg_clk", "bus_wakeup_root",	0x94c0, 0, &share_count_sai3},
->  	{ IMX93_CLK_MIPI_CSI_GATE,	"mipi_csi",	"media_apb_root",	0x9580, },
->  	{ IMX93_CLK_MIPI_DSI_GATE,	"mipi_dsi",	"media_apb_root",	0x95c0, },
->  	{ IMX93_CLK_LVDS_GATE,		"lvds",		"media_ldb_root",	0x9600, },
-> -- 
-> 2.37.1
-> 
+It is, as you point out above, no different from these other
+properties that configure the PHY's internal settings.
+
+I think Krzysztof is confusing the term "hibernation" with the system
+level action, and believing that this property has something to do
+with preventing the driver doing something when the system enters
+that state. I can't fathom any other explanation.
+
+Maybe changing the description of the property would help:
+
++  qca,disable-hibernation:
++    description: |
++      Configure the PHY to disable hardware hibernation power saving
++      mode, which is entered when the cable is disconnected.
++    type: boolean
+
+Also, I'd suggest also fixing up the patch description to stress that
+this is a hardware feature:
+
+"The hardware hibernation mode of Atheros AR803x PHYs is defaults to
+being enabled at hardware reset. When the cable is unplugged, the PHY
+will enter hibernation mode after a delay and the PHY clock output to
+the MAC can be stopped to save power.
+
+"However, some MACs need this clock for proper functioning of their
+logic. For instance, stmmac needs the PHY clock for software reset to
+complete.
+
+"Therefore, add a DT property to configure the PHY to disable this
+hardware hibernation mode."
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
