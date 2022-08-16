@@ -2,74 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D468C595D5F
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 15:30:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A663595D76
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 15:35:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235762AbiHPNao (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 09:30:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45828 "EHLO
+        id S235651AbiHPNfE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 09:35:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235793AbiHPNa3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 09:30:29 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 360A7B8F29
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 06:30:24 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id z6so14923978lfu.9
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 06:30:23 -0700 (PDT)
+        with ESMTP id S235770AbiHPNfE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 09:35:04 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CC425FF63
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 06:35:02 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id x9so10521092ljj.13
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 06:35:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=rpFTAZjl2pleYfeFAlCfw7Z2JDn36v61i5OIVLO2w5I=;
-        b=uvTyRrDNC6QxEbZyA44Zxl3dL5k8aNXBoKjruHNBXGtk2zV6fnuu5vtZ4/2VwKy1/w
-         1JPKp2UYomYYlmfRq6xgSv65G3QbqSt8okEA9Zal7bs2g+N4DMft9up8OGlH4E6QA0Lt
-         gy6tWDnwimp4O8ZuTVeavEa2wTzOcaqmwRTDXQ+178hWWkkIYdpgmXZzNih2pdvWejUb
-         Y80rYquHbGE7znX/n+mmZRKoTN7NsS4gLtmmP2jqzK9V3KV4Jcm3WPaKdIWpppfwue8f
-         oRQfxNDbbIaNn2yyXcxDSeONpbGTpxdrECS+nJ5Z20pVahG3+E+mbhZS3/1UuAFSWG0r
-         Yr1Q==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=l6nDADBjMLXXabAdXHL54a9YsxELBvhvNG69Fueawt8=;
+        b=AypiaX9GE9ohiT5OplXec0g1QK9jSNWYVLMfSfzoO1QMdQz4qEepnq7ZP031DF2RWW
+         UT86RkjDnQ+Y4SElJShDf/UTrdmfNJxXcZHhDbRVP81Z7MHqaKya0xRZ6nKb0fHfhNdA
+         rCRu8pIYDGYXeDcbrO3l6HdmgFw4yEjiVembQ+XVvBt+GkrxvqrajEmwlgmaB1WeKj/S
+         KrHvpIL4JhEywXcRxi25qjhSzNxbBLxlq1Yue6CUN3p8H2zWc0XO1PSP2+FvXe7tO4SZ
+         PQbRMbkD1TETYOtDAM7kgmjlekvD9aVRyGVee56X//cfOYNl/9uflZPKgigXfkbTOdWt
+         c4Sg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=rpFTAZjl2pleYfeFAlCfw7Z2JDn36v61i5OIVLO2w5I=;
-        b=S7cDZGBmrUdRJK1vO4UUlBDxrBdPJ2i+dsf1wJLWOIrdzlpYxwz12tLxc3unCPhTSF
-         cs1hUB64dZ+tvYUvQjaJWQ/A0bxtfxfMiaK6amlS69IABKtoXxQzIFxm88A3O93WVqDF
-         Ljw9NEtDGwBgXjE/3INW3pOLc2nhLj1oYg63iTX9BeZnWqUcyEbw7ZbaZXZDOqsOxhps
-         fKYJRo6fBtSnVL/64609ORlRlJCEgv0htYr2CFV8Ypeo/wzA3Mu10deFUvYoNFkMgtdD
-         KrrNomTjURwhdfa9l74nrW9bFEPz7t3ZhuQmY1PeaSVR5W+PTDH2aLxvxjNGN9j3xSS3
-         ZPoQ==
-X-Gm-Message-State: ACgBeo1ylhjaKqy9diemqCF0fYNBoSZyM7XpxN/lqmymt/Z7c8vzvZFL
-        W8GTVlNCTOUhMcVyUpFfEJ1bpw==
-X-Google-Smtp-Source: AA6agR4Goe1n8aiYtC29+SCFdUP5bbCFlxfNYNF/MgBrjfL/Ht7JGKQpdw+rOfy5V5n3hRIXo+LcWA==
-X-Received: by 2002:a05:6512:39c3:b0:48b:90c2:da4c with SMTP id k3-20020a05651239c300b0048b90c2da4cmr6806066lfu.282.1660656622369;
-        Tue, 16 Aug 2022 06:30:22 -0700 (PDT)
-Received: from krzk-bin.. (d15l54g8c71znbtrbzt-4.rev.dnainternet.fi. [2001:14bb:ae:539c:1782:dd68:b0c1:c1a4])
-        by smtp.gmail.com with ESMTPSA id k19-20020a2eb753000000b0025e42f8e771sm1816301ljo.34.2022.08.16.06.30.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Aug 2022 06:30:21 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Tomasz Figa <tomasz.figa@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Chanho Park <chanho61.park@samsung.com>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v4 2/2] dt-bindings: pinctrl: samsung: deprecate header with register constants
-Date:   Tue, 16 Aug 2022 16:30:16 +0300
-Message-Id: <20220816133016.77553-3-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220816133016.77553-1-krzysztof.kozlowski@linaro.org>
-References: <20220816133016.77553-1-krzysztof.kozlowski@linaro.org>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=l6nDADBjMLXXabAdXHL54a9YsxELBvhvNG69Fueawt8=;
+        b=yBYdYb2tlRoRkDXp2ls1jFVPrymLf0CCN24uZy3HobIBUPidjJHrLd6tzmgXzX6XBR
+         kRRgQu4AaObVRnKZ2Qnpw/IncOili+aRtY198C5AHsBwOYOUEH4UkQWJSs2w40+/TOlL
+         gS6z/0zWMx/kNJWtSbgm/4h8J36ljB0j4oJAqMlc6CK7IybcsJdniARCZS87eRcgAnPA
+         oYLZs4I48UiChtqxmvo2uS8Da4qRXyh/qLWv8REDo5ZfJwUBVG/youmHAopK4YAxDwFB
+         f2oXqmxVu65E5SfVgnWyVXYIId3kIczz8JSiwzmI7xRCSsbuSC+vpE0ydbFRAFTB4vWm
+         yYxg==
+X-Gm-Message-State: ACgBeo0WsoiN0A2xnFZwr5jTgrACk0aqEXWBHIZljF4ueDi0fI8DX4Nx
+        bvF2DdIwCsIPBBmVY/e01XXKBQ==
+X-Google-Smtp-Source: AA6agR5v3ygrD6/3SSaGTzld9LcL/B2gC0AlXy9+Q9CchsMPWhsbA4kz9kvM3fSXJdORJtUDVYmXkA==
+X-Received: by 2002:a2e:9797:0:b0:25e:4cfe:6c3d with SMTP id y23-20020a2e9797000000b0025e4cfe6c3dmr6541106lji.280.1660656901029;
+        Tue, 16 Aug 2022 06:35:01 -0700 (PDT)
+Received: from ?IPV6:2001:14bb:ae:539c:1782:dd68:b0c1:c1a4? (d15l54g8c71znbtrbzt-4.rev.dnainternet.fi. [2001:14bb:ae:539c:1782:dd68:b0c1:c1a4])
+        by smtp.gmail.com with ESMTPSA id z5-20020a056512370500b0048afa1464c0sm1395969lfr.66.2022.08.16.06.34.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 Aug 2022 06:35:00 -0700 (PDT)
+Message-ID: <a882c594-564c-7e0c-0ede-aa27fcf8c79d@linaro.org>
+Date:   Tue, 16 Aug 2022 16:34:59 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH 2/2] drivers: iio: accel adxl312 and adxl314 support
+Content-Language: en-US
+To:     Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Cc:     George Mois <george.mois@analog.com>, jic23@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, lucas.p.stankus@gmail.com
+References: <20220816102828.182345-1-george.mois@analog.com>
+ <20220816102828.182345-3-george.mois@analog.com>
+ <8cf4ea9e-89a4-1ab0-334b-9ecc5b1e6f25@linaro.org>
+ <20220816134433.00002900@huawei.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220816134433.00002900@huawei.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,47 +79,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-For convenience (less code duplication, some meaning added to raw
-number), the pin controller pin configuration register values
-were defined in the bindings header.  These are not some IDs or other
-abstraction layer but raw numbers used in the registers
+On 16/08/2022 15:44, Jonathan Cameron wrote:
+>>>  
+>>>  MODULE_DEVICE_TABLE(spi, adxl313_spi_id);
+>>>  
+>>>  static const struct of_device_id adxl313_of_match[] = {
+>>> +	{ .compatible = "adi,adxl312" },
+>>>  	{ .compatible = "adi,adxl313" },
+>>> +	{ .compatible = "adi,adxl314" },  
+>>
+>> You miss here driver data. I don't remember which driver matching takes
+>> precedence (especially in various cases like DT platforms with device
+>> instantiated by MFD), but for consistency I think both device id tables
+>> should have same driver data.
+> 
+> You can set it up to try device_get_match_data() first then fallback
+> to the adxl313_spi_id[] table but there isn't a nice 'standard' way to
+> do it.
+> 
+> If that isn't done, then IIRC the match is against the compatible with
+> the vendor ID dropped and the table used is the spi_device_id one.
+> Which is just annoyingly complex and relies on the strings matching.
+> 
+> In the ideal world the spi_device_id table would go away but there are
+> still a few users (greybus - I think + remaining board files).
+> So for now something like
+> 
+> a = device_get_match_data(dev);
+> if (!a)
+> 	a = &adxl31x_spi_regmap_config[id->data];
+> 
+> Provides a good way of ensuring the id tables don't need to remain
+> in sync.
+> 
 
-These constants do not fit the purpose of bindings.  They do not provide
-any abstraction, any hardware and driver independent ID.  With minor
-exceptions, the Linux drivers actually do not use the bindings header at
-all.
+I guess the only minor issue is that first driver data - ADXL312 - is
+equal to 0, so above code would make consider ADXL312 as missing data.
 
-All of the constants were moved already to headers local to DTS
-(residing in DTS directory) and to Samsung pinctrl driver (where
-applicable), so remove any references to the bindings header and add a
-warning tha tit is deprecated.
-
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Chanho Park <chanho61.park@samsung.com>
-Acked-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
----
- include/dt-bindings/pinctrl/samsung.h | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/include/dt-bindings/pinctrl/samsung.h b/include/dt-bindings/pinctrl/samsung.h
-index 950970634dfe..d1da5ff68d0c 100644
---- a/include/dt-bindings/pinctrl/samsung.h
-+++ b/include/dt-bindings/pinctrl/samsung.h
-@@ -10,6 +10,13 @@
- #ifndef __DT_BINDINGS_PINCTRL_SAMSUNG_H__
- #define __DT_BINDINGS_PINCTRL_SAMSUNG_H__
- 
-+/*
-+ * These bindings are deprecated, because they do not match the actual
-+ * concept of bindings but rather contain pure register values.
-+ * Instead include the header in the DTS source directory.
-+ */
-+#warning "These bindings are deprecated. Instead use the header in the DTS source directory."
-+
- #define EXYNOS_PIN_PULL_NONE		0
- #define EXYNOS_PIN_PULL_DOWN		1
- #define EXYNOS_PIN_PULL_UP		3
--- 
-2.34.1
-
+Best regards,
+Krzysztof
