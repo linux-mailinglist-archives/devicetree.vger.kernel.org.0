@@ -2,557 +2,349 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DFF1595E19
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 16:10:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DD89595E2E
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 16:15:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235288AbiHPOKO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 10:10:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57774 "EHLO
+        id S229477AbiHPOPk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 10:15:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233073AbiHPOKF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 10:10:05 -0400
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C5DC75394;
-        Tue, 16 Aug 2022 07:10:02 -0700 (PDT)
-Received: from fraeml713-chm.china.huawei.com (unknown [172.18.147.201])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4M6XyT4jP7z67m9N;
-        Tue, 16 Aug 2022 22:06:57 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (7.191.163.240) by
- fraeml713-chm.china.huawei.com (10.206.15.32) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.24; Tue, 16 Aug 2022 16:09:59 +0200
-Received: from localhost (10.202.226.42) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Tue, 16 Aug
- 2022 15:09:59 +0100
-Date:   Tue, 16 Aug 2022 15:09:58 +0100
-From:   Jonathan Cameron <Jonathan.Cameron@huawei.com>
-To:     George Mois <george.mois@analog.com>
-CC:     <jic23@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <lucas.p.stankus@gmail.com>
-Subject: Re: [PATCH 2/2] drivers: iio: accel adxl312 and adxl314 support
-Message-ID: <20220816150958.00002431@huawei.com>
-In-Reply-To: <20220816102828.182345-3-george.mois@analog.com>
-References: <20220816102828.182345-1-george.mois@analog.com>
-        <20220816102828.182345-3-george.mois@analog.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; i686-w64-mingw32)
+        with ESMTP id S236032AbiHPOPi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 10:15:38 -0400
+Received: from de-smtp-delivery-113.mimecast.com (de-smtp-delivery-113.mimecast.com [194.104.111.113])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E972FB8F08
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 07:15:33 -0700 (PDT)
+Received: from CHE01-GV0-obe.outbound.protection.outlook.com
+ (mail-gv0che01lp2049.outbound.protection.outlook.com [104.47.22.49]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ de-mta-8-QW5lwkB7PamVdXLCg5bfOA-2; Tue, 16 Aug 2022 16:15:31 +0200
+X-MC-Unique: QW5lwkB7PamVdXLCg5bfOA-2
+Received: from ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:3b::9) by
+ GV0P278MB0292.CHEP278.PROD.OUTLOOK.COM (2603:10a6:710:32::6) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5525.11; Tue, 16 Aug 2022 14:15:29 +0000
+Received: from ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM
+ ([fe80::cd78:5df6:612c:455f]) by ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM
+ ([fe80::cd78:5df6:612c:455f%2]) with mapi id 15.20.5525.011; Tue, 16 Aug 2022
+ 14:15:29 +0000
+From:   Marcel Ziswiler <marcel.ziswiler@toradex.com>
+To:     "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "ping.bai@nxp.com" <ping.bai@nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+CC:     Philippe Schenker <philippe.schenker@toradex.com>,
+        "peter.tian@nxp.com" <peter.tian@nxp.com>,
+        "tharvey@gateworks.com" <tharvey@gateworks.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-imx@nxp.com" <linux-imx@nxp.com>
+Subject: Re: [PATCH] arm64: dts: imx8mp: Update pin function file according to
+ Rev.D RM
+Thread-Topic: [PATCH] arm64: dts: imx8mp: Update pin function file according
+ to Rev.D RM
+Thread-Index: AQHYsUIbCAprhbxGJUeqiId9Zjucva2xksEA
+Date:   Tue, 16 Aug 2022 14:15:29 +0000
+Message-ID: <d5b7317f2149fec31070349b45ca41587571f322.camel@toradex.com>
+References: <20220816073222.1269380-1-ping.bai@nxp.com>
+In-Reply-To: <20220816073222.1269380-1-ping.bai@nxp.com>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: f276294d-bfcf-4997-f240-08da7f91c5ca
+x-ms-traffictypediagnostic: GV0P278MB0292:EE_
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0
+x-microsoft-antispam-message-info: CsJ77Q618XDShzO5KNulyLxJvfRqtGQoMoZa+y5fXQ/HvMBwA8bg2XpGlMyXavIfiGB+pHMYyxHP3GhXoEiP5+Da3Ot8lHOnmiwpxqBs3PF5PHDzwMx2J/wQJ5Y2SFm3lff9Mda7AwrnjySQTREZePKqzIPZXPoX5MAJVLrzQjeIeyhWTn2PAQY0hrdYkW3hIO/9uAfRaqIm4KtFzXOf7cZkZYr3WKn/Bp+JmGDBvIDhLZyOZ3jBfnrhrxnQhHNe1+lZsKRM4gWmzys+AmL3j4+AQ2PUvwoQBwyRntr2UEhi1YmAoBlE0iQVIgUXFqN5Qec2vnCjs2USudqgPKBoAoDdM+IiUXfe9D8txJL6vNgHC9ahcaBkk1ClUPAObrEw9YN9CdCIXBz+VymwWT5Jt1CB/ffJrdQuwYwMUfomzOG1BPb4WGtbkTZhcpa9xaEAgoYhh67ZtN868Le47UJ/U6DRTB/ws9gKGBDiPvp2+aCon/2Msv9qPaBcr/PtNGqRHn0tj5Xvmu1x48vtmJvhIJgiYpYcGDfehgqr6F78X+2mZxIY0Zic8+g8LNxuVtP/OMz4mjkVzcvPrgID788/st9hQb2tQeiSSfnJatDFbRf5v2uDtlwzgqwLrOYgu77AAvrp8vHFhc/3m0ag0UJuWfEHq5c4qRm2u/sCGsjcKZiSnY/fKHRqvQBEDRTirf+3VAnFJhv1d0qdJEhcOl5YsmPQc4udEKQL5cG/d4/LQPb+PRdQUGhGgOda4qNHnLmpbCiezsZPYBXLqliLpMq59j090E5PuEgSm6Yvc2gxxGKJrWqEm6qa5o9PeKDXXEaDXYrJNZyNM2IUPFf6iRkNXVyUC2vN62fNMue1VsJpkoVir6WaCS3zbvY7GBCifZXtMkPlkFIJLAbIjc5zQIO+izjFnHt5tXlgZkLKiaxbyDk=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230016)(4636009)(376002)(136003)(39840400004)(346002)(366004)(396003)(54906003)(44832011)(316002)(83380400001)(66946007)(66476007)(66556008)(41300700001)(15650500001)(2906002)(66446008)(8676002)(64756008)(36756003)(110136005)(4326008)(76116006)(2616005)(186003)(38100700002)(122000001)(6512007)(6486002)(71200400001)(86362001)(38070700005)(8936002)(478600001)(5660300002)(966005)(6506007)(26005)(32563001)(473944003)(414714003);DIR:OUT;SFP:1102
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?LzlOcUNyYVk2SStsZUVKQWF2WHlBRzllSDQvbWtrMmJLRXg3YmIvWklzL0Y3?=
+ =?utf-8?B?V1JtQXJ5cEJ2aHN5Q1FrOXpMOW9YS3JsNzV5MWg5Yk0rYndEeDFsQ1QvWlA4?=
+ =?utf-8?B?THI4bk5BSzRtamFQNFZuOWs5UEdwREZXQ0hwTXU5Rk9IWXdwMkNRU3QyWTl0?=
+ =?utf-8?B?MXBxa3p6dytoaDJxZncvQ2Q5dDFsQ2xLd1JsK1puZm0vd1dvejlEUTBSeGZy?=
+ =?utf-8?B?aVoxVCtMRlVvRUtNSlpTdXRDcWo5Z1ZFR2djTWQ4SngwOWpFWmxRTExZNW9U?=
+ =?utf-8?B?Y1ErMFl2cXJac0x5NWZjMHEyRnY2T3VNL0xrME9PSVZycHIxQkN3YkE3a2ly?=
+ =?utf-8?B?T20wQmg4d3hkdkNKRXcyS2k0bWh0bkhwamFPd3VMNFFTUHhLOXZQM2JwTkJu?=
+ =?utf-8?B?djcrVmk5U0toWTRReDhRSkJUL2sxckZJUW1yaDkvNHUvL3BXMWlzUzFNL1pR?=
+ =?utf-8?B?Z0F4RlFZNDlEL2xKV2R4V25DaDJabmZHRk53RThKU3lkSE1iU0lrczNTUUxC?=
+ =?utf-8?B?aUdia3lnZXFJNTkycFRPVnYrbjdmUHFuTGpuU1pzY1UrbHFkbDJ0Yi9iSE96?=
+ =?utf-8?B?MWFTajJFaDdjMVB3dUdtMjMrZVQzY0hFT2NBY2NHenpOMy9PaEFzTDNTZWdS?=
+ =?utf-8?B?SENwc1FWcmMzYU9GUDd6TDVLNXZqdzdPZVhOT1dQRWd3UHRuOFkzY2FuQXht?=
+ =?utf-8?B?RkNkeHcvTHVsZ01nZXhEN1paaUhJS0NzbVord1FtSEtUV29KOG12R3B5TmtH?=
+ =?utf-8?B?RmpvNmh6MzNlUGlOd3N2YzBXNWRUYzRNOGJyY3JpbnpTNllCekJUTzcxUGZL?=
+ =?utf-8?B?OFh6MXBHZnVLVnVzazJTcnZaRTN2OWRPOGJoMzIwNzN1dU93V1BhbGhkbEtY?=
+ =?utf-8?B?bFNpbzgvejJhRVhVM1dqOTVLNDc2TXYzc3NDOEZzbUZpY2hYajE0VlJ4OWgw?=
+ =?utf-8?B?Y1pEOTdDTFA3REl2ZEJpTG5Fd1BxNlVrcENrM1VsQ3RCUkdJdEhFcFl6NFpZ?=
+ =?utf-8?B?ckw3eitPNVV0dE5iTDBLT1V1V1FlN3EySElQak5KbzNpMHZDMWk1djF0d3hK?=
+ =?utf-8?B?UjdBNEpIUjF6TFhkY3gyZFN2eE9iL1NyYm9abkR4SGZxMU9XK1cwYURmY0lt?=
+ =?utf-8?B?c05OaCs3cEE5UGdJd3NUOTBnYjcwaDNxYWxTWStROWlSQXVFcDlHVGV5Q01O?=
+ =?utf-8?B?QlhwWjdGZllId29NOGFUY1gxM1V3SkdTTDlISmVhbVNLczNpVmd5bkxzb0JY?=
+ =?utf-8?B?STJzVU1tWi9lb2ZnbjFmeDlQVDhxb1ZBLzM1czFMWGhaTStkaDVYU21JaGcy?=
+ =?utf-8?B?cEpYazlCL29wLzZFKzdQNU5QL3JZOWZZNldxME0weWpFeTRmclAwMlZLMWlM?=
+ =?utf-8?B?eDhjYTErMlRoUElFNThqbWlpUlh5aXlDdE9RSmppdVZDWHk2TDlXZmVJRDVD?=
+ =?utf-8?B?S2E0RkR1b0RzVExyWFZLdG9wak50L0RyaDB5TzN2WW1UQ3c2TzZISXBudGRu?=
+ =?utf-8?B?cEZwM1BRWnR3MGpqa3YyTWo4dWpPRy9TQ0tEdkdpMGJCQ0NiRFhFendia211?=
+ =?utf-8?B?bkR1VXlMVVFidE1rS1gzYjVWYW1HSE56Z1ZFdHhOTVZ2TlR5ZGpqU0w1UW5R?=
+ =?utf-8?B?Nm9uNXB4ZE9nS1JkSTZaTHpnMEx5cUp3bnhCeVdpbjdmMUVlOXFVdzdtR2JV?=
+ =?utf-8?B?cnhpcmhUNTkvYkpuUGh4dlBpTEQ2OWMyMk4xTFJ3UDdDU2taV0cxRERlVTZt?=
+ =?utf-8?B?RlNVMXhlbWlHY2h1aGp4UW8wckorYjZWZUNKZ0pQOHpib3JUQVJ3ZHZUdDVL?=
+ =?utf-8?B?ZVRaRVduRDYvczFKRWw4cGRQamV6alMrNWt6WGNGaTI3M3ZYNFRxVHA0MUFp?=
+ =?utf-8?B?SFdjNm5RZmRTVS9NRjdoc0NIQ1dpL0p1cXZrZHVDOVFNUFBRNmVDLzF5Q2RO?=
+ =?utf-8?B?MzlyZVJ5SURwc3JCdk5oM29lUG1jV0RCWkUvb2tGNUJOamc4NlhrNFpocFdU?=
+ =?utf-8?B?eUk1YVVuZk4rSTN6N001bUZteWNzaCtNNndLQko0VmtMWG9sYUJQdDR4MnhB?=
+ =?utf-8?B?Y3BGcE1EQ2pobUxiM29rT0ZxK2JMdUQyQ0Z1dVhUM2ErdEoyRkhpcndPTFB3?=
+ =?utf-8?B?bzIvQTcxQlYvaTZ6MiszbExvVk9UajVtaTY2S290OW90WDhRZTZvZEt0OU9B?=
+ =?utf-8?Q?4GwnOFhtWwuthgjA3i1bI9Y=3D?=
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.202.226.42]
-X-ClientProxiedBy: lhrpeml100005.china.huawei.com (7.191.160.25) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-OriginatorOrg: toradex.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: f276294d-bfcf-4997-f240-08da7f91c5ca
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Aug 2022 14:15:29.1119
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: d9995866-0d9b-4251-8315-093f062abab4
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: MF+/2ED8pVCtbLZ7pQdW2j9M41Aq6Hjdue86ePzJAfpKEcq6IWktX6mHWWlzg5WkXifxeQg4ZKvxlPEcnGV6rXazVsZ++TtE7zdJtpeChBY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV0P278MB0292
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: toradex.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-ID: <15145CD8AA721C42A664A22E8E5C5F98@CHEP278.PROD.OUTLOOK.COM>
+Content-Transfer-Encoding: base64
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 16 Aug 2022 13:28:28 +0300
-George Mois <george.mois@analog.com> wrote:
-
-> ADXL312 and ADXL314 are small, thin, low power, 3-axis accelerometers
-> with high resolution (13-bit) measurement up to +/-12 g and +/- 200 g
-> respectively.
-> 
-> Implement support for ADXL312 and ADXL314 by extending the ADXL313
-> driver.
-> 
-> Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/ADXL312.pdf
-> Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/ADXL314.pdf
-> 
-> Signed-off-by: George Mois <george.mois@analog.com>
-
-Hi George,
-
-Various comments inline.
-
-Thanks,
-
-Jonathan
-> ---
->  drivers/iio/accel/adxl313.h      |  15 ++-
->  drivers/iio/accel/adxl313_core.c | 164 +++++++++++++++++++++++--------
->  drivers/iio/accel/adxl313_spi.c  |  40 +++++++-
->  3 files changed, 173 insertions(+), 46 deletions(-)
-> 
-> diff --git a/drivers/iio/accel/adxl313.h b/drivers/iio/accel/adxl313.h
-> index 4415f2fc07e1..7428b1f7768f 100644
-> --- a/drivers/iio/accel/adxl313.h
-> +++ b/drivers/iio/accel/adxl313.h
-> @@ -26,6 +26,7 @@
->  #define ADXL313_REG_FIFO_STATUS		0x39
->  
->  #define ADXL313_DEVID0			0xAD
-> +#define ADXL313_DEVID0_ADXL312_314	0xE5
->  #define ADXL313_DEVID1			0x1D
->  #define ADXL313_PARTID			0xCB
->  #define ADXL313_SOFT_RESET		0x52
-> @@ -37,18 +38,28 @@
->  #define ADXL313_MEASUREMENT_MODE	BIT(3)
->  
->  #define ADXL313_RANGE_MSK		GENMASK(1, 0)
-> -#define ADXL313_RANGE_4G		3
-> +#define ADXL313_RANGE_MAX		3
->  
->  #define ADXL313_FULL_RES		BIT(3)
->  #define ADXL313_SPI_3WIRE		BIT(6)
->  #define ADXL313_I2C_DISABLE		BIT(6)
->  
-> +extern const struct regmap_access_table adxl312_readable_regs_table;
->  extern const struct regmap_access_table adxl313_readable_regs_table;
-> +extern const struct regmap_access_table adxl314_readable_regs_table;
->  
-> +extern const struct regmap_access_table adxl312_writable_regs_table;
->  extern const struct regmap_access_table adxl313_writable_regs_table;
-> +extern const struct regmap_access_table adxl314_writable_regs_table;
-> +
-> +enum adxl313_device_type {
-> +	ADXL312,
-> +	ADXL313,
-> +	ADXL314,
-> +};
->  
->  int adxl313_core_probe(struct device *dev,
->  		       struct regmap *regmap,
-> -		       const char *name,
-> +		       const struct spi_device_id *id,
->  		       int (*setup)(struct device *, struct regmap *));
->  #endif /* _ADXL313_H_ */
-> diff --git a/drivers/iio/accel/adxl313_core.c b/drivers/iio/accel/adxl313_core.c
-> index afeef779e1d0..eea7d235950e 100644
-> --- a/drivers/iio/accel/adxl313_core.c
-> +++ b/drivers/iio/accel/adxl313_core.c
-> @@ -11,9 +11,17 @@
->  #include <linux/iio/iio.h>
->  #include <linux/module.h>
->  #include <linux/regmap.h>
-> +#include <linux/spi/spi.h>
-
-Not in the core driver. This needs to be kept unware of the
-buses that migh be used.
-
->  
->  #include "adxl313.h"
->  
-> +static const struct regmap_range adxl312_readable_reg_range[] = {
-> +	regmap_reg_range(ADXL313_REG_DEVID0, ADXL313_REG_DEVID0),
-> +	regmap_reg_range(ADXL313_REG_OFS_AXIS(0), ADXL313_REG_OFS_AXIS(2)),
-> +	regmap_reg_range(ADXL313_REG_THRESH_ACT, ADXL313_REG_ACT_INACT_CTL),
-> +	regmap_reg_range(ADXL313_REG_BW_RATE, ADXL313_REG_FIFO_STATUS),
-> +};
-> +
->  static const struct regmap_range adxl313_readable_reg_range[] = {
->  	regmap_reg_range(ADXL313_REG_DEVID0, ADXL313_REG_XID),
->  	regmap_reg_range(ADXL313_REG_SOFT_RESET, ADXL313_REG_SOFT_RESET),
-> @@ -22,12 +30,32 @@ static const struct regmap_range adxl313_readable_reg_range[] = {
->  	regmap_reg_range(ADXL313_REG_BW_RATE, ADXL313_REG_FIFO_STATUS),
->  };
->  
-> +const struct regmap_access_table adxl312_readable_regs_table = {
-> +	.yes_ranges = adxl312_readable_reg_range,
-> +	.n_yes_ranges = ARRAY_SIZE(adxl312_readable_reg_range),
-> +};
-> +EXPORT_SYMBOL_NS_GPL(adxl312_readable_regs_table, IIO_ADXL312);
-> +
->  const struct regmap_access_table adxl313_readable_regs_table = {
->  	.yes_ranges = adxl313_readable_reg_range,
->  	.n_yes_ranges = ARRAY_SIZE(adxl313_readable_reg_range),
->  };
->  EXPORT_SYMBOL_NS_GPL(adxl313_readable_regs_table, IIO_ADXL313);
->  
-> +const struct regmap_access_table adxl314_readable_regs_table = {
-> +	.yes_ranges = adxl312_readable_reg_range,
-> +	.n_yes_ranges = ARRAY_SIZE(adxl312_readable_reg_range),
-> +};
-> +EXPORT_SYMBOL_NS_GPL(adxl314_readable_regs_table, IIO_ADXL314);
-> +
-> +static const struct regmap_range adxl312_writable_reg_range[] = {
-> +	regmap_reg_range(ADXL313_REG_OFS_AXIS(0), ADXL313_REG_OFS_AXIS(2)),
-> +	regmap_reg_range(ADXL313_REG_THRESH_ACT, ADXL313_REG_ACT_INACT_CTL),
-> +	regmap_reg_range(ADXL313_REG_BW_RATE, ADXL313_REG_INT_MAP),
-> +	regmap_reg_range(ADXL313_REG_DATA_FORMAT, ADXL313_REG_DATA_FORMAT),
-> +	regmap_reg_range(ADXL313_REG_FIFO_CTL, ADXL313_REG_FIFO_CTL),
-> +};
-> +
->  static const struct regmap_range adxl313_writable_reg_range[] = {
->  	regmap_reg_range(ADXL313_REG_SOFT_RESET, ADXL313_REG_SOFT_RESET),
->  	regmap_reg_range(ADXL313_REG_OFS_AXIS(0), ADXL313_REG_OFS_AXIS(2)),
-> @@ -37,16 +65,30 @@ static const struct regmap_range adxl313_writable_reg_range[] = {
->  	regmap_reg_range(ADXL313_REG_FIFO_CTL, ADXL313_REG_FIFO_CTL),
->  };
->  
-> +const struct regmap_access_table adxl312_writable_regs_table = {
-> +	.yes_ranges = adxl312_writable_reg_range,
-> +	.n_yes_ranges = ARRAY_SIZE(adxl312_writable_reg_range),
-> +};
-> +EXPORT_SYMBOL_NS_GPL(adxl312_writable_regs_table, IIO_ADXL312);
-> +
->  const struct regmap_access_table adxl313_writable_regs_table = {
->  	.yes_ranges = adxl313_writable_reg_range,
->  	.n_yes_ranges = ARRAY_SIZE(adxl313_writable_reg_range),
->  };
->  EXPORT_SYMBOL_NS_GPL(adxl313_writable_regs_table, IIO_ADXL313);
->  
-> +const struct regmap_access_table adxl314_writable_regs_table = {
-> +	.yes_ranges = adxl312_writable_reg_range,
-> +	.n_yes_ranges = ARRAY_SIZE(adxl312_writable_reg_range),
-> +};
-> +EXPORT_SYMBOL_NS_GPL(adxl314_writable_regs_table, IIO_ADXL314);
-> +
->  struct adxl313_data {
->  	struct regmap	*regmap;
-> +	const struct spi_device_id *id;
-> +	int scale_factor;
->  	struct mutex	lock; /* lock to protect transf_buf */
-> -	__le16		transf_buf __aligned(IIO_DMA_MINALIGN);
-> +	__le16		transf_buf ____cacheline_aligned;
-Check your patch for accidental reverts of other changes like this...
-
->  };
->  
->  static const int adxl313_odr_freqs[][2] = {
-> @@ -156,12 +198,10 @@ static int adxl313_read_raw(struct iio_dev *indio_dev,
->  		*val = sign_extend32(ret, chan->scan_type.realbits - 1);
->  		return IIO_VAL_INT;
->  	case IIO_CHAN_INFO_SCALE:
-> -		/*
-> -		 * Scale for any g range is given in datasheet as
-> -		 * 1024 LSB/g = 0.0009765625 * 9.80665 = 0.009576806640625 m/s^2
-> -		 */
->  		*val = 0;
-> -		*val2 = 9576806;
-> +
-> +		*val2 = data->scale_factor;
-I'd move this into a structure containing all the chip type specific data.
-Hence this would be
-data->chip.scale_factor.
-
-> +
->  		return IIO_VAL_INT_PLUS_NANO;
->  	case IIO_CHAN_INFO_CALIBBIAS:
->  		ret = regmap_read(data->regmap,
-> @@ -170,7 +210,7 @@ static int adxl313_read_raw(struct iio_dev *indio_dev,
->  			return ret;
->  
->  		/*
-> -		 * 8-bit resolution at +/- 0.5g, that is 4x accel data scale
-> +		 * 8-bit resolution at minimum range, that is 4x accel data scale
->  		 * factor at full resolution
->  		 */
->  		*val = sign_extend32(regval, 7) * 4;
-> @@ -198,7 +238,7 @@ static int adxl313_write_raw(struct iio_dev *indio_dev,
->  	switch (mask) {
->  	case IIO_CHAN_INFO_CALIBBIAS:
->  		/*
-> -		 * 8-bit resolution at +/- 0.5g, that is 4x accel data scale
-> +		 * 8-bit resolution at minimum range, that is 4x accel data scale
->  		 * factor at full resolution
->  		 */
->  		if (clamp_val(val, -128 * 4, 127 * 4) != val)
-> @@ -223,14 +263,17 @@ static const struct iio_info adxl313_info = {
->  static int adxl313_setup(struct device *dev, struct adxl313_data *data,
->  			 int (*setup)(struct device *, struct regmap *))
->  {
-> +	enum adxl313_device_type dev_type = data->id->driver_data;
->  	unsigned int regval;
->  	int ret;
->  
-> -	/* Ensures the device is in a consistent state after start up */
-> -	ret = regmap_write(data->regmap, ADXL313_REG_SOFT_RESET,
-> -			   ADXL313_SOFT_RESET);
-> -	if (ret)
-> -		return ret;
-> +	/* If ADXL313, ensures the device is in a consistent state after start up */
-> +	if (dev_type == ADXL313) {
-
-Add a flag to the chip_info structure suggested below for 'soft_reset' and
-base this decision on that.  The aim is to encode all the variations in chips
-in one place so adding future chips is isolated there.
-
-> +		ret = regmap_write(data->regmap, ADXL313_REG_SOFT_RESET,
-> +				   ADXL313_SOFT_RESET);
-> +		if (ret)
-> +			return ret;
-> +	}
->  
->  	if (setup) {
->  		ret = setup(dev, data->regmap);
-> @@ -242,41 +285,54 @@ static int adxl313_setup(struct device *dev, struct adxl313_data *data,
->  	if (ret)
->  		return ret;
->  
-> -	if (regval != ADXL313_DEVID0) {
-> +	if (dev_type == ADXL313 && regval != ADXL313_DEVID0) {
-
-Obviously this predates your changes...
-Don't fail in this case.  Warn only.  We may be dealing with a newer compatible
-device that falls back to an the ADXL313 compatible in dt. It's fine to express
-we don't know what it is - particularly if ID matches something else, but
-not to fail as a result.
-
->  		dev_err(dev, "Invalid manufacturer ID: 0x%02x\n", regval);
->  		return -ENODEV;
->  	}
->  
-> -	ret = regmap_read(data->regmap, ADXL313_REG_DEVID1, &regval);
-> -	if (ret)
-> -		return ret;
-> +	/* If ADXL313, check DEVID1 and PARTID */
-> +	if (regval == ADXL313_DEVID0) {
-> +		ret = regmap_read(data->regmap, ADXL313_REG_DEVID1, &regval);
-> +		if (ret)
-> +			return ret;
->  
-> -	if (regval != ADXL313_DEVID1) {
-As above, should not fail - but just give a warning message (or dev_info perhaps).
-
-> -		dev_err(dev, "Invalid mems ID: 0x%02x\n", regval);
-> -		return -ENODEV;
-> -	}
-> +		if (regval != ADXL313_DEVID1) {
-> +			dev_err(dev, "Invalid mems ID: 0x%02x\n", regval);
-> +			return -ENODEV;
-> +		}
->  
-> -	ret = regmap_read(data->regmap, ADXL313_REG_PARTID, &regval);
-> -	if (ret)
-> -		return ret;
-> +		ret = regmap_read(data->regmap, ADXL313_REG_PARTID, &regval);
-> +		if (ret)
-> +			return ret;
->  
-> -	if (regval != ADXL313_PARTID) {
-> -		dev_err(dev, "Invalid device ID: 0x%02x\n", regval);
-> +		if (regval != ADXL313_PARTID) {
-> +			dev_err(dev, "Invalid device ID: 0x%02x\n", regval);
-> +			return -ENODEV;
-> +		}
-> +	}
-> +
-> +	/* If ADXL312 or ADXL314 device, check DEVID0 */
-> +	if (dev_type != ADXL313 && regval != ADXL313_DEVID0_ADXL312_314) {
-> +		dev_err(dev, "Invalid manufacturer ID: %#02x\n", regval);
->  		return -ENODEV;
->  	}
->  
-> -	/* Sets the range to +/- 4g */
-> -	ret = regmap_update_bits(data->regmap, ADXL313_REG_DATA_FORMAT,
-> -				 ADXL313_RANGE_MSK,
-> -				 FIELD_PREP(ADXL313_RANGE_MSK, ADXL313_RANGE_4G));
-> -	if (ret)
-> -		return ret;
-> +	dev_info(dev, "%s detected.\n", data->id->name);
-
-Noise in the log. Drop this. It's easy to find out the name from sysfs.
-
->  
-> -	/* Enables full resolution */
-> -	ret = regmap_update_bits(data->regmap, ADXL313_REG_DATA_FORMAT,
-> -				 ADXL313_FULL_RES, ADXL313_FULL_RES);
-> -	if (ret)
-> -		return ret;
-> +	/* Sets the range to maximum, full resolution, for ADXL312 and ADXL313 */
-> +	if (dev_type == ADXL312 || dev_type == ADXL313) {
-I'm reading this backwards btw.  As below, this sort of thing should depend on
-contents of a chip_info structure.
-In this case perhaps a flag called 'set max range').
-
-> +		ret = regmap_update_bits(data->regmap, ADXL313_REG_DATA_FORMAT,
-> +					 ADXL313_RANGE_MSK,
-> +					 FIELD_PREP(ADXL313_RANGE_MSK, 0x02));
-
-0x02 looks like a magic numbers, you should ideally provide a define.
-
-> +		if (ret)
-> +			return ret;
-> +
-> +		/* Enables full resolution */
-> +		ret = regmap_update_bits(data->regmap, ADXL313_REG_DATA_FORMAT,
-> +					 ADXL313_FULL_RES, 0);
-> +		if (ret)
-> +			return ret;
-> +	}
->  
->  	/* Enables measurement mode */
->  	return regmap_update_bits(data->regmap, ADXL313_REG_POWER_CTL,
-> @@ -296,7 +352,7 @@ static int adxl313_setup(struct device *dev, struct adxl313_data *data,
->   */
->  int adxl313_core_probe(struct device *dev,
->  		       struct regmap *regmap,
-> -		       const char *name,
-> +		       const struct spi_device_id *id,
-
-A core probe function shouldn't be taking an SPI specific structure.
-Fine to pass the id enum entry.  That can then index a chip_info structure
-that includes the part name - we don't want to pass that through this interface
-as well.
-
->  		       int (*setup)(struct device *, struct regmap *))
->  {
->  	struct adxl313_data *data;
-> @@ -309,9 +365,35 @@ int adxl313_core_probe(struct device *dev,
->  
->  	data = iio_priv(indio_dev);
->  	data->regmap = regmap;
-> +	data->id = id;
-> +
-> +	if (id->driver_data == ADXL312)
-
-Whenever you hit a case like this, it almost always means you should be selecting
-from an array of chip_info structures. One per type of chip.
-If it is possible to convert code to data that is almost always a good idea.
-
-> +		/*
-> +		 * ADXL312
-> +		 * Scale for any g range (full range) is given in datasheet as
-> +		 * 345 LSB/g = 0.0028985507 * 9.80665 = 0.028425072222155 m/s^2
-> +		 */
-> +		data->scale_factor = 28425072;
-> +
-> +	if (id->driver_data == ADXL313)
-> +		/*
-> +		 * * ADXL313
-> +		 * Scale for any g range is given in datasheet as
-> +		 * 1024 LSB/g = 0.0009765625 * 9.80665 = 0.009576806640625 m/s^2
-> +		 */
-> +		data->scale_factor = 9576806;
-> +
-> +	if (id->driver_data == ADXL314)
-> +		/*
-> +		 * ADXL314
-> +		 * At +/-200g with 13-bit resolution, scale factor is given in datasheet as
-> +		 * 48.83 mg/LSB = 0.0488300 * 9.80665 = 0.4788587195 m/s^2.
-> +		 */
-> +		data->scale_factor = 478858719;
-> +
->  	mutex_init(&data->lock);
->  
-> -	indio_dev->name = name;
-> +	indio_dev->name = id->name;
->  	indio_dev->info = &adxl313_info;
->  	indio_dev->modes = INDIO_DIRECT_MODE;
->  	indio_dev->channels = adxl313_channels;
-> @@ -319,13 +401,13 @@ int adxl313_core_probe(struct device *dev,
->  
->  	ret = adxl313_setup(dev, data, setup);
->  	if (ret) {
-> -		dev_err(dev, "ADXL313 setup failed\n");
-> +		dev_err(dev, "Device %s setup failed\n", id->name);
-
-I doubt we'll ever care which part it was that failed.  I'd
-just leave that as it waas.
-
->  		return ret;
->  	}
->  
->  	return devm_iio_device_register(dev, indio_dev);
->  }
-> -EXPORT_SYMBOL_NS_GPL(adxl313_core_probe, IIO_ADXL313);
-> +EXPORT_SYMBOL_GPL(adxl313_core_probe);
-
-Please don't remove the namespacing. Add any new exports to the
-existing IIO_ADXL313 NS.
-
->  
->  MODULE_AUTHOR("Lucas Stankus <lucas.p.stankus@gmail.com>");
->  MODULE_DESCRIPTION("ADXL313 3-Axis Digital Accelerometer core driver");
-> diff --git a/drivers/iio/accel/adxl313_spi.c b/drivers/iio/accel/adxl313_spi.c
-> index a3c6d553462d..19cd096373b0 100644
-> --- a/drivers/iio/accel/adxl313_spi.c
-> +++ b/drivers/iio/accel/adxl313_spi.c
-> @@ -14,6 +14,16 @@
->  
->  #include "adxl313.h"
->  
-> +static const struct regmap_config adxl312_spi_regmap_config = {
-> +	.reg_bits	= 8,
-> +	.val_bits	= 8,
-> +	.rd_table	= &adxl312_readable_regs_table,
-> +	.wr_table	= &adxl312_writable_regs_table,
-> +	.max_register	= 0x39,
-> +	 /* Setting bits 7 and 6 enables multiple-byte read */
-> +	.read_flag_mask	= BIT(7) | BIT(6),
-> +};
-> +
->  static const struct regmap_config adxl313_spi_regmap_config = {
->  	.reg_bits	= 8,
->  	.val_bits	= 8,
-> @@ -24,6 +34,22 @@ static const struct regmap_config adxl313_spi_regmap_config = {
->  	.read_flag_mask	= BIT(7) | BIT(6),
->  };
->  
-> +static const struct regmap_config adxl314_spi_regmap_config = {
-> +	.reg_bits	= 8,
-> +	.val_bits	= 8,
-> +	.rd_table	= &adxl314_readable_regs_table,
-> +	.wr_table	= &adxl314_writable_regs_table,
-> +	.max_register	= 0x39,
-> +	 /* Setting bits 7 and 6 enables multiple-byte read */
-> +	.read_flag_mask	= BIT(7) | BIT(6),
-> +};
-> +
-> +static const struct regmap_config adxl31x_spi_regmap_config[] = {
-> +	adxl312_spi_regmap_config,
-> +	adxl313_spi_regmap_config,
-> +	adxl314_spi_regmap_config
-> +};
-> +
->  static int adxl313_spi_setup(struct device *dev, struct regmap *regmap)
->  {
->  	struct spi_device *spi = container_of(dev, struct spi_device, dev);
-> @@ -51,26 +77,32 @@ static int adxl313_spi_probe(struct spi_device *spi)
->  	if (ret)
->  		return ret;
->  
-> -	regmap = devm_regmap_init_spi(spi, &adxl313_spi_regmap_config);
-> +	regmap = devm_regmap_init_spi(spi,
-> +				      &adxl31x_spi_regmap_config[id->driver_data]);
-> +
->  	if (IS_ERR(regmap)) {
->  		dev_err(&spi->dev, "Error initializing spi regmap: %ld\n",
->  			PTR_ERR(regmap));
->  		return PTR_ERR(regmap);
->  	}
->  
-> -	return adxl313_core_probe(&spi->dev, regmap, id->name,
-> +	return adxl313_core_probe(&spi->dev, regmap, id,
->  				  &adxl313_spi_setup);
->  }
->  
->  static const struct spi_device_id adxl313_spi_id[] = {
-> -	{ "adxl313" },
-> +	{ "adxl312", ADXL312 },
-> +	{ "adxl313", ADXL313 },
-> +	{ "adxl314", ADXL314 },
->  	{ }
->  };
->  
->  MODULE_DEVICE_TABLE(spi, adxl313_spi_id);
->  
->  static const struct of_device_id adxl313_of_match[] = {
-> +	{ .compatible = "adi,adxl312" },
->  	{ .compatible = "adi,adxl313" },
-> +	{ .compatible = "adi,adxl314" },
->  	{ }
-As mentioned in other thread, there is a nicer way of handling
-the different types of firmware ID.
->  };
->  
-> @@ -90,4 +122,6 @@ module_spi_driver(adxl313_spi_driver);
->  MODULE_AUTHOR("Lucas Stankus <lucas.p.stankus@gmail.com>");
->  MODULE_DESCRIPTION("ADXL313 3-Axis Digital Accelerometer SPI driver");
->  MODULE_LICENSE("GPL v2");
-> +MODULE_IMPORT_NS(IIO_ADXL312);
-Take a look at what this is doing. There is only one namespace for the
-driver, not one per chip type.
-
->  MODULE_IMPORT_NS(IIO_ADXL313);
-> +MODULE_IMPORT_NS(IIO_ADXL314);
+SGkgSmFja3kKCk9uIFR1ZSwgMjAyMi0wOC0xNiBhdCAxNTozMiArMDgwMCwgSmFja3kgQmFpIHdy
+b3RlOgo+IFVwZGF0ZSBpLk1YOE1QIGlteDhtcC1waW5mdW5jLmggZmlsZSBhY2NvcmRpbmcgbGF0
+ZXN0IHJlZmVyZW5jZQo+IG1hbnVhbCBSZXYuRC4gQXMgc29tZSBvZiB0aGUgcGlucycgbmFtZSBh
+cmUgY2hhbmdlZCwgdXBkYXRlIHRoZQo+IGR0cyBhdCB0aGUgc2FtZSB0aW1lLgoKSSBhbSBjb25m
+dXNlZC4gV2UgZ290IHRvbGQgYnkgTlhQIHRoYXQgdGhlcmUgaXMgbm8gc3VjaCBVU0IxX09UR19J
+RCByZXNwLiBVU0IxX0lEIGZ1bmN0aW9uYWxpdHkgYXQgYWxsIG9uIHRoZQppLk1YIDhNIFBsdXMg
+YW5kIG9uZSBoYXMgdG8gcmVseSBvbiBzaW11bGF0aW5nIHN1Y2ggZnVuY3Rpb25hbGl0eSB1c2lu
+ZyBhIHJlZ3VsYXIgR1BJTy4gSSBtZWFuLCBJIHVuZGVyc3RhbmQKdGhhdCB0aGlzIGNvbW1pdCBq
+dXN0IHVwZGF0ZXMgc3R1ZmYgYWNjb3JkaW5nIHRvIHRoZSBsYXRlc3QgcmVmZXJlbmNlIG1hbnVh
+bCBidXQgd2h5IHdvdWxkIHRoYXQgcmVmZXJlbmNlCm1hbnVhbCBzdGlsbCBjbGFpbSBzdWNoIGZ1
+bmN0aW9uYWxpdHkgZXhpc3RzIHdoZW4gaXQgc3VwcG9zZWRseSByZWFsbHkgZG9lcyBub3QgYW5k
+IHdlIGV2ZW4gaGFkIHRvIHJlLWRlc2lnbgpvdXIgUENCIGR1ZSB0byB0aGF0PwoKQW55d2F5LCB1
+bmZvcnR1bmF0ZWx5LCB0aGF0IGNsYWltIHdhcyBtYWRlIGluIGEgc3VwZXIgc2VjcmV0IHVuZGVy
+IE5EQSBub24tcHVibGljIGZvcnVtIFsxXSBidXQgSSBhbSBzdXJlIHRoZW0KTlhQIGZvbGtzIHNo
+b3VsZCBiZSBhYmxlIHRvIGFjY2VzcyB0aGF0IGFzIHdlbGwuCgpBbnkgaWRlYXM/CgpbMV0KaHR0
+cHM6Ly9jb21tdW5pdHkubnhwLmNvbS90NS9pLU1YOE0tUGx1cy1QYXJ0bmVyLUVhcmx5LUFjY2Vz
+cy9VU0ItSUQtYW5kLVZCVVMtZGlmZmVyZW5jZXMtYmV0d2Vlbi1pLU1YOE0tUGx1cy1hbmQtaS1N
+WDhNLU1pbmkvbS1wLzExOTQ0NDEvaGlnaGxpZ2h0L3RydWUjTTMyCgo+IFNpZ25lZC1vZmYtYnk6
+IEphY2t5IEJhaSA8cGluZy5iYWlAbnhwLmNvbT4KPiAtLS0KPiDCoC4uLi9ib290L2R0cy9mcmVl
+c2NhbGUvaW14OG1wLWRoY29tLXNvbS5kdHNpwqDCoMKgwqAgfMKgIDYgKysrLS0tCj4gwqBhcmNo
+L2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bXAtZXZrLmR0c8KgwqDCoMKgIHzCoCAyICst
+Cj4gwqBhcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bXAtcGluZnVuYy5owqDCoCB8
+IDE2ICsrKysrKysrLS0tLS0tLS0KPiDCoC4uLi9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1wLXZl
+bmljZS1ndzc0eHguZHRzwqAgfMKgIDQgKystLQo+IMKgYXJjaC9hcm02NC9ib290L2R0cy9mcmVl
+c2NhbGUvaW14OG1wLXZlcmRpbi5kdHNpIHzCoCA0ICsrLS0KPiDCoDUgZmlsZXMgY2hhbmdlZCwg
+MTYgaW5zZXJ0aW9ucygrKSwgMTYgZGVsZXRpb25zKC0pCj4gCj4gZGlmZiAtLWdpdCBhL2FyY2gv
+YXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhtcC1kaGNvbS1zb20uZHRzaSBiL2FyY2gvYXJt
+NjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhtcC0KPiBkaGNvbS1zb20uZHRzaQo+IGluZGV4IGE2
+MTZlYjM3ODAwMi4uZGQ4OTZiNmRkZmU1IDEwMDY0NAo+IC0tLSBhL2FyY2gvYXJtNjQvYm9vdC9k
+dHMvZnJlZXNjYWxlL2lteDhtcC1kaGNvbS1zb20uZHRzaQo+ICsrKyBiL2FyY2gvYXJtNjQvYm9v
+dC9kdHMvZnJlZXNjYWxlL2lteDhtcC1kaGNvbS1zb20uZHRzaQo+IEBAIC04NjcsMTQgKzg2Nywx
+NCBAQCBNWDhNUF9JT01VWENfVUFSVDRfVFhEX19VQVJUNF9EQ0VfVFjCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgMHg0OQo+IMKgCj4gwqDCoMKgwqDCoMKgwqDCoHBpbmN0cmxfdXNiMF92YnVz
+OiBkaGNvbS11c2IwLWdycCB7Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBmc2ws
+cGlucyA9IDwKPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oE1YOE1QX0lPTVVYQ19HUElPMV9JTzEwX19VU0IxX09UR19JRMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoDB4MAo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+TVg4TVBfSU9NVVhDX0dQSU8xX0lPMTBfX1VTQjFfSUTCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoDB4MAo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgPjsKPiDCoMKgwqDC
+oMKgwqDCoMKgfTsKPiDCoAo+IMKgwqDCoMKgwqDCoMKgwqBwaW5jdHJsX3VzYjFfdmJ1czogZGhj
+b20tdXNiMS1ncnAgewo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZnNsLHBpbnMg
+PSA8Cj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBNWDhN
+UF9JT01VWENfR1BJTzFfSU8xNF9fVVNCMl9PVEdfUFdSwqDCoMKgwqDCoMKgwqDCoMKgwqDCoDB4
+Ngo+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgTVg4TVBf
+SU9NVVhDX0dQSU8xX0lPMTVfX1VTQjJfT1RHX09DwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgMHg4
+MAo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgTVg4TVBf
+SU9NVVhDX0dQSU8xX0lPMTRfX1VTQjJfUFdSwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+MHg2Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBNWDhN
+UF9JT01VWENfR1BJTzFfSU8xNV9fVVNCMl9PQ8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgMHg4MAo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgPjsKPiDCoMKgwqDCoMKg
+wqDCoMKgfTsKPiDCoAo+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2Fs
+ZS9pbXg4bXAtZXZrLmR0cyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhtcC1l
+dmsuZHRzCj4gaW5kZXggZjZiMDE3YWI1ZjUzLi5iZGVjY2RhNWRkYWUgMTAwNjQ0Cj4gLS0tIGEv
+YXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1wLWV2ay5kdHMKPiArKysgYi9hcmNo
+L2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bXAtZXZrLmR0cwo+IEBAIC01MjksNyArNTI5
+LDcgQEAgTVg4TVBfSU9NVVhDX1VBUlQyX1RYRF9fVUFSVDJfRENFX1RYwqDCoMKgwqDCoMKgwqDC
+oDB4MTQwCj4gwqAKPiDCoMKgwqDCoMKgwqDCoMKgcGluY3RybF91c2IxX3ZidXM6IHVzYjFncnAg
+ewo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZnNsLHBpbnMgPSA8Cj4gLcKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBNWDhNUF9JT01VWENfR1BJ
+TzFfSU8xNF9fVVNCMl9PVEdfUFdSwqDCoMKgMHgxMAo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgTVg4TVBfSU9NVVhDX0dQSU8xX0lPMTRfX1VTQjJfUFdS
+wqDCoMKgwqDCoMKgwqAweDEwCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqA+Owo+
+IMKgwqDCoMKgwqDCoMKgwqB9Owo+IMKgCj4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9k
+dHMvZnJlZXNjYWxlL2lteDhtcC1waW5mdW5jLmggYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVz
+Y2FsZS9pbXg4bXAtcGluZnVuYy5oCj4gaW5kZXggMGZlZjA2NjQ3MWJhLi43YzI2Njk5MGFhM2Ug
+MTAwNjQ0Cj4gLS0tIGEvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1wLXBpbmZ1
+bmMuaAo+ICsrKyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhtcC1waW5mdW5j
+LmgKPiBAQCAtMTMsMTAgKzEzLDEyIEBACj4gwqAjZGVmaW5lIE1YOE1QX0lPTVVYQ19HUElPMV9J
+TzAwX19HUElPMV9JTzAwwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqAgMHgwMTQgMHgyNzQgMHgwMDAgMHgwIDB4MAo+IMKgI2RlZmluZSBNWDhNUF9JT01V
+WENfR1BJTzFfSU8wMF9fQ0NNX0VORVRfUEhZX1JFRl9DTEtfUk9PVMKgwqDCoMKgwqDCoMKgwqDC
+oMKgIDB4MDE0IDB4Mjc0IDB4MDAwIDB4MSAweDAKPiDCoCNkZWZpbmUgTVg4TVBfSU9NVVhDX0dQ
+SU8xX0lPMDBfX0lTUF9GTF9UUklHXzDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoCAweDAxNCAweDI3NCAweDVENCAweDMgMHgwCj4gKyNkZWZpbmUgTVg4TVBfSU9N
+VVhDX0dQSU8xX0lPMDBfX0FOQU1JWF9SRUZfQ0xLXzMyS8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqAgMHgwMTQgMHgyNzQgMHgwMDAgMHg1IDB4MAo+IMKgI2RlZmluZSBNWDhNUF9J
+T01VWENfR1BJTzFfSU8wMF9fQ0NNX0VYVF9DTEsxwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoCAweDAxNCAweDI3NCAweDAwMCAweDYgMHgwCj4gwqAjZGVmaW5l
+IE1YOE1QX0lPTVVYQ19HUElPMV9JTzAxX19HUElPMV9JTzAxwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMHgwMTggMHgyNzggMHgwMDAgMHgwIDB4MAo+
+IMKgI2RlZmluZSBNWDhNUF9JT01VWENfR1BJTzFfSU8wMV9fUFdNMV9PVVTCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMHgwMTggMHgyNzggMHgw
+MDAgMHgxIDB4MAo+IMKgI2RlZmluZSBNWDhNUF9JT01VWENfR1BJTzFfSU8wMV9fSVNQX1NIVVRU
+RVJfVFJJR18wwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAweDAxOCAweDI3OCAw
+eDVEQyAweDMgMHgwCj4gKyNkZWZpbmUgTVg4TVBfSU9NVVhDX0dQSU8xX0lPMDFfX0FOQU1JWF9S
+RUZfQ0xLXzI0TcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMHgwMTggMHgyNzgg
+MHgwMDAgMHg1IDB4MAo+IMKgI2RlZmluZSBNWDhNUF9JT01VWENfR1BJTzFfSU8wMV9fQ0NNX0VY
+VF9DTEsywqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAweDAx
+OCAweDI3OCAweDAwMCAweDYgMHgwCj4gwqAjZGVmaW5lIE1YOE1QX0lPTVVYQ19HUElPMV9JTzAy
+X19HUElPMV9JTzAywqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqAgMHgwMUMgMHgyN0MgMHgwMDAgMHgwIDB4MAo+IMKgI2RlZmluZSBNWDhNUF9JT01VWENf
+R1BJTzFfSU8wMl9fV0RPRzFfV0RPR19CwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoCAweDAxQyAweDI3QyAweDAwMCAweDEgMHgwCj4gQEAgLTU4LDI2ICs2MCwy
+NiBAQAo+IMKgI2RlZmluZSBNWDhNUF9JT01VWENfR1BJTzFfSU8wOV9fVVNESEMzX1JFU0VUX0LC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMHgwMzggMHgyOTggMHgw
+MDAgMHg0IDB4MAo+IMKgI2RlZmluZSBNWDhNUF9JT01VWENfR1BJTzFfSU8wOV9fU0RNQTJfRVhU
+X0VWRU5UMDDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMHgwMzggMHgyOTgg
+MHgwMDAgMHg1IDB4MAo+IMKgI2RlZmluZSBNWDhNUF9JT01VWENfR1BJTzFfSU8xMF9fR1BJTzFf
+SU8xMMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIDB4
+MDNDIDB4MjlDIDB4MDAwIDB4MCAweDAKPiAtI2RlZmluZSBNWDhNUF9JT01VWENfR1BJTzFfSU8x
+MF9fVVNCMV9PVEdfSUTCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqAgMHgwM0MgMHgyOUMgMHgwMDAgMHgxIDB4MAo+ICsjZGVmaW5lIE1YOE1QX0lPTVVYQ19H
+UElPMV9JTzEwX19VU0IxX0lEwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqAgMHgwM0MgMHgyOUMgMHgwMDAgMHgxIDB4MAo+IMKgI2RlZmluZSBN
+WDhNUF9JT01VWENfR1BJTzFfSU8xMF9fUFdNM19PVVTCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMHgwM0MgMHgyOUMgMHgwMDAgMHgyIDB4MAo+
+IMKgI2RlZmluZSBNWDhNUF9JT01VWENfR1BJTzFfSU8xMV9fR1BJTzFfSU8xMcKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIDB4MDQwIDB4MkEwIDB4MDAw
+IDB4MCAweDAKPiAtI2RlZmluZSBNWDhNUF9JT01VWENfR1BJTzFfSU8xMV9fVVNCMl9PVEdfSUTC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMHgwNDAgMHgy
+QTAgMHgwMDAgMHgxIDB4MAo+ICsjZGVmaW5lIE1YOE1QX0lPTVVYQ19HUElPMV9JTzExX19VU0Iy
+X0lEwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqAgMHgwNDAgMHgyQTAgMHgwMDAgMHgxIDB4MAo+IMKgI2RlZmluZSBNWDhNUF9JT01VWENfR1BJ
+TzFfSU8xMV9fUFdNMl9PVVTCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqAgMHgwNDAgMHgyQTAgMHgwMDAgMHgyIDB4MAo+IMKgI2RlZmluZSBNWDhN
+UF9JT01VWENfR1BJTzFfSU8xMV9fVVNESEMzX1ZTRUxFQ1TCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqAgMHgwNDAgMHgyQTAgMHgwMDAgMHg0IDB4MAo+IMKgI2RlZmlu
+ZSBNWDhNUF9JT01VWENfR1BJTzFfSU8xMV9fQ0NNX1BNSUNfUkVBRFnCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMHgwNDAgMHgyQTAgMHg1NTQgMHg1IDB4MQo+IMKg
+I2RlZmluZSBNWDhNUF9JT01VWENfR1BJTzFfSU8xMl9fR1BJTzFfSU8xMsKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIDB4MDQ0IDB4MkE0IDB4MDAwIDB4
+MCAweDAKPiAtI2RlZmluZSBNWDhNUF9JT01VWENfR1BJTzFfSU8xMl9fVVNCMV9PVEdfUFdSwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAweDA0NCAweDJBNCAw
+eDAwMCAweDEgMHgwCj4gKyNkZWZpbmUgTVg4TVBfSU9NVVhDX0dQSU8xX0lPMTJfX1VTQjFfUFdS
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIDB4
+MDQ0IDB4MkE0IDB4MDAwIDB4MSAweDAKPiDCoCNkZWZpbmUgTVg4TVBfSU9NVVhDX0dQSU8xX0lP
+MTJfX1NETUEyX0VYVF9FVkVOVDAxwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+IDB4MDQ0IDB4MkE0IDB4MDAwIDB4NSAweDAKPiDCoCNkZWZpbmUgTVg4TVBfSU9NVVhDX0dQSU8x
+X0lPMTNfX0dQSU8xX0lPMTPCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoCAweDA0OCAweDJBOCAweDAwMCAweDAgMHgwCj4gLSNkZWZpbmUgTVg4TVBfSU9N
+VVhDX0dQSU8xX0lPMTNfX1VTQjFfT1RHX09DwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgIDB4MDQ4IDB4MkE4IDB4MDAwIDB4MSAweDAKPiArI2RlZmluZSBN
+WDhNUF9JT01VWENfR1BJTzFfSU8xM19fVVNCMV9PQ8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIDB4MDQ4IDB4MkE4IDB4MDAwIDB4MSAweDAK
+PiDCoCNkZWZpbmUgTVg4TVBfSU9NVVhDX0dQSU8xX0lPMTNfX1BXTTJfT1VUwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIDB4MDQ4IDB4MkE4IDB4
+MDAwIDB4NSAweDAKPiDCoCNkZWZpbmUgTVg4TVBfSU9NVVhDX0dQSU8xX0lPMTRfX0dQSU8xX0lP
+MTTCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAweDA0
+QyAweDJBQyAweDAwMCAweDAgMHgwCj4gLSNkZWZpbmUgTVg4TVBfSU9NVVhDX0dQSU8xX0lPMTRf
+X1VTQjJfT1RHX1BXUsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqAgMHgwNEMgMHgyQUMgMHgwMDAgMHgxIDB4MAo+ICsjZGVmaW5lIE1YOE1QX0lPTVVYQ19HUElP
+MV9JTzE0X19VU0IyX1BXUsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoCAweDA0QyAweDJBQyAweDAwMCAweDEgMHgwCj4gwqAjZGVmaW5lIE1YOE1Q
+X0lPTVVYQ19HUElPMV9JTzE0X19VU0RIQzNfQ0RfQsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAweDA0QyAweDJBQyAweDYwOCAweDQgMHgwCj4gwqAjZGVm
+aW5lIE1YOE1QX0lPTVVYQ19HUElPMV9JTzE0X19QV00zX09VVMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAweDA0QyAweDJBQyAweDAwMCAweDUg
+MHgwCj4gwqAjZGVmaW5lIE1YOE1QX0lPTVVYQ19HUElPMV9JTzE0X19DQ01fQ0xLTzHCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIDB4MDRDIDB4MkFD
+IDB4MDAwIDB4NiAweDAKPiDCoCNkZWZpbmUgTVg4TVBfSU9NVVhDX0dQSU8xX0lPMTVfX0dQSU8x
+X0lPMTXCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAw
+eDA1MCAweDJCMCAweDAwMCAweDAgMHgwCj4gLSNkZWZpbmUgTVg4TVBfSU9NVVhDX0dQSU8xX0lP
+MTVfX1VTQjJfT1RHX09DwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgIDB4MDUwIDB4MkIwIDB4MDAwIDB4MSAweDAKPiArI2RlZmluZSBNWDhNUF9JT01VWENf
+R1BJTzFfSU8xNV9fVVNCMl9PQ8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgIDB4MDUwIDB4MkIwIDB4MDAwIDB4MSAweDAKPiDCoCNkZWZpbmUg
+TVg4TVBfSU9NVVhDX0dQSU8xX0lPMTVfX1VTREhDM19XUMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMHgwNTAgMHgyQjAgMHg2MzQgMHg0IDB4MAo+
+IMKgI2RlZmluZSBNWDhNUF9JT01VWENfR1BJTzFfSU8xNV9fUFdNNF9PVVTCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMHgwNTAgMHgyQjAgMHgw
+MDAgMHg1IDB4MAo+IMKgI2RlZmluZSBNWDhNUF9JT01VWENfR1BJTzFfSU8xNV9fQ0NNX0NMS08y
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAweDA1
+MCAweDJCMCAweDAwMCAweDYgMHgwCj4gQEAgLTI1OCwxMCArMjYwLDggQEAKPiDCoCNkZWZpbmUg
+TVg4TVBfSU9NVVhDX1NEMl9EQVRBM19fQVVESU9NSVhfU1BESUYxX0lOwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgIDB4MEQ0IDB4MzM0IDB4NTQ0IDB4MyAweDEKPiDCoCNkZWZp
+bmUgTVg4TVBfSU9NVVhDX1NEMl9EQVRBM19fQVVESU9NSVhfUERNX0JJVF9TVFJFQU0wM8KgwqDC
+oMKgwqDCoMKgwqDCoMKgwqAgMHgwRDQgMHgzMzQgMHg0Q0MgMHg0IDB4Mgo+IMKgI2RlZmluZSBN
+WDhNUF9JT01VWENfU0QyX0RBVEEzX19HUElPMl9JTzE4wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAweDBENCAweDMzNCAweDAwMCAweDUgMHgwCj4g
+LSNkZWZpbmUgTVg4TVBfSU9NVVhDX1NEMl9EQVRBM19fU1JDX0VBUkxZX1JFU0VUwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIDB4MEQ0IDB4MzM0IDB4MDAwIDB4NiAw
+eDAKPiDCoCNkZWZpbmUgTVg4TVBfSU9NVVhDX1NEMl9SRVNFVF9CX19VU0RIQzJfUkVTRVRfQsKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMHgwRDggMHgzMzggMHgwMDAg
+MHgwIDB4MAo+IMKgI2RlZmluZSBNWDhNUF9JT01VWENfU0QyX1JFU0VUX0JfX0dQSU8yX0lPMTnC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMHgwRDggMHgz
+MzggMHgwMDAgMHg1IDB4MAo+IC0jZGVmaW5lIE1YOE1QX0lPTVVYQ19TRDJfUkVTRVRfQl9fU1JD
+X1NZU1RFTV9SRVNFVMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAweDBEOCAw
+eDMzOCAweDAwMCAweDYgMHgwCj4gwqAjZGVmaW5lIE1YOE1QX0lPTVVYQ19TRDJfV1BfX1VTREhD
+Ml9XUMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoCAweDBEQyAweDMzQyAweDAwMCAweDAgMHgwCj4gwqAjZGVmaW5lIE1YOE1QX0lPTVVY
+Q19TRDJfV1BfX0dQSU8yX0lPMjDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgIDB4MERDIDB4MzNDIDB4MDAwIDB4NSAweDAKPiDCoCNkZWZp
+bmUgTVg4TVBfSU9NVVhDX1NEMl9XUF9fQ09SRVNJR0hUX0VWRU5UScKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMHgwREMgMHgzM0MgMHgwMDAgMHg2IDB4MAo+
+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bXAtdmVuaWNl
+LWd3NzR4eC5kdHMgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bXAtCj4gdmVu
+aWNlLWd3NzR4eC5kdHMKPiBpbmRleCA1MjEyMTU1MjBhMGYuLmFjNTlmMzZiODJmYyAxMDA2NDQK
+PiAtLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bXAtdmVuaWNlLWd3NzR4
+eC5kdHMKPiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bXAtdmVuaWNl
+LWd3NzR4eC5kdHMKPiBAQCAtODI0LDggKzgyNCw4IEBAIE1YOE1QX0lPTVVYQ19VQVJUNF9UWERf
+X1VBUlQ0X0RDRV9UWMKgwqDCoMKgwqDCoMKgwqAweDE0MAo+IMKgCj4gwqDCoMKgwqDCoMKgwqDC
+oHBpbmN0cmxfdXNiMTogdXNiMWdycCB7Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqBmc2wscGlucyA9IDwKPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoE1YOE1QX0lPTVVYQ19HUElPMV9JTzEzX19VU0IxX09UR19PQ8KgwqDCoMKgMHgxNDAK
+PiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoE1YOE1QX0lP
+TVVYQ19HUElPMV9JTzEwX19VU0IxX09UR19JRMKgwqDCoMKgMHgxNDAKPiArwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoE1YOE1QX0lPTVVYQ19HUElPMV9JTzEz
+X19VU0IxX09DwqDCoMKgwqDCoMKgwqDCoDB4MTQwCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBNWDhNUF9JT01VWENfR1BJTzFfSU8xMF9fVVNCMV9JRMKg
+wqDCoMKgwqDCoMKgwqAweDE0MAo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgPjsK
+PiDCoMKgwqDCoMKgwqDCoMKgfTsKPiDCoAo+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3Qv
+ZHRzL2ZyZWVzY2FsZS9pbXg4bXAtdmVyZGluLmR0c2kgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2Zy
+ZWVzY2FsZS9pbXg4bXAtCj4gdmVyZGluLmR0c2kKPiBpbmRleCBjNTk4N2JkYmIzODMuLmRhNjZk
+ODQ4NzY1MSAxMDA2NDQKPiAtLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4
+bXAtdmVyZGluLmR0c2kKPiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4
+bXAtdmVyZGluLmR0c2kKPiBAQCAtMTIwNSw3ICsxMjA1LDcgQEAgcGluY3RybF91YXJ0NDogdWFy
+dDRncnAgewo+IMKgCj4gwqDCoMKgwqDCoMKgwqDCoHBpbmN0cmxfdXNiMV92YnVzOiB1c2IxdmJ1
+c2dycCB7Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBmc2wscGlucyA9Cj4gLcKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqA8TVg4TVBfSU9NVVhD
+X0dQSU8xX0lPMTJfX1VTQjFfT1RHX1BXUsKgwqDCoMKgwqDCoMKgwqDCoMKgMHgxOT47wqDCoC8q
+IFNPRElNTSAxNTUgKi8KPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoDxNWDhNUF9JT01VWENfR1BJTzFfSU8xMl9fVVNCMV9QV1LCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgMHgxOT47wqDCoC8qIFNPRElNTSAxNTUgKi8KPiDCoMKgwqDCoMKgwqDCoMKg
+fTsKPiDCoAo+IMKgwqDCoMKgwqDCoMKgwqAvKiBVU0JfMV9JRCAqLwo+IEBAIC0xMjE2LDcgKzEy
+MTYsNyBAQCBwaW5jdHJsX3VzYl8xX2lkOiB1c2IxaWRncnAgewo+IMKgCj4gwqDCoMKgwqDCoMKg
+wqDCoHBpbmN0cmxfdXNiMl92YnVzOiB1c2IydmJ1c2dycCB7Cj4gwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqBmc2wscGlucyA9Cj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqA8TVg4TVBfSU9NVVhDX0dQSU8xX0lPMTRfX1VTQjJfT1RHX1BXUsKg
+wqDCoMKgwqDCoMKgwqDCoMKgMHgxOT47wqDCoC8qIFNPRElNTSAxODUgKi8KPiArwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoDxNWDhNUF9JT01VWENfR1BJTzFf
+SU8xNF9fVVNCMl9QV1LCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgMHgxOT47wqDCoC8qIFNP
+RElNTSAxODUgKi8KPiDCoMKgwqDCoMKgwqDCoMKgfTsKPiDCoAo+IMKgwqDCoMKgwqDCoMKgwqAv
+KiBPbi1tb2R1bGUgV2ktRmkgKi8KCkNoZWVycwoKTWFyY2VsCg==
 
