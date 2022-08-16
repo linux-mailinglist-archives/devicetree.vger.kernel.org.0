@@ -2,65 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58F975963E2
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 22:44:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63CF85963F7
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 22:49:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234130AbiHPUoU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 16:44:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51248 "EHLO
+        id S237251AbiHPUtQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 16:49:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233961AbiHPUnw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 16:43:52 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B66F33F311;
-        Tue, 16 Aug 2022 13:43:49 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id CC635B81A7A;
-        Tue, 16 Aug 2022 20:43:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94AB0C433D7;
-        Tue, 16 Aug 2022 20:43:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1660682626;
-        bh=PjZnNtHZFDXPKR4FXdEbC4KKb4ewbtMP73c6JeyqAWs=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=YhAwy8dVdPBwdxHPoMFP9vL2r4D8YV0qL4ZkhTUVCbW5oNeS9Sw6ZK+p8Jpd/1wVQ
-         I9lp2olW0z30/DSPbslDDFNEwHLxMRwiWldE8Jzc6esqd5wChYfy8aa+FcDXncWltM
-         KeEyskq7HxxUQx3sxO3JW2snqt/KTb7r2sYt/rIRWDj1VMUot6J0MoJM/gG8/xaF9d
-         ijw+w3j542JAHRgMVclkrXbD5k6wBMYo1lkb0qC1vL+SFhOFuQVTt1QlOsWWOQMKeD
-         9StXJaW+aMCjp0gkLBc/g8/eBXAjQY/5Tq8rjBeiCXi2zUDSAJlVSHil54n0GCFBYO
-         8bDNubfwkKOBA==
-Received: by mail-vk1-f173.google.com with SMTP id bq26so5754478vkb.8;
-        Tue, 16 Aug 2022 13:43:46 -0700 (PDT)
-X-Gm-Message-State: ACgBeo1JBbfmkW8WWNMlMEpwkVaI+BYLIaPhMKr1YsVmEM4P9ZkHvDv8
-        EuaI0rfqZU4Q47691ylZsQzeppOkpUX3FquPHw==
-X-Google-Smtp-Source: AA6agR5/90q292A5cudWioezccd+gm85RYFjHgO9y12p2++zZcEPr8ig990xtRFy1iERxThGpel7gzgdMJuhb9MQwsk=
-X-Received: by 2002:a1f:ecc4:0:b0:377:8f7c:8873 with SMTP id
- k187-20020a1fecc4000000b003778f7c8873mr9777908vkh.14.1660682625591; Tue, 16
- Aug 2022 13:43:45 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220815111708.22302-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220816174150.GA2428940-robh@kernel.org> <CA+V-a8vayVoHONavLMTdfQkYsT_+7NLXid3V58FU+ABzB9kgBg@mail.gmail.com>
-In-Reply-To: <CA+V-a8vayVoHONavLMTdfQkYsT_+7NLXid3V58FU+ABzB9kgBg@mail.gmail.com>
+        with ESMTP id S237097AbiHPUtP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 16:49:15 -0400
+Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 550AD5E67A;
+        Tue, 16 Aug 2022 13:49:13 -0700 (PDT)
+Received: by mail-io1-f50.google.com with SMTP id b142so6287683iof.10;
+        Tue, 16 Aug 2022 13:49:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc;
+        bh=Igzpe2dfFh072dG7M9af7EwnEZkHHQlF9Pf46jZtejY=;
+        b=PqEGG3q64rKWeyKsEbJNiL3pY5X5LW7lCo1WACA46+Oe5m6JfwodqHOwqvsbtsoYPZ
+         JoZ1eU58aEm0crqWqRvxdlYlE3ddcz13NQxDM65t04ESBuHa7XmyDupBejzEB+800hct
+         BYYsK+bbxexiW0xU0i6S4BeYoJZjrKnvsCMT4DilH59YzLLbJbwqDfmxofGlnbyf7DXQ
+         1n9VcSoBMsmEmPrdDWDONthBL2xq7kW0NyQde3eP7yLCDYVFKm6xrg/bByGKGSXeQ7wi
+         iOV7rpiyjXgIPCGjabzbgJPb4cxZ+ZRKXhX6Ahi17VfQci4vEbES4eImgGLL4eEbsVoA
+         n6yw==
+X-Gm-Message-State: ACgBeo0y0bHH5a5QvS25JVX+WokbLaCQg82dlVJ25haRKOMvcM7+SiIL
+        Y0W5Xuy9GMWsPEe1h3MW3w==
+X-Google-Smtp-Source: AA6agR4JUMnAxe73i4k/USANa7oT8A2bvPIyHs4SYiN3MfNVQoRaN9YqHKUNH74CBK0dcaCnelKJeg==
+X-Received: by 2002:a5d:94d6:0:b0:67c:55f9:f355 with SMTP id y22-20020a5d94d6000000b0067c55f9f355mr9749658ior.133.1660682952543;
+        Tue, 16 Aug 2022 13:49:12 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id z25-20020a056602081900b00688b30a7812sm1312208iow.42.2022.08.16.13.49.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Aug 2022 13:49:12 -0700 (PDT)
+Received: (nullmailer pid 2709183 invoked by uid 1000);
+        Tue, 16 Aug 2022 20:49:08 -0000
+Date:   Tue, 16 Aug 2022 14:49:08 -0600
 From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 16 Aug 2022 14:43:33 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKs2Vtd2RevajLyEaBHjwoHozpw8763-v6jbG9t9mk4Ng@mail.gmail.com>
-Message-ID: <CAL_JsqKs2Vtd2RevajLyEaBHjwoHozpw8763-v6jbG9t9mk4Ng@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: soc: renesas: Move renesas.yaml from arm to soc
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
+To:     =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Cc:     netdev@vger.kernel.org, "David S . Miller" <davem@davemloft.net>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Daniel Golle <daniel@makrotopia.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        linux-kernel@vger.kernel.org,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        =?UTF-8?Q?Ren=C3=A9_van_Dorst?= <opensource@vdorst.com>,
+        linux-mediatek@lists.infradead.org, Andrew Lunn <andrew@lunn.ch>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Sander Vanheule <sander@svanheule.net>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        devicetree@vger.kernel.org, erkin.bozoglu@xeront.com,
+        Eric Dumazet <edumazet@google.com>,
+        DENG Qingfang <dqfext@gmail.com>
+Subject: Re: [PATCH v2 1/7] dt-bindings: net: dsa: mediatek,mt7530: make
+ trivial changes
+Message-ID: <20220816204908.GA2709132-robh@kernel.org>
+References: <20220813154415.349091-1-arinc.unal@arinc9.com>
+ <20220813154415.349091-2-arinc.unal@arinc9.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220813154415.349091-2-arinc.unal@arinc9.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,31 +86,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 16, 2022 at 12:40 PM Lad, Prabhakar
-<prabhakar.csengg@gmail.com> wrote:
->
-> Hi Rob,
->
-> On Tue, Aug 16, 2022 at 6:41 PM Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Mon, Aug 15, 2022 at 12:17:08PM +0100, Lad Prabhakar wrote:
-> > > renesas.yaml lists out all the Renesas SoC's and the platforms/EVK's which
-> > > is either ARM32/ARM64. It would rather make sense if we move renesas.yaml
-> > > to the soc/renesas folder instead. This is in preparation for adding a new
-> > > SoC (RZ/Five) from Renesas which is based on RISC-V.
-> >
-> > Please post this as part of the above.
-> >
-> Sure, I just wanted to get some feedback on this so had it posted separately.
->
-> > bindings/soc/ is just a dumping ground for stuff that doesn't fit
-> > anywhere. We've mostly cleaned bindings/arm/ of that, so I don't really
-> > want to start that again. I would propose bindings/board/ instead if we
-> > move in this direction.
-> >
-> OK. So to clarify, how do we separate it further bindings/board/<based
-> on SoC vendor> or bindings/board/<board manufacturer>?
+On Sat, 13 Aug 2022 18:44:09 +0300, Arınç ÜNAL wrote:
+> Make trivial changes on the binding.
+> 
+> - Update title to include MT7531 switch.
+> - Add me as a maintainer. List maintainers in alphabetical order by first
+> name.
+> - Add description to compatible strings.
+> - Stretch descriptions up to the 80 character limit.
+> - Remove quotes from $ref: "dsa.yaml#".
+> 
+> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+> ---
+>  .../bindings/net/dsa/mediatek,mt7530.yaml     | 36 ++++++++++++-------
+>  1 file changed, 24 insertions(+), 12 deletions(-)
+> 
 
-The latter doesn't work with how the schemas are structured.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
