@@ -2,115 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CCA72595A70
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 13:43:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BAA9595A79
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 13:44:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234933AbiHPLnB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 07:43:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49224 "EHLO
+        id S234743AbiHPLoG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 07:44:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234452AbiHPLmo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 07:42:44 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C53A57267
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 04:12:29 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id a9so14417399lfm.12
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 04:12:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=3voalfDQmBkJPM0iEJsy/pKGiIZwChjwOwKTgiPpcq4=;
-        b=u1jHFXVQelHvAsNbis29DRi8FSq7YOKJir1/5EgPIni7IHBviuSNWkvqKcxU6mb40R
-         BlTCsCYh1K7sEgITXhZRYuYCN5pe2icqTkOWfoMuklIV/+8Gz8Km9Ua5GakzZb5C6vYE
-         c/gtolt2fQpzqg7RzUa7JJJZHGFZesC1epB+YBppY3+iXA3X9R/+A+b/Cs8fSx7Zfgj9
-         HkhIRc/RtFysjq/jswJbCKcPVLXfYAkP/TdFb/zRc/nvYNbE7Tr0tyCAg9dK61Mg2I+X
-         kYaLufS6xx2BrN+tOj97sb3WT5EVJ4DulT3EMA5N8rYLWheSzQTjpo0MJU1zCmaGZXGZ
-         808w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=3voalfDQmBkJPM0iEJsy/pKGiIZwChjwOwKTgiPpcq4=;
-        b=Y7WRvulsU+QzXf+VZif75Ves1sxmzgbCNMymUoiVCZo7bhJikjWKJ4S9xdRs9wabb2
-         85XAEIv1SwhDFoXm8LYTcmLh7JxK6QBlf8dQy+G+jmQXImQJ4nj3s/Abqgwl5wBeBmS4
-         u62uFIGl4n91Y5kE7i36eZNxu+DzzZS0vSTr/e6XKqTZ/d7VqZwNBuFQWGC6vqERQpan
-         WWZaPGx39yxnE/ISzzJOIM/jJng+LqPS7xnLo0yopg5ficNjmEfKFTMG88Scjs48zDQN
-         1hhfjE1J+wZ7suWtRg/vQH5ItR+iGfgTTUTmvYTd6Hf18xDuTNKQwFhnTji4+ftIjViB
-         XfEg==
-X-Gm-Message-State: ACgBeo3EwTimuJmdDA9kDnS4EgN+qpQ35TMzVcNBJi61zUkHyOkLdDW0
-        f3qDz0+YT6+f//7PXCH/ucE/7w==
-X-Google-Smtp-Source: AA6agR5s6mmYOckWupogUoGlmi0i4i7rbgUk9CW8zTxihnx3AOW7S9ITLQhn/Y/uWTfocKkgvLXxHg==
-X-Received: by 2002:ac2:50d7:0:b0:492:8830:4819 with SMTP id h23-20020ac250d7000000b0049288304819mr3641459lfm.36.1660648347906;
-        Tue, 16 Aug 2022 04:12:27 -0700 (PDT)
-Received: from ?IPV6:2001:14bb:ae:539c:1782:dd68:b0c1:c1a4? (d15l54g8c71znbtrbzt-4.rev.dnainternet.fi. [2001:14bb:ae:539c:1782:dd68:b0c1:c1a4])
-        by smtp.gmail.com with ESMTPSA id b16-20020a056512025000b0048b18d65998sm1358896lfo.38.2022.08.16.04.12.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Aug 2022 04:12:26 -0700 (PDT)
-Message-ID: <14753794-245a-7b27-3bd9-46b80666b7af@linaro.org>
-Date:   Tue, 16 Aug 2022 14:12:25 +0300
+        with ESMTP id S234752AbiHPLnc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 07:43:32 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF8957EFFD;
+        Tue, 16 Aug 2022 04:14:49 -0700 (PDT)
+Received: from [192.168.1.138] ([37.4.248.80]) by mrelayeu.kundenserver.de
+ (mreue011 [212.227.15.167]) with ESMTPSA (Nemesis) id
+ 1MRn0U-1nueZP19cQ-00TFzV; Tue, 16 Aug 2022 13:14:17 +0200
+Message-ID: <6b3bfb9d-1acf-8445-7181-d5e1ecf4745d@i2se.com>
+Date:   Tue, 16 Aug 2022 13:14:16 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH 06/12] riscv: dts: allwinner: Add the D1 SoC base
- devicetree
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 1/2] dt-bindings: vertexcom-mse102x: Update email address
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     =?UTF-8?Q?Jernej_=c5=a0krabec?= <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Chen-Yu Tsai <wens@csie.org>, linux-sunxi@lists.linux.dev,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        linux-riscv@lists.infradead.org,
-        =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-References: <20220815050815.22340-1-samuel@sholland.org>
- <5593349.DvuYhMxLoT@jernej-laptop> <3881930.ZaRXLXkqSa@diego>
- <2249129.ElGaqSPkdT@jernej-laptop>
- <b5401052-e803-9788-64d6-82b2737533ce@linaro.org>
- <20220816120050.07dc2416@donnerap.cambridge.arm.com>
- <29072f12-b9a3-9815-ad52-5c4f6b1634b3@linaro.org>
-In-Reply-To: <29072f12-b9a3-9815-ad52-5c4f6b1634b3@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        stefan.wahren@chargebyte.com
+References: <20220815080626.9688-1-stefan.wahren@i2se.com>
+ <dc0c6c80-7af0-ee7c-2019-cdb6eb96c3f5@linaro.org>
+From:   Stefan Wahren <stefan.wahren@i2se.com>
+In-Reply-To: <dc0c6c80-7af0-ee7c-2019-cdb6eb96c3f5@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Provags-ID: V03:K1:pOCX+GXX40Vx23BOr6iX00cbtkHmQb4Gvfasmt2qC21ZW4G58+w
+ OUQOm+gRo4IhrTcwOJZGR3umsgerofXZPk6ZWKr1MFlFt4oWzP6RJXrJIT3q9tJNsT39QID
+ hHXlpmomgGgOWp1vXTM1ydd4zW4qMixcUUNZvRUaktdP78s9kMMl+prWxg2VRql0Cnz6X3B
+ BWAB/ey/8GrII5SFmj6sg==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:6Bp8FceLDiA=:TKH4b9l3eIspLqYDlpNJrA
+ ip21YeKrzwpEhZL+FArtwDM84BQUJvSNXkUtZVgNVpq7khIAjDCSOyjuNTgtz8kn/yk7lBw+t
+ ggxo6iR4vDikXcNDcK8+0AX6/bBqkJcCT11yigy5eOuQNuGJJ+IIVoCpk9ia23HENQrrLaK/G
+ c9lYVNQkUWx9X+lC6XkUDdQa8HN1g5AR8umc0Ib/H14v5mFcEZcz4YdfbtrnHzijyV7r4AT05
+ 4Jb5uyJcIAZj7qeOiyXUglccZul0cWrX8YjGw7rvxBj5/lNuZ8MuMa2TAPOIBRnsEOnv01ibD
+ h2qVu6dZG/npurs7qlakAPbWF8ugYAjAfxTo/zYZ+CIMStmxxwaml2b0wzUEDkbRZig8HMkbU
+ uI9FKfJy5B1iCHKmRq59Sw9Sd53Is3d4uun3PTES9j6Zn0PCVfRorwnmg5KELmUZ11lcEYnuP
+ F5JEibhM7+Z4KV3H5nQIHy6cmE3wMKcajUrv4l4YGWNh2b1XWQgDlQ7DdXpnxzRjK0MrqDP06
+ vJy/d+9i+0apnrQiKT2ImINBgDZLrfQR+acds2Ztdoka0Vl5OcB5ONXQS/XASlfJVd2y+wYCV
+ EIPlQ51FBwAUyYamtkpVvJcj8lIbLJEciG5HC2WzvTISbF01rApGSBcLdPH4/XRg3IvS4NFXb
+ l1sCLDoplAivise4Rbc7RmSGu5isUuFxHfHmRmbjvkwvQR7a0d2nxVzlpFIxDzxshl8V28Euf
+ Sb4lyEK3YQsOT0yHS7Oe/Fol0iysm0XWmuCX1IFeEeOTZa2xJK9z0AcQ+7U=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/08/2022 14:11, Krzysztof Kozlowski wrote:
+Hi Krzystof,
+
+Am 16.08.22 um 12:24 schrieb Krzysztof Kozlowski:
+> On 15/08/2022 11:06, Stefan Wahren wrote:
+>> in-tech smart charging is now chargebyte. So update the email address
+>> accordingly.
 >>
->> I think one reason might be that this is so central to the whole SoC
->> operation, that it's already referenced multiple times in the base .dtsi.
->> And having a yet unresolved reference in the .dtsi looks dodgy.
->>
->> NVidia seems to omit a base oscillator (maybe it's implicit in their
->> binding design), Marvell doesn't use a fixed-clock (but still puts their
->> base clock in armada-37xx.dtsi).
->>
->> Exynos and Renesas put a *stub* fixed-clock in the .dtsi, and set the
->> frequency in the board .dts files. Would this be a compromise?
-> 
-> This is exactly what I said before. The clock frequency is a property of
-> the board. Feel free to keep the rest of the clock in the SoC DTSI to
-> reduce duplication, but at minimum the clock should go to the board.
+>> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+> Yet you used third email address... which is fine, just a bit confusing.
+> Since in-tech.com still works and you might be (or not) different
+> Stefan, it's difficult to judge...
 
+sorry about the confusion. I'm that person. Unfortuntely the other 
+accounts are using a M$ Exchange server, so i switched to the i2se 
+account for this setup before sending broken patches ...
 
-s/minimum the clock should go to the board/minimum the clock frequency
-should go to the board./
+in-tech was the parent company, but the accounts will unavailable in the 
+future.
 
+Best regards
 
-
-Best regards,
-Krzysztof
+>
+> Best regards,
+> Krzysztof
