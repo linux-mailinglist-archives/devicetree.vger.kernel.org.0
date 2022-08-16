@@ -2,102 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 37FFC595615
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 11:21:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D262595600
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 11:15:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232660AbiHPJVE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 05:21:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33022 "EHLO
+        id S230113AbiHPJPw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 05:15:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233494AbiHPJU3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 05:20:29 -0400
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2043.outbound.protection.outlook.com [40.107.237.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADD4810C828;
-        Tue, 16 Aug 2022 00:35:56 -0700 (PDT)
+        with ESMTP id S232473AbiHPJPH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 05:15:07 -0400
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-eopbgr70083.outbound.protection.outlook.com [40.107.7.83])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D507B1D0
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 00:30:47 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nSM3pbPVbY09vaAtL0Ug+cyxEmJmZvJ5sQwjhvXdD9B4kcHcTDVEq5mQYA+rVQSbxdHPTQVY1z3zEL2FtSORKGyhdC1Wkni27fUM11LbzocFLNzSosGsHnDqIQkrXvOA2WeCu7d9YQSC7OfO+67ICh18bEJBRLk3v5bZRXCzotJdzUYILgSjou1qf+2ihb5j4v78q54FuYXq54LA66yyhN5DCgEZhO/ScmgbN3QEygmGBmxYV2HR0iWTfXs7fXT+YxpBGsZi/EKScB2MsD8DXg62XmnOAhjqyFn8/PVTSK4d8BKJxLZeItWKsN7xU2EMDDu+takiTGSxPGjqWwJVfA==
+ b=fnzGp+SkT7bi9B8btfRNPpYITlmuiA7H9N5mfDXqWLkAgDtESAQEosiAWF5G/yIfq5mgHngr4HTCbHvqdDy2sD3vrQdH+GDwKaOIk6qpQp0TzCM5yxfPWagFBoMaGv7SyHTo4Foopqs1sduEFsLCcvMes8KMEQ8LiTqagrLGKqLPe1y3g9nyQ7tH2QVAXAzbza7MQ9IQ/KN8TOMBbaCjubUya0pU99BDugGEUb4BhuS55j3FWqFolCAw2CvzG5J927EoF2PdKMWiSg9UO0vJOomRe1fIDg/i5k+0QjWD74Vp54DOE18Puq3lJnIZXl0oJU/21c4DplgU309QDAI9sw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Y09d8Jt+oJwYM//gJV1lvETrQaBjU3igy6jLAMLN+cA=;
- b=UwhTSSlm9Ku6YUkT3T6rtxfVbF7vxEFBv0+YfPNbii4CU34Y5OefQ7epDe+Shux2p32nxwtff5PwCnDybpMcqKyCsmOrCuMSXyinv03coQ01ZG6Iz9AP6NcgwuddrmbfP3QUvmvBWnfp1aDF0+phyOnxs8heAlp/uCRUqodWKTYn/7SoJ2lst8SGoxOp5r149SRlpEgB35y0hX7gC2KQvdhfCl+t3TzSiblZ9V2rOJZPnhXceZDx4vAEAgbsU1t3jLsgWXnDGAuWkpdHsjVk5RKKrBPkj1UMVsoH9vrMO4NdMGGMz9FGN/5EgAh2aKfbw9NMB9glO7O49GeKK/c4Dg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ bh=e5YUKTfBnLF9EcHDAVbT65cPakSwVWipeCEUfp80aI8=;
+ b=WXDDuaWsO5Rt7Tu81meMCgkZEsnINL3mLq+RU3dSKaoPI+i3JCrJ8ZeOBhkG28BePPgCBur5W5X19ruwl68qqCAQE3Knqawf6WRKxUYGmQ3XA8IEio9g4fMja6ovB42SYRhfJc/LbslZ8hKAYcpS+3a5KrSZn9/JfdavgMnCuSqT6Q6uv8MvJMafgQw/yK1wC3Yf9b0uGBeLon/Qe2uRSal7XX6qKjTolG40cALxm5MLZLhu9JSa9JhMNEMGXAcixboeHXT+0LjD7kMfKlsFphi/lt60tAwZt9PoD2ywu8sh8Psfd9kKuIGQTk8GN4klHwvAGM+wK8BJUzsv+GlObw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Y09d8Jt+oJwYM//gJV1lvETrQaBjU3igy6jLAMLN+cA=;
- b=FkpEyEt4aI0PAqvV1mt8NFPYn7rvDW2WKYYmYIb+YbLFbYVzLdfDJ4u/BVpG0TC3ZlVhSV0pSgfGrG1PkBVb5J/rSWxnpWXhlFjWOpQDLunmr94++K63osH6l0npAcfKldbBTn1sJjdKJiH4PhAKqiY2Cl55njmqTCCoO0jl09s=
-Received: from DS7PR03CA0217.namprd03.prod.outlook.com (2603:10b6:5:3ba::12)
- by DM6PR12MB2793.namprd12.prod.outlook.com (2603:10b6:5:4f::27) with
+ bh=e5YUKTfBnLF9EcHDAVbT65cPakSwVWipeCEUfp80aI8=;
+ b=IH9Nnr5gD4ySe+r2Btu9x7Z5NN1sfk7svPQanxazK/qDI/oI7l4DP66cQjwJwJzbchV+DUjIXhC5WE5RLvW4Zwzdl6LqJOlO8lr4dTNdZqSLOxNriJNg2404tRBTbJdS5XzziIPFb01HkECym+7fvJgA8T3PpXjb2Op+Y+Axqkk=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DB9PR04MB8412.eurprd04.prod.outlook.com (2603:10a6:10:24d::9)
+ by DU2PR04MB9523.eurprd04.prod.outlook.com (2603:10a6:10:2f6::9) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5525.11; Tue, 16 Aug
- 2022 07:35:53 +0000
-Received: from DM6NAM11FT036.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:3ba:cafe::c6) by DS7PR03CA0217.outlook.office365.com
- (2603:10b6:5:3ba::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5525.16 via Frontend
- Transport; Tue, 16 Aug 2022 07:35:53 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT036.mail.protection.outlook.com (10.13.172.64) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5525.11 via Frontend Transport; Tue, 16 Aug 2022 07:35:53 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Tue, 16 Aug
- 2022 02:33:53 -0500
-Received: from xhdlakshmis40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
- Transport; Tue, 16 Aug 2022 02:33:24 -0500
-From:   Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Borislav Petkov <bp@alien8.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Tony Luck <tony.luck@intel.com>,
-        James Morse <james.morse@arm.com>,
-        "Robert Richter" <rric@kernel.org>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-edac@vger.kernel.org>,
-        <saikrishna12468@gmail.com>, <git@amd.com>,
-        Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>,
-        Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-Subject: [PATCH 2/2] edac: zynqmp_ocm: Add EDAC support for ZynqMP OCM
-Date:   Tue, 16 Aug 2022 13:02:03 +0530
-Message-ID: <20220816073203.27314-3-sai.krishna.potthuri@amd.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220816073203.27314-1-sai.krishna.potthuri@amd.com>
-References: <20220816073203.27314-1-sai.krishna.potthuri@amd.com>
-MIME-Version: 1.0
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5525.10; Tue, 16 Aug
+ 2022 07:30:44 +0000
+Received: from DB9PR04MB8412.eurprd04.prod.outlook.com
+ ([fe80::38fa:c0c7:75b2:39fb]) by DB9PR04MB8412.eurprd04.prod.outlook.com
+ ([fe80::38fa:c0c7:75b2:39fb%9]) with mapi id 15.20.5504.028; Tue, 16 Aug 2022
+ 07:30:44 +0000
+From:   Jacky Bai <ping.bai@nxp.com>
+To:     shawnguo@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     tharvey@gateworks.com, marcel.ziswiler@toradex.com,
+        philippe.schenker@toradex.com, linux-imx@nxp.com,
+        devicetree@vger.kernel.org
+Subject: [PATCH] arm64: dts: imx8mp: Update pin function file according to Rev.D RM
+Date:   Tue, 16 Aug 2022 15:32:22 +0800
+Message-Id: <20220816073222.1269380-1-ping.bai@nxp.com>
+X-Mailer: git-send-email 2.37.1
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-EOPAttributedMessage: 0
+X-ClientProxiedBy: SGXP274CA0022.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b8::34)
+ To DB9PR04MB8412.eurprd04.prod.outlook.com (2603:10a6:10:24d::9)
+MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 59c9c060-e0ba-404f-9661-08da7f59f317
-X-MS-TrafficTypeDiagnostic: DM6PR12MB2793:EE_
+X-MS-Office365-Filtering-Correlation-Id: e3938887-a0df-43c6-aa10-08da7f593a8f
+X-MS-TrafficTypeDiagnostic: DU2PR04MB9523:EE_
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: /tVN4N/xlGLqcpyYaZtrOXgTzvhDmwdeJ/ns7GoHLJCXQOwXoXOykb11KdPM7adJch8x4dGmcQIF5jQffz03R3fIK8FpN5u736QXZRe5zR91FPnmPaXMQV/960+InwferSlas3X/vVaKTKpSvrqDbuSQNFNDYoxAu3MnWkai8iKzxUxRBhnX0MQNK6ZheDygV05UfNy81arKwTNbQdlVRKRvkbfuGJPTQWGSPpCKDjh9ZwfXLmPmT/TOjSMyGhZWEBqaLa0/rkfNfcB8M1PFHhfgbKlc3RUK7VaLO5hXl9t19aADPtf/Byy5Omc5aESor8yJizZ95DjzskNKluGRVNUefQyNJiBSDWkG+5dqF4IoLQu4tIO31W7wj48rvyLUfDT2FkITrr+ib940dmndIblkdYotob2+sCUQIADy591dfJByAgSGKJ6MUG2DY3gcqn9dJauakCduGzjzAhSXhY7agyvqIyycZ+n18UNOopS6hptEj4qQdJmq/JyeY4CyPfabBeG9ddv2rWHj452J+UZxITVhNr1BF92HU19DWVu4wi/pagePM8jQnmCHdEvN6hXFXkzpC61zkxle6slvpLOD0Hozj5M7NVNqeBNOKgDhFl5mWPLM2BP+ZqY7mxsHqPrteEUIGu6RGbjg/znNu1ZKNuNouBTfCl+LzE6omEeJGnC+bwkOUzZ25xF3uId9TjCCZTDGFruB4GOPXPTLjfDxMnS1dxzmGzK871UPWGnJrocYUfsUchlzGzJXh504EkP97Kcwg8tZzdqz4vL/uannoZLjPEwOnYrwuIBEZCWXHurwEPBL1AJHmCTMNIMjSM1MISjhatdNzMGFC0hjqg==
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230016)(4636009)(39860400002)(396003)(346002)(376002)(136003)(46966006)(36840700001)(40470700004)(82310400005)(54906003)(356005)(40460700003)(40480700001)(83380400001)(316002)(36756003)(1076003)(41300700001)(47076005)(82740400003)(7416002)(478600001)(2616005)(186003)(6666004)(103116003)(5660300002)(26005)(336012)(426003)(110136005)(8676002)(70206006)(70586007)(2906002)(30864003)(86362001)(36860700001)(81166007)(8936002)(4326008)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Aug 2022 07:35:53.2166
+X-Microsoft-Antispam-Message-Info: i5J2P1S6XuAbSOWDndqMIVa+DzlnwZCteg3Al4wSrPjSKnl8F2LvH85EtmXKBUT03EThkeV3LqVrXYlkg37cU709i2l7+0kxIgn58780OA6iz55jncaYLNhUyiYyfvg4gdwfufAeJrC9ymqsvCi/7OcD5VOH1wrwqIsxtyZzCfbrHTErqsQX00RHtxOFNA3YKFQxVL+nd4L0f5K1i3O68oXIep4DYqW8DXQxio+gYZj0roYxsySXtGVKFmA+ElFyonGMGqNKRBpUvMcpbM8V+KpWM8hnIM7CIz+iVbZ4ugGsHh/g/5Z7jJjqZgjWZKkLok2e0caa1zo7m5an2/xD/e3rfSUs8yRED4aktcn4qg18uxO4YUgt6urtV9DGSyzO+QSm5hARMQisfVjpf8We2eGPgTTpj52F5+IDner18b65bFVFDCQWALP9oso0w0pCJSO7II91Aau4X4iqivmwiPCbpjNZ3jBjpv2EDFXgeKP1HRSLcktOMsCCx1XRpBmLRzmlzZl9ZpwFoVuhpSoXjhbtBMu9TJFEQ65IoaFzBoZltF7+Bj2oOyoncpdyD6L0X/et0lzmBBwXxIc8xMsWVHtEnOOE31V5gfRPdis7rnzsKv1OepU2ijRbGQqiyiIyigtUFtXbH6K/+pPLD/5/d8TMl2BGNHptOj7WAdIXAKO0xrXVCEWuEVp8J5sQ3GPyDcOpzOe+RAVcKTSieJ5/dpnyzPQkJjJljaDJCaonAhQYzH3yaS40IYHaEKtN4yo3KPkqaPEp7ybuR2RhW8PkdJ/Ad2sUDW2MRvSAQ0zmmXiXRVnIbuBFvNfFv5k8QdeS586mgnOLtd5o09zEmw5JWT3GMD7TosSQSwoL26tw5LNRNattLP88gYNbRdn1sW5l
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB8412.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(136003)(396003)(346002)(376002)(39860400002)(366004)(66556008)(186003)(36756003)(1076003)(2616005)(2906002)(5660300002)(8936002)(52116002)(6666004)(4326008)(8676002)(26005)(6512007)(66946007)(15650500001)(38100700002)(38350700002)(86362001)(83380400001)(316002)(6506007)(41300700001)(66476007)(6486002)(478600001)(32563001)(473944003)(414714003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?OwFLUwJlLswrHVPVMmJZZYftTo9b6aXhGgqKZEP0QkuDc5u+iNwHq+iUZ9GA?=
+ =?us-ascii?Q?Rgq609iE95Td3evKVQITF/k6gxMWvQsFX2jMv5ja+JSHaDmfBHlJGGDd0WsC?=
+ =?us-ascii?Q?yVtmjhoRqQgTQKwOp4mlMeduwg9nIRR+lLmZvnGj/DWWRGQ0za+muKuzwnjU?=
+ =?us-ascii?Q?s7QNzHLygcmUHntSMf9Mhp1LhPdJ6pDVU9KGzUZHhS9XApEQl1DN3xOZljLa?=
+ =?us-ascii?Q?/4+dW53oYqIJJazCuSNDzXSOxXUTYf2aPWQW6yqIRc97Qj3Z3jnG2yn6aaHU?=
+ =?us-ascii?Q?WjswvFUScQGWObGGYv1GH533+oJGRLOg828/jqP9XlqqJSAoauoIiA0mV40S?=
+ =?us-ascii?Q?O0WJ55RKiKtzCa7LCIPY56gV7ThbonpvTOobgC6FgpFRllGJogCcklEAwnRy?=
+ =?us-ascii?Q?3qZJEearPhoBPwvU8R127AN21ebp+rUJx2gPb+sYTDKgUNMujtdnsp0eE+xl?=
+ =?us-ascii?Q?6JGOPBB1+tH3xicEpRNKdp8fVaNQ8IgXf1amKJVh/zuxN9TnUkTy3r3nHhPy?=
+ =?us-ascii?Q?IIJmtiDHAEJ2ajzoV0W6TzhBda5tYSZF4xknp1qm9Qa6UgvOpOfgwq/5cvkP?=
+ =?us-ascii?Q?bE2C6zB7byb2qYmsrHiSxcAgpT4WTpn1eH2+G+lbu5YPr/SZWNDHkSRmy4nD?=
+ =?us-ascii?Q?3c/hpgHHOSmVZl5gZbFOAFboEIKoTRU/euy5Ankf2YN52OZmApCuj59D0Z4E?=
+ =?us-ascii?Q?HxWemwLdGqB1RKfKsmifmi93aQMqPybBFIQi4viNWvZz5lwXOxikMnACdf3C?=
+ =?us-ascii?Q?ehZRuLaZ+eUqbhuE3rJRya8N4fXyBsPqo6diYLblfWyv6DYYFWIUFSaC2hbx?=
+ =?us-ascii?Q?Ov5vHhPuphxJBDuPcXgpwx1kk1Xxa/Flr4UBhtDqhCNy1MNYwPoFpAhKy/v7?=
+ =?us-ascii?Q?2xwO8Er6XaRIsxVhBBBcqlzi3KCBkNixgLiMdegPS8Nw2szWL8ofsujo9pzl?=
+ =?us-ascii?Q?YbtjEs9cBxsYvg3zsstIRIDi4hFIGEyV1BmycuZQXfoFoEzPEejollj0TkvG?=
+ =?us-ascii?Q?bY6riej1kSNZSruIKtD3XNvKxpoJF5Jic1m6xklADy2jEAO5Wujkm2FRHzc9?=
+ =?us-ascii?Q?SDm0SMVLjarmk1teeukiwvhudH37emFoJep612mDgakpdkxDMC5naJUj1L6G?=
+ =?us-ascii?Q?gwsJk0daXnmS6wK1sMdDB4DcimTXXXKldtTumO581tshVMbZeKsTpTnlaovJ?=
+ =?us-ascii?Q?VbXWBAzsaunTk1y0Smb13U7unlI06tcxtBLi7+TMJ9866zuTK20M3XlSpYZq?=
+ =?us-ascii?Q?A7xXXgSwrNnannUAyHUM5LOjbyfwq1QJ1R8rE0xg8bNfFFku0gPg32MIXx29?=
+ =?us-ascii?Q?2ZNT1b5tE1L6Xak5qxiN+oJqxVfLWCDLmquDBeTkeR1KnQqosjh4PAEqREfy?=
+ =?us-ascii?Q?SXjC/h2EptSXTFS15LqeZSY01W9RIVvZdKyZYp1PFcSWcstLxBMioh1ldZMo?=
+ =?us-ascii?Q?93uTHj4LdmJqGehlBfYlueFP7OWKI9+8zGEhOhRw1HJRBjgcd94zQ+2BPFOu?=
+ =?us-ascii?Q?zA+csBY/fHqdyG5+QHCYC/Zv01vXQi7EOwYuBAldloUkQMuXx3hUmvDNBfGS?=
+ =?us-ascii?Q?YB1M7OdEa1rD+Q84JiSudyHgq+bmJOzv0ta7wev7?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e3938887-a0df-43c6-aa10-08da7f593a8f
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB8412.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Aug 2022 07:30:44.0146
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 59c9c060-e0ba-404f-9661-08da7f59f317
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT036.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2793
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: xgMFndy87d9SvZzBC4Bf4q75EeGrBW5GUG352syLOnO/b0x5vFPgjefuv5piNabhSZfvNNpKAld6vvI6B4AXJQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB9523
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -108,714 +112,152 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add EDAC support for Xilinx ZynqMP OCM Controller, this driver
-reports CE and UE errors based on the interrupts, and also creates ue/ce
-sysfs entries for error injection.
+Update i.MX8MP imx8mp-pinfunc.h file according latest reference
+manual Rev.D. As some of the pins' name are changed, update the
+dts at the same time.
 
-Signed-off-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
-Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+Signed-off-by: Jacky Bai <ping.bai@nxp.com>
 ---
- MAINTAINERS                    |   7 +
- drivers/edac/Kconfig           |   9 +
- drivers/edac/Makefile          |   1 +
- drivers/edac/zynqmp_ocm_edac.c | 643 +++++++++++++++++++++++++++++++++
- 4 files changed, 660 insertions(+)
- create mode 100644 drivers/edac/zynqmp_ocm_edac.c
+ .../boot/dts/freescale/imx8mp-dhcom-som.dtsi     |  6 +++---
+ arch/arm64/boot/dts/freescale/imx8mp-evk.dts     |  2 +-
+ arch/arm64/boot/dts/freescale/imx8mp-pinfunc.h   | 16 ++++++++--------
+ .../boot/dts/freescale/imx8mp-venice-gw74xx.dts  |  4 ++--
+ arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi |  4 ++--
+ 5 files changed, 16 insertions(+), 16 deletions(-)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index edc96cdb85e8..cd4c6c90bca3 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -21692,6 +21692,13 @@ F:	Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dpdma.yaml
- F:	drivers/dma/xilinx/xilinx_dpdma.c
- F:	include/dt-bindings/dma/xlnx-zynqmp-dpdma.h
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
+index a616eb378002..dd896b6ddfe5 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
+@@ -867,14 +867,14 @@ MX8MP_IOMUXC_UART4_TXD__UART4_DCE_TX		0x49
  
-+XILINX ZYNQMP OCM EDAC DRIVER
-+M:	Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-+M:	Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/edac/xlnx,zynqmp-ocmc.yaml
-+F:	drivers/edac/zynqmp_ocm_edac.c
-+
- XILINX ZYNQMP PSGTR PHY DRIVER
- M:	Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>
- M:	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-diff --git a/drivers/edac/Kconfig b/drivers/edac/Kconfig
-index 58ab63642e72..fece60f586af 100644
---- a/drivers/edac/Kconfig
-+++ b/drivers/edac/Kconfig
-@@ -539,4 +539,13 @@ config EDAC_DMC520
- 	  Support for error detection and correction on the
- 	  SoCs with ARM DMC-520 DRAM controller.
+ 	pinctrl_usb0_vbus: dhcom-usb0-grp {
+ 		fsl,pins = <
+-			MX8MP_IOMUXC_GPIO1_IO10__USB1_OTG_ID		0x0
++			MX8MP_IOMUXC_GPIO1_IO10__USB1_ID		0x0
+ 		>;
+ 	};
  
-+config EDAC_ZYNQMP_OCM
-+	tristate "Xilinx ZynqMP OCM Controller"
-+	depends on ARCH_ZYNQMP
-+	help
-+	  Support for error detection and correction on the xilinx ZynqMP OCM
-+	  controller.
-+	  This driver can also be built as a module. If so, the module
-+	  will be called zynqmp_ocm_edac.
-+
- endif # EDAC
-diff --git a/drivers/edac/Makefile b/drivers/edac/Makefile
-index 2d1641a27a28..634c1cec1588 100644
---- a/drivers/edac/Makefile
-+++ b/drivers/edac/Makefile
-@@ -84,3 +84,4 @@ obj-$(CONFIG_EDAC_QCOM)			+= qcom_edac.o
- obj-$(CONFIG_EDAC_ASPEED)		+= aspeed_edac.o
- obj-$(CONFIG_EDAC_BLUEFIELD)		+= bluefield_edac.o
- obj-$(CONFIG_EDAC_DMC520)		+= dmc520_edac.o
-+obj-$(CONFIG_EDAC_ZYNQMP_OCM)		+= zynqmp_ocm_edac.o
-diff --git a/drivers/edac/zynqmp_ocm_edac.c b/drivers/edac/zynqmp_ocm_edac.c
-new file mode 100644
-index 000000000000..ee094e983d9b
---- /dev/null
-+++ b/drivers/edac/zynqmp_ocm_edac.c
-@@ -0,0 +1,643 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Xilinx ZynqMP OCM ECC Driver
-+ *
-+ * Copyright (C) 2022 Advanced Micro Devices, Inc.
-+ */
-+
-+#include <linux/edac.h>
-+#include <linux/interrupt.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_platform.h>
-+#include <linux/platform_device.h>
-+
-+#include "edac_module.h"
-+
-+#define ZYNQMP_OCM_EDAC_MSG_SIZE	256
-+
-+#define ZYNQMP_OCM_EDAC_STRING	"zynqmp_ocm"
-+
-+/* Controller registers */
-+#define CTRL_OFST			0x0
-+#define OCM_ISR_OFST		0x04
-+#define OCM_IMR_OFST		0x08
-+#define OCM_IEN_OFST		0x0C
-+#define OCM_IDS_OFST		0x10
-+
-+/* ECC control register */
-+#define ECC_CTRL_OFST		0x14
-+
-+/* Correctable error info registers */
-+#define CE_FFA_OFST			0x1C
-+#define CE_FFD0_OFST		0x20
-+#define CE_FFD1_OFST		0x24
-+#define CE_FFD2_OFST		0x28
-+#define CE_FFD3_OFST		0x2C
-+#define CE_FFE_OFST			0x30
-+
-+/* Uncorrectable error info registers */
-+#define UE_FFA_OFST			0x34
-+#define UE_FFD0_OFST		0x38
-+#define UE_FFD1_OFST		0x3C
-+#define UE_FFD2_OFST		0x40
-+#define UE_FFD3_OFST		0x44
-+#define UE_FFE_OFST			0x48
-+
-+/* ECC control register bit field definitions */
-+#define ECC_CTRL_CLR_CE_ERR	0x40
-+#define ECC_CTRL_CLR_UE_ERR	0x80
-+
-+/* Fault injection data and count registers */
-+#define OCM_FID0_OFST		0x4C
-+#define OCM_FID1_OFST		0x50
-+#define OCM_FID2_OFST		0x54
-+#define OCM_FID3_OFST		0x58
-+#define OCM_FIC_OFST		0x74
-+
-+#define UE_MAX_BITPOS_LOWER	31
-+#define UE_MIN_BITPOS_UPPER	32
-+#define UE_MAX_BITPOS_UPPER	63
-+
-+/* Interrupt masks */
-+#define OCM_CEINTR_MASK		BIT(6)
-+#define OCM_UEINTR_MASK		BIT(7)
-+#define OCM_ECC_ENABLE_MASK	BIT(0)
-+#define OCM_CEUE_MASK		GENMASK(7, 6)
-+
-+#define OCM_FICOUNT_MASK	GENMASK(23, 0)
-+#define OCM_BASEVAL			0xFFFC0000
-+#define EDAC_DEVICE			"ZynqMP-OCM"
-+
-+/**
-+ * struct ecc_error_info - ECC error log information
-+ * @addr:	Fault generated at this address
-+ * @data0:	Generated fault data
-+ * @data1:	Generated fault data
-+ */
-+struct ecc_error_info {
-+	u32 addr;
-+	u32 data0;
-+	u32 data1;
-+};
-+
-+/**
-+ * struct zynqmp_ocm_ecc_status - ECC status information to report
-+ * @ce_cnt:	Correctable error count
-+ * @ue_cnt:	Uncorrectable error count
-+ * @ceinfo:	Correctable error log information
-+ * @ueinfo:	Uncorrectable error log information
-+ */
-+struct zynqmp_ocm_ecc_status {
-+	u32 ce_cnt;
-+	u32 ue_cnt;
-+	struct ecc_error_info ceinfo;
-+	struct ecc_error_info ueinfo;
-+};
-+
-+/**
-+ * struct zynqmp_ocm_edac_priv - DDR memory controller private instance data
-+ * @baseaddr:	Base address of the DDR controller
-+ * @message:	Buffer for framing the event specific info
-+ * @stat:	ECC status information
-+ * @p_data:	Pointer to platform data
-+ * @ce_cnt:	Correctable Error count
-+ * @ue_cnt:	Uncorrectable Error count
-+ * @ce_bitpos:	Bit position for Correctable Error
-+ * @ue_bitpos0:	First bit position for Uncorrectable Error
-+ * @ue_bitpos1:	Second bit position for Uncorrectable Error
-+ */
-+struct zynqmp_ocm_edac_priv {
-+	void __iomem *baseaddr;
-+	char message[ZYNQMP_OCM_EDAC_MSG_SIZE];
-+	struct zynqmp_ocm_ecc_status stat;
-+	const struct zynqmp_ocm_platform_data *p_data;
-+	u32 ce_cnt;
-+	u32 ue_cnt;
-+	u8 ce_bitpos;
-+	u8 ue_bitpos0;
-+	u8 ue_bitpos1;
-+};
-+
-+/**
-+ * zynqmp_ocm_edac_geterror_info - Get the current ecc error info
-+ * @base:	Pointer to the base address of the ddr memory controller
-+ * @p:		Pointer to the ocm ecc status structure
-+ * @mask:	Status register mask value
-+ *
-+ * Determines there is any ecc error or not
-+ *
-+ */
-+static void zynqmp_ocm_edac_geterror_info(void __iomem *base,
-+					  struct zynqmp_ocm_ecc_status *p, int mask)
-+{
-+	if (mask & OCM_CEINTR_MASK) {
-+		p->ce_cnt++;
-+		p->ceinfo.data0 = readl(base + CE_FFD0_OFST);
-+		p->ceinfo.data1 = readl(base + CE_FFD1_OFST);
-+		p->ceinfo.addr = (OCM_BASEVAL | readl(base + CE_FFA_OFST));
-+		writel(ECC_CTRL_CLR_CE_ERR, base + OCM_ISR_OFST);
-+	} else if (mask & OCM_UEINTR_MASK) {
-+		p->ue_cnt++;
-+		p->ueinfo.data0 = readl(base + UE_FFD0_OFST);
-+		p->ueinfo.data1 = readl(base + UE_FFD1_OFST);
-+		p->ueinfo.addr = (OCM_BASEVAL | readl(base + UE_FFA_OFST));
-+		writel(ECC_CTRL_CLR_UE_ERR, base + OCM_ISR_OFST);
-+	}
-+}
-+
-+/**
-+ * zynqmp_ocm_edac_handle_error - Handle controller error types CE and UE
-+ * @dci:	Pointer to the edac device controller instance
-+ * @p:		Pointer to the ocm ecc status structure
-+ *
-+ * Handles the controller ECC correctable and uncorrectable error.
-+ */
-+static void zynqmp_ocm_edac_handle_error(struct edac_device_ctl_info *dci,
-+					 struct zynqmp_ocm_ecc_status *p)
-+{
-+	struct zynqmp_ocm_edac_priv *priv = dci->pvt_info;
-+	struct ecc_error_info *pinf;
-+
-+	if (p->ce_cnt) {
-+		pinf = &p->ceinfo;
-+		snprintf(priv->message, ZYNQMP_OCM_EDAC_MSG_SIZE,
-+			 "\n\rOCM ECC error type :%s\n\r"
-+			 "Addr: [0x%X]\n\rFault Data[31:0]: [0x%X]\n\r"
-+			 "Fault Data[63:32]: [0x%X]",
-+			 "CE", pinf->addr, pinf->data0, pinf->data1);
-+		edac_device_handle_ce(dci, 0, 0, priv->message);
-+	}
-+
-+	if (p->ue_cnt) {
-+		pinf = &p->ueinfo;
-+		snprintf(priv->message, ZYNQMP_OCM_EDAC_MSG_SIZE,
-+			 "\n\rOCM ECC error type :%s\n\r"
-+			 "Addr: [0x%X]\n\rFault Data[31:0]: [0x%X]\n\r"
-+			 "Fault Data[63:32]: [0x%X]",
-+			 "UE", pinf->addr, pinf->data0, pinf->data1);
-+		edac_device_handle_ue(dci, 0, 0, priv->message);
-+	}
-+
-+	memset(p, 0, sizeof(*p));
-+}
-+
-+/**
-+ * zynqmp_ocm_edac_intr_handler - isr routine
-+ * @irq:        irq number
-+ * @dev_id:     device id pointer
-+ *
-+ * This is the ISR routine called by edac core interrupt thread.
-+ * Used to check and post ECC errors.
-+ *
-+ * Return: IRQ_NONE, if interrupt not set or IRQ_HANDLED otherwise
-+ */
-+static irqreturn_t zynqmp_ocm_edac_intr_handler(int irq, void *dev_id)
-+{
-+	struct edac_device_ctl_info *dci = dev_id;
-+	struct zynqmp_ocm_edac_priv *priv = dci->pvt_info;
-+	int regval;
-+
-+	regval = readl(priv->baseaddr + OCM_ISR_OFST);
-+	if (!(regval & OCM_CEUE_MASK))
-+		return IRQ_NONE;
-+
-+	zynqmp_ocm_edac_geterror_info(priv->baseaddr,
-+				      &priv->stat, regval);
-+
-+	priv->ce_cnt += priv->stat.ce_cnt;
-+	priv->ue_cnt += priv->stat.ue_cnt;
-+	zynqmp_ocm_edac_handle_error(dci, &priv->stat);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+/**
-+ * zynqmp_ocm_edac_get_eccstate - Return the controller ecc status
-+ * @base:	Pointer to the ddr memory controller base address
-+ *
-+ * Get the ECC enable/disable status for the controller
-+ *
-+ * Return: ecc status 0/1.
-+ */
-+static bool zynqmp_ocm_edac_get_eccstate(void __iomem *base)
-+{
-+	return readl(base + ECC_CTRL_OFST) & OCM_ECC_ENABLE_MASK;
-+}
-+
-+static const struct of_device_id zynqmp_ocm_edac_match[] = {
-+	{ .compatible = "xlnx,zynqmp-ocmc-1.0"},
-+	{ /* end of table */ }
-+};
-+
-+MODULE_DEVICE_TABLE(of, zynqmp_ocm_edac_match);
-+
-+/**
-+ * zynqmp_ocm_edac_inject_fault_count_show - Shows fault injection count
-+ * @dci:        Pointer to the edac device struct
-+ * @data:       Pointer to user data
-+ *
-+ * Shows the fault injection count, once the counter reaches
-+ * zero, it injects errors
-+ * Return: Number of bytes copied on success else error code.
-+ */
-+static ssize_t zynqmp_ocm_edac_inject_fault_count_show(struct edac_device_ctl_info *dci,
-+						       char *data)
-+{
-+	struct zynqmp_ocm_edac_priv *priv = dci->pvt_info;
-+
-+	return sprintf(data, "FIC: 0x%x\n\r",
-+			readl(priv->baseaddr + OCM_FIC_OFST));
-+}
-+
-+/**
-+ * zynqmp_ocm_edac_inject_fault_count_store - write fi count
-+ * @dci:	Pointer to the edac device struct
-+ * @data:	Pointer to user data
-+ * @count:	read the size bytes from buffer
-+ *
-+ * Update the fault injection count register, once the counter reaches
-+ * zero, it injects errors
-+ * Return: Number of bytes copied on success else error code.
-+ */
-+static ssize_t zynqmp_ocm_edac_inject_fault_count_store(struct edac_device_ctl_info *dci,
-+							const char *data, size_t count)
-+{
-+	struct zynqmp_ocm_edac_priv *priv = dci->pvt_info;
-+	u32 ficount;
-+
-+	if (!data)
-+		return -EFAULT;
-+
-+	if (kstrtouint(data, 0, &ficount))
-+		return -EINVAL;
-+
-+	ficount &= OCM_FICOUNT_MASK;
-+	writel(ficount, priv->baseaddr + OCM_FIC_OFST);
-+
-+	return count;
-+}
-+
-+/**
-+ * zynqmp_ocm_edac_inject_cebitpos_show - Shows CE bit position
-+ * @dci:        Pointer to the edac device struct
-+ * @data:       Pointer to user data
-+ *
-+ * Shows the Correctable error bit position,
-+ * Return: Number of bytes copied on success else error code.
-+ */
-+static ssize_t zynqmp_ocm_edac_inject_cebitpos_show(struct edac_device_ctl_info
-+							*dci, char *data)
-+{
-+	struct zynqmp_ocm_edac_priv *priv = dci->pvt_info;
-+
-+	if (priv->ce_bitpos <= UE_MAX_BITPOS_LOWER)
-+		return sprintf(data, "Fault Injection Data Reg: [0x%x]\n\r",
-+			((readl(priv->baseaddr + OCM_FID0_OFST))));
-+
-+	return sprintf(data, "Fault Injection Data Reg: [0x%x]\n\r",
-+			((readl(priv->baseaddr + OCM_FID1_OFST))));
-+}
-+
-+/**
-+ * zynqmp_ocm_edac_inject_cebitpos_store - Set CE bit position
-+ * @dci:	Pointer to the edac device struct
-+ * @data:	Pointer to user data
-+ * @count:	read the size bytes from buffer
-+ *
-+ * Set any one bit to inject CE error
-+ * Return: Number of bytes copied on success else error code.
-+ */
-+static ssize_t zynqmp_ocm_edac_inject_cebitpos_store(struct edac_device_ctl_info *dci,
-+						     const char *data, size_t count)
-+{
-+	struct zynqmp_ocm_edac_priv *priv = dci->pvt_info;
-+
-+	if (!data)
-+		return -EFAULT;
-+
-+	if (kstrtou8(data, 0, &priv->ce_bitpos))
-+		return -EINVAL;
-+
-+	if (priv->ce_bitpos <= UE_MAX_BITPOS_LOWER) {
-+		writel(1 << priv->ce_bitpos, priv->baseaddr + OCM_FID0_OFST);
-+		writel(0, priv->baseaddr + OCM_FID1_OFST);
-+	} else if (priv->ce_bitpos <= UE_MAX_BITPOS_UPPER) {
-+		writel(1 << (priv->ce_bitpos - UE_MIN_BITPOS_UPPER),
-+		       priv->baseaddr + OCM_FID1_OFST);
-+		writel(0, priv->baseaddr + OCM_FID0_OFST);
-+	} else {
-+		edac_printk(KERN_ERR, EDAC_DEVICE,
-+			    "Bit number > 64 is not valid\n");
-+	}
-+
-+	return count;
-+}
-+
-+/**
-+ * zynqmp_ocm_edac_inject_uebitpos0_show - Shows UE bit postion0
-+ * @dci:        Pointer to the edac device struct
-+ * @data:       Pointer to user data
-+ *
-+ * Shows the one of bit position for UE error
-+ * Return: Number of bytes copied on success else error code.
-+ */
-+static ssize_t zynqmp_ocm_edac_inject_uebitpos0_show(struct edac_device_ctl_info *dci,
-+						     char *data)
-+{
-+	struct zynqmp_ocm_edac_priv *priv = dci->pvt_info;
-+
-+	if (priv->ue_bitpos0 <= UE_MAX_BITPOS_LOWER)
-+		return sprintf(data, "Fault Injection Data Reg: [0x%x]\n\r",
-+			((readl(priv->baseaddr + OCM_FID0_OFST))));
-+
-+	return sprintf(data, "Fault Injection Data Reg: [0x%x]\n\r",
-+			((readl(priv->baseaddr + OCM_FID1_OFST))));
-+}
-+
-+/**
-+ * zynqmp_ocm_edac_inject_uebitpos0_store - set UE bit position0
-+ * @dci:	Pointer to the edac device struct
-+ * @data:	Pointer to user data
-+ * @count:	read the size bytes from buffer
-+ *
-+ * Set the first bit position for UE Error generation,we need to configure
-+ * any two bit positions to inject UE Error
-+ * Return: Number of bytes copied on success else error code.
-+ */
-+static ssize_t zynqmp_ocm_edac_inject_uebitpos0_store(struct edac_device_ctl_info *dci,
-+						      const char *data, size_t count)
-+{
-+	struct zynqmp_ocm_edac_priv *priv = dci->pvt_info;
-+
-+	if (!data)
-+		return -EFAULT;
-+
-+	if (kstrtou8(data, 0, &priv->ue_bitpos0))
-+		return -EINVAL;
-+
-+	if (priv->ue_bitpos0 <= UE_MAX_BITPOS_LOWER)
-+		writel(1 << priv->ue_bitpos0, priv->baseaddr + OCM_FID0_OFST);
-+	else if (priv->ue_bitpos0 <= UE_MAX_BITPOS_UPPER)
-+		writel(1 << (priv->ue_bitpos0 - UE_MIN_BITPOS_UPPER),
-+		       priv->baseaddr + OCM_FID1_OFST);
-+	else
-+		edac_printk(KERN_ERR, EDAC_DEVICE,
-+			    "Bit position > 64 is not valid\n");
-+	edac_printk(KERN_INFO, EDAC_DEVICE,
-+		    "Set another bit position for UE\n");
-+
-+	return count;
-+}
-+
-+/**
-+ * zynqmp_ocm_edac_inject_uebitpos1_show - Shows UE bit postion1
-+ * @dci:        Pointer to the edac device struct
-+ * @data:       Pointer to user data
-+ *
-+ * Shows the second bit position configured for UE error
-+ * Return: Number of bytes copied on success else error code.
-+ */
-+static ssize_t zynqmp_ocm_edac_inject_uebitpos1_show(struct edac_device_ctl_info *dci,
-+						     char *data)
-+{
-+	struct zynqmp_ocm_edac_priv *priv = dci->pvt_info;
-+
-+	if (priv->ue_bitpos1 <= UE_MAX_BITPOS_LOWER)
-+		return sprintf(data, "Fault Injection Data Reg: [0x%x]\n\r",
-+			((readl(priv->baseaddr + OCM_FID0_OFST))));
-+
-+	return sprintf(data, "Fault Injection Data Reg: [0x%x]\n\r",
-+			((readl(priv->baseaddr + OCM_FID1_OFST))));
-+}
-+
-+/**
-+ * zynqmp_ocm_edac_inject_uebitpos1_store - Set UE second bit position
-+ * @dci:	Pointer to the edac device struct
-+ * @data:	Pointer to user data
-+ * @count:	read the size bytes from buffer
-+ *
-+ * Set the second bit position for UE Error generation,we need to configure
-+ * any two bit positions to inject UE Error
-+ * Return: Number of bytes copied on success else error code.
-+ */
-+static ssize_t zynqmp_ocm_edac_inject_uebitpos1_store(struct edac_device_ctl_info *dci,
-+						      const char *data, size_t count)
-+{
-+	struct zynqmp_ocm_edac_priv *priv = dci->pvt_info;
-+	u32 mask;
-+
-+	if (!data)
-+		return -EFAULT;
-+
-+	if (kstrtou8(data, 0, &priv->ue_bitpos1))
-+		return -EINVAL;
-+
-+	if (priv->ue_bitpos0 == priv->ue_bitpos1) {
-+		edac_printk(KERN_ERR, EDAC_DEVICE,
-+			    "Bit positions should not be equal\n");
-+		return -EINVAL;
-+	}
-+
-+	/*
-+	 * If both bit positions are referring to 32 bit data, then configure
-+	 * only FID0 register or if it is 64 bit data, then configure only
-+	 * FID1 register.
-+	 */
-+	if (priv->ue_bitpos0 <= UE_MAX_BITPOS_LOWER &&
-+	    priv->ue_bitpos1 <= UE_MAX_BITPOS_LOWER) {
-+		mask = (1 << priv->ue_bitpos0);
-+		mask |= (1 << priv->ue_bitpos1);
-+		writel(mask, priv->baseaddr + OCM_FID0_OFST);
-+		writel(0, priv->baseaddr + OCM_FID1_OFST);
-+	} else if ((priv->ue_bitpos0 >= UE_MIN_BITPOS_UPPER &&
-+		    priv->ue_bitpos0 <= UE_MAX_BITPOS_UPPER) &&
-+		   (priv->ue_bitpos1 >= UE_MIN_BITPOS_UPPER &&
-+		    priv->ue_bitpos1 <= UE_MAX_BITPOS_UPPER)) {
-+		mask = (1 << (priv->ue_bitpos0 - UE_MIN_BITPOS_UPPER));
-+		mask |= (1 << (priv->ue_bitpos1 - UE_MIN_BITPOS_UPPER));
-+		writel(mask, priv->baseaddr + OCM_FID1_OFST);
-+		writel(0, priv->baseaddr + OCM_FID0_OFST);
-+	}
-+
-+	/*
-+	 * If one bit position is referring a bit in 32 bit data and other in
-+	 * 64 bit data, just configure FID0/FID1 based on uebitpos1.
-+	 */
-+	if (priv->ue_bitpos0 <= UE_MAX_BITPOS_LOWER &&
-+	    (priv->ue_bitpos1 >= UE_MIN_BITPOS_UPPER &&
-+	     priv->ue_bitpos1 <= UE_MAX_BITPOS_UPPER)) {
-+		writel(1 << (priv->ue_bitpos1 - UE_MIN_BITPOS_UPPER),
-+		       priv->baseaddr + OCM_FID1_OFST);
-+	} else if ((priv->ue_bitpos0 >= UE_MIN_BITPOS_UPPER &&
-+		    priv->ue_bitpos0 <= UE_MAX_BITPOS_UPPER) &&
-+		   (priv->ue_bitpos1 <= UE_MAX_BITPOS_LOWER)) {
-+		writel(1 << priv->ue_bitpos1,
-+		       priv->baseaddr + OCM_FID0_OFST);
-+	} else {
-+		edac_printk(KERN_ERR, EDAC_DEVICE,
-+			    "Bit position > 64 is not valid, Valid bits:[63:0]\n");
-+	}
-+
-+	edac_printk(KERN_INFO, EDAC_DEVICE,
-+		    "UE at Bit Position0: %d Bit Position1: %d\n",
-+		    priv->ue_bitpos0, priv->ue_bitpos1);
-+
-+	return count;
-+}
-+
-+static struct edac_dev_sysfs_attribute zynqmp_ocm_edac_sysfs_attributes[] = {
-+	{
-+		.attr = {
-+			.name = "inject_cebitpos",
-+			.mode = (0644)
-+		},
-+		.show = zynqmp_ocm_edac_inject_cebitpos_show,
-+		.store = zynqmp_ocm_edac_inject_cebitpos_store},
-+	{
-+		.attr = {
-+			.name = "inject_uebitpos0",
-+			.mode = (0644)
-+		},
-+		.show = zynqmp_ocm_edac_inject_uebitpos0_show,
-+		.store = zynqmp_ocm_edac_inject_uebitpos0_store},
-+	{
-+		.attr = {
-+			.name = "inject_uebitpos1",
-+			.mode = (0644)
-+		},
-+		.show = zynqmp_ocm_edac_inject_uebitpos1_show,
-+		.store = zynqmp_ocm_edac_inject_uebitpos1_store},
-+	{
-+		.attr = {
-+			.name = "inject_fault_count",
-+			.mode = (0644)
-+		},
-+		.show = zynqmp_ocm_edac_inject_fault_count_show,
-+		.store = zynqmp_ocm_edac_inject_fault_count_store},
-+	/* End of list */
-+	{
-+		.attr = {.name = NULL}
-+	}
-+};
-+
-+/**
-+ * zynqmp_set_ocm_edac_sysfs_attributes - create sysfs attributes
-+ * @edac_dev:	Pointer to the edac device struct
-+ *
-+ * Creates sysfs entries for error injection
-+ */
-+static void zynqmp_set_ocm_edac_sysfs_attributes(struct edac_device_ctl_info
-+						*edac_dev)
-+{
-+	edac_dev->sysfs_attributes = zynqmp_ocm_edac_sysfs_attributes;
-+}
-+
-+/**
-+ * zynqmp_ocm_edac_probe - Check controller and bind driver
-+ * @pdev:	Pointer to the platform_device struct
-+ *
-+ * Probes a specific controller instance for binding with the driver.
-+ *
-+ * Return: 0 if the controller instance was successfully bound to the
-+ * driver; otherwise error code.
-+ */
-+static int zynqmp_ocm_edac_probe(struct platform_device *pdev)
-+{
-+	struct zynqmp_ocm_edac_priv *priv;
-+	struct edac_device_ctl_info *dci;
-+	void __iomem *baseaddr;
-+	struct resource *res;
-+	int irq, ret;
-+
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	baseaddr = devm_ioremap_resource(&pdev->dev, res);
-+	if (IS_ERR(baseaddr))
-+		return PTR_ERR(baseaddr);
-+
-+	if (!zynqmp_ocm_edac_get_eccstate(baseaddr)) {
-+		edac_printk(KERN_INFO, EDAC_DEVICE,
-+			    "ECC not enabled - Disabling EDAC driver\n");
-+		return -ENXIO;
-+	}
-+
-+	dci = edac_device_alloc_ctl_info(sizeof(*priv), ZYNQMP_OCM_EDAC_STRING,
-+					 1, ZYNQMP_OCM_EDAC_STRING, 1, 0, NULL, 0,
-+					 edac_device_alloc_index());
-+	if (!dci) {
-+		edac_printk(KERN_ERR, EDAC_DEVICE,
-+			    "Unable to allocate EDAC device\n");
-+		return -ENOMEM;
-+	}
-+
-+	priv = dci->pvt_info;
-+	platform_set_drvdata(pdev, dci);
-+	dci->dev = &pdev->dev;
-+	priv->baseaddr = baseaddr;
-+	dci->mod_name = pdev->dev.driver->name;
-+	dci->ctl_name = ZYNQMP_OCM_EDAC_STRING;
-+	dci->dev_name = dev_name(&pdev->dev);
-+
-+	irq = platform_get_irq(pdev, 0);
-+	if (irq < 0) {
-+		edac_printk(KERN_ERR, EDAC_DEVICE,
-+			    "No irq %d in DT\n", irq);
-+		ret = irq;
-+		goto free_dev_ctl;
-+	}
-+
-+	ret = devm_request_irq(&pdev->dev, irq,
-+			       zynqmp_ocm_edac_intr_handler,
-+			       0, dev_name(&pdev->dev), dci);
-+	if (ret) {
-+		edac_printk(KERN_ERR, EDAC_DEVICE, "Failed to request Irq\n");
-+		goto free_dev_ctl;
-+	}
-+
-+	writel(OCM_CEUE_MASK, priv->baseaddr + OCM_IEN_OFST);
-+
-+	zynqmp_set_ocm_edac_sysfs_attributes(dci);
-+	ret = edac_device_add_device(dci);
-+	if (ret)
-+		goto free_dev_ctl;
-+
-+	return 0;
-+
-+free_dev_ctl:
-+	edac_device_free_ctl_info(dci);
-+
-+	return ret;
-+}
-+
-+/**
-+ * zynqmp_ocm_edac_remove - Unbind driver from controller
-+ * @pdev:	Pointer to the platform_device struct
-+ *
-+ * Return: Unconditionally 0
-+ */
-+static int zynqmp_ocm_edac_remove(struct platform_device *pdev)
-+{
-+	struct edac_device_ctl_info *dci = platform_get_drvdata(pdev);
-+	struct zynqmp_ocm_edac_priv *priv = dci->pvt_info;
-+
-+	writel(OCM_CEUE_MASK, priv->baseaddr + OCM_IDS_OFST);
-+	edac_device_del_device(&pdev->dev);
-+	edac_device_free_ctl_info(dci);
-+
-+	return 0;
-+}
-+
-+static struct platform_driver zynqmp_ocm_edac_driver = {
-+	.driver = {
-+		   .name = "zynqmp-ocm-edac",
-+		   .of_match_table = zynqmp_ocm_edac_match,
-+		   },
-+	.probe = zynqmp_ocm_edac_probe,
-+	.remove = zynqmp_ocm_edac_remove,
-+};
-+
-+module_platform_driver(zynqmp_ocm_edac_driver);
-+
-+MODULE_AUTHOR("Advanced Micro Devices, Inc");
-+MODULE_DESCRIPTION("ZynqMP OCM ECC driver");
-+MODULE_LICENSE("GPL");
+ 	pinctrl_usb1_vbus: dhcom-usb1-grp {
+ 		fsl,pins = <
+-			MX8MP_IOMUXC_GPIO1_IO14__USB2_OTG_PWR		0x6
+-			MX8MP_IOMUXC_GPIO1_IO15__USB2_OTG_OC		0x80
++			MX8MP_IOMUXC_GPIO1_IO14__USB2_PWR		0x6
++			MX8MP_IOMUXC_GPIO1_IO15__USB2_OC		0x80
+ 		>;
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+index f6b017ab5f53..bdeccda5ddae 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+@@ -529,7 +529,7 @@ MX8MP_IOMUXC_UART2_TXD__UART2_DCE_TX	0x140
+ 
+ 	pinctrl_usb1_vbus: usb1grp {
+ 		fsl,pins = <
+-			MX8MP_IOMUXC_GPIO1_IO14__USB2_OTG_PWR	0x10
++			MX8MP_IOMUXC_GPIO1_IO14__USB2_PWR	0x10
+ 		>;
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-pinfunc.h b/arch/arm64/boot/dts/freescale/imx8mp-pinfunc.h
+index 0fef066471ba..7c266990aa3e 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-pinfunc.h
++++ b/arch/arm64/boot/dts/freescale/imx8mp-pinfunc.h
+@@ -13,10 +13,12 @@
+ #define MX8MP_IOMUXC_GPIO1_IO00__GPIO1_IO00                          0x014 0x274 0x000 0x0 0x0
+ #define MX8MP_IOMUXC_GPIO1_IO00__CCM_ENET_PHY_REF_CLK_ROOT           0x014 0x274 0x000 0x1 0x0
+ #define MX8MP_IOMUXC_GPIO1_IO00__ISP_FL_TRIG_0                       0x014 0x274 0x5D4 0x3 0x0
++#define MX8MP_IOMUXC_GPIO1_IO00__ANAMIX_REF_CLK_32K                  0x014 0x274 0x000 0x5 0x0
+ #define MX8MP_IOMUXC_GPIO1_IO00__CCM_EXT_CLK1                        0x014 0x274 0x000 0x6 0x0
+ #define MX8MP_IOMUXC_GPIO1_IO01__GPIO1_IO01                          0x018 0x278 0x000 0x0 0x0
+ #define MX8MP_IOMUXC_GPIO1_IO01__PWM1_OUT                            0x018 0x278 0x000 0x1 0x0
+ #define MX8MP_IOMUXC_GPIO1_IO01__ISP_SHUTTER_TRIG_0                  0x018 0x278 0x5DC 0x3 0x0
++#define MX8MP_IOMUXC_GPIO1_IO01__ANAMIX_REF_CLK_24M                  0x018 0x278 0x000 0x5 0x0
+ #define MX8MP_IOMUXC_GPIO1_IO01__CCM_EXT_CLK2                        0x018 0x278 0x000 0x6 0x0
+ #define MX8MP_IOMUXC_GPIO1_IO02__GPIO1_IO02                          0x01C 0x27C 0x000 0x0 0x0
+ #define MX8MP_IOMUXC_GPIO1_IO02__WDOG1_WDOG_B                        0x01C 0x27C 0x000 0x1 0x0
+@@ -58,26 +60,26 @@
+ #define MX8MP_IOMUXC_GPIO1_IO09__USDHC3_RESET_B                      0x038 0x298 0x000 0x4 0x0
+ #define MX8MP_IOMUXC_GPIO1_IO09__SDMA2_EXT_EVENT00                   0x038 0x298 0x000 0x5 0x0
+ #define MX8MP_IOMUXC_GPIO1_IO10__GPIO1_IO10                          0x03C 0x29C 0x000 0x0 0x0
+-#define MX8MP_IOMUXC_GPIO1_IO10__USB1_OTG_ID                         0x03C 0x29C 0x000 0x1 0x0
++#define MX8MP_IOMUXC_GPIO1_IO10__USB1_ID                             0x03C 0x29C 0x000 0x1 0x0
+ #define MX8MP_IOMUXC_GPIO1_IO10__PWM3_OUT                            0x03C 0x29C 0x000 0x2 0x0
+ #define MX8MP_IOMUXC_GPIO1_IO11__GPIO1_IO11                          0x040 0x2A0 0x000 0x0 0x0
+-#define MX8MP_IOMUXC_GPIO1_IO11__USB2_OTG_ID                         0x040 0x2A0 0x000 0x1 0x0
++#define MX8MP_IOMUXC_GPIO1_IO11__USB2_ID                             0x040 0x2A0 0x000 0x1 0x0
+ #define MX8MP_IOMUXC_GPIO1_IO11__PWM2_OUT                            0x040 0x2A0 0x000 0x2 0x0
+ #define MX8MP_IOMUXC_GPIO1_IO11__USDHC3_VSELECT                      0x040 0x2A0 0x000 0x4 0x0
+ #define MX8MP_IOMUXC_GPIO1_IO11__CCM_PMIC_READY                      0x040 0x2A0 0x554 0x5 0x1
+ #define MX8MP_IOMUXC_GPIO1_IO12__GPIO1_IO12                          0x044 0x2A4 0x000 0x0 0x0
+-#define MX8MP_IOMUXC_GPIO1_IO12__USB1_OTG_PWR                        0x044 0x2A4 0x000 0x1 0x0
++#define MX8MP_IOMUXC_GPIO1_IO12__USB1_PWR                            0x044 0x2A4 0x000 0x1 0x0
+ #define MX8MP_IOMUXC_GPIO1_IO12__SDMA2_EXT_EVENT01                   0x044 0x2A4 0x000 0x5 0x0
+ #define MX8MP_IOMUXC_GPIO1_IO13__GPIO1_IO13                          0x048 0x2A8 0x000 0x0 0x0
+-#define MX8MP_IOMUXC_GPIO1_IO13__USB1_OTG_OC                         0x048 0x2A8 0x000 0x1 0x0
++#define MX8MP_IOMUXC_GPIO1_IO13__USB1_OC                             0x048 0x2A8 0x000 0x1 0x0
+ #define MX8MP_IOMUXC_GPIO1_IO13__PWM2_OUT                            0x048 0x2A8 0x000 0x5 0x0
+ #define MX8MP_IOMUXC_GPIO1_IO14__GPIO1_IO14                          0x04C 0x2AC 0x000 0x0 0x0
+-#define MX8MP_IOMUXC_GPIO1_IO14__USB2_OTG_PWR                        0x04C 0x2AC 0x000 0x1 0x0
++#define MX8MP_IOMUXC_GPIO1_IO14__USB2_PWR                            0x04C 0x2AC 0x000 0x1 0x0
+ #define MX8MP_IOMUXC_GPIO1_IO14__USDHC3_CD_B                         0x04C 0x2AC 0x608 0x4 0x0
+ #define MX8MP_IOMUXC_GPIO1_IO14__PWM3_OUT                            0x04C 0x2AC 0x000 0x5 0x0
+ #define MX8MP_IOMUXC_GPIO1_IO14__CCM_CLKO1                           0x04C 0x2AC 0x000 0x6 0x0
+ #define MX8MP_IOMUXC_GPIO1_IO15__GPIO1_IO15                          0x050 0x2B0 0x000 0x0 0x0
+-#define MX8MP_IOMUXC_GPIO1_IO15__USB2_OTG_OC                         0x050 0x2B0 0x000 0x1 0x0
++#define MX8MP_IOMUXC_GPIO1_IO15__USB2_OC                             0x050 0x2B0 0x000 0x1 0x0
+ #define MX8MP_IOMUXC_GPIO1_IO15__USDHC3_WP                           0x050 0x2B0 0x634 0x4 0x0
+ #define MX8MP_IOMUXC_GPIO1_IO15__PWM4_OUT                            0x050 0x2B0 0x000 0x5 0x0
+ #define MX8MP_IOMUXC_GPIO1_IO15__CCM_CLKO2                           0x050 0x2B0 0x000 0x6 0x0
+@@ -258,10 +260,8 @@
+ #define MX8MP_IOMUXC_SD2_DATA3__AUDIOMIX_SPDIF1_IN                   0x0D4 0x334 0x544 0x3 0x1
+ #define MX8MP_IOMUXC_SD2_DATA3__AUDIOMIX_PDM_BIT_STREAM03            0x0D4 0x334 0x4CC 0x4 0x2
+ #define MX8MP_IOMUXC_SD2_DATA3__GPIO2_IO18                           0x0D4 0x334 0x000 0x5 0x0
+-#define MX8MP_IOMUXC_SD2_DATA3__SRC_EARLY_RESET                      0x0D4 0x334 0x000 0x6 0x0
+ #define MX8MP_IOMUXC_SD2_RESET_B__USDHC2_RESET_B                     0x0D8 0x338 0x000 0x0 0x0
+ #define MX8MP_IOMUXC_SD2_RESET_B__GPIO2_IO19                         0x0D8 0x338 0x000 0x5 0x0
+-#define MX8MP_IOMUXC_SD2_RESET_B__SRC_SYSTEM_RESET                   0x0D8 0x338 0x000 0x6 0x0
+ #define MX8MP_IOMUXC_SD2_WP__USDHC2_WP                               0x0DC 0x33C 0x000 0x0 0x0
+ #define MX8MP_IOMUXC_SD2_WP__GPIO2_IO20                              0x0DC 0x33C 0x000 0x5 0x0
+ #define MX8MP_IOMUXC_SD2_WP__CORESIGHT_EVENTI                        0x0DC 0x33C 0x000 0x6 0x0
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
+index 521215520a0f..ac59f36b82fc 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
+@@ -824,8 +824,8 @@ MX8MP_IOMUXC_UART4_TXD__UART4_DCE_TX	0x140
+ 
+ 	pinctrl_usb1: usb1grp {
+ 		fsl,pins = <
+-			MX8MP_IOMUXC_GPIO1_IO13__USB1_OTG_OC	0x140
+-			MX8MP_IOMUXC_GPIO1_IO10__USB1_OTG_ID	0x140
++			MX8MP_IOMUXC_GPIO1_IO13__USB1_OC	0x140
++			MX8MP_IOMUXC_GPIO1_IO10__USB1_ID	0x140
+ 		>;
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
+index c5987bdbb383..da66d8487651 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
+@@ -1205,7 +1205,7 @@ pinctrl_uart4: uart4grp {
+ 
+ 	pinctrl_usb1_vbus: usb1vbusgrp {
+ 		fsl,pins =
+-			<MX8MP_IOMUXC_GPIO1_IO12__USB1_OTG_PWR		0x19>;	/* SODIMM 155 */
++			<MX8MP_IOMUXC_GPIO1_IO12__USB1_PWR		0x19>;	/* SODIMM 155 */
+ 	};
+ 
+ 	/* USB_1_ID */
+@@ -1216,7 +1216,7 @@ pinctrl_usb_1_id: usb1idgrp {
+ 
+ 	pinctrl_usb2_vbus: usb2vbusgrp {
+ 		fsl,pins =
+-			<MX8MP_IOMUXC_GPIO1_IO14__USB2_OTG_PWR		0x19>;	/* SODIMM 185 */
++			<MX8MP_IOMUXC_GPIO1_IO14__USB2_PWR		0x19>;	/* SODIMM 185 */
+ 	};
+ 
+ 	/* On-module Wi-Fi */
 -- 
-2.17.1
+2.34.1
 
