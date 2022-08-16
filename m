@@ -2,84 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4FC3596140
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 19:35:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD69759614B
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 19:40:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236543AbiHPRfn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 13:35:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55556 "EHLO
+        id S235818AbiHPRkK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 13:40:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236478AbiHPRfm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 13:35:42 -0400
-Received: from mail-il1-f177.google.com (mail-il1-f177.google.com [209.85.166.177])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AEC91A39C;
-        Tue, 16 Aug 2022 10:35:42 -0700 (PDT)
-Received: by mail-il1-f177.google.com with SMTP id p9so5696924ilq.13;
-        Tue, 16 Aug 2022 10:35:42 -0700 (PDT)
+        with ESMTP id S230248AbiHPRkJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 13:40:09 -0400
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27C537F100
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 10:40:07 -0700 (PDT)
+Received: by mail-pl1-x62a.google.com with SMTP id jl18so2039010plb.1
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 10:40:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc;
+        bh=hIMXk1lCy7PeMgMus9bPUNIc2yzEqIefq4WSi+UIz3g=;
+        b=gU23TNm472yJs3AYqGyYKrwfLS2f6Nk7Rj9rKopRrOtj2OZaZeYJXPuj9+bsEV3Ckg
+         IWXMzfRX2+cdXvkbjuffEQmwKQi84FsiTAgZXzqMkHWQ5vy1oB/xyjdzLGJRz6LY+5oS
+         oEPLku9+93HGey8m6M0RubpDyeoXv4UkEtQHKfNyVsav73ti+8JXsUSJSkNXTLo6ZBbd
+         6Z7SZTO79smvNijNR6LLZgPbrXD38xjyjB6GtteYjC4b2IYj2x0+qmQqhUbY3v84AkSv
+         8oW4VxasJ+xgnIteVFMJfZlPL1M/oZ/is244hdD3vQcW2IrVd3eImVjnzUnifWvRYUgE
+         rWcw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=RnoAucd176W+o4ETJ7P9jHc6+1EKnkGk1HGPAZBXuwk=;
-        b=ZHaQEqgO9DepXVKnCTsUcSZxOaRRTs8J7FTPUtsxK2Tb2xr0fZNzC7crv6EHpNHXtL
-         dIRMqhFwnKIQ37Ml9z96C4yT8a0DLlxedsl490s26oUQDPLajx15QIY567J4TMQWP1xy
-         MWAEEz5k9f3UEoBGS1hNT8z1XGBSy2eLopM49iR0MUJ2jh4upLw4/V4fA8wR4fiWW3Tj
-         /7MPR2JIpt0aM3BgTbDM3dQoB+5B9ysdzWoTLV8SutTIwtZlOchBlBekZ1s3d1p8SnIV
-         peWwu6GMJ2qJzGBT1eLP2xgQDaa7CYtthqYMz2BsNFFyQv1jeXkmB124sZUd6aC53SnP
-         W96w==
-X-Gm-Message-State: ACgBeo2dyFsJi5amRMotGQOehE0clMEr6I6zMvmaLczaE/881rJe9OTZ
-        +XGxamaUttFBgnyR7heEhA==
-X-Google-Smtp-Source: AA6agR6SitkaJDU9fxs/PoyypEjRtrIRm+X9J1OjRamGhN+UfpSsRZky+nrmJnLwNAwcNtebknW+QA==
-X-Received: by 2002:a92:cda3:0:b0:2e3:e214:5fa5 with SMTP id g3-20020a92cda3000000b002e3e2145fa5mr9293291ild.306.1660671341354;
-        Tue, 16 Aug 2022 10:35:41 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id f28-20020a056602071c00b00688b5bd70dcsm1081734iox.8.2022.08.16.10.35.40
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc;
+        bh=hIMXk1lCy7PeMgMus9bPUNIc2yzEqIefq4WSi+UIz3g=;
+        b=VpIt7ZdzdKoKPY058lBIMEoI41nq9i2qCJGNrIFIgRLJ7pG3rDRFqObivSAAOEIsdg
+         8UkbAxIdUHJC6vSE45HGfpoglnWLkRqzyJ9uxLjzC/OReGcgJScBnRUPMt8NL20Ke/eQ
+         CWAlTcuApRFFeNB5J8guaMiOntPadw3uX9hRgVzDvXhmcLob1WnM7UWWrC3tbyHfc91H
+         yk3WqE9hTIDLeKYfMS9V+Q4xsqRjMmzcI5e93+uklLbojP9rfFQLABC5MYNjEtVWfO41
+         B46YMqR0/tABrOFam0t5PUl7PBCOI9TrK5TmVfzWLpFlioIGlpPnIVkt2aX8dfJAT79I
+         0zsg==
+X-Gm-Message-State: ACgBeo3iQvZBoVZdOqOvtMdT+uyOC9RdSAI5os6f87xIq7XYQZOh0XGz
+        svPqySu6pFs3DiBKGvwnLo/KQ5PZKy5G5A==
+X-Google-Smtp-Source: AA6agR52J8m2xodPayu3JfjmxNMO+0/0nJn8LACM9hVk8SrKFlqPoYwm4lTP+KDm6rI3hZkyoFEigg==
+X-Received: by 2002:a17:90b:3849:b0:1f4:89bb:14dc with SMTP id nl9-20020a17090b384900b001f489bb14dcmr25184319pjb.144.1660671606634;
+        Tue, 16 Aug 2022 10:40:06 -0700 (PDT)
+Received: from localhost ([76.146.1.42])
+        by smtp.gmail.com with ESMTPSA id t12-20020a170902dccc00b0016d4f05eb95sm9279904pll.272.2022.08.16.10.40.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Aug 2022 10:35:40 -0700 (PDT)
-Received: (nullmailer pid 2427019 invoked by uid 1000);
-        Tue, 16 Aug 2022 17:35:39 -0000
-Date:   Tue, 16 Aug 2022 11:35:39 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        linux-sunxi@lists.linux.dev, linux-riscv@lists.infradead.org,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 04/12] dt-bindings: riscv: Add Allwinner D1 board
- compatibles
-Message-ID: <20220816173539.GA2426958-robh@kernel.org>
-References: <20220815050815.22340-1-samuel@sholland.org>
- <20220815050815.22340-5-samuel@sholland.org>
+        Tue, 16 Aug 2022 10:40:06 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        =?utf-8?Q?P=C3=A9ter?= Ujfalusi <peter.ujfalusi@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-omap@vger.kernel.org
+Subject: Re: [PATCH] of: irq: Export of_msi_get_domain
+In-Reply-To: <CAL_Jsq+DDPTYodAk-TKs61AUpdYhocWq+EoRGgVwgc1hz5gk0A@mail.gmail.com>
+References: <20220812174420.2706827-1-khilman@baylibre.com>
+ <CAL_Jsq+DDPTYodAk-TKs61AUpdYhocWq+EoRGgVwgc1hz5gk0A@mail.gmail.com>
+Date:   Tue, 16 Aug 2022 10:40:05 -0700
+Message-ID: <7hh72cw0i2.fsf@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220815050815.22340-5-samuel@sholland.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 15 Aug 2022 00:08:07 -0500, Samuel Holland wrote:
-> Several SoMs and boards are available that feature the Allwinner D1 SoC.
-> Document their compatible strings.
-> 
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
-> ---
-> 
->  .../devicetree/bindings/riscv/sunxi.yaml      | 64 +++++++++++++++++++
->  1 file changed, 64 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/riscv/sunxi.yaml
-> 
+Rob Herring <robh+dt@kernel.org> writes:
 
-Acked-by: Rob Herring <robh@kernel.org>
+> On Fri, Aug 12, 2022 at 11:44 AM Kevin Hilman <khilman@baylibre.com> wrote:
+>>
+>> From: Matthias Brugger <matthias.bgg@gmail.com>
+>>
+>> Export of_mis_get_domain to enable it for users from outside.
+>
+> typo
+>
+>>
+>> Signed-off-by: Matthias Brugger <mbrugger@suse.com>
+>> Acked-by: Rob Herring <robh@kernel.org>
+>> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+>> Link: https://lore.kernel.org/r/20200122104723.16955-1-peter.ujfalusi@ti.com
+>> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+>> ---
+>> Peter tried to resurrect this in 2020 (c.f. Link tag in log) but it
+>> didn't work.  Here's one more attempt.  I need this enable building
+>> some TI DMA drivers as modules.
+>
+> Then apply this with that enabling. I've already acked it (which keeps
+> it out of my queue, so drop that if you want to ensure I see it).
+
+OK.
+
+I assumed you'd want to take this through your tree, but if you're OK
+with it getting merged with the series using it, I'll do that.
+
+Thanks,
+
+Kevin
+
+
