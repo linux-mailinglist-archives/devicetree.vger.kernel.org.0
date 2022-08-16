@@ -2,84 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E54935959C1
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 13:21:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 385395959C9
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 13:21:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234459AbiHPLUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 07:20:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40918 "EHLO
+        id S233849AbiHPLVe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 07:21:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233256AbiHPLTz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 07:19:55 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E369DE2C51
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 02:44:40 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id v2so14179865lfi.6
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 02:44:40 -0700 (PDT)
+        with ESMTP id S233921AbiHPLVD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 07:21:03 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80A829D8DB
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 02:45:32 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id a9so14154108lfm.12
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 02:45:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=Enloy5lgKrMKVLbqE4UqCEXL8D9Wgy3KUpK/qyBoIrI=;
-        b=bmhY0kYxRm0Pu1Cs0YlMSETk0hz7OlpKbOUt8eVnlNIeRbuboqVaSXl/78n+u1O29t
-         RWkFw0mRgGs6O9xp37PVWEjfbpC9cvfDuPeJDbI1CWUKikDaalsk6P+uWh8uNsnn+f/P
-         QIFsP8CfQuNuSIih2QvNTFRYGLDmv2wNF3ku4sXH+o83ZAkPRnbVk/wplO4egti048ZD
-         ErxTSkVmZxvFPLxaqXZd1gC4KD0DYq32h2XL+NCU4wmEzS981G+5fm+K2KJHHNjFk5CC
-         UzE9+Q6LCgzSP1ffDEM/NbheuzW8sp649Ns0J1nneXwCLJwPo+miQhcLwuRVAiQukuJU
-         I7aA==
+        bh=egVgk37jsb5bP/NihMXfkkjt0RcB5vm1gJqee+Euv4k=;
+        b=AEhcllsKHaBLOkNxBC/mnTGx3zk3qk8yoRqnZ7WCmJGbS7PCIItMYVqBHBJ8RrPJ2J
+         9poBL5mFBFE9bM4jkeKfNs0lFv6IeTx8vbs+pavY+LOMNn0tEGZxNBpExOkzgnbnXHqO
+         9tki8SV5kx3i+cmFC5iRLmMoMvYeQfd5OS9jl6yC6bEUEuhTyrhdxj82pDsEw2YaoyZE
+         LVsqkTC3lSiqf2tjX9H4eUCQwZzgkqU5Po580Z+VU6WMhaGM2990D1wugUqmEdqMd+CL
+         3f9yNBJKdX9SmfXAUCiKWnA/FSINXAw5//bZQjFuWfLOpWfc0UOnAE7VMhsu1E2/H+qY
+         MIfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=Enloy5lgKrMKVLbqE4UqCEXL8D9Wgy3KUpK/qyBoIrI=;
-        b=1N4J7BRb5aEM3CwzxM7R3mtXwzt2RAgHMGc8hqvWXgTwjKg8nQ767I69ItQylsl3pB
-         zwEVcIQubKMQbX3nK7zZYyN13CiDZASzdAQMGRWR6tqTx+a3+KR2ouMxp3KHx46rhSqS
-         DGlmULwHHjbuiAexfurBpmjJ79mas3lAWxPAUPqTbgUCfZ88JQ+7/jrSjQNTd7cD+Tvd
-         u2NLL+7vdBzoa20LPjWr9Fu5DXFOqU/JVEJTyZQr6TyP9oGXnBU/PHsaZWd5QQ27YhvR
-         dFivxUQbG+dBwsDSN8RDp3ZrzUcUsFd1Za2sQ+cC8X8AHQ1TTfbEM09aUA005JWvpqZE
-         bakQ==
-X-Gm-Message-State: ACgBeo0Bs/+fwsxO/8sFAXMdb+lcdnWC8SVP+AiciBTLBWimPGy2I1Q7
-        Sdhe4u/sQZBKi+RamM082ceVyg==
-X-Google-Smtp-Source: AA6agR54PZx7XS1rYcJtMRhTAqOXN6+VFqLfzj/NiD8GAFWFKJ+lry6TmRGXna2tZtdoMf6GdwYMxQ==
-X-Received: by 2002:ac2:44af:0:b0:48a:f361:fe1d with SMTP id c15-20020ac244af000000b0048af361fe1dmr7226313lfm.190.1660643079100;
-        Tue, 16 Aug 2022 02:44:39 -0700 (PDT)
+        bh=egVgk37jsb5bP/NihMXfkkjt0RcB5vm1gJqee+Euv4k=;
+        b=Ao+5nXlat79yDaat655Q/rPjMqrNIpsmRU+pKMODfeFDi1LqQ/reHBJSoaJ8RwCyWD
+         KEAlO2Q95tzpFyUkmQzxE4f/XDebuHiBpcl2M3q6yVkjSUa9l7FzKEQf8U+FbrsznQ9k
+         Qn9mBj5rtveOsIu9ot9/yf3h6F9uXe0zeXlW5qd9BarcVwe3hkgXLQRwAS2O3BcaLo/Q
+         qTHMb9/y27B/Q29Rx8/zEyPSeU49UmOIuW0clOHgQF2VOv7lYzLaQlSt9RA7poMreX9B
+         TXUPoakwZesUr3fo5y4OzUmJKJFVIZe88ZY35J52rrdQquXvtnjaCT6JNnn3IvA5esRP
+         hkWw==
+X-Gm-Message-State: ACgBeo2dFTT6IySsFMJ9a84tK5dDN9Fz2oiDNxD46OEumsYnYVgNxAxx
+        hTs48HPuaP9ZLfYhpNiUxgmLKA==
+X-Google-Smtp-Source: AA6agR4GisQVfukKTkz/1D4XZ5iXpQMDvR/AIMZ05fuXqOeyj04c7DOKOOivIHMqeVge+x1lJphtng==
+X-Received: by 2002:a05:6512:a82:b0:48b:1241:f4cc with SMTP id m2-20020a0565120a8200b0048b1241f4ccmr6589955lfu.141.1660643130890;
+        Tue, 16 Aug 2022 02:45:30 -0700 (PDT)
 Received: from ?IPV6:2001:14bb:ae:539c:1782:dd68:b0c1:c1a4? (d15l54g8c71znbtrbzt-4.rev.dnainternet.fi. [2001:14bb:ae:539c:1782:dd68:b0c1:c1a4])
-        by smtp.gmail.com with ESMTPSA id z12-20020a056512370c00b0048b08e25979sm1330665lfr.199.2022.08.16.02.44.37
+        by smtp.gmail.com with ESMTPSA id s1-20020a056512214100b0048b3581eb7dsm1332957lfr.260.2022.08.16.02.45.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Aug 2022 02:44:38 -0700 (PDT)
-Message-ID: <b630a007-2548-2196-a963-786c6a98b748@linaro.org>
-Date:   Tue, 16 Aug 2022 12:44:37 +0300
+        Tue, 16 Aug 2022 02:45:30 -0700 (PDT)
+Message-ID: <cae2f59a-aeeb-e573-029f-7151ae29dd28@linaro.org>
+Date:   Tue, 16 Aug 2022 12:45:29 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH 0/6] i2c-imx-lpi2c: add IPG clock
+Subject: Re: [PATCH] dt-bindings: spi: renesas,sh-msiof: Fix
+ 'unevaluatedProperties' warnings
 Content-Language: en-US
-To:     Peng Fan <peng.fan@nxp.com>,
-        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
-Cc:     "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Clark Wang <xiaoning.wang@nxp.com>
-References: <20220812043424.4078034-1-peng.fan@oss.nxp.com>
- <f1add9c7-fc2e-a600-49a6-a6579f17db1b@linaro.org>
- <DU0PR04MB9417D62230578AC8CA4234F288689@DU0PR04MB9417.eurprd04.prod.outlook.com>
- <039566a7-5c65-b2d8-7b45-c616863cb292@linaro.org>
- <DU0PR04MB9417EF15DD50EC51B4FBBCFF886B9@DU0PR04MB9417.eurprd04.prod.outlook.com>
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+References: <20220816083842.25925-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <DU0PR04MB9417EF15DD50EC51B4FBBCFF886B9@DU0PR04MB9417.eurprd04.prod.outlook.com>
+In-Reply-To: <20220816083842.25925-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -92,23 +81,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/08/2022 11:43, Peng Fan wrote:
->> No. For such patch ABI break is also not allowed in that case. Just make the
->> driver backwards compatible and both problems - non bisectability and ABI
->> break - go away.
+On 16/08/2022 11:38, Lad Prabhakar wrote:
+> With 'unevaluatedProperties' support implemented, there's a number of
+> warnings when running dtbs_check:
 > 
-> One more point that I am not very clear about  
-> "non bisectability and ABI break "
+> arch/arm64/boot/dts/renesas/r8a77951-ulcb-kf.dtb: spi@e6e90000: Unevaluated properties are not allowed ('power-domains', 'resets' were unexpected)
+> 	From schema: Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
 > 
-> ABI, I suppose you mean dt-binding, right?
-> The I2C bindings and dts update will go through different tree, I think. So
-> dtbs_check may fail considering the PR merge order.
+> The main problem is that SoC DTSI's include power-domains and resets
+> property, whereas the renesas,sh-msiof.yaml has 'unevaluatedProperties:
+> false'. So just add optional power-domains and resets properties.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+>  Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml b/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
+> index 5de710adfa63..7bd86cf876f1 100644
+> --- a/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
+> +++ b/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
+> @@ -69,6 +69,10 @@ properties:
+>    clocks:
+>      maxItems: 1
+>  
+> +  power-domains: true
+> +
+> +  resets: true
 
-ABI break means breaking Application Binary Interface, so out of tree
-DTS conforming to old bindings stop working with new kernel.
-
-ABI is described by bindings and implemented by driver. You broke it in
-the driver.
+No. For both you need maxItems (or describe the items).
 
 Best regards,
 Krzysztof
