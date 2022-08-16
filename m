@@ -2,70 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 827F1595C76
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 14:56:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACCDD595C84
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 14:58:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233699AbiHPM4i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 08:56:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45874 "EHLO
+        id S233050AbiHPM5k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 08:57:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51094 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234226AbiHPM4X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 08:56:23 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A285A0626;
-        Tue, 16 Aug 2022 05:55:38 -0700 (PDT)
-X-UUID: d59141687e644814850fd643e8747338-20220816
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=xtsIq1uDUUFshftfGHmMdF9c6lD7cY1mGwUtoM45Wk0=;
-        b=umskDh4KLwOww2AjUZFXJtoiQWH/M6Elhg7G3saKU7Y4HW/CrgmMKbK/yI0knE5bvpJtws+jfMCG+uNGAqKTiMvuDZURMdkg60jKxwk6q3xB+WoyqWouq7req2OhXcD/CPdgdyC5hPdSbsnqd+dNZ8w5UZ2xfjvCRAdbXFt2SBs=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.10,REQID:feacfdd1-a8bd-420a-819c-b5fb0e904aa2,OB:0,L
-        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:51,FILE:0,BULK:0,RULE:Release
-        _Ham,ACTION:release,TS:51
-X-CID-INFO: VERSION:1.1.10,REQID:feacfdd1-a8bd-420a-819c-b5fb0e904aa2,OB:0,LOB
-        :0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:51,FILE:0,BULK:0,RULE:Release_H
-        am,ACTION:release,TS:51
-X-CID-META: VersionHash:84eae18,CLOUDID:4feaf9ae-9535-44a6-aa9b-7f62b79b6ff6,C
-        OID:a5590f0c6722,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:40,QS:nil,BEC:nil,COL:0
-X-UUID: d59141687e644814850fd643e8747338-20220816
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
-        (envelope-from <allen-kh.cheng@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1493968202; Tue, 16 Aug 2022 20:55:31 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Tue, 16 Aug 2022 20:55:30 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Tue, 16 Aug 2022 20:55:30 +0800
-Message-ID: <51abb54a5d5bea76a855f20d3e28e90a3eb0efba.camel@mediatek.com>
-Subject: Re: [PATCH] dt-bindings: pinctrl: mt8186: Fix 'reg-names' for
- pinctrl nodes
-From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Matthias Brugger" <matthias.bgg@gmail.com>
-CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Guodong Liu <guodong.liu@mediatek.com>
-Date:   Tue, 16 Aug 2022 20:55:29 +0800
-In-Reply-To: <c411c5c5-0a8b-c85c-2d57-1a387eb0d28f@linaro.org>
-References: <20220815122503.2768-1-allen-kh.cheng@mediatek.com>
-         <c411c5c5-0a8b-c85c-2d57-1a387eb0d28f@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S233461AbiHPM5M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 08:57:12 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA53189CFF
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 05:57:06 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id u1so14808548lfq.4
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 05:57:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=u6vsO210HbSOzl+ApBtKdfKeKIVufqnfwmwO0kmWyvI=;
+        b=ryshPL7gSJngeT8mVWdgphUp3NPNc5/8T07ioXmLOYFE+RM9kMFox6j/QSmMx+MRjW
+         IF5Tvsu+eUNa/PURaluKXcxsPoKwTU0v6obcpVNF6S4E2WUJQwfcMoAedizNNTEJVzIN
+         qApkaeQsH9W4FBpYE2y4cHYlnaFnoj9yBLWWtHAiDyYD2WSMopnYkuWFR3AZvGXe9orE
+         W7mL52SexG3h2NyytiRZEwQPnlFxYDDwyJbFKcIuCS7pw5DDoUXAJcdrv+Qc4tTN48CC
+         ofihlq8KHD75r9tNZ+KV2KtQWXkZp55mGCW7DPJAuyRkCANnLDWg9JgV8nXF25DqpsEo
+         /E1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=u6vsO210HbSOzl+ApBtKdfKeKIVufqnfwmwO0kmWyvI=;
+        b=pyaXXvJGwNMIrWeDwfL3mwHBiQDSZl3fMiaNUD5jnMFo1GmZEp+LNtTXayo1ExlIm8
+         zxAr0tSb8o9IEdKIglHolIzxPktcX1c7bCc4qCYw49E4i1A8YqMM/51lEKKa2k6QjX87
+         z/tnfjMDm3tOpSvg5mO3CJdinOSYCLPeqqvVy+ZY6TTFEoEAb3l/N3/r357JeLWKhh1M
+         h/6GfxxhYqFrRljtxHDOCn7To9DBLFfTByJr8GA7JMUfamBd+6hP4/7Ux2vfB2JPaJkr
+         +VRwIle3EkN4aTyJwIcccM1/Wxb3IbJUWX/SornPIFRMve1ZybkU6flm1MlVF9YJydrm
+         ZoPw==
+X-Gm-Message-State: ACgBeo27moxF9/fvkftaX5dxjNU7Zaj/mAr7a+M8hNcPnNp+9BEmb1ed
+        iR1zE29ZmkzLYGFPo5z9fzphkA==
+X-Google-Smtp-Source: AA6agR60sMxOHtIXk2hcNdYq73fYG6QiAiIF8W4tR5L6Ra08qXNqi9BEiQFyK2ct4uvflrrmAZRnVQ==
+X-Received: by 2002:a05:6512:b03:b0:492:88d3:8369 with SMTP id w3-20020a0565120b0300b0049288d38369mr3820559lfu.552.1660654625046;
+        Tue, 16 Aug 2022 05:57:05 -0700 (PDT)
+Received: from ?IPV6:2001:14bb:ae:539c:1782:dd68:b0c1:c1a4? (d15l54g8c71znbtrbzt-4.rev.dnainternet.fi. [2001:14bb:ae:539c:1782:dd68:b0c1:c1a4])
+        by smtp.gmail.com with ESMTPSA id b26-20020ac2411a000000b0048af9d2d119sm1379707lfi.130.2022.08.16.05.57.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 Aug 2022 05:57:04 -0700 (PDT)
+Message-ID: <1349b271-796b-c9d2-a568-f9be84926ed4@linaro.org>
+Date:   Tue, 16 Aug 2022 15:57:02 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v3 1/1] regulator: dt-bindings: mediatek: add mt6366
+Content-Language: en-US
+To:     "zhiyong.tao" <zhiyong.tao@mediatek.com>
+Cc:     lee.jones@linaro.org, robh+dt@kernel.org, matthias.bgg@gmail.com,
+        lgirdwood@gmail.com, broonie@kernel.org, eddie.huang@mediatek.com,
+        a.zummo@towertech.it, alexandre.belloni@bootlin.com,
+        fshao@chromium.org, sen.chu@mediatek.com, hui.liu@mediatek.com,
+        allen-kh.cheng@mediatek.com, hsin-hsiung.wang@mediatek.com,
+        sean.wang@mediatek.com, macpaul.lin@mediatek.com,
+        wen.su@mediatek.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20220812092901.6429-1-zhiyong.tao@mediatek.com>
+ <20220812092901.6429-2-zhiyong.tao@mediatek.com>
+ <cbe761af-5011-83a2-0509-2b3c4fe0a79c@linaro.org>
+ <4a49b619deb5453749a47874377cad6a36a9a054.camel@mediatek.com>
+ <CAGE=qrohYZ6f9bbEuYfF=2Rz21nbW_8ho3rBQmHt1D+kQG2-jA@mail.gmail.com>
+ <9bc148119fc36c34f404091ca0f5a2e37727c285.camel@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <9bc148119fc36c34f404091ca0f5a2e37727c285.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,42 +88,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On 16/08/2022 15:54, zhiyong.tao wrote:
+> On Fri, 2022-08-12 at 15:55 +0300, Krzysztof Kozlowski wrote:
+>> On Fri, 12 Aug 2022 at 15:52, zhiyong.tao <zhiyong.tao@mediatek.com>
+>> wrote:
+>>>
+>>> On Fri, 2022-08-12 at 13:55 +0300, Krzysztof Kozlowski wrote:
+>>>> On 12/08/2022 12:29, Zhiyong Tao wrote:
+>>>>> Add mt6366 regulator document
+>>>>>
+>>>>> +
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    const: mediatek,mt6366-regulator
+>>>>> +
+>>>>> +  regulators:
+>>>>> +    type: object
+>>>>> +    description: List of regulators and its properties
+>>>>> +
+>>>>> +    patternProperties:
+>>>>> +      "^buck-
+>>>>> v(dram1|core|coresshub|proc11|proc12|gpu|s2|modem|s1)$":
+>>>>> +        type: object
+>>>>> +        $ref: regulator.yaml#
+>>>>> +        unevaluatedProperties: false
+>>>>> +
+>>>>> +      "^ldo-v(dram2|sim1|ibr|rf12|usb|camio|camd|cn18|fe28)$":
+>>>>> +        type: object
+>>>>> +        $ref: regulator.yaml#
+>>>>
+>>>> You miss unevaluatedProperties in most of the places.
+>>>
+>>> Hi Krzysztof,
+>>>    Thanks for your suggestion,
+>>>    Do you mean that all places should have the
+>>> unevaluatedProperties
+>>> Properties ?
+>>
+>> Yes. You put it in some of the places which does not really make
+>> sense...
+> 
+> Hi Krzysztof,
+>    Thanks for your suggestion,
+>    We find that if there is a properties "compatible = "regulator-
+> fixed";" in ldo-vrf12, we should set unevaluatedProperties as true.
+> or it will check yaml warning "Unevaluated Properties are not
+> allowed('compatible' was unexpected)". is it right?
+>    There is a properties "compatible = "regulator-fixed";"in ldo-vrf12.
+> It will cause the checking yaml error "ldo-vrf12: 'regulator-name' is a
+> required property". Can you help to give a suggestion to fix the
+> warning? Add regulator-name for ldo-vrf12 or other suggestion?
+> 
 
-On Tue, 2022-08-16 at 10:14 +0300, Krzysztof Kozlowski wrote:
-> On 15/08/2022 15:25, Allen-KH Cheng wrote:
-> > There are 8 GPIO physical address bases in mt8186, corresponding to
-> > the
-> > items of 'reg-names' with the pinctrl driver. but the order of
-> 
-> New sentences start with capital letter.
-> 
-> > 'reg-names' is not correct. The mt8186 pinctrl driver would get the
-> > wrong address, causing the system to restart when regulator
-> > initializes
-> > . we 
-> 
-> ^^^ Something is missing. Sentence looks unfinished, full stop is in
-> new
-> line, next sentence does not start with capital letter.
-> 
-> 
-
-Thanks for your kind reminder.
-I'll update in the next version.
+And how this regulator is supposed to work? Are you populating DT
+children in your driver?
 
 Best regards,
-Allen
-
-> > fix 'reg-names' for pinctrl nodes and the pinctrl-mt8186 example
-> > in bindings.
-> > 
-> > Fixes: 338e953f1bd1 ("dt-bindings: pinctrl: mt8186: add pinctrl
-> > file and binding document")
-> > Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> > Signed-off-by: Guodong Liu <guodong.liu@mediatek.com>
-> > ---
-> 
-> Best regards,
-> Krzysztof
-
+Krzysztof
