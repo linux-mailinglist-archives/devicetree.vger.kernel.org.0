@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3813C595C58
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 14:55:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75D6C595C63
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 14:55:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233728AbiHPMyZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 08:54:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45880 "EHLO
+        id S234945AbiHPMy0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 08:54:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233883AbiHPMyO (ORCPT
+        with ESMTP id S233934AbiHPMyO (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 08:54:14 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D57D06C763
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 05:54:08 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id e15so14841329lfs.0
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 05:54:08 -0700 (PDT)
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65D8362AB4
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 05:54:10 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id e15so14841410lfs.0
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 05:54:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=1IH7B3mi1MTbFS+LeDFHpaT7zx3wiBQvuaRcBxdVuRo=;
-        b=nq1FEcM1Fl+n2g4Dk5813nNha6A33EZsIhcjgxIjdnAyFHTEMS5wpUnK0pa1RVUJ5D
-         T5g342auYl9WCqB27frm86cg91ltD41k7jTIYWvdH/JZyk0BnWne26qS5omNsVDwZ2BX
-         CuGW6R8egpV28EhdrtkgrJcDLVU+l9SQyM9x12ebXRrUvM+iw/sRvdtQdRWiRfQi/Cmq
-         g6LCHh1Lnk65LeZBDLNJFfqyEo/rBbStJjMi/3beiKK8MzeFieVU/EOP6p3W/iNNh41n
-         kAHHAy99ynnxfPsdHhEOYUcC5hUIpzcrCIFmpLfICl2VvNfJQdgkWInlCam48wSsZiC7
-         f2IQ==
+        bh=vLleWyKkc8+dRuojA9STfvQ+s2PUO4s/QZeAcLoXm/w=;
+        b=khfPnd4/1a217S2gFX6VmsRS139kt76fTvrIsK4JxL4bXiQdIUBgm5pqrBE8KVU7PL
+         XH5CGRh0SwL/yDThQniQmTTobptdoI7zcHlMw3Uisc551/rTw5W7lfxCdV2wy8wgBGOQ
+         Y0wgsUbr5qVhcHi60hqyzqH3v02rkLkdtvaVSWK9Gz5OZjlQ02PdUVr2Zuj7Azg+FkNz
+         oMpMmyf9gLX7+ssjbhiX7hXodw+/W/CiL5cPGbHQI8KD8sayXOAb1f6qaoQu5q4X8vGN
+         U6QbV2Dgn6WKs0ffdcYbMg6NsIeoy9MtzBCb8A33YfoEso/gozuZ8rGVUpfFeAoLhgvi
+         bjxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=1IH7B3mi1MTbFS+LeDFHpaT7zx3wiBQvuaRcBxdVuRo=;
-        b=qz0GxuoWI0ngGbdiHtV4sCg0qBmG2+y03n55DrAjL4fiwpr2hgwui+DBFNM0IwvhJK
-         9KnQgjvrl2ckJrYssITVZC6edoL9hhCkKWJ59ghOVBD5T8mxBSNKHuSz2gYYS2739wuB
-         EuHdReyzaDjPSw5ByuzmGgS20Q786IOuhaeIpPeuA5rToKsCP40HB0SoFUoKTbJ6GILq
-         75Yzgh0mpZb1V6Lt1b8rQBDW9z4RLRUnMCYewVkYk+XQIbUl/D/s3oORAjCDbXqumrWv
-         h6KxsB7nn1TK6VM07blZ//G/4FnW6CX7sgl5BxLcHbxEyTSrBBMTYucNp2M/hSxwNL2j
-         DT1Q==
-X-Gm-Message-State: ACgBeo2ZkMr2x3+ScHeWUeMUVNVZy1tvP6cEFwB21BAItivVXlJ4RN/G
-        pGMZZYkK3SvrMBltjDXr6TbkEA==
-X-Google-Smtp-Source: AA6agR6oboi5sC04C6dSA7fQ74tbpieyMz1Gpa6GynsxwgFWJp96ETbL1R/IQkYsBziMZ709izXb1A==
-X-Received: by 2002:a05:6512:219:b0:48b:18fb:377e with SMTP id a25-20020a056512021900b0048b18fb377emr6873129lfo.177.1660654447235;
-        Tue, 16 Aug 2022 05:54:07 -0700 (PDT)
+        bh=vLleWyKkc8+dRuojA9STfvQ+s2PUO4s/QZeAcLoXm/w=;
+        b=NhWlaRip6lvCvIYfXWlwfjpq366vD+m/dd8v0Sigzq+b71R0j9FK344aNoufxnUuQh
+         AN02Vo8L++FU0tAwaqWlUgGNNV2gcA/BZVJPl1Hht8attvX9RrdM2VGKY5JFeRVC32WF
+         Jeo14l7gOpwYImFEYuRf6rpIM4HR48M+oFi26AUDwviRN0qvnRm6WlVgE+RxbGXhzdM7
+         jUJ1sMS5VFNbp+Y5N2pjghxk2EZvsyCW/Ib2BsGrhxvPF0+bggNz50ZTxu6MfWy/d8nA
+         UgyQ3FApPmzWOKA6FPb3uHlcB216OYZ4/R3uIJadfWQbN3UK8kuQbeNLuReRW+5PeHRU
+         6KEA==
+X-Gm-Message-State: ACgBeo17kjy2u1+oIVYJuWI7Lq7p9/jNeyFbYuo455zxG4UUTz3UeNIu
+        2HyJrgD5VEc5pKCi867xJ8V/sg==
+X-Google-Smtp-Source: AA6agR6GhKLm8VLIdMxBAg/e0iqb1Y8gElUoTN/4/lCUii8RQWjlghCF5vcgziyffJpYXwELeYHL8Q==
+X-Received: by 2002:a05:6512:3a8e:b0:48b:b6a:e670 with SMTP id q14-20020a0565123a8e00b0048b0b6ae670mr6797014lfu.40.1660654448629;
+        Tue, 16 Aug 2022 05:54:08 -0700 (PDT)
 Received: from krzk-bin.. (d15l54g8c71znbtrbzt-4.rev.dnainternet.fi. [2001:14bb:ae:539c:1782:dd68:b0c1:c1a4])
-        by smtp.gmail.com with ESMTPSA id q11-20020a056512210b00b0048a7d33e0f0sm1379144lfr.261.2022.08.16.05.54.06
+        by smtp.gmail.com with ESMTPSA id q11-20020a056512210b00b0048a7d33e0f0sm1379144lfr.261.2022.08.16.05.54.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Aug 2022 05:54:06 -0700 (PDT)
+        Tue, 16 Aug 2022 05:54:08 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Lars-Peter Clausen <lars@metafoo.de>,
         Michael Hennerich <Michael.Hennerich@analog.com>,
@@ -56,9 +56,9 @@ To:     Lars-Peter Clausen <lars@metafoo.de>,
         linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/3] iio: MAINTAINERS: Drop Tomislav Denis
-Date:   Tue, 16 Aug 2022 15:54:00 +0300
-Message-Id: <20220816125401.70317-2-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 3/3] dt-bindings: iio: adc: Drop Patrick Vasseur
+Date:   Tue, 16 Aug 2022 15:54:01 +0300
+Message-Id: <20220816125401.70317-3-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220816125401.70317-1-krzysztof.kozlowski@linaro.org>
 References: <20220816125401.70317-1-krzysztof.kozlowski@linaro.org>
@@ -74,46 +74,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Emails to Tomislav Denis bounce ("550 5.1.1 User Unknown").
+Emails to Patrick Vasseur bounce ("Unknown To address").
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- MAINTAINERS | 15 ---------------
- 1 file changed, 15 deletions(-)
+ Documentation/devicetree/bindings/iio/adc/adi,ad7923.yaml | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 1c2eaaafa110..5a72b303aed5 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -754,14 +754,6 @@ L:	Dell.Client.Kernel@dell.com
- S:	Maintained
- F:	drivers/platform/x86/dell/alienware-wmi.c
+diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7923.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7923.yaml
+index e82194974eea..82168b1495eb 100644
+--- a/Documentation/devicetree/bindings/iio/adc/adi,ad7923.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7923.yaml
+@@ -8,7 +8,6 @@ title: Analog Devices AD7923 and similars with 4 and 8 Channel ADCs.
  
--ALL SENSORS DLH SERIES PRESSURE SENSORS DRIVER
--M:	Tomislav Denis <tomislav.denis@avl.com>
--L:	linux-iio@vger.kernel.org
--S:	Maintained
--W:	http://www.allsensors.com/
--F:	Documentation/devicetree/bindings/iio/pressure/asc,dlhl60d.yaml
--F:	drivers/iio/pressure/dlhl60d.c
--
- ALLEGRO DVT VIDEO IP CORE DRIVER
- M:	Michael Tretter <m.tretter@pengutronix.de>
- R:	Pengutronix Kernel Team <kernel@pengutronix.de>
-@@ -20280,13 +20272,6 @@ M:	Robert Richter <rric@kernel.org>
- S:	Odd Fixes
- F:	drivers/gpio/gpio-thunderx.c
+ maintainers:
+   - Michael Hennerich <michael.hennerich@analog.com>
+-  - Patrick Vasseur <patrick.vasseur@c-s.fr>
  
--TI ADS131E0X ADC SERIES DRIVER
--M:	Tomislav Denis <tomislav.denis@avl.com>
--L:	linux-iio@vger.kernel.org
--S:	Maintained
--F:	Documentation/devicetree/bindings/iio/adc/ti,ads131e08.yaml
--F:	drivers/iio/adc/ti-ads131e08.c
--
- TI AM437X VPFE DRIVER
- M:	"Lad, Prabhakar" <prabhakar.csengg@gmail.com>
- L:	linux-media@vger.kernel.org
+ description: |
+   Analog Devices AD7904, AD7914, AD7923, AD7924 4 Channel ADCs, and AD7908,
 -- 
 2.34.1
 
