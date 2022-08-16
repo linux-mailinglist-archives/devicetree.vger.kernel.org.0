@@ -2,287 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 559015962B5
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 20:52:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 551495962D2
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 21:05:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236637AbiHPSwk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 14:52:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45546 "EHLO
+        id S236114AbiHPTFH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 15:05:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236056AbiHPSwj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 14:52:39 -0400
-Received: from mail-yw1-x112a.google.com (mail-yw1-x112a.google.com [IPv6:2607:f8b0:4864:20::112a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93F9385FB9
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 11:52:36 -0700 (PDT)
-Received: by mail-yw1-x112a.google.com with SMTP id 00721157ae682-32a17d3bba2so175089897b3.9
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 11:52:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=OqCx5/xCl6tw3i280dCLBLdpEzPrO+4Ppd9zzQXnvR4=;
-        b=EAtl/HpJc7VUakyS2l7F7l5WxouXonrEy4tRWTKdcqphZcO/6j0KYh4oMPHn4LDqx3
-         Nvfd9NHuPBg0Mrgp8z4wPpczL+amquWmEHQO1Vn///bnqnOcob55OGlvHsE7mJx5lzEq
-         Nk07nvDuJvdoYUla/x+tPkAc3zvO6LFrE1NsLL1F8E9Mf0Be6iaPkyn6pwan4Zayp/Cm
-         LTHo7T+52U8qLtITmXWY8f48Scl0Zf9WBzdQSPlH3z8UfmHxfnEW3L76YMWBBTq0k/vS
-         yP2B2ZZckNH0p9MMZ0FIio/iwUTNTlhAGtkm5nERfTvotBYkCYweTDI43lqD4US+zhjQ
-         0Y0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=OqCx5/xCl6tw3i280dCLBLdpEzPrO+4Ppd9zzQXnvR4=;
-        b=wQ2T0mYuHWUP02ZFoUEtzWsjwVDWquRRIQH+Cwa8e5fIB6/Jm81IHNPxstIqKfJ5X7
-         rsSn2/OQCtq2HNNB+2IZD5R5/m17ntQi/6PQ62XmIaX3XD829ZYE068Gox0NEhugsKX0
-         EN/ZgklIZB6Q8SqQyJyuz+OdlxEkwHwbl9DcOGvcSg3YKmqw4J4JxvX7M+ggNcftZhbf
-         2Re17GrYWgDWRUGkJ52V7OgV5rZL6PoaFzFNEo7EWcoxqmwKhWCdJEYUh9Qcip8akqZI
-         3VLnPtuZYWQtfZEasY5mu/FudC7+BAD0rYY9GXkKHO/VSUzYl+jk0kNCPAi7GEw7dSl8
-         AFMw==
-X-Gm-Message-State: ACgBeo0SjCNAMh600QdVan1nm5wmmNh8vvjyJH5ozltMUDwztBg2wH6Q
-        9q0BmmQ4/rzrEIE8A/DzHwQ2/5OKGJ9ftXpauq+HIQ==
-X-Google-Smtp-Source: AA6agR6J9TNMQ9jspfYwg5KJAH6/4SjoX34GYoyO2fv483iqNZrR2zcvNvroKG2SEh9Xzh/thAi1bP5yxRi8XjdbSUQ=
-X-Received: by 2002:a81:50d4:0:b0:31f:5f85:566a with SMTP id
- e203-20020a8150d4000000b0031f5f85566amr18183057ywb.218.1660675955611; Tue, 16
- Aug 2022 11:52:35 -0700 (PDT)
+        with ESMTP id S233407AbiHPTFH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 15:05:07 -0400
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 373205D11B;
+        Tue, 16 Aug 2022 12:05:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1660676706; x=1692212706;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=fw20SIT8UosrRyl9DK6OBZL1qLEKx8DhIicuKy/Nujk=;
+  b=SnNSVFEk85LBDnsXbOkaF8x8PpODHWIDJy4HMvCyGD3KUQuW8ubWWXjA
+   LIntEJ5fTonYNRom/cc+Oft1hEiEhVRQF3VlGscnTYKJuai0JdC8/u5un
+   E/9BL6BsZyI+FVWgYxNBusc2ER2uL/32wqE4dN9NZ0B+p9k/FsRtAQEhf
+   Gd++bdbMCa6IUdXOJba3EQAHTqOqLhQqt0dU+tjhYnHpyrl6pYjOY8DxF
+   CYlZHPpJiImiQc4Sk9H0dfQzS8lS4U29MiMAWnEvcIBbG+efhhiyETcMB
+   l0Xms4HvceCog37hBLLvAFpkGPdwwJCH5q0KPjh9VvFMP+j7crfVPPhqQ
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10441"; a="292303577"
+X-IronPort-AV: E=Sophos;i="5.93,242,1654585200"; 
+   d="scan'208";a="292303577"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Aug 2022 12:05:05 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,242,1654585200"; 
+   d="scan'208";a="733409002"
+Received: from lkp-server02.sh.intel.com (HELO 81d7e1ade3ba) ([10.239.97.151])
+  by orsmga004.jf.intel.com with ESMTP; 16 Aug 2022 12:04:59 -0700
+Received: from kbuild by 81d7e1ade3ba with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1oO1s3-00009Y-0i;
+        Tue, 16 Aug 2022 19:04:59 +0000
+Date:   Wed, 17 Aug 2022 03:04:11 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Frank Li <Frank.Li@nxp.com>, maz@kernel.org, tglx@linutronix.de,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kw@linux.com,
+        bhelgaas@google.com
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+        peng.fan@nxp.com, aisheng.dong@nxp.com, jdmason@kudzu.us,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        kishon@ti.com, lorenzo.pieralisi@arm.com, ntb@lists.linux.dev,
+        lznuaa@gmail.com
+Subject: Re: [PATCH v5 2/4] irqchip: Add IMX MU MSI controller driver
+Message-ID: <202208170210.zGxvHnIZ-lkp@intel.com>
+References: <20220815213936.2380439-3-Frank.Li@nxp.com>
 MIME-Version: 1.0
-References: <20220810060040.321697-1-saravanak@google.com> <CAGETcx_tSndU0xerz=DF9JQxYFRC2aaxyOE-bR2JpM0L0ht=sw@mail.gmail.com>
- <CAGETcx-JUV1nj8wBJrTPfyvM7=Mre5j_vkVmZojeiumUGG6QZQ@mail.gmail.com> <8296964.NyiUUSuA9g@steina-w>
-In-Reply-To: <8296964.NyiUUSuA9g@steina-w>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Tue, 16 Aug 2022 11:51:59 -0700
-Message-ID: <CAGETcx882GejPk4cPhSRzruUYvPZLHDyORWz2i7xP9uw6eAmzg@mail.gmail.com>
-Subject: Re: [PATCH v1 0/9] fw_devlink improvements
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Len Brown <lenb@kernel.org>, Abel Vesa <abel.vesa@linaro.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        John Stultz <jstultz@google.com>,
-        Doug Anderson <dianders@chromium.org>,
-        Guenter Roeck <linux@roeck-us.net>, kernel-team@android.com,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-acpi@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220815213936.2380439-3-Frank.Li@nxp.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 16, 2022 at 12:17 AM Alexander Stein
-<alexander.stein@ew.tq-group.com> wrote:
->
-> Hello Saravana,
->
-> Am Montag, 15. August 2022, 22:56:07 CEST schrieb Saravana Kannan:
-> > On Mon, Aug 15, 2022 at 12:17 PM Saravana Kannan <saravanak@google.com>
-> wrote:
-> > > On Mon, Aug 15, 2022 at 5:39 AM Alexander Stein
-> > >
-> > > <alexander.stein@ew.tq-group.com> wrote:
-> > > > Hello Saravana,
-> > > >
-> > > > Am Mittwoch, 10. August 2022, 08:00:29 CEST schrieb Saravana Kannan:
-> > > > > Alexander,
-> > > > >
-> > > > > This should fix your issue where the power domain device not having a
-> > > > > compatible property. Can you give it a shot please?
-> > > >
-> > > > thanks for the update. Unfortunately this does not work:
-> > > > > [    0.774838] PM: Added domain provider from /soc@0/bus@30000000/
-> > > >
-> > > > gpc@303a0000/pgc/power-domain@0
-> > > >
-> > > > > [    0.775100] imx-pgc imx-pgc-domain.1: __genpd_dev_pm_attach()
-> > > > > failed to
-> > > >
-> > > > find PM domain: -2
-> > > >
-> > > > > [    0.775324] PM: Added domain provider from /soc@0/bus@30000000/
-> > > >
-> > > > gpc@303a0000/pgc/power-domain@2
-> > > >
-> > > > > [    0.775601] PM: Added domain provider from /soc@0/bus@30000000/
-> > > >
-> > > > gpc@303a0000/pgc/power-domain@3
-> > > >
-> > > > > [    0.775842] PM: Added domain provider from /soc@0/bus@30000000/
-> > > >
-> > > > gpc@303a0000/pgc/power-domain@4
-> > > >
-> > > > > [    0.776642] PM: Added domain provider from /soc@0/bus@30000000/
-> > > >
-> > > > gpc@303a0000/pgc/power-domain@7
-> > > >
-> > > > > [    0.776897] PM: Added domain provider from /soc@0/bus@30000000/
-> > > >
-> > > > gpc@303a0000/pgc/power-domain@8
-> > > >
-> > > > > [    0.777158] PM: Added domain provider from /soc@0/bus@30000000/
-> > > >
-> > > > gpc@303a0000/pgc/power-domain@9
-> > > >
-> > > > > [    0.777405] PM: Added domain provider from /soc@0/bus@30000000/
-> > > >
-> > > > gpc@303a0000/pgc/power-domain@a
-> > > >
-> > > > > [    0.779342] genpd genpd:0:38320000.blk-ctrl:
-> > > > > __genpd_dev_pm_attach()
-> > > >
-> > > > failed to find PM domain: -2
-> > > >
-> > > > > [    0.779422] imx8m-blk-ctrl 38320000.blk-ctrl: error -ENODEV: failed
-> > > > > to
-> > > >
-> > > > attach power domain "bus"
-> > > >
-> > > > > [    0.848785] etnaviv-gpu 38000000.gpu: __genpd_dev_pm_attach()
-> > > > > failed to
-> > > >
-> > > > find PM domain: -2
-> > > >
-> > > > > [    1.114220] pfuze100-regulator 0-0008: Full layer: 2, Metal layer:
-> > > > > 1
-> > > > > [    1.122267] pfuze100-regulator 0-0008: FAB: 0, FIN: 0
-> > > > > [    1.132970] pfuze100-regulator 0-0008: pfuze100 found.
-> > > > > [    1.157011] imx-gpcv2 303a0000.gpc: Failed to create device link
-> > > > > with
-> > > >
-> > > > 0-0008
-> > > >
-> > > > > [    1.164094] imx-gpcv2 303a0000.gpc: Failed to create device link
-> > > > > with
-> > > >
-> > > > 0-0008
-> > > >
-> > > > The required power-supply for the power domains is still not yet
-> > > > available.
-> > > > Does this series require some other patches as well?
-> > >
-> > > Ah sorry, yeah, this needs additional patches. The one I gave in the
-> > > other thread when I debugged this and I also noticed another issue.
-> > > Here's the combined diff of what's needed. Can you add this on top of
-> > > the series and test it?
-> > >
-> > > diff --git a/drivers/irqchip/irq-imx-gpcv2.c
-> > > b/drivers/irqchip/irq-imx-gpcv2.c index b9c22f764b4d..8a0e82067924 100644
-> > > --- a/drivers/irqchip/irq-imx-gpcv2.c
-> > > +++ b/drivers/irqchip/irq-imx-gpcv2.c
-> > > @@ -283,6 +283,7 @@ static int __init imx_gpcv2_irqchip_init(struct
-> > > device_node *node,
-> > >
-> > >          * later the GPC power domain driver will not be skipped.
-> > >          */
-> > >
-> > >         of_node_clear_flag(node, OF_POPULATED);
-> > >
-> > > +       fwnode_dev_initialized(domain->fwnode, false);
-> > >
-> > >         return 0;
-> > >
-> > >  }
-> > >
-> > > diff --git a/drivers/soc/imx/gpcv2.c b/drivers/soc/imx/gpcv2.c
-> > > index 6383a4edc360..181fbfe5bd4d 100644
-> > > --- a/drivers/soc/imx/gpcv2.c
-> > > +++ b/drivers/soc/imx/gpcv2.c
-> > > @@ -1513,6 +1513,7 @@ static int imx_gpcv2_probe(struct platform_device
-> > > *pdev)>
-> > >                 pd_pdev->dev.parent = dev;
-> > >                 pd_pdev->dev.of_node = np;
-> > >
-> > > +               pd_pdev->dev.fwnode = of_fwnode_handle(np);
-> > >
-> > >                 ret = platform_device_add(pd_pdev);
-> > >                 if (ret) {
-> > >
-> > > With this patch, I'd really expect the power domain dependency to be
-> > > handled correctly.
-> > >
-> > > > Whats worse, starting with commit 9/9 [of: property: Simplify
-> > > > of_link_to_phandle()], other drivers fail to probe waiting for pinctrl
-> > > > to be available.
-> > >
-> > > Heh, Patch 9/9 and all its other dependencies in this series was to
-> > > fix your use case. Ironic that it's causing you more issues.
-> > >
-> > > > > $ cat /sys/kernel/debug/devices_deferred
-> > > > > gpio-leds       platform: wait for supplier gpioledgrp
-> > > > > extcon-usbotg0  platform: wait for supplier usb0congrp
-> > > > > gpio-keys       platform: wait for supplier gpiobuttongrp
-> > > > > regulator-otg-vbus      platform: wait for supplier reggotgvbusgrp
-> > > > > regulator-vdd-arm       platform: wait for supplier dvfsgrp
-> > > >
-> > > > Apparently for some reason they are not probed again, once the pinctrl
-> > > > driver probed.
-> > >
-> > > I'm hoping that this is just some issue due to the missing patch
-> > > above, but doesn't sound like it if you say that the pinctrl ended up
-> > > probing eventually.
-> > >
-> > > So when device_links_driver_bound() calls
-> > > __fw_devlink_pickup_dangling_consumers(), it should have picked up the
-> > > consumers of node like gpiobuttongrp and moved it to the pinctrl
-> > > device. And right after that we call __fw_devlink_link_to_consumers()
-> > > that would have created the device links. And then right after that,
-> > > we go through all the consumers and add them to the deferred probe
-> > > list. After that deferred probe should have run... either because it's
-> > > enabled at late_initcall() or because a new device probed
-> > > successfully.
-> > >
-> > > Can you check which one of my expectations isn't true in your case?
-> >
-> > Actually I have a hypothesis on what might be happening. It could be a
-> > case of the consumer device getting added after the supplier has been
-> > initialized.
-> >
-> > If the patch above doesn't fix everything, can you add this diff on
-> > top of the patch above and see if that fixes everything? If it fixes
-> > the pinctrl issue, can you check my hypothesis be checking in what
-> > order the devices get added and get probed?
-> >
-> > diff --git a/drivers/base/core.c b/drivers/base/core.c
-> > index 2f012e826986..866755d8ad95 100644
-> > --- a/drivers/base/core.c
-> > +++ b/drivers/base/core.c
-> > @@ -2068,7 +2068,11 @@ static int fw_devlink_create_devlink(struct device
-> > *con, device_links_write_unlock();
-> >         }
-> >
-> > -       sup_dev = get_dev_from_fwnode(sup_handle);
-> > +       if (sup_handle->flags & FWNODE_FLAG_NOT_DEVICE)
-> > +               sup_dev = fwnode_get_next_parent_dev(sup_handle);
-> > +       else
-> > +               sup_dev = get_dev_from_fwnode(sup_handle);
-> > +
-> >         if (sup_dev) {
-> >                 /*
-> >                  * If it's one of those drivers that don't actually bind to
-> >
->
-> And with this change my pinctrl probing is fixed as well!
+Hi Frank,
 
-Thanks for testing these! I'll roll these into v2 of the series.
+I love your patch! Yet something to improve:
 
-Glad to see I've fixed all the issues I set out to fix. Now to figure
-out what other corner cases I've missed.
+[auto build test ERROR on jonmason-ntb/ntb-next]
+[also build test ERROR on robh/for-next linus/master v6.0-rc1 next-20220816]
+[cannot apply to tip/irq/core]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
--Saravana
+url:    https://github.com/intel-lab-lkp/linux/commits/Frank-Li/PCI-EP-driver-support-MSI-doorbell-from-host/20220816-131930
+base:   https://github.com/jonmason/ntb ntb-next
+config: arm-multi_v5_defconfig (https://download.01.org/0day-ci/archive/20220817/202208170210.zGxvHnIZ-lkp@intel.com/config)
+compiler: clang version 16.0.0 (https://github.com/llvm/llvm-project aed5e3bea138ce581d682158eb61c27b3cfdd6ec)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # install arm cross compiling tool for clang build
+        # apt-get install binutils-arm-linux-gnueabi
+        # https://github.com/intel-lab-lkp/linux/commit/71296e2ad757d90e870b2ab81f2b06b9c76e7c41
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Frank-Li/PCI-EP-driver-support-MSI-doorbell-from-host/20220816-131930
+        git checkout 71296e2ad757d90e870b2ab81f2b06b9c76e7c41
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash
+
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+>> drivers/irqchip/irq-imx-mu-msi.c:124:13: error: use of undeclared identifier 'irq_chip_ack_parent'
+           .irq_ack = irq_chip_ack_parent,
+                      ^
+   drivers/irqchip/irq-imx-mu-msi.c:127:30: error: variable has incomplete type 'struct msi_domain_ops'
+   static struct msi_domain_ops imx_mu_msi_irq_ops = {
+                                ^
+   drivers/irqchip/irq-imx-mu-msi.c:127:15: note: forward declaration of 'struct msi_domain_ops'
+   static struct msi_domain_ops imx_mu_msi_irq_ops = {
+                 ^
+   drivers/irqchip/irq-imx-mu-msi.c:131:12: error: use of undeclared identifier 'MSI_FLAG_USE_DEF_DOM_OPS'
+           .flags  = (MSI_FLAG_USE_DEF_DOM_OPS | MSI_FLAG_USE_DEF_CHIP_OPS),
+                      ^
+   drivers/irqchip/irq-imx-mu-msi.c:131:39: error: use of undeclared identifier 'MSI_FLAG_USE_DEF_CHIP_OPS'
+           .flags  = (MSI_FLAG_USE_DEF_DOM_OPS | MSI_FLAG_USE_DEF_CHIP_OPS),
+                                                 ^
+   drivers/irqchip/irq-imx-mu-msi.c:130:31: error: variable has incomplete type 'struct msi_domain_info'
+   static struct msi_domain_info imx_mu_msi_domain_info = {
+                                 ^
+   drivers/irqchip/irq-imx-mu-msi.c:130:15: note: forward declaration of 'struct msi_domain_info'
+   static struct msi_domain_info imx_mu_msi_domain_info = {
+                 ^
+   drivers/irqchip/irq-imx-mu-msi.c:203:3: error: field designator 'alloc' does not refer to any field in type 'const struct irq_domain_ops'
+           .alloc  = imx_mu_msi_domain_irq_alloc,
+            ^
+   drivers/irqchip/irq-imx-mu-msi.c:204:3: error: field designator 'free' does not refer to any field in type 'const struct irq_domain_ops'
+           .free   = imx_mu_msi_domain_irq_free,
+            ^
+   drivers/irqchip/irq-imx-mu-msi.c:241:25: error: call to undeclared function 'platform_msi_create_irq_domain'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+           msi_data->msi_domain = platform_msi_create_irq_domain(
+                                  ^
+   drivers/irqchip/irq-imx-mu-msi.c:295:32: warning: variable 'priv' set but not used [-Wunused-but-set-variable]
+           struct imx_mu_msi *msi_data, *priv;
+                                         ^
+   1 warning and 8 errors generated.
+
+
+vim +/irq_chip_ack_parent +124 drivers/irqchip/irq-imx-mu-msi.c
+
+   121	
+   122	static struct irq_chip imx_mu_msi_irq_chip = {
+   123		.name = "MU-MSI",
+ > 124		.irq_ack = irq_chip_ack_parent,
+   125	};
+   126	
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
