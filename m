@@ -2,312 +2,218 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C105D5957EC
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 12:19:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38DD559580C
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 12:22:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234390AbiHPKTb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 06:19:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45736 "EHLO
+        id S234486AbiHPKWg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 06:22:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234397AbiHPKTI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 06:19:08 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CF1313DEAF
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 01:06:17 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id x19so13759377lfq.7
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 01:06:17 -0700 (PDT)
+        with ESMTP id S234407AbiHPKWP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 06:22:15 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 847C613F64E
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 01:26:56 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id o22so12518625edc.10
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 01:26:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=qACRoIaUIx4q7Fq4+bP1/fvXnrMmd2GKs256tlkcKt4=;
-        b=BBO5LjKSiDFTYMhsWb3L99v5jd7KieKgdC3QskfSxYOOyAE7SNmfZ3GKt8U5fijlz0
-         UrobL5lUxrdDbTHHX/KYtanOIdwds87TbKepBUBpVz5HgeANmaBUry+m83dWcePHcQ/W
-         NeLyrbRPsqer3RC6HdC8/tti28uRzSYbtQQr5Qjw3mYAaujMqi8CtttKACVyLftkrpT0
-         /Jz59nJzkmCkuZ/YQQ126zpBfmWm7/pexFTT/APo1MqLcF2jY4vHas5fgOtWXdGa8xS6
-         yKcSy6pdp6TWQFpHW9hYEPXtUSeOoK/Q5aNJJVLlVEAOA4tP1tCvdgTWuJ7OK78K7S9L
-         P9RQ==
+        bh=QDEve6J+FvXDoisqTMwo0p9DvKs3kysq/xhm5KZN/F8=;
+        b=x4ZT5feLMaQ/Wgubwh3Hh3K6rOaF0UpMyoMCMsyXRfALVt3fukFYV+LUVN6RHT+xvq
+         m+bvgD40p+GdrNbsmiAFwUnNF45m8BefjVWh5rFYs4sYghVcojRrHKbt6xnsFP4uR9s7
+         zBGNFPk0IRSVVUHqKkQWeXn8hWJeeT3PLXt84DqBo4V9PYzyqmnittq/BuOxY5nP2Zi7
+         XH1vgqDIMD3efS2lg16k2VP8dWtr1pUxTmlR/+CyrnzfSbN+XCHkwMRZqK/OI40x1ud+
+         bssuky03t4h6u280TM3PF9/mO/K+YNuzS75HiT/SGo5SppwUlc3GHmDDrnQOJ7Br5xFx
+         O0Uw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=qACRoIaUIx4q7Fq4+bP1/fvXnrMmd2GKs256tlkcKt4=;
-        b=6ZhHkWd+88MdNWOa7TLmumRPrDvakAX2pJJNOfqMDNQpSM7mdOH5PRDISk/Pc4MCP8
-         //JNAUl9tFoi8e4pqLKDUUKjANud+GsLZnaeSDC5iQI47obMoZYSnbtu2KvH1eNiWrHL
-         SMtPp21mBO3koPm4QOPEq/uKFBzsoWnaAoGWu9D9csGsPRv6avzO9ghosujFvLZxPGGc
-         Dr02MOGSKgSJR945FxBicUz+dVEihFhXL2tg5sGHFLi2Xw7eC8CFLrl1YsMAZ1bqdoYa
-         i34ruch2cOYqT8BMOdQVNTtQRG1r6R/0ftLhjN23orAcgdnYosw4eXZRjmvInwk8/Amk
-         MBng==
-X-Gm-Message-State: ACgBeo1RSWxBXQx0ZMLmVkrHnBqwOMMq6LzbNsNHjRakQE5YZS9DbdDk
-        v6qeKKQMfhqGpkyWxbiPGQZeEQ==
-X-Google-Smtp-Source: AA6agR4ieUtBeNjjuanFgiNBKumVBvcQFgBFOIrRWccADDgSCX1mhvrhAIa2+vNHgbE9eqtjw/zKFg==
-X-Received: by 2002:a05:6512:250b:b0:48b:2c5:fe1e with SMTP id be11-20020a056512250b00b0048b02c5fe1emr7294718lfb.598.1660637176012;
-        Tue, 16 Aug 2022 01:06:16 -0700 (PDT)
-Received: from ?IPV6:2001:14bb:ae:539c:1782:dd68:b0c1:c1a4? (d15l54g8c71znbtrbzt-4.rev.dnainternet.fi. [2001:14bb:ae:539c:1782:dd68:b0c1:c1a4])
-        by smtp.gmail.com with ESMTPSA id f26-20020a2e381a000000b0025e2e70b41fsm1696716lja.71.2022.08.16.01.06.14
+        bh=QDEve6J+FvXDoisqTMwo0p9DvKs3kysq/xhm5KZN/F8=;
+        b=vwTRlDs6euG29FwlfilEYnCHu0Nu2+qa8tjRXxB2l+vyoGpV8H0TGWtM3d2DKc9bDk
+         44SFWqy7pYEpXzYDhPHHa5Mo18znNgVwblbIGM6+fTI5ikaevk+uqsjOVCg7TEnVVV9/
+         +skTtd0wMb2ZOAkXv69C+4HQ0M7zdeNE23BJFamD8yfAfMi3GdJ8+JSR5CP8wAtuMmoi
+         yAs1pRaIBtMZqL3CyqrbYMUIO4bTq1OGnrYq/6iVa7cDb7qa6A/cZKdeNfUhEKiShD0/
+         2NvtZVeSlpm+I66xK952xhpRPfict903eZcsLIaWq2EOYtKdNSyAVdqrFY1QwzZAhiiO
+         pmBg==
+X-Gm-Message-State: ACgBeo0D99SIOSJVIrIa55ciAwxFjEVM6HYcon2od3RQcEqZFvne0FyV
+        Kw+ugmy/PAXC9OcgI9RRQpPqOnmIZhR9rA==
+X-Google-Smtp-Source: AA6agR67zf10EbPitdqUQl3FsEBWXIw/eieDrOVQ5oSnllulorwU6g/JwdIB55zfcvWNvkr+S7Q5pw==
+X-Received: by 2002:a05:6402:448b:b0:43b:5ec6:8863 with SMTP id er11-20020a056402448b00b0043b5ec68863mr17413054edb.377.1660638414930;
+        Tue, 16 Aug 2022 01:26:54 -0700 (PDT)
+Received: from [192.168.1.69] (120.205.87.79.rev.sfr.net. [79.87.205.120])
+        by smtp.gmail.com with ESMTPSA id 5-20020a170906328500b00731219a2797sm4929454ejw.210.2022.08.16.01.26.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Aug 2022 01:06:15 -0700 (PDT)
-Message-ID: <e1f1be24-7178-ceae-9038-ec90ffd9a28f@linaro.org>
-Date:   Tue, 16 Aug 2022 11:06:13 +0300
+        Tue, 16 Aug 2022 01:26:54 -0700 (PDT)
+Message-ID: <47fdb798-b66e-3d30-dcbe-a3d15dc45619@baylibre.com>
+Date:   Tue, 16 Aug 2022 10:26:53 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH 2/2] edac: zynqmp_ocm: Add EDAC support for ZynqMP OCM
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.1.0
+Subject: Re: [PATCH v4 0/3] ECAP support on TI AM62x SoC
 Content-Language: en-US
-To:     Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Borislav Petkov <bp@alien8.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Tony Luck <tony.luck@intel.com>,
-        James Morse <james.morse@arm.com>,
-        Robert Richter <rric@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-edac@vger.kernel.org,
-        saikrishna12468@gmail.com, git@amd.com,
-        Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-References: <20220816073203.27314-1-sai.krishna.potthuri@amd.com>
- <20220816073203.27314-3-sai.krishna.potthuri@amd.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220816073203.27314-3-sai.krishna.potthuri@amd.com>
-Content-Type: text/plain; charset=UTF-8
+To:     William Breathitt Gray <william.gray@linaro.org>
+Cc:     robh+dt@kernel.org, jic23@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        mranostay@ti.com
+References: <20220810140724.182389-1-jpanis@baylibre.com>
+ <Yvk4OijjBj+Wa7fT@fedora>
+From:   Julien Panis <jpanis@baylibre.com>
+In-Reply-To: <Yvk4OijjBj+Wa7fT@fedora>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/08/2022 10:32, Sai Krishna Potthuri wrote:
-> Add EDAC support for Xilinx ZynqMP OCM Controller, this driver
-> reports CE and UE errors based on the interrupts, and also creates ue/ce
-> sysfs entries for error injection.
-> 
-> Signed-off-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
-> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-
-A bit confusing SoB order, although sometimes rational. Are you sure
-about authorship here?
-
-> ---
->  MAINTAINERS                    |   7 +
->  drivers/edac/Kconfig           |   9 +
->  drivers/edac/Makefile          |   1 +
->  drivers/edac/zynqmp_ocm_edac.c | 643 +++++++++++++++++++++++++++++++++
->  4 files changed, 660 insertions(+)
->  create mode 100644 drivers/edac/zynqmp_ocm_edac.c
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index edc96cdb85e8..cd4c6c90bca3 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -21692,6 +21692,13 @@ F:	Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dpdma.yaml
->  F:	drivers/dma/xilinx/xilinx_dpdma.c
->  F:	include/dt-bindings/dma/xlnx-zynqmp-dpdma.h
->  
-> +XILINX ZYNQMP OCM EDAC DRIVER
-> +M:	Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-> +M:	Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/edac/xlnx,zynqmp-ocmc.yaml
-> +F:	drivers/edac/zynqmp_ocm_edac.c
-> +
->  XILINX ZYNQMP PSGTR PHY DRIVER
->  M:	Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>
->  M:	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> diff --git a/drivers/edac/Kconfig b/drivers/edac/Kconfig
-> index 58ab63642e72..fece60f586af 100644
-> --- a/drivers/edac/Kconfig
-> +++ b/drivers/edac/Kconfig
-> @@ -539,4 +539,13 @@ config EDAC_DMC520
->  	  Support for error detection and correction on the
->  	  SoCs with ARM DMC-520 DRAM controller.
->  
-> +config EDAC_ZYNQMP_OCM
-> +	tristate "Xilinx ZynqMP OCM Controller"
-> +	depends on ARCH_ZYNQMP
-
-|| COMPILE_TEST
 
 
-> +	help
-> +	  Support for error de
+On 14/08/2022 20:00, William Breathitt Gray wrote:
+> On Wed, Aug 10, 2022 at 04:07:21PM +0200, Julien Panis wrote:
+>> The Enhanced Capture (ECAP) module can be used to timestamp events
+>> detected on signal input pin. It can be used for time measurements
+>> of pulse train signals.
+>>
+>> ECAP module includes 4 timestamp capture registers. For all 4 sequenced
+>> timestamp capture events (1->2->3->4->1->...), edge polarity (falling/rising
+>> edge) can be selected.
+>>
+>> This driver leverages counter subsystem to :
+>> - select edge polarity for all 4 capture events (event mode)
+>> - log timestamps for each capture event
+>> Event polarity, and CAP1/2/3/4 timestamps give all the information
+>> about the input pulse train. Further information can easily be computed :
+>> period and/or duty cycle if frequency is constant, elapsed time between
+>> pulses, etc...
+>>
+>> Modifications since v3:
+>> 	- Migrate driver from IIO to Counter subsystem
+>> 	- Minor modification in yaml ($id) to match Counter subsystem
+>> 	- Add ABI documentation
+>>
+>> Userspace commands :
+>> 	### SIGNAL ###
+>> 	cd /sys/bus/counter/devices/counter0/signal0
+>>
+>> 	# Get available polarities for each capture event
+>> 	cat polarity1_available
+>> 	cat polarity2_available
+>> 	cat polarity3_available
+>> 	cat polarity4_available
+>>
+>> 	# Get polarity for each capture event
+>> 	cat polarity1
+>> 	cat polarity2
+>> 	cat polarity3
+>> 	cat polarity4
+>>
+>> 	# Set polarity for each capture event
+>> 	echo rising > polarity1
+>> 	echo falling > polarity2
+>> 	echo rising > polarity3
+>> 	echo falling > polarity4
+>>
+>> 	### COUNT ###
+>> 	cd /sys/bus/counter/devices/counter0/count0
+>>
+>> 	# Run ECAP
+>> 	echo 1 > enable
+>>
+>> 	# Get current timebase counter value
+>> 	cat count
+>>
+>> 	# Get captured timestamps
+>> 	cat capture1
+>> 	cat capture2
+>> 	cat capture3
+>> 	cat capture4
+>>
+>> 	# Note that counter watches can also be used to get
+>> 	# data from userspace application
+>> 	# -> see tools/counter/counter_example.c
+>>
+>> 	# Stop ECAP
+>> 	echo 0 > enable
+>>
+>> Julien Panis (3):
+>>    dt-binding: counter: add ti,am62-ecap-capture.yaml
+>>    Documentation: ABI: add sysfs-bus-counter-ecap
+>>    counter: capture-tiecap: capture driver support for ECAP
+>>
+>>   .../ABI/testing/sysfs-bus-counter-ecap        |  64 ++
+>>   .../counter/ti,am62-ecap-capture.yaml         |  61 ++
+>>   drivers/counter/Kconfig                       |  14 +
+>>   drivers/counter/Makefile                      |   1 +
+>>   drivers/counter/capture-tiecap.c              | 634 ++++++++++++++++++
+>>   include/uapi/linux/counter.h                  |   2 +
+>>   6 files changed, 776 insertions(+)
+>>   create mode 100644 Documentation/ABI/testing/sysfs-bus-counter-ecap
+>>   create mode 100644 Documentation/devicetree/bindings/counter/ti,am62-ecap-capture.yaml
+>>   create mode 100644 drivers/counter/capture-tiecap.c
+>>
+>> -- 
+>> 2.25.1
+> Something that has become apparent to me is the code repetition in this
+> driver in order to support the capture buffer. Buffers are common
+> components in devices, so it'll be good for us to standardize some of
+> what we're exploring here into an interface that other drivers can also
+> use. We have two ABIs to consider: the driver interface and the sysfs
+> interface.
+>
+> For the sysfs interface, I think we'll have to expose each element
+> individually (e.g. capture1, capture2, etc.) because sysfs attributes
+> are suppose to expose only a single datum for any given attribute.
+>
+> For the driver side, we might want to introduce a new Counter component
+> type for buffers and respective macros to streamline some of the code
+> for driver authors. For example, a new COUNTER_COMP_BUFFER_U64 enum
+> counter_comp_type constant could be introduced to represent a u64 buffer
+> element; respective struct counter_comp read callbacks could be
+> introduced::
+>
+>      int (*count_buffer_u64_read)(struct counter_device *counter,
+>                                   struct counter_count *count,
+> 				 size_t index, u64 *val);
+>
+> So a driver author can use the "index" parameter to locate the buffer
+> element and pass back its value via the "val" parameter.To define the
+> buffer, maybe helper macros like this could be introduced::
+>
+>      COUNTER_COMP_COUNT_BUFFER_U64("capture", ecap_cnt_cap_read, 4)
+>
+> This would define four u64 buffer elements each named prefixed with
+> "capture" and with their read callbacks set to ecap_cnt_cap_read().
 
+Somehow, this "index" parameter would make things much easier for driver 
+author.
+Besides, defining all these similar functions (cap1_read, ..., 
+cap4_read) does not really
+make sense for ECAP driver.
+So, accessing this index parameter through callback and having the 
+possibility to use
+the same function (cap_read) for several attributes would be great for 
+my driver,
+and probably for future ones.
 
-> +/**
-> + * zynqmp_ocm_edac_get_eccstate - Return the controller ecc status
-> + * @base:	Pointer to the ddr memory controller base address
-> + *
-> + * Get the ECC enable/disable status for the controller
-> + *
-> + * Return: ecc status 0/1.
-> + */
-> +static bool zynqmp_ocm_edac_get_eccstate(void __iomem *base)
-> +{
-> +	return readl(base + ECC_CTRL_OFST) & OCM_ECC_ENABLE_MASK;
-> +}
-> +
-> +static const struct of_device_id zynqmp_ocm_edac_match[] = {
-> +	{ .compatible = "xlnx,zynqmp-ocmc-1.0"},
-> +	{ /* end of table */ }
-> +};
-> +
-> +MODULE_DEVICE_TABLE(of, zynqmp_ocm_edac_match);
+>
+> One problem however is that I'm not sure if the C preprocessor would be
+> able to unroll the COUNTER_COMP_COUNT_BUFFER_U64 to a dynamic number of
+> elements based on a macro parameter (maybe there is a GCC extension).
+>
+> I'm just throwing out ideas, so I'd like to hear some comments and
+> suggestions from others about how we should add buffer support to the
+> Counter subsystem.
+>
+> William Breathitt Gray
 
-This goes to the end. Do not embed static variables in the middle of the
-code.
-
-
-> +
-> +/**
-> + * zynqmp_set_ocm_edac_sysfs_attributes - create sysfs attributes
-> + * @edac_dev:	Pointer to the edac device struct
-> + *
-> + * Creates sysfs entries for error injection
-> + */
-> +static void zynqmp_set_ocm_edac_sysfs_attributes(struct edac_device_ctl_info
-> +						*edac_dev)
-> +{
-> +	edac_dev->sysfs_attributes = zynqmp_ocm_edac_sysfs_attributes;
-> +}
-> +
-> +/**
-> + * zynqmp_ocm_edac_probe - Check controller and bind driver
-> + * @pdev:	Pointer to the platform_device struct
-> + *
-> + * Probes a specific controller instance for binding with the driver.
-> + *
-> + * Return: 0 if the controller instance was successfully bound to the
-> + * driver; otherwise error code.
-> + */
-
-Drop the kerneldoc for probe(). It's obvious and exactly the same
-everywhere. You could keep it if you write something different than theh
-same message for 1000 other probes.
-
-> +static int zynqmp_ocm_edac_probe(struct platform_device *pdev)
-> +{
-> +	struct zynqmp_ocm_edac_priv *priv;
-> +	struct edac_device_ctl_info *dci;
-> +	void __iomem *baseaddr;
-> +	struct resource *res;
-> +	int irq, ret;
-> +
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +	baseaddr = devm_ioremap_resource(&pdev->dev, res);
-
-There is a wrapper for these.
-
-> +	if (IS_ERR(baseaddr))
-> +		return PTR_ERR(baseaddr);
-> +
-> +	if (!zynqmp_ocm_edac_get_eccstate(baseaddr)) {
-> +		edac_printk(KERN_INFO, EDAC_DEVICE,
-> +			    "ECC not enabled - Disabling EDAC driver\n");
-
-How do you disable the driver? What if there are two devices - how does
-this disables the driver for second device?
-
-> +		return -ENXIO;
-> +	}
-> +
-> +	dci = edac_device_alloc_ctl_info(sizeof(*priv), ZYNQMP_OCM_EDAC_STRING,
-> +					 1, ZYNQMP_OCM_EDAC_STRING, 1, 0, NULL, 0,
-> +					 edac_device_alloc_index());
-> +	if (!dci) {
-> +		edac_printk(KERN_ERR, EDAC_DEVICE,
-> +			    "Unable to allocate EDAC device\n");
-
-No ENOMEM prints.
-
-> +		return -ENOMEM;
-> +	}
-> +
-> +	priv = dci->pvt_info;
-> +	platform_set_drvdata(pdev, dci);
-> +	dci->dev = &pdev->dev;
-> +	priv->baseaddr = baseaddr;
-> +	dci->mod_name = pdev->dev.driver->name;
-> +	dci->ctl_name = ZYNQMP_OCM_EDAC_STRING;
-> +	dci->dev_name = dev_name(&pdev->dev);
-> +
-> +	irq = platform_get_irq(pdev, 0);
-> +	if (irq < 0) {
-> +		edac_printk(KERN_ERR, EDAC_DEVICE,
-> +			    "No irq %d in DT\n", irq);
-
-The same, no need for printks. Core does it.
-
-> +		ret = irq;
-> +		goto free_dev_ctl;
-> +	}
-> +
-> +	ret = devm_request_irq(&pdev->dev, irq,
-> +			       zynqmp_ocm_edac_intr_handler,
-> +			       0, dev_name(&pdev->dev), dci);
-> +	if (ret) {
-> +		edac_printk(KERN_ERR, EDAC_DEVICE, "Failed to request Irq\n");
-> +		goto free_dev_ctl;
-> +	}
-> +
-> +	writel(OCM_CEUE_MASK, priv->baseaddr + OCM_IEN_OFST);
-> +
-> +	zynqmp_set_ocm_edac_sysfs_attributes(dci);
-> +	ret = edac_device_add_device(dci);
-> +	if (ret)
-> +		goto free_dev_ctl;
-> +
-> +	return 0;
-> +
-> +free_dev_ctl:
-> +	edac_device_free_ctl_info(dci);
-> +
-> +	return ret;
-> +}
-> +
-> +/**
-> + * zynqmp_ocm_edac_remove - Unbind driver from controller
-> + * @pdev:	Pointer to the platform_device struct
-> + *
-> + * Return: Unconditionally 0
-> + */
-
-Same comment for kerneldoc.
-
-> +static int zynqmp_ocm_edac_remove(struct platform_device *pdev)
-> +{
-> +	struct edac_device_ctl_info *dci = platform_get_drvdata(pdev);
-> +	struct zynqmp_ocm_edac_priv *priv = dci->pvt_info;
-> +
-> +	writel(OCM_CEUE_MASK, priv->baseaddr + OCM_IDS_OFST);
-> +	edac_device_del_device(&pdev->dev);
-> +	edac_device_free_ctl_info(dci);
-> +
-> +	return 0;
-> +}
-> +
-> +static struct platform_driver zynqmp_ocm_edac_driver = {
-> +	.driver = {
-> +		   .name = "zynqmp-ocm-edac",
-> +		   .of_match_table = zynqmp_ocm_edac_match,
-> +		   },
-> +	.probe = zynqmp_ocm_edac_probe,
-> +	.remove = zynqmp_ocm_edac_remove,
-> +};
-> +
-> +module_platform_driver(zynqmp_ocm_edac_driver);
-> +
-> +MODULE_AUTHOR("Advanced Micro Devices, Inc");
-> +MODULE_DESCRIPTION("ZynqMP OCM ECC driver");
-> +MODULE_LICENSE("GPL");
-
-
-Best regards,
-Krzysztof
