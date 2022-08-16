@@ -2,164 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 94B785960BF
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 19:01:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE77D5960DE
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 19:16:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236702AbiHPRBr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 13:01:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34892 "EHLO
+        id S236262AbiHPRQ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 13:16:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236703AbiHPRBq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 13:01:46 -0400
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFB1380F5D
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 10:01:44 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id ay12so5532876wmb.1
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 10:01:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc;
-        bh=Z+IK169aH4eo4oE/yazCWb+E6gZJBwkTwFMy3pmkBbE=;
-        b=tXxE5CxvL4XRHBZMKl7I+t8bJ7mpL80Q2V5+u/Fa+hQNVuyLnua1wsTEDEo+vM4eeK
-         nt/zsqLCbtCJqj2b8TKM2CDb65ypsE+mgncG4u2oHraVyhxRcKJFm1bq9siYsPNDw5Gr
-         0IFnztVyOlaKjI+ToN21O0UsUuP7/kXqcEGh3MvNNpH12YedG8CBSrC5UhQIB1uKYYOP
-         tPj/C6cfzrECAs6IQJP06nYn3SNIcSemivgIoQcZhVNd/g7McInd0wOulO9d9nUtEsYx
-         J92V3hWaiXQYvRvCtD8C8wh4DD+Sbc6xfjku9HLu6aY8Q/3MlPL9XudQA2mKdeRtmVGB
-         fZ4w==
+        with ESMTP id S231502AbiHPRQ4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 13:16:56 -0400
+Received: from mail-io1-f46.google.com (mail-io1-f46.google.com [209.85.166.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79DED7B1D3;
+        Tue, 16 Aug 2022 10:16:55 -0700 (PDT)
+Received: by mail-io1-f46.google.com with SMTP id x64so8741876iof.1;
+        Tue, 16 Aug 2022 10:16:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc;
-        bh=Z+IK169aH4eo4oE/yazCWb+E6gZJBwkTwFMy3pmkBbE=;
-        b=X8pYH3EI7oWlZg/0A2M8gqTpGCvu6B78TKU4iWwxtKB3448a3TOl1TUF6YWUtqT0j1
-         OjCz3Lh5HCM75PTFtBwIY2ByTVlSbmFRpAtNF/N/iPndMUWA8ULNG+OaeCFK0h9aiFbm
-         VH/8VQ6jxcAj5707/xcvzSOERCavuqztrLbEePR1OGKGYciEmXMz8U4dBvUMpAEN0eGL
-         DrSt0numNbYub5fgwBMY5kxryI5QFpfL5Wmda/1TfQ2d3vMMSVp+dPPxjp4EJxxj34RO
-         RPcL5crPNIJkaWnAUT2Hq0WnAvhjyHgtGuiAVjaTMCxGHHHJblrRNKLfRD3vzEJx6pLW
-         vkdg==
-X-Gm-Message-State: ACgBeo1rX20tgjJv1EKn3SAv6tn9ImLTzQlnZroAa+61YYYluunw/VQ5
-        MP7gvr634Kh8R0O3rCzmPRqa+w==
-X-Google-Smtp-Source: AA6agR6a0b//5vAESrxZNaPs/j34eNRQa88EX/3HRkt3V06pu7BoM2GP1N9k6uWC5zMoEI4Ka1jYwg==
-X-Received: by 2002:a05:600c:3d91:b0:3a5:4132:b6a0 with SMTP id bi17-20020a05600c3d9100b003a54132b6a0mr13237626wmb.126.1660669303392;
-        Tue, 16 Aug 2022 10:01:43 -0700 (PDT)
-Received: from srini-hackbox.lan (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
-        by smtp.gmail.com with ESMTPSA id j3-20020a5d6043000000b0021d6dad334bsm10659535wrt.4.2022.08.16.10.01.42
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+        bh=D6Sgt43wReIJnABbhCpmxjkDmeNfZCDyXj29Wo+CNs8=;
+        b=oqsGkJNcK9PlGa0hC+MpVDFoUX2AprOvdi8mcPanOLRigWx5JGABs70fBOcrv7GAs4
+         hpBEgIuLq9Q7UqJqxXfU8n2kW/d4KJit8+JrVLt4tZ3MctWzoIhXA/NcPrSqUCIkRjFt
+         htf9Cuflbo0A2gadI3GbF7dMUQvNC28FQ8DO9uE3+UDyUv787MXbjxhkAqrEmbhtEWpp
+         SWzaoDgGCZnrwQvp64iZY2e39+5C9b0V8Q0abt3xNuHqj/po1qelVRrDH1ysYQFHYC0r
+         lUD6SB0i7Iz2VW7v6KBZrO31eKKRIwGNPLfAT4GBAKxiKe3XT9kvKTQ+fcvdHdaTITOW
+         3Isg==
+X-Gm-Message-State: ACgBeo1Vmpe62eEieuI9yIefLFt1ug2dowkVxwF7ihWtnpkhz+/E1oMH
+        vl32G2c8ZyanLuqG0rS0Rw==
+X-Google-Smtp-Source: AA6agR4UoyqZp5rPDlBv+twyXjIBp3pBBc8VUd5rGKNF9vZzXP9/deWo2SFDDC4yGZQAjMi/xA1z6A==
+X-Received: by 2002:a05:6638:1450:b0:346:8b01:c980 with SMTP id l16-20020a056638145000b003468b01c980mr4307459jad.286.1660670214577;
+        Tue, 16 Aug 2022 10:16:54 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id f24-20020a02a118000000b00339df77c491sm4536515jag.114.2022.08.16.10.16.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Aug 2022 10:01:42 -0700 (PDT)
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To:     broonie@kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        perex@perex.cz, tiwai@suse.com,
-        pierre-louis.bossart@linux.intel.com,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        Tue, 16 Aug 2022 10:16:54 -0700 (PDT)
+Received: (nullmailer pid 2399174 invoked by uid 1000);
+        Tue, 16 Aug 2022 17:16:52 -0000
+Date:   Tue, 16 Aug 2022 11:16:52 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Conor.Dooley@microchip.com
+Cc:     krzysztof.kozlowski@linaro.org, mail@conchuod.ie,
+        Daire.McNamara@microchip.com, bhelgaas@google.com,
+        krzysztof.kozlowski+dt@linaro.org, paul.walmsley@sifive.com,
+        greentime.hu@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+        lpieralisi@kernel.org, linux-pci@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH] ASoC: qcom: qdsp6: q6prm: add new clocks
-Date:   Tue, 16 Aug 2022 18:01:18 +0100
-Message-Id: <20220816170118.13470-1-srinivas.kandagatla@linaro.org>
-X-Mailer: git-send-email 2.21.0
+        linux-riscv@lists.infradead.org
+Subject: Re: [PATCH 4/4] dt-bindings: PCI: microchip,pcie-host: fix missing
+ address translation property
+Message-ID: <20220816171652.GA2390778-robh@kernel.org>
+References: <20220811203306.179744-1-mail@conchuod.ie>
+ <20220811203306.179744-5-mail@conchuod.ie>
+ <edf3da1b-79dc-4e09-8d3e-73aca09e847f@linaro.org>
+ <0dd12c70-70f9-1dc1-c5c8-a3ff15be81f6@microchip.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,UPPERCASE_50_75
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0dd12c70-70f9-1dc1-c5c8-a3ff15be81f6@microchip.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support to new clocks that are added in Q6DSP as part of newer version
-of LPASS support on SM8450 and SC8280XP.
+On Fri, Aug 12, 2022 at 08:20:45AM +0000, Conor.Dooley@microchip.com wrote:
+> On 12/08/2022 08:52, Krzysztof Kozlowski wrote:
+> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+> > 
+> > On 11/08/2022 23:33, Conor Dooley wrote:
+> >> From: Conor Dooley <conor.dooley@microchip.com>
+> >>
+> >> When the PCI controller node was added to the PolarFire SoC dtsi,
+> >> dt-schema was not able to detect the presence of some undocumented
+> >> properties due to how it handled unevaluatedProperties. v2022.08
+> >> introduces better validation, producing the following error:
+> >>
+> >> arch/riscv/boot/dts/microchip/mpfs-polarberry.dtb: pcie@2000000000: Unevaluated properties are not allowed ('clock-names', 'microchip,axi-m-atr0' were unexpected)
+> >>          From schema: Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
+> >>
+> >> Fixes: 528a5b1f2556 ("riscv: dts: microchip: add new peripherals to icicle kit device tree")
+> >> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> >> ---
+> >> I feel like there's a pretty good chance that this is not the way this
+> >> should have been done and the property should be marked as deprecated
+> >> but I don't know enough about PCI to answer that.
+> > 
+> > It seems bindings were added incomplete and now based on DTS (which did
+> > not match bindings), we keep adding "missing" properties. I don't think
+> > it is good. It creates a precedence where someone might intentionally
+> > sneak limited bindings (without controversial property) and later claim
+> > "I forgot to include foo,bar".
+> 
+> Yup, again pretty much the same thoughts as me. I don't think that, even
+> if the property is valid, should be either named as it is or only work
+> for translation table 0.
+> 
+> > 
+> > Therefore the property should pass review just like it is newly added
+> > property.
+> 
+> SGTM.
+> 
+> > 
+> >> ---
+> >>   .../devicetree/bindings/pci/microchip,pcie-host.yaml  | 11 +++++++++++
+> >>   1 file changed, 11 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml b/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
+> >> index 9b123bcd034c..9ac34b33c4b2 100644
+> >> --- a/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
+> >> +++ b/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
+> >> @@ -71,6 +71,17 @@ properties:
+> >>     msi-parent:
+> >>       description: MSI controller the device is capable of using.
+> >>
+> >> +  microchip,axi-m-atr0:
+> > 
+> > Name is not helping. If it is offset, add such suffix (see
+> > brcm,iproc-pcie.yaml).
+> > 
+> > Unfortunately I don't know PCIe good enough to judge whether the
+> > property makes any sense or some other ranges-style should be used.
+> 
+> Yup, I think it is similar to that. Except we have 4 tables rather
+> than one.
 
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
----
- .../sound/qcom,q6dsp-lpass-ports.h            | 18 ++++++++++++++++++
- sound/soc/qcom/qdsp6/q6prm-clocks.c           |  9 +++++++++
- sound/soc/qcom/qdsp6/q6prm.h                  | 19 +++++++++++++++++++
- 3 files changed, 46 insertions(+)
+Looks to me like dma-ranges is the answer.
 
-diff --git a/include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h b/include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h
-index 0d3276c8fc11..9f7c5103bc82 100644
---- a/include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h
-+++ b/include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h
-@@ -193,6 +193,24 @@
- #define LPASS_CLK_ID_RX_CORE_MCLK	59
- #define LPASS_CLK_ID_RX_CORE_NPL_MCLK	60
- #define LPASS_CLK_ID_VA_CORE_2X_MCLK	61
-+/* Clock ID for MCLK for WSA2 core */
-+#define LPASS_CLK_ID_WSA2_CORE_MCLK	62
-+/* Clock ID for NPL MCLK for WSA2 core */
-+#define LPASS_CLK_ID_WSA2_CORE_2X_MCLK	63
-+/* Clock ID for RX Core TX MCLK */
-+#define LPASS_CLK_ID_RX_CORE_TX_MCLK	64
-+/* Clock ID for RX CORE TX 2X MCLK */
-+#define LPASS_CLK_ID_RX_CORE_TX_2X_MCLK	65
-+/* Clock ID for WSA core TX MCLK */
-+#define LPASS_CLK_ID_WSA_CORE_TX_MCLK	66
-+/* Clock ID for WSA core TX 2X MCLK */
-+#define LPASS_CLK_ID_WSA_CORE_TX_2X_MCLK	67
-+/* Clock ID for WSA2 core TX MCLK */
-+#define LPASS_CLK_ID_WSA2_CORE_TX_MCLK	68
-+/* Clock ID for WSA2 core TX 2X MCLK */
-+#define LPASS_CLK_ID_WSA2_CORE_TX_2X_MCLK	69
-+/* Clock ID for RX CORE MCLK2 2X  MCLK */
-+#define LPASS_CLK_ID_RX_CORE_MCLK2_2X_MCLK	70
- 
- #define LPASS_HW_AVTIMER_VOTE		101
- #define LPASS_HW_MACRO_VOTE		102
-diff --git a/sound/soc/qcom/qdsp6/q6prm-clocks.c b/sound/soc/qcom/qdsp6/q6prm-clocks.c
-index a26cda5140c1..73b0cbac73d4 100644
---- a/sound/soc/qcom/qdsp6/q6prm-clocks.c
-+++ b/sound/soc/qcom/qdsp6/q6prm-clocks.c
-@@ -50,6 +50,15 @@ static const struct q6dsp_clk_init q6prm_clks[] = {
- 	Q6PRM_CLK(LPASS_CLK_ID_RX_CORE_MCLK),
- 	Q6PRM_CLK(LPASS_CLK_ID_RX_CORE_NPL_MCLK),
- 	Q6PRM_CLK(LPASS_CLK_ID_VA_CORE_2X_MCLK),
-+	Q6PRM_CLK(LPASS_CLK_ID_WSA2_CORE_MCLK),
-+	Q6PRM_CLK(LPASS_CLK_ID_WSA2_CORE_2X_MCLK),
-+	Q6PRM_CLK(LPASS_CLK_ID_RX_CORE_TX_MCLK),
-+	Q6PRM_CLK(LPASS_CLK_ID_RX_CORE_TX_2X_MCLK),
-+	Q6PRM_CLK(LPASS_CLK_ID_WSA_CORE_TX_MCLK),
-+	Q6PRM_CLK(LPASS_CLK_ID_WSA_CORE_TX_2X_MCLK),
-+	Q6PRM_CLK(LPASS_CLK_ID_WSA2_CORE_TX_MCLK),
-+	Q6PRM_CLK(LPASS_CLK_ID_WSA2_CORE_TX_2X_MCLK),
-+	Q6PRM_CLK(LPASS_CLK_ID_RX_CORE_MCLK2_2X_MCLK),
- 	Q6DSP_VOTE_CLK(LPASS_HW_MACRO_VOTE, Q6PRM_HW_CORE_ID_LPASS,
- 		       "LPASS_HW_MACRO"),
- 	Q6DSP_VOTE_CLK(LPASS_HW_DCODEC_VOTE, Q6PRM_HW_CORE_ID_DCODEC,
-diff --git a/sound/soc/qcom/qdsp6/q6prm.h b/sound/soc/qcom/qdsp6/q6prm.h
-index fea4d1954bc1..a988a32086fe 100644
---- a/sound/soc/qcom/qdsp6/q6prm.h
-+++ b/sound/soc/qcom/qdsp6/q6prm.h
-@@ -64,6 +64,25 @@
- #define Q6PRM_LPASS_CLK_ID_RX_CORE_MCLK				0x30e
- #define Q6PRM_LPASS_CLK_ID_RX_CORE_NPL_MCLK			0x30f
- 
-+/* Clock ID for MCLK for WSA2 core */
-+#define Q6PRM_LPASS_CLK_ID_WSA2_CORE_MCLK 0x310
-+/* Clock ID for NPL MCLK for WSA2 core */
-+#define Q6PRM_LPASS_CLK_ID_WSA2_CORE_2X_MCLK 0x311
-+/* Clock ID for RX Core TX MCLK */
-+#define Q6PRM_LPASS_CLK_ID_RX_CORE_TX_MCLK 0x312
-+/* Clock ID for RX CORE TX 2X MCLK */
-+#define Q6PRM_LPASS_CLK_ID_RX_CORE_TX_2X_MCLK 0x313
-+/* Clock ID for WSA core TX MCLK */
-+#define Q6PRM_LPASS_CLK_ID_WSA_CORE_TX_MCLK 0x314
-+/* Clock ID for WSA core TX 2X MCLK */
-+#define Q6PRM_LPASS_CLK_ID_WSA_CORE_TX_2X_MCLK 0x315
-+/* Clock ID for WSA2 core TX MCLK */
-+#define Q6PRM_LPASS_CLK_ID_WSA2_CORE_TX_MCLK 0x316
-+/* Clock ID for WSA2 core TX 2X MCLK */
-+#define Q6PRM_LPASS_CLK_ID_WSA2_CORE_TX_2X_MCLK 0x317
-+/* Clock ID for RX CORE MCLK2 2X  MCLK */
-+#define Q6PRM_LPASS_CLK_ID_RX_CORE_MCLK2_2X_MCLK 0x318
-+
- #define Q6PRM_LPASS_CLK_SRC_INTERNAL	1
- #define Q6PRM_LPASS_CLK_ROOT_DEFAULT	0
- #define Q6PRM_HW_CORE_ID_LPASS		1
--- 
-2.21.0
-
+Rob
