@@ -2,146 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ACCDD595C84
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 14:58:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 056D5595CB0
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 15:03:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233050AbiHPM5k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 08:57:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51094 "EHLO
+        id S235227AbiHPNCe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 09:02:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233461AbiHPM5M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 08:57:12 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA53189CFF
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 05:57:06 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id u1so14808548lfq.4
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 05:57:06 -0700 (PDT)
+        with ESMTP id S235347AbiHPNAx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 09:00:53 -0400
+Received: from smtp-fw-9102.amazon.com (smtp-fw-9102.amazon.com [207.171.184.29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98B8423159;
+        Tue, 16 Aug 2022 06:00:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=u6vsO210HbSOzl+ApBtKdfKeKIVufqnfwmwO0kmWyvI=;
-        b=ryshPL7gSJngeT8mVWdgphUp3NPNc5/8T07ioXmLOYFE+RM9kMFox6j/QSmMx+MRjW
-         IF5Tvsu+eUNa/PURaluKXcxsPoKwTU0v6obcpVNF6S4E2WUJQwfcMoAedizNNTEJVzIN
-         qApkaeQsH9W4FBpYE2y4cHYlnaFnoj9yBLWWtHAiDyYD2WSMopnYkuWFR3AZvGXe9orE
-         W7mL52SexG3h2NyytiRZEwQPnlFxYDDwyJbFKcIuCS7pw5DDoUXAJcdrv+Qc4tTN48CC
-         ofihlq8KHD75r9tNZ+KV2KtQWXkZp55mGCW7DPJAuyRkCANnLDWg9JgV8nXF25DqpsEo
-         /E1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=u6vsO210HbSOzl+ApBtKdfKeKIVufqnfwmwO0kmWyvI=;
-        b=pyaXXvJGwNMIrWeDwfL3mwHBiQDSZl3fMiaNUD5jnMFo1GmZEp+LNtTXayo1ExlIm8
-         zxAr0tSb8o9IEdKIglHolIzxPktcX1c7bCc4qCYw49E4i1A8YqMM/51lEKKa2k6QjX87
-         z/tnfjMDm3tOpSvg5mO3CJdinOSYCLPeqqvVy+ZY6TTFEoEAb3l/N3/r357JeLWKhh1M
-         h/6GfxxhYqFrRljtxHDOCn7To9DBLFfTByJr8GA7JMUfamBd+6hP4/7Ux2vfB2JPaJkr
-         +VRwIle3EkN4aTyJwIcccM1/Wxb3IbJUWX/SornPIFRMve1ZybkU6flm1MlVF9YJydrm
-         ZoPw==
-X-Gm-Message-State: ACgBeo27moxF9/fvkftaX5dxjNU7Zaj/mAr7a+M8hNcPnNp+9BEmb1ed
-        iR1zE29ZmkzLYGFPo5z9fzphkA==
-X-Google-Smtp-Source: AA6agR60sMxOHtIXk2hcNdYq73fYG6QiAiIF8W4tR5L6Ra08qXNqi9BEiQFyK2ct4uvflrrmAZRnVQ==
-X-Received: by 2002:a05:6512:b03:b0:492:88d3:8369 with SMTP id w3-20020a0565120b0300b0049288d38369mr3820559lfu.552.1660654625046;
-        Tue, 16 Aug 2022 05:57:05 -0700 (PDT)
-Received: from ?IPV6:2001:14bb:ae:539c:1782:dd68:b0c1:c1a4? (d15l54g8c71znbtrbzt-4.rev.dnainternet.fi. [2001:14bb:ae:539c:1782:dd68:b0c1:c1a4])
-        by smtp.gmail.com with ESMTPSA id b26-20020ac2411a000000b0048af9d2d119sm1379707lfi.130.2022.08.16.05.57.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Aug 2022 05:57:04 -0700 (PDT)
-Message-ID: <1349b271-796b-c9d2-a568-f9be84926ed4@linaro.org>
-Date:   Tue, 16 Aug 2022 15:57:02 +0300
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1660654835; x=1692190835;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=jHPC2zTw9GX1JcaXvC06Z3Dgu5ahzNZrFzD7f6iBujM=;
+  b=tg3Gq2ZpGakj6zVYWtMKvVx04qbE09BOpm+NfKNLxYn2tkpcLFOLWc3o
+   sABClH9Yx9R+ERCsNYswwzTmInhYmLArb006hLOAYittacA1eyim6ppFJ
+   sBdKF/1WfO4d4rOaLDukVwxxlF8nYA9aUvX2yu/hamBo3R2Pko+Oz/jua
+   U=;
+X-IronPort-AV: E=Sophos;i="5.93,241,1654560000"; 
+   d="scan'208";a="249403253"
+Received: from pdx4-co-svc-p1-lb2-vlan2.amazon.com (HELO email-inbound-relay-pdx-2b-22c2b493.us-west-2.amazon.com) ([10.25.36.210])
+  by smtp-border-fw-9102.sea19.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Aug 2022 13:00:09 +0000
+Received: from EX13MTAUEB002.ant.amazon.com (pdx1-ws-svc-p6-lb9-vlan2.pdx.amazon.com [10.236.137.194])
+        by email-inbound-relay-pdx-2b-22c2b493.us-west-2.amazon.com (Postfix) with ESMTPS id DE7FC44965;
+        Tue, 16 Aug 2022 13:00:06 +0000 (UTC)
+Received: from EX13D08UEB003.ant.amazon.com (10.43.60.11) by
+ EX13MTAUEB002.ant.amazon.com (10.43.60.12) with Microsoft SMTP Server (TLS)
+ id 15.0.1497.38; Tue, 16 Aug 2022 13:00:04 +0000
+Received: from EX13MTAUEB002.ant.amazon.com (10.43.60.12) by
+ EX13D08UEB003.ant.amazon.com (10.43.60.11) with Microsoft SMTP Server (TLS)
+ id 15.0.1497.38; Tue, 16 Aug 2022 13:00:03 +0000
+Received: from dev-dsk-farbere-1a-46ecabed.eu-west-1.amazon.com
+ (172.19.116.181) by mail-relay.amazon.com (10.43.60.234) with Microsoft SMTP
+ Server id 15.0.1497.38 via Frontend Transport; Tue, 16 Aug 2022 13:00:03
+ +0000
+Received: by dev-dsk-farbere-1a-46ecabed.eu-west-1.amazon.com (Postfix, from userid 14301484)
+        id 4604F4ABE; Tue, 16 Aug 2022 13:00:02 +0000 (UTC)
+From:   Eliav Farber <farbere@amazon.com>
+To:     <brgl@bgdev.pl>, <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <arnd@arndb.de>, <gregkh@linuxfoundation.org>,
+        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     <farbere@amazon.com>, <talel@amazon.com>, <hhhawa@amazon.com>,
+        <jonnyc@amazon.com>, <hanochu@amazon.com>, <ronenk@amazon.com>,
+        <itamark@amazon.com>, <shellykz@amazon.com>, <shorer@amazon.com>,
+        <amitlavi@amazon.com>, <almogbs@amazon.com>, <dwmw@amazon.co.uk>
+Subject: [PATCH 0/2] add enable gpio support for a24 eeprom driver
+Date:   Tue, 16 Aug 2022 13:00:00 +0000
+Message-ID: <20220816130002.41450-1-farbere@amazon.com>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v3 1/1] regulator: dt-bindings: mediatek: add mt6366
-Content-Language: en-US
-To:     "zhiyong.tao" <zhiyong.tao@mediatek.com>
-Cc:     lee.jones@linaro.org, robh+dt@kernel.org, matthias.bgg@gmail.com,
-        lgirdwood@gmail.com, broonie@kernel.org, eddie.huang@mediatek.com,
-        a.zummo@towertech.it, alexandre.belloni@bootlin.com,
-        fshao@chromium.org, sen.chu@mediatek.com, hui.liu@mediatek.com,
-        allen-kh.cheng@mediatek.com, hsin-hsiung.wang@mediatek.com,
-        sean.wang@mediatek.com, macpaul.lin@mediatek.com,
-        wen.su@mediatek.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20220812092901.6429-1-zhiyong.tao@mediatek.com>
- <20220812092901.6429-2-zhiyong.tao@mediatek.com>
- <cbe761af-5011-83a2-0509-2b3c4fe0a79c@linaro.org>
- <4a49b619deb5453749a47874377cad6a36a9a054.camel@mediatek.com>
- <CAGE=qrohYZ6f9bbEuYfF=2Rz21nbW_8ho3rBQmHt1D+kQG2-jA@mail.gmail.com>
- <9bc148119fc36c34f404091ca0f5a2e37727c285.camel@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <9bc148119fc36c34f404091ca0f5a2e37727c285.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-14.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        USER_IN_DEF_SPF_WL autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/08/2022 15:54, zhiyong.tao wrote:
-> On Fri, 2022-08-12 at 15:55 +0300, Krzysztof Kozlowski wrote:
->> On Fri, 12 Aug 2022 at 15:52, zhiyong.tao <zhiyong.tao@mediatek.com>
->> wrote:
->>>
->>> On Fri, 2022-08-12 at 13:55 +0300, Krzysztof Kozlowski wrote:
->>>> On 12/08/2022 12:29, Zhiyong Tao wrote:
->>>>> Add mt6366 regulator document
->>>>>
->>>>> +
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    const: mediatek,mt6366-regulator
->>>>> +
->>>>> +  regulators:
->>>>> +    type: object
->>>>> +    description: List of regulators and its properties
->>>>> +
->>>>> +    patternProperties:
->>>>> +      "^buck-
->>>>> v(dram1|core|coresshub|proc11|proc12|gpu|s2|modem|s1)$":
->>>>> +        type: object
->>>>> +        $ref: regulator.yaml#
->>>>> +        unevaluatedProperties: false
->>>>> +
->>>>> +      "^ldo-v(dram2|sim1|ibr|rf12|usb|camio|camd|cn18|fe28)$":
->>>>> +        type: object
->>>>> +        $ref: regulator.yaml#
->>>>
->>>> You miss unevaluatedProperties in most of the places.
->>>
->>> Hi Krzysztof,
->>>    Thanks for your suggestion,
->>>    Do you mean that all places should have the
->>> unevaluatedProperties
->>> Properties ?
->>
->> Yes. You put it in some of the places which does not really make
->> sense...
-> 
-> Hi Krzysztof,
->    Thanks for your suggestion,
->    We find that if there is a properties "compatible = "regulator-
-> fixed";" in ldo-vrf12, we should set unevaluatedProperties as true.
-> or it will check yaml warning "Unevaluated Properties are not
-> allowed('compatible' was unexpected)". is it right?
->    There is a properties "compatible = "regulator-fixed";"in ldo-vrf12.
-> It will cause the checking yaml error "ldo-vrf12: 'regulator-name' is a
-> required property". Can you help to give a suggestion to fix the
-> warning? Add regulator-name for ldo-vrf12 or other suggestion?
-> 
+First patch describes the new binding property.
+Second patch adds the functionality to the driver.
 
-And how this regulator is supposed to work? Are you populating DT
-children in your driver?
+Eliav Farber (2):
+  dt-bindings: at24: new optional property - enable-gpios
+  eeprom: at24: add enable gpio support
 
-Best regards,
-Krzysztof
+ Documentation/devicetree/bindings/eeprom/at24.txt | 3 +++
+ drivers/misc/eeprom/at24.c                        | 5 +++++
+ 2 files changed, 8 insertions(+)
+
+-- 
+2.37.1
+
