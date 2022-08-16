@@ -2,79 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 40F5F595532
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 10:27:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECC53595531
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 10:27:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233028AbiHPI1x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 04:27:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40490 "EHLO
+        id S232944AbiHPI1d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 04:27:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39440 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232035AbiHPI0r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 04:26:47 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4099B13C72C
-        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 22:55:12 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id o2so13443212lfb.1
-        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 22:55:12 -0700 (PDT)
+        with ESMTP id S232155AbiHPI03 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 04:26:29 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51149796A1
+        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 22:56:11 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id s9so9626302ljs.6
+        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 22:56:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=SM85WUFG4iEcrdGXUW1ovRXHJvVq4YoOra1Othbb/sI=;
-        b=EwhBI+O8yhjttvfqkMyGgqju7SabAqYWbFGrQ9MqCy/t8smDKOrX4ZLMlouZVonOz6
-         iwvUksftnAVCQQ7TsS7aZFhUmu0J1KZ0nv0sISODZ/JJm25kK6/oh3Z5hRk4iHlbdsyy
-         OLFSD4mtvOZ6G6kjpeHJI+nEF0AzSt6YDOaTTqEP6TUJJcWxVbhfCK/EvupvSqvb11a2
-         2t1zArEwfbv+BviVGZO1nHlkcm46oGvdOGa2Tzc0elglZ2hnByt0eGRQkeQhiWK5pABR
-         nmm83J4PIgVhKmKs8nE/LYEcrRuI2syBUzb5wbOaZIccCAceLxa1Z5hwXW0JMoDIHIKI
-         lRag==
+        bh=ewdZKfv/k3MeM8JzCH80kgE1h4iTcEJrio6FMcJmb9k=;
+        b=WBrkgiMdwjX7hJ23ARjRhoNxW3EIPrf+S8Q4l1Qq+VTfCRAyNyUjymSF39Rj/aqQrE
+         Zhi6jpLveIb95WF+4+PBHD02D2Rk/O+VMGeu1bO7IULdHvxtjCTYDzDZ5yUZqCgQXY+Q
+         6wKqCINj/T1C/t7yOrJ2gdyf7Rsl8nd/cxGW0srofkitLsLqkB4maOHGoztTjZGXH8CY
+         wVmZXruiDnjbmHUlyLhE4YAn4ZsQXBh5eRSCf77kT8FjHt6yxOqnIcwtGDfozxq/hgUY
+         dTpPIuhzmiepbT4Zy+m3SU3EhxZoCaijq1m0o16id427I5i1maqyomXEUkLsy8gdNxrT
+         wUtA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=SM85WUFG4iEcrdGXUW1ovRXHJvVq4YoOra1Othbb/sI=;
-        b=autRaa6V7CEcQnNnAOp1AMj1Mf0DSqb63Ja3R6vQGLf8V3V/6DnmKNzcrXMkq70Xqe
-         c8WAO70VMz5VvEl0n+tYcU2CL2OW8G3d/ayHdCa6pPdRLuLakSGjWaJ2oUJdZAZsK4id
-         gj/g/AX1XQPgay9wB4FGUJ2KmeRdv6yI8+TKgHScy7/XwOfsTnBA2K4P/jaUV75AtzeD
-         y0C6jnhjXAK7i53kIckrK4VUHTnR4FEqLyaRLIefi9pDd3iEzANK0LlSkS4+dsIX5tZS
-         GyzJx585Zv5D6peRS1x7fHf2JRIf84mJ/TpGWj7fzg20uRw0Gf2sNoVh6TUHcFXCzPE3
-         1RHw==
-X-Gm-Message-State: ACgBeo2PHk1aa3kdQQf/8h9XQR2Q474je8HEpQPcodxi7LAu1BKEVHaC
-        3nVvGZERF5z7FcGsAGENUDxcMQ==
-X-Google-Smtp-Source: AA6agR7IeUpFg8yHso/TiNxbVUWwOdABAJVuP+7GB6b2iz3fuXp47F/1wpnpJjS37Xv39u1GZHp8gQ==
-X-Received: by 2002:a05:6512:304c:b0:48c:ed09:1e95 with SMTP id b12-20020a056512304c00b0048ced091e95mr7274477lfb.642.1660629310351;
-        Mon, 15 Aug 2022 22:55:10 -0700 (PDT)
+        bh=ewdZKfv/k3MeM8JzCH80kgE1h4iTcEJrio6FMcJmb9k=;
+        b=MsM0nqViIplYwVyq3jT/OEmXqfElkODn/vSeDoxjyq2B4U6wGVuJm22zmgGRpNLd3D
+         ENf5w3TWDgCIDCuuuaOUt/sB/QPETj855m8TiB9eNGB7ZhBqxDnzaa4xdZX7bSbdP8GN
+         Go3p297mOEN45wKZtYOwkV/s/7C8eR85hjQuB65+IcJYI2lQaBdEQ8Oph8CmwRJWstgR
+         r8+O2S1o25okq70Ttpqj1sIsLZssus7nhfvLWLjLaKjP5Am3jgOuRK3MUCRi+kdWG9VW
+         ZPzDg2OUqYV64GX9gT96uGzLo9R73dU6E9tGHnxrvQi56Uf9rwEfB4fN+leGnbUOEABU
+         UR9w==
+X-Gm-Message-State: ACgBeo3kdQJ6gJJef1DLg2S31oHlLYwUN2/8b8rs4mF46/xmxCyLs2PM
+        WIHwd34t4f6VwpJepR2o9p5Xwg==
+X-Google-Smtp-Source: AA6agR6XCwtnoMgA4vzbT1oLkaY6/h16gMro6NR3NmkdaD4OzPnHXHgNikQwwfOoKclcXnpLIP0KCA==
+X-Received: by 2002:a2e:b0ce:0:b0:25e:66d6:1a54 with SMTP id g14-20020a2eb0ce000000b0025e66d61a54mr5983129ljl.470.1660629369666;
+        Mon, 15 Aug 2022 22:56:09 -0700 (PDT)
 Received: from ?IPV6:2001:14bb:ae:539c:1782:dd68:b0c1:c1a4? (d15l54g8c71znbtrbzt-4.rev.dnainternet.fi. [2001:14bb:ae:539c:1782:dd68:b0c1:c1a4])
-        by smtp.gmail.com with ESMTPSA id o15-20020a05651205cf00b00491203d6cc9sm935238lfo.131.2022.08.15.22.55.08
+        by smtp.gmail.com with ESMTPSA id s12-20020a05651c048c00b0025e4ed638dcsm1669622ljc.59.2022.08.15.22.56.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Aug 2022 22:55:09 -0700 (PDT)
-Message-ID: <7f1e6b96-49f6-e83c-7711-d6a60cd012e2@linaro.org>
-Date:   Tue, 16 Aug 2022 08:55:07 +0300
+        Mon, 15 Aug 2022 22:56:09 -0700 (PDT)
+Message-ID: <f51ac8cd-7ffb-0eb0-4c3b-b62d2a6674e8@linaro.org>
+Date:   Tue, 16 Aug 2022 08:56:07 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH v2 01/10] dt-bindings: sram: sunxi-sram: Clean up the
- compatible lists
+Subject: Re: [PATCH 1/1] ARM: dts: imx6q-mccmon6: Add
+ fsl,err006687-workaround-present property
 Content-Language: en-US
-To:     Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Hans de Goede <hdegoede@redhat.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev
-References: <20220815041248.53268-1-samuel@sholland.org>
- <20220815041248.53268-2-samuel@sholland.org>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Lukasz Majewski <lukma@denx.de>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20220720064712.1414438-1-alexander.stein@ew.tq-group.com>
+ <13231899.uLZWGnKmhe@steina-w>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220815041248.53268-2-samuel@sholland.org>
+In-Reply-To: <13231899.uLZWGnKmhe@steina-w>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,19 +81,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/08/2022 07:12, Samuel Holland wrote:
-> Use enumerations where appropriate to combine "const" choices and
-> deduplicate fallback compatible strings.
+On 15/08/2022 14:31, Alexander Stein wrote:
+> Hello Rob & Krzysztof,
 > 
-> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
-> ---
+> ping.
 > 
-> Changes in v2:
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+Why? These are not DT bindings.
 
 Best regards,
 Krzysztof
