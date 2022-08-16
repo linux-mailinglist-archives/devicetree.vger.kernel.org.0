@@ -2,92 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B5C25955D8
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 11:04:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C34095955DF
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 11:06:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233442AbiHPJEn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 05:04:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53176 "EHLO
+        id S232520AbiHPJG2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 05:06:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229845AbiHPJD7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 05:03:59 -0400
+        with ESMTP id S232285AbiHPJFw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 05:05:52 -0400
 Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FBA674DFB;
-        Tue, 16 Aug 2022 00:17:48 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7690552801;
+        Tue, 16 Aug 2022 00:21:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1660634269; x=1692170269;
+  t=1660634481; x=1692170481;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=7PvK1XUJcZYZO1YG4EHtQpi5gl6ePBLQ14O333RXE6M=;
-  b=eNAwxEVq2uFWcdSCkeNnNotBKdtGifEd2lWg2Oq9Dbgsn+KD1GjTeXor
-   Xi0RFRgrS9JeapcpZ5BTabDMHdESmxQRxW1XJoRtrQI/5lvyyiloMlNS9
-   AOdRzkisgqb23Cice9kFP4voDYn3F28RqTwbJUBUPsK+MYeVAPTcyKhND
-   YovOfuS5SvjTYBenlNd0+vRD9cJYhUp6r2uQmQCUY+mXulIguKzNDUleC
-   IKAGNlx6LQRR7rASXSZ5MaozEfaT4uWCx6QiI8A0h/b0SPncLN6/9+yLy
-   gJZdXX4+xXOdPBZYtUUD10ctpHn0x8E5Li31jGGlJWmcRSmDSWRnk0mCP
+  bh=Lqi0pNBgvItIazaZwyQE/pVneghxzh7UK7w+HRaZ6+o=;
+  b=LE88s7PkI4LJ3rqyyzvl/AcfqYXLmvj1ZZ8Uv/qguGDGsctOWNMSBCgd
+   ojGAvsdvuCStY+FdNRZ10aaO/vHbIiXrkWxSprRymeBhJII96adTbTnvo
+   3YutJalh2PPEZILKOXWJdabj3F4Ulipy/vZPm21C8rJkxy/niNjM6LRvB
+   N9I0AsDxqv1NwDpP/lwlFAkeHH8Bm9BgkVqEMkPNkhVDzf7wkzyVkU5Tq
+   wzwwrJx+ObnZincAvgW40976vt1My3KncIWvoT67tiayk0kJN6adzJ+0U
+   diriuOAa9qarvDJaBMs+6DIPUcf0bqIfm7hGm9IoEa17fTC7HOWuYJxU+
    Q==;
 X-IronPort-AV: E=Sophos;i="5.93,240,1654552800"; 
-   d="scan'208";a="25618706"
+   d="scan'208";a="25618933"
 Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 16 Aug 2022 09:17:46 +0200
+  by mx1-pgp.tq-group.com with ESMTP; 16 Aug 2022 09:21:19 +0200
 Received: from mx1.tq-group.com ([192.168.6.7])
   by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Tue, 16 Aug 2022 09:17:46 +0200
+  Tue, 16 Aug 2022 09:21:19 +0200
 X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Tue, 16 Aug 2022 09:17:46 +0200
+        by tq-pgp-pr1.tq-net.de on Tue, 16 Aug 2022 09:21:19 +0200
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1660634266; x=1692170266;
+  t=1660634479; x=1692170479;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=7PvK1XUJcZYZO1YG4EHtQpi5gl6ePBLQ14O333RXE6M=;
-  b=ZSOs1+u9ikj1Y+pMFDACnwA7kcyEJ68efn6NgfXMLX9Es1jvmknCvqZB
-   CrN7h/6BgPQGf3aYcWswqSNUShkzMT4ZXfCKkP1Y+k7T5l1HD7k3j8uaw
-   ANC2DhSdDZ/VL2Kdriyh5GRUtcHlc6bhIJabdC7zB6wtwG9jQis8YaBLa
-   ZNcpHEe/CSo4gcbXNnYA9kF8PgfVRfmb+MwqmT5uocDKBp04w4tJGxsoy
-   IYJW06z2gjgadMYvEM4U7Urk0NhRvqcf/FJA5c23DKFfDYtU/f48BYTAW
-   8WPWR6SKQCHXaPUJVmOcjqAoaWtZkjqeGDhDrEQEhtSiEUho7Hc0nwvwt
-   A==;
+  bh=Lqi0pNBgvItIazaZwyQE/pVneghxzh7UK7w+HRaZ6+o=;
+  b=e1tfLCeX7ra+BOfnMdlBYHbPuFt3brAh7jPfPnJF3MnAJSuHtB7ALytL
+   jYTrrDXXKiXpCWHmCXb9fTvcf6+LezDYMqad+yuAWhmEg6yw35S4QhBJy
+   3WGYpgb58nisor8Z3rztuUS6xHqiQfsY4grVOp36H1jeRVmABPUqTa6QD
+   6gP+GXS38Dmv3gZV8AbAyw+DG0AXOIfco1fsA69I7R3MZu4C8qu23buuI
+   1dhs/3Es4Om84Va+r4RmBeY3+eNoYl15P25OGpIkRoPVbmIgM4UIUQrWt
+   +6rZcAzMrsbHHDtptShtZX0+uhfbfFPebKFokhdDKF+8SXvzUvkQi2gCV
+   g==;
 X-IronPort-AV: E=Sophos;i="5.93,240,1654552800"; 
-   d="scan'208";a="25618703"
+   d="scan'208";a="25618932"
 Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 16 Aug 2022 09:17:45 +0200
+  by mx1.tq-group.com with ESMTP; 16 Aug 2022 09:21:19 +0200
 Received: from steina-w.localnet (unknown [10.123.49.11])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 90E6F280056;
-        Tue, 16 Aug 2022 09:17:45 +0200 (CEST)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 7A1E4280056;
+        Tue, 16 Aug 2022 09:21:19 +0200 (CEST)
 From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
+To:     Sakari Ailus <sakari.ailus@iki.fi>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        "Paul J . Murphy" <paul.j.murphy@intel.com>,
+        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Len Brown <lenb@kernel.org>, Abel Vesa <abel.vesa@linaro.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        John Stultz <jstultz@google.com>,
-        Doug Anderson <dianders@chromium.org>,
-        Guenter Roeck <linux@roeck-us.net>, kernel-team@android.com,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-acpi@vger.kernel.org
-Subject: Re: [PATCH v1 0/9] fw_devlink improvements
-Date:   Tue, 16 Aug 2022 09:17:43 +0200
-Message-ID: <8296964.NyiUUSuA9g@steina-w>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Naushir Patuck <naush@raspberrypi.com>
+Subject: Re: [PATCH v4 3/7] media: i2c: ov9282: Add ov9281 compatible
+Date:   Tue, 16 Aug 2022 09:21:17 +0200
+Message-ID: <1983480.CQOukoFCf9@steina-w>
 Organization: TQ-Systems GmbH
-In-Reply-To: <CAGETcx-JUV1nj8wBJrTPfyvM7=Mre5j_vkVmZojeiumUGG6QZQ@mail.gmail.com>
-References: <20220810060040.321697-1-saravanak@google.com> <CAGETcx_tSndU0xerz=DF9JQxYFRC2aaxyOE-bR2JpM0L0ht=sw@mail.gmail.com> <CAGETcx-JUV1nj8wBJrTPfyvM7=Mre5j_vkVmZojeiumUGG6QZQ@mail.gmail.com>
+In-Reply-To: <ceb2a42d-0650-6e6f-3408-6347bcd8c5e2@linaro.org>
+References: <20220728130237.3396663-1-alexander.stein@ew.tq-group.com> <2403639.ElGaqSPkdT@steina-w> <ceb2a42d-0650-6e6f-3408-6347bcd8c5e2@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
@@ -100,199 +88,127 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Saravana,
+Am Dienstag, 16. August 2022, 09:16:44 CEST schrieb Krzysztof Kozlowski:
+> On 15/08/2022 14:19, Alexander Stein wrote:
+> > Hello,
+> > 
+> > Am Dienstag, 2. August 2022, 10:30:40 CEST schrieb Krzysztof Kozlowski:
+> >> On 02/08/2022 10:23, Sakari Ailus wrote:
+> >>> On Mon, Aug 01, 2022 at 08:08:58PM +0200, Krzysztof Kozlowski wrote:
+> >>>> On 01/08/2022 20:07, Krzysztof Kozlowski wrote:
+> >>>>> On 29/07/2022 10:18, Laurent Pinchart wrote:
+> >>>>>> Hi Sakari,
+> >>>>>> 
+> >>>>>> (Adding Dave and Naush to the CC list)
+> >>>>>> 
+> >>>>>> On Fri, Jul 29, 2022 at 10:07:36AM +0300, Sakari Ailus wrote:
+> >>>>>>> On Thu, Jul 28, 2022 at 03:13:11PM +0200, Krzysztof Kozlowski wrote:
+> >>>>>>>> On 28/07/2022 15:02, Alexander Stein wrote:
+> >>>>>>>>> According to product brief they are identical from software point
+> >>>>>>>>> of
+> >>>>>>>>> view.
+> >>>>>>>>> Differences are a different chief ray angle (CRA) and the package.
+> >>>>>>>>> 
+> >>>>>>>>> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> >>>>>>>>> Acked-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+> >>>>>>>>> ---
+> >>>>>>>>> 
+> >>>>>>>>>  drivers/media/i2c/ov9282.c | 1 +
+> >>>>>>>>>  1 file changed, 1 insertion(+)
+> >>>>>>>>> 
+> >>>>>>>>> diff --git a/drivers/media/i2c/ov9282.c
+> >>>>>>>>> b/drivers/media/i2c/ov9282.c
+> >>>>>>>>> index 8a252bf3b59f..c8d83a29f9bb 100644
+> >>>>>>>>> --- a/drivers/media/i2c/ov9282.c
+> >>>>>>>>> +++ b/drivers/media/i2c/ov9282.c
+> >>>>>>>>> @@ -1113,6 +1113,7 @@ static const struct dev_pm_ops ov9282_pm_ops
+> >>>>>>>>> =
+> >>>>>>>>> {
+> >>>>>>>>> 
+> >>>>>>>>>  };
+> >>>>>>>>>  
+> >>>>>>>>>  static const struct of_device_id ov9282_of_match[] = {
+> >>>>>>>>> 
+> >>>>>>>>> +	{ .compatible = "ovti,ov9281" },
+> >>>>>>>> 
+> >>>>>>>> The devices seem entirely compatible, so why you add a new
+> >>>>>>>> compatible
+> >>>>>>>> and not re-use existing?
+> >>>>>>>> 
+> >>>>>>>> The difference in lens does not explain this.
+> >>>>>>> 
+> >>>>>>> It is typically necessary to know what kind of related hardware can
+> >>>>>>> be
+> >>>>>>> found in the system, beyond just the device's register interface.
+> >>>>>>> Apart
+> >>>>>>> from USB cameras, less integrated cameras require low-level software
+> >>>>>>> control in which specific device properties are important. In this
+> >>>>>>> case it
+> >>>>>>> could be the lens shading table, among other things.
+> >>>>>>> 
+> >>>>>>> 	https://www.ovt.com/sensor/ov9282/
+> >>>>>>> 
+> >>>>>>> Therefore I think adding a specific compatible string for this one
+> >>>>>>> is
+> >>>>>>> justified.
+> >>>>> 
+> >>>>> Specific compatible in binding is a requirement. No one discussed
+> >>>>> this.
+> >>>>> However not in the driver. None of the arguments above justify adding
+> >>>>> such binding, unless user-space depends on matching compatible, but
+> >>>>> not
+> >>>>> real compatible?
+> >>>> 
+> >>>> Eh, now I used vague words. This should be instead:
+> >>>> 
+> >>>> "However not in the driver. None of the arguments above justify adding
+> >>>> such compatible to driver, unless user-space depends on matching
+> >>>> compatible, but not real compatible?"
+> >>> 
+> >>> If I understand you right, you'd put the more specific model name as
+> >>> well
+> >>> as the more generic one to the compatible property and let the driver
+> >>> match
+> >>> against the more generic one?
+> >> 
+> >> Yes.
+> >> 
+> >>> But in this case neither of these models is more generic than the other.
+> >> 
+> >> It's not a problem. Also the spec explains it similar way:
+> >> "They
+> >> 
+> >>  allow a device to express its compatibility with a family of similar
+> >> 
+> >> devices, potentially allowing a single
+> >> 
+> >>  device driver to match against several devices."
+> >> 
+> >> Of course the numbers would suggest that ov9281 should be the family (as
+> >> lower number usually means designed earlier), but it is a matter of
+> >> convention which here can be skipped. The point is that ov9281 and
+> >> ov9282 are compatible between each other, therefore they belong to
+> >> single family.
+> >> 
+> >> Best regards,
+> >> Krzysztof
+> > 
+> > So what is the conclusion of this?
+> > If using the "family" name there is no way for userspace to see the actual
+> > device name rather than the driver name. This might be confusing,
+> > especially of both ov9281 and ov9282 are attached to the same platform.
+> > The only difference would be the i2c-bus-address.
+> > You can also go for ov928x but this is not a real improvement.
+> 
+> I still don't understand. Why user-space cannot see this? I really
+> cannot find any trouble... Your 3/7 patch does nothing special here for
+> user-space...
 
-Am Montag, 15. August 2022, 22:56:07 CEST schrieb Saravana Kannan:
-> On Mon, Aug 15, 2022 at 12:17 PM Saravana Kannan <saravanak@google.com> 
-wrote:
-> > On Mon, Aug 15, 2022 at 5:39 AM Alexander Stein
-> > 
-> > <alexander.stein@ew.tq-group.com> wrote:
-> > > Hello Saravana,
-> > > 
-> > > Am Mittwoch, 10. August 2022, 08:00:29 CEST schrieb Saravana Kannan:
-> > > > Alexander,
-> > > > 
-> > > > This should fix your issue where the power domain device not having a
-> > > > compatible property. Can you give it a shot please?
-> > > 
-> > > thanks for the update. Unfortunately this does not work:
-> > > > [    0.774838] PM: Added domain provider from /soc@0/bus@30000000/
-> > > 
-> > > gpc@303a0000/pgc/power-domain@0
-> > > 
-> > > > [    0.775100] imx-pgc imx-pgc-domain.1: __genpd_dev_pm_attach()
-> > > > failed to
-> > > 
-> > > find PM domain: -2
-> > > 
-> > > > [    0.775324] PM: Added domain provider from /soc@0/bus@30000000/
-> > > 
-> > > gpc@303a0000/pgc/power-domain@2
-> > > 
-> > > > [    0.775601] PM: Added domain provider from /soc@0/bus@30000000/
-> > > 
-> > > gpc@303a0000/pgc/power-domain@3
-> > > 
-> > > > [    0.775842] PM: Added domain provider from /soc@0/bus@30000000/
-> > > 
-> > > gpc@303a0000/pgc/power-domain@4
-> > > 
-> > > > [    0.776642] PM: Added domain provider from /soc@0/bus@30000000/
-> > > 
-> > > gpc@303a0000/pgc/power-domain@7
-> > > 
-> > > > [    0.776897] PM: Added domain provider from /soc@0/bus@30000000/
-> > > 
-> > > gpc@303a0000/pgc/power-domain@8
-> > > 
-> > > > [    0.777158] PM: Added domain provider from /soc@0/bus@30000000/
-> > > 
-> > > gpc@303a0000/pgc/power-domain@9
-> > > 
-> > > > [    0.777405] PM: Added domain provider from /soc@0/bus@30000000/
-> > > 
-> > > gpc@303a0000/pgc/power-domain@a
-> > > 
-> > > > [    0.779342] genpd genpd:0:38320000.blk-ctrl:
-> > > > __genpd_dev_pm_attach()
-> > > 
-> > > failed to find PM domain: -2
-> > > 
-> > > > [    0.779422] imx8m-blk-ctrl 38320000.blk-ctrl: error -ENODEV: failed
-> > > > to
-> > > 
-> > > attach power domain "bus"
-> > > 
-> > > > [    0.848785] etnaviv-gpu 38000000.gpu: __genpd_dev_pm_attach()
-> > > > failed to
-> > > 
-> > > find PM domain: -2
-> > > 
-> > > > [    1.114220] pfuze100-regulator 0-0008: Full layer: 2, Metal layer:
-> > > > 1
-> > > > [    1.122267] pfuze100-regulator 0-0008: FAB: 0, FIN: 0
-> > > > [    1.132970] pfuze100-regulator 0-0008: pfuze100 found.
-> > > > [    1.157011] imx-gpcv2 303a0000.gpc: Failed to create device link
-> > > > with
-> > > 
-> > > 0-0008
-> > > 
-> > > > [    1.164094] imx-gpcv2 303a0000.gpc: Failed to create device link
-> > > > with
-> > > 
-> > > 0-0008
-> > > 
-> > > The required power-supply for the power domains is still not yet
-> > > available.
-> > > Does this series require some other patches as well?
-> > 
-> > Ah sorry, yeah, this needs additional patches. The one I gave in the
-> > other thread when I debugged this and I also noticed another issue.
-> > Here's the combined diff of what's needed. Can you add this on top of
-> > the series and test it?
-> > 
-> > diff --git a/drivers/irqchip/irq-imx-gpcv2.c
-> > b/drivers/irqchip/irq-imx-gpcv2.c index b9c22f764b4d..8a0e82067924 100644
-> > --- a/drivers/irqchip/irq-imx-gpcv2.c
-> > +++ b/drivers/irqchip/irq-imx-gpcv2.c
-> > @@ -283,6 +283,7 @@ static int __init imx_gpcv2_irqchip_init(struct
-> > device_node *node,
-> > 
-> >          * later the GPC power domain driver will not be skipped.
-> >          */
-> >         
-> >         of_node_clear_flag(node, OF_POPULATED);
-> > 
-> > +       fwnode_dev_initialized(domain->fwnode, false);
-> > 
-> >         return 0;
-> >  
-> >  }
-> > 
-> > diff --git a/drivers/soc/imx/gpcv2.c b/drivers/soc/imx/gpcv2.c
-> > index 6383a4edc360..181fbfe5bd4d 100644
-> > --- a/drivers/soc/imx/gpcv2.c
-> > +++ b/drivers/soc/imx/gpcv2.c
-> > @@ -1513,6 +1513,7 @@ static int imx_gpcv2_probe(struct platform_device
-> > *pdev)> 
-> >                 pd_pdev->dev.parent = dev;
-> >                 pd_pdev->dev.of_node = np;
-> > 
-> > +               pd_pdev->dev.fwnode = of_fwnode_handle(np);
-> > 
-> >                 ret = platform_device_add(pd_pdev);
-> >                 if (ret) {
-> > 
-> > With this patch, I'd really expect the power domain dependency to be
-> > handled correctly.
-> > 
-> > > Whats worse, starting with commit 9/9 [of: property: Simplify
-> > > of_link_to_phandle()], other drivers fail to probe waiting for pinctrl
-> > > to be available.
-> > 
-> > Heh, Patch 9/9 and all its other dependencies in this series was to
-> > fix your use case. Ironic that it's causing you more issues.
-> > 
-> > > > $ cat /sys/kernel/debug/devices_deferred
-> > > > gpio-leds       platform: wait for supplier gpioledgrp
-> > > > extcon-usbotg0  platform: wait for supplier usb0congrp
-> > > > gpio-keys       platform: wait for supplier gpiobuttongrp
-> > > > regulator-otg-vbus      platform: wait for supplier reggotgvbusgrp
-> > > > regulator-vdd-arm       platform: wait for supplier dvfsgrp
-> > > 
-> > > Apparently for some reason they are not probed again, once the pinctrl
-> > > driver probed.
-> > 
-> > I'm hoping that this is just some issue due to the missing patch
-> > above, but doesn't sound like it if you say that the pinctrl ended up
-> > probing eventually.
-> > 
-> > So when device_links_driver_bound() calls
-> > __fw_devlink_pickup_dangling_consumers(), it should have picked up the
-> > consumers of node like gpiobuttongrp and moved it to the pinctrl
-> > device. And right after that we call __fw_devlink_link_to_consumers()
-> > that would have created the device links. And then right after that,
-> > we go through all the consumers and add them to the deferred probe
-> > list. After that deferred probe should have run... either because it's
-> > enabled at late_initcall() or because a new device probed
-> > successfully.
-> > 
-> > Can you check which one of my expectations isn't true in your case?
-> 
-> Actually I have a hypothesis on what might be happening. It could be a
-> case of the consumer device getting added after the supplier has been
-> initialized.
-> 
-> If the patch above doesn't fix everything, can you add this diff on
-> top of the patch above and see if that fixes everything? If it fixes
-> the pinctrl issue, can you check my hypothesis be checking in what
-> order the devices get added and get probed?
-> 
-> diff --git a/drivers/base/core.c b/drivers/base/core.c
-> index 2f012e826986..866755d8ad95 100644
-> --- a/drivers/base/core.c
-> +++ b/drivers/base/core.c
-> @@ -2068,7 +2068,11 @@ static int fw_devlink_create_devlink(struct device
-> *con, device_links_write_unlock();
->         }
-> 
-> -       sup_dev = get_dev_from_fwnode(sup_handle);
-> +       if (sup_handle->flags & FWNODE_FLAG_NOT_DEVICE)
-> +               sup_dev = fwnode_get_next_parent_dev(sup_handle);
-> +       else
-> +               sup_dev = get_dev_from_fwnode(sup_handle);
-> +
->         if (sup_dev) {
->                 /*
->                  * If it's one of those drivers that don't actually bind to
-> 
+3/7 itself does nothing for userspace, but 6/7 does, which relies on separate 
+compatibles in the driver.
 
-And with this change my pinctrl probing is fixed as well!
-
-Thanks
+Best regards,
 Alexander
-
 
 
 
