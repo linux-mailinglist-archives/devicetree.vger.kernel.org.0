@@ -2,95 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 133C659587D
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 12:36:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1834595801
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 12:21:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234416AbiHPKf6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 06:35:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46144 "EHLO
+        id S234315AbiHPKVA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 06:21:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234692AbiHPKe5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 06:34:57 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6D5EC889D;
-        Tue, 16 Aug 2022 02:26:50 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id w3so12721203edc.2;
-        Tue, 16 Aug 2022 02:26:50 -0700 (PDT)
+        with ESMTP id S234502AbiHPKUc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 06:20:32 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9645CAC40
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 02:27:08 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id x19so14083317lfq.7
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 02:27:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc;
-        bh=lQavYR1DZVq5XW1RfvfwaMPSqcKo4wtNK2FvdVYRRiw=;
-        b=kSJjKHO1Ts2egWBbe1C59rolcVhl25nwBxdHHt+BfW74kXoG+v3KUyz40zr1FZ/Rtx
-         XhX6AEZoWcywVft+mZB8eaeS2q0K0OZqxFGNHjpJW+325T5QUcqRf5jt08F9+nOXCmVm
-         0hEP9X/L1R4dxyv5Cs70qbfIzWpYHFYNroXKcmWc+Ts5YfP6yjuYOP/8nxlIx1Ws7Lf0
-         bhysQ27hqnb8QW6RCkCb8XPUPVF3emgmpTHiNxp113mF22rdeOcCV9I/+7Sl6VkBfekX
-         0CKM0ySGicZN1w+v3MP7XKPQjS4O+P+8U3OReiDTlJdMWXpe/U5LzvmuP/Nit4HJcVYv
-         R2BA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=YuhzrIsKzKoxljsJquJ+N3MzsaKkJkpZ8K+pC1+WTlM=;
+        b=wvHYOe7vCMOWiQ0nymIOzn6F2Mne3tojRiURaRTfDlx8FNTjviNmtXGdZM75UXUnsI
+         4IJv3jaEffif/5cR/jc3VDh/QkFxJ/mVnVnpvjn/oYVEMe2zWGUM0jzGCHv8NkZDcROz
+         6Vk+KUYDHLL6g3rS7ddA57gEnvLXZoxKtLKPZ5RrmtNpILJQMwIzy7LZDxvUdy086HUL
+         CV7KHiz9zQsx4F/1AbNzNU4AzslfxAnj7G76D02AoxRcoE1yWk+vm+b+RpiyetKqSKg6
+         f0A/pYcy5s2efGQypmfyLv8jQT2zNLjBHrHR492VnDTElyGmysFM4varqCcY2u4yJ+wD
+         qWfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc;
-        bh=lQavYR1DZVq5XW1RfvfwaMPSqcKo4wtNK2FvdVYRRiw=;
-        b=1USMjAJoRfugXMGJhc9mOkjaniWbWzUFZ4m5GLScdykXhbaj87kg7H5IYeFxbns+3A
-         3KKvFV/+ZVGr7hSqWmRiX0YRBjALIPLqldDTD/pw+4WwjO8UoMPWMcXojUII6cvRdfEV
-         JPbj4tyhtyzhqYCPo4jzTIPkwlcSt0KA5Y7HnzLa/6H+sYIT7KN7wOP1EBbNRCfhnmAM
-         74iD/WsT/rwF2QR3IxIoc/tNVPv6lnjOpgRXK46RgwC1oXrJcoQOym/mkrBXhYlKQiah
-         MlQ8alzpLReH3nid0rkiS/iVdBVgM6mBNi3Vw+4kMC0oDSnYbZot0OkcpoU4HbODEx57
-         gtMg==
-X-Gm-Message-State: ACgBeo0pqAa9DFtqobn8191FzJsKyFATFAykK33cgxpJ8Hm/jGqGUnCT
-        N+sLJb99RrNZSG1fOf+fZdg=
-X-Google-Smtp-Source: AA6agR7lurC8h894L7K1sVne44fBceCPThkML/hHPvS14Tz7FZvHA6Qb6beC2g50oaWIJLyCJLd6zQ==
-X-Received: by 2002:a05:6402:26c5:b0:43e:2f1b:31c2 with SMTP id x5-20020a05640226c500b0043e2f1b31c2mr17741424edd.424.1660642009160;
-        Tue, 16 Aug 2022 02:26:49 -0700 (PDT)
-Received: from [192.168.27.150] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id o10-20020a056402038a00b0043a7134b381sm8118956edv.11.2022.08.16.02.26.44
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=YuhzrIsKzKoxljsJquJ+N3MzsaKkJkpZ8K+pC1+WTlM=;
+        b=dRHb0urkx4eElRMOpx18Mg9BviOFqIxdkc4j6DBLrfewcPJIop7ETHP0nUj/g2+x1K
+         Kc0Hr8TZTVM9Wb4ZTjn4f5VEAc5cV9Z3tdchzGpjGr6aqjXIGWlcgewMBoh32Tzvad3S
+         jA27A0Dc8nFdbvRthgRerNRUdn+ipBQVg9kzczuFgoOVgWDrOHZqtjPZwnUk2y3vNmUZ
+         +n9Glk9DmL6fuwCAT89ruduqvDQEqHEWJpZ1LKPzoVZtKkD8dFZYx6hSCRcq9fr5kbvs
+         tbRVky5BpXGNXsCcyUzoE+mVaFGfEQFUT2dpJdzYMtQKZhKW9HvWl9EjpDt7dcXM1XwH
+         gE3A==
+X-Gm-Message-State: ACgBeo02b3RgvznaRQTzrJxwNKVRQ21W6tX2O42JD9BAJRNnz6WK60Hr
+        E1hFzAyMrzhhHtNozGqzxH0YYw==
+X-Google-Smtp-Source: AA6agR6s2p78Qi53zblpaHXfrGi//J3wJqGVT9FrxyRs6MqrWgTRPUjHp/ZhteJLKa8SqLm3gh6NhA==
+X-Received: by 2002:a2e:7007:0:b0:261:6dd1:e0f5 with SMTP id l7-20020a2e7007000000b002616dd1e0f5mr6503137ljc.394.1660642025713;
+        Tue, 16 Aug 2022 02:27:05 -0700 (PDT)
+Received: from ?IPV6:2001:14bb:ae:539c:1782:dd68:b0c1:c1a4? (d15l54g8c71znbtrbzt-4.rev.dnainternet.fi. [2001:14bb:ae:539c:1782:dd68:b0c1:c1a4])
+        by smtp.gmail.com with ESMTPSA id e19-20020ac24e13000000b0047f8e9826a1sm1331015lfr.31.2022.08.16.02.27.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Aug 2022 02:26:48 -0700 (PDT)
-Message-ID: <39a59ca1-642f-40de-f71d-842f9753372b@gmail.com>
-Date:   Tue, 16 Aug 2022 11:26:37 +0200
+        Tue, 16 Aug 2022 02:27:05 -0700 (PDT)
+Message-ID: <d6acd450-a3bc-d5bd-eda9-9664e6beadf9@linaro.org>
+Date:   Tue, 16 Aug 2022 12:27:03 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
- Thunderbird/96.0
-Subject: Re: [PATCH] dt-bindings: nvmem: u-boot,env: add basic NVMEM cells
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v5 04/13] dt-bindings: memory-controllers: add canaan k210
+ sram controller
+Content-Language: en-US
+To:     Conor Dooley <mail@conchuod.ie>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Tom Rini <trini@konsulko.com>
-Cc:     Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org, u-boot@lists.denx.de,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20220703084843.21922-1-zajec5@gmail.com>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-In-Reply-To: <20220703084843.21922-1-zajec5@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Palmer Dabbelt <palmer@rivosinc.com>
+Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Niklas Cassel <niklas.cassel@wdc.com>,
+        Dillon Min <dillon.minfei@gmail.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+References: <20220705215213.1802496-1-mail@conchuod.ie>
+ <20220705215213.1802496-5-mail@conchuod.ie>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220705215213.1802496-5-mail@conchuod.ie>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3.07.2022 10:48, Rafał Miłecki wrote:
-> U-Boot doesn't have cells at hardcoded addresses. They are stored in
-> internal format. It's still important to define relevant cells in DT so
-> NVMEM consumers can reference them.
+On 06/07/2022 00:52, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
 > 
-> Update binding to allow including basic cells as NVMEM device subnodes.
+> The k210 U-Boot port has been using the clocks defined in the
+> devicetree to bring up the board's SRAM, but this violates the
+> dt-schema. As such, move the clocks to a dedicated node with
+> the same compatible string & document it.
+> 
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
 
-Ping :)
+Does not apply to my tree. Please rebase and resend.
 
-
-For a reference you can see Broadcom's NVRAM (identical feature):
-
-084973e944bec ("dt-bindings: nvmem: brcm,nvram: add basic NVMEM cells")
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=084973e944bec21804f8afb0515b25434438699a
-
-c8442f0fb09ca ("ARM: dts: BCM5301X: Add Ethernet MAC address to Luxul XWR-3150")
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=c8442f0fb09ca3d842b9b23d1d0650f649fd10f8
+Best regards,
+Krzysztof
