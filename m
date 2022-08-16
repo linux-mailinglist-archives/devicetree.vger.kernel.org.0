@@ -2,213 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C34095955DF
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 11:06:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DCB8B5955F0
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 11:09:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232520AbiHPJG2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 05:06:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39968 "EHLO
+        id S233406AbiHPJJn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 05:09:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232285AbiHPJFw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 05:05:52 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7690552801;
-        Tue, 16 Aug 2022 00:21:21 -0700 (PDT)
+        with ESMTP id S231888AbiHPJIh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 05:08:37 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2C86D1249
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 00:25:30 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id z6so13639852lfu.9
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 00:25:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1660634481; x=1692170481;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Lqi0pNBgvItIazaZwyQE/pVneghxzh7UK7w+HRaZ6+o=;
-  b=LE88s7PkI4LJ3rqyyzvl/AcfqYXLmvj1ZZ8Uv/qguGDGsctOWNMSBCgd
-   ojGAvsdvuCStY+FdNRZ10aaO/vHbIiXrkWxSprRymeBhJII96adTbTnvo
-   3YutJalh2PPEZILKOXWJdabj3F4Ulipy/vZPm21C8rJkxy/niNjM6LRvB
-   N9I0AsDxqv1NwDpP/lwlFAkeHH8Bm9BgkVqEMkPNkhVDzf7wkzyVkU5Tq
-   wzwwrJx+ObnZincAvgW40976vt1My3KncIWvoT67tiayk0kJN6adzJ+0U
-   diriuOAa9qarvDJaBMs+6DIPUcf0bqIfm7hGm9IoEa17fTC7HOWuYJxU+
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.93,240,1654552800"; 
-   d="scan'208";a="25618933"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 16 Aug 2022 09:21:19 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Tue, 16 Aug 2022 09:21:19 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Tue, 16 Aug 2022 09:21:19 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1660634479; x=1692170479;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Lqi0pNBgvItIazaZwyQE/pVneghxzh7UK7w+HRaZ6+o=;
-  b=e1tfLCeX7ra+BOfnMdlBYHbPuFt3brAh7jPfPnJF3MnAJSuHtB7ALytL
-   jYTrrDXXKiXpCWHmCXb9fTvcf6+LezDYMqad+yuAWhmEg6yw35S4QhBJy
-   3WGYpgb58nisor8Z3rztuUS6xHqiQfsY4grVOp36H1jeRVmABPUqTa6QD
-   6gP+GXS38Dmv3gZV8AbAyw+DG0AXOIfco1fsA69I7R3MZu4C8qu23buuI
-   1dhs/3Es4Om84Va+r4RmBeY3+eNoYl15P25OGpIkRoPVbmIgM4UIUQrWt
-   +6rZcAzMrsbHHDtptShtZX0+uhfbfFPebKFokhdDKF+8SXvzUvkQi2gCV
-   g==;
-X-IronPort-AV: E=Sophos;i="5.93,240,1654552800"; 
-   d="scan'208";a="25618932"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 16 Aug 2022 09:21:19 +0200
-Received: from steina-w.localnet (unknown [10.123.49.11])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 7A1E4280056;
-        Tue, 16 Aug 2022 09:21:19 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Sakari Ailus <sakari.ailus@iki.fi>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        "Paul J . Murphy" <paul.j.murphy@intel.com>,
-        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Naushir Patuck <naush@raspberrypi.com>
-Subject: Re: [PATCH v4 3/7] media: i2c: ov9282: Add ov9281 compatible
-Date:   Tue, 16 Aug 2022 09:21:17 +0200
-Message-ID: <1983480.CQOukoFCf9@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <ceb2a42d-0650-6e6f-3408-6347bcd8c5e2@linaro.org>
-References: <20220728130237.3396663-1-alexander.stein@ew.tq-group.com> <2403639.ElGaqSPkdT@steina-w> <ceb2a42d-0650-6e6f-3408-6347bcd8c5e2@linaro.org>
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=ooE16zehdw/Qev5T+ZmUnjytAB9yy5ywmdc6ijRB7DU=;
+        b=vsbEHpL2RqIY2QslVwDqFfp3XtMgHpHexPeU7C7kkWJq9Vq0XI2sRGSqgt5nWsO1hm
+         +T5H7I3m0VVO7Yygf/ziEdb826My+optK01l52i8aQPhSGBi+y4MkCZ2dLgcR1et5mGa
+         N9m32uGyTjvej0rn9DPJiXTvSL4HY4BlnKWuP+YkgjAYdqUuvC3cB1YIF4vX7rQQ4kf5
+         JWH7/zpvE4X1qvrDhyPss0d3EBSVe46JZkl5u145kQLkNV+KKV8J9E3p+uIvAcBNng/2
+         Cn2LYpunvdGkkOwInxwuCuHNobZOTstauY/+ZLjaJBZb+IKB1BisMwJKdL00sRrOkDyr
+         0Ivw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=ooE16zehdw/Qev5T+ZmUnjytAB9yy5ywmdc6ijRB7DU=;
+        b=AH4Z70Zq+c3PkHhbYY701Zcp8fus7HAf0g5pZ4a04HlRVIsNZIYv1z8xP1jwh/37nQ
+         I5wM4Q/ePGfrAFhLh1YVqjW3/f8A9Fh6MuTtSOk9hfTtMTn1YQtViyk9HFWNDfdS4dhy
+         82o1rw/0rYvreI2gIY3ueZm2f+CrQt8Frz4S810RXHiRJ6tECLBL1ErD0BPuaApZz2lJ
+         XVHR9wxcsmboZenjqNjVrGFyFexasFIRtqrGBIBQqZ96jWlZ/mjeO3ZwgVASuwoZ7wML
+         1fpGlJAlcac/1J0+m/Z3Iddlovqw4i4H+nMWUtUUN+RHdEXcuE1QAXoXSPiyjgWJ63CB
+         H3Ew==
+X-Gm-Message-State: ACgBeo2DgBlLmtHAnHLBIlOswsBLXyuy6l6Ee8a+jRSIG7oyLaX182GK
+        PGP4JlVghWLchnfBCIdDrgISeA==
+X-Google-Smtp-Source: AA6agR4AvhM4cDhXvQ1UTG+En6e9pMhUjfadNQTORfvzlu9ebxyZUTSlog8Wr6qGvgUaMN87z3ocDA==
+X-Received: by 2002:a19:d611:0:b0:492:8e15:ba18 with SMTP id n17-20020a19d611000000b004928e15ba18mr2268836lfg.524.1660634728747;
+        Tue, 16 Aug 2022 00:25:28 -0700 (PDT)
+Received: from ?IPV6:2001:14bb:ae:539c:1782:dd68:b0c1:c1a4? (d15l54g8c71znbtrbzt-4.rev.dnainternet.fi. [2001:14bb:ae:539c:1782:dd68:b0c1:c1a4])
+        by smtp.gmail.com with ESMTPSA id bd18-20020a05651c169200b0025e5b5474a4sm1706639ljb.85.2022.08.16.00.25.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 Aug 2022 00:25:28 -0700 (PDT)
+Message-ID: <febf654a-66ad-48e2-072c-7e1f4b521964@linaro.org>
+Date:   Tue, 16 Aug 2022 10:25:26 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH 2/4] dt-bindings: PCI: microchip,pcie-host: fix missing
+ clocks properties
+Content-Language: en-US
+To:     Conor.Dooley@microchip.com, mail@conchuod.ie,
+        Daire.McNamara@microchip.com, bhelgaas@google.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        paul.walmsley@sifive.com, greentime.hu@sifive.com,
+        palmer@dabbelt.com, aou@eecs.berkeley.edu, lpieralisi@kernel.org
+Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+References: <20220811203306.179744-1-mail@conchuod.ie>
+ <20220811203306.179744-3-mail@conchuod.ie>
+ <99b5bddb-4a09-a3ac-e01b-d0ae624ad2f8@linaro.org>
+ <d25f8901-b9d7-ae8e-0061-2a033af16693@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <d25f8901-b9d7-ae8e-0061-2a033af16693@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Dienstag, 16. August 2022, 09:16:44 CEST schrieb Krzysztof Kozlowski:
-> On 15/08/2022 14:19, Alexander Stein wrote:
-> > Hello,
-> > 
-> > Am Dienstag, 2. August 2022, 10:30:40 CEST schrieb Krzysztof Kozlowski:
-> >> On 02/08/2022 10:23, Sakari Ailus wrote:
-> >>> On Mon, Aug 01, 2022 at 08:08:58PM +0200, Krzysztof Kozlowski wrote:
-> >>>> On 01/08/2022 20:07, Krzysztof Kozlowski wrote:
-> >>>>> On 29/07/2022 10:18, Laurent Pinchart wrote:
-> >>>>>> Hi Sakari,
-> >>>>>> 
-> >>>>>> (Adding Dave and Naush to the CC list)
-> >>>>>> 
-> >>>>>> On Fri, Jul 29, 2022 at 10:07:36AM +0300, Sakari Ailus wrote:
-> >>>>>>> On Thu, Jul 28, 2022 at 03:13:11PM +0200, Krzysztof Kozlowski wrote:
-> >>>>>>>> On 28/07/2022 15:02, Alexander Stein wrote:
-> >>>>>>>>> According to product brief they are identical from software point
-> >>>>>>>>> of
-> >>>>>>>>> view.
-> >>>>>>>>> Differences are a different chief ray angle (CRA) and the package.
-> >>>>>>>>> 
-> >>>>>>>>> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> >>>>>>>>> Acked-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
-> >>>>>>>>> ---
-> >>>>>>>>> 
-> >>>>>>>>>  drivers/media/i2c/ov9282.c | 1 +
-> >>>>>>>>>  1 file changed, 1 insertion(+)
-> >>>>>>>>> 
-> >>>>>>>>> diff --git a/drivers/media/i2c/ov9282.c
-> >>>>>>>>> b/drivers/media/i2c/ov9282.c
-> >>>>>>>>> index 8a252bf3b59f..c8d83a29f9bb 100644
-> >>>>>>>>> --- a/drivers/media/i2c/ov9282.c
-> >>>>>>>>> +++ b/drivers/media/i2c/ov9282.c
-> >>>>>>>>> @@ -1113,6 +1113,7 @@ static const struct dev_pm_ops ov9282_pm_ops
-> >>>>>>>>> =
-> >>>>>>>>> {
-> >>>>>>>>> 
-> >>>>>>>>>  };
-> >>>>>>>>>  
-> >>>>>>>>>  static const struct of_device_id ov9282_of_match[] = {
-> >>>>>>>>> 
-> >>>>>>>>> +	{ .compatible = "ovti,ov9281" },
-> >>>>>>>> 
-> >>>>>>>> The devices seem entirely compatible, so why you add a new
-> >>>>>>>> compatible
-> >>>>>>>> and not re-use existing?
-> >>>>>>>> 
-> >>>>>>>> The difference in lens does not explain this.
-> >>>>>>> 
-> >>>>>>> It is typically necessary to know what kind of related hardware can
-> >>>>>>> be
-> >>>>>>> found in the system, beyond just the device's register interface.
-> >>>>>>> Apart
-> >>>>>>> from USB cameras, less integrated cameras require low-level software
-> >>>>>>> control in which specific device properties are important. In this
-> >>>>>>> case it
-> >>>>>>> could be the lens shading table, among other things.
-> >>>>>>> 
-> >>>>>>> 	https://www.ovt.com/sensor/ov9282/
-> >>>>>>> 
-> >>>>>>> Therefore I think adding a specific compatible string for this one
-> >>>>>>> is
-> >>>>>>> justified.
-> >>>>> 
-> >>>>> Specific compatible in binding is a requirement. No one discussed
-> >>>>> this.
-> >>>>> However not in the driver. None of the arguments above justify adding
-> >>>>> such binding, unless user-space depends on matching compatible, but
-> >>>>> not
-> >>>>> real compatible?
-> >>>> 
-> >>>> Eh, now I used vague words. This should be instead:
-> >>>> 
-> >>>> "However not in the driver. None of the arguments above justify adding
-> >>>> such compatible to driver, unless user-space depends on matching
-> >>>> compatible, but not real compatible?"
-> >>> 
-> >>> If I understand you right, you'd put the more specific model name as
-> >>> well
-> >>> as the more generic one to the compatible property and let the driver
-> >>> match
-> >>> against the more generic one?
-> >> 
-> >> Yes.
-> >> 
-> >>> But in this case neither of these models is more generic than the other.
-> >> 
-> >> It's not a problem. Also the spec explains it similar way:
-> >> "They
-> >> 
-> >>  allow a device to express its compatibility with a family of similar
-> >> 
-> >> devices, potentially allowing a single
-> >> 
-> >>  device driver to match against several devices."
-> >> 
-> >> Of course the numbers would suggest that ov9281 should be the family (as
-> >> lower number usually means designed earlier), but it is a matter of
-> >> convention which here can be skipped. The point is that ov9281 and
-> >> ov9282 are compatible between each other, therefore they belong to
-> >> single family.
-> >> 
-> >> Best regards,
-> >> Krzysztof
-> > 
-> > So what is the conclusion of this?
-> > If using the "family" name there is no way for userspace to see the actual
-> > device name rather than the driver name. This might be confusing,
-> > especially of both ov9281 and ov9282 are attached to the same platform.
-> > The only difference would be the i2c-bus-address.
-> > You can also go for ov928x but this is not a real improvement.
+On 14/08/2022 16:47, Conor.Dooley@microchip.com wrote:
+> On 12/08/2022 08:35, Krzysztof Kozlowski wrote:
+>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+>>
+>> On 11/08/2022 23:33, Conor Dooley wrote:
+>>> From: Conor Dooley <conor.dooley@microchip.com>
+>>>
+>>> Upgrading dt-schema to v2022.08 reveals unevaluatedProperties issues
+>>> that were not previously visible, such as the missing clocks and
+>>> clock-names properties for PolarFire SoC's PCI controller:
+>>> arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dtb: pcie@2000000000: Unevaluated properties are not allowed ('clock-names', 'clocks', 'legacy-interrupt-controller', 'microchip,axi-m-atr0' were unexpected)
+>>>         From schema: Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
+>>>
+>>> The clocks are required to enable interfaces between the FPGA fabric
+>>> and the core complex, so add them to the binding.
+>>>
+>>> Fixes: 6ee6c89aac35 ("dt-bindings: PCI: microchip: Add Microchip PolarFire host binding")
+>>> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+>>> ---
+>>>  .../bindings/pci/microchip,pcie-host.yaml     | 25 +++++++++++++++++++
+>>>  1 file changed, 25 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml b/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
+>>> index edb4f81253c8..2a2166f09e2c 100644
+>>> --- a/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
+>>> +++ b/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
+>>> @@ -25,6 +25,31 @@ properties:
+>>>        - const: cfg
+>>>        - const: apb
+>>>
+>>> +  clocks:
+>>> +    description:
+>>> +      Fabric Interface Controllers, FICs, are the interface between the FPGA
+>>> +      fabric and the core complex on PolarFire SoC. The FICs require two clocks,
+>>> +      one from each side of the interface. The "FIC clocks" described by this
+>>> +      property are on the core complex side & communication through a FIC is not
+>>> +      possible unless it's corresponding clock is enabled. A clock must be
+>>> +      enabled for each of the interfaces the root port is connected through.
+>>> +    minItems: 1
+>>> +    items:
+>>> +      - description: FIC0's clock
+>>> +      - description: FIC1's clock
+>>> +      - description: FIC2's clock
+>>> +      - description: FIC3's clock
+>>> +
+>>> +  clock-names:
+>>> +    items:
+>>> +      enum:
+>>> +        - fic0
+>>> +        - fic1
+>>> +        - fic2
+>>> +        - fic3
+>>> +    minItems: 1
+>>> +    maxItems: 4
+>>
+>> No need for maxItems.
 > 
-> I still don't understand. Why user-space cannot see this? I really
-> cannot find any trouble... Your 3/7 patch does nothing special here for
-> user-space...
+> I brought this up on IRC, but transferring it here since it's been
+> an (understandable!!) few days & just didn't want things to get lost
+> if my net died. Cutting out the back & forth, in summary:
+> "
+> I'm trying to remove the maxItems from the clock-names array you
+> didn't like - but I can't figure out what to do instead that doesn't
+> trigger errors. All 4 clocks are optional, the only requirement is
+> that any one of them is present. Either I seem to get complaints that
+> my property is not an array (simply removing the maxItems) or complaints
+> that because I have clock0,1,3 and not 2 that clock3 is unexpected.
 
-3/7 itself does nothing for userspace, but 6/7 does, which relies on separate 
-compatibles in the driver.
+Eh, I misread the code and thought that you list the items, but you just
+enumerate the schema for each item. My advice was wrong, you need maxItems.
+
+> The root port is physically on the opposite side of the FPGA to the cpus
+> & the AXI connection is through the FPGA fabric. There are 4 AXI
+> interconnects to the fabric  which the PCI controller could in theory be
+> connected to all 4, but it only needs to be connected to one.. I had
+> done done minItems and maxItems a la:
+> devicetree/bindings/watchdog/st,stm32-iwdg.yaml
+> b/c that seems to have two clocks that it doesnt care about the order of
+> "
+> 
+> Rob then suggested:
+> "
+> I would remove the 'items' list in 'clocks' and make the description
+> clear that any of clocks is possible. It's not ideal, but it's a case of
+> that's what is already there.
+> "
+> 
+> I'd then have something along the lines of:
+>   clocks:
+>     description:
+>       Fabric Interface Controllers, FICs, are the interface between the FPGA
+>       fabric and the core complex on PolarFire SoC. The FICs require two clocks,
+>       one from each side of the interface. The "FIC clocks" described by this
+>       property are on the core complex side & communication through a FIC is not
+>       possible unless it's corresponding clock is enabled. A clock must be
+>       enabled for each of the interfaces the root port is connected through.
+>       This could in theory be all 4 interfaces, one interface or any combination
+>       in between.
+>     minItems: 1
+>     maxItems: 4
+> 
+>   clock-names:
+>     items:
+>       enum:
+>         - fic0
+>         - fic1
+>         - fic2
+>         - fic3
+>     minItems: 1
+>     maxItems: 4
+> 
+> Does that seem reasonable to you?
+
+
+Yes.
 
 Best regards,
-Alexander
-
-
-
+Krzysztof
