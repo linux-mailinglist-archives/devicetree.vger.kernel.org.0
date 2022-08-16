@@ -2,84 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 463E5595526
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 10:27:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4784C59551C
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 10:26:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232753AbiHPI0t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 04:26:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59976 "EHLO
+        id S232759AbiHPIZA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 04:25:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232721AbiHPIZ6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 04:25:58 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 062DE1403B1
-        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 22:58:00 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id d14so13400941lfl.13
-        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 22:57:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=fG6ebq+esaR04I5xSnC4xD/7QUDUFnAnjiwTJZuzpTU=;
-        b=HbRzk/VSqzFdbWnSmSJYeONLMiDIX4eolFhsG+ovtUIrYQaEt4fOkjoEJEklJPfWAB
-         hCtkii2R/7FvDwsdApsi3VZBEdLZne1ZnDTzCRqDftnrYKUD52HjeIOx//p0e8J5jS/G
-         +0BsgvCxCyLK5ILdUXZdVnnYzzfd4HzpH4nuMgS9jiScfrd0v5sTuOmjgyl4sP4ls2Fj
-         LJzCTUrSbBmEF//F3bcwugnym76jL/d6xod76SEqG4tpMyPReYWiOb9c1bPCh80CKUUt
-         RotrAblPLD/bJQnlvo8zkzY3hH8+Nn1YP/OqkdB7xDZx9hkL0n0Z/3sFwEKwSyiWZxtl
-         4cKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=fG6ebq+esaR04I5xSnC4xD/7QUDUFnAnjiwTJZuzpTU=;
-        b=hAiqjjGS9rCTyYFhWhrUttQTmHL9nwNJuKzEG1btnypCeI4xy2ndQSvHYJMk2hvcnU
-         /b6kmPB84eJy6PkTRZE+DjtuFAYMLT+babdZ+4sYCutS6PiWKtOexUzLdpGMlzUXpSV9
-         Z5Z+U+o35YCzBwaine2Bq0feP1otu6IepqBGvMNeIGb0b5F84OYpg6a3I4DWG7Fa6etF
-         NHU2u7mMznOF2KMHLOMN4gca47ZsoOWginZPkq+HwcbVU+yu4Na0NtR3hYkXGMnCwMhQ
-         Ht7qKTn5rBnAMptb+WRxUfA/hDPlNAonSOxfSXeZoIZhcxr+el36hKAMv8/Ca1hW7jh/
-         U7Fw==
-X-Gm-Message-State: ACgBeo1s0ZWj/FvdUZmrNRMWeJ7CXuzK8j03wS13UTsUr3iEquZcyATW
-        IxUmkfHQ1NP5W9gothOG2VUoAA==
-X-Google-Smtp-Source: AA6agR6nWRLeZKfkfbcHhmb0twzixrU6OVenWmTfNeYj4Zbsb7EQ2O2nQhUNQ/z+EXIsHXvCkdP56w==
-X-Received: by 2002:a05:6512:3d8f:b0:48f:a80b:1872 with SMTP id k15-20020a0565123d8f00b0048fa80b1872mr5975131lfv.21.1660629478374;
-        Mon, 15 Aug 2022 22:57:58 -0700 (PDT)
-Received: from ?IPV6:2001:14bb:ae:539c:1782:dd68:b0c1:c1a4? (d15l54g8c71znbtrbzt-4.rev.dnainternet.fi. [2001:14bb:ae:539c:1782:dd68:b0c1:c1a4])
-        by smtp.gmail.com with ESMTPSA id h6-20020a2ea486000000b0025e57b40009sm1675557lji.89.2022.08.15.22.57.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Aug 2022 22:57:57 -0700 (PDT)
-Message-ID: <96e4a9f2-96a0-764e-8060-58f2c1b23a5b@linaro.org>
-Date:   Tue, 16 Aug 2022 08:57:56 +0300
+        with ESMTP id S232771AbiHPIXa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 04:23:30 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DABB140EB5;
+        Mon, 15 Aug 2022 22:59:04 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 27G5wsMh061765;
+        Tue, 16 Aug 2022 00:58:54 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1660629534;
+        bh=Qshoc3TozitcOBveB/ojj1zsYjU6ve0AOwT34babB/g=;
+        h=From:To:CC:Subject:Date;
+        b=XlbXD0tuVUoDOsMEGZbcgdl7+50QbsLgG7Bug8eJFP/Dilu/v+94LL4e3hrduYeDY
+         1f1rvuMNhFKarl/LZy9JUEjpiLkLjyIPHmKSgZ7jj0RprqdDnSlXLo/BYpYQGMcrE2
+         vmKEzzL2xOAvIFsNAE6dZig6NSN7osUxogAX6Oy4=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 27G5wsu3014212
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 16 Aug 2022 00:58:54 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 16
+ Aug 2022 00:58:52 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Tue, 16 Aug 2022 00:58:52 -0500
+Received: from uda0492258.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 27G5wm3c109354;
+        Tue, 16 Aug 2022 00:58:49 -0500
+From:   Siddharth Vadapalli <s-vadapalli@ti.com>
+To:     <robh+dt@kernel.org>, <lee.jones@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <kishon@ti.com>,
+        <vkoul@kernel.org>, <dan.carpenter@oracle.com>,
+        <grygorii.strashko@ti.com>, <rogerq@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <s-vadapalli@ti.com>
+Subject: [PATCH v2 0/2] Add support for QSGMII mode
+Date:   Tue, 16 Aug 2022 11:28:46 +0530
+Message-ID: <20220816055848.111482-1-s-vadapalli@ti.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v4 4/4] dt-binding: perf: Add Amlogic DDR PMU
-Content-Language: en-US
-To:     Jiucheng Xu <jiucheng.xu@amlogic.com>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Chris Healy <cphealy@gmail.com>
-References: <20220805071426.2598818-1-jiucheng.xu@amlogic.com>
- <20220805071426.2598818-4-jiucheng.xu@amlogic.com>
- <a3cd55ad-cec2-9570-2078-6724ab1d7300@linaro.org>
- <880842a1-a769-f228-7c91-5402e6d9391e@amlogic.com>
- <c57044ca-3742-37c1-b8ad-14806cbc05ea@amlogic.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <c57044ca-3742-37c1-b8ad-14806cbc05ea@amlogic.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,26 +64,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/08/2022 12:04, Jiucheng Xu wrote:
->>>> +properties:
->>>> +  compatible:
->>>> +    items:
->>> You have only one item, so remove "items".
-> 
-> Hi Krzysztof,
-> 
-> I have tried to remove "items", but error comes.
-> 
-> properties:
->    compatible:
->      - enum:
->        - amlogic,g12a-ddr-pmu
->        - amlogic,g12b-ddr-pmu
->        - amlogic,sm1-ddr-pmu
-> 
-> Do I get misunderstand? I think the "item" is necessary.
+Add compatible for J7200 CPSW5G.
 
-And how other bindings are doing it?
+Add support for QSGMII mode in phy-gmii-sel driver for CPSW5G in J7200.
 
-Best regards,
-Krzysztof
+Change log:
+
+v1->v2:
+1. Rename ti,enet-ctrl-qsgmii as ti,qsgmii-main-ports.
+2. Change ti,qsgmii-main-ports property from bitmask to integer.
+3.Update commit message with property name as ti,qsgmii-main-ports.
+
+v1: https://lore.kernel.org/r/20220531111221.22963-1-s-vadapalli@ti.com/
+
+Siddharth Vadapalli (2):
+  dt-bindings: phy: ti: phy-gmii-sel: Add bindings for J7200
+  phy: ti: gmii-sel: Add support for CPSW5G GMII SEL in J7200
+
+ .../mfd/ti,j721e-system-controller.yaml       |  5 +++
+ .../bindings/phy/ti,phy-gmii-sel.yaml         | 27 ++++++++++++-
+ drivers/phy/ti/phy-gmii-sel.c                 | 40 +++++++++++++++++--
+ 3 files changed, 68 insertions(+), 4 deletions(-)
+
+--
+2.25.1
+
