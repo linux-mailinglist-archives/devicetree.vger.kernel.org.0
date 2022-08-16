@@ -2,251 +2,560 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE63B5958AA
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 12:40:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 67D9659589F
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 12:39:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234807AbiHPKky (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 06:40:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44546 "EHLO
+        id S234864AbiHPKju (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 06:39:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234886AbiHPKkD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 06:40:03 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEBDBCAC81
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 02:55:51 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id z25so14219986lfr.2
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 02:55:51 -0700 (PDT)
+        with ESMTP id S234927AbiHPKjO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 06:39:14 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E0486B67F
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 02:56:34 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id ay12so4992554wmb.1
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 02:56:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=ouC/nNUCrt3P9AuPPNvbcQrm5hP3Vq91u5mO0hzhgiE=;
-        b=M15UJ2gOPRlQBuniCuEzZ1DZQGIvMn6hZQugOgpxtBBpI+dVn7JouVQf2GgunA7fn2
-         JGCezc6VJWURz7ImxJVhUQ1Qz5aMgHzjtlZdj+33GXQ46q1BYMSGq5SkRD4fwJvMqPlP
-         o63wR8dJ9no0B/xph6tdn/7+uc/0sl8zt6epZgRD/qN3z1cKpcLBCKbuyL8WgxuHRK5z
-         j0FEcfQJZS9KCpo0LE3cW5Fl8nR+LfkaOKs9KNfAefMqQWnqobQJ5PH4mP4vTRQ8FGQq
-         V4G8ZzVuA8C3UdrDZMBNP6yZWs69XBpsV8EwXxXiLt4gvD7s6uFhLcmP34FCmvno2tCF
-         rR1w==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=c7OVXjrnshlQAhDd3JMeAgzq9zhrvCnPPY2leZaul9E=;
+        b=sQDLODAmIgNV8pShx+tXdvf6RRWQjFZtQplGo1EB3m8ZZ0K2K8GslOR4Ck52XJEef9
+         aro4ek/xESOdqrrSHqJGcqVV+bDHg3g5/0mRqNy/XVBgz23D8FAobaVkVQDhHZMHELGb
+         sNbtHvwLE3l7v7NkGETw3YuLCC/ZEaXx8IOQz2T86y5mmS2ObNd1rn+GnBuZ9ufQEyQy
+         7CQsi6V4RIq5IhqBMMSur/bVYToGTccKaWZcCYmABQ+i5bo2bqSqmzWHOMu44KUjvCrv
+         w3SWhLb1H8CpX00CpQqbQRe/UM4eQGpH1R2cvPHpR9Ofpa04GX/DOdrxO3ViU0wGJG46
+         9PoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=ouC/nNUCrt3P9AuPPNvbcQrm5hP3Vq91u5mO0hzhgiE=;
-        b=iSf3QkgEqpUnECz0YRP+CZjLjND5jQuYsU/wnkOFLGixsylyUSwkl24il1AWHJoyvo
-         s1dmy7kHutKc95GibZB5jAGTlsV0kVzSLdUs+ZPEUvy6r53WG+Pwuj+VorxpCzL6phIT
-         rBuqvAaVEwDmk21njYUF2nnF37ARgaTzrEC/8ljgc+bVE0uI3nU0C10xfHnIwsJ6SVN1
-         bZUruAUEpjwoQt51NhdtXoKNEtcVH3lRiWQg5p+y07gthDCc/Kt2VKQg9bYOK2jmDl9N
-         lNHsNwd4R4AoYxDJxfETea6SURd/F7V8AqQH7sjWq1L4JS59NGL4Ez0o/U27AQ5NBbsZ
-         HZ+Q==
-X-Gm-Message-State: ACgBeo287NfKToNEJlGzM7dsbZ6qVm8NbbY7Gjmoh7BzW06xkFoQgh7m
-        fWK1pE0yY5roZ4G9g0xhrtzZpQ==
-X-Google-Smtp-Source: AA6agR4ck7myM8UAKNZmScqtxz9CNJgaLd86fBns30J2pD7pFR0A3bi0Rz8iFtZoxIVrvkf43riM/w==
-X-Received: by 2002:a19:3856:0:b0:491:7b45:7617 with SMTP id d22-20020a193856000000b004917b457617mr4301867lfj.47.1660643749373;
-        Tue, 16 Aug 2022 02:55:49 -0700 (PDT)
-Received: from ?IPV6:2001:14bb:ae:539c:1782:dd68:b0c1:c1a4? (d15l54g8c71znbtrbzt-4.rev.dnainternet.fi. [2001:14bb:ae:539c:1782:dd68:b0c1:c1a4])
-        by smtp.gmail.com with ESMTPSA id v5-20020a2e2f05000000b0025e4dcc48b1sm1724683ljv.19.2022.08.16.02.55.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Aug 2022 02:55:48 -0700 (PDT)
-Message-ID: <c4ec080a-b8b1-e3a9-c9d7-063e138c9bb8@linaro.org>
-Date:   Tue, 16 Aug 2022 12:55:47 +0300
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=c7OVXjrnshlQAhDd3JMeAgzq9zhrvCnPPY2leZaul9E=;
+        b=4tA913nqw+zb1+wAf4aSBjvw8yq7zWDLW8ljCkMZYLwXIRik6FkM1gNCQ9EyBWW+Vc
+         RSEDsOCEC971h1sBNOoPSSBFgZYl8pIj7QL35Aufk6W2uKpK1T/3a28o2C0q5g3pg/r0
+         9rQtlO4W/xOzUCxyaHyjm5oBT5crqvPAL5SRs/pY7wIc4CM+xobOv1mk54hB+kCAFafE
+         8/nUk3d8MxgR2O8HdN0gn5nhSbFBK/whESiL/qf7DebgthYH+tyQWYR/Nkxgn16lOWyg
+         viJs0CRbXCh/K3bEzr5J/S7h1SbVA2by4HTtAt3iknJJSJIHsL17F2//wy5OWHyyO537
+         gdwA==
+X-Gm-Message-State: ACgBeo2qLMCT4C7hSt2CQL6+qQ0gfxQ8680UjFGI5vnzZs+nUfa6/GgX
+        5LnM2sq+40yZ1Ur1kacX6Rynow==
+X-Google-Smtp-Source: AA6agR5ObiKbUJrgfx3vVrmLVjAXOeoqvGv/WDJV0Y54gZafu1cjk8NPJY8M0EJk9zHIyLQUADbwUg==
+X-Received: by 2002:a05:600c:3c90:b0:3a3:8606:2df3 with SMTP id bg16-20020a05600c3c9000b003a386062df3mr18914335wmb.132.1660643792447;
+        Tue, 16 Aug 2022 02:56:32 -0700 (PDT)
+Received: from localhost.localdomain ([2a01:e0a:982:cbb0:ef0b:d58b:b15c:96e6])
+        by smtp.gmail.com with ESMTPSA id p14-20020a5d4e0e000000b0020fff0ea0a3sm9630907wrt.116.2022.08.16.02.56.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Aug 2022 02:56:31 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, dri-devel@lists.freedesktop.org,
+        linux-i2c@vger.kernel.org, linux-media@vger.kernel.org,
+        netdev@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-crypto@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-watchdog@vger.kernel.org
+Cc:     Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH] MAINTAINERS: Update email of Neil Armstrong
+Date:   Tue, 16 Aug 2022 11:56:17 +0200
+Message-Id: <20220816095617.948678-1-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v3 1/4] regulator: dt-bindings: Add Allwinner D1 LDOs
-Content-Language: en-US
-To:     Samuel Holland <samuel@sholland.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev
-References: <20220815043436.20170-1-samuel@sholland.org>
- <20220815043436.20170-2-samuel@sholland.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220815043436.20170-2-samuel@sholland.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Developer-Signature: v=1; a=openpgp-sha256; l=21959; i=narmstrong@baylibre.com;
+ h=from:subject; bh=+W0noluQF8xU8yPAYe4ORzlUL4SYSseTznxGoxJg6fo=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBi+2ln22eMpGar5uXv5y91Wcrj0KsgszzZS/dV7q+T
+ wvMUFzKJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCYvtpZwAKCRB33NvayMhJ0Q2RD/
+ 9or+KgrKSQArJboSeq8/2+3LOyY+dSZ4GtKWzh0FQPFgPBKCVZ5iYfleaxqYsrBeSr03jzNscy+2Ly
+ 8sQfktJVfLB6NUlAXgqyO9laLuPgAhuvLKbMajQBx0LpYyuGlZtSCxm/zDYrGgQ9AsxvChg11Z0r7x
+ KeR1dN58U5D7bx4jCEcxeeDlhvgX4b9NpnT8YEc8MojWUjJ6vEmoCpPgg3MPLBePcV76jKlavoyrQb
+ aXBmn+FdTYIDVKlvSWjAcbMnOH7Gh7JttiqPPTivuXXssGCEI5/RHUW+XqCMEbwzUT9ImcVQbV9W2u
+ SFi30yk+getZvdAeRyZVfDFr7vVHT+r897ghB69guYt9Ljgs0KX1Gzyl6H3L4szHIA31opcQu/zwri
+ aF5X9EbjihX3Nh3MoNhE0HyP7aNGF+igrW/N4x68/w7RvXg7fBHiCuOWHb4ea9YTWktxdrTosBOVv0
+ xVXmT9Z+yjJVqJXFHo47UVYTf7FrHiKlTajfmhOJTO+CZQlfV89sh9Te2SkZcNUHDQACY46IpywddF
+ DV6mZTYget/AR/E5eiRxe7HlWH2nZUGWXR45z0f8qZvz+GvdDVY356BWqXxAw0LGBC66LErBgWDs16
+ RYtGFpeCaTZ2MffxA+jOfS3eUwlljFOTcLXKargSACQ27UfEbxgHGDZeN4kA==
+X-Developer-Key: i=narmstrong@baylibre.com; a=openpgp; fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/08/2022 07:34, Samuel Holland wrote:
-> The Allwinner D1 SoC contains two pairs of in-package LDOs. One pair is
-> for general purpose use. LDOA generally powers the board's 1.8 V rail.
-> LDOB generally powers the in-package DRAM, where applicable.
-> 
-> The other pair of LDOs powers the analog power domains inside the SoC,
-> including the audio codec, thermal sensor, and ADCs. These LDOs require
-> a 0.9 V bandgap voltage reference. The calibration value for the voltage
-> reference is stored in an eFuse, accessed via an NVMEM cell.
-> 
-> Neither LDO control register is in its own MMIO range; instead, each
-> regulator device relies on a regmap/syscon exported by its parent.
-> 
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
-> ---
-> 
-> Changes in v3:
->  - Add "reg" property to bindings
->  - Add "unevaluatedProperties: true" to regulator nodes
->  - Minor changes to regulator node name patterns
->  - Remove system-ldos example (now added in patch 3)
-> 
-> Changes in v2:
->  - Remove syscon property from bindings
->  - Update binding examples to fix warnings and provide context
-> 
->  .../allwinner,sun20i-d1-analog-ldos.yaml      | 74 +++++++++++++++++++
->  .../allwinner,sun20i-d1-system-ldos.yaml      | 37 ++++++++++
->  2 files changed, 111 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/regulator/allwinner,sun20i-d1-analog-ldos.yaml
->  create mode 100644 Documentation/devicetree/bindings/regulator/allwinner,sun20i-d1-system-ldos.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/regulator/allwinner,sun20i-d1-analog-ldos.yaml b/Documentation/devicetree/bindings/regulator/allwinner,sun20i-d1-analog-ldos.yaml
-> new file mode 100644
-> index 000000000000..d6964b44ef21
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/regulator/allwinner,sun20i-d1-analog-ldos.yaml
-> @@ -0,0 +1,74 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/regulator/allwinner,sun20i-d1-analog-ldos.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Allwinner D1 Analog LDOs
-> +
-> +description:
-> +  Allwinner D1 contains a set of LDOs which are designed to supply analog power
-> +  inside and outside the SoC. They are controlled by a register within the audio
-> +  codec MMIO space, but which is not part of the audio codec clock/reset domain.
-> +
-> +maintainers:
-> +  - Samuel Holland <samuel@sholland.org>
+From: Neil Armstrong <neil.armstrong@linaro.org>
 
-Please follow the example schema. Order is: title, maintainers, description.
+My professional e-mail will change and the BayLibre one will
+bounce after mid-september of 2022.
 
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - allwinner,sun20i-d1-analog-ldos
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  nvmem-cells:
-> +    items:
-> +      - description: NVMEM cell for the calibrated bandgap reference trim value
-> +
-> +  nvmem-cell-names:
-> +    items:
-> +      - const: bg_trim
-> +
-> +patternProperties:
-> +  "^(a|hp)ldo$":
-> +    type: object
-> +    $ref: regulator.yaml#
-> +    unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - nvmem-cells
-> +  - nvmem-cell-names
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    audio-codec@2030000 {
-> +        compatible = "simple-mfd", "syscon";
+This updates the MAINTAINERS file, the YAML bindings and adds an
+entry in the .mailmap file.
 
-This cannot be on its own. Both require device specific compatible.
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+ .mailmap                                      |  1 +
+ .../amlogic/amlogic,meson-gx-ao-secure.yaml   |  2 +-
+ .../display/amlogic,meson-dw-hdmi.yaml        |  2 +-
+ .../bindings/display/amlogic,meson-vpu.yaml   |  2 +-
+ .../display/bridge/analogix,anx7814.yaml      |  2 +-
+ .../bindings/display/bridge/ite,it66121.yaml  |  2 +-
+ .../display/panel/sgd,gktw70sdae4se.yaml      |  2 +-
+ .../bindings/i2c/amlogic,meson6-i2c.yaml      |  2 +-
+ .../mailbox/amlogic,meson-gxbb-mhu.yaml       |  2 +-
+ .../bindings/media/amlogic,axg-ge2d.yaml      |  2 +-
+ .../bindings/media/amlogic,gx-vdec.yaml       |  2 +-
+ .../media/amlogic,meson-gx-ao-cec.yaml        |  2 +-
+ .../devicetree/bindings/mfd/khadas,mcu.yaml   |  2 +-
+ .../bindings/net/amlogic,meson-dwmac.yaml     |  2 +-
+ .../bindings/phy/amlogic,axg-mipi-dphy.yaml   |  2 +-
+ .../phy/amlogic,meson-g12a-usb2-phy.yaml      |  2 +-
+ .../phy/amlogic,meson-g12a-usb3-pcie-phy.yaml |  2 +-
+ .../bindings/power/amlogic,meson-ee-pwrc.yaml |  2 +-
+ .../bindings/reset/amlogic,meson-reset.yaml   |  2 +-
+ .../bindings/rng/amlogic,meson-rng.yaml       |  2 +-
+ .../bindings/serial/amlogic,meson-uart.yaml   |  2 +-
+ .../bindings/soc/amlogic/amlogic,canvas.yaml  |  2 +-
+ .../bindings/spi/amlogic,meson-gx-spicc.yaml  |  2 +-
+ .../bindings/spi/amlogic,meson6-spifc.yaml    |  2 +-
+ .../usb/amlogic,meson-g12a-usb-ctrl.yaml      |  2 +-
+ .../watchdog/amlogic,meson-gxbb-wdt.yaml      |  2 +-
+ MAINTAINERS                                   | 20 +++++++++----------
+ 27 files changed, 36 insertions(+), 35 deletions(-)
 
-> +        reg = <0x2030000 0x1000>;
-> +        ranges;
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +
-> +        regulators@2030348 {
-> +            compatible = "allwinner,sun20i-d1-analog-ldos";
-> +            reg = <0x2030348 0x4>;
-> +            nvmem-cells = <&bg_trim>;
-> +            nvmem-cell-names = "bg_trim";
-> +
-> +            reg_aldo: aldo {
-> +                regulator-min-microvolt = <1800000>;
-> +                regulator-max-microvolt = <1800000>;
-> +            };
-> +
-> +            reg_hpldo: hpldo {
-> +                regulator-min-microvolt = <1800000>;
-> +                regulator-max-microvolt = <1800000>;
-> +            };
-> +        };
-> +    };
-> +
-> +...
-> diff --git a/Documentation/devicetree/bindings/regulator/allwinner,sun20i-d1-system-ldos.yaml b/Documentation/devicetree/bindings/regulator/allwinner,sun20i-d1-system-ldos.yaml
-> new file mode 100644
-> index 000000000000..e3e2810fb3d7
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/regulator/allwinner,sun20i-d1-system-ldos.yaml
-> @@ -0,0 +1,37 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/regulator/allwinner,sun20i-d1-system-ldos.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Allwinner D1 System LDOs
-> +
-> +description:
-> +  Allwinner D1 contains a pair of general-purpose LDOs which are designed to
-> +  supply power inside and outside the SoC. They are controlled by a register
-> +  within the system control MMIO space.
+diff --git a/.mailmap b/.mailmap
+index 2ed1cf869175..04fb67be9b0b 100644
+--- a/.mailmap
++++ b/.mailmap
+@@ -303,6 +303,7 @@ Morten Welinder <welinder@troll.com>
+ Mythri P K <mythripk@ti.com>
+ Nadia Yvette Chambers <nyc@holomorphy.com> William Lee Irwin III <wli@holomorphy.com>
+ Nathan Chancellor <nathan@kernel.org> <natechancellor@gmail.com>
++Neil Armstrong <neil.armstrong@linaro.org> <narmstrong@baylibre.com>
+ Nguyen Anh Quynh <aquynh@gmail.com>
+ Nicholas Piggin <npiggin@gmail.com> <npiggen@suse.de>
+ Nicholas Piggin <npiggin@gmail.com> <npiggin@kernel.dk>
+diff --git a/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.yaml b/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.yaml
+index 6cc74523ebfd..1748f1605cc7 100644
+--- a/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.yaml
++++ b/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.yaml
+@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
+ title: Amlogic Meson Firmware registers Interface
+ 
+ maintainers:
+-  - Neil Armstrong <narmstrong@baylibre.com>
++  - Neil Armstrong <neil.armstrong@linaro.org>
+ 
+ description: |
+   The Meson SoCs have a register bank with status and data shared with the
+diff --git a/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml b/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
+index 2e208d2fc98f..7cdffdb131ac 100644
+--- a/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
++++ b/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
+@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
+ title: Amlogic specific extensions to the Synopsys Designware HDMI Controller
+ 
+ maintainers:
+-  - Neil Armstrong <narmstrong@baylibre.com>
++  - Neil Armstrong <neil.armstrong@linaro.org>
+ 
+ allOf:
+   - $ref: /schemas/sound/name-prefix.yaml#
+diff --git a/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml b/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
+index 047fd69e0377..6655a93b1874 100644
+--- a/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
++++ b/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
+@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
+ title: Amlogic Meson Display Controller
+ 
+ maintainers:
+-  - Neil Armstrong <narmstrong@baylibre.com>
++  - Neil Armstrong <neil.armstrong@linaro.org>
+ 
+ description: |
+   The Amlogic Meson Display controller is composed of several components
+diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7814.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7814.yaml
+index bce96b5b0db0..4a5e5d9d6f90 100644
+--- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7814.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7814.yaml
+@@ -8,7 +8,7 @@ title: Analogix ANX7814 SlimPort (Full-HD Transmitter)
+ 
+ maintainers:
+   - Andrzej Hajda <andrzej.hajda@intel.com>
+-  - Neil Armstrong <narmstrong@baylibre.com>
++  - Neil Armstrong <neil.armstrong@linaro.org>
+   - Robert Foss <robert.foss@linaro.org>
+ 
+ properties:
+diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it66121.yaml b/Documentation/devicetree/bindings/display/bridge/ite,it66121.yaml
+index c6e81f532215..1b2185be92cd 100644
+--- a/Documentation/devicetree/bindings/display/bridge/ite,it66121.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/ite,it66121.yaml
+@@ -8,7 +8,7 @@ title: ITE it66121 HDMI bridge Device Tree Bindings
+ 
+ maintainers:
+   - Phong LE <ple@baylibre.com>
+-  - Neil Armstrong <narmstrong@baylibre.com>
++  - Neil Armstrong <neil.armstrong@linaro.org>
+ 
+ description: |
+   The IT66121 is a high-performance and low-power single channel HDMI
+diff --git a/Documentation/devicetree/bindings/display/panel/sgd,gktw70sdae4se.yaml b/Documentation/devicetree/bindings/display/panel/sgd,gktw70sdae4se.yaml
+index 44e02decdf3a..2e75e3738ff0 100644
+--- a/Documentation/devicetree/bindings/display/panel/sgd,gktw70sdae4se.yaml
++++ b/Documentation/devicetree/bindings/display/panel/sgd,gktw70sdae4se.yaml
+@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Solomon Goldentek Display GKTW70SDAE4SE 7" WVGA LVDS Display Panel
+ 
+ maintainers:
+-  - Neil Armstrong <narmstrong@baylibre.com>
++  - Neil Armstrong <neil.armstrong@linaro.org>
+   - Thierry Reding <thierry.reding@gmail.com>
+ 
+ allOf:
+diff --git a/Documentation/devicetree/bindings/i2c/amlogic,meson6-i2c.yaml b/Documentation/devicetree/bindings/i2c/amlogic,meson6-i2c.yaml
+index 6ecb0270d88d..199a354ccb97 100644
+--- a/Documentation/devicetree/bindings/i2c/amlogic,meson6-i2c.yaml
++++ b/Documentation/devicetree/bindings/i2c/amlogic,meson6-i2c.yaml
+@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
+ title: Amlogic Meson I2C Controller
+ 
+ maintainers:
+-  - Neil Armstrong <narmstrong@baylibre.com>
++  - Neil Armstrong <neil.armstrong@linaro.org>
+   - Beniamino Galvani <b.galvani@gmail.com>
+ 
+ allOf:
+diff --git a/Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml b/Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml
+index ea06976fbbc7..dfd26b998189 100644
+--- a/Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml
++++ b/Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml
+@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
+ title: Amlogic Meson Message-Handling-Unit Controller
+ 
+ maintainers:
+-  - Neil Armstrong <narmstrong@baylibre.com>
++  - Neil Armstrong <neil.armstrong@linaro.org>
+ 
+ description: |
+   The Amlogic's Meson SoCs Message-Handling-Unit (MHU) is a mailbox controller
+diff --git a/Documentation/devicetree/bindings/media/amlogic,axg-ge2d.yaml b/Documentation/devicetree/bindings/media/amlogic,axg-ge2d.yaml
+index bee93bd84771..e551be5e680e 100644
+--- a/Documentation/devicetree/bindings/media/amlogic,axg-ge2d.yaml
++++ b/Documentation/devicetree/bindings/media/amlogic,axg-ge2d.yaml
+@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
+ title: Amlogic GE2D Acceleration Unit
+ 
+ maintainers:
+-  - Neil Armstrong <narmstrong@baylibre.com>
++  - Neil Armstrong <neil.armstrong@linaro.org>
+ 
+ properties:
+   compatible:
+diff --git a/Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml b/Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml
+index 5044c4bb94e0..b827edabcafa 100644
+--- a/Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml
++++ b/Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml
+@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
+ title: Amlogic Video Decoder
+ 
+ maintainers:
+-  - Neil Armstrong <narmstrong@baylibre.com>
++  - Neil Armstrong <neil.armstrong@linaro.org>
+   - Maxime Jourdan <mjourdan@baylibre.com>
+ 
+ description: |
+diff --git a/Documentation/devicetree/bindings/media/amlogic,meson-gx-ao-cec.yaml b/Documentation/devicetree/bindings/media/amlogic,meson-gx-ao-cec.yaml
+index d93aea6a0258..8d844f4312d1 100644
+--- a/Documentation/devicetree/bindings/media/amlogic,meson-gx-ao-cec.yaml
++++ b/Documentation/devicetree/bindings/media/amlogic,meson-gx-ao-cec.yaml
+@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
+ title: Amlogic Meson AO-CEC Controller
+ 
+ maintainers:
+-  - Neil Armstrong <narmstrong@baylibre.com>
++  - Neil Armstrong <neil.armstrong@linaro.org>
+ 
+ description: |
+   The Amlogic Meson AO-CEC module is present is Amlogic SoCs and its purpose is
+diff --git a/Documentation/devicetree/bindings/mfd/khadas,mcu.yaml b/Documentation/devicetree/bindings/mfd/khadas,mcu.yaml
+index a3b976f101e8..5750cc06e923 100644
+--- a/Documentation/devicetree/bindings/mfd/khadas,mcu.yaml
++++ b/Documentation/devicetree/bindings/mfd/khadas,mcu.yaml
+@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Khadas on-board Microcontroller Device Tree Bindings
+ 
+ maintainers:
+-  - Neil Armstrong <narmstrong@baylibre.com>
++  - Neil Armstrong <neil.armstrong@linaro.org>
+ 
+ description: |
+   Khadas embeds a microcontroller on their VIM and Edge boards adding some
+diff --git a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
+index 608e1d62bed5..ddd5a073c3a8 100644
+--- a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
++++ b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
+@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
+ title: Amlogic Meson DWMAC Ethernet controller
+ 
+ maintainers:
+-  - Neil Armstrong <narmstrong@baylibre.com>
++  - Neil Armstrong <neil.armstrong@linaro.org>
+   - Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+ 
+ # We need a select here so we don't match all nodes with 'snps,dwmac'
+diff --git a/Documentation/devicetree/bindings/phy/amlogic,axg-mipi-dphy.yaml b/Documentation/devicetree/bindings/phy/amlogic,axg-mipi-dphy.yaml
+index be485f500887..5eddaed3d853 100644
+--- a/Documentation/devicetree/bindings/phy/amlogic,axg-mipi-dphy.yaml
++++ b/Documentation/devicetree/bindings/phy/amlogic,axg-mipi-dphy.yaml
+@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
+ title: Amlogic AXG MIPI D-PHY
+ 
+ maintainers:
+-  - Neil Armstrong <narmstrong@baylibre.com>
++  - Neil Armstrong <neil.armstrong@linaro.org>
+ 
+ properties:
+   compatible:
+diff --git a/Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb2-phy.yaml b/Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb2-phy.yaml
+index 399ebde45409..f3a5fbabbbb5 100644
+--- a/Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb2-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb2-phy.yaml
+@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
+ title: Amlogic G12A USB2 PHY
+ 
+ maintainers:
+-  - Neil Armstrong <narmstrong@baylibre.com>
++  - Neil Armstrong <neil.armstrong@linaro.org>
+ 
+ properties:
+   compatible:
+diff --git a/Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb3-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb3-pcie-phy.yaml
+index 453c083cf44c..868b4e6fde71 100644
+--- a/Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb3-pcie-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb3-pcie-phy.yaml
+@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
+ title: Amlogic G12A USB3 + PCIE Combo PHY
+ 
+ maintainers:
+-  - Neil Armstrong <narmstrong@baylibre.com>
++  - Neil Armstrong <neil.armstrong@linaro.org>
+ 
+ properties:
+   compatible:
+diff --git a/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml b/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
+index f005abac7079..683c191c4921 100644
+--- a/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
++++ b/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
+@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
+ title: Amlogic Meson Everything-Else Power Domains
+ 
+ maintainers:
+-  - Neil Armstrong <narmstrong@baylibre.com>
++  - Neil Armstrong <neil.armstrong@linaro.org>
+ 
+ description: |+
+   The Everything-Else Power Domains node should be the child of a syscon
+diff --git a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+index 494a454928ce..98db2aa74dc8 100644
+--- a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
++++ b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
+ title: Amlogic Meson SoC Reset Controller
+ 
+ maintainers:
+-  - Neil Armstrong <narmstrong@baylibre.com>
++  - Neil Armstrong <neil.armstrong@linaro.org>
+ 
+ properties:
+   compatible:
+diff --git a/Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml b/Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml
+index 444be32a8a29..09c6c906b1f9 100644
+--- a/Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml
++++ b/Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml
+@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
+ title: Amlogic Meson Random number generator
+ 
+ maintainers:
+-  - Neil Armstrong <narmstrong@baylibre.com>
++  - Neil Armstrong <neil.armstrong@linaro.org>
+ 
+ properties:
+   compatible:
+diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+index 72e8868db3e0..7822705ad16c 100644
+--- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
++++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
+ title: Amlogic Meson SoC UART Serial Interface
+ 
+ maintainers:
+-  - Neil Armstrong <narmstrong@baylibre.com>
++  - Neil Armstrong <neil.armstrong@linaro.org>
+ 
+ description: |
+   The Amlogic Meson SoC UART Serial Interface is present on a large range
+diff --git a/Documentation/devicetree/bindings/soc/amlogic/amlogic,canvas.yaml b/Documentation/devicetree/bindings/soc/amlogic/amlogic,canvas.yaml
+index 17db87cb9dab..c3c599096353 100644
+--- a/Documentation/devicetree/bindings/soc/amlogic/amlogic,canvas.yaml
++++ b/Documentation/devicetree/bindings/soc/amlogic/amlogic,canvas.yaml
+@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
+ title: Amlogic Canvas Video Lookup Table
+ 
+ maintainers:
+-  - Neil Armstrong <narmstrong@baylibre.com>
++  - Neil Armstrong <neil.armstrong@linaro.org>
+   - Maxime Jourdan <mjourdan@baylibre.com>
+ 
+ description: |
+diff --git a/Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml b/Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml
+index 50de0da42c13..0c10f7678178 100644
+--- a/Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml
++++ b/Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml
+@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
+ title: Amlogic Meson SPI Communication Controller
+ 
+ maintainers:
+-  - Neil Armstrong <narmstrong@baylibre.com>
++  - Neil Armstrong <neil.armstrong@linaro.org>
+ 
+ allOf:
+   - $ref: "spi-controller.yaml#"
+diff --git a/Documentation/devicetree/bindings/spi/amlogic,meson6-spifc.yaml b/Documentation/devicetree/bindings/spi/amlogic,meson6-spifc.yaml
+index 8a9d526d06eb..ac3b2ec300ac 100644
+--- a/Documentation/devicetree/bindings/spi/amlogic,meson6-spifc.yaml
++++ b/Documentation/devicetree/bindings/spi/amlogic,meson6-spifc.yaml
+@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
+ title: Amlogic Meson SPI Flash Controller
+ 
+ maintainers:
+-  - Neil Armstrong <narmstrong@baylibre.com>
++  - Neil Armstrong <neil.armstrong@linaro.org>
+ 
+ allOf:
+   - $ref: "spi-controller.yaml#"
+diff --git a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
+index e349fa5de606..daf2a859418d 100644
+--- a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
++++ b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
+@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
+ title: Amlogic Meson G12A DWC3 USB SoC Controller Glue
+ 
+ maintainers:
+-  - Neil Armstrong <narmstrong@baylibre.com>
++  - Neil Armstrong <neil.armstrong@linaro.org>
+ 
+ description: |
+   The Amlogic G12A embeds a DWC3 USB IP Core configured for USB2 and USB3
+diff --git a/Documentation/devicetree/bindings/watchdog/amlogic,meson-gxbb-wdt.yaml b/Documentation/devicetree/bindings/watchdog/amlogic,meson-gxbb-wdt.yaml
+index c7459cf70e30..497d60408ea0 100644
+--- a/Documentation/devicetree/bindings/watchdog/amlogic,meson-gxbb-wdt.yaml
++++ b/Documentation/devicetree/bindings/watchdog/amlogic,meson-gxbb-wdt.yaml
+@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
+ title: Meson GXBB SoCs Watchdog timer
+ 
+ maintainers:
+-  - Neil Armstrong <narmstrong@baylibre.com>
++  - Neil Armstrong <neil.armstrong@linaro.org>
+ 
+ allOf:
+   - $ref: watchdog.yaml#
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 66bffb24a348..dd319665232f 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -1769,7 +1769,7 @@ N:	sun[x456789]i
+ N:	sun50i
+ 
+ ARM/Amlogic Meson SoC CLOCK FRAMEWORK
+-M:	Neil Armstrong <narmstrong@baylibre.com>
++M:	Neil Armstrong <neil.armstrong@linaro.org>
+ M:	Jerome Brunet <jbrunet@baylibre.com>
+ L:	linux-amlogic@lists.infradead.org
+ S:	Maintained
+@@ -1794,7 +1794,7 @@ F:	Documentation/devicetree/bindings/sound/amlogic*
+ F:	sound/soc/meson/
+ 
+ ARM/Amlogic Meson SoC support
+-M:	Neil Armstrong <narmstrong@baylibre.com>
++M:	Neil Armstrong <neil.armstrong@linaro.org>
+ M:	Kevin Hilman <khilman@baylibre.com>
+ R:	Jerome Brunet <jbrunet@baylibre.com>
+ R:	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+@@ -2489,7 +2489,7 @@ W:	http://www.digriz.org.uk/ts78xx/kernel
+ F:	arch/arm/mach-orion5x/ts78xx-*
+ 
+ ARM/OXNAS platform support
+-M:	Neil Armstrong <narmstrong@baylibre.com>
++M:	Neil Armstrong <neil.armstrong@linaro.org>
+ L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+ L:	linux-oxnas@groups.io (moderated for non-subscribers)
+ S:	Maintained
+@@ -6618,7 +6618,7 @@ F:	Documentation/devicetree/bindings/display/allwinner*
+ F:	drivers/gpu/drm/sun4i/
+ 
+ DRM DRIVERS FOR AMLOGIC SOCS
+-M:	Neil Armstrong <narmstrong@baylibre.com>
++M:	Neil Armstrong <neil.armstrong@linaro.org>
+ L:	dri-devel@lists.freedesktop.org
+ L:	linux-amlogic@lists.infradead.org
+ S:	Supported
+@@ -6640,7 +6640,7 @@ F:	drivers/gpu/drm/atmel-hlcdc/
+ 
+ DRM DRIVERS FOR BRIDGE CHIPS
+ M:	Andrzej Hajda <andrzej.hajda@intel.com>
+-M:	Neil Armstrong <narmstrong@baylibre.com>
++M:	Neil Armstrong <neil.armstrong@linaro.org>
+ M:	Robert Foss <robert.foss@linaro.org>
+ R:	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+ R:	Jonas Karlman <jonas@kwiboo.se>
+@@ -10575,7 +10575,7 @@ F:	drivers/media/tuners/it913x*
+ 
+ ITE IT66121 HDMI BRIDGE DRIVER
+ M:	Phong LE <ple@baylibre.com>
+-M:	Neil Armstrong <narmstrong@baylibre.com>
++M:	Neil Armstrong <neil.armstrong@linaro.org>
+ S:	Maintained
+ T:	git git://anongit.freedesktop.org/drm/drm-misc
+ F:	Documentation/devicetree/bindings/display/bridge/ite,it66121.yaml
+@@ -11081,7 +11081,7 @@ F:	kernel/debug/
+ F:	kernel/module/kdb.c
+ 
+ KHADAS MCU MFD DRIVER
+-M:	Neil Armstrong <narmstrong@baylibre.com>
++M:	Neil Armstrong <neil.armstrong@linaro.org>
+ L:	linux-amlogic@lists.infradead.org
+ S:	Maintained
+ F:	Documentation/devicetree/bindings/mfd/khadas,mcu.yaml
+@@ -12951,7 +12951,7 @@ S:	Maintained
+ F:	drivers/watchdog/menz69_wdt.c
+ 
+ MESON AO CEC DRIVER FOR AMLOGIC SOCS
+-M:	Neil Armstrong <narmstrong@baylibre.com>
++M:	Neil Armstrong <neil.armstrong@linaro.org>
+ L:	linux-media@vger.kernel.org
+ L:	linux-amlogic@lists.infradead.org
+ S:	Supported
+@@ -12962,7 +12962,7 @@ F:	drivers/media/cec/platform/meson/ao-cec-g12a.c
+ F:	drivers/media/cec/platform/meson/ao-cec.c
+ 
+ MESON GE2D DRIVER FOR AMLOGIC SOCS
+-M:	Neil Armstrong <narmstrong@baylibre.com>
++M:	Neil Armstrong <neil.armstrong@linaro.org>
+ L:	linux-media@vger.kernel.org
+ L:	linux-amlogic@lists.infradead.org
+ S:	Supported
+@@ -12978,7 +12978,7 @@ F:	Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
+ F:	drivers/mtd/nand/raw/meson_*
+ 
+ MESON VIDEO DECODER DRIVER FOR AMLOGIC SOCS
+-M:	Neil Armstrong <narmstrong@baylibre.com>
++M:	Neil Armstrong <neil.armstrong@linaro.org>
+ L:	linux-media@vger.kernel.org
+ L:	linux-amlogic@lists.infradead.org
+ S:	Supported
+-- 
+2.25.1
 
-Fix order.
-
-
-> +
-> +maintainers:
-> +  - Samuel Holland <samuel@sholland.org>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - allwinner,sun20i-d1-system-ldos
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +patternProperties:
-> +  "^ldo[ab]$":
-> +    type: object
-> +    $ref: regulator.yaml#
-> +    unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +unevaluatedProperties: false
-
-
-Example please.
-
-Best regards,
-Krzysztof
