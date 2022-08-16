@@ -2,157 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 18EAE595718
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 11:52:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 977C65956F6
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 11:47:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233300AbiHPJwU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 05:52:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47436 "EHLO
+        id S233848AbiHPJrs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 05:47:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35918 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233404AbiHPJwC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 05:52:02 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C19E911A2DE
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 01:14:30 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1oNriC-00087l-C0; Tue, 16 Aug 2022 10:14:08 +0200
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1oNriB-000640-9A; Tue, 16 Aug 2022 10:14:07 +0200
-Date:   Tue, 16 Aug 2022 10:14:07 +0200
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Peng Fan <peng.fan@nxp.com>
-Cc:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        "abelvesa@kernel.org" <abelvesa@kernel.org>,
-        "abel.vesa@linaro.org" <abel.vesa@linaro.org>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: clock: imx8m: introduce
- fsl,protected-clocks property
-Message-ID: <20220816081407.GH17485@pengutronix.de>
-References: <20220815033632.1687854-1-peng.fan@oss.nxp.com>
- <20220815033632.1687854-2-peng.fan@oss.nxp.com>
- <20220815135756.GC17485@pengutronix.de>
- <DU0PR04MB9417593B87BB5A23A29D732E886B9@DU0PR04MB9417.eurprd04.prod.outlook.com>
+        with ESMTP id S233969AbiHPJrT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 05:47:19 -0400
+Received: from smtp-fw-9103.amazon.com (smtp-fw-9103.amazon.com [207.171.188.200])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1814137918;
+        Tue, 16 Aug 2022 01:28:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1660638496; x=1692174496;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=Qa2GdofisJzXGHq+6k4uRChibu19E7Wu/JMM8sLS54o=;
+  b=FHarqwvgNZxHZv6/PxnHmNevIZqH3otBo64+34X8oSi99LOlRVBr7SKA
+   HyV8+ppjsS7xX5C/BS3p6cFKTa9O01AoDONBwbNwwKq/yiUebAZuoz7Jx
+   xELPRHQWbYVyZ33/RAsKwEWkBNplHxx1vDgCLuHjnm9OOtYpmK/EdPRAz
+   I=;
+X-IronPort-AV: E=Sophos;i="5.93,240,1654560000"; 
+   d="scan'208";a="1044708625"
+Received: from pdx4-co-svc-p1-lb2-vlan3.amazon.com (HELO email-inbound-relay-pdx-2c-388992e0.us-west-2.amazon.com) ([10.25.36.214])
+  by smtp-border-fw-9103.sea19.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Aug 2022 08:27:59 +0000
+Received: from EX13MTAUEE001.ant.amazon.com (pdx1-ws-svc-p6-lb9-vlan3.pdx.amazon.com [10.236.137.198])
+        by email-inbound-relay-pdx-2c-388992e0.us-west-2.amazon.com (Postfix) with ESMTPS id 551641040FB;
+        Tue, 16 Aug 2022 08:27:59 +0000 (UTC)
+Received: from EX13D08UEB004.ant.amazon.com (10.43.60.142) by
+ EX13MTAUEE001.ant.amazon.com (10.43.62.226) with Microsoft SMTP Server (TLS)
+ id 15.0.1497.38; Tue, 16 Aug 2022 08:27:58 +0000
+Received: from EX13MTAUEA001.ant.amazon.com (10.43.61.82) by
+ EX13D08UEB004.ant.amazon.com (10.43.60.142) with Microsoft SMTP Server (TLS)
+ id 15.0.1497.38; Tue, 16 Aug 2022 08:27:58 +0000
+Received: from dev-dsk-farbere-1a-46ecabed.eu-west-1.amazon.com
+ (172.19.116.181) by mail-relay.amazon.com (10.43.61.243) with Microsoft SMTP
+ Server id 15.0.1497.38 via Frontend Transport; Tue, 16 Aug 2022 08:27:58
+ +0000
+Received: by dev-dsk-farbere-1a-46ecabed.eu-west-1.amazon.com (Postfix, from userid 14301484)
+        id 55ADE4C75; Tue, 16 Aug 2022 08:27:57 +0000 (UTC)
+From:   Eliav Farber <farbere@amazon.com>
+To:     <jdelvare@suse.com>, <linux@roeck-us.net>, <robh+dt@kernel.org>,
+        <mark.rutland@arm.com>, <linux-hwmon@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     <farbere@amazon.com>, <talel@amazon.com>, <hhhawa@amazon.com>,
+        <jonnyc@amazon.com>, <hanochu@amazon.com>, <ronenk@amazon.com>,
+        <itamark@amazon.com>, <shellykz@amazon.com>, <shorer@amazon.com>,
+        <amitlavi@amazon.com>, <almogbs@amazon.com>, <dwmw@amazon.co.uk>,
+        <rtanwar@maxlinear.com>
+Subject: [PATCH 00/16] Variety of fixes and new features for mr75203 driver
+Date:   Tue, 16 Aug 2022 08:27:41 +0000
+Message-ID: <20220816082757.11990-1-farbere@amazon.com>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DU0PR04MB9417593B87BB5A23A29D732E886B9@DU0PR04MB9417.eurprd04.prod.outlook.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-11.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        USER_IN_DEF_SPF_WL autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 16, 2022 at 07:13:27AM +0000, Peng Fan wrote:
-> Hi Sascha,
-> 
-> > Subject: Re: [PATCH 1/2] dt-bindings: clock: imx8m: introduce fsl,protected-
-> > clocks property
-> > 
-> > Hi Peng,
-> > 
-> > On Mon, Aug 15, 2022 at 11:36:31AM +0800, Peng Fan (OSS) wrote:
-> > > From: Peng Fan <peng.fan@nxp.com>
-> > >
-> > > i.MX8M Linux run on top of Jailhouse hypervisor, the root cell Linux
-> > > should not disable clocks used by inmate. This would also benifit AMP
-> > > to avoid Linux disable clocks used by Cortex-M4/M7.
-> > >
-> > > So introduce fsl,protected-clocks for above case.
-> > >
-> > > Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/clock/imx8m-clock.yaml | 4 ++++
-> > >  1 file changed, 4 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
-> > > b/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
-> > > index 458c7645ee68..0ec490ff9a09 100644
-> > > --- a/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
-> > > +++ b/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
-> > > @@ -39,6 +39,10 @@ properties:
-> > >        ID in its "clocks" phandle cell. See include/dt-bindings/clock/imx8m-
-> > clock.h
-> > >        for the full list of i.MX8M clock IDs.
-> > >
-> > > +  fsl,protected-clocks:
-> > > +    description: List of the Protected clock.
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> > 
-> > There already is a generic protected-clocks property described in
-> > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fgithu
-> > b.com%2Fdevicetree-org%2Fdt-
-> > schema%2Fblob%2F0d1b78cd0c3d9a3d523ced17d7da64b03f6c18ea%2Fdtsc
-> > hema%2Fschemas%2Fclock%2Fclock.yaml%23L131&amp;data=05%7C01%7
-> > Cpeng.fan%40nxp.com%7C5dbc72639c9147765af208da7ec63315%7C686ea
-> > 1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C637961686968811809%7CUn
-> > known%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI
-> > 6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=D%2BfJA5h
-> > wblaX8VH%2BdQoN0pEFmCipfZHHf0ZVo07B4kg%3D&amp;reserved=0
-> > We probably shouldn't add a property with the same name but different
-> > meaning.
-> > 
-> 
-> Thanks for sharing the info. I should check the common bindings before
-> cook this patchset.
-> 
-> > I am not sure if we want to go the route of a fsl specific property, it looks
-> > like other SoCs could have similar problems and it might be worth solving
-> > this problem with a broader view.
-> > 
-> 
-> I see qcom just drop the clock entries before registering the clocks. But to
-> i.MX8M, it is not feasible to drop those clocks, unless check the
-> protected-clocks property before registering every clock. This is odd.
-> 
-> So here I just wanna let i.MX8M clk driver prepare enable the clocks listed
-> in protected-clocks property to avoid linux disable those clocks.
-> > Anyway, please add a description to the binding what this property actually
-> > does.
-> I will switch to use the common bindings.
+List of fixes:
+ - Fix for VM sensor allocation
+ - Fix multi-channel voltage reading
+ - Protect from negative voltage value
+ - Fix temperature equation and coefficients
 
-There were cases when a property first started with a "soc," prefix and
-later when people realized that it could be useful for other
-drivers/SoCs as well, the prefix was removed. With that in mind I
-would expect that a "fsl,protected-clocks" property behaves the same
-as a "protected-clocks" property without the prefix.
+List of new features:
+ - Add option to skip reset controller
+ - Add VM active channel support
+ - Add VM pre-scalar support
+ - Add parsing of thermal coefficients from device-tree
+ - Add debugfs to updater temperature coefficients on the fly
 
-If it doesn't please pick a different name. I didn't want to suggest
-to just drop the "fsl," prefix and to use the generic property name
-when the properties have a different meaning.
+Eliav Farber (16):
+  hwmon: (mr75203) fix VM sensor allocation when "intel,vm-map" not
+    defined
+  hwmon: (mr75203) update pvt->v_num to the actual number of used
+    sensors
+  hwmon: (mr75203) update Moortec PVT controller intel,vm-map property
+  hwmon: (mr75203) add Moortec PVT controller reset-control-skip
+    property
+  hwmon: (mr75203) add option to skip reset controller
+  hwmon: (mr75203) fix multi-channel voltage reading
+  hwmon: (mr75203) add VM active channels property for Moortec PVT
+    controller
+  hwmon: (mr75203) add VM active channel support
+  hwmon: (mr75203) add VM pre-scalar property for Moortec PVT controller
+  hwmon: (mr75203) add VM pre-scalar support
+  hwmon: (mr75203) add protection for negative voltage value
+  hwmon: (mr75203) modify the temperature equation
+  hwmon: (mr75203) add thermal coefficient properties for Moortec PVT
+    controller
+  hwmon: (mr75203) parse thermal coefficients from device-tree
+  hwmon: (mr75203) fix coding style space errors
+  hwmon: (mr75203) add debugfs to read and write temperature
+    coefficients
 
-Sascha
+ .../bindings/hwmon/moortec,mr75203.yaml       |  60 ++-
+ drivers/hwmon/mr75203.c                       | 465 +++++++++++++++---
+ 2 files changed, 459 insertions(+), 66 deletions(-)
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+2.37.1
+
