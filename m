@@ -2,74 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C3C4459646B
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 23:15:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8679759648C
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 23:22:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237547AbiHPVPa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 17:15:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54834 "EHLO
+        id S237275AbiHPVVn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 17:21:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35150 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237553AbiHPVPV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 17:15:21 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5A4285F85
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 14:15:04 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id f8so356249wru.13
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 14:15:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=phcPBaGxOFAemR9YFsCDrE8yrlHvz+AvjsJ/jn+/KmI=;
-        b=D2LBTNDmEF2+Dr1NzlXFxUrarWUqPPataJ7eBvvm12Ez5MuwP9UXnt3hAVGjut9uaW
-         10d7KRwvsmRnkblDnIGWGr9woJ/rSO57iN7N5bCNHYrBAjuOcatAK7hi/r7iiB72izxY
-         gMkFSK3VpssRb6tFteFowVmh6kBf31UNSAwgB1Upw/iNMmHfIbtzmtvkFRiiry/5CKFL
-         JK/gdsnf6uNRrgEMoZnOzMRaAtyONnn1gbXy3s6RP+bPuE6EuuyZ4zgaW5Aj/063xIJE
-         iTwG2P79SecEn4QjY+LjHcn/8Hxsv7H5NiNOOMNWaYxGk5kF4CnT/S9F8CfZzq3EjblN
-         ErxA==
+        with ESMTP id S237584AbiHPVVk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 17:21:40 -0400
+Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8D0D8A7FA;
+        Tue, 16 Aug 2022 14:21:39 -0700 (PDT)
+Received: by mail-io1-f48.google.com with SMTP id i77so5759986ioa.7;
+        Tue, 16 Aug 2022 14:21:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=phcPBaGxOFAemR9YFsCDrE8yrlHvz+AvjsJ/jn+/KmI=;
-        b=T0WGMAyqxBvM0gNuHzfh2TPfjH5xmZsXhmxl5AL4ai/dudszqQS1TsccDc7PBTcOAi
-         1f+an+Qet+Ge/jvDDbpmWjEnM05i4J6YarSrUBZOQFzLPgoXveK44rKfX1jdQDWHH2Qj
-         PusRPevdBNVSyEGzfZXy4WOp0I2T4AmXTk56ENFdwPmKltwuM6Atcv/HUbp8ZIvDzTw6
-         z1IdrDbzAgbnCl6XFEK4CopwYySmyRjsj6vYN/yTXrzt9P9otp5Ysdm4nvyE4YBytyBH
-         pdQp57/8dtHjRGKycQASPYgxYceka/sFWfVHoyuctu34ofzBxgohk7KssElDSTRVZByS
-         C/uA==
-X-Gm-Message-State: ACgBeo0Xa2hJ68nc6MFFIELnwxHwYulCxl8Bty8WZIwuvQNWKuj9HDCI
-        AyH0TbzEfvazMLwGQflcqBpXjw==
-X-Google-Smtp-Source: AA6agR7I7O5srqcLe0uvZsPtmDixINs6HcsyX4Rz7ZRgeDlHqmucBoGATsBy2Nq2Jzcldqq8Kaujkw==
-X-Received: by 2002:a5d:4b87:0:b0:21e:ffa6:a3a6 with SMTP id b7-20020a5d4b87000000b0021effa6a3a6mr12289683wrt.418.1660684504334;
-        Tue, 16 Aug 2022 14:15:04 -0700 (PDT)
-Received: from rainbowdash.office.codethink.co.uk ([167.98.27.226])
-        by smtp.gmail.com with ESMTPSA id r4-20020a1c4404000000b003a3170a7af9sm23913wma.4.2022.08.16.14.15.03
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc;
+        bh=tuSisoMkl6+60tdPaffN493peiy7o2wWR1+PZsK1WiE=;
+        b=RxD83V9DmSk55jw9KQ3wJkm7sOXYE1JYuu4W7TaV5s/jLDNWdsoBpAl6BI0gPzWttC
+         nA4pD/xThlb65n0Vn/2bHMYl/XI+gTmy9Kd8+xaw1QpGOz4JkdwLskXAmEf+AAWF/vXQ
+         P3b+x4rtLjTngRBiQL43j+8ady4kpasu4Db0NQm2m89BC5wOOTLDfysCtTAqPOLRiU9X
+         wHRh72AJNydud5VGN+7X5i4WOPfvMx8iydevPj59Vv8IYJvZdjqpXLEzHKhJgfOM4S8R
+         zDMWv2OP6yZpsvP2jeB+OooDV7Miv628bNTcA34mgbJkAEl0zZr4ttysrIEZYRmFMeSW
+         ny6g==
+X-Gm-Message-State: ACgBeo1AQMDFgq9qGVocCbzNfiqCJZ9ZEo9iLEzLtf4TB2oYiv02iq6p
+        fzDgNc24UyD6GK9aQoneJA==
+X-Google-Smtp-Source: AA6agR44tAdtZC5+EJ1JbGySmbewN0vjdw3exH0tsi8qEIiGjppZgzRv1p3JPHSpnXbJNvAZX/sl8A==
+X-Received: by 2002:a02:a144:0:b0:343:5da5:f424 with SMTP id m4-20020a02a144000000b003435da5f424mr10161530jah.150.1660684898739;
+        Tue, 16 Aug 2022 14:21:38 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id h12-20020a056e021d8c00b002e127d59f63sm5198039ila.74.2022.08.16.14.21.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Aug 2022 14:15:04 -0700 (PDT)
-From:   Ben Dooks <ben.dooks@sifive.com>
-To:     linux-pwm@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lee Jones <lee.jones@linaro.org>,
-        u.kleine-koenig@pengutronix.de,
-        Thierry Reding <thierry.reding@gmail.com>,
+        Tue, 16 Aug 2022 14:21:38 -0700 (PDT)
+Received: (nullmailer pid 2754798 invoked by uid 1000);
+        Tue, 16 Aug 2022 21:21:35 -0000
+Date:   Tue, 16 Aug 2022 15:21:35 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greentime Hu <greentime.hu@sifive.com>,
-        jarkko.nikula@linux.intel.com,
-        William Salmon <william.salmon@sifive.com>,
-        Jude Onyenegecha <jude.onyenegecha@sifive.com>,
-        Ben Dooks <ben.dooks@sifive.com>
-Subject: [RFC v4 10/10] pwm: dwc: add PWM bit unset in get_state call
-Date:   Tue, 16 Aug 2022 22:14:54 +0100
-Message-Id: <20220816211454.237751-11-ben.dooks@sifive.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220816211454.237751-1-ben.dooks@sifive.com>
-References: <20220816211454.237751-1-ben.dooks@sifive.com>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        Sander Vanheule <sander@svanheule.net>,
+        =?iso-8859-1?Q?Ren=E9?= van Dorst <opensource@vdorst.com>,
+        Daniel Golle <daniel@makrotopia.org>, erkin.bozoglu@xeront.com,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 6/7] dt-bindings: net: dsa: mediatek,mt7530: define
+ phy-mode for each compatible
+Message-ID: <20220816212135.GA2747439-robh@kernel.org>
+References: <20220813154415.349091-1-arinc.unal@arinc9.com>
+ <20220813154415.349091-7-arinc.unal@arinc9.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+In-Reply-To: <20220813154415.349091-7-arinc.unal@arinc9.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,69 +85,163 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If we are not in PWM mode, then the output is technically a 50%
-output based on a single timer instead of the high-low based on
-the two counters. Add a check for the PWM mode in dwc_pwm_get_state()
-and if DWC_TIM_CTRL_PWM is not set, then return a 50% cycle.
+On Sat, Aug 13, 2022 at 06:44:14PM +0300, Arınç ÜNAL wrote:
+> Define acceptable phy-mode values for CPU port of each compatible device.
+> Remove relevant information from the description of the binding.
 
-This may only be an issue on initialisation, as the rest of the
-code currently assumes we're always going to have the extended
-PWM mode using two counters.
+I'm not really sure this is worth the complexity just to check 
+'phy-mode'...
 
-Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
----
-v4:
- - fixed review comment on mulit-line calculations
----
- drivers/pwm/pwm-dwc.c | 29 ++++++++++++++++++-----------
- 1 file changed, 18 insertions(+), 11 deletions(-)
+> 
+> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+> ---
+>  .../bindings/net/dsa/mediatek,mt7530.yaml     | 103 ++++++++++++++++--
+>  1 file changed, 92 insertions(+), 11 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
+> index a27cb4fa490f..530ef5a75a2f 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
+> +++ b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
+> @@ -49,17 +49,6 @@ description: |
+>    * mt7621: phy-mode = "rgmii-txid";
+>    * mt7623: phy-mode = "rgmii";
+>  
+> -  CPU-Ports need a phy-mode property:
+> -    Allowed values on mt7530 and mt7621:
+> -      - "rgmii"
+> -      - "trgmii"
+> -    On mt7531:
+> -      - "1000base-x"
+> -      - "2500base-x"
+> -      - "rgmii"
+> -      - "sgmii"
+> -
+> -
+>  properties:
+>    compatible:
+>      oneOf:
+> @@ -177,6 +166,36 @@ allOf:
+>                          items:
+>                            - const: cpu
+>                    then:
+> +                    allOf:
+> +                      - if:
+> +                          properties:
+> +                            reg:
+> +                              const: 5
+> +                        then:
+> +                          properties:
+> +                            phy-mode:
+> +                              enum:
+> +                                - gmii
+> +                                - mii
+> +                                - rgmii
+> +
+> +                      - if:
+> +                          properties:
+> +                            reg:
+> +                              const: 6
+> +                        then:
 
-diff --git a/drivers/pwm/pwm-dwc.c b/drivers/pwm/pwm-dwc.c
-index 1251620ab771..5ef0fe7ea3e9 100644
---- a/drivers/pwm/pwm-dwc.c
-+++ b/drivers/pwm/pwm-dwc.c
-@@ -121,23 +121,30 @@ static void dwc_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
- {
- 	struct dwc_pwm *dwc = to_dwc_pwm(chip);
- 	u64 duty, period;
-+	u32 ctrl, ld, ld2;
- 
- 	pm_runtime_get_sync(chip->dev);
- 
--	state->enabled = !!(dwc_pwm_readl(dwc,
--				DWC_TIM_CTRL(pwm->hwpwm)) & DWC_TIM_CTRL_EN);
-+	ctrl = dwc_pwm_readl(dwc, DWC_TIM_CTRL(pwm->hwpwm));
-+	ld = dwc_pwm_readl(dwc, DWC_TIM_LD_CNT(pwm->hwpwm));
-+	ld2 = dwc_pwm_readl(dwc, DWC_TIM_LD_CNT2(pwm->hwpwm));
- 
--	duty = dwc_pwm_readl(dwc, DWC_TIM_LD_CNT(pwm->hwpwm));
--	duty += 1;
--	duty *= dwc->clk_ns;
--	state->duty_cycle = duty;
-+	state->enabled = !!(ctrl & DWC_TIM_CTRL_EN);
- 
--	period = dwc_pwm_readl(dwc, DWC_TIM_LD_CNT2(pwm->hwpwm));
--	period += 1;
--	period *= dwc->clk_ns;
--	period += duty;
--	state->period = period;
-+	/* If we're not in PWM, technically the output is a 50-50
-+	 * based on the timer load-count only.
-+	 */
-+	if (ctrl & DWC_TIM_CTRL_PWM) {
-+		duty = (ld + 1) * dwc->clk_ns;
-+		period = (ld2 + 1)  * dwc->clk_ns;
-+		period += duty;
-+	} else {
-+		duty = (ld + 1) * dwc->clk_ns;
-+		period = duty * 2;
-+	}
- 
-+	state->period = period;
-+	state->duty_cycle = duty;
- 	state->polarity = PWM_POLARITY_INVERSED;
- 
- 	pm_runtime_put_sync(chip->dev);
--- 
-2.35.1
+You've restricted this to ports 5 or 6 already, so you just need an 
+'else' here. And you can then drop the 'allOf'.
 
+> +                          properties:
+> +                            phy-mode:
+> +                              enum:
+> +                                - rgmii
+> +                                - trgmii
+> +
+> +                    properties:
+> +                      reg:
+> +                        enum:
+> +                          - 5
+> +                          - 6
+> +
+>                      required:
+>                        - phy-mode
+>  
+> @@ -206,6 +225,38 @@ allOf:
+>                          items:
+>                            - const: cpu
+>                    then:
+> +                    allOf:
+> +                      - if:
+> +                          properties:
+> +                            reg:
+> +                              const: 5
+> +                        then:
+> +                          properties:
+> +                            phy-mode:
+> +                              enum:
+> +                                - 1000base-x
+> +                                - 2500base-x
+> +                                - rgmii
+> +                                - sgmii
+> +
+> +                      - if:
+> +                          properties:
+> +                            reg:
+> +                              const: 6
+> +                        then:
+> +                          properties:
+> +                            phy-mode:
+> +                              enum:
+> +                                - 1000base-x
+> +                                - 2500base-x
+> +                                - sgmii
+> +
+> +                    properties:
+> +                      reg:
+> +                        enum:
+> +                          - 5
+> +                          - 6
+> +
+>                      required:
+>                        - phy-mode
+>  
+> @@ -235,6 +286,36 @@ allOf:
+>                          items:
+>                            - const: cpu
+>                    then:
+> +                    allOf:
+> +                      - if:
+> +                          properties:
+> +                            reg:
+> +                              const: 5
+> +                        then:
+> +                          properties:
+> +                            phy-mode:
+> +                              enum:
+> +                                - gmii
+> +                                - mii
+> +                                - rgmii
+> +
+> +                      - if:
+> +                          properties:
+> +                            reg:
+> +                              const: 6
+> +                        then:
+> +                          properties:
+> +                            phy-mode:
+> +                              enum:
+> +                                - rgmii
+> +                                - trgmii
+> +
+> +                    properties:
+> +                      reg:
+> +                        enum:
+> +                          - 5
+> +                          - 6
+> +
+
+Looks like the same schema duplicated. You can put it under a '$defs' 
+and reference it twice.
+
+>                      required:
+>                        - phy-mode
+>  
+> -- 
+> 2.34.1
+> 
+> 
