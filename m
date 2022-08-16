@@ -2,138 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 41FE35957E2
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 12:17:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AE6A595872
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 12:35:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231679AbiHPKRX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 06:17:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41952 "EHLO
+        id S234761AbiHPKfD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 06:35:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234316AbiHPKLP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 06:11:15 -0400
-Received: from mail-qt1-x830.google.com (mail-qt1-x830.google.com [IPv6:2607:f8b0:4864:20::830])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8989E5F109;
-        Tue, 16 Aug 2022 01:53:30 -0700 (PDT)
-Received: by mail-qt1-x830.google.com with SMTP id x5so7626257qtv.9;
-        Tue, 16 Aug 2022 01:53:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=YnCIkno40KJuX3QeZtwItBffPailmAuhu9f01rahfzw=;
-        b=U+Xv3VUkbFZ75ATgYioKHUob55py8E0A8kpBjpKS5iy//nEaZbMprXx3p85fUAHykX
-         Y06ZTFC/cze5VAe4+1s6hPaXtQrCDPlSTKV4wFA4TPjUBR0tP3iFKTaAL6kt3XT/C3C2
-         fBrk2d/kIYDlZg1SrUwqoRC/YchA5SWC/3bbm5dEGPzCcsCq2bQk0wJ8zypR3Ax343Kh
-         gHaR95PbSmdDuRgWlEYUzButDm/lxQA7hAQGAHLvu1tas1c9iU1uKVaQpIwNliugV37P
-         zm1X4DXj0RuZc5vRssIL/DGXzRr9qfxD4XTKfT/6oA9JQW1m3aCU9ryKEoQnazGQMM58
-         BvuQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=YnCIkno40KJuX3QeZtwItBffPailmAuhu9f01rahfzw=;
-        b=kqy1gqvhI7wtOysotJtohIvqmCUUiI+KbKeB85urvqczfN/GOkceXSVo9wD3/Bj6d1
-         /tn9eBaXHoHiCa8xL7IHiHKl+QQDdVHzUPgKJFDo4aegc93nct6GlBGYZLeyaHlo469M
-         /+b5rBWAfzsR5oyoXHcE4FclDWSy386Dzxc9ZzVMOZRDLCTUe88YPjvUMGem2cbkO6n9
-         FYBsirB9Lz3v/vECUJM0J8bZb4NQVx7lYynMpLGMafevmdjfhej2NQIGmQNc8v69IqFg
-         8ZnRfV0zCQsJxZR/+vCbPduTQtzZ07CXGWZsmZ6ShJmHFoLJy5Aw+z4LStl6pWiwHUp+
-         QXKA==
-X-Gm-Message-State: ACgBeo0VNtis+jDJU0Yr7qtnlqZ0T2ZTks2GgpniNmpVuZGzCy8dLkiG
-        8WlZm+78fp6OyVcUTNM0LOsMVsbmbtuZI2RtfJg=
-X-Google-Smtp-Source: AA6agR69jEnG5Q0HBokBpcx/vkcvs7eeRrblCm1xMMS1Xgn0nvLpVip0jrGSheJsUrCS6jhxsdmujrIhlAyv9RZF0VY=
-X-Received: by 2002:ac8:5786:0:b0:343:3051:170d with SMTP id
- v6-20020ac85786000000b003433051170dmr17083982qta.429.1660640009425; Tue, 16
- Aug 2022 01:53:29 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220815005553.1450359-1-colin.foster@in-advantage.com>
- <20220815005553.1450359-9-colin.foster@in-advantage.com> <YvpV4cvwE0IQOax7@euler>
- <YvpZoIN+5htY9Z1o@shredder>
-In-Reply-To: <YvpZoIN+5htY9Z1o@shredder>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Tue, 16 Aug 2022 11:52:53 +0300
-Message-ID: <CAHp75VeH_Gx4t+FSqH4LrTHNcwqGxDxRUF26kj3A=CopS=XkgQ@mail.gmail.com>
-Subject: Re: [PATCH v16 mfd 8/8] mfd: ocelot: add support for the vsc7512 chip
- via spi
-To:     Ido Schimmel <idosch@idosch.org>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@debian.org>
-Cc:     Colin Foster <colin.foster@in-advantage.com>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Terry Bowman <terry.bowman@amd.com>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Wolfram Sang <wsa@kernel.org>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        Steen Hegelund <Steen.Hegelund@microchip.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Russell King <linux@armlinux.org.uk>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
+        with ESMTP id S234421AbiHPKen (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 06:34:43 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF43B580B3;
+        Tue, 16 Aug 2022 02:02:56 -0700 (PDT)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1oNsTH-0002ls-7s; Tue, 16 Aug 2022 11:02:47 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        linux-sunxi@lists.linux.dev, Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-riscv@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        katie.morris@in-advantage.com,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Lee Jones <lee@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 04/12] dt-bindings: riscv: Add Allwinner D1 board compatibles
+Date:   Tue, 16 Aug 2022 11:02:46 +0200
+Message-ID: <5849253.UjTJXf6HLC@diego>
+In-Reply-To: <1f84e925-1a0f-6100-c444-a8157e14ab5a@linaro.org>
+References: <20220815050815.22340-1-samuel@sholland.org> <20220815050815.22340-5-samuel@sholland.org> <1f84e925-1a0f-6100-c444-a8157e14ab5a@linaro.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 15, 2022 at 5:35 PM Ido Schimmel <idosch@idosch.org> wrote:
->
-> On Mon, Aug 15, 2022 at 07:19:13AM -0700, Colin Foster wrote:
-> > Something is going on that I don't fully understand with <asm/byteorder.h>.
-> > I don't quite see how ocelot-core is throwing all sorts of errors in x86
-> > builds now:
-> >
-> > https://patchwork.hopto.org/static/nipa/667471/12942993/build_allmodconfig_warn/stderr
-> >
-> > Snippet from there:
-> >
-> > /home/nipa/nipa/tests/patch/build_32bit/build_32bit.sh: line 21: ccache gcc: command not found
-> > ../drivers/mfd/ocelot-spi.c: note: in included file (through ../include/linux/bitops.h, ../include/linux/kernel.h, ../arch/x86/include/asm/percpu.h, ../arch/x86/include/asm/current.h, ../include/linux/sched.h, ...):
-> > ../arch/x86/include/asm/bitops.h:66:1: warning: unreplaced symbol 'return'
-> > ../drivers/mfd/ocelot-spi.c: note: in included file (through ../include/linux/bitops.h, ../include/linux/kernel.h, ../arch/x86/include/asm/percpu.h, ../arch/x86/include/asm/current.h, ../include/linux/sched.h, ...):
-> > ../include/asm-generic/bitops/generic-non-atomic.h:29:9: warning: unreplaced symbol 'mask'
-> > ../include/asm-generic/bitops/generic-non-atomic.h:30:9: warning: unreplaced symbol 'p'
-> > ../include/asm-generic/bitops/generic-non-atomic.h:32:10: warning: unreplaced symbol 'p'
-> > ../include/asm-generic/bitops/generic-non-atomic.h:32:16: warning: unreplaced symbol 'mask'
-> > ../include/asm-generic/bitops/generic-non-atomic.h:27:1: warning: unreplaced symbol 'return'
-> > ../drivers/mfd/ocelot-spi.c: note: in included file (through ../arch/x86/include/asm/bitops.h, ../include/linux/bitops.h, ../include/linux/kernel.h, ../arch/x86/include/asm/percpu.h, ../arch/x86/include/asm/current.h, ...):
-> > ../include/asm-generic/bitops/instrumented-non-atomic.h:26:1: warning: unreplaced symbol 'return'
-> >
-> >
-> > <asm/byteorder.h> was included in both drivers/mfd/ocelot-spi.c and
-> > drivers/mfd/ocelot.h previously, though Andy pointed out there didn't
-> > seem to be any users... and I didn't either. I'm sure there's something
-> > I must be missing.
->
-> I got similar errors in our internal CI yesterday. Fixed by compiling
-> sparse from git:
-> https://git.kernel.org/pub/scm/devel/sparse/sparse.git/commit/?id=0e1aae55e49cad7ea43848af5b58ff0f57e7af99
->
-> The update is also available in the "testing" repo in case you are
-> running Fedora 35 / 36:
-> https://bodhi.fedoraproject.org/updates/FEDORA-2022-c58b53730f
-> https://bodhi.fedoraproject.org/updates/FEDORA-2022-2bc333ccac
+Am Dienstag, 16. August 2022, 09:39:38 CEST schrieb Krzysztof Kozlowski:
+> On 15/08/2022 08:08, Samuel Holland wrote:
+> > Several SoMs and boards are available that feature the Allwinner D1 SoC.
+> > Document their compatible strings.
+> > 
+> > Signed-off-by: Samuel Holland <samuel@sholland.org>
+> > ---
+> > 
+> >  .../devicetree/bindings/riscv/sunxi.yaml      | 64 +++++++++++++++++++
+> >  1 file changed, 64 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/riscv/sunxi.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/riscv/sunxi.yaml b/Documentation/devicetree/bindings/riscv/sunxi.yaml
+> > new file mode 100644
+> > index 000000000000..564a89499894
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/riscv/sunxi.yaml
+> > @@ -0,0 +1,64 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/riscv/sunxi.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Allwinner RISC-V SoC-based boards
+> > +
+> > +maintainers:
+> > +  - Chen-Yu Tsai <wens@csie.org>
+> > +  - Jernej Skrabec <jernej.skrabec@gmail.com>
+> > +  - Samuel Holland <samuel@sholland.org>
+> > +
+> > +description:
+> > +  Allwinner RISC-V SoC-based boards
+> > +
+> > +properties:
+> > +  $nodename:
+> > +    const: '/'
+> > +  compatible:
+> > +    oneOf:
+> > +      - description: Dongshan Nezha STU SoM
+> > +        items:
+> > +          - const: 100ask,dongshan-nezha-stu
+> > +          - const: allwinner,sun20i-d1
+> > +
+> > +      - description: D1 Nezha board
+> > +        items:
+> > +          - const: allwinner,d1-nezha
+> 
+> You grow the list unnecessary. Several entries should be an enum, unless
+> platform maintainer insists on such approach for all Allwinner Riscv
+> platforms. Just be aware it will grow...
 
-Debian still produces the same errors which makes sparse useless.
+Having the binding document provide value to mere mortals and not only
+the automated tools is plus for me :-) . So obviously personally I like
+the current style more. But yeah, it's mainly a matter of preference :-) .
 
--- 
-With Best Regards,
-Andy Shevchenko
+
