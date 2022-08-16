@@ -2,112 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B2319595A87
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 13:46:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0146B595AA3
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 13:50:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234428AbiHPLqL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 07:46:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55308 "EHLO
+        id S232469AbiHPLuk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 07:50:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234038AbiHPLpf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 07:45:35 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05A912AC3
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 04:18:48 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id x10so10191375ljq.4
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 04:18:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=ahlHZt6wMpsmmfs0QS0vK63rtQP8YDKkCtKg6V0r2Pk=;
-        b=IL7FC1vJvvHK9WxLcCuSh/XcTk1gbum4cZ/b34iIxq1Lnd+4OIto+CvNIQ+PYM2KdR
-         3BvVULGQwv1V95J3w7EDj4+mDYROK1hqCm5/OCbZzM0tlqSQoiFuIF2PkvJseJlZmzvl
-         fOvWZFJphpCE3YLfi7Ws0vHfAH8Q4OWiyPBZlReyluc1R6uq+3sL9rXtKLK5OumoqcGN
-         PMAWH0PXS5Df4vv68HIas8lB9uuFjtV6c1+h11Jn60tRHRbP0omMR2xHkFx3sL0/20P1
-         VzMF8AcGoQNCi/C+AgfXCsiE46qaQ+EupE0fRIkpVSPok3++l/x6Vt0r3AvYbm7IfPEY
-         infg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=ahlHZt6wMpsmmfs0QS0vK63rtQP8YDKkCtKg6V0r2Pk=;
-        b=PGGN+eo0M7xQDt54CbX/0j+1SPMH1kioO3LXpoTTctabhmJ5S+6Wqs49uoXCjc212V
-         4WS2ny4YuA5fq2pPtP/UBSDfo20jIPvGLYQXJI6hIbFAtaTAI1slXLUR2BNA+6fC26CF
-         FnaYFn3kwe8z0KS0mke48jyBzvY9tg8vMbVlEXEq7YFppyFpb1QQTm0TmPPj6mr/SqR0
-         SDT1m+bqaxwxn/OyZbPql5vDNDY8bP5/ifC/U6vbxDGA4Fy0DBM8pQYWm8WG/bwcwzGV
-         OJjVItJiml2z3KR8x385kEPSWqPvomFQCkF0SFBXYOK0LW5t7yh7pLbFF+yrYqycD903
-         Ls/g==
-X-Gm-Message-State: ACgBeo36mE2aTMzv5fmYa89AUWygD7RMukS2mJ/iuPM5+hINWyPRxWcX
-        d/bkHpMaSMxdzVV861sGa7e5Gg==
-X-Google-Smtp-Source: AA6agR7R2WGkVknzhv7N5shmDhgnFVXYpWlD+OCJ3gumTMxZC/mqGJiD3IwZU5x5Ofj/1ZbunbQcDw==
-X-Received: by 2002:a2e:80d7:0:b0:25e:7277:f184 with SMTP id r23-20020a2e80d7000000b0025e7277f184mr6332259ljg.244.1660648725917;
-        Tue, 16 Aug 2022 04:18:45 -0700 (PDT)
-Received: from ?IPV6:2001:14bb:ae:539c:1782:dd68:b0c1:c1a4? (d15l54g8c71znbtrbzt-4.rev.dnainternet.fi. [2001:14bb:ae:539c:1782:dd68:b0c1:c1a4])
-        by smtp.gmail.com with ESMTPSA id z23-20020a195057000000b0048b08f0c4e9sm1354663lfj.176.2022.08.16.04.18.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Aug 2022 04:18:45 -0700 (PDT)
-Message-ID: <eb0670b6-794a-7a13-1264-0a789a47a8b4@linaro.org>
-Date:   Tue, 16 Aug 2022 14:18:44 +0300
+        with ESMTP id S232582AbiHPLuI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 07:50:08 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7DBE7F0AB;
+        Tue, 16 Aug 2022 04:25:02 -0700 (PDT)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 27GALl6i006361;
+        Tue, 16 Aug 2022 11:24:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=5aTpjUYseG5JJk8g+HoBTAumTKBG4wTdhq0GBCJReTk=;
+ b=WFCsdC4j3LG/Ep2WXBD3Rn1ETMXsRYrSI/AkKzoC/OZJnStz7AU2Y+thzu+Qo5qgKpuN
+ Hr9rOSgPUyfwMHSikZVpB6IprGYoYt9dWu1wJ1DkDgMcCsE3FildI0YZsUwG0Olo6s9C
+ dAi6CyAHyQxhV11lAUPZR38TLhIaORFF3t0sWbg52iSLa8/5/QNkvY5Jf2ZCLnVv7dY+
+ k0UuQO5Cogu58S+FtA8QaiiVSeAlYfFE0SToKzvdiLzZ5DAzmAy0HHdJnD5Y8HB2+q+V
+ qbqX0s1IQAbt+Kb0YzSgzPHFE2QSitCGo6yMLk2fYzl9vCn+fEEoEJh6rZGizkljaP4z TQ== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3j08rs8au3-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 16 Aug 2022 11:24:14 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 27GBODw9015802
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 16 Aug 2022 11:24:13 GMT
+Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Tue, 16 Aug 2022 04:24:08 -0700
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+To:     <linux-remoteproc@vger.kernel.org>, <agross@kernel.org>,
+        <bjorn.andersson@linaro.org>, <lgirdwood@gmail.com>,
+        <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>, <perex@perex.cz>,
+        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
+        <quic_rohkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
+        <judyhsiao@chromium.org>, <devicetree@vger.kernel.org>
+CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Subject: [PATCH v5 0/7] Update ADSP pil loader for SC7280 platform
+Date:   Tue, 16 Aug 2022 16:53:47 +0530
+Message-ID: <1660649034-4303-1-git-send-email-quic_srivasam@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH 1/2] dt-bindings: vertexcom-mse102x: Update email address
-Content-Language: en-US
-To:     Stefan Wahren <stefan.wahren@i2se.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        stefan.wahren@chargebyte.com
-References: <20220815080626.9688-1-stefan.wahren@i2se.com>
- <dc0c6c80-7af0-ee7c-2019-cdb6eb96c3f5@linaro.org>
- <6b3bfb9d-1acf-8445-7181-d5e1ecf4745d@i2se.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <6b3bfb9d-1acf-8445-7181-d5e1ecf4745d@i2se.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: xFuP5hruA9luTyK3Z7vs05jn9gi-AS-l
+X-Proofpoint-GUID: xFuP5hruA9luTyK3Z7vs05jn9gi-AS-l
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
+ definitions=2022-08-16_07,2022-08-16_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 adultscore=0
+ mlxlogscore=936 mlxscore=0 suspectscore=0 malwarescore=0
+ lowpriorityscore=0 priorityscore=1501 spamscore=0 clxscore=1015
+ bulkscore=0 impostorscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2207270000 definitions=main-2208160042
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/08/2022 14:14, Stefan Wahren wrote:
-> Hi Krzystof,
-> 
-> Am 16.08.22 um 12:24 schrieb Krzysztof Kozlowski:
->> On 15/08/2022 11:06, Stefan Wahren wrote:
->>> in-tech smart charging is now chargebyte. So update the email address
->>> accordingly.
->>>
->>> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
->> Yet you used third email address... which is fine, just a bit confusing.
->> Since in-tech.com still works and you might be (or not) different
->> Stefan, it's difficult to judge...
-> 
-> sorry about the confusion. I'm that person. Unfortuntely the other 
-> accounts are using a M$ Exchange server, so i switched to the i2se 
-> account for this setup before sending broken patches ...
-> 
-> in-tech was the parent company, but the accounts will unavailable in the 
-> future.
+Update ADSP pil loader driver for SC7280 platforms.
 
-Email used for authorship and for sending can be different. It makes
-things more obvious.
+Changes since V4:
+	-- Update halt registers description in dt bindings.
+	-- Update Memory sandboxing with proper APIs for resource
+	   allocation and free.
+Changes since V3:
+	-- Rename is_adsp_sb_needed to adsp_sandbox_needed.
+	-- Update sc7280 compatible name entry in sorted order.
+	-- Add smmu unmapping in error case and in adsp stop.
+	-- Revert converting sdm845 dt bindings to generic and 
+	   create new dt bindings for sc7280.
+Changes since V2:
+	-- Generated patch with -M flag.
+	-- Add Clock property in dt bindings.
+	-- Add qcom,adsp-memory-regions property.
+	-- Add is_adsp_sb_needed flag instead of is_wpss.
+	-- Initialize is_adsp_sb_needed flag.
+	-- Remove empty proxy pds array.
+	-- Replace platform_bus_type with adsp->dev->bus.
+	-- Use API of_parse_phandle_with_args() instead of 
+	    of_parse_phandle_with_fixed_args().
+	-- Replace adsp->is_wpss with adsp->is_adsp.
+	-- Update error handling in adsp_start().
+Changes since V1:
+	-- Change reg property maxItems to minItems and update description.
+	-- Fix typo errors.
 
+Srinivasa Rao Mandadapu (7):
+  dt-bindings: remoteproc: qcom: Add SC7280 ADSP support
+  remoteproc: qcom: Add flag in adsp private data structure
+  remoteproc: qcom: Add compatible name for SC7280 ADSP
+  remoteproc: qcom: Replace hard coded values with macros
+  remoteproc: qcom: Add efuse evb selection control
+  remoteproc: qcom: Add support for memory sandbox
+  remoteproc: qcom: Update QDSP6 out-of-reset timeout value
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ .../bindings/remoteproc/qcom,sc7280-adsp-pil.yaml  | 196 +++++++++++++++++
+ drivers/remoteproc/qcom_q6v5_adsp.c                | 243 ++++++++++++++++++++-
+ 2 files changed, 433 insertions(+), 6 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,sc7280-adsp-pil.yaml
 
+-- 
+2.7.4
 
-Best regards,
-Krzysztof
