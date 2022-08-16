@@ -2,81 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 45978596311
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 21:24:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B46D2596363
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 21:57:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237124AbiHPTYX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 15:24:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46050 "EHLO
+        id S237337AbiHPT4I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 15:56:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237117AbiHPTYW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 15:24:22 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 411E86FA36
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 12:24:20 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id ba1so3198841wrb.5
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 12:24:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=Sz8NNXwmI1EFfI2ysv73Yy1lOgv2a7RKnB5GY8gYwyA=;
-        b=v5Wq2TkCKJiji9wCUF2Og9fTe+WAKKIVnXpv6pmV69UDPXK/3jjiSwLZXS7rx/VfMV
-         HAlrWZpoEeUaShnaKamj3WVmo3UlZ8hZtIvOoXdAa5KPCkom8Z3cMFhFUkmBgW968cgS
-         aBkZtFa9Sc1dybQXYEg5/3Ba5sLZykMJon+ZwehL21O2uXYPv5CkhLb7OvEWDiKGdhmO
-         mYC/YwjhESSeNAV7myqJPTEk1atQ5BmqVktEgYBNPE3gh6IFFYYjupO9LHQ1SfJqD8Lf
-         fesOvFwb/2NnrwbKYPyk6cN+uadTvGGICYA9KKECIb+YoSTWR0TXCX88Alk1atyaKWce
-         urJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=Sz8NNXwmI1EFfI2ysv73Yy1lOgv2a7RKnB5GY8gYwyA=;
-        b=xTA5fzGzGy7YRhvbrzWjugDEN4h/2GCFiQCr49TIFrnOUPTDxVG5RoZxxN5MvDN3c4
-         99Trddt0LhrCphrRtTpdt/rO0+5eWLGA0N3L9ZI1i5BQwCpLQ1HhS2KuvDwo/O00MqdC
-         Yxw4ldwk6aMQKumv1rOrQodkAHtcDs1H0/7l+smM/48L8HOW00H452qJ9/Pyin4iv+0q
-         /CLDVGVu5hvEX0sm1nnqCnccCOF/POFMbx4312vfxou6ZxEIeV7z4uPo5Trl+kZ2tsQU
-         MYYD14rvuIrujMZI+iOU4/MVqEzL4kwUPu7gla7PgW6nfVNUgQzz2uenf2VR6CJEUpvJ
-         5uwg==
-X-Gm-Message-State: ACgBeo2G+VEUdcQzIP5YXa/Zk5smUhvp47mvCUeBgNKu63Ve1hsVEoy6
-        ONSWJrNnuOIqHS5Ek6N4xmGPIA==
-X-Google-Smtp-Source: AA6agR4aEp+iW0YMEf5emiZyDEPlFnJbsXIRLMLmehN5Xx6i+1e+VtrBCslwlFSQBGiuC8RrtaKjkg==
-X-Received: by 2002:adf:fe44:0:b0:225:325:13f6 with SMTP id m4-20020adffe44000000b00225032513f6mr6744226wrs.234.1660677858735;
-        Tue, 16 Aug 2022 12:24:18 -0700 (PDT)
-Received: from [192.168.0.12] (cpc76482-cwma10-2-0-cust629.7-3.cable.virginm.net. [86.14.22.118])
-        by smtp.gmail.com with ESMTPSA id s3-20020a5d69c3000000b00225232154d7sm240559wrw.110.2022.08.16.12.24.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Aug 2022 12:24:18 -0700 (PDT)
-Message-ID: <0ee98af7-d6df-fb3d-b1f4-42d3482bc7a9@linaro.org>
-Date:   Tue, 16 Aug 2022 20:24:16 +0100
+        with ESMTP id S236924AbiHPT4G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 15:56:06 -0400
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2FD779604;
+        Tue, 16 Aug 2022 12:56:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1660679765; x=1692215765;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=yixfxwAxzM7YBQGZsa87NJ7t2jyl79YfbDujqx61tcE=;
+  b=SOuWDChFpfHWPnCZEh5nbGfZBCKvfaEc5YtwisZtcOoRyQZLnu5G1Yx0
+   LiA4hxEBm6rytT6Dj8RA2FshQ02qnY9Od1Oh6dXNBTjofge01+zrWzIXH
+   mwZum6wDhF5xyZXWDbLrtsZNP2Z9NwEbcVdNyjtch2VeExyIqgBVTforY
+   xwHdhOIR8dF8Fb1wBTFANuJCGqOiWSwEF/6/DrlyLyoH273DiiimJAKHP
+   3Qv6924/YU5CFvasicw14xH9vYLCVzFm6O+TflK7GKZmd3zSOSElFtMW/
+   DVtpqtj3wBUpZdtsPnLRKpu/RenA96XCCGZDYev60NGeExberAhCoK5mQ
+   A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10441"; a="272708982"
+X-IronPort-AV: E=Sophos;i="5.93,242,1654585200"; 
+   d="scan'208";a="272708982"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Aug 2022 12:56:05 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,242,1654585200"; 
+   d="scan'208";a="935057276"
+Received: from lkp-server02.sh.intel.com (HELO 81d7e1ade3ba) ([10.239.97.151])
+  by fmsmga005.fm.intel.com with ESMTP; 16 Aug 2022 12:56:00 -0700
+Received: from kbuild by 81d7e1ade3ba with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1oO2fQ-0000C8-13;
+        Tue, 16 Aug 2022 19:56:00 +0000
+Date:   Wed, 17 Aug 2022 03:55:15 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Eliav Farber <farbere@amazon.com>, jdelvare@suse.com,
+        linux@roeck-us.net, robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     kbuild-all@lists.01.org, farbere@amazon.com, talel@amazon.com,
+        hhhawa@amazon.com, jonnyc@amazon.com, hanochu@amazon.com,
+        ronenk@amazon.com, itamark@amazon.com, shellykz@amazon.com,
+        shorer@amazon.com, amitlavi@amazon.com, almogbs@amazon.com,
+        dwmw@amazon.co.uk, rtanwar@maxlinear.com
+Subject: Re: [PATCH 08/16] hwmon: (mr75203) add VM active channel support
+Message-ID: <202208170350.3yIFIWEk-lkp@intel.com>
+References: <20220816082757.11990-9-farbere@amazon.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v4 1/2] power: supply: add Qualcomm PMI8998 SMB2 Charger
- driver
-Content-Language: en-US
-To:     Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Tom Rix <trix@redhat.com>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, llvm@lists.linux.dev,
-        phone-devel@vger.kernel.org
-References: <20220706194125.1861256-1-caleb.connolly@linaro.org>
- <20220706194125.1861256-2-caleb.connolly@linaro.org>
-From:   Caleb Connolly <caleb.connolly@linaro.org>
-In-Reply-To: <20220706194125.1861256-2-caleb.connolly@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220816082757.11990-9-farbere@amazon.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,283 +69,238 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Eliav,
+
+Thank you for the patch! Perhaps something to improve:
+
+[auto build test WARNING on groeck-staging/hwmon-next]
+[also build test WARNING on linus/master v6.0-rc1 next-20220816]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Eliav-Farber/Variety-of-fixes-and-new-features-for-mr75203-driver/20220816-183655
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
+config: microblaze-randconfig-r013-20220815 (https://download.01.org/0day-ci/archive/20220817/202208170350.3yIFIWEk-lkp@intel.com/config)
+compiler: microblaze-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/75e49737eb6188733096da72eb4692cfed872101
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Eliav-Farber/Variety-of-fixes-and-new-features-for-mr75203-driver/20220816-183655
+        git checkout 75e49737eb6188733096da72eb4692cfed872101
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=microblaze SHELL=/bin/bash drivers/hwmon/
+
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+   drivers/hwmon/mr75203.c: In function 'mr75203_probe':
+>> drivers/hwmon/mr75203.c:604:17: warning: ISO C90 forbids variable length array 'vm_idx' [-Wvla]
+     604 |                 u8 vm_idx[vm_num];
+         |                 ^~
+>> drivers/hwmon/mr75203.c:605:17: warning: ISO C90 forbids variable length array 'vm_active_ch' [-Wvla]
+     605 |                 u8 vm_active_ch[vm_num];
+         |                 ^~
 
 
-On 06/07/2022 20:41, Caleb Connolly wrote:
-> Add a driver for the SMB2 charger block found in the Qualcomm PMI8998
-> and PM660.
+vim +/vm_idx +604 drivers/hwmon/mr75203.c
 
-I noticed an issue in this revision which was the root-cause of the OnePlus 6 charging incredibly 
-slowly. Other SDM845 phones feature a secondary charger IC, usually the smb1135 (iirc) which was 
-able to work normally, hiding the issue, however the OnePlus 6 does not. See below.
-> 
-> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
-> ---
-> Changes since v1:
->   * Renamed from qcom_smb2 to qcom_pmi8998_charger
-> ---
->   drivers/power/supply/Kconfig                |    9 +
->   drivers/power/supply/Makefile               |    1 +
->   drivers/power/supply/qcom_pmi8998_charger.c | 1044 +++++++++++++++++++
->   3 files changed, 1054 insertions(+)
->   create mode 100644 drivers/power/supply/qcom_pmi8998_charger.c
-> 
-> diff --git a/drivers/power/supply/Makefile b/drivers/power/supply/Makefile
-> index 7f02f36aea55..a39e3eda6dbd 100644
-
-[snip]
-
-> +
-> +/* Init sequence derived from vendor downstream driver */
-> +static const struct smb2_register smb2_init_seq[] = {
-> +	{ .addr = AICL_RERUN_TIME_CFG, .mask = AICL_RERUN_TIME_MASK, .val = 0 },
-> +	/*
-> +	 * By default configure us as an upstream facing port
-> +	 * FIXME: for OTG we should set UFP_EN_CMD_BIT and DFP_EN_CMD_BIT both to 0
-> +	 */
-> +	{ .addr = TYPE_C_INTRPT_ENB_SOFTWARE_CTRL,
-> +	  .mask = TYPEC_POWER_ROLE_CMD_MASK | VCONN_EN_SRC_BIT |
-> +		  VCONN_EN_VALUE_BIT,
-> +	  .val = VCONN_EN_SRC_BIT | UFP_EN_CMD_BIT },
-> +	/*
-> +	 * disable Type-C factory mode and stay in Attached.SRC state when VCONN
-> +	 * over-current happens
-> +	 */
-> +	{ .addr = TYPE_C_CFG,
-> +	  .mask = FACTORY_MODE_DETECTION_EN_BIT | VCONN_OC_CFG_BIT,
-> +	  .val = 0 },
-> +	/* Configure VBUS for software control */
-> +	{ .addr = OTG_CFG, .mask = OTG_EN_SRC_CFG_BIT, .val = 0 },
-> +	{ .addr = FG_UPDATE_CFG_2_SEL,
-> +	  .mask = SOC_LT_CHG_RECHARGE_THRESH_SEL_BIT |
-> +		  VBT_LT_CHG_RECHARGE_THRESH_SEL_BIT,
-> +	  .val = VBT_LT_CHG_RECHARGE_THRESH_SEL_BIT },
-> +	/* Enable charging */
-> +	{ .addr = USBIN_OPTIONS_1_CFG, .mask = HVDCP_EN_BIT, .val = 0 },
-> +	{ .addr = CHARGING_ENABLE_CMD,
-> +	  .mask = CHARGING_ENABLE_CMD_BIT,
-> +	  .val = CHARGING_ENABLE_CMD_BIT },
-> +	/* Allow overriding the current limit */
-> +	// { .addr = USBIN_LOAD_CFG,
-> +	//   .mask = ICL_OVERRIDE_AFTER_APSD_BIT,
-> +	//   .val = ICL_OVERRIDE_AFTER_APSD_BIT },
-> +	{ .addr = CHGR_CFG2,
-> +	  .mask = CHG_EN_SRC_BIT | CHG_EN_POLARITY_BIT |
-> +		  PRETOFAST_TRANSITION_CFG_BIT | BAT_OV_ECC_BIT | I_TERM_BIT |
-> +		  AUTO_RECHG_BIT | EN_ANALOG_DROP_IN_VBATT_BIT |
-> +		  CHARGER_INHIBIT_BIT,
-> +	  .val = 0 },
-> +	/*
-> +	 * No clue what this does
-> +	 */
-> +	{ .addr = STAT_CFG,
-> +	  .mask = STAT_SW_OVERRIDE_CFG_BIT,
-> +	  .val = STAT_SW_OVERRIDE_CFG_BIT },
-> +	/*
-> +	 * Set the default SDP charger type to a 500ma USB 2.0 port
-> +	 */
-> +	{ .addr = USBIN_ICL_OPTIONS,
-> +	  .mask = USB51_MODE_BIT | USBIN_MODE_CHG_BIT,
-> +	  .val = USB51_MODE_BIT },
-> +	/*
-> +	 * Disable watchdog
-> +	 */
-> +	{ .addr = SNARL_BARK_BITE_WD_CFG, .mask = 0xff, .val = 0 },
-> +	{ .addr = WD_CFG,
-> +	  .mask = WATCHDOG_TRIGGER_AFP_EN_BIT | WDOG_TIMER_EN_ON_PLUGIN_BIT |
-> +		  BARK_WDOG_INT_EN_BIT,
-> +	  .val = 0 },
-> +	/* OnePlus init stuff from "op_set_collapse_fet" */
-> +	{ .addr = USBIN_5V_AICL_THRESHOLD_CFG,
-> +	  .mask = USBIN_5V_AICL_THRESHOLD_CFG_MASK,
-> +	  .val = 0x3 },
-> +	{ .addr = USBIN_CONT_AICL_THRESHOLD_CFG,
-> +	  .mask = USBIN_CONT_AICL_THRESHOLD_CFG_MASK,
-> +	  .val = 0x3 },
-> +	/* Yay undocumented register values! */
-> +	{ .addr = USBIN_LOAD_CFG, .mask = BIT(0) | BIT(1), .val = 0x3 },
-> +	/* Enable Automatic Input Current Limit, this will slowly ramp up the current
-> +	 * When connected to a wall charger, and automatically stop when it detects
-> +	 * the charger current limit (voltage drop?) or it reaches the programmed limit.
-> +	 */
-> +	{ .addr = USBIN_AICL_OPTIONS_CFG,
-> +	  .mask = USBIN_AICL_START_AT_MAX_BIT | USBIN_AICL_ADC_EN_BIT |
-> +		  USBIN_AICL_EN_BIT | SUSPEND_ON_COLLAPSE_USBIN_BIT |
-> +		  USBIN_HV_COLLAPSE_RESPONSE_BIT |
-> +		  USBIN_LV_COLLAPSE_RESPONSE_BIT,
-> +	  .val = USBIN_HV_COLLAPSE_RESPONSE_BIT |
-> +		 USBIN_LV_COLLAPSE_RESPONSE_BIT | USBIN_AICL_EN_BIT },
-> +	/*
-> +	 * Set pre charge current to default, the OnePlus 6 bootloader
-> +	 * sets this very conservatively.
-> +	 * NOTE: seems to be reset to zero again anyway after boot
-> +	 */
-> +	{ .addr = PRE_CHARGE_CURRENT_CFG,
-> +	  .mask = PRE_CHARGE_CURRENT_SETTING_MASK,
-> +	  .val = 500000 / 25000 },
-> +	/*
-> +	 * Set "fast charge current" to the default 2A, the OnePlus 6 also
-> +	 * sets this very conservatively.
-> +	 * NOTE: seems to be reset to zero again anyway after boot
-> +	 */
-> +	{ .addr = FAST_CHARGE_CURRENT_CFG,
-> +	  .mask = FAST_CHARGE_CURRENT_SETTING_MASK,
-> +	  .addr = 1950000 / 25000 },
-
-The .addr is set here twice, meaning the fast charge current register is not configured properly and 
-thus left at conservative bootloader values - or set to zero, I'm not sure how the compiler handles 
-this.
-
-Will be fixed in the next revision.
-> +};
-> +
-> +static int smb2_init_hw(struct smb2_chip *chip)
-> +{
-> +	int rc, i;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(smb2_init_seq); i++) {
-> +		dev_dbg(chip->dev, "%d: Writing 0x%02x to 0x%02x\n", i,
-> +			smb2_init_seq[i].val, smb2_init_seq[i].addr);
-> +		rc = regmap_update_bits(chip->regmap,
-> +					chip->base + smb2_init_seq[i].addr,
-> +					smb2_init_seq[i].mask,
-> +					smb2_init_seq[i].val);
-> +		if (rc < 0)
-> +			return dev_err_probe(
-> +				chip->dev, rc,
-> +				"%s: Failed to write 0x%02x to 0x%02x\n",
-> +				__func__, smb2_init_seq[i].val,
-> +				smb2_init_seq[i].addr);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +struct smb2_irqs {
-> +	const char *name;
-> +	irqreturn_t (*handler)(int irq, void *data);
-> +};
-> +
-> +static const struct smb2_irqs irqs[] = {
-> +	{ .name = "bat-ov", .handler = smb2_handle_batt_overvoltage },
-> +	{ .name = "usb-plugin", .handler = smb2_handle_usb_plugin },
-> +	{ .name = "usbin-icl-change", .handler = smb2_handle_usb_icl_change },
-> +	{ .name = "wdog-bark", .handler = smb2_handle_wdog_bark },
-> +};
-> +
-> +static int smb2_probe(struct platform_device *pdev)
-> +{
-> +	struct power_supply_config supply_config = {};
-> +	struct smb2_chip *chip;
-> +	int rc, i, irq;
-> +
-> +	chip = devm_kzalloc(&pdev->dev, sizeof(*chip), GFP_KERNEL);
-> +	if (!chip)
-> +		return -ENOMEM;
-> +
-> +	chip->dev = &pdev->dev;
-> +	chip->name = pdev->name;
-> +
-> +	chip->regmap = dev_get_regmap(pdev->dev.parent, NULL);
-> +	if (!chip->regmap) {
-> +		return dev_err_probe(chip->dev, -ENODEV,
-> +				     "failed to locate the regmap\n");
-> +	}
-> +
-> +	rc = device_property_read_u32(chip->dev, "reg", &chip->base);
-> +	if (rc < 0) {
-> +		return dev_err_probe(chip->dev, rc,
-> +				     "Couldn't read base address\n");
-> +	}
-> +
-> +	chip->usb_in_v_chan = devm_iio_channel_get(chip->dev, "usbin_v");
-> +	if (IS_ERR(chip->usb_in_v_chan))
-> +		return dev_err_probe(
-> +			chip->dev, PTR_ERR(chip->usb_in_v_chan),
-> +			"Couldn't get usbin_v IIO channel from RRADC\n");
-> +
-> +	chip->usb_in_i_chan = devm_iio_channel_get(chip->dev, "usbin_i");
-> +	if (IS_ERR(chip->usb_in_i_chan)) {
-> +		return dev_err_probe(
-> +			chip->dev, PTR_ERR(chip->usb_in_i_chan),
-> +			"Couldn't get usbin_i IIO channel from RRADC\n");
-> +	}
-> +
-> +	rc = smb2_init_hw(chip);
-> +	if (rc < 0)
-> +		return rc;
-> +
-> +	supply_config.drv_data = chip;
-> +	supply_config.of_node = pdev->dev.of_node;
-> +
-> +	chip->chg_psy = devm_power_supply_register(chip->dev, &smb2_psy_desc,
-> +						   &supply_config);
-> +	if (IS_ERR(chip->chg_psy))
-> +		return dev_err_probe(chip->dev, PTR_ERR(chip->chg_psy),
-> +				     "failed to register power supply\n");
-> +
-> +	rc = power_supply_get_battery_info(chip->chg_psy, &chip->batt_info);
-> +	if (rc)
-> +		return dev_err_probe(chip->dev, rc,
-> +				     "Failed to get battery info\n");
-> +
-> +	rc = devm_delayed_work_autocancel(chip->dev, &chip->status_change_work,
-> +					  smb2_status_change_work);
-> +	if (rc)
-> +		return dev_err_probe(
-> +			chip->dev, rc,
-> +			"Failed to initialise status change work\n");
-> +
-> +	rc = (chip->batt_info->voltage_max_design_uv - 3487500) / 7500 + 1;
-> +	rc = regmap_update_bits(chip->regmap, chip->base + FLOAT_VOLTAGE_CFG,
-> +				FLOAT_VOLTAGE_SETTING_MASK, rc);
-> +	if (rc < 0)
-> +		return dev_err_probe(chip->dev, rc, "Couldn't set vbat max\n");
-> +
-> +	for (i = 0; i < ARRAY_SIZE(irqs); i++) {
-> +		irq = of_irq_get_byname(pdev->dev.of_node, irqs[i].name);
-> +		if (irq < 0)
-> +			return dev_err_probe(chip->dev, irq,
-> +					     "Couldn't get irq %s byname\n",
-> +					     irqs[i].name);
-> +		rc = devm_request_threaded_irq(chip->dev, irq, NULL,
-> +					       irqs[i].handler, IRQF_ONESHOT,
-> +					       irqs[i].name, chip);
-> +		if (rc < 0)
-> +			return dev_err_probe(chip->dev, irq,
-> +					     "Couldn't request irq %s\n",
-> +					     irqs[i].name);
-> +	}
-> +
-> +	platform_set_drvdata(pdev, chip);
-> +
-> +	/* Initialise charger state */
-> +	schedule_delayed_work(&chip->status_change_work, 0);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct of_device_id smb2_match_id_table[] = {
-> +	{ .compatible = "qcom,pmi8998-charger" },
-> +	{ .compatible = "qcom,pm660-charger" },
-> +	{ /* sentinal */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, smb2_match_id_table);
-> +
-> +static struct platform_driver qcom_spmi_smb2 = {
-> +	.probe = smb2_probe,
-> +	.driver = {
-> +			.name = "qcom-pmi8998-charger",
-> +			.of_match_table = smb2_match_id_table,
-> +		},
-> +};
-> +
-> +module_platform_driver(qcom_spmi_smb2);
-> +
-> +MODULE_AUTHOR("Caleb Connolly <caleb.connolly@linaro.org>");
-> +MODULE_DESCRIPTION("Qualcomm SMB2 Charger Driver");
-> +MODULE_LICENSE("GPL");
+   514	
+   515	static int mr75203_probe(struct platform_device *pdev)
+   516	{
+   517		const struct hwmon_channel_info **pvt_info;
+   518		u32 ts_num, vm_num, pd_num, ch_num, val, index, i, j, k;
+   519		struct device *dev = &pdev->dev;
+   520		u32 *temp_config, *in_config;
+   521		struct device *hwmon_dev;
+   522		struct pvt_device *pvt;
+   523		int ret;
+   524	
+   525		pvt = devm_kzalloc(dev, sizeof(*pvt), GFP_KERNEL);
+   526		if (!pvt)
+   527			return -ENOMEM;
+   528	
+   529		ret = pvt_get_regmap(pdev, "common", pvt);
+   530		if (ret)
+   531			return ret;
+   532	
+   533		pvt->clk = devm_clk_get(dev, NULL);
+   534		if (IS_ERR(pvt->clk))
+   535			return dev_err_probe(dev, PTR_ERR(pvt->clk), "failed to get clock\n");
+   536	
+   537		ret = pvt_clk_enable(dev, pvt);
+   538		if (ret) {
+   539			dev_err(dev, "failed to enable clock\n");
+   540			return ret;
+   541		}
+   542	
+   543		if (of_property_read_bool(dev->of_node, "reset-control-skip")) {
+   544			dev_info(dev, "skipping reset-control\n");
+   545		} else {
+   546			pvt->rst = devm_reset_control_get_exclusive(dev, NULL);
+   547			if (IS_ERR(pvt->rst))
+   548				return dev_err_probe(dev, PTR_ERR(pvt->rst),
+   549						     "failed to get reset control\n");
+   550	
+   551			ret = pvt_reset_control_deassert(dev, pvt);
+   552			if (ret)
+   553				return dev_err_probe(dev, ret,
+   554						     "cannot deassert reset control\n");
+   555		}
+   556	
+   557		ret = regmap_read(pvt->c_map, PVT_IP_CONFIG, &val);
+   558		if(ret < 0)
+   559			return ret;
+   560	
+   561		ts_num = (val & TS_NUM_MSK) >> TS_NUM_SFT;
+   562		pd_num = (val & PD_NUM_MSK) >> PD_NUM_SFT;
+   563		vm_num = (val & VM_NUM_MSK) >> VM_NUM_SFT;
+   564		ch_num = (val & CH_NUM_MSK) >> CH_NUM_SFT;
+   565		pvt->t_num = ts_num;
+   566		pvt->p_num = pd_num;
+   567		pvt->v_num = vm_num;
+   568		val = 0;
+   569		if (ts_num)
+   570			val++;
+   571		if (vm_num)
+   572			val++;
+   573		if (!val)
+   574			return -ENODEV;
+   575	
+   576		pvt_info = devm_kcalloc(dev, val + 2, sizeof(*pvt_info), GFP_KERNEL);
+   577		if (!pvt_info)
+   578			return -ENOMEM;
+   579		pvt_info[0] = HWMON_CHANNEL_INFO(chip, HWMON_C_REGISTER_TZ);
+   580		index = 1;
+   581	
+   582		if (ts_num) {
+   583			ret = pvt_get_regmap(pdev, "ts", pvt);
+   584			if (ret)
+   585				return ret;
+   586	
+   587			temp_config = devm_kcalloc(dev, ts_num + 1,
+   588						   sizeof(*temp_config), GFP_KERNEL);
+   589			if (!temp_config)
+   590				return -ENOMEM;
+   591	
+   592			memset32(temp_config, HWMON_T_INPUT, ts_num);
+   593			pvt_temp.config = temp_config;
+   594			pvt_info[index++] = &pvt_temp;
+   595		}
+   596	
+   597		if (pd_num) {
+   598			ret = pvt_get_regmap(pdev, "pd", pvt);
+   599			if (ret)
+   600				return ret;
+   601		}
+   602	
+   603		if (vm_num) {
+ > 604			u8 vm_idx[vm_num];
+ > 605			u8 vm_active_ch[vm_num];
+   606	
+   607			ret = pvt_get_regmap(pdev, "vm", pvt);
+   608			if (ret)
+   609				return ret;
+   610	
+   611			ret = device_property_read_u8_array(dev, "intel,vm-map", vm_idx,
+   612							    vm_num);
+   613			if (ret) {
+   614				/*
+   615				 * Incase intel,vm-map property is not defined, we
+   616				 * assume incremental channel numbers.
+   617				 */
+   618				for (i = 0; i < vm_num; i++)
+   619					vm_idx[i] = i;
+   620			} else {
+   621				for (i = 0; i < vm_num; i++)
+   622					if (vm_idx[i] >= vm_num || vm_idx[i] == 0xff)
+   623						break;
+   624	
+   625				vm_num = i;
+   626				pvt->v_num = i;
+   627			}
+   628	
+   629			ret = device_property_read_u8_array(dev, "vm-active-channels",
+   630							    vm_active_ch, vm_num);
+   631			if (ret) {
+   632				/*
+   633				 * Incase vm-active-channels property is not defined,
+   634				 * we assume each VM sensor has all of its channels
+   635				 * active.
+   636				 */
+   637				for (i = 0; i < vm_num; i++)
+   638					vm_active_ch[i] = ch_num;
+   639	
+   640				pvt->vm_ch_max = ch_num;
+   641				pvt->vm_ch_total = ch_num * vm_num;
+   642			} else {
+   643				for (i = 0; i < vm_num; i++) {
+   644					if (vm_active_ch[i] > ch_num) {
+   645						dev_err(dev,
+   646							"invalid active channels: %u\n",
+   647							vm_active_ch[i]);
+   648						return -EINVAL;
+   649					}
+   650	
+   651					pvt->vm_ch_total += vm_active_ch[i];
+   652	
+   653					if (vm_active_ch[i] > pvt->vm_ch_max)
+   654						pvt->vm_ch_max = vm_active_ch[i];
+   655				}
+   656			}
+   657	
+   658			/*
+   659			 * Map between the channel-number to VM-index and channel-index.
+   660			 * Example - 3 VMs, vm_active_ch = [05 02 04]:
+   661			 * vm_map = [0 0 0 0 0 1 1 2 2 2 2]
+   662			 * ch_map = [0 1 2 3 4 0 1 0 1 2 3]
+   663			 */
+   664			pvt->vd = devm_kcalloc(dev, pvt->vm_ch_total, sizeof(*pvt->vd),
+   665					       GFP_KERNEL);
+   666			if (!pvt->vd)
+   667				return -ENOMEM;
+   668	
+   669			k = 0;
+   670			for (i = 0; i < vm_num; i++)
+   671				for (j = 0; j < vm_active_ch[i]; j++) {
+   672					pvt->vd[k].vm_map = vm_idx[i];
+   673					pvt->vd[k].ch_map = j;
+   674					k++;
+   675				}
+   676	
+   677			in_config = devm_kcalloc(dev, pvt->vm_ch_total + 1,
+   678						 sizeof(*in_config), GFP_KERNEL);
+   679			if (!in_config)
+   680				return -ENOMEM;
+   681	
+   682			memset32(in_config, HWMON_I_INPUT, pvt->vm_ch_total);
+   683			in_config[pvt->vm_ch_total] = 0;
+   684			pvt_in.config = in_config;
+   685	
+   686			pvt_info[index++] = &pvt_in;
+   687		}
+   688	
+   689		ret = pvt_init(pvt);
+   690		if (ret) {
+   691			dev_err(dev, "failed to init pvt: %d\n", ret);
+   692			return ret;
+   693		}
+   694	
+   695		pvt_chip_info.info = pvt_info;
+   696		hwmon_dev = devm_hwmon_device_register_with_info(dev, "pvt",
+   697								 pvt,
+   698								 &pvt_chip_info,
+   699								 NULL);
+   700	
+   701		return PTR_ERR_OR_ZERO(hwmon_dev);
+   702	}
+   703	
 
 -- 
-Kind Regards,
-Caleb (they/he)
+0-DAY CI Kernel Test Service
+https://01.org/lkp
