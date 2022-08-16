@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6145959626B
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 20:27:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA521596270
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 20:27:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237027AbiHPS0R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S237060AbiHPS0R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 16 Aug 2022 14:26:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45814 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237089AbiHPS0I (ORCPT
+        with ESMTP id S237062AbiHPS0I (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 14:26:08 -0400
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C8DA86C3D
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C9BB86C3E
         for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 11:26:03 -0700 (PDT)
-Received: by mail-wr1-x42c.google.com with SMTP id a4so1881214wrq.1
+Received: by mail-wr1-x430.google.com with SMTP id e27so8894602wra.11
         for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 11:26:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=conchuod.ie; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=qOyz6Sg85RbWT2/Ms96NRUeJwTK6SHK6KdVqomRoy/M=;
-        b=KrY4rxTH3L2TNT0Tj7Ea3n6H60cPP7wN7CFj0YwfZL3/tcHo7JcjAQR1cc9nCseY1Q
-         CvSDX4Df1TuJvhRh0FUuNmuoYgfcd89WAuYpiQrxgJ36llVyw9SsimpFpQWVu02nWXcT
-         GP9mZWjTux2x2gc3JPak5n3rBobhufro0EeesPdqdBTidWMJ+++fPtnXFwpd1jRaQ5uC
-         AdM9UySn5X8nhrYKXkCGiq3sgYwQu5bBzjyBUZLqbo0GGVQfxEfmjHcQYruR4qw0hSOm
-         qQQhOVUcytvQsE2/9LnFust0O3PVqEWZT76F7BbyLUy+nlQFXQ/WJkUS2M6MKFTbAD49
-         f7XA==
+        bh=0menBycPydf3OF4brxfxIM8hwmBUp4QdVL5XPrXyre0=;
+        b=cq/wfBYlh9TNFle3AyyvA6aRqw5tapsXhJ5VOkQTJzEV+SvWLBxc0M7sv8kJVNFdJ5
+         5JncrYyhkUkDXQWKF8FAx4sOG+2Ex6/MC0HoGJhU8vOvxPOwd8YhEMi9IQCLhhDbmhUD
+         5joEaePchEDaqh7S5PvvzvcmKFLRa3Wqpo562J+IcuT6DJ4Rc6YKoH3AOuH7ki/Avy3R
+         hLP2aCDDBDn0P/4xlwEI29MsDEgyaxsNArRWr+Y9os15aApcQqcS3ANBUaBPIP9sDbWh
+         yow8teObOTaeHu0HIjh+iczV/cqIcV45gESM0bCY/PkvniEAUabK6pe1YdzVVW39fcvQ
+         JHBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=qOyz6Sg85RbWT2/Ms96NRUeJwTK6SHK6KdVqomRoy/M=;
-        b=ER8AMCH1QI5klQSPtTRnjY36ylQ0I62aBlQq6xR7VISnCzpMS+D/9/B/aOkNXo9x7j
-         6C3y8stTEV577rWFOS2nnfNNU9Z06nJj4maZebjdfbWK3Vqc99ePbiokQwatS/Jb2zwL
-         IyWD7dvQ+BkD350irgz2FS2ugDZ6uGOfloZ/zlA6QF9H5oo0W8ll8lo0/zM2/7SM4Yqt
-         UNdoZ1jQ6Dk7mw4y5bxExNDnPbvYhVWgEWcdEZ6ieUlL0cA+cvmAFZfq+lqGAyXDz4T2
-         +pNQXGWD3yD/1rYnEghPbYId4vEDQIipb7I6mjWALG56Dizjo/E8OtKpt2oj4oSIXOvW
-         Y51g==
-X-Gm-Message-State: ACgBeo1KCp7Wgfjgnjh4bz3D7VidsFPx837tQ/BD29y8m/IJvE0uLOrU
-        ZT7Dy7afqCx7/D9Pbx2Qbk3t4Q==
-X-Google-Smtp-Source: AA6agR5Eq/Dh2TGsSUxt13F3p2fStw1nzu0BqbZ6aF8bKxqUzWnpGd8AlGfuE2KkOMjcylA72rOhbQ==
-X-Received: by 2002:a5d:4a84:0:b0:225:20e3:3ba6 with SMTP id o4-20020a5d4a84000000b0022520e33ba6mr881999wrq.306.1660674361600;
-        Tue, 16 Aug 2022 11:26:01 -0700 (PDT)
+        bh=0menBycPydf3OF4brxfxIM8hwmBUp4QdVL5XPrXyre0=;
+        b=NrCoWG1lPMC5CblIIFmXOSmZc8UE1pesy0WanHJXj0wAkqXMt139ebXSXTop6WUI6R
+         SMYuev/egX7QtOr6S+PcShKVZHboy0RujGCHv17g4FPnYL/nEA+fR0Mo7gHCx7A1H6hg
+         +FyI26+Ay4KrQ9OaTYLOawo9oA9032PjCcu0aOtJNfUPKF/lYLhZRx0dqILly80VnfQt
+         6S8dUTQjusSpzOqatVAsfNkZhbmgqhvPGJ7VVcf002wVL6l28of6jpf3JwRSg09pARbw
+         dq96iHQJofuMCEEBkT/p/O6l5IiOBQ1j442FGOacK3TtokqReh8ZyihOsAKbV375dh1y
+         NrZg==
+X-Gm-Message-State: ACgBeo0Vt5eJNpPaM0MsRdDOprJxRqYpR9PgnUf0dF2mgvsmvvd8Ska8
+        wLJQw7GyEXvrnMTd5jpXskTLyg==
+X-Google-Smtp-Source: AA6agR6kxEpAlsWHGGaIsHWoq0lgu/Z8DXmzz/tOaQf+JXZgc8EJhMGnIovPSVPfRDBgUP5kkbMmOQ==
+X-Received: by 2002:a5d:4d4d:0:b0:225:fbf:fbac with SMTP id a13-20020a5d4d4d000000b002250fbffbacmr4093198wru.623.1660674362913;
+        Tue, 16 Aug 2022 11:26:02 -0700 (PDT)
 Received: from henark71.. ([109.76.58.63])
-        by smtp.gmail.com with ESMTPSA id s17-20020a1cf211000000b003a603fbad5bsm4015482wmc.45.2022.08.16.11.26.00
+        by smtp.gmail.com with ESMTPSA id s17-20020a1cf211000000b003a603fbad5bsm4015482wmc.45.2022.08.16.11.26.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Aug 2022 11:26:00 -0700 (PDT)
+        Tue, 16 Aug 2022 11:26:02 -0700 (PDT)
 From:   Conor Dooley <mail@conchuod.ie>
 To:     Daire McNamara <daire.mcnamara@microchip.com>,
         Bjorn Helgaas <bhelgaas@google.com>,
@@ -60,9 +60,9 @@ To:     Daire McNamara <daire.mcnamara@microchip.com>,
         Conor Dooley <conor.dooley@microchip.com>
 Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: [PATCH v2 5/6] riscv: dts: microchip: mpfs: remove bogus card-detect-delay
-Date:   Tue, 16 Aug 2022 19:25:47 +0100
-Message-Id: <20220816182547.3454843-6-mail@conchuod.ie>
+Subject: [PATCH v2 6/6] riscv: dts: microchip: mpfs: remove pci axi address translation property
+Date:   Tue, 16 Aug 2022 19:25:48 +0100
+Message-Id: <20220816182547.3454843-7-mail@conchuod.ie>
 X-Mailer: git-send-email 2.37.1
 In-Reply-To: <20220816182547.3454843-1-mail@conchuod.ie>
 References: <20220816182547.3454843-1-mail@conchuod.ie>
@@ -80,51 +80,30 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Conor Dooley <conor.dooley@microchip.com>
 
-Recent versions of dt-schema warn about a previously undetected
-undocumented property:
-arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dtb: mmc@20008000: Unevaluated properties are not allowed ('card-detect-delay' was unexpected)
-        From schema: Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+An AXI master address translation table property was inadvertently
+added to the device tree & this was not caught by dtbs_check at the
+time. Remove the property - it should not be in mpfs.dtsi anyway as
+it would be more suitable in -fabric.dtsi nor does it actually apply
+to the version of the reference design we are using for upstream.
 
-There are no GPIOs connected to MSSIO6B4 pin K3 so adding the common
-cd-debounce-delay-ms property makes no sense. The Cadence IP has a
-register that sets the card detect delay as "DP * tclk". On MPFS, this
-clock frequency is not configurable (it must be 200 MHz) & the FPGA
-comes out of reset with this register already set.
-
-Fixes: bc47b2217f24 ("riscv: dts: microchip: add the sundance polarberry")
-Fixes: 0fa6107eca41 ("RISC-V: Initial DTS for Microchip ICICLE board")
+Fixes: 528a5b1f2556 ("riscv: dts: microchip: add new peripherals to icicle kit device tree")
 Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 ---
-v2022.08 or later of dt-schema is required.
----
- arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts | 1 -
- arch/riscv/boot/dts/microchip/mpfs-polarberry.dts | 1 -
- 2 files changed, 2 deletions(-)
+ arch/riscv/boot/dts/microchip/mpfs.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts
-index ee548ab61a2a..f3f87ed2007f 100644
---- a/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts
-+++ b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts
-@@ -100,7 +100,6 @@ &mmc {
- 	disable-wp;
- 	cap-sd-highspeed;
- 	cap-mmc-highspeed;
--	card-detect-delay = <200>;
- 	mmc-ddr-1_8v;
- 	mmc-hs200-1_8v;
- 	sd-uhs-sdr12;
-diff --git a/arch/riscv/boot/dts/microchip/mpfs-polarberry.dts b/arch/riscv/boot/dts/microchip/mpfs-polarberry.dts
-index dc11bb8fc833..c87cc2d8fe29 100644
---- a/arch/riscv/boot/dts/microchip/mpfs-polarberry.dts
-+++ b/arch/riscv/boot/dts/microchip/mpfs-polarberry.dts
-@@ -70,7 +70,6 @@ &mmc {
- 	disable-wp;
- 	cap-sd-highspeed;
- 	cap-mmc-highspeed;
--	card-detect-delay = <200>;
- 	mmc-ddr-1_8v;
- 	mmc-hs200-1_8v;
- 	sd-uhs-sdr12;
+diff --git a/arch/riscv/boot/dts/microchip/mpfs.dtsi b/arch/riscv/boot/dts/microchip/mpfs.dtsi
+index e69322f56516..a1176260086a 100644
+--- a/arch/riscv/boot/dts/microchip/mpfs.dtsi
++++ b/arch/riscv/boot/dts/microchip/mpfs.dtsi
+@@ -485,7 +485,6 @@ pcie: pcie@2000000000 {
+ 			ranges = <0x3000000 0x0 0x8000000 0x20 0x8000000 0x0 0x80000000>;
+ 			msi-parent = <&pcie>;
+ 			msi-controller;
+-			microchip,axi-m-atr0 = <0x10 0x0>;
+ 			status = "disabled";
+ 			pcie_intc: interrupt-controller {
+ 				#address-cells = <0>;
 -- 
 2.37.1
 
