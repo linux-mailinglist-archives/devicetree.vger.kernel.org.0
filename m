@@ -2,74 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC5B85958BA
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 12:44:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F5865958CE
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 12:47:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235033AbiHPKoi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 06:44:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60648 "EHLO
+        id S235076AbiHPKrm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 06:47:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59906 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234936AbiHPKoR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 06:44:17 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D65189A995
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 03:03:46 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id s9so10011824ljs.6
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 03:03:46 -0700 (PDT)
+        with ESMTP id S235084AbiHPKrQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 06:47:16 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1BE8A74DB
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 03:06:47 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id v10so10010639ljh.9
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 03:06:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=OpAr4FILibAj60CMTr+2Ye6zNBQ/3UZQJ3hG9VyyeXQ=;
-        b=yBRx89F71+/Nr+yqbTzxq7RaQS/DGhP+V/xTGPujyv864Z7WgklQ8/9btVLlypEccw
-         7SFgAJ/0mXdj4EztCodYtKc/EWITIhKvD7fclaY87vclFFubKUv6Y7DjXkULIgxxuu80
-         6ac1KYH/DNcm4i9TaNy9mkHyqDtTSi0yOdIppjx9nxhqI+mD8aKUTJ+V8F6Nquc/uQ6H
-         A9Ww/IIBC9gRb7BVvnX/5kHJVi1+FMQ9HakmPCeH9PmbyXmKypE8OntnM0F8g8vKoT+j
-         PvH+k6ODqRVmY/T6e3yxaXaE+SUGmuVA+0iriyuWG7kB7jfj2cFrX+UD3g/b0T31oNtP
-         sMtA==
+        bh=3P+rHXFq/Ju0+klAigNeKQlci4oKet9YOA0bldjm0Zs=;
+        b=csHnIcOwUWQxrQCh4kMZCM3lIHd/7QbLGLsWO0pdvwAF9+9GQoRb6Ia4FcgmceJfvP
+         BHynpZrRt5dGjq8BpcXQdRwEpJ3bDbr2mCaeslxUxw7Ntkl7yZoH4hBtF0JpE6iZxVR/
+         JVkMN5M4IiY1ptjbQ0o8GYQOS2H0Rg/WpGUqykfDw6RBj5ij3Jcv19c6YOcFHxtpF7bW
+         aTXpX13HCqPzWz93p0tLATReG5w33k29t/MixKOTAxXLsvM2gDJqwsJ1C18dA0y5dq7W
+         fAD/WrvRjt0eYtE1RaLUO/0yvAOaHSNRMYrw4AeByRv4h4LsVD17ZnuLgvwA7BMPkSzu
+         T5gA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=OpAr4FILibAj60CMTr+2Ye6zNBQ/3UZQJ3hG9VyyeXQ=;
-        b=bFLJvPqwXC4CIdbmJ83rueeVWoc914vtkindPoqDMKq+jFZGrZccaIfn2Q/6u6pufw
-         CDY2t+pa5Rf8sfZdptkzZBmIq9frbD3l0j2BpJsND6B3F27V2TPESizJTq52H3u85G4Z
-         zwwAqoZFDceKd32ESPq8ect5ycl89dHblB0lnrQnHl4PPF/blouBJ91/yy7QHCmJToI4
-         ikUm0Smz6NGvwriZ/e0/CCsKlfaFS6vfytlfMC31ytlLJsXpNA/zOiS2/MhOp7QHmxTy
-         W3fWalGqavGqBoPxBadmX5d+yKSeQxd6NlP6VX6ijKNuOGboD/PKbcQOTp6MBg56+Tp/
-         8QOQ==
-X-Gm-Message-State: ACgBeo3xmNnH4aFlIp6YZNrmLxzEipuM94lv6zsxRsvnTU1wcA9fJbvz
-        QjgbbdHhB39ksgHOgEo2vn7yoQ==
-X-Google-Smtp-Source: AA6agR4F9d6orasLwhFe9sWvhDcTP2FvMOgxT2pZe4EqaWR/LzpEn20LKmDemBI2OQ1Jk122YL4BkQ==
-X-Received: by 2002:a2e:a168:0:b0:25e:4dbc:2ac0 with SMTP id u8-20020a2ea168000000b0025e4dbc2ac0mr5760174ljl.187.1660644224935;
-        Tue, 16 Aug 2022 03:03:44 -0700 (PDT)
+        bh=3P+rHXFq/Ju0+klAigNeKQlci4oKet9YOA0bldjm0Zs=;
+        b=FW/LO08QtHRSX93XlahN0w77dyycV2EIHGN722nbMrhdxwlAEJefgoLzGNSUaCEnq+
+         9nGSZSWGMZ4ppVr4oMbInqY//M9NRHHHQ5fjL9pk7fNW8M61d7d3ynxOuZ2cTEQASVpb
+         7sBOuWypIyd+mwrCMzejPAc1VJI4RsGRvhKCq3/K+I8ABPjFiU9HXA3evpYLecK1z4p6
+         tQfdiIw31TiN8CwqWmnsC4aNhGypHEi0B5pRMZ16s0+8xs+MccO6Y0iQehVmi5M3Ajtp
+         5suRtrOhQPSxPHFn01hfKVZJZn/xr4MRmOgSV4sC3vAzNJfrOnIbVvDEmexlCAPqXLZu
+         wh5A==
+X-Gm-Message-State: ACgBeo2CZoKCFe2xJKWGQgzocxQvXAXNSlRk3sWZ1pqWZiH4YzNGVuTD
+        fqPVC3a8zeDR1lAXwfnk3l3IEg==
+X-Google-Smtp-Source: AA6agR4BH5PwcsY3gEJ8rvtE71DqoG3p/u7jTfoGw6gfPC++4bLqy79XHhPj7FU2rIJuhiD66NqjJQ==
+X-Received: by 2002:a2e:8881:0:b0:255:7790:25e6 with SMTP id k1-20020a2e8881000000b00255779025e6mr6184568lji.525.1660644405978;
+        Tue, 16 Aug 2022 03:06:45 -0700 (PDT)
 Received: from ?IPV6:2001:14bb:ae:539c:1782:dd68:b0c1:c1a4? (d15l54g8c71znbtrbzt-4.rev.dnainternet.fi. [2001:14bb:ae:539c:1782:dd68:b0c1:c1a4])
-        by smtp.gmail.com with ESMTPSA id j21-20020ac253b5000000b0048b124b070asm1335989lfh.173.2022.08.16.03.03.43
+        by smtp.gmail.com with ESMTPSA id a20-20020a056512201400b0048aeff37812sm1328349lfb.308.2022.08.16.03.06.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Aug 2022 03:03:44 -0700 (PDT)
-Message-ID: <82fedf98-1d94-514a-ba03-f88b4e1d888b@linaro.org>
-Date:   Tue, 16 Aug 2022 13:03:43 +0300
+        Tue, 16 Aug 2022 03:06:45 -0700 (PDT)
+Message-ID: <7532753c-60d6-a8cd-b462-bcbf01035d89@linaro.org>
+Date:   Tue, 16 Aug 2022 13:06:44 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH v3 4/4] soc: sunxi: sram: Only iterate over SRAM children
+Subject: Re: [PATCH v3 2/3] arm64: dts: qcom: sa8295p: move common nodes to
+ dtsi
 Content-Language: en-US
+To:     Parikshit Pareek <quic_ppareek@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Andrew Halaney <ahalaney@redhat.com>
+References: <20220812165453.11608-1-quic_ppareek@quicinc.com>
+ <20220812165453.11608-3-quic_ppareek@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Samuel Holland <samuel@sholland.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev
-References: <20220815043436.20170-1-samuel@sholland.org>
- <20220815043436.20170-5-samuel@sholland.org>
- <e5969030-0a17-d10e-7eef-8d906e8a4dc4@linaro.org>
-In-Reply-To: <e5969030-0a17-d10e-7eef-8d906e8a4dc4@linaro.org>
+In-Reply-To: <20220812165453.11608-3-quic_ppareek@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,41 +81,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/08/2022 13:01, Krzysztof Kozlowski wrote:
-> On 15/08/2022 07:34, Samuel Holland wrote:
->> Now that a "regulators" child is accepted by the controller binding, the
->> debugfs show routine must be explicitly limited to "sram" children.
->>
->> Signed-off-by: Samuel Holland <samuel@sholland.org>
->> ---
->>
->> (no changes since v2)
->>
->> Changes in v2:
->>  - New patch for v2
->>
->>  drivers/soc/sunxi/sunxi_sram.c | 3 +++
->>  1 file changed, 3 insertions(+)
->>
->> diff --git a/drivers/soc/sunxi/sunxi_sram.c b/drivers/soc/sunxi/sunxi_sram.c
->> index 92f9186c1c42..6acaaeb65652 100644
->> --- a/drivers/soc/sunxi/sunxi_sram.c
->> +++ b/drivers/soc/sunxi/sunxi_sram.c
->> @@ -120,6 +120,9 @@ static int sunxi_sram_show(struct seq_file *s, void *data)
->>  	seq_puts(s, "--------------------\n\n");
->>  
->>  	for_each_child_of_node(sram_dev->of_node, sram_node) {
->> +		if (!of_node_name_eq(sram_node, "sram"))
+On 12/08/2022 19:54, Parikshit Pareek wrote:
+> There are many ADP boards with lot of common features. Move common
+> nodes to sa8540p-adp.dtsi file. This will be base for many ADP boards
+> to be introduced in near future.
 > 
-> You should not rely on node names. They can change in DTS. Why do you
-> need to test for the name?
-> 
+> Signed-off-by: Parikshit Pareek <quic_ppareek@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sa8295p-adp.dts  | 377 +--------------------
+>  arch/arm64/boot/dts/qcom/sa8540p-adp.dtsi | 384 ++++++++++++++++++++++
 
-Ah, it is not a device node but a child property, right? In such case,
-it's of course fine.
-
-The device node names could change and should not be considered ABI (at
-least I hope should not...).
+Please send patch with tweaking -B/-M/-C parameters, so the copy is
+properly detected.
 
 Best regards,
 Krzysztof
