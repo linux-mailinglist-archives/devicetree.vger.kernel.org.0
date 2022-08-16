@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89685596264
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 20:26:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9DA8596268
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 20:26:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237103AbiHPS0K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 14:26:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45788 "EHLO
+        id S236501AbiHPS0M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 14:26:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237076AbiHPS0G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 14:26:06 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4087086C08
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 11:26:00 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id bu15so5112130wrb.7
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 11:26:00 -0700 (PDT)
+        with ESMTP id S237056AbiHPS0H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 14:26:07 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9547786C27
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 11:26:01 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id v3so13646743wrp.0
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 11:26:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=conchuod.ie; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=vN0DGeJfb4elpBHq3mALobUym6adR42yLX1wd+NKgEE=;
-        b=PEQa+TuOt73fuVOb7T3+1Hy22N+kDixRACSlic+zJdWgAlesuDfvE1jahD01g/8cdj
-         JtjLszP3D/e60G+3P/Rt5/iBz9VWfQF602riMmjeed8yuXTxodssttItwsAyz0GrBQZo
-         6LmHwXV6CqeUfz64pE5IPXKtJ1n9S1FreF+47P+iL8HB8IR1vVJdH5psvqQJAAo3dCRq
-         DL/y+a0eof3Bq6c8BzMHERC/3fGHJeLd1TPzHyp3//AleEyFOUblv3dKavXn72ZfaRSc
-         07f2TgjpW+yB32DviJVBg2Kdf2NeR/iovjRACiByAy90F94WBIc+It5pE/ThbMRTHttV
-         4HTg==
+        bh=1LGGHQ6p+mDphp3bmxn1t5fZUfaS0Whf3Mk8geT3R/0=;
+        b=TiOXfR9UekVJZRu7evd3xJo1JSSbcUbx/ZgBAE+jckIRBaEzCO5PwmG3rqD5z5zN53
+         0AUtBwvF39Nfxva12oH0R9WNAVRfcWT1zluLWip42kfP2Hl7UgGxAJ6crW2lEvSFh5BH
+         nkX9NvPQ9x7JlYkKi6K9YqcEPT+ZrEhwFYF3Sh+XQk/v4JsMDMpF1KlZJMBZzl2JqKqY
+         ScVfYOAfRcm+1+wC0uA049NWyCbH8DO4s6/azpjdBZmnMp7G1Er0FoZk4zWi70CfKRvD
+         mCACPBrFGx1PgSbm7sBofXPHA98a4rFi0Ogtd/hFKf1Qc3YKLpdXqsljBHFCzwBR1hWI
+         3shg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=vN0DGeJfb4elpBHq3mALobUym6adR42yLX1wd+NKgEE=;
-        b=giQYbTz756cHoaDC8fVnZexPiKx1vGET1fO1/8gqMABR8Eph49TNTpygRr3kxz2f5/
-         O5V965b3SA0Wua1abslGqzSqJ8LeSw08qJADATjm2DEkYB6VMe/W+WoAH/wlrU/G5hnU
-         SBNa/GJAl8ydQwgVRPuw0gmNfRHeXVnVR2IOJff/p3POBjaQYbGFLfp7VhyzpFBWRmWE
-         ywQIpBOg1Qm0zYzlY6NdWn8MDrrwsaYb6C2oZviWSzFYjITBsIqzf1EMwzriJJgY4wSC
-         MQF4DZdB4m0oUZ/o0Vy2vTCcZnikCz9GQYyVMtuXDohzitCTi52eeAzJMRT9lmu6cz78
-         vNzw==
-X-Gm-Message-State: ACgBeo353aF9mNfEkF6585HqhHpoBf4ES7yWF9mHN9+tlu/QVQ1pgrTU
-        +2aIHmSo3j7Y3KlB4NQB4Y8ukg==
-X-Google-Smtp-Source: AA6agR7sTCd254G+0o5Cw9GOa0R6pQiko3YyBwBowV/CViwJLAAOXwkNioukcNooVtKoYy4ChxnydA==
-X-Received: by 2002:a5d:5081:0:b0:220:6262:be0b with SMTP id a1-20020a5d5081000000b002206262be0bmr11725612wrt.228.1660674358778;
-        Tue, 16 Aug 2022 11:25:58 -0700 (PDT)
+        bh=1LGGHQ6p+mDphp3bmxn1t5fZUfaS0Whf3Mk8geT3R/0=;
+        b=fUuShajZDBWz7WjGN0RrybIk72QnYUhYEhBHbu/xhJ98S5eey2F8UMffg6QSMmxInw
+         CUfm9eBBgQV2BEb12yWb7PsZTeeLjPkQIRojz6A1PoTSok1dP1an1JOY584rcIsr2YOU
+         RslVP54jrPXqQgTb8Lt6yCi5qU5NlRfcyJjOOG1Zim8KsI0NJnyOnz948wHDNcD17pwx
+         /yMfUW55wKjBnvfYofBjlx4o1f8EIAVXMb8H2K7QqZcw7fUogVO3HtmVOwqAKvJnOkOg
+         B6wNIiuq2sdL2IjQ0EMMtIgAngF7J0+3lE6t+hDkSRR2f02Fq5M2odMOaMHShcrxFRZh
+         Oo6w==
+X-Gm-Message-State: ACgBeo0G5YFREiaJfGePKf1VqtOMTleoSFS7j5KbvS32djEkNmQBL+jq
+        LNFHQCCarYbGejjZXUqN0K6Oqg==
+X-Google-Smtp-Source: AA6agR40opo+7mClW53ltFMT6yiRmc3Yot2+VJrAVQqciuJ53cfMm+Ju4S49z0oFptPwsbaT26fANQ==
+X-Received: by 2002:a5d:588d:0:b0:220:73d3:997e with SMTP id n13-20020a5d588d000000b0022073d3997emr11899733wrf.546.1660674360051;
+        Tue, 16 Aug 2022 11:26:00 -0700 (PDT)
 Received: from henark71.. ([109.76.58.63])
-        by smtp.gmail.com with ESMTPSA id s17-20020a1cf211000000b003a603fbad5bsm4015482wmc.45.2022.08.16.11.25.57
+        by smtp.gmail.com with ESMTPSA id s17-20020a1cf211000000b003a603fbad5bsm4015482wmc.45.2022.08.16.11.25.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Aug 2022 11:25:58 -0700 (PDT)
+        Tue, 16 Aug 2022 11:25:59 -0700 (PDT)
 From:   Conor Dooley <mail@conchuod.ie>
 To:     Daire McNamara <daire.mcnamara@microchip.com>,
         Bjorn Helgaas <bhelgaas@google.com>,
@@ -60,9 +60,9 @@ To:     Daire McNamara <daire.mcnamara@microchip.com>,
         Conor Dooley <conor.dooley@microchip.com>
 Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: [PATCH v2 3/6] riscv: dts: microchip: mpfs: fix incorrect pcie child node name
-Date:   Tue, 16 Aug 2022 19:25:45 +0100
-Message-Id: <20220816182547.3454843-4-mail@conchuod.ie>
+Subject: [PATCH v2 4/6] riscv: dts: microchip: mpfs: remove ti,fifo-depth property
+Date:   Tue, 16 Aug 2022 19:25:46 +0100
+Message-Id: <20220816182547.3454843-5-mail@conchuod.ie>
 X-Mailer: git-send-email 2.37.1
 In-Reply-To: <20220816182547.3454843-1-mail@conchuod.ie>
 References: <20220816182547.3454843-1-mail@conchuod.ie>
@@ -70,7 +70,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,33 +80,60 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Conor Dooley <conor.dooley@microchip.com>
 
-Recent versions of dt-schema complain about the PCIe controller's child
-node name:
-arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dtb: pcie@2000000000: Unevaluated properties are not allowed ('clock-names', 'clocks', 'legacy-interrupt-controller', 'microchip,axi-m-atr0' were unexpected)
-            From schema: Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
-Make the dts match the correct property name in the dts.
+Recent versions of dt-schema warn about a previously undetected
+undocument property on the icicle & polarberry devicetrees:
 
-Fixes: 528a5b1f2556 ("riscv: dts: microchip: add new peripherals to icicle kit device tree")
+arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dtb: ethernet@20112000: ethernet-phy@8: Unevaluated properties are not allowed ('ti,fifo-depth' was unexpected)
+        From schema: Documentation/devicetree/bindings/net/cdns,macb.yaml
+
+I know what you're thinking, the binding doesn't look to be the problem
+and I agree. I am not sure why a TI vendor property was ever actually
+added since it has no meaning... just get rid of it.
+
+Fixes: bc47b2217f24 ("riscv: dts: microchip: add the sundance polarberry")
+Fixes: 0fa6107eca41 ("RISC-V: Initial DTS for Microchip ICICLE board")
 Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 ---
-v2022.08 of dt-schema is required to replicate.
+v2022.08 or later of dt-schema is required.
 ---
- arch/riscv/boot/dts/microchip/mpfs.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts | 2 --
+ arch/riscv/boot/dts/microchip/mpfs-polarberry.dts | 2 --
+ 2 files changed, 4 deletions(-)
 
-diff --git a/arch/riscv/boot/dts/microchip/mpfs.dtsi b/arch/riscv/boot/dts/microchip/mpfs.dtsi
-index 499c2e63ad35..e69322f56516 100644
---- a/arch/riscv/boot/dts/microchip/mpfs.dtsi
-+++ b/arch/riscv/boot/dts/microchip/mpfs.dtsi
-@@ -487,7 +487,7 @@ pcie: pcie@2000000000 {
- 			msi-controller;
- 			microchip,axi-m-atr0 = <0x10 0x0>;
- 			status = "disabled";
--			pcie_intc: legacy-interrupt-controller {
-+			pcie_intc: interrupt-controller {
- 				#address-cells = <0>;
- 				#interrupt-cells = <1>;
- 				interrupt-controller;
+diff --git a/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts
+index 044982a11df5..ee548ab61a2a 100644
+--- a/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts
++++ b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts
+@@ -84,12 +84,10 @@ &mac1 {
+ 
+ 	phy1: ethernet-phy@9 {
+ 		reg = <9>;
+-		ti,fifo-depth = <0x1>;
+ 	};
+ 
+ 	phy0: ethernet-phy@8 {
+ 		reg = <8>;
+-		ti,fifo-depth = <0x1>;
+ 	};
+ };
+ 
+diff --git a/arch/riscv/boot/dts/microchip/mpfs-polarberry.dts b/arch/riscv/boot/dts/microchip/mpfs-polarberry.dts
+index 82c93c8f5c17..dc11bb8fc833 100644
+--- a/arch/riscv/boot/dts/microchip/mpfs-polarberry.dts
++++ b/arch/riscv/boot/dts/microchip/mpfs-polarberry.dts
+@@ -54,12 +54,10 @@ &mac1 {
+ 
+ 	phy1: ethernet-phy@5 {
+ 		reg = <5>;
+-		ti,fifo-depth = <0x01>;
+ 	};
+ 
+ 	phy0: ethernet-phy@4 {
+ 		reg = <4>;
+-		ti,fifo-depth = <0x01>;
+ 	};
+ };
+ 
 -- 
 2.37.1
 
