@@ -2,77 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8DAF59642B
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 23:06:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6033F596454
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 23:15:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237408AbiHPVGB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 17:06:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39708 "EHLO
+        id S237472AbiHPVPA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 17:15:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237404AbiHPVGA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 17:06:00 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 880D478599
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 14:05:58 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id v3so14069264wrp.0
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 14:05:58 -0700 (PDT)
+        with ESMTP id S237433AbiHPVPA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 17:15:00 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BDD579ED2
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 14:14:58 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id r16so4830552wrm.6
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 14:14:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jrtc27.com; s=gmail.jrtc27.user;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc;
-        bh=2f/85arcP0Ku1kgJpVBVLo1xiYoiCycNRFXo4qwF5Xo=;
-        b=j7RxzFnx4NHVX9l/AUFSE1Ml0ekwRXfROWEusMchscf8rtR5xzICK5XqQg9YnaBef6
-         vas7FGeF58leFjCuB8JbsTZQErXoYTFytYrpPtfMRS5SjO3jzosSw4LFkOK4+S0kEnn4
-         A3qPH3JygQkCXgx0/19Rn4qpL3FwvyX1sEmBKk0leIkDA07Aas1KIRnzYICGSfwJmV6f
-         N9YNnjYP7L+NG6sZNIHEzd9C/zb/VB1MnHqW1A5ZizhZ5w6YH0+C9g2xDalyRK5CkWeb
-         aZ0XcFuaKpQYrTdJrxvIFqpQ5BEch3wm2afPlk4467jq2snOOaXSB0LuFTSZYQCP2oNo
-         Jdgw==
+        d=sifive.com; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=HuqHqoFYbmtNt1MbnMSurpMVLV+OAZ1x57LShZb1XBM=;
+        b=Yj6eE7ccW/ktm/xcV30WSBmrxc3J5OmARqZCCNrpzmdURThYsWcpGPCCocvhZvZRgd
+         7QQRMhbOsLqgU5vhLc04+aWLstivwCsNVkwgvjDEmfGSEPxAullIqcfVUyQ4jT4gQ2Z5
+         qAzmNsPxjEqUU2xXTGUN0KHBQmQ8ugyOPXVFe7wbVfTWHoRCVbtkVJZFmk978Gu5yG6V
+         GMYHuT7XakISmhupJDDtk5rUEgQPvLq67+3sNZ66oy2TgQxVo67QE/htpKPBkhfyApMQ
+         Eo/OkMR5a661imu3sBNsr8tHg+Xt6RQcS2N7wtPP9J7kcHqJmYDa658JUnWZikUwYdnV
+         8Fsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc;
-        bh=2f/85arcP0Ku1kgJpVBVLo1xiYoiCycNRFXo4qwF5Xo=;
-        b=akc+YldIAzGi6kfl5clOfJ7B8ZE1NCecHJwoFNiLY2Wk38kr+ejeaSZ/Mz3t29JY4J
-         FItc78NgOYMSc3L5xopx1wPZ/XqwTpiUY3cH3bO9u3ROwSjLxD1hOdm4dDTZYj+XziN1
-         nU8c57ccyS+eRJkMULMuCW4iTf5uxWA0ifLbvyFq8fZcEO8Y8pqD8P1udm6TEy7kQXkD
-         YFWrQmKLKHMkgcyAhPFl7KcO35hv0lAT7TUQ4jrID4ldOv4rMd2LcXE806xoJ2H5RA/H
-         IcjN99FcdhiIXNCi1A7CtKZyZSSkdr3PqSPwYuvozYfCOD2N55ML5BDS1FItastG5Kb5
-         vJZQ==
-X-Gm-Message-State: ACgBeo1zuRXJOIG0ozfv10pUq6sAjkUQ2ySWyQ0KD8+fyLQYQoLo1c8J
-        geR+swfwrMHE4+7oMUUwYMi2hQ==
-X-Google-Smtp-Source: AA6agR58u8cM3dGXK/53eWyziPV3maDwklbC3ReiAvrslrsNxTN31+j/21RFXv2OwnjVFyzyeoSp5Q==
-X-Received: by 2002:adf:fb4c:0:b0:225:2033:b745 with SMTP id c12-20020adffb4c000000b002252033b745mr1296556wrs.447.1660683957068;
-        Tue, 16 Aug 2022 14:05:57 -0700 (PDT)
-Received: from smtpclient.apple (global-5-141.n-2.net.cam.ac.uk. [131.111.5.141])
-        by smtp.gmail.com with ESMTPSA id x15-20020a5d490f000000b002205a5de337sm10889363wrq.102.2022.08.16.14.05.55
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 16 Aug 2022 14:05:56 -0700 (PDT)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.80.82.1.1\))
-Subject: Re: [PATCH v2 1/6] dt-bindings: PCI: fu740-pci: fix missing
- clock-names
-From:   Jessica Clarke <jrtc27@jrtc27.com>
-In-Reply-To: <20220816182547.3454843-2-mail@conchuod.ie>
-Date:   Tue, 16 Aug 2022 22:05:55 +0100
-Cc:     Daire McNamara <daire.mcnamara@microchip.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=HuqHqoFYbmtNt1MbnMSurpMVLV+OAZ1x57LShZb1XBM=;
+        b=FXkfYhOm+voUUgEaKlvVFy/Cy3o1JWpGrCX66DKMPyp+l8pBwoMvC4eERmkt3XxZu/
+         bbNvoW6agQwMgdTPOsk/k6YErnRBwg9m+FYpxSIKU8wOdSQufzg8MJXrnFUAc76O2RYN
+         /te9TKb3GXluKmB5xq0Gv0zfoBYExXco7qRNRE0bcmpPDrc0MU7SGO/Qe7pDI2Z2f3GU
+         cJtarRmPsBARrP0zyjZieiojfFPTBmc0oVjeI5sBgnvAj6BuyS6PgqeE2gPG/whXU7uT
+         h5h0UY6JMmhijnxNdEVWFf9yBEbbhrylJQZLe73gdDEmtcY3fupthh5J4On3Day2RPoC
+         Icsg==
+X-Gm-Message-State: ACgBeo1XN+cW15VicBKTlzwSp05QhkhGbru60/rN6gpnHNzQo8zvZUWc
+        n19UbVxPiUU5WfkXqHIdQk4EXg==
+X-Google-Smtp-Source: AA6agR7BISwCp1m03wwXCyXQk0ImeL1WjqIbpZ774JlEOuyVF/+MzGAUkAMlcayO5MjOPT/OO5WM8g==
+X-Received: by 2002:a05:6000:812:b0:220:5a66:ebd0 with SMTP id bt18-20020a056000081200b002205a66ebd0mr12834998wrb.519.1660684496835;
+        Tue, 16 Aug 2022 14:14:56 -0700 (PDT)
+Received: from rainbowdash.office.codethink.co.uk ([167.98.27.226])
+        by smtp.gmail.com with ESMTPSA id r4-20020a1c4404000000b003a3170a7af9sm23913wma.4.2022.08.16.14.14.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Aug 2022 14:14:56 -0700 (PDT)
+From:   Ben Dooks <ben.dooks@sifive.com>
+To:     linux-pwm@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lee Jones <lee.jones@linaro.org>,
+        u.kleine-koenig@pengutronix.de,
+        Thierry Reding <thierry.reding@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
         Greentime Hu <greentime.hu@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <F62BE8A7-2023-497B-9BBC-AE54E7C5B08A@jrtc27.com>
-References: <20220816182547.3454843-1-mail@conchuod.ie>
- <20220816182547.3454843-2-mail@conchuod.ie>
-To:     Conor Dooley <mail@conchuod.ie>
-X-Mailer: Apple Mail (2.3696.80.82.1.1)
+        jarkko.nikula@linux.intel.com,
+        William Salmon <william.salmon@sifive.com>,
+        Jude Onyenegecha <jude.onyenegecha@sifive.com>,
+        Ben Dooks <ben.dooks@sifive.com>
+Subject: [RFC v4 00/10] RFC on synpsys pwm driver changes
+Date:   Tue, 16 Aug 2022 22:14:44 +0100
+Message-Id: <20220816211454.237751-1-ben.dooks@sifive.com>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
@@ -83,77 +76,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16 Aug 2022, at 19:25, Conor Dooley <mail@conchuod.ie> wrote:
->=20
-> From: Conor Dooley <conor.dooley@microchip.com>
->=20
-> The commit b92225b034c0 ("dt-bindings: PCI: designware: Fix
-> 'unevaluatedProperties' warnings") removed the clock-names property as
-> a requirement and from the example as it triggered unevaluatedProperty
-> warnings. dtbs_check was not able to pick up on this at the time, but
-> now can:
->=20
-> arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dtb: pcie@e00000000: =
-Unevaluated properties are not allowed ('clock-names' was unexpected)
->        =46rom schema: =
-linux/Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml
->=20
-> The property was already in use by the FU740 DTS and the clock must be
-> enabled. The Linux driver does not use this property, but outside of
-> the kernel this property may have users. Re-add the property and its
-> "clocks" dependency.
+New version of the pwm timers patch, hopefully all review comments
+are sorted out, however I have not had time to fully test this and
+I do not have a PCI system to test it on either.
 
-Are you sure about this? I see a devm_clk_get("pcie_aux") that surely
-won't without the property. FreeBSD=E2=80=99s similarly relies on the =
-name,
-though it also has a fallback to the U-Boot pcieaux name (because the
-world is terrible and people can=E2=80=99t even agree on that) so it =
-works
-with the U-Boot-provided FDT (it would be nice if Linux had this as a
-goal, and people worked with U-Boot devs to get everything needed for
-newly-exposed devices merged back there so I don=E2=80=99t have to be =
-the one
-to notice and do it...).
+The series has been moved around a bit to try to get some of the
+simpler changes in before splitting and to make the OF driver a
+single addition.
 
-Jess
+v4:
+ - split pci and of into new modules
+ - fixup review comments
+ - fix typos in dt-bindings
+v3:
+- change the compatible name
+- squash down pwm count patch
+- fixup patch naming
 
-> Fixes: b92225b034c0 ("dt-bindings: PCI: designware: Fix =
-'unevaluatedProperties' warnings")
-> Fixes: 43cea116be0b ("dt-bindings: PCI: Add SiFive FU740 PCIe host =
-controller")
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
-> v2022.08 of dt-schema is required.
-> ---
-> .../devicetree/bindings/pci/sifive,fu740-pcie.yaml          | 6 ++++++
-> 1 file changed, 6 insertions(+)
->=20
-> diff --git =
-a/Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml =
-b/Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml
-> index 195e6afeb169..c7a9a2dc0fa6 100644
-> --- a/Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml
-> @@ -51,6 +51,12 @@ properties:
->     description: A phandle to the PCIe power up reset line.
->     maxItems: 1
->=20
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    const: pcie_aux
-> +
->   pwren-gpios:
->     description: Should specify the GPIO for controlling the PCI bus =
-device power on.
->     maxItems: 1
-> --=20
-> 2.37.1
->=20
->=20
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+v2:
+- fix #pwm-cells count to be 3
+- fix indetation 
+- merge the two clock patches
+- add HAS_IOMEM as a config dependency
+
+
+Ben Dooks (10):
+  dt-bindings: pwm: Document Synopsys DesignWare
+    snps,pwm-dw-apb-timers-pwm2
+  pwm: dwc: allow driver to be built with COMPILE_TEST
+  pwm: dwc: change &pci->dev to dev in probe
+  pwm: dwc: move memory alloc to own function
+  pwm: dwc: use devm_pwmchip_add
+  pwm: dwc: split pci out of core driver
+  pwm: dwc: make timer clock configurable
+  pwm: dwc: add of/platform support
+  pwm: dwc: add snps,pwm-number to limit pwm count
+  pwm: dwc: add PWM bit unset in get_state call
+
+ .../bindings/pwm/snps,dw-apb-timers-pwm2.yaml |  69 ++++++
+ drivers/pwm/Kconfig                           |  24 ++-
+ drivers/pwm/Makefile                          |   2 +
+ drivers/pwm/pwm-dwc-of.c                      |  86 ++++++++
+ drivers/pwm/pwm-dwc-pci.c                     | 134 ++++++++++++
+ drivers/pwm/pwm-dwc.c                         | 197 +++---------------
+ drivers/pwm/pwm-dwc.h                         |  60 ++++++
+ 7 files changed, 402 insertions(+), 170 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pwm/snps,dw-apb-timers-pwm2.yaml
+ create mode 100644 drivers/pwm/pwm-dwc-of.c
+ create mode 100644 drivers/pwm/pwm-dwc-pci.c
+ create mode 100644 drivers/pwm/pwm-dwc.h
+
+-- 
+2.35.1
 
