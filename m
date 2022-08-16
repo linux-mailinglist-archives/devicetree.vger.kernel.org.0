@@ -2,176 +2,365 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C24D5962FE
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 21:19:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45978596311
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 21:24:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236959AbiHPTTI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 15:19:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38742 "EHLO
+        id S237124AbiHPTYX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 15:24:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236896AbiHPTTE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 15:19:04 -0400
-Received: from mail.sberdevices.ru (mail.sberdevices.ru [45.89.227.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E5E65A3E3;
-        Tue, 16 Aug 2022 12:18:59 -0700 (PDT)
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-        by mail.sberdevices.ru (Postfix) with ESMTP id 74CA15FD0D;
-        Tue, 16 Aug 2022 22:18:57 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1660677537;
-        bh=Bbi+SLMOoMKYhDWFHxpCLS4LEv2765hs3myRdLHQvxg=;
-        h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version;
-        b=IOOSZKC6PU1TSa2SEqlR6Xr4LcsoZrEn6EThhoG03MKy0L3rj9xegQgaIGMsuJY6I
-         JfaXCQSGk0jbyJkn/8rih1UBmqCB+vTdNbhsrvFBOrYqrhQbswPFJwMEA8bqf0Yxls
-         lrxi7EQSDwVmcLuiesJtoQNya5pAtnw734h65lDXF2O2s1pGuT0Aq3f7GUD1IfIu9D
-         fd8cXgDHPmVE5LLugh3Zy1syCJNQpl+WAiOVRWu9kVdp2j5PzqaVx+kzy5rupe98B0
-         IL6wmoX9DPb5hvW+NgLEDuSKcmmWYYPbXB4VGcm+WF/BEeMJFldB6ngvCItbJYK+6h
-         hFJGVclqWBm3Q==
-Received: from S-MS-EXCH02.sberdevices.ru (S-MS-EXCH02.sberdevices.ru [172.16.1.5])
-        by mail.sberdevices.ru (Postfix) with ESMTP;
-        Tue, 16 Aug 2022 22:18:57 +0300 (MSK)
-From:   Dmitry Rokosov <DDRokosov@sberdevices.ru>
-To:     "akpm@linux-foundation.org" <akpm@linux-foundation.org>,
-        "jic23@kernel.org" <jic23@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "andriy.shevchenko@linux.intel.com" 
-        <andriy.shevchenko@linux.intel.com>,
-        "andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>,
-        "christophe.jaillet@wanadoo.fr" <christophe.jaillet@wanadoo.fr>,
-        "stano.jakubek@gmail.com" <stano.jakubek@gmail.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "stephan@gerhold.net" <stephan@gerhold.net>,
-        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
-        "wsa@kernel.org" <wsa@kernel.org>,
-        "lars@metafoo.de" <lars@metafoo.de>,
-        "Michael.Hennerich@analog.com" <Michael.Hennerich@analog.com>,
-        "jbhayana@google.com" <jbhayana@google.com>,
-        "lucas.demarchi@intel.com" <lucas.demarchi@intel.com>,
-        "jani.nikula@intel.com" <jani.nikula@intel.com>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>
-CC:     "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        kernel <kernel@sberdevices.ru>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Dmitry Rokosov <DDRokosov@sberdevices.ru>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v6 4/4] dt-bindings: iio: accel: add dt-binding schema for
- msa311 accel driver
-Thread-Topic: [PATCH v6 4/4] dt-bindings: iio: accel: add dt-binding schema
- for msa311 accel driver
-Thread-Index: AQHYsaUBRhDtK4FePUG/YiIC8YOFWQ==
-Date:   Tue, 16 Aug 2022 19:18:46 +0000
-Message-ID: <20220816191842.14020-5-ddrokosov@sberdevices.ru>
-References: <20220816191842.14020-1-ddrokosov@sberdevices.ru>
-In-Reply-To: <20220816191842.14020-1-ddrokosov@sberdevices.ru>
-Accept-Language: ru-RU, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.1.12]
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S237117AbiHPTYW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 15:24:22 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 411E86FA36
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 12:24:20 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id ba1so3198841wrb.5
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 12:24:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=Sz8NNXwmI1EFfI2ysv73Yy1lOgv2a7RKnB5GY8gYwyA=;
+        b=v5Wq2TkCKJiji9wCUF2Og9fTe+WAKKIVnXpv6pmV69UDPXK/3jjiSwLZXS7rx/VfMV
+         HAlrWZpoEeUaShnaKamj3WVmo3UlZ8hZtIvOoXdAa5KPCkom8Z3cMFhFUkmBgW968cgS
+         aBkZtFa9Sc1dybQXYEg5/3Ba5sLZykMJon+ZwehL21O2uXYPv5CkhLb7OvEWDiKGdhmO
+         mYC/YwjhESSeNAV7myqJPTEk1atQ5BmqVktEgYBNPE3gh6IFFYYjupO9LHQ1SfJqD8Lf
+         fesOvFwb/2NnrwbKYPyk6cN+uadTvGGICYA9KKECIb+YoSTWR0TXCX88Alk1atyaKWce
+         urJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=Sz8NNXwmI1EFfI2ysv73Yy1lOgv2a7RKnB5GY8gYwyA=;
+        b=xTA5fzGzGy7YRhvbrzWjugDEN4h/2GCFiQCr49TIFrnOUPTDxVG5RoZxxN5MvDN3c4
+         99Trddt0LhrCphrRtTpdt/rO0+5eWLGA0N3L9ZI1i5BQwCpLQ1HhS2KuvDwo/O00MqdC
+         Yxw4ldwk6aMQKumv1rOrQodkAHtcDs1H0/7l+smM/48L8HOW00H452qJ9/Pyin4iv+0q
+         /CLDVGVu5hvEX0sm1nnqCnccCOF/POFMbx4312vfxou6ZxEIeV7z4uPo5Trl+kZ2tsQU
+         MYYD14rvuIrujMZI+iOU4/MVqEzL4kwUPu7gla7PgW6nfVNUgQzz2uenf2VR6CJEUpvJ
+         5uwg==
+X-Gm-Message-State: ACgBeo2G+VEUdcQzIP5YXa/Zk5smUhvp47mvCUeBgNKu63Ve1hsVEoy6
+        ONSWJrNnuOIqHS5Ek6N4xmGPIA==
+X-Google-Smtp-Source: AA6agR4aEp+iW0YMEf5emiZyDEPlFnJbsXIRLMLmehN5Xx6i+1e+VtrBCslwlFSQBGiuC8RrtaKjkg==
+X-Received: by 2002:adf:fe44:0:b0:225:325:13f6 with SMTP id m4-20020adffe44000000b00225032513f6mr6744226wrs.234.1660677858735;
+        Tue, 16 Aug 2022 12:24:18 -0700 (PDT)
+Received: from [192.168.0.12] (cpc76482-cwma10-2-0-cust629.7-3.cable.virginm.net. [86.14.22.118])
+        by smtp.gmail.com with ESMTPSA id s3-20020a5d69c3000000b00225232154d7sm240559wrw.110.2022.08.16.12.24.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 Aug 2022 12:24:18 -0700 (PDT)
+Message-ID: <0ee98af7-d6df-fb3d-b1f4-42d3482bc7a9@linaro.org>
+Date:   Tue, 16 Aug 2022 20:24:16 +0100
 MIME-Version: 1.0
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2022/08/16 16:01:00 #20126973
-X-KSMG-AntiVirus-Status: Clean, skipped
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v4 1/2] power: supply: add Qualcomm PMI8998 SMB2 Charger
+ driver
+Content-Language: en-US
+To:     Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Tom Rix <trix@redhat.com>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, llvm@lists.linux.dev,
+        phone-devel@vger.kernel.org
+References: <20220706194125.1861256-1-caleb.connolly@linaro.org>
+ <20220706194125.1861256-2-caleb.connolly@linaro.org>
+From:   Caleb Connolly <caleb.connolly@linaro.org>
+In-Reply-To: <20220706194125.1861256-2-caleb.connolly@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Introduce devicetree binding json-schema for MSA311 tri-axial,
-low-g accelerometer driver.
 
-Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../bindings/iio/accel/memsensing,msa311.yaml | 53 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 54 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/accel/memsensing,=
-msa311.yaml
 
-diff --git a/Documentation/devicetree/bindings/iio/accel/memsensing,msa311.=
-yaml b/Documentation/devicetree/bindings/iio/accel/memsensing,msa311.yaml
-new file mode 100644
-index 000000000000..23528dcaa073
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/accel/memsensing,msa311.yaml
-@@ -0,0 +1,53 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/iio/accel/memsensing,msa311.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: MEMSensing digital 3-Axis accelerometer
-+
-+maintainers:
-+  - Dmitry Rokosov <ddrokosov@sberdevices.ru>
-+
-+description: |
-+  MSA311 is a tri-axial, low-g accelerometer with I2C digital output for
-+  sensitivity consumer applications. It has dynamical user selectable full
-+  scales range of +-2g/+-4g/+-8g/+-16g and allows acceleration measurement=
-s
-+  with output data rates from 1Hz to 1000Hz.
-+  Datasheet can be found at following URL
-+  https://cdn-shop.adafruit.com/product-files/5309/MSA311-V1.1-ENG.pdf
-+
-+properties:
-+  compatible:
-+    const: memsensing,msa311
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  vdd-supply: true
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    i2c {
-+        #address-cells =3D <1>;
-+        #size-cells =3D <0>;
-+
-+        accelerometer@62 {
-+            compatible =3D "memsensing,msa311";
-+            reg =3D <0x62>;
-+            interrupt-parent =3D <&gpio_intc>;
-+            interrupts =3D <29 IRQ_TYPE_EDGE_RISING>;
-+            vdd-supply =3D <&vcc_5v>;
-+        };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 010e7d854bf7..4b76052e81cf 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12996,6 +12996,7 @@ MEMSENSING MICROSYSTEMS MSA311 DRIVER
- M:	Dmitry Rokosov <ddrokosov@sberdevices.ru>
- L:	linux-iio@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/iio/accel/memsensing,msa311.yaml
- F:	drivers/iio/accel/msa311.c
-=20
- MEN A21 WATCHDOG DRIVER
---=20
-2.36.0
+On 06/07/2022 20:41, Caleb Connolly wrote:
+> Add a driver for the SMB2 charger block found in the Qualcomm PMI8998
+> and PM660.
+
+I noticed an issue in this revision which was the root-cause of the OnePlus 6 charging incredibly 
+slowly. Other SDM845 phones feature a secondary charger IC, usually the smb1135 (iirc) which was 
+able to work normally, hiding the issue, however the OnePlus 6 does not. See below.
+> 
+> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
+> ---
+> Changes since v1:
+>   * Renamed from qcom_smb2 to qcom_pmi8998_charger
+> ---
+>   drivers/power/supply/Kconfig                |    9 +
+>   drivers/power/supply/Makefile               |    1 +
+>   drivers/power/supply/qcom_pmi8998_charger.c | 1044 +++++++++++++++++++
+>   3 files changed, 1054 insertions(+)
+>   create mode 100644 drivers/power/supply/qcom_pmi8998_charger.c
+> 
+> diff --git a/drivers/power/supply/Makefile b/drivers/power/supply/Makefile
+> index 7f02f36aea55..a39e3eda6dbd 100644
+
+[snip]
+
+> +
+> +/* Init sequence derived from vendor downstream driver */
+> +static const struct smb2_register smb2_init_seq[] = {
+> +	{ .addr = AICL_RERUN_TIME_CFG, .mask = AICL_RERUN_TIME_MASK, .val = 0 },
+> +	/*
+> +	 * By default configure us as an upstream facing port
+> +	 * FIXME: for OTG we should set UFP_EN_CMD_BIT and DFP_EN_CMD_BIT both to 0
+> +	 */
+> +	{ .addr = TYPE_C_INTRPT_ENB_SOFTWARE_CTRL,
+> +	  .mask = TYPEC_POWER_ROLE_CMD_MASK | VCONN_EN_SRC_BIT |
+> +		  VCONN_EN_VALUE_BIT,
+> +	  .val = VCONN_EN_SRC_BIT | UFP_EN_CMD_BIT },
+> +	/*
+> +	 * disable Type-C factory mode and stay in Attached.SRC state when VCONN
+> +	 * over-current happens
+> +	 */
+> +	{ .addr = TYPE_C_CFG,
+> +	  .mask = FACTORY_MODE_DETECTION_EN_BIT | VCONN_OC_CFG_BIT,
+> +	  .val = 0 },
+> +	/* Configure VBUS for software control */
+> +	{ .addr = OTG_CFG, .mask = OTG_EN_SRC_CFG_BIT, .val = 0 },
+> +	{ .addr = FG_UPDATE_CFG_2_SEL,
+> +	  .mask = SOC_LT_CHG_RECHARGE_THRESH_SEL_BIT |
+> +		  VBT_LT_CHG_RECHARGE_THRESH_SEL_BIT,
+> +	  .val = VBT_LT_CHG_RECHARGE_THRESH_SEL_BIT },
+> +	/* Enable charging */
+> +	{ .addr = USBIN_OPTIONS_1_CFG, .mask = HVDCP_EN_BIT, .val = 0 },
+> +	{ .addr = CHARGING_ENABLE_CMD,
+> +	  .mask = CHARGING_ENABLE_CMD_BIT,
+> +	  .val = CHARGING_ENABLE_CMD_BIT },
+> +	/* Allow overriding the current limit */
+> +	// { .addr = USBIN_LOAD_CFG,
+> +	//   .mask = ICL_OVERRIDE_AFTER_APSD_BIT,
+> +	//   .val = ICL_OVERRIDE_AFTER_APSD_BIT },
+> +	{ .addr = CHGR_CFG2,
+> +	  .mask = CHG_EN_SRC_BIT | CHG_EN_POLARITY_BIT |
+> +		  PRETOFAST_TRANSITION_CFG_BIT | BAT_OV_ECC_BIT | I_TERM_BIT |
+> +		  AUTO_RECHG_BIT | EN_ANALOG_DROP_IN_VBATT_BIT |
+> +		  CHARGER_INHIBIT_BIT,
+> +	  .val = 0 },
+> +	/*
+> +	 * No clue what this does
+> +	 */
+> +	{ .addr = STAT_CFG,
+> +	  .mask = STAT_SW_OVERRIDE_CFG_BIT,
+> +	  .val = STAT_SW_OVERRIDE_CFG_BIT },
+> +	/*
+> +	 * Set the default SDP charger type to a 500ma USB 2.0 port
+> +	 */
+> +	{ .addr = USBIN_ICL_OPTIONS,
+> +	  .mask = USB51_MODE_BIT | USBIN_MODE_CHG_BIT,
+> +	  .val = USB51_MODE_BIT },
+> +	/*
+> +	 * Disable watchdog
+> +	 */
+> +	{ .addr = SNARL_BARK_BITE_WD_CFG, .mask = 0xff, .val = 0 },
+> +	{ .addr = WD_CFG,
+> +	  .mask = WATCHDOG_TRIGGER_AFP_EN_BIT | WDOG_TIMER_EN_ON_PLUGIN_BIT |
+> +		  BARK_WDOG_INT_EN_BIT,
+> +	  .val = 0 },
+> +	/* OnePlus init stuff from "op_set_collapse_fet" */
+> +	{ .addr = USBIN_5V_AICL_THRESHOLD_CFG,
+> +	  .mask = USBIN_5V_AICL_THRESHOLD_CFG_MASK,
+> +	  .val = 0x3 },
+> +	{ .addr = USBIN_CONT_AICL_THRESHOLD_CFG,
+> +	  .mask = USBIN_CONT_AICL_THRESHOLD_CFG_MASK,
+> +	  .val = 0x3 },
+> +	/* Yay undocumented register values! */
+> +	{ .addr = USBIN_LOAD_CFG, .mask = BIT(0) | BIT(1), .val = 0x3 },
+> +	/* Enable Automatic Input Current Limit, this will slowly ramp up the current
+> +	 * When connected to a wall charger, and automatically stop when it detects
+> +	 * the charger current limit (voltage drop?) or it reaches the programmed limit.
+> +	 */
+> +	{ .addr = USBIN_AICL_OPTIONS_CFG,
+> +	  .mask = USBIN_AICL_START_AT_MAX_BIT | USBIN_AICL_ADC_EN_BIT |
+> +		  USBIN_AICL_EN_BIT | SUSPEND_ON_COLLAPSE_USBIN_BIT |
+> +		  USBIN_HV_COLLAPSE_RESPONSE_BIT |
+> +		  USBIN_LV_COLLAPSE_RESPONSE_BIT,
+> +	  .val = USBIN_HV_COLLAPSE_RESPONSE_BIT |
+> +		 USBIN_LV_COLLAPSE_RESPONSE_BIT | USBIN_AICL_EN_BIT },
+> +	/*
+> +	 * Set pre charge current to default, the OnePlus 6 bootloader
+> +	 * sets this very conservatively.
+> +	 * NOTE: seems to be reset to zero again anyway after boot
+> +	 */
+> +	{ .addr = PRE_CHARGE_CURRENT_CFG,
+> +	  .mask = PRE_CHARGE_CURRENT_SETTING_MASK,
+> +	  .val = 500000 / 25000 },
+> +	/*
+> +	 * Set "fast charge current" to the default 2A, the OnePlus 6 also
+> +	 * sets this very conservatively.
+> +	 * NOTE: seems to be reset to zero again anyway after boot
+> +	 */
+> +	{ .addr = FAST_CHARGE_CURRENT_CFG,
+> +	  .mask = FAST_CHARGE_CURRENT_SETTING_MASK,
+> +	  .addr = 1950000 / 25000 },
+
+The .addr is set here twice, meaning the fast charge current register is not configured properly and 
+thus left at conservative bootloader values - or set to zero, I'm not sure how the compiler handles 
+this.
+
+Will be fixed in the next revision.
+> +};
+> +
+> +static int smb2_init_hw(struct smb2_chip *chip)
+> +{
+> +	int rc, i;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(smb2_init_seq); i++) {
+> +		dev_dbg(chip->dev, "%d: Writing 0x%02x to 0x%02x\n", i,
+> +			smb2_init_seq[i].val, smb2_init_seq[i].addr);
+> +		rc = regmap_update_bits(chip->regmap,
+> +					chip->base + smb2_init_seq[i].addr,
+> +					smb2_init_seq[i].mask,
+> +					smb2_init_seq[i].val);
+> +		if (rc < 0)
+> +			return dev_err_probe(
+> +				chip->dev, rc,
+> +				"%s: Failed to write 0x%02x to 0x%02x\n",
+> +				__func__, smb2_init_seq[i].val,
+> +				smb2_init_seq[i].addr);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +struct smb2_irqs {
+> +	const char *name;
+> +	irqreturn_t (*handler)(int irq, void *data);
+> +};
+> +
+> +static const struct smb2_irqs irqs[] = {
+> +	{ .name = "bat-ov", .handler = smb2_handle_batt_overvoltage },
+> +	{ .name = "usb-plugin", .handler = smb2_handle_usb_plugin },
+> +	{ .name = "usbin-icl-change", .handler = smb2_handle_usb_icl_change },
+> +	{ .name = "wdog-bark", .handler = smb2_handle_wdog_bark },
+> +};
+> +
+> +static int smb2_probe(struct platform_device *pdev)
+> +{
+> +	struct power_supply_config supply_config = {};
+> +	struct smb2_chip *chip;
+> +	int rc, i, irq;
+> +
+> +	chip = devm_kzalloc(&pdev->dev, sizeof(*chip), GFP_KERNEL);
+> +	if (!chip)
+> +		return -ENOMEM;
+> +
+> +	chip->dev = &pdev->dev;
+> +	chip->name = pdev->name;
+> +
+> +	chip->regmap = dev_get_regmap(pdev->dev.parent, NULL);
+> +	if (!chip->regmap) {
+> +		return dev_err_probe(chip->dev, -ENODEV,
+> +				     "failed to locate the regmap\n");
+> +	}
+> +
+> +	rc = device_property_read_u32(chip->dev, "reg", &chip->base);
+> +	if (rc < 0) {
+> +		return dev_err_probe(chip->dev, rc,
+> +				     "Couldn't read base address\n");
+> +	}
+> +
+> +	chip->usb_in_v_chan = devm_iio_channel_get(chip->dev, "usbin_v");
+> +	if (IS_ERR(chip->usb_in_v_chan))
+> +		return dev_err_probe(
+> +			chip->dev, PTR_ERR(chip->usb_in_v_chan),
+> +			"Couldn't get usbin_v IIO channel from RRADC\n");
+> +
+> +	chip->usb_in_i_chan = devm_iio_channel_get(chip->dev, "usbin_i");
+> +	if (IS_ERR(chip->usb_in_i_chan)) {
+> +		return dev_err_probe(
+> +			chip->dev, PTR_ERR(chip->usb_in_i_chan),
+> +			"Couldn't get usbin_i IIO channel from RRADC\n");
+> +	}
+> +
+> +	rc = smb2_init_hw(chip);
+> +	if (rc < 0)
+> +		return rc;
+> +
+> +	supply_config.drv_data = chip;
+> +	supply_config.of_node = pdev->dev.of_node;
+> +
+> +	chip->chg_psy = devm_power_supply_register(chip->dev, &smb2_psy_desc,
+> +						   &supply_config);
+> +	if (IS_ERR(chip->chg_psy))
+> +		return dev_err_probe(chip->dev, PTR_ERR(chip->chg_psy),
+> +				     "failed to register power supply\n");
+> +
+> +	rc = power_supply_get_battery_info(chip->chg_psy, &chip->batt_info);
+> +	if (rc)
+> +		return dev_err_probe(chip->dev, rc,
+> +				     "Failed to get battery info\n");
+> +
+> +	rc = devm_delayed_work_autocancel(chip->dev, &chip->status_change_work,
+> +					  smb2_status_change_work);
+> +	if (rc)
+> +		return dev_err_probe(
+> +			chip->dev, rc,
+> +			"Failed to initialise status change work\n");
+> +
+> +	rc = (chip->batt_info->voltage_max_design_uv - 3487500) / 7500 + 1;
+> +	rc = regmap_update_bits(chip->regmap, chip->base + FLOAT_VOLTAGE_CFG,
+> +				FLOAT_VOLTAGE_SETTING_MASK, rc);
+> +	if (rc < 0)
+> +		return dev_err_probe(chip->dev, rc, "Couldn't set vbat max\n");
+> +
+> +	for (i = 0; i < ARRAY_SIZE(irqs); i++) {
+> +		irq = of_irq_get_byname(pdev->dev.of_node, irqs[i].name);
+> +		if (irq < 0)
+> +			return dev_err_probe(chip->dev, irq,
+> +					     "Couldn't get irq %s byname\n",
+> +					     irqs[i].name);
+> +		rc = devm_request_threaded_irq(chip->dev, irq, NULL,
+> +					       irqs[i].handler, IRQF_ONESHOT,
+> +					       irqs[i].name, chip);
+> +		if (rc < 0)
+> +			return dev_err_probe(chip->dev, irq,
+> +					     "Couldn't request irq %s\n",
+> +					     irqs[i].name);
+> +	}
+> +
+> +	platform_set_drvdata(pdev, chip);
+> +
+> +	/* Initialise charger state */
+> +	schedule_delayed_work(&chip->status_change_work, 0);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id smb2_match_id_table[] = {
+> +	{ .compatible = "qcom,pmi8998-charger" },
+> +	{ .compatible = "qcom,pm660-charger" },
+> +	{ /* sentinal */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, smb2_match_id_table);
+> +
+> +static struct platform_driver qcom_spmi_smb2 = {
+> +	.probe = smb2_probe,
+> +	.driver = {
+> +			.name = "qcom-pmi8998-charger",
+> +			.of_match_table = smb2_match_id_table,
+> +		},
+> +};
+> +
+> +module_platform_driver(qcom_spmi_smb2);
+> +
+> +MODULE_AUTHOR("Caleb Connolly <caleb.connolly@linaro.org>");
+> +MODULE_DESCRIPTION("Qualcomm SMB2 Charger Driver");
+> +MODULE_LICENSE("GPL");
+
+-- 
+Kind Regards,
+Caleb (they/he)
