@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42D23595C2C
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 14:46:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66904595C27
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 14:46:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235127AbiHPMpF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 08:45:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36430 "EHLO
+        id S234114AbiHPMpn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 08:45:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234452AbiHPMoi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 08:44:38 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63E3B9FF6
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 05:43:57 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id x19so14748615lfq.7
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 05:43:57 -0700 (PDT)
+        with ESMTP id S235560AbiHPMom (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 08:44:42 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 324BB33401
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 05:44:03 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id v2so14751967lfi.6
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 05:44:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=CXWLPPyHffdUKuA6Nm8ApG3LHh3g7wZtkqYdznNRN8w=;
-        b=AACz0m1AQALNunroOyLPkD+7qM2UR2daldpDp2VErgcmy7kc0LM2QrgVdUc1hqkIfJ
-         r2J01qTMkw4MZbzewnJN5xM7Q3kmGIWU9eNWzz/OR9OQYRTYX+sQMckF3qyIWBTbejTE
-         Hbp96ucsxSLX3WLtuF9WLrrRj6sJVMzp4AFS1AgMTaaf4ZoQaKIqo0rFAvaMwzBs7WqG
-         MRCBxqDqn5lQnGk2rDC1cMjLyHl1CCTRT+akfuSkXjorW4DgagoayvqjdsYWOU80/Toj
-         o9kSmy2zptlTUUWDhLtiZwEeWhAY8uf3gg2VTSvnhi+Ww1RtX9oMSjLdcfuRhqeSwtZS
-         lh4g==
+        bh=7axPEVk6MWtPTP7h5E9Ae0SR4WCvVBdWSVGZwXrfCJc=;
+        b=dZqAsC4XhmDGuivuJcwZM7XD6vsmSzcY0u4o8BuY6kIwGsvI6j05G+i7ZngVXzhyt3
+         0+zhxwe+OpM9q3PkrseisLeE+hZs9AmQhAPvAGf79ksMxYi7TezPrZF5RvvF4N/4H7ps
+         s6j2nlWSf+mnm5lw+I5OqKCqtSUEOmsEP3L4F2LR1D3Tw3Qo4s4dTdpRh9ZQe+dzDOQd
+         ZsgPxCHQZndYyn1puvJ9uDMb1G1drtDUPT5MWl4ZSF0dw1QkhHRdcCZc3k/HR9cJR/Ab
+         1/FKLJk66XuLQZZJmMq+crAjRH2GMFwlQIx5BaLcCY6gHf70h9FVgDJpvcF6sOOjVin6
+         Barw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=CXWLPPyHffdUKuA6Nm8ApG3LHh3g7wZtkqYdznNRN8w=;
-        b=BpurzXzOEQ2Bj+BQp12/3xghs3VhhaZlBBob6ldRME0SdQKyLrQ9Uw+n8tStXs/Qtw
-         57FX4DyRkYUSMTRWuERnhZxLRWUt8VSF8RSYkxJkFxgACXKukglRzZYztHDM37U+ZZos
-         MMvJP8BiB7dBXIj5Pm8qOkDBLayEruT1iSVcfBdaAdeVGBuQ+3M+2HaNAnb0e2R0K7oR
-         xTFWw7wHAqu7PfyzGZ89kom3Lo35aOcs/lzDqBL0y8Zwf7fXanu0KwbkwY06tCC1mwSm
-         QMJKKjcs3Ff31uaBwsr3LL0OD3bGIMVH9WBhLd0Q6Uxwl4EzZnurq9NBqUYqmWuI0mFi
-         RoEA==
-X-Gm-Message-State: ACgBeo1s4gDO5gVJypRMwcYtZveVv3kTLifRFH6C+nFNzDk4cIwrvAjn
-        BA6RT3hyfzgstOfJfjVy9DjTYg==
-X-Google-Smtp-Source: AA6agR6okIUsd0Dorj2iqDsr4LYXY9JJLftQminZIbQ8fg7f3rePXVY3Jusz4bxIRsstLq4R3qRGoA==
-X-Received: by 2002:a05:6512:1689:b0:492:8e9f:fe79 with SMTP id bu9-20020a056512168900b004928e9ffe79mr2904579lfb.478.1660653832955;
-        Tue, 16 Aug 2022 05:43:52 -0700 (PDT)
+        bh=7axPEVk6MWtPTP7h5E9Ae0SR4WCvVBdWSVGZwXrfCJc=;
+        b=oF6vmtmlP1PEKhOiUQpdrb7SdmfWugZ0N8X1ZeWLNOCZUx7/GkggvwQVf0IXdHUmMp
+         /NJ29ZgpfJ/wBPTsvcsEHM4dZtga/PU3sIm5gUiwIJ/Bv3gS+O7cfOs+u2ZHHICdNpIN
+         ymq25PHWhFqK6MTa1ks4kA9bSsDn/XHqUeNvlOqVq1lTo7r4BjlNGh3AaW6PALb2OeLX
+         JlyRkVixHWJS5MrjiMtvktM8jbp+nPnldjEkHPta8LUQtv6h32MXNcLKSaDblXIZ2aS5
+         u+ylpb7wAJqar742rBSKv880GpVaPIcUJTUKG0DAIZULxhwJO7LuqDdDf0J8NpYu/hqZ
+         DB8w==
+X-Gm-Message-State: ACgBeo1D2BcSJnYXLK0oMus6TZeQ2HxeEyWkBdzbd0PLncE8zXyCc8MU
+        tArnuupi6ietrmXjva/f0HZfeA==
+X-Google-Smtp-Source: AA6agR6mLRrkmmfsWWDpLPe2t3pnsuvb7LjZmhWGTARYqtxu2V3K4lbwTakD8q/5jl7F2/IulI5udw==
+X-Received: by 2002:a19:434d:0:b0:48c:fe67:5e83 with SMTP id m13-20020a19434d000000b0048cfe675e83mr7430482lfj.630.1660653836368;
+        Tue, 16 Aug 2022 05:43:56 -0700 (PDT)
 Received: from krzk-bin.. (d15l54g8c71znbtrbzt-4.rev.dnainternet.fi. [2001:14bb:ae:539c:1782:dd68:b0c1:c1a4])
-        by smtp.gmail.com with ESMTPSA id k14-20020ac257ce000000b0048ae4cf8a2csm1374331lfo.258.2022.08.16.05.43.50
+        by smtp.gmail.com with ESMTPSA id k14-20020ac257ce000000b0048ae4cf8a2csm1374331lfo.258.2022.08.16.05.43.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Aug 2022 05:43:52 -0700 (PDT)
+        Tue, 16 Aug 2022 05:43:55 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Lars-Peter Clausen <lars@metafoo.de>,
         Michael Hennerich <Michael.Hennerich@analog.com>,
@@ -96,9 +96,9 @@ To:     Lars-Peter Clausen <lars@metafoo.de>,
         linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3 07/10] dt-bindings: iio: imu: use spi-peripheral-props.yaml
-Date:   Tue, 16 Aug 2022 15:43:18 +0300
-Message-Id: <20220816124321.67817-8-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v3 08/10] dt-bindings: iio: potentiometer: use spi-peripheral-props.yaml
+Date:   Tue, 16 Aug 2022 15:43:19 +0300
+Message-Id: <20220816124321.67817-9-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220816124321.67817-1-krzysztof.kozlowski@linaro.org>
 References: <20220816124321.67817-1-krzysztof.kozlowski@linaro.org>
@@ -106,7 +106,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -128,189 +128,20 @@ typical place, just before example DTS.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../devicetree/bindings/iio/imu/adi,adis16460.yaml       | 7 ++++---
- .../devicetree/bindings/iio/imu/adi,adis16480.yaml       | 9 +++++----
- .../devicetree/bindings/iio/imu/bosch,bmi160.yaml        | 7 ++++---
- .../devicetree/bindings/iio/imu/invensense,icm42600.yaml | 6 ++++--
- .../devicetree/bindings/iio/imu/invensense,mpu6050.yaml  | 5 ++---
- .../devicetree/bindings/iio/imu/nxp,fxos8700.yaml        | 7 ++++---
- .../devicetree/bindings/iio/imu/st,lsm6dsx.yaml          | 9 +++++----
- 7 files changed, 28 insertions(+), 22 deletions(-)
+ .../bindings/iio/potentiometer/microchip,mcp41010.yaml   | 9 +++++----
+ .../bindings/iio/potentiometer/microchip,mcp4131.yaml    | 9 +++++----
+ 2 files changed, 10 insertions(+), 8 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/iio/imu/adi,adis16460.yaml b/Documentation/devicetree/bindings/iio/imu/adi,adis16460.yaml
-index 340be256f283..d166dbca18c3 100644
---- a/Documentation/devicetree/bindings/iio/imu/adi,adis16460.yaml
-+++ b/Documentation/devicetree/bindings/iio/imu/adi,adis16460.yaml
-@@ -25,8 +25,6 @@ properties:
- 
-   spi-cpol: true
- 
--  spi-max-frequency: true
--
-   interrupts:
-     maxItems: 1
- 
-@@ -35,7 +33,10 @@ required:
-   - reg
-   - interrupts
- 
--additionalProperties: false
-+allOf:
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-+
-+unevaluatedProperties: false
- 
- examples:
-   - |
-diff --git a/Documentation/devicetree/bindings/iio/imu/adi,adis16480.yaml b/Documentation/devicetree/bindings/iio/imu/adi,adis16480.yaml
-index dd29dc6c4c19..56e0dc20f5e4 100644
---- a/Documentation/devicetree/bindings/iio/imu/adi,adis16480.yaml
-+++ b/Documentation/devicetree/bindings/iio/imu/adi,adis16480.yaml
-@@ -47,8 +47,6 @@ properties:
-         - DIO3
-         - DIO4
- 
--  spi-max-frequency: true
--
-   spi-cpha: true
-   spi-cpol: true
- 
-@@ -96,8 +94,6 @@ properties:
-       - DIO3
-       - DIO4
- 
--additionalProperties: false
--
- required:
-   - compatible
-   - reg
-@@ -106,6 +102,11 @@ required:
-   - spi-cpol
-   - spi-max-frequency
- 
-+allOf:
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-+
-+unevaluatedProperties: false
-+
- examples:
-   - |
-     #include <dt-bindings/interrupt-controller/irq.h>
-diff --git a/Documentation/devicetree/bindings/iio/imu/bosch,bmi160.yaml b/Documentation/devicetree/bindings/iio/imu/bosch,bmi160.yaml
-index 6e73cd889b5c..a0760382548d 100644
---- a/Documentation/devicetree/bindings/iio/imu/bosch,bmi160.yaml
-+++ b/Documentation/devicetree/bindings/iio/imu/bosch,bmi160.yaml
-@@ -46,13 +46,14 @@ properties:
-   mount-matrix:
-     description: an optional 3x3 mounting rotation matrix
- 
--  spi-max-frequency: true
--
- required:
-   - compatible
-   - reg
- 
--additionalProperties: false
-+allOf:
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-+
-+unevaluatedProperties: false
- 
- examples:
-   - |
-diff --git a/Documentation/devicetree/bindings/iio/imu/invensense,icm42600.yaml b/Documentation/devicetree/bindings/iio/imu/invensense,icm42600.yaml
-index 4c1c083d0e92..488349755c99 100644
---- a/Documentation/devicetree/bindings/iio/imu/invensense,icm42600.yaml
-+++ b/Documentation/devicetree/bindings/iio/imu/invensense,icm42600.yaml
-@@ -47,7 +47,6 @@ properties:
-   vddio-supply:
-     description: Regulator that provides power to the bus
- 
--  spi-max-frequency: true
-   spi-cpha: true
-   spi-cpol: true
- 
-@@ -56,7 +55,10 @@ required:
-   - reg
-   - interrupts
- 
--additionalProperties: false
-+allOf:
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-+
-+unevaluatedProperties: false
- 
- examples:
-   - |
-diff --git a/Documentation/devicetree/bindings/iio/imu/invensense,mpu6050.yaml b/Documentation/devicetree/bindings/iio/imu/invensense,mpu6050.yaml
-index 3ebc6526d82d..ec64d7877fe5 100644
---- a/Documentation/devicetree/bindings/iio/imu/invensense,mpu6050.yaml
-+++ b/Documentation/devicetree/bindings/iio/imu/invensense,mpu6050.yaml
-@@ -40,8 +40,6 @@ properties:
-   interrupts:
+diff --git a/Documentation/devicetree/bindings/iio/potentiometer/microchip,mcp41010.yaml b/Documentation/devicetree/bindings/iio/potentiometer/microchip,mcp41010.yaml
+index 567697d996ec..87e88f2a9908 100644
+--- a/Documentation/devicetree/bindings/iio/potentiometer/microchip,mcp41010.yaml
++++ b/Documentation/devicetree/bindings/iio/potentiometer/microchip,mcp41010.yaml
+@@ -25,14 +25,15 @@ properties:
+   reg:
      maxItems: 1
  
 -  spi-max-frequency: true
 -
-   vdd-supply: true
-   vddio-supply: true
- 
-@@ -54,6 +52,7 @@ properties:
-       These devices also support an auxiliary i2c bus via an i2c-gate.
- 
- allOf:
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-   - if:
-       not:
-         properties:
-@@ -67,7 +66,7 @@ allOf:
-       properties:
-         i2c-gate: false
- 
--additionalProperties: false
-+unevaluatedProperties: false
- 
- required:
-   - compatible
-diff --git a/Documentation/devicetree/bindings/iio/imu/nxp,fxos8700.yaml b/Documentation/devicetree/bindings/iio/imu/nxp,fxos8700.yaml
-index 0203b83b8587..24416b59b782 100644
---- a/Documentation/devicetree/bindings/iio/imu/nxp,fxos8700.yaml
-+++ b/Documentation/devicetree/bindings/iio/imu/nxp,fxos8700.yaml
-@@ -36,13 +36,14 @@ properties:
-   drive-open-drain:
-     type: boolean
- 
--  spi-max-frequency: true
--
- required:
-   - compatible
-   - reg
- 
--additionalProperties: false
-+allOf:
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-+
-+unevaluatedProperties: false
- 
- examples:
-   - |
-diff --git a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-index 5d4839f00898..0ceb29fb01b7 100644
---- a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-+++ b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-@@ -45,8 +45,6 @@ properties:
-     description:
-       Supports up to 2 interrupt lines via the INT1 and INT2 pins.
- 
--  spi-max-frequency: true
--
-   vdd-supply:
-     description: if defined provides VDD power to the sensor.
- 
-@@ -81,12 +79,15 @@ properties:
-   wakeup-source:
-     $ref: /schemas/types.yaml#/definitions/flag
- 
 -additionalProperties: false
 -
  required:
@@ -324,7 +155,31 @@ index 5d4839f00898..0ceb29fb01b7 100644
 +
  examples:
    - |
-     #include <dt-bindings/interrupt-controller/irq.h>
+     spi {
+diff --git a/Documentation/devicetree/bindings/iio/potentiometer/microchip,mcp4131.yaml b/Documentation/devicetree/bindings/iio/potentiometer/microchip,mcp4131.yaml
+index 32e92bced81f..896fe0b5edcc 100644
+--- a/Documentation/devicetree/bindings/iio/potentiometer/microchip,mcp4131.yaml
++++ b/Documentation/devicetree/bindings/iio/potentiometer/microchip,mcp4131.yaml
+@@ -80,14 +80,15 @@ properties:
+   reg:
+     maxItems: 1
+ 
+-  spi-max-frequency: true
+-
+-additionalProperties: false
+-
+ required:
+   - compatible
+   - reg
+ 
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++unevaluatedProperties: false
++
+ examples:
+   - |
+     spi {
 -- 
 2.34.1
 
