@@ -2,75 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58824595F1C
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 17:33:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F9F0595F79
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 17:41:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234226AbiHPPdF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 11:33:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49096 "EHLO
+        id S236124AbiHPPjF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 11:39:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235193AbiHPPc5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 11:32:57 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D100C491E5
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 08:32:55 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id bu15so4569697wrb.7
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 08:32:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc;
-        bh=3ladZqrQ7hNXeMbMYQUqvYEHlbnDirnZuxEqx51rn3k=;
-        b=e8vzu7PeBAdXQ6hugx5wz3E3xcqvRq28DlomHp8jfJkPAEpsBgPoXI1xpbFHaQldMI
-         8gFyvKYLgXuDC3xGwdVIeAEWq8l4Hooexm8c1zD3F1S7DhTtCjDcOWr/EzCwF0v07g/o
-         CbaORHWZ6LO0NGLDNh9TPemDhdVcDvmKngMDz9oTjxOYtjIp2yQQbHzra2ueoU85FOB7
-         H+KG0YrLKy3crgf9B7zKgjeDei8hCgC+BMJLi+u7y1cias+4IDektykh7UGMqgcuGF2i
-         2IyS+sqhmTFXR3FHIv4liTLXxFO/MX68nq9yIxfSgW8dD4SNS7evif9dTp/2aw3D1i2j
-         of0g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=3ladZqrQ7hNXeMbMYQUqvYEHlbnDirnZuxEqx51rn3k=;
-        b=aiawg9yKQ35cSyp2wfR+uxhNrC0b6I7Mr7zTCMy1jhOZSuKk8xrQd8SNP1sye0z734
-         X1WW2UPIyTRr/L1kCxjsLoibpYmtsLTNem+IGGhN9yqPbvtxX5CRF+71F7I9VjLVmOZj
-         Mk3p4FayN+tHvCMju9fm80byMiFZvyar6VuKHML9xbOY+PJiqAGmjDlVlDobCHYt6BCy
-         EJ+JUvjgaj0wvATj055MLCEGFNa5c2djkUt352RBHI5Yvl4aClPKCe8cF3NwLC54IPlB
-         Yc+AyyH7n+D2RMaVQZ+pAVrJ/ZEtOxT2o+m/mVsgqQ0FFE/OxJpYaftRYvLjkct8tmfc
-         1A3w==
-X-Gm-Message-State: ACgBeo0wrrDGVIsiz7P5TdFhdnLmOWu2T+5nnmXRqzPrYltZPTsKNARK
-        skkhiQPLMbsnR2sao4SDA9ujtA==
-X-Google-Smtp-Source: AA6agR7WnOpx6lbbKXS0hGEuz9TJ/O7NMQdTx0mIHN6ef6AgzxJdcpTQQRMe8Jkwbuzf6vloQMoz1g==
-X-Received: by 2002:a5d:47a4:0:b0:220:600d:2b0f with SMTP id 4-20020a5d47a4000000b00220600d2b0fmr12148608wrb.407.1660663974377;
-        Tue, 16 Aug 2022 08:32:54 -0700 (PDT)
-Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id m31-20020a05600c3b1f00b003a6077384ecsm2938495wms.31.2022.08.16.08.32.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Aug 2022 08:32:53 -0700 (PDT)
-Date:   Tue, 16 Aug 2022 18:32:51 +0300
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Caleb Connolly <caleb.connolly@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Maulik Shah <quic_mkshah@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 3/4] arm64: dts: qcom: sdm845: Add the RPMh stats node
-Message-ID: <Yvu4o1bFdKLfvaiL@linaro.org>
-References: <20220812101240.1869605-1-abel.vesa@linaro.org>
- <T2Uz7zs4Ht58lYc5zWg1VBY0ju6bVaSKa9y3RhBQWDDHmPXBHbAxI2J34jSeY0BFQy2y4JtFn3nQS0Lz4xI5jw==@protonmail.internalid>
- <20220812101240.1869605-3-abel.vesa@linaro.org>
- <e6821eef-4fcb-97b1-24be-e2bb62b99039@linaro.org>
- <Yvtx2aK1Uu51hTPM@linaro.org>
- <b34b2fa6-7dbf-e4d3-9833-57efd42f9137@linaro.org>
+        with ESMTP id S236119AbiHPPiU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 11:38:20 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4276514034;
+        Tue, 16 Aug 2022 08:37:53 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id AE22C611EB;
+        Tue, 16 Aug 2022 15:37:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10ACCC433C1;
+        Tue, 16 Aug 2022 15:37:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1660664272;
+        bh=V49dgqu/RAkWRS3001yah3EjBpkjCkpA7y5OPLHrM9Q=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=HM6nA176MfOgvwM4aYzgxrXtkZNsyPzieWFtOM7wfa7Y6HbUs11ekwRDWDVFGGXGw
+         27V34YIPzdRIqrOl8k53roAb4tMeD5UDDV3RvxJs4/nEufjpEz3ytpRzUlb75UoX7f
+         SROELHAJ8Mbne9KSmP6mgvraDA/lHVPnonXJXTuB2h/9bkscGKgJ5nrdhIZtDpIjEo
+         kBNP11wnL1imt6wjN99dVad9lNWWj9FE1BCqH6GH4kVXnOR+yujHEy4YqWd9AVAx0H
+         WxHwbprxicMp3T+ovVm4DD6URYmFQxUHfQ68vJnbup2ojgM6/H6z1HwLET+nn0RO97
+         fcXe1fZzFaopQ==
+Received: by mail-ua1-f41.google.com with SMTP id s18so4160730uac.10;
+        Tue, 16 Aug 2022 08:37:51 -0700 (PDT)
+X-Gm-Message-State: ACgBeo0ajzHlMuRIr+AeGlSE5R8WgtFK0ktXaZCMoN2zXAc19FX9wQp2
+        +PVs+UzAGu/wzazL6+zG2WxB/szrdxviIa7vtw==
+X-Google-Smtp-Source: AA6agR6P6tx9Y0Tb4qmdIdqjNQDONt+9JZtqem7UsItHKI1hbGP9NpYbZ5qL4HTr0AbwT9oos2Tvh2M0MtkHzHMsHgQ=
+X-Received: by 2002:ab0:2b06:0:b0:384:c4af:107c with SMTP id
+ e6-20020ab02b06000000b00384c4af107cmr8599136uar.77.1660664270971; Tue, 16 Aug
+ 2022 08:37:50 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b34b2fa6-7dbf-e4d3-9833-57efd42f9137@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+References: <20220805070610.3516-1-peterwu.pub@gmail.com> <20220805070610.3516-7-peterwu.pub@gmail.com>
+ <YvJdpq0MWNPQZw5c@google.com>
+In-Reply-To: <YvJdpq0MWNPQZw5c@google.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 16 Aug 2022 09:37:39 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJriSbJvejCi7n50T-NaOW+GF8yb6Fi4m-GvUkggf-9kw@mail.gmail.com>
+Message-ID: <CAL_JsqJriSbJvejCi7n50T-NaOW+GF8yb6Fi4m-GvUkggf-9kw@mail.gmail.com>
+Subject: Re: [PATCH v7 06/13] dt-bindings: mfd: Add MediaTek MT6370
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     ChiaEn Wu <peterwu.pub@gmail.com>, daniel.thompson@linaro.org,
+        jingoohan1@gmail.com, pavel@ucw.cz,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        sre@kernel.org, chunfeng.yun@mediatek.com,
+        gregkh@linuxfoundation.org, jic23@kernel.org, lars@metafoo.de,
+        lgirdwood@gmail.com, broonie@kernel.org, linux@roeck-us.net,
+        heikki.krogerus@linux.intel.com, deller@gmx.de,
+        andy.shevchenko@gmail.com, chiaen_wu@richtek.com,
+        alice_chen@richtek.com, cy_huang@richtek.com,
+        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-fbdev@vger.kernel.org,
+        szunichen@gmail.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Lee Jones <lee@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -79,189 +77,80 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-08-16 14:50:50, Caleb Connolly wrote:
-> 
-> 
-> On 16/08/2022 11:30, Abel Vesa wrote:
-> > On 22-08-15 21:34:07, Caleb Connolly wrote:
-> > > 
-> > > 
-> > > On 12/08/2022 11:12, Abel Vesa wrote:
-> > > > SDM845 is a special case compared to the other platforms that use RPMh
-> > > > stats, since it only has 2 stats (aosd and cxsd), while the others have
-> > > > a 3rd one (ddr).
-> > > > 
-> > > > So lets add the node but with a SDM845 dedicated compatible to make
-> > > > the driver aware of the different stats config.
-> > > Hi,
-> > > 
-> > > I gave this a go on the OnePlus 6, I noticed the driver is also meant to
-> > > read the stats for remote procs via smem, however this seems to fail for me
-> > > - it can't find any of the SMEM items even if I probe the driver manually
-> > > after ensuring remoteprocs have booted. Is this an unsupported feature on
-> > > SDM845?
-> > 
-> > Thanks for giving it a test.
-> > 
-> > Actually, you need to probe the qcom_stats after the remoteprocs have
-> > booted.
-> 
-> Hi, thanks for getting back to me. I did try this as mentioned above but I
-> think I must have been doing something wrong as I get different behaviour
-> now:
-> 
-> 
-> enchilada:/ # cat /sys/class/remoteproc/remoteproc*/state
-> 
-> running
-> 
-> running
-> 
-> running
-> 
-> running
-> 
-> enchilada:/ # ls /d/qcom_stats/
-> aosd  cxsd
-> enchilada:/ # rmmod qcom_stats
-> enchilada:/ # insmod /data/qcom_stats.ko
-> enchilada:/ # ls /d/qcom_stats/
-> adsp  aosd  cdsp  cxsd  modem  slpi
+On Tue, Aug 9, 2022 at 7:14 AM Lee Jones <lee.jones@linaro.org> wrote:
+>
+> On Fri, 05 Aug 2022, ChiaEn Wu wrote:
+>
+> > From: ChiYuan Huang <cy_huang@richtek.com>
+> >
+> > Add MediaTek MT6370 binding documentation.
+> >
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> > Signed-off-by: ChiaEn Wu <chiaen_wu@richtek.com>
+> > ---
+> >  .../devicetree/bindings/mfd/mediatek,mt6370.yaml   | 280 +++++++++++++++++++++
+> >  include/dt-bindings/iio/adc/mediatek,mt6370_adc.h  |  18 ++
+> >  2 files changed, 298 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml
+> >  create mode 100644 include/dt-bindings/iio/adc/mediatek,mt6370_adc.h
+>
+> Applied, thanks.
 
-Well, I run on upstream MTP, which has less enabled in devicetree.
+Without the backlight schema applied, this is the result:
 
-> 
-> 
-> 
-> Weirdly, despite it succeeding it prints the following in dmesg with logging
-> added to qcom_create_subsystem_stat_files() [1]:
-> 
-> [  156.540307] Couldn't get smem object 'wpss' (item: 605, pid: 13): -2
-> [  156.546899] Couldn't get smem object 'gpu' (item: 609, pid: 0): -2
-> [  156.553260] Couldn't get smem object 'display' (item: 610, pid: 0): -2
-> [  156.559957] Couldn't get smem object 'adsp_island' (item: 613, pid: 2): -2
-> [  156.567007] Couldn't get smem object 'slpi_island' (item: 613, pid: 3): -2
-
-See my comment below your related changes.
-
-> > 
-> > Doing so, you'll end up having the following:
-> > adsp  aosd  cdsp  cxsd
-> 
-> I seem to get a few more, I have some out of tree patches enabling the SLPI,
-> and iirc the db845c doesn't have a full modem firmware. If these look good
-> to you I'd appreciate it if you add my Tested-by.
-
-Looks OK to me.
-
-> 
-> enchilada:/ # for x in /d/qcom_stats/*; do echo $x; cat $x; done
-> /d/qcom_stats/adsp
-> Count: 48
-> Last Entered At: 1199663157
-> Last Exited At: 1524359015
-> Accumulated Duration: 793060082
-> /d/qcom_stats/aosd
-> Count: 0
-> Last Entered At: 0
-> Last Exited At: 0
-> Accumulated Duration: 0
-> /d/qcom_stats/cdsp
-> Count: 35
-> Last Entered At: 1194818037
-> Last Exited At: 1194769648
-> Accumulated Duration: 3223580811
-> /d/qcom_stats/cxsd
-> Count: 0
-> Last Entered At: 0
-> Last Exited At: 0
-> Accumulated Duration: 0
-> /d/qcom_stats/modem
-> Count: 49
-> Last Entered At: 3687081003
-> Last Exited At: 3686727026
-> Accumulated Duration: 2915592136
-> /d/qcom_stats/slpi
-> Count: 53
-> Last Entered At: 3120905905
-> Last Exited At: 3120894535
-> Accumulated Duration: 3218969498
-> 
-> Am I right in thinking the aosd and cxsd being all 0 is probably a similar
-> issue to the one reported by Stephen in [2]?
-
-Might be, I'm not sure. I'll have closer a look.
-
-> 
-> 
-> [1]:
-> 
-> diff --git a/drivers/soc/qcom/qcom_stats.c b/drivers/soc/qcom/qcom_stats.c
-> index 121ea409fafc..56cfb20d3683 100644
-> --- a/drivers/soc/qcom/qcom_stats.c
-> +++ b/drivers/soc/qcom/qcom_stats.c
-> @@ -178,8 +178,12 @@ static void qcom_create_subsystem_stat_files(struct dentry *root,
-> 
->         for (i = 0; i < ARRAY_SIZE(subsystems); i++) {
->                 stat = qcom_smem_get(subsystems[i].pid, subsystems[i].smem_item, NULL);
-> -               if (IS_ERR(stat))
-
-Basically, the error here means the subsystem is not available right at
-this moment. We could probably return EPROBE_DEFER here, but it really
-depends on each platform's devicetree what remoteprocs they have
-enabled or not. So I guess the safest thing to to is to just skip
-quietly the ones that haven't probed yet.
-
-> +               if (IS_ERR(stat)) {
-> +                       pr_info("Couldn't get smem object '%s' (item: %d, pid: %d): %ld\n",
-> +                               subsystems[i].name, subsystems[i].smem_item, subsystems[i].pid,
-> +                               PTR_ERR(stat));
->                         continue;
-> +               }
-> 
->                 debugfs_create_file(subsystems[i].name, 0400, root, (void *)&subsystems[i],
->                                     &qcom_subsystem_sleep_stats_fops);
-> 
-> 
-> 
-> [2]: https://lore.kernel.org/linux-arm-msm/20220628201340.3981860-1-swboyd@chromium.org/
-> > 
-> > > > 
-> > > > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> 
-> Tested-by: Caleb Connolly <caleb.connolly@linaro.org>
-> > > > ---
-> > > > 
-> > > > Changed qcom,rpmh-stats-sdm845 to qcom,sdm845-rpmh-stats, as suggested
-> > > > by Krzysztof.
-> > > > 
-> > > >    arch/arm64/boot/dts/qcom/sdm845.dtsi | 5 +++++
-> > > >    1 file changed, 5 insertions(+)
-> > > > 
-> > > > diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> > > > index 5bea96a9ce06..67fe08b837be 100644
-> > > > --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> > > > +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> > > > @@ -4851,6 +4851,11 @@ ebi_cdev: ebi {
-> > > >    			};
-> > > >    		};
-> > > > 
-> > > > +		sram@c3f0000 {
-> > > > +			compatible = "qcom,sdm845-rpmh-stats";
-> > > > +			reg = <0 0x0c3f0000 0 0x400>;
-> > > > +		};
-> > > > +
-> > > >    		spmi_bus: spmi@c440000 {
-> > > >    			compatible = "qcom,spmi-pmic-arb";
-> > > >    			reg = <0 0x0c440000 0 0x1100>,
-> > > > --
-> > > > 2.34.1
-> > > > 
-> > > 
-> > > -- 
-> > > Kind Regards,
-> > > Caleb (they/he)
-> 
-> -- 
-> Kind Regards,
-> Caleb (they/he)
+./Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml: Unable
+to find schema file matching $id:
+http://devicetree.org/schemas/leds/backlight/mediatek,mt6370-backlight.yaml
+/builds/robherring/linux-dt/Documentation/devicetree/bindings/mfd/mediatek,mt6370.example.dtb:
+pmic@34: backlight: False schema does not allow {'compatible':
+['mediatek,mt6370-backlight'], 'mediatek,bled-channel-use': b'\x0f'}
+ From schema: /builds/robherring/linux-dt/Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml
+/builds/robherring/linux-dt/Documentation/devicetree/bindings/mfd/mediatek,mt6370.example.dtb:
+pmic@34: charger: False schema does not allow {'compatible':
+['mediatek,mt6370-charger'], 'interrupts': [[48], [68], [6]],
+'interrupt-names': ['attach_i', 'uvp_d_evt', 'mivr'], 'io-channels':
+[[1, 5]], 'usb-otg-vbus-regulator': {'regulator-name':
+['mt6370-usb-otg-vbus'], 'regulator-min-microvolt': [[4350000]],
+'regulator-max-microvolt': [[5800000]], 'regulator-min-microamp':
+[[500000]], 'regulator-max-microamp': [[3000000]], 'phandle': [[2]]}}
+ From schema: /builds/robherring/linux-dt/Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml
+/builds/robherring/linux-dt/Documentation/devicetree/bindings/mfd/mediatek,mt6370.example.dtb:
+pmic@34: tcpc: False schema does not allow {'compatible':
+['mediatek,mt6370-tcpc'], 'interrupts-extended': [[4294967295, 4, 8]],
+'connector': {'compatible': ['usb-c-connector'], 'label': ['USB-C'],
+'vbus-supply': [[2]], 'data-role': ['dual'], 'power-role': ['dual'],
+'try-power-role': ['sink'], 'source-pdos': [[570527844]], 'sink-pdos':
+[[570527944]], 'op-sink-microwatt': [[10000000]], 'ports':
+{'#address-cells': [[1]], '#size-cells': [[0]], 'port@0': {'reg':
+[[0]], 'endpoint': {'remote-endpoint': [[4294967295]]}}, 'port@1':
+{'reg': [[1]], 'endpoint': {'remote-endpoint': [[4294967295]]}},
+'port@2': {'reg': [[2]], 'endpoint': {'remote-endpoint':
+[[4294967295]]}}}}}
+ From schema: /builds/robherring/linux-dt/Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml
+/builds/robherring/linux-dt/Documentation/devicetree/bindings/mfd/mediatek,mt6370.example.dtb:
+pmic@34: indicator: False schema does not allow {'compatible':
+['mediatek,mt6370-indicator'], '#address-cells': [[1]], '#size-cells':
+[[0]], 'multi-led@0': {'reg': [[0]], 'function': ['indicator'],
+'color': [[9]], 'led-max-microamp': [[24000]], '#address-cells':
+[[1]], '#size-cells': [[0]], 'led@0': {'reg': [[0]], 'color': [[1]]},
+'led@1': {'reg': [[1]], 'color': [[2]]}, 'led@2': {'reg': [[2]],
+'color': [[3]]}}, 'led@3': {'reg': [[3]], 'function': ['indicator'],
+'color': [[0]], 'led-max-microamp': [[6000]]}}
+ From schema: /builds/robherring/linux-dt/Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml
+/builds/robherring/linux-dt/Documentation/devicetree/bindings/mfd/mediatek,mt6370.example.dtb:
+pmic@34: flashlight: False schema does not allow {'compatible':
+['mediatek,mt6370-flashlight'], '#address-cells': [[1]],
+'#size-cells': [[0]], 'led@0': {'reg': [[0]], 'led-sources': [[0]],
+'function': ['flash'], 'color': [[0]], 'function-enumerator': [[1]],
+'led-max-microamp': [[200000]], 'flash-max-microamp': [[500000]],
+'flash-max-timeout-us': [[1248000]]}, 'led@1': {'reg': [[1]],
+'led-sources': [[1]], 'function': ['flash'], 'color': [[0]],
+'function-enumerator': [[2]], 'led-max-microamp': [[200000]],
+'flash-max-microamp': [[500000]], 'flash-max-timeout-us':
+[[1248000]]}}
+ From schema: /builds/robherring/linux-dt/Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml
+/builds/robherring/linux-dt/Documentation/devicetree/bindings/mfd/mediatek,mt6370.example.dtb:
+backlight: mediatek,bled-channel-use: b'\x0f' is not of type 'object',
+'array', 'boolean', 'null'
+ From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/dt-core.yaml
