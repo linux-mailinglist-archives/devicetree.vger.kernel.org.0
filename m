@@ -2,62 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 402D8595FBF
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 17:59:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00A6D595FDD
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 18:10:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229830AbiHPP7l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 11:59:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55962 "EHLO
+        id S230367AbiHPQKJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 12:10:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236248AbiHPP7V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 11:59:21 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 823B340E06;
-        Tue, 16 Aug 2022 08:57:01 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 27GFuo1R009280;
-        Tue, 16 Aug 2022 10:56:50 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1660665410;
-        bh=hF1G+UmMgunfhWfrMJQlFTQPKah74HDd79WdAbqaK/s=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=X1evldaX/mpN5VpJ/e/wy1wpiufmRJjWYJXr+/8VD1jsgZ7LPrG11wiPNRO4tfZ/h
-         xB0mTLKdFWGPmVFPPIvBVXq22xwtwzKjkVEcUrG9jtqAx2T88keQlP2BSF9auYgd1e
-         RDUoAXOcs/GXd5DTb9UCozVwCRiOIxZGL21LxdOo=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 27GFuoGA062891
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 16 Aug 2022 10:56:50 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 16
- Aug 2022 10:56:49 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Tue, 16 Aug 2022 10:56:49 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 27GFunOS005780;
-        Tue, 16 Aug 2022 10:56:49 -0500
-Date:   Tue, 16 Aug 2022 10:56:49 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Robert Nelson <robertcnelson@gmail.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Jason Kridner <jkridner@beagleboard.org>,
-        Drew Fustini <drew@beagleboard.org>
-Subject: Re: [PATCH] dt-bindings: arm: ti: Add bindings for BeagleBone AI-64
-Message-ID: <20220816155649.zbnqds65hb7g2zy7@stoic>
-References: <20220815234824.772836-1-robertcnelson@gmail.com>
+        with ESMTP id S236202AbiHPQJz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 12:09:55 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 768DC4B0EE;
+        Tue, 16 Aug 2022 09:06:33 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 39A17B81A58;
+        Tue, 16 Aug 2022 16:06:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87ED9C433D6;
+        Tue, 16 Aug 2022 16:06:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1660665990;
+        bh=AXRucAZuPQWJSTJD1Vx5mJLTnGXWgijQwgdKGA4Eue0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=eGzWZBgFTUxW507AhfQMNZWfwQDDW8wwAZ2QA9lOmD5wnOPvXiec4TPN0UZfRu6Qs
+         Btn1lOgyowcm3l43mJejDK4tGw1stHHIz4Bk2XvxvmseQ3kB5yEhnSygHSSeONuPAf
+         4aM6h4QEOqs6y6VlNUMiZIAxM/zh2ZlyTLCetImtkbL7Uk7/CYETDvxqIJM8k80o5k
+         zBQAsHN5qfymfuNLMQKTftOEwbGNyfXLCGtW/PhxNteArXLm5StumOauOQAoSb6v7I
+         Yiaxlr+V7xCNmInhyjfsN6T1WJ+vCnWhlV9Kx7foKfHmf41RLysOXiO20v8S1J+oJH
+         QsnIx5UF6xx/Q==
+Date:   Tue, 16 Aug 2022 18:06:21 +0200
+From:   Lorenzo Pieralisi <lpieralisi@kernel.org>
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Brian Masney <bmasney@redhat.com>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 8/8] PCI: qcom: Sort device-id table
+Message-ID: <YvvAfQJChCVX4cPH@lpieralisi>
+References: <20220714071348.6792-1-johan+linaro@kernel.org>
+ <20220714071348.6792-9-johan+linaro@kernel.org>
+ <YtAny03L/RLk9nv6@xps13>
+ <YtEaqHT7NdXPhK+y@hovoldconsulting.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220815234824.772836-1-robertcnelson@gmail.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+In-Reply-To: <YtEaqHT7NdXPhK+y@hovoldconsulting.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -66,47 +68,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18:48-20220815, Robert Nelson wrote:
-> This board is based on the ti,j721e
+On Fri, Jul 15, 2022 at 09:43:36AM +0200, Johan Hovold wrote:
+> On Thu, Jul 14, 2022 at 10:27:23AM -0400, Brian Masney wrote:
+> > On Thu, Jul 14, 2022 at 09:13:48AM +0200, Johan Hovold wrote:
+> > > Sort the device-id table entries alphabetically by compatible string to
+> > > make it easier to find entries and add new ones.
+> > > 
+> > > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> > > ---
+> > >  drivers/pci/controller/dwc/pcie-qcom.c | 12 ++++++------
+> > >  1 file changed, 6 insertions(+), 6 deletions(-)
+> > > 
+> > > diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> > > index 8dddb72f8647..fea921cca8fa 100644
+> > > --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> > > +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> > > @@ -1749,24 +1749,24 @@ static int qcom_pcie_remove(struct platform_device *pdev)
+> > >  }
+> > >  
+> > >  static const struct of_device_id qcom_pcie_match[] = {
+> > > +	{ .compatible = "qcom,pcie-apq8064", .data = &cfg_2_1_0 },
+> > >  	{ .compatible = "qcom,pcie-apq8084", .data = &cfg_1_0_0 },
+> > > +	{ .compatible = "qcom,pcie-ipq6018", .data = &cfg_2_9_0 },
+> > >  	{ .compatible = "qcom,pcie-ipq8064", .data = &cfg_2_1_0 },
+> > >  	{ .compatible = "qcom,pcie-ipq8064-v2", .data = &cfg_2_1_0 },
+> > > -	{ .compatible = "qcom,pcie-apq8064", .data = &cfg_2_1_0 },
+> > > -	{ .compatible = "qcom,pcie-msm8996", .data = &cfg_2_3_2 },
+> > >  	{ .compatible = "qcom,pcie-ipq8074", .data = &cfg_2_3_3 },
+> > >  	{ .compatible = "qcom,pcie-ipq4019", .data = &cfg_2_4_0 },
+> > 
+> > qcom,pcie-ipq4019 should be moved up above qcom,pcie-ipq6018.
 > 
-
-Might want to add the links:
-
-https://beagleboard.org/ai-64
-https://git.beagleboard.org/beagleboard/beaglebone-ai-64
-
-> Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
-> CC: Rob Herring <robh@kernel.org>
-> CC: Nishanth Menon <nm@ti.com>
-> CC: Jason Kridner <jkridner@beagleboard.org>
-> CC: Drew Fustini <drew@beagleboard.org>
-> ---
->  Documentation/devicetree/bindings/arm/ti/k3.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> If we only had some sort of machine that could sort strings for us... ;)
+> I'll rely on vim for this from now on.
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> index 61c6ab4f52e2..ecb5fa9d4644 100644
-> --- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> +++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> @@ -36,6 +36,7 @@ properties:
->                - enum:
->                    - ti,j721e-evm
->                    - ti,j721e-sk
-> +                  - beagle,j721e-beagleboneai64
+> Perhaps Bjorn H can fix that up when applying unless I'll be sending a
+> v3 for some other reason. This series still depends on the MSI rework to
+> be applied first.
 
-alpha sort might be nice, but I see we have'nt been too consistent here.
+I can do it while applying. A link to the lore archive for the MSI
+rework please (I don't think it was merged for v6.0) ? I was away for
+two months, catching up with threads.
 
->                - const: ti,j721e
->  
->        - description: K3 J7200 SoC
-> -- 
-> 2.30.2
+Thanks,
+Lorenzo
+
+> Thanks for reviewing.
 > 
-
-Also please sequence the patches so that the bindings come prior to the
-dts.
-
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+> Johan
