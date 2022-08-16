@@ -2,69 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C3E96595549
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 10:31:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40F5F595532
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 10:27:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233118AbiHPIbu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 04:31:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44412 "EHLO
+        id S233028AbiHPI1x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 04:27:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233495AbiHPIbD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 04:31:03 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EC8BD4BCA
-        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 22:50:00 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id o22so12108478edc.10
-        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 22:50:00 -0700 (PDT)
+        with ESMTP id S232035AbiHPI0r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 04:26:47 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4099B13C72C
+        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 22:55:12 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id o2so13443212lfb.1
+        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 22:55:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=trB9S8T+KgdYhPfdv0HfyIY4/SfNn10XdtOWdUC1yDs=;
-        b=UAlp0Irs2g7qrsPqTelRHKeEmnyfl71dz1+p5NexkBBOBX2lX7ERloR80cU+Obz0r2
-         0Fn6buvZZROE6Pp8NEh4b3NiF0vQhGWloZGyINKtk+tEBJmi+8l1ifOVQVMDLt/b8jnn
-         rqhGgKts5Ze5i/e/wAHZ4mamcZzcnLGl8B0op1dWw3PYx944dL6/YCg0Btv1HkmJst1H
-         Iisc0cdWCXulxQNXeFwFKbiHSPR5BTi+6WID35lDl2iz+S77tMjLcOBgfGzT4Xsej8in
-         Go6nLNMa2m0w1zjg3EsCPtvA6RenqqfJZaFhN5BXdLuqEgkeZ0apyPge3HRfsdYATshm
-         2JQw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=SM85WUFG4iEcrdGXUW1ovRXHJvVq4YoOra1Othbb/sI=;
+        b=EwhBI+O8yhjttvfqkMyGgqju7SabAqYWbFGrQ9MqCy/t8smDKOrX4ZLMlouZVonOz6
+         iwvUksftnAVCQQ7TsS7aZFhUmu0J1KZ0nv0sISODZ/JJm25kK6/oh3Z5hRk4iHlbdsyy
+         OLFSD4mtvOZ6G6kjpeHJI+nEF0AzSt6YDOaTTqEP6TUJJcWxVbhfCK/EvupvSqvb11a2
+         2t1zArEwfbv+BviVGZO1nHlkcm46oGvdOGa2Tzc0elglZ2hnByt0eGRQkeQhiWK5pABR
+         nmm83J4PIgVhKmKs8nE/LYEcrRuI2syBUzb5wbOaZIccCAceLxa1Z5hwXW0JMoDIHIKI
+         lRag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=trB9S8T+KgdYhPfdv0HfyIY4/SfNn10XdtOWdUC1yDs=;
-        b=twLHkeOQeuPEvyPfLsL9TjF+YkAai9E1dbKAmNGADs8grXNhZUUW19RNbPWudNsPJT
-         oYCbPWMbQoczud6CSY1watQ0bXdsJ+vObacxDDeBKJevxczvt1hoYIZwRwRMBKv90BdA
-         3ht7Vs6gKYxxTEaIynfG7knkx/sjCO01q7kfJOLfcWPBHgoOlCDEXLQiVwSbJoLs7YxU
-         4hrkrOe3SJvPiensec4+8NSLWK54sTkDm2zd8A+C1EnaSC6CE9SJoB3CnZ5JSN2dLW29
-         tP5xKmFmZDh+/WZZM4Q8h1RSII3K5zl9/hTNKcY0LdA37a+JVEdQ88yKSy8G3m5mo6S1
-         B/1Q==
-X-Gm-Message-State: ACgBeo2bfrdYXKGbhJoyODYvem1jZhYZ67GUg6mUZWffYXbyRBZizqcV
-        fuKSLE8/zjP9cpxay66kZRULTg==
-X-Google-Smtp-Source: AA6agR7NS6yUIm7CAoXHFJTb+skSCz38PsVUZjCN87A1vUJVeoUMe8EHGdUJ6j4dkwQOG/sOl54vRQ==
-X-Received: by 2002:a50:fd83:0:b0:43c:bca0:bdd1 with SMTP id o3-20020a50fd83000000b0043cbca0bdd1mr17150256edt.360.1660628998932;
-        Mon, 15 Aug 2022 22:49:58 -0700 (PDT)
-Received: from fedora.sec.9e.network (ip-088-153-019-247.um27.pools.vodafone-ip.de. [88.153.19.247])
-        by smtp.gmail.com with ESMTPSA id d20-20020aa7d5d4000000b0043c92c44c53sm7797054eds.93.2022.08.15.22.49.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Aug 2022 22:49:57 -0700 (PDT)
-From:   Patrick Rudolph <patrick.rudolph@9elements.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Patrick Rudolph <patrick.rudolph@9elements.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v3 1/2] dt-binding: pinctrl: Add cypress,cy8c95x0
-Date:   Tue, 16 Aug 2022 07:49:14 +0200
-Message-Id: <20220816054917.7893-2-patrick.rudolph@9elements.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220816054917.7893-1-patrick.rudolph@9elements.com>
-References: <20220816054917.7893-1-patrick.rudolph@9elements.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=SM85WUFG4iEcrdGXUW1ovRXHJvVq4YoOra1Othbb/sI=;
+        b=autRaa6V7CEcQnNnAOp1AMj1Mf0DSqb63Ja3R6vQGLf8V3V/6DnmKNzcrXMkq70Xqe
+         c8WAO70VMz5VvEl0n+tYcU2CL2OW8G3d/ayHdCa6pPdRLuLakSGjWaJ2oUJdZAZsK4id
+         gj/g/AX1XQPgay9wB4FGUJ2KmeRdv6yI8+TKgHScy7/XwOfsTnBA2K4P/jaUV75AtzeD
+         y0C6jnhjXAK7i53kIckrK4VUHTnR4FEqLyaRLIefi9pDd3iEzANK0LlSkS4+dsIX5tZS
+         GyzJx585Zv5D6peRS1x7fHf2JRIf84mJ/TpGWj7fzg20uRw0Gf2sNoVh6TUHcFXCzPE3
+         1RHw==
+X-Gm-Message-State: ACgBeo2PHk1aa3kdQQf/8h9XQR2Q474je8HEpQPcodxi7LAu1BKEVHaC
+        3nVvGZERF5z7FcGsAGENUDxcMQ==
+X-Google-Smtp-Source: AA6agR7IeUpFg8yHso/TiNxbVUWwOdABAJVuP+7GB6b2iz3fuXp47F/1wpnpJjS37Xv39u1GZHp8gQ==
+X-Received: by 2002:a05:6512:304c:b0:48c:ed09:1e95 with SMTP id b12-20020a056512304c00b0048ced091e95mr7274477lfb.642.1660629310351;
+        Mon, 15 Aug 2022 22:55:10 -0700 (PDT)
+Received: from ?IPV6:2001:14bb:ae:539c:1782:dd68:b0c1:c1a4? (d15l54g8c71znbtrbzt-4.rev.dnainternet.fi. [2001:14bb:ae:539c:1782:dd68:b0c1:c1a4])
+        by smtp.gmail.com with ESMTPSA id o15-20020a05651205cf00b00491203d6cc9sm935238lfo.131.2022.08.15.22.55.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 Aug 2022 22:55:09 -0700 (PDT)
+Message-ID: <7f1e6b96-49f6-e83c-7711-d6a60cd012e2@linaro.org>
+Date:   Tue, 16 Aug 2022 08:55:07 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v2 01/10] dt-bindings: sram: sunxi-sram: Clean up the
+ compatible lists
+Content-Language: en-US
+To:     Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>, Hans de Goede <hdegoede@redhat.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@lists.linux.dev
+References: <20220815041248.53268-1-samuel@sholland.org>
+ <20220815041248.53268-2-samuel@sholland.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220815041248.53268-2-samuel@sholland.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,155 +82,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Added device tree binding documentation for
-Cypress CY8C95x0 I2C pin-controller.
+On 15/08/2022 07:12, Samuel Holland wrote:
+> Use enumerations where appropriate to combine "const" choices and
+> deduplicate fallback compatible strings.
+> 
+> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
+> ---
+> 
+> Changes in v2:
 
-Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
----
- .../bindings/pinctrl/cypress,cy8c95x0.yaml    | 134 ++++++++++++++++++
- 1 file changed, 134 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pinctrl/cypress,cy8c95x0.yaml
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/cypress,cy8c95x0.yaml b/Documentation/devicetree/bindings/pinctrl/cypress,cy8c95x0.yaml
-new file mode 100644
-index 000000000000..915cbbcc3555
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pinctrl/cypress,cy8c95x0.yaml
-@@ -0,0 +1,134 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pinctrl/cypress,cy8c95x0.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Cypress CY8C95X0 I2C GPIO expander
-+
-+maintainers:
-+  - Patrick Rudolph <patrick.rudolph@9elements.com>
-+
-+description: |
-+  This supports the 20/40/60 pin Cypress CYC95x0 GPIO I2C expanders.
-+  Pin function configuration is performed on a per-pin basis.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - cypress,cy8c9520
-+      - cypress,cy8c9540
-+      - cypress,cy8c9560
-+
-+  reg:
-+    maxItems: 1
-+
-+  gpio-controller: true
-+
-+  '#gpio-cells':
-+    description:
-+      The first cell is the GPIO number and the second cell specifies GPIO
-+      flags, as defined in <dt-bindings/gpio/gpio.h>.
-+    const: 2
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  interrupt-controller: true
-+
-+  '#interrupt-cells':
-+    const: 2
-+
-+  gpio-line-names: true
-+
-+  gpio-ranges:
-+    maxItems: 1
-+
-+  gpio-reserved-ranges:
-+    maxItems: 1
-+
-+  vdd-supply:
-+    description:
-+      Optional power supply.
-+
-+patternProperties:
-+  '-pins$':
-+    type: object
-+    description:
-+      Pinctrl node's client devices use subnodes for desired pin configuration.
-+      Client device subnodes use below standard properties.
-+    $ref: pincfg-node.yaml#
-+
-+    properties:
-+      pins:
-+        description:
-+          List of gpio pins affected by the properties specified in this
-+          subnode.
-+        items:
-+          pattern: '^gp([0-7][0-7])$'
-+        minItems: 1
-+        maxItems: 60
-+
-+      function:
-+        description:
-+          Specify the alternative function to be configured for the specified
-+          pins.
-+        enum: [ gpio, pwm ]
-+
-+      bias-pull-down: true
-+
-+      bias-pull-up: true
-+
-+      bias-disable: true
-+
-+      output-high: true
-+
-+      output-low: true
-+
-+      drive-push-pull: true
-+
-+      drive-open-drain: true
-+
-+      drive-open-source: true
-+
-+    required:
-+      - pins
-+      - function
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-controller
-+  - '#interrupt-cells'
-+  - gpio-controller
-+  - '#gpio-cells'
-+
-+additionalProperties: false
-+
-+allOf:
-+  - $ref: "pinctrl.yaml#"
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      pinctrl@20 {
-+        compatible = "cypress,cy8c9520";
-+        reg = <0x20>;
-+        gpio-controller;
-+        #gpio-cells = <2>;
-+        #interrupt-cells = <2>;
-+        interrupts = <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-controller;
-+        vdd-supply = <&p3v3>;
-+        gpio-reserved-ranges = <5 1>;
-+      };
-+    };
--- 
-2.37.1
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
+
+Best regards,
+Krzysztof
