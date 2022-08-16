@@ -2,218 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38DD559580C
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 12:22:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5A6C5957DD
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 12:17:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234486AbiHPKWg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 06:22:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33220 "EHLO
+        id S234415AbiHPKRS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 06:17:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234407AbiHPKWP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 06:22:15 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 847C613F64E
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 01:26:56 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id o22so12518625edc.10
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 01:26:56 -0700 (PDT)
+        with ESMTP id S234397AbiHPKQg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 06:16:36 -0400
+Received: from smtp-fw-6002.amazon.com (smtp-fw-6002.amazon.com [52.95.49.90])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3548DF0B3;
+        Tue, 16 Aug 2022 01:28:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=QDEve6J+FvXDoisqTMwo0p9DvKs3kysq/xhm5KZN/F8=;
-        b=x4ZT5feLMaQ/Wgubwh3Hh3K6rOaF0UpMyoMCMsyXRfALVt3fukFYV+LUVN6RHT+xvq
-         m+bvgD40p+GdrNbsmiAFwUnNF45m8BefjVWh5rFYs4sYghVcojRrHKbt6xnsFP4uR9s7
-         zBGNFPk0IRSVVUHqKkQWeXn8hWJeeT3PLXt84DqBo4V9PYzyqmnittq/BuOxY5nP2Zi7
-         XH1vgqDIMD3efS2lg16k2VP8dWtr1pUxTmlR/+CyrnzfSbN+XCHkwMRZqK/OI40x1ud+
-         bssuky03t4h6u280TM3PF9/mO/K+YNuzS75HiT/SGo5SppwUlc3GHmDDrnQOJ7Br5xFx
-         O0Uw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=QDEve6J+FvXDoisqTMwo0p9DvKs3kysq/xhm5KZN/F8=;
-        b=vwTRlDs6euG29FwlfilEYnCHu0Nu2+qa8tjRXxB2l+vyoGpV8H0TGWtM3d2DKc9bDk
-         44SFWqy7pYEpXzYDhPHHa5Mo18znNgVwblbIGM6+fTI5ikaevk+uqsjOVCg7TEnVVV9/
-         +skTtd0wMb2ZOAkXv69C+4HQ0M7zdeNE23BJFamD8yfAfMi3GdJ8+JSR5CP8wAtuMmoi
-         yAs1pRaIBtMZqL3CyqrbYMUIO4bTq1OGnrYq/6iVa7cDb7qa6A/cZKdeNfUhEKiShD0/
-         2NvtZVeSlpm+I66xK952xhpRPfict903eZcsLIaWq2EOYtKdNSyAVdqrFY1QwzZAhiiO
-         pmBg==
-X-Gm-Message-State: ACgBeo0D99SIOSJVIrIa55ciAwxFjEVM6HYcon2od3RQcEqZFvne0FyV
-        Kw+ugmy/PAXC9OcgI9RRQpPqOnmIZhR9rA==
-X-Google-Smtp-Source: AA6agR67zf10EbPitdqUQl3FsEBWXIw/eieDrOVQ5oSnllulorwU6g/JwdIB55zfcvWNvkr+S7Q5pw==
-X-Received: by 2002:a05:6402:448b:b0:43b:5ec6:8863 with SMTP id er11-20020a056402448b00b0043b5ec68863mr17413054edb.377.1660638414930;
-        Tue, 16 Aug 2022 01:26:54 -0700 (PDT)
-Received: from [192.168.1.69] (120.205.87.79.rev.sfr.net. [79.87.205.120])
-        by smtp.gmail.com with ESMTPSA id 5-20020a170906328500b00731219a2797sm4929454ejw.210.2022.08.16.01.26.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Aug 2022 01:26:54 -0700 (PDT)
-Message-ID: <47fdb798-b66e-3d30-dcbe-a3d15dc45619@baylibre.com>
-Date:   Tue, 16 Aug 2022 10:26:53 +0200
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1660638501; x=1692174501;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=ULkqAHITNyNY+nb/F2KUcwZfWxaEdjYhDYRpVxQWyfI=;
+  b=vZF3rZuQuo4YNJXjDkVRkT9o0m6qo8vDPkO3XxIGS/qT3SAelrx6VY8k
+   1gVd89lxvtmr2KxQ+r+Ll8HtSPn7jvSngY/rJOHNkEzp4jegBvZzBZR3S
+   +e5v+XBZXhAvPB0Xkk0Mcs+l/WE6HiXbUhtEfUWnLcp9W7NJy4TTvg4TK
+   Q=;
+X-IronPort-AV: E=Sophos;i="5.93,240,1654560000"; 
+   d="scan'208";a="233486642"
+Received: from iad12-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-iad-1a-2d7489a4.us-east-1.amazon.com) ([10.43.8.6])
+  by smtp-border-fw-6002.iad6.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Aug 2022 08:28:20 +0000
+Received: from EX13MTAUWA001.ant.amazon.com (iad12-ws-svc-p26-lb9-vlan2.iad.amazon.com [10.40.163.34])
+        by email-inbound-relay-iad-1a-2d7489a4.us-east-1.amazon.com (Postfix) with ESMTPS id 9A42C8705F;
+        Tue, 16 Aug 2022 08:28:20 +0000 (UTC)
+Received: from EX19D013UWA004.ant.amazon.com (10.13.138.207) by
+ EX13MTAUWA001.ant.amazon.com (10.43.160.118) with Microsoft SMTP Server (TLS)
+ id 15.0.1497.38; Tue, 16 Aug 2022 08:28:00 +0000
+Received: from EX13MTAUWA001.ant.amazon.com (10.43.160.58) by
+ EX19D013UWA004.ant.amazon.com (10.13.138.207) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1118.12;
+ Tue, 16 Aug 2022 08:27:59 +0000
+Received: from dev-dsk-farbere-1a-46ecabed.eu-west-1.amazon.com
+ (172.19.116.181) by mail-relay.amazon.com (10.43.160.118) with Microsoft SMTP
+ Server id 15.0.1497.38 via Frontend Transport; Tue, 16 Aug 2022 08:27:59
+ +0000
+Received: by dev-dsk-farbere-1a-46ecabed.eu-west-1.amazon.com (Postfix, from userid 14301484)
+        id 61ACF4C09; Tue, 16 Aug 2022 08:27:57 +0000 (UTC)
+From:   Eliav Farber <farbere@amazon.com>
+To:     <jdelvare@suse.com>, <linux@roeck-us.net>, <robh+dt@kernel.org>,
+        <mark.rutland@arm.com>, <linux-hwmon@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     <farbere@amazon.com>, <talel@amazon.com>, <hhhawa@amazon.com>,
+        <jonnyc@amazon.com>, <hanochu@amazon.com>, <ronenk@amazon.com>,
+        <itamark@amazon.com>, <shellykz@amazon.com>, <shorer@amazon.com>,
+        <amitlavi@amazon.com>, <almogbs@amazon.com>, <dwmw@amazon.co.uk>,
+        <rtanwar@maxlinear.com>
+Subject: [PATCH 01/16] hwmon: (mr75203) fix VM sensor allocation when "intel,vm-map" not defined
+Date:   Tue, 16 Aug 2022 08:27:42 +0000
+Message-ID: <20220816082757.11990-2-farbere@amazon.com>
+X-Mailer: git-send-email 2.37.1
+In-Reply-To: <20220816082757.11990-1-farbere@amazon.com>
+References: <20220816082757.11990-1-farbere@amazon.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.1.0
-Subject: Re: [PATCH v4 0/3] ECAP support on TI AM62x SoC
-Content-Language: en-US
-To:     William Breathitt Gray <william.gray@linaro.org>
-Cc:     robh+dt@kernel.org, jic23@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        mranostay@ti.com
-References: <20220810140724.182389-1-jpanis@baylibre.com>
- <Yvk4OijjBj+Wa7fT@fedora>
-From:   Julien Panis <jpanis@baylibre.com>
-In-Reply-To: <Yvk4OijjBj+Wa7fT@fedora>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-11.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        USER_IN_DEF_SPF_WL autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Fix a bug that in case "intel,vm-map" is missing 'num' is set to 0,
+and no voltage channel infos are allocated.
 
+Signed-off-by: Eliav Farber <farbere@amazon.com>
+---
+ drivers/hwmon/mr75203.c | 28 ++++++++++++----------------
+ 1 file changed, 12 insertions(+), 16 deletions(-)
 
-On 14/08/2022 20:00, William Breathitt Gray wrote:
-> On Wed, Aug 10, 2022 at 04:07:21PM +0200, Julien Panis wrote:
->> The Enhanced Capture (ECAP) module can be used to timestamp events
->> detected on signal input pin. It can be used for time measurements
->> of pulse train signals.
->>
->> ECAP module includes 4 timestamp capture registers. For all 4 sequenced
->> timestamp capture events (1->2->3->4->1->...), edge polarity (falling/rising
->> edge) can be selected.
->>
->> This driver leverages counter subsystem to :
->> - select edge polarity for all 4 capture events (event mode)
->> - log timestamps for each capture event
->> Event polarity, and CAP1/2/3/4 timestamps give all the information
->> about the input pulse train. Further information can easily be computed :
->> period and/or duty cycle if frequency is constant, elapsed time between
->> pulses, etc...
->>
->> Modifications since v3:
->> 	- Migrate driver from IIO to Counter subsystem
->> 	- Minor modification in yaml ($id) to match Counter subsystem
->> 	- Add ABI documentation
->>
->> Userspace commands :
->> 	### SIGNAL ###
->> 	cd /sys/bus/counter/devices/counter0/signal0
->>
->> 	# Get available polarities for each capture event
->> 	cat polarity1_available
->> 	cat polarity2_available
->> 	cat polarity3_available
->> 	cat polarity4_available
->>
->> 	# Get polarity for each capture event
->> 	cat polarity1
->> 	cat polarity2
->> 	cat polarity3
->> 	cat polarity4
->>
->> 	# Set polarity for each capture event
->> 	echo rising > polarity1
->> 	echo falling > polarity2
->> 	echo rising > polarity3
->> 	echo falling > polarity4
->>
->> 	### COUNT ###
->> 	cd /sys/bus/counter/devices/counter0/count0
->>
->> 	# Run ECAP
->> 	echo 1 > enable
->>
->> 	# Get current timebase counter value
->> 	cat count
->>
->> 	# Get captured timestamps
->> 	cat capture1
->> 	cat capture2
->> 	cat capture3
->> 	cat capture4
->>
->> 	# Note that counter watches can also be used to get
->> 	# data from userspace application
->> 	# -> see tools/counter/counter_example.c
->>
->> 	# Stop ECAP
->> 	echo 0 > enable
->>
->> Julien Panis (3):
->>    dt-binding: counter: add ti,am62-ecap-capture.yaml
->>    Documentation: ABI: add sysfs-bus-counter-ecap
->>    counter: capture-tiecap: capture driver support for ECAP
->>
->>   .../ABI/testing/sysfs-bus-counter-ecap        |  64 ++
->>   .../counter/ti,am62-ecap-capture.yaml         |  61 ++
->>   drivers/counter/Kconfig                       |  14 +
->>   drivers/counter/Makefile                      |   1 +
->>   drivers/counter/capture-tiecap.c              | 634 ++++++++++++++++++
->>   include/uapi/linux/counter.h                  |   2 +
->>   6 files changed, 776 insertions(+)
->>   create mode 100644 Documentation/ABI/testing/sysfs-bus-counter-ecap
->>   create mode 100644 Documentation/devicetree/bindings/counter/ti,am62-ecap-capture.yaml
->>   create mode 100644 drivers/counter/capture-tiecap.c
->>
->> -- 
->> 2.25.1
-> Something that has become apparent to me is the code repetition in this
-> driver in order to support the capture buffer. Buffers are common
-> components in devices, so it'll be good for us to standardize some of
-> what we're exploring here into an interface that other drivers can also
-> use. We have two ABIs to consider: the driver interface and the sysfs
-> interface.
->
-> For the sysfs interface, I think we'll have to expose each element
-> individually (e.g. capture1, capture2, etc.) because sysfs attributes
-> are suppose to expose only a single datum for any given attribute.
->
-> For the driver side, we might want to introduce a new Counter component
-> type for buffers and respective macros to streamline some of the code
-> for driver authors. For example, a new COUNTER_COMP_BUFFER_U64 enum
-> counter_comp_type constant could be introduced to represent a u64 buffer
-> element; respective struct counter_comp read callbacks could be
-> introduced::
->
->      int (*count_buffer_u64_read)(struct counter_device *counter,
->                                   struct counter_count *count,
-> 				 size_t index, u64 *val);
->
-> So a driver author can use the "index" parameter to locate the buffer
-> element and pass back its value via the "val" parameter.To define the
-> buffer, maybe helper macros like this could be introduced::
->
->      COUNTER_COMP_COUNT_BUFFER_U64("capture", ecap_cnt_cap_read, 4)
->
-> This would define four u64 buffer elements each named prefixed with
-> "capture" and with their read callbacks set to ecap_cnt_cap_read().
-
-Somehow, this "index" parameter would make things much easier for driver 
-author.
-Besides, defining all these similar functions (cap1_read, ..., 
-cap4_read) does not really
-make sense for ECAP driver.
-So, accessing this index parameter through callback and having the 
-possibility to use
-the same function (cap_read) for several attributes would be great for 
-my driver,
-and probably for future ones.
-
->
-> One problem however is that I'm not sure if the C preprocessor would be
-> able to unroll the COUNTER_COMP_COUNT_BUFFER_U64 to a dynamic number of
-> elements based on a macro parameter (maybe there is a GCC extension).
->
-> I'm just throwing out ideas, so I'd like to hear some comments and
-> suggestions from others about how we should add buffer support to the
-> Counter subsystem.
->
-> William Breathitt Gray
+diff --git a/drivers/hwmon/mr75203.c b/drivers/hwmon/mr75203.c
+index 046523d47c29..0e29877a1a9c 100644
+--- a/drivers/hwmon/mr75203.c
++++ b/drivers/hwmon/mr75203.c
+@@ -580,8 +580,6 @@ static int mr75203_probe(struct platform_device *pdev)
+ 	}
+ 
+ 	if (vm_num) {
+-		u32 num = vm_num;
+-
+ 		ret = pvt_get_regmap(pdev, "vm", pvt);
+ 		if (ret)
+ 			return ret;
+@@ -594,30 +592,28 @@ static int mr75203_probe(struct platform_device *pdev)
+ 		ret = device_property_read_u8_array(dev, "intel,vm-map",
+ 						    pvt->vm_idx, vm_num);
+ 		if (ret) {
+-			num = 0;
++			/*
++			 * Incase intel,vm-map property is not defined, we
++			 * assume incremental channel numbers.
++			 */
++			for (i = 0; i < vm_num; i++)
++				pvt->vm_idx[i] = i;
+ 		} else {
+ 			for (i = 0; i < vm_num; i++)
+ 				if (pvt->vm_idx[i] >= vm_num ||
+-				    pvt->vm_idx[i] == 0xff) {
+-					num = i;
++				    pvt->vm_idx[i] == 0xff)
+ 					break;
+-				}
+-		}
+ 
+-		/*
+-		 * Incase intel,vm-map property is not defined, we assume
+-		 * incremental channel numbers.
+-		 */
+-		for (i = num; i < vm_num; i++)
+-			pvt->vm_idx[i] = i;
++			vm_num = i;
++		}
+ 
+-		in_config = devm_kcalloc(dev, num + 1,
++		in_config = devm_kcalloc(dev, vm_num + 1,
+ 					 sizeof(*in_config), GFP_KERNEL);
+ 		if (!in_config)
+ 			return -ENOMEM;
+ 
+-		memset32(in_config, HWMON_I_INPUT, num);
+-		in_config[num] = 0;
++		memset32(in_config, HWMON_I_INPUT, vm_num);
++		in_config[vm_num] = 0;
+ 		pvt_in.config = in_config;
+ 
+ 		pvt_info[index++] = &pvt_in;
+-- 
+2.37.1
 
