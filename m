@@ -2,112 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 94B9C595D87
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 15:40:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1BB1595DA4
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 15:48:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235187AbiHPNkh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 09:40:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46266 "EHLO
+        id S229450AbiHPNsR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 09:48:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235864AbiHPNkf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 09:40:35 -0400
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B723574DD3;
-        Tue, 16 Aug 2022 06:40:33 -0700 (PDT)
-Received: from fraeml706-chm.china.huawei.com (unknown [172.18.147.206])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4M6XGN4YHBz67Mkv;
-        Tue, 16 Aug 2022 21:35:40 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (7.191.163.240) by
- fraeml706-chm.china.huawei.com (10.206.15.55) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2375.24; Tue, 16 Aug 2022 15:40:31 +0200
-Received: from localhost (10.202.226.42) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Tue, 16 Aug
- 2022 14:40:31 +0100
-Date:   Tue, 16 Aug 2022 14:40:29 +0100
-From:   Jonathan Cameron <Jonathan.Cameron@huawei.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     George Mois <george.mois@analog.com>, <jic23@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <lucas.p.stankus@gmail.com>
-Subject: Re: [PATCH 2/2] drivers: iio: accel adxl312 and adxl314 support
-Message-ID: <20220816144029.00006dc3@huawei.com>
-In-Reply-To: <a882c594-564c-7e0c-0ede-aa27fcf8c79d@linaro.org>
-References: <20220816102828.182345-1-george.mois@analog.com>
-        <20220816102828.182345-3-george.mois@analog.com>
-        <8cf4ea9e-89a4-1ab0-334b-9ecc5b1e6f25@linaro.org>
-        <20220816134433.00002900@huawei.com>
-        <a882c594-564c-7e0c-0ede-aa27fcf8c79d@linaro.org>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; i686-w64-mingw32)
+        with ESMTP id S229477AbiHPNsP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 09:48:15 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C67431DD7
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 06:48:14 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id D1008B81A56
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 13:48:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31F5BC433C1;
+        Tue, 16 Aug 2022 13:48:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1660657691;
+        bh=VqW5rsrdYdwTT0k7E37ysrJSvlmvley2MOwxln3gKdI=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=cQvp6SbNd74Y82Is4uZBQiK6udaGbS+bmr8vSlR23zstLx/tKADKNxa6Vmdmo1bOH
+         +4lXafbw/qfWRdN1IvalcY0uHit7qXMkvCVKGboNV5TI7WDBDg/5jcdZB1JofZ9xND
+         Mo0+clZnEBmXBsyKpQzY+7JY5PES2MOxpRMg/1hG1HSdtn/SY5tkLuR9FM5j5jZVL7
+         pyAT2JHUHs0p6477tYIlXbdHct7e+znN1We2uKRBLOQRfkBhbyjR5tu2lQzPJZDPHU
+         gkMYZGxx4zWLFTS1YzGyKcwBQsE4LgZzguMFfSu3XXHuIXcVRF7CsCOse4/iaFbds4
+         mUGHpVyOc7pdw==
+From:   Mark Brown <broonie@kernel.org>
+To:     Zhu Ning <zhuning0077@gmail.com>, alsa-devel@alsa-project.org
+Cc:     Zhu Ning <zhuning@everest-semi.com>, robh@kernel.org,
+        devicetree@vger.kernel.org, tiwai@suse.com,
+        David Yang <yangxiaohua@everest-semi.com>,
+        pierre-louis.bossart@linux.intel.com
+In-Reply-To: <20220804091800.744316-1-zhuning0077@gmail.com>
+References: <20220804091800.744316-1-zhuning0077@gmail.com>
+Subject: Re: [PATCH v5 1/2] ASoC: dt-bindings: Add Everest ES8326 audio CODEC
+Message-Id: <166065768874.1387305.6708346550854638085.b4-ty@kernel.org>
+Date:   Tue, 16 Aug 2022 14:48:08 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.202.226.42]
-X-ClientProxiedBy: lhrpeml100002.china.huawei.com (7.191.160.241) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.10.0-dev-fe10a
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 16 Aug 2022 16:34:59 +0300
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-
-> On 16/08/2022 15:44, Jonathan Cameron wrote:
-> >>>  
-> >>>  MODULE_DEVICE_TABLE(spi, adxl313_spi_id);
-> >>>  
-> >>>  static const struct of_device_id adxl313_of_match[] = {
-> >>> +	{ .compatible = "adi,adxl312" },
-> >>>  	{ .compatible = "adi,adxl313" },
-> >>> +	{ .compatible = "adi,adxl314" },    
-> >>
-> >> You miss here driver data. I don't remember which driver matching takes
-> >> precedence (especially in various cases like DT platforms with device
-> >> instantiated by MFD), but for consistency I think both device id tables
-> >> should have same driver data.  
-> > 
-> > You can set it up to try device_get_match_data() first then fallback
-> > to the adxl313_spi_id[] table but there isn't a nice 'standard' way to
-> > do it.
-> > 
-> > If that isn't done, then IIRC the match is against the compatible with
-> > the vendor ID dropped and the table used is the spi_device_id one.
-> > Which is just annoyingly complex and relies on the strings matching.
-> > 
-> > In the ideal world the spi_device_id table would go away but there are
-> > still a few users (greybus - I think + remaining board files).
-> > So for now something like
-> > 
-> > a = device_get_match_data(dev);
-> > if (!a)
-> > 	a = &adxl31x_spi_regmap_config[id->data];
-> > 
-> > Provides a good way of ensuring the id tables don't need to remain
-> > in sync.
-> >   
+On Thu, 4 Aug 2022 17:17:59 +0800, Zhu Ning wrote:
+> Add device tree binding documentation for Everest ES8326
 > 
-> I guess the only minor issue is that first driver data - ADXL312 - is
-> equal to 0, so above code would make consider ADXL312 as missing data.
-Should have given a type to a.
-
-struct adxl31x_chip_info *a;
-
-It would be a pointer not an enum.  Though we might run into some problems
-with that clang issue of whether array lookups are const (I've not really
-gotten my head around that yet). 
-
-Jonathan
-
-
+> ----
+> v5 tested by dtschema
 > 
-> Best regards,
-> Krzysztof
+> 
 
+Applied to
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[1/2] ASoC: dt-bindings: Add Everest ES8326 audio CODEC
+      commit: 8c6789f4e2d4ee7d6c8c60daa88ea7a4c4cf6779
+[2/2] ASoC: codecs: add support for ES8326
+      commit: 5c439937775d77a334696a98fb2a25dee72ffa2d
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
