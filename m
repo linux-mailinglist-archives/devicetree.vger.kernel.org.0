@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CBCC35958AF
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 12:41:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D4FF5958B1
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 12:43:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234810AbiHPKlg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 06:41:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42342 "EHLO
+        id S234939AbiHPKmr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 06:42:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234824AbiHPKk4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 06:40:56 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 779285E66A
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 02:57:35 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id u3so14209360lfk.8
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 02:57:35 -0700 (PDT)
+        with ESMTP id S234943AbiHPKmU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 06:42:20 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 551A5D075E
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 02:59:42 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id s9so10001476ljs.6
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 02:59:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=J81JV8hikPsZojzsvlP6ILAJmYNXwPnWvXa+KmRWS0Q=;
-        b=jQQ+eLT7HYQLMb9V/o5Ded/h8BWxCiDtI/PoG0ObjjGccnrgEph81/L11DMGNa5VSx
-         iSsWR3L/RelHi1s7Hy6B/ms0E7wFYWjJgftDMTEpCF8Oc2aGCvnlhgjAYuWe9204VNrT
-         h58IUY0eTvayl5HBu8vWSfh0g5DkPWiKseWZzyVL9BM1bWMEVlZQqtaAt4afXf12Ln+7
-         J2IFswj4RWJXN3bBRKggBFgCGCF3USyAVfbyZGVfqAPY3q89DJxMhvQJSQ2Qc2ZpyZ5p
-         Diqfrbo52SaMc5Pw2DMYrZd2Ju2RGqbVrmyq4QzdJYVHTcA0yj1pYu1Up4dHUIiEZcmI
-         EgEA==
+        bh=FUFa0tAMMh/TtMA4JL4AeBH252o6vhFi0++29Z10b24=;
+        b=zVE9sjyWG25xLS+qfczRwgEvdChwcxYO9y9ThgToxbiD92NoriI2/CugHb+2TF3ZFF
+         /VXzNtQOnWx3R0kfeyzg8WfW+5EUt9bgy1gW7Yegna+Po6NGdGDJgHl5Nxz6UXRqKqFP
+         fTc++mSbFkWyzCFK0wXmxpUKsuOcNjJgDR39utT/D3NxyGfYnbhTWBdIuj6akm4Bzko7
+         vz8sowWFwXLFNBVl4aaNXSw+3yD83buEjvoUZ2WYEtGbit0Tgtc5xyxrwWGU2kIA2HyZ
+         y/47r3YT6oT3mH6gKYu00BulMGdQcHyDyBVfKhGRcfRG38Zqvj/ELALRHaU37DJ7c1MF
+         Om0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=J81JV8hikPsZojzsvlP6ILAJmYNXwPnWvXa+KmRWS0Q=;
-        b=keqbvKuwK6888sTWIQvj8V8mFRq7sJ+m0HixhOx3uYvGhN/lvsd6CxCgW8d+mt3Sdc
-         XwvQPxuIerqh8L+l2KGliQdAOEDJZrhyQNw9C6rqYrGPqKbrcCJzaL+QoUAW/tM6CHpe
-         GPpmCLV3vT9EiN61DCJrGsvvSpYRfT/iBr88VzX27T/5tRG2aYl/rHOLmcm17fWexQem
-         fDpSIpNx1WV3I5Em0Qny1ejqdxJrW5OJDaAUQBylR+/546unEBGNeDWmEKCnDsYwHwyi
-         uf4jdAGzKWvUmfLDnkg7LcIlVZlgsiJeVwpl6xzKwjH6bFkuXguG09qlR+jiPttC1aiw
-         e2Tw==
-X-Gm-Message-State: ACgBeo0S0Y2xYg5m21zeV7RTJ/AgPYIVWUo58UOtfw92DESEikNfovpH
-        ghCbjj0l0MAqz/sQwO2rOkO6fA==
-X-Google-Smtp-Source: AA6agR5BXtY+i9FUTQzbBUsXLd2vZVPfTFvV7zCU6pC5DN18tLDE/qWfQ2L1Ip3a8zZIsZ8WLZHO7A==
-X-Received: by 2002:a05:6512:c19:b0:48a:f3bc:5537 with SMTP id z25-20020a0565120c1900b0048af3bc5537mr6670576lfu.490.1660643853696;
-        Tue, 16 Aug 2022 02:57:33 -0700 (PDT)
+        bh=FUFa0tAMMh/TtMA4JL4AeBH252o6vhFi0++29Z10b24=;
+        b=fGuG40hHjVQIBLwVI499DDCLOg7JuMXdDpCsp//OcAXXMK3yfv04/PHbYkZzt69KoX
+         QWVJHFQrdwsXSuUf7FNitwCJ88y3Y0Ls/uMiZ2mzjbn5NsiTvfrAIlB41SFJ6iVarSyC
+         yoBYFP6tmPPaIfTuhHeX70AS0mk/ulP2gx+W6gwnZBCaGIeAXENzIfYkwV5dkPD2UkzG
+         +oNN9Ye1Q04cxlcJ/dU3xRs6gj/q6GJ1dzFWL6erQzI2Xeb7PNKDWctr+vQWGYmmNAYM
+         qA4wbATSPIOrMKqIVSfwzfKRUlqJLu/CcMG2OxxrwUhOFJjfOE34TrZ7UPqo/SPPp511
+         a82Q==
+X-Gm-Message-State: ACgBeo3fdTgSAOEjDO0yo6Y/l3x4ajmo4G3m2qYtekNYg2A2M2kIATns
+        H7bltY/gvo4OktOfdLO7NYLaiw==
+X-Google-Smtp-Source: AA6agR6vA3wQXqUJnn2nYR4Cb7jBvUzx/9ftdty6xbOM/7CP2StR5ZpMn2Us3AJtLeblD6qmRz2oQg==
+X-Received: by 2002:a2e:b74a:0:b0:25f:3f72:9210 with SMTP id k10-20020a2eb74a000000b0025f3f729210mr6307340ljo.8.1660643981080;
+        Tue, 16 Aug 2022 02:59:41 -0700 (PDT)
 Received: from ?IPV6:2001:14bb:ae:539c:1782:dd68:b0c1:c1a4? (d15l54g8c71znbtrbzt-4.rev.dnainternet.fi. [2001:14bb:ae:539c:1782:dd68:b0c1:c1a4])
-        by smtp.gmail.com with ESMTPSA id h4-20020a19ca44000000b0048b0aa2f87csm1335298lfj.181.2022.08.16.02.57.32
+        by smtp.gmail.com with ESMTPSA id o5-20020a2e9445000000b0025e0396786dsm1741897ljh.93.2022.08.16.02.59.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Aug 2022 02:57:33 -0700 (PDT)
-Message-ID: <3b5358e3-9ba6-49a8-fa37-da237ba56ddb@linaro.org>
-Date:   Tue, 16 Aug 2022 12:57:31 +0300
+        Tue, 16 Aug 2022 02:59:40 -0700 (PDT)
+Message-ID: <3e23c288-7065-a3fd-c326-8d66e168ba41@linaro.org>
+Date:   Tue, 16 Aug 2022 12:59:39 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH v3 1/4] regulator: dt-bindings: Add Allwinner D1 LDOs
+Subject: Re: [PATCH v3 3/4] dt-bindings: sram: sunxi-sram: Add optional
+ regulators child
 Content-Language: en-US
 To:     Samuel Holland <samuel@sholland.org>,
         Liam Girdwood <lgirdwood@gmail.com>,
@@ -66,14 +67,14 @@ Cc:     Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         linux-sunxi@lists.linux.dev
 References: <20220815043436.20170-1-samuel@sholland.org>
- <20220815043436.20170-2-samuel@sholland.org>
+ <20220815043436.20170-4-samuel@sholland.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220815043436.20170-2-samuel@sholland.org>
+In-Reply-To: <20220815043436.20170-4-samuel@sholland.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,33 +83,77 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 15/08/2022 07:34, Samuel Holland wrote:
-> +  reg:
-> +    maxItems: 1
-> +
-> +  nvmem-cells:
-> +    items:
-> +      - description: NVMEM cell for the calibrated bandgap reference trim value
-> +
-> +  nvmem-cell-names:
-> +    items:
-> +      - const: bg_trim
-> +
-> +patternProperties:
-> +  "^(a|hp)ldo$":
-> +    type: object
-> +    $ref: regulator.yaml#
+> Some sunxi SoCs have in-package regulators controlled by a register in
+> the system control MMIO block. Allow a child node for these regulators
+> in addition to SRAM child nodes.
+> 
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
+> ---
+> 
+> Changes in v3:
+>  - Require the regulators node to have a unit address
+>  - Reference the regulator schema from the SRAM controller schema
+>  - Move the system LDOs example to the SRAM controller schema
+>  - Reorder the patches so the example passes validation
+> 
+> Changes in v2:
+>  - New patch for v2
+> 
+>  .../allwinner,sun4i-a10-system-control.yaml   | 29 +++++++++++++++++++
+>  1 file changed, 29 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sram/allwinner,sun4i-a10-system-control.yaml b/Documentation/devicetree/bindings/sram/allwinner,sun4i-a10-system-control.yaml
+> index d64c1b28fb61..915ca85c3f10 100644
+> --- a/Documentation/devicetree/bindings/sram/allwinner,sun4i-a10-system-control.yaml
+> +++ b/Documentation/devicetree/bindings/sram/allwinner,sun4i-a10-system-control.yaml
+> @@ -56,6 +56,10 @@ properties:
+>    ranges: true
+>  
+>  patternProperties:
+> +  "^regulators@[0-9a-f]+$":
+> +    $ref: /schemas/regulator/allwinner,sun20i-d1-system-ldos.yaml#
 > +    unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - nvmem-cells
-> +  - nvmem-cell-names
-> +
-> +unevaluatedProperties: false
 
-one more: this must be additionalProperties:false, because you do not
-reference any other schema in top level. Same in second file.
+unevaluatedProperties is not needed. Your other schema does not allow
+anything else here.
+
+> +
+>    "^sram@[a-z0-9]+":
+>      type: object
+>  
+> @@ -130,3 +134,28 @@ examples:
+>          };
+>        };
+>      };
+> +
+> +  - |
+> +    syscon@3000000 {
+> +      compatible = "allwinner,sun20i-d1-system-control";
+
+Your other example uses simple-mfd, syscon... A bit confusing.
+
+> +      reg = <0x3000000 0x1000>;
+> +      ranges;
+> +      #address-cells = <1>;
+> +      #size-cells = <1>;
+> +
+> +      regulators@3000150 {
+> +        compatible = "allwinner,sun20i-d1-system-ldos";
+> +        reg = <0x3000150 0x4>;
+> +
+> +        reg_ldoa: ldoa {
+> +          regulator-min-microvolt = <1800000>;
+> +          regulator-max-microvolt = <1800000>;
+> +        };
+> +
+> +        reg_ldob: ldob {
+> +          regulator-name = "vcc-dram";
+> +          regulator-min-microvolt = <1500000>;
+> +          regulator-max-microvolt = <1500000>;
+> +        };
+> +      };
+> +    };
+
 
 Best regards,
 Krzysztof
