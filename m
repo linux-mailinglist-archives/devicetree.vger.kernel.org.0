@@ -2,164 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 76022595710
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 11:51:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 062F559572C
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 11:55:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233923AbiHPJut (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 05:50:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47968 "EHLO
+        id S230387AbiHPJyv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 05:54:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234094AbiHPJu0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 05:50:26 -0400
-Received: from smtp-fw-2101.amazon.com (smtp-fw-2101.amazon.com [72.21.196.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD2BF139D93;
-        Tue, 16 Aug 2022 01:28:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1660638501; x=1692174501;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=4O85Ywpsk0CWX8vVdYh3wJcHjYPaTGC/6XL8TPAGJOE=;
-  b=oY6AdOURKu2wtaB8asLWGrTpXSq5hWNp7FQx+nWXbbMFCajnthtdnbbC
-   rSHKiBHAW5Bu4YEzmk6SSAK+43mxqLH/QbITRF5Jtws6Lp+dWSVKlcthO
-   mMXP2Ghi8t97y2uUwwqDt2zkmG0vQdfVJEJ/AQL1mV6ergZkfAdVBRj2v
-   Y=;
-X-IronPort-AV: E=Sophos;i="5.93,240,1654560000"; 
-   d="scan'208";a="230105355"
-Received: from iad12-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-pdx-2c-b09ea7fa.us-west-2.amazon.com) ([10.43.8.6])
-  by smtp-border-fw-2101.iad2.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Aug 2022 08:28:20 +0000
-Received: from EX13MTAUEE002.ant.amazon.com (pdx1-ws-svc-p6-lb9-vlan3.pdx.amazon.com [10.236.137.198])
-        by email-inbound-relay-pdx-2c-b09ea7fa.us-west-2.amazon.com (Postfix) with ESMTPS id 46F4744ABC;
-        Tue, 16 Aug 2022 08:28:18 +0000 (UTC)
-Received: from EX13D08UEE002.ant.amazon.com (10.43.62.92) by
- EX13MTAUEE002.ant.amazon.com (10.43.62.24) with Microsoft SMTP Server (TLS)
- id 15.0.1497.38; Tue, 16 Aug 2022 08:27:59 +0000
-Received: from EX13MTAUEE002.ant.amazon.com (10.43.62.24) by
- EX13D08UEE002.ant.amazon.com (10.43.62.92) with Microsoft SMTP Server (TLS)
- id 15.0.1497.38; Tue, 16 Aug 2022 08:27:59 +0000
-Received: from dev-dsk-farbere-1a-46ecabed.eu-west-1.amazon.com
- (172.19.116.181) by mail-relay.amazon.com (10.43.62.224) with Microsoft SMTP
- Server id 15.0.1497.38 via Frontend Transport; Tue, 16 Aug 2022 08:27:59
- +0000
-Received: by dev-dsk-farbere-1a-46ecabed.eu-west-1.amazon.com (Postfix, from userid 14301484)
-        id 626CA4B60; Tue, 16 Aug 2022 08:27:57 +0000 (UTC)
-From:   Eliav Farber <farbere@amazon.com>
-To:     <jdelvare@suse.com>, <linux@roeck-us.net>, <robh+dt@kernel.org>,
-        <mark.rutland@arm.com>, <linux-hwmon@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     <farbere@amazon.com>, <talel@amazon.com>, <hhhawa@amazon.com>,
-        <jonnyc@amazon.com>, <hanochu@amazon.com>, <ronenk@amazon.com>,
-        <itamark@amazon.com>, <shellykz@amazon.com>, <shorer@amazon.com>,
-        <amitlavi@amazon.com>, <almogbs@amazon.com>, <dwmw@amazon.co.uk>,
-        <rtanwar@maxlinear.com>
-Subject: [PATCH 14/16] hwmon: (mr75203) parse thermal coefficients from device-tree
-Date:   Tue, 16 Aug 2022 08:27:55 +0000
-Message-ID: <20220816082757.11990-15-farbere@amazon.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220816082757.11990-1-farbere@amazon.com>
-References: <20220816082757.11990-1-farbere@amazon.com>
+        with ESMTP id S234129AbiHPJx7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 05:53:59 -0400
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B7571A3A1;
+        Tue, 16 Aug 2022 01:39:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1660639199; x=1692175199;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=RSEQvzyLuQNM7I4Q/O8zTlnKSg2x78+IvGBFvjba1ps=;
+  b=ZJQhUY37KNj5BcnSIqxBhb8EGUC3gDMC6DNmGKTBctXxtM6z/SDEx3z9
+   eFrPJE3ruj1U5jt/JCaVlAeXzElzr/4SX6l65EGFxhyfzOjCel1thYtcu
+   Vnm5iR/KcNEW8w0dUOsc0wh23pgMtMSNvN/bcLY8xqknaUft6ByTeJ6T0
+   DIvdxrM4vjfCfu45XPCcoFjStzSx4fW9EN9EsTmBzBGm080VrIwwYfxnL
+   Ji+2SAnZnwsBxIxwJzKYOkoE88Wek4N239WIXOoVI+Jsmq87CrBP+T3f0
+   s3FYHfqUnx+uXnh8zvt6PO9KTQ3eqzqsjybNLwZjdWIGZtPTmZdCqCMlM
+   A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10440"; a="279124302"
+X-IronPort-AV: E=Sophos;i="5.93,240,1654585200"; 
+   d="scan'208";a="279124302"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Aug 2022 01:39:57 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,240,1654585200"; 
+   d="scan'208";a="710058969"
+Received: from lkp-server02.sh.intel.com (HELO 3d2a4d02a2a9) ([10.239.97.151])
+  by fmsmga002.fm.intel.com with ESMTP; 16 Aug 2022 01:39:52 -0700
+Received: from kbuild by 3d2a4d02a2a9 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1oNs74-0001dx-2Y;
+        Tue, 16 Aug 2022 08:39:50 +0000
+Date:   Tue, 16 Aug 2022 16:39:05 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Frank Li <Frank.Li@nxp.com>, maz@kernel.org, tglx@linutronix.de,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kw@linux.com,
+        bhelgaas@google.com
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+        peng.fan@nxp.com, aisheng.dong@nxp.com, jdmason@kudzu.us,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        kishon@ti.com, lorenzo.pieralisi@arm.com, ntb@lists.linux.dev,
+        lznuaa@gmail.com
+Subject: Re: [PATCH v5 2/4] irqchip: Add IMX MU MSI controller driver
+Message-ID: <202208161638.7Rn1SHT2-lkp@intel.com>
+References: <20220815213936.2380439-3-Frank.Li@nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-11.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220815213936.2380439-3-Frank.Li@nxp.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_SPF_WL autolearn=ham
-        autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use thermal coefficients from the device tree if they exist.
-Otherwise, use default values.
+Hi Frank,
 
-The equation used in the driver is:
-  T = G + H * (n / cal5 - 0.5) + J * F
+I love your patch! Perhaps something to improve:
 
-With this change we can support also Mode 1 Conversion, which
-uses A instead of G, and B instead of H.
+[auto build test WARNING on jonmason-ntb/ntb-next]
+[also build test WARNING on robh/for-next linus/master v6.0-rc1 next-20220816]
+[cannot apply to tip/irq/core]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-We can also support the series 6 equation that has different
-coefficients and has a slightly different format:
-  T = G + H * (n / cal5 - 0.5)
-by setting J to 0.
+url:    https://github.com/intel-lab-lkp/linux/commits/Frank-Li/PCI-EP-driver-support-MSI-doorbell-from-host/20220816-131930
+base:   https://github.com/jonmason/ntb ntb-next
+config: arm64-randconfig-r025-20220815 (https://download.01.org/0day-ci/archive/20220816/202208161638.7Rn1SHT2-lkp@intel.com/config)
+compiler: clang version 16.0.0 (https://github.com/llvm/llvm-project aed5e3bea138ce581d682158eb61c27b3cfdd6ec)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # install arm64 cross compiling tool for clang build
+        # apt-get install binutils-aarch64-linux-gnu
+        # https://github.com/intel-lab-lkp/linux/commit/71296e2ad757d90e870b2ab81f2b06b9c76e7c41
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Frank-Li/PCI-EP-driver-support-MSI-doorbell-from-host/20220816-131930
+        git checkout 71296e2ad757d90e870b2ab81f2b06b9c76e7c41
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash drivers/irqchip/
 
-Signed-off-by: Eliav Farber <farbere@amazon.com>
----
- drivers/hwmon/mr75203.c | 44 +++++++++++++++++++++++++++++++++++++----
- 1 file changed, 40 insertions(+), 4 deletions(-)
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
 
-diff --git a/drivers/hwmon/mr75203.c b/drivers/hwmon/mr75203.c
-index 59e2dc8fa333..79831a0d5dca 100644
---- a/drivers/hwmon/mr75203.c
-+++ b/drivers/hwmon/mr75203.c
-@@ -129,6 +129,10 @@ struct pvt_device {
- 	u32			p_num;
- 	u32			v_num;
- 	u32			ip_freq;
-+	u32			ts_coeff_h;
-+	u32			ts_coeff_g;
-+	s32			ts_coeff_j;
-+	u32			ts_coeff_cal5;
- 	u8			vm_ch_max;
- 	u8			vm_ch_total;
- };
-@@ -177,10 +181,10 @@ static int pvt_read_temp(struct device *dev, u32 attr, int channel, long *val)
- 		 * Convert the register value to degrees centigrade temperature:
- 		 * T = G + H * (n / cal5 - 0.5) + J * F
- 		 */
--		*val = PVT_G_CONST;
--		*val += PVT_H_CONST * nbs / PVT_CAL5_CONST;
--		*val -= PVT_H_CONST / 2;
--		*val += PVT_J_CONST * pvt->ip_freq / HZ_PER_MHZ;
-+		*val = pvt->ts_coeff_g;
-+		*val += pvt->ts_coeff_h * nbs / pvt->ts_coeff_cal5;
-+		*val -= pvt->ts_coeff_h / 2;
-+		*val += pvt->ts_coeff_j * pvt->ip_freq / HZ_PER_MHZ;
- 
- 		return 0;
- 	default:
-@@ -617,6 +621,38 @@ static int mr75203_probe(struct platform_device *pdev)
- 		memset32(temp_config, HWMON_T_INPUT, ts_num);
- 		pvt_temp.config = temp_config;
- 		pvt_info[index++] = &pvt_temp;
-+
-+		/*
-+		 * Incase ts-coeff-h/g/j/cal5 property is not defined, use
-+		 * default value.
-+		 */
-+		ret = of_property_read_u32(np, "ts-coeff-h", &pvt->ts_coeff_h);
-+		if (ret)
-+			pvt->ts_coeff_h = PVT_H_CONST;
-+
-+		ret = of_property_read_u32(np, "ts-coeff-g", &pvt->ts_coeff_g);
-+		if (ret)
-+			pvt->ts_coeff_g = PVT_G_CONST;
-+
-+		ret = of_property_read_s32(np, "ts-coeff-j", &pvt->ts_coeff_j);
-+		if (ret)
-+			pvt->ts_coeff_j = PVT_J_CONST;
-+
-+		ret = of_property_read_u32(np, "ts-coeff-cal5",
-+					   &pvt->ts_coeff_cal5);
-+		if (ret) {
-+			pvt->ts_coeff_cal5 = PVT_CAL5_CONST;
-+		} else {
-+			if (pvt->ts_coeff_cal5 == 0) {
-+				dev_err(dev, "invalid ts-coeff-cal5 (%u)\n",
-+					pvt->ts_coeff_cal5);
-+				return -EINVAL;
-+			}
-+		}
-+
-+		dev_dbg(dev, "ts-coeff: h = %u, g = %u, j = %d, cal5 = %u\n",
-+			pvt->ts_coeff_h, pvt->ts_coeff_g, pvt->ts_coeff_j,
-+			pvt->ts_coeff_cal5);
- 	}
- 
- 	if (pd_num) {
+All warnings (new ones prefixed by >>):
+
+>> drivers/irqchip/irq-imx-mu-msi.c:295:32: warning: variable 'priv' set but not used [-Wunused-but-set-variable]
+           struct imx_mu_msi *msi_data, *priv;
+                                         ^
+   1 warning generated.
+
+
+vim +/priv +295 drivers/irqchip/irq-imx-mu-msi.c
+
+   288	
+   289	static int __init imx_mu_of_init(struct device_node *dn,
+   290					 struct device_node *parent,
+   291					 const struct imx_mu_dcfg *cfg
+   292					)
+   293	{
+   294		struct platform_device *pdev = of_find_device_by_node(dn);
+ > 295		struct imx_mu_msi *msi_data, *priv;
+   296		struct device_link *pd_link_a;
+   297		struct device_link *pd_link_b;
+   298		struct resource *res;
+   299		struct device *pd_a;
+   300		struct device *pd_b;
+   301		struct device *dev;
+   302		int ret;
+   303		int irq;
+   304	
+   305		if (!pdev)
+   306			return -ENODEV;
+   307	
+   308		dev = &pdev->dev;
+   309	
+   310		priv = msi_data = devm_kzalloc(&pdev->dev, sizeof(*msi_data), GFP_KERNEL);
+   311		if (!msi_data)
+   312			return -ENOMEM;
+   313	
+   314		msi_data->cfg = cfg;
+   315	
+   316		msi_data->regs = devm_platform_ioremap_resource_byname(pdev, "processor a-facing");
+   317		if (IS_ERR(msi_data->regs)) {
+   318			dev_err(&pdev->dev, "failed to initialize 'regs'\n");
+   319			return PTR_ERR(msi_data->regs);
+   320		}
+   321	
+   322		res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "processor b-facing");
+   323		if (!res)
+   324			return -EIO;
+   325	
+   326		msi_data->msiir_addr = res->start + msi_data->cfg->xTR;
+   327	
+   328		irq = platform_get_irq(pdev, 0);
+   329		if (irq <= 0)
+   330			return -ENODEV;
+   331	
+   332		platform_set_drvdata(pdev, msi_data);
+   333	
+   334		msi_data->clk = devm_clk_get(dev, NULL);
+   335		if (IS_ERR(msi_data->clk)) {
+   336			if (PTR_ERR(msi_data->clk) != -ENOENT)
+   337				return PTR_ERR(msi_data->clk);
+   338	
+   339			msi_data->clk = NULL;
+   340		}
+   341	
+   342		pd_a = dev_pm_domain_attach_by_name(dev, "processor a-facing");
+   343		if (IS_ERR(pd_a))
+   344			return PTR_ERR(pd_a);
+   345	
+   346		pd_b = dev_pm_domain_attach_by_name(dev, "processor b-facing");
+   347		if (IS_ERR(pd_b))
+   348			return PTR_ERR(pd_b);
+   349	
+   350		pd_link_a = device_link_add(dev, pd_a,
+   351				DL_FLAG_STATELESS |
+   352				DL_FLAG_PM_RUNTIME |
+   353				DL_FLAG_RPM_ACTIVE);
+   354	
+   355		if (!pd_link_a) {
+   356			dev_err(dev, "Failed to add device_link to mu a.\n");
+   357			goto err_pd_a;
+   358		}
+   359	
+   360		pd_link_b = device_link_add(dev, pd_b,
+   361				DL_FLAG_STATELESS |
+   362				DL_FLAG_PM_RUNTIME |
+   363				DL_FLAG_RPM_ACTIVE);
+   364	
+   365	
+   366		if (!pd_link_b) {
+   367			dev_err(dev, "Failed to add device_link to mu a.\n");
+   368			goto err_pd_b;
+   369		}
+   370	
+   371		ret = imx_mu_msi_domains_init(msi_data, dev);
+   372		if (ret)
+   373			goto err_dm_init;
+   374	
+   375		irq_set_chained_handler_and_data(irq,
+   376						 imx_mu_msi_irq_handler,
+   377						 msi_data);
+   378	
+   379		pm_runtime_enable(dev);
+   380	
+   381		return 0;
+   382	
+   383	err_dm_init:
+   384		device_link_remove(dev,	pd_b);
+   385	err_pd_b:
+   386		device_link_remove(dev, pd_a);
+   387	err_pd_a:
+   388		return -EINVAL;
+   389	}
+   390	
+
 -- 
-2.37.1
-
+0-DAY CI Kernel Test Service
+https://01.org/lkp
