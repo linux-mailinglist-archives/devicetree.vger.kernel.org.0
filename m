@@ -2,122 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C5CE359570E
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 11:51:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18EAE595718
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 11:52:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234026AbiHPJvE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 05:51:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46898 "EHLO
+        id S233300AbiHPJwU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 05:52:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234160AbiHPJug (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 05:50:36 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8161BC743A
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 01:11:41 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id gk3so17502035ejb.8
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 01:11:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=W5qjF+03yjl4vJJBs76s6kPKVqJeVUsMt0AyY8twYsQ=;
-        b=a31uzct1G3C9D+Hs2qHPBGDerVJo1D+cDFBOyXDZSEkBthnRBULx8L05BG1z4Nz+vB
-         DlWvwn77Tw3lX8P+LXQ1P+3WsLW4h4nq4mtuqyh233rjBsC0l+Z4ljNbcsh1tWBYy/cQ
-         TrvXLv3+OD7spjwanEqomikpoS2aXmgZ6O4kRPp5m0FeDgxEU4lYUr4zl6QjJLdnkHr0
-         wiIznDUa21X6AddFwyVviVV15YX3yGbXDhI1P3P13Vi4a9NzRijk9nXmDiEX4SiCzh2i
-         smMr8cxGrPjWXTRKjFfOwBEVcr3Fbz8TFyNWD6FbEJxSsDYLRgLKZd0/URunHsAi5UEm
-         NThw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=W5qjF+03yjl4vJJBs76s6kPKVqJeVUsMt0AyY8twYsQ=;
-        b=d8Z29SxQmB6Mfw98f09+v71oLUWOaiWI5VUUSMuUp4bImNznDMmV+eMzAH5Bumd9BO
-         BVGPt72Ac4yg8qUzWtJ7ks8f6GAOpBRFvYp5/+vj7G14S56OXQkI5GSXDZRGB8vLHheX
-         KheRyHNCFYncnkqcyvKD/ueR2SsF9BtV0c607lRdwuOgb25g1dQb4PsBY40gQ1MlzEdT
-         PUVJE9S7QVmHzdZNR1E5FKkrdhhKbSl1Mh2gr3B3T7mxX2UQVV7ZAuui80Mxdi83dB1p
-         0hGUrgNBYwOi0sPKqsy0rKxbbN9a22gNRw3E+ylIsNj2nnaFSz0LSA/NJBo6D0mtCLZN
-         +PTg==
-X-Gm-Message-State: ACgBeo3+aInJ7Rc3AnrZZXEzL8JopHgwzayQxfp0AEiYiB0D6idTJ4B1
-        PScy5j7vY4HNbX+6fgwBr6M+5Q==
-X-Google-Smtp-Source: AA6agR4WrdhecqaaLYVQ7wHTuKDpRrGzTG8WAdXe81yRK8N0ygsJbeUh5JlV6PmM5HfJe1+47RuRww==
-X-Received: by 2002:a17:907:762f:b0:730:95d9:9955 with SMTP id jy15-20020a170907762f00b0073095d99955mr12330008ejc.505.1660637497239;
-        Tue, 16 Aug 2022 01:11:37 -0700 (PDT)
-Received: from [192.168.1.69] (120.205.87.79.rev.sfr.net. [79.87.205.120])
-        by smtp.gmail.com with ESMTPSA id f25-20020a50fc99000000b004424429afd4sm8078244edq.16.2022.08.16.01.11.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Aug 2022 01:11:36 -0700 (PDT)
-Message-ID: <0730c493-b49f-02f5-c0e7-999d5871dc4a@baylibre.com>
-Date:   Tue, 16 Aug 2022 10:11:35 +0200
+        with ESMTP id S233404AbiHPJwC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 05:52:02 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C19E911A2DE
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 01:14:30 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1oNriC-00087l-C0; Tue, 16 Aug 2022 10:14:08 +0200
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1oNriB-000640-9A; Tue, 16 Aug 2022 10:14:07 +0200
+Date:   Tue, 16 Aug 2022 10:14:07 +0200
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     Peng Fan <peng.fan@nxp.com>
+Cc:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+        "abelvesa@kernel.org" <abelvesa@kernel.org>,
+        "abel.vesa@linaro.org" <abel.vesa@linaro.org>,
+        "mturquette@baylibre.com" <mturquette@baylibre.com>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: clock: imx8m: introduce
+ fsl,protected-clocks property
+Message-ID: <20220816081407.GH17485@pengutronix.de>
+References: <20220815033632.1687854-1-peng.fan@oss.nxp.com>
+ <20220815033632.1687854-2-peng.fan@oss.nxp.com>
+ <20220815135756.GC17485@pengutronix.de>
+ <DU0PR04MB9417593B87BB5A23A29D732E886B9@DU0PR04MB9417.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.1.0
-Subject: Re: [PATCH v4 3/3] counter: capture-tiecap: capture driver support
- for ECAP
-Content-Language: en-US
-To:     William Breathitt Gray <william.gray@linaro.org>
-Cc:     vilhelm.gray@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        mranostay@ti.com
-References: <20220810140724.182389-1-jpanis@baylibre.com>
- <20220810140724.182389-4-jpanis@baylibre.com> <Yvkq9Hy+hxAPQd8J@fedora>
- <YvosCeuntEKXJz+e@fedora>
-From:   Julien Panis <jpanis@baylibre.com>
-In-Reply-To: <YvosCeuntEKXJz+e@fedora>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DU0PR04MB9417593B87BB5A23A29D732E886B9@DU0PR04MB9417.eurprd04.prod.outlook.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Aug 16, 2022 at 07:13:27AM +0000, Peng Fan wrote:
+> Hi Sascha,
+> 
+> > Subject: Re: [PATCH 1/2] dt-bindings: clock: imx8m: introduce fsl,protected-
+> > clocks property
+> > 
+> > Hi Peng,
+> > 
+> > On Mon, Aug 15, 2022 at 11:36:31AM +0800, Peng Fan (OSS) wrote:
+> > > From: Peng Fan <peng.fan@nxp.com>
+> > >
+> > > i.MX8M Linux run on top of Jailhouse hypervisor, the root cell Linux
+> > > should not disable clocks used by inmate. This would also benifit AMP
+> > > to avoid Linux disable clocks used by Cortex-M4/M7.
+> > >
+> > > So introduce fsl,protected-clocks for above case.
+> > >
+> > > Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> > > ---
+> > >  Documentation/devicetree/bindings/clock/imx8m-clock.yaml | 4 ++++
+> > >  1 file changed, 4 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
+> > > b/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
+> > > index 458c7645ee68..0ec490ff9a09 100644
+> > > --- a/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
+> > > +++ b/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
+> > > @@ -39,6 +39,10 @@ properties:
+> > >        ID in its "clocks" phandle cell. See include/dt-bindings/clock/imx8m-
+> > clock.h
+> > >        for the full list of i.MX8M clock IDs.
+> > >
+> > > +  fsl,protected-clocks:
+> > > +    description: List of the Protected clock.
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> > 
+> > There already is a generic protected-clocks property described in
+> > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fgithu
+> > b.com%2Fdevicetree-org%2Fdt-
+> > schema%2Fblob%2F0d1b78cd0c3d9a3d523ced17d7da64b03f6c18ea%2Fdtsc
+> > hema%2Fschemas%2Fclock%2Fclock.yaml%23L131&amp;data=05%7C01%7
+> > Cpeng.fan%40nxp.com%7C5dbc72639c9147765af208da7ec63315%7C686ea
+> > 1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C637961686968811809%7CUn
+> > known%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI
+> > 6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=D%2BfJA5h
+> > wblaX8VH%2BdQoN0pEFmCipfZHHf0ZVo07B4kg%3D&amp;reserved=0
+> > We probably shouldn't add a property with the same name but different
+> > meaning.
+> > 
+> 
+> Thanks for sharing the info. I should check the common bindings before
+> cook this patchset.
+> 
+> > I am not sure if we want to go the route of a fsl specific property, it looks
+> > like other SoCs could have similar problems and it might be worth solving
+> > this problem with a broader view.
+> > 
+> 
+> I see qcom just drop the clock entries before registering the clocks. But to
+> i.MX8M, it is not feasible to drop those clocks, unless check the
+> protected-clocks property before registering every clock. This is odd.
+> 
+> So here I just wanna let i.MX8M clk driver prepare enable the clocks listed
+> in protected-clocks property to avoid linux disable those clocks.
+> > Anyway, please add a description to the binding what this property actually
+> > does.
+> I will switch to use the common bindings.
 
+There were cases when a property first started with a "soc," prefix and
+later when people realized that it could be useful for other
+drivers/SoCs as well, the prefix was removed. With that in mind I
+would expect that a "fsl,protected-clocks" property behaves the same
+as a "protected-clocks" property without the prefix.
 
-On 15/08/2022 13:20, William Breathitt Gray wrote:
-> On Sun, Aug 14, 2022 at 01:03:48PM -0400, William Breathitt Gray wrote:
->> On Wed, Aug 10, 2022 at 04:07:24PM +0200, Julien Panis wrote:
->>> +static int ecap_cnt_function_read(struct counter_device *counter,
->>> +				  struct counter_count *count,
->>> +				  enum counter_function *function)
->>> +{
->>> +	*function = COUNTER_FUNCTION_INCREASE;
->>> +
->>> +	return 0;
->>> +}
->>> +
->>> +static int ecap_cnt_action_read(struct counter_device *counter,
->>> +				struct counter_count *count,
->>> +				struct counter_synapse *synapse,
->>> +				enum counter_synapse_action *action)
->>> +{
->>> +	*action = COUNTER_SYNAPSE_ACTION_BOTH_EDGES;
->>> +
->>> +	return 0;
->>> +}
->> Right now you have a Signal defined for the ECAPSIG line, but there is
->> at least one more relevant Signal to define: the clock updating ECAPCNT.
->> The Synapse action of COUNTER_SYNAPSE_ACTION_BOTH_EDGES is for that
->> clock Signal, but for the ECAPSIG Signal you will need to report a
->> Synapse action based on the polarity of the next capture (i.e. whether
->> high or low).
-> I need to make a correction here. IIUC, the ECAPSIG signal doesn't
-> affect the count value of ECAPCNT (ECAPSIG only triggers the captures),
-> so the Synapse action for ECAPSIG should always be
-> COUNTER_SYNAPSE_ACTION_NONE. You don't need to account for the capture
-> polarities because they're not relevant in this particular situation:
-> ECAPSIG doesn't trigger the ECAPCNT count function.
->
-> William Breathitt Gray
+If it doesn't please pick a different name. I didn't want to suggest
+to just drop the "fsl," prefix and to use the generic property name
+when the properties have a different meaning.
 
-It appears to me that you spoke about TSCNT register content (32 bits). 
-So, you were
-not talking about the Mod4 counter (2 bits).
-Do you confirm that ?
+Sascha
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
