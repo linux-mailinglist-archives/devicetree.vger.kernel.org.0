@@ -2,31 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA05359785A
-	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 23:00:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C30AF5978AA
+	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 23:08:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242110AbiHQVA2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Aug 2022 17:00:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53220 "EHLO
+        id S242171AbiHQVBV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Aug 2022 17:01:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242111AbiHQVA1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 17:00:27 -0400
-Received: from relay03.th.seeweb.it (relay03.th.seeweb.it [IPv6:2001:4b7a:2000:18::164])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0630E9DFA7
-        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 14:00:26 -0700 (PDT)
+        with ESMTP id S241793AbiHQVBS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 17:01:18 -0400
+Received: from relay01.th.seeweb.it (relay01.th.seeweb.it [IPv6:2001:4b7a:2000:18::162])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1047420F4C;
+        Wed, 17 Aug 2022 14:01:16 -0700 (PDT)
 Received: from [192.168.1.101] (abxi168.neoplus.adsl.tpnet.pl [83.9.2.168])
         (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id D577F1F4E1;
-        Wed, 17 Aug 2022 23:00:23 +0200 (CEST)
-Message-ID: <e3b8bd74-8fb0-e694-b33d-ec0182f78e8a@somainline.org>
-Date:   Wed, 17 Aug 2022 23:00:22 +0200
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 7BD9F1F425;
+        Wed, 17 Aug 2022 23:01:14 +0200 (CEST)
+Message-ID: <c56b65f9-78b2-4830-a18a-40dd3b65b4b0@somainline.org>
+Date:   Wed, 17 Aug 2022 23:01:04 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [RFT PATCH v2 04/14] arm64: dts: qcom: msm8998: split TCSR halt
- regs out of mutex
+Subject: Re: [RFT PATCH v2 05/14] arm64: dts: qcom: msm8998: switch TCSR mutex
+ to MMIO
 Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -36,9 +36,9 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20220817130342.568396-1-krzysztof.kozlowski@linaro.org>
- <20220817130342.568396-5-krzysztof.kozlowski@linaro.org>
+ <20220817130342.568396-6-krzysztof.kozlowski@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <20220817130342.568396-5-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220817130342.568396-6-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
@@ -53,10 +53,13 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 17.08.2022 15:03, Krzysztof Kozlowski wrote:
-> The TCSR halt regs are next to TCSR mutex, so before converting the TCSR
-> mutex into device with address space, we need to split the halt regs to
-> its own syscon device.  This also describes more accurately the devices
-> and their IO address space.
+> The TCSR mutex bindings allow device to be described only with address
+> space (so it uses MMIO, not syscon regmap).  This seems reasonable as
+> TCSR mutex is actually a dedicated IO address space and it also fixes DT
+> schema checks:
+> 
+>   qcom/msm8998-asus-novago-tp370ql.dtb: hwlock: 'reg' is a required property
+>   qcom/msm8998-asus-novago-tp370ql.dtb: hwlock: 'syscon' does not match any of the regexes: 'pinctrl-[0-9]+'
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
@@ -64,33 +67,36 @@ Not tested on a device, but looks good to the eye:
 Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 
 Konrad
->  arch/arm64/boot/dts/qcom/msm8998.dtsi | 9 +++++++--
->  1 file changed, 7 insertions(+), 2 deletions(-)
+>  arch/arm64/boot/dts/qcom/msm8998.dtsi | 11 +++--------
+>  1 file changed, 3 insertions(+), 8 deletions(-)
 > 
 > diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-> index 02d21bff2198..f0806ed103f1 100644
+> index f0806ed103f1..22b2da74d105 100644
 > --- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
 > +++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-> @@ -1049,7 +1049,12 @@ ufsphy_lanes: phy@1da7400 {
+> @@ -308,12 +308,6 @@ scm {
+>  		};
+>  	};
 >  
->  		tcsr_mutex_regs: syscon@1f40000 {
->  			compatible = "syscon";
-> -			reg = <0x01f40000 0x40000>;
-> +			reg = <0x01f40000 0x20000>;
-> +		};
-> +
-> +		tcsr_regs_1: sycon@1f60000 {
-> +			compatible = "qcom,msm8998-tcsr", "syscon";
-> +			reg = <0x01f60000 0x20000>;
+> -	tcsr_mutex: hwlock {
+> -		compatible = "qcom,tcsr-mutex";
+> -		syscon = <&tcsr_mutex_regs 0 0x1000>;
+> -		#hwlock-cells = <1>;
+> -	};
+> -
+>  	psci {
+>  		compatible = "arm,psci-1.0";
+>  		method = "smc";
+> @@ -1047,9 +1041,10 @@ ufsphy_lanes: phy@1da7400 {
+>  			};
 >  		};
 >  
->  		tlmm: pinctrl@3400000 {
-> @@ -1340,7 +1345,7 @@ remoteproc_mss: remoteproc@4080000 {
->  			resets = <&gcc GCC_MSS_RESTART>;
->  			reset-names = "mss_restart";
+> -		tcsr_mutex_regs: syscon@1f40000 {
+> -			compatible = "syscon";
+> +		tcsr_mutex: hwlock@1f40000 {
+> +			compatible = "qcom,tcsr-mutex";
+>  			reg = <0x01f40000 0x20000>;
+> +			#hwlock-cells = <1>;
+>  		};
 >  
-> -			qcom,halt-regs = <&tcsr_mutex_regs 0x23000 0x25000 0x24000>;
-> +			qcom,halt-regs = <&tcsr_regs_1 0x3000 0x5000 0x4000>;
->  
->  			power-domains = <&rpmpd MSM8998_VDDCX>,
->  					<&rpmpd MSM8998_VDDMX>;
+>  		tcsr_regs_1: sycon@1f60000 {
