@@ -2,115 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DEE94597023
-	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 15:46:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DE3959702F
+	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 15:53:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231527AbiHQNqU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Aug 2022 09:46:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37174 "EHLO
+        id S238700AbiHQNtE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Aug 2022 09:49:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231552AbiHQNqT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 09:46:19 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EC4695691
-        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 06:46:15 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id a9so19037471lfm.12
-        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 06:46:15 -0700 (PDT)
+        with ESMTP id S236846AbiHQNtD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 09:49:03 -0400
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87D4661731
+        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 06:49:01 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id z14-20020a7bc7ce000000b003a5db0388a8so1770206wmk.1
+        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 06:49:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=gQ9ZdHAonv1+cNCneY42f+VkcN8uTabWejW5IY05OD4=;
-        b=KTjTHibusJ3Q5B6hEEPhteJ85Ffv8KvOEn3uUw/xQVRdL6Zo1CkYrEOL7ZAC1Tw1Ou
-         uU5RufF2Tdvu2+nmf2C0KTfR7A2Igxvxw8T/eUeKx52INZGiEKRka7WEIwxCR2CZ+ZSJ
-         e/vQmpHliCd7Cqy1Zy50sfUCIIZLixaPjkqOK/7InUSjMIC23bUaIt6Mck1XWtEetmMJ
-         xqdxUZuSJKJ3/glf0Mj/ekPD8QxDCZ/UHom2kzqDSWgHHwSlRbzFsqaKV29BqFV401mW
-         L7PQ51pKmSprJ5+3vGlxrNT1VYAzmVYMxSR7p0A1IxGR+jY3AsB4EmseuYJKfMqe6EzN
-         W1KA==
+        bh=7qbpEvIyfUHxThcPUBZWCycHTTxb6B7CEiL7PZR60n0=;
+        b=P6ZccQqkWLpVNzgKCliKAbmISGdeFwyx7ECG11hFPzT0jYG3g5IfaEeEi1fPcvXBv4
+         OX7btMcDpUTqSDBRnCVS/Nvtb23SJdQiWi3O4qX4mJmv63a7mGxItYIMWwuPf2A+wrjv
+         8t61miyQk3qUKaCshpcSCxPQZUpQFraqX8bJJfj18CWySp9GPVGYLxWphDfVLAar9NSF
+         /Lmw+sbzIKsM4tTSekwVHPzwTVVHUGKF1HwXwzntOpH9BHGGj/3QBlpVN3BARNk/5sez
+         I0G6Iiyjrh7l0WANyWbPXJ0TE3AADaqVRSfsfYxc297WVrBn6Ck59uFdmT9+JhDcL5am
+         CboA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=gQ9ZdHAonv1+cNCneY42f+VkcN8uTabWejW5IY05OD4=;
-        b=W9TedfrpzeHbM9XF8SMTVx2WNtzn9HC5WTEFjwkuCkDnIx2qxHAffl/VGk8B4zrm4t
-         Afa7EbCHyQU/CvDmr4ZaNh5HOFtDMLaVgmI8BVat8JVGQyKwS4zupC7GWChRrKhKqhUE
-         jA1vHXol0Y/jT0IPexupHZqNCQ1JPO+06cMM7UmNZoB/AqMWS56dDgq4XrG++8uSFwwM
-         6aNO5ocTRYDfhJrlud5phxEzoee2i7rwEuJjT4xuCmmS+WHeEsmenlefpw16B4E+eDNQ
-         X79nrcb8Gc9H4odrDkAKP67kWsUS9k7vvv0Twxt5NkQMi8cqyJMnG7VyFtf+ZwbyaaEq
-         Rrpg==
-X-Gm-Message-State: ACgBeo0uCKgH/P2B0AD8wBXtN1cyFItJzJpbyDC3VVeHfA55KElz+S3u
-        xblcqK7d2tVkbBZRi+GCiiD5y1HWeMRBvywL
-X-Google-Smtp-Source: AA6agR4vOLQVaDpNaTlrgQpr6MQJs6T1zj+svIXXP/Rtynk4ey8sYo2c1ptChOUd++TTtrnFyrV1cw==
-X-Received: by 2002:a19:6b0b:0:b0:48a:e7de:d34c with SMTP id d11-20020a196b0b000000b0048ae7ded34cmr8780224lfa.454.1660743973563;
-        Wed, 17 Aug 2022 06:46:13 -0700 (PDT)
-Received: from ?IPV6:2001:14bb:ae:539c:1b1c:14b7:109b:ed76? (d15l54h48cw7vbh-qr4-4.rev.dnainternet.fi. [2001:14bb:ae:539c:1b1c:14b7:109b:ed76])
-        by smtp.gmail.com with ESMTPSA id b10-20020a05651c032a00b0025d5eb5dde7sm2151655ljp.104.2022.08.17.06.46.11
+        bh=7qbpEvIyfUHxThcPUBZWCycHTTxb6B7CEiL7PZR60n0=;
+        b=BtLJsSsK2iffI83J7AmHs9KARzwhGG1Mq3S1g29bOq7BbeNgJTaRYxsibIiqp/eVKn
+         qfhP37WIOX9ytdyl1+0YukO4ErHX9H6ivbFByFmZlVdQNH1ct1PwdX8eDrW9rQ60Sd/p
+         Qnp+XSLcT1FZVNSHd60HkLhrsytimCKwJA+TtpiW60fHi6uVoKRsAw6+8M3jVDYLscfd
+         JiLXRAo1wHoSXPt0x/sD8Fa7gPFsHmQT+NVQr0VNVcvVLT41mT1LAZ+jtBsYfsos7cA6
+         dshU1ER1booK0bdo+/k6Yqkn1c564SCMk2t9dfY4MSkyERPNnSrv2lSkWkwxGKs+Seuu
+         GsVQ==
+X-Gm-Message-State: ACgBeo017LeJVqFKcLDOe2UX1+vYtWo/pHZibN+VSBDwbaIFVR/nA3B5
+        lDPK9JS1BjCq7EEwE5C8vCdxLNzpdCwC+g==
+X-Google-Smtp-Source: AA6agR7v+p3ILoDG5S71+9W3OtpIyVNywAsgqRyINzwFNu61vTSLKFtQ4Jm7SHRJkIYqoDLULOijaw==
+X-Received: by 2002:a05:600c:1ca5:b0:3a6:c8d:f2f9 with SMTP id k37-20020a05600c1ca500b003a60c8df2f9mr2252015wms.54.1660744140031;
+        Wed, 17 Aug 2022 06:49:00 -0700 (PDT)
+Received: from [192.168.1.69] (120.205.87.79.rev.sfr.net. [79.87.205.120])
+        by smtp.gmail.com with ESMTPSA id p4-20020a5d4584000000b0021e4bc9edbfsm12619768wrq.112.2022.08.17.06.48.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Aug 2022 06:46:13 -0700 (PDT)
-Message-ID: <64913eef-8b4f-7617-578b-53ddc22bd06e@linaro.org>
-Date:   Wed, 17 Aug 2022 16:46:11 +0300
+        Wed, 17 Aug 2022 06:48:59 -0700 (PDT)
+Message-ID: <7509b7fd-4eec-389e-254c-4d343dee1728@baylibre.com>
+Date:   Wed, 17 Aug 2022 15:48:58 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v3 1/4] regulator: dt-bindings: Add Allwinner D1 LDOs
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.1.0
+Subject: Re: [PATCH v4 0/3] ECAP support on TI AM62x SoC
+To:     William Breathitt Gray <william.gray@linaro.org>
+Cc:     robh+dt@kernel.org, jic23@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        mranostay@ti.com
+References: <20220810140724.182389-1-jpanis@baylibre.com>
+ <Yvk4OijjBj+Wa7fT@fedora>
 Content-Language: en-US
-To:     Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev
-References: <20220815043436.20170-1-samuel@sholland.org>
- <20220815043436.20170-2-samuel@sholland.org>
- <c4ec080a-b8b1-e3a9-c9d7-063e138c9bb8@linaro.org>
- <03de0f7b-9251-a5c0-91a1-5f2b5d41d8a0@sholland.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <03de0f7b-9251-a5c0-91a1-5f2b5d41d8a0@sholland.org>
-Content-Type: text/plain; charset=UTF-8
+From:   Julien Panis <jpanis@baylibre.com>
+In-Reply-To: <Yvk4OijjBj+Wa7fT@fedora>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/08/2022 11:15, Samuel Holland wrote:
->>> +    audio-codec@2030000 {
->>> +        compatible = "simple-mfd", "syscon";
+
+
+On 14/08/2022 20:00, William Breathitt Gray wrote:
+> On Wed, Aug 10, 2022 at 04:07:21PM +0200, Julien Panis wrote:
+>> The Enhanced Capture (ECAP) module can be used to timestamp events
+>> detected on signal input pin. It can be used for time measurements
+>> of pulse train signals.
 >>
->> This cannot be on its own. Both require device specific compatible.
-> 
-> Again, the device-specific compatible does not exist, because the binding for
-> the audio codec has not been written (and it will be quite nontrivial).
-> 
-> So I can:
->   1) Leave the example as-is until the audio codec binding gets written,
->      and fill in the specific compatible at that time.
->   2) Remove the example, with the reasoning that the example really
->      belongs with the MFD parent (like for the other regulator). Then
->      there will be no example until the audio codec binding is written.
->   3) Drop the analog LDOs from this series entirely, and some parts
->      of the SoC (like thermal monitoring) cannot be added to the DTSI
->      until the audio codec binding is written.
-> 
-> What do you think?
-> 
-> The same question applies for the D1 SoC DTSI, where I use this same construct.
-> 
-> (And technically this does validate with the current schema.)
+>> ECAP module includes 4 timestamp capture registers. For all 4 sequenced
+>> timestamp capture events (1->2->3->4->1->...), edge polarity (falling/rising
+>> edge) can be selected.
+>>
+>> This driver leverages counter subsystem to :
+>> - select edge polarity for all 4 capture events (event mode)
+>> - log timestamps for each capture event
+>> Event polarity, and CAP1/2/3/4 timestamps give all the information
+>> about the input pulse train. Further information can easily be computed :
+>> period and/or duty cycle if frequency is constant, elapsed time between
+>> pulses, etc...
+>>
+>> Modifications since v3:
+>> 	- Migrate driver from IIO to Counter subsystem
+>> 	- Minor modification in yaml ($id) to match Counter subsystem
+>> 	- Add ABI documentation
+>>
+>> Userspace commands :
+>> 	### SIGNAL ###
+>> 	cd /sys/bus/counter/devices/counter0/signal0
+>>
+>> 	# Get available polarities for each capture event
+>> 	cat polarity1_available
+>> 	cat polarity2_available
+>> 	cat polarity3_available
+>> 	cat polarity4_available
+>>
+>> 	# Get polarity for each capture event
+>> 	cat polarity1
+>> 	cat polarity2
+>> 	cat polarity3
+>> 	cat polarity4
+>>
+>> 	# Set polarity for each capture event
+>> 	echo rising > polarity1
+>> 	echo falling > polarity2
+>> 	echo rising > polarity3
+>> 	echo falling > polarity4
+>>
+>> 	### COUNT ###
+>> 	cd /sys/bus/counter/devices/counter0/count0
+>>
+>> 	# Run ECAP
+>> 	echo 1 > enable
+>>
+>> 	# Get current timebase counter value
+>> 	cat count
+>>
+>> 	# Get captured timestamps
+>> 	cat capture1
+>> 	cat capture2
+>> 	cat capture3
+>> 	cat capture4
+>>
+>> 	# Note that counter watches can also be used to get
+>> 	# data from userspace application
+>> 	# -> see tools/counter/counter_example.c
+>>
+>> 	# Stop ECAP
+>> 	echo 0 > enable
+>>
+>> Julien Panis (3):
+>>    dt-binding: counter: add ti,am62-ecap-capture.yaml
+>>    Documentation: ABI: add sysfs-bus-counter-ecap
+>>    counter: capture-tiecap: capture driver support for ECAP
+>>
+>>   .../ABI/testing/sysfs-bus-counter-ecap        |  64 ++
+>>   .../counter/ti,am62-ecap-capture.yaml         |  61 ++
+>>   drivers/counter/Kconfig                       |  14 +
+>>   drivers/counter/Makefile                      |   1 +
+>>   drivers/counter/capture-tiecap.c              | 634 ++++++++++++++++++
+>>   include/uapi/linux/counter.h                  |   2 +
+>>   6 files changed, 776 insertions(+)
+>>   create mode 100644 Documentation/ABI/testing/sysfs-bus-counter-ecap
+>>   create mode 100644 Documentation/devicetree/bindings/counter/ti,am62-ecap-capture.yaml
+>>   create mode 100644 drivers/counter/capture-tiecap.c
+>>
+>> -- 
+>> 2.25.1
+> Something that has become apparent to me is the code repetition in this
+> driver in order to support the capture buffer. Buffers are common
+> components in devices, so it'll be good for us to standardize some of
+> what we're exploring here into an interface that other drivers can also
+> use. We have two ABIs to consider: the driver interface and the sysfs
+> interface.
+>
+> For the sysfs interface, I think we'll have to expose each element
+> individually (e.g. capture1, capture2, etc.) because sysfs attributes
+> are suppose to expose only a single datum for any given attribute.
+>
+> For the driver side, we might want to introduce a new Counter component
+> type for buffers and respective macros to streamline some of the code
+> for driver authors. For example, a new COUNTER_COMP_BUFFER_U64 enum
+> counter_comp_type constant could be introduced to represent a u64 buffer
+> element; respective struct counter_comp read callbacks could be
+> introduced::
+>
+>      int (*count_buffer_u64_read)(struct counter_device *counter,
+>                                   struct counter_count *count,
+> 				 size_t index, u64 *val);
+>
+> So a driver author can use the "index" parameter to locate the buffer
+> element and pass back its value via the "val" parameter. To define the
+> buffer, maybe helper macros like this could be introduced::
+>
+>      COUNTER_COMP_COUNT_BUFFER_U64("capture", ecap_cnt_cap_read, 4)
+>
+> This would define four u64 buffer elements each named prefixed with
+> "capture" and with their read callbacks set to ecap_cnt_cap_read().
+>
+> One problem however is that I'm not sure if the C preprocessor would be
+> able to unroll the COUNTER_COMP_COUNT_BUFFER_U64 to a dynamic number of
+> elements based on a macro parameter (maybe there is a GCC extension).
+>
+> I'm just throwing out ideas, so I'd like to hear some comments and
+> suggestions from others about how we should add buffer support to the
+> Counter subsystem.
+>
+> William Breathitt Gray
 
-BTW, it validates only because of limitation in DT schema. Such
-combination is not allowed and I wonder if we can make the schema
-stricter...
+Hi William,
 
-Best regards,
-Krzysztof
+I am going to send a new version (PATCH v5) without buffers as described 
+above
+(I added macros for cap1/2/3/4 similar functions). I tried taking into 
+account the
+comments made by Jonathan and you.
+
+Regarding buffers, I don't know how driver upstream process is done when 
+'significant'
+subsystem modifications are being considered. Is it a problem for you if 
+we continue
+driver upstream process until it's merged, and then modify counter 
+subsystem (and
+ECAP driver with it) to add some buffer functionalities ? Or do you 
+prefer adding such
+functionalities to counter subsystem while upstreaming ECAP driver, 
+without any
+intermediate ECAP driver version ?
+
+Julien Panis
+
