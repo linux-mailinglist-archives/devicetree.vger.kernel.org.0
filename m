@@ -2,71 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A8C059730E
-	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 17:38:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9CAB59734C
+	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 17:50:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239563AbiHQPdX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Aug 2022 11:33:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45336 "EHLO
+        id S237876AbiHQPqb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Aug 2022 11:46:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239620AbiHQPdU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 11:33:20 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99097FDF;
-        Wed, 17 Aug 2022 08:33:16 -0700 (PDT)
+        with ESMTP id S237405AbiHQPq2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 11:46:28 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29CDD7F27A;
+        Wed, 17 Aug 2022 08:46:26 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3603861574;
-        Wed, 17 Aug 2022 15:33:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3F0AC433D6;
-        Wed, 17 Aug 2022 15:33:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1660750395;
-        bh=SltX3d5w/RyQ/dhqd1y1YYrB3a3Vt3f0e/2mDi/aRj0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=pbsuk9LSMTk93iffAhzMnf5jMW3qDEiEEbTQhlAa/3+OwNcEsjqD83GCGo8IKRk1/
-         aPwLRH+6eVpjd7/XQY+ygsj3c923AeD4Z66fLlV8wPUuGfUX77GIM3sqcWgQOaK8HD
-         sUKlrrdz5sH2N0+ZPW6jr5mviQm+kBsImUDwLZfI=
-Date:   Wed, 17 Aug 2022 17:33:12 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Nipun Gupta <nipun.gupta@amd.com>
+        by ams.source.kernel.org (Postfix) with ESMTPS id D72F9B81E10;
+        Wed, 17 Aug 2022 15:46:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6934FC433C1;
+        Wed, 17 Aug 2022 15:46:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1660751183;
+        bh=mIw1ToA3oltPBVk97Rnc+Pibf1c2qccm6jANqoNBMXg=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=N09yOdYUi9n/UbS1b+0w7fC9rEASAJpy4oYYsVXcc3CtK1jLn8uXQF+H3WqrjTQpo
+         mSZwhS9qeowEjRnvnPD0xtbvqZsrZyWB5yW91Fk4MQVaN48e9xayUuqFBgRwWbCTqf
+         LX/0L3ZIyVaIURElMLCRQXRNqJ659etqHPbWYRfYD6thAaXNlJmXliMADJdoafrF/0
+         GrUWSvKvLor8ZfF0pG3DmoZ5aotrsMMEhSUbQXgT2oHF/NKGLc6jvBwcA77WrtzNQW
+         Q79AEPMZhbsBCjQGKRUYC0sR4Zokcb4LTbVVgHfusggfxhd+Raywg900sjATCq/vd0
+         qMP8r0dBAh/Hw==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1oOLFN-003m7J-6w;
+        Wed, 17 Aug 2022 16:46:21 +0100
+Date:   Wed, 17 Aug 2022 16:46:20 +0100
+Message-ID: <87pmgyx48j.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Nipun Gupta <nipun.gupta@amd.com>,
+        Greg KH <gregkh@linuxfoundation.org>
 Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         rafael@kernel.org, eric.auger@redhat.com,
         alex.williamson@redhat.com, cohuck@redhat.com,
         puneet.gupta@amd.com, song.bao.hua@hisilicon.com,
-        mchehab+huawei@kernel.org, maz@kernel.org, f.fainelli@gmail.com,
+        mchehab+huawei@kernel.org, f.fainelli@gmail.com,
         jeffrey.l.hugo@gmail.com, saravanak@google.com,
         Michael.Srba@seznam.cz, mani@kernel.org, yishaih@nvidia.com,
         jgg@ziepe.ca, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, kvm@vger.kernel.org, okaya@kernel.org,
         harpreet.anand@amd.com, nikhil.agarwal@amd.com,
         michal.simek@amd.com, git@amd.com
-Subject: Re: [RFC PATCH v2 3/6] bus/cdx: add cdx-MSI domain with gic-its
- domain as parent
-Message-ID: <Yv0KOFBLEMoBTRCF@kroah.com>
+Subject: Re: [RFC PATCH v2 2/6] bus/cdx: add the cdx bus driver
+In-Reply-To: <Yv0KHROjESUI59Pd@kroah.com>
 References: <20220803122655.100254-1-nipun.gupta@amd.com>
- <20220817150542.483291-1-nipun.gupta@amd.com>
- <20220817150542.483291-4-nipun.gupta@amd.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220817150542.483291-4-nipun.gupta@amd.com>
+        <20220817150542.483291-1-nipun.gupta@amd.com>
+        <20220817150542.483291-3-nipun.gupta@amd.com>
+        <Yv0KHROjESUI59Pd@kroah.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: nipun.gupta@amd.com, gregkh@linuxfoundation.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, rafael@kernel.org, eric.auger@redhat.com, alex.williamson@redhat.com, cohuck@redhat.com, puneet.gupta@amd.com, song.bao.hua@hisilicon.com, mchehab+huawei@kernel.org, f.fainelli@gmail.com, jeffrey.l.hugo@gmail.com, saravanak@google.com, Michael.Srba@seznam.cz, mani@kernel.org, yishaih@nvidia.com, jgg@ziepe.ca, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, kvm@vger.kernel.org, okaya@kernel.org, harpreet.anand@amd.com, nikhil.agarwal@amd.com, michal.simek@amd.com, git@amd.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 17, 2022 at 08:35:39PM +0530, Nipun Gupta wrote:
-> +	dev_info(cbus_dev, "cdx bus MSI: %s domain created\n", name);
+On Wed, 17 Aug 2022 16:32:45 +0100,
+Greg KH <gregkh@linuxfoundation.org> wrote:
+> 
+> On Wed, Aug 17, 2022 at 08:35:38PM +0530, Nipun Gupta wrote:
+> > CDX bus driver manages the scanning and populating FPGA
+> > based devices present on the CDX bus.
+> > 
+> > The bus driver sets up the basic infrastructure and fetches
+> > the device related information from the firmware. These
+> > devices are registered as platform devices.
+> 
+> Ick, why?  These aren't platform devices, they are CDX devices.  Make
+> them real devices here, don't abuse the platform device interface for
+> things that are not actually on the platform bus.
+> 
+> > CDX bus is capable of scanning devices dynamically,
+> > supporting rescanning of dynamically added, removed or
+> > updated devices.
+> 
+> Wonderful, that's a real bus, so be a real bus please.
 
-When drivers are working properly, they are quiet.
++1.
 
-thanks,
+This should follow something like PCI, which has semi-sane semantics.
 
-greg k-h
+Thanks,
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
