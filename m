@@ -2,100 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A44E15979EC
-	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 01:07:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58E4E597A0B
+	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 01:15:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241997AbiHQXDk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Aug 2022 19:03:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34854 "EHLO
+        id S238820AbiHQXMv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Aug 2022 19:12:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231939AbiHQXDj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 19:03:39 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DED94A5708;
-        Wed, 17 Aug 2022 16:03:36 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6FE4C60F60;
-        Wed, 17 Aug 2022 23:03:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A846DC43470;
-        Wed, 17 Aug 2022 23:03:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1660777415;
-        bh=KZLubd2ER143QJviW3BMyWdDW8TOYgbY/8Bd6Py8KhQ=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=DVauo0+sNwDDiDjJkbu0qgyk4GO5MzrJwxg5Wh85uF4lhGNiMGNXkaUBqqL48N8yN
-         a9E1iYxbHChar95PxG+i/BnKheJ4tr9fvbkqGTzIGEOTf55c1r9xm8Ij4d1i2AMDJ4
-         tX2JFDCxsxqmLQB56mBzT1sIWS941fVg3Gtmkh7cOYzHFCXH904N3Hghkh1VoVpkkj
-         aiiNZ+H3z8uI/4yAPGNoOfnMxOii/CdbZbLsAuB+Iep51MbbH3p6w+Fng/PVvI9mhc
-         Hu3oKJNKnG4tbLwpvTceXHSTKAFfMPBopQ+Pwvs3ygTaSUkZoLEK+GJdcge9QxOH1v
-         OyBA6GmI+4pqw==
-Received: by pali.im (Postfix)
-        id 6267977A; Thu, 18 Aug 2022 01:03:35 +0200 (CEST)
-From:   =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>
-To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 4/4] ARM: dts: dove: Add definitions for PCIe error interrupts
-Date:   Thu, 18 Aug 2022 01:00:36 +0200
-Message-Id: <20220817230036.817-5-pali@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20220817230036.817-1-pali@kernel.org>
-References: <20220817230036.817-1-pali@kernel.org>
+        with ESMTP id S232457AbiHQXMv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 19:12:51 -0400
+Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17117ACA15
+        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 16:12:46 -0700 (PDT)
+Received: by mail-oi1-x22a.google.com with SMTP id q184so16952822oif.1
+        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 16:12:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=kali.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=LxMzn+ge/kAscik4k/Skya/rcppy5TB3UPJbRHjbmNw=;
+        b=ZMSivDnXniEMASu3EBBX5BtUdFu4EVPmkeRJ3ee78RxKEGYOeUwGbBAy6U3fZ7z8sD
+         dCkQpMha8IsiWTvB7Rl4yB6DRBQ6FvXLbGCjsi4LpRSmj7P9X6AvKdeSBJDqAOORhyYA
+         CDWGHTW+8SbGHp5llGjo8P1prJ0z77XOhbjkE4aqahu+Dszq19ujEa9z/oIzL2p1cgRc
+         NtJ49iUae0YiYX+wEIwWAO/lCXUWgeV5VACFMu07v8lTam+5u/fcQhrePmNd4L0CuE5F
+         1axW9WWzIcIcD2SUcdUVDp7iMhJY4Nck4VEQqs9gPD9GGTj7aYFdz+2GNjuXXVbtSib8
+         zkig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=LxMzn+ge/kAscik4k/Skya/rcppy5TB3UPJbRHjbmNw=;
+        b=3zSdmLyFsGLBym1AXM56dzeogrijD5iBTcHo+te41kkv9CXQgnJFZECDANf39Cxpuv
+         JJ1vghw1r9Igmnh3k5enHkSO4dzp8DeVrurpWP5Xz+tK0ENylH72aSY/vlauZF4sywK+
+         knE49T8tWvzJ8k2tP8lj8YNS28/GymXSWWtF37i47Ga8zPI9t5mh8driOKeKdn60ENru
+         Xq+iL4vSXHVEA2smvtAGlw8BawPYX0AHH9nbwrl4grzs4r0aIg7+bvVIDzaS9jOnp+Ju
+         QmKAxUrowlzovhr/nynVdrvNAOvOqx9uYyBb4hFedhD722XsIWuocduNXZ2GGnuWXbdq
+         khNQ==
+X-Gm-Message-State: ACgBeo3JMsQXdbmQqPpb+fMf5SRfpAt8tiiaY02o17v0b5fjfHgkjCjI
+        O0lF3luAioVxVwqaxee6jPNl7g==
+X-Google-Smtp-Source: AA6agR4RjZMSD+HLFmCEXKwPeOCg2lasV4sKuV5KudXbS/qHB1uOaK5nsyrZUGjNTa/U1Egwg+auWA==
+X-Received: by 2002:aca:1b13:0:b0:344:d3f5:4df0 with SMTP id b19-20020aca1b13000000b00344d3f54df0mr159322oib.209.1660777965456;
+        Wed, 17 Aug 2022 16:12:45 -0700 (PDT)
+Received: from localhost (cpe-173-173-107-246.satx.res.rr.com. [173.173.107.246])
+        by smtp.gmail.com with ESMTPSA id t2-20020a9d7f82000000b00637032a39a3sm18537otp.6.2022.08.17.16.12.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Aug 2022 16:12:44 -0700 (PDT)
+From:   Steev Klimaszewski <steev@kali.org>
+To:     steev@kali.org
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: thinkpad-x13s: Fix firmware location
+Date:   Wed, 17 Aug 2022 18:12:36 -0500
+Message-Id: <20220817231236.3971-1-steev@kali.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-First PCIe controller on Dove SoC reports error interrupt via IRQ 15
-and second PCIe controller via IRQ 17.
+The firmware for the Lenovo Thinkpad X13s has been submitted, accepted
+and merged upstream, so update to the correct path.
 
-Signed-off-by: Pali Rohár <pali@kernel.org>
+Signed-off-by: Steev Klimaszewski <steev@kali.org>
 ---
- arch/arm/boot/dts/dove.dtsi | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/dove.dtsi b/arch/arm/boot/dts/dove.dtsi
-index 70d45d2b1258..9aee3cfd3e98 100644
---- a/arch/arm/boot/dts/dove.dtsi
-+++ b/arch/arm/boot/dts/dove.dtsi
-@@ -122,8 +122,8 @@
- 				bus-range = <0x00 0xff>;
+diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+index 84dc92dda0b8..e07cc9d1ff27 100644
+--- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
++++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+@@ -235,13 +235,13 @@ keyboard@68 {
+ };
  
- 				#interrupt-cells = <1>;
--				interrupt-names = "intx";
--				interrupts = <16>;
-+				interrupt-names = "intx", "error";
-+				interrupts = <16>, <15>;
- 				interrupt-map-mask = <0 0 0 7>;
- 				interrupt-map = <0 0 0 1 &pcie0_intc 0>,
- 						<0 0 0 2 &pcie0_intc 1>,
-@@ -151,8 +151,8 @@
- 				bus-range = <0x00 0xff>;
+ &remoteproc_adsp {
+-	firmware-name = "qcom/sc8280xp/qcadsp8280.mbn";
++	firmware-name = "qcom/LENOVO/21BX/qcadsp8280.mbn";
  
- 				#interrupt-cells = <1>;
--				interrupt-names = "intx";
--				interrupts = <18>;
-+				interrupt-names = "intx", "error";
-+				interrupts = <18>, <17>;
- 				interrupt-map-mask = <0 0 0 7>;
- 				interrupt-map = <0 0 0 1 &pcie1_intc 0>,
- 						<0 0 0 2 &pcie1_intc 1>,
+ 	status = "okay";
+ };
+ 
+ &remoteproc_nsp0 {
+-	firmware-name = "qcom/sc8280xp/qccdsp8280.mbn";
++	firmware-name = "qcom/LENOVO/21BX/qccdsp8280.mbn";
+ 
+ 	status = "okay";
+ };
 -- 
-2.20.1
+2.34.1
 
