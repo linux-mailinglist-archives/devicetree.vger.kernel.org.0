@@ -2,67 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3578459695C
-	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 08:21:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C11F6596951
+	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 08:21:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238883AbiHQGRW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Aug 2022 02:17:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35640 "EHLO
+        id S238899AbiHQGVJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Aug 2022 02:21:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229933AbiHQGRV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 02:17:21 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 693806CD02
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 23:17:20 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id s9so12616796ljs.6
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 23:17:20 -0700 (PDT)
+        with ESMTP id S232992AbiHQGVG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 02:21:06 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC4716DF8D
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 23:21:03 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id c28so13738204lfh.3
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 23:21:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=u4TyGnpFImFVWzeLtgSn9hdAlwn6xtuxeRH7ihJ09pc=;
-        b=zoxAksbIBjky7k2llS1H0n9UlrANEmgCDtJqGToMTf4FNpc7pc5H/qMP8fidrb48Jz
-         m9U/J/+lm6ZNP22mWbW5dKPuaBDcWtn+wgko5RkoKSFsxUmy7SN3iK57qdeP98emgtKW
-         S1XnHdKOcFpaf9DKHfUsSUhwEBnZhIguQ2JDxInksCUl7JGg+G+ZXjtpQJpXFIDO2PwQ
-         ukjZJp8tuF64s1a9e5Z/Q0uP+G8GQ+tZPb+Q1oKAET/JLKCUPlkgITECL96fonGaK/2Y
-         cjmYkfg9/FygvwFaqPai90lxNVjwxzdEOuLQ5OTItxgS8QsKjvv/BFPrpxRMQwO6swIV
-         IfMw==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=F1CoLNi7AKqMTtEG1BCU/Ns1KxSKYwE8yDEdxSlCoH8=;
+        b=jr/5t/QN7wSQM3bJVAQZrkWuZIYE82wSjMtHi975dWHxRiYmKswsbMGWFk+n1VJpHL
+         NHb6Qtmu3MVAwIvBgqZBxLX/Lh1qt7DC5q3lZ9T2DI0E/8DEEYu1qJhI2RJS0Meq9Q80
+         MRFJkgzF6jTlYLwMbTkOz6S1Wbkb+KDjwBTM7k7zp4JBAsssaV8Vj3s7MIc3Tl/kQY2n
+         QwOxowtUzJEucRT+gAZxOULafrADgBRnM0YOZc0XhFwILge3duxjQYyrNxxQUgBc+IVT
+         1nxTGalFV8QtXSCI/rWueAL7AVzurWYac2kIa5h6wcuZp4vvqnJQKz8YNo5TeMBTATZi
+         AWOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=u4TyGnpFImFVWzeLtgSn9hdAlwn6xtuxeRH7ihJ09pc=;
-        b=XEOmwUN645WoBWIpH4ncgSFlI/Vl9a3ca6vwVLHDLQlfH0hIIjdl9fVQMEHhb59gov
-         UiO+2b3edrFnG/2+sc8Hibs2gp/To0KKNd4GufyZZeJXpvrwDCW/MKOIu7g0euKxgKii
-         pn7sa6glHf0/+sxJmnXY0qhmeYreWXc/cnG49yuwU53qBYCY5Fpl6ew1XyDHVLu6s+mU
-         7yZtlEU4LqCe+KSk6lgf1lqWYnQDDsxDPe2PsxF0vaqNtkld/iGeVkDUe5UihK0kspKI
-         86AfsPYPYdWBAKKDnx4ZYpxuaDI974YbywmIGDFXJ3mFuYveo3kgfovtoj5XduF9sPar
-         Y2Mg==
-X-Gm-Message-State: ACgBeo3e95U1l72xnDl0pNAuGcd7kXezk9JT21tx9f9KzQAxGd9Flcmn
-        tRlzzYe+1wYMVo3FCQjQmlPY8Q==
-X-Google-Smtp-Source: AA6agR4cxp1hoQnc8GR+guva3+Gp9Pvrn5cW9PIK9UFl/ZQ3hhX7zJlDtyitNNPx+HuzBRwQH0iXAA==
-X-Received: by 2002:a2e:92c4:0:b0:25d:9d30:5d61 with SMTP id k4-20020a2e92c4000000b0025d9d305d61mr7847790ljh.202.1660717038843;
-        Tue, 16 Aug 2022 23:17:18 -0700 (PDT)
-Received: from ?IPV6:2001:14bb:ae:539c:1b1c:14b7:109b:ed76? (d15l54h48cw7vbh-qr4-4.rev.dnainternet.fi. [2001:14bb:ae:539c:1b1c:14b7:109b:ed76])
-        by smtp.gmail.com with ESMTPSA id v8-20020ac25928000000b0048a918717c3sm1579654lfi.57.2022.08.16.23.17.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Aug 2022 23:17:18 -0700 (PDT)
-Message-ID: <e20ebf8d-8efd-eb28-ccd1-07795feb63a0@linaro.org>
-Date:   Wed, 17 Aug 2022 09:17:16 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH 1/5] dt-bindings: display/msm: dpu-msm8998: add missing
- DPU opp-table
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     Rob Clark <robdclark@gmail.com>,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=F1CoLNi7AKqMTtEG1BCU/Ns1KxSKYwE8yDEdxSlCoH8=;
+        b=vmDHt6qNNN4pmLmz/X+B3orc6n8sT7H6Xu0AVR8T3vcsSkkSEgsbcxnLZsfBQti1RO
+         /+Hdnnd0vVgA0kv2czL8kInAAOWptG/O3eVBdcqdStTNH02ZMlplLsMDus+NkgLLHsAk
+         cdQuoBU/xX0vSX/e66oKj4xx0/c9UmZK5JL7Gm9WYmIvOPQOQZxRO6bI82zL4VCtgsoQ
+         1ivY01xNb/zm1F24y5KcodzAh2Xo5dXrfQfsRIhI2LjWBXwXO6POcR7/uDAZn5lVhhLW
+         IEPrcew3O9o/ZFcI0RmiJlI417fivF+j8ToKbw5s34S41cgdxHZjQp/xCHyx980DvUGJ
+         kF8g==
+X-Gm-Message-State: ACgBeo2HLQw++XzKhq9vgM01i/YAb3aUTf5Lnyr7sGkNedCGeW+jcubD
+        bD1gSPCje19WxRBDNTA9+eG+oQ==
+X-Google-Smtp-Source: AA6agR4q9Tm93umc2dmOf06x5Qwp61RdkCW0A/RNbxL/dQdwoKjhPA27IRJt8+n+Ad3tQnDUqqeRbw==
+X-Received: by 2002:a05:6512:3503:b0:481:4470:4134 with SMTP id h3-20020a056512350300b0048144704134mr8079473lfs.42.1660717262326;
+        Tue, 16 Aug 2022 23:21:02 -0700 (PDT)
+Received: from krzk-bin.. (d15l54h48cw7vbh-qr4-4.rev.dnainternet.fi. [2001:14bb:ae:539c:1b1c:14b7:109b:ed76])
+        by smtp.gmail.com with ESMTPSA id u27-20020ac258db000000b0048b0062a14fsm1581002lfo.144.2022.08.16.23.21.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Aug 2022 23:21:01 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Rob Clark <robdclark@gmail.com>,
         Abhinav Kumar <quic_abhinavk@quicinc.com>,
         Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
         Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Del Regno <angelogioacchino.delregno@somainline.org>,
         Loic Poulain <loic.poulain@linaro.org>,
@@ -73,40 +64,58 @@ Cc:     Rob Clark <robdclark@gmail.com>,
         linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
         freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20220811084331.83715-1-krzysztof.kozlowski@linaro.org>
- <20220811084331.83715-2-krzysztof.kozlowski@linaro.org>
- <20220814212517.GA716652-robh@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220814212517.GA716652-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 0/5] dt-bindings: display/msm: dpu: opp-table fixes
+Date:   Wed, 17 Aug 2022 09:20:54 +0300
+Message-Id: <20220817062059.18640-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/08/2022 00:25, Rob Herring wrote:
+Hi,
 
->>      properties:
->>        compatible:
->> @@ -105,6 +106,8 @@ patternProperties:
->>          maxItems: 1
->>  
->>        operating-points-v2: true
->> +      opp-table: true
-> 
-> type: object
-> 
-> Otherwise, 'opp-table;' would be accepted.
-> 
+Changes since v1
+================
+1. Use opp-table:object (Rob)
 
-Thanks, I'll fix it.
-
+Merging/other work
+==================
+There is a conflicting series of
+https://lore.kernel.org/all/20220710090040.35193-1-dmitry.baryshkov@linaro.org/
+but I think this one here should go before to fix the issue before the
+refactoring.
 
 Best regards,
 Krzysztof
+
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Rob Clark <robdclark@gmail.com>
+Cc: Sean Paul <sean@poorly.run>
+Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>
+
+Krzysztof Kozlowski (5):
+  dt-bindings: display/msm: dpu-msm8998: add missing DPU opp-table
+  dt-bindings: display/msm: dpu-qcm2290: add missing DPU opp-table
+  dt-bindings: display/msm: dpu-sc7180: add missing DPU opp-table
+  dt-bindings: display/msm: dpu-sc7280: add missing DPU opp-table
+  dt-bindings: display/msm: dpu-sdm845: add missing DPU opp-table
+
+ .../devicetree/bindings/display/msm/dpu-msm8998.yaml          | 4 ++++
+ .../devicetree/bindings/display/msm/dpu-qcm2290.yaml          | 3 +++
+ Documentation/devicetree/bindings/display/msm/dpu-sc7180.yaml | 3 +++
+ Documentation/devicetree/bindings/display/msm/dpu-sc7280.yaml | 3 +++
+ Documentation/devicetree/bindings/display/msm/dpu-sdm845.yaml | 4 ++++
+ 5 files changed, 17 insertions(+)
+
+-- 
+2.34.1
+
