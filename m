@@ -2,72 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D18F6596B04
-	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 10:10:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8F2C596B39
+	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 10:17:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234032AbiHQIJA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Aug 2022 04:09:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58404 "EHLO
+        id S231256AbiHQIRZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Aug 2022 04:17:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233976AbiHQII5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 04:08:57 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EC36CED
-        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 01:08:55 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id v7-20020a1cac07000000b003a6062a4f81so603963wme.1
-        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 01:08:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=vHkwxzsudrVxqicDXKTih8N8OK6yYAZy8EiUAJDQT8Q=;
-        b=YfI4beuQw+jEoemgIqC3NHoOTNGC3jQjNRXPWRKpuUH9Iy4PU7MMuNez09OlH/EqS8
-         Ohff2URi0/UwNiDPw1rgUEVoUrfct3DrmCxd6T4CbnIcunTkVp9xaADR+Ox6YFOYtLIJ
-         MXXC1iqYgVTC0LUUrgq16c7n33WyQ/qA8C30DLNZ16Exlw6SiQQiDy1OPsxHppmFK2bl
-         x/GLWrEzqsgLUWg1dhggrnt+7kd4vCtWCeCaXnaieJxKfYV+AmRC/fbPuH31O88sSd5t
-         q3jNuFJcCBwT4OwLV2O3sITKwrzxgI8+1vd+ov8TYeguzcl4MNHA4950slApO9r5Gy5f
-         Av/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=vHkwxzsudrVxqicDXKTih8N8OK6yYAZy8EiUAJDQT8Q=;
-        b=tvklN1QLcLVKopow3KuwfYOqZVO+nS0i1lwE6dHd9aQq97+ZGz0KMqy2yaWA6m4YvL
-         YlRznfM0G739CLKqZtqUMcJY5a863NGO5duQUFmbRWxhLwK/R/Lf9ZVJLIvgl5Nq9nZe
-         GUdAPZ8EX/TLFHa2oPKjHR1jeG8SW/zo9fvRiVOKH5R9h2yI4zaiMqsOwzrESrlKSrNS
-         RdvgE+7CdcGFxL4Bcx1RoL+CEGvRtniExzJZY5tngvt6BNp6YSiG3rkfXXQeuZz6mopk
-         y2+GnkYXf1k93Y0/LzQQ8LIemQaRAER+pVbZ+XxAfK8Jzb7ulAaa7rEN6l7YYXzNwUfk
-         CSxw==
-X-Gm-Message-State: ACgBeo2hT3tZZV+Iu3y7j4ogOeFS8D3nFbW8/HTD3Q5x4CK34x1kZSQK
-        TXrnvrCSSjXJj1QdYYuZl77J9g==
-X-Google-Smtp-Source: AA6agR5KjYclAQozdwJI9frY8l6H0O7fXXwcf2KuIsy9jc4oRs04gp7uX7VpcWRR2WV7sSZ885m1Aw==
-X-Received: by 2002:a7b:cd14:0:b0:3a5:c5b3:508 with SMTP id f20-20020a7bcd14000000b003a5c5b30508mr1248270wmj.179.1660723733751;
-        Wed, 17 Aug 2022 01:08:53 -0700 (PDT)
-Received: from Balsam-ThinkPad-T480.civfrance.com (58.188.158.77.rev.sfr.net. [77.158.188.58])
-        by smtp.gmail.com with ESMTPSA id u15-20020a05600c19cf00b003a54d610e5fsm1391992wmq.26.2022.08.17.01.08.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Aug 2022 01:08:53 -0700 (PDT)
-From:   bchihi@baylibre.com
-To:     rafael@kernel.org, rui.zhang@intel.com, daniel.lezcano@linaro.org,
-        amitk@kernel.org
-Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        khilman@baylibre.com, mka@chromium.org, robh+dt@kernel.org,
-        krzk+dt@kernel.org, matthias.bgg@gmail.com, p.zabel@pengutronix.de,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, james.lo@mediatek.com,
-        fan.chen@mediatek.com, louis.yu@mediatek.com,
-        rex-bc.chen@mediatek.com, abailon@baylibre.com
-Subject: [PATCH v9,7/7] thermal: mediatek: Add LVTS driver settings for mt8195 thermal zones
-Date:   Wed, 17 Aug 2022 10:07:57 +0200
-Message-Id: <20220817080757.352021-8-bchihi@baylibre.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220817080757.352021-1-bchihi@baylibre.com>
-References: <20220817080757.352021-1-bchihi@baylibre.com>
+        with ESMTP id S238870AbiHQIPi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 04:15:38 -0400
+Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6BF67E30C;
+        Wed, 17 Aug 2022 01:15:17 -0700 (PDT)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailout.nyi.internal (Postfix) with ESMTP id 754205C026E;
+        Wed, 17 Aug 2022 04:15:15 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute5.internal (MEProxy); Wed, 17 Aug 2022 04:15:15 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to; s=fm2; t=1660724115; x=
+        1660810515; bh=9a/TQoxruiG9hZLDHJejrNpQAuP/IxZ7P05QpiGXpeM=; b=v
+        nY7jOaW2hO1FlsfkFPoAOcsNbsp5wgWX7QbCEOrVO++bI9ueRQDuDn4cN34FF/+e
+        rbek5nW/OkbPFVz19IPkV8yPBt+lXd8F9m3qsaLh8CHDFF6nVbwnU7EyWt20zEbN
+        4RTUuxpw+eBarHmHYKVDck+4h+KrkOCe7KklRzt3Bd6h39iaBIs0Yj7zw/qB9OXB
+        /rhvGCtdslUpQ3RrGQU5EbZSlCdAor8VmLxRFinnZFU03m42ZPimA4WuroXKcDbM
+        5+1hoMSksQG/ZwHPq/70QZxvCsXymWdcGi3BhE3VT7QW17eSGvt+YkCaadWZ6PDB
+        283b6QDs9/RCjAbEThBlg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:feedback-id:feedback-id:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1660724115; x=
+        1660810515; bh=9a/TQoxruiG9hZLDHJejrNpQAuP/IxZ7P05QpiGXpeM=; b=F
+        QwribRhA9ktEL0LhmvWm6UyJO61N7n1m3P9kaDUDBlOowopI68ew7jsrnKUTI7qK
+        MpBTWpyLokKmngqFl9iUi5q0qolBSsoimsseD71AF+vlhQQSw2+hjQFlUxnBjNDw
+        maD9v+efoURPKWCGE/clLrkJc9HjPcxt8zF8KLG7ffF9Y71gL9jpek3PTlQXBYt1
+        RIo31EpFz8LNctSNTsGUj7us5pVFyddOFpAZJV63h2kTMXSYilWS4MP2L3kCo7T9
+        FnV4LsLyhQBlOs8rcTTIDaiwmHCVw1YRAu+ApAs+YzLzvMeZMSvpsP0CpG6dnrPa
+        +F4NO/Km7I21ZwXUk0XlQ==
+X-ME-Sender: <xms:k6P8YmCblG9dlf80cI3nt6y8X5D40ve_BNzd-gIWZ8-50vJtoXf8cQ>
+    <xme:k6P8YgiEVMq2chSxX0vIZ9-ONnAQoh30xb6EgGzQEEHoJr36CGHt6x7fso98OBfhk
+    R0c9Nd37LyQfy-Mwg>
+X-ME-Received: <xmr:k6P8Ypm_W7MqqIC9H34SKa4q2taB_k3GJauH3qoBSLhv-euYtql2lsU5kfARWR-fQhjsy23w1jY5O7_74VlnEekrFPWZinqoBYcwurZT5Wx_PCidVC3RRatmjg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdehiedgtdduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepuffvvehfhffkffgfgggjtgfgsehtjeertddtfeejnecuhfhrohhmpefurghm
+    uhgvlhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenuc
+    ggtffrrghtthgvrhhnpeduvedtvdduvdeghfevtddvveffjefffeetheegiedtjeffhedt
+    kedvveffleehkeenucffohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgnecuvehluh
+    hsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepshgrmhhuvghlsehs
+    hhholhhlrghnugdrohhrgh
+X-ME-Proxy: <xmx:k6P8Ykx2I2BM-hqV8EQuOfRlnmLDB58z1ln3eOdu7lFS6LdDdyMpHA>
+    <xmx:k6P8YrRqtf3msnlFH33HKAjFr2ffnzFnFKRUWPDjtFtwWxr3xAuB2w>
+    <xmx:k6P8YvbC8vpQCUIaHxQVqXJYLaOJT7F1KU3EOpPR9WtfMpr0SC-jVg>
+    <xmx:k6P8YgIS3D-M3xLBij2vB1VImADboGjKkixZTGZ9lbMsjPjxHeM1Ew>
+Feedback-ID: i0ad843c9:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 17 Aug 2022 04:15:14 -0400 (EDT)
+Subject: Re: [PATCH v3 1/4] regulator: dt-bindings: Add Allwinner D1 LDOs
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@lists.linux.dev
+References: <20220815043436.20170-1-samuel@sholland.org>
+ <20220815043436.20170-2-samuel@sholland.org>
+ <c4ec080a-b8b1-e3a9-c9d7-063e138c9bb8@linaro.org>
+From:   Samuel Holland <samuel@sholland.org>
+Message-ID: <03de0f7b-9251-a5c0-91a1-5f2b5d41d8a0@sholland.org>
+Date:   Wed, 17 Aug 2022 03:15:13 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+In-Reply-To: <c4ec080a-b8b1-e3a9-c9d7-063e138c9bb8@linaro.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,308 +98,195 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Michael Kao <michael.kao@mediatek.com>
+On 8/16/22 4:55 AM, Krzysztof Kozlowski wrote:
+> On 15/08/2022 07:34, Samuel Holland wrote:
+>> The Allwinner D1 SoC contains two pairs of in-package LDOs. One pair is
+>> for general purpose use. LDOA generally powers the board's 1.8 V rail.
+>> LDOB generally powers the in-package DRAM, where applicable.
+>>
+>> The other pair of LDOs powers the analog power domains inside the SoC,
+>> including the audio codec, thermal sensor, and ADCs. These LDOs require
+>> a 0.9 V bandgap voltage reference. The calibration value for the voltage
+>> reference is stored in an eFuse, accessed via an NVMEM cell.
+>>
+>> Neither LDO control register is in its own MMIO range; instead, each
+>> regulator device relies on a regmap/syscon exported by its parent.
+>>
+>> Signed-off-by: Samuel Holland <samuel@sholland.org>
+>> ---
+>>
+>> Changes in v3:
+>>  - Add "reg" property to bindings
+>>  - Add "unevaluatedProperties: true" to regulator nodes
+>>  - Minor changes to regulator node name patterns
+>>  - Remove system-ldos example (now added in patch 3)
+>>
+>> Changes in v2:
+>>  - Remove syscon property from bindings
+>>  - Update binding examples to fix warnings and provide context
+>>
+>>  .../allwinner,sun20i-d1-analog-ldos.yaml      | 74 +++++++++++++++++++
+>>  .../allwinner,sun20i-d1-system-ldos.yaml      | 37 ++++++++++
+>>  2 files changed, 111 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/regulator/allwinner,sun20i-d1-analog-ldos.yaml
+>>  create mode 100644 Documentation/devicetree/bindings/regulator/allwinner,sun20i-d1-system-ldos.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/regulator/allwinner,sun20i-d1-analog-ldos.yaml b/Documentation/devicetree/bindings/regulator/allwinner,sun20i-d1-analog-ldos.yaml
+>> new file mode 100644
+>> index 000000000000..d6964b44ef21
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/regulator/allwinner,sun20i-d1-analog-ldos.yaml
+>> @@ -0,0 +1,74 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/regulator/allwinner,sun20i-d1-analog-ldos.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Allwinner D1 Analog LDOs
+>> +
+>> +description:
+>> +  Allwinner D1 contains a set of LDOs which are designed to supply analog power
+>> +  inside and outside the SoC. They are controlled by a register within the audio
+>> +  codec MMIO space, but which is not part of the audio codec clock/reset domain.
+>> +
+>> +maintainers:
+>> +  - Samuel Holland <samuel@sholland.org>
+> 
+> Please follow the example schema. Order is: title, maintainers, description.
+> 
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - allwinner,sun20i-d1-analog-ldos
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  nvmem-cells:
+>> +    items:
+>> +      - description: NVMEM cell for the calibrated bandgap reference trim value
+>> +
+>> +  nvmem-cell-names:
+>> +    items:
+>> +      - const: bg_trim
+>> +
+>> +patternProperties:
+>> +  "^(a|hp)ldo$":
+>> +    type: object
+>> +    $ref: regulator.yaml#
+>> +    unevaluatedProperties: false
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - nvmem-cells
+>> +  - nvmem-cell-names
+>> +
+>> +unevaluatedProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    audio-codec@2030000 {
+>> +        compatible = "simple-mfd", "syscon";
+> 
+> This cannot be on its own. Both require device specific compatible.
 
-Add LVTS v4 (Low Voltage Thermal Sensor) driver settings to report junction
-temperatures in MediaTek SoC mt8195 and register the maximum temperature
-of sensors and each sensor as a thermal zone.
+Again, the device-specific compatible does not exist, because the binding for
+the audio codec has not been written (and it will be quite nontrivial).
 
-Signed-off-by: Michael Kao <michael.kao@mediatek.com>
-Co-developed-by: Ben Tseng <ben.tseng@mediatek.com>
-Signed-off-by: Ben Tseng <ben.tseng@mediatek.com>
-Co-developed-by: Alexandre Bailon <abailon@baylibre.com>
-Signed-off-by: Alexandre Bailon <abailon@baylibre.com>
-Co-developed-by: Balsam CHIHI <bchihi@baylibre.com>
-Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
----
- drivers/thermal/mediatek/lvts_thermal.h |   1 +
- drivers/thermal/mediatek/lvts_v4.c      | 230 ++++++++++++++++++++++++
- 2 files changed, 231 insertions(+)
+So I can:
+  1) Leave the example as-is until the audio codec binding gets written,
+     and fill in the specific compatible at that time.
+  2) Remove the example, with the reasoning that the example really
+     belongs with the MFD parent (like for the other regulator). Then
+     there will be no example until the audio codec binding is written.
+  3) Drop the analog LDOs from this series entirely, and some parts
+     of the SoC (like thermal monitoring) cannot be added to the DTSI
+     until the audio codec binding is written.
 
-diff --git a/drivers/thermal/mediatek/lvts_thermal.h b/drivers/thermal/mediatek/lvts_thermal.h
-index a94ce46acccd..059b1eb98b1c 100644
---- a/drivers/thermal/mediatek/lvts_thermal.h
-+++ b/drivers/thermal/mediatek/lvts_thermal.h
-@@ -16,6 +16,7 @@
- #define FEATURE_DEVICE_AUTO_RCK	BIT(0)
- #define NUM_EFUSE_ADDR			22
- #define NUM_EFUSE_BLOCK_MT8192	1
-+#define NUM_EFUSE_BLOCK_MT8195	2
- #define DEFAULT_GOLDEN_TEMP		50
- #define DEFAULT_CUONT_R			35000
- #define DEFAULT_CUONT_RC		2750
-diff --git a/drivers/thermal/mediatek/lvts_v4.c b/drivers/thermal/mediatek/lvts_v4.c
-index 3dc00d2589f9..41473312b644 100644
---- a/drivers/thermal/mediatek/lvts_v4.c
-+++ b/drivers/thermal/mediatek/lvts_v4.c
-@@ -32,6 +32,31 @@ enum mt8192_lvts_ap_sensor_enum {
- 	MT8192_NUM_TS_AP
- };
- 
-+enum mt8195_lvts_mcu_sensor_enum {
-+	MT8195_TS1_0,		// cpu_big1
-+	MT8195_TS1_1,		// cpu_big2
-+	MT8195_TS2_0,		// cpu_big3
-+	MT8195_TS2_1,		// cpu_big4
-+	MT8195_TS3_0,		// cpu_little1
-+	MT8195_TS3_1,		// cpu_little2
-+	MT8195_TS3_2,		// cpu_little3
-+	MT8195_TS3_3,		// cpu_little4
-+	MT8195_NUM_TS_MCU
-+};
-+
-+enum mt8195_lvts_ap_sensor_enum {
-+	MT8195_TS4_0,		// vpu1
-+	MT8195_TS4_1,		// vpu2
-+	MT8195_TS5_0,		// gpu1
-+	MT8195_TS5_1,		// gpu2
-+	MT8195_TS6_0,		// vdec
-+	MT8195_TS6_1,		// img
-+	MT8195_TS6_2,		// infra
-+	MT8195_TS7_0,		// cam1
-+	MT8195_TS7_1,		// cam2
-+	MT8195_NUM_TS_AP
-+};
-+
- static void mt8192_mcu_efuse_to_cal_data(struct lvts_data *lvts_data)
- {
- 	const unsigned int mt8192_ts[] = { MT8192_TS2_0, MT8192_TS3_0 };
-@@ -74,6 +99,60 @@ static void mt8192_ap_efuse_to_cal_data(struct lvts_data *lvts_data)
- 	}
- }
- 
-+static void mt8195_mcu_efuse_to_cal_data(struct lvts_data *lvts_data)
-+{
-+	struct lvts_sensor_cal_data *cal_data = &lvts_data->cal_data;
-+
-+	cal_data->golden_temp = GET_CAL_DATA_BITMASK(0, lvts_data, 31, 24);
-+
-+	cal_data->count_r[MT8195_TS1_0] = GET_CAL_DATA_BITMASK(1, lvts_data, 23, 0);
-+	cal_data->count_r[MT8195_TS1_1] = (GET_CAL_DATA_BITMASK(2, lvts_data, 15, 0) << 8) +
-+		GET_CAL_DATA_BITMASK(1, lvts_data, 31, 24);
-+	cal_data->count_r[MT8195_TS2_0] = GET_CAL_DATA_BITMASK(3, lvts_data, 31, 8);
-+	cal_data->count_r[MT8195_TS2_1] = GET_CAL_DATA_BITMASK(4, lvts_data, 23, 0);
-+	cal_data->count_r[MT8195_TS3_0] = (GET_CAL_DATA_BITMASK(6, lvts_data, 7, 0) << 16) +
-+		GET_CAL_DATA_BITMASK(5, lvts_data, 31, 16);
-+	cal_data->count_r[MT8195_TS3_1] = GET_CAL_DATA_BITMASK(6, lvts_data, 31, 8);
-+	cal_data->count_r[MT8195_TS3_2] = GET_CAL_DATA_BITMASK(7, lvts_data, 23, 0);
-+	cal_data->count_r[MT8195_TS3_3] = (GET_CAL_DATA_BITMASK(8, lvts_data, 15, 0) << 8) +
-+		GET_CAL_DATA_BITMASK(7, lvts_data, 31, 24);
-+
-+	cal_data->count_rc[MT8195_TS1_0] = (GET_CAL_DATA_BITMASK(3, lvts_data, 7, 0) << 16) +
-+		GET_CAL_DATA_BITMASK(2, lvts_data, 31, 16);
-+	cal_data->count_rc[MT8195_TS2_0] = (GET_CAL_DATA_BITMASK(5, lvts_data, 15, 0) << 8) +
-+		GET_CAL_DATA_BITMASK(4, lvts_data, 31, 24);
-+	cal_data->count_rc[MT8195_TS3_0] = (GET_CAL_DATA_BITMASK(9, lvts_data, 7, 0) << 16) +
-+		GET_CAL_DATA_BITMASK(8, lvts_data, 31, 16);
-+}
-+
-+static void mt8195_ap_efuse_to_cal_data(struct lvts_data *lvts_data)
-+{
-+	struct lvts_sensor_cal_data *cal_data = &lvts_data->cal_data;
-+
-+	cal_data->golden_temp = GET_CAL_DATA_BITMASK(0, lvts_data, 31, 24);
-+
-+	cal_data->count_r[MT8195_TS4_0] = GET_CAL_DATA_BITMASK(9, lvts_data, 31, 8);
-+	cal_data->count_r[MT8195_TS4_1] = GET_CAL_DATA_BITMASK(10, lvts_data, 23, 0);
-+	cal_data->count_r[MT8195_TS5_0] = (GET_CAL_DATA_BITMASK(12, lvts_data, 7, 0) << 16) +
-+		GET_CAL_DATA_BITMASK(11, lvts_data, 31, 16);
-+	cal_data->count_r[MT8195_TS5_1] = GET_CAL_DATA_BITMASK(12, lvts_data, 31, 8);
-+	cal_data->count_r[MT8195_TS6_0] = (GET_CAL_DATA_BITMASK(14, lvts_data, 15, 0) << 8) +
-+		GET_CAL_DATA_BITMASK(13, lvts_data, 31, 24);
-+	cal_data->count_r[MT8195_TS6_1] = (GET_CAL_DATA_BITMASK(15, lvts_data, 7, 0) << 16) +
-+		GET_CAL_DATA_BITMASK(14, lvts_data, 31, 16);
-+	cal_data->count_r[MT8195_TS6_2] = GET_CAL_DATA_BITMASK(15, lvts_data, 31, 8);
-+	cal_data->count_r[MT8195_TS7_0] = (GET_CAL_DATA_BITMASK(17, lvts_data, 15, 0) << 8) +
-+		GET_CAL_DATA_BITMASK(16, lvts_data, 31, 24);
-+	cal_data->count_r[MT8195_TS7_1] = (GET_CAL_DATA_BITMASK(18, lvts_data, 7, 0) << 16) +
-+		GET_CAL_DATA_BITMASK(17, lvts_data, 31, 16);
-+
-+	cal_data->count_rc[MT8195_TS4_0] = (GET_CAL_DATA_BITMASK(11, lvts_data, 15, 0) << 8) +
-+						GET_CAL_DATA_BITMASK(10, lvts_data, 31, 24);
-+	cal_data->count_rc[MT8195_TS5_0] = GET_CAL_DATA_BITMASK(13, lvts_data, 23, 0);
-+	cal_data->count_rc[MT8195_TS6_0] = GET_CAL_DATA_BITMASK(16, lvts_data, 23, 0);
-+	cal_data->count_rc[MT8195_TS7_0] = GET_CAL_DATA_BITMASK(18, lvts_data, 31, 8);
-+}
-+
- static struct lvts_speed_settings tc_speed_mt8192 = {
- 	.period_unit = PERIOD_UNIT,
- 	.group_interval_delay = GROUP_INTERVAL_DELAY,
-@@ -81,6 +160,13 @@ static struct lvts_speed_settings tc_speed_mt8192 = {
- 	.sensor_interval_delay = SENSOR_INTERVAL_DELAY,
- };
- 
-+static struct lvts_speed_settings tc_speed_mt8195 = {
-+	.period_unit = PERIOD_UNIT,
-+	.group_interval_delay = GROUP_INTERVAL_DELAY,
-+	.filter_interval_delay = FILTER_INTERVAL_DELAY,
-+	.sensor_interval_delay = SENSOR_INTERVAL_DELAY,
-+};
-+
- static const struct lvts_tc_settings mt8192_tc_mcu_settings[] = {
- 	[0] = {
- 		.dev_id = 0x81,
-@@ -171,6 +257,96 @@ static const struct lvts_tc_settings mt8192_tc_ap_settings[] = {
- 	}
- };
- 
-+static const struct lvts_tc_settings mt8195_tc_mcu_settings[] = {
-+	[0] = {
-+		.dev_id = 0x81,
-+		.addr_offset = 0x0,
-+		.num_sensor = 2,
-+		.ts_offset = 0,
-+		.sensor_map = { MT8195_TS1_0, MT8195_TS1_1 },
-+		.tc_speed = &tc_speed_mt8195,
-+		.hw_filter = LVTS_FILTER_2_OF_4,
-+		.dominator_sensing_point = SENSING_POINT1,
-+		.hw_reboot_trip_point = HW_REBOOT_TRIP_POINT,
-+		.irq_bit = BIT(3),
-+	},
-+	[1] = {
-+		.dev_id = 0x82,
-+		.addr_offset = 0x100,
-+		.num_sensor = 2,
-+		.ts_offset = 0,
-+		.sensor_map = { MT8195_TS2_0, MT8195_TS2_1 },
-+		.tc_speed = &tc_speed_mt8195,
-+		.hw_filter = LVTS_FILTER_2_OF_4,
-+		.dominator_sensing_point = SENSING_POINT0,
-+		.hw_reboot_trip_point = HW_REBOOT_TRIP_POINT,
-+		.irq_bit = BIT(4),
-+	},
-+	[2] = {
-+		.dev_id = 0x83,
-+		.addr_offset = 0x200,
-+		.num_sensor = 4,
-+		.ts_offset = 0,
-+		.sensor_map = { MT8195_TS3_0, MT8195_TS3_1, MT8195_TS3_2, MT8195_TS3_3 },
-+		.tc_speed = &tc_speed_mt8195,
-+		.hw_filter = LVTS_FILTER_2_OF_4,
-+		.dominator_sensing_point = SENSING_POINT0,
-+		.hw_reboot_trip_point = HW_REBOOT_TRIP_POINT,
-+		.irq_bit = BIT(5),
-+	}
-+};
-+
-+static const struct lvts_tc_settings mt8195_tc_ap_settings[] = {
-+	[0] = {
-+		.dev_id = 0x84,
-+		.addr_offset = 0x0,
-+		.num_sensor = 2,
-+		.ts_offset = 0,
-+		.sensor_map = { MT8195_TS4_0, MT8195_TS4_1 },
-+		.tc_speed = &tc_speed_mt8195,
-+		.hw_filter = LVTS_FILTER_2_OF_4,
-+		.dominator_sensing_point = SENSING_POINT0,
-+		.hw_reboot_trip_point = HW_REBOOT_TRIP_POINT,
-+		.irq_bit = BIT(3),
-+	},
-+	[1] = {
-+		.dev_id = 0x85,
-+		.addr_offset = 0x100,
-+		.num_sensor = 2,
-+		.ts_offset = 0,
-+		.sensor_map = { MT8195_TS5_0, MT8195_TS5_1 },
-+		.tc_speed = &tc_speed_mt8195,
-+		.hw_filter = LVTS_FILTER_2_OF_4,
-+		.dominator_sensing_point = SENSING_POINT1,
-+		.hw_reboot_trip_point = HW_REBOOT_TRIP_POINT,
-+		.irq_bit = BIT(4),
-+	},
-+	[2] = {
-+		.dev_id = 0x86,
-+		.addr_offset = 0x200,
-+		.num_sensor = 3,
-+		.ts_offset = 0,
-+		.sensor_map = { MT8195_TS6_0, MT8195_TS6_1, MT8195_TS6_2 },
-+		.tc_speed = &tc_speed_mt8195,
-+		.hw_filter = LVTS_FILTER_2_OF_4,
-+		.dominator_sensing_point = SENSING_POINT1,
-+		.hw_reboot_trip_point = HW_REBOOT_TRIP_POINT,
-+		.irq_bit = BIT(5),
-+	},
-+	[3] = {
-+		.dev_id = 0x87,
-+		.addr_offset = 0x300,
-+		.num_sensor = 2,
-+		.ts_offset = 0,
-+		.sensor_map = { MT8195_TS7_0, MT8195_TS7_1 },
-+		.tc_speed = &tc_speed_mt8195,
-+		.hw_filter = LVTS_FILTER_2_OF_4,
-+		.dominator_sensing_point = SENSING_POINT0,
-+		.hw_reboot_trip_point = HW_REBOOT_TRIP_POINT,
-+		.irq_bit = BIT(6),
-+	}
-+};
-+
- static const struct lvts_data mt8192_lvts_mcu_data = {
- 	.num_tc = (ARRAY_SIZE(mt8192_tc_mcu_settings)),
- 	.tc = mt8192_tc_mcu_settings,
-@@ -223,9 +399,63 @@ static const struct lvts_data mt8192_lvts_ap_data = {
- 	},
- };
- 
-+static const struct lvts_data mt8195_lvts_mcu_data = {
-+	.num_tc = (ARRAY_SIZE(mt8195_tc_mcu_settings)),
-+	.tc = mt8195_tc_mcu_settings,
-+	.num_sensor = MT8195_NUM_TS_MCU,
-+	.ops = {
-+		.efuse_to_cal_data = mt8195_mcu_efuse_to_cal_data,
-+		.device_enable_and_init = lvts_device_enable_and_init,
-+		.device_enable_auto_rck = lvts_device_enable_auto_rck_v4,
-+		.device_read_count_rc_n = lvts_device_read_count_rc_n_v4,
-+		.set_cal_data = lvts_set_calibration_data_v4,
-+		.init_controller = lvts_init_controller_v4,
-+	},
-+	.feature_bitmap = FEATURE_DEVICE_AUTO_RCK,
-+	.num_efuse_addr = NUM_EFUSE_ADDR,
-+	.num_efuse_block = NUM_EFUSE_BLOCK_MT8195,
-+	.cal_data = {
-+		.default_golden_temp = DEFAULT_GOLDEN_TEMP,
-+		.default_count_r = DEFAULT_CUONT_R,
-+		.default_count_rc = DEFAULT_CUONT_RC,
-+	},
-+	.coeff = {
-+		.a = COEFF_A,
-+		.b = COEFF_B,
-+	},
-+};
-+
-+static const struct lvts_data mt8195_lvts_ap_data = {
-+	.num_tc = (ARRAY_SIZE(mt8195_tc_ap_settings)),
-+	.tc = mt8195_tc_ap_settings,
-+	.num_sensor = MT8195_NUM_TS_AP,
-+	.ops = {
-+		.efuse_to_cal_data = mt8195_ap_efuse_to_cal_data,
-+		.device_enable_and_init = lvts_device_enable_and_init,
-+		.device_enable_auto_rck = lvts_device_enable_auto_rck_v4,
-+		.device_read_count_rc_n = lvts_device_read_count_rc_n_v4,
-+		.set_cal_data = lvts_set_calibration_data_v4,
-+		.init_controller = lvts_init_controller_v4,
-+	},
-+	.feature_bitmap = FEATURE_DEVICE_AUTO_RCK,
-+	.num_efuse_addr = NUM_EFUSE_ADDR,
-+	.num_efuse_block = NUM_EFUSE_BLOCK_MT8195,
-+	.cal_data = {
-+		.default_golden_temp = DEFAULT_GOLDEN_TEMP,
-+		.default_count_r = DEFAULT_CUONT_R,
-+		.default_count_rc = DEFAULT_CUONT_RC,
-+	},
-+	.coeff = {
-+		.a = COEFF_A,
-+		.b = COEFF_B,
-+	},
-+};
-+
- static const struct of_device_id lvts_of_match[] = {
- 	{ .compatible = "mediatek,mt8192-lvts-mcu", .data = &mt8192_lvts_mcu_data, },
- 	{ .compatible = "mediatek,mt8192-lvts-ap", .data = &mt8192_lvts_ap_data, },
-+	{ .compatible = "mediatek,mt8195-lvts-mcu", .data = &mt8195_lvts_mcu_data, },
-+	{ .compatible = "mediatek,mt8195-lvts-ap", .data = &mt8195_lvts_ap_data, },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, lvts_of_match);
--- 
-2.34.1
+What do you think?
 
+The same question applies for the D1 SoC DTSI, where I use this same construct.
+
+(And technically this does validate with the current schema.)
+
+>> +        reg = <0x2030000 0x1000>;
+>> +        ranges;
+>> +        #address-cells = <1>;
+>> +        #size-cells = <1>;
+>> +
+>> +        regulators@2030348 {
+>> +            compatible = "allwinner,sun20i-d1-analog-ldos";
+>> +            reg = <0x2030348 0x4>;
+>> +            nvmem-cells = <&bg_trim>;
+>> +            nvmem-cell-names = "bg_trim";
+>> +
+>> +            reg_aldo: aldo {
+>> +                regulator-min-microvolt = <1800000>;
+>> +                regulator-max-microvolt = <1800000>;
+>> +            };
+>> +
+>> +            reg_hpldo: hpldo {
+>> +                regulator-min-microvolt = <1800000>;
+>> +                regulator-max-microvolt = <1800000>;
+>> +            };
+>> +        };
+>> +    };
+>> +
+>> +...
+>> diff --git a/Documentation/devicetree/bindings/regulator/allwinner,sun20i-d1-system-ldos.yaml b/Documentation/devicetree/bindings/regulator/allwinner,sun20i-d1-system-ldos.yaml
+>> new file mode 100644
+>> index 000000000000..e3e2810fb3d7
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/regulator/allwinner,sun20i-d1-system-ldos.yaml
+>> @@ -0,0 +1,37 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/regulator/allwinner,sun20i-d1-system-ldos.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Allwinner D1 System LDOs
+>> +
+>> +description:
+>> +  Allwinner D1 contains a pair of general-purpose LDOs which are designed to
+>> +  supply power inside and outside the SoC. They are controlled by a register
+>> +  within the system control MMIO space.
+> 
+> Fix order.
+> 
+> 
+>> +
+>> +maintainers:
+>> +  - Samuel Holland <samuel@sholland.org>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - allwinner,sun20i-d1-system-ldos
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +patternProperties:
+>> +  "^ldo[ab]$":
+>> +    type: object
+>> +    $ref: regulator.yaml#
+>> +    unevaluatedProperties: false
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +
+>> +unevaluatedProperties: false
+> 
+> 
+> Example please.
+
+Rob asked me to move the example to the parent binding, so I did. The example is
+added in patch 3.
+
+Regards,
+Samuel
