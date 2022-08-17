@@ -2,137 +2,265 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E9834597594
-	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 20:18:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F0F0597618
+	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 20:57:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237485AbiHQSOH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Aug 2022 14:14:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47344 "EHLO
+        id S238249AbiHQS4z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Aug 2022 14:56:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240315AbiHQSOE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 14:14:04 -0400
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C020491D6;
-        Wed, 17 Aug 2022 11:14:01 -0700 (PDT)
-Received: by mail-pf1-x434.google.com with SMTP id q19so12708509pfg.8;
-        Wed, 17 Aug 2022 11:14:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=C+LRh514xAgghnbM53Ih8/rWC6o67HTiLHP6ISPuX7M=;
-        b=HaK3ifiErBTWoytLjtrwqSGX3TYvwsziEjcP6RjUeKZX+STDholBFvcDp/b1l7CH3U
-         v5SJw2vkIu0KFW3wfTvfgSI8q0cat9uKw0rEHjnopv7RHVyScHadplcyPu5EicxJv0bu
-         9jcDQViNxIcDgnXxAqJwUU3OnqNTBXRmT53XFH8qv/X8O2VMptpNS2jcRU31iOjnd2mk
-         NzJLgyRWo7EuXglvfRWChVhZ+aWd0JDNjU3O3LB+6tVFVD8Z64EURBajuH0ZCYIPojK9
-         EORYFcef8mE05JPP8dVqKM5CTHs6QBDND35z8HBaYJBPTzGa0VBShDOiyPtVr8Ltthjq
-         53Mg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=C+LRh514xAgghnbM53Ih8/rWC6o67HTiLHP6ISPuX7M=;
-        b=eoRupf1yvbYmRSR0dkeHqM2RYieEI5zr5YWM161j5XUOoTOtseb+Tmi1ithHRVQ+Hl
-         /2GTO6m3JvIbasxff2Lh5vqM5xT9hrtRKxYCBRN+LM4fN6JmQ+z0s1+NfKkYNpG0c8II
-         H9k697NPEXhwepvrVCGaJDXNolKss3v6BfYCbSmISHguvY7nkYsi+Q/9BmLSpBtXyAMy
-         9Nk1HM/imk36UUJ6M4Tjr2oM+nm5T2Es82T6bEcvtCCCOpkhpcp3u4X56LUIvDPi1mK8
-         y2NcB1/KTbg3/XUyjdzoJgGU16meyaf7AVve2yLjWxvd2fYSPfDFxjMPuz9/EU7uFMge
-         4Y8g==
-X-Gm-Message-State: ACgBeo3o28Qllx+qOAwlL125KE7W20uSsjfSkemwoPpI0gyJ/Zov2Dm6
-        pptH/gTCmFFcNPbTbQ8QLeU=
-X-Google-Smtp-Source: AA6agR7r4R7jWoe61ZA4c3SNlsnN6puEn0xdpwFSyip2WMlyn2hTLqk4IthsEQOVLxJbFTccCYtXXA==
-X-Received: by 2002:a05:6a00:27a0:b0:52f:8947:4cc5 with SMTP id bd32-20020a056a0027a000b0052f89474cc5mr26810917pfb.16.1660760040966;
-        Wed, 17 Aug 2022 11:14:00 -0700 (PDT)
-Received: from [172.30.1.52] ([14.32.163.5])
-        by smtp.gmail.com with ESMTPSA id d2-20020a631d02000000b0041b823d4179sm9637023pgd.22.2022.08.17.11.13.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Aug 2022 11:13:55 -0700 (PDT)
-Message-ID: <ee63ca8c-28f4-bee6-77c3-ba38494005af@gmail.com>
-Date:   Thu, 18 Aug 2022 03:13:48 +0900
+        with ESMTP id S237461AbiHQS4z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 14:56:55 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 041517822A;
+        Wed, 17 Aug 2022 11:56:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1660762613; x=1692298613;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=Tfwde/kyN/bFY8hzKEkEEPkf7iKEEJwDE2PzikWguLs=;
+  b=i4DuJ6UOOPe5qQMb05TiPjWIX+0g91S6qnQ3UUb9WtANATYymaasiP6I
+   FhoT9Dlitfv/jWiyFt96Ju/18IFR7alcOQ+YRrzNscT0RB7yl8Rq0i6KA
+   fcytrVNraYtmxaoziURuDdekdiP9Ao+IaJBJBG1EGqSfOAhzyrcfsoG3z
+   1qm6WRF50lGy11aVAGFC50zgtv1DTDODrSwWcnjr+KXPYNdOFDxR03ONv
+   j1OAgHK5SEyiCwQriIGYbsLiuUvl1VJyyBhL7BECvSqhDEPJy3gmOXZXz
+   mWOtyWsQsr/hambh0RdJ+do5urCDt7O6w6lfGudbX/bgEBhqwq4P+cw97
+   g==;
+X-IronPort-AV: E=Sophos;i="5.93,244,1654585200"; 
+   d="scan'208";a="186915940"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 17 Aug 2022 11:56:53 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Wed, 17 Aug 2022 11:56:53 -0700
+Received: from soft-dev3-1.microsemi.net (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2507.12 via Frontend Transport; Wed, 17 Aug 2022 11:56:50 -0700
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+To:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <arnd@arndb.de>, <olof@lixom.net>, <soc@kernel.org>,
+        <nicolas.ferre@microchip.com>, <claudiu.beznea@microchip.com>,
+        <UNGLinuxDriver@microchip.com>, <maxime.chevallier@bootlin.com>,
+        "Horatiu Vultur" <horatiu.vultur@microchip.com>
+Subject: [PATCH] ARM: dts: lan966x: add support for pcb8290
+Date:   Wed, 17 Aug 2022 21:00:27 +0200
+Message-ID: <20220817190027.1632721-1-horatiu.vultur@microchip.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v2 4/9] clk: samsung: exynos850: Style fixes
-Content-Language: en-US
-To:     Sam Protsenko <semen.protsenko@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>
-Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
-        Chanho Park <chanho61.park@samsung.com>,
-        David Virag <virag.david003@gmail.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org
-References: <20220809113323.29965-1-semen.protsenko@linaro.org>
- <20220809113323.29965-5-semen.protsenko@linaro.org>
-From:   Chanwoo Choi <cwchoi00@gmail.com>
-In-Reply-To: <20220809113323.29965-5-semen.protsenko@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22. 8. 9. 20:33, Sam Protsenko wrote:
-> Fix some typos in comments and do small coding style improvements.
-> 
-> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> ---
-> Changes in v2:
->   - (none)
-> 
->  drivers/clk/samsung/clk-exynos850.c | 5 ++---
->  1 file changed, 2 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/clk/samsung/clk-exynos850.c b/drivers/clk/samsung/clk-exynos850.c
-> index cd9725f1dbf7..ef32546d3090 100644
-> --- a/drivers/clk/samsung/clk-exynos850.c
-> +++ b/drivers/clk/samsung/clk-exynos850.c
-> @@ -173,7 +173,6 @@ PNAME(mout_peri_uart_p)		= { "oscclk", "dout_shared0_div4",
->  				    "dout_shared1_div4", "oscclk" };
->  PNAME(mout_peri_ip_p)		= { "oscclk", "dout_shared0_div4",
->  				    "dout_shared1_div4", "oscclk" };
-> -
->  /* List of parent clocks for Muxes in CMU_TOP: for CMU_DPU */
->  PNAME(mout_dpu_p)		= { "dout_shared0_div3", "dout_shared1_div3",
->  				    "dout_shared0_div4", "dout_shared1_div4" };
-> @@ -599,7 +598,7 @@ static const unsigned long hsi_clk_regs[] __initconst = {
->  	CLK_CON_GAT_GOUT_HSI_USB20DRD_TOP_BUS_CLK_EARLY,
->  };
->  
-> -/* List of parent clocks for Muxes in CMU_PERI */
-> +/* List of parent clocks for Muxes in CMU_HSI */
->  PNAME(mout_hsi_bus_user_p)	= { "oscclk", "dout_hsi_bus" };
->  PNAME(mout_hsi_mmc_card_user_p)	= { "oscclk", "dout_hsi_mmc_card" };
->  PNAME(mout_hsi_usb20drd_user_p)	= { "oscclk", "dout_hsi_usb20drd" };
-> @@ -963,7 +962,7 @@ static const unsigned long dpu_clk_regs[] __initconst = {
->  	CLK_CON_GAT_GOUT_DPU_SYSREG_PCLK,
->  };
->  
-> -/* List of parent clocks for Muxes in CMU_CORE */
-> +/* List of parent clocks for Muxes in CMU_DPU */
->  PNAME(mout_dpu_user_p)		= { "oscclk", "dout_dpu" };
->  
->  static const struct samsung_mux_clock dpu_mux_clks[] __initconst = {
+Add basic support for pcb8290. It has 8 lan8814 PHYS on the external
+MDIO bus and no SFP ports.
 
-Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
+Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+---
+ arch/arm/boot/dts/Makefile            |   1 +
+ arch/arm/boot/dts/lan966x-pcb8290.dts | 169 ++++++++++++++++++++++++++
+ 2 files changed, 170 insertions(+)
+ create mode 100644 arch/arm/boot/dts/lan966x-pcb8290.dts
 
+diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+index 05d8aef6e5d2..595e870750cd 100644
+--- a/arch/arm/boot/dts/Makefile
++++ b/arch/arm/boot/dts/Makefile
+@@ -788,6 +788,7 @@ dtb-$(CONFIG_SOC_IMXRT) += \
+ dtb-$(CONFIG_SOC_LAN966) += \
+ 	lan966x-kontron-kswitch-d10-mmt-6g-2gs.dtb \
+ 	lan966x-kontron-kswitch-d10-mmt-8g.dtb \
++	lan966x-pcb8290.dtb \
+ 	lan966x-pcb8291.dtb \
+ 	lan966x-pcb8309.dtb
+ dtb-$(CONFIG_SOC_LS1021A) += \
+diff --git a/arch/arm/boot/dts/lan966x-pcb8290.dts b/arch/arm/boot/dts/lan966x-pcb8290.dts
+new file mode 100644
+index 000000000000..ea5267aca6b4
+--- /dev/null
++++ b/arch/arm/boot/dts/lan966x-pcb8290.dts
+@@ -0,0 +1,169 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * lan966x_pcb8290.dts - Device Tree file for PCB8290
++ */
++/dts-v1/;
++#include "lan966x.dtsi"
++#include "dt-bindings/phy/phy-lan966x-serdes.h"
++
++/ {
++	model = "Microchip EVB LAN9668";
++	compatible = "microchip,lan9668-pcb8290", "microchip,lan9668", "microchip,lan966";
++
++	gpio-restart {
++		compatible = "gpio-restart";
++		gpios = <&gpio 56 GPIO_ACTIVE_LOW>;
++		priority = <200>;
++	};
++};
++
++&gpio {
++	miim_a_pins: mdio-pins {
++		/* MDC, MDIO */
++		pins =  "GPIO_28", "GPIO_29";
++		function = "miim_a";
++	};
++
++	pps_out_pins: pps-out-pins {
++		pins = "GPIO_38";
++		function = "ptpsync_3";
++	};
++
++	ptp_ext_pins: ptp-ext-pins {
++		pins = "GPIO_35";
++		function = "ptpsync_0";
++	};
++
++	udc_pins: ucd-pins {
++		/* VBUS_DET B */
++		pins = "GPIO_8";
++		function = "usb_slave_b";
++	};
++};
++
++&mdio0 {
++	pinctrl-0 = <&miim_a_pins>;
++	pinctrl-names = "default";
++	status = "okay";
++
++	ext_phy0: ethernet-phy@7 {
++		reg = <7>;
++		coma-mode-gpios = <&gpio 60 GPIO_ACTIVE_HIGH>;
++	};
++
++	ext_phy1: ethernet-phy@8 {
++		reg = <8>;
++		coma-mode-gpios = <&gpio 60 GPIO_ACTIVE_HIGH>;
++	};
++
++	ext_phy2: ethernet-phy@9 {
++		reg = <9>;
++		coma-mode-gpios = <&gpio 60 GPIO_ACTIVE_HIGH>;
++	};
++
++	ext_phy3: ethernet-phy@10 {
++		reg = <10>;
++		coma-mode-gpios = <&gpio 60 GPIO_ACTIVE_HIGH>;
++	};
++
++	ext_phy4: ethernet-phy@15 {
++		reg = <15>;
++		coma-mode-gpios = <&gpio 60 GPIO_ACTIVE_HIGH>;
++	};
++
++	ext_phy5: ethernet-phy@16 {
++		reg = <16>;
++		coma-mode-gpios = <&gpio 60 GPIO_ACTIVE_HIGH>;
++	};
++
++	ext_phy6: ethernet-phy@17 {
++		reg = <17>;
++		coma-mode-gpios = <&gpio 60 GPIO_ACTIVE_HIGH>;
++	};
++
++	ext_phy7: ethernet-phy@18 {
++		reg = <18>;
++		coma-mode-gpios = <&gpio 60 GPIO_ACTIVE_HIGH>;
++	};
++};
++
++&port0 {
++	reg = <2>;
++	phy-handle = <&ext_phy2>;
++	phy-mode = "qsgmii";
++	phys = <&serdes 0 SERDES6G(1)>;
++	status = "okay";
++};
++
++&port1 {
++	reg = <3>;
++	phy-handle = <&ext_phy3>;
++	phy-mode = "qsgmii";
++	phys = <&serdes 1 SERDES6G(1)>;
++	status = "okay";
++};
++
++&port2 {
++	reg = <0>;
++	phy-handle = <&ext_phy0>;
++	phy-mode = "qsgmii";
++	phys = <&serdes 2 SERDES6G(1)>;
++	status = "okay";
++};
++
++&port3 {
++	reg = <1>;
++	phy-handle = <&ext_phy1>;
++	phy-mode = "qsgmii";
++	phys = <&serdes 3 SERDES6G(1)>;
++	status = "okay";
++};
++
++&port4 {
++	reg = <6>;
++	phy-handle = <&ext_phy6>;
++	phy-mode = "qsgmii";
++	phys = <&serdes 4 SERDES6G(2)>;
++	status = "okay";
++};
++
++&port5 {
++	reg = <7>;
++	phy-handle = <&ext_phy7>;
++	phy-mode = "qsgmii";
++	phys = <&serdes 5 SERDES6G(2)>;
++	status = "okay";
++};
++
++&port6 {
++	reg = <4>;
++	phy-handle = <&ext_phy4>;
++	phy-mode = "qsgmii";
++	phys = <&serdes 6 SERDES6G(2)>;
++	status = "okay";
++};
++
++&port7 {
++	reg = <5>;
++	phy-handle = <&ext_phy5>;
++	phy-mode = "qsgmii";
++	phys = <&serdes 7 SERDES6G(2)>;
++	status = "okay";
++};
++
++&serdes {
++	status = "okay";
++};
++
++&switch {
++	pinctrl-0 = <&pps_out_pins>, <&ptp_ext_pins>;
++	pinctrl-names = "default";
++	status = "okay";
++};
++
++&udc {
++	pinctrl-0 = <&udc_pins>;
++	pinctrl-names = "default";
++	atmel,vbus-gpio = <&gpio 8 GPIO_ACTIVE_HIGH>;
++	status = "okay";
++};
 -- 
-Best Regards,
-Samsung Electronics
-Chanwoo Choi
+2.33.0
+
