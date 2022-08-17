@@ -2,111 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F0D7596C14
-	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 11:32:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77414596C4B
+	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 11:51:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230467AbiHQJak (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Aug 2022 05:30:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59794 "EHLO
+        id S229781AbiHQJrn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Aug 2022 05:47:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234589AbiHQJai (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 05:30:38 -0400
-Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A54315A824;
-        Wed, 17 Aug 2022 02:30:37 -0700 (PDT)
-Received: by mail-qt1-f174.google.com with SMTP id cr9so9956458qtb.13;
-        Wed, 17 Aug 2022 02:30:37 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=5akdc5q8OTZh41BRXQ6ueXN+MBAsEQyZP/YjElcO8FE=;
-        b=Ao7etct2jPsOO6PHSHBf0/De4GNGHNC1bzQ5nRNc2NcckuB8eHOjbjOn106RFG4n0e
-         sr/3OiQ0K1aP2/yqq+KAw3MuK+5GJWK5YLCjS2tNxPFx8TTKo9w33snG1KliXjzLOHBK
-         V8xKGtQrCO6K8NYB53liZKyFaZnk+jFkjvrA3CvezN91/gq/IRktigfYeenszRxFGAuv
-         avONSN2ogjDNgrCzpUEAFj1V49hd+nYQZVDAK3/T/qCJn3erNw3fcjZXyXB+MdUSYmHR
-         cK6D6/zYxtQLvunaRRRA0OExkWj5uwLIhtyRnsjcfg6l1ptLgU2V+bumJwopRj02S+4R
-         ynSw==
-X-Gm-Message-State: ACgBeo0XGvpPEqk+BpYRCERozo9LPRlSI3XOMXQkR4N94UE+Su1GUvN5
-        +LO/YW1xj6MLet7lEjYF7d3P6zOiPyOQ7A==
-X-Google-Smtp-Source: AA6agR75wkMzjymVQi/umHde2bRdVhNH/oEzu2yj9HscihiWd4t6QmZZ1rv75XG2KZ6mQ4kPLbYj1Q==
-X-Received: by 2002:a05:622a:1116:b0:31e:d8e4:ac30 with SMTP id e22-20020a05622a111600b0031ed8e4ac30mr21796777qty.660.1660728636684;
-        Wed, 17 Aug 2022 02:30:36 -0700 (PDT)
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com. [209.85.128.175])
-        by smtp.gmail.com with ESMTPSA id l23-20020a37f917000000b006b97151d2b3sm14056322qkj.67.2022.08.17.02.30.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Aug 2022 02:30:36 -0700 (PDT)
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-32fd97c199fso191646627b3.6;
-        Wed, 17 Aug 2022 02:30:36 -0700 (PDT)
-X-Received: by 2002:a5b:6c1:0:b0:669:a7c3:4c33 with SMTP id
- r1-20020a5b06c1000000b00669a7c34c33mr18433198ybq.543.1660728636000; Wed, 17
- Aug 2022 02:30:36 -0700 (PDT)
+        with ESMTP id S229980AbiHQJrT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 05:47:19 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F13AD6B161;
+        Wed, 17 Aug 2022 02:47:18 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 9F399B81BAB;
+        Wed, 17 Aug 2022 09:47:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3BF1C433D7;
+        Wed, 17 Aug 2022 09:47:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1660729636;
+        bh=Qcruij7g38NyR2lHzkGqFZ8XU8XPZecu7Higao6ZkKE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=RDSDvSPOpWDQ0dJ0qNKhdgc29+ejPMevlBuXxi4pal5VBqNzkzGygWNAWZ6PSIQBi
+         NGRY/+Hg3BxKPrHBoIu7lyWzA3iJyQtjaq1+p0pkzr7QD+5ucwPvSqY3xP3b7z1rzl
+         Ufq5FrRwEV4s1+chv28Er16uLSIIl/YYzFSwi4VJWsXkE1GJPP6qKN/iLyg3pLEtRP
+         6ToyiBs2JNB/QkfQ8/a9WXcrpqmSaLhVj5/eeFYjgWd2t+4zZUahPWkSG+rl4nJMv+
+         6Wa34mfh2rIvPSxy8LAxblKCHUvQT2lsTHiX9KaB+37clhVu/R5ksJ2XlRjvhtFmZ0
+         3hemODx1pPL8w==
+Date:   Wed, 17 Aug 2022 17:47:08 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     wei.fang@nxp.com
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, s.hauer@pengutronix.de,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, peng.fan@nxp.com,
+        ping.bai@nxp.com, sudeep.holla@arm.com,
+        linux-arm-kernel@lists.infradead.org, aisheng.dong@nxp.com
+Subject: Re: [PATCH V4 2/3] arm64: dts: imx8ulp: Add the fec support
+Message-ID: <20220817094708.GC149610@dragon>
+References: <20220726143853.23709-1-wei.fang@nxp.com>
+ <20220726143853.23709-3-wei.fang@nxp.com>
 MIME-Version: 1.0
-References: <20220815111708.22302-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20220816174150.GA2428940-robh@kernel.org>
-In-Reply-To: <20220816174150.GA2428940-robh@kernel.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 17 Aug 2022 11:30:23 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWgfGgNGmj88z=Md5RAL8CHxTKj6ywsGwS2HN-vHKMq+w@mail.gmail.com>
-Message-ID: <CAMuHMdWgfGgNGmj88z=Md5RAL8CHxTKj6ywsGwS2HN-vHKMq+w@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: soc: renesas: Move renesas.yaml from arm to soc
-To:     Rob Herring <robh@kernel.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220726143853.23709-3-wei.fang@nxp.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Wed, Jul 27, 2022 at 12:38:52AM +1000, wei.fang@nxp.com wrote:
+> From: Wei Fang <wei.fang@nxp.com>
+> 
+> Add the fec support on i.MX8ULP platforms.
+> 
+> Signed-off-by: Wei Fang <wei.fang@nxp.com>
+> Reviewed-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+> ---
+> V2 change:
+> Remove the external clocks which is related to specific board.
+> V3 change:
+> No change.
+> V4 Change:
+> Add Reviewed-by tag.
+> ---
+>  arch/arm64/boot/dts/freescale/imx8ulp.dtsi | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8ulp.dtsi b/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
+> index 60c1b018bf03..3e8a1e4f0fc2 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
+> @@ -16,6 +16,7 @@ / {
+>  	#size-cells = <2>;
+>  
+>  	aliases {
+> +		ethernet0 = &fec;
+>  		gpio0 = &gpiod;
+>  		gpio1 = &gpioe;
+>  		gpio2 = &gpiof;
+> @@ -365,6 +366,16 @@ usdhc2: mmc@298f0000 {
+>  				bus-width = <4>;
+>  				status = "disabled";
+>  			};
+> +
+> +			fec: ethernet@29950000 {
+> +				compatible = "fsl,imx8ulp-fec", "fsl,imx6ul-fec", "fsl,imx6q-fec";
 
-On Tue, Aug 16, 2022 at 7:41 PM Rob Herring <robh@kernel.org> wrote:
-> On Mon, Aug 15, 2022 at 12:17:08PM +0100, Lad Prabhakar wrote:
-> > renesas.yaml lists out all the Renesas SoC's and the platforms/EVK's which
-> > is either ARM32/ARM64. It would rather make sense if we move renesas.yaml
-> > to the soc/renesas folder instead. This is in preparation for adding a new
-> > SoC (RZ/Five) from Renesas which is based on RISC-V.
->
-> Please post this as part of the above.
->
-> bindings/soc/ is just a dumping ground for stuff that doesn't fit
-> anywhere. We've mostly cleaned bindings/arm/ of that, so I don't really
+Since imx8ulp-fec is compatible with imx6ul-fec, what's the point of
+having imx6q-fec in there?  It can be dropped, I guess?
 
-Note that the target of this move is not .../bindings/soc/, but
-.../bindings/soc/renesas/, so it's a bit less of a dumping ground.
-Perhaps this is also a good opportunity to split renesas.yaml per
-family or product group
-(renesas,{rmobile,rcar-gen[1234],rza,rzg,rzn,...}.yaml?
-A fine-grained split may cause headaches with RZ/G2UL and RZ/Five
-sharing the same SoC Base, but a coarse-grained split keeping all RZ/G
-(after all RZ/Five is part of RZ/G) or even all RZ series together should work.
+Shawn
 
-> want to start that again. I would propose bindings/board/ instead if we
-> move in this direction.
-
-.../bindings/board has the issue with the same boards used with
-multiple pin-compatible SoCs, SiPs, and SoMs.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> +				reg = <0x29950000 0x10000>;
+> +				interrupts = <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>;
+> +				interrupt-names = "int0";
+> +				fsl,num-tx-queues = <1>;
+> +				fsl,num-rx-queues = <1>;
+> +				status = "disabled";
+> +			};
+>  		};
+>  
+>  		gpioe: gpio@2d000080 {
+> -- 
+> 2.25.1
+> 
