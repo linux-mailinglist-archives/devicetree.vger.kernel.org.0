@@ -2,171 +2,470 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82999597383
-	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 18:07:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D04145973C8
+	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 18:12:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240617AbiHQQEG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Aug 2022 12:04:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46926 "EHLO
+        id S240658AbiHQQJu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Aug 2022 12:09:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240618AbiHQQD6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 12:03:58 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F97131EC3;
-        Wed, 17 Aug 2022 09:03:13 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id c28so15529306lfh.3;
-        Wed, 17 Aug 2022 09:03:13 -0700 (PDT)
+        with ESMTP id S240655AbiHQQJS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 12:09:18 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB2C2A025D
+        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 09:08:56 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id z6so19590152lfu.9
+        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 09:08:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc;
-        bh=jVtXdyIgujEW9yCQqJi5T2OfpGkjooy3feMVnemJH3U=;
-        b=oPv17D58CBHupLx32DQ1PHSFijpvfIr+xBgBSG6ogNOD6KohOmMk5sLkkt+OMj+cGv
-         bkzkZTkJG94qz37+RqLKbo7nga7PTtMmvuIB8H6JcT8AtYsoWlEQq8hbAVE6B1DkOw6i
-         I1x0H7gTONtP5KaX8doFoW5pmgAkf1YyXoNnre1c4Z0/wXXR6apGvYnwHjV0evbfF1uK
-         walVrQ785N7fLJO+O8G2vjUA8p82yp5cgBSiU5wYlzuU98lEVFAr4xYlNKs1wr/izTl7
-         O3YBqlQsA/+Gsst3EYzSMioutsN6IWgb7qfBVvZBTLXMBu5Wmzo8RMc1w60W8nFBxKUu
-         mjZA==
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=QoHcNPd3wc/sIbekmUujDyF0P3kyHsDqQ+GBH4jYla4=;
+        b=BPzQy22TkuhkfSdGUYYGubtaWAjnyUWUec+uq/QcIYGsjiYEfnZaL4UQ9Xw2dW6xuS
+         VBUkhv238mRQ8F3t2c98wiCMIFM0Ey1Bflmp4bgJhMqGzCWrUf4yNwEvqB08X0VHi3AX
+         iIP6VtZN6hppOHFnuJXp7vlKISQAZNtnUfkQT5puL/qJGrzLnjY0h0Q+CgLVnExkOq+F
+         XWqhoaUawrgN6niKFsCJLfEzSL1IO9453+GemUUCiJxajGspFiWs6BXFjv6pT2EgO5nL
+         v9N7lMOZczNiGpMiYV+kYK+yuWeyMRqx/JNyJUwZza9J4A5pPuQRPJs7ap1iugQvnz97
+         9eog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=jVtXdyIgujEW9yCQqJi5T2OfpGkjooy3feMVnemJH3U=;
-        b=wUtSfrIRGYKuceRziew1eB2or5QHnN6uXazOdw98XoXAJ+THMiofOSszANUMijhRol
-         KbEb4OgVpRLBg6sBqOXVXMYvFHHTGiEKn+snk1pCCfBOKS/RnXEvQoyh58SgpO4WIi5O
-         8yA16j+0XFLCPQmPvSfcd5xT3FaVwYQ7kzdp8bM5o6QJDn/QwYsQf/cTsisObJe7oFJ4
-         8qWatf1Tw/BB1s7gPNpgDgCV+Wu3r4zQvoZueZc6wx/UmdiTvQec0PfDCNtu+sGDBOB+
-         FwtNUK6NVoTc3Ij1qoH1odGaPNM/g6rCXNRku//AyX82BdGNOoY85f8b1dK75x2RZ88i
-         Hi4A==
-X-Gm-Message-State: ACgBeo1eQw3R21Lilz4VPMtus4dATR1zh9mVgDIRUeLaprrBvaFyuHmA
-        RG2yXotuPilWkXKutHhr1X8=
-X-Google-Smtp-Source: AA6agR5BahLaInyCk5qBo4MT6CcZ/iPJ7DXGEc/Dm1fWRm51euvuBkasFGHzXiVRIOJA5tDmUBURzQ==
-X-Received: by 2002:ac2:549a:0:b0:492:adc8:106c with SMTP id t26-20020ac2549a000000b00492adc8106cmr423608lfk.90.1660752191037;
-        Wed, 17 Aug 2022 09:03:11 -0700 (PDT)
-Received: from gmail.com (82-209-154-112.cust.bredband2.com. [82.209.154.112])
-        by smtp.gmail.com with ESMTPSA id u21-20020a05651206d500b0048b0a5293ccsm1729891lff.78.2022.08.17.09.03.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Aug 2022 09:03:10 -0700 (PDT)
-Date:   Wed, 17 Aug 2022 18:08:04 +0200
-From:   Marcus Folkesson <marcus.folkesson@gmail.com>
-To:     Kent Gustavsson <kent@minoris.se>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 0/9] Improve MCP3911 driver
-Message-ID: <Yv0SZG8vMIz7oF64@gmail.com>
-References: <20220815061625.35568-1-marcus.folkesson@gmail.com>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=QoHcNPd3wc/sIbekmUujDyF0P3kyHsDqQ+GBH4jYla4=;
+        b=UA5LIobL1tJ01YvEJA/EuTd0ctsY3yIvZr+hYCWBFnxgvznamLNDaNxZ97xLHH+scv
+         QKLHLL051ryNoHfbBpDp1OTRPILMa0xWuyGuV7KhMUJ2GdNblwX1yV3GU+mZLFS7lgfl
+         gTSh55qfYyDPs+Ov3xxqfXR0cOkjyLJi3f/KBAORApciLB5zItcshLFlk8UgQMyMSVXa
+         XIEDa6z1Q4lh4pZXxXkZlFNdN5Xh5Cq+TPnlPAMRx/7HpbAmW9ucSBohVlFT3r7IJyMm
+         8T7sqS9Q2QxXrt21Cl21XPp730CKt3YKkYbb31bNkkh3NMFcyjhsZpsfsZwnHYwX7U+N
+         3zmg==
+X-Gm-Message-State: ACgBeo3wl1KtTy2I3h/iwNPODM5tklH7Q5rQCs0vBMYuYrhEFkhNkxYK
+        KFJh2FuKzhP0Zn6U07MmWZohI+dG0ude4q17o5m3Iw==
+X-Google-Smtp-Source: AA6agR6C+d6rL2UihKmY2lJbX13cWdEL9pkurSqwp3tje1t0XXa2CTsHUEW6HH/6aS7aesH2574C3ea8bdwQ35u/W6s=
+X-Received: by 2002:a05:6512:230a:b0:48c:2e06:6c74 with SMTP id
+ o10-20020a056512230a00b0048c2e066c74mr9306475lfu.358.1660752534532; Wed, 17
+ Aug 2022 09:08:54 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="VE85pcEAIHvs5F5g"
-Content-Disposition: inline
-In-Reply-To: <20220815061625.35568-1-marcus.folkesson@gmail.com>
-X-Spam-Status: No, score=1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FSL_HELO_FAKE,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: *
+References: <cover.1658719324.git.tonyhuang.sunplus@gmail.com> <511e17e91ffa16d2a26d1e77f832a0771e2c4017.1658719324.git.tonyhuang.sunplus@gmail.com>
+In-Reply-To: <511e17e91ffa16d2a26d1e77f832a0771e2c4017.1658719324.git.tonyhuang.sunplus@gmail.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Wed, 17 Aug 2022 18:08:17 +0200
+Message-ID: <CAPDyKFpZBSw0jM1YXF9zJ7xxwjO_HXbJ06w3vbjDEZe7=a3FOA@mail.gmail.com>
+Subject: Re: [PATCH v8 2/2] mmc: Add mmc driver for Sunplus SP7021
+To:     Tony Huang <tonyhuang.sunplus@gmail.com>
+Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kerenl@vger.kernel.org,
+        p.zabel@pengutronix.de, kuba@kernel.org, davem@davemloft.net,
+        colin.foster@in-advantage.com, vladimir.oltean@nxp.com,
+        wells@sunplus.com, tony.huang@sunplus.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+[...]
 
---VE85pcEAIHvs5F5g
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> +struct spmmc_host {
+> +       void __iomem *base;
+> +       struct clk *clk;
+> +       struct reset_control *rstc;
+> +       spinlock_t lock; /* Prevent races with irq handler */
+> +       struct mutex mrq_lock; /* protect spmmc_set_ios() context and spmmc_request() */
+> +       struct mmc_host *mmc;
+> +       struct mmc_request *mrq; /* current mrq */
+> +       int irq;
+> +       int power_state; /* current power state: off/up/on */
+> +       int ddr_enabled;
+> +       int signal_voltage;
+> +       int dmapio_mode;
+> +       /*
+> +        * for purpose of reducing context switch, only when transfer data that
+> +        * length is greater than `dma_int_threshold' should use interrupt
+> +        */
+> +       int dma_int_threshold;
 
-On Mon, Aug 15, 2022 at 08:16:16AM +0200, Marcus Folkesson wrote:
-> This patch series intend to fix bugs and improve functionality of the MCP=
-3911 driver.
-> The main features added are
-> - Support for buffers
-> - Interrupt driven readings
-> - Support for oversampling ratio
-> - Support for set scale values (Gain)
->=20
-> Among the bug fixes, there are changes in the formula for calculate raw v=
-alue and a fix for mismatch in the devicetree property.
->=20
-> Another general improvement for the driver is to use managed resources fo=
-r all allocated resources.
->=20
-> See patch notes for more specific changes.
->=20
-> General changes for the series:
->=20
-> v3:
-> - Drop Phase patch
-> - Add Fixes tags for those patches that are fixes
-> - Move Fixes patches to the beginning of the patchset
->=20
-> v4:
-> - Split up devm-cleanup functions=20
-> - Cosmetic cleanups
-> - Add
-> 	select IIO_BUFFER
-> 	select IIO_TRIGGERED_BUFFER
->     To Kconfig
-> - Add .endianness =3D IIO_BE
->=20
-> v5:
-> - Drop remove function
-> - Split tx&rx transfers in mcp3911_trigger_handler()
-> - Moved Kconfig changes to right patch
->=20
-> v6:
-> - Go for devm_clk_get_enabled()
-> - Cosmetic cleanups
-> - Clarify the description of microchip,data-ready-hiz
->=20
+I don't quite see how this is being used in the code. Is the threshold
+dynamically changed or could it be defined as constant value instead?
 
-Marcus Folkesson (9):
-  iio: adc: mcp3911: make use of the sign bit
-  iio: adc: mcp3911: correct "microchip,device-addr" property
-  iio: adc: mcp3911: use correct formula for AD conversion
-  iio: adc: mcp3911: use resource-managed version of iio_device_register
-  iio: adc: mcp3911: add support for buffers
-  iio: adc: mcp3911: add support for interrupts
-  dt-bindings: iio: adc: mcp3911: add microchip,data-ready-hiz entry
-  iio: adc: mcp3911: add support for oversampling ratio
-  iio: adc: mcp3911: add support to set PGA
+> +       struct sg_mapping_iter sg_miter; /* for pio mode to access sglist */
+> +       struct spmmc_tuning_info tuning_info;
+> +};
+> +
+> +/*
+> + * wait for transaction done, return -1 if error.
+> + */
+> +static inline int spmmc_wait_finish(struct spmmc_host *host)
+> +{
+> +       /* Wait for transaction finish */
+> +       unsigned long timeout = jiffies + msecs_to_jiffies(5000);
+> +
+> +       while (!time_after(jiffies, timeout)) {
+> +               if (readl(host->base + SPMMC_SD_STATE_REG) & SPMMC_SDSTATE_FINISH)
+> +                       return 0;
+> +               if (readl(host->base + SPMMC_SD_STATE_REG) & SPMMC_SDSTATE_ERROR)
+> +                       return -EIO;
+> +       }
 
- .../bindings/iio/adc/microchip,mcp3911.yaml   |   7 +
- drivers/iio/adc/Kconfig                       |   2 +
- drivers/iio/adc/mcp3911.c                     | 372 +++++++++++++++---
- 3 files changed, 321 insertions(+), 60 deletions(-)
+Please convert the above and similar loops for timeouts for the entire
+file, into using readl_poll_timeout().
 
->=20
-> Best regards,
-> Marcus Folkesson
->=20
->=20
+Moreover, please define the timeout values as constants.
 
+Note that, there are other places in this file where the similar loop
+exists, please change them accordingly too.
 
---VE85pcEAIHvs5F5g
-Content-Type: application/pgp-signature; name="signature.asc"
+[...]
 
------BEGIN PGP SIGNATURE-----
+> +
+> +static void spmmc_send_stop_cmd(struct spmmc_host *host)
+> +{
+> +       struct mmc_command stop = {};
+> +       u32 value;
+> +
+> +       stop.opcode = MMC_STOP_TRANSMISSION;
+> +       stop.arg = 0;
+> +       stop.flags = MMC_RSP_R1B;
+> +       spmmc_prepare_cmd(host, &stop);
+> +       value = readl(host->base + SPMMC_SD_INT_REG);
+> +       value &= ~SPMMC_SDINT_SDCMPEN;
+> +       value |= FIELD_PREP(SPMMC_SDINT_SDCMPEN, 0);
+> +       writel(value, host->base + SPMMC_SD_INT_REG);
+> +       spmmc_trigger_transaction(host);
+> +       spmmc_wait_finish(host);
+> +}
+> +
+> +static int spmmc_check_error(struct spmmc_host *host, struct mmc_request *mrq)
+> +{
+> +       int ret = 0;
+> +       struct mmc_command *cmd = mrq->cmd;
+> +       struct mmc_data *data = mrq->data;
+> +
+> +       u32 value = readl(host->base + SPMMC_SD_STATE_REG);
+> +       u32 crc_token = FIELD_GET(SPMMC_CRCTOKEN_CHECK_RESULT, value);
+> +
+> +       if (value & SPMMC_SDSTATE_ERROR) {
+> +               u32 timing_cfg0 = 0;
+> +
+> +               value = readl(host->base + SPMMC_SD_STATUS_REG);
+> +
+> +               if (host->tuning_info.enable_tuning) {
+> +                       timing_cfg0 = readl(host->base + SPMMC_SD_TIMING_CONFIG0_REG);
+> +                       host->tuning_info.rd_crc_dly = FIELD_GET(SPMMC_SD_READ_CRC_DELAY,
+> +                                                                timing_cfg0);
+> +                       host->tuning_info.rd_dat_dly = FIELD_GET(SPMMC_SD_READ_DATA_DELAY,
+> +                                                                timing_cfg0);
+> +                       host->tuning_info.rd_rsp_dly = FIELD_GET(SPMMC_SD_READ_RESPONSE_DELAY,
+> +                                                                timing_cfg0);
+> +                       host->tuning_info.wr_cmd_dly = FIELD_GET(SPMMC_SD_WRITE_COMMAND_DELAY,
+> +                                                                timing_cfg0);
+> +                       host->tuning_info.wr_dat_dly = FIELD_GET(SPMMC_SD_WRITE_DATA_DELAY,
+> +                                                                timing_cfg0);
+> +               }
+> +
+> +               if (value & SPMMC_SDSTATUS_RSP_TIMEOUT) {
+> +                       ret = -ETIMEDOUT;
+> +                       host->tuning_info.wr_cmd_dly++;
+> +               } else if (value & SPMMC_SDSTATUS_RSP_CRC7_ERROR) {
+> +                       ret = -EILSEQ;
+> +                       host->tuning_info.rd_rsp_dly++;
+> +               } else if (data) {
+> +                       if ((value & SPMMC_SDSTATUS_STB_TIMEOUT)) {
+> +                               ret = -ETIMEDOUT;
+> +                               host->tuning_info.rd_dat_dly++;
+> +                       } else if (value & SPMMC_SDSTATUS_RDATA_CRC16_ERROR) {
+> +                               ret = -EILSEQ;
+> +                               host->tuning_info.rd_dat_dly++;
+> +                       } else if (value & SPMMC_SDSTATUS_CARD_CRC_CHECK_TIMEOUT) {
+> +                               ret = -ETIMEDOUT;
+> +                               host->tuning_info.rd_crc_dly++;
+> +                       } else if (value & SPMMC_SDSTATUS_CRC_TOKEN_CHECK_ERROR) {
+> +                               ret = -EILSEQ;
+> +                               if (crc_token == 0x5)
+> +                                       host->tuning_info.wr_dat_dly++;
+> +                               else
+> +                                       host->tuning_info.rd_crc_dly++;
+> +                       }
+> +               }
+> +               cmd->error = ret;
+> +               if (data) {
+> +                       data->error = ret;
+> +                       data->bytes_xfered = 0;
+> +               }
+> +               if (!host->tuning_info.need_tuning && host->tuning_info.enable_tuning)
+> +                       cmd->retries = SPMMC_MAX_RETRIES;
+> +               spmmc_sw_reset(host);
+> +
+> +               if (host->tuning_info.enable_tuning) {
+> +                       timing_cfg0 |= FIELD_PREP(SPMMC_SD_READ_CRC_DELAY,
+> +                                                      host->tuning_info.rd_crc_dly);
+> +                       timing_cfg0 |= FIELD_PREP(SPMMC_SD_READ_DATA_DELAY,
+> +                                                      host->tuning_info.rd_dat_dly);
+> +                       timing_cfg0 |= FIELD_PREP(SPMMC_SD_READ_RESPONSE_DELAY,
+> +                                                      host->tuning_info.rd_rsp_dly);
+> +                       timing_cfg0 |= FIELD_PREP(SPMMC_SD_WRITE_COMMAND_DELAY,
+> +                                                      host->tuning_info.wr_cmd_dly);
+> +                       timing_cfg0 |= FIELD_PREP(SPMMC_SD_WRITE_DATA_DELAY,
+> +                                                      host->tuning_info.wr_dat_dly);
+> +                       writel(timing_cfg0, host->base + SPMMC_SD_TIMING_CONFIG0_REG);
+> +               }
+> +       } else if (data) {
+> +               data->error = 0;
+> +               data->bytes_xfered = data->blocks * data->blksz;
+> +       }
+> +       host->tuning_info.need_tuning = ret;
+> +    /* controller will not send cmd 12 automatically if error occurred */
 
-iQIzBAEBCAAdFiEEBVGi6LZstU1kwSxliIBOb1ldUjIFAmL9EmAACgkQiIBOb1ld
-UjIUog//TMw7AQhWvpdobTQEqL39MmUf8RHo9kPnosQykuIyfQ/NTe0kftmWM9II
-+pCslZDN4ag29bN2c13ZAqwiiIAr+xOmKNQBzVoC1fI4cJQJAA3v4bsvvfWJTXhg
-gHsRlPp+6vcn2BCtyGJWZuD0bkLr2Gdx1hXmgJrh+SCNtNr4/bBFInVQ6ufYx5Ur
-d+UWG6hNvmKJSpPwxRqUkGogbaWa7gd6BTx463olRPmXmxSp3MBLloGPa9MGxNir
-9S2D49VSpQSRDKBiiKTnao9mX0CgP7fM0Tq+xEuXtue2hnSpHwKUe+IjJJBp1m5v
-qAJmKYt5HJeOAHpjgGS6n/IpZL+3yaALPxW/dOzhBmBRNv7qP5oJCFaTamAWN0gl
-KSvtqKzo87SoGPpW5/Wr5l6p0eMA94ruPziHdbWQgggboV47wX21VCyGg32m7h/J
-IRKIDv9QbzegTZv8nDYWC1oxL5xcd8qT5uNqxWH/Q4xAdfcMs9k33hQKILr1TZRC
-KoNJa3/3HaVq/Q1RpygFtvhBoAWTT3z3QzIeNBHxNc1JyEc/xomxhXuk0V5OSxh1
-+XyvXhpqR4CpMLHJeleW8fez3Elw8W+jipB7QyPFSHilZUEeQZMQjfxtJVxu2r22
-DO+sHrHm0KrfW7K6q9Rhhr62WcKgioSWSy5llNKPKie7rC9Z0CU=
-=uBb4
------END PGP SIGNATURE-----
+Is this comment really correct? It looks like the below code, ends up
+sending a stop command no matter whether the request failed, no?
 
---VE85pcEAIHvs5F5g--
+> +       if (cmd->opcode == MMC_READ_MULTIPLE_BLOCK ||
+> +           cmd->opcode == MMC_WRITE_MULTIPLE_BLOCK) {
+
+Unless this is needed due to a specific HW-controller behaviour, I
+would rather rely on that we check for "mrq->data->stop", as that
+indicates (from the SD/eMMC specification point of view) whether we
+need to send the stop command.
+
+Moreover, in this way, we can avoid creating our own "mmc_command" in
+spmmc_send_stop_cmd(), but can instead just use "mrq->data->stop".
+
+> +               spmmc_send_stop_cmd(host);
+> +               spmmc_sw_reset(host);
+> +       }
+> +
+> +       return ret;
+> +}
+
+[...]
+
+> +static void spmmc_set_power_mode(struct spmmc_host *host, struct mmc_ios *ios)
+> +{
+> +       if (host->power_state == ios->power_mode)
+> +               return;
+> +
+> +       switch (ios->power_mode) {
+> +               /* power off->up->on */
+> +       case MMC_POWER_ON:
+> +               spmmc_controller_init(host);
+> +               break;
+> +       case MMC_POWER_UP:
+> +               break;
+> +       case MMC_POWER_OFF:
+> +               pm_runtime_put(host->mmc->parent);
+
+This looks wrong to me. Unless you can explain more exactly what goes on here.
+
+If there is an external regulator to power the card (the eMMC/SD/SDIO
+card), that card should be power-controlled by calling
+mmc_regulator_set_ocr() somewhere around in this function.
+
+> +               break;
+> +       }
+> +       host->power_state = ios->power_mode;
+> +}
+
+[...]
+
+> +
+> +static int spmmc_drv_probe(struct platform_device *pdev)
+> +{
+> +       struct mmc_host *mmc;
+> +       struct resource *res;
+> +       struct spmmc_host *host;
+> +       int ret = 0;
+> +
+> +       mmc = mmc_alloc_host(sizeof(*host), &pdev->dev);
+> +       if (!mmc) {
+> +               ret = -ENOMEM;
+> +               goto probe_free_host;
+> +       }
+> +
+> +       host = mmc_priv(mmc);
+> +       host->mmc = mmc;
+> +       host->power_state = MMC_POWER_UNDEFINED;
+> +       host->dma_int_threshold = 1024;
+> +       host->dmapio_mode = SPMMC_DMA_MODE;
+> +
+> +       host->base = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
+> +       if (IS_ERR(host->base))
+> +               return PTR_ERR(host->base);
+> +
+> +       host->clk = devm_clk_get(&pdev->dev, NULL);
+> +       if (IS_ERR(host->clk))
+> +               return dev_err_probe(&pdev->dev, PTR_ERR(host->clk), "clk get fail\n");
+> +
+> +       host->rstc = devm_reset_control_get_exclusive(&pdev->dev, NULL);
+> +       if (IS_ERR(host->rstc))
+> +               return dev_err_probe(&pdev->dev, PTR_ERR(host->rstc), "rst get fail\n");
+> +
+> +       host->irq = platform_get_irq(pdev, 0);
+> +       if (host->irq <= 0)
+> +               return host->irq;
+> +
+> +       ret = devm_request_threaded_irq(&pdev->dev, host->irq,
+> +                                       spmmc_irq, spmmc_func_finish_req, IRQF_SHARED,
+> +                       NULL, host);
+> +       if (ret)
+> +               return ret;
+> +
+> +       ret = clk_prepare_enable(host->clk);
+> +       if (ret)
+> +               return dev_err_probe(&pdev->dev, ret, "failed to enable clk\n");
+> +
+> +       ret = mmc_of_parse(mmc);
+> +       if (ret)
+> +               goto probe_free_host;
+> +
+> +       spin_lock_init(&host->lock);
+> +       mutex_init(&host->mrq_lock);
+> +       mmc->ops = &spmmc_ops;
+> +       mmc->f_min = SPMMC_MIN_CLK;
+> +       if (mmc->f_max > SPMMC_MAX_CLK)
+> +               mmc->f_max = SPMMC_MAX_CLK;
+> +
+> +       ret = mmc_regulator_get_supply(mmc);
+> +       if (ret)
+> +               goto probe_free_host;
+> +
+> +       if (!mmc->ocr_avail)
+> +               mmc->ocr_avail = MMC_VDD_32_33 | MMC_VDD_33_34;
+> +       mmc->max_seg_size = SPMMC_MAX_BLK_COUNT * 512;
+> +       mmc->max_segs = SPMMC_MAX_DMA_MEMORY_SECTORS;
+> +       mmc->max_req_size = SPMMC_MAX_BLK_COUNT * 512;
+> +       mmc->max_blk_size = 512;
+> +       mmc->max_blk_count = SPMMC_MAX_BLK_COUNT;
+> +
+> +       dev_set_drvdata(&pdev->dev, host);
+> +       spmmc_controller_init(host);
+> +       spmmc_set_sdmmc_mode(host);
+> +       host->tuning_info.enable_tuning = 1;
+> +       pm_runtime_set_active(&pdev->dev);
+> +       pm_runtime_enable(&pdev->dev);
+> +       mmc_add_host(mmc);
+> +
+> +       return ret;
+> +
+> +probe_free_host:
+> +       if (mmc)
+> +               mmc_free_host(mmc);
+> +
+> +       return ret;
+> +}
+> +
+> +static int spmmc_drv_remove(struct platform_device *dev)
+> +{
+> +       struct spmmc_host *host = platform_get_drvdata(dev);
+> +
+> +       mmc_remove_host(host->mmc);
+> +       clk_disable(host->clk);
+
+This doesn't work, because there are no guarantees that the host is
+runtime resumed at this point. Hence, the clock may be disabled
+already.
+
+To fix this, you should replace the above call to clk_disable() with a
+call to pm_runtime_get_sync() instead.
+
+> +       clk_disable_unprepare(host->clk);
+> +       pm_runtime_disable(&dev->dev);
+
+As you need to call pm_runtime_get_sync() above, you then need to
+restore the runtime PM usage count here. So, add a call to
+pm_runtime_put_noidle() here, that should do it.
+
+> +       platform_set_drvdata(dev, NULL);
+> +       mmc_free_host(host->mmc);
+> +
+> +       return 0;
+> +}
+> +
+> +static int spmmc_pm_suspend(struct device *dev)
+> +{
+> +       pm_runtime_force_suspend(dev);
+> +
+> +       return 0;
+> +}
+> +
+> +static int spmmc_pm_resume(struct device *dev)
+> +{
+> +       pm_runtime_force_resume(dev);
+> +
+> +       return 0;
+> +}
+
+Both spmmc_pm_suspend() and spmmc_pm_resume() can be entirely dropped,
+see more below.
+
+> +
+> +static int spmmc_pm_runtime_suspend(struct device *dev)
+> +{
+> +       struct spmmc_host *host;
+> +
+> +       host = dev_get_drvdata(dev);
+> +       clk_disable(host->clk);
+
+You should replace the above call to clk_disable() with a call to
+clk_disable_unprepare().
+
+> +
+> +       return 0;
+> +}
+> +
+> +static int spmmc_pm_runtime_resume(struct device *dev)
+> +{
+> +       struct spmmc_host *host;
+> +
+> +       host = dev_get_drvdata(dev);
+> +
+> +       return clk_enable(host->clk);
+
+You should replace the above call to clk_enable() with a call to
+clk_prepare_enable().
+
+> +}
+> +
+> +static const struct dev_pm_ops spmmc_pm_ops = {
+> +       SYSTEM_SLEEP_PM_OPS(spmmc_pm_suspend, spmmc_pm_resume)
+> +       RUNTIME_PM_OPS(spmmc_pm_runtime_suspend, spmmc_pm_runtime_resume, NULL)
+> +};
+
+The above can be replaced with:
+
+static DEFINE_RUNTIME_DEV_PM_OPS(spmmc_pm_ops,
+spmmc_pm_runtime_suspend, spmmc_pm_runtime_resume, NULL);
+
+The system suspend/resume callback will then be set to
+pm_runtime_force_suspend|resume(), which seems to be what you need.
+
+> +
+> +static const struct of_device_id spmmc_of_table[] = {
+> +       {
+> +               .compatible = "sunplus,sp7021-mmc",
+> +       },
+> +       {/* sentinel */}
+> +};
+> +MODULE_DEVICE_TABLE(of, spmmc_of_table);
+> +
+> +static struct platform_driver spmmc_driver = {
+> +       .probe = spmmc_drv_probe,
+> +       .remove = spmmc_drv_remove,
+> +       .driver = {
+> +               .name = "spmmc",
+> +               .pm = pm_ptr(&spmmc_pm_ops),
+> +               .of_match_table = spmmc_of_table,
+> +       },
+> +};
+> +module_platform_driver(spmmc_driver);
+> +
+> +MODULE_AUTHOR("Tony Huang <tonyhuang.sunplus@gmail.com>");
+> +MODULE_AUTHOR("Li-hao Kuo <lhjeff911@gmail.com>");
+> +MODULE_DESCRIPTION("Sunplus MMC controller driver");
+> +MODULE_LICENSE("GPL");
+
+Kind regards
+Uffe
