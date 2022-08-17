@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 819A8596E10
-	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 14:06:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86300596E27
+	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 14:07:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239201AbiHQMEV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Aug 2022 08:04:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36970 "EHLO
+        id S239219AbiHQME3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Aug 2022 08:04:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239190AbiHQMEU (ORCPT
+        with ESMTP id S239193AbiHQMEU (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 08:04:20 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFDF84C628
-        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 05:04:15 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id y23so13315446ljh.12
-        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 05:04:15 -0700 (PDT)
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F38512982A
+        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 05:04:16 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id bx38so13322718ljb.10
+        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 05:04:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=ReOjLSRdM73U3T0jSSkVf1kkbc1X9kpMxiIghbKwlM0=;
-        b=z0TsarAxIowZ9kSH9JdfzT94ayGy1+6y9CBhIAvRIXYPpHTdcOP2rigvWy3itZufME
-         R0TagUtnAhzsaNXXZGhTU/b7hPmV/r50VgkD0Du020fiGzIJi/tjt9ivXGzNOMqL04vZ
-         8Wjm3HK5lgRcW5JryJas9fiPVVEc+jtjecO1I9BtrYCxZM9pGvtCksp3+cmPfFqwfZ3x
-         nqxKnPrq8YbmUtV28KGB5vNetemnGIYXsP3IYzORMDW1GqPgT8TBcWib4MBWX5WM4Nsl
-         AbhGOzqQ0OwmWs4tGwE8KdRKtj/38oSsBXzWP3rKcfg9rQvidJJgIxtw3UC0GXv1ACV/
-         9mww==
+        bh=IB+sPWwaEMPz1OqOHo1E0jzt4v44qohfF0waJg4s+1w=;
+        b=hbHSmbOgPrUflh2qJIINqXaOfHaRrEN3He2IRoZyS/a2LnHvI3KNsB9xVvigmWcXF7
+         giImKKhZxRbfuZiDPxdX7TRaSyIbb8fvK8tGXezscV3a0j0MGJ2+c7i6RYfB0ddzxCMm
+         8DkZ1vUgktzWgRTB7GifTszH+WjixTZhz7FYtJdwrt/V+iyec9LmXX/Uzow8Ai7nSxIK
+         3YxqNOlQyEA5MDmtIc4w5jogg5QusEgFEEEFyCpiRSQ54xA0MxIrUW8M16LmuioQwyhB
+         vikAeo6nAuvfa3bdWK9m62LqP+IuOPZARrHd5KQ91goclHHZs9CrJirjXdu601zFfQ/M
+         h+9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=ReOjLSRdM73U3T0jSSkVf1kkbc1X9kpMxiIghbKwlM0=;
-        b=a9lRfVr9gwA0HZIBtO0fj602Hp02RoYtu9GAm0rjrOTkTL5UZgzOT5ApmVFw/JYG4J
-         uHtnKm2Qq/44b/2LvHhTwTQsyBseT6zuNDFWYEI43MSdJ/It0zbODyLGOYa7SF2bBBsl
-         eefeXsb8HazfqhkzRoCONQTCZYobL3QW0ntrizdvdAxRBQUi5lGI/szARHxYOBzmuEES
-         tQFL3MpPAvw76mB/LchUZW+Bpoe5DserJGcUj54KbqcxOkfH3UqSZISBy4wclpL4oZo4
-         NPzo1Yc0L3tb7QTt6j39Eow5jwEqlYK6JMpfehhX9z5qydjkpM1ck4PLASO6ERyZcjzS
-         /mQA==
-X-Gm-Message-State: ACgBeo1YIoudH+ePwaWtXa3sIPk9uWbQnTNs8Dy08/3JNN7Vxbi2CRrU
-        dski9Gto1adEFOVTacUQUlBNgQ==
-X-Google-Smtp-Source: AA6agR4HaRuQaKBpbYd2r7g/Qd0i+GDhUEFiJdCWvdd78tKYkxTUqpJzc2jYZuh9mukaJIWD0s2AIA==
-X-Received: by 2002:a2e:b911:0:b0:261:8189:64e7 with SMTP id b17-20020a2eb911000000b00261818964e7mr5077716ljb.179.1660737853970;
-        Wed, 17 Aug 2022 05:04:13 -0700 (PDT)
+        bh=IB+sPWwaEMPz1OqOHo1E0jzt4v44qohfF0waJg4s+1w=;
+        b=WL4GdZR/sFuT13W7zOteG8jwApd+7Sr769vwlJGz1fvZpwBB8zl9Ca7bHZh6r24+oT
+         ADF6B2rih+pa0l2PmQhEHIOgYjja4bUK6DLNGCrSSiWNpqprco0J+hh1RWUunJvGO6Yd
+         l3RaU/xp2FgnALv8DzmuM+8N9htsiA9SygSpiybJ+lh+rlaFtAwmvwXLPLAT4rJlC8xq
+         sVddz4Hyr7xgXdnkR3Swhd6YbyMIOSX46RhLlW+oPL+UOAMjPLBX+19ZIAmTf8cAftcM
+         rVOMaHwV/l0qYELq6JbbeAhsQFgXhUpw2lGNNzUc1Bt+ENEUAcXIhLIxCYLxEsazi5Hp
+         dvMA==
+X-Gm-Message-State: ACgBeo246qwGctnXVwaA26+wC+UjWL77+R5RLi+72M/xBUksv/bJeA4H
+        vH2NOro8jgA3H2pL08uF5N11fMslyjI3qJmH
+X-Google-Smtp-Source: AA6agR5fKkvGxBwkL0hj6yQpGY56qpuYYqOvN2B34Y3KlAtc0/6tWAnB8u6Xx03g8ffThw4Yks6DwQ==
+X-Received: by 2002:a2e:82d5:0:b0:25e:4d8d:4c67 with SMTP id n21-20020a2e82d5000000b0025e4d8d4c67mr7425426ljh.490.1660737855398;
+        Wed, 17 Aug 2022 05:04:15 -0700 (PDT)
 Received: from krzk-bin.. (d15l54h48cw7vbh-qr4-4.rev.dnainternet.fi. [2001:14bb:ae:539c:1b1c:14b7:109b:ed76])
-        by smtp.gmail.com with ESMTPSA id d15-20020a05651221cf00b0048a97042251sm1670496lft.22.2022.08.17.05.04.12
+        by smtp.gmail.com with ESMTPSA id d15-20020a05651221cf00b0048a97042251sm1670496lft.22.2022.08.17.05.04.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Aug 2022 05:04:13 -0700 (PDT)
+        Wed, 17 Aug 2022 05:04:14 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -56,9 +56,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [RFT PATCH 01/14] dt-bindings: mfd: qcom,tcsr: add SC7180, SC7280, SDM845 and MSM8998
-Date:   Wed, 17 Aug 2022 15:03:49 +0300
-Message-Id: <20220817120403.458000-2-krzysztof.kozlowski@linaro.org>
+Subject: [RFT PATCH 01/14] dt-bindings: mfd: qcom,tcsr: add SC7x80, SDM845 and MSM8996/8
+Date:   Wed, 17 Aug 2022 15:03:50 +0300
+Message-Id: <20220817120403.458000-3-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220817120403.458000-1-krzysztof.kozlowski@linaro.org>
 References: <20220817120403.458000-1-krzysztof.kozlowski@linaro.org>
@@ -74,16 +74,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document existing (SC7280) and new compatibles for TCSR syscon
+Document existing (MSM8996, SC7280) and new compatibles for TCSR syscon
 registers.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+ Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
-index 2f816fd0c9ec..849295b058b6 100644
+index 2f816fd0c9ec..19bc1cc5e0c5 100644
 --- a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
 +++ b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
 @@ -18,6 +18,10 @@ properties:
@@ -97,6 +97,14 @@ index 2f816fd0c9ec..849295b058b6 100644
                - qcom,tcsr-apq8064
                - qcom,tcsr-apq8084
                - qcom,tcsr-ipq8064
+@@ -27,6 +31,7 @@ properties:
+               - qcom,tcsr-msm8953
+               - qcom,tcsr-msm8960
+               - qcom,tcsr-msm8974
++              - qcom,tcsr-msm8996
+           - const: syscon
+       - items:
+           - const: qcom,tcsr-ipq6018
 -- 
 2.34.1
 
