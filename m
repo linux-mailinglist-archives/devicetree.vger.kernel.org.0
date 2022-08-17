@@ -2,178 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA40A596B58
-	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 10:29:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7765596B5A
+	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 10:31:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234525AbiHQI2p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Aug 2022 04:28:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35034 "EHLO
+        id S235234AbiHQI3X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Aug 2022 04:29:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230452AbiHQI2o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 04:28:44 -0400
-Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C0EA5245D;
-        Wed, 17 Aug 2022 01:28:43 -0700 (PDT)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.nyi.internal (Postfix) with ESMTP id 7E3905C00AD;
-        Wed, 17 Aug 2022 04:28:42 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Wed, 17 Aug 2022 04:28:42 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm2; t=1660724922; x=
-        1660811322; bh=NIFsyNjA/dlEZU6LmGUY/TWa07dcuGdnUfAhUCX941c=; b=f
-        pKIcWmxGV1xoSiewcM6tpXJ13JxhWZV1DE11svIPZ7V6s5XqnjzcZpyLZ8yTNQas
-        WbcfhcfUvAifIPj6kd3UDHVe4gImwzIJanb0SqX8+pYV1th4e809DyKHkG9Ft9KI
-        Gplhhv2Eprkp6qYsUaVuZhrBUQUpdUCCMTyXABMwZaotTKJbOxFeMZeyGO8jnfLB
-        mD6NBaIb4Ai3Y3qkUY8pWyGfNNF3esr/dlFCYkygMOXrDFoSSciU9gmzBPEzKuls
-        Ix7wJa9Alrv8IAUw6zdmbCBmUK5iWI0grP9jljTcOjQiKBN6ICdelXcS/c2l5tL5
-        kcH6OtiT/7xGNUrsUnhAQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:feedback-id:feedback-id:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1660724922; x=
-        1660811322; bh=NIFsyNjA/dlEZU6LmGUY/TWa07dcuGdnUfAhUCX941c=; b=U
-        ixQwO2cGAN9dGLQmPpw00W9AhhosOAjRbvus2FK1fOdfaxZt0J9mE3aJbdyqJZZs
-        xTJMTseRHOnk46S4ah2wdJUVv8YjR3t23vruwldnZ2ufG/uHrk2IL4/gNTYGO3mu
-        X75AUUvfEoD6SiyBMgzWwQpe9KQzBTAxBxEu/7buwOGUQqars41Hr87scfkKq9RL
-        g8Elg8TNJj9nzQQSFSRLR50lNe149IeMpQUizJMFg3CuuwH60vBGs6T5o3x7/Q4D
-        6ymPlxPp5nkiL1nQe4nsrUDCX6y16q+mN8k5Dz5HjnOZW1kYP+3csKBdTOY2fR/2
-        V1nV8msbmK9f3DbtnSiSQ==
-X-ME-Sender: <xms:uqb8Ykvsn4gPt8Ki_94KZQv0KTuvusPy_nJ4dnHW5vDyc8Zs_mWLIA>
-    <xme:uqb8YhcafQHPpaRZwqjE7no5OKd34E87V2ugbUxl0IgMd7A1oUOce_RxqoT4eNKjR
-    35ur5-q8R5qtbAmLA>
-X-ME-Received: <xmr:uqb8YvwdSf4tsFfL5KxIdeJBZMh-_0wxTxUKY2IR4UKatO0DaqbZLapCU0y6UoB-wNEurjdSeGDEm3MX0qjCU6kXRQ-ZmC0_W_uJSkMr2JKJnUhD-2xibLa5nA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdehiedgtdegucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepuffvvehfhffkffgfgggjtgfgsehtkeertddtfeejnecuhfhrohhmpefurghm
-    uhgvlhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenuc
-    ggtffrrghtthgvrhhnpedtvefhheehgfdvkeetffeludeuudehudeuvddtveelleekvedv
-    uedviefhkeeuheenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfh
-    hrohhmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
-X-ME-Proxy: <xmx:uqb8YnOYRWdR3FpXhzSMovZNvIDtQCrc-v-S0IeM9KwF2c2bAfPQag>
-    <xmx:uqb8Yk__4P_fchu5l1mK6IYfhm0xHrpUse2VTquGLEyY_Vvc0ZUBvg>
-    <xmx:uqb8YvVK6Hev6JPGfxhF-BfTjaKMjw5PL7FUlYhLwP-mmpVlaubXuQ>
-    <xmx:uqb8Yl0DUppUp00FPWJAHRkd1AAGq6YI6SAx1uhp8CZ8-saN08u1vQ>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 17 Aug 2022 04:28:41 -0400 (EDT)
-Subject: Re: [PATCH v3 2/4] regulator: sun20i: Add support for Allwinner D1
- LDOs
-To:     =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev
-References: <20220815043436.20170-1-samuel@sholland.org>
- <20220815043436.20170-3-samuel@sholland.org> <37742446.J2Yia2DhmK@diego>
-From:   Samuel Holland <samuel@sholland.org>
-Message-ID: <1c172085-9586-b612-8600-776e8a394f12@sholland.org>
-Date:   Wed, 17 Aug 2022 03:28:40 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+        with ESMTP id S233381AbiHQI3W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 04:29:22 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 926E86BD78
+        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 01:29:20 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id a9so18089550lfm.12
+        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 01:29:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=LlRoK8GCouttuQaBiu3XZNyJMKx9NckoSxJlAPIv4MY=;
+        b=BNa4kzN4tStk2kyeoWATpkWYOOrU/u42HkDaDm2RyGzskUGA1OS98DKDu1ZO8TeyAc
+         BHlGTLFvooBdLrQ7bsGjHyYLXjT7U/XTPw5XtNXVB4DmN/k3ooISitVoSvRIe0jo63MY
+         lCcg1xcDs63reLeAyJgfToUbtlbtP1e/bJcsgIb9/ZFKekQUywKC+kfTTRYYfXkQpiVa
+         GBXTd4Fhe8jOx6NHT4i8DvZN66P846rCuttcsOqO2aigTpUnw0k/d/vy7Kragknk0xEl
+         +uTxBH1xVZUqPd1mz5kYCWkyV36LyiV5EWF/Ik0hqjJXCxdqwHlu2ac1m7hso6chDzRi
+         QFbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=LlRoK8GCouttuQaBiu3XZNyJMKx9NckoSxJlAPIv4MY=;
+        b=nzAJ7qQGjeZx7NsZi+xqJA6JNOI3iScNttLCK1K5dx8kKIos9Lkoe9DgY9E7hiRvzt
+         dzyOblFz+d4GaR+2Zq6ipgSDrPfsX4SlLIymmS3XiGpmETKoirBPHh4p/vs4Z9VhHxKM
+         ruJQPmP9UK01q+r22fVPku3jk2qIxfEeGv/PqTDZczOccryowB92nTg10zcc7k7hLwOG
+         wdiQlm5Ym8uDZr6WI+7lOxHCJZyM2hwsF6lbjlSSAZk7uE+1f7kA9ZRqS4laSRGYFWNn
+         8F8PRYjrXqfpZFros8hd2AQbJ65Q/XCAidQs5jSIebGrUPLWBV36A54/0Qn9QLKEM3Fb
+         ik3w==
+X-Gm-Message-State: ACgBeo02y03TnaZWKH2vn+MiE330omVCt/JXEzYHIy6FGIYNNJepkX1B
+        uza/EpMUK0rYdUbJyZD88GtOEQ==
+X-Google-Smtp-Source: AA6agR4HHYiX+08ES6ynJULFRUES7PlCFeft6BMZRI/rn6fM+kl/t2dpDlDozOXX4PW1JsquPkATig==
+X-Received: by 2002:a05:6512:3e0c:b0:48a:fdb2:f1c4 with SMTP id i12-20020a0565123e0c00b0048afdb2f1c4mr9470671lfv.379.1660724958883;
+        Wed, 17 Aug 2022 01:29:18 -0700 (PDT)
+Received: from ?IPV6:2001:14bb:ae:539c:1b1c:14b7:109b:ed76? (d15l54h48cw7vbh-qr4-4.rev.dnainternet.fi. [2001:14bb:ae:539c:1b1c:14b7:109b:ed76])
+        by smtp.gmail.com with ESMTPSA id e7-20020a05651c038700b0025df04af0f0sm2123207ljp.51.2022.08.17.01.29.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Aug 2022 01:29:18 -0700 (PDT)
+Message-ID: <f9729b31-c487-ea0a-d329-2efb7765d5fe@linaro.org>
+Date:   Wed, 17 Aug 2022 11:29:16 +0300
 MIME-Version: 1.0
-In-Reply-To: <37742446.J2Yia2DhmK@diego>
-Content-Type: text/plain; charset=utf-8
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH 06/12] riscv: dts: allwinner: Add the D1 SoC base
+ devicetree
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+To:     Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        linux-sunxi@lists.linux.dev, Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-riscv@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+References: <20220815050815.22340-1-samuel@sholland.org>
+ <20220815050815.22340-7-samuel@sholland.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220815050815.22340-7-samuel@sholland.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/15/22 12:00 PM, Heiko Stübner wrote:
-> Am Montag, 15. August 2022, 06:34:33 CEST schrieb Samuel Holland:
->> D1 contains two pairs of LDOs. Since they have similar bindings, and
->> they always exist together, put them in a single driver.
->>
->> The analog LDOs are relatively boring, with a single linear range. Their
->> one quirk is that a bandgap reference must be calibrated for them to
->> produce the correct voltage.
->>
->> The system LDOs have the complication that their voltage step is not an
->> integer, so a custom .list_voltage is needed to get the rounding right.
->>
->> Signed-off-by: Samuel Holland <samuel@sholland.org>
->> ---
->>
->> Changes in v3:
->>  - Adjust control flow in sun20i_regulator_get_regmap() for clarity
->>
->> Changes in v2:
->>  - Use decimal numbers for .n_voltages instead of field widths
->>  - Get the regmap from the parent device instead of a property/phandle
->>
->>  drivers/regulator/Kconfig            |   8 +
->>  drivers/regulator/Makefile           |   1 +
->>  drivers/regulator/sun20i-regulator.c | 232 +++++++++++++++++++++++++++
->>  3 files changed, 241 insertions(+)
->>  create mode 100644 drivers/regulator/sun20i-regulator.c
->>
->> diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
->> index 23e3e4a35cc9..0c5727173fa0 100644
->> --- a/drivers/regulator/Kconfig
->> +++ b/drivers/regulator/Kconfig
->> @@ -1262,6 +1262,14 @@ config REGULATOR_STW481X_VMMC
->>  	  This driver supports the internal VMMC regulator in the STw481x
->>  	  PMIC chips.
->>  
->> +config REGULATOR_SUN20I
->> +	tristate "Allwinner D1 internal LDOs"
->> +	depends on ARCH_SUNXI || COMPILE_TEST
->> +	depends on MFD_SYSCON && NVMEM
->> +	default ARCH_SUNXI
->> +	help
->> +	  This driver supports the internal LDOs in the Allwinner D1 SoC.
->> +
->>  config REGULATOR_SY7636A
->>  	tristate "Silergy SY7636A voltage regulator"
->>  	help
->> diff --git a/drivers/regulator/Makefile b/drivers/regulator/Makefile
->> index fa49bb6cc544..5dff112eb015 100644
->> --- a/drivers/regulator/Makefile
->> +++ b/drivers/regulator/Makefile
->> @@ -148,6 +148,7 @@ obj-$(CONFIG_REGULATOR_STM32_VREFBUF) += stm32-vrefbuf.o
->>  obj-$(CONFIG_REGULATOR_STM32_PWR) += stm32-pwr.o
->>  obj-$(CONFIG_REGULATOR_STPMIC1) += stpmic1_regulator.o
->>  obj-$(CONFIG_REGULATOR_STW481X_VMMC) += stw481x-vmmc.o
->> +obj-$(CONFIG_REGULATOR_SUN20I) += sun20i-regulator.o
->>  obj-$(CONFIG_REGULATOR_SY7636A) += sy7636a-regulator.o
->>  obj-$(CONFIG_REGULATOR_SY8106A) += sy8106a-regulator.o
->>  obj-$(CONFIG_REGULATOR_SY8824X) += sy8824x.o
->> diff --git a/drivers/regulator/sun20i-regulator.c b/drivers/regulator/sun20i-regulator.c
->> new file mode 100644
->> index 000000000000..46f3927d7d10
->> --- /dev/null
->> +++ b/drivers/regulator/sun20i-regulator.c
->> @@ -0,0 +1,232 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +//
->> +// Copyright (c) 2021-2022 Samuel Holland <samuel@sholland.org>
->> +//
+On 15/08/2022 08:08, Samuel Holland wrote:
+> D1 is a SoC containing a single-core T-HEAD Xuantie C906 CPU, as well as
+> one HiFi 4 DSP. The SoC is based on a design that additionally contained
+> a pair of Cortex A7's. For that reason, some peripherals are duplicated.
 > 
-> nit: shouldn't the comment look like
-> /*
->  * Copyright (c) 2021-2022 Samuel Holland <samuel@sholland.org>
->  */
+> This devicetree includes all of the peripherals that already have a
+> documented binding.
+> 
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
 
-I have had multiple requests from maintainers to use the former style because it
-is more visually consistent. `git grep '^// Copy' drivers sound` returns over
-1500 hits. But it doesn't really matter to me.
+(...)
 
-Regards,
-Samuel
+> +
+> +		codec: audio-codec@2030000 {
+> +			compatible = "simple-mfd", "syscon";
+
+This alone is not correct. You must use device specific compatible.
+
+> +			reg = <0x2030000 0x1000>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +
+> +			regulators@2030348 {
+> +				compatible = "allwinner,sun20i-d1-analog-ldos";
+> +				reg = <0x2030348 0x4>;
+> +				nvmem-cells = <&bg_trim>;
+> +				nvmem-cell-names = "bg_trim";
+> +
+> +				reg_aldo: aldo {
+> +				};
+> +
+> +				reg_hpldo: hpldo {
+> +				};
+> +			};
+> +		};
+
+
+Best regards,
+Krzysztof
