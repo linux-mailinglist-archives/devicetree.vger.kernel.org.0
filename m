@@ -2,162 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FF3A596B8E
-	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 10:47:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1BFD596B8C
+	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 10:47:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235341AbiHQIpI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Aug 2022 04:45:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40724 "EHLO
+        id S234332AbiHQIq5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Aug 2022 04:46:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229533AbiHQIpH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 04:45:07 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF17674B81
-        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 01:45:04 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id a4so3669114wrq.1
-        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 01:45:04 -0700 (PDT)
+        with ESMTP id S234855AbiHQIq4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 04:46:56 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D218774E1B
+        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 01:46:53 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id j3so12952852ljo.0
+        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 01:46:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=kd42aySVbpZFSpcfHHVkY7NPeQJt3LS1TsDiYLJVxXo=;
-        b=HRtblAfEMpXetk49nTtSp/cZFUf4gydkmQ90itmyjNa74g1h+D+09SyYz90hDfiJrc
-         EWRBzK/Dw++Qn2kKsAvRjfXtI3LpyQHWc328PgxgQ4ZpRdjtJk7gfc3frbYAyAckV4rc
-         MFg5lEcrXhs7LQVy14PhL4NFP4nMgJICEEeLePOTwZNfAyMCdbVdB9QtTJChuZzcLUZP
-         zyPeqkCyzvFAPFVeyqU70OOoQLk8lVj/jIweEnKIRJ0RJiiQUKtRqlMpfu8sEGIDAPcy
-         Yi0yaQr4IeFrh1jP1pwhnAlPc7qwz3qVzOUdOCwYgGNcIIK7u7+OWnBcYd7bsi3k8eKg
-         ZIaQ==
+        bh=rPDIdAvwvxRbTMbTaA58adHMS2XfvHNw84IukHrkG9Q=;
+        b=uQJ3nu/XQtmX3r1ZncDPRVCwNh0IKEUdGJzHjoOKAvPK4iv8SplAxioJTcT/WWaUzu
+         e4M+IGydoZslqb/vJr9AatISY5tbzVxPs6jx9ZmTG3S2x7Fy57l6X9GmVS8wwxWA9b+B
+         XDscRjYKw2+/pPpBNX3AZqWxpkwU/VkKNtMY9caQ07fvT1nMHGuuKWPjNAQqcIylYKuM
+         xWKUOx+NL9GGjB2UEhGi1nH/ld/sEBuonskXIP4dSr9+CWSHUnLCeR+gjReQXmi14tMV
+         Jr9hSEIDHfKKXXJnw1ut6z9J4wBKDF/fGPdG5ynb0mRTtrsgMHvVL6EXJ7jLC8E5EVWV
+         DlSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=kd42aySVbpZFSpcfHHVkY7NPeQJt3LS1TsDiYLJVxXo=;
-        b=eBpbyXS0OfUuv5ugkEGxmciy4MwGceWKKktb6IIcKdKKYN1GOnmN7ixrOSztewlPwu
-         SGLi/PforeiRj6HtMGkTGi/N6bO2ZRlvS9cBV2xwg+RNOv3fiZmtlb4/cLd5e4XTyJ+a
-         /Z1GZ5H/M4T+AiA8aJcTAXZPArquQD39o97QWCq2InUXk9ZdimhC7gXER8WIduaDase/
-         /wtfNxr30zOO24pHzz1XwHQercv2F8Anc4DTgFstB6k3WNAMC89fZZ4tER3nDaq29WFA
-         hAJbMd/ZK01u7Dc8Biv2ItNVYGS5+63dffgO3m07x+0oXwZwwBN++jRHDUVnaC+tLy1G
-         wJLA==
-X-Gm-Message-State: ACgBeo1xyaE3QfLkRSd7lnL2NjW1XRa7gbA127AREgPevWFXII2DSSaj
-        bkQSPtaQpc5U84qqrFBReODGLQ==
-X-Google-Smtp-Source: AA6agR5zVjKZPFz5XYQ6BzcpHd9aGYa5QzkH4q76SMTqQt6ql4sqOrJIyw6ehraB+G9tP9SoV8+nyQ==
-X-Received: by 2002:adf:d1e8:0:b0:223:bca:8019 with SMTP id g8-20020adfd1e8000000b002230bca8019mr13509448wrd.562.1660725903362;
-        Wed, 17 Aug 2022 01:45:03 -0700 (PDT)
-Received: from [192.168.86.238] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
-        by smtp.googlemail.com with ESMTPSA id j18-20020a05600c191200b003a5f54e3bbbsm1579993wmq.38.2022.08.17.01.45.02
+        bh=rPDIdAvwvxRbTMbTaA58adHMS2XfvHNw84IukHrkG9Q=;
+        b=j11EnGnzG8lFai1bGxM+7crba47RB7o2x240RGUm5pshxsCW0fAx5achCZV/EjBttz
+         kXcUNz/2guMMbUekE3i+Dd9uv/vnNKviuWI+Rj3lLePcTJgabbptFSNTeYRVbiunSvhS
+         zOPlrqnjHESRGkepMzG1DsjXHBSj+PzgzxNsXEIL1JDfgXur9lNbNOaHScqQVdnk8i6p
+         r5yT6uMM58+T3WyIK8CEEzKMN4ielr+gya9koVhDzC3O5Sd0a0aWYmkLTidHBQa7BPZ/
+         0RHkZwERdpu6dziV6YFkcfHRQYqYht9GZ/ZIdW/8UUIOraA/mVPFnDIum5XDs7gOteAL
+         ECSA==
+X-Gm-Message-State: ACgBeo2Mf1I6uK4s36HADJ1YrHkRTQ5vMvl/NTo5mrTrF6dMs6TbVPU7
+        N+Y/+twqxD86mUokqauA4ql+JA==
+X-Google-Smtp-Source: AA6agR5qvhZz6zi8n+r+DoBxvVg7j79SxEPJJ8C/tOLxs+Nh74vBxfxePExHW7ThouZ4qAp6RICLZA==
+X-Received: by 2002:a2e:9254:0:b0:25e:4f20:8d3a with SMTP id v20-20020a2e9254000000b0025e4f208d3amr8115361ljg.233.1660726012270;
+        Wed, 17 Aug 2022 01:46:52 -0700 (PDT)
+Received: from ?IPV6:2001:14bb:ae:539c:1b1c:14b7:109b:ed76? (d15l54h48cw7vbh-qr4-4.rev.dnainternet.fi. [2001:14bb:ae:539c:1b1c:14b7:109b:ed76])
+        by smtp.gmail.com with ESMTPSA id y22-20020a197516000000b0048b08124139sm1615304lfe.177.2022.08.17.01.46.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Aug 2022 01:45:02 -0700 (PDT)
-Message-ID: <a34e8e37-0aad-e092-1138-45ad9ce790a2@linaro.org>
-Date:   Wed, 17 Aug 2022 09:45:01 +0100
+        Wed, 17 Aug 2022 01:46:51 -0700 (PDT)
+Message-ID: <f97a0d91-3cef-09ad-ecee-f6bd8322c20b@linaro.org>
+Date:   Wed, 17 Aug 2022 11:46:50 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH V4 1/2] mtd: allow getting MTD device associated with a
- specific DT node
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v3 1/4] regulator: dt-bindings: Add Allwinner D1 LDOs
 Content-Language: en-US
-To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-Cc:     Tom Rini <trini@konsulko.com>,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org, u-boot@lists.denx.de,
-        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20220615194300.13358-1-zajec5@gmail.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20220615194300.13358-1-zajec5@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+To:     Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@lists.linux.dev
+References: <20220815043436.20170-1-samuel@sholland.org>
+ <20220815043436.20170-2-samuel@sholland.org>
+ <c4ec080a-b8b1-e3a9-c9d7-063e138c9bb8@linaro.org>
+ <03de0f7b-9251-a5c0-91a1-5f2b5d41d8a0@sholland.org>
+ <29e6a293-29c4-a9ab-0767-9adfa982226b@linaro.org>
+ <8f133166-dff8-e376-3ac4-a464724d5421@sholland.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <8f133166-dff8-e376-3ac4-a464724d5421@sholland.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 17/08/2022 11:39, Samuel Holland wrote:
+>>> The same question applies for the D1 SoC DTSI, where I use this same construct.
+>>
+>> This is not correct and should be fixed. Either you add the schema with
+>> compatible or please drop the device node from the DTSI.
+> 
+> That's what I was afraid of.
 
+The bindings can grow, so you can add a bindings stub documenting
+compatibles (device + simple-mfd + syscon) and IO space, then later
+extend it. Of course it is preferred to add bindings as complete as
+possible, but incremental growing also works.
 
-On 15/06/2022 20:42, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> MTD subsystem API allows interacting with MTD devices (e.g. reading,
-> writing, handling bad blocks). So far a random driver could get MTD
-> device only by its name (get_mtd_device_nm()). This change allows
-> getting them also by a DT node.
-> 
-> This API is required for drivers handling DT defined MTD partitions in a
-> specific way (e.g. U-Boot (sub)partition with environment variables).
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> Acked-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> ---
-
-Applied along with nvmem provider thanks,
---srini
-> V3: First introduction of of_get_mtd_device_by_node()
-> V4: Use EPROBE_DEFER
-> 
-> Srinivas: in V3 Miquel said it's OK to push this patch through NVMEM
-> ---
->   drivers/mtd/mtdcore.c   | 28 ++++++++++++++++++++++++++++
->   include/linux/mtd/mtd.h |  1 +
->   2 files changed, 29 insertions(+)
-> 
-> diff --git a/drivers/mtd/mtdcore.c b/drivers/mtd/mtdcore.c
-> index 9eb0680db312..3613cc142f25 100644
-> --- a/drivers/mtd/mtdcore.c
-> +++ b/drivers/mtd/mtdcore.c
-> @@ -1154,6 +1154,34 @@ int __get_mtd_device(struct mtd_info *mtd)
->   }
->   EXPORT_SYMBOL_GPL(__get_mtd_device);
->   
-> +/**
-> + * of_get_mtd_device_by_node - obtain an MTD device associated with a given node
-> + *
-> + * @np: device tree node
-> + */
-> +struct mtd_info *of_get_mtd_device_by_node(struct device_node *np)
-> +{
-> +	struct mtd_info *mtd = NULL;
-> +	struct mtd_info *tmp;
-> +	int err;
-> +
-> +	mutex_lock(&mtd_table_mutex);
-> +
-> +	err = -EPROBE_DEFER;
-> +	mtd_for_each_device(tmp) {
-> +		if (mtd_get_of_node(tmp) == np) {
-> +			mtd = tmp;
-> +			err = __get_mtd_device(mtd);
-> +			break;
-> +		}
-> +	}
-> +
-> +	mutex_unlock(&mtd_table_mutex);
-> +
-> +	return err ? ERR_PTR(err) : mtd;
-> +}
-> +EXPORT_SYMBOL_GPL(of_get_mtd_device_by_node);
-> +
->   /**
->    *	get_mtd_device_nm - obtain a validated handle for an MTD device by
->    *	device name
-> diff --git a/include/linux/mtd/mtd.h b/include/linux/mtd/mtd.h
-> index 955aee14b0f7..6fc841ceef31 100644
-> --- a/include/linux/mtd/mtd.h
-> +++ b/include/linux/mtd/mtd.h
-> @@ -677,6 +677,7 @@ extern int mtd_device_unregister(struct mtd_info *master);
->   extern struct mtd_info *get_mtd_device(struct mtd_info *mtd, int num);
->   extern int __get_mtd_device(struct mtd_info *mtd);
->   extern void __put_mtd_device(struct mtd_info *mtd);
-> +extern struct mtd_info *of_get_mtd_device_by_node(struct device_node *np);
->   extern struct mtd_info *get_mtd_device_nm(const char *name);
->   extern void put_mtd_device(struct mtd_info *mtd);
->   
+Best regards,
+Krzysztof
