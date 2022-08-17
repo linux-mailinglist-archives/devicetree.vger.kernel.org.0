@@ -2,130 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 60B3F596FCD
-	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 15:29:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49413596FC7
+	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 15:29:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237010AbiHQNWx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Aug 2022 09:22:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32926 "EHLO
+        id S239127AbiHQNZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Aug 2022 09:25:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236357AbiHQNWx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 09:22:53 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF0B76611D
-        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 06:22:51 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id i19so684774lfr.10
-        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 06:22:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=pKuDJQIjnUP1FPupXFVJgNN8PDzdanh6kEbyoo/FXtE=;
-        b=x8Koy3ce7TesE9irvfo3XvT4v5oR8fBjYeN8/AbIIhR+i3t16Terl1WvSlEub8AuD2
-         UINF7cEj7uHSSD1P7QYXmtPynr48Ii9Qu5+9fHhE0oy+60t7OOHxMWY6X/wH1Dg+9up6
-         LAmW0CR4nV+l2GeFLii7UPDKzaam/L6GBrMi3VPGPwty5VWLep3MT/vtHhSOnF4gt/bs
-         lZnkj8pGOE6RbBir35xaXUy1pVzxUeIG9Akxkwg6aYSokTxF2DVw+K/5ohIScMJUZKn/
-         6F8eYg49u3DVwJMtrGCcY8rsYzSh6s/sG/NTZPHO0YhNgxPx/zOkPF+mZLkVNNm3s87y
-         ozjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=pKuDJQIjnUP1FPupXFVJgNN8PDzdanh6kEbyoo/FXtE=;
-        b=OYkDJ0a5635w4oFgM4XWtmUrp0vxsP3uDnJjnzTl41wSh1bKDPIZpJ0vbyEPjyTzrM
-         aWoZHgUaaJkmaQBjgDPSYEpwIibwKgrRNCQDAGzmE+0v2Yeu1/gCFm7bXzbOcV+s/RPK
-         ijh7PIThPt2NekuvagD0Alk+WEh0ikMq5N97ud6b1GUc8kM7qrpoJPcc40bqkfitR9rh
-         ePiUNbDWiUKnXhiys6r5AEmd7Becu7687dIdIxLYRHR0mPp4PPz5e23l4Z+ewCIZ+DjW
-         K3LgHJ3AOBEyTmv+Dunm9qjq2dQfF1qABKUf/D2FjffLs0z8sxJfdxw4uDO/5ectkgBN
-         XHww==
-X-Gm-Message-State: ACgBeo2kobvsOn/VzdotaayRmRPVbM+xHwKO0fIweFHLbsKVbxTOjEz7
-        4KzOoaVajLkjEWLq1yKuAy+Fqw==
-X-Google-Smtp-Source: AA6agR66cjNQJAfYsQlMR7FOKYOhQRiQWwsWAe3h7I3VqkV869rj+PTDJortJKwjBw0ErsMyAlF5Tw==
-X-Received: by 2002:ac2:5c02:0:b0:48b:29ed:6e1e with SMTP id r2-20020ac25c02000000b0048b29ed6e1emr8380920lfp.560.1660742570190;
-        Wed, 17 Aug 2022 06:22:50 -0700 (PDT)
-Received: from ?IPV6:2001:14bb:ae:539c:1b1c:14b7:109b:ed76? (d15l54h48cw7vbh-qr4-4.rev.dnainternet.fi. [2001:14bb:ae:539c:1b1c:14b7:109b:ed76])
-        by smtp.gmail.com with ESMTPSA id g3-20020a2ea4a3000000b0025e5fd96bf6sm2219420ljm.15.2022.08.17.06.22.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Aug 2022 06:22:49 -0700 (PDT)
-Message-ID: <58851c87-9cea-8e48-1888-54d0b3237875@linaro.org>
-Date:   Wed, 17 Aug 2022 16:22:48 +0300
+        with ESMTP id S239891AbiHQNZl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 09:25:41 -0400
+Received: from smtp-relay-canonical-0.canonical.com (smtp-relay-canonical-0.canonical.com [185.125.188.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E16C9901BE;
+        Wed, 17 Aug 2022 06:25:37 -0700 (PDT)
+Received: from workstation5.fritz.box (ip-084-118-157-002.um23.pools.vodafone-ip.de [84.118.157.2])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-canonical-0.canonical.com (Postfix) with ESMTPSA id ED6B23F13E;
+        Wed, 17 Aug 2022 13:25:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1660742735;
+        bh=PxzTNJ1Jg6c7i4yTxrytPCVQW1rkcheSbZD8jwdGcYI=;
+        h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type;
+        b=j2pDzobDmxNvAVvYyJbu2Vl1EvIZ7pnXFfOkDamLxkIHQfGDwxOkJQ/Y15fcnJe3l
+         1lt/nt+R8sMlXZBQdzCwzdRfQ+XaxXqG8VS5afEmrjI0wvp+2efrUoJLXB8oToS2q2
+         Z5I6ON6iipTTPxrwtx1idt3Zk7RqkwkhSfOs6DHzaVy5iOrktPu0NHUVnGGqxHvDZx
+         3yfRyC50swVTR6nV77lh7VV6v7at6WTziEY9p2D8Ly8MrC8ZqmvqtD1eXIjJCdtCJR
+         3BX7xLLklP/pFyzhU28Dqh9khonVQ2nb0l3YAevzKV7loXkmJfe/r7e1i4a/0eeXJs
+         FQpmNnz2nWKZQ==
+From:   Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Atish Patra <atish.patra@wdc.com>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
+        stable@vger.kernel.org
+Subject: [PATCH 1/1] riscv: dts: microchip: correct L2 cache interrupts
+Date:   Wed, 17 Aug 2022 15:25:21 +0200
+Message-Id: <20220817132521.3159388-1-heinrich.schuchardt@canonical.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v3 3/4] dt-bindings: sram: sunxi-sram: Add optional
- regulators child
-Content-Language: en-US
-To:     Samuel Holland <samuel@sholland.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev
-References: <20220815043436.20170-1-samuel@sholland.org>
- <20220815043436.20170-4-samuel@sholland.org>
- <3e23c288-7065-a3fd-c326-8d66e168ba41@linaro.org>
- <3c646774-3b1e-bb9a-cc7d-c4a010e8a28a@sholland.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <3c646774-3b1e-bb9a-cc7d-c4a010e8a28a@sholland.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/08/2022 11:47, Samuel Holland wrote:
-> On 8/16/22 4:59 AM, Krzysztof Kozlowski wrote:
->> On 15/08/2022 07:34, Samuel Holland wrote:
->>> Some sunxi SoCs have in-package regulators controlled by a register in
->>> the system control MMIO block. Allow a child node for these regulators
->>> in addition to SRAM child nodes.
->>>
->>> Signed-off-by: Samuel Holland <samuel@sholland.org>
->>> ---
->>>
->>> Changes in v3:
->>>  - Require the regulators node to have a unit address
->>>  - Reference the regulator schema from the SRAM controller schema
->>>  - Move the system LDOs example to the SRAM controller schema
->>>  - Reorder the patches so the example passes validation
->>>
->>> Changes in v2:
->>>  - New patch for v2
->>>
->>>  .../allwinner,sun4i-a10-system-control.yaml   | 29 +++++++++++++++++++
->>>  1 file changed, 29 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/sram/allwinner,sun4i-a10-system-control.yaml b/Documentation/devicetree/bindings/sram/allwinner,sun4i-a10-system-control.yaml
->>> index d64c1b28fb61..915ca85c3f10 100644
->>> --- a/Documentation/devicetree/bindings/sram/allwinner,sun4i-a10-system-control.yaml
->>> +++ b/Documentation/devicetree/bindings/sram/allwinner,sun4i-a10-system-control.yaml
->>> @@ -56,6 +56,10 @@ properties:
->>>    ranges: true
->>>  
->>>  patternProperties:
->>> +  "^regulators@[0-9a-f]+$":
->>> +    $ref: /schemas/regulator/allwinner,sun20i-d1-system-ldos.yaml#
->>> +    unevaluatedProperties: false
->>
->> unevaluatedProperties is not needed. Your other schema does not allow
->> anything else here.
-> 
-> I can remove it. I added it because it looks like the dt-schema tools use it as
-> an indicator that the matched properties are child nodes[1]. Maybe that is not
-> relevant here?
+The "PolarFire SoC MSS Technical Reference Manual" documents the
+following PLIC interrupts:
 
-It is not relevant here as the other schema does not allow anything else.
+1 - L2 Cache Controller Signals when a metadata correction event occurs
+2 - L2 Cache Controller Signals when an uncorrectable metadata event occurs
+3 - L2 Cache Controller Signals when a data correction event occurs
+4 - L2 Cache Controller Signals when an uncorrectable data event occurs
 
-Best regards,
-Krzysztof
+This differs from the SiFive FU540 which only has three L2 cache related
+interrupts.
+
+The sequence in the device tree is defined by an enum:
+
+    enum {
+            DIR_CORR = 0,
+            DATA_CORR,
+            DATA_UNCORR,
+            DIR_UNCORR,
+    };
+
+So the correct sequence of the L2 cache interrupts is
+
+    interrupts = <1>, <3>, <4>, <2>;
+
+Fixes: e35b07a7df9b ("riscv: dts: microchip: mpfs: Group tuples in interrupt properties")
+Fixes: 0fa6107eca41 ("RISC-V: Initial DTS for Microchip ICICLE board")
+Cc: Conor Dooley <conor.dooley@microchip.com>
+Cc: stable@vger.kernel.org
+Signed-off-by: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
+---
+ arch/riscv/boot/dts/microchip/mpfs.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/riscv/boot/dts/microchip/mpfs.dtsi b/arch/riscv/boot/dts/microchip/mpfs.dtsi
+index 496d3b7642bd..ec1de6344be9 100644
+--- a/arch/riscv/boot/dts/microchip/mpfs.dtsi
++++ b/arch/riscv/boot/dts/microchip/mpfs.dtsi
+@@ -169,7 +169,7 @@ cctrllr: cache-controller@2010000 {
+ 			cache-size = <2097152>;
+ 			cache-unified;
+ 			interrupt-parent = <&plic>;
+-			interrupts = <1>, <2>, <3>;
++			interrupts = <1>, <3>, <4>, <2>;
+ 		};
+ 
+ 		clint: clint@2000000 {
+-- 
+2.36.1
+
