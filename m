@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D21C5970EA
-	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 16:25:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A92DE5970E2
+	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 16:25:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239491AbiHQOW6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Aug 2022 10:22:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32996 "EHLO
+        id S240080AbiHQOW7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Aug 2022 10:22:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240090AbiHQOW4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 10:22:56 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3AF39081D
-        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 07:22:53 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id o2so19235487lfb.1
-        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 07:22:53 -0700 (PDT)
+        with ESMTP id S240093AbiHQOW5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 10:22:57 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62FC59019E
+        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 07:22:55 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id x19so19208705lfq.7
+        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 07:22:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=9GC5bJ+m1U21wFCtiN8Hm7wauILLxWrJ9sFq+9fk+k0=;
-        b=o8C3QM3Wu2kpOjLMF8uXobDHbQB4PKvFqLSry295hn20lPNVHWLgajWCgojrARkC5g
-         BIIWNiFn4Xn9zHRsChY8osAeReyp7yCUDhjn8ahzlgy9LdImCgC1piAELmqnynX8qpG+
-         aguWks3BSQGJQWjVlESm9WpIlGYpXFgA2OW3XG7jKfYckz9TFxd6RC6qAylzC59zR3PW
-         tadzknNyfsWjM4aVfqZcNKQk7J7sR5rSrjM3bzg0o7Foo3SLOpePtX9KNiTcB0/fE1ZM
-         bUncQNm049DKkKoeeGL5L/jrEMK87k3L4c0u5PA6Hcf4zK8YY+oILzmGrEexxttqUXwm
-         1q2A==
+        bh=Ts76PcyKw0jM6XarGajWHwsIAiV4DTWPpPPo0AWZtJA=;
+        b=JOJbWVLtHO6s9Pc8HcJChhshshhY2T/4/MCUDhf62a1FLjYupcZU4YieZWuff3QUQe
+         Bmo0/osTc77ZNgs2QpSJ/S1IZwE0FFgGMork/YRXtt0HXbvNAc2oKtrarCpQcTHhRbBN
+         D8qpKos+7Rlv+L1SnE5uF1nlfkG27KdJLiPgyDruh48s8nP7qfekstOKH4inFZUl4VnL
+         fjNdITKaE2d8NE6egykSQK+x6FklOvlT/bKuSrN43tASRXm7eJwdrFK13Ut38I9Z8cBo
+         MfL2onHGHoYx8kkYpPIA552aF+WAulZML5pi8jS7IuhYExm0MSnI1zqu2cX1RTLBa4Jp
+         KPJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=9GC5bJ+m1U21wFCtiN8Hm7wauILLxWrJ9sFq+9fk+k0=;
-        b=UXZ2uzNY1g+/E3xa/rMmWcQ+cFdMEAIf76XEyjV+La5UxV/Y83PZ7ODFBeKzfIB7yw
-         gATsLFzmdhrgq/E1ApRzPLjnim8gobZVHZYm5qctcWaSUXA/7DTlvLX0LyrqfWuTe/1X
-         hD+WhepQb6WE9GmWtOOCCjnRrVeLPF2ZfeoV7XMu2PeR8/+uOymQGf4ZIDdcLr7mCeAG
-         JwZewU8w9dW2VvyCVdRpjIbuY4yNLxBBssQfqrJZ3rdpyyz36/h8ffDrf94RyfnybJlK
-         p1oDwTkcU5CBe9IqKA9FIOvCHltitR8F67FJu7+q642Tfpi8yQJcVMRrotLsfB1r5Xdg
-         AuXg==
-X-Gm-Message-State: ACgBeo1fTIWtlACUlUo+jCCyxsm6J6tKESJiy6lb9W871oyDJ9qc0aic
-        qgKW77PiL2r+MZSA9x/fMZkjcQ==
-X-Google-Smtp-Source: AA6agR5cywzI8moCKPQfkI/f7EQoEdiKTJvRfYGYEKNF0cQLrCqZdnncv8cDcoXap/UvaZ10NS79Jg==
-X-Received: by 2002:a05:6512:1584:b0:481:31e4:1489 with SMTP id bp4-20020a056512158400b0048131e41489mr8455124lfb.509.1660746171888;
-        Wed, 17 Aug 2022 07:22:51 -0700 (PDT)
+        bh=Ts76PcyKw0jM6XarGajWHwsIAiV4DTWPpPPo0AWZtJA=;
+        b=s5K9GCFd8z0SFLBpLfejeuCIG1x3uQsixDI3W+nS5YGQFBZXcIOjSlzvAF0ON1oUhB
+         hXzMD/KaXvi3Dme3bTiu47I6bp3+CRAtFjn1kOJepL96jq5OZVohHudajSbhYLJEFnSY
+         G4vxPsoi6CO34vNucjn0rZrACilG3ecMgx17oVdZAv2EqSElq7oVTdae/9ro5Rm+rxz3
+         La7GogqlB9ZEQLQj8ZtP2g9pb7K0E7xhkr9hzuNYh9KMMV9cteDh4SzWMGliFiG1tXsm
+         MN3/6wdZ8uSAcvuUN+4I00V2/9mfikifkdC+Nb5t/Y15Tyx5SSjsW6RUEBmUDnNnHrNM
+         T3gw==
+X-Gm-Message-State: ACgBeo1DAPZQn6xGFtfkdKkL7/MGakAOfvwZB9F8+RX6Ocu20xQvofmw
+        LYE3iiEvDfDppj4T4gCDZuZ0XA==
+X-Google-Smtp-Source: AA6agR4qGhm3oKo5ILBcJJjEibUlASlIQgN2sJ66ZGB2EpL2gJQJVh0eh9J0qhasVYm0uW5uTG0XAA==
+X-Received: by 2002:a05:6512:ba4:b0:48a:f185:db17 with SMTP id b36-20020a0565120ba400b0048af185db17mr8107080lfv.107.1660746173606;
+        Wed, 17 Aug 2022 07:22:53 -0700 (PDT)
 Received: from krzk-bin.. (d15l54h48cw7vbh-qr4-4.rev.dnainternet.fi. [2001:14bb:ae:539c:1b1c:14b7:109b:ed76])
-        by smtp.gmail.com with ESMTPSA id u1-20020ac258c1000000b0047f7722b73csm1704647lfo.142.2022.08.17.07.22.50
+        by smtp.gmail.com with ESMTPSA id u1-20020ac258c1000000b0047f7722b73csm1704647lfo.142.2022.08.17.07.22.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Aug 2022 07:22:51 -0700 (PDT)
+        Wed, 17 Aug 2022 07:22:53 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -64,9 +64,9 @@ To:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         linux-usb@vger.kernel.org, linux-phy@lists.infradead.org,
         linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 1/4] dt-bindings: phy: hisilicon,hi3660-usb3: simplify example
-Date:   Wed, 17 Aug 2022 17:22:43 +0300
-Message-Id: <20220817142246.828762-2-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 2/4] dt-bindings: phy: hisilicon,hi3670-usb3: simplify example
+Date:   Wed, 17 Aug 2022 17:22:44 +0300
+Message-Id: <20220817142246.828762-3-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220817142246.828762-1-krzysztof.kozlowski@linaro.org>
 References: <20220817142246.828762-1-krzysztof.kozlowski@linaro.org>
@@ -87,14 +87,14 @@ so simplify the example to fix this.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../bindings/phy/hisilicon,hi3660-usb3.yaml   | 22 +++++--------------
- 1 file changed, 6 insertions(+), 16 deletions(-)
+ .../bindings/phy/hisilicon,hi3670-usb3.yaml   | 26 ++++++-------------
+ 1 file changed, 8 insertions(+), 18 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/phy/hisilicon,hi3660-usb3.yaml b/Documentation/devicetree/bindings/phy/hisilicon,hi3660-usb3.yaml
-index c2e073e26190..20b79e2e8b82 100644
---- a/Documentation/devicetree/bindings/phy/hisilicon,hi3660-usb3.yaml
-+++ b/Documentation/devicetree/bindings/phy/hisilicon,hi3660-usb3.yaml
-@@ -41,20 +41,10 @@ additionalProperties: false
+diff --git a/Documentation/devicetree/bindings/phy/hisilicon,hi3670-usb3.yaml b/Documentation/devicetree/bindings/phy/hisilicon,hi3670-usb3.yaml
+index ebd78acfe2de..1cb00dbcd4c5 100644
+--- a/Documentation/devicetree/bindings/phy/hisilicon,hi3670-usb3.yaml
++++ b/Documentation/devicetree/bindings/phy/hisilicon,hi3670-usb3.yaml
+@@ -52,22 +52,12 @@ additionalProperties: false
  
  examples:
    - |
@@ -106,20 +106,24 @@ index c2e073e26190..20b79e2e8b82 100644
 -        compatible = "syscon", "simple-mfd";
 -        reg = <0x0 0xff200000 0x0 0x1000>;
 -
--        usb-phy {
--          compatible = "hisilicon,hi3660-usb-phy";
+-        usb_phy {
+-          compatible = "hisilicon,hi3670-usb-phy";
 -          #phy-cells = <0>;
 -          hisilicon,pericrg-syscon = <&crg_ctrl>;
 -          hisilicon,pctrl-syscon = <&pctrl>;
--          hisilicon,eye-diagram-param = <0x22466e4>;
+-          hisilicon,sctrl-syscon = <&sctrl>;
+-          hisilicon,eye-diagram-param = <0xfdfee4>;
+-          hisilicon,tx-vboost-lvl = <0x5>;
 -        };
 -      };
 +    usb-phy {
-+        compatible = "hisilicon,hi3660-usb-phy";
++        compatible = "hisilicon,hi3670-usb-phy";
 +        #phy-cells = <0>;
 +        hisilicon,pericrg-syscon = <&crg_ctrl>;
 +        hisilicon,pctrl-syscon = <&pctrl>;
-+        hisilicon,eye-diagram-param = <0x22466e4>;
++        hisilicon,sctrl-syscon = <&sctrl>;
++        hisilicon,eye-diagram-param = <0xfdfee4>;
++        hisilicon,tx-vboost-lvl = <0x5>;
      };
 -- 
 2.34.1
