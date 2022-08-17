@@ -2,136 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EFD1D596C03
-	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 11:27:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F0D7596C14
+	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 11:32:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230370AbiHQJ0W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Aug 2022 05:26:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50974 "EHLO
+        id S230467AbiHQJak (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Aug 2022 05:30:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230107AbiHQJ0V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 05:26:21 -0400
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAFDC58B5B;
-        Wed, 17 Aug 2022 02:26:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1660728380; x=1692264380;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=dOM8O8t6ku6zzPdaPxgxSQ/dRuiaSIT2cXeOOYu8U+4=;
-  b=jbe11Scjj1jE+C8ww9CuX3MhZ/kUaM5ThSq3i4lEEMq++O5Zsormv7Ip
-   xqE/jYlolEswC+r93rlm1FgoiY35Ks3vPmD1I2ItM0cvjvTH5W/l8kdR/
-   gjKMr3MykXdwqKaaEb/eq+9OChmLKY7yOrAx1ORigZz8H7ocUL8eWQWVd
-   JobvuMxUVrc+AR+OWPbDF3OgkLHBQZBhKSAh8W8kWMLsQiJPAEVKqTiTJ
-   +/7EmmNkAN49Du5FpczG0ijswL6RVRxbhqG3GrcUIhOC3TMuCBz4RKtLw
-   5DbUOKbkyAprViTBzLypktZZ2GjQxCH8/Zo4doKEOUXsQy/VLN2M21oAU
-   Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10441"; a="354191863"
-X-IronPort-AV: E=Sophos;i="5.93,242,1654585200"; 
-   d="scan'208";a="354191863"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Aug 2022 02:26:20 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,242,1654585200"; 
-   d="scan'208";a="675572048"
-Received: from lkp-server02.sh.intel.com (HELO 81d7e1ade3ba) ([10.239.97.151])
-  by fmsmga004.fm.intel.com with ESMTP; 17 Aug 2022 02:26:16 -0700
-Received: from kbuild by 81d7e1ade3ba with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1oOFJX-0000m4-17;
-        Wed, 17 Aug 2022 09:26:15 +0000
-Date:   Wed, 17 Aug 2022 17:25:26 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        linux-remoteproc@vger.kernel.org, agross@kernel.org,
-        bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, quic_plai@quicinc.com,
-        bgoswami@quicinc.com, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, quic_rohkumar@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        swboyd@chromium.org, judyhsiao@chromium.org,
-        devicetree@vger.kernel.org
-Cc:     kbuild-all@lists.01.org,
-        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Subject: Re: [PATCH v5 6/7] remoteproc: qcom: Add support for memory sandbox
-Message-ID: <202208171740.ZRtOUAHf-lkp@intel.com>
-References: <1660649034-4303-7-git-send-email-quic_srivasam@quicinc.com>
+        with ESMTP id S234589AbiHQJai (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 05:30:38 -0400
+Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A54315A824;
+        Wed, 17 Aug 2022 02:30:37 -0700 (PDT)
+Received: by mail-qt1-f174.google.com with SMTP id cr9so9956458qtb.13;
+        Wed, 17 Aug 2022 02:30:37 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=5akdc5q8OTZh41BRXQ6ueXN+MBAsEQyZP/YjElcO8FE=;
+        b=Ao7etct2jPsOO6PHSHBf0/De4GNGHNC1bzQ5nRNc2NcckuB8eHOjbjOn106RFG4n0e
+         sr/3OiQ0K1aP2/yqq+KAw3MuK+5GJWK5YLCjS2tNxPFx8TTKo9w33snG1KliXjzLOHBK
+         V8xKGtQrCO6K8NYB53liZKyFaZnk+jFkjvrA3CvezN91/gq/IRktigfYeenszRxFGAuv
+         avONSN2ogjDNgrCzpUEAFj1V49hd+nYQZVDAK3/T/qCJn3erNw3fcjZXyXB+MdUSYmHR
+         cK6D6/zYxtQLvunaRRRA0OExkWj5uwLIhtyRnsjcfg6l1ptLgU2V+bumJwopRj02S+4R
+         ynSw==
+X-Gm-Message-State: ACgBeo0XGvpPEqk+BpYRCERozo9LPRlSI3XOMXQkR4N94UE+Su1GUvN5
+        +LO/YW1xj6MLet7lEjYF7d3P6zOiPyOQ7A==
+X-Google-Smtp-Source: AA6agR75wkMzjymVQi/umHde2bRdVhNH/oEzu2yj9HscihiWd4t6QmZZ1rv75XG2KZ6mQ4kPLbYj1Q==
+X-Received: by 2002:a05:622a:1116:b0:31e:d8e4:ac30 with SMTP id e22-20020a05622a111600b0031ed8e4ac30mr21796777qty.660.1660728636684;
+        Wed, 17 Aug 2022 02:30:36 -0700 (PDT)
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com. [209.85.128.175])
+        by smtp.gmail.com with ESMTPSA id l23-20020a37f917000000b006b97151d2b3sm14056322qkj.67.2022.08.17.02.30.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Aug 2022 02:30:36 -0700 (PDT)
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-32fd97c199fso191646627b3.6;
+        Wed, 17 Aug 2022 02:30:36 -0700 (PDT)
+X-Received: by 2002:a5b:6c1:0:b0:669:a7c3:4c33 with SMTP id
+ r1-20020a5b06c1000000b00669a7c34c33mr18433198ybq.543.1660728636000; Wed, 17
+ Aug 2022 02:30:36 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1660649034-4303-7-git-send-email-quic_srivasam@quicinc.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220815111708.22302-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20220816174150.GA2428940-robh@kernel.org>
+In-Reply-To: <20220816174150.GA2428940-robh@kernel.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 17 Aug 2022 11:30:23 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWgfGgNGmj88z=Md5RAL8CHxTKj6ywsGwS2HN-vHKMq+w@mail.gmail.com>
+Message-ID: <CAMuHMdWgfGgNGmj88z=Md5RAL8CHxTKj6ywsGwS2HN-vHKMq+w@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: soc: renesas: Move renesas.yaml from arm to soc
+To:     Rob Herring <robh@kernel.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Srinivasa,
+Hi Rob,
 
-Thank you for the patch! Perhaps something to improve:
+On Tue, Aug 16, 2022 at 7:41 PM Rob Herring <robh@kernel.org> wrote:
+> On Mon, Aug 15, 2022 at 12:17:08PM +0100, Lad Prabhakar wrote:
+> > renesas.yaml lists out all the Renesas SoC's and the platforms/EVK's which
+> > is either ARM32/ARM64. It would rather make sense if we move renesas.yaml
+> > to the soc/renesas folder instead. This is in preparation for adding a new
+> > SoC (RZ/Five) from Renesas which is based on RISC-V.
+>
+> Please post this as part of the above.
+>
+> bindings/soc/ is just a dumping ground for stuff that doesn't fit
+> anywhere. We've mostly cleaned bindings/arm/ of that, so I don't really
 
-[auto build test WARNING on remoteproc/rproc-next]
-[also build test WARNING on linus/master v6.0-rc1 next-20220817]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Note that the target of this move is not .../bindings/soc/, but
+.../bindings/soc/renesas/, so it's a bit less of a dumping ground.
+Perhaps this is also a good opportunity to split renesas.yaml per
+family or product group
+(renesas,{rmobile,rcar-gen[1234],rza,rzg,rzn,...}.yaml?
+A fine-grained split may cause headaches with RZ/G2UL and RZ/Five
+sharing the same SoC Base, but a coarse-grained split keeping all RZ/G
+(after all RZ/Five is part of RZ/G) or even all RZ series together should work.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Srinivasa-Rao-Mandadapu/Update-ADSP-pil-loader-for-SC7280-platform/20220816-195318
-base:   git://git.kernel.org/pub/scm/linux/kernel/git/remoteproc/linux.git rproc-next
-config: arm-allyesconfig (https://download.01.org/0day-ci/archive/20220817/202208171740.ZRtOUAHf-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/04dc00863cb7b62aa7e5356f81cad5e7720e17ad
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Srinivasa-Rao-Mandadapu/Update-ADSP-pil-loader-for-SC7280-platform/20220816-195318
-        git checkout 04dc00863cb7b62aa7e5356f81cad5e7720e17ad
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash drivers/remoteproc/
+> want to start that again. I would propose bindings/board/ instead if we
+> move in this direction.
 
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
+.../bindings/board has the issue with the same boards used with
+multiple pin-compatible SoCs, SiPs, and SoMs.
 
-All warnings (new ones prefixed by >>):
+Gr{oetje,eeting}s,
 
-   In file included from include/linux/kernel.h:29,
-                    from include/linux/clk.h:13,
-                    from drivers/remoteproc/qcom_q6v5_adsp.c:7:
-   drivers/remoteproc/qcom_q6v5_adsp.c: In function 'adsp_rproc_map_smmu':
->> include/linux/kern_levels.h:5:25: warning: format '%p' expects argument of type 'void *', but argument 2 has type 'u32' {aka 'unsigned int'} [-Wformat=]
-       5 | #define KERN_SOH        "\001"          /* ASCII Start Of Header */
-         |                         ^~~~~~
-   include/linux/printk.h:447:25: note: in definition of macro 'printk_index_wrap'
-     447 |                 _p_func(_fmt, ##__VA_ARGS__);                           \
-         |                         ^~~~
-   include/linux/printk.h:518:9: note: in expansion of macro 'printk'
-     518 |         printk(KERN_ERR pr_fmt(fmt), ##__VA_ARGS__)
-         |         ^~~~~~
-   include/linux/kern_levels.h:11:25: note: in expansion of macro 'KERN_SOH'
-      11 | #define KERN_ERR        KERN_SOH "3"    /* error conditions */
-         |                         ^~~~~~~~
-   include/linux/printk.h:518:16: note: in expansion of macro 'KERN_ERR'
-     518 |         printk(KERN_ERR pr_fmt(fmt), ##__VA_ARGS__)
-         |                ^~~~~~~~
-   drivers/remoteproc/qcom_q6v5_adsp.c:442:25: note: in expansion of macro 'pr_err'
-     442 |                         pr_err("failed to map addr = %p mem_size = %x\n", rsc_fw->pa, rsc_fw->len);
-         |                         ^~~~~~
+                        Geert
 
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-vim +5 include/linux/kern_levels.h
-
-314ba3520e513a Joe Perches 2012-07-30  4  
-04d2c8c83d0e3a Joe Perches 2012-07-30 @5  #define KERN_SOH	"\001"		/* ASCII Start Of Header */
-04d2c8c83d0e3a Joe Perches 2012-07-30  6  #define KERN_SOH_ASCII	'\001'
-04d2c8c83d0e3a Joe Perches 2012-07-30  7  
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
