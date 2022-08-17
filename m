@@ -2,71 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 94C67596908
-	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 07:55:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3325D596917
+	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 08:02:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238636AbiHQFwY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Aug 2022 01:52:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45222 "EHLO
+        id S238674AbiHQF6M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Aug 2022 01:58:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233815AbiHQFwX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 01:52:23 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58FB77D78C
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 22:52:22 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id v2so17719286lfi.6
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 22:52:22 -0700 (PDT)
+        with ESMTP id S233825AbiHQF6K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 01:58:10 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2ADA7DB4
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 22:58:08 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id w15so12606859ljw.1
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 22:58:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=1i+JQXGxC/c50b5L0o2wLJNKRyNVF1t9I6RR77ZvyPM=;
-        b=nsy7sVHhpRC+BfPvnvvANwxj5ImBlLrxpCVe5pzHL5uxA/9+wUFb3ah5XRBVeH3wxz
-         rg8ABdVoxsN0YeTQIwrqfCqt2ucdc9IvQqsIUg1G5yDcv0X+/WdhuuzDH5a8jhLi/z49
-         13nRZupFWnGylmmZeEK0OUT0WNyikW9vhEAojwU5w3q99v1a1v90iNl7sYTuMHhpzysa
-         DX0BjXe4E/s59goOXehGJ4JvGnAd7Z5gfq/WPEdCjNZEUwm0288/0gjOZR60PAVyp1+c
-         EHx1ycoGuMWLM1AzMCcpekUQyhpkGekN25nySaAI5IJ7VOgbksZMJYYkdgbgwTNtBTzh
-         Hdow==
+        bh=aUqumd66SBJ39SQ3AQf1bxB+pDEZwaoNVNdZ68RDANQ=;
+        b=KugdImXnAzARq3XArw/RJ1XvgROZaBH7VwG7f/JODTd34gv3CP7Q6S/kLHs/IXgjEI
+         ApyJJhBMk/DnCp9GlK43L6vlNDIwBy1sPqMDHrqiPpkcEsXl3THPf4Tx6nkAWfK4fUuT
+         5r1x6Ra9qMPhJkdCIMcsYYwAJqaflI7XlTBOSmVCs3ljdj2TBJlshROFdrGYXmM9vChi
+         z+IxD4ChR6X0ARD2yhHnt2lrGDXjx4JsEfa38pcUUMfObcbXvbW3mvnZoqIxV3n9hxqr
+         qoycpbNFXKbwDiAJ+Q03t+knl3bVkb7s9PA66juKu7ZyVonP4z+NMYy9KVn9sC19sr2I
+         mdJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=1i+JQXGxC/c50b5L0o2wLJNKRyNVF1t9I6RR77ZvyPM=;
-        b=VwHv38Yf46rXzBly0qXCQf/dPsLFy4MgTjKhMK7mM8C2KW1DM5Dsjq+g5ijnJnnTJH
-         Qx3CkmupxZNwGvStk2mJHU7pcP2bFvpnst5qICYAjR3hsfY/XdH13kk3BxywM2iz7CJW
-         EJXThZspRw/NNL0mDav7U9RCOjenyrUnIk34WeinMHi86PoyJvaKKaBX7ACIYs69PJFO
-         BCbCqPc/vfX1MvAe72rcEdqYtnL9Fupd1MiLxzqqBhkiQn48EPrghzOrSR9tzeIkkc8w
-         9VFNBrXqRmEaRRhs6vVj3+hyCRkHX7XwTtPJj2ID1rX90VJ0CT+IuPUMoaIJ5KJPyh5X
-         FpZA==
-X-Gm-Message-State: ACgBeo28g/lEGs+Fz7MoWgr16zb7/vMWrVR4j97/3ei2uLsD7tvOUXFM
-        E0okNzCdPde+Y2QfHYzXXAXnEA==
-X-Google-Smtp-Source: AA6agR5VGxhgrccYa4L0dqXC6PCPEd6Fs9BSyR+78GstCAiSgHoXA29qK/3DSm5TYA1ZK0s6iEQ2cQ==
-X-Received: by 2002:ac2:51af:0:b0:48a:f341:21a1 with SMTP id f15-20020ac251af000000b0048af34121a1mr7695287lfk.625.1660715540692;
-        Tue, 16 Aug 2022 22:52:20 -0700 (PDT)
+        bh=aUqumd66SBJ39SQ3AQf1bxB+pDEZwaoNVNdZ68RDANQ=;
+        b=re/R9iDmFXYXe6gxbsPdl8Ttjr84mPfyXBa20NNz1BMKLnOhPfkzkReN7FCIbx1hON
+         JE9SAwQgkfjFsJXuLDTLDuCy6e3NUcmXB/eEwN3U800n3d/c4P7VF+F9SiXSVL0uhL2f
+         xpXNw8C8Yvw+mO9IQSD/IoQ9jjoL9Qf0LCkueqsdMG28nL/GSf2xXJSx6jxp8WG/yicY
+         +QW1EChgLmUhvzol3uBeniKSe7up8Jc3Hbp0ep8f3Wprda4dWJjVwQpTjexQ//bZIU6k
+         /UU+S3ZewPpkVQfiY68xN5Csm729cUJmdns17vNGw6vzu56P32ZbBtxTlmlLNTD1Ij2I
+         DyoA==
+X-Gm-Message-State: ACgBeo1ddkp5gfe41/ojSni+Z5mBOb+PVcI3eTEa3SEa49+IjCbrpEf1
+        sh/Dyux1VDHedTKEet2JF0eGCA==
+X-Google-Smtp-Source: AA6agR43LFwAtzNImS4Lf1YJ09vjOKuLkdHqLccVESB33RuJQHJw1t9kIoZyBH9wImctlf0H6BEYnQ==
+X-Received: by 2002:a2e:b892:0:b0:25f:db66:3b86 with SMTP id r18-20020a2eb892000000b0025fdb663b86mr7820287ljp.79.1660715886520;
+        Tue, 16 Aug 2022 22:58:06 -0700 (PDT)
 Received: from ?IPV6:2001:14bb:ae:539c:1b1c:14b7:109b:ed76? (d15l54h48cw7vbh-qr4-4.rev.dnainternet.fi. [2001:14bb:ae:539c:1b1c:14b7:109b:ed76])
-        by smtp.gmail.com with ESMTPSA id j19-20020a056512345300b0048b2583fb46sm1513482lfr.200.2022.08.16.22.52.19
+        by smtp.gmail.com with ESMTPSA id v13-20020a056512348d00b0048a835a60f6sm1571181lfr.251.2022.08.16.22.58.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Aug 2022 22:52:20 -0700 (PDT)
-Message-ID: <d2b28def-28d8-1a7b-8971-e13eb35e43fa@linaro.org>
-Date:   Wed, 17 Aug 2022 08:52:18 +0300
+        Tue, 16 Aug 2022 22:58:06 -0700 (PDT)
+Message-ID: <f07d2072-4056-bf2e-82d5-271d8b8792e6@linaro.org>
+Date:   Wed, 17 Aug 2022 08:58:04 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH V2 net 1/2] dt-bindings: net: ar803x: add
- disable-hibernation-mode propetry
+Subject: Re: [RFC v4 01/10] dt-bindings: pwm: Document Synopsys DesignWare
+ snps,pwm-dw-apb-timers-pwm2
 Content-Language: en-US
-To:     wei.fang@nxp.com, andrew@lunn.ch, hkallweit1@gmail.com,
-        linux@armlinux.org.uk, davem@davemloft.net, edumazet@google.com,
-        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, f.fainelli@gmail.com,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220817020322.454369-1-wei.fang@nxp.com>
- <20220817020322.454369-2-wei.fang@nxp.com>
+To:     Ben Dooks <ben.dooks@sifive.com>, linux-pwm@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lee Jones <lee.jones@linaro.org>,
+        u.kleine-koenig@pengutronix.de,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greentime Hu <greentime.hu@sifive.com>,
+        jarkko.nikula@linux.intel.com,
+        William Salmon <william.salmon@sifive.com>,
+        Jude Onyenegecha <jude.onyenegecha@sifive.com>
+References: <20220816211454.237751-1-ben.dooks@sifive.com>
+ <20220816211454.237751-2-ben.dooks@sifive.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220817020322.454369-2-wei.fang@nxp.com>
+In-Reply-To: <20220816211454.237751-2-ben.dooks@sifive.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,28 +83,113 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/08/2022 05:03, wei.fang@nxp.com wrote:
-> From: Wei Fang <wei.fang@nxp.com>
+On 17/08/2022 00:14, Ben Dooks wrote:
+> Add documentation for the bindings for Synopsys' DesignWare PWM block
+> as we will be adding DT/platform support to the Linux driver soon.
 > 
-> The hibernation mode of Atheros AR803x PHYs defaults to be
-> enabled after hardware reset. When the cable is unplugged,
-> the PHY will enter hibernation mode after about 10 seconds
-> and the PHY clocks will be stopped to save power.
-> However, some MACs need the phy output clock for proper
-> functioning of their logic. For instance, stmmac needs the
-> RX_CLK of PHY for software reset to complete.
-> Therefore, add a DT property to configure the PHY to disable
-> this hardware hibernation mode.
-> 
-> Signed-off-by: Wei Fang <wei.fang@nxp.com>
+> Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
 > ---
-> V2 change:
-> 1. Add subject prefix.
-> 2. Modify the property name and description to make them
-> clear.
+> v4:
+>  - fixed typos, added reg
+> v3:
+>  - add description and example
+>  - merge the snps,pwm-number into this patch
+>  - rename snps,pwm to snps,dw-apb-timers-pwm2
+> v2:
+>  - fix #pwm-cells to be 3
+>  - fix indentation and ordering issues
+> ---
+>  .../bindings/pwm/snps,dw-apb-timers-pwm2.yaml | 69 +++++++++++++++++++
+>  1 file changed, 69 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/snps,dw-apb-timers-pwm2.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/pwm/snps,dw-apb-timers-pwm2.yaml b/Documentation/devicetree/bindings/pwm/snps,dw-apb-timers-pwm2.yaml
+> new file mode 100644
+> index 000000000000..e7feae6d4404
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pwm/snps,dw-apb-timers-pwm2.yaml
+> @@ -0,0 +1,69 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2022 SiFive, Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pwm/snps,dw-apb-timers-pwm2.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Synopsys DW-APB timers PWM controller
+> +
+> +maintainers:
+> +  - Ben Dooks <ben.dooks@sifive.com>
+> +
+> +description:
+> +  This describes the DesignWare APB timers module when used in the PWM
+> +  mode. The IP core can be generated with various options which can
+> +  control the functionality, the number of PWMs available and other
+> +  internal controls the designer requires.
+> +
+> +  The IP block has a version register so this can be used for detection
+> +  instead of having to encode the IP version number in the device tree
+> +  comaptible.
+> +
+> +allOf:
+> +  - $ref: pwm.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: snps,dw-apb-timers-pwm2
+> +
+> +  "#pwm-cells":
+> +    const: 3
+> +
+> +  clocks:
+> +    items:
+> +      - description: Interface bus clock
+> +      - description: PWM reference clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: bus
+> +      - const: timer
+> +
+> +  snps,pwm-number:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: The number of PWM channels configured for this instance
+> +    enum: [1, 2, 3, 4, 5, 6, 7, 8]
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - "#pwm-cells"
+> +  - compatible
+> +  - reg
 
+Keep the same order as list of properties.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +  - clocks
+> +  - clock-names
+> +
+> +additionalProperties: false
+> +
+> +
+
+Just one blank line.
+
+> +examples:
+> +  - |
+> +    pwm: pwm@180000 {
+> +      #pwm-cells = <3>;
+> +      compatible = "snps,dw-apb-timers-pwm2";
+> +      reg = <0x180000 0x200>;
+
+The convention of DTS is: compatible, then reg, then rest of properties.
+
+> +      clocks = <&bus &timer>;
+
+You put here one item, not two. This has to be <&bus>, <&timer>
+
+> +      clock-names = "bus", "timer";
+> +    };
 
 
 Best regards,
