@@ -2,47 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F62459787B
-	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 23:00:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5632597862
+	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 23:00:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241730AbiHQU4c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Aug 2022 16:56:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47184 "EHLO
+        id S242115AbiHQU6z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Aug 2022 16:58:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241536AbiHQU4c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 16:56:32 -0400
-Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C52B2A74EA;
-        Wed, 17 Aug 2022 13:56:30 -0700 (PDT)
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 1F3C8200259;
-        Wed, 17 Aug 2022 22:56:29 +0200 (CEST)
-Received: from smtp.na-rdc02.nxp.com (usphx01srsp001v.us-phx01.nxp.com [134.27.49.11])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id CC89020025B;
-        Wed, 17 Aug 2022 22:56:28 +0200 (CEST)
-Received: from right.am.freescale.net (right.am.freescale.net [10.81.116.134])
-        by usphx01srsp001v.us-phx01.nxp.com (Postfix) with ESMTP id D3A264060D;
-        Wed, 17 Aug 2022 13:56:26 -0700 (MST)
-From:   Li Yang <leoyang.li@nxp.com>
-To:     Oleksij Rempel <linux@rempel-privat.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>
-Cc:     Li Yang <leoyang.li@nxp.com>,
-        Oleksij Rempel <o.rempel@pengutronix.de>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-binding: i2c-imx: add SoC specific compatible strings for layerscape
-Date:   Wed, 17 Aug 2022 15:56:22 -0500
-Message-Id: <20220817205623.22104-1-leoyang.li@nxp.com>
-X-Mailer: git-send-email 2.25.1.377.g2d2118b
+        with ESMTP id S242157AbiHQU6P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 16:58:15 -0400
+Received: from relay04.th.seeweb.it (relay04.th.seeweb.it [IPv6:2001:4b7a:2000:18::165])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49BCEAB434
+        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 13:57:57 -0700 (PDT)
+Received: from [192.168.1.101] (abxi168.neoplus.adsl.tpnet.pl [83.9.2.168])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id CCB1D1F635;
+        Wed, 17 Aug 2022 22:57:53 +0200 (CEST)
+Message-ID: <fd1492fa-4244-b283-d2a6-b4ffac7d53d6@somainline.org>
+Date:   Wed, 17 Aug 2022 22:57:51 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: ClamAV using ClamSMTP
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [RFT PATCH v2 02/14] arm64: dts: qcom: msm8996: split TCSR halt
+ regs out of mutex
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220817130342.568396-1-krzysztof.kozlowski@linaro.org>
+ <20220817130342.568396-3-krzysztof.kozlowski@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+In-Reply-To: <20220817130342.568396-3-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -51,36 +50,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add chip specific compatible strings for layerscape platforms to make it
-possible to do SoC specific fix-ups in the driver.
 
-Signed-off-by: Li Yang <leoyang.li@nxp.com>
----
- Documentation/devicetree/bindings/i2c/i2c-imx.yaml | 11 +++++++++++
- 1 file changed, 11 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/i2c/i2c-imx.yaml b/Documentation/devicetree/bindings/i2c/i2c-imx.yaml
-index 01720e338b4c..85ee1282d6d2 100644
---- a/Documentation/devicetree/bindings/i2c/i2c-imx.yaml
-+++ b/Documentation/devicetree/bindings/i2c/i2c-imx.yaml
-@@ -18,6 +18,17 @@ properties:
-       - const: fsl,imx1-i2c
-       - const: fsl,imx21-i2c
-       - const: fsl,vf610-i2c
-+      - items:
-+          - enum:
-+              - fsl,ls1012a-i2c
-+              - fsl,ls1021a-i2c
-+              - fsl,ls1028a-i2c
-+              - fsl,ls1043a-i2c
-+              - fsl,ls1046a-i2c
-+              - fsl,ls1088a-i2c
-+              - fsl,ls208xa-i2c
-+              - fsl,lx2160a-i2c
-+          - const: fsl,vf610-i2c
-       - items:
-           - const: fsl,imx35-i2c
-           - const: fsl,imx1-i2c
--- 
-2.37.1
+On 17.08.2022 15:03, Krzysztof Kozlowski wrote:
+> The TCSR halt regs are next to TCSR mutex, so before converting the TCSR
+> mutex into device with address space, we need to split the halt regs to
+> its own syscon device.  This also describes more accurately the devices
+> and their IO address space.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+Not tested on a device, but looks good to the eye:
+Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 
+On a note, are they really named TCSR_1 and TCSR_2 in the docs?
+Qualcomm is usually more exquisite in their naming :P
+
+Konrad
+>  arch/arm64/boot/dts/qcom/msm8996.dtsi | 13 +++++++++----
+>  1 file changed, 9 insertions(+), 4 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> index 742eac4ce9b3..3411ced96db6 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> @@ -359,7 +359,7 @@ opp-2150400000 {
+>  	firmware {
+>  		scm {
+>  			compatible = "qcom,scm-msm8996", "qcom,scm";
+> -			qcom,dload-mode = <&tcsr 0x13000>;
+> +			qcom,dload-mode = <&tcsr_2 0x13000>;
+>  		};
+>  	};
+>  
+> @@ -840,10 +840,15 @@ pnoc: interconnect@5c0000 {
+>  
+>  		tcsr_mutex_regs: syscon@740000 {
+>  			compatible = "syscon";
+> -			reg = <0x00740000 0x40000>;
+> +			reg = <0x00740000 0x20000>;
+>  		};
+>  
+> -		tcsr: syscon@7a0000 {
+> +		tcsr_1: sycon@760000 {
+> +			compatible = "qcom,tcsr-msm8996", "syscon";
+> +			reg = <0x00760000 0x20000>;
+> +		};
+> +
+> +		tcsr_2: syscon@7a0000 {
+>  			compatible = "qcom,tcsr-msm8996", "syscon";
+>  			reg = <0x007a0000 0x18000>;
+>  		};
+> @@ -2413,7 +2418,7 @@ mss_pil: remoteproc@2080000 {
+>  			qcom,smem-states = <&mpss_smp2p_out 0>;
+>  			qcom,smem-state-names = "stop";
+>  
+> -			qcom,halt-regs = <&tcsr_mutex_regs 0x23000 0x25000 0x24000>;
+> +			qcom,halt-regs = <&tcsr_1 0x3000 0x5000 0x4000>;
+>  
+>  			status = "disabled";
+>  
