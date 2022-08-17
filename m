@@ -2,84 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 832F5596982
-	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 08:26:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97777596989
+	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 08:26:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232982AbiHQGZm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Aug 2022 02:25:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33540 "EHLO
+        id S238433AbiHQGZ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Aug 2022 02:25:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229668AbiHQGZl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 02:25:41 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 281DD7821D
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 23:25:39 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id w5so17801151lfq.5
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 23:25:39 -0700 (PDT)
+        with ESMTP id S231124AbiHQGZ5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 02:25:57 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79FF479A4A
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 23:25:55 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id w5so17801824lfq.5
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 23:25:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc;
-        bh=guVwRYHb/3tPD4YUcYl2zZXQzxPVqgggnejxGyEtXkU=;
-        b=KbeOUIoM9yby5Yomhn4o0VC5YzJ40kFhiRc4Wd/GWN0fy0o4Ng6nUV2YaHdeIFPoPV
-         dwSaF1KnuXbuxGR5WzE8q+6w83z34s+aLUWazlKA8Yn9+uuAlvKi1wiRYwGrmWlYuob/
-         /QTvsrCCU6BW6FMaKvc40eR8m9nW46FgGjIfA3Kk7jJlxzUkFdEjKsCGQyQ5neuhEwaH
-         qDj+8vJgmanJw+ZlNciLfwUU0TXyhbYugRh82NidfHNgJ4FlOS31WiAo7oieqwrTl1Fz
-         Yo+4VT6Tk9p6j2aVkufZzWhfxKBlRYGqZJJ9+/Q/gj0NBfrGAkRcXdlwkprQUjTPPqLM
-         dIvQ==
+        bh=m0s8lq0ZE5dtbPoTxENvKQgRbYkC4Hv5FjBGALWO43w=;
+        b=l5Shbj4CqrnxxetEyGEMZbaySC8XW1ZtUiPGbHF6A7nm0Y/+THbDt8fd3hw1NnxM6P
+         0HMwOfLxDKxSl1iVD1IR6N/B+jPRtAAjPoEEQobx5kioFs3d74hdH26FJLqSL3eYTkBp
+         lgYhNKY7blfmYp8l00yB7wlwhabM9AjcDqySml8YRMngakKAQ/tZ4zUAa7nVLpjgVZT1
+         MIXFb2SoLoHxQqzjeiu/d2e+NwCXSmuK5kp5HZ7TEjATkWePvW+pxKLn75t5rjp+yBsm
+         pxXUhHzw1IWgNubq3PfadZTsEN0Jawu52Hh9U+O2ckHSe7ce7C9RGN9YEl8Qm6NUDTBU
+         dAyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc;
-        bh=guVwRYHb/3tPD4YUcYl2zZXQzxPVqgggnejxGyEtXkU=;
-        b=mmnWMrS3L7gmUCT+QhrcTPCEiiMteA6xK1hEGWg7FNRD9vLUMiCI9XM4k8yjDeObtF
-         zdNaKb+y6gnOQK4T3k3ScS9shyE17JLqfvRPYxUGYGYZoHLuQhCyyZqzA/OM8sGvLvQZ
-         FEb3FqYII7RxWiOKu0ckMsymZC0yt4MnpIVcT32c9EiCmYuJuYhgfIgWSppOxS1YGXeg
-         VeSzIf1v4AeF54mYYfwM32l91xvKMpjEhsRrOFrEh41rxfui7iwQZrRyUzYc8P2gpYay
-         pFqi4YpoL0Vi1HWtKty626MfCxHfgMgfSO+2l1auh7PvUu16cs7gE4yzvjTPmtZEjAzJ
-         BdRw==
-X-Gm-Message-State: ACgBeo3hf+weLwmUzZGc0mUfAxcyb/RUb+P3OaZZkk/x/TBqcxrKXqjS
-        EagftOgKC28OC/X7I2wmi7lVXQ==
-X-Google-Smtp-Source: AA6agR5P5rXqmmHFgywOnH+IYAiRqXSQU7AhevL0GU7rLKmPJkOR6GsdL8LqQ5goaYKSEecI8yEiIA==
-X-Received: by 2002:a05:6512:1584:b0:481:31e4:1489 with SMTP id bp4-20020a056512158400b0048131e41489mr7929105lfb.509.1660717537551;
-        Tue, 16 Aug 2022 23:25:37 -0700 (PDT)
+        bh=m0s8lq0ZE5dtbPoTxENvKQgRbYkC4Hv5FjBGALWO43w=;
+        b=zKNWc2YnYDO+Cfi3b/JVhYJJEpQABbDCDONy/h9OmZ0+6RR1GKV2recuGYdMXXtDra
+         GTxh3Wtdc84fV7CzMlqNY+0uJJos2OLlTeotCRNCFcCFxirWW5JuUxA5fZBUQmcPcWSD
+         DfFtbL4TmQ8Dec6sJac3ZyYvBLJmzFtcpkqUcMsk7HnT2o7KxQjiYJGQqidIsDYa7xO1
+         92gRG+DM9EK7QpfTK+OwzYEtmYADMhdMH6lkaQlQThVZdLC2HbhYvSlLrIRcuKW3d18D
+         SGMHP2qurakTXdD5E/pjioryjdQcBayN9RTh6Ia1fWPPvx8wkdXH+hUcVTDkkvGeJgqw
+         rXVw==
+X-Gm-Message-State: ACgBeo2g3WJ/+pBUJo7ATCrjumd7EQ+YFNySgWwoHxemKKkNOCF2IT5L
+        +nN4USvvqoh+7ULwNHG036aOSw==
+X-Google-Smtp-Source: AA6agR788tLbvIi0il7fkyZ8+svc4RBeE51Ahvwg47GsGIxJxBJlejvkdjwnZaczuCQcSkczVcZBww==
+X-Received: by 2002:ac2:5b8d:0:b0:48a:f61d:68a6 with SMTP id o13-20020ac25b8d000000b0048af61d68a6mr8050433lfn.603.1660717553716;
+        Tue, 16 Aug 2022 23:25:53 -0700 (PDT)
 Received: from krzk-bin.. (d15l54h48cw7vbh-qr4-4.rev.dnainternet.fi. [2001:14bb:ae:539c:1b1c:14b7:109b:ed76])
-        by smtp.gmail.com with ESMTPSA id j5-20020a056512344500b0048fdb3efa20sm1537655lfr.185.2022.08.16.23.25.35
+        by smtp.gmail.com with ESMTPSA id k21-20020a2e9215000000b0025e42641a32sm2069836ljg.123.2022.08.16.23.25.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Aug 2022 23:25:37 -0700 (PDT)
+        Tue, 16 Aug 2022 23:25:53 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Georgi Djakov <djakov@kernel.org>,
+To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        Jia-Wei Chang <jia-wei.chang@mediatek.com>,
-        Johnson Wang <johnson.wang@mediatek.com>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-mediatek@lists.infradead.org
+        Maxime Ripard <mripard@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: interconnect: restrict opp-table to objects
-Date:   Wed, 17 Aug 2022 09:25:33 +0300
-Message-Id: <20220817062533.20076-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: gpu: arm,mali: restrict opp-table to objects
+Date:   Wed, 17 Aug 2022 09:25:47 +0300
+Message-Id: <20220817062547.20122-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -91,53 +77,38 @@ restrict it to object to properly enfoerce real OPP table nodes.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../devicetree/bindings/interconnect/fsl,imx8m-noc.yaml        | 3 ++-
- .../devicetree/bindings/interconnect/mediatek,cci.yaml         | 3 ++-
- .../devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml   | 3 ++-
- 3 files changed, 6 insertions(+), 3 deletions(-)
+ Documentation/devicetree/bindings/gpu/arm,mali-midgard.yaml | 3 ++-
+ Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml  | 3 ++-
+ 2 files changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/interconnect/fsl,imx8m-noc.yaml b/Documentation/devicetree/bindings/interconnect/fsl,imx8m-noc.yaml
-index 09c8948b5e25..7d8d0896e979 100644
---- a/Documentation/devicetree/bindings/interconnect/fsl,imx8m-noc.yaml
-+++ b/Documentation/devicetree/bindings/interconnect/fsl,imx8m-noc.yaml
-@@ -47,7 +47,8 @@ properties:
+diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-midgard.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-midgard.yaml
+index d209f272625d..2a25384ca3ef 100644
+--- a/Documentation/devicetree/bindings/gpu/arm,mali-midgard.yaml
++++ b/Documentation/devicetree/bindings/gpu/arm,mali-midgard.yaml
+@@ -74,7 +74,8 @@ properties:
+       - const: bus
+ 
+   mali-supply: true
+-  opp-table: true
++  opp-table:
++    type: object
+ 
+   power-domains:
      maxItems: 1
+diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml
+index eceaa176bd57..318122d95eb5 100644
+--- a/Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml
++++ b/Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml
+@@ -101,7 +101,8 @@ properties:
  
-   operating-points-v2: true
+   mali-supply: true
+ 
 -  opp-table: true
 +  opp-table:
 +    type: object
  
-   fsl,ddrc:
-     $ref: "/schemas/types.yaml#/definitions/phandle"
-diff --git a/Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml b/Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml
-index 449c7c988229..58611ba2a0f4 100644
---- a/Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml
-+++ b/Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml
-@@ -36,7 +36,8 @@ properties:
-       - const: intermediate
- 
-   operating-points-v2: true
--  opp-table: true
-+  opp-table:
-+    type: object
- 
-   proc-supply:
-     description:
-diff --git a/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml b/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml
-index c2e697f6e6cf..a4743386c4c1 100644
---- a/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml
-+++ b/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml
-@@ -35,7 +35,8 @@ properties:
+   power-domains:
      maxItems: 1
- 
-   operating-points-v2: true
--  opp-table: true
-+  opp-table:
-+    type: object
- 
-   reg:
-     # BWMON v4 (currently described) and BWMON v5 use one register address
 -- 
 2.34.1
 
