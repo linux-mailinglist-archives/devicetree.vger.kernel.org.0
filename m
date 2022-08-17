@@ -2,143 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB51359686D
-	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 07:17:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5356596897
+	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 07:28:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238475AbiHQFPa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Aug 2022 01:15:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57234 "EHLO
+        id S232403AbiHQF0d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Aug 2022 01:26:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238307AbiHQFPM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 01:15:12 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4B0572B7D;
-        Tue, 16 Aug 2022 22:14:50 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 27H5EVei050088;
-        Wed, 17 Aug 2022 00:14:31 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1660713271;
-        bh=B5oesSjrK/IZ6+FJjITC2VsvdDsfxPpTZ1cYOqxV4FM=;
-        h=Date:CC:Subject:To:References:From:In-Reply-To;
-        b=hDhqteBt4RV7qFF6gEEYT/YV7nyK/4PV9zjKAqh3/jRoCk7bSVJZzNea5tHcKTsu3
-         oird4rOaWi7oBK0iWqQjtuRj17LIcTMUX/RKHFc3ejjbNEs9OmzRGn5nhonSUyz2LF
-         O1iAVhNbJj/smmLItyxL5PsYMQ0d7xnnVwU2sWKM=
-Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 27H5EVVi068842
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 17 Aug 2022 00:14:31 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Wed, 17
- Aug 2022 00:14:31 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Wed, 17 Aug 2022 00:14:30 -0500
-Received: from [10.24.69.241] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 27H5EPxV064746;
-        Wed, 17 Aug 2022 00:14:26 -0500
-Message-ID: <31c3a5b0-17cc-ad7b-6561-5834cac62d3e@ti.com>
-Date:   Wed, 17 Aug 2022 10:44:25 +0530
+        with ESMTP id S231709AbiHQF0d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 01:26:33 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8914E659D3;
+        Tue, 16 Aug 2022 22:26:25 -0700 (PDT)
+X-UUID: 3fc69181ffe845a7b463e6b087214610-20220817
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=+61FKuBZ2E54vbXTp6HuMJjGwe8HZxYw+DY8yWRPFeA=;
+        b=qiEMjBEv7oJW73pwFPC49kgT3u8PGP8MyeQ7IIzFXm3m1Z72DqXVjLQDmbLTim4GQi2sHHoAu5vLDRTQ8Lkis16JGywDgV8agMG1P80HLanHi2BGzZ59LpV0VSZiUb8lKb9xawa2Je+rylnMpICzGayJCq6iOnzvedXMk0jN1pg=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.10,REQID:99346184-ed82-42f4-a48e-5fd8eb63d97d,OB:0,L
+        OB:0,IP:0,URL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Releas
+        e_Ham,ACTION:release,TS:-25
+X-CID-META: VersionHash:84eae18,CLOUDID:7857e69c-da39-4e3b-a854-56c7d2111b46,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
+        ,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 3fc69181ffe845a7b463e6b087214610-20220817
+Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
+        (envelope-from <allen-kh.cheng@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 106568066; Wed, 17 Aug 2022 13:26:19 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Wed, 17 Aug 2022 13:26:17 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.15 via Frontend Transport; Wed, 17 Aug 2022 13:26:17 +0800
+From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     <angelogioacchino.delregno@collabora.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Guodong Liu <guodong.liu@mediatek.com>
+Subject: [PATCH v2] dt-bindings: pinctrl: mt8186: Fix 'reg-names' for pinctrl nodes
+Date:   Wed, 17 Aug 2022 13:26:15 +0800
+Message-ID: <20220817052615.27153-1-allen-kh.cheng@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-CC:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <robh+dt@kernel.org>, <linux@armlinux.org.uk>,
-        <vladimir.oltean@nxp.com>, <grygorii.strashko@ti.com>,
-        <vigneshr@ti.com>, <nsekhar@ti.com>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <kishon@ti.com>, <s-vadapalli@ti.com>
-Subject: Re: [PATCH v4 1/3] dt-bindings: net: ti: k3-am654-cpsw-nuss: Update
- bindings for J7200 CPSW5G
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-References: <20220816060139.111934-1-s-vadapalli@ti.com>
- <20220816060139.111934-2-s-vadapalli@ti.com>
- <79e58157-f8f2-6ca8-1aa6-b5cf6c83d9e6@linaro.org>
-From:   Siddharth Vadapalli <s-vadapalli@ti.com>
-In-Reply-To: <79e58157-f8f2-6ca8-1aa6-b5cf6c83d9e6@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Krzysztof,
+The mt8186 contains 8 GPIO physical address bases that correspond to
+the 'reg-names' of the pinctrl driver. The 'reg-names' entries in
+bindings are ordered incorrectly, though. The system crashes due of an
+erroneous address when the regulator initializes.
 
-On 16/08/22 13:14, Krzysztof Kozlowski wrote:
-> On 16/08/2022 09:01, Siddharth Vadapalli wrote:
->> Update bindings for TI K3 J7200 SoC which contains 5 ports (4 external
->> ports) CPSW5G module and add compatible for it.
->>
->> Changes made:
->>     - Add new compatible ti,j7200-cpswxg-nuss for CPSW5G.
->>     - Extend pattern properties for new compatible.
->>     - Change maximum number of CPSW ports to 4 for new compatible.
->>
->> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
->> ---
->>  .../bindings/net/ti,k3-am654-cpsw-nuss.yaml     | 17 +++++++++++++++--
->>  1 file changed, 15 insertions(+), 2 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
->> index b8281d8be940..5366a367c387 100644
->> --- a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
->> +++ b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
->> @@ -57,6 +57,7 @@ properties:
->>        - ti,am654-cpsw-nuss
->>        - ti,j721e-cpsw-nuss
->>        - ti,am642-cpsw-nuss
->> +      - ti,j7200-cpswxg-nuss
-> 
-> Keep some order in the list, so maybe before j721e.
+We fix the 'reg-names' for the pinctrl nodes and the pinctrl-mt8186
+example in bindings.
 
-Thank you for reviewing the patch. I will move ti,j7200-cpswxg-nuss
-above ti,j721e-cpsw-nuss in the v5 series.
+Fixes: 338e953f1bd1 ("dt-bindings: pinctrl: mt8186: add pinctrl file and binding document")
+Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Signed-off-by: Guodong Liu <guodong.liu@mediatek.com>
+---
+Change in v1:
+  * Capitalize First Letter of Sentences and rephrase the commit message
+    [Allen-KH Cheng <allen-kh.cheng@mediatek.com>]
+---
+---
+ .../bindings/pinctrl/pinctrl-mt8186.yaml         | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-> 
->>  
->>    reg:
->>      maxItems: 1
->> @@ -110,7 +111,7 @@ properties:
->>          const: 0
->>  
->>      patternProperties:
->> -      port@[1-2]:
->> +      "^port@[1-4]$":
->>          type: object
->>          description: CPSWxG NUSS external ports
->>  
->> @@ -119,7 +120,7 @@ properties:
->>          properties:
->>            reg:
->>              minimum: 1
->> -            maximum: 2
->> +            maximum: 4
->>              description: CPSW port number
->>  
->>            phys:
->> @@ -151,6 +152,18 @@ properties:
->>  
->>      additionalProperties: false
->>  
->> +if:
-> 
-> This goes under allOf just before unevaluated/additionalProperties:false
+diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8186.yaml b/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8186.yaml
+index 1eeb885ce0c6..604445e390a7 100644
+--- a/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8186.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8186.yaml
+@@ -41,12 +41,12 @@ properties:
+       Gpio base register names.
+     items:
+       - const: iocfg0
+-      - const: iocfg_bm
+-      - const: iocfg_bl
+-      - const: iocfg_br
++      - const: iocfg_lt
+       - const: iocfg_lm
++      - const: iocfg_lb
++      - const: iocfg_bl
+       - const: iocfg_rb
+-      - const: iocfg_tl
++      - const: iocfg_rt
+       - const: eint
+ 
+   interrupt-controller: true
+@@ -232,12 +232,12 @@ examples:
+             <0x10002200 0x0200>,
+             <0x10002400 0x0200>,
+             <0x10002600 0x0200>,
+-            <0x10002A00 0x0200>,
++            <0x10002a00 0x0200>,
+             <0x10002c00 0x0200>,
+             <0x1000b000 0x1000>;
+-      reg-names = "iocfg0", "iocfg_bm", "iocfg_bl",
+-                  "iocfg_br", "iocfg_lm", "iocfg_rb",
+-                  "iocfg_tl", "eint";
++      reg-names = "iocfg0", "iocfg_lt", "iocfg_lm",
++                  "iocfg_lb", "iocfg_bl", "iocfg_rb",
++                  "iocfg_rt", "eint";
+       gpio-controller;
+       #gpio-cells = <2>;
+       gpio-ranges = <&pio 0 0 185>;
+-- 
+2.18.0
 
-allOf was added by me in v3 series patch and it is not present in the
-file. I removed it in v4 after Rob Herring's suggestion. Please let me
-know if simply moving the if-then statements to the line above
-additionalProperties:false would be fine.
-
-Regards,
-Siddharth.
