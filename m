@@ -2,142 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE8B8596B9E
-	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 10:53:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E84E596BB7
+	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 10:56:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229993AbiHQIuf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Aug 2022 04:50:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51016 "EHLO
+        id S231787AbiHQI4D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Aug 2022 04:56:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238495AbiHQIu2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 04:50:28 -0400
-Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A02877558;
-        Wed, 17 Aug 2022 01:50:28 -0700 (PDT)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
-        by mailout.nyi.internal (Postfix) with ESMTP id 55DFB5C0158;
-        Wed, 17 Aug 2022 04:50:27 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute2.internal (MEProxy); Wed, 17 Aug 2022 04:50:27 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm2; t=1660726227; x=
-        1660812627; bh=qjCTliriPTIj2jcyPtsg+UorPFtVEycVX2NzPCDuQ1Y=; b=n
-        4TqT6htuV5DDkJQllXEPBAe+9G/Ua75/SNBIBpNemkwXrUrKhc6zEkA55QvdDpuk
-        YBPNLZKoTnnsQkIvBgNZtJIe+YXcNSJPoyeQYtZhtrCNpFmSjtWTJWe+8+UEkOzu
-        xfmSzryfPUx9N09it9ksnHgyKSHEHPwIuHk9jMw0hR7oI7AyxC7GvLxpiAnLN5KB
-        ayvDiD+X8bpH7e6vhOAg/+mBNplc1xeEvd/sLGMsonII7Syr7CYMgVM5ZIEh0BZA
-        ap9IFTMFllCNxqALfY1rA9zrIJdFClVJKYrDYd/Ow07gKU+XvwWEKwX5+5hcfiI9
-        odCcUOCcCLQZE7Xz9zX7w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:feedback-id:feedback-id:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1660726227; x=
-        1660812627; bh=qjCTliriPTIj2jcyPtsg+UorPFtVEycVX2NzPCDuQ1Y=; b=c
-        +FQ5CCTxLKG2ztDpB+x7aZs8pucpadcRkvekSVxmYoBrhuynQSV/3ROzdCag8lPU
-        8cOikptRAozmbmAhywXZ5WJxSMUDSnIjPAD/aGz7IaGfGfrwk5yhLSl6jYvuO5Pn
-        r8cqL/1IBzy/bvHFO1DVx/yoMPBKDqHpzQODBGvV/Hub7QkiHpXYreP8qA5pvdyR
-        f6V4uydr24uHTYhjFeJJypGdbp3Om0MaSqZDWN7me69ey7s1DL0ncO4iwqGCJ6zy
-        PL7xKuUnVDdLt2vzHxNsvrGd3DykCPHKixcWXTiTyVaR2w+wN4dAQpceIvxenTLl
-        2ll0eihSwxktA11mf8eWg==
-X-ME-Sender: <xms:06v8YmoHN7kI6wTPzueiA3_uaZAQbsY8xqHzG_3FoFGakWBicZ5niw>
-    <xme:06v8YkqAxVZ40h8J0YtBSpdlr-dotGPl563H6cJxjKRk167WUhwKrarJM-6UU4_Jj
-    nNGwgw_k0ZxYLOy-Q>
-X-ME-Received: <xmr:06v8YrNz8spwMZy8wA9IARNClAuRwoNvMUECcicsBQGQpMbo-IItn2iAYR1Q4DIif1uru3dcfVrmjRQ0t_MvjCzWSARc3r-Z_FCSjS5uaZK5oPQ52rCVsOEhOw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdehiedgtdelucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepuffvvehfhffkffgfgggjtgfgsehtjeertddtfeejnecuhfhrohhmpefurghm
-    uhgvlhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenuc
-    ggtffrrghtthgvrhhnpefftdevkedvgeekueeutefgteffieelvedukeeuhfehledvhfei
-    tdehudfhudehhfenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfh
-    hrohhmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
-X-ME-Proxy: <xmx:06v8Yl6BFWVVpZqSn16Vq6zsQ0ZVMbDaZtanCM_DiT6LmZXaMA5Agg>
-    <xmx:06v8Yl5NTl9Ks7FXPdNO76GXESntVrSaAyg-3qXemTHp-hlubPpfRw>
-    <xmx:06v8YlgBaEUh2HHDIPVn5HExrSUGtdiSPyRzEIyGensf8IYEJ2vx4g>
-    <xmx:06v8Yizzeq4ZB7gqcOKdC54_-g37gi9PH07JROmBaoG3Rs9N1K5k_g>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 17 Aug 2022 04:50:26 -0400 (EDT)
-Subject: Re: [PATCH v3 4/4] soc: sunxi: sram: Only iterate over SRAM children
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev
-References: <20220815043436.20170-1-samuel@sholland.org>
- <20220815043436.20170-5-samuel@sholland.org>
- <e5969030-0a17-d10e-7eef-8d906e8a4dc4@linaro.org>
- <82fedf98-1d94-514a-ba03-f88b4e1d888b@linaro.org>
-From:   Samuel Holland <samuel@sholland.org>
-Message-ID: <a0e02ec6-b1e2-e4f7-8902-2768543f56fd@sholland.org>
-Date:   Wed, 17 Aug 2022 03:50:26 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+        with ESMTP id S230107AbiHQI4C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 04:56:02 -0400
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16F307FFAB;
+        Wed, 17 Aug 2022 01:56:01 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XTf62n1aw6Z6zuMfM8knU2l/nwsMNdGQB4qVBAiUjHKlj7Q2w+RvsG82UZ1rcawg2SnklMoSohWnhBQQ6bcP5eFpl2HPqyBDnSiXxIUiJDRoOqdcLQ2Td9HWgic8ssO5pQle12AyCmKOEBUsIN/a2F7F6JljqPr+udr3WWwJn0f04HbIKOW08m/5WtLUdj+8DCMjUIm1i+4zleFSJzCTGhbCB89qxK2rYmAbI7Z8mwdPEqIaSUj8xO+agNjsypyOiM1CVcAfp0BvnuJfMQa3lbt1ImEOaBAglPpTe7AjXWmrDbeY8WEGq9YUYgVOzSdZ+I0B+goMb8T/oVbGhNwj3w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hRhbEhpQrQGg4kRiU8T9zT5lQOrLvQ9qJxORqiC6kKY=;
+ b=NqVP/YNKNwPPsvYKzNsNb4GjJCTz63OcuMNhUYyTeNaT9k1wBExWIqZWeI1apAAcWTUQ0jizzHVo8twOv7ltuFytCAhUOoE8IGvcMyypfM4nkEegoxDZAdTb78+kCFVRq3K5kSNMEXCHmV4nQFE90WFsMUkugCkFQVMOdEpnC1CaC6jSMStCrjeHrTG+Xcbc/TpY0ncpn96lfjrTDTxuKu4npc3QX+5twQc8LwqOeR+hVbZldFkDjRaWjtxrGVqNUZ2AfJRB0wGB+ytW8UwIq/uPX+/0dXJpwmQg7rIbuLtDdxN9SESCzs55n0orUsZ5yjLcv9FRj8RU3oy2BwI2tg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hRhbEhpQrQGg4kRiU8T9zT5lQOrLvQ9qJxORqiC6kKY=;
+ b=p2lrs9yQsOsF8hcQXZVntEEzZGMKWHN1+fKKMBt2E/j0I7rPNfLcl4PPrCUsku6vudWUgHFYyUPgGAf3nmgVOBHDTReVO03sfhKagZe0mGHpCO2W4PHkZbO3OiH+9cOXhBA3Aq6C3tvner8areX4H2DaItam6h6OnCimNdSAI3k=
+Received: from DS7PR03CA0191.namprd03.prod.outlook.com (2603:10b6:5:3b6::16)
+ by MN2PR12MB3903.namprd12.prod.outlook.com (2603:10b6:208:15a::26) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.16; Wed, 17 Aug
+ 2022 08:55:58 +0000
+Received: from DM6NAM11FT009.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:3b6:cafe::b1) by DS7PR03CA0191.outlook.office365.com
+ (2603:10b6:5:3b6::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5525.10 via Frontend
+ Transport; Wed, 17 Aug 2022 08:55:58 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ DM6NAM11FT009.mail.protection.outlook.com (10.13.173.20) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5546.15 via Frontend Transport; Wed, 17 Aug 2022 08:55:58 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Wed, 17 Aug
+ 2022 03:55:57 -0500
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB05.amd.com
+ (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Wed, 17 Aug
+ 2022 03:55:55 -0500
+Received: from xhdlakshmis40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
+ Transport; Wed, 17 Aug 2022 03:55:52 -0500
+From:   Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+To:     <linux-gpio@vger.kernel.org>
+CC:     <git-dev@amd.com>, <mans0n@gorani.run>,
+        <devicetree@vger.kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <robh+dt@kernel.org>, <linus.walleij@linaro.org>, <brgl@bgdev.pl>,
+        <shubhrajyoti.datta@gmail.com>
+Subject: [PATCH 0/2] gpio: pca9570: add slg7xl45106 support
+Date:   Wed, 17 Aug 2022 14:25:48 +0530
+Message-ID: <20220817085550.18887-1-shubhrajyoti.datta@amd.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <82fedf98-1d94-514a-ba03-f88b4e1d888b@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: c168a9fb-7f3a-4b0c-aa7e-08da802e4d92
+X-MS-TrafficTypeDiagnostic: MN2PR12MB3903:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: k3U6qR6ziP7e/X1uZgJOD+lIo3LZd87FaMpe57RComE355ZWQNPIyvfnYKFJ7BFX1RrMtVWOJWAlkhlZpAGQKjN5oyaWq7jlciuX51gdT3RiyyXEJ/7u+UorS7a3wDPzupokGNhFBkbvco6wi7wgcAqvyqySpkSzdQpWDKplU3eeESagZDmWIHTlEAVhQmDLkB/35oCUy6K2IdgKiZ04tYRddocARwEA0J7zhte6kXoS0PfUz6cDW/JTUfkIUMGOkHALaRjFAZYfjB10K60P3gwaNUBLfd30+QCI1Eml5Jr7ThwxStEH8wK7+9uDhThYp4NwN/vxwaOISIhMtizV9xK1GpyGeHYx21BIAvxdCLs8sQC2qlfEIx1kxXkcambaSl/DQOpCNKHizndGV/PMqnEwrv3fXRh1llYvO9/NfUZlwgVVg22Djbbmmj6JjO60RuM8QewfNz9h9csE6CGKVJ2XpkBQjCdoMGJcnEk3ZPYDhtP5j7mXQZxlWCgKHYcSfLkTNjmAotzTFyJ4yDnjrOoCTkaelaqxt+TL5x+ZynrULh+xO7stnx0spy2KsE72ElbfBJfaW047sVFk013tj/b+8vqKU5vNisVTn0m+ix7WAp1b15dzAavaQNJD2veTOtQihh5/WtgFksvhf9VL9Xw3e+OYLLY3M49z9V/s1UIcTbCqn6sboS7AGj5XZTYLqB1qQsgbZLgdTlLqHxGPC5UVQCoV4Jj7o80HcTbROuH1wtnqqOGW37/f09Mn/cCjE0DiJ1Nqmn4JYbPhWPSTG9FDbQ02KCo5wtbvH+FA9Kd2EImSfaHRwE0rkt5xQLfEkKbxEfk7FQ+E2JB4/WbWkQ==
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230016)(4636009)(376002)(396003)(136003)(39860400002)(346002)(46966006)(40470700004)(36840700001)(2616005)(426003)(336012)(316002)(47076005)(44832011)(8936002)(6916009)(186003)(86362001)(5660300002)(1076003)(40460700003)(4744005)(36860700001)(83380400001)(40480700001)(54906003)(2906002)(70206006)(81166007)(70586007)(82740400003)(4326008)(356005)(478600001)(8676002)(6666004)(41300700001)(82310400005)(26005)(36756003)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Aug 2022 08:55:58.3717
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c168a9fb-7f3a-4b0c-aa7e-08da802e4d92
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT009.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3903
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/16/22 5:03 AM, Krzysztof Kozlowski wrote:
-> On 16/08/2022 13:01, Krzysztof Kozlowski wrote:
->> On 15/08/2022 07:34, Samuel Holland wrote:
->>> Now that a "regulators" child is accepted by the controller binding, the
->>> debugfs show routine must be explicitly limited to "sram" children.
->>>
->>> Signed-off-by: Samuel Holland <samuel@sholland.org>
->>> ---
->>>
->>> (no changes since v2)
->>>
->>> Changes in v2:
->>>  - New patch for v2
->>>
->>>  drivers/soc/sunxi/sunxi_sram.c | 3 +++
->>>  1 file changed, 3 insertions(+)
->>>
->>> diff --git a/drivers/soc/sunxi/sunxi_sram.c b/drivers/soc/sunxi/sunxi_sram.c
->>> index 92f9186c1c42..6acaaeb65652 100644
->>> --- a/drivers/soc/sunxi/sunxi_sram.c
->>> +++ b/drivers/soc/sunxi/sunxi_sram.c
->>> @@ -120,6 +120,9 @@ static int sunxi_sram_show(struct seq_file *s, void *data)
->>>  	seq_puts(s, "--------------------\n\n");
->>>  
->>>  	for_each_child_of_node(sram_dev->of_node, sram_node) {
->>> +		if (!of_node_name_eq(sram_node, "sram"))
->>
->> You should not rely on node names. They can change in DTS. Why do you
->> need to test for the name?
->>
-> 
-> Ah, it is not a device node but a child property, right? In such case,
-> it's of course fine.
+Add SLG7XL45106 GPO expander support
 
-It is a child node.
+Shubhrajyoti Datta (2):
+  dt-bindings: gpio: pca9570: Add compatible for slg7xl45106
+  gpio: pca9570: add slg7xl45106 support
 
-> The device node names could change and should not be considered ABI (at
-> least I hope should not...).
+ .../devicetree/bindings/gpio/gpio-pca9570.yaml     |  1 +
+ drivers/gpio/gpio-pca9570.c                        | 14 +++++++++++++-
+ 2 files changed, 14 insertions(+), 1 deletion(-)
 
-The node names are limited by patternProperties in the controller binding. I can
-check the child nodes for compatibility with "mmio-sram" if that is better.
+-- 
+2.17.1
 
-Regards,
-Samuel
