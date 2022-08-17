@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C562597237
-	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 17:05:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D47DD597222
+	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 17:05:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240613AbiHQPAI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Aug 2022 11:00:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47500 "EHLO
+        id S240574AbiHQPAQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Aug 2022 11:00:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240607AbiHQO7a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 10:59:30 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51D149C2D7
-        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 07:59:17 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id w5so19339570lfq.5
-        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 07:59:16 -0700 (PDT)
+        with ESMTP id S240576AbiHQO7Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 10:59:24 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF6149D102
+        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 07:59:20 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id w5so19339684lfq.5
+        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 07:59:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=NUd8YryzxRUKn1lcURqTFfrnvxH9vHeWn1VsvKW9iig=;
-        b=X94iDojcPqsc1MVcqiyBO0Rc/p1LrbebWyIoLVLo3aBStEdpS+QC8TrdEbidnjg4Bx
-         tKyjqKm94/vS2njDCCIBDbGPwcCF7b9JZmuYNEp1YFKKsSaqnD3X43N+dLofZ+UE9qCj
-         CQ/ukvtL8ZKUcQYXyHObZj0Y0XHUyhat8d3A/5FrxW/Vj95zXa29G6ydLVjJ3cRSk1xu
-         KWlj81RQE9XtmkCmFyTTxepN5qzh/kV4yHBFNMi6T88Dt32fI84ivLiTGdPW5H3Pt+Di
-         81z0YvzDxuyF4De97ANdGYemSLoMsA/qBIhMxAcnsvW3JV7sRywC+djOFY5Nu35+ceAj
-         hntQ==
+        bh=wPKBtYXi2Ze3ckC0zD7CwQ7b3Iobe2+hO++/2P5RVXo=;
+        b=fYktL5rBrnbRLutzNuYkG9xEaUY6HADsN99LEyldvipx5hK95Wti5n+LPNBt7s68Tx
+         39UKh3Wjbos94dN3sAo26fRbvuZHF0DKGg1W2k6lISMLEi8Rd+I1EUcvIFp6PWnHL4wm
+         oPJbZ1+tChBsrefXdrLOcWhQdn3//hzLxFZjlTRwZGlHYp0IrlWwVp4wPYs2VXZGLk52
+         Royu3lTY533uaC9kTZA3f6TJa6pKmI8Ju02A6lHpUj9ACiBnvRigbXomMdHtnyhXys81
+         Wf+IA++PXhOz+lK6aVSUT/QQR7pUSlCf8jB9CMsobXLARL8xenU3TD6tBRmBchDEEMpj
+         wZGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=NUd8YryzxRUKn1lcURqTFfrnvxH9vHeWn1VsvKW9iig=;
-        b=xY3loEc47pim4sFPYgTYdBw41Lt3fyeKjTBA4kTcRJQVOdJ3Mqcc0hf09iV/+voRrJ
-         qzbr4m99CRzEzIEsESED3t8XBE+aDFfgGPGqaBKNnzPDWjCTc9UFUAyODlF9SgeOXjhM
-         K2OZH7pUYBr2SSTBtmkVmWn17ytjw5mXSqJkG7epakgHwxsH4d31RuYr+EXfr7hX2613
-         SRkpOB3O0EfTAsAh1hshPd4I9iC8JMh4MNDt333L6sterixtEnqTp11Y2+FVozFkeuSP
-         +lSxScUdq+jbIRM1Dcrxbz8jd+CjCbvGNm5ZxjxAAsCv4y29pH7RljGRsE/XX0/1EcHP
-         +BUA==
-X-Gm-Message-State: ACgBeo2gWe20kckXqPgvgWfztACrpdivIHUfED+kRe+4CHnMSvLPya2C
-        Hq+mc3pwtPXuzTlg5fJuH3lG4w==
-X-Google-Smtp-Source: AA6agR4RSstN4AsKO4iD80D30PudaMWh5bcYIRT4EmuYsRZg8cf11wL7Zym3HyM0FOKMZtMoIpC/1Q==
-X-Received: by 2002:ac2:4ac7:0:b0:48a:ee18:aa57 with SMTP id m7-20020ac24ac7000000b0048aee18aa57mr8438371lfp.660.1660748356530;
-        Wed, 17 Aug 2022 07:59:16 -0700 (PDT)
+        bh=wPKBtYXi2Ze3ckC0zD7CwQ7b3Iobe2+hO++/2P5RVXo=;
+        b=NLQ/ns2l/wbkywDTTqt8528ZF5b6jT/gosAQURePhP0BhVULVGhTb6ioAGB1EIGxm0
+         9/kZc7d3fhb0PTRtuCYFT/4SfHIazkqfxJ7BD5+WuMbLDLkeNZj5s8sTcHHWb3MVHjYj
+         aJY8ovTJeeRvWyGfHtxyzTYzfbVJHxdlvPn1vJpzV1Ofg0k5BlSAub1RIxQLLQX2NvV0
+         Af0GMDPmR3fYhScoPiteqPUgoR+3USO1sOAO3P9c8k0wT4mjtOgPVgPsWhFRr4vw2agf
+         F4CrV5YKJs71xeJWnxyurEIF2zbo4HWLl68ARpMy+yb42CdctLtqIktTJ6S5Sw94DXaL
+         9IMg==
+X-Gm-Message-State: ACgBeo33BtjTpjJ3xb5C7glEWf5/jyFMnLfL18LlVaPXC7VsYUXd2Lm/
+        eci6tP3CD+lsV5wq0ww3n/M0cA==
+X-Google-Smtp-Source: AA6agR6MOlVK00kjbchMKNwSwRq2zfORVGHLlgFVqP5A5//waKyy386hgjs5+k9v+bK1QunSeAbc3g==
+X-Received: by 2002:a05:6512:239f:b0:491:cd95:f67d with SMTP id c31-20020a056512239f00b00491cd95f67dmr6131346lfv.184.1660748358509;
+        Wed, 17 Aug 2022 07:59:18 -0700 (PDT)
 Received: from krzk-bin.. (d15l54h48cw7vbh-qr4-4.rev.dnainternet.fi. [2001:14bb:ae:539c:1b1c:14b7:109b:ed76])
-        by smtp.gmail.com with ESMTPSA id u16-20020a05651c131000b0025fdf9eec1dsm2250454lja.111.2022.08.17.07.59.14
+        by smtp.gmail.com with ESMTPSA id u16-20020a05651c131000b0025fdf9eec1dsm2250454lja.111.2022.08.17.07.59.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Aug 2022 07:59:15 -0700 (PDT)
+        Wed, 17 Aug 2022 07:59:17 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -59,9 +59,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [RFT PATCH v2 06/17] hwspinlock: qcom: add support for MMIO on older SoCs
-Date:   Wed, 17 Aug 2022 17:58:50 +0300
-Message-Id: <20220817145901.865977-7-krzysztof.kozlowski@linaro.org>
+Subject: [RFT PATCH v2 07/17] arm64: dts: qcom: ipq6018: add missing TCSR syscon compatible
+Date:   Wed, 17 Aug 2022 17:58:51 +0300
+Message-Id: <20220817145901.865977-8-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220817145901.865977-1-krzysztof.kozlowski@linaro.org>
 References: <20220817145901.865977-1-krzysztof.kozlowski@linaro.org>
@@ -70,110 +70,33 @@ Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Older Qualcomm SoCs have TCSR mutex registers with 0x80 stride, instead
-of 0x1000.  Add dedicated compatibles and regmap for such case.
+TCSR syscon node should come with dedicated compatible.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- drivers/hwspinlock/qcom_hwspinlock.c | 42 +++++++++++++++++++++-------
- 1 file changed, 32 insertions(+), 10 deletions(-)
+ arch/arm64/boot/dts/qcom/ipq6018.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/hwspinlock/qcom_hwspinlock.c b/drivers/hwspinlock/qcom_hwspinlock.c
-index 9734e149d981..9cf186362ae2 100644
---- a/drivers/hwspinlock/qcom_hwspinlock.c
-+++ b/drivers/hwspinlock/qcom_hwspinlock.c
-@@ -22,6 +22,7 @@
- struct qcom_hwspinlock_of_data {
- 	u32 offset;
- 	u32 stride;
-+	const struct regmap_config *regmap_config;
- };
+diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+index aaad7d9059f6..6b35f03c4862 100644
+--- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
++++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+@@ -258,7 +258,7 @@ tcsr_mutex_regs: syscon@1905000 {
+ 		};
  
- static int qcom_hwspinlock_trylock(struct hwspinlock *lock)
-@@ -73,15 +74,42 @@ static const struct qcom_hwspinlock_of_data of_sfpb_mutex = {
- 	.stride = 0x4,
- };
+ 		tcsr: syscon@1937000 {
+-			compatible = "syscon";
++			compatible = "qcom,tcsr-ipq6018", "syscon";
+ 			reg = <0x0 0x01937000 0x0 0x21000>;
+ 		};
  
--/* All modern platform has offset 0 and stride of 4k */
-+static const struct regmap_config tcsr_msm8226_mutex_config = {
-+	.reg_bits		= 32,
-+	.reg_stride		= 4,
-+	.val_bits		= 32,
-+	.max_register		= 0x1000,
-+	.fast_io		= true,
-+};
-+
-+static const struct qcom_hwspinlock_of_data of_msm8226_tcsr_mutex = {
-+	.offset = 0,
-+	.stride = 0x80,
-+	.regmap_config = &tcsr_msm8226_mutex_config,
-+};
-+
-+static const struct regmap_config tcsr_mutex_config = {
-+	.reg_bits		= 32,
-+	.reg_stride		= 4,
-+	.val_bits		= 32,
-+	.max_register		= 0x20000,
-+	.fast_io		= true,
-+};
-+
- static const struct qcom_hwspinlock_of_data of_tcsr_mutex = {
- 	.offset = 0,
- 	.stride = 0x1000,
-+	.regmap_config = &tcsr_mutex_config,
- };
- 
- static const struct of_device_id qcom_hwspinlock_of_match[] = {
- 	{ .compatible = "qcom,sfpb-mutex", .data = &of_sfpb_mutex },
- 	{ .compatible = "qcom,tcsr-mutex", .data = &of_tcsr_mutex },
-+	{ .compatible = "qcom,apq8084-tcsr-mutex", .data = &of_msm8226_tcsr_mutex },
-+	{ .compatible = "qcom,ipq6018-tcsr-mutex", .data = &of_msm8226_tcsr_mutex },
-+	{ .compatible = "qcom,msm8226-tcsr-mutex", .data = &of_msm8226_tcsr_mutex },
-+	{ .compatible = "qcom,msm8974-tcsr-mutex", .data = &of_msm8226_tcsr_mutex },
-+	{ .compatible = "qcom,msm8994-tcsr-mutex", .data = &of_msm8226_tcsr_mutex },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, qcom_hwspinlock_of_match);
-@@ -117,14 +145,6 @@ static struct regmap *qcom_hwspinlock_probe_syscon(struct platform_device *pdev,
- 	return regmap;
- }
- 
--static const struct regmap_config tcsr_mutex_config = {
--	.reg_bits		= 32,
--	.reg_stride		= 4,
--	.val_bits		= 32,
--	.max_register		= 0x20000,
--	.fast_io		= true,
--};
--
- static struct regmap *qcom_hwspinlock_probe_mmio(struct platform_device *pdev,
- 						 u32 *offset, u32 *stride)
- {
-@@ -133,6 +153,8 @@ static struct regmap *qcom_hwspinlock_probe_mmio(struct platform_device *pdev,
- 	void __iomem *base;
- 
- 	data = of_device_get_match_data(dev);
-+	if (!data->regmap_config)
-+		return ERR_PTR(-EINVAL);
- 
- 	*offset = data->offset;
- 	*stride = data->stride;
-@@ -141,7 +163,7 @@ static struct regmap *qcom_hwspinlock_probe_mmio(struct platform_device *pdev,
- 	if (IS_ERR(base))
- 		return ERR_CAST(base);
- 
--	return devm_regmap_init_mmio(dev, base, &tcsr_mutex_config);
-+	return devm_regmap_init_mmio(dev, base, data->regmap_config);
- }
- 
- static int qcom_hwspinlock_probe(struct platform_device *pdev)
 -- 
 2.34.1
 
