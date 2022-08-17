@@ -2,54 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 69604596BC8
-	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 11:06:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EC10596BFD
+	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 11:25:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229953AbiHQJFn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Aug 2022 05:05:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35784 "EHLO
+        id S231577AbiHQJYa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Aug 2022 05:24:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229764AbiHQJFm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 05:05:42 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB72061719;
-        Wed, 17 Aug 2022 02:05:41 -0700 (PDT)
+        with ESMTP id S229658AbiHQJY3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 05:24:29 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 489924F18B;
+        Wed, 17 Aug 2022 02:24:28 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 6719DB81C65;
-        Wed, 17 Aug 2022 09:05:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 536D7C433D7;
-        Wed, 17 Aug 2022 09:05:35 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id EDF34B81C06;
+        Wed, 17 Aug 2022 09:24:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4F14C433D6;
+        Wed, 17 Aug 2022 09:24:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1660727139;
-        bh=AdrtSs51sExh6zWewEg6hsDl4RiKlBISaAKANDbD3Zs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=eX2zsE5APNQq0k7AzTvFBHsPpa8pPF4pInuFXpdvKdITBtpXWptbxA9AAVoea9cYU
-         tnR8J5TA/GGPUI8SpUOSVLdf+Q7PWzFWTVMWUt4GbDznsWTi0EEMDwfIw1wuaYBSlj
-         RwlBO59C7G1+yshqFRvyL5RLpc5VadX8nBs1jMlDMb2GDSB5p5TJ59FcY8QhFBASuS
-         3X7OaslPU+C3Wx4camNY4EocZljXGe7RH8Lu12dbtw9GkP2aYEGU2lQjbE1yD4N9bm
-         NMgJDxuOB86E3xeLdA11CMV5HteXJ7sF59CrGfu2WP2LfNt9d2cN52BpNXqCo3HkRc
-         /hlyoJohMmOXA==
-Date:   Wed, 17 Aug 2022 17:05:30 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     djakov@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        abelvesa@kernel.org, abailon@baylibre.com, l.stach@pengutronix.de,
-        laurent.pinchart@ideasonboard.com, marex@denx.de,
-        paul.elder@ideasonboard.com, Markus.Niebel@ew.tq-group.com,
-        aford173@gmail.com, kernel@pengutronix.de,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-imx@nxp.com, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH V4 0/7] imx: blk-ctrl: Add interconnect for i.MX8MP
-Message-ID: <20220817090530.GB149610@dragon>
-References: <20220708085632.1918323-1-peng.fan@oss.nxp.com>
+        s=k20201202; t=1660728265;
+        bh=8+DNMt2OBUWg2pDi8QSy/mybuvQDeV4QyZVtGu+4vaI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=I0Ytks26Zwu/w6D1bo0xAWF2o88FDyyCJfyBFdHx+G9M+3+xwNnk2+dEZZOnXxQ6U
+         Y5TtHx9btoXxXVRk5jMtJTddt9FXIYIcb6HplUfChXFZXn8yyStclZOZTow1tDXd8h
+         71MSeHBwK95wUkbTyiwxb4c7hdTeiqPj+1LjWE+cnUbvQLtdN8ASlaudiNwInigMHG
+         8rI8P9DG3A4G039RDqmOEkO8jx5qTgrIHsHCJF+skVJYpOnyH3EBa1TCOPIckr1qFO
+         iVVDol7AhWF0ZxtaCN5xgKeYofnQEoPd0XJd27/vITq67e7qXJ4cMrAAy06E7UoTU/
+         JSUomrDo90zUg==
+Received: by mail-oi1-f172.google.com with SMTP id m6so2923662oib.4;
+        Wed, 17 Aug 2022 02:24:25 -0700 (PDT)
+X-Gm-Message-State: ACgBeo0HLsYVdQFjReVbOtO+GC+kLI6TyFPCx/oSQQDtam5k/tXmZ7ac
+        9/dkX1CDQ2rZZJswxxhPNDf3GXx1qhwHvjpbFVU=
+X-Google-Smtp-Source: AA6agR6rWYZPOrOOZ45KKqJXHC5r8rQJzkHMzXqfvHkZ2MYf7nQqouU3i53gQDbyOdKrIyTBV6kDT+yyxfYE2zZSlrQ=
+X-Received: by 2002:a05:6808:1c06:b0:33a:9b3b:b3ce with SMTP id
+ ch6-20020a0568081c0600b0033a9b3bb3cemr1059923oib.53.1660728264832; Wed, 17
+ Aug 2022 02:24:24 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220708085632.1918323-1-peng.fan@oss.nxp.com>
+References: <20220708124205.59564-1-andrejs.cainikovs@toradex.com> <20220729104938.GA93488@francesco-nb.int.toradex.com>
+In-Reply-To: <20220729104938.GA93488@francesco-nb.int.toradex.com>
+From:   Shawn Guo <shawnguo@kernel.org>
+Date:   Wed, 17 Aug 2022 17:24:14 +0800
+X-Gmail-Original-Message-ID: <CAJBJ56+8ZKwGSrZK=ia7qZ33Bfq+tjwzqHhwWsAGTx2DTwKOfA@mail.gmail.com>
+Message-ID: <CAJBJ56+8ZKwGSrZK=ia7qZ33Bfq+tjwzqHhwWsAGTx2DTwKOfA@mail.gmail.com>
+Subject: Re: [PATCH v1 0/2] arm64: dts: imx8mm-verdin: update CAN clock and
+ interrupt type
+To:     Francesco Dolcini <francesco.dolcini@toradex.com>
+Cc:     Marc Kleine-Budde <mkl@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Andrejs Cainikovs <andrejs.cainikovs@toradex.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -60,39 +71,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 08, 2022 at 04:56:25PM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> V4:
->  Because the header is not included when adding NoC node, the fsl,imx8mp.h
->  needs be included in this patchset. So include it in patch 6
-> 
-> V3:
->  Move adding NoC node patch to i.MX8MP ICC driver patchset
->  Per Lucas's comments, warn once when icc bulk get not return probe defer and continue.
-> 
-> V2:
->  Use a low bandwidth value instead INT_MAX
->  Minor fix to move fsl,imx8mp.h out to dts patch, not driver patch
->  Add A-b tag from DT maintainer
-> 
-> i.MX8MP NoC settings is invalid after related power domain up. So
-> need to set valid values after power domain up.
-> 
-> This patchset is to bind interconnect for each entry in blk ctrl.
-> 
-> This patchset is not include DVFS DDRC feature.
-> 
-> Peng Fan (7):
->   dt-bindings: soc: imx: add interconnect property for i.MX8MP media blk
->     ctrl
->   dt-bindings: soc: imx: add interconnect property for i.MX8MP hdmi blk
->     ctrl
->   dt-bindings: soc: imx: add interconnect property for i.MX8MP hsio blk
->     ctrl
->   soc: imx: add icc paths for i.MX8MP media blk ctrl
->   soc: imx: add icc paths for i.MX8MP hsio/hdmi blk ctrl
->   arm64: dts: imx8mp: add interconnects for media blk ctrl
->   arm64: dts: imx8mp: add interconnect for hsio blk ctrl
+On Fri, Jul 29, 2022 at 6:49 PM Francesco Dolcini
+<francesco.dolcini@toradex.com> wrote:
+>
+> Hello Shawn,
+> just a gently ping.
+>
+> On Fri, Jul 08, 2022 at 02:42:03PM +0200, Andrejs Cainikovs wrote:
+> > This patch set updates CAN controller clock and changes interrupt type.
+> >
+> > Andrejs Cainikovs (2):
+> >   arm64: dts: imx8mm-verdin: update CAN clock to 40MHz
+> >   arm64: dts: imx8mm-verdin: use level interrupt for mcp251xfd
+> >
+> >  arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi | 8 ++++----
+> >  1 file changed, 4 insertions(+), 4 deletions(-)
+>
+> It's too late for the merge window? These 2 commits do not have a fixes
+> tag, but they are really fixes (we just did not bother having those
+> backported initially).
 
-Applied all, thanks!
+Applied both as fixes, thanks!
