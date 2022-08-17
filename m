@@ -2,111 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49413596FC7
-	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 15:29:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 838E9596FF1
+	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 15:40:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239127AbiHQNZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Aug 2022 09:25:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43028 "EHLO
+        id S237104AbiHQNeH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Aug 2022 09:34:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239891AbiHQNZl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 09:25:41 -0400
-Received: from smtp-relay-canonical-0.canonical.com (smtp-relay-canonical-0.canonical.com [185.125.188.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E16C9901BE;
-        Wed, 17 Aug 2022 06:25:37 -0700 (PDT)
-Received: from workstation5.fritz.box (ip-084-118-157-002.um23.pools.vodafone-ip.de [84.118.157.2])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-canonical-0.canonical.com (Postfix) with ESMTPSA id ED6B23F13E;
-        Wed, 17 Aug 2022 13:25:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1660742735;
-        bh=PxzTNJ1Jg6c7i4yTxrytPCVQW1rkcheSbZD8jwdGcYI=;
-        h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type;
-        b=j2pDzobDmxNvAVvYyJbu2Vl1EvIZ7pnXFfOkDamLxkIHQfGDwxOkJQ/Y15fcnJe3l
-         1lt/nt+R8sMlXZBQdzCwzdRfQ+XaxXqG8VS5afEmrjI0wvp+2efrUoJLXB8oToS2q2
-         Z5I6ON6iipTTPxrwtx1idt3Zk7RqkwkhSfOs6DHzaVy5iOrktPu0NHUVnGGqxHvDZx
-         3yfRyC50swVTR6nV77lh7VV6v7at6WTziEY9p2D8Ly8MrC8ZqmvqtD1eXIjJCdtCJR
-         3BX7xLLklP/pFyzhU28Dqh9khonVQ2nb0l3YAevzKV7loXkmJfe/r7e1i4a/0eeXJs
-         FQpmNnz2nWKZQ==
-From:   Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Atish Patra <atish.patra@wdc.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
-        stable@vger.kernel.org
-Subject: [PATCH 1/1] riscv: dts: microchip: correct L2 cache interrupts
-Date:   Wed, 17 Aug 2022 15:25:21 +0200
-Message-Id: <20220817132521.3159388-1-heinrich.schuchardt@canonical.com>
-X-Mailer: git-send-email 2.36.1
+        with ESMTP id S239449AbiHQNdc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 09:33:32 -0400
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85A868F95F;
+        Wed, 17 Aug 2022 06:32:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1660743144; x=1692279144;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=4dmBBRSG7eMGt8juxKy2hs5MyorJMiVbbfoy6JIX9XY=;
+  b=J30HLQRxAP5Y7+9J/YrkGqugy6BRCwS4rNuBcWvgWxWkd69iQwOPFS9h
+   /nxyRmK51K00UR2DAaTq+yZFbbMi/2i9oATusMp1qnYiPQMY5Uhd2O0P8
+   nEUmueQl1KPMh7MQg14VlPORt+oyMmhIZME+y5vtpM4wlVM2LuivzJUKM
+   WdalFBhisdQTXz0wuW3vXxufSyFbc5j+Z4WrDenbh9wzI2i2QXLtCeVs4
+   PHPweeSz4y5gfjX2b7kPEnuA6JhPIR9mr84adZ/WXMUvAgfgTgexmyuEw
+   v6ExysqknQ9qqQ7j63O6ObpfE32WGO8me34wDZJMYUEnsyMq8ml9xD+vF
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10442"; a="318500695"
+X-IronPort-AV: E=Sophos;i="5.93,243,1654585200"; 
+   d="scan'208";a="318500695"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Aug 2022 06:32:24 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,243,1654585200"; 
+   d="scan'208";a="583769626"
+Received: from lkp-server02.sh.intel.com (HELO 81d7e1ade3ba) ([10.239.97.151])
+  by orsmga006.jf.intel.com with ESMTP; 17 Aug 2022 06:32:21 -0700
+Received: from kbuild by 81d7e1ade3ba with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1oOJ9g-0000yc-29;
+        Wed, 17 Aug 2022 13:32:20 +0000
+Date:   Wed, 17 Aug 2022 21:31:31 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Conor Dooley <conor.dooley@microchip.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     kbuild-all@lists.01.org,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org,
+        Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v8 3/4] pwm: add microchip soft ip corePWM driver
+Message-ID: <202208172150.rEZ2HEYS-lkp@intel.com>
+References: <20220816120829.719749-4-conor.dooley@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220816120829.719749-4-conor.dooley@microchip.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The "PolarFire SoC MSS Technical Reference Manual" documents the
-following PLIC interrupts:
+Hi Conor,
 
-1 - L2 Cache Controller Signals when a metadata correction event occurs
-2 - L2 Cache Controller Signals when an uncorrectable metadata event occurs
-3 - L2 Cache Controller Signals when a data correction event occurs
-4 - L2 Cache Controller Signals when an uncorrectable data event occurs
+I love your patch! Yet something to improve:
 
-This differs from the SiFive FU540 which only has three L2 cache related
-interrupts.
+[auto build test ERROR on linus/master]
+[also build test ERROR on v6.0-rc1]
+[cannot apply to thierry-reding-pwm/for-next robh/for-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-The sequence in the device tree is defined by an enum:
+url:    https://github.com/intel-lab-lkp/linux/commits/Conor-Dooley/Microchip-soft-ip-corePWM-driver/20220816-201744
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git 568035b01cfb107af8d2e4bd2fb9aea22cf5b868
+config: mips-allyesconfig (https://download.01.org/0day-ci/archive/20220817/202208172150.rEZ2HEYS-lkp@intel.com/config)
+compiler: mips-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/961e375a245186c8ec2c40e48e5baf40a112f14a
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Conor-Dooley/Microchip-soft-ip-corePWM-driver/20220816-201744
+        git checkout 961e375a245186c8ec2c40e48e5baf40a112f14a
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=mips SHELL=/bin/bash
 
-    enum {
-            DIR_CORR = 0,
-            DATA_CORR,
-            DATA_UNCORR,
-            DIR_UNCORR,
-    };
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
 
-So the correct sequence of the L2 cache interrupts is
+All errors (new ones prefixed by >>):
 
-    interrupts = <1>, <3>, <4>, <2>;
+   arch/mips/kernel/head.o: in function `kernel_entry':
+   (.ref.text+0xac): relocation truncated to fit: R_MIPS_26 against `start_kernel'
+   init/main.o: in function `set_reset_devices':
+   main.c:(.init.text+0x20): relocation truncated to fit: R_MIPS_26 against `_mcount'
+   main.c:(.init.text+0x30): relocation truncated to fit: R_MIPS_26 against `__sanitizer_cov_trace_pc'
+   init/main.o: in function `debug_kernel':
+   main.c:(.init.text+0xa4): relocation truncated to fit: R_MIPS_26 against `_mcount'
+   main.c:(.init.text+0xb4): relocation truncated to fit: R_MIPS_26 against `__sanitizer_cov_trace_pc'
+   init/main.o: in function `quiet_kernel':
+   main.c:(.init.text+0x128): relocation truncated to fit: R_MIPS_26 against `_mcount'
+   main.c:(.init.text+0x138): relocation truncated to fit: R_MIPS_26 against `__sanitizer_cov_trace_pc'
+   init/main.o: in function `warn_bootconfig':
+   main.c:(.init.text+0x1ac): relocation truncated to fit: R_MIPS_26 against `_mcount'
+   main.c:(.init.text+0x1bc): relocation truncated to fit: R_MIPS_26 against `__sanitizer_cov_trace_pc'
+   init/main.o: in function `init_setup':
+   main.c:(.init.text+0x234): relocation truncated to fit: R_MIPS_26 against `_mcount'
+   main.c:(.init.text+0x254): additional relocation overflows omitted from the output
+   mips-linux-ld: drivers/pwm/pwm-microchip-core.o: in function `mchp_core_pwm_enable':
+>> pwm-microchip-core.c:(.text.mchp_core_pwm_enable+0x1cc): undefined reference to `__udivdi3'
 
-Fixes: e35b07a7df9b ("riscv: dts: microchip: mpfs: Group tuples in interrupt properties")
-Fixes: 0fa6107eca41 ("RISC-V: Initial DTS for Microchip ICICLE board")
-Cc: Conor Dooley <conor.dooley@microchip.com>
-Cc: stable@vger.kernel.org
-Signed-off-by: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
----
- arch/riscv/boot/dts/microchip/mpfs.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/riscv/boot/dts/microchip/mpfs.dtsi b/arch/riscv/boot/dts/microchip/mpfs.dtsi
-index 496d3b7642bd..ec1de6344be9 100644
---- a/arch/riscv/boot/dts/microchip/mpfs.dtsi
-+++ b/arch/riscv/boot/dts/microchip/mpfs.dtsi
-@@ -169,7 +169,7 @@ cctrllr: cache-controller@2010000 {
- 			cache-size = <2097152>;
- 			cache-unified;
- 			interrupt-parent = <&plic>;
--			interrupts = <1>, <2>, <3>;
-+			interrupts = <1>, <3>, <4>, <2>;
- 		};
- 
- 		clint: clint@2000000 {
 -- 
-2.36.1
-
+0-DAY CI Kernel Test Service
+https://01.org/lkp
