@@ -2,147 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ABEDA596B7D
-	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 10:44:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FF3A596B8E
+	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 10:47:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229794AbiHQIja (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Aug 2022 04:39:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56310 "EHLO
+        id S235341AbiHQIpI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Aug 2022 04:45:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233571AbiHQIj2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 04:39:28 -0400
-Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91051474ED;
-        Wed, 17 Aug 2022 01:39:27 -0700 (PDT)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.nyi.internal (Postfix) with ESMTP id F40A85C015C;
-        Wed, 17 Aug 2022 04:39:26 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute5.internal (MEProxy); Wed, 17 Aug 2022 04:39:27 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm2; t=1660725566; x=
-        1660811966; bh=1XgksyqqOpjmG5LRrLM6xA1+iwp2OMLWZWBQsySSgeI=; b=s
-        Xx2BlpjDk+EXCp1fpwwAcWPw0H6ob4T8XOP1COeMB7VEi4LH30S7gj6lxZn69oHo
-        p88YfKLxTYFU+S+bogQUDV0Ko/efYev4g1RnuDXwY0rdC1ubkgb0zTKihwnFMdw5
-        7prlhqwTbRooLsksUfZpXU44jjJdq63EhwSRE6psISFn2fIsJFlfe8cd51J9rO2G
-        NNHICZNlSwlAadCjOYDKz8nFLJIM3hnuWgiCcDCoIVxDIO+y2ATaHnmPXGL01Lv5
-        0D8pKJNzAdTAiHwpNkVuEbYA1q1ojf5qJqH5PdrLZU1yLJlN4B/m0vgNTcs2Zkhr
-        nvBnrIWIfi3YWujqwG2WA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:feedback-id:feedback-id:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1660725566; x=
-        1660811966; bh=1XgksyqqOpjmG5LRrLM6xA1+iwp2OMLWZWBQsySSgeI=; b=b
-        ntu4LsVEXqMEwtw6BIeHooL5R5nY/EuiUxc5IUfzHyYkMq0S+mdvIUl4cvdadMqx
-        +YNdCx7eQOHidWKUdu1brtHqZSyjgbXmGm600L3qUXkrqORV0owMLYXgCgc4C9GY
-        v/WxZAQ0PUi657cS3ACtxO0McTKvPq4pB2u+qRV4FQ8+r/+51gq5/YvcUN4ynNkT
-        yoODzCvigK1yktb/6/OcvRwLRQm2ZeB0sH8+CzY7Nx1K7446ianxY7PQrsklCmlD
-        9oEdvnuewbN9qqp1Dr1X8TXZw4S4/Xrm7nsoaVqZMi7TFK+JGb8XOQC+jmIV5stw
-        w9ul19O4NQVfs2NnvfsQg==
-X-ME-Sender: <xms:Pqn8YjaP96pYv6lFuj9BxBI42QgQdoy8t1P3Ajsetz7I5FeG55jz4w>
-    <xme:Pqn8Yiaa0Feayn7fYyfbm44esgJv65Qt_bzqV6bDVAadu_6g2gNOKqXncnIflyXDx
-    cw2lG8TkUpzSMYHhA>
-X-ME-Received: <xmr:Pqn8Yl8euNQV8Mm6x3iNhB5bgtt6Hw7mfUNnvDRAPp6h2Cy_gS9gB4H3kagD1qCBuvfPaDiKsK7XRd0eW1NjS4a3iCMi8LF3FcceovT_U40Juvyrab4w_qyWcA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdehiedgtdejucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepuffvvehfhffkffgfgggjtgfgsehtjeertddtfeejnecuhfhrohhmpefurghm
-    uhgvlhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenuc
-    ggtffrrghtthgvrhhnpefftdevkedvgeekueeutefgteffieelvedukeeuhfehledvhfei
-    tdehudfhudehhfenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfh
-    hrohhmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
-X-ME-Proxy: <xmx:Pqn8Ypq0JaRWQt_ZEKVTpbp-vyoxI60yQ9r3sKWwF3ZhMrZk9bqu3w>
-    <xmx:Pqn8YuoFjAqb_Vtlr96lPWRIlxkjaA1ZISMN7kkWYdc4k2xoPht84w>
-    <xmx:Pqn8YvRcjSsA8TKNFHXSGLhLBJjqtanS7dAYy5Y39ppKBjW-a_c1Kw>
-    <xmx:Pqn8YrjmB8RTyj2eyz-VsORgR-Y3KH8x54IISIIt9Eh2T6OlkqTmKA>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 17 Aug 2022 04:39:25 -0400 (EDT)
-Subject: Re: [PATCH v3 1/4] regulator: dt-bindings: Add Allwinner D1 LDOs
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev
-References: <20220815043436.20170-1-samuel@sholland.org>
- <20220815043436.20170-2-samuel@sholland.org>
- <c4ec080a-b8b1-e3a9-c9d7-063e138c9bb8@linaro.org>
- <03de0f7b-9251-a5c0-91a1-5f2b5d41d8a0@sholland.org>
- <29e6a293-29c4-a9ab-0767-9adfa982226b@linaro.org>
-From:   Samuel Holland <samuel@sholland.org>
-Message-ID: <8f133166-dff8-e376-3ac4-a464724d5421@sholland.org>
-Date:   Wed, 17 Aug 2022 03:39:25 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+        with ESMTP id S229533AbiHQIpH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 04:45:07 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF17674B81
+        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 01:45:04 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id a4so3669114wrq.1
+        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 01:45:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=kd42aySVbpZFSpcfHHVkY7NPeQJt3LS1TsDiYLJVxXo=;
+        b=HRtblAfEMpXetk49nTtSp/cZFUf4gydkmQ90itmyjNa74g1h+D+09SyYz90hDfiJrc
+         EWRBzK/Dw++Qn2kKsAvRjfXtI3LpyQHWc328PgxgQ4ZpRdjtJk7gfc3frbYAyAckV4rc
+         MFg5lEcrXhs7LQVy14PhL4NFP4nMgJICEEeLePOTwZNfAyMCdbVdB9QtTJChuZzcLUZP
+         zyPeqkCyzvFAPFVeyqU70OOoQLk8lVj/jIweEnKIRJ0RJiiQUKtRqlMpfu8sEGIDAPcy
+         Yi0yaQr4IeFrh1jP1pwhnAlPc7qwz3qVzOUdOCwYgGNcIIK7u7+OWnBcYd7bsi3k8eKg
+         ZIaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=kd42aySVbpZFSpcfHHVkY7NPeQJt3LS1TsDiYLJVxXo=;
+        b=eBpbyXS0OfUuv5ugkEGxmciy4MwGceWKKktb6IIcKdKKYN1GOnmN7ixrOSztewlPwu
+         SGLi/PforeiRj6HtMGkTGi/N6bO2ZRlvS9cBV2xwg+RNOv3fiZmtlb4/cLd5e4XTyJ+a
+         /Z1GZ5H/M4T+AiA8aJcTAXZPArquQD39o97QWCq2InUXk9ZdimhC7gXER8WIduaDase/
+         /wtfNxr30zOO24pHzz1XwHQercv2F8Anc4DTgFstB6k3WNAMC89fZZ4tER3nDaq29WFA
+         hAJbMd/ZK01u7Dc8Biv2ItNVYGS5+63dffgO3m07x+0oXwZwwBN++jRHDUVnaC+tLy1G
+         wJLA==
+X-Gm-Message-State: ACgBeo1xyaE3QfLkRSd7lnL2NjW1XRa7gbA127AREgPevWFXII2DSSaj
+        bkQSPtaQpc5U84qqrFBReODGLQ==
+X-Google-Smtp-Source: AA6agR5zVjKZPFz5XYQ6BzcpHd9aGYa5QzkH4q76SMTqQt6ql4sqOrJIyw6ehraB+G9tP9SoV8+nyQ==
+X-Received: by 2002:adf:d1e8:0:b0:223:bca:8019 with SMTP id g8-20020adfd1e8000000b002230bca8019mr13509448wrd.562.1660725903362;
+        Wed, 17 Aug 2022 01:45:03 -0700 (PDT)
+Received: from [192.168.86.238] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
+        by smtp.googlemail.com with ESMTPSA id j18-20020a05600c191200b003a5f54e3bbbsm1579993wmq.38.2022.08.17.01.45.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Aug 2022 01:45:02 -0700 (PDT)
+Message-ID: <a34e8e37-0aad-e092-1138-45ad9ce790a2@linaro.org>
+Date:   Wed, 17 Aug 2022 09:45:01 +0100
 MIME-Version: 1.0
-In-Reply-To: <29e6a293-29c4-a9ab-0767-9adfa982226b@linaro.org>
-Content-Type: text/plain; charset=utf-8
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH V4 1/2] mtd: allow getting MTD device associated with a
+ specific DT node
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Cc:     Tom Rini <trini@konsulko.com>,
+        Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        linux-arm-kernel@lists.infradead.org, u-boot@lists.denx.de,
+        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20220615194300.13358-1-zajec5@gmail.com>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <20220615194300.13358-1-zajec5@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/17/22 3:27 AM, Krzysztof Kozlowski wrote:
-> On 17/08/2022 11:15, Samuel Holland wrote:
->>>> +examples:
->>>> +  - |
->>>> +    audio-codec@2030000 {
->>>> +        compatible = "simple-mfd", "syscon";
->>>
->>> This cannot be on its own. Both require device specific compatible.
->>
->> Again, the device-specific compatible does not exist, because the binding for
->> the audio codec has not been written (and it will be quite nontrivial).
->>
->> So I can:
->>   1) Leave the example as-is until the audio codec binding gets written,
->>      and fill in the specific compatible at that time.
->>   2) Remove the example, with the reasoning that the example really
->>      belongs with the MFD parent (like for the other regulator). Then
->>      there will be no example until the audio codec binding is written.
->>   3) Drop the analog LDOs from this series entirely, and some parts
->>      of the SoC (like thermal monitoring) cannot be added to the DTSI
->>      until the audio codec binding is written.
->>
->> What do you think?
+
+
+On 15/06/2022 20:42, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> How about just removing the audio-codec node? The schema is about
-> regulators, not audio-codec.
-
-That works for me. I put the extra node there to signify that this is a MFD
-child and requires some parent node to work, but I suppose it is not that
-helpful to have.
-
-> OTOH, if you have parent device schema, you could put the example only
-> there. But as I understand, you don't have, right?
-
-Right.
-
->> The same question applies for the D1 SoC DTSI, where I use this same construct.
+> MTD subsystem API allows interacting with MTD devices (e.g. reading,
+> writing, handling bad blocks). So far a random driver could get MTD
+> device only by its name (get_mtd_device_nm()). This change allows
+> getting them also by a DT node.
 > 
-> This is not correct and should be fixed. Either you add the schema with
-> compatible or please drop the device node from the DTSI.
+> This API is required for drivers handling DT defined MTD partitions in a
+> specific way (e.g. U-Boot (sub)partition with environment variables).
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> Acked-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> ---
 
-That's what I was afraid of.
-
-Regards,
-Samuel
-
->> (And technically this does validate with the current schema.)
+Applied along with nvmem provider thanks,
+--srini
+> V3: First introduction of of_get_mtd_device_by_node()
+> V4: Use EPROBE_DEFER
+> 
+> Srinivas: in V3 Miquel said it's OK to push this patch through NVMEM
+> ---
+>   drivers/mtd/mtdcore.c   | 28 ++++++++++++++++++++++++++++
+>   include/linux/mtd/mtd.h |  1 +
+>   2 files changed, 29 insertions(+)
+> 
+> diff --git a/drivers/mtd/mtdcore.c b/drivers/mtd/mtdcore.c
+> index 9eb0680db312..3613cc142f25 100644
+> --- a/drivers/mtd/mtdcore.c
+> +++ b/drivers/mtd/mtdcore.c
+> @@ -1154,6 +1154,34 @@ int __get_mtd_device(struct mtd_info *mtd)
+>   }
+>   EXPORT_SYMBOL_GPL(__get_mtd_device);
+>   
+> +/**
+> + * of_get_mtd_device_by_node - obtain an MTD device associated with a given node
+> + *
+> + * @np: device tree node
+> + */
+> +struct mtd_info *of_get_mtd_device_by_node(struct device_node *np)
+> +{
+> +	struct mtd_info *mtd = NULL;
+> +	struct mtd_info *tmp;
+> +	int err;
+> +
+> +	mutex_lock(&mtd_table_mutex);
+> +
+> +	err = -EPROBE_DEFER;
+> +	mtd_for_each_device(tmp) {
+> +		if (mtd_get_of_node(tmp) == np) {
+> +			mtd = tmp;
+> +			err = __get_mtd_device(mtd);
+> +			break;
+> +		}
+> +	}
+> +
+> +	mutex_unlock(&mtd_table_mutex);
+> +
+> +	return err ? ERR_PTR(err) : mtd;
+> +}
+> +EXPORT_SYMBOL_GPL(of_get_mtd_device_by_node);
+> +
+>   /**
+>    *	get_mtd_device_nm - obtain a validated handle for an MTD device by
+>    *	device name
+> diff --git a/include/linux/mtd/mtd.h b/include/linux/mtd/mtd.h
+> index 955aee14b0f7..6fc841ceef31 100644
+> --- a/include/linux/mtd/mtd.h
+> +++ b/include/linux/mtd/mtd.h
+> @@ -677,6 +677,7 @@ extern int mtd_device_unregister(struct mtd_info *master);
+>   extern struct mtd_info *get_mtd_device(struct mtd_info *mtd, int num);
+>   extern int __get_mtd_device(struct mtd_info *mtd);
+>   extern void __put_mtd_device(struct mtd_info *mtd);
+> +extern struct mtd_info *of_get_mtd_device_by_node(struct device_node *np);
+>   extern struct mtd_info *get_mtd_device_nm(const char *name);
+>   extern void put_mtd_device(struct mtd_info *mtd);
+>   
