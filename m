@@ -2,68 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58E4E597A0B
-	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 01:15:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B631B597A1A
+	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 01:19:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238820AbiHQXMv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Aug 2022 19:12:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40512 "EHLO
+        id S239388AbiHQXPe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Aug 2022 19:15:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232457AbiHQXMv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 19:12:51 -0400
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17117ACA15
-        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 16:12:46 -0700 (PDT)
-Received: by mail-oi1-x22a.google.com with SMTP id q184so16952822oif.1
-        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 16:12:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kali.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc;
-        bh=LxMzn+ge/kAscik4k/Skya/rcppy5TB3UPJbRHjbmNw=;
-        b=ZMSivDnXniEMASu3EBBX5BtUdFu4EVPmkeRJ3ee78RxKEGYOeUwGbBAy6U3fZ7z8sD
-         dCkQpMha8IsiWTvB7Rl4yB6DRBQ6FvXLbGCjsi4LpRSmj7P9X6AvKdeSBJDqAOORhyYA
-         CDWGHTW+8SbGHp5llGjo8P1prJ0z77XOhbjkE4aqahu+Dszq19ujEa9z/oIzL2p1cgRc
-         NtJ49iUae0YiYX+wEIwWAO/lCXUWgeV5VACFMu07v8lTam+5u/fcQhrePmNd4L0CuE5F
-         1axW9WWzIcIcD2SUcdUVDp7iMhJY4Nck4VEQqs9gPD9GGTj7aYFdz+2GNjuXXVbtSib8
-         zkig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc;
-        bh=LxMzn+ge/kAscik4k/Skya/rcppy5TB3UPJbRHjbmNw=;
-        b=3zSdmLyFsGLBym1AXM56dzeogrijD5iBTcHo+te41kkv9CXQgnJFZECDANf39Cxpuv
-         JJ1vghw1r9Igmnh3k5enHkSO4dzp8DeVrurpWP5Xz+tK0ENylH72aSY/vlauZF4sywK+
-         knE49T8tWvzJ8k2tP8lj8YNS28/GymXSWWtF37i47Ga8zPI9t5mh8driOKeKdn60ENru
-         Xq+iL4vSXHVEA2smvtAGlw8BawPYX0AHH9nbwrl4grzs4r0aIg7+bvVIDzaS9jOnp+Ju
-         QmKAxUrowlzovhr/nynVdrvNAOvOqx9uYyBb4hFedhD722XsIWuocduNXZ2GGnuWXbdq
-         khNQ==
-X-Gm-Message-State: ACgBeo3JMsQXdbmQqPpb+fMf5SRfpAt8tiiaY02o17v0b5fjfHgkjCjI
-        O0lF3luAioVxVwqaxee6jPNl7g==
-X-Google-Smtp-Source: AA6agR4RjZMSD+HLFmCEXKwPeOCg2lasV4sKuV5KudXbS/qHB1uOaK5nsyrZUGjNTa/U1Egwg+auWA==
-X-Received: by 2002:aca:1b13:0:b0:344:d3f5:4df0 with SMTP id b19-20020aca1b13000000b00344d3f54df0mr159322oib.209.1660777965456;
-        Wed, 17 Aug 2022 16:12:45 -0700 (PDT)
-Received: from localhost (cpe-173-173-107-246.satx.res.rr.com. [173.173.107.246])
-        by smtp.gmail.com with ESMTPSA id t2-20020a9d7f82000000b00637032a39a3sm18537otp.6.2022.08.17.16.12.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Aug 2022 16:12:44 -0700 (PDT)
-From:   Steev Klimaszewski <steev@kali.org>
-To:     steev@kali.org
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        with ESMTP id S234438AbiHQXPe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 19:15:34 -0400
+Received: from mxd1.seznam.cz (mxd1.seznam.cz [IPv6:2a02:598:a::78:210])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABFB7A7218;
+        Wed, 17 Aug 2022 16:15:30 -0700 (PDT)
+Received: from email.seznam.cz
+        by email-smtpc23b.ko.seznam.cz (email-smtpc23b.ko.seznam.cz [10.53.18.31])
+        id 306424bfd4c8f78131b985d1;
+        Thu, 18 Aug 2022 01:14:38 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seznam.cz; s=beta;
+        t=1660778078; bh=W4K12dXu6Dj+lHw287pM6t3/vwebMnGfZdWhnEcBocg=;
+        h=Received:Date:From:To:Cc:Subject:Message-ID:References:
+         MIME-Version:Content-Type:Content-Disposition:In-Reply-To;
+        b=daTXKi/tiB/8ZwuXLED4H75rgIRoJuMVXaSmYn1r77lbkWDtrXXxS6niKRqtCMBeF
+         p9DYqI2Z8Q7GrYOar6H+G72WPISmPb/pTT9aVn0++6/9zV5Fswav+06rynMpmiP6ZI
+         KCmSJzVAlcurqw3K3P1Ws50VzflmGFZHpxqDWfXs=
+Received: from hopium (2a02:8308:900d:2400:42a0:4fb5:48e:75cc [2a02:8308:900d:2400:42a0:4fb5:48e:75cc])
+        by email-relay10.ko.seznam.cz (Seznam SMTPD 1.3.137) with ESMTP;
+        Thu, 18 Aug 2022 01:14:36 +0200 (CEST)  
+Date:   Thu, 18 Aug 2022 01:14:34 +0200
+From:   Matej Vasilevski <matej.vasilevski@seznam.cz>
+To:     Marc Kleine-Budde <mkl@pengutronix.de>
+Cc:     Pavel Pisa <pisa@cmp.felk.cvut.cz>,
+        Ondrej Ille <ondrej.ille@gmail.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: thinkpad-x13s: Fix firmware location
-Date:   Wed, 17 Aug 2022 18:12:36 -0500
-Message-Id: <20220817231236.3971-1-steev@kali.org>
-X-Mailer: git-send-email 2.34.1
+        linux-can@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] can: ctucanfd: add HW timestamps to RX and error
+ CAN frames
+Message-ID: <20220817231434.GA157998@hopium>
+References: <20220801184656.702930-1-matej.vasilevski@seznam.cz>
+ <20220801184656.702930-2-matej.vasilevski@seznam.cz>
+ <20220802092907.d2xtbqulkvzcwfgj@pengutronix.de>
+ <20220803000903.GB4457@hopium>
+ <20220803085303.2u4l5l6wmualq33v@pengutronix.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220803085303.2u4l5l6wmualq33v@pengutronix.de>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -72,34 +64,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The firmware for the Lenovo Thinkpad X13s has been submitted, accepted
-and merged upstream, so update to the correct path.
+Hello Marc,
 
-Signed-off-by: Steev Klimaszewski <steev@kali.org>
----
- arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+I have two questions before I send the next patch version, please
+bear with me.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-index 84dc92dda0b8..e07cc9d1ff27 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-@@ -235,13 +235,13 @@ keyboard@68 {
- };
- 
- &remoteproc_adsp {
--	firmware-name = "qcom/sc8280xp/qcadsp8280.mbn";
-+	firmware-name = "qcom/LENOVO/21BX/qcadsp8280.mbn";
- 
- 	status = "okay";
- };
- 
- &remoteproc_nsp0 {
--	firmware-name = "qcom/sc8280xp/qccdsp8280.mbn";
-+	firmware-name = "qcom/LENOVO/21BX/qccdsp8280.mbn";
- 
- 	status = "okay";
- };
--- 
-2.34.1
+On Wed, Aug 03, 2022 at 10:53:03AM +0200, Marc Kleine-Budde wrote:
 
+[...]
+
+> > > > +	if (priv->timestamp_possible) {
+> > > > +		clocks_calc_mult_shift(&priv->cc.mult, &priv->cc.shift, timestamp_freq,
+> > > > +				       NSEC_PER_SEC, CTUCANFD_MAX_WORK_DELAY_SEC);
+> > > > +		priv->work_delay_jiffies =
+> > > > +			ctucan_calculate_work_delay(timestamp_bit_size, timestamp_freq);
+> > > > +		if (priv->work_delay_jiffies == 0)
+> > > > +			priv->timestamp_possible = false;
+> > > 
+> > > You'll get a higher precision if you take the mask into account, at
+> > > least if the counter overflows before CTUCANFD_MAX_WORK_DELAY_SEC:
+> > > 
+> > >         maxsec = min(CTUCANFD_MAX_WORK_DELAY_SEC, priv->cc.mask / timestamp_freq);
+> > > 	
+> > >         clocks_calc_mult_shift(&priv->cc.mult, &priv->cc.shift, timestamp_freq, NSEC_PER_SEC,  maxsec);
+> > >         work_delay_in_ns = clocks_calc_max_nsecs(&priv->cc.mult, &priv->cc.shift, 0, &priv->cc.mask, NULL);
+> > > 
+> > > You can use clocks_calc_max_nsecs() to calculate the work delay.
+> > 
+> > This is a good point, thanks. I'll incorporate it into the patch.
+> 
+> And do this calculation after a clk_prepare_enable(), see other mail to
+> Pavel
+> | https://lore.kernel.org/all/20220803083718.7bh2edmsorwuv4vu@pengutronix.de/
+
+
+1) I can't use clocks_calc_max_nsecs(), because it isn't exported
+symbol (and I get modpost error during linking). Is that simply an
+oversight on your end or I'm doing something incorrectly?
+
+I've also listed all the exported symbols from /kernel/time, and nothing
+really stood out to me as super useful for this patch. So I would
+continue using ctucan_calculate_work_delay().
+
+2) Instead of using clk_prepare_enable() manually in probe, I've added
+the prepare_enable and disable_unprepare(ts_clk) calls into pm_runtime
+suspend and resume callbacks. And I call clk_get_rate(ts_clk) only after
+the pm_runtime_enable() and pm_runtime_get_sync() are called. This
+seemed nicer to me, because the core clock prepare/unprepare will go
+into the pm_runtime callbacks too.
+
+Is that a correct approach, or should I really use the clk_prepare_enable()
+and clk_disable_unprepare() "manually" in ctucan_common_probe()/ctucan_timestamp_stop()?
+
+On my Zynq board I don't see the ctucan_resume() callback executed during probe
+(after pm_runtime_enable() and pm_runtime_get_sync() are called in _probe()),
+but in theory it seems like the correct approach. Xilinx_can driver does this too.
+Other drivers (e.g. flexcan, mpc251xfd, rcar) call clk_get_rate() right after
+devm_clk_get() in probe, but maybe the situation there is different, I don't
+know too much about clocks and pm_runtime yet.
+
+Thanks and best regards,
+Matej
