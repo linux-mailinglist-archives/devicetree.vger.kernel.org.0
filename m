@@ -2,169 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B5BD25977A2
-	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 22:17:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF4DE5977D0
+	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 22:23:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241791AbiHQUQh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Aug 2022 16:16:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45146 "EHLO
+        id S241379AbiHQUUJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Aug 2022 16:20:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55630 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233620AbiHQUQg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 16:16:36 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F49858B67
-        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 13:16:35 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id fy5so26473191ejc.3
-        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 13:16:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc;
-        bh=Q8l7owka14u7MGvMmnutbIDuZcppj3Zne6ItQTkKbfM=;
-        b=H0fEhAQn4l5fNZh5PguleIFVYcgHWRiXQ4CHZKQ7sAvGgIAyPNZkHREO0i7ao8NEjn
-         UI+0aY7DylpRGLdXVDkbb99XKNt9510ituuTMbWCV8q5M4u5Vpyqrgr4tis3sPdP1KcQ
-         mLdscN0u+DG4jQudxuaGyzyxIFmjoO0O85sVudWrxONwpKgv20A+QDf/pEYEHHg2K42W
-         ZmiPCpXBKZs2pBxPvaCRHaaL9HuQkOn651g0dzdtYuJ1LOb1o9GquYxou1W4NMvdga4v
-         IFWRO8gGoeLn7CgLqo1w6Vc/xsKHeYoLyMGwVvrhS+ZARHLcWlklUGJna4I5kolbpJRs
-         Oxbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=Q8l7owka14u7MGvMmnutbIDuZcppj3Zne6ItQTkKbfM=;
-        b=v0f6IdRWYC0H3z2xL1R4Uk99tHKP9ckJ9sQla5Vejem/70u9FO26B/9Ye2hUNc/2Ln
-         +het5NBiChVKC6HczCMYR3NrsQvKkTFZo+rJdBuwv/2OvcORT14i/0XL3gE1x7vxc4ZO
-         kuAQnVWsaRTLnNarTt19Zs3LOon9CoKWiKYgGU+jEPv1ojzSSp83bzSKebhuN3vkKeS4
-         xe2S8D/N9XzsK5kvygrbUIEmjVBR8Y9C0fEVeybAzPolgzN0o1hmIk5686rMzHtcXut5
-         qsA7XsJDrvQi8m/3Z7yeW4hYQnhIh03+hJyyBdMVO45SxbtzbrFQolDGbjDVoIUYPU8s
-         OVGw==
-X-Gm-Message-State: ACgBeo1rI7wt5fN/mE4c5YvzIXZizBNju59tPWk1fQWCx9E1L/14bDbo
-        VZeXiysK7cxC0cOnGStMJIQLQw==
-X-Google-Smtp-Source: AA6agR7w7ynxTh5+3YZVnkSQkUG2igBkJmtypLwGJKdI8yT/kcScIXzf9Y0o98gC2OAY5JjeOiiprQ==
-X-Received: by 2002:a17:907:1c1f:b0:739:17e2:209a with SMTP id nc31-20020a1709071c1f00b0073917e2209amr5606669ejc.320.1660767393763;
-        Wed, 17 Aug 2022 13:16:33 -0700 (PDT)
-Received: from localhost (cst2-173-67.cust.vodafone.cz. [31.30.173.67])
-        by smtp.gmail.com with ESMTPSA id k18-20020aa7c052000000b0043bbbaa323dsm11338908edo.0.2022.08.17.13.16.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Aug 2022 13:16:33 -0700 (PDT)
-Date:   Wed, 17 Aug 2022 22:16:32 +0200
-From:   Andrew Jones <ajones@ventanamicro.com>
-To:     Conor Dooley <mail@conchuod.ie>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Anup Patel <anup@brainfault.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Guo Ren <guoren@kernel.org>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Jessica Clarke <jrtc27@jrtc27.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, qemu-riscv@nongnu.org,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH 3/4] dt-bindings: riscv: add new riscv,isa strings for
- emulators
-Message-ID: <20220817201632.orjcqwu6bihgnnqd@kamzik>
-References: <20220817200531.988850-1-mail@conchuod.ie>
- <20220817200531.988850-4-mail@conchuod.ie>
+        with ESMTP id S237975AbiHQUUI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 16:20:08 -0400
+Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 931029C1F0;
+        Wed, 17 Aug 2022 13:20:07 -0700 (PDT)
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id A6760200255;
+        Wed, 17 Aug 2022 22:20:05 +0200 (CEST)
+Received: from smtp.na-rdc02.nxp.com (usphx01srsp001v.us-phx01.nxp.com [134.27.49.11])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 69D2E20024C;
+        Wed, 17 Aug 2022 22:20:05 +0200 (CEST)
+Received: from right.am.freescale.net (right.am.freescale.net [10.81.116.134])
+        by usphx01srsp001v.us-phx01.nxp.com (Postfix) with ESMTP id 38B7D40AA2;
+        Wed, 17 Aug 2022 13:20:04 -0700 (MST)
+From:   Li Yang <leoyang.li@nxp.com>
+To:     Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Li Yang <leoyang.li@nxp.com>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: pci: layerscape-pci: Add new compatible string for lx2160a Rev2
+Date:   Wed, 17 Aug 2022 15:19:46 -0500
+Message-Id: <20220817201946.21141-1-leoyang.li@nxp.com>
+X-Mailer: git-send-email 2.25.1.377.g2d2118b
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220817200531.988850-4-mail@conchuod.ie>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: ClamAV using ClamSMTP
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 17, 2022 at 09:05:22PM +0100, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
-> 
-> The QEMU virt and spike machines currently export a riscv,isa string of
-> "rv64imafdcsuh",
-> 
-> While the RISC-V foundation has been ratifying a bunch of extenstions
-> etc, the kernel has remained relatively static with what hardware is
-> supported - but the same is not true of QEMU. Using the virt machine
-> and running dt-validate on the dumped dtb fails, partly due to the
-> unexpected isa string.
-> 
-> Rather than enumerate the many many possbilities, change the pattern
-> to a regex, with the following assumptions:
-> - the single letter order is fixed & we don't care about things that
->   can't even do "ima"
-> - the standard multi letter extensions are all in a "_z<foo>" format
->   where the first letter of <foo> is a valid single letter extension
-> - _s & _h are used for supervisor and hyper visor extensions.
-> - after the first two chars, a standard multi letter extension name
->   could be an english   word (ifencei anyone?) so it's not worth
->   restricting the charset
-> - vendor ISA extensions begind with _x and have no charset restrictions
-> - we don't care about an e extension from an OS pov
-> - that attempting to validate the contents of the multiletter extensions
->   with dt-validate beyond the formatting is a futile, massively verbose
->   or unwieldy exercise at best.
-> - ima are required
-> 
-> The following limitations also apply:
-> - multi letter extension ordering is not enforced. dt-schema does not
->   appear to allow for named match groups, so the resulting regex would
->   be even more of a headache.
-> - ditto for the numbered extensions.
-> 
-> Finally, add me as a maintainer of the binding so that when it breaks
-> in the future, I can be held responsible!
-> 
-> Reported-by: Rob Herring <robh@kernel.org>
-> Link: https://lore.kernel.org/linux-riscv/20220803170552.GA2250266-robh@kernel.org/
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
-> Palmer, feel free to drop the maintainer addition. I just mostly want
-> to clean up my own mess on this when they decide to ratify more
-> extensions & this comes back up again.
-> ---
->  Documentation/devicetree/bindings/riscv/cpus.yaml | 5 ++---
->  1 file changed, 2 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> index 873dd12f6e89..c0e0bc5dce04 100644
-> --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-> +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> @@ -9,6 +9,7 @@ title: RISC-V bindings for 'cpus' DT nodes
->  maintainers:
->    - Paul Walmsley <paul.walmsley@sifive.com>
->    - Palmer Dabbelt <palmer@sifive.com>
-> +  - Conor Dooley <conor@kernel.org>
->  
->  description: |
->    This document uses some terminology common to the RISC-V community
-> @@ -79,9 +80,7 @@ properties:
->        insensitive, letters in the riscv,isa string must be all
->        lowercase to simplify parsing.
->      $ref: "/schemas/types.yaml#/definitions/string"
-> -    enum:
-> -      - rv64imac
-> -      - rv64imafdc
-> +    pattern: ^rv(?:64|32)imaf?d?q?c?b?v?k?h?(?:(?:_[zsh][imafdqcbvksh]|_x)(?:[a-z])+)*$
->  
->    # RISC-V requires 'timebase-frequency' in /cpus, so disallow it here
->    timebase-frequency: false
-> -- 
-> 2.37.1
->
+The lx2160a Rev2 uses a different controller from Rev1.  It is
+compatible with fsl,ls2088a-pcie, but also define a new SoC specific
+compatible string for it for future proof.
 
-I'd say "looks good to me", but it's a regex, so "good" is a strong word.
-Instead, here's a [somewhat tentative]
+Signed-off-by: Li Yang <leoyang.li@nxp.com>
+---
+ Documentation/devicetree/bindings/pci/layerscape-pci.txt | 1 +
+ 1 file changed, 1 insertion(+)
 
-Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
+diff --git a/Documentation/devicetree/bindings/pci/layerscape-pci.txt b/Documentation/devicetree/bindings/pci/layerscape-pci.txt
+index ee8a4791a78b..43c3c8792cb2 100644
+--- a/Documentation/devicetree/bindings/pci/layerscape-pci.txt
++++ b/Documentation/devicetree/bindings/pci/layerscape-pci.txt
+@@ -22,6 +22,7 @@ Required properties:
+         "fsl,ls1043a-pcie"
+         "fsl,ls1012a-pcie"
+         "fsl,ls1028a-pcie"
++	"fsl,lx2160ar2-pcie", "fsl,ls2088a-pcie"
+   EP mode:
+ 	"fsl,ls1028a-pcie-ep", "fsl,ls-pcie-ep"
+ 	"fsl,ls1046a-pcie-ep", "fsl,ls-pcie-ep"
+-- 
+2.37.1
 
-Thanks,
-drew
