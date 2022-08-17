@@ -2,214 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7936A596AD1
-	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 10:04:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EF55596B0C
+	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 10:10:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234264AbiHQIDx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Aug 2022 04:03:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53942 "EHLO
+        id S229871AbiHQIIn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Aug 2022 04:08:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58132 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233768AbiHQIDo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 04:03:44 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB12239B85;
-        Wed, 17 Aug 2022 01:03:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1660723413; x=1692259413;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=2Pv7hkZ6hWMmBycZ4+WnhfRT5RtAh4O9ymOlESkLyAQ=;
-  b=el0TvXszO1vTR/oJ4s3T7tAyOfh1G7cxN23l/qhLRconxkhmU+GjsnqG
-   r10We7N5ZkQCB3Blm7q5LlEaeacyDSvP2nP+zIA5nXBw83oX9HbkGBrdc
-   mal3sUly/xz4ef14ry4+aeN5JoXS2TGOCXQ0QeOlbqLPTW221GzBQ3UoT
-   Ymfr6jYb5ouY1xU2IoEue8bNYJMqr9Nw9Hh5b32iRDT+adcm55MzE3Mma
-   V7zDyixCVn3i192NO1oi2h/sOWti5ePFc15793g+bXlp1S6Y6i3ZiKBo8
-   rM97qwGtQ3dRlWnDlmGNmzWGNeaoGsYxiBxRXxxhYFQ4QiYOR19taKWiM
-   A==;
-X-IronPort-AV: E=Sophos;i="5.93,242,1654585200"; 
-   d="scan'208";a="109399692"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 17 Aug 2022 01:03:31 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Wed, 17 Aug 2022 01:03:27 -0700
-Received: from ROB-ULT-M68701.microchip.com (10.10.115.15) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.2507.12 via Frontend Transport; Wed, 17 Aug 2022 01:03:23 -0700
-From:   Sergiu Moga <sergiu.moga@microchip.com>
-To:     <lee@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <nicolas.ferre@microchip.com>,
-        <alexandre.belloni@bootlin.com>, <claudiu.beznea@microchip.com>,
-        <radu_nicolae.pirea@upb.ro>, <richard.genoud@gmail.com>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <gregkh@linuxfoundation.org>, <jirislaby@kernel.org>,
-        <admin@hifiphile.com>, <kavyasree.kotagiri@microchip.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <linux-serial@vger.kernel.org>,
-        Sergiu Moga <sergiu.moga@microchip.com>
-Subject: [PATCH 5/5] tty: serial: atmel: Make the driver aware of the existence of GCLK
-Date:   Wed, 17 Aug 2022 10:55:18 +0300
-Message-ID: <20220817075517.49575-6-sergiu.moga@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220817075517.49575-1-sergiu.moga@microchip.com>
-References: <20220817075517.49575-1-sergiu.moga@microchip.com>
+        with ESMTP id S229658AbiHQIIm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 04:08:42 -0400
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB59225588
+        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 01:08:35 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id v7-20020a1cac07000000b003a6062a4f81so603588wme.1
+        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 01:08:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=FReJMBf95H2JfN4DKIQUZZ6GIrrtBYj3TLkuD2pMf0s=;
+        b=RcVq+ObdeIi7ZLr6AMU3AB54FBYZH7guJh6ve1QACpVUpJETIFopJGz8loArxpABiL
+         KkSwJH/vmTZTi8mrulzR426QRrU36IrQ9q3PG12zYkq8WePLauXjQqDePVZNyaVDfzo9
+         ote+zBprUUzlUzCBEc9fxtYG0kjz/awj86x++3JiVar64CxQpT5iLooy5yN3EImF4u2T
+         sbTWeYxfyy1g0V0zdJdd0whB/SquCv57ELEWshnInPon9H2EsuYIWKFsBrtuz7iee1QK
+         a2XF3okA4+FGd+p8klk3tUFgd2sVEED1OAnhYaUVeQlayxRzbxqV53jSUzNmYSJ/iE99
+         VSDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=FReJMBf95H2JfN4DKIQUZZ6GIrrtBYj3TLkuD2pMf0s=;
+        b=nbE8RI8aEJ777V/8K6/KBOyQRl6mdmc0NBaoumMx6kZeN6xJ6zYjPWIv5QlM5OPXrv
+         7V0gRBjNW2oNA9/UkIvF9Rx3d+E66nli4Jlol8FDTKS2mN0D6N0EPgGxonsbSInBlzpg
+         ifCzysAxTBKWhXyso004SStTRqdC+2wHSQPnCDUPGxbfsxZp///v/vhkRcbbOTFTvKoc
+         myTd9jDcvI2WnVDk13ifey+ANaFAYO4WClmQEO/eClyq85S2NUFnlnyffb4LPDhCpbZL
+         IhwJbywkRWQn9/TH4/9795XgydvId8BJ1PcfclKuZowgo3UpEpupaAj3KFNaGKI2WFTS
+         83Fw==
+X-Gm-Message-State: ACgBeo29N1DM+Qrb5ugD4FJnoOcsEY5293+hQt29s60nywKgyWiVmvNw
+        VrMrZQMKi3Lumh6W2tFW0eoPJg==
+X-Google-Smtp-Source: AA6agR6i1YQzX7Wsp+ATSSC1+nOI/HUnFW47bFbYCczextOqeXGVcaG6bcEn9Fi9MQ9Kl3twixFhZA==
+X-Received: by 2002:a05:600c:3b92:b0:3a6:8d6:9a2f with SMTP id n18-20020a05600c3b9200b003a608d69a2fmr1333371wms.159.1660723714458;
+        Wed, 17 Aug 2022 01:08:34 -0700 (PDT)
+Received: from Balsam-ThinkPad-T480.civfrance.com (58.188.158.77.rev.sfr.net. [77.158.188.58])
+        by smtp.gmail.com with ESMTPSA id u15-20020a05600c19cf00b003a54d610e5fsm1391992wmq.26.2022.08.17.01.08.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Aug 2022 01:08:33 -0700 (PDT)
+From:   bchihi@baylibre.com
+To:     rafael@kernel.org, rui.zhang@intel.com, daniel.lezcano@linaro.org,
+        amitk@kernel.org
+Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        khilman@baylibre.com, mka@chromium.org, robh+dt@kernel.org,
+        krzk+dt@kernel.org, matthias.bgg@gmail.com, p.zabel@pengutronix.de,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, james.lo@mediatek.com,
+        fan.chen@mediatek.com, louis.yu@mediatek.com,
+        rex-bc.chen@mediatek.com, abailon@baylibre.com
+Subject: [PATCH v9,0/7] Add LVTS thermal architecture
+Date:   Wed, 17 Aug 2022 10:07:50 +0200
+Message-Id: <20220817080757.352021-1-bchihi@baylibre.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Previously, the atmel serial driver did not take into account the
-possibility of using the more customizable generic clock as its
-baudrate generator. Unless there is a Fractional Part available to
-increase accuracy, there is a high chance that we may be able to
-generate a baudrate closer to the desired one by using the GCLK as the
-clock source. Now, depending on the error rate between
-the desired baudrate and the actual baudrate, the serial driver will
-fallback on the generic clock. The generic clock must be provided
-in the DT node of the serial that may need a more flexible clock source.
+From: Balsam CHIHI <bchihi@baylibre.com>
 
-Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
----
- drivers/tty/serial/atmel_serial.c | 52 ++++++++++++++++++++++++++++++-
- drivers/tty/serial/atmel_serial.h |  1 +
- 2 files changed, 52 insertions(+), 1 deletion(-)
+Move thermal files related to MediaTek to the mediatek folder.
+Introduce the new thermal architecture LVTS (Low Voltage Thermal Sensor) driver
+to report the highest temperature in the SoC and record the highest temperature sensor,
+each sensor as a thermal zone.
+The LVTS body is divided into two parts, the LVTS controller and the LVTS device,
+the LVTS controller can connect up to 4 LVTS devices, and each LVTS device
+can connect up to 7 TSMCUs.
 
-diff --git a/drivers/tty/serial/atmel_serial.c b/drivers/tty/serial/atmel_serial.c
-index 30ba9eef7b39..0a0b46ee0955 100644
---- a/drivers/tty/serial/atmel_serial.c
-+++ b/drivers/tty/serial/atmel_serial.c
-@@ -15,6 +15,7 @@
- #include <linux/init.h>
- #include <linux/serial.h>
- #include <linux/clk.h>
-+#include <linux/clk-provider.h>
- #include <linux/console.h>
- #include <linux/sysrq.h>
- #include <linux/tty_flip.h>
-@@ -77,6 +78,8 @@ static void atmel_stop_rx(struct uart_port *port);
- #endif
- 
- #define ATMEL_ISR_PASS_LIMIT	256
-+#define ERROR_RATE(desired_value, actual_value) \
-+	((int)(100 - ((desired_value) * 100) / (actual_value)))
- 
- struct atmel_dma_buffer {
- 	unsigned char	*buf;
-@@ -110,6 +113,7 @@ struct atmel_uart_char {
- struct atmel_uart_port {
- 	struct uart_port	uart;		/* uart */
- 	struct clk		*clk;		/* uart clock */
-+	struct clk		*gclk;		/* uart generic clock */
- 	int			may_wakeup;	/* cached value of device_may_wakeup for times we need to disable it */
- 	u32			backup_imr;	/* IMR saved during suspend */
- 	int			break_active;	/* break being received */
-@@ -2115,6 +2119,8 @@ static void atmel_serial_pm(struct uart_port *port, unsigned int state,
- 		 * This is called on uart_close() or a suspend event.
- 		 */
- 		clk_disable_unprepare(atmel_port->clk);
-+		if (atmel_port->gclk && __clk_is_enabled(atmel_port->gclk))
-+			clk_disable_unprepare(atmel_port->gclk);
- 		break;
- 	default:
- 		dev_err(port->dev, "atmel_serial: unknown pm %d\n", state);
-@@ -2129,7 +2135,8 @@ static void atmel_set_termios(struct uart_port *port, struct ktermios *termios,
- {
- 	struct atmel_uart_port *atmel_port = to_atmel_uart_port(port);
- 	unsigned long flags;
--	unsigned int old_mode, mode, imr, quot, baud, div, cd, fp = 0;
-+	unsigned int old_mode, mode, imr, quot, div, cd, fp = 0;
-+	unsigned int baud, actual_baud, gclk_rate;
- 
- 	/* save the current mode register */
- 	mode = old_mode = atmel_uart_readl(port, ATMEL_US_MR);
-@@ -2288,6 +2295,37 @@ static void atmel_set_termios(struct uart_port *port, struct ktermios *termios,
- 		cd /= 8;
- 		mode |= ATMEL_US_USCLKS_MCK_DIV8;
- 	}
-+
-+	/*
-+	 * If there is no Fractional Part, there is a high chance that
-+	 * we may be able to generate a baudrate closer to the desired one
-+	 * if we use the GCLK as the clock source driving the baudrate
-+	 * generator.
-+	 */
-+	if (!fp && atmel_port->gclk) {
-+		if (__clk_is_enabled(atmel_port->gclk))
-+			clk_disable_unprepare(atmel_port->gclk);
-+		clk_set_rate(atmel_port->gclk, 16 * baud);
-+		gclk_rate = clk_get_rate(atmel_port->gclk);
-+		actual_baud = clk_get_rate(atmel_port->clk) / (16 * cd);
-+		if (abs(ERROR_RATE(baud, actual_baud)) >
-+		    abs(ERROR_RATE(baud, gclk_rate / 16))) {
-+			mode |= ATMEL_US_GCLK;
-+
-+			/*
-+			 * Set the Clock Divisor for GCLK to 1.
-+			 * Since we were able to generate the smallest
-+			 * multiple of the desired baudrate times 16,
-+			 * then we surely can generate a bigger multiple
-+			 * with the exact error rate for an equally increased
-+			 * CD. Thus no need to take into account
-+			 * a higher value for CD.
-+			 */
-+			cd = 1;
-+			clk_prepare_enable(atmel_port->gclk);
-+		}
-+	}
-+
- 	quot = cd | fp << ATMEL_US_FP_OFFSET;
- 
- 	if (!(port->iso7816.flags & SER_ISO7816_ENABLED))
-@@ -2883,6 +2921,16 @@ static int atmel_serial_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto err;
- 
-+	atmel_port->gclk = devm_clk_get_optional(&pdev->dev, "gclk");
-+	if (atmel_port->gclk) {
-+		ret = clk_prepare_enable(atmel_port->gclk);
-+		if (ret) {
-+			atmel_port->gclk = NULL;
-+			return ret;
-+		}
-+		clk_disable_unprepare(atmel_port->gclk);
-+	}
-+
- 	ret = atmel_init_port(atmel_port, pdev);
- 	if (ret)
- 		goto err_clk_disable_unprepare;
-@@ -2929,6 +2977,8 @@ static int atmel_serial_probe(struct platform_device *pdev)
- 	 * is used
- 	 */
- 	clk_disable_unprepare(atmel_port->clk);
-+	if (atmel_port->gclk && __clk_is_enabled(atmel_port->gclk))
-+		clk_disable_unprepare(atmel_port->gclk);
- 
- 	return 0;
- 
-diff --git a/drivers/tty/serial/atmel_serial.h b/drivers/tty/serial/atmel_serial.h
-index 0d8a0f9cc5c3..fb718972f81a 100644
---- a/drivers/tty/serial/atmel_serial.h
-+++ b/drivers/tty/serial/atmel_serial.h
-@@ -63,6 +63,7 @@
- #define		ATMEL_US_PAR_MARK		(3 <<  9)
- #define		ATMEL_US_PAR_NONE		(4 <<  9)
- #define		ATMEL_US_PAR_MULTI_DROP		(6 <<  9)
-+#define ATMEL_US_GCLK                          BIT(12)
- #define	ATMEL_US_NBSTOP		GENMASK(13, 12)	/* Number of Stop Bits */
- #define		ATMEL_US_NBSTOP_1		(0 << 12)
- #define		ATMEL_US_NBSTOP_1_5		(1 << 12)
+The architecture will be first used on mt8192 and mt8195.
+
+Changelog:
+Changes in v9 :
+        - Rebase on top of 6.0.0-rc1
+        - Fix coding style issues
+        - Fix commit titles and commit messages
+        - Update dt-bindings :
+          - Add "allOf:if:then:"
+          - Use mt8192 as example (instead of mt8195)
+          - Fix dt-binding errors
+        - Fix DTS errors
+
+Changes in v8 :
+        - Fix coding style issues
+        - Rebase on top of next-20220803
+        - Add multi-instance support :
+          - Rewrite DT-binding and DTS :
+            - Add DT-binding and DTS for LVTS_v4 (MT8192 and MT8195)
+            - One LVTS node for each HW Domain (AP and MCU)
+          - One SW Instance for each HW Domain
+          - Add a Kconfig sub-menu entry for LVTS and LVTS_v4 SoCs
+        - Replace platform_get_resource by platform_get_mem_or_io to get Base Address
+        - Replace platform_get_resource by platform_get_irq to get Interrupt Number
+        - Add "lvts_" prefix to functions and structs
+
+Changes in v7 :
+        - Fix coding style issues
+        - Rewrite dt bindings
+          - was not accurate
+          - Use mt8195 for example (instead of mt8192)
+          - Rename mt6873 to mt8192
+          - Remove clock name
+        - Rebased on top of to series:
+          - https://patchwork.kernel.org/project/linux-mediatek/list/?series=637849
+          - https://patchwork.kernel.org/project/linux-pm/list/?series=639386
+
+Changes in v6 :
+        - Remove temperature aggregation (it will be added in another series)
+        - Update the way to read the temperature (read one sensor instead of all)
+        - Add support of mt8195
+
+Changes in v5 :
+        - Use 'git mv' for the relocated file.
+
+Changes in v4 :
+        - Rebase to kernel-v5.13-rc1
+        - Resend
+
+Changes in v3 :
+        - change the expression in the lvts_temp_to_raw to dev_s64.
+
+Changes in v2 :
+        - Rebase to kernel-5.11-rc1.
+        - sort headers
+        - remove initial value 0 of msr_raw in the lvts_temp_to_raw.
+        - disconstruct the api of lvts_read_tc_msr_raw.
+        - add the initial value max_temp = 0 and compare e.q.
+          in the lvts_read_all_tc_temperature.
+        - add the return with an invalid number in the lvts_init.
+
+Alexandre Bailon (2):
+  dt-bindings: thermal: Add dt-binding document for LVTS thermal
+    controllers
+  arm64: dts: mt8195: Add efuse node to mt8195
+
+Balsam CHIHI (1):
+  arm64: dts: mt8192: Add thermal zones and thermal nodes
+
+Michael Kao (3):
+  thermal: mediatek: Relocate driver to mediatek folder
+  thermal: mediatek: Add LVTS driver for mt8192 thermal zones
+  thermal: mediatek: Add LVTS driver settings for mt8195 thermal zones
+
+Tinghan Shen (1):
+  arm64: dts: mt8195: Add thermal zones and thermal nodes
+
+ .../thermal/mediatek,lvts-thermal.yaml        | 152 ++++
+ arch/arm64/boot/dts/mediatek/mt8192.dtsi      | 111 +++
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi      | 123 +++
+ drivers/thermal/Kconfig                       |  14 +-
+ drivers/thermal/Makefile                      |   2 +-
+ drivers/thermal/mediatek/Kconfig              |  43 +
+ drivers/thermal/mediatek/Makefile             |   3 +
+ .../auxadc_thermal.c}                         |   2 +-
+ drivers/thermal/mediatek/lvts_thermal.c       | 861 ++++++++++++++++++
+ drivers/thermal/mediatek/lvts_thermal.h       | 386 ++++++++
+ drivers/thermal/mediatek/lvts_v4.c            | 479 ++++++++++
+ 11 files changed, 2164 insertions(+), 12 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
+ create mode 100644 drivers/thermal/mediatek/Kconfig
+ create mode 100644 drivers/thermal/mediatek/Makefile
+ rename drivers/thermal/{mtk_thermal.c => mediatek/auxadc_thermal.c} (99%)
+ create mode 100644 drivers/thermal/mediatek/lvts_thermal.c
+ create mode 100644 drivers/thermal/mediatek/lvts_thermal.h
+ create mode 100644 drivers/thermal/mediatek/lvts_v4.c
+
 -- 
-2.25.1
+2.34.1
 
