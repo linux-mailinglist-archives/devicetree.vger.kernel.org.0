@@ -2,73 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 69F56596F64
-	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 15:19:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60B3F596FCD
+	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 15:29:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239356AbiHQNPD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Aug 2022 09:15:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44472 "EHLO
+        id S237010AbiHQNWx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Aug 2022 09:22:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239810AbiHQNOs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 09:14:48 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0CA54C612
-        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 06:14:40 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id l10so13520942lje.7
-        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 06:14:40 -0700 (PDT)
+        with ESMTP id S236357AbiHQNWx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 09:22:53 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF0B76611D
+        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 06:22:51 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id i19so684774lfr.10
+        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 06:22:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=Yb2tg6NLcz0SjyT+zhbpZCCAWG7Bnyw4PloKDdxoVAU=;
-        b=StgnaHhGCg7OOpqTG13+gQqRFOCLdTRA/VCywEDqg9kMIxRkqhIjEL6/unZNraETkB
-         OY78slefTO6VmDzp97WDvD8kTArUqhb1NLsuK7dpIINzEiwMK1YWNK9g8TqUfbVweYMm
-         FIgJ0b+KVQtMsadPvgTAwA26rnWXysiwVIdai5xvQ4DdVGOA3ClgjDb5I0IEcgQ+Gv1U
-         pyhxFEJkeL2O6+cfBaxxXSVEhe4+VnOd7U8+etGNUDTddXn7jHg1/sKyJW5B3MseCKzD
-         NP8IjoOxxroQY3Y1ne8qNUgojmtamVj7SkkIGcdYG36ye/FMasRKQE/ytP2+enkQueNs
-         RdtQ==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=pKuDJQIjnUP1FPupXFVJgNN8PDzdanh6kEbyoo/FXtE=;
+        b=x8Koy3ce7TesE9irvfo3XvT4v5oR8fBjYeN8/AbIIhR+i3t16Terl1WvSlEub8AuD2
+         UINF7cEj7uHSSD1P7QYXmtPynr48Ii9Qu5+9fHhE0oy+60t7OOHxMWY6X/wH1Dg+9up6
+         LAmW0CR4nV+l2GeFLii7UPDKzaam/L6GBrMi3VPGPwty5VWLep3MT/vtHhSOnF4gt/bs
+         lZnkj8pGOE6RbBir35xaXUy1pVzxUeIG9Akxkwg6aYSokTxF2DVw+K/5ohIScMJUZKn/
+         6F8eYg49u3DVwJMtrGCcY8rsYzSh6s/sG/NTZPHO0YhNgxPx/zOkPF+mZLkVNNm3s87y
+         ozjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=Yb2tg6NLcz0SjyT+zhbpZCCAWG7Bnyw4PloKDdxoVAU=;
-        b=ULU4K61rp8eK6ILJdKuWdmQS3g1onVeloZD1hgUYCQFBM4JyIdYNerRBjwa7BcyGpM
-         XEkyCtVou11pmUQ0nXtUse+EAkkf5mSE9jawyPwQNoBDX07MtlSP1Az2ER6Jk0IpCM5L
-         aFnqYIYh2aMp8+DZCSHUHY4M4lmJ6nke++oLn3cpkd5Rvg0b9wZmgH58OEJzYGrh/Bit
-         EXo3Ye4UA0rZCmZIPMAd6RT8tHxGtyua5bf2LbQmcz1Ac902+L5CJ6DLmKJw1oN6bnSO
-         tFVfU7uGFPkYzrShbxJX4ctOG42DrSM3FifqUZ4FPnT1CN3VPZMg48VS6JqsOr92db/w
-         R6CA==
-X-Gm-Message-State: ACgBeo39iMGhvjwNiP6aqzB9y4oyyU5Rxo+uv+edThAupKSD/8sWV+y/
-        Q9FtnDU0ONJlh9f0l1eYBj/rcQ==
-X-Google-Smtp-Source: AA6agR4Jr9dVJN0cBFc7EFaxXfsdQSVgqEaGe2HDLtNEJ6H2epeCLVj35rKOvxNYeo5RnnOoO2U2wg==
-X-Received: by 2002:a05:651c:10d2:b0:25e:5a65:9026 with SMTP id l18-20020a05651c10d200b0025e5a659026mr8217403ljn.193.1660742079394;
-        Wed, 17 Aug 2022 06:14:39 -0700 (PDT)
-Received: from krzk-bin.. (d15l54h48cw7vbh-qr4-4.rev.dnainternet.fi. [2001:14bb:ae:539c:1b1c:14b7:109b:ed76])
-        by smtp.gmail.com with ESMTPSA id k1-20020a2ea261000000b0026182f31aa0sm1411307ljm.1.2022.08.17.06.14.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Aug 2022 06:14:38 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lee Jones <lee@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [RFT PATCH 12/12] ARM: dts: qcom: msm8226: switch TCSR mutex to MMIO
-Date:   Wed, 17 Aug 2022 16:14:15 +0300
-Message-Id: <20220817131415.714340-13-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220817131415.714340-1-krzysztof.kozlowski@linaro.org>
-References: <20220817131415.714340-1-krzysztof.kozlowski@linaro.org>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=pKuDJQIjnUP1FPupXFVJgNN8PDzdanh6kEbyoo/FXtE=;
+        b=OYkDJ0a5635w4oFgM4XWtmUrp0vxsP3uDnJjnzTl41wSh1bKDPIZpJ0vbyEPjyTzrM
+         aWoZHgUaaJkmaQBjgDPSYEpwIibwKgrRNCQDAGzmE+0v2Yeu1/gCFm7bXzbOcV+s/RPK
+         ijh7PIThPt2NekuvagD0Alk+WEh0ikMq5N97ud6b1GUc8kM7qrpoJPcc40bqkfitR9rh
+         ePiUNbDWiUKnXhiys6r5AEmd7Becu7687dIdIxLYRHR0mPp4PPz5e23l4Z+ewCIZ+DjW
+         K3LgHJ3AOBEyTmv+Dunm9qjq2dQfF1qABKUf/D2FjffLs0z8sxJfdxw4uDO/5ectkgBN
+         XHww==
+X-Gm-Message-State: ACgBeo2kobvsOn/VzdotaayRmRPVbM+xHwKO0fIweFHLbsKVbxTOjEz7
+        4KzOoaVajLkjEWLq1yKuAy+Fqw==
+X-Google-Smtp-Source: AA6agR66cjNQJAfYsQlMR7FOKYOhQRiQWwsWAe3h7I3VqkV869rj+PTDJortJKwjBw0ErsMyAlF5Tw==
+X-Received: by 2002:ac2:5c02:0:b0:48b:29ed:6e1e with SMTP id r2-20020ac25c02000000b0048b29ed6e1emr8380920lfp.560.1660742570190;
+        Wed, 17 Aug 2022 06:22:50 -0700 (PDT)
+Received: from ?IPV6:2001:14bb:ae:539c:1b1c:14b7:109b:ed76? (d15l54h48cw7vbh-qr4-4.rev.dnainternet.fi. [2001:14bb:ae:539c:1b1c:14b7:109b:ed76])
+        by smtp.gmail.com with ESMTPSA id g3-20020a2ea4a3000000b0025e5fd96bf6sm2219420ljm.15.2022.08.17.06.22.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Aug 2022 06:22:49 -0700 (PDT)
+Message-ID: <58851c87-9cea-8e48-1888-54d0b3237875@linaro.org>
+Date:   Wed, 17 Aug 2022 16:22:48 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v3 3/4] dt-bindings: sram: sunxi-sram: Add optional
+ regulators child
+Content-Language: en-US
+To:     Samuel Holland <samuel@sholland.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@lists.linux.dev
+References: <20220815043436.20170-1-samuel@sholland.org>
+ <20220815043436.20170-4-samuel@sholland.org>
+ <3e23c288-7065-a3fd-c326-8d66e168ba41@linaro.org>
+ <3c646774-3b1e-bb9a-cc7d-c4a010e8a28a@sholland.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <3c646774-3b1e-bb9a-cc7d-c4a010e8a28a@sholland.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -77,51 +84,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The TCSR mutex bindings allow device to be described only with address
-space (so it uses MMIO, not syscon regmap).  This seems reasonable as
-TCSR mutex is actually a dedicated IO address space and it also fixes DT
-schema checks:
+On 17/08/2022 11:47, Samuel Holland wrote:
+> On 8/16/22 4:59 AM, Krzysztof Kozlowski wrote:
+>> On 15/08/2022 07:34, Samuel Holland wrote:
+>>> Some sunxi SoCs have in-package regulators controlled by a register in
+>>> the system control MMIO block. Allow a child node for these regulators
+>>> in addition to SRAM child nodes.
+>>>
+>>> Signed-off-by: Samuel Holland <samuel@sholland.org>
+>>> ---
+>>>
+>>> Changes in v3:
+>>>  - Require the regulators node to have a unit address
+>>>  - Reference the regulator schema from the SRAM controller schema
+>>>  - Move the system LDOs example to the SRAM controller schema
+>>>  - Reorder the patches so the example passes validation
+>>>
+>>> Changes in v2:
+>>>  - New patch for v2
+>>>
+>>>  .../allwinner,sun4i-a10-system-control.yaml   | 29 +++++++++++++++++++
+>>>  1 file changed, 29 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/sram/allwinner,sun4i-a10-system-control.yaml b/Documentation/devicetree/bindings/sram/allwinner,sun4i-a10-system-control.yaml
+>>> index d64c1b28fb61..915ca85c3f10 100644
+>>> --- a/Documentation/devicetree/bindings/sram/allwinner,sun4i-a10-system-control.yaml
+>>> +++ b/Documentation/devicetree/bindings/sram/allwinner,sun4i-a10-system-control.yaml
+>>> @@ -56,6 +56,10 @@ properties:
+>>>    ranges: true
+>>>  
+>>>  patternProperties:
+>>> +  "^regulators@[0-9a-f]+$":
+>>> +    $ref: /schemas/regulator/allwinner,sun20i-d1-system-ldos.yaml#
+>>> +    unevaluatedProperties: false
+>>
+>> unevaluatedProperties is not needed. Your other schema does not allow
+>> anything else here.
+> 
+> I can remove it. I added it because it looks like the dt-schema tools use it as
+> an indicator that the matched properties are child nodes[1]. Maybe that is not
+> relevant here?
 
-  qcom-msm8226-samsung-s3ve3g.dtb: hwlock: 'reg' is a required property
-  qcom-msm8226-samsung-s3ve3g.dtb: hwlock: 'syscon' does not match any of the regexes: 'pinctrl-[0-9]+'
+It is not relevant here as the other schema does not allow anything else.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm/boot/dts/qcom-msm8226.dtsi | 14 ++++----------
- 1 file changed, 4 insertions(+), 10 deletions(-)
-
-diff --git a/arch/arm/boot/dts/qcom-msm8226.dtsi b/arch/arm/boot/dts/qcom-msm8226.dtsi
-index 0b5effdb269a..efb5d1edc3a8 100644
---- a/arch/arm/boot/dts/qcom-msm8226.dtsi
-+++ b/arch/arm/boot/dts/qcom-msm8226.dtsi
-@@ -44,13 +44,6 @@ scm {
- 		};
- 	};
- 
--	tcsr_mutex: hwlock {
--		compatible = "qcom,tcsr-mutex";
--		syscon = <&tcsr_mutex_block 0 0x80>;
--
--		#hwlock-cells = <1>;
--	};
--
- 	reserved-memory {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
-@@ -508,9 +501,10 @@ rpm_msg_ram: memory@fc428000 {
- 			reg = <0xfc428000 0x4000>;
- 		};
- 
--		tcsr_mutex_block: syscon@fd484000 {
--			compatible = "syscon";
--			reg = <0xfd484000 0x2000>;
-+		tcsr_mutex: hwlock@fd484000 {
-+			compatible = "qcom,msm8226-tcsr-mutex", "qcom,tcsr-mutex";
-+			reg = <0xfd484000 0x1000>;
-+			#hwlock-cells = <1>;
- 		};
- 	};
- 
--- 
-2.34.1
-
+Best regards,
+Krzysztof
