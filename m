@@ -2,322 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42FB95968EA
-	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 07:46:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D2A8596903
+	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 07:51:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238569AbiHQFnh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Aug 2022 01:43:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35238 "EHLO
+        id S230085AbiHQFuq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Aug 2022 01:50:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233486AbiHQFng (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 01:43:36 -0400
-Received: from smtp-fw-9103.amazon.com (smtp-fw-9103.amazon.com [207.171.188.200])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E7DD78239;
-        Tue, 16 Aug 2022 22:43:35 -0700 (PDT)
+        with ESMTP id S238782AbiHQFuc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 01:50:32 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAD307C51D
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 22:50:30 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id c28so13667279lfh.3
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 22:50:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1660715015; x=1692251015;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=yKQWTXqsUyX4LcBeXNBnNfziaCies5UNS/o5L6A+j78=;
-  b=u0DleJAOdusBA0p2iSE3hazDm1b0h2N9uRVKaCeeKFhAudxv3x3V3bF4
-   7QZao+uZyNjS/cMdvgth3wvcW9E6vLNnffICx+dC/0kA6dWIR9kHO+6pI
-   hTB97lZAMOgLSYa2crdP6iLiGxsjPxWm0GJcgI/VRQr3nzjpLkZyhiqKM
-   8=;
-X-IronPort-AV: E=Sophos;i="5.93,242,1654560000"; 
-   d="scan'208";a="1045102089"
-Received: from pdx4-co-svc-p1-lb2-vlan3.amazon.com (HELO email-inbound-relay-pdx-2c-388992e0.us-west-2.amazon.com) ([10.25.36.214])
-  by smtp-border-fw-9103.sea19.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Aug 2022 05:43:23 +0000
-Received: from EX13MTAUWB001.ant.amazon.com (pdx1-ws-svc-p6-lb9-vlan3.pdx.amazon.com [10.236.137.198])
-        by email-inbound-relay-pdx-2c-388992e0.us-west-2.amazon.com (Postfix) with ESMTPS id BF1F6E07AA;
-        Wed, 17 Aug 2022 05:43:23 +0000 (UTC)
-Received: from EX19D013UWB002.ant.amazon.com (10.13.138.21) by
- EX13MTAUWB001.ant.amazon.com (10.43.161.249) with Microsoft SMTP Server (TLS)
- id 15.0.1497.38; Wed, 17 Aug 2022 05:43:23 +0000
-Received: from EX13MTAUWB001.ant.amazon.com (10.43.161.207) by
- EX19D013UWB002.ant.amazon.com (10.13.138.21) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1118.12;
- Wed, 17 Aug 2022 05:43:23 +0000
-Received: from dev-dsk-farbere-1a-46ecabed.eu-west-1.amazon.com
- (172.19.116.181) by mail-relay.amazon.com (10.43.161.249) with Microsoft SMTP
- Server id 15.0.1497.38 via Frontend Transport; Wed, 17 Aug 2022 05:43:22
- +0000
-Received: by dev-dsk-farbere-1a-46ecabed.eu-west-1.amazon.com (Postfix, from userid 14301484)
-        id 9EC4E4CC3; Wed, 17 Aug 2022 05:43:21 +0000 (UTC)
-From:   Eliav Farber <farbere@amazon.com>
-To:     <jdelvare@suse.com>, <linux@roeck-us.net>, <robh+dt@kernel.org>,
-        <mark.rutland@arm.com>, <linux-hwmon@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     <farbere@amazon.com>, <talel@amazon.com>, <hhhawa@amazon.com>,
-        <jonnyc@amazon.com>, <hanochu@amazon.com>, <ronenk@amazon.com>,
-        <itamark@amazon.com>, <shellykz@amazon.com>, <shorer@amazon.com>,
-        <amitlavi@amazon.com>, <almogbs@amazon.com>, <dwmw@amazon.co.uk>,
-        <rtanwar@maxlinear.com>
-Subject: [PATCH v2 16/16] hwmon: (mr75203) add debugfs to read and write temperature coefficients
-Date:   Wed, 17 Aug 2022 05:43:21 +0000
-Message-ID: <20220817054321.6519-17-farbere@amazon.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220817054321.6519-1-farbere@amazon.com>
-References: <20220817054321.6519-1-farbere@amazon.com>
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=7axt1sg0+BERbIoi6l8zBsfKL7pIMpF85l/HPXUT3Qs=;
+        b=kzcwKcUMsWLN2TJs6vbxvZWrP0W+d+JD66BJ/Wcl7J++ISXPqdXHnVn2N+c7aMl3J9
+         CCIcMLDn/AalOgnPc2+kexOQqTYWhoK6TXgoKnT281NhIVagd9EDRbikW+Bte9b6x58a
+         SE3z3cnpCRHa5/ibnBD0MbJKfbfkcjVo1TeKWtkLwAu9RUP2KIxEaatTJX/z4znDsPKN
+         MRLzvW2GDxRtUxomKlr3YqPqZGnsKoW0ELG19Bq8n693cHdFarae4vvWJzKu0Eq3OiFq
+         imr5zj5ILO8rn0px+ybpZ34TmFhvybZdxFew0nncNm5MSgNh4HYfaA95LJdqaCg9FY5o
+         nN7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=7axt1sg0+BERbIoi6l8zBsfKL7pIMpF85l/HPXUT3Qs=;
+        b=e9GzlN7/P7galVI5JgDZ/ya9SfI+F5HSNXEnjhSrsyhoRef4pVqzHXyzdsbmablb6w
+         wU56rKHDSBJ34ZeYsKxnFW5Z2TxJsj2x2Ufrih2SNOtYvH5XG93p0OgqYkBWMQ07Qbtf
+         l3yDHYBbl6Q633NnHreygg63kan6sHz57YepKGYt+vmUsjhAgOHN0cptMCv4kWyVhhcz
+         kY0LyEJ30zxx61w0aPCWWekeVuOeNMRrlJdLwaRz1Ge3fmYbQp3jGBOG08CB/3KiGJWD
+         VnDbLQgChcDBuXThsYwsmdiGoBptH0ZAa2mBV9oiCLaOPHFEzXfwLR7Dll2IqsxFZLQ9
+         efRQ==
+X-Gm-Message-State: ACgBeo2XCrnh81e/5nOPp22jlRRxXZMYWPU+opYiv6qzMoOtqoY+CwID
+        Wa9UywUzx26Yvi/4tRxnUk+C0g==
+X-Google-Smtp-Source: AA6agR7Ilk9IEC0d+v6/FsaxUTEgsVYB2Nsu2MwH+4y520DbtFacfApXYjQTDQJsBT/KZb/3MhemIg==
+X-Received: by 2002:a05:6512:3f14:b0:47d:e011:f19b with SMTP id y20-20020a0565123f1400b0047de011f19bmr7765361lfa.427.1660715429296;
+        Tue, 16 Aug 2022 22:50:29 -0700 (PDT)
+Received: from ?IPV6:2001:14bb:ae:539c:1b1c:14b7:109b:ed76? (d15l54h48cw7vbh-qr4-4.rev.dnainternet.fi. [2001:14bb:ae:539c:1b1c:14b7:109b:ed76])
+        by smtp.gmail.com with ESMTPSA id w14-20020ac2598e000000b0048b037fb5d6sm1577168lfn.85.2022.08.16.22.50.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 Aug 2022 22:50:28 -0700 (PDT)
+Message-ID: <9c331cdc-e34a-1146-fb83-84c2107b2e2a@linaro.org>
+Date:   Wed, 17 Aug 2022 08:50:26 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-11.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        USER_IN_DEF_SPF_WL autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v4 1/3] dt-bindings: net: ti: k3-am654-cpsw-nuss: Update
+ bindings for J7200 CPSW5G
+Content-Language: en-US
+To:     Siddharth Vadapalli <s-vadapalli@ti.com>,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org, linux@armlinux.org.uk,
+        vladimir.oltean@nxp.com, grygorii.strashko@ti.com, vigneshr@ti.com,
+        nsekhar@ti.com, netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kishon@ti.com
+References: <20220816060139.111934-1-s-vadapalli@ti.com>
+ <20220816060139.111934-2-s-vadapalli@ti.com>
+ <79e58157-f8f2-6ca8-1aa6-b5cf6c83d9e6@linaro.org>
+ <31c3a5b0-17cc-ad7b-6561-5834cac62d3e@ti.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <31c3a5b0-17cc-ad7b-6561-5834cac62d3e@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This change adds debugfs to read and write TS coefficients - g, h, j and
-cal5.
+On 17/08/2022 08:14, Siddharth Vadapalli wrote:
 
-The coefficients can vary between product and product, so to calibrate
-them it can be very useful to to be able to modify them on the fly.
+>>> -      port@[1-2]:
+>>> +      "^port@[1-4]$":
+>>>          type: object
+>>>          description: CPSWxG NUSS external ports
+>>>  
+>>> @@ -119,7 +120,7 @@ properties:
+>>>          properties:
+>>>            reg:
+>>>              minimum: 1
+>>> -            maximum: 2
+>>> +            maximum: 4
+>>>              description: CPSW port number
+>>>  
+>>>            phys:
+>>> @@ -151,6 +152,18 @@ properties:
+>>>  
+>>>      additionalProperties: false
+>>>  
+>>> +if:
+>>
+>> This goes under allOf just before unevaluated/additionalProperties:false
+> 
+> allOf was added by me in v3 series patch and it is not present in the
+> file. I removed it in v4 after Rob Herring's suggestion. Please let me
+> know if simply moving the if-then statements to the line above
+> additionalProperties:false would be fine.
 
-e.g.
+I think Rob's comment was focusing not on using or not-using allOf, but
+on format of your entire if-then-else. Your v3 was huge and included
+allOf in wrong place).
 
-cat /sys/kernel/debug/940f23d0000.pvt/ts_coeff_cal5
-4096
+Now you add if-then in proper place, but it is still advisable to put it
+with allOf, so if ever you grow the if-then by new entry, you do not
+have to change the indentation.
 
-echo 83000 > sys/kernel/debug/940f23d0000.pvt/ts_coeff_g
+Anyway the location is not correct. Regardless if this is if-then or
+allOf-if-then, put it just like example schema is suggesting.
 
-Signed-off-by: Eliav Farber <farbere@amazon.com>
----
- drivers/hwmon/mr75203.c | 196 ++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 196 insertions(+)
-
-diff --git a/drivers/hwmon/mr75203.c b/drivers/hwmon/mr75203.c
-index 2898565afaab..ce34a44237e8 100644
---- a/drivers/hwmon/mr75203.c
-+++ b/drivers/hwmon/mr75203.c
-@@ -9,6 +9,7 @@
-  */
- #include <linux/bits.h>
- #include <linux/clk.h>
-+#include <linux/debugfs.h>
- #include <linux/hwmon.h>
- #include <linux/module.h>
- #include <linux/mod_devicetable.h>
-@@ -127,6 +128,7 @@ struct pvt_device {
- 	struct clk		*clk;
- 	struct reset_control	*rst;
- 	struct voltage_device	*vd;
-+	struct dentry		*dbgfs_dir;
- 	u32			t_num;
- 	u32			p_num;
- 	u32			v_num;
-@@ -139,6 +141,198 @@ struct pvt_device {
- 	u8			vm_ch_total;
- };
- 
-+static ssize_t pvt_ts_coeff_h_read(struct file *file,
-+				   char __user *user_buf,
-+				   size_t count, loff_t *ppos)
-+{
-+	struct pvt_device *pvt = file->private_data;
-+	char buf[16];
-+	unsigned int len;
-+
-+	len = sprintf(buf, "%u\n", pvt->ts_coeff_h);
-+
-+	return simple_read_from_buffer(user_buf, count, ppos, buf, len);
-+}
-+
-+static ssize_t pvt_ts_coeff_h_write(struct file *file,
-+				    const char __user *user_buf,
-+				    size_t count, loff_t *ppos)
-+{
-+	struct pvt_device *pvt = file->private_data;
-+	int ret;
-+	u32 coeff;
-+
-+	ret = kstrtou32_from_user(user_buf, count, 0, &coeff);
-+	if (ret)
-+		return ret;
-+
-+	pvt->ts_coeff_h = coeff;
-+
-+	return count;
-+}
-+
-+static const struct file_operations pvt_ts_coeff_h_fops = {
-+	.read = pvt_ts_coeff_h_read,
-+	.write = pvt_ts_coeff_h_write,
-+	.open = simple_open,
-+	.owner = THIS_MODULE,
-+	.llseek = default_llseek,
-+};
-+
-+static ssize_t pvt_ts_coeff_g_read(struct file *file,
-+				   char __user *user_buf,
-+				   size_t count, loff_t *ppos)
-+{
-+	struct pvt_device *pvt = file->private_data;
-+	char buf[16];
-+	unsigned int len;
-+
-+	len = sprintf(buf, "%u\n", pvt->ts_coeff_g);
-+
-+	return simple_read_from_buffer(user_buf, count, ppos, buf, len);
-+}
-+
-+static ssize_t pvt_ts_coeff_g_write(struct file *file,
-+				    const char __user *user_buf,
-+				    size_t count, loff_t *ppos)
-+{
-+	struct pvt_device *pvt = file->private_data;
-+	int ret;
-+	u32 coeff;
-+
-+	ret = kstrtou32_from_user(user_buf, count, 0, &coeff);
-+	if (ret)
-+		return ret;
-+
-+	pvt->ts_coeff_g = coeff;
-+
-+	return count;
-+}
-+
-+static const struct file_operations pvt_ts_coeff_g_fops = {
-+	.read = pvt_ts_coeff_g_read,
-+	.write = pvt_ts_coeff_g_write,
-+	.open = simple_open,
-+	.owner = THIS_MODULE,
-+	.llseek = default_llseek,
-+};
-+
-+static ssize_t pvt_ts_coeff_j_read(struct file *file,
-+				   char __user *user_buf,
-+				   size_t count, loff_t *ppos)
-+{
-+	struct pvt_device *pvt = file->private_data;
-+	char buf[16];
-+	unsigned int len;
-+
-+	len = sprintf(buf, "%d\n", pvt->ts_coeff_j);
-+
-+	return simple_read_from_buffer(user_buf, count, ppos, buf, len);
-+}
-+
-+static ssize_t pvt_ts_coeff_j_write(struct file *file,
-+				    const char __user *user_buf,
-+				    size_t count, loff_t *ppos)
-+{
-+	struct pvt_device *pvt = file->private_data;
-+	int ret;
-+	s32 coeff;
-+
-+	ret = kstrtos32_from_user(user_buf, count, 0, &coeff);
-+	if (ret)
-+		return ret;
-+
-+	pvt->ts_coeff_j = coeff;
-+
-+	return count;
-+}
-+
-+static const struct file_operations pvt_ts_coeff_j_fops = {
-+	.read = pvt_ts_coeff_j_read,
-+	.write = pvt_ts_coeff_j_write,
-+	.open = simple_open,
-+	.owner = THIS_MODULE,
-+	.llseek = default_llseek,
-+};
-+
-+static ssize_t pvt_ts_coeff_cal5_read(struct file *file,
-+				      char __user *user_buf,
-+				      size_t count, loff_t *ppos)
-+{
-+	struct pvt_device *pvt = file->private_data;
-+	char buf[16];
-+	unsigned int len;
-+
-+	len = sprintf(buf, "%u\n", pvt->ts_coeff_cal5);
-+
-+	return simple_read_from_buffer(user_buf, count, ppos, buf, len);
-+}
-+
-+static ssize_t pvt_ts_coeff_cal5_write(struct file *file,
-+				       const char __user *user_buf,
-+				       size_t count, loff_t *ppos)
-+{
-+	struct pvt_device *pvt = file->private_data;
-+	int ret;
-+	u32 coeff;
-+
-+	ret = kstrtou32_from_user(user_buf, count, 0, &coeff);
-+	if (ret)
-+		return ret;
-+
-+	if (coeff == 0)
-+		return -EINVAL;
-+
-+	pvt->ts_coeff_cal5 = coeff;
-+
-+	return count;
-+}
-+
-+static const struct file_operations pvt_ts_coeff_cal5_fops = {
-+	.read = pvt_ts_coeff_cal5_read,
-+	.write = pvt_ts_coeff_cal5_write,
-+	.open = simple_open,
-+	.owner = THIS_MODULE,
-+	.llseek = default_llseek,
-+};
-+
-+static void devm_pvt_ts_dbgfs_remove(void *data)
-+{
-+	struct pvt_device *pvt = (struct pvt_device *)data;
-+
-+	debugfs_remove_recursive(pvt->dbgfs_dir);
-+	pvt->dbgfs_dir = NULL;
-+}
-+
-+static int pvt_ts_dbgfs_create(struct pvt_device *pvt, struct device *dev)
-+{
-+	int ret;
-+
-+	pvt->dbgfs_dir = debugfs_create_dir(dev_name(dev), NULL);
-+	if (!pvt->dbgfs_dir) {
-+		dev_err(dev, "Failed to create dbgfs_dir\n");
-+		return -EINVAL;
-+	}
-+
-+	debugfs_create_file("ts_coeff_h", 0644, pvt->dbgfs_dir, pvt,
-+			    &pvt_ts_coeff_h_fops);
-+	debugfs_create_file("ts_coeff_g", 0644, pvt->dbgfs_dir, pvt,
-+			    &pvt_ts_coeff_g_fops);
-+	debugfs_create_file("ts_coeff_j", 0644, pvt->dbgfs_dir, pvt,
-+			    &pvt_ts_coeff_j_fops);
-+	debugfs_create_file("ts_coeff_cal5", 0644, pvt->dbgfs_dir,  pvt,
-+			    &pvt_ts_coeff_cal5_fops);
-+
-+	ret = devm_add_action_or_reset(dev, devm_pvt_ts_dbgfs_remove, pvt);
-+	if (ret) {
-+		dev_err(dev, "failed to add action to remove pvt dbgfs (%d)\n",
-+			ret);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
- static umode_t pvt_is_visible(const void *data, enum hwmon_sensor_types type,
- 			      u32 attr, int channel)
- {
-@@ -655,6 +849,8 @@ static int mr75203_probe(struct platform_device *pdev)
- 		dev_dbg(dev, "ts-coeff: h = %u, g = %u, j = %d, cal5 = %u\n",
- 			pvt->ts_coeff_h, pvt->ts_coeff_g, pvt->ts_coeff_j,
- 			pvt->ts_coeff_cal5);
-+
-+		pvt_ts_dbgfs_create(pvt, dev);
- 	}
- 
- 	if (pd_num) {
--- 
-2.37.1
-
+Best regards,
+Krzysztof
