@@ -2,85 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19162596794
-	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 05:00:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B55C5967AD
+	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 05:14:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231359AbiHQDA3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Aug 2022 23:00:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39264 "EHLO
+        id S229770AbiHQDOB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 23:14:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238109AbiHQDAU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 23:00:20 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0231B97D4C;
-        Tue, 16 Aug 2022 20:00:19 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id A5BBDB81BA7;
-        Wed, 17 Aug 2022 03:00:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 44460C433C1;
-        Wed, 17 Aug 2022 03:00:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1660705216;
-        bh=49IKIY0EzXHB6rqen/2hZmKInU7bG9C6lG5mMlou1pA=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=hxS7253n3hmV80+2BLu6LjrPfOyVNFFSDli9hhH4vVOVwhJNZwyN1Jq4ahh7qt3h/
-         gypKasJv+X0b/GUVwDH62a+ZMsWZ3jZsRwjQ99amd1FG+tB9x2vKyDxNJpbleIM9ku
-         qg57REJ4XZmTcdtFn5PZBcwkMBSLE1ok9EgSjwV4+JZg281OfGptbS+jDcfQuS/gmg
-         GI+rxaG4Szu5wX1US6cfkagu1l+hC1mzTBz5IC+VNC5kdh1om729H8HDFIhosx9z6C
-         zX4e/WfSN2CmDnirx3P0CjT+ylDyFP0HnPJwK0JRUeSKsCoaaVj7SX96k+YMb1ObJh
-         SX3KuMYGe49nw==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 282EAE2A04C;
-        Wed, 17 Aug 2022 03:00:16 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S229569AbiHQDOA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 23:14:00 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7629D5D113;
+        Tue, 16 Aug 2022 20:13:52 -0700 (PDT)
+X-UUID: f38c1a2bf4f148fe9c7f0f10077d1e83-20220817
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=DxniUy+/X99gAlGwCbWLlenlcjZNB+qTT48tMczTJeM=;
+        b=jSsti5YQoBF3UZa4UiISJl+jMVgBi1Nu/koitx69bT3MU9bD2KFMui9Z6TwxDxAcxhmXBf5j1eY0GLvl1sRRc0bKS8JzQV1UpAddojxyvr85cEDGjKpZOVEb9J9XhJpZwVCKaRVB0UJobEB3SAfb67KP4N1PZsecC2DrdxPgnvg=;
+X-CID-UNFAMILIAR: 1
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.10,REQID:e91c9c94-4efe-4b2a-9d01-d22d81e4bf30,OB:10,
+        LOB:0,IP:0,URL:5,TC:0,Content:-5,EDM:0,RT:2,SF:54,FILE:0,BULK:0,RULE:Relea
+        se_Ham,ACTION:release,TS:56
+X-CID-INFO: VERSION:1.1.10,REQID:e91c9c94-4efe-4b2a-9d01-d22d81e4bf30,OB:10,LO
+        B:0,IP:0,URL:5,TC:0,Content:-5,EDM:0,RT:2,SF:54,FILE:0,BULK:0,RULE:Release
+        _HamU,ACTION:release,TS:56
+X-CID-META: VersionHash:84eae18,CLOUDID:d1a3e29c-da39-4e3b-a854-56c7d2111b46,C
+        OID:0dbe88b70084,Recheck:0,SF:28|16|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:11|1,File:nil,Bulk:40,QS:nil,BEC:nil,COL:0
+X-UUID: f38c1a2bf4f148fe9c7f0f10077d1e83-20220817
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        (envelope-from <jianjun.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 588178327; Wed, 17 Aug 2022 11:13:48 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Wed, 17 Aug 2022 11:13:47 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkmbs11n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
+ Transport; Wed, 17 Aug 2022 11:13:46 +0800
+Message-ID: <e330820facd95af02e491bffd41aa9f468d8751e.camel@mediatek.com>
+Subject: Re: [PATCH v4] dt-bindings: PCI: mediatek-gen3: Add support for
+ MT8188 and MT8195
+From:   Jianjun Wang <jianjun.wang@mediatek.com>
+To:     Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     <linux-pci@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Ryder Lee <ryder.lee@mediatek.com>, <Rex-BC.Chen@mediatek.com>,
+        <TingHan.Shen@mediatek.com>, <Liju-clr.Chen@mediatek.com>,
+        <Jian.Yang@mediatek.com>
+Date:   Wed, 17 Aug 2022 11:13:46 +0800
+In-Reply-To: <20220802120624.19258-1-jianjun.wang@mediatek.com>
+References: <20220802120624.19258-1-jianjun.wang@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH 1/2] dt-bindings: vertexcom-mse102x: Update email address
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <166070521616.25002.9383068256865638135.git-patchwork-notify@kernel.org>
-Date:   Wed, 17 Aug 2022 03:00:16 +0000
-References: <20220815080626.9688-1-stefan.wahren@i2se.com>
-In-Reply-To: <20220815080626.9688-1-stefan.wahren@i2se.com>
-To:     Stefan Wahren <stefan.wahren@i2se.com>
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+Hi Maintainers,
 
-This series was applied to netdev/net-next.git (master)
-by Jakub Kicinski <kuba@kernel.org>:
+Gentle ping for this patch, if there is anything I need to modify,
+please kindly let me know.
 
-On Mon, 15 Aug 2022 10:06:25 +0200 you wrote:
-> in-tech smart charging is now chargebyte. So update the email address
-> accordingly.
+Thanks.
+
+On Tue, 2022-08-02 at 20:06 +0800, Jianjun Wang wrote:
+> MT8188 and MT8195 are ARM platform SoCs with the same PCIe IP as
+> MT8192.
 > 
-> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+> Also add new clock name "peri_mem" since the MT8188 and MT8195 use
+> clock
+> "peri_mem" instead of "top_133m".
+> 
+> Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
 > ---
->  Documentation/devicetree/bindings/net/vertexcom-mse102x.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-
-Here is the summary with links:
-  - [1/2] dt-bindings: vertexcom-mse102x: Update email address
-    https://git.kernel.org/netdev/net-next/c/d56ef29afb39
-  - [2/2] net: vertexcom: mse102x: Update email address
-    https://git.kernel.org/netdev/net-next/c/56cb6a59da67
-
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+> Changes in v4:
+> Remove "items" for "mediatek,mt8192-pcie" since it only have one
+> item.
+> 
+> Changes in v3:
+> Use enum property to add the new clock name.
+> 
+> Changes in v2:
+> Merge two patches into one.
+> ---
+>  .../devicetree/bindings/pci/mediatek-pcie-gen3.yaml | 13
+> +++++++++++--
+>  1 file changed, 11 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/mediatek-pcie-
+> gen3.yaml b/Documentation/devicetree/bindings/pci/mediatek-pcie-
+> gen3.yaml
+> index 0499b94627ae..c00be39af64e 100644
+> --- a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
+> +++ b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
+> @@ -48,7 +48,13 @@ allOf:
+>  
+>  properties:
+>    compatible:
+> -    const: mediatek,mt8192-pcie
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - mediatek,mt8188-pcie
+> +              - mediatek,mt8195-pcie
+> +          - const: mediatek,mt8192-pcie
+> +      - const: mediatek,mt8192-pcie
+>  
+>    reg:
+>      maxItems: 1
+> @@ -84,7 +90,9 @@ properties:
+>        - const: tl_96m
+>        - const: tl_32k
+>        - const: peri_26m
+> -      - const: top_133m
+> +      - enum:
+> +          - top_133m        # for MT8192
+> +          - peri_mem        # for MT8188/MT8195
+>  
+>    assigned-clocks:
+>      maxItems: 1
+> @@ -126,6 +134,7 @@ required:
+>    - interrupts
+>    - ranges
+>    - clocks
+> +  - clock-names
+>    - '#interrupt-cells'
+>    - interrupt-controller
+>  
 
