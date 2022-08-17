@@ -2,193 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3325D596917
-	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 08:02:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A39859691E
+	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 08:07:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238674AbiHQF6M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Aug 2022 01:58:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51228 "EHLO
+        id S232289AbiHQGF6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Aug 2022 02:05:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233825AbiHQF6K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 01:58:10 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2ADA7DB4
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 22:58:08 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id w15so12606859ljw.1
-        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 22:58:08 -0700 (PDT)
+        with ESMTP id S236794AbiHQGF4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 02:05:56 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 282136D57F
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 23:05:55 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id f20so17737276lfc.10
+        for <devicetree@vger.kernel.org>; Tue, 16 Aug 2022 23:05:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=aUqumd66SBJ39SQ3AQf1bxB+pDEZwaoNVNdZ68RDANQ=;
-        b=KugdImXnAzARq3XArw/RJ1XvgROZaBH7VwG7f/JODTd34gv3CP7Q6S/kLHs/IXgjEI
-         ApyJJhBMk/DnCp9GlK43L6vlNDIwBy1sPqMDHrqiPpkcEsXl3THPf4Tx6nkAWfK4fUuT
-         5r1x6Ra9qMPhJkdCIMcsYYwAJqaflI7XlTBOSmVCs3ljdj2TBJlshROFdrGYXmM9vChi
-         z+IxD4ChR6X0ARD2yhHnt2lrGDXjx4JsEfa38pcUUMfObcbXvbW3mvnZoqIxV3n9hxqr
-         qoycpbNFXKbwDiAJ+Q03t+knl3bVkb7s9PA66juKu7ZyVonP4z+NMYy9KVn9sC19sr2I
-         mdJA==
+        bh=bWmFMUxl6d2LitE+dvs3csdd/mu6oD0O1Ta/ZIMPt5w=;
+        b=tUX+4Hn3giE4YCkx/E3r8WWiuH4JZ1Wtyi1OYFyuJr+HpDyj75d4mrEc9RGv24TJPD
+         7/xHAQxEaG78rkZfxDSsi7n2MbrA1BeZRnXpeOsj8p/ktLEywHd3XSKb8icMd6pp8P7Y
+         Dvb9NX1AndP6YK0u/jwt4yoGfChP9OeD3r9SDGVYHeJyk5K4WRMAO522TaRFrAP1q4OC
+         k9pXXlo6Z2AuR6XkDU8wPxapHkn127FwerVGL6xZdhs5hDtkvS4oLjxxBauPMgfImLjT
+         vw5gyq1xwvOyn2S7VdpUIu6N9tBsdEYBaXAORdTlSni+axra1J7vAMoYYRecqndYq6DQ
+         VRFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=aUqumd66SBJ39SQ3AQf1bxB+pDEZwaoNVNdZ68RDANQ=;
-        b=re/R9iDmFXYXe6gxbsPdl8Ttjr84mPfyXBa20NNz1BMKLnOhPfkzkReN7FCIbx1hON
-         JE9SAwQgkfjFsJXuLDTLDuCy6e3NUcmXB/eEwN3U800n3d/c4P7VF+F9SiXSVL0uhL2f
-         xpXNw8C8Yvw+mO9IQSD/IoQ9jjoL9Qf0LCkueqsdMG28nL/GSf2xXJSx6jxp8WG/yicY
-         +QW1EChgLmUhvzol3uBeniKSe7up8Jc3Hbp0ep8f3Wprda4dWJjVwQpTjexQ//bZIU6k
-         /UU+S3ZewPpkVQfiY68xN5Csm729cUJmdns17vNGw6vzu56P32ZbBtxTlmlLNTD1Ij2I
-         DyoA==
-X-Gm-Message-State: ACgBeo1ddkp5gfe41/ojSni+Z5mBOb+PVcI3eTEa3SEa49+IjCbrpEf1
-        sh/Dyux1VDHedTKEet2JF0eGCA==
-X-Google-Smtp-Source: AA6agR43LFwAtzNImS4Lf1YJ09vjOKuLkdHqLccVESB33RuJQHJw1t9kIoZyBH9wImctlf0H6BEYnQ==
-X-Received: by 2002:a2e:b892:0:b0:25f:db66:3b86 with SMTP id r18-20020a2eb892000000b0025fdb663b86mr7820287ljp.79.1660715886520;
-        Tue, 16 Aug 2022 22:58:06 -0700 (PDT)
+        bh=bWmFMUxl6d2LitE+dvs3csdd/mu6oD0O1Ta/ZIMPt5w=;
+        b=xWdA/UarwBFFuWFDIYvjWyTWXmP4UgirhEPeq85WoR7JboEYw6a04nnv4o5LBmSRk8
+         N7b/+mKI0niYQcvT1+BiPd7RJYL++z66W/Y3zX5er3cYP3WLsHGPiQexWa7Mst/oVbu6
+         2hf3UEEvfM4znhwXrLduniIO5XCtwZGlCqkkKJ/uA27WtgnXx7xEk5IWT7gTiAAdyllZ
+         iGa8AWK/yNZs6veJ4FwLkavRXQDHKEGfIgpJJqXcheFodasBUei8cpX7gcio+KkQUCZ4
+         O3zoF06rVTJivA99SWi6mI26ot3RfBM9AEFu/1rhmfyvotQShzme+pN2kwA0DhUnv2t2
+         mqGQ==
+X-Gm-Message-State: ACgBeo2I/zU4gya7PY0FVUXEu0dBWkbhYFLX7emjiGC270+gYSiPPvM6
+        Xc8bMKRg+TvMtJUmTTo3olJDjQ==
+X-Google-Smtp-Source: AA6agR5FDOl7BpD8mpkedePKEvYHg/Ukn8SXEztT/Q4GBFCOxeYKw7YzAc45ZNJO7bt2jX3eC2Z7TQ==
+X-Received: by 2002:a05:6512:304c:b0:48c:ed09:1e95 with SMTP id b12-20020a056512304c00b0048ced091e95mr9059939lfb.642.1660716353479;
+        Tue, 16 Aug 2022 23:05:53 -0700 (PDT)
 Received: from ?IPV6:2001:14bb:ae:539c:1b1c:14b7:109b:ed76? (d15l54h48cw7vbh-qr4-4.rev.dnainternet.fi. [2001:14bb:ae:539c:1b1c:14b7:109b:ed76])
-        by smtp.gmail.com with ESMTPSA id v13-20020a056512348d00b0048a835a60f6sm1571181lfr.251.2022.08.16.22.58.05
+        by smtp.gmail.com with ESMTPSA id h25-20020ac24d39000000b0048b2be5320csm1576801lfk.118.2022.08.16.23.05.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Aug 2022 22:58:06 -0700 (PDT)
-Message-ID: <f07d2072-4056-bf2e-82d5-271d8b8792e6@linaro.org>
-Date:   Wed, 17 Aug 2022 08:58:04 +0300
+        Tue, 16 Aug 2022 23:05:52 -0700 (PDT)
+Message-ID: <6c283634-70b3-200f-a346-28eb4c428d39@linaro.org>
+Date:   Wed, 17 Aug 2022 09:05:51 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [RFC v4 01/10] dt-bindings: pwm: Document Synopsys DesignWare
- snps,pwm-dw-apb-timers-pwm2
+Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: qcom: Add sc8280xp lpass lpi
+ pinctrl bindings
 Content-Language: en-US
-To:     Ben Dooks <ben.dooks@sifive.com>, linux-pwm@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lee Jones <lee.jones@linaro.org>,
-        u.kleine-koenig@pengutronix.de,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greentime Hu <greentime.hu@sifive.com>,
-        jarkko.nikula@linux.intel.com,
-        William Salmon <william.salmon@sifive.com>,
-        Jude Onyenegecha <jude.onyenegecha@sifive.com>
-References: <20220816211454.237751-1-ben.dooks@sifive.com>
- <20220816211454.237751-2-ben.dooks@sifive.com>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        agross@kernel.org, bjorn.andersson@linaro.org,
+        linus.walleij@linaro.org
+Cc:     konrad.dybcio@somainline.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220816180538.9039-1-srinivas.kandagatla@linaro.org>
+ <20220816180538.9039-2-srinivas.kandagatla@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220816211454.237751-2-ben.dooks@sifive.com>
+In-Reply-To: <20220816180538.9039-2-srinivas.kandagatla@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/08/2022 00:14, Ben Dooks wrote:
-> Add documentation for the bindings for Synopsys' DesignWare PWM block
-> as we will be adding DT/platform support to the Linux driver soon.
+On 16/08/2022 21:05, Srinivas Kandagatla wrote:
+> Add device tree binding Documentation details for Qualcomm SC8280XP
+> LPASS(Low Power Audio Sub System) LPI(Low Power Island) pinctrl driver.
 > 
-> Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
-> ---
-> v4:
->  - fixed typos, added reg
-> v3:
->  - add description and example
->  - merge the snps,pwm-number into this patch
->  - rename snps,pwm to snps,dw-apb-timers-pwm2
-> v2:
->  - fix #pwm-cells to be 3
->  - fix indentation and ordering issues
-> ---
->  .../bindings/pwm/snps,dw-apb-timers-pwm2.yaml | 69 +++++++++++++++++++
->  1 file changed, 69 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pwm/snps,dw-apb-timers-pwm2.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pwm/snps,dw-apb-timers-pwm2.yaml b/Documentation/devicetree/bindings/pwm/snps,dw-apb-timers-pwm2.yaml
-> new file mode 100644
-> index 000000000000..e7feae6d4404
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pwm/snps,dw-apb-timers-pwm2.yaml
-> @@ -0,0 +1,69 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2022 SiFive, Inc.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pwm/snps,dw-apb-timers-pwm2.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Synopsys DW-APB timers PWM controller
-> +
-> +maintainers:
-> +  - Ben Dooks <ben.dooks@sifive.com>
-> +
-> +description:
-> +  This describes the DesignWare APB timers module when used in the PWM
-> +  mode. The IP core can be generated with various options which can
-> +  control the functionality, the number of PWMs available and other
-> +  internal controls the designer requires.
-> +
-> +  The IP block has a version register so this can be used for detection
-> +  instead of having to encode the IP version number in the device tree
-> +  comaptible.
-> +
-> +allOf:
-> +  - $ref: pwm.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: snps,dw-apb-timers-pwm2
-> +
-> +  "#pwm-cells":
-> +    const: 3
-> +
-> +  clocks:
-> +    items:
-> +      - description: Interface bus clock
-> +      - description: PWM reference clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: bus
-> +      - const: timer
-> +
-> +  snps,pwm-number:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: The number of PWM channels configured for this instance
-> +    enum: [1, 2, 3, 4, 5, 6, 7, 8]
-> +
-> +  reg:
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+
+Thank you for your patch. There is something to discuss/improve.
+
+> +  gpio-ranges:
 > +    maxItems: 1
 > +
+> +#PIN CONFIGURATION NODES
+> +patternProperties:
+> +  '-pins$':
+> +    type: object
+> +    description:
+> +      Pinctrl node's client devices use subnodes for desired pin configuration.
+> +      Client device subnodes use below standard properties.
+> +    $ref: "/schemas/pinctrl/pincfg-node.yaml"
+
+Drop the quotes.
+
+> +
+> +    properties:
+> +      pins:
+> +        description:
+> +          List of gpio pins affected by the properties specified in this
+> +          subnode.
+> +        items:
+> +          pattern: "^gpio([0-1]|[0-8]])$"
+
+error in pattern - double ]. If you have 19 GPIOs, this should be
+probably: ^gpio([0-9]|1[0-8])$
+
+> +
+> +      function:
+> +        enum: [ swr_tx_clk, swr_tx_data, swr_rx_clk, swr_rx_data,
+> +                dmic1_clk, dmic1_data, dmic2_clk, dmic2_data, dmic4_clk,
+> +                dmic4_data, i2s2_clk, i2s2_ws, dmic3_clk, dmic3_data,
+> +                qua_mi2s_sclk, qua_mi2s_ws, qua_mi2s_data, i2s1_clk, i2s1_ws,
+> +                i2s1_data, wsa_swr_clk, wsa_swr_data, wsa2_swr_clk,
+> +                wsa2_swr_data, i2s2_data, i2s3_clk, i2s3_ws, i2s3_data,
+> +                ext_mclk1_c, ext_mclk1_b, ext_mclk1_a ]
+> +
+
+Skip blank line (confuses with a new property).
+
+> +        description:
+> +          Specify the alternative function to be configured for the specified
+> +          pins.
+> +
+> +      drive-strength:
+> +        enum: [2, 4, 6, 8, 10, 12, 14, 16]
+> +        default: 2
+> +        description:
+> +          Selects the drive strength for the specified pins, in mA.
+> +
+> +      slew-rate:
+> +        enum: [0, 1, 2, 3]
+> +        default: 0
+> +        description: |
+> +          0: No adjustments
+> +          1: Higher Slew rate (faster edges)
+> +          2: Lower Slew rate (slower edges)
+> +          3: Reserved (No adjustments)
+> +
+> +      bias-pull-down: true
+> +
+> +      bias-pull-up: true
+> +
+> +      bias-disable: true
+> +
+> +      output-high: true
+> +
+> +      output-low: true
+> +
+> +    required:
+> +      - pins
+> +      - function
+> +
+> +    additionalProperties: false
+> +
+> +allOf:
+> +  - $ref: "pinctrl.yaml#"
+
+Drop the quotes.
+
+> +
 > +required:
-> +  - "#pwm-cells"
 > +  - compatible
 > +  - reg
-
-Keep the same order as list of properties.
-
 > +  - clocks
 > +  - clock-names
+> +  - gpio-controller
+> +  - '#gpio-cells'
+> +  - gpio-ranges
 > +
 > +additionalProperties: false
 > +
-> +
-
-Just one blank line.
-
 > +examples:
 > +  - |
-> +    pwm: pwm@180000 {
-> +      #pwm-cells = <3>;
-> +      compatible = "snps,dw-apb-timers-pwm2";
-> +      reg = <0x180000 0x200>;
+> +    #include <dt-bindings/sound/qcom,q6afe.h>
+> +    lpi_tlmm: pinctrl@33c0000 {
 
-The convention of DTS is: compatible, then reg, then rest of properties.
+Drop the label, not used anywhere here.
 
-> +      clocks = <&bus &timer>;
-
-You put here one item, not two. This has to be <&bus>, <&timer>
-
-> +      clock-names = "bus", "timer";
+> +        compatible = "qcom,sc8280xp-lpass-lpi-pinctrl";
+> +        reg = <0x33c0000 0x20000>,
+> +              <0x3550000 0x10000>;
+> +        clocks = <&q6afecc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +                 <&q6afecc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
+> +        clock-names = "core", "audio";
+> +        gpio-controller;
+> +        #gpio-cells = <2>;
+> +        gpio-ranges = <&lpi_tlmm 0 0 18>;
 > +    };
 
 
