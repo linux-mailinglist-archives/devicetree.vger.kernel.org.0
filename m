@@ -2,125 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 74790596A89
-	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 09:43:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C520E596A8D
+	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 09:47:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232504AbiHQHlo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Aug 2022 03:41:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60500 "EHLO
+        id S231890AbiHQHqt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Aug 2022 03:46:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232401AbiHQHln (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 03:41:43 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2B2C77E9C;
-        Wed, 17 Aug 2022 00:41:41 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 27H7f9q8104499;
-        Wed, 17 Aug 2022 02:41:10 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1660722070;
-        bh=/zDSKKT1Pikh4+rD3KuCHFMZ7jEY6eOdH61BQhafa6k=;
-        h=Date:CC:Subject:To:References:From:In-Reply-To;
-        b=yuJ+dXzatpY058ruSpt+KhHs4dLeEqBnhwZzeh68Zb9zZDULLof4oIoEOem7vlZ4Z
-         NlM5+pTe7p56Il1rK46hy8qEriO77mtM7y1m7lpfE67BK7lctVhqcHvqCy+xyUjOFy
-         a/VQluOUn4bXlW0I6Hvj/VqB7MxgmayiW19IitP8=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 27H7f9KA011237
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 17 Aug 2022 02:41:09 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Wed, 17
- Aug 2022 02:41:09 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Wed, 17 Aug 2022 02:41:09 -0500
-Received: from [10.24.69.241] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 27H7f4Q9012503;
-        Wed, 17 Aug 2022 02:41:05 -0500
-Message-ID: <176ab999-e274-e22a-97d8-31f655b16800@ti.com>
-Date:   Wed, 17 Aug 2022 13:11:04 +0530
+        with ESMTP id S232952AbiHQHqf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 03:46:35 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 822D97C1AE
+        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 00:46:33 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id z20so12797794ljq.3
+        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 00:46:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=6BuNS9KqOjvtc7XbSSlIG6uXhAeWvKuL+ywpXemmpt4=;
+        b=NEIEFh84FTjEE3hoQnBHGsHnaml+UzRG01ulZUBdBSPLfmtu9cAh9yB3kLXEb7LJeE
+         yN0LDW4bsQPRBtJ3VdL5/mNd8P1D9WPPFwsiUq6PHZNEEBcc2cj2FMGm+AdQf6j/X0Pq
+         br/nZF42BY83RTe61zGApXTy8rFTrDP3Vq4N781RggEjZZIlKg2tV9LTlsMIYdgeyVXY
+         djq7euigLcDRRwW/Sze5J6+Ez4khEzp4dfQeDzZDK6eHwymbd83ILn/6dNQIsYxEv/Qv
+         LPwZ7gLsUWhcYjq+ljDrIRDVlJsEj8acd5WDj1tx024HECd3+5RmVRH935EPwTvT/jLe
+         9TVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=6BuNS9KqOjvtc7XbSSlIG6uXhAeWvKuL+ywpXemmpt4=;
+        b=XJa/vKQpMFn1el25KHja117zd35Rx5C6kEOzY7vVUEiWSsPiez6AqQKdbIbwqz3KOt
+         GBYEdAfVZ+Bit3sTo/i9EpqZq0OlRie3Xqxzn/H4TjhwMTnWhhtnEnnSI2HQomqcPJ6Q
+         KXbX27QArTmiP1NiUvG2xpRTOV3V6iBUUmrWjt0rb/eCf2hJU5j54ZhYm1Tk3E6L0+Tz
+         gG5J0Rp0xVBTuh8mOHNVAWScB4LlguCy08a5RNN73UuCdY10zkxiJ/wY5lV6WGA3SKmk
+         eABtetbkplTBoKK4D3isgxVrYBuvBsA1Eo9vJNb+HMNQUMVNTKwjJ8Gzlt7FYKTCdkpM
+         H71Q==
+X-Gm-Message-State: ACgBeo1Xxr2dB7aUYDV41g3Kme5GMur9YgaX4RMOhTPQRceKJy43YVZm
+        cfn24fjpZW/9vjokAIIANQlS7Chlo+nX3AUi
+X-Google-Smtp-Source: AA6agR7+bPFR57iuqYAZKnMHO1NMowGeL+VPcAK4pDjgtRZ+eqZjZeD9JBI30m3jn8ov9firTW4gGA==
+X-Received: by 2002:a05:651c:4d1:b0:25e:5c72:43f0 with SMTP id e17-20020a05651c04d100b0025e5c7243f0mr7916432lji.164.1660722391873;
+        Wed, 17 Aug 2022 00:46:31 -0700 (PDT)
+Received: from ?IPV6:2001:14bb:ae:539c:1b1c:14b7:109b:ed76? (d15l54h48cw7vbh-qr4-4.rev.dnainternet.fi. [2001:14bb:ae:539c:1b1c:14b7:109b:ed76])
+        by smtp.gmail.com with ESMTPSA id b25-20020a05651c033900b0025e4ca99066sm2094142ljp.139.2022.08.17.00.46.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Aug 2022 00:46:31 -0700 (PDT)
+Message-ID: <ee117d95-615a-e63b-64c9-c11f89b51123@linaro.org>
+Date:   Wed, 17 Aug 2022 10:46:29 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-CC:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <robh+dt@kernel.org>, <linux@armlinux.org.uk>,
-        <vladimir.oltean@nxp.com>, <grygorii.strashko@ti.com>,
-        <vigneshr@ti.com>, <nsekhar@ti.com>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <kishon@ti.com>, <s-vadapalli@ti.com>
-Subject: Re: [PATCH v4 1/3] dt-bindings: net: ti: k3-am654-cpsw-nuss: Update
- bindings for J7200 CPSW5G
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v3 1/2] dt-bindings: arm: aspeed: document Ampere
+ Mt.Mitchell BMC compatibles
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-References: <20220816060139.111934-1-s-vadapalli@ti.com>
- <20220816060139.111934-2-s-vadapalli@ti.com>
- <79e58157-f8f2-6ca8-1aa6-b5cf6c83d9e6@linaro.org>
- <31c3a5b0-17cc-ad7b-6561-5834cac62d3e@ti.com>
- <9c331cdc-e34a-1146-fb83-84c2107b2e2a@linaro.org>
-From:   Siddharth Vadapalli <s-vadapalli@ti.com>
-In-Reply-To: <9c331cdc-e34a-1146-fb83-84c2107b2e2a@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+To:     Quan Nguyen <quan@os.amperecomputing.com>,
+        openbmc@lists.ozlabs.org, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>, soc@kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+        Open Source Submission <patches@amperecomputing.com>
+Cc:     Phong Vo <phong@os.amperecomputing.com>,
+        thang@os.amperecomputing.com
+References: <20220817071539.176110-1-quan@os.amperecomputing.com>
+ <20220817071539.176110-2-quan@os.amperecomputing.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220817071539.176110-2-quan@os.amperecomputing.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Krzysztof,
+On 17/08/2022 10:15, Quan Nguyen wrote:
+> Document Ampere Mt.Mitchell BMC board compatible.
+> 
+> Signed-off-by: Quan Nguyen <quan@os.amperecomputing.com>
 
-On 17/08/22 11:20, Krzysztof Kozlowski wrote:
-> On 17/08/2022 08:14, Siddharth Vadapalli wrote:
-> 
->>>> -      port@[1-2]:
->>>> +      "^port@[1-4]$":
->>>>          type: object
->>>>          description: CPSWxG NUSS external ports
->>>>  
->>>> @@ -119,7 +120,7 @@ properties:
->>>>          properties:
->>>>            reg:
->>>>              minimum: 1
->>>> -            maximum: 2
->>>> +            maximum: 4
->>>>              description: CPSW port number
->>>>  
->>>>            phys:
->>>> @@ -151,6 +152,18 @@ properties:
->>>>  
->>>>      additionalProperties: false
->>>>  
->>>> +if:
->>>
->>> This goes under allOf just before unevaluated/additionalProperties:false
->>
->> allOf was added by me in v3 series patch and it is not present in the
->> file. I removed it in v4 after Rob Herring's suggestion. Please let me
->> know if simply moving the if-then statements to the line above
->> additionalProperties:false would be fine.
-> 
-> I think Rob's comment was focusing not on using or not-using allOf, but
-> on format of your entire if-then-else. Your v3 was huge and included
-> allOf in wrong place).
-> 
-> Now you add if-then in proper place, but it is still advisable to put it
-> with allOf, so if ever you grow the if-then by new entry, you do not
-> have to change the indentation.
-> 
-> Anyway the location is not correct. Regardless if this is if-then or
-> allOf-if-then, put it just like example schema is suggesting.
 
-I will move the if-then statements to the lines above the
-"additionalProperties: false" line. Also, I will add an allOf for this
-single if-then statement in the v5 series.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Regards,
-Siddharth.
+
+Best regards,
+Krzysztof
