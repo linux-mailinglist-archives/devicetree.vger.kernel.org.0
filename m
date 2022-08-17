@@ -2,177 +2,246 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E8EB596AA6
-	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 09:52:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 023A1596AB3
+	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 09:57:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233025AbiHQHwO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Aug 2022 03:52:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43808 "EHLO
+        id S233546AbiHQH4g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Aug 2022 03:56:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232952AbiHQHwM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 03:52:12 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 462EC78BCF
-        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 00:52:11 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id w19so23127588ejc.7
-        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 00:52:11 -0700 (PDT)
+        with ESMTP id S233551AbiHQH4f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 03:56:35 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E39F97AC12
+        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 00:56:32 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id h1so6306941wmd.3
+        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 00:56:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc;
-        bh=9xnYZhI92vOXcy2182GQb2h4xwg4jFW98roz/a4SU/A=;
-        b=OVPwHYg3PU3Z1vHpdZlisRprs3ZQd23oZMt25zzQvA4883qfh+RBwDVN4uFxDpTaUv
-         C9qsgkYCkWb0MfWTlcBpvQFweh7783eLF5y3zqqy81zNnQTdg4Cab25HiRYJmiN6C6ok
-         JGnbhrPNb7Rg6OqyjPSmWSpM0iWYPIO3pKTEYLdd0fcrh7bStP+8bYmsafeTgBBepmlr
-         H+Xeclbhy9XWP3C+xEhX7ZVAh34Wn5RE8jEtmpe1EggGde3g5dh6XgxQW90RspH42+2X
-         FqOEorEJUsZDPS3rn2nxh7PsEHKXv0SS/v2kcPOlBx/wI4mItc5nbxw4HB8lek5nkRG4
-         3Yjg==
+        d=sifive.com; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=CcRETYtN4fhauMaZGbGwCRZe38WMqLheltJ1uKiMAEM=;
+        b=Tb6VTYbA/7axkgPLKP48Ab3RJm5sF55AwVA7gqX1Azxjc7zsVLnQmKILWa9/3Fnw5q
+         OT59iy6UEhNpD/in+jnRA1wKfkTFvepGUjGUzCULHNHiaxDZ/pjCaTFROuUQ8X/6a/Z9
+         c3AXpDq51d9kS0l1BDd2qR0lSbWXJ+pp8FHTkE+ugFabfu8+MGw1L8xe/xGbulfPBLnp
+         UIHPwSxLTUdcn+o3nALmchARxus1doIWYQs3tEECSTQ0alfoUXSAAFkQf7iTrQSmEtXn
+         05wl2RJusYrCzzbgosOGpu2hgDm5Pyoq1HIREqFWMNZq2acvTXfniHNbSb3QqTtDtADH
+         KvDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=9xnYZhI92vOXcy2182GQb2h4xwg4jFW98roz/a4SU/A=;
-        b=d6nRqhuRhRsXwWg7EcgbyIsASCJoKW9jwzZrSgA8/MB50UrI9hkQYkcExdONYRAEt4
-         EDBXYINkVwugUIOLx3ZE7kQh6Amk+ZdYarEldgjWXRdzqxOi5UIf5ryh3vjGLzlFbYP4
-         0MZykZAQ7Zz2De99jakGX2inmq9HK5VBWF6J9IO78u+iI2j+k0lGqLn+7WU3OMYVxCIc
-         FSUcSa8ii1J6taNbanfKuvM4T3A6Jmd0YD26ZedG7+6uro49uEk2j0+EidFhdmkKqiPh
-         ofC9gGcnz8d5w8yKvsAER9ewqDgZfCpOdKILJqTRYimDPHYFPKZtZzhEQwvQh6f4mqYo
-         AOFw==
-X-Gm-Message-State: ACgBeo2NSjHV97OQRnaCLHsIHVlXt3QWIQxBKJ+9v9AjjxzA865YsEM6
-        0lvYIQD6f3Y+HznHNUYfNvyJuQ==
-X-Google-Smtp-Source: AA6agR4ZX88kMxjHrS7fizpdk5LNncHR+I8re7ouM/1AQdHMVm8e+M7j2Vx1kRtOIyRqd7OBX7nsKA==
-X-Received: by 2002:a17:907:b590:b0:730:9e0f:e9a3 with SMTP id qx16-20020a170907b59000b007309e0fe9a3mr15396358ejc.112.1660722729843;
-        Wed, 17 Aug 2022 00:52:09 -0700 (PDT)
-Received: from localhost (cst2-173-67.cust.vodafone.cz. [31.30.173.67])
-        by smtp.gmail.com with ESMTPSA id o6-20020aa7c506000000b0043e8334f762sm10030717edq.65.2022.08.17.00.52.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Aug 2022 00:52:08 -0700 (PDT)
-Date:   Wed, 17 Aug 2022 09:52:07 +0200
-From:   Andrew Jones <ajones@ventanamicro.com>
-To:     Conor.Dooley@microchip.com
-Cc:     jrtc27@jrtc27.com, palmer@dabbelt.com, robh@kernel.org,
-        tglx@linutronix.de, maz@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, paul.walmsley@sifive.com,
-        aou@eecs.berkeley.edu, daniel.lezcano@linaro.org,
-        anup@brainfault.org, guoren@kernel.org, sagar.kadam@sifive.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, qemu-riscv@nongnu.org
-Subject: Re: [PATCH 0/3] Fix dt-validate issues on qemu dtbdumps due to
- dt-bindings
-Message-ID: <20220817075207.dvylesvqaoc7ga4r@kamzik>
-References: <20220805162844.1554247-1-mail@conchuod.ie>
- <YvGBYKZyW0B2/wSr@Jessicas-MacBook-Pro>
- <94fe7e46-6156-1cc5-a4dc-1eee78e99bc4@microchip.com>
- <20220809141436.GA1706120-robh@kernel.org>
- <61829ccd-20d7-e2f0-0a6b-bcd0e076b9ea@microchip.com>
- <1d94e18d-7f51-0619-95a9-6ca5fa7d9671@microchip.com>
- <20220816140633.pkjws7n3qxsescjh@kamzik>
- <5abe9b30-274a-8f36-0797-cc0e981c3f70@microchip.com>
+        bh=CcRETYtN4fhauMaZGbGwCRZe38WMqLheltJ1uKiMAEM=;
+        b=NYuFJz/+Kp36T3Shcpqhz5FFibSXpt9VgQO3Plg0rgl8PUvnLZ1d8h1em7wCZatlrS
+         1A6lxSh0O4q2tlTjhN6OqMEoU8CeFBpebQGbwc7osKWMMI63biY8fj93DwziM3lf0S8r
+         FWQTQkV6zZ1tzvN7klmm7RuxOmklAwkyTxmLHZDOg+X/7vd2zQ7AqqNlGls8lL/ieSac
+         BncgQFFR/xdf4ZM2JeD9/jQ/eSVMNNhGCwi6nYOjJM+bEavhb/6gBtpKoDHzoShMZbEh
+         8Q0RlVK7OlOECLxYIQH5YIY1+d8r9H01YrgN34nT7m6sjvyka07oOmMKFJ9tctwmQQ1l
+         KjQQ==
+X-Gm-Message-State: ACgBeo3dp40ntaQSJRNT6wQZpDo1eS5pYxYgZeMfiMB/m6TJabe+AFoB
+        Fq0CIvJG5X5DjknA1VfeG0kJlA==
+X-Google-Smtp-Source: AA6agR7cylNCBdJrLWk6b3MPoS6xKKceqNxmNadV5AstoXwgDEqMaxLlNUU/A1ScQUcMAQs6N8XLPg==
+X-Received: by 2002:a1c:2944:0:b0:3a5:ead6:3e48 with SMTP id p65-20020a1c2944000000b003a5ead63e48mr1241903wmp.100.1660722991407;
+        Wed, 17 Aug 2022 00:56:31 -0700 (PDT)
+Received: from [10.35.5.6] ([167.98.27.226])
+        by smtp.gmail.com with ESMTPSA id n13-20020a05600c4f8d00b003a5f3f5883dsm1302212wmq.17.2022.08.17.00.56.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Aug 2022 00:56:31 -0700 (PDT)
+Message-ID: <a51c48a1-8d42-eb10-2350-6962bac8ffdd@sifive.com>
+Date:   Wed, 17 Aug 2022 08:56:29 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.1.1
+Subject: Re: [PATCH 6/8] pwm: dwc: add timer clock
+Content-Language: en-GB
+To:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
+Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greentime Hu <greentime.hu@sifive.com>,
+        jarkko.nikula@linux.intel.com,
+        William Salmon <william.salmon@sifive.com>,
+        Jude Onyenegecha --subject-prefix=PATCH v3 
+        <jude.onyenegecha@sifive.com>
+References: <20220805165033.140958-1-ben.dooks@sifive.com>
+ <20220805165033.140958-7-ben.dooks@sifive.com>
+ <20220806100703.uxnf2i4pne2kwk63@pengutronix.de>
+From:   Ben Dooks <ben.dooks@sifive.com>
+In-Reply-To: <20220806100703.uxnf2i4pne2kwk63@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <5abe9b30-274a-8f36-0797-cc0e981c3f70@microchip.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 16, 2022 at 10:53:45PM +0000, Conor.Dooley@microchip.com wrote:
-> Hey Drew,
-> Thanks for piping up.
+On 06/08/2022 11:07, Uwe Kleine-König wrote:
+> Hello Ben,
 > 
-> On 16/08/2022 15:06, Andrew Jones wrote:
-> > [You don't often get email from ajones@ventanamicro.com. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
-> > 
-> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
-> > 
-> > On Mon, Aug 15, 2022 at 07:18:02PM +0000, Conor.Dooley@microchip.com wrote:
-> >> Any takers on trashing my regex? Otherwise I'll just submit
-> >> a v2 with the regex and it can be shat on there instead :)
-> >>
-> >> On 09/08/2022 19:36, Conor Dooley wrote:
-> >>> On 09/08/2022 15:14, Rob Herring wrote:
-> >>>> On Mon, Aug 08, 2022 at 10:01:11PM +0000, Conor.Dooley@microchip.com wrote:
-> >>>>> On 08/08/2022 22:34, Jessica Clarke wrote:
-> >>>>>> On Fri, Aug 05, 2022 at 05:28:42PM +0100, Conor Dooley wrote:
-> >>>>>>> From: Conor Dooley <conor.dooley@microchip.com>
-> >>>>>>> The final patch adds some new ISA strings
-> >>>>>>> which needs scruitiny from someone with more knowledge about what ISA
-> >>>>>>> extension strings should be reported in a dt than I have.
-> >>>>>>
-> >>>>>> Listing every possible ISA string supported by the Linux kernel really
-> >>>>>> is not going to scale...
-> >>>>
-> >>>> How does the kernel scale? (No need to answer)
-> >>>>
-> >>>>> Yeah, totally correct there. Case for adding a regex I suppose, but I
-> >>>>> am not sure how to go about handling the multi-letter extensions or
-> >>>>> if parsing them is required from a binding compliance point of view.
-> >>>>> Hoping for some input from Palmer really.
-> >>>>
-> >>>> Yeah, looks like a regex pattern is needed.
-> >>>
-> >>> I started pottering away at this but I have arrived at:
-> >>> rv64imaf?d?c?h?(_z[imafdqcbvkh]([a-z])*)*$
-> > 
-> > Don't forget the ^ at the start.
-> > 
-> > Do we need to worry about optional major and minor version numbers?
-> > Or check that Z names have at least one character following the category
-> > character? Actually, the first letter after Z being a category is only a
-> > convention. Maybe we don't want to enforce that. What about X extensions?
+> On Fri, Aug 05, 2022 at 05:50:31PM +0100, Ben Dooks wrote:
+>> Add a configurable clock base rate for the pwm as when being built
+>> for non-PCI the block may be sourced from an internal clock.
+>>
+>> Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
+>> ---
+>> v2:
+>>    - removed the ifdef and merged the other clock patch in here
+>> ---
+>>   drivers/pwm/pwm-dwc.c | 22 +++++++++++++++++-----
+>>   1 file changed, 17 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/drivers/pwm/pwm-dwc.c b/drivers/pwm/pwm-dwc.c
+>> index d5f2df6fee62..5c319d0e3d52 100644
+>> --- a/drivers/pwm/pwm-dwc.c
+>> +++ b/drivers/pwm/pwm-dwc.c
+>> @@ -18,6 +18,7 @@
+>>   #include <linux/kernel.h>
+>>   #include <linux/module.h>
+>>   #include <linux/pci.h>
+>> +#include <linux/clk.h>
+>>   #include <linux/platform_device.h>
+>>   #include <linux/pm_runtime.h>
+>>   #include <linux/pwm.h>
+>> @@ -35,7 +36,6 @@
+>>   #define DWC_TIMERS_COMP_VERSION	0xac
+>>   
+>>   #define DWC_TIMERS_TOTAL	8
+>> -#define DWC_CLK_PERIOD_NS	10
+>>   
+>>   /* Timer Control Register */
+>>   #define DWC_TIM_CTRL_EN		BIT(0)
+>> @@ -54,6 +54,8 @@ struct dwc_pwm_ctx {
+>>   struct dwc_pwm {
+>>   	struct pwm_chip chip;
+>>   	void __iomem *base;
+>> +	struct clk *clk;
+>> +	unsigned int clk_ns;
+>>   	struct dwc_pwm_ctx ctx[DWC_TIMERS_TOTAL];
+>>   };
+>>   #define to_dwc_pwm(p)	(container_of((p), struct dwc_pwm, chip))
+>> @@ -96,13 +98,13 @@ static int __dwc_pwm_configure_timer(struct dwc_pwm *dwc,
+>>   	 * periods and check are the result within HW limits between 1 and
+>>   	 * 2^32 periods.
+>>   	 */
+>> -	tmp = DIV_ROUND_CLOSEST_ULL(state->duty_cycle, DWC_CLK_PERIOD_NS);
+>> +	tmp = DIV_ROUND_CLOSEST_ULL(state->duty_cycle, dwc->clk_ns);
+>>   	if (tmp < 1 || tmp > (1ULL << 32))
+>>   		return -ERANGE;
+>>   	low = tmp - 1;
+>>   
+>>   	tmp = DIV_ROUND_CLOSEST_ULL(state->period - state->duty_cycle,
+>> -				    DWC_CLK_PERIOD_NS);
+>> +				    dwc->clk_ns);
 > 
-> For the character after Z, I think we could operate on the assumption
-> that that's a convention until things change. The regex isnt set in
-> stone forever.
-> With x, it becomes - which to me makes bad worse:
-> ^rv64imaf?d?q?c?b?v?k?h?(?:(?:_z[imafdqcbvkh]|_x)(?:[a-z])*)*$
+> You're loosing precision here as clk_ns is already the result of a
+> division. We're having
+> 
+> 	dwc->clk_ns = 1000000000 / clk_get_rate(dwc->clk);
+> 
+> from dwc_pwm_plat_probe() (in the platform case).
+> 
+> Consider clk_rate = 285714285 and state->period - state->duty_cycle =
+> 300000. Then you get tmp = 100000 while the exact result would be:
+> 
+> 	300000 * 285714285 / 1000000000 = 85714.2855
+> 
+> Note that even doing
+> 
+> 	dwc->clk_ns = DIV_ROUND_CLOSEST(1000000000, clk_get_rate(dwc->clk))
+> 
+> only somewhat weakens the problem, with the above numbers you then get
+> 75000.
+> 
+> Also note that rounding closest is also wrong in the calculation of tmp
+> because the driver is supposed to implement the biggest period not
+> bigger than the requested period and for that period implement the
+> biggest duty cycle not bigger than the requested duty cycle.
+> 
+> Can the hardware emit 0% relative duty cycle (e.g. by disabling)?
 
-I think we should change the ([a-z]*) to ([a-z]+).
+Not sure, we do have an IP build option to look at for 0/100% but
+this is not enabled for the PCI case.
+
+Given everything else, I would rather fix the division and accuracy
+issues once we've got the changes under review sorted.
 
 > 
-> and then for the version numbers it becomes completely awful.
-> I'd argue that if we are going to support those, then we should
-> do that as another regex. We are already forcing lower case in
-> these ISA strings - is there an actual benefit in adding the
-> numbers, or might we want to "encourage" removing those too?
+>>   	if (tmp < 1 || tmp > (1ULL << 32))
+>>   		return -ERANGE;
+>>   	high = tmp - 1;
+>> @@ -177,12 +179,12 @@ static void dwc_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
+>>   
+>>   	duty = dwc_pwm_readl(dwc, DWC_TIM_LD_CNT(pwm->hwpwm));
+>>   	duty += 1;
+>> -	duty *= DWC_CLK_PERIOD_NS;
+>> +	duty *= dwc->clk_ns;
+>>   	state->duty_cycle = duty;
+>>   
+>>   	period = dwc_pwm_readl(dwc, DWC_TIM_LD_CNT2(pwm->hwpwm));
+>>   	period += 1;
+>> -	period *= DWC_CLK_PERIOD_NS;
+>> +	period *= dwc->clk_ns;
+>>   	period += duty;
+>>   	state->period = period;
+>>   
+>> @@ -205,6 +207,7 @@ static struct dwc_pwm *dwc_pwm_alloc(struct device *dev)
+>>   	if (!dwc)
+>>   		return NULL;
+>>   
+>> +	dwc->clk_ns = 10;
+>>   	dwc->chip.dev = dev;
+>>   	dwc->chip.ops = &dwc_pwm_ops;
+>>   	dwc->chip.npwm = DWC_TIMERS_TOTAL;
+>> @@ -336,6 +339,14 @@ static int dwc_pwm_plat_probe(struct platform_device *pdev)
+>>   		return dev_err_probe(dev, PTR_ERR(dwc->base),
+>>   				     "failed to map IO\n");
+>>   
+>> +	dwc->clk = devm_clk_get(dev, "timer");
+>> +	if (IS_ERR(dwc->clk))
+>> +		return dev_err_probe(dev, PTR_ERR(dwc->clk),
+>> +				     "failed to get timer clock\n");
+>> +
+>> +	clk_prepare_enable(dwc->clk);
 > 
-> I hope I am missing something, as my regex foo isn't that good, to
-> enforce the ordering & the numbers - even for the simple case of the
-> major number only, we'd need to convert "f?" to "(?:f\d+)?" and so
-> on for every single extension. I don't think we reduce that either
-> as we want to enforce the ordering.
+> If you used devm_clk_get_enabled() you wouldn't need to care separately
+> for enabling. (If you stick to separate calls, please add error checking
+> for clk_prepare_enable().)
+
+ok, will use.
+
+>> +	dwc->clk_ns = 1000000000 / clk_get_rate(dwc->clk);
 > 
-> For the minor versions it goes to "(?:f\d+p\d+)?". At that point I
-> don't think we are adding any value but w/e, who am I to decide.
-> That ballooned out to 194 characters for me. I then decided to have
-> a bit of fun, and just do both number sets as a oneliner, using
-> some named match groups. That was about 255 characters. 😍
-> Anyway, dt-schema had a panic attack at something I was doing
-> so I think that /may/ be a bad idea.
+> s/1000000000/NSEC_PER_SEC/
 
-I presume if a version is used it means one cannot rely on the default
-version. So we can't always encourage them to be removed. To simplify
-things we can always require minor numbers. We can also always require
-underscores. Something like
+ok, fixed.
 
-^rv64_i(\d+p\d+)?_m\1?_a\1?(_f\1?)?(_d\1?)? ... ((_z[imafdqcbvkh]|_x)[a-z]+\1?)*$
+>> +
+>>   	ret = pwmchip_add(&dwc->chip);
+>>   	if (ret)
+>>   		return ret;
+>> @@ -347,6 +358,7 @@ static int dwc_pwm_plat_remove(struct platform_device *pdev)
+>>   {
+>>   	struct dwc_pwm *dwc = platform_get_drvdata(pdev);
+>>   
+>> +	clk_disable_unprepare(dwc->clk);
+>>   	pwmchip_remove(&dwc->chip);
+> 
+> This is wrong, you must not disable the clock before calling
+> pwmchip_remove() as the PWM is supposed to stay functional until
+> pwmchip_remove() returns.
+
+I've moved to devm_clk_get_enabled and devm_pwmchip_add()
 
 > 
-> I vote for allow the x extensions, keep the convention for standard
-> extensions & revisit this in the future if needed...
+>>   	return 0;
+>>   }
+> 
 
-Sounds good. We can also easily add _s|_h|_zxm to the OR if we want. But,
-there is a problem with the OR. By using it we don't enforce order. To be
-pedantic we should ensure _z comes before _s, then _h, then _zxm, then _x.
-
-Thanks,
-drew
