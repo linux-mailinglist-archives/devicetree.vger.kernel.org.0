@@ -2,155 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70C47597725
-	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 21:58:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EF5E59777E
+	for <lists+devicetree@lfdr.de>; Wed, 17 Aug 2022 22:11:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240838AbiHQTzL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Aug 2022 15:55:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58000 "EHLO
+        id S240335AbiHQUFw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Aug 2022 16:05:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236794AbiHQTzJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 15:55:09 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7E93A2867;
-        Wed, 17 Aug 2022 12:55:08 -0700 (PDT)
-Received: from notapiano (unknown [70.107.189.129])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: nfraprado)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 43C6F66019FB;
-        Wed, 17 Aug 2022 20:55:05 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1660766106;
-        bh=HyKYDfF8C/EjS61VvfNy5zCttuH25Xk3EwKzKCsv2mU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=DAVuz1nTEiUf8s45bB89PTn3EzZBWzGhrbmAfbSXSDAWAyQwwxE+3lWCkUG1Baxck
-         xS+pUdIZU/7Nr6uN9zdmHxVu0g5d4OOCN81VVaTr8ndDis7WGCwSedV2IOD/jR95bD
-         8OBuhX1r8g6BI3bCF5HmdTuHn9IMSuq/uLxtQftGOIRdaNFNPmJRgPgPmzQgKnyscH
-         xM+/NEi1ZWt01Gf/fWLg5vfGJmOlnRT3F4F9haSW/ol3Fds3YSakSeQvLc+34G5ykN
-         hYm920WJjKTBQ2DggQ3XeIS93BcBYKltJ/b7ZV/r4DwjyIPU4s1VaCmpivQig7Tor2
-         N0w999/ahh/yQ==
-Date:   Wed, 17 Aug 2022 15:55:00 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     Hui Liu <hui.liu@mediatek.com>
-Cc:     linus.walleij@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        jianguo.zhang@mediatek.com, zhiyong.tao@mediatek.com,
-        sean.wang@mediatek.com, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/2] pinctrl: mediatek: add mt8188 driver
-Message-ID: <20220817195500.d6roam5gyghburjs@notapiano>
-References: <20220801095215.10876-1-hui.liu@mediatek.com>
- <20220801095215.10876-3-hui.liu@mediatek.com>
+        with ESMTP id S231300AbiHQUFv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 16:05:51 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A86965A2DD
+        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 13:05:50 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id h24so3330207wrb.8
+        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 13:05:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=conchuod.ie; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=G88Wg8efx4vUqMWMZ62OXKazA2toNV7pxgmBvPS4y7g=;
+        b=UjMVkMOhH0QDp6O/pCgKkjwAgoTr7VLaEZvWBQ+tjcd31e0GYx2VQdEmdGYONFZlBV
+         JXSoVTKAwZz2v4YW/Uizoa99V8t3dHzfTeno0mWPMNhh4igom0Bmr6ijGRVDHpyMGd7K
+         RD33fy8KrpjEF9DtfgDokOP/K0xkdEBYEZgLbmuvpjzpJ77YnXuGes8IGqUhqOEtcuTz
+         1EtmXbFWHbm8sgCgqbfJwoywVRFVNGycJiPJnMqkXnaxVeGp5CUmEstg4+UHY5j1Wvvc
+         OYe7bnF33uDXEY5dt1xkYnKlxySlYViNcOylr1RCwj3UfknSZbnUPfMlStx4kPmCFh6a
+         AtQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=G88Wg8efx4vUqMWMZ62OXKazA2toNV7pxgmBvPS4y7g=;
+        b=MDdDRluSj5JlEzUrw9BcEeiQApHsKCPetSneLUbWVbdKmnKRcS2D4YJDZm7rK8bZ8+
+         cMCNVe6klKDue9yt616njKyzm5k6XIhCX5bvAuhqJdXFIHUexClOpPl8LP1Hb0QSUWSl
+         OBMQn8aPlyqblnMQlsNuKWaMq/86OyzfDBPinRjIda42jJ/vXELNeFyZqhtBcjHUd0Kk
+         eWSeG8h8cFdsenvVxcB6vKFRlosS/CrI5u3W3Grj3mz5OFPuXXRym5ThIQvZV90d1IjU
+         IR27hfGSKghoGKLaCOo1cAw3ch8RZLqg235oPOoBFj68BbjYHLIt6bnCp0zNl99RLFCQ
+         hzBg==
+X-Gm-Message-State: ACgBeo1s0DMLQ8UnXwCqUAkP1LNEM4NdBSy2W6LVX17IpqsGPHTSYnTe
+        jMksRamJ17P+wHrzJxb77mbtkQ==
+X-Google-Smtp-Source: AA6agR5IgGfJqwk47mOqzOms5cJpBLn149vtKJEQDmN0sxHazUEu1rNO09FeTJ5nbKwwA4+D0l30ow==
+X-Received: by 2002:a05:6000:617:b0:225:1d23:467a with SMTP id bn23-20020a056000061700b002251d23467amr4681470wrb.692.1660766749119;
+        Wed, 17 Aug 2022 13:05:49 -0700 (PDT)
+Received: from henark71.. ([109.76.58.63])
+        by smtp.gmail.com with ESMTPSA id i133-20020a1c3b8b000000b003a531c7aa66sm3400883wma.1.2022.08.17.13.05.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Aug 2022 13:05:47 -0700 (PDT)
+From:   Conor Dooley <mail@conchuod.ie>
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Anup Patel <anup@brainfault.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Guo Ren <guoren@kernel.org>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Jessica Clarke <jrtc27@jrtc27.com>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, qemu-riscv@nongnu.org
+Subject: [PATCH 0/4] Fix dt-validate issues on qemu dtbdumps due to dt-bindings
+Date:   Wed, 17 Aug 2022 21:05:19 +0100
+Message-Id: <20220817200531.988850-1-mail@conchuod.ie>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220801095215.10876-3-hui.liu@mediatek.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hui,
+From: Conor Dooley <conor.dooley@microchip.com>
 
-On Mon, Aug 01, 2022 at 05:52:15PM +0800, Hui Liu wrote:
-> From: "Hui.Liu" <hui.liu@mediatek.com>
-> 
-> Add pinctrl driver support for MediaTek SoC mt8188.
-> 
-> Signed-off-by: Hui.Liu <hui.liu@mediatek.com>
-> ---
-[..]
-> --- /dev/null
-> +++ b/drivers/pinctrl/mediatek/pinctrl-mt8188.c
-[..]
-> +static const struct mtk_pin_field_calc mt8188_pin_mode_range[] = {
-> +	PIN_FIELD(0, 177, 0x0300, 0x10, 0, 4),
-> +};
+The device trees produced automatically for the virt and spike machines
+fail dt-validate on several grounds. Some of these need to be fixed in
+the linux kernel's dt-bindings, but others are caused by bugs in QEMU.
 
-Missing blank line after declaration.
+Patches been sent that fix the QEMU issues [0], but a couple of them
+need to be fixed in the kernel's dt-bindings. The first patches add
+compatibles for "riscv,{clint,plic}0" which are present in drivers and
+the auto generated QEMU dtbs. The final patch should be ignored for all
+serious purposes unless you want to wash your eyes out afterwards, but
+JIC the versioned extensions ever come up, it's there.
 
-> +static const struct mtk_pin_field_calc mt8188_pin_dir_range[] = {
-> +	PIN_FIELD(0, 177, 0x0000, 0x10, 0, 1),
-> +};
+Thanks to Rob Herring for reporting these issues [1],
+Conor.
 
-Ditto.
+To reproduce the errors:
+./build/qemu-system-riscv64 -nographic -machine virt,dumpdtb=qemu.dtb
+dt-validate -p /path/to/linux/kernel/Documentation/devicetree/bindings/processed-schema.json qemu.dtb
+(The processed schema needs to be generated first)
 
-> +static const struct mtk_pin_field_calc mt8188_pin_di_range[] = {
-> +	PIN_FIELD(0, 177, 0x0200, 0x10, 0, 1),
-> +};
+0 - https://lore.kernel.org/linux-riscv/20220810184612.157317-1-mail@conchuod.ie/
+1 - https://lore.kernel.org/linux-riscv/20220803170552.GA2250266-robh@kernel.org/
 
-Ditto.
+Changes since v1:
+- drop the "legacy systems" bit from the binding descriptions
+- convert to a regex for the isa string
 
-> +static const struct mtk_pin_field_calc mt8188_pin_do_range[] = {
-> +	PIN_FIELD(0, 177, 0x0100, 0x10, 0, 1),
-> +};
+Conor Dooley (4):
+  dt-bindings: timer: sifive,clint: add legacy riscv compatible
+  dt-bindings: interrupt-controller: sifive,plic: add legacy riscv
+    compatible
+  dt-bindings: riscv: add new riscv,isa strings for emulators
+  dt-bindings: riscv: isa string bonus content
 
-Ditto.
+ .../sifive,plic-1.0.0.yaml                     |  5 +++++
+ .../devicetree/bindings/riscv/cpus.yaml        |  9 ++++++---
+ .../bindings/timer/sifive,clint.yaml           | 18 ++++++++++++------
+ 3 files changed, 23 insertions(+), 9 deletions(-)
 
-> +static const struct mtk_pin_field_calc mt8188_pin_smt_range[] = {
-[..]
-> +static const struct mtk_pin_reg_calc mt8188_reg_cals[PINCTRL_PIN_REG_MAX] = {
-> +	[PINCTRL_PIN_REG_MODE]	= MTK_RANGE(mt8188_pin_mode_range),
-> +	[PINCTRL_PIN_REG_DIR]	= MTK_RANGE(mt8188_pin_dir_range),
-> +	[PINCTRL_PIN_REG_DI]	= MTK_RANGE(mt8188_pin_di_range),
-> +	[PINCTRL_PIN_REG_DO]	= MTK_RANGE(mt8188_pin_do_range),
-> +	[PINCTRL_PIN_REG_SMT]	= MTK_RANGE(mt8188_pin_smt_range),
-> +	[PINCTRL_PIN_REG_IES]	= MTK_RANGE(mt8188_pin_ies_range),
-> +	[PINCTRL_PIN_REG_TDSEL]	= MTK_RANGE(mt8188_pin_tdsel_range),
-> +	[PINCTRL_PIN_REG_RDSEL]	= MTK_RANGE(mt8188_pin_rdsel_range),
-> +	[PINCTRL_PIN_REG_PUPD]	= MTK_RANGE(mt8188_pin_pupd_range),
-> +	[PINCTRL_PIN_REG_R0]	= MTK_RANGE(mt8188_pin_r0_range),
-> +	[PINCTRL_PIN_REG_R1]	= MTK_RANGE(mt8188_pin_r1_range),
-> +	[PINCTRL_PIN_REG_PU]	= MTK_RANGE(mt8188_pin_pu_range),
-> +	[PINCTRL_PIN_REG_PD]	= MTK_RANGE(mt8188_pin_pd_range),
-> +	[PINCTRL_PIN_REG_DRV]	= MTK_RANGE(mt8188_pin_drv_range),
-> +	[PINCTRL_PIN_REG_DRV_ADV]	= MTK_RANGE(mt8188_pin_drv_adv_range),
-> +	[PINCTRL_PIN_REG_RSEL]	= MTK_RANGE(mt8188_pin_rsel_range),
 
-Please use just space around the = instead of tabs. Like is done on mt8183,
-mt8186, mt8192 and mt8195.
+base-commit: 568035b01cfb107af8d2e4bd2fb9aea22cf5b868
+-- 
+2.37.1
 
-> +};
-[..]
-> +static const struct mtk_pin_soc mt8188_data = {
-> +	.reg_cal	= mt8188_reg_cals,
-> +	.pins	= mtk_pins_mt8188,
-> +	.npins	= ARRAY_SIZE(mtk_pins_mt8188),
-> +	.ngrps	= ARRAY_SIZE(mtk_pins_mt8188),
-> +	.eint_hw	= &mt8188_eint_hw,
-> +	.nfuncs	= 8,
-> +	.gpio_m	= 0,
-> +	.base_names	= mt8188_pinctrl_register_base_name,
-> +	.nbase_names	= ARRAY_SIZE(mt8188_pinctrl_register_base_name),
-> +	.bias_set_combo	= mtk_pinconf_bias_set_combo,
-> +	.pull_type = mt8188_pull_type,
-> +	.pin_rsel = mt8188_pin_rsel_val_range,
-> +	.npin_rsel = ARRAY_SIZE(mt8188_pin_rsel_val_range),
-> +	.bias_get_combo	= mtk_pinconf_bias_get_combo,
-
-Keep this one together with bias_set_combo.
-
-> +	.drive_set	= mtk_pinconf_drive_set_rev1,
-> +	.drive_get	= mtk_pinconf_drive_get_rev1,
-> +	.adv_drive_set	= mtk_pinconf_adv_drive_set_raw,
-> +	.adv_drive_get	= mtk_pinconf_adv_drive_get_raw,
-
-And also use spaces instead of tabs for all entries here.
-
-With those changes,
-
-Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-
-Thanks,
-Nícolas
