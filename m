@@ -2,107 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7904C598E3D
-	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 22:42:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A466598E33
+	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 22:42:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242745AbiHRUkD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Aug 2022 16:40:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60930 "EHLO
+        id S1345624AbiHRUlW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Aug 2022 16:41:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242809AbiHRUjn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 16:39:43 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A597FCB5D5;
-        Thu, 18 Aug 2022 13:39:42 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id k18-20020a05600c0b5200b003a5dab49d0bso1534423wmr.3;
-        Thu, 18 Aug 2022 13:39:42 -0700 (PDT)
+        with ESMTP id S1345577AbiHRUlM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 16:41:12 -0400
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (mail-bn1nam07on2120.outbound.protection.outlook.com [40.107.212.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9089BD31CC;
+        Thu, 18 Aug 2022 13:41:04 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Rr6aZ/TEIiMAHZgKKfxb2WmILTSptzOmrzxzA2V1jJXOJD0oarHrwypLmW+8FizIiG/OWZP+0d9Cy59LWU+yL424wcARHHt3m6IeyXjnPmbjELbBgrHRu897dbCZLgb9zYuxK+zBNpq9yStajFsHcaI4H1t/9o3flajNVK+4VAo07wDtfDiGM8Q7sFY0NZOaXoj86fjcW2zVyqVjqReQ1S48OdC7ba+ojG8XgVjVrIWnuqFaQPrJTdLeEzabU8WOqsuxbJ+cB/AOvgVy2q9guRT2WRlteSvihHyArsNCyd9/DIHMeihZcB3UATV/0WmpVeQ4tFQ8FglM/BjzTm9hcQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=obBHN/CS59ZnGmfVx+/aaKlWZ3rFIwyIUciJ1wFabyg=;
+ b=M30mzx6J6qTj0wShFOCvFX8f7QPrH7fnydaZMMlZ6Q4IRc2+H/OiMbczu9/S7aGNkVBLWt7JMm2PNT9J2VcU2LpK/KOQTkm+kp5+1im6YsXrblc4FkLHpIhyTZ6gL8nekCMMVwxWuSmgSBCvzhxPevbW9S0GhUv5u7PmHKKrhXu8JPKk3XHFWip9HdBDN1eTXCojBj0ghOYLOdd4oF0ESmBhVdIbQn6ANyk36VjxRDomWoyFTd/E5Reg0XXajfZFWsQhoI9d4TBE+cDqZbYbF5T7kYMAzezoZCnIQyOv0DfKUmUYngqxeUHlxzode+ybk/IyTdnjWZKaf/scPk2Zmg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=in-advantage.com; dmarc=pass action=none
+ header.from=in-advantage.com; dkim=pass header.d=in-advantage.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=Xx725Ih3hQX23yTN0zWfPqhputIO84/6U9GSIQz+QYk=;
-        b=hrEeTkCQQk/UH9/U16GGJjblGquX9MVzdldEUMGPhv97AYIZY0ccqUA8FcN2iYxE5f
-         ZccvDq1LtrAoxevGXhsXUXdnp6JFRQAiFRScn6ncaGOLlHo/G/mxfkjUZJvdqX+kI7y0
-         0rtE+l2j3V4i6nuFwwdLHq1N/1aSvP3mYZMvlAmxCxXLK3ANVkBordhTDagsxC0Kvfia
-         hYmh8qTCNpY17OkUQnD4scznGx134L3J1B3IjUjWYcvXLyJLa93eNr+EMwBUHJeMp2nT
-         3C+YFlyVVRySMnB7Y/e24JPLRkHssL1v+GE+Q0jk2nzqh4VJVtFkDFeE5nMu2vB8iojP
-         HMbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=Xx725Ih3hQX23yTN0zWfPqhputIO84/6U9GSIQz+QYk=;
-        b=GQqP0pOAS7UyQWEM9ipRRwqZcZGnA9sz/FpIRYNTxv4l9E5awxBFw3ygxALkxXGauK
-         5nKZVgqBAxoRXMn/P5zI6n929ZHXJUY+zAcl2lh7CbY4SvsKLivUZ02niPzH8zn3xPga
-         lT80+Z8EoYVlDzqPLYPsv/9Yh4ULoRCiRd9SgsWIM/2W1E+9PUMmw9SoJcEZolfjZZfN
-         QpoKVaDOu0FhncDV7S++P7nHPjhizVpyXYLUImFQsl23NCM00DFHXg97OsFimR87JHtM
-         VkUFaTliH2I8Rj4EZRj8XPPHJ3JmNsU8ShWH6gm4WaTbrghfJ1bg/MAJM5zf0+g41j5u
-         dg2w==
-X-Gm-Message-State: ACgBeo0V+aVuMfmelvepH9yZe4FaCls5AJaA9cCl/cWhB8gS2kKH0RLz
-        SXvorhyILHkZHVwlJzjlZNg=
-X-Google-Smtp-Source: AA6agR6hNAol/gvhMbvlpUqAQvXx/9eFxWuE62Dl+HHsGZ8P+cdHzNc+ydHfjKh23rN1R0gGz8FE+w==
-X-Received: by 2002:a7b:cc85:0:b0:3a5:50b2:f9be with SMTP id p5-20020a7bcc85000000b003a550b2f9bemr2834206wma.18.1660855181167;
-        Thu, 18 Aug 2022 13:39:41 -0700 (PDT)
-Received: from localhost.localdomain (2a01cb000c0d3d00cc34c67bc193cac8.ipv6.abo.wanadoo.fr. [2a01:cb00:c0d:3d00:cc34:c67b:c193:cac8])
-        by smtp.gmail.com with ESMTPSA id u18-20020a05600c19d200b003a54d610e5fsm1571648wmq.26.2022.08.18.13.39.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Aug 2022 13:39:40 -0700 (PDT)
-From:   "=?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?=" <peron.clem@gmail.com>
-X-Google-Original-From: =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <cpe@outsight.tech>
-To:     Rob Herring <robh+dt@kernel.org>,
+ d=inadvantage.onmicrosoft.com; s=selector2-inadvantage-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=obBHN/CS59ZnGmfVx+/aaKlWZ3rFIwyIUciJ1wFabyg=;
+ b=RQBdmVf5QnhGf3en5VBYbYR2d3z52nVJkDosuSRfdnWBWGPQb3/puYg/FjCBXPCNyQ+k1gy0Vopv/XxIWTW6YYLcV+033OE1wBKiKbUsnIOqv9GHLWb2dFeGYHGl57ZAzyVW7+ZMSaQjtPaQQs7k3d/nPLOYVXhPM0/n6Q/eyoE=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=in-advantage.com;
+Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
+ (2603:10b6:301:35::37) by DS7PR10MB5216.namprd10.prod.outlook.com
+ (2603:10b6:5:38e::23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5525.19; Thu, 18 Aug
+ 2022 20:41:00 +0000
+Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
+ ([fe80::b869:6c52:7a8d:ddee]) by MWHPR1001MB2351.namprd10.prod.outlook.com
+ ([fe80::b869:6c52:7a8d:ddee%4]) with mapi id 15.20.5504.027; Thu, 18 Aug 2022
+ 20:41:00 +0000
+Date:   Thu, 18 Aug 2022 13:40:56 -0700
+From:   Colin Foster <colin.foster@in-advantage.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Ido Schimmel <idosch@idosch.org>,
+        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@debian.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Terry Bowman <terry.bowman@amd.com>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Wolfram Sang <wsa@kernel.org>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        Steen Hegelund <Steen.Hegelund@microchip.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Russell King <linux@armlinux.org.uk>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>
-Cc:     =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <cpe@outsight.tech>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: [PATCH 4/4] arm64: dts: allwinner: beelink-gs1: Enable GPU OPP
-Date:   Thu, 18 Aug 2022 22:39:28 +0200
-Message-Id: <20220818203928.131059-5-cpe@outsight.tech>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220818203928.131059-1-cpe@outsight.tech>
-References: <20220818203928.131059-1-cpe@outsight.tech>
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        katie.morris@in-advantage.com,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Lee Jones <lee@kernel.org>
+Subject: Re: [PATCH v16 mfd 8/8] mfd: ocelot: add support for the vsc7512
+ chip via spi
+Message-ID: <Yv6j2Lkt40BPXjzO@colin-ia-desktop>
+References: <20220815005553.1450359-1-colin.foster@in-advantage.com>
+ <20220815005553.1450359-9-colin.foster@in-advantage.com>
+ <YvpV4cvwE0IQOax7@euler>
+ <YvpZoIN+5htY9Z1o@shredder>
+ <CAHp75VeH_Gx4t+FSqH4LrTHNcwqGxDxRUF26kj3A=CopS=XkgQ@mail.gmail.com>
+ <Yvu1qvslHI9HIqKh@colin-ia-desktop>
+ <CAHp75VdvcwivSkGe-CF94ohn3VxFq-vtjMSXfM4Q2ZX2MXskZQ@mail.gmail.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAHp75VdvcwivSkGe-CF94ohn3VxFq-vtjMSXfM4Q2ZX2MXskZQ@mail.gmail.com>
+X-ClientProxiedBy: MW4PR03CA0159.namprd03.prod.outlook.com
+ (2603:10b6:303:8d::14) To MWHPR1001MB2351.namprd10.prod.outlook.com
+ (2603:10b6:301:35::37)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: be002afc-2808-4f22-dc98-08da8159f600
+X-MS-TrafficTypeDiagnostic: DS7PR10MB5216:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: yjshlNCYgmRphava8Ef/LdCffZofHwVTXMZ7b+gWol+39MVXvaBQTx35Humpg6/g/EeVdhA/swsFd5REEcLQ8Q9Metatu0YthYCxsoaSf3V5v7yWgXSa0BTlWZbLc8wuFyLxigrcDDb01CsxONRXtMGEF+MpyrdXJr7X/7+ahZpjGTa9VM2BEy1hxG/vfnsFC/dNjW0nuSuL9N38oQxMv6/1ml0WWkAYDneyhcWcC+TVw2SaFPBWZgjH8XFDJODD90WryU5f/uKKJLSxaAyM6FnqytAEfcE1tKuWK+ZodQZkDeQnwqTm4Y18EOAO9FVmNc/PA+wvbBWhQdgNB+Ae5PSbxWy2qEtaUStVhRCcYKijwJZu1BewijfqGEgdlfw4zL6Gsw83EYF0gwt+vcWRQLMG18B0UTTdQ3bOD22yTYNdGDls6Ho23u374oK+e7NVKiRzbkihnd8gCzzlSSdIA+J1FvS3rCL6VlonyF/4Q9eH1tkxmA8I7w1G9fSq/Jd/hpuY+guuEtS/5uP0J119eqw99UJEDN+hjz6sgWqB1uRLYdcMDDaJLDVQNF877Y/pJClJ0RCH+agXZvMwcXPdcY/Jhfs676pIrtJhswdWCCkdhixqofLbJF1i1h6aQdWiW7e0cBiZG2NUR+TdAyE5tvVqNE/pZGF7PyQNjPaPx+S/9KHq6zk109hXSe+jjHa2Gwbsud/LKZ3trNH6ukH2Dg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR1001MB2351.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(7916004)(136003)(346002)(376002)(39830400003)(366004)(396003)(478600001)(6512007)(53546011)(6506007)(41300700001)(54906003)(6666004)(9686003)(66476007)(26005)(2906002)(4744005)(33716001)(8676002)(86362001)(66556008)(6916009)(316002)(6486002)(5660300002)(38100700002)(7416002)(44832011)(8936002)(4326008)(186003)(66946007);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?cQHlEmZURdSdR1Ykuhsj4TARALftZbrQl9k0XUlYFrzmvqow+OgEIeHxlJsq?=
+ =?us-ascii?Q?E/+PH2dZjdWRwlOtsZ3eFKGRDZSvXE/JL2wvoxEQClrA4pC+5S0IfOdoE3vN?=
+ =?us-ascii?Q?24E+ItmGh2JmodUbbjXpsu7ahh4wOpGwhfg4OYCAaG/TNakfBwCfDywfvFYc?=
+ =?us-ascii?Q?OTHNHN4TeXcob8dLVzuU1vtXHjSsJt7w/2R+KCfuKSlpR7FAALAC9F7yAHov?=
+ =?us-ascii?Q?Cl0ijqn9VPMUhwAPLqsdENELHWvq+f9Uu8pHD12twJfq0FRMRZGyf6Yv3O+o?=
+ =?us-ascii?Q?ihLJHr4FCVvA9QVfjW/yXv9dyumOjzZ2YAwj0r5zU962A6sQ17YlDQ24alQR?=
+ =?us-ascii?Q?TljIRs96+P+yrcNqiGy28dMSGYzD7niOUL0nHFKLoy98yl+2QG8X8QhSbaa+?=
+ =?us-ascii?Q?ZpTmNPP0v2TdNFR9a+raK9XT/nkXIHnc1z/UN1a4Aj6Poqy6YYizn9b0InVn?=
+ =?us-ascii?Q?SP49w7Mwf7uZGn9kL/5bkKFGps/jz8xyNveDtCDJxOR0ttASJl5hjaPcQO0f?=
+ =?us-ascii?Q?fmdpSD7drgfreRx0AOMAt96IKdlqKGe7oi/aygv7R5ia8P5M6CZZKYShT+mB?=
+ =?us-ascii?Q?2g19WspoMKiyMsRZZAWbwLla+aHCiCs4QE/72Rdxz5CNFET39Jlrt7ZQd2Xw?=
+ =?us-ascii?Q?6qVjLuX6li1OHmrsJo3aJX4NbLfDmSp/vh0OmoAVdSuAWloPV3lPJr0baL7S?=
+ =?us-ascii?Q?0QG3TCN+4l1EHDvPegcYYzOJzGv/hjKbaTRqvRTg15qJ9U+MwH7k2EPUV3Cg?=
+ =?us-ascii?Q?rdxk6Z9AWkvg+9n2sSISk3kXX+j19MN3r+yNrDQSOlxPEOU/wx6gVWTHOvLm?=
+ =?us-ascii?Q?uxetNEKT8y3I5MpEEz13hEDHKYExH+j0v2xjIrc5QQX2WhFu+iZMXG4p36db?=
+ =?us-ascii?Q?NxiYrmYhwJznmk52XLbVPfKKVHcRl5o1WCXZXxGZ9ckyb+QaeJsu4CifgGtS?=
+ =?us-ascii?Q?rDA3vH0IMP/hbFmiqYpkhhAEPpg8ocwCjbDpZjPmJzMScM+xap1iKF9sG/Z5?=
+ =?us-ascii?Q?uOQGTugZaczmz9YGrzXBPT29BNpGxNQM7/anjUJJDKHC+X7WiiJqywYUGPfX?=
+ =?us-ascii?Q?DnpUV5EjbUKVgwOq4kEcS6504+tk9YbP26pNaJFdY3/pdYVbwpZvkkBIFZbA?=
+ =?us-ascii?Q?qmY54lFuxH061tGZB7IASEKcYVwcLD4DU6rDEwxcyJNpWo4AE0ORnK10kepY?=
+ =?us-ascii?Q?j62TMXWVeefMaJFN9AWoUT4ZqZeWyGXgQcuzCqqWxlS+CzJPT09XJ6R1GWvl?=
+ =?us-ascii?Q?gOCZIvZoBivLceUnXdNe4Kk3A0bbZMM4UiOPz3QphViXXa+8AOh77ff8qps3?=
+ =?us-ascii?Q?kmd84VltNDn4QRQJwYc4pNoXY6serg1iaBdFr55zK7OUmbYkLrZ1ylLtXChe?=
+ =?us-ascii?Q?R5GP/8SoPMEtNbYdxy922s5IePAb2Ko7NUcQArPPFRaRx1n9P373isdUSQwP?=
+ =?us-ascii?Q?Nv0cT5bQ/gg8fK+PxR+Sy1phXERT2IGV5LdoEOGG3eOGCKyPRBQd6IAwkq3x?=
+ =?us-ascii?Q?szDG+LOD8SI7xv5h/fHq3O3fgsGqWWS+/QK/zR8hAe0qQkbLbv4A3H62kTM3?=
+ =?us-ascii?Q?BVNzXgZtg2fpAQmbWnqVr+SUqSdiCrXwCmt1WoW8/a0U60pQgyZwOltsh5XE?=
+ =?us-ascii?Q?Wg=3D=3D?=
+X-OriginatorOrg: in-advantage.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: be002afc-2808-4f22-dc98-08da8159f600
+X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2351.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Aug 2022 20:41:00.7857
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 48e842ca-fbd8-4633-a79d-0c955a7d3aae
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: HadZFhb6vq0x8U4A+iWjLEZyRKogVe2CZ/ERhVVBJr41KX1iHjPjiH7srQ50GOgBL0MCWLo7Mmquf5NKJJ3jaz40WLwm/c8BATLbXcWIZsU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR10MB5216
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable GPU OPP table for Beelink GS1
+On Thu, Aug 18, 2022 at 10:26:12PM +0300, Andy Shevchenko wrote:
+> On Tue, Aug 16, 2022 at 6:20 PM Colin Foster
+> <colin.foster@in-advantage.com> wrote:
+> >
+> > Do you think this is a false positive / unrelated to this patch? Or do
+> > you think this is a true error that I did wrong? I haven't been around
+> > for too many releases, so I'm not sure if this is common after an -rc1.
+> 
+> It's a sparse issue and Debian maintainer for sparse is not updating
+> it for some reasons...
 
-Signed-off-by: Clément Péron <cpe@outsight.tech>
----
- arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts | 2 ++
- 1 file changed, 2 insertions(+)
+K. I'll ignore for now and plan to re-submit next week (with Lee's
+correct email address) unless I hear otherwise.
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-index 6249e9e02928..20fc0584d1c6 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-@@ -5,6 +5,7 @@
- 
- #include "sun50i-h6.dtsi"
- #include "sun50i-h6-cpu-opp.dtsi"
-+#include "sun50i-h6-gpu-opp.dtsi"
- 
- #include <dt-bindings/gpio/gpio.h>
- 
-@@ -261,6 +262,7 @@ reg_dcdca: dcdca {
- 			};
- 
- 			reg_dcdcc: dcdcc {
-+				regulator-always-on;
- 				regulator-enable-ramp-delay = <32000>;
- 				regulator-min-microvolt = <810000>;
- 				regulator-max-microvolt = <1080000>;
--- 
-2.34.1
+Thanks!
 
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
