@@ -2,265 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1663D598530
+	by mail.lfdr.de (Postfix) with ESMTP id A6A7E598532
 	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 16:05:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245583AbiHROEu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Aug 2022 10:04:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48418 "EHLO
+        id S245559AbiHROEf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Aug 2022 10:04:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245618AbiHROEo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 10:04:44 -0400
-Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 700E1647F4
-        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 07:04:37 -0700 (PDT)
-Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-3246910dac3so43203257b3.12
-        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 07:04:37 -0700 (PDT)
+        with ESMTP id S245573AbiHROE1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 10:04:27 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4F0C6C77E
+        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 07:04:25 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id d14so2229493lfl.13
+        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 07:04:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=+kv66vxJ0YAn/r791jElf5y4ZMDzSN2X5TyTuKb96rI=;
-        b=Au0+wmSCKtfaRR52iCMDAqCL12HsLn0096khZpro0Ew0t8wYVhkNmnONrg/gtX4k96
-         KqU6CYvipoE2ICrlq95wJSsHspIK/o59+FhEYt7MQMKWobALXS0x1LsWuzqHMFehUxCi
-         YP0NeqB5JRfRg5J2YPhbH/BLR9DJxpFCLU9HV7RdYVjX9Isft/lBxda118WZbu5BnSMs
-         Kyo6KpXeDbTmZ800Z4BwXZYzPm846I1ECGc4S8aoIBePMG2BUy9mKnT8Ch2JLiY1vxPi
-         Eu0W99CN6+L/UtTpVF6GeCVFx6gVAsBYqO9qS/Ps0Q2eYalNOwaGY1UvjyIB/GF4mKOi
-         r2uA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=/fleTIpnS9IEBTbF8wo3ueeoCXUGjNkQO4k9xiqRrj4=;
+        b=WXgDg4S099HTx4GYgF7438X6p5+shS7CVHR1tjTv5vT25xR45B6IpZ9jhDZz24MFIE
+         QYgcE82wPnA6kp/yoF5KRHFg2R1O1rA0Hj3teQ/VwW6ecJCoTpgo1t1hwWTLfUqm7isa
+         wPhcprIQQyMzd5VP3nJthYZeUSeel/FnDfuu8sVUdrc9ivIl0o9G/FLaK4i83CbCUR95
+         dPmZq615cmnqNWTE8xGMASQ5tJP/6xGoFpVrz611Tyy0YuQz/kvNwF22eEsEO7mWuqll
+         UDQIMCwYqn7bOluibttIYU6Mn5Cei8pA13Vu99//76sJQFaN5oyc3DG6XTjq0FOjoFFJ
+         /Uvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=+kv66vxJ0YAn/r791jElf5y4ZMDzSN2X5TyTuKb96rI=;
-        b=XRPkjZ2Ie8X+iv/pSaoEL51QRu6PgXjQlaSCWfy1KyCIQnyBnDo1f47ySLDWn2ganJ
-         uvnqAgQaDLR7NklLnz1z+ugD1sIsKIHhHy8sk1aIFaA1+SNuQ7y3+wfPah7Vf4Snn5FD
-         +xhioypZ6OPSVuBiS30B+YjSIujuMxJVPVoZSDmPdj0OEMvqfshGYKAEtMswzrvVhRzZ
-         TeOrxKSrSFzTFgl/vsKrvM0JuWFPU9t+5I86JTlGv/4PetAN8X4vqzkh0ldk7LwIZxRl
-         vIrW8ScQpM9ZVmabgIpAnFUUu42uA10EdmQZnUEbp3atz5kLjoykyh7QqhLaj8y4pTjw
-         FSLw==
-X-Gm-Message-State: ACgBeo1sAHwmKv9adsUOciCwhV/NkKTv7vX4x/MEaN7Bn+uFdjqk0QWp
-        r+PBTzL+1fLl7XvVdneN4sNoHvTEB/suUgJsFeAudA==
-X-Google-Smtp-Source: AA6agR7q18DufKU0IAifoEXyfBzC9Ih5o9isetdzMCKDhC+zW7uCM8Mj8lYx0qEqPIvSPiHSqmk3+VqMyDhz+qXZCw4=
-X-Received: by 2002:a25:4986:0:b0:67b:c97f:6975 with SMTP id
- w128-20020a254986000000b0067bc97f6975mr2745146yba.520.1660831476550; Thu, 18
- Aug 2022 07:04:36 -0700 (PDT)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=/fleTIpnS9IEBTbF8wo3ueeoCXUGjNkQO4k9xiqRrj4=;
+        b=zkR9uzgPcKtOzv+YbD6vbxgHgpxfZw8fNlaPgbFtjC7KlkfjYSPdMJ2ByZFva28Cyx
+         QXTg1veMbGjkJ1dyLQG6IVAUk8Q3AdIWt3YnT7TO8KUTKuNeCdHs8oM9VPbS00bhu6+T
+         n+R9ZDmadpDuCWPWex37Rq0n7P7F2tiJ3gf15YjbaTtxoOeQGZ1bkih3uaMd+2cG8pJz
+         d/4R1hVkTbBjGTt+UAEOCn0Q15XTA7/y8SEfchTHBsaa12K2Y+sfqXEZ8Vql0wkJncS7
+         JqInw7ER0Uc9mXro3OpL8rkmsRRQiwnWZvaIcZxnjEHK/nIolz67HjcnqnamKKKr93zN
+         eJ4g==
+X-Gm-Message-State: ACgBeo0Q3at2uHhAKqKNSkUBPg6r+g9qaFSdllva1sj4FH+XcKEl3Bfu
+        oCq2BKNF1yp3sX94/rbWD3B4GQ==
+X-Google-Smtp-Source: AA6agR5VgtXwrxbtl+luU09vE2LQ9Ag6BfzzlNsOlvu+CLmU3emPg2IrZYFkOC0AmgjlyeHuX66LQA==
+X-Received: by 2002:a05:6512:159b:b0:492:c1c0:5aab with SMTP id bp27-20020a056512159b00b00492c1c05aabmr477299lfb.523.1660831463816;
+        Thu, 18 Aug 2022 07:04:23 -0700 (PDT)
+Received: from ?IPV6:2001:14bb:ae:539c:53ab:2635:d4f2:d6d5? (d15l54z9nf469l8226z-4.rev.dnainternet.fi. [2001:14bb:ae:539c:53ab:2635:d4f2:d6d5])
+        by smtp.gmail.com with ESMTPSA id a2-20020a05651c030200b002619257da21sm241529ljp.118.2022.08.18.07.04.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 18 Aug 2022 07:04:23 -0700 (PDT)
+Message-ID: <00614b8f-0fdd-3d7e-0153-3846be5bb645@linaro.org>
+Date:   Thu, 18 Aug 2022 17:04:20 +0300
 MIME-Version: 1.0
-References: <20220817080757.352021-1-bchihi@baylibre.com> <20220817080757.352021-3-bchihi@baylibre.com>
- <18164de9-ad28-939c-a802-69647fc65a37@linaro.org>
-In-Reply-To: <18164de9-ad28-939c-a802-69647fc65a37@linaro.org>
-From:   Balsam CHIHI <bchihi@baylibre.com>
-Date:   Thu, 18 Aug 2022 16:04:00 +0200
-Message-ID: <CAGuA+op3tFL6M=H2rzAB4DJn+7ve4W5vUuRc+zBrq7zQY2CX7w@mail.gmail.com>
-Subject: Re: [PATCH v9,2/7] dt-bindings: thermal: Add dt-binding document for
- LVTS thermal controllers
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     rafael@kernel.org, rui.zhang@intel.com, daniel.lezcano@linaro.org,
-        amitk@kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, khilman@baylibre.com,
-        mka@chromium.org, robh+dt@kernel.org, krzk+dt@kernel.org,
-        matthias.bgg@gmail.com, p.zabel@pengutronix.de,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, james.lo@mediatek.com,
-        fan.chen@mediatek.com, louis.yu@mediatek.com,
-        rex-bc.chen@mediatek.com, abailon@baylibre.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH 1/3] dt-bings: net: fsl,fec: update compatible item
+Content-Language: en-US
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     Wei Fang <wei.fang@nxp.com>, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        s.hauer@pengutronix.de, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        peng.fan@nxp.com, ping.bai@nxp.com, sudeep.holla@arm.com,
+        linux-arm-kernel@lists.infradead.org, aisheng.dong@nxp.com
+References: <20220704101056.24821-1-wei.fang@nxp.com>
+ <20220704101056.24821-2-wei.fang@nxp.com>
+ <ef7e501a-b351-77f9-c4f7-74ab10283ed6@linaro.org>
+ <20220818013344.GE149610@dragon>
+ <fd41a409-d0e0-0026-4644-9058d1177c45@linaro.org>
+ <20220818092257.GF149610@dragon>
+ <a08b230c-d655-75ee-0f0c-8281b13b477b@linaro.org>
+ <20220818135727.GG149610@dragon>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220818135727.GG149610@dragon>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On 18/08/2022 16:57, Shawn Guo wrote:
+> On Thu, Aug 18, 2022 at 12:46:33PM +0300, Krzysztof Kozlowski wrote:
+>> On 18/08/2022 12:22, Shawn Guo wrote:
+>>> On Thu, Aug 18, 2022 at 10:51:02AM +0300, Krzysztof Kozlowski wrote:
+>>>> On 18/08/2022 04:33, Shawn Guo wrote:
+>>>>> On Mon, Jul 04, 2022 at 11:12:09AM +0200, Krzysztof Kozlowski wrote:
+>>>>>>> diff --git a/Documentation/devicetree/bindings/net/fsl,fec.yaml b/Documentation/devicetree/bindings/net/fsl,fec.yaml
+>>>>>>> index daa2f79a294f..6642c246951b 100644
+>>>>>>> --- a/Documentation/devicetree/bindings/net/fsl,fec.yaml
+>>>>>>> +++ b/Documentation/devicetree/bindings/net/fsl,fec.yaml
+>>>>>>> @@ -40,6 +40,10 @@ properties:
+>>>>>>>            - enum:
+>>>>>>>                - fsl,imx7d-fec
+>>>>>>>            - const: fsl,imx6sx-fec
+>>>>>>> +      - items:
+>>>>>>> +          - enum:
+>>>>>>> +              - fsl,imx8ulp-fec
+>>>>>>> +          - const: fsl,imx6ul-fec
+>>>>>>
+>>>>>> This is wrong.  fsl,imx6ul-fec has to be followed by fsl,imx6q-fec. I
+>>>>>> think someone made similar mistakes earlier so this is a mess.
+>>>>>
+>>>>> Hmm, not sure I follow this.  Supposing we want to have the following
+>>>>> compatible for i.MX8ULP FEC, why do we have to have "fsl,imx6q-fec"
+>>>>> here?
+>>>>>
+>>>>> 	fec: ethernet@29950000 {
+>>>>> 		compatible = "fsl,imx8ulp-fec", "fsl,imx6ul-fec";
+>>>>> 		...
+>>>>> 	};
+>>>>
+>>>> Because a bit earlier this bindings is saying that fsl,imx6ul-fec must
+>>>> be followed by fsl,imx6q-fec.
+>>>
+>>> The FEC driver OF match table suggests that fsl,imx6ul-fec and fsl,imx6q-fec
+>>> are not really compatible.
+>>>
+>>> static const struct of_device_id fec_dt_ids[] = {
+>>>         { .compatible = "fsl,imx25-fec", .data = &fec_devtype[IMX25_FEC], },
+>>>         { .compatible = "fsl,imx27-fec", .data = &fec_devtype[IMX27_FEC], },
+>>>         { .compatible = "fsl,imx28-fec", .data = &fec_devtype[IMX28_FEC], },
+>>>         { .compatible = "fsl,imx6q-fec", .data = &fec_devtype[IMX6Q_FEC], },
+>>>         { .compatible = "fsl,mvf600-fec", .data = &fec_devtype[MVF600_FEC], },
+>>>         { .compatible = "fsl,imx6sx-fec", .data = &fec_devtype[IMX6SX_FEC], },
+>>>         { .compatible = "fsl,imx6ul-fec", .data = &fec_devtype[IMX6UL_FEC], },
+>>
+>> I don't see here any incompatibility. Binding driver with different
+>> driver data is not a proof of incompatible devices.
+> 
+> To me, different driver data is a good sign of incompatibility.  It
+> mostly means that software needs to program the hardware block
+> differently.
 
-Thank you for the reviews.
-Would you please explain the meaning of "Rebase your patchset on
-decent kernel tree. You seem to use something a bit old"?
-It is rebased on top of linux-6.0.0-rc1.
-Am I missing something?
+Any device being 100% compatible with old one and having additional
+features will have different driver data... so no, it's not a proof.
+There are many of such examples and we call them compatible, because the
+device could operate when bound by the fallback compatible.
+
+If this is the case here - how do I know? I raised and the answer was
+affirmative...
+
+> 
+> 
+>> Additionally, the
+>> binding describes the hardware, not the driver.
+>>
+>>>         { .compatible = "fsl,imx8mq-fec", .data = &fec_devtype[IMX8MQ_FEC], },
+>>>         { .compatible = "fsl,imx8qm-fec", .data = &fec_devtype[IMX8QM_FEC], },
+>>>         { /* sentinel */ }
+>>> };
+>>> MODULE_DEVICE_TABLE(of, fec_dt_ids);
+>>>
+>>> Should we fix the binding doc?
+>>
+>> Maybe, I don't know. The binding describes the hardware, so based on it
+>> the devices are compatible. Changing this, except ABI impact, would be
+>> possible with proper reason, but not based on Linux driver code.
+> 
+> Well, if Linux driver code is written in the way that hardware requires,
+> I guess that's just based on hardware characteristics.
+> 
+> To me, having a device compatible to two devices that require different
+> programming model is unnecessary and confusing.
+
+It's the first time anyone mentions here the programming model is
+different... If it is different, the devices are likely not compatible.
+
+However when I raised this issue last time, there were no concerns with
+calling them all compatible. Therefore I wonder if the folks working on
+this driver actually know what's there... I don't know, I gave
+recommendations based on what is described in the binding and expect the
+engineer to come with that knowledge.
+
 
 Best regards,
-Balsam
-
-On Thu, Aug 18, 2022 at 3:48 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 17/08/2022 11:07, bchihi@baylibre.com wrote:
-> > From: Alexandre Bailon <abailon@baylibre.com>
-> >
-> > Add dt-binding document for mt8192 and mt8195 LVTS thermal controllers.
->
-> Rebase your patchset on decent kernel tree. You seem to use something a
-> bit old.
->
-> >
-> > Signed-off-by: Alexandre Bailon <abailon@baylibre.com>
-> > Co-developed-by: Balsam CHIHI <bchihi@baylibre.com>
-> > Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
-> > ---
-> >  .../thermal/mediatek,lvts-thermal.yaml        | 152 ++++++++++++++++++
-> >  1 file changed, 152 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml b/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
-> > new file mode 100644
-> > index 000000000000..31d9e220513a
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
-> > @@ -0,0 +1,152 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/thermal/mediatek,lvts-thermal.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: MediaTek SoC LVTS thermal controller
-> > +
-> > +maintainers:
-> > +  - Yu-Chia Chang <ethan.chang@mediatek.com>
-> > +  - Ben Tseng <ben.tseng@mediatek.com>
-> > +
-> > +description: |
-> > +  LVTS (Low Voltage Thermal Sensor).
-> > +  The architecture will be first used on mt8192 and mt8195.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - mediatek,mt8192-lvts-ap
-> > +      - mediatek,mt8192-lvts-mcu
-> > +      - mediatek,mt8195-lvts-ap
-> > +      - mediatek,mt8195-lvts-mcu
-> > +
-> > +  "#thermal-sensor-cells":
-> > +    const: 1
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +    description: LVTS instance registers.
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +    description: LVTS instance interrupts.
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +    description: LVTS instance clock.
->
-> Skip all these three descriptions. They are obvious.
->
-> > +
-> > +  resets:
-> > +    maxItems: 1
-> > +    description: |
-> > +      LVTS instance SW reset for HW AP/MCU domain to clean temporary data
-> > +      on HW initialization/resume.
-> > +
-> > +  nvmem-cells:
-> > +    minItems: 1
-> > +    maxItems: 2
-> > +    description: Calibration efuse data for LVTS
-> > +
-> > +  nvmem-cell-names:
-> > +    minItems: 1
-> > +    maxItems: 2
-> > +    description: Calibration efuse cell names for LVTS
-> > +
-> > +allOf:
-> > +  - $ref: thermal-sensor.yaml#
-> > +
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - mediatek,mt8192-lvts-ap
-> > +              - mediatek,mt8192-lvts-mcu
-> > +    then:
-> > +      properties:
-> > +        nvmem-cells:
-> > +          items:
-> > +            - description: Calibration efuse data for LVTS
-> > +
-> > +        nvmem-cell-names:
-> > +          items:
-> > +            - const: lvts_calib_data1
-> > +
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - mediatek,mt8195-lvts-ap
-> > +              - mediatek,mt8195-lvts-mcu
-> > +    then:
-> > +      properties:
-> > +        nvmem-cells:
-> > +          items:
-> > +            - description: Calibration efuse data 1 for LVTS
-> > +            - description: Calibration efuse data 2 for LVTS
-> > +
-> > +        nvmem-cell-names:
-> > +          items:
-> > +            - const: lvts_calib_data1
-> > +            - const: lvts_calib_data2
-> > +
-> > +required:
-> > +  - compatible
-> > +  - '#thermal-sensor-cells'
->
-> Use consistent quotes: either ' or "
->
-> > +  - reg
-> > +  - interrupts
-> > +  - clocks
-> > +  - resets
-> > +  - nvmem-cells
-> > +  - nvmem-cell-names
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    #include <dt-bindings/clock/mt8192-clk.h>
-> > +    #include <dt-bindings/reset/mt8192-resets.h>
-> > +
-> > +    soc {
-> > +      #address-cells = <2>;
-> > +      #size-cells = <2>;
-> > +
-> > +      lvts_ap: thermal-sensor@1100b000 {
-> > +        compatible = "mediatek,mt8192-lvts-ap";
-> > +        #thermal-sensor-cells = <1>;
-> > +        reg = <0 0x1100b000 0 0x1000>;
->
-> Convention is: compatible, then reg, then the rest of properties
->
-> > +        interrupts = <GIC_SPI 169 IRQ_TYPE_LEVEL_HIGH 0>;
-> > +        clocks = <&infracfg CLK_INFRA_THERM>;
-> > +        resets = <&infracfg MT8192_INFRA_RST0_THERM_CTRL_SWRST>;
-> > +        nvmem-cells = <&lvts_e_data1>;
-> > +        nvmem-cell-names = "lvts_calib_data1";
-> > +      };
-> > +
-> > +      lvts_mcu: thermal-sensor@11278000 {
-> > +        compatible = "mediatek,mt8192-lvts-mcu";
-> > +        #thermal-sensor-cells = <1>;
-> > +        reg = <0 0x11278000 0 0x1000>;
-> > +        interrupts = <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH 0>;
-> > +        clocks = <&infracfg CLK_INFRA_THERM>;
-> > +        resets = <&infracfg MT8192_INFRA_RST4_THERM_CTRL_MCU_SWRST>;
-> > +        nvmem-cells = <&lvts_e_data1>;
-> > +        nvmem-cell-names = "lvts_calib_data1";
-> > +      };
-> > +    };
->
-> This part is the same as previous, so just skip it or replace with an
-> example which is different somehow.
->
-> Best regards,
-> Krzysztof
+Krzysztof
