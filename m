@@ -2,117 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BA4559807D
-	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 11:04:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2507D5980A0
+	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 11:19:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235263AbiHRJDJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Aug 2022 05:03:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41258 "EHLO
+        id S236992AbiHRJRd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Aug 2022 05:17:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230514AbiHRJDI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 05:03:08 -0400
-Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACB6FB07E5;
-        Thu, 18 Aug 2022 02:03:07 -0700 (PDT)
-Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-f2a4c51c45so1074518fac.9;
-        Thu, 18 Aug 2022 02:03:07 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=ZmOw2Ye6D3rDsXvEq+Hj2UxFw02iY07PBYlER+Z5IJs=;
-        b=Q3Fre+R1RjpfZX4kxBErGHtKC6H8E2ckTe1z2CBeIKwJZL3S5BsLtiQPbQtN3RDCS4
-         TsvoqB23mlWY6TOlC/ypJChNVQI/GcbJ2ejwD7rHYUb7jgZREbfFHHyd2by9RJ3HQwJV
-         bBCL+/0wBSFROazXYBbb/JHVI4cpF9DGH3AcgMEOlyV4cYFtHuLGcPdCzLnmcerwWfxv
-         +AavissL6J8FWnRPFOQ1x5Jb2xCA6S8T5kL+P4p1tt2UtiMsNOd9VNl/2soFZ6hkJpAO
-         mJWvoHpLItsfSX+2ygcAEWHw0t48zsQn4J+zXtgIql3+nrrVMwWCznzGx/zn9B4kUsd1
-         b8ww==
-X-Gm-Message-State: ACgBeo2/oqlHcHSwY2BhG8/5Z0x7RKijJBYPQofDag3AiVTJJQeW89/c
-        giDKD3yzrlZa4p5pgcIZhjFZ5g5neDwvtQ==
-X-Google-Smtp-Source: AA6agR7snnj50rO52+s+YlU9cl70Q6phrgmPr4knQPg5NNXja5M/hr3ABAgrLrkFzslQaNGliwqm3g==
-X-Received: by 2002:a05:6870:5a9:b0:11c:43b:5810 with SMTP id m41-20020a05687005a900b0011c043b5810mr3774158oap.159.1660813386760;
-        Thu, 18 Aug 2022 02:03:06 -0700 (PDT)
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com. [209.85.210.50])
-        by smtp.gmail.com with ESMTPSA id el3-20020a056870f68300b00101bc3380a5sm283490oab.12.2022.08.18.02.03.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Aug 2022 02:03:06 -0700 (PDT)
-Received: by mail-ot1-f50.google.com with SMTP id v12-20020a9d7d0c000000b00638e210c995so770987otn.13;
-        Thu, 18 Aug 2022 02:03:06 -0700 (PDT)
-X-Received: by 2002:a81:f47:0:b0:31f:434b:5ee with SMTP id 68-20020a810f47000000b0031f434b05eemr1877711ywp.383.1660812973568;
- Thu, 18 Aug 2022 01:56:13 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220801214718.16943-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20220801214718.16943-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20220801214718.16943-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 18 Aug 2022 10:56:01 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXKnve1-KE+GF5YVe3k8w0oQA96P9VAfB9XxVMbuKiN7g@mail.gmail.com>
-Message-ID: <CAMuHMdXKnve1-KE+GF5YVe3k8w0oQA96P9VAfB9XxVMbuKiN7g@mail.gmail.com>
-Subject: Re: [PATCH 1/4] media: dt-bindings: media: Document RZ/G2L CSI-2 block
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S231616AbiHRJRb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 05:17:31 -0400
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9D2367CA7;
+        Thu, 18 Aug 2022 02:17:30 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1660814199; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=USXBYp2MxaiuDHGWU5W4eTLantEidntEZ8iCdnHk6M3ctHr1EFg/JSPl9CjVy8LWnFXXxo1lZ919QZSqM8HScTrTroB4JCq6X0ic8GiHMXWu6DHE8Gfj6cQrCNkbpGFIE+Lq8QecvqyjOwTctPYGLpfKKjIYUkOvjEr4liDx4hc=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1660814199; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:MIME-Version:Message-ID:Subject:To; 
+        bh=r2yFPxeJOW4FSx26rqzEDXZD6XX1GgOaFnrmsBkM89Y=; 
+        b=JuBycRjfQCsne9NV697b4UJuqzp7TqQ4dsrb41e56q6FX3l67Y9m2fCfWMXbyW8SuUM91bf9pFXsar7HedVOZK3Sv3S59BNga3Ui5Dk0o73mTS0qFH39TXo+qby885GywPHWeW6iqFgPXKxvp7nx0vuF2MsebBeUqnDZ2zI/wh0=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1660814199;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:Reply-To;
+        bh=r2yFPxeJOW4FSx26rqzEDXZD6XX1GgOaFnrmsBkM89Y=;
+        b=YfauaA1pzQgStKULF51J08iaNkprUoc07njXNwtD2NWTdF4UoECdHCRrotXKmfz5
+        MdeEz9Hm6C1ignB1OgYiFEZb1K2nR87ZvCf2KalgtFUIOedweqHOg9g/ETSl3Mucw3H
+        nQUgNRXfIIyRF3VKllU60iDwodXYmAVVHz+h5rBw=
+Received: from arinc9-PC.lan (37.120.152.236 [37.120.152.236]) by mx.zohomail.com
+        with SMTPS id 1660814196048527.2976968417031; Thu, 18 Aug 2022 02:16:36 -0700 (PDT)
+From:   =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        Sander Vanheule <sander@svanheule.net>,
+        =?UTF-8?q?Ren=C3=A9=20van=20Dorst?= <opensource@vdorst.com>,
+        Daniel Golle <daniel@makrotopia.org>, erkin.bozoglu@xeront.com,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>
+Subject: [PATCH v3 0/6] completely rework mediatek,mt7530 binding
+Date:   Thu, 18 Aug 2022 12:16:21 +0300
+Message-Id: <20220818091627.51878-1-arinc.unal@arinc9.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
+Hello.
 
-On Mon, Aug 1, 2022 at 11:47 PM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> Document the CSI-2 block which is part of CRU found in Renesas
-> RZ/G2L SoC.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> RFC v2 -> v1
-> * Fixed review comments pointed by Rob and Jacopo.
+This patch series brings complete rework of the mediatek,mt7530 binding.
 
-Thanks for the update!
+The binding is checked with "make dt_binding_check
+DT_SCHEMA_FILES=mediatek,mt7530.yaml".
 
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/renesas,rzg2l-csi2.yaml
-> @@ -0,0 +1,149 @@
+If anyone knows the GIC bit for interrupt for multi-chip module MT7530 in
+MT7623AI SoC, let me know. I'll add it to the examples.
 
-> +  resets:
-> +    items:
-> +      - description: CRU_CMN_RSTB reset terminal
-> +
-> +  reset-names:
-> +    const: cmn-rstb
+If anyone got a Unielec U7623 or another MT7623AI board, please reach out.
 
-While it doesn't hurt to always have reset-names, you may want to drop
-it, as there is only a single reset.
+v3:
+- Add Rob's Reviewed-by: to first patch.
+- Explain why to invalidating reset-gpios and mediatek,mcm.
+- Do not change ethernet-ports to ports on examples.
+- Remove platform and, when possible, ethernet nodes from examples.
+- Remove pinctrl binding from examples.
+- Combine removing unnecesary lines patch with relocating port binding.
+- Define $defs of mt7530 and mt7531 port binding and refer to them in each
+compatible device.
+- Remove allOf: for cases where there's only a single if:.
+- Use else: for cpu port 6 which simplifies the binding.
+- State clearly that the DSA driver does not support the MT7530 switch in
+MT7620 SoCs.
 
-Gr{oetje,eeting}s,
+v2:
+- Change the way of adding descriptions for each compatible string.
+- Split the patch for updating the json-schema.
+- Make slight changes on the patch for the binding description.
 
-                        Geert
+Arınç ÜNAL (6):
+  dt-bindings: net: dsa: mediatek,mt7530: make trivial changes
+  dt-bindings: net: dsa: mediatek,mt7530: fix reset lines
+  dt-bindings: net: dsa: mediatek,mt7530: update examples
+  dt-bindings: net: dsa: mediatek,mt7530: define port binding per switch
+  dt-bindings: net: dsa: mediatek,mt7530: define phy-mode for switch models
+  dt-bindings: net: dsa: mediatek,mt7530: update binding description
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+ .../bindings/net/dsa/mediatek,mt7530.yaml       | 680 +++++++++++++++----
+ 1 file changed, 545 insertions(+), 135 deletions(-)
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+
