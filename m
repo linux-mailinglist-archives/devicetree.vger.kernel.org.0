@@ -2,116 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D67E598EC5
-	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 23:07:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CE08598F91
+	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 23:33:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241086AbiHRVGD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Aug 2022 17:06:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36802 "EHLO
+        id S237363AbiHRVat (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Aug 2022 17:30:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346469AbiHRVFK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 17:05:10 -0400
-Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEA49D9D46
-        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 14:02:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
-        from:to:cc:subject:date:message-id:mime-version
-        :content-transfer-encoding; s=k1; bh=MFKXE/fmtSH1Vsyi1kzF9noPaUK
-        g1Bf4elnNlSsgHfQ=; b=b2Fa0YJrqlY0DnOaOUc0s3bJpbiD3EnWDFf7rTL7DJF
-        jY0bA21koq/mmfNTcXMttPgMytgDOgv43x4R0x0Pc8Xem6inpR2gMliu26nIu0/8
-        3QZrDtRa1ySb0xRKg8DN0snC4JHExuV0MaBcy6bksKc2Prh393amsBs3eISr+EHI
-        =
-Received: (qmail 3961048 invoked from network); 18 Aug 2022 23:00:54 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 18 Aug 2022 23:00:54 +0200
-X-UD-Smtp-Session: l3s3148p1@zNP5Rormc7cucref
-From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org
-Subject: [PATCH] of: move from strlcpy with unused retval to strscpy
-Date:   Thu, 18 Aug 2022 23:00:53 +0200
-Message-Id: <20220818210054.7157-1-wsa+renesas@sang-engineering.com>
-X-Mailer: git-send-email 2.35.1
+        with ESMTP id S1347168AbiHRVab (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 17:30:31 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCF9BB8F12;
+        Thu, 18 Aug 2022 14:29:14 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 316176168E;
+        Thu, 18 Aug 2022 21:29:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FC43C433D6;
+        Thu, 18 Aug 2022 21:29:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1660858153;
+        bh=FipX6TVhrxxHlLkeH5ciwQ7iKPbNA0jvMsmy8hdNRVs=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=NXopHnykGh+XHvpPSsAr1PicYgKojNMOjbNGWZ2RLkbOutAOlwZlGtBHjKiDClZ/h
+         mFdGpx625eZyQcJ7gtko3p0RysfP8L8LHRcAeKpwCXoV8gNlYblZq0tyYC/DEc9sEe
+         ApZedc47hAVg4FG/QM00AaJpXnrLOsgN+q2cbNQgVOPpXDE9/RCA10cCWzqLXUqiBX
+         AyXijggm84IOZPXK+wloH42vbZL/uMhbqnSiKEsL2p65FJhp8eTc+9O2umwqgSitm0
+         W0sGhKd/LNZyJ+dmbUfi9mzd33atwR6qbTy60Yl/5agGESK5MPCs/ekf/3Mrfer0eU
+         5FR7MMDmo65ww==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20220818124132.125304-11-jagan@edgeble.ai>
+References: <20220818124132.125304-1-jagan@edgeble.ai> <20220818124132.125304-11-jagan@edgeble.ai>
+Subject: Re: [PATCH v3 10/19] dt-bindings: clock: rockchip: Document RV1126 CRU
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        Jagan Teki <jagan@edgeble.ai>, linux-clk@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Heiko Stuebner <heiko@sntech.de>, Jagan Teki <jagan@edgeble.ai>,
+        Kever Yang <kever.yang@rock-chips.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 18 Aug 2022 14:29:11 -0700
+User-Agent: alot/0.10
+Message-Id: <20220818212913.7FC43C433D6@smtp.kernel.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Follow the advice of the below link and prefer 'strscpy' in this
-subsystem. Conversion is 1:1 because the return value is not used.
-Generated by a coccinelle script.
+Quoting Jagan Teki (2022-08-18 05:41:23)
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    const: xin24m
+> +
+> +  rockchip,grf:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      Phandle to the syscon managing the "general register files" (GRF),
+> +      if missing pll rates are not changeable, due to the missing pll
+> +      lock status.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#clock-cells"
+> +  - "#reset-cells"
 
-Link: https://lore.kernel.org/r/CAHk-=wgfRnXz0W3D37d01q3JFkr_i_uTL=V6A6G1oUZcprmknw@mail.gmail.com/
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
----
- drivers/of/base.c     | 2 +-
- drivers/of/fdt.c      | 6 +++---
- drivers/of/unittest.c | 2 +-
- 3 files changed, 5 insertions(+), 5 deletions(-)
+Why aren't clocks required?
 
-diff --git a/drivers/of/base.c b/drivers/of/base.c
-index 7fa960bd3df1..99cee6b02297 100644
---- a/drivers/of/base.c
-+++ b/drivers/of/base.c
-@@ -1228,7 +1228,7 @@ int of_modalias_node(struct device_node *node, char *modalias, int len)
- 	if (!compatible || strlen(compatible) > cplen)
- 		return -ENODEV;
- 	p = strchr(compatible, ',');
--	strlcpy(modalias, p ? p + 1 : compatible, len);
-+	strscpy(modalias, p ? p + 1 : compatible, len);
- 	return 0;
- }
- EXPORT_SYMBOL_GPL(of_modalias_node);
-diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index 7bc92923104c..1617a31ecd22 100644
---- a/drivers/of/fdt.c
-+++ b/drivers/of/fdt.c
-@@ -1178,7 +1178,7 @@ int __init early_init_dt_scan_chosen(char *cmdline)
- 	/* Retrieve command line */
- 	p = of_get_flat_dt_prop(node, "bootargs", &l);
- 	if (p != NULL && l > 0)
--		strlcpy(cmdline, p, min(l, COMMAND_LINE_SIZE));
-+		strscpy(cmdline, p, min(l, COMMAND_LINE_SIZE));
- 
- 	/*
- 	 * CONFIG_CMDLINE is meant to be a default in case nothing else
-@@ -1190,11 +1190,11 @@ int __init early_init_dt_scan_chosen(char *cmdline)
- 	strlcat(cmdline, " ", COMMAND_LINE_SIZE);
- 	strlcat(cmdline, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
- #elif defined(CONFIG_CMDLINE_FORCE)
--	strlcpy(cmdline, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
-+	strscpy(cmdline, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
- #else
- 	/* No arguments from boot loader, use kernel's  cmdl*/
- 	if (!((char *)cmdline)[0])
--		strlcpy(cmdline, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
-+		strscpy(cmdline, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
- #endif
- #endif /* CONFIG_CMDLINE */
- 
-diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
-index eafa8ffefbd0..6fa14b77086a 100644
---- a/drivers/of/unittest.c
-+++ b/drivers/of/unittest.c
-@@ -2465,7 +2465,7 @@ static int unittest_i2c_bus_probe(struct platform_device *pdev)
- 	adap = &std->adap;
- 	i2c_set_adapdata(adap, std);
- 	adap->nr = -1;
--	strlcpy(adap->name, pdev->name, sizeof(adap->name));
-+	strscpy(adap->name, pdev->name, sizeof(adap->name));
- 	adap->class = I2C_CLASS_DEPRECATED;
- 	adap->algo = &unittest_i2c_algo;
- 	adap->dev.parent = dev;
--- 
-2.35.1
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    cru: clock-controller@ff490000 {
+> +      compatible =3D "rockchip,rv1126-cru";
+> +      reg =3D <0xff490000 0x1000>;
+> +      rockchip,grf =3D <&grf>;
+> +      #clock-cells =3D <1>;
+> +      #reset-cells =3D <1>;
 
+Can you add 'clocks' property to the binding?
