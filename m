@@ -2,118 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38A4F598F9D
-	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 23:37:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DCD1B598FA6
+	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 23:37:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346057AbiHRVeh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Aug 2022 17:34:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51308 "EHLO
+        id S1344296AbiHRVgT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Aug 2022 17:36:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345931AbiHRVeg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 17:34:36 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39B11B99E1
-        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 14:34:34 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id q16so2302845ljp.7
-        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 14:34:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=57R1i97Exb7jiv3R+C+sLGgx2BChX5wJqOqueGuOy8o=;
-        b=BpRf1j8XsCn/7ww8tOLJtJpEEyVf9B0Nkp8dZSfI90CLV5ieBJ3CDZMbPVxru2yVXz
-         1l55Td1/RKqMyoMByybvH6bmTKczz2GHoaAtHV3VWUl3Y00PEJ8XFZO2YaqWKSmIgtUO
-         q0beRrI68dYUftzgYBU/HmlW5n9hFBxIYlEfcaydSVpzwzwllso/sppoPR7KJBMe+EZu
-         sd1gzVfaHnCD4gk5nvR/JfMkFXwk0yspHGUUoH7MJf/iiQzWqV+kFVBxVoPioup37F4u
-         +uk0PDEXhbotpzeLvczvh3m7KQm6I+UvCmXb5OPqZ20iZ6mmdKFkbICd257afSvtVG5c
-         3vyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=57R1i97Exb7jiv3R+C+sLGgx2BChX5wJqOqueGuOy8o=;
-        b=ybSUa61dU6Tij6PMKcda+xuaHDlf7jL7ar4RgqNGwWEo+v+7S1QsXjMjRonWzRgpt6
-         F67nNs7/h1ziyx6IKANmpLIHccpwYRNQ80F1BNZyK+6OOwLxFbSBezskwRDBdC/muwhh
-         VZGeAh/f0OJBtRn2zyHtd76ROPrDCUdMlTrqAM28QRB6+DQrAggp3nMLxXamWYfpXnOk
-         chC/LsRDYb/styqfeT+xHkRcE8+eNHAQMdwjghM3g2BGzJa4CO4rgg1bcOTMJ3gnDxyf
-         PScZTcKMTbOQs+rxcE/9CrOSedHapJjnQLnAevjLRLJztytK9gHbHl+NlileR+V4Kup3
-         dHkQ==
-X-Gm-Message-State: ACgBeo2HqC0jywCcrBtMa8fktiMRkX3F3oChozbZfbp41F1s/ZMW0xf4
-        KXYxWvbdmC6Ndu8mdb7/nRK2qW5pPGeNKgcyfMKTYEcvgJE=
-X-Google-Smtp-Source: AA6agR6GJXPp5/z0JTiP0q9mPDVCKJiO4ywyVq/9cFPr4MM0zelM0e/lZlpgvN0Odpiov3nkO1VEAYbE8La/yBkG2AA=
-X-Received: by 2002:a05:651c:1718:b0:261:8700:25f4 with SMTP id
- be24-20020a05651c171800b00261870025f4mr1333316ljb.229.1660858472545; Thu, 18
- Aug 2022 14:34:32 -0700 (PDT)
+        with ESMTP id S241023AbiHRVgS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 17:36:18 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C98BBCC11
+        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 14:36:18 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DB52961645
+        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 21:36:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20E56C433C1;
+        Thu, 18 Aug 2022 21:36:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1660858577;
+        bh=w0lmEjB43jiwnBEhg+1l1Hm6K67RFybVAXIxlJqUON4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=IqR6Z/mEUR7UmaoCQpOnfFFIBaQpx9Cf65kmSnJFfQWmKRAY64OrrtbQINFT0xzBR
+         vpGselWUGI6RMv8yCdGqgD2gjC6hTs7aOkYZsB/KrQhKrw2MUzxjo6RQwdO7qUYHpc
+         mLyAFt2hkgTbiBAKMiL4sSOmnVOaQBnnG1H5hFCPkmNUHA2FtpWz4PT7o9vvm4wFnh
+         PMBR2U2V4dU017MLcftVNHt9YLTgSs+xF9lOCPiCy4YKuJGJrWe+hmKQ8u0ZDokGwl
+         SGQK6310RR+PGOZ2Xc+llnnFcMjDLPK+L3K3sk8ps693Z5RYZBBsclB2NsK5I1XkqE
+         Dke71RIp56OAA==
+Received: by pali.im (Postfix)
+        id 18BB1770; Thu, 18 Aug 2022 23:36:14 +0200 (CEST)
+Date:   Thu, 18 Aug 2022 23:36:13 +0200
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: bus: add device tree bindings for
+ fsl,p1021rdb-pc-cpld
+Message-ID: <20220818213613.cfgjxdb5wfu6k7iw@pali>
+References: <20220705175450.11886-1-kabel@kernel.org>
+ <CAL_Jsq+9H3YQgugiRpXsiLuHpfvKDYVSgLVsXq2kcbz-Uaqocg@mail.gmail.com>
+ <20220706185602.656f883a@thinkpad>
+ <20220712170535.GF1823936-robh@kernel.org>
 MIME-Version: 1.0
-References: <20220815100952.23795-1-a39.skl@gmail.com> <20220815100952.23795-4-a39.skl@gmail.com>
-In-Reply-To: <20220815100952.23795-4-a39.skl@gmail.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 18 Aug 2022 23:33:56 +0200
-Message-ID: <CAPDyKFrc5aneqqC=uGKeQ0ROx69eMJhQ1pFA3GN8d5NpXHGEEQ@mail.gmail.com>
-Subject: Re: [PATCH 3/7] dt-bindings: mmc: sdhci-msm: Document the SM6115 compatible
-To:     Adam Skladowski <a39.skl@gmail.com>
-Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Emma Anholt <emma@anholt.net>,
-        Rob Clark <robdclark@chromium.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        linux-mmc@vger.kernel.org, linux-pm@vger.kernel.org,
-        Stephen Boyd <swboyd@chromium.org>,
-        Sibi Sankar <sibis@codeaurora.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220712170535.GF1823936-robh@kernel.org>
+User-Agent: NeoMutt/20180716
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 15 Aug 2022 at 12:12, Adam Skladowski <a39.skl@gmail.com> wrote:
->
-> Document the compatible for SDHCI on SM6115.
->
-> Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
+On Tuesday 12 July 2022 11:05:35 Rob Herring wrote:
+> On Wed, Jul 06, 2022 at 06:56:02PM +0200, Marek Behún wrote:
+> > On Tue, 5 Jul 2022 14:09:36 -0600
+> > Rob Herring <robh+dt@kernel.org> wrote:
+> > 
+> > > Not really a simple-bus if it has registers to init/program the bus.
+> > 
+> > It doesn't.
+> 
+> Then what is in 'reg'? It looks the same range as 'ranges', so maybe you 
+> don't need 'reg'.
+> 
+> Rob
 
-Applied for next, thanks!
-
-Kind regards
-Uffe
-
-
-> ---
->  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-> index fc0e81c2066c..a792fa5574a0 100644
-> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-> @@ -41,6 +41,7 @@ properties:
->                - qcom,sdm845-sdhci
->                - qcom,sdx55-sdhci
->                - qcom,sdx65-sdhci
-> +              - qcom,sm6115-sdhci
->                - qcom,sm6125-sdhci
->                - qcom,sm6350-sdhci
->                - qcom,sm8150-sdhci
-> --
-> 2.25.1
->
+Without 'reg' kernel cannot register devices on this bus, e.g.
+register-bit-led does not work. So 'reg' is needed. Why? I do not know.
