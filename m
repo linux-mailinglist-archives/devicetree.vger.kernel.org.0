@@ -2,128 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19CF1598A62
-	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 19:28:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 67815598AA2
+	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 19:44:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344401AbiHRR0C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Aug 2022 13:26:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41644 "EHLO
+        id S243511AbiHRRn7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Aug 2022 13:43:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345590AbiHRRZy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 13:25:54 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA4FCE48;
-        Thu, 18 Aug 2022 10:25:53 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4536D616FD;
-        Thu, 18 Aug 2022 17:25:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 767AFC433C1;
-        Thu, 18 Aug 2022 17:25:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1660843552;
-        bh=U4ulU7LUfIxOOKY+jPEQdeirsitxhl7mzZqSCLj9pLk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=DI/wDz+hwFetaviDPUx/S35ihafJz/fiirF4hzWGi7bbpJIGg0lMUybl5TenFCb/j
-         JKqXVUHPN7WspTnqf7Efoo75RAUb8y3cHEwfZBT22+0Z76MdwvJSJ9zlVAR9Sl+wEm
-         5tOcALdJgW3DV5+62WeoqvaUTKkVx1DVfWl+tjnkj1zWqHMdOnnmphf8ypMqzgsmzx
-         QSPHUXWyB646qiVqtHnR9l9E1AUBebDkaUyYWtM9NCKC8STKCs7nUl7ZqqxuckF4lz
-         ouFexmlD9E1CAR0cNYa0GUttQwFXLGdGTdiYoV5X8mKgWj6uN8Y/Y82SWKEatrrFrs
-         x1De1mfYJt6hg==
-Received: by pali.im (Postfix)
-        id E05782868; Thu, 18 Aug 2022 19:25:49 +0200 (CEST)
-From:   =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>
-To:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
-Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] leds: syscon: Implement support for active-low property
-Date:   Thu, 18 Aug 2022 19:25:28 +0200
-Message-Id: <20220818172528.23062-2-pali@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20220818172528.23062-1-pali@kernel.org>
-References: <20220818172528.23062-1-pali@kernel.org>
+        with ESMTP id S242260AbiHRRn6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 13:43:58 -0400
+Received: from mail-ua1-x92f.google.com (mail-ua1-x92f.google.com [IPv6:2607:f8b0:4864:20::92f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBE1361D50
+        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 10:43:56 -0700 (PDT)
+Received: by mail-ua1-x92f.google.com with SMTP id by8so916044uab.12
+        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 10:43:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=1b9aTxIIz9/74/jYE0z5xvzqLFfDp/MoiZcviUgQWJ8=;
+        b=Du+adRQQBzyfPvEtwcg6Q6ErkgIm3DL4MsEH4J9V/VihvaXqlIpoazABA4ake/s+QY
+         SdIjmTgU4xgML/xDG3oW1BVlUEHH50QwzUHSU8HexnO1MQjTKXqD0ZxuQToamtoYJ55g
+         LJF93G4W48p1Eqd9GdnglIwVnNmxi7s6oGhC4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=1b9aTxIIz9/74/jYE0z5xvzqLFfDp/MoiZcviUgQWJ8=;
+        b=aahO66aIjdTxxYckq3f5UUB45gs2f85puVauJTVGsg2MwILEXgyJUzvhZm79JqN+Yy
+         11R6GNjrC+Zcd9V0zolZOuwAAfn07RTXxjvzkoSmEjWozFd8HgDP3nvttljxQ5p6vdR+
+         0o6ayBlLw7GOfVVQ3Sc2AdR5falkIn/NYhm/+JhAD1EsHuv8U5lILkOMkX8vsaldr5wb
+         zWEkrRujX2YX/KCsHWR5bHMPEZW4O2S8trOq4N+tZS+OGo39OMuhdbKY+8GUFfLffHJb
+         VuQ66koA6iDMblpDduvCpmNqnNUYMkCdBub4fZkZHbWogK1F0rq0QZxeK688e6+e7GyP
+         cJxA==
+X-Gm-Message-State: ACgBeo1tBN4MAbGMAwkIXl05dSoSa+XB8j+jKw4jURa9W0xkH0k9UxW2
+        cBfYhqi5Nd5pPOiWX3Pb4tH7iaZxpmvPcw==
+X-Google-Smtp-Source: AA6agR6S9v8dNs6jSR6w4q3cVi7PkWhRfLfknAnCvMWbuzotGFaPJE0hDr29XpfqSiltNSG2xrmROA==
+X-Received: by 2002:a9f:2f0c:0:b0:38c:6559:3c5d with SMTP id x12-20020a9f2f0c000000b0038c65593c5dmr1637738uaj.121.1660844635787;
+        Thu, 18 Aug 2022 10:43:55 -0700 (PDT)
+Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com. [209.85.217.48])
+        by smtp.gmail.com with ESMTPSA id p13-20020a1fa60d000000b003791113188csm1168488vke.55.2022.08.18.10.43.54
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 18 Aug 2022 10:43:54 -0700 (PDT)
+Received: by mail-vs1-f48.google.com with SMTP id l7so1955478vsc.0
+        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 10:43:54 -0700 (PDT)
+X-Received: by 2002:a67:a20d:0:b0:388:5ed2:7c7b with SMTP id
+ l13-20020a67a20d000000b003885ed27c7bmr1621593vse.5.1660844633605; Thu, 18 Aug
+ 2022 10:43:53 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220818084216.1.I5c2b6fea19c4c0dec67fd4931f03df8e5ccaca95@changeid>
+In-Reply-To: <20220818084216.1.I5c2b6fea19c4c0dec67fd4931f03df8e5ccaca95@changeid>
+From:   Alexandru M Stan <amstan@chromium.org>
+Date:   Thu, 18 Aug 2022 10:43:17 -0700
+X-Gmail-Original-Message-ID: <CAHNYxRzRgqXPq0s3Pop_t0K+yAyO4MX1D1jY0buqw7s8kv0F=A@mail.gmail.com>
+Message-ID: <CAHNYxRzRgqXPq0s3Pop_t0K+yAyO4MX1D1jY0buqw7s8kv0F=A@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sc7180: Add sleep state for alc5682 codec
+To:     "Joseph S. Barrera III" <joebar@chromium.org>
+Cc:     linux-arm-msm@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Judy Hsiao <judyhsiao@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This new active-low property specify that LED has inverted logic
-(0 - enable LED, 1 - disable LED).
+On Thu, Aug 18, 2022 at 8:42 AM Joseph S. Barrera III
+<joebar@chromium.org> wrote:
+>
+> Add sleep state to acl5682. In default, gpio28 (HP_IRQ) is bias-pull-up.
+> To save power, in the new sleep state, gpio28 is bias-disable.
+>
+> sleeping, /sys/kernel/debug/gpio shows gpio28 as "no pull". When codec
+> is awake (microphone plugged in and in use), it shows gpio28 as "pull up".
+>
+> Signed-off-by: Joseph S. Barrera III <joebar@chromium.org>
+> ---
+>
+>  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 15 ++++++++++++++-
+>  1 file changed, 14 insertions(+), 1 deletion(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> index b5f534db135a..94dd6c34d997 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> @@ -755,8 +755,9 @@ hp_i2c: &i2c9 {
+>         alc5682: codec@1a {
+>                 compatible = "realtek,rt5682i";
+>                 reg = <0x1a>;
+> -               pinctrl-names = "default";
+> +               pinctrl-names = "default", "sleep";
+>                 pinctrl-0 = <&hp_irq>;
+> +               pinctrl-1 = <&hp_sleep>;
+>
+>                 #sound-dai-cells = <1>;
+>
+> @@ -1336,6 +1337,18 @@ pinconf {
+>                 };
+>         };
+>
+> +       hp_sleep: hp-sleep {
+> +               pinmux {
+> +                       pins = "gpio28";
+> +                       function = "gpio";
+> +               };
+> +
+> +               pinconf {
+> +                       pins = "gpio28";
+> +                       bias-disable;
+> +               };
+> +       };
+> +
+>         pen_irq_l: pen-irq-l {
+>                 pinmux {
+>                         pins = "gpio21";
+> --
+> 2.31.0
+>
 
-Signed-off-by: Pali Rohár <pali@kernel.org>
----
- drivers/leds/leds-syscon.c | 14 ++++++++++----
- 1 file changed, 10 insertions(+), 4 deletions(-)
+Thanks, this should save us a current leak.
 
-diff --git a/drivers/leds/leds-syscon.c b/drivers/leds/leds-syscon.c
-index 7eddb8ecb44e..5e605d8438e9 100644
---- a/drivers/leds/leds-syscon.c
-+++ b/drivers/leds/leds-syscon.c
-@@ -29,6 +29,7 @@ struct syscon_led {
- 	struct regmap *map;
- 	u32 offset;
- 	u32 mask;
-+	bool active_low;
- 	bool state;
- };
- 
-@@ -41,10 +42,10 @@ static void syscon_led_set(struct led_classdev *led_cdev,
- 	int ret;
- 
- 	if (value == LED_OFF) {
--		val = 0;
-+		val = sled->active_low ? sled->mask : 0;
- 		sled->state = false;
- 	} else {
--		val = sled->mask;
-+		val = sled->active_low ? 0 : sled->mask;
- 		sled->state = true;
- 	}
- 
-@@ -85,6 +86,8 @@ static int syscon_led_probe(struct platform_device *pdev)
- 		return -EINVAL;
- 	if (of_property_read_u32(np, "mask", &sled->mask))
- 		return -EINVAL;
-+	if (of_find_property(np, "active-low", NULL))
-+		sled->active_low = true;
- 
- 	state = of_get_property(np, "default-state", NULL);
- 	if (state) {
-@@ -95,17 +98,20 @@ static int syscon_led_probe(struct platform_device *pdev)
- 			if (ret < 0)
- 				return ret;
- 			sled->state = !!(val & sled->mask);
-+			if (sled->active_low)
-+				sled->state = !sled->state;
- 		} else if (!strcmp(state, "on")) {
- 			sled->state = true;
- 			ret = regmap_update_bits(map, sled->offset,
- 						 sled->mask,
--						 sled->mask);
-+						 sled->active_low ? 0 : sled->mask);
- 			if (ret < 0)
- 				return ret;
- 		} else {
- 			sled->state = false;
- 			ret = regmap_update_bits(map, sled->offset,
--						 sled->mask, 0);
-+						 sled->mask,
-+						 sled->active_low ? sled->mask : 0);
- 			if (ret < 0)
- 				return ret;
- 		}
--- 
-2.20.1
-
+Reviewed-by: Alexandru Stan <amstan@chromium.org>
