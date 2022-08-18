@@ -2,68 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D5C7598CEE
-	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 21:54:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47A14598CF8
+	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 22:00:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244114AbiHRTw2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Aug 2022 15:52:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42588 "EHLO
+        id S242458AbiHRT6G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Aug 2022 15:58:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242745AbiHRTw1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 15:52:27 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F5E19A97C;
-        Thu, 18 Aug 2022 12:52:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-        In-Reply-To:References; bh=3h1hpF2gVXT4E0fClqlbNqbC6Ysb7gES9vj8YGM41WM=; b=xa
-        rjqNzN7eVwSKe+eVpuEXGFj62YX5OAzJPYy4WC4jfTdyAa/O05qYnoI88g5B1xvI54kVDQuI3jct8
-        ztXwqU0y7fgSfNpFoQBuQdFDddlorMpshWZ2RvEGio5/q/zDILZ8M5w5EsyKH8IA3eshRYW8Duj7a
-        78wjcQOxjKBqYRM=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1oOlYx-00Dpsg-SD; Thu, 18 Aug 2022 21:52:19 +0200
-Date:   Thu, 18 Aug 2022 21:52:19 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
-Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 4/4] ARM: dts: dove: Add definitions for PCIe error
- interrupts
-Message-ID: <Yv6Yc2ULD8mspDoJ@lunn.ch>
-References: <20220817230036.817-1-pali@kernel.org>
- <20220817230036.817-5-pali@kernel.org>
+        with ESMTP id S235080AbiHRT6F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 15:58:05 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38C57D0772;
+        Thu, 18 Aug 2022 12:58:05 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id E9973B823F8;
+        Thu, 18 Aug 2022 19:58:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FD0CC433D6;
+        Thu, 18 Aug 2022 19:58:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1660852682;
+        bh=0GAsuDOlR0lDda6hiUVXgwjjgMJTvI8YozfrfujS6pY=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=M+3NzAVxvU0dSUj702HHHBkl32oLGBYtPphnSh7JfraPOd4A2NfVqL5QuQONgcY0g
+         sKCOZUK63WFyHbTqZ/zs681TEnK6yHFLK97Ly0dDyy0FtLFyJhO4MkUOzxoryEZXpm
+         iNouZiMYJeOr4npmZU99J6JEcPDPIaNASnHWrKaNIfvWc/2ITzP8PXp2ExHuhO97b0
+         C7YCcYoMCpZHb74c20ql9NiJ8ITjwM2Tg6pSQ9O1ukYw0uiFUIA6fdXqLPEe1q3h+h
+         Gxcwf2SoTiVBCoNvejloHtfv9TmZuTLgmOIXhiTuE991dFbSKmwbdJfpLVjWFhIHDf
+         DBElgb1Vn7bLg==
+Date:   Thu, 18 Aug 2022 12:58:01 -0700
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     wei.fang@nxp.com, hkallweit1@gmail.com, linux@armlinux.org.uk,
+        davem@davemloft.net, edumazet@google.com, pabeni@redhat.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        f.fainelli@gmail.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V3 net 2/2] net: phy: at803x: add disable hibernation
+ mode support
+Message-ID: <20220818125801.54472864@kernel.org>
+In-Reply-To: <Yv6TA9xfx4m2+YrH@lunn.ch>
+References: <20220818030054.1010660-1-wei.fang@nxp.com>
+        <20220818030054.1010660-3-wei.fang@nxp.com>
+        <Yv6TA9xfx4m2+YrH@lunn.ch>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220817230036.817-5-pali@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 18, 2022 at 01:00:36AM +0200, Pali Rohár wrote:
-> First PCIe controller on Dove SoC reports error interrupt via IRQ 15
-> and second PCIe controller via IRQ 17.
-> 
-> Signed-off-by: Pali Rohár <pali@kernel.org>
+On Thu, 18 Aug 2022 21:29:07 +0200 Andrew Lunn wrote:
+> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Any guidance on net / net-next and Fixes, Andrew?
 
-    Andrew
+Seems like a "this never worked" / "we haven't supported such platforms"
+case, perhaps?
