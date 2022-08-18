@@ -2,109 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8C7859847A
-	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 15:44:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9893A59847D
+	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 15:44:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244422AbiHRNmP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Aug 2022 09:42:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49938 "EHLO
+        id S245283AbiHRNoB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Aug 2022 09:44:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244699AbiHRNl4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 09:41:56 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8F4CB6D72
-        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 06:40:47 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id x10so1760377ljq.4
-        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 06:40:47 -0700 (PDT)
+        with ESMTP id S245209AbiHRNnk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 09:43:40 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EF1B11A00
+        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 06:43:27 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id ba1so1795440wrb.5
+        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 06:43:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        d=sifive.com; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=GqdFW3oQXAaOy2vD929UNnW4uaTA9ODo4Hnd/8x5r/w=;
-        b=YuQDwPUo3DIr0crrpdiKWa7aeyFVRW4wxBAAJDKYqTTesQxo3XNEB7/JwZoqafvALT
-         r11HeAmBrv9QiucR0M4IVeb3YctfJRVwDqIC9CNS6ERimqwegYhqz0qJOGA9HYrl+Chs
-         pMgMGU+JXY/sTK8TJF/d9B0kYD/ojMFW1HY4YWSi7r6Gg1nnPnRjComN/AVWdpqVvbZg
-         ThmVGm3VmvUG0iyuk9kqhUITpc1meIymgB79yc+laAB0OzzkFVlmYjeFCHWm3vAAtixI
-         FXifZNAdGxr1Fl7ab5VDZrYCbH2mwR/eSD66rBj74nccZIRCLmh0fiqVkZFlz+awnEm/
-         8c7w==
+        bh=gdtFXgHWhh+XIigks5RLtKKk7+/QyECdBRgxpIDg+rY=;
+        b=CRQRkmx9QJakJCitP0xE2kHRoJI7Q1h3WCopqGkW2W7VW3fBk4YPkR/W36fzpl+vs3
+         w3Pzdr+nFyqeyn/yZW44/GwgBIGNLlDSW2YHUmSqh/XFHZE1GsyCmvn5KL2wxM3A3JMh
+         G8gr0HOLL3rYLXmjdLcrHRv7sXrBdp/WQLryZs4Dqc8c8AWSznHP+q+iutARgounarEP
+         P8uaffvE53aJodK6nG1LADChr09p743rBIQjl9l3f07d7sVbd4LBfXhr4qLMEK00KyDQ
+         mzy2ISaLOHE+bgt6GhPzubLjK+0dYMPQvTSwfy44FWs8RY7h6uO9MXW0sO88U40Qas7g
+         6s5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=GqdFW3oQXAaOy2vD929UNnW4uaTA9ODo4Hnd/8x5r/w=;
-        b=A4HkVKJjzwXsa04qIUtoq1Mk/E8kcNuVoNs3AUD5t2MgtjRsG1CzgZDDf45k1mpqZ0
-         OcHp1DmwaQwSH29ECd9PZF9R81Ny5tndv8L/t+qu6fWrzWLh5xWxjIzdbuBJvkJu2eKc
-         PbqUvpArXX/PrUYHKEXPETmycMxUJV1h9/WVT3GHSv6SN/j7BfNXlJmiU3Ti7uSelEFl
-         A/Vt5T4t9e9BmFsvVo4HU5AKAEoaClOuBLxKncrtchOgVO/V3hsBzhjISt4G5cIB0boa
-         pzcMLucFCiKKTKtWrQDeih0L+mEvtr9uswCoBpjMZo3oc719bcTjcKuEIltiTZWN+Oc7
-         fjIQ==
-X-Gm-Message-State: ACgBeo1BUeXbpqtm7y7XKM8CVuxbI/cusiUt57VOp5ld+ec7QunPovn5
-        HRyby3/5pK+nM/RXcAY/fc0/XYYl+5WHFG8c
-X-Google-Smtp-Source: AA6agR6canFiyg1kTCJm0l42OJhT+cDmUJ3ZeFSp8L6NUXKQ7yoOlW+9GVvc+6KFzATTGH1C1AljcA==
-X-Received: by 2002:a05:651c:12c4:b0:25d:d71c:e249 with SMTP id 4-20020a05651c12c400b0025dd71ce249mr834770lje.17.1660830045692;
-        Thu, 18 Aug 2022 06:40:45 -0700 (PDT)
-Received: from ?IPV6:2001:14bb:ae:539c:53ab:2635:d4f2:d6d5? (d15l54z9nf469l8226z-4.rev.dnainternet.fi. [2001:14bb:ae:539c:53ab:2635:d4f2:d6d5])
-        by smtp.gmail.com with ESMTPSA id k8-20020a2ea268000000b0025e53413b6dsm241886ljm.2.2022.08.18.06.40.44
+        bh=gdtFXgHWhh+XIigks5RLtKKk7+/QyECdBRgxpIDg+rY=;
+        b=gVmSyT4jeiLeQtxYvDAmlT7edhZap9wPSU07t+yJsiWyE88DOr8dSwzixgwVJweTly
+         hLOJHYNy+OYpz+9OtEYCu7Ut2XGU3iPhaNNN8RYgjjpPL50EJ7BtJkN/zfXL0LaUCoZb
+         4tIQnlcqOFD7hbYEHdqJKXi4yocALTdLhh3UTTsMFGLDQsH7bFGweDpN+lGVS+NFct2n
+         njq2Orbb0cyTbrvWxS5u+h47wntHszAsljl8Gjzk40ejzXTOWtLOzonGJ6+mBT0A2BbG
+         uTBJrGs0jWGq1D3yf52VYV66l+vh35J7uCqR0xD8GGVZQkiuqNQE5su3H/irV/Zkr0Y3
+         0UrA==
+X-Gm-Message-State: ACgBeo3WJjZ5IZZ6njitPwk8DdKq+WpKqjGQXN/L2wBU2VoZFMIasaA+
+        jT7kIKN4Qd4Ww+2Q8QCwq6c0jQ==
+X-Google-Smtp-Source: AA6agR670uQSVwx9Q/I3W7D6pg4XeV0tOb6A7chSd5qk3c3U5X0VadcWSaPFIUHhH+t+9q2f22hOKg==
+X-Received: by 2002:a5d:64c1:0:b0:222:ce3e:bd35 with SMTP id f1-20020a5d64c1000000b00222ce3ebd35mr1646220wri.520.1660830205663;
+        Thu, 18 Aug 2022 06:43:25 -0700 (PDT)
+Received: from [192.168.0.17] (cpc152649-stkp13-2-0-cust121.10-2.cable.virginm.net. [86.15.83.122])
+        by smtp.gmail.com with ESMTPSA id z11-20020a5d4c8b000000b002252f57865asm1536525wrs.15.2022.08.18.06.43.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Aug 2022 06:40:45 -0700 (PDT)
-Message-ID: <9947dc76-ab12-f840-3439-ca383c02c598@linaro.org>
-Date:   Thu, 18 Aug 2022 16:40:43 +0300
+        Thu, 18 Aug 2022 06:43:25 -0700 (PDT)
+Message-ID: <b3605922-a0ef-7d44-7e83-3146b6c17068@sifive.com>
+Date:   Thu, 18 Aug 2022 14:43:24 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH RESEND] dt-bindings: timer: Add compatible for MediaTek
- MT8188
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Johnson Wang <johnson.wang@mediatek.com>,
-        daniel.lezcano@linaro.org, matthias.bgg@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220818124602.20394-1-johnson.wang@mediatek.com>
- <3d91fe87-feed-d083-9eeb-51293aead67a@linaro.org>
-In-Reply-To: <3d91fe87-feed-d083-9eeb-51293aead67a@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.1.1
+Subject: Re: [RFC v4 01/10] dt-bindings: pwm: Document Synopsys DesignWare
+ snps,pwm-dw-apb-timers-pwm2
+Content-Language: en-GB
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-pwm@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lee Jones <lee.jones@linaro.org>,
+        u.kleine-koenig@pengutronix.de,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greentime Hu <greentime.hu@sifive.com>,
+        jarkko.nikula@linux.intel.com,
+        William Salmon <william.salmon@sifive.com>,
+        Jude Onyenegecha <jude.onyenegecha@sifive.com>
+References: <20220816211454.237751-1-ben.dooks@sifive.com>
+ <20220816211454.237751-2-ben.dooks@sifive.com>
+ <f07d2072-4056-bf2e-82d5-271d8b8792e6@linaro.org>
+From:   Ben Dooks <ben.dooks@sifive.com>
+In-Reply-To: <f07d2072-4056-bf2e-82d5-271d8b8792e6@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/08/2022 15:51, Krzysztof Kozlowski wrote:
-> On 18/08/2022 15:46, Johnson Wang wrote:
->> Add dt-binding documentation of timer for MediaTek MT8188 SoC
->> platform.
+On 17/08/2022 06:58, Krzysztof Kozlowski wrote:
+> On 17/08/2022 00:14, Ben Dooks wrote:
+>> Add documentation for the bindings for Synopsys' DesignWare PWM block
+>> as we will be adding DT/platform support to the Linux driver soon.
 >>
->> Signed-off-by: Johnson Wang <johnson.wang@mediatek.com>
->> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
 >> ---
->>  Documentation/devicetree/bindings/timer/mediatek,mtk-timer.txt | 1 +
->>  1 file changed, 1 insertion(+)
+>> v4:
+>>   - fixed typos, added reg
+>> v3:
+>>   - add description and example
+>>   - merge the snps,pwm-number into this patch
+>>   - rename snps,pwm to snps,dw-apb-timers-pwm2
+>> v2:
+>>   - fix #pwm-cells to be 3
+>>   - fix indentation and ordering issues
+>> ---
+>>   .../bindings/pwm/snps,dw-apb-timers-pwm2.yaml | 69 +++++++++++++++++++
+>>   1 file changed, 69 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/pwm/snps,dw-apb-timers-pwm2.yaml
 >>
->> diff --git a/Documentation/devicetree/bindings/timer/mediatek,mtk-timer.txt b/Documentation/devicetree/bindings/timer/mediatek,mtk-timer.txt
->> index f1c848af91d3..8bbb6e94508b 100644
->> --- a/Documentation/devicetree/bindings/timer/mediatek,mtk-timer.txt
->> +++ b/Documentation/devicetree/bindings/timer/mediatek,mtk-timer.txt
->> @@ -25,6 +25,7 @@ Required properties:
->>  	For those SoCs that use SYST
->>  	* "mediatek,mt8183-timer" for MT8183 compatible timers (SYST)
->>  	* "mediatek,mt8186-timer" for MT8186 compatible timers (SYST)
->> +	* "mediatek,mt8188-timer" for MT8188 compatible timers (SYST)
+>> diff --git a/Documentation/devicetree/bindings/pwm/snps,dw-apb-timers-pwm2.yaml b/Documentation/devicetree/bindings/pwm/snps,dw-apb-timers-pwm2.yaml
+>> new file mode 100644
+>> index 000000000000..e7feae6d4404
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/pwm/snps,dw-apb-timers-pwm2.yaml
+>> @@ -0,0 +1,69 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +# Copyright (C) 2022 SiFive, Inc.
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/pwm/snps,dw-apb-timers-pwm2.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Synopsys DW-APB timers PWM controller
+>> +
+>> +maintainers:
+>> +  - Ben Dooks <ben.dooks@sifive.com>
+>> +
+>> +description:
+>> +  This describes the DesignWare APB timers module when used in the PWM
+>> +  mode. The IP core can be generated with various options which can
+>> +  control the functionality, the number of PWMs available and other
+>> +  internal controls the designer requires.
+>> +
+>> +  The IP block has a version register so this can be used for detection
+>> +  instead of having to encode the IP version number in the device tree
+>> +  comaptible.
+>> +
+>> +allOf:
+>> +  - $ref: pwm.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: snps,dw-apb-timers-pwm2
+>> +
+>> +  "#pwm-cells":
+>> +    const: 3
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description: Interface bus clock
+>> +      - description: PWM reference clock
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: bus
+>> +      - const: timer
+>> +
+>> +  snps,pwm-number:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    description: The number of PWM channels configured for this instance
+>> +    enum: [1, 2, 3, 4, 5, 6, 7, 8]
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +required:
+>> +  - "#pwm-cells"
+>> +  - compatible
+>> +  - reg
 > 
-> Where is the driver change implementing this?
+> Keep the same order as list of properties.
 
-Or is there a generic fallback and you just added a specific one (not
-visible on the diff)?
+ok, will fix.
 
-Best regards,
-Krzysztof
+>> +  - clocks
+>> +  - clock-names
+>> +
+>> +additionalProperties: false
+>> +
+>> +
+> 
+> Just one blank line.
+> 
+>> +examples:
+>> +  - |
+>> +    pwm: pwm@180000 {
+>> +      #pwm-cells = <3>;
+>> +      compatible = "snps,dw-apb-timers-pwm2";
+>> +      reg = <0x180000 0x200>;
+> 
+> The convention of DTS is: compatible, then reg, then rest of properties.
+> 
+>> +      clocks = <&bus &timer>;
+> 
+> You put here one item, not two. This has to be <&bus>, <&timer>
+> 
+>> +      clock-names = "bus", "timer";
+>> +    };
+
+Argh, thanks, I completely missed this as our platform only has
+one clock provider for this (the bus and timer clocks are the
+same)
+
+
+> Best regards,
+> Krzysztof
+
+Thanks for the review.
+
+I guess this is now too late for 6.0-rc ?
