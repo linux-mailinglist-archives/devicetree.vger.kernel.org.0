@@ -2,100 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27B09598902
-	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 18:39:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E25D598925
+	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 18:43:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344825AbiHRQg6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Aug 2022 12:36:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51548 "EHLO
+        id S1344273AbiHRQkE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Aug 2022 12:40:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343580AbiHRQg5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 12:36:57 -0400
-Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EE3ABD28E;
-        Thu, 18 Aug 2022 09:36:55 -0700 (PDT)
-Received: by mail-io1-f42.google.com with SMTP id z72so1480198iof.12;
-        Thu, 18 Aug 2022 09:36:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=EsZP3ELRo6TTGsFBmByT42JNw5wBc7RlaMRIBETg5Gc=;
-        b=Zp2w9mVrisi8zlrYNsIIKp9yEvxq/4/fQRSqXMDGCG+MXBk6OqDys0DJoeVMgvIO4X
-         De1eJmQGlA4ZR8f+0LaXP0eLLF7A2TZO9/rwwNxejv7lG1EXOOS+90RNFvxSKw3qzmE4
-         K8uL0SQ19ui8oCwNAYi2QnO1ruTYBGDxVBkH/a53XyMK0dIMn0lkl6QXAUUxftF7Mwes
-         FD2jFtuxTP4nXs1uJ4xOaVSlbnCTLH9Kp1UCo9KJz8ire6Kfx8qC9TvyqvlkwJK5ha/V
-         +lsgftTnXKTnOA5uJE9DbBR2TSXMRsQUrdqsHUsPicNJYDjNu/XQuTI/xqwGFfxFQI/t
-         1wFw==
-X-Gm-Message-State: ACgBeo0VbclgPS7c71bpk+pHlqRiH/kDQVAjxJJ/LUNCouAmsDTtunHb
-        UxV2FOKD1VilVpnDfM84rA==
-X-Google-Smtp-Source: AA6agR7XYb4e6JSFTnrS/q7WlPl4E2gg4SEWAy++LgChjlcloI3dnrD9XsgcrfX8E4rSums27VI5/w==
-X-Received: by 2002:a05:6602:330e:b0:67b:9fed:49db with SMTP id b14-20020a056602330e00b0067b9fed49dbmr1740842ioz.54.1660840614873;
-        Thu, 18 Aug 2022 09:36:54 -0700 (PDT)
-Received: from robh.at.kernel.org ([2607:fb90:647:4ff2:3529:f8cd:d6cd:ac54])
-        by smtp.gmail.com with ESMTPSA id b40-20020a0295ab000000b003427281824csm756542jai.128.2022.08.18.09.36.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Aug 2022 09:36:54 -0700 (PDT)
-Received: (nullmailer pid 1996636 invoked by uid 1000);
-        Thu, 18 Aug 2022 16:36:48 -0000
-Date:   Thu, 18 Aug 2022 10:36:48 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Conor Dooley <mail@conchuod.ie>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Anup Patel <anup@brainfault.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Guo Ren <guoren@kernel.org>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Jessica Clarke <jrtc27@jrtc27.com>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, qemu-riscv@nongnu.org
-Subject: Re: [PATCH v3 2/4] dt-bindings: interrupt-controller: sifive,plic:
- add legacy riscv compatible
-Message-ID: <20220818163648.GD1978870-robh@kernel.org>
-References: <20220817201212.990712-1-mail@conchuod.ie>
- <20220817201212.990712-3-mail@conchuod.ie>
+        with ESMTP id S244985AbiHRQkD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 12:40:03 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53DAC8D3EB;
+        Thu, 18 Aug 2022 09:39:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1660840799; x=1692376799;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=gqGgifVU8B0RyjP+gQqcObAhJ4b3l8QsulvEhM3OJiw=;
+  b=GK7mpWWEl9bFQoPgFO1uodxZuajVlib0aa3zUQAg8uOG761ynBoJw1iG
+   VdIaW5X/CenRk0O4iN6ItxuNuGoflYzHYbm0VrBTZIGPr2peKLJa1/Vw8
+   H57NJrjqKS+wwfvDpILZjDnl01eM8rsQGIN3/MrBS74qpdhC+GoaaFLD8
+   fDXcQnMSLq2OFw4/qmj+mRAUu2jmWt5UpxOIJYjTzmnHI7VMq4QYQwd2A
+   EUJ5UuXJUmzdOEn6/vaMnEra0q3YCXgeZtjZQJvaX8ruGmQyXAc+H1zfP
+   9Y18POrATSgQGpwPSaciz8/FShsJWhCjhLArHhMtidAvvrqiBbEzaVy85
+   A==;
+X-IronPort-AV: E=Sophos;i="5.93,247,1654585200"; 
+   d="scan'208";a="176812613"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 18 Aug 2022 09:39:58 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Thu, 18 Aug 2022 09:39:56 -0700
+Received: from soft-dev3-1.microsemi.net (10.10.115.15) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2507.12 via Frontend Transport; Thu, 18 Aug 2022 09:39:55 -0700
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+To:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     <srinivas.kandagatla@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>
+Subject: [PATCH 0/2] nvmem: lan966x-otpc: add support
+Date:   Thu, 18 Aug 2022 18:44:03 +0200
+Message-ID: <20220818164405.1953698-1-horatiu.vultur@microchip.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220817201212.990712-3-mail@conchuod.ie>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 17, 2022 at 09:12:11PM +0100, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
-> 
-> While "real" hardware might not use the compatible string "riscv,plic0"
-> it is present in the driver & QEMU uses it for automatically generated
-> virt machine dtbs. To avoid dt-validate problems with QEMU produced
-> dtbs, such as the following, add it to the binding.
-> 
-> riscv-virt.dtb: plic@c000000: compatible: 'oneOf' conditional failed, one must be fixed:
->         'sifive,plic-1.0.0' is not one of ['sifive,fu540-c000-plic', 'starfive,jh7100-plic', 'canaan,k210-plic']
->         'sifive,plic-1.0.0' is not one of ['allwinner,sun20i-d1-plic']
->         'sifive,plic-1.0.0' was expected
->         'thead,c900-plic' was expected
-> riscv-virt.dtb: plic@c000000: '#address-cells' is a required property
-> 
-> Reported-by: Rob Herring <robh@kernel.org>
-> Link: https://lore.kernel.org/linux-riscv/20220803170552.GA2250266-robh@kernel.org/
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  .../bindings/interrupt-controller/sifive,plic-1.0.0.yaml     | 5 +++++
->  1 file changed, 5 insertions(+)
+Add support for lan966x OTP controller that is available on lan966x.
+The driver gives access to non-volatile memory. It allows both write
+and read access to it.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Horatiu Vultur (2):
+  dt-bindings: lan966x-otpc: document Lan966X OTPC
+  nvmem: lan966x-otpc: add support
+
+ .../nvmem/microchip,lan966x-otpc.yaml         |  42 +++
+ drivers/nvmem/Kconfig                         |   8 +
+ drivers/nvmem/Makefile                        |   2 +
+ drivers/nvmem/lan966x-otpc.c                  | 248 ++++++++++++++++++
+ 4 files changed, 300 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/nvmem/microchip,lan966x-otpc.yaml
+ create mode 100644 drivers/nvmem/lan966x-otpc.c
+
+-- 
+2.33.0
+
