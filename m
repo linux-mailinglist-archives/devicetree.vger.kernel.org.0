@@ -2,151 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75D26598DFC
-	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 22:27:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE599598E00
+	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 22:27:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345959AbiHRUZh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Aug 2022 16:25:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41352 "EHLO
+        id S1346044AbiHRU1i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Aug 2022 16:27:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345954AbiHRUZf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 16:25:35 -0400
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83EC6E5C;
-        Thu, 18 Aug 2022 13:25:34 -0700 (PDT)
-Received: by mail-pl1-x633.google.com with SMTP id c2so2446633plo.3;
-        Thu, 18 Aug 2022 13:25:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc;
-        bh=hawSr6EW79x1Tt14JmxznMiR5uu37L77vXSBKHyhS2M=;
-        b=dFAjWjouQfBXw/HNVPbxT+n8+WwbRR/BhhbJtDnmXhXukoRr0zKdG+AKlkUrdt5DKB
-         Hv13SgrJUnOkvByLfwy86T3cyIzXlaTRL7ZGqk7z2SMPnJO84baoJq6+zYU0umPCzKIw
-         iTdZAOfJMaYG42bXDRgFvjsaUgn0sAPqg4Cnjzr7h1eQf+ncIIdAP3rnNTitf984QZUt
-         /7BTLeyGF0cCPeOceEty7QrAhEMXpuUgEBJp4p3ndA810SQQbeurNydj1l2ur2NYzzIn
-         NJXUcK3X8GUFRWLgGZUFYW32egLt54HoadrdpZTanK6+TigYu1B2QbL11T1xRhlclHbq
-         I+2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc;
-        bh=hawSr6EW79x1Tt14JmxznMiR5uu37L77vXSBKHyhS2M=;
-        b=pMw5990vPHBpRkOwMcZ26ta2iNqlnJCZSlyQC3eSU4a1bY95+Vcg37jMrpxWICI8Cj
-         d2+zB8+FpI1aX705GaJitYMHhXcDKRGcCW/D0ad5825oagE+H3Hk4iIo0wfseEitTceg
-         udrhxlc9bnmmx8ehxzOid2VOJ8/nvrNFN7zVptYwYsAf+H2tdHiTHiYvqr5GT462mIbR
-         ycXveJyfbXMovJL8jyLrfE3xXpMeyUc1lYfxYpnyd4eL0RKXeGBs9W/QE2IqErOrtWcq
-         WKiwA9GwxLS3N+EtQ/venBtzMoXuxx7xeYETiw2MhCmZBMlMF3lhQXCL6/Af0+tADvrB
-         Shig==
-X-Gm-Message-State: ACgBeo2Nq0cvptNY45Ux58/wlU4TXWH/uF9CdLawxtamf/Rmg1Btomwq
-        7ovPEQArDt+Af1Ln2k8bXMw=
-X-Google-Smtp-Source: AA6agR6+79n1acOYDvuegoZ4V3jl1ePIl+Fdn8o458LQhkyXsXLvxhkIyCtHVKfxU8NutAFG1ahXQQ==
-X-Received: by 2002:a17:902:d489:b0:172:bedc:995c with SMTP id c9-20020a170902d48900b00172bedc995cmr559670plg.162.1660854333306;
-        Thu, 18 Aug 2022 13:25:33 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id s7-20020a170902ea0700b0016f1aa00abbsm1800402plg.195.2022.08.18.13.25.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Aug 2022 13:25:32 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Thu, 18 Aug 2022 13:25:31 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Eliav Farber <farbere@amazon.com>
-Cc:     jdelvare@suse.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, talel@amazon.com, hhhawa@amazon.com,
-        jonnyc@amazon.com, hanochu@amazon.com, ronenk@amazon.com,
-        itamark@amazon.com, shellykz@amazon.com, shorer@amazon.com,
-        amitlavi@amazon.com, almogbs@amazon.com, dwmw@amazon.co.uk,
-        rtanwar@maxlinear.com
-Subject: Re: [PATCH v2 13/16] hwmon: (mr75203) add thermal coefficient
- properties for Moortec PVT controller
-Message-ID: <20220818202531.GA3431466@roeck-us.net>
-References: <20220817054321.6519-1-farbere@amazon.com>
- <20220817054321.6519-14-farbere@amazon.com>
+        with ESMTP id S1346007AbiHRU1f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 16:27:35 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48E2E12D09;
+        Thu, 18 Aug 2022 13:27:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+        In-Reply-To:References; bh=pYW7sT3jh29AWNhJvTI8IlA/O24S5q/YAiEWOzJFAt8=; b=LB
+        OZg4+L7ld0yvUo5vbEosaxy60S2JN+n31F0W6bAtTFxLs6MQHJpgBz+L31v9WbvWlpUf41AMDwhhO
+        XYWuUBnJkNcFq8kiK1vx0Jh6LC0lDUoHRL5aQkgtR97Kc66Rn6kcDbYfQVzbLwD8fwFAnvozum9Dv
+        LGhS1mJtgGWliC0=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1oOm6u-00DqE5-L3; Thu, 18 Aug 2022 22:27:24 +0200
+Date:   Thu, 18 Aug 2022 22:27:24 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
+Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/4] PCI: mvebu: Implement support for interrupts on
+ emulated bridge
+Message-ID: <Yv6grNn5BDFjctFP@lunn.ch>
+References: <20220817230036.817-1-pali@kernel.org>
+ <20220817230036.817-3-pali@kernel.org>
+ <Yv6YOZ2FuTn8D5qS@lunn.ch>
+ <20220818200737.7w2wqh62arfrskks@pali>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20220817054321.6519-14-farbere@amazon.com>
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220818200737.7w2wqh62arfrskks@pali>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 17, 2022 at 05:43:18AM +0000, Eliav Farber wrote:
-> Add optional "ts-coeff-g", "ts-coeff-h", "ts-coeff-cal5" and
-> "ts-coeff-j" properties to be used instead of defaults for the
-> thermal equasion.
+On Thu, Aug 18, 2022 at 10:07:37PM +0200, Pali Rohár wrote:
+> On Thursday 18 August 2022 21:51:21 Andrew Lunn wrote:
+> > > -static irqreturn_t mvebu_pcie_irq_handler(int irq, void *arg)
+> > > +static irqreturn_t mvebu_pcie_error_irq_handler(int irq, void *arg)
+> > > +{
+> > > +	struct mvebu_pcie_port *port = arg;
+> > > +	struct device *dev = &port->pcie->pdev->dev;
+> > > +	u32 cause, unmask, status;
+> > > +
+> > > +	cause = mvebu_readl(port, PCIE_INT_CAUSE_OFF);
+> > > +	unmask = mvebu_readl(port, PCIE_INT_UNMASK_OFF);
+> > > +	status = cause & unmask;
+> > > +
+> > > +	/* "error" interrupt handler does not process INTX interrupts */
+> > > +	status &= ~(PCIE_INT_INTX(0) | PCIE_INT_INTX(1) |
+> > > +		    PCIE_INT_INTX(2) | PCIE_INT_INTX(3));
+> > 
+> > Just for my understanding...
+> > 
+> > There are two interrupts
 > 
-Vendor prefix again, and shouldn;t there be some note about the
-to-be-used defaults ?
-
-Guenter
-
-> Signed-off-by: Eliav Farber <farbere@amazon.com>
-> ---
->  .../bindings/hwmon/moortec,mr75203.yaml       | 33 +++++++++++++++++++
->  1 file changed, 33 insertions(+)
+> yes
 > 
-> diff --git a/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml b/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
-> index e2a55001eefc..867664bd937f 100644
-> --- a/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
-> +++ b/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
-> @@ -62,6 +62,30 @@ properties:
->        used to normalzie the voltage output results.
->      $ref: /schemas/types.yaml#definitions/uint32
->  
-> +  ts-coeff-g:
-> +    description:
-> +      G coefficient for thermal equation.
-> +    maxItems: 1
-> +    $ref: /schemas/types.yaml#definitions/uint32
-> +
-> +  ts-coeff-h:
-> +    description:
-> +      H coefficient for thermal equation.
-> +    maxItems: 1
-> +    $ref: /schemas/types.yaml#definitions/uint32
-> +
-> +  ts-coeff-cal5:
-> +    description:
-> +      cal5 coefficient for thermal equation (can't be 0).
-> +    maxItems: 1
-> +    $ref: /schemas/types.yaml#definitions/uint32
-> +
-> +  ts-coeff-j:
-> +    description:
-> +      J coefficient for thermal equation.
-> +    maxItems: 1
-> +    $ref: /schemas/types.yaml#definitions/int32
-> +
->  required:
->    - compatible
->    - reg
-> @@ -75,6 +99,10 @@ additionalProperties:
->    - reset-control-skip
->    - vm-active-channels
->    - vm-pre-scalar-ch#
-> +  - ts-coeff-g
-> +  - ts-coeff-h
-> +  - ts-coeff-cal5
-> +  - ts-coeff-j
->  
->  examples:
->    - |
-> @@ -90,5 +118,10 @@ examples:
->          resets = <&rcu0 0x40 7>;
->          vm-active-channels = [08 10 02];
->          vm-pre-scalar-ch5 = <2>;
-> +        ts-coeff-g = <57400>;
-> +        ts-coeff-h = <249400>;
-> +        ts-coeff-cal5 = <4096>;
-> +        ts-coeff-j = <0>;
-> +
->          #thermal-sensor-cells = <1>;
->      };
+> > but the status information what those
+> > interrupts actually mean are all packed into one register?
+> 
+> yes
+> 
+> for masking individual interrupt events there is just one shared
+> register for both "intx" and "error" interrupt source.
+> 
+> and also there is also just one shared "cause" register which says which
+> individual interrupt events happened.
+> 
+> > I assume reading the clause register does not clear set bits?
+> 
+> yes, reading does not clear any interrupt event.
+> 
+> > Otherwise there
+> > would be a race condition.
+> 
+> > Are these actually level interrupts
+> 
+> yes
+> 
+> > and in order to clear them you need to poke some other register?
+> 
+> to clear individual interrupt event you have to write corresponding 1b
+> bit into that cause register.
+> 
+> so if interrupts events BIT(24), BIT(16) and BIT(17) happened and
+> BIT(24), BIT(25), BIT(26), BIT(27) and BIT(16) are unmasked then CPU
+> receives two interrupts (one for intx:24-27 and one for err:16). kernel
+> will call interrupt handlers for both intx and err (possible also in
+> parallel if it unmasked on different CPUs) and each handler just clears
+> events which process. So writing BIT(16) into cause register clears only
+> event 16 and all other (24-27, 17) are still active. And level interrupt
+> (the correct one intx or err) is then triggered again.
+
+Thanks for the explanation.
+
+I don't know enough about PCI to be able to give a meaningful
+Reviewed-by, so i will leave that to the PCI maintainer. But the DT
+bits look good to me.
+
+     Andrew
