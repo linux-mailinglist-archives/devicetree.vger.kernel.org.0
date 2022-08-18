@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 250ED598357
-	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 14:43:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E03C59834B
+	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 14:43:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234222AbiHRMmc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Aug 2022 08:42:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46422 "EHLO
+        id S244341AbiHRMme (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Aug 2022 08:42:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244713AbiHRMma (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 08:42:30 -0400
-Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AF2AB285F
-        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 05:42:28 -0700 (PDT)
-Received: by mail-pl1-x62d.google.com with SMTP id m2so1408094pls.4
-        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 05:42:28 -0700 (PDT)
+        with ESMTP id S244482AbiHRMmc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 08:42:32 -0400
+Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB14AB2845
+        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 05:42:31 -0700 (PDT)
+Received: by mail-pf1-x42e.google.com with SMTP id k14so1456093pfh.0
+        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 05:42:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=4s0QS1YI0paySYsrNb2nScBUXsP2sNl5MUjElvRFqho=;
-        b=XAD0qX9CZDcoAwKOoHt4O2qLebesJ8pIPf4PK7e0q6QLPA+C9Z9uQ+qhtRU39t5k3p
-         7TUYo5LaXpEeN83eUUZAz2TP+4JGSrY78VWZea83C1zC/FeL91fE3jvrVVUA0Cid1ze5
-         MA31HEw6HGCR0VuEQS50cei5p0lYf6kuBs/rS0rk0NNP/o421lyj8n0vAfNUhNBQFouG
-         Sx/IHtzcRaZfV1EhgyedSPieLZ8HyZ/5hDoPq/wSdR7Z0Xs/kDaLMXhmkLpPlG2ad9Dn
-         wr4nozBvTIGIYfhILZnnCJWKBeH30Fl+IPfACWarQfB7rG0esj7AuNkRlK/FluZ9BkHQ
-         6OyQ==
+        bh=YgF3WO8aiyfxlHNlRk4wZ4N33kytZoAzp/W6RtdrMy4=;
+        b=FA1dTD8NI6q9JLu6sTU0mbbBdTv/70Ul6F0UzUEvc4M+3EgYUrqSdloK16KkJaRReH
+         xKdFFusoJuG2d+Z1md77+7ffyiQ1uGBGkbAu1/QgDbZHaSj+WAj9wvu5CmBtfqRq1RxT
+         N8LkkdTvV7OkbxzxAoOdJVQ4VlYyaZVEox2gKVlF2U7QcSux/O8IULGhKpGNmzpY89Fe
+         5okdqomwXKsIdBBmIL2xOScdeXGfhRSe0ZZZtDYk4UN3MUQF8+mvg4nFg8kQshM8VfkX
+         8GzDq3ueWxNLMgAM8hT+xzWoAp5buoV6GJIj0hHLSLJ6U+tq+MpNtCvL0D6agnr3LTKw
+         yaBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=4s0QS1YI0paySYsrNb2nScBUXsP2sNl5MUjElvRFqho=;
-        b=10pSam8wy2rhNy1twDbycF3+vnFhu9fXu/juKspwMYo0TZ3MNB5fEIaqleTL5htosW
-         s1Dtk9WGvZgWQ0ucFlSBh1eG2D//UxF0VpV07GjMDMxOPeRtRjOO+IsXu8IpxPmlZKLY
-         ezrXtivfu1WcO/JXCbYZ/1m/zMA4zR8dEFM91dN0Qyy6fsOlVIHn7EDYn3vTkMlBh9Y9
-         hEZleSZB37ezKlTJWBfQAr21BdtZbbW6+SkJQI6eRwj8aWhwnWj7EE6/AXE11B4yDunz
-         WPctS481h6oW7WdG7I19Rh2jATQGzjjCIN8V0Lo6EKh/Y5fyc624jd8g6Z8kcV5pTw7O
-         kgJQ==
-X-Gm-Message-State: ACgBeo1H6JQ5BvvFQA/U77sn+Gaxx+ecoeHNJZJy67QmjPrHLNjAVBnL
-        buJvzEYU4UPQnyglWalXas89gA==
-X-Google-Smtp-Source: AA6agR6SU9vsvktMtY8/dhE38ozK75m/CFOIHLtERKeF96QosbQG74dWJWMYkTWZgzm6YNLdAbd5mw==
-X-Received: by 2002:a17:90b:1c82:b0:1ee:eb41:b141 with SMTP id oo2-20020a17090b1c8200b001eeeb41b141mr2989422pjb.143.1660826547926;
-        Thu, 18 Aug 2022 05:42:27 -0700 (PDT)
+        bh=YgF3WO8aiyfxlHNlRk4wZ4N33kytZoAzp/W6RtdrMy4=;
+        b=5TfZWAzcEpsPS2sVgnYjwsg6YQYoyns2LoBi/6HBQ6v08KQVjP5JFi3aDGb3zB0N9Q
+         REYOQl/YrwT3cvFYEVnPl/rZ7vOWqJzOJ3PQIz65WJdmzlbIu2CmGzVtDKitjRg+/wJF
+         EDadfGf2QU/Wf3RxXK3/srlIrkFlmnD7ani7JrBIhWCzJ6yazkxTn3UpTmalNag+IRvc
+         bv8ViwgU06+iZxo9fAyZdehY/ck2udASaAWhKDgevrqBf+Lkk7lxqAZBWNw3q/pauRc4
+         isfQ01J4WNd0PxDfbpqaHLqHefEIpNzvDJ1Yn+OIFBppOMUNUzumfMXZxdkwRoTlBkcp
+         UBfQ==
+X-Gm-Message-State: ACgBeo3RAeFD1r7UTmWjIQAZdjPWyxccD4pRR7aF9S5LazGDljRijLUR
+        56LAtf1eKEZkddFDw4E/msxGGQ==
+X-Google-Smtp-Source: AA6agR62Vct4PZPMSDKDlX0E2z2koGoB/pktLdgHOZTtpK75oOJsKSzWoccwnV/pHO3IoAh/BasqSg==
+X-Received: by 2002:a63:2148:0:b0:427:17f6:7c05 with SMTP id s8-20020a632148000000b0042717f67c05mr2339116pgm.200.1660826551273;
+        Thu, 18 Aug 2022 05:42:31 -0700 (PDT)
 Received: from localhost.localdomain ([2405:201:c00a:a073:d1c4:8ea9:aedc:add1])
-        by smtp.gmail.com with ESMTPSA id x6-20020aa78f06000000b005302cef1684sm1495651pfr.34.2022.08.18.05.42.24
+        by smtp.gmail.com with ESMTPSA id x6-20020aa78f06000000b005302cef1684sm1495651pfr.34.2022.08.18.05.42.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Aug 2022 05:42:27 -0700 (PDT)
+        Thu, 18 Aug 2022 05:42:31 -0700 (PDT)
 From:   Jagan Teki <jagan@edgeble.ai>
 To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -54,9 +54,9 @@ To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
 Cc:     linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
         Jagan Teki <jagan@edgeble.ai>, Rob Herring <robh@kernel.org>
-Subject: [PATCH v3 12/19] dt-bindings: soc: rockchip: Document RV1126 grf
-Date:   Thu, 18 Aug 2022 18:11:25 +0530
-Message-Id: <20220818124132.125304-13-jagan@edgeble.ai>
+Subject: [PATCH v3 13/19] dt-bindings: soc: rockchip: Document RV1126 pmugrf
+Date:   Thu, 18 Aug 2022 18:11:26 +0530
+Message-Id: <20220818124132.125304-14-jagan@edgeble.ai>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220818124132.125304-1-jagan@edgeble.ai>
 References: <20220818124132.125304-1-jagan@edgeble.ai>
@@ -71,7 +71,7 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document compatible string for Rockchip RV1126 grf.
+Document compatible string for Rockchip RV1126 pmugrf.
 
 Acked-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Jagan Teki <jagan@edgeble.ai>
@@ -85,14 +85,14 @@ Changes for v2:
  1 file changed, 1 insertion(+)
 
 diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-index 75a2b8bb25fb..dd7090d668f5 100644
+index dd7090d668f5..521fbcb8eeb9 100644
 --- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
 +++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-@@ -45,6 +45,7 @@ properties:
-               - rockchip,rk3568-pmugrf
+@@ -46,6 +46,7 @@ properties:
                - rockchip,rv1108-grf
                - rockchip,rv1108-pmugrf
-+              - rockchip,rv1126-grf
+               - rockchip,rv1126-grf
++              - rockchip,rv1126-pmugrf
            - const: syscon
            - const: simple-mfd
  
