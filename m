@@ -2,104 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E6E359837A
-	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 14:52:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC7B759839F
+	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 15:04:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244769AbiHRMvr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Aug 2022 08:51:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40482 "EHLO
+        id S244864AbiHRNBM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Aug 2022 09:01:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244549AbiHRMvq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 08:51:46 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 771867CA9E
-        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 05:51:45 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id q16so1043976ljp.7
-        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 05:51:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=wAqai+lXG/XM8EttQSkFjFqBGi7USxO4pZCplt3DnME=;
-        b=mVVqXERkdEtMBQvWvwInmEeiAtkRN2jSEfsK/gHOd+N3so+k1Z7TEAWpWI0w6pSX2K
-         zkAohq61XTRTyDz6+UUGzX1uZOHgp61QPeu9P2Uv6ZsgmiwgTvbWcsAJZW5kgIu5NF8v
-         cLgf3I/sthTuqGVdybqLZ0piop06pn4P6NsEDQXraP1HprX1cXhl0w/sDCOGmQQZ4l0d
-         IrPDp9H0uvZ4sr97AVvQXqdAe7N5FTRA0P8RJw2GiE730oQBt0lCIE3lEfkxjQT+cR4I
-         4r1gCgLB4OmIVEvge7SHdIr0W58W3HuOu+RxYO7V0m5HVFDlCZDzmiXhbFx48pOYE/zN
-         PntA==
+        with ESMTP id S244886AbiHRNBH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 09:01:07 -0400
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0511975CC8;
+        Thu, 18 Aug 2022 06:01:07 -0700 (PDT)
+Received: by mail-qt1-f171.google.com with SMTP id c20so1003335qtw.8;
+        Thu, 18 Aug 2022 06:01:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=wAqai+lXG/XM8EttQSkFjFqBGi7USxO4pZCplt3DnME=;
-        b=Kh9g4+0v+hYTCHlDKRvKMTmAJGsSGSZZt8jASILH8eA6zExmRT9ZMIXSlskD4ZezPA
-         HHqFLuXu7rrqUlyjTe5FCJDXm7uXizrW4oZM+9acVxNQwKK8qjEKs3n1Nrr63Z3Dw9yf
-         ux2nwyhv+Yi+YFTFb80lkKJ9WdnoL1GCD6I2sFofFtBvX1dmyYTnlJkLBU8BU7io2+w7
-         ix+i4cmUkXWps4rhl7wwgBFmroZp/Od3deNur3Lwmc6woVklXiwHeB2nljmGEE80dPvr
-         SnUR/Hil1hgvznFO9z/B8BuXPvaUbFDanSa8OKx/Atcpqy7em75kiNQCWcQk0WIJWhAv
-         ogrQ==
-X-Gm-Message-State: ACgBeo0TwrXQc9UJjuFe403csF8knG34XS6PJkeozAHuybB1HcgDieXo
-        nGembUZSDGttpanLyD9oNEOVZw==
-X-Google-Smtp-Source: AA6agR7nEPbqE+6xr6o+AFM2JxbiRFCsOLtcOWcSBgLsZS5/v6lBOfAfGh51i5XsjzugZinmU4Fksg==
-X-Received: by 2002:a2e:9acd:0:b0:261:6fd6:cc with SMTP id p13-20020a2e9acd000000b002616fd600ccmr830228ljj.55.1660827103843;
-        Thu, 18 Aug 2022 05:51:43 -0700 (PDT)
-Received: from ?IPV6:2001:14bb:ae:539c:53ab:2635:d4f2:d6d5? (d15l54z9nf469l8226z-4.rev.dnainternet.fi. [2001:14bb:ae:539c:53ab:2635:d4f2:d6d5])
-        by smtp.gmail.com with ESMTPSA id i19-20020a2ea233000000b0025df4aa1e3asm209865ljm.64.2022.08.18.05.51.42
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=G6NRVtnuSqWqwGqpWt9DLp5hNULRC9LvfIAkNgdvtjM=;
+        b=kJlGbGfmxfBqf+bVVh1QtEbfOKf4xTrV9NX0JzY8WP2LZQ5OM1y9CAD0vWzGEG4Vbc
+         y0cTvjr7k8yiqbGarpUAFzx+Y6c/N9E98NxDQPJxD2wAkyiKgL+PnhGsU5umWk0qnyiZ
+         ctEv0IQVLBpH4hBb0o6W5aheZcorfIsj6QjuoRcdY9S05iDuGO0/e9+FOiCYw1/IV3cx
+         6lpZu8eCgnSve26GBIPYxqA00xxopWjum8UPHglF3rXQpjhmPNl5ZpIEyKsqL7TLzMn4
+         6RzK/ht5jG9siNtp97ntMTc77gHdBBoR2VqOXS7zwfVuBA+hw0cqcHxhpNVH5BLV9ant
+         4c8w==
+X-Gm-Message-State: ACgBeo0KOUzAV1rn9SNnpToWhrZtnAfC5Otg6a2UAf7QqWqCg9ayZA7k
+        LfT9VJCT6DObk5I8Twh5A4ee/qaww3znXg==
+X-Google-Smtp-Source: AA6agR75szNWxxDWZq4k1aFKjLruPb048asQ5OckjyQNTnlEAHYjLNCu5y8pFD5TXmxu7gn1BzFIYg==
+X-Received: by 2002:ac8:58c6:0:b0:343:6ea4:c5d with SMTP id u6-20020ac858c6000000b003436ea40c5dmr2339896qta.371.1660827665177;
+        Thu, 18 Aug 2022 06:01:05 -0700 (PDT)
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
+        by smtp.gmail.com with ESMTPSA id 19-20020ac84e93000000b0033e51aea00esm1025051qtp.25.2022.08.18.06.01.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Aug 2022 05:51:43 -0700 (PDT)
-Message-ID: <3d91fe87-feed-d083-9eeb-51293aead67a@linaro.org>
-Date:   Thu, 18 Aug 2022 15:51:41 +0300
+        Thu, 18 Aug 2022 06:01:05 -0700 (PDT)
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-31f445bd486so38260767b3.13;
+        Thu, 18 Aug 2022 06:01:04 -0700 (PDT)
+X-Received: by 2002:a05:6902:100a:b0:676:ed53:25b0 with SMTP id
+ w10-20020a056902100a00b00676ed5325b0mr2514289ybt.365.1660827625358; Thu, 18
+ Aug 2022 06:00:25 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH RESEND] dt-bindings: timer: Add compatible for MediaTek
- MT8188
-Content-Language: en-US
-To:     Johnson Wang <johnson.wang@mediatek.com>,
-        daniel.lezcano@linaro.org, matthias.bgg@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220818124602.20394-1-johnson.wang@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220818124602.20394-1-johnson.wang@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220815151451.23293-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20220815151451.23293-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20220815151451.23293-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 18 Aug 2022 15:00:13 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWWv0MUsxJgy1XLNm3CENoAkRgZ2dwcYDgPdAkApA4=fQ@mail.gmail.com>
+Message-ID: <CAMuHMdWWv0MUsxJgy1XLNm3CENoAkRgZ2dwcYDgPdAkApA4=fQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/8] dt-bindings: riscv: Sort the CPU core list alphabetically
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Conor Dooley <Conor.Dooley@microchip.com>,
+        Anup Patel <anup@brainfault.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/08/2022 15:46, Johnson Wang wrote:
-> Add dt-binding documentation of timer for MediaTek MT8188 SoC
-> platform.
-> 
-> Signed-off-by: Johnson Wang <johnson.wang@mediatek.com>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  Documentation/devicetree/bindings/timer/mediatek,mtk-timer.txt | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/timer/mediatek,mtk-timer.txt b/Documentation/devicetree/bindings/timer/mediatek,mtk-timer.txt
-> index f1c848af91d3..8bbb6e94508b 100644
-> --- a/Documentation/devicetree/bindings/timer/mediatek,mtk-timer.txt
-> +++ b/Documentation/devicetree/bindings/timer/mediatek,mtk-timer.txt
-> @@ -25,6 +25,7 @@ Required properties:
->  	For those SoCs that use SYST
->  	* "mediatek,mt8183-timer" for MT8183 compatible timers (SYST)
->  	* "mediatek,mt8186-timer" for MT8186 compatible timers (SYST)
-> +	* "mediatek,mt8188-timer" for MT8188 compatible timers (SYST)
+On Mon, Aug 15, 2022 at 5:16 PM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> Sort the CPU cores list alphabetically for maintenance.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Where is the driver change implementing this?
 
-Best regards,
-Krzysztof
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
