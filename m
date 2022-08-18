@@ -2,80 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 52698597E3C
-	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 07:51:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AF5D597E57
+	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 08:02:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243349AbiHRFtD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Aug 2022 01:49:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36134 "EHLO
+        id S243460AbiHRGBe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Aug 2022 02:01:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238680AbiHRFtB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 01:49:01 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0BEC49B57
-        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 22:48:56 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id gb36so1279681ejc.10
-        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 22:48:56 -0700 (PDT)
+        with ESMTP id S239863AbiHRGBd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 02:01:33 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0CF87CAA7
+        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 23:01:31 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id e20so11262wri.13
+        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 23:01:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google;
+        d=linaro.org; s=google;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc;
-        bh=zl2T5yu71OCZ3gEUlCSd7WNQiwAgE6fudMgRt3dBKns=;
-        b=NOzfGWE4AW9ZmOsBO954Q17+AKVcl5JeUUM1sy2wwGXKvacuUd+FtfffNKwlvrIlUK
-         h+IvPG//sIb5yfq6tLpvVblMsJi2GIQ7i4hhhMo8yxvqVRsMRLI0MfRuZwtR0tVV+qh3
-         nvArlrIZ5vkliAS1ooNsz2q5c38dit6DAXLpH4+9Yuj99Tz66TtX738iJZpV19wGLeGj
-         0BB+WiWeoxCMZAvw4kzccNZiCGiruiQ75z3d6rrNEWGehME3FtKY89a7fixv07ONeT6N
-         1J18JXzLdjSWu1KAtBya8mY/4vRR6KlOPuO4s9uqrRb/qJrpC13KjmCn1gxKNwSSIe1H
-         xyNA==
+        bh=bZty3y2darx5s7m8eOWVGV+bKL3GxP3dVhk/MBA5fWU=;
+        b=f+orhQX9Aqm2vt86cAoz3fiZf50H35jqr/TNHqkMa0UF3dukyQrgs61PyJg9OBc0K2
+         fAc9jEui95sT2PJMyw+Yb8O7evo/Ey1XnGjWwUf70sAkvmieksb2OPLCfi5XUWvPA84X
+         geM4Rt5xnkFgxRaORd6pyt5qA20/A63EsKQMcmAbj6t/6DGisbDELa9Am2u9El99gH8M
+         ckXBnp79uq3NwQmOUOUIkZXtntavZu5tuAbynf2kFLbAlBLnHn+qYsVEcOLVnI43xAnv
+         lF9GGCYgx0yePaR/UsQu5OV4ITk07wiZP7+XJueTckNSZOgQdj4kDKaIdWYqPeuSd9zZ
+         hLXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=zl2T5yu71OCZ3gEUlCSd7WNQiwAgE6fudMgRt3dBKns=;
-        b=2Dm2Xib+VbOWp4rsca9MssGFmh8vPy/xWfWUibozI939CBGZwXX6Lt3su+s9cWVENB
-         1iEf7GyBktLY913TjdgBrIhPXtl7qQRaguJTdZ1eZgx7ias2HrDoTeksvJQQMePG4FSf
-         Nmcjnpd1b7RgsIuOHOtR4ZDYk+zuO1166d0ZM+5OCUWtNzkAiOv5nGvq0nBtbP/49f6+
-         9hUAkcWZU/Z8pYE0SSI+JRwmAws89KxRbXGWMd+SYI87Yh1ttYQSBvaPVqMF2n2qm9Hy
-         9g2jEn/jlWR74ltzoywf5FwXrPOBjf/kWnCJpaoqeXYCJgtfb77pIumn5BgsNurVP24f
-         AciQ==
-X-Gm-Message-State: ACgBeo2zn6fv2wb0YXUOyHdBRxy12eOmXIAhHtXkKAhb4RhSI5w/cogj
-        hewF3hONOiGxOdhA+N86UHyE2Q==
-X-Google-Smtp-Source: AA6agR7sl8W4NWP6T2+xI37/1YHtHNxEAKlt6i3VFxsR/ZhQDW8pdCfCsAWcYjQMwMLeVTEF+TCuBQ==
-X-Received: by 2002:a17:907:28ca:b0:730:aabe:2e28 with SMTP id en10-20020a17090728ca00b00730aabe2e28mr876966ejc.72.1660801735424;
-        Wed, 17 Aug 2022 22:48:55 -0700 (PDT)
-Received: from localhost (cst2-173-67.cust.vodafone.cz. [31.30.173.67])
-        by smtp.gmail.com with ESMTPSA id by6-20020a0564021b0600b0043d34ab7ad6sm491661edb.49.2022.08.17.22.48.54
+        bh=bZty3y2darx5s7m8eOWVGV+bKL3GxP3dVhk/MBA5fWU=;
+        b=YMVPHIoHZXVjadcD1oGz2Og+il9sBkrXpyH19XVrDceeYDHMeA+L3Oq4MVhfvVS3lN
+         MYmgPjSAR1Liii/Vs1S+bOjMWrwZ+gNRtNZP2fFVjvpENw5+qWx8BIwokXAe8XpwmZwY
+         CycJvMrJ26yGdw9kdRtnHHnvlYd/BCSW7W+yV4F3u/EOmA6LVSjDjbPv2+Ht3TjaHutz
+         pUUnGmfjPOTGvVo0bfF28fjvNbnZOWGsvfrpyqZlwRMrIA+LAdW3213H2baRwjROlzNS
+         aNyh5i8KOeQ7grCLXG9a9bFjWFR0yqUPgXVRHg6IsCRc2NC6+5pdaloXqi+Ui3RXBZCR
+         FpkQ==
+X-Gm-Message-State: ACgBeo0f5Oasa9w6YW/3QeTrMc9Bz0o6zEJQ1awzfBijXwzMFbE5BCnZ
+        2pSmPuFwiZSCaRGOe0T0rPYdo7HZOIuCuA==
+X-Google-Smtp-Source: AA6agR7Xs87Dr0m2dsNGP8woPhz8tse750xuLe9TeNweuVK7GcLyu4MnOAU99SNrItyaik7Axun68A==
+X-Received: by 2002:a5d:5a0f:0:b0:220:5930:dc65 with SMTP id bq15-20020a5d5a0f000000b002205930dc65mr598687wrb.229.1660802490217;
+        Wed, 17 Aug 2022 23:01:30 -0700 (PDT)
+Received: from linaro.org ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id q14-20020adff94e000000b00225232c03fdsm514173wrr.27.2022.08.17.23.01.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Aug 2022 22:48:55 -0700 (PDT)
-Date:   Thu, 18 Aug 2022 07:48:53 +0200
-From:   Andrew Jones <ajones@ventanamicro.com>
-To:     Conor Dooley <mail@conchuod.ie>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Anup Patel <anup@brainfault.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Guo Ren <guoren@kernel.org>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Jessica Clarke <jrtc27@jrtc27.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, qemu-riscv@nongnu.org,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v3 3/4] dt-bindings: riscv: add new riscv,isa strings for
- emulators
-Message-ID: <20220818054853.7rivuc4qyojzeu3s@kamzik>
-References: <20220817201212.990712-1-mail@conchuod.ie>
- <20220817201212.990712-4-mail@conchuod.ie>
- <20220818054014.wad7uqqnmoc2wrbp@kamzik>
+        Wed, 17 Aug 2022 23:01:29 -0700 (PDT)
+Date:   Thu, 18 Aug 2022 09:01:28 +0300
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Caleb Connolly <caleb.connolly@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Maulik Shah <quic_mkshah@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 3/4] arm64: dts: qcom: sdm845: Add the RPMh stats node
+Message-ID: <Yv3VuDvvpyNziZEq@linaro.org>
+References: <20220812101240.1869605-1-abel.vesa@linaro.org>
+ <T2Uz7zs4Ht58lYc5zWg1VBY0ju6bVaSKa9y3RhBQWDDHmPXBHbAxI2J34jSeY0BFQy2y4JtFn3nQS0Lz4xI5jw==@protonmail.internalid>
+ <20220812101240.1869605-3-abel.vesa@linaro.org>
+ <e6821eef-4fcb-97b1-24be-e2bb62b99039@linaro.org>
+ <Yvtx2aK1Uu51hTPM@linaro.org>
+ <b34b2fa6-7dbf-e4d3-9833-57efd42f9137@linaro.org>
+ <Yvu4o1bFdKLfvaiL@linaro.org>
+ <Yv2aK52MzRPUIztr@baldur>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220818054014.wad7uqqnmoc2wrbp@kamzik>
+In-Reply-To: <Yv2aK52MzRPUIztr@baldur>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
@@ -86,91 +81,156 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 18, 2022 at 07:40:14AM +0200, Andrew Jones wrote:
-> On Wed, Aug 17, 2022 at 09:12:12PM +0100, Conor Dooley wrote:
-> > From: Conor Dooley <conor.dooley@microchip.com>
+On 22-08-17 20:47:23, Bjorn Andersson wrote:
+> On Tue 16 Aug 10:32 CDT 2022, Abel Vesa wrote:
+> 
+> > On 22-08-16 14:50:50, Caleb Connolly wrote:
+> > > 
+> > > 
+> > > On 16/08/2022 11:30, Abel Vesa wrote:
+> > > > On 22-08-15 21:34:07, Caleb Connolly wrote:
+> > > > > 
+> > > > > 
+> > > > > On 12/08/2022 11:12, Abel Vesa wrote:
+> > > > > > SDM845 is a special case compared to the other platforms that use RPMh
+> > > > > > stats, since it only has 2 stats (aosd and cxsd), while the others have
+> > > > > > a 3rd one (ddr).
+> > > > > > 
+> > > > > > So lets add the node but with a SDM845 dedicated compatible to make
+> > > > > > the driver aware of the different stats config.
+> > > > > Hi,
+> > > > > 
+> > > > > I gave this a go on the OnePlus 6, I noticed the driver is also meant to
+> > > > > read the stats for remote procs via smem, however this seems to fail for me
+> > > > > - it can't find any of the SMEM items even if I probe the driver manually
+> > > > > after ensuring remoteprocs have booted. Is this an unsupported feature on
+> > > > > SDM845?
+> > > > 
+> > > > Thanks for giving it a test.
+> > > > 
+> > > > Actually, you need to probe the qcom_stats after the remoteprocs have
+> > > > booted.
+> > > 
+> > > Hi, thanks for getting back to me. I did try this as mentioned above but I
+> > > think I must have been doing something wrong as I get different behaviour
+> > > now:
+> > > 
+> > > 
+> > > enchilada:/ # cat /sys/class/remoteproc/remoteproc*/state
+> > > 
+> > > running
+> > > 
+> > > running
+> > > 
+> > > running
+> > > 
+> > > running
+> > > 
+> > > enchilada:/ # ls /d/qcom_stats/
+> > > aosd  cxsd
+> > > enchilada:/ # rmmod qcom_stats
+> > > enchilada:/ # insmod /data/qcom_stats.ko
+> > > enchilada:/ # ls /d/qcom_stats/
+> > > adsp  aosd  cdsp  cxsd  modem  slpi
 > > 
-> > The QEMU virt and spike machines currently export a riscv,isa string of
-> > "rv64imafdcsuh",
+> > Well, I run on upstream MTP, which has less enabled in devicetree.
 > > 
-> > While the RISC-V foundation has been ratifying a bunch of extenstions
-> > etc, the kernel has remained relatively static with what hardware is
-> > supported - but the same is not true of QEMU. Using the virt machine
-> > and running dt-validate on the dumped dtb fails, partly due to the
-> > unexpected isa string.
+> > > 
+> > > 
+> > > 
+> > > Weirdly, despite it succeeding it prints the following in dmesg with logging
+> > > added to qcom_create_subsystem_stat_files() [1]:
+> > > 
+> > > [  156.540307] Couldn't get smem object 'wpss' (item: 605, pid: 13): -2
+> > > [  156.546899] Couldn't get smem object 'gpu' (item: 609, pid: 0): -2
+> > > [  156.553260] Couldn't get smem object 'display' (item: 610, pid: 0): -2
+> > > [  156.559957] Couldn't get smem object 'adsp_island' (item: 613, pid: 2): -2
+> > > [  156.567007] Couldn't get smem object 'slpi_island' (item: 613, pid: 3): -2
 > > 
-> > Rather than enumerate the many many possbilities, change the pattern
-> > to a regex, with the following assumptions:
-> > - the single letter order is fixed & we don't care about things that
-> >   can't even do "ima"
-> > - the standard multi letter extensions are all in a "_z<foo>" format
-> >   where the first letter of <foo> is a valid single letter extension
-> > - _s & _h are used for supervisor and hyper visor extensions.
-> > - after the first two chars, a standard multi letter extension name
-> >   could be an english   word (ifencei anyone?) so it's not worth
-> >   restricting the charset
-> > - vendor ISA extensions begind with _x and have no charset restrictions
-> > - we don't care about an e extension from an OS pov
-> > - that attempting to validate the contents of the multiletter extensions
-> >   with dt-validate beyond the formatting is a futile, massively verbose
-> >   or unwieldy exercise at best.
-> > - ima are required
+> > See my comment below your related changes.
 > > 
-> > The following limitations also apply:
-> > - multi letter extension ordering is not enforced. dt-schema does not
-> >   appear to allow for named match groups, so the resulting regex would
-> >   be even more of a headache.
-> > - ditto for the numbered extensions.
+> > > > 
+> > > > Doing so, you'll end up having the following:
+> > > > adsp  aosd  cdsp  cxsd
+> > > 
+> > > I seem to get a few more, I have some out of tree patches enabling the SLPI,
+> > > and iirc the db845c doesn't have a full modem firmware. If these look good
+> > > to you I'd appreciate it if you add my Tested-by.
 > > 
-> > Finally, add me as a maintainer of the binding so that when it breaks
-> > in the future, I can be held responsible!
+> > Looks OK to me.
 > > 
-> > Reported-by: Rob Herring <robh@kernel.org>
-> > Link: https://lore.kernel.org/linux-riscv/20220803170552.GA2250266-robh@kernel.org/
-> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> > ---
-> > Palmer, feel free to drop the maintainer addition. I just mostly want
-> > to clean up my own mess on this when they decide to ratify more
-> > extensions & this comes back up again.
-> > ---
-> >  Documentation/devicetree/bindings/riscv/cpus.yaml | 5 ++---
-> >  1 file changed, 2 insertions(+), 3 deletions(-)
+> > > 
+> > > enchilada:/ # for x in /d/qcom_stats/*; do echo $x; cat $x; done
+> > > /d/qcom_stats/adsp
+> > > Count: 48
+> > > Last Entered At: 1199663157
+> > > Last Exited At: 1524359015
+> > > Accumulated Duration: 793060082
+> > > /d/qcom_stats/aosd
+> > > Count: 0
+> > > Last Entered At: 0
+> > > Last Exited At: 0
+> > > Accumulated Duration: 0
+> > > /d/qcom_stats/cdsp
+> > > Count: 35
+> > > Last Entered At: 1194818037
+> > > Last Exited At: 1194769648
+> > > Accumulated Duration: 3223580811
+> > > /d/qcom_stats/cxsd
+> > > Count: 0
+> > > Last Entered At: 0
+> > > Last Exited At: 0
+> > > Accumulated Duration: 0
+> > > /d/qcom_stats/modem
+> > > Count: 49
+> > > Last Entered At: 3687081003
+> > > Last Exited At: 3686727026
+> > > Accumulated Duration: 2915592136
+> > > /d/qcom_stats/slpi
+> > > Count: 53
+> > > Last Entered At: 3120905905
+> > > Last Exited At: 3120894535
+> > > Accumulated Duration: 3218969498
+> > > 
+> > > Am I right in thinking the aosd and cxsd being all 0 is probably a similar
+> > > issue to the one reported by Stephen in [2]?
 > > 
-> > diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> > index 873dd12f6e89..c0e0bc5dce04 100644
-> > --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-> > +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> > @@ -9,6 +9,7 @@ title: RISC-V bindings for 'cpus' DT nodes
-> >  maintainers:
-> >    - Paul Walmsley <paul.walmsley@sifive.com>
-> >    - Palmer Dabbelt <palmer@sifive.com>
-> > +  - Conor Dooley <conor@kernel.org>
-> >  
-> >  description: |
-> >    This document uses some terminology common to the RISC-V community
-> > @@ -79,9 +80,7 @@ properties:
-> >        insensitive, letters in the riscv,isa string must be all
-> >        lowercase to simplify parsing.
-> >      $ref: "/schemas/types.yaml#/definitions/string"
-> > -    enum:
-> > -      - rv64imac
-> > -      - rv64imafdc
-> > +    pattern: ^rv(?:64|32)imaf?d?q?c?b?v?k?h?(?:(?:_[zsh][imafdqcbvksh]|_x)(?:[a-z])+)*$
+> > Might be, I'm not sure. I'll have closer a look.
+> > 
+> > > 
+> > > 
+> > > [1]:
+> > > 
+> > > diff --git a/drivers/soc/qcom/qcom_stats.c b/drivers/soc/qcom/qcom_stats.c
+> > > index 121ea409fafc..56cfb20d3683 100644
+> > > --- a/drivers/soc/qcom/qcom_stats.c
+> > > +++ b/drivers/soc/qcom/qcom_stats.c
+> > > @@ -178,8 +178,12 @@ static void qcom_create_subsystem_stat_files(struct dentry *root,
+> > > 
+> > >         for (i = 0; i < ARRAY_SIZE(subsystems); i++) {
+> > >                 stat = qcom_smem_get(subsystems[i].pid, subsystems[i].smem_item, NULL);
+> > > -               if (IS_ERR(stat))
+> > 
+> > Basically, the error here means the subsystem is not available right at
+> > this moment. We could probably return EPROBE_DEFER here, but it really
+> > depends on each platform's devicetree what remoteprocs they have
+> > enabled or not. So I guess the safest thing to to is to just skip
+> > quietly the ones that haven't probed yet.
+> > 
+> 
+> Not only does the/each remoteproc driver need to probe, we actually need
+> to wait for them to boot in order to register their parts.
+> 
+> Perhaps we can use qcom_register_ssr_notifier() to dynamically register
+> these at some later time. This does however seem like a reasonable thing
+> to improve upon in a follow up series.
 
-Actually we don't want S and H extensions to be treated like Z, but rather
-like X. Only Z extensions have the category character convention. (And I'm
-still tempted to just drop the enforcement from Z too, since it adds
-additional maintenance and we've already settled for something less than
-complete.)
+Sounds like a good idea. Will give it a try and sent a patch a soon as I
+have something working.
 
 Thanks,
-drew
+Abel
 
-> >  
-> >    # RISC-V requires 'timebase-frequency' in /cpus, so disallow it here
-> >    timebase-frequency: false
-> > -- 
-> > 2.37.1
-> >
 > 
-> Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
+> Regards,
+> Bjorn
