@@ -2,128 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FDAD598048
+	by mail.lfdr.de (Postfix) with ESMTP id B8845598049
 	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 10:45:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242579AbiHRImf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Aug 2022 04:42:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46128 "EHLO
+        id S234244AbiHRIoJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Aug 2022 04:44:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240930AbiHRIme (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 04:42:34 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6D80B07E4
-        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 01:42:32 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id l1so727109lfk.8
-        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 01:42:32 -0700 (PDT)
+        with ESMTP id S231184AbiHRIoI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 04:44:08 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C931BC0E
+        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 01:44:07 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id h5so979599lfk.3
+        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 01:44:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=4epZtyqViDCbX0h/Jaac7x2R7HrV4eNNrzciYaBTC/8=;
-        b=m7wdxY5+o/sCehShTMQ2E1KIyPHAVdIXauLQw+VrN3y8xZ2Spzi2azFE1E6b+pJInx
-         DZbnqDR4ujc0e58PTZjPGPQYD9Yc4twjl39vH3gZ3/qWeeauW8Uwi3KMqNmmnN6b56sf
-         vUl/WR6mmCZn1qljoWqy4uYcLLp5yafvZDl8IMqxlvFV6ZKKivMUFI27vY7G2t5iX7pl
-         gVzXOxkhw3dCBpH+U9tOSmkqs3WohAvJyPAFCnJdAkX+uKfktFieRUO6wdxAnzA5IXrh
-         m5WVtCaGKRyfDeLvrNHlYjaJSyjUYIVXrLJUEyIFDdfTBJ8tOSsKFM6ZjHVHGMgxf7wP
-         hdaw==
+        bh=LHQRFS7WBtPZMCDbRYt6cKPTmBvwxyyzp3AuUxfMyzY=;
+        b=NpW5oPG6Czmq6p1JYFNs/YD66fRPwYhkh0DjtVn6BYvsAvfcxe97dCLOItM0DVsOt0
+         4akQVBjnkshsQVCoaCB/8aXbZaL+90WWVCpjKf9qz/6V/WqLOYR9VH0SmuYou8Rgb9Tj
+         ofwxaBXa/QJx9RoY2IK2koc3yVZNzTYewGimhFuvmamK54nE22FrqBkZzzEW2burxJqh
+         Y7U9CYCK8Rg4zWsJNFn7yfFEPmEmdHMEGMv+XSRupX9YInz++avjZD/lenI5FQPpJIWX
+         PNkFFVq/ZmZBE9aboyPfyfFHa3012Ezn7hohsZ4EgveflwOcid3FZyGsOSXV1aKf6w4T
+         mNsg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=4epZtyqViDCbX0h/Jaac7x2R7HrV4eNNrzciYaBTC/8=;
-        b=k8KWuk2Tf0jtwFvk4cPwZ8i81aqaHAUScQmn3ux8v4lp1rUEsVYHCettmX3Y5ikdjR
-         6yXVrsUXtyzaLfLgQnzgI1J1xj4NzEQ+kxbdgEmGoQn9UA0Q+7wTldRZxNzKOLoe4ciK
-         x+fKlNQ175wsm05tghc9dB2fK36bheaZi+O90n2lhdsiVNg4jibRTDBM+hzYBaohYGgt
-         P/bMBKXSAN/+3NpMsA/cq0k1jRUiVPj/3TDD7RC7YAHzHfkshEvh1ARLYVpPvGEHVV1x
-         HTtVGnNW6Ytimut9DGN1aNZglXSCC84ZDOxuxy21QRJjp/7DO2ns1xlC/x6JeAighBSZ
-         34/Q==
-X-Gm-Message-State: ACgBeo0oCSvcjGpyUNOyBwshAasEI1i/TAMJvlIA2gxynwCgfMbdTPKM
-        dXqUw5ely1iCFlN3olCLmduHvg==
-X-Google-Smtp-Source: AA6agR4KbCZQY+mitNIYy5BmTg8LnFPrP90gKu6vTVcHLyJFKf0JNnrFI26iYflzNFZEuZIYUNrO5w==
-X-Received: by 2002:a05:6512:22c3:b0:48b:882d:15b8 with SMTP id g3-20020a05651222c300b0048b882d15b8mr657729lfu.459.1660812151296;
-        Thu, 18 Aug 2022 01:42:31 -0700 (PDT)
+        bh=LHQRFS7WBtPZMCDbRYt6cKPTmBvwxyyzp3AuUxfMyzY=;
+        b=zoThhU7OYEFGgoRWAPFV5I3CFW7sCtziMGxkNx0PYReLdHNx3lryLIBFI/KqYiIvuq
+         qQxZVf9AwpknCioFx6DBhtxzebeeEI7t3o8WMNrJXuo1rVSUui9Fezv9Z5xFy65iRX74
+         8oTkOVc5dOCH7/aJfQcpYa5tyXhxDgRWSdUi6SgSjD5vC8dNjQ3veF5X1xhTttNcKoKi
+         UIhUtBoXTW5qFK9Z9p4K5Vvgn7Zpge2UMOV17Ln3zVFtldsf9sSmIQ3QFF/iJeYci8R5
+         Njl3dtNAcEBe5ALVCKsg9vJE1Db6eYMXZzSxI3Ld60ZFy/RTxr76pQPqAvrw37wBuLHD
+         sUFw==
+X-Gm-Message-State: ACgBeo0cwZoHIGPFKr1MApAi9l1dSciIXwVbkwZXww5/RJjl5gsZbsp7
+        Q982jcUGMc6wyp7M9OeeSNW9zQ==
+X-Google-Smtp-Source: AA6agR76isMqCMBDRbbqXfqXJW6G7Wo+8DxIr21UWX3nad8+RsQnD7JtMufXaBo4DhMPM7Mm6EEOdw==
+X-Received: by 2002:a05:6512:b03:b0:492:88d3:8369 with SMTP id w3-20020a0565120b0300b0049288d38369mr729254lfu.552.1660812245447;
+        Thu, 18 Aug 2022 01:44:05 -0700 (PDT)
 Received: from ?IPV6:2001:14bb:ae:539c:53ab:2635:d4f2:d6d5? (d15l54z9nf469l8226z-4.rev.dnainternet.fi. [2001:14bb:ae:539c:53ab:2635:d4f2:d6d5])
-        by smtp.gmail.com with ESMTPSA id bj33-20020a2eaaa1000000b0026181f65600sm133418ljb.136.2022.08.18.01.42.30
+        by smtp.gmail.com with ESMTPSA id s20-20020a056512315400b0048a7c86f4e7sm134356lfi.291.2022.08.18.01.44.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Aug 2022 01:42:30 -0700 (PDT)
-Message-ID: <625b06a0-f7d6-51e4-2930-cfaaf74a9204@linaro.org>
-Date:   Thu, 18 Aug 2022 11:42:29 +0300
+        Thu, 18 Aug 2022 01:44:04 -0700 (PDT)
+Message-ID: <107c5c93-ee6b-e464-1b74-55877068e788@linaro.org>
+Date:   Thu, 18 Aug 2022 11:44:03 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH] dt-bindings: soc: renesas: Move renesas.yaml from arm to
- soc
+Subject: Re: [PATCH 1/2] dt-bindings: gpio: pca9570: Add compatible for
+ slg7xl45106
 Content-Language: en-US
-To:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Rob Herring <robh@kernel.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-References: <20220815111708.22302-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220816174150.GA2428940-robh@kernel.org>
- <CAMuHMdWgfGgNGmj88z=Md5RAL8CHxTKj6ywsGwS2HN-vHKMq+w@mail.gmail.com>
+To:     Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
+        linux-gpio@vger.kernel.org
+Cc:     git-dev@amd.com, mans0n@gorani.run, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        linus.walleij@linaro.org, brgl@bgdev.pl,
+        shubhrajyoti.datta@gmail.com
+References: <20220817085550.18887-1-shubhrajyoti.datta@amd.com>
+ <20220817085550.18887-2-shubhrajyoti.datta@amd.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAMuHMdWgfGgNGmj88z=Md5RAL8CHxTKj6ywsGwS2HN-vHKMq+w@mail.gmail.com>
+In-Reply-To: <20220817085550.18887-2-shubhrajyoti.datta@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/08/2022 12:30, Geert Uytterhoeven wrote:
-> Hi Rob,
+On 17/08/2022 11:55, Shubhrajyoti Datta wrote:
+> This patch adds compatible string for the SLG7XL45106,
+> I2C GPO expander.
 > 
-> On Tue, Aug 16, 2022 at 7:41 PM Rob Herring <robh@kernel.org> wrote:
->> On Mon, Aug 15, 2022 at 12:17:08PM +0100, Lad Prabhakar wrote:
->>> renesas.yaml lists out all the Renesas SoC's and the platforms/EVK's which
->>> is either ARM32/ARM64. It would rather make sense if we move renesas.yaml
->>> to the soc/renesas folder instead. This is in preparation for adding a new
->>> SoC (RZ/Five) from Renesas which is based on RISC-V.
->>
->> Please post this as part of the above.
->>
->> bindings/soc/ is just a dumping ground for stuff that doesn't fit
->> anywhere. We've mostly cleaned bindings/arm/ of that, so I don't really
+> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+> ---
+>  Documentation/devicetree/bindings/gpio/gpio-pca9570.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> Note that the target of this move is not .../bindings/soc/, but
+> diff --git a/Documentation/devicetree/bindings/gpio/gpio-pca9570.yaml b/Documentation/devicetree/bindings/gpio/gpio-pca9570.yaml
+> index 338c5312a106..503cfcb7f7c9 100644
+> --- a/Documentation/devicetree/bindings/gpio/gpio-pca9570.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/gpio-pca9570.yaml
+> @@ -13,6 +13,7 @@ properties:
+>    compatible:
+>      enum:
+>        - nxp,pca9570
+> +      - dlg,slg7xl45106
 
-bindings/soc/ means bindings/soc/vendor/, so it means bindings/soc/renesas/.
-
-There are no files in bindings/soc/ directly.
-
-
-> .../bindings/soc/renesas/, so it's a bit less of a dumping ground.
-
-Therefore it is still dumping ground.
-
-> Perhaps this is also a good opportunity to split renesas.yaml per
-> family or product group
-> (renesas,{rmobile,rcar-gen[1234],rza,rzg,rzn,...}.yaml?
-> A fine-grained split may cause headaches with RZ/G2UL and RZ/Five
-> sharing the same SoC Base, but a coarse-grained split keeping all RZ/G
-> (after all RZ/Five is part of RZ/G) or even all RZ series together should work.
-> 
->> want to start that again. I would propose bindings/board/ instead if we
->> move in this direction.
-> 
-> .../bindings/board has the issue with the same boards used with
-> multiple pin-compatible SoCs, SiPs, and SoMs.
-
+First, this does not match tree, please rebase on some new Linux kernel.
+Second, put them in alphabetical order.
+Third, these are different manufacturers. Why do you think devices are
+compatible?
 
 Best regards,
 Krzysztof
