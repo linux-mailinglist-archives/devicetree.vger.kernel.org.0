@@ -2,48 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AD57597B5B
-	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 04:12:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C997597B4C
+	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 04:06:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242696AbiHRCLH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Aug 2022 22:11:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35756 "EHLO
+        id S242645AbiHRCBM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Aug 2022 22:01:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239681AbiHRCLG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 22:11:06 -0400
-Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1033F8E0C1;
-        Wed, 17 Aug 2022 19:11:05 -0700 (PDT)
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 9FE272004BD;
-        Thu, 18 Aug 2022 04:11:03 +0200 (CEST)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 3DC8C200481;
-        Thu, 18 Aug 2022 04:11:03 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id F1A281820F56;
-        Thu, 18 Aug 2022 10:11:00 +0800 (+08)
-From:   Shengjiu Wang <shengjiu.wang@nxp.com>
-To:     pierre-louis.bossart@linux.intel.com, lgirdwood@gmail.com,
-        peter.ujfalusi@linux.intel.com, yung-chuan.liao@linux.intel.com,
-        ranjani.sridharan@linux.intel.com, kai.vehmanen@linux.intel.com,
-        daniel.baluta@nxp.com, broonie@kernel.org, perex@perex.cz,
-        tiwai@suse.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org
-Cc:     shengjiu.wang@gmail.com, linux-kernel@vger.kernel.org,
-        sound-open-firmware@alsa-project.org, alsa-devel@alsa-project.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [RESEND PATCH v2 2/2] ASoC: SOF: imx: Add i.MX8ULP HW support
-Date:   Thu, 18 Aug 2022 09:53:54 +0800
-Message-Id: <1660787634-28550-2-git-send-email-shengjiu.wang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1660787634-28550-1-git-send-email-shengjiu.wang@nxp.com>
-References: <1660787634-28550-1-git-send-email-shengjiu.wang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        with ESMTP id S242643AbiHRCBJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 22:01:09 -0400
+Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2044.outbound.protection.outlook.com [40.107.105.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79F3AA5721;
+        Wed, 17 Aug 2022 19:01:07 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=EYpj9Hm86ooeHLCsvKXabG5X1efr5kqb4rBtXA+e+4NH+fSO9NRIy1JNUJZaUBkNJlLPWMvyo1+Qs9WFxx+rsf7IfS586yCTGswrafg6IgTVyHy+/uqdll1K7gSnxNGOKJV6UdI0L/mTlM4Gl1qZZ3Dctc4EfgaGOHrVYtso2LSMjUjDNYI3XdZCzVngBBUkW3SJmpbo8I0k6wpV/+BiP6dTMkpiLZetRpTESgma7bu4uvwDDSaDi3n2crS55to8Pr3LiNYp0t13zWb9bPGdPdfojmy9xhBHnMqXOi+IZKUW9NXnL/vVmeIGyI7AC2SBNZKfJ+ZFW7mxRmwVibxp2w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=WtV1Ov3M2Ufgb8gv5yhgRxpA5f72gCaXQwg/p9e2HD4=;
+ b=E8wiUvGD15hhoIt/NvikPDLJGjl0HkmHdrrq0qTjBwAviEaUIjPxOFDDWOHC2vKxxbMTFNWrGOgAuD1YqlDPMRT+V0UHj27KRuiRLaVH19B61HNLW5RNb+pd5D74G4bDoaGTjq0ibLhJROuLZQ7kLEIp/CnfwEYM4TDPvK+mhMrh9kPDP9FdrpllfaffUkx5UQ5OwXN/V4JZWzLLESicdiuMZoUYaFJBSc4nUJx9p5vgr5DAvS0aQIIwNAWFIh66+XrN0da7zfg2GcBgUJ3WQsyNW+CTbGSk4nweMMLpl8yvpalNqOemJvroUoZP0/TYZYl++gjiilZttpkhKoxA+A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WtV1Ov3M2Ufgb8gv5yhgRxpA5f72gCaXQwg/p9e2HD4=;
+ b=gFf1GGuZ3bqTohBL8zTaazN8BdHkyygQTxEkSBBjX6nZuUqqhOrtQIPueoHxBop6SgN2r7ZN4tWAwB1BSyMDS2ZjfdegYXg+8F4yK/XX9vj8RTZGW3ABHwIVhpvtO9b0giZ8JnV90zHN3apwx09xveBN2h7XU39O6SATNZF0tU4=
+Received: from DB9PR04MB8106.eurprd04.prod.outlook.com (2603:10a6:10:24b::13)
+ by AM0PR04MB5025.eurprd04.prod.outlook.com (2603:10a6:208:cd::32) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.28; Thu, 18 Aug
+ 2022 02:01:05 +0000
+Received: from DB9PR04MB8106.eurprd04.prod.outlook.com
+ ([fe80::5598:eebf:2288:f279]) by DB9PR04MB8106.eurprd04.prod.outlook.com
+ ([fe80::5598:eebf:2288:f279%9]) with mapi id 15.20.5525.010; Thu, 18 Aug 2022
+ 02:01:05 +0000
+From:   Wei Fang <wei.fang@nxp.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+CC:     "hkallweit1@gmail.com" <hkallweit1@gmail.com>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "edumazet@google.com" <edumazet@google.com>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "pabeni@redhat.com" <pabeni@redhat.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH net 1/2] dt: ar803x: Document disable-hibernation property
+Thread-Topic: [PATCH net 1/2] dt: ar803x: Document disable-hibernation
+ property
+Thread-Index: AQHYrhiZCawC+L8jOkCFO9wn08ratK2rT8AAgAQh61CABHNrAIAAAETwgAAGjICAAAQloA==
+Date:   Thu, 18 Aug 2022 02:01:04 +0000
+Message-ID: <DB9PR04MB8106F4487E63C61AC310D34B886D9@DB9PR04MB8106.eurprd04.prod.outlook.com>
+References: <20220812145009.1229094-1-wei.fang@nxp.com>
+ <20220812145009.1229094-2-wei.fang@nxp.com> <YvZggGkdlAUuQ1NG@lunn.ch>
+ <DB9PR04MB8106F2BFD8150A1C76669F9C88689@DB9PR04MB8106.eurprd04.prod.outlook.com>
+ <Yv2TwkThceuU+m5l@lunn.ch>
+ <DB9PR04MB8106FF32F683295860D4939F886D9@DB9PR04MB8106.eurprd04.prod.outlook.com>
+ <Yv2ZeWPTZkIlh4t2@lunn.ch>
+In-Reply-To: <Yv2ZeWPTZkIlh4t2@lunn.ch>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 18e9f123-3c40-4c92-f61e-08da80bd8255
+x-ms-traffictypediagnostic: AM0PR04MB5025:EE_
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: c2IPJVNJx7zxAeh7vjYtXx/ge55xLrekUhLA5KDRBRkf+PHuU0Uh5NwR6qg1o7pw7AVoBvE4naEQEFcZQ9XaWT7DvPWApYVXAqc57bhL+bOkfSGCDMzUpT3Ol3g/x5jmWbDLNbmTnf0VM2iGd3ArLBQacAx4IkCu7EJaB7oenC4mAlD97ci3QBjWyFoxXfpi9tx/azu2c8Q2fAiXgj6ALRnwpgVPp2E8rd8ie9+MAvH62lqsPr1ny58RTNnqZWD9wCV95H9LJ7/GSq748ghIp+SS4V70v3cC0WX9+h5SHcrGQdqR4XvRBHyjpFi6XHJmPAAjh6SURi8cUXvpTxcHWzU18N/RDSEB1st0n1K0c0wvEAp3YxHCQ314zhcf1Zw5zjhfyMtwPIs0VJRzbBsN1HqB2A5KkXSBEyhHjGXNDPXIUwlNgUyETWCOsyruVfYxDVlxp8bWyVPZ64MpZSN2/ri4muiV6OmgIIPgZ45br4Rr2AkoCcyHFWsbt63uSSToVJnfxUlWXnF7A2sTyg1tgDKq5C1ouUInpU69JLku6gebOvOVOKCbqCt0CzRLn+kKE+Zp0KuwlHHO2ng49ZqCJbjb8vdIehcqQi9Te9hKtO6hcmeLUOU6R5s0pW0yqJTuC7MiwiMMIVlnZ6bAuph7iavdaaJS/sQDOQuNKfOeni59Sz5wN4EgG+l7dc4OghTM/nPTcbDd1KfbewXfJKY/VSLlGk3GXuCkNcNatX5pmBAorYJSIVMDN+aVWtDGips4Mudi5P50Ci0ua9mwZPVyfg==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB8106.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(39860400002)(346002)(136003)(396003)(366004)(376002)(66946007)(66446008)(76116006)(4326008)(66476007)(66556008)(8676002)(64756008)(316002)(122000001)(86362001)(38100700002)(38070700005)(33656002)(478600001)(52536014)(83380400001)(9686003)(53546011)(7696005)(6506007)(71200400001)(41300700001)(26005)(55016003)(54906003)(6916009)(5660300002)(186003)(44832011)(2906002)(7416002)(8936002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?gb2312?B?OTk1RjZPWFUvbmhNeEhoUXlQOXlpQkRRdm03emtJamJJQ3RnWSsxSVM5bHpE?=
+ =?gb2312?B?VFZNL3NQTDRxaWVNQ3Y1NnhnZkdqVTRqcU9uMVY2ejFYdXBYdVNUcFNqTFVS?=
+ =?gb2312?B?bm1mVS9USGtvcmN2eVlLL2JQNFo5bnp2Q1U1TVBEaEtWYmhGazZnNnJkQm5j?=
+ =?gb2312?B?UVR0NCt0aE5rNVE5Q1VTb1RQazdsNTRydTFiV0FWUTVjMis3OVJzTnhxUHFY?=
+ =?gb2312?B?RHVPaWI1ZGhabEttNFQ5VjRtaUsxbUtESUUvUHJ3MEhYOEUwR1RCV3RZZi9x?=
+ =?gb2312?B?Mlh2U3ltYnNtVlBNUGVhWG5ReE5obDdyU1MzdnN2YUJNK2JCanZjRUtZZnF4?=
+ =?gb2312?B?U0dsN1BJcldyTnhpVmRkczJ1MHEzYnFXMTNFa0RkS2IyWUEwcUx2NTBsaWVY?=
+ =?gb2312?B?cHNsbHlHNmZ2NkM4ei9kZUU5SHc5OTBCbWo5SGJleE1TMllZVmpMSGJxMFgz?=
+ =?gb2312?B?TGlPV2dCUExXZC92UG9TK1I2MkQ4OHdrNGJ2cWdxdmRjVTRtS0pPQmxTemE4?=
+ =?gb2312?B?ZHdObzdpZU5GZE5aa0d5US91eFBPZGFpWVpwb0R2bW5EM0VvMnFOZDlmNVlM?=
+ =?gb2312?B?VFdDNUMrOU1OOTdiL0h3aG1nSk4rMzRISGpzM0ZGemhGQmlNVHUxYVQ5Q1E0?=
+ =?gb2312?B?OE52aTVGYlFBd0p2TkdBY0g2emRWaTczLzVITk9WQ1hHK2VDeEVvd3I4eDhL?=
+ =?gb2312?B?MW9MTEpIcXRMWS9YcVc1RVZIckhlNjk2OWFXNDRxMGpHdVpKUVdtOEE4d21G?=
+ =?gb2312?B?OVpaREQ1alRiQjFzbjEzTGl6bUVSQmhWbE1rWUR1a3FyMGZGSDNZVnFrVTZq?=
+ =?gb2312?B?WHpYN0ljd3puVjdmTTNnbFlid2dINEZYc2RGbFZSWlBma2pabGhZOFZON09J?=
+ =?gb2312?B?TVdqbktzS0N6YVpnajBGYm9zVm53WGlPNSsySUIzZnFJQjA2QWkza2t2M0xm?=
+ =?gb2312?B?QTgzbXNzZlB5RWdhWjNWbytDY29lTGVKeDBYazdkd0FvMkVtNm9SMmpRQWZq?=
+ =?gb2312?B?eVhmaCsvT0QwS2txbC9pVENuUDdMcEwySXRHZ0ZGd3VGbDJKdUtHL1o4OUtJ?=
+ =?gb2312?B?cHA4eklqSzZwM3puT2g5eWo1WDFhV2l3QUNYMGwzQmtBUTFXdlR4dk9Xc0ZE?=
+ =?gb2312?B?TnhMYVY0SnpqMnE1eGdhS1JVR0ZDZk1QdHV1ZnBUVm8wbWdOYWk4cEVBVWFU?=
+ =?gb2312?B?MTBLUXc5Z3N0OUZJZm5wSHdYYWVJSnZzak1mTklKcmpvcWJBVjM5WnZzRzZq?=
+ =?gb2312?B?R1NhY2NoTHFCVDI5RzFuellUY1RqdTlvVk1nY1lUSHhheUxqMm9EWXM4LzVN?=
+ =?gb2312?B?eVBBUzJPNjN6US9Hd0xHd01VREJ3dHRvTFhBNTRlaUVoV3hTUXdLdVhONTJQ?=
+ =?gb2312?B?YWtSMkRwUVBaY0NCbXFuc1hzTTVscGtvOW5yU3NNWGlHc2FpdzNxKy9GV2U1?=
+ =?gb2312?B?MGVURG1xMG9iZUsvUSs1blgwcXBOVHpudUg0YkNDRnlBZTdYMnY3T2RML25q?=
+ =?gb2312?B?WkdTdWtTTUxHMnBIOFJuTCsxdmdNSnFKMlh4NlY5OEdYOE1Db0ZKL3o5S2NL?=
+ =?gb2312?B?MG53Ris3NFhvUy84eVVoa0V2RjllTnJGU1BwWGJkRXAvL05FQ01RVU9CeDdB?=
+ =?gb2312?B?cnZjdGhYOU5IUDBhcXgvK2pRb2dFWFUwTi9TcmFXR2RUdWtmQVBUR1lkbzEz?=
+ =?gb2312?B?QW81WWpkbGtTZXdZcXd1S2VuSDI0dy9pd2dsMHh4Q2JXUlBWSmRucnhZUjl0?=
+ =?gb2312?B?cjFOMS80WjliNkZkZjVLSEJwOHVacTFGM25jNldQcVV1TGlvRmw0WG1RcTd3?=
+ =?gb2312?B?QWlqOUhXNXgrVytSaUNSSEt1SGtiUDhWSHVZRzgzajgxcW41blREcnA5cERT?=
+ =?gb2312?B?bFZPU1h1MVJVdUx3VTJuRWM0Vyt2cS9aSjJLaXBlYnhoMkdDSlp0RzNnL3FX?=
+ =?gb2312?B?NGlFdlhieDZqbnRvN3dEbEsyejZROEJpM0JDU0N6ZW1YZG9PNmZZMjVFa0Np?=
+ =?gb2312?B?ZWRJNmdwMjU1bk5kN2sycis1RzhLWmhWWG02azhOckN2bmdNTVVvY0cxV0Va?=
+ =?gb2312?B?VFVmRDc3WkkvbjR1clhwNHZNS05KS0p5U3FKMVEwSEI4b1NEaE5jc0grdk9S?=
+ =?gb2312?Q?794U=3D?=
+Content-Type: text/plain; charset="gb2312"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB8106.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 18e9f123-3c40-4c92-f61e-08da80bd8255
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Aug 2022 02:01:04.9567
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 5v9lFJLzjxXfqBFdNCWQDubDwWJvwcHE1hCLU2cn56oa3Kvb+e4+DEJRjFCpKJdAC1ZN+V0MAqu4X7HA9UtKjg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB5025
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -51,582 +140,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Zhang Peng <peng.zhang_8@nxp.com>
-
-This adds skeleton support for the audio DSP hardware found on
-NXP i.MX8ULP platform.
-
-On i.MX8ULP resources (clocks, power, etc) are managed by the
-System Integration Module in LPAV domain and XRDC which is handled
-by arm trusted firmware.
-
-Signed-off-by: Zhang Peng <peng.zhang_8@nxp.com>
-Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
----
-changes in v2:
-- Add arm-smccc.h and use snd_sof_ipc_process_reply()
-- Address review comments
-
- sound/soc/sof/imx/Kconfig   |   9 +
- sound/soc/sof/imx/Makefile  |   2 +
- sound/soc/sof/imx/imx8ulp.c | 514 ++++++++++++++++++++++++++++++++++++
- 3 files changed, 525 insertions(+)
- create mode 100644 sound/soc/sof/imx/imx8ulp.c
-
-diff --git a/sound/soc/sof/imx/Kconfig b/sound/soc/sof/imx/Kconfig
-index cc6e695f913a..4751b04d5e6f 100644
---- a/sound/soc/sof/imx/Kconfig
-+++ b/sound/soc/sof/imx/Kconfig
-@@ -41,4 +41,13 @@ config SND_SOC_SOF_IMX8M
- 	  Say Y if you have such a device.
- 	  If unsure select "N".
- 
-+config SND_SOC_SOF_IMX8ULP
-+	tristate "SOF support for i.MX8ULP"
-+	depends on IMX_DSP
-+	select SND_SOC_SOF_IMX_COMMON
-+	help
-+	  This adds support for Sound Open Firmware for NXP i.MX8ULP platforms.
-+	  Say Y if you have such a device.
-+	  If unsure select "N".
-+
- endif ## SND_SOC_SOF_IMX_TOPLEVEL
-diff --git a/sound/soc/sof/imx/Makefile b/sound/soc/sof/imx/Makefile
-index dba93c3466ec..798b43a415bf 100644
---- a/sound/soc/sof/imx/Makefile
-+++ b/sound/soc/sof/imx/Makefile
-@@ -1,9 +1,11 @@
- # SPDX-License-Identifier: (GPL-2.0-only OR BSD-3-Clause)
- snd-sof-imx8-objs := imx8.o
- snd-sof-imx8m-objs := imx8m.o
-+snd-sof-imx8ulp-objs := imx8ulp.o
- 
- snd-sof-imx-common-objs := imx-common.o
- 
- obj-$(CONFIG_SND_SOC_SOF_IMX8) += snd-sof-imx8.o
- obj-$(CONFIG_SND_SOC_SOF_IMX8M) += snd-sof-imx8m.o
-+obj-$(CONFIG_SND_SOC_SOF_IMX8ULP) += snd-sof-imx8ulp.o
- obj-$(CONFIG_SND_SOC_SOF_IMX_COMMON) += imx-common.o
-diff --git a/sound/soc/sof/imx/imx8ulp.c b/sound/soc/sof/imx/imx8ulp.c
-new file mode 100644
-index 000000000000..02b496165acc
---- /dev/null
-+++ b/sound/soc/sof/imx/imx8ulp.c
-@@ -0,0 +1,514 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR BSD-3-Clause)
-+//
-+// Copyright 2021-2022 NXP
-+//
-+// Author: Peng Zhang <peng.zhang_8@nxp.com>
-+//
-+// Hardware interface for audio DSP on i.MX8ULP
-+
-+#include <linux/arm-smccc.h>
-+#include <linux/clk.h>
-+#include <linux/firmware.h>
-+#include <linux/firmware/imx/dsp.h>
-+#include <linux/firmware/imx/ipc.h>
-+#include <linux/firmware/imx/svc/misc.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/module.h>
-+#include <linux/of_address.h>
-+#include <linux/of_irq.h>
-+#include <linux/of_platform.h>
-+#include <linux/of_reserved_mem.h>
-+
-+#include <sound/sof.h>
-+#include <sound/sof/xtensa.h>
-+
-+#include "../ops.h"
-+#include "../sof-of-dev.h"
-+#include "imx-common.h"
-+
-+#define FSL_SIP_HIFI_XRDC	0xc200000e
-+
-+/* SIM Domain register */
-+#define SYSCTRL0		0x8
-+#define EXECUTE_BIT		BIT(13)
-+#define RESET_BIT		BIT(16)
-+#define HIFI4_CLK_BIT		BIT(17)
-+#define PB_CLK_BIT		BIT(18)
-+#define PLAT_CLK_BIT		BIT(19)
-+#define DEBUG_LOGIC_BIT		BIT(25)
-+
-+#define MBOX_OFFSET		0x800000
-+#define MBOX_SIZE		0x1000
-+
-+static struct clk_bulk_data imx8ulp_dsp_clks[] = {
-+	{ .id = "core" },
-+	{ .id = "ipg" },
-+	{ .id = "ocram" },
-+	{ .id = "mu" },
-+};
-+
-+struct imx8ulp_priv {
-+	struct device *dev;
-+	struct snd_sof_dev *sdev;
-+
-+	/* DSP IPC handler */
-+	struct imx_dsp_ipc *dsp_ipc;
-+	struct platform_device *ipc_dev;
-+
-+	struct regmap *regmap;
-+	struct imx_clocks *clks;
-+};
-+
-+static void imx8ulp_sim_lpav_start(struct imx8ulp_priv *priv)
-+{
-+	/* Controls the HiFi4 DSP Reset: 1 in reset, 0 out of reset */
-+	regmap_update_bits(priv->regmap, SYSCTRL0, RESET_BIT, 0);
-+
-+	/* Reset HiFi4 DSP Debug logic: 1 debug reset, 0  out of reset*/
-+	regmap_update_bits(priv->regmap, SYSCTRL0, DEBUG_LOGIC_BIT, 0);
-+
-+	/* Stall HIFI4 DSP Execution: 1 stall, 0 run */
-+	regmap_update_bits(priv->regmap, SYSCTRL0, EXECUTE_BIT, 0);
-+}
-+
-+static int imx8ulp_get_mailbox_offset(struct snd_sof_dev *sdev)
-+{
-+	return MBOX_OFFSET;
-+}
-+
-+static int imx8ulp_get_window_offset(struct snd_sof_dev *sdev, u32 id)
-+{
-+	return MBOX_OFFSET;
-+}
-+
-+static void imx8ulp_dsp_handle_reply(struct imx_dsp_ipc *ipc)
-+{
-+	struct imx8ulp_priv *priv = imx_dsp_get_data(ipc);
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&priv->sdev->ipc_lock, flags);
-+
-+	snd_sof_ipc_process_reply(priv->sdev, 0);
-+
-+	spin_unlock_irqrestore(&priv->sdev->ipc_lock, flags);
-+}
-+
-+static void imx8ulp_dsp_handle_request(struct imx_dsp_ipc *ipc)
-+{
-+	struct imx8ulp_priv *priv = imx_dsp_get_data(ipc);
-+	u32 p; /* panic code */
-+
-+	/* Read the message from the debug box. */
-+	sof_mailbox_read(priv->sdev, priv->sdev->debug_box.offset + 4, &p, sizeof(p));
-+
-+	/* Check to see if the message is a panic code (0x0dead***) */
-+	if ((p & SOF_IPC_PANIC_MAGIC_MASK) == SOF_IPC_PANIC_MAGIC)
-+		snd_sof_dsp_panic(priv->sdev, p, true);
-+	else
-+		snd_sof_ipc_msgs_rx(priv->sdev);
-+}
-+
-+static struct imx_dsp_ops dsp_ops = {
-+	.handle_reply		= imx8ulp_dsp_handle_reply,
-+	.handle_request		= imx8ulp_dsp_handle_request,
-+};
-+
-+static int imx8ulp_send_msg(struct snd_sof_dev *sdev, struct snd_sof_ipc_msg *msg)
-+{
-+	struct imx8ulp_priv *priv = sdev->pdata->hw_pdata;
-+
-+	sof_mailbox_write(sdev, sdev->host_box.offset, msg->msg_data,
-+			  msg->msg_size);
-+	imx_dsp_ring_doorbell(priv->dsp_ipc, 0);
-+
-+	return 0;
-+}
-+
-+static int imx8ulp_run(struct snd_sof_dev *sdev)
-+{
-+	struct imx8ulp_priv *priv = sdev->pdata->hw_pdata;
-+
-+	imx8ulp_sim_lpav_start(priv);
-+
-+	return 0;
-+}
-+
-+static int imx8ulp_reset(struct snd_sof_dev *sdev)
-+{
-+	struct imx8ulp_priv *priv = sdev->pdata->hw_pdata;
-+	struct arm_smccc_res smc_resource;
-+
-+	/* HiFi4 Platform Clock Enable: 1 enabled, 0 disabled */
-+	regmap_update_bits(priv->regmap, SYSCTRL0, PLAT_CLK_BIT, PLAT_CLK_BIT);
-+
-+	/* HiFi4 PBCLK clock enable: 1 enabled, 0 disabled */
-+	regmap_update_bits(priv->regmap, SYSCTRL0, PB_CLK_BIT, PB_CLK_BIT);
-+
-+	/* HiFi4 Clock Enable: 1 enabled, 0 disabled */
-+	regmap_update_bits(priv->regmap, SYSCTRL0, HIFI4_CLK_BIT, HIFI4_CLK_BIT);
-+
-+	regmap_update_bits(priv->regmap, SYSCTRL0, RESET_BIT, RESET_BIT);
-+	usleep_range(1, 2);
-+
-+	/* Stall HIFI4 DSP Execution: 1 stall, 0 not stall */
-+	regmap_update_bits(priv->regmap, SYSCTRL0, EXECUTE_BIT, EXECUTE_BIT);
-+	usleep_range(1, 2);
-+
-+	arm_smccc_smc(FSL_SIP_HIFI_XRDC, 0, 0, 0, 0, 0, 0, 0, &smc_resource);
-+
-+	return 0;
-+}
-+
-+static int imx8ulp_probe(struct snd_sof_dev *sdev)
-+{
-+	struct platform_device *pdev =
-+		container_of(sdev->dev, struct platform_device, dev);
-+	struct device_node *np = pdev->dev.of_node;
-+	struct device_node *res_node;
-+	struct resource *mmio;
-+	struct imx8ulp_priv *priv;
-+	struct resource res;
-+	u32 base, size;
-+	int ret = 0;
-+
-+	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->clks = devm_kzalloc(&pdev->dev, sizeof(*priv->clks), GFP_KERNEL);
-+	if (!priv->clks)
-+		return -ENOMEM;
-+
-+	sdev->num_cores = 1;
-+	sdev->pdata->hw_pdata = priv;
-+	priv->dev = sdev->dev;
-+	priv->sdev = sdev;
-+
-+	/* System integration module(SIM) control dsp configuration */
-+	priv->regmap = syscon_regmap_lookup_by_phandle(np, "fsl,dsp-ctrl");
-+	if (IS_ERR(priv->regmap))
-+		return PTR_ERR(priv->regmap);
-+
-+	priv->ipc_dev = platform_device_register_data(sdev->dev, "imx-dsp",
-+						      PLATFORM_DEVID_NONE,
-+						      pdev, sizeof(*pdev));
-+	if (IS_ERR(priv->ipc_dev))
-+		return PTR_ERR(priv->ipc_dev);
-+
-+	priv->dsp_ipc = dev_get_drvdata(&priv->ipc_dev->dev);
-+	if (!priv->dsp_ipc) {
-+		/* DSP IPC driver not probed yet, try later */
-+		ret = -EPROBE_DEFER;
-+		dev_err(sdev->dev, "Failed to get drvdata\n");
-+		goto exit_pdev_unregister;
-+	}
-+
-+	imx_dsp_set_data(priv->dsp_ipc, priv);
-+	priv->dsp_ipc->ops = &dsp_ops;
-+
-+	/* DSP base */
-+	mmio = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	if (mmio) {
-+		base = mmio->start;
-+		size = resource_size(mmio);
-+	} else {
-+		dev_err(sdev->dev, "error: failed to get DSP base at idx 0\n");
-+		ret = -EINVAL;
-+		goto exit_pdev_unregister;
-+	}
-+
-+	sdev->bar[SOF_FW_BLK_TYPE_IRAM] = devm_ioremap(sdev->dev, base, size);
-+	if (!sdev->bar[SOF_FW_BLK_TYPE_IRAM]) {
-+		dev_err(sdev->dev, "failed to ioremap base 0x%x size 0x%x\n",
-+			base, size);
-+		ret = -ENODEV;
-+		goto exit_pdev_unregister;
-+	}
-+	sdev->mmio_bar = SOF_FW_BLK_TYPE_IRAM;
-+
-+	res_node = of_parse_phandle(np, "memory-reserved", 0);
-+	if (!res_node) {
-+		dev_err(&pdev->dev, "failed to get memory region node\n");
-+		ret = -ENODEV;
-+		goto exit_pdev_unregister;
-+	}
-+
-+	ret = of_address_to_resource(res_node, 0, &res);
-+	if (ret) {
-+		dev_err(&pdev->dev, "failed to get reserved region address\n");
-+		goto exit_pdev_unregister;
-+	}
-+
-+	sdev->bar[SOF_FW_BLK_TYPE_SRAM] = devm_ioremap_wc(sdev->dev, res.start,
-+							  resource_size(&res));
-+	if (!sdev->bar[SOF_FW_BLK_TYPE_SRAM]) {
-+		dev_err(sdev->dev, "failed to ioremap mem 0x%x size 0x%x\n",
-+			base, size);
-+		ret = -ENOMEM;
-+		goto exit_pdev_unregister;
-+	}
-+	sdev->mailbox_bar = SOF_FW_BLK_TYPE_SRAM;
-+
-+	/* set default mailbox offset for FW ready message */
-+	sdev->dsp_box.offset = MBOX_OFFSET;
-+
-+	ret = of_reserved_mem_device_init(sdev->dev);
-+	if (ret) {
-+		dev_err(&pdev->dev, "failed to init reserved memory region %d\n", ret);
-+		goto exit_pdev_unregister;
-+	}
-+
-+	priv->clks->dsp_clks = imx8ulp_dsp_clks;
-+	priv->clks->num_dsp_clks = ARRAY_SIZE(imx8ulp_dsp_clks);
-+
-+	ret = imx8_parse_clocks(sdev, priv->clks);
-+	if (ret < 0)
-+		goto exit_pdev_unregister;
-+
-+	ret = imx8_enable_clocks(sdev, priv->clks);
-+	if (ret < 0)
-+		goto exit_pdev_unregister;
-+
-+	return 0;
-+
-+exit_pdev_unregister:
-+	platform_device_unregister(priv->ipc_dev);
-+
-+	return ret;
-+}
-+
-+static int imx8ulp_remove(struct snd_sof_dev *sdev)
-+{
-+	struct imx8ulp_priv *priv = sdev->pdata->hw_pdata;
-+
-+	imx8_disable_clocks(sdev, priv->clks);
-+	platform_device_unregister(priv->ipc_dev);
-+
-+	return 0;
-+}
-+
-+/* on i.MX8 there is 1 to 1 match between type and BAR idx */
-+static int imx8ulp_get_bar_index(struct snd_sof_dev *sdev, u32 type)
-+{
-+	return type;
-+}
-+
-+static int imx8ulp_suspend(struct snd_sof_dev *sdev)
-+{
-+	int i;
-+	struct imx8ulp_priv *priv = (struct imx8ulp_priv *)sdev->pdata->hw_pdata;
-+
-+	/*Stall DSP,  release in .run() */
-+	regmap_update_bits(priv->regmap, SYSCTRL0, EXECUTE_BIT, EXECUTE_BIT);
-+
-+	for (i = 0; i < DSP_MU_CHAN_NUM; i++)
-+		imx_dsp_free_channel(priv->dsp_ipc, i);
-+
-+	imx8_disable_clocks(sdev, priv->clks);
-+
-+	return 0;
-+}
-+
-+static int imx8ulp_resume(struct snd_sof_dev *sdev)
-+{
-+	struct imx8ulp_priv *priv = (struct imx8ulp_priv *)sdev->pdata->hw_pdata;
-+	int i;
-+
-+	imx8_enable_clocks(sdev, priv->clks);
-+
-+	for (i = 0; i < DSP_MU_CHAN_NUM; i++)
-+		imx_dsp_request_channel(priv->dsp_ipc, i);
-+
-+	return 0;
-+}
-+
-+static int imx8ulp_dsp_runtime_resume(struct snd_sof_dev *sdev)
-+{
-+	const struct sof_dsp_power_state target_dsp_state = {
-+		.state = SOF_DSP_PM_D0,
-+		.substate = 0,
-+	};
-+
-+	imx8ulp_resume(sdev);
-+
-+	return snd_sof_dsp_set_power_state(sdev, &target_dsp_state);
-+}
-+
-+static int imx8ulp_dsp_runtime_suspend(struct snd_sof_dev *sdev)
-+{
-+	const struct sof_dsp_power_state target_dsp_state = {
-+		.state = SOF_DSP_PM_D3,
-+		.substate = 0,
-+	};
-+
-+	imx8ulp_suspend(sdev);
-+
-+	return snd_sof_dsp_set_power_state(sdev, &target_dsp_state);
-+}
-+
-+static int imx8ulp_dsp_suspend(struct snd_sof_dev *sdev, unsigned int target_state)
-+{
-+	const struct sof_dsp_power_state target_dsp_state = {
-+		.state = target_state,
-+		.substate = 0,
-+	};
-+
-+	if (!pm_runtime_suspended(sdev->dev))
-+		imx8ulp_suspend(sdev);
-+
-+	return snd_sof_dsp_set_power_state(sdev, &target_dsp_state);
-+}
-+
-+static int imx8ulp_dsp_resume(struct snd_sof_dev *sdev)
-+{
-+	const struct sof_dsp_power_state target_dsp_state = {
-+		.state = SOF_DSP_PM_D0,
-+		.substate = 0,
-+	};
-+
-+	imx8ulp_resume(sdev);
-+
-+	if (pm_runtime_suspended(sdev->dev)) {
-+		pm_runtime_disable(sdev->dev);
-+		pm_runtime_set_active(sdev->dev);
-+		pm_runtime_mark_last_busy(sdev->dev);
-+		pm_runtime_enable(sdev->dev);
-+		pm_runtime_idle(sdev->dev);
-+	}
-+
-+	return snd_sof_dsp_set_power_state(sdev, &target_dsp_state);
-+}
-+
-+static struct snd_soc_dai_driver imx8ulp_dai[] = {
-+	{
-+		.name = "sai5",
-+		.playback = {
-+			.channels_min = 1,
-+			.channels_max = 32,
-+		},
-+		.capture = {
-+			.channels_min = 1,
-+			.channels_max = 32,
-+		},
-+	},
-+	{
-+		.name = "sai6",
-+		.playback = {
-+			.channels_min = 1,
-+			.channels_max = 32,
-+		},
-+		.capture = {
-+			.channels_min = 1,
-+			.channels_max = 32,
-+		},
-+	},
-+};
-+
-+static int imx8ulp_dsp_set_power_state(struct snd_sof_dev *sdev,
-+				       const struct sof_dsp_power_state *target_state)
-+{
-+	sdev->dsp_power_state = *target_state;
-+
-+	return 0;
-+}
-+
-+/* i.MX8 ops */
-+struct snd_sof_dsp_ops sof_imx8ulp_ops = {
-+	/* probe and remove */
-+	.probe		= imx8ulp_probe,
-+	.remove		= imx8ulp_remove,
-+	/* DSP core boot */
-+	.run		= imx8ulp_run,
-+	.reset		= imx8ulp_reset,
-+
-+	/* Block IO */
-+	.block_read	= sof_block_read,
-+	.block_write	= sof_block_write,
-+
-+	/* Module IO */
-+	.read64		= sof_io_read64,
-+
-+	/* Mailbox IO */
-+	.mailbox_read	= sof_mailbox_read,
-+	.mailbox_write	= sof_mailbox_write,
-+
-+	/* ipc */
-+	.send_msg	= imx8ulp_send_msg,
-+	.get_mailbox_offset	= imx8ulp_get_mailbox_offset,
-+	.get_window_offset	= imx8ulp_get_window_offset,
-+
-+	.ipc_msg_data	= sof_ipc_msg_data,
-+	.set_stream_data_offset = sof_set_stream_data_offset,
-+
-+	/* stream callbacks */
-+	.pcm_open	= sof_stream_pcm_open,
-+	.pcm_close	= sof_stream_pcm_close,
-+
-+	/* module loading */
-+	.get_bar_index	= imx8ulp_get_bar_index,
-+	/* firmware loading */
-+	.load_firmware	= snd_sof_load_firmware_memcpy,
-+
-+	/* Debug information */
-+	.dbg_dump	= imx8_dump,
-+
-+	/* Firmware ops */
-+	.dsp_arch_ops	= &sof_xtensa_arch_ops,
-+
-+	/* DAI drivers */
-+	.drv		= imx8ulp_dai,
-+	.num_drv	= ARRAY_SIZE(imx8ulp_dai),
-+
-+	/* ALSA HW info flags */
-+	.hw_info	= SNDRV_PCM_INFO_MMAP |
-+			SNDRV_PCM_INFO_MMAP_VALID |
-+			SNDRV_PCM_INFO_INTERLEAVED |
-+			SNDRV_PCM_INFO_PAUSE |
-+			SNDRV_PCM_INFO_NO_PERIOD_WAKEUP,
-+
-+	/* PM */
-+	.runtime_suspend	= imx8ulp_dsp_runtime_suspend,
-+	.runtime_resume		= imx8ulp_dsp_runtime_resume,
-+
-+	.suspend	= imx8ulp_dsp_suspend,
-+	.resume		= imx8ulp_dsp_resume,
-+
-+	.set_power_state	= imx8ulp_dsp_set_power_state,
-+};
-+
-+static struct sof_dev_desc sof_of_imx8ulp_desc = {
-+	.ipc_supported_mask     = BIT(SOF_IPC),
-+	.ipc_default            = SOF_IPC,
-+	.default_fw_path = {
-+		[SOF_IPC] = "imx/sof",
-+	},
-+	.default_tplg_path = {
-+		[SOF_IPC] = "imx/sof-tplg",
-+	},
-+	.default_fw_filename = {
-+		[SOF_IPC] = "sof-imx8ulp.ri",
-+	},
-+	.nocodec_tplg_filename = "sof-imx8ulp-nocodec.tplg",
-+	.ops = &sof_imx8ulp_ops,
-+};
-+
-+static const struct of_device_id sof_of_imx8ulp_ids[] = {
-+	{ .compatible = "fsl,imx8ulp-dsp", .data = &sof_of_imx8ulp_desc},
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, sof_of_imx8ulp_ids);
-+
-+/* DT driver definition */
-+static struct platform_driver snd_sof_of_imx8ulp_driver = {
-+	.probe = sof_of_probe,
-+	.remove = sof_of_remove,
-+	.driver = {
-+		.name = "sof-audio-of-imx8ulp",
-+		.pm = &sof_of_pm,
-+		.of_match_table = sof_of_imx8ulp_ids,
-+	},
-+};
-+module_platform_driver(snd_sof_of_imx8ulp_driver);
-+
-+MODULE_IMPORT_NS(SND_SOC_SOF_XTENSA);
-+MODULE_LICENSE("Dual BSD/GPL");
--- 
-2.34.1
-
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogQW5kcmV3IEx1bm4gPGFu
+ZHJld0BsdW5uLmNoPg0KPiBTZW50OiAyMDIyxOo41MIxOMjVIDk6NDQNCj4gVG86IFdlaSBGYW5n
+IDx3ZWkuZmFuZ0BueHAuY29tPg0KPiBDYzogaGthbGx3ZWl0MUBnbWFpbC5jb207IGxpbnV4QGFy
+bWxpbnV4Lm9yZy51azsgZGF2ZW1AZGF2ZW1sb2Z0Lm5ldDsNCj4gZWR1bWF6ZXRAZ29vZ2xlLmNv
+bTsga3ViYUBrZXJuZWwub3JnOyBwYWJlbmlAcmVkaGF0LmNvbTsNCj4gcm9iaCtkdEBrZXJuZWwu
+b3JnOyBrcnp5c3p0b2Yua296bG93c2tpK2R0QGxpbmFyby5vcmc7IGYuZmFpbmVsbGlAZ21haWwu
+Y29tOw0KPiBuZXRkZXZAdmdlci5rZXJuZWwub3JnOyBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9y
+ZzsNCj4gbGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZw0KPiBTdWJqZWN0OiBSZTogW1BBVENI
+IG5ldCAxLzJdIGR0OiBhcjgwM3g6IERvY3VtZW50IGRpc2FibGUtaGliZXJuYXRpb24NCj4gcHJv
+cGVydHkNCj4gDQo+ID4gWWVzLCBhZnRlciB0aGUgUEhZIGVudGVycyBoaWJlcm5hdGlvbiBtb2Rl
+IHRoYXQgdGhlIFJYX0NMSyBzdG9wDQo+ID4gdGlja2luZywgYnV0IGZvciBzdG1tYWMsIGl0IGlz
+IGVzc2VudGlhbCB0aGF0IFJYX0NMSyBvZiBQSFkgaXMgcHJlc2VudA0KPiA+IGZvciBzb2Z0d2Fy
+ZSByZXNldCBjb21wbGV0aW9uLiBPdGhlcndpc2UsIHRoZSBzdG1tYWMgaXMgZmFpbGVkIHRvDQo+
+ID4gY29tcGxldGUgdGhlIHNvZnR3YXJlIHJlc2V0IGFuZCBjYW4gbm90IGluaXQgRE1BLg0KPiAN
+Cj4gU28gdGhlIFJYX0NMSyBpcyBtb3JlIHRoYW4gdGhlIHJlY292ZXJlZCBjbG9jayBmcm9tIHRo
+ZSBiaXQgc3RyZWFtIG9uIHRoZQ0KPiB3aXJlLiBUaGUgUEhZIGhhcyBhIHdheSB0byBnZW5lcmF0
+ZSBhIGNsb2NrIHdoZW4gdGhlcmUgaXMgbm8gYml0IHN0cmVhbT8NCj4gDQpZZXMsIHdoZW4gZGlz
+YWJsZSBoaWJlcm5hdGlvbiBtb2RlLCB0aGUgUlhfQ0xLIGFsd2F5cyBvdXRwdXQgYSB2YWxpZCBj
+bG9jay4NCg0KPiBUbyBtZSwgaXQgc291bmRzIGxpa2UgeW91ciBoYXJkd2FyZSBkZXNpZ24gaXMg
+d3JvbmcsIGFuZCBpdCBzaG91bGQgYmUgdXNpbmcgdGhlDQo+IDI1TUh6IHJlZmVyZW5jZSBjbG9j
+ay4gQW5kIHdoYXQgeW91IGFyZSBwcm9wb3NpbmcgaXMgYSB3b3JrYXJvdW5kIGZvciB0aGlzDQo+
+IGhhcmR3YXJlIHByb2JsZW0uDQo+IA0KPiBBbnl3YXksIGkgYWdyZWUgd2l0aCBSdXNzZWxsLCBh
+IERUIHByb3BlcnR5IGlzIGZpbmUuIEJ1dCBwbGVhc2UgbWFrZSBpdCBjbGVhciBpbg0KPiB0aGUg
+YmluZGluZyBkb2N1bWVudGF0aW9uIHRoYXQgZGlzYWJsaW5nIGhpYmVybmF0aW9uIGhhcyB0aGUg
+c2lkZSBhZmZlY3Qgb2YNCj4ga2VlcGluZyB0aGUgUlhfQ0xLIHRpY2tpbmcgd2hlbiB0aGVyZSBp
+cyBubyBsaW5rLiBUaGF0IGlzIHByb2JhYmx5IHdoYXQgcGVvcGxlDQo+IHdhbnQgdGhpcyBmb3Is
+IG5vdCB0byBhY3R1YWwgZGlzYWJsZSBoaWJlcm5hdGlvbi4NCj4gDQo+IAlBbmRyZXcNCg==
