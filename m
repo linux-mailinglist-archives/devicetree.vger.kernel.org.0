@@ -2,301 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D35C597FE9
-	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 10:16:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D4C3597FF4
+	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 10:21:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238344AbiHRIOX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Aug 2022 04:14:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50692 "EHLO
+        id S239898AbiHRIRf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Aug 2022 04:17:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237784AbiHRIOW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 04:14:22 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10C5A3AE6B
-        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 01:14:21 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id v4so1041977ljg.0
-        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 01:14:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=EseHrWw6iA/ykOiA6csED9L2g8nLqyHnkIVzNZpxQFc=;
-        b=NWQnJjpR6nD+7TJm20XRDTWHC37lpbLKPr5eR0Yh7lqZtQKvH907z4VUnXP2iVTgpI
-         R+UwZ/GK9yQ4Mz4wLv/8fVyDAB2wFwbPq7NyZkjN9nEIhO1En7W1cWjlbXGGyjyBQxFN
-         ikSzqtbJAguBYSmVWXSrwobF7RnJ4gqVdEj0Z4Tyn7rnPt8C+VHp4tt978IXAAIbvZfJ
-         KNCoxMq9HehgFrkPyH/vWwguwBQs5an2dK6OPHFlGXzxqLvvPkj/SgUMtYXE04al1rRB
-         dE3S8uLBBXHmlbzWk9GMBANZhhWCK+lLvAiLFquqiEAiSw0gGxtpOjmQphpa4MrZbs4B
-         uSMw==
+        with ESMTP id S239685AbiHRIRc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 04:17:32 -0400
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D7C180535
+        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 01:17:31 -0700 (PDT)
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com [209.85.221.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 12CB83F11F
+        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 08:17:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1660810647;
+        bh=nAL3OU0N2XYH48ZM4NQOXy6U04pGy/lEK4T1iote3O4=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=LeAzpOmjRBP+GmdhIHXAWjDNHHjl3NIG9oP8JG5N4QXOFKVXPqMNgycYTnpAaqvoy
+         a5NQjdYmaVouPRx1YuU4zopPTfNQBETHAAYO6aj6gyjhFZY4wUwpQ0F0lPicDPbJcs
+         1Pz1Lj0u/KicMGb48F5lhskkPjPARPNSEHrn8z631EbXGLA3lYIEsiMbfuFiJt8NBL
+         YbTxyKeKtWHXzI7NhH2WkxcWBa2hLO3bWa6xOHQwEDbNG4BJfq/bkT0ttGPPlEs0WT
+         9zbUnOVmsgw6aHdYXNiECL4fLFojYtSLTL8AxVpkdOes9PVdVUWn2H11fBJW9i3sjz
+         +agbx8IPuqNRw==
+Received: by mail-wr1-f71.google.com with SMTP id v20-20020adf8b54000000b002216d3e3d5dso84812wra.12
+        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 01:17:26 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=EseHrWw6iA/ykOiA6csED9L2g8nLqyHnkIVzNZpxQFc=;
-        b=vWcn5dUHpascmt+8qCWAkKUnonhIZQU1f9O99ANeUCA7BrnXzfsxLM+X1dYWEfCo8t
-         sU1bGSWaXqsixjemIr6AH7PTB5teP/XFPPTgi7/9yOLACYtcWLBDLW/FTZ95gjse0GGX
-         wzi6I4O14uvyroZNWetYkAmNommNOxV1XbyBt08lNIaWh5SCHSlby3XUgAQbshfiPB9D
-         NW6O0Wsgqqrv4WlJ7x8iB2ZKWt/4ht2ghwfxQ8OTdef+qY9FDLQuMcgUKV14fs2lbVi1
-         P5b7Nko5p+hW3K74IIpElXVqJqyb+Yc1lYlxcUjIhrSA0KZ+NNGEDvQw3MuuUB8YsqQJ
-         YrFw==
-X-Gm-Message-State: ACgBeo08/Ox3KP4zcpfM9xJZb4LWO7nmEEeNQIpgl+bLmnJ2NgLk1iwo
-        oFu2t0IbZmgQTSyeBcPtmsLYA9IWKTM9PlQt
-X-Google-Smtp-Source: AA6agR6s49mE+LQIyzI7TWAJP73hbKA8oNOx4Hv7gb09uj8dityXx1kZ78lYRI0YbzkerFT6XEbTTw==
-X-Received: by 2002:a2e:8018:0:b0:261:b440:c0cc with SMTP id j24-20020a2e8018000000b00261b440c0ccmr269317ljg.385.1660810459411;
-        Thu, 18 Aug 2022 01:14:19 -0700 (PDT)
-Received: from ?IPV6:2001:14bb:ae:539c:53ab:2635:d4f2:d6d5? (d15l54z9nf469l8226z-4.rev.dnainternet.fi. [2001:14bb:ae:539c:53ab:2635:d4f2:d6d5])
-        by smtp.gmail.com with ESMTPSA id v4-20020a2ea604000000b0026182c4a5c6sm124273ljp.120.2022.08.18.01.14.18
+        bh=nAL3OU0N2XYH48ZM4NQOXy6U04pGy/lEK4T1iote3O4=;
+        b=rA82/pT1Z8EcfbnTcm0gqDuYo7tEeAUXMncK++DZJfYbr3n3a1jDMJibtk0sdAQSwt
+         rMt8KJbduH0wR+jA3y8k1JPs7k+WsuQCeMffKhmQvRjnyWBjJQgUiRKLKY3+RF/0+ZOU
+         0qoq3I/lvCHaKACuytpw8MGXgE9M6mdipN0IXdOZrxoAOB70QFJftocF2Kyw+Qe34zkS
+         6APCqKaGBbgjyIIv+Vlhb5uXZVss4na8v6rHMWdXr/pu1uwZqvHq8ReXiaeFiZM3YnAI
+         gY5tEKPoLjb9LlGckLY2UU7gdBXHECSzp9eGgLmnNFl1rQwipRD5IBis0HLbmo4yG5Bm
+         ueTQ==
+X-Gm-Message-State: ACgBeo3mVO0s+XWBpHH4dVomf2qJZAjWjopUsWn6KrYhyAg8mfcOFzVW
+        qlXWNoPmEMNIpXDTQeIkiAW3Qx0fj/G9fIf3LQTNewzYEeL822y07uY4/X4k5CKliF7meqV2vme
+        E05Y3iJL9mT2N6DsHWHnL02W1gYccPKQPj9VnC78=
+X-Received: by 2002:a05:6000:1ac7:b0:225:1cb4:d443 with SMTP id i7-20020a0560001ac700b002251cb4d443mr894336wry.501.1660810644645;
+        Thu, 18 Aug 2022 01:17:24 -0700 (PDT)
+X-Google-Smtp-Source: AA6agR7UtRK49PUfX6BblfH4ht1MDEm3+bFgKVoLlKnQBnqzYe1+RlQezcyltukJ4BVVP00eEq4X0g==
+X-Received: by 2002:a05:6000:1ac7:b0:225:1cb4:d443 with SMTP id i7-20020a0560001ac700b002251cb4d443mr894310wry.501.1660810644376;
+        Thu, 18 Aug 2022 01:17:24 -0700 (PDT)
+Received: from [192.168.123.67] (ip-084-118-157-002.um23.pools.vodafone-ip.de. [84.118.157.2])
+        by smtp.gmail.com with ESMTPSA id p22-20020a05600c359600b003a35516ccc3sm1415601wmq.26.2022.08.18.01.17.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Aug 2022 01:14:18 -0700 (PDT)
-Message-ID: <e30e41c6-04b4-bf48-b034-b722f950ac90@linaro.org>
-Date:   Thu, 18 Aug 2022 11:14:17 +0300
+        Thu, 18 Aug 2022 01:17:23 -0700 (PDT)
+Message-ID: <00500974-474d-3559-c141-3cc758bc0423@canonical.com>
+Date:   Thu, 18 Aug 2022 10:17:22 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH 3/3] arm64: dts: rockchip: add Anbernic RG353 and RG503
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.1.2
+Subject: Re: [PATCH 1/1] riscv: dts: microchip: correct L2 cache interrupts
 Content-Language: en-US
-To:     Chris Morgan <macroalpha82@gmail.com>, devicetree@vger.kernel.org
-Cc:     linux-rockchip@lists.infradead.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
-        pgwipeout@gmail.com, Chris Morgan <macromorgan@hotmail.com>
-References: <20220817204954.28135-1-macroalpha82@gmail.com>
- <20220817204954.28135-4-macroalpha82@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220817204954.28135-4-macroalpha82@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Daire.McNamara@microchip.com
+Cc:     linux-riscv@lists.infradead.org,
+        emil.renner.berthing@canonical.com, devicetree@vger.kernel.org,
+        paul.walmsley@sifive.com, aou@eecs.berkeley.edu,
+        palmer@dabbelt.com, geert@linux-m68k.org,
+        linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+        atishp@rivosinc.com, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, Conor.Dooley@microchip.com
+References: <20220817132521.3159388-1-heinrich.schuchardt@canonical.com>
+ <32a72954-c692-6c5d-b07b-266d426c3cb4@microchip.com>
+ <ccb5792bfe467dcc5046b7cb4de3a6af14cd3d5a.camel@microchip.com>
+From:   Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
+In-Reply-To: <ccb5792bfe467dcc5046b7cb4de3a6af14cd3d5a.camel@microchip.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/08/2022 23:49, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
-> 
-> Anbernic RG353 and RG503 are both RK3566 based handheld gaming devices
-> from Anbernic.
-> 
+On 8/18/22 09:03, Daire.McNamara@microchip.com wrote:
+> On Wed, 2022-08-17 at 18:04 +0000, Conor Dooley - M52691 wrote:
+>> Hey Heinrich,
+>> Interesting CC list you got there! Surprised the mailmap didn't sort
+>> out Atish & Krzysztof's addresses, but I think I've fixed them up.
+>>   I see Daire isn't there either so +CC him too.
+>>
+>> On 17/08/2022 14:25, Heinrich Schuchardt wrote:
+>>> EXTERNAL EMAIL: Do not click links or open attachments unless you
+>>> know the content is safe
+>>>
+>>> The "PolarFire SoC MSS Technical Reference Manual" documents the
+>>> following PLIC interrupts:
+>>>
+>>> 1 - L2 Cache Controller Signals when a metadata correction event
+>>> occurs
+>>> 2 - L2 Cache Controller Signals when an uncorrectable metadata
+>>> event occurs
+>>> 3 - L2 Cache Controller Signals when a data correction event occurs
+>>> 4 - L2 Cache Controller Signals when an uncorrectable data event
+>>> occurs
+>>>
+>>> This differs from the SiFive FU540 which only has three L2 cache
+>>> related
+>>> interrupts.
+>>>
+>>> The sequence in the device tree is defined by an enum:
+> in drivers/soc/sifive/sifive_l2_cache.c
+>>>
+>>>      enum {
+>>>              DIR_CORR = 0,
+>>>              DATA_CORR,
+>>>              DATA_UNCORR,
+>>>              DIR_UNCORR,
+>>>      };
+>>
+>> Nit: more accurately by the dt-binding:
+>>    interrupts:
+>>      minItems: 3
+>>      items:
+>>        - description: DirError interrupt
+>>        - description: DataError interrupt
+>>        - description: DataFail interrupt
+>>        - description: DirFail interrupt
+>>
+>> I do find the names in the enum to be a bit more understandable
+>> however,
+>> and ditto for the descriptions in our TRM... Maybe I should put that
+>> on
+>> my todo list of cleanups :)
+>>
+>>
+>>> So the correct sequence of the L2 cache interrupts is
+>>>
+>>>      interrupts = <1>, <3>, <4>, <2>;
+>>
+>> This looks correct to me. You mentioned on IRC that what you were
+>> seeing
+>> was a wall of
+>> L2CACHE: DataFail @ 0x00000000.0807FFD8
+>>  From a quick look at the driver, what seems to be happening here is
+>> that
+>> at some point (possibly before Linux even comes into the picture)
+>> there
+>> is an uncorrectable data error. Because the ordering in the dt is
+>> wrong,
+>> we read the wrong register and so the interrupt is never actually
+>> cleared. With this patch applied, I see a single DataFail right as
+>> the
+>> interrupt gets registed & nothing after that.
+>>
+>> I am not really sure what value there is in enabling that driver
+>> though,
+>> mostly just seems like a debugging tool & from our pov we would see
+>> the
+>> HSS running in the monitor core as being responsible for handling the
+>> l2-cache errors.
+>>
+>> @Daire, maybe you have an opinion here?
+> Likewise. The new ordering of the interrupts to what the driver expects
+> looks correct - as far as it goes. However, I'm not convinced enabling
+> the SiFive l2 cache driver out of the box makes sense. Using l2 cache
+> driver doesn't align terribly well with the current MPFS roadmap for
+> mgt of ECC errors.
+>>
+>> Patch LGTM, so I'll likely apply it in the next day or two, would
+>> just
+>> like to see what Daire has to say first.
+> If l2-cache controller is enabled, then interrupts should be connected
+> as per TRM.  I think this specific patch lgtm, ideally with a
+> 'disabled' stanza and it's up to individual MPFS customers/boards to
+> enable l2 cache controller if they want it.
 
-Thank you for your patch. There is something to discuss/improve.
+Disabling the device in the device-tree is orthogonal to fixing the 
+interrupt sequence. I would suggest that you use a separate patch for 
+adding status = "disabled";.
 
-> +		red_led: led-2 {
-> +			color = <LED_COLOR_ID_RED>;
-> +			default-state = "off";
-> +			function = LED_FUNCTION_STATUS;
-> +			gpios = <&gpio0 RK_PC7 GPIO_ACTIVE_HIGH>;
-> +		};
-> +	};
-> +
-> +	rk817-sound {
+Best regards
 
-just sound
+Heinrich
 
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+>>
+>>> Fixes: e35b07a7df9b ("riscv: dts: microchip: mpfs: Group tuples in
+>>> interrupt properties")
+>>
+>> BTW, it isn't really fixing this patch right? This is a dependency
+>> for
+>> backports to 5.15.
+>>
+>> Thanks for your patch,
+>> Conor.
+>>
+>>> Fixes: 0fa6107eca41 ("RISC-V: Initial DTS for Microchip ICICLE
+>>> board")
+>>> Cc: Conor Dooley <conor.dooley@microchip.com>
+>>> Cc: stable@vger.kernel.org
+>>> Signed-off-by: Heinrich Schuchardt <
+>>> heinrich.schuchardt@canonical.com>
+>>> ---
+>>>   arch/riscv/boot/dts/microchip/mpfs.dtsi | 2 +-
+>>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>>
+>>> diff --git a/arch/riscv/boot/dts/microchip/mpfs.dtsi
+>>> b/arch/riscv/boot/dts/microchip/mpfs.dtsi
+>>> index 496d3b7642bd..ec1de6344be9 100644
+>>> --- a/arch/riscv/boot/dts/microchip/mpfs.dtsi
+>>> +++ b/arch/riscv/boot/dts/microchip/mpfs.dtsi
+>>> @@ -169,7 +169,7 @@ cctrllr: cache-controller@2010000 {
+>>>                          cache-size = <2097152>;
+>>>                          cache-unified;
+>>>                          interrupt-parent = <&plic>;
+>>> -                       interrupts = <1>, <2>, <3>;
+>>> +                       interrupts = <1>, <3>, <4>, <2>;
+>>>                  };
+>>>
+>>>                  clint: clint@2000000 {
+>>> --
+>>> 2.36.1
+>>>
 
-> +		compatible = "simple-audio-card";
-> +		simple-audio-card,name = "anbernic_rk817";
-> +		simple-audio-card,aux-devs = <&spk_amp>;
-> +		simple-audio-card,format = "i2s";
-> +		simple-audio-card,hp-det-gpio = <&gpio4 RK_PC6 GPIO_ACTIVE_HIGH>;
-> +		simple-audio-card,mclk-fs = <256>;
-> +		simple-audio-card,widgets =
-> +			"Microphone", "Mic Jack",
-> +			"Headphone", "Headphones",
-> +			"Speaker", "Internal Speakers";
-> +		simple-audio-card,routing =
-> +			"MICL", "Mic Jack",
-> +			"Headphones", "HPOL",
-> +			"Headphones", "HPOR",
-> +			"Internal Speakers", "Speaker Amp OUTL",
-> +			"Internal Speakers", "Speaker Amp OUTR",
-> +			"Speaker Amp INL", "HPOL",
-> +			"Speaker Amp INR", "HPOR";
-> +		simple-audio-card,pin-switches = "Internal Speakers";
-> +
-> +		simple-audio-card,codec {
-> +			sound-dai = <&rk817>;
-> +		};
-> +
-> +		simple-audio-card,cpu {
-> +			sound-dai = <&i2s1_8ch>;
-> +		};
-> +	};
-> +
-> +	sdio_pwrseq: sdio-pwrseq {
-> +		compatible = "mmc-pwrseq-simple";
-> +		clocks = <&rk817 1>;
-> +		clock-names = "ext_clock";
-> +		pinctrl-0 = <&wifi_enable_h>;
-> +		pinctrl-names = "default";
-> +		post-power-on-delay-ms = <200>;
-> +		reset-gpios = <&gpio4 RK_PA2 GPIO_ACTIVE_LOW>;
-> +	};
-> +
-> +	spk_amp: audio-amplifier {
-> +		compatible = "simple-audio-amplifier";
-> +		enable-gpios = <&gpio4 RK_PC2 GPIO_ACTIVE_HIGH>;
-> +		pinctrl-0 = <&spk_amp_enable_h>;
-> +		pinctrl-names = "default";
-> +		sound-name-prefix = "Speaker Amp";
-> +	};
-> +
-> +	vcc3v3_lcd0_n: vcc3v3-lcd0-n {
-
-Node name:
-regulator-vcc3v3-lcd0-n
-vcc3v3-lcd0-n-regulator
-or just regulator-0
-
-> +		compatible = "regulator-fixed";
-> +		gpio = <&gpio0 RK_PC2 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +		pinctrl-0 = <&vcc_lcd_h>;
-> +		pinctrl-names = "default";
-> +		regulator-boot-on;
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-name = "vcc3v3_lcd0_n";
-> +		vin-supply = <&vcc_3v3>;
-> +		regulator-state-mem {
-> +			regulator-off-in-suspend;
-> +		};
-> +	};
-> +
-> +	vcc_sys: vcc_sys {
-
-No underscores in node names. Same comment as above.
-
-> +		compatible = "regulator-fixed";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt = <3800000>;
-> +		regulator-max-microvolt = <3800000>;
-> +		regulator-name = "vcc_sys";
-> +	};
-> +
-> +	vcc_wifi: vcc-wifi {
-
-Same comment as above
-
-> +		compatible = "regulator-fixed";
-> +		enable-active-high;
-> +		gpio = <&gpio0 RK_PA0 GPIO_ACTIVE_HIGH>;
-> +		pinctrl-0 = <&vcc_wifi_h>;
-> +		pinctrl-names = "default";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-name = "vcc_wifi";
-> +	};
-> +
-> +	vibrator: pwm-vibrator {
-> +		compatible = "pwm-vibrator";
-> +		pwm-names = "enable";
-> +		pwms = <&pwm5 0 1000000000 0>;
-> +	};
-> +};
-> +
-> +&combphy1 {
-> +	status = "okay";
-> +};
-> +
-> +&cpu0 {
-> +	cpu-supply = <&vdd_cpu>;
-> +};
-> +
-> +&cpu1 {
-> +	cpu-supply = <&vdd_cpu>;
-> +};
-> +
-> +&cpu2 {
-> +	cpu-supply = <&vdd_cpu>;
-> +};
-> +
-> +&cpu3 {
-> +	cpu-supply = <&vdd_cpu>;
-> +};
-> +
-> +&gpu {
-> +	mali-supply = <&vdd_gpu>;
-> +	status = "okay";
-> +};
-> +
-> +&hdmi {
-> +	status = "okay";
-> +};
-> +
-> +&hdmi_in {
-> +	hdmi_in_vp0: endpoint {
-> +		remote-endpoint = <&vp0_out_hdmi>;
-> +	};
-> +};
-> +
-> +&hdmi_out {
-> +	hdmi_out_con: endpoint {
-> +		remote-endpoint = <&hdmi_con_in>;
-> +	};
-> +};
-> +
-> +&hdmi_sound {
-> +	status = "okay";
-> +};
-> +
-> +&i2c0 {
-> +	status = "okay";
-> +
-> +	rk817: pmic@20 {
-> +		compatible = "rockchip,rk817";
-> +		reg = <0x20>;
-> +		interrupt-parent = <&gpio0>;
-> +		interrupts = <RK_PA3 IRQ_TYPE_LEVEL_LOW>;
-> +		clock-output-names = "rk808-clkout1", "rk808-clkout2";
-> +		clock-names = "mclk";
-> +		clocks = <&cru I2S1_MCLKOUT_TX>;
-> +		assigned-clocks = <&cru I2S1_MCLKOUT_TX>;
-> +		assigned-clock-parents = <&cru CLK_I2S1_8CH_TX>;
-> +		#clock-cells = <1>;
-> +		#sound-dai-cells = <0>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&i2s1m0_mclk>, <&pmic_int_l>;
-> +		wakeup-source;
-> +
-> +		vcc1-supply = <&vcc_sys>;
-> +		vcc2-supply = <&vcc_sys>;
-> +		vcc3-supply = <&vcc_sys>;
-> +		vcc4-supply = <&vcc_sys>;
-> +		vcc5-supply = <&vcc_sys>;
-> +		vcc6-supply = <&vcc_sys>;
-> +		vcc7-supply = <&vcc_sys>;
-> +		vcc8-supply = <&vcc_sys>;
-> +		vcc9-supply = <&dcdc_boost>;
-> +
-> +		regulators {
-> +			vdd_logic: DCDC_REG1 {
-
-No underscores in node names, unless the PMIC requires it.
-
-(...)
-
-> +
-> +&pinctrl {
-> +
-
-No need for blank line
-
-> +	audio-amplifier {
-> +		spk_amp_enable_h: spk-amp-enable-h {
-> +			rockchip,pins =
-> +				<4 RK_PC2 RK_FUNC_GPIO &pcfg_pull_none>;
-> +		};
-> +	};
-> +
-
-Best regards,
-Krzysztof
