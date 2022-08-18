@@ -2,198 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6DB6598849
-	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 18:06:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C13C9598886
+	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 18:18:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344004AbiHRQEt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Aug 2022 12:04:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46352 "EHLO
+        id S1344348AbiHRQRM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Aug 2022 12:17:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245462AbiHRQEs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 12:04:48 -0400
-Received: from mxd1.seznam.cz (mxd1.seznam.cz [IPv6:2a02:598:a::78:210])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F157D43321;
-        Thu, 18 Aug 2022 09:04:44 -0700 (PDT)
-Received: from email.seznam.cz
-        by email-smtpc17b.ko.seznam.cz (email-smtpc17b.ko.seznam.cz [10.53.18.19])
-        id 081a9684ecb645ba09c737ea;
-        Thu, 18 Aug 2022 18:03:48 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seznam.cz; s=beta;
-        t=1660838628; bh=l4izIYveon3swGZsVW6a4txzcsFgvxecVRqPxonk/8s=;
-        h=Received:Date:From:To:Cc:Subject:Message-ID:References:
-         MIME-Version:Content-Type:Content-Disposition:In-Reply-To;
-        b=Ndx+GZef0W0zshtUnW4vZm4O/eVsLFCwKDtWYr7v/MQHB3fpHZTIvKQXE4Ecu5rzl
-         ByxCYHHL25lDMKfwhR4ggPA9zjNWGGXMXoXuFsDB/hTc63sQfL6j+L+Wol/nCYwdel
-         GAlj9Hmvm1AjU5IL2DGP9QyZoUJnd8OupR0asoMA=
-Received: from hopium (2a02:8308:900d:2400:42a0:4fb5:48e:75cc [2a02:8308:900d:2400:42a0:4fb5:48e:75cc])
-        by email-relay22.ng.seznam.cz (Seznam SMTPD 1.3.137) with ESMTP;
-        Thu, 18 Aug 2022 18:03:46 +0200 (CEST)  
-Date:   Thu, 18 Aug 2022 18:03:44 +0200
-From:   Matej Vasilevski <matej.vasilevski@seznam.cz>
-To:     Marc Kleine-Budde <mkl@pengutronix.de>
-Cc:     Pavel Pisa <pisa@cmp.felk.cvut.cz>,
-        Ondrej Ille <ondrej.ille@gmail.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        "David S. Miller" <davem@davemloft.net>,
+        with ESMTP id S245699AbiHRQRM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 12:17:12 -0400
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-eopbgr70070.outbound.protection.outlook.com [40.107.7.70])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD85274CF8;
+        Thu, 18 Aug 2022 09:17:10 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=eGrkML5O0MdJ2J2A9a1ZZzAxSx2iwnr6MSEnBd+pe8LZ77IT54qSwTe00EGkS6ZbxoQtzA0gawcimKU/d6N8adGRnSs07n6JEc8mLcSoq+u0ug/c33367le9WWRDu+QsUW5cpCE37YUVT7vNBdtnZjTb095JxwCAmYVPMq0WawDGOWKIdJee6ldxNIK1n521++e8btOIsfwvF6lDlpJmQ2pVr+PEAhJya0DDgL/u/EkZC/iip0jjraX55xNd9tVGcAe/Af7VOfbIKuWa/bmev1sS0/Q1bG8HWLypQtcfQ1OVNp5+lynR8ePqlwh0nvkpG40WyhcsFH2A3aplmLJUHg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=iO8ROTcaT90018JtrQ0xpZyawquVtsOjOiokopmXpXU=;
+ b=b5z/Ih8Y+VdAb2sYDV/QaM0ynF7zfJXBfCiGOfBM0r7J7keJDyROllR7OP9WpDdKAFtXN8H47+dQGI4XcSDZqdeupFXJTP6IRedjoye9zd8EozB0TNbvi74rCUVSMWt3EO9pjnko87Ry+egTU02NL0n93UrYHDCsGz40A1YUyERPJcZxVtnX3O/6Oei8BiKuECCAe6wgjcrb9qCmyOn0e0Nqb1nfhkXgsl8MQmIchoHhYf8qV+9FuFuBXi/k7wnkHVPbFr4HPwpZtI4v9yHVMIgrZjQ/UhFz8kBcB4hWUpuSDQT9LL4HSLFRwmZNP/soiDiA530Y215vRV9PYt+4iw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
+ dkim=pass header.d=seco.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iO8ROTcaT90018JtrQ0xpZyawquVtsOjOiokopmXpXU=;
+ b=W0KMMswBEi5vphC4esG1i2zziejktNl5ItGzWMpkQtHm7wCagAOsj2tnOcDdZTdfHcup6Oab+hgg6Z5SbvMBdlU6HUqgwoX1IgsBmDyVv+7OBVOs33HeLTX8DZ7nmVl5sFmWqIuGXr83JNyxjNRuOn7xvtFVeS/As0+VLeNuUxEHm4RvTpx5qRrrmAhfhwC45avjGM3NltA6f6Tz4Q42kqHgDH/kiir2+hEJlzLR01VoNF6aojKzPe0JXQ0nSiUZavKV7Ii4Ar1wyFBq6MxF4cqOr2XJ9UN+7YI5hSPwDa8AA766Xt5AaU5s03AY8KAwSE3neUcZ0lWsNaDeTjL8iA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=seco.com;
+Received: from DB7PR03MB4972.eurprd03.prod.outlook.com (2603:10a6:10:7d::22)
+ by DB3PR0302MB3211.eurprd03.prod.outlook.com (2603:10a6:8:11::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5546.16; Thu, 18 Aug
+ 2022 16:17:07 +0000
+Received: from DB7PR03MB4972.eurprd03.prod.outlook.com
+ ([fe80::ecaa:a5a9:f0d5:27a2]) by DB7PR03MB4972.eurprd03.prod.outlook.com
+ ([fe80::ecaa:a5a9:f0d5:27a2%4]) with mapi id 15.20.5504.019; Thu, 18 Aug 2022
+ 16:17:06 +0000
+From:   Sean Anderson <sean.anderson@seco.com>
+To:     "David S . Miller" <davem@davemloft.net>,
         Eric Dumazet <edumazet@google.com>,
         Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, netdev@vger.kernel.org
+Cc:     Camelia Groza <camelia.groza@nxp.com>,
+        linux-kernel@vger.kernel.org (open list),
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        linuxppc-dev@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org,
+        Sean Anderson <sean.anderson@seco.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-can@vger.kernel.org, netdev@vger.kernel.org,
+        Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
         devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] can: ctucanfd: add HW timestamps to RX and error
- CAN frames
-Message-ID: <20220818160344.GA297252@hopium>
-References: <20220801184656.702930-1-matej.vasilevski@seznam.cz>
- <20220801184656.702930-2-matej.vasilevski@seznam.cz>
- <20220802092907.d2xtbqulkvzcwfgj@pengutronix.de>
- <20220803000903.GB4457@hopium>
- <20220803085303.2u4l5l6wmualq33v@pengutronix.de>
- <20220817231434.GA157998@hopium>
- <20220818092435.hchmowfaolxe2tlq@pengutronix.de>
+Subject: [RESEND PATCH net-next v4 00/25] net: dpaa: Cleanups in preparation for phylink conversion
+Date:   Thu, 18 Aug 2022 12:16:24 -0400
+Message-Id: <20220818161649.2058728-1-sean.anderson@seco.com>
+X-Mailer: git-send-email 2.35.1.1320.gc452695387.dirty
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: MN2PR20CA0009.namprd20.prod.outlook.com
+ (2603:10b6:208:e8::22) To DB7PR03MB4972.eurprd03.prod.outlook.com
+ (2603:10a6:10:7d::22)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220818092435.hchmowfaolxe2tlq@pengutronix.de>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: a516a29e-8c4f-410f-2e4e-08da81351819
+X-MS-TrafficTypeDiagnostic: DB3PR0302MB3211:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: SDtHwWUyvlvFwnG3K5mSlosJa8/49WDwO+80PiMYTqnjLdFxto9hsBBIBPnDRfjAda+UuyX/TxnFKfM2Zoqwz5w5KsC8Iwoy/YLExjl83f4MkvqXSVGTwl90QL3qCQB+kDMsaIAfDHMGXYr7ffH9g6DRdDAJxRQoZInSggIJbzzji8MQBYvAelHdGcPkSXRvIW+JOgIC0PVYnisZ1D9gWZMdCk7trg0C9yrHeRQIc3yrOJbvPVx3wPGPnDlU66Uitd78KdfOb5nAfhW8HIRIGtV6tfYZzkuO1qO7HQa84JCZR1F6AbkZ1WjIIC/gmAcX0s/rce3gE+35IGVUBIgMBpLUCOC6L455CrBGbG3xpb0eS8EfhK7IRrptG+rwFe3sf3q6NGs4SBoKrUXo4Z9RJl+QNq3cMoknTcmX3Yc6PUB55EejHEMKrrpRy1TEWYKPeZ5oIad1Vwv44WysZtCNidszHJr1pJ7AeGaO79Oy5gPhEKuctI5S6rMNtsinTV/WRclxmF4Kv0ultmgBu+dH7Epn3JTQFNcRBublZpKPHMd0gIzJoO5H+YPcRJHdgYun/6W1ZcSjJc5Ij9NWKQcMNlJZtQj87dl2pI4WTDAHHKWJo6TLGHD6H+f78aW4s2EFKlCBT/G7P3ejQvusPO/9m0fVdi8f6hPw0I8kMjFF6IZ4oiTpw2ZF/s6OgnJX4aX+UqOKkcvQm8fDW/UlX4Tt3a645JvxhnRb6ryGRz55AvpDyvBolyx/38T61QbGs6vft3ZyWfvCQ5BcuiZAf7d52+tXCQf+Ca0aXfHasfxa224=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR03MB4972.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(396003)(346002)(39840400004)(136003)(366004)(376002)(2616005)(38350700002)(8936002)(38100700002)(4326008)(6512007)(26005)(6506007)(52116002)(6666004)(2906002)(8676002)(36756003)(66556008)(1076003)(66946007)(66476007)(54906003)(110136005)(44832011)(478600001)(966005)(86362001)(41300700001)(6486002)(316002)(83380400001)(186003)(5660300002)(7416002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?rombbdYzXqscTaTVhPxh2Ah9AAh/APIurTESDVC0pY9UBTuuoArGtlOYWQCR?=
+ =?us-ascii?Q?3OShKJ0rSU8OyFvsbSEkwuvmQw9JNFwE96lA83okoHZmIWnW/8rXJF699XvP?=
+ =?us-ascii?Q?qOG5j9dEqBmvzQa26V9C4YsQ8OV4Aqhuz8nx8o9ZMRZl1+nCiTbZVwB6cXac?=
+ =?us-ascii?Q?WpSlDbBL3TxWtE6pvzQdgucDZHjWtWD9xzVWg9dPtDvs2FKRzV2xb3mCEe08?=
+ =?us-ascii?Q?v+UpiY39h4Gzve70YvVx79CbSyBKdLvOZN8MRDQNAFnEmDkYwoRAuCvk56It?=
+ =?us-ascii?Q?2Q4E5u/HIRed5UmpxRcc4u/7qLsUnwsb1h3U9v87wBW7hemyclc3RGpgsMLr?=
+ =?us-ascii?Q?7+SXrN18MMN0odRbYajgG/NE6euyMd+cjazVEMKIo7DUbVI1lfJUqp73tpUL?=
+ =?us-ascii?Q?EmB3rSLnBSby7ZjOM7hdoyPbl7StsoE5KU+51HDnDaW0BCWx/4lKfkY1VQ71?=
+ =?us-ascii?Q?XXac2SF5tpP8sKGi6LhWXDsMQcw4Pdbc80pNKF7lNfQc2jDqB/OKUQRTF3O9?=
+ =?us-ascii?Q?58fakiBGRZKtzxSjtnFlLFnxQbS55Q9P3iv9LB1iq6HNLOK6ynsZVVgnZDul?=
+ =?us-ascii?Q?zY/2dm3Iu9+oRNblerhFSzCpPxkbd/8PMKQdC6mRg4ex39HWqidVLtsF/rcr?=
+ =?us-ascii?Q?lTYPn8PL/JqcT/E8SBQtZ1mqsm1T0VjWNG8595dF5/s6GPMumbCLxishOC8g?=
+ =?us-ascii?Q?uAce2ZCnO/4rZRnrEKWHoDth9I/AN5DE35edBHC4mwy78YwyBQwN1EwNW3zS?=
+ =?us-ascii?Q?LNoy7f1qZx0Ep0w5IybphmZdTectoUPJ3GlwDcKhNjXuvjtQBGfFpll1zSlN?=
+ =?us-ascii?Q?jwO8/ZdDzhueVVYMMCv3Sw5YiYkolHe4hKAvrXJtF0YVzRbdTMeu15oNY7K8?=
+ =?us-ascii?Q?mEZQo4qyWDrs5JWsopyKypj9opvZ/85Dh2E2pjW65DhMs6ZMnZnPse6OmLqI?=
+ =?us-ascii?Q?5wLwJr8RuzP3PyEPFX9C2+LkMEfQ5G26Y7goKYcRqoKE8CmSmukKcTIUDZcl?=
+ =?us-ascii?Q?7NmZvB7nHGaPR278RNWO+LqaXkuzArFrNmlAj6jwEO1GV8dFE9Pv84wA9bF5?=
+ =?us-ascii?Q?tOBMJRx5v5eBMvUQr1SU5HLPVcZMUxJU09qLuTMWiKpB7QdM834uWk4fzpMR?=
+ =?us-ascii?Q?43EYqt3QLkbA/BUF+SjOyIb8WOHOAxbRSpKb2G+Et6D+4TY+CcFjryqNfwH4?=
+ =?us-ascii?Q?JLtBM8MzHaFEd1Pc7RQKJsALc33uJc+WgdG6wQg5G6B0pwmXp1p7qeQdHnY3?=
+ =?us-ascii?Q?qO2UvfL61DrGF60wORrGg5ckQ9fQBdTRpYdEL8sf1WWSNBWxqL+FCkadhUhZ?=
+ =?us-ascii?Q?k9xpLEEOnqxOHKgxjlUDCCfsedKfrlsZmNYrVHl+w8vyvkUybkCAYLDaPotK?=
+ =?us-ascii?Q?C/APbYt4T8Tgyp3ncnbPxLilICVyPf9xFBRDiWEoP7wi4rQm2kUU7uNv+mOj?=
+ =?us-ascii?Q?pPafPPRlsjdgPA7FBHGGnrhSfmNacviD5kosxe68PqQ3gzj/6BFR2RPRk7bh?=
+ =?us-ascii?Q?ZNaBu5gtX1pvYeQR4UNa6ezx3ED9z8vGYWoqg2E3u6h8iPZQGtarmMontey7?=
+ =?us-ascii?Q?1aRYtbcK1t5VF/H5KcLAjFYW8w7/kmdUEbReEBFqPeJGVJmj7AdijJBrFn60?=
+ =?us-ascii?Q?Xw=3D=3D?=
+X-OriginatorOrg: seco.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a516a29e-8c4f-410f-2e4e-08da81351819
+X-MS-Exchange-CrossTenant-AuthSource: DB7PR03MB4972.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Aug 2022 16:17:06.9211
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: BCSdHq64wrRutXKzG5wJuKxHyZYmL5Izd+A4geoMYMchaD/gUAaHL8yMPAeSTL96EALmtU61tvl1sVM6V/Pmag==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0302MB3211
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 18, 2022 at 11:24:35AM +0200, Marc Kleine-Budde wrote:
-> On 18.08.2022 01:14:34, Matej Vasilevski wrote:
-> > Hello Marc,
-> > 
-> > I have two questions before I send the next patch version, please
-> > bear with me.
-> > 
-> > On Wed, Aug 03, 2022 at 10:53:03AM +0200, Marc Kleine-Budde wrote:
-> > 
-> > [...]
-> > 
-> > > > > > +	if (priv->timestamp_possible) {
-> > > > > > +		clocks_calc_mult_shift(&priv->cc.mult, &priv->cc.shift, timestamp_freq,
-> > > > > > +				       NSEC_PER_SEC, CTUCANFD_MAX_WORK_DELAY_SEC);
-> > > > > > +		priv->work_delay_jiffies =
-> > > > > > +			ctucan_calculate_work_delay(timestamp_bit_size, timestamp_freq);
-> > > > > > +		if (priv->work_delay_jiffies == 0)
-> > > > > > +			priv->timestamp_possible = false;
-> > > > > 
-> > > > > You'll get a higher precision if you take the mask into account, at
-> > > > > least if the counter overflows before CTUCANFD_MAX_WORK_DELAY_SEC:
-> > > > > 
-> > > > >         maxsec = min(CTUCANFD_MAX_WORK_DELAY_SEC, priv->cc.mask / timestamp_freq);
-> > > > > 	
-> > > > >         clocks_calc_mult_shift(&priv->cc.mult, &priv->cc.shift, timestamp_freq, NSEC_PER_SEC,  maxsec);
-> > > > >         work_delay_in_ns = clocks_calc_max_nsecs(&priv->cc.mult, &priv->cc.shift, 0, &priv->cc.mask, NULL);
-> > > > > 
-> > > > > You can use clocks_calc_max_nsecs() to calculate the work delay.
-> > > > 
-> > > > This is a good point, thanks. I'll incorporate it into the patch.
-> > > 
-> > > And do this calculation after a clk_prepare_enable(), see other mail to
-> > > Pavel
-> > > | https://lore.kernel.org/all/20220803083718.7bh2edmsorwuv4vu@pengutronix.de/
-> > 
-> > 
-> > 1) I can't use clocks_calc_max_nsecs(), because it isn't exported
-> > symbol (and I get modpost error during linking). Is that simply an
-> > oversight on your end or I'm doing something incorrectly?
-> 
-> Oh, I haven't checked if clocks_calc_max_nsecs() is exported. You can
-> either create a patch to export it, or "open code" its functionality. I
-> think this should be more or less equivalent:
-> 
-> | work_delay_in_ns = clocksource_cyc2ns(mask, mult, shift) >> 1;
+This series contains several cleanup patches for dpaa/fman. While they
+are intended to prepare for a phylink conversion, they stand on their
+own. This series was originally submitted as part of [1].
 
-I'm afraid creating a patch for the export would open another can of worms. I'll
-take a barebones version of the function: only the _cyc2ns(), and the max_cycles
-computation to avoid overflows for 64-bit mask. It should fit in 3 rows of code.
+[1] https://lore.kernel.org/netdev/20220715215954.1449214-1-sean.anderson@seco.com
 
-> > I've also listed all the exported symbols from /kernel/time, and nothing
-> > really stood out to me as super useful for this patch. So I would
-> > continue using ctucan_calculate_work_delay().
-> > 
-> > 2) Instead of using clk_prepare_enable() manually in probe, I've added
-> > the prepare_enable and disable_unprepare(ts_clk) calls into pm_runtime
-> > suspend and resume callbacks. And I call clk_get_rate(ts_clk) only after
-> > the pm_runtime_enable() and pm_runtime_get_sync() are called.
-> 
-> Use pm_runtime_resume_and_get(), see:
-> 
-> | https://elixir.bootlin.com/linux/v5.19/source/include/linux/pm_runtime.h#L419
-> 
-> > This
-> > seemed nicer to me, because the core clock prepare/unprepare will go
-> > into the pm_runtime callbacks too.
-> 
-> Sound good. If you rely on the runtime PM, please add a "depends on PM"
-> to the Kconfig. If you want/need to support configurations without
-> runtime PM, you have to do some extra work:
+Changes in v4:
+- Clarify commit message
+- weer -> were
+- tricy -> tricky
+- Use mac_dev for calling change_addr
+- qman_cgr_create -> qman_create_cgr
 
-Yes, I'll have to add PM to Kconfig. Currently the driver defines suspend
-and resume sleep callbacks, but PM isn't in KConfig.
+Changes in v3:
+- Incorperate some minor changes into the first FMan binding commit
 
-I would support only runtime PM, but Pavel Pisa knows more and might disagree.
-In such case this write up will be very helpful, thank you.
+Changes in v2:
+- Convert FMan MAC bindings to yaml
+- Remove some unused variables
+- Fix prototype for dtsec_initialization
+- Fix warning if sizeof(void *) != sizeof(resource_size_t)
+- Specify type of mac_dev for exception_cb
+- Add helper for sanity checking cgr ops
+- Add CGR update function
+- Adjust queue depth on rate change
 
-> | https://elixir.bootlin.com/linux/v5.19/source/drivers/net/can/spi/mcp251xfd/mcp251xfd-core.c#L1860
-> 
-> In the mcp251xfd driver without runtime PM I enable the clocks and VDD
-> during probe() and keep them running until remove(). The idea is:
-> 
-> 1) call clock_prepare_enable() manually
-> 2) call pm_runtime_get_noresume(), which equal to
->    pm_runtime_resume_and_get() but doesn't call the resume function
-> 3) pm_runtime_enable()
-> 4) pm_runtime_put()
->    will call suspend with runtime PM enabled,
->    will do nothing otherwise
-> 
-> Then use pm_runtime_resume_and_get() during open() and pm_runtime_put()
-> during stop(). Use both between accessing regs in do_get_berr_counter().
-> 
-> During remove it's a bit simpler:
-> 
-> | https://elixir.bootlin.com/linux/v5.19/source/drivers/net/can/spi/mcp251xfd/mcp251xfd-core.c#L1932
-> 
-> > Is that a correct approach, or should I really use the clk_prepare_enable()
-> > and clk_disable_unprepare() "manually" in ctucan_common_probe()/ctucan_timestamp_stop()?
-> > 
-> > On my Zynq board I don't see the ctucan_resume() callback executed during probe
-> > (after pm_runtime_enable() and pm_runtime_get_sync() are called in _probe()),
-> 
-> Is this a kernel without CONFIG_PM?
+Sean Anderson (25):
+  dt-bindings: net: Convert FMan MAC bindings to yaml
+  net: fman: Convert to SPDX identifiers
+  net: fman: Don't pass comm_mode to enable/disable
+  net: fman: Store en/disable in mac_device instead of mac_priv_s
+  net: fman: dtsec: Always gracefully stop/start
+  net: fman: Get PCS node in per-mac init
+  net: fman: Store initialization function in match data
+  net: fman: Move struct dev to mac_device
+  net: fman: Configure fixed link in memac_initialization
+  net: fman: Export/rename some common functions
+  net: fman: memac: Use params instead of priv for max_speed
+  net: fman: Move initialization to mac-specific files
+  net: fman: Mark mac methods static
+  net: fman: Inline several functions into initialization
+  net: fman: Remove internal_phy_node from params
+  net: fman: Map the base address once
+  net: fman: Pass params directly to mac init
+  net: fman: Use mac_dev for some params
+  net: fman: Specify type of mac_dev for exception_cb
+  net: fman: Clean up error handling
+  net: fman: Change return type of disable to void
+  net: dpaa: Use mac_dev variable in dpaa_netdev_init
+  soc: fsl: qbman: Add helper for sanity checking cgr ops
+  soc: fsl: qbman: Add CGR update function
+  net: dpaa: Adjust queue depth on rate change
 
-Fortunately the kernel was configured with CONFIG_PM. But I didn't have
-runtime_suspend and runtime_resume callbacks defined, only the "system
-sleep" suspend and resume (I wasn't aware of the difference).
-After I defined some runtime suspend/resume callbacks, they were executed
-as expected. 
+ .../bindings/net/fsl,fman-dtsec.yaml          | 145 +++++
+ .../devicetree/bindings/net/fsl-fman.txt      | 128 +----
+ .../net/ethernet/freescale/dpaa/dpaa_eth.c    |  59 ++-
+ .../ethernet/freescale/dpaa/dpaa_eth_sysfs.c  |   2 +-
+ drivers/net/ethernet/freescale/fman/fman.c    |  31 +-
+ drivers/net/ethernet/freescale/fman/fman.h    |  31 +-
+ .../net/ethernet/freescale/fman/fman_dtsec.c  | 325 ++++++------
+ .../net/ethernet/freescale/fman/fman_dtsec.h  |  58 +-
+ .../net/ethernet/freescale/fman/fman_keygen.c |  29 +-
+ .../net/ethernet/freescale/fman/fman_keygen.h |  29 +-
+ .../net/ethernet/freescale/fman/fman_mac.h    |  24 +-
+ .../net/ethernet/freescale/fman/fman_memac.c  | 240 +++++----
+ .../net/ethernet/freescale/fman/fman_memac.h  |  57 +-
+ .../net/ethernet/freescale/fman/fman_muram.c  |  31 +-
+ .../net/ethernet/freescale/fman/fman_muram.h  |  32 +-
+ .../net/ethernet/freescale/fman/fman_port.c   |  29 +-
+ .../net/ethernet/freescale/fman/fman_port.h   |  29 +-
+ drivers/net/ethernet/freescale/fman/fman_sp.c |  29 +-
+ drivers/net/ethernet/freescale/fman/fman_sp.h |  28 +-
+ .../net/ethernet/freescale/fman/fman_tgec.c   | 163 +++---
+ .../net/ethernet/freescale/fman/fman_tgec.h   |  54 +-
+ drivers/net/ethernet/freescale/fman/mac.c     | 497 ++----------------
+ drivers/net/ethernet/freescale/fman/mac.h     |  45 +-
+ drivers/soc/fsl/qbman/qman.c                  |  76 ++-
+ include/soc/fsl/qman.h                        |   9 +
+ 25 files changed, 739 insertions(+), 1441 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/fsl,fman-dtsec.yaml
 
-> 
-> > but in theory it seems like the correct approach. Xilinx_can driver does this too.
-> > Other drivers (e.g. flexcan, mpc251xfd, rcar) call clk_get_rate() right after
-> > devm_clk_get() in probe, but maybe the situation there is different, I don't
-> > know too much about clocks and pm_runtime yet.
-> 
-> The API says the clock must be enabled during clk_get_rate() (but that's
-> not enforced). And another problem is that the clock rate might change,
-> but let's ignore the clock rate change problem for now.
-> 
-> Marc
-> 
-> -- 
-> Pengutronix e.K.                 | Marc Kleine-Budde           |
-> Embedded Linux                   | https://www.pengutronix.de  |
-> Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-> Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+-- 
+2.35.1.1320.gc452695387.dirty
 
-Thanks, regards
-Matej
