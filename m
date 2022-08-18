@@ -2,81 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B456859800E
-	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 10:28:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BA2C598016
+	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 10:28:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241508AbiHRIZ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Aug 2022 04:25:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33398 "EHLO
+        id S233812AbiHRI1j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Aug 2022 04:27:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239170AbiHRIZ4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 04:25:56 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EC87AFACF
-        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 01:25:42 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id a9so1176491lfm.12
-        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 01:25:42 -0700 (PDT)
+        with ESMTP id S231430AbiHRI1h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 04:27:37 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C7D294EFA
+        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 01:27:36 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id q16so441602ljp.7
+        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 01:27:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=GeDInS0HAs8QReh6tItClEiurwlPP8TPLKQ+QrQqXko=;
-        b=JwA58aF+G5s1e2+NfsXssQeCz5TX6jda5LlFFs4GBRNTXVhM85X6hsKI2LG+gACyXr
-         IUhlBoV1ug8W5VVfakjrWebiN8Y0dJbS5kJpQ8MMucb6x1u4099mUWFRkjYGkci8rgq0
-         TiVbtNtHRI3kvSoJcH7qTDQpaBANG0GRdV66JQ1MHkDa8MDQ8pDf9o8ibq2G2Gy5uyLR
-         5klmjJeGeDqbvWDhpBPWgYd3/DqFVgnQYf9+DLT5wClpL7WZ8Emz0CJCBFm5uAec9ky0
-         o9ZuE8SdWe+S0gcQ0Twr6DN0o+jxRdEaVXwjfeDeXEVr7XRzrPiSaArOzsG0Co0Btmf1
-         sOgA==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc;
+        bh=IgR5SKNZXMCrQxkyYrQgrXS9ywlkfSHFIO+/t184iOU=;
+        b=VjtrvLqB94Z1XPU8pQ5yXdmLt9mYLZ7BjJvCeeesy0vSQtCSNX/0DYPBFZHzJfNauz
+         7rJIuZb6XE4nY1UGDmqLMN04fIACtY+W7eLxVxdZkssK0bIuyJ946ZGyxjUZkkyjIFMy
+         NlIPhz5E95KwaF1GM4EGjMqnpjftqz928qny5ZUxjfEhQYsjdNqzOemZgCgr3qYIqzLz
+         wYx2MhN2+jwhK83k/Nn3IfX0WjoY4lO1ARDd+m/xcq+Fyt9FYtDzleTj6qiQwZn2JVmb
+         Cy1OLuRrKNsIC/WLf6dUCLFP2xNGZgn16bQOkFnqXopQd+s2T5OYHma/RqQ+X/JpO61e
+         wlEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=GeDInS0HAs8QReh6tItClEiurwlPP8TPLKQ+QrQqXko=;
-        b=wUdx+A4MycRQh/AdZQWI+W/NSOkmr2P7ESZ1gktqmkRzUQoeJcUHI+RBDt60jLi/cf
-         pjDd+3DQy0MV1f/V7vWcB7Yt+NS88WObl7MtV4OAuq8ich82I3UCiVRiCZUMNP1YCCT3
-         rLtmm16w1JtjibGGvYbHGgiX+V3NlFFoSbKj9OWQiG/c55X7uAdVjYdMPU19Pj27F/bR
-         Q8tV0XcS+tWko7+dpunFPficqalwh27tKCy0RkdgAPrI4IRo08GltcWW4kfWEeOFTMBj
-         ZjxoPHum6xDO4wMKl/NrrhteW2nGugpvrObf1oDaaBEjeJNJFgJBV6XV3LDkIfh6pVxo
-         teMg==
-X-Gm-Message-State: ACgBeo2nqoixh5Qg0QSg7bN6jsC+mWbbYF9TwsxRMJkhFYVfWX02a7PY
-        G2Dz3M2X+DEnbPkmHwaAyrB1hQ==
-X-Google-Smtp-Source: AA6agR54egXJZqZpdKTmvYFQXJaybgU+WirjMCScZ8ypakyTZr0EbSGyWikC0cyZQBbjB1L4Te8/ow==
-X-Received: by 2002:a05:6512:228a:b0:48a:fa84:e298 with SMTP id f10-20020a056512228a00b0048afa84e298mr584111lfu.183.1660811139643;
-        Thu, 18 Aug 2022 01:25:39 -0700 (PDT)
-Received: from ?IPV6:2001:14bb:ae:539c:53ab:2635:d4f2:d6d5? (d15l54z9nf469l8226z-4.rev.dnainternet.fi. [2001:14bb:ae:539c:53ab:2635:d4f2:d6d5])
-        by smtp.gmail.com with ESMTPSA id f26-20020ac251ba000000b0048a79e3dd6csm136950lfk.26.2022.08.18.01.25.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Aug 2022 01:25:39 -0700 (PDT)
-Message-ID: <0a10f55c-1e91-de8d-74c1-e2778841b7fc@linaro.org>
-Date:   Thu, 18 Aug 2022 11:25:37 +0300
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc;
+        bh=IgR5SKNZXMCrQxkyYrQgrXS9ywlkfSHFIO+/t184iOU=;
+        b=LFv/b+oE1nceSW5lF52YIMRKtnYyRN3d4lRHO8o30oFI5R4pH9KeD24Uo6iqSzhR1j
+         dS3bvtX5qV65uzE0eKoZ4oqDBoS0aP3y5OYxom2lUSMQUKfnEf3X/jeDM1fSLyniCKhw
+         GGZYhtQwPXMxlbjk0eWYej8Oo2LC50FdoozCYxyCQn5AmTcZQnkx1B0Tf6dnZcRKfNYJ
+         4NX/7rXmzGCglROJZ+40cPKj24OK2XLfnB3gtT/0Fl3FRfljzXE0lHfChiF0NQPoWBoc
+         9n121KulOMW53XUeNPkDk43tAacf9cg53YLrVYqCiMUo0uVyMoXxX/Wlb90LhdweG16i
+         98Jg==
+X-Gm-Message-State: ACgBeo0hfMOiOBSQrqPQaHg96AvA33tc2mk/DMQN1Ck6VBa2PTEDNFRm
+        mIqgLfHjLHY12xuxiTZ7MMGp425ksHhsltgvWddqn2mXd/Q=
+X-Google-Smtp-Source: AA6agR6FaZ7gXaou70ewzpbtZl5RZYpnuY175gio92TfXAiQ2joX0/xQyTe4br8lF4+rIzCPV1NorkmkJzek4n25dQc=
+X-Received: by 2002:a05:651c:a04:b0:25e:7523:20b2 with SMTP id
+ k4-20020a05651c0a0400b0025e752320b2mr536282ljq.424.1660811254900; Thu, 18 Aug
+ 2022 01:27:34 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v5 3/4] dt-binding: perf: Add Amlogic DDR PMU
-Content-Language: en-US
-To:     Jiucheng Xu <jiucheng.xu@amlogic.com>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
+References: <20220817204954.28135-1-macroalpha82@gmail.com> <20220817204954.28135-3-macroalpha82@gmail.com>
+In-Reply-To: <20220817204954.28135-3-macroalpha82@gmail.com>
+From:   Maya Matuszczyk <maccraft123mc@gmail.com>
+Date:   Thu, 18 Aug 2022 10:26:58 +0200
+Message-ID: <CAO_Mup+b_u5P0y3wPus8yWj+hmVEdg4-m9o3GzMUWPAXpAr95g@mail.gmail.com>
+Subject: Re: [PATCH 2/3] dt-bindings: arm: rockchip: Add Anbernic RG353 and RG503
+To:     Chris Morgan <macroalpha82@gmail.com>
+Cc:     devicetree <devicetree@vger.kernel.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Chris Healy <cphealy@gmail.com>
-References: <20220817113423.2088581-1-jiucheng.xu@amlogic.com>
- <20220817113423.2088581-3-jiucheng.xu@amlogic.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220817113423.2088581-3-jiucheng.xu@amlogic.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Heiko Stuebner <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Chris Morgan <macromorgan@hotmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,49 +71,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/08/2022 14:34, Jiucheng Xu wrote:
-> Add binding documentation for the Amlogic G12 series DDR
-> performance monitor unit.
-> 
-> Signed-off-by: Jiucheng Xu <jiucheng.xu@amlogic.com>
+Hey,
 
-(...)
+=C5=9Br., 17 sie 2022 o 22:50 Chris Morgan <macroalpha82@gmail.com> napisa=
+=C5=82(a):
+>
+> From: Chris Morgan <macromorgan@hotmail.com>
+>
+> Add entry for the Anbernic RG353 and RG503 handheld devices.
+>
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> ---
+>  Documentation/devicetree/bindings/arm/rockchip.yaml | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Docume=
+ntation/devicetree/bindings/arm/rockchip.yaml
+> index 7811ba64149c..9026963694f0 100644
+> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
+> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> @@ -30,6 +30,16 @@ properties:
+>            - const: amarula,vyasa-rk3288
+>            - const: rockchip,rk3288
+>
+> +      - description: Anbernic RG353
+> +        items:
+> +          - const: anbernic,rg353
+> +          - const: rockchip,rk3566
+The device is named RG353P, not RG353.
+Otherwise patch looks good to me.
 
-> +
-> +  interrupts:
-> +    items:
-> +      - description: The IRQ of the inside timer timeout.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    pmu {
-> +        #address-cells=<2>;
-> +        #size-cells=<2>;
-> +
-> +        pmu@ff638000 {
-> +
-
-No need for blank line.
-
-> +            compatible = "amlogic,g12a-ddr-pmu";
-> +            reg = <0x0 0xff638000 0x0 0x100>,
-> +                  <0x0 0xff638c00 0x0 0x100>;
-> +            interrupts = <GIC_SPI 52 IRQ_TYPE_EDGE_RISING>;
-> +        };
-> +    };
-
-With above fixed:
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
-Best regards,
-Krzysztof
+Best Regards,
+Maya Matuszczyk
