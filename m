@@ -2,114 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B6D4598131
-	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 12:00:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 869E2598136
+	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 12:02:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242831AbiHRJ7I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Aug 2022 05:59:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60616 "EHLO
+        id S241107AbiHRKCC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Aug 2022 06:02:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241050AbiHRJ7H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 05:59:07 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B36026ADA
-        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 02:59:05 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id l21so1236572ljj.2
-        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 02:59:05 -0700 (PDT)
+        with ESMTP id S240265AbiHRKCA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 06:02:00 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 317D790811
+        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 03:01:59 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id z20so1238502ljq.3
+        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 03:01:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=C3ba4yHheW5zprHK4xaSfKb4nNr+PJySvSlyPUInypY=;
-        b=kKZwm2Y1bNsACwoLDGfj3xeWLK7EuwFNINfyozQ1DrHMRpH1GeM4VlbaxXJhHHzNlm
-         99SvZmwdmkcRa/abxR9xs3bTumXoffxjWPAWwWxWt5ucgJEdvSLguQjTvcQELn7JjSSz
-         lOyHuHZuW2RZAvURc5d/ZLxJJ5ug3xxGhwetoyOO6RTf/LID5OpyJUHufp2bMiC+pK7J
-         AKBZaYpbI4Fi1+o2IUUFKk26wiK8n2l4EHt1OWX6f+20xOrjEr0g9tGd+RQvFOL2GSXK
-         mHNzTtgCBy7u8bRUw5eloF4Xw6488NrwdAC6J1/xOP4Pl4gnNAze5V1DdhteA0cnj2Lz
-         kwsA==
+        bh=EPxzHwYhFlft26MSmbXxer1pCM7eMFS2V0bDjoXyAJU=;
+        b=eEyiXUfctANEiiWIrg9Y5EqIuZU09pRr7ZymPkvek4Ap91RbdKI7jw15XsDiehwsmK
+         HnYwSQDCa/kUdgXXYdEwax3exEU5TXaQFQGgokYN+jlp8rKPFuBY00u+/52gfWnWSHJB
+         XRHDi5P6qO3L3T3EmrLE8tlFymLjIxwLa/2W+InzaIVjmaHNlmVmlcGQgu+mOg9FNfIB
+         CuqfKF+pWfgaZ+0cJywgNgJdl7LFHk5F8YfvFmzMcC1iezVCRj63UgfRF0ieftEAtVz9
+         c0xRG2l0LPXmx/8VDfuna7mFKDRScPF9E/bdIZ3fomoS62togRzGjWCxBVGibXPC28+F
+         RKFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=C3ba4yHheW5zprHK4xaSfKb4nNr+PJySvSlyPUInypY=;
-        b=umIluMPypnxiuYsvgvnjv2JgSqcQlgzgxPTQZ7selCHcwJQnH5SvEaD3SIe+MHc2KB
-         bKl7j46CV1m7R3PrevVNwRZdRrfB3IZZmHGEe2Xaf3KzaeCLM0OBrxHRyRNeCZ5KUsfi
-         RjQfBGq6mHhLimOT66f7vyuIv4nslFFT/oqALLngwednBS6JSFuv29cleOT+LPBO5dzg
-         ZMk16WE9imSFko2kQvyr02jG3ixqiZhHDEbE3hDfhdqV6EQ6jwcyLGj+ETgZ5aN6IhKN
-         CUKXXIDzmopnyfqnY0gnZ8+C5/ntKcXMtR7V2ntt9uHh21ZKNS9puEBQnh06/rZjf5qq
-         I1Og==
-X-Gm-Message-State: ACgBeo2InijzcwYsuqo6MatNJtkrpDKTxjb6iv7fmp7AZVicYoDLz4cB
-        FsuWCOhg9sqqIMdzJsmGjjg+8w==
-X-Google-Smtp-Source: AA6agR54B8Wq5kprhSzFLvDsiJX1bUEd1bBo1eYAKq+/zJE3QVnHWvcS0sgkw3289Rm0f8B/Wfr2Ig==
-X-Received: by 2002:a2e:be9e:0:b0:261:b228:ed8b with SMTP id a30-20020a2ebe9e000000b00261b228ed8bmr601633ljr.226.1660816743805;
-        Thu, 18 Aug 2022 02:59:03 -0700 (PDT)
+        bh=EPxzHwYhFlft26MSmbXxer1pCM7eMFS2V0bDjoXyAJU=;
+        b=mEjk+mLHTcOHsiNRdL9t5VtTkIKjXQ0ZOSOy2DqbojyaPDyXP7M9ZUwVFktTN6otyL
+         ycBLJTmg2WR5Eq6jqMQBr39/trLSYwY7a/DOX4Q2LW0nxTS3BVvlE+9dgqyUrGKakuc5
+         XXfvAgWGzSwWczBcZF93I/vEtM9zXC+BlpetZ7Y94zyzSbHDFR9ryJ5SgAZZFB1xdPvt
+         FM46+7Gc23IAttyzDpjiZeLn5MOIhSy8jGDg5OCflXLiPt60PepE7YfGY3/mJo+5Wp2I
+         6bQuPKC7TF9bhQm2Z4Lm2YaWKzoWuVw9put9z3Qch+4clwFMvFvqJy6vr/gmn9XH6gi5
+         l32g==
+X-Gm-Message-State: ACgBeo3rIqCuKbZYXh3f7AQN84vpn4ejQS8F62SWXKHFBfdAJmaMS+wL
+        6zpJUgWUGHSGe4YIysf+H1CPFA==
+X-Google-Smtp-Source: AA6agR4Co2CPb5XN9X5svZynx70dgbm9JfH6RnGUadXts1hBLz65YPN73Tt641xJ42PHeMEA2pv3rw==
+X-Received: by 2002:a2e:86cd:0:b0:260:55e:db13 with SMTP id n13-20020a2e86cd000000b00260055edb13mr629600ljj.146.1660816917505;
+        Thu, 18 Aug 2022 03:01:57 -0700 (PDT)
 Received: from ?IPV6:2001:14bb:ae:539c:53ab:2635:d4f2:d6d5? (d15l54z9nf469l8226z-4.rev.dnainternet.fi. [2001:14bb:ae:539c:53ab:2635:d4f2:d6d5])
-        by smtp.gmail.com with ESMTPSA id be32-20020a056512252000b0048a83ab2d32sm168965lfb.0.2022.08.18.02.59.01
+        by smtp.gmail.com with ESMTPSA id b9-20020a056512070900b0048b37d29261sm165372lfs.67.2022.08.18.03.01.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Aug 2022 02:59:03 -0700 (PDT)
-Message-ID: <74156faf-492d-2e87-f32f-61d99131f17c@linaro.org>
-Date:   Thu, 18 Aug 2022 12:59:00 +0300
+        Thu, 18 Aug 2022 03:01:56 -0700 (PDT)
+Message-ID: <f776de47-615e-d38d-8512-3e5391d6650a@linaro.org>
+Date:   Thu, 18 Aug 2022 13:01:55 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [RFC PATCH v2 1/6] Documentation: DT: Add entry for CDX
- controller
+Subject: Re: [PATCH 1/2] dt-bindings: arm: rockchip: Add gru-scarlet sku{2,4}
+ variants
 Content-Language: en-US
+To:     Brian Norris <briannorris@chromium.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Chen-Yu Tsai <wenst@chromium.org>, devicetree@vger.kernel.org
+References: <20220817123350.1.Ibb15bab32dbfa0d89f86321c4eae7adbc8d7ad4a@changeid>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Nipun Gupta <nipun.gupta@amd.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
-        rafael@kernel.org, eric.auger@redhat.com,
-        alex.williamson@redhat.com, cohuck@redhat.com,
-        puneet.gupta@amd.com, song.bao.hua@hisilicon.com,
-        mchehab+huawei@kernel.org, maz@kernel.org, f.fainelli@gmail.com,
-        jeffrey.l.hugo@gmail.com, saravanak@google.com,
-        Michael.Srba@seznam.cz, mani@kernel.org, yishaih@nvidia.com,
-        jgg@ziepe.ca, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, kvm@vger.kernel.org
-Cc:     okaya@kernel.org, harpreet.anand@amd.com, nikhil.agarwal@amd.com,
-        michal.simek@amd.com, git@amd.com
-References: <20220803122655.100254-1-nipun.gupta@amd.com>
- <20220817150542.483291-1-nipun.gupta@amd.com>
- <20220817150542.483291-2-nipun.gupta@amd.com>
- <93f080cd-e586-112f-bac8-fa2a7f69efb3@linaro.org>
-In-Reply-To: <93f080cd-e586-112f-bac8-fa2a7f69efb3@linaro.org>
+In-Reply-To: <20220817123350.1.Ibb15bab32dbfa0d89f86321c4eae7adbc8d7ad4a@changeid>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/08/2022 12:54, Krzysztof Kozlowski wrote:
->> +    gic@e2000000 {
->> +        compatible = "arm,gic-v3";
->> +        interrupt-controller;
->> +        ...
->> +        its: gic-its@e2040000 {
->> +            compatible = "arm,gic-v3-its";
->> +            msi-controller;
->> +            ...
->> +        }
->> +    };
->> +
->> +    cdxbus: cdxbus@@4000000 {
+On 17/08/2022 22:33, Brian Norris wrote:
+> The Gru-Scarlet family includes a variety of SKU identifiers, using
+> parts of a 3-bit space {0..7}. SKU2 and SKU4 devices (under a few
+> different manufacturer names) also use the Innolux display.
 > 
-> Node names should be generic, so "cdx"
+> For reference, the original vendor tree source:
+> 
+> CHROMIUM: arm64: dts: rockchip: add sku{0,2,4} compatibility
+> https://chromium.googlesource.com/chromiumos/third_party/kernel/+/f6ed665c9e2eb37fb2680debbb36ec9fb0e8fb97
+> 
+> CHROMIUM: arm64: dts: rockchip: scarlet: add SKU0 device tree
+> https://chromium.googlesource.com/chromiumos/third_party/kernel/+/9987c8776f4b087d135d761e59f7fa6cc83fc7fc
+> 
+> Signed-off-by: Brian Norris <briannorris@chromium.org>
+> ---
+> 
+>  .../devicetree/bindings/arm/rockchip.yaml     | 27 ++++++++++++++++++-
+>  1 file changed, 26 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> index 7811ba64149c..dcae534e3971 100644
+> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
+> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> @@ -363,30 +363,55 @@ properties:
+>            - const: google,gru
+>            - const: rockchip,rk3399
+>  
+> -      - description: Google Scarlet - Innolux display (Acer Chromebook Tab 10)
+> +      - description: |
+> +          Google Scarlet - Innolux display (Acer Chromebook Tab 10 and more)
+>          items:
+> +          - const: google,scarlet-rev15-sku2
+> +          - const: google,scarlet-rev15-sku4
 
-Eh, too fast typing, obviously the other part of the name... node names
-should be generic, so just "bus".
+This does not match the sources you linked in commit msg, so I am
+confused what the links are supposed to prove.
 
-> 
-> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-> 
-> Drop the label.
+Is this matching at least your DTS (dtbs_check passes)?
 
 
 Best regards,
