@@ -2,77 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AF5D597E57
-	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 08:02:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B60F9597E6A
+	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 08:10:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243460AbiHRGBe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Aug 2022 02:01:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49248 "EHLO
+        id S243535AbiHRGIt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Aug 2022 02:08:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239863AbiHRGBd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 02:01:33 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0CF87CAA7
-        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 23:01:31 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id e20so11262wri.13
-        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 23:01:31 -0700 (PDT)
+        with ESMTP id S243531AbiHRGIs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 02:08:48 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4AC049B69
+        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 23:08:47 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id l1so330732lfk.8
+        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 23:08:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc;
-        bh=bZty3y2darx5s7m8eOWVGV+bKL3GxP3dVhk/MBA5fWU=;
-        b=f+orhQX9Aqm2vt86cAoz3fiZf50H35jqr/TNHqkMa0UF3dukyQrgs61PyJg9OBc0K2
-         fAc9jEui95sT2PJMyw+Yb8O7evo/Ey1XnGjWwUf70sAkvmieksb2OPLCfi5XUWvPA84X
-         geM4Rt5xnkFgxRaORd6pyt5qA20/A63EsKQMcmAbj6t/6DGisbDELa9Am2u9El99gH8M
-         ckXBnp79uq3NwQmOUOUIkZXtntavZu5tuAbynf2kFLbAlBLnHn+qYsVEcOLVnI43xAnv
-         lF9GGCYgx0yePaR/UsQu5OV4ITk07wiZP7+XJueTckNSZOgQdj4kDKaIdWYqPeuSd9zZ
-         hLXg==
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=ZDNCV2Trysnx2s77dAyLYA3yQv3M+bxe028ysJe7540=;
+        b=yQ5mtmhZfeImYwVLuqojrNb67vzJpfyiJgByeVeF8T5N5OYsQY+ziqwv8y0Jc/Gpyo
+         NZDanPo3akgads2atYq3xsBINcdo3Fp3JIGJg9tLMaVr2b3akwx93S3T0KROflHl9VuU
+         YiiBWLJSsz12TM+HNMt8gdnqAhAxKF7zunrPrs0mhQYw9hPTbzQtAPnjacIsj6Flb3Ks
+         EmvJw27Aww2TSFX/CfdydiUcqaxvrL2o/QWgTnAmYWXDtyL5SXRLm985s+U7oGxkpQPM
+         FgYPGy9XmEtiKb8Xe3nw73Bi18yBNiYm8qydHlJMdZpzbLQwDVcolma+bTgrhBjekDA8
+         n5XA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=bZty3y2darx5s7m8eOWVGV+bKL3GxP3dVhk/MBA5fWU=;
-        b=YMVPHIoHZXVjadcD1oGz2Og+il9sBkrXpyH19XVrDceeYDHMeA+L3Oq4MVhfvVS3lN
-         MYmgPjSAR1Liii/Vs1S+bOjMWrwZ+gNRtNZP2fFVjvpENw5+qWx8BIwokXAe8XpwmZwY
-         CycJvMrJ26yGdw9kdRtnHHnvlYd/BCSW7W+yV4F3u/EOmA6LVSjDjbPv2+Ht3TjaHutz
-         pUUnGmfjPOTGvVo0bfF28fjvNbnZOWGsvfrpyqZlwRMrIA+LAdW3213H2baRwjROlzNS
-         aNyh5i8KOeQ7grCLXG9a9bFjWFR0yqUPgXVRHg6IsCRc2NC6+5pdaloXqi+Ui3RXBZCR
-         FpkQ==
-X-Gm-Message-State: ACgBeo0f5Oasa9w6YW/3QeTrMc9Bz0o6zEJQ1awzfBijXwzMFbE5BCnZ
-        2pSmPuFwiZSCaRGOe0T0rPYdo7HZOIuCuA==
-X-Google-Smtp-Source: AA6agR7Xs87Dr0m2dsNGP8woPhz8tse750xuLe9TeNweuVK7GcLyu4MnOAU99SNrItyaik7Axun68A==
-X-Received: by 2002:a5d:5a0f:0:b0:220:5930:dc65 with SMTP id bq15-20020a5d5a0f000000b002205930dc65mr598687wrb.229.1660802490217;
-        Wed, 17 Aug 2022 23:01:30 -0700 (PDT)
-Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id q14-20020adff94e000000b00225232c03fdsm514173wrr.27.2022.08.17.23.01.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Aug 2022 23:01:29 -0700 (PDT)
-Date:   Thu, 18 Aug 2022 09:01:28 +0300
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Caleb Connolly <caleb.connolly@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Maulik Shah <quic_mkshah@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 3/4] arm64: dts: qcom: sdm845: Add the RPMh stats node
-Message-ID: <Yv3VuDvvpyNziZEq@linaro.org>
-References: <20220812101240.1869605-1-abel.vesa@linaro.org>
- <T2Uz7zs4Ht58lYc5zWg1VBY0ju6bVaSKa9y3RhBQWDDHmPXBHbAxI2J34jSeY0BFQy2y4JtFn3nQS0Lz4xI5jw==@protonmail.internalid>
- <20220812101240.1869605-3-abel.vesa@linaro.org>
- <e6821eef-4fcb-97b1-24be-e2bb62b99039@linaro.org>
- <Yvtx2aK1Uu51hTPM@linaro.org>
- <b34b2fa6-7dbf-e4d3-9833-57efd42f9137@linaro.org>
- <Yvu4o1bFdKLfvaiL@linaro.org>
- <Yv2aK52MzRPUIztr@baldur>
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=ZDNCV2Trysnx2s77dAyLYA3yQv3M+bxe028ysJe7540=;
+        b=M62/Gal2K0h8anHhNhxYqAbw/mghhLggiY9/AKGLiWjN8+PtNZfcXzKrv6WMfhRXOe
+         Amy5UprmMAvrbMtst782Ft67tlWGOtfpSpOcOt7zqh99NlvxLQqnu1Nx/QhpSum0Kxe2
+         RN1ecWi/aJnpJ8zujMZWO5itcTxfIB/OUBRWB71CcrMVD2gFsJczByHZZvFaInoyD9IK
+         gHhy//i9s4CKOS6jNEwBR4ixDc1mF0x+56MdttZ1OKcbNczDBeTUcl/n6PHnUTcxFsYa
+         IRXZiRncZ6TQamdyQufyO2HRnz2DbnnFGj56luHw0ly/3NyVMoU8kx8yBBUKb0pPlqR8
+         pkug==
+X-Gm-Message-State: ACgBeo2qReXFOI1EFjOQ95vHeBQmqjeeu9YNNgcCa07vnYo1Y6OTds/3
+        zmWzqM1y+IcBCltcAGx4u1tEqg==
+X-Google-Smtp-Source: AA6agR7vqtEb5aVTiSjJt2vyVAGxAmUzd4WGs055WrmALVpMcCfVvMIE9NYlWjz5UV+2eit61b0oDA==
+X-Received: by 2002:a05:6512:3705:b0:48f:8702:7eda with SMTP id z5-20020a056512370500b0048f87027edamr450460lfr.95.1660802926030;
+        Wed, 17 Aug 2022 23:08:46 -0700 (PDT)
+Received: from ?IPV6:2001:14bb:ae:539c:671:aa32:2bd5:8994? (d15l54bxv1k5c31plwt-4.rev.dnainternet.fi. [2001:14bb:ae:539c:671:aa32:2bd5:8994])
+        by smtp.gmail.com with ESMTPSA id f17-20020a2eb5b1000000b002618022d6a7sm19309ljn.25.2022.08.17.23.08.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Aug 2022 23:08:45 -0700 (PDT)
+Message-ID: <573e43de-8495-cf90-c1f0-cc656c2999a7@linaro.org>
+Date:   Thu, 18 Aug 2022 09:08:44 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Yv2aK52MzRPUIztr@baldur>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v2] dt-bindings: memory-controllers: fsl,imx8m-ddrc:
+ restrict opp-table to objects
+Content-Language: en-US
+To:     Peng Fan <peng.fan@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20220817071050.26149-1-krzysztof.kozlowski@linaro.org>
+ <DU0PR04MB941717FFA704B46F4346B417886D9@DU0PR04MB9417.eurprd04.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <DU0PR04MB941717FFA704B46F4346B417886D9@DU0PR04MB9417.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -81,156 +83,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-08-17 20:47:23, Bjorn Andersson wrote:
-> On Tue 16 Aug 10:32 CDT 2022, Abel Vesa wrote:
+On 18/08/2022 04:29, Peng Fan wrote:
+>> Subject: [PATCH v2] dt-bindings: memory-controllers: fsl,imx8m-ddrc:
+>> restrict opp-table to objects
+>>
+>> Simple 'opp-table:true' accepts a boolean property as opp-table, so restrict
+>> it to object to properly enfoerce real OPP table nodes.
 > 
-> > On 22-08-16 14:50:50, Caleb Connolly wrote:
-> > > 
-> > > 
-> > > On 16/08/2022 11:30, Abel Vesa wrote:
-> > > > On 22-08-15 21:34:07, Caleb Connolly wrote:
-> > > > > 
-> > > > > 
-> > > > > On 12/08/2022 11:12, Abel Vesa wrote:
-> > > > > > SDM845 is a special case compared to the other platforms that use RPMh
-> > > > > > stats, since it only has 2 stats (aosd and cxsd), while the others have
-> > > > > > a 3rd one (ddr).
-> > > > > > 
-> > > > > > So lets add the node but with a SDM845 dedicated compatible to make
-> > > > > > the driver aware of the different stats config.
-> > > > > Hi,
-> > > > > 
-> > > > > I gave this a go on the OnePlus 6, I noticed the driver is also meant to
-> > > > > read the stats for remote procs via smem, however this seems to fail for me
-> > > > > - it can't find any of the SMEM items even if I probe the driver manually
-> > > > > after ensuring remoteprocs have booted. Is this an unsupported feature on
-> > > > > SDM845?
-> > > > 
-> > > > Thanks for giving it a test.
-> > > > 
-> > > > Actually, you need to probe the qcom_stats after the remoteprocs have
-> > > > booted.
-> > > 
-> > > Hi, thanks for getting back to me. I did try this as mentioned above but I
-> > > think I must have been doing something wrong as I get different behaviour
-> > > now:
-> > > 
-> > > 
-> > > enchilada:/ # cat /sys/class/remoteproc/remoteproc*/state
-> > > 
-> > > running
-> > > 
-> > > running
-> > > 
-> > > running
-> > > 
-> > > running
-> > > 
-> > > enchilada:/ # ls /d/qcom_stats/
-> > > aosd  cxsd
-> > > enchilada:/ # rmmod qcom_stats
-> > > enchilada:/ # insmod /data/qcom_stats.ko
-> > > enchilada:/ # ls /d/qcom_stats/
-> > > adsp  aosd  cdsp  cxsd  modem  slpi
-> > 
-> > Well, I run on upstream MTP, which has less enabled in devicetree.
-> > 
-> > > 
-> > > 
-> > > 
-> > > Weirdly, despite it succeeding it prints the following in dmesg with logging
-> > > added to qcom_create_subsystem_stat_files() [1]:
-> > > 
-> > > [  156.540307] Couldn't get smem object 'wpss' (item: 605, pid: 13): -2
-> > > [  156.546899] Couldn't get smem object 'gpu' (item: 609, pid: 0): -2
-> > > [  156.553260] Couldn't get smem object 'display' (item: 610, pid: 0): -2
-> > > [  156.559957] Couldn't get smem object 'adsp_island' (item: 613, pid: 2): -2
-> > > [  156.567007] Couldn't get smem object 'slpi_island' (item: 613, pid: 3): -2
-> > 
-> > See my comment below your related changes.
-> > 
-> > > > 
-> > > > Doing so, you'll end up having the following:
-> > > > adsp  aosd  cdsp  cxsd
-> > > 
-> > > I seem to get a few more, I have some out of tree patches enabling the SLPI,
-> > > and iirc the db845c doesn't have a full modem firmware. If these look good
-> > > to you I'd appreciate it if you add my Tested-by.
-> > 
-> > Looks OK to me.
-> > 
-> > > 
-> > > enchilada:/ # for x in /d/qcom_stats/*; do echo $x; cat $x; done
-> > > /d/qcom_stats/adsp
-> > > Count: 48
-> > > Last Entered At: 1199663157
-> > > Last Exited At: 1524359015
-> > > Accumulated Duration: 793060082
-> > > /d/qcom_stats/aosd
-> > > Count: 0
-> > > Last Entered At: 0
-> > > Last Exited At: 0
-> > > Accumulated Duration: 0
-> > > /d/qcom_stats/cdsp
-> > > Count: 35
-> > > Last Entered At: 1194818037
-> > > Last Exited At: 1194769648
-> > > Accumulated Duration: 3223580811
-> > > /d/qcom_stats/cxsd
-> > > Count: 0
-> > > Last Entered At: 0
-> > > Last Exited At: 0
-> > > Accumulated Duration: 0
-> > > /d/qcom_stats/modem
-> > > Count: 49
-> > > Last Entered At: 3687081003
-> > > Last Exited At: 3686727026
-> > > Accumulated Duration: 2915592136
-> > > /d/qcom_stats/slpi
-> > > Count: 53
-> > > Last Entered At: 3120905905
-> > > Last Exited At: 3120894535
-> > > Accumulated Duration: 3218969498
-> > > 
-> > > Am I right in thinking the aosd and cxsd being all 0 is probably a similar
-> > > issue to the one reported by Stephen in [2]?
-> > 
-> > Might be, I'm not sure. I'll have closer a look.
-> > 
-> > > 
-> > > 
-> > > [1]:
-> > > 
-> > > diff --git a/drivers/soc/qcom/qcom_stats.c b/drivers/soc/qcom/qcom_stats.c
-> > > index 121ea409fafc..56cfb20d3683 100644
-> > > --- a/drivers/soc/qcom/qcom_stats.c
-> > > +++ b/drivers/soc/qcom/qcom_stats.c
-> > > @@ -178,8 +178,12 @@ static void qcom_create_subsystem_stat_files(struct dentry *root,
-> > > 
-> > >         for (i = 0; i < ARRAY_SIZE(subsystems); i++) {
-> > >                 stat = qcom_smem_get(subsystems[i].pid, subsystems[i].smem_item, NULL);
-> > > -               if (IS_ERR(stat))
-> > 
-> > Basically, the error here means the subsystem is not available right at
-> > this moment. We could probably return EPROBE_DEFER here, but it really
-> > depends on each platform's devicetree what remoteprocs they have
-> > enabled or not. So I guess the safest thing to to is to just skip
-> > quietly the ones that haven't probed yet.
-> > 
-> 
-> Not only does the/each remoteproc driver need to probe, we actually need
-> to wait for them to boot in order to register their parts.
-> 
-> Perhaps we can use qcom_register_ssr_notifier() to dynamically register
-> these at some later time. This does however seem like a reasonable thing
-> to improve upon in a follow up series.
+> enfoerce->enforce?
 
-Sounds like a good idea. Will give it a try and sent a patch a soon as I
-have something working.
+Thanks, indeed.
 
-Thanks,
-Abel
 
-> 
-> Regards,
-> Bjorn
+Best regards,
+Krzysztof
