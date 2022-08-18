@@ -2,67 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47A14598CF8
-	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 22:00:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED7E2598D77
+	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 22:12:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242458AbiHRT6G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Aug 2022 15:58:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49902 "EHLO
+        id S1345886AbiHRUHf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Aug 2022 16:07:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235080AbiHRT6F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 15:58:05 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38C57D0772;
-        Thu, 18 Aug 2022 12:58:05 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id E9973B823F8;
-        Thu, 18 Aug 2022 19:58:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FD0CC433D6;
-        Thu, 18 Aug 2022 19:58:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1660852682;
-        bh=0GAsuDOlR0lDda6hiUVXgwjjgMJTvI8YozfrfujS6pY=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=M+3NzAVxvU0dSUj702HHHBkl32oLGBYtPphnSh7JfraPOd4A2NfVqL5QuQONgcY0g
-         sKCOZUK63WFyHbTqZ/zs681TEnK6yHFLK97Ly0dDyy0FtLFyJhO4MkUOzxoryEZXpm
-         iNouZiMYJeOr4npmZU99J6JEcPDPIaNASnHWrKaNIfvWc/2ITzP8PXp2ExHuhO97b0
-         C7YCcYoMCpZHb74c20ql9NiJ8ITjwM2Tg6pSQ9O1ukYw0uiFUIA6fdXqLPEe1q3h+h
-         Gxcwf2SoTiVBCoNvejloHtfv9TmZuTLgmOIXhiTuE991dFbSKmwbdJfpLVjWFhIHDf
-         DBElgb1Vn7bLg==
-Date:   Thu, 18 Aug 2022 12:58:01 -0700
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     wei.fang@nxp.com, hkallweit1@gmail.com, linux@armlinux.org.uk,
-        davem@davemloft.net, edumazet@google.com, pabeni@redhat.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        f.fainelli@gmail.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V3 net 2/2] net: phy: at803x: add disable hibernation
- mode support
-Message-ID: <20220818125801.54472864@kernel.org>
-In-Reply-To: <Yv6TA9xfx4m2+YrH@lunn.ch>
-References: <20220818030054.1010660-1-wei.fang@nxp.com>
-        <20220818030054.1010660-3-wei.fang@nxp.com>
-        <Yv6TA9xfx4m2+YrH@lunn.ch>
+        with ESMTP id S1344438AbiHRUHP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 16:07:15 -0400
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5C10D2EB6;
+        Thu, 18 Aug 2022 13:01:57 -0700 (PDT)
+Received: by mail-pl1-x633.google.com with SMTP id d16so2376632pll.11;
+        Thu, 18 Aug 2022 13:01:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc;
+        bh=newzkmQUzujson7EueJWeL6KafDp3tWYzRmXIinSpck=;
+        b=LbWXzPDPIJnzBvBCuHqGYaktwpuVJXJNXnNAOOUvoMJP1qrn3rhXXAWE+3U0bqg1Ds
+         KddsXqzbWB/x3u0VN63w5ML89naR2sReYQ8xU+mXmt8UCW5zxXNHnf8e+LsZSaRFbZc5
+         b2fuHAFmnnECXn7pH97L6Xv/+vweM7ifsqR0v8VzAYziIC87tmwv6gprUMUa8R99S7WO
+         LV6QlWem4VKDYviRA3xzulChoT/PdU8hXoKR9/f/7bFLizlNWTHk4u9bCl8eSdblTuIB
+         6MAfFd44xE2FXTQEE81r6THLpJH5XKMsRkG/ME0gwiDNZs4uV1+dAPYWPp9pQRPyhz59
+         xwBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc;
+        bh=newzkmQUzujson7EueJWeL6KafDp3tWYzRmXIinSpck=;
+        b=rnrH7QkOf4Z2vFZUPOZXdLZjNY69ycFbqjQnZY7M7HPzNoLVeMww/L0tM28WuO2pZw
+         jxZcHcKAhoUIq33yYbM7GP7nBMsPdpMFAQnajVkrXBnXhF1zzUWQ1144qPxoO2ZljoO3
+         MZpogTq4DnWwRL1w8N+xWI1aDVztGU+qi/TG5NxbQciaHOoK8TKlK18HRR8QAXGaM4s/
+         7W551Kt8tV0RlaVg9Ayoplb3qBiZ6uSx3OJkrtVfTpDKQU4isdESUrBfuGoQPwe2YTvU
+         CpCnkRcQ/1cD4sDhWpEdYbw3WXI1x/jO/NU2uljGF4iuBUwNbIy/5v3qDV6JNNhWxVTF
+         7pWA==
+X-Gm-Message-State: ACgBeo36VGhclmEFnDq+oDdLSfwAL/Kd+k0AbUoGGKUJXt8ikw/S+u/6
+        OfAz6DV+DgOUATpwjnt9oF8=
+X-Google-Smtp-Source: AA6agR7t0BR3+os83cK8htKnmIBZHqLnfhYRUc3qgjeRF6BNxBmbyyp0Y9i1ZMw7nCakzzywCp4VBw==
+X-Received: by 2002:a17:902:788f:b0:170:8b18:8812 with SMTP id q15-20020a170902788f00b001708b188812mr3878338pll.1.1660852901678;
+        Thu, 18 Aug 2022 13:01:41 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id x63-20020a623142000000b00528c066678csm2054256pfx.72.2022.08.18.13.01.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Aug 2022 13:01:40 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Thu, 18 Aug 2022 13:01:38 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Eliav Farber <farbere@amazon.com>
+Cc:     jdelvare@suse.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, talel@amazon.com, hhhawa@amazon.com,
+        jonnyc@amazon.com, hanochu@amazon.com, ronenk@amazon.com,
+        itamark@amazon.com, shellykz@amazon.com, shorer@amazon.com,
+        amitlavi@amazon.com, almogbs@amazon.com, dwmw@amazon.co.uk,
+        rtanwar@maxlinear.com
+Subject: Re: [PATCH v2 04/16] hwmon: (mr75203) add Moortec PVT controller
+ reset-control-skip property
+Message-ID: <20220818195742.GA3287145@roeck-us.net>
+References: <20220817054321.6519-1-farbere@amazon.com>
+ <20220817054321.6519-5-farbere@amazon.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220817054321.6519-5-farbere@amazon.com>
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 18 Aug 2022 21:29:07 +0200 Andrew Lunn wrote:
-> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+On Wed, Aug 17, 2022 at 05:43:09AM +0000, Eliav Farber wrote:
+> Adding a "reset-control-skip" bool property to the mr75203 node will
+> avoid looking up and obtaining a reference to a reset controller.
+> 
 
-Any guidance on net / net-next and Fixes, Andrew?
+This seems overly complex. WHy not just declare the "resets"
+property optional ?
 
-Seems like a "this never worked" / "we haven't supported such platforms"
-case, perhaps?
+Guenter
+
+> Signed-off-by: Eliav Farber <farbere@amazon.com>
+> ---
+>  .../devicetree/bindings/hwmon/moortec,mr75203.yaml          | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml b/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
+> index f9e849cc73e0..da9c3cdcb6f0 100644
+> --- a/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
+> +++ b/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
+> @@ -44,6 +44,11 @@ properties:
+>    "#thermal-sensor-cells":
+>      const: 1
+>  
+> +  reset-control-skip:
+> +    description:
+> +      reset-control-skip bool property defines if obtaining a
+> +      reference to a reset controller should be skipped.
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -54,6 +59,7 @@ required:
+>  
+>  additionalProperties:
+>    - intel,vm-map
+> +  - reset-control-skip
+>  
+>  examples:
+>    - |
