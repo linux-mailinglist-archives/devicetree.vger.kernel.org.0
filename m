@@ -2,78 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70F39598A5B
-	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 19:28:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CEB6598A50
+	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 19:27:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344773AbiHRRWe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Aug 2022 13:22:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53546 "EHLO
+        id S243624AbiHRR0B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Aug 2022 13:26:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344791AbiHRRV4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 13:21:56 -0400
-Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 256422CCAA;
-        Thu, 18 Aug 2022 10:21:21 -0700 (PDT)
-Received: by mail-pj1-f53.google.com with SMTP id e19so1123888pju.1;
-        Thu, 18 Aug 2022 10:21:21 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=vanZygsLh7oEj5y254592X3RdUXrhVJF3OLlXailxjk=;
-        b=7F0Uu1mDJIo/Hf5FyXeMv989Wz2p8I5njd+yNqW8hkkyKlbhHBC+9p7r2nFubxhxCK
-         6TvRvdZPgoBHLd5xu05I06st3NSzX0sTk1AkGbpOHMThBhasNVEedgU3Qiw6lo4QDIfm
-         Y7PSVEZC8u5UHAM+5YgN13wWoIG9qGQ5ILpcxH0MSopXDmnqUv58ZMmB5KdfBeLD29JD
-         htfkOStn5H6oic3h6lv1RtMcI5rrLr8Kv1umi9mqidJguC0340EjO+W/5w1fXipb5iRQ
-         xiWYeIeVNYd7FkMdrRxMdYbtq+81bFBcnRvILNUMmDAwA5zlOZked0OBbsg8eL1XgKEk
-         k6Yw==
-X-Gm-Message-State: ACgBeo13jAB95fDCcC2iZYBPlW0FhpLlzglJQLE1KujrydkbPNhxVSVv
-        OebDXjQJRseV8Kdb0xLM94qnjQxEcg==
-X-Google-Smtp-Source: AA6agR7IVR3vJCScPvq4DpLDESckyA04q28EqUlUq4SYrZ+JK1pHP4nu6RmPbgMkAcvrhWT7LsZw4g==
-X-Received: by 2002:a17:90a:a08:b0:1fa:b43d:68cf with SMTP id o8-20020a17090a0a0800b001fab43d68cfmr9002070pjo.41.1660843280416;
-        Thu, 18 Aug 2022 10:21:20 -0700 (PDT)
-Received: from robh.at.kernel.org ([2607:fb90:647:4ff2:3529:f8cd:d6cd:ac54])
-        by smtp.gmail.com with ESMTPSA id d11-20020a170902aa8b00b00172b5adb78asm1424901plr.147.2022.08.18.10.21.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Aug 2022 10:21:19 -0700 (PDT)
-Received: (nullmailer pid 2058883 invoked by uid 1000);
-        Thu, 18 Aug 2022 17:21:16 -0000
-Date:   Thu, 18 Aug 2022 11:21:16 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     andrei.tachici@stud.acs.upb.ro
-Cc:     linux-kernel@vger.kernel.org, andrew@lunn.ch, hkallweit1@gmail.com,
-        linux@armlinux.org.uk, davem@davemloft.net, edumazet@google.com,
-        kuba@kernel.org, pabeni@redhat.com, netdev@vger.kernel.org,
-        vegard.nossum@oracle.com, joel@jms.id.au, l.stelmach@samsung.com,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
-Subject: Re: [net-next v4 3/3] dt-bindings: net: adin1110: Add docs
-Message-ID: <20220818172116.GA2055664-robh@kernel.org>
-References: <20220817160236.53586-1-andrei.tachici@stud.acs.upb.ro>
- <20220817160236.53586-4-andrei.tachici@stud.acs.upb.ro>
+        with ESMTP id S1345594AbiHRRZz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 13:25:55 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3182F1106;
+        Thu, 18 Aug 2022 10:25:54 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id DE226B822AF;
+        Thu, 18 Aug 2022 17:25:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C743C433D6;
+        Thu, 18 Aug 2022 17:25:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1660843551;
+        bh=/kX8/xJvzlk63YHJxHvCeay4OTEnd/qOB0+uZ1qvLv8=;
+        h=From:To:Cc:Subject:Date:From;
+        b=XD5Z1Fg71/LjOfAkq/NK8YE9J0Xxh0K7IFwLdmt2ge+IAsJK2a2hoa0pBVjFMhqpg
+         +WkeGmhKGGP7AEtUk5YHD3vpNFN+Kxns7JRkmfUB2DhAqhejIh1PY34E5JWzsMFGJ6
+         6BoCqzHyVYytUqR1rGdAshnTgzvNn5ZSWFtUGhL4y0y+KrO6cRZtBVJaso8ZAK4aaj
+         9ByH7bLb9NlaEl5bS9Vm3wWHzZ2FifXTrEidIaJ44d58r4YK34Mv4RDXtEHBQv+1sJ
+         XqvOqAIinwCMs020ppzBPQlEZHESoWoWCeaCIJKyoVEBzLS7sFMsHD9T3Aij2wOPdb
+         boQqQMgkLIBOA==
+Received: by pali.im (Postfix)
+        id B2933622; Thu, 18 Aug 2022 19:25:48 +0200 (CEST)
+From:   =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>
+To:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: leds: register-bit-led: Add active-low property
+Date:   Thu, 18 Aug 2022 19:25:27 +0200
+Message-Id: <20220818172528.23062-1-pali@kernel.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220817160236.53586-4-andrei.tachici@stud.acs.upb.ro>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 17, 2022 at 07:02:36PM +0300, andrei.tachici@stud.acs.upb.ro wrote:
-> From: Alexandru Tachici <alexandru.tachici@analog.com>
-> 
-> Add bindings for the ADIN1110/2111 MAC-PHY/SWITCH.
-> 
-> Signed-off-by: Alexandru Tachici <alexandru.tachici@analog.com>
-> ---
->  .../devicetree/bindings/net/adi,adin1110.yaml | 77 +++++++++++++++++++
->  1 file changed, 77 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/adi,adin1110.yaml
+Allow to define inverted logic (0 - enable LED, 1 - disable LED) via
+active-low property.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Pali Rohár <pali@kernel.org>
+---
+ Documentation/devicetree/bindings/leds/register-bit-led.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/leds/register-bit-led.yaml b/Documentation/devicetree/bindings/leds/register-bit-led.yaml
+index 79b8fc0f9d23..5c6ef26f1a94 100644
+--- a/Documentation/devicetree/bindings/leds/register-bit-led.yaml
++++ b/Documentation/devicetree/bindings/leds/register-bit-led.yaml
+@@ -43,6 +43,11 @@ properties:
+         0x100000, 0x200000, 0x400000, 0x800000, 0x1000000, 0x2000000, 0x4000000,
+         0x8000000, 0x10000000, 0x20000000, 0x40000000, 0x80000000 ]
+ 
++  active-low:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      LED is ON when bit in register is not set
++
+   offset:
+     description:
+       register offset to the register controlling this LED
+-- 
+2.20.1
+
