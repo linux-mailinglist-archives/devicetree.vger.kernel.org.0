@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 248E559833D
-	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 14:41:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0FE5598356
+	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 14:43:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236846AbiHRMlp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Aug 2022 08:41:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45700 "EHLO
+        id S244680AbiHRMlt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Aug 2022 08:41:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244680AbiHRMlo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 08:41:44 -0400
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A025CAE23A
-        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 05:41:43 -0700 (PDT)
-Received: by mail-pj1-x102e.google.com with SMTP id r14-20020a17090a4dce00b001faa76931beso4627378pjl.1
-        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 05:41:43 -0700 (PDT)
+        with ESMTP id S244497AbiHRMlr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 08:41:47 -0400
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55376AE23E
+        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 05:41:47 -0700 (PDT)
+Received: by mail-pf1-x430.google.com with SMTP id 130so1422103pfy.6
+        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 05:41:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=KS/0D379Yt/MxTWkSlpI7Yl6aGrINZAstEPe80DtsmY=;
-        b=nRAVg5pBUodD6SIKXXj4VD0TQM3UPFG+sRCc9Lt/jAgjNw9PnhzR8uEyJ5cLtzO9mM
-         jdsMCe57Ef7y6TXIAKukPn4rLwtSzleyOP/Rg/olqT40zOGJM2LloVPTgpeCxbAsU2GK
-         l86It6+nB5fhijboNnrxXyNgsZGYYlqT3VtT8EKWWEPS9g7ioMrKTfIapuJo907kfFfB
-         WZqtzmNyBgxaFV1DlI6ofh/JzqqD8mCMbpft63y6iNGAHoj73OIm4l9kbj8XHRmT9lxH
-         cSVT80r97tBJO4mROxEWXdZ+/sx3qPZlWVT7CAaORaGsBkisktWN84btQ0ZqwS9camk9
-         lupQ==
+        bh=QCOjBBtzFFko85sgu6SyGw6HeoZtmL6fE8Mcl3F6F/8=;
+        b=plc3aIsSlj/N37EpDCcK4WXQ5jP07yp5slb5PcLu71tJ2spAeGHdS2+kFnSIWWt48i
+         UZYXgfqFKiXtuczjB2x0z/c66536/Iw4TkxwVS4l2KrxqZxFAGpytrwvK4jqiMH8XFJ9
+         Zt1PUEOiqna+qXmTTYG7Afd1bSb/UtxIhKP8ZShcxGc4QW15fii9rSI2ifWeVyNoIpwG
+         4NvrtDZDFf2UATYUmn/4Z6s7vTbBuIW0LdEQX7adB8cuPoaMLFBYth8nykt/iXgKmh4O
+         ZIC5gTGggYZyw8V6ezepwhS34uuaj6+p95iN1zd6ZqKLCB678vBiSydBYRdrJ1BMEzmB
+         3iKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=KS/0D379Yt/MxTWkSlpI7Yl6aGrINZAstEPe80DtsmY=;
-        b=ivZumoSmpdprPnamWKMjcBkz2uUpiJ8cGmgmGBX45z6a+A89uyXN+bqOm1MBDyhMgN
-         s3v/EDYwXXgnXzWv7curjs03f9Pr9CN30O0FQqvaNHY2oWunqLldo1tvtzv7M0XpNtRE
-         kbdqbDzE6sxci01ss61Fqc+1Mqm6u1/9oa1+mcADGSQ+IUY+SrEPnRlU/opkyUYqyjJf
-         83F7tedXqnsKBvp5oKykrBgcqSTxb27TsHCDjvTKn9HyinV1ZzghzEp11BjpM4jotBjP
-         4ZT0o0OmCVNJ66l43OSuDaLyQB9gZJylZd8JD2NEQ3T35dDvDUE8yDfQSa8i10HBf+7k
-         163A==
-X-Gm-Message-State: ACgBeo2cIGGy4BKHf7PTGJm63nE42yUU5fWnJxVNcHDPp97vYwaZKdyt
-        36fU299XUS5gyYJZI2Mbxk41Ng==
-X-Google-Smtp-Source: AA6agR4Zl0b4mQCBObDz95VG2jMXcVY1lAON/ST3Emo+KJuxPfHHwohE/z9N91K9na8PZckfPbOfTQ==
-X-Received: by 2002:a17:902:8b87:b0:172:9650:494b with SMTP id ay7-20020a1709028b8700b001729650494bmr2452983plb.94.1660826503131;
-        Thu, 18 Aug 2022 05:41:43 -0700 (PDT)
+        bh=QCOjBBtzFFko85sgu6SyGw6HeoZtmL6fE8Mcl3F6F/8=;
+        b=FybgzlBUbCqWnk5USG2+w2WbFV1bVYgwhusqztIBP6ALi0hGr6gpp/FolulwmCbz1c
+         ZfbGXaitf1JQNHawJz96y0WCbqQar8PPKn3Ym4ALE3aShhe0PvYBWZ681dUvfJQYW3AP
+         MoRfqZEVtpkRBTVwhZuUnu+2xw8R8paboWoWOpXaB3df6tZZPVWnSOE1FeVIZ3BxJUbh
+         DEjkkTEe7ObU8rtRoxqSUNd7SXqqJhf5BKMeFtHkw93C+OPflWZigGipdLKO6hfIbeCQ
+         Fciw7TbW+zPOyCj/fYSlXDwlcgxvFXtHeIY2TyQ2fBhLROFDO4/oII81hNeamkYJG70Y
+         3TaQ==
+X-Gm-Message-State: ACgBeo1CuNwotEn2YzUa1PwOd77/mEiS9BfcveXPOTaa7l9Caz0LllQ6
+        e1TPG5deOxHjvSqNMn5/bCIbmg==
+X-Google-Smtp-Source: AA6agR7jdrbKfzIVhtLktPgPNRNXrI9KwbVeg8oUA99zenW+nO6Ie+IpnuiCT02zHRas8WcI2RkxPw==
+X-Received: by 2002:a05:6a00:180d:b0:52d:9bc0:2155 with SMTP id y13-20020a056a00180d00b0052d9bc02155mr2835143pfa.3.1660826506873;
+        Thu, 18 Aug 2022 05:41:46 -0700 (PDT)
 Received: from localhost.localdomain ([2405:201:c00a:a073:d1c4:8ea9:aedc:add1])
-        by smtp.gmail.com with ESMTPSA id x6-20020aa78f06000000b005302cef1684sm1495651pfr.34.2022.08.18.05.41.39
+        by smtp.gmail.com with ESMTPSA id x6-20020aa78f06000000b005302cef1684sm1495651pfr.34.2022.08.18.05.41.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Aug 2022 05:41:42 -0700 (PDT)
+        Thu, 18 Aug 2022 05:41:46 -0700 (PDT)
 From:   Jagan Teki <jagan@edgeble.ai>
 To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -54,10 +54,10 @@ To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
 Cc:     linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
         Jagan Teki <jagan@edgeble.ai>,
-        Elaine Zhang <zhangqing@rock-chips.com>
-Subject: [PATCH v3 01/19] dt-bindings: power: Add power-domain header for RV1126
-Date:   Thu, 18 Aug 2022 18:11:14 +0530
-Message-Id: <20220818124132.125304-2-jagan@edgeble.ai>
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v3 02/19] dt-bindings: power: rockchip: Document RV1126 power-controller
+Date:   Thu, 18 Aug 2022 18:11:15 +0530
+Message-Id: <20220818124132.125304-3-jagan@edgeble.ai>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220818124132.125304-1-jagan@edgeble.ai>
 References: <20220818124132.125304-1-jagan@edgeble.ai>
@@ -72,61 +72,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add power-domain header for RV1126 SoC from description in TRM.
+Document dt-bindings for RV1126 power-controller.
 
-Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Jagan Teki <jagan@edgeble.ai>
 ---
 Changes for v3:
-- rename the header 
+- update the header file
 Changes for v2:
-- add blank line
+- collect Krzysztof ack
 
- .../dt-bindings/power/rockchip,rv1126-power.h | 35 +++++++++++++++++++
- 1 file changed, 35 insertions(+)
- create mode 100644 include/dt-bindings/power/rockchip,rv1126-power.h
+ .../devicetree/bindings/power/rockchip,power-controller.yaml    | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/include/dt-bindings/power/rockchip,rv1126-power.h b/include/dt-bindings/power/rockchip,rv1126-power.h
-new file mode 100644
-index 000000000000..38a68e000d38
---- /dev/null
-+++ b/include/dt-bindings/power/rockchip,rv1126-power.h
-@@ -0,0 +1,35 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+
-+#ifndef __DT_BINDINGS_POWER_RV1126_POWER_H__
-+#define __DT_BINDINGS_POWER_RV1126_POWER_H__
-+
-+/* VD_CORE */
-+#define RV1126_PD_CPU_0		0
-+#define RV1126_PD_CPU_1		1
-+#define RV1126_PD_CPU_2		2
-+#define RV1126_PD_CPU_3		3
-+#define RV1126_PD_CORE_ALIVE	4
-+
-+/* VD_PMU */
-+#define RV1126_PD_PMU		5
-+#define RV1126_PD_PMU_ALIVE	6
-+
-+/* VD_NPU */
-+#define RV1126_PD_NPU		7
-+
-+/* VD_VEPU */
-+#define RV1126_PD_VEPU		8
-+
-+/* VD_LOGIC */
-+#define RV1126_PD_VI		9
-+#define RV1126_PD_VO		10
-+#define RV1126_PD_ISPP		11
-+#define RV1126_PD_VDPU		12
-+#define RV1126_PD_CRYPTO	13
-+#define RV1126_PD_DDR		14
-+#define RV1126_PD_NVM		15
-+#define RV1126_PD_SDIO		16
-+#define RV1126_PD_USB		17
-+#define RV1126_PD_LOGIC_ALIVE	18
-+
-+#endif
+diff --git a/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml b/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
+index 3deb0fc8dfd3..6840f089f523 100644
+--- a/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
++++ b/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
+@@ -41,6 +41,7 @@ properties:
+       - rockchip,rk3368-power-controller
+       - rockchip,rk3399-power-controller
+       - rockchip,rk3568-power-controller
++      - rockchip,rv1126-power-controller
+ 
+   "#power-domain-cells":
+     const: 1
+@@ -119,6 +120,7 @@ $defs:
+           "include/dt-bindings/power/rk3368-power.h"
+           "include/dt-bindings/power/rk3399-power.h"
+           "include/dt-bindings/power/rk3568-power.h"
++          "include/dt-bindings/power/rockchip,rv1126-power.h"
+ 
+       clocks:
+         minItems: 1
 -- 
 2.25.1
 
