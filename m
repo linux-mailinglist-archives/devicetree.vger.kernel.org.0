@@ -2,134 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1F8B59801A
-	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 10:30:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88E7B59801D
+	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 10:33:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234825AbiHRIa0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Aug 2022 04:30:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36652 "EHLO
+        id S241579AbiHRIbo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Aug 2022 04:31:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230366AbiHRIaZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 04:30:25 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E98A832E0
-        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 01:30:24 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id by6so1007160ljb.11
-        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 01:30:24 -0700 (PDT)
+        with ESMTP id S231393AbiHRIbn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 04:31:43 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FE25AFADC
+        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 01:31:41 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id l1so697250lfk.8
+        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 01:31:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=qXTt19eF4mwiE0Ime+Awj3mOruDp7C/SRIF6tAJVQDo=;
-        b=t7xTMCHGMRGLK+umdFpXOwWkrNzQGqXrBos0quyiAm91vb4vugRXWXDWChF8XhbJxB
-         Z45VYXaaZ8B8aKebBHy/CEHVLDE3haCPej78R/834Q1wEXLBO1nz1v9kT291x8t4Jz9g
-         wxbdqTkch+nDEdgvqB1VPrP3zh8PF+xzINxshq+4Mwdqpm6sVoyWcolF1+3nif69HhkY
-         UcHP9C+h9WvpVGpJFjIhZ2WJQ00SeRm/6JH+vqVADiB9FY0lQFBfFAcqsYm1TVEqtcY8
-         Oex1ibpkBYs9UWAumFjN0IRr7fdNetDAX1sBSNgpKHGMj98kpZqJ1w4iYC3cUB58jP3l
-         L/hQ==
+        bh=+AYPEavLhHjc8NjLvs2dPmTNTkd/CClCaa85BTp1bjY=;
+        b=STFobP21Yf2PS4rMrkrrI1sUpvSs479ohgcZAloOUX2+29lmRpHvnoKRozLgY8Ad4Q
+         aiWmAQbPCyFB18jyBhZs/wvxpouI7EfXvY9QWLqMilE33HTFMFEwmvjMWS5dEj2Veu8T
+         PhCSZVEijtHF0t3bMsBPGBmMbm5631aFxu+Kov7KCEo5LCI39jgo9Nsw6jOWCqAYCZVR
+         140b0tmSgLrB1BClwsCeVREqpChu1a883q80Fg+91UPcYTDbtGqW7bf03ANXbtgFl1vV
+         hc8EPuYMOCVWmyJObWXiqaWZyI+ObhZXSk5L7bf2EVy4hptRFSCq8NmvJDrZ6vqi6jOh
+         qoXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=qXTt19eF4mwiE0Ime+Awj3mOruDp7C/SRIF6tAJVQDo=;
-        b=1MUAC4jZHa1XPc2+Wn0d7CQpPJlMvB/DVYAdTsZ24ZmoIkQ9B6IRzbfwjLbFP0Ig/s
-         q6zAA8xBJSP09ik0N0Gzp63v6LSDpz6bJyOL6XWc+Se/noegKTt82u4QVzY/wLRellaA
-         u9070HZEpyZtedpyoyCLJeeHM2CeIdb/YqnVxtv9CRFQs4Qo6qkM4MKJ7hCpolLv7Vh4
-         N26xsDIecQRedi052UV009fYYLtW9pvphQkpnYSzJ1HD32JKm3QJ8h2bAV3uw3A+tcik
-         Uognt4VphLMVXbCSrD78LOa3nPfrLjd/+hzflS0XIt56FCKnbUt+qC9lEn0MmztJMZty
-         fwkQ==
-X-Gm-Message-State: ACgBeo0tsCnPCWSAfpICq0pJEggFZ4NefhxLTLw50iQewzAHQoxWsnOp
-        5AocT6wOg5/zuG6fHbgmHds08Q==
-X-Google-Smtp-Source: AA6agR5ruAqqxhSW0Jr0u0T2N6TAA417fghniyaD0s8eQMiBgW9TCyIVBnHWO9ViolQ/0JtLpXNFSw==
-X-Received: by 2002:a05:651c:179f:b0:261:83f5:4b5e with SMTP id bn31-20020a05651c179f00b0026183f54b5emr557765ljb.197.1660811422712;
-        Thu, 18 Aug 2022 01:30:22 -0700 (PDT)
+        bh=+AYPEavLhHjc8NjLvs2dPmTNTkd/CClCaa85BTp1bjY=;
+        b=16zV8D0mgBZBB9SrYFP3WlUZ7jyJEwRt6CxhCl639upOrtPijkoeuUlMSVzUYcQWXY
+         wduUDaZjghuPU0j+pl1wCjNlC2PDd4Pqr0yVo7U4lN6E7OCAmtpDlL50DPjlvH+zAYeI
+         3dNc7mH+ODn0sru3586GYODrdVF+n/5L1WCDGnWlkNG7bK84l5tjyCaXSQ6CRd7MPduD
+         lNW5LkQyK+XyC7jvbTBc8NSaYYsGsJ9pKvcUb5wCMsv4XZgcutnnSBXtE4DIoXV4eDG8
+         2Ag2Shvi72xaK97aJ3lbmXJtbrbkAQVBhkm1pk/sTitrYo9cKzUU5aErU/mgalx18xrr
+         misg==
+X-Gm-Message-State: ACgBeo15ZqDjB1MSAau6Hb11k5wNb3oshLL+2YKJ1nz1IbZ/WkXTLxcc
+        92e6mZMw7Pabiu0HNezzxJ1VEA==
+X-Google-Smtp-Source: AA6agR5X7kpcMjGLMeLZIEZPXs6j4sMZGb7uMlfWVX7VavZBdDerNtf9zWUanDu7lBUtNOuVQzN/iA==
+X-Received: by 2002:a05:6512:118a:b0:492:a32d:3678 with SMTP id g10-20020a056512118a00b00492a32d3678mr575248lfr.259.1660811499593;
+        Thu, 18 Aug 2022 01:31:39 -0700 (PDT)
 Received: from ?IPV6:2001:14bb:ae:539c:53ab:2635:d4f2:d6d5? (d15l54z9nf469l8226z-4.rev.dnainternet.fi. [2001:14bb:ae:539c:53ab:2635:d4f2:d6d5])
-        by smtp.gmail.com with ESMTPSA id q129-20020a2e5c87000000b002618e5c2664sm125538ljb.103.2022.08.18.01.30.21
+        by smtp.gmail.com with ESMTPSA id e24-20020a2e9e18000000b0025e48907929sm134615ljk.23.2022.08.18.01.31.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Aug 2022 01:30:22 -0700 (PDT)
-Message-ID: <188425fd-8cc7-fb2e-9ee3-ff37937cac54@linaro.org>
-Date:   Thu, 18 Aug 2022 11:30:20 +0300
+        Thu, 18 Aug 2022 01:31:39 -0700 (PDT)
+Message-ID: <6741e694-1400-bf76-b0f2-67a42c43edd0@linaro.org>
+Date:   Thu, 18 Aug 2022 11:31:37 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH v5 1/4] perf/amlogic: Add support for Amlogic meson G12
- SoC DDR PMU driver
+Subject: Re: [PATCH 1/5] dt-bindings: mfd: atmel,sama5d2-flexcom: Add SPI
+ child node ref binding
 Content-Language: en-US
-To:     Jiucheng Xu <jiucheng.xu@amlogic.com>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Chris Healy <cphealy@gmail.com>,
-        kernel test robot <lkp@intel.com>
-References: <20220817113423.2088581-1-jiucheng.xu@amlogic.com>
+To:     Sergiu Moga <sergiu.moga@microchip.com>, lee@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+        claudiu.beznea@microchip.com, radu_nicolae.pirea@upb.ro,
+        richard.genoud@gmail.com, mturquette@baylibre.com,
+        sboyd@kernel.org, gregkh@linuxfoundation.org, jirislaby@kernel.org,
+        admin@hifiphile.com, kavyasree.kotagiri@microchip.com
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-serial@vger.kernel.org
+References: <20220817075517.49575-1-sergiu.moga@microchip.com>
+ <20220817075517.49575-2-sergiu.moga@microchip.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220817113423.2088581-1-jiucheng.xu@amlogic.com>
+In-Reply-To: <20220817075517.49575-2-sergiu.moga@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/08/2022 14:34, Jiucheng Xu wrote:
-> This patch adds support Amlogic meson G12 series SoC
-> DDR bandwidth PMU driver framework and interfaces.
+On 17/08/2022 10:55, Sergiu Moga wrote:
+> Another functionality of FLEXCOM is that of SPI. In order for
+> the proper validation of the SPI children nodes through the binding
+> to occur, the proper binding for SPI must be referenced.
 > 
-> The PMU not only can monitor the total DDR bandwidth,
-> but also the bandwidth which is from individual IP module.
+> Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
+> ---
+>  .../devicetree/bindings/mfd/atmel,sama5d2-flexcom.yaml       | 5 ++---
+>  1 file changed, 2 insertions(+), 3 deletions(-)
 > 
-> Example usage:
+> diff --git a/Documentation/devicetree/bindings/mfd/atmel,sama5d2-flexcom.yaml b/Documentation/devicetree/bindings/mfd/atmel,sama5d2-flexcom.yaml
+> index 568da7cb630c..e158af47c326 100644
+> --- a/Documentation/devicetree/bindings/mfd/atmel,sama5d2-flexcom.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/atmel,sama5d2-flexcom.yaml
+> @@ -78,10 +78,9 @@ patternProperties:
+>        of USART bindings.
+>  
+>    "^spi@[0-9a-f]+$":
+> -    type: object
+> +    $ref: ../spi/atmel,at91rm9200-spi.yaml
 
-Thank you for your patch. There is something to discuss/improve.
+Full schemas path, so:
 
-}
-> +
-> +static int dmc_g12_irq_handler(struct dmc_info *info,
-> +			       struct dmc_counter *counter)
-> +{
-> +	unsigned int val;
-> +	int ret = -EINVAL;
-> +
-> +	val = readl(info->ddr_reg[0] + DMC_MON_G12_CTRL0);
-> +	if (val & DMC_QOS_IRQ) {
-> +		dmc_g12_get_counters(info, counter);
-> +		/* clear irq flags */
-> +		writel(val, info->ddr_reg[0] + DMC_MON_G12_CTRL0);
-> +		ret = 0;
-> +	}
-> +	return ret;
-> +}
-> +
-> +static struct dmc_hw_info g12a_dmc_info = {
+/schemas/spi/atmel....
 
-This and other ones should be also const.
-
-> +	.enable		= dmc_g12_counter_enable,
-> +	.disable	= dmc_g12_counter_disable,
-> +	.irq_handler	= dmc_g12_irq_handler,
-> +	.get_counters	= dmc_g12_get_counters,
-> +	.set_axi_filter	= dmc_g12_set_axi_filter,
-> +
-> +	.dmc_nr = 1,
-> +	.chann_nr = 4,
-> +	.capability = 0X7EFF00FF03DF,
-> +	.fmt_attr = g12_pmu_format_attrs,
-> +};
-> +
 
 Best regards,
 Krzysztof
