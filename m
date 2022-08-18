@@ -2,166 +2,240 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 88B1C598355
-	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 14:43:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 260A559834A
+	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 14:43:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244444AbiHRMm4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Aug 2022 08:42:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47056 "EHLO
+        id S244694AbiHRMmV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Aug 2022 08:42:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244712AbiHRMmz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 08:42:55 -0400
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 216B0B2843
-        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 05:42:54 -0700 (PDT)
-Received: by mail-pf1-x435.google.com with SMTP id z187so1401239pfb.12
-        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 05:42:54 -0700 (PDT)
+        with ESMTP id S244341AbiHRMmU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 08:42:20 -0400
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2073.outbound.protection.outlook.com [40.107.223.73])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FC6BA9240;
+        Thu, 18 Aug 2022 05:42:19 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=O4/23c1sLDUBIIt8y5Vs0OOVQTd9ul5f73XAcEt1x+E7NCALYcDbRT0dA3kxVr1yhk3USwAaRwsaUuSGTr8gghihrGnOWpNnuUcaw55+wS4iWANHNN0IGfzHhXk3KPaPD7rHGimuHSvDYRTgMy5B9mwiOL8xf2FyNbN0XNSKUg5Nn7kJpdoTAzDHEUOL4MgkkmBZupObQygKDe6iSokw9gsyJN44q2rif1bWkmjj0s7Rd8wSX24+vckQpvBJqw5XgVe6Z+IdP/5AWryClClcmkY3CXKPMnGM9rLYTuEvPofDFXcZlnjG7Qta9gEgf9UK5ctRwysP1VHEAg9MsdGxbw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6Nkg+Mzt060lsDH3RPH9yA+u/DH8Ycu5+djaVBRmLHI=;
+ b=cTIZVso51iP4tjdNo0yE8q98qxIQPOZnLU4ky9qQ4bfsr4mGxAQw7821ndTEqAh2awjEkjr2TOIl+MIGEVW1c1IQTXNFY2wzlz/uTOIII8xqWQvesDpt0BgpFhKY7ACON3tQUzHrJLKFUfPlHtIMPqP3Qwn9Z7xVqz3okqUtaz4XboV5qnGfIJ3dNChaEPsafHtoxNQZPCPqX4dF4e7Y6QIdCRU0vG3eJ0Nc0baxDVGqfFcsPY4dCRmI9fhsQfya5TNTAK/OR0KwznI4p8FHuFYI7Pf46cfCRMSUd3iJOFhaa6EQ96JCAbje9nRmBM8XZxtM07CSOa4igiFTFRhHrA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=roeck-us.net smtp.mailfrom=xilinx.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
+ dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=vCHsjUT/CIgoiPKWpJGWF0bqXuEAYoFTuk01CLPUBNU=;
-        b=6oRvSgWHqhnC1ZagHb+AJVJZ8O8XqnyXss0FRwyzpkY5VhFmV2KMozJrdnDEwpvDtC
-         X9oxTj7HANQ/N3WfmfXHBlVuhgOxS09NVoUytzxr0dZNmqnlyvRst08Y1oQtoOD1w7ZX
-         ura6NS+Kyd8sSNg/VAiNiYDugXeESYc5pDhdPTJoQ/9V6dqPyc+9zxjO2nNmjQ8qarXo
-         ALY9WY8rPAxTEQSe7/UNUZVimMpU9A6lCBy7NGwWLvTDoq10VdBiOhHLMRT4CouIaTo4
-         5NTCzhcsxwyQi7Icvblx37JkS0m2B5twe1Z8KPCT9X9MBE9QJXsLPeMGoaym30zZrNbg
-         y0vQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=vCHsjUT/CIgoiPKWpJGWF0bqXuEAYoFTuk01CLPUBNU=;
-        b=xar/strrzwGym0UyxgxELqTC3MDT/rwLdV80dv7u7qHiCZw3iFhuyJ33f/1cKnCsr7
-         OgvhBlkito42rYWzewuZDDaHk8T9YhrIgoOIiRRimie9hAou8jiSD7iKVE9IANSTSq8M
-         C3NyGr8426NWAZ0QIXL/aDlBOwsiBQTuD5AuWyEq0Bt4H5iZn5Kp3ahUC45M89IrGWh4
-         yPhJHRYMwUIM1axa4sd6+qYAC0dEkeOiO/PbCK41aalENPrfIIa7kYpGpOnXbLmY5WnE
-         hteee0zp4LM3oRS1ukADFHugPxQyd1YEZSnIkylGA/hDcISOmOgLUEZlFD7ghHzerwbM
-         SsRA==
-X-Gm-Message-State: ACgBeo0F6wl1wwVJvy8rKL1p0neVZTI3v8uiYYI55jOkYYeRmUsKcVU4
-        DFP1Csh/SDQckRBn2UXQ3A0tkg==
-X-Google-Smtp-Source: AA6agR7rRaVO+Oqxf1oh8pMqIXQwS4xGr2HaNRVwOU7G3onHD0txkGXFVR6GYOEmUSgWBHNnLcuHEw==
-X-Received: by 2002:a63:8142:0:b0:429:f9f9:8fb5 with SMTP id t63-20020a638142000000b00429f9f98fb5mr2332689pgd.619.1660826573618;
-        Thu, 18 Aug 2022 05:42:53 -0700 (PDT)
-Received: from localhost.localdomain ([2405:201:c00a:a073:d1c4:8ea9:aedc:add1])
-        by smtp.gmail.com with ESMTPSA id x6-20020aa78f06000000b005302cef1684sm1495651pfr.34.2022.08.18.05.42.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Aug 2022 05:42:53 -0700 (PDT)
-From:   Jagan Teki <jagan@edgeble.ai>
-To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kever Yang <kever.yang@rock-chips.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        Jagan Teki <jagan@edgeble.ai>
-Subject: [PATCH v3 19/19] ARM: dts: rockchip: rv1126: Add Edgeble AI Edge Compute Module 0 Carrier
-Date:   Thu, 18 Aug 2022 18:11:32 +0530
-Message-Id: <20220818124132.125304-20-jagan@edgeble.ai>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220818124132.125304-1-jagan@edgeble.ai>
-References: <20220818124132.125304-1-jagan@edgeble.ai>
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6Nkg+Mzt060lsDH3RPH9yA+u/DH8Ycu5+djaVBRmLHI=;
+ b=GXDjfQ/4yPkiGScrP5vLPTBg6ez3RSN6eRI/MAvtm0jzKAAQRyYvUo/vwfeojllMxtB12mdxgJNKaJCBnDb3DCIltkXoekeW2T/tv2260qjTGDxCePa9bqcGbs8/16I0jPylsr7nDC3g0pLdPjndBOrvdifbQ5VEHrFQk0gn7HM=
+Received: from BN9PR03CA0176.namprd03.prod.outlook.com (2603:10b6:408:f4::31)
+ by BYAPR02MB5464.namprd02.prod.outlook.com (2603:10b6:a03:95::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5525.19; Thu, 18 Aug
+ 2022 12:42:16 +0000
+Received: from BN1NAM02FT004.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:408:f4:cafe::e5) by BN9PR03CA0176.outlook.office365.com
+ (2603:10b6:408:f4::31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5525.18 via Frontend
+ Transport; Thu, 18 Aug 2022 12:42:15 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com; pr=C
+Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
+ BN1NAM02FT004.mail.protection.outlook.com (10.13.2.123) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5546.15 via Frontend Transport; Thu, 18 Aug 2022 12:42:15 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Thu, 18 Aug 2022 05:42:13 -0700
+Received: from smtp.xilinx.com (172.19.127.96) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Thu, 18 Aug 2022 05:42:13 -0700
+Envelope-to: git@xilinx.com,
+ linux@roeck-us.net,
+ krzysztof.kozlowski+dt@linaro.org,
+ wim@linux-watchdog.org,
+ linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org,
+ linux-watchdog@vger.kernel.org,
+ git@amd.com
+Received: from [172.23.66.193] (port=45678 helo=xhdsneeli40u.xilinx.com)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <srinivas.neeli@xilinx.com>)
+        id 1oOeqi-0007yi-Id; Thu, 18 Aug 2022 05:42:13 -0700
+From:   Srinivas Neeli <srinivas.neeli@xilinx.com>
+To:     <linux@roeck-us.net>, <krzysztof.kozlowski+dt@linaro.org>,
+        <wim@linux-watchdog.org>, <michal.simek@xilinx.com>,
+        <shubhrajyoti.datta@xilinx.com>, <srinivas.neeli@xilinx.com>
+CC:     <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-watchdog@vger.kernel.org>,
+        <git@xilinx.com>, <git@amd.com>, <sgoud@xilinx.com>,
+        Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
+Subject: [PATCH] dt-bindings: Convert Xilinx watchdog bindings to json-schema
+Date:   Thu, 18 Aug 2022 18:12:07 +0530
+Message-ID: <20220818124207.61313-1-srinivas.neeli@xilinx.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 06cf11bd-a4e7-4386-1866-08da811714a1
+X-MS-TrafficTypeDiagnostic: BYAPR02MB5464:EE_
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: AyB1hkzUfodU5gUYQ3+S3BRMuXJfSeGXdZRCJx2NuZMjfp6P0ojNBQ5TgNXUmfckHHcoQDm/acZBdrm6qkRxhCqm/xiUKxea6uyJtIohqG3/L65pYE3+S0m2V/fJxyqHijqJlNUDIyWZz6DGSeQfU79FKw2+ArDl2w2csQkoekGDi27fKhiLUeqRZs1F33dckGDZsH12dcJaN1YDqXuR5g0w3JmN5i3lvuCmACGnBwePQWTk+UzoOZS3QUx6gIgnTneaQwV3n8SiSkHUw40VD2eZ8dJfyI6s3ywDfD6tPQAUM43SwxQlVZ1hiYZgRhe6iJFm7aY6rwYB48nvznqVizTzAH1t8MvOGKLLaaTwVM/ysB9IALnHtqVJdhryVsrpHIv6ijdPwctSU2tP9PV5FziqMD4PJ2kooVC0Gfm/o4QKVvNm3VV3y780/IFoW6HUGbCpsf0c2oUki+bPbPjusO0PT5dGxgdalmOI1TZPjvDEuEkuWGXfWVmmNXqcFFEIe3EAUmEKhKkNVNj16PFEZXY6/mHm4bPVLs/vEydoVs+vLjavQRyAjafhdletRVmV2hVlZvTt9SzvJ4k2dIGEs4ET37rSWpDoQ8QccdBxq6XOHJKftesjEwDewHRQyCBNqxRrrHr/ju/VpMY/uG45a+AP7bd9rWXSwIdPJyAlHPlZGEJ2QCRDpX8XnB6LgSpJeQvvrOwmjK6wzO5BnmU9p7VGgbVUVLjko8ucy9AUDSjDcFO16I4xJugj+g/WWbVAet7NOpnTsYQimRvIolLDlS/i7fJn8MLcBfHZ1fbVKNZgb4kcu1DO0oF7iQc7qmXEusUMNQNST++t/xi+8kBfQA==
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(13230016)(4636009)(376002)(396003)(346002)(39860400002)(136003)(36840700001)(46966006)(40470700004)(5660300002)(40460700003)(44832011)(478600001)(36756003)(40480700001)(107886003)(316002)(966005)(110136005)(54906003)(6666004)(41300700001)(9786002)(70586007)(2906002)(70206006)(8676002)(4326008)(8936002)(356005)(26005)(1076003)(7636003)(186003)(2616005)(7696005)(7049001)(82310400005)(47076005)(336012)(426003)(83380400001)(36860700001)(82740400003)(102446001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Aug 2022 12:42:15.5116
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 06cf11bd-a4e7-4386-1866-08da811714a1
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN1NAM02FT004.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR02MB5464
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Edge Compute Module 0 Carrier is an industrial form factor evaluation
-board from Edgeble AI.
+Convert Xilinx watchdog bindings to DT schema format using json-schema
 
-General features:
-- microSD slot
-- 2x MIPI CSI2 connectors
-- MIPI DSI connector
-- 2x USB Host
-- 1x USB OTG
-- Ethernet
-- mini PCIe
-- Onboard PoE
-- RS485, RS232, CAN
-- Micro Phone array
-- Speaker
-- RTC battery slot
-- 40-pin expansion
-
-Edge Compute Module 0 needs to mount on top of this Carrier board for
-creating Edge Compute Module 0 Carrier platform.
-
-Add support for it.
-
-Signed-off-by: Jagan Teki <jagan@edgeble.ai>
+Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
+Signed-off-by: Srinivas Neeli <srinivas.neeli@xilinx.com>
 ---
-Changes for v3:
-- none
-Changes for v2:
-- change easy and meaningful dts name
+ .../bindings/watchdog/of-xilinx-wdt.txt       | 26 -------
+ .../bindings/watchdog/xlnx,xps-timebase.yaml  | 71 +++++++++++++++++++
+ 2 files changed, 71 insertions(+), 26 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/of-xilinx-wdt.txt
+ create mode 100644 Documentation/devicetree/bindings/watchdog/xlnx,xps-timebase.yaml
 
- arch/arm/boot/dts/Makefile                    |  1 +
- .../boot/dts/rv1126-edgeble-ecm0-carrier.dts  | 38 +++++++++++++++++++
- 2 files changed, 39 insertions(+)
- create mode 100644 arch/arm/boot/dts/rv1126-edgeble-ecm0-carrier.dts
-
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 5112f493f494..361b68e5019e 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1097,6 +1097,7 @@ dtb-$(CONFIG_ARCH_RENESAS) += \
- dtb-$(CONFIG_ARCH_ROCKCHIP) += \
- 	rv1108-elgin-r1.dtb \
- 	rv1108-evb.dtb \
-+	rv1126-edgeble-ecm0-carrier.dtb \
- 	rk3036-evb.dtb \
- 	rk3036-kylin.dtb \
- 	rk3066a-bqcurie2.dtb \
-diff --git a/arch/arm/boot/dts/rv1126-edgeble-ecm0-carrier.dts b/arch/arm/boot/dts/rv1126-edgeble-ecm0-carrier.dts
+diff --git a/Documentation/devicetree/bindings/watchdog/of-xilinx-wdt.txt b/Documentation/devicetree/bindings/watchdog/of-xilinx-wdt.txt
+deleted file mode 100644
+index c6ae9c9d5e3e..000000000000
+--- a/Documentation/devicetree/bindings/watchdog/of-xilinx-wdt.txt
++++ /dev/null
+@@ -1,26 +0,0 @@
+-Xilinx AXI/PLB soft-core watchdog Device Tree Bindings
+----------------------------------------------------------
+-
+-Required properties:
+-- compatible		: Should be "xlnx,xps-timebase-wdt-1.00.a" or
+-			  "xlnx,xps-timebase-wdt-1.01.a".
+-- reg			: Physical base address and size
+-
+-Optional properties:
+-- clocks		: Input clock specifier. Refer to common clock
+-			  bindings.
+-- clock-frequency	: Frequency of clock in Hz
+-- xlnx,wdt-enable-once	: 0 - Watchdog can be restarted
+-			  1 - Watchdog can be enabled just once
+-- xlnx,wdt-interval	: Watchdog timeout interval in 2^<val> clock cycles,
+-			  <val> is integer from 8 to 31.
+-
+-Example:
+-axi-timebase-wdt@40100000 {
+-	clock-frequency = <50000000>;
+-	compatible = "xlnx,xps-timebase-wdt-1.00.a";
+-	clocks = <&clkc 15>;
+-	reg = <0x40100000 0x10000>;
+-	xlnx,wdt-enable-once = <0x0>;
+-	xlnx,wdt-interval = <0x1b>;
+-} ;
+diff --git a/Documentation/devicetree/bindings/watchdog/xlnx,xps-timebase.yaml b/Documentation/devicetree/bindings/watchdog/xlnx,xps-timebase.yaml
 new file mode 100644
-index 000000000000..150bfb9bd04a
+index 000000000000..fd2e3f2df54c
 --- /dev/null
-+++ b/arch/arm/boot/dts/rv1126-edgeble-ecm0-carrier.dts
-@@ -0,0 +1,38 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2020 Rockchip Electronics Co., Ltd.
-+ * Copyright (c) 2022 Edgeble AI Technologies Pvt. Ltd.
-+ */
++++ b/Documentation/devicetree/bindings/watchdog/xlnx,xps-timebase.yaml
+@@ -0,0 +1,71 @@
++# SPDX-License-Identifier: GPL-2.0-or-later OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/watchdog/xlnx,xps-timebase.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+/dts-v1/;
-+#include "rv1126.dtsi"
-+#include "rv1126-edgeble-edge-compute-module-0.dtsi"
++title: Xilinx AXI/PLB softcore and window Watchdog Timer
 +
-+/ {
-+	model = "Edgeble AI Edge Compute Module 0 Carrier board";
-+	compatible = "edgeble,edge-compute-module-0-carrier",
-+		     "edgeble,edge-compute-module-0", "rockchip,rv1126";
++allOf:
++  - $ref: "watchdog.yaml#"
 +
-+	chosen {
-+		stdout-path = "serial2:1500000n8";
-+	};
-+};
++maintainers:
++  - Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
++  - Srinivas Neeli <srinivas.neeli@xilinx.com>
 +
-+&sdmmc {
-+	bus-width = <4>;
-+	cap-mmc-highspeed;
-+	cap-sd-highspeed;
-+	card-detect-delay = <200>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&sdmmc0_clk &sdmmc0_cmd &sdmmc0_bus4 &sdmmc0_det>;
-+	rockchip,default-sample-phase = <90>;
-+	sd-uhs-sdr12;
-+	sd-uhs-sdr25;
-+	sd-uhs-sdr104;
-+	vqmmc-supply = <&vccio_sd>;
-+	status = "okay";
-+};
++description:
++  The Timebase watchdog timer(WDT) is a free-running 32 bit counter.
++  WDT uses a dual-expiration architecture. After one expiration of
++  the timeout interval, an interrupt is generated and the WDT state
++  bit is set to one in the status register. If the state bit is not
++  cleared (by writing a one to the state bit) before the next
++  expiration of the timeout interval, a WDT reset is generated.
 +
-+&uart2 {
-+	status = "okay";
-+};
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - xlnx,xps-timebase-wdt-1.01.a
++              - xlnx,xps-timebase-wdt-1.00.a
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    minItems: 1
++
++  clock-frequency:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: Frequency of clock in Hz
++
++  xlnx,wdt-interval:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: Watchdog timeout interval
++    minimum: 8
++    maximum: 32
++
++  xlnx,wdt-enable-once:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1]
++    description: If watchdog is configured as enable once,
++                 then the watchdog cannot be disabled after
++                 it has been enabled.
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    watchdog@40100000 {
++      compatible = "xlnx,xps-timebase-wdt-1.00.a";
++      reg = <0x40100000 0x1000>;
++      clock-frequency = <50000000>;
++      clocks = <&clkc 15>;
++      xlnx,wdt-enable-once = <0x0>;
++      xlnx,wdt-interval = <0x1b>;
++    } ;
++...
 -- 
-2.25.1
+2.17.1
 
