@@ -2,437 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A7497598889
-	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 18:18:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AB925988E1
+	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 18:31:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344471AbiHRQRO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Aug 2022 12:17:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39338 "EHLO
+        id S1344060AbiHRQaK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Aug 2022 12:30:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344457AbiHRQRN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 12:17:13 -0400
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-eopbgr70070.outbound.protection.outlook.com [40.107.7.70])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33CC6BD08F;
-        Thu, 18 Aug 2022 09:17:12 -0700 (PDT)
+        with ESMTP id S1343661AbiHRQaI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 12:30:08 -0400
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10olkn2100.outbound.protection.outlook.com [40.92.41.100])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC7B365263
+        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 09:30:06 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fWhtKdCumVF0jZHfQZj3ALCltmT//StqPe4nwynqKE00VKubD6OVZBuRe9W2nw68AgCSdLY881hubHFwKRfqHwbDpHqa38XIfDYyVLTnCy8x845YA5Okq+TIj/u/B6Y++6LXX3O4TQicJw01kXGCqisAeLTkM9F2sT0ck1WCVQVcRRJ4v/1WX6Y5v35Nkigv6gCbG2KBwGqhzczRK8ucnZo2eokD/8/n6f4eKRw5kr/7rAj0+KMtA7czLA9o1sgSQ6ckHTWUAPTCXZcgo45/rmn/CaJZDrQhA3v9jX/5W2i6KLD8P9OVTjsUAjizoOKdrVTBuVyP8YphQkdOf/JI1w==
+ b=O//puZ5Y+UEv+uq1+4DEgxsgiLXUG+jlY9oYbBa8nVTu6xE1p2WnRpqmhY0QehSG7xzROU20W9eQE5GwzdDN1loByiSp+eQiiJuNznnjs92vDbVzAoi1o+zsXokMpo6k4rGzfaLAAF+7yTgLcsu6bkSWVrCZevYg3OIIsQWlTo/QmjJ7m/W3Bsjz/XzMVNN6UTrhw9c8AGU63k4MmyWaKjtwCw8JsuoDTyoiTKOeJA++epPxIfbb41hQ7wh4nJdt4h/kqwcOJF2f4xV0BS8Gnn4hVJ40vDRA8/26kqD4ESG/lPN2+bvhhl0054k9R4IaGkdweSBhCt6v7quigDwACA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SZuUDFAVgiNf2kcEotKjgbq3pqDMPDtsajTe/iQusEI=;
- b=ckuenD+RZTjewgDCSF2nmwH+vhXS5cHrVWOI+NZQNNRI/vTXmYvpKAxX+mNhYvoBArZdJVSHshzLoEftmx/B1zksMd2yJPAxNFrxo5Eb8EoLXLsesJCbwdPL5nP0tp/TYAw6VpnjgvnF76PjjBs+mdn0zqwiPH0rKNAN8bcyteykWmUC0SQseSfaDfdqyvsv3POT+fw02CX3xoWcT9naJ/d7XUP17TmdtqWDYBZxP3V27T4KzjG1Q6pMLO97ffSR4KMNUjMilGbTeX2a4a/c/P9e1RXuAR253sS8aWs0M1oAwCuAs8iiHTlxyiv63csy5BM45zcPD4Vb+Tw9WWfuVA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
- dkim=pass header.d=seco.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
+ bh=5/cKdhWNVrTEVGudPXns8d+TgPYR3BecE8AOtgaZzqg=;
+ b=cOibdrPVTKrxFPGV7p3u/WXH7hiSeZFXwUuWkt/BYrYyROYHalu5qHaMblU6VBZMv8P1Lk9NVJD7iJ7tF0dmzVZIHfo3LAIcUDN4jxCnomiwYsEAp3V9WtDXKAYgPSFG8kyI4ANyHhmiCtJmwwutcbxrqRAJaoVWelJiDSCturhZiP6dZ/R/y4pyrsDAFTNqFLRI5WdwEwBTaD52ed4rPWrRrimBg35I+A0jz71IOUsRQWa0URX5sdMZmZCrMbOEvICcC0qbqSUPhTqQ86SD4nDFl5Tsa/pHlR8CPj1jiHuwDKv4MKtcLKluLVBVri1UkRMk5PfpWSh8S4y/6nSiAQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SZuUDFAVgiNf2kcEotKjgbq3pqDMPDtsajTe/iQusEI=;
- b=NIn/S+LbQlkbo5pPJfIyp+eljX7fYQ4dPz+dOZGrFGAyre2SpMKgkYHqYsExGvJFa0LxY71rhDW2Tq/CXOqMtlMuZb9rB4s6fIwnpTWAHgjZL4gYaj4/FiLy7SkviL8Px/MxoQmx3IQoDU7jGCAWFkDqs9e6uf68dZETxtTaPBRrEpCr8n038LJpMQAF7GRe1urnFaYcxEokqoL1F5+D3lc72t7r0p1u3SWApXFKxZzwkKGHHAiceo+XX5zMwz9PUTPJJXxhypUKrLkEKfKdDNSyfk5KMYkToyLalb0lTZeXpRrvtoMzTpqCbwIMa2XPb/5vj/KyI94cWEFcDG3SDg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=seco.com;
-Received: from DB7PR03MB4972.eurprd03.prod.outlook.com (2603:10a6:10:7d::22)
- by DB3PR0302MB3211.eurprd03.prod.outlook.com (2603:10a6:8:11::17) with
+ bh=5/cKdhWNVrTEVGudPXns8d+TgPYR3BecE8AOtgaZzqg=;
+ b=VMr6rhvf082Y9GqShjMZgiNBX3pHpG187b0u5bewcEhJkDfX4yHm8ozyZFJ0tewXPbD2DfUA+RQSr2urfpgxiu8BZDMWqmu+MyPS7p7HawN4UoKgf/vImMV+rnP7Yj9sig7V4yirm15P+jsj3YQq6VyU4rU3k+c2BQCHexr/7j+Gho23nD1hvjZpnR6PNCSYmBK4seKC8Dxuz/kjoVavbq/eb82ry/W/JyR8j3ibH7hWxxb0zujfDRyZVprbHP9RwM8rzkEBbe6x9ztAfvrWRS3NlCGI17UnikR/7MszE9M+JdqQcjkM95WgexfXK+irwOSx0UgpEetSZXBDpnKe2g==
+Received: from SN6PR06MB5342.namprd06.prod.outlook.com (2603:10b6:805:f9::31)
+ by SN6PR06MB4640.namprd06.prod.outlook.com (2603:10b6:805:95::19) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5546.16; Thu, 18 Aug
- 2022 16:17:08 +0000
-Received: from DB7PR03MB4972.eurprd03.prod.outlook.com
- ([fe80::ecaa:a5a9:f0d5:27a2]) by DB7PR03MB4972.eurprd03.prod.outlook.com
- ([fe80::ecaa:a5a9:f0d5:27a2%4]) with mapi id 15.20.5504.019; Thu, 18 Aug 2022
- 16:17:08 +0000
-From:   Sean Anderson <sean.anderson@seco.com>
-To:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, netdev@vger.kernel.org
-Cc:     Camelia Groza <camelia.groza@nxp.com>,
-        linux-kernel@vger.kernel.org (open list),
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        linuxppc-dev@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org,
-        Sean Anderson <sean.anderson@seco.com>,
-        Rob Herring <robh@kernel.org>,
+ 2022 16:30:05 +0000
+Received: from SN6PR06MB5342.namprd06.prod.outlook.com
+ ([fe80::20e7:bc40:7e9d:b46e]) by SN6PR06MB5342.namprd06.prod.outlook.com
+ ([fe80::20e7:bc40:7e9d:b46e%4]) with mapi id 15.20.5504.028; Thu, 18 Aug 2022
+ 16:30:05 +0000
+Date:   Thu, 18 Aug 2022 11:29:58 -0500
+From:   Chris Morgan <macromorgan@hotmail.com>
+To:     Maya Matuszczyk <maccraft123mc@gmail.com>
+Cc:     Chris Morgan <macroalpha82@gmail.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [RESEND PATCH net-next v4 01/25] dt-bindings: net: Convert FMan MAC bindings to yaml
-Date:   Thu, 18 Aug 2022 12:16:25 -0400
-Message-Id: <20220818161649.2058728-2-sean.anderson@seco.com>
-X-Mailer: git-send-email 2.35.1.1320.gc452695387.dirty
-In-Reply-To: <20220818161649.2058728-1-sean.anderson@seco.com>
-References: <20220818161649.2058728-1-sean.anderson@seco.com>
+        Heiko Stuebner <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>
+Subject: Re: [PATCH 2/3] dt-bindings: arm: rockchip: Add Anbernic RG353 and
+ RG503
+Message-ID: <SN6PR06MB5342BB684D2B90214BB2C94EA56D9@SN6PR06MB5342.namprd06.prod.outlook.com>
+References: <20220817204954.28135-1-macroalpha82@gmail.com>
+ <20220817204954.28135-3-macroalpha82@gmail.com>
+ <CAO_Mup+b_u5P0y3wPus8yWj+hmVEdg4-m9o3GzMUWPAXpAr95g@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: MN2PR20CA0009.namprd20.prod.outlook.com
- (2603:10b6:208:e8::22) To DB7PR03MB4972.eurprd03.prod.outlook.com
- (2603:10a6:10:7d::22)
+In-Reply-To: <CAO_Mup+b_u5P0y3wPus8yWj+hmVEdg4-m9o3GzMUWPAXpAr95g@mail.gmail.com>
+X-TMN:  [3lCqFheBc7fd5iclqQiiVLy7Rl+LI+0i]
+X-ClientProxiedBy: DM6PR07CA0120.namprd07.prod.outlook.com
+ (2603:10b6:5:330::10) To SN6PR06MB5342.namprd06.prod.outlook.com
+ (2603:10b6:805:f9::31)
+X-Microsoft-Original-Message-ID: <20220818162958.GA3920@wintermute.localdomain>
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 0efe07a0-3059-422d-062f-08da8135195b
-X-MS-TrafficTypeDiagnostic: DB3PR0302MB3211:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
+X-MS-Office365-Filtering-Correlation-Id: bf093682-b8b4-40b2-ab74-08da8136e7df
+X-MS-TrafficTypeDiagnostic: SN6PR06MB4640:EE_
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: B1WsPvcDaQYKDkTEiXC6KWVs7kWmhTsNtl4QeVaSf0puw39jk3p5+m2FmaWqUgJt4IMCQSyr9KKVmSqAcbxvi+pqN/SyHg+mfQKyvEs7xfzH/SqRidAOKRRswYi/WZTpGfUnz2aUlrvCcIPXKIgC1CgN7R0MVNJgiB4YXOI8jbuJzCvDfbU9FKEW1X2Zy9Fb7GYUntzlF+sUAB/KrnIf0Nx1jdR0ubUzF2JbSDPscqYMM3JRiYPOxXfN3SErgdq4yUAEfDqKfGQeuOEgn/LaN0ixJH7Tp2E2n5Be/J2D5FLAXzhigVNYHsCIvtjE362Y5vflAWDs95wREx1MSj/Y9sSQjQ7kLbxroEkwHF4veZKIwgjLtWefaPDIKiEdCf5Bff/t1aG2/MhaBfFhVwLnEvFYy2l6stQFu+gMN+kqJ8sIz+gt/R/W3cjdCKRTorMacfhnF8YJg6W65LIk8PBcPjFGYnN/+N2eX3Q7ZR3BkXd6I07+LFFMkTZCdCKlM68V4Vk8JO7no5zyd2aeEypD3TwZ1aNJ/Kp++LqXVChmghkUF/vyITH33DZnP+HiDAaWKboq1Sw/iGJRPep6s6unwGORp8tVphiE71tmPylOC5yeUoMP7kEZ8rO0XSl4uEr6PnyM5PI06NxMCm0reHV0F3iy30T40dmchOWEstmuDfUXX9A8buNd2QiSeKa+f/YvULfFmoXaS6PjIqyqCq3MgZ0nIoC9qiYf2QpjyPya4DQvQn0FRoG3PNixx/DjqebzsJTGLZvzoOURc+cakhB6W41lAG12dH+M6XUek12bgJ4=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR03MB4972.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(396003)(346002)(39840400004)(136003)(366004)(376002)(2616005)(38350700002)(8936002)(38100700002)(4326008)(6512007)(26005)(6506007)(52116002)(6666004)(2906002)(8676002)(36756003)(66556008)(1076003)(66946007)(66476007)(54906003)(110136005)(44832011)(478600001)(966005)(86362001)(41300700001)(6486002)(316002)(83380400001)(186003)(5660300002)(7416002);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam-Message-Info: 1TbVgv6hvKwQScBhUjixfUoZ3sgZcPxrzZqR6LDsHsSRDaMuw2mUB1UXP65CXN1erlJrKs3nqc5ry6RDMXiOQ96CE8cXZ+5JRonXn4HrjIAVz1nyeaCsbBTKjmu2v34Knp3NWkU3o6w/hpJzDLiVopkjH6zMfNJUMDrKwehiZt02/IPvPU1h9Rl7008I3fXbWqfd+LP+n8jOsE2sFXjvf/k6aeqC25a3ErFrB+aZ0apeEPVubuANAo4J+rA0PfQLjedbaVhfKJwhPYND2e2khS/AL5fWB5bSbonzzv80sYWy59o7Cq0f9hJQ+wgam0+H2t5goYQUSAV9Kcbj2Egv+uT+4yPS+q/waONiayEBmA+/r6ccAOfQxdAqPr3yfid0v1sWxQlsdjgU7+Rm7CZ43jPXxM9MLQXG6nen69iP+jv5y7ngzOYyvbsN14/RFCSLTxw8QSQfHwv2gkodSyeRoJADpkFL1jvSJevu1L/CaXEXKlTTVqKFXoUdJtRmpKG9lWlULWIQzlEIY7E3PjbqEAk0bSFe2nlp7btZdq5xmFDuXgVFJK+CrbOqL+n0ihbz6kMQ4+mBpVf5KI6lLpjDakbhCxAbi2DaC/mngMLk2HgkvNVtK9yMW5HUWjbnu9GQMJgyRGG7X+l8xHuay7pYs3kY/r8alnGetxwBe+1wRW73r/w0kzfyr6h3SmYyZaFF
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Iq31MqBf4ml7M6ZFIxwrHzGypUVUbvto9urB7ebKojGRG/NOJ2pVlp3T4uBC?=
- =?us-ascii?Q?MJfwtbmXh2pdg7fHKGIZg66FpzuvDj7p918eYPH50HChEHAVA0lqa80c5tKM?=
- =?us-ascii?Q?AdEds9hLReFmYXfnREy2aI3RrGXerW4IR3GB7e/uy+R0OCb3cF6hTmhl8Yrm?=
- =?us-ascii?Q?WKXuR1YvImfuSg7JQYRQbWOpUsFkSKYS0vYXQqG7MmUg1pbz67RknTQGFIBk?=
- =?us-ascii?Q?ZkswceryGFVwjiPhDcZdueyESEGH2Plf3RGQlZ0MtDGOhOsHrrkK4s58Go1g?=
- =?us-ascii?Q?sacMcnQyGMRRm3Yl3uD1KRO/6Ji9kS5W9jdFXYRxlO9T7RPhQMk818xfBxlC?=
- =?us-ascii?Q?tkklcH+cGaImRDpzQBETeksSfayLt50SRImjYQa5juNgJ9wS+D8ZogO4ySZu?=
- =?us-ascii?Q?18ozKUNhcdoocmI2yKhFCRLZ8n+LzNvIWjZwDZxZlrR3bLZojXQFuMU3Wa5n?=
- =?us-ascii?Q?bE+NLWB+dJqMpt+ul73w3BnDav6ln6zSnk8k1Z8IHU0bozGgthWsRIwDMEfo?=
- =?us-ascii?Q?TOu3wZFXfZnjSZIk74+C7+WbENNvNOABUzx9EtCn00TWm4Jbzr/WPj00p3lm?=
- =?us-ascii?Q?idOC+DFThzyo4c1GLVsHQ+piybFVskmxqoZ6gJbWv4T/lqacGUQaYx0Jc++9?=
- =?us-ascii?Q?/lOS5X2aABfe00su3VHC94GuXmCDPYlojNtPZb2kNEiJQhyAz7HLl5KNDmJk?=
- =?us-ascii?Q?1DzSAp3Dd9DUZt7xhksMrU2kxutyC9KwP700X+uedQCgdFkLD6m1mszDY7D1?=
- =?us-ascii?Q?oZluLdQsCp+SGHKNswTq5Y9UEcv1j89xwvLjIlCHXK/1FcpaBHYLVNxjhiQe?=
- =?us-ascii?Q?Li5gTl8cqsN8RW5ju5GjgoK7wGG7DGR0tCotXeA8AzlB7gY99zKyXgO8PpWv?=
- =?us-ascii?Q?yNcd0qNjIGBPwUQq7itm7nKjm72FQl1VCvtBeqpBf8s7gnj21L9PA2NyWdo2?=
- =?us-ascii?Q?StqLXiQRa6diKDkjsP4AcNFm2QnqGPwkyeOA62Eu1mCCgO/vkV+0q62dwyxb?=
- =?us-ascii?Q?1sOVNcB1qD9cbgq7ELxqbjo36JfaA6yQGR+Hex1j4e7HTpfLm410aRFoIO4y?=
- =?us-ascii?Q?62XXlsW7Bh5lva7Efyls9oXMhBowXPt1t5oSycnoADOe11akv/6JnfLrF5VY?=
- =?us-ascii?Q?wJFwsP/eqh1rjTYZ70fbd53KtJJ9K/KTBPS9G01FHzeddVSzQv1Tz0MYZCB2?=
- =?us-ascii?Q?lVchbBoR7uKfVoITdrnryR2VJFwquR6hkzgd6vXFcgE+VURXpX4/Gq5AH986?=
- =?us-ascii?Q?qU7YtuyoYWG1w7g0INlN8bubtUqTly2PUEKTZR8tmhWDp+va8Lr0lHrgmWNZ?=
- =?us-ascii?Q?b6L+FxWzQIdMVdP55wYQ8LQ2SWiZBCMbkW6lsDWf1kX2uIOBiGRNu7VsirVP?=
- =?us-ascii?Q?m9u859qM2kT150YZAQY1nO/XE3RAXMdUzCliYh3LdVW5I4Rc1gXDY+Ijpgxd?=
- =?us-ascii?Q?8c5a+K6AUsXEHTfWkxTwksj3/lqh6FawfAdR69KSiuOunEjblAUd0w7WiV78?=
- =?us-ascii?Q?QpZ6aRrW1sT6S8qAnaleE3jWlo0OWEinD/593qsMFNbg4d154fV9oSlrUVIN?=
- =?us-ascii?Q?mMIfjpmXowybtKt0YNnKkwA17gzRv5RTIZjGQ5Am6vqmO+J+4HNzbxHszfL5?=
- =?us-ascii?Q?Ng=3D=3D?=
-X-OriginatorOrg: seco.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0efe07a0-3059-422d-062f-08da8135195b
-X-MS-Exchange-CrossTenant-AuthSource: DB7PR03MB4972.eurprd03.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dkxiYnJTR2lGa29HRmEvOERhMUd0YWszR3M1SnlNRWdoWDRUVHY3aTFpaWE2?=
+ =?utf-8?B?cEgrdkh0UXdXZVN3N0o0ajdFQjZSMUdEQ0N2d0FNUkU3di95UTJ6RzdTSFVG?=
+ =?utf-8?B?cEJuaHhybjBCOUY3bjZ5TXF4Nlc2Y2dSYnh2eDFoU2JWZmhYWHlLOFF3cFBa?=
+ =?utf-8?B?NUttdFAvWVY1OFUwRmVrZVRtYTAxSEtJeHg4VmpZNGVHUWdYRTN2QkVMb2JF?=
+ =?utf-8?B?dS9ZeXFkVktMNXdjRkFXc2N0djQ2Y2hIUGVpNXFTVUlnQWFadWkrcTVtWjc1?=
+ =?utf-8?B?TktvZzhyejIzMS9OY3Z6UnJlQWo5eW1ndmh3Uk8rU01JNFpEQ3BiRENQL2ZH?=
+ =?utf-8?B?bi9IUVRXU2ZpZi81cGJ6NldPbjIxUU1KU0dqd2NjYzhUa3ozaG9pYVRleTFB?=
+ =?utf-8?B?bFFXc1cvNGFWVzlQQStqZi9zTUQ0YXRmTlF6Q1AwWGFxMVhBY2J1YlhyRjFa?=
+ =?utf-8?B?cGZNRzhaSnpXcGRsbFZmcGl3R3NIVUQ3dVd4YUkxY1kway9nakhmZ2d2ckFh?=
+ =?utf-8?B?TXBxU3ZjN2lOMUVKMDNtSWttWWsvOWl5UnFJRWVLaG5raEdsTlhibzBvRlpo?=
+ =?utf-8?B?bWg1UlR6QzlDTGdZbGlYbzVlV2JqSGxieTBQT3pyMFhIc21paHVTeDZUYTJp?=
+ =?utf-8?B?c05BM3hQZ3U0NGhmbjJpcUxrUzFaK3cxNnlaK2FPZlNRdEtIUndRcU44V2JX?=
+ =?utf-8?B?N2ZFUXExalQwaGt4c0lKM3YwVzVSREUrWmVTTEpwVWI4ZDNyL3B4eUtKc0Fi?=
+ =?utf-8?B?SWpkcW5wTGdGT29FSG1UVjBMWHlBelhPYTh0dmh5OTRCazhzbHFhTHFRVHl5?=
+ =?utf-8?B?Y0RiNFQ2VVA4amZVcVlWN1cxYU9qbzYvQ1BYNWJISnlMUW5aOENDRldqVnpY?=
+ =?utf-8?B?dWhnZkhLT09VSUN2K2tYN2xYYmczK0RWKzlOVEt6MGl2YjBQelVsLzRRcnVE?=
+ =?utf-8?B?MlA1R0JKMmc1ekZnVVdHcEpHMkMwV1cxbHM4OS9ZS2k2b1RwcFhzUGdJcy9X?=
+ =?utf-8?B?RVNGWENvSXNGYkN0R01wQW95TnVBblYwblVSNjdrWVNQdjBHbGVPdW04VlA5?=
+ =?utf-8?B?TE5KRnpDUTJWVGJEOHJWUUVMNzcyd0xYZkQ1MW1SRnFBZW1vZUxUdDdTMmxN?=
+ =?utf-8?B?U3lqODFmRzVUeEloUEVzSEhNMXBnSlU0c0VSQ0FhRldSc0tRaURWT2thNE9Y?=
+ =?utf-8?B?OEh5RTBST2pyNCt4RnZGZFZWQnlDM0dpWmFwYXlWazJzY3JhR1ZrSGVWKzM4?=
+ =?utf-8?B?QkRPTEowMm40cGhnY2VScGx1bW9scGJJd25UOS9UejJFU0pjbkdNeWhBOXN2?=
+ =?utf-8?B?akUrNTR0TkpaNWEvbmJmSTZpT1VwMTBjOW1qdXFWVGxaRnN3ZU5kYThmODQv?=
+ =?utf-8?B?R25KNHMrdWNvYm1mcDU3VDAxY1BKKzgrcVpnd0FjdkNmWkt4bnZWQVhDeEd2?=
+ =?utf-8?B?YVRZOHp6Zm1qZjRqM0t6Zmd5b1hOODh5akVKK21pQTJIQXl4T3FDRUZrUXZU?=
+ =?utf-8?B?c0R0ZHNxUWt6Z3VSMDRLQjBCSHg3N0RtYTZ4L1pVR1ZsWmhyZnNERHhWVnND?=
+ =?utf-8?B?RGwrS2xrV3ZKVmtzR0lxeXdqUGFqc2lHN0h2MmlLOFJwR1BqUnhBWjc5cFpy?=
+ =?utf-8?B?ejY5YVBXaHRMT1lCdzJxLzM3dWk5RnZnR2tsYUtBaTk5WUpJOU5OMHNRejBU?=
+ =?utf-8?B?OFlPNzRRS3hZeXBxamZqRFBFaVY3dk1zMUhzZWtRNVZpOFE3amR1TzNRPT0=?=
+X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-89723.templateTenant
+X-MS-Exchange-CrossTenant-Network-Message-Id: bf093682-b8b4-40b2-ab74-08da8136e7df
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR06MB5342.namprd06.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Aug 2022 16:17:08.7023
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Aug 2022 16:30:05.2727
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: TfAw7VK7e4HAz59eDHlzQwIG9SBM2CyvKONcnxMOO9X30SB4gVWS9xzEXmp6mXwulsbNFBuEMnFE7nVEJ5UF0A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0302MB3211
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR06MB4640
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This converts the MAC portion of the FMan MAC bindings to yaml.
+On Thu, Aug 18, 2022 at 10:26:58AM +0200, Maya Matuszczyk wrote:
+> Hey,
+> 
+> śr., 17 sie 2022 o 22:50 Chris Morgan <macroalpha82@gmail.com> napisał(a):
+> >
+> > From: Chris Morgan <macromorgan@hotmail.com>
+> >
+> > Add entry for the Anbernic RG353 and RG503 handheld devices.
+> >
+> > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> > ---
+> >  Documentation/devicetree/bindings/arm/rockchip.yaml | 10 ++++++++++
+> >  1 file changed, 10 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> > index 7811ba64149c..9026963694f0 100644
+> > --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> > @@ -30,6 +30,16 @@ properties:
+> >            - const: amarula,vyasa-rk3288
+> >            - const: rockchip,rk3288
+> >
+> > +      - description: Anbernic RG353
+> > +        items:
+> > +          - const: anbernic,rg353
+> > +          - const: rockchip,rk3566
+> The device is named RG353P, not RG353.
+> Otherwise patch looks good to me.
 
-Signed-off-by: Sean Anderson <sean.anderson@seco.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Acked-by: Camelia Groza <camelia.groza@nxp.com>
----
+Acknowledged, will update in next patch series.
 
-(no changes since v3)
-
-Changes in v3:
-- Incorperate some minor changes into the first FMan binding commit
-
-Changes in v2:
-- New
-
- .../bindings/net/fsl,fman-dtsec.yaml          | 145 ++++++++++++++++++
- .../devicetree/bindings/net/fsl-fman.txt      | 128 +---------------
- 2 files changed, 146 insertions(+), 127 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/net/fsl,fman-dtsec.yaml
-
-diff --git a/Documentation/devicetree/bindings/net/fsl,fman-dtsec.yaml b/Documentation/devicetree/bindings/net/fsl,fman-dtsec.yaml
-new file mode 100644
-index 000000000000..3a35ac1c260d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/fsl,fman-dtsec.yaml
-@@ -0,0 +1,145 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/fsl,fman-dtsec.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NXP FMan MAC
-+
-+maintainers:
-+  - Madalin Bucur <madalin.bucur@nxp.com>
-+
-+description: |
-+  Each FMan has several MACs, each implementing an Ethernet interface. Earlier
-+  versions of FMan used the Datapath Three Speed Ethernet Controller (dTSEC) for
-+  10/100/1000 MBit/s speeds, and the 10-Gigabit Ethernet Media Access Controller
-+  (10GEC) for 10 Gbit/s speeds. Later versions of FMan use the Multirate
-+  Ethernet Media Access Controller (mEMAC) to handle all speeds.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - fsl,fman-dtsec
-+      - fsl,fman-xgec
-+      - fsl,fman-memac
-+
-+  cell-index:
-+    maximum: 64
-+    description: |
-+      FManV2:
-+      register[bit]           MAC             cell-index
-+      ============================================================
-+      FM_EPI[16]              XGEC            8
-+      FM_EPI[16+n]            dTSECn          n-1
-+      FM_NPI[11+n]            dTSECn          n-1
-+              n = 1,..,5
-+
-+      FManV3:
-+      register[bit]           MAC             cell-index
-+      ============================================================
-+      FM_EPI[16+n]            mEMACn          n-1
-+      FM_EPI[25]              mEMAC10         9
-+
-+      FM_NPI[11+n]            mEMACn          n-1
-+      FM_NPI[10]              mEMAC10         9
-+      FM_NPI[11]              mEMAC9          8
-+              n = 1,..8
-+
-+      FM_EPI and FM_NPI are located in the FMan memory map.
-+
-+      2. SoC registers:
-+
-+      - P2041, P3041, P4080 P5020, P5040:
-+      register[bit]           FMan            MAC             cell
-+                              Unit                            index
-+      ============================================================
-+      DCFG_DEVDISR2[7]        1               XGEC            8
-+      DCFG_DEVDISR2[7+n]      1               dTSECn          n-1
-+      DCFG_DEVDISR2[15]       2               XGEC            8
-+      DCFG_DEVDISR2[15+n]     2               dTSECn          n-1
-+              n = 1,..5
-+
-+      - T1040, T2080, T4240, B4860:
-+      register[bit]                   FMan    MAC             cell
-+                                      Unit                    index
-+      ============================================================
-+      DCFG_CCSR_DEVDISR2[n-1]         1       mEMACn          n-1
-+      DCFG_CCSR_DEVDISR2[11+n]        2       mEMACn          n-1
-+              n = 1,..6,9,10
-+
-+      EVDISR, DCFG_DEVDISR2 and DCFG_CCSR_DEVDISR2 are located in
-+      the specific SoC "Device Configuration/Pin Control" Memory
-+      Map.
-+
-+  reg:
-+    maxItems: 1
-+
-+  fsl,fman-ports:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    maxItems: 2
-+    description: |
-+      An array of two references: the first is the FMan RX port and the second
-+      is the TX port used by this MAC.
-+
-+  ptp-timer:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: A reference to the IEEE1588 timer
-+
-+  pcsphy-handle:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: A reference to the PCS (typically found on the SerDes)
-+
-+  tbi-handle:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: A reference to the (TBI-based) PCS
-+
-+required:
-+  - compatible
-+  - cell-index
-+  - reg
-+  - fsl,fman-ports
-+  - ptp-timer
-+
-+allOf:
-+  - $ref: ethernet-controller.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: fsl,fman-dtsec
-+    then:
-+      required:
-+        - tbi-handle
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: fsl,fman-memac
-+    then:
-+      required:
-+        - pcsphy-handle
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    ethernet@e0000 {
-+            compatible = "fsl,fman-dtsec";
-+            cell-index = <0>;
-+            reg = <0xe0000 0x1000>;
-+            fsl,fman-ports = <&fman1_rx8 &fman1_tx28>;
-+            ptp-timer = <&ptp_timer>;
-+            tbi-handle = <&tbi0>;
-+    };
-+  - |
-+    ethernet@e8000 {
-+            cell-index = <4>;
-+            compatible = "fsl,fman-memac";
-+            reg = <0xe8000 0x1000>;
-+            fsl,fman-ports = <&fman0_rx_0x0c &fman0_tx_0x2c>;
-+            ptp-timer = <&ptp_timer0>;
-+            pcsphy-handle = <&pcsphy4>;
-+            phy-handle = <&sgmii_phy1>;
-+            phy-connection-type = "sgmii";
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/net/fsl-fman.txt b/Documentation/devicetree/bindings/net/fsl-fman.txt
-index 801efc7d6818..b9055335db3b 100644
---- a/Documentation/devicetree/bindings/net/fsl-fman.txt
-+++ b/Documentation/devicetree/bindings/net/fsl-fman.txt
-@@ -232,133 +232,7 @@ port@81000 {
- =============================================================================
- FMan dTSEC/XGEC/mEMAC Node
- 
--DESCRIPTION
--
--mEMAC/dTSEC/XGEC are the Ethernet network interfaces
--
--PROPERTIES
--
--- compatible
--		Usage: required
--		Value type: <stringlist>
--		Definition: A standard property.
--		Must include one of the following:
--		- "fsl,fman-dtsec" for dTSEC MAC
--		- "fsl,fman-xgec" for XGEC MAC
--		- "fsl,fman-memac" for mEMAC MAC
--
--- cell-index
--		Usage: required
--		Value type: <u32>
--		Definition: Specifies the MAC id.
--
--		The cell-index value may be used by the FMan or the SoC, to
--		identify the MAC unit in the FMan (or SoC) memory map.
--		In the tables below there's a description of the cell-index
--		use, there are two tables, one describes the use of cell-index
--		by the FMan, the second describes the use by the SoC:
--
--		1. FMan Registers
--
--		FManV2:
--		register[bit]		MAC		cell-index
--		============================================================
--		FM_EPI[16]		XGEC		8
--		FM_EPI[16+n]		dTSECn		n-1
--		FM_NPI[11+n]		dTSECn		n-1
--			n = 1,..,5
--
--		FManV3:
--		register[bit]		MAC		cell-index
--		============================================================
--		FM_EPI[16+n]		mEMACn		n-1
--		FM_EPI[25]		mEMAC10		9
--
--		FM_NPI[11+n]		mEMACn		n-1
--		FM_NPI[10]		mEMAC10		9
--		FM_NPI[11]		mEMAC9		8
--			n = 1,..8
--
--		FM_EPI and FM_NPI are located in the FMan memory map.
--
--		2. SoC registers:
--
--		- P2041, P3041, P4080 P5020, P5040:
--		register[bit]		FMan		MAC		cell
--					Unit				index
--		============================================================
--		DCFG_DEVDISR2[7]	1		XGEC		8
--		DCFG_DEVDISR2[7+n]	1		dTSECn		n-1
--		DCFG_DEVDISR2[15]	2		XGEC		8
--		DCFG_DEVDISR2[15+n]	2		dTSECn		n-1
--			n = 1,..5
--
--		- T1040, T2080, T4240, B4860:
--		register[bit]			FMan	MAC		cell
--						Unit			index
--		============================================================
--		DCFG_CCSR_DEVDISR2[n-1]		1	mEMACn		n-1
--		DCFG_CCSR_DEVDISR2[11+n]	2	mEMACn		n-1
--			n = 1,..6,9,10
--
--		EVDISR, DCFG_DEVDISR2 and DCFG_CCSR_DEVDISR2 are located in
--		the specific SoC "Device Configuration/Pin Control" Memory
--		Map.
--
--- reg
--		Usage: required
--		Value type: <prop-encoded-array>
--		Definition: A standard property.
--
--- fsl,fman-ports
--		Usage: required
--		Value type: <prop-encoded-array>
--		Definition: An array of two phandles - the first references is
--		the FMan RX port and the second is the TX port used by this
--		MAC.
--
--- ptp-timer
--		Usage required
--		Value type: <phandle>
--		Definition: A phandle for 1EEE1588 timer.
--
--- pcsphy-handle
--		Usage required for "fsl,fman-memac" MACs
--		Value type: <phandle>
--		Definition: A phandle for pcsphy.
--
--- tbi-handle
--		Usage required for "fsl,fman-dtsec" MACs
--		Value type: <phandle>
--		Definition: A phandle for tbiphy.
--
--EXAMPLE
--
--fman1_tx28: port@a8000 {
--	cell-index = <0x28>;
--	compatible = "fsl,fman-v2-port-tx";
--	reg = <0xa8000 0x1000>;
--};
--
--fman1_rx8: port@88000 {
--	cell-index = <0x8>;
--	compatible = "fsl,fman-v2-port-rx";
--	reg = <0x88000 0x1000>;
--};
--
--ptp-timer: ptp_timer@fe000 {
--	compatible = "fsl,fman-ptp-timer";
--	reg = <0xfe000 0x1000>;
--};
--
--ethernet@e0000 {
--	compatible = "fsl,fman-dtsec";
--	cell-index = <0>;
--	reg = <0xe0000 0x1000>;
--	fsl,fman-ports = <&fman1_rx8 &fman1_tx28>;
--	ptp-timer = <&ptp-timer>;
--	tbi-handle = <&tbi0>;
--};
-+Refer to Documentation/devicetree/bindings/net/fsl,fman-dtsec.yaml
- 
- ============================================================================
- FMan IEEE 1588 Node
--- 
-2.35.1.1320.gc452695387.dirty
-
+> 
+> Best Regards,
+> Maya Matuszczyk
