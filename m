@@ -2,189 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9286A597BF7
-	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 05:10:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5002597C1A
+	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 05:14:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242923AbiHRDF7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Aug 2022 23:05:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39350 "EHLO
+        id S243006AbiHRDMz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Aug 2022 23:12:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239620AbiHRDF6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 23:05:58 -0400
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88D9E4D17D;
-        Wed, 17 Aug 2022 20:05:55 -0700 (PDT)
-Received: (Authenticated sender: n@nfraprado.net)
-        by mail.gandi.net (Postfix) with ESMTPSA id 52B6E60003;
-        Thu, 18 Aug 2022 03:05:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nfraprado.net;
-        s=gm1; t=1660791954;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=mporQ/LMRdbnsbYtlIILmMxfCBfZDzlTdMBUAjIPcsg=;
-        b=IcpIcdUTRD7DmskU8pFPNOkmZ5xlc8f7kqV4rN/V1AfHwYOK6Kmdg3vDzbkHwnSwg/Tz1J
-        KE9DNgMmdTC9zwE0w4Y3d4bLoliajolZ/VmkQrl9LugMmSTrHpVHBjHznYTIigPc1k0cSI
-        BeEJwtG/gooZsFCQphqv7gfwxQ1+BCJTtdcmrRoXufkm5ATwApPIl9G81XTZgujG9S3MVw
-        DDFBvVNI16MqHQzZFHF2MkkNnvUfW9m7uqHWKOR++VZK2ndaWtIAFf51ICm4P6DcwYBbER
-        Uuaa1zEmLu669G3kTT1pKg+T/0cyCnMvWF1CsDufk3OWPVbXmq0C3wNQ7T2jig==
-Date:   Wed, 17 Aug 2022 23:05:47 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <n@nfraprado.net>
-To:     Tom Fitzhenry <tom@tom-fitzhenry.me.uk>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        heiko@sntech.de, martijn@brixit.nl, ayufan@ayufan.eu, megi@xff.cz,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, phone-devel@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] arm64: dts: rockchip: Add initial support for
- Pine64 PinePhone Pro
-Message-ID: <20220818030547.eblbmchutmnn6jih@notapiano>
-References: <20220815123004.252014-1-tom@tom-fitzhenry.me.uk>
- <20220815123004.252014-3-tom@tom-fitzhenry.me.uk>
+        with ESMTP id S242548AbiHRDMx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Aug 2022 23:12:53 -0400
+Received: from mail-oa1-x30.google.com (mail-oa1-x30.google.com [IPv6:2001:4860:4864:20::30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0713C8673A
+        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 20:12:46 -0700 (PDT)
+Received: by mail-oa1-x30.google.com with SMTP id 586e51a60fabf-f2a4c51c45so425840fac.9
+        for <devicetree@vger.kernel.org>; Wed, 17 Aug 2022 20:12:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=/Flx4/Oo5ESanVP7AKIxzXsr1aRT9o+BjnyTMGI7qkU=;
+        b=r2kiQ7Tlw0XUtQ+sTLrDduaI03eFa9PGyzJg81Iwits/TAD2l7+o1H5s4V18/+qR+e
+         jtfwcht9ZVo5PyTWXe8ZKymnbB5/OiXvHKsCr2oCOyHf6db1v0Qi3ON2BnwrjMC6bbhb
+         k9GstDvkLuvKdSXH7bRLK8nmIofrqBsFZdpLlAzlpZTzen63PzL52VTthMAtk18DLO3k
+         ZX1aMDrcZL17TZGGP8Gc8mw9mG9720n11Hh43gyznH8up2ExBKWjiar12eua0RJArTeO
+         k0rjT9xjBvJqmJ6Sq+D7cDIUUzb/2tEQm7aJ7LFxD27iuQUbGj9E+BjjxfD5tYSk3p62
+         OvXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=/Flx4/Oo5ESanVP7AKIxzXsr1aRT9o+BjnyTMGI7qkU=;
+        b=K7AFpAtSaXW/9QkzYkJUzRXKonyOGmPP4PW0DCRNVFtRdUbg3/I2Txy12SR//l8UYP
+         CXSJLen0rEtnbUXUwMV+5mtfyjXPg9Z6k72B24nUWI1IWjNvWotxheqOzE57zefhN5mb
+         +XBYPu6GxkTZ78Su138W+oeDYu9HM16mfMI12SZId6/jdStW/cBYo+kZQ23okZjulPYy
+         sKWNK4dhO/35YYR1turGTO/BfDojfMypPDdY1LYTnzMvlL7/BJx/RKQNUfdVxduTtI8c
+         +pTekgm+4/rMcgSyzoMgLdVlG9XxolzlpjiEC2dr3DpCDrHEQbYaqjFRLsH3cfpqvmmn
+         ErvQ==
+X-Gm-Message-State: ACgBeo32XEloZyyQSL4CiqE62tCQi/F7EZBZYESE11kOMLLhuAeaYDsH
+        S1J1QAMRtattfV8a6nxJInC5Yp+p46N8mA==
+X-Google-Smtp-Source: AA6agR6eMk+MtdPrwOVZSddIsIpEOBkiYgjRjL5gQWZFgmVQ6UJqM0KfvV0mQeNYvm8DrutAiUWBsA==
+X-Received: by 2002:a05:6870:459d:b0:10e:75b7:15b7 with SMTP id y29-20020a056870459d00b0010e75b715b7mr3264835oao.115.1660792365285;
+        Wed, 17 Aug 2022 20:12:45 -0700 (PDT)
+Received: from ripper.. (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id l6-20020a056871068600b0011c25975c1dsm112382oao.25.2022.08.17.20.12.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Aug 2022 20:12:44 -0700 (PDT)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: [PATCH 0/4] soc: qcom: Introduce PMIC GLINK
+Date:   Wed, 17 Aug 2022 20:15:08 -0700
+Message-Id: <20220818031512.319310-1-bjorn.andersson@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220815123004.252014-3-tom@tom-fitzhenry.me.uk>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tom,
+This implements the base PMIC GLINK driver, a power_supply driver and a driver
+for the USB Type-C altmode protocol. This has been tested and shown to provide
+battery information, USB Type-C switch and mux requests and DisplayPort
+notifications on SC8180X, SC8280XP and SM8350.
 
-thanks for getting the upstreaming of this DT going. Some comments below.
+Bjorn Andersson (4):
+  dt-bindings: soc: qcom: Introduce PMIC GLINK binding
+  soc: qcom: pmic_glink: Introduce base PMIC GLINK driver
+  soc: qcom: pmic_glink: Introduce altmode support
+  power: supply: Introduce Qualcomm PMIC GLINK power supply
 
-On Mon, Aug 15, 2022 at 10:30:04PM +1000, Tom Fitzhenry wrote:
-> From: Martijn Braam <martijn@brixit.nl>
-> 
-> This is a basic DT containing regulators and UART, intended to be a
-> base that myself and others can add additional nodes in future patches.
-> 
-> Tested to work: booting from eMMC, output over UART.
+ .../bindings/soc/qcom/qcom,pmic-glink.yaml    |   98 ++
+ drivers/power/supply/Kconfig                  |    9 +
+ drivers/power/supply/Makefile                 |    1 +
+ drivers/power/supply/qcom_battmgr.c           | 1422 +++++++++++++++++
+ drivers/soc/qcom/Kconfig                      |   14 +
+ drivers/soc/qcom/Makefile                     |    2 +
+ drivers/soc/qcom/pmic_glink.c                 |  336 ++++
+ drivers/soc/qcom/pmic_glink_altmode.c         |  477 ++++++
+ include/linux/soc/qcom/pmic_glink.h           |   32 +
+ 9 files changed, 2391 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml
+ create mode 100644 drivers/power/supply/qcom_battmgr.c
+ create mode 100644 drivers/soc/qcom/pmic_glink.c
+ create mode 100644 drivers/soc/qcom/pmic_glink_altmode.c
+ create mode 100644 include/linux/soc/qcom/pmic_glink.h
 
-You're also adding the SD controller here. Does it work as is? If so add it to
-the commit description as well.
+-- 
+2.35.1
 
-> 
-[..]
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-> @@ -0,0 +1,394 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2020 Martijn Braam <martijn@brixit.nl>
-> + * Copyright (c) 2021 Kamil Trzciński <ayufan@ayufan.eu>
-> + */
-> +
-> +/* PinePhone Pro datasheet:
-
-First comment line should be empty following the coding style [1]. Like you did
-for the copyrights above.
-
-[1] https://www.kernel.org/doc/html/latest/process/coding-style.html#commenting
-
-> + * https://files.pine64.org/doc/PinePhonePro/PinephonePro-Schematic-V1.0-20211127.pdf
-> + */
-[..]
-> +	vcc_sysin: vcc-sysin-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc_sysin";
-
-This signal is called vcc_sys in the datasheet, so I suggest we keep that name
-here. It's not everyday that we get a device with a publicly available datasheet
-:^).
-
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
-[..]
-> +	rk818: pmic@1c {
-> +		compatible = "rockchip,rk818";
-> +		reg = <0x1c>;
-> +		interrupt-parent = <&gpio1>;
-> +		interrupts = <RK_PC5 IRQ_TYPE_LEVEL_LOW>;
-> +		#clock-cells = <1>;
-> +		clock-output-names = "xin32k", "rk808-clkout2";
-
-What about keeping the datasheet names here too? clk32kout1, clk32kout2
-
-> +		pinctrl-names = "default";
-[..]
-> +			vcc_1v8: vcc_wl: DCDC_REG4 {
-
-From the datasheet, vcc_wl is actually wired to vcc3v3_sys. But looks like
-vcc_wl is only used for bluetooth and you're not enabling it yet anyway, so just
-drop this extra label, and it can be added when bluetooth is added (or not, and
-then the bluetooth supply just points directly to vcc3v3_sys).
-
-> +				regulator-name = "vcc_1v8";
-[..]
-> +			vcc_power_on: LDO_REG4 {
-> +				regulator-name = "vcc_power_on";
-
-The name on the datasheet for this one is rk818_pwr_on.
-
-> +				regulator-always-on;
-[..]
-> +&cluster0_opp {
-> +	opp04 {
-> +		status = "disabled";
-> +	};
-> +
-> +	opp05 {
-> +		status = "disabled";
-> +	};
-> +};
-
-I saw the discussion on the previous version about using the rk3399-opp.dtsi
-here, but the thing is, this OPP has greater values for the max voltage than the
-maximum allowed on the OPP table you posted previously (for RK3399-T)...
-
-Same thing for the GPU OPP.
-
-> +
-> +&cluster1_opp {
-> +	opp06 {
-> +		status = "disabled";
-> +	};
-
-There's actually an opp06 node in the OPP for RK3399-T, only that the frequency
-is slightly lower. Maybe you could keep it enabled but override the frequency?
-
-Or given the above point about the max voltages, maybe it would be best to have
-a separate OPP table after all?
-
-> +
-> +	opp07 {
-> +		status = "disabled";
-> +	};
-> +};
-> +
-> +&io_domains {
-> +	status = "okay";
-
-Let's keep the status at the end of the node for consistency with the rest.
-
-With these points addressed:
-
-Reviewed-by: Nícolas F. R. A. Prado <n@nfraprado.net>
-
-I'll also try to give this a test shortly.
-
-Thanks,
-Nícolas
-
-> +
-> +	bt656-supply = <&vcc1v8_dvp>;
-> +	audio-supply = <&vcca1v8_codec>;
-> +	sdmmc-supply = <&vccio_sd>;
-> +	gpio1830-supply = <&vcc_3v0>;
-> +};
-[..]
