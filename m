@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AAB70597F6B
-	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 09:45:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AD70597F7A
+	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 09:49:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243783AbiHRHmk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Aug 2022 03:42:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54274 "EHLO
+        id S243705AbiHRHse (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Aug 2022 03:48:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242513AbiHRHmj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 03:42:39 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBF1E6555A
-        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 00:42:38 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id z25so1105107lfr.2
-        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 00:42:38 -0700 (PDT)
+        with ESMTP id S236549AbiHRHsc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 03:48:32 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEBB04AD69
+        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 00:48:29 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id e15so1148156lfs.0
+        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 00:48:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=MShj7bLv/0nXMa1+Mpubq1Kb89/01zNVMLHcgTT9z2k=;
-        b=YHqqkucWXRjBvTIxJw0qxFunWWDJ3R2dX3GNCnIzdCv4OlisfZbhurbjMi9j1Soj+W
-         47ltrVwrnQpn7+p9sFPfXVH3aIbJMWSKa66QQvxao/SVEM68GsP0P26yQ4B+n6o4OpvV
-         f0PkBk6GImk/jSuhRcNp4b4p7WqXQcqwqjOMcFVf/vE5ttwif1GAwWHtHzM1RZc3sOyt
-         SwEaDTWRR8bQqw2qd3n47Rfe8JZqCQDjf1/f/IEjWhHC5xWtBFKhm7221NfK17rZ+ciA
-         YKbCGMQUMzgWdPAExP5QC8S0RIIW6I8/mNGXAe6rbyjMkzyCm6pSOxx0iID28wmeWS+5
-         A+OA==
+        bh=Gtx/1NtYRUpYFSNfi/ck/6ru5mDdKGyHys400ty/Xyg=;
+        b=pA3vT8XbKPIIhMfNE2PsUnmxJJkmWap6JQJqjWxUjeuEtfkhAgrmbdfO6Yu/ZTLP7+
+         SI16XaknZ5obeqxRLBGSBSc/1r4y45MRiSyeB6pwmB+cHec/6aTD4/5RxkzzmL0Ot/9z
+         ucg0vtkF5wz+5MDMOvy8h//s+2H7ILParQqB74iLotZzx2nxXSbGhZQI24Ixe40Is7v0
+         65gvD5eRu1tOo3oAL0u2bfaNj4l7CH9hHkZSIkk5HWj+82cUPcedRrWETKf4N+2+mHdR
+         mseUANI8JD0T1a+1+jpxDM6W0m72On92z7wq5nbOpfJsU3BCUQBKBF/iRSe/qQwiJCap
+         xc5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=MShj7bLv/0nXMa1+Mpubq1Kb89/01zNVMLHcgTT9z2k=;
-        b=xkTiMLqNlNyx/SkqFMP6WAIE1R1MdEWRk7jxgtIcoM91XmVFlknBrW6FiK1VdIzOxv
-         6HtL5nuPo+NaInqSFzIE9+AHWV1D1Rh8cBNAhHHwLiATbXd9iLNlAW29RwguEvActQjv
-         uQYQcXbkZnI2UQXwftBybQ8+kZ4u5hi/jNh0mVKrud+Kuy+Ok+r/c5vav4Lbj8+7+MyP
-         inhBKNe3Qn+TOGKLmihnq5UNCA3VW7JNrOeixMPFJFCxoUtJcRn8laGtw20oKNeOOk2t
-         sVzs1VknXyiZ/a+gxM2gP9zW4WRoIGNvm1uvx8qzt+aUQeBD4GXPIxCyso3Xjgq4lfPn
-         AXWQ==
-X-Gm-Message-State: ACgBeo0k4Xm89AdOFkonK89Bu7e8ie4Y3yl2vVtdglrBWEidQJ+vkVcJ
-        LUuv5b4oWh+7DsLyK/kwBJ65zSBtEREvR7n0
-X-Google-Smtp-Source: AA6agR7PpZvNHmLb+qevA7oB617jiMAhR6HzQHvikURalXdanu3cXl5ZOPY+cac1GOxiwZ4UbXAsxA==
-X-Received: by 2002:a05:6512:ea0:b0:48b:2d45:f254 with SMTP id bi32-20020a0565120ea000b0048b2d45f254mr545086lfb.365.1660808557206;
-        Thu, 18 Aug 2022 00:42:37 -0700 (PDT)
+        bh=Gtx/1NtYRUpYFSNfi/ck/6ru5mDdKGyHys400ty/Xyg=;
+        b=Nz9+tu9nm/wb34bfnbB62sFgrFZC8KpqUknEDHHg8H9SA+XKfj8mOB7AqlzemeDNwQ
+         z+JugFgf0YhUCKhDBzH2n49cqfAZ8IliGDb0+e8aXNccIxAQDCyr3u21T8LOHUYtQHXp
+         EhGo17sx61uu+cwSUhom19ekYEkD/DpABvF83VfuEKoUC4LDgffT6/keJ6Z9Kt0t+9TM
+         E3QcQpMPcW598Uu0F0S2pwZ12jBi+A9HuaZ3F4b1MHJd3PZiZZLZaJpSLmZMfKZYH26D
+         HPI+D4M5JhS3asy67OXafdltX1eL30gaUmaNFUTMB5uVoPuNXTeCbfjCwinhH/2QYFrH
+         nKoA==
+X-Gm-Message-State: ACgBeo0KRBu7K49jgIrpG+4o8caQdqC5UdsG98y9+yMyZqc4BUeUNJM+
+        F+wGp06L5Ve2kwLQW5vRnss2og==
+X-Google-Smtp-Source: AA6agR4KTEWECDn55d+h9/m11+vRY/poYCh80L5VL5lneKWL68GDtDsqJbwN9MQNwzUWsQWSiQTv3g==
+X-Received: by 2002:a05:6512:201a:b0:48d:1101:cc9b with SMTP id a26-20020a056512201a00b0048d1101cc9bmr644396lfb.152.1660808908249;
+        Thu, 18 Aug 2022 00:48:28 -0700 (PDT)
 Received: from ?IPV6:2001:14bb:ae:539c:53ab:2635:d4f2:d6d5? (d15l54z9nf469l8226z-4.rev.dnainternet.fi. [2001:14bb:ae:539c:53ab:2635:d4f2:d6d5])
-        by smtp.gmail.com with ESMTPSA id y8-20020a05651c106800b0025e42f8e771sm118132ljm.34.2022.08.18.00.42.35
+        by smtp.gmail.com with ESMTPSA id v10-20020a056512348a00b00491203d6cc9sm121513lfr.131.2022.08.18.00.48.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Aug 2022 00:42:36 -0700 (PDT)
-Message-ID: <61c0d3bf-cf1f-77f0-bb47-dec7cde5b488@linaro.org>
-Date:   Thu, 18 Aug 2022 10:42:34 +0300
+        Thu, 18 Aug 2022 00:48:27 -0700 (PDT)
+Message-ID: <5a916595-12ee-92e6-d380-84146dd75218@linaro.org>
+Date:   Thu, 18 Aug 2022 10:48:26 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
@@ -79,7 +79,7 @@ Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -87,27 +87,28 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 18/08/2022 10:26, Chengci.Xu wrote:
->>>      then:
->>>        required:
->>> diff --git a/include/dt-bindings/memory/mt8188-memory-port.h
->>>  b/include/dt-bindings/memory/mt8188-memory-port.h
->>> new file mode 100644
->>> index 000000000000..612fd366c3a7
->>> --- /dev/null
->>> +++ b/include/dt-bindings/memory/mt8188-memory-port.h
+> On Thu, 2022-08-04 at 13:13 +0200, Krzysztof Kozlowski wrote:
+>> On 04/08/2022 12:58, Chengci.Xu wrote:
+>>> This patch adds descriptions for mt8188 IOMMU which also use ARM
+>>> Short-Descriptor translation table format.
+>>>
 >>
->> Use vendor prefix in filename, so mediatek,mt8188-memory-port.h
+>>
+>> Thank you for your patch. There is something to discuss/improve.
 > 
-> Is this a new mandatory rules to add a vendor prefix in dt-bindings
-> file name? we have never add a vendor prefix before.
+> Tkanks for your review.
 > 
-> If possible, we'd like not to use vendor prefix for the consistency of
-> fliename's format(mtxxxx-memory-port.h).
-> Such as "mt8195-memory-port.h" and "mt8186-memory-port.h".
 
-That's a generic rule, although loosely applied. The consistency is
-rather to have a vendor prefix everywhere. Why Mediatek should have an
-exception?
+BTW, none of your emails seem to reach devicetree mailing list:
+https://lore.kernel.org/linux-devicetree/20220804105834.626-1-chengci.xu@mediatek.com/
+which means they won't pop-up in Rob's Patchwork and won't tested by bot.
+https://patchwork.ozlabs.org/project/devicetree-bindings/list/?series=&submitter=84571&state=*&q=&archive=&delegate=
+
+I wonder if this is the same issue as with other Mediatek emails
+filtered by spam...
+
+Anyway, you should sort it out, otherwise patches won't get to Rob and I
+won't apply them.
 
 Best regards,
 Krzysztof
