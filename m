@@ -2,151 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C2B559842D
-	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 15:28:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13860598464
+	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 15:42:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239157AbiHRN10 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Aug 2022 09:27:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55400 "EHLO
+        id S245193AbiHRNkJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Aug 2022 09:40:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244768AbiHRN1Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 09:27:24 -0400
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7ADBB3B3D;
-        Thu, 18 Aug 2022 06:27:20 -0700 (PDT)
-Received: by mail-qk1-f170.google.com with SMTP id f14so1093993qkm.0;
-        Thu, 18 Aug 2022 06:27:20 -0700 (PDT)
+        with ESMTP id S245171AbiHRNjg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 09:39:36 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 638CA61B0D
+        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 06:39:18 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id o2so2193608lfb.1
+        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 06:39:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=KSIaXxhyUIHIxlq/rUi5FI75cBAK/krT+tEUbMY1wsg=;
+        b=FVZCcLXPj781ifyjzK4x11TqiJbBkK38M1Eu90Wi1nIRgof+t5RQw3C1TLIuCf8jA4
+         8uE6TaW8l1RgH66BeiDgE11x/bvPDdmWLSgkCACrV2/Sfvr50y8qWg08VlyiL/X9UG3U
+         Di13Pc9xKdvDfsC5F42PTVGkuoi44qFlJZRoAF9ygwVQx9d/mVNHkmtJFRlmnSJ2dDhB
+         DgTt68Ej89TbqUgrvw+fnUvus5ZCbQ+Paa9UAT2oI/xA8RpdO7jCASTSP1i7N/Zq7ge/
+         oFOIAi5VpcARVyez12RNr3dbrCDpa2h9tpD4Zy8f5/p/qv8kg3RD7NtIKuPV+zx17pFO
+         7odg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=MdJl78NxEosOuxjMJCio10tAlOhsC8bxFB2iOZBCOUg=;
-        b=hfCfT312Pqrziib5nNWrgZQqwYNDbE5Nvb7lsJSZUBK/L1Y2B/DDPV5+dzxtKltwZP
-         wa2TaR3Y5Wh8EL+m3371fteiSK2gKNfj6Ouy5ZSOm1gqWTtq51/OZb33TO8Vl5M72rmi
-         PbwagWhM0AruenadQDEaPtWWoQqjGDqNCF9n4W+h+2770LfDgizheRmFvG6KbhiI+9a3
-         pX3a5WNhCCxDcwbib+YjtDvU/1+Nox01IzXFBRs5PSj9jqyUx40EmjyCGm+3/qFf8vx6
-         QzEfjF/+q/skdz8E/3y1KbvBnao/sI2AWjq/0whP2abcEUz3UjwqmJdFkakv9AAf/vmL
-         Uv5A==
-X-Gm-Message-State: ACgBeo3ZsV2jHSUq/WhXJ3+Vepb6D+smXNj33dYcWHQPAHQ5Dl9jfiEw
-        bpA63ugyOqVfDvU9GdahPSJ5tWyojNFR/g==
-X-Google-Smtp-Source: AA6agR4fOlHC/7FkRk2snr9z20tCUnKyqNnoenln1YFyezCc8zaRUMaRwR6G2HVOnHGvQOx3tAPiJQ==
-X-Received: by 2002:a05:620a:290a:b0:6bb:6c8a:b9fd with SMTP id m10-20020a05620a290a00b006bb6c8ab9fdmr2087779qkp.72.1660829239850;
-        Thu, 18 Aug 2022 06:27:19 -0700 (PDT)
-Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
-        by smtp.gmail.com with ESMTPSA id t39-20020a05622a182700b00342f7beccd0sm1041521qtc.45.2022.08.18.06.27.19
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=KSIaXxhyUIHIxlq/rUi5FI75cBAK/krT+tEUbMY1wsg=;
+        b=ohICAUdf6/j5hn5tm+YzW5Pm8bLG951arJ0F0AL3aDUKYKJvvRfhwnyhUvBfB2m8oo
+         vLixUHjqV9BeW0CaSj+xWMu2jAyX8kmgZQJBBPRwijP4OceSSiWhh5w3dsUR4MYy6hHC
+         0+w24F8KXndKdAswEziGKbAFOz1/HgnmYHT1CSoJKz2b3Ok18KG3K0YrHvU8V1D+nlum
+         I6QCLzuSMnOJlhLC/jE3PYAQzFhurPunGWs84i5GEI89eKsHbohR+wdkgtH4nnwVE8jn
+         YiMPO0n2mBMCeGliR8RUQyaG2WQQwiEBWMI8miXcg/e42pufVjX6cLfwdeebVd8gk0oG
+         XkFQ==
+X-Gm-Message-State: ACgBeo0rjAT8if54tcojZWJQ99Ej09vERDKJyyOcy0xJo1YkjE4bjwTV
+        i3UEI99pCn/o4L7lThhE75lbHQ==
+X-Google-Smtp-Source: AA6agR5WaeCT380GrnAMAJDvP+dDmL6sElrkgK5h271JvA81tOxhuMDA3YDK2SzQRVeHLS8LmdKuMA==
+X-Received: by 2002:a05:6512:3f02:b0:48d:244e:426f with SMTP id y2-20020a0565123f0200b0048d244e426fmr910569lfa.333.1660829956324;
+        Thu, 18 Aug 2022 06:39:16 -0700 (PDT)
+Received: from ?IPV6:2001:14bb:ae:539c:53ab:2635:d4f2:d6d5? (d15l54z9nf469l8226z-4.rev.dnainternet.fi. [2001:14bb:ae:539c:53ab:2635:d4f2:d6d5])
+        by smtp.gmail.com with ESMTPSA id d23-20020a193857000000b0048b4690c78esm219975lfj.288.2022.08.18.06.39.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Aug 2022 06:27:19 -0700 (PDT)
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-3321c2a8d4cso40796287b3.5;
-        Thu, 18 Aug 2022 06:27:19 -0700 (PDT)
-X-Received: by 2002:a81:1204:0:b0:322:7000:4ecb with SMTP id
- 4-20020a811204000000b0032270004ecbmr2793715yws.47.1660829239204; Thu, 18 Aug
- 2022 06:27:19 -0700 (PDT)
+        Thu, 18 Aug 2022 06:39:15 -0700 (PDT)
+Message-ID: <7f8305ee-d706-a5a3-0691-1aa296a65125@linaro.org>
+Date:   Thu, 18 Aug 2022 16:39:13 +0300
 MIME-Version: 1.0
-References: <20220729164425.11062-1-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20220729164425.11062-1-wsa+renesas@sang-engineering.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 18 Aug 2022 15:27:07 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWW0kPATT4zGcjcEPw6XO+18MWJAn_HESe3rrtoEoF=FA@mail.gmail.com>
-Message-ID: <CAMuHMdWW0kPATT4zGcjcEPw6XO+18MWJAn_HESe3rrtoEoF=FA@mail.gmail.com>
-Subject: Re: [PATCH 0/5] arm64: dts: renesas: move I2C aliases to board files
-To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH] dt-bindings: Convert Xilinx watchdog bindings to
+ json-schema
+Content-Language: en-US
+To:     Srinivas Neeli <srinivas.neeli@xilinx.com>, linux@roeck-us.net,
+        krzysztof.kozlowski+dt@linaro.org, wim@linux-watchdog.org,
+        michal.simek@xilinx.com, shubhrajyoti.datta@xilinx.com
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        git@xilinx.com, git@amd.com, sgoud@xilinx.com,
+        Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
+References: <20220818124207.61313-1-srinivas.neeli@xilinx.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220818124207.61313-1-srinivas.neeli@xilinx.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Wolfram,
+On 18/08/2022 15:42, Srinivas Neeli wrote:
+> Convert Xilinx watchdog bindings to DT schema format using json-schema
+> 
+> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+> Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
 
-CC devicetree
+Use subject perfixes matching the subsystem (git log --oneline -- ...).
 
-On Fri, Jul 29, 2022 at 6:50 PM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> For R-Car Gen3 and Gen4, we had I2C aliases in per-SoC DTS include
-> files. That doesn't really fit as bus naming is a board property. This
-> series moves the aliases to the board files. The following procedure has
-> been applied to avoid regressions:
->
-> 1) move the aliases from SoC files to board files. Keep the empty
->    alias-nodes in the SoC file and add the new aliases before existing
->    ones. This ensured that identical binaries[1] were created.
->
-> 2) Once all aliases were moved and all binaries[1] stayed identical,
->    then the empty alias nodes from the SoC files were removed.
->
-> The result is this series based on the renesas-drivers tag
-> 'renesas-drivers-2022-07-19-v5.19-rc7'.
->
-> It could be discussed if the aliases should be sorted alphabetically,
-> but I'd think this is a seperate series then.
->
-> I also leave it to Geert, if the commits should be squashed. At least
-> for reviewing, I think this separation makes sense, though.
->
-> Looking forward to comments,
 
-Thanks for your series!
+> diff --git a/Documentation/devicetree/bindings/watchdog/xlnx,xps-timebase.yaml b/Documentation/devicetree/bindings/watchdog/xlnx,xps-timebase.yaml
+> new file mode 100644
+> index 000000000000..fd2e3f2df54c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/watchdog/xlnx,xps-timebase.yaml
 
-I have never been a fan of the i2c aliases in the SoC-specific .dtsi files,
-as aliases are typically board-specific.
-We also don't have physical connectors labeled "i2c<N>" on any of
-the affected boards.  But people like the i2c aliases, because i2c
-exposes the full buses to userspace, and the aliases fix the userspace
-naming of /dev/i2c-<N> (I believe there is no better way to identify
-i2c buses from userspace?).
+xlnx,xps-timebase-wdt.yaml
+(name should be matching compatibles)
 
-So moving the i2c aliases to the board files is definitely a step in
-the good direction.
+> @@ -0,0 +1,71 @@
+> +# SPDX-License-Identifier: GPL-2.0-or-later OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/watchdog/xlnx,xps-timebase.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Xilinx AXI/PLB softcore and window Watchdog Timer
+> +
+> +allOf:
+> +  - $ref: "watchdog.yaml#"
 
-BTW, you missed r8a774a1.dtsi in your update.
+No need for quotes. Put the allOf just above "properties".
 
-> [1] For desired binaries, of course. For r8a77961 boards, the binaries
-> did change. This was intended, though, because I wanted to add I2C
-> aliases there which were not present before. Also, the r8a779m* boards
-> now have I2C aliases, too.
->
->
-> Wolfram Sang (5):
->   arm64: dts: renesas: r8a779{51|60|65}: put I2C aliases to board files
->   arm64: dts: renesas: r8a77970: put I2C aliases to board files
->   arm64: dts: renesas: r8a77980: put I2C aliases to board files
->   arm64: dts: renesas: r8a77990: put I2C aliases to board files
->   arm64: dts: renesas: r8a779a0: put I2C aliases to board files
->
->  arch/arm64/boot/dts/renesas/ebisu.dtsi               |  8 ++++++++
->  arch/arm64/boot/dts/renesas/r8a77951.dtsi            | 11 -----------
->  arch/arm64/boot/dts/renesas/r8a77960.dtsi            | 11 -----------
->  arch/arm64/boot/dts/renesas/r8a77965.dtsi            | 11 -----------
->  arch/arm64/boot/dts/renesas/r8a77970-eagle.dts       |  5 +++++
->  arch/arm64/boot/dts/renesas/r8a77970-v3msk.dts       |  5 +++++
->  arch/arm64/boot/dts/renesas/r8a77970.dtsi            |  8 --------
->  arch/arm64/boot/dts/renesas/r8a77980-condor.dts      |  6 ++++++
->  arch/arm64/boot/dts/renesas/r8a77980-v3hsk.dts       |  6 ++++++
->  arch/arm64/boot/dts/renesas/r8a77980.dtsi            |  9 ---------
->  arch/arm64/boot/dts/renesas/r8a77990.dtsi            | 11 -----------
->  arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi |  7 +++++++
->  arch/arm64/boot/dts/renesas/r8a779a0.dtsi            | 10 ----------
->  arch/arm64/boot/dts/renesas/salvator-common.dtsi     |  8 ++++++++
->  arch/arm64/boot/dts/renesas/ulcb.dtsi                |  8 ++++++++
->  15 files changed, 53 insertions(+), 71 deletions(-)
+> +
+> +maintainers:
+> +  - Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+> +  - Srinivas Neeli <srinivas.neeli@xilinx.com>
+> +
+> +description:
+> +  The Timebase watchdog timer(WDT) is a free-running 32 bit counter.
+> +  WDT uses a dual-expiration architecture. After one expiration of
+> +  the timeout interval, an interrupt is generated and the WDT state
+> +  bit is set to one in the status register. If the state bit is not
+> +  cleared (by writing a one to the state bit) before the next
+> +  expiration of the timeout interval, a WDT reset is generated.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
 
-Gr{oetje,eeting}s,
+There is no other option, so no need for oneOf.
 
-                        Geert
+> +      - items:
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+You do not have items, just one item. Drop items as well.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> +          - enum:
+> +              - xlnx,xps-timebase-wdt-1.01.a
+> +              - xlnx,xps-timebase-wdt-1.00.a
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 1
+
+instead maxItems
+
+> +
+> +  clock-frequency:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+
+No need for ref. This is a standard property.
+
+> +    description: Frequency of clock in Hz
+
+Would be useful to add constraints (minimum/maximum and default), but
+that's not a big deal.
+
+> +
+> +  xlnx,wdt-interval:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Watchdog timeout interval
+> +    minimum: 8
+> +    maximum: 32
+> +
+> +  xlnx,wdt-enable-once:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1]
+> +    description: If watchdog is configured as enable once,
+> +                 then the watchdog cannot be disabled after
+> +                 it has been enabled.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    watchdog@40100000 {
+> +      compatible = "xlnx,xps-timebase-wdt-1.00.a";
+> +      reg = <0x40100000 0x1000>;
+> +      clock-frequency = <50000000>;
+> +      clocks = <&clkc 15>;
+> +      xlnx,wdt-enable-once = <0x0>;
+> +      xlnx,wdt-interval = <0x1b>;
+> +    } ;
+
+No need for space after ';'
+
+
+
+Best regards,
+Krzysztof
