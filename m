@@ -2,112 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0F3A598D8D
-	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 22:15:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7CA6598DB5
+	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 22:20:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345919AbiHRUPC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Aug 2022 16:15:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51148 "EHLO
+        id S244456AbiHRUTL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Aug 2022 16:19:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345914AbiHRUOn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 16:14:43 -0400
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52D39CB5E7;
-        Thu, 18 Aug 2022 13:14:02 -0700 (PDT)
-Received: by mail-pl1-x636.google.com with SMTP id jm11so2395933plb.13;
-        Thu, 18 Aug 2022 13:14:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc;
-        bh=egYSJNbQxtbIjtuZxTLb7Op2z9efDIBz0CVG82pd35Q=;
-        b=OrdgxQZHf0g36dqgz8oBTc9Pw5flV5lUnAKO+L/BXl1IbHMz6Y0SdtGaYvkVBINho4
-         lDQxJFuriCNhvRWKDJNhT68uzk2DPMhppFWOYNcSIqRtXgQ007eDkXLtc+jww6Lj5KLD
-         bi5Hl0bUgFcwQCWbAGu7DenppWIMcGBnYco7S8QPnPoDXHha8aQzzDXNw1MH45MtU5YD
-         h79Ex5qk3hBSkTCq5yMPSmY4oysetZiE+lOLmlZG0IiY73TIsd5bixD5Ch64z4MmscdV
-         7xJE0+dTV8j1ZGcn7S3l71FVgayPZcdCrd1NjyNiOIJhXeHyVtH+Ok8VxHPO6GsW1++T
-         q1ig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc;
-        bh=egYSJNbQxtbIjtuZxTLb7Op2z9efDIBz0CVG82pd35Q=;
-        b=RLE+omWKLqZU1kiF1oKN0jXPYrYf+X3C+PFVXDU5LIicpP6m5L+3c5vetN9Jxn28Ls
-         dpQSw27C3gdcCn2NYTpmEgE1IubqgVW9hyx8SMFwY8LBM2yuu0QJv2wNF0FF3A0Q6eg/
-         FA3lCUAg4kDDaUQlB6yckvnqrtvBn7Xt6LLHj2ldH6tFZqVmYAETT9/xTb1v4WG/YoSv
-         KnqzD9kStnlTJWWUDoVzcVreBCtot73sH2dPvjsAyndsGofDVFrbYPwf0iov9DsugTsQ
-         j4BwwOPlC6sH5ZtilECeiPt4layNNxOO/r1lyxVN0Sq8ZOKZ0oJAsCxFB3AgstzCUO9Y
-         dVqQ==
-X-Gm-Message-State: ACgBeo0VRBv4ln+k2cNfhOVOkNK9RovyIuMy82PARqvRdJXr1RxW2YLR
-        gvq1OZ8mz3CeR9J3fDP4hvE=
-X-Google-Smtp-Source: AA6agR4k9h5ht6adNQ4cG6aZIayrOdx0qxU/jk7nZlcuvmViw6faXm9ppDtDbTHN6V4LU/YdyEvwDA==
-X-Received: by 2002:a17:90b:4653:b0:1f3:1ce3:2cb with SMTP id jw19-20020a17090b465300b001f31ce302cbmr10134904pjb.176.1660853641591;
-        Thu, 18 Aug 2022 13:14:01 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id n3-20020aa79843000000b0052dd7d0ad04sm2058779pfq.88.2022.08.18.13.14.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Aug 2022 13:14:00 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Thu, 18 Aug 2022 13:13:59 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Eliav Farber <farbere@amazon.com>
-Cc:     jdelvare@suse.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, talel@amazon.com, hhhawa@amazon.com,
-        jonnyc@amazon.com, hanochu@amazon.com, ronenk@amazon.com,
-        itamark@amazon.com, shellykz@amazon.com, shorer@amazon.com,
-        amitlavi@amazon.com, almogbs@amazon.com, dwmw@amazon.co.uk,
-        rtanwar@maxlinear.com
-Subject: Re: [PATCH v2 11/16] hwmon: (mr75203) add protection for negative
- voltage value
-Message-ID: <20220818201359.GA3430651@roeck-us.net>
-References: <20220817054321.6519-1-farbere@amazon.com>
- <20220817054321.6519-12-farbere@amazon.com>
+        with ESMTP id S232033AbiHRUTK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 16:19:10 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9010594120;
+        Thu, 18 Aug 2022 13:19:09 -0700 (PDT)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 27IGLoZr024158;
+        Thu, 18 Aug 2022 20:18:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=u0fa4c5sD2eB6IMzsFRWJT5E5T+P+DVvpkmV/TCgS8o=;
+ b=QJQHJmZeC54S3Ul8SdObNljBe+8ESWqiXIc5+8/R9s0qdUC/JXHNRvoRFZKhA2iRRGDW
+ 4I9lUsECsVN1CakHYV3MqzmyD6Kghj96ABao9SeB44j5Vx/HDlkII2VH2aoiLeTbJ494
+ PWCSw/2IoF3fTvXy8yMWruInO5J8t/2WRdjhSoI2/1U1+nc4YF4pwNUy7kmqT+3iN9YS
+ rgfx/IuJBo+SDeYGX3hHe51FqdwY0SJHnGWB4Oa0krC7m6+1YK/0FlCXq1HunuoyDGN9
+ KekYS+hDSnIHuYA1Cz2VUYF6zeqoTM3XwwIm05gFgyiEcJfyAiC8NFUdaEqA7R3Dlj+G 6A== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3j1rvb0t09-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 18 Aug 2022 20:18:58 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 27IKIvS3019713
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 18 Aug 2022 20:18:57 GMT
+Received: from hyd-lnxbld559.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Thu, 18 Aug 2022 13:18:52 -0700
+From:   Akhil P Oommen <quic_akhilpo@quicinc.com>
+To:     freedreno <freedreno@lists.freedesktop.org>,
+        <dri-devel@lists.freedesktop.org>, <linux-arm-msm@vger.kernel.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        "Stephen Boyd" <swboyd@chromium.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC:     Douglas Anderson <dianders@chromium.org>,
+        <krzysztof.kozlowski@linaro.org>,
+        Akhil P Oommen <quic_akhilpo@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v3 0/5] clk/qcom: Support gdsc collapse polling using 'reset' inteface
+Date:   Fri, 19 Aug 2022 01:48:34 +0530
+Message-ID: <1660853919-987-1-git-send-email-quic_akhilpo@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220817054321.6519-12-farbere@amazon.com>
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: rUd7NoZLXLnunYI86YZikc3uStvdA_Kl
+X-Proofpoint-GUID: rUd7NoZLXLnunYI86YZikc3uStvdA_Kl
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.517,FMLib:17.11.122.1
+ definitions=2022-08-18_14,2022-08-18_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 priorityscore=1501
+ phishscore=0 adultscore=0 bulkscore=0 spamscore=0 mlxlogscore=771
+ impostorscore=0 malwarescore=0 lowpriorityscore=0 clxscore=1015
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2207270000 definitions=main-2208180074
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 17, 2022 at 05:43:16AM +0000, Eliav Farber wrote:
-> This change makes sure the returned voltage vlaue is 0 or positive.
-> 
-> Signed-off-by: Eliav Farber <farbere@amazon.com>
-> ---
->  drivers/hwmon/mr75203.c | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/drivers/hwmon/mr75203.c b/drivers/hwmon/mr75203.c
-> index 24a00339cfd8..e3191f590167 100644
-> --- a/drivers/hwmon/mr75203.c
-> +++ b/drivers/hwmon/mr75203.c
-> @@ -218,6 +218,13 @@ static int pvt_read_in(struct device *dev, u32 attr, int channel, long *val)
->  			return ret;
->  
->  		n &= SAMPLE_DATA_MSK;
-> +
-> +		/* Voltage can't be negative */
 
-Who says, and what does that mean ? Under which conditions would
-the value be negative, and why would that be a problem / bug ?
-After all, negative voltages do exist.
+Some clients like adreno gpu driver would like to ensure that its gdsc
+is collapsed at hardware during a gpu reset sequence. This is because it
+has a votable gdsc which could be ON due to a vote from another subsystem
+like tz, hyp etc or due to an internal hardware signal. To allow
+this, gpucc driver can expose an interface to the client driver using
+reset framework. Using this the client driver can trigger a polling within
+the gdsc driver.
 
-Guenter
+This series is rebased on top of linus's master branch.
 
-> +		if (PVT_N_CONST * n < PVT_R_CONST) {
-> +			*val = 0;
-> +			return 0;
-> +		}
-> +
->  		/* Convert the N bitstream count into voltage */
->  		*val = pvt->vd[channel].pre_scaler;
->  		*val *= (PVT_N_CONST * n - PVT_R_CONST);
+Related discussion: https://patchwork.freedesktop.org/patch/493144/
+
+Changes in v3:
+- Use pointer to const for "struct qcom_reset_ops" in qcom_reset_map (Krzysztof)
+
+Changes in v2:
+- Return error when a particular custom reset op is not implemented. (Dmitry)
+
+Akhil P Oommen (5):
+  dt-bindings: clk: qcom: Support gpu cx gdsc reset
+  clk: qcom: Allow custom reset ops
+  clk: qcom: gdsc: Add a reset op to poll gdsc collapse
+  clk: qcom: gpucc-sc7280: Add cx collapse reset support
+  arm64: dts: qcom: sc7280: Add Reset support for gpu
+
+ arch/arm64/boot/dts/qcom/sc7280.dtsi          |  3 +++
+ drivers/clk/qcom/gdsc.c                       | 23 +++++++++++++++++++----
+ drivers/clk/qcom/gdsc.h                       |  7 +++++++
+ drivers/clk/qcom/gpucc-sc7280.c               | 10 ++++++++++
+ drivers/clk/qcom/reset.c                      | 27 +++++++++++++++++++++++++++
+ drivers/clk/qcom/reset.h                      |  8 ++++++++
+ include/dt-bindings/clock/qcom,gpucc-sc7280.h |  3 +++
+ 7 files changed, 77 insertions(+), 4 deletions(-)
+
+-- 
+2.7.4
+
