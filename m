@@ -2,83 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4ECCE5986BE
-	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 17:03:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF26F5986B7
+	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 17:03:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343962AbiHRO7o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Aug 2022 10:59:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41480 "EHLO
+        id S1343928AbiHRPAu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Aug 2022 11:00:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343959AbiHRO7M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 10:59:12 -0400
-Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DFEB3D5AE;
-        Thu, 18 Aug 2022 07:58:51 -0700 (PDT)
-Received: by mail-qt1-f179.google.com with SMTP id l5so1286462qtv.4;
-        Thu, 18 Aug 2022 07:58:51 -0700 (PDT)
+        with ESMTP id S1344021AbiHRPAg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 11:00:36 -0400
+Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3105326D8;
+        Thu, 18 Aug 2022 08:00:34 -0700 (PDT)
+Received: by mail-qk1-f181.google.com with SMTP id f14so1312440qkm.0;
+        Thu, 18 Aug 2022 08:00:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=fPoxGBPf5NZE66FQhKWYb3s56+gNdfQUrK1EC5WHaTg=;
-        b=vTjqruJbEUjKzzkzrmLbrucZ925+PMA7buaADNLtUmbboJBwhNuYXwehHpcGAP5DKM
-         rvWm1De3sxong74kvTjOslfHzthqIkAO4lrm74mQ6RvgF5p1kPz20qo6MnSt6q9PvKHM
-         wFp22fOvVP+ytRkTm5g5zWix33PUEtZzzhFeu7pQrcsiJJXUHHkSTNq2pQPyX3hqthC/
-         27Nd2SBTSE8MN2Pt4s35lMiFRYOGpi1Wg5H6QSMRUzVGlbZOrhMUguBseNmh/KvjhplV
-         bRYlJ79zbWruxz/BQsyxH7JhinlXg7eosZwwEpc4bdMxAYhADt1a4+kmkDylK/J36vlO
-         CAZg==
-X-Gm-Message-State: ACgBeo02g33GQUp0l0tNrBS/GtS0Gkra+maQjYxp+uN0SuqbuSX+RwQc
-        HEyfTaWb9AzuJ7HkrkPnEA==
-X-Google-Smtp-Source: AA6agR6nblJYoeb1H2gBXIhyMUJf+lUVbU/lrXRwPfE27ZZOAGg07tCHpKSQCRMpP9h7iUKbmKd9ug==
-X-Received: by 2002:a05:622a:410:b0:33b:72b2:6038 with SMTP id n16-20020a05622a041000b0033b72b26038mr3024805qtx.627.1660834730751;
-        Thu, 18 Aug 2022 07:58:50 -0700 (PDT)
-Received: from robh.at.kernel.org ([2607:fb90:c63:5705:782e:33fb:22e5:50bd])
-        by smtp.gmail.com with ESMTPSA id b22-20020a05620a119600b006b9576cd060sm1614260qkk.21.2022.08.18.07.58.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Aug 2022 07:58:50 -0700 (PDT)
-Received: (nullmailer pid 1859341 invoked by uid 1000);
-        Thu, 18 Aug 2022 14:58:48 -0000
-Date:   Thu, 18 Aug 2022 08:58:48 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Tomasz Figa <tomasz.figa@gmail.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: pinctrl: samsung: stop using
- bindings header with constants
-Message-ID: <20220818145848.GG1829017-robh@kernel.org>
-References: <20220816133016.77553-1-krzysztof.kozlowski@linaro.org>
- <20220816133016.77553-2-krzysztof.kozlowski@linaro.org>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=C69f4QDvaAb9KHdDEuFrDGdZguxo1xk19InMWxRMIz0=;
+        b=SnPs7tHjwmilKKq/1xVr4hC88b7djKcN7QOc68uiEkARQj//KF0UDAAYSOCxD6BTXS
+         xn1sDIij0+y9tX475IzI0Q/X2GIfUuAEF8VGfnui/1xLlm17O9oYSaZ+V3H/poASezJ4
+         rt9CUoSBh4RONn0PJZJt4vIw6mTcdG+Yg5wHajTKsctCVbFvdVdURHMFLkBhbWII8LYw
+         nkRNM0OdwDKqV5qc6Nsxnrtgc97IFvM3Vyl1zOSlmBMIkSraqxa8xVJcDbcNAyGxf9Sp
+         N2i0N0Xc7BG9Mv+AA0eLqcQ7zZSI42O0FmlgUe+/O684dHx+iaWfLYkGu95HcQt2Mzg3
+         9msQ==
+X-Gm-Message-State: ACgBeo0zSM+TpnC2Ud/LyOmInrih/Aa2+mvQY3mNzNPks6XmiUvJzEsV
+        Yf/x+DmkW5/xkBIuU26sH/apXA48EWfZbw==
+X-Google-Smtp-Source: AA6agR4wjx1QvGtwMNEukY/38l2yQhJk/JV6dw6kHuFsrbXUjD1ITzTh1NfSY3uGnUlKE62LijZyfg==
+X-Received: by 2002:a05:620a:2409:b0:6ba:e98f:d2ab with SMTP id d9-20020a05620a240900b006bae98fd2abmr2275036qkn.343.1660834833857;
+        Thu, 18 Aug 2022 08:00:33 -0700 (PDT)
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
+        by smtp.gmail.com with ESMTPSA id q13-20020a37f70d000000b006b629f86244sm1483984qkj.50.2022.08.18.08.00.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 18 Aug 2022 08:00:32 -0700 (PDT)
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-324ec5a9e97so48130407b3.7;
+        Thu, 18 Aug 2022 08:00:32 -0700 (PDT)
+X-Received: by 2002:a81:f47:0:b0:31f:434b:5ee with SMTP id 68-20020a810f47000000b0031f434b05eemr3267925ywp.383.1660834831754;
+ Thu, 18 Aug 2022 08:00:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220816133016.77553-2-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+References: <20220815151451.23293-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20220815151451.23293-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20220815151451.23293-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 18 Aug 2022 17:00:20 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUaketBpEfoSKeSJ4SuYwOTLoqJ_FCp=G8HmVudhv3zWw@mail.gmail.com>
+Message-ID: <CAMuHMdUaketBpEfoSKeSJ4SuYwOTLoqJ_FCp=G8HmVudhv3zWw@mail.gmail.com>
+Subject: Re: [PATCH v2 3/8] dt-bindings: soc: renesas: renesas.yaml: Document
+ Renesas RZ/Five SoC
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Conor Dooley <Conor.Dooley@microchip.com>,
+        Anup Patel <anup@brainfault.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 16, 2022 at 04:30:15PM +0300, Krzysztof Kozlowski wrote:
-> The bindings header with pin controller register values is being
-> deprecated and DTS already switched to a DTS-local header.
-> 
-> Do not reference the bindings header in schema and replace the defines
-> with raw values.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../pinctrl/samsung,pinctrl-pins-cfg.yaml     |  1 -
->  .../bindings/pinctrl/samsung,pinctrl.yaml     | 63 ++++++++-----------
->  2 files changed, 27 insertions(+), 37 deletions(-)
+Hi Prabhakar,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On Mon, Aug 15, 2022 at 5:16 PM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> Document Renesas RZ/Five (R9A07G043) SoC.
+>
+> More info about RZ/Five SoC:
+> https://www.renesas.com/us/en/products/microcontrollers-microprocessors/rz-mpus/rzfive-risc-v-general-purpose-microprocessors-risc-v-cpu-core-andes-ax45mp-single-10-ghz-2ch-gigabit-ethernet
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+
+Thanks for your patch!
+
+> --- a/Documentation/devicetree/bindings/arm/renesas.yaml
+> +++ b/Documentation/devicetree/bindings/arm/renesas.yaml
+> @@ -415,11 +415,12 @@ properties:
+>                - renesas,rzn1d400-db # RZN1D-DB (RZ/N1D Demo Board for the RZ/N1D 400 pins package)
+>            - const: renesas,r9a06g032
+>
+> -      - description: RZ/G2UL (R9A07G043)
+> +      - description: RZ/Five and RZ/G2UL (R9A07G043)
+>          items:
+>            - enum:
+>                - renesas,smarc-evk # SMARC EVK
+>            - enum:
+> +              - renesas,r9a07g043f01 # RZ/Five (RISC-V core)
+
+Should we be consistent, and leave out the "(RISC-V core)" comment,
+or add it everywhere?
+
+Note that several of the SoCs listed in this file have SuperH or
+RealTime ARM cores, so going for the former means a lot of work.
+
+>                - renesas,r9a07g043u11 # RZ/G2UL Type-1
+>                - renesas,r9a07g043u12 # RZ/G2UL Type-2
+>            - const: renesas,r9a07g043
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
