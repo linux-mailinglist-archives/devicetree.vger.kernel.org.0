@@ -2,95 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 373BD598055
-	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 10:51:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BA4559807D
+	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 11:04:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242605AbiHRIvI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Aug 2022 04:51:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55760 "EHLO
+        id S235263AbiHRJDJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Aug 2022 05:03:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238536AbiHRIvH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 04:51:07 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CA5C97D6C
-        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 01:51:06 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id z20so1077941ljq.3
-        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 01:51:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=/Nr3N/b08Wb5kyUSKYi2f2bcPXo4wDB4CPFcW61BR6Q=;
-        b=Awu6jpGv/ga3S4PuL1zX/lnHplckrKSQFNZDgsD8TuvK1SdfIQX6cFZOdkTI5Ezs/X
-         8n3QgGLTaZxsHKJ0ox9Z5WIhIOZU+E03vOTC272gKpDhytLtMGjMiejx1o3eYEdRuMzw
-         vnk1I868bQlXDCAaQCHnpd3VtMjOFQfLzfYg3tqgLYYOVeotIUfSgeyh4HyPVhnL2xm6
-         h9/rBRvyoI7VzZztQgZzTXQGnN5FP/uKQm+ywnZ4alvUAy4hSrjEaqjdrmLuFntxz/Nk
-         zFBqqvYhmrn50pFwxfGgUVicb+CIjXvSv9lHP1vfgOC4OoM3Nd7vM48O92kn1YVsLjzR
-         IWsA==
+        with ESMTP id S230514AbiHRJDI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 05:03:08 -0400
+Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACB6FB07E5;
+        Thu, 18 Aug 2022 02:03:07 -0700 (PDT)
+Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-f2a4c51c45so1074518fac.9;
+        Thu, 18 Aug 2022 02:03:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=/Nr3N/b08Wb5kyUSKYi2f2bcPXo4wDB4CPFcW61BR6Q=;
-        b=mulyJrM4dxa4ApyyvjXbXJO/9voJvP2do3gpuYxnZ//OXKs7237FbDqN6EXzoNCKAp
-         b3T/9f3DcK1Qu/oj7h5A8+1gvVhUwlu2omXLYVQbY3c5qkj4ldVivE5Qk1t3km1kmGsp
-         THUSDacfs/kTePmSY7ZeEPWfgW0OXvp//fHx1E4V1oDYt69oQujWjuEJhTtkSvzo9cwt
-         Z5E8UK2EFIyQanK+vCQpS1gTT0qlRGcpvk7TfYe/TXkRlzhjTtAcFGnlgU61p8WNFhIo
-         x0z1Zdg3yQlxhwOnPBgaazWj6yqiRz7MTNdywBcAnKtoom/aAk/SPuS23XzMDjedbDp9
-         U4xg==
-X-Gm-Message-State: ACgBeo3xyP649BoJDwHOCDZV3Abcxs4s+pbre34HoT/Ng6tqt7yOWf6s
-        0jYbtiYAFX6Ha3KP5p3d4W82lA==
-X-Google-Smtp-Source: AA6agR7SO5DEvt9w9WtDwfHcrHe4gtZ7WURFZ5LMDiLciB2Lbog4FchBeOzpvJdtKtUSJGaekJqhTA==
-X-Received: by 2002:a2e:8092:0:b0:25f:f075:a1b1 with SMTP id i18-20020a2e8092000000b0025ff075a1b1mr549535ljg.23.1660812664914;
-        Thu, 18 Aug 2022 01:51:04 -0700 (PDT)
-Received: from ?IPV6:2001:14bb:ae:539c:53ab:2635:d4f2:d6d5? (d15l54z9nf469l8226z-4.rev.dnainternet.fi. [2001:14bb:ae:539c:53ab:2635:d4f2:d6d5])
-        by smtp.gmail.com with ESMTPSA id h12-20020a19700c000000b0048aef1abb08sm135047lfc.297.2022.08.18.01.51.03
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=ZmOw2Ye6D3rDsXvEq+Hj2UxFw02iY07PBYlER+Z5IJs=;
+        b=Q3Fre+R1RjpfZX4kxBErGHtKC6H8E2ckTe1z2CBeIKwJZL3S5BsLtiQPbQtN3RDCS4
+         TsvoqB23mlWY6TOlC/ypJChNVQI/GcbJ2ejwD7rHYUb7jgZREbfFHHyd2by9RJ3HQwJV
+         bBCL+/0wBSFROazXYBbb/JHVI4cpF9DGH3AcgMEOlyV4cYFtHuLGcPdCzLnmcerwWfxv
+         +AavissL6J8FWnRPFOQ1x5Jb2xCA6S8T5kL+P4p1tt2UtiMsNOd9VNl/2soFZ6hkJpAO
+         mJWvoHpLItsfSX+2ygcAEWHw0t48zsQn4J+zXtgIql3+nrrVMwWCznzGx/zn9B4kUsd1
+         b8ww==
+X-Gm-Message-State: ACgBeo2/oqlHcHSwY2BhG8/5Z0x7RKijJBYPQofDag3AiVTJJQeW89/c
+        giDKD3yzrlZa4p5pgcIZhjFZ5g5neDwvtQ==
+X-Google-Smtp-Source: AA6agR7snnj50rO52+s+YlU9cl70Q6phrgmPr4knQPg5NNXja5M/hr3ABAgrLrkFzslQaNGliwqm3g==
+X-Received: by 2002:a05:6870:5a9:b0:11c:43b:5810 with SMTP id m41-20020a05687005a900b0011c043b5810mr3774158oap.159.1660813386760;
+        Thu, 18 Aug 2022 02:03:06 -0700 (PDT)
+Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com. [209.85.210.50])
+        by smtp.gmail.com with ESMTPSA id el3-20020a056870f68300b00101bc3380a5sm283490oab.12.2022.08.18.02.03.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Aug 2022 01:51:04 -0700 (PDT)
-Message-ID: <d01536e9-9da2-9580-dbb5-07f7ecfabef3@linaro.org>
-Date:   Thu, 18 Aug 2022 11:51:02 +0300
+        Thu, 18 Aug 2022 02:03:06 -0700 (PDT)
+Received: by mail-ot1-f50.google.com with SMTP id v12-20020a9d7d0c000000b00638e210c995so770987otn.13;
+        Thu, 18 Aug 2022 02:03:06 -0700 (PDT)
+X-Received: by 2002:a81:f47:0:b0:31f:434b:5ee with SMTP id 68-20020a810f47000000b0031f434b05eemr1877711ywp.383.1660812973568;
+ Thu, 18 Aug 2022 01:56:13 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH 0/2] gpio: pca9570: add slg7xl45106 support
-Content-Language: en-US
-To:     Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
-        linux-gpio@vger.kernel.org
-Cc:     git-dev@amd.com, mans0n@gorani.run, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        linus.walleij@linaro.org, brgl@bgdev.pl,
-        shubhrajyoti.datta@gmail.com
-References: <20220817085550.18887-1-shubhrajyoti.datta@amd.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220817085550.18887-1-shubhrajyoti.datta@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220801214718.16943-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20220801214718.16943-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20220801214718.16943-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 18 Aug 2022 10:56:01 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXKnve1-KE+GF5YVe3k8w0oQA96P9VAfB9XxVMbuKiN7g@mail.gmail.com>
+Message-ID: <CAMuHMdXKnve1-KE+GF5YVe3k8w0oQA96P9VAfB9XxVMbuKiN7g@mail.gmail.com>
+Subject: Re: [PATCH 1/4] media: dt-bindings: media: Document RZ/G2L CSI-2 block
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/08/2022 11:55, Shubhrajyoti Datta wrote:
-> Add SLG7XL45106 GPO expander support
-> 
+Hi Prabhakar,
 
-Please do not Cc fake/non-existing addresses in your submissions:
+On Mon, Aug 1, 2022 at 11:47 PM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> Document the CSI-2 block which is part of CRU found in Renesas
+> RZ/G2L SoC.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> RFC v2 -> v1
+> * Fixed review comments pointed by Rob and Jacopo.
 
-Your message to svemula-all-with-npw@amd.com couldn't be delivered.
-The group svemula-all-with-npw only accepts messages from people in its
-organization or on its allowed senders list, and your email address
-isn't on the list.
-krzysztof.kozlowski     Office 365      svemula-all-with-npw
-Sender          Action Required
-Sender not allowed
+Thanks for the update!
 
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/renesas,rzg2l-csi2.yaml
+> @@ -0,0 +1,149 @@
 
-Best regards,
-Krzysztof
+> +  resets:
+> +    items:
+> +      - description: CRU_CMN_RSTB reset terminal
+> +
+> +  reset-names:
+> +    const: cmn-rstb
+
+While it doesn't hurt to always have reset-names, you may want to drop
+it, as there is only a single reset.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
