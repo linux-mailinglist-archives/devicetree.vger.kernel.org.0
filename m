@@ -2,119 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A936459835F
-	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 14:46:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E6E359837A
+	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 14:52:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244321AbiHRMqd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Aug 2022 08:46:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55802 "EHLO
+        id S244769AbiHRMvr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Aug 2022 08:51:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40482 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244231AbiHRMqc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 08:46:32 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0BF95A8A5
-        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 05:46:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1660826790;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=/0hgk5ZZHKuX8lnQA8p46Sj63fPkeFC8iuqEyWiwfa0=;
-        b=Pgjm30f+ZrbQDiGa4wdUdFLGPlZtgPLpPJzsufp1NICdbxH/DkB5taBzqdqdqkH2oPcY0w
-        XmKmRbW6gZS4vTR9S0QdTj2uj0eJ59WH/pVNo5PP6rNdRaMFWiza/NO0MfXd10+iRlNezg
-        Lz0ouUwG26ZLpEOo8VY8bTMbGJuVOAQ=
-Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com
- [209.85.216.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-55-7FRBYB7nOtSljNe3UVZ8pA-1; Thu, 18 Aug 2022 08:46:29 -0400
-X-MC-Unique: 7FRBYB7nOtSljNe3UVZ8pA-1
-Received: by mail-pj1-f70.google.com with SMTP id oo12-20020a17090b1c8c00b001faa0b549caso2909734pjb.0
-        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 05:46:29 -0700 (PDT)
+        with ESMTP id S244549AbiHRMvq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 08:51:46 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 771867CA9E
+        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 05:51:45 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id q16so1043976ljp.7
+        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 05:51:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=wAqai+lXG/XM8EttQSkFjFqBGi7USxO4pZCplt3DnME=;
+        b=mVVqXERkdEtMBQvWvwInmEeiAtkRN2jSEfsK/gHOd+N3so+k1Z7TEAWpWI0w6pSX2K
+         zkAohq61XTRTyDz6+UUGzX1uZOHgp61QPeu9P2Uv6ZsgmiwgTvbWcsAJZW5kgIu5NF8v
+         cLgf3I/sthTuqGVdybqLZ0piop06pn4P6NsEDQXraP1HprX1cXhl0w/sDCOGmQQZ4l0d
+         IrPDp9H0uvZ4sr97AVvQXqdAe7N5FTRA0P8RJw2GiE730oQBt0lCIE3lEfkxjQT+cR4I
+         4r1gCgLB4OmIVEvge7SHdIr0W58W3HuOu+RxYO7V0m5HVFDlCZDzmiXhbFx48pOYE/zN
+         PntA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=/0hgk5ZZHKuX8lnQA8p46Sj63fPkeFC8iuqEyWiwfa0=;
-        b=ThTDtkhbg0vL6KwzcQYIzo7zswNrJ9xYpE1YOyiu29Y8TRS5mvn+SmiiS+DZQdy+LQ
-         hDVYKg8a1LqJLWv+PedG6FD0oFhFlHBBx3AG6ej7Kz0uBwL+KpBQ6WuMgojwaVgWQL9E
-         GBie50wxbv2JR0Yg1Xn3AQjwx8+u85V44kaKE+xRy2NwLEGqGehpWHZpRP6tAVfGU6Fa
-         9oVBGMF18ax/Y0G0Zq1fLDoFftOdPQAV4ABPzEzxBMSzu1ocRixVT1ZS/qbUJM1QywMQ
-         t+bESJZofcgY6lWYp09P7z64XFdZSsKksgdxe57xnuaBdrbAdRHrYv4aI49fOk9WrWEq
-         AgMg==
-X-Gm-Message-State: ACgBeo1EQl0LNGZnv2p7ddUQsnuoo5ZJpyS7OO+95EaTXiLvy6KsAsjb
-        1pRtoYiAFT6n0Q2mCGpDnOkawgEp9iTjWPTfqXUUtiVTmokQmhZBoRX63OuY0plpcVTIpJsuLvp
-        irXathwNtShxGpekcr9+D2Q==
-X-Received: by 2002:a63:e348:0:b0:41b:444f:ff5f with SMTP id o8-20020a63e348000000b0041b444fff5fmr2274676pgj.333.1660826788625;
-        Thu, 18 Aug 2022 05:46:28 -0700 (PDT)
-X-Google-Smtp-Source: AA6agR6lGnUPcCxmlc8exuoQJXfXctG3A34swT/87OOrV3UStb1MANlk6xi+njtUm5mXcwCVHbDX6w==
-X-Received: by 2002:a63:e348:0:b0:41b:444f:ff5f with SMTP id o8-20020a63e348000000b0041b444fff5fmr2274658pgj.333.1660826788340;
-        Thu, 18 Aug 2022 05:46:28 -0700 (PDT)
-Received: from halaneylaptop ([2600:1700:1ff0:d0e0::1e])
-        by smtp.gmail.com with ESMTPSA id b1-20020a170903228100b001714c36a6e7sm1302339plh.284.2022.08.18.05.46.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Aug 2022 05:46:27 -0700 (PDT)
-Date:   Thu, 18 Aug 2022 07:46:25 -0500
-From:   Andrew Halaney <ahalaney@redhat.com>
-To:     Steev Klimaszewski <steev@kali.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: thinkpad-x13s: Fix firmware location
-Message-ID: <20220818124625.nfwrcostfqxs7ym5@halaneylaptop>
-References: <20220817231236.3971-1-steev@kali.org>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=wAqai+lXG/XM8EttQSkFjFqBGi7USxO4pZCplt3DnME=;
+        b=Kh9g4+0v+hYTCHlDKRvKMTmAJGsSGSZZt8jASILH8eA6zExmRT9ZMIXSlskD4ZezPA
+         HHqFLuXu7rrqUlyjTe5FCJDXm7uXizrW4oZM+9acVxNQwKK8qjEKs3n1Nrr63Z3Dw9yf
+         ux2nwyhv+Yi+YFTFb80lkKJ9WdnoL1GCD6I2sFofFtBvX1dmyYTnlJkLBU8BU7io2+w7
+         ix+i4cmUkXWps4rhl7wwgBFmroZp/Od3deNur3Lwmc6woVklXiwHeB2nljmGEE80dPvr
+         SnUR/Hil1hgvznFO9z/B8BuXPvaUbFDanSa8OKx/Atcpqy7em75kiNQCWcQk0WIJWhAv
+         ogrQ==
+X-Gm-Message-State: ACgBeo0TwrXQc9UJjuFe403csF8knG34XS6PJkeozAHuybB1HcgDieXo
+        nGembUZSDGttpanLyD9oNEOVZw==
+X-Google-Smtp-Source: AA6agR7nEPbqE+6xr6o+AFM2JxbiRFCsOLtcOWcSBgLsZS5/v6lBOfAfGh51i5XsjzugZinmU4Fksg==
+X-Received: by 2002:a2e:9acd:0:b0:261:6fd6:cc with SMTP id p13-20020a2e9acd000000b002616fd600ccmr830228ljj.55.1660827103843;
+        Thu, 18 Aug 2022 05:51:43 -0700 (PDT)
+Received: from ?IPV6:2001:14bb:ae:539c:53ab:2635:d4f2:d6d5? (d15l54z9nf469l8226z-4.rev.dnainternet.fi. [2001:14bb:ae:539c:53ab:2635:d4f2:d6d5])
+        by smtp.gmail.com with ESMTPSA id i19-20020a2ea233000000b0025df4aa1e3asm209865ljm.64.2022.08.18.05.51.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 18 Aug 2022 05:51:43 -0700 (PDT)
+Message-ID: <3d91fe87-feed-d083-9eeb-51293aead67a@linaro.org>
+Date:   Thu, 18 Aug 2022 15:51:41 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220817231236.3971-1-steev@kali.org>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH RESEND] dt-bindings: timer: Add compatible for MediaTek
+ MT8188
+Content-Language: en-US
+To:     Johnson Wang <johnson.wang@mediatek.com>,
+        daniel.lezcano@linaro.org, matthias.bgg@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220818124602.20394-1-johnson.wang@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220818124602.20394-1-johnson.wang@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 17, 2022 at 06:12:36PM -0500, Steev Klimaszewski wrote:
-> The firmware for the Lenovo Thinkpad X13s has been submitted, accepted
-> and merged upstream, so update to the correct path.
+On 18/08/2022 15:46, Johnson Wang wrote:
+> Add dt-binding documentation of timer for MediaTek MT8188 SoC
+> platform.
 > 
-> Signed-off-by: Steev Klimaszewski <steev@kali.org>
-
-Matches what I see in linux-firmware! Thanks Steev.
-
-Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
-
+> Signed-off-by: Johnson Wang <johnson.wang@mediatek.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+>  Documentation/devicetree/bindings/timer/mediatek,mtk-timer.txt | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> index 84dc92dda0b8..e07cc9d1ff27 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> @@ -235,13 +235,13 @@ keyboard@68 {
->  };
->  
->  &remoteproc_adsp {
-> -	firmware-name = "qcom/sc8280xp/qcadsp8280.mbn";
-> +	firmware-name = "qcom/LENOVO/21BX/qcadsp8280.mbn";
->  
->  	status = "okay";
->  };
->  
->  &remoteproc_nsp0 {
-> -	firmware-name = "qcom/sc8280xp/qccdsp8280.mbn";
-> +	firmware-name = "qcom/LENOVO/21BX/qccdsp8280.mbn";
->  
->  	status = "okay";
->  };
-> -- 
-> 2.34.1
-> 
+> diff --git a/Documentation/devicetree/bindings/timer/mediatek,mtk-timer.txt b/Documentation/devicetree/bindings/timer/mediatek,mtk-timer.txt
+> index f1c848af91d3..8bbb6e94508b 100644
+> --- a/Documentation/devicetree/bindings/timer/mediatek,mtk-timer.txt
+> +++ b/Documentation/devicetree/bindings/timer/mediatek,mtk-timer.txt
+> @@ -25,6 +25,7 @@ Required properties:
+>  	For those SoCs that use SYST
+>  	* "mediatek,mt8183-timer" for MT8183 compatible timers (SYST)
+>  	* "mediatek,mt8186-timer" for MT8186 compatible timers (SYST)
+> +	* "mediatek,mt8188-timer" for MT8188 compatible timers (SYST)
 
+Where is the driver change implementing this?
+
+Best regards,
+Krzysztof
