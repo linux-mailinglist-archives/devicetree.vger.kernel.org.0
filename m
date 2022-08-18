@@ -2,85 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C005C598059
-	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 10:51:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 373BD598055
+	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 10:51:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238536AbiHRIvN convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 18 Aug 2022 04:51:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55810 "EHLO
+        id S242605AbiHRIvI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Aug 2022 04:51:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242666AbiHRIvM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 04:51:12 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FBC8B0288
-        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 01:51:11 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1oObEu-0000wW-8J; Thu, 18 Aug 2022 10:50:56 +0200
-Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1oObEs-000Teu-1b; Thu, 18 Aug 2022 10:50:54 +0200
-Received: from pza by lupine with local (Exim 4.94.2)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1oObEr-0002qn-Co; Thu, 18 Aug 2022 10:50:53 +0200
-Message-ID: <ddbcd90419e9bb4ce7c5b7b3055ee3227c179321.camel@pengutronix.de>
-Subject: Re: [PATCH v3 1/6] reset: imx7: Add the iMX8MP PCIe PHY PERST
- support
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Richard Zhu <hongxing.zhu@nxp.com>, l.stach@pengutronix.de,
-        bhelgaas@google.com, lorenzo.pieralisi@arm.com, robh@kernel.org,
-        shawnguo@kernel.org, vkoul@kernel.org,
-        alexander.stein@ew.tq-group.com, marex@denx.de
-Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
-        linux-imx@nxp.com
-Date:   Thu, 18 Aug 2022 10:50:53 +0200
-In-Reply-To: <1660806153-29001-2-git-send-email-hongxing.zhu@nxp.com>
-References: <1660806153-29001-1-git-send-email-hongxing.zhu@nxp.com>
-         <1660806153-29001-2-git-send-email-hongxing.zhu@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.38.3-1 
+        with ESMTP id S238536AbiHRIvH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 04:51:07 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CA5C97D6C
+        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 01:51:06 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id z20so1077941ljq.3
+        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 01:51:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=/Nr3N/b08Wb5kyUSKYi2f2bcPXo4wDB4CPFcW61BR6Q=;
+        b=Awu6jpGv/ga3S4PuL1zX/lnHplckrKSQFNZDgsD8TuvK1SdfIQX6cFZOdkTI5Ezs/X
+         8n3QgGLTaZxsHKJ0ox9Z5WIhIOZU+E03vOTC272gKpDhytLtMGjMiejx1o3eYEdRuMzw
+         vnk1I868bQlXDCAaQCHnpd3VtMjOFQfLzfYg3tqgLYYOVeotIUfSgeyh4HyPVhnL2xm6
+         h9/rBRvyoI7VzZztQgZzTXQGnN5FP/uKQm+ywnZ4alvUAy4hSrjEaqjdrmLuFntxz/Nk
+         zFBqqvYhmrn50pFwxfGgUVicb+CIjXvSv9lHP1vfgOC4OoM3Nd7vM48O92kn1YVsLjzR
+         IWsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=/Nr3N/b08Wb5kyUSKYi2f2bcPXo4wDB4CPFcW61BR6Q=;
+        b=mulyJrM4dxa4ApyyvjXbXJO/9voJvP2do3gpuYxnZ//OXKs7237FbDqN6EXzoNCKAp
+         b3T/9f3DcK1Qu/oj7h5A8+1gvVhUwlu2omXLYVQbY3c5qkj4ldVivE5Qk1t3km1kmGsp
+         THUSDacfs/kTePmSY7ZeEPWfgW0OXvp//fHx1E4V1oDYt69oQujWjuEJhTtkSvzo9cwt
+         Z5E8UK2EFIyQanK+vCQpS1gTT0qlRGcpvk7TfYe/TXkRlzhjTtAcFGnlgU61p8WNFhIo
+         x0z1Zdg3yQlxhwOnPBgaazWj6yqiRz7MTNdywBcAnKtoom/aAk/SPuS23XzMDjedbDp9
+         U4xg==
+X-Gm-Message-State: ACgBeo3xyP649BoJDwHOCDZV3Abcxs4s+pbre34HoT/Ng6tqt7yOWf6s
+        0jYbtiYAFX6Ha3KP5p3d4W82lA==
+X-Google-Smtp-Source: AA6agR7SO5DEvt9w9WtDwfHcrHe4gtZ7WURFZ5LMDiLciB2Lbog4FchBeOzpvJdtKtUSJGaekJqhTA==
+X-Received: by 2002:a2e:8092:0:b0:25f:f075:a1b1 with SMTP id i18-20020a2e8092000000b0025ff075a1b1mr549535ljg.23.1660812664914;
+        Thu, 18 Aug 2022 01:51:04 -0700 (PDT)
+Received: from ?IPV6:2001:14bb:ae:539c:53ab:2635:d4f2:d6d5? (d15l54z9nf469l8226z-4.rev.dnainternet.fi. [2001:14bb:ae:539c:53ab:2635:d4f2:d6d5])
+        by smtp.gmail.com with ESMTPSA id h12-20020a19700c000000b0048aef1abb08sm135047lfc.297.2022.08.18.01.51.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 18 Aug 2022 01:51:04 -0700 (PDT)
+Message-ID: <d01536e9-9da2-9580-dbb5-07f7ecfabef3@linaro.org>
+Date:   Thu, 18 Aug 2022 11:51:02 +0300
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH 0/2] gpio: pca9570: add slg7xl45106 support
+Content-Language: en-US
+To:     Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
+        linux-gpio@vger.kernel.org
+Cc:     git-dev@amd.com, mans0n@gorani.run, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        linus.walleij@linaro.org, brgl@bgdev.pl,
+        shubhrajyoti.datta@gmail.com
+References: <20220817085550.18887-1-shubhrajyoti.datta@amd.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220817085550.18887-1-shubhrajyoti.datta@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Richard,
-
-On Do, 2022-08-18 at 15:02 +0800, Richard Zhu wrote:
-> On i.MX7/iMX8MM/iMX8MQ, the initialized default value of PERST bit(BIT3)
-> of SRC_PCIEPHY_RCR is 1b'1.
-> But i.MX8MP has one inversed default value 1b'0 of PERST bit.
+On 17/08/2022 11:55, Shubhrajyoti Datta wrote:
+> Add SLG7XL45106 GPO expander support
 > 
-> And the PERST bit should be kept 1b'1 after power and clocks are stable.
-> So add the i.MX8MP PCIe PHY PERST support here.
 
-the description is good now. It would be nice if this could also be
-mentioned in the Reference Manual.
+Please do not Cc fake/non-existing addresses in your submissions:
 
-Please replace "add" with "fix" in the subject, as I requested earlier:
-"reset: imx7: Fix i.MX8MP PCIe PHY PERST support".
+Your message to svemula-all-with-npw@amd.com couldn't be delivered.
+The group svemula-all-with-npw only accepts messages from people in its
+organization or on its allowed senders list, and your email address
+isn't on the list.
+krzysztof.kozlowski     Office 365      svemula-all-with-npw
+Sender          Action Required
+Sender not allowed
 
-And add a fixes line:
 
-Fixes: e08672c03981 ("reset: imx7: Add support for i.MX8MP SoC")
-
-With those two changes,
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
-
-regards
-Philipp
+Best regards,
+Krzysztof
