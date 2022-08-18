@@ -2,294 +2,265 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0849D598517
-	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 16:00:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1663D598530
+	for <lists+devicetree@lfdr.de>; Thu, 18 Aug 2022 16:05:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245536AbiHRN7D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Aug 2022 09:59:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35018 "EHLO
+        id S245583AbiHROEu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Aug 2022 10:04:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245496AbiHRN6k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 09:58:40 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7060A275E1
-        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 06:58:35 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id v7-20020a1cac07000000b003a6062a4f81so2639883wme.1
-        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 06:58:34 -0700 (PDT)
+        with ESMTP id S245618AbiHROEo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 10:04:44 -0400
+Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 700E1647F4
+        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 07:04:37 -0700 (PDT)
+Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-3246910dac3so43203257b3.12
+        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 07:04:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=Gcq/MNox46vkVaOFbJDKt3RUNde615bJ744Z+6gObTw=;
-        b=vibrq/2fUjIPeQmnS8Wbkek4U1KafGvM4qnOqHHMjx4LGO4buuVGkR99I6+2aZ64cd
-         A6RlbZqaJuxcDWYUAo4Bfem+tcPTb3Ujpf9havVi3NF3ce47CEU6kSwzqBLDvEplVOhk
-         8v44EFu5Lwh1pXKCSrbD8jUpRS4s3HpKRCMKYDutEo36/TVLLWTzxSwjON0Yt6bjy6rv
-         x/rONf+/NTsLBvBwrK5F8+XVC1zvvA7O7QJ0zx9Xjc4ZrHDeOFdRlFk0DFnfmMdXTqbm
-         Kg82D8W49a4YEhCwqt/wYS9rtZSUuGgBq+piNOfLosmC92UX8DW83Bnhyr06qRdtUYWf
-         Sciw==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=+kv66vxJ0YAn/r791jElf5y4ZMDzSN2X5TyTuKb96rI=;
+        b=Au0+wmSCKtfaRR52iCMDAqCL12HsLn0096khZpro0Ew0t8wYVhkNmnONrg/gtX4k96
+         KqU6CYvipoE2ICrlq95wJSsHspIK/o59+FhEYt7MQMKWobALXS0x1LsWuzqHMFehUxCi
+         YP0NeqB5JRfRg5J2YPhbH/BLR9DJxpFCLU9HV7RdYVjX9Isft/lBxda118WZbu5BnSMs
+         Kyo6KpXeDbTmZ800Z4BwXZYzPm846I1ECGc4S8aoIBePMG2BUy9mKnT8Ch2JLiY1vxPi
+         Eu0W99CN6+L/UtTpVF6GeCVFx6gVAsBYqO9qS/Ps0Q2eYalNOwaGY1UvjyIB/GF4mKOi
+         r2uA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=Gcq/MNox46vkVaOFbJDKt3RUNde615bJ744Z+6gObTw=;
-        b=z4do+eKNkTRikrAsrOZSoYUtZYB3Emug+B4rKP+bDZjOoZCqG37SW4yfm3AiH1jec/
-         MecKW6eBWh+8ImVF+aJLg8E0C3009SQ3qwEv/FLUn6l2sGBMeoYx/ZWPFxuK5Tyukohc
-         OZNLdd75IDWUSN+8PWmaW342IlAuzrDcw08RIPuXSwhwyYZqSzV9y/RH4bqgyBsZF8QS
-         0Wmznc2kffxz5X0RzRZPwqtzNCLo8mJNF+ktKKTaT4XxuZODHsIDtHUxLD4OhfuxUiB9
-         Z//ABwjcsR/7P+MK0O0DH7jjozVnGtkHdptedSmcJ8fqXYeEBpHFB4tmGQtsRpyBGoY1
-         PH7g==
-X-Gm-Message-State: ACgBeo1+J4N0miqx6aQ0ICcuWNYB4RAf35zxRLxlx9d7mwmbQqTGYQUD
-        zJ+Jy3AlKQbrI3oSER8tKfU4wn1/alyFVA==
-X-Google-Smtp-Source: AA6agR5HZvb+LPA0TRoJ4TB+2kKBbHlhPtSE0eJcSYtCLA+B+YFQ7wuqrn3u92SMEyiK36J/aC0aiA==
-X-Received: by 2002:a05:600c:358f:b0:3a6:145:3500 with SMTP id p15-20020a05600c358f00b003a601453500mr2090836wmq.64.1660831113185;
-        Thu, 18 Aug 2022 06:58:33 -0700 (PDT)
-Received: from srini-hackbox.lan (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
-        by smtp.gmail.com with ESMTPSA id l24-20020a1c7918000000b003a5ca627333sm5335937wme.8.2022.08.18.06.58.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Aug 2022 06:58:32 -0700 (PDT)
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To:     broonie@kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        perex@perex.cz, tiwai@suse.com,
-        pierre-louis.bossart@linux.intel.com,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH 3/3] ASoC: qcom: add machine driver for sc8280xp
-Date:   Thu, 18 Aug 2022 14:58:17 +0100
-Message-Id: <20220818135817.10142-4-srinivas.kandagatla@linaro.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20220818135817.10142-1-srinivas.kandagatla@linaro.org>
-References: <20220818135817.10142-1-srinivas.kandagatla@linaro.org>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=+kv66vxJ0YAn/r791jElf5y4ZMDzSN2X5TyTuKb96rI=;
+        b=XRPkjZ2Ie8X+iv/pSaoEL51QRu6PgXjQlaSCWfy1KyCIQnyBnDo1f47ySLDWn2ganJ
+         uvnqAgQaDLR7NklLnz1z+ugD1sIsKIHhHy8sk1aIFaA1+SNuQ7y3+wfPah7Vf4Snn5FD
+         +xhioypZ6OPSVuBiS30B+YjSIujuMxJVPVoZSDmPdj0OEMvqfshGYKAEtMswzrvVhRzZ
+         TeOrxKSrSFzTFgl/vsKrvM0JuWFPU9t+5I86JTlGv/4PetAN8X4vqzkh0ldk7LwIZxRl
+         vIrW8ScQpM9ZVmabgIpAnFUUu42uA10EdmQZnUEbp3atz5kLjoykyh7QqhLaj8y4pTjw
+         FSLw==
+X-Gm-Message-State: ACgBeo1sAHwmKv9adsUOciCwhV/NkKTv7vX4x/MEaN7Bn+uFdjqk0QWp
+        r+PBTzL+1fLl7XvVdneN4sNoHvTEB/suUgJsFeAudA==
+X-Google-Smtp-Source: AA6agR7q18DufKU0IAifoEXyfBzC9Ih5o9isetdzMCKDhC+zW7uCM8Mj8lYx0qEqPIvSPiHSqmk3+VqMyDhz+qXZCw4=
+X-Received: by 2002:a25:4986:0:b0:67b:c97f:6975 with SMTP id
+ w128-20020a254986000000b0067bc97f6975mr2745146yba.520.1660831476550; Thu, 18
+ Aug 2022 07:04:36 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220817080757.352021-1-bchihi@baylibre.com> <20220817080757.352021-3-bchihi@baylibre.com>
+ <18164de9-ad28-939c-a802-69647fc65a37@linaro.org>
+In-Reply-To: <18164de9-ad28-939c-a802-69647fc65a37@linaro.org>
+From:   Balsam CHIHI <bchihi@baylibre.com>
+Date:   Thu, 18 Aug 2022 16:04:00 +0200
+Message-ID: <CAGuA+op3tFL6M=H2rzAB4DJn+7ve4W5vUuRc+zBrq7zQY2CX7w@mail.gmail.com>
+Subject: Re: [PATCH v9,2/7] dt-bindings: thermal: Add dt-binding document for
+ LVTS thermal controllers
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     rafael@kernel.org, rui.zhang@intel.com, daniel.lezcano@linaro.org,
+        amitk@kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, khilman@baylibre.com,
+        mka@chromium.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        matthias.bgg@gmail.com, p.zabel@pengutronix.de,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, james.lo@mediatek.com,
+        fan.chen@mediatek.com, louis.yu@mediatek.com,
+        rex-bc.chen@mediatek.com, abailon@baylibre.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add machine driver for sc8280xp SoC.
+Hi Krzysztof,
 
-This intial supports only includes WSA883x Speakers and WCD938x based headset.
+Thank you for the reviews.
+Would you please explain the meaning of "Rebase your patchset on
+decent kernel tree. You seem to use something a bit old"?
+It is rebased on top of linux-6.0.0-rc1.
+Am I missing something?
 
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
----
- sound/soc/qcom/Kconfig    |  11 +++
- sound/soc/qcom/Makefile   |   2 +
- sound/soc/qcom/sc8280xp.c | 157 ++++++++++++++++++++++++++++++++++++++
- 3 files changed, 170 insertions(+)
- create mode 100644 sound/soc/qcom/sc8280xp.c
+Best regards,
+Balsam
 
-diff --git a/sound/soc/qcom/Kconfig b/sound/soc/qcom/Kconfig
-index 750653404ba3..d0e59e07b1fc 100644
---- a/sound/soc/qcom/Kconfig
-+++ b/sound/soc/qcom/Kconfig
-@@ -173,6 +173,17 @@ config SND_SOC_SM8250
- 	  SM8250 SoC-based systems.
- 	  Say Y if you want to use audio device on this SoCs.
- 
-+config SND_SOC_SC8280XP
-+	tristate "SoC Machine driver for SC8280XP boards"
-+	depends on QCOM_APR && SOUNDWIRE
-+	depends on COMMON_CLK
-+	select SND_SOC_QDSP6
-+	select SND_SOC_QCOM_COMMON
-+	help
-+	  To add support for audio on Qualcomm Technologies Inc.
-+	  SC8280XP SoC-based systems.
-+	  Say Y if you want to use audio device on this SoCs.
-+
- config SND_SOC_SC7180
- 	tristate "SoC Machine driver for SC7180 boards"
- 	depends on I2C && GPIOLIB
-diff --git a/sound/soc/qcom/Makefile b/sound/soc/qcom/Makefile
-index 8b7b876899a8..8b97172cf990 100644
---- a/sound/soc/qcom/Makefile
-+++ b/sound/soc/qcom/Makefile
-@@ -26,6 +26,7 @@ snd-soc-sc7180-objs := sc7180.o
- snd-soc-sc7280-objs := sc7280.o
- snd-soc-sdm845-objs := sdm845.o
- snd-soc-sm8250-objs := sm8250.o
-+snd-soc-sc8280xp-objs := sc8280xp.o
- snd-soc-qcom-common-objs := common.o
- 
- obj-$(CONFIG_SND_SOC_STORM) += snd-soc-storm.o
-@@ -33,6 +34,7 @@ obj-$(CONFIG_SND_SOC_APQ8016_SBC) += snd-soc-apq8016-sbc.o
- obj-$(CONFIG_SND_SOC_MSM8996) += snd-soc-apq8096.o
- obj-$(CONFIG_SND_SOC_SC7180) += snd-soc-sc7180.o
- obj-$(CONFIG_SND_SOC_SC7280) += snd-soc-sc7280.o
-+obj-$(CONFIG_SND_SOC_SC8280XP) += snd-soc-sc8280xp.o
- obj-$(CONFIG_SND_SOC_SDM845) += snd-soc-sdm845.o
- obj-$(CONFIG_SND_SOC_SM8250) += snd-soc-sm8250.o
- obj-$(CONFIG_SND_SOC_QCOM_COMMON) += snd-soc-qcom-common.o
-diff --git a/sound/soc/qcom/sc8280xp.c b/sound/soc/qcom/sc8280xp.c
-new file mode 100644
-index 000000000000..ade44ad7c585
---- /dev/null
-+++ b/sound/soc/qcom/sc8280xp.c
-@@ -0,0 +1,157 @@
-+// SPDX-License-Identifier: GPL-2.0
-+// Copyright (c) 2022, Linaro Limited
-+
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/of_device.h>
-+#include <sound/soc.h>
-+#include <sound/soc-dapm.h>
-+#include <sound/pcm.h>
-+#include <linux/soundwire/sdw.h>
-+#include <sound/jack.h>
-+#include <linux/input-event-codes.h>
-+#include "qdsp6/q6afe.h"
-+#include "common.h"
-+
-+#define DRIVER_NAME		"sc8280xp"
-+
-+struct sc8280xp_snd_data {
-+	bool stream_prepared[AFE_PORT_MAX];
-+	struct snd_soc_card *card;
-+	struct sdw_stream_runtime *sruntime[AFE_PORT_MAX];
-+	struct snd_soc_jack jack;
-+	bool jack_setup;
-+};
-+
-+static int sc8280xp_snd_init(struct snd_soc_pcm_runtime *rtd)
-+{
-+	struct sc8280xp_snd_data *data = snd_soc_card_get_drvdata(rtd->card);
-+
-+	return qcom_snd_wcd_jack_setup(rtd, &data->jack, &data->jack_setup);
-+}
-+
-+static int sc8280xp_be_hw_params_fixup(struct snd_soc_pcm_runtime *rtd,
-+				     struct snd_pcm_hw_params *params)
-+{
-+	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(rtd, 0);
-+	struct snd_interval *rate = hw_param_interval(params,
-+					SNDRV_PCM_HW_PARAM_RATE);
-+	struct snd_interval *channels = hw_param_interval(params,
-+					SNDRV_PCM_HW_PARAM_CHANNELS);
-+
-+	rate->min = rate->max = 48000;
-+	channels->min = 2;
-+	channels->max = 2;
-+	switch (cpu_dai->id) {
-+	case TX_CODEC_DMA_TX_0:
-+	case TX_CODEC_DMA_TX_1:
-+	case TX_CODEC_DMA_TX_2:
-+	case TX_CODEC_DMA_TX_3:
-+		channels->min = 1;
-+		break;
-+	default:
-+		break;
-+	}
-+
-+
-+	return 0;
-+}
-+
-+static int sc8280xp_snd_hw_params(struct snd_pcm_substream *substream,
-+				struct snd_pcm_hw_params *params)
-+{
-+	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-+	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(rtd, 0);
-+	struct sc8280xp_snd_data *pdata = snd_soc_card_get_drvdata(rtd->card);
-+
-+	return qcom_snd_sdw_hw_params(substream, params, &pdata->sruntime[cpu_dai->id]);
-+}
-+
-+static int sc8280xp_snd_prepare(struct snd_pcm_substream *substream)
-+{
-+	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-+	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(rtd, 0);
-+	struct sc8280xp_snd_data *data = snd_soc_card_get_drvdata(rtd->card);
-+	struct sdw_stream_runtime *sruntime = data->sruntime[cpu_dai->id];
-+
-+	return qcom_snd_sdw_prepare(substream, sruntime,
-+				    &data->stream_prepared[cpu_dai->id]);
-+}
-+
-+static int sc8280xp_snd_hw_free(struct snd_pcm_substream *substream)
-+{
-+	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-+	struct sc8280xp_snd_data *data = snd_soc_card_get_drvdata(rtd->card);
-+	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(rtd, 0);
-+	struct sdw_stream_runtime *sruntime = data->sruntime[cpu_dai->id];
-+
-+	return qcom_snd_sdw_hw_free(substream, sruntime,
-+				    &data->stream_prepared[cpu_dai->id]);
-+}
-+
-+static const struct snd_soc_ops sc8280xp_be_ops = {
-+	.hw_params = sc8280xp_snd_hw_params,
-+	.hw_free = sc8280xp_snd_hw_free,
-+	.prepare = sc8280xp_snd_prepare,
-+};
-+
-+static void sc8280xp_add_be_ops(struct snd_soc_card *card)
-+{
-+	struct snd_soc_dai_link *link;
-+	int i;
-+
-+	for_each_card_prelinks(card, i, link) {
-+		if (link->no_pcm == 1) {
-+			link->init = sc8280xp_snd_init;
-+			link->be_hw_params_fixup = sc8280xp_be_hw_params_fixup;
-+			link->ops = &sc8280xp_be_ops;
-+		}
-+	}
-+}
-+
-+static int sc8280xp_platform_probe(struct platform_device *pdev)
-+{
-+	struct snd_soc_card *card;
-+	struct sc8280xp_snd_data *data;
-+	struct device *dev = &pdev->dev;
-+	int ret;
-+
-+	card = devm_kzalloc(dev, sizeof(*card), GFP_KERNEL);
-+	if (!card)
-+		return -ENOMEM;
-+	card->owner = THIS_MODULE;
-+	/* Allocate the private data */
-+	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-+	if (!data)
-+		return -ENOMEM;
-+
-+	card->dev = dev;
-+	dev_set_drvdata(dev, card);
-+	snd_soc_card_set_drvdata(card, data);
-+	ret = qcom_snd_parse_of(card);
-+	if (ret)
-+		return ret;
-+
-+	card->driver_name = DRIVER_NAME;
-+	sc8280xp_add_be_ops(card);
-+	return devm_snd_soc_register_card(dev, card);
-+}
-+
-+static const struct of_device_id snd_sc8280xp_dt_match[] = {
-+	{.compatible = "qcom,sc8280xp-sndcard",},
-+	{}
-+};
-+
-+MODULE_DEVICE_TABLE(of, snd_sc8280xp_dt_match);
-+
-+static struct platform_driver snd_sc8280xp_driver = {
-+	.probe  = sc8280xp_platform_probe,
-+	.driver = {
-+		.name = "snd-sc8280xp",
-+		.of_match_table = snd_sc8280xp_dt_match,
-+	},
-+};
-+module_platform_driver(snd_sc8280xp_driver);
-+MODULE_AUTHOR("Srinivas Kandagatla <srinivas.kandagatla@linaro.org");
-+MODULE_DESCRIPTION("SC8280XP ASoC Machine Driver");
-+MODULE_LICENSE("GPL v2");
--- 
-2.21.0
-
+On Thu, Aug 18, 2022 at 3:48 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 17/08/2022 11:07, bchihi@baylibre.com wrote:
+> > From: Alexandre Bailon <abailon@baylibre.com>
+> >
+> > Add dt-binding document for mt8192 and mt8195 LVTS thermal controllers.
+>
+> Rebase your patchset on decent kernel tree. You seem to use something a
+> bit old.
+>
+> >
+> > Signed-off-by: Alexandre Bailon <abailon@baylibre.com>
+> > Co-developed-by: Balsam CHIHI <bchihi@baylibre.com>
+> > Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
+> > ---
+> >  .../thermal/mediatek,lvts-thermal.yaml        | 152 ++++++++++++++++++
+> >  1 file changed, 152 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml b/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
+> > new file mode 100644
+> > index 000000000000..31d9e220513a
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
+> > @@ -0,0 +1,152 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/thermal/mediatek,lvts-thermal.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: MediaTek SoC LVTS thermal controller
+> > +
+> > +maintainers:
+> > +  - Yu-Chia Chang <ethan.chang@mediatek.com>
+> > +  - Ben Tseng <ben.tseng@mediatek.com>
+> > +
+> > +description: |
+> > +  LVTS (Low Voltage Thermal Sensor).
+> > +  The architecture will be first used on mt8192 and mt8195.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - mediatek,mt8192-lvts-ap
+> > +      - mediatek,mt8192-lvts-mcu
+> > +      - mediatek,mt8195-lvts-ap
+> > +      - mediatek,mt8195-lvts-mcu
+> > +
+> > +  "#thermal-sensor-cells":
+> > +    const: 1
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +    description: LVTS instance registers.
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +    description: LVTS instance interrupts.
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +    description: LVTS instance clock.
+>
+> Skip all these three descriptions. They are obvious.
+>
+> > +
+> > +  resets:
+> > +    maxItems: 1
+> > +    description: |
+> > +      LVTS instance SW reset for HW AP/MCU domain to clean temporary data
+> > +      on HW initialization/resume.
+> > +
+> > +  nvmem-cells:
+> > +    minItems: 1
+> > +    maxItems: 2
+> > +    description: Calibration efuse data for LVTS
+> > +
+> > +  nvmem-cell-names:
+> > +    minItems: 1
+> > +    maxItems: 2
+> > +    description: Calibration efuse cell names for LVTS
+> > +
+> > +allOf:
+> > +  - $ref: thermal-sensor.yaml#
+> > +
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - mediatek,mt8192-lvts-ap
+> > +              - mediatek,mt8192-lvts-mcu
+> > +    then:
+> > +      properties:
+> > +        nvmem-cells:
+> > +          items:
+> > +            - description: Calibration efuse data for LVTS
+> > +
+> > +        nvmem-cell-names:
+> > +          items:
+> > +            - const: lvts_calib_data1
+> > +
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - mediatek,mt8195-lvts-ap
+> > +              - mediatek,mt8195-lvts-mcu
+> > +    then:
+> > +      properties:
+> > +        nvmem-cells:
+> > +          items:
+> > +            - description: Calibration efuse data 1 for LVTS
+> > +            - description: Calibration efuse data 2 for LVTS
+> > +
+> > +        nvmem-cell-names:
+> > +          items:
+> > +            - const: lvts_calib_data1
+> > +            - const: lvts_calib_data2
+> > +
+> > +required:
+> > +  - compatible
+> > +  - '#thermal-sensor-cells'
+>
+> Use consistent quotes: either ' or "
+>
+> > +  - reg
+> > +  - interrupts
+> > +  - clocks
+> > +  - resets
+> > +  - nvmem-cells
+> > +  - nvmem-cell-names
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +    #include <dt-bindings/clock/mt8192-clk.h>
+> > +    #include <dt-bindings/reset/mt8192-resets.h>
+> > +
+> > +    soc {
+> > +      #address-cells = <2>;
+> > +      #size-cells = <2>;
+> > +
+> > +      lvts_ap: thermal-sensor@1100b000 {
+> > +        compatible = "mediatek,mt8192-lvts-ap";
+> > +        #thermal-sensor-cells = <1>;
+> > +        reg = <0 0x1100b000 0 0x1000>;
+>
+> Convention is: compatible, then reg, then the rest of properties
+>
+> > +        interrupts = <GIC_SPI 169 IRQ_TYPE_LEVEL_HIGH 0>;
+> > +        clocks = <&infracfg CLK_INFRA_THERM>;
+> > +        resets = <&infracfg MT8192_INFRA_RST0_THERM_CTRL_SWRST>;
+> > +        nvmem-cells = <&lvts_e_data1>;
+> > +        nvmem-cell-names = "lvts_calib_data1";
+> > +      };
+> > +
+> > +      lvts_mcu: thermal-sensor@11278000 {
+> > +        compatible = "mediatek,mt8192-lvts-mcu";
+> > +        #thermal-sensor-cells = <1>;
+> > +        reg = <0 0x11278000 0 0x1000>;
+> > +        interrupts = <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH 0>;
+> > +        clocks = <&infracfg CLK_INFRA_THERM>;
+> > +        resets = <&infracfg MT8192_INFRA_RST4_THERM_CTRL_MCU_SWRST>;
+> > +        nvmem-cells = <&lvts_e_data1>;
+> > +        nvmem-cell-names = "lvts_calib_data1";
+> > +      };
+> > +    };
+>
+> This part is the same as previous, so just skip it or replace with an
+> example which is different somehow.
+>
+> Best regards,
+> Krzysztof
