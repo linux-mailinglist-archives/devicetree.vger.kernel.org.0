@@ -2,73 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C7E35995DF
-	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 09:21:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6372599608
+	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 09:31:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240049AbiHSHNn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Aug 2022 03:13:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43696 "EHLO
+        id S1346285AbiHSHbn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Aug 2022 03:31:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344799AbiHSHNl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 03:13:41 -0400
-Received: from smtp-fw-6002.amazon.com (smtp-fw-6002.amazon.com [52.95.49.90])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01D212F676;
-        Fri, 19 Aug 2022 00:13:39 -0700 (PDT)
+        with ESMTP id S241145AbiHSHbl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 03:31:41 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBF48E3C09
+        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 00:31:39 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id n4so4163876wrp.10
+        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 00:31:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1660893221; x=1692429221;
-  h=message-id:date:mime-version:to:cc:references:from:
-   in-reply-to:content-transfer-encoding:subject;
-  bh=IbYBPJ+G32c9+JDgUOIkmcCLLurLRBV2IsJAkpWtx94=;
-  b=QSWojJCmrw/0stNv1wO9Lh/IZjwLuDi9TH2zzIbybDeBd91g4Z/YpgXR
-   nUGLYCgQz9bUi1MENpvJ/vT4Ha/RN/1TDtiRJG/elgCeep5fep8cfCtKC
-   RdM4431bwvudZvF8LBpyc7MPg05bYcIxIUT80NevxXzp5niaMWbnzP2Tf
-   o=;
-X-IronPort-AV: E=Sophos;i="5.93,247,1654560000"; 
-   d="scan'208";a="234849990"
-Subject: Re: [PATCH v2 09/16] hwmon: (mr75203) add VM pre-scalar property for Moortec
- PVT controller
-Received: from iad12-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-iad-1a-b09d0114.us-east-1.amazon.com) ([10.43.8.6])
-  by smtp-border-fw-6002.iad6.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Aug 2022 07:13:29 +0000
-Received: from EX13MTAUWA001.ant.amazon.com (iad12-ws-svc-p26-lb9-vlan3.iad.amazon.com [10.40.163.38])
-        by email-inbound-relay-iad-1a-b09d0114.us-east-1.amazon.com (Postfix) with ESMTPS id AE34781619;
-        Fri, 19 Aug 2022 07:13:26 +0000 (UTC)
-Received: from EX19D013UWA004.ant.amazon.com (10.13.138.207) by
- EX13MTAUWA001.ant.amazon.com (10.43.160.58) with Microsoft SMTP Server (TLS)
- id 15.0.1497.38; Fri, 19 Aug 2022 07:13:26 +0000
-Received: from EX13MTAUWA001.ant.amazon.com (10.43.160.58) by
- EX19D013UWA004.ant.amazon.com (10.13.138.207) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1118.12;
- Fri, 19 Aug 2022 07:13:25 +0000
-Received: from [192.168.95.21] (10.85.143.173) by mail-relay.amazon.com
- (10.43.160.118) with Microsoft SMTP Server id 15.0.1497.38 via Frontend
- Transport; Fri, 19 Aug 2022 07:13:20 +0000
-Message-ID: <2ed7d787-f4ee-55af-5279-b13377ea0ec3@amazon.com>
-Date:   Fri, 19 Aug 2022 10:13:20 +0300
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=RV+ARt4gQhvfrcS7u827ZCv30OBKAwgCr4iLi8/48cU=;
+        b=uPBQyrxzcJRob7in8TPErUSfRm3jOEFuSNQgZupp8+Ej6fHuZgxgNhI7L58GtA/r4q
+         1kUAaFh6sZFr/Lv+8LELzSu7XAh+MbsHbi13EThBfYvbnJqLgnGj6tE0rCGEptfWco8C
+         MisfjK6/VbW6wfA783dRwWjORTSsFkok6kGias/7AYzKYgYir3Rz2uDzdAt4x5PLJ47+
+         u1QDM4t2Iu6tqff52mzhzokQh+79xRvvjosSTd8QGXJrncta5xHxMxgxiRoxCXETnHwp
+         pNhzPnLLPf8MsgNmxQViIFmXB6tN3Y3gHN//f/lN7erANYZrr7IYck/UIt7SNzRfhfy1
+         ryZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=RV+ARt4gQhvfrcS7u827ZCv30OBKAwgCr4iLi8/48cU=;
+        b=voBWcnPx+PNlkRPYUl+48l92D8MCgFr60jdRLYMswhqYoVmA9layopi0PzK5B24Muy
+         fQVUNlIOnbxaRK0yxT6Ug58CkXdXLsp4+0heoGn1Tz9w/0qPeGw6T+igHR/XKJNPIim0
+         YaiTIs6xU/X2rtsObZHNBGaGmetxIJGLk71iLwAX03rmV9+JIq76wy87xg0b2QH/e5bt
+         gN0i6mz+ZENa4dBVaq59aGLrPQzcGXmqDGOleZKxZgQonWH208YA5LZFecQHth04weMk
+         hOf3mlN8ARSLyP06tP29fERWRJk8qIAah4GkawGmIX1f1lhxTSZMmKmrcLxzExLl5bGD
+         1bTQ==
+X-Gm-Message-State: ACgBeo0H2GTkWnbRQQ5tuj1tUycJgwTXf57i7/TJFRGpnuw7XEPb3ZGK
+        GQR1ieRrqkrb0wtikRv1+W+NWg==
+X-Google-Smtp-Source: AA6agR4CGIlqAV6RizwDoxYJFGlwJm1SK13W9rHLu2V5WQfDmh0FysHCD1l7Q3/xJfa5DFO9Az+90A==
+X-Received: by 2002:a05:6000:2cc:b0:21e:e8c1:2704 with SMTP id o12-20020a05600002cc00b0021ee8c12704mr3693424wry.378.1660894298251;
+        Fri, 19 Aug 2022 00:31:38 -0700 (PDT)
+Received: from [192.168.86.238] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
+        by smtp.googlemail.com with ESMTPSA id v8-20020a05600c214800b003a5c244fc13sm8237202wml.2.2022.08.19.00.31.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 19 Aug 2022 00:31:37 -0700 (PDT)
+Message-ID: <1e365b6a-abc0-7745-572e-4bb76ff9a4c8@linaro.org>
+Date:   Fri, 19 Aug 2022 08:31:36 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.1.2
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 3/3] dt-bindings: nvmem: mediatek: efuse: Add support for
+ MT8188
 Content-Language: en-US
-To:     Guenter Roeck <linux@roeck-us.net>
-CC:     <jdelvare@suse.com>, <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <talel@amazon.com>,
-        <hhhawa@amazon.com>, <jonnyc@amazon.com>, <hanochu@amazon.com>,
-        <ronenk@amazon.com>, <itamark@amazon.com>, <shellykz@amazon.com>,
-        <shorer@amazon.com>, <amitlavi@amazon.com>, <almogbs@amazon.com>,
-        <dwmw@amazon.co.uk>, <rtanwar@maxlinear.com>,
-        "Farber, Eliav" <farbere@amazon.com>
-References: <20220817054321.6519-1-farbere@amazon.com>
- <20220817054321.6519-10-farbere@amazon.com>
- <20220818201138.GA3423710@roeck-us.net>
-From:   "Farber, Eliav" <farbere@amazon.com>
-In-Reply-To: <20220818201138.GA3423710@roeck-us.net>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Johnson Wang <johnson.wang@mediatek.com>, matthias.bgg@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220715120114.4243-1-johnson.wang@mediatek.com>
+ <20220715120114.4243-3-johnson.wang@mediatek.com>
+ <8ab34dd4-ca5a-2824-ccbf-867996ac6536@linaro.org>
+ <726ec17f1b8d42f7ec9858a54ee952cb53f03188.camel@mediatek.com>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <726ec17f1b8d42f7ec9858a54ee952cb53f03188.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-11.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_SPF_WL autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,20 +81,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/18/2022 11:11 PM, Guenter Roeck wrote:
-> Is that how such properties are implemented ? Seems to me that
-> results in a lot of decode complexity.
->
-> Why not use an array property like the other properties ?
 
-Each VM has up to 16 inputs and there might be more than one VM.
-Assuming an example of 2 VMs, and channels 5 and 6 in first VM have pre-
-scalar of 2, while channel 2 in the second VM has pre-scalar of 3 and
-channel 11 has pre-scalar of 2, the alternative was to do something like
-this:
-vm-pre-scalar-0=[01 01 01 01 01 02 02 01 01 01 01 01 01 01 01 01];
-vm-pre-scalar-1=[01 01 03 01 01 01 01 01 01 01 01 02 01 01 01 01];
-Most of the inputs are 01, which are anyway the default.
-I don't see a difference in decoding complexity between the different
-approaches but if you prefer this I'll modify my patches.
 
+On 19/08/2022 04:28, Johnson Wang wrote:
+> On Wed, 2022-08-17 at 13:21 +0100, Srinivas Kandagatla wrote:
+>>
+>> On 15/07/2022 13:01, Johnson Wang wrote:
+>>> Add compatible for MT8188 SoC.
+>>>
+>>> Signed-off-by: Johnson Wang <johnson.wang@mediatek.com>
+>>> ---
+>>> This patch is based on "linux-next"[1].
+>>> [1]
+>>> https://urldefense.com/v3/__https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git__;!!CTRNKA9wMg0ARbw!yz8fBHH39-ntsRnAlXZfmS1k9PoKMtITUk-DhcvGQJOJSu9HP70OmFoCYMfvxnjWw4Ql$
+>>>   
+>>> ---
+>>
+>> Applied thanks,
+>>
+>> --srini
+>>>    Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml | 1 +
+>>>    1 file changed, 1 insertion(+)
+>>>
+>>> diff --git
+>>> a/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
+>>> b/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
+>>> index b5a1109f2ee1..75e0a516e59a 100644
+>>> --- a/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
+>>> +++ b/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
+>>> @@ -30,6 +30,7 @@ properties:
+>>>                  - mediatek,mt8173-efuse
+>>>                  - mediatek,mt8183-efuse
+>>>                  - mediatek,mt8186-efuse
+>>> +              - mediatek,mt8188-efuse
+>>>                  - mediatek,mt8192-efuse
+>>>                  - mediatek,mt8195-efuse
+>>>                  - mediatek,mt8516-efuse
+> 
+> Hi Srinivas,
+> 
+> Just a gentle ping on this.
+> It seems that this patch hasn't been applied into [1].
+
+Its applied and pushed now!
+
+--srini
+> 
+> If you have any concern about this patch, please let me know.
+> 
+> Thanks.
+> 
+> [1] git://git.kernel.org/pub/scm/linux/kernel/git/srini/nvmem.git
+
+
+> 
+> BRs,
+> Johnson Wang
+> 
