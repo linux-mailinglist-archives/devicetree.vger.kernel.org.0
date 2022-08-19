@@ -2,83 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86E69599BAD
-	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 14:17:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5A1E599BB1
+	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 14:17:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348061AbiHSME5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Aug 2022 08:04:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56518 "EHLO
+        id S1348681AbiHSMGb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Aug 2022 08:06:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60400 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348094AbiHSME4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 08:04:56 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C9EFEC4EE
-        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 05:04:54 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id n24so2291122ljc.13
-        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 05:04:54 -0700 (PDT)
+        with ESMTP id S1348715AbiHSMG3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 08:06:29 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA44510096F
+        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 05:06:26 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id a9so5827086lfm.12
+        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 05:06:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=AiiavDzYSZGUIztBfno9z4N7pQ7TlVNfOCCAVwE9hcE=;
-        b=fcrPitOJWPMSCaIFodXOuiGjsjZ3YG++th1NSR69d04k4xiIIxW/vAJTIwA0xfCNCh
-         mBrThOoUWZ0bzwd8E0+Y0xg1gbCgKtVeea7xsWTxhXHjBUQ6z6zlUBuyl66T6hgQUEjU
-         UPThXCW2kyIGg/3Fb8NHvKLqHBB3ZA2AkyjtbaS+QG9yjzJtXYi7A3zKXEGfC7dnngEr
-         dVDhfSoKX8zdnCURcP7oNgylvP+Lz5FO6vGUVw5YeHpJ6RzM9FTUUYGrmidcbbHcxD6p
-         QdKB+RjaIH94jw6lG2zwbGhkqY3QUS2IM3kiF62tXgbQ8egLYzhDcNOe6LAO5jWQF0uF
-         y6wA==
+        bh=/Sb3w6Y1BeOgZMrIBk6x8kpTOxRss537p36tvRmvnAg=;
+        b=dH9RyMR3lKC/qZOXxXjEafcK7XBKChilHFvq0LsT4iA780RiPQKoXew3aujRndsSfM
+         9WHc33SEm49OFB78kb/hStFA6mKaEQmQlBw0XJ04mfvWdymVok5fsh1xOFJEHLgvgLPm
+         Yp3uOpwElmcoTR2sh6KeSZ/zf/HMZ3YG2IFsWbexZPGa4OtUlAXXQ2uLt+pJ5vFNB9zm
+         bbB9S8SzHl9EIDkvMetWJVwb4LexM/85N+ZGrEXtUv1PipNEw7aTnQEAwi6PSREWjHh6
+         w99N2AtiTCixlxSc8KvbnhCDiUEtlgSqXHjRkqz0qbINVJgGwrblkZwfXu/5VAqYwKFy
+         JmNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=AiiavDzYSZGUIztBfno9z4N7pQ7TlVNfOCCAVwE9hcE=;
-        b=eEw37TatJGqsF60xqunm+9m+y8e8ybHO6lBhQcV8JIJiPf/dQH92WJTtnazjaLiPuK
-         W8Hqzn7DmK8vhKUAuE7OpOMDgt8GOsFiCKEHm7i09eavLXfO76k58TkRFQ2bVBkZ6wUa
-         pnUUNy/t8RPeE3bvuX+zMWnaN4eQbPRJN/PzmMBiFa9vcxLWxNFNLmm/cagVnldbYBF/
-         Jf1jeLRMSkij4AJV9dlQcQxtU3jMcXXyzMTglIDyXs1qRmm4EJtjj4GyLttQKsZxpfcN
-         dH1xMAiYtJfb9w0hgSXcPLJOL1JYyWra32mLWxzCE7kp6q4kpa3SOHv2MUlL0zjtIXYN
-         fyWw==
-X-Gm-Message-State: ACgBeo3ghdPwwm3C4LsuBazo4e7aN8ic2ACKoTgJt3B2zMFqAp1uGtVi
-        OvwzgpAqi80P9RAjXME5MMgsbw==
-X-Google-Smtp-Source: AA6agR62NsOl6RRwRFqNAw94cpa4kOYCLcjYJwk01j7896M6g6Q2MZGyA4hvWzdOuTvsQf2wGycn+Q==
-X-Received: by 2002:a2e:8484:0:b0:25e:c325:c94f with SMTP id b4-20020a2e8484000000b0025ec325c94fmr2210517ljh.310.1660910692805;
-        Fri, 19 Aug 2022 05:04:52 -0700 (PDT)
+        bh=/Sb3w6Y1BeOgZMrIBk6x8kpTOxRss537p36tvRmvnAg=;
+        b=XRKbgdy0oEeBqQGztTQITG/LSFKJZ4dmLJz4UTiBqTYmbVXaqR1c1H5s6ehNOz0itr
+         GGIY77RoihZb2fOLnHWQz7/XgsoU7+55k6sOa+3Y7BYMaZqF+xQ5laU69Npp2pwLZ0cS
+         DyH8nVLEePFpoO/ZDIW0Z6sf31liIjpmo3ZLjeYEshZkjqXGXjbfCeXRh1grmNbyxTa2
+         SyKoGXG+V5FtRLMom3V4p21V0P8nAkx46qVur8J9loQGRCJu0Kb1l7QFqHRZBK104aPN
+         sE+obi4IhVQjZ3cdYHeVaSaYHZtmdqo5VqU/5zfwo4BO5+20YAanyX+f4tfLMH7bIbwC
+         SU3g==
+X-Gm-Message-State: ACgBeo27iDQ+OHQ79X/4cVJiwvsl7qx6Haz69rYOnvWWF+BTTVJ3bL7s
+        59k88BvJeC8CjYzSrmLlXECohA==
+X-Google-Smtp-Source: AA6agR4UDDM3tfvRJzYG1IzCN1p3rR1zz78x4mZxht+ZjrTuTapl3U/WvyNHyNKsLsCkmdOM4E5jTg==
+X-Received: by 2002:a05:6512:358d:b0:48b:37f:dce2 with SMTP id m13-20020a056512358d00b0048b037fdce2mr2131532lfr.267.1660910784888;
+        Fri, 19 Aug 2022 05:06:24 -0700 (PDT)
 Received: from ?IPV6:2001:14bb:ac:e5a8:ef73:73ed:75b3:8ed5? (d1xw6v77xrs23np8r6z-4.rev.dnainternet.fi. [2001:14bb:ac:e5a8:ef73:73ed:75b3:8ed5])
-        by smtp.gmail.com with ESMTPSA id q5-20020ac25fc5000000b0048b04d494c6sm620337lfg.51.2022.08.19.05.04.51
+        by smtp.gmail.com with ESMTPSA id u24-20020ac258d8000000b00492cebbeefbsm115021lfo.59.2022.08.19.05.06.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 Aug 2022 05:04:52 -0700 (PDT)
-Message-ID: <9d9c2f78-db3e-71aa-2cdd-e2d9aa2b30cf@linaro.org>
-Date:   Fri, 19 Aug 2022 15:04:50 +0300
+        Fri, 19 Aug 2022 05:06:24 -0700 (PDT)
+Message-ID: <0871f3af-cb37-e490-f0b3-88703652b089@linaro.org>
+Date:   Fri, 19 Aug 2022 15:06:22 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH v4 1/3] dt-bindings: net: ti: k3-am654-cpsw-nuss: Update
- bindings for J7200 CPSW5G
+Subject: Re: [PATCH 2/5] dt-bindings: mfd: atmel,at91-usart: convert to
+ json-schema
 Content-Language: en-US
-To:     Siddharth Vadapalli <s-vadapalli@ti.com>,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org, linux@armlinux.org.uk,
-        vladimir.oltean@nxp.com, grygorii.strashko@ti.com, vigneshr@ti.com,
-        nsekhar@ti.com, netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kishon@ti.com
-References: <20220816060139.111934-1-s-vadapalli@ti.com>
- <20220816060139.111934-2-s-vadapalli@ti.com>
- <79e58157-f8f2-6ca8-1aa6-b5cf6c83d9e6@linaro.org>
- <31c3a5b0-17cc-ad7b-6561-5834cac62d3e@ti.com>
- <9c331cdc-e34a-1146-fb83-84c2107b2e2a@linaro.org>
- <176ab999-e274-e22a-97d8-31f655b16800@ti.com>
- <da82e71f-e32c-7adb-250e-0c80cc6e30bd@ti.com>
- <0ca78aad-2145-c88b-a26e-9ababa38df6e@ti.com>
+To:     Sergiu.Moga@microchip.com, lee@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, Nicolas.Ferre@microchip.com,
+        alexandre.belloni@bootlin.com, Claudiu.Beznea@microchip.com,
+        radu_nicolae.pirea@upb.ro, richard.genoud@gmail.com,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        gregkh@linuxfoundation.org, jirislaby@kernel.org,
+        admin@hifiphile.com, Kavyasree.Kotagiri@microchip.com
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-serial@vger.kernel.org
+References: <20220817075517.49575-1-sergiu.moga@microchip.com>
+ <20220817075517.49575-3-sergiu.moga@microchip.com>
+ <c1a98a3e-609e-7783-b1b7-3bb39caa8c65@linaro.org>
+ <ddd8ca9a-1fc1-7d37-07e8-f6f7f4617eef@microchip.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <0ca78aad-2145-c88b-a26e-9ababa38df6e@ti.com>
+In-Reply-To: <ddd8ca9a-1fc1-7d37-07e8-f6f7f4617eef@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,28 +85,133 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/08/2022 13:43, Siddharth Vadapalli wrote:
-
->>>> Anyway the location is not correct. Regardless if this is if-then or
->>>> allOf-if-then, put it just like example schema is suggesting.
+On 19/08/2022 12:25, Sergiu.Moga@microchip.com wrote:
+> On 18.08.2022 11:38, Krzysztof Kozlowski wrote:
+>> On 17/08/2022 10:55, Sergiu Moga wrote:
+>>> Convert at91 USART DT Binding for Atmel/Microchip SoCs to
+>>> json-schema format.
 >>>
->>> I will move the if-then statements to the lines above the
->>> "additionalProperties: false" line. Also, I will add an allOf for this
+>>> Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
+>>> ---
+>>>   .../bindings/mfd/atmel,at91-usart.yaml        | 190 ++++++++++++++++++
+>>>   .../devicetree/bindings/mfd/atmel-usart.txt   |  98 ---------
+>>>   2 files changed, 190 insertions(+), 98 deletions(-)
+>>>   create mode 100644 Documentation/devicetree/bindings/mfd/atmel,at91-usart.yaml
+>>>   delete mode 100644 Documentation/devicetree/bindings/mfd/atmel-usart.txt
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/mfd/atmel,at91-usart.yaml b/Documentation/devicetree/bindings/mfd/atmel,at91-usart.yaml
+>>> new file mode 100644
+>>> index 000000000000..cf15d73fa1e8
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/mfd/atmel,at91-usart.yaml
+>>> @@ -0,0 +1,190 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +# Copyright (C) 2022 Microchip Technology, Inc. and its subsidiaries
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/mfd/atmel,at91-usart.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Atmel Universal Synchronous Asynchronous Receiver/Transmitter (USART)
+>>> +
+>>> +maintainers:
+>>> +  - Richard Genoud <richard.genoud@gmail.com>
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    oneOf:
+>> This looks quite different than bindings and you commit msg is saying it
+>> is only a conversion. Mention any changes against original bindings.
 >>
->> I had a look at the example at [1] and it uses allOf after the
->> "additionalProperties: false" line. Would it be fine then for me to add
->> allOf and the single if-then statement below the "additionalProperties:
->> false" line? Please let me know.
+>>> +      - const: atmel,at91rm9200-usart
+>>> +      - const: atmel,at91sam9260-usart
+>>> +      - const: microchip,sam9x60-usart
+>> That's an enum
 >>
->> [1] -> https://github.com/devicetree-org/dt-schema/blob/mai/test/schemas/conditionals-allof-example.yaml
+>>> +      - items:
+>>> +          - const: atmel,at91rm9200-dbgu
+>>> +          - const: atmel,at91rm9200-usart
+>>> +      - items:
+>>> +          - const: atmel,at91sam9260-dbgu
+>>> +          - const: atmel,at91sam9260-usart
+>>> +      - items:
+>>> +          - const: microchip,sam9x60-dbgu
+>>> +          - const: microchip,sam9x60-usart
+>>> +      - items:
+>>> +          - const: microchip,sam9x60-usart
+>>> +          - const: atmel,at91sam9260-usart
+>> This is not correct - contradicts earlier one.
+>>
+>>> +      - items:
+>>> +          - const: microchip,sam9x60-dbgu
+>>> +          - const: microchip,sam9x60-usart
+>>> +          - const: atmel,at91sam9260-dbgu
+>>> +          - const: atmel,at91sam9260-usart
+>> What? You wrote above that microchip,sam9x60-dbgu is compatible only
+>> with microchip,sam9x60-usart. Now you write it is also compatible with
+>> other ones?
+>>
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  interrupts:
+>>> +    maxItems: 1
+>>> +
+>>> +  clock-names:
+>>> +    contains:
+>>> +      const: usart
+>> No, this has to be specific/fixed list.
+>>
+>>> +
+>>> +  clocks:
+>>> +    minItems: 1
+>>> +    maxItems: 2
+>> Not really - define the items. One item could be optional, though.
+>>
+>>> +
+>>> +  dmas:
+>>> +    items:
+>>> +      - description: TX DMA Channel
+>>> +      - description: RX DMA Channel
+>>> +
+>>> +  dma-names:
+>>> +    items:
+>>> +      - const: tx
+>>> +      - const: rx
+>>> +
+>>> +  atmel,usart-mode:
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +    description: |
+>> No need for |
+>>
+>>> +      Must be either 1 for SPI or 0 for USART.
+>> Mention the header.
+>>
+>>> +    enum: [ 0, 1 ]
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +  - interrupts
+>>> +  - clock-names
+>>> +  - clocks
+>>> +
+>>> +if:
+>> Put it under allOf.
 > 
-> Sorry, the correct link is:
-> https://github.com/devicetree-org/dt-schema/blob/main/test/schemas/conditionals-allof-example.yaml
+> 
+> I missed this in the first read, but what do you mean by under allOf? 
+> The only allOf's in this file are under the then:'s.
+> 
 
-You are referring to tests? I did not suggest that. Please put it in
-place like example schema is suggesting:
-
+It means that "if:" is preferred to be under allOf, just like example
+schema is showing:
 https://elixir.bootlin.com/linux/v5.19/source/Documentation/devicetree/bindings/example-schema.yaml
+
+Not some other allOf, which could be many in your bindings. The one
+allOf in top-level, just like example schema.
+
 
 Best regards,
 Krzysztof
