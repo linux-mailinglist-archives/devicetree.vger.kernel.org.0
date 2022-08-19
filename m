@@ -2,51 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 74DAF59A509
-	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 20:06:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F47859A45B
+	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 20:05:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354875AbiHSRuP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Aug 2022 13:50:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57274 "EHLO
+        id S1350636AbiHSR7s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Aug 2022 13:59:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351301AbiHSRt3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 13:49:29 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6C557C32F;
-        Fri, 19 Aug 2022 10:20:20 -0700 (PDT)
+        with ESMTP id S1349902AbiHSR7Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 13:59:24 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65D95DF41;
+        Fri, 19 Aug 2022 10:46:06 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 6C3AFB82852;
-        Fri, 19 Aug 2022 17:20:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6B2EC433D6;
-        Fri, 19 Aug 2022 17:20:14 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 037786184B;
+        Fri, 19 Aug 2022 17:46:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 610C7C433D6;
+        Fri, 19 Aug 2022 17:46:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1660929618;
-        bh=pqfYAKcyggEoIGvq/LHNLs/YpU/JRraQ9n78keTDpNk=;
+        s=k20201202; t=1660931165;
+        bh=pnoRxmb4SZjZlfuYaUMFVyBKjjD93ZdYQ8Neue15m8E=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=Y2EltIagHroUZbMf+CyAqnokaZoI983lqcAJO3KuyWlHrGajVQ6J5saQ4e/VCY5Bw
-         Bd/3+gzN9heMk2mlUteyp49dHgxtUz0uhkRMJ1NFoYl7j4TfCY8WFZ/dCj7AGEpH6B
-         sLH2QTzOLx6D2xra3Pjrfe21Mxn1xNkAErjaIeTh9jrjcVUJoKc9Tc8AuEdSaA/nw1
-         6YS53b6vd2bpmwSgtbLKJhsKAgaR3tDEHq3iHP66ZNbGjreKktn090wsA5RXJKOFBa
-         KK2UkNmajG0qnFu03YyrmMTWjKmkN5QjjIGJvfFLXArpjZ1E3N/XSNxFjAh1nbLSBB
-         UYsaF+97i+qsg==
-Date:   Fri, 19 Aug 2022 18:30:52 +0100
+        b=uRVTyd4l5ZLWcOrKi+EKkuKe+a5XArPm3PoE01X9sXVuLCYe1oQFAUMWAoE1X88cr
+         o67t7IVRrKQ60RPKyqnvIV9BgGelTRHRg2ocpPf0EjsyB34sPgmKkB5VI+aPNgTmPV
+         fFubmnWsWeT/8H6d4OxwPFi4JVdPfQgFQQwJPeSRaWl9aWoduB/hpkasGM1mXpfF6j
+         M7bDFA5h7YC+4Bb2DvLBbhvkgS6nh3uQu4cmdzZp0JV+uaJek3GRWDB5lZIQ07KXbC
+         skZhy3x46TBjBn61jBuyBXwR4XnbuxTDL12WG42YZyi760jN7JCpSd4D0y2VTYjshW
+         gsZ1POA4ar8rw==
+Date:   Fri, 19 Aug 2022 18:56:40 +0100
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     Robert Marko <robimarko@gmail.com>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org,
-        konrad.dybcio@somainline.org, lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, lars@metafoo.de,
-        sboyd@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH v8 3/5] iio: adc: qcom-spmi-adc5: add ADC5_VREF_VADC to
- rev2 ADC5
-Message-ID: <20220819183052.49cf14e9@jic23-huawei>
-In-Reply-To: <20220818221815.346233-3-robimarko@gmail.com>
-References: <20220818221815.346233-1-robimarko@gmail.com>
-        <20220818221815.346233-3-robimarko@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: iio: Drop Tomislav Denis
+Message-ID: <20220819185640.434b32b5@jic23-huawei>
+In-Reply-To: <20220818145350.GE1829017-robh@kernel.org>
+References: <20220816125401.70317-1-krzysztof.kozlowski@linaro.org>
+        <20220818145350.GE1829017-robh@kernel.org>
 X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -61,37 +59,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 19 Aug 2022 00:18:13 +0200
-Robert Marko <robimarko@gmail.com> wrote:
+On Thu, 18 Aug 2022 08:53:50 -0600
+Rob Herring <robh@kernel.org> wrote:
 
-> Add support for ADC5_VREF_VADC channel to rev2 ADC5 channel list.
-> This channel measures the VADC reference LDO output.
+> On Tue, Aug 16, 2022 at 03:53:59PM +0300, Krzysztof Kozlowski wrote:
+> > Emails to Tomislav Denis bounce ("550 5.1.1 User Unknown").
+> > 
+> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > ---
+> >  Documentation/devicetree/bindings/iio/adc/ti,ads131e08.yaml     | 2 +-
+> >  Documentation/devicetree/bindings/iio/pressure/asc,dlhl60d.yaml | 2 +-
+> >  2 files changed, 2 insertions(+), 2 deletions(-)  
 > 
-> Signed-off-by: Robert Marko <robimarko@gmail.com>
-> Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> Acked-by: Rob Herring <robh@kernel.org>
 
-I've changed my mind on this, mostly because we've reached a new
-cycle and I'd rather not see a v9 series + Lee is (I think)
-keen to only take stuff through MFD if there is a build time
-dependency.
+Series applied to the togreg branch of iio.git.
+There is other stuff in there that needs a 0-day run, so for now pushed
+out as testing.
 
-Applied this patch directly to the togreg branch of iio.git
-and pushed that out as testing for 0-day to play with it.
-> ---
->  drivers/iio/adc/qcom-spmi-adc5.c | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/drivers/iio/adc/qcom-spmi-adc5.c b/drivers/iio/adc/qcom-spmi-adc5.c
-> index e96da2ef1964..821fee60a765 100644
-> --- a/drivers/iio/adc/qcom-spmi-adc5.c
-> +++ b/drivers/iio/adc/qcom-spmi-adc5.c
-> @@ -597,6 +597,8 @@ static const struct adc5_channels adc5_chans_rev2[ADC5_MAX_CHANNEL] = {
->  					SCALE_HW_CALIB_DEFAULT)
->  	[ADC5_1P25VREF]		= ADC5_CHAN_VOLT("vref_1p25", 0,
->  					SCALE_HW_CALIB_DEFAULT)
-> +	[ADC5_VREF_VADC]	= ADC5_CHAN_VOLT("vref_vadc", 0,
-> +					SCALE_HW_CALIB_DEFAULT)
->  	[ADC5_VPH_PWR]		= ADC5_CHAN_VOLT("vph_pwr", 1,
->  					SCALE_HW_CALIB_DEFAULT)
->  	[ADC5_VBAT_SNS]		= ADC5_CHAN_VOLT("vbat_sns", 1,
+Thanks,
 
+Jonathan
