@@ -2,96 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1762C59A567
-	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 20:39:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DEA3159A5DA
+	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 21:04:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349871AbiHSSb0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Aug 2022 14:31:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50744 "EHLO
+        id S1350963AbiHSTBT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Aug 2022 15:01:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349745AbiHSSb0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 14:31:26 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6336C88AD;
-        Fri, 19 Aug 2022 11:31:24 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 613F760ED3;
-        Fri, 19 Aug 2022 18:31:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20ABDC433C1;
-        Fri, 19 Aug 2022 18:31:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1660933883;
-        bh=QuVIEsO5UmTSs0WAutUfIo3fcQXR0O4vobQR36XYVSg=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=cSjeOqirADj4Mc3kI1ZuL8qZNGqPPgBJn9hY2YHPn3SQ1tTyxfIJNOdnsJsL/o5k/
-         Ua/O/sYZA5BSSACK4VYQnbdsrlVlJJvxXxZ8XSlTHSMNdSxueO5WoPN174PHR//gta
-         w3h1uVu45NCg0OMgIGLRaQcfI3XNRABlXxFaH1xehc/X7R9oj5b+n5q9HmX6ogPDgi
-         3zP60Z9aFLZICznzQrSfjkRd++M7wE8qhYd0RVvLPUkycIXDOB4vGU9vHYX1MpqJ87
-         Y/eUIERAJrU09SDuUX2pkBL4pa5ClmKufZeiVTDs1LSKzPMIgWeOmu2ML+0zYmHOqJ
-         9eiva/pJe+7sA==
-Date:   Fri, 19 Aug 2022 19:41:50 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
+        with ESMTP id S1350237AbiHSTBS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 15:01:18 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3232D107ACB;
+        Fri, 19 Aug 2022 12:01:16 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 27JJ10vq063362;
+        Fri, 19 Aug 2022 14:01:00 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1660935660;
+        bh=B0GyyDIv0+db6vwPTHBKUOdCp2QNB9F/EVLw0Np21EQ=;
+        h=From:To:CC:Subject:Date;
+        b=il8DOw1ij+SeYVtbm0pnDGtsvOGb+dpCfXnjuDFp2HrSxKc7u9UXotk2fLgHD01xk
+         1kfxLugUIa7w5Ju/fWSsaCu5zmaGjD29f2B3fy7vjEfMIYrQp1Qz56gzjyYm6WxeFB
+         jFtgXjYHr3bDLJhNNLrS9SPg0yUATx8oYvMatIV8=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 27JJ10wj126787
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 19 Aug 2022 14:01:00 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Fri, 19
+ Aug 2022 14:01:00 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Fri, 19 Aug 2022 14:01:00 -0500
+Received: from LT5CD112GSQZ.ent.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 27JJ0tbH056422;
+        Fri, 19 Aug 2022 14:00:56 -0500
+From:   Apurva Nandan <a-nandan@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lucas Stankus <lucas.p.stankus@gmail.com>,
-        Puranjay Mohan <puranjay12@gmail.com>,
-        Cosmin Tanislav <cosmin.tanislav@analog.com>,
-        Alexandru Tachici <alexandru.tachici@analog.com>,
-        Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
-        Marcus Folkesson <marcus.folkesson@gmail.com>,
-        Kent Gustavsson <kent@minoris.se>,
-        Tomislav Denis <tomislav.denis@avl.com>,
-        Oleksij Rempel <linux@rempel-privat.de>, kernel@pengutronix.de,
-        Antoniu Miclaus <antoniu.miclaus@analog.com>,
-        Ricardo Ribalda <ribalda@kernel.org>,
-        Dragos Bogdan <dragos.bogdan@analog.com>,
-        Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>,
-        Lorenzo Bianconi <lorenzo@kernel.org>,
-        Stefan Popa <stefan.popa@analog.com>,
         Linus Walleij <linus.walleij@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Mike Looijmans <mike.looijmans@topic.nl>,
-        Tomas Melin <tomas.melin@vaisala.com>,
-        Sean Nyekjaer <sean@geanix.com>,
-        Patrick Vasseur <patrick.vasseur@c-s.fr>,
-        Charles-Antoine Couret <charles-antoine.couret@essensium.com>,
-        Vladimir Barinov <vladimir.barinov@cogentembedded.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Philippe Reynes <tremyfr@yahoo.fr>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Akinobu Mita <akinobu.mita@gmail.com>,
-        Alexandru Lazar <alazar@startmail.com>,
-        Oskar Andero <oskar.andero@gmail.com>,
-        =?UTF-8?B?TcOlcnRlbg==?= Lindahl <martenli@axis.com>,
-        Angelo Compagnucci <angelo.compagnucci@gmail.com>,
-        Matt Ranostay <matt.ranostay@konsulko.com>,
-        Andrew Davis <afd@ti.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Phil Reid <preid@electromag.com.au>,
-        Michael Welling <mwelling@ieee.org>,
-        Lukas Wunner <lukas@wunner.de>,
-        Chris Coffey <cmc@babblebit.net>,
-        Slawomir Stepien <sst@poczta.fm>,
-        Sankar Velliangiri <navin@linumiz.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH v3 00/10] dt-bindings: iio: use
- spi-peripheral-props.yaml
-Message-ID: <20220819194150.23f47751@jic23-huawei>
-In-Reply-To: <20220818145248.GD1829017-robh@kernel.org>
-References: <20220816124321.67817-1-krzysztof.kozlowski@linaro.org>
-        <20220818145248.GD1829017-robh@kernel.org>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>
+CC:     Apurva Nandan <a-nandan@ti.com>, Hari Nagalla <hnagalla@ti.com>
+Subject: [PATCH 0/4] Add initial support for J784s4 SoC
+Date:   Sat, 20 Aug 2022 00:30:50 +0530
+Message-ID: <20220819190054.31348-1-a-nandan@ti.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -100,49 +67,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 18 Aug 2022 08:52:48 -0600
-Rob Herring <robh@kernel.org> wrote:
+The J784S4 SoC belongs to the K3 Multicore SoC architecture platform,
+providing advanced system integration in automotive ADAS applications
+and industrial applications requiring AI at the network edge. This SoC
+extends the Jacinto 7 family of SoCs with focus on high performance
+providing significant levels of processing power, graphics capability,
+video and imaging processing, virtualization and coherent memory
+support.
 
-> On Tue, Aug 16, 2022 at 03:43:11PM +0300, Krzysztof Kozlowski wrote:
-> > Hi,
-> > 
-> > The patchset is independent of my other recent changes around SPI, so feel free
-> > to apply it for next release.
-> > 
-> > Changes since v2
-> > ================
-> > 1. Keep spi-3wire also in device bindings (not in spi-peripheral-props.yaml).
-> > 2. Add Rb tag.
-> > 
-> > Changes since v1
-> > ================
-> > 1. Continue the rework for entire IIO.
-> > v1: https://lore.kernel.org/all/20220715095302.214276-1-krzysztof.kozlowski@linaro.org/
-> > 
-> > Best regards,
-> > Krzysztof
-> > 
-> > Krzysztof Kozlowski (10):
-> >   dt-bindings: iio: adc: use spi-peripheral-props.yaml
-> >   dt-bindings: iio: accel: use spi-peripheral-props.yaml
-> >   dt-bindings: iio: amplifiers: adi,ada4250: use
-> >     spi-peripheral-props.yaml
-> >   dt-bindings: iio: dac: use spi-peripheral-props.yaml
-> >   dt-bindings: iio: frequency: adf4371: use spi-peripheral-props.yaml
-> >   dt-bindings: iio: health: ti,afe4403: use spi-peripheral-props.yaml
-> >   dt-bindings: iio: imu: use spi-peripheral-props.yaml
-> >   dt-bindings: iio: potentiometer: use spi-peripheral-props.yaml
-> >   dt-bindings: iio: samsung,sensorhub-rinato: use
-> >     spi-peripheral-props.yaml
-> >   dt-bindings: iio: temperature: use spi-peripheral-props.yaml  
-> 
-> For the series,
-> 
-> Reviewed-by: Rob Herring <robh@kernel.org>
+Some highlights of this SoC are:
 
-Series applied to the togreg branch of iio.git and pushed out as testing
+* Eight Cortex-A72s in dual clusters, four clusters of lockstep capable
+  dual Cortex-R5F MCUs, Deep-learning Matrix Multiply Accelerator(MMA),
+  four C7x floating point Vector DSP.
+* 3D GPU: Automotive grade IMG BXS-4-64
+* Two Vision Processing Accelerator (VPAC) with image signal processor
+  and Depth and Motion Processing Accelerator (DMPAC)
+* Three CSI2.0 4L RX plus one eDP/DP, two DSI Tx and one DPI interface.
+* Two RGMII/RMII interfaces,
+* Integrated ethernet switch supporting up to 8 external ports,
+* Two 4 lane PCIe-GEN3 controllers, USB3.0 Dual-role device subsystems,
+* Up to 20 MCANs, 5 McASP, eMMC and SD, OSPI/HyperBus memory controller,
+  QSPI, I3C and I2C, eCAP/eQEP, eHRPWM, MLB among other peripherals.
+* Hardware accelerator blocks containing AES/DES/SHA/MD5 called SA2UL
+  management.
 
-Thanks,
+See J784S4 Technical Reference Manual (SPRUJ52 - JUNE 2022)
+for further details: http://www.ti.com/lit/zip/spruj52
 
-Jonathan
+Apurva Nandan (4):
+  dt-bindings: arm: ti: Add bindings for J784s4 SoC
+  dt-bindings: pinctrl: k3: Introduce pinmux definitions for J784s4
+  arm64: dts: ti: Add initial support for J784s4 SoC
+  arch: arm64: ti: Add support for J784s4 EVM board
+
+ .../devicetree/bindings/arm/ti/k3.yaml        |   6 +
+ arch/arm64/boot/dts/ti/Makefile               |   2 +
+ arch/arm64/boot/dts/ti/k3-j784s4-evm.dts      | 602 +++++++++++
+ arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi    | 939 ++++++++++++++++++
+ .../boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi     | 301 ++++++
+ arch/arm64/boot/dts/ti/k3-j784s4.dtsi         | 287 ++++++
+ include/dt-bindings/pinctrl/k3.h              |   3 +
+ 7 files changed, 2140 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j784s4.dtsi
+
+-- 
+2.17.1
 
