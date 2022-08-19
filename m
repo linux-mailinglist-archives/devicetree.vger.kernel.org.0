@@ -2,74 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9519E59A3A9
-	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 20:04:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5F9659A37C
+	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 20:04:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350346AbiHSR2I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Aug 2022 13:28:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56908 "EHLO
+        id S1354767AbiHSRiK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Aug 2022 13:38:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40484 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354499AbiHSR1r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 13:27:47 -0400
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B5B412A557;
-        Fri, 19 Aug 2022 09:46:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1660927576; x=1692463576;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=bl9OCZ9rTh7mupjI5GJBsM+uFuhOdCrvwO/1N9PwhhE=;
-  b=McF+8Px2HcnRAnNWh3a3eHbH1T1UDycwgmlAE0ePjm6UTEsYKaF72EMS
-   tzwnd67JsMfro4OV6Tx+tbthK1GOTAzqQNdDxpu73HkHP3z/IVC5UtMtj
-   2mx6OryesnMnfMfaC+AfRv8TqqD+pbqG03/uLCt6tZiVhgtp8MEXSOZG4
-   mJjoV3VqDvdoA/q0K8VCy8FB2BmDnCI9FAs6TEeTvq5hmiuI2j4e2SlZy
-   bD8CoqKus1xgmJ4OOJxHmdKIVaP3bhStIJseqqwqv9Z/1jAmlWhR2RAP6
-   0BWn36GJQDyOM1hHjTZhESWD98xmrB6zQr0pagiT1rVk5C4gHKkDu06Zt
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10444"; a="290621623"
-X-IronPort-AV: E=Sophos;i="5.93,248,1654585200"; 
-   d="scan'208";a="290621623"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Aug 2022 09:45:08 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,248,1654585200"; 
-   d="scan'208";a="697615179"
-Received: from lkp-server01.sh.intel.com (HELO 44b6dac04a33) ([10.239.97.150])
-  by FMSMGA003.fm.intel.com with ESMTP; 19 Aug 2022 09:45:05 -0700
-Received: from kbuild by 44b6dac04a33 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1oP57I-0001dv-1L;
-        Fri, 19 Aug 2022 16:45:04 +0000
-Date:   Sat, 20 Aug 2022 00:44:34 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>
-Cc:     kbuild-all@lists.01.org, netdev@vger.kernel.org,
-        Oleksij Rempel <o.rempel@pengutronix.de>,
-        kernel@pengutronix.de, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-        David Jander <david@protonic.nl>
-Subject: Re: [PATCH net-next v1 7/7] ethtool: add interface to interact with
- Ethernet Power Equipment
-Message-ID: <202208200039.UVzayOII-lkp@intel.com>
-References: <20220819120109.3857571-8-o.rempel@pengutronix.de>
+        with ESMTP id S1351172AbiHSRhl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 13:37:41 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97D6712ECCB
+        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 09:56:18 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id bs25so5844743wrb.2
+        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 09:56:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=j8ZFLgSTuoY+TTUHZWrcVuE8dk4bzAu1Ol/k32eYOKo=;
+        b=nCeLu/MZDEMn9xcn0UTdb5giZelaptFqrYfLTpFVpGUyRt0a1rfHB4zbFeY9u5RuEm
+         ra8qEx/QlowcDY/sLXOYo7z54En5EAHFO0cqMb62GuwRUQ9Zdls4Yp7wHMh3F6rIUi2I
+         vWLmusLiXpm669P3BO45yjiYa+Ou1SRyJJaGoxTXX5NgprcEqo2dFf/lKhBaI58KkYVl
+         MfoBO5ML0AJoT50U4+m9Xfd6Mt9tX2rBzarQV5eoM8RDXlfFtyu1luEELfOmpcXi/OLg
+         iU6vZ7FsU9qjsk1OhfJnEo2lIY9RNBvWOCJlpEqoAaaVbH6uk35/BgD12N020ftgQ28m
+         0iVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=j8ZFLgSTuoY+TTUHZWrcVuE8dk4bzAu1Ol/k32eYOKo=;
+        b=vFSLcCw+zoutgPsrIiF/bvkFkQ8iYUNrUBl/C7u6mQvmrBc1Ky6lP1aUdI+XpAOVkL
+         X+BuU743ULGXjb4uu83/s4BSfqp/pTqgs5nh1CbldX+WnynKmWrqTg7n9+uDNtbd7uNA
+         1Nq42rLYa0Jfwf3Of6eCXQHPp9YyQI8ew/y2hSFlKEgBgB0J9dk7IbXjsb1Spdlteiv+
+         C15YpRMTwDo7VGn9G+IvvoJ8v0FaTeu9mDxW5jfkaznGxP2FWUUGPp7IsOo6PmCLfIO7
+         VgOPMm0I5/2Vpjq6twbEwTrxQqzalOUkRVZofu8ffJ2IjpfuqWyxiwESp+ogyKoSSk9X
+         p8mg==
+X-Gm-Message-State: ACgBeo3gESnK7XTuW7lMAAYkLSEfo3tLv9jGN9MGgvUxyGy0stX+4kOV
+        0qPRP+88i6XAUSF2IE1g4Lklqg==
+X-Google-Smtp-Source: AA6agR53e1VEDJjz/li961SS7ONlLdMbFVXssWMS5p0Je6jZnUgfpFJ4cC21S0dWpydRb8Bl9rTJBQ==
+X-Received: by 2002:a05:6000:184c:b0:223:2c8b:c43c with SMTP id c12-20020a056000184c00b002232c8bc43cmr4882669wri.16.1660928171492;
+        Fri, 19 Aug 2022 09:56:11 -0700 (PDT)
+Received: from [10.35.5.6] ([167.98.27.226])
+        by smtp.gmail.com with ESMTPSA id 8-20020a05600c024800b003a5537bb2besm5826357wmj.25.2022.08.19.09.56.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 19 Aug 2022 09:56:10 -0700 (PDT)
+Message-ID: <2306e6c2-f07c-719c-1052-9bc60e59eca6@sifive.com>
+Date:   Fri, 19 Aug 2022 17:56:10 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220819120109.3857571-8-o.rempel@pengutronix.de>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.1.1
+Subject: Re: [RFC v4 06/10] pwm: dwc: split pci out of core driver
+Content-Language: en-GB
+To:     Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+        linux-pwm@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lee Jones <lee.jones@linaro.org>,
+        u.kleine-koenig@pengutronix.de,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greentime Hu <greentime.hu@sifive.com>,
+        William Salmon <william.salmon@sifive.com>,
+        Jude Onyenegecha <jude.onyenegecha@sifive.com>
+References: <20220816211454.237751-1-ben.dooks@sifive.com>
+ <20220816211454.237751-7-ben.dooks@sifive.com>
+ <edecb3a9-e2d4-41a1-1d06-b3a30a9bac60@linux.intel.com>
+From:   Ben Dooks <ben.dooks@sifive.com>
+In-Reply-To: <edecb3a9-e2d4-41a1-1d06-b3a30a9bac60@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,33 +83,139 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Oleksij,
+On 19/08/2022 14:38, Jarkko Nikula wrote:
+> Hi
+> 
+> On 8/17/22 00:14, Ben Dooks wrote:
+>> Moving towards adding non-pci support for the driver, move the pci
+>> parts out of the core into their own module. This is partly due to
+>> the module_driver() code only being allowed once in a module and also
+>> to avoid a number of #ifdef if we build a single file in a system
+>> without pci support.
+>>
+>> Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
+>> ---
+> 
+> I quickly tested this on Intel Elkhart and didn't notice any regression. 
+> A few comments below.
+> 
+>>   drivers/pwm/Kconfig       |  14 +++-
+>>   drivers/pwm/Makefile      |   1 +
+>>   drivers/pwm/pwm-dwc-pci.c | 133 ++++++++++++++++++++++++++++++++
+>>   drivers/pwm/pwm-dwc.c     | 158 +-------------------------------------
+>>   drivers/pwm/pwm-dwc.h     |  58 ++++++++++++++
+>>   5 files changed, 207 insertions(+), 157 deletions(-)
+>>   create mode 100644 drivers/pwm/pwm-dwc-pci.c
+>>   create mode 100644 drivers/pwm/pwm-dwc.h
+>>
+>> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+>> index 3f3c53af4a56..a9f1c554db2b 100644
+>> --- a/drivers/pwm/Kconfig
+>> +++ b/drivers/pwm/Kconfig
+>> @@ -175,15 +175,23 @@ config PWM_CROS_EC
+>>         Controller.
+>>   config PWM_DWC
+>> -    tristate "DesignWare PWM Controller"
+>> -    depends on PCI || COMPILE_TEST
+>> +    tristate "DesignWare PWM Controller core"
+>>       depends on HAS_IOMEM
+>>       help
+>> -      PWM driver for Synopsys DWC PWM Controller attached to a PCI bus.
+>> +      PWM driver for Synopsys DWC PWM Controller.
+>>         To compile this driver as a module, choose M here: the module
+>>         will be called pwm-dwc.
+>> +config PWM_DWC_PCI
+>> +    tristate "DesignWare PWM Controller core"
+> 
+> Same text as core part has. How about "DesignWare PWM Controller PCI 
+> driver"?
 
-I love your patch! Yet something to improve:
+Thanks, did notice a couple of kconfig issues so will look at that.
 
-[auto build test ERROR on net-next/master]
+> 
+>> +    depends on PWM_DWC && HAS_IOMEM && PCI
+>> +    help
+>> +      PWM driver for Synopsys DWC PWM Controller attached to a PCI bus.
+>> +
+>> +      To compile this driver as a module, choose M here: the module
+>> +      will be called pwm-dwc-pci.
+>> +
+>>   config PWM_EP93XX
+>>       tristate "Cirrus Logic EP93xx PWM support"
+>>       depends on ARCH_EP93XX || COMPILE_TEST
+>> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
+>> index 7bf1a29f02b8..a70d36623129 100644
+>> --- a/drivers/pwm/Makefile
+>> +++ b/drivers/pwm/Makefile
+>> @@ -15,6 +15,7 @@ obj-$(CONFIG_PWM_CLPS711X)    += pwm-clps711x.o
+>>   obj-$(CONFIG_PWM_CRC)        += pwm-crc.o
+>>   obj-$(CONFIG_PWM_CROS_EC)    += pwm-cros-ec.o
+>>   obj-$(CONFIG_PWM_DWC)        += pwm-dwc.o
+>> +obj-$(CONFIG_PWM_DWC_PCI)    += pwm-dwc-pci.o
+>>   obj-$(CONFIG_PWM_EP93XX)    += pwm-ep93xx.o
+>>   obj-$(CONFIG_PWM_FSL_FTM)    += pwm-fsl-ftm.o
+>>   obj-$(CONFIG_PWM_HIBVT)        += pwm-hibvt.o
+>> diff --git a/drivers/pwm/pwm-dwc-pci.c b/drivers/pwm/pwm-dwc-pci.c
+>> new file mode 100644
+>> index 000000000000..2213d0e7f3c8
+>> --- /dev/null
+>> +++ b/drivers/pwm/pwm-dwc-pci.c
+>> @@ -0,0 +1,133 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * DesignWare PWM Controller driver (PCI part)
+>> + *
+>> + * Copyright (C) 2018-2020 Intel Corporation
+>> + *
+>> + * Author: Felipe Balbi (Intel)
+>> + * Author: Jarkko Nikula <jarkko.nikula@linux.intel.com>
+>> + * Author: Raymond Tan <raymond.tan@intel.com>
+>> + *
+>> + * Limitations:
+>> + * - The hardware cannot generate a 0 % or 100 % duty cycle. Both 
+>> high and low
+>> + *   periods are one or more input clock periods long.
+>> + */
+>> +
+> 
+> I think this is more common limitation rather than PCI part.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Oleksij-Rempel/add-generic-PSE-support/20220819-200408
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/davem/net-next.git 268603d79cc48dba671e9caf108fab32315b86a2
-config: x86_64-defconfig (https://download.01.org/0day-ci/archive/20220820/202208200039.UVzayOII-lkp@intel.com/config)
-compiler: gcc-11 (Debian 11.3.0-5) 11.3.0
-reproduce (this is a W=1 build):
-        # https://github.com/intel-lab-lkp/linux/commit/ac5a14669dbe6cac4972ff01ea6291d12152e78f
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Oleksij-Rempel/add-generic-PSE-support/20220819-200408
-        git checkout ac5a14669dbe6cac4972ff01ea6291d12152e78f
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash
+The PCI is based off an core without the support, it is added
+as a build option as of (IIRC) the 2.13 core.
 
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
+> 
+>> --- a/drivers/pwm/pwm-dwc.c
+>> +++ b/drivers/pwm/pwm-dwc.c
+>> @@ -1,16 +1,12 @@
+>>   // SPDX-License-Identifier: GPL-2.0
+>>   /*
+>> - * DesignWare PWM Controller driver
+>> + * DesignWare PWM Controller driver core
+>>    *
+>>    * Copyright (C) 2018-2020 Intel Corporation
+>>    *
+>>    * Author: Felipe Balbi (Intel)
+>>    * Author: Jarkko Nikula <jarkko.nikula@linux.intel.com>
+>>    * Author: Raymond Tan <raymond.tan@intel.com>
+>> - *
+>> - * Limitations:
+>> - * - The hardware cannot generate a 0 % or 100 % duty cycle. Both 
+>> high and low
+>> - *   periods are one or more input clock periods long.
+>>    */
+> 
+> Relates to previous comment, is there reason why this limitation is 
+> removed from the core part?
 
-All errors (new ones prefixed by >>):
+See above.
 
->> make[3]: *** No rule to make target 'net/ethtool/pse.o', needed by 'net/ethtool/built-in.a'.
-   make[3]: Target '__build' not remade because of errors.
+> 
+>> --- /dev/null
+>> +++ b/drivers/pwm/pwm-dwc.h
+>> +#define DWC_CLK_PERIOD_NS    10
+> 
+> Perhaps this addition can be removed if patch 7/10 goes before this 
+> patch? It's anyway specific to PCI part only.
 
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+Will look into that
+
