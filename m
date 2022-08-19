@@ -2,95 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5968F599C4D
-	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 14:57:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78122599C6D
+	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 14:57:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349241AbiHSMyL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Aug 2022 08:54:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37372 "EHLO
+        id S1348718AbiHSMzO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Aug 2022 08:55:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349242AbiHSMxw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 08:53:52 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B154613E28
-        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 05:53:21 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id z6so5994235lfu.9
-        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 05:53:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=pr7bhrt5RID2dCUgycRa3zMYdNhJ3IqbeowKhh7I+KE=;
-        b=Muww7Fp6z3TLBmnI9wgwpz5L/tNKqHY0CRDPQD4+eVh3MI8VFLnvjHvttcUtx6KqBG
-         fqjFjRlicTbmv4GsPbrtBwsaOhVIYDKhwYinqaev9lkoltjVxJWUzB/gO6Az6Tnu5zB3
-         8ykUvzjlBHLWIJSkHcmmM5NVviZCT8FWquVXebmXPtpC7HlPqvv0njv+EDeSet4eEhmS
-         A2EVoZkbKvd36wUGpTI1uswLPcH3eTtdgalsxPkELrtxvIn4ApRWksbAT3pPdiVUVYIF
-         kDEsK73osykelqrEEQNJy4qRa85LPnulZ3WHdaYgb8E9XxJGIwM4+V6v+UPjSDssu4P8
-         lX9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=pr7bhrt5RID2dCUgycRa3zMYdNhJ3IqbeowKhh7I+KE=;
-        b=iBjJlUJPBf7EEG+V/kO82d4nys0U+tqPgOTU9hwR4hMzS7fs+p9h3MjZOqNE+z6IAu
-         kBO7IEkwI6tL070hjWBabyuj0GiKusUH23HsutE3AcmzF18TbseZAqe0+TFgyU4s0Gv4
-         TKl0Ee3NF1gDjAqxmOQqEuf4qu+Dl22e5AbENSBEtvtotdtZdOgAVTk/SSo/ZD9zh7T1
-         0vCU12Ijt9IMCdII+Ox21mPD6Aioaesvz1vdv66w8CDNIEjQtcdpB8MRWCOH/gVYD4mT
-         sXhOcsLU4sCzb9Rf1rN4Y4k/5t4uFH7QBDVkwrIedTj92wbKOcqf5mpxTs4Mwborl+yt
-         Ftfg==
-X-Gm-Message-State: ACgBeo03MogxG57qtlGVs7xvKa196TXzhGs1HnyW4WLRr4erZt1WNIrN
-        4a6sw3AEl8b2ggN9+H926XiCO4KoQxLF8V72
-X-Google-Smtp-Source: AA6agR4FIHTx2lqWROLFunTvAZJFkIWDWBQqO7e+yPqb3ua4X70I0FUz5U3OFnmedTqWSw6DG45kGA==
-X-Received: by 2002:a05:6512:3048:b0:48b:745:621c with SMTP id b8-20020a056512304800b0048b0745621cmr2241608lfb.620.1660913598597;
-        Fri, 19 Aug 2022 05:53:18 -0700 (PDT)
-Received: from ?IPV6:2001:14bb:ac:e5a8:ef73:73ed:75b3:8ed5? (d1xw6v77xrs23np8r6z-4.rev.dnainternet.fi. [2001:14bb:ac:e5a8:ef73:73ed:75b3:8ed5])
-        by smtp.gmail.com with ESMTPSA id e8-20020a05651236c800b00492b0d23d24sm510523lfs.247.2022.08.19.05.53.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 Aug 2022 05:53:18 -0700 (PDT)
-Message-ID: <e5572e77-4ba5-d8f3-4e9e-04ac5dc416fe@linaro.org>
-Date:   Fri, 19 Aug 2022 15:53:16 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH] dt-bindings: mfd: mediatek: Add scpsys compatible for
- mt8186
-Content-Language: en-US
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Lee Jones <lee@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+        with ESMTP id S1349257AbiHSMy4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 08:54:56 -0400
+Received: from hutie.ust.cz (unknown [IPv6:2a03:3b40:fe:f0::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BF5578218;
+        Fri, 19 Aug 2022 05:54:42 -0700 (PDT)
+From:   =?UTF-8?q?Martin=20Povi=C5=A1er?= <povik+lin@cutebit.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
+        t=1660913678; bh=tTprV1n7p44voEK5W8FVLH7SdnHe3gxie4vMBDCp63o=;
+        h=From:To:Cc:Subject:Date;
+        b=g3bbBbdFZKKhaFxMxs/5P6L1fMZgLmBIiA6e/vR1YREkdFAj0+ECIAR8LnylytQ1Z
+         rFgsJ1ol7nBDkBgiqpiQZJJr+YE5jZAjtpq676mE/9HJLijT9x1LMReFuaJKeai+ZY
+         YO4SV+cn+8FC1j/K+W6StvK74GrHtD/EpM8LP3zA=
+To:     =?UTF-8?q?Martin=20Povi=C5=A1er?= <povik+lin@cutebit.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        MandyJH Liu <mandyjh.liu@mediatek.com>
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        hsinyi@chromium.org
-References: <20220819124736.21768-1-allen-kh.cheng@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220819124736.21768-1-allen-kh.cheng@mediatek.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Alyssa Rosenzweig <alyssa@rosenzweig.io>, asahi@lists.linux.dev,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/4] ASoC platform driver for Apple MCA
+Date:   Fri, 19 Aug 2022 14:54:26 +0200
+Message-Id: <20220819125430.4920-1-povik+lin@cutebit.org>
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_FAIL,SPF_HELO_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/08/2022 15:47, Allen-KH Cheng wrote:
-> Add a new scpsys compatible for mt8186 SoC.
-> 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> ---
+Hi all,
 
-No DTS using it?
+this is v2 of the ASoC platform driver for MCA peripheral on Apple M1,
+to be followed by a machine driver later for sound support on the new
+Apple devices. This time I attached a DTS patch for t8103 (M1), which
+I guess should go through Marcan's (in CC) tree.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Martin
 
+Changes since v1:
+ - reflect the set_fmt provider/consumer change in 6.0-rc1
+ - fix the probe function requesting optional reset
+ - unroll 'dma-names' in schema
+ - fix binding schema/code discrepancy in register ranges
+ - minor things
 
-Best regards,
-Krzysztof
+Changes since 'macaudio RFC v2' [0]:
+ - addition of locking (extra commit)
+ - transition to set_bclk_ratio (instead of getting the bclk ratio from set_sysclk)
+ - using shared reset control and documenting the reset in binding
+ - formatting, comments, and a minor fix to hw driving
+
+[0] https://lore.kernel.org/asahi/20220606191910.16580-1-povik+lin@cutebit.org/
+
+Martin Povišer (4):
+  dt-bindings: sound: Add Apple MCA I2S transceiver
+  arm64: dts: apple: t8103: Add MCA and its support
+  ASoC: apple: mca: Start new platform driver
+  ASoC: apple: mca: Add locks on foreign cluster access
+
+ .../devicetree/bindings/sound/apple,mca.yaml  |  131 ++
+ MAINTAINERS                                   |    8 +
+ arch/arm64/boot/dts/apple/t8103.dtsi          |   70 +
+ sound/soc/Kconfig                             |    1 +
+ sound/soc/Makefile                            |    1 +
+ sound/soc/apple/Kconfig                       |    9 +
+ sound/soc/apple/Makefile                      |    3 +
+ sound/soc/apple/mca.c                         | 1170 +++++++++++++++++
+ 8 files changed, 1393 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/apple,mca.yaml
+ create mode 100644 sound/soc/apple/Kconfig
+ create mode 100644 sound/soc/apple/Makefile
+ create mode 100644 sound/soc/apple/mca.c
+
+-- 
+2.33.0
+
