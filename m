@@ -2,96 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A4FD359A6A5
-	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 21:40:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43B4F59A6C8
+	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 21:51:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351585AbiHSTka (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Aug 2022 15:40:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43050 "EHLO
+        id S1350260AbiHSTqu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Aug 2022 15:46:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351559AbiHSTk3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 15:40:29 -0400
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1C66C21E04;
-        Fri, 19 Aug 2022 12:40:28 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.93,248,1654527600"; 
-   d="scan'208";a="131896596"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 20 Aug 2022 04:40:27 +0900
-Received: from localhost.localdomain (unknown [10.226.92.25])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 20502400D4C0;
-        Sat, 20 Aug 2022 04:40:25 +0900 (JST)
-From:   Phil Edworthy <phil.edworthy@renesas.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Phil Edworthy <phil.edworthy@renesas.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 3/3] arm64: dts: renesas: rzv2m evk: Enable i2c
-Date:   Fri, 19 Aug 2022 20:39:44 +0100
-Message-Id: <20220819193944.337599-4-phil.edworthy@renesas.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220819193944.337599-1-phil.edworthy@renesas.com>
-References: <20220819193944.337599-1-phil.edworthy@renesas.com>
+        with ESMTP id S1349248AbiHSTqt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 15:46:49 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9587D5EAD;
+        Fri, 19 Aug 2022 12:46:48 -0700 (PDT)
+Received: from notapiano (unknown [70.107.189.129])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: nfraprado)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id B725C6601DC4;
+        Fri, 19 Aug 2022 20:46:43 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1660938406;
+        bh=sRXwaDjYZwFvMt0JXRUXrrOwoE4Qoa92zFqWgUdECMY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=dAIUksXIZu2+Lr+PB/54wM3eHvY6NsWHwHAc3TqizdU7gNTDTyx/70X0fuOcjNaVl
+         rjHb9iJX4BjZAP3sYxSS7exR+W5sSqLlTP2jSOeCzzyJmw62Yeb0ZYNvB5t1Cx6Nsh
+         ZhuQXMmyCGiOwxjvwvVjNO3hK2Lg1+h4KoRphJqgPCb/vQqXWra5pyMvLOpl4bXfp1
+         bz5iEOWesxg7+rARRLDfFBWibj6+P29aEEsh+pDdRHlPT5ZF8ZqBg3ImdioGa6d+9m
+         BRITgtCIdF650K4uecRC48QaLCJZDQkQyLZBqS3dII96+s/wAJ3oX3SVhueDE31OIm
+         a2PLtdJoaSIRg==
+Date:   Fri, 19 Aug 2022 15:46:39 -0400
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     "Nancy.Lin" <nancy.lin@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>, wim@linux-watchdog.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, linux@roeck-us.net,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        "jason-jh . lin" <jason-jh.lin@mediatek.com>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        dri-devel@lists.freedesktop.org, llvm@lists.linux.dev,
+        singo.chang@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v26 5/7] drm/mediatek: modify mediatek-drm for mt8195
+ multi mmsys support
+Message-ID: <20220819194639.tiyiiucgdknmjiew@notapiano>
+References: <20220819061456.8042-1-nancy.lin@mediatek.com>
+ <20220819061456.8042-6-nancy.lin@mediatek.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20220819061456.8042-6-nancy.lin@mediatek.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
----
- .../boot/dts/renesas/r9a09g011-v2mevk2.dts    | 27 +++++++++++++++++++
- 1 file changed, 27 insertions(+)
+On Fri, Aug 19, 2022 at 02:14:54PM +0800, Nancy.Lin wrote:
+> MT8195 have two mmsys. Modify drm for MT8195 multi-mmsys support.
+> The two mmsys (vdosys0 and vdosys1) will bring up two drm drivers,
+> only one drm driver register as the drm device.
+> Each drm driver binds its own component. The last bind drm driver
+> allocates and registers the drm device to drm core.
+> Each crtc path is created with the corresponding drm driver data.
+> 
+> Signed-off-by: Nancy.Lin <nancy.lin@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Reviewed-by: CK Hu <ck.hu@mediatek.com>
+> Tested-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Tested-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts b/arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts
-index c3a52fa0b16e..3666d71c7762 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts
-@@ -7,6 +7,7 @@
- 
- /dts-v1/;
- #include "r9a09g011.dtsi"
-+#include <dt-bindings/pinctrl/rzv2m-pinctrl.h>
- 
- / {
- 	model = "RZ/V2M Evaluation Kit 2.0";
-@@ -53,6 +54,32 @@ &extal_clk {
- 	clock-frequency = <48000000>;
- };
- 
-+&i2c0 {
-+	pinctrl-0 = <&i2c0_pins>;
-+	pinctrl-names = "default";
-+	clock-frequency = <400000>;
-+	status = "okay";
-+};
-+
-+&i2c2 {
-+	pinctrl-0 = <&i2c2_pins>;
-+	pinctrl-names = "default";
-+	clock-frequency = <100000>;
-+	status = "okay";
-+};
-+
- &uart0 {
- 	status = "okay";
- };
-+
-+&pinctrl {
-+	i2c0_pins: i2c0 {
-+		pinmux = <RZV2M_PORT_PINMUX(5, 0, 2)>, /* SDA */
-+			 <RZV2M_PORT_PINMUX(5, 1, 2)>; /* SCL */
-+	};
-+
-+	i2c2_pins: i2c2 {
-+		pinmux = <RZV2M_PORT_PINMUX(3, 8, 2)>, /* SDA */
-+			 <RZV2M_PORT_PINMUX(3, 9, 2)>; /* SCL */
-+	};
-+};
--- 
-2.34.1
+Tested-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
 
+Display and external display still work on mt8192 as it should.
+
+Thanks,
+Nícolas
