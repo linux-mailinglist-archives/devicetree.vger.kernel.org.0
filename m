@@ -2,74 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 845BB599BB6
-	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 14:17:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39F39599BDD
+	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 14:26:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348850AbiHSMQE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Aug 2022 08:16:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46704 "EHLO
+        id S1348657AbiHSMVc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Aug 2022 08:21:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348503AbiHSMQD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 08:16:03 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F29E1100959
-        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 05:16:01 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id z6so5876122lfu.9
-        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 05:16:01 -0700 (PDT)
+        with ESMTP id S1348553AbiHSMVb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 08:21:31 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FD8210158C
+        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 05:21:29 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id by6so4348186ljb.11
+        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 05:21:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=iRQAht+syD+WoClHi+abQcpzAmB47QGZmxwK52W8goQ=;
-        b=gAnalwOyubLu6+wLXJWbeHG2l/u2fmMgVQ9Vpx1zAjL7bFzAM5ZzxJQcJDTeot4yn+
-         i1AJkCiTdquYltpTVt2ufhmroC5Uj/FxxUY6TdC9cKeyHf3f/ViVjSeGky44Bm+U7x03
-         7UcAcO4Ol3ry4gVYmwiLyIvga5mk111OYk+z1mTQjAUBS8QbknoRSmXCcSeqxp3J4BAM
-         lGS55fHy2ePWP/sOp3TCd1gTP+zRBRsgcPLcehqXQBBqRL8CghXkoR/xGnXewBmiDEEG
-         oqeNqSFRTsqamvLgd0nUvdFvmZ0A8GCy2DBVQx14FWpRe3kQcv0YPrMQacMchQJe6X1b
-         96MQ==
+        bh=Nu3VLDUqU+jU9Ulv1RKGhBZJe/ApM+TsuNJuzdtSY+M=;
+        b=icCaSFYl9TTYDLZjSUnfxcI0YMgzci2BRFPyleEvRJdU+T1TBi3QED1EcIV+5EUEF7
+         ZzCByTkLldBb3PcS4W0m4bNFBRWfn++1kIijqJw/O6lJS/IHoam6Hv2LH+bozhv/REGN
+         kTX09folP9hdjbJ0yisTi54ebfxFgeqwgttCYqbkxj4jLdVFv3GYRX2Jzu6mbWdB5+GF
+         vVbZkVsDKDd2G1cslwfnFm17c7APLx6ufQWu+Ei8KHWOyp4mCoTWdV5pvmU5265GnTeX
+         f6wLGlQZQ8IeNOG3Qz86cyJ5WBeRBt3b1RuR2v8ZJ72wA+5FapAMVLBz+tyMN0zYKcRe
+         6XcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=iRQAht+syD+WoClHi+abQcpzAmB47QGZmxwK52W8goQ=;
-        b=NeVpaizANCKeKz8lvHIQWyRB0NqNsGoVHo+ETKyHUxy1m4GFl3LCu2+Yx2qtwl0pNJ
-         mMZo4RrRqySsX/1ZrRwgC0agv9kBsTjb+kX87y2eZ5KlxmT5627VXyWb4APxUsbCKdVo
-         uGyJ9jMssJkh7A1XrbEqOY4C3MyIgxSxWpM6gK3qdxA9B+5ggLuxydOWpSutjMOHnTvL
-         yPB8dxuvHyUy7cCcC+rsMh/KBBBl1fO43Amnl/B6ZcftPvkFHVw09/6EYr/77+7n8+JH
-         DLW8FTeuKssWNiLBILfhwPRm4iEYlfWRDsMChyuF1RisrO/hFv6zM7kM4g6o4qV2/Osu
-         dyYQ==
-X-Gm-Message-State: ACgBeo2LtGHrP/E3Sw4R5lwIj8e9Q53bZ+lf6uEWFtTQsv1An+kxO0rO
-        5UmQSKc1Gw8myCGlivI+CiVloQ==
-X-Google-Smtp-Source: AA6agR6ZzDgldit3bbnQaHeffN9D/ccyNG3aT6Z0pYd8NszNFSXmXT7adl+3BQtJYB1uFOadxcnBlQ==
-X-Received: by 2002:ac2:5e75:0:b0:492:c50a:3a89 with SMTP id a21-20020ac25e75000000b00492c50a3a89mr1449763lfr.68.1660911360346;
-        Fri, 19 Aug 2022 05:16:00 -0700 (PDT)
+        bh=Nu3VLDUqU+jU9Ulv1RKGhBZJe/ApM+TsuNJuzdtSY+M=;
+        b=Kw0SmWW0YYFV28VinnxWktgd8K4uQplqhgknwTZ79Jinn3ZX8oTTodyOtrOSfPOOs5
+         NKIeHOZFZipsC1Us85Ano5No1iQwsnFijiZCIVnQ/U0rrS5WWHsuuoqi0xRvCuizeIqp
+         n27VL4higtgtVm+t9ig8jFxZ5SvBDEvlQERIh+Tok+rBv9s4Y4Lg6pi3NxOFR2WHAF6y
+         pycegCfV8BYqWkPTVlw1fq7eBNMVsTEb+Ezle+ZbI9hgg+BAPmVEm6DKq/M/hrfvkOh3
+         P67553DgBIHub7SedD++l9vcwBgMXQFDKLm83tVAwvj2He0k5I4jeaXHAULqExToK9Q6
+         ablQ==
+X-Gm-Message-State: ACgBeo1M3mLovqJM/fZr+7JgYdsadm2Jnwf+AOZscOCTFnPFo4oFLs2d
+        VulbYjbduWQrIJBLH2XlcqORWw==
+X-Google-Smtp-Source: AA6agR595KwMfyX0sVhhUEYlgdd7hbmxKDXxniItF7Yjp2Fh/BhRyNo1Zh0kLJkHkh4xFhiOIyc0zQ==
+X-Received: by 2002:a05:651c:516:b0:25f:f52b:3c86 with SMTP id o22-20020a05651c051600b0025ff52b3c86mr2111392ljp.523.1660911687788;
+        Fri, 19 Aug 2022 05:21:27 -0700 (PDT)
 Received: from ?IPV6:2001:14bb:ac:e5a8:ef73:73ed:75b3:8ed5? (d1xw6v77xrs23np8r6z-4.rev.dnainternet.fi. [2001:14bb:ac:e5a8:ef73:73ed:75b3:8ed5])
-        by smtp.gmail.com with ESMTPSA id t14-20020a2e8e6e000000b00261af4754bbsm594964ljk.41.2022.08.19.05.15.58
+        by smtp.gmail.com with ESMTPSA id t20-20020a2e8e74000000b0025e1ec74e25sm595362ljk.43.2022.08.19.05.21.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 Aug 2022 05:15:59 -0700 (PDT)
-Message-ID: <438da392-f419-ad76-7e91-aa4aab36e12c@linaro.org>
-Date:   Fri, 19 Aug 2022 15:15:58 +0300
+        Fri, 19 Aug 2022 05:21:27 -0700 (PDT)
+Message-ID: <bccd3a79-faa2-e4c5-3783-25ffaea69d00@linaro.org>
+Date:   Fri, 19 Aug 2022 15:21:25 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH 2/7] dt-bindings: phy: mediatek,tphy: add property to set
- pre-emphasis
+Subject: Re: [PATCH 1/2] dt-bindings: clock: add QCOM SM6115 display clock
+ bindings
 Content-Language: en-US
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+To:     Adam Skladowski <a39.skl@gmail.com>
+Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Eddie Hung <eddie.hung@mediatek.com>
-References: <20220819091344.2274-1-chunfeng.yun@mediatek.com>
- <20220819091344.2274-2-chunfeng.yun@mediatek.com>
+        Taniya Das <tdas@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220818151850.19917-1-a39.skl@gmail.com>
+ <20220818151850.19917-2-a39.skl@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220819091344.2274-2-chunfeng.yun@mediatek.com>
+In-Reply-To: <20220818151850.19917-2-a39.skl@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,32 +85,140 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/08/2022 12:13, Chunfeng Yun wrote:
-> Add a property to set usb2 phy's pre-emphasis.
+On 18/08/2022 18:18, Adam Skladowski wrote:
+> Add device tree bindings for display clock controller for
+> Qualcomm Technology Inc's SM6115 SoC.
 > 
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
 > ---
->  Documentation/devicetree/bindings/phy/mediatek,tphy.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
+>  .../bindings/clock/qcom,dispcc-sm6115.yaml    | 88 +++++++++++++++++++
+>  .../dt-bindings/clock/qcom,dispcc-sm6115.h    | 36 ++++++++
+>  2 files changed, 124 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,dispcc-sm6115.yaml
+>  create mode 100644 include/dt-bindings/clock/qcom,dispcc-sm6115.h
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-> index 848edfb1f677..aee2f3027371 100644
-> --- a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-> @@ -219,6 +219,13 @@ patternProperties:
->          minimum: 1
->          maximum: 15
->  
-> +      mediatek,pre-emphasis:
-> +        description:
-> +          The selection of pre-emphasis (U2 phy)
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        minimum: 1
-> +        maximum: 3
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,dispcc-sm6115.yaml b/Documentation/devicetree/bindings/clock/qcom,dispcc-sm6115.yaml
+> new file mode 100644
+> index 000000000000..2b9671112934
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/qcom,dispcc-sm6115.yaml
+> @@ -0,0 +1,88 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/qcom,dispcc-sm6115.yaml#
 
-Instead of hard-coding register values in bindings, you should rather
-describe here feature/effect. If it is in units, use unit suffixes. If
-it is some choice, usually string enum is appropriate.
+Filename based on compatible, so:
+qcom,sm6115-dispcc.yaml
+
+I know it creates irregularity, but that's the naming convention for all.
+
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Display Clock Controller Binding for SM6115
+> +
+> +maintainers:
+> +  - Taniya Das <tdas@codeaurora.org>
+
+I don't think the email is correct. Please use Bjorn's (and optionally
+you can add yourself if you want to maintain this binding).
+
+> +
+> +description: |
+> +  Qualcomm display clock control module which supports the clocks and
+> +  power domains on SM6115.
+> +
+> +  See also:
+> +    dt-bindings/clock/qcom,dispcc-sm6115.h
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,sm6115-dispcc
+> +
+> +  clocks:
+> +    items:
+> +      - description: Board XO source
+> +      - description: Byte clock from DSI PHY0
+> +      - description: Pixel clock from DSI PHY0
+> +      - description: GPLL0 clock from GCC
+> +      - description: GPLL0 div clock from GCC
+> +      - description: Board sleep clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: bi_tcxo
+> +      - const: dsi0_phy_pll_out_byteclk
+> +      - const: dsi0_phy_pll_out_dsiclk
+> +      - const: gcc_disp_gpll0_clk_src
+> +      - const: gcc_disp_gpll0_div_clk_src
+> +      - const: sleep_clk
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +  '#reset-cells':
+> +    const: 1
+> +
+> +  '#power-domain-cells':
+> +    const: 1
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - '#clock-cells'
+> +  - '#reset-cells'
+> +  - '#power-domain-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/qcom,rpmcc.h>
+> +    #include <dt-bindings/clock/qcom,gcc-sm6115.h>
+> +    clock-controller@5f00000 {
+> +      compatible = "qcom,sm6115-dispcc";
+> +      reg = <0x5f00000 0x20000>;
+> +      clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
+> +               <&dsi0_phy 0>,
+> +               <&dsi0_phy 1>,
+> +               <&gcc GCC_DISP_GPLL0_CLK_SRC>,
+> +               <&gcc GCC_DISP_GPLL0_DIV_CLK_SRC>,
+> +               <&sleep_clk>;
+> +      clock-names = "bi_tcxo",
+> +                    "dsi0_phy_pll_out_byteclk",
+> +                    "dsi0_phy_pll_out_dsiclk",
+> +                    "gcc_disp_gpll0_clk_src",
+> +                    "gcc_disp_gpll0_div_clk_src",
+> +                    "sleep_clk";
+> +      #clock-cells = <1>;
+> +      #reset-cells = <1>;
+> +      #power-domain-cells = <1>;
+> +    };
+> +...
+> diff --git a/include/dt-bindings/clock/qcom,dispcc-sm6115.h b/include/dt-bindings/clock/qcom,dispcc-sm6115.h
+> new file mode 100644
+> index 000000000000..d1a6c45b5029
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/qcom,dispcc-sm6115.h
+
+Filename based on compatible.
+
+> @@ -0,0 +1,36 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> +/*
+> + * Copyright (c) 2022, The Linux Foundation. All rights reserved.
+> + */
+> +
+> +#ifndef _DT_BINDINGS_CLK_QCOM_DISP_CC_SM6115_H
+> +#define _DT_BINDINGS_CLK_QCOM_DISP_CC_SM6115_H
+> +
+
 
 Best regards,
 Krzysztof
