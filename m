@@ -2,109 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 18BC759A946
-	for <lists+devicetree@lfdr.de>; Sat, 20 Aug 2022 01:15:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 302FE59A969
+	for <lists+devicetree@lfdr.de>; Sat, 20 Aug 2022 01:26:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231424AbiHSXOh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Aug 2022 19:14:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39596 "EHLO
+        id S243933AbiHSXZQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Aug 2022 19:25:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229595AbiHSXOd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 19:14:33 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 853A1D475E
-        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 16:14:32 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id u14so6705640wrq.9
-        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 16:14:32 -0700 (PDT)
+        with ESMTP id S244280AbiHSXY6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 19:24:58 -0400
+Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com [IPv6:2607:f8b0:4864:20::835])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFA95B6029;
+        Fri, 19 Aug 2022 16:24:29 -0700 (PDT)
+Received: by mail-qt1-x835.google.com with SMTP id c20so4416244qtw.8;
+        Fri, 19 Aug 2022 16:24:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=conchuod.ie; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=1zyqHrnqjTNMymEC/TbLOlsscOLg5SkRYxlyH7Tu2Ms=;
-        b=Y8AD7r5Epuf9MXQ2+jv+dlo+KisSknvBlpvGlf/D+IiD9iTBxDKQ5D0kGW2ZkDBfJK
-         TyKvVRquHMBJjPepEwyh7xDrU0VoGL94RietZ1RYfzka1+goKyIru/tmRTNC9ubgswY2
-         7C+4K1MwwgAzWNLHphJlqXVL5a4rZqVQVlMOGYmmLzuhs1ZKtPsWUEDGofFP1sHIH/wY
-         m95dlsgCLOt9UOfnchFoIXKKzh3nKQwdQkSWmwPvf2cOmUR3QNQAGQ3UwyDoWUSAvv7i
-         9UY485pjhWoHEbFbH6nxyy8pgKz2+3vm2gTryx5AF6pby/lIBfQgg5AGPutVWiRKVOm1
-         PhKQ==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=9kj8YADm8du70l4gQ+EusuiOAvks8txJezrna7w9qAE=;
+        b=TLGJR6BH78Ku2XRy50XMpy9E0iSRYnRxuvCc+nA5yToS01jHWC0aYsueR14qRdZCRm
+         lvV/K9kkYKj8XK6zc9NKqNxeUNg228APIv07V9yhX6bMSMfLXgvBSxuGdHds+VCP4iVI
+         RCQju+JEVbtKiwVV2xcq/fSYZns1DCqj4koRA3Fw/Y+P0Bo/kkmE3AwNAam7Frh/vMbc
+         cBJjC1Z1hoawTDW5AQgswfvCCxtXVXv/Ogr0d26NpLFtX4thINlfoV7enGM/pENBKdey
+         GzQXYV+N/qwuD8wj2ib07utbZeBnQigUfT9TQnzERwmcG9z3SA3BBcx5xkS2T4qdgw2N
+         TOrg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=1zyqHrnqjTNMymEC/TbLOlsscOLg5SkRYxlyH7Tu2Ms=;
-        b=bhfuAway+AdBMEVMPstBSE/DtI3E/vZWKzkco00UcHp+ikuO9kIC6qA3lZM/0TWhoE
-         Te+aQWzyrXIttqZTJmvWF5nm4ImHOPCGiwUPjsXmfUJKyG6QlWwqkKrgs3UNne6iOttr
-         ontDLPSJszGfLm/OGZHT4xc/pksYMRcmsGQLQOSzrsYfPqmsb9+qAGY+Pg3vVw8T9FZi
-         T1mUD2e1XHKnFVkjPiUTqTPN9jbcb7MEgJR3068Sm8XDLG1NR9PAkpPqnHsJsLm3u4Si
-         SGCmjk0utuRqfKhBzIW6PiwCZZ4sKnxJjpzcwVhteH383nmYg/pK89CxpBZhIe+tDDsX
-         obWg==
-X-Gm-Message-State: ACgBeo2nK8bL5psn9ofk2otgKgCDpsg1mvn2AQ8UorvLdRGbWzL7kA1v
-        lrjFiYK8ANoCUm/8cLzDXCHfGw==
-X-Google-Smtp-Source: AA6agR4jJTOrQBvLUsU3COfZPaxQ1oU8l4Hl4SO0D5oMAjRdbWZOcdKruN9mdEbg+eLcUTkfChoGKQ==
-X-Received: by 2002:a5d:404c:0:b0:225:1a39:d69f with SMTP id w12-20020a5d404c000000b002251a39d69fmr5405015wrp.576.1660950872099;
-        Fri, 19 Aug 2022 16:14:32 -0700 (PDT)
-Received: from henark71.. ([109.76.58.63])
-        by smtp.gmail.com with ESMTPSA id g17-20020a5d46d1000000b0020fff0ea0a3sm5198522wrs.116.2022.08.19.16.14.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Aug 2022 16:14:31 -0700 (PDT)
-From:   Conor Dooley <mail@conchuod.ie>
-To:     Daire McNamara <daire.mcnamara@microchip.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Greentime Hu <greentime.hu@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Conor Dooley <conor.dooley@microchip.com>
-Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: [PATCH v3 7/7] riscv: dts: microchip: mpfs: remove pci axi address translation property
-Date:   Sat, 20 Aug 2022 00:14:16 +0100
-Message-Id: <20220819231415.3860210-8-mail@conchuod.ie>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220819231415.3860210-1-mail@conchuod.ie>
-References: <20220819231415.3860210-1-mail@conchuod.ie>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=9kj8YADm8du70l4gQ+EusuiOAvks8txJezrna7w9qAE=;
+        b=GP1GHYTPzcGy+sabJ7vm7OGRGVsTjL129AZkovvAaAfA1huFvtH8P/d/I9nd92nMgk
+         huf5taN8ZGG1noCG3ITy/TaVeL9h6SmOi1s9Erxrtx/GKHYkkjhxeHOE0iTR6sJRlo1I
+         Elup5hXI4TB5vnRCayt+DryMZNoVophM5CnbKdXcP7MlGNWvn3eJMV4ih3OyivCLR1uG
+         jlap8eAuY6zlYGRqRXdCSUza8RBuNEibpB3J0lV30Ws+u+YMqYF3N4EdrrCCaUzxbi33
+         /u81oJTEhUPdENyQ2icuJ/y/XGAh4iHup/HoE9gHdNxut9E9Jw0Sm1auv4mV7CyGjDay
+         KYjg==
+X-Gm-Message-State: ACgBeo0werKSf8IeXq6A9GmiIz9TrHl59nsZwalABltLoE0edO/00VnA
+        t5VQqSSGXTc/PyxjquhLnJz7qTfAXr6fKq0YO1c=
+X-Google-Smtp-Source: AA6agR7b9hjrEla6ZbAwec9YTGFqrakS7HOziDFtiFYKG01c+pvBlvapThT5k++u/jjDQvsh2a90zjYOrn0o5GYnN+0=
+X-Received: by 2002:a05:622a:491:b0:344:95bf:8f05 with SMTP id
+ p17-20020a05622a049100b0034495bf8f05mr6893450qtx.61.1660951468982; Fri, 19
+ Aug 2022 16:24:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20220816191842.14020-1-ddrokosov@sberdevices.ru>
+ <20220816191842.14020-4-ddrokosov@sberdevices.ru> <CAHp75VewJ1taLhsCb4_yEQHpw4VDXRhkxpL0jzdu-JsajfF6oA@mail.gmail.com>
+ <20220819125818.37qc66akgercd6zb@CAB-WSD-L081021.sigma.sbrf.ru>
+In-Reply-To: <20220819125818.37qc66akgercd6zb@CAB-WSD-L081021.sigma.sbrf.ru>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Sat, 20 Aug 2022 02:23:52 +0300
+Message-ID: <CAHp75VcUPQF21+gq3Hn_CLeY+y9sTFSLrbHYKgFJssveL+badg@mail.gmail.com>
+Subject: Re: [PATCH v6 3/4] iio: add MEMSensing MSA311 3-axis accelerometer driver
+To:     Dmitry Rokosov <DDRokosov@sberdevices.ru>
+Cc:     "akpm@linux-foundation.org" <akpm@linux-foundation.org>,
+        "jic23@kernel.org" <jic23@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "andriy.shevchenko@linux.intel.com" 
+        <andriy.shevchenko@linux.intel.com>,
+        "christophe.jaillet@wanadoo.fr" <christophe.jaillet@wanadoo.fr>,
+        "stano.jakubek@gmail.com" <stano.jakubek@gmail.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "stephan@gerhold.net" <stephan@gerhold.net>,
+        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
+        "wsa@kernel.org" <wsa@kernel.org>,
+        "lars@metafoo.de" <lars@metafoo.de>,
+        "Michael.Hennerich@analog.com" <Michael.Hennerich@analog.com>,
+        "jbhayana@google.com" <jbhayana@google.com>,
+        "lucas.demarchi@intel.com" <lucas.demarchi@intel.com>,
+        "jani.nikula@intel.com" <jani.nikula@intel.com>,
+        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        kernel <kernel@sberdevices.ru>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Conor Dooley <conor.dooley@microchip.com>
+On Fri, Aug 19, 2022 at 3:58 PM Dmitry Rokosov <DDRokosov@sberdevices.ru> wrote:
+> On Fri, Aug 19, 2022 at 11:41:55AM +0300, Andy Shevchenko wrote:
 
-An AXI master address translation table property was inadvertently
-added to the device tree & this was not caught by dtbs_check at the
-time. Remove the property - it should not be in mpfs.dtsi anyway as
-it would be more suitable in -fabric.dtsi nor does it actually apply
-to the version of the reference design we are using for upstream.
+...
 
-Link: https://www.microsemi.com/document-portal/doc_download/1245812-polarfire-fpga-and-polarfire-soc-fpga-pci-express-user-guide # Section 1.3.3
-Fixes: 528a5b1f2556 ("riscv: dts: microchip: add new peripherals to icicle kit device tree")
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
- arch/riscv/boot/dts/microchip/mpfs.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+> > > Spec: https://cdn-shop.adafruit.com/product-files/5309/MSA311-V1.1-ENG.pdf
+> >
+> > Have you ever seen such a tag?
+> > We have the Datasheet that is more or less established for this kind of links.
+>
+> As I mentioned before, if I use Datasheet tag, line length limit will be
+> exceeded. If it's okay, I don't mind.
 
-diff --git a/arch/riscv/boot/dts/microchip/mpfs.dtsi b/arch/riscv/boot/dts/microchip/mpfs.dtsi
-index e69322f56516..a1176260086a 100644
---- a/arch/riscv/boot/dts/microchip/mpfs.dtsi
-+++ b/arch/riscv/boot/dts/microchip/mpfs.dtsi
-@@ -485,7 +485,6 @@ pcie: pcie@2000000000 {
- 			ranges = <0x3000000 0x0 0x8000000 0x20 0x8000000 0x0 0x80000000>;
- 			msi-parent = <&pcie>;
- 			msi-controller;
--			microchip,axi-m-atr0 = <0x10 0x0>;
- 			status = "disabled";
- 			pcie_intc: interrupt-controller {
- 				#address-cells = <0>;
+Tags must be one-liners, that's the convention. It doesn't matter how
+long they are.
+
+
 -- 
-2.37.1
-
+With Best Regards,
+Andy Shevchenko
