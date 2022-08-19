@@ -2,59 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8002859A8C5
-	for <lists+devicetree@lfdr.de>; Sat, 20 Aug 2022 00:51:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F43659A8F1
+	for <lists+devicetree@lfdr.de>; Sat, 20 Aug 2022 00:59:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241699AbiHSWru (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Aug 2022 18:47:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59394 "EHLO
+        id S243341AbiHSWzV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Aug 2022 18:55:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242956AbiHSWrs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 18:47:48 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A16A10DCED;
-        Fri, 19 Aug 2022 15:47:47 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id E4E00B8297B;
-        Fri, 19 Aug 2022 22:47:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58DFAC433D6;
-        Fri, 19 Aug 2022 22:47:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1660949264;
-        bh=dxI6vf/bStJmVt0I680tMgmCWDQv72BqvXZPaYcJOxQ=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=aPfQwPWYqbO38H6kKJjbb/+kNhw2REJtzZW+Lpf2pz/6fuu+RwNQfkXpPgh9dHEcf
-         CG8f3AhCaQHapS3WwYoITlWZI8cbx6jex0WLzBbpVCHuqjf1pW/LAgMXdpKaihu1wM
-         /vcm9EcTXHlFcjv3QOzso2K8y1MVRuFN9BfIa61Iq1Rq1ZT7RfG7wQj/icRgXktwCc
-         kr99zJbtz1B+mc4vzYLXqwgqVtZGSqUq4LfB2ZO+GpqW8ufV6bL6MLX4iRh0Azd1Fa
-         pOGGdewbCQiL/y4OKjbU/dtDazqmnbmG3oORULrBQrIeT9k4/TGcBljxkVYvgO3DiX
-         3OrhBH7pWa53Q==
-From:   Mark Brown <broonie@kernel.org>
-To:     kernel@pengutronix.de, perex@perex.cz,
-        ranjani.sridharan@linux.intel.com,
-        Shengjiu Wang <shengjiu.wang@nxp.com>, s.hauer@pengutronix.de,
-        kai.vehmanen@linux.intel.com, yung-chuan.liao@linux.intel.com,
-        lgirdwood@gmail.com, shawnguo@kernel.org, daniel.baluta@nxp.com,
-        peter.ujfalusi@linux.intel.com,
-        pierre-louis.bossart@linux.intel.com, festevam@gmail.com,
-        linux-imx@nxp.com, tiwai@suse.com, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
-Cc:     shengjiu.wang@gmail.com, alsa-devel@alsa-project.org,
-        linux-arm-kernel@lists.infradead.org,
-        sound-open-firmware@alsa-project.org, linux-kernel@vger.kernel.org
-In-Reply-To: <1660787634-28550-1-git-send-email-shengjiu.wang@nxp.com>
-References: <1660787634-28550-1-git-send-email-shengjiu.wang@nxp.com>
-Subject: Re: [RESEND PATCH v2 1/2] dt-bindings: dsp: fsl: Add SOF compatile string for i.MX8ULP
-Message-Id: <166094926008.19151.7343804058436995082.b4-ty@kernel.org>
-Date:   Fri, 19 Aug 2022 23:47:40 +0100
+        with ESMTP id S243302AbiHSWzU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 18:55:20 -0400
+Received: from mail-yw1-x1131.google.com (mail-yw1-x1131.google.com [IPv6:2607:f8b0:4864:20::1131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12DBC10DCED
+        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 15:55:19 -0700 (PDT)
+Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-3376851fe13so124728717b3.6
+        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 15:55:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=cS/kuLnPP2ycMAb+4GFjyKvYClGwacVOaG/GdCCcX3E=;
+        b=Isiv0LJrfAWVrYWLGTYqoFk7nqIAox7SkpjdLcd6nWTP5m1SY/fz8TO9LKhoAPrw+T
+         qBPEb/knPbfBD1lNbRdzMKznlxaWBVCi0IfWiQtZdkp8azSyBbimy4ezRgRoEstgl+Wj
+         yt3en8fzROvDSehUAtEuq3lxurwKa6ZdoD86M=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=cS/kuLnPP2ycMAb+4GFjyKvYClGwacVOaG/GdCCcX3E=;
+        b=ugIgjykSFNxeWWU9F2aVXg3XfLIzcfATu5Ex0+pEryxRT8ZfCUKwC0R9Py1qUdKJky
+         Uy+Mp7Hne2BuhbHTN4kdhMfNkVubgw7qc7JhBp1SxYOM+G2ha0HISxLkeCX+dXxg8ewN
+         5tNKf7J4KRtG4Bx4mgjsXTa9fU9+r856ZEGUzPyOb2aDqcnu9SDwohx8bmOFUbji3iST
+         itavUpEs8pEtByKqQzhL2D8Q4taE1A6kOwUPdVVw2LlGEiNVwjWVT/xNIwWDt34kcOhn
+         iWqq6fXKaBMKTRE2j/m/eHyXG5UBeEBdpA6Dht9dTqIW2EuYQJ9Ua/jglg6T/FXq7Pr9
+         XwUA==
+X-Gm-Message-State: ACgBeo3HkYUZxQ6At8jLADie9T68sWm9vZw1+dO2baRAWEeNrsk23CQk
+        X+a0zzCCcjezNJ6hqOQK2mlGxLT5NfFtfcAlZnL/ZA==
+X-Google-Smtp-Source: AA6agR6LKOU/mYIufJm2GU7IunlNwXFZrwVteZWtS4q01qi8fIqF26flbEbDiy37n+tk6dUFoayZwQ0X0SPCZ2ffjJ4=
+X-Received: by 2002:a81:658:0:b0:334:a23e:6caa with SMTP id
+ 85-20020a810658000000b00334a23e6caamr9413958ywg.283.1660949718288; Fri, 19
+ Aug 2022 15:55:18 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.10.0-dev-fe10a
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+References: <20220810204750.3672362-1-bjorn.andersson@linaro.org>
+ <20220810204750.3672362-2-bjorn.andersson@linaro.org> <a13bce60-25b4-d075-d56a-d1283e91e3ba@linaro.org>
+ <20220814210104.GA690892-robh@kernel.org> <Yv1y9Wjp16CstJvK@baldur>
+ <CAE-0n53AjJ_G6yZoTALWpKvZUdF+8nFZ+TQh=Ch=8xgdMVqDkw@mail.gmail.com>
+ <CACeCKadP-AZ8OU4A=7CrwAz7yuLvMvjvAcw7K-FORFmkMvx7cA@mail.gmail.com> <YwAIGf59H9iKUhXF@builder.lan>
+In-Reply-To: <YwAIGf59H9iKUhXF@builder.lan>
+From:   Prashant Malani <pmalani@chromium.org>
+Date:   Fri, 19 Aug 2022 15:55:07 -0700
+Message-ID: <CACeCKadt3aoz8MZvy+tGHCxiHOPty4cLcG7AGS+oMEVnREt4sw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: usb: Introduce GPIO-based SBU mux
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Pin-yen Lin <treapking@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -63,38 +72,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 18 Aug 2022 09:53:53 +0800, Shengjiu Wang wrote:
-> Add SOF compatile string "fsl,imx8ulp-dsp" for supporting DSP
-> device on i.MX8ULP platform.
-> 
-> 
+On Fri, Aug 19, 2022 at 3:01 PM Bjorn Andersson
+<bjorn.andersson@linaro.org> wrote:
+>
+>
+> You can't physically connect 1, 2 or 4 lanes of DP from a DP chip to
+> your usb-c-connector at the same time as you physically connect 0, 2 or
+> 4 lanes of USB from a USB PHY.
 
-Applied to
+I apologize in case I'm misunderstanding, but why is that not possible?
+anx7625 allows that configuration (2 lane DP + 2 lane USB going to
+a single USB-C-connector)
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+Since the discussion is to support various conceivable hardware configurations
+That same anx7625 can support 1 1-lane DP (or 2 1-lane DPs), and 1
+2-lane Type-C output.
+The cross-point switch allows for that level of configuration.
 
-Thanks!
+> > So, how about 4 endpoints (1 for each SS lane) in the usb-c-connector port@1?
+> > That should support every conceivable configuration and bridge/PHY hardware.
+> > and also allows a way to specify any lane remapping (similar to what
+> > "data lanes" does)
+> > if that is required.
+>
+> Wouldn't that prevent you from handling orientation switching, given
+> that the graph is static?
 
-[1/2] dt-bindings: dsp: fsl: Add SOF compatile string for i.MX8ULP
-      commit: ee6c42ba5c7670c6f8c17c7bcedbcdaf7b8eb72e
-[2/2] ASoC: SOF: imx: Add i.MX8ULP HW support
-      commit: fb5319af6ad8616b772761ed926ca57e10f30ea4
+It depends. If the end-points from the usb-c-connector
+go to the same switch, then it should allow orientation switching
+(anx7625 allows
+this). The port driver would just tell the orientation switch(es) attached to
+it that we are in NORMAL or REVERSE orientation.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+The graph is static, since the hardware line routing between components
+doesn't change (e.g SSTX1 from the Type-C port is always routed to Pin
+X1,X2 on the switch hardware), but that is what the switch is for.
+Note that in this case, the expectation is that
+the switch driver only registers 1 switch (it can figure out that all
+4 endpoints
+go to the same Type-C port).
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+The limitation to orientation switching would depend on how the
+hardware is routed.
