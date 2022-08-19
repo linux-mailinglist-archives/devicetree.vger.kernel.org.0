@@ -2,139 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DBDA35993F0
-	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 06:17:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A53CB5994CA
+	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 07:43:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241486AbiHSENs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Aug 2022 00:13:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42028 "EHLO
+        id S1346522AbiHSFkG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Aug 2022 01:40:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345163AbiHSENp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 00:13:45 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EA9D61721;
-        Thu, 18 Aug 2022 21:13:41 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id i14so6682656ejg.6;
-        Thu, 18 Aug 2022 21:13:40 -0700 (PDT)
+        with ESMTP id S1344274AbiHSFkE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 01:40:04 -0400
+Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18487DCFD3
+        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 22:40:02 -0700 (PDT)
+Received: by mail-pf1-x436.google.com with SMTP id z187so3416736pfb.12
+        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 22:40:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=BxxIf4ICLTKnjJ5aVGidvHQIOHUtRRv6urv+Qzj5jkI=;
-        b=ZJip5BfO3l92GgahTctqVpvWnm2m24EXsmFyL4EG5YkVZUo/Ss8bZzi4HTqY/Kn+T2
-         1LaPg1nXPqo7gDGCigaTTN0utOVD932QdCjO7X0/B67eKt8U0l+MFLMqHzkiT/IJUXxD
-         0hxbj1FdPgz+F9OHaTaVcdQDarlBOJ3G8KSkAMCrQJKRF5hBCaBF/m4iALsMuEgixJxA
-         F1DCFPl44aeH0KOcTZM1b3yQyT70KrgYbDLhrNNeM4rXw3Zpth55vt7apy3gmREF4NVm
-         tQdMVJWJY4jNUK3nKBp++jz9scKFQZElxV1iM/Bvhq/XmIZH+7JveVx9hAyWbRopi2dP
-         TZrg==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=EU0Xpdjq4gzaluDqvt8ZL9f0MKE2Ug7x6hJlEuzy25o=;
+        b=q4TKVBG83qbSyPTszbB4aqGThUjTg4VCA8TG0lifPnwmoeJpzmxN02EwXm/URAULnX
+         685FFTeli+9sePzO5uMNh1f8wEFs3bL9Bf13qixko8qkfhquVwaVe0/d8eb9Umgl35iL
+         EMJEzUhrfm3UPBZfAoe/lT6g56rL8ukKYEXMnxcUsqKI+7Ncpdg5FHtsruV9ljflQ9Wp
+         nvKw/ZpOcuQ6Tzd6O5wGBopJIfqgteoukXz9wXIYb0Sg7kZyKj1+tK2Koy2vAzXcz4vK
+         CeTvEErv+s9rg/1EhdEkvCadezhC0zPjptVivPdutRDd6sDCQOLMcByIWqBbRx2fDS6i
+         +v+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=BxxIf4ICLTKnjJ5aVGidvHQIOHUtRRv6urv+Qzj5jkI=;
-        b=WXM4mwd57Xe+w2H8XHZ0pItV6QaJFKlTtxiw1dgqOHNEbJyVYm9v6VERz0Nrzzkxvc
-         RThRIJmXAQvkHpmiHGU5NWA+1P2cKV0Otxkf6+8WPfzyzP3zR4OwRz4jDE2v8FC5lVpb
-         Oblc1NyIv4NpgZKgKHzMBUK5Sti8b+f4NVrNhsmdkAqmdAlD3lMrgQc2J1w9miGkXozR
-         Qde772DORyVhSHqu4mvYktKQSGDhSWAm4kAwd3z8xbcHhVxHS8wuG+LCRrDcT/yXn0CM
-         qBF5uj6bJxZjTODcc4sTV+hpCjM6qVrova0B+3E+SROCaQ8+Gk77XsJ+ILjO2DvZ0YRQ
-         Sn9g==
-X-Gm-Message-State: ACgBeo3gwexkV1sx3kB3LoSt1aU5dzecRtc8yOoHdxAA+QLECceJNDs6
-        1IuIADi2JCkke6YciPN2S2w=
-X-Google-Smtp-Source: AA6agR7xtwZPWKgGk3TjC9bSK4HxhNAbu5i2li1AQjQzmEN9t/rm3PEEKTFcDnUEuidxsKm+N92oRw==
-X-Received: by 2002:a17:907:2c42:b0:730:aacf:1b69 with SMTP id hf2-20020a1709072c4200b00730aacf1b69mr3667025ejc.381.1660882419432;
-        Thu, 18 Aug 2022 21:13:39 -0700 (PDT)
-Received: from jernej-laptop.localnet (82-149-1-172.dynamic.telemach.net. [82.149.1.172])
-        by smtp.gmail.com with ESMTPSA id n22-20020aa7d056000000b0043bbf79b3ebsm2324523edo.54.2022.08.18.21.13.38
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=EU0Xpdjq4gzaluDqvt8ZL9f0MKE2Ug7x6hJlEuzy25o=;
+        b=Jgit8DlQiXpCADOEnjlG2vLTshNsUJ47NadmIPg5dgwhsySzB5ormid9KiDMCzUTm4
+         976ZGyYzZsgEOqtyVV8o7umstuuT93zxfIg+ORHeWrfqPqpm8S/FXCHI1uq/sxbWmrdV
+         BydrF35Dstilat8FMNtwdcU15FHzmH57TKBszzXVFc2sNHUT5QRQcEMD5ld2PjS7y6jQ
+         Y9DQHRt7rn+KPyKIieLcOaTsLouVnfxkNflVqHGIrtHJ2Y2dy2p6NaaTjXf3YLfW5fIm
+         tFOROcqTqdtlWl/gMGpEzk/976F+9ej2yivgM4yffMi7DDpRrwru+fiY33I7XdCCbOZK
+         p47Q==
+X-Gm-Message-State: ACgBeo2B3WPUpED3U/q0EiKpRzwT8rUr/dJ9qf8jxptB5YmkwUt/sawO
+        BOr7HZuqUtjklvbP5vuz/ADneQ==
+X-Google-Smtp-Source: AA6agR5rqHkJsevaWHqGKd15w/iKH002kBpV1qP/T8uNcF71eJMIX1DT1/jdedfMtw2NS/LvYRmcFg==
+X-Received: by 2002:a05:6a00:10cf:b0:528:48c3:79e0 with SMTP id d15-20020a056a0010cf00b0052848c379e0mr6224068pfu.18.1660887601337;
+        Thu, 18 Aug 2022 22:40:01 -0700 (PDT)
+Received: from localhost.localdomain ([2401:4900:1c5e:9cc1:8f6b:abdb:fb8f:1a1b])
+        by smtp.gmail.com with ESMTPSA id e28-20020a056a0000dc00b0053617cbe2d2sm233429pfj.168.2022.08.18.22.39.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Aug 2022 21:13:38 -0700 (PDT)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        =?ISO-8859-1?Q?Cl=E9ment_P=E9ron?= <peron.clem@gmail.com>
-Cc:     =?ISO-8859-1?Q?Cl=E9ment_P=E9ron?= <peron.clem@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/4] arm64: dts: allwinner: h6: Add cooling map for GPU
-Date:   Fri, 19 Aug 2022 06:13:37 +0200
-Message-ID: <2641460.mvXUDI8C0e@jernej-laptop>
-In-Reply-To: <20220818203928.131059-3-cpe@outsight.tech>
-References: <20220818203928.131059-1-cpe@outsight.tech> <20220818203928.131059-3-cpe@outsight.tech>
+        Thu, 18 Aug 2022 22:40:00 -0700 (PDT)
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, agross@kernel.org,
+        bhupesh.sharma@linaro.org, bhupesh.linux@gmail.com,
+        linux-kernel@vger.kernel.org, bjorn.andersson@linaro.org,
+        Rob Herring <robh@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [PATCH] arm64: dts: qcom: Fix sm8150 fastrpc node - use correct iommu values
+Date:   Fri, 19 Aug 2022 11:09:45 +0530
+Message-Id: <20220819053945.4114430-1-bhupesh.sharma@linaro.org>
+X-Mailer: git-send-email 2.35.3
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne =C4=8Detrtek, 18. avgust 2022 ob 22:39:26 CEST je Cl=C3=A9ment P=C3=A9r=
-on napisal(a):
-> From: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
->=20
-> Add a simple cooling map for the GPU.
->=20
-> Signed-off-by: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
+Fix the 'memory access' relaetd crash seen while running Hexagon
+SDK example applications on the cdsp dsp available on sm8150 SoC
+based boards:
 
-Is this really patch 2/4? I only got patches 2-4, but not patch 1.
+  qcom_q6v5_pas 8300000.remoteproc: fatal error received:
+    EX:kernel:0x0:frpck_0_0:0xf5:PC=0xc020ceb0
 
-Best regards,
-Jernej
+This crash is caused by incorrect IOMMU SID values being used
+in the fastrpc node.
 
-> ---
->  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 22 ++++++++++++++++++++
->  1 file changed, 22 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi index
-> 5a28303d3d4c..943ae5374dd6 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> @@ -186,6 +186,7 @@ gpu: gpu@1800000 {
->  			clocks =3D <&ccu CLK_GPU>, <&ccu CLK_BUS_GPU>;
->  			clock-names =3D "core", "bus";
->  			resets =3D <&ccu RST_BUS_GPU>;
-> +			#cooling-cells =3D <2>;
->  			status =3D "disabled";
->  		};
->=20
-> @@ -1075,6 +1076,27 @@ gpu-thermal {
->  			polling-delay-passive =3D <0>;
->  			polling-delay =3D <0>;
->  			thermal-sensors =3D <&ths 1>;
-> +
-> +			trips {
-> +				gpu_alert: gpu-alert {
-> +					temperature =3D <85000>;
-> +					hysteresis =3D <2000>;
-> +					type =3D "passive";
-> +				};
-> +
-> +				gpu-crit {
-> +					temperature =3D=20
-<100000>;
-> +					hysteresis =3D <0>;
-> +					type =3D "critical";
-> +				};
-> +			};
-> +
-> +			cooling-maps {
-> +				map0 {
-> +					trip =3D <&gpu_alert>;
-> +					cooling-device =3D <&gpu=20
-THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +				};
-> +			};
->  		};
->  	};
->  };
+Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc: Rob Herring <robh@kernel.org>
+Suggested-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm8150.dtsi | 24 ++++++++----------------
+ 1 file changed, 8 insertions(+), 16 deletions(-)
 
-
-
+diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+index 7d509ecd44da..916f12b799b7 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+@@ -3394,57 +3394,49 @@ fastrpc {
+ 					compute-cb@1 {
+ 						compatible = "qcom,fastrpc-compute-cb";
+ 						reg = <1>;
+-						iommus = <&apps_smmu 0x1401 0x2040>,
+-							 <&apps_smmu 0x1421 0x0>,
+-							 <&apps_smmu 0x2001 0x420>,
+-							 <&apps_smmu 0x2041 0x0>;
++						iommus = <&apps_smmu 0x1001 0x0460>;
+ 					};
+ 
+ 					compute-cb@2 {
+ 						compatible = "qcom,fastrpc-compute-cb";
+ 						reg = <2>;
+-						iommus = <&apps_smmu 0x2 0x3440>,
+-							 <&apps_smmu 0x22 0x3400>;
++						iommus = <&apps_smmu 0x1002 0x0460>;
+ 					};
+ 
+ 					compute-cb@3 {
+ 						compatible = "qcom,fastrpc-compute-cb";
+ 						reg = <3>;
+-						iommus = <&apps_smmu 0x3 0x3440>,
+-							 <&apps_smmu 0x1423 0x0>,
+-							 <&apps_smmu 0x2023 0x0>;
++						iommus = <&apps_smmu 0x1003 0x0460>;
+ 					};
+ 
+ 					compute-cb@4 {
+ 						compatible = "qcom,fastrpc-compute-cb";
+ 						reg = <4>;
+-						iommus = <&apps_smmu 0x4 0x3440>,
+-							 <&apps_smmu 0x24 0x3400>;
++						iommus = <&apps_smmu 0x1004 0x0460>;
+ 					};
+ 
+ 					compute-cb@5 {
+ 						compatible = "qcom,fastrpc-compute-cb";
+ 						reg = <5>;
+-						iommus = <&apps_smmu 0x5 0x3440>,
+-							 <&apps_smmu 0x25 0x3400>;
++						iommus = <&apps_smmu 0x1005 0x0460>;
+ 					};
+ 
+ 					compute-cb@6 {
+ 						compatible = "qcom,fastrpc-compute-cb";
+ 						reg = <6>;
+-						iommus = <&apps_smmu 0x6 0x3460>;
++						iommus = <&apps_smmu 0x1006 0x0460>;
+ 					};
+ 
+ 					compute-cb@7 {
+ 						compatible = "qcom,fastrpc-compute-cb";
+ 						reg = <7>;
+-						iommus = <&apps_smmu 0x7 0x3460>;
++						iommus = <&apps_smmu 0x1007 0x0460>;
+ 					};
+ 
+ 					compute-cb@8 {
+ 						compatible = "qcom,fastrpc-compute-cb";
+ 						reg = <8>;
+-						iommus = <&apps_smmu 0x8 0x3460>;
++						iommus = <&apps_smmu 0x1008 0x0460>;
+ 					};
+ 
+ 					/* note: secure cb9 in downstream */
+-- 
+2.35.3
 
