@@ -2,164 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AF6E5599D78
-	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 16:28:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 919CA599D84
+	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 16:28:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348908AbiHSOW5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Aug 2022 10:22:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50676 "EHLO
+        id S1347802AbiHSOY6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Aug 2022 10:24:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348474AbiHSOWz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 10:22:55 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5E29883DB
-        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 07:22:54 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id x19so6319221lfq.7
-        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 07:22:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=W6XLvvBGoke5+DVCHO7jgqha7YhANK6x+3Vpkq+XWDE=;
-        b=D8TRi6N573AdxP8uKx/TO+c6SXG/77vA7hDcrIL8d3gsE1xQJjQ699vUK+9c88fr/F
-         PAiowGh1zHmR8r4PPKnEbTlr4WpE9O0mq9qzYs9ZQ9AAkWkFvwxlKowTS0l1rl5yCQGP
-         S1qCUwCEYxBTAu/IaaflLGnomugR39kEjvFQlr8alzIst6MYdeHVmkXfldw6M0WUXGcy
-         zgaHi6WX+Tqvd6U+vtNRmAA3SgLTnygrf2nBxheJ6M/W1Ms2VFTDJSoENXq/1+T20RF/
-         RSy1Smu+6gHpoSmgLVKxkvlyaEB4fNrPBNQqwcekbL0mNQIxcqo+IuTGvhg5AZlXravn
-         pNUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=W6XLvvBGoke5+DVCHO7jgqha7YhANK6x+3Vpkq+XWDE=;
-        b=Pwr/PZGbuDnQqzdXwtegHhC7jPVx0ZXIVDH1oamvDBXS+p/yBN7E4OE4D8hLv2AN6b
-         GMleiFsMgJ5cDFVMp717txVWuCuBHwRpwBUcVjXU+gKMrR8d58F6FubppGZGsv8NrPDi
-         wkdTCH9ySAIqKlzAl2DMKkgznEoXapZf1ruIb7d2z8oGniaiAcY3Q17lB+d+ARCU8G+n
-         VyoLaJ2lCbzrRipMvumVt70MwHIP/XgLB0zK4pwmy702BNnimHh1OuuunlTPBeTft5Hc
-         q+QpYRNBVwQwJEAJFGiUfIv8R/tK+5Gxt8nHgSOrMG27RfsR6PnUfnXu4fodK43ZJv5e
-         9ZNA==
-X-Gm-Message-State: ACgBeo3ijm755uiR/N8lTgmWwOEmWaphx6RgamtDNsAXq2/j+tExnE36
-        4KSCMfo6i6UhAf0G7VoVkt8DIQ==
-X-Google-Smtp-Source: AA6agR6fwp6wpOn4Rzpjtks40Fom/eMSJFk8J9dE0Zc7x0M4BR6878593MBNvSYv+LbauP3H96P2tw==
-X-Received: by 2002:a05:6512:4011:b0:492:cd8a:e22 with SMTP id br17-20020a056512401100b00492cd8a0e22mr739256lfb.248.1660918973099;
-        Fri, 19 Aug 2022 07:22:53 -0700 (PDT)
-Received: from ?IPV6:2001:14bb:ac:e5a8:ef73:73ed:75b3:8ed5? (d1xw6v77xrs23np8r6z-4.rev.dnainternet.fi. [2001:14bb:ac:e5a8:ef73:73ed:75b3:8ed5])
-        by smtp.gmail.com with ESMTPSA id u3-20020a2eb803000000b0025e5a7bd522sm630556ljo.30.2022.08.19.07.22.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 Aug 2022 07:22:52 -0700 (PDT)
-Message-ID: <4e12e8c3-2170-eaab-d910-f674bcc93f79@linaro.org>
-Date:   Fri, 19 Aug 2022 17:22:50 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH 6/6] riscv: dts: microchip: add the mpfs' fabric clock
- control
-Content-Language: en-US
-To:     Conor.Dooley@microchip.com, mturquette@baylibre.com,
-        sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com,
-        Daire.McNamara@microchip.com
-Cc:     paul.walmsley@sifive.com, aou@eecs.berkeley.edu,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <20220819122259.183600-1-conor.dooley@microchip.com>
- <20220819122259.183600-7-conor.dooley@microchip.com>
- <3df8d4bd-3d38-cecd-6589-ccc1be01b886@linaro.org>
- <3ffba600-bda9-8ffa-a435-9a6f94e072b8@microchip.com>
- <f3d8be5c-737b-8c71-9926-a4036c797769@linaro.org>
- <19ca2ca1-c678-c669-4214-e92416e37191@microchip.com>
- <138af26e-8e36-63a0-d3a0-5af866318839@linaro.org>
- <f8496006-7487-7b7e-1a53-ec38492dfe70@microchip.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <f8496006-7487-7b7e-1a53-ec38492dfe70@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        with ESMTP id S1348981AbiHSOY5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 10:24:57 -0400
+Received: from hutie.ust.cz (unknown [IPv6:2a03:3b40:fe:f0::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAAC5A74CA;
+        Fri, 19 Aug 2022 07:24:54 -0700 (PDT)
+Content-Type: text/plain;
+        charset=utf-8
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
+        t=1660919090; bh=rxMg2xPDnYTGDNHNhIT0kpgTm3BHNlqUVYjelU2Wnlk=;
+        h=Subject:From:In-Reply-To:Date:Cc:References:To;
+        b=cN0DLigKR5cWPoRIyNMmYIxY+4PU5IX1WPSOj5t6HYXP9NphxQ4Ug01xF13D3FM8e
+         7pOlDXAfkK59n40RzEEfvTeJoeeNltYSLdgmYCvEqelHDU+5uQLbC2DYkQUmvstiVx
+         cGR2z9rxCnlNZBBBk2C5zxRDD+hAqQUvNVjO5COg=
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.80.82.1.1\))
+Subject: Re: [PATCH v2 2/4] arm64: dts: apple: t8103: Add MCA and its support
+From:   =?utf-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>
+In-Reply-To: <38094e2d-c75c-920b-4b4d-aa377971f615@linaro.org>
+Date:   Fri, 19 Aug 2022 16:24:49 +0200
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        asahi@lists.linux.dev, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <A9E366E2-EA4D-4F35-BE28-63745296D222@cutebit.org>
+References: <20220819125430.4920-1-povik+lin@cutebit.org>
+ <20220819125430.4920-3-povik+lin@cutebit.org>
+ <38094e2d-c75c-920b-4b4d-aa377971f615@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_FAIL,SPF_HELO_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/08/2022 17:14, Conor.Dooley@microchip.com wrote:
-> On 19/08/2022 15:06, Krzysztof Kozlowski wrote:
->> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
->>
->> On 19/08/2022 16:48, Conor.Dooley@microchip.com wrote:
->>> On 19/08/2022 14:28, Krzysztof Kozlowski wrote:
->>>>> Maybe that is me exploiting the "should", but I was not sure how to
->>>>> include the location in the devicetree.
->>>>
->>>> Neither node names nor clock names are considered an ABI, but some
->>>> pieces like to rely on them. Now you created such dependency so imagine
->>>> someone prepares a DTSI/DTS with "clock-controller" names for all four
->>>> blocks. How you driver would behave?
->>>
->>> -EEXIST, registration fails in the core.
->>>
->>>> The DTS would be perfectly valid but driver would not accept it
->>>> (conflicting names) or behave incorrect.
->>>>
->>>> I think what you need is the clock-output-names property. The core
->>>> schema dtschema/schemas/clock/clock.yaml recommends unified
->>>> interpretation of it - list of names for all the clocks - but accepts
->>>> other uses, e.g. as a prefix.
->>>
->>> So could I do `clock-output-names = "ccc_nw";`. That would work for me,
->>> with one question:
->>> How would I enforce the unique-ness of this property, since it would be
->>> a per CCC/clock-controller property? Maybe I missed something, but I
->>> gave it a shot with two different CCC nodes having "ccc_nw" & dtbs_check
->>> did not complain. Up to me to explain the restriction in the dt-bindings
->>> description?
->>
->> Uniqueness among entire DTS? I don't think you can, except of course
->> mentioning it in description. Your driver should handle such DTS -
->> minimally by gracefully failing but better behaving in some default way.
-> 
-> It fails not-too-gracefully at the moment, but that could easily be
-> changed. Truncated base address I suppose would be a meaningful thing
-> to fall back to afterwards.
-> 
->>
->>>
->>> FWIW I would then have:
->>> ccc_sw: clock-controller@38400000 {
->>>        compatible = "microchip,mpfs-ccc";
->>>        reg = <0x0 0x38400000 0x0 0x1000>, <0x0 0x38800000 0x0 0x1000>,
->>>              <0x0 0x39400000 0x0 0x1000>, <0x0 0x39800000 0x0 0x1000>;
->>>        #clock-cells = <1>;
->>>        clock-output-names = "ccc_sw";
->>>        status = "disabled";
->>> };
->>>
->>> & in the binding:
->>>     clock-output-names:
->>>       pattern: ^ccc_[ns][ew]$
->>
->> Yes, although this won't enforce uniqueness.
-> 
-> I know :( I'll respin next week I guess, thanks again.
 
 
-The issue with this is that we are getting close to tying bindings with
-your Linux implementation. What if other implementation does not use
-these names as prefix and instead creates some other clock names (as
-clock names are not considered ABI)? Your binding would still enforce
-such property with a specific pattern.
+> On 19. 8. 2022, at 15:12, Krzysztof Kozlowski =
+<krzysztof.kozlowski@linaro.org> wrote:
+>=20
+> On 19/08/2022 15:54, Martin Povi=C5=A1er wrote:
+>> Add the MCA I2S transceiver node and its supporting NCO, ADMAC nodes.
+>>=20
+>> Signed-off-by: Martin Povi=C5=A1er <povik+lin@cutebit.org>
+>> ---
+>> arch/arm64/boot/dts/apple/t8103.dtsi | 70 =
+++++++++++++++++++++++++++++
+>> 1 file changed, 70 insertions(+)
+>>=20
+>> diff --git a/arch/arm64/boot/dts/apple/t8103.dtsi =
+b/arch/arm64/boot/dts/apple/t8103.dtsi
+>> index 51a63b29d404..2dc3125aca5b 100644
+>> --- a/arch/arm64/boot/dts/apple/t8103.dtsi
+>> +++ b/arch/arm64/boot/dts/apple/t8103.dtsi
+>> @@ -532,6 +532,76 @@ port02: pci@2,0 {
+>> 						<0 0 0 4 &port02 0 0 0 =
+3>;
+>> 			};
+>> 		};
+>> +
+>> +		dart_sio: iommu@235004000 {
+>> +			compatible =3D "apple,t8103-dart", "apple,dart";
+>> +			reg =3D <0x2 0x35004000 0x0 0x4000>;
+>> +			interrupt-parent =3D <&aic>;
+>> +			interrupts =3D <AIC_IRQ 635 =
+IRQ_TYPE_LEVEL_HIGH>;
+>> +			#iommu-cells =3D <1>;
+>> +			power-domains =3D <&ps_sio_cpu>;
+>> +		};
+>> +
+>> +		nco_clkref: clock-ref {
+>> +			compatible =3D "fixed-clock";
+>> +			#clock-cells =3D <0>;
+>> +			clock-frequency =3D <900000000>;
+>> +			clock-output-names =3D "nco_ref";
+>> +		};
+>=20
+> Reference clocks are usually physically outside of SoC (e.g. on the
+> board), so:
+> 1. Not part of "soc" node.
+> 2. It should be defined by board. At least clock-frequency should be =
+there.
 
-The clock names should not really matter, so if you have conflict of
-names among multiple controllers, I think driver should embed unit
-address in the name (as fallback of clock-output-name) and the binding
-should not enforce specific pattern.
+Ah, right, this deserves commentary: Since this is a reverse-engineered
+driver/platform support, we give up on knowing the clock tree exactly. =
+Instead
+we model the clock input to the Numerically Controlled Oscillator =
+(=E2=80=98nco=E2=80=99 node
+below) with this fabulated fixed clock reference.
 
-I can easily imagine a real hardware board design with
-"sexy_duck_ccc_pll1_out3" clock names. :)
+I guess eventually the clock tree is rooted off the SoC, and there=E2=80=99=
+s
+nothing guaranteeing the same reference clock to the NCO across machines =
+(being
+function of the board wiring and the proprietary firmware). In the end I =
+would
+argue for keeping the =E2=80=98clock-ref=E2=80=99 here in =E2=80=99soc' =
+but have the clock-frequency
+defined by board.  Sounds reasonable?
 
-Best regards,
-Krzysztof
+>=20
+>> +
+>> +		nco: nco@23b044000 {
+>> +			compatible =3D "apple,t8103-nco", "apple,nco";
+>> +			reg =3D <0x2 0x3b044000 0x0 0x14000>;
+>> +			clocks =3D <&nco_clkref>;
+>> +			#clock-cells =3D <1>;
+>> +		};
+>> +
+>> +		admac: dma-controller@238200000 {
+>> +			compatible =3D "apple,t8103-admac", =
+"apple,admac";
+>> +			reg =3D <0x2 0x38200000 0x0 0x34000>;
+>> +			dma-channels =3D <24>;
+>> +			interrupts-extended =3D <0>,
+>> +					 <&aic AIC_IRQ 626 =
+IRQ_TYPE_LEVEL_HIGH>,
+>> +					 <0>,
+>> +					 <0>;
+>> +			#dma-cells =3D <1>;
+>> +			iommus =3D <&dart_sio 2>;
+>> +			power-domains =3D <&ps_sio_adma>;
+>> +		};
+>> +
+>> +		mca: mca@38400000 {
+>=20
+> Here node name is as well wrong.
+>=20
+> Node names should be generic.
+> =
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicet=
+ree-basics.html#generic-names-recommendation
+
+OK
+
+Best, Martin
+
+>=20
+> Best regards,
+> Krzysztof
+
