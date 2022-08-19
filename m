@@ -2,133 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92EEC59983F
-	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 11:06:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89141599880
+	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 11:22:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348018AbiHSJFn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Aug 2022 05:05:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34508 "EHLO
+        id S1347442AbiHSJIZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Aug 2022 05:08:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347985AbiHSJFg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 05:05:36 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75DFAF23E7
-        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 02:05:34 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id b38so2705214lfv.4
-        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 02:05:34 -0700 (PDT)
+        with ESMTP id S1347339AbiHSJIX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 05:08:23 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02BFC7669;
+        Fri, 19 Aug 2022 02:08:20 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id z20so4861911edb.9;
+        Fri, 19 Aug 2022 02:08:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=Lv2fWdRF99e7CpwgYLWA5Mtojc32Wbh8AA81DkMthw4=;
-        b=OSGiqt9yFp/YqXKBx4gm2F8C5JxtKpDRqyj2mKp7sWIlRwe+Fh+hasNwc2qRl47Ppw
-         I0GTNSWETzMrFZXfvSCKi1k7ttl2x1/FWvPrs9VFF3u/xg315gfvjd/F9cJD87Gf0oKB
-         rxgEjSMEqcjJVSCcgdApLk2/LNjbnpM4Kfe7rrX5rKBWTHdqsxxnq0ZTHVxbZrQG7Uj9
-         nfTf1I2n/ZqUJGTygLPCTFUNTYVj8sQ/5abcrw1zkK7h0TfvD3lLulpQuZUQET/vl5ix
-         Ve2DVwY0zoVo1krsxTiSN73f0SID8KNQRh6jdUDmLbhoQ+vT6JaFFDHUM8/jBfke43WQ
-         6L5w==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc;
+        bh=dJN4T+ue3SObncsuJ7neBi3J5OlmFODSpIxWtHwr9YA=;
+        b=GJOUQLyqYr1U/1FvP6Zq/oTaBISO3ikHpCYTQkzc6YOBloQrFBvpWUuM145VfhKHwg
+         /IqYU8QgWpCjv8+wRsX8Pymo+Kp9IvOQAAdx0QZpjOUCrMRq45qLjvspEXRyAhIxYEgX
+         ZDtpdXhR0nhDzm2z7X/pNAmA4mTpT7T8KfkUV+o0I3d56qxjQMB4YNm2GQ8GTwFkX6RE
+         +hXTeywq2dChXQIP960mwV2bAS+onNc6pdWi/DvBeKPX9i56aqbGFks4M8q9MuBuHCsv
+         xnX0c2G5GVhx0eu4j25shM6bbAbHIen8rgheu9beKhp82evDObq4CT5fYjRq5Sl8TVdB
+         cZ9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=Lv2fWdRF99e7CpwgYLWA5Mtojc32Wbh8AA81DkMthw4=;
-        b=KMa0Uk+b4slnwrFLNNr+bq04AFb8K9Dw5Nw3aEcMyhyqh8vfS2qruKLJpHVqBEPQG6
-         sdhxr5A3FHn6bDjxKuEsH2vuK5/5CjJiZSdBaUa6Ts3J0x4w0Q0m0jWcPWNNh/Ic13QT
-         ss1CxEXEc4b/r614dgC6Zpd9VNezlzk11QUJC6s6j+LcVY893Ixnl2G5slW3uj8Nynj5
-         0vKao+fkx5YtAQaoBAtYfv3YMZir0RoNeFDaQbeJKZeOhL5sNMo2pbBLktmwyERuYXo6
-         ukYg1LO2zzKKfTPtAE0/Nhmpf6u2AIKaJvcCcl6eUCh9PHV06kzpvKjUcWnGiXoMfnWH
-         4HRA==
-X-Gm-Message-State: ACgBeo3HHz4W11zRWSNYOk/FDgAFgEoaPKowBGhYxyWcVJ6MwWIIcKW5
-        hVKyEBvpabETpTtvW/YXzB1fmg==
-X-Google-Smtp-Source: AA6agR4BD6cmbcbpC+BCZcvzn3RJP06MHPv/v/nVtuxaILQVOTEbitSObHN+inl836TTz+WCde6f7A==
-X-Received: by 2002:a05:6512:1686:b0:491:3199:d407 with SMTP id bu6-20020a056512168600b004913199d407mr2203181lfb.476.1660899932670;
-        Fri, 19 Aug 2022 02:05:32 -0700 (PDT)
-Received: from ?IPV6:2001:14bb:ac:e5a8:ef73:73ed:75b3:8ed5? (d1xw6v77xrs23np8r6z-4.rev.dnainternet.fi. [2001:14bb:ac:e5a8:ef73:73ed:75b3:8ed5])
-        by smtp.gmail.com with ESMTPSA id x7-20020a056512078700b00492c627cab5sm321401lfr.254.2022.08.19.02.05.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 Aug 2022 02:05:32 -0700 (PDT)
-Message-ID: <0aba8906-ed30-786e-cff4-6cb70d6e73c5@linaro.org>
-Date:   Fri, 19 Aug 2022 12:05:30 +0300
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc;
+        bh=dJN4T+ue3SObncsuJ7neBi3J5OlmFODSpIxWtHwr9YA=;
+        b=aI2gh7f8nBkY9kwVPuhD3GjvKnxtHfcSUFvPKFbpsTOLt0j6SX7POoOtrVMsJCmUSu
+         sbZ0NdUqvtsVg0kCorTt+0eCwWfgkZySxfa4Z9zKqqFYPXnorOriK6z7t7lCcsnmnyxR
+         KVDtJ9pnnWY1MjPjhHAbE152NI3YmXzL5mAYTM5nIoQ8IBiNbZhympigYuMNc/pEn0Et
+         MhYW1g+pcyWRl+ylecyWER6IFKMd4zbN/OGBgUUN6gI/b6UR9s2BIHcE4nFzez0oX95m
+         LNlAkbjgVOJ7R31dOs/2hVjX+8OXnlMhvuyKrXFItOzRIcll0zRQSBvEyA09IVPMv1Xi
+         7hFQ==
+X-Gm-Message-State: ACgBeo3j8X8tHcOQVZDYRfl4+VaU/a/aqfEmK3ARlyb1MU9M2WtZusxt
+        Tw+c28e72j4u6+xMIS2HNIXPOoPh3j8EBCOGShc=
+X-Google-Smtp-Source: AA6agR6F4r4SDZxIaIja8V8l2g61Z0gwf9bYv+XqxLEVbWmacqtCiR7o2NAbThQzU1DsYSyMqZq7Ffe8iMd70hVfIjg=
+X-Received: by 2002:a05:6402:1f8c:b0:43e:8fab:76c with SMTP id
+ c12-20020a0564021f8c00b0043e8fab076cmr5353281edc.126.1660900098448; Fri, 19
+ Aug 2022 02:08:18 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH 2/5] dt-bindings: mfd: atmel,at91-usart: convert to
- json-schema
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Sergiu.Moga@microchip.com, lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, Nicolas.Ferre@microchip.com,
-        alexandre.belloni@bootlin.com, Claudiu.Beznea@microchip.com,
-        radu_nicolae.pirea@upb.ro, richard.genoud@gmail.com,
-        mturquette@baylibre.com, sboyd@kernel.org,
-        gregkh@linuxfoundation.org, jirislaby@kernel.org,
-        admin@hifiphile.com, Kavyasree.Kotagiri@microchip.com
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-serial@vger.kernel.org
-References: <20220817075517.49575-1-sergiu.moga@microchip.com>
- <20220817075517.49575-3-sergiu.moga@microchip.com>
- <942accc5-70aa-3bb2-63dd-306a39ee5ea4@linaro.org>
- <d1aad8ea-3852-f36b-366b-7aa67d2dd9d5@microchip.com>
- <ec86420c-a210-facd-ab3a-5baf84a736f3@linaro.org>
-In-Reply-To: <ec86420c-a210-facd-ab3a-5baf84a736f3@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20220818203928.131059-1-cpe@outsight.tech> <20220818203928.131059-3-cpe@outsight.tech>
+ <2641460.mvXUDI8C0e@jernej-laptop>
+In-Reply-To: <2641460.mvXUDI8C0e@jernej-laptop>
+From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Date:   Fri, 19 Aug 2022 11:08:06 +0200
+Message-ID: <CAJiuCcfdE_B8FacrJSGHcRZpzmd6qorY7DT9DiH8iCJujVmjVA@mail.gmail.com>
+Subject: Re: [PATCH 2/4] arm64: dts: allwinner: h6: Add cooling map for GPU
+To:     =?UTF-8?Q?Jernej_=C5=A0krabec?= <jernej.skrabec@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Samuel Holland <samuel@sholland.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-sunxi@lists.linux.dev,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/08/2022 11:47, Krzysztof Kozlowski wrote:
-> On 19/08/2022 11:38, Sergiu.Moga@microchip.com wrote:
->> On 18.08.2022 11:39, Krzysztof Kozlowski wrote:
->>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
->>>
->>> On 17/08/2022 10:55, Sergiu Moga wrote:
->>>> Convert at91 USART DT Binding for Atmel/Microchip SoCs to
->>>> json-schema format.
->>>>
->>>> Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
->>>> ---
->>>>   .../bindings/mfd/atmel,at91-usart.yaml        | 190 ++++++++++++++++++
->>>>   .../devicetree/bindings/mfd/atmel-usart.txt   |  98 ---------
->>>>   2 files changed, 190 insertions(+), 98 deletions(-)
->>>>   create mode 100644 Documentation/devicetree/bindings/mfd/atmel,at91-usart.yaml
->>>>   delete mode 100644 Documentation/devicetree/bindings/mfd/atmel-usart.txt
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/mfd/atmel,at91-usart.yaml b/Documentation/devicetree/bindings/mfd/atmel,at91-usart.yaml
->>>> new file mode 100644
->>>> index 000000000000..cf15d73fa1e8
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/mfd/atmel,at91-usart.yaml
->>> One more thing - I think this should be in serial directory, not mfd,
->>> even though it includes SPI. MFD is just a Linux naming/wrapper device.
->>>
->>> Best regards,
->>> Krzysztof
->>
->> I would rather keep it in this directory, since its corresponding driver 
->> is also in the mfd directory.
-> 
-> Sorry, but that's poor argument. Driver subsystems match Linux
-> convention, not necessarily hardware type/naming. Bindings directories
-> match hardware. MFD bindings are only for MFD wrapper drivers and this
-> is a serial interface. Not a MFD. You even do not add MFD devices in the
-> driver but add *always one* device depending on serial feature you want.
-> This is not even MFD device but regular platform device with children.
-> 
-> You put it in SoC, though, because all other SoCs store it there...
+Hi Jernej,
 
-The last one should be:
+On Fri, 19 Aug 2022 at 06:13, Jernej =C5=A0krabec <jernej.skrabec@gmail.com=
+> wrote:
+>
+> Dne =C4=8Detrtek, 18. avgust 2022 ob 22:39:26 CEST je Cl=C3=A9ment P=C3=
+=A9ron napisal(a):
+> > From: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
+> >
+> > Add a simple cooling map for the GPU.
+> >
+> > Signed-off-by: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
+>
+> Is this really patch 2/4? I only got patches 2-4, but not patch 1.
 
-You could put it in SoC, though, because all other SoCs store it there...
+Sorry I have updated the way I send my patches, so each patch is sent
+regarding what is outputted by 'scripts/get_maintainer.pl'
+
+Patch 1 is https://lore.kernel.org/linux-arm-kernel/20220818203928.131059-2=
+-cpe@outsight.tech/T/#md5d89721ac1861f31ca5d101ab9561371c35c904
+
+Which has been sent to :
+Catalin Marinas / Will Deacon <will@kernel.org>
+And CC to :
+linux-arm-kernel@lists.infradead.org / linux-kernel@vger.kernel.org
+
+I will resend and force this patch to be sent to linux ML / Maintainer too.
 
 Best regards,
-Krzysztof
+Clement
+
+>
+> Best regards,
+> Jernej
+>
+> > ---
+> >  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 22 ++++++++++++++++++++
+> >  1 file changed, 22 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> > b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi index
+> > 5a28303d3d4c..943ae5374dd6 100644
+> > --- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> > @@ -186,6 +186,7 @@ gpu: gpu@1800000 {
+> >                       clocks =3D <&ccu CLK_GPU>, <&ccu CLK_BUS_GPU>;
+> >                       clock-names =3D "core", "bus";
+> >                       resets =3D <&ccu RST_BUS_GPU>;
+> > +                     #cooling-cells =3D <2>;
+> >                       status =3D "disabled";
+> >               };
+> >
+> > @@ -1075,6 +1076,27 @@ gpu-thermal {
+> >                       polling-delay-passive =3D <0>;
+> >                       polling-delay =3D <0>;
+> >                       thermal-sensors =3D <&ths 1>;
+> > +
+> > +                     trips {
+> > +                             gpu_alert: gpu-alert {
+> > +                                     temperature =3D <85000>;
+> > +                                     hysteresis =3D <2000>;
+> > +                                     type =3D "passive";
+> > +                             };
+> > +
+> > +                             gpu-crit {
+> > +                                     temperature =3D
+> <100000>;
+> > +                                     hysteresis =3D <0>;
+> > +                                     type =3D "critical";
+> > +                             };
+> > +                     };
+> > +
+> > +                     cooling-maps {
+> > +                             map0 {
+> > +                                     trip =3D <&gpu_alert>;
+> > +                                     cooling-device =3D <&gpu
+> THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> > +                             };
+> > +                     };
+> >               };
+> >       };
+> >  };
+>
+>
+>
+>
