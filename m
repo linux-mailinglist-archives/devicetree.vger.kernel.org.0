@@ -2,68 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F43659A8F1
-	for <lists+devicetree@lfdr.de>; Sat, 20 Aug 2022 00:59:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4F3359A939
+	for <lists+devicetree@lfdr.de>; Sat, 20 Aug 2022 01:15:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243341AbiHSWzV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Aug 2022 18:55:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44576 "EHLO
+        id S233588AbiHSXO2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Aug 2022 19:14:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243302AbiHSWzU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 18:55:20 -0400
-Received: from mail-yw1-x1131.google.com (mail-yw1-x1131.google.com [IPv6:2607:f8b0:4864:20::1131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12DBC10DCED
-        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 15:55:19 -0700 (PDT)
-Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-3376851fe13so124728717b3.6
-        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 15:55:19 -0700 (PDT)
+        with ESMTP id S230039AbiHSXO1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 19:14:27 -0400
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5651CE4B9
+        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 16:14:25 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id a4so6731786wrq.1
+        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 16:14:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=cS/kuLnPP2ycMAb+4GFjyKvYClGwacVOaG/GdCCcX3E=;
-        b=Isiv0LJrfAWVrYWLGTYqoFk7nqIAox7SkpjdLcd6nWTP5m1SY/fz8TO9LKhoAPrw+T
-         qBPEb/knPbfBD1lNbRdzMKznlxaWBVCi0IfWiQtZdkp8azSyBbimy4ezRgRoEstgl+Wj
-         yt3en8fzROvDSehUAtEuq3lxurwKa6ZdoD86M=
+        d=conchuod.ie; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=SaeFaIV5wV1MKMr29Q6wupMh56tK3GFJ3AGQW75BYAE=;
+        b=CGs3P+Cp1wV98Tih58wKHgLyWCKINJrfx6yL72mF1A8UF9jmiJMChfyPINgIVOByhr
+         BTraVSVz4osV3Wr3JoOqCa/t6H410iUM9T6oU4m2J/9fYv6+SurQjrupYfo5M91mndyr
+         ahmj7QeGxOVY00UfKAw/9xc/w65Ijrfdyl0ejMXa8/rnMnuUaSNR01kpejLmHmISVhnF
+         +6WEjyzVLsTZMLuB1/6gOl8DmPR5wCbL5dremvHWhDt1rbRaunnmAaOJh+qvhZAEluR3
+         CLjygIoBx/umhsPSf74QopQS6EDYGRsPFk3XnabCP6abxdxF6zPGvyNBABIT4voyhiJ2
+         OFJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=cS/kuLnPP2ycMAb+4GFjyKvYClGwacVOaG/GdCCcX3E=;
-        b=ugIgjykSFNxeWWU9F2aVXg3XfLIzcfATu5Ex0+pEryxRT8ZfCUKwC0R9Py1qUdKJky
-         Uy+Mp7Hne2BuhbHTN4kdhMfNkVubgw7qc7JhBp1SxYOM+G2ha0HISxLkeCX+dXxg8ewN
-         5tNKf7J4KRtG4Bx4mgjsXTa9fU9+r856ZEGUzPyOb2aDqcnu9SDwohx8bmOFUbji3iST
-         itavUpEs8pEtByKqQzhL2D8Q4taE1A6kOwUPdVVw2LlGEiNVwjWVT/xNIwWDt34kcOhn
-         iWqq6fXKaBMKTRE2j/m/eHyXG5UBeEBdpA6Dht9dTqIW2EuYQJ9Ua/jglg6T/FXq7Pr9
-         XwUA==
-X-Gm-Message-State: ACgBeo3HkYUZxQ6At8jLADie9T68sWm9vZw1+dO2baRAWEeNrsk23CQk
-        X+a0zzCCcjezNJ6hqOQK2mlGxLT5NfFtfcAlZnL/ZA==
-X-Google-Smtp-Source: AA6agR6LKOU/mYIufJm2GU7IunlNwXFZrwVteZWtS4q01qi8fIqF26flbEbDiy37n+tk6dUFoayZwQ0X0SPCZ2ffjJ4=
-X-Received: by 2002:a81:658:0:b0:334:a23e:6caa with SMTP id
- 85-20020a810658000000b00334a23e6caamr9413958ywg.283.1660949718288; Fri, 19
- Aug 2022 15:55:18 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220810204750.3672362-1-bjorn.andersson@linaro.org>
- <20220810204750.3672362-2-bjorn.andersson@linaro.org> <a13bce60-25b4-d075-d56a-d1283e91e3ba@linaro.org>
- <20220814210104.GA690892-robh@kernel.org> <Yv1y9Wjp16CstJvK@baldur>
- <CAE-0n53AjJ_G6yZoTALWpKvZUdF+8nFZ+TQh=Ch=8xgdMVqDkw@mail.gmail.com>
- <CACeCKadP-AZ8OU4A=7CrwAz7yuLvMvjvAcw7K-FORFmkMvx7cA@mail.gmail.com> <YwAIGf59H9iKUhXF@builder.lan>
-In-Reply-To: <YwAIGf59H9iKUhXF@builder.lan>
-From:   Prashant Malani <pmalani@chromium.org>
-Date:   Fri, 19 Aug 2022 15:55:07 -0700
-Message-ID: <CACeCKadt3aoz8MZvy+tGHCxiHOPty4cLcG7AGS+oMEVnREt4sw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: usb: Introduce GPIO-based SBU mux
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=SaeFaIV5wV1MKMr29Q6wupMh56tK3GFJ3AGQW75BYAE=;
+        b=zhnHOkiK/KyEyWsCFdaZqDoN6uH6mnaRauH6AFqb6lgo2ilZqs5iJr1alSgOLmcuzY
+         HkE3ZOMuefupuHPutoldfPgQmhFm3Phy5wS9b/SiG1vVNUrA2+TJ27enN4av5Yd8th5a
+         VrY9fgcBc5IkXqPuL0bo7RcPZDD01O7tHYBWVUNFICLMyMvubwIg2/CXWRWuRUcolZjf
+         SBk0VLU1c4R//rCDxdAsGdlVfnyuCzHvNNNGTctBjqJJFzxz3DC2UndwHOR0xwNyTYC6
+         4MAbDDCE5ExQD/b1/SwtKey1y3PzDp63OEElNiLwb1Omw69wyLtsqA9qBi7Dvo/HwJb6
+         EQxA==
+X-Gm-Message-State: ACgBeo0FX3bVSAbtZKgZjPzOyW3wpQl5M0qicIKvgGwb3G205ompAjIz
+        rpuYEjMxR+sIWqgG3M70448Qkg==
+X-Google-Smtp-Source: AA6agR45rexqagWDTaf4OrZKNQUASwm12brUKvs56alSg1WmnroFZwWLaQyc1Nq9TLv496a/xaoE2A==
+X-Received: by 2002:a5d:4642:0:b0:225:33bf:39f4 with SMTP id j2-20020a5d4642000000b0022533bf39f4mr4002097wrs.77.1660950864300;
+        Fri, 19 Aug 2022 16:14:24 -0700 (PDT)
+Received: from henark71.. ([109.76.58.63])
+        by smtp.gmail.com with ESMTPSA id g17-20020a5d46d1000000b0020fff0ea0a3sm5198522wrs.116.2022.08.19.16.14.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 19 Aug 2022 16:14:23 -0700 (PDT)
+From:   Conor Dooley <mail@conchuod.ie>
+To:     Daire McNamara <daire.mcnamara@microchip.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Pin-yen Lin <treapking@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Greentime Hu <greentime.hu@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Conor Dooley <conor.dooley@microchip.com>
+Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: [PATCH v3 0/7] Fix RISC-V/PCI dt-schema issues with dt-schema v2022.08
+Date:   Sat, 20 Aug 2022 00:14:09 +0100
+Message-Id: <20220819231415.3860210-1-mail@conchuod.ie>
+X-Mailer: git-send-email 2.37.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -72,45 +76,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 19, 2022 at 3:01 PM Bjorn Andersson
-<bjorn.andersson@linaro.org> wrote:
->
->
-> You can't physically connect 1, 2 or 4 lanes of DP from a DP chip to
-> your usb-c-connector at the same time as you physically connect 0, 2 or
-> 4 lanes of USB from a USB PHY.
+From: Conor Dooley <conor.dooley@microchip.com>
 
-I apologize in case I'm misunderstanding, but why is that not possible?
-anx7625 allows that configuration (2 lane DP + 2 lane USB going to
-a single USB-C-connector)
+Hey all,
 
-Since the discussion is to support various conceivable hardware configurations
-That same anx7625 can support 1 1-lane DP (or 2 1-lane DPs), and 1
-2-lane Type-C output.
-The cross-point switch allows for that level of configuration.
+Got a few fixes for PCI dt-bindings that I noticed after upgrading my
+dt-schema to v2022.08.
 
-> > So, how about 4 endpoints (1 for each SS lane) in the usb-c-connector port@1?
-> > That should support every conceivable configuration and bridge/PHY hardware.
-> > and also allows a way to specify any lane remapping (similar to what
-> > "data lanes" does)
-> > if that is required.
->
-> Wouldn't that prevent you from handling orientation switching, given
-> that the graph is static?
+Since all the dts patches are for "my" boards, I'll take them once the
+bindings are approved. I added a pair of other dts changes to the series,
+mostly for my own benefit in tracking what I need to apply that were
+previously at [0] & [1].
 
-It depends. If the end-points from the usb-c-connector
-go to the same switch, then it should allow orientation switching
-(anx7625 allows
-this). The port driver would just tell the orientation switch(es) attached to
-it that we are in NORMAL or REVERSE orientation.
+Thanks,
+Conor.
 
-The graph is static, since the hardware line routing between components
-doesn't change (e.g SSTX1 from the Type-C port is always routed to Pin
-X1,X2 on the switch hardware), but that is what the switch is for.
-Note that in this case, the expectation is that
-the switch driver only registers 1 switch (it can figure out that all
-4 endpoints
-go to the same Type-C port).
+0 - https://lore.kernel.org/all/20220811203207.179470-1-mail@conchuod.ie/
+1 - https://lore.kernel.org/all/20220811204024.182453-1-mail@conchuod.ie/
 
-The limitation to orientation switching would depend on how the
-hardware is routed.
+Changes since v2:
+- fu740: make clock-names required
+- mchp: add regex to clock names
+- mchp: add a new patch adding dma-ranges as optional
+
+Changes since v1:
+- fu740: rewrite commit message
+- mchp: rework clock-names as per rob's suggestion on IRC
+- mchp: drop the "legacy" from the node name
+- mchp: renemove the address translation property
+- mchp: change the child node name in the dts rather than the binding
+
+Conor Dooley (7):
+  dt-bindings: PCI: fu740-pci: fix missing clock-names
+  dt-bindings: PCI: microchip,pcie-host: fix missing clocks properties
+  dt-bindings: PCI: microchip,pcie-host: fix missing dma-ranges
+  riscv: dts: microchip: mpfs: fix incorrect pcie child node name
+  riscv: dts: microchip: mpfs: remove ti,fifo-depth property
+  riscv: dts: microchip: mpfs: remove bogus card-detect-delay
+  riscv: dts: microchip: mpfs: remove pci axi address translation
+    property
+
+ .../bindings/pci/microchip,pcie-host.yaml     | 31 +++++++++++++++++++
+ .../bindings/pci/sifive,fu740-pcie.yaml       |  8 +++++
+ .../boot/dts/microchip/mpfs-icicle-kit.dts    |  3 --
+ .../boot/dts/microchip/mpfs-polarberry.dts    |  3 --
+ arch/riscv/boot/dts/microchip/mpfs.dtsi       |  3 +-
+ 5 files changed, 40 insertions(+), 8 deletions(-)
+
+
+base-commit: 69dac8e431af26173ca0a1ebc87054e01c585bcc
+-- 
+2.37.1
+
