@@ -2,159 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 919CA599D84
-	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 16:28:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDD7A599D83
+	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 16:28:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347802AbiHSOY6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Aug 2022 10:24:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56730 "EHLO
+        id S1349151AbiHSOZn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Aug 2022 10:25:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348981AbiHSOY5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 10:24:57 -0400
-Received: from hutie.ust.cz (unknown [IPv6:2a03:3b40:fe:f0::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAAC5A74CA;
-        Fri, 19 Aug 2022 07:24:54 -0700 (PDT)
-Content-Type: text/plain;
-        charset=utf-8
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
-        t=1660919090; bh=rxMg2xPDnYTGDNHNhIT0kpgTm3BHNlqUVYjelU2Wnlk=;
-        h=Subject:From:In-Reply-To:Date:Cc:References:To;
-        b=cN0DLigKR5cWPoRIyNMmYIxY+4PU5IX1WPSOj5t6HYXP9NphxQ4Ug01xF13D3FM8e
-         7pOlDXAfkK59n40RzEEfvTeJoeeNltYSLdgmYCvEqelHDU+5uQLbC2DYkQUmvstiVx
-         cGR2z9rxCnlNZBBBk2C5zxRDD+hAqQUvNVjO5COg=
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.80.82.1.1\))
-Subject: Re: [PATCH v2 2/4] arm64: dts: apple: t8103: Add MCA and its support
-From:   =?utf-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>
-In-Reply-To: <38094e2d-c75c-920b-4b4d-aa377971f615@linaro.org>
-Date:   Fri, 19 Aug 2022 16:24:49 +0200
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        asahi@lists.linux.dev, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <A9E366E2-EA4D-4F35-BE28-63745296D222@cutebit.org>
-References: <20220819125430.4920-1-povik+lin@cutebit.org>
- <20220819125430.4920-3-povik+lin@cutebit.org>
- <38094e2d-c75c-920b-4b4d-aa377971f615@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+        with ESMTP id S1349461AbiHSOZc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 10:25:32 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B275FA18A;
+        Fri, 19 Aug 2022 07:25:30 -0700 (PDT)
+Received: from notapiano (unknown [70.107.189.129])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: nfraprado)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 64F796601DC3;
+        Fri, 19 Aug 2022 15:25:26 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1660919128;
+        bh=LVvo/H0yD5IHtK3BCe8kCRuEpXJ/0WbPUX2JGtIkvgQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=BRORHC1ycbpuGPFg/CMbY1HXG9CbZw4mD7QI+HegRtsRqLIKpA/blhXZFcCxxTwSe
+         CFPxPAyaltAW76paK8ntAjomzoOPjkNOtVVBeAi2QyofZ2hjkE0B6ZFtIoL8KXYC5H
+         9Uwy6/Vbl5vdJpybntjkT4r/XtG+b10BHFnRmqYHar17voYPOQO+atkovGyYsHZTCQ
+         I/mrcDhrSCILIKryUZfcVvlp/9NgDGzRHqEtcXYzq9B1XoGhk/ugm6JiJ6a7L5fGo9
+         oLDayXKm/kpvfkJ10EN22YLo7a7r7rVTCnpSVRxwt+qj1PZ26gwehcF1fc0feVsogX
+         x24TsgoxwUDQw==
+Date:   Fri, 19 Aug 2022 10:25:22 -0400
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     "Nancy.Lin" <nancy.lin@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>, wim@linux-watchdog.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, linux@roeck-us.net,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        "jason-jh . lin" <jason-jh.lin@mediatek.com>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        dri-devel@lists.freedesktop.org, llvm@lists.linux.dev,
+        singo.chang@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v25 07/10] soc: mediatek: mmsys: add mmsys for support 64
+ reset bits
+Message-ID: <20220819142522.c4o3nrkxfj2r3zd7@notapiano>
+References: <20220711075245.10492-1-nancy.lin@mediatek.com>
+ <20220711075245.10492-8-nancy.lin@mediatek.com>
+ <20220818214715.spbyic34szubx3gi@notapiano>
+ <d7ccb3fb2630c1c0b6dda2990cff72169e5e5d0b.camel@mediatek.com>
+ <12062a2e2957113d40b4bf3c1c62d18418b51a12.camel@mediatek.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <12062a2e2957113d40b4bf3c1c62d18418b51a12.camel@mediatek.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_FAIL,SPF_HELO_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Aug 19, 2022 at 12:13:23PM +0800, Nancy.Lin wrote:
+> Hi Nicolas,
+> 
+> 
+> On Fri, 2022-08-19 at 10:09 +0800, Nancy.Lin wrote:
+> > Hi Nicolas,
+> > 
+> > Thanks for the review.
+> > 
+> > On Thu, 2022-08-18 at 17:47 -0400, Nícolas F. R. A. Prado wrote:
+> > > Hi Nancy,
+> > > 
+> > > On Mon, Jul 11, 2022 at 03:52:42PM +0800, Nancy.Lin wrote:
+> > > [..]
+> > > >  static const struct mtk_mmsys_driver_data
+> > > > mt2701_mmsys_driver_data
+> > > > = {
+> > > >  	.clk_driver = "clk-mt2701-mm",
+> > > >  	.routes = mmsys_default_routing_table,
+> > > > @@ -86,6 +88,7 @@ static const struct mtk_mmsys_driver_data
+> > > > mt8173_mmsys_driver_data = {
+> > > >  	.routes = mmsys_default_routing_table,
+> > > >  	.num_routes = ARRAY_SIZE(mmsys_default_routing_table),
+> > > >  	.sw0_rst_offset = MT8183_MMSYS_SW0_RST_B,
+> > > > +	.num_resets = 32,
+> > > >  };
+> > > >  
+> > > >  static const struct mtk_mmsys_match_data mt8173_mmsys_match_data
+> > > > =
+> > > > {
+> > > > @@ -100,6 +103,7 @@ static const struct mtk_mmsys_driver_data
+> > > > mt8183_mmsys_driver_data = {
+> > > >  	.routes = mmsys_mt8183_routing_table,
+> > > >  	.num_routes = ARRAY_SIZE(mmsys_mt8183_routing_table),
+> > > >  	.sw0_rst_offset = MT8183_MMSYS_SW0_RST_B,
+> > > > +	.num_resets = 32,
+> > > >  };
+> > > >  
+> > > >  static const struct mtk_mmsys_match_data mt8183_mmsys_match_data
+> > > > =
+> > > > {
+> > > > @@ -114,6 +118,7 @@ static const struct mtk_mmsys_driver_data
+> > > > mt8186_mmsys_driver_data = {
+> > > >  	.routes = mmsys_mt8186_routing_table,
+> > > >  	.num_routes = ARRAY_SIZE(mmsys_mt8186_routing_table),
+> > > >  	.sw0_rst_offset = MT8186_MMSYS_SW0_RST_B,
+> > > > +	.num_resets = 32,
+> > > >  };
+> > > 
+> > > [..]
+> > > > @@ -351,18 +362,6 @@ static int mtk_mmsys_probe(struct
+> > > > platform_device *pdev)
+> > > >  		return ret;
+> > > >  	}
+> > > >  
+> > > > -	spin_lock_init(&mmsys->lock);
+> > > > -
+> > > > -	mmsys->rcdev.owner = THIS_MODULE;
+> > > > -	mmsys->rcdev.nr_resets = 32;
+> > > 
+> > > The number of resets was previously always set to 32, and now
+> > > you're
+> > > instead
+> > > setting it based on num_resets from each machine. The issue is,
+> > > you're
+> > > forgetting a bunch of them.
+> > > 
+> > > mt8192 didn't get a num_reset, so this commit breaks the display on
+> > > mt8192 based
+> > > devices. But mt8192 isn't the only one, there are other platforms
+> > > missing this
+> > > property. Please set num_resets to 32 in every single one of them,
+> > > otherwise
+> > > there will be display regressions.
+> > > 
+> > > Thanks,
+> > > Nícolas
+> > 
+> > It's my mistake. I will set num_resets to 32 for every mmsys driver.
+> > 
+> > Thanks,
+> > Nancy
+> 
+> After review the code, I think only the mmsys driver with the
+> sw0_rst_offset setting should set num_resets to 32, otherwise it would
+> set wrong addr in the mtk_mmsys_reset_update() function. Those mmsys
+> without sw0_rst_offset set should not set num_resets to 32.
 
+I don't think that's the case. num_resets and sw0_rst_offset are completely
+unrelated in the code. sw0_rst_offset just gives the offset from the base
+mmsys memory to the register that manages resets; it can be 0 in which case the
+reset register would be right at the start of the mmsys iospace.
 
-> On 19. 8. 2022, at 15:12, Krzysztof Kozlowski =
-<krzysztof.kozlowski@linaro.org> wrote:
->=20
-> On 19/08/2022 15:54, Martin Povi=C5=A1er wrote:
->> Add the MCA I2S transceiver node and its supporting NCO, ADMAC nodes.
->>=20
->> Signed-off-by: Martin Povi=C5=A1er <povik+lin@cutebit.org>
->> ---
->> arch/arm64/boot/dts/apple/t8103.dtsi | 70 =
-++++++++++++++++++++++++++++
->> 1 file changed, 70 insertions(+)
->>=20
->> diff --git a/arch/arm64/boot/dts/apple/t8103.dtsi =
-b/arch/arm64/boot/dts/apple/t8103.dtsi
->> index 51a63b29d404..2dc3125aca5b 100644
->> --- a/arch/arm64/boot/dts/apple/t8103.dtsi
->> +++ b/arch/arm64/boot/dts/apple/t8103.dtsi
->> @@ -532,6 +532,76 @@ port02: pci@2,0 {
->> 						<0 0 0 4 &port02 0 0 0 =
-3>;
->> 			};
->> 		};
->> +
->> +		dart_sio: iommu@235004000 {
->> +			compatible =3D "apple,t8103-dart", "apple,dart";
->> +			reg =3D <0x2 0x35004000 0x0 0x4000>;
->> +			interrupt-parent =3D <&aic>;
->> +			interrupts =3D <AIC_IRQ 635 =
-IRQ_TYPE_LEVEL_HIGH>;
->> +			#iommu-cells =3D <1>;
->> +			power-domains =3D <&ps_sio_cpu>;
->> +		};
->> +
->> +		nco_clkref: clock-ref {
->> +			compatible =3D "fixed-clock";
->> +			#clock-cells =3D <0>;
->> +			clock-frequency =3D <900000000>;
->> +			clock-output-names =3D "nco_ref";
->> +		};
->=20
-> Reference clocks are usually physically outside of SoC (e.g. on the
-> board), so:
-> 1. Not part of "soc" node.
-> 2. It should be defined by board. At least clock-frequency should be =
-there.
+nr_resets, which is set by num_resets, on the other hand, seems to be used in a
+single place: of_reset_simple_xlate() in drivers/reset/core.c. And the logic
+there is really simple: if you pass a reset id greater than nr_resets, you will
+get an error. So when you leave num_resets unset (0) for any of the platforms,
+you're making all reset registrations in the DT fail.
 
-Ah, right, this deserves commentary: Since this is a reverse-engineered
-driver/platform support, we give up on knowing the clock tree exactly. =
-Instead
-we model the clock input to the Numerically Controlled Oscillator =
-(=E2=80=98nco=E2=80=99 node
-below) with this fabulated fixed clock reference.
+So I'm really confident that we need num_resets = 32 on *all* platforms (except
+the ones that have 64 of course, we just can't leave them empty).
 
-I guess eventually the clock tree is rooted off the SoC, and there=E2=80=99=
-s
-nothing guaranteeing the same reference clock to the NCO across machines =
-(being
-function of the board wiring and the proprietary firmware). In the end I =
-would
-argue for keeping the =E2=80=98clock-ref=E2=80=99 here in =E2=80=99soc' =
-but have the clock-frequency
-defined by board.  Sounds reasonable?
-
->=20
->> +
->> +		nco: nco@23b044000 {
->> +			compatible =3D "apple,t8103-nco", "apple,nco";
->> +			reg =3D <0x2 0x3b044000 0x0 0x14000>;
->> +			clocks =3D <&nco_clkref>;
->> +			#clock-cells =3D <1>;
->> +		};
->> +
->> +		admac: dma-controller@238200000 {
->> +			compatible =3D "apple,t8103-admac", =
-"apple,admac";
->> +			reg =3D <0x2 0x38200000 0x0 0x34000>;
->> +			dma-channels =3D <24>;
->> +			interrupts-extended =3D <0>,
->> +					 <&aic AIC_IRQ 626 =
-IRQ_TYPE_LEVEL_HIGH>,
->> +					 <0>,
->> +					 <0>;
->> +			#dma-cells =3D <1>;
->> +			iommus =3D <&dart_sio 2>;
->> +			power-domains =3D <&ps_sio_adma>;
->> +		};
->> +
->> +		mca: mca@38400000 {
->=20
-> Here node name is as well wrong.
->=20
-> Node names should be generic.
-> =
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicet=
-ree-basics.html#generic-names-recommendation
-
-OK
-
-Best, Martin
-
->=20
-> Best regards,
-> Krzysztof
-
+Thanks,
+Nícolas
