@@ -2,107 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 302FE59A969
-	for <lists+devicetree@lfdr.de>; Sat, 20 Aug 2022 01:26:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2BE859A9AB
+	for <lists+devicetree@lfdr.de>; Sat, 20 Aug 2022 01:52:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243933AbiHSXZQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Aug 2022 19:25:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56822 "EHLO
+        id S243542AbiHSXuW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Aug 2022 19:50:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244280AbiHSXY6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 19:24:58 -0400
-Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com [IPv6:2607:f8b0:4864:20::835])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFA95B6029;
-        Fri, 19 Aug 2022 16:24:29 -0700 (PDT)
-Received: by mail-qt1-x835.google.com with SMTP id c20so4416244qtw.8;
-        Fri, 19 Aug 2022 16:24:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=9kj8YADm8du70l4gQ+EusuiOAvks8txJezrna7w9qAE=;
-        b=TLGJR6BH78Ku2XRy50XMpy9E0iSRYnRxuvCc+nA5yToS01jHWC0aYsueR14qRdZCRm
-         lvV/K9kkYKj8XK6zc9NKqNxeUNg228APIv07V9yhX6bMSMfLXgvBSxuGdHds+VCP4iVI
-         RCQju+JEVbtKiwVV2xcq/fSYZns1DCqj4koRA3Fw/Y+P0Bo/kkmE3AwNAam7Frh/vMbc
-         cBJjC1Z1hoawTDW5AQgswfvCCxtXVXv/Ogr0d26NpLFtX4thINlfoV7enGM/pENBKdey
-         GzQXYV+N/qwuD8wj2ib07utbZeBnQigUfT9TQnzERwmcG9z3SA3BBcx5xkS2T4qdgw2N
-         TOrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=9kj8YADm8du70l4gQ+EusuiOAvks8txJezrna7w9qAE=;
-        b=GP1GHYTPzcGy+sabJ7vm7OGRGVsTjL129AZkovvAaAfA1huFvtH8P/d/I9nd92nMgk
-         huf5taN8ZGG1noCG3ITy/TaVeL9h6SmOi1s9Erxrtx/GKHYkkjhxeHOE0iTR6sJRlo1I
-         Elup5hXI4TB5vnRCayt+DryMZNoVophM5CnbKdXcP7MlGNWvn3eJMV4ih3OyivCLR1uG
-         jlap8eAuY6zlYGRqRXdCSUza8RBuNEibpB3J0lV30Ws+u+YMqYF3N4EdrrCCaUzxbi33
-         /u81oJTEhUPdENyQ2icuJ/y/XGAh4iHup/HoE9gHdNxut9E9Jw0Sm1auv4mV7CyGjDay
-         KYjg==
-X-Gm-Message-State: ACgBeo0werKSf8IeXq6A9GmiIz9TrHl59nsZwalABltLoE0edO/00VnA
-        t5VQqSSGXTc/PyxjquhLnJz7qTfAXr6fKq0YO1c=
-X-Google-Smtp-Source: AA6agR7b9hjrEla6ZbAwec9YTGFqrakS7HOziDFtiFYKG01c+pvBlvapThT5k++u/jjDQvsh2a90zjYOrn0o5GYnN+0=
-X-Received: by 2002:a05:622a:491:b0:344:95bf:8f05 with SMTP id
- p17-20020a05622a049100b0034495bf8f05mr6893450qtx.61.1660951468982; Fri, 19
- Aug 2022 16:24:28 -0700 (PDT)
+        with ESMTP id S243493AbiHSXuV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 19:50:21 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1515E108F17;
+        Fri, 19 Aug 2022 16:50:20 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9A57F616D5;
+        Fri, 19 Aug 2022 23:50:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id ED0A4C433B5;
+        Fri, 19 Aug 2022 23:50:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1660953019;
+        bh=CuQ5Q9EewpvW9DDE3E3uqhT70iZXoQdmu06/1ktmPDM=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=U6GGTPHDLBiPb6MzRyp9FD9HLvdHJrDRAg5X6mhXZAklnI+bG32ezr0sXqJqavBci
+         ww6FIALOoXsGymiY1anis2yA91KWRNY0k8QOiZKCqbfg5C6fqUqsSlWp2MWkc+RwGH
+         ARJHFbtLS1Cbz0SHzAiAPIpb8w1Cjgf6x4ITmJhm3EYASqnZ+fczLJfaaT4X5Yd8cA
+         OsSZKyhLHSFqB3mycA21dkHMnG0I+GOmxJg6M5oh60bXL05wUMjoTGxum4M1ejfxII
+         u5YLBHCk7y8gkIRO/4nRi9cFltqV2W2G1CzGIwMI+2fYZD9aksbS4zig6NUibhgs/M
+         GkL1PWICRzHEA==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id C389DE2A05E;
+        Fri, 19 Aug 2022 23:50:18 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20220816191842.14020-1-ddrokosov@sberdevices.ru>
- <20220816191842.14020-4-ddrokosov@sberdevices.ru> <CAHp75VewJ1taLhsCb4_yEQHpw4VDXRhkxpL0jzdu-JsajfF6oA@mail.gmail.com>
- <20220819125818.37qc66akgercd6zb@CAB-WSD-L081021.sigma.sbrf.ru>
-In-Reply-To: <20220819125818.37qc66akgercd6zb@CAB-WSD-L081021.sigma.sbrf.ru>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Sat, 20 Aug 2022 02:23:52 +0300
-Message-ID: <CAHp75VcUPQF21+gq3Hn_CLeY+y9sTFSLrbHYKgFJssveL+badg@mail.gmail.com>
-Subject: Re: [PATCH v6 3/4] iio: add MEMSensing MSA311 3-axis accelerometer driver
-To:     Dmitry Rokosov <DDRokosov@sberdevices.ru>
-Cc:     "akpm@linux-foundation.org" <akpm@linux-foundation.org>,
-        "jic23@kernel.org" <jic23@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "andriy.shevchenko@linux.intel.com" 
-        <andriy.shevchenko@linux.intel.com>,
-        "christophe.jaillet@wanadoo.fr" <christophe.jaillet@wanadoo.fr>,
-        "stano.jakubek@gmail.com" <stano.jakubek@gmail.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "stephan@gerhold.net" <stephan@gerhold.net>,
-        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
-        "wsa@kernel.org" <wsa@kernel.org>,
-        "lars@metafoo.de" <lars@metafoo.de>,
-        "Michael.Hennerich@analog.com" <Michael.Hennerich@analog.com>,
-        "jbhayana@google.com" <jbhayana@google.com>,
-        "lucas.demarchi@intel.com" <lucas.demarchi@intel.com>,
-        "jani.nikula@intel.com" <jani.nikula@intel.com>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        kernel <kernel@sberdevices.ru>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Subject: Re: [RESEND PATCH net-next v4 00/25] net: dpaa: Cleanups in preparation
+ for phylink conversion
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <166095301878.11596.4206338454317459884.git-patchwork-notify@kernel.org>
+Date:   Fri, 19 Aug 2022 23:50:18 +0000
+References: <20220818161649.2058728-1-sean.anderson@seco.com>
+In-Reply-To: <20220818161649.2058728-1-sean.anderson@seco.com>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, netdev@vger.kernel.org, camelia.groza@nxp.com,
+        linux-kernel@vger.kernel.org, madalin.bucur@nxp.com,
+        linuxppc-dev@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org,
+        krzysztof.kozlowski+dt@linaro.org, leoyang.li@nxp.com,
+        robh+dt@kernel.org, devicetree@vger.kernel.org
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 19, 2022 at 3:58 PM Dmitry Rokosov <DDRokosov@sberdevices.ru> wrote:
-> On Fri, Aug 19, 2022 at 11:41:55AM +0300, Andy Shevchenko wrote:
+Hello:
 
-...
+This series was applied to netdev/net-next.git (master)
+by Jakub Kicinski <kuba@kernel.org>:
 
-> > > Spec: https://cdn-shop.adafruit.com/product-files/5309/MSA311-V1.1-ENG.pdf
-> >
-> > Have you ever seen such a tag?
-> > We have the Datasheet that is more or less established for this kind of links.
->
-> As I mentioned before, if I use Datasheet tag, line length limit will be
-> exceeded. If it's okay, I don't mind.
+On Thu, 18 Aug 2022 12:16:24 -0400 you wrote:
+> This series contains several cleanup patches for dpaa/fman. While they
+> are intended to prepare for a phylink conversion, they stand on their
+> own. This series was originally submitted as part of [1].
+> 
+> [1] https://lore.kernel.org/netdev/20220715215954.1449214-1-sean.anderson@seco.com
+> 
+> Changes in v4:
+> - Clarify commit message
+> - weer -> were
+> - tricy -> tricky
+> - Use mac_dev for calling change_addr
+> - qman_cgr_create -> qman_create_cgr
+> 
+> [...]
 
-Tags must be one-liners, that's the convention. It doesn't matter how
-long they are.
+Here is the summary with links:
+  - [RESEND,net-next,v4,01/25] dt-bindings: net: Convert FMan MAC bindings to yaml
+    https://git.kernel.org/netdev/net-next/c/ee8433da085e
+  - [RESEND,net-next,v4,02/25] net: fman: Convert to SPDX identifiers
+    https://git.kernel.org/netdev/net-next/c/8585bdadc247
+  - [RESEND,net-next,v4,03/25] net: fman: Don't pass comm_mode to enable/disable
+    https://git.kernel.org/netdev/net-next/c/b7d852566a52
+  - [RESEND,net-next,v4,04/25] net: fman: Store en/disable in mac_device instead of mac_priv_s
+    https://git.kernel.org/netdev/net-next/c/e61406a1955e
+  - [RESEND,net-next,v4,05/25] net: fman: dtsec: Always gracefully stop/start
+    https://git.kernel.org/netdev/net-next/c/aae73fde7eb3
+  - [RESEND,net-next,v4,06/25] net: fman: Get PCS node in per-mac init
+    https://git.kernel.org/netdev/net-next/c/478eb957ced6
+  - [RESEND,net-next,v4,07/25] net: fman: Store initialization function in match data
+    https://git.kernel.org/netdev/net-next/c/28c3948a018d
+  - [RESEND,net-next,v4,08/25] net: fman: Move struct dev to mac_device
+    https://git.kernel.org/netdev/net-next/c/7bd63966f0cc
+  - [RESEND,net-next,v4,09/25] net: fman: Configure fixed link in memac_initialization
+    https://git.kernel.org/netdev/net-next/c/9ea4742a55ca
+  - [RESEND,net-next,v4,10/25] net: fman: Export/rename some common functions
+    https://git.kernel.org/netdev/net-next/c/c496e4d686aa
+  - [RESEND,net-next,v4,11/25] net: fman: memac: Use params instead of priv for max_speed
+    https://git.kernel.org/netdev/net-next/c/c0e36be156c2
+  - [RESEND,net-next,v4,12/25] net: fman: Move initialization to mac-specific files
+    (no matching commit)
+  - [RESEND,net-next,v4,13/25] net: fman: Mark mac methods static
+    (no matching commit)
+  - [RESEND,net-next,v4,14/25] net: fman: Inline several functions into initialization
+    (no matching commit)
+  - [RESEND,net-next,v4,15/25] net: fman: Remove internal_phy_node from params
+    (no matching commit)
+  - [RESEND,net-next,v4,16/25] net: fman: Map the base address once
+    (no matching commit)
+  - [RESEND,net-next,v4,17/25] net: fman: Pass params directly to mac init
+    (no matching commit)
+  - [RESEND,net-next,v4,18/25] net: fman: Use mac_dev for some params
+    (no matching commit)
+  - [RESEND,net-next,v4,19/25] net: fman: Specify type of mac_dev for exception_cb
+    (no matching commit)
+  - [RESEND,net-next,v4,20/25] net: fman: Clean up error handling
+    (no matching commit)
+  - [RESEND,net-next,v4,21/25] net: fman: Change return type of disable to void
+    (no matching commit)
+  - [RESEND,net-next,v4,22/25] net: dpaa: Use mac_dev variable in dpaa_netdev_init
+    (no matching commit)
+  - [RESEND,net-next,v4,23/25] soc: fsl: qbman: Add helper for sanity checking cgr ops
+    (no matching commit)
+  - [RESEND,net-next,v4,24/25] soc: fsl: qbman: Add CGR update function
+    (no matching commit)
+  - [RESEND,net-next,v4,25/25] net: dpaa: Adjust queue depth on rate change
+    (no matching commit)
 
-
+You are awesome, thank you!
 -- 
-With Best Regards,
-Andy Shevchenko
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
