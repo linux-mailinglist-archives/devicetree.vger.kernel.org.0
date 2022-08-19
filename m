@@ -2,117 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 29AA159A5CE
-	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 21:04:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42EB059A60B
+	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 21:17:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349848AbiHSTDW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Aug 2022 15:03:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38428 "EHLO
+        id S1351105AbiHSTIn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Aug 2022 15:08:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349680AbiHSTDT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 15:03:19 -0400
-Received: from mail.sberdevices.ru (mail.sberdevices.ru [45.89.227.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9173610812C;
-        Fri, 19 Aug 2022 12:03:07 -0700 (PDT)
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-        by mail.sberdevices.ru (Postfix) with ESMTP id 37BC75FD04;
-        Fri, 19 Aug 2022 22:03:04 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1660935784;
-        bh=YdpZls8gavBPcjfLbXoFdEp4dDkKg8XvpjvkX2XZ/qY=;
-        h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version;
-        b=Mw6IAzPDLJ8itmPPyYtouSqe7gCBJTNue6ATKlVHocQeo6Gw+Ufh1OiBxeCY4KV15
-         Xx8uu/JhfaRDgIYHCnJQrzMoyf5b61Hy7PB185KQZ4o8bSLqz+nRfxdzMFgSklFwQ/
-         Oq7X0qKZX63w8ZpYjg4TVzxJsZ4e7IP3NdddXakJy6E84lKwxIzZa3NRaofmUj2SxL
-         QJK5ccXqbI2gvGWxLeo/F5EeC4Ohe7Om2GWuR1NtsgwaGFpiNKcvnkiCNL3SYOSLOC
-         AUqGwa8neFX9/o1i5VkE4RoYfMpMqZoG8hXjZv1c1/CqYdzYFRuYBhtxaNUgU+7+w9
-         b7Pip5AzYWhhQ==
-Received: from S-MS-EXCH02.sberdevices.ru (S-MS-EXCH02.sberdevices.ru [172.16.1.5])
-        by mail.sberdevices.ru (Postfix) with ESMTP;
-        Fri, 19 Aug 2022 22:02:56 +0300 (MSK)
-From:   Dmitry Rokosov <DDRokosov@sberdevices.ru>
-To:     Jonathan Cameron <jic23@kernel.org>
-CC:     Andy Shevchenko <andy.shevchenko@gmail.com>,
-        "akpm@linux-foundation.org" <akpm@linux-foundation.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "andriy.shevchenko@linux.intel.com" 
-        <andriy.shevchenko@linux.intel.com>,
-        "christophe.jaillet@wanadoo.fr" <christophe.jaillet@wanadoo.fr>,
-        "stano.jakubek@gmail.com" <stano.jakubek@gmail.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "stephan@gerhold.net" <stephan@gerhold.net>,
-        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
-        "wsa@kernel.org" <wsa@kernel.org>,
-        "lars@metafoo.de" <lars@metafoo.de>,
-        "Michael.Hennerich@analog.com" <Michael.Hennerich@analog.com>,
-        "jbhayana@google.com" <jbhayana@google.com>,
-        "lucas.demarchi@intel.com" <lucas.demarchi@intel.com>,
-        "jani.nikula@intel.com" <jani.nikula@intel.com>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        kernel <kernel@sberdevices.ru>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v6 3/4] iio: add MEMSensing MSA311 3-axis accelerometer
- driver
-Thread-Topic: [PATCH v6 3/4] iio: add MEMSensing MSA311 3-axis accelerometer
- driver
-Thread-Index: AQHYsaUBRyDxGBAJ7E6dKrTfsTk6Jq21uX2AgABHogCAAFRpgIAAEXSA
-Date:   Fri, 19 Aug 2022 19:02:26 +0000
-Message-ID: <20220819190253.d7ms7hgeccdn23i6@CAB-WSD-L081021.sigma.sbrf.ru>
-References: <20220816191842.14020-1-ddrokosov@sberdevices.ru>
- <20220816191842.14020-4-ddrokosov@sberdevices.ru>
- <CAHp75VewJ1taLhsCb4_yEQHpw4VDXRhkxpL0jzdu-JsajfF6oA@mail.gmail.com>
- <20220819125818.37qc66akgercd6zb@CAB-WSD-L081021.sigma.sbrf.ru>
- <20220819190025.7702573b@jic23-huawei>
-In-Reply-To: <20220819190025.7702573b@jic23-huawei>
-Accept-Language: ru-RU, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.1.12]
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <DCD86D7DB4B7E84F93B61CFD75E16224@sberdevices.ru>
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S1351089AbiHSTI2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 15:08:28 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73EB532AA9;
+        Fri, 19 Aug 2022 12:08:25 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 27JJ7ZR4090751;
+        Fri, 19 Aug 2022 14:07:35 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1660936055;
+        bh=u9P/5Oz+onGjKnverq4DWRIAD3ByWF1SyU5y0haCG5c=;
+        h=From:To:CC:Subject:Date;
+        b=OU120/eiD1tFkJStijVybhM3IjU8LE4xI31Dz7a1nKhKJI8C3ScfNp41BCV21tjHm
+         RS/iTeHk/aqCSLpGyCvyzTn4dcV9HPSQ6uh22Mg9tHeXV6gg2JH5sNra3eSZKrf8an
+         Bpj9i6KKbd++ir6hozvaxL4mDIRLnIOrCzlDiIsA=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 27JJ7ZVP123338
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 19 Aug 2022 14:07:35 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Fri, 19
+ Aug 2022 14:07:35 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Fri, 19 Aug 2022 14:07:35 -0500
+Received: from LT5CD112GSQZ.ent.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 27JJ7T2s051038;
+        Fri, 19 Aug 2022 14:07:30 -0500
+From:   Apurva Nandan <a-nandan@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-mmc@vger.kernel.org>
+CC:     Apurva Nandan <a-nandan@ti.com>, Hari Nagalla <hnagalla@ti.com>
+Subject: [PATCH 0/3] Fix ti,sci-inta/intr and mmc dtbs_check warnings for TI K3 platforms
+Date:   Sat, 20 Aug 2022 00:37:26 +0530
+Message-ID: <20220819190729.32358-1-a-nandan@ti.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2022/08/19 07:02:00 #20132955
-X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 19, 2022 at 07:00:25PM +0100, Jonathan Cameron wrote:
+This series fixes the following warnings common across all TI K3
+platforms:
 
-[...]
+k3-j721e-common-proc-board.dtb: interrupt-controller@33d00000: Unevaluated properties are not allowed ('#interrupt-cells' was unexpected)
+From schema: linux/Documentation/devicetree/bindings/interrupt-controller/ti,sci-inta.yaml
 
-> > > > Spec: https://cdn-shop.adafruit.com/product-files/5309/MSA311-V1.1-=
-ENG.pdf =20
-> > >=20
-> > > Have you ever seen such a tag?
-> > > We have the Datasheet that is more or less established for this kind =
-of links. =20
-> >=20
-> > As I mentioned before, if I use Datasheet tag, line length limit will b=
-e
-> > exceeded. If it's okay, I don't mind.
-> Fine to go long.  If someone can't see the remaining chars of a link on t=
-heir 80
-> character wide terminal - they can scroll sideways :)
+k3-j721s2-common-proc-board.dtb: mmc@4f80000: Unevaluated properties are not allowed ('dma-coherent' was unexpected)
+From schema: linux/Documentation/devicetree/bindings/mmc/sdhci-am654.yaml
 
-Exactly :) Okay, no problem, I'll change it to Datasheet.
+k3-j721s2-common-proc-board.dtb: interrupt-controller@310e0000: Unevaluated properties are not allowed ('reg' was unexpected)
+From schema: linux/Documentation/devicetree/bindings/interrupt-controller/ti,sci-intr.yaml
 
-[...]
+Apurva Nandan (3):
+  dt-bindings: irqchip: ti, sci-intr/inta: Fix warning
+    '#interrupt-cells' was unexpected
+  dt-bindings: mmc: Fix 'dma-coherent' was unexpected
+  dt-bindings: interrupt-controller: Fix 'reg' was unexpected
 
---=20
-Thank you,
-Dmitry=
+ .../devicetree/bindings/interrupt-controller/ti,sci-inta.yaml  | 3 +++
+ .../devicetree/bindings/interrupt-controller/ti,sci-intr.yaml  | 3 +++
+ Documentation/devicetree/bindings/mmc/sdhci-am654.yaml         | 3 +++
+ 3 files changed, 9 insertions(+)
+
+-- 
+2.17.1
+
