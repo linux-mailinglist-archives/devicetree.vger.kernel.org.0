@@ -2,76 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9ECFF59A82C
-	for <lists+devicetree@lfdr.de>; Sat, 20 Aug 2022 00:16:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DB6B59A86A
+	for <lists+devicetree@lfdr.de>; Sat, 20 Aug 2022 00:30:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235252AbiHSWNZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Aug 2022 18:13:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58720 "EHLO
+        id S240055AbiHSWSb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Aug 2022 18:18:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232942AbiHSWNY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 18:13:24 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6F7BCE11
-        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 15:13:23 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id y13so11169536ejp.13
-        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 15:13:23 -0700 (PDT)
+        with ESMTP id S239924AbiHSWS2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 18:18:28 -0400
+Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A86452FCB
+        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 15:18:26 -0700 (PDT)
+Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-333b049f231so156802847b3.1
+        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 15:18:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc;
-        bh=16fAIGzEbw49AZ48+GRIZV4iZqYCUe0NmdYkhGz6SEg=;
-        b=eD7eDFBykw9Q5L2Rz1bnauG31uWhhvgzRSgKTzkdL/yvd7d+nYzjACqlpg8hTLOOOF
-         LzwH0BhAHiKd8e2qickT3fWHfCNtK4lbIC0PoWTE/kIZgvVcA3W07jkroHUUPOajxr7e
-         CbasemjSBSrWUyTs9YeCuPKk7+PSUWK5zPynTe5DpSYXWlUQFmoCnypBgzH80x8w5iW+
-         diZE+YUjkqqxJXw4GCT/lAaKLL7MPB3xhG2HJUOSwaxCTtLXRJ7TnpYyfYI6bgz1vvYI
-         5aLXQCaUXgxoXLpz2g3pzcXs9v0+Ml6t1tTwjwz6sjiU5Z/XmtpbKYSFQNDefhw2nXfU
-         YdHg==
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=g970rHvYU+jzmjt/ipCa52Mq2yPk1D8evtOuUbEWCCc=;
+        b=ocmXEsD9wtMUp2BtyAWhiufuKaIOEGosHOSfxRSr3HFM1Qrcft04gjrF4UZxdX9dHH
+         gytaAiBGMkGekR5z16JQGZsEG/HcyVq8PEnRGi6/NxSo+ulnqDji9PKVXy9hSVNJjRlX
+         IdmvwY+XCFyJf8Ruv6DeyT0BpJiM736Z1b58o=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc;
-        bh=16fAIGzEbw49AZ48+GRIZV4iZqYCUe0NmdYkhGz6SEg=;
-        b=SyMPWirsxG3IauVHCd/yJ179TjLlP7GVAyinAv8VMkPaahE8k9AvnwmxjolQNpW0Ym
-         86kAyXPxOQt0R93xVsqaHy60eu90a4Z3QSop+kt7kTGRZQGb97FW1xNXb9YiowF5hVLY
-         qa0/WHg8Gi6eMeVVD2JZuYyeGqylHxu11QE7YXZM5SeFquhF9T6Ja4+1ktn4CCiD4uAA
-         rCB60t2472NND3PgMnGisUcEPhrReW9gz2EixdMonp8fWvt2gEICcbtm+obfcNPx3fdH
-         l9tZ7IAU6YCu07WkwrrPMceyu7LOeHtNCMh6YIhCpCBU6U0TXkw4lkydha7k9vWfErFA
-         UOKA==
-X-Gm-Message-State: ACgBeo13gnr+gF4zL7rtMyl4n+ZqZpJOWKE/yoHtJZ8skzH1B8sRP7/8
-        dRe0ai7vZLgj5FKOCmkmSoOUvcABdG9mNJo16lU//g==
-X-Google-Smtp-Source: AA6agR6exRbXrSWA4PZkprt/ywDmZGOGor6d/7N9S7XW/yyVnnhi3RWm9fYmE4MuuVQubZLREAMzqWQ/74Obz8Kt5gk=
-X-Received: by 2002:a17:906:5a71:b0:730:aaa1:a9ec with SMTP id
- my49-20020a1709065a7100b00730aaa1a9ecmr6143409ejc.440.1660947202148; Fri, 19
- Aug 2022 15:13:22 -0700 (PDT)
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=g970rHvYU+jzmjt/ipCa52Mq2yPk1D8evtOuUbEWCCc=;
+        b=QzZgu8jn0PqrUsL3ggBco6WaLKSS6EhPywMEOx5cpDHp6XIszkzT2mf8HT1DEFntqT
+         sTlOBpoh0lc5WaP9Kul8MgeBRKJWS17T68aWT8ytwk57RviW/PDCDEHxHNGEpxa4iRSr
+         /nL7iCkD4GBMtGqe1ve8jQ9snZk4shwqSaWRK0HDU3ZmY0Cn11EaVt6qBkY5bNbAQ+tN
+         2982aY9tU8/STTcdFaMCLyJt7TPcntBPOf7FO82/i1NM11yTw/mCguskAacR3u+l9LXo
+         qPCC10XNoSMVALPhL3IHtjBnBCZ5k/HdhJB3l111hN06Rp7Ff5PvQa2DM/W+SIYeYzDE
+         D4Dg==
+X-Gm-Message-State: ACgBeo3OBhtdsE7z/phINSsNz/L4KjaVvFFWXJhhEID16/+6ezx16Hoa
+        4kk3P08g/zu6Yxrb0nHx6YR/eegi5WeunKRbfXvqsg==
+X-Google-Smtp-Source: AA6agR7fSsmOLXd0g2A9PAmqngdkh9aPq8/Qdvd6Jegkja7GbS6agFmvsjzLn5OaFoEquCygqR9BgaqT+UJZmO2up0o=
+X-Received: by 2002:a0d:d80b:0:b0:336:8219:8675 with SMTP id
+ a11-20020a0dd80b000000b0033682198675mr9954844ywe.269.1660947505669; Fri, 19
+ Aug 2022 15:18:25 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220805134908.749935-1-conor.dooley@microchip.com>
-In-Reply-To: <20220805134908.749935-1-conor.dooley@microchip.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sat, 20 Aug 2022 00:13:11 +0200
-Message-ID: <CACRpkdb1jnq2C+ke1i-tis-2jMLjxbb14YusMRp607Avm4k6ow@mail.gmail.com>
-Subject: Re: [PATCH] MAINTAINERS: add PolarFire SoC dt bindings
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     Daire McNamara <daire.mcnamara@microchip.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, Mark Brown <broonie@kernel.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
+References: <20220810204750.3672362-1-bjorn.andersson@linaro.org>
+ <20220810204750.3672362-2-bjorn.andersson@linaro.org> <a13bce60-25b4-d075-d56a-d1283e91e3ba@linaro.org>
+ <20220814210104.GA690892-robh@kernel.org> <Yv1y9Wjp16CstJvK@baldur>
+ <CAE-0n53AjJ_G6yZoTALWpKvZUdF+8nFZ+TQh=Ch=8xgdMVqDkw@mail.gmail.com>
+ <CACeCKadP-AZ8OU4A=7CrwAz7yuLvMvjvAcw7K-FORFmkMvx7cA@mail.gmail.com>
+ <CAE-0n53C+D=9gdSXKsjr4KZVrb-gpeo_EyuX3DfNKp19FoicXA@mail.gmail.com> <YwADGgNVwtKacUBR@builder.lan>
+In-Reply-To: <YwADGgNVwtKacUBR@builder.lan>
+From:   Prashant Malani <pmalani@chromium.org>
+Date:   Fri, 19 Aug 2022 15:18:15 -0700
+Message-ID: <CACeCKaeXpU+AxFNAwkutMX9LT2XLgAv1XmwJRyj7Exqxg6v8rA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: usb: Introduce GPIO-based SBU mux
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Pin-yen Lin <treapking@chromium.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,34 +73,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 5, 2022 at 3:49 PM Conor Dooley <conor.dooley@microchip.com> wr=
-ote:
-
-> So far when I added bindings for the platform I never added them to
-> our MAINTAINERS entry. No time like the present to improve the coverage.
+On Fri, Aug 19, 2022 at 2:39 PM Bjorn Andersson
+<bjorn.andersson@linaro.org> wrote:
 >
-> Suggested-by: Mark Brown <broonie@kernel.org>
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
-> I have another maintainers change queued, I'll send this via soc along
-> with it unless there are any objections.
+> On Fri 19 Aug 15:49 CDT 2022, Stephen Boyd wrote:
 >
-> CC: Mark Brown <broonie@kernel.org>
-> CC: Wolfram Sang <wsa@kernel.org>
-> CC: Thierry Reding <thierry.reding@gmail.com>
-> CC: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de>
-> CC: Jassi Brar <jassisinghbrar@gmail.com>
-> CC: Linus Walleij <linus.walleij@linaro.org>
-> CC: Bartosz Golaszewski <brgl@bgdev.pl>
-> CC: Wolfgang Grandegger <wg@grandegger.com>
-> CC: Marc Kleine-Budde <mkl@pengutronix.de>
-> CC: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> CC: Arnd Bergmann <arnd@arndb.de>
-> CC: Olof Johansson <olof@lixom.net>
-> CC: Michael Turquette <mturquette@baylibre.com>
-> CC: Stephen Boyd <sboyd@kernel.org>
+> > > I like 2 endpoints to represent the usb-c-connector, but that doesn't seem
+> > > to be compatible (without introducing `data-lanes`, at least) with all
+> > > the various
+> > > combinations on the remote side, if that remote side is a DRM bridge with DP
+> > > output capability (like it6505 or anx7625).
+> > > That type of DRM bridge supports 1, 2 or 4 lane DP connections.
+> >
+> > Why can't the remote side that's a pure DP bridge (it6505) bundle
+> > however many lanes it wants into one endpoint? If it's a pure DP bridge
+> > we should design the bridge binding to have up to 4 endpoints, but
+> > sometimes 2 or 1 and then overlay data-lanes onto that binding so that
+> > we can tell the driver how to remap the lanes if it can. If the hardware
+> > can't support remapping lanes then data-lanes shouldn't be in the
+> > binding.
 
-The Subject on this patch is wrong?
+2 endpoints sounds fine to me. The overloading of the bridge-side endpoint
+to mean different things depending on what it's connected to seemed odd to
+me, but if that is acceptable for the bridge binding, then great.
 
-Yours,
-Linus Walleij
+> The existing implementation provides the interfaces usb_role_switch,
+> usb_typec_mux and usb_typec_switch. These works based on the concept
+> that the USB Type-C controller will request the endpoints connected to
+> the usb-c-connector about changes such as "switch to host mode", "switch
+> to 2+2 USB/DP combo" and "switch orientation to reverse". We use this
+> same operations to inform any endpoint at any port about these events
+> and they all react accordingly.
+
+Right, but that implementation/assumption doesn't work so well when you
+have 2 Type-C ports which might route to the same bridge (2 lane from each).
+The other 2 lanes from the other endpoints can go to (say) a USB HUB.
+
+>
+> Perhaps I'm misunderstanding your suggestion, but if you start
+> representing each individual lane in the SuperSpeed interface I believe
+> you would have to just abandon this interface and replace it with
+> something like "give me USB on port@1/endpoint@0 and port@1/endpoint@1
+> and give me DP on port@1/endpoint@2 and port@1/endpoint@3".
+
+I don't think that is necessary. The switch driver can register the switches (
+and it can find out which end-points map to the same usb-c-connector).
+
+From the port driver, the port driver just needs to tell each switch
+registered for it's port that "I want
+DP Pin assignment C/ DP Pin assignment D / Plain USB3.x" and the
+switch driver(s) can figure out what to output on its pins (since
+the Type-C binding will specify ep0 = A2-A3 (TX1), ep1 = B10-B11 , etc)
+
+orientation-switch can tell the switch if the signals need to be swapped around.
+
+The above notwithstanding, it sounds like the 2-ep approach has more support
+than 4 ep-approach, so this specific example is moot.
