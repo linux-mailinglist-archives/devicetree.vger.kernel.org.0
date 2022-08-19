@@ -2,243 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C31D7599597
-	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 09:09:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BEDB25995A6
+	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 09:09:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346870AbiHSHAu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Aug 2022 03:00:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54710 "EHLO
+        id S1346976AbiHSHCo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Aug 2022 03:02:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346858AbiHSHAl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 03:00:41 -0400
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2078.outbound.protection.outlook.com [40.107.22.78])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACA551A83B;
-        Fri, 19 Aug 2022 00:00:36 -0700 (PDT)
+        with ESMTP id S1346852AbiHSHCn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 03:02:43 -0400
+Received: from EUR01-HE1-obe.outbound.protection.outlook.com (mail-eopbgr130073.outbound.protection.outlook.com [40.107.13.73])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44D4DE0FE9;
+        Fri, 19 Aug 2022 00:02:42 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dpBhCRreRtAsetNaqRYtFz/7uhXS2Zc5YXYiX7yJnEq2DF4Jgkumx99JDHw20rBfOodvjyvoFoRKnC3CbbODUldcSDYyJcq+Ww08kyQieKQrqlslFkdgTtVZEVyIh+IVBoXxHbzF8tuBRw7qoD0w3CVw+kcVYIEWWhaZmxVDSyrDFbJlJsNjAi/E8Jb3KMhTJLDyquRN5NeqcGahFm1jPLbOnK560nLHfvk/S4gsWXKqXq4a+C/k5YqdZG4XY0uDU+kXUbuamn2HLHiIdCvBBTYHVx35VUcbY9bf+4TlDQ1XzhBeQ4akjV8uAr8+N8YCxSc3AH2P8Jy1629q+IhsmA==
+ b=RKx0rkdeehf2cvRMJn3jbj2Dat/zdpmtXaMwWCrmDn1yLJ0R6gbVJzdz57GiTDwvwnuV9d+TLr85/2pVL5oCGk5qIUHraalXCWvgyy946dtXYbDMGSvrEs1ezGJg8ZQ/bBCZxyH6MoqJoh0mZTqCsAD33F3OiPIaQ6eCjL7ukyoHnkYqtkrs3eDESNeDl7hrSLGPyq80fmagR4SsNnp1hSXjEJJGuxXSKyyskpVi2rW/Lwn2iu3ymat8eyKEkCnAFCM4CJPg/BX6Qfhsqcqp1HAUJuAcSrpTpQxODaQpWhprve7jTrEw+HjhTo+Cbkoo4SfDobZrOnpMU1SGRpzCdw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gd3VYNsGQXI3W91x8h9TQ2L9ikaOGmPCMBRYTR6flyM=;
- b=KPloVDin7TaIhsycEscYwMfBtjbxvQAjFpuXEOwqffnQ6tcj+6LVcLb29nj9E6TbaXDX3sRlv74kBm8Dhkys8DDK1ltmoM217oW1Az9zoHBcvFcHJxAGxfptLsa/j2aMP3jf0nznMMs3XYMahrJViqXSuNZ64sP1TFhyadV/ZSDvGn0M8/l3CVSFVxZF6GxW4zgnJeb0OL7j+dsoGOztDfeNkLKcNQBjqLervZxXxqhaD9bpQkOs89fibf0L5nVDxMhH7qSFlT42k4H4PBIe20I9Qw/SyxzADhpg0FEjnn8MGK3y2PyWyvTmeXsmZnU0/6p7QwqobSPkbB0pTU5H3Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 139.15.153.203) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=in.bosch.com;
- dmarc=pass (p=reject sp=none pct=100) action=none header.from=in.bosch.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=in.bosch.com;
- s=selector1;
+ bh=0+0zyZ5G2/6oyxX1B1LjtLjYmOiXyzKv3YJ7CgseCNA=;
+ b=YBcg2TMGtQT4hUrUHzrv2d6Lz3cUUOTa2Sw3G1yPptEVRfHitRhJPoz3fxZEUxtKC6PQwSqzYKl606QGIcWTxUPaRJs07TTzztuoTL6KPOs9FC5RKSmnNKO4Q8R6OiBOIuAm7TDfg8Q4CKcAWOal4BHssnXRGA8s1sG3bgzUCIWeBKmxTjkq+aGFsW+o+G2CgYyR4LA1Cn3SAnRekIbSY66cHoNPcngg4JPjscJG5troFPKcHVTQ1OQdQxFy0qikabWgClb/JctnstyximBQqlHYU03xLNptpBdej4mxwv7Gn4LYhHotBDdSbj5XQ+Wys3tg68sUMliq1p4Lum4aiQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gd3VYNsGQXI3W91x8h9TQ2L9ikaOGmPCMBRYTR6flyM=;
- b=Kzv4w4PrMsqecBlJZ67Ap+G/idoD3FiGH9EhYtQXtdnnwqf+Z55/nU89/ElNMaIZ3ci9Jn1Q6TZRwNTauAE9DGlUAvOgYxY+769r2lDonqwf9hmHUMCBUXALI5SHldS6dQaWxyXnKuZmGinfmfpklKIXokMu1yQISZDChXcAA3Y=
-Received: from DB8PR09CA0011.eurprd09.prod.outlook.com (2603:10a6:10:a0::24)
- by VI1PR10MB3535.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:800:13e::21) with
+ bh=0+0zyZ5G2/6oyxX1B1LjtLjYmOiXyzKv3YJ7CgseCNA=;
+ b=Yc/FqLYBHo1//I+zVFaoAB0EOpX9xW14W9fFUzI/TEWS2us29Fi62lWvcjyhy31NgrDuWrGNbdXPbbLOm0tf/UOREUh6a5se/vxtOnlKAiKVC9DYNkL2/FCU1ncwN8v+Uo86gcGJGx8VPxKaw/d7hE4sxtLSpkJ2S8aCth6Lp4U=
+Received: from DB9PR04MB8106.eurprd04.prod.outlook.com (2603:10a6:10:24b::13)
+ by AM9PR04MB8922.eurprd04.prod.outlook.com (2603:10a6:20b:409::19) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5546.16; Fri, 19 Aug
- 2022 07:00:33 +0000
-Received: from DBAEUR03FT020.eop-EUR03.prod.protection.outlook.com
- (2603:10a6:10:a0:cafe::f1) by DB8PR09CA0011.outlook.office365.com
- (2603:10a6:10:a0::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5525.11 via Frontend
- Transport; Fri, 19 Aug 2022 07:00:33 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 139.15.153.203)
- smtp.mailfrom=in.bosch.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=in.bosch.com;
-Received-SPF: Pass (protection.outlook.com: domain of in.bosch.com designates
- 139.15.153.203 as permitted sender) receiver=protection.outlook.com;
- client-ip=139.15.153.203; helo=eop.bosch-org.com; pr=C
-Received: from eop.bosch-org.com (139.15.153.203) by
- DBAEUR03FT020.mail.protection.outlook.com (100.127.143.27) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5546.15 via Frontend Transport; Fri, 19 Aug 2022 07:00:33 +0000
-Received: from SI-EXCAS2001.de.bosch.com (10.139.217.202) by eop.bosch-org.com
- (139.15.153.203) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2375.31; Fri, 19 Aug
- 2022 09:00:33 +0200
-Received: from FE-HUB2000.de.bosch.com (10.4.103.109) by
- SI-EXCAS2001.de.bosch.com (10.139.217.202) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2375.31; Fri, 19 Aug 2022 09:00:32 +0200
-Received: from localhost.localdomain (10.167.0.81) by FE-HUB2000.de.bosch.com
- (10.4.103.109) with Microsoft SMTP Server id 15.1.2375.31; Fri, 19 Aug 2022
- 09:00:29 +0200
-From:   <Gireesh.Hiremath@in.bosch.com>
-To:     <linux-omap@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-input@vger.kernel.org>,
-        <bcousson@baylibre.com>, <tony@atomide.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <dmitry.torokhov@gmail.com>,
-        <mkorpershoek@baylibre.com>, <davidgow@google.com>,
-        <m.felsch@pengutronix.de>, <swboyd@chromium.org>,
-        <fengping.yu@mediatek.com>, <y.oudjana@protonmail.com>,
-        <rdunlap@infradead.org>, <colin.king@intel.com>,
-        <Gireesh.Hiremath@in.bosch.com>
-CC:     <sjoerd.simons@collabora.co.uk>, <VinayKumar.Shettar@in.bosch.com>,
-        <Govindaraji.Sivanantham@in.bosch.com>,
-        <anaclaudia.dias@de.bosch.com>
-Subject: [PATCH v3 3/3] dt-bindings: input: gpio-matrix-keypad: add reduced matrix keypad bindings definition
-Date:   Fri, 19 Aug 2022 06:59:46 +0000
-Message-ID: <20220819065946.9572-3-Gireesh.Hiremath@in.bosch.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20220819065946.9572-1-Gireesh.Hiremath@in.bosch.com>
-References: <20220819065946.9572-1-Gireesh.Hiremath@in.bosch.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5546.18; Fri, 19 Aug
+ 2022 07:02:39 +0000
+Received: from DB9PR04MB8106.eurprd04.prod.outlook.com
+ ([fe80::a569:c84a:d972:38ce]) by DB9PR04MB8106.eurprd04.prod.outlook.com
+ ([fe80::a569:c84a:d972:38ce%7]) with mapi id 15.20.5546.016; Fri, 19 Aug 2022
+ 07:02:39 +0000
+From:   Wei Fang <wei.fang@nxp.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>
+CC:     "davem@davemloft.net" <davem@davemloft.net>,
+        "edumazet@google.com" <edumazet@google.com>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "pabeni@redhat.com" <pabeni@redhat.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>, Jacky Bai <ping.bai@nxp.com>,
+        "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>
+Subject: RE: [PATCH 1/3] dt-bings: net: fsl,fec: update compatible item
+Thread-Topic: [PATCH 1/3] dt-bings: net: fsl,fec: update compatible item
+Thread-Index: AQHYsqKW4sUYyPySKkCZLBfJFMMhm620SUAAgAAZr4CAAAaYgIAARhqAgAAB7ACAAMKigIAAGdGAgAA3ZYCAAAb4UA==
+Date:   Fri, 19 Aug 2022 07:02:39 +0000
+Message-ID: <DB9PR04MB8106947901F27BEDBC8A05A2886C9@DB9PR04MB8106.eurprd04.prod.outlook.com>
+References: <20220704101056.24821-1-wei.fang@nxp.com>
+ <20220704101056.24821-2-wei.fang@nxp.com>
+ <ef7e501a-b351-77f9-c4f7-74ab10283ed6@linaro.org>
+ <20220818013344.GE149610@dragon>
+ <fd41a409-d0e0-0026-4644-9058d1177c45@linaro.org>
+ <20220818092257.GF149610@dragon>
+ <a08b230c-d655-75ee-0f0c-8281b13b477b@linaro.org>
+ <20220818135727.GG149610@dragon>
+ <00614b8f-0fdd-3d7e-0153-3846be5bb645@linaro.org>
+ <DB9PR04MB8106BB72857149F5DD10ACEA886C9@DB9PR04MB8106.eurprd04.prod.outlook.com>
+ <PA4PR04MB9416C0E26B13D4060C2F50A9886C9@PA4PR04MB9416.eurprd04.prod.outlook.com>
+ <31dd0110-4c7f-61f8-7261-2476766c9360@linaro.org>
+In-Reply-To: <31dd0110-4c7f-61f8-7261-2476766c9360@linaro.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 0664329e-d1ba-4aae-1788-08da81b0cde3
+x-ms-traffictypediagnostic: AM9PR04MB8922:EE_
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: l3Wrke4uUfeVxp7BRZlWmvtJdig9JDLzXzhdjhgHLr08+Ige7EMXPLVW8C63UdAawBt6NTziAYlunksCCDvJZFMb0E3BItAIU63EoNCpfvnoEwQGqcCiGVg5Sv6gbEaKeOBRi49bxxg5Heyvx59sM486ltUtlPWdQe4X522BADEjTU1yrkd2SuCrFJ89qarx7y9wOC71iPDVh6YK+TsXypHZD+B5HadqdnWCVshnaE2gz/lXWAm4WWoE3uka+ueiuqOvpnQm+M5mJXVyCta77NaNzdPHkKtql9ELACBhzx8iFtvocNZSyZnKSovhW32URTYNBxSKGIDKuEzPGEOLUyyBn5oVCVt73NBbzkHKelgX8mr4Hno0EIJeo5U726NnrFZpg+U4OLy4jvbEAwgs34qRfcSGqH6NfM9WmKdih9YlQyewdTGRT54RiyHqsvu1l0ZnP2BaHub0ZVbMIQdM2JAPL6uB6jmETKlnQY793YW+IgDQy++UGywZmu/uFz7kG35cIrLfO9y7ithkvDJXFYjdz1gOXHRwGLufwgCTanSo9QfpyJFAsynOUMFg5S0wSSW9fFhPHWZ0RtmZNiPKILuANSOVvbtLDVvX3qkrTnhdkpCqc6X+n7my8XGQ7AuaK9ikyZ/Ei9NJ7hiEmCT1BGWcBRo2BSKjhg7fK1B/vHdBIDzy7DWa+IJ5iur8zzv5wrMerxvsCU9jzUJs241osj7Cb8jhcSsb5O/ZefHmkOk1XAephuswDMX9FAdvQnvUtt0vKt1rrgEhGg8QLXobEA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB8106.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(396003)(39860400002)(346002)(366004)(136003)(376002)(38070700005)(86362001)(71200400001)(478600001)(110136005)(316002)(26005)(54906003)(53546011)(186003)(122000001)(6506007)(83380400001)(66476007)(55016003)(38100700002)(41300700001)(64756008)(9686003)(66446008)(8936002)(8676002)(4326008)(66556008)(52536014)(7696005)(33656002)(7416002)(5660300002)(15650500001)(76116006)(2906002)(44832011)(66946007);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?OUtzZUVvanBoUjdRa0Z3dytpU0JHaW9OSDRaRklxSUhLVG85dFdFa0xxNXVx?=
+ =?utf-8?B?MjZaR1F4cnFOTUo0QVY2Z2RuU2s3MkE0bUZOY05Md29CeFU3dU56ZGtwTzND?=
+ =?utf-8?B?SjBDMlplNHBQQkJZWGVIZzVHS0gzaVBZSlM0UGtkcWFpdXcwTWd6a0FoWEdi?=
+ =?utf-8?B?eFBTd0ZHa2RmdjVLTzU0cTRJbEJ4YlVqNm94allYd3VkRkNUdXE2T1p6SDAw?=
+ =?utf-8?B?YmJVL3JuZ09IWXByZ2xTbGxSMnl1eHZ5Yngya3AzS0JXcVNHMmtROVJ0MHQ2?=
+ =?utf-8?B?N0pzaTFvZG1OZW80Y3ZpNlFKc01ZNkFuelpBM05xamxjQzFDUkp5em5jYlEy?=
+ =?utf-8?B?dXI4bWpsQ0ZJQUN5citSOEJUd1Z2ZkZ0cmhnbzNvOU1IcHpzNEtDWTM1blQr?=
+ =?utf-8?B?QkZNc1pMVFJmdmc4VjZ6ZnlGYjBRcXpLdlFCaE5WWXFDMDEzOW5CUTZYdEc5?=
+ =?utf-8?B?cURPc1VrY3F6a0dzVWNJbWdZYmNaWnBic0h5czFjenBnVHd5QSt4bkxKT3Fa?=
+ =?utf-8?B?a0NCRFVFRkU5UFFKUGI0SU5LdTI4OVVEV2NveEFPTHVwa0ZWM1VaNW42dGly?=
+ =?utf-8?B?Nk42M083M1F6a1pRR2dOZ054K3JTcWpKNFVXaTFEMG00NlNnWHNYOUZPa3hB?=
+ =?utf-8?B?OEQzcERUZ3ZnRHFlNVVjRTZhdEpuRUVFT1ZpZlRBeGdVWVBEWUdDVC9RNzho?=
+ =?utf-8?B?dDNFaFMzZEh1Q0lZRGd0QmJXVXJjS1VEQW44VGgvU3NzdFBjUTlUc3JzWks4?=
+ =?utf-8?B?TzA2MjAzcG96Ti9RL0RyYTV0a1JDUGZkQ2ZVbDZRVmxJQWZqejNBbTZrdHVG?=
+ =?utf-8?B?MVV1ZHJmeUpTNW1XOXMxY0lzSEF2QXp4dGJMUFlnd2tNendydURRZ0l1VTJj?=
+ =?utf-8?B?NXhER0pKUHU2WmFFY3VQdnAyMGpPY2lHckgvT0ZITjJUMzBQL1lTeFdMZjEz?=
+ =?utf-8?B?WUpnOURiQVpqcEJnaGtUWHBpTUNUQ2hCZkh0cHBXVVE0NEx4M2FTVWVhNEtz?=
+ =?utf-8?B?TWJxVVY3c0JZL2V0cisrTDNZRjBkejhlYlNsZnU4eGNCSWFPZURpS1NDbUhh?=
+ =?utf-8?B?NUhQdkdIV0hwbXk1eHN4NVR2VTBlZDRwUExJNVB1WTc1SmxLNnM0YTlZZjAr?=
+ =?utf-8?B?Q2lic0NnK3hRWTFrU21IOU15RTFuLzZ0WnJiZE9CWjBjUCtWMWo3UHlEeUkv?=
+ =?utf-8?B?ZVFrelZvbHB3a1dPNEJLUVMvTC9oQ1h2T3BnNTRRKzI4RlMwZUpkc3R3aTlH?=
+ =?utf-8?B?V3ZsYXZoNXBQTS9OR2tkQ3R5dC9ZbFUxNnZ1TmVtYWdkOFR3T2Z4NkhKU3JF?=
+ =?utf-8?B?bmZ0MGJSL0g2Mnp0UmJuOVpSbWtNR0t2VXYxcnUwZWRpUmVIWm5Ra1hHaEtH?=
+ =?utf-8?B?b1E3MUlGUElDY2NqYWtMTkV2STAwN2tON3NlVXR4VGtEaDVJdzNKSVVXamph?=
+ =?utf-8?B?S1VHeGtaMU5lT3lUZ0oxaC91M0Q4V2pVTlZHLzZGbHNDNUsrQTN1SDk3OFI4?=
+ =?utf-8?B?SXVJQS81VVFrbGx0anMxYzJiSjdoVmdsc1NudjZnRUR3OXpNcFVlRS9QaVdX?=
+ =?utf-8?B?QkdZS2gzamJRU2RSRW9uZ1pQTG05eitjVmFpODdRQ2w0WkJWb1ZPVUVYKzZl?=
+ =?utf-8?B?SHpsWkNXcDk2bk9Ma3U5c0dFY3AyaWJ0WWplc0FibnR5WmEvTk5rYTh6UUUv?=
+ =?utf-8?B?cUlBY0VkUGJDUHZNU0dqa2RCa0FYdzFPWjQ5bjdIL1c3cDBrSkV4cFJDbjh2?=
+ =?utf-8?B?bC84OHEzQ3hKRGpWQjd3YWtCVXVaU1YvcHNlc1hDT2xzV25YcGk0YlhlQkFZ?=
+ =?utf-8?B?N043K3pOeFJCaXB4ZENQbFZ6TGNhMHA5Tk14TEtZZFBzQ3cwSVJocEtERkhT?=
+ =?utf-8?B?c0tldnAzdzRNZFdrblRTNktkKzJscmJUaHlFNjBlTHpDcjVkM1BWUlpVaVhQ?=
+ =?utf-8?B?aWxBcUJubFVHeU1YRGUxWkttcU5uUXZCM2lpYmYwVG1MNmV4eTBKUCtld1ZL?=
+ =?utf-8?B?c0xBbFJrckFmYkZSblVVMUp5Qkk1bTFHZU5oZWlsNVg1dkFJRldGT1NGMFB0?=
+ =?utf-8?B?dnJTY1MzR2NkbE9lNSsxbGVmQjg3cWVBYTdZQ3R3NmpXc3NpQ0NQZzFXK3hL?=
+ =?utf-8?Q?A1yQ=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.167.0.81]
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: f28012e3-4ae4-4ce1-207a-08da81b082d5
-X-MS-TrafficTypeDiagnostic: VI1PR10MB3535:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: QBTm6S3Lm9eZlfqvKHnxFToa+7YmL+W2hXhiEH+QoXs73Z0Iqm3E9Qt7b96wubq7cht84u5n+gbZ2k7bbk2zN5uJ22edrD0VwieU8C/xeKxvUsdH6bmiQraX1h3xO7FTdPexe+hPtdU/yDhdgCyvdZRkZ9yI5ekNxUTu82VPQJiRiQqhVyM2ObYmQrAp12uMsKuX50/FJ0DYd9tnMtI6jHg5brBX7gOFkfe7Fgk3nddm1rPTX8SrY2h1puMM0V+gvgG+FXWRueWF28VkEgG/9zX7n6gVgkFWAUMVJguPsio8EgEz2fBfC4uIKwqoem1UqBqkk6K8mvTT+pqECzTtoyWAkueArp26PHQRqtLNjc4bhfbC65lqJYUziiGyZhLDMueuMCYWQ0S7mvX4GPJmpOuTPzR1QkqAHnTAcvBO+cDfEEOBvgIxRlbwWDYB0wCny6V7GhIy3EWHfqmdbhwyoXRTm0k+NPjfh5bcKdzJzKpH1NyzhF1dm+Wsnd+sy9owIGVN/ptzpuS763JIMnnaDbhJC5zEiBKmNN3y75jzFyUTlxshDvJNrQSnH/QgtXf1M2YTUb3xbwxuLNUHFH24xjUsPsAgvRfolU/4dToXOHnKgMewnZfwHWdsUGBRxOYP9s/LD5s0FWRqX5swzhN6mJq7reKcPLqRi2apB3rW0gNgqT6Z08VHqrPSbwjnsKCrav4CjCf0fL4baaMI0ezSg6896dROhad3ahJn+q5x4qQDJ9U6/k8IMtJaZ87k3hFsEvMOms8utxz3mgC/jNI5Tb2bbsj10lW4CaUDytMr5zDLY0sNVbCqY5HNJ3JZmexU
-X-Forefront-Antispam-Report: CIP:139.15.153.203;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:eop.bosch-org.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230016)(4636009)(346002)(396003)(376002)(39860400002)(136003)(46966006)(36840700001)(40470700004)(7049001)(81166007)(82960400001)(82310400005)(316002)(110136005)(54906003)(8676002)(356005)(4326008)(8936002)(70206006)(86362001)(5660300002)(70586007)(26005)(40480700001)(47076005)(36860700001)(40460700003)(107886003)(2616005)(186003)(16526019)(336012)(1076003)(82740400003)(7416002)(6666004)(41300700001)(478600001)(921005)(2906002)(2876002)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: in.bosch.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Aug 2022 07:00:33.4329
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB8106.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0664329e-d1ba-4aae-1788-08da81b0cde3
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Aug 2022 07:02:39.4473
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f28012e3-4ae4-4ce1-207a-08da81b082d5
-X-MS-Exchange-CrossTenant-Id: 0ae51e19-07c8-4e4b-bb6d-648ee58410f4
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0ae51e19-07c8-4e4b-bb6d-648ee58410f4;Ip=[139.15.153.203];Helo=[eop.bosch-org.com]
-X-MS-Exchange-CrossTenant-AuthSource: DBAEUR03FT020.eop-EUR03.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR10MB3535
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: QJUS/8G21v+V3aKdq1gYahEDNBLaraP8QLmbinAFTetiiYoF4ems1AhaY4fyNszYqq1SF8yUJt7GacLNcv9MlA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8922
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Gireesh Hiremath <Gireesh.Hiremath@in.bosch.com>
-
-Add binding definition for the support of the reduced matrix
-keypad driver.
-
-Signed-off-by: Gireesh Hiremath <Gireesh.Hiremath@in.bosch.com>
----
- .../bindings/input/gpio-matrix-keypad.txt     | 96 +++++++++++++++++++
- 1 file changed, 96 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/input/gpio-matrix-keypad.txt b/Documentation/devicetree/bindings/input/gpio-matrix-keypad.txt
-index 570dc10f0cd7..1cedec29505c 100644
---- a/Documentation/devicetree/bindings/input/gpio-matrix-keypad.txt
-+++ b/Documentation/devicetree/bindings/input/gpio-matrix-keypad.txt
-@@ -1,11 +1,46 @@
- * GPIO driven matrix keypad device tree bindings
- 
- GPIO driven matrix keypad is used to interface a SoC with a matrix keypad.
-+
-+Generic mode:
- The matrix keypad supports multiple row and column lines, a key can be
- placed at each intersection of a unique row and a unique column. The matrix
- keypad can sense a key-press and key-release by means of GPIO lines and
- report the event using GPIO interrupts to the cpu.
- 
-+Reduced mode:
-+The reduced matric keypad supports multiple gpio lines, all gpio lines
-+act as row as well as column lines, a key can be placed at each intersection
-+of a row number not equal to a column number and they are diagonally
-+symmetric.
-+
-+Example- For 5 gpio lines, possible matrix is 5x5 and maximum possible
-+	keys are 10.
-+
-+	Sample matrix table for 7 buttons and 5 gpio lines
-+
-+        ------------------------------------------------------
-+        |Row\Col |GPIO 0 | GPIO 1 | GPIO 2 | GPIO 3 | GPIO 4 |
-+        ------------------------------------------------------
-+        | GPIO 0 |  X    | KEY_9  | KEY_2  |   X    | KEY_1  |
-+        ------------------------------------------------------
-+        | GPIO 1 | KEY_9 |  X     | KEY_6  |   X    |  X     |
-+        ------------------------------------------------------
-+        | GPIO 2 | KEY_2 | KEY_6  |  X     | KEY_4  | KEY_7  |
-+        ------------------------------------------------------
-+        | GPIO 3 |  X    |  X     | KEY_4  |  X     | KEY_8  |
-+        ------------------------------------------------------
-+        | GPIO 4 | KEY_1 |  X     | KEY_7  | KEY_8  |  X     |
-+        ------------------------------------------------------
-+        X - invalid key
-+        KEY_x - preferred key code
-+
-+The reduced mode sense a key-press and key-release by polling
-+GPIO lines and report the event.
-+
-+
-+Generic mode:
-+
- Required Properties:
- - compatible:		Should be "gpio-matrix-keypad"
- - row-gpios:		List of gpios used as row lines. The gpio specifier
-@@ -47,3 +82,64 @@ Example:
- 				0x0101001C
- 				0x0201006C>;
- 	};
-+
-+Reduced mode:
-+
-+Required Properties:
-+- compatible:		Should be "gpio-matrix-keypad-reduced"
-+- number-of-buttons:	Number of buttons connected to the keypad controller.
-+- line-gpios:		Gpio lines connected to keypad controller.
-+			all gpio lines act as row as well as column lines.
-+- linux,keymap:		An array of packed 1-cell entries containing the
-+			equivalent of row, column and linux key-code.
-+			The 32-bit big endian cell is packed as:
-+			row << 24 | column << 16 | key-code
-+
-+Optional Properties:
-+- poll-interval-ms:	Time interval between poll.
-+- linux,no-autorepeat:	Do no enable autorepeat feature.
-+- col-scan-delay-us:	Delay before scanning next active line.
-+
-+Example:
-+        keypad {
-+                compatible = "gpio-matrix-keypad-reduced";
-+                poll-interval-ms = <10>;
-+                col-scan-delay-us = <2>;
-+                number-of-buttons = <7>;
-+                linux,no-autorepeat;
-+                line-gpios = <
-+                        &gpio1 24 1     /*gpio_56*/
-+                        &gpio1 23 1     /*gpio_55*/
-+                        &gpio1 22 1     /*gpio_54*/
-+                        &gpio1 20 1     /*gpio_52*/
-+                        &gpio1 16 1     /*gpio_48*/
-+                >;
-+                linux,keymap = <
-+                        0x00000000 /* row 0, col 0, KEY_RESERVED */
-+                        0x0001000a /* row 0, col 1, KEY_9 */
-+                        0x00020003 /* row 0, col 2, KEY_2 */
-+                        0x00030000 /* row 0, col 3, KEY_RESERVED */
-+                        0x00040002 /* row 0, col 4, KEY_1 */
-+                        0x0100000a /* row 1, col 0, KEY_9 */
-+                        0x01010000 /* row 1, col 1, KEY_RESERVED */
-+                        0x01020007 /* row 1, col 2, KEY_6 */
-+                        0x01030000 /* row 1, col 3, KEY_RESERVED */
-+                        0x01040000 /* row 1, col 4, KEY_RESERVED */
-+                        0x02000003 /* row 2, col 0, KEY_2 */
-+                        0x02010007 /* row 2, col 1, KEY_6 */
-+                        0x02020000 /* row 2, col 2, KEY_RESERVED */
-+                        0x02030005 /* row 2, col 3, KEY_4 */
-+                        0x02040008 /* row 2, col 4, KEY_7 */
-+                        0x03000000 /* row 3, col 0, KEY_RESERVED */
-+                        0x03010000 /* row 3, col 1, KEY_RESERVED */
-+                        0x03020005 /* row 3, col 2, KEY_4 */
-+                        0x03030000 /* row 3, col 3, KEY_RESERVED */
-+                        0x03040009 /* row 3, col 4, KEY_8 */
-+                        0x04000002 /* row 4, col 0, KEY_1 */
-+                        0x04010000 /* row 4, col 1, KEY_RESERVED */
-+                        0x04020008 /* row 4, col 2, KEY_7 */
-+                        0x04030009 /* row 4, col 3, KEY_8 */
-+                        0x04040000 /* row 4, col 4, KEY_RESERVED */
-+                >;
-+
-+        };
--- 
-2.20.1
-
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS3J6eXN6dG9mIEtvemxv
+d3NraSA8a3J6eXN6dG9mLmtvemxvd3NraUBsaW5hcm8ub3JnPg0KPiBTZW50OiAyMDIy5bm0OOac
+iDE55pelIDE0OjMyDQo+IFRvOiBQZW5nIEZhbiA8cGVuZy5mYW5AbnhwLmNvbT47IFdlaSBGYW5n
+IDx3ZWkuZmFuZ0BueHAuY29tPjsgU2hhd24NCj4gR3VvIDxzaGF3bmd1b0BrZXJuZWwub3JnPg0K
+PiBDYzogZGF2ZW1AZGF2ZW1sb2Z0Lm5ldDsgZWR1bWF6ZXRAZ29vZ2xlLmNvbTsga3ViYUBrZXJu
+ZWwub3JnOw0KPiBwYWJlbmlAcmVkaGF0LmNvbTsgcm9iaCtkdEBrZXJuZWwub3JnOyBrcnp5c3p0
+b2Yua296bG93c2tpK2R0QGxpbmFyby5vcmc7DQo+IHMuaGF1ZXJAcGVuZ3V0cm9uaXguZGU7IG5l
+dGRldkB2Z2VyLmtlcm5lbC5vcmc7IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnOw0KPiBsaW51
+eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnOyBrZXJuZWxAcGVuZ3V0cm9uaXguZGU7IGZlc3RldmFt
+QGdtYWlsLmNvbTsNCj4gZGwtbGludXgtaW14IDxsaW51eC1pbXhAbnhwLmNvbT47IEphY2t5IEJh
+aSA8cGluZy5iYWlAbnhwLmNvbT47DQo+IHN1ZGVlcC5ob2xsYUBhcm0uY29tOyBsaW51eC1hcm0t
+a2VybmVsQGxpc3RzLmluZnJhZGVhZC5vcmc7IEFpc2hlbmcgRG9uZw0KPiA8YWlzaGVuZy5kb25n
+QG54cC5jb20+DQo+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggMS8zXSBkdC1iaW5nczogbmV0OiBmc2ws
+ZmVjOiB1cGRhdGUgY29tcGF0aWJsZSBpdGVtDQo+IA0KPiBPbiAxOS8wOC8yMDIyIDA2OjEzLCBQ
+ZW5nIEZhbiB3cm90ZToNCj4gPj4+DQo+ID4+IFNvcnJ5LCBJIGRpZCBub3QgZXhwbGFpbiBjbGVh
+cmx5IGxhc3QgdGltZSwgSSBqdXN0IG1lbnRpb25lZCB0aGF0DQo+ID4+IGlteDh1bHAgZmVjIHdh
+cyB0b3RhbGx5IHJldXNlZCBmcm9tIGlteDZ1bCBhbmQgd2FzIGEgbGl0dGxlIGRpZmZlcmVudCBm
+cm9tDQo+IGlteDZxLg0KPiA+PiBTbyB3aGF0IHNob3VsZCBJIGRvIG5leHQ/IFNob3VsZCBJIGZp
+eCB0aGUgYmluZGluZyBkb2MgPw0KPiA+DQo+ID4gSnVzdCBteSB1bmRlcnN0YW5kaW5nLCBzYXlp
+bmcgaS5NWDZRIHN1cHBvcnRzIGZlYXR1cmUgQSwgaS5NWDZVTA0KPiA+IHN1cHBvcnQgZmVhdHVy
+ZSBBICsgQiwgVGhlbiBpLk1YNlVMIGlzIGNvbXBhdGlibGUgd2l0aCBpLk1YNlEuDQo+IA0KPiBP
+ciBpZiBpLk1YOFVMUCBjYW4gYmluZCB3aXRoIGFueSBwcmV2aW91cyBjb21wYXRpYmxlIGFuZCBz
+dGlsbCB3b3JrICh3aXRoDQo+IGxpbWl0ZWQgc3Vic2V0IG9mIGZlYXR1cmVzKS4NCj4gDQo+ID4N
+Cj4gPiBJZiB1cHBlciBpcyB0cnVlIGZyb20gaGFyZHdhcmUgbGV2ZWwsIHRoZW4gaS5NWDhVTFAg
+RkVDIG5vZGUgc2hvdWxkDQo+ID4gY29udGFpbiA4dWxwLCA2dWwsIDZxLg0KPiA+DQo+ID4gQnV0
+IHRoZSBsaXN0IG1heSBleHBhbmQgdG9vIGxvbmcgaWYgbW9yZSBhbmQgbW9yZSBkZXZpY2VzIGFy
+ZQ0KPiA+IHN1cHBvcnRlZCBhbmQgaGFyZHdhcmUgYmFja3dhcmQgY29tcGF0aWJsZQ0KPiANCj4g
+VHJ1ZS4gSSBndWVzcyB0aHJlZSBpdGVtcyBpcyB0aGUgbGltaXQgYW5kIGFueXRoaW5nIG5ld2Vy
+IHNob3VsZCByZXN0YXJ0IHRoZQ0KPiBzZXF1ZW5jZS4NCj4gDQoNClNvLCB0aGUgYmluZGluZyBk
+b2MgZG9lc24ndCBuZWVkIHRvIGJlIGZpeGVkID8NCg==
