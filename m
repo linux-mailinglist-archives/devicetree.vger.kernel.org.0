@@ -2,83 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0758F59953C
-	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 08:22:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFEEA59955D
+	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 08:33:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345153AbiHSGRt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Aug 2022 02:17:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60214 "EHLO
+        id S244096AbiHSGbo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Aug 2022 02:31:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343513AbiHSGRs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 02:17:48 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 672256612C
-        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 23:17:47 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id x25so3630788ljm.5
-        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 23:17:47 -0700 (PDT)
+        with ESMTP id S237247AbiHSGbn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 02:31:43 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 211D3CE4BC
+        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 23:31:41 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id h5so4635437lfk.3
+        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 23:31:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=LJ6Y1/P/3NgrZFk4V8Ks7FUqbnAKX/c9IhrAriRyk6U=;
-        b=Z0w5qpy0S5WF+Jsw5u2J+pjK95+pFKjYVL4sGfE+yR1hQ1MoPmPz49Rd6+OB6mS3+Y
-         QPLvSsihCnXsLWWB0KszmzbJbdOLSljlZEXhaxTRzEPltEtY2VfT6d26dB1zEJHvJzkB
-         32f8Ue/R2OHXzjX3ZvmU5OqvJFVZ0HA1XWA9sY+HIa011NmNSlQOnQcmhTZLWeDcc84V
-         FtissL+7XWGXrjJyoVA3UqQay6veJiU3CPrxmzL3nktYWB9DgrzlDaqIai0Cy+twNIwh
-         E6Qkx+188IEKWu8s8VXzj3QQvdrpXLMqDzcMh1RAORSzj0CENMhaAnxfd1co8MbHyH0h
-         oj2Q==
+        bh=Bb2RpT6vGLRj2vz+IAdNpAgpAbLXOPpk7ezwAEBFYwY=;
+        b=PjTOEJ7UVo3OwfPxwoHxo3jrcfA8/pAuI7GZMYNsQ+EbNFOYCAglWqmIJYqSiNARNz
+         a5s/LIpaVS257AsfezDM2rPaUqul4ZwVuNg22IFg+BCsN1hveBQDHXyivh3aDSW6LhPH
+         zTzQaKgPb8rjbJqMJchNdvT5WxjjOIOD/8l4TreRzhKQ+/ED+jmk0Mzzsx5VH3HJoE7I
+         lOdfextLrw03dVjS82jVmm6b7XQ4elNURm4LchOwnSB1Ki4v5Tn9GFYs6nGKqwqefnUn
+         2w5T7LNZQmUUqF0vHnnSaeObZScPx1PnEVl+/FyAm3UaGRQEEflik9EyXQrzy3scRcPi
+         o2ng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=LJ6Y1/P/3NgrZFk4V8Ks7FUqbnAKX/c9IhrAriRyk6U=;
-        b=bQp9aahCzCm9xLPlIQq2q6yzoCQ6QjeWx+wllVgPTmz1CymYLzWv0N9duFwJ+ibnJr
-         O3oAvEXU84eELVCdyDKpV2OGKjQeZKRB0Fu/p6+ZXKjtW4JMwzHa6yXeQgoBcKqUfnH5
-         t5tLKfZhc+Tw6jmjEQOxZrR3jm+44SY3U+YMcGq2r7Cv0h0UMAr7EOVhCx8J5f+4v9vf
-         /lDMWstn+/GHSTypEYQLxfjHbGGET1F94X1lrQoTaKXlo9Pkl6jbaU1IFIMtD48OAwIe
-         j82xz0ryQArqVFfDmSEe+7mVPrKJwT3m5YHLHuVbDgZlo10nkqu8saNNmmhw/ywCQG8N
-         9bHg==
-X-Gm-Message-State: ACgBeo0HvO/VI3MfLW2F56q8kZhiVxNIaQ9ntdRe/lhtwP4vbCDwhiH+
-        Fu1s2TrCUk1uRUux+/3iKv0a6w==
-X-Google-Smtp-Source: AA6agR7DCy6FxvZFYRuBMsWwcqPT29FISCRST1z/IxE7dY3YeTj9ewMGRqgvtt9uK0rRYfOeb2FacA==
-X-Received: by 2002:a2e:978f:0:b0:25e:4847:530a with SMTP id y15-20020a2e978f000000b0025e4847530amr1794081lji.279.1660889865666;
-        Thu, 18 Aug 2022 23:17:45 -0700 (PDT)
+        bh=Bb2RpT6vGLRj2vz+IAdNpAgpAbLXOPpk7ezwAEBFYwY=;
+        b=4r22f5wO1wWZr6cj7t8SaQI3VYcPJ/j38YUAUIey9d+3Fm+wbwWNVlWqZJIz3edEsZ
+         jlaRFdNs2ex4GShjr9YSkvyuIdm2Q9dXMfmC7R1pDjxXuCUf3REECrV9GfLpqar3qHO9
+         OELrAKmqrcvve3qvaM4+yYENdJPC9gE0nx3GkL5Fx0H4fkQxh9jIvYIxKjnM2mqaGbwW
+         tqC8r6Ix+U2NgQ9xgCTBmtt2IZt38ytD4EZ5b+6LaL6O9gzvncpMIIAiFwaoPng4YGDK
+         wBN42yDqblgra9p0J74JvnXsxTzoyZ1DDr8fS5yK/qGgp1RtYibYijoMJCOm3MWv84y9
+         XM3A==
+X-Gm-Message-State: ACgBeo1ALhd8RFiQltuCQoovB277xOKA3+enEkHFi6xdaWSSjncPHQfQ
+        79Pcf6dtjgXs8IARgqUmvteDSg==
+X-Google-Smtp-Source: AA6agR796NtSOJs4gp+P2t8uFT91TfNBuALgjbqCoOF2Y/Xgcdz0QTYg21T57msGMFfNMZB5FapbDg==
+X-Received: by 2002:a05:6512:3409:b0:48a:ef20:dda with SMTP id i9-20020a056512340900b0048aef200ddamr2183723lfr.649.1660890700214;
+        Thu, 18 Aug 2022 23:31:40 -0700 (PDT)
 Received: from ?IPV6:2001:14bb:ac:e5a8:ef73:73ed:75b3:8ed5? (d1xw6v77xrs23np8r6z-4.rev.dnainternet.fi. [2001:14bb:ac:e5a8:ef73:73ed:75b3:8ed5])
-        by smtp.gmail.com with ESMTPSA id w17-20020a19c511000000b0048af85f6581sm509957lfe.154.2022.08.18.23.17.44
+        by smtp.gmail.com with ESMTPSA id s20-20020a056512215400b00492b313d37csm514106lfr.134.2022.08.18.23.31.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Aug 2022 23:17:45 -0700 (PDT)
-Message-ID: <0cdca889-1193-1595-e524-5a0cfc633d14@linaro.org>
-Date:   Fri, 19 Aug 2022 09:17:43 +0300
+        Thu, 18 Aug 2022 23:31:39 -0700 (PDT)
+Message-ID: <31dd0110-4c7f-61f8-7261-2476766c9360@linaro.org>
+Date:   Fri, 19 Aug 2022 09:31:37 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH v3 5/5] arm64: dts: qcom: sc7280: Add Reset support for
- gpu
+Subject: Re: [PATCH 1/3] dt-bings: net: fsl,fec: update compatible item
 Content-Language: en-US
-To:     Akhil P Oommen <quic_akhilpo@quicinc.com>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        Rob Clark <robdclark@gmail.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Douglas Anderson <dianders@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <1660853919-987-1-git-send-email-quic_akhilpo@quicinc.com>
- <20220819014758.v3.5.I6a1fca5d53c886c05ea3e24cd4282d31c9c0cd0b@changeid>
+To:     Peng Fan <peng.fan@nxp.com>, Wei Fang <wei.fang@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>
+Cc:     "davem@davemloft.net" <davem@davemloft.net>,
+        "edumazet@google.com" <edumazet@google.com>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "pabeni@redhat.com" <pabeni@redhat.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>, Jacky Bai <ping.bai@nxp.com>,
+        "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Aisheng Dong <aisheng.dong@nxp.com>
+References: <20220704101056.24821-1-wei.fang@nxp.com>
+ <20220704101056.24821-2-wei.fang@nxp.com>
+ <ef7e501a-b351-77f9-c4f7-74ab10283ed6@linaro.org>
+ <20220818013344.GE149610@dragon>
+ <fd41a409-d0e0-0026-4644-9058d1177c45@linaro.org>
+ <20220818092257.GF149610@dragon>
+ <a08b230c-d655-75ee-0f0c-8281b13b477b@linaro.org>
+ <20220818135727.GG149610@dragon>
+ <00614b8f-0fdd-3d7e-0153-3846be5bb645@linaro.org>
+ <DB9PR04MB8106BB72857149F5DD10ACEA886C9@DB9PR04MB8106.eurprd04.prod.outlook.com>
+ <PA4PR04MB9416C0E26B13D4060C2F50A9886C9@PA4PR04MB9416.eurprd04.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220819014758.v3.5.I6a1fca5d53c886c05ea3e24cd4282d31c9c0cd0b@changeid>
+In-Reply-To: <PA4PR04MB9416C0E26B13D4060C2F50A9886C9@PA4PR04MB9416.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,32 +101,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/08/2022 23:18, Akhil P Oommen wrote:
-> Add support for Reset using GPUCC driver for GPU. This helps to ensure
-> that GPU state is reset by making sure that CX head switch is collapsed.
+On 19/08/2022 06:13, Peng Fan wrote:
+>>>
+>> Sorry, I did not explain clearly last time, I just mentioned that imx8ulp fec
+>> was totally reused from imx6ul and was a little different from imx6q.
+>> So what should I do next? Should I fix the binding doc ?
 > 
-> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
-> ---
-> 
-> (no changes since v1)
-> 
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index e66fc67..f5257d6 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -2243,6 +2243,9 @@
->  			nvmem-cells = <&gpu_speed_bin>;
->  			nvmem-cell-names = "speed_bin";
->  
-> +			resets = <&gpucc GPU_CX_COLLAPSE>;
-> +			reset-names = "cx_collapse";
-> +
+> Just my understanding, saying i.MX6Q supports feature A,
+> i.MX6UL support feature A + B, Then i.MX6UL is compatible with i.MX6Q.
 
-I think this is not allowed by bindings. Did you test your change with
-dtbs_check?
+Or if i.MX8ULP can bind with any previous compatible and still work
+(with limited subset of features).
+
+> 
+> If upper is true from hardware level, then i.MX8ULP FEC node
+> should contain 8ulp, 6ul, 6q.
+> 
+> But the list may expand too long if more and more devices are supported
+> and hardware backward compatible
+
+True. I guess three items is the limit and anything newer should restart
+the sequence.
 
 Best regards,
 Krzysztof
