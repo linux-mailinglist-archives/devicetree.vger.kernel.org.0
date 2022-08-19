@@ -2,117 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E708559938A
-	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 05:38:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBDA35993F0
+	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 06:17:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344667AbiHSD2z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Aug 2022 23:28:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40212 "EHLO
+        id S241486AbiHSENs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Aug 2022 00:13:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344830AbiHSD2t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Aug 2022 23:28:49 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89DA92BC6;
-        Thu, 18 Aug 2022 20:28:37 -0700 (PDT)
-X-UUID: 52e34e004c58493eb69fe592aa72ebac-20220819
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=m7agB2hnFewpjax4kbphsD93u3QsGRdWR8JFRIQ77D8=;
-        b=kqrMB8i9hhDwuG310TE7t18O/vC2W7nKvv9EuHW+XU+4/UcMH+OdJ88/Qj4GbtW/YpwreJH1SLaIshEp1fDgxiHoLboGp3/bHQMnNfMkWJ9aQN7kYA/FA1rb+7hb0U0eWRTWpmcRmstgcvXug/ZvRsuCfBt63/eVyagyDNmiGTM=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.10,REQID:76241349-1cda-41de-bb1f-7d53cf221680,OB:0,L
-        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_
-        Ham,ACTION:release,TS:0
-X-CID-META: VersionHash:84eae18,CLOUDID:1f8c1a9d-da39-4e3b-a854-56c7d2111b46,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:11|1,File:
-        nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 52e34e004c58493eb69fe592aa72ebac-20220819
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
-        (envelope-from <johnson.wang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 296181039; Fri, 19 Aug 2022 11:28:32 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Fri, 19 Aug 2022 11:28:31 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Fri, 19 Aug 2022 11:28:31 +0800
-Message-ID: <726ec17f1b8d42f7ec9858a54ee952cb53f03188.camel@mediatek.com>
-Subject: Re: [PATCH 3/3] dt-bindings: nvmem: mediatek: efuse: Add support
- for MT8188
-From:   Johnson Wang <johnson.wang@mediatek.com>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        <matthias.bgg@gmail.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Fri, 19 Aug 2022 11:28:31 +0800
-In-Reply-To: <8ab34dd4-ca5a-2824-ccbf-867996ac6536@linaro.org>
-References: <20220715120114.4243-1-johnson.wang@mediatek.com>
-         <20220715120114.4243-3-johnson.wang@mediatek.com>
-         <8ab34dd4-ca5a-2824-ccbf-867996ac6536@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S1345163AbiHSENp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 00:13:45 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EA9D61721;
+        Thu, 18 Aug 2022 21:13:41 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id i14so6682656ejg.6;
+        Thu, 18 Aug 2022 21:13:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc;
+        bh=BxxIf4ICLTKnjJ5aVGidvHQIOHUtRRv6urv+Qzj5jkI=;
+        b=ZJip5BfO3l92GgahTctqVpvWnm2m24EXsmFyL4EG5YkVZUo/Ss8bZzi4HTqY/Kn+T2
+         1LaPg1nXPqo7gDGCigaTTN0utOVD932QdCjO7X0/B67eKt8U0l+MFLMqHzkiT/IJUXxD
+         0hxbj1FdPgz+F9OHaTaVcdQDarlBOJ3G8KSkAMCrQJKRF5hBCaBF/m4iALsMuEgixJxA
+         F1DCFPl44aeH0KOcTZM1b3yQyT70KrgYbDLhrNNeM4rXw3Zpth55vt7apy3gmREF4NVm
+         tQdMVJWJY4jNUK3nKBp++jz9scKFQZElxV1iM/Bvhq/XmIZH+7JveVx9hAyWbRopi2dP
+         TZrg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
+        bh=BxxIf4ICLTKnjJ5aVGidvHQIOHUtRRv6urv+Qzj5jkI=;
+        b=WXM4mwd57Xe+w2H8XHZ0pItV6QaJFKlTtxiw1dgqOHNEbJyVYm9v6VERz0Nrzzkxvc
+         RThRIJmXAQvkHpmiHGU5NWA+1P2cKV0Otxkf6+8WPfzyzP3zR4OwRz4jDE2v8FC5lVpb
+         Oblc1NyIv4NpgZKgKHzMBUK5Sti8b+f4NVrNhsmdkAqmdAlD3lMrgQc2J1w9miGkXozR
+         Qde772DORyVhSHqu4mvYktKQSGDhSWAm4kAwd3z8xbcHhVxHS8wuG+LCRrDcT/yXn0CM
+         qBF5uj6bJxZjTODcc4sTV+hpCjM6qVrova0B+3E+SROCaQ8+Gk77XsJ+ILjO2DvZ0YRQ
+         Sn9g==
+X-Gm-Message-State: ACgBeo3gwexkV1sx3kB3LoSt1aU5dzecRtc8yOoHdxAA+QLECceJNDs6
+        1IuIADi2JCkke6YciPN2S2w=
+X-Google-Smtp-Source: AA6agR7xtwZPWKgGk3TjC9bSK4HxhNAbu5i2li1AQjQzmEN9t/rm3PEEKTFcDnUEuidxsKm+N92oRw==
+X-Received: by 2002:a17:907:2c42:b0:730:aacf:1b69 with SMTP id hf2-20020a1709072c4200b00730aacf1b69mr3667025ejc.381.1660882419432;
+        Thu, 18 Aug 2022 21:13:39 -0700 (PDT)
+Received: from jernej-laptop.localnet (82-149-1-172.dynamic.telemach.net. [82.149.1.172])
+        by smtp.gmail.com with ESMTPSA id n22-20020aa7d056000000b0043bbf79b3ebsm2324523edo.54.2022.08.18.21.13.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Aug 2022 21:13:38 -0700 (PDT)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Samuel Holland <samuel@sholland.org>,
+        =?ISO-8859-1?Q?Cl=E9ment_P=E9ron?= <peron.clem@gmail.com>
+Cc:     =?ISO-8859-1?Q?Cl=E9ment_P=E9ron?= <peron.clem@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/4] arm64: dts: allwinner: h6: Add cooling map for GPU
+Date:   Fri, 19 Aug 2022 06:13:37 +0200
+Message-ID: <2641460.mvXUDI8C0e@jernej-laptop>
+In-Reply-To: <20220818203928.131059-3-cpe@outsight.tech>
+References: <20220818203928.131059-1-cpe@outsight.tech> <20220818203928.131059-3-cpe@outsight.tech>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,
-        T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2022-08-17 at 13:21 +0100, Srinivas Kandagatla wrote:
-> 
-> On 15/07/2022 13:01, Johnson Wang wrote:
-> > Add compatible for MT8188 SoC.
-> > 
-> > Signed-off-by: Johnson Wang <johnson.wang@mediatek.com>
-> > ---
-> > This patch is based on "linux-next"[1].
-> > [1]
-> > https://urldefense.com/v3/__https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git__;!!CTRNKA9wMg0ARbw!yz8fBHH39-ntsRnAlXZfmS1k9PoKMtITUk-DhcvGQJOJSu9HP70OmFoCYMfvxnjWw4Ql$
-> >  
-> > ---
-> 
-> Applied thanks,
-> 
-> --srini
-> >   Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml | 1 +
-> >   1 file changed, 1 insertion(+)
-> > 
-> > diff --git
-> > a/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
-> > b/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
-> > index b5a1109f2ee1..75e0a516e59a 100644
-> > --- a/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
-> > +++ b/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
-> > @@ -30,6 +30,7 @@ properties:
-> >                 - mediatek,mt8173-efuse
-> >                 - mediatek,mt8183-efuse
-> >                 - mediatek,mt8186-efuse
-> > +              - mediatek,mt8188-efuse
-> >                 - mediatek,mt8192-efuse
-> >                 - mediatek,mt8195-efuse
-> >                 - mediatek,mt8516-efuse
+Dne =C4=8Detrtek, 18. avgust 2022 ob 22:39:26 CEST je Cl=C3=A9ment P=C3=A9r=
+on napisal(a):
+> From: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
+>=20
+> Add a simple cooling map for the GPU.
+>=20
+> Signed-off-by: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
 
-Hi Srinivas,
+Is this really patch 2/4? I only got patches 2-4, but not patch 1.
 
-Just a gentle ping on this.
-It seems that this patch hasn't been applied into [1].
+Best regards,
+Jernej
 
-If you have any concern about this patch, please let me know.
+> ---
+>  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 22 ++++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi index
+> 5a28303d3d4c..943ae5374dd6 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> @@ -186,6 +186,7 @@ gpu: gpu@1800000 {
+>  			clocks =3D <&ccu CLK_GPU>, <&ccu CLK_BUS_GPU>;
+>  			clock-names =3D "core", "bus";
+>  			resets =3D <&ccu RST_BUS_GPU>;
+> +			#cooling-cells =3D <2>;
+>  			status =3D "disabled";
+>  		};
+>=20
+> @@ -1075,6 +1076,27 @@ gpu-thermal {
+>  			polling-delay-passive =3D <0>;
+>  			polling-delay =3D <0>;
+>  			thermal-sensors =3D <&ths 1>;
+> +
+> +			trips {
+> +				gpu_alert: gpu-alert {
+> +					temperature =3D <85000>;
+> +					hysteresis =3D <2000>;
+> +					type =3D "passive";
+> +				};
+> +
+> +				gpu-crit {
+> +					temperature =3D=20
+<100000>;
+> +					hysteresis =3D <0>;
+> +					type =3D "critical";
+> +				};
+> +			};
+> +
+> +			cooling-maps {
+> +				map0 {
+> +					trip =3D <&gpu_alert>;
+> +					cooling-device =3D <&gpu=20
+THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +			};
+>  		};
+>  	};
+>  };
 
-Thanks.
 
-[1] git://git.kernel.org/pub/scm/linux/kernel/git/srini/nvmem.git
 
-BRs,
-Johnson Wang
 
