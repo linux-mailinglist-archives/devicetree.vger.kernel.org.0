@@ -2,69 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09751599D26
-	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 15:58:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1963599D43
+	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 15:58:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349493AbiHSNzn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Aug 2022 09:55:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47384 "EHLO
+        id S1349509AbiHSN4U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Aug 2022 09:56:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349452AbiHSNzl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 09:55:41 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F865AE211
-        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 06:55:40 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id e15so6280190lfs.0
-        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 06:55:40 -0700 (PDT)
+        with ESMTP id S1349512AbiHSN4R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 09:56:17 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B935E10095F
+        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 06:56:15 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id bx38so4586948ljb.10
+        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 06:56:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc;
-        bh=qz+s4Lp+1rNmUcFb2WvMXoDlDkJBMF0AImdXZ84Zq2Q=;
-        b=b2qPJwI1tvDFb5SSvsztBjBlbvMLCdljfj7HbLEKPKoiMjYaHinlgcNbssiLU19TsA
-         rDANCGi0KhfynTCEopOYs7YZLZZZSZjhESlknMcCel+vwnX26JCbn01/FQzwku56QoQX
-         LBC7/fd+Oudwpc/qf5pLqSuSyvZelrH+llgZwrFqim1KQe4+KbTlpa1aKCS6XW1k6P3/
-         xy0RyLR0T8Wy1bX11SPDbWswB3IlmhSNFfCAfmRsfpaeQpr/9/4Bf1r+lyMnRQVydhiN
-         Mifei2iFuYInXiOZsfF2z75zaIeC1YfTI30ViA0Kzn7DFtAY4/5psWRaKPLAfIMgO7yC
-         ULaQ==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=7wKbTinwLLhyC/6cSb9XNE1uZn1Os1hcFfqjEzJyPxE=;
+        b=k52lhCtLZm/1ReDEzS87+JWzXQ8IGW5O1J2BzGcgq6lPRxjdq8sXJcdUGFOscjGycm
+         h7R/PgkjM8d+HMeGzuR//aFOvtd9K4S1ZNFcP1g3MnWgKohVJY9fNPb+Wq+mHmaArZgS
+         y+hBFaeaJLSIMrCwhHSx0btBYgRTTSHK52heJVS33/EYMXaxW0rlgmlue5KnjohLvqwT
+         LcEuxo3VO4RkpRzwA6eA6PjJ3B0PwWxrbOiSKpdQagIhbllut9DCos+l9D2zPZgnf3PL
+         xCa9vite+tpqkI+gfa1T4auJNCAc02QJfo/N/N1jPuiijHFmN0jn1enkdadlgnMj1bKa
+         bTsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc;
-        bh=qz+s4Lp+1rNmUcFb2WvMXoDlDkJBMF0AImdXZ84Zq2Q=;
-        b=GmUDBZVQxJ+sSnXpf+az6cLb2dMep+kNVVRoNIN38HwzJynfK4+8G6xOdsBsINCgMc
-         MGh5elkU1BhTAA+aOJYmqCIBVh3YTaZ730hgITyMd/PNvtu9o18FgsfN9Ufb/Byr/uxA
-         PFCD78HRgHmTJfvDDkZvOcaE9rdqXZRFZeA2GtOFm4yf4b1YCvBnmcJ3Fai3CvwjchUP
-         YRhA64mIjroL1gss1dva/xSg9b3qJl+Q61NmfXv4QWKfZltxlikz+hK9ZHlXcbUUFN11
-         hfNSkaPEx/DEFBegD+l4lEJUAZ4oVVOBr5N5iWckkOQi7QRpksP2iC1bEo+LQGaLyFgf
-         5z9A==
-X-Gm-Message-State: ACgBeo1nAaq7Qmw+f3WyZF/hKCzGPNzJSA59m3V+4tzO0aaOFpzQ5IVi
-        xeMX+0umzHh9fxJttXe+t5Nyrg==
-X-Google-Smtp-Source: AA6agR4hZSxYhPPfmqGv6yv5rwo91nhjhiJwwdev9U1WMc5eWfLZgok57gjZGhaFuKCx+uPr0IP3mQ==
-X-Received: by 2002:a05:6512:168d:b0:491:3206:b63 with SMTP id bu13-20020a056512168d00b0049132060b63mr2376458lfb.149.1660917338688;
-        Fri, 19 Aug 2022 06:55:38 -0700 (PDT)
-Received: from krzk-bin.. (d1xw6v77xrs23np8r6z-4.rev.dnainternet.fi. [2001:14bb:ac:e5a8:ef73:73ed:75b3:8ed5])
-        by smtp.gmail.com with ESMTPSA id z2-20020a2e8e82000000b0025dd5b3fabesm598519ljk.102.2022.08.19.06.55.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Aug 2022 06:55:38 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        krzysztof.kozlowski@linaro.org, tomasz.figa@gmail.com,
-        robh+dt@kernel.org, alim.akhtar@samsung.com,
-        linux-samsung-soc@vger.kernel.org, s.nawrocki@samsung.com,
-        linus.walleij@linaro.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 0/2] pinctrl/arm: dt-bindings: deprecate header with register constants
-Date:   Fri, 19 Aug 2022 16:55:35 +0300
-Message-Id: <166091732992.90087.5461624467254256635.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220816133016.77553-1-krzysztof.kozlowski@linaro.org>
-References: <20220816133016.77553-1-krzysztof.kozlowski@linaro.org>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=7wKbTinwLLhyC/6cSb9XNE1uZn1Os1hcFfqjEzJyPxE=;
+        b=hThl9JooOXASR6CaoMnb5wGXI7+Y1MpdhRVirCgRqEQvSJnG8cXZBVwPHkkMW5iZgY
+         T5Z6XfwH+u2azme+I1rkg2wwiKvQScYS8f1Vt9/OMwp9m/URluKyUPW7LHxyQ75g7RYg
+         RxR8KTwboMNeNiZskBAM2BjPKiVekLljUEXYItWvg03FLtYnwaeETaqA1eGSNTezTu2f
+         j0RctLwz2lyERpjNvJ3ZtEKqW9j/r8A1kUqSe5rebWUhlm9wxzGhUIBNzsrXzDKy8EQn
+         ALAOHcyANcWSzHEvUQZpnLSR1WGWsiHpCBHuQpcsJiaAjpnuYxweqXZ4IerjUb2f/Gjp
+         la/g==
+X-Gm-Message-State: ACgBeo3LMOk/MaQ62i5s99JsL/FYbUTndT1djcm7bImXBKWiCGnOIBod
+        Rp9FXyP2lNQ76hyY7+2zK4Y6lw==
+X-Google-Smtp-Source: AA6agR46YW+0l7LgxUwuaGr0IASRdKw2I3+qnYWru5NiSpKYlerSSWgXiXMKZEktADcRTcfxSqmc9w==
+X-Received: by 2002:a2e:9346:0:b0:261:8a31:b40c with SMTP id m6-20020a2e9346000000b002618a31b40cmr2087216ljh.267.1660917374078;
+        Fri, 19 Aug 2022 06:56:14 -0700 (PDT)
+Received: from ?IPV6:2001:14bb:ac:e5a8:ef73:73ed:75b3:8ed5? (d1xw6v77xrs23np8r6z-4.rev.dnainternet.fi. [2001:14bb:ac:e5a8:ef73:73ed:75b3:8ed5])
+        by smtp.gmail.com with ESMTPSA id w16-20020a19c510000000b00491aee1c4a5sm648010lfe.168.2022.08.19.06.56.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 19 Aug 2022 06:56:13 -0700 (PDT)
+Message-ID: <803b9823-3fde-c4fc-8431-79677212684b@linaro.org>
+Date:   Fri, 19 Aug 2022 16:56:11 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v5 3/4] dt-binding: perf: Add Amlogic DDR PMU
+Content-Language: en-US
+To:     Jiucheng Xu <jiucheng.xu@amlogic.com>,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Will Deacon <will@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Chris Healy <cphealy@gmail.com>
+References: <20220817113423.2088581-1-jiucheng.xu@amlogic.com>
+ <20220817113423.2088581-3-jiucheng.xu@amlogic.com>
+ <0a10f55c-1e91-de8d-74c1-e2778841b7fc@linaro.org>
+ <81452c8a-623c-3668-2411-fd7c39dc4280@amlogic.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <81452c8a-623c-3668-2411-fd7c39dc4280@amlogic.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -73,26 +86,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 16 Aug 2022 16:30:14 +0300, Krzysztof Kozlowski wrote:
-> Changes since v3
-> ================
-> 1. Add patch 1 - bindings example fixes.
-> 2. All dependencies were merged, so this can go via Samsung pinctrl tree.
+On 19/08/2022 16:44, Jiucheng Xu wrote:
 > 
-> Changes since v2
-> ================
-> 1. Split last bindings patch per driver changes and bindings.
-> 2. Add tags.
+> On 2022/8/18 16:25, Krzysztof Kozlowski wrote:
+>> [ EXTERNAL EMAIL ]
+>>
+>> On 17/08/2022 14:34, Jiucheng Xu wrote:
+>>> Add binding documentation for the Amlogic G12 series DDR
+>>> performance monitor unit.
+>>>
+>>> Signed-off-by: Jiucheng Xu <jiucheng.xu@amlogic.com>
+>> (...)
+>>
+>>> +
+>>> +  interrupts:
+>>> +    items:
+>>> +      - description: The IRQ of the inside timer timeout.
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +  - interrupts
+>>> +
+>>> +additionalProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>>> +    pmu {
+>>> +        #address-cells=<2>;
+>>> +        #size-cells=<2>;
+>>> +
+>>> +        pmu@ff638000 {
+>>> +
+>> No need for blank line.
+>>
+>>> +            compatible = "amlogic,g12a-ddr-pmu";
+>>> +            reg = <0x0 0xff638000 0x0 0x100>,
+>>> +                  <0x0 0xff638c00 0x0 0x100>;
+>>> +            interrupts = <GIC_SPI 52 IRQ_TYPE_EDGE_RISING>;
+>>> +        };
+>>> +    };
+>> With above fixed:
+>>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> [...]
+> Thanks for your valuable comments and I learn a lot from them.
+> 
+> One more question, do you mean after modify the above two places
+> 
+> I could resubmit V6 as the final patch which include your reviewed tag?
 
-Applied, thanks!
+Yes.
 
-[1/2] dt-bindings: pinctrl: samsung: stop using bindings header with constants
-      https://git.kernel.org/pinctrl/samsung/c/df805304a820ed10fc3d038dd64b85821c9ee606
-[2/2] dt-bindings: pinctrl: samsung: deprecate header with register constants
-      https://git.kernel.org/pinctrl/samsung/c/9d9292576810d0b36897718c24dfbc1a2835314b
+https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
+
 
 Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Krzysztof
