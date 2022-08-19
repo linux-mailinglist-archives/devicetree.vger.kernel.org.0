@@ -2,98 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB6615997B0
-	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 10:49:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7218F5997BF
+	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 10:49:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347752AbiHSIrA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Aug 2022 04:47:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58696 "EHLO
+        id S1346144AbiHSIrk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Aug 2022 04:47:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347755AbiHSIq6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 04:46:58 -0400
-Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 369C2CAC4D;
-        Fri, 19 Aug 2022 01:46:58 -0700 (PDT)
-Received: by mail-qt1-f180.google.com with SMTP id h22so2872192qtu.2;
-        Fri, 19 Aug 2022 01:46:58 -0700 (PDT)
+        with ESMTP id S1347761AbiHSIrj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 04:47:39 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD18BC6FF1
+        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 01:47:37 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id t5so12199lfk.3
+        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 01:47:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=2BIoy1M8A0rRrH0tn3bSeIeYW/rETi9BBL+JwsRpCCs=;
+        b=erMtm3Dq+6NNg/t96Z2Mv0CU3VUE1mOa8n5A6nrGYIfVe5PkNecJOz36mXgiiWmcN9
+         8dlaji7sB6hnbn17o2qUOGGOH2zdCPlY+tuO33hVTO3fNxtme43MMm8cedsC5z5AS1NO
+         6EWDWOgJbapbowtQK72ZBKM1c+woUNl2VtklMND+Q+pzPxjjM+GBm/ch+tzXCJ2/wxKl
+         VJLpTkYPitEbQuLkNiQsYtNXfp1qQCsyuz+wY4zG1ocmFNSSu/kgRA063Mnly6sxoi5q
+         BrL6cAJidJBDJdei14nUMrMGjfzGSwt64Hlc0q7A0LCqx6/UERU8IuQfXdPK9wYEPUVQ
+         tgTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=+CK74Trg82hJrsPmCVARJr/hdgf8gZ1Ixa5AUbpaM6I=;
-        b=XzjqBAzBRBj096FUBrk7C8/92wcq5CWS5OekMmTDlOAqT1qkPG4EZ8bdjh/bTQl2RU
-         iEYRngVWSgS6ztVe0HRniYK+c4VlfTPzgPmyOEStRhiD+6dUs/HuDTyFTSX5HY3BScWJ
-         6QtH2akf8+poZbZlkpU2QqJfHdwEJfLadrSuq/A3XSfXTyiBv+qC2KBrDn/fv3K+AjmD
-         fRFSbYPfxtP3Ou1h5Qg96e7NSIJAw8NZNq51WpiD4m5mL7hHuNlEKe7I4BXobjyzrfna
-         wxSG/G2vIjve9v4bL/VXgCQVvGZs+8eF4FCOcBqhKK4mxRZS+NmFQ8inY/XXwK7lI7h5
-         AR4w==
-X-Gm-Message-State: ACgBeo2Hk8sIbjGoxQyGbfLcNl0WBXrd564Y3aXeqBuLK22kg6uXNhur
-        IZ7AmsK1LsAWmKv3AArZ6G7fbAGwvVpAhw==
-X-Google-Smtp-Source: AA6agR7JX3VqGOUpaLoLlGXacU1pVqICG5fmBaswxvqtBzMh7Dc4AMNabVthyzwvFLVn0PneCWxCNA==
-X-Received: by 2002:a05:622a:40e:b0:343:7769:5895 with SMTP id n14-20020a05622a040e00b0034377695895mr5750192qtx.467.1660898816813;
-        Fri, 19 Aug 2022 01:46:56 -0700 (PDT)
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com. [209.85.128.170])
-        by smtp.gmail.com with ESMTPSA id l8-20020a05620a28c800b006bbc3724affsm2507654qkp.45.2022.08.19.01.46.55
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=2BIoy1M8A0rRrH0tn3bSeIeYW/rETi9BBL+JwsRpCCs=;
+        b=SCBwbRJE1Gj7BMju6uZPc3LurPiCJs9EIsaMoVJT2Vu+lr3gI9zwg0FPgXOFUTioYu
+         DN4TqtbDysoUqDmUe/YoDN5MkbLWtkVopfDomUuSMP7IeEpzZ+8ld9flCm+PXixos88+
+         QgH8uAR0KTtxsyMow3kvCzkIDm3VxZpJbkh3RV6JmJP491VVZ403GCyQxdkMGfCPkeud
+         +TLRlUuKZF31k5riQKW639Mu/DQR9dAJQxMSwKx/fEsVPFYfIE1ngeXoosUuT+TzuvfF
+         HDzj8qVvS5a3k+poD1zdhb3i14PMS32bJiGfJ68ABScx6Ma1Aq03IMmVO35WBAbavY+0
+         kHqQ==
+X-Gm-Message-State: ACgBeo1UIv3O1XGAIm+dEysYGR6+Esl1AUh3eboyJmbq/XkczGqmM2hV
+        BGTgjv0vyYCDttZAWkioabl9IQ==
+X-Google-Smtp-Source: AA6agR6Pc0sEIBMPS2jfk3o6KO1NlURYtLObz6ZX4+MDhFAP6r0djwefsu/vbv0h6nxQXUeREJHtTw==
+X-Received: by 2002:a05:6512:3fa2:b0:48a:16df:266f with SMTP id x34-20020a0565123fa200b0048a16df266fmr2075802lfa.414.1660898856143;
+        Fri, 19 Aug 2022 01:47:36 -0700 (PDT)
+Received: from ?IPV6:2001:14bb:ac:e5a8:ef73:73ed:75b3:8ed5? (d1xw6v77xrs23np8r6z-4.rev.dnainternet.fi. [2001:14bb:ac:e5a8:ef73:73ed:75b3:8ed5])
+        by smtp.gmail.com with ESMTPSA id x4-20020a056512078400b0048d20e3333csm555053lfr.242.2022.08.19.01.47.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 Aug 2022 01:46:56 -0700 (PDT)
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-32a09b909f6so105248127b3.0;
-        Fri, 19 Aug 2022 01:46:55 -0700 (PDT)
-X-Received: by 2002:a0d:eb45:0:b0:333:f813:6c79 with SMTP id
- u66-20020a0deb45000000b00333f8136c79mr6505642ywe.384.1660898815488; Fri, 19
- Aug 2022 01:46:55 -0700 (PDT)
+        Fri, 19 Aug 2022 01:47:35 -0700 (PDT)
+Message-ID: <ec86420c-a210-facd-ab3a-5baf84a736f3@linaro.org>
+Date:   Fri, 19 Aug 2022 11:47:33 +0300
 MIME-Version: 1.0
-References: <20220815151451.23293-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20220815151451.23293-9-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20220815151451.23293-9-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 19 Aug 2022 10:46:43 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVn50f3HuphyqeGmgzXA_TqHdqDJO7C3YZd=qMA9ZRigQ@mail.gmail.com>
-Message-ID: <CAMuHMdVn50f3HuphyqeGmgzXA_TqHdqDJO7C3YZd=qMA9ZRigQ@mail.gmail.com>
-Subject: Re: [PATCH v2 8/8] RISC-V: configs: defconfig: Enable Renesas RZ/Five SoC
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Conor Dooley <Conor.Dooley@microchip.com>,
-        Anup Patel <anup@brainfault.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH 2/5] dt-bindings: mfd: atmel,at91-usart: convert to
+ json-schema
+Content-Language: en-US
+To:     Sergiu.Moga@microchip.com, lee@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, Nicolas.Ferre@microchip.com,
+        alexandre.belloni@bootlin.com, Claudiu.Beznea@microchip.com,
+        radu_nicolae.pirea@upb.ro, richard.genoud@gmail.com,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        gregkh@linuxfoundation.org, jirislaby@kernel.org,
+        admin@hifiphile.com, Kavyasree.Kotagiri@microchip.com
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-serial@vger.kernel.org
+References: <20220817075517.49575-1-sergiu.moga@microchip.com>
+ <20220817075517.49575-3-sergiu.moga@microchip.com>
+ <942accc5-70aa-3bb2-63dd-306a39ee5ea4@linaro.org>
+ <d1aad8ea-3852-f36b-366b-7aa67d2dd9d5@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <d1aad8ea-3852-f36b-366b-7aa67d2dd9d5@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 15, 2022 at 5:16 PM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> Enable Renesas RZ/Five SoC config in defconfig. It allows the default
-> upstream kernel to boot on RZ/Five SMARC EVK board.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On 19/08/2022 11:38, Sergiu.Moga@microchip.com wrote:
+> On 18.08.2022 11:39, Krzysztof Kozlowski wrote:
+>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+>>
+>> On 17/08/2022 10:55, Sergiu Moga wrote:
+>>> Convert at91 USART DT Binding for Atmel/Microchip SoCs to
+>>> json-schema format.
+>>>
+>>> Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
+>>> ---
+>>>   .../bindings/mfd/atmel,at91-usart.yaml        | 190 ++++++++++++++++++
+>>>   .../devicetree/bindings/mfd/atmel-usart.txt   |  98 ---------
+>>>   2 files changed, 190 insertions(+), 98 deletions(-)
+>>>   create mode 100644 Documentation/devicetree/bindings/mfd/atmel,at91-usart.yaml
+>>>   delete mode 100644 Documentation/devicetree/bindings/mfd/atmel-usart.txt
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/mfd/atmel,at91-usart.yaml b/Documentation/devicetree/bindings/mfd/atmel,at91-usart.yaml
+>>> new file mode 100644
+>>> index 000000000000..cf15d73fa1e8
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/mfd/atmel,at91-usart.yaml
+>> One more thing - I think this should be in serial directory, not mfd,
+>> even though it includes SPI. MFD is just a Linux naming/wrapper device.
+>>
+>> Best regards,
+>> Krzysztof
+> 
+> I would rather keep it in this directory, since its corresponding driver 
+> is also in the mfd directory.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-But this may need a respin if "[PATCH v2 4/8] RISC-V: Kconfig.socs:
-Add Renesas RZ/Five SoC kconfig option" is changed.
+Sorry, but that's poor argument. Driver subsystems match Linux
+convention, not necessarily hardware type/naming. Bindings directories
+match hardware. MFD bindings are only for MFD wrapper drivers and this
+is a serial interface. Not a MFD. You even do not add MFD devices in the
+driver but add *always one* device depending on serial feature you want.
+This is not even MFD device but regular platform device with children.
 
-Gr{oetje,eeting}s,
+You put it in SoC, though, because all other SoCs store it there...
 
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Best regards,
+Krzysztof
