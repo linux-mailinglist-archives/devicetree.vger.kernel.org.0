@@ -2,64 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AD9F5998A2
-	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 11:22:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C464599874
+	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 11:22:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347371AbiHSJLd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Aug 2022 05:11:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41980 "EHLO
+        id S1348070AbiHSJPV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Aug 2022 05:15:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347625AbiHSJLc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 05:11:32 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C41BF2407;
-        Fri, 19 Aug 2022 02:11:28 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B5844614FE;
-        Fri, 19 Aug 2022 09:11:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EDB99C433C1;
-        Fri, 19 Aug 2022 09:11:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1660900287;
-        bh=uAkHHobC34cPBPeShVHvaduEVI3uKIvQiDRzhq4jE6o=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=CPJjaye26tCuFJ76nUR84t2liP8dTNzchoWf7z+/KmHHcDuYfpWWqjTT1FHQH5Nc+
-         6Qcgq6c5UlePL4t5x8hNSA7EwI4OYW0HhozyYoxazAqQKw0/YM7+ZtM88XN/B7zi1Q
-         VuDhbObKFezed+oWqdEa2w9DsJGlUDGTR/yVPNckIM90xcoQVrraJkI19fLxije+5t
-         Kbe28jhfrcykv9aGylqtHBUTNH3tHsqOxKsyUavuaqXm6Tm1sNCQM6hEVyQaK+KZPY
-         9fvEESMUOYbUkY1Mx6I+B6lwm9Pkpohk7NdOccZMHGC+dU77BBOeDBF4UJ9grdSyGw
-         NRAvalLvLrX+A==
-Received: by pali.im (Postfix)
-        id 4ACC1761; Fri, 19 Aug 2022 11:11:24 +0200 (CEST)
-Date:   Fri, 19 Aug 2022 11:11:24 +0200
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S1348042AbiHSJPU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 05:15:20 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2EC17B795;
+        Fri, 19 Aug 2022 02:15:17 -0700 (PDT)
+X-UUID: cd9b1bb80d3f489b9a145ca221117d76-20220819
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=6DIb2Hf1dBs3/8w1JBp1PNiZ4wwxVvmiLUz15oZzjEs=;
+        b=bHL9ocdRXl7vOja/vVNZMfgOXA5R4zEjx5eSsS4HO0P5f3KRhdjxxAMMER8Mg4xGGshCkVXWPbJVQQIrPrdMBZwiy2qYK8Cp2MdK3eWHbcsbuExbcGl3XctEYEdZ/PALcH6cYMSBSPcjK0H1GhDgfdNZpI/HjwiZMWwhDt35Mgc=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.10,REQID:b2c1a79b-c2c9-4b51-8a67-24ec7924ec93,OB:0,L
+        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Release
+        _Ham,ACTION:release,TS:95
+X-CID-INFO: VERSION:1.1.10,REQID:b2c1a79b-c2c9-4b51-8a67-24ec7924ec93,OB:0,LOB
+        :0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Spam_GS98
+        1B3D,ACTION:quarantine,TS:95
+X-CID-META: VersionHash:84eae18,CLOUDID:0d77b667-a9d9-4672-a3c8-12721739a220,C
+        OID:8d6f2df944a1,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: cd9b1bb80d3f489b9a145ca221117d76-20220819
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1943591574; Fri, 19 Aug 2022 17:13:45 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Fri, 19 Aug 2022 17:13:45 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 19 Aug 2022 17:13:44 +0800
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>
+CC:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: leds: register-bit-led: Add active-low
- property
-Message-ID: <20220819091124.gr3cxxufysi2oo3o@pali>
-References: <20220818172528.23062-1-pali@kernel.org>
- <f635d5a7-6817-cd62-e395-63e346775716@linaro.org>
- <20220819065620.wvmy3kigvvbwo4bo@pali>
- <20220819080814.GA6653@duo.ucw.cz>
- <ae1c301a-60e4-5112-6681-8896a7479207@linaro.org>
- <20220819084222.ru4olyfntunlm3f3@pali>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Eddie Hung <eddie.hung@mediatek.com>
+Subject: [PATCH 1/7] dt-bindings: phy: mediatek,tphy: add support type of SGMII
+Date:   Fri, 19 Aug 2022 17:13:38 +0800
+Message-ID: <20220819091344.2274-1-chunfeng.yun@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220819084222.ru4olyfntunlm3f3@pali>
-User-Agent: NeoMutt/20180716
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,43 +69,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Friday 19 August 2022 10:42:22 Pali Rohár wrote:
-> On Friday 19 August 2022 11:38:29 Krzysztof Kozlowski wrote:
-> > On 19/08/2022 11:08, Pavel Machek wrote:
-> > > Hi!
-> > > 
-> > >>> Although the question is - where is the user of it?
-> > >>
-> > >> I was planning to send updated powerpc DTS files with these
-> > >> register-bit-led definitions after accepting dt bindings.
-> > > 
-> > > We need device tree people to ack them, first. But a note saying "this
-> > > is for Turris Omnia router" would be welcome.
-> > 
-> > In general the process is one of:
-> > 1. Send DT bindings with driver and DTS changes,
-> > 2. Send DT bindings with driver in one patchset, DTS in second but you
-> > mention the dependency.
-> > 
-> > You should not wait with DTS till bindings got accepted. Why? Because
-> > for example we do not want bindings for stuff which never is going to be
-> > upstreamed (with several exceptions, e.g. for other systems). Also
-> > because we want to be able to compare bindings with your DTS
-> > implementing them, so we are sure you described everything (especially
-> > that you said running one command to install dtchema and second command
-> > to make the check is not possible in your system).
-> > 
-> > Without DTS here how can anyone be sure your DTS actually follows the
-> > bindings?
-> > 
-> > Best regards,
-> > Krzysztof
-> 
-> Well, last time I was told that first needs to be accepted bindings
-> documentation and then device tree files. So I did it like this. And now
-> it is again feasible and different steps and ordering is needed...
-> Sorry I cannot known all requirements which are moreover changing every
-> day.
+Add support ethernet SGMII, forgot to update type supported.
 
-Here it is:
-https://lore.kernel.org/linuxppc-dev/20220819084433.26011-1-pali@kernel.org/
+Fixes: c01608b3b46b ("dt-bindings: phy: mediatek: tphy: support type switch by pericfg")
+Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+---
+ Documentation/devicetree/bindings/phy/mediatek,tphy.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
+index b3e409988c17..848edfb1f677 100644
+--- a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
++++ b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
+@@ -163,6 +163,7 @@ patternProperties:
+                 - PHY_TYPE_USB3
+                 - PHY_TYPE_PCIE
+                 - PHY_TYPE_SATA
++                - PHY_TYPE_SGMII
+ 
+       nvmem-cells:
+         items:
+-- 
+2.25.1
+
