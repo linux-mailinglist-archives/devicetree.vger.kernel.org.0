@@ -2,129 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48807599888
-	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 11:22:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CE92599892
+	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 11:22:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348030AbiHSJOS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Aug 2022 05:14:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47068 "EHLO
+        id S1347431AbiHSJRu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Aug 2022 05:17:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348006AbiHSJOI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 05:14:08 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37E233AB3C
-        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 02:14:06 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id bx38so3952637ljb.10
-        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 02:14:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=uuqghSHzNJr5H0vLiTIAXQb7NYP5yoc/bBfCNzDWdy4=;
-        b=l7cgJkJddLqTU0nf/69vRzamhM9l1ip2Xstft4D11LGWH1dpvWj14jzRf2oeNn62hH
-         XY/OI8AvAiKXRSqwT3Thr9/i8+CUxnG8RAPpumFO31V+Gl7Wkln/eBxJAASBTzaFpU44
-         VJimfC7jaaI1UQh13qEwJmgT2KEE8moI/PkeMF86v6/4F+v0DmaZZjuqmFaCCDcvNI5U
-         TOa7xVaHe/9r7WwDKWK3CtUsv3Moh7FVzSt6EEUQHlquYvpHAJffNusiHzqbPk0qgO1+
-         NRY6NQyVauCtloxOub3uIQ4zlaR6ojgUO54ibHERDO+tTuamJ+6jDh9/xjUCF1GOKoxN
-         Bbmw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=uuqghSHzNJr5H0vLiTIAXQb7NYP5yoc/bBfCNzDWdy4=;
-        b=EIWXWZb1rlES8nzehfife3rv0fieWxS0Lkr1DZfIxuNcq41ISXUAqr7Kwf+5Ho7Sm4
-         +TZQfDMhiSVEWyyP/qTwnubJlgMD75IXBf2c+XW1FRJEq7cDGeqEaq+LWxzC1GPxFuZ6
-         Vfi8XS20+3Bf7S5orVlxTHG2wDeeTXh5hDdsBVzXE5lUw/8+irCnq3H1Z9RjhFTC4yL/
-         FDq47cS4nUCmcusXv+NeNkEYGhHnVylHuk19y6bppH4dMN0Gsp52NWhYKAJ5g9dH/kVG
-         14ct+v8uowz7LN8YLkboRtNP93GHcYnzJKUH3NPOjmhqcB2duOnwDw7ISDa9ceEcqBaV
-         +zww==
-X-Gm-Message-State: ACgBeo1jh1jnIm6S8b0gr7ToPGtsPz7fm+vai4HzDvDsW3mN37zMVTSA
-        v76IGQ0hNEkfrMUsv+Exg4HWXg==
-X-Google-Smtp-Source: AA6agR4hGCrfJ0FHTxXTCRDG3phtiDLv2uxyWd/UpXV2iEzQ5bMT16E59/9y8ArI9q3JbB7Owyfq+g==
-X-Received: by 2002:a2e:7e0a:0:b0:25e:63f2:bbb0 with SMTP id z10-20020a2e7e0a000000b0025e63f2bbb0mr2092765ljc.77.1660900444242;
-        Fri, 19 Aug 2022 02:14:04 -0700 (PDT)
-Received: from ?IPV6:2001:14bb:ac:e5a8:ef73:73ed:75b3:8ed5? (d1xw6v77xrs23np8r6z-4.rev.dnainternet.fi. [2001:14bb:ac:e5a8:ef73:73ed:75b3:8ed5])
-        by smtp.gmail.com with ESMTPSA id m4-20020a056512114400b0048b969ac5cdsm568712lfg.5.2022.08.19.02.14.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 Aug 2022 02:14:03 -0700 (PDT)
-Message-ID: <f0f6e8af-4006-e0e8-544b-f2f892d79a1f@linaro.org>
-Date:   Fri, 19 Aug 2022 12:14:01 +0300
+        with ESMTP id S1348073AbiHSJRt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 05:17:49 -0400
+Received: from comms.puri.sm (comms.puri.sm [159.203.221.185])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8500F2D68;
+        Fri, 19 Aug 2022 02:17:48 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+        by comms.puri.sm (Postfix) with ESMTP id 02DA1E031B;
+        Fri, 19 Aug 2022 02:17:48 -0700 (PDT)
+Received: from comms.puri.sm ([127.0.0.1])
+        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id Vuvx1q-IectB; Fri, 19 Aug 2022 02:17:47 -0700 (PDT)
+Message-ID: <d1db07c8ca57c72b4f0820fcb6832dd7e4501055.camel@puri.sm>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=puri.sm; s=comms;
+        t=1660900667; bh=Jo9QL7raUD2BIWVuwvlATedJOyz9wfWXMd9342485kA=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+        b=gwtLUvDwZ3jddAsrm0b7mign2kCxfFLgAot46f6PaCr9wDf8QeCaXDr6SHHhszwdk
+         QjJeLT9WsyTB6yPSwVNDoG8zfki/eOIgERjfIP2PDnW69QxRXLkjIHdL6DIFoWnaVm
+         qy0berAxWmjfeXnvZ/OkkWIK4kAPMMP9ZybuVeh5Mll/QonaaXr8JcZtMABdiEAHWx
+         a6gaGGRplptBNF8jKk9LECc/RF8D2Oluk546RId5dcx8aPYULvUrpw8Cc0/1asAYD/
+         upmL174Wi/mu6wXdzA4TyKqzd0Lop1CtCEHh2cH7jCTsfx7haqZESJezll+KoUKttF
+         YEbS6UkXsfzbw==
+Subject: Re: [PATCH v6 1/2] power: domain: handle genpd correctly when
+ needing interrupts
+From:   Martin Kepplinger <martin.kepplinger@puri.sm>
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     rafael@kernel.org, khilman@kernel.org, robh@kernel.org,
+        krzysztof.kozlowski@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, festevam@gmail.com, pavel@ucw.cz,
+        kernel@puri.sm, linux-imx@nxp.com, broonie@kernel.org,
+        l.stach@pengutronix.de, aford173@gmail.com,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Date:   Fri, 19 Aug 2022 11:17:40 +0200
+In-Reply-To: <CAPDyKFrLLw=y9+t3f_bOH2mw2NVDGJxKE5=+XHY7C6SUzLzUDg@mail.gmail.com>
+References: <20220726083257.1730630-1-martin.kepplinger@puri.sm>
+         <20220726083257.1730630-2-martin.kepplinger@puri.sm>
+         <CAPDyKFrLLw=y9+t3f_bOH2mw2NVDGJxKE5=+XHY7C6SUzLzUDg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.3-1 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH net-next 1/2] dt-bindings: net: tja11xx: add nxp,refclk_in
- property
-Content-Language: en-US
-To:     wei.fang@nxp.com, davem@davemloft.net, edumazet@google.com,
-        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, andrew@lunn.ch,
-        f.fainelli@gmail.com, hkallweit1@gmail.com, linux@armlinux.org.uk
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220819074729.1496088-1-wei.fang@nxp.com>
- <20220819074729.1496088-2-wei.fang@nxp.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220819074729.1496088-2-wei.fang@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/08/2022 10:47, wei.fang@nxp.com wrote:
-> From: Wei Fang <wei.fang@nxp.com>
+Am Dienstag, dem 26.07.2022 um 17:07 +0200 schrieb Ulf Hansson:
+> On Tue, 26 Jul 2022 at 10:33, Martin Kepplinger
+> <martin.kepplinger@puri.sm> wrote:
+> > 
+> > If for example the power-domains' power-supply node (regulator)
+> > needs
+> > interrupts to work, the current setup with noirq callbacks cannot
+> > work; for example a pmic regulator on i2c, when suspending, usually
+> > already
+> > times out during suspend_noirq:
+> > 
+> > [   41.024193] buck4: failed to disable: -ETIMEDOUT
+> > 
+> > So fix system suspend and resume for these power-domains by using
+> > the
+> > "outer" suspend/resume callbacks instead. Tested on the imx8mq-
+> > librem5 board,
+> > but by looking at the dts, this will fix imx8mq-evk and possibly
+> > many other
+> > boards too.
+> > 
+> > This is designed so that genpd providers just say "this genpd needs
+> > interrupts" (by setting the flag) - without implying an
+> > implementation.
+> > 
+> > Initially system suspend problems had been discussed at
+> > https://lore.kernel.org/linux-arm-kernel/20211002005954.1367653-8-l.stach@pengutronix.de/
+> > which led to discussing the pmic that contains the regulators which
+> > serve as power-domain power-supplies:
+> > https://lore.kernel.org/linux-pm/573166b75e524517782471c2b7f96e03fd93d175.camel@puri.sm/T/
+> > 
+> > Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+> > ---
+> >  drivers/base/power/domain.c | 13 +++++++++++--
+> >  include/linux/pm_domain.h   |  5 +++++
+> >  2 files changed, 16 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/drivers/base/power/domain.c
+> > b/drivers/base/power/domain.c
+> > index 5a2e0232862e..58376752a4de 100644
+> > --- a/drivers/base/power/domain.c
+> > +++ b/drivers/base/power/domain.c
+> > @@ -130,6 +130,7 @@ static const struct genpd_lock_ops
+> > genpd_spin_ops = {
+> >  #define genpd_is_active_wakeup(genpd)  (genpd->flags &
+> > GENPD_FLAG_ACTIVE_WAKEUP)
+> >  #define genpd_is_cpu_domain(genpd)     (genpd->flags &
+> > GENPD_FLAG_CPU_DOMAIN)
+> >  #define genpd_is_rpm_always_on(genpd)  (genpd->flags &
+> > GENPD_FLAG_RPM_ALWAYS_ON)
+> > +#define genpd_irq_on(genpd)            (genpd->flags &
+> > GENPD_FLAG_IRQ_ON)
+> > 
+> >  static inline bool irq_safe_dev_in_sleep_domain(struct device
+> > *dev,
+> >                 const struct generic_pm_domain *genpd)
+> > @@ -2065,8 +2066,15 @@ int pm_genpd_init(struct generic_pm_domain
+> > *genpd,
+> >         genpd->domain.ops.runtime_suspend = genpd_runtime_suspend;
+> >         genpd->domain.ops.runtime_resume = genpd_runtime_resume;
+> >         genpd->domain.ops.prepare = genpd_prepare;
+> > -       genpd->domain.ops.suspend_noirq = genpd_suspend_noirq;
+> > -       genpd->domain.ops.resume_noirq = genpd_resume_noirq;
+> > +
+> > +       if (genpd_irq_on(genpd)) {
+> > +               genpd->domain.ops.suspend = genpd_suspend_noirq;
+> > +               genpd->domain.ops.resume = genpd_resume_noirq;
+> > +       } else {
+> > +               genpd->domain.ops.suspend_noirq =
+> > genpd_suspend_noirq;
+> > +               genpd->domain.ops.resume_noirq =
+> > genpd_resume_noirq;
 > 
-> TJA110x REF_CLK can be configured as interface reference clock
-> intput or output when the RMII mode enabled. This patch add the
-> property to make the REF_CLK can be configurable.
+> As we discussed previously, I am thinking that it may be better to
+> move to using genpd->domain.ops.suspend_late and
+> genpd->domain.ops.resume_early instead.
+
+Wouldn't that better be a separate patch (on top)? Do you really want
+me to change the current behaviour (default case) to from noirq to
+late? Then I'll resend this series with such a patch added.
+
+thanks,
+
+                              martin
+
 > 
-> Signed-off-by: Wei Fang <wei.fang@nxp.com>
-> ---
->  .../devicetree/bindings/net/nxp,tja11xx.yaml    | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
+> Beside this, I think the $subject patch looks good to me.
 > 
-> diff --git a/Documentation/devicetree/bindings/net/nxp,tja11xx.yaml b/Documentation/devicetree/bindings/net/nxp,tja11xx.yaml
-> index d51da24f3505..c51ee52033e8 100644
-> --- a/Documentation/devicetree/bindings/net/nxp,tja11xx.yaml
-> +++ b/Documentation/devicetree/bindings/net/nxp,tja11xx.yaml
-> @@ -31,6 +31,22 @@ patternProperties:
->          description:
->            The ID number for the child PHY. Should be +1 of parent PHY.
->  
-> +      nxp,rmii_refclk_in:
-
-No underscores in properties.
-
-> +        type: boolean
-> +        description: |
-> +          The REF_CLK is provided for both transmitted and receivced data
-
-typo: received
-
-> +          in RMII mode. This clock signal is provided by the PHY and is
-> +          typically derived from an external 25MHz crystal. Alternatively,
-> +          a 50MHz clock signal generated by an external oscillator can be
-> +          connected to pin REF_CLK. A third option is to connect a 25MHz
-> +          clock to pin CLK_IN_OUT. So, the REF_CLK should be configured
-> +          as input or output according to the actual circuit connection.
-> +          If present, indicates that the REF_CLK will be configured as
-> +          interface reference clock input when RMII mode enabled.
-> +          If not present, the REF_CLK will be configured as interface
-> +          reference clock output when RMII mode enabled.
-> +          Only supported on TJA1100 and TJA1101.
-
-Then disallow it on other variants.
-
-Shouldn't this be just "clocks" property?
+> [...]
+> 
+> Kind regards
+> Uffe
 
 
-Best regards,
-Krzysztof
