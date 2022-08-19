@@ -2,87 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 35381599997
-	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 12:21:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A4F55999C4
+	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 12:33:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348104AbiHSKPn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Aug 2022 06:15:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58252 "EHLO
+        id S1348172AbiHSK3u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Aug 2022 06:29:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45458 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348051AbiHSKPm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 06:15:42 -0400
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B56F5DAEED;
-        Fri, 19 Aug 2022 03:15:39 -0700 (PDT)
-Received: by mail-qt1-f182.google.com with SMTP id h22so2978553qtu.2;
-        Fri, 19 Aug 2022 03:15:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=pYbJcXqu+HGBM+WMZ9dxCt6MszIknZUP0gMiIFKJaQs=;
-        b=aSBEG/mAAKNnae8aCNpPgm8boZzf2GMPQkNtPP0warXedoJ7Dsi70z5LCrszpNHgjG
-         KYilUonZV3qcbSxCmT0/7sVjOBZhvP5KB5ETkW3eRFAYHjN00OQ2iDIVOI2akddgJw7r
-         5WEzJlp1AYXloBSrFGIUJIn91NrhoxINo+0hUL7aCYVfuskJ5WF3IOPc6cZFaOYwvMN5
-         YDrD20ELl732qsuNFN8cz1hsUWFJ3w0u1erBp5WBVdkN4ZtWdzsVoS+JporZEweTanJj
-         6DoIX8J6yOp/ZYewV/5XMO5SkeiZs112F8Dkn3b3TzvYXEEtwyaN72NFxHlFPFatY8mD
-         GAkw==
-X-Gm-Message-State: ACgBeo3LcUmP1+ZceMIrcxBg59Sfnhi8ast7VJVGMe7TfxzU/XuHNsGR
-        JRsO1CY0FsTtGswa5z6crwpwdA9uep4N4A==
-X-Google-Smtp-Source: AA6agR4RpFN/c5ov9Zr6UFOs6huBJv2lfRbGUSj73nGpBQxYbldz3bvqhOglsgzQXnmZv+IKNvUbBg==
-X-Received: by 2002:a05:622a:546:b0:343:5a1a:9a9c with SMTP id m6-20020a05622a054600b003435a1a9a9cmr5977342qtx.417.1660904138331;
-        Fri, 19 Aug 2022 03:15:38 -0700 (PDT)
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
-        by smtp.gmail.com with ESMTPSA id i10-20020a05620a404a00b006b58d8f6181sm3399881qko.72.2022.08.19.03.15.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 Aug 2022 03:15:37 -0700 (PDT)
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-333a4a5d495so108953467b3.10;
-        Fri, 19 Aug 2022 03:15:37 -0700 (PDT)
-X-Received: by 2002:a0d:eb45:0:b0:333:f813:6c79 with SMTP id
- u66-20020a0deb45000000b00333f8136c79mr6767938ywe.384.1660904137258; Fri, 19
- Aug 2022 03:15:37 -0700 (PDT)
+        with ESMTP id S1347966AbiHSK3t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 06:29:49 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A561AF4A7;
+        Fri, 19 Aug 2022 03:29:45 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 27JATJGS108014;
+        Fri, 19 Aug 2022 05:29:19 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1660904959;
+        bh=AVrDVBFLBkE3Zwz6MfjLTiwDw+hQlbCuU5vzEr5zREs=;
+        h=Date:CC:Subject:To:References:From:In-Reply-To;
+        b=ArYbwJ/CIrN6RTw1AlFv2iBfRllbaAPjqusYtnDuWC7diQbxn8mzUM6/9BxnN6fpt
+         7cmNNDIlakmfON8R2ZTKUUID7v2vrjlv+BiPqnSMvruo+nSNCTx4FKWGCjJTDcoHb8
+         fsjT40ucR38Afb1eTAPq1ZiipgUNi3YI4JrdpoLc=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 27JATJ57126247
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 19 Aug 2022 05:29:19 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Fri, 19
+ Aug 2022 05:29:19 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Fri, 19 Aug 2022 05:29:19 -0500
+Received: from [10.24.69.241] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 27JATDs3029523;
+        Fri, 19 Aug 2022 05:29:14 -0500
+Message-ID: <da82e71f-e32c-7adb-250e-0c80cc6e30bd@ti.com>
+Date:   Fri, 19 Aug 2022 15:59:13 +0530
 MIME-Version: 1.0
-References: <20220804190846.128370-1-phil.edworthy@renesas.com>
-In-Reply-To: <20220804190846.128370-1-phil.edworthy@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 19 Aug 2022 12:15:26 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVo54QhnGo-DTGM4t8gNK9tTFgY-6iuR7fS68DQvPoU1g@mail.gmail.com>
-Message-ID: <CAMuHMdVo54QhnGo-DTGM4t8gNK9tTFgY-6iuR7fS68DQvPoU1g@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: r9a09g011: Add pinctrl node
-To:     Phil Edworthy <phil.edworthy@renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+CC:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <robh+dt@kernel.org>, <linux@armlinux.org.uk>,
+        <vladimir.oltean@nxp.com>, <grygorii.strashko@ti.com>,
+        <vigneshr@ti.com>, <nsekhar@ti.com>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <kishon@ti.com>, <s-vadapalli@ti.com>
+Subject: Re: [PATCH v4 1/3] dt-bindings: net: ti: k3-am654-cpsw-nuss: Update
+ bindings for J7200 CPSW5G
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+References: <20220816060139.111934-1-s-vadapalli@ti.com>
+ <20220816060139.111934-2-s-vadapalli@ti.com>
+ <79e58157-f8f2-6ca8-1aa6-b5cf6c83d9e6@linaro.org>
+ <31c3a5b0-17cc-ad7b-6561-5834cac62d3e@ti.com>
+ <9c331cdc-e34a-1146-fb83-84c2107b2e2a@linaro.org>
+ <176ab999-e274-e22a-97d8-31f655b16800@ti.com>
+From:   Siddharth Vadapalli <s-vadapalli@ti.com>
+In-Reply-To: <176ab999-e274-e22a-97d8-31f655b16800@ti.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 4, 2022 at 9:09 PM Phil Edworthy <phil.edworthy@renesas.com> wrote:
-> Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Hello Krzysztof,
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.1.
+On 17/08/22 13:11, Siddharth Vadapalli wrote:
+> Hello Krzysztof,
+> 
+> On 17/08/22 11:20, Krzysztof Kozlowski wrote:
+>> On 17/08/2022 08:14, Siddharth Vadapalli wrote:
+>>
+>>>>> -      port@[1-2]:
+>>>>> +      "^port@[1-4]$":
+>>>>>          type: object
+>>>>>          description: CPSWxG NUSS external ports
+>>>>>  
+>>>>> @@ -119,7 +120,7 @@ properties:
+>>>>>          properties:
+>>>>>            reg:
+>>>>>              minimum: 1
+>>>>> -            maximum: 2
+>>>>> +            maximum: 4
+>>>>>              description: CPSW port number
+>>>>>  
+>>>>>            phys:
+>>>>> @@ -151,6 +152,18 @@ properties:
+>>>>>  
+>>>>>      additionalProperties: false
+>>>>>  
+>>>>> +if:
+>>>>
+>>>> This goes under allOf just before unevaluated/additionalProperties:false
+>>>
+>>> allOf was added by me in v3 series patch and it is not present in the
+>>> file. I removed it in v4 after Rob Herring's suggestion. Please let me
+>>> know if simply moving the if-then statements to the line above
+>>> additionalProperties:false would be fine.
+>>
+>> I think Rob's comment was focusing not on using or not-using allOf, but
+>> on format of your entire if-then-else. Your v3 was huge and included
+>> allOf in wrong place).
+>>
+>> Now you add if-then in proper place, but it is still advisable to put it
+>> with allOf, so if ever you grow the if-then by new entry, you do not
+>> have to change the indentation.
+>>
+>> Anyway the location is not correct. Regardless if this is if-then or
+>> allOf-if-then, put it just like example schema is suggesting.
+> 
+> I will move the if-then statements to the lines above the
+> "additionalProperties: false" line. Also, I will add an allOf for this
 
-Gr{oetje,eeting}s,
+I had a look at the example at [1] and it uses allOf after the
+"additionalProperties: false" line. Would it be fine then for me to add
+allOf and the single if-then statement below the "additionalProperties:
+false" line? Please let me know.
 
-                        Geert
+[1] -> https://github.com/devicetree-org/dt-schema/blob/mai/test/schemas/conditionals-allof-example.yaml
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Regards,
+Siddharth.
