@@ -2,98 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3918C599E4D
-	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 17:31:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EC16599E36
+	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 17:31:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349731AbiHSP1V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Aug 2022 11:27:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44864 "EHLO
+        id S1349437AbiHSP3T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Aug 2022 11:29:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349607AbiHSP1T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 11:27:19 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0DE1C6CE6;
-        Fri, 19 Aug 2022 08:27:18 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id z25so6595439lfr.2;
-        Fri, 19 Aug 2022 08:27:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=p5gHKc64IQrYIvaRf5pn4OxOQejsfeLYroqX8+JBN2s=;
-        b=g2GksgmUHPPD6aYRY8RFOqoMKTAukjx1YbLYMHSP2mj0GuYfsq9SaCpOKzhOj7LuKp
-         16PAqm6uRvPf4dLt2ym2eFVmFEwFfbvAU7X4Mis/K1laFgA3rC6OoV86l3hcTpWjF9td
-         yeqX72Gh2XNy4Dn77lTNARquOZod3/xnkZ411KrPp1TPGbFcvV/CAAI+dOzns8laXUzV
-         EVe5hwEWsZY9duiRIzh19SW0ClH/oXyiM183cwJrNaxNcxuDzE4B33Nnjn3TFMF+gEJR
-         bYIodOnB8uoqk+6u4em8UR9TfRpjYmCtzXLftf+Aoww2nOjwwTCW3u+Ah6jPsedn7olo
-         Ah7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=p5gHKc64IQrYIvaRf5pn4OxOQejsfeLYroqX8+JBN2s=;
-        b=W3VHp5O/yQPS2aSoNgvlbomifkyMK/qQM39lm23ibR133kATeyBfC60CVG172f+s8l
-         9rdB8bolGd9cdnlZ5SN19jczzntalZQWUnVyeIWLR/JuH9G6cggBHN5HNYYJu6KzYyXV
-         mdLY4x5g9N8WIW47Kg1sOzOh+C6oAzxPISoQLMskbyu5ciffB2krOIF0OdcWx0GlWQOz
-         hFxd6XN6TcmuVwLiuf9Q3E1GPs0MZEm48tQZ/hKw4xzipU1EXoWvJbvzlNtutAn9/4Tg
-         ip6BK/1gSdOMuqWEkorV/0HX/FmMML2l4xTZTxcBq4BMs66nZZiI08xTnEwToghNY7lY
-         OaAw==
-X-Gm-Message-State: ACgBeo3GsXD3RCY94QOHZhojFmSF1xT9KBCXLJ6BBGb1YVWOPlJJ8jEr
-        FR/ljQGaj+YWXH61hs84xOc=
-X-Google-Smtp-Source: AA6agR7RyPHVh7iBKwYNtti1bimItwcTcp0zNGnx1FZ7u9a0hsofIEGuOWgh7eI4hGrxgcnE8UyaSw==
-X-Received: by 2002:a05:6512:2211:b0:48a:f0c1:5d01 with SMTP id h17-20020a056512221100b0048af0c15d01mr2421234lfu.249.1660922836992;
-        Fri, 19 Aug 2022 08:27:16 -0700 (PDT)
-Received: from [192.168.2.145] (109-252-119-13.nat.spd-mgts.ru. [109.252.119.13])
-        by smtp.googlemail.com with ESMTPSA id p4-20020ac24ec4000000b0048b3926351bsm607080lfr.56.2022.08.19.08.27.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 Aug 2022 08:27:16 -0700 (PDT)
-Message-ID: <89a746fd-a98e-3147-7811-33c5051c2b6d@gmail.com>
-Date:   Fri, 19 Aug 2022 18:27:10 +0300
+        with ESMTP id S1348832AbiHSP3S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 11:29:18 -0400
+Received: from 7of9.schinagl.nl (7of9.connected.by.freedominter.net [185.238.129.13])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 943A5B490;
+        Fri, 19 Aug 2022 08:29:15 -0700 (PDT)
+Received: from localhost (7of9.are-b.org [127.0.0.1])
+        by 7of9.schinagl.nl (Postfix) with ESMTP id DECB518669BC;
+        Fri, 19 Aug 2022 17:29:12 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=schinagl.nl; s=7of9;
+        t=1660922952; bh=/FXiuNvkl4pKLGDWUjodkCVhdgwIGhKIvcSAns8TLLk=;
+        h=From:To:Cc:Subject:Date;
+        b=s2TGgG3QmX4tcd8t1qHoVfSkK1UdrtHA6d1iLFCF28f5kLyeTbL5XF5zWkXQqulpc
+         cvdnbuRZg5BQQp4HtPE3EO7cyQdhWS9sctRkAO8CxiWjl5IvHsrdQulyqX2a8VBE+u
+         6hfigOAJ0ajE4yvyzcDi84I73c0xJrGyQ+zOiANY=
+X-Virus-Scanned: amavisd-new at schinagl.nl
+Received: from 7of9.schinagl.nl ([127.0.0.1])
+        by localhost (7of9.schinagl.nl [127.0.0.1]) (amavisd-new, port 10024)
+        with LMTP id HOiRi6kbe3nz; Fri, 19 Aug 2022 17:29:10 +0200 (CEST)
+Received: from valexia.are-b.org (unknown [10.2.12.24])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by 7of9.schinagl.nl (Postfix) with ESMTPSA id 33B6118669B7;
+        Fri, 19 Aug 2022 17:29:10 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=schinagl.nl; s=7of9;
+        t=1660922950; bh=/FXiuNvkl4pKLGDWUjodkCVhdgwIGhKIvcSAns8TLLk=;
+        h=From:To:Cc:Subject:Date;
+        b=ESa6yd7mUZS7Us3Xf/bSq4vZHwODRdUjPkanxxyKAbeG7iuoldk1ZdNEp17PrGY5i
+         V+NTOK97q2i5t2y74a8s53fXqFxt3/3JLZ1gBW2eNZm+/YxYBXBm/vmbvMzVpzJzQ0
+         wiNr4F68ypdZh5LMUVLTrPsKU4PEIGpf8n0fUXnc=
+From:   Olliver Schinagl <oliver@schinagl.nl>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Baolin Wang <baolin.wang@linaro.org>,
+        Daniel Mack <daniel@zonque.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Oleh Kravchenko <oleg@kaa.org.ua>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Simon Shields <simon@lineageos.org>,
+        Olliver Schinagl <oliver+list@schinagl.nl>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Olliver Schinagl <oliver@schinagl.nl>
+Subject: [PATCHv2 resend] dt-bindings: leds: Expand LED_COLOR_ID definitions
+Date:   Fri, 19 Aug 2022 17:29:04 +0200
+Message-Id: <20220819152904.433514-1-oliver@schinagl.nl>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH RESEND 1/2] i2c: tegra: Add GPCDMA support
-Content-Language: en-US
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Akhil R <akhilrajeev@nvidia.com>, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, christian.koenig@amd.com,
-        jonathanh@nvidia.com, ldewangan@nvidia.com,
-        linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org, sumit.semwal@linaro.org,
-        thierry.reding@gmail.com, wsa@kernel.org
-References: <20220819122313.40445-1-akhilrajeev@nvidia.com>
- <20220819122313.40445-2-akhilrajeev@nvidia.com>
- <20281ca7-e597-7030-4861-5f9a3594726d@gmail.com>
-In-Reply-To: <20281ca7-e597-7030-4861-5f9a3594726d@gmail.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-19.08.2022 18:15, Dmitry Osipenko пишет:
-> 19.08.2022 15:23, Akhil R пишет:
->>  	if (of_device_is_compatible(np, "nvidia,tegra210-i2c-vi"))
->>  		i2c_dev->is_vi = true;
->> +	else
->> +		i2c_dev->dma_support = !!(of_find_property(np, "dmas", NULL));
-> 
-> 1. You leak the np returned by of_find_property().
-> 
-> 2. There is device_property_read_bool() for this kind of property-exists
-> checks.
-> 
-> 3. If "dmas" is missing in DT, then dma_request_chan() should return
-> NULL and everything will work fine. I suppose you haven't tried to test
-> this code.
+In commit 853a78a7d6c7 (dt-bindings: leds: Add LED_COLOR_ID definitions,
+Sun Jun 9 20:19:04 2019 +0200) the most basic color definitions where
+added. However, there's a little more very common LED colors.
 
-Although, no. It should return ERR_PTR(-ENODEV) and then you should
-check the return code.
+While the documentation states 'add what is missing', engineers tend to
+be lazy and will just use what currently exists. So this patch will take
+(a) list from online retailers [0], [1], [2] and use the common LED colors
+from there, this being reasonable as this is what is currently available to
+purchase.
+
+Note, that LIME seems to be the modern take to 'Yellow-green' or
+'Yellowish-green' from some older datasheets.
+
+[0]: https://www.digikey.com/en/products/filter/led-lighting-color/125
+[1]: https://eu.mouser.com/c/optoelectronics/led-lighting/led-emitters/standard-leds-smd
+[2]: https://nl.farnell.com/en-NL/c/optoelectronics-displays/led-products/standard-single-colour-leds-under-75ma
+
+Signed-off-by: Olliver Schinagl <oliver@schinagl.nl>
+---
+
+Changes since v1: Unbreak existing definitions.
+
+
+ include/dt-bindings/leds/common.h | 28 ++++++++++++++++------------
+ 1 file changed, 16 insertions(+), 12 deletions(-)
+
+diff --git a/include/dt-bindings/leds/common.h b/include/dt-bindings/leds/common.h
+index 3be89a7c20a9..04bf94523ea3 100644
+--- a/include/dt-bindings/leds/common.h
++++ b/include/dt-bindings/leds/common.h
+@@ -22,18 +22,22 @@
+ #define LEDS_BOOST_FIXED	2
+ 
+ /* Standard LED colors */
+-#define LED_COLOR_ID_WHITE	0
+-#define LED_COLOR_ID_RED	1
+-#define LED_COLOR_ID_GREEN	2
+-#define LED_COLOR_ID_BLUE	3
+-#define LED_COLOR_ID_AMBER	4
+-#define LED_COLOR_ID_VIOLET	5
+-#define LED_COLOR_ID_YELLOW	6
+-#define LED_COLOR_ID_IR		7
+-#define LED_COLOR_ID_MULTI	8	/* For multicolor LEDs */
+-#define LED_COLOR_ID_RGB	9	/* For multicolor LEDs that can do arbitrary color,
+-					   so this would include RGBW and similar */
+-#define LED_COLOR_ID_MAX	10
++#define LED_COLOR_ID_WHITE      0
++#define LED_COLOR_ID_RED        1
++#define LED_COLOR_ID_GREEN      2
++#define LED_COLOR_ID_BLUE       3
++#define LED_COLOR_ID_AMBER      4
++#define LED_COLOR_ID_VIOLET     5
++#define LED_COLOR_ID_YELLOW     6
++#define LED_COLOR_ID_IR         7
++#define LED_COLOR_ID_MULTI      8 /* For multicolor LEDs */
++#define LED_COLOR_ID_RGB        9 /* For multicolor LEDs that can do arbitrary color, including RGBW etc. */
++#define LED_COLOR_ID_PUPRPLE   10
++#define LED_COLOR_ID_ORANGE    11
++#define LED_COLOR_ID_PINK      12
++#define LED_COLOR_ID_CYAN      13
++#define LED_COLOR_ID_LIME      14
++#define LED_COLOR_ID_MAX       15
+ 
+ /* Standard LED functions */
+ /* Keyboard LEDs, usually it would be input4::capslock etc. */
+-- 
+2.37.2
+
