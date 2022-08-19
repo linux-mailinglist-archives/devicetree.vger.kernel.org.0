@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2598E599766
-	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 10:36:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDC0459976C
+	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 10:36:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347649AbiHSIcz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Aug 2022 04:32:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53864 "EHLO
+        id S1347725AbiHSIc5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Aug 2022 04:32:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347664AbiHSIco (ORCPT
+        with ESMTP id S1347354AbiHSIco (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 04:32:44 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D1DDE9AAC
-        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 01:32:33 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id l19so729374ljg.8
-        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 01:32:33 -0700 (PDT)
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99A94E9AB6
+        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 01:32:34 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id z20so3892598ljq.3
+        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 01:32:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=HUb81+JEG6Xfm8piVDwL1AMOuxmRGVBYXMDhN0hd0ms=;
-        b=rYqOxrMR0a43Wuh/jdIepeZapi1JH23fopQiltPNP2wyBw5Imbcp6XyhQ0g8ZKzu0e
-         Fc/5pkNrZMinq05pftWxFxF23KP/ZQZkqtNSEYAQN0v6m3q1bO8L0TxoaJt//06BWOdb
-         PAH52qj9Po5SQ+7G//uBQ2h01WvPv3vRIxvAXwPSBUgPUYLzNb2/YSmogTyKRQKDdHVa
-         KUviwKlqHP7dGGM7Lu/FZPsiWb5RFd+ZX90OeJaiUQ0wYWj/b4j309WYi6atoI2/AWFg
-         o4gWzHU4Hh24juderxgFKmusH4ZxQlqRj+yM2k/tflM21i23/xIsQZmBkLpJgBa80yXL
-         753Q==
+        bh=aF1kTOExhxJ5LhZnkigAMIE3Og/cjDqIZ0JV+mWnMgg=;
+        b=b8DvidfLi+K7kGfFf1QKaFrYO7KrGRMn+DztPWASn5wxp41FkPsFAXyRdYxKfIX11u
+         GWPaDRM6Ixd6HlnXMvoRoWVtci6X+Q3IYfN2DWV/JC9oS6rX2iSXMDTQryjBUEy7sdTT
+         7ce5dhSca/eP1c1D7KUM1Nouy/Jy0O6Tpde6tKMmDMj3PBeWG3ZmeNMStQKKLPiEXj5E
+         4xisLrl0TF+6DNAbedEleTix4fT9XfidVwuUpmmZV5z/VhQ5Qs34ERijU1/yPLEq7olh
+         6/hK/K+DPjdamhDvVsURSPMxZ49IMPt73IkXrufDz17b1jidI8awrDP8RY0ttx19Mz0O
+         lI2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=HUb81+JEG6Xfm8piVDwL1AMOuxmRGVBYXMDhN0hd0ms=;
-        b=z9PeUdChUxLHA7YVYexO5/1CTefB66hY7I9g0+XM+qsW3l131xPfuGIg56Wg5yCbu3
-         73PIliNLItsy5Hw0RlwB6KNsyhnrPBMHwbmo2bGNCGyDQ7V1nsNxHze6/nT4qH+hxn0H
-         xAXPIzCDzRbxeu7V3hckIaNPDgL8Q+tNs0IPxCu+pr2XuQvO2cuWLMqtszsEkkb5Y0fu
-         skmtpFEMjY5NqrZZPafcL3eJUup65oxk5PZeuOAo5ilCjnIIJRTjEf3hgHpTQHrIVkOd
-         JnA+iDhk8ZG9AXq3rmkfBfL2j54GCg6Xjex9JCFyQUts7qdbHRdcB+rGJgTAjRO44S8l
-         zudA==
-X-Gm-Message-State: ACgBeo0nViQ3rRhuC0rHSvvrMAzXBlDAp8kCTOiNbtVxJOjFc6oDTl2I
-        HqSF4FfO2daj6HXRg46gxrzlkA==
-X-Google-Smtp-Source: AA6agR7zfGoVmGIWmhB1UGGA3KQnBfEKQNYXqcnoAuy4DHb0Gpt5hHDIJV17efLJKrHd7A1oUfbuuA==
-X-Received: by 2002:a2e:8515:0:b0:25e:5582:388f with SMTP id j21-20020a2e8515000000b0025e5582388fmr1730529lji.261.1660897952818;
-        Fri, 19 Aug 2022 01:32:32 -0700 (PDT)
+        bh=aF1kTOExhxJ5LhZnkigAMIE3Og/cjDqIZ0JV+mWnMgg=;
+        b=paMa7SBJXBy1Sfd23wKBwHaq0/b+EAlLQV0w7xln174bEaNq8Ctgg7sFPBdr0QbaqK
+         63Mfsw4AyetRhR6JrbNv+f4cinbi7lFikkltforit0Zbb/r15ga1Dhlfew9EnJeFW2Zf
+         x+STl/yArzGTC0do+7F5K6EEj4JKSArmSFdUNmAaOCLMRTxeBuHRPHhQKPk3CBTDvdxs
+         3Dji+CV7dmphW9+LC0YExKjXCh41mQe1C5HnhQrldweJOaVzbnTYxRBwWxcpZPzd7Knc
+         OtNjKuszD67ZkRq6LsaKDYojFzYM73tF21nj6y4kelbuT1423A88jpeL97MEZhqGVKS0
+         yaXg==
+X-Gm-Message-State: ACgBeo2nQnWo2ui7Mh2+nGRPhnArGjwPFdBcsltCJOs2CtuafGJ7PsYD
+        I/Egg8zVwfc2AwLjtUL4Y25N0LqyU4rt9Wom
+X-Google-Smtp-Source: AA6agR6XRfFnswT27eivG55n2X6GuJgt/JHyayGyQW+0bgLjG2m6ACmKTArmnrpY8QmOaX0Z/3vO8A==
+X-Received: by 2002:a05:651c:514:b0:25e:7113:396b with SMTP id o20-20020a05651c051400b0025e7113396bmr1737625ljp.65.1660897954103;
+        Fri, 19 Aug 2022 01:32:34 -0700 (PDT)
 Received: from krzk-bin.. (d1xw6v77xrs23np8r6z-4.rev.dnainternet.fi. [2001:14bb:ac:e5a8:ef73:73ed:75b3:8ed5])
-        by smtp.gmail.com with ESMTPSA id j8-20020a19f508000000b00492a54f0be1sm545355lfb.284.2022.08.19.01.32.31
+        by smtp.gmail.com with ESMTPSA id j8-20020a19f508000000b00492a54f0be1sm545355lfb.284.2022.08.19.01.32.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Aug 2022 01:32:32 -0700 (PDT)
+        Fri, 19 Aug 2022 01:32:33 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -56,9 +56,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [RFT PATCH v3 14/16] arm64: dts: qcom: sdm630: switch TCSR mutex to MMIO
-Date:   Fri, 19 Aug 2022 11:32:07 +0300
-Message-Id: <20220819083209.50844-15-krzysztof.kozlowski@linaro.org>
+Subject: [RFT PATCH v3 15/16] arm64: dts: qcom: sm8150: split TCSR halt regs out of mutex
+Date:   Fri, 19 Aug 2022 11:32:08 +0300
+Message-Id: <20220819083209.50844-16-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220819083209.50844-1-krzysztof.kozlowski@linaro.org>
 References: <20220819083209.50844-1-krzysztof.kozlowski@linaro.org>
@@ -66,7 +66,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,50 +74,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The TCSR mutex bindings allow device to be described only with address
-space (so it uses MMIO, not syscon regmap).  This seems reasonable as
-TCSR mutex is actually a dedicated IO address space and it also fixes DT
-schema checks:
-
-  qcom/sdm636-sony-xperia-ganges-mermaid.dtb: hwlock: 'reg' is a required property
-  qcom/sdm636-sony-xperia-ganges-mermaid.dtb: hwlock: 'syscon' does not match any of the regexes: 'pinctrl-[0-9]+'
+The TCSR halt regs are next to TCSR mutex (in one address block called
+TCSR_MUTEX), so before converting the TCSR mutex into device with
+address space, we need to split the halt regs to its own syscon device.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
----
- arch/arm64/boot/dts/qcom/sdm630.dtsi | 11 +++--------
- 1 file changed, 3 insertions(+), 8 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-index a4f73be3d60a..9ae6610af93a 100644
---- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-@@ -697,9 +697,10 @@ tsens: thermal-sensor@10ae000 {
- 			#thermal-sensor-cells = <1>;
+---
+
+Changes since v2:
+1. New patch
+---
+ arch/arm64/boot/dts/qcom/sm8150.dtsi | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+index 7d509ecd44da..6df2e6828282 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+@@ -2056,7 +2056,12 @@ ipa_virt: interconnect@1e00000 {
+ 
+ 		tcsr_mutex_regs: syscon@1f40000 {
+ 			compatible = "syscon";
+-			reg = <0x0 0x01f40000 0x0 0x40000>;
++			reg = <0x0 0x01f40000 0x0 0x20000>;
++		};
++
++		tcsr_regs_1: sycon@1f60000 {
++			compatible = "qcom,sm8150-tcsr", "syscon";
++			reg = <0x0 0x01f60000 0x0 0x20000>;
  		};
  
--		tcsr_mutex_regs: syscon@1f40000 {
--			compatible = "syscon";
-+		tcsr_mutex: hwlock@1f40000 {
-+			compatible = "qcom,tcsr-mutex";
- 			reg = <0x01f40000 0x20000>;
-+			#hwlock-cells = <1>;
- 		};
- 
- 		tcsr_regs_1: sycon@1f60000 {
-@@ -2356,12 +2357,6 @@ intc: interrupt-controller@17a00000 {
- 		};
- 	};
- 
--	tcsr_mutex: hwlock {
--		compatible = "qcom,tcsr-mutex";
--		syscon = <&tcsr_mutex_regs 0 0x1000>;
--		#hwlock-cells = <1>;
--	};
--
- 	sound: sound {
- 	};
- 
+ 		remoteproc_slpi: remoteproc@2400000 {
 -- 
 2.34.1
 
