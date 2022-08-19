@@ -2,154 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CE92599892
-	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 11:22:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BDFC59989C
+	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 11:22:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347431AbiHSJRu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Aug 2022 05:17:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52156 "EHLO
+        id S1347462AbiHSJVQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Aug 2022 05:21:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348073AbiHSJRt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 05:17:49 -0400
-Received: from comms.puri.sm (comms.puri.sm [159.203.221.185])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8500F2D68;
-        Fri, 19 Aug 2022 02:17:48 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-        by comms.puri.sm (Postfix) with ESMTP id 02DA1E031B;
-        Fri, 19 Aug 2022 02:17:48 -0700 (PDT)
-Received: from comms.puri.sm ([127.0.0.1])
-        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id Vuvx1q-IectB; Fri, 19 Aug 2022 02:17:47 -0700 (PDT)
-Message-ID: <d1db07c8ca57c72b4f0820fcb6832dd7e4501055.camel@puri.sm>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=puri.sm; s=comms;
-        t=1660900667; bh=Jo9QL7raUD2BIWVuwvlATedJOyz9wfWXMd9342485kA=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-        b=gwtLUvDwZ3jddAsrm0b7mign2kCxfFLgAot46f6PaCr9wDf8QeCaXDr6SHHhszwdk
-         QjJeLT9WsyTB6yPSwVNDoG8zfki/eOIgERjfIP2PDnW69QxRXLkjIHdL6DIFoWnaVm
-         qy0berAxWmjfeXnvZ/OkkWIK4kAPMMP9ZybuVeh5Mll/QonaaXr8JcZtMABdiEAHWx
-         a6gaGGRplptBNF8jKk9LECc/RF8D2Oluk546RId5dcx8aPYULvUrpw8Cc0/1asAYD/
-         upmL174Wi/mu6wXdzA4TyKqzd0Lop1CtCEHh2cH7jCTsfx7haqZESJezll+KoUKttF
-         YEbS6UkXsfzbw==
-Subject: Re: [PATCH v6 1/2] power: domain: handle genpd correctly when
- needing interrupts
-From:   Martin Kepplinger <martin.kepplinger@puri.sm>
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     rafael@kernel.org, khilman@kernel.org, robh@kernel.org,
-        krzysztof.kozlowski@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, festevam@gmail.com, pavel@ucw.cz,
-        kernel@puri.sm, linux-imx@nxp.com, broonie@kernel.org,
-        l.stach@pengutronix.de, aford173@gmail.com,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Date:   Fri, 19 Aug 2022 11:17:40 +0200
-In-Reply-To: <CAPDyKFrLLw=y9+t3f_bOH2mw2NVDGJxKE5=+XHY7C6SUzLzUDg@mail.gmail.com>
-References: <20220726083257.1730630-1-martin.kepplinger@puri.sm>
-         <20220726083257.1730630-2-martin.kepplinger@puri.sm>
-         <CAPDyKFrLLw=y9+t3f_bOH2mw2NVDGJxKE5=+XHY7C6SUzLzUDg@mail.gmail.com>
+        with ESMTP id S1347426AbiHSJVO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 05:21:14 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 835A3E588D;
+        Fri, 19 Aug 2022 02:21:13 -0700 (PDT)
+X-UUID: 287ec98e284f4966998cf3d7f317b25a-20220819
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=WPx28nuo9RcwR75sB21q6ymmTD71bLmGxP0/PKNXITQ=;
+        b=FU30adMy92dNfqEU4l6hLja0mdw0Qv2TpXsDEegxTnKlcAnoKOQ14GeSn7FDIxzFgvSrlJgiuDeYU6cv+8A8T5T58hiCtzZPTIp8yxnKuCWgl5kzHv1kY1FVSqRWoa0BJzknPyBTfbn1pxEDqtxoSeQDCO7zn9zA5Aww/UBfNmI=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.10,REQID:33e0be97-958d-4f19-b732-b70b18d8cb17,OB:0,L
+        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release
+        _Ham,ACTION:release,TS:45
+X-CID-INFO: VERSION:1.1.10,REQID:33e0be97-958d-4f19-b732-b70b18d8cb17,OB:0,LOB
+        :0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_H
+        am,ACTION:release,TS:45
+X-CID-META: VersionHash:84eae18,CLOUDID:adb2b667-a9d9-4672-a3c8-12721739a220,C
+        OID:6e6f2b17f0cc,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 287ec98e284f4966998cf3d7f317b25a-20220819
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+        (envelope-from <jia-wei.chang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1780500561; Fri, 19 Aug 2022 17:21:06 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Fri, 19 Aug 2022 17:21:05 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 19 Aug 2022 17:21:05 +0800
+Message-ID: <b36cfc74fa9f1aed5f7fe60dd810c5fcf4073b65.camel@mediatek.com>
+Subject: Re: [PATCH 1/2] dt-bindings: cpufreq: add mt8188 cpufreq hw
+ dt-bindings
+From:   Jia-Wei Chang <jia-wei.chang@mediatek.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Hector Yuan <hector.yuan@mediatek.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <hsinyi@google.com>
+Date:   Fri, 19 Aug 2022 17:21:05 +0800
+In-Reply-To: <106e443a-e765-51fe-b556-e4e7e2aa771c@linaro.org>
+References: <20220805091211.2791-1-jia-wei.chang@mediatek.com>
+         <20220805091211.2791-2-jia-wei.chang@mediatek.com>
+         <106e443a-e765-51fe-b556-e4e7e2aa771c@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.3-1 
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Dienstag, dem 26.07.2022 um 17:07 +0200 schrieb Ulf Hansson:
-> On Tue, 26 Jul 2022 at 10:33, Martin Kepplinger
-> <martin.kepplinger@puri.sm> wrote:
+On Fri, 2022-08-05 at 11:18 +0200, Krzysztof Kozlowski wrote:
+> On 05/08/2022 11:12, jia-wei.chang wrote:
+> > From: Jia-Wei Chang <jia-wei.chang@mediatek.com>
 > > 
-> > If for example the power-domains' power-supply node (regulator)
-> > needs
-> > interrupts to work, the current setup with noirq callbacks cannot
-> > work; for example a pmic regulator on i2c, when suspending, usually
-> > already
-> > times out during suspend_noirq:
+> > Add mt8188 cpufreq hw compatible in dt-bindings.
 > > 
-> > [   41.024193] buck4: failed to disable: -ETIMEDOUT
-> > 
-> > So fix system suspend and resume for these power-domains by using
-> > the
-> > "outer" suspend/resume callbacks instead. Tested on the imx8mq-
-> > librem5 board,
-> > but by looking at the dts, this will fix imx8mq-evk and possibly
-> > many other
-> > boards too.
-> > 
-> > This is designed so that genpd providers just say "this genpd needs
-> > interrupts" (by setting the flag) - without implying an
-> > implementation.
-> > 
-> > Initially system suspend problems had been discussed at
-> > https://lore.kernel.org/linux-arm-kernel/20211002005954.1367653-8-l.stach@pengutronix.de/
-> > which led to discussing the pmic that contains the regulators which
-> > serve as power-domain power-supplies:
-> > https://lore.kernel.org/linux-pm/573166b75e524517782471c2b7f96e03fd93d175.camel@puri.sm/T/
-> > 
-> > Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+> > Signed-off-by: Jia-Wei Chang <jia-wei.chang@mediatek.com>
 > > ---
-> >  drivers/base/power/domain.c | 13 +++++++++++--
-> >  include/linux/pm_domain.h   |  5 +++++
-> >  2 files changed, 16 insertions(+), 2 deletions(-)
+> >  .../devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml      | 4
+> > +++-
+> >  1 file changed, 3 insertions(+), 1 deletion(-)
 > > 
-> > diff --git a/drivers/base/power/domain.c
-> > b/drivers/base/power/domain.c
-> > index 5a2e0232862e..58376752a4de 100644
-> > --- a/drivers/base/power/domain.c
-> > +++ b/drivers/base/power/domain.c
-> > @@ -130,6 +130,7 @@ static const struct genpd_lock_ops
-> > genpd_spin_ops = {
-> >  #define genpd_is_active_wakeup(genpd)  (genpd->flags &
-> > GENPD_FLAG_ACTIVE_WAKEUP)
-> >  #define genpd_is_cpu_domain(genpd)     (genpd->flags &
-> > GENPD_FLAG_CPU_DOMAIN)
-> >  #define genpd_is_rpm_always_on(genpd)  (genpd->flags &
-> > GENPD_FLAG_RPM_ALWAYS_ON)
-> > +#define genpd_irq_on(genpd)            (genpd->flags &
-> > GENPD_FLAG_IRQ_ON)
-> > 
-> >  static inline bool irq_safe_dev_in_sleep_domain(struct device
-> > *dev,
-> >                 const struct generic_pm_domain *genpd)
-> > @@ -2065,8 +2066,15 @@ int pm_genpd_init(struct generic_pm_domain
-> > *genpd,
-> >         genpd->domain.ops.runtime_suspend = genpd_runtime_suspend;
-> >         genpd->domain.ops.runtime_resume = genpd_runtime_resume;
-> >         genpd->domain.ops.prepare = genpd_prepare;
-> > -       genpd->domain.ops.suspend_noirq = genpd_suspend_noirq;
-> > -       genpd->domain.ops.resume_noirq = genpd_resume_noirq;
-> > +
-> > +       if (genpd_irq_on(genpd)) {
-> > +               genpd->domain.ops.suspend = genpd_suspend_noirq;
-> > +               genpd->domain.ops.resume = genpd_resume_noirq;
-> > +       } else {
-> > +               genpd->domain.ops.suspend_noirq =
-> > genpd_suspend_noirq;
-> > +               genpd->domain.ops.resume_noirq =
-> > genpd_resume_noirq;
+> > diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-
+> > mediatek-hw.yaml
+> > b/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-
+> > hw.yaml
+> > index 9cd42a64b13e..b56d36224612 100644
+> > --- a/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-
+> > hw.yaml
+> > +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-
+> > hw.yaml
+> > @@ -16,7 +16,9 @@ description:
+> >  
+> >  properties:
+> >    compatible:
+> > -    const: mediatek,cpufreq-hw
+> > +    enum:
+> > +      - mediatek,cpufreq-hw
 > 
-> As we discussed previously, I am thinking that it may be better to
-> move to using genpd->domain.ops.suspend_late and
-> genpd->domain.ops.resume_early instead.
-
-Wouldn't that better be a separate patch (on top)? Do you really want
-me to change the current behaviour (default case) to from noirq to
-late? Then I'll resend this series with such a patch added.
-
-thanks,
-
-                              martin
-
+> Can you add a comment mentioning for which SoCs this is? Someone
+> added a
+> generic compatible covering all MediaTek cpufreq-hw (all!) and now
+> you
+> say it does not cover all?
 > 
-> Beside this, I think the $subject patch looks good to me.
-> 
-> [...]
-> 
-> Kind regards
-> Uffe
+> Best regards,
+> Krzysztof
+
+Hi Krzysztof,
+
+I realized it is possible to make MT8188 completely reuse the
+compatibles "mediatek,cpufreq-hw" and platform driver as well.
+
+This series for MT8188 mediatek-cpufreq-hw is no longer required to be
+reviewed.
+
+Thanks for your help.
 
 
