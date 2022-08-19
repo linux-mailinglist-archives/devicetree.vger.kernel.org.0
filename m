@@ -2,186 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0651C599636
-	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 09:43:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0407E59962C
+	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 09:43:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346634AbiHSHgB convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 19 Aug 2022 03:36:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49176 "EHLO
+        id S1347154AbiHSHmn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Aug 2022 03:42:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57712 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346639AbiHSHf7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 03:35:59 -0400
-Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com [209.85.219.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1238CACBE;
-        Fri, 19 Aug 2022 00:35:55 -0700 (PDT)
-Received: by mail-qv1-f50.google.com with SMTP id m17so2823242qvv.7;
-        Fri, 19 Aug 2022 00:35:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc;
-        bh=XRbV7J+2A2p1Es19V1DJXlJ5MTO6MnMsKMF62Ysfi58=;
-        b=ayoQFi0HbRGHkvIJEnkfRugePk5YSwhWB/hNc7ZJ8OTHOvCWpPTgJ9RlgYnEj2M0ds
-         Lcsmt6ARJ/y8obiGdLFEvw9IIfTPBkgeeWO/GHPinSbZVg/yt4N/W9dGAZtdLkY7Mfl+
-         4rXSpMH1W+QCbUfsXIRY/tw43NaCFuX18HjeU+MmPR6sLriwZNhIZeAsdFyWI/zeK/Dj
-         L3xc6TWHK0UTt1hdLAdVQUf0VfJN3YsnoWQPzp3akLvl2BI0LMuaO+wfbhgcym6iXF4X
-         Br0jdqyJ2e22GfmnuAE4Q5MG/v5dPEj28luwEacoFZcKqwf5ExPcmFUJYqIkIPRWUlEL
-         XxGg==
-X-Gm-Message-State: ACgBeo01rVg6tc1G7WS3Tc1Sn1wSwsME5EVTFkgCUbDA5nXa4plaX2Er
-        xYlJoPCx+NT+9TxMQ0hQyEO21Vvqp7GtCQ==
-X-Google-Smtp-Source: AA6agR74Q1HXwdqQiTR3l0jvRGi+PALCd7mB25L96CAWRp1bEnuGKifVLLF3SbZ5nd4S5id7KTo2Xw==
-X-Received: by 2002:ad4:5dcd:0:b0:476:a48d:4c43 with SMTP id m13-20020ad45dcd000000b00476a48d4c43mr5581966qvh.13.1660894554552;
-        Fri, 19 Aug 2022 00:35:54 -0700 (PDT)
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
-        by smtp.gmail.com with ESMTPSA id ge8-20020a05622a5c8800b003437a694049sm2527677qtb.96.2022.08.19.00.35.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 Aug 2022 00:35:53 -0700 (PDT)
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-3378303138bso60761727b3.9;
-        Fri, 19 Aug 2022 00:35:52 -0700 (PDT)
-X-Received: by 2002:a5b:bcd:0:b0:68f:b4c0:7eca with SMTP id
- c13-20020a5b0bcd000000b0068fb4c07ecamr6552996ybr.202.1660894552417; Fri, 19
- Aug 2022 00:35:52 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220815151451.23293-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220815151451.23293-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMuHMdW29Q40hypWZ05KRj5cc=DY8XjnDwOPVw3kJPNUrnL0fA@mail.gmail.com>
- <CA+V-a8sVpEx==R6QXF8qxhVSsv2mVnZ_R3N2wTt+JPcQWNqCWQ@mail.gmail.com> <eeadea8e-a6bc-0965-1246-82b0042838e4@microchip.com>
-In-Reply-To: <eeadea8e-a6bc-0965-1246-82b0042838e4@microchip.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 19 Aug 2022 09:35:40 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUPzukO8Cqk86NbPU-ytidr--Qumg6KzVcUqE4GWmumaQ@mail.gmail.com>
-Message-ID: <CAMuHMdUPzukO8Cqk86NbPU-ytidr--Qumg6KzVcUqE4GWmumaQ@mail.gmail.com>
-Subject: Re: [PATCH v2 4/8] RISC-V: Kconfig.socs: Add Renesas RZ/Five SoC
- kconfig option
-To:     Conor Dooley <Conor.Dooley@microchip.com>
-Cc:     Prabhakar Lad <prabhakar.csengg@gmail.com>,
-        "Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Anup Patel <anup@brainfault.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Samuel Holland <samuel@sholland.org>
+        with ESMTP id S1347144AbiHSHmm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 03:42:42 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EFD7CCE3E;
+        Fri, 19 Aug 2022 00:42:37 -0700 (PDT)
+X-UUID: ac2a3019fb664eaebc80487541f66bf5-20220819
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=xRra99ybeDU1VvzdrVMw86yXkS8LgIZdc8GNqbtCaOw=;
+        b=p7ToznoCPDfmE76ARNVQLvU6hK9DWBauDsmYSbnCvzFvOQrCMRx6j5P4XwCwYMFfQjrAWnR2zKmT5aRN4kdPZ28s9XmFd7frgxf/+Qe32+Hx4RpKKK4Ti8rkNflcyecRGHCzu7tr7ntpTQXBHIQxT8D2U0eeOxqMYDSK4q308qw=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.10,REQID:6c3d19b9-27de-4aff-a722-8d1ab8afefd8,OB:0,L
+        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_
+        Ham,ACTION:release,TS:0
+X-CID-META: VersionHash:84eae18,CLOUDID:2477219d-da39-4e3b-a854-56c7d2111b46,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
+        ,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: ac2a3019fb664eaebc80487541f66bf5-20220819
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 312840282; Fri, 19 Aug 2022 15:42:31 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Fri, 19 Aug 2022 15:42:29 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
+ Transport; Fri, 19 Aug 2022 15:42:29 +0800
+Message-ID: <c6e34df9896a1da0c3a72aff5b170a81a4252f1b.camel@mediatek.com>
+Subject: Re: [PATCH v25 4/4] media: platform: mtk-mdp3: add MediaTek MDP3
+ driver
+From:   Bo-Chen Chen <rex-bc.chen@mediatek.com>
+To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Moudy Ho <moudy.ho@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Rob Landley <rob@landley.net>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        <tfiga@chromium.org>, <drinkcat@chromium.org>,
+        <pihsun@chromium.org>, <hsinyi@google.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <cellopoint.kai@gmail.com>,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+        daoyuan huang <daoyuan.huang@mediatek.com>
+Date:   Fri, 19 Aug 2022 15:42:29 +0800
+In-Reply-To: <b0b4ff87-355e-1910-c6d2-a9690f3d7543@xs4all.nl>
+References: <20220817095629.29911-1-moudy.ho@mediatek.com>
+         <20220817095629.29911-5-moudy.ho@mediatek.com>
+         <b0b4ff87-355e-1910-c6d2-a9690f3d7543@xs4all.nl>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Conor,
+On Thu, 2022-08-18 at 13:02 +0200, Hans Verkuil wrote:
+> Hi Moudy,
+> 
+> I noticed one more thing (and it is probably better to post a v26
+> after all):
+> 
+> On 17/08/2022 11:56, Moudy Ho wrote:
+> > This patch adds driver for MediaTek's Media Data Path ver.3 (MDP3).
+> > It provides the following functions:
+> >   color transform, format conversion, resize, crop, rotate, flip
+> >   and additional image quality enhancement.
+> > 
+> > The MDP3 driver is mainly used for Google Chromebook products to
+> > import the new architecture to set the HW settings as shown below:
+> >   User -> V4L2 framework
+> >     -> MDP3 driver -> SCP (setting calculations)
+> >       -> MDP3 driver -> CMDQ (GCE driver) -> HW
+> > 
+> > Each modules' related operation control is sited in mtk-mdp3-comp.c
+> > Each modules' register table is defined in file with "mdp_reg_"
+> > prefix
+> > GCE related API, operation control  sited in mtk-mdp3-cmdq.c
+> > V4L2 m2m device functions are implemented in mtk-mdp3-m2m.c
+> > Probe, power, suspend/resume, system level functions are defined in
+> > mtk-mdp3-core.c
+> > 
+> > v4l2-compliance 1.22.1, 32 bits, 32-bit time_t
+> 
+> First of all, the v4l2-compliance output belongs to the cover letter,
+> not
+> to a commit log for a patch.
+> 
+> More importantly, I can tell that v4l2-compliance was a prepackaged
+> version,
+> but you need to compile it from the git repo yourself:
+> 
+> git clone git://linuxtv.org/v4l-utils.git
+> cd v4l-utils
+> ./bootstrap.sh
+> ./configure
+> make
+> sudo make install
+> 
+> Running v4l2-compliance should start with this (or something close):
+> 
+> v4l2-compliance 1.23.0-4941, 64 bits, 64-bit time_t
+> v4l2-compliance SHA: 71112d214762 2022-07-28 15:31:13
+> 
+> I need to see the SHA to confirm that you tested with a sufficiently
+> new
+> v4l2-compliance version. Prepackaged v4l2-compliance binaries tend to
+> be too old, at least for the purpose of compliance checking a new
+> driver.
+> 
+> Regards,
+> 
+> 	Hans
+> 
 
-On Thu, Aug 18, 2022 at 8:54 PM <Conor.Dooley@microchip.com> wrote:
-> On 18/08/2022 19:19, Lad, Prabhakar wrote:
-> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
-> > On Thu, Aug 18, 2022 at 4:16 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> >> On Mon, Aug 15, 2022 at 5:16 PM Lad Prabhakar
-> >> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> >>> Introduce SOC_RENESAS_RZFIVE config option to enable Renesas RZ/Five
-> >>> (R9A07G043) SoC, along side also add ARCH_RENESAS config option as most
-> >>> of the Renesas drivers depend on this config option.
-> >>>
-> >>> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >>
-> >> Thanks for your patch!
-> >>
-> >> The technical part LGTM, so
-> >> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> >>
-> >>> --- a/arch/riscv/Kconfig.socs
-> >>> +++ b/arch/riscv/Kconfig.socs
-> >>> @@ -80,4 +80,18 @@ config SOC_CANAAN_K210_DTB_SOURCE
-> >>>
-> >>>  endif # SOC_CANAAN
-> >>>
-> >>> +config ARCH_RENESAS
-> >>
-> >> We definitely want ARCH_RENESAS, as it serves as a gatekeeper for
-> >> Kconfig options for IP cores found on Renesas ARM and RISC-V SoCs.
-> >>
-> > Agreed, or else we will end up touching too many Kconfig files.
-> >
-> >>> +       bool
-> >>> +       select GPIOLIB
-> >>> +       select PINCTRL
-> >>> +       select SOC_BUS
-> >>> +
-> >>> +config SOC_RENESAS_RZFIVE
-> >>
-> >> Do we need this symbol? You could as well make ARCH_RENESAS above
-> >> visible, and defer the actual SoC selection to ARCH_R9A07G043 in
-> >> drivers/soc/renesas/Kconfig[1].
-> >>
-> > I think we could drop it and just defer the actual SoC selection to
-> > ARCH_R9A07G043 as you said.
-> >
-> >> I don't know what is the policy on RISC-V. ARM64 has a "single-symbol
-> >> in arch/arm64/Kconfig.platforms"-policy, so we handle SoC selection
-> >> in drivers/soc/renesas/Kconfig, and that is fine, as it avoids merge
-> >> conflicts.
-> >>
-> > Agreed.
-> >
-> > @Conor - Does the above sound OK?
->
-> It's not my decision to be honest - Palmer's the boss :)
->
-> I would rather have a single symbol & a single approach so that we are
-> all doing the same thing here. As of now, we have all basically done
-> different things for each SOC that was added - there's SOC_SIFIVE &
-> SOC_MICROCHIP_POLARFIRE which are obviously not doing the same thing
-> for starters & then how the symbol is used: selects vs depends + default
-> all varies between the symbols.
->
-> I tried to make some changes to the PolarFire one a few months ago to
-> add some peripherals but Palmer was not too keen on the changes. We had
-> a conversation on IRC, the upshot of which was deciding to talk about it
-> at Plumbers (which is in 3 weeks) as none of them follow his original
-> intent:
-> <quote>
-> the original idea behind Kconfig.socs was to provide an easy place for
-> users to say "I want all the support for SOC X", and then just have one
-> Kconfig to turn that on
-> <\quote>
+Hello Hans,
 
-For whatever definition of "all"? Does this include e.g. all
-multi-media stuff?
+Because there are some issues for Moudy's mail account, I help him
+reply the mail:
 
-For Renesas ARM SoCs, we make sure to select the critical core parts,
-cfr. the selects above, and in drivers/soc/renesas/Kconfig.
-These selects do not include optional drivers, including the serial
-port (cfr. your confusion about adding CONFIG_SERIAL_SH_SCI=y
-to the defconfig).
-All the rest is handled by the defconfigs (shmobile_defconfig on
-arm32, single defconfig on arm64, and out-of-tree renesas_defconfig
-in my renesas-devel tree).
+Thanks for your review and comment, those two errors you mentioned have
+been corrected accordingly.
 
-> In theory, that's lovely but not really maintainable & none of us were
-> doing it anyway. Hopefully we can come up with a plan at Plumbers - so
-> feel free to chime in (or maybe it gets sorted out here and I don't
-> have to do any public speaking 😍).
+I will test it with the latest version of v4l2-compliance, and it will
+be released in v26 together with the testing report.
 
-Ah, there is my good reason for registering for LPC ;-)
+BRs,
+Bo-Chen
 
-Gr{oetje,eeting}s,
+> > Compliance test for mtk-mdp3 device /dev/video0:
+> > Driver Info:
+> > 	Driver name      : mtk-mdp3
+> > 	Card type        : MediaTek MDP3
+> > 	Bus info         : platform:14001000.mdp3-rdma0
+> > 	Driver version   : 6.0.0
+> > 	Capabilities     : 0x84204000
+> > 		Video Memory-to-Memory Multiplanar
+> > 		Streaming
+> > 		Extended Pix Format
+> > 		Device Capabilities
+> > 	Device Caps      : 0x04204000
+> > 		Video Memory-to-Memory Multiplanar
+> > 		Streaming
+> > 		Extended Pix Format
+> 
+> 
 
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
