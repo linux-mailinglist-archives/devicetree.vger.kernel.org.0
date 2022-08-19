@@ -2,162 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A53CB5994CA
-	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 07:43:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2ACEF5994EA
+	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 08:01:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346522AbiHSFkG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Aug 2022 01:40:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35300 "EHLO
+        id S242147AbiHSGAK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Aug 2022 02:00:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344274AbiHSFkE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 01:40:04 -0400
-Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18487DCFD3
-        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 22:40:02 -0700 (PDT)
-Received: by mail-pf1-x436.google.com with SMTP id z187so3416736pfb.12
-        for <devicetree@vger.kernel.org>; Thu, 18 Aug 2022 22:40:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc;
-        bh=EU0Xpdjq4gzaluDqvt8ZL9f0MKE2Ug7x6hJlEuzy25o=;
-        b=q4TKVBG83qbSyPTszbB4aqGThUjTg4VCA8TG0lifPnwmoeJpzmxN02EwXm/URAULnX
-         685FFTeli+9sePzO5uMNh1f8wEFs3bL9Bf13qixko8qkfhquVwaVe0/d8eb9Umgl35iL
-         EMJEzUhrfm3UPBZfAoe/lT6g56rL8ukKYEXMnxcUsqKI+7Ncpdg5FHtsruV9ljflQ9Wp
-         nvKw/ZpOcuQ6Tzd6O5wGBopJIfqgteoukXz9wXIYb0Sg7kZyKj1+tK2Koy2vAzXcz4vK
-         CeTvEErv+s9rg/1EhdEkvCadezhC0zPjptVivPdutRDd6sDCQOLMcByIWqBbRx2fDS6i
-         +v+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc;
-        bh=EU0Xpdjq4gzaluDqvt8ZL9f0MKE2Ug7x6hJlEuzy25o=;
-        b=Jgit8DlQiXpCADOEnjlG2vLTshNsUJ47NadmIPg5dgwhsySzB5ormid9KiDMCzUTm4
-         976ZGyYzZsgEOqtyVV8o7umstuuT93zxfIg+ORHeWrfqPqpm8S/FXCHI1uq/sxbWmrdV
-         BydrF35Dstilat8FMNtwdcU15FHzmH57TKBszzXVFc2sNHUT5QRQcEMD5ld2PjS7y6jQ
-         Y9DQHRt7rn+KPyKIieLcOaTsLouVnfxkNflVqHGIrtHJ2Y2dy2p6NaaTjXf3YLfW5fIm
-         tFOROcqTqdtlWl/gMGpEzk/976F+9ej2yivgM4yffMi7DDpRrwru+fiY33I7XdCCbOZK
-         p47Q==
-X-Gm-Message-State: ACgBeo2B3WPUpED3U/q0EiKpRzwT8rUr/dJ9qf8jxptB5YmkwUt/sawO
-        BOr7HZuqUtjklvbP5vuz/ADneQ==
-X-Google-Smtp-Source: AA6agR5rqHkJsevaWHqGKd15w/iKH002kBpV1qP/T8uNcF71eJMIX1DT1/jdedfMtw2NS/LvYRmcFg==
-X-Received: by 2002:a05:6a00:10cf:b0:528:48c3:79e0 with SMTP id d15-20020a056a0010cf00b0052848c379e0mr6224068pfu.18.1660887601337;
-        Thu, 18 Aug 2022 22:40:01 -0700 (PDT)
-Received: from localhost.localdomain ([2401:4900:1c5e:9cc1:8f6b:abdb:fb8f:1a1b])
-        by smtp.gmail.com with ESMTPSA id e28-20020a056a0000dc00b0053617cbe2d2sm233429pfj.168.2022.08.18.22.39.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Aug 2022 22:40:00 -0700 (PDT)
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, agross@kernel.org,
-        bhupesh.sharma@linaro.org, bhupesh.linux@gmail.com,
-        linux-kernel@vger.kernel.org, bjorn.andersson@linaro.org,
-        Rob Herring <robh@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH] arm64: dts: qcom: Fix sm8150 fastrpc node - use correct iommu values
-Date:   Fri, 19 Aug 2022 11:09:45 +0530
-Message-Id: <20220819053945.4114430-1-bhupesh.sharma@linaro.org>
-X-Mailer: git-send-email 2.35.3
+        with ESMTP id S230002AbiHSGAK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 02:00:10 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C738C59FA;
+        Thu, 18 Aug 2022 23:00:07 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 27J5xbo3048870;
+        Fri, 19 Aug 2022 00:59:37 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1660888777;
+        bh=g8oyDk7JBZxiYlL06SI8ybX1FXh3s1KT+kFnj1vFyGo=;
+        h=Date:CC:Subject:To:References:From:In-Reply-To;
+        b=hHdkAwTP1EitZwBSwO0WeHRjek6uVGOxzEPV9Rjeh7n7YEGOvUzLkeNf4RgseNV51
+         xJXhS/IEd5zeKbCnTpSvJwQrn8y+/xRbFExXRTPQ87VAxSrNP5oupacjJzKD5bIV3W
+         YbqDsGY9Vqa83G6KpS7jXkQH8h7tZCmRln2/0jg4=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 27J5xbwV102751
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 19 Aug 2022 00:59:37 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Fri, 19
+ Aug 2022 00:59:37 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Fri, 19 Aug 2022 00:59:37 -0500
+Received: from [10.24.69.241] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 27J5xX8j065125;
+        Fri, 19 Aug 2022 00:59:34 -0500
+Message-ID: <8fd1e19e-5d40-2847-47ae-93131ed9260d@ti.com>
+Date:   Fri, 19 Aug 2022 11:29:32 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+CC:     <lee.jones@linaro.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <kishon@ti.com>, <vkoul@kernel.org>, <dan.carpenter@oracle.com>,
+        <grygorii.strashko@ti.com>, <rogerq@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <s-vadapalli@ti.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: phy: ti: phy-gmii-sel: Add bindings
+ for J7200
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+References: <20220816055848.111482-1-s-vadapalli@ti.com>
+ <20220816055848.111482-2-s-vadapalli@ti.com>
+ <20220818144326.GA1829017-robh@kernel.org>
+From:   Siddharth Vadapalli <s-vadapalli@ti.com>
+In-Reply-To: <20220818144326.GA1829017-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix the 'memory access' relaetd crash seen while running Hexagon
-SDK example applications on the cdsp dsp available on sm8150 SoC
-based boards:
+Hello Rob,
 
-  qcom_q6v5_pas 8300000.remoteproc: fatal error received:
-    EX:kernel:0x0:frpck_0_0:0xf5:PC=0xc020ceb0
+On 18/08/22 20:13, Rob Herring wrote:
+> On Tue, Aug 16, 2022 at 11:28:47AM +0530, Siddharth Vadapalli wrote:
+>> TI's J7200 SoC supports additional PHY modes like QSGMII and SGMII
+>> that are not supported on earlier SoCs. Add a compatible for it.
+>>
+>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+>> ---
+>>  .../mfd/ti,j721e-system-controller.yaml       |  5 ++++
+>>  .../bindings/phy/ti,phy-gmii-sel.yaml         | 27 ++++++++++++++++++-
+>>  2 files changed, 31 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml b/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
+>> index 73cffc45e056..527fd47b648b 100644
+>> --- a/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
+>> +++ b/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
+>> @@ -54,6 +54,11 @@ patternProperties:
+>>      description:
+>>        Clock provider for TI EHRPWM nodes.
+>>  
+>> +  "phy@[0-9a-f]+$":
+>> +    type: object
+>> +    description:
+>> +      This is the register to set phy mode through phy-gmii-sel driver.
+> 
+> No properties for this node? A whole node for 1 register?
+> 
+> Or this node is ti,phy-gmii-sel.yaml? If so, add a $ref to it.
 
-This crash is caused by incorrect IOMMU SID values being used
-in the fastrpc node.
+Thank you for reviewing the patch. Yes, the node is for
+ti,phy-gmii-sel.yaml. I will add the $ref for it.
 
-Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc: Rob Herring <robh@kernel.org>
-Suggested-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8150.dtsi | 24 ++++++++----------------
- 1 file changed, 8 insertions(+), 16 deletions(-)
+> 
+>> +
+>>  required:
+>>    - compatible
+>>    - reg
+>> diff --git a/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml b/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml
+>> index ff8a6d9eb153..54da408d0360 100644
+>> --- a/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml
+>> +++ b/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml
+>> @@ -53,12 +53,21 @@ properties:
+>>        - ti,am43xx-phy-gmii-sel
+>>        - ti,dm814-phy-gmii-sel
+>>        - ti,am654-phy-gmii-sel
+>> +      - ti,j7200-cpsw5g-phy-gmii-sel
+>>  
+>>    reg:
+>>      maxItems: 1
+>>  
+>>    '#phy-cells': true
+>>  
+>> +  ti,qsgmii-main-ports:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>> +    description: |
+>> +      Required only for QSGMII mode. Array to select the port for
+>> +      QSGMII main mode. Rest of the ports are selected as QSGMII_SUB
+>> +      ports automatically. Any one of the 4 CPSW5G ports can act as the
+>> +      main port with the rest of them being the QSGMII_SUB ports.
+> 
+> Constraints? 
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-index 7d509ecd44da..916f12b799b7 100644
---- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-@@ -3394,57 +3394,49 @@ fastrpc {
- 					compute-cb@1 {
- 						compatible = "qcom,fastrpc-compute-cb";
- 						reg = <1>;
--						iommus = <&apps_smmu 0x1401 0x2040>,
--							 <&apps_smmu 0x1421 0x0>,
--							 <&apps_smmu 0x2001 0x420>,
--							 <&apps_smmu 0x2041 0x0>;
-+						iommus = <&apps_smmu 0x1001 0x0460>;
- 					};
- 
- 					compute-cb@2 {
- 						compatible = "qcom,fastrpc-compute-cb";
- 						reg = <2>;
--						iommus = <&apps_smmu 0x2 0x3440>,
--							 <&apps_smmu 0x22 0x3400>;
-+						iommus = <&apps_smmu 0x1002 0x0460>;
- 					};
- 
- 					compute-cb@3 {
- 						compatible = "qcom,fastrpc-compute-cb";
- 						reg = <3>;
--						iommus = <&apps_smmu 0x3 0x3440>,
--							 <&apps_smmu 0x1423 0x0>,
--							 <&apps_smmu 0x2023 0x0>;
-+						iommus = <&apps_smmu 0x1003 0x0460>;
- 					};
- 
- 					compute-cb@4 {
- 						compatible = "qcom,fastrpc-compute-cb";
- 						reg = <4>;
--						iommus = <&apps_smmu 0x4 0x3440>,
--							 <&apps_smmu 0x24 0x3400>;
-+						iommus = <&apps_smmu 0x1004 0x0460>;
- 					};
- 
- 					compute-cb@5 {
- 						compatible = "qcom,fastrpc-compute-cb";
- 						reg = <5>;
--						iommus = <&apps_smmu 0x5 0x3440>,
--							 <&apps_smmu 0x25 0x3400>;
-+						iommus = <&apps_smmu 0x1005 0x0460>;
- 					};
- 
- 					compute-cb@6 {
- 						compatible = "qcom,fastrpc-compute-cb";
- 						reg = <6>;
--						iommus = <&apps_smmu 0x6 0x3460>;
-+						iommus = <&apps_smmu 0x1006 0x0460>;
- 					};
- 
- 					compute-cb@7 {
- 						compatible = "qcom,fastrpc-compute-cb";
- 						reg = <7>;
--						iommus = <&apps_smmu 0x7 0x3460>;
-+						iommus = <&apps_smmu 0x1007 0x0460>;
- 					};
- 
- 					compute-cb@8 {
- 						compatible = "qcom,fastrpc-compute-cb";
- 						reg = <8>;
--						iommus = <&apps_smmu 0x8 0x3460>;
-+						iommus = <&apps_smmu 0x1008 0x0460>;
- 					};
- 
- 					/* note: secure cb9 in downstream */
--- 
-2.35.3
+This is an optional property that should only be used for the
+ti,j7200-cpsw5g-phy-gmii-sel compatible if it is used. I did not realize
+that by defining it here, I had automatically defined it as a valid
+property for all the compatibles. I will restrict this property only to
+the ti,j7200-cpsw5g-phy-gmii-sel compatible by extending the if-then
+statement below, adding an else statement with "ti,qsgmii-main-ports:
+false", which will disallow this property for other compatibles.
 
+> 
+>> +
+>>  allOf:
+>>    - if:
+>>        properties:
+>> @@ -73,6 +82,22 @@ allOf:
+>>          '#phy-cells':
+>>            const: 1
+>>            description: CPSW port number (starting from 1)
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - ti,j7200-cpsw5g-phy-gmii-sel
+>> +    then:
+>> +      properties:
+>> +        '#phy-cells':
+>> +          const: 1
+>> +          description: CPSW port number (starting from 1)
+>> +        ti,qsgmii-main-ports:
+>> +          maxItems: 1
+> 
+> An array, but only 1 entry allowed?
+
+For the ti,j7200-cpsw5g-phy-gmii-sel compatible, only one entry is
+allowed, but in the future, I will be adding a new compatible which will
+require two entries for the ti,qsgmii-main-ports property. On TI's J721e
+device, there are a total of 8 external ports, therefore making it
+possible to configure them as two sets of QSGMII interfaces. This
+requires two qsgmii-main ports which can be specified in the
+ti,qsgmii-main-ports property as an array. Therefore, I have declared
+the property as an array.
+
+> 
+>> +          items:
+>> +            minimum: 1
+>> +            maximum: 4
+> 
+> Can't this be up above?
+
+Yes, I will move it to the top where the ti,qsgmii-main-ports property
+is defined.
+
+Regards,
+Siddharth.
