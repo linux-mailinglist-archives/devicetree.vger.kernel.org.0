@@ -2,60 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B4CB599E88
-	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 17:43:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E437459A458
+	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 20:05:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349613AbiHSPhf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Aug 2022 11:37:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33538 "EHLO
+        id S1354475AbiHSRWl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Aug 2022 13:22:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349592AbiHSPhe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 11:37:34 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5885E8307;
-        Fri, 19 Aug 2022 08:37:33 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 31F58615F3;
-        Fri, 19 Aug 2022 15:37:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F96AC433D6;
-        Fri, 19 Aug 2022 15:37:28 +0000 (UTC)
-Message-ID: <46436973-0de0-f810-5851-6f26bdf460aa@xs4all.nl>
-Date:   Fri, 19 Aug 2022 17:37:27 +0200
+        with ESMTP id S1350654AbiHSRWZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 13:22:25 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5AA21272DD;
+        Fri, 19 Aug 2022 09:41:31 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 27JEhGlW003718;
+        Fri, 19 Aug 2022 16:41:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=XjtcvC/BI3XHYKOQCoPWoIynYxVZExJBSpyTyUaVomU=;
+ b=IZFsorwsJ8akAV6u4Ku19Z6aCnSVchJ1XCmmkEmnnfxrc6wFAKqkYhRoZ09RnpaX8+Tr
+ MY1vZSSB8sU2G8x+F/rcDkM8fxnd9AC5xvPzpg9JrN53dn7bBdIglapx8pk+x21yvivQ
+ njMQvx35mIrXnss7+iPN8htnhqzhm/HyZARggukhLOd1yzIRsFZr81mLh4DksTo2VU6z
+ ksrHbwH3BUA2Pos7w3O4skzUgSjVsv5XedHLZkE5h7Gx3oOLffbLgLv/ZVwOmL/k1Yrc
+ B4/hLh5utMG1xgOF45+SmPOiT9bSSf+zS+RkJs074K2Enm1JXijn/C+vLiria+2xgQmq TA== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3j21v523j2-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 19 Aug 2022 16:41:03 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 27JGf2PR008752
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 19 Aug 2022 16:41:02 GMT
+Received: from hyd-lnxbld559.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Fri, 19 Aug 2022 09:40:55 -0700
+From:   Akhil P Oommen <quic_akhilpo@quicinc.com>
+To:     freedreno <freedreno@lists.freedesktop.org>,
+        <dri-devel@lists.freedesktop.org>, <linux-arm-msm@vger.kernel.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        "Stephen Boyd" <swboyd@chromium.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC:     Douglas Anderson <dianders@chromium.org>,
+        <krzysztof.kozlowski@linaro.org>,
+        Akhil P Oommen <quic_akhilpo@quicinc.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        "Konrad Dybcio" <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, Sean Paul <sean@poorly.run>,
+        Stephen Boyd <sboyd@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v4 0/6] clk/qcom: Support gdsc collapse polling using 'reset' interface
+Date:   Fri, 19 Aug 2022 22:10:39 +0530
+Message-ID: <1660927246-11327-1-git-send-email-quic_akhilpo@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v26 4/4] media: platform: mtk-mdp3: add MediaTek MDP3
- driver
-Content-Language: en-US
-To:     Moudy Ho <moudy.ho@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Rob Landley <rob@landley.net>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Alexandre Courbot <acourbot@chromium.org>, tfiga@chromium.org,
-        drinkcat@chromium.org, pihsun@chromium.org, hsinyi@google.com,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        cellopoint.kai@gmail.com, Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
-        daoyuan huang <daoyuan.huang@mediatek.com>
-References: <20220819085423.17023-1-moudy.ho@mediatek.com>
- <20220819085423.17023-5-moudy.ho@mediatek.com>
-From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
-In-Reply-To: <20220819085423.17023-5-moudy.ho@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: SfnWSdqgXmmjcyotKxFZkXGKn2nsaCnf
+X-Proofpoint-GUID: SfnWSdqgXmmjcyotKxFZkXGKn2nsaCnf
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.517,FMLib:17.11.122.1
+ definitions=2022-08-19_08,2022-08-18_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ lowpriorityscore=0 mlxscore=0 adultscore=0 bulkscore=0 impostorscore=0
+ malwarescore=0 spamscore=0 mlxlogscore=999 phishscore=0 suspectscore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2207270000 definitions=main-2208190060
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -64,136 +88,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Moudy,
 
-On 19/08/2022 10:54, Moudy Ho wrote:
-> This patch adds driver for MediaTek's Media Data Path ver.3 (MDP3).
-> It provides the following functions:
->   color transform, format conversion, resize, crop, rotate, flip
->   and additional image quality enhancement.
-> 
-> The MDP3 driver is mainly used for Google Chromebook products to
-> import the new architecture to set the HW settings as shown below:
->   User -> V4L2 framework
->     -> MDP3 driver -> SCP (setting calculations)
->       -> MDP3 driver -> CMDQ (GCE driver) -> HW
-> 
-> Each modules' related operation control is sited in mtk-mdp3-comp.c
-> Each modules' register table is defined in file with "mdp_reg_" prefix
-> GCE related API, operation control  sited in mtk-mdp3-cmdq.c
-> V4L2 m2m device functions are implemented in mtk-mdp3-m2m.c
-> Probe, power, suspend/resume, system level functions are defined in
-> mtk-mdp3-core.c
-> 
-> Signed-off-by: Ping-Hsun Wu <ping-hsun.wu@mediatek.com>
-> Signed-off-by: daoyuan huang <daoyuan.huang@mediatek.com>
-> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
-> Tested-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  drivers/media/platform/mediatek/Kconfig       |    1 +
->  drivers/media/platform/mediatek/Makefile      |    1 +
->  drivers/media/platform/mediatek/mdp3/Kconfig  |   20 +
->  drivers/media/platform/mediatek/mdp3/Makefile |    6 +
->  .../platform/mediatek/mdp3/mdp_reg_ccorr.h    |   19 +
->  .../platform/mediatek/mdp3/mdp_reg_rdma.h     |   65 ++
->  .../platform/mediatek/mdp3/mdp_reg_rsz.h      |   39 +
->  .../platform/mediatek/mdp3/mdp_reg_wdma.h     |   47 +
->  .../platform/mediatek/mdp3/mdp_reg_wrot.h     |   55 +
->  .../platform/mediatek/mdp3/mtk-img-ipi.h      |  290 +++++
->  .../platform/mediatek/mdp3/mtk-mdp3-cmdq.c    |  466 ++++++++
->  .../platform/mediatek/mdp3/mtk-mdp3-cmdq.h    |   43 +
->  .../platform/mediatek/mdp3/mtk-mdp3-comp.c    | 1031 +++++++++++++++++
->  .../platform/mediatek/mdp3/mtk-mdp3-comp.h    |  186 +++
->  .../platform/mediatek/mdp3/mtk-mdp3-core.c    |  357 ++++++
->  .../platform/mediatek/mdp3/mtk-mdp3-core.h    |   94 ++
->  .../platform/mediatek/mdp3/mtk-mdp3-m2m.c     |  724 ++++++++++++
->  .../platform/mediatek/mdp3/mtk-mdp3-m2m.h     |   48 +
->  .../platform/mediatek/mdp3/mtk-mdp3-regs.c    |  733 ++++++++++++
->  .../platform/mediatek/mdp3/mtk-mdp3-regs.h    |  373 ++++++
->  .../platform/mediatek/mdp3/mtk-mdp3-vpu.c     |  313 +++++
->  .../platform/mediatek/mdp3/mtk-mdp3-vpu.h     |   78 ++
->  22 files changed, 4989 insertions(+)
->  create mode 100644 drivers/media/platform/mediatek/mdp3/Kconfig
->  create mode 100644 drivers/media/platform/mediatek/mdp3/Makefile
->  create mode 100644 drivers/media/platform/mediatek/mdp3/mdp_reg_ccorr.h
->  create mode 100644 drivers/media/platform/mediatek/mdp3/mdp_reg_rdma.h
->  create mode 100644 drivers/media/platform/mediatek/mdp3/mdp_reg_rsz.h
->  create mode 100644 drivers/media/platform/mediatek/mdp3/mdp_reg_wdma.h
->  create mode 100644 drivers/media/platform/mediatek/mdp3/mdp_reg_wrot.h
->  create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-img-ipi.h
->  create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-cmdq.c
->  create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-cmdq.h
->  create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-comp.c
->  create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-comp.h
->  create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-core.c
->  create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-core.h
->  create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-m2m.c
->  create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-m2m.h
->  create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-regs.c
->  create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-regs.h
->  create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-vpu.c
->  create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-vpu.h
-> 
-> diff --git a/drivers/media/platform/mediatek/Kconfig b/drivers/media/platform/mediatek/Kconfig
-> index af47d9888552..84104e2cd024 100644
-> --- a/drivers/media/platform/mediatek/Kconfig
-> +++ b/drivers/media/platform/mediatek/Kconfig
-> @@ -6,3 +6,4 @@ source "drivers/media/platform/mediatek/jpeg/Kconfig"
->  source "drivers/media/platform/mediatek/mdp/Kconfig"
->  source "drivers/media/platform/mediatek/vcodec/Kconfig"
->  source "drivers/media/platform/mediatek/vpu/Kconfig"
-> +source "drivers/media/platform/mediatek/mdp3/Kconfig"
-> diff --git a/drivers/media/platform/mediatek/Makefile b/drivers/media/platform/mediatek/Makefile
-> index d3850a13f128..38e6ba917fe5 100644
-> --- a/drivers/media/platform/mediatek/Makefile
-> +++ b/drivers/media/platform/mediatek/Makefile
-> @@ -3,3 +3,4 @@ obj-y += jpeg/
->  obj-y += mdp/
->  obj-y += vcodec/
->  obj-y += vpu/
-> +obj-y += mdp3/
-> diff --git a/drivers/media/platform/mediatek/mdp3/Kconfig b/drivers/media/platform/mediatek/mdp3/Kconfig
-> new file mode 100644
-> index 000000000000..8c8e59687417
-> --- /dev/null
-> +++ b/drivers/media/platform/mediatek/mdp3/Kconfig
-> @@ -0,0 +1,20 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +config VIDEO_MEDIATEK_MDP3
-> +	tristate "MediaTek MDP v3 driver"
-> +	depends on MTK_IOMMU || COMPILE_TEST
-> +	depends on VIDEO_DEV
-> +	depends on ARCH_MEDIATEK || COMPILE_TEST
-> +	depends on MTK_MMSYS || COMPILE_TEST
+Some clients like adreno gpu driver would like to ensure that its gdsc
+is collapsed at hardware during a gpu reset sequence. This is because it
+has a votable gdsc which could be ON due to a vote from another subsystem
+like tz, hyp etc or due to an internal hardware signal. To allow
+this, gpucc driver can expose an interface to the client driver using
+reset framework. Using this the client driver can trigger a polling within
+the gdsc driver.
 
-It turned out that this will cause link errors if MTK_MMSYS is not set:
+This series is rebased on top of linus's master branch.
 
-ERROR: modpost: "mtk_mutex_write_sof" [drivers/media/platform/mediatek/mdp3/mtk-mdp3.ko] undefined!
-ERROR: modpost: "mtk_mutex_enable_by_cmdq" [drivers/media/platform/mediatek/mdp3/mtk-mdp3.ko] undefined!
-ERROR: modpost: "mtk_mutex_put" [drivers/media/platform/mediatek/mdp3/mtk-mdp3.ko] undefined!
-ERROR: modpost: "mtk_mutex_write_mod" [drivers/media/platform/mediatek/mdp3/mtk-mdp3.ko] undefined!
-ERROR: modpost: "mtk_mutex_unprepare" [drivers/media/platform/mediatek/mdp3/mtk-mdp3.ko] undefined!
-ERROR: modpost: "mtk_mutex_get" [drivers/media/platform/mediatek/mdp3/mtk-mdp3.ko] undefined!
-ERROR: modpost: "mtk_mutex_prepare" [drivers/media/platform/mediatek/mdp3/mtk-mdp3.ko] undefined!
+Related discussion: https://patchwork.freedesktop.org/patch/493144/
 
-I wonder if it isn't better to do 'select MTK_MMSYS': that seems to work fine.
+Changes in v4:
+- Update gpu dt-binding schema
+- Typo fix in commit text
 
-What do you think?
+Changes in v3:
+- Use pointer to const for "struct qcom_reset_ops" in qcom_reset_map (Krzysztof)
 
-Regards,
+Changes in v2:
+- Return error when a particular custom reset op is not implemented. (Dmitry)
 
-	Hans
+Akhil P Oommen (6):
+  dt-bindings: clk: qcom: Support gpu cx gdsc reset
+  clk: qcom: Allow custom reset ops
+  clk: qcom: gdsc: Add a reset op to poll gdsc collapse
+  clk: qcom: gpucc-sc7280: Add cx collapse reset support
+  dt-bindings: drm/msm/gpu: Add optional resets
+  arm64: dts: qcom: sc7280: Add Reset support for gpu
 
-> +	depends on HAS_DMA
-> +	select VIDEOBUF2_DMA_CONTIG
-> +	select V4L2_MEM2MEM_DEV
-> +	select VIDEO_MEDIATEK_VPU
-> +	select MTK_CMDQ
-> +	select MTK_SCP
-> +	default n
-> +	help
-> +	    It is a v4l2 driver and present in MediaTek MT8183 SoC.
-> +	    The driver supports scaling and color space conversion.
-> +
-> +	    To compile this driver as a module, choose M here: the
-> +	    module will be called mtk-mdp3.
+ .../devicetree/bindings/display/msm/gpu.yaml       |  7 ++++++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi               |  3 +++
+ drivers/clk/qcom/gdsc.c                            | 23 ++++++++++++++----
+ drivers/clk/qcom/gdsc.h                            |  7 ++++++
+ drivers/clk/qcom/gpucc-sc7280.c                    | 10 ++++++++
+ drivers/clk/qcom/reset.c                           | 27 ++++++++++++++++++++++
+ drivers/clk/qcom/reset.h                           |  8 +++++++
+ include/dt-bindings/clock/qcom,gpucc-sc7280.h      |  3 +++
+ 8 files changed, 84 insertions(+), 4 deletions(-)
+
+-- 
+2.7.4
+
