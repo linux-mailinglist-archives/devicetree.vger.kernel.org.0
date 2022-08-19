@@ -2,113 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19C9E59993C
-	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 11:59:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4A7A5999A2
+	for <lists+devicetree@lfdr.de>; Fri, 19 Aug 2022 12:21:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348175AbiHSJz5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Aug 2022 05:55:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56566 "EHLO
+        id S1347488AbiHSKOb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Aug 2022 06:14:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348272AbiHSJzd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 05:55:33 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A835EF00B;
-        Fri, 19 Aug 2022 02:55:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1660902914; x=1692438914;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=AZY5MC50jGtE/QqRVA/CrE8FUo/vmaMJ6VgRdOdFWAs=;
-  b=N48BqhO4pN76WNJCV89rc6hLYuScA09EnBRUfCdgUGt1yCkVq9EyFmw8
-   LvNM9f1+evwzuNjWYJiJ+JHvVYVSCq+xvlpu4fTNKTfiqE0SI3INlRJAr
-   wAmk2mIrN7RcXQ/2c6w9juZHZIB7zOyEifEmDzjnscGOcFoPfjzxcUAsA
-   QlkiqfKJqMS92L6uiUMGOGNkJjfAcvNzBKJsjucZts9v1iBmXceynj9NC
-   fHYB6EISU2eUTEp3giEyqDz0NuHct1jrHrXzZsRoRzdJrPNOtzPLAfLPK
-   jRYAvtkSiCzeoK1HKfKnOa5+LrsiM64z6clbLg86bA2Fqflgc1+KhTr5x
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.93,247,1654585200"; 
-   d="scan'208";a="177053985"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 19 Aug 2022 02:55:12 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Fri, 19 Aug 2022 02:55:10 -0700
-Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server id 15.1.2507.12 via Frontend
- Transport; Fri, 19 Aug 2022 02:55:07 -0700
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Daire McNamara <daire.mcnamara@microchip.com>
-CC:     Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>
-Subject: [PATCH v3 13/13] clk: microchip: mpfs: update module authorship & licencing
-Date:   Fri, 19 Aug 2022 10:53:21 +0100
-Message-ID: <20220819095320.40006-14-conor.dooley@microchip.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220819095320.40006-1-conor.dooley@microchip.com>
-References: <20220819095320.40006-1-conor.dooley@microchip.com>
+        with ESMTP id S1346735AbiHSKOb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Aug 2022 06:14:31 -0400
+Received: from albert.telenet-ops.be (albert.telenet-ops.be [IPv6:2a02:1800:110:4::f00:1a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99F28D7588
+        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 03:14:28 -0700 (PDT)
+Received: from ramsan.of.borg ([84.195.186.194])
+        by albert.telenet-ops.be with bizsmtp
+        id 9NER2800M4C55Sk06NERnL; Fri, 19 Aug 2022 12:14:26 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1oOz1F-001j63-BQ; Fri, 19 Aug 2022 12:14:25 +0200
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1oOz1E-004KVP-Rc; Fri, 19 Aug 2022 12:14:24 +0200
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Molly Sophia <mollysophia379@gmail.com>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] [RFC] arm64: dts: qcom: sdm845-xiaomi-polaris: Fix sde_dsi_active pinctrl
+Date:   Fri, 19 Aug 2022 12:14:23 +0200
+Message-Id: <629afd26008c2b1ba5822799ea7ea5b5271895e8.1660903997.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Padmarao wrote the driver in its original, pre upstream form.
-Daire & myself have been responsible for getting it upstreamable and
-subsequent development.
-Move Daire out of the blurb & into a MODULE_AUTHOR entry & add entries
-for myself and Padmarao.
+"make dtbs_check" says:
 
-While we are at it, convert the MODULE_LICENSE field to its preferred
-form of "GPL".
+    bias-disable: boolean property with value b'\x00\x00\x00\x00'
 
-Reviewed-by: Daire McNamara <daire.mcnamara@microchip.com>
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+Fix this by dropping the offending value.
+
+Fixes: be497abe19bf08fb ("arm64: dts: qcom: Add support for Xiaomi Mi Mix2s")
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 ---
- drivers/clk/microchip/clk-mpfs.c | 10 +++++++---
- 1 file changed, 7 insertions(+), 3 deletions(-)
+Marked RFC as I do not have the hardware or documentation.
+Perhaps the "bias-disable" property should be dropped instead?
+---
+ arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/clk/microchip/clk-mpfs.c b/drivers/clk/microchip/clk-mpfs.c
-index 35a67d2b7845..dceae0c9b9d1 100644
---- a/drivers/clk/microchip/clk-mpfs.c
-+++ b/drivers/clk/microchip/clk-mpfs.c
-@@ -1,7 +1,8 @@
- // SPDX-License-Identifier: GPL-2.0-only
- /*
-- * Daire McNamara,<daire.mcnamara@microchip.com>
-- * Copyright (C) 2020 Microchip Technology Inc.  All rights reserved.
-+ * PolarFire SoC MSS/core complex clock control
-+ *
-+ * Copyright (C) 2020-2022 Microchip Technology Inc. All rights reserved.
-  */
- #include <linux/auxiliary_bus.h>
- #include <linux/clk-provider.h>
-@@ -513,4 +514,7 @@ static void __exit clk_mpfs_exit(void)
- module_exit(clk_mpfs_exit);
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
+index 7747081b98875aad..dba7c2693ff50073 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
+@@ -617,7 +617,7 @@ sde_dsi_active: sde-dsi-active {
+ 		pins = "gpio6", "gpio10";
+ 		function = "gpio";
+ 		drive-strength = <8>;
+-		bias-disable = <0>;
++		bias-disable;
+ 	};
  
- MODULE_DESCRIPTION("Microchip PolarFire SoC Clock Driver");
--MODULE_LICENSE("GPL v2");
-+MODULE_AUTHOR("Padmarao Begari <padmarao.begari@microchip.com>");
-+MODULE_AUTHOR("Daire McNamara <daire.mcnamara@microchip.com>");
-+MODULE_AUTHOR("Conor Dooley <conor.dooley@microchip.com>");
-+MODULE_LICENSE("GPL");
+ 	sde_dsi_suspend: sde-dsi-suspend {
 -- 
-2.36.1
+2.25.1
 
