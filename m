@@ -2,156 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0798859ADC2
-	for <lists+devicetree@lfdr.de>; Sat, 20 Aug 2022 14:03:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84EB759ADCD
+	for <lists+devicetree@lfdr.de>; Sat, 20 Aug 2022 14:09:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346030AbiHTMBH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 Aug 2022 08:01:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56146 "EHLO
+        id S1346149AbiHTMHp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 Aug 2022 08:07:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346025AbiHTMBC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Aug 2022 08:01:02 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E86DFA344E
-        for <devicetree@vger.kernel.org>; Sat, 20 Aug 2022 05:01:01 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1oPN9R-0001x5-Dv; Sat, 20 Aug 2022 14:00:29 +0200
-Received: from ore by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1oPN9O-0000zR-NS; Sat, 20 Aug 2022 14:00:26 +0200
-Date:   Sat, 20 Aug 2022 14:00:26 +0200
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Heiner Kallweit <hkallweit1@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Russell King <linux@armlinux.org.uk>,
+        with ESMTP id S1346075AbiHTMHn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Aug 2022 08:07:43 -0400
+Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D5F89D8DC;
+        Sat, 20 Aug 2022 05:07:42 -0700 (PDT)
+Received: by mail-qk1-f172.google.com with SMTP id a15so4969230qko.4;
+        Sat, 20 Aug 2022 05:07:42 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=ZR3FjkuW5iiRmrC3UtyKJcWdpW3MmZDZj9swwhPKMYc=;
+        b=rp6S5kJjVnCfxZ5P9jvbRMsH3JlGSy9gU+JfOWDu3mLvKbRu73WMviujk4xjNfelX/
+         E1RFIToF1u2Mnnt/X1ryStwf1mWNwPOrc9NwnbGIFcFlKC5LcgmzcvEAUWXQvKu9DjrE
+         JglnmkFJJnsb/qJDuAGAeh+N7KgQqDyZbFLZrDz/DSULUzvhxVQSlkVhKJmjq1Ev9DGg
+         +INL6VhOB56O4YJFvWX5C91oSTscTesA/rdCZhtR/1DDpaNyj0IfollTvTBOmBxJCaPi
+         +Ke9mmIpI37jdb0rXW8dgcGukyNNJmofoGHqh+8XIWmmMo60jT3S5wv90C3dtx2PWpYS
+         I0Jg==
+X-Gm-Message-State: ACgBeo0P+Gra8mBAlOKGNtix+YblxEN/Yk/BlvZkvwuA/R2kkJqVm1a+
+        9ONo/pC1szYHJ5qtKnkts3GSEgF4+JYgmg==
+X-Google-Smtp-Source: AA6agR4McFE7kFk21ae3mwT40DfQrXDhm+/AmmQfbaS42RIIm7LZvKeH/9Qx/wLvvvCjGAq1McqgIQ==
+X-Received: by 2002:a05:620a:12bc:b0:6bb:2f73:beab with SMTP id x28-20020a05620a12bc00b006bb2f73beabmr7845941qki.546.1660997260997;
+        Sat, 20 Aug 2022 05:07:40 -0700 (PDT)
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com. [209.85.128.170])
+        by smtp.gmail.com with ESMTPSA id n18-20020a05620a295200b006b9593e2f68sm6496432qkp.4.2022.08.20.05.07.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 20 Aug 2022 05:07:40 -0700 (PDT)
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-3376851fe13so149793297b3.6;
+        Sat, 20 Aug 2022 05:07:39 -0700 (PDT)
+X-Received: by 2002:a81:f47:0:b0:31f:434b:5ee with SMTP id 68-20020a810f47000000b0031f434b05eemr12132492ywp.383.1660997259528;
+ Sat, 20 Aug 2022 05:07:39 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220815151451.23293-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220815151451.23293-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <e9b00bb5-bb78-091f-9c10-96c156690469@microchip.com> <CAMuHMdUGttswcSGeOdrJLeoZLmoeKhm7R82L-3wLJnagmZ4dBA@mail.gmail.com>
+ <47cec683-dc17-7aa2-3511-b0244020d571@microchip.com>
+In-Reply-To: <47cec683-dc17-7aa2-3511-b0244020d571@microchip.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Sat, 20 Aug 2022 14:07:28 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUSud4-0ercQe3cyg1RXqg4DKTfgvPh5wc8ibca6dyDKQ@mail.gmail.com>
+Message-ID: <CAMuHMdUSud4-0ercQe3cyg1RXqg4DKTfgvPh5wc8ibca6dyDKQ@mail.gmail.com>
+Subject: Re: [PATCH v2 5/8] riscv: dts: renesas: Add initial devicetree for
+ Renesas RZ/Five SoC
+To:     Conor Dooley <Conor.Dooley@microchip.com>
+Cc:     "Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>, kernel@pengutronix.de,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-        David Jander <david@protonic.nl>
-Subject: Re: [PATCH net-next v1 4/7] net: pse-pd: add generic PSE driver
-Message-ID: <20220820120026.GF10138@pengutronix.de>
-References: <20220819120109.3857571-1-o.rempel@pengutronix.de>
- <20220819120109.3857571-5-o.rempel@pengutronix.de>
- <Yv/4du75DNO2Xykr@lunn.ch>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Yv/4du75DNO2Xykr@lunn.ch>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Anup Patel <anup@brainfault.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Prabhakar Lad <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 19, 2022 at 10:54:14PM +0200, Andrew Lunn wrote:
-> > +static int
-> > +gen_pse_podl_get_admin_sate(struct pse_controller_dev *pcdev, unsigned long id)
-> 
-> Should that be state?
+Hi Conor,
 
-ack. fixed.
+On Sat, Aug 20, 2022 at 10:49 AM <Conor.Dooley@microchip.com> wrote:
+> On 20/08/2022 09:45, Geert Uytterhoeven wrote:
+> > On Fri, Aug 19, 2022 at 8:40 PM <Conor.Dooley@microchip.com> wrote:
+> >> On 15/08/2022 16:14, Lad Prabhakar wrote:
+> >>> Add initial device tree for Renesas RZ/Five RISC-V CPU Core (AX45MP
+> >>> Single).
+> >>>
+> >>> Below is the list of IP blocks added in the initial SoC DTSI which can be
+> >>> used to boot via initramfs on RZ/Five SMARC EVK:
+> >>> - AX45MP CPU
+> >>> - CPG
+> >>> - PINCTRL
+> >>> - PLIC
+> >>> - SCIF0
+> >>> - SYSC
+> >>>
+> >>> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-> > +{
-> > +	struct gen_pse_priv *priv = to_gen_pse(pcdev);
-> > +
-> > +	/* aPoDLPSEAdminState can be different to aPoDLPSEPowerDetectionStatus
-> > +	 * which is provided by the regulator.
-> > +	 */
-> > +	return priv->admin_state;
-> > +}
-> > +
-> > +static int
-> > +gen_pse_podl_set_admin_control(struct pse_controller_dev *pcdev,
-> > +			       unsigned long id,
-> > +			       enum ethtool_podl_pse_admin_state state)
-> > +{
-> > +	struct gen_pse_priv *priv = to_gen_pse(pcdev);
-> > +	int ret;
-> > +
-> > +	if (priv->admin_state == state)
-> > +		goto set_state;
-> 
-> return 0; ?
+> >> That aside, by convention so far we have put things like extals or
+> >> reference clocks below the /cpus node. Could you do the same here too
+> >> please?
+> >
+> > Really? We've been putting them at the root node for a long time,
+> > since the separate "clocks" grouping subnode was deprecated.
+> > The extal-clk is not even part of the SoC, so it should definitely
+> > not be under the /cpus node.
+>
+> Under may have been a confusing choice of words, I meant "physically"
+> under it in the file. Maybe after would have been a better choice of
+> words? I wasn't suggesting you put it inside the CPUs node.
+> Does that make more sense?
 
-ack. done
+Oh right, you mean the order of the nodes. Yes, "extal-clk" should
+be after "cpus", following alphabetical sort order, as the nodes have no
+unit addresses.
 
-> > +	platform_set_drvdata(pdev, priv);
-> > +
-> > +	priv->admin_state = ETHTOOL_PODL_PSE_ADMIN_STATE_DISABLED;
-> 
-> There is the comment earlier:
-> 
-> 	/* aPoDLPSEAdminState can be different to aPoDLPSEPowerDetectionStatus
-> 	 * which is provided by the regulator.
-> 
-> Is this because the regulator might of been turned on, but it has
-> detected a short and turned itself off? So it is administratively on,
-> but off in order to stop the magic smoke escaping?
+Sorry for missing that in my review.  I also misread "below"
+(in Dutch there is only a single word for "below" and "under" ;-)
 
-ack. According to 30.15.1.1.3 aPoDLPSEPowerDetectionStatus, we may have
-following:
-/**
- * enum ethtool_podl_pse_pw_d_status - power detection status of the PoDL PSE.
- *	IEEE 802.3-2018 30.15.1.1.3 aPoDLPSEPowerDetectionStatus:
- * @ETHTOOL_PODL_PSE_PW_D_STATUS_UNKNOWN: PoDL PSE
- * @ETHTOOL_PODL_PSE_PW_D_STATUS_DISABLED: "The enumeration “disabled” is
- *	asserted true when the PoDL PSE state diagram variable mr_pse_enable is
- *	false"
- * @ETHTOOL_PODL_PSE_PW_D_STATUS_SEARCHING: "The enumeration “searching” is
- *	asserted true when either of the PSE state diagram variables
- *	pi_detecting or pi_classifying is true."
- * @ETHTOOL_PODL_PSE_PW_D_STATUS_DELIVERING: "The enumeration “deliveringPower”
- *	is asserted true when the PoDL PSE state diagram variable pi_powered is
- *	true."
- * @ETHTOOL_PODL_PSE_PW_D_STATUS_SLEEP: "The enumeration “sleep” is asserted
- *	true when the PoDL PSE state diagram variable pi_sleeping is true."
- * @ETHTOOL_PODL_PSE_PW_D_STATUS_IDLE: "The enumeration “idle” is asserted true
- *	when the logical combination of the PoDL PSE state diagram variables
- *	pi_prebiased*!pi_sleeping is true."
- * @ETHTOOL_PODL_PSE_PW_D_STATUS_ERROR: "The enumeration “error” is asserted
- *	true when the PoDL PSE state diagram variable overload_held is true."
- */
+Gr{oetje,eeting}s,
 
-Probably all of them, except of ETHTOOL_PODL_PSE_PW_D_STATUS_SEARCHING can be
-potentially implemented in this driver on top of regulator framework.
+                        Geert
 
-> But what about the other way around? Something has already turned the
-> regulator on, e.g. the bootloader. Should the default be
-> ETHTOOL_PODL_PSE_ADMIN_STATE_DISABLED even thought power is being
-> delivered? Do we want to put the regulator into the off state at
-> probe, so it is in a well defined state? Or set priv->admin_state to
-> whatever regulator_is_enabled() indicates?
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Good question. I assume, automotive folks would love be able to enable
-regulator in the boot loader on the PSE to let the Powered Device boot parallel
-to the PSE.
-
-Regards,
-Oleksij
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
