@@ -2,66 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BDE8B59ACD1
-	for <lists+devicetree@lfdr.de>; Sat, 20 Aug 2022 11:18:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F15559ACFC
+	for <lists+devicetree@lfdr.de>; Sat, 20 Aug 2022 11:39:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244890AbiHTJQZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 Aug 2022 05:16:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35748 "EHLO
+        id S1344748AbiHTJhb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 Aug 2022 05:37:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231132AbiHTJQZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Aug 2022 05:16:25 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B946B4430;
-        Sat, 20 Aug 2022 02:16:23 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2BC0661037;
-        Sat, 20 Aug 2022 09:16:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36D03C433D6;
-        Sat, 20 Aug 2022 09:16:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1660986982;
-        bh=m8+eVH1apY8yJflD/rlc30nA3D1GDtr+IypyoRcZTHQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Cx/qzT7dcPFJMqYA78q1sbqlh43I/RiBggZORHyTgjuPeRpmgR6sMhPiCI/qsf3j1
-         +YpZPjsfkYBVpATdp8AoBujE5QefNq9tOWKB4eMRzZmUEuz5hD2reYkZ4s31cX1yzJ
-         fSXfpFg/wmgNayuPOkQjF8ETb4FECy1BM79hboKquuFmuI8zovSyemSCY83kt6IKKV
-         RyNYX4ho+riLPai51wKezOomhYEleNHf2nTLgBALpULatgs45eOQfwzignlKAKlL93
-         BKfB0EfCPJdKi4lpTeZ8P0YK5sT5musm/j+hETGcG8Oav3MvF2dGFRvldXr/wsaOtc
-         Ph/jZswrRoDjw==
-Received: by pali.im (Postfix)
-        id 05A395D0; Sat, 20 Aug 2022 11:16:18 +0200 (CEST)
-Date:   Sat, 20 Aug 2022 11:16:18 +0200
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     Michal =?utf-8?B?U3VjaMOhbmVr?= <msuchanek@suse.de>,
-        Stephen Hemminger <stephen@networkplumber.org>,
-        Tim Harvey <tharvey@gateworks.com>,
-        netdev <netdev@vger.kernel.org>, u-boot <u-boot@lists.denx.de>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>
-Subject: Re: ethernet<n> dt aliases implications in U-Boot and Linux
-Message-ID: <20220820091618.vdrisqa6twvl23vj@pali>
-References: <5914cae0-e87b-fb94-85dd-33311fc84c52@seco.com>
- <20220808210945.GP17705@kitsune.suse.cz>
- <20220808143835.41b38971@hermes.local>
- <20220808214522.GQ17705@kitsune.suse.cz>
- <53f91ad4-a0d1-e223-a173-d2f59524e286@seco.com>
- <20220809213146.m6a3kfex673pjtgq@pali>
- <b1b33912-8898-f42d-5f30-0ca050fccf9a@seco.com>
- <20220809214207.bd4o7yzloi4npzf7@pali>
- <2083d6d6-eecf-d651-6f4f-87769cd3d60d@seco.com>
- <20220809224535.ymzzt6a4v756liwj@pali>
+        with ESMTP id S1344378AbiHTJh3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Aug 2022 05:37:29 -0400
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03B32B9404;
+        Sat, 20 Aug 2022 02:37:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1660988247; x=1692524247;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Ljtd1sJoSw4+WWLOhkP+dR7DajSFnivj+he0lgBJyJQ=;
+  b=XksN9KdvuwHJEfDqEcKIgfuuLD3V8JTxzElgZNaI31NVZXucTRuAuHKd
+   liBvVDKTNA5J5Ae/kpMZJ//0MQo/5o31LzSj3PTy/H8bDRPmMpuPBQwX1
+   Nw6a/IBIqyFD+dH1B44lzWIvKoszCWqAF1zTr9wc2IY+FNrrR7bv2yi1y
+   xZPoLPHXjJcC4hpOSOKcIu1G6TWzduHMVxqKmIKUa1FQ0v1Tm7OTiItB0
+   Ib2uTuGyy24UIiF65nMoT/fyOceOmKO/V4Dgd31E+1Xd8g7kAC5ctvpM1
+   0/qadMAIjSEHiXMpJQJNGr2ZRdUhMs9QHZhojgiNED5XlEQYSrppjdQ0s
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10444"; a="293164757"
+X-IronPort-AV: E=Sophos;i="5.93,250,1654585200"; 
+   d="scan'208";a="293164757"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Aug 2022 02:37:26 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,250,1654585200"; 
+   d="scan'208";a="637560355"
+Received: from lkp-server01.sh.intel.com (HELO 44b6dac04a33) ([10.239.97.150])
+  by orsmga008.jf.intel.com with ESMTP; 20 Aug 2022 02:37:25 -0700
+Received: from kbuild by 44b6dac04a33 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1oPKuy-0002Rf-1o;
+        Sat, 20 Aug 2022 09:37:24 +0000
+Date:   Sat, 20 Aug 2022 17:37:05 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Phil Edworthy <phil.edworthy@renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/3] arm64: dts: renesas: rzv2m evk: Enable i2c
+Message-ID: <202208201751.koiuT1se-lkp@intel.com>
+References: <20220819193944.337599-4-phil.edworthy@renesas.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220809224535.ymzzt6a4v756liwj@pali>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <20220819193944.337599-4-phil.edworthy@renesas.com>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,128 +65,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wednesday 10 August 2022 00:45:35 Pali Rohár wrote:
-> On Tuesday 09 August 2022 18:41:25 Sean Anderson wrote:
-> > On 8/9/22 5:42 PM, Pali Rohár wrote:
-> > > On Tuesday 09 August 2022 17:36:52 Sean Anderson wrote:
-> > >> On 8/9/22 5:31 PM, Pali Rohár wrote:
-> > >> > On Tuesday 09 August 2022 16:48:23 Sean Anderson wrote:
-> > >> >> On 8/8/22 5:45 PM, Michal Suchánek wrote:
-> > >> >> > On Mon, Aug 08, 2022 at 02:38:35PM -0700, Stephen Hemminger wrote:
-> > >> >> >> On Mon, 8 Aug 2022 23:09:45 +0200
-> > >> >> >> Michal Suchánek <msuchanek@suse.de> wrote:
-> > >> >> >> 
-> > >> >> >> > On Mon, Aug 08, 2022 at 03:57:55PM -0400, Sean Anderson wrote:
-> > >> >> >> > > Hi Tim,
-> > >> >> >> > > 
-> > >> >> >> > > On 8/8/22 3:18 PM, Tim Harvey wrote:  
-> > >> >> >> > > > Greetings,
-> > >> >> >> > > > 
-> > >> >> >> > > > I'm trying to understand if there is any implication of 'ethernet<n>'
-> > >> >> >> > > > aliases in Linux such as:
-> > >> >> >> > > >         aliases {
-> > >> >> >> > > >                 ethernet0 = &eqos;
-> > >> >> >> > > >                 ethernet1 = &fec;
-> > >> >> >> > > >                 ethernet2 = &lan1;
-> > >> >> >> > > >                 ethernet3 = &lan2;
-> > >> >> >> > > >                 ethernet4 = &lan3;
-> > >> >> >> > > >                 ethernet5 = &lan4;
-> > >> >> >> > > >                 ethernet6 = &lan5;
-> > >> >> >> > > >         };
-> > >> >> >> > > > 
-> > >> >> >> > > > I know U-Boot boards that use device-tree will use these aliases to
-> > >> >> >> > > > name the devices in U-Boot such that the device with alias 'ethernet0'
-> > >> >> >> > > > becomes eth0 and alias 'ethernet1' becomes eth1 but for Linux it
-> > >> >> >> > > > appears that the naming of network devices that are embedded (ie SoC)
-> > >> >> >> > > > vs enumerated (ie pci/usb) are always based on device registration
-> > >> >> >> > > > order which for static drivers depends on Makefile linking order and
-> > >> >> >> > > > has nothing to do with device-tree.
-> > >> >> >> > > > 
-> > >> >> >> > > > Is there currently any way to control network device naming in Linux
-> > >> >> >> > > > other than udev?  
-> > >> >> >> > > 
-> > >> >> >> > > You can also use systemd-networkd et al. (but that is the same kind of mechanism)
-> > >> >> >> > >   
-> > >> >> >> > > > Does Linux use the ethernet<n> aliases for anything at all?  
-> > >> >> >> > > 
-> > >> >> >> > > No :l  
-> > >> >> >> > 
-> > >> >> >> > Maybe it's a great opportunity for porting biosdevname to DT based
-> > >> >> >> > platforms ;-)
-> > >> >> >> 
-> > >> >> >> Sorry, biosdevname was wrong way to do things.
-> > >> >> >> Did you look at the internals, it was dumpster diving as root into BIOS.
-> > >> >> > 
-> > >> >> > When it's BIOS what defines the names then you have to read them from
-> > >> >> > the BIOS. Recently it was updated to use some sysfs file or whatver.
-> > >> >> > It's not like you would use any of that code with DT, anyway.
-> > >> >> > 
-> > >> >> >> Systemd-networkd does things in much more supportable manner using existing
-> > >> >> >> sysfs API's.
-> > >> >> > 
-> > >> >> > Which is a dumpster of systemd code, no thanks.
-> > >> >> > 
-> > >> >> > I want my device naming independent of the init system, especially if
-> > >> >> > it's systemd.
-> > >> >> 
-> > >> >> Well, there's always nameif...
-> > >> >> 
-> > >> >> That said, I have made [1] for people using systemd-networkd.
-> > >> >> 
-> > >> >> --Sean
-> > >> >> 
-> > >> >> [1] https://github.com/systemd/systemd/pull/24265
-> > >> > 
-> > >> > Hello!
-> > >> > 
-> > >> > In some cases "label" DT property can be used also as interface name.
-> > >> > For example this property is already used by DSA kernel driver.
-> > >> > 
-> > >> > I created very simple script which renames all interfaces in system to
-> > >> > their "label" DT property (if there is any defined).
-> > >> > 
-> > >> > #!/bin/sh
-> > >> > for iface in `ls /sys/class/net/`; do
-> > >> > 	for of_node in of_node device/of_node; do
-> > >> > 		if test -e /sys/class/net/$iface/$of_node/; then
-> > >> > 			label=`cat /sys/class/net/$iface/$of_node/label 2>/dev/null`
-> > >> > 			if test -n "$label" && test "$label" != "$iface"; then
-> > >> > 				echo "Renaming net interface $iface to $label..."
-> > >> > 				up=$((`cat /sys/class/net/$iface/flags 2>/dev/null || echo 1` & 0x1))
-> > >> > 				if test "$up" != "0"; then
-> > >> > 					ip link set dev $iface down
-> > >> > 				fi
-> > >> > 				ip link set dev $iface name "$label" && iface=$label
-> > >> > 				if test "$up" != "0"; then
-> > >> > 					ip link set dev $iface up
-> > >> > 				fi
-> > >> > 			fi
-> > >> > 			break
-> > >> > 		fi
-> > >> > 	done
-> > >> > done
-> > >> > 
-> > >> > Maybe it would be better first to use "label" and then use ethernet alias?
-> > >> > 
-> > >> 
-> > >> It looks like there is already precedent for using ID_NET_LABEL_ONBOARD for
-> > >> this purpose (on SMBios boards). It should be a fairly simple extension to
-> > >> add that as well. However, I didn't find any uses of this in Linux or U-Boot
-> > >> (although I did find plenty of ethernet LEDs). Do you have an example you
-> > >> could point me to?
-> > >> 
-> > >> --Sean
-> > > 
-> > > In linux:
-> > > $ git grep '"label"' net/dsa/dsa2.c
-> > > net/dsa/dsa2.c: const char *name = of_get_property(dn, "label", NULL);
-> > > 
-> > 
-> > Hm, if Linux is using the label, then do we need to rename things in userspace?
-> 
-> It uses it _only_ for DSA drivers. For all other drivers (e.g. USB or
-> PCIe based network adapters) it does not use label.
+Hi Phil,
 
-Hello Sean! I would like to ask, are you going to use/implement "label"
-support (so it would work also for non-DSA drivers) in userspace, in
-similar way how you did aliases? https://github.com/systemd/systemd/pull/24265
+Thank you for the patch! Yet something to improve:
+
+[auto build test ERROR on geert-renesas-devel/next]
+[also build test ERROR on geert-renesas-drivers/renesas-clk linus/master v6.0-rc1 next-20220819]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Phil-Edworthy/Add-i2c-to-Renesas-RZ-V2M-SoC-and-board/20220820-034159
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-devel.git next
+config: arm64-randconfig-r004-20220820 (https://download.01.org/0day-ci/archive/20220820/202208201751.koiuT1se-lkp@intel.com/config)
+compiler: clang version 16.0.0 (https://github.com/llvm/llvm-project 0ac597f3cacf60479ffd36b03766fa7462dabd78)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # install arm64 cross compiling tool for clang build
+        # apt-get install binutils-aarch64-linux-gnu
+        # https://github.com/intel-lab-lkp/linux/commit/4b130a56e73ba827a556422037fe7e3690a36b00
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Phil-Edworthy/Add-i2c-to-Renesas-RZ-V2M-SoC-and-board/20220820-034159
+        git checkout 4b130a56e73ba827a556422037fe7e3690a36b00
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash
+
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+>> Error: arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts:75.1-9 Label or path pinctrl not found
+>> FATAL ERROR: Syntax error parsing input tree
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
