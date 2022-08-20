@@ -2,505 +2,340 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF8DD59B006
-	for <lists+devicetree@lfdr.de>; Sat, 20 Aug 2022 21:49:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2630759B023
+	for <lists+devicetree@lfdr.de>; Sat, 20 Aug 2022 22:00:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229735AbiHTTst (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 Aug 2022 15:48:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38696 "EHLO
+        id S231671AbiHTT6W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 Aug 2022 15:58:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229600AbiHTTss (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Aug 2022 15:48:48 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E71B6220C3
-        for <devicetree@vger.kernel.org>; Sat, 20 Aug 2022 12:48:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
-        Message-Id:Date:Subject:Cc:To:From:From:Sender:Reply-To:Subject:Date:
-        Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=9c/m3HYF5objKw9/G2hjUYwRsYS3THqF8Se7/W8r5Hw=; b=4S2rbcbD73PjCugdvWpxHnHnCT
-        IWk/0UbGcn49JBH8tepmrjKiC8wLtyVR+1ZX/U+i/z8MLjHSSKeMmWGJWKWBwS1/mMVxRzVWvuYJB
-        TOM5FgE5hYGcrYTp7N9ThHxY0h/uNcu1fbGngm0LWiS7isX3lretfVYURsw7Rg9ggzY8=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1oPUSL-00E48d-SX; Sat, 20 Aug 2022 21:48:29 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Gregory Clement <gregory.clement@bootlin.com>
-Cc:     arm-soc <arm@kernel.org>, Device Tree <devicetree@vger.kernel.org>,
-        Andrew Lunn <andrew@lunn.ch>
-Subject: [PATCH 11/11] DT: clock: Convert mvebu-gated-clock.txt to YAML
-Date:   Sat, 20 Aug 2022 21:48:04 +0200
-Message-Id: <20220820194804.3352415-12-andrew@lunn.ch>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220820194804.3352415-1-andrew@lunn.ch>
-References: <20220820194804.3352415-1-andrew@lunn.ch>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S230285AbiHTT6R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Aug 2022 15:58:17 -0400
+Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A6456467
+        for <devicetree@vger.kernel.org>; Sat, 20 Aug 2022 12:58:14 -0700 (PDT)
+Received: by mail-pl1-x62d.google.com with SMTP id g8so2867835plq.11
+        for <devicetree@vger.kernel.org>; Sat, 20 Aug 2022 12:58:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=pensando.io; s=google;
+        h=message-id:date:subject:cc:to:from:from:to:cc;
+        bh=EET0Un/8O4jrmVE9pDHlqLGnoLV+4eS4NEOWgSLK9sM=;
+        b=Fq71Isre/Zv+ozJoJuTsRm8tE3lFksMnPqDnbyLTeYUOycze8peYrSNMEFjB3Tzgqt
+         0jHONte/M/6NA9eXWsy1n1ZLpa+gJXFQwho/A5IwpP3g07VVX2tLCLvRoJqeQ0ogK4ax
+         mUp4myIqgrxwwPTpwtbzHapfeuMH0LrlHdrIFin6RFvmyq/tqa9Wgtlx46RYE3NaavAw
+         IlM9E/9NCnnhDnYAVsCm45zeMypJT3WMDh8c/+i2gb7xsZ/3qJUpwqHHVXSi50Z1hlv4
+         8Le04vKwcIdhiUrKbLpsAvOsDAnYgiMdam8Q39OKjSjL/4GB5LtUwQht9WsSynSy2wQD
+         JhGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
+        bh=EET0Un/8O4jrmVE9pDHlqLGnoLV+4eS4NEOWgSLK9sM=;
+        b=B8/kRaOcNC2UhWLzAqmKeUNEYEcZeqviakhBHCpUYanTbgwVpCaCBVkz5bWe7VyoUf
+         kLIneKkfUy9Lz2PsHfcQuCwp4ueG3klhTcjZkXXj+qZQCnBeT+hZlMH8zWVoaJG5uiFe
+         IvaP7eHcULF1NA/4iEmUrs+PtBV5dqWEvNWNrSKRl5RM34X9n1sPSTWOTe5x947daA7k
+         QWjg+3ZTUB/wf5tdZv7dyM4OBHiKuCOCWLjlYMUBZ9XfguHMs0bN19FC2Kc/wzB5uPvb
+         A1e+wwzUdbn0K+wwNI3DJzyIQZUvdV3eLF+NLegrfJWLYakmmoJ1Bi/Yww5NigXZxNgc
+         UVIw==
+X-Gm-Message-State: ACgBeo3+wJVdVRIyaOPCxPGjNOpPEWsnlLVjQ4oHooyK3Hoihnjz4JdD
+        GuQSM4YzPeQ9d5uUDwcVK8e+og==
+X-Google-Smtp-Source: AA6agR4NQBiKeACQZHL0se4kx7TrkCzs5KUP7idmilJI/Skl9nIaDoND8/L39X6N91CTXtZzul6bDw==
+X-Received: by 2002:a17:90a:fc87:b0:1fa:ddf8:ddd1 with SMTP id ci7-20020a17090afc8700b001faddf8ddd1mr10957482pjb.8.1661025493420;
+        Sat, 20 Aug 2022 12:58:13 -0700 (PDT)
+Received: from platform-dev1.pensando.io ([12.226.153.42])
+        by smtp.gmail.com with ESMTPSA id u66-20020a626045000000b005363bc65bb1sm2316794pfb.91.2022.08.20.12.58.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 20 Aug 2022 12:58:12 -0700 (PDT)
+From:   Brad Larson <brad@pensando.io>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+        adrian.hunter@intel.com, alcooperx@gmail.com,
+        andy.shevchenko@gmail.com, arnd@arndb.de, brad@pensando.io,
+        blarson@amd.com, brijeshkumar.singh@amd.com,
+        catalin.marinas@arm.com, gsomlo@gmail.com, gerg@linux-m68k.org,
+        krzk@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lee.jones@linaro.org, broonie@kernel.org,
+        yamada.masahiro@socionext.com, p.zabel@pengutronix.de,
+        piotrs@cadence.com, p.yadav@ti.com, rdunlap@infradead.org,
+        robh+dt@kernel.org, samuel@sholland.org, fancer.lancer@gmail.com,
+        suravee.suthikulpanit@amd.com, thomas.lendacky@amd.com,
+        ulf.hansson@linaro.org, will@kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v6 00/17] Support AMD Pensando Elba SoC
+Date:   Sat, 20 Aug 2022 12:57:33 -0700
+Message-Id: <20220820195750.70861-1-brad@pensando.io>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Andrew Lunn <andrew@lunn.ch>
----
- .../clock/marvell,kirkwood-gating-clock.yaml  | 230 ++++++++++++++++++
- .../bindings/clock/mvebu-gated-clock.txt      | 205 ----------------
- 2 files changed, 230 insertions(+), 205 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/clock/marvell,kirkwood-gating-clock.yaml
- delete mode 100644 Documentation/devicetree/bindings/clock/mvebu-gated-clock.txt
+From: Brad Larson <blarson@amd.com>
 
-diff --git a/Documentation/devicetree/bindings/clock/marvell,kirkwood-gating-clock.yaml b/Documentation/devicetree/bindings/clock/marvell,kirkwood-gating-clock.yaml
-new file mode 100644
-index 000000000000..b420a2c2a8d3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/marvell,kirkwood-gating-clock.yaml
-@@ -0,0 +1,230 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/marvell,kirkwood-gating-clock.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Marvel Gating Clock Device Tree Bindings
-+
-+maintainers:
-+  - Andrew Lunn <andrew@lunn.ch>
-+
-+# Marvell Armada 370/375/380/385/39x/XP, Dove and Kirkwood allow some
-+# peripheral clocks to be gated to save some power. The clock consumer
-+# should specify the desired clock by having the clock ID in its
-+# "clocks" phandle cell. The clock ID is directly mapped to the
-+# corresponding clock gating control bit in HW to ease manual clock
-+# lookup in datasheet.
-+#
-+# The following is a list of provided IDs for Armada 370:
-+# ID	Clock	Peripheral
-+# -----------------------------------
-+# 0	Audio	AC97 Cntrl
-+# 1	pex0_en	PCIe 0 Clock out
-+# 2	pex1_en	PCIe 1 Clock out
-+# 3	ge1	Gigabit Ethernet 1
-+# 4	ge0	Gigabit Ethernet 0
-+# 5	pex0	PCIe Cntrl 0
-+# 9	pex1	PCIe Cntrl 1
-+# 15	sata0	SATA Host 0
-+# 17	sdio	SDHCI Host
-+# 23	crypto	CESA (crypto engine)
-+# 25	tdm	Time Division Mplx
-+# 28	ddr	DDR Cntrl
-+# 30	sata1	SATA Host 0
-+#
-+# The following is a list of provided IDs for Armada 375:
-+# ID	Clock		Peripheral
-+# -----------------------------------
-+# 2	mu		Management Unit
-+# 3	pp		Packet Processor
-+# 4	ptp		PTP
-+# 5	pex0		PCIe 0 Clock out
-+# 6	pex1		PCIe 1 Clock out
-+# 8	audio		Audio Cntrl
-+# 11	nd_clk		Nand Flash Cntrl
-+# 14	sata0_link	SATA 0 Link
-+# 15	sata0_core	SATA 0 Core
-+# 16	usb3		USB3 Host
-+# 17	sdio		SDHCI Host
-+# 18	usb		USB Host
-+# 19	gop		Gigabit Ethernet MAC
-+# 20	sata1_link	SATA 1 Link
-+# 21	sata1_core	SATA 1 Core
-+# 22	xor0		XOR DMA 0
-+# 23	xor1		XOR DMA 0
-+# 24	copro		Coprocessor
-+# 25	tdm		Time Division Mplx
-+# 28	crypto0_enc	Cryptographic Unit Port 0 Encryption
-+# 29	crypto0_core	Cryptographic Unit Port 0 Core
-+# 30	crypto1_enc	Cryptographic Unit Port 1 Encryption
-+# 31	crypto1_core	Cryptographic Unit Port 1 Core
-+#
-+# The following is a list of provided IDs for Armada 380/385:
-+# ID	Clock		Peripheral
-+# -----------------------------------
-+# 0	audio		Audio
-+# 2	ge2		Gigabit Ethernet 2
-+# 3	ge1		Gigabit Ethernet 1
-+# 4	ge0		Gigabit Ethernet 0
-+# 5	pex1		PCIe 1
-+# 6	pex2		PCIe 2
-+# 7	pex3		PCIe 3
-+# 8	pex0		PCIe 0
-+# 9	usb3h0		USB3 Host 0
-+# 10	usb3h1		USB3 Host 1
-+# 11	usb3d		USB3 Device
-+# 13	bm		Buffer Management
-+# 14	crypto0z	Cryptographic 0 Z
-+# 15	sata0		SATA 0
-+# 16	crypto1z	Cryptographic 1 Z
-+# 17	sdio		SDIO
-+# 18	usb2		USB 2
-+# 21	crypto1		Cryptographic 1
-+# 22	xor0		XOR 0
-+# 23	crypto0		Cryptographic 0
-+# 25	tdm		Time Division Multiplexing
-+# 28	xor1		XOR 1
-+# 30	sata1		SATA 1
-+#
-+# The following is a list of provided IDs for Armada 39x:
-+# ID	Clock		Peripheral
-+# -----------------------------------
-+# 5	pex1		PCIe 1
-+# 6	pex2		PCIe 2
-+# 7	pex3		PCIe 3
-+# 8	pex0		PCIe 0
-+# 9	usb3h0		USB3 Host 0
-+# 10	usb3h1		USB3 Host 1
-+# 15	sata0		SATA 0
-+# 17	sdio		SDIO
-+# 22	xor0		XOR 0
-+# 28	xor1		XOR 1
-+#
-+# The following is a list of provided IDs for Armada XP:
-+# ID	Clock	Peripheral
-+# -----------------------------------
-+# 0	audio	Audio Cntrl
-+# 1	ge3	Gigabit Ethernet 3
-+# 2	ge2	Gigabit Ethernet 2
-+# 3	ge1	Gigabit Ethernet 1
-+# 4	ge0	Gigabit Ethernet 0
-+# 5	pex0	PCIe Cntrl 0
-+# 6	pex1	PCIe Cntrl 1
-+# 7	pex2	PCIe Cntrl 2
-+# 8	pex3	PCIe Cntrl 3
-+# 13	bp
-+# 14	sata0lnk
-+# 15	sata0	SATA Host 0
-+# 16	lcd	LCD Cntrl
-+# 17	sdio	SDHCI Host
-+# 18	usb0	USB Host 0
-+# 19	usb1	USB Host 1
-+# 20	usb2	USB Host 2
-+# 22	xor0	XOR DMA 0
-+# 23	crypto	CESA engine
-+# 25	tdm	Time Division Mplx
-+# 28	xor1	XOR DMA 1
-+# 29	sata1lnk
-+# 30	sata1	SATA Host 1
-+#
-+# The following is a list of provided IDs for 98dx3236:
-+# ID	Clock	Peripheral
-+# -----------------------------------
-+# 3	ge1	Gigabit Ethernet 1
-+# 4	ge0	Gigabit Ethernet 0
-+# 5	pex0	PCIe Cntrl 0
-+# 17	sdio	SDHCI Host
-+# 18	usb0	USB Host 0
-+# 22	xor0	XOR DMA 0
-+#
-+# The following is a list of provided IDs for Dove:
-+# ID	Clock	Peripheral
-+# -----------------------------------
-+# 0	usb0	USB Host 0
-+# 1	usb1	USB Host 1
-+# 2	ge	Gigabit Ethernet
-+# 3	sata	SATA Host
-+# 4	pex0	PCIe Cntrl 0
-+# 5	pex1	PCIe Cntrl 1
-+# 8	sdio0	SDHCI Host 0
-+# 9	sdio1	SDHCI Host 1
-+# 10	nand	NAND Cntrl
-+# 11	camera	Camera Cntrl
-+# 12	i2s0	I2S Cntrl 0
-+# 13	i2s1	I2S Cntrl 1
-+# 15	crypto	CESA engine
-+# 21	ac97	AC97 Cntrl
-+# 22	pdma	Peripheral DMA
-+# 23	xor0	XOR DMA 0
-+# 24	xor1	XOR DMA 1
-+# 30	gephy	Gigabit Ethernel PHY
-+# Note: gephy(30) is implemented as a parent clock of ge(2)
-+#
-+# The following is a list of provided IDs for Kirkwood:
-+# ID	Clock	Peripheral
-+# -----------------------------------
-+# 0	ge0	Gigabit Ethernet 0
-+# 2	pex0	PCIe Cntrl 0
-+# 3	usb0	USB Host 0
-+# 4	sdio	SDIO Cntrl
-+# 5	tsu	Transp. Stream Unit
-+# 6	dunit	SDRAM Cntrl
-+# 7	runit	Runit
-+# 8	xor0	XOR DMA 0
-+# 9	audio	I2S Cntrl 0
-+# 14	sata0	SATA Host 0
-+# 15	sata1	SATA Host 1
-+# 16	xor1	XOR DMA 1
-+# 17	crypto	CESA engine
-+# 18	pex1	PCIe Cntrl 1
-+# 19	ge1	Gigabit Ethernet 1
-+# 20	tdm	Time Division Mplx
-+#
-+#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - marvell,armada-370-gating-clock
-+      - marvell,armada-375-gating-clock
-+      - marvell,armada-380-gating-clock
-+      - marvell,armada-390-gating-clock
-+      - marvell,armada-xp-gating-clock
-+      - marvell,mv98dx3236-gating-clock
-+      - marvell,dove-gating-clock
-+      - marvell,kirkwood-gating-clock
-+
-+  reg:
-+    description:
-+      Shall be the register address of the Clock Gating Control register
-+    maxItems: 1
-+
-+  "#clock-cells":
-+    const: 1
-+    description:
-+      This additional argument passed to that clock is the offset of
-+      the bit controlling this particular gate in the register.
-+
-+  clocks:
-+    description:
-+      default parent clock phandle (e.g. tclk)
-+    maxItems: 1
-+
-+required:
-+  - "#clock-cells"
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    gate_clk: clock-gating-control@d0038 {
-+      compatible = "marvell,dove-gating-clock";
-+      reg = <0xd0038 0x4>;
-+      /* default parent clock is tclk */
-+      clocks = <&core_clk 0>;
-+      #clock-cells = <1>;
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/clock/mvebu-gated-clock.txt b/Documentation/devicetree/bindings/clock/mvebu-gated-clock.txt
-deleted file mode 100644
-index de562da2ae77..000000000000
---- a/Documentation/devicetree/bindings/clock/mvebu-gated-clock.txt
-+++ /dev/null
-@@ -1,205 +0,0 @@
--* Gated Clock bindings for Marvell EBU SoCs
--
--Marvell Armada 370/375/380/385/39x/XP, Dove and Kirkwood allow some
--peripheral clocks to be gated to save some power. The clock consumer
--should specify the desired clock by having the clock ID in its
--"clocks" phandle cell. The clock ID is directly mapped to the
--corresponding clock gating control bit in HW to ease manual clock
--lookup in datasheet.
--
--The following is a list of provided IDs for Armada 370:
--ID	Clock	Peripheral
-------------------------------------
--0	Audio	AC97 Cntrl
--1	pex0_en	PCIe 0 Clock out
--2	pex1_en	PCIe 1 Clock out
--3	ge1	Gigabit Ethernet 1
--4	ge0	Gigabit Ethernet 0
--5	pex0	PCIe Cntrl 0
--9	pex1	PCIe Cntrl 1
--15	sata0	SATA Host 0
--17	sdio	SDHCI Host
--23	crypto	CESA (crypto engine)
--25	tdm	Time Division Mplx
--28	ddr	DDR Cntrl
--30	sata1	SATA Host 0
--
--The following is a list of provided IDs for Armada 375:
--ID	Clock		Peripheral
-------------------------------------
--2	mu		Management Unit
--3	pp		Packet Processor
--4	ptp		PTP
--5	pex0		PCIe 0 Clock out
--6	pex1		PCIe 1 Clock out
--8	audio		Audio Cntrl
--11	nd_clk		Nand Flash Cntrl
--14	sata0_link	SATA 0 Link
--15	sata0_core	SATA 0 Core
--16	usb3		USB3 Host
--17	sdio		SDHCI Host
--18	usb		USB Host
--19	gop		Gigabit Ethernet MAC
--20	sata1_link	SATA 1 Link
--21	sata1_core	SATA 1 Core
--22	xor0		XOR DMA 0
--23	xor1		XOR DMA 0
--24	copro		Coprocessor
--25	tdm		Time Division Mplx
--28	crypto0_enc	Cryptographic Unit Port 0 Encryption
--29	crypto0_core	Cryptographic Unit Port 0 Core
--30	crypto1_enc	Cryptographic Unit Port 1 Encryption
--31	crypto1_core	Cryptographic Unit Port 1 Core
--
--The following is a list of provided IDs for Armada 380/385:
--ID	Clock		Peripheral
-------------------------------------
--0	audio		Audio
--2	ge2		Gigabit Ethernet 2
--3	ge1		Gigabit Ethernet 1
--4	ge0		Gigabit Ethernet 0
--5	pex1		PCIe 1
--6	pex2		PCIe 2
--7	pex3		PCIe 3
--8	pex0		PCIe 0
--9	usb3h0		USB3 Host 0
--10	usb3h1		USB3 Host 1
--11	usb3d		USB3 Device
--13	bm		Buffer Management
--14	crypto0z	Cryptographic 0 Z
--15	sata0		SATA 0
--16	crypto1z	Cryptographic 1 Z
--17	sdio		SDIO
--18	usb2		USB 2
--21	crypto1		Cryptographic 1
--22	xor0		XOR 0
--23	crypto0		Cryptographic 0
--25	tdm		Time Division Multiplexing
--28	xor1		XOR 1
--30	sata1		SATA 1
--
--The following is a list of provided IDs for Armada 39x:
--ID	Clock		Peripheral
-------------------------------------
--5	pex1		PCIe 1
--6	pex2		PCIe 2
--7	pex3		PCIe 3
--8	pex0		PCIe 0
--9	usb3h0		USB3 Host 0
--10	usb3h1		USB3 Host 1
--15	sata0		SATA 0
--17	sdio		SDIO
--22	xor0		XOR 0
--28	xor1		XOR 1
--
--The following is a list of provided IDs for Armada XP:
--ID	Clock	Peripheral
-------------------------------------
--0	audio	Audio Cntrl
--1	ge3	Gigabit Ethernet 3
--2	ge2	Gigabit Ethernet 2
--3	ge1	Gigabit Ethernet 1
--4	ge0	Gigabit Ethernet 0
--5	pex0	PCIe Cntrl 0
--6	pex1	PCIe Cntrl 1
--7	pex2	PCIe Cntrl 2
--8	pex3	PCIe Cntrl 3
--13	bp
--14	sata0lnk
--15	sata0	SATA Host 0
--16	lcd	LCD Cntrl
--17	sdio	SDHCI Host
--18	usb0	USB Host 0
--19	usb1	USB Host 1
--20	usb2	USB Host 2
--22	xor0	XOR DMA 0
--23	crypto	CESA engine
--25	tdm	Time Division Mplx
--28	xor1	XOR DMA 1
--29	sata1lnk
--30	sata1	SATA Host 1
--
--The following is a list of provided IDs for 98dx3236:
--ID	Clock	Peripheral
-------------------------------------
--3	ge1	Gigabit Ethernet 1
--4	ge0	Gigabit Ethernet 0
--5	pex0	PCIe Cntrl 0
--17	sdio	SDHCI Host
--18	usb0	USB Host 0
--22	xor0	XOR DMA 0
--
--The following is a list of provided IDs for Dove:
--ID	Clock	Peripheral
-------------------------------------
--0	usb0	USB Host 0
--1	usb1	USB Host 1
--2	ge	Gigabit Ethernet
--3	sata	SATA Host
--4	pex0	PCIe Cntrl 0
--5	pex1	PCIe Cntrl 1
--8	sdio0	SDHCI Host 0
--9	sdio1	SDHCI Host 1
--10	nand	NAND Cntrl
--11	camera	Camera Cntrl
--12	i2s0	I2S Cntrl 0
--13	i2s1	I2S Cntrl 1
--15	crypto	CESA engine
--21	ac97	AC97 Cntrl
--22	pdma	Peripheral DMA
--23	xor0	XOR DMA 0
--24	xor1	XOR DMA 1
--30	gephy	Gigabit Ethernel PHY
--Note: gephy(30) is implemented as a parent clock of ge(2)
--
--The following is a list of provided IDs for Kirkwood:
--ID	Clock	Peripheral
-------------------------------------
--0	ge0	Gigabit Ethernet 0
--2	pex0	PCIe Cntrl 0
--3	usb0	USB Host 0
--4	sdio	SDIO Cntrl
--5	tsu	Transp. Stream Unit
--6	dunit	SDRAM Cntrl
--7	runit	Runit
--8	xor0	XOR DMA 0
--9	audio	I2S Cntrl 0
--14	sata0	SATA Host 0
--15	sata1	SATA Host 1
--16	xor1	XOR DMA 1
--17	crypto	CESA engine
--18	pex1	PCIe Cntrl 1
--19	ge1	Gigabit Ethernet 1
--20	tdm	Time Division Mplx
--
--Required properties:
--- compatible : shall be one of the following:
--	"marvell,armada-370-gating-clock" - for Armada 370 SoC clock gating
--	"marvell,armada-375-gating-clock" - for Armada 375 SoC clock gating
--	"marvell,armada-380-gating-clock" - for Armada 380/385 SoC clock gating
--	"marvell,armada-390-gating-clock" - for Armada 39x SoC clock gating
--	"marvell,armada-xp-gating-clock" - for Armada XP SoC clock gating
--	"marvell,mv98dx3236-gating-clock" - for 98dx3236 SoC clock gating
--	"marvell,dove-gating-clock" - for Dove SoC clock gating
--	"marvell,kirkwood-gating-clock" - for Kirkwood SoC clock gating
--- reg : shall be the register address of the Clock Gating Control register
--- #clock-cells : from common clock binding; shall be set to 1
--
--Optional properties:
--- clocks : default parent clock phandle (e.g. tclk)
--
--Example:
--
--gate_clk: clock-gating-control@d0038 {
--	compatible = "marvell,dove-gating-clock";
--	reg = <0xd0038 0x4>;
--	/* default parent clock is tclk */
--	clocks = <&core_clk 0>;
--	#clock-cells = <1>;
--};
--
--sdio0: sdio@92000 {
--	compatible = "marvell,dove-sdhci";
--	/* get clk gate bit 8 (sdio0) */
--	clocks = <&gate_clk 8>;
--};
+This series enables support for AMD Pensando Elba SoC based platforms.
+
+The Elba SoC has the following features:
+- Sixteen ARM64 A72 cores
+- Dual DDR 4/5 memory controllers
+- 32 lanes of PCIe Gen3/4 to the Host
+- Network interfaces: Dual 200GE, Quad 100GE, 50GE, 25GE, 10GE and
+  also a single 1GE management port.
+- Storage/crypto offloads and 144 programmable P4 cores.
+- QSPI and EMMC for SoC storage
+- Two SPI interfaces for peripheral management
+- I2C bus for platform management
+
+== V6 changes ==
+- Updated copyright and SPDX
+
+v6-0001-dt-bindings-arm-add-AMD-Pensando-boards
+- Delete 'Device Tree Bindings' in title
+
+v6-0002-dt-bindings-mmc-cdns-Add-AMD-Pensando-Elba-SoC
+- Change if/then for Elba which has a second reg for byte-lane control
+
+v6-0003-dt-bindings-spi-cdns-Add-compatible-for-AMD-Pensa
+- no change
+
+v6-0004-dt-bindings-spi-dw-Add-AMD-Pensando-Elba-SoC-SPI-
+- Add amd,pensando-elba-syscon
+
+v6-0005-dt-bindings-mfd-syscon-Add-amd-pensando-elba-sysc
+- no change
+
+v6-0006-dt-bindings-mfd-amd-pensando-elbasr-Add-AMD-Pensa
+- Expand description, rename nodes and change compatible usage
+
+v6-0007-dt-bindings-reset-amd-pensando-elbasr-reset-Add-A
+- Delete nodename pattern and changed spi0 to spi
+- File amd,pensando-elba-reset.h is deleted as there is only
+  one reset used.
+- Update example
+
+v6-0008-MAINTAINERS-Add-entry-for-AMD-PENSANDO
+- no change
+
+v6-0009-arm64-Add-config-for-AMD-Pensando-SoC-platforms
+- no change
+
+v6-0010-arm64-dts-Add-AMD-Pensando-Elba-SoC-support
+- Update node names and add amd,pensando-elba-syscon
+- Delete use of amd,pensando-elba-reset.h which had a single definition
+
+v6-0011-spi-cadence-quadspi-Add-compatible-for-AMD-Pensan
+- Remove (void) cast
+
+v6-0012-spi-dw-Add-support-for-AMD-Pensando-Elba-SoC
+- Update use of amd,pensando-elba-syscon
+
+v6-0013-mmc-sdhci-cadence-Enable-device-specific-override
+- Change this patch to add a priv_writel() callback where all
+  existing designs use writel().  This separates the Elba
+  support into three patches.  The second patch is added
+  to the end of the sequence for Elba support.  The third
+  patch enables mmc hardware reset.
+
+v6-0014-mfd-pensando-elbasr-Add-AMD-Pensando-Elba-System-
+- Updates from review comments
+- Use spi_message_init_with_transfers instead of init/add_tail API
+
+v6-0015-reset-elbasr-Add-AMD-Pensando-Elba-SR-Reset-Contr
+- Remove use of amd,pensando-elba-reset.h and use BIT()
+
+v6-0016-mmc-sdhci-cadence-Add-AMD-Pensando-Elba-SoC-suppo
+- Elba sdhci-cadence.c support added in this patch to build on
+  0013 which just adds a callback to override priv_writel()
+
+v6-0017-mmc-sdhci-cadence-Support-mmc-hardware-reset
+- New patch where Elba has a reset-controller for mmc hardware
+  reset.  The reset is implemented by a register in the cpld.
+
+== V5 changes ==
+- Change to AMD Pensando instead of Pensando.
+- No reference to spidev in the device tree.  Add multi-function driver
+  pensando-elbasr and sub-device reset-elbasr which provides mfd and
+  /dev interface to the cpld.
+- Rebase to linux-next tag next-20220609 5.19.0-rc1
+- Redo the email list after rebase and using scripts/get_maintainer.pl
+
+== V4 changes ==
+The version of dtschema used is 2022.3.2.
+
+v4-0001-dt-bindings-arm-add-Pensando-boards.patch
+- Add description and board compatible
+
+v4-0003-dt-bindings-mmc-Add-Pensando-Elba-SoC-binding.patch
+- Change from elba-emmc to elba-sd4hc to match file convention
+- Use minItems: 1 and maxItems: 2 to pass schema check
+
+v4-0005-dt-bindings-spi-dw-Add-Pensando-Elba-SoC-SPI-Control.patch
+- Add required property pensando,syscon-spics to go with
+  pensando,elba-spi
+
+v4-0006-MAINTAINERS-Add-entry-for-PENSANDO.patch
+- Change Maintained to Supported
+
+v4-0007-arm64-Add-config-for-Pensando-SoC-platforms.patch
+- Fix a typo on interface max speed
+
+v4-0008-spi-cadence-quadspi-Add-compatible-for-Pensando-Elba.patch
+- Update due to spi-cadence-quadspi.c changes
+
+v4-0009-mmc-sdhci-cadence-Add-Pensando-Elba-SoC-support.patch
+- Change from elba-emmc to elba-sd4hc to match file convention
+
+v4-0010-spi-dw-Add-support-for-Pensando-Elba-SoC.patch
+- Use more descriptive dt property pensando,syscon-spics
+- Minor changes from review input
+
+v4-0011-arm64-dts-Add-Pensando-Elba-SoC-support.patch
+- Changed to dual copyright (GPL-2.0+ OR MIT)
+- Minor changes from review input
+
+== V3 changes ==
+v3-0001-gpio-Add-Elba-SoC-gpio-driver-for-spi-cs-control.patch
+- This patch is deleted.  Elba SOC specific gpio spics control is
+  integrated into spi-dw-mmio.c.
+
+v3-0002-spi-cadence-quadspi-Add-QSPI-support-for-Pensando-El.patch
+- Changed compatible to "pensando,elba-qspi" to be more descriptive
+  in spi-cadence-quadspi.c.
+
+- Arnd wondered if moving to DT properties for quirks may be the
+  way to go.  Feedback I've received on other patches was don't
+  mix two efforts in one patch so I'm currently just adding the
+  Elba support to the current design.
+
+v3-0003-spi-dw-Add-support-for-Pensando-Elba-SoC-SPI.patch
+- Changed the implementation to use existing dw_spi_set_cs() and
+  integrated Elba specific CS control into spi-dw-mmio.c.  The
+  native designware support is for two chip-selects while Elba
+  provides 4 chip-selects.  Instead of adding a new file for
+  this support in gpio-elba-spics.c the support is in one
+  file (spi-dw-mmio.c).
+
+v3-0004-spidev-Add-Pensando-CPLD-compatible.patch
+- This patch is deleted.  The addition of compatible "pensando,cpld"
+  to spidev.c is not added and an existing compatible is used 
+  in the device tree to enable.
+
+v3-0005-mmc-sdhci-cadence-Add-Pensando-Elba-SoC-support.patch
+- Ulf and Yamada-san agreed the amount of code for this support
+  is not enough to need a new file.  The support is added into
+  sdhci-cadence.c and new files sdhci-cadence-elba.c and
+  sdhci-cadence.h are deleted.
+- Redundant defines are removed (e.g. use SDHCI_CDNS_HRS04 and
+  remove SDIO_REG_HRS4).
+- Removed phy init function sd4_set_dlyvr() and used existing
+  sdhci_cdns_phy_init(). Init values are from DT properties.
+- Replace  devm_ioremap_resource(&pdev->dev, iomem)
+     with  devm_platform_ioremap_resource(pdev, 1)
+- Refactored the elba priv_writ_l() and elba_write_l() to
+  remove a little redundant code.
+- The config option CONFIG_MMC_SDHCI_CADENCE_ELBA goes away.
+- Only C syntax and Elba functions are prefixed with elba_
+
+v3-0006-arm64-Add-config-for-Pensando-SoC-platforms.patch
+- Added a little more info to the platform help text to assist
+  users to decide on including platform support or not.
+
+v3-0007-arm64-dts-Add-Pensando-Elba-SoC-support.patch
+- Node names changed to DT generic names
+- Changed from using 'spi@' which is reserved
+- The elba-flash-parts.dtsi is kept separate as
+  it is included in multiple dts files.
+- SPDX license tags at the top of each file
+- The compatible = "pensando,elba" and 'model' are
+  now together in the board file.
+- UIO nodes removed
+- Ordered nodes by increasing unit address
+- Removed an unreferenced container node.
+- Dropped deprecated 'device_type' for uart0 node.
+
+v3-0010-dt-bindings-spi-cadence-qspi-Add-support-for-Pensand.patch
+- Updated since the latest documentation has been converted to yaml
+
+v3-0011-dt-bindings-gpio-Add-Pensando-Elba-SoC-support.patch
+- This patch is deleted since the Elba gpio spics is added to
+  the spi dw driver and documented there.
+
+Because of the deletion of patches and merging of code
+the new patchset is not similar.  A changelog is added into
+the patches for merged code to be helpful on the history.
+
+== V2 changes ==
+- 01    Fix typo, return code value and log message.
+- 03    Remove else clause, intrinsic DW chip-select is never used.
+- 08-11 Split out dts and bindings to sub-patches
+- 10    Converted existing cadence-quadspi.txt to YAML schema
+- 13    New driver should use <linux/gpio/driver.h>
+
+
+Brad Larson (17):
+  dt-bindings: arm: add AMD Pensando boards
+  dt-bindings: mmc: cdns: Add AMD Pensando Elba SoC
+  dt-bindings: spi: cdns: Add compatible for AMD Pensando Elba SoC
+  dt-bindings: spi: dw: Add AMD Pensando Elba SoC SPI Controller
+    bindings
+  dt-bindings: mfd: syscon: Add amd,pensando-elba-syscon compatible
+  dt-bindings: mfd: amd,pensando-elbasr: Add AMD Pensando Elba System
+    Resource chip
+  dt-bindings: reset: amd,pensando-elbasr-reset: Add AMD Pensando SR
+    Reset Controller bindings
+  MAINTAINERS: Add entry for AMD PENSANDO
+  arm64: Add config for AMD Pensando SoC platforms
+  arm64: dts: Add AMD Pensando Elba SoC support
+  spi: cadence-quadspi: Add compatible for AMD Pensando Elba SoC
+  spi: dw: Add support for AMD Pensando Elba SoC
+  mmc: sdhci-cadence: Enable device specific override of writel()
+  mfd: pensando-elbasr: Add AMD Pensando Elba System Resource chip
+  reset: elbasr: Add AMD Pensando Elba SR Reset Controller
+  mmc: sdhci-cadence: Add AMD Pensando Elba SoC support
+  mmc: sdhci-cadence: Support mmc hardware reset
+
+ .../devicetree/bindings/arm/amd,pensando.yaml |  26 +
+ .../bindings/mfd/amd,pensando-elbasr.yaml     |  97 ++
+ .../devicetree/bindings/mfd/syscon.yaml       |   1 +
+ .../devicetree/bindings/mmc/cdns,sdhci.yaml   |  13 +-
+ .../reset/amd,pensando-elbasr-reset.yaml      |  57 ++
+ .../bindings/spi/cdns,qspi-nor.yaml           |  12 +
+ .../bindings/spi/snps,dw-apb-ssi.yaml         |  11 +
+ MAINTAINERS                                   |   9 +
+ arch/arm64/Kconfig.platforms                  |  12 +
+ arch/arm64/boot/dts/amd/Makefile              |   1 +
+ arch/arm64/boot/dts/amd/elba-16core.dtsi      | 189 ++++
+ arch/arm64/boot/dts/amd/elba-asic-common.dtsi | 101 +++
+ arch/arm64/boot/dts/amd/elba-asic.dts         |  28 +
+ arch/arm64/boot/dts/amd/elba-flash-parts.dtsi | 106 +++
+ arch/arm64/boot/dts/amd/elba.dtsi             | 192 ++++
+ drivers/mfd/Kconfig                           |  14 +
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/pensando-elbasr.c                 | 854 ++++++++++++++++++
+ drivers/mmc/host/Kconfig                      |   1 +
+ drivers/mmc/host/sdhci-cadence.c              | 179 +++-
+ drivers/reset/Kconfig                         |   9 +
+ drivers/reset/Makefile                        |   1 +
+ drivers/reset/reset-elbasr.c                  |  77 ++
+ drivers/spi/spi-cadence-quadspi.c             |  19 +
+ drivers/spi/spi-dw-mmio.c                     |  77 ++
+ include/linux/mfd/pensando-elbasr.h           |  78 ++
+ 26 files changed, 2149 insertions(+), 16 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/arm/amd,pensando.yaml
+ create mode 100644 Documentation/devicetree/bindings/mfd/amd,pensando-elbasr.yaml
+ create mode 100644 Documentation/devicetree/bindings/reset/amd,pensando-elbasr-reset.yaml
+ create mode 100644 arch/arm64/boot/dts/amd/elba-16core.dtsi
+ create mode 100644 arch/arm64/boot/dts/amd/elba-asic-common.dtsi
+ create mode 100644 arch/arm64/boot/dts/amd/elba-asic.dts
+ create mode 100644 arch/arm64/boot/dts/amd/elba-flash-parts.dtsi
+ create mode 100644 arch/arm64/boot/dts/amd/elba.dtsi
+ create mode 100644 drivers/mfd/pensando-elbasr.c
+ create mode 100644 drivers/reset/reset-elbasr.c
+ create mode 100644 include/linux/mfd/pensando-elbasr.h
+
+
+base-commit: 3cc40a443a04d52b0c95255dce264068b01e9bfe
 -- 
-2.37.2
+2.17.1
 
