@@ -2,37 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C173959AFFD
-	for <lists+devicetree@lfdr.de>; Sat, 20 Aug 2022 21:49:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0051F59B001
+	for <lists+devicetree@lfdr.de>; Sat, 20 Aug 2022 21:49:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230004AbiHTTsl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 Aug 2022 15:48:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38000 "EHLO
+        id S231164AbiHTTsm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 Aug 2022 15:48:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231164AbiHTTsh (ORCPT
+        with ESMTP id S231173AbiHTTsh (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Sat, 20 Aug 2022 15:48:37 -0400
 Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C76918E3E
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC2771C13D
         for <devicetree@vger.kernel.org>; Sat, 20 Aug 2022 12:48:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:
-        Cc:To:From:From:Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:
-        Content-Type:Content-Transfer-Encoding:Content-ID:Content-Description:
-        Content-Disposition:In-Reply-To:References;
-        bh=PhUF9WuES8xf/Cthb6phloURjCdXy7ABGowTWrX++Rw=; b=qtWx7yO3dO9E/FXU/s2cBwadgh
-        lPfO09c/RsvHIQcR66mavifAMdNrPMgC/nQ7uhEz3Ehix6+JS94wIyrTYMMLH2XzegduShGIPAyfo
-        Wq3u4UeuDYM9KgqvWlhNefnTUc2nW6gBqkG4I8O4R1h4YnU5I6zmHs/9p05lUiPgjDE4=;
+        s=20171124; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+        Message-Id:Date:Subject:Cc:To:From:From:Sender:Reply-To:Subject:Date:
+        Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=1EJJYFLvGwEug/sfNcp8w1KYG92RoXrIliHndeGXgho=; b=XzH1zC46RtfgGb/7MbXdhotLFg
+        n8nTORqCsVsU35P0jwvV4YW6vK/8gy9ft07D8SgqWPwY+b+tRyKO6KtPdPdakc/mwu+o2NRgWtQ0T
+        Jy2IY/gGpg4Z2Ge0PgEeiQLh4ivIbU+3f883sWmOTfZYVPl7PxdBpEInNgTEVZQxZTuM=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
         (envelope-from <andrew@lunn.ch>)
-        id 1oPUSL-00E485-CI; Sat, 20 Aug 2022 21:48:29 +0200
+        id 1oPUSL-00E487-DW; Sat, 20 Aug 2022 21:48:29 +0200
 From:   Andrew Lunn <andrew@lunn.ch>
 To:     Gregory Clement <gregory.clement@bootlin.com>
 Cc:     arm-soc <arm@kernel.org>, Device Tree <devicetree@vger.kernel.org>,
         Andrew Lunn <andrew@lunn.ch>
-Subject: [PATCH 00/11] Start converting MVEBU bindings to YAML
-Date:   Sat, 20 Aug 2022 21:47:53 +0200
-Message-Id: <20220820194804.3352415-1-andrew@lunn.ch>
+Subject: [PATCH 01/11] DT: RTC: orion-rtc: Convert to YAML
+Date:   Sat, 20 Aug 2022 21:47:54 +0200
+Message-Id: <20220820194804.3352415-2-andrew@lunn.ch>
 X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20220820194804.3352415-1-andrew@lunn.ch>
+References: <20220820194804.3352415-1-andrew@lunn.ch>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -44,77 +46,95 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is the first batch of patches converting the Marvell MVEBU driver
-bindings from .txt to .yaml. So far, kirkwood has been used for
-testing, but these drivers apply to a range of Marvell SoCs.
+Covert the text description to YAML. The clock is optional, Orion5x
+based boards don't have it, but kirkwood should.
 
-In order to reduce the number of warnings from the DT schema checking
-tools, a few minor changes have been made to a few DT files. No actual
-errors have been found, the changes just make the checker quiet.
-
-Andrew Lunn (11):
-  DT: RTC: orion-rtc: Convert to YAML
-  DT: thermal: marvell,kirkwood-thermal: Convert to YAML
-  DT: pinctrl: Convert marvell,kirkwood-pintctrl to YAML
-  DT: USB: Convert ehci-orion to YAML
-  DT: watchdog: Convert marvel.txt to YAML
-  arm: DT: kirkwood/orion5: Rename watchdog node
-  DT: nand-controller: Reflect reality of marvell,orion-nand
-  DT: mtd: Convert orion-nand to YAML
-  arm: DT: kirkwood.dtsi: Rename nand to nand-controller
-  DT: timer: Convert marvell,orion-timer.txt to YAML
-  DT: clock: Convert mvebu-gated-clock.txt to YAML
-
- .../clock/marvell,kirkwood-gating-clock.yaml  | 230 +++++++++++
- .../bindings/clock/mvebu-gated-clock.txt      | 205 ----------
- .../bindings/mtd/marvell,orion-nand.yaml      |  85 +++++
- .../bindings/mtd/nand-controller.yaml         |  17 +-
- .../devicetree/bindings/mtd/orion-nand.txt    |  50 ---
- .../pinctrl/marvell,88f6180-pinctrl.yaml      |  73 ++++
- .../pinctrl/marvell,88f6190-pinctrl.yaml      |  73 ++++
- .../pinctrl/marvell,88f6192-pinctrl.yaml      |  73 ++++
- .../pinctrl/marvell,88f6281-pinctrl.yaml      |  74 ++++
- .../pinctrl/marvell,88f6282-pinctrl.yaml      |  74 ++++
- .../pinctrl/marvell,98dx1135-pinctrl.yaml     |  72 ++++
- .../pinctrl/marvell,98dx4122-pinctrl.yaml     |  71 ++++
- .../bindings/pinctrl/marvell,ac5-pinctrl.yaml |  14 +-
- .../pinctrl/marvell,kirkwood-pinctrl.txt      | 359 ------------------
- .../bindings/rtc/marvell,orion-rtc.yaml       |  48 +++
- .../devicetree/bindings/rtc/orion-rtc.txt     |  18 -
- .../bindings/thermal/kirkwood-thermal.txt     |  15 -
- .../thermal/marvell,kirkwood-thermal.yaml     |  32 ++
- .../bindings/timer/marvell,orion-timer.txt    |  16 -
- .../bindings/timer/marvell,orion-timer.yaml   |  51 +++
- .../devicetree/bindings/usb/ehci-orion.txt    |  22 --
- .../bindings/usb/marvell,orion-ehci.yaml      |  44 +++
- .../devicetree/bindings/watchdog/marvel.txt   |  45 ---
- .../bindings/watchdog/marvell,orion-wdt.yaml  |  83 ++++
- arch/arm/boot/dts/kirkwood.dtsi               |   4 +-
- arch/arm/boot/dts/orion5x.dtsi                |   2 +-
- 26 files changed, 1109 insertions(+), 741 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/clock/marvell,kirkwood-gating-clock.yaml
- delete mode 100644 Documentation/devicetree/bindings/clock/mvebu-gated-clock.txt
- create mode 100644 Documentation/devicetree/bindings/mtd/marvell,orion-nand.yaml
- delete mode 100644 Documentation/devicetree/bindings/mtd/orion-nand.txt
- create mode 100644 Documentation/devicetree/bindings/pinctrl/marvell,88f6180-pinctrl.yaml
- create mode 100644 Documentation/devicetree/bindings/pinctrl/marvell,88f6190-pinctrl.yaml
- create mode 100644 Documentation/devicetree/bindings/pinctrl/marvell,88f6192-pinctrl.yaml
- create mode 100644 Documentation/devicetree/bindings/pinctrl/marvell,88f6281-pinctrl.yaml
- create mode 100644 Documentation/devicetree/bindings/pinctrl/marvell,88f6282-pinctrl.yaml
- create mode 100644 Documentation/devicetree/bindings/pinctrl/marvell,98dx1135-pinctrl.yaml
- create mode 100644 Documentation/devicetree/bindings/pinctrl/marvell,98dx4122-pinctrl.yaml
- delete mode 100644 Documentation/devicetree/bindings/pinctrl/marvell,kirkwood-pinctrl.txt
+Signed-off-by: Andrew Lunn <andrew@lunn.ch>
+---
+ .../bindings/rtc/marvell,orion-rtc.yaml       | 48 +++++++++++++++++++
+ .../devicetree/bindings/rtc/orion-rtc.txt     | 18 -------
+ 2 files changed, 48 insertions(+), 18 deletions(-)
  create mode 100644 Documentation/devicetree/bindings/rtc/marvell,orion-rtc.yaml
  delete mode 100644 Documentation/devicetree/bindings/rtc/orion-rtc.txt
- delete mode 100644 Documentation/devicetree/bindings/thermal/kirkwood-thermal.txt
- create mode 100644 Documentation/devicetree/bindings/thermal/marvell,kirkwood-thermal.yaml
- delete mode 100644 Documentation/devicetree/bindings/timer/marvell,orion-timer.txt
- create mode 100644 Documentation/devicetree/bindings/timer/marvell,orion-timer.yaml
- delete mode 100644 Documentation/devicetree/bindings/usb/ehci-orion.txt
- create mode 100644 Documentation/devicetree/bindings/usb/marvell,orion-ehci.yaml
- delete mode 100644 Documentation/devicetree/bindings/watchdog/marvel.txt
- create mode 100644 Documentation/devicetree/bindings/watchdog/marvell,orion-wdt.yaml
 
+diff --git a/Documentation/devicetree/bindings/rtc/marvell,orion-rtc.yaml b/Documentation/devicetree/bindings/rtc/marvell,orion-rtc.yaml
+new file mode 100644
+index 000000000000..d240e67a4555
+--- /dev/null
++++ b/Documentation/devicetree/bindings/rtc/marvell,orion-rtc.yaml
+@@ -0,0 +1,48 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/rtc/marvell,orion-rtc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: MVEBU Orion RTC Device Tree Bindings
++
++allOf:
++  - $ref: "rtc.yaml#"
++
++maintainers:
++  - Andrew Lunn <andrew@lunn.ch>
++
++properties:
++  compatible:
++    oneOf:
++      - enum:
++          - marvell,orion-rtc
++      - items:
++          - enum:
++              - marvell,kirkwood-rtc
++          - const: marvell,orion-rtc
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    rtc@10300 {
++        compatible = "marvell,orion-rtc";
++        reg = <0xd0010300 0x20>;
++        interrupts = <50>;
++    };
++...
+diff --git a/Documentation/devicetree/bindings/rtc/orion-rtc.txt b/Documentation/devicetree/bindings/rtc/orion-rtc.txt
+deleted file mode 100644
+index 3bf63ffa5160..000000000000
+--- a/Documentation/devicetree/bindings/rtc/orion-rtc.txt
++++ /dev/null
+@@ -1,18 +0,0 @@
+-* Mvebu Real Time Clock
+-
+-RTC controller for the Kirkwood, the Dove, the Armada 370 and the
+-Armada XP SoCs
+-
+-Required properties:
+-- compatible : Should be "marvell,orion-rtc"
+-- reg: physical base address of the controller and length of memory mapped
+-  region.
+-- interrupts: IRQ line for the RTC.
+-
+-Example:
+-
+-rtc@10300 {
+-        compatible = "marvell,orion-rtc";
+-        reg = <0xd0010300 0x20>;
+-        interrupts = <50>;
+-};
 -- 
 2.37.2
 
