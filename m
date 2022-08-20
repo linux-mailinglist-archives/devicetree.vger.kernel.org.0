@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A36C59B002
-	for <lists+devicetree@lfdr.de>; Sat, 20 Aug 2022 21:49:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60DAC59AFFF
+	for <lists+devicetree@lfdr.de>; Sat, 20 Aug 2022 21:49:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229584AbiHTTsj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 Aug 2022 15:48:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37974 "EHLO
+        id S231393AbiHTTso (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 Aug 2022 15:48:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229488AbiHTTsg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Aug 2022 15:48:36 -0400
+        with ESMTP id S231262AbiHTTsj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Aug 2022 15:48:39 -0400
 Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6BD317E0B
-        for <devicetree@vger.kernel.org>; Sat, 20 Aug 2022 12:48:34 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E708D1EC67
+        for <devicetree@vger.kernel.org>; Sat, 20 Aug 2022 12:48:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
         s=20171124; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
         Message-Id:Date:Subject:Cc:To:From:From:Sender:Reply-To:Subject:Date:
         Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
         Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=LnsmqZK1fTB7ZPj/SjrRTfQDLUFrjRLVTcyXRGN1H7w=; b=IdzPA7qKICzrRRGaLlVcN1c4bW
-        U8CKF/U2D9RUAgVQOYavdMgeYbaJg1iSvoipu3R5jiJM3kpfnDijPm8KYPX8AQyOtSXaHAdmGYYk3
-        0mSy48XStZadMF/NJh0jum/eicMYQ+1OZb71hA3BJ43pGcdESOKGnQhbNE/ZoqyrXtMg=;
+        bh=gZ05criROPJOI6jRGySfjkdG7y3rkJwp0PpmApMj5Ys=; b=jzcLYikkjeq7hW3GTmFDGDqJ8e
+        Hu5uQ5aqtTanUgR7nxi1ySPGb7XyzJecoEO6uyKRQd5cZl46nXQOUZk1wm03b/u4t6WGKS8GARqud
+        kakL0cR/mn4ibwY+SkAl0pqpie/KTjmoYIJZt7KOlrM7rfa8OMEMyn/hno+MkYRdekYw=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
         (envelope-from <andrew@lunn.ch>)
-        id 1oPUSL-00E48X-Q2; Sat, 20 Aug 2022 21:48:29 +0200
+        id 1oPUSL-00E48a-RE; Sat, 20 Aug 2022 21:48:29 +0200
 From:   Andrew Lunn <andrew@lunn.ch>
 To:     Gregory Clement <gregory.clement@bootlin.com>
 Cc:     arm-soc <arm@kernel.org>, Device Tree <devicetree@vger.kernel.org>,
         Andrew Lunn <andrew@lunn.ch>
-Subject: [PATCH 09/11] arm: DT: kirkwood.dtsi: Rename nand to nand-controller
-Date:   Sat, 20 Aug 2022 21:48:02 +0200
-Message-Id: <20220820194804.3352415-10-andrew@lunn.ch>
+Subject: [PATCH 10/11] DT: timer: Convert marvell,orion-timer.txt to YAML
+Date:   Sat, 20 Aug 2022 21:48:03 +0200
+Message-Id: <20220820194804.3352415-11-andrew@lunn.ch>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20220820194804.3352415-1-andrew@lunn.ch>
 References: <20220820194804.3352415-1-andrew@lunn.ch>
@@ -46,28 +46,93 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Current convention is to use the name namd-controller. Now that
-the orion-nand controller binding has validation via YAML, fix
-the name.
-
 Signed-off-by: Andrew Lunn <andrew@lunn.ch>
 ---
- arch/arm/boot/dts/kirkwood.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../bindings/timer/marvell,orion-timer.txt    | 16 ------
+ .../bindings/timer/marvell,orion-timer.yaml   | 51 +++++++++++++++++++
+ 2 files changed, 51 insertions(+), 16 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/timer/marvell,orion-timer.txt
+ create mode 100644 Documentation/devicetree/bindings/timer/marvell,orion-timer.yaml
 
-diff --git a/arch/arm/boot/dts/kirkwood.dtsi b/arch/arm/boot/dts/kirkwood.dtsi
-index 362d2a6fbb54..122a6db6c001 100644
---- a/arch/arm/boot/dts/kirkwood.dtsi
-+++ b/arch/arm/boot/dts/kirkwood.dtsi
-@@ -42,7 +42,7 @@ MBUS_ID(0x03, 0x01) 0 0xf5000000 0x10000	/* crypto sram */
- 		pcie-mem-aperture = <0xe0000000 0x10000000>; /* 256 MiB memory space */
- 		pcie-io-aperture  = <0xf2000000 0x100000>;   /*   1 MiB    I/O space */
- 
--		nand: nand@12f {
-+		nand: nand-controller@12f {
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			cle = <0>;
+diff --git a/Documentation/devicetree/bindings/timer/marvell,orion-timer.txt b/Documentation/devicetree/bindings/timer/marvell,orion-timer.txt
+deleted file mode 100644
+index cd1a0c256f94..000000000000
+--- a/Documentation/devicetree/bindings/timer/marvell,orion-timer.txt
++++ /dev/null
+@@ -1,16 +0,0 @@
+-Marvell Orion SoC timer
+-
+-Required properties:
+-- compatible: shall be "marvell,orion-timer"
+-- reg: base address of the timer register starting with TIMERS CONTROL register
+-- interrupts: should contain the interrupts for Timer0 and Timer1
+-- clocks: phandle of timer reference clock (tclk)
+-
+-Example:
+-	timer: timer {
+-		compatible = "marvell,orion-timer";
+-		reg = <0x20300 0x20>;
+-		interrupt-parent = <&bridge_intc>;
+-		interrupts = <1>, <2>;
+-		clocks = <&core_clk 0>;
+-	};
+diff --git a/Documentation/devicetree/bindings/timer/marvell,orion-timer.yaml b/Documentation/devicetree/bindings/timer/marvell,orion-timer.yaml
+new file mode 100644
+index 000000000000..330bb3cd9c26
+--- /dev/null
++++ b/Documentation/devicetree/bindings/timer/marvell,orion-timer.yaml
+@@ -0,0 +1,51 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/timer/marvell,orion-timer.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Marvell Orion Timer bindings
++
++maintainers:
++  - Andrew Lunn <andrew@lunn.ch>
++
++properties:
++  $nodename:
++    pattern: '^timer@[a-f0-9]+$'
++
++  compatible:
++    const: marvell,orion-timer
++
++  reg:
++    description:
++      Base address of the timer register starting with TIMERS CONTROL register
++    maxItems: 1
++
++  interrupts:
++    description:
++      Should contain the interrupts for Timer0 and Timer1
++    minItems: 2
++    maxItems: 2
++
++  clocks:
++    description:
++      phandle of timer reference clock (tclk)
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    timer: timer@20300 {
++        compatible = "marvell,orion-timer";
++        reg = <0x20300 0x20>;
++        interrupt-parent = <&bridge_intc>;
++        interrupts = <1>, <2>;
++        clocks = <&core_clk 0>;
++    };
++...
 -- 
 2.37.2
 
