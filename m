@@ -2,80 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C86759AB21
-	for <lists+devicetree@lfdr.de>; Sat, 20 Aug 2022 06:11:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A36D259AB62
+	for <lists+devicetree@lfdr.de>; Sat, 20 Aug 2022 06:34:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239876AbiHTEJx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 Aug 2022 00:09:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41146 "EHLO
+        id S229595AbiHTEdq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 Aug 2022 00:33:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231806AbiHTEJw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Aug 2022 00:09:52 -0400
-Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79110BFA85
-        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 21:09:50 -0700 (PDT)
-Received: by mail-oi1-x22b.google.com with SMTP id s199so6750371oie.3
-        for <devicetree@vger.kernel.org>; Fri, 19 Aug 2022 21:09:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc;
-        bh=DFnPv3BCa7+XeLpbAr4ZTUKfcP7J9Jr+QvahQGLI9GE=;
-        b=pT7pc8FZs+WXWRlCiRCNZeertVApYopt8u3Rktj++J+F5CVH65mkvv2AVZhAUAZ5na
-         FTTugiyR7PWmHGwUwYBAdEien8O6H8MhLp4Mvy0Kn7ZFRkutXlWCens390MHEwdGCVgT
-         2UPavxFFWN23yzxg/jggvO2LbkzKI0y6jYbK2SaA/f1Ii0E4uW8WRgTDbQrJSMaE8rsu
-         UGh/U9PbTQErjyu0nm/szQAA7sAuarWD+m5Luo4CkMOTE+BZfm6Q+iTai3PWI+WxlmIM
-         GWtDIi2UIhegnwdVzJdIGsmD7CimqMJQYvttUilbXC8DP/o/mUSLvs/HfT+qJs1oR4Fp
-         vDXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=DFnPv3BCa7+XeLpbAr4ZTUKfcP7J9Jr+QvahQGLI9GE=;
-        b=Puj8qLOHw+fm/KpscDYfeZy1RFPUXh3pPQbUo9WsrwKlZQzTq/cxtRNVj36RDDo79z
-         coznv6sUJmEFjNRGjvsvLrcdgwyLF+X5Ah8t6fMkhucn+dDSgPNlY9QBzj/SFBc7nGEC
-         5oO/qYJHTbGpp/pbrYo4pcSJ0YX85QGJ4ffj+xt8mlQn72MqJrt2NBNWGmZb9PINQb6v
-         zC61OsO3/WyCPd3GU8Qt3BMqIbvVJxtnMi1VIzhAjOYHx/WWOGwzBXLyhg17HU6+EEPF
-         iff1YT60W1Vy49R7rN7br3GMNTNkk7dbpjXPhAxtLb3uWj9KoQluFdySvkjLXyKhHi99
-         fPig==
-X-Gm-Message-State: ACgBeo04prX1c0ThgE19Ww1jwnr5qIiFLqSCrPk8ZGvIt9sGZHK48Dz+
-        ILx7JrEz2UhfzEPnz4yHvoy3MA==
-X-Google-Smtp-Source: AA6agR66ORyTpy6wPM1zTQxRjWLFiDfl0P5mKwizRb4AhDcOIlpZwEzYZl28CEk5jxX3xsuKmXwAng==
-X-Received: by 2002:a05:6808:6c4:b0:342:9cf1:fb1 with SMTP id m4-20020a05680806c400b003429cf10fb1mr6762286oih.259.1660968589847;
-        Fri, 19 Aug 2022 21:09:49 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id y14-20020a9d460e000000b006370c0e5be0sm1640450ote.48.2022.08.19.21.09.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Aug 2022 21:09:49 -0700 (PDT)
-Date:   Fri, 19 Aug 2022 23:09:47 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Prashant Malani <pmalani@chromium.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Pin-yen Lin <treapking@chromium.org>
-Subject: Re: [PATCH 1/2] dt-bindings: usb: Introduce GPIO-based SBU mux
-Message-ID: <YwBei45gx4oVqSql@builder.lan>
-References: <20220810204750.3672362-1-bjorn.andersson@linaro.org>
- <20220810204750.3672362-2-bjorn.andersson@linaro.org>
- <a13bce60-25b4-d075-d56a-d1283e91e3ba@linaro.org>
- <20220814210104.GA690892-robh@kernel.org>
- <Yv1y9Wjp16CstJvK@baldur>
- <CAE-0n53AjJ_G6yZoTALWpKvZUdF+8nFZ+TQh=Ch=8xgdMVqDkw@mail.gmail.com>
- <CACeCKadP-AZ8OU4A=7CrwAz7yuLvMvjvAcw7K-FORFmkMvx7cA@mail.gmail.com>
- <YwAIGf59H9iKUhXF@builder.lan>
- <CACeCKadt3aoz8MZvy+tGHCxiHOPty4cLcG7AGS+oMEVnREt4sw@mail.gmail.com>
+        with ESMTP id S229458AbiHTEdq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Aug 2022 00:33:46 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E219C5C97D;
+        Fri, 19 Aug 2022 21:33:38 -0700 (PDT)
+X-UUID: 105e9bd2909b46798526f09b668b66e5-20220820
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=ECAyJs3Ash9rLQKi8udUycepkroxO08HjjjdDql2x/E=;
+        b=Ea3cDgAcbgNhg3jCFX3FDABYUInUufnc0BJ3KECdtE9KObhBmj/2troEElUUNAcmPEmmNx/+z8QV9OaqjVUfrdZp9Gyu8LADNve4eB/vy/CAztGXehOTXmvmI+pjtfdygbxlhw5di1LMliB6gSbyJlRY1shMDpopky7qj6vrhEY=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.10,REQID:f7b26673-523c-4ccd-bfdc-7f383ab7bd3b,OB:0,L
+        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_
+        Ham,ACTION:release,TS:0
+X-CID-META: VersionHash:84eae18,CLOUDID:130411cf-20bd-4e5e-ace8-00692b7ab380,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
+        ,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 105e9bd2909b46798526f09b668b66e5-20220820
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <moudy.ho@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 845400877; Sat, 20 Aug 2022 12:33:33 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Sat, 20 Aug 2022 12:33:31 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
+ Transport; Sat, 20 Aug 2022 12:33:31 +0800
+Message-ID: <8d551e1f51fe53b7c84afdf476de95b268205923.camel@mediatek.com>
+Subject: Re: [PATCH v26 4/4] media: platform: mtk-mdp3: add MediaTek MDP3
+ driver
+From:   20181221122106 created <moudy.ho@mediatek.com>
+To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Rob Landley <rob@landley.net>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        <tfiga@chromium.org>, <drinkcat@chromium.org>,
+        <pihsun@chromium.org>, <hsinyi@google.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <cellopoint.kai@gmail.com>,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+        daoyuan huang <daoyuan.huang@mediatek.com>
+Date:   Sat, 20 Aug 2022 12:33:31 +0800
+In-Reply-To: <46436973-0de0-f810-5851-6f26bdf460aa@xs4all.nl>
+References: <20220819085423.17023-1-moudy.ho@mediatek.com>
+         <20220819085423.17023-5-moudy.ho@mediatek.com>
+         <46436973-0de0-f810-5851-6f26bdf460aa@xs4all.nl>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CACeCKadt3aoz8MZvy+tGHCxiHOPty4cLcG7AGS+oMEVnREt4sw@mail.gmail.com>
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,70 +83,186 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 19 Aug 17:55 CDT 2022, Prashant Malani wrote:
+Hi Hans,
 
-> On Fri, Aug 19, 2022 at 3:01 PM Bjorn Andersson
-> <bjorn.andersson@linaro.org> wrote:
-> >
-> >
-> > You can't physically connect 1, 2 or 4 lanes of DP from a DP chip to
-> > your usb-c-connector at the same time as you physically connect 0, 2 or
-> > 4 lanes of USB from a USB PHY.
+
+On Fri, 2022-08-19 at 17:37 +0200, Hans Verkuil wrote:
+> Hi Moudy,
 > 
-> I apologize in case I'm misunderstanding, but why is that not possible?
-> anx7625 allows that configuration (2 lane DP + 2 lane USB going to
-> a single USB-C-connector)
+> On 19/08/2022 10:54, Moudy Ho wrote:
+> > This patch adds driver for MediaTek's Media Data Path ver.3 (MDP3).
+> > It provides the following functions:
+> >   color transform, format conversion, resize, crop, rotate, flip
+> >   and additional image quality enhancement.
+> > 
+> > The MDP3 driver is mainly used for Google Chromebook products to
+> > import the new architecture to set the HW settings as shown below:
+> >   User -> V4L2 framework
+> >     -> MDP3 driver -> SCP (setting calculations)
+> >       -> MDP3 driver -> CMDQ (GCE driver) -> HW
+> > 
+> > Each modules' related operation control is sited in mtk-mdp3-comp.c
+> > Each modules' register table is defined in file with "mdp_reg_"
+> > prefix
+> > GCE related API, operation control  sited in mtk-mdp3-cmdq.c
+> > V4L2 m2m device functions are implemented in mtk-mdp3-m2m.c
+> > Probe, power, suspend/resume, system level functions are defined in
+> > mtk-mdp3-core.c
+> > 
+> > Signed-off-by: Ping-Hsun Wu <ping-hsun.wu@mediatek.com>
+> > Signed-off-by: daoyuan huang <daoyuan.huang@mediatek.com>
+> > Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
+> > Tested-by: AngeloGioacchino Del Regno <
+> > angelogioacchino.delregno@collabora.com>
+> > ---
+> >  drivers/media/platform/mediatek/Kconfig       |    1 +
+> >  drivers/media/platform/mediatek/Makefile      |    1 +
+> >  drivers/media/platform/mediatek/mdp3/Kconfig  |   20 +
+> >  drivers/media/platform/mediatek/mdp3/Makefile |    6 +
+> >  .../platform/mediatek/mdp3/mdp_reg_ccorr.h    |   19 +
+> >  .../platform/mediatek/mdp3/mdp_reg_rdma.h     |   65 ++
+> >  .../platform/mediatek/mdp3/mdp_reg_rsz.h      |   39 +
+> >  .../platform/mediatek/mdp3/mdp_reg_wdma.h     |   47 +
+> >  .../platform/mediatek/mdp3/mdp_reg_wrot.h     |   55 +
+> >  .../platform/mediatek/mdp3/mtk-img-ipi.h      |  290 +++++
+> >  .../platform/mediatek/mdp3/mtk-mdp3-cmdq.c    |  466 ++++++++
+> >  .../platform/mediatek/mdp3/mtk-mdp3-cmdq.h    |   43 +
+> >  .../platform/mediatek/mdp3/mtk-mdp3-comp.c    | 1031
+> > +++++++++++++++++
+> >  .../platform/mediatek/mdp3/mtk-mdp3-comp.h    |  186 +++
+> >  .../platform/mediatek/mdp3/mtk-mdp3-core.c    |  357 ++++++
+> >  .../platform/mediatek/mdp3/mtk-mdp3-core.h    |   94 ++
+> >  .../platform/mediatek/mdp3/mtk-mdp3-m2m.c     |  724 ++++++++++++
+> >  .../platform/mediatek/mdp3/mtk-mdp3-m2m.h     |   48 +
+> >  .../platform/mediatek/mdp3/mtk-mdp3-regs.c    |  733 ++++++++++++
+> >  .../platform/mediatek/mdp3/mtk-mdp3-regs.h    |  373 ++++++
+> >  .../platform/mediatek/mdp3/mtk-mdp3-vpu.c     |  313 +++++
+> >  .../platform/mediatek/mdp3/mtk-mdp3-vpu.h     |   78 ++
+> >  22 files changed, 4989 insertions(+)
+> >  create mode 100644 drivers/media/platform/mediatek/mdp3/Kconfig
+> >  create mode 100644 drivers/media/platform/mediatek/mdp3/Makefile
+> >  create mode 100644
+> > drivers/media/platform/mediatek/mdp3/mdp_reg_ccorr.h
+> >  create mode 100644
+> > drivers/media/platform/mediatek/mdp3/mdp_reg_rdma.h
+> >  create mode 100644
+> > drivers/media/platform/mediatek/mdp3/mdp_reg_rsz.h
+> >  create mode 100644
+> > drivers/media/platform/mediatek/mdp3/mdp_reg_wdma.h
+> >  create mode 100644
+> > drivers/media/platform/mediatek/mdp3/mdp_reg_wrot.h
+> >  create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-img-
+> > ipi.h
+> >  create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-
+> > cmdq.c
+> >  create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-
+> > cmdq.h
+> >  create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-
+> > comp.c
+> >  create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-
+> > comp.h
+> >  create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-
+> > core.c
+> >  create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-
+> > core.h
+> >  create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-
+> > m2m.c
+> >  create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-
+> > m2m.h
+> >  create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-
+> > regs.c
+> >  create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-
+> > regs.h
+> >  create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-
+> > vpu.c
+> >  create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-
+> > vpu.h
+> > 
+> > diff --git a/drivers/media/platform/mediatek/Kconfig
+> > b/drivers/media/platform/mediatek/Kconfig
+> > index af47d9888552..84104e2cd024 100644
+> > --- a/drivers/media/platform/mediatek/Kconfig
+> > +++ b/drivers/media/platform/mediatek/Kconfig
+> > @@ -6,3 +6,4 @@ source
+> > "drivers/media/platform/mediatek/jpeg/Kconfig"
+> >  source "drivers/media/platform/mediatek/mdp/Kconfig"
+> >  source "drivers/media/platform/mediatek/vcodec/Kconfig"
+> >  source "drivers/media/platform/mediatek/vpu/Kconfig"
+> > +source "drivers/media/platform/mediatek/mdp3/Kconfig"
+> > diff --git a/drivers/media/platform/mediatek/Makefile
+> > b/drivers/media/platform/mediatek/Makefile
+> > index d3850a13f128..38e6ba917fe5 100644
+> > --- a/drivers/media/platform/mediatek/Makefile
+> > +++ b/drivers/media/platform/mediatek/Makefile
+> > @@ -3,3 +3,4 @@ obj-y += jpeg/
+> >  obj-y += mdp/
+> >  obj-y += vcodec/
+> >  obj-y += vpu/
+> > +obj-y += mdp3/
+> > diff --git a/drivers/media/platform/mediatek/mdp3/Kconfig
+> > b/drivers/media/platform/mediatek/mdp3/Kconfig
+> > new file mode 100644
+> > index 000000000000..8c8e59687417
+> > --- /dev/null
+> > +++ b/drivers/media/platform/mediatek/mdp3/Kconfig
+> > @@ -0,0 +1,20 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only
+> > +config VIDEO_MEDIATEK_MDP3
+> > +	tristate "MediaTek MDP v3 driver"
+> > +	depends on MTK_IOMMU || COMPILE_TEST
+> > +	depends on VIDEO_DEV
+> > +	depends on ARCH_MEDIATEK || COMPILE_TEST
+> > +	depends on MTK_MMSYS || COMPILE_TEST
+> 
+> It turned out that this will cause link errors if MTK_MMSYS is not
+> set:
+> 
+> ERROR: modpost: "mtk_mutex_write_sof"
+> [drivers/media/platform/mediatek/mdp3/mtk-mdp3.ko] undefined!
+> ERROR: modpost: "mtk_mutex_enable_by_cmdq"
+> [drivers/media/platform/mediatek/mdp3/mtk-mdp3.ko] undefined!
+> ERROR: modpost: "mtk_mutex_put"
+> [drivers/media/platform/mediatek/mdp3/mtk-mdp3.ko] undefined!
+> ERROR: modpost: "mtk_mutex_write_mod"
+> [drivers/media/platform/mediatek/mdp3/mtk-mdp3.ko] undefined!
+> ERROR: modpost: "mtk_mutex_unprepare"
+> [drivers/media/platform/mediatek/mdp3/mtk-mdp3.ko] undefined!
+> ERROR: modpost: "mtk_mutex_get"
+> [drivers/media/platform/mediatek/mdp3/mtk-mdp3.ko] undefined!
+> ERROR: modpost: "mtk_mutex_prepare"
+> [drivers/media/platform/mediatek/mdp3/mtk-mdp3.ko] undefined!
+> 
+> I wonder if it isn't better to do 'select MTK_MMSYS': that seems to
+> work fine.
+> 
+> What do you think?
+> 
+> Regards,
+> 
+> 	Hans
 > 
 
-Right, but you can not connect 4 lanes DP from one chip at the same time
-that you connect 4 lanes USB from another chip.
+Thank you for bringing this up for discussion, this was added on v10 at
+Geert's suggestion.
+But I didn't take into account all the conditions to avoid the issue
+you mentioned, and replacing "depend on" with "select" would be a
+better option to avoid compilation errors in various combinations.
+Please allow me to release a new version that fixes this problem.
 
-> Since the discussion is to support various conceivable hardware configurations
-> That same anx7625 can support 1 1-lane DP (or 2 1-lane DPs), and 1
-> 2-lane Type-C output.
-> The cross-point switch allows for that level of configuration.
-> 
+Thanks,
+Moudy Ho
 
-We're talking about the static configuration here, where you describe
-which component are connected together. We can not dynamically switch
-the Devicetree representation around to match what the Type-C controller
-negotiates.
+> > +	depends on HAS_DMA
+> > +	select VIDEOBUF2_DMA_CONTIG
+> > +	select V4L2_MEM2MEM_DEV
+> > +	select VIDEO_MEDIATEK_VPU
+> > +	select MTK_CMDQ
+> > +	select MTK_SCP
+> > +	default n
+> > +	help
+> > +	    It is a v4l2 driver and present in MediaTek MT8183 SoC.
+> > +	    The driver supports scaling and color space conversion.
+> > +
+> > +	    To compile this driver as a module, choose M here: the
+> > +	    module will be called mtk-mdp3.
 
-> > > So, how about 4 endpoints (1 for each SS lane) in the usb-c-connector port@1?
-> > > That should support every conceivable configuration and bridge/PHY hardware.
-> > > and also allows a way to specify any lane remapping (similar to what
-> > > "data lanes" does)
-> > > if that is required.
-> >
-> > Wouldn't that prevent you from handling orientation switching, given
-> > that the graph is static?
-> 
-> It depends. If the end-points from the usb-c-connector
-> go to the same switch, then it should allow orientation switching
-> (anx7625 allows
-> this). The port driver would just tell the orientation switch(es) attached to
-> it that we are in NORMAL or REVERSE orientation.
-> 
-
-But why do you need to express the relationship between these 2
-components with > 1 link in the graph?
-
-> The graph is static, since the hardware line routing between components
-> doesn't change (e.g SSTX1 from the Type-C port is always routed to Pin
-> X1,X2 on the switch hardware), but that is what the switch is for.
-> Note that in this case, the expectation is that
-> the switch driver only registers 1 switch (it can figure out that all
-> 4 endpoints
-> go to the same Type-C port).
-> 
-
-Why do we need to express this with 4 endpoints and then implement code
-to discover that the 4 endpoints points to the same remote? Why not just
-describe the logical relationship between the two components in one
-endpoint reference?
-
-> The limitation to orientation switching would depend on how the
-> hardware is routed.
-
-Regards,
-Bjorn
