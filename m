@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 93C7059B003
-	for <lists+devicetree@lfdr.de>; Sat, 20 Aug 2022 21:49:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2550B59B007
+	for <lists+devicetree@lfdr.de>; Sat, 20 Aug 2022 21:49:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231223AbiHTTsi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 Aug 2022 15:48:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37964 "EHLO
+        id S229488AbiHTTsj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 Aug 2022 15:48:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229584AbiHTTsg (ORCPT
+        with ESMTP id S229833AbiHTTsg (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Sat, 20 Aug 2022 15:48:36 -0400
 Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9ECB417A88
-        for <devicetree@vger.kernel.org>; Sat, 20 Aug 2022 12:48:33 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F46517ABD
+        for <devicetree@vger.kernel.org>; Sat, 20 Aug 2022 12:48:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
         s=20171124; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
         Message-Id:Date:Subject:Cc:To:From:From:Sender:Reply-To:Subject:Date:
         Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
         Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=FRl4T2OQ+7BPr3GrJrzZXHXIFLiWvfxWuCOSm8LR9yg=; b=Mry4cGO0B6mAp0GYwN/7eM/rap
-        NoyTKNUP8G+a8GeURUeyP3A4ciRBhtORTavMLCG/TsUDwOQao6yZK9rCaw9UiRvbLyaZE/5t70Zq/
-        Mro75wuN3SqEyIIeG5gWRDGG0hf6j9PSjvz6bqoIcUTndqN2Jysv6sLt35nPQT3cE9pQ=;
+        bh=aN5182nSfXEkiRzkgHdn65ByCd4rqoUfZ4uBAP3pET0=; b=TIgA+c4DwfNIuxa4Dmw2fQirfH
+        55sr7DmLGm09nyD4sTX2gYcsoZDSYTbOaGpiuX+pxgziQJ5okq2wRAKtj4UTOomp4J5XLFaDbtYcr
+        v/iL+HEABD1krU0hJjrUAXkW0v/tQrPdRAXjVD50pRoK0ahtWem+2uCD2dTE0YfBKEu4=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
         (envelope-from <andrew@lunn.ch>)
-        id 1oPUSL-00E48O-M5; Sat, 20 Aug 2022 21:48:29 +0200
+        id 1oPUSL-00E48R-NG; Sat, 20 Aug 2022 21:48:29 +0200
 From:   Andrew Lunn <andrew@lunn.ch>
 To:     Gregory Clement <gregory.clement@bootlin.com>
 Cc:     arm-soc <arm@kernel.org>, Device Tree <devicetree@vger.kernel.org>,
         Andrew Lunn <andrew@lunn.ch>
-Subject: [PATCH 06/11] arm: DT: kirkwood/orion5: Rename watchdog node
-Date:   Sat, 20 Aug 2022 21:47:59 +0200
-Message-Id: <20220820194804.3352415-7-andrew@lunn.ch>
+Subject: [PATCH 07/11] DT: nand-controller: Reflect reality of marvell,orion-nand
+Date:   Sat, 20 Aug 2022 21:48:00 +0200
+Message-Id: <20220820194804.3352415-8-andrew@lunn.ch>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20220820194804.3352415-1-andrew@lunn.ch>
 References: <20220820194804.3352415-1-andrew@lunn.ch>
@@ -46,41 +46,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The watchdog.yaml requires the node be called watchdog. So change
-from the current wdt/watchdog-timer.
+The Marvell Orion NAND driver comes from before the time of the
+standardised NAND binding. The controller only supports a single
+device, and expects the NAND partition table to be directly in the
+controller node. This goes against the standardised NAND binding which
+expects a sub node per NAND device, which contains the partition
+table.
+
+Since the partition table contains a reg property indicating the start
+address of the partition and its length, it needs #size-cells set to
+1. However, for a list of nand devices, the reg value is the device
+number, requiring #size-cells of 0.
+
+Add an exception to nand-controller.yaml to allow this #size-cells
+value when the compatible matches the orion controller.
+
+In order that the example works, it needs a compatible string so the
+comparison can be made.
 
 Signed-off-by: Andrew Lunn <andrew@lunn.ch>
 ---
- arch/arm/boot/dts/kirkwood.dtsi | 2 +-
- arch/arm/boot/dts/orion5x.dtsi  | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ .../bindings/mtd/nand-controller.yaml           | 17 ++++++++++++++++-
+ 1 file changed, 16 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/kirkwood.dtsi b/arch/arm/boot/dts/kirkwood.dtsi
-index fca31a5d5ac7..362d2a6fbb54 100644
---- a/arch/arm/boot/dts/kirkwood.dtsi
-+++ b/arch/arm/boot/dts/kirkwood.dtsi
-@@ -243,7 +243,7 @@ timer: timer@20300 {
- 			clocks = <&core_clk 0>;
- 		};
+diff --git a/Documentation/devicetree/bindings/mtd/nand-controller.yaml b/Documentation/devicetree/bindings/mtd/nand-controller.yaml
+index 359a015d4e5a..ab90e34557ad 100644
+--- a/Documentation/devicetree/bindings/mtd/nand-controller.yaml
++++ b/Documentation/devicetree/bindings/mtd/nand-controller.yaml
+@@ -34,7 +34,7 @@ properties:
+     const: 1
  
--		wdt: watchdog-timer@20300 {
-+		wdt: watchdog@20300 {
- 			compatible = "marvell,orion-wdt";
- 			reg = <0x20300 0x28>, <0x20108 0x4>;
- 			interrupt-parent = <&bridge_intc>;
-diff --git a/arch/arm/boot/dts/orion5x.dtsi b/arch/arm/boot/dts/orion5x.dtsi
-index 2d41f5c166ee..7de95818663e 100644
---- a/arch/arm/boot/dts/orion5x.dtsi
-+++ b/arch/arm/boot/dts/orion5x.dtsi
-@@ -137,7 +137,7 @@ timer: timer@20300 {
- 				clocks = <&core_clk 0>;
- 			};
+   "#size-cells":
+-    const: 0
++    enum: [0, 1]
  
--			wdt: wdt@20300 {
-+			wdt: watchdog@20300 {
- 				compatible = "marvell,orion-wdt";
- 				reg = <0x20300 0x28>, <0x20108 0x4>;
- 				interrupt-parent = <&bridge_intc>;
+   ranges: true
+ 
+@@ -130,11 +130,26 @@ required:
+   - "#address-cells"
+   - "#size-cells"
+ 
++if:
++  properties:
++    compatible:
++      contains:
++        const: marvell,orion-nand
++then:
++  properties:
++    "#size-cells":
++      const: 1
++else:
++  properties:
++    "#size-cells":
++      const: 0
++
+ additionalProperties: true
+ 
+ examples:
+   - |
+     nand-controller {
++      compatible = "bar";
+       #address-cells = <1>;
+       #size-cells = <0>;
+       cs-gpios = <0>, <&gpioA 1>; /* A single native CS is available */
 -- 
 2.37.2
 
