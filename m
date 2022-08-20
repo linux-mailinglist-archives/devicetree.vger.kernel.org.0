@@ -2,74 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED57859ADA0
-	for <lists+devicetree@lfdr.de>; Sat, 20 Aug 2022 13:50:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0798859ADC2
+	for <lists+devicetree@lfdr.de>; Sat, 20 Aug 2022 14:03:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241192AbiHTLsF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 Aug 2022 07:48:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36836 "EHLO
+        id S1346030AbiHTMBH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 Aug 2022 08:01:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345677AbiHTLsD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Aug 2022 07:48:03 -0400
-X-Greylist: delayed 583 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 20 Aug 2022 04:48:01 PDT
-Received: from relay.shared-server.net (relay.shared-server.net [211.13.204.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E768D9C508
-        for <devicetree@vger.kernel.org>; Sat, 20 Aug 2022 04:48:01 -0700 (PDT)
-Received: from w36-red.in.shared-server.net (w36-red.in.shared-server.net [192.168.1.116])
-        by relay07.in.shared-server.net (Postfix) with ESMTP id 8A81F203D49
-        for <devicetree@vger.kernel.org>; Sat, 20 Aug 2022 20:38:16 +0900 (JST)
-Received: by w36-red.in.shared-server.net (Postfix, from userid 216919)
-        id 883CBA409DB; Sat, 20 Aug 2022 20:38:16 +0900 (JST)
-To:     devicetree@vger.kernel.org
-Subject: =?UTF-8?B?5qCq5byP5Lya56S+44K344Kr44K/44CA44GK5ZWP44GE5ZCI44KP44Gb44Oh?=  =?UTF-8?B?44O844Or5Y+X6aCY44Gu44GK55+l44KJ44Gb?=
-Date:   Sat, 20 Aug 2022 11:38:16 +0000
-From:   =?UTF-8?B?5qCq5byP5Lya56S+44K344Kr44K/?= 
-        <yamamoto_toru@shicata.co.jp>
-Reply-To: yamamoto_toru@shicata.co.jp
-Message-ID: <MJlSq61wgjHEb7Mam09rXJUR4PhwKOpYdSjxuCw8eo@www.shicata.co.jp>
-X-Mailer: PHPMailer 6.1.6 (https://github.com/PHPMailer/PHPMailer)
+        with ESMTP id S1346025AbiHTMBC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Aug 2022 08:01:02 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E86DFA344E
+        for <devicetree@vger.kernel.org>; Sat, 20 Aug 2022 05:01:01 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1oPN9R-0001x5-Dv; Sat, 20 Aug 2022 14:00:29 +0200
+Received: from ore by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1oPN9O-0000zR-NS; Sat, 20 Aug 2022 14:00:26 +0200
+Date:   Sat, 20 Aug 2022 14:00:26 +0200
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Heiner Kallweit <hkallweit1@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>, kernel@pengutronix.de,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+        David Jander <david@protonic.nl>
+Subject: Re: [PATCH net-next v1 4/7] net: pse-pd: add generic PSE driver
+Message-ID: <20220820120026.GF10138@pengutronix.de>
+References: <20220819120109.3857571-1-o.rempel@pengutronix.de>
+ <20220819120109.3857571-5-o.rempel@pengutronix.de>
+ <Yv/4du75DNO2Xykr@lunn.ch>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: Yes, score=6.0 required=5.0 tests=BAYES_50,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,SHORT_SHORTNER,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_ABUSE_SURBL,
-        URIBL_BLACK autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Report: *  1.7 URIBL_BLACK Contains an URL listed in the URIBL blacklist
-        *      [URIs: letsg0dancing.page.link]
-        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-        *      [score: 0.5035]
-        *  1.2 URIBL_ABUSE_SURBL Contains an URL listed in the ABUSE SURBL
-        *      blocklist
-        *      [URIs: letsg0dancing.page.link]
-        * -0.0 RCVD_IN_MSPIKE_H2 RBL: Average reputation (+2)
-        *      [211.13.204.71 listed in wl.mailspike.net]
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        *  0.0 SPF_NONE SPF: sender does not publish an SPF Record
-        *  0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
-        *      mail domains are different
-        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
-        *  2.0 SHORT_SHORTNER Short body with little more than a link to a
-        *      shortener
-X-Spam-Level: *****
+In-Reply-To: <Yv/4du75DNO2Xykr@lunn.ch>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-以下の内容にてお問い合わせを承りました。
---
+On Fri, Aug 19, 2022 at 10:54:14PM +0200, Andrew Lunn wrote:
+> > +static int
+> > +gen_pse_podl_get_admin_sate(struct pse_controller_dev *pcdev, unsigned long id)
+> 
+> Should that be state?
 
-差出人: ❤️ You have pending messages (4) from Catherine! View Messages: https://letsg0dancing.page.link/go?dqj ❤️ <devicetree@vger.kernel.org>
+ack. fixed.
 
-会社名：gl7rip
-部署：dsy3ez
+> > +{
+> > +	struct gen_pse_priv *priv = to_gen_pse(pcdev);
+> > +
+> > +	/* aPoDLPSEAdminState can be different to aPoDLPSEPowerDetectionStatus
+> > +	 * which is provided by the regulator.
+> > +	 */
+> > +	return priv->admin_state;
+> > +}
+> > +
+> > +static int
+> > +gen_pse_podl_set_admin_control(struct pse_controller_dev *pcdev,
+> > +			       unsigned long id,
+> > +			       enum ethtool_podl_pse_admin_state state)
+> > +{
+> > +	struct gen_pse_priv *priv = to_gen_pse(pcdev);
+> > +	int ret;
+> > +
+> > +	if (priv->admin_state == state)
+> > +		goto set_state;
+> 
+> return 0; ?
 
-題名: [your-subject]
-メッセージ本文:
-ubx634
+ack. done
 
+> > +	platform_set_drvdata(pdev, priv);
+> > +
+> > +	priv->admin_state = ETHTOOL_PODL_PSE_ADMIN_STATE_DISABLED;
+> 
+> There is the comment earlier:
+> 
+> 	/* aPoDLPSEAdminState can be different to aPoDLPSEPowerDetectionStatus
+> 	 * which is provided by the regulator.
+> 
+> Is this because the regulator might of been turned on, but it has
+> detected a short and turned itself off? So it is administratively on,
+> but off in order to stop the magic smoke escaping?
+
+ack. According to 30.15.1.1.3 aPoDLPSEPowerDetectionStatus, we may have
+following:
+/**
+ * enum ethtool_podl_pse_pw_d_status - power detection status of the PoDL PSE.
+ *	IEEE 802.3-2018 30.15.1.1.3 aPoDLPSEPowerDetectionStatus:
+ * @ETHTOOL_PODL_PSE_PW_D_STATUS_UNKNOWN: PoDL PSE
+ * @ETHTOOL_PODL_PSE_PW_D_STATUS_DISABLED: "The enumeration “disabled” is
+ *	asserted true when the PoDL PSE state diagram variable mr_pse_enable is
+ *	false"
+ * @ETHTOOL_PODL_PSE_PW_D_STATUS_SEARCHING: "The enumeration “searching” is
+ *	asserted true when either of the PSE state diagram variables
+ *	pi_detecting or pi_classifying is true."
+ * @ETHTOOL_PODL_PSE_PW_D_STATUS_DELIVERING: "The enumeration “deliveringPower”
+ *	is asserted true when the PoDL PSE state diagram variable pi_powered is
+ *	true."
+ * @ETHTOOL_PODL_PSE_PW_D_STATUS_SLEEP: "The enumeration “sleep” is asserted
+ *	true when the PoDL PSE state diagram variable pi_sleeping is true."
+ * @ETHTOOL_PODL_PSE_PW_D_STATUS_IDLE: "The enumeration “idle” is asserted true
+ *	when the logical combination of the PoDL PSE state diagram variables
+ *	pi_prebiased*!pi_sleeping is true."
+ * @ETHTOOL_PODL_PSE_PW_D_STATUS_ERROR: "The enumeration “error” is asserted
+ *	true when the PoDL PSE state diagram variable overload_held is true."
+ */
+
+Probably all of them, except of ETHTOOL_PODL_PSE_PW_D_STATUS_SEARCHING can be
+potentially implemented in this driver on top of regulator framework.
+
+> But what about the other way around? Something has already turned the
+> regulator on, e.g. the bootloader. Should the default be
+> ETHTOOL_PODL_PSE_ADMIN_STATE_DISABLED even thought power is being
+> delivered? Do we want to put the regulator into the off state at
+> probe, so it is in a well defined state? Or set priv->admin_state to
+> whatever regulator_is_enabled() indicates?
+
+Good question. I assume, automotive folks would love be able to enable
+regulator in the boot loader on the PSE to let the Powered Device boot parallel
+to the PSE.
+
+Regards,
+Oleksij
 -- 
-株式会社シカタ
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
