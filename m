@@ -2,97 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 99A3759B648
-	for <lists+devicetree@lfdr.de>; Sun, 21 Aug 2022 22:24:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79FCE59B655
+	for <lists+devicetree@lfdr.de>; Sun, 21 Aug 2022 22:37:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231236AbiHUUVa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Aug 2022 16:21:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45044 "EHLO
+        id S231177AbiHUUhZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Aug 2022 16:37:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54940 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230047AbiHUUVa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Aug 2022 16:21:30 -0400
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17C971AF1B;
-        Sun, 21 Aug 2022 13:21:29 -0700 (PDT)
-Received: by mail-ot1-f45.google.com with SMTP id y10-20020a9d634a000000b006167f7ce0c5so6501764otk.0;
-        Sun, 21 Aug 2022 13:21:29 -0700 (PDT)
+        with ESMTP id S229541AbiHUUhY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Aug 2022 16:37:24 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B258F1F60D;
+        Sun, 21 Aug 2022 13:37:23 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id s1so9941174lfp.6;
+        Sun, 21 Aug 2022 13:37:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc;
+        bh=Kyxqc5rAoGnqJE9WElx6EBMV8xqTT9IMMo5wUGHftok=;
+        b=Dh0wHSuPepRN05VF69M8apwh8NLGTSQ0rj+C/rKBVw0IFpwC/l6DdaykrHcU/GFVK3
+         j65op7R8+6uvo6xt6Hm+hLsbYWROiF69cK9jmg3p8MmDiL8Blk+0EdT8RbEyggVeOzBc
+         E2QsKkaKWDt1JPAsZ0gGBXgaqegBUQGrfiZMgTjVaVZOhhFaDQb3++pDcQlEvl7am52g
+         8E6BWjV+Gw0ldKKbOgvYlTmuD9T1/4Ci/JB85yxkUXh/xufOFYBgrBSHT/oyyeXslpji
+         F8UqfqqExfmA69cRW0nQRkii+2MeQCh28QX7vRrFow1xOw4ZvwWwfp9pNniBFtlAYFBl
+         s8zA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=message-id:date:subject:references:in-reply-to:cc:to:from
-         :x-gm-message-state:from:to:cc;
-        bh=PVuioZgMAt6vNkSn1eOBdpre99mEwl3P9i1P8iVmj+8=;
-        b=nnjTzeIEv/QnYZ9qKI40/CrEQIQcODx9N3tIdn8AhANMFlFd0TwP3hqcGixO2zsNaY
-         gCkHB9fuF/NKOdroD68G0mwhMuisbtZdgTJIcXzxF+fEyVvdp/k53LCXhLs6Kf4P9f0D
-         NKL/uG5Qd0NNXgKhNSkNuBB6d08OVSChpqunrQHwLVjinrqWSe8ukVytxR+lrwqHHJr1
-         mONMiA1drGjcx2sOMAJyv5o6ABjEFU9OZGZZwyJrHRsvSVLU5+q+fyP5Ekj4lUlR1+Me
-         C3pr/d9e/pIWzuCVHRIb5L1AC7LEg3fhAcb1iaX23+Tw/RWOW6rNh6jw0m1TwPzNAHwh
-         u/Jw==
-X-Gm-Message-State: ACgBeo0BLNZpZsF0NP6A1egdzKLeHPdOWUsfGVcoYqG8j5mz12jMedBh
-        Kr6bAcjYoKdwbN611/5FWoJ8glRfbQ==
-X-Google-Smtp-Source: AA6agR4eZaKEm7s31F45rhLJ8zF/zjY5hOre51bsur5f7rfWs7/1+O5doQlYJ6KKIuNQfod0umZhmg==
-X-Received: by 2002:a05:6830:3985:b0:636:aa59:ea1 with SMTP id bs5-20020a056830398500b00636aa590ea1mr6780979otb.44.1661113288006;
-        Sun, 21 Aug 2022 13:21:28 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id m1-20020a9d4c81000000b00616d25dc933sm2517031otf.69.2022.08.21.13.21.27
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+        bh=Kyxqc5rAoGnqJE9WElx6EBMV8xqTT9IMMo5wUGHftok=;
+        b=s2sjVdoDWpCIur57YRum23vVBmCg3fzHvGVuPrJ2fitS0nDcg82dCzj23mB6EsoslP
+         N0ftrc9SKaYm19uME2Hiq/Y1gvkqRUZ91vVmGv53WT/vOs6Gfwc6H+7U5hQ0/MTfB/qL
+         BPG4JtWo33LbmxG8mudboTXlAzGGx1p1tUT821VmCHqdJC0VinI0pFZyLIgcknjzn9US
+         lN0ck9bG9eTNauc5FjihPhYxbhGS63+8FUrPkCQKhwkU2PX4dloMNmTu08fhGJgMjY5N
+         eG/T/d0Eu1yx1jn/erV1KL7Foc30UW4wffgKBV+HKtijberAZR0XTHrVWJiwNAKegDfw
+         xPxA==
+X-Gm-Message-State: ACgBeo1zt3CAxZEooxEcPTQWANn5zu0uadfgXTZcF8qLJ51NI6DYx3Ue
+        ZeMsCvU76rZQqTKUx45Eai9qmffLdtLK1w==
+X-Google-Smtp-Source: AA6agR5VwSaYfHoh8jG3iAVAoEI5L/BpK4p7fvqv4IoaMtYGPgIHW0+SlQrUQ568FJAEHINaPrh7ZQ==
+X-Received: by 2002:ac2:50cf:0:b0:48a:f4ef:788b with SMTP id h15-20020ac250cf000000b0048af4ef788bmr5731853lfm.527.1661114241945;
+        Sun, 21 Aug 2022 13:37:21 -0700 (PDT)
+Received: from mobilestation ([95.79.140.178])
+        by smtp.gmail.com with ESMTPSA id x2-20020ac25dc2000000b0047dace7c7e5sm1606422lfq.212.2022.08.21.13.37.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 21 Aug 2022 13:21:27 -0700 (PDT)
-Received: (nullmailer pid 1729128 invoked by uid 1000);
-        Sun, 21 Aug 2022 20:21:26 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?q?Pali_Roh=C3=A1r?= <pali@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org,
-        =?utf-8?q?Marek_Beh=C3=BAn?= <kabel@kernel.org>,
+        Sun, 21 Aug 2022 13:37:21 -0700 (PDT)
+Date:   Sun, 21 Aug 2022 23:37:19 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Sudip Mukherjee <sudip.mukherjee@sifive.com>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Ellerman <mpe@ellerman.id.au>
-In-Reply-To: <20220820102925.29476-1-pali@kernel.org>
-References: <20220820102925.29476-1-pali@kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: reset: syscon-reboot: Add priority property
-Date:   Sun, 21 Aug 2022 15:21:26 -0500
-Message-Id: <1661113286.905357.1729127.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,PP_MIME_FAKE_ASCII_TEXT,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+        greentime.hu@sifive.com, jude.onyenegecha@sifive.com,
+        william.salmon@sifive.com, adnan.chowdhury@sifive.com,
+        ben.dooks@sifive.com, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        jeegar.lakhani@sifive.com
+Subject: Re: [PATCH 00/11] Add support for enhanced SPI for Designware SPI
+ controllers
+Message-ID: <20220821203719.gxjxo24stzcf3a2x@mobilestation>
+References: <20220802175755.6530-1-sudip.mukherjee@sifive.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220802175755.6530-1-sudip.mukherjee@sifive.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 20 Aug 2022 12:29:23 +0200, Pali Rohár wrote:
-> This new optional priority property allows to specify custom priority level
-> of reset device. Default level was always 192.
+Hi Sudip
+
+On Tue, Aug 02, 2022 at 06:57:44PM +0100, Sudip Mukherjee wrote:
+> Some Synopsys SSI controllers support enhanced SPI which includes
+> Dual mode, Quad mode and Octal mode. DWC_ssi includes clock stretching
+> feature in enhanced SPI modes which can be used to prevent FIFO underflow
+> and overflow conditions while transmitting or receiving the data respectively.
+> This is only tested on controller version 1.03a.
 > 
-> Signed-off-by: Pali Rohár <pali@kernel.org>
-> ---
->  .../devicetree/bindings/power/reset/syscon-reboot.yaml        | 4 ++++
->  1 file changed, 4 insertions(+)
+> Ben Dooks (1):
+>   spi: dw-apb-ssi: add generic 1.03a version
 > 
+> Sudip Mukherjee (10):
+>   spi: dw: define capability for enhanced spi
+>   spi: dw: add check for support of dual/quad/octal
+>   spi: dw: define spi_frf for dual/quad/octal modes
+>   spi: dw: use TMOD_RO to read in enhanced spi modes
+>   spi: dw: define SPI_CTRLR0 register and its fields
+>   spi: dw: update SPI_CTRLR0 register
+>   spi: dw: update NDF while writing in enhanced spi mode
+>   spi: dw: update buffer for enhanced spi mode
+>   spi: dw: prepare the transfer routine for enhanced mode
+>   spi: dw: initialize dwc-ssi-1.03a controller
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Thanks for the very useful series. I've started reviewing it and will
+share all my comments tomorrow.
 
-yamllint warnings/errors:
+-Sergey
 
-dtschema/dtc warnings/errors:
-./Documentation/devicetree/bindings/power/reset/syscon-reboot.yaml: Unresolvable JSON pointer: 'definitions/sint32'
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+> 
+>  .../bindings/spi/snps,dw-apb-ssi.yaml         |   1 +
+>  drivers/spi/spi-dw-core.c                     | 288 ++++++++++++++++--
+>  drivers/spi/spi-dw-mmio.c                     |  10 +
+>  drivers/spi/spi-dw.h                          |  19 ++
+>  4 files changed, 291 insertions(+), 27 deletions(-)
+> 
+> -- 
+> 2.30.2
+> 
