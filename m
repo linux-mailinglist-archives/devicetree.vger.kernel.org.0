@@ -2,137 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C54059B1BF
-	for <lists+devicetree@lfdr.de>; Sun, 21 Aug 2022 06:41:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32DE159B1FC
+	for <lists+devicetree@lfdr.de>; Sun, 21 Aug 2022 07:04:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229780AbiHUEkM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Aug 2022 00:40:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54100 "EHLO
+        id S229587AbiHUFBX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Aug 2022 01:01:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229609AbiHUEkA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Aug 2022 00:40:00 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D1871BEB3
-        for <devicetree@vger.kernel.org>; Sat, 20 Aug 2022 21:39:58 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1oPckJ-0007TV-Kd; Sun, 21 Aug 2022 06:39:35 +0200
-Received: from ore by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1oPckG-0007zt-4g; Sun, 21 Aug 2022 06:39:32 +0200
-Date:   Sun, 21 Aug 2022 06:39:32 +0200
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Heiner Kallweit <hkallweit1@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>, kernel@pengutronix.de,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-        David Jander <david@protonic.nl>
-Subject: Re: [PATCH net-next v1 7/7] ethtool: add interface to interact with
- Ethernet Power Equipment
-Message-ID: <20220821043932.GJ10138@pengutronix.de>
-References: <20220819120109.3857571-1-o.rempel@pengutronix.de>
- <20220819120109.3857571-8-o.rempel@pengutronix.de>
- <YwEk8h9C9XhT6Yyc@lunn.ch>
+        with ESMTP id S229743AbiHUFBD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Aug 2022 01:01:03 -0400
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E21641F2CC;
+        Sat, 20 Aug 2022 22:01:02 -0700 (PDT)
+Received: by mail-pj1-x1035.google.com with SMTP id t2-20020a17090a4e4200b001f21572f3a4so8390065pjl.0;
+        Sat, 20 Aug 2022 22:01:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc;
+        bh=yYbuoP8aiNdzjNucGmLOyWlT9Bpa0wRaE8Dmtu5m2vA=;
+        b=NWJNGh7ZvNh1DkptDTyGM8P7AHb1Qmmd/7Gs1xbHWTYVLZ9507MdW8Qrf4wFM60afI
+         jMRtbouQ+eX+y5Jtpk5Tsbx8S05CWh7aMsxzRdjYWLdyiLWvshUFC75J+pp9GwgVjmhB
+         POJnCEVD/BVxvyjIPnfr0Joq7vU556veA/7mnrj4JW4fhplAY3qG8VD1GE8DXxDSczqx
+         9od6NtWIG7huVhkqyMGUVTCc3pTidbsfAhyWvzr3ZNpPGt+3AMDBLosj2hQJsXOzb4wD
+         CsLidvYY1IvIiTZOF86tTn3asIBguR+0sqarLshbn97EbOrxjGrOhtBClbUGozUBdnrr
+         +jdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+        bh=yYbuoP8aiNdzjNucGmLOyWlT9Bpa0wRaE8Dmtu5m2vA=;
+        b=RjYA9oAoOMcvkrmTl/wbDe5BX8ZxstJrE6h3wIvT7FGKDDe8b2DRK8QuRw0zA+YV8i
+         UIpeZVe/otJ9kKE6KIFSXerEENvcG8bJ/1xM40HepV99zPxIrUd9e7S9ERMKWQqDSUcJ
+         EOl91SAVavUDPD3UciCz7I+UnGkNDmm16KGSYXtj+6qQwh8Nb04bscDSKFmt19ilxdY/
+         a+CneDcdmVxgS8jTUqtQS/onTJ+TXZ3K0PhblrHmf84xYH7wy8vS8EaDHlFJxUsBkPR5
+         rccl7yH+QDgEa2o4lJnUaChLkT8KDg2YAQcy9SANmms7tJTfbq0ziKE9GkYimtsS1jSr
+         DLQA==
+X-Gm-Message-State: ACgBeo0bzkNQwTJYfRHjhftiukmFGxZy1O+OJ4luWjU8a80WmZlzUicc
+        ibqhfM77VnXY+1+jtua8Q4w=
+X-Google-Smtp-Source: AA6agR6ps4TmBKlFXVuuW0dJ0uWopC9NxZaGNWK4vlZ06sq8mj21tmV1glVBGCy7KGA6nXsGQ0yHQQ==
+X-Received: by 2002:a17:902:7c94:b0:170:aed6:7e6c with SMTP id y20-20020a1709027c9400b00170aed67e6cmr14222331pll.10.1661058062191;
+        Sat, 20 Aug 2022 22:01:02 -0700 (PDT)
+Received: from google.com ([2620:15c:202:201:2c40:97f7:f170:cdca])
+        by smtp.gmail.com with ESMTPSA id g5-20020a170902d1c500b0016eea511f2dsm5700875plb.242.2022.08.20.22.01.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 20 Aug 2022 22:01:01 -0700 (PDT)
+Date:   Sat, 20 Aug 2022 22:00:58 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     Gireesh.Hiremath@in.bosch.com, linux-omap@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-input@vger.kernel.org, bcousson@baylibre.com,
+        tony@atomide.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, mkorpershoek@baylibre.com,
+        davidgow@google.com, swboyd@chromium.org, fengping.yu@mediatek.com,
+        y.oudjana@protonmail.com, rdunlap@infradead.org,
+        colin.king@intel.com, sjoerd.simons@collabora.co.uk,
+        VinayKumar.Shettar@in.bosch.com,
+        Govindaraji.Sivanantham@in.bosch.com, anaclaudia.dias@de.bosch.com
+Subject: Re: [PATCH v3 1/3] driver: input: matric-keypad: switch to gpiod
+Message-ID: <YwG8CkhlK5xDJ1lr@google.com>
+References: <20220819065946.9572-1-Gireesh.Hiremath@in.bosch.com>
+ <20220819131231.nzi26cbrpgfrycl2@pengutronix.de>
+ <YwAx38N0ICE37Vu9@google.com>
+ <20220820193623.bnjgnydu3rkbdtbo@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YwEk8h9C9XhT6Yyc@lunn.ch>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220820193623.bnjgnydu3rkbdtbo@pengutronix.de>
+X-Spam-Status: No, score=1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FSL_HELO_FAKE,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 20, 2022 at 08:16:18PM +0200, Andrew Lunn wrote:
-> On Fri, Aug 19, 2022 at 02:01:09PM +0200, Oleksij Rempel wrote:
-> > Add interface to support Power Sourcing Equipment. At current step it
-> > provides generic way to address all variants of PSE devices as defined
-> > in IEEE 802.3-2018 but support only objects specified for IEEE 802.3-2018 104.4
-> > PoDL Power Sourcing Equipment (PSE).
-> > 
-> > Currently supported and mandatory objects are:
-> > IEEE 802.3-2018 30.15.1.1.3 aPoDLPSEPowerDetectionStatus
-> > IEEE 802.3-2018 30.15.1.1.2 aPoDLPSEAdminState
-> > IEEE 802.3-2018 30.15.1.2.1 acPoDLPSEAdminControl
-> > 
-> > This is minimal interface needed to control PSE on each separate
-> > ethernet port but it provides not all mandatory objects specified in
-> > IEEE 802.3-2018.
-> 
-> > +static int pse_get_pse_attributs(struct net_device *dev,
-> > +				 struct pse_reply_data *data)
-> > +{
-> > +	struct phy_device *phydev = dev->phydev;
-> > +	int ret;
-> > +
-> > +	if (!phydev)
-> > +		return -EOPNOTSUPP;
-> > +
-> > +	mutex_lock(&phydev->lock);
-> > +	if (!phydev->psec) {
-> > +		ret = -EOPNOTSUPP;
-> > +		goto error_unlock;
-> > +	}
-> > +
-> > +	ret = pse_podl_get_admin_sate(phydev->psec);
-> > +	if (ret < 0)
-> > +		goto error_unlock;
-> > +
-> > +	data->podl_pse_admin_state = ret;
-> > +
-> > +	ret = pse_podl_get_pw_d_status(phydev->psec);
-> > +	if (ret < 0)
-> > +		goto error_unlock;
-> > +
-> > +	data->podl_pse_pw_d_status = ret;
-> 
-> I'm wondering how this is going to scale. At some point, i expect
-> there will be an implementation that follows C45.2.9. I see 14 values
-> which could be returned. I don't think 14 ops in the driver structure
-> makes sense. Plus c30.15.1 defines other values.
-> 
-> The nice thing about netlink is you can have as many or are little
-> attributes in the message as you want. For cable testing, i made use
-> of this. There is no standardisation, different PHYs offer different
-> sorts of results. So i made the API flexible. The PHY puts whatever
-> results it has into the message, and ethtool(1) just walks the message
-> and prints what is in it.
-> 
-> I'm wondering if we want a similar sort of API here?
-> net/ethtool/pse-pd.c allocates the netlink messages, adds the header,
-> and then passes it to the driver. The driver then uses helpers from
-> ethtool to add whatever attributes it wants to the message. pse-pd
-> then completes the message, and returns it to user space? This seems
-> like it will scale better.
+Hi Marco,
 
-Yes. Sounds good. I'll make a new version.
+On Sat, Aug 20, 2022 at 09:36:23PM +0200, Marco Felsch wrote:
+> Hi Dmitry,
+> 
+> On 22-08-19, Dmitry Torokhov wrote:
+> > On Fri, Aug 19, 2022 at 03:12:31PM +0200, Marco Felsch wrote:
+> > > Hi Gireesh,
+> > > 
+> > > On 22-08-19, Gireesh.Hiremath@in.bosch.com wrote:
+> > > > From: Gireesh Hiremath <Gireesh.Hiremath@in.bosch.com>
+> > > > 
+> > > > Switch from gpio API to gpiod API
+> > > 
+> > > Nice change.
+> > > 
+> > > Did you checked the users of this driver? This change changes the
+> > > behaviour for actice_low GPIOs. A quick check showed that at least on
+> > > upstream board: arch/arm/mach-pxa/palmtc.c uses active low GPIOs.
+> > > 
+> > > > Signed-off-by: Gireesh Hiremath <Gireesh.Hiremath@in.bosch.com>
+> > > > 
+> > > > Gbp-Pq: Topic apertis/guardian
+> > > > Gbp-Pq: Name driver-input-matric-keypad-switch-gpio-to-gpiod.patch
+> > > 
+> > > Please drop this internal tags.
+> > > 
+> > > > ---
+> > > >  drivers/input/keyboard/matrix_keypad.c | 84 ++++++++++----------------
+> > > >  include/linux/input/matrix_keypad.h    |  4 +-
+> > > >  2 files changed, 33 insertions(+), 55 deletions(-)
+> > > > 
+> > > > diff --git a/drivers/input/keyboard/matrix_keypad.c b/drivers/input/keyboard/matrix_keypad.c
+> > > > index 30924b57058f..b99574edad9c 100644
+> > > > --- a/drivers/input/keyboard/matrix_keypad.c
+> > > > +++ b/drivers/input/keyboard/matrix_keypad.c
+> > > > @@ -15,11 +15,10 @@
+> > > >  #include <linux/interrupt.h>
+> > > >  #include <linux/jiffies.h>
+> > > >  #include <linux/module.h>
+> > > > -#include <linux/gpio.h>
+> > > > +#include <linux/gpio/consumer.h>
+> > > >  #include <linux/input/matrix_keypad.h>
+> > > >  #include <linux/slab.h>
+> > > >  #include <linux/of.h>
+> > > > -#include <linux/of_gpio.h>
+> > > >  #include <linux/of_platform.h>
+> > > >  
+> > > >  struct matrix_keypad {
+> > > > @@ -49,11 +48,11 @@ static void __activate_col(const struct matrix_keypad_platform_data *pdata,
+> > > >  	bool level_on = !pdata->active_low;
+> > > >  
+> > > >  	if (on) {
+> > > > -		gpio_direction_output(pdata->col_gpios[col], level_on);
+> > > > +		gpiod_direction_output(pdata->col_gpios[col], level_on);
+> > > 
+> > > Now strange things can happen, if active_low is set and you specified
+> > > GPIO_ACTIVE_LOW within the device-tree. We need a way to move to gpiod
+> > > and keep the current behaviour.
+> > > 
+> > > >  	} else {
+> > > > -		gpio_set_value_cansleep(pdata->col_gpios[col], !level_on);
+> > > > +		gpiod_set_value_cansleep(pdata->col_gpios[col], !level_on);
+> > > >  		if (!pdata->drive_inactive_cols)
+> > > > -			gpio_direction_input(pdata->col_gpios[col]);
+> > > > +			gpiod_direction_input(pdata->col_gpios[col]);
+> 
+> ...
+> 
+> > > > @@ -429,9 +410,6 @@ matrix_keypad_parse_dt(struct device *dev)
+> > > >  	pdata->wakeup = of_property_read_bool(np, "wakeup-source") ||
+> > > >  			of_property_read_bool(np, "linux,wakeup"); /* legacy */
+> > > >  
+> > > > -	if (of_get_property(np, "gpio-activelow", NULL))
+> > > > -		pdata->active_low = true;
+> > > > -
+> > > 
+> > > This removes backward compatibility, please don't do that.
+> > 
+> > I do not think there is a reasonable way of keeping the compatibility
+> > while using gpiod API (sans abandoning polarity handling and using
+> > *_raw() versions of API).
+> > 
+> > I would adjust the DTSes in the kernel and move on, especially given
+> > that the DTSes in the kernel are inconsistent - they specify
+> > gpio-activelow attribute while specifying "action high" in gpio
+> > properties).
+> 
+> Yes, because the driver didn't respect that by not using the gpiod API.
+> Got your point for the DTses but what about the boards based on the
+> platform-data? Those boards must be changed as well.
 
-Regards,
-Oleksij
+Yes, that is correct.
+
+> 
+> Also I thought DTB is firmware and we should never break it, now we
+> doing it by this commit. Just to get your opinion on this.
+
+Well, this is true in theory, however from the practical POV the boards
+that use this driver do not store DTB in firmware, but rather distribute
+it with the kernel. So while we normally try to keep compatibility, in
+cases like this I feel we can be practical and instead of trying to
+handle a pure theoretical case simply fix up DTSes and move on with our
+lives.
+
+Thanks.
+
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Dmitry
