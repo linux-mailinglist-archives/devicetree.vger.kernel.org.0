@@ -2,61 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C393659B642
-	for <lists+devicetree@lfdr.de>; Sun, 21 Aug 2022 22:24:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AF5D59B646
+	for <lists+devicetree@lfdr.de>; Sun, 21 Aug 2022 22:24:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231689AbiHUUVh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Aug 2022 16:21:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45118 "EHLO
+        id S231289AbiHUUVc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Aug 2022 16:21:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231687AbiHUUVg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Aug 2022 16:21:36 -0400
-Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF4531AF33;
-        Sun, 21 Aug 2022 13:21:34 -0700 (PDT)
-Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-11c9af8dd3eso10353665fac.10;
-        Sun, 21 Aug 2022 13:21:34 -0700 (PDT)
+        with ESMTP id S231666AbiHUUVb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Aug 2022 16:21:31 -0400
+Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9DB01AF1B
+        for <devicetree@vger.kernel.org>; Sun, 21 Aug 2022 13:21:30 -0700 (PDT)
+Received: by mail-ot1-f52.google.com with SMTP id m21-20020a9d6ad5000000b00638df677850so6472423otq.5
+        for <devicetree@vger.kernel.org>; Sun, 21 Aug 2022 13:21:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=message-id:date:subject:references:in-reply-to:cc:to:from
          :x-gm-message-state:from:to:cc;
-        bh=kHR/6wmfR6fjHyTF56Wxh26tOWvFD1gj0BvoOySyPBs=;
-        b=AyK/y6TOie4meC28b9u+7gIlG8XUxbqaxvMtTq2WJC/MHuf1riyeEMGb75GatSt6Zf
-         O0TkW0kRtZf5CmYkh/rLQr23DBUPd27x0d/HriZ/RQp7eKD35fMTpDYnd41hR6ogZymV
-         r5uM6X3gqennRMasZKESsEJmvRH6MZs7hbmKLFyMLrhtPh1ONxauOK3mLpG2NqoP9IDL
-         skG9SeL1fnqjjgfZb+A55C4yUFI3Ab7HXQ2EuHyPxumr2BJlPxSLxNRF552w+QP7Lk88
-         X7Mn7wtHD06g1YcStaDfDPpjU2Yg9G0dBj1Rt3IMMIsIseTLomcdQUzWP2Hmv8qVe6aZ
-         /Vsg==
-X-Gm-Message-State: ACgBeo0nmW/AC0RoNfnVbYDMq+lRU/6dZB+7gH+U4i7RgQXU3N4tIWzj
-        C0LTxablTtDedFQtpERN9w==
-X-Google-Smtp-Source: AA6agR4dNBn7HCgLqySmVeHObrD9TKjx/Hf7tziNj/L0DLNZaljbG2Smhz4+E3PbOq86WWLQXNaLBQ==
-X-Received: by 2002:a05:6870:3282:b0:11d:10ad:a85d with SMTP id q2-20020a056870328200b0011d10ada85dmr3090979oac.181.1661113294253;
-        Sun, 21 Aug 2022 13:21:34 -0700 (PDT)
+        bh=iaxo6mI6MQ0blu75zodjuU7hGLxxNwP+L6Nsy7KY648=;
+        b=UFjTK2K0pYQExkKq5G/kXkw9ssep7IVPkANS1Oql0kAlZGdcSp4PeO8OQoeej1LfSh
+         g0NmY2KsjX3vlanuxu7bR7OLuwxy10txaZtfDTQ00g3U+TE/MeNkLT+r7Khq3c6mz2Zd
+         8ixuM+8gkR78n51ncEdGMdaeLy3RblzsgHb/wakLV0Cn9/8jLvXhAZ/p3TAGO0WnF3H1
+         3E/aSkbuaqcbqATQbGBwijHA3omFTIqbTT5hnVT7KgM5vID6UyKlYGghLYtEKO1prhgg
+         zgdNNgwG143eVtVGLMMePFKb1Ax67ZuzuIMo1p5YX36AYpmUX76iUv8uGwP9fE8yrE6Q
+         Z3Dw==
+X-Gm-Message-State: ACgBeo28rXymQEq+7Qoa6CVQWPHbVo1M2AyEM1I0ymenf8tzO8R8jQo9
+        EwZDGkIt/Tf/boNLAhFPNg==
+X-Google-Smtp-Source: AA6agR6B/vS8tD/6+Jrlxgmq2/b6A2aVtiurzDBKiqhbeXbTjYUcjTZUbmOgHM1PdAjoGBtOvb39+A==
+X-Received: by 2002:a05:6830:1e33:b0:637:3143:d3b5 with SMTP id t19-20020a0568301e3300b006373143d3b5mr6443235otr.285.1661113290092;
+        Sun, 21 Aug 2022 13:21:30 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id m3-20020a0568301e6300b00636d6571ff7sm2529660otr.70.2022.08.21.13.21.32
+        by smtp.gmail.com with ESMTPSA id w16-20020a4a3550000000b00435785e7b49sm2158106oog.19.2022.08.21.13.21.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 21 Aug 2022 13:21:33 -0700 (PDT)
-Received: (nullmailer pid 1729154 invoked by uid 1000);
+        Sun, 21 Aug 2022 13:21:29 -0700 (PDT)
+Received: (nullmailer pid 1729131 invoked by uid 1000);
         Sun, 21 Aug 2022 20:21:26 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Brad Larson <brad@pensando.io>
-Cc:     linux-kernel@vger.kernel.org, yamada.masahiro@socionext.com,
-        fancer.lancer@gmail.com, krzk@kernel.org, piotrs@cadence.com,
-        devicetree@vger.kernel.org, samuel@sholland.org,
-        catalin.marinas@arm.com, gsomlo@gmail.com, lee.jones@linaro.org,
-        krzysztof.kozlowski+dt@linaro.org, arnd@arndb.de,
-        linux-mmc@vger.kernel.org, suravee.suthikulpanit@amd.com,
-        gerg@linux-m68k.org, thomas.lendacky@amd.com, will@kernel.org,
-        linux-arm-kernel@lists.infradead.org, broonie@kernel.org,
-        p.yadav@ti.com, brijeshkumar.singh@amd.com, blarson@amd.com,
-        adrian.hunter@intel.com, p.zabel@pengutronix.de,
-        andy.shevchenko@gmail.com, ulf.hansson@linaro.org,
-        alcooperx@gmail.com, rdunlap@infradead.org, robh+dt@kernel.org
-In-Reply-To: <20220820195750.70861-8-brad@pensando.io>
-References: <20220820195750.70861-1-brad@pensando.io> <20220820195750.70861-8-brad@pensando.io>
-Subject: Re: [PATCH v6 07/17] dt-bindings: reset: amd,pensando-elbasr-reset: Add AMD Pensando SR Reset Controller bindings
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Gregory Clement <gregory.clement@bootlin.com>,
+        Device Tree <devicetree@vger.kernel.org>,
+        arm-soc <arm@kernel.org>
+In-Reply-To: <20220820194804.3352415-8-andrew@lunn.ch>
+References: <20220820194804.3352415-1-andrew@lunn.ch> <20220820194804.3352415-8-andrew@lunn.ch>
+Subject: Re: [PATCH 07/11] DT: nand-controller: Reflect reality of marvell,orion-nand
 Date:   Sun, 21 Aug 2022 15:21:26 -0500
-Message-Id: <1661113286.952331.1729150.nullmailer@robh.at.kernel.org>
+Message-Id: <1661113286.917877.1729130.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -68,16 +59,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 20 Aug 2022 12:57:40 -0700, Brad Larson wrote:
-> From: Brad Larson <blarson@amd.com>
+On Sat, 20 Aug 2022 21:48:00 +0200, Andrew Lunn wrote:
+> The Marvell Orion NAND driver comes from before the time of the
+> standardised NAND binding. The controller only supports a single
+> device, and expects the NAND partition table to be directly in the
+> controller node. This goes against the standardised NAND binding which
+> expects a sub node per NAND device, which contains the partition
+> table.
 > 
-> Document bindings for AMD Pensando Elba SR Reset Controller
+> Since the partition table contains a reg property indicating the start
+> address of the partition and its length, it needs #size-cells set to
+> 1. However, for a list of nand devices, the reg value is the device
+> number, requiring #size-cells of 0.
 > 
-> Signed-off-by: Brad Larson <blarson@amd.com>
+> Add an exception to nand-controller.yaml to allow this #size-cells
+> value when the compatible matches the orion controller.
+> 
+> In order that the example works, it needs a compatible string so the
+> comparison can be made.
+> 
+> Signed-off-by: Andrew Lunn <andrew@lunn.ch>
 > ---
->  .../reset/amd,pensando-elbasr-reset.yaml      | 57 +++++++++++++++++++
->  1 file changed, 57 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/reset/amd,pensando-elbasr-reset.yaml
+>  .../bindings/mtd/nand-controller.yaml           | 17 ++++++++++++++++-
+>  1 file changed, 16 insertions(+), 1 deletion(-)
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -86,7 +90,7 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/reset/amd,pensando-elbasr-reset.example.dtb:0:0: /example-0/spi/spi@0: failed to match any schema with compatible: ['amd,pensando-elbasr']
+Documentation/devicetree/bindings/mtd/nand-controller.example.dtb:0:0: /example-0/nand-controller: failed to match any schema with compatible: ['bar']
 
 doc reference errors (make refcheckdocs):
 
