@@ -2,55 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 578BF59B16A
-	for <lists+devicetree@lfdr.de>; Sun, 21 Aug 2022 05:33:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C54059B1BF
+	for <lists+devicetree@lfdr.de>; Sun, 21 Aug 2022 06:41:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233430AbiHUDXr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 Aug 2022 23:23:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56242 "EHLO
+        id S229780AbiHUEkM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Aug 2022 00:40:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229557AbiHUDXm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Aug 2022 23:23:42 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F34E7120A9
-        for <devicetree@vger.kernel.org>; Sat, 20 Aug 2022 20:23:40 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1583660C51
-        for <devicetree@vger.kernel.org>; Sun, 21 Aug 2022 03:23:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED8F4C433C1;
-        Sun, 21 Aug 2022 03:23:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661052219;
-        bh=NSMNHRlZx9naDvx73Z5+Ag5FLcDVLGJ718RKW33XDa8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=A/8LLHOw/HD88adCxzWCCcecVgmpynXIclYZD+iSlp3LEFawf+//0Tqpj2xnSWAol
-         PTWj5mSOxyhNDGB3ehuLfqUj1Ku1lvNBGUBlvlDAw2X3KKkhFVI5woPGHJ36fDqTvf
-         HHH11OS781Pk68zs2mzDINeZq6ndigUOaIs+5W/9GRGoROi39fVD6M1EpzQf0DvVs2
-         a50K6CflEiyQNdeLcaB+9djfI7J7ZYGA+7+954YVIZhjo/jRcz3u4qXodUwsGIUBxw
-         sUN5NFSU9NjiSO5Z+UzlDeenL7HEqAF0ks3A45uUJAv1aZiNR+8NRz3juD7EneljD3
-         tb8uqU8uVwvzA==
-Date:   Sun, 21 Aug 2022 11:23:34 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229609AbiHUEkA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Aug 2022 00:40:00 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D1871BEB3
+        for <devicetree@vger.kernel.org>; Sat, 20 Aug 2022 21:39:58 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1oPckJ-0007TV-Kd; Sun, 21 Aug 2022 06:39:35 +0200
+Received: from ore by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1oPckG-0007zt-4g; Sun, 21 Aug 2022 06:39:32 +0200
+Date:   Sun, 21 Aug 2022 06:39:32 +0200
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Heiner Kallweit <hkallweit1@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Lukasz Majewski <lukma@denx.de>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/1] ARM: dts: imx6q-mccmon6: Add
- fsl,err006687-workaround-present property
-Message-ID: <20220821032334.GM149610@dragon>
-References: <20220720064712.1414438-1-alexander.stein@ew.tq-group.com>
+        Jonathan Corbet <corbet@lwn.net>, kernel@pengutronix.de,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+        David Jander <david@protonic.nl>
+Subject: Re: [PATCH net-next v1 7/7] ethtool: add interface to interact with
+ Ethernet Power Equipment
+Message-ID: <20220821043932.GJ10138@pengutronix.de>
+References: <20220819120109.3857571-1-o.rempel@pengutronix.de>
+ <20220819120109.3857571-8-o.rempel@pengutronix.de>
+ <YwEk8h9C9XhT6Yyc@lunn.ch>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20220720064712.1414438-1-alexander.stein@ew.tq-group.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <YwEk8h9C9XhT6Yyc@lunn.ch>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,9 +65,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 20, 2022 at 08:47:12AM +0200, Alexander Stein wrote:
-> Add property for ERR006687 hardware workaround.
+On Sat, Aug 20, 2022 at 08:16:18PM +0200, Andrew Lunn wrote:
+> On Fri, Aug 19, 2022 at 02:01:09PM +0200, Oleksij Rempel wrote:
+> > Add interface to support Power Sourcing Equipment. At current step it
+> > provides generic way to address all variants of PSE devices as defined
+> > in IEEE 802.3-2018 but support only objects specified for IEEE 802.3-2018 104.4
+> > PoDL Power Sourcing Equipment (PSE).
+> > 
+> > Currently supported and mandatory objects are:
+> > IEEE 802.3-2018 30.15.1.1.3 aPoDLPSEPowerDetectionStatus
+> > IEEE 802.3-2018 30.15.1.1.2 aPoDLPSEAdminState
+> > IEEE 802.3-2018 30.15.1.2.1 acPoDLPSEAdminControl
+> > 
+> > This is minimal interface needed to control PSE on each separate
+> > ethernet port but it provides not all mandatory objects specified in
+> > IEEE 802.3-2018.
 > 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > +static int pse_get_pse_attributs(struct net_device *dev,
+> > +				 struct pse_reply_data *data)
+> > +{
+> > +	struct phy_device *phydev = dev->phydev;
+> > +	int ret;
+> > +
+> > +	if (!phydev)
+> > +		return -EOPNOTSUPP;
+> > +
+> > +	mutex_lock(&phydev->lock);
+> > +	if (!phydev->psec) {
+> > +		ret = -EOPNOTSUPP;
+> > +		goto error_unlock;
+> > +	}
+> > +
+> > +	ret = pse_podl_get_admin_sate(phydev->psec);
+> > +	if (ret < 0)
+> > +		goto error_unlock;
+> > +
+> > +	data->podl_pse_admin_state = ret;
+> > +
+> > +	ret = pse_podl_get_pw_d_status(phydev->psec);
+> > +	if (ret < 0)
+> > +		goto error_unlock;
+> > +
+> > +	data->podl_pse_pw_d_status = ret;
+> 
+> I'm wondering how this is going to scale. At some point, i expect
+> there will be an implementation that follows C45.2.9. I see 14 values
+> which could be returned. I don't think 14 ops in the driver structure
+> makes sense. Plus c30.15.1 defines other values.
+> 
+> The nice thing about netlink is you can have as many or are little
+> attributes in the message as you want. For cable testing, i made use
+> of this. There is no standardisation, different PHYs offer different
+> sorts of results. So i made the API flexible. The PHY puts whatever
+> results it has into the message, and ethtool(1) just walks the message
+> and prints what is in it.
+> 
+> I'm wondering if we want a similar sort of API here?
+> net/ethtool/pse-pd.c allocates the netlink messages, adds the header,
+> and then passes it to the driver. The driver then uses helpers from
+> ethtool to add whatever attributes it wants to the message. pse-pd
+> then completes the message, and returns it to user space? This seems
+> like it will scale better.
 
-Applied, thanks!
+Yes. Sounds good. I'll make a new version.
+
+Regards,
+Oleksij
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
