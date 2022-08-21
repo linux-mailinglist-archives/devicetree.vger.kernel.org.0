@@ -2,115 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 79FCE59B655
-	for <lists+devicetree@lfdr.de>; Sun, 21 Aug 2022 22:37:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF60B59B6A2
+	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 00:43:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231177AbiHUUhZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Aug 2022 16:37:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54940 "EHLO
+        id S231794AbiHUWnK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Aug 2022 18:43:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229541AbiHUUhY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Aug 2022 16:37:24 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B258F1F60D;
-        Sun, 21 Aug 2022 13:37:23 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id s1so9941174lfp.6;
-        Sun, 21 Aug 2022 13:37:23 -0700 (PDT)
+        with ESMTP id S230281AbiHUWnJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Aug 2022 18:43:09 -0400
+Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com [IPv6:2607:f8b0:4864:20::f2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0390C1A387
+        for <devicetree@vger.kernel.org>; Sun, 21 Aug 2022 15:43:07 -0700 (PDT)
+Received: by mail-qv1-xf2a.google.com with SMTP id m17so6993414qvv.7
+        for <devicetree@vger.kernel.org>; Sun, 21 Aug 2022 15:43:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=linaro.org; s=google;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc;
-        bh=Kyxqc5rAoGnqJE9WElx6EBMV8xqTT9IMMo5wUGHftok=;
-        b=Dh0wHSuPepRN05VF69M8apwh8NLGTSQ0rj+C/rKBVw0IFpwC/l6DdaykrHcU/GFVK3
-         j65op7R8+6uvo6xt6Hm+hLsbYWROiF69cK9jmg3p8MmDiL8Blk+0EdT8RbEyggVeOzBc
-         E2QsKkaKWDt1JPAsZ0gGBXgaqegBUQGrfiZMgTjVaVZOhhFaDQb3++pDcQlEvl7am52g
-         8E6BWjV+Gw0ldKKbOgvYlTmuD9T1/4Ci/JB85yxkUXh/xufOFYBgrBSHT/oyyeXslpji
-         F8UqfqqExfmA69cRW0nQRkii+2MeQCh28QX7vRrFow1xOw4ZvwWwfp9pNniBFtlAYFBl
-         s8zA==
+        bh=SLQM5J0xWlA5wbIdPKtFesag8huNtFa4txc60rMlobs=;
+        b=LCe/vgen+XCMH74gOLjR7bN1ArujZ6DZNPJ6V53+IEZ6OgRPAwymR/F67fphTrZJ7i
+         WX/OvPvYDb/q0lzT6y/ojevJgVtkkrJVME07VVUjhe+W7SrXZWha/xHvLbEo6dn99ALm
+         RnU0FdS39Zd379nE+54lq5MlVZdTagm7AXtwD5nlksNAy8MY/8Kd/r5nFNZmDzU9lks7
+         Kl8wGX1X2MLbJYkrWRYSh7eTAwvMiT/+8r/He0mVxOkpPhFRsaNUQXxkeIZIYl0Dclq2
+         /fa1qWEhJOXvtuNsFdztaVKjysOZ6qJ3qfrrLqosuTGWz6e0b+we+E1tOoYP6nMxFiPu
+         hQuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=Kyxqc5rAoGnqJE9WElx6EBMV8xqTT9IMMo5wUGHftok=;
-        b=s2sjVdoDWpCIur57YRum23vVBmCg3fzHvGVuPrJ2fitS0nDcg82dCzj23mB6EsoslP
-         N0ftrc9SKaYm19uME2Hiq/Y1gvkqRUZ91vVmGv53WT/vOs6Gfwc6H+7U5hQ0/MTfB/qL
-         BPG4JtWo33LbmxG8mudboTXlAzGGx1p1tUT821VmCHqdJC0VinI0pFZyLIgcknjzn9US
-         lN0ck9bG9eTNauc5FjihPhYxbhGS63+8FUrPkCQKhwkU2PX4dloMNmTu08fhGJgMjY5N
-         eG/T/d0Eu1yx1jn/erV1KL7Foc30UW4wffgKBV+HKtijberAZR0XTHrVWJiwNAKegDfw
-         xPxA==
-X-Gm-Message-State: ACgBeo1zt3CAxZEooxEcPTQWANn5zu0uadfgXTZcF8qLJ51NI6DYx3Ue
-        ZeMsCvU76rZQqTKUx45Eai9qmffLdtLK1w==
-X-Google-Smtp-Source: AA6agR5VwSaYfHoh8jG3iAVAoEI5L/BpK4p7fvqv4IoaMtYGPgIHW0+SlQrUQ568FJAEHINaPrh7ZQ==
-X-Received: by 2002:ac2:50cf:0:b0:48a:f4ef:788b with SMTP id h15-20020ac250cf000000b0048af4ef788bmr5731853lfm.527.1661114241945;
-        Sun, 21 Aug 2022 13:37:21 -0700 (PDT)
-Received: from mobilestation ([95.79.140.178])
-        by smtp.gmail.com with ESMTPSA id x2-20020ac25dc2000000b0047dace7c7e5sm1606422lfq.212.2022.08.21.13.37.20
+        bh=SLQM5J0xWlA5wbIdPKtFesag8huNtFa4txc60rMlobs=;
+        b=V+lLs2IOvAbS1lHXCl56P2vJO+slW54G/noo4UGGGVYaF316o0LDFRTvvpkoS0nVFN
+         vN4kDNtnTt+nPeoSZxddIbKBh4XaKhnGwkOArrUZKnQ6Yhw0uLCPFg+V66cFkWQfToKZ
+         2Xu7pQY/gswqxhfoxwsnOqjNF39Rl+BbBM95nkFQmu4SCtIxqwpjdxyMnb5VtSf7WVul
+         QOk7/19VdOdnV4/v6Xcui2ch4AMPvAOa/9e8FdW3iMdktr4TvCh7UdE0id9/crQ7Tz99
+         f41sR6E7gL4B2pxkKgLSynDfXBseSrn2xnnJoFq4jjOh/TrvCUCc+gH/R0QWYj87NqvD
+         ooow==
+X-Gm-Message-State: ACgBeo1p6Inpa0dCVic5dnathcFb2QHpDo/LF+UpJ3NHe0iSRf3m98hZ
+        CEFw7p/Z0/kasTBP/hqOiJlmPg==
+X-Google-Smtp-Source: AA6agR4jUAHSGLWTrHVAFXBM1VWQtLl/q6Bx2pU2iMNntHvDE7gUn5RyeTtfpxPXQQyVdyC/TQ5EXQ==
+X-Received: by 2002:a05:6214:d6d:b0:496:e11b:69e9 with SMTP id 13-20020a0562140d6d00b00496e11b69e9mr2366488qvs.45.1661121786638;
+        Sun, 21 Aug 2022 15:43:06 -0700 (PDT)
+Received: from fedora (69-109-179-158.lightspeed.dybhfl.sbcglobal.net. [69.109.179.158])
+        by smtp.gmail.com with ESMTPSA id g25-20020ac84b79000000b00342fc6a8e25sm7805333qts.50.2022.08.21.15.43.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 21 Aug 2022 13:37:21 -0700 (PDT)
-Date:   Sun, 21 Aug 2022 23:37:19 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Sudip Mukherjee <sudip.mukherjee@sifive.com>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        greentime.hu@sifive.com, jude.onyenegecha@sifive.com,
-        william.salmon@sifive.com, adnan.chowdhury@sifive.com,
-        ben.dooks@sifive.com, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        jeegar.lakhani@sifive.com
-Subject: Re: [PATCH 00/11] Add support for enhanced SPI for Designware SPI
- controllers
-Message-ID: <20220821203719.gxjxo24stzcf3a2x@mobilestation>
-References: <20220802175755.6530-1-sudip.mukherjee@sifive.com>
+        Sun, 21 Aug 2022 15:43:06 -0700 (PDT)
+Date:   Sun, 21 Aug 2022 18:43:04 -0400
+From:   William Breathitt Gray <william.gray@linaro.org>
+To:     Julien Panis <jpanis@baylibre.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, mranostay@ti.com
+Subject: Re: [PATCH v5 2/3] Documentation: ABI: sysfs-bus-counter: add
+ capture items
+Message-ID: <YwK0+BNSo4X2KA29@fedora>
+References: <20220817141620.256481-1-jpanis@baylibre.com>
+ <20220817141620.256481-3-jpanis@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="2NJOCRB2znqdE3uV"
 Content-Disposition: inline
-In-Reply-To: <20220802175755.6530-1-sudip.mukherjee@sifive.com>
+In-Reply-To: <20220817141620.256481-3-jpanis@baylibre.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sudip
 
-On Tue, Aug 02, 2022 at 06:57:44PM +0100, Sudip Mukherjee wrote:
-> Some Synopsys SSI controllers support enhanced SPI which includes
-> Dual mode, Quad mode and Octal mode. DWC_ssi includes clock stretching
-> feature in enhanced SPI modes which can be used to prevent FIFO underflow
-> and overflow conditions while transmitting or receiving the data respectively.
-> This is only tested on controller version 1.03a.
-> 
-> Ben Dooks (1):
->   spi: dw-apb-ssi: add generic 1.03a version
-> 
-> Sudip Mukherjee (10):
->   spi: dw: define capability for enhanced spi
->   spi: dw: add check for support of dual/quad/octal
->   spi: dw: define spi_frf for dual/quad/octal modes
->   spi: dw: use TMOD_RO to read in enhanced spi modes
->   spi: dw: define SPI_CTRLR0 register and its fields
->   spi: dw: update SPI_CTRLR0 register
->   spi: dw: update NDF while writing in enhanced spi mode
->   spi: dw: update buffer for enhanced spi mode
->   spi: dw: prepare the transfer routine for enhanced mode
->   spi: dw: initialize dwc-ssi-1.03a controller
+--2NJOCRB2znqdE3uV
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks for the very useful series. I've started reviewing it and will
-share all my comments tomorrow.
+On Wed, Aug 17, 2022 at 04:16:19PM +0200, Julien Panis wrote:
+> This commit adds capture items to counter ABI file
+> (e.g. TI ECAP used in capture operating mode).
+>=20
+> Signed-off-by: Julien Panis <jpanis@baylibre.com>
+> ---
+>  Documentation/ABI/testing/sysfs-bus-counter | 49 +++++++++++++++++++++
+>  1 file changed, 49 insertions(+)
+>=20
+> diff --git a/Documentation/ABI/testing/sysfs-bus-counter b/Documentation/=
+ABI/testing/sysfs-bus-counter
+> index 06c2b3e27e0b..52ddec7cc76a 100644
+> --- a/Documentation/ABI/testing/sysfs-bus-counter
+> +++ b/Documentation/ABI/testing/sysfs-bus-counter
+> @@ -203,6 +203,24 @@ Description:
+>  		both edges:
+>  			Any state transition.
+> =20
+> +What:		/sys/bus/counter/devices/counterX/countY/count_cumul
+> +KernelVersion:	6.0
+> +Contact:	jpanis@baylibre.com
+> +Description:
+> +		Read-only attribute that indicates the raw cumulated count
+> +		since count Y start, computed as follow:
+> +		count_cumul =3D (max_counter_val + 1) * nb_counter_overflows
 
--Sergey
+Implement this instead as "num_overflows" (COUNTER_COMP_COUNT_U64) and
+"ceiling" (COUNTER_COMP_CEILING). You need to expose the count ceiling
+anyway and a new "num_overflows" attribute would be useful for other
+drivers as well.
 
-> 
->  .../bindings/spi/snps,dw-apb-ssi.yaml         |   1 +
->  drivers/spi/spi-dw-core.c                     | 288 ++++++++++++++++--
->  drivers/spi/spi-dw-mmio.c                     |  10 +
->  drivers/spi/spi-dw.h                          |  19 ++
->  4 files changed, 291 insertions(+), 27 deletions(-)
-> 
-> -- 
-> 2.30.2
-> 
+> +What:		/sys/bus/counter/devices/counterX/countY/captureZ
+> +KernelVersion:	6.0
+> +Contact:	jpanis@baylibre.com
+> +Description:
+> +		Read-only attributes that indicate the last raw timestamp captured
+> +		for the respective capture Z register.
+> +		Raw timestamp can be converted to nanoseconds as follow:
+> +		time_ns =3D 10^9 * (captureZ + count_cumul) / frequency
+> +		count_cumul and frequency parameters are described in this document.
+
+Rework this description to make it more general: remove the nanoseconds
+conversion formula and references to timestamps. The concept of a
+capture is general enough that it could be provided by counter devices
+that are not necessarily timestamping. Instead this description should
+simply state that this attribute is a historical capture of the Count Y
+count data where Z (if present) is the respective capture buffer element
+offset.
+
+>  What:		/sys/bus/counter/devices/counterX/countY/ceiling_component_id
+>  What:		/sys/bus/counter/devices/counterX/countY/floor_component_id
+>  What:		/sys/bus/counter/devices/counterX/countY/count_mode_component_id
+> @@ -213,6 +231,8 @@ What:		/sys/bus/counter/devices/counterX/countY/presc=
+aler_component_id
+>  What:		/sys/bus/counter/devices/counterX/countY/preset_component_id
+>  What:		/sys/bus/counter/devices/counterX/countY/preset_enable_component_=
+id
+>  What:		/sys/bus/counter/devices/counterX/countY/signalZ_action_component=
+_id
+> +What:		/sys/bus/counter/devices/counterX/countY/count_cumul_component_id
+> +What:		/sys/bus/counter/devices/counterX/countY/captureZ_component_id
+>  What:		/sys/bus/counter/devices/counterX/signalY/cable_fault_component_id
+>  What:		/sys/bus/counter/devices/counterX/signalY/cable_fault_enable_comp=
+onent_id
+>  What:		/sys/bus/counter/devices/counterX/signalY/filter_clock_prescaler_=
+component_id
+> @@ -345,3 +365,32 @@ Description:
+>  			via index_polarity. The index function (as enabled via
+>  			preset_enable) is performed synchronously with the
+>  			quadrature clock on the active level of the index input.
+> +
+> +What:		/sys/bus/counter/devices/counterX/signalY/polarityZ
+> +KernelVersion:	6.0
+> +Contact:	jpanis@baylibre.com
+> +Description:
+> +		Capture modules include N timestamp capture registers.
+> +		For all N sequenced timestamp capture events
+> +		(1->2->3->...->N->1->...), edge polarity can be selected.
+> +		The following polarities are available:
+> +
+> +		rising edge:
+> +			Low state transitions to high state.
+> +
+> +		falling edge:
+> +			High state transitions to low state.
+
+Other drivers could use "polarity" for signals that are not related to
+captures, so remove the language referencing timestamping and generalize
+it to simply refer to selecting the Signal Y edge polarity where Z (if
+present) is the respective polarity sequence position.
+
+William Breathitt Gray
+
+--2NJOCRB2znqdE3uV
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHQEARYKAB0WIQSNN83d4NIlKPjon7a1SFbKvhIjKwUCYwK09wAKCRC1SFbKvhIj
+K8oDAPdLQOsV0FlcmpzhIjokWkcH5BVTKUkR7GjQ2TQlty8TAQCZWfBCROCuCvP5
+MmMLxq00AF6NW8X7KSdJEupDC04oCA==
+=WaOi
+-----END PGP SIGNATURE-----
+
+--2NJOCRB2znqdE3uV--
