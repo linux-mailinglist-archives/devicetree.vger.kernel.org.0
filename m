@@ -2,87 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4440159B103
-	for <lists+devicetree@lfdr.de>; Sun, 21 Aug 2022 02:12:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D7E559B151
+	for <lists+devicetree@lfdr.de>; Sun, 21 Aug 2022 04:32:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234011AbiHUALe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 Aug 2022 20:11:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41234 "EHLO
+        id S231349AbiHUCcl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 Aug 2022 22:32:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230371AbiHUALZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Aug 2022 20:11:25 -0400
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2605BBC2;
-        Sat, 20 Aug 2022 17:11:22 -0700 (PDT)
-Received: (Authenticated sender: n@nfraprado.net)
-        by mail.gandi.net (Postfix) with ESMTPSA id 8912BFF804;
-        Sun, 21 Aug 2022 00:11:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nfraprado.net;
-        s=gm1; t=1661040681;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=ZVc/spzvVRXvcAwGLO93tueirWsgH1TzbcCXIqS2zJg=;
-        b=CSrtbKcSPKr+c/PD7wvl7QBCDvWS5Ptbe6a/G0efcVFbPQyXWAoq6ZssqmM1FIVQyMCWCi
-        LEJhrT67lNJndYhhgIJH+VIPdNHEloVKtEYBFNrSNyEPgz2t31gKiNoHnTyDa8OO8kJlmV
-        f6rCj4UddJmjUwXHzpoQOFuiqxIQuaMlWs0dqJlNWfCgr/0XwB5RR0h8Y6xq4vFB3DDSdU
-        ZOPqb1D1O3xR8Ytc9pe9RrF7crHrt2KCyzlCc6/OJQes1WlPAXDugI5fa75pdaKn0eVgTx
-        Rarc7oFRU8vHa8sXVetzcfuGqZrSlsrPs04Mw+Xuj6843Cgd0mBk3+FeNyiHfQ==
-Date:   Sat, 20 Aug 2022 20:11:14 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <n@nfraprado.net>
-To:     Tom Fitzhenry <tom@tom-fitzhenry.me.uk>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        heiko@sntech.de, martijn@brixit.nl, ayufan@ayufan.eu, megi@xff.cz,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, phone-devel@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] arm64: dts: rockchip: Add initial support for
- Pine64 PinePhone Pro
-Message-ID: <20220821001114.ahnb4f6hcykt5nrm@notapiano>
-References: <20220815123004.252014-1-tom@tom-fitzhenry.me.uk>
- <20220815123004.252014-3-tom@tom-fitzhenry.me.uk>
+        with ESMTP id S230371AbiHUCck (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Aug 2022 22:32:40 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4092D1FCE7;
+        Sat, 20 Aug 2022 19:32:40 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id CA57B60BFE;
+        Sun, 21 Aug 2022 02:32:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6018C433D6;
+        Sun, 21 Aug 2022 02:32:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1661049159;
+        bh=rgCNTbbC5mtg1yWshzaw6YA+HDwf0e5bR61wdwD0DEg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=JCUPb0RnEN4rtkypc7jUKJhSchiLx2bB/2xTNJ+MShOJIG8dHRwFTY8GC6WTcMy29
+         dtgQ4hQbPc3OQhrWq8DlXjKApewcvI71ZDCZYRhiT5APP9B/kaqktRO+U40FxW4QpZ
+         EsvdDK11TARVxZJovb5zvfZKUkZdt6M/g4j5jBtISYR33spGA7KjESpPozlbElpMm3
+         vhbqmw+3cwP5UUkgUsDh//iTVfxNEthKFABvxR1qzBrg/cahDuQ6yqANdnjyqz/atL
+         FPBS21jZg8DZpK0Xod7HVtV95OIrDGk4sAbNoqGe4fYBBErvOi3DZqQlXMRV+/tPoI
+         R1tN4KaKF9t4g==
+Date:   Sun, 21 Aug 2022 10:32:30 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     wei.fang@nxp.com
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, s.hauer@pengutronix.de,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, peng.fan@nxp.com,
+        ping.bai@nxp.com, sudeep.holla@arm.com,
+        linux-arm-kernel@lists.infradead.org, aisheng.dong@nxp.com
+Subject: Re: [PATCH V4 2/3] arm64: dts: imx8ulp: Add the fec support
+Message-ID: <20220821023230.GH149610@dragon>
+References: <20220726143853.23709-1-wei.fang@nxp.com>
+ <20220726143853.23709-3-wei.fang@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220815123004.252014-3-tom@tom-fitzhenry.me.uk>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220726143853.23709-3-wei.fang@nxp.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 15, 2022 at 10:30:04PM +1000, Tom Fitzhenry wrote:
-> From: Martijn Braam <martijn@brixit.nl>
+On Wed, Jul 27, 2022 at 12:38:52AM +1000, wei.fang@nxp.com wrote:
+> From: Wei Fang <wei.fang@nxp.com>
 > 
-> This is a basic DT containing regulators and UART, intended to be a
-> base that myself and others can add additional nodes in future patches.
+> Add the fec support on i.MX8ULP platforms.
 > 
-> Tested to work: booting from eMMC, output over UART.
-> 
-> https://wiki.pine64.org/wiki/PinePhone_Pro
-> 
-> This is derived from
-> https://gitlab.com/pine64-org/linux/-/commit/261d3b5f8ac503f97da810986d1d6422430c8531
-> with fixes from https://megous.com/git/linux.
-> 
-> Signed-off-by: Martijn Braam <martijn@brixit.nl>
-> Co-developed-by: Kamil Trzciński <ayufan@ayufan.eu>
-> [no SoB, but Kamil is happy for this patch to be submitted]
-> Co-developed-by: Ondrej Jirman <megi@xff.cz>
-> Signed-off-by: Ondrej Jirman <megi@xff.cz>
-> Co-developed-by: Tom Fitzhenry <tom@tom-fitzhenry.me.uk>
-> Signed-off-by: Tom Fitzhenry <tom@tom-fitzhenry.me.uk>
+> Signed-off-by: Wei Fang <wei.fang@nxp.com>
+> Reviewed-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
 
-Tested-by: Nícolas F. R. A. Prado <n@nfraprado.net>
-
-Indeed booting from the SD card also works with this minimal DT. Also confirmed
-that eMMC, thermal sensors, power button, regulators and UART are all working.
-
-Thanks,
-Nícolas
+Applied, thanks!
