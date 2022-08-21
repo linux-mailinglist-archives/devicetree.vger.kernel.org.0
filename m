@@ -2,76 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E57D259B613
-	for <lists+devicetree@lfdr.de>; Sun, 21 Aug 2022 20:48:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B81FE59B621
+	for <lists+devicetree@lfdr.de>; Sun, 21 Aug 2022 21:25:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229652AbiHUSs0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Aug 2022 14:48:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48614 "EHLO
+        id S231520AbiHUTZg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Aug 2022 15:25:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229505AbiHUSsZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Aug 2022 14:48:25 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8102FB1EB;
-        Sun, 21 Aug 2022 11:48:24 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0370360F54;
-        Sun, 21 Aug 2022 18:48:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57756C433D7;
-        Sun, 21 Aug 2022 18:48:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661107703;
-        bh=AcBOpgBZsUnCwA1V1Rg63iVjEXlA1iBa+pRM1OKvD3E=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=mv3UpDajdmT/yivU8hnMl6NDOr7H9KhkAghdkXlwlTJzxd8VtZh3HVg8jHKSnbzi1
-         Q6IBkXe/68+m677FXzOZGsOj8M7A0yQgdhXV3dT9PBmaE5ho9VBvO/UrLINAHuT/5Z
-         tqpeMwHdEYVLVF8vxeKrUHKlFxE1gDn6kJv1FDi/LwzTxaABy/m8KDcboRCaghiTj+
-         Kh/ZFlMhKFYkBnlIVsANHn+slleE5oGoZivkiNIPZcGwMNQfORxdA4liYWdrl9iJEX
-         FO6H3wTh5nODeMgsduq69Wf0+a/6I0ONTjHm8RB56Hp4f0jCDL2enH5aE9LOCeEvTn
-         p9VZgfYlRFWjA==
-Received: by mail-ua1-f46.google.com with SMTP id i5so3563199uat.6;
-        Sun, 21 Aug 2022 11:48:23 -0700 (PDT)
-X-Gm-Message-State: ACgBeo15Jy1cQ3EVzUA1aw3F8cyg4wuw4zvvkG4sBK1XleeuNVOtNcGi
-        xJ1VMILwtXI4mVgs/i9mp5MLlBRKKPav+qk2fQ==
-X-Google-Smtp-Source: AA6agR6i0uUeLLNQBio7w6DlOPsfGOu53liSWmYz40/t4WTjmhzRb1jQxIhpiOmZQTs3CDt3jYhD9lrSH1QOUF87qK4=
-X-Received: by 2002:ab0:1053:0:b0:391:9c29:7ca8 with SMTP id
- g19-20020ab01053000000b003919c297ca8mr6194779uab.86.1661107702267; Sun, 21
- Aug 2022 11:48:22 -0700 (PDT)
+        with ESMTP id S231468AbiHUTZb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Aug 2022 15:25:31 -0400
+Received: from mail-4323.proton.ch (mail-4323.proton.ch [185.70.43.23])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7829C1FCDF
+        for <devicetree@vger.kernel.org>; Sun, 21 Aug 2022 12:25:28 -0700 (PDT)
+Date:   Sun, 21 Aug 2022 19:25:16 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
+        s=protonmail; t=1661109926; x=1661369126;
+        bh=PpJua1al93V3uzq5+TFc9GwHmULwcgRDaPB9VW74u5c=;
+        h=Date:To:From:Cc:Reply-To:Subject:Message-ID:In-Reply-To:
+         References:Feedback-ID:From:To:Cc:Date:Subject:Reply-To:
+         Feedback-ID:Message-ID;
+        b=HCtv7T5nP/SSAd7adMUESTk2YHhR2Y4dFurdtFS/DLZKQ/vIyOmy5Cs6ce7l/OF+P
+         JaffAlBtSSB237qJ7lQu5oz4K9rQc3JJY1METkynGFgecifannX4OPRb+9Z2NJqpm1
+         hiJmuIvagbv814CPHSFLgY0h5Ny2Sf/iVaVvPxKw=
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Molly Sophia <mollysophia379@gmail.com>
+From:   Caleb Connolly <caleb@connolly.tech>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Reply-To: Caleb Connolly <caleb@connolly.tech>
+Subject: Re: [PATCH] [RFC] arm64: dts: qcom: sdm845-xiaomi-polaris: Fix sde_dsi_active pinctrl
+Message-ID: <bc8380fc-faed-9f99-6d96-3c7c9afc66a1@connolly.tech>
+In-Reply-To: <629afd26008c2b1ba5822799ea7ea5b5271895e8.1660903997.git.geert+renesas@glider.be>
+References: <629afd26008c2b1ba5822799ea7ea5b5271895e8.1660903997.git.geert+renesas@glider.be>
+Feedback-ID: 10753939:user:proton
 MIME-Version: 1.0
-References: <20220821151123.54778-1-wangjianli@cdjrlc.com>
-In-Reply-To: <20220821151123.54778-1-wangjianli@cdjrlc.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Sun, 21 Aug 2022 13:48:11 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqL4GvgFYzGUfhW5pvm4wYGrFaj6gHOYZjnOMuk2zCz67w@mail.gmail.com>
-Message-ID: <CAL_JsqL4GvgFYzGUfhW5pvm4wYGrFaj6gHOYZjnOMuk2zCz67w@mail.gmail.com>
-Subject: Re: [PATCH] drivers/of: fix repeated words in comments
-To:     wangjianli <wangjianli@cdjrlc.com>
-Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Aug 21, 2022 at 10:11 AM wangjianli <wangjianli@cdjrlc.com> wrote:
+
+
+On 19/08/2022 11:14, Geert Uytterhoeven wrote:
+> "make dtbs_check" says:
 >
->  Delete the redundant word 'of'.
+>      bias-disable: boolean property with value b'\x00\x00\x00\x00'
 >
-> Signed-off-by: wangjianli <wangjianli@cdjrlc.com>
+> Fix this by dropping the offending value.
+>
+> Fixes: be497abe19bf08fb ("arm64: dts: qcom: Add support for Xiaomi Mi Mix=
+2s")
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Reviewed-by: Caleb Connolly <caleb@connolly.tech>
 > ---
->  drivers/of/device.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> Marked RFC as I do not have the hardware or documentation.
+> Perhaps the "bias-disable" property should be dropped instead?
 
-Same comments as last time I got this fix:
+This is correct, the ` =3D <0>` is a downstream style, but it does actually=
+ mean to disable the bias
+afaik, from downstream docs:
 
-https://lore.kernel.org/all/20220627173825.GA2637590-robh@kernel.org/
+- bias-disable:
+=09Usage: optional
+=09Value type: <none>
+=09Definition: The specified pins should be configued as no pull.
 
-Rob
+
+> ---
+>   arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts b/arch/ar=
+m64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
+> index 7747081b98875aad..dba7c2693ff50073 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
+> @@ -617,7 +617,7 @@ sde_dsi_active: sde-dsi-active {
+>   =09=09pins =3D "gpio6", "gpio10";
+>   =09=09function =3D "gpio";
+>   =09=09drive-strength =3D <8>;
+> -=09=09bias-disable =3D <0>;
+> +=09=09bias-disable;
+>   =09};
+>
+>   =09sde_dsi_suspend: sde-dsi-suspend {
+> --
+> 2.25.1
+>
+
+--
+Kind Regards,
+Caleb
+
