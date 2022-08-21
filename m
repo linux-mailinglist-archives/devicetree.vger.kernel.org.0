@@ -2,109 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C69A59B641
-	for <lists+devicetree@lfdr.de>; Sun, 21 Aug 2022 22:24:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 99A3759B648
+	for <lists+devicetree@lfdr.de>; Sun, 21 Aug 2022 22:24:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231515AbiHUUVb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Aug 2022 16:21:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45046 "EHLO
+        id S231236AbiHUUVa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Aug 2022 16:21:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230267AbiHUUVa (ORCPT
+        with ESMTP id S230047AbiHUUVa (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Sun, 21 Aug 2022 16:21:30 -0400
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBFB01AF1E
-        for <devicetree@vger.kernel.org>; Sun, 21 Aug 2022 13:21:29 -0700 (PDT)
-Received: by mail-oi1-f170.google.com with SMTP id c185so10168164oia.7
-        for <devicetree@vger.kernel.org>; Sun, 21 Aug 2022 13:21:29 -0700 (PDT)
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17C971AF1B;
+        Sun, 21 Aug 2022 13:21:29 -0700 (PDT)
+Received: by mail-ot1-f45.google.com with SMTP id y10-20020a9d634a000000b006167f7ce0c5so6501764otk.0;
+        Sun, 21 Aug 2022 13:21:29 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=message-id:date:subject:references:in-reply-to:cc:to:from
          :x-gm-message-state:from:to:cc;
-        bh=nsBRgoJPXA9hV2yFG/G8aTKmYcTjDfwD0caEvc/wusM=;
-        b=OsWzXlUGKulnUnTGruXkyHiMizcP1CM/oXcdWKa9xP+u//mKwSIQvfyWkPtNIXmaIy
-         rQqz/vkzaeDxAlPgboLUcopuyW9KsTK8fHMOFp0yD2vWDOHZv/lshh+Ux5QVX5v7UIYz
-         7PHwCgVFa4kVCV3vEBgK5RRAKUSr2yiZAyrc1RZ29QBjG2TkU3DNiLLYXM7W0rcymYlY
-         pbECH4Ny8Wn7a2ARkil/dRHtYd6jI1raBrfxDrEZdRSiFDvx3OT3klExxZ4OoOS5daiE
-         R7vb52xqRfdxLSGlUjbpqOHBAFatYtmbxxYyYFDNhznmUvZAcyP51ksNKsUjDriwAs0/
-         4YGA==
-X-Gm-Message-State: ACgBeo16JjCzGhgj0k0ttJ2j+YbKX9DPMGBthzRa+Gl6D+DMhWoFd11/
-        82tu68WYvI0CqxEKf39O5z7i89htrQ==
-X-Google-Smtp-Source: AA6agR4sCz7qoFZQfXLg2eH5wS2Cxen5e/i7QoZ+bEEz2Dk+dK0YHFYTP6N+epH3vqxwa5GzjBoj1Q==
-X-Received: by 2002:aca:5e8b:0:b0:344:d1ef:2293 with SMTP id s133-20020aca5e8b000000b00344d1ef2293mr10330791oib.158.1661113289106;
-        Sun, 21 Aug 2022 13:21:29 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id by8-20020a056830608800b0063893f5044dsm2531421otb.57.2022.08.21.13.21.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        bh=PVuioZgMAt6vNkSn1eOBdpre99mEwl3P9i1P8iVmj+8=;
+        b=nnjTzeIEv/QnYZ9qKI40/CrEQIQcODx9N3tIdn8AhANMFlFd0TwP3hqcGixO2zsNaY
+         gCkHB9fuF/NKOdroD68G0mwhMuisbtZdgTJIcXzxF+fEyVvdp/k53LCXhLs6Kf4P9f0D
+         NKL/uG5Qd0NNXgKhNSkNuBB6d08OVSChpqunrQHwLVjinrqWSe8ukVytxR+lrwqHHJr1
+         mONMiA1drGjcx2sOMAJyv5o6ABjEFU9OZGZZwyJrHRsvSVLU5+q+fyP5Ekj4lUlR1+Me
+         C3pr/d9e/pIWzuCVHRIb5L1AC7LEg3fhAcb1iaX23+Tw/RWOW6rNh6jw0m1TwPzNAHwh
+         u/Jw==
+X-Gm-Message-State: ACgBeo0BLNZpZsF0NP6A1egdzKLeHPdOWUsfGVcoYqG8j5mz12jMedBh
+        Kr6bAcjYoKdwbN611/5FWoJ8glRfbQ==
+X-Google-Smtp-Source: AA6agR4eZaKEm7s31F45rhLJ8zF/zjY5hOre51bsur5f7rfWs7/1+O5doQlYJ6KKIuNQfod0umZhmg==
+X-Received: by 2002:a05:6830:3985:b0:636:aa59:ea1 with SMTP id bs5-20020a056830398500b00636aa590ea1mr6780979otb.44.1661113288006;
         Sun, 21 Aug 2022 13:21:28 -0700 (PDT)
-Received: (nullmailer pid 1729161 invoked by uid 1000);
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id m1-20020a9d4c81000000b00616d25dc933sm2517031otf.69.2022.08.21.13.21.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 21 Aug 2022 13:21:27 -0700 (PDT)
+Received: (nullmailer pid 1729128 invoked by uid 1000);
         Sun, 21 Aug 2022 20:21:26 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     arm-soc <arm@kernel.org>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Device Tree <devicetree@vger.kernel.org>
-In-Reply-To: <20220820194804.3352415-5-andrew@lunn.ch>
-References: <20220820194804.3352415-1-andrew@lunn.ch> <20220820194804.3352415-5-andrew@lunn.ch>
-Subject: Re: [PATCH 04/11] DT: USB: Convert ehci-orion to YAML
+To:     =?utf-8?q?Pali_Roh=C3=A1r?= <pali@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org,
+        =?utf-8?q?Marek_Beh=C3=BAn?= <kabel@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Ellerman <mpe@ellerman.id.au>
+In-Reply-To: <20220820102925.29476-1-pali@kernel.org>
+References: <20220820102925.29476-1-pali@kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: reset: syscon-reboot: Add priority property
 Date:   Sun, 21 Aug 2022 15:21:26 -0500
-Message-Id: <1661113286.962404.1729160.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+Message-Id: <1661113286.905357.1729127.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,PP_MIME_FAKE_ASCII_TEXT,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 20 Aug 2022 21:47:57 +0200, Andrew Lunn wrote:
-> Signed-off-by: Andrew Lunn <andrew@lunn.ch>
+On Sat, 20 Aug 2022 12:29:23 +0200, Pali Rohár wrote:
+> This new optional priority property allows to specify custom priority level
+> of reset device. Default level was always 192.
+> 
+> Signed-off-by: Pali Rohár <pali@kernel.org>
 > ---
->  .../devicetree/bindings/usb/ehci-orion.txt    | 22 ----------
->  .../bindings/usb/marvell,orion-ehci.yaml      | 44 +++++++++++++++++++
->  2 files changed, 44 insertions(+), 22 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/usb/ehci-orion.txt
->  create mode 100644 Documentation/devicetree/bindings/usb/marvell,orion-ehci.yaml
+>  .../devicetree/bindings/power/reset/syscon-reboot.yaml        | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
+yamllint warnings/errors:
 
-Full log is available here: https://patchwork.ozlabs.org/patch/
+dtschema/dtc warnings/errors:
+./Documentation/devicetree/bindings/power/reset/syscon-reboot.yaml: Unresolvable JSON pointer: 'definitions/sint32'
 
+doc reference errors (make refcheckdocs):
 
-ehci@50000: '#address-cells', '#size-cells', 'port@1' do not match any of the regexes: 'pinctrl-[0-9]+'
-	arch/arm/boot/dts/kirkwood-c200-v1.dtb
-	arch/arm/boot/dts/kirkwood-l-50.dtb
+See https://patchwork.ozlabs.org/patch/
 
-usb@50000: 'phy-names' does not match any of the regexes: 'pinctrl-[0-9]+'
-	arch/arm/boot/dts/armada-375-db.dtb
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-usb@58000: 'usb-phy' does not match any of the regexes: 'pinctrl-[0-9]+'
-	arch/arm/boot/dts/armada-388-helios4.dtb
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-usb@58000: 'vcc-supply' does not match any of the regexes: 'pinctrl-[0-9]+'
-	arch/arm/boot/dts/armada-388-gp.dtb
+pip3 install dtschema --upgrade
 
-usb@5e000: 'marvell,usb-misc-reg', 'phy-names' do not match any of the regexes: 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/marvell/armada-3720-db.dtb
-	arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtb
-	arch/arm64/boot/dts/marvell/armada-3720-espressobin-emmc.dtb
-	arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dtb
-	arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dtb
-	arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dtb
-	arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dtb
-	arch/arm64/boot/dts/marvell/armada-3720-uDPU.dtb
-
-usb@a0000: 'dr_mode', 'phy-names' do not match any of the regexes: 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/marvell/ac5-98dx35xx-rd.dtb
-
-usb-host@50000: 'vbus-supply' does not match any of the regexes: 'pinctrl-[0-9]+'
-	arch/arm/boot/dts/dove-sbc-a510.dtb
+Please check and re-submit.
 
