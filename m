@@ -2,69 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 993A259B5A5
-	for <lists+devicetree@lfdr.de>; Sun, 21 Aug 2022 19:31:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FEEC59B5B7
+	for <lists+devicetree@lfdr.de>; Sun, 21 Aug 2022 19:50:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231428AbiHURbV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Aug 2022 13:31:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55624 "EHLO
+        id S229799AbiHURt7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Aug 2022 13:49:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231315AbiHURbN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Aug 2022 13:31:13 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1231217ABE;
-        Sun, 21 Aug 2022 10:31:12 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id bq11so4075994wrb.12;
-        Sun, 21 Aug 2022 10:31:11 -0700 (PDT)
+        with ESMTP id S229505AbiHURt7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Aug 2022 13:49:59 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69B4E17E12;
+        Sun, 21 Aug 2022 10:49:57 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id by6so8736137ljb.11;
+        Sun, 21 Aug 2022 10:49:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=Hlj56Jwh1i0Eee3H3mGRhZzTcxVry+oPiQLbuChwm1g=;
-        b=dOnoJjs0KM9cLcfIRQsOUTFnxnDhcY5whzv3e0hOWpyPfCkLaiYsvBAGm/9xyThEWE
-         ELt/NEgjZIDAtxWw6nCqdEZIsNuvjHL+wyx6qpdA1KDS6qx5St7v6yR+OybTySVkCptR
-         XKYg0eG12RW85QgVFwk6DjVNsmyvGDS2Su6ZF/nq26lZ1+rnDPWn92y+//rMuTWPxkQd
-         VTipjcaMuk1V3FUqI5DdqFuQ45CZjG+m3LZJduFBI2LrSJP2Kv7LMDLFiSG/OFEQQhS6
-         RRp91ScPYolCvwAlMbqCBhJ1oe3q+c2huwjzalvtxSwN7bPNz8FSUfE/xx7KzPCXyZ1I
-         +v9Q==
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc;
+        bh=tLYVuxhekI0KOsYotvxE+Kgdxmejr6Xy78RrCK136Ao=;
+        b=oFF8NIShAZGvRV2blwmNfW/ZfonWvnbfYd5ttHgVfxlJH6iDdup4z8m9/npa/6vSmu
+         PkF0Sf29ni0+dDIljlFW65naz2m1EWvXC6LEbXRtJkv7szHQtGC4pz5JFESptki7pcXj
+         zIUQZ5ch5KOhi8f0oNZacmI5cvEmF4UWAdfJ+7GUCfltwF9c4L9fSDROSRpl5rslrn+b
+         m+jMA6b0v5xdEYzuumkSjone5KJ04xNuIFW79CgdKzQmtppD/nkWARhFKIDCKaCy5Ln6
+         qMKCkjOlNDRFRXxJzLFanT6CdefFpPjxZgMGn2x/lyvU7ggMynruHMktDb/iQ6KlVVow
+         83Hg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=Hlj56Jwh1i0Eee3H3mGRhZzTcxVry+oPiQLbuChwm1g=;
-        b=Kz+GNQm50pIqAbEhC8noKFoORlrqXMYfgjz0wnwKUNJatjdVKVLy2xpSLEFlkAHFxt
-         ht2IAjh8hX+grHnz6UNHhSfoPDRWKd+DPxA/K1LYQjpra5Nv7LZxLApQ6Q3f7U8fWkrX
-         M5z0KwqFyToSj96e8uYxuBCIJzzKketD+w6PmRx0uevVEz1vKEr2036lDk95ffGhoXaC
-         XKBlmvWf/KSVHtfecMOK4uNTXg4/u0/XKIVed2ypLloXBwEIs5Kz8eqZsd/2ty3xsRds
-         enckHWmeoYupTDgBiBFcbhWn/Fgk4cXA28Forbh+/LwyITZ7011k3RtTD8+RMy1uqbtE
-         HGdQ==
-X-Gm-Message-State: ACgBeo2pfbnAFY/ULxUcH32Mj9htktGTVMziazQTFf3/IAeapX2mUQTy
-        dbXtk2VP7pRyYILLKFxZHiI=
-X-Google-Smtp-Source: AA6agR7bLyuK/H9MZotXuyq6EIiqzmQenCzhYTSPqQs16biWFiQheDSr5OFXBKStzbIG5tV5qV5L1Q==
-X-Received: by 2002:adf:d4c6:0:b0:225:2eeb:fe8e with SMTP id w6-20020adfd4c6000000b002252eebfe8emr8770137wrk.429.1661103070449;
-        Sun, 21 Aug 2022 10:31:10 -0700 (PDT)
-Received: from localhost.localdomain ([2a01:e0a:a77:3d70:9d84:ec8d:98d9:c29a])
-        by smtp.gmail.com with ESMTPSA id b18-20020adff912000000b00224f7c1328dsm9387205wrr.67.2022.08.21.10.31.09
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+        bh=tLYVuxhekI0KOsYotvxE+Kgdxmejr6Xy78RrCK136Ao=;
+        b=jnYYWLAGwj/+NfrFhJIUrEajy2tSC0r38oHdZBrNRSgZWvPe7gZHqTjVkuhwxKQ2xE
+         6wIXbNBsDTleq0VL9Kul1TsRSMAFFkhRXjj10i/3g5ne2Yydrto58pin9zVCLy3x3231
+         Dlv6+sauOJldBkYch/dEs1kb5ltcdvQzqaiFcMeZz7kJvbnaDV0os0L0kMQ1dNdOmjKh
+         gtrrHA2Omxzo3cZIAGCwgcAU7niNHVd6RQdi1E/pcmEI9Tz67mnU+tHDS7p1rsicDyx/
+         75SqnMgNQGmH3P43yojg4skF2PTKS/DdKeKFTo8BjGQVCLdkFrTxqnC2D85fSqiSrxIE
+         Ts3Q==
+X-Gm-Message-State: ACgBeo165gOGFvjXwGYYaLmRJHpBW6GFoXyosesAOwB4vhCs9Y+Fff4x
+        CL7f/jeU6E4mOoJixFxuahI=
+X-Google-Smtp-Source: AA6agR5nAeNcHicAEyCie+REXBxjdJ7/RIcmfUJ9DJKrrL6dDfIqKBDFw3Wt+K8jDdCjcY3ghVxC0w==
+X-Received: by 2002:a05:651c:546:b0:25f:dd42:5d08 with SMTP id q6-20020a05651c054600b0025fdd425d08mr5051330ljp.239.1661104195766;
+        Sun, 21 Aug 2022 10:49:55 -0700 (PDT)
+Received: from mobilestation ([95.79.140.178])
+        by smtp.gmail.com with ESMTPSA id c15-20020a19e34f000000b00490b5f09973sm1568893lfk.92.2022.08.21.10.49.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 21 Aug 2022 10:31:09 -0700 (PDT)
-From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
-Subject: [PATCH v2 4/4] arm64: dts: allwinner: beelink-gs1: Enable GPU OPP
-Date:   Sun, 21 Aug 2022 19:30:51 +0200
-Message-Id: <20220821173051.155038-5-peron.clem@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220821173051.155038-1-peron.clem@gmail.com>
-References: <20220821173051.155038-1-peron.clem@gmail.com>
+        Sun, 21 Aug 2022 10:49:55 -0700 (PDT)
+Date:   Sun, 21 Aug 2022 20:49:52 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Brad Larson <brad@pensando.io>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mmc@vger.kernel.org, adrian.hunter@intel.com,
+        alcooperx@gmail.com, andy.shevchenko@gmail.com, arnd@arndb.de,
+        blarson@amd.com, brijeshkumar.singh@amd.com,
+        catalin.marinas@arm.com, gsomlo@gmail.com, gerg@linux-m68k.org,
+        krzk@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lee.jones@linaro.org, broonie@kernel.org,
+        yamada.masahiro@socionext.com, p.zabel@pengutronix.de,
+        piotrs@cadence.com, p.yadav@ti.com, rdunlap@infradead.org,
+        robh+dt@kernel.org, samuel@sholland.org,
+        suravee.suthikulpanit@amd.com, thomas.lendacky@amd.com,
+        ulf.hansson@linaro.org, will@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 04/17] dt-bindings: spi: dw: Add AMD Pensando Elba SoC
+ SPI Controller bindings
+Message-ID: <20220821174952.5i5pfftxt53dmqv3@mobilestation>
+References: <20220820195750.70861-1-brad@pensando.io>
+ <20220820195750.70861-5-brad@pensando.io>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220820195750.70861-5-brad@pensando.io>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -75,33 +81,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable GPU OPP table for Beelink GS1
+On Sat, Aug 20, 2022 at 12:57:37PM -0700, Brad Larson wrote:
+> From: Brad Larson <blarson@amd.com>
+> 
+> The AMD Pensando Elba SoC has integrated the DW APB SPI Controller
+> 
+> Signed-off-by: Brad Larson <blarson@amd.com>
+> ---
+>  .../devicetree/bindings/spi/snps,dw-apb-ssi.yaml      | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> index 37c3c272407d..403d6416f7ac 100644
+> --- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> +++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> @@ -37,6 +37,15 @@ allOf:
+>      else:
+>        required:
+>          - interrupts
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - amd,pensando-elba-spi
+> +    then:
+> +      required:
+> +        - amd,pensando-elba-syscon
 
-Signed-off-by: Clément Péron <peron.clem@gmail.com>
----
- arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts | 2 ++
- 1 file changed, 2 insertions(+)
+Please add the "amd,pensando-elba-syscon" property definition as I
+asked here:
+https://lore.kernel.org/lkml/20220704131810.kabkuy6e4qmhfm3n@mobilestation/
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-index 6249e9e02928..20fc0584d1c6 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-@@ -5,6 +5,7 @@
- 
- #include "sun50i-h6.dtsi"
- #include "sun50i-h6-cpu-opp.dtsi"
-+#include "sun50i-h6-gpu-opp.dtsi"
- 
- #include <dt-bindings/gpio/gpio.h>
- 
-@@ -261,6 +262,7 @@ reg_dcdca: dcdca {
- 			};
- 
- 			reg_dcdcc: dcdcc {
-+				regulator-always-on;
- 				regulator-enable-ramp-delay = <32000>;
- 				regulator-min-microvolt = <810000>;
- 				regulator-max-microvolt = <1080000>;
--- 
-2.34.1
+-Sergey
 
+>  
+>  properties:
+>    compatible:
+> @@ -75,6 +84,8 @@ properties:
+>                - renesas,r9a06g032-spi # RZ/N1D
+>                - renesas,r9a06g033-spi # RZ/N1S
+>            - const: renesas,rzn1-spi   # RZ/N1
+> +      - description: AMD Pensando Elba SoC SPI Controller
+> +        const: amd,pensando-elba-spi
+>  
+>    reg:
+>      minItems: 1
+> -- 
+> 2.17.1
+> 
