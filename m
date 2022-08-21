@@ -2,63 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B5B359B40D
-	for <lists+devicetree@lfdr.de>; Sun, 21 Aug 2022 15:44:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A679559B4DE
+	for <lists+devicetree@lfdr.de>; Sun, 21 Aug 2022 17:11:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229787AbiHUNoV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Aug 2022 09:44:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36860 "EHLO
+        id S229566AbiHUPLi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Aug 2022 11:11:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229537AbiHUNoU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Aug 2022 09:44:20 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E197EF5A3;
-        Sun, 21 Aug 2022 06:44:19 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7B9C360EA8;
-        Sun, 21 Aug 2022 13:44:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8ECCFC433C1;
-        Sun, 21 Aug 2022 13:44:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661089458;
-        bh=xQ8ibJ4yx45AT0e3tS3vC0vt5Aci2LGXxlHw2tjJsJY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MMedxHrHBbv5BwrkR4vFBen/vQuZzj/M6qJGDQPXQnAv1CSSl9nwz/qi1VXFPBR6k
-         CkWx1nZUBGmU2ViiYnhYg4gKWtZw7kggTijTURypfLcaG20y+hoPpypUYIlsiWCtfU
-         /XFaDQl7qmXBhCAdNzxCsAvwutotqs91L6BYymyf2+RJrT1HUArjYGLirYgip9sNmG
-         0XtgXYqPYbo/CtcZdrXpwyz6S42KgjtUFc202q+BY7nZYbO6tSStlmlAwWSOHcibdf
-         LA6igncB/Rz0n7d1gvqH2IdXc6GiZp4EiC438GY5okEg5aLw6rFML7eBbwnoCA4KKy
-         59AiQLlMv5U/A==
-Date:   Sun, 21 Aug 2022 21:44:13 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Kuldeep Singh <singh.kuldeep87k@gmail.com>
-Cc:     Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: ls1021a: Use generic node name for DMA
-Message-ID: <20220821134413.GD149610@dragon>
-References: <20220807183646.5641-1-singh.kuldeep87k@gmail.com>
+        with ESMTP id S229507AbiHUPLh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Aug 2022 11:11:37 -0400
+Received: from bg5.exmail.qq.com (bg4.exmail.qq.com [43.154.54.12])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C90B22B00;
+        Sun, 21 Aug 2022 08:11:35 -0700 (PDT)
+X-QQ-mid: bizesmtp86t1661094691ty6q47f6
+Received: from localhost.localdomain ( [182.148.14.124])
+        by bizesmtp.qq.com (ESMTP) with 
+        id ; Sun, 21 Aug 2022 23:11:30 +0800 (CST)
+X-QQ-SSF: 0100000000200010B000B00A0000000
+X-QQ-FEAT: 7jw2iSiCazplMiGtQJPWzBJh5BMzd0nwZpJfY25RNWZhD5ADaApglAlQ2qGZt
+        f7gTys7+mqs+vIaRdTX+dCjnmpkpw1dhO4V1+uKJrPG+V/IfMVt3IwCLR5nwTE/1GjloTsx
+        3IN1Mu4hK3AeLh/SDc+/jb6HaXycYSggUL0St6m8HfDjGc/9eCoX7CIZ4APXBFduRVXQ7C5
+        vfvxP6Ss2gRGO70/Pl8BSmriljuCzsyENkREeV5BNnrqN2U/dBErzHlVbrEADqNGj/nQVPo
+        fwtLM67slZ2PFU5Vf1pl9thKlRDeIMDFUlDxEnbs+Dx57KJPQhtRNsFaGxD1t5PsljVNfle
+        wq1pw2lB22YQhLSOUouMKa7wnpedvIdX1ZLuUWGNr3IZvacj5g=
+X-QQ-GoodBg: 0
+From:   wangjianli <wangjianli@cdjrlc.com>
+To:     robh+dt@kernel.org, frowand.list@gmail.com
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        wangjianli <wangjianli@cdjrlc.com>
+Subject: [PATCH] drivers/of: fix repeated words in comments
+Date:   Sun, 21 Aug 2022 23:11:23 +0800
+Message-Id: <20220821151123.54778-1-wangjianli@cdjrlc.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220807183646.5641-1-singh.kuldeep87k@gmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtp:cdjrlc.com:qybglogicsvr:qybglogicsvr7
+X-Spam-Status: Yes, score=5.1 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        RCVD_IN_PBL,RCVD_IN_SBL_CSS,RCVD_IN_XBL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Report: *  3.3 RCVD_IN_PBL RBL: Received via a relay in Spamhaus PBL
+        *      [43.154.54.12 listed in zen.spamhaus.org]
+        *  3.3 RCVD_IN_SBL_CSS RBL: Received via a relay in Spamhaus SBL-CSS
+        *  0.4 RCVD_IN_XBL RBL: Received via a relay in Spamhaus XBL
+        * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+        *      [score: 0.0000]
+        * -0.0 RCVD_IN_MSPIKE_H2 RBL: Average reputation (+2)
+        *      [43.154.54.12 listed in wl.mailspike.net]
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
+X-Spam-Level: *****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 08, 2022 at 12:06:45AM +0530, Kuldeep Singh wrote:
-> DT spec expects generic DMA controller node name as "dma-controller" to
-> enable validations.
-> 
-> Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
+ Delete the redundant word 'of'.
 
-Applied, thanks!
+Signed-off-by: wangjianli <wangjianli@cdjrlc.com>
+---
+ drivers/of/device.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/of/device.c b/drivers/of/device.c
+index 874f031442dc..1582388156a9 100644
+--- a/drivers/of/device.c
++++ b/drivers/of/device.c
+@@ -19,7 +19,7 @@
+ 
+ /**
+  * of_match_device - Tell if a struct device matches an of_device_id list
+- * @matches: array of of device match structures to search in
++ * @matches: array of device match structures to search in
+  * @dev: the of device structure to match against
+  *
+  * Used by a driver to check whether an platform_device present in the
+-- 
+2.36.1
+
