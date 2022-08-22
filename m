@@ -2,95 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C6E2659BF90
-	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 14:37:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E21D59BF9E
+	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 14:40:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233980AbiHVMhv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Aug 2022 08:37:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43922 "EHLO
+        id S235106AbiHVMkL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Aug 2022 08:40:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230503AbiHVMht (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 08:37:49 -0400
-Received: from smtp-fw-80007.amazon.com (smtp-fw-80007.amazon.com [99.78.197.218])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C31D432EC4;
-        Mon, 22 Aug 2022 05:37:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1661171869; x=1692707869;
-  h=message-id:date:mime-version:to:cc:references:from:
-   in-reply-to:content-transfer-encoding:subject;
-  bh=e3JlxpdhiD9UYCrKvjGxLM7DfMY6XOiLi0Am25BRKKM=;
-  b=g9MGVxQ35MxG8BfOdm6Wy0iROMoRFqPcr9i6cW9AXiUDL/3eO9Pn4TAs
-   EF9cV/NmYRkb0SFpYYxOEhVIbr0SX4OroP9oKs7goUOWZ633uBxrmrGII
-   78/l85xz6JcWn20ZPZAq+7phfKOwqvJFEQd1wrvQzXXrCuffd0YAN6VgD
-   w=;
-X-IronPort-AV: E=Sophos;i="5.93,254,1654560000"; 
-   d="scan'208";a="122087194"
-Subject: Re: [PATCH v2 06/16] hwmon: (mr75203) fix multi-channel voltage reading
-Received: from pdx4-co-svc-p1-lb2-vlan3.amazon.com (HELO email-inbound-relay-pdx-2c-388992e0.us-west-2.amazon.com) ([10.25.36.214])
-  by smtp-border-fw-80007.pdx80.corp.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Aug 2022 12:37:28 +0000
-Received: from EX13MTAUEB001.ant.amazon.com (pdx1-ws-svc-p6-lb9-vlan3.pdx.amazon.com [10.236.137.198])
-        by email-inbound-relay-pdx-2c-388992e0.us-west-2.amazon.com (Postfix) with ESMTPS id 40D0EE04FA;
-        Mon, 22 Aug 2022 12:37:27 +0000 (UTC)
-Received: from EX13D08UEB003.ant.amazon.com (10.43.60.11) by
- EX13MTAUEB001.ant.amazon.com (10.43.60.96) with Microsoft SMTP Server (TLS)
- id 15.0.1497.38; Mon, 22 Aug 2022 12:37:25 +0000
-Received: from EX13MTAUEB002.ant.amazon.com (10.43.60.12) by
- EX13D08UEB003.ant.amazon.com (10.43.60.11) with Microsoft SMTP Server (TLS)
- id 15.0.1497.38; Mon, 22 Aug 2022 12:37:24 +0000
-Received: from [10.220.236.67] (10.220.236.67) by mail-relay.amazon.com
- (10.43.60.234) with Microsoft SMTP Server id 15.0.1497.38 via Frontend
- Transport; Mon, 22 Aug 2022 12:37:21 +0000
-Message-ID: <dd7eaa83-d8b4-c744-1611-d7b504e27a15@amazon.com>
-Date:   Mon, 22 Aug 2022 15:37:20 +0300
+        with ESMTP id S233674AbiHVMkB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 08:40:01 -0400
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 736E933343;
+        Mon, 22 Aug 2022 05:40:00 -0700 (PDT)
+Received: by mail-ot1-f46.google.com with SMTP id d18-20020a9d72d2000000b0063934f06268so833766otk.0;
+        Mon, 22 Aug 2022 05:40:00 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+        bh=PhEPEud72j5kQVxW8NO2vqL1FVdaHjnTMbrh083xpV0=;
+        b=jrz9kdF7p21Lt8PU3ZNe+cpNELdxDnXQDshiwQTw+X7bKhKTLAk/YsEs+rKBKfY2VL
+         ZP3Z/5pWIqIkta1hEarQvAUb8ICgb78yjxpLubIaSx6VmCSMioYkb+/XQb+5rjaemb/2
+         TF6YjGjscHW4GT+wbukauvovDAy3Hg/GtQSrKj4Y6vN5ofHwdrdPPo2qL47eVYaQaO29
+         GiErwHy8QnSSUpQ57Jvaq/s3XqeXyyzebZlCp6nQZGquo6OsCz3Dt1k5+g/bphiqqeC+
+         zDO+rhTnbRGR7sz2jfsO8Ag+vfGqRw3xQ+1kfSE+s6wKNcEz072hC4v/3InnMg6xUUmQ
+         o4JA==
+X-Gm-Message-State: ACgBeo1SjvyOduC+B0S/jNAiRPfuMt0KXdacpFxrpByh6049YswSKxv9
+        yMUULxhF/ZOb4cHlqA1sMx+ovJ5mIg==
+X-Google-Smtp-Source: AA6agR5g64WBRUlwSWnDCd9sVKwnExbQiowIvsS13bvXxfGDvcK7A+9xBDQH0t3l/Jgnraq3we4Kzw==
+X-Received: by 2002:a05:6830:6188:b0:61c:568b:1001 with SMTP id cb8-20020a056830618800b0061c568b1001mr7614005otb.98.1661171999453;
+        Mon, 22 Aug 2022 05:39:59 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id a13-20020a4ad5cd000000b00435954f91ddsm2497869oot.28.2022.08.22.05.39.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Aug 2022 05:39:58 -0700 (PDT)
+Received: (nullmailer pid 3640781 invoked by uid 1000);
+        Mon, 22 Aug 2022 12:39:57 -0000
+Date:   Mon, 22 Aug 2022 07:39:57 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH 1/4] dt-bindings: soc: qcom: Introduce PMIC GLINK binding
+Message-ID: <20220822123957.GA3628946-robh@kernel.org>
+References: <20220818031512.319310-1-bjorn.andersson@linaro.org>
+ <20220818031512.319310-2-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.1.2
-Content-Language: en-US
-To:     Guenter Roeck <linux@roeck-us.net>
-CC:     <jdelvare@suse.com>, <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <talel@amazon.com>,
-        <hhhawa@amazon.com>, <jonnyc@amazon.com>, <hanochu@amazon.com>,
-        <ronenk@amazon.com>, <itamark@amazon.com>, <shellykz@amazon.com>,
-        <shorer@amazon.com>, <amitlavi@amazon.com>, <almogbs@amazon.com>,
-        <dwmw@amazon.co.uk>, <rtanwar@maxlinear.com>,
-        "Farber, Eliav" <farbere@amazon.com>
-References: <20220817054321.6519-1-farbere@amazon.com>
- <20220817054321.6519-7-farbere@amazon.com>
- <20220818200350.GA3287916@roeck-us.net>
-From:   "Farber, Eliav" <farbere@amazon.com>
-In-Reply-To: <20220818200350.GA3287916@roeck-us.net>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-11.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_SPF_WL autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220818031512.319310-2-bjorn.andersson@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/18/2022 11:03 PM, Guenter Roeck wrote:
-> On Wed, Aug 17, 2022 at 05:43:11AM +0000, Eliav Farber wrote:
->> - Fix voltage reading to support number of channels in VM IP (CH_NUM).
->> - Configure the ip-polling register to enable polling for all channels.
->>
->
-> That fails to explain what is actually wrong in the current code.
-> Also, one fix per patch, please.
-I moved the configuration of the ip-polling register to a separate patch.
+On Wed, Aug 17, 2022 at 08:15:09PM -0700, Bjorn Andersson wrote:
+> The PMIC GLINK service, running on a coprocessor on some modern Qualcomm
+> platforms and implement USB Type-C handling and battery management.
+> This binding describes the component in the OS used to communicate with
+> the firmware and connect it's resources to those described in the
+> Devicetree, particularly the USB Type-C controllers relationship with
+> USB and DisplayPort components.
+> 
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> ---
+>  .../bindings/soc/qcom/qcom,pmic-glink.yaml    | 98 +++++++++++++++++++
+>  1 file changed, 98 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml
+> new file mode 100644
+> index 000000000000..3261f9d27a47
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml
+> @@ -0,0 +1,98 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/qcom/qcom,pmic-glink.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm PMIC GLINK firmware interface for battery management, USB
+> +  Type-C and other things.
+> +
+> +maintainers:
+> +  - Bjorn Andersson <bjorn.andersson@linaro.org>
+> +
+> +description:
+> +  The PMIC GLINK service, running on a coprocessor on some modern Qualcomm
+> +  platforms and implement USB Type-C handling and battery management. This
+> +  binding describes the component in the OS used to communicate with the
+> +  firmware and connect it's resources to those described in the Devicetree,
+> +  particularly the USB Type-C controllers relationship with USB and DisplayPort
+> +  components.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - qcom,sc8180x-pmic-glink
+> +          - qcom,sc8280xp-pmic-glink
+> +          - qcom,sm8350-pmic-glink
+> +      - const: qcom,pmic-glink
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +patternProperties:
+> +  '^connector@\d$':
+> +    $ref: /schemas/connector/usb-connector.yaml#
+> +    unevaluatedProperties: false
+> +
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |+
+> +    pmic-glink {
+> +        compatible = "qcom,sc8280xp-pmic-glink", "qcom,pmic-glink";
+> +
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        connector@0 {
+> +            compatible = "usb-c-connector";
+> +            reg = <0>;
 
-The problem in the current code is that it allocates in_config according
-to the total number of voltage monitors and not according to the total
-number of channels in all voltage monitors.
-Therefore it didn’t create enough sysfs to read all inputs.
-Also pvr_read_in() only tries to access the first channel in each voltage
-monitor.
-I will add this explanation to next version.
+'reg' causes a warning:
 
---
-Thanks, Eliav
+Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.example.dtb: pmic-glink: connector@0: Unevaluated properties are not allowed ('reg' was unexpected)
+
+> +            power-role = "dual";
+> +            data-role = "dual";
+> +
+> +            ports {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                port@0 {
+> +                    reg = <0>;
+> +                    endpoint {
+> +                        remote-endpoint = <&usb_role>;
+> +                    };
+> +                };
+> +
+> +                port@1 {
+> +                    reg = <1>;
+> +
+> +                    #address-cells = <1>;
+> +                    #size-cells = <0>;
+> +
+> +                    endpoint@0 {
+> +                        reg = <0>;
+> +                        remote-endpoint = <&qmp_out>;
+> +                    };
+> +
+> +                    endpoint@1 {
+> +                        reg = <1>;
+> +                        remote-endpoint = <&displayport_hpd>;
+> +                    };
+> +                };
+> +
+> +                port@2 {
+> +                    reg = <2>;
+> +                    endpoint {
+> +                        remote-endpoint = <&sbu_mux>;
+> +                    };
+> +                };
+> +            };
+> +        };
+> +    };
+> +...
+> +
+> -- 
+> 2.35.1
+> 
+> 
