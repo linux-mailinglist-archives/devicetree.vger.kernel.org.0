@@ -2,54 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B56559C3AD
-	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 18:06:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFA2E59C3B6
+	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 18:07:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235663AbiHVQFn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Aug 2022 12:05:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49318 "EHLO
+        id S235820AbiHVQG6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Aug 2022 12:06:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235772AbiHVQFl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 12:05:41 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C49EB2ED4C;
-        Mon, 22 Aug 2022 09:05:39 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 61F16611D3;
-        Mon, 22 Aug 2022 16:05:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C15FFC433C1;
-        Mon, 22 Aug 2022 16:05:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661184338;
-        bh=uuMiUaC5/wvKmXz9DTRGlt3cPWVNksaOjRNpLBZP8II=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=hi3kF0hk4m5sv1XhA3aC5qpqdDppodyhGdiKBL1yZWmGWuoeEgxkjpI23WNPC+Hvw
-         d9O85NGNVWGsEedFea2NXA8lfmH8+Z7N3yu3GL+DKLIQsPosVd9DUAtyC2JgTQqQHV
-         Ko/HaPwo28OYbjHzUn0PMaA7xPvmTiJ/omsXiZddhDQWsXPk9xC1JNCNw/fNFIAooO
-         5FSyszZo89cqH5MxPrPGnQteJN0vjYDk4o4uGV+ZZosE8AaimFpM2eLUtf2unWk/Cd
-         G7VDUkUHZUkX+Yst5nVqc9tEeU2hIMHVHUcNudIeJ/mISAvBSe89YYkbPmQ0mXffnH
-         +8+hI5q81Qwhg==
-From:   Mark Brown <broonie@kernel.org>
-To:     patrice.chotard@foss.st.com, krzysztof.kozlowski+dt@linaro.org,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        robh+dt@kernel.org
-Cc:     christophe.kerello@foss.st.com, linux-kernel@vger.kernel.org,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com
-In-Reply-To: <20220810093215.794977-1-patrice.chotard@foss.st.com>
-References: <20220810093215.794977-1-patrice.chotard@foss.st.com>
-Subject: Re: (subset) [PATCH v2 0/2] spi: stm32_qspi: use QSPI bus as 8 lines communication channel
-Message-Id: <166118433650.209120.13370601331472107366.b4-ty@kernel.org>
-Date:   Mon, 22 Aug 2022 17:05:36 +0100
+        with ESMTP id S236036AbiHVQG4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 12:06:56 -0400
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC63D27CE5
+        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 09:06:55 -0700 (PDT)
+Received: by mail-pl1-x62c.google.com with SMTP id 20so10329115plo.10
+        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 09:06:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc;
+        bh=49YUdvvcH4sXkXjjBRb7TPrNyN9ePD7bMnp4Wg/4Iuw=;
+        b=WgdfrzymkqsLxn28d9609+2UnLaQqq1u7agL5Saw8zFhDUT3vW8lejynk/41Pj0NP1
+         d9CDXKGyqbEW6dCbQeqsT0X+gZ3yJMEhYcms1FZyVkXebVqSupbmlkbzwyPrwOxGqka2
+         aZfnVwtEndYLPpG8w1o75AqSVjjG2WvdH9asM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+        bh=49YUdvvcH4sXkXjjBRb7TPrNyN9ePD7bMnp4Wg/4Iuw=;
+        b=mwB0EHXnWbR6FuEmlZ2O0a9R92Qj1k6diyXu0x3Uqkand/GElBSCjayPP934qpW3nj
+         3m79teK18eBVK4HGRaLBjOymFT/hA8S3UKpFg1JytMOTxj2Taqczh6vaAzLqvj1e9eFB
+         T0qKj2qbuQRbYB2IPkCrvITSPuvX6YelDwb5cOZ6s5UbOuyJwjHaR1KzsiRaB4SazZ6w
+         oXctD2hJrwfl7aVywum+STqzRdudE73UvlwmO0QwQ4cOVrMYit/a31tuJeuIa9t7NFs3
+         ZvJkzR8loW0pMUbJq6qJg2Cd4YumkiAgG+I5/ZyRVJPzecAZQdIiwzdympZyWMY21Kky
+         eKAQ==
+X-Gm-Message-State: ACgBeo2B6u07aR8BUkw1Fc4KOorq179p1Q20dFz9a2r9DKg/sPk5VUaN
+        J76PUKXM49GNB+LkltyFm3YHFQ==
+X-Google-Smtp-Source: AA6agR5M4n+nXMrD2/te4CpsrB4wdwKrC3DPCrc4JKLmB8Q3c7ZyU0dK1Bt+jo+mZejIfeDA7lBjzQ==
+X-Received: by 2002:a17:902:f70a:b0:170:c5e7:874c with SMTP id h10-20020a170902f70a00b00170c5e7874cmr20703386plo.109.1661184415098;
+        Mon, 22 Aug 2022 09:06:55 -0700 (PDT)
+Received: from localhost ([2620:15c:11a:202:1969:d650:d765:53ef])
+        by smtp.gmail.com with UTF8SMTPSA id q12-20020a170902dacc00b0017269cc60d7sm8602620plx.214.2022.08.22.09.06.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 22 Aug 2022 09:06:54 -0700 (PDT)
+Date:   Mon, 22 Aug 2022 09:06:52 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Johan Hovold <johan+linaro@kernel.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Sandeep Maheswaram <quic_c_sanm@quicinc.com>,
+        Krishna Kurapati <quic_kriskura@quicinc.com>,
+        Pavankumar Kondeti <quic_pkondeti@quicinc.com>,
+        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sc7280: move USB wakeup-source property
+Message-ID: <YwOpnApjcZI8BXU5@google.com>
+References: <20220802152642.2516-1-johan+linaro@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.10.0-dev-fe10a
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220802152642.2516-1-johan+linaro@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -58,43 +76,10 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 10 Aug 2022 11:32:13 +0200, patrice.chotard@foss.st.com wrote:
-> From: Patrice Chotard <patrice.chotard@foss.st.com>
+On Tue, Aug 02, 2022 at 05:26:42PM +0200, Johan Hovold wrote:
+> Move the USB-controller wakeup-source property to the dwc3 glue node to
+> match the updated binding.
 > 
-> 
-> The goal of this series is to allow to use QSPI bus as a 8 lines communication
-> channel for specific purpose.
-> 
-> The QSPI block offers the possibility to communicate with 2 flashes in
-> parrallel using the dual flash mode, 8 data lines are then used.
-> Usage of DT parallel-memories property is needed to enable dual flash mode.
-> 
-> [...]
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
-
-Thanks!
-
-[1/2] spi: stm32_qspi: Add transfer_one_message() spi callback
-      commit: b051161f44d414e736fa2b011245441bae9babd7
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
