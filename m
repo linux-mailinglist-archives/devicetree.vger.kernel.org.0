@@ -2,145 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3841259C481
-	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 19:01:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E966D59C492
+	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 19:04:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234891AbiHVRBH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Aug 2022 13:01:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48746 "EHLO
+        id S235830AbiHVREO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Aug 2022 13:04:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233343AbiHVRBG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 13:01:06 -0400
-Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97F842CE17;
-        Mon, 22 Aug 2022 10:01:05 -0700 (PDT)
-Received: by mail-oo1-f50.google.com with SMTP id d63-20020a4a5242000000b0044880019622so2025409oob.13;
-        Mon, 22 Aug 2022 10:01:05 -0700 (PDT)
+        with ESMTP id S234683AbiHVREN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 13:04:13 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BFFC2B1AE
+        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 10:04:12 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id r4so14767361edi.8
+        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 10:04:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc;
+        bh=o4G6R0VMB8OZ3qPmdHch9f/GUeGaJ8wf4k21qG3+9ug=;
+        b=vjb2dZ1LaAraxqJSC00yMnUxygA8YYf8l+V8QfrZ3YiFF0nm8LUVjjdI4gHdiW1bBO
+         Z36mfQuVmYtmb0VnkyndDSMuwdgi8Ja5LNyJMXnPGfR74OqkDjVUcnslC1OD+SGX8V4R
+         vfO3Jz+U+gfsJyEJrpFUv6ijEb2shry3M2qFN7lQJYkpt/awNFOnC0PeySxnIouzbpOr
+         NAwuYhdMP8Plm/MlvSZwtv8h2ll6zPVb834v8hpkPXe2Qe91v+fFsADjAxOx7l88vXlu
+         xY+Vlvgbjp5X+ru0ylKr+8bcWo+AIApP3ldIFhjlqihqQ311fImkHMD2WWVuSYFM1Tp+
+         2LEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
          :x-gm-message-state:from:to:cc;
-        bh=vllOTj75NMj9Xtj4lVknt1y4y0/yrOawPpDzQK1s7XY=;
-        b=DWmuac1Mp8762LLTb28EB8pNoFqzDeZMJ0ttvYZKhTQxL6Zi85IPKVBU8L/FTiaXC7
-         SsO662yBsPKP7foSC7tmV9m7gMaffxPJUsdxvD0be9KcAR6EZaih0WJariFg7f/US8I3
-         gOoLSqFKpUal88QGSApF8Ge3lJoQcNL7JRZL6lc60D2hs+PuJENCT+rI+RZvhUTfpNeK
-         jUDw55yCrTB1CrSUeQLKD5XE0F2WQ4lnqzzkdKA/scFbzY/sBnYR7mIjj0w9geWhwW/c
-         Wr5mic0TNjcRML7/SrxH3oI7OITuZA2tRE4p86qFLBCxOH+cuP9OPXAK1GHtfCEzQ7Ma
-         BatQ==
-X-Gm-Message-State: ACgBeo254yXGryClkIsEmPGjUwLVRPiP0/RxzSt1DZ5hhI1a5qge2rXl
-        B1siS4KynaPtx1IjY29tJA==
-X-Google-Smtp-Source: AA6agR7f7iG5WZv9hUN29PKotnQLZ188Y9PJABNFzMfCJeDdQBw7SZ57RoQtRac3zi8ntAyYvNRADQ==
-X-Received: by 2002:a4a:abcf:0:b0:428:47bc:4bc0 with SMTP id o15-20020a4aabcf000000b0042847bc4bc0mr7000784oon.15.1661187664664;
-        Mon, 22 Aug 2022 10:01:04 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q12-20020a9d630c000000b0061c80e20c7dsm3019384otk.81.2022.08.22.10.00.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Aug 2022 10:00:59 -0700 (PDT)
-Received: (nullmailer pid 4151205 invoked by uid 1000);
-        Mon, 22 Aug 2022 17:00:56 -0000
-Date:   Mon, 22 Aug 2022 12:00:56 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] powerpc/85xx: DTS: Add CPLD definitions for P1021RDB
- Combo Board CPL Design
-Message-ID: <20220822170056.GA4135542-robh@kernel.org>
-References: <20220819084433.26011-1-pali@kernel.org>
+        bh=o4G6R0VMB8OZ3qPmdHch9f/GUeGaJ8wf4k21qG3+9ug=;
+        b=tLp2Z2ZreycNsObMU0UbRfyMDx/nKvqGsYDpDCcVGc6DReM4pk9ybEGXwAooyAisBN
+         A7XwEoHGQuMveVczm0u6GxOumBt0OAtSav08faMsCQNfhSK9hFeNRu3byaTMx5HCfurf
+         5DsN17QNs/z1X1jwM+ne4RexNMSFWshu41PXEvs26/ASi6N/O3Jd0XWj/u4p1IkBgYpj
+         OCTdwnhbMyrlMZH1JAnbZYTT8Ck3hGtEVCymlXUP0wq+nru7dCr6VAfOna98w/SW7umW
+         MXi7fHGQRu130pQ7BTocK6XUCFCL112W1xZY9pkG/3uCfVAKkBylEZvOwKU+Gk3eLZoq
+         llEA==
+X-Gm-Message-State: ACgBeo0wJDR6qLgbAXGDy6CPSqsNGGvC8g5dusKuKELkijCwc4zr2r70
+        uHV0Mek4zn6xOgxxraiWVJSw8fOUGtivAEvnsUbLzQ==
+X-Google-Smtp-Source: AA6agR7GWW0ftE+5YYbaeJnRvwBaccXdl8fUzPFaBAgaJC9oKss0YJMYs81qs25lhOtxY+eBeY6EO/lr1EpvWDsW71E=
+X-Received: by 2002:a05:6402:369a:b0:43d:75c5:f16c with SMTP id
+ ej26-20020a056402369a00b0043d75c5f16cmr106714edb.57.1661187851082; Mon, 22
+ Aug 2022 10:04:11 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220819084433.26011-1-pali@kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+References: <20220812173526.15537-1-tharvey@gateworks.com> <20220812173526.15537-2-tharvey@gateworks.com>
+In-Reply-To: <20220812173526.15537-2-tharvey@gateworks.com>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Mon, 22 Aug 2022 10:03:58 -0700
+Message-ID: <CAJ+vNU3QWWza-Q956GSLVvYJHC9owApyQD8Y1WNVDs0=qqz8-A@mail.gmail.com>
+Subject: Re: [PATCH 2/6] arm64: dts: imx8mp-venice-gw74xx: remove invalid and
+ unused pinctrl_sai2
+To:     Shawn Guo <shawnguo@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 19, 2022 at 10:44:33AM +0200, Pali Rohár wrote:
-> P1021RDB Combo Board CPLD Design is used on following Freescale boards:
-> P1021RDB-PC, P1020RDB-PD, P1020MBG-PC, P1020UTM-PC and P2020RDB-PCA.
-> 
-> Add CPLD definitions for all these boards for which already exist DTS file.
-> 
-> CPLD has bank size 128kB, it is connected via CS3 on LBC and mapped to
-> memory range 0xFFA00000~0xFFA1FFFF.
-> 
-> As CPLD firmware is common on all these boards, use just one compatible
-> string "fsl,p1021rdb-pc-cpld".
-> 
-> In some DTS files is CPLD already defined, but definition is either
-> incomplete or wrong. So fix it.
-> 
-> All these boards have via CPLD connected max6370 watchdog at offset 0x2
-> with GPIO 11, status led at offset 0x8 and reset controller at offset 0xd.
-> Additionally P1020MBG-PC and P1020RDB-PD boards have FXO led at offset 0x9
-> and FXS leds at offset 0xa.
-> 
-> Signed-off-by: Pali Rohár <pali@kernel.org>
+On Fri, Aug 12, 2022 at 10:35 AM Tim Harvey <tharvey@gateworks.com> wrote:
+>
+> pinctrl_sai2 is not yet used and not properly defined - remove it to
+> avoid:
+> imx8mp-pinctrl 30330000.pinctrl: Invalid fsl,pins or pins propert
+> y in node /soc@0/bus@30000000/pinctrl@30330000/sai2grp
+>
+> Fixes: 7899eb6cb15d ("arm64: dts: imx: Add i.MX8M Plus Gateworks gw7400 dts
+> support")
+> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
 > ---
->  arch/powerpc/boot/dts/fsl/p1020mbg-pc.dtsi    | 92 +++++++++++++++++++
->  arch/powerpc/boot/dts/fsl/p1020mbg-pc_32b.dts |  6 +-
->  arch/powerpc/boot/dts/fsl/p1020mbg-pc_36b.dts |  6 +-
->  arch/powerpc/boot/dts/fsl/p1020rdb-pd.dts     | 44 +++++++--
->  arch/powerpc/boot/dts/fsl/p1020utm-pc.dtsi    | 37 ++++++++
->  arch/powerpc/boot/dts/fsl/p1020utm-pc_32b.dts |  4 +-
->  arch/powerpc/boot/dts/fsl/p1020utm-pc_36b.dts |  4 +-
->  arch/powerpc/boot/dts/fsl/p1021rdb-pc.dtsi    | 37 ++++++++
->  arch/powerpc/boot/dts/fsl/p1021rdb-pc_32b.dts |  5 +-
->  arch/powerpc/boot/dts/fsl/p1021rdb-pc_36b.dts |  5 +-
->  arch/powerpc/boot/dts/fsl/p2020rdb-pc.dtsi    | 33 ++++++-
->  11 files changed, 251 insertions(+), 22 deletions(-)
-> 
-> diff --git a/arch/powerpc/boot/dts/fsl/p1020mbg-pc.dtsi b/arch/powerpc/boot/dts/fsl/p1020mbg-pc.dtsi
-> index a24699cfea9c..c73996dcd809 100644
-> --- a/arch/powerpc/boot/dts/fsl/p1020mbg-pc.dtsi
-> +++ b/arch/powerpc/boot/dts/fsl/p1020mbg-pc.dtsi
-> @@ -83,6 +83,95 @@
->  		compatible = "vitesse-7385";
->  		reg = <0x2 0x0 0x20000>;
->  	};
-> +
-> +	cpld@3,0 {
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		compatible = "fsl,p1021rdb-pc-cpld", "simple-bus", "syscon";
-> +		reg = <0x3 0x0 0x20000>;
-> +		ranges = <0x0 0x3 0x0 0x20000>;
-> +
-> +		watchdog@2 {
-> +			compatible = "maxim,max6370";
-> +			reg = <0x2 0x1>;
-> +			gpios = <&gpio 11 1>;
-> +		};
-> +
-> +		led@8 {
+>  arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts | 9 ---------
+>  1 file changed, 9 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
+> index de17021df53f..80f0f1aafdbf 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
+> @@ -768,15 +768,6 @@ MX8MP_IOMUXC_NAND_DATA03__GPIO3_IO09       0x110
+>                 >;
+>         };
+>
+> -       pinctrl_sai2: sai2grp {
+> -               fsl,pins = <
+> -                       MX8MP_IOMUXC_SAI2_TXFS__AUDIOMIX_SAI2_TX_SYNC
+> -                       MX8MP_IOMUXC_SAI2_TXD0__AUDIOMIX_SAI2_TX_DATA00
+> -                       MX8MP_IOMUXC_SAI2_TXC__AUDIOMIX_SAI2_TX_BCLK
+> -                       MX8MP_IOMUXC_SAI2_MCLK__AUDIOMIX_SAI2_MCLK
+> -               >;
+> -       };
+> -
+>         pinctrl_spi2: spi2grp {
+>                 fsl,pins = <
+>                         MX8MP_IOMUXC_ECSPI2_SCLK__ECSPI2_SCLK   0x82
+> --
+> 2.25.1
+>
 
-The register-bit-led schema says this should be 'led@8,0'. Did you 
-run 'dtbs_check'? 
+Shawn,
 
-But that's going to conflict with what simple-bus schema says. I don't 
-know that 'simple-bus' is really appropriate here. The CPLD isn't really 
-just a bus. 'simple-mfd' is what's more commonly used with 'syscon'.
+You can drop this. I didn't see Peng's patch commit 706dd9d30d3b
+("arm64: dts: imx8mp-venice-gw74xx: fix sai2 pin settings") which
+takes care of this.
 
+Best Regards,
 
-> +			compatible = "register-bit-led";
-> +			reg = <0x8 0x1>;
-> +			offset = <0x8>;
-> +			mask = <0x1>;
-> +			active-low;
-> +			default-state = "keep";
-> +			label = "status";
-> +			function = "status";
-> +			color = <6>; /* LED_COLOR_ID_YELLOW */
-> +		};
-
+Tim
