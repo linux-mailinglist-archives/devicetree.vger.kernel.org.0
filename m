@@ -2,61 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BAD3E59C5BE
-	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 20:08:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F2DE59C5C5
+	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 20:10:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229980AbiHVSHS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Aug 2022 14:07:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58198 "EHLO
+        id S234980AbiHVSKO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Aug 2022 14:10:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235516AbiHVSHQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 14:07:16 -0400
-Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5BF246D84;
-        Mon, 22 Aug 2022 11:07:15 -0700 (PDT)
-Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-11d08d7ece2so7134193fac.0;
-        Mon, 22 Aug 2022 11:07:15 -0700 (PDT)
+        with ESMTP id S236008AbiHVSKN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 14:10:13 -0400
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 668C34622B
+        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 11:10:12 -0700 (PDT)
+Received: by mail-oi1-f174.google.com with SMTP id j5so13146209oih.6
+        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 11:10:12 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=4st3FM1bb6ia+hAlavpEGAbxXV7xofi5zmV7yc9Sy/E=;
-        b=4V1HWE/RTu9erDGsb8/3rfdWHnsryf7i1860GC/YjWR+F/5qpm5DMOP56Wh+e4iIUG
-         CXzOyq1jzPsP9K59OzOZMMTrutfxpXA4rg4FAYLs3+BxnmNeaWFEhtNpPFP0m78u99AZ
-         rhP1Kajq5Vpv2stB23pL4uKFnO4/CdHAY+vKQgo93rSTJxJmoeuOTofZ4Jcshpwk4Fe2
-         YSINYaMhAVd9WP65AgRgYt3lvigJU/311Ntgcoc9qkKGAGG9Rse9XoQl9Fbili7rLPRA
-         Ys70WrI5il4R6tD8VkgbsFfsKGhT7TXksSZilzfy0cVC7r1FgW5cy9ryUVv85PcUcwsz
-         j1cQ==
-X-Gm-Message-State: ACgBeo0esAAHqaiIZBZDkBW/LHUzXDUzrDtgGp+7/M7T+FLWh/I19HDA
-        kfBQvUjCMyyQP/3Un4dc+A==
-X-Google-Smtp-Source: AA6agR7XnzRL6Jn/3yMP/dI6TmfBLdDYyqWeS2JSRz9HOciSHoo08QZzFiSxHw3wKjI+/ntOSIyv3A==
-X-Received: by 2002:a05:6870:41c6:b0:11c:6053:2fed with SMTP id z6-20020a05687041c600b0011c60532fedmr9777964oac.114.1661191634964;
-        Mon, 22 Aug 2022 11:07:14 -0700 (PDT)
+        bh=e9AqIUIO9u8Q0cx3y6LQnMaSjH/c6l3ApVpiGp13j3I=;
+        b=cO43l4nnfg4ESTRi+Zi1AHAkKfapHlJRTJCPgtXMdW/wX0b6U2TdyuY9x7aH3rTbsI
+         QzG5JgmNGKSdoNXIyBrAMV0qXlLZG3HPGNaMtPKYadv99vZTJnX/YqkAv8eoxMrNOY2I
+         FiSi3J/7gnT002gemXhfN21bQp6IM5+K0zFCxX6ayZXaZD/OCc9pdNqu8NH3QjJ0L8Pd
+         hosE1eJR0tqVJoW0zD19vWTehPs2q0lM+DxMRDr3ORBvdfs0UDCS+w/8+RtSgsQX1BTS
+         7T279pX0ixXFf57QvIXQoe8UyUYzHtW6WSD09e4D7V4+qFORdaeL6VJ/iDEKQzMkmVcv
+         FFWA==
+X-Gm-Message-State: ACgBeo3N4LXA5zxJLE8/5WbKQS/Qbq1tg8AbfbGqjY+GCyfgZMFggjwA
+        vtnIGaGecoeqqy8z9fVBew==
+X-Google-Smtp-Source: AA6agR5SfzObR/DqjpR5Nv9r2XhuYAidUeM2j1ygw8Boxdz67jOhUkfg0GXA16CsuluH2kvzhF7wLw==
+X-Received: by 2002:a05:6808:2d7:b0:344:a080:7e8a with SMTP id a23-20020a05680802d700b00344a0807e8amr11157992oid.10.1661191811700;
+        Mon, 22 Aug 2022 11:10:11 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id p39-20020a05687056a700b0010d5d5c3fc3sm3104887oao.8.2022.08.22.11.07.13
+        by smtp.gmail.com with ESMTPSA id x20-20020a056870331400b0010c3655967csm417357oae.40.2022.08.22.11.10.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Aug 2022 11:07:14 -0700 (PDT)
-Received: (nullmailer pid 80167 invoked by uid 1000);
-        Mon, 22 Aug 2022 18:07:13 -0000
-Date:   Mon, 22 Aug 2022 13:07:13 -0500
+        Mon, 22 Aug 2022 11:10:11 -0700 (PDT)
+Received: (nullmailer pid 85043 invoked by uid 1000);
+        Mon, 22 Aug 2022 18:10:09 -0000
+Date:   Mon, 22 Aug 2022 13:10:09 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Richard Zhu <hongxing.zhu@nxp.com>
-Cc:     p.zabel@pengutronix.de, l.stach@pengutronix.de,
-        bhelgaas@google.com, lorenzo.pieralisi@arm.com,
-        shawnguo@kernel.org, vkoul@kernel.org,
-        alexander.stein@ew.tq-group.com, marex@denx.de,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
-        linux-imx@nxp.com
-Subject: Re: [PATCH v3 2/6] dt-binding: phy: Add iMX8MP PCIe PHY binding
-Message-ID: <20220822180713.GA75195-robh@kernel.org>
-References: <1660806153-29001-1-git-send-email-hongxing.zhu@nxp.com>
- <1660806153-29001-3-git-send-email-hongxing.zhu@nxp.com>
+To:     Jagan Teki <jagan@edgeble.ai>
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kever Yang <kever.yang@rock-chips.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        Finley Xiao <finley.xiao@rock-chips.com>
+Subject: Re: [PATCH v3 09/19] clk: rockchip: Add dt-binding header for RV1126
+Message-ID: <20220822181009.GA80526-robh@kernel.org>
+References: <20220818124132.125304-1-jagan@edgeble.ai>
+ <20220818124132.125304-10-jagan@edgeble.ai>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1660806153-29001-3-git-send-email-hongxing.zhu@nxp.com>
+In-Reply-To: <20220818124132.125304-10-jagan@edgeble.ai>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -68,70 +66,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 18, 2022 at 03:02:29PM +0800, Richard Zhu wrote:
-> Add i.MX8MP PCIe PHY binding.
-
-Explain the differences in h/w. The phy is connected to PERST#?
-
+On Thu, Aug 18, 2022 at 06:11:22PM +0530, Jagan Teki wrote:
+> Add the dt-bindings header for the Rockchip RV1126, that gets shared
+> between the clock controller and the clock references in the dts.
 > 
-> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> Signed-off-by: Finley Xiao <finley.xiao@rock-chips.com>
+> Signed-off-by: Jagan Teki <jagan@edgeble.ai>
 > ---
->  .../bindings/phy/fsl,imx8-pcie-phy.yaml          | 16 +++++++++++++---
->  1 file changed, 13 insertions(+), 3 deletions(-)
+> Changes for v3:
+> - update the file name
+> Changes for v2:
+> - exclude from clk patch
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/fsl,imx8-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/fsl,imx8-pcie-phy.yaml
-> index b6421eedece3..692783c7fd69 100644
-> --- a/Documentation/devicetree/bindings/phy/fsl,imx8-pcie-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/fsl,imx8-pcie-phy.yaml
-> @@ -16,6 +16,7 @@ properties:
->    compatible:
->      enum:
->        - fsl,imx8mm-pcie-phy
-> +      - fsl,imx8mp-pcie-phy
->  
->    reg:
->      maxItems: 1
-> @@ -28,11 +29,16 @@ properties:
->        - const: ref
->  
->    resets:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 2
->  
->    reset-names:
-> -    items:
-> -      - const: pciephy
-> +    oneOf:
-> +      - items:          # for iMX8MM
-> +          - const: pciephy
-> +      - items:          # for IMX8MP
-> +          - const: pciephy
-> +          - const: perst
-
-This does the same thing:
-
-minItems: 1
-items:
-  - const: pciephy
-  - const: perst
-
-
->  
->    fsl,refclk-pad-mode:
->      description: |
-> @@ -60,6 +66,10 @@ properties:
->      description: A boolean property indicating the CLKREQ# signal is
->        not supported in the board design (optional)
->  
-> +  power-domains:
-> +    description: PCIe PHY  power domain (optional).
-> +    maxItems: 1
-> +
->  required:
->    - "#phy-cells"
->    - compatible
-> -- 
-> 2.25.1
+>  .../dt-bindings/clock/rockchip,rv1126-cru.h   | 632 ++++++++++++++++++
+>  1 file changed, 632 insertions(+)
+>  create mode 100644 include/dt-bindings/clock/rockchip,rv1126-cru.h
 > 
-> 
+> diff --git a/include/dt-bindings/clock/rockchip,rv1126-cru.h b/include/dt-bindings/clock/rockchip,rv1126-cru.h
+> new file mode 100644
+> index 000000000000..cfba8226ded2
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/rockchip,rv1126-cru.h
+> @@ -0,0 +1,632 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+
+Dual license please. Need an ack from Rockchip for that (and not just 
+on this one).
+
+> +/*
+> + * Copyright (c) 2019 Rockchip Electronics Co. Ltd.
+> + * Author: Finley Xiao <finley.xiao@rock-chips.com>
+> + */
