@@ -2,64 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E2F9059CB60
-	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 00:19:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B07259CB77
+	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 00:31:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237489AbiHVWTB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Aug 2022 18:19:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38586 "EHLO
+        id S238171AbiHVWbP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Aug 2022 18:31:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231466AbiHVWS7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 18:18:59 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26D4A30F5F;
-        Mon, 22 Aug 2022 15:18:59 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id E133DB81979;
-        Mon, 22 Aug 2022 22:18:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2B4EC433C1;
-        Mon, 22 Aug 2022 22:18:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661206736;
-        bh=lbcG/7heY9/JOFnDhcj6xbKcHok+D8FUqe/aKxOcKf8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Z8C/OSIeggQ9gE6xHp8ktHYev5VYLgZE3JSSG+pulWkB+NxV7bArGgYloECSKaTEe
-         za+YaqntbyDojm+TQRjxYduMRpzVqfTz1XkUo+hAdLzfK5dWEXGDKALrjeHUlYGkN0
-         Sqa5amT13mAZdb2V31RpXkKqOFYFys/iumTa1CgJ+iFUFuvYr7tWMd0g2IcPG6J4i2
-         Ugt4Uhdk4TIyfF9dI9/YoFxkpdeOqBwzOcHMWadPYhNc+y+DzLwxrTabG2gE5sXS8N
-         uI7Gn8QnO4bxofXXwBtuiWDU5vwHlr2L0Bh59sP+m2O4/HN8KdNxGTG65W0aGaUFhw
-         rBjH3EYZnGsNA==
-Date:   Tue, 23 Aug 2022 00:18:52 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     aisheng.dong@nxp.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, xiaoning.wang@nxp.com,
-        Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH V2 7/7] i2c: imx-lpi2c: use bulk clk API
-Message-ID: <YwQAzBUuFvGUlrmX@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, aisheng.dong@nxp.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, xiaoning.wang@nxp.com,
-        Peng Fan <peng.fan@nxp.com>
-References: <20220816125526.2978895-1-peng.fan@oss.nxp.com>
- <20220816125526.2978895-8-peng.fan@oss.nxp.com>
+        with ESMTP id S237662AbiHVWbM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 18:31:12 -0400
+Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3D64501BE
+        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 15:31:10 -0700 (PDT)
+Received: by mail-ot1-x32c.google.com with SMTP id o15-20020a9d718f000000b00638c1348012so8693684otj.2
+        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 15:31:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:from:to:cc;
+        bh=Uze3mrVtxDFOcmt/i3yDaS8brRCL06O+UHridDKP8uo=;
+        b=ZKpYpsYM/o2jCq4rm/aUeXUa93Rb0CMhl5VbaCfX6JMtiO3ennKIUovhafoX45YR9l
+         i3Tep+H3h7UvRRZ4u6KuS+r3OCLFJjf2mIeEoenknI403RvbYjGG/kcs2lW5Mlp7iMu0
+         9tbEi1zXfALiNre8cHiCTtHyOo/AReyfMAIWE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:x-gm-message-state:from:to:cc;
+        bh=Uze3mrVtxDFOcmt/i3yDaS8brRCL06O+UHridDKP8uo=;
+        b=FFdflgXT+mKM7L11/atqQMFmMCAECAcg7yCSD3hEhH6fEvOSyl0N2vCquro+KSkgN6
+         LpiqtdLZvOUakcyeapkcvCykQwP+UysvdAvWhojq3Lj12osUCwXh8G63DKCQqGhliR7x
+         T/oTABNNtkhGtuDa1i21Mm7cm+aoo4c/QLfX8RosxS+dk0RB3Q/G9cDVOSIWx9TFSZwP
+         uEkmnjROtx3HR4KNlSGSu2tlGXhJTaf1qOhWwMMYJnN5X+YP9CQH7ssl0qMqzlKmZkM2
+         gMthJ/iiptHsyPEDzM4nRyBD06QW4aa44vVWOsn7/8p8ExQCNUiga/pUf7z6PRQDZDEe
+         K2PQ==
+X-Gm-Message-State: ACgBeo3IBjQsYPBHTStWudo4TaLnyKM4ONTFO5ZI+3oOnB8QseO57VD6
+        Lewhy5HYJh7aptj3h7aDGaMd+WZW0azwv4h44q9C9A==
+X-Google-Smtp-Source: AA6agR5yVAK+oIZ1GWb2i1iV3WJcnW9FOaXtzHjX2k5tPGFm581PTcReO2HhFtk6zsZQzHNkTiKAHHtDQDlSEEXMb0o=
+X-Received: by 2002:a9d:53cb:0:b0:637:1ddc:615c with SMTP id
+ i11-20020a9d53cb000000b006371ddc615cmr8858507oth.3.1661207470142; Mon, 22 Aug
+ 2022 15:31:10 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 22 Aug 2022 17:31:09 -0500
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="SNO4dW2CIYUSOHuv"
-Content-Disposition: inline
-In-Reply-To: <20220816125526.2978895-8-peng.fan@oss.nxp.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <20220710084133.30976-7-dmitry.baryshkov@linaro.org>
+References: <20220710084133.30976-1-dmitry.baryshkov@linaro.org> <20220710084133.30976-7-dmitry.baryshkov@linaro.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Mon, 22 Aug 2022 17:31:09 -0500
+Message-ID: <CAE-0n53rQ-_3wgH-QDyVnMhja2LW0_2nLUdy==6wQOTP9VA36g@mail.gmail.com>
+Subject: Re: [PATCH v2 6/9] arm64: dts: qcom: sc7280: drop unused clocks from
+ eDP node
+To:     Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, Sean Paul <sean@poorly.run>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -68,36 +75,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Quoting Dmitry Baryshkov (2022-07-10 01:41:30)
+> The eDP node includes two clocks which are used by the eDP PHY rather
+> than eDP controller itself. Drop these clocks to remove extra difference
+> between eDP and DP controllers.
+>
+> Suggested-by: Stephen Boyd <swboyd@chromium.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
 
---SNO4dW2CIYUSOHuv
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-
-> -	clk_disable_unprepare(lpi2c_imx->clk);
-> +	clk_bulk_disable(lpi2c_imx->num_clks, lpi2c_imx->clks);
-
-Why is there no 'unprepare' with bulk?
-
-
---SNO4dW2CIYUSOHuv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmMEAMwACgkQFA3kzBSg
-Kba5EQ//VXnGL1C4B0a//cAO8UEoVGlawafffYMhWe3JEjtI7E2hZKSdu9lDyFdQ
-0HYdjMlZLyJZjfAYPs+GT6vKHN0vYTzuxDbZRk7r9aWVa0AG6xxgH2/qLLAk2CAK
-ZzBlASlKfv2mZpJ73ZG0Iz9T5WY5VkSngm16Ycr/6sRC4rkmzZ794PvPhKD2xjWr
-a8npBv1FPDjr96z1Bg1GrjbAUqChUTTCc2YsDkHgWnOEhZbRyMl1oaGKTpMPgLIT
-4HnbL1WG7TL2FPcU3VDruVDm2R9ZCoJOAkqNbCIjVnYLd3ePKPOvmBnbyfAoxKnp
-LZAj5a6xDYZGief0mIemgv4lGKPxt9tjgJndX/xk97axUO1pB8YVpcZ5XEDvTUSq
-KiMeNFFqMaOkOKtTBhLDxDlGTTclF/DtuCzZEW4qYCjnBZOa9XqAsX9GbGAD3GAX
-VoeSS9XaoN7Bkq4nGzxXg4uHGXiW26TH4ByqcQtlHo1TagMLA946bL9U1z96Mqvd
-BX1ILO3D8rFW5WwAyoJrWMC6AbdBhzatVy3yOaAEt0nKsBp0Wu/qSwSKd2yAllm4
-CRkWlm5Jf9DnvWgCCJewH6nS+qtU10ujzca1SYzsDAPg6csLnE40c6CsfzvWTHbu
-eHqIkKPtCCkMAT82sN1SYLt25qYdAZzD1wXAR9QYjdlBIVcpRTQ=
-=Iftg
------END PGP SIGNATURE-----
-
---SNO4dW2CIYUSOHuv--
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
