@@ -2,102 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B185059CB7A
-	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 00:31:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A82D459CBDC
+	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 01:03:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238143AbiHVWb3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Aug 2022 18:31:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47434 "EHLO
+        id S233067AbiHVXDM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Aug 2022 19:03:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235467AbiHVWbY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 18:31:24 -0400
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E1085073A
-        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 15:31:24 -0700 (PDT)
-Received: by mail-pj1-x102a.google.com with SMTP id s31-20020a17090a2f2200b001faaf9d92easo15369346pjd.3
-        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 15:31:24 -0700 (PDT)
+        with ESMTP id S232271AbiHVXDL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 19:03:11 -0400
+Received: from mail-il1-x12c.google.com (mail-il1-x12c.google.com [IPv6:2607:f8b0:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C5574F64B;
+        Mon, 22 Aug 2022 16:03:11 -0700 (PDT)
+Received: by mail-il1-x12c.google.com with SMTP id q16so6537415ile.1;
+        Mon, 22 Aug 2022 16:03:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc;
-        bh=yA55LWsUqx+EY3j76KfUtoYpWHB5KIhjswVr3ZOiS0g=;
-        b=X9awsab89oouZvULxAXG4hU+UalhOJWDfyoKYVufR9R1WcZfmluKvo6rxCTlN24OGT
-         h8FoBbDs6a18++3vMYTNubweVDZ9iU4U0YBo8uhdq6tL0wOzMcKVQSkBezlwPB9aCIQj
-         HZPYfSmn4fI+XkraTZkaybT99dlsumdmC45vE=
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=VlbNwukBUIpEPmPt9v+G7N0f5B1QXw5dPmpD9c3YmBM=;
+        b=D2M288oKVQ1NZeC0p+D2eKZTveU75MQ5Bo13o94hLarlQzbhFpm1qBNE1DY8il14kH
+         OfXKN50oQ4sf2BpxnErkCexmaOVTg0ssUPXj6WX7xSP89c3LcYMyJBK4H8iCm3RL7p+k
+         iuAkORBSTHoMv3u5j4/Tw2SCjeU0wT4IBm/B/GpY+Uf0Zjqd6+s6pYK33eVa8GguxKAu
+         6NjSpq0DSiyn8aDuvchZNUHYdtkh6WM+W12LbQxirNSGVDh/JwH8pup8Cl3U/9rvVY20
+         Ho1HYRibRxTjWEA6exzlRJb5XrPxW/RrmYkAXgw10UTJCCEbcwBfiwz6C+X9bZXIk974
+         HoBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=yA55LWsUqx+EY3j76KfUtoYpWHB5KIhjswVr3ZOiS0g=;
-        b=YHTcbsS42JSpoHflgWelW28u9a4xkycQDZx6bITmT3dhn7BcMSqBnCgc9dst+ZGoVB
-         sLdrLkKIFQGChsYG5zzh9eAfsOyrSn0HPtHII9KMk9ZR7T3x+55MrUPJ2QZfg8cA2bDq
-         G4nkMTq/dzFxefDWk7Md99ppQ8xHqgTBch2/AxQjLJFkPT32bKvm4J2WGbrID1RbtsEt
-         kEpfUqHsGg7gb9pw+mBpHi/Ff7dN/XRq3T9AB/loha4emhVGFYd4oW7M0znlQB+hRnRS
-         N6YqY+8M95qhOawU8IBhZOVHGI13N8Y79It12cVJMOmfpyUhxePlhAuR/XSGbBb4sP/b
-         UVQw==
-X-Gm-Message-State: ACgBeo3b8nIhbEKs/BhgBPfzqM7949S4+SiiiapzCtK1CJWD0x3llWgE
-        DrLdPmeBA7nNIgYCIMty2QrCUA==
-X-Google-Smtp-Source: AA6agR4lkM+O28NwF/maGoBvvjVrV30yZX0jTqemn/8bNrfD6P+b7QRP5VtGTTd12SwSeu79q0vrNA==
-X-Received: by 2002:a17:902:ab52:b0:172:f759:f997 with SMTP id ij18-20020a170902ab5200b00172f759f997mr3371800plb.140.1661207483747;
-        Mon, 22 Aug 2022 15:31:23 -0700 (PDT)
-Received: from localhost ([2620:15c:11a:202:1969:d650:d765:53ef])
-        by smtp.gmail.com with UTF8SMTPSA id p18-20020a170902ead200b0016a6caacaefsm8870435pld.103.2022.08.22.15.31.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Aug 2022 15:31:23 -0700 (PDT)
-Date:   Mon, 22 Aug 2022 15:31:21 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>, andersson@kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Sandeep Maheswaram <quic_c_sanm@quicinc.com>,
-        Krishna Kurapati <quic_kriskura@quicinc.com>,
-        Pavankumar Kondeti <quic_pkondeti@quicinc.com>,
-        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sc7280: move USB wakeup-source property
-Message-ID: <YwQDuXXkgwPAu55D@google.com>
-References: <20220802152642.2516-1-johan+linaro@kernel.org>
- <YwOBEhViD1iY14yL@hovoldconsulting.com>
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=VlbNwukBUIpEPmPt9v+G7N0f5B1QXw5dPmpD9c3YmBM=;
+        b=EHyR8YV2gTg32z3ffeepQLr2l1sNOh/Sc/2wuE2qiuDenfcuQg7JdS4os4YllgNPvL
+         sPIUwghO45fN20fQYY4TiiLrHzv5p2pYWrraf6hpZ0ezxEcoIrfDWwNdUyZH1Qu8ioOC
+         FMUyrnK42Qvg59Bnzt6OBYdYHlUlKd7lxnJn2cgk0DgBhj+ib/CRDaDsk743PtsOUcpS
+         NtNfUJSe4wns63r3zCW2tOlfMHOb0n6nww2LOm3n4vdCkOri6Qt9iLvc3qaBtWfu4RuU
+         5ulppfH14fJhDSsE29VWByJ0QY7mj+B7Dcse/W4y2aXngwMOEVk1ljmM15ZustK15MG5
+         nHEg==
+X-Gm-Message-State: ACgBeo2cTEdaxYnR/AKDXtn8UGbsqF0Jw5OPlZQ4urWeKmHU3rbldp6C
+        8Hcewe9+YKQPz3m2NTYbh6I=
+X-Google-Smtp-Source: AA6agR41PXs5JDyrmEDwM1pxT209xB+GjpwRj+UXccQwgQbTdudDVkNfL3J+IBH4kqlOw+QzKQviCA==
+X-Received: by 2002:a92:130f:0:b0:2e4:22c9:7721 with SMTP id 15-20020a92130f000000b002e422c97721mr11522530ilt.34.1661209390685;
+        Mon, 22 Aug 2022 16:03:10 -0700 (PDT)
+Received: from hestia.gfnd.rcn-ee.org (208-107-176-7-dynamic.midco.net. [208.107.176.7])
+        by smtp.gmail.com with ESMTPSA id o16-20020a02b810000000b0033f043929fbsm5609396jam.107.2022.08.22.16.03.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Aug 2022 16:03:10 -0700 (PDT)
+From:   Robert Nelson <robertcnelson@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     Robert Nelson <robertcnelson@gmail.com>,
+        Rob Herring <robh@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Jason Kridner <jkridner@beagleboard.org>,
+        Drew Fustini <drew@beagleboard.org>
+Subject: [PATCH v2 1/2] dt-bindings: arm: ti: Add bindings for BeagleBone AI-64
+Date:   Mon, 22 Aug 2022 18:03:03 -0500
+Message-Id: <20220822230304.2284952-1-robertcnelson@gmail.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <YwOBEhViD1iY14yL@hovoldconsulting.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 22, 2022 at 03:13:54PM +0200, Johan Hovold wrote:
-> On Tue, Aug 02, 2022 at 05:26:42PM +0200, Johan Hovold wrote:
-> > Move the USB-controller wakeup-source property to the dwc3 glue node to
-> > match the updated binding.
-> > 
-> > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> > ---
-> > 
-> > This one can be applied once the following series has been merged:
-> > 
-> > 	https://lore.kernel.org/all/20220802151404.1797-1-johan+linaro@kernel.org
-> 
-> The above series has now been merged (for 6.0):
-> 
-> 	https://lore.kernel.org/all/Yv56fFpuUsxCSxJ8@kroah.com/
-> 
-> so that this patch can be applied.
+This board is based on the ti,j721e
 
-Please apply it together with "clk: qcom: gcc-sc7280: Keep USB GDSC power
-domains on when USB wakeup is enabled" [1], otherwise USB wakeup won't work,
-and worse, USB would be broken after returning from system suspend.
+https://beagleboard.org/ai-64
+https://git.beagleboard.org/beagleboard/beaglebone-ai-64
 
-[1] https://patchwork.kernel.org/project/linux-arm-msm/patch/20220822115246.2.If09027f73daa6e1ed95f5eab02326b543c67132e@changeid/
+Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
+CC: Rob Herring <robh@kernel.org>
+CC: Nishanth Menon <nm@ti.com>
+CC: Jason Kridner <jkridner@beagleboard.org>
+CC: Drew Fustini <drew@beagleboard.org>
+---
+Changes since v1:
+ - added documenation links
+ - add board in alphabetical order
+---
+ Documentation/devicetree/bindings/arm/ti/k3.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+index 61c6ab4f52e2..ff3af46d1dc8 100644
+--- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
++++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+@@ -34,6 +34,7 @@ properties:
+           - const: ti,j721e
+           - items:
+               - enum:
++                  - beagle,j721e-beagleboneai64
+                   - ti,j721e-evm
+                   - ti,j721e-sk
+               - const: ti,j721e
+-- 
+2.30.2
+
