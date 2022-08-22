@@ -2,219 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 770DF59BD84
-	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 12:21:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2054B59BD94
+	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 12:29:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232546AbiHVKVu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Aug 2022 06:21:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47586 "EHLO
+        id S233324AbiHVK3k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Aug 2022 06:29:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232056AbiHVKVt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 06:21:49 -0400
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A62BE2A72C;
-        Mon, 22 Aug 2022 03:21:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1661163708; x=1692699708;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=iS2KabOwGx1pGkjnF3Mooe8NyNxyaR8bIWE1W2q8zfA=;
-  b=NHrcF9XVJxRDXYbxL2gdYhZDn9wNkbrF46CxWqygexCPXuijq/kTl5Tb
-   1iWnUU8Scu+oZEOUk0s/ATwZn56PpVCjRLzdDmGuN+oIrb8j9SEsVCa6r
-   lQFvpMuLKpwQ8byQXOzGpOYn2ucE/O/A1fNxquUCh9v13ywmsL2s1BOs4
-   +1AemVmAW+bO/Q96FfC6pDtfn0kjMeSDTqqBSR1JkAufz7Gh1hCVsW9E5
-   nJfK+f73QuhMXwApbB4Gl7wFAgebRcWfhD4wJC6RiccbPnvR+Z5x/OeVx
-   /dv+zzednNbXsiXOoosiWCKrRNcfXArqNG0l2mTHH+hHgwF6WL7c/1I10
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10446"; a="276406120"
-X-IronPort-AV: E=Sophos;i="5.93,254,1654585200"; 
-   d="scan'208";a="276406120"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Aug 2022 03:21:48 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,254,1654585200"; 
-   d="scan'208";a="641978995"
-Received: from lkp-server01.sh.intel.com (HELO 44b6dac04a33) ([10.239.97.150])
-  by orsmga001.jf.intel.com with ESMTP; 22 Aug 2022 03:21:44 -0700
-Received: from kbuild by 44b6dac04a33 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1oQ4Yy-0005Cd-0s;
-        Mon, 22 Aug 2022 10:21:44 +0000
-Date:   Mon, 22 Aug 2022 18:21:00 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de
-Cc:     kbuild-all@lists.01.org, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, aisheng.dong@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH V7 4/6] soc: imx: add i.MX93 media blk ctrl driver
-Message-ID: <202208221843.9zfKWQu1-lkp@intel.com>
-References: <20220822083106.156914-5-peng.fan@oss.nxp.com>
+        with ESMTP id S232445AbiHVK3j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 06:29:39 -0400
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2056.outbound.protection.outlook.com [40.107.237.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 817182ED53;
+        Mon, 22 Aug 2022 03:29:38 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TOOrKKbARZOgF1A5WBNjpJs8jKLel7XJpGj9lTelAg9+pQ7cCooVHqRpC+9uf6O0Ya+0z7R1avN6NEdNOhoQoBpHRzjhYHB4HM6GpDaeHMy+gJ3pjTfOxc0C5BJOpaO9UUhjhJ5UStyYcLf64GDSGQ245PvAntv6AOs/eWvA+oMi8gjqY152nr2A260DOKz3fEnwDZPP7/5Q91UeOwmXsGhJFMeCxjXEVj+AVL1u/aAOk3K3wAU6itTlSRRdnCyDRrqdSZ1DEYhVh3sweh5wH1GLByCX81pdMs6k+dNzjtku+goKySGzPmKymM21TlFEnALxELBz9s3SRMcFitSh5w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=As1IGX50hxBYhzwZlkAr/tpRwXTG65uaUg0nT8+AXLw=;
+ b=VFW4Xrq5/91hf/Few3MTnqQbHtLHbc1wefevE1BpjxX81b7NhzQ3zM6zvJsJu86lfa+lVXBRKBvCnOEjALBrqgHHlpzbmMQqbLIPX+zAeJ4SRFIG0rxOOG2cg4SUrkYy8FF+mvYFkjW1cxR2v4JlQZqIqXEmc8Tu3OjFH3/6+V51mbJ8YUo7m3hDfD9VueuvHC/o5pgZ2HSaJZ1sca99eyy1UZY/BveMzH2cJqYnNdMe4TwUprHD4limQSLeWaGRDrhW20Pcv5WcIewcm+kV/TrPUBZl5Cs5xe2cQwdm2nvdnQJFAOTGYrktsZI/2JD84ETQC2/bYJi/mWonMLuqvw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=As1IGX50hxBYhzwZlkAr/tpRwXTG65uaUg0nT8+AXLw=;
+ b=Wcb3ShgPF6/ECWLPsFrBTHMsfft9xgIZabFt/VJr0l+rRBnUAj+tVE7+zeNN9mrKFBHg4Tyk81jcqaZULJ2J0mCOcaYU/tt9i/tAiSTt+mtCGzXfi4DjjHuQWmpkvwT5t0UyfdtTepYc5aObXR0kKqlHaXJkZTp8yhT0fSr9ml26Lcrx1vWWVCXM52xTcF6RUUY5IlLrU3ppHfwYi3HYv+BCudtXfW1WMVJovvcXyHMe8DTp+mQKZ98Ik62gQ5qL3pmTLm8R5jncX6t6KOwru3EpR5EtpaAuJLJU91cCEp0S4FrZ+tC1M3f3or43A51/OspG6pYCopZ7AoqxT0wUTQ==
+Received: from SJ1PR12MB6339.namprd12.prod.outlook.com (2603:10b6:a03:454::10)
+ by DM5PR12MB1244.namprd12.prod.outlook.com (2603:10b6:3:73::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5546.16; Mon, 22 Aug
+ 2022 10:29:36 +0000
+Received: from SJ1PR12MB6339.namprd12.prod.outlook.com
+ ([fe80::24cb:46cd:5176:aa13]) by SJ1PR12MB6339.namprd12.prod.outlook.com
+ ([fe80::24cb:46cd:5176:aa13%9]) with mapi id 15.20.5546.022; Mon, 22 Aug 2022
+ 10:29:36 +0000
+From:   Akhil R <akhilrajeev@nvidia.com>
+To:     Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "christian.koenig@amd.com" <christian.koenig@amd.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Laxman Dewangan <ldewangan@nvidia.com>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
+        "sumit.semwal@linaro.org" <sumit.semwal@linaro.org>,
+        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        "wsa@kernel.org" <wsa@kernel.org>
+Subject: RE: [PATCH RESEND 1/2] i2c: tegra: Add GPCDMA support
+Thread-Topic: [PATCH RESEND 1/2] i2c: tegra: Add GPCDMA support
+Thread-Index: AQHYs8aKp+OlLQycOkO470/UfA2RzK22VXAAgAADTwCABBngUIAAPbIAgAAHnMA=
+Date:   Mon, 22 Aug 2022 10:29:36 +0000
+Message-ID: <SJ1PR12MB63396DC508F63807F1CE9901C0719@SJ1PR12MB6339.namprd12.prod.outlook.com>
+References: <20220819122313.40445-1-akhilrajeev@nvidia.com>
+ <20220819122313.40445-2-akhilrajeev@nvidia.com>
+ <20281ca7-e597-7030-4861-5f9a3594726d@gmail.com>
+ <89a746fd-a98e-3147-7811-33c5051c2b6d@gmail.com>
+ <SJ1PR12MB6339FC1F82EB1BB7417E533BC0719@SJ1PR12MB6339.namprd12.prod.outlook.com>
+ <ebb0764f-db92-d69d-49ac-151f4e3e0b8a@collabora.com>
+In-Reply-To: <ebb0764f-db92-d69d-49ac-151f4e3e0b8a@collabora.com>
+Accept-Language: en-IN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: c17b7cd1-c058-4683-e9f1-08da8429362a
+x-ms-traffictypediagnostic: DM5PR12MB1244:EE_
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 0k/xMoKhf66lh5DCqEPkIVzFD1f5eRJUfGzRDPxvgwYBxtx+TtxmcCQgQr4D2+pOJ3e1UuV10a5+KE1fUCxJNtkgnqYKkCGXWr6YC6kjdux+XCFS095ZtXeEDITAAD9q6xzDOfhSC7bKdxkB/qwSmii+CEAUbcDIY+gnr4n2tmAAUOxf1QO5TqBs1g8shh/ZslBZcv0RdZysVrLPSM5lB3r8vWpblGpyuFZLMqOhH361OmXSMEZ0ix8idbPJP24ZSc4YAKwHy2Te6am0Bh+Sa0I/uNK7n7ctcZL1oOKw3Jqmltdk8Tb1LmlwJnLiBU33+jLtQXsoJ5H3b19weKtgOjwA2WksZYukt02421OXtPcn01X6CzD+8zNd07FGfnmMKKehpUi1/yGHXqE0D9iv/v5c5kALddATz1Q8xPYgrx6E08kXeOT5gCUTK1zTNQ6K/ykNhhmQ3trYPGYPaoEkcVvjrxp0NU65CdNj99W5pbMnbqz0s+8/YIsP9lqcPioKzOKxTjBqF1Q/MzOWgSSgys5Xgx/wrfwSRmtaYdbGuOT4wXwQLBUOA3X9K6kcyiawIqVZcLNPffIMkV9ezFpuKiD63Q8ZvCb/5mWamSt/1w9LeaaSXvajMSW3o4ki6J1pPE6NMNfYV4YJROZyStoB2n2pbmb+v/oITr+x2qQ6vUgWiX9EMxxGLR++LV36E7y7KNzoXawO0n5tYDHtTVSV3O0cBTrfbBtzlqolO8J9HrrTyemx0vXP7e1hIRwaBUoxbrK4V+MJXm5oOdzcXuXU1m/n8VbsvwHDWbczw/lUVcw=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ1PR12MB6339.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(346002)(396003)(366004)(39860400002)(376002)(136003)(71200400001)(478600001)(83380400001)(316002)(26005)(9686003)(55016003)(110136005)(33656002)(186003)(38070700005)(38100700002)(66946007)(122000001)(64756008)(8676002)(66556008)(66476007)(66446008)(76116006)(7416002)(2906002)(53546011)(41300700001)(6506007)(7696005)(86362001)(921005)(52536014)(5660300002)(8936002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?dlB3bFUxRGgraDJTWHdOUkZjblR0Nm9XcXI4N01TeFo0OU5lSkpGbHlzVW9u?=
+ =?utf-8?B?VWl3eGNPZTlvQ1lYdHppcThSUEVSeHErbVFiMGp4NngxVzdIaXlhQTZCWDVL?=
+ =?utf-8?B?eEVEa0NGd1JwU0paNzJlN0h4UHVzWXh2RTBoeDhHaDhMZ2JBV3dmakVtR1hN?=
+ =?utf-8?B?MnAzSFdmTUpqUUZGSzVDQjlDWG9jVWQrZGwxR1hwL1NSbnVNSnFsQ0dtemJs?=
+ =?utf-8?B?VFJyVDhJR08zQjdDQUI4ZVorWW16N2F2cXlRSVRUNVRzdis3WHhwMCtNNThG?=
+ =?utf-8?B?Q2d6bEhPdGluUG9xZk9OcHdORE41NjF2ZVBIQ0xJUGI5bTBZejBpcUtEamJ3?=
+ =?utf-8?B?SUh4NVl1RzQ0L3MwdXpBSUpnV05tTEE3b0cyYUhEQzFrS0h0QTFHdlZvZ0c4?=
+ =?utf-8?B?T1FOY3lTQzdVTk5JUlVJWnZkSWkvbmlick9EV2FJeUFzU3Z1L3MxZDdMcUdh?=
+ =?utf-8?B?Q2RNR0dHVjBEcGY0ZXNCdVpXVjhyb0VwajVxZUNZbURaYlI2QUo2KzJBR1BK?=
+ =?utf-8?B?YU1EOHRoUFY5cWYrbnYzNXZwVTRVckpCb2Jhd1R6dDlPSnpidUxVcGJ1Unlx?=
+ =?utf-8?B?d1JmSTI0eTV3MmtJN3BObzQ0Mno3bE5NRXhSWjlFdS9vRUp4YlVpVTVZSzJl?=
+ =?utf-8?B?OGlWTW5MckJRMHhOOVMzdEJOVHFjdXJ4RG9obHV6UHozQWJVNHBzNXZ5TG1P?=
+ =?utf-8?B?emJNK2I2NEpDakdFOHBnbldieWo1SEgwV042R3NMUU1yUlprRnVuNFR0ZFFu?=
+ =?utf-8?B?dW1SUWxjL04rWHg0WjNiMUpya3F2T3creE1obUY2N0VOcG1uU0lzd3c4Wm1B?=
+ =?utf-8?B?N3NaNHUvVnhURm1JSktjcm43ck1WejVGNWNGMnB3clNJZE1MK2hYTktrVEhC?=
+ =?utf-8?B?SUx2NDlVSFVXM25US0VnZ3FNUE13WTdKTkVhV0YzSGRjV0ZqYUdIT2RqTmR0?=
+ =?utf-8?B?VWtCektwQlBNd3RUVTdRSjQ0S1VxUXJlWHc5MTBJRjhPaW5yRFlGOEFoUEVR?=
+ =?utf-8?B?SG52N1dhNUo3Unc3enlQSnkwL01nQVFSbEFXZklVdHQ1aEt5U3RTMlJMem0v?=
+ =?utf-8?B?bE0vRExjbDVoOEw0eXA2cVcyYkhORkdVY3FoM2RTS1kvUUYvcU1WeFJHc0Iv?=
+ =?utf-8?B?SjZ0VStlK3BvMXVtZ21uQXNDMkhpNEg2REVWa096NUI0L2dRMnpMMUM1MnJY?=
+ =?utf-8?B?dVcwZ0h6bStwb2s4aERscTdPZFJjZFRTWEgxUEdLYWtHMTI3S2RvRGVaK2pa?=
+ =?utf-8?B?L0ZSNklVejRQUXZTeE8vYkxOa0ZrZWQrY055K25tbzRJRnZHc0hKcGx2TElC?=
+ =?utf-8?B?YzlMUHREeS9WMmN1WFdEN01TV2dyOWtrM1RxM0Z5ekhXRVpJcVNFYmpsVVZo?=
+ =?utf-8?B?dWM5NWxhRStEQjRXOUZ5ekFaRTJ0RzQ2WitoMkl0cHRyVW5oaFkzbFRVQmMx?=
+ =?utf-8?B?bDJmbkFKenhkZ0RHMXQxT0ZjUVBhVG83ZDJzRHhYODBLd00xc0lNTlB4dWRn?=
+ =?utf-8?B?amZLUEh6RnRZSDFxQjVjTW5BbFhlcDRjc1p5ei9keUNJRnV0T0hPdG1xZWNK?=
+ =?utf-8?B?M0gvQ0tZYjc0S1BDYkJFd0lKRVdWUkFadm5YY211cHl2eHVhM0lheDlBNTMy?=
+ =?utf-8?B?SjhMblQySmw4Qit4QTdqdXB4NklSS0djaGlVZXhaTDJGQkJ5WWsvbVpnTnMz?=
+ =?utf-8?B?NHFPaFk5TU5BUGMrbTIyWnl0c2gzejBEOW8vVVEvcm5SbEMzQWlma3VqN1lC?=
+ =?utf-8?B?b0wxUi9EWGIvY2hXREV3Tjhwd1Y3VGVDYURwU0lINm1qc25IejhmL2JUcW81?=
+ =?utf-8?B?OGJWdFNjVFk4SEtkeVlKcTE4QVYvSUdwOG1RdXJQV2xYRlhzd1lBTTc5bmhl?=
+ =?utf-8?B?c0RXMmd3NDJKR212dUY3MTdiVThCNGtmajJSb3dBRVV5TVFRd0JLTGt6VXZo?=
+ =?utf-8?B?VTduVjg3K2JETm5BdXh3UXhHZy80eFg0T01sNlIxWTViMWNLN1NvTFY4Mm9m?=
+ =?utf-8?B?Sm54ZWtQRm9tM2ppVkhaS1VkTk9ZYVcxZXVhVlBUR2QrYk1lMTBKdVdoQStB?=
+ =?utf-8?B?Z3pvSldHbHhwS0hyVTRnd3k1V0VUMjFKN2ZqZk96Z3JiTEJpckFkNWhJVi8x?=
+ =?utf-8?Q?GfXrMcXAdei+S2LjLHDcVaOR5?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220822083106.156914-5-peng.fan@oss.nxp.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PR12MB6339.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c17b7cd1-c058-4683-e9f1-08da8429362a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Aug 2022 10:29:36.3184
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: XGeRnWM9f8+8+UUTUTJtQ20cxCVn7wUVy5nvMWLh7ikBO5mep8F1rn0fUTYzYl791nR2cOzRh7rcbY55ogwZ7A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1244
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi "Peng,
-
-Thank you for the patch! Yet something to improve:
-
-[auto build test ERROR on shawnguo/for-next]
-[also build test ERROR on linus/master v6.0-rc2 next-20220822]
-[cannot apply to robh/for-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Peng-Fan-OSS/imx-support-i-MX93-SRC-and-mediamix-blk-ctrl/20220822-163300
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux.git for-next
-config: sh-allmodconfig (https://download.01.org/0day-ci/archive/20220822/202208221843.9zfKWQu1-lkp@intel.com/config)
-compiler: sh4-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/7b6c02f1e51855f1a4b862f3b638721cd64077d4
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Peng-Fan-OSS/imx-support-i-MX93-SRC-and-mediamix-blk-ctrl/20220822-163300
-        git checkout 7b6c02f1e51855f1a4b862f3b638721cd64077d4
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=sh SHELL=/bin/bash drivers/soc/imx/
-
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
-   drivers/soc/imx/imx93-blk-ctrl.c: In function 'imx93_blk_ctrl_probe':
->> drivers/soc/imx/imx93-blk-ctrl.c:214:35: error: 'SZ_4K' undeclared (first use in this function)
-     214 |                 .max_register   = SZ_4K,
-         |                                   ^~~~~
-   drivers/soc/imx/imx93-blk-ctrl.c:214:35: note: each undeclared identifier is reported only once for each function it appears in
-
-
-vim +/SZ_4K +214 drivers/soc/imx/imx93-blk-ctrl.c
-
-   198	
-   199	static int imx93_blk_ctrl_probe(struct platform_device *pdev)
-   200	{
-   201		struct device *dev = &pdev->dev;
-   202		const struct imx93_blk_ctrl_data *bc_data = of_device_get_match_data(dev);
-   203		const struct imx93_blk_ctrl_domain_data *bus = bc_data->bus;
-   204		struct imx93_blk_ctrl *bc;
-   205		void __iomem *base;
-   206		int i, ret;
-   207	
-   208		struct regmap_config regmap_config = {
-   209			.reg_bits	= 32,
-   210			.val_bits	= 32,
-   211			.reg_stride	= 4,
-   212			.rd_table	= bus->reg_access_table,
-   213			.wr_table	= bus->reg_access_table,
- > 214			.max_register   = SZ_4K,
-   215		};
-   216	
-   217		bc = devm_kzalloc(dev, sizeof(*bc), GFP_KERNEL);
-   218		if (!bc)
-   219			return -ENOMEM;
-   220	
-   221		bc->dev = dev;
-   222	
-   223		base = devm_platform_ioremap_resource(pdev, 0);
-   224		if (IS_ERR(base))
-   225			return PTR_ERR(base);
-   226	
-   227		bc->regmap = devm_regmap_init_mmio(dev, base, &regmap_config);
-   228		if (IS_ERR(bc->regmap))
-   229			return dev_err_probe(dev, PTR_ERR(bc->regmap),
-   230					     "failed to init regmap\n");
-   231	
-   232		bc->domains = devm_kcalloc(dev, bc_data->num_domains + 1,
-   233					   sizeof(struct imx93_blk_ctrl_domain),
-   234					   GFP_KERNEL);
-   235		if (!bc->domains)
-   236			return -ENOMEM;
-   237	
-   238		bc->onecell_data.num_domains = bc_data->num_domains;
-   239		bc->onecell_data.xlate = imx93_blk_ctrl_xlate;
-   240		bc->onecell_data.domains =
-   241			devm_kcalloc(dev, bc_data->num_domains,
-   242				     sizeof(struct generic_pm_domain *), GFP_KERNEL);
-   243		if (!bc->onecell_data.domains)
-   244			return -ENOMEM;
-   245	
-   246		for (i = 0; i < bus->num_clks; i++)
-   247			bc->clks[i].id = bus->clk_names[i];
-   248		bc->num_clks = bus->num_clks;
-   249	
-   250		ret = devm_clk_bulk_get(dev, bc->num_clks, bc->clks);
-   251		if (ret) {
-   252			dev_err_probe(dev, ret, "failed to get bus clock\n");
-   253			return ret;
-   254		}
-   255	
-   256		for (i = 0; i < bc_data->num_domains; i++) {
-   257			const struct imx93_blk_ctrl_domain_data *data = &bc_data->domains[i];
-   258			struct imx93_blk_ctrl_domain *domain = &bc->domains[i];
-   259			int j;
-   260	
-   261			domain->data = data;
-   262	
-   263			for (j = 0; j < data->num_clks; j++)
-   264				domain->clks[j].id = data->clk_names[j];
-   265	
-   266			ret = devm_clk_bulk_get(dev, data->num_clks, domain->clks);
-   267			if (ret) {
-   268				dev_err_probe(dev, ret, "failed to get clock\n");
-   269				goto cleanup_pds;
-   270			}
-   271	
-   272			domain->genpd.name = data->name;
-   273			domain->genpd.power_on = imx93_blk_ctrl_power_on;
-   274			domain->genpd.power_off = imx93_blk_ctrl_power_off;
-   275			domain->bc = bc;
-   276	
-   277			ret = pm_genpd_init(&domain->genpd, NULL, true);
-   278			if (ret) {
-   279				dev_err_probe(dev, ret, "failed to init power domain\n");
-   280				goto cleanup_pds;
-   281			}
-   282	
-   283			bc->onecell_data.domains[i] = &domain->genpd;
-   284		}
-   285	
-   286		pm_runtime_enable(dev);
-   287	
-   288		ret = of_genpd_add_provider_onecell(dev->of_node, &bc->onecell_data);
-   289		if (ret) {
-   290			dev_err_probe(dev, ret, "failed to add power domain provider\n");
-   291			goto cleanup_pds;
-   292		}
-   293	
-   294		dev_set_drvdata(dev, bc);
-   295	
-   296		return 0;
-   297	
-   298	cleanup_pds:
-   299		for (i--; i >= 0; i--)
-   300			pm_genpd_remove(&bc->domains[i].genpd);
-   301	
-   302		return ret;
-   303	}
-   304	
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+PiBPbiA4LzIyLzIyIDA5OjU2LCBBa2hpbCBSIHdyb3RlOg0KPiA+PiAxOS4wOC4yMDIyIDE4OjE1
+LCBEbWl0cnkgT3NpcGVua28g0L/QuNGI0LXRgjoNCj4gPj4+IDE5LjA4LjIwMjIgMTU6MjMsIEFr
+aGlsIFIg0L/QuNGI0LXRgjoNCj4gPj4+PiAgICAgIGlmIChvZl9kZXZpY2VfaXNfY29tcGF0aWJs
+ZShucCwgIm52aWRpYSx0ZWdyYTIxMC1pMmMtdmkiKSkNCj4gPj4+PiAgICAgICAgICAgICAgaTJj
+X2Rldi0+aXNfdmkgPSB0cnVlOw0KPiA+Pj4+ICsgICAgZWxzZQ0KPiA+Pj4+ICsgICAgICAgICAg
+ICBpMmNfZGV2LT5kbWFfc3VwcG9ydCA9ICEhKG9mX2ZpbmRfcHJvcGVydHkobnAsICJkbWFzIiwN
+Cj4gPj4+PiArIE5VTEwpKTsNCj4gPj4+DQo+ID4+PiAxLiBZb3UgbGVhayB0aGUgbnAgcmV0dXJu
+ZWQgYnkgb2ZfZmluZF9wcm9wZXJ0eSgpLg0KPiA+Pj4NCj4gPj4+IDIuIFRoZXJlIGlzIGRldmlj
+ZV9wcm9wZXJ0eV9yZWFkX2Jvb2woKSBmb3IgdGhpcyBraW5kIG9mDQo+ID4+PiBwcm9wZXJ0eS1l
+eGlzdHMgY2hlY2tzLg0KPiA+IE9rYXkuIEkgd2VudCBieSB0aGUgaW1wbGVtZW50YXRpb24gaW4g
+b2ZfZG1hX3JlcXVlc3Rfc2xhdmVfY2hhbm5lbCgpIHRvDQo+ID4gY2hlY2sgJ2RtYXMnLg0KPiA+
+DQo+ID4+Pg0KPiA+Pj4gMy4gSWYgImRtYXMiIGlzIG1pc3NpbmcgaW4gRFQsIHRoZW4gZG1hX3Jl
+cXVlc3RfY2hhbigpIHNob3VsZCByZXR1cm4NCj4gPj4+IE5VTEwgYW5kIGV2ZXJ5dGhpbmcgd2ls
+bCB3b3JrIGZpbmUuIEkgc3VwcG9zZSB5b3UgaGF2ZW4ndCB0cmllZCB0bw0KPiA+Pj4gdGVzdCB0
+aGlzIGNvZGUuDQo+ID4+DQo+ID4+IEFsdGhvdWdoLCBuby4gSXQgc2hvdWxkIHJldHVybiBFUlJf
+UFRSKC1FTk9ERVYpIGFuZCB0aGVuIHlvdSBzaG91bGQgY2hlY2sNCj4gPj4gdGhlIHJldHVybiBj
+b2RlLg0KPiA+IFllcy4gQWdyZWUgdGhhdCBpdCBpcyBtb3JlIGFnbm9zdGljIHRvIGNoZWNrIGZv
+ciBFUlJfUFRSKC1FTk9ERVYpLiBCdXQgc2luY2UgSQ0KPiA+IGNhbGwgdGVncmFfaW5pdF9kbWEo
+KSBmb3IgZXZlcnkgbGFyZ2UgdHJhbnNmZXIgdW50aWwgRE1BIGlzIGluaXRpYWxpemVkLCB3b3Vs
+ZG4ndA0KPiA+IGl0IGJlIGJldHRlciB0byBoYXZlIGEgZmxhZyBpbnNpZGUgdGhlIGRyaXZlciBz
+byB0aGF0IHdlIGRvIG5vdCBoYXZlIHRvIGdvDQo+IHRocm91Z2gNCj4gPiBzbyBtYW55IGZ1bmN0
+aW9ucyBmb3IgZXZlcnkgYXR0ZW1wdGVkIERNQSB0cmFuc2FjdGlvbiB0byBmaW5kIG91dCB0aGF0
+IHRoZQ0KPiBEVA0KPiA+IHByb3BlcnRpZXMgZG9uJ3QgZXhpc3Q/DQo+ID4NCj4gPiBTaGFsbCBJ
+IGp1c3QgcHV0IGkyY19kZXYtPmRtYV9zdXBwb3J0ID0gdHJ1ZSBoZXJlIHNpbmNlIERNQSBpcyBz
+dXBwb3J0ZWQgYnkNCj4gPiBoYXJkd2FyZT8gSXQgd291bGQgdHVybiBmYWxzZSBpZiBkbWFfcmVx
+dWVzdF9jaGFuKCkgcmV0dXJucyBzb21ldGhpbmcgb3RoZXINCj4gPiB0aGFuIC1FUFJPQkVfREVG
+RVIuDQo+ID4NCj4gPiAgICAgICBpZiAob2ZfZGV2aWNlX2lzX2NvbXBhdGlibGUobnAsICJudmlk
+aWEsdGVncmEyMTAtaTJjLXZpIikpDQo+ID4gICAgICAgICAgICAgICBpMmNfZGV2LT5pc192aSA9
+IHRydWU7DQo+ID4gICsgICAgZWxzZQ0KPiA+ICArICAgICAgICAgICAgaTJjX2Rldi0+ZG1hX3N1
+cHBvcnQgPSB0cnVlOw0KPiANCj4gVGhlIGNvZGUgYWxyZWFkeSBoYXMgZG1hX21vZGUgZm9yIHRo
+YXQuIEkgZG9uJ3Qgc2VlIHdoeSBhbm90aGVyIHZhcmlhYmxlDQo+IGlzIG5lZWRlZC4NCj4gDQo+
+IEVpdGhlciBhZGQgbmV3IGdlbmVyaWMgZG1hX3JlcXVlc3RfY2hhbl9vcHRpb25hbCgpIHRoYXQg
+d2lsbCByZXR1cm4gTlVMTA0KPiBpZiBjaGFubmVsIGlzIG5vdCBhdmFpbGFibGUgYW5kIG1ha2Ug
+VGVncmEgSTJDIGRyaXZlciB0byB1c2UgaXQsIG9yDQo+IGhhbmRsZSB0aGUgZXJyb3IgY29kZSBy
+ZXR1cm5lZCBieSBkbWFfcmVxdWVzdF9jaGFuKCkuDQoNCkxldCBtZSBlbGFib3JhdGUgbXkgdGhv
+dWdodHMuIA0KDQpUaGUgZnVuY3Rpb24gdGVncmFfaTJjX2luaXRfZG1hKCkgaXMgYWxzbyBjYWxs
+ZWQgaW5zaWRlIHRlZ3JhX2kyY194ZmVyX21zZygpIGlmDQpETUEgaXMgbm90IGluaXRpYWxpemVk
+IGJlZm9yZSwgaS5lLiBpZiAoIWkyY19kZXYtPmRtYV9idWYpLg0KU28sIGlmIHN1cHBvc2UgdGhl
+cmUgaXMgbm8gRFQgZW50cnkgZm9yIGRtYXMsIHRoZSBkcml2ZXIgd291bGQgaGF2ZSB0byBnbyB0
+YWtlIHRoZQ0KcGF0aCB0ZWdyYV9pMmNfaW5pdF9kbWEoKSAtPiBkbWFfcmVxdWVzdF9jaGFuKCkg
+LT4gb2ZfKigpIGFwaXMgLT4gLi4uIGFuZCB0aGVuIGZpZ3VyZQ0Kb3V0IHRoYXQgRE1BIGlzIG5v
+dCBzdXBwb3J0ZWQuIFRoaXMgd291bGQgaGFwcGVuIGZvciBlYWNoIHRyYW5zZmVyIG9mIHNpemUg
+bGFyZ2VyIHRoYW4NCkkyQ19QSU9fTU9ERV9QUkVGRVJSRURfTEVOLg0KDQpUbyBhdm9pZCB0aGlz
+LCBJIGFtIGxvb2tpbmcgZm9yIGEgdmFyaWFibGUvZmxhZyB3aGljaCBjYW4gaW5kaWNhdGUgaWYg
+dGhlIGRyaXZlciBzaG91bGQgYXR0ZW1wdA0KdG8gY29uZmlndXJlIERNQSBvciBub3QuIEkgZGlk
+bid0IHF1aXRlIGdldCB0aGUgaWRlYSBpZiBkbWFfbW9kZSBjYW4gYmUgZXh0ZW5kZWQgdG8gc3Vw
+cG9ydA0KdGhpcywgYmVjYXVzZSBpdCBpcyB1cGRhdGVkIGJhc2VkIG9uIHhmZXJfc2l6ZSBvbiBl
+YWNoIHRyYW5zZmVyLiBNeSBpZGVhIG9mIGkyY19kZXYtPmRtYV9zdXBwb3J0DQppcyB0aGF0IGl0
+IHdpbGwgYmUgY29uc3RhbnQgYWZ0ZXIgdGhlIHByb2JlKCkuDQoNClJlZ2FyZHMsDQpBa2hpbA0K
+DQoNCg0K
