@@ -2,71 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D15359C072
-	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 15:25:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD9FE59C08E
+	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 15:29:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234867AbiHVNY5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Aug 2022 09:24:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36528 "EHLO
+        id S234520AbiHVN3u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Aug 2022 09:29:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234854AbiHVNY4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 09:24:56 -0400
-Received: from smtp-fw-9103.amazon.com (smtp-fw-9103.amazon.com [207.171.188.200])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 484172A404;
-        Mon, 22 Aug 2022 06:24:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1661174694; x=1692710694;
-  h=message-id:date:mime-version:to:cc:references:from:
-   in-reply-to:content-transfer-encoding:subject;
-  bh=ooR8sB9GYGueiPCVBJSS4kl4I6TDSL4HppTzASXDEL0=;
-  b=LpuMzXp/3DJVYPhOBUqwB1UJEuHn3W30tQFZhiZm91gEGIscqBxJRnXq
-   vpodnZRLZ62qfjNZNxV1BS3vQLfkx0HK3/K7xQJWgXcEEZh5bZ8wM6KDZ
-   zmzOYaf/UB0JI6nBFgLmtDTUAI3QJPu/2znEh4+zT7/q5Vgomjbt6Cly0
-   o=;
-X-IronPort-AV: E=Sophos;i="5.93,254,1654560000"; 
-   d="scan'208";a="1046925892"
-Subject: Re: [PATCH v2 13/16] hwmon: (mr75203) add thermal coefficient properties for
- Moortec PVT controller
-Received: from pdx4-co-svc-p1-lb2-vlan3.amazon.com (HELO email-inbound-relay-iad-1e-f771ae83.us-east-1.amazon.com) ([10.25.36.214])
-  by smtp-border-fw-9103.sea19.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Aug 2022 13:24:27 +0000
-Received: from EX13MTAUEB002.ant.amazon.com (iad12-ws-svc-p26-lb9-vlan2.iad.amazon.com [10.40.163.34])
-        by email-inbound-relay-iad-1e-f771ae83.us-east-1.amazon.com (Postfix) with ESMTPS id CF3E112002B;
-        Mon, 22 Aug 2022 13:24:24 +0000 (UTC)
-Received: from EX13D08UEB002.ant.amazon.com (10.43.60.107) by
- EX13MTAUEB002.ant.amazon.com (10.43.60.12) with Microsoft SMTP Server (TLS)
- id 15.0.1497.38; Mon, 22 Aug 2022 13:24:24 +0000
-Received: from EX13MTAUEB002.ant.amazon.com (10.43.60.12) by
- EX13D08UEB002.ant.amazon.com (10.43.60.107) with Microsoft SMTP Server (TLS)
- id 15.0.1497.38; Mon, 22 Aug 2022 13:24:24 +0000
-Received: from [10.220.236.67] (10.220.236.67) by mail-relay.amazon.com
- (10.43.60.234) with Microsoft SMTP Server id 15.0.1497.38 via Frontend
- Transport; Mon, 22 Aug 2022 13:24:20 +0000
-Message-ID: <58a79e41-4d20-0e30-cecd-4ca37dd3dbfd@amazon.com>
-Date:   Mon, 22 Aug 2022 16:24:20 +0300
+        with ESMTP id S235190AbiHVN3k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 09:29:40 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1D7518346;
+        Mon, 22 Aug 2022 06:29:39 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4B50761196;
+        Mon, 22 Aug 2022 13:29:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D7E7C433C1;
+        Mon, 22 Aug 2022 13:29:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1661174978;
+        bh=tKR+1ncaLktuwBqOq+cs01Cvto2mRKf0wx5WnwSpD0c=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=LTkh9d2Haa525kwq2grlzk2TfJzupWlmdIDQ5qo0V4w55EsXMCH6v1DJh2tvLXpfu
+         DrZ7mhtp3qKmb7fNWOImHLVlYbOQdRn88AvwmFxXXov+Y+Bv007ApBHm64gHBnHBZr
+         s2NReW++3jE2tMLkvDU/VdpAQO1j8Q8pySCO8tns=
+Date:   Mon, 22 Aug 2022 15:29:35 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     "Gupta, Nipun" <Nipun.Gupta@amd.com>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "rafael@kernel.org" <rafael@kernel.org>,
+        "eric.auger@redhat.com" <eric.auger@redhat.com>,
+        "alex.williamson@redhat.com" <alex.williamson@redhat.com>,
+        "cohuck@redhat.com" <cohuck@redhat.com>,
+        "Gupta, Puneet (DCG-ENG)" <puneet.gupta@amd.com>,
+        "song.bao.hua@hisilicon.com" <song.bao.hua@hisilicon.com>,
+        "mchehab+huawei@kernel.org" <mchehab+huawei@kernel.org>,
+        "maz@kernel.org" <maz@kernel.org>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "jeffrey.l.hugo@gmail.com" <jeffrey.l.hugo@gmail.com>,
+        "saravanak@google.com" <saravanak@google.com>,
+        "Michael.Srba@seznam.cz" <Michael.Srba@seznam.cz>,
+        "mani@kernel.org" <mani@kernel.org>,
+        "yishaih@nvidia.com" <yishaih@nvidia.com>,
+        "jgg@ziepe.ca" <jgg@ziepe.ca>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+        "okaya@kernel.org" <okaya@kernel.org>,
+        "Anand, Harpreet" <harpreet.anand@amd.com>,
+        "Agarwal, Nikhil" <nikhil.agarwal@amd.com>,
+        "Simek, Michal" <michal.simek@amd.com>,
+        "git (AMD-Xilinx)" <git@amd.com>,
+        "jgg@nvidia.com" <jgg@nvidia.com>,
+        Robin Murphy <robin.murphy@arm.com>
+Subject: Re: [RFC PATCH v2 2/6] bus/cdx: add the cdx bus driver
+Message-ID: <YwOEv6107RfU5p+H@kroah.com>
+References: <20220803122655.100254-1-nipun.gupta@amd.com>
+ <20220817150542.483291-1-nipun.gupta@amd.com>
+ <20220817150542.483291-3-nipun.gupta@amd.com>
+ <Yv0KHROjESUI59Pd@kroah.com>
+ <DM6PR12MB3082D966CFC0FA1C2148D8FAE8719@DM6PR12MB3082.namprd12.prod.outlook.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.1.2
-Content-Language: en-US
-To:     Guenter Roeck <linux@roeck-us.net>
-CC:     <jdelvare@suse.com>, <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <talel@amazon.com>,
-        <hhhawa@amazon.com>, <jonnyc@amazon.com>, <hanochu@amazon.com>,
-        <ronenk@amazon.com>, <itamark@amazon.com>, <shellykz@amazon.com>,
-        <shorer@amazon.com>, <amitlavi@amazon.com>, <almogbs@amazon.com>,
-        <dwmw@amazon.co.uk>, <rtanwar@maxlinear.com>
-References: <20220817054321.6519-1-farbere@amazon.com>
- <20220817054321.6519-14-farbere@amazon.com>
- <20220818202531.GA3431466@roeck-us.net>
-From:   "Farber, Eliav" <farbere@amazon.com>
-In-Reply-To: <20220818202531.GA3431466@roeck-us.net>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-11.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_SPF_WL autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DM6PR12MB3082D966CFC0FA1C2148D8FAE8719@DM6PR12MB3082.namprd12.prod.outlook.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,22 +80,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/18/2022 11:25 PM, Guenter Roeck wrote:
-> On Wed, Aug 17, 2022 at 05:43:18AM +0000, Eliav Farber wrote:
->> Add optional "ts-coeff-g", "ts-coeff-h", "ts-coeff-cal5" and
->> "ts-coeff-j" properties to be used instead of defaults for the
->> thermal equasion.
->>
-> Vendor prefix again, and shouldn;t there be some note about the
-> to-be-used defaults ?
-Can you please explain why to add a vendor prefix to these properties
-(and also to all other properties I added in this series)?
-All the properties I added are not specific to our SOC, and any other
-vendor using the same mr75203 ip block in their SOC, can also use the new
-properties.
+On Mon, Aug 22, 2022 at 01:21:47PM +0000, Gupta, Nipun wrote:
+> [AMD Official Use Only - General]
+> 
+> 
+> 
+> > -----Original Message-----
+> > From: Greg KH <gregkh@linuxfoundation.org>
+> > Sent: Wednesday, August 17, 2022 9:03 PM
+> > To: Gupta, Nipun <Nipun.Gupta@amd.com>
+> > Cc: robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org; rafael@kernel.org;
+> > eric.auger@redhat.com; alex.williamson@redhat.com; cohuck@redhat.com;
+> > Gupta, Puneet (DCG-ENG) <puneet.gupta@amd.com>;
+> > song.bao.hua@hisilicon.com; mchehab+huawei@kernel.org; maz@kernel.org;
+> > f.fainelli@gmail.com; jeffrey.l.hugo@gmail.com; saravanak@google.com;
+> > Michael.Srba@seznam.cz; mani@kernel.org; yishaih@nvidia.com;
+> > jgg@ziepe.ca; linux-kernel@vger.kernel.org; devicetree@vger.kernel.org;
+> > kvm@vger.kernel.org; okaya@kernel.org; Anand, Harpreet
+> > <harpreet.anand@amd.com>; Agarwal, Nikhil <nikhil.agarwal@amd.com>;
+> > Simek, Michal <michal.simek@amd.com>; git (AMD-Xilinx) <git@amd.com>
+> > Subject: Re: [RFC PATCH v2 2/6] bus/cdx: add the cdx bus driver
+> > 
+> > [CAUTION: External Email]
+> > 
+> > On Wed, Aug 17, 2022 at 08:35:38PM +0530, Nipun Gupta wrote:
+> > > CDX bus driver manages the scanning and populating FPGA
+> > > based devices present on the CDX bus.
+> > >
+> > > The bus driver sets up the basic infrastructure and fetches
+> > > the device related information from the firmware. These
+> > > devices are registered as platform devices.
+> > 
+> > Ick, why?  These aren't platform devices, they are CDX devices.  Make
+> > them real devices here, don't abuse the platform device interface for
+> > things that are not actually on the platform bus.
+> 
+> CDX is a virtual bus (FW based) which discovers FPGA based platform
+> devices based on communication with FW.
 
-Regarding defaults, these properties are optional, so if they are absent
-in device tree, the current defaults in code are used.
+virtual busses are fine to have as a real bus in the kernel, no problem
+there.
 
---
-Thanks, Eliav
+> These devices are essentially platform devices as these are memory mapped
+> on system bus, but having a property that they are dynamically discovered
+> via FW and are rescannable.
+
+If they are dynamically discoverable and rescannable, then great, it's a
+bus in the kernel and NOT a platform device.
+
+> I think your point is correct in the sense that CDX bus is not an actual bus,
+> but a FW based mechanism to discover FPGA based platform devices.
+> 
+> Can you kindly suggest us if we should have the CDX platform device scanning
+> code as a CDX bus in "drivers/bus/" folder OR have it in "drivers/fpga/" or
+> "drivers/platform/" or which other suitable location?
+
+drivers/cdx/ ?
+
+thanks,
+
+greg k-h
