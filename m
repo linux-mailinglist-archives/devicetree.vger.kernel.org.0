@@ -2,97 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E7DC459BAA6
-	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 09:51:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC62659BAAB
+	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 09:54:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233439AbiHVHvn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Aug 2022 03:51:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46176 "EHLO
+        id S231476AbiHVHyB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Aug 2022 03:54:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233043AbiHVHvm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 03:51:42 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 129592AE39
-        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 00:51:41 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id d21so170872eje.3
-        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 00:51:40 -0700 (PDT)
+        with ESMTP id S229565AbiHVHyA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 03:54:00 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32A312A72D;
+        Mon, 22 Aug 2022 00:53:59 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id w10so622846edc.3;
+        Mon, 22 Aug 2022 00:53:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=BZfpU+SmYe52WAmg/Y7YBFP2XZSNeH6d6wib4TE2Z9s=;
-        b=ueyXxGZSP+icZgmjpMxuxXG9X+4oo1se8JikeHzkHDin7aKmYKPF05fNpJGyE7Uqq4
-         Fha+jPocAO+rxOgV1yGiG6Vt+bLwLqsgS+HTLzIb48u/J8Xe322a3l88MCS7wH3wfZNw
-         BJzKa1uBmGhTa9nER2dBRU3mAwmpVK9aP+oXQCJxcFrBgb1fEmpUkC3QXZfY7fNjVo3f
-         CW9s4iC9DatwZz92upQLt2QSf8DRK70BncEXeEdnVop/1Or0XCZPDx3sCkHSD/WWqHKq
-         OTrdiqfv+D/DLSzLeVif6b2s00E8xqBkcfG7a6ZjkexZb8DOz9lmOGYRBFuJeN2H2ysI
-         Ee9g==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=6QJrT/nHZhtnj/AhwbICVx7wYH58RsjoZpITZLU2314=;
+        b=ZIQIRcFPWNoF6hm8QRjzsJU/Zpx2zNaHoHeCpPHY9Kjg7Mg0tGu5yexHwW1EPmbEug
+         q/rpFH72q0TFvYHMDuQzoCvj13IC4e+0lAT3grlecGaP7RAM5homELaMldAggsK0Vk0X
+         tIfRVUFO9IqUpaqJRQdNVeiIneDi7nqqKmvXl5DxQ14BiIh4djXgkgv/PB5/IfrcccHj
+         /xpJpkGxFn0ajkZLQjmJZ+qoJfiBmV4TPHpVH20ckORcvUoRXCfPZM1wvX9Q/gs8Mged
+         +dk6UsJaH5kN9QmSW4Aa2LneMnvE3d9gBwvDd6W+A2hRoYJbshQNHc0bRE+O06CQmRqF
+         HZpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=BZfpU+SmYe52WAmg/Y7YBFP2XZSNeH6d6wib4TE2Z9s=;
-        b=UtcYGShBcB2YkVHrCoq/9EaAB+/8R56rNL+Z0d+fRlBbYHoPcWGU7hDeD5e4OitGD+
-         bnyxYDpxOYGbeira6SiWt45qGmiq561Q0ciNbtteh91qyvRVF5aMG/Ijepr6DAciYtIA
-         +y2IiLT67Sxu8x3M72S+HyHKXQz/h5r2/Fn8TAb4DTXH4HS6qUjCGFw8JXPfSFPg9doF
-         8YjhnB2p0RX5XpYTyCGt/xdHxJO69JPTInuJ6GcOtydEhqXkrcH2lDK0oVb15PGy2qq3
-         5zhu5OmzsOPshRRUkuvY8adQXGvjlmEmCo01m+Ya7xpMGdeshsrpayGVD2lfgMfagXwS
-         lDPg==
-X-Gm-Message-State: ACgBeo2sxRF/xA71vrerrei4sKCnI44JldwN7qR6oz5P+RaUl/5qUpcC
-        7qfC5l1lmVoAU4jJQy2Azx9htr5SUwXZXj4mIdJ5cg==
-X-Google-Smtp-Source: AA6agR6/5iy/cSsM7dMB8N/ny1F6pJoOvfU2NJ9VVbMZM47NCmG9dGwl7hBHWAbzjFVTdCkFFBUX5ufcsmNvui4YXhg=
-X-Received: by 2002:a17:907:9686:b0:73d:1de0:7fbe with SMTP id
- hd6-20020a170907968600b0073d1de07fbemr9075080ejc.500.1661154699618; Mon, 22
- Aug 2022 00:51:39 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220818124132.125304-1-jagan@edgeble.ai> <20220818124132.125304-8-jagan@edgeble.ai>
-In-Reply-To: <20220818124132.125304-8-jagan@edgeble.ai>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 22 Aug 2022 09:51:28 +0200
-Message-ID: <CACRpkdZvv5vqXLb6CgHTpB6uCo1V68KZG8av0acBW3fegmpX-Q@mail.gmail.com>
-Subject: Re: [PATCH v3 07/19] pinctrl: rockchip: Add RV1126 pinctrl support
-To:     Jagan Teki <jagan@edgeble.ai>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=6QJrT/nHZhtnj/AhwbICVx7wYH58RsjoZpITZLU2314=;
+        b=7FCzwan3DKVhC5b5PL5OHIWJw/bAenqybG15KMOshIhnQfSpyYK459V7wneDGuCER3
+         3EOq883I2+F/T3Eh1ZI+MjqjyAhdbdrYs9A5+Z7yEaH9MwNA2P+Y6mqTA6on3qLh4L4c
+         PQAxNqK2OBV5omgutVQicZYuLGMU6hpxQArsqMJAOBmukzyzSWXbs/owjnSpO3Ys87g8
+         SRWdM2kTHpSPYE5Fd2feWtxDfSWCHQvIQfZZeUEyf+iZc1BAG57gGCUq4MNoMBjMmWby
+         GSa2+Y+QRS+ez4hQR01nF5eb8E9qOriksFmncScv52Ki++V/VU19vBre7+q0IxBT5REU
+         fH1A==
+X-Gm-Message-State: ACgBeo2SN62gSjh+ByYCISJz9rNi7sOBWkeQadgw2IUZDkPRJEfsyvNR
+        QkCsFHvzIVrqCVYCOXHsPXc=
+X-Google-Smtp-Source: AA6agR68AL6r3Qh1hS1OJxvM5j19vBFqkkF2v0pZW9tcP/s5wJdcyfaRHOPfi9CyPgSILx07m6vPgw==
+X-Received: by 2002:a05:6402:248d:b0:437:dd4c:e70e with SMTP id q13-20020a056402248d00b00437dd4ce70emr14690355eda.75.1661154837661;
+        Mon, 22 Aug 2022 00:53:57 -0700 (PDT)
+Received: from linuxdev2.toradex.int (31-10-206-125.static.upc.ch. [31.10.206.125])
+        by smtp.gmail.com with ESMTPSA id s18-20020a1709062ed200b00722e50dab2csm5764277eji.109.2022.08.22.00.53.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Aug 2022 00:53:57 -0700 (PDT)
+From:   Max Krummenacher <max.oss.09@gmail.com>
+To:     Max Krummenacher <max.krummenacher@toradex.com>
+Cc:     Fabio Estevam <festevam@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kever Yang <kever.yang@rock-chips.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org, Jianqun Xu <jay.xu@rock-chips.com>,
-        Sugar Zhang <sugar.zhang@rock-chips.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Philippe Schenker <philippe.schenker@toradex.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: imx8mp-verdin: add cpu-supply
+Date:   Mon, 22 Aug 2022 09:53:42 +0200
+Message-Id: <20220822075342.2611279-1-max.oss.09@gmail.com>
+X-Mailer: git-send-email 2.35.3
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 18, 2022 at 2:42 PM Jagan Teki <jagan@edgeble.ai> wrote:
+From: Max Krummenacher <max.krummenacher@toradex.com>
 
-> RV1126 has five GPIOs groups - GPIO0 in PD_MMU and GPIO1-4
-> in PD_BUS.
->
-> In GPIO0, up to Lower C group GPIO0_C[3:0] is part of PMU
-> but rest of the groups from there are part of GRF.
->
-> Added pinctrl support for RV1126 and the pull, drv and schmitt
-> calculations are inferred from [1] authored by Jianqun Xu.
->
-> [1] https://github.com/rockchip-linux/kernel/blob/develop-4.19/drivers/pinctrl/pinctrl-rockchip.c
->
-> Cc: linux-gpio@vger.kernel.org
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Signed-off-by: Jianqun Xu <jay.xu@rock-chips.com>
-> Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
-> Signed-off-by: Jagan Teki <jagan@edgeble.ai>
-> ---
-> Changes for v3, v2:
-> - none
+Add the cpu-supply property to all CPU nodes to enable the cpufreq
+driver.
 
-This patch applied to the pinctrl tree for v6.1.
+Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
 
-Yours,
-Linus Walleij
+---
+
+ .../boot/dts/freescale/imx8mp-verdin.dtsi      | 18 +++++++++++++++++-
+ 1 file changed, 17 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
+index f062fdbb2719..dbc22b672fb3 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
+@@ -146,6 +146,22 @@ reserved-memory {
+ 	};
+ };
+ 
++&A53_0 {
++	cpu-supply = <&reg_vdd_arm>;
++};
++
++&A53_1 {
++	cpu-supply = <&reg_vdd_arm>;
++};
++
++&A53_2 {
++	cpu-supply = <&reg_vdd_arm>;
++};
++
++&A53_3 {
++	cpu-supply = <&reg_vdd_arm>;
++};
++
+ &cpu_alert0 {
+ 	temperature = <95000>;
+ };
+@@ -453,7 +469,7 @@ BUCK1 {
+ 				regulator-ramp-delay = <3125>;
+ 			};
+ 
+-			BUCK2 {
++			reg_vdd_arm: BUCK2 {
+ 				nxp,dvs-run-voltage = <950000>;
+ 				nxp,dvs-standby-voltage = <850000>;
+ 				regulator-always-on;
+-- 
+2.35.3
+
