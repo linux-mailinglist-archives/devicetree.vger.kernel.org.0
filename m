@@ -2,101 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F9EA59C8F1
-	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 21:33:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C28E59C90C
+	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 21:36:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238833AbiHVTd1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Aug 2022 15:33:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38132 "EHLO
+        id S238686AbiHVTfL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Aug 2022 15:35:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239494AbiHVTbd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 15:31:33 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2391F1D330;
-        Mon, 22 Aug 2022 12:29:34 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B3B5760BC5;
-        Mon, 22 Aug 2022 19:29:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CD7CC433C1;
-        Mon, 22 Aug 2022 19:29:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661196573;
-        bh=EUirQLLNP7hOsCjZnx2sV4TuIc9Zb4vvS+mAipxKh2M=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=uvPiSS4beKT9aG7xQ8zSwQTtIFHPhjUQt4piTXo/fIWLTvu17nhdOvsq+ZeYJe9Te
-         7OI0SqqDR3B8cyIBdujMHDWtzE01y5K2LdVq3GnNtXbiiiuIO+XRDOH5d4R4ZI+46R
-         lYsH/D9Nmnbegl1CTYfDJqS+NBHiWY4KGNgPRWi/nZDapM1y0XQU3b6BJw77j+6Tp6
-         gvDRnzKaFNxJl8Zi+nT7V74OxALy5+Ias1HxWaK6yqn2K2fLoZPryeiDISS/Rdpdig
-         Mnd6rjmC1yikw8eljMhFKVg8u8wZLVCpRg28w1PTtseAxldYuGbigqjFpgfTBlDAVh
-         KwoaQjcFYtziQ==
-Date:   Mon, 22 Aug 2022 20:29:27 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Christophe Leroy <christophe.leroy@csgroup.eu>
-Cc:     Rob Herring <robh+dt@kernel.org>, Pratyush Yadav <p.yadav@ti.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Herve Codina <herve.codina@bootlin.com>
-Subject: Re: [PATCH v2 2/2] spi: fsl-spi: Implement trailing bits
-Message-ID: <YwPZF6fjZkn2tozH@sirena.org.uk>
-References: <cover.1646060734.git.christophe.leroy@csgroup.eu>
- <fe4a3946a66ede73f6d6871700f2aaf0171372a1.1646060734.git.christophe.leroy@csgroup.eu>
- <YhzqbYW1q5bPNWXn@sirena.org.uk>
- <7afaab3d-50e0-4716-18d4-41eabc2a9cb9@csgroup.eu>
- <Yhz0/1kiAy7Mlgtv@sirena.org.uk>
- <f9046e68-ff22-2652-48dc-d277b4af75dd@csgroup.eu>
- <YwO5l/KpXoKJVawq@sirena.org.uk>
- <c4950a61-ba9a-5897-1f04-bb2c56979d7d@csgroup.eu>
+        with ESMTP id S231196AbiHVTfG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 15:35:06 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D87E52DF8;
+        Mon, 22 Aug 2022 12:35:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=s+WOD4snVC2BO4C8+qcd2CiG5Hiex2If1dPYRMgMw+o=; b=sASj/zfdSac/ORxHDWtaQhrBc7
+        JXKbH6Asx8kxMk/iucxS7jiIZBR9/M5gHblzOGGqjKf80/VkCvWELJiZagYmWOkxRYD9hm1NC8qGr
+        mWKrSzDgSPydFgDQSMjFMSSS5BQ+/u9YO1Ynk2/ulIvp7tH6ZYc+esBER5ZEmDfqmn2c=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1oQDCB-00EFxo-VL; Mon, 22 Aug 2022 21:34:47 +0200
+Date:   Mon, 22 Aug 2022 21:34:47 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>, kernel@pengutronix.de,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+        David Jander <david@protonic.nl>
+Subject: Re: [PATCH net-next v1 2/7] dt-bindings: net: phy: add PoDL PSE
+ property
+Message-ID: <YwPaV2Frj+b++8hZ@lunn.ch>
+References: <20220819120109.3857571-1-o.rempel@pengutronix.de>
+ <20220819120109.3857571-3-o.rempel@pengutronix.de>
+ <20220822184534.GB113650-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="WLYBq0WlMGbH0CuE"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <c4950a61-ba9a-5897-1f04-bb2c56979d7d@csgroup.eu>
-X-Cookie: Do not write in this space.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220822184534.GB113650-robh@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Aug 22, 2022 at 01:45:34PM -0500, Rob Herring wrote:
+> On Fri, Aug 19, 2022 at 02:01:04PM +0200, Oleksij Rempel wrote:
+> > Add property to reference node representing a PoDL Power Sourcing Equipment.
+> > 
+> > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> > ---
+> >  Documentation/devicetree/bindings/net/ethernet-phy.yaml | 6 ++++++
+> >  1 file changed, 6 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> > index ed1415a4381f2..49c74e177c788 100644
+> > --- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> > +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> > @@ -144,6 +144,12 @@ properties:
+> >        Mark the corresponding energy efficient ethernet mode as
+> >        broken and request the ethernet to stop advertising it.
+> >  
+> > +  ieee802.3-podl-pse:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description:
+> > +      Specifies a reference to a node representing a Power over Data Lines
+> > +      Power Sourcing Equipment.
+> 
+> Ah, here is the consumer.
+> 
+> Why do you anything more than just a -supply property here for the 
+> PoE/PoDL supply? The only reason I see is you happen to want a separate 
+> driver for this and a separate node happens to be a convenient way to 
+> instantiate drivers in Linux. Convince me otherwise.
 
---WLYBq0WlMGbH0CuE
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The regulator binding provides a lot of very useful properties, which
+look to do a good job describing the regulator part of a PoE/PeDL
+supplier side. What however is missing is the communication part, the
+power provider and the power consumer communicate with each other, via
+a serial protocol. They negotiate the supply of power, a sleep mode
+where power is reduced, but not removed, etc.
 
-On Mon, Aug 22, 2022 at 06:38:22PM +0000, Christophe Leroy wrote:
-> Le 22/08/2022 =E0 19:15, Mark Brown a =E9crit=A0:
+So a Power Sourcing Equipment driver is very likely to have a
+regulator embedded in it, but its more than a regulator.
 
-> I think we already addressed this possibility back in 2016, see=20
-> https://lore.kernel.org/linux-spi/20160824111206.GD22076@sirena.org.uk/
-
-> The conclusion was that it was not possible to accomplish it with cs_chan=
-ge.
-
-> Or did we miss something at that time ?
-
-No, I think that's fine - your proposal has some overlap but is fine.
-
---WLYBq0WlMGbH0CuE
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmMD2RcACgkQJNaLcl1U
-h9BpjAgAgbRxXDYgdu9wb/vJghve0BVH9SPSVadgMxYQGWp/LeFlTbnpbFIM+53F
-04wyp3cbGJFllREDxptRBug9rySiuAsRtHD+CkEqz7ztgR8h8qxwjuUDmdjGyaYO
-Bw8Luc+BYePG940V3niAE1zza9E15MdDKOpKtcCYxaEzL7WENT98fF1FILjRqAqM
-PpRYeDMAmTUyLUmmSnVNHUtYLIhTfahDtI/Zn2mYpZ2OQ0YHv+BP3+yhcWZGsJ0P
-2XuYxkl61A42nU3TysJoVEkqd0Xjx2iEFAt2g4L8xyydz1RH1WIHOE2sYgrCWQs9
-wiy6bp2p2KbV8Jjt2os2Vpm7eLAYtQ==
-=vpgG
------END PGP SIGNATURE-----
-
---WLYBq0WlMGbH0CuE--
+	 Andrew
