@@ -2,116 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA67259C0C3
-	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 15:41:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20C1859C0D2
+	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 15:44:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235244AbiHVNl3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Aug 2022 09:41:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54016 "EHLO
+        id S234133AbiHVNnf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Aug 2022 09:43:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235151AbiHVNl2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 09:41:28 -0400
-Received: from smtp-fw-6002.amazon.com (smtp-fw-6002.amazon.com [52.95.49.90])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D56601835B;
-        Mon, 22 Aug 2022 06:41:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1661175688; x=1692711688;
-  h=message-id:date:mime-version:to:cc:references:from:
-   in-reply-to:content-transfer-encoding:subject;
-  bh=I0ZGvHTbcv2oue53quGLVQQ+Ds1q2EaIxM9IzfK2BPM=;
-  b=efZKBa9mqMULv0sh33pXNQRAvXz06Lp5YWH2MfHWtwBWhU2XnkiXpVMU
-   VPrtjq0B0IvJ+WPTC7Qq2cHPqUPd4v5iIXX4RBcFAMuBhgRbxknwNqvJS
-   UYvPO0yPiH+XNwSTCye9TGoVJ/ELwha9gdGEw3nQEQ1Irz8jz2XanHIfe
-   w=;
-X-IronPort-AV: E=Sophos;i="5.93,255,1654560000"; 
-   d="scan'208";a="236024413"
-Subject: Re: [PATCH v2 14/16] hwmon: (mr75203) parse thermal coefficients from
- device-tree
-Received: from iad12-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-pdx-2a-7d84505d.us-west-2.amazon.com) ([10.43.8.6])
-  by smtp-border-fw-6002.iad6.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Aug 2022 13:41:14 +0000
-Received: from EX13MTAUEB002.ant.amazon.com (pdx1-ws-svc-p6-lb9-vlan2.pdx.amazon.com [10.236.137.194])
-        by email-inbound-relay-pdx-2a-7d84505d.us-west-2.amazon.com (Postfix) with ESMTPS id DEE4F9A4ED;
-        Mon, 22 Aug 2022 13:41:12 +0000 (UTC)
-Received: from EX13D08UEB003.ant.amazon.com (10.43.60.11) by
- EX13MTAUEB002.ant.amazon.com (10.43.60.12) with Microsoft SMTP Server (TLS)
- id 15.0.1497.38; Mon, 22 Aug 2022 13:41:12 +0000
-Received: from EX13MTAUEB002.ant.amazon.com (10.43.60.12) by
- EX13D08UEB003.ant.amazon.com (10.43.60.11) with Microsoft SMTP Server (TLS)
- id 15.0.1497.38; Mon, 22 Aug 2022 13:41:12 +0000
-Received: from [10.220.236.67] (10.220.236.67) by mail-relay.amazon.com
- (10.43.60.234) with Microsoft SMTP Server id 15.0.1497.38 via Frontend
- Transport; Mon, 22 Aug 2022 13:41:08 +0000
-Message-ID: <20200e60-c4e2-d272-1417-005994766380@amazon.com>
-Date:   Mon, 22 Aug 2022 16:41:07 +0300
+        with ESMTP id S234656AbiHVNne (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 09:43:34 -0400
+Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C582EDFDE
+        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 06:43:33 -0700 (PDT)
+Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-11c5ee9bf43so12897616fac.5
+        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 06:43:33 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+        bh=7ySSVCgU6V7R+fibYpU2sS04MBIlWQn2TjOetU2niac=;
+        b=VCMHW3MAYZWsnwnUySzc47qGfqemyOAfqNIzVNifpPYbAa6EFsdFDTL9QhFSjC5NWJ
+         NGYkVr88b41of9+TMxAS91BpuD73qvdlGtz2IG6j32maNzOAw6oAiR6rbldjhmaquFXV
+         AEfYHftmIZXg3ZjQSKt0JQ3QyfHlMuiTDe4JfX3COkxwwlCVxUDWRvXsp8lQZAd/dX2w
+         qWvqOwc8OrRF+yff0AEV+xejqAYZdkMrowdBQT7xTkWMq/Rv1tdJYv0WfuBHZe6nw85E
+         Ewma2dZgoSdTn8LfMayICO4zbx9kwzxQTuN0SpIkgz8Q9ATX/IXQiQu5CShSDGH5ao9/
+         MRPw==
+X-Gm-Message-State: ACgBeo3gaye8eTCtRHMMAlOR0JSCjk92CXfjYpY3K9vWt4GLw4NcnnkQ
+        ftSB7Y+9GAkUQoUZyop1DiH1gTKQfA==
+X-Google-Smtp-Source: AA6agR5zzfXMLFPbAI6sMSdZ2ygtMGUmGgCls1IAY/IZ9XIUE/HYnrMloLMxNk1yZshBlm7aQF1VBA==
+X-Received: by 2002:a05:6870:6189:b0:11c:8487:80d5 with SMTP id a9-20020a056870618900b0011c848780d5mr10137969oah.179.1661175813015;
+        Mon, 22 Aug 2022 06:43:33 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id v23-20020a544497000000b0034480f7eec4sm2625098oiv.12.2022.08.22.06.43.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Aug 2022 06:43:32 -0700 (PDT)
+Received: (nullmailer pid 3747963 invoked by uid 1000);
+        Mon, 22 Aug 2022 13:43:32 -0000
+Date:   Mon, 22 Aug 2022 08:43:32 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Gregory Clement <gregory.clement@bootlin.com>,
+        arm-soc <arm@kernel.org>,
+        Device Tree <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 08/11] DT: mtd: Convert orion-nand to YAML
+Message-ID: <20220822134332.GA3732690-robh@kernel.org>
+References: <20220820194804.3352415-1-andrew@lunn.ch>
+ <20220820194804.3352415-9-andrew@lunn.ch>
+ <1661113286.930678.1729134.nullmailer@robh.at.kernel.org>
+ <YwLSU/DH7UrSPorH@lunn.ch>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.1.2
-Content-Language: en-US
-To:     Guenter Roeck <linux@roeck-us.net>
-CC:     <jdelvare@suse.com>, <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <talel@amazon.com>,
-        <hhhawa@amazon.com>, <jonnyc@amazon.com>, <hanochu@amazon.com>,
-        <ronenk@amazon.com>, <itamark@amazon.com>, <shellykz@amazon.com>,
-        <shorer@amazon.com>, <amitlavi@amazon.com>, <almogbs@amazon.com>,
-        <dwmw@amazon.co.uk>, <rtanwar@maxlinear.com>,
-        "Farber, Eliav" <farbere@amazon.com>
-References: <20220817054321.6519-1-farbere@amazon.com>
- <20220817054321.6519-15-farbere@amazon.com>
- <20220818202839.GA3431511@roeck-us.net>
- <e0b133e7-ac81-acf4-3783-44edf58d6426@amazon.com>
- <20220819113842.GD3106213@roeck-us.net>
-From:   "Farber, Eliav" <farbere@amazon.com>
-In-Reply-To: <20220819113842.GD3106213@roeck-us.net>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-11.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_SPF_WL autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YwLSU/DH7UrSPorH@lunn.ch>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/19/2022 2:38 PM, Guenter Roeck wrote:
-> On Fri, Aug 19, 2022 at 10:57:58AM +0300, Farber, Eliav wrote:
->> On 8/18/2022 11:28 PM, Guenter Roeck wrote:
->> > The calculation was just changed to use new defaults in a previous
->> > patch. This patch makes it quite clear that the coefficients
->> > are implementation (?) dependent. So the previous patch just changes
->> > the defaults to (presumably) the coefficients used in your system.
->> > That is inappropriate. Adding non-default corefficients is ok
->> > and makes sense is supported by the chip, but changing defaults
->> > isn't.
->> The calculation was changed in previous patch to match series 5 of the
->> Moortec Embedded Temperature Sensor (METS) datasheet.
->> In our SOC we use series 6 which has a slightly different equation and
->> different coefficients.
->
-> If the coefficients are different based on the series, it would probably
-> make sense to create a separate devicetree compatible property for 
-> series 6
-> instead or requiring the user to list the actual coefficients. Those can
-> still be present, but the code should be able to use the defaults for
-> each series. 
-There is a different set of coefficients for series 5 and for series 6,
-so it would make sense to add a single property (e.g. series) instead
-of adding 4 properties, one for each coefficient.
-But that would not always be enough.
-The Moortec datasheet explicitly says that coefficients can vary between
-product and product, and be different from the default values.
-That is the situation in our SOC.
-The coefficients we use are slightly different from the defaults for
-series 6.
-So just adding a single series property would not be enough, and we would
-anyway want to have the option to specifically determine the coefficient
-values.
-Do you suggest to add both, also series and also coefficients? (and I can
-fail the probe in case both are set, to avoid conflicts).
+On Mon, Aug 22, 2022 at 02:48:19AM +0200, Andrew Lunn wrote:
+> On Sun, Aug 21, 2022 at 03:21:26PM -0500, Rob Herring wrote:
+> > On Sat, 20 Aug 2022 21:48:01 +0200, Andrew Lunn wrote:
+> > > This works for Kirkwood, but orion5x has an odd bus structure
+> > > which results in some warnings.
+> > > 
+> > > Signed-off-by: Andrew Lunn <andrew@lunn.ch>
+> > > ---
+> > >  .../bindings/mtd/marvell,orion-nand.yaml      | 85 +++++++++++++++++++
+> > >  .../devicetree/bindings/mtd/orion-nand.txt    | 50 -----------
+> > >  2 files changed, 85 insertions(+), 50 deletions(-)
+> > >  create mode 100644 Documentation/devicetree/bindings/mtd/marvell,orion-nand.yaml
+> > >  delete mode 100644 Documentation/devicetree/bindings/mtd/orion-nand.txt
+> > > 
+> > 
+> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> > 
+> > yamllint warnings/errors:
+> > 
+> > dtschema/dtc warnings/errors:
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/marvell,orion-nand.example.dtb: nand-controller@f4000000: #size-cells:0:0: 0 was expected
+> > 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/nand-controller.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/marvell,orion-nand.example.dtb: nand-controller@f4000000: #size-cells:0:0: 0 was expected
+> > 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/marvell,orion-nand.yaml
+> 
+> Does the bot not apply patches N-1 before testing patch N? In this
+> case, if patch N-2 was applied, you would not see this warning.
 
---
-Thanks, Eliav
+It does unless there is a failure and it drops the prior patches.
+
+Rob
