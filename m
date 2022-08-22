@@ -2,65 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FE9559BF6F
-	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 14:25:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5217659BF82
+	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 14:30:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234998AbiHVMZl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Aug 2022 08:25:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33624 "EHLO
+        id S234778AbiHVM3z convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 22 Aug 2022 08:29:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235022AbiHVMZf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 08:25:35 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED698E0F;
-        Mon, 22 Aug 2022 05:25:34 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 9BB16B81132;
-        Mon, 22 Aug 2022 12:25:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C91E5C433D7;
-        Mon, 22 Aug 2022 12:25:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661171132;
-        bh=m1TktFVlldD0iGrCw8ofyQ/cTXQAPa0Io0sL/xjSK9Q=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=n2tKqYsOAV0KDcN/tiWD5ojdxWXInPmQ1ZXUVnZpVWilKUtal+F6WTmtPKGSVLpbF
-         wjR3d31j4PDGKhaGSLOVT4dCUqiBOtxFzIHYXYI0J1WFBSpeMmiCJnrMeHQYbZuQdv
-         4UFhGgxdhtQMM5TPyPz3ViXyhcdedkCZpEEz6mKJcwz94ib3Nvs03iZRzmLX+WBhBL
-         FsgY6X6V7fdkKJaP3onOjCaAhW26svc5X11kBQGzR1EqhjgTEncKB56NCFfjTRbgP8
-         uvTWbICwqkUTa8IO9UBis2Qg+GtM03FKVwWmeghUHSTMU65xUeZoJq9ahN06+kOm+/
-         KYuNtJGJoek7w==
-Date:   Mon, 22 Aug 2022 13:25:23 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Brad Larson <brad@pensando.io>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mmc@vger.kernel.org, adrian.hunter@intel.com,
-        alcooperx@gmail.com, andy.shevchenko@gmail.com, arnd@arndb.de,
-        blarson@amd.com, brijeshkumar.singh@amd.com,
-        catalin.marinas@arm.com, gsomlo@gmail.com, gerg@linux-m68k.org,
-        krzk@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        lee.jones@linaro.org, yamada.masahiro@socionext.com,
-        p.zabel@pengutronix.de, piotrs@cadence.com, p.yadav@ti.com,
-        rdunlap@infradead.org, robh+dt@kernel.org, samuel@sholland.org,
-        fancer.lancer@gmail.com, suravee.suthikulpanit@amd.com,
-        thomas.lendacky@amd.com, will@kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 17/17] mmc: sdhci-cadence: Support mmc hardware reset
-Message-ID: <YwN1s4bEKP2jX8Qm@sirena.org.uk>
-References: <20220820195750.70861-1-brad@pensando.io>
- <20220820195750.70861-18-brad@pensando.io>
- <CAPDyKFoYdQirftoEQAMBwXKXqSo-tu9EUvL6B6vHCj6cDd14ug@mail.gmail.com>
+        with ESMTP id S235056AbiHVM3y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 08:29:54 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4D92531EF7;
+        Mon, 22 Aug 2022 05:29:53 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 18C4412FC;
+        Mon, 22 Aug 2022 05:29:56 -0700 (PDT)
+Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0E94B3F718;
+        Mon, 22 Aug 2022 05:29:50 -0700 (PDT)
+Date:   Mon, 22 Aug 2022 13:29:48 +0100
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     <Conor.Dooley@microchip.com>
+Cc:     <geert@linux-m68k.org>, <devicetree@vger.kernel.org>,
+        <aou@eecs.berkeley.edu>, <samuel@sholland.org>,
+        <linux-kernel@vger.kernel.org>, <jernej.skrabec@gmail.com>,
+        <prabhakar.mahadev-lad.rj@bp.renesas.com>, <wens@csie.org>,
+        <robh+dt@kernel.org>, <palmer@dabbelt.com>,
+        <krzysztof.kozlowski+dt@linaro.org>, <paul.walmsley@sifive.com>,
+        <linux-riscv@lists.infradead.org>, <linux-sunxi@lists.linux.dev>
+Subject: Re: [PATCH 06/12] riscv: dts: allwinner: Add the D1 SoC base
+ devicetree
+Message-ID: <20220822132948.17f5dc6c@donnerap.cambridge.arm.com>
+In-Reply-To: <538ae41e-664f-2efb-f941-9a063b727b6a@microchip.com>
+References: <20220815050815.22340-1-samuel@sholland.org>
+        <20220815050815.22340-7-samuel@sholland.org>
+        <20220815141159.10edeba5@donnerap.cambridge.arm.com>
+        <3cd9ed5b-8348-38ac-feb1-9a7da858cebc@microchip.com>
+        <932aaefd-e2ca-ef26-bf30-e315fb271ec5@sholland.org>
+        <ff9e8bd3-c5f7-6319-060e-250151087a8e@microchip.com>
+        <c6cba83ea9eea7fc41a9e78d0e45487b21f0f560.camel@icenowy.me>
+        <c7599abd-c4cf-9ddd-1e74-e47dec9366d4@microchip.com>
+        <CAMuHMdUHVpj9ikE2NxpBSBtTG8K6v92vGdbw3GLmEYUoVzatvg@mail.gmail.com>
+        <538ae41e-664f-2efb-f941-9a063b727b6a@microchip.com>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="WTu6/ccq9jWtsAFn"
-Content-Disposition: inline
-In-Reply-To: <CAPDyKFoYdQirftoEQAMBwXKXqSo-tu9EUvL6B6vHCj6cDd14ug@mail.gmail.com>
-X-Cookie: Do not write in this space.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,35 +58,111 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, 22 Aug 2022 12:13:42 +0000
+<Conor.Dooley@microchip.com> wrote:
 
---WTu6/ccq9jWtsAFn
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Hi,
 
-On Mon, Aug 22, 2022 at 12:53:22PM +0200, Ulf Hansson wrote:
+> On 22/08/2022 12:46, Geert Uytterhoeven wrote:
+> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+> > 
+> > Hi Conor, Andre,
+> > 
+> > On Sun, Aug 21, 2022 at 12:07 PM <Conor.Dooley@microchip.com> wrote:  
+> >> On 21/08/2022 07:45, Icenowy Zheng wrote:  
+> >>> 在 2022-08-20星期六的 17:29 +0000，Conor.Dooley@microchip.com写道：  
+> >>>> On 20/08/2022 18:24, Samuel Holland wrote:  
+> 
+> >>>>> This is not feasible, due to the different #interrupt-cells. See
+> >>>>> https://lore.kernel.org/linux-riscv/CAMuHMdXHSMcrVOH+vcrdRRF+i2TkMcFisGxHMBPUEa8nTMFpzw@mail.gmail.com/
+> >>>>>
+> >>>>> Even if we share some file across architectures, you still have to
+> >>>>> update files
+> >>>>> in both places to get the interrupts properties correct.
+> >>>>>
+> >>>>> I get the desire to deduplicate things, but we already deal with
+> >>>>> updating the
+> >>>>> same/similar nodes across several SoCs, so that is nothing new. I
+> >>>>> think it would
+> >>>>> be more confusing/complicated to have all of the interrupts
+> >>>>> properties
+> >>>>> overridden in a separate file.  
+> >>>>
+> >>>> Yeah, should maybe have circled back after that conversation, would
+> >>>> have been
+> >>>> nice but if the DTC can't do it nicely then w/e.  
+> >>>
+> >>> Well, maybe we can overuse the facility of C preprocessor?
+> >>>
+> >>> e.g.
+> >>>
+> >>> ```
+> >>> // For ARM
+> >>> #define SOC_PERIPHERAL_IRQ(n) GIC_SPI n
+> >>> // For RISC-V
+> >>> #define SOC_PERIPHERAL_IRQ(n) n
+> >>> ```
+> >>>  
+> >>
+> >> Geert pointed out that this is not possible (at least on the Renesas
+> >> stuff) because the GIC interrupt numbers are not the same as the
+> >> PLIC's & the DTC is not able to handle the addition:
+> >> https://lore.kernel.org/linux-riscv/CAMuHMdXHSMcrVOH+vcrdRRF+i2TkMcFisGxHMBPUEa8nTMFpzw@mail.gmail.com/  
+> > 
+> > Without the ability to do additions in DTC, we could e.g. list both
+> > interrupts in the macro, like:
+> > 
+> >      // For ARM
+> >      #define SOC_PERIPHERAL_IRQ(na, nr) GIC_SPI na
+> >      // For RISC-V
+> >      #define SOC_PERIPHERAL_IRQ(na, nr) nr  
+> 
+> Do you think this is worth doing? Or are you just providing an
+> example of what could be done?
+> 
+> Where would you envisage putting these macros? I forget the order
+> of the CPP operations that are done, can they be put in the dts?
+> 
+> > 
+> > On Mon, Aug 22, 2022 at 12:52 PM Andre Przywara <andre.przywara@arm.com> wrote:  
+> >> There are interrupt-maps for that:
+> >> sun8i-r528.dtsi:
+> >>          soc {
+> >>                  #interrupt-cells = <1>;
+> >>                  interrupt-map = <0  18 &gic GIC_SPI  2 IRQ_TYPE_LEVEL_HIGH>,
+> >>                                  <0  19 &gic GIC_SPI  3 IRQ_TYPE_LEVEL_HIGH>,
+> >>                                  ....
+> >>
+> >> sun20i-d1.dtsi:
+> >>          soc {
+> >>                  #interrupt-cells = <1>;
+> >>                  interrupt-map = <0  18 &plic  18 IRQ_TYPE_LEVEL_HIGH>,
+> >>                                  <0  19 &plic  19 IRQ_TYPE_LEVEL_HIGH>,
+> >>
+> >> then, in the shared .dtsi:
+> >>                  uart0: serial@2500000 {
+> >>                          compatible = "snps,dw-apb-uart";
+> >>                          ...
+> >>                          interrupts = <18>;  
+> > 
+> > Nice! But it's gonna be a very large interrupt-map.  
+> 
+> I quite like the idea of not duplicating files across the archs
+> if it can be helped, but not at the expense of making them hard to
+> understand & I feel like unfortunately the large interrupt map is
+> in that territory.
 
-> Other than the comments above, I wonder about what merging strategy we
-> should use for the series. I believe it looks fine for me to pick up
-> the mmc related patches, thus we can apply patches on a per subsystem
-> basis, right?
+Well, I don't know about the Renesas case, but as far as we know the
+Allwinner D1 and R528 are using the exact same die, just fused differently.
+So expressing this in a common .dtsi sounds very desirable, especially
+since a devicetree is an architecture agnostic data structure.
 
-Yes, if there's no relationship between the different subsystem
-components (which looks like the case?) they should probably just go
-separately - they can probably be submitted separately too.
+And while it's true that a DT interrupt-map is not for the faint of heart,
+I think even the casual reader gets the idea quickly by looking at
+it, possibly guided by a comment.
+And it doesn't need to be very large. grep counted 32 genuine interrupts
+in the current .dtsi file, so I just put those ones needed in. If we need
+more IRQs later (quite likely), they are easily added, using copy&paste.
 
---WTu6/ccq9jWtsAFn
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmMDdbIACgkQJNaLcl1U
-h9CrnQf/R4IGSSuvA+pTi1ROvJpYHxOoK6FAG8Ycn1tJWAbnibo3z/Zh9CAvgPFX
-PCVYAuRbfJuV23rSlmJsrwkJEoOb5+kjfkBtRwA2ANra5+IXeoHGBxplvSiIQDOl
-BVbcHOg4W3fn7hHy6x+Mkv/hMNo5V8zgeS+/p6Gl/l2MzXdmwJOSYQjCRjHiGqN8
-Vg3cJZsXsfBMO0fLsYYJyxRHgkVsMjAzIq+2m6YgUp3YHsRgeTFf3NMC485S3afs
-ywRgJt0Qm+ooktyFBKSWLkIliKN3WqxD+k7hAY1A2Nxolpgdujxg2gvJ8N7QfQDQ
-luu7bymmtiES89rc5qPHEcSwAAUkUQ==
-=rg/C
------END PGP SIGNATURE-----
-
---WTu6/ccq9jWtsAFn--
+Cheers,
+Andre
