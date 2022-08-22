@@ -2,48 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19E7059B810
-	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 05:41:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07E7459B819
+	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 05:46:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230043AbiHVDlQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Aug 2022 23:41:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52448 "EHLO
+        id S232535AbiHVDoy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Aug 2022 23:44:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55928 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232345AbiHVDlP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Aug 2022 23:41:15 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B96B248F5;
-        Sun, 21 Aug 2022 20:41:14 -0700 (PDT)
+        with ESMTP id S229961AbiHVDox (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Aug 2022 23:44:53 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3A851E3CB;
+        Sun, 21 Aug 2022 20:44:52 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 065ADB80E72;
-        Mon, 22 Aug 2022 03:41:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A44DEC433D6;
-        Mon, 22 Aug 2022 03:41:10 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7267A60F3E;
+        Mon, 22 Aug 2022 03:44:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB231C433D6;
+        Mon, 22 Aug 2022 03:44:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661139671;
-        bh=LeNzZ7evt9HlL2miujCAljmvclYPY6B83Drx+/5CLJg=;
+        s=k20201202; t=1661139891;
+        bh=7EoGd1aThgWPqn9T0rRcgrDBnqKbihivwVbw+DiehrM=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Bxp1OpZbIhjCLm3iv7XbTdI5IqIj9C7wN/e1Ov4lRFJc6zObERx5BLxAXyppzZ4j8
-         rlC/diH7Jb8n6FgeWNUr9G/3ilwX/nJqgBlC+7sajxbVRPBIk6TLlk6MWNWWRMnm9F
-         1Tbm3UsKjwjuqRykjcxQGCz35HZGZ3PqFIHsbP57oRbTRXTxBsl8QsEyxI8LpU/z6E
-         EMQ9S7NkFYsqUAa1Q63Qi0uXAOiGLW8Kr8b/UfFZEgcrlC2TllLF5Z74QebUDZNswZ
-         SFf5WCYJqGh1XEeE8BW9cPPDgMnhfrbyL665JUzI8IoucboT7AD4IDHydkt9aa1WCg
-         IKLrohJ7HJQiA==
-Date:   Mon, 22 Aug 2022 11:41:05 +0800
+        b=UT/jTvzwjUva377P7aqi7MT/p0QWAc2ad24GVYTt3HO1rZta+efNtN4vImifxSW1h
+         8T4M6iTHl1u1tGBzlORnLbDw8uuZYP8u1uiMFLDxKkp0sC+FDZOTsCgVyD1rr88Sf7
+         EWLp3b2Wxhhk1cEr2MnYaODY1bfppT9vkTnWDMLjHKKOEUjJ/AJb5rsRXxn2vxf/22
+         TlluLpfz37ZZmS0mkWpO6f2+FNX13cTQAli13YXi13e9XAr0dXZ7pQT5eMmxseXVSE
+         cUiEyo7kipFIQl/mN2coiD87dyE9aLH+DetCW6C32YpVk4HeG19MezB7D+cCquV3oj
+         tgcrmOo4745sA==
+Date:   Mon, 22 Aug 2022 11:44:46 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
 To:     Li Yang <leoyang.li@nxp.com>
 Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/6] arm64: dts: ls2080a-rdb: add phy nodes
-Message-ID: <20220822034105.GR149610@dragon>
+Subject: Re: [PATCH v2 1/6] arm64: dts: ls2080a-qds: add mdio mux nodes from
+ on-board FPGA
+Message-ID: <20220822034446.GS149610@dragon>
 References: <20220817204357.21753-1-leoyang.li@nxp.com>
- <20220817204357.21753-4-leoyang.li@nxp.com>
+ <20220817204357.21753-2-leoyang.li@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220817204357.21753-4-leoyang.li@nxp.com>
+In-Reply-To: <20220817204357.21753-2-leoyang.li@nxp.com>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -54,99 +55,99 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 17, 2022 at 03:43:54PM -0500, Li Yang wrote:
-> Define PHY nodes on the board.
+On Wed, Aug 17, 2022 at 03:43:52PM -0500, Li Yang wrote:
+> Add mmio mdio mux nodes from the on-board FPGA.
 > 
 > Signed-off-by: Li Yang <leoyang.li@nxp.com>
 > ---
->  .../boot/dts/freescale/fsl-ls2080a-rdb.dts    | 68 +++++++++++++++++++
->  1 file changed, 68 insertions(+)
+>  .../boot/dts/freescale/fsl-ls2080a-qds.dts    | 69 +++++++++++++++++++
+>  1 file changed, 69 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls2080a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls2080a-rdb.dts
-> index 44894356059c..fec02fd754be 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls2080a-rdb.dts
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls2080a-rdb.dts
-> @@ -23,3 +23,71 @@ chosen {
->  		stdout-path = "serial1:115200n8";
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls2080a-qds.dts b/arch/arm64/boot/dts/freescale/fsl-ls2080a-qds.dts
+> index f6c3ee78ace0..ef79c9a78f89 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls2080a-qds.dts
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls2080a-qds.dts
+> @@ -23,3 +23,72 @@ chosen {
+>  		stdout-path = "serial0:115200n8";
 >  	};
 >  };
 > +
-> +&dpmac5 {
-> +	phy-handle = <&mdio2_phy1>;
-> +	phy-connection-type = "10gbase-r";
+> +/* Update DPMAC connections to external PHYs, under SerDes 0x2a_0x49. */
+> +&dpmac9 {
+> +	phy-handle = <&mdio0_phy12>;
+> +	phy-connection-type = "sgmii";
 > +};
 > +
-> +&dpmac6 {
-> +	phy-handle = <&mdio2_phy2>;
-> +	phy-connection-type = "10gbase-r";
+> +&dpmac10 {
+> +	phy-handle = <&mdio0_phy13>;
+> +	phy-connection-type = "sgmii";
 > +};
 > +
-> +&dpmac7 {
-> +	phy-handle = <&mdio2_phy3>;
-> +	phy-connection-type = "10gbase-r";
+> +&dpmac11 {
+> +	phy-handle = <&mdio0_phy14>;
+> +	phy-connection-type = "sgmii";
 > +};
 > +
-> +&dpmac8 {
-> +	phy-handle = <&mdio2_phy4>;
-> +	phy-connection-type = "10gbase-r";
+> +&dpmac12 {
+> +	phy-handle = <&mdio0_phy15>;
+> +	phy-connection-type = "sgmii";
 > +};
 > +
-> +&emdio1 {
-> +	status = "disabled";
+> +&ifc {
+> +	boardctrl: board-control@3,0 {
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		compatible = "fsl,tetra-fpga", "fsl,fpga-qixis", "simple-mfd";
+> +		reg = <3 0 0x300>;
+> +		ranges = <0 3 0 0x300>;
 > +
-> +	/* CS4340 PHYs */
-> +	mdio1_phy1: emdio1-phy@1 {
-> +		reg = <0x10>;
+> +		mdio-mux-emi1@54 {
+> +			compatible = "mdio-mux-mmioreg", "mdio-mux";
+> +			mdio-parent-bus = <&emdio1>;
+> +			reg = <0x54 1>;		/* BRDCFG4 */
+> +			mux-mask = <0xe0>;	/* EMI1_MDIO */
+> +
 
-unit-address doesn't match 'reg'.
+Unnecessary newline.
 
-> +	};
+> +			#address-cells=<1>;
+> +			#size-cells = <0>;
 > +
-> +	mdio1_phy2: emdio1-phy@2 {
-> +		reg = <0x11>;
-> +	};
+> +			/* Child MDIO buses, one for each riser card:
+> +			 * reg = 0x0, 0x20, 0x40, 0x60, 0x80, 0xa0.
+> +			 * VSC8234 PHYs on the riser cards.
+> +			 */
 > +
-> +	mdio1_phy3: emdio1-phy@3 {
-> +		reg = <0x12>;
-> +	};
+> +			mdio_mux3: mdio@60 {
+> +				reg = <0x60>;
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
 > +
-> +	mdio1_phy4: emdio1-phy@4 {
-> +		reg = <0x13>;
-> +	};
-> +};
-> +
-> +&emdio2 {
-> +	/* AQR405 PHYs */
-> +	mdio2_phy1: emdio2-phy@1 {
-> +		compatible = "ethernet-phy-ieee802.3-c45";
-> +		interrupts = <0 1 0x4>; /* Level high type */
+> +				mdio0_phy12: mdio_phy0@1c {
 
-What does '0' mean here?  And why not IRQ_TYPE_LEVEL_HIGH for polarity
-cell?
+Hyphen is recommended in node name.
 
 Shawn
 
-> +		reg = <0x0>;
-> +	};
+> +					reg = <0x1c>;
+> +				};
 > +
-> +	mdio2_phy2: emdio2-phy@2 {
-> +		compatible = "ethernet-phy-ieee802.3-c45";
-> +		interrupts = <0 2 0x4>; /* Level high type */
-> +		reg = <0x1>;
-> +	};
+> +				mdio0_phy13: mdio_phy1@1d {
+> +					reg = <0x1d>;
+> +				};
 > +
-> +	mdio2_phy3: emdio2-phy@3 {
-> +		compatible = "ethernet-phy-ieee802.3-c45";
-> +		interrupts = <0 4 0x4>; /* Level high type */
-> +		reg = <0x2>;
-> +	};
+> +				mdio0_phy14: mdio_phy2@1e {
+> +					reg = <0x1e>;
+> +				};
 > +
-> +	mdio2_phy4: emdio2-phy@4 {
-> +		compatible = "ethernet-phy-ieee802.3-c45";
-> +		interrupts = <0 5 0x4>; /* Level high type */
-> +		reg = <0x3>;
+> +				mdio0_phy15: mdio_phy3@1f {
+> +					reg = <0x1f>;
+> +				};
+> +			};
+> +		};
 > +	};
 > +};
+> +
 > -- 
 > 2.37.1
 > 
