@@ -2,68 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2598F59BE3E
-	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 13:09:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47A7A59BE40
+	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 13:11:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229993AbiHVLJg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Aug 2022 07:09:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55384 "EHLO
+        id S231688AbiHVLKA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Aug 2022 07:10:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234359AbiHVLJM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 07:09:12 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2379933E34
-        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 04:08:01 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id r4so13361314edi.8
-        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 04:08:01 -0700 (PDT)
+        with ESMTP id S231331AbiHVLJw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 07:09:52 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19FD932A9A
+        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 04:09:50 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id d21so1089665eje.3
+        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 04:09:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc;
-        bh=UBOByeB2MXYBWF0Ngo8u4UdkkfztEsDE7yNqsiJ1+80=;
-        b=BzsFOpc1/Mc0X9z223lsXWZS/tY4y0+joi4BEv5glMXwdMgLaEhyVlaoSyz0K3ya5T
-         Ik7dnernQfgtBGmb+OvhwETWQh2h1AZJR54hTZepWY1rjP3ebDuqzWjStEC3jbFZAaw8
-         K3gES4WqS6qJyzcuG97gJlbc1py4dUVk1Dm2de26RCPo8+VMeeWYLdPHDpYmZUAx9/uT
-         V6Th/pdzLwmss/lYVTMINZDV4WCGgQdDMtOtbeznxVHJbvPD3E7QhLY5CRFw9vGUoXgt
-         BPaaxk1C3EAsbeHb+beUDVIHdJo8ahLgoYZ8fLqanNhVk7TuErun4JI3xtOxsLTl5M6V
-         esLQ==
+        bh=kz4lUJFQeluTJdkQDoeD1e50ln0ulghIHI6OqES8gKk=;
+        b=i/UEwikqQugib7mXXYh1BRVhl0BDo7FLssixho48gXZzYRnlia9B01V0s5bMceXkoJ
+         eOVUbhVR2tmEgCZhHfGd7Jc/u1q0JOw3K5G4G9mSU+k35+ZyDATep27G2XbMqQjQC5GX
+         m30dLQ/D5J7TvfcB0GgrSKVFiJt5kjVboLGl9aHZroQo9g57empGvEcqmWUN/bkUUGAI
+         6itN++O9xzE7pzNM3f4ZLOP0xNVpBPen8TfFEZoVj8MV8U/PMHmIJ/ZRkvcoUz/jNbd4
+         VM7kmatmc4/qlanS04I8bNJm4rXe5Ja/9O2irdSRKnx55K3OqdyvfdjUxlGG1UZIvKGd
+         ERiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc;
-        bh=UBOByeB2MXYBWF0Ngo8u4UdkkfztEsDE7yNqsiJ1+80=;
-        b=4ZYzPonR9j2dCcp6uMVOGQnt2yB9CYsDo67VBNLw7uOIpVEHQFfoR3176v8SHk+Pb7
-         ur0+79fYKW6HsGwwOcWvOIdMGyP2nXOnkL+bsvCtqUF4Nm1seNFham1WtznL7fAjBb2w
-         XBMpX8BLNMhvq9w2DAGhWC1CMGIP67hxBuSpooyJu+O5T4tYvk/ukRaVwRiVyKPZl20o
-         IE5XBPxTtwBi3C/qXZJD1bp5hZQ0SMAi+gtkYkjVXOuET2PEnkejTbfyYNscfipAKCYx
-         EEOfVlu0cXXQvoUlQq6q+VVsGMBEbM/oGUgdG7hW22jgccYr/E/x1Q5ousMLqjmmfJDb
-         uq+g==
-X-Gm-Message-State: ACgBeo2hbQm0IBCGFMUaT7IHe+1SAcwEzvZN56t/KSby/A3MItsOm4K/
-        YxRJqbBaFFX9I9uJjD3BbQIkSLXVAzc9moN6p6Lhgg==
-X-Google-Smtp-Source: AA6agR6I8GpDbmShK/nTtNn95EOVxEW+y17uLeMbs/P/mq4HbiEMfUtFHz3h1LT8uPmBbs95HSDU97bm3dLNTUXQr5A=
-X-Received: by 2002:a05:6402:641:b0:446:d:bd64 with SMTP id
- u1-20020a056402064100b00446000dbd64mr16181153edx.32.1661166479741; Mon, 22
- Aug 2022 04:07:59 -0700 (PDT)
+        bh=kz4lUJFQeluTJdkQDoeD1e50ln0ulghIHI6OqES8gKk=;
+        b=5DyXkKngzq+WAIiNTDguOK4EKyTa5us7EKVSPS2BA9ptZUDthwWCru8bOGmMl6SQFo
+         hjbUJrjXmW1CW4OQ+RcQD/TH7ETCjEPILtu5rdt+G/ZcTXxSnrT6Rat4eAAqT9/57Ugy
+         aEO6TEekggZpDDV7NawV2eay7YEXRbv5GD6hq10LINsizHAVOvn5bu4lTkwB6/kscnbD
+         hWVvhMaDvlHphjt6gDoW9dy0WvU61fe8A10VZyi8gA/ia/ieNZ0q5h2MZBQFqQZICobi
+         6udrksHyiH6q3VjuLtTu+ZMX6u4z6H0bf5l9hxpLtyf/6H8a7ACgZ0bpe5Iacpo1F0oi
+         p4rw==
+X-Gm-Message-State: ACgBeo3+rmvTB/9JsMUYFJBTVJnEZo4s9/CSbPuuW4v922no5EoVJul2
+        Hvwqp/lrWvuiJ+FrMGtEREBFJbqgGAxl53d5iemUHg==
+X-Google-Smtp-Source: AA6agR4SJQb77HChPBxtTvM9Bte1KKm8Fo45SwdpWpY1Zsair1ydEkJJ3pCJgYtXmfdBO3jr3fmVklL0zmnURpynhpY=
+X-Received: by 2002:a17:906:974f:b0:73d:716a:7d98 with SMTP id
+ o15-20020a170906974f00b0073d716a7d98mr4698929ejy.208.1661166588704; Mon, 22
+ Aug 2022 04:09:48 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220809214556.2489822-1-robh@kernel.org>
-In-Reply-To: <20220809214556.2489822-1-robh@kernel.org>
+References: <20220810111023.280908-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220810111023.280908-1-krzysztof.kozlowski@linaro.org>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 22 Aug 2022 13:07:48 +0200
-Message-ID: <CACRpkdbSycBG6ZiXfEHLquiyAMu=et81LAaGZbj38bhAccCSkw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: pinctrl: qcom,ipq6018: Fix example
- 'gpio-ranges' size
-To:     Rob Herring <robh@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+Date:   Mon, 22 Aug 2022 13:09:37 +0200
+Message-ID: <CACRpkdaonse-DXwrBBup99EOUchQWJ9LS3H-E1WVzgy450ZxgA@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: integratorap: align SPI node name with dtschema
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Kuldeep Singh <singh.kuldeep87k@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sricharan R <sricharan@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,23 +68,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 9, 2022 at 11:46 PM Rob Herring <robh@kernel.org> wrote:
+On Wed, Aug 10, 2022 at 1:10 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 
-> 'gpio-ranges' entries have a fixed size of 1 phandle plus arg 3 cells.
-> The qcom,ipq6018-pinctrl example is a cell short:
+> The node names should be generic and DT schema expects certain pattern:
 >
-> Documentation/devicetree/bindings/pinctrl/qcom,ipq6018-pinctrl.example.dtb: pinctrl@1000000: gpio-ranges:0: [1, 0, 80] is too short
->         From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/gpio/gpio.yaml
+>   ssp@300000: $nodename:0: 'ssp@300000' does not match '^spi(@.*|-[0-9a-f])*$'
 >
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
-> Please ack and I can send to Linus before rc1.
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Sorry for delay, was on vacation :/
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
-
-I think as binding maintainer you can just submit this kind of smaller stuff
-without any subsystem consent, if you have it acked by Krzysztof, even more so.
+I already have a patch for this from Kuldeep, will send upstream ASAP, thanks
+anyway!
 
 Yours,
 Linus Walleij
