@@ -2,65 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50C0059C356
-	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 17:47:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D99CC59C35B
+	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 17:49:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236667AbiHVPrU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Aug 2022 11:47:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51956 "EHLO
+        id S236621AbiHVPsh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Aug 2022 11:48:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236577AbiHVPrB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 11:47:01 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F0006363
-        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 08:46:57 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id n4so13728113wrp.10
-        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 08:46:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=smile-fr.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc;
-        bh=tfqpqMol0fOshQPqi7p3kM/k+o7Lcyt3OtfrczXMkYg=;
-        b=V1r+aWY/iNe5S7bx32+YdR6Fk7ASNl8xG/wxgWYxwlFTVI45z3zwiGleXAvonTQQjQ
-         nfRIjEOAu6u2JcLWTuVtx/LdDQIZIXIlPi3PHdNn8VsPp/SukBIDubdcbF5YekMwmlcX
-         QWyTX0GYo8PvFMhqCxC/9Es2vc0ndkiapbzJ5CQznS0GonEagArZI1hUTpOZ6cMg76AI
-         9HnvA07s5/s6POQ8NXaZoayWroB243S9czk1WwxNWTW6XY0P5P3PyoWbwYGPuioKS9PL
-         uYTqZYyoUcdLP8yt78WwnJXy6R3a9N62wMFkppyGVVLayM18xIS3PMYpIfWHh1f5KRgL
-         k7RA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc;
-        bh=tfqpqMol0fOshQPqi7p3kM/k+o7Lcyt3OtfrczXMkYg=;
-        b=t9JKhlbk8UXKcYuf5LDPJPFlLPmWoubVP+QCAIi0j4wsityzyOTmHKefpZmFEOjIcj
-         CM998Avhw125CxMi4eoQpmCgcxxCmUoIT/M9WXYNVaAgqjygEuAsPZQ7DIPx9+hNQ3/K
-         D4B2czeOdENf/MjEGaR7pdIBzXPuuf8GisFsWEbsNbO/fTQLt7KpzzkJU6xSty7MvrWT
-         fzigTqkYC1o6M+VBC71iNeIaz9lyUpLNfzAx4z6tKSrrUb/a2hzfebY2zQXL1/atjlRp
-         P2M69Ig2gT2h8xdhHBNTW9v763zlixrI0lUoKoFto/dOIyLbybMlG3sIYJqd3zsKaMlg
-         CAQg==
-X-Gm-Message-State: ACgBeo24sgN4Nhla6dB6hw+SshMG+Ldo4tb69/oAX5xoHMstihQKoJih
-        zbyXz10ECiAwve7QA9qQAG1Y1Q==
-X-Google-Smtp-Source: AA6agR562TDsmm99MxZFLAru6SU8lGDvvYhr8FtxFKCT1zLV95rzngLgalzI+lM9cNddWb/k3ESdlw==
-X-Received: by 2002:a05:6000:168e:b0:220:87da:c3e4 with SMTP id y14-20020a056000168e00b0022087dac3e4mr10951777wrd.559.1661183216037;
-        Mon, 22 Aug 2022 08:46:56 -0700 (PDT)
-Received: from P-NTS-Evian.home (2a01cb058f8a18001c97b8d1b477d53f.ipv6.abo.wanadoo.fr. [2a01:cb05:8f8a:1800:1c97:b8d1:b477:d53f])
-        by smtp.gmail.com with ESMTPSA id t14-20020adfe10e000000b0021e8d205705sm7093634wrz.51.2022.08.22.08.46.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Aug 2022 08:46:55 -0700 (PDT)
-From:   Romain Naour <romain.naour@smile.fr>
-To:     linux-omap@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, bcousson@baylibre.com,
-        tony@atomide.com, Romain Naour <romain.naour@skf.com>,
-        Romain Naour <romain.naour@smile.fr>,
-        Roger Quadros <rogerq@ti.com>
-Subject: [PATCH] ARM: dts: am5748: keep usb4_tm disabled
-Date:   Mon, 22 Aug 2022 17:46:25 +0200
-Message-Id: <20220822154625.52160-1-romain.naour@smile.fr>
-X-Mailer: git-send-email 2.34.3
+        with ESMTP id S236729AbiHVPs2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 11:48:28 -0400
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F4A5D103;
+        Mon, 22 Aug 2022 08:48:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1661183307; x=1692719307;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=9v+TRlWSb3Q8gtaQcUjLPA2zaE552ON81kuY+M4qOAI=;
+  b=HtbSYmv8CHXpRWcA5JpoV9bD1NawMUffu9nbe5hsoV2FziYE/UZhsbN9
+   c+prm87Bl63xANst0f1FzBJ1Oo2jLxGilLaNydaaxTOLNQA9kWdvBfFBj
+   IqUbB63nwjVC/KZN+6Hhd7Sd5vYCXV0D+bDVrZC6vy4CSxbn0TbbOZ7bL
+   hhUn9iXSjvofXLxrLfDFThMkRs6i17GICwO9Ks8AYvn0vPNBP7r7/dD4+
+   uXNBAcCV+a6mf5oS+U6IB9Jj5cceg9PWOAx8dHWcIb8vi6LKwAgVBwIs6
+   YGlKzer8EHk0xyvAgnEJYxyNw93SOGoy2NayAP89p5APBI1WVBAJRZ9gs
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10447"; a="294237712"
+X-IronPort-AV: E=Sophos;i="5.93,255,1654585200"; 
+   d="scan'208";a="294237712"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Aug 2022 08:48:27 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,255,1654585200"; 
+   d="scan'208";a="559795643"
+Received: from lkp-server01.sh.intel.com (HELO dd9b29378baa) ([10.239.97.150])
+  by orsmga003.jf.intel.com with ESMTP; 22 Aug 2022 08:47:50 -0700
+Received: from kbuild by dd9b29378baa with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1oQ9eX-0000Pe-2c;
+        Mon, 22 Aug 2022 15:47:49 +0000
+Date:   Mon, 22 Aug 2022 23:46:50 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Xu Yang <xu.yang_2@nxp.com>, heikki.krogerus@linux.intel.com,
+        robh+dt@kernel.org, peda@axentia.se, shawnguo@kernel.org
+Cc:     kbuild-all@lists.01.org, gregkh@linuxfoundation.org,
+        linux@roeck-us.net, jun.li@nxp.com, xu.yang_2@nxp.com,
+        linux-usb@vger.kernel.org, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 3/4] usb: typec: mux: add typec orientation switch
+ support via mux controller
+Message-ID: <202208222312.IFf74Ze6-lkp@intel.com>
+References: <20220822153517.3747679-4-xu.yang_2@nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220822153517.3747679-4-xu.yang_2@nxp.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,60 +67,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Romain Naour <romain.naour@skf.com>
+Hi Xu,
 
-From [1]
-AM5 and DRA7 SoC families have different set of modules in them so the
-SoC sepecific dtsi files need to be separated.
+Thank you for the patch! Yet something to improve:
 
-e.g. Some of the major differences between AM576 and DRA76
+[auto build test ERROR on usb/usb-testing]
+[also build test ERROR on shawnguo/for-next linus/master v6.0-rc2 next-20220822]
+[cannot apply to robh/for-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-		DRA76x	AM576x
+url:    https://github.com/intel-lab-lkp/linux/commits/Xu-Yang/typec-orientation-switch-support-via-mux-controller/20220822-153600
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git usb-testing
+config: i386-randconfig-a013-20220822 (https://download.01.org/0day-ci/archive/20220822/202208222312.IFf74Ze6-lkp@intel.com/config)
+compiler: gcc-11 (Debian 11.3.0-5) 11.3.0
+reproduce (this is a W=1 build):
+        # https://github.com/intel-lab-lkp/linux/commit/703ba3cfec5b6f9422ac9a859bc6121f7c4a12fd
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Xu-Yang/typec-orientation-switch-support-via-mux-controller/20220822-153600
+        git checkout 703ba3cfec5b6f9422ac9a859bc6121f7c4a12fd
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        make W=1 O=build_dir ARCH=i386 SHELL=/bin/bash
 
-USB3		x
-USB4		x
-ATL		x
-VCP		x
-MLB		x
-ISS		x
-PRU-ICSS1		x
-PRU-ICSS2		x
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
 
-But commit [2] removed usb4_tm part from am5748.dtsi and introcuded new
-ti-sysc errors in dmesg.
+All errors (new ones prefixed by >>):
 
-Fixes:
-ti-sysc 48940000.target-module: clock get error for fck: -2
-ti-sysc: probe of 48940000.target-module failed with error -2
+   ld: drivers/usb/typec/mux.o: in function `typec_switch_put':
+>> mux.c:(.text+0x21d): undefined reference to `mux_control_put'
+   ld: drivers/usb/typec/mux.o: in function `typec_switch_set':
+>> mux.c:(.text+0x29a): undefined reference to `mux_control_deselect'
+>> ld: mux.c:(.text+0x2ab): undefined reference to `mux_control_select_delay'
+   ld: drivers/usb/typec/mux.o: in function `typec_switch_get':
+>> mux.c:(.text+0x767): undefined reference to `mux_control_get'
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/commit/?id=bcbb63b80284af0061ac44fe944d31a8482d2b8a
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/commit/?id=176f26bcd41a0ee8c69b14e97d1edf50e6485d52
-
-Signed-off-by: Romain Naour <romain.naour@skf.com>
-Signed-off-by: Romain Naour <romain.naour@smile.fr>
-Cc: Roger Quadros <rogerq@ti.com>
----
-Issue reproduced on a AM5749 CPU using a 5.10 kernel from ti-linux-kernel:
-https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/commit/?h=linux-5.10.y
----
- arch/arm/boot/dts/am5748.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/arch/arm/boot/dts/am5748.dtsi b/arch/arm/boot/dts/am5748.dtsi
-index c260aa1a85bd..a1f029e9d1f3 100644
---- a/arch/arm/boot/dts/am5748.dtsi
-+++ b/arch/arm/boot/dts/am5748.dtsi
-@@ -25,6 +25,10 @@ &usb3_tm {
- 	status = "disabled";
- };
- 
-+&usb4_tm {
-+	status = "disabled";
-+};
-+
- &atl_tm {
- 	status = "disabled";
- };
 -- 
-2.34.3
-
+0-DAY CI Kernel Test Service
+https://01.org/lkp
