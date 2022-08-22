@@ -2,112 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7937959BFA7
-	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 14:46:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77CF659BFAF
+	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 14:47:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234057AbiHVMp7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Aug 2022 08:45:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51278 "EHLO
+        id S235163AbiHVMrb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Aug 2022 08:47:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233652AbiHVMp6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 08:45:58 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D1893341B;
-        Mon, 22 Aug 2022 05:45:57 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id C9FB1CE1284;
-        Mon, 22 Aug 2022 12:45:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0170FC433D6;
-        Mon, 22 Aug 2022 12:45:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661172354;
-        bh=ZuieiRPC9CArVV1OmJfFIGJRDuSJ/3o0U41DRi5sjzw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=VyTdz2y9jkLcaoPI+W0iipfxB7MXxlXcqRUyJZgw6Uw22bty4Qtu0DsSRZ+dUv9Jp
-         YJbdqXq0LrNxG7ax3OUcofawTlUJ11gxMuEUnOv2IovZYYHKcsk+UVe3itqHQegJU1
-         aYNADCYblwqFo90YWta3ilHTs/ef+++PlmPBfdMEw+zG+TqQv2UC6GhOYQNqmlUpnN
-         eU6cwH3i8QiDCvGoyoOco+egYFA2GQ9tFSzXLllsFQDBq+Lj6klcpE/IMH0FdCLr8F
-         1DZb3TdPPUAuTTysn1UFzfm587koMS4kV1/WNEuzgeEDoOYUKiE1cBmj+1CbkbLhFO
-         utuGUZCzs61Uw==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1oQ6oR-0001kf-4V; Mon, 22 Aug 2022 14:45:51 +0200
-Date:   Mon, 22 Aug 2022 14:45:51 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc:     Andrew Halaney <ahalaney@redhat.com>,
-        Brian Masney <bmasney@redhat.com>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 8/8] PCI: qcom: Sort device-id table
-Message-ID: <YwN6f+xOJIW0liGu@hovoldconsulting.com>
-References: <20220714071348.6792-1-johan+linaro@kernel.org>
- <20220714071348.6792-9-johan+linaro@kernel.org>
- <YtAny03L/RLk9nv6@xps13>
- <YtEaqHT7NdXPhK+y@hovoldconsulting.com>
- <YvvAfQJChCVX4cPH@lpieralisi>
- <20220818200530.lab2zlcaetekcclq@halaneylaptop>
- <Yv8/6x7pgrBhzdbQ@lpieralisi>
+        with ESMTP id S235123AbiHVMra (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 08:47:30 -0400
+Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9BC33AB03;
+        Mon, 22 Aug 2022 05:47:29 -0700 (PDT)
+Received: by mail-ot1-f47.google.com with SMTP id z22-20020a056830129600b0063711f456ceso7602909otp.7;
+        Mon, 22 Aug 2022 05:47:29 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc;
+        bh=7cbjI0WaZhQTvZlNz7q5LmNIlRjDT3q4dyHallkLrTo=;
+        b=CVhIP2M47w0eAhmUTcrlpYx2JKuSBdky0u8RWxwjXTgF7jPPfvZqtWxadk6wlfo3LQ
+         uiSl1hKd7tvRyMPsiNXc79cwLyYFtr5UADc3xacySrFPokO0qZLY4hi+Y0wTEODHl6Kw
+         CMLnSEiZjGRNmyVYkqurblMx7e7XJhUrAcP4lEbAraLfr65jcXlboaRT4PpnxauqWsMy
+         DxggInkjgCtEFeoKR6fxIdSitAnEUXpqCURE0o6eaVSinYAgZNLCm2NEqAN1llQmUAuM
+         A5T0jhSzNkT5+jmYMic8ndRqDRyXHDzME8qpcQ8EOdveo/lAdYxcMB/Qz5OPORNZCNJn
+         yUGQ==
+X-Gm-Message-State: ACgBeo0CBloaoQ8xySKTrdKo26ct4QylppTBG1kI/H9LD7XR8bBc5T68
+        ica1ixaSSDlCfybb8oOLOp6Jr5fEMg==
+X-Google-Smtp-Source: AA6agR6HuU3nFQ4lGlufxXNkmmzngtFFlaInk7mDi0EkehJepEpbode3NOBV0cAGi7IkodNWlHOamA==
+X-Received: by 2002:a05:6830:310d:b0:637:1b6c:6647 with SMTP id b13-20020a056830310d00b006371b6c6647mr7668149ots.170.1661172448975;
+        Mon, 22 Aug 2022 05:47:28 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id k4-20020a056870570400b0010f07647598sm2978471oap.7.2022.08.22.05.47.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Aug 2022 05:47:28 -0700 (PDT)
+Received: (nullmailer pid 3653297 invoked by uid 1000);
+        Mon, 22 Aug 2022 12:47:28 -0000
+Date:   Mon, 22 Aug 2022 07:47:28 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: reset: syscon-reboot: Add priority
+ property
+Message-ID: <20220822124728.GA3641041-robh@kernel.org>
+References: <20220820102925.29476-1-pali@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <Yv8/6x7pgrBhzdbQ@lpieralisi>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220820102925.29476-1-pali@kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 19, 2022 at 09:46:51AM +0200, Lorenzo Pieralisi wrote:
-> On Thu, Aug 18, 2022 at 03:05:30PM -0500, Andrew Halaney wrote:
-> > Hi Lorenzo,
-> > 
-> > On Tue, Aug 16, 2022 at 06:06:21PM +0200, Lorenzo Pieralisi wrote:
-> > > On Fri, Jul 15, 2022 at 09:43:36AM +0200, Johan Hovold wrote:
+On Sat, Aug 20, 2022 at 12:29:23PM +0200, Pali Rohár wrote:
+> This new optional priority property allows to specify custom priority level
+> of reset device. Default level was always 192.
 
-> > > > Perhaps Bjorn H can fix that up when applying unless I'll be sending a
-> > > > v3 for some other reason. This series still depends on the MSI rework to
-> > > > be applied first.
-> > > 
-> > > I can do it while applying. A link to the lore archive for the MSI
-> > > rework please (I don't think it was merged for v6.0) ? I was away for
-> > > two months, catching up with threads.
-> > 
-> > I don't see a reply to this, so here I am following up out of interest
-> > for getting this in mainline for my x13s laptop to use.
-> > 
-> > It appears the MSI rework[0] (which is in the cover letter here so I
-> > know I grabbed the right thing) was applied in 6.0:
-> > 
-> >     ahalaney@halaneylaptop ~/git/linux (git)-[remotes/upstream/HEAD] % git log --oneline --abbrev=12 --grep=2436629 v6.0-rc1 -- drivers/pci/controller/dwc/ 
-> >     cd761378e62c PCI: dwc: Handle MSIs routed to multiple GIC interrupts
-> >     db388348acff PCI: dwc: Convert struct pcie_port.msi_irq to an array
-> >     226ec087497a PCI: dwc: Split MSI IRQ parsing/allocation to a separate function
-> >     3c62f878a969 PCI: dwc: Correct msi_irq condition in dw_pcie_free_msi()
-> >     ahalaney@halaneylaptop ~/git/linux (git)-[remotes/upstream/HEAD] %
-> > 
-> > Just a friendly FYI, hope that helps!
+Why do we need/want this? What problem does it solve?
+
+> Signed-off-by: Pali Rohár <pali@kernel.org>
+> ---
+>  .../devicetree/bindings/power/reset/syscon-reboot.yaml        | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> Thanks for the heads-up, I will merge this series then.
+> diff --git a/Documentation/devicetree/bindings/power/reset/syscon-reboot.yaml b/Documentation/devicetree/bindings/power/reset/syscon-reboot.yaml
+> index da2509724812..d905133aab27 100644
+> --- a/Documentation/devicetree/bindings/power/reset/syscon-reboot.yaml
+> +++ b/Documentation/devicetree/bindings/power/reset/syscon-reboot.yaml
+> @@ -42,6 +42,10 @@ properties:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      description: The reset value written to the reboot register (32 bit access).
+>  
+> +  priority:
 
-I was out-of-office last week so thanks for digging out that link,
-Andrew.
+A bit too generic for the name.
 
-Johan
+> +    $ref: /schemas/types.yaml#/definitions/sint32
+> +    description: Priority level of this syscon reset device. Default 192.
+
+default: 192
+
+
+Though I'm not really sure about the whole concept of this in DT. Where 
+does 192 come from? Presumably if we have more than 1 reset device, then 
+'priority' is needed in multiple places. So you need a common schema 
+defining the property (as property types should be defined exactly 
+once) which this schema can reference.
+
+Rob
