@@ -2,58 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B9D759BBB9
-	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 10:34:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BE5B59BBC9
+	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 10:38:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232897AbiHVIdu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Aug 2022 04:33:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43920 "EHLO
+        id S232785AbiHVIiv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Aug 2022 04:38:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233654AbiHVIds (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 04:33:48 -0400
-Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58E3365FB;
-        Mon, 22 Aug 2022 01:33:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
-        t=1661157220; bh=KF38YCEGrviEtxAAbqrGcqiLu8O/FWZi1h5lYiuNr7s=;
-        h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
-        b=ihjEe30WkNiuYGt59T9pVeSq6/MYPz2e8IUvySfnvYXj9UWyADCudVeXTFBCztUSF
-         BUmNBg5ACaKDCIdiRSV61AiCHbrWtlYBrUc5rW7NJA8j/hnDfYB40XuvyTlXyVaMwI
-         BTVC9vNYysNhaoQnaDaZn4KRe3ZqChVlFAMdwEyc=
-Date:   Mon, 22 Aug 2022 10:33:39 +0200
-From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
-To:     Tom Fitzhenry <tom@tom-fitzhenry.me.uk>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org, Martijn Braam <martijn@brixit.nl>,
-        Kamil =?utf-8?Q?Trzci=C5=84ski?= <ayufan@ayufan.eu>,
-        Caleb Connolly <kc@postmarketos.org>,
-        =?utf-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4=?= Prado <n@nfraprado.net>
-Subject: Re: [PATCH v4 1/1] arm64: dts: rockchip: Add initial support for
- Pine64 PinePhone Pro
-Message-ID: <20220822083339.o6bqlyirrm5hvjbc@core>
-Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>,
-        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org, Martijn Braam <martijn@brixit.nl>,
-        Kamil =?utf-8?Q?Trzci=C5=84ski?= <ayufan@ayufan.eu>,
-        Caleb Connolly <kc@postmarketos.org>,
-        =?utf-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4=?= Prado <n@nfraprado.net>
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
-References: <20220822012449.21005-1-tom@tom-fitzhenry.me.uk>
- <20220822012449.21005-2-tom@tom-fitzhenry.me.uk>
+        with ESMTP id S233615AbiHVIit (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 04:38:49 -0400
+Received: from comms.puri.sm (comms.puri.sm [159.203.221.185])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A524213D04;
+        Mon, 22 Aug 2022 01:38:48 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+        by comms.puri.sm (Postfix) with ESMTP id 26B01E10D7;
+        Mon, 22 Aug 2022 01:38:17 -0700 (PDT)
+Received: from comms.puri.sm ([127.0.0.1])
+        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id NzF1olkKBo4b; Mon, 22 Aug 2022 01:38:16 -0700 (PDT)
+Message-ID: <77baacb930bf2ba1a65cb1515e6795b48d2d4ed5.camel@puri.sm>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=puri.sm; s=comms;
+        t=1661157496; bh=Or8IwOdSKEWwlGznaa4jIrIy54u6R0bhCX7D8BpveYc=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+        b=G+0ygPseRNiuy7XIUI/F0uRFYjM3u+rJkq/3MHDCQ8gA+QlYmcfFp1vFHIlaVXNYi
+         kyChZfMM6UUO7+Dm+75vexUyQOzpVeClDtMbs2DDX0wS5tfysSJ7Z9mpErUvOPg22l
+         TGxDkJSmIQKXuAUiM81XxXxyAUSGKWwRZU/mGP6+v+9nTRKTzN39VKNdw4qj+KHVcc
+         eGH+I+C46hYGWHBFVSyZvu3I3KzNIV5TvLIZCrEr5ZwIpRXiS2rF9vFkGmiX+3F4/w
+         cuRwbLchuWwx2sAZmUAb9o1EP0IQFvtF+4ybV57q6SjZeuYAgg7hQ5D9/HLhswUsN6
+         cj9XA0AK9NYIg==
+Subject: Re: [PATCH v6 1/2] power: domain: handle genpd correctly when
+ needing interrupts
+From:   Martin Kepplinger <martin.kepplinger@puri.sm>
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     rafael@kernel.org, khilman@kernel.org, robh@kernel.org,
+        krzysztof.kozlowski@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, festevam@gmail.com, pavel@ucw.cz,
+        kernel@puri.sm, linux-imx@nxp.com, broonie@kernel.org,
+        l.stach@pengutronix.de, aford173@gmail.com,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Date:   Mon, 22 Aug 2022 10:38:10 +0200
+In-Reply-To: <CAPDyKFpz0HG_AzCkj8LkyisO1fjJiiyX2QjKTWDTLng2O7PDgA@mail.gmail.com>
+References: <20220726083257.1730630-1-martin.kepplinger@puri.sm>
+         <20220726083257.1730630-2-martin.kepplinger@puri.sm>
+         <CAPDyKFrLLw=y9+t3f_bOH2mw2NVDGJxKE5=+XHY7C6SUzLzUDg@mail.gmail.com>
+         <d1db07c8ca57c72b4f0820fcb6832dd7e4501055.camel@puri.sm>
+         <CAPDyKFpz0HG_AzCkj8LkyisO1fjJiiyX2QjKTWDTLng2O7PDgA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.3-1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220822012449.21005-2-tom@tom-fitzhenry.me.uk>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
@@ -63,425 +61,115 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Tom,
-
-On Mon, Aug 22, 2022 at 11:08:08AM +1000, Tom Fitzhenry wrote:
-> From: Martijn Braam <martijn@brixit.nl>
+Am Freitag, dem 19.08.2022 um 16:53 +0200 schrieb Ulf Hansson:
+> On Fri, 19 Aug 2022 at 11:17, Martin Kepplinger
+> <martin.kepplinger@puri.sm> wrote:
+> > 
+> > Am Dienstag, dem 26.07.2022 um 17:07 +0200 schrieb Ulf Hansson:
+> > > On Tue, 26 Jul 2022 at 10:33, Martin Kepplinger
+> > > <martin.kepplinger@puri.sm> wrote:
+> > > > 
+> > > > If for example the power-domains' power-supply node (regulator)
+> > > > needs
+> > > > interrupts to work, the current setup with noirq callbacks
+> > > > cannot
+> > > > work; for example a pmic regulator on i2c, when suspending,
+> > > > usually
+> > > > already
+> > > > times out during suspend_noirq:
+> > > > 
+> > > > [   41.024193] buck4: failed to disable: -ETIMEDOUT
+> > > > 
+> > > > So fix system suspend and resume for these power-domains by
+> > > > using
+> > > > the
+> > > > "outer" suspend/resume callbacks instead. Tested on the imx8mq-
+> > > > librem5 board,
+> > > > but by looking at the dts, this will fix imx8mq-evk and
+> > > > possibly
+> > > > many other
+> > > > boards too.
+> > > > 
+> > > > This is designed so that genpd providers just say "this genpd
+> > > > needs
+> > > > interrupts" (by setting the flag) - without implying an
+> > > > implementation.
+> > > > 
+> > > > Initially system suspend problems had been discussed at
+> > > > https://lore.kernel.org/linux-arm-kernel/20211002005954.1367653-8-l.stach@pengutronix.de/
+> > > > which led to discussing the pmic that contains the regulators
+> > > > which
+> > > > serve as power-domain power-supplies:
+> > > > https://lore.kernel.org/linux-pm/573166b75e524517782471c2b7f96e03fd93d175.camel@puri.sm/T/
+> > > > 
+> > > > Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+> > > > ---
+> > > >  drivers/base/power/domain.c | 13 +++++++++++--
+> > > >  include/linux/pm_domain.h   |  5 +++++
+> > > >  2 files changed, 16 insertions(+), 2 deletions(-)
+> > > > 
+> > > > diff --git a/drivers/base/power/domain.c
+> > > > b/drivers/base/power/domain.c
+> > > > index 5a2e0232862e..58376752a4de 100644
+> > > > --- a/drivers/base/power/domain.c
+> > > > +++ b/drivers/base/power/domain.c
+> > > > @@ -130,6 +130,7 @@ static const struct genpd_lock_ops
+> > > > genpd_spin_ops = {
+> > > >  #define genpd_is_active_wakeup(genpd)  (genpd->flags &
+> > > > GENPD_FLAG_ACTIVE_WAKEUP)
+> > > >  #define genpd_is_cpu_domain(genpd)     (genpd->flags &
+> > > > GENPD_FLAG_CPU_DOMAIN)
+> > > >  #define genpd_is_rpm_always_on(genpd)  (genpd->flags &
+> > > > GENPD_FLAG_RPM_ALWAYS_ON)
+> > > > +#define genpd_irq_on(genpd)            (genpd->flags &
+> > > > GENPD_FLAG_IRQ_ON)
+> > > > 
+> > > >  static inline bool irq_safe_dev_in_sleep_domain(struct device
+> > > > *dev,
+> > > >                 const struct generic_pm_domain *genpd)
+> > > > @@ -2065,8 +2066,15 @@ int pm_genpd_init(struct
+> > > > generic_pm_domain
+> > > > *genpd,
+> > > >         genpd->domain.ops.runtime_suspend =
+> > > > genpd_runtime_suspend;
+> > > >         genpd->domain.ops.runtime_resume =
+> > > > genpd_runtime_resume;
+> > > >         genpd->domain.ops.prepare = genpd_prepare;
+> > > > -       genpd->domain.ops.suspend_noirq = genpd_suspend_noirq;
+> > > > -       genpd->domain.ops.resume_noirq = genpd_resume_noirq;
+> > > > +
+> > > > +       if (genpd_irq_on(genpd)) {
+> > > > +               genpd->domain.ops.suspend =
+> > > > genpd_suspend_noirq;
+> > > > +               genpd->domain.ops.resume = genpd_resume_noirq;
+> > > > +       } else {
+> > > > +               genpd->domain.ops.suspend_noirq =
+> > > > genpd_suspend_noirq;
+> > > > +               genpd->domain.ops.resume_noirq =
+> > > > genpd_resume_noirq;
+> > > 
+> > > As we discussed previously, I am thinking that it may be better
+> > > to
+> > > move to using genpd->domain.ops.suspend_late and
+> > > genpd->domain.ops.resume_early instead.
+> > 
+> > Wouldn't that better be a separate patch (on top)? Do you really
+> > want
+> > me to change the current behaviour (default case) to from noirq to
+> > late? Then I'll resend this series with such a patch added.
 > 
-> This is a basic DT containing regulators and UART, intended to be a
-> base that myself and others can add additional nodes in future patches.
+> Sorry, I wasn't clear enough, the default behaviour should remain as
+> is.
 > 
+> What I meant was, when genpd_irq_on() is true, we should use the
+> genpd->domain.ops.suspend_late and genpd->domain.ops.resume_early.
 
-[...]
+Testing that shows that this isn't working. I can provide the logs
+later, but suspend fails and I think it makes sense: "suspend_late" is
+simply already too late when i2c (or any needed driver) uses "suspend".
 
-> +
-> +	vcc_sys: vcc-sys-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc_sys";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
-> +
-> +	vcc3v3_sys: vcc3v3-sys-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc3v3_sys";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		vin-supply = <&vcc_sys>;
-> +	};
-> +
-> +	vcca1v8_s3: vcc1v8-s3-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcca1v8_s3";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		vin-supply = <&vcc3v3_sys>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
-> +};
-> +
-> +&cpu_l0 {
-> +	cpu-supply = <&vdd_cpu_l>;
-> +};
-> +
-> +&cpu_l1 {
-> +	cpu-supply = <&vdd_cpu_l>;
-> +};
-> +
-> +&cpu_l2 {
-> +	cpu-supply = <&vdd_cpu_l>;
-> +};
-> +
-> +&cpu_l3 {
-> +	cpu-supply = <&vdd_cpu_l>;
-> +};
-> +
-> +&cpu_b0 {
-> +	cpu-supply = <&vdd_cpu_b>;
-> +};
-> +
-> +&cpu_b1 {
-> +	cpu-supply = <&vdd_cpu_b>;
-> +};
-> +
-> +&emmc_phy {
-> +	status = "okay";
-> +};
-> +
-> +&i2c0 {
-> +	clock-frequency = <400000>;
-> +	i2c-scl-rising-time-ns = <168>;
-> +	i2c-scl-falling-time-ns = <4>;
-> +	status = "okay";
-> +
-> +	rk818: pmic@1c {
-> +		compatible = "rockchip,rk818";
-> +		reg = <0x1c>;
-> +		interrupt-parent = <&gpio1>;
-> +		interrupts = <RK_PC5 IRQ_TYPE_LEVEL_LOW>;
-> +		#clock-cells = <1>;
-> +		clock-output-names = "xin32k", "rk808-clkout2";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pmic_int_l>;
-> +		rockchip,system-power-controller;
-> +		wakeup-source;
-> +
-> +		vcc1-supply = <&vcc_sys>;
-> +		vcc2-supply = <&vcc_sys>;
-> +		vcc3-supply = <&vcc_sys>;
-> +		vcc4-supply = <&vcc_sys>;
-> +		vcc6-supply = <&vcc_sys>;
-> +		vcc7-supply = <&vcc3v3_sys>;
-> +		vcc8-supply = <&vcc_sys>;
-> +		vcc9-supply = <&vcc3v3_sys>;
-> +
-> +		regulators {
-> +			vdd_cpu_l: DCDC_REG1 {
-> +				regulator-name = "vdd_cpu_l";
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <875000>;
-> +				regulator-max-microvolt = <975000>;
-> +				regulator-ramp-delay = <6001>;
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +
-> +			vdd_center: DCDC_REG2 {
-> +				regulator-name = "vdd_center";
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <1350000>;
-
-Looks like a wrong top voltage. https://megous.com/dl/tmp/ad3dcc62bd00f41f.png
-
-> +				regulator-ramp-delay = <6001>;
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +
-> +			vcc_ddr: DCDC_REG3 {
-> +				regulator-name = "vcc_ddr";
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-state-mem {
-> +					regulator-on-in-suspend;
-> +				};
-> +			};
-> +
-> +			vcc_1v8: DCDC_REG4 {
-> +				regulator-name = "vcc_1v8";
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-state-mem {
-> +					regulator-on-in-suspend;
-> +				};
-> +			};
-> +
-> +			vcca3v0_codec: LDO_REG1 {
-> +				regulator-name = "vcca3v0_codec";
-> +				regulator-always-on;
-> +				regulator-boot-on;
-
-This should not be always on, but only enabled by the codec when needed.
-You don't have codec described in this DT.
-
-> +				regulator-min-microvolt = <3000000>;
-> +				regulator-max-microvolt = <3000000>;
-> +				regulator-state-mem {
-> +					regulator-on-in-suspend;
-> +				};
-> +			};
-> +
-> +			vcc3v0_touch: LDO_REG2 {
-> +				regulator-name = "vcc3v0_touch";
-> +				regulator-always-on;
-> +				regulator-boot-on;
-
-This should not be always on. It should be enabled by touch controller,
-when needed. You don't have touch controller described in this DT.
-
-> +				regulator-min-microvolt = <3000000>;
-> +				regulator-max-microvolt = <3000000>;
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +
-> +			vcca1v8_codec: LDO_REG3 {
-> +				regulator-name = "vcca1v8_codec";
-> +				regulator-always-on;
-> +				regulator-boot-on;
-
-This should not be always on, but only enabled by the codec when needed,
-I suppose. Also modem codec is supplied by vcc1v8_codec which may need
-a gpio configured as pull-down or drive low to be properly disabled,
-and it is not defined in this DT. Please make sure that regulator's input
-doesn't float and is disabled by default.
-
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-state-mem {
-> +					regulator-on-in-suspend;
-> +				};
-> +			};
-> +
-> +			rk818_pwr_on: LDO_REG4 {
-> +				regulator-name = "rk818_pwr_on";
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <3300000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-state-mem {
-> +					regulator-on-in-suspend;
-> +				};
-> +			};
-> +
-> +			vcc_3v0: LDO_REG5 {
-> +				regulator-name = "vcc_3v0";
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <3000000>;
-> +				regulator-max-microvolt = <3000000>;
-> +				regulator-state-mem {
-> +					regulator-on-in-suspend;
-> +				};
-> +			};
-> +
-> +			vcc_1v5: LDO_REG6 {
-> +				regulator-name = "vcc_1v5";
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <1500000>;
-> +				regulator-max-microvolt = <1500000>;
-> +				regulator-state-mem {
-> +					regulator-on-in-suspend;
-> +				};
-> +			};
-> +
-> +			vcc1v8_dvp: LDO_REG7 {
-> +				regulator-name = "vcc1v8_dvp";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +			};
-> +
-> +			vcc3v3_s3: LDO_REG8 {
-> +				regulator-name = "vcc3v3_s3";
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <3300000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +
-> +			vccio_sd: LDO_REG9 {
-> +				regulator-name = "vccio_sd";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +			};
-> +
-> +			vcc3v3_s0: SWITCH_REG {
-> +				regulator-name = "vcc3v3_s0";
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-state-mem {
-> +					regulator-on-in-suspend;
-> +				};
-> +			};
-> +		};
-> +	};
-> +
-> +	vdd_cpu_b: regulator@40 {
-> +		compatible = "silergy,syr827";
-> +		reg = <0x40>;
-> +		fcs,suspend-voltage-selector = <1>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&vsel1_pin>;
-> +		regulator-name = "vdd_cpu_b";
-> +		regulator-min-microvolt = <875000>;
-> +		regulator-max-microvolt = <1150000>;
-> +		regulator-ramp-delay = <1000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +
-> +		regulator-state-mem {
-> +			regulator-off-in-suspend;
-> +		};
-> +	};
-> +
-> +	vdd_gpu: regulator@41 {
-> +		compatible = "silergy,syr828";
-> +		reg = <0x41>;
-> +		fcs,suspend-voltage-selector = <1>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&vsel2_pin>;
-> +		regulator-name = "vdd_gpu";
-> +		regulator-min-microvolt = <875000>;
-> +		regulator-max-microvolt = <975000>;
-> +		regulator-ramp-delay = <1000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +
-> +		regulator-state-mem {
-> +			regulator-off-in-suspend;
-> +		};
-> +	};
-> +};
-> +
-> +&cluster0_opp {
-> +	opp04 {
-> +		status = "disabled";
-> +	};
-> +
-> +	opp05 {
-> +		status = "disabled";
-> +	};
-> +};
-> +
-> +&cluster1_opp {
-> +	opp06 {
-> +		opp-hz = /bits/ 64 <1500000000>;
-> +		opp-microvolt = <1100000 1100000 1150000>;
-> +	};
-> +
-> +	opp07 {
-> +		status = "disabled";
-> +	};
-> +};
-> +
-> +&gpu_opp_table {
-> +	opp00 {
-> +		opp-hz = /bits/ 64 <200000000>;
-> +		opp-microvolt = <825000 825000 975000>;
-> +	};
-> +	opp01 {
-> +		opp-hz = /bits/ 64 <297000000>;
-> +		opp-microvolt = <825000 825000 975000>;
-> +	};
-> +	opp02 {
-> +		opp-hz = /bits/ 64 <400000000>;
-> +		opp-microvolt = <825000 825000 975000>;
-> +	};
-> +	opp03 {
-> +		opp-hz = /bits/ 64 <500000000>;
-> +		opp-microvolt = <875000 875000 975000>;
-> +	};
-> +	opp04 {
-> +		opp-hz = /bits/ 64 <600000000>;
-> +		opp-microvolt = <925000 925000 975000>;
-> +	};
-
-^^^ Why replicate all these OPPs, when they have identical preferred voltage
-in rk3399-opp.dtsi? Also GPU is not being enabled in the DT.
-
-You don't need display output support to enable the gpu right away.
-
-> +	opp05 {
-> +		status = "disabled";
-> +	};
-> +};
-> +
-> +
-
-^ extra space
-
-Thank you,
-	Ondrej
-
-> +&io_domains {
-> +	bt656-supply = <&vcc1v8_dvp>;
-> +	audio-supply = <&vcca1v8_codec>;
-> +	sdmmc-supply = <&vccio_sd>;
-> +	gpio1830-supply = <&vcc_3v0>;
-> +	status = "okay";
-> +};
-> +
-> +&pmu_io_domains {
-> +	pmu1830-supply = <&vcc_1v8>;
-> +	status = "okay";
-> +};
-> +
-> +&pinctrl {
-> +	buttons {
-> +		pwrbtn_pin: pwrbtn-pin {
-> +			rockchip,pins = <0 RK_PA5 RK_FUNC_GPIO &pcfg_pull_up>;
-> +		};
-> +	};
-> +
-> +	pmic {
-> +		pmic_int_l: pmic-int-l {
-> +			rockchip,pins = <1 RK_PC5 RK_FUNC_GPIO &pcfg_pull_up>;
-> +		};
-> +
-> +		vsel1_pin: vsel1-pin {
-> +			rockchip,pins = <1 RK_PC1 RK_FUNC_GPIO &pcfg_pull_down>;
-> +		};
-> +
-> +		vsel2_pin: vsel2-pin {
-> +			rockchip,pins = <1 RK_PB6 RK_FUNC_GPIO &pcfg_pull_down>;
-> +		};
-> +	};
-> +};
-> +
-> +&sdmmc {
-> +	bus-width = <4>;
-> +	cap-sd-highspeed;
-> +	cd-gpios = <&gpio0 RK_PA7 GPIO_ACTIVE_LOW>;
-> +	disable-wp;
-> +	max-frequency = <150000000>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&sdmmc_clk &sdmmc_cmd &sdmmc_cd &sdmmc_bus4>;
-> +	vmmc-supply = <&vcc3v3_sys>;
-> +	vqmmc-supply = <&vccio_sd>;
-> +	status = "okay";
-> +};
-> +
-> +&sdhci {
-> +	bus-width = <8>;
-> +	mmc-hs200-1_8v;
-> +	non-removable;
-> +	status = "okay";
-> +};
-> +
-> +&tsadc {
-> +	rockchip,hw-tshut-mode = <1>;
-> +	rockchip,hw-tshut-polarity = <1>;
-> +	status = "okay";
-> +};
-> +
-> +&uart2 {
-> +	status = "okay";
-> +};
-> -- 
-> 2.37.1
 > 
+> Kind regards
+> Uffe
+
+
