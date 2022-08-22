@@ -2,67 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 64B4A59BEB1
-	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 13:41:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 653D659BEC2
+	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 13:47:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234754AbiHVLkf convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 22 Aug 2022 07:40:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39576 "EHLO
+        id S232620AbiHVLrD convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 22 Aug 2022 07:47:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46292 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234717AbiHVLk2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 07:40:28 -0400
+        with ESMTP id S230131AbiHVLrD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 07:47:03 -0400
 Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F030C33A1D;
-        Mon, 22 Aug 2022 04:40:26 -0700 (PDT)
-Received: by mail-qt1-f176.google.com with SMTP id a4so7598586qto.10;
-        Mon, 22 Aug 2022 04:40:26 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B48B33E22;
+        Mon, 22 Aug 2022 04:47:02 -0700 (PDT)
+Received: by mail-qt1-f176.google.com with SMTP id s11so7614479qtx.6;
+        Mon, 22 Aug 2022 04:47:02 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc;
-        bh=gD3YKhawXxvo58bUKUOlExnV1tyEwvD6NRrt00bkb+Q=;
-        b=dq5FynGM93A1OSZj+kMxiBeTE/7L541T8P/w5PxNtZkiTIMxkOeUMP+Va9SmsMzjEF
-         qxcjwMfM7FC6Egxy1krFKS894QLk/BjciiwPhVdAXWvb51oOulWVAyvGLXSOTbplFpBG
-         DuAH8KYVjjdeCmRprNP+20iDzugDc4gTwEEBKJFykOET7A8oN/kRfo17+JNqGOiIJYK0
-         2jEY0cWR41xLOP1KdD2r+VelL2mb9Wxqce6MEFajW1A0bI5m/tAWQWnwTL+YD9AbOjgU
-         HxdI4kGXIB4AYGAu0TBdhM/K4dEGTIghfeev+G9TKCp0bDlfPtsb/8BVyk7G24uggU41
-         MvOg==
-X-Gm-Message-State: ACgBeo3GO9EejU99+fgIxlzaJDObzHqTsYzPz9NKXVpiLDk1Cu9scq1d
-        Q8jPKQPcvjBFQxRGJwEn9kle0veZ6NJT1g==
-X-Google-Smtp-Source: AA6agR753utc6EAXDankziXOrfZxJ70or+ICllnemqqzNUZzO7sbErIOf/AQrdWzp9Yw6a5lsBvgpA==
-X-Received: by 2002:ac8:590d:0:b0:344:7e3a:3d9a with SMTP id 13-20020ac8590d000000b003447e3a3d9amr14649085qty.369.1661168425651;
-        Mon, 22 Aug 2022 04:40:25 -0700 (PDT)
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com. [209.85.128.175])
-        by smtp.gmail.com with ESMTPSA id q15-20020ac8450f000000b003447ee0a6bfsm8679127qtn.17.2022.08.22.04.40.24
+        bh=2XJZ/Imo2dVNd0H4SfuBgLAT9QYlxOPB6r7l1kGv5p8=;
+        b=CUp9H9Z9MnEA00D52dA9uPlykWCdBmhiiZixbz6ua5096TApkwqpTOSBh8BcW6uVEe
+         mF35ibcjm86XWXnSR59zZ+9XJ451/4s7d64i0pVZfPzzlhzoAY/ZTYAYjh2q6ZS9UR/r
+         cnjusCMYjxxloV4lcjHmj/8ZJ1JZZ52omuuxXCyFxTKdLOJjs4A4RTBKxIHkoDtsbBtG
+         Ozb72UR0W06LVBVcOwFNvJn+Df1Tq7lG37TXbE3GTdjTgLWD4+oDb6L9NAsPopyrdJ4g
+         /C6kS15NKE2VwY6/C9TdW4gKbcfHMyP2Boa11q9n3nrm0gRpkqhTDDkw0j3g/xYqGOok
+         Sp2w==
+X-Gm-Message-State: ACgBeo0w2rHgAnaTmi67xA6zuuBUmYD4ETGYwNj0z/a1KG+Esgx7wqLg
+        tIcAumBlCs3lHSypwnhW4nwk5J61yJ1xdQ==
+X-Google-Smtp-Source: AA6agR45c8R5zmLVoCcaWl9OFFKl4X7Ju1osidR5GMsOOp33iBuc2Ent/3G7nLEzf6vSmtAgkeKzfQ==
+X-Received: by 2002:a05:622a:591:b0:344:5946:8da5 with SMTP id c17-20020a05622a059100b0034459468da5mr14933246qtb.473.1661168820943;
+        Mon, 22 Aug 2022 04:47:00 -0700 (PDT)
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
+        by smtp.gmail.com with ESMTPSA id o13-20020a05620a2a0d00b006bad7a2964fsm10505731qkp.78.2022.08.22.04.46.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Aug 2022 04:40:24 -0700 (PDT)
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-3321c2a8d4cso284570947b3.5;
-        Mon, 22 Aug 2022 04:40:24 -0700 (PDT)
-X-Received: by 2002:a5b:bcd:0:b0:68f:b4c0:7eca with SMTP id
- c13-20020a5b0bcd000000b0068fb4c07ecamr18713118ybr.202.1661168424232; Mon, 22
- Aug 2022 04:40:24 -0700 (PDT)
+        Mon, 22 Aug 2022 04:46:59 -0700 (PDT)
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-3378303138bso244746567b3.9;
+        Mon, 22 Aug 2022 04:46:59 -0700 (PDT)
+X-Received: by 2002:a25:1f02:0:b0:695:92f8:5a58 with SMTP id
+ f2-20020a251f02000000b0069592f85a58mr6143444ybf.604.1661168819290; Mon, 22
+ Aug 2022 04:46:59 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220815050815.22340-1-samuel@sholland.org> <5593349.DvuYhMxLoT@jernej-laptop>
- <3881930.ZaRXLXkqSa@diego> <2249129.ElGaqSPkdT@jernej-laptop>
-In-Reply-To: <2249129.ElGaqSPkdT@jernej-laptop>
+References: <20220815050815.22340-1-samuel@sholland.org> <20220815050815.22340-7-samuel@sholland.org>
+ <20220815141159.10edeba5@donnerap.cambridge.arm.com> <3cd9ed5b-8348-38ac-feb1-9a7da858cebc@microchip.com>
+ <932aaefd-e2ca-ef26-bf30-e315fb271ec5@sholland.org> <ff9e8bd3-c5f7-6319-060e-250151087a8e@microchip.com>
+ <c6cba83ea9eea7fc41a9e78d0e45487b21f0f560.camel@icenowy.me> <c7599abd-c4cf-9ddd-1e74-e47dec9366d4@microchip.com>
+In-Reply-To: <c7599abd-c4cf-9ddd-1e74-e47dec9366d4@microchip.com>
 From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 22 Aug 2022 13:40:12 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVEjKnkj8JKpHUajU=xnDyuWeHmtrz0Y7qML+_XuCxDRg@mail.gmail.com>
-Message-ID: <CAMuHMdVEjKnkj8JKpHUajU=xnDyuWeHmtrz0Y7qML+_XuCxDRg@mail.gmail.com>
+Date:   Mon, 22 Aug 2022 13:46:47 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUHVpj9ikE2NxpBSBtTG8K6v92vGdbw3GLmEYUoVzatvg@mail.gmail.com>
+Message-ID: <CAMuHMdUHVpj9ikE2NxpBSBtTG8K6v92vGdbw3GLmEYUoVzatvg@mail.gmail.com>
 Subject: Re: [PATCH 06/12] riscv: dts: allwinner: Add the D1 SoC base devicetree
-To:     =?UTF-8?Q?Jernej_=C5=A0krabec?= <jernej.skrabec@gmail.com>
-Cc:     Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
+To:     Conor Dooley <Conor.Dooley@microchip.com>
+Cc:     uwu@icenowy.me, Samuel Holland <samuel@sholland.org>,
+        Andre Przywara <andre.przywara@arm.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
         linux-sunxi@lists.linux.dev, Palmer Dabbelt <palmer@dabbelt.com>,
         Paul Walmsley <paul.walmsley@sifive.com>,
         Albert Ou <aou@eecs.berkeley.edu>,
         linux-riscv <linux-riscv@lists.infradead.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
         Rob Herring <robh+dt@kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8BIT
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
@@ -75,48 +79,130 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jernej,
+Hi Conor, Andre,
 
-On Tue, Aug 16, 2022 at 11:28 AM Jernej Škrabec
-<jernej.skrabec@gmail.com> wrote:
-> Dne torek, 16. avgust 2022 ob 11:12:05 CEST je Heiko Stübner napisal(a):
-> > Am Dienstag, 16. August 2022, 09:49:58 CEST schrieb Jernej Škrabec:
-> > > Dne torek, 16. avgust 2022 ob 09:41:45 CEST je Krzysztof Kozlowski
-> napisal(a):
-> > > > On 15/08/2022 08:08, Samuel Holland wrote:
-> > > > > +
-> > > > > +       de: display-engine {
-> > > > > +               compatible = "allwinner,sun20i-d1-display-engine";
-> > > > > +               allwinner,pipelines = <&mixer0>, <&mixer1>;
-> > > > > +               status = "disabled";
-> > > > > +       };
-> > > > > +
-> > > > > +       osc24M: osc24M-clk {
-> > > >
-> > > > lowercase
-> > > >
-> > > > > +               compatible = "fixed-clock";
-> > > > > +               clock-frequency = <24000000>;
-> > > >
-> > > > This is a property of the board, not SoC.
-> > >
-> > > SoC needs 24 MHz oscillator for correct operation, so each and every board
-> > > has it. Having it here simplifies board DT files.
+On Sun, Aug 21, 2022 at 12:07 PM <Conor.Dooley@microchip.com> wrote:
+> On 21/08/2022 07:45, Icenowy Zheng wrote:
+> > 在 2022-08-20星期六的 17:29 +0000，Conor.Dooley@microchip.com写道：
+> >> On 20/08/2022 18:24, Samuel Holland wrote:
+> >>> On 8/15/22 12:01 PM, Conor.Dooley@microchip.com wrote:
+> >>>> On 15/08/2022 14:11, Andre Przywara wrote:
+> >>>>> EXTERNAL EMAIL: Do not click links or open attachments unless
+> >>>>> you know the content is safe
+> >>>>>
+> >>>>> On Mon, 15 Aug 2022 00:08:09 -0500
+> >>>>> Samuel Holland <samuel@sholland.org> wrote:
+> >>>>>
+> >>>>> Hi,
+> >>>>>
+> >>>>> thanks for all the efforts in getting those SoC peripherals
+> >>>>> supported!
+> >>>>>
+> >>>>>> D1 is a SoC containing a single-core T-HEAD Xuantie C906 CPU,
+> >>>>>> as well as
+> >>>>>> one HiFi 4 DSP. The SoC is based on a design that
+> >>>>>> additionally contained
+> >>>>>> a pair of Cortex A7's. For that reason, some peripherals are
+> >>>>>> duplicated.
+> >>>>>
+> >>>>> So because of this, the Allwinner R528 and T113 SoCs would
+> >>>>> share almost
+> >>>>> everything in this file. Would it be useful to already split
+> >>>>> this DT up?
+> >>>>> To have a base .dtsi, basically this file without /cpus and
+> >>>>> /soc/plic,
+> >>>>> then have a RISC-V specific file with just those, including the
+> >>>>> base?
+> >>>>> There is precedence for this across-arch(-directories) sharing
+> >>>>> with the
+> >>>>> Raspberry Pi and Allwinner H3/H5 SoCs.
+> >>>>
+> >>>> For those playing along at home, one example is the arm64
+> >>>> bananapi m2
+> >>>> dts which looks like:
+> >>>>> /dts-v1/;
+> >>>>> #include "sun50i-h5.dtsi"
+> >>>>> #include "sun50i-h5-cpu-opp.dtsi"
+> >>>>> #include <arm/sunxi-bananapi-m2-plus-v1.2.dtsi>
+> >>>>>
+> >>>>> / {
+> >>>>>         model = "Banana Pi BPI-M2-Plus v1.2 H5";
+> >>>>>         compatible = "bananapi,bpi-m2-plus-v1.2",
+> >>>>> "allwinner,sun50i-h5";
+> >>>>> };
+> >>>>
+> >>>> I think this is a pretty good idea, and putting in the modularity
+> >>>> up
+> >>>> front seems logical to me, so when the arm one does eventually
+> >>>> get
+> >>>> added it can be done by only touching a single arch.
+> >>>
+> >>> This is not feasible, due to the different #interrupt-cells. See
+> >>> https://lore.kernel.org/linux-riscv/CAMuHMdXHSMcrVOH+vcrdRRF+i2TkMcFisGxHMBPUEa8nTMFpzw@mail.gmail.com/
+> >>>
+> >>> Even if we share some file across architectures, you still have to
+> >>> update files
+> >>> in both places to get the interrupts properties correct.
+> >>>
+> >>> I get the desire to deduplicate things, but we already deal with
+> >>> updating the
+> >>> same/similar nodes across several SoCs, so that is nothing new. I
+> >>> think it would
+> >>> be more confusing/complicated to have all of the interrupts
+> >>> properties
+> >>> overridden in a separate file.
+> >>
+> >> Yeah, should maybe have circled back after that conversation, would
+> >> have been
+> >> nice but if the DTC can't do it nicely then w/e.
 > >
-> > I guess the oscillator is a separate component on each board, right?
+> > Well, maybe we can overuse the facility of C preprocessor?
+> >
+> > e.g.
+> >
+> > ```
+> > // For ARM
+> > #define SOC_PERIPHERAL_IRQ(n) GIC_SPI n
+> > // For RISC-V
+> > #define SOC_PERIPHERAL_IRQ(n) n
+> > ```
+> >
 >
-> Correct.
->
-> > And DT obvious is meant to describe the hardware - independently from
-> > implementation-specific choices.
->
-> There is no choice in this case. 24 MHz crystal has to be present.
->
-> FWIW, including crystal node in SoC specific DTSI is already common pattern in
-> Allwinner ARM SoC DTSI files.
+> Geert pointed out that this is not possible (at least on the Renesas
+> stuff) because the GIC interrupt numbers are not the same as the
+> PLIC's & the DTC is not able to handle the addition:
+> https://lore.kernel.org/linux-riscv/CAMuHMdXHSMcrVOH+vcrdRRF+i2TkMcFisGxHMBPUEa8nTMFpzw@mail.gmail.com/
 
-I could also be a programmable clock generator on the board, programmed
-to generate a 24 MHz clock on one of its outputs? Again, on the board.
+Without the ability to do additions in DTC, we could e.g. list both
+interrupts in the macro, like:
+
+    // For ARM
+    #define SOC_PERIPHERAL_IRQ(na, nr) GIC_SPI na
+    // For RISC-V
+    #define SOC_PERIPHERAL_IRQ(na, nr) nr
+
+On Mon, Aug 22, 2022 at 12:52 PM Andre Przywara <andre.przywara@arm.com> wrote:
+> There are interrupt-maps for that:
+> sun8i-r528.dtsi:
+>         soc {
+>                 #interrupt-cells = <1>;
+>                 interrupt-map = <0  18 &gic GIC_SPI  2 IRQ_TYPE_LEVEL_HIGH>,
+>                                 <0  19 &gic GIC_SPI  3 IRQ_TYPE_LEVEL_HIGH>,
+>                                 ....
+>
+> sun20i-d1.dtsi:
+>         soc {
+>                 #interrupt-cells = <1>;
+>                 interrupt-map = <0  18 &plic  18 IRQ_TYPE_LEVEL_HIGH>,
+>                                 <0  19 &plic  19 IRQ_TYPE_LEVEL_HIGH>,
+>
+> then, in the shared .dtsi:
+>                 uart0: serial@2500000 {
+>                         compatible = "snps,dw-apb-uart";
+>                         ...
+>                         interrupts = <18>;
+
+Nice! But it's gonna be a very large interrupt-map.
 
 Gr{oetje,eeting}s,
 
