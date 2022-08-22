@@ -2,102 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E61B59C8DE
-	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 21:32:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F9EA59C8F1
+	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 21:33:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238511AbiHVTb7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Aug 2022 15:31:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38936 "EHLO
+        id S238833AbiHVTd1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Aug 2022 15:33:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38132 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239107AbiHVTaz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 15:30:55 -0400
-Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82EDB5A2DA;
-        Mon, 22 Aug 2022 12:26:11 -0700 (PDT)
-Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-11c896b879bso14115638fac.3;
-        Mon, 22 Aug 2022 12:26:11 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=wfja3dpgpGFQd71CyL+Eqxhc94bh068SJCYS3i8QECM=;
-        b=HgIvu92TsIdeaHEFEzFI2Rp0/9dvXoX6rDx5ntv6ma/PzNgdbdmCRh8WE9YQWiA5GD
-         FlE3v98+/8zVheE1Q143O0693EyvHdYqMDAZM7kW4jGAbvnCuulICEOemYQOj4rhSAgh
-         udLOYs5rqkVsgUmNHmMlQ2RXB7apriUUCIdhXP9vzc/DimEz9/VLDwzYObVJlLXJ4iPz
-         tuffssZ7iHv9ae4UeWDQ8AiqijEfadWtlO/53u9Vl9a/VrJdNa0hFreZ1r4hG+KL6xXN
-         N4e53Ic1M+GWN6CGfnX0x+xxyWelDEhqABJAIfcigi8/wSbN6RSy3HzW/2LQMPxbauWo
-         FcFg==
-X-Gm-Message-State: ACgBeo0dqrFj5A6jDHKtlLV7orSFYR7HPsU/bG//+K19pWMmVAylnu6l
-        S3e/mhZTHuc/35ODcpMZag==
-X-Google-Smtp-Source: AA6agR5lq+EcF8u5MMVPUiMEfbyTX71703uezHObOPXLNPPPqslQkYADJa6bf1poUrTi7HAaKRzczQ==
-X-Received: by 2002:a05:6870:58a1:b0:118:8649:ab9e with SMTP id be33-20020a05687058a100b001188649ab9emr10124932oab.5.1661196370735;
-        Mon, 22 Aug 2022 12:26:10 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 187-20020aca05c4000000b00343459324besm2739811oif.49.2022.08.22.12.26.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Aug 2022 12:26:10 -0700 (PDT)
-Received: (nullmailer pid 315358 invoked by uid 1000);
-        Mon, 22 Aug 2022 19:26:09 -0000
-Date:   Mon, 22 Aug 2022 14:26:09 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Mithil Bavishi <bavishimithil@gmail.com>
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        dmitry.torokhov@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-        lee@kernel.org, sre@kernel.org, tony@atomide.com,
-        linux@armlinux.org.uk, contact@paulk.fr
-Subject: Re: [PATCH 09/10] dt-bindings: input: Rename twl4030-pwrbutton to
- twl-pwrbutton
-Message-ID: <20220822192609.GA310932-robh@kernel.org>
-References: <20220820071659.1215-1-bavishimithil@gmail.com>
- <20220820071659.1215-10-bavishimithil@gmail.com>
+        with ESMTP id S239494AbiHVTbd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 15:31:33 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2391F1D330;
+        Mon, 22 Aug 2022 12:29:34 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B3B5760BC5;
+        Mon, 22 Aug 2022 19:29:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CD7CC433C1;
+        Mon, 22 Aug 2022 19:29:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1661196573;
+        bh=EUirQLLNP7hOsCjZnx2sV4TuIc9Zb4vvS+mAipxKh2M=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=uvPiSS4beKT9aG7xQ8zSwQTtIFHPhjUQt4piTXo/fIWLTvu17nhdOvsq+ZeYJe9Te
+         7OI0SqqDR3B8cyIBdujMHDWtzE01y5K2LdVq3GnNtXbiiiuIO+XRDOH5d4R4ZI+46R
+         lYsH/D9Nmnbegl1CTYfDJqS+NBHiWY4KGNgPRWi/nZDapM1y0XQU3b6BJw77j+6Tp6
+         gvDRnzKaFNxJl8Zi+nT7V74OxALy5+Ias1HxWaK6yqn2K2fLoZPryeiDISS/Rdpdig
+         Mnd6rjmC1yikw8eljMhFKVg8u8wZLVCpRg28w1PTtseAxldYuGbigqjFpgfTBlDAVh
+         KwoaQjcFYtziQ==
+Date:   Mon, 22 Aug 2022 20:29:27 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Christophe Leroy <christophe.leroy@csgroup.eu>
+Cc:     Rob Herring <robh+dt@kernel.org>, Pratyush Yadav <p.yadav@ti.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Herve Codina <herve.codina@bootlin.com>
+Subject: Re: [PATCH v2 2/2] spi: fsl-spi: Implement trailing bits
+Message-ID: <YwPZF6fjZkn2tozH@sirena.org.uk>
+References: <cover.1646060734.git.christophe.leroy@csgroup.eu>
+ <fe4a3946a66ede73f6d6871700f2aaf0171372a1.1646060734.git.christophe.leroy@csgroup.eu>
+ <YhzqbYW1q5bPNWXn@sirena.org.uk>
+ <7afaab3d-50e0-4716-18d4-41eabc2a9cb9@csgroup.eu>
+ <Yhz0/1kiAy7Mlgtv@sirena.org.uk>
+ <f9046e68-ff22-2652-48dc-d277b4af75dd@csgroup.eu>
+ <YwO5l/KpXoKJVawq@sirena.org.uk>
+ <c4950a61-ba9a-5897-1f04-bb2c56979d7d@csgroup.eu>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="WLYBq0WlMGbH0CuE"
 Content-Disposition: inline
-In-Reply-To: <20220820071659.1215-10-bavishimithil@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <c4950a61-ba9a-5897-1f04-bb2c56979d7d@csgroup.eu>
+X-Cookie: Do not write in this space.
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 20, 2022 at 12:46:59PM +0530, Mithil Bavishi wrote:
-> This changes the Documentation of the twl4030-pwrbutton to
-> make it more generic as it can support other chips than
-> twl4030 as well.
 
-This should be part of patch 4.
+--WLYBq0WlMGbH0CuE
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> 
-> Signed-off-by: Mithil Bavishi <bavishimithil@gmail.com>
-> ---
->  .../input/{twl4030-pwrbutton.txt => twl-pwrbutton.txt}        | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->  rename Documentation/devicetree/bindings/input/{twl4030-pwrbutton.txt => twl-pwrbutton.txt} (81%)
-> 
-> diff --git a/Documentation/devicetree/bindings/input/twl4030-pwrbutton.txt b/Documentation/devicetree/bindings/input/twl-pwrbutton.txt
-> similarity index 81%
-> rename from Documentation/devicetree/bindings/input/twl4030-pwrbutton.txt
-> rename to Documentation/devicetree/bindings/input/twl-pwrbutton.txt
-> index 9a0b765d3..43addc04d 100644
-> --- a/Documentation/devicetree/bindings/input/twl4030-pwrbutton.txt
-> +++ b/Documentation/devicetree/bindings/input/twl-pwrbutton.txt
-> @@ -1,6 +1,6 @@
-> -Texas Instruments TWL family (twl4030) pwrbutton module
-> +Texas Instruments TWL family pwrbutton module
->  
-> -This module is part of the TWL4030. For more details about the whole
-> +This module is part of a TWL chip. For more details about the whole
->  chip see Documentation/devicetree/bindings/mfd/twl-family.txt.
->  
->  This module provides a simple power button event via an Interrupt.
-> -- 
-> 2.25.1
-> 
-> 
+On Mon, Aug 22, 2022 at 06:38:22PM +0000, Christophe Leroy wrote:
+> Le 22/08/2022 =E0 19:15, Mark Brown a =E9crit=A0:
+
+> I think we already addressed this possibility back in 2016, see=20
+> https://lore.kernel.org/linux-spi/20160824111206.GD22076@sirena.org.uk/
+
+> The conclusion was that it was not possible to accomplish it with cs_chan=
+ge.
+
+> Or did we miss something at that time ?
+
+No, I think that's fine - your proposal has some overlap but is fine.
+
+--WLYBq0WlMGbH0CuE
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmMD2RcACgkQJNaLcl1U
+h9BpjAgAgbRxXDYgdu9wb/vJghve0BVH9SPSVadgMxYQGWp/LeFlTbnpbFIM+53F
+04wyp3cbGJFllREDxptRBug9rySiuAsRtHD+CkEqz7ztgR8h8qxwjuUDmdjGyaYO
+Bw8Luc+BYePG940V3niAE1zza9E15MdDKOpKtcCYxaEzL7WENT98fF1FILjRqAqM
+PpRYeDMAmTUyLUmmSnVNHUtYLIhTfahDtI/Zn2mYpZ2OQ0YHv+BP3+yhcWZGsJ0P
+2XuYxkl61A42nU3TysJoVEkqd0Xjx2iEFAt2g4L8xyydz1RH1WIHOE2sYgrCWQs9
+wiy6bp2p2KbV8Jjt2os2Vpm7eLAYtQ==
+=vpgG
+-----END PGP SIGNATURE-----
+
+--WLYBq0WlMGbH0CuE--
