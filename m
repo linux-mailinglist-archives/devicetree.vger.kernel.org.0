@@ -2,119 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD34D59BD1B
-	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 11:45:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2045A59BD24
+	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 11:52:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230518AbiHVJpu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Aug 2022 05:45:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47494 "EHLO
+        id S233665AbiHVJwa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Aug 2022 05:52:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233296AbiHVJps (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 05:45:48 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DF0031DD4;
-        Mon, 22 Aug 2022 02:45:45 -0700 (PDT)
-Received: from [10.3.2.13] (zone.collabora.co.uk [167.235.23.81])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: dmitry.osipenko)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id AF8316600368;
-        Mon, 22 Aug 2022 10:45:42 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1661161543;
-        bh=tYn6NOEYNjwZvPyuZFKJLJdwEqOQbIRZm3BFAEG96Ko=;
-        h=Date:Subject:To:References:From:In-Reply-To:From;
-        b=AfKFkDOEyU1GUcMLd6TSoz+g8vtz71zAzqVKiIWxTDgQgTAuBOyxhKYficbNiBFd0
-         3jtjodm/IGItK+d6OcXgzAYaNRSsnSoBQSzzLcdrrse+DcwquY9YrsdNavdIwOyxLs
-         48KlrRnbchw0FgAlZyu9IBZ7i/KR0psHXztWRypZ5X1CRTl9AlffwUaNEJnRyzWto4
-         5nG9Hgfx7mWORbN0A+iWz2aRI21KbQG2IayXsyAvTL7cF5IXAVoB6thCpcb0Lg4E29
-         OthYSbAf61FZ6iTzsoiL87snRg/DZVu/0efj9pqL/IW5vZcFe1GauJWqKL/p+GTitQ
-         lURmmVct+gtxw==
-Message-ID: <ebb0764f-db92-d69d-49ac-151f4e3e0b8a@collabora.com>
-Date:   Mon, 22 Aug 2022 12:45:38 +0300
+        with ESMTP id S229687AbiHVJwa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 05:52:30 -0400
+Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B09E82982F
+        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 02:52:28 -0700 (PDT)
+Received: by mail-pl1-x62d.google.com with SMTP id p18so9433610plr.8
+        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 02:52:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=l/pLXlXgVyep10FEWX90faOKFAnCMaF0abs584Gd/2w=;
+        b=J+n9JZ+f7Cvc79C+8yo3QkF4NX/k5m8lATuCZmx/LZ19WxUZCIg25SR50MzQYbJNZ6
+         7SvHTGy6snGK9pERM4/QwnUbXQ2LS2q0onLXKKm7z+wQM0U1/NrBjZDv0DRts0L4j4l/
+         HAQai+AFtgcsza3CAvYd7z+F45D38yjZeZVvU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=l/pLXlXgVyep10FEWX90faOKFAnCMaF0abs584Gd/2w=;
+        b=8DBO9201fGL6ZtOpstMkMzzL6RYQIvlMtWencDXCpdXjC3q2HahUAgO1GX7fGdbDRf
+         rjQpqrgTCt73lwXMannQrajD25UikWJzxVnzUf+mj3xSCYjnUxX2fM2Y7YjEBUgo5IdE
+         soKWx9qHJ4DqjcN5xVxHW7IJjs5ZNgFHMbfQNc6qNkVL6vUmBPlXoLVFGrjH4erUgaCx
+         36ACdJf9m2IVzymh9etDR69ifX1gbljy4oSJWFGOotoMJxVYNSqebYZ5njFDWXauk7L8
+         3HuwOQfjiaYqMnXbSBU5Gu2/TnZ5BOWZuL8U9886lxsuZWgjL+eCOEANJ5OT3N1EYdl2
+         F/eQ==
+X-Gm-Message-State: ACgBeo3zAW311urVoGEekeRefykPz04TUWvGohEpOO6gX46uDRUmWv9t
+        plAFIbhdw09KIBqorJfFu9oOLg==
+X-Google-Smtp-Source: AA6agR6JfJyIBZ8rr0WmNo25/dTCtk0vizuzsYM4dVs5YjYVdzMfQ/+T5gsxABCPr6sN7Yb7qKAX8A==
+X-Received: by 2002:a17:90a:150f:b0:1fb:aee:cd2a with SMTP id l15-20020a17090a150f00b001fb0aeecd2amr10233425pja.47.1661161948160;
+        Mon, 22 Aug 2022 02:52:28 -0700 (PDT)
+Received: from localhost.localdomain ([2405:201:c00a:a073:1990:f7e9:cb35:d592])
+        by smtp.gmail.com with ESMTPSA id d9-20020a17090a2a4900b001f326ead012sm9604839pjg.37.2022.08.22.02.52.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Aug 2022 02:52:27 -0700 (PDT)
+From:   Jagan Teki <jagan@amarulasolutions.com>
+To:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-amarula@amarulasolutions.com,
+        Jagan Teki <jagan@amarulasolutions.com>
+Subject: [PATCH] ARM: dts: stm32: Fix typo in lisense text for Engicam boards
+Date:   Mon, 22 Aug 2022 15:22:05 +0530
+Message-Id: <20220822095205.264587-1-jagan@amarulasolutions.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH RESEND 1/2] i2c: tegra: Add GPCDMA support
-Content-Language: en-US
-To:     Akhil R <akhilrajeev@nvidia.com>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "christian.koenig@amd.com" <christian.koenig@amd.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Laxman Dewangan <ldewangan@nvidia.com>,
-        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
-        "sumit.semwal@linaro.org" <sumit.semwal@linaro.org>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "wsa@kernel.org" <wsa@kernel.org>
-References: <20220819122313.40445-1-akhilrajeev@nvidia.com>
- <20220819122313.40445-2-akhilrajeev@nvidia.com>
- <20281ca7-e597-7030-4861-5f9a3594726d@gmail.com>
- <89a746fd-a98e-3147-7811-33c5051c2b6d@gmail.com>
- <SJ1PR12MB6339FC1F82EB1BB7417E533BC0719@SJ1PR12MB6339.namprd12.prod.outlook.com>
-From:   Dmitry Osipenko <dmitry.osipenko@collabora.com>
-In-Reply-To: <SJ1PR12MB6339FC1F82EB1BB7417E533BC0719@SJ1PR12MB6339.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/22/22 09:56, Akhil R wrote:
->> 19.08.2022 18:15, Dmitry Osipenko пишет:
->>> 19.08.2022 15:23, Akhil R пишет:
->>>>      if (of_device_is_compatible(np, "nvidia,tegra210-i2c-vi"))
->>>>              i2c_dev->is_vi = true;
->>>> +    else
->>>> +            i2c_dev->dma_support = !!(of_find_property(np, "dmas",
->>>> + NULL));
->>>
->>> 1. You leak the np returned by of_find_property().
->>>
->>> 2. There is device_property_read_bool() for this kind of
->>> property-exists checks.
-> Okay. I went by the implementation in of_dma_request_slave_channel() to
-> check 'dmas'.
-> 
->>>
->>> 3. If "dmas" is missing in DT, then dma_request_chan() should return
->>> NULL and everything will work fine. I suppose you haven't tried to
->>> test this code.
->>
->> Although, no. It should return ERR_PTR(-ENODEV) and then you should check
->> the return code.
-> Yes. Agree that it is more agnostic to check for ERR_PTR(-ENODEV). But since I
-> call tegra_init_dma() for every large transfer until DMA is initialized, wouldn't
-> it be better to have a flag inside the driver so that we do not have to go through
-> so many functions for every attempted DMA transaction to find out that the DT
-> properties don't exist?
-> 
-> Shall I just put i2c_dev->dma_support = true here since DMA is supported by
-> hardware? It would turn false if dma_request_chan() returns something other
-> than -EPROBE_DEFER.
-> 
->       if (of_device_is_compatible(np, "nvidia,tegra210-i2c-vi"))
->               i2c_dev->is_vi = true;
->  +    else
->  +            i2c_dev->dma_support = true;
+Fix the Amarula Solutions typo mistake in lisense text added in below
+commits.
 
-The code already has dma_mode for that. I don't see why another variable
-is needed.
+commit <3ff0810ffc479> ("ARM: dts: stm32: Add Engicam i.Core STM32MP1
+C.TOUCH 2.0 10.1" OF")
+commit <6ca2898df59f7> ("ARM: dts: stm32: Add Engicam i.Core STM32MP1
+C.TOUCH 2.0")
+commit <adc0496104b64> ("ARM: dts: stm32: Add Engicam i.Core STM32MP1
+EDIMM2.2 Starter Kit")
+commit <30f9a9da4ee13> ("ARM: dts: stm32: Add Engicam i.Core STM32MP1
+SoM")
+commit <1d278204cbaa1> ("ARM: dts: stm32: Add Engicam MicroGEA STM32MP1
+MicroDev 2.0 7" OF")
+commit <f838dae7afd00> ("ARM: dts: stm32: Add Engicam MicroGEA STM32MP1
+MicroDev 2.0 board")
+commit <0be81dfaeaf89> ("ARM: dts: stm32: Add Engicam MicroGEA STM32MP1
+SoM")
 
-Either add new generic dma_request_chan_optional() that will return NULL
-if channel is not available and make Tegra I2C driver to use it, or
-handle the error code returned by dma_request_chan().
+Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+---
+ arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-ctouch2-of10.dts   | 2 +-
+ arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-ctouch2.dts        | 2 +-
+ arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-edimm2.2.dts       | 2 +-
+ arch/arm/boot/dts/stm32mp157a-icore-stm32mp1.dtsi               | 2 +-
+ .../boot/dts/stm32mp157a-microgea-stm32mp1-microdev2.0-of7.dts  | 2 +-
+ arch/arm/boot/dts/stm32mp157a-microgea-stm32mp1-microdev2.0.dts | 2 +-
+ arch/arm/boot/dts/stm32mp157a-microgea-stm32mp1.dtsi            | 2 +-
+ 7 files changed, 7 insertions(+), 7 deletions(-)
 
+diff --git a/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-ctouch2-of10.dts b/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-ctouch2-of10.dts
+index 2a2829283456..9a2a4bc7d079 100644
+--- a/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-ctouch2-of10.dts
++++ b/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-ctouch2-of10.dts
+@@ -2,7 +2,7 @@
+ /*
+  * Copyright (c) STMicroelectronics 2019 - All Rights Reserved
+  * Copyright (c) 2020 Engicam srl
+- * Copyright (c) 2020 Amarula Solutons(India)
++ * Copyright (c) 2020 Amarula Solutions(India)
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-ctouch2.dts b/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-ctouch2.dts
+index 1f75f1d45181..60ce4425a7fd 100644
+--- a/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-ctouch2.dts
++++ b/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-ctouch2.dts
+@@ -2,7 +2,7 @@
+ /*
+  * Copyright (c) STMicroelectronics 2019 - All Rights Reserved
+  * Copyright (c) 2020 Engicam srl
+- * Copyright (c) 2020 Amarula Solutons(India)
++ * Copyright (c) 2020 Amarula Solutions(India)
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-edimm2.2.dts b/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-edimm2.2.dts
+index ba92d7d8ed00..390ee8c05754 100644
+--- a/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-edimm2.2.dts
++++ b/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-edimm2.2.dts
+@@ -2,7 +2,7 @@
+ /*
+  * Copyright (c) STMicroelectronics 2019 - All Rights Reserved
+  * Copyright (c) 2020 Engicam srl
+- * Copyright (c) 2020 Amarula Solutons(India)
++ * Copyright (c) 2020 Amarula Solutions(India)
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1.dtsi b/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1.dtsi
+index 01166ccacf2b..9de893101b40 100644
+--- a/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1.dtsi
++++ b/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1.dtsi
+@@ -2,7 +2,7 @@
+ /*
+  * Copyright (c) STMicroelectronics 2019 - All Rights Reserved
+  * Copyright (c) 2020 Engicam srl
+- * Copyright (c) 2020 Amarula Solutons(India)
++ * Copyright (c) 2020 Amarula Solutions(India)
+  */
+ 
+ / {
+diff --git a/arch/arm/boot/dts/stm32mp157a-microgea-stm32mp1-microdev2.0-of7.dts b/arch/arm/boot/dts/stm32mp157a-microgea-stm32mp1-microdev2.0-of7.dts
+index fae656edd820..0d7560ba2950 100644
+--- a/arch/arm/boot/dts/stm32mp157a-microgea-stm32mp1-microdev2.0-of7.dts
++++ b/arch/arm/boot/dts/stm32mp157a-microgea-stm32mp1-microdev2.0-of7.dts
+@@ -2,7 +2,7 @@
+ /*
+  * Copyright (c) STMicroelectronics 2019 - All Rights Reserved
+  * Copyright (c) 2020 Engicam srl
+- * Copyright (c) 2020 Amarula Solutons(India)
++ * Copyright (c) 2020 Amarula Solutions(India)
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/stm32mp157a-microgea-stm32mp1-microdev2.0.dts b/arch/arm/boot/dts/stm32mp157a-microgea-stm32mp1-microdev2.0.dts
+index b9d0d3d6ad15..d949559be020 100644
+--- a/arch/arm/boot/dts/stm32mp157a-microgea-stm32mp1-microdev2.0.dts
++++ b/arch/arm/boot/dts/stm32mp157a-microgea-stm32mp1-microdev2.0.dts
+@@ -2,7 +2,7 @@
+ /*
+  * Copyright (c) STMicroelectronics 2019 - All Rights Reserved
+  * Copyright (c) 2020 Engicam srl
+- * Copyright (c) 2020 Amarula Solutons(India)
++ * Copyright (c) 2020 Amarula Solutions(India)
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/stm32mp157a-microgea-stm32mp1.dtsi b/arch/arm/boot/dts/stm32mp157a-microgea-stm32mp1.dtsi
+index 0b85175f151e..fb4600a59869 100644
+--- a/arch/arm/boot/dts/stm32mp157a-microgea-stm32mp1.dtsi
++++ b/arch/arm/boot/dts/stm32mp157a-microgea-stm32mp1.dtsi
+@@ -2,7 +2,7 @@
+ /*
+  * Copyright (c) STMicroelectronics 2019 - All Rights Reserved
+  * Copyright (c) 2020 Engicam srl
+- * Copyright (c) 2020 Amarula Solutons(India)
++ * Copyright (c) 2020 Amarula Solutions(India)
+  */
+ 
+ / {
 -- 
-Best regards,
-Dmitry
+2.25.1
+
