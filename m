@@ -2,104 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 77CF659BFAF
-	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 14:47:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F42459BFC0
+	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 14:53:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235163AbiHVMrb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Aug 2022 08:47:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52114 "EHLO
+        id S235146AbiHVMwo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Aug 2022 08:52:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235123AbiHVMra (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 08:47:30 -0400
-Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9BC33AB03;
-        Mon, 22 Aug 2022 05:47:29 -0700 (PDT)
-Received: by mail-ot1-f47.google.com with SMTP id z22-20020a056830129600b0063711f456ceso7602909otp.7;
-        Mon, 22 Aug 2022 05:47:29 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc;
-        bh=7cbjI0WaZhQTvZlNz7q5LmNIlRjDT3q4dyHallkLrTo=;
-        b=CVhIP2M47w0eAhmUTcrlpYx2JKuSBdky0u8RWxwjXTgF7jPPfvZqtWxadk6wlfo3LQ
-         uiSl1hKd7tvRyMPsiNXc79cwLyYFtr5UADc3xacySrFPokO0qZLY4hi+Y0wTEODHl6Kw
-         CMLnSEiZjGRNmyVYkqurblMx7e7XJhUrAcP4lEbAraLfr65jcXlboaRT4PpnxauqWsMy
-         DxggInkjgCtEFeoKR6fxIdSitAnEUXpqCURE0o6eaVSinYAgZNLCm2NEqAN1llQmUAuM
-         A5T0jhSzNkT5+jmYMic8ndRqDRyXHDzME8qpcQ8EOdveo/lAdYxcMB/Qz5OPORNZCNJn
-         yUGQ==
-X-Gm-Message-State: ACgBeo0CBloaoQ8xySKTrdKo26ct4QylppTBG1kI/H9LD7XR8bBc5T68
-        ica1ixaSSDlCfybb8oOLOp6Jr5fEMg==
-X-Google-Smtp-Source: AA6agR6HuU3nFQ4lGlufxXNkmmzngtFFlaInk7mDi0EkehJepEpbode3NOBV0cAGi7IkodNWlHOamA==
-X-Received: by 2002:a05:6830:310d:b0:637:1b6c:6647 with SMTP id b13-20020a056830310d00b006371b6c6647mr7668149ots.170.1661172448975;
-        Mon, 22 Aug 2022 05:47:28 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id k4-20020a056870570400b0010f07647598sm2978471oap.7.2022.08.22.05.47.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Aug 2022 05:47:28 -0700 (PDT)
-Received: (nullmailer pid 3653297 invoked by uid 1000);
-        Mon, 22 Aug 2022 12:47:28 -0000
-Date:   Mon, 22 Aug 2022 07:47:28 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: reset: syscon-reboot: Add priority
- property
-Message-ID: <20220822124728.GA3641041-robh@kernel.org>
-References: <20220820102925.29476-1-pali@kernel.org>
+        with ESMTP id S230122AbiHVMwm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 08:52:42 -0400
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BB352E6B6;
+        Mon, 22 Aug 2022 05:52:42 -0700 (PDT)
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 27MCUTKD010968;
+        Mon, 22 Aug 2022 08:52:27 -0400
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3j2whtdny2-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 22 Aug 2022 08:52:27 -0400
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 27MCqQcX035248
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 22 Aug 2022 08:52:26 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Mon, 22 Aug
+ 2022 08:52:25 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Mon, 22 Aug 2022 08:52:25 -0400
+Received: from debian.ad.analog.com ([10.48.65.119])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 27MCqBGU003358;
+        Mon, 22 Aug 2022 08:52:14 -0400
+From:   Ciprian Regus <ciprian.regus@analog.com>
+To:     <jic23@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <robh+dt@kernel.org>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     <u.kleine-koenig@pengutronix.de>,
+        Ciprian Regus <ciprian.regus@analog.com>
+Subject: [PATCH 0/3] Add support for LTC2499 ADC
+Date:   Mon, 22 Aug 2022 15:51:03 +0300
+Message-ID: <20220822125106.1106798-1-ciprian.regus@analog.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220820102925.29476-1-pali@kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: Vwam74M_iK-WfNgt5XugHWn6rjfabxeD
+X-Proofpoint-GUID: Vwam74M_iK-WfNgt5XugHWn6rjfabxeD
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.517,FMLib:17.11.122.1
+ definitions=2022-08-22_08,2022-08-22_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 suspectscore=0
+ bulkscore=0 priorityscore=1501 clxscore=1011 malwarescore=0 mlxscore=0
+ phishscore=0 adultscore=0 lowpriorityscore=0 impostorscore=0
+ mlxlogscore=791 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2207270000 definitions=main-2208220054
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 20, 2022 at 12:29:23PM +0200, Pali Rohár wrote:
-> This new optional priority property allows to specify custom priority level
-> of reset device. Default level was always 192.
+The LTC2499 is a 16-channel (eight differential), 24-bit,
+ADC with Easy Drive technology and a 2-wire, I2C interface.
 
-Why do we need/want this? What problem does it solve?
+This adds support for the LTC2499 ADC by extending the LTC2497
+driver.
 
-> Signed-off-by: Pali Rohár <pali@kernel.org>
-> ---
->  .../devicetree/bindings/power/reset/syscon-reboot.yaml        | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/power/reset/syscon-reboot.yaml b/Documentation/devicetree/bindings/power/reset/syscon-reboot.yaml
-> index da2509724812..d905133aab27 100644
-> --- a/Documentation/devicetree/bindings/power/reset/syscon-reboot.yaml
-> +++ b/Documentation/devicetree/bindings/power/reset/syscon-reboot.yaml
-> @@ -42,6 +42,10 @@ properties:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      description: The reset value written to the reboot register (32 bit access).
->  
-> +  priority:
+Note: This fix is required to be applied first:
+https://patchwork.kernel.org/project/linux-iio/patch/20220815091647.1523532-1-dzagorui@cisco.com
 
-A bit too generic for the name.
+Ciprian Regus (3):
+  dt-bindings: iio: adc: Add docs for LTC2499
+  drivers: iio: adc: LTC2499 support
+  drivers: iio: adc: Rename the LTC249x iio device
 
-> +    $ref: /schemas/types.yaml#/definitions/sint32
-> +    description: Priority level of this syscon reset device. Default 192.
+ .../bindings/iio/adc/lltc,ltc2497.yaml        |  6 +++-
+ MAINTAINERS                                   |  1 +
+ drivers/iio/adc/ltc2496.c                     |  9 ++++-
+ drivers/iio/adc/ltc2497-core.c                |  4 +--
+ drivers/iio/adc/ltc2497.c                     | 36 ++++++++++++++++---
+ drivers/iio/adc/ltc2497.h                     | 14 +++++++-
+ 6 files changed, 60 insertions(+), 10 deletions(-)
 
-default: 192
+-- 
+2.30.2
 
-
-Though I'm not really sure about the whole concept of this in DT. Where 
-does 192 come from? Presumably if we have more than 1 reset device, then 
-'priority' is needed in multiple places. So you need a common schema 
-defining the property (as property types should be defined exactly 
-once) which this schema can reference.
-
-Rob
