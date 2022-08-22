@@ -2,218 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B206E59C193
-	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 16:26:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48DD059C19C
+	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 16:29:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235653AbiHVOZ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Aug 2022 10:25:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46406 "EHLO
+        id S233716AbiHVO3C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Aug 2022 10:29:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235427AbiHVOZu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 10:25:50 -0400
-Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 215432C12A;
-        Mon, 22 Aug 2022 07:25:47 -0700 (PDT)
-Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-11c896b879bso13055504fac.3;
-        Mon, 22 Aug 2022 07:25:47 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=G07Tw8w3fntNDsB/UndMxA49LO4X204k9G0o50Lw9wE=;
-        b=WC9XJSUmM3rIdvKbKxApVLRyXeFJvTjl4krDlhFTaIrhIJGO+j38sXtPqYm8UszgEA
-         fWrL35ZUM6ygDlr+D96w+bzjRtqa5o8T5t2MZeqCXig12aVXCXEBLJvmVpc3bfGxCH0o
-         57ipYs0ciRC6id2gG0nq8k87sYCoqubCIxGYKNBstAyvhWArpKplP7j0mqUm3ZpE0KsD
-         5TDE2PJQuM9l9IdMTzmsFz08oL4OfwJkKwngH6h2ISuWRa1Q3UqO7IGrGvum2zHe9NFq
-         TanJ+m/ylwWtFvN+J+w81bLMHisQj9vTri2kzJ+DlHrRv2UfMQqHUElB6FePL5Pny3RB
-         TejA==
-X-Gm-Message-State: ACgBeo0vXfc+HnyuSx08httA1tSreoOsB9p8QZwVuWK5Gw4rlOJdD87+
-        IJfXj4W1LOkxSxxykK921w==
-X-Google-Smtp-Source: AA6agR6a4Kk4I8rLJiBa/DQhIiR5/9u2/276l0A4HWxrkhm0udbG9IZa6W4vgzg+U5wH5Jv2z/yYtA==
-X-Received: by 2002:a05:6870:ea83:b0:fe:365f:cb9d with SMTP id s3-20020a056870ea8300b000fe365fcb9dmr10123648oap.98.1661178345983;
-        Mon, 22 Aug 2022 07:25:45 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id em29-20020a0568705b9d00b0010e81e27b99sm2962640oab.17.2022.08.22.07.25.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Aug 2022 07:25:45 -0700 (PDT)
-Received: (nullmailer pid 3821949 invoked by uid 1000);
-        Mon, 22 Aug 2022 14:25:44 -0000
-Date:   Mon, 22 Aug 2022 09:25:44 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Brad Larson <brad@pensando.io>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mmc@vger.kernel.org, adrian.hunter@intel.com,
-        alcooperx@gmail.com, andy.shevchenko@gmail.com, arnd@arndb.de,
-        blarson@amd.com, brijeshkumar.singh@amd.com,
-        catalin.marinas@arm.com, gsomlo@gmail.com, gerg@linux-m68k.org,
-        krzk@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        lee.jones@linaro.org, broonie@kernel.org,
-        yamada.masahiro@socionext.com, p.zabel@pengutronix.de,
-        piotrs@cadence.com, p.yadav@ti.com, rdunlap@infradead.org,
-        samuel@sholland.org, fancer.lancer@gmail.com,
-        suravee.suthikulpanit@amd.com, thomas.lendacky@amd.com,
-        ulf.hansson@linaro.org, will@kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 06/17] dt-bindings: mfd: amd,pensando-elbasr: Add AMD
- Pensando Elba System Resource chip
-Message-ID: <20220822142544.GA3770388-robh@kernel.org>
-References: <20220820195750.70861-1-brad@pensando.io>
- <20220820195750.70861-7-brad@pensando.io>
+        with ESMTP id S232132AbiHVO3B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 10:29:01 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEF8C15A23
+        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 07:29:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=UQWEpWR+eqTrQhL/m6CNPQK0fjX0dQXbp7+dCwDhCA0=; b=Tr4Tud/32/zM5qK9lgBgLrADv6
+        jRpQ+PtcqySgQh/WrldVBCO+Dv0U6ZGkBP6YSJbRhZKN8c8syNCYUZK4B+IfJrmsiqhkCbro02bxK
+        YOKStqYQuw8bGhgGq4vHX7PEFl3ftcr30KthZXAsAL+O3aQFnclRZFA/hcPe9m6NXtNY=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1oQ8QE-00EELz-0Y; Mon, 22 Aug 2022 16:28:58 +0200
+Date:   Mon, 22 Aug 2022 16:28:57 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Gregory Clement <gregory.clement@bootlin.com>,
+        arm-soc <arm@kernel.org>,
+        Device Tree <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 00/11] Start converting MVEBU bindings to YAML
+Message-ID: <YwOSqRxv/MZxpXL8@lunn.ch>
+References: <20220820194804.3352415-1-andrew@lunn.ch>
+ <20220822135323.GA3758572-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220820195750.70861-7-brad@pensando.io>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20220822135323.GA3758572-robh@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 20, 2022 at 12:57:39PM -0700, Brad Larson wrote:
-> From: Brad Larson <blarson@amd.com>
+On Mon, Aug 22, 2022 at 08:53:23AM -0500, Rob Herring wrote:
+> On Sat, Aug 20, 2022 at 09:47:53PM +0200, Andrew Lunn wrote:
+> > This is the first batch of patches converting the Marvell MVEBU driver
+> > bindings from .txt to .yaml. So far, kirkwood has been used for
+> > testing, but these drivers apply to a range of Marvell SoCs.
+> > 
+> > In order to reduce the number of warnings from the DT schema checking
+> > tools, a few minor changes have been made to a few DT files. No actual
+> > errors have been found, the changes just make the checker quiet.
+> > 
+> > Andrew Lunn (11):
+> >   DT: RTC: orion-rtc: Convert to YAML
+> >   DT: thermal: marvell,kirkwood-thermal: Convert to YAML
+> >   DT: pinctrl: Convert marvell,kirkwood-pintctrl to YAML
+> >   DT: USB: Convert ehci-orion to YAML
+> >   DT: watchdog: Convert marvel.txt to YAML
+> >   arm: DT: kirkwood/orion5: Rename watchdog node
+> >   DT: nand-controller: Reflect reality of marvell,orion-nand
+> >   DT: mtd: Convert orion-nand to YAML
+> >   arm: DT: kirkwood.dtsi: Rename nand to nand-controller
+> >   DT: timer: Convert marvell,orion-timer.txt to YAML
+> >   DT: clock: Convert mvebu-gated-clock.txt to YAML
 > 
-> Add support for the AMD Pensando Elba SoC System Resource chip
-> using the SPI interface.  The Elba SR is a Multi-function Device
-> supporting device register access using CS0, smbus interface for
-> FRU and board peripherals using CS1, dual Lattice I2C masters for
-> transceiver management using CS2, and CS3 for flash access.
-> 
-> Signed-off-by: Brad Larson <blarson@amd.com>
-> ---
->  .../bindings/mfd/amd,pensando-elbasr.yaml     | 97 +++++++++++++++++++
->  1 file changed, 97 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/amd,pensando-elbasr.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/amd,pensando-elbasr.yaml b/Documentation/devicetree/bindings/mfd/amd,pensando-elbasr.yaml
-> new file mode 100644
-> index 000000000000..ded347c3352c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/amd,pensando-elbasr.yaml
-> @@ -0,0 +1,97 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/amd,pensando-elbasr.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: AMD Pensando Elba SoC Resource Controller bindings
-> +
-> +description: |
-> +  AMD Pensando Elba SoC Resource Controller is a set of
-> +  miscellaneous control/status registers accessed on CS0,
-> +  a designware i2c master/slave on CS1, a Lattice rd1173
-> +  dual i2c master on CS2, and flash on CS3.  The /dev interfaces
-> +  created are /dev/pensr0.<CS>.  Hardware reset of the eMMC
+> Also, there's not any dependency between most of these patches and they 
+> all go thru different subsystems, so no need for this to be 1 series.
 
-/dev is a Linux thing and not relevant for the bindings.
+My intention was for them all to go through mvebu, to arm-soc and in.
+That is how all these .txt files got merged many years ago.
 
-> +  is implemented by a sub-device reset-controller which accesses
-> +  a CS0 control register.
-> +
-> +maintainers:
-> +  - Brad Larson <blarson@amd.com>
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - amd,pensando-elbasr
-> +
-> +  spi-max-frequency:
-> +    description: Maximum SPI frequency of the device in Hz.
+There is one exception that i know of, somewhere in a later series i
+convert the PCI controller. There is conflicting change being made, so
+i plan to submit that one via the PCI Maintainer to solve the
+conflict.
 
-No need for generic descriptions of common properties.
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - spi-max-frequency
-> +
-> +patternProperties:
-> +  '^reset-controller@[a-f0-9]+$':
-> +    $ref: /schemas/reset/amd,pensando-elbasr-reset.yaml
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    spi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        num-cs = <4>;
-> +
-> +        sysc: system-controller@0 {
-> +            compatible = "amd,pensando-elbasr";
-> +            reg = <0>;
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +            spi-max-frequency = <12000000>;
-> +
-> +            rstc: reset-controller@0 {
-> +                compatible = "amd,pensando-elbasr-reset";
-> +                reg = <0>;
-
-What does 0 represent here? A register address within 'elbasr' device?
-
-Why do you need a child node for this? Are there other sub-devices and 
-your binding is incomplete? Just put '#reset-cells' in the parent.
-
-> +                #reset-cells = <1>;
-> +            };
-> +        };
-> +
-> +        i2c1: i2c@1 {
-> +            compatible = "amd,pensando-elbasr";
-
-You can't reuse the same compatible to represent different things.
-
-
-> +            reg = <1>;
-> +            spi-max-frequency = <12000000>;
-> +        };
-> +
-> +        i2c2: i2c@2 {
-> +            compatible = "amd,pensando-elbasr";
-
-As this is a Lattice RD1173, I would expect a compatible based on that.
-
-
-> +            reg = <2>;
-> +            spi-max-frequency = <12000000>;
-> +            interrupt-parent = <&porta>;
-> +            interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
-> +        };
-> +
-> +        flash@3 {
-> +            compatible = "amd,pensando-elbasr";
-
-Isn't this a flash device?
-
-> +            reg = <3>;
-> +            spi-max-frequency = <12000000>;
-> +        };
-> +    };
-> +
-> +...
-> -- 
-> 2.17.1
-> 
-> 
+  Andrew
