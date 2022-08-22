@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF18D59CA0B
-	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 22:33:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73D7159CA10
+	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 22:34:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237317AbiHVUdw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Aug 2022 16:33:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57018 "EHLO
+        id S237383AbiHVUeM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Aug 2022 16:34:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237365AbiHVUdv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 16:33:51 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D511E11C1F
-        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 13:33:49 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id n24so9679477ljc.13
-        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 13:33:49 -0700 (PDT)
+        with ESMTP id S237405AbiHVUeK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 16:34:10 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C5572AE0D
+        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 13:34:09 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id d8so4509541lfq.0
+        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 13:34:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=K9ObQ97ISx4Clb2EU3qigRcWkQ6jJk32rWADiTnPB+w=;
-        b=HuR5Jhu4zVf25w1uhem4PvXtNLZjHJwxvHsr3LBLE32U2npuz5LTsoWBb/HaYycPdv
-         tLKGtDcYAdTDkv4aG8D8rKzLSbmKrUai8AGSfFnHc/PfuoWzx+mY5b/SWbMHIa7Lqf/w
-         /LjxODb+uB3sw0hWq7BwxuJIGfGxMCTT2fspo7nnYcqr4hFMI6dcbn+JrcKCZFGB4MS/
-         gRMPS7zIwgQY7SPqY13UMnMNh7B+aYg9PIYppCmkK0qpxNhUc8RQiwVNAOUl+y2yi3uN
-         Eu9VuDN/HbmpWuoIy9dK6VYnU9wx9anKXtKQrgxQxd+jmm0FHyvHGIk9a2Lur/Iyv0r0
-         ip6w==
+        bh=n+5KOQrd1zcRYfj9IdOVX1teuqbwsnScpQd/P5v+XSc=;
+        b=MnkO0GK7zPhGQTTU5nw22JzPP9cYth/4/+c9bbtGBTRxAlXSdkDkEvSNUvm33QL5t8
+         lh4V8HDA8GJw9DsqErxuEZxsOWEDElCOuEvrTQ8ApAHvDNqbm59AvfwlaHzhYTeulNWD
+         cVLULTK4JVItAv4cPkixwjXDi+ZNr7lBjMMyOIrwVQhgApjnpK1NCiStUIYwHLmIFY+N
+         qCru4TN8N+SMWvE1C3787wclJFRAAEO7GYowJviQYOiGIdgUUM5xbzhVVHgnBGWd/Hr+
+         L6kYIDRD6ZbrYauBfF6bREQLbSdCCIaXmvg4g8oU/sngSa9//hAjP2d2mokpGgsrQfp3
+         0GKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=K9ObQ97ISx4Clb2EU3qigRcWkQ6jJk32rWADiTnPB+w=;
-        b=lnBax9u75Fydtc2jzM2M0VH36K4iedGvrBjFzItnwMz+B/9tVvMhEm+hdf3iKT3OGL
-         ew2+f4eWA+11GwkFCXjUwgdZ2Z1r3ab+cJUHFX7tHGZPvmu7BoBSQHp+ZlnX3ekUbKpD
-         jtbBwMW0YCrAPFpn2QP0irg1OQm+21QY4ruREDdu6jVAUbRi2TXaNscn4fG9aUY8yQYf
-         fYWTiadFx2UttsognfZQ44ax+tdZVU8qtV9dI1ToHL7z/S4aM5G2Hf611EriGY97WR5w
-         aQuxWqQ+v7XAYZ/Jw8CvDm2Jl3HQgEmgjhX96g7FxEWsSImQemaBCz+beMUUT4LMMG3T
-         FBXQ==
-X-Gm-Message-State: ACgBeo1e1E2WMJK9dQ99+iwqbDI5/Om2/M9n6WQCt4g5APo37/7WcdJV
-        uaj+nMCdH5/wMUhTey2M3UOy6w==
-X-Google-Smtp-Source: AA6agR6WVHEiENVXSb3cj+S907V1F8Xb4V+GL/frT2pmZ0hKCfKocjlQl883hDG+8Q/TBumk2USBTQ==
-X-Received: by 2002:a05:651c:1544:b0:25f:5036:ece2 with SMTP id y4-20020a05651c154400b0025f5036ece2mr6589760ljp.73.1661200428065;
-        Mon, 22 Aug 2022 13:33:48 -0700 (PDT)
+        bh=n+5KOQrd1zcRYfj9IdOVX1teuqbwsnScpQd/P5v+XSc=;
+        b=G7/S3AXdK5LIIsBwyyGpbbshHJOcfGaZpXsT9xBQvaUj+y3jwp9IwajbTP+BsYiuFP
+         Ps6FVTWm1PT4ruPHIyfzFO/0DapOWpyev2QvGclrjQRz2iK9ekDPwNr3uLMHZyuyVzr2
+         uQT2/kL0QqGBQymocglOcOmOtTZwnfKGG0DXE3mLbDASxaPIaNBv9WkdRvq5Si9uYL91
+         alRAeiRdR3t1VtfFgw5vfMwGiQ1swjZHXhpvVV2d33Jg6yadKLEwmV0Z46oGGlunAhFB
+         y/yIBSW3+j34cdqtvCgPxSo/rzfLSkX2SnCMJx73+rXlV52JbYK6IYSd5n1RGD2f7Tph
+         6TeQ==
+X-Gm-Message-State: ACgBeo0ldK7x7rOI8XaIEuc/mod6q0QbGsEljKfhKXjunXRtS4voqtcS
+        haezh0xAZnYbc5ojHc9VvHuHgQ==
+X-Google-Smtp-Source: AA6agR753dxf3W5qo9qPUq3jDVTHWl504cW4UYh1AEjc/sllgbZkCbVKuNBo4Z3dcTm6sKBfN/fDrg==
+X-Received: by 2002:a05:6512:1583:b0:492:c028:d2f3 with SMTP id bp3-20020a056512158300b00492c028d2f3mr7999834lfb.216.1661200447407;
+        Mon, 22 Aug 2022 13:34:07 -0700 (PDT)
 Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id s8-20020a19ad48000000b0048ae316caf0sm2090513lfd.18.2022.08.22.13.33.47
+        by smtp.gmail.com with ESMTPSA id 13-20020a05651c128d00b0025e4c560475sm1991849ljc.96.2022.08.22.13.34.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Aug 2022 13:33:47 -0700 (PDT)
-Message-ID: <2d9db562-1746-64d9-7ca3-f1a7f405bd77@linaro.org>
-Date:   Mon, 22 Aug 2022 23:33:47 +0300
+        Mon, 22 Aug 2022 13:34:07 -0700 (PDT)
+Message-ID: <e13e644e-0f18-b338-1068-e4405def3c6f@linaro.org>
+Date:   Mon, 22 Aug 2022 23:34:06 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.1.2
-Subject: Re: [PATCH 3/7] drm/msm/dp: Add DP and EDP compatibles for SC8280XP
+Subject: Re: [PATCH 4/7] drm/msm/dp: Add SDM845 DisplayPort instance
 Content-Language: en-GB
 To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Clark <robdclark@gmail.com>,
@@ -70,14 +70,14 @@ Cc:     Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
         freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20220810035013.3582848-1-bjorn.andersson@linaro.org>
- <20220810035013.3582848-4-bjorn.andersson@linaro.org>
+ <20220810035013.3582848-5-bjorn.andersson@linaro.org>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20220810035013.3582848-4-bjorn.andersson@linaro.org>
+In-Reply-To: <20220810035013.3582848-5-bjorn.andersson@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,21 +86,20 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 10/08/2022 06:50, Bjorn Andersson wrote:
-> The SC8280XP platform has four DisplayPort controllers, per MDSS
-> instance, all with widebus support.
-> 
-> The first two are defined to be DisplayPort only, while the latter pair
-> (of each instance) can be either DisplayPort or Embedded DisplayPort.
-> The two sets are tied to the possible compatibels.
+> The Qualcomm SDM845 platform has a single DisplayPort controller, with
+> the same design as SC7180, so add support for this by reusing the SC7180
+> definition.
 > 
 > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
 Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
 > ---
->   drivers/gpu/drm/msm/dp/dp_display.c | 22 ++++++++++++++++++++++
->   drivers/gpu/drm/msm/msm_drv.h       |  1 +
->   2 files changed, 23 insertions(+)-- 
+>   drivers/gpu/drm/msm/dp/dp_display.c | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+
+-- 
 With best wishes
 Dmitry
 
