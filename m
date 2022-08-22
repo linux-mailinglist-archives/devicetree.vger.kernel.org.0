@@ -2,57 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 67FD959C653
-	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 20:31:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3963E59C67B
+	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 20:37:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237491AbiHVSbQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Aug 2022 14:31:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58012 "EHLO
+        id S237060AbiHVShA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Aug 2022 14:37:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237618AbiHVSar (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 14:30:47 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B86E48E89;
-        Mon, 22 Aug 2022 11:30:46 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 14F70B816E6;
-        Mon, 22 Aug 2022 18:30:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65407C433C1;
-        Mon, 22 Aug 2022 18:30:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661193043;
-        bh=OoTba3ydHbqkNB71cUiP4uky5w7voNgWy8VPUNjG+KI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=M7AO1nBKtRpjLwZAcfu3G3zEiXPS6YHJnnZnepO6S2YOr1eJHx3OXmRXeOOOoIfF5
-         s5xZ9MWWQSHPD5zT9oTn66n+h+1T1z00iXRXWvSmfFw6MRjul/AhG5y8Ml+SHlsTDv
-         eQc+MI/J17X1T+HdAXaX5yaOKKF1B+riE3rhTjeqI6TFH3U1pubpPLW/Sz5A3bbDT0
-         pIqBc2GMAlXklZF4dx+X21nYORgVM2aJsKoN3KyREKeu/AFU9CctSichWE+u+Nbu2i
-         WhFnap504LZOq32O0AkLm4PXkDM/83Oq0i+N14ReZzuqFU4JSyOqM5I6j4CGfopjvg
-         eftOcZKkj9m7g==
-Received: by pali.im (Postfix)
-        id 1D03E97B; Mon, 22 Aug 2022 20:30:40 +0200 (CEST)
-Date:   Mon, 22 Aug 2022 20:30:39 +0200
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] powerpc/85xx: DTS: Add CPLD definitions for P1021RDB
- Combo Board CPL Design
-Message-ID: <20220822183039.sfpupym236ubkeio@pali>
-References: <20220819084433.26011-1-pali@kernel.org>
- <20220822170056.GA4135542-robh@kernel.org>
+        with ESMTP id S235078AbiHVSg7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 14:36:59 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03A312AE2D
+        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 11:36:58 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id j21so17598525ejs.0
+        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 11:36:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=+WwoP89naLFw376J31mZC0baqAJeBhnYDrkPNXljcJ4=;
+        b=lJMf+tYZ7J2q8o7OYUpHOIMdrGH70ce5L+DWiPnndbCDB5fygnig4PXs0ZYAtqh5QM
+         03sVuyelBIukUpsbwEVRY8e8WolKhVq6nCuDwUxP7TaoqxOEYv5qJm68OcmFzQYvEJaD
+         kRo9wAFEkcT8is3jRGgy0qOHt2ck7swchXvcs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=+WwoP89naLFw376J31mZC0baqAJeBhnYDrkPNXljcJ4=;
+        b=XgrhneN+o4F42pKYBhXXSX4K5f89v0AGjEydDRfvyhf8Ch+vnjJpeSJ2GrtskbLEx5
+         YBKZZRC7Aa64R56cp3Ap44W32pZ+OCMgDUOfM9wbJ7mTiYnoMwHifjd5DV9MH+k5Wt7G
+         dM+TCycZwk90f8YUkIpaW2BXs5OuxjvLb0xIZdai0fLhkZLv2t/ZOAbgKQ9lewkGJlue
+         H/swAKp8Ml3igQ2Dw++9EJsViVWvOTB2gnx0Q1CYM0s88GbF0FqC9isPlW2AbopstD6b
+         q89uSDANNbG7L/LUaIhMCtVRqU8obVifNB0AmRUmBVgHs265ontG9bgiXuOQu+m5cwTJ
+         8T5Q==
+X-Gm-Message-State: ACgBeo0Tnysy5EqZL8X5K+R9CTC62Qpm+VIXAfVCMA7dkx1aqBLNdo/t
+        UftqQDYWu4Z57Ps0fCRrHDxaTrLFmVizV2KM
+X-Google-Smtp-Source: AA6agR6fyHJ5q6w/o7MAIioNiWS0azqxWfznn4irhgO8QtncsS744VCIwPe8jhAWF9vKy0VR8HlwyQ==
+X-Received: by 2002:a17:907:3f94:b0:73d:8f71:b56a with SMTP id hr20-20020a1709073f9400b0073d8f71b56amr1740127ejc.328.1661193416340;
+        Mon, 22 Aug 2022 11:36:56 -0700 (PDT)
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com. [209.85.221.44])
+        by smtp.gmail.com with ESMTPSA id ja17-20020a170907989100b0073d678f50bfsm3697105ejc.164.2022.08.22.11.36.54
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 22 Aug 2022 11:36:55 -0700 (PDT)
+Received: by mail-wr1-f44.google.com with SMTP id r16so14291697wrm.6
+        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 11:36:54 -0700 (PDT)
+X-Received: by 2002:a5d:6881:0:b0:225:28cb:332f with SMTP id
+ h1-20020a5d6881000000b0022528cb332fmr11502894wru.405.1661193414265; Mon, 22
+ Aug 2022 11:36:54 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220822170056.GA4135542-robh@kernel.org>
-User-Agent: NeoMutt/20180716
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+References: <20220822062820.1684139-1-judyhsiao@chromium.org>
+In-Reply-To: <20220822062820.1684139-1-judyhsiao@chromium.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Mon, 22 Aug 2022 11:36:42 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=V4rYBdPiUxvtWZdr0ng67CSmCJD4CzigU=XeUV7sa1nA@mail.gmail.com>
+Message-ID: <CAD=FV=V4rYBdPiUxvtWZdr0ng67CSmCJD4CzigU=XeUV7sa1nA@mail.gmail.com>
+Subject: Re: [PATCH v3] arm64: dts: qcom: sc7280: Use "PP1800_L2C" as the DMIC
+ power source.
+To:     Judy Hsiao <judyhsiao@chromium.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Jimmy Cheng-Yi Chiang <cychiang@google.com>,
+        Judy Hsiao <judyhsiao@google.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -61,97 +84,80 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Monday 22 August 2022 12:00:56 Rob Herring wrote:
-> On Fri, Aug 19, 2022 at 10:44:33AM +0200, Pali Rohár wrote:
-> > P1021RDB Combo Board CPLD Design is used on following Freescale boards:
-> > P1021RDB-PC, P1020RDB-PD, P1020MBG-PC, P1020UTM-PC and P2020RDB-PCA.
-> > 
-> > Add CPLD definitions for all these boards for which already exist DTS file.
-> > 
-> > CPLD has bank size 128kB, it is connected via CS3 on LBC and mapped to
-> > memory range 0xFFA00000~0xFFA1FFFF.
-> > 
-> > As CPLD firmware is common on all these boards, use just one compatible
-> > string "fsl,p1021rdb-pc-cpld".
-> > 
-> > In some DTS files is CPLD already defined, but definition is either
-> > incomplete or wrong. So fix it.
-> > 
-> > All these boards have via CPLD connected max6370 watchdog at offset 0x2
-> > with GPIO 11, status led at offset 0x8 and reset controller at offset 0xd.
-> > Additionally P1020MBG-PC and P1020RDB-PD boards have FXO led at offset 0x9
-> > and FXS leds at offset 0xa.
-> > 
-> > Signed-off-by: Pali Rohár <pali@kernel.org>
-> > ---
-> >  arch/powerpc/boot/dts/fsl/p1020mbg-pc.dtsi    | 92 +++++++++++++++++++
-> >  arch/powerpc/boot/dts/fsl/p1020mbg-pc_32b.dts |  6 +-
-> >  arch/powerpc/boot/dts/fsl/p1020mbg-pc_36b.dts |  6 +-
-> >  arch/powerpc/boot/dts/fsl/p1020rdb-pd.dts     | 44 +++++++--
-> >  arch/powerpc/boot/dts/fsl/p1020utm-pc.dtsi    | 37 ++++++++
-> >  arch/powerpc/boot/dts/fsl/p1020utm-pc_32b.dts |  4 +-
-> >  arch/powerpc/boot/dts/fsl/p1020utm-pc_36b.dts |  4 +-
-> >  arch/powerpc/boot/dts/fsl/p1021rdb-pc.dtsi    | 37 ++++++++
-> >  arch/powerpc/boot/dts/fsl/p1021rdb-pc_32b.dts |  5 +-
-> >  arch/powerpc/boot/dts/fsl/p1021rdb-pc_36b.dts |  5 +-
-> >  arch/powerpc/boot/dts/fsl/p2020rdb-pc.dtsi    | 33 ++++++-
-> >  11 files changed, 251 insertions(+), 22 deletions(-)
-> > 
-> > diff --git a/arch/powerpc/boot/dts/fsl/p1020mbg-pc.dtsi b/arch/powerpc/boot/dts/fsl/p1020mbg-pc.dtsi
-> > index a24699cfea9c..c73996dcd809 100644
-> > --- a/arch/powerpc/boot/dts/fsl/p1020mbg-pc.dtsi
-> > +++ b/arch/powerpc/boot/dts/fsl/p1020mbg-pc.dtsi
-> > @@ -83,6 +83,95 @@
-> >  		compatible = "vitesse-7385";
-> >  		reg = <0x2 0x0 0x20000>;
-> >  	};
-> > +
-> > +	cpld@3,0 {
-> > +		#address-cells = <1>;
-> > +		#size-cells = <1>;
-> > +		compatible = "fsl,p1021rdb-pc-cpld", "simple-bus", "syscon";
-> > +		reg = <0x3 0x0 0x20000>;
-> > +		ranges = <0x0 0x3 0x0 0x20000>;
-> > +
-> > +		watchdog@2 {
-> > +			compatible = "maxim,max6370";
-> > +			reg = <0x2 0x1>;
-> > +			gpios = <&gpio 11 1>;
-> > +		};
-> > +
-> > +		led@8 {
-> 
-> The register-bit-led schema says this should be 'led@8,0'. Did you 
-> run 'dtbs_check'? 
+Hi,
 
-No, it does not work and I lost interest to trying setup machine for it again.
+On Sun, Aug 21, 2022 at 11:28 PM Judy Hsiao <judyhsiao@chromium.org> wrote:
+>
+> Use "PP1800_L2C" as the DMIC power source to match the hardware
+> schematic by:
+>    1. Set MIC bias voltage regulator (vdd-micb-supply) to PP1800_L2C.
+>    2. In audio-routing, set VA DMIC01~VA DMIC03 to use the vdd-micb-supply
+>       setting.
+>
+> It fixes the DMIC no sound issue of villager-r1.
+>
+> Co-developed-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+> Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
+> ---
+> Changes since V2:
+>     -- Update the commit message.
+> Changes since V1:
+>     -- Update the commit message.
+>
+> This patch depends on:
+> arm64: dts: qcom: sc7280: Add herobrine-villager-r1. [1]
+>
+> [1] https://patchwork.kernel.org/patch/12926099/
+>
+> .../dts/qcom/sc7280-herobrine-villager-r1.dts | 28 +++++++++++++++++++
+>  1 file changed, 28 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1.dts
+> index c03b3ae4de50..983defa7c76d 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1.dts
+> @@ -12,3 +12,31 @@ / {
+>         model = "Google Villager (rev1+)";
+>         compatible = "google,villager", "qcom,sc7280";
+>  };
+> +
+> +&lpass_va_macro {
+> +       vdd-micb-supply = <&pp1800_l2c>;
+> +};
+> +
+> +&sound {
+> +       audio-routing =
+> +                       "IN1_HPHL", "HPHL_OUT",
+> +                       "IN2_HPHR", "HPHR_OUT",
+> +                       "AMIC1", "MIC BIAS1",
+> +                       "AMIC2", "MIC BIAS2",
+> +                       "VA DMIC0", "vdd-micb",
+> +                       "VA DMIC1", "vdd-micb",
+> +                       "VA DMIC2", "vdd-micb",
+> +                       "VA DMIC3", "vdd-micb",
+> +                       "TX SWR_ADC0", "ADC1_OUTPUT",
+> +                       "TX SWR_ADC1", "ADC2_OUTPUT",
+> +                       "TX SWR_ADC2", "ADC3_OUTPUT",
+> +                       "TX SWR_DMIC0", "DMIC1_OUTPUT",
+> +                       "TX SWR_DMIC1", "DMIC2_OUTPUT",
+> +                       "TX SWR_DMIC2", "DMIC3_OUTPUT",
+> +                       "TX SWR_DMIC3", "DMIC4_OUTPUT",
+> +                       "TX SWR_DMIC4", "DMIC5_OUTPUT",
+> +                       "TX SWR_DMIC5", "DMIC6_OUTPUT",
+> +                       "TX SWR_DMIC6", "DMIC7_OUTPUT",
+> +                       "TX SWR_DMIC7", "DMIC8_OUTPUT";
+> +
+> +};
 
-> But that's going to conflict with what simple-bus schema says.
+nit: there's an extra blank line here. Can you send a v4 to fix?
 
-Another reason why not try it again. Lot of schemas says that are in
-conflict, nobody understand it and when I ask how to do it, I just get
-silence or answer which does not work on the real hw. And if there is
-some schema error message then it looks like it was generated by random
-word generator.
+Other than that this looks OK to me, but I suspect that Bjorn will
+have a hard time applying this without help. I think someone who is
+keeping track of all the audio patches is going to need to provide a
+list (or a sample tree) showing what needs to be applied and in what
+order. It would be good to confirm that there aren't any outstanding
+issues on any of the patches as well. We really don't want to go
+another cycle without getting the audio patches landed.
 
-> I don't 
-> know that 'simple-bus' is really appropriate here. The CPLD isn't really 
-> just a bus. 'simple-mfd' is what's more commonly used with 'syscon'.
-
-Sorry, I do not understand those schemas anymore. And based on previous
-failures, I'm not going to try it again.
-
-It is a _bus_ and it was tested that it works as a bus with more
-existing drivers.
-
-> > +			compatible = "register-bit-led";
-> > +			reg = <0x8 0x1>;
-> > +			offset = <0x8>;
-> > +			mask = <0x1>;
-> > +			active-low;
-> > +			default-state = "keep";
-> > +			label = "status";
-> > +			function = "status";
-> > +			color = <6>; /* LED_COLOR_ID_YELLOW */
-> > +		};
-> 
+-Doug
