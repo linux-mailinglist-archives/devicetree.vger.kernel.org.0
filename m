@@ -2,188 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C66359CB2F
-	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 23:57:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2F9059CB60
+	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 00:19:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236379AbiHVV53 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Aug 2022 17:57:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50204 "EHLO
+        id S237489AbiHVWTB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Aug 2022 18:19:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230081AbiHVV51 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 17:57:27 -0400
-Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B150564D7;
-        Mon, 22 Aug 2022 14:57:26 -0700 (PDT)
-Received: by mail-ot1-f44.google.com with SMTP id l5-20020a05683004a500b0063707ff8244so8609555otd.12;
-        Mon, 22 Aug 2022 14:57:26 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=message-id:date:subject:references:in-reply-to:cc:to:from
-         :x-gm-message-state:from:to:cc;
-        bh=PdkIZjhOP4TvDPaY2zDpfYtQ/nCjxN0inguu0eaL+7k=;
-        b=SDmI+fY5BG+lz/3qa7JBYVdSRWCydsPcpn+oKq5ZVE2E0usbnQtNh5xLAc2ZWF+oyV
-         vpxkAAsTVX1RGN3QoO8JRVRiRNTNXQ+RwQGbTT7MpPL8BUP/BawF+deqgMT3zvof7/s3
-         cN2JT1nPlQ4fGa9tJJ3lxPDrpK9xxXj8bEMm/U/OyZMpqLUzZ1dzFqYZ/Q7kQdj2d0n+
-         U8ZPndSMa4Hi3Y0maUFjZ7XP5dA/zjlF+Peoj7zri16pU4GxusNt6URcuvuFq0JlDfzA
-         R26kVysF1AbdoX/F8E0WxSqW5R0uLqHhkhVHJxZ8eOr0bF7gOITb7fs8jw4rtJw4QhMO
-         49zg==
-X-Gm-Message-State: ACgBeo182/UqY2ID0UnzS37y88WU7Nf35z2a1PMu6/1eG+0zWKYQ0bpN
-        F+B3qaESz4/tneTiDT0cmg==
-X-Google-Smtp-Source: AA6agR52en3TcgQx4Fip4edqZpW5gFrLNHJzUDABegYmD68NdwLiTxNk0/hdM4PuOU8NYhoOxWR33Q==
-X-Received: by 2002:a05:6830:1017:b0:637:163a:38db with SMTP id a23-20020a056830101700b00637163a38dbmr8148680otp.89.1661205445272;
-        Mon, 22 Aug 2022 14:57:25 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id y6-20020a056871010600b00118687c3907sm3176119oab.24.2022.08.22.14.57.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Aug 2022 14:57:24 -0700 (PDT)
-Received: (nullmailer pid 931362 invoked by uid 1000);
-        Mon, 22 Aug 2022 21:57:24 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        linux-pci@vger.kernel.org, Frank Li <Frank.Li@nxp.com>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org,
-        =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
-In-Reply-To: <20220822184701.25246-6-Sergey.Semin@baikalelectronics.ru>
-References: <20220822184701.25246-1-Sergey.Semin@baikalelectronics.ru> <20220822184701.25246-6-Sergey.Semin@baikalelectronics.ru>
-Subject: Re: [PATCH v5 05/20] dt-bindings: PCI: dwc: Add phys/phy-names common properties
-Date:   Mon, 22 Aug 2022 16:57:24 -0500
-Message-Id: <1661205444.106003.931361.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S231466AbiHVWS7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 18:18:59 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26D4A30F5F;
+        Mon, 22 Aug 2022 15:18:59 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id E133DB81979;
+        Mon, 22 Aug 2022 22:18:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2B4EC433C1;
+        Mon, 22 Aug 2022 22:18:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1661206736;
+        bh=lbcG/7heY9/JOFnDhcj6xbKcHok+D8FUqe/aKxOcKf8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Z8C/OSIeggQ9gE6xHp8ktHYev5VYLgZE3JSSG+pulWkB+NxV7bArGgYloECSKaTEe
+         za+YaqntbyDojm+TQRjxYduMRpzVqfTz1XkUo+hAdLzfK5dWEXGDKALrjeHUlYGkN0
+         Sqa5amT13mAZdb2V31RpXkKqOFYFys/iumTa1CgJ+iFUFuvYr7tWMd0g2IcPG6J4i2
+         Ugt4Uhdk4TIyfF9dI9/YoFxkpdeOqBwzOcHMWadPYhNc+y+DzLwxrTabG2gE5sXS8N
+         uI7Gn8QnO4bxofXXwBtuiWDU5vwHlr2L0Bh59sP+m2O4/HN8KdNxGTG65W0aGaUFhw
+         rBjH3EYZnGsNA==
+Date:   Tue, 23 Aug 2022 00:18:52 +0200
+From:   Wolfram Sang <wsa@kernel.org>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     aisheng.dong@nxp.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, xiaoning.wang@nxp.com,
+        Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH V2 7/7] i2c: imx-lpi2c: use bulk clk API
+Message-ID: <YwQAzBUuFvGUlrmX@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, aisheng.dong@nxp.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, xiaoning.wang@nxp.com,
+        Peng Fan <peng.fan@nxp.com>
+References: <20220816125526.2978895-1-peng.fan@oss.nxp.com>
+ <20220816125526.2978895-8-peng.fan@oss.nxp.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="SNO4dW2CIYUSOHuv"
+Content-Disposition: inline
+In-Reply-To: <20220816125526.2978895-8-peng.fan@oss.nxp.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 22 Aug 2022 21:46:46 +0300, Serge Semin wrote:
-> It's normal to have the DW PCIe RP/EP DT-nodes equipped with the explicit
-> PHY phandle references. There can be up to 16 PHYs attach in accordance
-> with the maximum number of supported PCIe lanes. Let's extend the common
-> DW PCIe controller schema with the 'phys' and 'phy-names' properties
-> definition. The PHY names are defined with the regexp pattern
-> '^pcie([0-9]+|-?phy[0-9]*)?$' so to match the names currently supported by
-> the DW PCIe platform drivers ("pcie": meson; "pciephy": qcom, imx6;
-> "pcie-phy": uniphier, rockchip, spear13xx; "pcie": intel-gw; "pcie-phy%d":
-> keystone, dra7xx; "pcie": histb, etc). Though the "pcie%d" format would
-> the most preferable in this case.
-> 
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> 
-> ---
-> 
-> Changelog v3:
-> - This is a new patch unpinned from the next one:
->   https://lore.kernel.org/linux-pci/20220503214638.1895-2-Sergey.Semin@baikalelectronics.ru/
->   by the Rob' request. (@Rob)
-> 
-> Changelog v5:
-> - Add a note about having line-based PHY phandles order. (@Rob)
-> - Prefer 'pcie[0-9]+' PHY-names over the rest of the cases. (@Rob)
-> ---
->  .../bindings/pci/snps,dw-pcie-common.yaml     | 19 +++++++++++++++++++
->  .../bindings/pci/snps,dw-pcie-ep.yaml         |  3 +++
->  .../devicetree/bindings/pci/snps,dw-pcie.yaml |  3 +++
->  3 files changed, 25 insertions(+)
-> 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+--SNO4dW2CIYUSOHuv
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-yamllint warnings/errors:
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.example.dtb: pcie@14180000: phy-names: 'oneOf' conditional failed, one must be fixed:
-	'p2u-0' does not match '^pcie[0-9]+$'
-	'p2u-0' does not match '^pcie(-?phy[0-9]*)?$'
-	'p2u-1' does not match '^pcie[0-9]+$'
-	'p2u-1' does not match '^pcie(-?phy[0-9]*)?$'
-	'p2u-2' does not match '^pcie[0-9]+$'
-	'p2u-2' does not match '^pcie(-?phy[0-9]*)?$'
-	'p2u-3' does not match '^pcie[0-9]+$'
-	'p2u-3' does not match '^pcie(-?phy[0-9]*)?$'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.example.dtb: pcie@14180000: Unevaluated properties are not allowed ('#address-cells', '#interrupt-cells', '#size-cells', 'bus-range', 'device_type', 'interrupt-map', 'interrupt-map-mask', 'linux,pci-domain', 'num-lanes', 'ranges', 'supports-clkreq' were unexpected)
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.example.dtb: pcie@14160000: phy-names: 'oneOf' conditional failed, one must be fixed:
-	'p2u-0' does not match '^pcie[0-9]+$'
-	'p2u-0' does not match '^pcie(-?phy[0-9]*)?$'
-	'p2u-1' does not match '^pcie[0-9]+$'
-	'p2u-1' does not match '^pcie(-?phy[0-9]*)?$'
-	'p2u-2' does not match '^pcie[0-9]+$'
-	'p2u-2' does not match '^pcie(-?phy[0-9]*)?$'
-	'p2u-3' does not match '^pcie[0-9]+$'
-	'p2u-3' does not match '^pcie(-?phy[0-9]*)?$'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.example.dtb: pcie@14160000: Unevaluated properties are not allowed ('#address-cells', '#interrupt-cells', '#size-cells', 'bus-range', 'device_type', 'interrupt-map', 'interrupt-map-mask', 'linux,pci-domain', 'num-lanes', 'num-viewport', 'ranges' were unexpected)
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie-ep.example.dtb: pcie-ep@141a0000: phy-names: 'oneOf' conditional failed, one must be fixed:
-	'p2u-0' does not match '^pcie[0-9]+$'
-	'p2u-0' does not match '^pcie(-?phy[0-9]*)?$'
-	'p2u-1' does not match '^pcie[0-9]+$'
-	'p2u-1' does not match '^pcie(-?phy[0-9]*)?$'
-	'p2u-2' does not match '^pcie[0-9]+$'
-	'p2u-2' does not match '^pcie(-?phy[0-9]*)?$'
-	'p2u-3' does not match '^pcie[0-9]+$'
-	'p2u-3' does not match '^pcie(-?phy[0-9]*)?$'
-	'p2u-4' does not match '^pcie[0-9]+$'
-	'p2u-4' does not match '^pcie(-?phy[0-9]*)?$'
-	'p2u-5' does not match '^pcie[0-9]+$'
-	'p2u-5' does not match '^pcie(-?phy[0-9]*)?$'
-	'p2u-6' does not match '^pcie[0-9]+$'
-	'p2u-6' does not match '^pcie(-?phy[0-9]*)?$'
-	'p2u-7' does not match '^pcie[0-9]+$'
-	'p2u-7' does not match '^pcie(-?phy[0-9]*)?$'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie-ep.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie-ep.example.dtb: pcie-ep@141a0000: Unevaluated properties are not allowed ('num-lanes' was unexpected)
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie-ep.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie-ep.example.dtb: pcie-ep@141a0000: phy-names: 'oneOf' conditional failed, one must be fixed:
-	'p2u-0' does not match '^pcie[0-9]+$'
-	'p2u-0' does not match '^pcie(-?phy[0-9]*)?$'
-	'p2u-1' does not match '^pcie[0-9]+$'
-	'p2u-1' does not match '^pcie(-?phy[0-9]*)?$'
-	'p2u-2' does not match '^pcie[0-9]+$'
-	'p2u-2' does not match '^pcie(-?phy[0-9]*)?$'
-	'p2u-3' does not match '^pcie[0-9]+$'
-	'p2u-3' does not match '^pcie(-?phy[0-9]*)?$'
-	'p2u-4' does not match '^pcie[0-9]+$'
-	'p2u-4' does not match '^pcie(-?phy[0-9]*)?$'
-	'p2u-5' does not match '^pcie[0-9]+$'
-	'p2u-5' does not match '^pcie(-?phy[0-9]*)?$'
-	'p2u-6' does not match '^pcie[0-9]+$'
-	'p2u-6' does not match '^pcie(-?phy[0-9]*)?$'
-	'p2u-7' does not match '^pcie[0-9]+$'
-	'p2u-7' does not match '^pcie(-?phy[0-9]*)?$'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie-ep.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie-ep.example.dtb: pcie-ep@141a0000: Unevaluated properties are not allowed ('num-lanes' was unexpected)
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie-ep.yaml
+> -	clk_disable_unprepare(lpi2c_imx->clk);
+> +	clk_bulk_disable(lpi2c_imx->num_clks, lpi2c_imx->clks);
 
-doc reference errors (make refcheckdocs):
+Why is there no 'unprepare' with bulk?
 
-See https://patchwork.ozlabs.org/patch/
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+--SNO4dW2CIYUSOHuv
+Content-Type: application/pgp-signature; name="signature.asc"
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+-----BEGIN PGP SIGNATURE-----
 
-pip3 install dtschema --upgrade
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmMEAMwACgkQFA3kzBSg
+Kba5EQ//VXnGL1C4B0a//cAO8UEoVGlawafffYMhWe3JEjtI7E2hZKSdu9lDyFdQ
+0HYdjMlZLyJZjfAYPs+GT6vKHN0vYTzuxDbZRk7r9aWVa0AG6xxgH2/qLLAk2CAK
+ZzBlASlKfv2mZpJ73ZG0Iz9T5WY5VkSngm16Ycr/6sRC4rkmzZ794PvPhKD2xjWr
+a8npBv1FPDjr96z1Bg1GrjbAUqChUTTCc2YsDkHgWnOEhZbRyMl1oaGKTpMPgLIT
+4HnbL1WG7TL2FPcU3VDruVDm2R9ZCoJOAkqNbCIjVnYLd3ePKPOvmBnbyfAoxKnp
+LZAj5a6xDYZGief0mIemgv4lGKPxt9tjgJndX/xk97axUO1pB8YVpcZ5XEDvTUSq
+KiMeNFFqMaOkOKtTBhLDxDlGTTclF/DtuCzZEW4qYCjnBZOa9XqAsX9GbGAD3GAX
+VoeSS9XaoN7Bkq4nGzxXg4uHGXiW26TH4ByqcQtlHo1TagMLA946bL9U1z96Mqvd
+BX1ILO3D8rFW5WwAyoJrWMC6AbdBhzatVy3yOaAEt0nKsBp0Wu/qSwSKd2yAllm4
+CRkWlm5Jf9DnvWgCCJewH6nS+qtU10ujzca1SYzsDAPg6csLnE40c6CsfzvWTHbu
+eHqIkKPtCCkMAT82sN1SYLt25qYdAZzD1wXAR9QYjdlBIVcpRTQ=
+=Iftg
+-----END PGP SIGNATURE-----
 
-Please check and re-submit.
-
+--SNO4dW2CIYUSOHuv--
