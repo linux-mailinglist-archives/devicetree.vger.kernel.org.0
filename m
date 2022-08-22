@@ -2,95 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2768359BFF9
-	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 15:01:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A7E759C008
+	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 15:03:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233652AbiHVNA6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Aug 2022 09:00:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38756 "EHLO
+        id S234182AbiHVNDs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Aug 2022 09:03:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41718 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234729AbiHVNAV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 09:00:21 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7436633E29;
-        Mon, 22 Aug 2022 06:00:19 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0931561160;
-        Mon, 22 Aug 2022 13:00:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 587AAC43142;
-        Mon, 22 Aug 2022 13:00:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661173218;
-        bh=ZQf+RtRzflIsW4ByUNtjm6Aenxs0mbiyzzAYeGeMBzM=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=j0icUhz1vSvexEOqJL06kF5UwY1i6l8AbDdIl1zwwX+8mTc3w0rxgL+bNDpQnTYyu
-         VZUFY6KRWwW/BOaGx3Mb/V69aum+uBO6cTFAzh+JrLcD9sfrF0JbeiObTmNX3ua517
-         U+Ku+IPk134LO78QwRlI19P8s8vW+l50/y2lRNZdJgiWSTBoEJO51CHWSJ79nwxy4z
-         086Jbq6dy9SDmko47Px9EJPr9TLlH4LtgfXILYpa1urD1iLnBPd8/oVcmgmTTH5Dl9
-         uZ0gwM1LXY3C8JMwxw/5IA9YzQV3AQ+uTA+hUEijXhphVgQ1hjwWdzp9TaP6AXQ7+N
-         kALZzLHP4kXww==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 33D18E2A040;
-        Mon, 22 Aug 2022 13:00:18 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S230020AbiHVNDr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 09:03:47 -0400
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2087.outbound.protection.outlook.com [40.107.94.87])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28DD49595;
+        Mon, 22 Aug 2022 06:03:40 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=K4qGxXY7fdRashDAt73E3whbEx8auqR3AacUbUS1qsMO3yGJ4/DQNLyMZ6Gd1CggSssWTrbwbxDGLXzYLZv46rtAmeV+YaVde/UnBd8WjH0PLaqqGlwzuVzY2k5qIBVw3DDJgxbrLWZnOBFv9RI7lNVij0H7KyO+ZFSRKyAYmTvn3uE1SNCl13KFBS2da3/Sexkwu/uGu8RFS/1w6b4na2QIJBED1ReRZTcCIFT34TrI5KtU0LFdhjRFDhxLLb/7L/Wlvar4dTl9fpEd9Ww7BTHQs3Vi5y3ikzdFUam/Ntjfn2ZisrZGgS2y5nroExw7wP16hAZsOsv2ow7VE6LUXA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=o1S/Xv6JCneKPlnWzvc+FNYpvsYOofwOmC01DOpL65M=;
+ b=SkpV64FBlJie8L2hhIdufLIRYbICXlpPeIzpEo+EfGcIRbpzYrWGDQ9XG0RNiLlf/Gv2Nn+sdeCKgTNSqE8Dms/8Prahc6+O6q+8M4FykwgekDzgImE7Aop0/x5jYudlgcH8ixgamUyK0G0yT96877V80laOFyk8WyPXbXpJZ6yxZHrQrW4FxkwwNkRDg6pSASt/sME/owZMKZL85i6L0D9aW7EXd6P6MD+a0u8QB4wUU74wbIBIYJxxQ+gCrRehQi6hSsJ1/873HtB43JhhxDj0/PP+tbiD3DAz90KlcMzUxeZiYcpVOJw0CUVkyx9e2D5cxKoPTUtL4o+Lh7DOKg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=o1S/Xv6JCneKPlnWzvc+FNYpvsYOofwOmC01DOpL65M=;
+ b=zZqEfTNdkUVnWyV3Z2v3pc+7ioas4yJEuj+vaM42fvSxF6N4n4vOFTT9riUoIclSMnMvNfIkqiH7W1bHrlskQkjy8MjHjvCeDhXwOCZ8BnZhI8U8OeEVf00/JPN0Un1nwTV4867afzoFucODIGd1frmrsORK92BOTKG3dI2YEAY=
+Received: from BN0PR08CA0002.namprd08.prod.outlook.com (2603:10b6:408:142::18)
+ by BY5PR12MB3667.namprd12.prod.outlook.com (2603:10b6:a03:1a2::29) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5546.21; Mon, 22 Aug
+ 2022 13:03:38 +0000
+Received: from BN8NAM11FT085.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:142:cafe::62) by BN0PR08CA0002.outlook.office365.com
+ (2603:10b6:408:142::18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5546.23 via Frontend
+ Transport; Mon, 22 Aug 2022 13:03:38 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN8NAM11FT085.mail.protection.outlook.com (10.13.176.100) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5546.7 via Frontend Transport; Mon, 22 Aug 2022 13:03:38 +0000
+Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Mon, 22 Aug
+ 2022 08:03:37 -0500
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB07.amd.com
+ (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Mon, 22 Aug
+ 2022 06:03:37 -0700
+Received: from xhdlakshmis40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
+ Transport; Mon, 22 Aug 2022 08:03:34 -0500
+From:   Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+To:     <linux-serial@vger.kernel.org>
+CC:     <git@amd.com>, <devicetree@vger.kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <gregkh@linuxfoundation.org>,
+        <shubhrajyoti.datta@gmail.com>
+Subject: [PATCH v3 0/2] serial: pl011: Add xilinx uart
+Date:   Mon, 22 Aug 2022 18:33:31 +0530
+Message-ID: <20220822130333.5353-1-shubhrajyoti.datta@amd.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next RESEND v4 0/4] net: Introduce QUSGMII phy mode
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <166117321820.20649.2102719943200043855.git-patchwork-notify@kernel.org>
-Date:   Mon, 22 Aug 2022 13:00:18 +0000
-References: <20220817123255.111130-1-maxime.chevallier@bootlin.com>
-In-Reply-To: <20220817123255.111130-1-maxime.chevallier@bootlin.com>
-To:     Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc:     davem@davemloft.net, robh+dt@kernel.org, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        thomas.petazzoni@bootlin.com, andrew@lunn.ch, f.fainelli@gmail.com,
-        hkallweit1@gmail.com, linux@armlinux.org.uk,
-        linux-arm-kernel@lists.infradead.org, richardcochran@gmail.com,
-        Horatiu.Vultur@microchip.com, Allan.Nielsen@microchip.com,
-        UNGLinuxDriver@microchip.com
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: a27dacde-4a04-4470-6572-08da843ebae6
+X-MS-TrafficTypeDiagnostic: BY5PR12MB3667:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: lE+3C3fTkQrbjAPOR3is0Nrf4x0oNRQ6lWFfrxoVnCNXhY04idOEiK/9uxNLIvEu62NLtf4lWvzrtQjHQZ0EqjLUIdC2Fc14A8xR33BAp3ZehQzxuq4fCZOqVRLn05cl/NvriGL8MT+20uCTBSk1ItawfLxIz+j7j+IC0hTiNrEwSwpI0IoDPLSy76f9hAEararPZjurPqnbBbPdCuEv/2jUVEFUK0WjPLH4ni+3O+uS4t+OO6HYLiCm2ZWZSq79gaJG5+5bN17sMmuJkggf6p4RYvx5hZFK0dVvNu06rTLum0zA5svuEHtvaqSQXJ2QOGawcOEYAQhEDPJdkvM5mleE6QWsTBan/gtPEAc09Wpuj3C8//7GJQqFL9v9rwlxbRQJuo/6XEBmPvF/Js5IsFtYGKODmI8eE3PsUIGsxzbzkaRtiKn/K+xhYVviGxxTjR3taSUkdhXVI1syYcHCOfS0nq3tLYg3bP3cgUW+FjLRYC+00ChQwhXvdjCY6jp50skY1kO5I3AYBDmbyTBTzzh9WqGw2wyHJafpVwA0t7qxf8tLHPqJ95rNIXe7PldUe9a2p1iBSM9sVmaiadbFEhoe7uVMQc/qNidxFJfk2wzt2YeR3LfABOFBDaG6h2wcLBNVKaqfbFFkGNvFQ+nPhI6DhicHnyuaQepHzMROvtyckiow47bAnjUpTaHgevoNdPl1u3Gtl1OITaVyrTQJ6ZFiqTCPhdqGaEleXSSCcMGO00L4TvAsN3GUWMh6782jAKhyfMhlbgk6JjKpMeRlrvVisBLejyS52CHCeGMn56RWU6jvBMbViBRb+ll5BO81
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230016)(4636009)(136003)(376002)(346002)(39860400002)(396003)(40470700004)(46966006)(36840700001)(478600001)(6666004)(316002)(6916009)(26005)(5660300002)(8936002)(4744005)(44832011)(186003)(2616005)(2906002)(47076005)(86362001)(426003)(1076003)(336012)(41300700001)(54906003)(82310400005)(36756003)(81166007)(40460700003)(40480700001)(356005)(83380400001)(4326008)(8676002)(70586007)(82740400003)(70206006)(36860700001)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Aug 2022 13:03:38.4221
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a27dacde-4a04-4470-6572-08da843ebae6
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT085.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB3667
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+From: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
 
-This series was applied to netdev/net-next.git (master)
-by David S. Miller <davem@davemloft.net>:
+-Support uart peripheral in Xilinx Versal SOC.
+Add parameter reg-io-width.
+Add the dt-binding for the same
 
-On Wed, 17 Aug 2022 14:32:51 +0200 you wrote:
-> Hello everyone,
-> 
-> Re-sending, since the previous v4 was sent while net-next was closed.
-> 
-> This is a resend of the V4 of a previous series [1] initially aimed at
-> introducing inband extensions, with modes like QUSGMII. This mode allows
-> passing info in the ethernet preamble between the MAC and the PHY, such as
-> timestamps.
-> 
-> [...]
+v2: 
+Update the commit message to reflect the AXI limitation.
 
-Here is the summary with links:
-  - [net-next,RESEND,v4,1/4] net: phy: Introduce QUSGMII PHY mode
-    https://git.kernel.org/netdev/net-next/c/5e61fe157a27
-  - [net-next,RESEND,v4,2/4] dt-bindings: net: ethernet-controller: add QUSGMII mode
-    https://git.kernel.org/netdev/net-next/c/0932b12a7496
-  - [net-next,RESEND,v4,3/4] net: phy: Add helper to derive the number of ports from a phy mode
-    https://git.kernel.org/netdev/net-next/c/c04ade27cb7b
-  - [net-next,RESEND,v4,4/4] net: lan966x: Add QUSGMII support for lan966x
-    https://git.kernel.org/netdev/net-next/c/ac0167fb9961
+v3:
+Add reg-io-width.
 
-You are awesome, thank you!
+
+Shubhrajyoti Datta (2):
+  dt-bindings: serial: pl011: Add a reg-io-width parameter
+  serial: pl011: Add reg-io-width parameters
+
+ .../devicetree/bindings/serial/pl011.yaml        |  7 +++++++
+ drivers/tty/serial/amba-pl011.c                  | 16 ++++++++++++++++
+ 2 files changed, 23 insertions(+)
+
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+2.17.1
 
