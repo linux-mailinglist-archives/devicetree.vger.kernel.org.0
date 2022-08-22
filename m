@@ -2,176 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4CD959C565
-	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 19:51:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BD8759C57C
+	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 19:54:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236544AbiHVRue (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Aug 2022 13:50:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40762 "EHLO
+        id S237297AbiHVRxX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Aug 2022 13:53:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236955AbiHVRu3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 13:50:29 -0400
-Received: from mail.sberdevices.ru (mail.sberdevices.ru [45.89.227.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B31243334;
-        Mon, 22 Aug 2022 10:50:25 -0700 (PDT)
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-        by mail.sberdevices.ru (Postfix) with ESMTP id 9D2385FD08;
-        Mon, 22 Aug 2022 20:50:23 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1661190623;
-        bh=Bbi+SLMOoMKYhDWFHxpCLS4LEv2765hs3myRdLHQvxg=;
-        h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version;
-        b=UgsOE/O8nCNLPzV43cidnHc26K96WwDpVFoAruLcWk4ryJQCsv/nVWcDl7B5mQZ5K
-         +vH19qmZJWv+EWgGvlZJGIxqegF7+Kr3M1wl04icAXHIAjEUdhR6aMpZ2HxsfuZ4r5
-         2VEn8JDq1qOz9fLd2HFlysQiheeT4Us1i93msWn2bZo2YiLPswZyKdMw47BjRta0N6
-         bMEru++h2EXjan8t2Ag52FcJhCTHUr9n6/6vR+YL7xykSpK6ApmpKpmRyUCPYFVSHL
-         IB6F5yNLx9+uEXd3b2NQ0t+zqDtIb3LWD/JsfKE3FyIgW5yCCPgrL+dBN/ZMzpY0q/
-         4wfu5pt1BeG3Q==
-Received: from S-MS-EXCH02.sberdevices.ru (S-MS-EXCH02.sberdevices.ru [172.16.1.5])
-        by mail.sberdevices.ru (Postfix) with ESMTP;
-        Mon, 22 Aug 2022 20:50:23 +0300 (MSK)
-From:   Dmitry Rokosov <DDRokosov@sberdevices.ru>
-To:     "akpm@linux-foundation.org" <akpm@linux-foundation.org>,
-        "jic23@kernel.org" <jic23@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "andriy.shevchenko@linux.intel.com" 
-        <andriy.shevchenko@linux.intel.com>,
-        "andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>,
-        "christophe.jaillet@wanadoo.fr" <christophe.jaillet@wanadoo.fr>,
-        "stano.jakubek@gmail.com" <stano.jakubek@gmail.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "stephan@gerhold.net" <stephan@gerhold.net>,
-        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
-        "wsa@kernel.org" <wsa@kernel.org>,
-        "lars@metafoo.de" <lars@metafoo.de>,
-        "Michael.Hennerich@analog.com" <Michael.Hennerich@analog.com>,
-        "jbhayana@google.com" <jbhayana@google.com>,
-        "lucas.demarchi@intel.com" <lucas.demarchi@intel.com>,
-        "jani.nikula@intel.com" <jani.nikula@intel.com>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>
-CC:     "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        kernel <kernel@sberdevices.ru>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Dmitry Rokosov <DDRokosov@sberdevices.ru>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v7 4/4] dt-bindings: iio: accel: add dt-binding schema for
- msa311 accel driver
-Thread-Topic: [PATCH v7 4/4] dt-bindings: iio: accel: add dt-binding schema
- for msa311 accel driver
-Thread-Index: AQHYtk+F13PQfMP5o0WfLzEsST84kA==
-Date:   Mon, 22 Aug 2022 17:49:26 +0000
-Message-ID: <20220822175011.2886-5-ddrokosov@sberdevices.ru>
-References: <20220822175011.2886-1-ddrokosov@sberdevices.ru>
-In-Reply-To: <20220822175011.2886-1-ddrokosov@sberdevices.ru>
-Accept-Language: ru-RU, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.1.12]
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S237075AbiHVRxV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 13:53:21 -0400
+Received: from EUR03-VE1-obe.outbound.protection.outlook.com (mail-eopbgr50047.outbound.protection.outlook.com [40.107.5.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BBEA2DC7
+        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 10:53:19 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bYbivazgfJdho7jDqlDLCqDlz5TeuKPEUffNcDUXARztNbIGvx+nID3zMcnG6t628sF4kftcQ7Y2wfjOHsBEHMmo2Jwa6tfaaCPBC1yCJPs11QeOZxbkmZXi+tLQFm0EG0zL/sDeU8zyOKKMeZnk/KIRdAb38gwiNbztdwEc2s5T1evI7rgqgBpe/wEj8Ob6u+ePq0nGHtkESycGbOuqi7/JOBZq+qR4Z+0GE47KFFlHo6iRzutWe4nkmc38F2sGIAe49H5EU/i40zBbh37YvF+edbjVuMadH/sVaTLf0toC+UV1O5rioyI28+lhKyHbqD3S4P1r4KKI81T2WkgsHQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+NLgKQZfWf/wS079c6qxBLS6iyZijvU0NjroLS4TCok=;
+ b=Nm7epbfYTrEKAv23r6M+x7NnDE9dV0g5crQu7PFNLajzY+PWsQKn5jZGnrJW5wWCxx69PgocXiOnEV6UwyAjPO94lbgr4bLfyqnjmZfkR9TG1eD4VAhRDwFs70F/eSOCP6JgAf49Ei+cymlWqbfTzD7XLuVTCU4GIxs01MzRKqTe+rz4EL+xdbDHsO24/I5x+Sx6UT/Qp4rgsFkC4riPT9PhnWQuoegn3Q5PHTC/Jf7uPBiy23btHs2VdicXi7Rl720f+ukPT3Vf3eItoUgo1jHypniC5zgcdrINYfaAAA3ZJKkK2KQolHJ7RAcoh1bZK4XIxxAQBoZk8uLvtJB6eQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+NLgKQZfWf/wS079c6qxBLS6iyZijvU0NjroLS4TCok=;
+ b=QFOHItb6DUGGnnAuiSSZzIcB5H3dqX4CM1hMlMlRvozxkBi7V6E3emReExYvnZVqjLj0Uq949eUASoqamsFZekzwDMPk9PUnyn7NKTQLJigxZ8EUtziqpY+wppJRYChzJdF/sGkDBr77T3xf3h15ZqsKo/teQ7TZP00x5B0gJUo=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM9PR04MB8274.eurprd04.prod.outlook.com (2603:10a6:20b:3e8::23)
+ by VI1PR0402MB3790.eurprd04.prod.outlook.com (2603:10a6:803:24::30) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5546.22; Mon, 22 Aug
+ 2022 17:53:16 +0000
+Received: from AM9PR04MB8274.eurprd04.prod.outlook.com
+ ([fe80::747c:397f:a003:dbca]) by AM9PR04MB8274.eurprd04.prod.outlook.com
+ ([fe80::747c:397f:a003:dbca%4]) with mapi id 15.20.5546.024; Mon, 22 Aug 2022
+ 17:53:16 +0000
+From:   Shenwei Wang <shenwei.wang@nxp.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Peng Fan <peng.fan@nxp.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        imx@lists.linux.dev, NXP Linux Team <linux-imx@nxp.com>,
+        Shenwei Wang <shenwei.wang@nxp.com>
+Subject: [PATCH v6 0/5] add imx8dxl evk support
+Date:   Mon, 22 Aug 2022 12:52:40 -0500
+Message-Id: <20220822175245.222691-1-shenwei.wang@nxp.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0PR03CA0193.namprd03.prod.outlook.com
+ (2603:10b6:a03:2ef::18) To AM9PR04MB8274.eurprd04.prod.outlook.com
+ (2603:10a6:20b:3e8::23)
 MIME-Version: 1.0
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2022/08/22 15:25:00 #20153291
-X-KSMG-AntiVirus-Status: Clean, skipped
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: bb65bafb-0899-44ba-caae-08da8467307b
+X-MS-TrafficTypeDiagnostic: VI1PR0402MB3790:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ih/fW6QFfxudYmGS72cOp3r0LyhLnLRG8gd6MzKMgpILT+5yRUWUWb2zBHOnliWEMUegFpIBdzgRIxpgBj0Zrc6ungpqLt60FqTdrqeVXWHWLILxiwoyn36L+BKPOkJm+01B6/hmvP5pLNf2JYhtkv/e9TIY5KpGQA4xHbGFiofxmkqpgJ1OZ/QTFVfckwL6qe2n8edDwPhZzXF3UPwgwBdN9RCRwsOnhKwga+zZrxOdCQdNKHLk0yW95RxF0zAkx4IRk7VvKvkkVIIdg/mBgMzyACCifxbyY6c9iYR6hOg3JD4wNxXKopZ+EbfOc+gZPS+DFW8+wnym7kFfDQXbwN/bktR7/RqXB8W6JRrMK6NDhFQpwelN+Qle2T8qiFNrrt0ie8XtBWprtLIybW2tWbbXiNU08HDzP5M6Zl3tBRG+7Dd2GY/KWH10v41UwAMetkYurpRH4sg27EUJdbTOGdtK0uy1z0Eacgep8Hm7h5HOQ2f+dW3EKWSRMcLJ9TKd8jNCu81F/N77RNdMPdeIBwN5MbWuOGcY5qsOeEtY6X7c+ELIxHI4bfm+uI/8YW4HCWClnF0mondraJyyBRXm2V/vnDPf2DFOuvzMSyCX5EXbSBV4IU5jcmRYyRZpEqmvFObEly24snk5trz/LDFRqqrCNKeAWX47QjUMtAQjKCGLTmSRou4QdxTQYuh7wIpLuub5xovzKSU8U6SBgQGWr/4LusY95f5wsVlE46MlUS4CU+3S8ZdxsDooQBzSO85+BU+HSjN+fc4bx2z1QMZyRz0zzLrBapJBAXky+/cwQAU=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8274.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(396003)(39860400002)(366004)(136003)(346002)(376002)(36756003)(54906003)(2616005)(110136005)(186003)(1076003)(38100700002)(86362001)(83380400001)(38350700002)(6636002)(6486002)(316002)(4326008)(8676002)(41300700001)(66556008)(66476007)(66946007)(478600001)(2906002)(52116002)(55236004)(8936002)(26005)(6666004)(6506007)(44832011)(6512007)(5660300002)(32563001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?TJkEgJKEAGYVeRbnElG3Ig0LQTooLhoRuCcHGrKh4fw4N3o1LepnXRqH2dMq?=
+ =?us-ascii?Q?cf9fcfoxToKh2f9W3ab+wHmuq+DGTXLwRlEaP9yyBN4oa1YGhTeRutw/LoQW?=
+ =?us-ascii?Q?wipaOD4yB/s6e9oIrJn5uwoC+9QuPinvcI3VVuhNntva/AdipYKoglDX9bCv?=
+ =?us-ascii?Q?HLm1jduItZGTkB7sg6iXd7xx5hjJSItg+3oZ9y9gPaU0eSIGrgvgghqEzMri?=
+ =?us-ascii?Q?YLr2sJNKRJdpE5hSxNKJhP9ZfFd5pSKUhiLeY+ri8ZYXxMtDosyILh3IwiX/?=
+ =?us-ascii?Q?Nbxebc4AsmeVo2th63CYewJiMlIXI+6P7yAfDjZH5nrfg1QTidVRaFswdGZD?=
+ =?us-ascii?Q?fOdTfRJc1fpkBYbHt+SKfdnokuRfvuQuP0gREOcd/5BW+y7LB62If1lP/4Ik?=
+ =?us-ascii?Q?XHYrc09UwdOthJ1VMmAtAduyYDUdcIANJPMhgWPsDa2blOM2bs2UeRezOwoo?=
+ =?us-ascii?Q?LYJEAIAAisO5O8tZN0dawKzevb6ySLkkUEookQjFng9rg642hFiJQ8FlkzRL?=
+ =?us-ascii?Q?pT1toULuQ5dVd4wZy6hfuAwC5XzibTaR891PX58H55kY+zDKr3uMAJ37hFDX?=
+ =?us-ascii?Q?KxEJw0Fz6ylH4rr+wKRkhn31mdJhZsmyjZk8N02LkkCVkoZTUUPIa/po113a?=
+ =?us-ascii?Q?+nuonxdJbewyLyvTQa3fDsX+OFedutLtRhkX9oIMS2mX72TKeK+muQZ5zr/a?=
+ =?us-ascii?Q?wOQ1WDaK5oupffKFHTmdkCyiFx9Q7kb3WU/NFWwT8KRBaktSaVeLDRCnx8iD?=
+ =?us-ascii?Q?C4Q2GdPJGOaTvfht7T8O3Ny7jmCEa4PmPLZbza2iNmnMkDJHdgQLu6iMB0qQ?=
+ =?us-ascii?Q?1PdzA7+PtRzWBRdHVvvfMXVCPKqwga/chITy1ZJSTpXYySU//hK89tEoo+v2?=
+ =?us-ascii?Q?EuZz9zFinA+e5zdQ065qggG+sODZNYHJDoGTFGDtWPXpc37sRx/Qt6gEoFLM?=
+ =?us-ascii?Q?/2vk4G8a13wGueEbjDOgvhmJ+a51jCcvzPqpc7dfBVtJCFhVlQk7lPQs7RfG?=
+ =?us-ascii?Q?w9Dc2QBopjcCM1cUK2xDw0SclUA80ZVj0SDaAw9ojAkBtQ96Gai/M5zTnO0J?=
+ =?us-ascii?Q?CWyZMQpgkyFZ/l+hdT9LrRvCoXuNMokw3k78VLL54usoZyczD6hk9L9WjEqX?=
+ =?us-ascii?Q?F5TVctfHP5v68fHEZOVFRLoBYfjxMbYSW587E27YDtfpQm41+haibPrt8AXN?=
+ =?us-ascii?Q?cZwfU1jzq0rw9zlwNXm4Gqg4wgpwmEyRPQdZhX0eN4CUxkM46KLbTpDw88j7?=
+ =?us-ascii?Q?PdefcsxYSIQMp2UKtY2o0e0jH2cMXg5Jvst+d3De6FDwan8fMpFb490TuR8M?=
+ =?us-ascii?Q?YBqhDi9LYVYmAkn1l7goruavjC8YdO8bPaq6+gB6M+Y5v+EMgDYKjAI4Ostc?=
+ =?us-ascii?Q?JYSpWn754C82UvgZ+p9dwDi7js9KSAtWm2tCEsttg5Y2aOLL7htr8rRONe3q?=
+ =?us-ascii?Q?tSKfRS2XZvFGXbBBJKc5t0J2Ofz7JK2VRhPnv0HpGlgSG8U5nCde/N7KDhXD?=
+ =?us-ascii?Q?f5ZyTfmRErDEVAxT3yTUld111bAf08jhau+oWHYmjHwZu4sC4FoPZzG/zIj4?=
+ =?us-ascii?Q?wKgXeQs0BJL9UVL6DLtHtlDLXARddRKhszEx1QZtiYgosbm+cIYH0Gc4Bugi?=
+ =?us-ascii?Q?vw=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bb65bafb-0899-44ba-caae-08da8467307b
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8274.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Aug 2022 17:53:16.2058
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: +fhpNX6SiAcibUJYexZI+hjxtqKFnckLla8LQ6+f0XhaZ8wEX8Nff9H71N8iQdWbeXiYEeSItfrP6AffPaNVpQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0402MB3790
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Introduce devicetree binding json-schema for MSA311 tri-axial,
-low-g accelerometer driver.
+i.MX8DXL is a device targeting the automotive and industrial market
+segments. The chip is designed to achieve both high performance and
+low power consumption. It has a dual (2x) Cortex-A35 processor.
 
-Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../bindings/iio/accel/memsensing,msa311.yaml | 53 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 54 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/accel/memsensing,=
-msa311.yaml
+The series of patches is to add the imx8dxl soc and its evk board
+support.
 
-diff --git a/Documentation/devicetree/bindings/iio/accel/memsensing,msa311.=
-yaml b/Documentation/devicetree/bindings/iio/accel/memsensing,msa311.yaml
-new file mode 100644
-index 000000000000..23528dcaa073
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/accel/memsensing,msa311.yaml
-@@ -0,0 +1,53 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/iio/accel/memsensing,msa311.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: MEMSensing digital 3-Axis accelerometer
-+
-+maintainers:
-+  - Dmitry Rokosov <ddrokosov@sberdevices.ru>
-+
-+description: |
-+  MSA311 is a tri-axial, low-g accelerometer with I2C digital output for
-+  sensitivity consumer applications. It has dynamical user selectable full
-+  scales range of +-2g/+-4g/+-8g/+-16g and allows acceleration measurement=
-s
-+  with output data rates from 1Hz to 1000Hz.
-+  Datasheet can be found at following URL
-+  https://cdn-shop.adafruit.com/product-files/5309/MSA311-V1.1-ENG.pdf
-+
-+properties:
-+  compatible:
-+    const: memsensing,msa311
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  vdd-supply: true
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    i2c {
-+        #address-cells =3D <1>;
-+        #size-cells =3D <0>;
-+
-+        accelerometer@62 {
-+            compatible =3D "memsensing,msa311";
-+            reg =3D <0x62>;
-+            interrupt-parent =3D <&gpio_intc>;
-+            interrupts =3D <29 IRQ_TYPE_EDGE_RISING>;
-+            vdd-supply =3D <&vcc_5v>;
-+        };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 010e7d854bf7..4b76052e81cf 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12996,6 +12996,7 @@ MEMSENSING MICROSYSTEMS MSA311 DRIVER
- M:	Dmitry Rokosov <ddrokosov@sberdevices.ru>
- L:	linux-iio@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/iio/accel/memsensing,msa311.yaml
- F:	drivers/iio/accel/msa311.c
-=20
- MEN A21 WATCHDOG DRIVER
---=20
-2.36.0
+changes in V6:
+  - The V6 changes mainly respond to the comments from Shawn
+  - Separate the V5 patch into SoC and Board commits
+  - Remove the unnecessary properties of "max-frequency"
+    in usdhc2 node
+  - Remove the unnecessary properties of "clk_csr" in eqos node
+  - Fix several coding style problems
+
+changes in V5:
+  - change the "scu" node name to "system-controller"
+  - fix the typo in the comments for imx8dxl evk board
+
+changes in V4:
+  - move i2c/mmc/serial aliases from soc to board
+  - correct the node names to follow the generic names recommendation
+  - remove some unused nodes in the evk board dts
+
+changes in V3:
+  - re-order the commit sequence according to Krzysztof's feedback
+  - correct the syntax and styple problems pointed by Krzysztof
+    (Thank you for the detailed review, Krzysztof!)
+  - remove the unused nodes in imx8dxl-evk.dts
+  - dt_binding_check passed
+
+Changes in V2:
+  - removed the edma2 device node because the edma v3 driver hasn't been
+    upstreamed yet.
+  - removed the imx8dxl_cm4 alias to fix the compile error.
+  - removed the extra blank lines at EOF.
+  - dt_binding_check passed.
+
+Shenwei Wang (5):
+  dt-bindings: firmware: add missing resource IDs for imx8dxl
+  dt-bindings: arm: imx: update fsl.yaml for imx8dxl
+  arm64: dts: imx8: add a node label to ddr-pmu
+  arm64: dts: freescale: add i.MX8DXL SoC support
+  arm64: dts: freescale: add support for i.MX8DXL EVK board
+
+ .../devicetree/bindings/arm/fsl.yaml          |   6 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../arm64/boot/dts/freescale/imx8-ss-ddr.dtsi |   2 +-
+ arch/arm64/boot/dts/freescale/imx8dxl-evk.dts | 426 ++++++++++++++++++
+ .../boot/dts/freescale/imx8dxl-ss-adma.dtsi   |  52 +++
+ .../boot/dts/freescale/imx8dxl-ss-conn.dtsi   | 142 ++++++
+ .../boot/dts/freescale/imx8dxl-ss-ddr.dtsi    |   9 +
+ .../boot/dts/freescale/imx8dxl-ss-lsio.dtsi   |  74 +++
+ arch/arm64/boot/dts/freescale/imx8dxl.dtsi    | 238 ++++++++++
+ include/dt-bindings/firmware/imx/rsrc.h       |   7 +
+ 10 files changed, 956 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8dxl-evk.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8dxl-ss-adma.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8dxl-ss-conn.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8dxl-ss-ddr.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8dxl-ss-lsio.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8dxl.dtsi
+
+--
+2.25.1
+
