@@ -2,67 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62AC159CADE
-	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 23:33:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D075859CAE6
+	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 23:36:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232160AbiHVVdU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Aug 2022 17:33:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55336 "EHLO
+        id S232020AbiHVVgK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Aug 2022 17:36:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236898AbiHVVdT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 17:33:19 -0400
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E4F6259;
-        Mon, 22 Aug 2022 14:33:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1661203995; x=1692739995;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=KAwOGc5/RlMiec7gexR6wehKS1gvBgI3uejZUSQuJmc=;
-  b=n2ZrkOv+IbtOJRCBASy2ucqN+pYxo4S07sQr0hOS9ylMzjU5Xpwoc4VY
-   ygZMf8+/ztmev/XoFBgujat1L4fO2gltKWXdf9UKs+IlE9n9Q/HlifKFZ
-   Paqjh/XRhbD8/+62xEsRWdkZuOx7trd4LUahwCIpL7DHWGca2Kuqi8O4O
-   TpslBXRxaBmOHf7RyLV69rbGLkcM7xi0CsGEecK779MKP0an8lHKR/2gG
-   Z2njnsdMq7NRuF1c9WIlbH4J/hS3Iv5vOJyu0PS5RjMkoQxkPyzhHAuFe
-   qNNYjKvdig6HkN3KSOo/R9NO9UiX0w9nbT/583QGX01aMOAiLaVEB41RV
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10447"; a="355254843"
-X-IronPort-AV: E=Sophos;i="5.93,255,1654585200"; 
-   d="scan'208";a="355254843"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Aug 2022 14:33:14 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,255,1654585200"; 
-   d="scan'208";a="698435678"
-Received: from lkp-server01.sh.intel.com (HELO dd9b29378baa) ([10.239.97.150])
-  by FMSMGA003.fm.intel.com with ESMTP; 22 Aug 2022 14:33:09 -0700
-Received: from kbuild by dd9b29378baa with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1oQF2i-0000jv-2J;
-        Mon, 22 Aug 2022 21:33:08 +0000
-Date:   Tue, 23 Aug 2022 05:32:54 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Frank Li <Frank.Li@nxp.com>, maz@kernel.org, tglx@linutronix.de,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kw@linux.com,
-        bhelgaas@google.com
-Cc:     kbuild-all@lists.01.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pci@vger.kernel.org, peng.fan@nxp.com, aisheng.dong@nxp.com,
-        jdmason@kudzu.us, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, kishon@ti.com, lorenzo.pieralisi@arm.com,
-        ntb@lists.linux.dev, lznuaa@gmail.com
-Subject: Re: [PATCH v7 4/4] PCI: endpoint: Add NTB MSI support
-Message-ID: <202208230543.fAaLXJy7-lkp@intel.com>
-References: <20220822155130.2491006-5-Frank.Li@nxp.com>
+        with ESMTP id S230393AbiHVVgJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 17:36:09 -0400
+Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDDBD33419;
+        Mon, 22 Aug 2022 14:36:08 -0700 (PDT)
+Received: by mail-oi1-f169.google.com with SMTP id o204so6332287oia.12;
+        Mon, 22 Aug 2022 14:36:08 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+        bh=AvpFKTVtlMBq+hw7JoGPDSmZsSCDfKdJ6eZg738PV4U=;
+        b=72I+AXieE7zyZUobZ1ufOEOuqE72ls1/XoS2SRbub8GYr+enpAUKHFftyB7T/g9PsT
+         d8HsYp7XBiQvR5M5YJfNuTlkcjtNwJgM3vfwMIQ+ewKQ76Wf4R9xi5hMaW4zLMFoo767
+         y4RN192nT3pw3SDzdK0R09yjl33kI3I97MFMEMpaxXKxCipO/N1BOF+T03WgCSPLl5H+
+         hxSTzP5ZHhnr2aBzyzygPujtML59P65HS5jZxchepKMmH9ax9BYsaveqJSBA+02cFlfP
+         i8NrM6ELnDQX9v1efZKzSalhJXbRoJAcRQxZhKY08C9BUDGq2REHhygiREXMxje+kzvD
+         W2Og==
+X-Gm-Message-State: ACgBeo0ZpkO0dNg9pvD+7Loz+YcDTP5xs3te03svEsIP/WWymYmH2dsu
+        KOaN7ILVNa/FsCNRqHU8YA==
+X-Google-Smtp-Source: AA6agR6jZHhw2YeqgJxqXl680sCfPVMjKdmRhCqYuprtJx5xwbSQ6YIMVFssbFBfSKcD4+SZ8ZzMhg==
+X-Received: by 2002:a05:6808:3d1:b0:343:4049:6899 with SMTP id o17-20020a05680803d100b0034340496899mr126053oie.152.1661204168260;
+        Mon, 22 Aug 2022 14:36:08 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id fq36-20020a0568710b2400b0011d02a3fa63sm1688347oab.14.2022.08.22.14.36.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Aug 2022 14:36:07 -0700 (PDT)
+Received: (nullmailer pid 894715 invoked by uid 1000);
+        Mon, 22 Aug 2022 21:36:07 -0000
+Date:   Mon, 22 Aug 2022 16:36:07 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     wei.fang@nxp.com
+Cc:     netdev@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        f.fainelli@gmail.com, edumazet@google.com, andrew@lunn.ch,
+        davem@davemloft.net, pabeni@redhat.com,
+        linux-kernel@vger.kernel.org, kuba@kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        hkallweit1@gmail.com, linux@armlinux.org.uk
+Subject: Re: [PATCH V2 net-next 1/2] dt-bindings: net: tja11xx: add
+ nxp,refclk_in property
+Message-ID: <20220822213607.GA894623-robh@kernel.org>
+References: <20220822015949.1569969-1-wei.fang@nxp.com>
+ <20220822015949.1569969-2-wei.fang@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220822155130.2491006-5-Frank.Li@nxp.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <20220822015949.1569969-2-wei.fang@nxp.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,88 +67,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Frank,
+On Mon, 22 Aug 2022 09:59:48 +0800, wei.fang@nxp.com wrote:
+> From: Wei Fang <wei.fang@nxp.com>
+> 
+> TJA110x REF_CLK can be configured as interface reference clock
+> intput or output when the RMII mode enabled. This patch add the
+> property to make the REF_CLK can be configurable.
+> 
+> Signed-off-by: Wei Fang <wei.fang@nxp.com>
+> ---
+> V2 change:
+> Correct the property name and a typo.
+> ---
+>  .../devicetree/bindings/net/nxp,tja11xx.yaml    | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+> 
 
-I love your patch! Yet something to improve:
-
-[auto build test ERROR on jonmason-ntb/ntb-next]
-[also build test ERROR on robh/for-next linus/master v6.0-rc2 next-20220822]
-[cannot apply to tip/irq/core]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Frank-Li/PCI-EP-driver-support-MSI-doorbell-from-host/20220822-235323
-base:   https://github.com/jonmason/ntb ntb-next
-config: microblaze-randconfig-r005-20220821 (https://download.01.org/0day-ci/archive/20220823/202208230543.fAaLXJy7-lkp@intel.com/config)
-compiler: microblaze-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/d98704aefa5b57814d7b9b1b40160df34977b2b6
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Frank-Li/PCI-EP-driver-support-MSI-doorbell-from-host/20220822-235323
-        git checkout d98704aefa5b57814d7b9b1b40160df34977b2b6
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=microblaze SHELL=/bin/bash drivers/pci/endpoint/functions/
-
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
-   drivers/pci/endpoint/functions/pci-epf-vntb.c: In function 'epf_ntb_epc_msi_init':
->> drivers/pci/endpoint/functions/pci-epf-vntb.c:786:13: error: implicit declaration of function 'platform_msi_domain_alloc_irqs' [-Werror=implicit-function-declaration]
-     786 |         if (platform_msi_domain_alloc_irqs(&ntb->epf->dev,
-         |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   cc1: some warnings being treated as errors
-
-
-vim +/platform_msi_domain_alloc_irqs +786 drivers/pci/endpoint/functions/pci-epf-vntb.c
-
-   771	
-   772	static void epf_ntb_epc_msi_init(struct epf_ntb *ntb)
-   773	{
-   774		struct device *dev = &ntb->epf->dev;
-   775		struct irq_domain *domain;
-   776		int virq;
-   777		int ret;
-   778		int i;
-   779	
-   780		domain = dev_get_msi_domain(ntb->epf->epc->dev.parent);
-   781		if (!domain)
-   782			return;
-   783	
-   784		dev_set_msi_domain(dev, domain);
-   785	
- > 786		if (platform_msi_domain_alloc_irqs(&ntb->epf->dev,
-   787			ntb->db_count,
-   788			epf_ntb_write_msi_msg)) {
-   789			dev_info(dev, "Can't allocate MSI, fall back to poll mode\n");
-   790			return;
-   791		}
-   792	
-   793		dev_info(dev, "vntb use MSI as doorbell\n");
-   794	
-   795		for (i = 0; i < ntb->db_count; i++) {
-   796			virq = msi_get_virq(dev, i);
-   797			ret = devm_request_irq(dev, virq,
-   798				       epf_ntb_interrupt_handler, 0,
-   799				       "ntb", ntb);
-   800	
-   801			if (ret) {
-   802				dev_err(dev, "devm_request_irq() failure, fall back to poll mode\n");
-   803				ntb->epf_db_phy = 0;
-   804				break;
-   805			}
-   806	
-   807			if (!i)
-   808				ntb->msi_virqbase = virq;
-   809		}
-   810	}
-   811	
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+Acked-by: Rob Herring <robh@kernel.org>
