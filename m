@@ -2,55 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B7CB959CBFE
-	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 01:16:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B40259CC11
+	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 01:21:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231482AbiHVXQQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Aug 2022 19:16:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53460 "EHLO
+        id S238566AbiHVXVG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Aug 2022 19:21:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237609AbiHVXQP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 19:16:15 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC3235508B;
-        Mon, 22 Aug 2022 16:16:14 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 6C789B816BF;
-        Mon, 22 Aug 2022 23:16:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEAC4C433C1;
-        Mon, 22 Aug 2022 23:16:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661210172;
-        bh=B2Y5JUCF/4c7ZF4VA8jpWgREXwA5XU5ETca1S/Tanso=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=POgBZiyfISDr5jP0axhmFmU+s090JJ0Wd9EJpqL/GzoCRWDNBn4B8+phtdRxEOfpE
-         7AXDJaRKfxRwylq1tMsfyo9bnLcvNOhL//2LDfIG49w2r4TO3Qp0PS72JY/cU6o0m6
-         gqPSZatyjtkxI9I7atrJxB67ZdOUD73kKzW7zIKXYJS415wAcPt8BY8q4DLX+tyeA/
-         mRRB6G8GI2DixYZifxqZEHYNsgFnXfvM+g/3hk1S1cUcxXbhCPQ6olnKSPCywsOIXi
-         ciXxlsGZDQn5I93CxA96r0+1hYY0Ti7f5hwVQMBPLJr3yuEc+wqW85H0As3xL8/UwU
-         tkcBU/AM3KLbQ==
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S232057AbiHVXVF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 19:21:05 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EF8D5508C;
+        Mon, 22 Aug 2022 16:21:04 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 27MNKl2j078398;
+        Mon, 22 Aug 2022 18:20:47 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1661210447;
+        bh=cVwpBSQCIkk2fW+4ju4eb56iR3EkVUjqfp0YNPcsECU=;
+        h=From:To:CC:Subject:Date;
+        b=g53z1u9lS7hq49/dAhAMkqFylZQZzudXRSceHt144+dAKyFMf0oB/kQgY5lxjc+fd
+         oFmp0aYIyo30lmCNVJsW0AnhZ1IqW4R3c3sk/TKwaA1SSP6DFr8o+zGEatT0nKuWyX
+         /c7EWaJplTT9P48g3plfTyGvMQil/Fv7/JG8ZFDQ=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 27MNKlSv021071
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 22 Aug 2022 18:20:47 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Mon, 22
+ Aug 2022 18:20:46 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Mon, 22 Aug 2022 18:20:46 -0500
+Received: from ula0226330.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 27MNKkkQ122207;
+        Mon, 22 Aug 2022 18:20:46 -0500
+From:   Andrew Davis <afd@ti.com>
+To:     Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Daniel Tang <dt.tangr@gmail.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     Andrew Davis <afd@ti.com>
+Subject: [PATCH 0/2] TI-Nspire cleanups
+Date:   Mon, 22 Aug 2022 18:20:44 -0500
+Message-ID: <20220822232046.1230-1-afd@ti.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20220727131015.2073100-1-conor.dooley@microchip.com>
-References: <20220727131015.2073100-1-conor.dooley@microchip.com>
-Subject: Re: [PATCH] dt-bindings: clock: gpio-gate-clock: Convert to json-schema
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Jyri Sarha <jsarha@ti.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-To:     Conor Dooley <conor.dooley@microchip.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 22 Aug 2022 16:16:09 -0700
-User-Agent: alot/0.10
-Message-Id: <20220822231611.DEAC4C433C1@smtp.kernel.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -59,13 +65,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Conor Dooley (2022-07-27 06:10:16)
-> Convert the simple GPIO clock gate Device Tree binding to json-schema
-> and fix-up references to this file in other text format bindings.
-> Jyri Sarha is the file's only editor/author so they have been added as
-> maintainer of the new yaml binding.
->=20
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
+Hello all,
 
-Applied to clk-next
+I don't have the hardware to test this (yes I know who my current
+employer is), but it does look right and this lets us remove the rest
+of mach-nspire/ without losing any functionality.
+Does anyone have one of these to test with?
+
+The second patch removes a couple defines that do not seem to have ever
+been used, but if one want to implement it, then it should be a simple
+generic syscon DT node.
+
+Thanks,
+Andrew
+
+Andrew Davis (2):
+  ARM: nspire: Use syscon-reboot to handle restart
+  ARM: nspire: Remove unused header file mmio.h
+
+ arch/arm/boot/dts/nspire.dtsi |  7 ++++
+ arch/arm/mach-nspire/Kconfig  |  2 ++
+ arch/arm/mach-nspire/mmio.h   | 16 ----------
+ arch/arm/mach-nspire/nspire.c | 60 +++++++++++------------------------
+ 4 files changed, 27 insertions(+), 58 deletions(-)
+ delete mode 100644 arch/arm/mach-nspire/mmio.h
+ rewrite arch/arm/mach-nspire/nspire.c (61%)
+
+-- 
+2.36.1
+
