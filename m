@@ -2,406 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AD5B59C7D3
-	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 21:04:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 354EA59C7DF
+	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 21:07:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236102AbiHVTEW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Aug 2022 15:04:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58452 "EHLO
+        id S237440AbiHVTHf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Aug 2022 15:07:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234921AbiHVTEW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 15:04:22 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84D4E13F92
-        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 12:04:20 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id z20so11524936ljq.3
-        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 12:04:20 -0700 (PDT)
+        with ESMTP id S237405AbiHVTHf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 15:07:35 -0400
+Received: from mail.baikalelectronics.com (mail.baikalelectronics.com [87.245.175.230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 77D2013F92;
+        Mon, 22 Aug 2022 12:07:33 -0700 (PDT)
+Received: from mail (mail.baikal.int [192.168.51.25])
+        by mail.baikalelectronics.com (Postfix) with ESMTP id 3CF0EDA2;
+        Mon, 22 Aug 2022 22:10:46 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mail.baikalelectronics.com 3CF0EDA2
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=3IWXz8eCdqpXEQvD6O5SYTQDmDx5euY2FlxhrreZWG4=;
-        b=LuvvTwCNhCDCu2NS4MmKwvnQenPyoAw/9xUEHWdz7Tq5EervJX1bOfuah2Z3IieK4E
-         Dbu6NyQCWCGpV1RT1ctHxOhR+5SSKFaAslQKO4fdKWzhnTJk9uog76OShLGq1bMvXuFn
-         aOxGIS8p6wZ053W+wpGK47ODLh/TUgH7HDN8NkgUX5BB+e8MItGr1D/QDHlVbllVhSpM
-         6WmeAtxtXEUdGkf8VbFb8DYCUfIGrjTyLB4PYH/KbCOZLWSqmiebx4w5yHrgQQeDS6km
-         0tSPifp6zhnyNM/RcnaTVkhz2nAm8PHajVLPKTNCC5975uXx+Jy+e51Cb/K8TcAnEUQs
-         qd0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=3IWXz8eCdqpXEQvD6O5SYTQDmDx5euY2FlxhrreZWG4=;
-        b=KPWxsNhUfkGo64nMwPh9lNAHUwB87/iWC/2wSDjONG2RfYS0IqPf8DddB4/yGtVt96
-         47nbUtJSK0jvTnKW/77ZY7TGHBln1QBkEAdjX3TxUwyLPlP6FF29vDvvXitUqUTlvbXZ
-         WdOoOKaKN7BIgBFbnwjCauoZODoCSmYBhovKPNIA4HQZJsRroUeT6Egi2y60d7q7b+qB
-         TnR9uSYH+wVU6hVyFq7D3NzVgr4D7ispyEYq7x3YUzE354Cq75dNSXt6qLcYCsch81JN
-         51RkNmEQMnXiydnOFV6JO7o7ZiUMznORGc07TuQK+o64UZ612BaOORMW6iZNk9TRSJ1y
-         1DGw==
-X-Gm-Message-State: ACgBeo1vHlATfqLNm2nARPleMBr4s0fNVLRyqVJM7/KRfZgKFQu5VFdj
-        mM4tj3QtBpm/AhW+ogxnsamhCA==
-X-Google-Smtp-Source: AA6agR5ieNB4uOnYYDjnId+dqFhUZbozl3LcSybJCzFRj4ssHYbplnXNawbEaRZdLCNmR7fu6JnsRw==
-X-Received: by 2002:a2e:ba0a:0:b0:261:cc4f:1ab1 with SMTP id p10-20020a2eba0a000000b00261cc4f1ab1mr2126422lja.215.1661195058732;
-        Mon, 22 Aug 2022 12:04:18 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id q15-20020a056512210f00b00492d1eb41dfsm1381207lfr.240.2022.08.22.12.04.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Aug 2022 12:04:18 -0700 (PDT)
-Message-ID: <76c05290-d957-b1ec-fa4d-1074c42979a8@linaro.org>
-Date:   Mon, 22 Aug 2022 22:04:17 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.1.2
-Subject: Re: [PATCH v2 06/11] dt-bindings: display/msm: move qcom,sc7180-mdss
- schema to mdss.yaml
-Content-Language: en-GB
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        d=baikalelectronics.ru; s=mail; t=1661195446;
+        bh=EJsCN0YYd8iM5UM8xnboKosxyxlQkg+Bsj8ERpm8McY=;
+        h=From:To:CC:Subject:Date:From;
+        b=Xg3tMp2TRFPB7NGJpvc15j74XMqjEH/JmnFHV4zKwc9jPNLNISib3lLsXybnTB7Go
+         jLe3eMtUUldOSeNjDuUapDr7TZ8oRbEsuUx2b272NDOXJSEB96k1nt4C8rYuiUagGV
+         oXkGlE+7kWe4wLBZzgf3RvKJ5Bf+iK4oPDzH6N8k=
+Received: from localhost (192.168.168.10) by mail (192.168.51.25) with
+ Microsoft SMTP Server (TLS) id 15.0.1395.4; Mon, 22 Aug 2022 22:07:31 +0300
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Rob Herring <robh@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Borislav Petkov <bp@alien8.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Tony Luck <tony.luck@intel.com>
+CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Michail Ivanov <Michail.Ivanov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Punnaiah Choudary Kalluri 
+        <punnaiah.choudary.kalluri@xilinx.com>,
+        Manish Narani <manish.narani@xilinx.com>,
+        Dinh Nguyen <dinguyen@kernel.org>,
+        James Morse <james.morse@arm.com>,
+        Robert Richter <rric@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-References: <20220710090040.35193-1-dmitry.baryshkov@linaro.org>
- <20220710090040.35193-7-dmitry.baryshkov@linaro.org>
- <37bf0f7f-e555-7ae9-7d2b-e05a9e8db6a4@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <37bf0f7f-e555-7ae9-7d2b-e05a9e8db6a4@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-edac@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH 00/20] EDAC/mc/synopsys: Various fixes and cleanups
+Date:   Mon, 22 Aug 2022 22:07:10 +0300
+Message-ID: <20220822190730.27277-1-Sergey.Semin@baikalelectronics.ru>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_PERMERROR autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/08/2022 11:25, Krzysztof Kozlowski wrote:
-> On 10/07/2022 12:00, Dmitry Baryshkov wrote:
->> Move schema for qcom,sc7180-mdss from dpu-sc7180.yaml to mdss.yaml so
->> that the dpu file describes only the DPU schema.
->>
->> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> ---
->>   .../bindings/display/msm/dpu-sc7180.yaml      | 149 +++++-------------
->>   .../devicetree/bindings/display/msm/mdss.yaml |  45 +++++-
->>   2 files changed, 80 insertions(+), 114 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/display/msm/dpu-sc7180.yaml b/Documentation/devicetree/bindings/display/msm/dpu-sc7180.yaml
->> index d3c3e4b07897..9d4ec0b60c25 100644
->> --- a/Documentation/devicetree/bindings/display/msm/dpu-sc7180.yaml
->> +++ b/Documentation/devicetree/bindings/display/msm/dpu-sc7180.yaml
->> @@ -10,151 +10,78 @@ maintainers:
->>     - Krishna Manikandan <quic_mkrishn@quicinc.com>
->>   
->>   description: |
->> -  Device tree bindings for MSM Mobile Display Subsystem(MDSS) that encapsulates
->> -  sub-blocks like DPU display controller, DSI and DP interfaces etc. Device tree
->> -  bindings of MDSS and DPU are mentioned for SC7180 target.
->> +  Device tree bindings for the DPU display controller for SC7180 target.
->>   
->>   properties:
->>     compatible:
->>       items:
->> -      - const: qcom,sc7180-mdss
->> +      - const: qcom,sc7180-dpu
->>   
->>     reg:
->> -    maxItems: 1
->> +    items:
->> +      - description: Address offset and size for mdp register set
->> +      - description: Address offset and size for vbif register set
->>   
->>     reg-names:
->> -    const: mdss
->> -
->> -  power-domains:
->> -    maxItems: 1
->> +    items:
->> +      - const: mdp
->> +      - const: vbif
->>   
->>     clocks:
->>       items:
->> -      - description: Display AHB clock from gcc
->> -      - description: Display AHB clock from dispcc
->> +      - description: Display hf axi clock
->> +      - description: Display ahb clock
->> +      - description: Display rotator clock
->> +      - description: Display lut clock
->>         - description: Display core clock
->> +      - description: Display vsync clock
->>   
->>     clock-names:
->>       items:
->> +      - const: bus
->>         - const: iface
->> -      - const: ahb
->> +      - const: rot
->> +      - const: lut
->>         - const: core
->> +      - const: vsync
->>   
->>     interrupts:
->>       maxItems: 1
->>   
->> -  interrupt-controller: true
->> -
->> -  "#address-cells": true
->> -
->> -  "#size-cells": true
->> -
->> -  "#interrupt-cells":
->> -    const: 1
->> -
->> -  iommus:
->> -    items:
->> -      - description: Phandle to apps_smmu node with SID mask for Hard-Fail port0
->> -
->> -  ranges: true
->> -
->> -  interconnects:
->> -    items:
->> -      - description: Interconnect path specifying the port ids for data bus
->> -
->> -  interconnect-names:
->> -    const: mdp0-mem
->> +  power-domains:
->> +    maxItems: 1
->>   
->> -  resets:
->> -    items:
->> -      - description: MDSS_CORE reset
->> +  operating-points-v2: true
->>   
->> -patternProperties:
->> -  "^display-controller@[0-9a-f]+$":
->> -    type: object
->> -    description: Node containing the properties of DPU.
->> +  ports:
->> +    $ref: /schemas/graph.yaml#/properties/ports
->> +    description: |
->> +      Contains the list of output ports from DPU device. These ports
->> +      connect to interfaces that are external to the DPU hardware,
->> +      such as DSI, DP etc. Each output port contains an endpoint that
->> +      describes how it is connected to an external interface.
->>   
->>       properties:
->> -      compatible:
->> -        items:
->> -          - const: qcom,sc7180-dpu
->> -
->> -      reg:
->> -        items:
->> -          - description: Address offset and size for mdp register set
->> -          - description: Address offset and size for vbif register set
->> -
->> -      reg-names:
->> -        items:
->> -          - const: mdp
->> -          - const: vbif
->> -
->> -      clocks:
->> -        items:
->> -          - description: Display hf axi clock
->> -          - description: Display ahb clock
->> -          - description: Display rotator clock
->> -          - description: Display lut clock
->> -          - description: Display core clock
->> -          - description: Display vsync clock
->> -
->> -      clock-names:
->> -        items:
->> -          - const: bus
->> -          - const: iface
->> -          - const: rot
->> -          - const: lut
->> -          - const: core
->> -          - const: vsync
->> -
->> -      interrupts:
->> -        maxItems: 1
->> -
->> -      power-domains:
->> -        maxItems: 1
->> -
->> -      operating-points-v2: true
->> -
->> -      ports:
->> -        $ref: /schemas/graph.yaml#/properties/ports
->> -        description: |
->> -          Contains the list of output ports from DPU device. These ports
->> -          connect to interfaces that are external to the DPU hardware,
->> -          such as DSI, DP etc. Each output port contains an endpoint that
->> -          describes how it is connected to an external interface.
->> -
->> -        properties:
->> -          port@0:
->> -            $ref: /schemas/graph.yaml#/properties/port
->> -            description: DPU_INTF1 (DSI1)
->> -
->> -          port@2:
->> -            $ref: /schemas/graph.yaml#/properties/port
->> -            description: DPU_INTF0 (DP)
->> -
->> -        required:
->> -          - port@0
->> +      port@0:
->> +        $ref: /schemas/graph.yaml#/properties/port
->> +        description: DPU_INTF1 (DSI1)
->> +
->> +      port@2:
->> +        $ref: /schemas/graph.yaml#/properties/port
->> +        description: DPU_INTF0 (DP)
->>   
->>       required:
->> -      - compatible
->> -      - reg
->> -      - reg-names
->> -      - clocks
->> -      - interrupts
->> -      - power-domains
->> -      - operating-points-v2
->> -      - ports
->> +      - port@0
->>   
->>   required:
->>     - compatible
->>     - reg
->>     - reg-names
->> -  - power-domains
->>     - clocks
->>     - interrupts
->> -  - interrupt-controller
->> -  - iommus
->> -  - ranges
->> +  - power-domains
->> +  - operating-points-v2
->> +  - ports
->>   
->>   additionalProperties: false
->>   
->> diff --git a/Documentation/devicetree/bindings/display/msm/mdss.yaml b/Documentation/devicetree/bindings/display/msm/mdss.yaml
->> index 7d4ab3d71d2d..98f1f2501291 100644
->> --- a/Documentation/devicetree/bindings/display/msm/mdss.yaml
->> +++ b/Documentation/devicetree/bindings/display/msm/mdss.yaml
->> @@ -17,6 +17,7 @@ description:
->>   properties:
->>     compatible:
->>       enum:
->> +      - qcom,sc7180-mdss
->>         - qcom,sdm845-mdss
->>         - qcom,mdss
->>   
->> @@ -64,20 +65,21 @@ properties:
->>         - description: MDSS_CORE reset
->>   
->>     interconnects:
->> -    minItems: 2
->> +    minItems: 1
->>       items:
->>         - description: MDP port 0
->>         - description: MDP port 1
->>         - description: Rotator
->>   
->>     interconnect-names:
->> -    minItems: 2
->> +    minItems: 1
->>       items:
->>         - const: mdp0-mem
->>         - const: mdp1-mem
->>         - const: rotator-mem
->>   
->>     iommus:
->> +    minItems: 1
->>       items:
->>         - description: Phandle to apps_smmu node with SID mask for Hard-Fail port0
->>         - description: Phandle to apps_smmu node with SID mask for Hard-Fail port1
->> @@ -129,9 +131,11 @@ allOf:
->>               - const: mdss
->>   
->>           interconnects:
->> +          minItems: 1
->>             maxItems: 2
->>   
->>           interconnect-names:
->> +          minItems: 1
->>             maxItems: 2
->>   
->>         required:
->> @@ -157,6 +161,29 @@ allOf:
->>           iommus:
->>             minItems: 2
->>   
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - qcom,sc7180-mdss
->> +    then:
->> +      properties:
->> +        clocks:
->> +          items:
->> +            - description: Display AHB clock from gcc
->> +            - description: Display AHB clock from dispcc
->> +            - description: Display core clock
->> +
->> +        clock-names:
->> +          items:
->> +            - const: iface
->> +            - const: ahb
->> +            - const: core
->> +
->> +        iommus:
->> +          maxItems: 1
->> +
->>   required:
->>     - compatible
->>     - reg
->> @@ -177,7 +204,19 @@ patternProperties:
->>       # TODO: add reference once the mdp5 is converted
->>   
->>     "^display-controller@(0|[1-9a-f][0-9a-f]*)$":
->> -    $ref: dpu-sdm845.yaml
->> +    oneOf:
->> +      - $ref: dpu-sc7180.yaml
->> +      - $ref: dpu-sdm845.yaml
-> 
-> I don't think this is good approach. These are strictly tied, so you
-> should have rather per SoC MDSS schema pulling in:
-> 1. common MDSS
-> 2. specific children schemas
-> 
-> This makes it quite obvious and specific. Your setup now allows putting
-> sc7180-dpu under sdm845-dpu.
+This patchset is a first one in the series created in the framework of
+my Baikal-T1 DDRC-related work:
 
-Then we should probably also use very specific $ref and compat check for 
-all other entries in this file too. I understand your concern, however 
-I'd prefer to have the working schema which is not tight enough compared 
-to set of schema files that completely do not work. And current 
-dpu-*yaml do not work as they allow just the display-controller beneath 
-the mdss node.
+[1: In-progress] EDAC/mc/synopsys: Various fixes and cleanups
+Link: ---you are looking at it---
+[2: To be submitted] EDAC/synopsys: Add generic DDRC info and address mapping
+Link:
+[3: To be submitted] EDAC/synopsys: Add generic resources and Baikal-T1 support
+Link:
 
-If you absolutely insist on me making the binding tight enough, I'll 
-rework the bindings to clearly specify which SoC has which nodes.
+Note the patchsets above must be merged in the same order as they are
+placed in the list in order to prevent conflicts. Nothing prevents them
+from being reviewed synchronously though. Any tests are very welcome.
+Thanks in advance.
 
-> 
-> Best regards,
-> Krzysztof
+Regarding this series content. It's an initial patchset which
+traditionally provides various fixes, cleanups and modifications required
+for the more comfortable further features development. The main goal of it
+though is to detach the Xilinx Zynq A05 DDRC related code into the
+dedicated driver since first it has nothing to do with the Synopsys DW
+uMCTL2 DDR controller and second it will be a great deal obstacle on the
+way of extending the Synopsys-part functionality.
+
+The series starts with fixes patches, which in short concern the next
+aspects: touching the ZynqMP-specific CSRs on the Xilinx ZinqMP platform
+only, serializing an access to the ECCCLR register, adding correct memory
+devices type detection, setting a correct value to the
+mem_ctl_info.scrub_cap field, dropping an erroneous ADDRMAP[4] parsing and
+getting back a correct order of the ECC errors info detection procedure.
+
+Afterwards the patchset provides several cleanup patches required for the
+more coherent code splitting up (Xilinx Zynq A05 and Synopsys DW uMCTL2)
+so the provided modifications would be useful in both drivers. First we
+get to replace the platform resource manual IO-remapping with the
+devm_platform_ioremap_resource() method call. Secondly we suggest to drop:
+internal CE/UE errors counters, local to_mci() macros definition, some
+redundant ecc_error_info structure fields and redundant info from the
+error message, duplicated dimm->nr_pages debug printout and spaces from
+the MEM_TYPE flags declarations. (The later two updates concern the MCI
+core part.) Thirdly before splitting up the driver we need to add an
+unique MC index allocation infrastructure to the MCI core.  It's required
+since after splitting the driver up we'll need to make sure both device
+types could be correctly probed on the same platform. Finally the Xilinx
+Zynq A05 part of the driver is moved out to a dedicated driver where it
+should been originally placed. After that the platform-specific setups API
+is removed from the Synopsys DW uMCTL2 DDRC driver since it's no longer
+required.
+
+Finally as the cherry on the cake we suggest to unify the DW uMCTL2 DDRC
+driver entities naming and replace the open-coded "shift/mask" patter with
+the kernel helpers like BIT/GENMASK/FIELD_x in there. It shall
+significantly improve the code readability.
+
+Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
+Cc: Michail Ivanov <Michail.Ivanov@baikalelectronics.ru>
+Cc: Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>
+Cc: Punnaiah Choudary Kalluri <punnaiah.choudary.kalluri@xilinx.com>
+Cc: Manish Narani <manish.narani@xilinx.com>
+Cc: Dinh Nguyen <dinguyen@kernel.org>
+Cc: James Morse <james.morse@arm.com>
+Cc: Robert Richter <rric@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-edac@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+
+Serge Semin (20):
+  EDAC/synopsys: Fix native uMCTL2 IRQs handling procedure
+  EDAC/synopsys: Fix generic device type detection procedure
+  EDAC/synopsys: Fix mci->scrub_cap field setting
+  EDAC/synopsys: Drop erroneous ADDRMAP4.addrmap_col_b10 parse
+  EDAC/synopsys: Fix reading errors count before ECC status
+  EDAC/synopsys: Use platform device devm ioremap method
+  EDAC/synopsys: Drop internal CE and UE counters
+  EDAC/synopsys: Drop local to_mci macro implementation
+  EDAC/synopsys: Drop struct ecc_error_info.blknr field
+  EDAC/synopsys: Shorten out struct ecc_error_info.bankgrpnr field name
+  EDAC/synopsys: Drop redundant info from error message
+  EDAC/mc: Replace spaces with tabs in memtype flags definition
+  EDAC/mc: Drop duplicated dimm->nr_pages debug printout
+  EDAC/mc: Init DIMM labels in MC registration method
+  EDAC/mc: Add MC unique index allocation procedure
+  dt-bindings: memory: snps: Detach Zynq DDRC controller support
+  EDAC/synopsys: Detach Zynq DDRC controller support
+  EDAC/synopsys: Drop unused platform-specific setup API
+  EDAC/synopsys: Unify the driver entities naming
+  EDAC/synopsys: Convert to using BIT/GENMASK/FIELD_x macros
+
+ .../snps,dw-umctl2-ddrc.yaml                  |  51 +
+ .../memory-controllers/synopsys,ddrc-ecc.yaml |  76 --
+ .../xlnx,zynq-ddrc-a05.yaml                   |  38 +
+ MAINTAINERS                                   |   3 +
+ drivers/edac/Kconfig                          |   9 +-
+ drivers/edac/Makefile                         |   1 +
+ drivers/edac/edac_mc.c                        | 136 ++-
+ drivers/edac/edac_mc.h                        |   4 +
+ drivers/edac/synopsys_edac.c                  | 902 ++++++------------
+ drivers/edac/zynq_edac.c                      | 504 ++++++++++
+ include/linux/edac.h                          |  30 +-
+ 11 files changed, 1037 insertions(+), 717 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/snps,dw-umctl2-ddrc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/memory-controllers/synopsys,ddrc-ecc.yaml
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/xlnx,zynq-ddrc-a05.yaml
+ create mode 100644 drivers/edac/zynq_edac.c
 
 -- 
-With best wishes
-Dmitry
+2.35.1
 
