@@ -2,60 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C78B359C935
-	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 21:47:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2139859C947
+	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 21:51:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232754AbiHVTrt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Aug 2022 15:47:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34548 "EHLO
+        id S234589AbiHVTud (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Aug 2022 15:50:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231745AbiHVTrs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 15:47:48 -0400
+        with ESMTP id S238904AbiHVTua (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 15:50:30 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 112445004F
-        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 12:47:48 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32D124D4F5
+        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 12:50:30 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id ABB4861244
-        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 19:47:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1713EC433D7;
-        Mon, 22 Aug 2022 19:47:47 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C335860B09
+        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 19:50:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FF90C433D6
+        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 19:50:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661197667;
-        bh=lLDBl/9s0oQMx/zouO/HiWUNJOzlfCXaky/29Kmml/c=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=M4J0yJtVtjY4Fry4m6/q223M8COWrj649Jlmf7utzgKAJuS/Q9qfKGNO1TpYP1Ifl
-         o81FIenUEeu+S0u8lqf1wdyMBPySJsQgtMHgzY/dhq3M2H++H4hPQyEhubJlgeAUf+
-         jKj6Vc/TOumDmItBQuXGWNoqb7Agv18gqrQanTZLs4Qy9yv+JUE2Gq4USog/1MH+Eg
-         0Eount1v43D46PP8PYPifj/aBsl9r8d/1HMhMVYkIfuSWrPyO76jtziwyl2ZmMRAkJ
-         /vfBDAqGP6aMl8831rRRczOAnhYYZILqumwBE0cWYX2eHFqxnLbvCYse/QRi5KdbJA
-         qmU6kw63bs1Zg==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.95)
-        (envelope-from <maz@kernel.org>)
-        id 1oQDOj-004w6L-0Z;
-        Mon, 22 Aug 2022 20:47:45 +0100
-Date:   Mon, 22 Aug 2022 20:47:44 +0100
-Message-ID: <87h724vz4v.wl-maz@kernel.org>
-From:   Marc Zyngier <maz@kernel.org>
-To:     Jean-Philippe Brucker <jean-philippe@linaro.org>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/3] dt-bindings: interrupt-controller: arm,gic-v3: Make 'interrupts' optional
-In-Reply-To: <20220822152224.507497-3-jean-philippe@linaro.org>
+        s=k20201202; t=1661197829;
+        bh=b8T/RHfnze+80l9hEXpoS5JGnrUh3kRm8hXAbtNfUw8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=U269x63kXjCr0ndpohfQk/N0uqKKaEJTDjiHajxlY0aaxYLTJpBhb2+nJfEHUmMhb
+         +Iyv5wbB/vn3B2pCy0gxVh0nsqxn9toJiG9B6UVX7Pdl/hZmoIH8lK1zdvKCeeG7qK
+         AdWzxIdeveMoRaZUTvGh62nCZYdmO1xK+k9fOyG97sB2DXkEIvYk2Tv/5LEIpCTWsF
+         Cwa2ma+fFWELU4Hkk/rAvcrKVk38k4l4UaT6G7GG5R9U38o/rxJfFdhyC8bfutvCJq
+         TGNBqC7Lm/2X5hs4KYIa3mM1Co9SllJCQBsIQ23TA1bTA/SWIFf0u36xyDG6BKolu+
+         p/Mb9rimjxWXA==
+Received: by mail-vk1-f180.google.com with SMTP id g185so3683042vkb.13
+        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 12:50:29 -0700 (PDT)
+X-Gm-Message-State: ACgBeo0WT7+ZoWslvn4KZKSaFpaMTgF5/hwzsFDfK2h+G9N2HzRGt+ko
+        J2rCFDi9/CGLf7ocXlvrclLj5AI35AOFnL0QTQ==
+X-Google-Smtp-Source: AA6agR53bROFL0O7jGPY/f/xNb2evZU3MxhY5xcEPjmL69ywEubOiUF3vhlfkmLV5bYxwJvmvbQ77FEUvH3+oUu6ugs=
+X-Received: by 2002:a1f:23c6:0:b0:38c:88f3:f55c with SMTP id
+ j189-20020a1f23c6000000b0038c88f3f55cmr1854442vkj.19.1661197828162; Mon, 22
+ Aug 2022 12:50:28 -0700 (PDT)
+MIME-Version: 1.0
 References: <20220822152224.507497-1-jean-philippe@linaro.org>
-        <20220822152224.507497-3-jean-philippe@linaro.org>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
- (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: jean-philippe@linaro.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+ <20220822152224.507497-4-jean-philippe@linaro.org> <87ilmkvz6c.wl-maz@kernel.org>
+In-Reply-To: <87ilmkvz6c.wl-maz@kernel.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 22 Aug 2022 14:50:16 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLgHiSsPe7_PNX5sVhjByoZ5HwTedRNtSLG=6vMMMq__Q@mail.gmail.com>
+Message-ID: <CAL_JsqLgHiSsPe7_PNX5sVhjByoZ5HwTedRNtSLG=6vMMMq__Q@mail.gmail.com>
+Subject: Re: [PATCH 3/3] dt-bindings: interrupt-controller: arm,gic: Support
+ two address and size cells
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Jean-Philippe Brucker <jean-philippe@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -66,20 +64,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 22 Aug 2022 16:22:23 +0100,
-Jean-Philippe Brucker <jean-philippe@linaro.org> wrote:
-> 
-> A GICv3 implementation without virtualization, such as the base QEMU
-> virt machine (without -M virtualization=on), does not issue maintenance
-> interrupts. Therefore its device-tree node does not need an 'interrupts'
-> property. Currently, validating the QEMU virt device-tree throws a
-> warning that 'interrupts' is missing. Make it optional.
-> 
-> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
+On Mon, Aug 22, 2022 at 2:46 PM Marc Zyngier <maz@kernel.org> wrote:
+>
+> On Mon, 22 Aug 2022 16:22:24 +0100,
+> Jean-Philippe Brucker <jean-philippe@linaro.org> wrote:
+> >
+> > It should be valid for a GICv2m node, child of a GICv2 node, to use two
+> > cells per reg address and size. The QEMU virt device-tree currently
+> > fails validation because the schema imposes a single address and size
+> > cell. Amend the rule.
+> >
+> > Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
+>
+> Acked-by: Marc Zyngier <maz@kernel.org>
 
-Acked-by: Marc Zyngier <maz@kernel.org>
+Did you want me to pick these up? If not:
 
-	M.
-
--- 
-Without deviation from the norm, progress is not possible.
+Reviewed-by: Rob Herring <robh@kernel.org>
