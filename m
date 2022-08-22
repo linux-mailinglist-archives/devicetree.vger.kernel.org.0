@@ -2,70 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA08C59BDFD
-	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 12:58:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2598F59BE3E
+	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 13:09:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234076AbiHVK6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Aug 2022 06:58:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49992 "EHLO
+        id S229993AbiHVLJg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Aug 2022 07:09:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230107AbiHVK6w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 06:58:52 -0400
-Received: from smtp-fw-2101.amazon.com (smtp-fw-2101.amazon.com [72.21.196.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71D3031230;
-        Mon, 22 Aug 2022 03:58:51 -0700 (PDT)
+        with ESMTP id S234359AbiHVLJM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 07:09:12 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2379933E34
+        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 04:08:01 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id r4so13361314edi.8
+        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 04:08:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1661165932; x=1692701932;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=jBeEiHk1ILwd7T0QguL62OOtCR2zHUCuW2NIEn5oMQM=;
-  b=K307zDWhyzdo8JNbGA+pMVXol3u123UB0ucPRp3rJwGXlBI+v/yRce8v
-   QmhOGiiVFtWRf2mk5iJ8z29KDJ7LWQ4unDPBekjowEujOMBkZ8W15FC7B
-   kZgV7R56KIAvScLktwL0ClLZvgGV8w8uZIQ7Ol4Kc5iaU6mbjAB9qofrk
-   I=;
-X-IronPort-AV: E=Sophos;i="5.93,254,1654560000"; 
-   d="scan'208";a="232563806"
-Received: from iad12-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-iad-1e-7dac3c4d.us-east-1.amazon.com) ([10.43.8.6])
-  by smtp-border-fw-2101.iad2.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Aug 2022 10:58:40 +0000
-Received: from EX13MTAUEB001.ant.amazon.com (iad12-ws-svc-p26-lb9-vlan3.iad.amazon.com [10.40.163.38])
-        by email-inbound-relay-iad-1e-7dac3c4d.us-east-1.amazon.com (Postfix) with ESMTPS id 89DBC3E00E8;
-        Mon, 22 Aug 2022 10:58:38 +0000 (UTC)
-Received: from EX13D08UEB002.ant.amazon.com (10.43.60.107) by
- EX13MTAUEB001.ant.amazon.com (10.43.60.129) with Microsoft SMTP Server (TLS)
- id 15.0.1497.38; Mon, 22 Aug 2022 10:58:32 +0000
-Received: from EX13MTAUEA001.ant.amazon.com (10.43.61.82) by
- EX13D08UEB002.ant.amazon.com (10.43.60.107) with Microsoft SMTP Server (TLS)
- id 15.0.1497.38; Mon, 22 Aug 2022 10:58:32 +0000
-Received: from dev-dsk-farbere-1a-46ecabed.eu-west-1.amazon.com
- (172.19.116.181) by mail-relay.amazon.com (10.43.61.243) with Microsoft SMTP
- Server id 15.0.1497.38 via Frontend Transport; Mon, 22 Aug 2022 10:58:31
- +0000
-Received: by dev-dsk-farbere-1a-46ecabed.eu-west-1.amazon.com (Postfix, from userid 14301484)
-        id A2EA64C68; Mon, 22 Aug 2022 10:58:30 +0000 (UTC)
-From:   Eliav Farber <farbere@amazon.com>
-To:     <brgl@bgdev.pl>, <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <arnd@arndb.de>, <gregkh@linuxfoundation.org>,
-        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     <farbere@amazon.com>, <talel@amazon.com>, <hhhawa@amazon.com>,
-        <jonnyc@amazon.com>, <hanochu@amazon.com>, <ronenk@amazon.com>,
-        <itamark@amazon.com>, <shellykz@amazon.com>, <shorer@amazon.com>,
-        <amitlavi@amazon.com>, <almogbs@amazon.com>, <dkl@amazon.com>,
-        <dwmw@amazon.co.uk>
-Subject: [PATCH v2 2/2] eeprom: at24: add support for power-supply control
-Date:   Mon, 22 Aug 2022 10:58:30 +0000
-Message-ID: <20220822105830.22790-3-farbere@amazon.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220822105830.22790-1-farbere@amazon.com>
-References: <20220822105830.22790-1-farbere@amazon.com>
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=UBOByeB2MXYBWF0Ngo8u4UdkkfztEsDE7yNqsiJ1+80=;
+        b=BzsFOpc1/Mc0X9z223lsXWZS/tY4y0+joi4BEv5glMXwdMgLaEhyVlaoSyz0K3ya5T
+         Ik7dnernQfgtBGmb+OvhwETWQh2h1AZJR54hTZepWY1rjP3ebDuqzWjStEC3jbFZAaw8
+         K3gES4WqS6qJyzcuG97gJlbc1py4dUVk1Dm2de26RCPo8+VMeeWYLdPHDpYmZUAx9/uT
+         V6Th/pdzLwmss/lYVTMINZDV4WCGgQdDMtOtbeznxVHJbvPD3E7QhLY5CRFw9vGUoXgt
+         BPaaxk1C3EAsbeHb+beUDVIHdJo8ahLgoYZ8fLqanNhVk7TuErun4JI3xtOxsLTl5M6V
+         esLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=UBOByeB2MXYBWF0Ngo8u4UdkkfztEsDE7yNqsiJ1+80=;
+        b=4ZYzPonR9j2dCcp6uMVOGQnt2yB9CYsDo67VBNLw7uOIpVEHQFfoR3176v8SHk+Pb7
+         ur0+79fYKW6HsGwwOcWvOIdMGyP2nXOnkL+bsvCtqUF4Nm1seNFham1WtznL7fAjBb2w
+         XBMpX8BLNMhvq9w2DAGhWC1CMGIP67hxBuSpooyJu+O5T4tYvk/ukRaVwRiVyKPZl20o
+         IE5XBPxTtwBi3C/qXZJD1bp5hZQ0SMAi+gtkYkjVXOuET2PEnkejTbfyYNscfipAKCYx
+         EEOfVlu0cXXQvoUlQq6q+VVsGMBEbM/oGUgdG7hW22jgccYr/E/x1Q5ousMLqjmmfJDb
+         uq+g==
+X-Gm-Message-State: ACgBeo2hbQm0IBCGFMUaT7IHe+1SAcwEzvZN56t/KSby/A3MItsOm4K/
+        YxRJqbBaFFX9I9uJjD3BbQIkSLXVAzc9moN6p6Lhgg==
+X-Google-Smtp-Source: AA6agR6I8GpDbmShK/nTtNn95EOVxEW+y17uLeMbs/P/mq4HbiEMfUtFHz3h1LT8uPmBbs95HSDU97bm3dLNTUXQr5A=
+X-Received: by 2002:a05:6402:641:b0:446:d:bd64 with SMTP id
+ u1-20020a056402064100b00446000dbd64mr16181153edx.32.1661166479741; Mon, 22
+ Aug 2022 04:07:59 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-11.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_SPF_WL autolearn=ham
+References: <20220809214556.2489822-1-robh@kernel.org>
+In-Reply-To: <20220809214556.2489822-1-robh@kernel.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 22 Aug 2022 13:07:48 +0200
+Message-ID: <CACRpkdbSycBG6ZiXfEHLquiyAMu=et81LAaGZbj38bhAccCSkw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: pinctrl: qcom,ipq6018: Fix example
+ 'gpio-ranges' size
+To:     Rob Herring <robh@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sricharan R <sricharan@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,92 +71,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add an optional gpio regulator to support a power-supply control.
-If a gpio power-supply regulator is supplied in the device tree, the
-gpio is enabled during probe, and disabled on remove.
+On Tue, Aug 9, 2022 at 11:46 PM Rob Herring <robh@kernel.org> wrote:
 
-Signed-off-by: Eliav Farber <farbere@amazon.com>
----
-V1 -> V2:
-Change pointed out by Rob Herring:
-- Use a gpio regulator for power-supply control.
+> 'gpio-ranges' entries have a fixed size of 1 phandle plus arg 3 cells.
+> The qcom,ipq6018-pinctrl example is a cell short:
+>
+> Documentation/devicetree/bindings/pinctrl/qcom,ipq6018-pinctrl.example.dtb: pinctrl@1000000: gpio-ranges:0: [1, 0, 80] is too short
+>         From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/gpio/gpio.yaml
+>
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+> Please ack and I can send to Linus before rc1.
 
- drivers/misc/eeprom/at24.c | 41 ++++++++++++++++++++++++++++++++++++++
- 1 file changed, 41 insertions(+)
+Sorry for delay, was on vacation :/
+Acked-by: Linus Walleij <linus.walleij@linaro.org>
 
-diff --git a/drivers/misc/eeprom/at24.c b/drivers/misc/eeprom/at24.c
-index dc3537651b80..a5e3fe1403d9 100644
---- a/drivers/misc/eeprom/at24.c
-+++ b/drivers/misc/eeprom/at24.c
-@@ -25,6 +25,7 @@
- #include <linux/platform_data/at24.h>
- #include <linux/pm_runtime.h>
- #include <linux/gpio/consumer.h>
-+#include <linux/regulator/consumer.h>
- 
- /*
-  * I2C EEPROMs from most vendors are inexpensive and mostly interchangeable.
-@@ -78,6 +79,8 @@ struct at24_data {
- 
- 	struct gpio_desc *wp_gpio;
- 
-+	struct regulator *supply;
-+
- 	/*
- 	 * Some chips tie up multiple I2C addresses; dummy devices reserve
- 	 * them for us, and we'll use them with SMBus calls.
-@@ -615,6 +618,13 @@ static unsigned int at24_get_offset_adj(u8 flags, unsigned int byte_len)
- 	}
- }
- 
-+static void devm_at24_regulator_disable(void *data)
-+{
-+	struct at24_data *at24 = data;
-+
-+	regulator_disable(at24->supply);
-+}
-+
- static int at24_probe(struct i2c_client *client)
- {
- 	struct regmap_config regmap_config = { };
-@@ -674,6 +684,37 @@ static int at24_probe(struct i2c_client *client)
- 	if (!at24)
- 		return -ENOMEM;
- 
-+	at24->supply = devm_regulator_get_optional(dev, "power");
-+	if (IS_ERR(at24->supply)) {
-+		err = PTR_ERR(at24->supply);
-+		if (err == -ENODEV)
-+			at24->supply = NULL;
-+		else
-+			return dev_err_probe(dev, err,
-+					     "failed to get power-supply regulator\n");
-+	}
-+
-+	if (at24->supply) {
-+		err = regulator_enable(at24->supply);
-+		if (err < 0) {
-+			dev_err(dev,
-+				"failed to enable power-supply regulator: %d\n",
-+				err);
-+			return err;
-+		}
-+
-+		err = devm_add_action_or_reset(dev, devm_at24_regulator_disable,
-+					       at24);
-+		if (err < 0) {
-+			dev_err(dev,
-+				"failed to adction to disable power-supply regulator: %d\n",
-+				err);
-+			return err;
-+		}
-+
-+		usleep_range(2000, 3000);
-+	}
-+
- 	mutex_init(&at24->lock);
- 	at24->byte_len = pdata.byte_len;
- 	at24->page_size = pdata.page_size;
--- 
-2.37.1
+I think as binding maintainer you can just submit this kind of smaller stuff
+without any subsystem consent, if you have it acked by Krzysztof, even more so.
 
+Yours,
+Linus Walleij
