@@ -2,139 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 44DB659C2CC
-	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 17:29:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 50C0059C356
+	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 17:47:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235476AbiHVP3W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Aug 2022 11:29:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37510 "EHLO
+        id S236667AbiHVPrU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Aug 2022 11:47:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236618AbiHVP3H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 11:29:07 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3CEF13CF4
-        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 08:29:05 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id bs25so13689474wrb.2
-        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 08:29:05 -0700 (PDT)
+        with ESMTP id S236577AbiHVPrB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 11:47:01 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F0006363
+        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 08:46:57 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id n4so13728113wrp.10
+        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 08:46:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jrtc27.com; s=gmail.jrtc27.user;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc;
-        bh=Tj/TeA1Vba5/YB2iX5+tYIMrGWJcVWB+zymgkTHRpAI=;
-        b=ggvUSWKEViLarUpllfN8d3/D/U3wXUfnghmeXfQzCGOlRYHhcU8UMzw/F+Bimd1PfO
-         zNyWPt+OcrJ9/jp2YaN0/V06NbEurpv8kfhhxbxDnA4dncOMgBVIMsnkoDQ84ndL0S55
-         Hhk4mGLPxrL5ffb9JwxdEFu38eJwdJLT6MJs403e09BL5yutuC36oNq8raxcJxoTfBxx
-         bYENxKw1cYcFPdk0rcbI4r/XcbmXoBJmbwyKBmyFFhFj7wG15WWHbGLbB0nIpEUjIRkc
-         sGBQWBkGqZViw77T2vsLwAfY3/nLH8nyjKe5hcg7qKr7SuLyWM5ahcrcin+v872QyJjc
-         42OQ==
+        d=smile-fr.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=tfqpqMol0fOshQPqi7p3kM/k+o7Lcyt3OtfrczXMkYg=;
+        b=V1r+aWY/iNe5S7bx32+YdR6Fk7ASNl8xG/wxgWYxwlFTVI45z3zwiGleXAvonTQQjQ
+         nfRIjEOAu6u2JcLWTuVtx/LdDQIZIXIlPi3PHdNn8VsPp/SukBIDubdcbF5YekMwmlcX
+         QWyTX0GYo8PvFMhqCxC/9Es2vc0ndkiapbzJ5CQznS0GonEagArZI1hUTpOZ6cMg76AI
+         9HnvA07s5/s6POQ8NXaZoayWroB243S9czk1WwxNWTW6XY0P5P3PyoWbwYGPuioKS9PL
+         uYTqZYyoUcdLP8yt78WwnJXy6R3a9N62wMFkppyGVVLayM18xIS3PMYpIfWHh1f5KRgL
+         k7RA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc;
-        bh=Tj/TeA1Vba5/YB2iX5+tYIMrGWJcVWB+zymgkTHRpAI=;
-        b=h1iOcFzG9e9WWi4y+uUzJwkUzNzDdbmz07wlHt8hyeF23wd5LWj5cgBYjk17SQuw10
-         DVfNOCgbGgQmccRhDWAk5MDCwLcN4lfOoZXKBZZTB5Rd6sPENGfpUom8phL09ELox1+f
-         QYe55TlTtSVUKv3ELPuL+9wZFwJOWubPgTJJNT7FAMITwaLHk3VuVnZAcKPdnPWSXN8J
-         4gUqK0efK8r6KjLW4gc4MEX7c3igPAoC0bg/21ZjTfif7bMoh/G/ancslw+gDzAsd/3p
-         J1S17m/OTferKaTi1IDfjWubtLNiYIyM88kATCrNSZOLz2KO+AIE6fMl9l35FXVRBXs6
-         G8hA==
-X-Gm-Message-State: ACgBeo1a47v0RsGLC+9qUmeWSQirSOwkA5uoB04OO/i0PZtmMsgO3MDl
-        2gU8taay2Jy6S6ZA3E/5TCSoOH5mVOBzBg==
-X-Google-Smtp-Source: AA6agR5jyKhduztzqIDdkOhDPCZJoNwrA8EEV359JObFTzjtKAAYctHbcxiaZLRQPrwTe5m6Oe8cZQ==
-X-Received: by 2002:a05:6000:1867:b0:21f:f2cf:74a8 with SMTP id d7-20020a056000186700b0021ff2cf74a8mr11195780wri.344.1661182144304;
-        Mon, 22 Aug 2022 08:29:04 -0700 (PDT)
-Received: from smtpclient.apple (global-5-141.n-2.net.cam.ac.uk. [131.111.5.141])
-        by smtp.gmail.com with ESMTPSA id o14-20020adfcf0e000000b0021f1ec8776fsm12053546wrj.61.2022.08.22.08.29.02
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 22 Aug 2022 08:29:03 -0700 (PDT)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.80.82.1.1\))
-Subject: Re: [PATCH 06/12] riscv: dts: allwinner: Add the D1 SoC base
- devicetree
-From:   Jessica Clarke <jrtc27@jrtc27.com>
-In-Reply-To: <44b6f601-1a11-aacf-5592-5b61550afb9f@microchip.com>
-Date:   Mon, 22 Aug 2022 16:29:02 +0100
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>, andre.przywara@arm.com,
-        devicetree <devicetree@vger.kernel.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Samuel Holland <samuel@sholland.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        jernej.skrabec@gmail.com, prabhakar.mahadev-lad.rj@bp.renesas.com,
-        wens@csie.org, robh+dt@kernel.org, palmer@dabbelt.com,
-        krzysztof.kozlowski+dt@linaro.org, paul.walmsley@sifive.com,
-        linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <C0B4F750-1C99-408A-A2DA-B72BBF7361B4@jrtc27.com>
-References: <20220815050815.22340-1-samuel@sholland.org>
- <20220815050815.22340-7-samuel@sholland.org>
- <20220815141159.10edeba5@donnerap.cambridge.arm.com>
- <3cd9ed5b-8348-38ac-feb1-9a7da858cebc@microchip.com>
- <932aaefd-e2ca-ef26-bf30-e315fb271ec5@sholland.org>
- <ff9e8bd3-c5f7-6319-060e-250151087a8e@microchip.com>
- <c6cba83ea9eea7fc41a9e78d0e45487b21f0f560.camel@icenowy.me>
- <c7599abd-c4cf-9ddd-1e74-e47dec9366d4@microchip.com>
- <CAMuHMdUHVpj9ikE2NxpBSBtTG8K6v92vGdbw3GLmEYUoVzatvg@mail.gmail.com>
- <538ae41e-664f-2efb-f941-9a063b727b6a@microchip.com>
- <CAMuHMdWWbR+Y=bJ7gdqV3d+ffHE1-hwQf-Owb8FAvZAaScdOgA@mail.gmail.com>
- <44b6f601-1a11-aacf-5592-5b61550afb9f@microchip.com>
-To:     Conor Dooley <conor.dooley@microchip.com>
-X-Mailer: Apple Mail (2.3696.80.82.1.1)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=tfqpqMol0fOshQPqi7p3kM/k+o7Lcyt3OtfrczXMkYg=;
+        b=t9JKhlbk8UXKcYuf5LDPJPFlLPmWoubVP+QCAIi0j4wsityzyOTmHKefpZmFEOjIcj
+         CM998Avhw125CxMi4eoQpmCgcxxCmUoIT/M9WXYNVaAgqjygEuAsPZQ7DIPx9+hNQ3/K
+         D4B2czeOdENf/MjEGaR7pdIBzXPuuf8GisFsWEbsNbO/fTQLt7KpzzkJU6xSty7MvrWT
+         fzigTqkYC1o6M+VBC71iNeIaz9lyUpLNfzAx4z6tKSrrUb/a2hzfebY2zQXL1/atjlRp
+         P2M69Ig2gT2h8xdhHBNTW9v763zlixrI0lUoKoFto/dOIyLbybMlG3sIYJqd3zsKaMlg
+         CAQg==
+X-Gm-Message-State: ACgBeo24sgN4Nhla6dB6hw+SshMG+Ldo4tb69/oAX5xoHMstihQKoJih
+        zbyXz10ECiAwve7QA9qQAG1Y1Q==
+X-Google-Smtp-Source: AA6agR562TDsmm99MxZFLAru6SU8lGDvvYhr8FtxFKCT1zLV95rzngLgalzI+lM9cNddWb/k3ESdlw==
+X-Received: by 2002:a05:6000:168e:b0:220:87da:c3e4 with SMTP id y14-20020a056000168e00b0022087dac3e4mr10951777wrd.559.1661183216037;
+        Mon, 22 Aug 2022 08:46:56 -0700 (PDT)
+Received: from P-NTS-Evian.home (2a01cb058f8a18001c97b8d1b477d53f.ipv6.abo.wanadoo.fr. [2a01:cb05:8f8a:1800:1c97:b8d1:b477:d53f])
+        by smtp.gmail.com with ESMTPSA id t14-20020adfe10e000000b0021e8d205705sm7093634wrz.51.2022.08.22.08.46.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Aug 2022 08:46:55 -0700 (PDT)
+From:   Romain Naour <romain.naour@smile.fr>
+To:     linux-omap@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, bcousson@baylibre.com,
+        tony@atomide.com, Romain Naour <romain.naour@skf.com>,
+        Romain Naour <romain.naour@smile.fr>,
+        Roger Quadros <rogerq@ti.com>
+Subject: [PATCH] ARM: dts: am5748: keep usb4_tm disabled
+Date:   Mon, 22 Aug 2022 17:46:25 +0200
+Message-Id: <20220822154625.52160-1-romain.naour@smile.fr>
+X-Mailer: git-send-email 2.34.3
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22 Aug 2022, at 14:56, conor.dooley@microchip.com wrote:
->=20
-> On 22/08/2022 13:31, Geert Uytterhoeven wrote:
->> EXTERNAL EMAIL: Do not click links or open attachments unless you =
-know the content is safe
->>=20
->=20
->=20
->>> Do you think this is worth doing? Or are you just providing an
->>> example of what could be done?
->>=20
->> Just some brainstorming...
->>=20
->>> Where would you envisage putting these macros? I forget the order
->>> of the CPP operations that are done, can they be put in the dts?
->>=20
->> The SOC_PERIPHERAL_IRQ() macro should be defined in the
->> ARM-based SoC.dtsi file and the RISC-V-based SoC.dtsi file.
->=20
-> Right, one level up but ~the same result.
->=20
->=20
->>>> Nice! But it's gonna be a very large interrupt-map.
->>>=20
->>> I quite like the idea of not duplicating files across the archs
->>> if it can be helped, but not at the expense of making them hard to
->>> understand & I feel like unfortunately the large interrupt map is
->>> in that territory.
->>=20
->> I feel the same.
->> Even listing both interrupt numbers in SOC_PERIPHERAL_IRQ(na, nr)
->> is a risk for making mistakes.
->>=20
->> So personally, I'm in favor of teaching dtc arithmetic, so we can
->> handle the offset in SOC_PERIPHERAL_IRQ().
->=20
-> Yup, in the same boat here. mayb I'll get bored enough to bite..
+From: Romain Naour <romain.naour@skf.com>
 
-Note that GPL=E2=80=99ed dtc isn=E2=80=99t the only implementation. =
-FreeBSD uses a
-BSD-licensed implementation[1] and so adding new features like this to
-GPL dtc that actually get used would require us to reimplement it too.
-I don=E2=80=99t know how much effort it would be but please keep this in =
-mind.
+From [1]
+AM5 and DRA7 SoC families have different set of modules in them so the
+SoC sepecific dtsi files need to be separated.
 
-Jess
+e.g. Some of the major differences between AM576 and DRA76
 
-[1] https://github.com/davidchisnall/dtc=
+		DRA76x	AM576x
+
+USB3		x
+USB4		x
+ATL		x
+VCP		x
+MLB		x
+ISS		x
+PRU-ICSS1		x
+PRU-ICSS2		x
+
+But commit [2] removed usb4_tm part from am5748.dtsi and introcuded new
+ti-sysc errors in dmesg.
+
+Fixes:
+ti-sysc 48940000.target-module: clock get error for fck: -2
+ti-sysc: probe of 48940000.target-module failed with error -2
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/commit/?id=bcbb63b80284af0061ac44fe944d31a8482d2b8a
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/commit/?id=176f26bcd41a0ee8c69b14e97d1edf50e6485d52
+
+Signed-off-by: Romain Naour <romain.naour@skf.com>
+Signed-off-by: Romain Naour <romain.naour@smile.fr>
+Cc: Roger Quadros <rogerq@ti.com>
+---
+Issue reproduced on a AM5749 CPU using a 5.10 kernel from ti-linux-kernel:
+https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/commit/?h=linux-5.10.y
+---
+ arch/arm/boot/dts/am5748.dtsi | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/arch/arm/boot/dts/am5748.dtsi b/arch/arm/boot/dts/am5748.dtsi
+index c260aa1a85bd..a1f029e9d1f3 100644
+--- a/arch/arm/boot/dts/am5748.dtsi
++++ b/arch/arm/boot/dts/am5748.dtsi
+@@ -25,6 +25,10 @@ &usb3_tm {
+ 	status = "disabled";
+ };
+ 
++&usb4_tm {
++	status = "disabled";
++};
++
+ &atl_tm {
+ 	status = "disabled";
+ };
+-- 
+2.34.3
+
