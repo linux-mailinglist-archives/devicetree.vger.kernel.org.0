@@ -2,54 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4ABE259B81E
-	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 05:49:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 599A859B825
+	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 05:54:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232588AbiHVDq5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Aug 2022 23:46:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56666 "EHLO
+        id S232624AbiHVDxt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Aug 2022 23:53:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231804AbiHVDq4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Aug 2022 23:46:56 -0400
+        with ESMTP id S232630AbiHVDxr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Aug 2022 23:53:47 -0400
 Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D8652495F;
-        Sun, 21 Aug 2022 20:46:55 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06C9312A92;
+        Sun, 21 Aug 2022 20:53:46 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id D2BC1B80E72;
-        Mon, 22 Aug 2022 03:46:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94DACC433C1;
-        Mon, 22 Aug 2022 03:46:50 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id B2D19B80B2C;
+        Mon, 22 Aug 2022 03:53:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B37E5C433D6;
+        Mon, 22 Aug 2022 03:53:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661140012;
-        bh=RFNZNQQXYq+W/Ztgxu7x4hbjSIwxCSoZZrUPT41imIc=;
+        s=k20201202; t=1661140423;
+        bh=KnereuJVCdo2L1ZRIGBE+Gv8IEBSjxz1ez2467JsVEU=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FGMxNHjn3gG/7V0VA+yKPhFhWlDsBcgfxKxV9wuJkzusw8Nh00Jkf1LCh+bk1uBNV
-         Va1C/uvFXwhsHF/jCNyD8/4FQJsqtWOit/WJT2+31FNftgDNOZPQoi6xK+K26vrtNE
-         DRmoOK7QPrHFGrpxE3AK8dQYuFGtIirUy5XMP6dYtrFtJTBRRuac63ZtJ3kTdMXFkc
-         Uig5pbzkIxgEla2JdpfO4qFiYYUni2/TTLDOXDCK9ZBPYjCXKzrg+n8JV7lNLTg9U9
-         i5VXUMhox3AGX73fx4SaVf3LSYFvs6bneBvGssGUwmIK5f+Pp91ASUY+B1RrNM47MC
-         8i5wUynVflSrg==
-Date:   Mon, 22 Aug 2022 11:46:46 +0800
+        b=aZSDG5GAKFyRkC9xit/0ss2rSYh47O0/vy2Wwo/8IvRJbDRkJ2hAp1EKljDG5fEUQ
+         X9UMvgIvMpji3k0zvjfiyltYIsR0utluOMjmSEzNO+kyKwCDUHPvBQU145k7EorKX2
+         PgHZ/4vI1B7GYks78XUKJbkAuu7oBtL3prvErS4Wi4Om6fpxSgREjsqeaOKKnKgxga
+         +rX+tw8/q1rfdYzA5d35RoU3JzmMpu0Wh0Wz8NOyeuuxOHDX6q3oDGWu9uwXTRoLWh
+         Xi8nmR5H7LG0mbpsEU8Yqr6JDxVU4DsYyhUYxMfZMpowhfbaix5hakFZnlszZl1NEx
+         f1Aba9YWqPwVw==
+Date:   Mon, 22 Aug 2022 11:53:37 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Li Yang <leoyang.li@nxp.com>
-Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Priyanka Jain <priyanka.jain@nxp.com>,
-        Santan Kumar <santan.kumar@nxp.com>,
-        Tao Yang <b31903@freescale.com>,
-        Yogesh Gaur <yogeshnarayan.gaur@nxp.com>,
-        Abhimanyu Saini <abhimanyu.saini@nxp.com>
-Subject: Re: [PATCH v2 4/6] arm64: dts: ls2081a-rdb: Add DTS for NXP
- LS2081ARDB
-Message-ID: <20220822034646.GT149610@dragon>
-References: <20220817204357.21753-1-leoyang.li@nxp.com>
- <20220817204357.21753-5-leoyang.li@nxp.com>
+To:     Michael Walle <michael@walle.cc>
+Cc:     Vladimir Oltean <vladimir.oltean@nxp.com>,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        Leo Li <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH devicetree 2/3] arm64: dts: ls1028a: mark enetc port 3 as
+ a DSA master too
+Message-ID: <20220822035337.GU149610@dragon>
+References: <20220818140519.2767771-1-vladimir.oltean@nxp.com>
+ <20220818140519.2767771-3-vladimir.oltean@nxp.com>
+ <f646670f8ebc64cf1a3080330d54d733@walle.cc>
+ <20220818144521.sctrmqcfzi6e6l3e@skbuf>
+ <830a44530ce643aa111e74aa5815babf@walle.cc>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220817204357.21753-5-leoyang.li@nxp.com>
+In-Reply-To: <830a44530ce643aa111e74aa5815babf@walle.cc>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -60,181 +61,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 17, 2022 at 03:43:55PM -0500, Li Yang wrote:
-> From: Priyanka Jain <priyanka.jain@nxp.com>
+On Thu, Aug 18, 2022 at 05:08:57PM +0200, Michael Walle wrote:
+> Am 2022-08-18 16:45, schrieb Vladimir Oltean:
+> > On Thu, Aug 18, 2022 at 04:44:28PM +0200, Michael Walle wrote:
+> > > status should be the last property, no?
+> > 
+> > idk, should it?
 > 
-> This patch adds support for NXP LS2081ARDB board which has LS2081A SoC.
-> 
-> LS2081A SoC is 40-pin derivative of LS2088A SoC. From functional
-> perspective both are same. Hence, LS2088a SoC dtsi file is included
-> from LS2081ARDB dts.
-> 
-> Signed-off-by: Priyanka Jain <priyanka.jain@nxp.com>
-> Signed-off-by: Santan Kumar <santan.kumar@nxp.com>
-> Signed-off-by: Tao Yang <b31903@freescale.com>
-> Signed-off-by: Yogesh Gaur <yogeshnarayan.gaur@nxp.com>
-> Signed-off-by: Abhimanyu Saini <abhimanyu.saini@nxp.com>
-> Signed-off-by: Li Yang <leoyang.li@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/Makefile        |   1 +
->  .../boot/dts/freescale/fsl-ls2081a-rdb.dts    | 131 ++++++++++++++++++
->  2 files changed, 132 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/fsl-ls2081a-rdb.dts
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> index 2cf55534c162..bf7c448fa817 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -36,6 +36,7 @@ dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1088a-rdb.dtb
->  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1088a-ten64.dtb
->  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls2080a-qds.dtb
->  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls2080a-rdb.dtb
-> +dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls2081a-rdb.dtb
->  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls2080a-simu.dtb
->  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls2088a-qds.dtb
->  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls2088a-rdb.dtb
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls2081a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls2081a-rdb.dts
-> new file mode 100644
-> index 000000000000..0148f8c93442
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls2081a-rdb.dts
-> @@ -0,0 +1,131 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Device Tree file for NXP LS2081A RDB Board.
-> + *
-> + * Copyright 2017 NXP
-> + *
-> + * Priyanka Jain <priyanka.jain@nxp.com>
-> + *
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "fsl-ls2088a.dtsi"
-> +
-> +/ {
-> +	model = "NXP Layerscape 2081A RDB Board";
-> +	compatible = "fsl,ls2081a-rdb", "fsl,ls2081a";
-> +
-> +	aliases {
-> +		serial0 = &serial0;
-> +		serial1 = &serial1;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial1:115200n8";
-> +	};
-> +};
-> +
-> +&dspi {
-> +	status = "okay";
-> +
-> +	n25q512a: flash@0 {
-> +		compatible = "jedec,spi-nor";
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		spi-max-frequency = <3000000>;
-> +		reg = <0>;
-> +	};
-> +};
-> +
-> +&esdhc {
-> +	status = "okay";
-> +};
-> +
-> +&ifc {
-> +	status = "disabled";
-> +};
-> +
-> +&i2c0 {
-> +	status = "okay";
-> +
-> +	pca9547: mux@75 {
-> +		compatible = "nxp,pca9547";
-> +		reg = <0x75>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		i2c@1 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <0x1>;
+> IIRC Shawn pointed that out. If I'm mistaken, then do it for the
+> consistency within fsl-ls1028a.dtsi :)
 
-Have a newline between properties and child node.
+Yeah, I prefer to have 'status' be the last.
 
 Shawn
-
-> +			rtc@51 {
-> +				compatible = "nxp,pcf2129";
-> +				reg = <0x51>;
-> +			};
-> +		};
-> +
-> +		i2c@2 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <0x2>;
-> +
-> +			ina220@40 {
-> +				compatible = "ti,ina220";
-> +				reg = <0x40>;
-> +				shunt-resistor = <500>;
-> +			};
-> +		};
-> +
-> +		i2c@3 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <0x3>;
-> +
-> +			adt7481@4c {
-> +				compatible = "adi,adt7461";
-> +				reg = <0x4c>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&qspi {
-> +	status = "okay";
-> +
-> +	s25fs512s0: flash@0 {
-> +		compatible = "jedec,spi-nor";
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		spi-rx-bus-width = <4>;
-> +		spi-tx-bus-width = <4>;
-> +		spi-max-frequency = <20000000>;
-> +		reg = <0>;
-> +	};
-> +
-> +	s25fs512s1: flash@1 {
-> +		compatible = "jedec,spi-nor";
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		spi-rx-bus-width = <4>;
-> +		spi-tx-bus-width = <4>;
-> +		spi-max-frequency = <20000000>;
-> +		reg = <1>;
-> +	};
-> +};
-> +
-> +&sata0 {
-> +	status = "okay";
-> +};
-> +
-> +&sata1 {
-> +	status = "okay";
-> +};
-> +
-> +&usb0 {
-> +	status = "okay";
-> +};
-> +
-> +&usb1 {
-> +	status = "okay";
-> +};
-> -- 
-> 2.37.1
-> 
