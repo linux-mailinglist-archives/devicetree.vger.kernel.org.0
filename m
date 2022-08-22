@@ -2,63 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6947C59BDA4
-	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 12:35:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27AC159BDD3
+	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 12:50:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230480AbiHVKfh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Aug 2022 06:35:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58432 "EHLO
+        id S233393AbiHVKuM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Aug 2022 06:50:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230414AbiHVKfg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 06:35:36 -0400
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8F2413DD6
-        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 03:35:35 -0700 (PDT)
-Received: by mail-pl1-x632.google.com with SMTP id jl18so9548771plb.1
-        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 03:35:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc;
-        bh=/LVUMbJJhOHx/h399sCOjq4z40SbHDAbpzR2YJToXdo=;
-        b=cd5gqfY8xtXkeFKciTZz3KkNcWezzU04FeSctWmdUvUwXGTtBuNG6LlhdsjyekxLDW
-         kBLcIt2IVdmUcJZYsNaezvnEp50ZXzJj3mAOKl9IsknE2EzmVEmlvx+oiKfqjMUAYbxl
-         OY1w8ofvgfEredPHnS2o0QGvF+vFMK3RjQPF0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc;
-        bh=/LVUMbJJhOHx/h399sCOjq4z40SbHDAbpzR2YJToXdo=;
-        b=vdIDODku7seRkmwfCbmy2zv7Wo+nTZ9y2FAXlwlhyDbUY/OmeuW2/E1CAYuapZXfo5
-         SPIJ3xWNQkpuKhoKLe7mUL/kZziRVZ/Nff6lezD4R5uT/MlzNkBEzV0XNDDk+XhfuXFK
-         Raz6bVFkWTZZ/D/HfUy6KNb3xe7N37EUUpUeq/K2a+E0IUKr4ddc3pfdpaOZyxgWBDI9
-         UVZx2paL1qgmROH5rDke4+2rlqYc4SwbFRD/LapHGi2j1tnKpeicQpuPYSiGhKnP5fhd
-         19zINxiRTdIe/z2p6ynjVrv9jUPz3i/CzrLf0MYOya3Bg0fOLZLcfje+kJMnCiqLTYUj
-         Qmsw==
-X-Gm-Message-State: ACgBeo254BDkQncIiBcspfuFf6oKZ+iyBklaqiP0Hu6odu7ktIOrwLtE
-        hf11xeZII9lpk7fv9H2yE9HdLQ==
-X-Google-Smtp-Source: AA6agR43/r7HGAvErH/NbWgW0DQamSV8igk7N3ATuyGWfWfBaH1zWD0eaNzCPyMsnghMtk5QEFiIdw==
-X-Received: by 2002:a17:902:7c01:b0:16f:9649:be73 with SMTP id x1-20020a1709027c0100b0016f9649be73mr19374845pll.70.1661164535216;
-        Mon, 22 Aug 2022 03:35:35 -0700 (PDT)
-Received: from localhost.localdomain ([2405:201:c00a:a073:1990:f7e9:cb35:d592])
-        by smtp.gmail.com with ESMTPSA id ij29-20020a170902ab5d00b0016dc26c7d30sm8036228plb.164.2022.08.22.03.35.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Aug 2022 03:35:34 -0700 (PDT)
-From:   Jagan Teki <jagan@amarulasolutions.com>
-To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amarula@amarulasolutions.com,
-        Jagan Teki <jagan@amarulasolutions.com>
-Subject: [PATCH] arm64: dts: rockchip: Fix typo in lisense text for PX30.Core
-Date:   Mon, 22 Aug 2022 16:05:24 +0530
-Message-Id: <20220822103524.266731-1-jagan@amarulasolutions.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S233254AbiHVKuL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 06:50:11 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id EC7852F383;
+        Mon, 22 Aug 2022 03:50:08 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9B0E111FB;
+        Mon, 22 Aug 2022 03:50:11 -0700 (PDT)
+Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9AC603F718;
+        Mon, 22 Aug 2022 03:50:06 -0700 (PDT)
+Date:   Mon, 22 Aug 2022 11:50:02 +0100
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Conor.Dooley@microchip.com, wens@csie.org,
+        jernej.skrabec@gmail.com, linux-sunxi@lists.linux.dev,
+        palmer@dabbelt.com, paul.walmsley@sifive.com,
+        aou@eecs.berkeley.edu, linux-riscv@lists.infradead.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Icenowy Zheng <uwu@icenowy.me>
+Subject: Re: [PATCH 06/12] riscv: dts: allwinner: Add the D1 SoC base
+ devicetree
+Message-ID: <20220822115002.74003b1c@donnerap.cambridge.arm.com>
+In-Reply-To: <932aaefd-e2ca-ef26-bf30-e315fb271ec5@sholland.org>
+References: <20220815050815.22340-1-samuel@sholland.org>
+        <20220815050815.22340-7-samuel@sholland.org>
+        <20220815141159.10edeba5@donnerap.cambridge.arm.com>
+        <3cd9ed5b-8348-38ac-feb1-9a7da858cebc@microchip.com>
+        <932aaefd-e2ca-ef26-bf30-e315fb271ec5@sholland.org>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,30 +54,85 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix the Amarula Solutions typo mistake in lisense text added
-in Engicam PX30.Core SoM dtsi.
+On Sat, 20 Aug 2022 12:24:55 -0500
+Samuel Holland <samuel@sholland.org> wrote:
 
-Fixes: d92a7c331f53c ("arm64: dts: rockchip: Add Engicam PX30.Core SOM")
-Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
----
- arch/arm64/boot/dts/rockchip/px30-engicam-px30-core.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Hi,
 
-diff --git a/arch/arm64/boot/dts/rockchip/px30-engicam-px30-core.dtsi b/arch/arm64/boot/dts/rockchip/px30-engicam-px30-core.dtsi
-index 7249871530ab..5eecbefa8a33 100644
---- a/arch/arm64/boot/dts/rockchip/px30-engicam-px30-core.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/px30-engicam-px30-core.dtsi
-@@ -2,8 +2,8 @@
- /*
-  * Copyright (c) 2020 Fuzhou Rockchip Electronics Co., Ltd
-  * Copyright (c) 2020 Engicam srl
-- * Copyright (c) 2020 Amarula Solutons
-- * Copyright (c) 2020 Amarula Solutons(India)
-+ * Copyright (c) 2020 Amarula Solutions
-+ * Copyright (c) 2020 Amarula Solutions(India)
-  */
- 
- #include <dt-bindings/gpio/gpio.h>
--- 
-2.25.1
+> On 8/15/22 12:01 PM, Conor.Dooley@microchip.com wrote:
+> > On 15/08/2022 14:11, Andre Przywara wrote:  
+> >> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+> >>
+> >> On Mon, 15 Aug 2022 00:08:09 -0500
+> >> Samuel Holland <samuel@sholland.org> wrote:
+> >>
+> >> Hi,
+> >>
+> >> thanks for all the efforts in getting those SoC peripherals supported!
+> >>  
+> >>> D1 is a SoC containing a single-core T-HEAD Xuantie C906 CPU, as well as
+> >>> one HiFi 4 DSP. The SoC is based on a design that additionally contained
+> >>> a pair of Cortex A7's. For that reason, some peripherals are duplicated.  
+> >>
+> >> So because of this, the Allwinner R528 and T113 SoCs would share almost
+> >> everything in this file. Would it be useful to already split this DT up?
+> >> To have a base .dtsi, basically this file without /cpus and /soc/plic,
+> >> then have a RISC-V specific file with just those, including the base?
+> >> There is precedence for this across-arch(-directories) sharing with the
+> >> Raspberry Pi and Allwinner H3/H5 SoCs.  
+> > 
+> > For those playing along at home, one example is the arm64 bananapi m2
+> > dts which looks like:  
+> >> /dts-v1/;
+> >> #include "sun50i-h5.dtsi"
+> >> #include "sun50i-h5-cpu-opp.dtsi"
+> >> #include <arm/sunxi-bananapi-m2-plus-v1.2.dtsi>
+> >>
+> >> / {
+> >> 	model = "Banana Pi BPI-M2-Plus v1.2 H5";
+> >> 	compatible = "bananapi,bpi-m2-plus-v1.2", "allwinner,sun50i-h5";
+> >> };  
+> > 
+> > I think this is a pretty good idea, and putting in the modularity up
+> > front seems logical to me, so when the arm one does eventually get
+> > added it can be done by only touching a single arch.  
+> 
+> This is not feasible, due to the different #interrupt-cells. See
+> https://lore.kernel.org/linux-riscv/CAMuHMdXHSMcrVOH+vcrdRRF+i2TkMcFisGxHMBPUEa8nTMFpzw@mail.gmail.com/
+> 
+> Even if we share some file across architectures, you still have to update files
+> in both places to get the interrupts properties correct.
 
+There are interrupt-maps for that:
+sun8i-r528.dtsi:
+	soc {
+		#interrupt-cells = <1>;
+		interrupt-map = <0  18 &gic GIC_SPI  2 IRQ_TYPE_LEVEL_HIGH>,
+				<0  19 &gic GIC_SPI  3 IRQ_TYPE_LEVEL_HIGH>,
+				....
+
+sun20i-d1.dtsi:
+	soc {
+		#interrupt-cells = <1>;
+		interrupt-map = <0  18 &plic  18 IRQ_TYPE_LEVEL_HIGH>,
+				<0  19 &plic  19 IRQ_TYPE_LEVEL_HIGH>,
+
+then, in the shared .dtsi:
+		uart0: serial@2500000 {
+			compatible = "snps,dw-apb-uart";
+			...
+			interrupts = <18>;
+
+This is completely untested, but I have all the files spelt out there, and
+dtc seems happy for both architectures (outside of the kernel tree for now).
+
+> I get the desire to deduplicate things, but we already deal with updating the
+> same/similar nodes across several SoCs, so that is nothing new. I think it would
+> be more confusing/complicated to have all of the interrupts properties
+> overridden in a separate file.
+
+So is this the only thing that prevents sharing? The above paragraph
+sounds a bit you are not very fond of the idea to begin with?
+
+Cheers,
+Andre
