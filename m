@@ -2,115 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B6AF759BA02
-	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 09:07:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA81C59BA11
+	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 09:14:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229502AbiHVHHx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Aug 2022 03:07:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58198 "EHLO
+        id S232950AbiHVHOw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Aug 2022 03:14:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229496AbiHVHHw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 03:07:52 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A99971571A;
-        Mon, 22 Aug 2022 00:07:44 -0700 (PDT)
-X-UUID: 50fc1ce3795b4be489394a37efba0651-20220822
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=CJugcxX+eOv/HfKlyYUWU1xq3Wn9o4AB7EJIdNcHq8s=;
-        b=L4nWy9VxoGQHC/NJGrG++HhulEfCnS9PIJJUJHMv2Yb/km6Ou2i/q3ABgKmgit6sLwqqS5hPMqIth2ylxKT4sr9e7X/Dg2WDz8VK80aX8nAAlV67kMdA4U6qfAtddoilBb2k2bGN7xIz2AQotEpZxaHziFaYvuGDJ+LEJHvI9Vs=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.10,REQID:caa3ca08-8164-4377-bca8-79cef37653a1,OB:0,L
-        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_
-        Ham,ACTION:release,TS:0
-X-CID-META: VersionHash:84eae18,CLOUDID:63e3e667-a9d9-4672-a3c8-12721739a220,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:11|1,File:
-        nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 50fc1ce3795b4be489394a37efba0651-20220822
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 628881890; Mon, 22 Aug 2022 15:07:37 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Mon, 22 Aug 2022 15:07:36 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 22 Aug 2022 15:07:35 +0800
-Message-ID: <816ecf6287533137b750c8bde9de5830e4229c56.camel@mediatek.com>
-Subject: Re: [PATCH 2/7] dt-bindings: phy: mediatek,tphy: add property to
- set pre-emphasis
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>
-CC:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Eddie Hung <eddie.hung@mediatek.com>
-Date:   Mon, 22 Aug 2022 15:07:35 +0800
-In-Reply-To: <438da392-f419-ad76-7e91-aa4aab36e12c@linaro.org>
-References: <20220819091344.2274-1-chunfeng.yun@mediatek.com>
-         <20220819091344.2274-2-chunfeng.yun@mediatek.com>
-         <438da392-f419-ad76-7e91-aa4aab36e12c@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S230029AbiHVHOv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 03:14:51 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DABBC1F2D6
+        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 00:14:50 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id z2so12658015edc.1
+        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 00:14:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc;
+        bh=L4C9jxDEHQJxeNb6tSjoDWUpW5OXjQBjDyyOgdCfm1c=;
+        b=HDpf9UEUkLM+5q7kzurPq7l8YVBs2Gwncdlt1GECYz1eWZorNMAeFaFnahENaZwyFY
+         18QtbkG2hpVzGZqil0J/u4IDUrBttXvTS+/GqOPCUsats9mqRRteaUrJWoPIjIjIv7aX
+         Q8JnYhEUPii5uclxswYUCtlv2KGWXtnfPH5Rm5qPiKSeJQBiZ1no0bMudmDO6W8RMAuz
+         E4hrIacq5HCEIw+9o/HrdNxJM5HkM8jr8BVXUrn7FmMLYDOGQoeZGwQUxfEvXIU6LrAi
+         x3DDMuFpfH56yBR8kkRMv5PS2rdu2xqG1le13VIig9oVjs9dKho40gBpQfMA1MMVpvmE
+         x3/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc;
+        bh=L4C9jxDEHQJxeNb6tSjoDWUpW5OXjQBjDyyOgdCfm1c=;
+        b=kb+ZFjwVvsMg25tWKKg+KZA+Iw+5tfU6VQfxLOigOwTReUxn9MWl5vYU54KD4FHVRn
+         BAY/LmWmdBsRnFTpE9ynDZUNXA5KuE38VVzuSlMrJ53EzX+7rgtrsjw5KZqeBXtUajYs
+         Km8FNTJWEsBdi01RSRp++SnzipJc95sMPlquttLjoM0jqSsiaUjF1bjjj2vvghCbwGTH
+         P0naGcrq2xiANdsMcIJkeYho+rfCBxSbRxF9xHBwu/q9NsxMHKUxkVw39Sqi4faFK5L9
+         x8ch7J6tcJ7RdEeI1KIxlNO/W+OWEk87bitk7dTIeuxkDFLwZ2ScIMtH/WiCLFHuDT7/
+         Fn9Q==
+X-Gm-Message-State: ACgBeo3CQzI/UljmfOsCwHeb0xWiOpSnxwulwvd0aID8gP8RsodDeMjc
+        +qFtkR1sP4+BQ3IssiLMgQL+fCW7Hcbk+GbJVUJRGQ==
+X-Google-Smtp-Source: AA6agR6uP2gNGTFa2fluxSVgHP2Yn6gtVn9sUtgJUHExaMImKcS0hip/QX/7i0dab1r6zmm25gurJY8lIHclJj9VIs4=
+X-Received: by 2002:a05:6402:4312:b0:43d:b9c0:65ee with SMTP id
+ m18-20020a056402431200b0043db9c065eemr15253416edc.205.1661152489457; Mon, 22
+ Aug 2022 00:14:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
+References: <20220728091712.13395-1-m.zatovic1@gmail.com>
+In-Reply-To: <20220728091712.13395-1-m.zatovic1@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 22 Aug 2022 09:14:38 +0200
+Message-ID: <CACRpkdbD1qzJujhq-U0UN0tWam9CaoLvVuAQfafq4XNaEdZ2QA@mail.gmail.com>
+Subject: Re: [PATCH RFC v1 1/2] bus: add Wiegand write-only GPIO driver
+To:     =?UTF-8?B?TWFydGluIFphxaVvdmnEjQ==?= <m.zatovic1@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        mani@kernel.org, hemantk@codeaurora.org, elder@linaro.org,
+        f.fainelli@gmail.com, Michael.Srba@seznam.cz,
+        jeffrey.l.hugo@gmail.com, gregkh@linuxfoundation.org,
+        bjorn.andersson@linaro.org, saravanak@google.com,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR,T_SPF_TEMPERROR,
-        UNPARSEABLE_RELAY autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2022-08-19 at 15:15 +0300, Krzysztof Kozlowski wrote:
-> On 19/08/2022 12:13, Chunfeng Yun wrote:
-> > Add a property to set usb2 phy's pre-emphasis.
-> > 
-> > Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> > ---
-> >  Documentation/devicetree/bindings/phy/mediatek,tphy.yaml | 7
-> > +++++++
-> >  1 file changed, 7 insertions(+)
-> > 
-> > diff --git
-> > a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-> > b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-> > index 848edfb1f677..aee2f3027371 100644
-> > --- a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-> > +++ b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-> > @@ -219,6 +219,13 @@ patternProperties:
-> >          minimum: 1
-> >          maximum: 15
-> >  
-> > +      mediatek,pre-emphasis:
-> > +        description:
-> > +          The selection of pre-emphasis (U2 phy)
-> > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > +        minimum: 1
-> > +        maximum: 3
-> 
-> Instead of hard-coding register values in bindings, you should rather
-> describe here feature/effect. If it is in units, use unit suffixes.
-> If
-> it is some choice, usually string enum is appropriate.
-How about changing description as bellow:
+Hi Martin!
 
-"The level of pre-emphasis, increases one level, boosts the relative
-amplitudes of signal's higher frequencies components about 4.16% (U2
-phy)"
+Thanks for your patch!
 
-Thanks
+On Thu, Jul 28, 2022 at 11:17 AM Martin Za=C5=A5ovi=C4=8D <m.zatovic1@gmail=
+.com> wrote:
 
-> 
-> Best regards,
-> Krzysztof
+> Wiegand is a communication protocol that is still widely used
+> especially for access control applications. It utilizes two wires to
+> transmit data - D0 and D1, the generic names of which are data-lo and
+> data-hi.
 
+So the driver provides Wiegand GPIO, if you want to provide
+generic Wiegand infrastructure (for other things than GPIO
+as well) then that should indeed be in drivers/bus.
+
+However then you should provide an API for random WIegand
+drivers, such as the now baked-in GPIO driver, so I think
+what you want to achieve is:
+
+1. A wiegand bus transport driver in drives/bus
+2. A wiegand abstract API in include/linux/wiegand.h
+3. A GPIO driver on top of the wiegand bus in
+   drivers/gpio/wiegand-gpio.c that uses <linux/wiegand.h>
+
+How does this sound?
+
+I don't know how a wiegand device driver API would look
+but there are several examples in other subsystems and
+buses then the wiegand specifics need to be accounted for.
+
+Yours,
+Linus Walleij
