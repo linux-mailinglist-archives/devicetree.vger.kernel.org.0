@@ -2,270 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A97959BBE5
-	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 10:43:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B775E59BBEC
+	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 10:46:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232227AbiHVInk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Aug 2022 04:43:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54114 "EHLO
+        id S229756AbiHVIqj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Aug 2022 04:46:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229794AbiHVIni (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 04:43:38 -0400
-Received: from mx0a-00069f02.pphosted.com (mx0a-00069f02.pphosted.com [205.220.165.32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BC0013DF3;
-        Mon, 22 Aug 2022 01:43:36 -0700 (PDT)
-Received: from pps.filterd (m0246627.ppops.net [127.0.0.1])
-        by mx0b-00069f02.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 27M8AbHF004949;
-        Mon, 22 Aug 2022 08:43:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
- : subject : message-id : content-type : in-reply-to : mime-version;
- s=corp-2022-7-12; bh=3uhdjkOeNbB7UhfLALKaVnRKWUeiz36tguYXpBXGkUA=;
- b=VUGJwhaFeTuKXiEtx+Xn/sUBSGJ6XhR01doE3V9kanVuslJb/fu0zBNSFGMq5lUnB+09
- fU26+Ql0ndM9iVSYWmiBttwH8k1XmyMpFv+PnH0xA6SMRWFDCocPMaGwr5JJ7E5ex8Ti
- vIwk5w/I2rjR7DjMcMeT8VracrPw2lLIZvFDrbjbSxc/i2T4sZ/yhTmsOSPuI3CE3zS9
- vQwy7RJu4LRWypD2BskysdnLBP+IGcr+yaSspShHCRwON3iK49Ip2Fq+5bK0iqrDY6AX
- X+3qUISlefJ8xW9QjmpX9vMmNaeJv17gYZWsJSM9IvuK9MwiFo1ocDVvtHktVdR2F7gk 9Q== 
-Received: from iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (iadpaimrmta01.appoci.oracle.com [130.35.100.223])
-        by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 3j462882ge-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Mon, 22 Aug 2022 08:43:16 +0000
-Received: from pps.filterd (iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
-        by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (8.17.1.5/8.17.1.5) with ESMTP id 27M5U2Cw038092;
-        Mon, 22 Aug 2022 08:43:15 GMT
-Received: from nam10-dm6-obe.outbound.protection.outlook.com (mail-dm6nam10lp2101.outbound.protection.outlook.com [104.47.58.101])
-        by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTPS id 3j3mkfs7ys-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Mon, 22 Aug 2022 08:43:15 +0000
+        with ESMTP id S229565AbiHVIqg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 04:46:36 -0400
+Received: from EUR03-VE1-obe.outbound.protection.outlook.com (mail-eopbgr50074.outbound.protection.outlook.com [40.107.5.74])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1156A2D1C6;
+        Mon, 22 Aug 2022 01:46:35 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WwOJFuosohCfp6zLet1X58+3ji56DmRUmSVvtibJRiEnFyxrSKn+n6HJFFGBZtVsINxKm+++sq+GWfuuAiZH4QI4hpGuL7sKbHX5gfdan9Jhp5gr66dEP4cTqPC5QpFp1DmGWejxWbOnEEhqKZqXXYqkhBRV5uhYUNhu8uYXKbJ5wcZEGil71H5Daod7/Ar4uO3Fom1wx9uHDBPY0rFBQYxv57g6Gb7nhUM5fNwb2GBKNNgoOKJ2YxrTu0W88GZYXQ4qRHll2HFT1MdmY3Y0s1WfdO4oU4jPwQU4TexnFt4mHbWEHFOLKhxY28nCf044L7M9tlkQ8MHC0Ds1hibbJA==
+ b=meHW75pgDDp5Ed0NgqvagnHuyObdcsR43PX+8dYl6E823n7vWgw8PVI/q1mGDjaA+Z5hTfz874EG6QN73eyEFXDBB156lkMqATf37K73oozmPgVqAFJJSnZxFDnDc/ODnN6R4vIEStd1gF0FKC/G9IQhY5vI0SupQDLpI7SFX3s7Py8RnYGUcbeFyoWrQw9UnD53detEO1KqcxKhItRON6cY2ZJx/AX3Kz+3oK8k3YwZchag8gRxDz4oPPSsA6pYtI88uyVxKzK32cCphV/lgZhH/fxWe/EPnpEdRdeesQQlsaLuAgF+NFli3tM8a1Vw8gzZlTGNCbxPGs9Xns7j5A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3uhdjkOeNbB7UhfLALKaVnRKWUeiz36tguYXpBXGkUA=;
- b=m4R0T2/iq66HvljzMhzcPgxsYT+PTHDZEaHU75eNtEFgJUaFSqcfmOv1G7ZvIpApocbEkJOs22wVCGkXNK/wzPNVUub0eM9n+2OZSNEVHtLESjRS3+l1rXK8GojrM4YNkIEsJuD8y81Qrto7yYRT50GyLShsonh91zqrjjvQqqmxjZf5wvMxCrtkbCcgBwSlz/XPHgZnjERS/g98lO0rXbW59iz5xH+7GwUKmAurmqDBKEd0mViPPrpA5ON2EDRnpctDQ7potuOKsl5rDajCieyPjqzTymkqTweGAXbW7ZOyLKamcqPjEat12WIHKjg4AZupJ45jm1rcOuTsswPhVw==
+ bh=ptK3mEjOqJ00oM8iZrBShJOi7SVjZAlRqIvlnaa2AOY=;
+ b=gsc9Yfy3XNWPoCbadrhnABEYXUEb8b3ij4/nUnK5Tr3FNKFXSG46vdu2OXtybXPgadUl52IWYU760k1cJpcSg+moeVYcuMeDRe4TuvJCcb3VCx2zyIoJGszfu9BeB7QIIxBfPJUWV7HNbY6TbTEU8zYXp4jaODmROFVg6XTzx+3EIRkgXnJj7gO16PXN57gqYj6xo/7VmgohfzYszhRRAf7kROhqMOw861jt9KOOt4khaQvR43m8lvySUUm5YyFXk7Jkyrj50V0QXbHQiGdw+OyawIsrrW2HwSf9pQv24GShEx2F5MeyCRmYe/Tpx0HIQFanrhyaHe66hTdkiu4YVw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
- dkim=pass header.d=oracle.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3uhdjkOeNbB7UhfLALKaVnRKWUeiz36tguYXpBXGkUA=;
- b=bud9Zlw+aeJ4tpOlajOW8BiEpyuvTQoaGnt60bVUTdFRoxpRBS5jNAteZH89T9sTPeY//E3FvWjV3DptYYmWJao9rZtIxiH3EZauzArKFb3dt7JSIj/rwHGiihbN1siJPTeXTZ+/3ODN397m51YY6rgn9KpZpwQK2sTDy8XYdyE=
-Received: from MWHPR1001MB2365.namprd10.prod.outlook.com
- (2603:10b6:301:2d::28) by BN7PR10MB2561.namprd10.prod.outlook.com
- (2603:10b6:406:c9::17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5546.19; Mon, 22 Aug
- 2022 08:43:13 +0000
-Received: from MWHPR1001MB2365.namprd10.prod.outlook.com
- ([fe80::209e:de4d:68ea:c026]) by MWHPR1001MB2365.namprd10.prod.outlook.com
- ([fe80::209e:de4d:68ea:c026%3]) with mapi id 15.20.5546.022; Mon, 22 Aug 2022
- 08:43:12 +0000
-Date:   Mon, 22 Aug 2022 11:42:49 +0300
-From:   Dan Carpenter <dan.carpenter@oracle.com>
-To:     kbuild@lists.01.org, Conor Dooley <conor.dooley@microchip.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     lkp@intel.com, kbuild-all@lists.01.org,
-        Daire McNamara <daire.mcnamara@microchip.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org,
-        Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v9 3/4] pwm: add microchip soft ip corePWM driver
-Message-ID: <202208212329.XETz1mt0-lkp@intel.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220819085703.4161266-4-conor.dooley@microchip.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-ClientProxiedBy: JNXP275CA0012.ZAFP275.PROD.OUTLOOK.COM (2603:1086:0:19::24)
- To MWHPR1001MB2365.namprd10.prod.outlook.com (2603:10b6:301:2d::28)
+ bh=ptK3mEjOqJ00oM8iZrBShJOi7SVjZAlRqIvlnaa2AOY=;
+ b=VWksD7X5gfA53Ift+ehcnj0PeU5/snDsFMzyqlOgoTHT/kKmv1Yh/I7gpopwF5nY0Upp/mcIl/NJ124VZQwaDzUaNTU5N3sEQrE+vBut7YKbdMSNiVLlU+rDLFFh151/bMV6FL7maFgcxpWWtDvmPjFrvVOnNSRx6vdjbFSdQ+8=
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by DB7PR04MB4171.eurprd04.prod.outlook.com (2603:10a6:5:26::28) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5546.22; Mon, 22 Aug
+ 2022 08:46:32 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::3c6c:b7e6:a93d:d442]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::3c6c:b7e6:a93d:d442%6]) with mapi id 15.20.5546.021; Mon, 22 Aug 2022
+ 08:46:31 +0000
+From:   Peng Fan <peng.fan@nxp.com>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "wsa@kernel.org" <wsa@kernel.org>
+CC:     "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Clark Wang <xiaoning.wang@nxp.com>
+Subject: RE: [PATCH V2 0/7] i2c-imx-lpi2c: add IPG clock
+Thread-Topic: [PATCH V2 0/7] i2c-imx-lpi2c: add IPG clock
+Thread-Index: AQHYsW876SxYc4rxXUGbKvyYc8nHU626pHbA
+Date:   Mon, 22 Aug 2022 08:46:31 +0000
+Message-ID: <DU0PR04MB9417E7BD5F1FB7A8E00BAA3F88719@DU0PR04MB9417.eurprd04.prod.outlook.com>
+References: <20220816125526.2978895-1-peng.fan@oss.nxp.com>
+In-Reply-To: <20220816125526.2978895-1-peng.fan@oss.nxp.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: df147d29-8199-4150-122d-08da841acfd7
+x-ms-traffictypediagnostic: DB7PR04MB4171:EE_
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: UTyWrX+oGzkJp8sETypcdGQ2ECRJW4YUWXZc7VONg9EX6mQmlKd2arfVyMpnf7TKWkT+aTi3nJtIOaS7BeqFC1QEVWmqi0q1zM+mS7KQJm7fcq6AywEwpobhir6gPE/+NhtOhc5S/GENONnw2a5ItXJpzDYCIkIwFFbvPdz4YxJP4/Zmnxfj3fuN7mvcRxPn4J9UiKRjm3WMr/EjRTpUzfkuOMq3gKVIiaWObhd+6ulj6+hdgGo4jQco6xnjr30vQ5iynRbeaOrha8gMg1zyXjXuGrT7cPlOVB3Q7W1u1Zj1BU4+m5nDtVuIkCGDf8Rntw9pwplfbkMyQR2t96nD2QbH9eyYI6mHIQEgFWeoqKPnu52Jt5mWWLz/do0j3Ok/FHnCPfKT+Fy3ufGsVKlRtBRct+pLYcU3/IZZNuTeANrdR/hJsxfQco97bEUgfkiDMWXv0NTYg6ukEBemYHjUznpLQWxdIDo5v0tJlJcBTKGz6NwDYWCiS1oMGpRJpVnWyvqF3ucIvqobi291eHaDNeNA576pSjIpW8kSkOD82UP34abmhm7R7INeWiv4ywGZGGNWyFPNChsm+ilhksusnuFbcVOaOecbuv1ZVqF/oQne3Wri44n4sZJNWt3GXwqYWSy2k9tVH5RfDAFEk+dyIbV3Jb/VXrh4bOLZw0Nrx/NkGz+PmqwXxDjo3C6ZKIJc3IyoGZH9FgnVZD04l0w3aKDMzpn6ej7zL/iJXBO2aJkQxWuEgQ6bRrUqu+8UcZ7MOPGVpJEmvp7YOuX2S8gItA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(376002)(346002)(39860400002)(366004)(396003)(136003)(66476007)(76116006)(8676002)(64756008)(4326008)(66556008)(66446008)(66946007)(86362001)(110136005)(54906003)(33656002)(122000001)(38100700002)(38070700005)(83380400001)(186003)(8936002)(26005)(9686003)(7696005)(6506007)(71200400001)(41300700001)(478600001)(7416002)(316002)(55016003)(2906002)(52536014)(44832011)(5660300002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?eSzAauO7FAqf5pJk8O9yTh4lerqZcR1O5vYL77GEy1cVwOK8Qy1BAv4k2W+l?=
+ =?us-ascii?Q?Q6zMh+lQ6HpvmYT4MQpBu8u4JgjTomAod5cqEgqd2biy21t+jdcLPSKG0EoK?=
+ =?us-ascii?Q?un6WNoXn7GCVkIU4ju2esiBXs4grzUBddjlKPYAOWOuuN1k/6osrkv16SasR?=
+ =?us-ascii?Q?wU1pxA7cNxnoG99R0KjS6gztfGqSJzOusFHR0Sd13EuYHC/amWJ4tHM0HJuH?=
+ =?us-ascii?Q?ItEfzS3tzNmdTRi4EaytP3C1T++JYMHk/KyceCswdJYA9b7bzKQ8de97C+vt?=
+ =?us-ascii?Q?DZd6L1XNkoDesZNjNUz5NMaWZ9MujyMsdkWa4/P3Z7xN0tkgBx/0emZB7JzG?=
+ =?us-ascii?Q?8PoKN52SvesgYfKRt/B5xiH8lfOP7xxC3iL6CBmcohnsuHfa99yELHSDIoZC?=
+ =?us-ascii?Q?4le7Z3YV9avCDDMxiQ9Cj2cf8B+ccCLOu8k8JwN+0E8G1wCL2i/BWlE0XT8F?=
+ =?us-ascii?Q?O7xnYuf93Lxq+9nwbEiaSbJEKnYBnKk21V32kyKJLdMMzmEEAe8D45Tw+vCc?=
+ =?us-ascii?Q?re1KnN5EfRnHUey1cwYYd62zOhxU6DwHcagloEicTvWtCmwt2wfkDtLMTrGK?=
+ =?us-ascii?Q?3sm0nKq6Cuh/FlFjSjrHWoAMlglOJ3r1gHvIfkTwmWHuKZ5TZQ1wohsVjgaz?=
+ =?us-ascii?Q?Y09RxgxVCcZxL5c31My9OkswTj1kAiTU7U4qaHObwDwwelK0c4W5Mvp42dpC?=
+ =?us-ascii?Q?HLNDzZNlQ0WxjZ0rBZvnF6hTrz41JSiRma3wp9Tox8l+i3Xe0AqZnWMRCWQy?=
+ =?us-ascii?Q?1B1YcSwP/GOWz3rMqORXshOdgTGw/CFLZMrTAfiTJ8qeRHjmnxsWEoEkaOIV?=
+ =?us-ascii?Q?80h3oZ7OiyIV+TfYuS7Ta1UjSVfZ6JAu+LUqiHxFGkvrG3orKCbb6JfOzc1O?=
+ =?us-ascii?Q?HwjwnJTsk2JD/IPLwSmkUYBsGzrsNcaZRpQ1oMXxI29jArr8/onymZdYTWoa?=
+ =?us-ascii?Q?Vj4aK2mvl3zJ0EsZdftKz+FXMiUgc1AeMFUyY4FhDQ6fH2zOTPi5VubSuasZ?=
+ =?us-ascii?Q?k260aipntdXZC63G+IAahE5U4FkW2DPGI1fUWtLxhXxHb26+t2U113P5lv5O?=
+ =?us-ascii?Q?+zPb1zhSq90HF6HwDlGi/PRq/aTb7llx2QDhI/PVwmXJzhOGAaLVoBCVsWf+?=
+ =?us-ascii?Q?BJxiIuHpTn+P4NqBiugLJCLyPWrL/vypjexjaOUgFU7y2AVVRUwQI83LNyIm?=
+ =?us-ascii?Q?F6xDmL3J9yMzqTqixlEmLJZ6LdKlD407KOlS1ICTaLdgYhpSba0jkmcQWznh?=
+ =?us-ascii?Q?U7JAGM748nGcSSW40d6WMxNv/Ad7xz5T1ggKEAiJcUKgYjnnNy8MviDEYhKX?=
+ =?us-ascii?Q?0fO1M6doXZbuc5YA1nt84x0cLKxHtgvkHWpISJhqXH0UKniv3hX5apqG8kmE?=
+ =?us-ascii?Q?ViQiKG9HM+TG2wtBjIpG15d7x0mzDsCSzEdXrhHn6jF+K3e2NNrs3qLRO2mQ?=
+ =?us-ascii?Q?MFwi7M4qE2a4DfwwVgll9EsYnZaXSX+ehykaTP9H3RZVX+S/IUS69SWnSuiY?=
+ =?us-ascii?Q?tyuGXsSfQXlVa6IfckiLzxWdoYQ5NLeI1eO3b8Xkg7OX8tOqdEr7VQYjPKH0?=
+ =?us-ascii?Q?bdRv0I35HMpL07nTOI++AQcK3B9CrFD8QcfGbrG6?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 96bae38f-2715-4d06-dcc9-08da841a58ad
-X-MS-TrafficTypeDiagnostic: BN7PR10MB2561:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: daV9pf5UVmbPaunSTCYqiSsUL0vg3tMpR+7vt718RYj+blqmFkRShjomR2npiIvq0r1J0i5QxJP627BM3iXEIJn7y6F4ms2ntPvxC+54fes4qh5deHpfZrCC9m2T8TRHkq7euSo0D2/wWew+efVBx7jB8oER+0h8ydPxxVbWn/gSEAnb7xyofjX8rdYhBtmb0fy7qtU/IYAIszRTWPmSfEQ6DrzUkJMe/T5OZOU+rghRaIkSFcNdiqMn1bo3BAAXeanFhcMtzFn5ijeBIhbynmcZExelWN0t81czOwHSbruqE3cieMSxlEX/AL4itYl/vb62ZsntRI3j7Khlhh66515KPvRz8iuUe2WeW8eKpvGK+FS9aUQ6om79KN7TWX2oVd8E8cRDlQG7PWHoReyw/N5+lO9gbLHlqmmF4ZwCpw3ZK9n7o6+knq7B4e/D7Icw7o8gEoZeFBjkAnJ5kcQVBElEmd0jbpL2okJOYK8Q3JYprv7f3me1J6udZkCNn6KYluBnDSqIo1SYg32FyGLi9AIFu7rarK6Wd+JvZi1X4aWzJ+mgoVYB/FyXPlRtVfiGZwVs1HO4CBZx+KkFw0X+iXs2xgTXAgquplxyibBa7NmgR9A6Yx/mQoXUhQQRwnQDUP8ZoKV8S7CNhSYO0PdDYMrL8uKQSsYwHrOdEKr7xXk1Z/eQ7Lu9bkZc6BOtKzp3JPt5713mvcDLIWq4mf35DfEUP/xJ9/rXLSyWkIklBr+6wDDsDZSg3Nu6yEGx8QvCttHVpKRqfFeWUprUW2lZn7u5DtzR6y+/AOZNQGvJLaOAy+IoS6LQ+wupZpULWiKFzQ4nlXbPZEkVMM6is3Ucqg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR1001MB2365.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(136003)(396003)(366004)(376002)(39860400002)(346002)(6666004)(52116002)(6506007)(26005)(6512007)(9686003)(478600001)(966005)(6486002)(41300700001)(83380400001)(2906002)(186003)(1076003)(4326008)(7416002)(8676002)(66946007)(66476007)(66556008)(5660300002)(8936002)(44832011)(110136005)(316002)(54906003)(36756003)(38100700002)(38350700002)(86362001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?4NtxvYdeWAlURfeA8ifEC5dfym9jmp+5T6o3Bec6aYfkhyNpTEn6m5amwK8I?=
- =?us-ascii?Q?ceG8PwDu5cXO7NneiDLhj+Om8IXZma6FJP4NC/6pcSLolyxOrkBGbVGaP0qE?=
- =?us-ascii?Q?rvN3tPT7ArDKt7yx/TI8nFKweM1ojb1u+hqplvAecX2qPSIkbDw/OnLlqcep?=
- =?us-ascii?Q?hDcNZpAJERfdXFyHTO3QZtul1Tu0bHrJel4fJpLg7rEXGdTr1It6mQ9ihTex?=
- =?us-ascii?Q?/SUhQWzQJARZ5hnD0U6QyfbFv9dkffTACpEcDr1qiUM7vsoEDNiZS2IuJUov?=
- =?us-ascii?Q?TECrci2awOp2uG9j/rAcfP3ECma28LVaYbNGfMnrqz+VE00yg1zmVqE6q6ns?=
- =?us-ascii?Q?hBDUqw/1CRV2z6/4skdrjI5jm+JL0mdFvVFrGwHoog0k1tnzqWLaoHdy9pD0?=
- =?us-ascii?Q?Mm4rnHlLQKLsesxB+IgXkbAor5V6lxIeLCHjajtj0XlbGn9I+aNtzaCYEHZG?=
- =?us-ascii?Q?W9FntfH5Py1V0JwJYTep4jSwh5yum8V5vLJSIzxUkShozunpOEY1JtJH92rt?=
- =?us-ascii?Q?AUqv2szUI57yZAHKztdmt2VR4MCg7cUi+tkqIgCAhAE3jZk1R5gYYvYdPTS1?=
- =?us-ascii?Q?bIYnGZk4ovSuILdZ3jEAZoij4b+yb5TNQHBMaPRQjwqaC2ZJrnO5IGuiulEO?=
- =?us-ascii?Q?cNmeer5Kr2LPr2hwJ7nw7BsrrFvCNjnYE9VDJWrLrBIrxnHN/ebBdEZxTr9r?=
- =?us-ascii?Q?WLiIbLhDFKxhmRPO/jPEVDXT0HxoEYq6UojyeYF6Ua9Jk19F03w5/QgA4ZVk?=
- =?us-ascii?Q?d1fhdzPz2odw7u4+2giKh6aqbXpDN+8a7rci4SbkEGbVipFMaTx2y1xYszGk?=
- =?us-ascii?Q?yEoNU0qIfa6cV4/NWwuWLBC514TJDbdjp3wYbUF0x5rEtPyCxV1Tm+39Aa/t?=
- =?us-ascii?Q?NpEGmjxpgMAza7f32ymqu2ySXGOCm1Iv2IwCn0zH2U82+XUCwbuYUic5yePC?=
- =?us-ascii?Q?q0d4NipiTS+mAPLH1sZixS1JtSmfn2g/LzHnkifxyqBcY81O7LylLBUfDK/e?=
- =?us-ascii?Q?1SQZh9ip8xr5Y50sMEibrNZuNZNESWtzU5AqaSDO1oXYReWvqcABpi2WzdkX?=
- =?us-ascii?Q?AUad/XnPpMACQYcRE1Rb4OKL+G3u0wWVuFCsCDsUsV4EV7/xkJw+XZ3yGovc?=
- =?us-ascii?Q?AphKUmB0+CVoJ3WPl6KkibtvVdXqjvVLkRyJCKWPM+SJHDzxj39ubWGM27i4?=
- =?us-ascii?Q?nuMTjKSYti+dkhrbmfpaLkK8FF908uqahOpDUaxTTX4wF4WOQOesMMTj6N4o?=
- =?us-ascii?Q?B/GvvTfBHhwipi8ElEFuVhg+eYU8dlbeQHlX0bicHksRnvlwsGlEtZ3HZXmV?=
- =?us-ascii?Q?PG/CPmj7BcpPG70Z4aXCrbQTUiouG8CBTveVL6oRfNwhHhae2wcZ+3z4/y8g?=
- =?us-ascii?Q?3t4CeJgJtc3xWoLolgjQ3nbSg5f4liosbxH7Gt7xo7mHJTmPE/rRfHJTXkYq?=
- =?us-ascii?Q?0Yg4LO+sfpJu9h2n8nCOF9vCb/eXUlK6hoSQuX3kw1QH92WkPaOIKEaBXC4c?=
- =?us-ascii?Q?dLoxs4BdNvavCp0LgvceskXzTxPvLTRS0B0RIyBIsfc4lObLxrcOASavMjsd?=
- =?us-ascii?Q?p7kgpZIL57x09KMc1zKK2cn43cOPnqpTRMyYD0NsMKvgWJ3p5MjXE2fw+xrp?=
- =?us-ascii?Q?QA=3D=3D?=
-X-OriginatorOrg: oracle.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 96bae38f-2715-4d06-dcc9-08da841a58ad
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2365.namprd10.prod.outlook.com
+X-OriginatorOrg: nxp.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Aug 2022 08:43:12.1901
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: df147d29-8199-4150-122d-08da841acfd7
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Aug 2022 08:46:31.6560
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: e627TWhi9IFfDNtahN1EqBDHE5ygFWUzo4LwTDzKmXDWtrwSxmzWPLoMjP5d0X5iuRRpFzrEMEvZl3TRwVY9YSONfhPfof/r4ZRKtXbsgmY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PR10MB2561
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.517,FMLib:17.11.122.1
- definitions=2022-08-22_04,2022-08-18_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 suspectscore=0
- phishscore=0 malwarescore=0 spamscore=0 mlxlogscore=999 bulkscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2207270000 definitions=main-2208220036
-X-Proofpoint-ORIG-GUID: inUmolzi8k3Sul71ygiqLkin7Q-oUFtk
-X-Proofpoint-GUID: inUmolzi8k3Sul71ygiqLkin7Q-oUFtk
-X-Spam-Status: No, score=-0.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FAKE_REPLY_C,HEXHASH_WORD,
-        RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 8YA09tBAlprHfHBvaamhFO4Cf570/pf2UD3plEESWscJERPjVOOmlerm0ut1IqTY1qOF4/B20CRHALeE+xHquw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR04MB4171
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Conor,
+> Subject: [PATCH V2 0/7] i2c-imx-lpi2c: add IPG clock
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Conor-Dooley/Microchip-soft-ip-corePWM-driver/20220819-170106
-base:   568035b01cfb107af8d2e4bd2fb9aea22cf5b868
-config: arm64-randconfig-m031-20220821 (https://download.01.org/0day-ci/archive/20220821/202208212329.XETz1mt0-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 12.1.0
++ Wolfram Sang I2C maintainer.
 
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
-Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
+Krzysztof,
 
-smatch warnings:
-drivers/pwm/pwm-microchip-core.c:295 mchp_core_pwm_apply() warn: inconsistent returns '&mchp_core_pwm->lock'.
+Do you have time to give a look whether this patchset is ok for you?
+Please forgive if this is too early ping. Some i.MX93 dts update pending
 
-vim +295 drivers/pwm/pwm-microchip-core.c
+Thanks,
+Peng.
 
-ae39414af22131 Conor Dooley 2022-08-19  200  static int mchp_core_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-ae39414af22131 Conor Dooley 2022-08-19  201  			       const struct pwm_state *state)
-ae39414af22131 Conor Dooley 2022-08-19  202  {
-ae39414af22131 Conor Dooley 2022-08-19  203  	struct mchp_core_pwm_chip *mchp_core_pwm = to_mchp_core_pwm(chip);
-ae39414af22131 Conor Dooley 2022-08-19  204  	struct pwm_state current_state = pwm->state;
-ae39414af22131 Conor Dooley 2022-08-19  205  	bool period_locked;
-ae39414af22131 Conor Dooley 2022-08-19  206  	u64 duty_steps;
-ae39414af22131 Conor Dooley 2022-08-19  207  	u16 prescale;
-ae39414af22131 Conor Dooley 2022-08-19  208  	u8 period_steps;
-ae39414af22131 Conor Dooley 2022-08-19  209  	int ret;
-ae39414af22131 Conor Dooley 2022-08-19  210  
-ae39414af22131 Conor Dooley 2022-08-19  211  	mutex_lock(&mchp_core_pwm->lock);
-ae39414af22131 Conor Dooley 2022-08-19  212  
-ae39414af22131 Conor Dooley 2022-08-19  213  	if (!state->enabled) {
-ae39414af22131 Conor Dooley 2022-08-19  214  		mchp_core_pwm_enable(chip, pwm, false, current_state.period);
-ae39414af22131 Conor Dooley 2022-08-19  215  		mutex_unlock(&mchp_core_pwm->lock);
-ae39414af22131 Conor Dooley 2022-08-19  216  		return 0;
-ae39414af22131 Conor Dooley 2022-08-19  217  	}
-ae39414af22131 Conor Dooley 2022-08-19  218  
-ae39414af22131 Conor Dooley 2022-08-19  219  	/*
-ae39414af22131 Conor Dooley 2022-08-19  220  	 * If the only thing that has changed is the duty cycle or the polarity,
-ae39414af22131 Conor Dooley 2022-08-19  221  	 * we can shortcut the calculations and just compute/apply the new duty
-ae39414af22131 Conor Dooley 2022-08-19  222  	 * cycle pos & neg edges
-ae39414af22131 Conor Dooley 2022-08-19  223  	 * As all the channels share the same period, do not allow it to be
-ae39414af22131 Conor Dooley 2022-08-19  224  	 * changed if any other channels are enabled.
-ae39414af22131 Conor Dooley 2022-08-19  225  	 * If the period is locked, it may not be possible to use a period
-ae39414af22131 Conor Dooley 2022-08-19  226  	 * less than that requested. In that case, we just abort.
-ae39414af22131 Conor Dooley 2022-08-19  227  	 */
-ae39414af22131 Conor Dooley 2022-08-19  228  	period_locked = mchp_core_pwm->channel_enabled & ~(1 << pwm->hwpwm);
-ae39414af22131 Conor Dooley 2022-08-19  229  
-ae39414af22131 Conor Dooley 2022-08-19  230  	if (period_locked) {
-ae39414af22131 Conor Dooley 2022-08-19  231  		u16 hw_prescale;
-ae39414af22131 Conor Dooley 2022-08-19  232  		u8 hw_period_steps;
-ae39414af22131 Conor Dooley 2022-08-19  233  
-ae39414af22131 Conor Dooley 2022-08-19  234  		mchp_core_pwm_calc_period(chip, state, (u8 *)&prescale, &period_steps);
-ae39414af22131 Conor Dooley 2022-08-19  235  		hw_prescale = readb_relaxed(mchp_core_pwm->base + MCHPCOREPWM_PRESCALE);
-ae39414af22131 Conor Dooley 2022-08-19  236  		hw_period_steps = readb_relaxed(mchp_core_pwm->base + MCHPCOREPWM_PERIOD);
-ae39414af22131 Conor Dooley 2022-08-19  237  
-ae39414af22131 Conor Dooley 2022-08-19  238  		if ((period_steps + 1) * (prescale + 1) <
-ae39414af22131 Conor Dooley 2022-08-19  239  		    (hw_period_steps + 1) * (hw_prescale + 1)) {
-ae39414af22131 Conor Dooley 2022-08-19  240  			mutex_unlock(&mchp_core_pwm->lock);
-ae39414af22131 Conor Dooley 2022-08-19  241  			return -EINVAL;
-ae39414af22131 Conor Dooley 2022-08-19  242  		}
-ae39414af22131 Conor Dooley 2022-08-19  243  
-ae39414af22131 Conor Dooley 2022-08-19  244  		/*
-ae39414af22131 Conor Dooley 2022-08-19  245  		 * It is possible that something could have set the period_steps
-ae39414af22131 Conor Dooley 2022-08-19  246  		 * register to 0xff, which would prevent us from setting a 100%
-ae39414af22131 Conor Dooley 2022-08-19  247  		 * duty cycle, as explained in the mchp_core_pwm_calc_period()
-ae39414af22131 Conor Dooley 2022-08-19  248  		 * above.
-ae39414af22131 Conor Dooley 2022-08-19  249  		 * The period is locked and we cannot change this, so we abort.
-ae39414af22131 Conor Dooley 2022-08-19  250  		 */
-ae39414af22131 Conor Dooley 2022-08-19  251  		if (period_steps == MCHPCOREPWM_PERIOD_STEPS_MAX)
-ae39414af22131 Conor Dooley 2022-08-19  252  			return -EINVAL;
-
-mutex_unlock(&mchp_core_pwm->lock); before the retun?
-
-ae39414af22131 Conor Dooley 2022-08-19  253  
-ae39414af22131 Conor Dooley 2022-08-19  254  		prescale = hw_prescale;
-ae39414af22131 Conor Dooley 2022-08-19  255  		period_steps = hw_period_steps;
-ae39414af22131 Conor Dooley 2022-08-19  256  	} else if (!current_state.enabled || current_state.period != state->period) {
-ae39414af22131 Conor Dooley 2022-08-19  257  		ret = mchp_core_pwm_calc_period(chip, state, (u8 *)&prescale, &period_steps);
-ae39414af22131 Conor Dooley 2022-08-19  258  		if (ret) {
-ae39414af22131 Conor Dooley 2022-08-19  259  			mutex_unlock(&mchp_core_pwm->lock);
-ae39414af22131 Conor Dooley 2022-08-19  260  			return ret;
-ae39414af22131 Conor Dooley 2022-08-19  261  		}
-ae39414af22131 Conor Dooley 2022-08-19  262  		mchp_core_pwm_apply_period(mchp_core_pwm, prescale, period_steps);
-ae39414af22131 Conor Dooley 2022-08-19  263  	} else {
-ae39414af22131 Conor Dooley 2022-08-19  264  		prescale = readb_relaxed(mchp_core_pwm->base + MCHPCOREPWM_PRESCALE);
-ae39414af22131 Conor Dooley 2022-08-19  265  		period_steps = readb_relaxed(mchp_core_pwm->base + MCHPCOREPWM_PERIOD);
-ae39414af22131 Conor Dooley 2022-08-19  266  
-ae39414af22131 Conor Dooley 2022-08-19  267  		/*
-ae39414af22131 Conor Dooley 2022-08-19  268  		 * As above, it is possible that something could have set the
-ae39414af22131 Conor Dooley 2022-08-19  269  		 * period_steps register to 0xff, which would prevent us from
-ae39414af22131 Conor Dooley 2022-08-19  270  		 * setting a 100% duty cycle, as explained above.
-ae39414af22131 Conor Dooley 2022-08-19  271  		 * As the period is not locked, we are free to fix this.
-ae39414af22131 Conor Dooley 2022-08-19  272  		 */
-ae39414af22131 Conor Dooley 2022-08-19  273  		if (period_steps == MCHPCOREPWM_PERIOD_STEPS_MAX) {
-ae39414af22131 Conor Dooley 2022-08-19  274  			period_steps -= 1;
-ae39414af22131 Conor Dooley 2022-08-19  275  			mchp_core_pwm_apply_period(mchp_core_pwm, prescale, period_steps);
-ae39414af22131 Conor Dooley 2022-08-19  276  		}
-ae39414af22131 Conor Dooley 2022-08-19  277  	}
-ae39414af22131 Conor Dooley 2022-08-19  278  
-ae39414af22131 Conor Dooley 2022-08-19  279  	duty_steps = mchp_core_pwm_calc_duty(chip, pwm, state, prescale, period_steps);
-ae39414af22131 Conor Dooley 2022-08-19  280  
-ae39414af22131 Conor Dooley 2022-08-19  281  	/*
-ae39414af22131 Conor Dooley 2022-08-19  282  	 * Because the period is per channel, it is possible that the requested
-ae39414af22131 Conor Dooley 2022-08-19  283  	 * duty cycle is longer than the period, in which case cap it to the
-ae39414af22131 Conor Dooley 2022-08-19  284  	 * period, IOW a 100% duty cycle.
-ae39414af22131 Conor Dooley 2022-08-19  285  	 */
-ae39414af22131 Conor Dooley 2022-08-19  286  	if (duty_steps > period_steps)
-ae39414af22131 Conor Dooley 2022-08-19  287  		duty_steps = period_steps + 1;
-ae39414af22131 Conor Dooley 2022-08-19  288  
-ae39414af22131 Conor Dooley 2022-08-19  289  	mchp_core_pwm_apply_duty(chip, pwm, state, duty_steps, period_steps);
-ae39414af22131 Conor Dooley 2022-08-19  290  
-ae39414af22131 Conor Dooley 2022-08-19  291  	mchp_core_pwm_enable(chip, pwm, true, state->period);
-ae39414af22131 Conor Dooley 2022-08-19  292  
-ae39414af22131 Conor Dooley 2022-08-19  293  	mutex_unlock(&mchp_core_pwm->lock);
-ae39414af22131 Conor Dooley 2022-08-19  294  
-ae39414af22131 Conor Dooley 2022-08-19 @295  	return 0;
-ae39414af22131 Conor Dooley 2022-08-19  296  }
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+>=20
+> From: Peng Fan <peng.fan@nxp.com>
+>=20
+> V2:
+>  use clk bulk API in driver to support backward compatibility.
+>  Include a new patch, patch 1.
+>=20
+> The i.MX LPI2C needs PER and IPG clock, not just PER or IPG clock.
+> The current driver/dts/bindings use one CLK. Although it works with with
+> upstream kernel, but it not match the hardware design. If IPG clock is
+> disabled, the LPI2C will not work.
+>=20
+> There are changes made to ARM32 i.MX7ULP dts, ARM64 i.MX8 dts, dt-
+> bindings, and the lpi2c driver.
+>=20
+> The driver is updated to use bulk clk API to avoid break backward
+> compatibility. But it is hard to avoid dtbs_check pass, because the dts a=
+nd
+> binding update are in separate patches.
+>=20
+> Peng Fan (7):
+>   ARM: dts: imx7ulp: update the LPI2C clock-names
+>   dt-bindings: i2c: i2c-imx-lpi2c: add ipg clk
+>   dt-bindings: i2c: i2c-imx-lpi2c: add dmas property
+>   dt-bindings: i2c: i2c-imx-lpi2c: add i.MX93
+>   arm64: dts: imx8-ss-dma: add IPG clock for i2c
+>   ARM: dts: imx7ulp: Add IPG clock for lpi2c
+>   i2c: imx-lpi2c: use bulk clk API
+>=20
+>  .../bindings/i2c/i2c-imx-lpi2c.yaml           | 20 +++++++++++++---
+>  arch/arm/boot/dts/imx7ulp.dtsi                | 10 ++++----
+>  .../arm64/boot/dts/freescale/imx8-ss-dma.dtsi | 20 +++++++++-------
+>  drivers/i2c/busses/i2c-imx-lpi2c.c            | 24 +++++++++----------
+>  4 files changed, 47 insertions(+), 27 deletions(-)
+>=20
+> --
+> 2.37.1
 
