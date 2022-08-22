@@ -2,139 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71BFD59C83D
-	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 21:13:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D18559C843
+	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 21:13:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238387AbiHVTNC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Aug 2022 15:13:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36366 "EHLO
+        id S238094AbiHVTNz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Aug 2022 15:13:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238255AbiHVTMm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 15:12:42 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33A925073F
-        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 12:11:41 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id z6so16612382lfu.9
-        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 12:11:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc;
-        bh=iMDkWm8TCfHT8OAB3OYo4HTW9w3Q76IKCWQmxSVeQpQ=;
-        b=dv1C1kBV3HwxnFUuzxtwuwq+g/+pxFAKNhm6bbtQkIuG6ymC+D2X27JIrkmMSn6PpY
-         G5WNxfRMk2JrEg0rMFpYXlG2vN4pbvuyGWo2ZECoAO12VqV2m3UHP/lzazBZHqYkzXgS
-         bO448cCNv0vkRNCo75AXz/fOR5NMmRUINCSEQGUeMznKqRAyOLG3Ry/ErOcxg12Dhp7T
-         wGdQqh0P5Jf8JFReBoxO/jJrum9rMq0PRjOOwDoMiGhw4tTPTaRLIjl9LbKleB1e01Rn
-         kXBaY9ZekMF32f+j++mt85Ahvblf9NzaU/tLI+cwHdCKd5FVXfIyr5j8lre58O5JtmVh
-         jRXQ==
+        with ESMTP id S238307AbiHVTNc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 15:13:32 -0400
+Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 659A4E0FB;
+        Mon, 22 Aug 2022 12:13:28 -0700 (PDT)
+Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-11c896b879bso14072173fac.3;
+        Mon, 22 Aug 2022 12:13:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc;
-        bh=iMDkWm8TCfHT8OAB3OYo4HTW9w3Q76IKCWQmxSVeQpQ=;
-        b=27uGu8vVMuMHVmOPRHcrk717evE9goVGMYD3Rq+JhIUUgVcdodZme7IKTvdB2sjszZ
-         rnopDxfnziQWBN93XkP4LUS1g9FditvgMGZJC4fFq7C3fyyCOVJK/ppuoDJ3/29wmkGP
-         Ze81kP5MdTOTHgRo8aNSLHmDoZ8/zD6zxqe2Go1jGYC9RUpCmOvTmX0ZBOxDDDBWbAFo
-         RpxQTSq+q8WbMNTUiqGnxPZ5BgsN4HXfxqHBu+NShc00FDq6/V6ywfX6C9UPR6zf8peP
-         HbJnwQJYATJL+4s5Coplv1kRFTJHFzinQzfY4SsHpYAM7T9jCCOUUAwy6kZPBgZ6/1Iw
-         lk5w==
-X-Gm-Message-State: ACgBeo3YQY+1DORq79dctVoTD25Lrjym4gfVG/Ai4jSLvlgyDingxmyc
-        zVc2o6EvqIP4ZtDoDvc8vfb3OQ==
-X-Google-Smtp-Source: AA6agR70vuKeOo3/CtRRcy/X8xj4wYkOtmS/jyu+Q6qlyjuX+3unBEUBymLpNpcfmWnefXqlX0oXKQ==
-X-Received: by 2002:a05:6512:3faa:b0:48a:f17a:579e with SMTP id x42-20020a0565123faa00b0048af17a579emr8136533lfa.30.1661195499573;
-        Mon, 22 Aug 2022 12:11:39 -0700 (PDT)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id w18-20020a05651234d200b0048b193041easm2059691lfr.209.2022.08.22.12.11.38
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+        bh=LMDQuJo0oA0Z9tEl0K4aG8X27m3X4p/D+o2EROlyl9c=;
+        b=Ibms/jQqHBrp4SaXeUGxGck/wxmFC1ytBb/6CNnmRB72z0pijYoewC58wh59DEzQxk
+         wWJMnzXsNwY+/91prLuGm9qKz3ZbgmiA7lgSCFkaotcbRgIlY0tivO4M546EINVmTsJ6
+         /ZRwj7gcTCLKqaG0VOxnIZ3M7qnDB+bm8SlBkORvREllIY5iCo9ExCKPCgGn2mGXAWog
+         LWYTgUTHKScBmDRfVZZv48AqSriNsTOQnSqb779o5OkXMHwO8ImV9loCdlPfsQbhwPFN
+         a/+eJ38WLGZ5B9bWIl+9wlK9XFP4b9yMFSfrrHgjW7eFP2U/ePuLW4AtgK9kSZ0Stj8N
+         AMRQ==
+X-Gm-Message-State: ACgBeo2RcqsVb6Z/yuO2AKB3OqgT4WTAoK5c6XJcZvJK2G2f08F1sfFo
+        5zubKoacJmg+t8EphxRdRg==
+X-Google-Smtp-Source: AA6agR67XoVrfLE3mx+5Fw11ac0e2irOfcRNgY3xc6cGJL73PSJH/Bm1ic8ztm9iNBoc5wdWnk0njw==
+X-Received: by 2002:a05:6870:a91d:b0:10c:55e:3f64 with SMTP id eq29-20020a056870a91d00b0010c055e3f64mr10201618oab.123.1661195607460;
+        Mon, 22 Aug 2022 12:13:27 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id t20-20020a9d5914000000b0061cbd18bd18sm3166198oth.45.2022.08.22.12.13.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Aug 2022 12:11:39 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        Mon, 22 Aug 2022 12:13:26 -0700 (PDT)
+Received: (nullmailer pid 238867 invoked by uid 1000);
+        Mon, 22 Aug 2022 19:13:25 -0000
+Date:   Mon, 22 Aug 2022 14:13:25 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Apurva Nandan <a-nandan@ti.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hari Nagalla <hnagalla@ti.com>, linux-kernel@vger.kernel.org,
+        Tero Kristo <kristo@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        freedreno@lists.freedesktop.org
-Subject: [PATCH] arm64: dts: qcom: sm8250: move DSI opp table to the dsi0 node
-Date:   Mon, 22 Aug 2022 22:11:38 +0300
-Message-Id: <20220822191138.316912-1-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
+Subject: Re: [PATCH 1/4] dt-bindings: arm: ti: Add bindings for J784s4 SoC
+Message-ID: <20220822191325.GA238497-robh@kernel.org>
+References: <20220819190054.31348-1-a-nandan@ti.com>
+ <20220819190054.31348-2-a-nandan@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220819190054.31348-2-a-nandan@ti.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It makes no sense to have the OPP table for the DSI controllers in the
-DSI1 PHY node. Move it to more logical dsi0 device node.
+On Sat, 20 Aug 2022 00:30:51 +0530, Apurva Nandan wrote:
+> Add binding for J784S4 SoC
+> 
+> Signed-off-by: Apurva Nandan <a-nandan@ti.com>
+> ---
+>  Documentation/devicetree/bindings/arm/ti/k3.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 38 ++++++++++++++--------------
- 1 file changed, 19 insertions(+), 19 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index bc773e210023..5843e46a3164 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -3571,6 +3571,25 @@ dsi0_out: endpoint {
- 						};
- 					};
- 				};
-+
-+				dsi_opp_table: opp-table {
-+					compatible = "operating-points-v2";
-+
-+					opp-187500000 {
-+						opp-hz = /bits/ 64 <187500000>;
-+						required-opps = <&rpmhpd_opp_low_svs>;
-+					};
-+
-+					opp-300000000 {
-+						opp-hz = /bits/ 64 <300000000>;
-+						required-opps = <&rpmhpd_opp_svs>;
-+					};
-+
-+					opp-358000000 {
-+						opp-hz = /bits/ 64 <358000000>;
-+						required-opps = <&rpmhpd_opp_svs_l1>;
-+					};
-+				};
- 			};
- 
- 			dsi0_phy: dsi-phy@ae94400 {
-@@ -3663,25 +3682,6 @@ dsi1_phy: dsi-phy@ae96400 {
- 				clock-names = "iface", "ref";
- 
- 				status = "disabled";
--
--				dsi_opp_table: opp-table {
--					compatible = "operating-points-v2";
--
--					opp-187500000 {
--						opp-hz = /bits/ 64 <187500000>;
--						required-opps = <&rpmhpd_opp_low_svs>;
--					};
--
--					opp-300000000 {
--						opp-hz = /bits/ 64 <300000000>;
--						required-opps = <&rpmhpd_opp_svs>;
--					};
--
--					opp-358000000 {
--						opp-hz = /bits/ 64 <358000000>;
--						required-opps = <&rpmhpd_opp_svs_l1>;
--					};
--				};
- 			};
- 		};
- 
--- 
-2.35.1
-
+Acked-by: Rob Herring <robh@kernel.org>
