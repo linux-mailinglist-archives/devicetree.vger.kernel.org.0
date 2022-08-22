@@ -2,185 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AF60B59B6A2
-	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 00:43:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EE8959B6E9
+	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 02:04:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231794AbiHUWnK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Aug 2022 18:43:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37154 "EHLO
+        id S231328AbiHVAEa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Aug 2022 20:04:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230281AbiHUWnJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Aug 2022 18:43:09 -0400
-Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com [IPv6:2607:f8b0:4864:20::f2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0390C1A387
-        for <devicetree@vger.kernel.org>; Sun, 21 Aug 2022 15:43:07 -0700 (PDT)
-Received: by mail-qv1-xf2a.google.com with SMTP id m17so6993414qvv.7
-        for <devicetree@vger.kernel.org>; Sun, 21 Aug 2022 15:43:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc;
-        bh=SLQM5J0xWlA5wbIdPKtFesag8huNtFa4txc60rMlobs=;
-        b=LCe/vgen+XCMH74gOLjR7bN1ArujZ6DZNPJ6V53+IEZ6OgRPAwymR/F67fphTrZJ7i
-         WX/OvPvYDb/q0lzT6y/ojevJgVtkkrJVME07VVUjhe+W7SrXZWha/xHvLbEo6dn99ALm
-         RnU0FdS39Zd379nE+54lq5MlVZdTagm7AXtwD5nlksNAy8MY/8Kd/r5nFNZmDzU9lks7
-         Kl8wGX1X2MLbJYkrWRYSh7eTAwvMiT/+8r/He0mVxOkpPhFRsaNUQXxkeIZIYl0Dclq2
-         /fa1qWEhJOXvtuNsFdztaVKjysOZ6qJ3qfrrLqosuTGWz6e0b+we+E1tOoYP6nMxFiPu
-         hQuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=SLQM5J0xWlA5wbIdPKtFesag8huNtFa4txc60rMlobs=;
-        b=V+lLs2IOvAbS1lHXCl56P2vJO+slW54G/noo4UGGGVYaF316o0LDFRTvvpkoS0nVFN
-         vN4kDNtnTt+nPeoSZxddIbKBh4XaKhnGwkOArrUZKnQ6Yhw0uLCPFg+V66cFkWQfToKZ
-         2Xu7pQY/gswqxhfoxwsnOqjNF39Rl+BbBM95nkFQmu4SCtIxqwpjdxyMnb5VtSf7WVul
-         QOk7/19VdOdnV4/v6Xcui2ch4AMPvAOa/9e8FdW3iMdktr4TvCh7UdE0id9/crQ7Tz99
-         f41sR6E7gL4B2pxkKgLSynDfXBseSrn2xnnJoFq4jjOh/TrvCUCc+gH/R0QWYj87NqvD
-         ooow==
-X-Gm-Message-State: ACgBeo1p6Inpa0dCVic5dnathcFb2QHpDo/LF+UpJ3NHe0iSRf3m98hZ
-        CEFw7p/Z0/kasTBP/hqOiJlmPg==
-X-Google-Smtp-Source: AA6agR4jUAHSGLWTrHVAFXBM1VWQtLl/q6Bx2pU2iMNntHvDE7gUn5RyeTtfpxPXQQyVdyC/TQ5EXQ==
-X-Received: by 2002:a05:6214:d6d:b0:496:e11b:69e9 with SMTP id 13-20020a0562140d6d00b00496e11b69e9mr2366488qvs.45.1661121786638;
-        Sun, 21 Aug 2022 15:43:06 -0700 (PDT)
-Received: from fedora (69-109-179-158.lightspeed.dybhfl.sbcglobal.net. [69.109.179.158])
-        by smtp.gmail.com with ESMTPSA id g25-20020ac84b79000000b00342fc6a8e25sm7805333qts.50.2022.08.21.15.43.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 21 Aug 2022 15:43:06 -0700 (PDT)
-Date:   Sun, 21 Aug 2022 18:43:04 -0400
-From:   William Breathitt Gray <william.gray@linaro.org>
-To:     Julien Panis <jpanis@baylibre.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, mranostay@ti.com
-Subject: Re: [PATCH v5 2/3] Documentation: ABI: sysfs-bus-counter: add
- capture items
-Message-ID: <YwK0+BNSo4X2KA29@fedora>
-References: <20220817141620.256481-1-jpanis@baylibre.com>
- <20220817141620.256481-3-jpanis@baylibre.com>
+        with ESMTP id S229541AbiHVAE3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Aug 2022 20:04:29 -0400
+Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com [66.111.4.26])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 537DE1E3E8;
+        Sun, 21 Aug 2022 17:04:28 -0700 (PDT)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailout.nyi.internal (Postfix) with ESMTP id F3CD05C0179;
+        Sun, 21 Aug 2022 20:04:24 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute1.internal (MEProxy); Sun, 21 Aug 2022 20:04:24 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        tom-fitzhenry.me.uk; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm1; t=1661126664; x=1661213064; bh=mPn3++NzcT
+        ZNYJn9AdaHv9tQvAGSNSm562mzA+CXdyc=; b=ilFHpw8HUY3poGkFqCAHrPz6aw
+        ZgN1BTG5aJJmgGVknaTTq9XZdmrj8jIHTr6/ilmi3p/FWrUNrwF6HnzvaCBtXLUW
+        GiNGNBC4onqhlldQweTckLYJpNSLajxq3FetenaB1QWl+woB3elGKg5BqOCoFKHc
+        Xea40SFZ//MuCMTPwK1WgsbVCag1Ygby/zxuDDkLTtY9D8bKDYIe+96dayl7ojVD
+        CowK7aL5WE21b3xld+BxvC6MyAAF/Nx/P+KA6a58qOXdby9OJkl6Ks0l8DZOez5o
+        9Dk370KewS+ZzTKivMVZuNgk3O6qYzKAUe+7XvKLFKSZMqPSFhwmL/69MfuA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:feedback-id:feedback-id:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1661126664; x=
+        1661213064; bh=mPn3++NzcTZNYJn9AdaHv9tQvAGSNSm562mzA+CXdyc=; b=F
+        QmgyuT/RSJ4NopJmNdtp+JHYiuDOzqyhs+v+AtH1/MbHHd0gRwQUvXK6HvdSbpe0
+        OgnJkKuBr2lmI7u/LJ53G+Ez4IRLBP+o7SYs9UXDS9GeFsKkyxE9/+kwHQ1N7qUg
+        GniPwYh9UVattk5sfi1FgZ3H8l4eFTViUlretv0P64ZzBQB461eXRT7FZgSVTfyN
+        aNcw2tf4LktvuEFXPwF72UIk4AvzM6sHo6OdGZvS+X7FWtvKTxwMg+M0jRUdR3qj
+        PBjo2QcUicomyhc/aEdlDiNO0fGQe+UO4dq0tNrzbCL+bXddsdh6NiT4hZQhhNcp
+        ORHCEzVOVO/j/2U55JBeQ==
+X-ME-Sender: <xms:CMgCYw8RZegTH2UV70DmeaL0NztqKw4LC-Qq7BxQaFFTBb6elpPmXA>
+    <xme:CMgCY4vZJcTgmRS3JyQxGseGucI0KmI4-b6Z8NeEnJRUq290jxNJQAxcLcZ409ap1
+    C_l2ZwoVEOhUexuJQ>
+X-ME-Received: <xmr:CMgCY2DaFJOdIXat5bXQka5i_8-3aTlUUVC1yPV2UxkgPkujullImR74MGbNd2GtV7pWSQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdeiiedgfedtucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepkfffgggfuffvvehfhfgjtgfgsehtjeertddtfeejnecuhfhrohhmpefvohhm
+    ucfhihhtiihhvghnrhihuceothhomhesthhomhdqfhhithiihhgvnhhrhidrmhgvrdhukh
+    eqnecuggftrfgrthhtvghrnhepkeeuieejfeeuffekkeetgeelveejieetheeivddtjeei
+    vddvledvffdvvddtuefgnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrg
+    hilhhfrhhomhepthhomhesthhomhdqfhhithiihhgvnhhrhidrmhgvrdhukh
+X-ME-Proxy: <xmx:CMgCYwendjHYmerqjOVV4l5A79yOidGSe4Gy6prD1siSteQqwUN5CA>
+    <xmx:CMgCY1MsTfKSaPshegZ9LNI5NF9BPCLZaKeksnJyK_-MLFjThhOJhQ>
+    <xmx:CMgCY6kNGdi8WCTvEj466LGVVBCPUIohL2QHyk2aPiMBrOlyLnHSAw>
+    <xmx:CMgCY8mxFG3gyMMX5jQ9R4gqR18e7YWILkCPfe2qdXGpMOPU4_YlRg>
+Feedback-ID: iefc945ae:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
+ 21 Aug 2022 20:04:22 -0400 (EDT)
+Message-ID: <da0e45e0-e1e8-35fd-53b5-142269b830b4@tom-fitzhenry.me.uk>
+Date:   Mon, 22 Aug 2022 10:04:21 +1000
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="2NJOCRB2znqdE3uV"
-Content-Disposition: inline
-In-Reply-To: <20220817141620.256481-3-jpanis@baylibre.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
+ Thunderbird/102.0.3
+Subject: Re: [PATCH v3 2/2] arm64: dts: rockchip: Add initial support for
+ Pine64 PinePhone Pro
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        heiko@sntech.de
+Cc:     martijn@brixit.nl, ayufan@ayufan.eu, megi@xff.cz,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, phone-devel@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220815123004.252014-1-tom@tom-fitzhenry.me.uk>
+ <20220815123004.252014-3-tom@tom-fitzhenry.me.uk>
+ <a11bc22e-a10e-7d15-72d2-6af1d4790695@linaro.org>
+From:   Tom Fitzhenry <tom@tom-fitzhenry.me.uk>
+In-Reply-To: <a11bc22e-a10e-7d15-72d2-6af1d4790695@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 16/8/22 17:52, Krzysztof Kozlowski wrote:
 
---2NJOCRB2znqdE3uV
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> Still wrong.
 
-On Wed, Aug 17, 2022 at 04:16:19PM +0200, Julien Panis wrote:
-> This commit adds capture items to counter ABI file
-> (e.g. TI ECAP used in capture operating mode).
->=20
-> Signed-off-by: Julien Panis <jpanis@baylibre.com>
-> ---
->  Documentation/ABI/testing/sysfs-bus-counter | 49 +++++++++++++++++++++
->  1 file changed, 49 insertions(+)
->=20
-> diff --git a/Documentation/ABI/testing/sysfs-bus-counter b/Documentation/=
-ABI/testing/sysfs-bus-counter
-> index 06c2b3e27e0b..52ddec7cc76a 100644
-> --- a/Documentation/ABI/testing/sysfs-bus-counter
-> +++ b/Documentation/ABI/testing/sysfs-bus-counter
-> @@ -203,6 +203,24 @@ Description:
->  		both edges:
->  			Any state transition.
-> =20
-> +What:		/sys/bus/counter/devices/counterX/countY/count_cumul
-> +KernelVersion:	6.0
-> +Contact:	jpanis@baylibre.com
-> +Description:
-> +		Read-only attribute that indicates the raw cumulated count
-> +		since count Y start, computed as follow:
-> +		count_cumul =3D (max_counter_val + 1) * nb_counter_overflows
+My bad, I will fix this in v4.
 
-Implement this instead as "num_overflows" (COUNTER_COMP_COUNT_U64) and
-"ceiling" (COUNTER_COMP_CEILING). You need to expose the count ceiling
-anyway and a new "num_overflows" attribute would be useful for other
-drivers as well.
-
-> +What:		/sys/bus/counter/devices/counterX/countY/captureZ
-> +KernelVersion:	6.0
-> +Contact:	jpanis@baylibre.com
-> +Description:
-> +		Read-only attributes that indicate the last raw timestamp captured
-> +		for the respective capture Z register.
-> +		Raw timestamp can be converted to nanoseconds as follow:
-> +		time_ns =3D 10^9 * (captureZ + count_cumul) / frequency
-> +		count_cumul and frequency parameters are described in this document.
-
-Rework this description to make it more general: remove the nanoseconds
-conversion formula and references to timestamps. The concept of a
-capture is general enough that it could be provided by counter devices
-that are not necessarily timestamping. Instead this description should
-simply state that this attribute is a historical capture of the Count Y
-count data where Z (if present) is the respective capture buffer element
-offset.
-
->  What:		/sys/bus/counter/devices/counterX/countY/ceiling_component_id
->  What:		/sys/bus/counter/devices/counterX/countY/floor_component_id
->  What:		/sys/bus/counter/devices/counterX/countY/count_mode_component_id
-> @@ -213,6 +231,8 @@ What:		/sys/bus/counter/devices/counterX/countY/presc=
-aler_component_id
->  What:		/sys/bus/counter/devices/counterX/countY/preset_component_id
->  What:		/sys/bus/counter/devices/counterX/countY/preset_enable_component_=
-id
->  What:		/sys/bus/counter/devices/counterX/countY/signalZ_action_component=
-_id
-> +What:		/sys/bus/counter/devices/counterX/countY/count_cumul_component_id
-> +What:		/sys/bus/counter/devices/counterX/countY/captureZ_component_id
->  What:		/sys/bus/counter/devices/counterX/signalY/cable_fault_component_id
->  What:		/sys/bus/counter/devices/counterX/signalY/cable_fault_enable_comp=
-onent_id
->  What:		/sys/bus/counter/devices/counterX/signalY/filter_clock_prescaler_=
-component_id
-> @@ -345,3 +365,32 @@ Description:
->  			via index_polarity. The index function (as enabled via
->  			preset_enable) is performed synchronously with the
->  			quadrature clock on the active level of the index input.
-> +
-> +What:		/sys/bus/counter/devices/counterX/signalY/polarityZ
-> +KernelVersion:	6.0
-> +Contact:	jpanis@baylibre.com
-> +Description:
-> +		Capture modules include N timestamp capture registers.
-> +		For all N sequenced timestamp capture events
-> +		(1->2->3->...->N->1->...), edge polarity can be selected.
-> +		The following polarities are available:
-> +
-> +		rising edge:
-> +			Low state transitions to high state.
-> +
-> +		falling edge:
-> +			High state transitions to low state.
-
-Other drivers could use "polarity" for signals that are not related to
-captures, so remove the language referencing timestamping and generalize
-it to simply refer to selecting the Signal Y edge polarity where Z (if
-present) is the respective polarity sequence position.
-
-William Breathitt Gray
-
---2NJOCRB2znqdE3uV
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHQEARYKAB0WIQSNN83d4NIlKPjon7a1SFbKvhIjKwUCYwK09wAKCRC1SFbKvhIj
-K8oDAPdLQOsV0FlcmpzhIjokWkcH5BVTKUkR7GjQ2TQlty8TAQCZWfBCROCuCvP5
-MmMLxq00AF6NW8X7KSdJEupDC04oCA==
-=WaOi
------END PGP SIGNATURE-----
-
---2NJOCRB2znqdE3uV--
+> test your DTS with dtbs_check.
+Will do.
