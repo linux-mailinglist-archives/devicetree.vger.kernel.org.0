@@ -2,99 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0721059C2A1
-	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 17:27:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BEF3E59C2CB
+	for <lists+devicetree@lfdr.de>; Mon, 22 Aug 2022 17:29:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236552AbiHVP0P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Aug 2022 11:26:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55540 "EHLO
+        id S236471AbiHVP2f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Aug 2022 11:28:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236791AbiHVPZl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 11:25:41 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3183A2CDF0
-        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 08:23:05 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id k18-20020a05600c0b5200b003a5dab49d0bso6201875wmr.3
-        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 08:23:05 -0700 (PDT)
+        with ESMTP id S236542AbiHVP2S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 11:28:18 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44E6B6418
+        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 08:27:30 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id u14so13658749wrq.9
+        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 08:27:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=BWUGrHkaLJ+f8sUmSRLyh+C6cdVWAvvLrWuYnb7jGXg=;
-        b=TchWHGRX1T9JNivyDJngVzTYcmYvijIZcRb4rP7vp95ymGO3zGD4rWhcwkzb6YCET+
-         JidLsaU7GYyTns3m7WQrFDmDSq3Dl8VICAK2klHeKoT5agr1CkV+7+D9uwygCI8/8sUh
-         f7Zhuzy1dCvpkE9I3U7H+FgwJMkDxWQjeUsVoBBwChCduo2qJ15eyRD4SLWuQvIvGA41
-         nD4X1AfuPdCc0VHpho5FWwbJnK022rX1S+xUgdPlmmmYBf/QX85X6TkvknQA+taZr8F+
-         QxuL0LObrIReJHAKw4EgjHLN5ltkNb/LNo2tRr+aEqk48Eznio1tKL9/wMkJdNwxXOKz
-         OHWg==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=+v4yKbwJErYTuQ2Ufma5DTI3KicddoMcYUAjV+10QH4=;
+        b=jOVa5k+VR0xECB0FvAPknlvOs70kbJwGA0M6vShkkwU/M+ofySHJMBFDImFvCfRy43
+         +porc14Ri8mjhpMzvx7NhnAN900R01op2vihQ+M0GZGwamuFkLPbvmcL4f9AoWBVy3+G
+         CvVfDCVWKrZTo5LXpnv2tC7Ov19YCStZu2DVm2gw+nTI3ChqsiAoho+n80ZJQN1Kul43
+         QXTkjqiQ3O7Czm8qdTQfkKBLy8TI71V5QoDWAe7k9EZrttHfOY6eoQwTY1TipUQ/Wexi
+         p6+3SMepTaVRgUqL7NNfzAiF4LcN7QSGHsEqX/4QS8LOE/VGxdo/x6mdLeDb+KOZnmva
+         dQjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=BWUGrHkaLJ+f8sUmSRLyh+C6cdVWAvvLrWuYnb7jGXg=;
-        b=RvgKWT+jC8jtE4PuZ/Fk8QzGJf7MwvhgtByVK5jUgH/ZxcxaoScotCplOZn9nbcPtv
-         lzpO3xP+7gNt1ZA3fwy6WyLiISV6d9W/LkyYGU3EMwFsgkhXvYCpfhWonbMmNETphCi8
-         rk1yBQaqEXnx4Oz3tQaKAAOYbp+KlgI1Wrj/Aa225j0VoddkTwXfD2kA+EZsFFLjmg4M
-         fS6as6mXnoIOaY2GclOlHoo4+rv+rTMtxwRP9NvO3SxUhlja9nQoi0BbOMRTkl3MgswI
-         6di4aOnMZek4arPXUuWb5IJS1fWDB+JunOScpX4lZQKB7heb7ZKTgBpObojWZ5HcHi1Y
-         KEuw==
-X-Gm-Message-State: ACgBeo1t6UiJ/pGRW4ElbAJUIoS/UeFYBjRkbS3jUOX2VkD9se0dEXrp
-        Eq8WmR5EAxGpNh33rUT1Xy3PVBxXDhAqYw==
-X-Google-Smtp-Source: AA6agR4ceSvYnSn7kDjgdc353ACrRiROtD5zqUbyWKxzDZVaIxR6QIyk3jXpI1Iyws1Ut47+6vemWA==
-X-Received: by 2002:a05:600c:5010:b0:3a6:804:5b08 with SMTP id n16-20020a05600c501000b003a608045b08mr15303357wmr.10.1661181783636;
-        Mon, 22 Aug 2022 08:23:03 -0700 (PDT)
-Received: from localhost.localdomain (cpc92880-cmbg19-2-0-cust679.5-4.cable.virginm.net. [82.27.106.168])
-        by smtp.gmail.com with ESMTPSA id q11-20020a5d61cb000000b00223b8168b15sm11850350wrv.66.2022.08.22.08.23.03
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=+v4yKbwJErYTuQ2Ufma5DTI3KicddoMcYUAjV+10QH4=;
+        b=BGdevix6JUhsRZ2IPNiq7Iw6Y1oNausIVjV634McasME6fSqDs06VKTfdJ4TtfHMVW
+         nkPBz7rwbmokzs/qEPxLF0u9MZOYTTzBqh6ze+FyD0G1qsd51kdbYKV6fjcIMyHeZpMU
+         nficZMrr1NgDZWhAN5WEWLgYRyd8uuG9ca72JzeTZaxWZDdo2/CrktbF8Ku0pBcHxQPu
+         mldr7cqtLuuDmKZRBz8MNYzJw/XYM2gb+NvNyIKdN0Q5yt5aopLs5d9yVYmg1uHYSAiV
+         rB972d72RwDwWXWRKFkuPl8xYcYE6oKWxSdMxlGFIoAT/DwmCGTrbJGRM0v/GKtfLsGW
+         Qw1g==
+X-Gm-Message-State: ACgBeo1fxb1sLfb+n9jwezpRVV3ANLWyMyP3SVqYcYD0dw9uFdbVH7/f
+        xtvkjUj78gcFB3fymlMQoO6dcg==
+X-Google-Smtp-Source: AA6agR7oEwBwW1qpYTRjGd7zeB5BXy6D1qbA9ArFwSTnG12IGsnupD9b4ZC3CKX2TbWM1fY8P9y06g==
+X-Received: by 2002:a05:6000:1a8b:b0:222:cac3:769a with SMTP id f11-20020a0560001a8b00b00222cac3769amr10524573wry.120.1661182048866;
+        Mon, 22 Aug 2022 08:27:28 -0700 (PDT)
+Received: from blmsp.fritz.box ([2001:4090:a245:8020:2658:1f7c:362:3e99])
+        by smtp.gmail.com with ESMTPSA id u18-20020adfdb92000000b0021eaf4138aesm14492011wri.108.2022.08.22.08.27.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Aug 2022 08:23:03 -0700 (PDT)
-From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     maz@kernel.org, devicetree@vger.kernel.org,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>
-Subject: [PATCH 3/3] dt-bindings: interrupt-controller: arm,gic: Support two address and size cells
-Date:   Mon, 22 Aug 2022 16:22:24 +0100
-Message-Id: <20220822152224.507497-4-jean-philippe@linaro.org>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220822152224.507497-1-jean-philippe@linaro.org>
-References: <20220822152224.507497-1-jean-philippe@linaro.org>
+        Mon, 22 Aug 2022 08:27:28 -0700 (PDT)
+From:   Markus Schneider-Pargmann <msp@baylibre.com>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Fabien Parent <parent.f@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Markus Schneider-Pargmann <msp@baylibre.com>
+Subject: [PATCH v4 0/4] clk: mediatek: Add mt8365 support
+Date:   Mon, 22 Aug 2022 17:26:48 +0200
+Message-Id: <20220822152652.3499972-1-msp@baylibre.com>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It should be valid for a GICv2m node, child of a GICv2 node, to use two
-cells per reg address and size. The QEMU virt device-tree currently
-fails validation because the schema imposes a single address and size
-cell. Amend the rule.
+Hi,
 
-Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
----
- .../devicetree/bindings/interrupt-controller/arm,gic.yaml     | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+This series adds a clock driver for the mt8365 SoC.
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/arm,gic.yaml b/Documentation/devicetree/bindings/interrupt-controller/arm,gic.yaml
-index 62219a5c21c5..220256907461 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/arm,gic.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/arm,gic.yaml
-@@ -64,9 +64,9 @@ properties:
-   interrupt-controller: true
- 
-   "#address-cells":
--    enum: [ 0, 1 ]
-+    enum: [ 0, 1, 2 ]
-   "#size-cells":
--    const: 1
-+    enum: [ 1, 2 ]
- 
-   "#interrupt-cells":
-     const: 3
+Thanks for the feedback so far.
+
+Best,
+Markus
+
+Based on https://lore.kernel.org/linux-mediatek/20220813083249.45427-1-y.oudjana@protonmail.com/
+
+Changes in v4:
+- Rebased onto v6.0-rc1
+- Fixed some minor things documented in the patches.
+
+Earlier versions:
+v2 - https://lore.kernel.org/linux-mediatek/20220530214434.1012889-1-fparent@baylibre.com/
+v3 - https://lore.kernel.org/linux-mediatek/20220811084433.2598575-1-msp@baylibre.com/
+
+Fabien Parent (2):
+  dt-bindings: clock: mediatek: add bindings for MT8365 SoC
+  clk: mediatek: add driver for MT8365 SoC
+
+Markus Schneider-Pargmann (2):
+  clk: mediatek: Provide mtk_devm_alloc_clk_data
+  clk: mediatek: Export required common code symbols
+
+ .../bindings/clock/mediatek,mt8365-clock.yaml |   42 +
+ .../clock/mediatek,mt8365-sys-clock.yaml      |   47 +
+ drivers/clk/mediatek/Kconfig                  |   50 +
+ drivers/clk/mediatek/Makefile                 |    7 +
+ drivers/clk/mediatek/clk-mt8365-apu.c         |   55 +
+ drivers/clk/mediatek/clk-mt8365-cam.c         |   57 +
+ drivers/clk/mediatek/clk-mt8365-mfg.c         |   63 +
+ drivers/clk/mediatek/clk-mt8365-mm.c          |  112 ++
+ drivers/clk/mediatek/clk-mt8365-vdec.c        |   63 +
+ drivers/clk/mediatek/clk-mt8365-venc.c        |   52 +
+ drivers/clk/mediatek/clk-mt8365.c             | 1155 +++++++++++++++++
+ drivers/clk/mediatek/clk-mtk.c                |   37 +-
+ drivers/clk/mediatek/clk-mtk.h                |    2 +
+ .../dt-bindings/clock/mediatek,mt8365-clk.h   |  373 ++++++
+ 14 files changed, 2110 insertions(+), 5 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt8365-clock.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt8365-sys-clock.yaml
+ create mode 100644 drivers/clk/mediatek/clk-mt8365-apu.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8365-cam.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8365-mfg.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8365-mm.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8365-vdec.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8365-venc.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8365.c
+ create mode 100644 include/dt-bindings/clock/mediatek,mt8365-clk.h
+
 -- 
-2.37.1
+2.37.2
 
