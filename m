@@ -2,216 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 554A759CD6F
-	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 02:58:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 26E3C59CD87
+	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 03:03:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236970AbiHWA6f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Aug 2022 20:58:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56706 "EHLO
+        id S238561AbiHWBBX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Aug 2022 21:01:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232069AbiHWA6d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 20:58:33 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AEE012755;
-        Mon, 22 Aug 2022 17:58:29 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 4DEEE3F1;
-        Tue, 23 Aug 2022 02:58:28 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1661216308;
-        bh=2SFq0F2WMMzIZdSW/pFB+flleOEVq6WUQggwOs3fF8k=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=lBdPozDMeS2tLHsiGmpFTTHoTSkJ6raTnw1eRuYCWCDgQANNVtLL5/bS7Coao7QlQ
-         h5MRwte3iJw9MWl8O+8bnd7lhX76M/NPay2cAUA3uOPjbcNz4nhJHXLtmKQ0DQZ7Hi
-         6N3CUZbQJDp90aKpz11+drzYL4qWKlLYTBISaAZg=
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     linux-media@vger.kernel.org
-Cc:     Manivannan Sadhasivam <mani@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH v3 1/2] dt-bindings: media: i2c: Add IMX296 CMOS sensor binding
-Date:   Tue, 23 Aug 2022 03:58:21 +0300
-Message-Id: <20220823005822.13805-2-laurent.pinchart@ideasonboard.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220823005822.13805-1-laurent.pinchart@ideasonboard.com>
-References: <20220823005822.13805-1-laurent.pinchart@ideasonboard.com>
+        with ESMTP id S238657AbiHWBAZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 21:00:25 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7ECCB4D14F;
+        Mon, 22 Aug 2022 18:00:23 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id E0616B81A28;
+        Tue, 23 Aug 2022 01:00:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 8B702C4347C;
+        Tue, 23 Aug 2022 01:00:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1661216420;
+        bh=gWjujOf60QddpJiQdhATU1Q8gucM3JgftAV6eUpRDts=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=l5let+szPudRqPbXtAf25JgA08xX7DkSdR7swUlx0Ff1CbUmrzBmoLVx4NVHpIbXb
+         oP11dsOQ+VwlxOWNUqgX/0Vql6HD2qqZVAyAWQ61CAnaZe69g58i3Vc9SWThaLS+Al
+         S/7VkBjFXG3quvdykQYNHvQDWKdmaP/RLm+SZPTlmTTNQxvsi5CHEK3CvBpCOpRTud
+         4DWFoFDflRGIhjCjIyCvl2cAlMLDrIuSYLSGVfGRg+X9VNzqqYhvL8o5VznHBO9k2n
+         QFCKcbrIXj8sQzaJWoZ7nG4pku/kB3Vhio3HNlKs5UruSXejFayTJnv/78fpSF8vf9
+         Mf1WkFqv/+tmw==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 62050C4166E;
+        Tue, 23 Aug 2022 01:00:20 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Subject: Re: [PATCH v4 net-next 00/10] Validate OF nodes for DSA shared ports
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <166121642039.14563.11985389088566730617.git-patchwork-notify@kernel.org>
+Date:   Tue, 23 Aug 2022 01:00:20 +0000
+References: <20220818115500.2592578-1-vladimir.oltean@nxp.com>
+In-Reply-To: <20220818115500.2592578-1-vladimir.oltean@nxp.com>
+To:     Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, andrew@lunn.ch, vivien.didelot@gmail.com,
+        f.fainelli@gmail.com, olteanv@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux@rempel-privat.de,
+        ansuelsmth@gmail.com, john@phrozen.org, kurt@linutronix.de,
+        mans@mansr.com, arun.ramadoss@microchip.com,
+        woojung.huh@microchip.com, UNGLinuxDriver@microchip.com,
+        claudiu.manoil@nxp.com, alexandre.belloni@bootlin.com,
+        george.mccollister@gmail.com, dqfext@gmail.com,
+        sean.wang@mediatek.com, Landen.Chao@mediatek.com,
+        matthias.bgg@gmail.com, hauke@hauke-m.de,
+        martin.blumenstingl@googlemail.com, olek2@wp.pl,
+        alsi@bang-olufsen.dk, luizluca@gmail.com, linus.walleij@linaro.org,
+        paweldembicki@gmail.com, clement.leger@bootlin.com,
+        geert+renesas@glider.be, rmk+kernel@armlinux.org.uk,
+        kabel@kernel.org, mw@semihalf.com, marex@denx.de,
+        linux-renesas-soc@vger.kernel.org, linux@rasmusvillemoes.dk,
+        frowand.list@gmail.com
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Hello:
 
-Add YAML devicetree binding for IMX296 CMOS image sensor. Let's also
-add MAINTAINERS entry for the binding and driver.
+This series was applied to netdev/net-next.git (master)
+by Jakub Kicinski <kuba@kernel.org>:
 
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-Changes since v2:
+On Thu, 18 Aug 2022 14:54:50 +0300 you wrote:
+> This is the first set of measures taken so that more drivers can be
+> transitioned towards phylink on shared (CPU and DSA) ports some time in
+> the future. It consists of:
+> 
+> - expanding the DT schema for DSA and related drivers to clarify the new
+>   requirements.
+> 
+> [...]
 
-- Add model-specific compatible strings
+Here is the summary with links:
+  - [v4,net-next,01/10] dt-bindings: net: dsa: xrs700x: add missing CPU port phy-mode to example
+    https://git.kernel.org/netdev/net-next/c/b237676039d9
+  - [v4,net-next,02/10] dt-bindings: net: dsa: hellcreek: add missing CPU port phy-mode/fixed-link to example
+    https://git.kernel.org/netdev/net-next/c/b975b73425cd
+  - [v4,net-next,03/10] dt-bindings: net: dsa: b53: add missing CPU port phy-mode to example
+    https://git.kernel.org/netdev/net-next/c/526512f675c8
+  - [v4,net-next,04/10] dt-bindings: net: dsa: microchip: add missing CPU port phy-mode to example
+    https://git.kernel.org/netdev/net-next/c/2401bd9532fe
+  - [v4,net-next,05/10] dt-bindings: net: dsa: rzn1-a5psw: add missing CPU port phy-mode to example
+    https://git.kernel.org/netdev/net-next/c/f3c8168fdd02
+  - [v4,net-next,06/10] dt-bindings: net: dsa: make phylink bindings required for CPU/DSA ports
+    https://git.kernel.org/netdev/net-next/c/2ec2fb8331af
+  - [v4,net-next,07/10] of: base: export of_device_compatible_match() for use in modules
+    https://git.kernel.org/netdev/net-next/c/df55e317805f
+  - [v4,net-next,08/10] net: dsa: avoid dsa_port_link_{,un}register_of() calls with platform data
+    https://git.kernel.org/netdev/net-next/c/da2c398e59d6
+  - [v4,net-next,09/10] net: dsa: rename dsa_port_link_{,un}register_of
+    https://git.kernel.org/netdev/net-next/c/770375ff3311
+  - [v4,net-next,10/10] net: dsa: make phylink-related OF properties mandatory on DSA and CPU ports
+    https://git.kernel.org/netdev/net-next/c/e09e9873152e
 
-Changes since v4 (in separate series):
-
-- Rename to sony,imx296.yaml
-- Add Laurent Pinchart as maintainer
-- Rename power supplies
-- Rename clock to INCK
-- Drop clock-frequency property
-- Reference OF graph DT schema
-- Mention reset GPIO pin name
-- Fix schema $id
-- Fix port
----
- .../bindings/media/i2c/sony,imx296.yaml       | 106 ++++++++++++++++++
- MAINTAINERS                                   |   8 ++
- 2 files changed, 114 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx296.yaml
-
-diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx296.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx296.yaml
-new file mode 100644
-index 000000000000..65ad9c100e45
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/sony,imx296.yaml
-@@ -0,0 +1,106 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/i2c/sony,imx296.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Sony IMX296 1/2.8-Inch CMOS Image Sensor
-+
-+maintainers:
-+  - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-+  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-+
-+description: |-
-+  The Sony IMX296 is a 1/2.9-Inch active pixel type CMOS Solid-state image
-+  sensor with square pixel array and 1.58 M effective pixels. This chip
-+  features a global shutter with variable charge-integration time. It is
-+  programmable through I2C and 4-wire interfaces. The sensor output is
-+  available via CSI-2 serial data output (1 Lane).
-+
-+properties:
-+  compatible:
-+    enum:
-+      - sony,imx296
-+      - sony,imx296ll
-+      - sony,imx296lq
-+    description:
-+      The IMX296 sensor exists in two different models, a colour variant
-+      (IMX296LQ) and a monochrome variant (IMX296LL). The device exposes the
-+      model through registers, allowing for auto-detection with a common
-+      "sony,imx296" compatible string. However, some camera modules disable the
-+      ability to read the sensor model register, which disables this feature.
-+      In those cases, the exact model needs to be specified as "sony,imx296ll"
-+      or "sony,imx296lq".
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    description: Input clock (37.125 MHz, 54 MHz or 74.25 MHz)
-+    items:
-+      - const: inck
-+
-+  avdd-supply:
-+    description: Analog power supply (3.3V)
-+
-+  dvdd-supply:
-+    description: Digital power supply (1.2V)
-+
-+  ovdd-supply:
-+    description: Interface power supply (1.8V)
-+
-+  reset-gpios:
-+    description: Sensor reset (XCLR) GPIO
-+    maxItems: 1
-+
-+  port:
-+    $ref: /schemas/graph.yaml#/properties/port
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - avdd-supply
-+  - dvdd-supply
-+  - ovdd-supply
-+  - port
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        imx296: camera-sensor@1a {
-+            compatible = "sony,imx296";
-+            reg = <0x1a>;
-+
-+            pinctrl-names = "default";
-+            pinctrl-0 = <&camera_rear_default>;
-+
-+            clocks = <&gcc 90>;
-+            clock-names = "inck";
-+
-+            avdd-supply = <&camera_vdda_3v3>;
-+            dvdd-supply = <&camera_vddd_1v2>;
-+            ovdd-supply = <&camera_vddo_1v8>;
-+
-+            reset-gpios = <&msmgpio 35 GPIO_ACTIVE_LOW>;
-+
-+            port {
-+                imx296_ep: endpoint {
-+                    remote-endpoint = <&csiphy0_ep>;
-+                };
-+            };
-+        };
-+    };
-+
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 9d7f64dc0efe..34e5b6e43f88 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -18959,6 +18959,14 @@ T:	git git://linuxtv.org/media_tree.git
- F:	Documentation/devicetree/bindings/media/i2c/imx290.txt
- F:	drivers/media/i2c/imx290.c
- 
-+SONY IMX296 SENSOR DRIVER
-+M:	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-+M:	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-+L:	linux-media@vger.kernel.org
-+S:	Maintained
-+T:	git git://linuxtv.org/media_tree.git
-+F:	Documentation/devicetree/bindings/media/i2c/sony,imx296.yaml
-+
- SONY IMX319 SENSOR DRIVER
- M:	Bingbu Cao <bingbu.cao@intel.com>
- L:	linux-media@vger.kernel.org
+You are awesome, thank you!
 -- 
-Regards,
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
-Laurent Pinchart
 
