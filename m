@@ -2,193 +2,389 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BC2959E5AD
-	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 17:09:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6845859E5B6
+	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 17:09:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243058AbiHWPIG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Aug 2022 11:08:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60876 "EHLO
+        id S242268AbiHWPJ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Aug 2022 11:09:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243423AbiHWPH1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 11:07:27 -0400
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10olkn2076.outbound.protection.outlook.com [40.92.40.76])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E925626394F
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 05:36:31 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=X2H22B/kXGTuz7IjrTxr/jSdnVVKtZiphGBf3aN1X7SofjAPNvqkDGE0R4cDLxM5RGpw0sZrHo5WdOgTttzww+Rk9o0HaPbgSh/vPLkOYBdElpyAVSj61nK0gnWyNzioRdU9/QIvFD3gtgOjqr5eQy1pfxw7ir4UtNKkv+xEahffQvdDWpzSBffqOrev2Uv5y5sYSPIPclr5KKNEarfO5owwUYp6OrDjFlePqjLHd7YlY6u6Hvcc/vkgAdsN+DrmgVKRIGnX6UVJYuqKSmd1tEwu5c3Xe+KIWslYna4qho8f9R4ekn4h0VMt58P3znqbpVbS4/K9WJULRlZWwdB5Ag==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FFi9DZBF/NOyuz1BnptFpW06gAjN0kAyHsNQ7P4nbt8=;
- b=XDYjKbkQ42hRzosPFb50g+7AYowRXd2LYc5Gq8Xp3YuzEFhBc/nUfWnMi9Mr5yPmmdUwiD/u6J+N0/gqVrU6CsbjBVFnL05dZCWddyjSWn1LhxAV4GtlkqgKVzyo6j/IVnFHurpWp3mMirmRLFoOTkypo6+axaJPxQs4PLn2FS282hLLX/ymAVt9fP/xvJvsKmcA5litPumQVZEduqolm4JdCfWzP6Rdx1rAZTI3QJj1NLjOvh0oDTh7TN1sHazPOYZKYQUZn0JHmd1wKyHWoNwcaCGQ4I1T5BJqtIqOFakzGVuSj1UrLCTvpUReXfUruCkOpWDJXTbAmGb34bxVJA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FFi9DZBF/NOyuz1BnptFpW06gAjN0kAyHsNQ7P4nbt8=;
- b=B+k3v4MxZfWsLHksmJV7Ts7ASmgnXvV6zC4evXZGF2zzlQvqkcGibLbp1zH9OucfE+xDhNe1MPLD1qOZQp2/YkKVHZ8eKTrSGTdYYZukZplooHmjVJ9rSykNL+AAZzaisSIyb0DsgwnBA1pKoIaXlKuL2SzchAE9p6BgfcdCLhpLVh50aY9OHc9kV3x0KJDXzTsuufUDKwJlkqO/8T81mcpRJQpE5FyoTycNvd0TMZDpyl0KQmHgU6azdT5eYica/rgpk7CX0VTgobGSjZHyhxaWnXpD+5DtPv6WmXqTx945gEsY353DET7n8KzSSqOQAtva4lPmvB6gPvp75U5BCg==
-Received: from SN6PR06MB5342.namprd06.prod.outlook.com (2603:10b6:805:f9::31)
- by BL0PR06MB4401.namprd06.prod.outlook.com (2603:10b6:208:4c::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5566.14; Tue, 23 Aug
- 2022 12:36:28 +0000
-Received: from SN6PR06MB5342.namprd06.prod.outlook.com
- ([fe80::20e7:bc40:7e9d:b46e]) by SN6PR06MB5342.namprd06.prod.outlook.com
- ([fe80::20e7:bc40:7e9d:b46e%4]) with mapi id 15.20.5546.022; Tue, 23 Aug 2022
- 12:36:28 +0000
-Date:   Tue, 23 Aug 2022 07:36:25 -0500
-From:   Chris Morgan <macromorgan@hotmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
-        Chris Morgan <macroalpha82@gmail.com>,
-        Maya Matuszczyk <maccraft123mc@gmail.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Chris Healy <cphealy@gmail.com>
-Subject: Re: [PATCH v2 3/3] arm64: dts: rockchip: add Anbernic RG353P and
- RG503
-Message-ID: <SN6PR06MB53420ACEDA3DF63A64F18A21A5709@SN6PR06MB5342.namprd06.prod.outlook.com>
-References: <20220819222520.3069-1-macroalpha82@gmail.com>
- <20220819222520.3069-4-macroalpha82@gmail.com>
- <CAO_MupKkmbEjEqkrUQ2DtY=SA4ULv8CLVWPD92hxrMPuRYsS+w@mail.gmail.com>
- <45694752.fMDQidcC6G@diego>
- <21c798fc-bfc5-ed67-bcea-a213890e5ef1@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <21c798fc-bfc5-ed67-bcea-a213890e5ef1@linaro.org>
-X-TMN:  [XCrjC9AoBWMK2H9raE4O0gsNfblFpOtx]
-X-ClientProxiedBy: SN7PR04CA0060.namprd04.prod.outlook.com
- (2603:10b6:806:120::35) To SN6PR06MB5342.namprd06.prod.outlook.com
- (2603:10b6:805:f9::31)
-X-Microsoft-Original-Message-ID: <20220823123625.GB9857@wintermute.localdomain>
+        with ESMTP id S241211AbiHWPJI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 11:09:08 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3227732F084;
+        Tue, 23 Aug 2022 05:38:08 -0700 (PDT)
+X-UUID: ee130b6085b74b7daeda0204bab28a2b-20220823
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=GM6WTXEvXXaeWP7IaTOYxwKh7PWuxzkL54ETW+5S6+o=;
+        b=A7tpUNT8RGpQrt2Isunu56TFyEg6/Io6g2tZp/Dv1i/B6HLWEuj+DilSpySZ02vsjM5xVoUDCEWOlmhLV2HPJJdRTS/tbfzqhVtzCE8o7SxVTk+h46w8HptYz4K8Rwtj5z6XIwp1oEOZIAzdurmrei5QrF7AhINDOKf8S00Lua0=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.10,REQID:51e83e0f-3881-4e9a-b26c-34009394b720,OB:0,L
+        OB:0,IP:0,URL:25,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release
+        _Ham,ACTION:release,TS:25
+X-CID-META: VersionHash:84eae18,CLOUDID:40c75ccf-20bd-4e5e-ace8-00692b7ab380,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:11|1,File:
+        nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: ee130b6085b74b7daeda0204bab28a2b-20220823
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
+        (envelope-from <zhiyong.tao@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1481547005; Tue, 23 Aug 2022 20:38:03 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Tue, 23 Aug 2022 20:38:01 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkmbs11n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
+ Transport; Tue, 23 Aug 2022 20:38:00 +0800
+From:   Zhiyong Tao <zhiyong.tao@mediatek.com>
+To:     <lee.jones@linaro.org>, <robh+dt@kernel.org>,
+        <matthias.bgg@gmail.com>, <lgirdwood@gmail.com>,
+        <broonie@kernel.org>, <eddie.huang@mediatek.com>,
+        <a.zummo@towertech.it>, <alexandre.belloni@bootlin.com>,
+        <fshao@chromium.org>
+CC:     <sen.chu@mediatek.com>, <hui.liu@mediatek.com>,
+        <allen-kh.cheng@mediatek.com>, <zhiyong.tao@mediatek.com>,
+        <hsin-hsiung.wang@mediatek.com>, <sean.wang@mediatek.com>,
+        <macpaul.lin@mediatek.com>, <wen.su@mediatek.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-rtc@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+Subject: [PATCH v4] regulator: dt-bindings: mediatek: add mt6366
+Date:   Tue, 23 Aug 2022 20:37:45 +0800
+Message-ID: <20220823123745.14061-1-zhiyong.tao@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 89a1da64-3900-4fdd-e89e-08da8504198f
-X-MS-TrafficTypeDiagnostic: BL0PR06MB4401:EE_
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: hWtq9A22NiAQPlRUCzasFvJqLHa2a4Z92Ko52FSHcH6G3LSLRZZ44JM6KubS8t0r/fisjAVhQVkiackuaHQOMFgsUScApBWJivqHeMkbHbUAqVu3Dt+NCdjg+9ENV3PAJxhGLyeFnsJpR8k/XcHGah/CpwM63Lw4A+qWsabEUvUB7GH0vFXBIssptMRDNyGBJOaUQE8CdBhdlTnJL/YCG5unxqzsQgo6R5j3bYUxDAjrUI2vfZHPApU1zNy/WiofqaefmNLMrmXVsiDpu8YYeglJWgFRKaBDOwBGUDQhDNLPkYhl+gNNjaqZ/al8kc4ruBoRM9hj8QbEXAYq2gL/PPU2xNcgs7Kenaa4L3CMx3Q+6dcN1lXC+DtBnG+BHtlF9ymkO/P9H+KyTHdqPjhoWIKCfmGG0+RAtcWBIB3T2jdt39iF7wCUPvJ82+IQo5vKeiGxVINXCBNZPuKYXI3xhNFol8ghRZED/QAkJq2FGn60XfuzEz+8v1JLzLf5BK6v4yL3aOTKdlQk+Qt6IO247H9Nj+fs/EIYzlcT/KT018x4mKuwmzEr6aRm3a+bvfaa37CK0ZJp2XYgu/zbbLf5CFCh6tCCSIrthZg+c7Tl11PC6Y17fg6ONhgJPUGM/mNl8Obx5ef0LcIZ2aQUuZjFlZQ9QmvOuU8kMVcpv3irWXZWbJMAdFfGq7PHHCHT/bb5
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WkhFOGRlcnJoaGsyNmFxZVFuZWNNYVZOenpGQlBoOGp0Z1QrcWVXMEppWlhr?=
- =?utf-8?B?M1FjZm53NTRaUGoxYXd5dzhNNlBldlZuYktZN1ZBMUkwSHlQekcyOHdsRUw2?=
- =?utf-8?B?NUlrNGUwdHQ0OGlqOEdLVWpsMjNuV1lQS29OSVRjUjg0Mm82OGRCb29Zemh3?=
- =?utf-8?B?SFJ0Y1JjcDI2NDZ4SlVTNzMvOFJFK2VRTVFsSWx4ejBaMmhRMkdiazhQNUth?=
- =?utf-8?B?NEtMRk14WE1xMWJCQkR6eW9POS9pZE1zcDFzNHFESG5jN21URURGenhTbDlI?=
- =?utf-8?B?aVFuTkpSNFNNTHo3S0hhWXRzZlJiLzhpZVI5NlU0SXllcW9lcGFzY0dlL0lM?=
- =?utf-8?B?T091eWIzMFZuRzlQTTk2MkQwZmQ4WHlyc0ViOTFJMFdHcklOTUJxdFFHYzVC?=
- =?utf-8?B?S1FaTkVqKzdrZ21nWG9HTGtYOGJKY0szMDB2VndGY2Y4YSszOUVjUklYVXZi?=
- =?utf-8?B?dFk3dW5WdzBtajZHbE9icFhkcS9yN1JUUVFqUWk3T3Blczdmb3lOb2VsYTly?=
- =?utf-8?B?Y0RPZkcxSnc5YjJscnJSZVY4TnR6b0NINTYya0twWnJpRk9sTElwcUJnMkhX?=
- =?utf-8?B?YnpKZGFvRDZLSVMwRk1pYU1ZOUx2dUVLVlFod29FdWVIYXhVajVTZW8rNDhM?=
- =?utf-8?B?a0tRVHBiQnNOZjJVQjZTNzlUYzZXa1RQV1c4WkxZZWg2VitBOVNpd0xySThV?=
- =?utf-8?B?ak5aWE80MzgrV1ZCVlBuWmlCVTZwU3lHTXZDQ2c2aVZMRXU2THYva1ZBc24v?=
- =?utf-8?B?a3J0aEdacDBqc3FkMFJ1S0grL2Fxc0tDM0h0Y3N5REJhSlVpQ0wzSk4xbGpZ?=
- =?utf-8?B?Mk9SaHpETnluRUlueXlDUEpNa2VGcGx5NEFDdGtPNmVxb0dHNEFLcjg4ajhw?=
- =?utf-8?B?K3o4ZzhxNlZwNEw0REovemNqSHVjWmlsWnpidFEwWCt3LzEvcUMxYXNtMmNa?=
- =?utf-8?B?dDhrcmtWU3IxMjRmM3RDbGdQS1Q1TmpzZVpnZ3BFUEhZQWU2OVVZTUFFd3M0?=
- =?utf-8?B?K05yT1c0K2FGVkpBUEQwaGxsWTdvVFc3eXZ3enFhMTRuTGZIbzJKZm0xRUFN?=
- =?utf-8?B?aWVrbk1xS1RvbE0xajBZYzZlb2s1LzdGamNhT3NwTTRHMnRoemNuQkVjYjll?=
- =?utf-8?B?VzFvOHIrM2QvU0tHUkY3bHhjZ09pbnlMQjlKbEZMT2k5bEdLWWdZcFlTczRq?=
- =?utf-8?B?em1iT3dwSkFQdXFDa08wZjR0MkR6VGY0WGtLMkZJcDd0ZTI0VHlWNm56MVVS?=
- =?utf-8?B?blBHVU8rd1JBRlFucWJFWUVxMi9PSE1uOExycGtiS2w4Tll1MkoxZlM0bWpU?=
- =?utf-8?B?UmpvdEFvYUV1WEVWclpLbk82bmRTVWZWT0cwcFdqTHpCSXZKZ2V5SlpYeWtX?=
- =?utf-8?B?OWpiMDZZRHFVZmNDM1d5MkdPZGNibVE4eFpJd1ViOEV0b3lsM0o4Z05HUkx5?=
- =?utf-8?B?VzN5bURVbzhiazl2RTR5bHRYeFc2QXhUemNRYy9jYkFJa0tQMUZHdzMwemN5?=
- =?utf-8?B?cEtIMDBGK3JLKzJmdUp3WWpxWUNTTVlCY25zL1ArL0VEbWZvczRoK3p4bGNT?=
- =?utf-8?B?Y3BENUFEZlJ6WHhsblgzdlBDejZOZUkxRmJVNzlTNXg1SVpUMm5Ea3MyVUl0?=
- =?utf-8?B?akxFdVlDa1duNlhQR1JNWVVrRm1LL3duSWJRTFhIVVVad1lOK21NSGtSamFF?=
- =?utf-8?B?MEpSV3Z5S2dYODZGeXEvVUR3bmNJaUJnbU5lVFMyeWlqcVMzTTEzTWNnPT0=?=
-X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-89723.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: 89a1da64-3900-4fdd-e89e-08da8504198f
-X-MS-Exchange-CrossTenant-AuthSource: SN6PR06MB5342.namprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Aug 2022 12:36:28.5164
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR06MB4401
+Content-Type: text/plain
+X-MTK:  N
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 23, 2022 at 03:28:52PM +0300, Krzysztof Kozlowski wrote:
-> On 23/08/2022 15:16, Heiko Stübner wrote:
-> > Am Samstag, 20. August 2022, 10:40:34 CEST schrieb Maya Matuszczyk:
-> >> sob., 20 sie 2022 o 00:26 Chris Morgan <macroalpha82@gmail.com> napisał(a):
-> >>>
-> >>> From: Chris Morgan <macromorgan@hotmail.com>
-> > 
-> > [...]
-> > 
-> >>> +&gpio_keys_control {
-> >>> +       button-5 {
-> >>> +               gpios = <&gpio3 RK_PA5 GPIO_ACTIVE_LOW>;
-> >>> +               label = "DPAD-LEFT";
-> >>> +               linux,code = <BTN_DPAD_RIGHT>;
-> >>> +       };
-> >>> +
-> >>> +       button-6 {
-> >>> +               gpios = <&gpio3 RK_PA6 GPIO_ACTIVE_LOW>;
-> >>> +               label = "DPAD-RIGHT";
-> >>> +               linux,code = <BTN_DPAD_LEFT>;
-> >>> +       };
-> >>> +
-> >>> +       button-9 {
-> >>> +               gpios = <&gpio3 RK_PB3 GPIO_ACTIVE_LOW>;
-> >>> +               label = "TR";
-> >>> +               linux,code = <BTN_TR2>;
-> >>> +       };
-> >>> +
-> >>> +       button-10 {
-> >>> +               gpios = <&gpio3 RK_PB4 GPIO_ACTIVE_LOW>;
-> >>> +               label = "TR2";
-> >>> +               linux,code = <BTN_TR>;
-> >>> +       };
-> >>> +
-> >>> +       button-14 {
-> >>> +               gpios = <&gpio3 RK_PC1 GPIO_ACTIVE_LOW>;
-> >>> +               label = "WEST";
-> >>> +               linux,code = <BTN_WEST>;
-> >>> +       };
-> >>> +
-> >>> +       button-15 {
-> >> I don't think just having the buttons numbered sequentially
-> >> is the best course of action, but this preserves the GPIO
-> >> ordering while other options don't...
-> >> I'm thinking about either having them named after
-> >> their function, or named after what they're labeled
-> >> on the PCB of the device.
-> >> Can any of DT maintainers give their input on this?
-> > 
-> > Personally, I'd prefer going with what is on the PCB
-> > or defined in the schematics.
-> > 
-> > This makes it way easier finding dt-elements either in
-> > schematics or on the board itself.
-> > 
-> > This is true for all names ;-)
-> > 
-> > On the Odroid-Go for example buttons are really named
-> > sw1, sw2, ... so the dt-name became button-sw1 etc.
-> > 
-> 
-> Matching what's on the schematics/board makes sense.
+Add mt6366 regulator document
 
-I'll do my best (in regards to board name). Schematics won't be
-possible as Anbernic hasn't released them.
+Signed-off-by: Zhiyong Tao <zhiyong.tao@mediatek.com>
+---
+Changes in patch v4:
+1)Add unevaluatedProperties in all places
+2)Fix check warning and errors
+3)remove "compatible="regulator-fixed"" properties for some ldo
 
-> 
-> Best regards,
-> Krzysztof
+Changes in patch v3:
+1)change patch title
+2)change "regulator.yaml#" to regulator.yaml#
+3)remove regulator-name
+4)fix 4 space for DTS example
+
+Changes in patch v2:
+1)fix patch title description.
+2)fix patch maintainer description.
+3)won't cc to srv_heupstream@mediatek.com
+4)fix patch commit message description.
+5)add properties node and compatible
+6)put "unevaluatedProperties: false" after $ref
+7)remove underscores in node names.
+8)change Filename to "mediatek,mt6366-regulator.yaml"
+[Zhiyong Tao <zhiyong.tao@mediatek.com>]
+---
+---
+ .../regulator/mediatek,mt6366-regulator.yaml  | 279 ++++++++++++++++++
+ 1 file changed, 279 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6366-regulator.yaml
+
+diff --git a/Documentation/devicetree/bindings/regulator/mediatek,mt6366-regulator.yaml b/Documentation/devicetree/bindings/regulator/mediatek,mt6366-regulator.yaml
+new file mode 100644
+index 000000000000..8945bf20b574
+--- /dev/null
++++ b/Documentation/devicetree/bindings/regulator/mediatek,mt6366-regulator.yaml
+@@ -0,0 +1,279 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/regulator/mediatek,mt6366-regulator.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: MT6366 Regulator from MediaTek Integrated
++
++maintainers:
++  - Zhiyong Tao <zhiyong.tao@mediatek.com>
++
++description: |
++  List of regulators provided by this controller. It is named
++  according to its regulator type, buck_<name> and ldo_<name>.
++  MT6366 regulators node should be sub node of the MT6397 MFD node.
++
++properties:
++  compatible:
++    const: mediatek,mt6366-regulator
++
++  regulators:
++    type: object
++    description: List of regulators and its properties
++
++    patternProperties:
++      "^buck-v(dram1|core|coresshub|proc11|proc12|gpu|s2|modem|s1)$":
++        type: object
++        $ref: regulator.yaml#
++        unevaluatedProperties: false
++
++      "^ldo-v(dram2|sim1|ibr|rf12|usb|camio|camd|cn18|fe28)$":
++        type: object
++        $ref: regulator.yaml#
++        unevaluatedProperties: false
++
++      "^ldo-v(xo22|efuse|mch|vcama1|emc|a12|vcama2|mc)$":
++        type: object
++        $ref: regulator.yaml#
++        unevaluatedProperties: false
++
++      "^buck-(vcore)-sshub$":
++        type: object
++        $ref: regulator.yaml#
++        unevaluatedProperties: false
++
++      "^ldo-vcn(28|33)-bt$":
++        type: object
++        $ref: regulator.yaml#
++        unevaluatedProperties: false
++
++      "^ldo-vcn(33)-wifi$":
++        type: object
++        $ref: regulator.yaml#
++        unevaluatedProperties: false
++
++      "^ldo-vsram-(others)-sshub$":
++        type: object
++        $ref: regulator.yaml#
++        unevaluatedProperties: false
++
++      "^ldo-vsram-(proc11|others|gpu|proc12)$":
++        type: object
++        $ref: regulator.yaml#
++        unevaluatedProperties: false
++
++      "^ldo-v(aud|bif|io|ldo)28$":
++        type: object
++        $ref: regulator.yaml#
++        unevaluatedProperties: false
++
++      "^ldo-v(io|aux|rf)18$":
++        type: object
++        $ref: regulator.yaml#
++        unevaluatedProperties: false
++
++      "^ldo-vsim[2]$":
++        type: object
++        $ref: regulator.yaml#
++        unevaluatedProperties: false
++
++required:
++  - compatible
++  - regulators
++
++additionalProperties: false
++
++examples:
++  - |
++    pmic {
++        compatible = "mediatek,mt6366-regulator";
++
++        regulators {
++            mt6366_vdram1_reg: buck-vdram1 {
++                regulator-ramp-delay = <12500>;
++                regulator-enable-ramp-delay = <0>;
++                regulator-allowed-modes = <0 1>;
++            };
++
++            mt6366_vcore_reg: buck-vcore {
++                regulator-ramp-delay = <6250>;
++                regulator-enable-ramp-delay = <200>;
++                regulator-allowed-modes = <0 1>;
++            };
++
++           mt6366_vproc11_reg: buck-vproc11 {
++                regulator-ramp-delay = <6250>;
++                regulator-enable-ramp-delay = <200>;
++                regulator-allowed-modes = <0 1>;
++            };
++
++            mt6366_vproc12_reg: buck-vproc12 {
++                regulator-ramp-delay = <6250>;
++                regulator-enable-ramp-delay = <200>;
++                regulator-allowed-modes = <0 1>;
++            };
++
++            mt6366_vgpu_reg: buck-vgpu {
++                regulator-ramp-delay = <6250>;
++                regulator-enable-ramp-delay = <200>;
++                regulator-allowed-modes = <0 1>;
++            };
++
++            mt6366_vs2_reg: buck-vs2 {
++                regulator-ramp-delay = <12500>;
++                regulator-enable-ramp-delay = <0>;
++            };
++
++           mt6366_vmodem_reg: buck-vmodem {
++                regulator-ramp-delay = <6250>;
++                regulator-enable-ramp-delay = <900>;
++                regulator-allowed-modes = <0 1>;
++            };
++
++            mt6366_vs1_reg: buck-vs1 {
++                regulator-ramp-delay = <12500>;
++                regulator-enable-ramp-delay = <0>;
++            };
++
++            mt6366_vdram2_reg: ldo-vdram2 {
++                regulator-enable-ramp-delay = <3300>;
++            };
++
++            mt6366_vsim1_reg: ldo-vsim1 {
++                regulator-enable-ramp-delay = <540>;
++            };
++
++            mt6366_vibr_reg: ldo-vibr {
++                regulator-enable-ramp-delay = <60>;
++            };
++
++            mt6366_vrf12_reg: ldo-vrf12 {
++                regulator-enable-ramp-delay = <120>;
++            };
++
++            mt6366_vio18_reg: ldo-vio18 {
++                regulator-enable-ramp-delay = <2700>;
++            };
++
++            mt6366_vusb_reg: ldo-vusb {
++                regulator-name = "vusb";
++                regulator-enable-ramp-delay = <270>;
++            };
++
++            mt6366_vcamio_reg: ldo-vcamio {
++                regulator-enable-ramp-delay = <325>;
++            };
++
++            mt6366_vcamd_reg: ldo-vcamd {
++                regulator-enable-ramp-delay = <325>;
++            };
++
++            mt6366_vcn18_reg: ldo-vcn18 {
++                regulator-enable-ramp-delay = <270>;
++            };
++
++            mt6366_vfe28_reg: ldo-vfe28 {
++                regulator-enable-ramp-delay = <270>;
++            };
++
++            mt6366_vsram_proc11_reg: ldo-vsram-proc11 {
++                regulator-ramp-delay = <6250>;
++                regulator-enable-ramp-delay = <240>;
++            };
++
++            mt6366_vcn28_reg: ldo-vcn28 {
++                regulator-enable-ramp-delay = <270>;
++            };
++
++            mt6366_vsram_others_reg: ldo-vsram-others {
++                regulator-ramp-delay = <6250>;
++                regulator-enable-ramp-delay = <240>;
++            };
++
++            mt6366_vsram_gpu_reg: ldo-vsram-gpu {
++                regulator-ramp-delay = <6250>;
++                regulator-enable-ramp-delay = <240>;
++            };
++
++            mt6366_vxo22_reg: ldo-vxo22 {
++                regulator-enable-ramp-delay = <120>;
++            };
++
++            mt6366_vefuse_reg: ldo-vefuse {
++                regulator-enable-ramp-delay = <270>;
++            };
++
++            mt6366_vaux18_reg: ldo-vaux18 {
++                regulator-enable-ramp-delay = <270>;
++            };
++
++            mt6366_vmch_reg: ldo-vmch {
++                regulator-enable-ramp-delay = <60>;
++            };
++
++            mt6366_vbif28_reg: ldo-vbif28 {
++                regulator-enable-ramp-delay = <270>;
++            };
++
++            mt6366_vsram_proc12_reg: ldo-vsram-proc12 {
++                regulator-ramp-delay = <6250>;
++                regulator-enable-ramp-delay = <240>;
++            };
++
++            mt6366_vcama1_reg: ldo-vcama1 {
++                regulator-enable-ramp-delay = <325>;
++            };
++
++            mt6366_vemc_reg: ldo-vemc {
++                regulator-enable-ramp-delay = <60>;
++            };
++
++            mt6366_vio28_reg: ldo-vio28 {
++                regulator-enable-ramp-delay = <270>;
++            };
++
++            mt6366_va12_reg: ldo-va12 {
++                regulator-enable-ramp-delay = <270>;
++            };
++
++            mt6366_vrf18_reg: ldo-vrf18 {
++                regulator-enable-ramp-delay = <120>;
++            };
++
++            mt6366_vcn33_bt_reg: ldo-vcn33-bt {
++                regulator-enable-ramp-delay = <270>;
++            };
++
++            mt6366_vcn33_wifi_reg: ldo-vcn33-wifi {
++                regulator-enable-ramp-delay = <270>;
++            };
++
++            mt6366_vcama2_reg: ldo-vcama2 {
++                regulator-enable-ramp-delay = <325>;
++            };
++
++            mt6366_vmc_reg: ldo-vmc {
++                regulator-enable-ramp-delay = <60>;
++            };
++
++            mt6366_vldo28_reg: ldo-vldo28 {
++                regulator-enable-ramp-delay = <270>;
++            };
++
++            mt6366_vaud28_reg: ldo-vaud28 {
++                regulator-enable-ramp-delay = <270>;
++            };
++
++            mt6366_vsim2_reg: ldo-vsim2 {
++                regulator-enable-ramp-delay = <540>;
++            };
++
++            mt6366_vcore_sshub_reg: buck-vcore-sshub {
++            };
++
++            mt6366_vsram_others_sshub_reg: ldo-vsram-others-sshub {
++            };
++        };
++    };
++...
+-- 
+2.18.0
+
