@@ -2,85 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 136B359E5DA
-	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 17:19:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E869D59E5EE
+	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 17:23:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242568AbiHWPSY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Aug 2022 11:18:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41888 "EHLO
+        id S233628AbiHWPXf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Aug 2022 11:23:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242411AbiHWPSJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 11:18:09 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D9F8153FD6
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 03:41:17 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id gi31so20075581ejc.5
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 03:41:17 -0700 (PDT)
+        with ESMTP id S244835AbiHWPQ0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 11:16:26 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A0BB1D3365
+        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 03:34:55 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id l23so2044642lji.1
+        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 03:34:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=c1dA5oASWGj0rrUZ/WWyyCO38Uiq0TAfsSxGYmfkPlY=;
-        b=pJou0ZXsL1X+99tYH/vTpA2PAeq8TQDtnnogZ2rT/Gn4lNZu9+uWGqmUq28zaFjoW6
-         1Xv2tfJrgzApfi1rTqb+a4Kb3sH2AsyD34KBsrjbLezWjFOzFxhW1Ts93ES6j9z4evOD
-         2Otl/3yI1hHdn+tr0dvn+QQbGkfb5V+/i6E8YbbghU0fchDUg5GRjmNWLW+0+QS6LLr9
-         qpR9XOygAvLdBbbQgd2azeymUwWj4VSagVxzULPtVjIdlmLU1Op5nj+empBcEx3R27ym
-         GlZt6nWioLJSfZaizWat8u6OoABAC2mQKeXUD9ryImR8pgT2FoHeWfUyvLdEMUCTHj0g
-         /CNQ==
+        bh=mubN9uvQYvqaelFvUGOLV/uSSqf/r8cU2dBz7KX7Wps=;
+        b=qFWY6NjWAV4o1T6Z/bUOiafOxEuFlqlAGXySAToBX9Mbxmug4DHCSs6f8pPo1YwUhb
+         MoNPByYuW156Ep3vctvZSpFDsu9WD+QLm1N93ALxqCj5Yjzp63bzUVUIXiOzJcC84mB6
+         4jEJHDZ8hYbHIIuPWzsEGKkyAK/PAD8D3c4A1aZ/eyzzwDxrtIyW+ghmZLD2RUu+oD4t
+         18TZ9J6KuRs0Xkv/mjFArnK/ChQOTiElidjXtyJq6m5plbIWx95S0RjeXGoWspnGt39R
+         PWntb1oLjpgkbrxoOIiGOPlqc8v7bcYckU0za5HedCvk3oO0LTPB16jrKd5yykDxbj37
+         kZOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=c1dA5oASWGj0rrUZ/WWyyCO38Uiq0TAfsSxGYmfkPlY=;
-        b=H2GXth3inrqBIy3P0ksKp/gQEpRj1WPU8FzwSpvFvB+fsF9S0891JzkhaLBCHaBOat
-         73xtGVO13QLHa4DvjoboGpnIPyJqdCpgVfo8OxxN2vcU34J3ZsovpMqBLWR2RkUv6bbY
-         XHJEnhpS2sHGAgFPKlGGEZ9UH0UQQTdvnsICNNILVbZ3jWDGCWah17zC9P2NqWyOFnao
-         UfD6dXDx5sHAZ5+XUJVj9ZOR/lNinv4JYmhZ427dNUelAGfCHlpGX0HSuShwBjO0HQbJ
-         W/cXlH43tYIOc11ToEFYwKm8FROkLPmV+RR0a5XV3n8Lpc6PvCZiZ6C1LgcdJUvVL9K+
-         kaYQ==
-X-Gm-Message-State: ACgBeo1CfBuxYWusTQXlL4q6utxOUCFxdazAMjjHMHaGxAdpaByMFSUb
-        Rn1vpj1R2WOXUG1ACY3q3aAHWqjp5CPIRUKN
-X-Google-Smtp-Source: AA6agR7wM+x9s2G0l80E0LnJODLA/PG74+Qk16IJ5VwKsCc/MbDJLPh5C/Qmli+xGAgcR8f845D2Tw==
-X-Received: by 2002:a05:6512:258b:b0:492:f472:3058 with SMTP id bf11-20020a056512258b00b00492f4723058mr857168lfb.337.1661250377095;
-        Tue, 23 Aug 2022 03:26:17 -0700 (PDT)
+        bh=mubN9uvQYvqaelFvUGOLV/uSSqf/r8cU2dBz7KX7Wps=;
+        b=nop/iooA1oU5n5bSgzee/JqYcoYRGFz1iweCw80hbbqyHL+U2byWNMP40n5q2f5/E2
+         cNJ/hu2HT7cBa6hEt1iwabX8PzpOaQffMZCKJcJbD+RdsgoiFYwg1/0zKLv4ov3qUwEM
+         bwgpmtPIyPvvAsTTMZYWtZqh+BkWHFkJPSNXEnA9Bhgy1B1GTpHrUyf5JzgsFidvjm7p
+         OkvO9gfPp44oxTT/O3rl2yMH0YwEZe+12lxFe9cTp7tCMEbLVo15eiNxkC2QfWHKIA6i
+         qWHHGln8bYF5YLpx1ePt7HNe97J6qBBxBEdGtN1LvZJ7dVImHgXC0ieegTVQO7CTKAOy
+         S8ag==
+X-Gm-Message-State: ACgBeo1OnPkHcBSMDSodA+aZFYoDDu1Wlzfa2GhO5MHnMpsG/+//RpXJ
+        Gn5Tbqq24ADFoxFEBZUwxPI7tQ==
+X-Google-Smtp-Source: AA6agR48VHsnB0Zwbx/ckxFpRxJam2Py1a7/AX9eB8O2ot2NL9+QtniRGSAw498OpIqHMw/Tim8aGQ==
+X-Received: by 2002:a2e:5cd:0:b0:261:a774:36d0 with SMTP id 196-20020a2e05cd000000b00261a77436d0mr7050422ljf.312.1661250811356;
+        Tue, 23 Aug 2022 03:33:31 -0700 (PDT)
 Received: from [192.168.0.11] (89-27-92-210.bb.dnainternet.fi. [89.27.92.210])
-        by smtp.gmail.com with ESMTPSA id a16-20020a056512391000b0048aa9d67483sm2437921lfu.160.2022.08.23.03.26.15
+        by smtp.gmail.com with ESMTPSA id n26-20020a05651203fa00b00492e6642937sm900014lfq.200.2022.08.23.03.33.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Aug 2022 03:26:16 -0700 (PDT)
-Message-ID: <2d6a6603-ae0b-6874-d92a-eeebef6abf17@linaro.org>
-Date:   Tue, 23 Aug 2022 13:26:15 +0300
+        Tue, 23 Aug 2022 03:33:30 -0700 (PDT)
+Message-ID: <145e872c-e7fc-a1f9-edb2-fad507d84018@linaro.org>
+Date:   Tue, 23 Aug 2022 13:33:29 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH 3/4] dt-bindings: display/msm/gmu: account for different
- GMU variants
+Subject: Re: [PATCHv2 resend] dt-bindings: leds: Expand LED_COLOR_ID
+ definitions
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+To:     Olliver Schinagl <oliver@schinagl.nl>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-References: <20220706145222.1565238-1-dmitry.baryshkov@linaro.org>
- <20220706145222.1565238-4-dmitry.baryshkov@linaro.org>
- <7b504ecb-b05a-549e-e2ce-18c539f68655@linaro.org>
- <a3a917b3-5dfc-761e-e5f6-5955c89db4a4@linaro.org>
+Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Baolin Wang <baolin.wang@linaro.org>,
+        Daniel Mack <daniel@zonque.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Oleh Kravchenko <oleg@kaa.org.ua>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Simon Shields <simon@lineageos.org>,
+        Olliver Schinagl <oliver+list@schinagl.nl>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220819152904.433514-1-oliver@schinagl.nl>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <a3a917b3-5dfc-761e-e5f6-5955c89db4a4@linaro.org>
+In-Reply-To: <20220819152904.433514-1-oliver@schinagl.nl>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,81 +84,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/08/2022 20:58, Dmitry Baryshkov wrote:
-> On 06/07/2022 18:52, Krzysztof Kozlowski wrote:
->> On 06/07/2022 16:52, Dmitry Baryshkov wrote:
->>> Make display/msm/gmu.yaml describe all existing GMU variants rather than
->>> just the 630.2 (SDM845) version of it.
->>>
->>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>> ---
->>>   .../devicetree/bindings/display/msm/gmu.yaml  | 166 +++++++++++++++---
->>>   1 file changed, 146 insertions(+), 20 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/display/msm/gmu.yaml b/Documentation/devicetree/bindings/display/msm/gmu.yaml
->>> index fe55611d2603..67fdeeabae0c 100644
->>> --- a/Documentation/devicetree/bindings/display/msm/gmu.yaml
->>> +++ b/Documentation/devicetree/bindings/display/msm/gmu.yaml
->>> @@ -20,35 +20,24 @@ description: |
->>>   properties:
->>>     compatible:
->>>       items:
->>> -      - enum:
->>> -          - qcom,adreno-gmu-630.2
->>> +      - pattern: '^qcom,adreno-gmu-6[0-9][0-9]\.[0-9]$'
->>>         - const: qcom,adreno-gmu
->>>   
->>>     reg:
->>> -    items:
->>> -      - description: Core GMU registers
->>> -      - description: GMU PDC registers
->>> -      - description: GMU PDC sequence registers
->>> +    minItems: 3
->>> +    maxItems: 4
->>>   
->>>     reg-names:
->>> -    items:
->>> -      - const: gmu
->>> -      - const: gmu_pdc
->>> -      - const: gmu_pdc_seq
->>> +    minItems: 3
->>> +    maxItems: 4
->>>   
->>>     clocks:
->>> -    items:
->>> -      - description: GMU clock
->>> -      - description: GPU CX clock
->>> -      - description: GPU AXI clock
->>> -      - description: GPU MEMNOC clock
->>> +    minItems: 4
->>> +    maxItems: 7
->>>   
->>>     clock-names:
->>> -    items:
->>> -      - const: gmu
->>> -      - const: cxo
->>> -      - const: axi
->>> -      - const: memnoc
->>> +    minItems: 4
->>> +    maxItems: 7
->>>   
->>>     interrupts:
->>>       items:
->>> @@ -76,6 +65,9 @@ properties:
->>>   
->>>     operating-points-v2: true
->>>   
->>> +  opp-table:
->>> +    type: object
->>
->> instead: opp-table:true
+On 19/08/2022 18:29, Olliver Schinagl wrote:
+> In commit 853a78a7d6c7 (dt-bindings: leds: Add LED_COLOR_ID definitions,
+> Sun Jun 9 20:19:04 2019 +0200) the most basic color definitions where
+> added. However, there's a little more very common LED colors.
 > 
-> Wouldn't this allow e.g. using just 'opp-table;' as a flag?
+> While the documentation states 'add what is missing', engineers tend to
+> be lazy and will just use what currently exists. So this patch will take
+> (a) list from online retailers [0], [1], [2] and use the common LED colors
+> from there, this being reasonable as this is what is currently available to
+> purchase.
+> 
+> Note, that LIME seems to be the modern take to 'Yellow-green' or
+> 'Yellowish-green' from some older datasheets.
+> 
+> [0]: https://www.digikey.com/en/products/filter/led-lighting-color/125
+> [1]: https://eu.mouser.com/c/optoelectronics/led-lighting/led-emitters/standard-leds-smd
+> [2]: https://nl.farnell.com/en-NL/c/optoelectronics-displays/led-products/standard-single-colour-leds-under-75ma
+> 
+> Signed-off-by: Olliver Schinagl <oliver@schinagl.nl>
 
-You're right and Rob also corrected me. Your original patch was correct
-(type:object).
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
