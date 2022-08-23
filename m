@@ -2,182 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A99259EA9A
-	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 20:14:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56A7C59EAD0
+	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 20:19:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233598AbiHWSMF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Aug 2022 14:12:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34718 "EHLO
+        id S233682AbiHWSTj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Aug 2022 14:19:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232027AbiHWSL2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 14:11:28 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA0F49C22E
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 09:23:18 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1oQWg7-00009i-3P; Tue, 23 Aug 2022 18:22:59 +0200
-Received: from ore by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1oQWg5-0004cc-Dq; Tue, 23 Aug 2022 18:22:57 +0200
-Date:   Tue, 23 Aug 2022 18:22:57 +0200
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>, kernel@pengutronix.de,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-        David Jander <david@protonic.nl>
-Subject: Re: [PATCH net-next v1 1/7] dt-bindings: net: pse-dt: add bindings
- for generic PSE controller
-Message-ID: <20220823162257.GO10138@pengutronix.de>
-References: <20220819120109.3857571-1-o.rempel@pengutronix.de>
- <20220819120109.3857571-2-o.rempel@pengutronix.de>
- <20220822184112.GA113650-robh@kernel.org>
+        with ESMTP id S231347AbiHWSTR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 14:19:17 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3CCD63FB;
+        Tue, 23 Aug 2022 09:35:44 -0700 (PDT)
+Received: from mercury (dyndsl-091-096-061-143.ewe-ip-backbone.de [91.96.61.143])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id E72116601E65;
+        Tue, 23 Aug 2022 17:35:42 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1661272543;
+        bh=I6/l5FGc7ng1XkPNikT1+GnIIzKiHFAjYhBWZniQqKQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=LTvZeaO67T89sCDY/LfxjlPyaxUmC5spbMAWMBgrLvVvGqNwBg/v9UwAtxSt/FGyU
+         T9KsVGgM48VVpgrt9HYfphE+25n7pWC9FTxSqt5YrVwFTGpz5vwmJCyn4Kyw0Fkm+o
+         Mp+bbLWjcncgLGTEC32GSjaW7pROWNSMs0pYzwcUeHmiyR2/QpbfmHFuOOYuOzM6Nq
+         2J0E/SUzCR1P7/ueMhZ1aSyNYV+0wpgQ9YvpDyyDddCVOlONnx213wxA5NLvx4Flpo
+         OQMbWwHC6PEo4slCYRDf76Bhya7uwTXHEt0D5h1pV2ezcYQ9jPV59c2pQXl1vDvKeS
+         Y02efsHVpXBZw==
+Received: by mercury (Postfix, from userid 1000)
+        id 9688210607D1; Tue, 23 Aug 2022 18:35:40 +0200 (CEST)
+Date:   Tue, 23 Aug 2022 18:35:40 +0200
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Chris Morgan <macroalpha82@gmail.com>
+Cc:     linux-pm@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, zhangqing@rock-chips.com,
+        zyw@rock-chips.com, jon.lin@rock-chips.com, heiko@sntech.de,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        lee@kernel.org, Chris Morgan <macromorgan@hotmail.com>,
+        Maya Matuszczyk <maccraft123mc@gmail.com>
+Subject: Re: [PATCH v8 3/4] power: supply: Add charger driver for Rockchip
+ RK817
+Message-ID: <20220823163540.dg2z7fngaqklejvx@mercury.elektranox.org>
+References: <20220808173809.11320-1-macroalpha82@gmail.com>
+ <20220808173809.11320-4-macroalpha82@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="k5vvuauyyxuzzv7f"
 Content-Disposition: inline
-In-Reply-To: <20220822184112.GA113650-robh@kernel.org>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220808173809.11320-4-macroalpha82@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 22, 2022 at 01:41:12PM -0500, Rob Herring wrote:
-> On Fri, Aug 19, 2022 at 02:01:03PM +0200, Oleksij Rempel wrote:
-> > Add binding for generic Ethernet PSE controller.
-> > 
-> > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> > ---
-> >  .../bindings/net/pse-pd/generic-pse.yaml      | 40 +++++++++++++++++++
-> >  1 file changed, 40 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/net/pse-pd/generic-pse.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/pse-pd/generic-pse.yaml b/Documentation/devicetree/bindings/net/pse-pd/generic-pse.yaml
-> > new file mode 100644
-> > index 0000000000000..64f91efa79a56
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/net/pse-pd/generic-pse.yaml
-> > @@ -0,0 +1,40 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/net/pse-pd/generic-pse.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Generic Power Sourcing Equipment
-> > +
-> > +maintainers:
-> > +  - Oleksij Rempel <o.rempel@pengutronix.de>
-> > +
-> > +description: |
-> > +  Generic PSE controller. The device must be referenced by the PHY node
-> > +  to control power injection to the Ethernet cable.
-> 
-> Isn't this separate from the PHY other than you need to associate 
-> supplies with ethernet ports?
-> 
-> Is there a controller here? Or it is just a regulator consumer 
-> associated with an ethernet port?
 
-Current version has only regulator. It will be extended with IEEE 802.3
-specific power source classification information, wich will be overkill for the
-regulator framework. I can add it to the v2 version.
+--k5vvuauyyxuzzv7f
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> > +properties:
-> > +  compatible:
-> > +    const: ieee802.3-podl-pse-generic
-> 
-> Is this for 802.3bu only (which is where PoDL comes from) or all the 
-> flavors? If all, do they need to be distinguished?
+Hi,
 
-yes. ieee802.3 defines type and class with different enumeration and
-meanings for PSE and PoDL PSE. 
+On Mon, Aug 08, 2022 at 12:38:08PM -0500, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
+>=20
+> Add support for the Rockchip rk817 battery charger integrated into the
+> rk817 PMIC.
+>=20
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
+> ---
 
-So far we have two different modes:
- - 802.3bu (PoDL PSE). Has own types and classes
- - 802.3af  is extended by 802.3at, and the extended by 802.3bt
-   all of them are named as PSE and has own types and classes as well.
+Looks mostly good. Just three things:
 
-I worry more about the fact is some one will implement HW supporting both
-modes. IMO, it is possible to take usual ethernet PHY, configure to
-10Bit half-duplex and run over single pair. In this case it is possible
-to use only PoDL PSE mode.
+> [...]
+> --- /dev/null
+> +++ b/drivers/power/supply/rk817_charger.c
+> @@ -0,0 +1,1151 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Charger Driver for Rockchip rk817
+> + *
+> + * Copyright (c) 2021
 
-In this case I need single generic compatible but different properties
-to describe supported PSE and PoDL PSE modes.
+The Copyright line is incomplete.
 
-> 'generic' is redundant.
+> + *
+> + * Authors: Maya Matuszczyk <maccraft123mc@gmail.com>
+> + *	    Chris Morgan <macromorgan@hotmail.com>
+> + */
+> +
+> +#include <linux/mfd/rk808.h>
+> +#include <linux/irq.h>
+> +#include <linux/of_gpio.h>
+> [...]
 
-ok
+Why are you including of_gpio.h? You are not using any.
 
-> > +
-> > +  '#pse-cells':
-> 
-> What's this for? You don't have a consumer.
+> +	INIT_DELAYED_WORK(&charger->work, rk817_charging_monitor);
+> +	/* Get and populate the first set of values. */
+> +	schedule_delayed_work(&charger->work, 0);
+> [...]
 
-the consumer is PHY.
+what happens with the delayed work when you remove the driver?
+Check for devm_delayed_work_autocancel().
 
-> > +    const: 0
-> > +
-> > +  ieee802.3-podl-pse-supply:
-> 
-> Seems a bit long
 
-ok. Reduce it to pse-supply ?
+-- Sebastian
 
-> > +    description: |
-> 
-> Don't need '|' if no formatting to maintain.
+--k5vvuauyyxuzzv7f
+Content-Type: application/pgp-signature; name="signature.asc"
 
-ok
+-----BEGIN PGP SIGNATURE-----
 
-> > +      Power supply for the PSE controller
-> > +
-> > +additionalProperties: false
-> > +
-> > +required:
-> > +  - compatible
-> > +  - '#pse-cells'
-> > +  - ieee802.3-podl-pse-supply
-> > +
-> > +examples:
-> > +  - |
-> > +    ethernet-pse-1 {
-> > +      compatible = "ieee802.3-podl-pse-generic";
-> > +      ieee802.3-podl-pse-supply = <&reg_t1l1>;
-> > +      #pse-cells = <0>;
-> > +    };
-> > -- 
-> > 2.30.2
-> > 
-> > 
-> 
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmMFAdEACgkQ2O7X88g7
++ppU0A//Yz5BcYSiP+zyEzc3W5m3O+PVqEUTr1SyNqEARs3Su6fNpDlNiXQonkya
+U4z59eDVQxQDPb3Am/KQucBJFy7stxk8yO5iRWhhth58Jw6RiEfaW/fwnRSQLjrY
+6o/vjCM3eqB0mHjdzEbA5pLHpBCWQuA2iBM8V+FjB7tMUH72xqn8ttrXRXc9NgFJ
+q2BVbhlfolxl2CkukIK1idKPOm0OyW48MIVygKkZL8BOXpjrryt9WeFDpmoqriLL
+noo4DBOXvBAE1qnh58qGAp1YANsHO9zK6DB7OydvIst2LDpn0nC94BPvSmDPr94R
+/GiRcK3FnNUcuYGg9uSy82EufO9p6zSKL37EN2Ly3DLVzyQ3r8f7KRUQGiksfx04
+bd+Z2oELZ2X9lLxnPE0Ti0YI7pElfnkB+IMhQi2mUIUSeFbhvmyyhbfrbLAIatII
+tfqYCLTJVHSl3iogbhOgXigROAs5qO5hBz/FESIxNDdlwTIjAsIVjzI0mfHN6uWf
+GsmA9xm05An72dT1QGQPR4ebZnKS0oCABwKfSYWtLruJqpvVM3S/jEF3tcgEogoJ
+QvNT4ExsjxI7tdjfu5P9f3tVKfAcl/p6gVtMJvn/rC4XeNAtarYI8Z1KXoy02Aq5
+iU8psfucnjtIDrwssc+d+hcF+v41sKS/QPA0zlVt6fp3FXfTPVM=
+=eosH
+-----END PGP SIGNATURE-----
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+--k5vvuauyyxuzzv7f--
