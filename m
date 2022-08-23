@@ -2,36 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DCEC59EC13
-	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 21:19:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7124259EC1C
+	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 21:21:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231839AbiHWTSu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Aug 2022 15:18:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56862 "EHLO
+        id S231959AbiHWTVG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Aug 2022 15:21:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233734AbiHWTS3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 15:18:29 -0400
+        with ESMTP id S234384AbiHWTUn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 15:20:43 -0400
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31275119F10
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 10:56:21 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 945A312C7DC;
+        Tue, 23 Aug 2022 10:59:53 -0700 (PDT)
 Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
         by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
         (Exim 4.94.2)
         (envelope-from <heiko@sntech.de>)
-        id 1oQY8L-0006Mb-Bi; Tue, 23 Aug 2022 19:56:13 +0200
+        id 1oQYBm-0006NS-G1; Tue, 23 Aug 2022 19:59:46 +0200
 From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Rob Herring <robh@kernel.org>,
-        Kever Yang <kever.yang@rock-chips.com>,
-        Jagan Teki <jagan@edgeble.ai>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Stephen Boyd <sboyd@kernel.org>, Jagan Teki <jagan@edgeble.ai>
+Cc:     Kever Yang <kever.yang@rock-chips.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        Finley Xiao <finley.xiao@rock-chips.com>
-Subject: Re: [PATCH v3 09/19] clk: rockchip: Add dt-binding header for RV1126
-Date:   Tue, 23 Aug 2022 19:56:12 +0200
-Message-ID: <3175969.jE0xQCEvom@diego>
-In-Reply-To: <CA+VMnFwE8jBxXwQPVEzEUosxjuEVMNGB9NnBuHYDw_360qJztQ@mail.gmail.com>
-References: <20220818124132.125304-1-jagan@edgeble.ai> <20220822181009.GA80526-robh@kernel.org> <CA+VMnFwE8jBxXwQPVEzEUosxjuEVMNGB9NnBuHYDw_360qJztQ@mail.gmail.com>
+        linux-clk@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v3 10/19] dt-bindings: clock: rockchip: Document RV1126 CRU
+Date:   Tue, 23 Aug 2022 19:59:45 +0200
+Message-ID: <6086608.Sb9uPGUboI@diego>
+In-Reply-To: <CA+VMnFyJOCc-RzENYs9L+U4VeJgEpMmZeSLZahcNdnL7_Cvw9Q@mail.gmail.com>
+References: <20220818124132.125304-1-jagan@edgeble.ai> <20220818212913.7FC43C433D6@smtp.kernel.org> <CA+VMnFyJOCc-RzENYs9L+U4VeJgEpMmZeSLZahcNdnL7_Cvw9Q@mail.gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
@@ -44,47 +46,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Dienstag, 23. August 2022, 14:57:20 CEST schrieb Jagan Teki:
-> On Mon, 22 Aug 2022 at 23:40, Rob Herring <robh@kernel.org> wrote:
+Am Freitag, 19. August 2022, 23:20:03 CEST schrieb Jagan Teki:
+> On Fri, 19 Aug 2022 at 02:59, Stephen Boyd <sboyd@kernel.org> wrote:
 > >
-> > On Thu, Aug 18, 2022 at 06:11:22PM +0530, Jagan Teki wrote:
-> > > Add the dt-bindings header for the Rockchip RV1126, that gets shared
-> > > between the clock controller and the clock references in the dts.
-> > >
-> > > Signed-off-by: Finley Xiao <finley.xiao@rock-chips.com>
-> > > Signed-off-by: Jagan Teki <jagan@edgeble.ai>
-> > > ---
-> > > Changes for v3:
-> > > - update the file name
-> > > Changes for v2:
-> > > - exclude from clk patch
-> > >
-> > >  .../dt-bindings/clock/rockchip,rv1126-cru.h   | 632 ++++++++++++++++++
-> > >  1 file changed, 632 insertions(+)
-> > >  create mode 100644 include/dt-bindings/clock/rockchip,rv1126-cru.h
-> > >
-> > > diff --git a/include/dt-bindings/clock/rockchip,rv1126-cru.h b/include/dt-bindings/clock/rockchip,rv1126-cru.h
-> > > new file mode 100644
-> > > index 000000000000..cfba8226ded2
-> > > --- /dev/null
-> > > +++ b/include/dt-bindings/clock/rockchip,rv1126-cru.h
-> > > @@ -0,0 +1,632 @@
-> > > +/* SPDX-License-Identifier: GPL-2.0 */
+> > Quoting Jagan Teki (2022-08-18 05:41:23)
+> > > +
+> > > +  clocks:
+> > > +    maxItems: 1
+> > > +
+> > > +  clock-names:
+> > > +    const: xin24m
+> > > +
+> > > +  rockchip,grf:
+> > > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > > +    description:
+> > > +      Phandle to the syscon managing the "general register files" (GRF),
+> > > +      if missing pll rates are not changeable, due to the missing pll
+> > > +      lock status.
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - "#clock-cells"
+> > > +  - "#reset-cells"
 > >
-> > Dual license please. Need an ack from Rockchip for that (and not just
-> > on this one).
+> > Why aren't clocks required?
 > 
-> Heiko or Kever.
-> 
-> Can you comment on this?
+> I don't see any clocks being used by cru in rv1126 [1] so that is the
+> reason I didn't add any. Let me know if it is something that is
+> mandatory to add even if it's unused.
+> [1] https://github.com/rockchip-linux/kernel/blob/develop-4.19/arch/arm/boot/dts/rv1126.dtsi#L1074
 
-I guess this is more a question for Kever,
+Our clock drivers normally just expect that xin24m to be present
+but that xin24m _is_ a clock dependency for the cru and for a lot
+of Rockchip SoCs Johan did update both the binding and the dtsi-s
+to make that explicit when converting the binding over to yaml
 
-@Kever can Rockchip allow that dual licensing for the dt-binding header
-(MIT as second license I think - at least like all the other binding headers)
-both in this patch and also in the other header-patches of this series?
+See for example the rk3399.
 
-Thanks
 Heiko
 
 
