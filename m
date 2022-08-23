@@ -2,100 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A6B6259D234
-	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 09:33:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1193A59D256
+	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 09:39:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241036AbiHWHbh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Aug 2022 03:31:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38466 "EHLO
+        id S239968AbiHWHdq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Aug 2022 03:33:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241009AbiHWHbe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 03:31:34 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0A2463F11;
-        Tue, 23 Aug 2022 00:31:31 -0700 (PDT)
-X-UUID: e2279ca205e5400bbac2001b09fcc192-20220823
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=aVdx2hN420cu+4Ovamm5y5Q9yoBGLcQi5iBtHMgF9S8=;
-        b=qS4vOfNhDLbYyDOAV6BFR4xKOdv8ZNHvZ+IXfVOgqdZ/NkfSFoAAzdYyW76IE4PQsTqxYIhkdkSSTeLqJNEy/ICUWCilEwXcHdacpj3RuuYmDhUDa3dh+wtBAA6eSE/4eAwZTVk/7NwnBfJ5thAd0ot3Sd67awpDD1h2EKvufug=;
-X-CID-UNFAMILIAR: 1
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.10,REQID:a71b8cea-dfd7-4606-9714-90186e26c2c5,OB:0,L
-        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:100,FILE:0,BULK:0,RULE:Releas
-        e_Ham,ACTION:release,TS:100
-X-CID-INFO: VERSION:1.1.10,REQID:a71b8cea-dfd7-4606-9714-90186e26c2c5,OB:0,LOB
-        :0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:100,FILE:0,BULK:0,RULE:Spam_GS9
-        81B3D,ACTION:quarantine,TS:100
-X-CID-META: VersionHash:84eae18,CLOUDID:164983c9-6b09-4f60-bf82-12f039f5d530,C
-        OID:910bc39e7dd8,Recheck:0,SF:28|16|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: e2279ca205e5400bbac2001b09fcc192-20220823
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
-        (envelope-from <xinlei.lee@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1054897088; Tue, 23 Aug 2022 15:31:26 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Tue, 23 Aug 2022 15:31:25 +0800
-Received: from mszsdaap41.gcn.mediatek.inc (10.16.6.141) by
- mtkcas10.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.0.1497.2 via Frontend Transport; Tue, 23 Aug 2022 15:31:24 +0800
-From:   <xinlei.lee@mediatek.com>
-To:     <thierry.reding@gmail.com>, <u.kleine-koenig@pengutronix.de>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <matthias.bgg@gmail.com>
-CC:     <linux-pwm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        xinlei lee <xinlei.lee@mediatek.com>
-Subject: [PATCH,2/2] pwm: mtk-disp: Fix the parameters calculated by the enabled flag of disp_pwm.
-Date:   Tue, 23 Aug 2022 15:31:15 +0800
-Message-ID: <1661239875-19841-3-git-send-email-xinlei.lee@mediatek.com>
-X-Mailer: git-send-email 2.6.4
-In-Reply-To: <1661239875-19841-1-git-send-email-xinlei.lee@mediatek.com>
-References: <1661239875-19841-1-git-send-email-xinlei.lee@mediatek.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+        with ESMTP id S239948AbiHWHdp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 03:33:45 -0400
+Received: from hutie.ust.cz (hutie.ust.cz [185.8.165.127])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 943321CB3C;
+        Tue, 23 Aug 2022 00:33:41 -0700 (PDT)
+Content-Type: text/plain;
+        charset=utf-8
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
+        t=1661240018; bh=ftKfGYt19SPqa6Cn1sVIOkBEC6upRTpfHplVCy06jFo=;
+        h=Subject:From:In-Reply-To:Date:Cc:References:To;
+        b=H2XDFgnSF0seYKYphMwMhHDHqvRe6U0bfcLzS8zKgohwWKDbnplD1OTsGdzFzUesC
+         EXVXvyNF2rFo3RgQI1j1rhIzyKzx/qHIwzcftBWDYQMgr+DDehE+AIDXG7Y798yxxt
+         BqmeeC/X+Bkyi8b2lTLSDnDHrQyrL46eu6s+QWUo=
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.80.82.1.1\))
+Subject: Re: [PATCH v2 3/4] ASoC: apple: mca: Start new platform driver
+From:   =?utf-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>
+In-Reply-To: <YwO/aqs7eqZx07kS@sirena.org.uk>
+Date:   Tue, 23 Aug 2022 09:33:36 +0200
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        asahi@lists.linux.dev, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <24C0ABFA-BF71-4492-8A6A-E9BE1462B403@cutebit.org>
+References: <20220819125430.4920-1-povik+lin@cutebit.org>
+ <20220819125430.4920-4-povik+lin@cutebit.org>
+ <YwO/aqs7eqZx07kS@sirena.org.uk>
+To:     Mark Brown <broonie@kernel.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: xinlei lee <xinlei.lee@mediatek.com>
 
-In the original mtk_disp_pwm_get_state() function, the result of reading
-con0 & BIT(0) is enabled as disp_pwm. 
-In order to conform to the register table, we should use the disp_pwm 
-base address as the enabled judgment.
+> On 22. 8. 2022, at 19:39, Mark Brown <broonie@kernel.org> wrote:
+>=20
+> On Fri, Aug 19, 2022 at 02:54:29PM +0200, Martin Povi=C5=A1er wrote:
+>=20
+> This all looks good, one style nit and a couple of requests for
+> clarification below but basically this is fine.
+>=20
+>> +++ b/sound/soc/apple/mca.c
+>> @@ -0,0 +1,1149 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Apple SoCs MCA driver
+>> + *
+>> + * Copyright (C) The Asahi Linux Contributors
+>> + *
+>> + * The MCA peripheral is made up of a number of identical units =
+called clusters.
+>=20
+> Please make the entire comment block a C++ one so things look more
+> intentional.
 
-Fixes: 3f2b16734914 ("pwm: mtk-disp: Implement atomic API .get_state()")
-Signed-off-by: xinlei lee <xinlei.lee@mediatek.com>
----
- drivers/pwm/pwm-mtk-disp.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Is this so that it does not look like the SPDX header was added
+mechanically? I will do it, just curious what the reasoning is.
 
-diff --git a/drivers/pwm/pwm-mtk-disp.c b/drivers/pwm/pwm-mtk-disp.c
-index c605013e4114..50425cd1de61 100644
---- a/drivers/pwm/pwm-mtk-disp.c
-+++ b/drivers/pwm/pwm-mtk-disp.c
-@@ -197,7 +197,7 @@ static void mtk_disp_pwm_get_state(struct pwm_chip *chip,
- 	rate = clk_get_rate(mdp->clk_main);
- 	con0 = readl(mdp->base + mdp->data->con0);
- 	con1 = readl(mdp->base + mdp->data->con1);
--	state->enabled = !!(con0 & BIT(0));
-+	state->enabled = !!(readl(mdp->base) & BIT(0));
- 	clk_div = FIELD_GET(PWM_CLKDIV_MASK, con0);
- 	period = FIELD_GET(PWM_PERIOD_MASK, con1);
- 	/*
--- 
-2.18.0
+>=20
+>> +#define USE_RXB_FOR_CAPTURE
+>=20
+> What's this all about?
+
+There=E2=80=99s something we can configure one way or the other way in =
+the
+hardware (choosing RXA or RXB unit in a cluster for capture). Since this=20=
+
+driver developed along reverse-engineering the hardware, this switch
+got built in. I want to keep it for future experimentation. Also, as
+the driver=E2=80=99s side gig is documenting the hardware, this way it
+documents more.
+
+>> +static int mca_fe_enable_clocks(struct mca_cluster *cl)
+>> +{
+>> +	struct mca_data *mca =3D cl->host;
+>> +	int ret;
+>> +
+>> +	ret =3D clk_prepare_enable(cl->clk_parent);
+>> +	if (ret) {
+>> +		dev_err(mca->dev,
+>> +			"cluster %d: unable to enable clock parent: =
+%d\n",
+>> +			cl->no, ret);
+>> +		return ret;
+>> +	}
+>> +
+>> +	/*
+>> +	 * We can't power up the device earlier than this because
+>> +	 * the power state driver would error out on seeing the device
+>> +	 * as clock-gated.
+>> +	 */
+>> +	cl->pd_link =3D device_link_add(mca->dev, cl->pd_dev,
+>> +				      DL_FLAG_STATELESS | =
+DL_FLAG_PM_RUNTIME |
+>> +					      DL_FLAG_RPM_ACTIVE);
+>=20
+> I'm not clear on this dynamically adding and removing device links =
+stuff
+> - it looks like the main (only?) purpose is to take a runtime PM
+> reference to the target device which is fine but it's not clear why
+> device links are involved given that the links are created and =
+destroyed
+> every time the DAI is used, AFAICT always in the same fixed
+> relationship.  It's not a problem, it's just unclear.
+
+Indeed the only purpose is powering up the cluster=E2=80=99s power =
+domain (there=E2=80=99s
+one domain for each cluster). Adding the links is the only way I know to
+do it. They need to be added dynamically (as opposed to statically =
+linking,
+say, the DAI=E2=80=99s ->dev to the cluster=E2=80=99s ->pd_dev, which I =
+guess may do
+something similar), because we need to sequence the power-up/power-down
+with the enablement of the clocks.
+
+Martin
 
