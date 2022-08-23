@@ -2,89 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EAEA59E74C
-	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 18:31:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B97759E88F
+	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 19:07:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245058AbiHWQar (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Aug 2022 12:30:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46862 "EHLO
+        id S245749AbiHWQ5r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Aug 2022 12:57:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240191AbiHWQaD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 12:30:03 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8108611FD09
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 05:57:30 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id m5so8890270lfj.4
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 05:57:30 -0700 (PDT)
+        with ESMTP id S243718AbiHWQ4u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 12:56:50 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CC0B14039B
+        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 06:27:33 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id q7so15988177lfu.5
+        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 06:27:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=1avOVOvremPzgizGcj5WLFA7Q1NR0Z4dLUlm0wTw8OE=;
-        b=QYNhoLttpBbbjZVOLBf2tpHXrj7nTjLxZk7vYBZWfrlQ2N/xm2XM3MltGAv9uEPq9i
-         znp26aDtxb3ZPogWYZNufhEDrzRKh06hP+7g2rYnX6slKSM501R8AEvVUpq0slHdSY3g
-         to82g0OtUM8hx1yl+YcUrP4wRMVl++0l+XE+thuK//m3XcxzQMEpPTXqYSvacdfTDAtg
-         g/eTJVjJw6Ll7zuQ6VckPs/6XZSLs5BwCf2I0mrK6iYepQJFnnvnPikd1Iun6jA7vPGi
-         BA3EUw5FkFxctIwJfSvdvuomiLLdTYTFdZrZjkO4JAJRTbSGMek9gyQW6gZPC1vXS6EY
-         E6yg==
+        bh=RYaoT64rLSiAkBu6ZnEVRKnzaukCu6pGqQ25YPlgRlQ=;
+        b=B4xc8gVe0InX3hW6P2VMd5XAFlRh66yotF7S/ardado2iYgZjMEMVv/wy06PQiQzah
+         iazrBekEqxteSA9KQm8t30AOVGmmi2nqx+2DGZ7Rq28j7lCsHF5PEdVGKgG6RIQmO0Fd
+         TrUySKUx3jVYjXeBUawdAJqP6R3BQQxAxPTfHbzUIMMVAxhGc6IUzHJW8HDB12SbIiKY
+         YAHWEi1w26iX4K5bZPKPW7Wq/uEH5qV9Z9fb5lYcGrpfKgmY8uFQ//8YoXjzDA9JYV4P
+         xoObMYAS/nuo9PtQT9msLlV1ST+v6Cp2WrTbz0h1PZIgDndRXBVkSPar3tku5vdUhLZ5
+         iJSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=1avOVOvremPzgizGcj5WLFA7Q1NR0Z4dLUlm0wTw8OE=;
-        b=ySA9fN0BT6L297xIeWU9YoWq+u7Rs9zCzbGdtcxdxfxkvuqtj0k+oLKs8tabMN6BCo
-         JEq9OXWKoE0mx7/Xyav7GIje/uwjJi7mPmlfHHlieLKh+szpuW9zZfHcR0CSTsuxfGGF
-         PDusg7XWF3f+LkojKoCbImDa8yRmA1IP/F+57bSytkOVP7YUlpZ+K/FWsIwtf/ARE3cq
-         0GCesbgJLUg9d2+5ZHr5lKVEA3X/LNpMou/wXEsq2Xnh+iUQb3hkcHNZzZrKGPqmg2eb
-         PR3txbNywL/k0FaDjpTynPp4SzLsQaTCLpOwWovzzPOj1D7kSdHTWDgnwbPjxaCf7yRK
-         2hPw==
-X-Gm-Message-State: ACgBeo0UNjqN6kN2/5dNut2/UFjhnpdmv3ocHokYmdeJmif4GHY33QPI
-        e0aK+h7gQlChUQR+hoWmNvMCUg==
-X-Google-Smtp-Source: AA6agR5ebvanViW4y7lh+xQR5g7xWi+K4+hnZ5po7ClqW+djA2ZZ4iS62EfTP1uWujzj9Ao043j5sQ==
-X-Received: by 2002:a05:6512:2605:b0:492:dbb3:9b85 with SMTP id bt5-20020a056512260500b00492dbb39b85mr4302890lfb.669.1661259448847;
-        Tue, 23 Aug 2022 05:57:28 -0700 (PDT)
+        bh=RYaoT64rLSiAkBu6ZnEVRKnzaukCu6pGqQ25YPlgRlQ=;
+        b=EyNMD9FNQmtv9F2O2wTOla4mbbffS2JXG17Cr13K0r1K6vhqciX9lb7QptSQ86ZkRS
+         0DLdzctCyArpMk40bdTGwUJK/oGznVRKL8HVr3Rj2aVaC0EIcAtOjS/moXS8QVou4Ljm
+         KgL2ywrhE7RmtekyxzeLCImzNVQJwn0KDTRWgquGKRYeSIy/9gYDJKpjnnlnkrpoGK1Q
+         lmDI5m5Dj/C+zL4qSL2Ow0m1QGNpGdv4Z6TwhQ7TpqlAU6Ng2ovBbD7V5UG07BYeZnLE
+         737+JY6IQC6hRSpR8898jqYnvhd2U0HjpV1zl48Wh/owet7hE7Mu3gyClAqTM5CKrfK7
+         mPzA==
+X-Gm-Message-State: ACgBeo2O7DB0Q+Oi7WgtVTwFMl94uAtrm5hnlWzyfmFnhU+rtO9SrR8p
+        rwu2SJ6no2LnIwnHAsOQjoECJQ==
+X-Google-Smtp-Source: AA6agR7yDkNWoU8CznVAgBBUwBldaGBGAZ63skSgJLnHIYu5wpua5KrElt1bP4h+zbTgu4ZNMHb0Ew==
+X-Received: by 2002:a05:6512:4009:b0:492:f0f7:d83c with SMTP id br9-20020a056512400900b00492f0f7d83cmr1587481lfb.449.1661261251555;
+        Tue, 23 Aug 2022 06:27:31 -0700 (PDT)
 Received: from [192.168.0.11] (89-27-92-210.bb.dnainternet.fi. [89.27.92.210])
-        by smtp.gmail.com with ESMTPSA id b17-20020a056512071100b00492c77c55ddsm2212340lfs.67.2022.08.23.05.57.27
+        by smtp.gmail.com with ESMTPSA id p8-20020ac24ec8000000b0048b12ff12e8sm2417459lfr.99.2022.08.23.06.27.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Aug 2022 05:57:28 -0700 (PDT)
-Message-ID: <15fdd5c2-9c01-ee4e-98f9-559e926d9925@linaro.org>
-Date:   Tue, 23 Aug 2022 15:57:27 +0300
+        Tue, 23 Aug 2022 06:27:28 -0700 (PDT)
+Message-ID: <f5dd04b8-2560-2987-328b-3697aaf1dd74@linaro.org>
+Date:   Tue, 23 Aug 2022 16:27:25 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH V2 0/7] i2c-imx-lpi2c: add IPG clock
+Subject: Re: [PATCH v4] dt-bindings: PCI: mediatek-gen3: Add support for
+ MT8188 and MT8195
 Content-Language: en-US
-To:     Peng Fan <peng.fan@nxp.com>,
-        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "wsa@kernel.org" <wsa@kernel.org>
-Cc:     "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Clark Wang <xiaoning.wang@nxp.com>
-References: <20220816125526.2978895-1-peng.fan@oss.nxp.com>
- <DU0PR04MB9417E7BD5F1FB7A8E00BAA3F88719@DU0PR04MB9417.eurprd04.prod.outlook.com>
- <7eb3cca0-1be6-8f7f-a7bf-f0c9478e7080@linaro.org>
- <DU0PR04MB9417CA946AD601F900500A5488709@DU0PR04MB9417.eurprd04.prod.outlook.com>
+To:     Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc:     Jianjun Wang <jianjun.wang@mediatek.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Ryder Lee <ryder.lee@mediatek.com>, Rex-BC.Chen@mediatek.com,
+        TingHan.Shen@mediatek.com, Liju-clr.Chen@mediatek.com,
+        Jian.Yang@mediatek.com
+References: <20220802120624.19258-1-jianjun.wang@mediatek.com>
+ <5c14e959-10cc-5520-e88f-b47a195b99e9@linaro.org>
+ <YwTNXaaotJW/vUT9@lpieralisi>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <DU0PR04MB9417CA946AD601F900500A5488709@DU0PR04MB9417.eurprd04.prod.outlook.com>
+In-Reply-To: <YwTNXaaotJW/vUT9@lpieralisi>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -92,41 +86,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/08/2022 15:49, Peng Fan wrote:
->> Subject: Re: [PATCH V2 0/7] i2c-imx-lpi2c: add IPG clock
+On 23/08/2022 15:51, Lorenzo Pieralisi wrote:
+> On Wed, Aug 03, 2022 at 08:44:11AM +0200, Krzysztof Kozlowski wrote:
+>> On 02/08/2022 14:06, Jianjun Wang wrote:
+>>> MT8188 and MT8195 are ARM platform SoCs with the same PCIe IP as MT8192.
+>>>
+>>> Also add new clock name "peri_mem" since the MT8188 and MT8195 use clock
+>>> "peri_mem" instead of "top_133m".
+>>>
+>>> Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
+>>> ---
+>>> Changes in v4:
+>>> Remove "items" for "mediatek,mt8192-pcie" since it only have one item.
 >>
->> On 22/08/2022 11:46, Peng Fan wrote:
->>>> Subject: [PATCH V2 0/7] i2c-imx-lpi2c: add IPG clock
->>>
->>> + Wolfram Sang I2C maintainer.
->>>
->>> Krzysztof,
->>>
->>> Do you have time to give a look whether this patchset is ok for you?
->>> Please forgive if this is too early ping. Some i.MX93 dts update
->>> pending
->>>
 >>
->> I don't understand the ping. You got everything needed from us, why still
->> pinging? What that DTS has anything to do with us?
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> In last version, you raised a comment that the driver patch broke ABI, not
-> backward compatible. So I updated the driver patch to be backward
-> compatible in V3 :)
+> Should I pick this up ?
 
-Awesome! But you don't need my ack after such update. The ack or review
-is expected from maintainers and I am not the maintainer of IMX I2C
-driver or IMX platform/DTS. There is no need in pinging folks just for
-some comments. We are all too busy...
-
-Please read:
-
-https://elixir.bootlin.com/linux/v5.19/source/Documentation/process/submitting-patches.rst
-
-https://elixir.bootlin.com/linux/v5.19/source/Documentation/process/1.Intro.rst
-https://elixir.bootlin.com/linux/v5.19/source/Documentation/process/5.Posting.rst
-https://elixir.bootlin.com/linux/v5.19/source/Documentation/process/6.Followthrough.rst
-
+Yes, go ahead. Thanks!
 
 Best regards,
 Krzysztof
