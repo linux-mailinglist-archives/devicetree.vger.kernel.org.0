@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9702859E921
-	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 19:23:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 358AA59E8F1
+	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 19:22:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235189AbiHWRSt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Aug 2022 13:18:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40116 "EHLO
+        id S233545AbiHWRSD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Aug 2022 13:18:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229706AbiHWRSW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 13:18:22 -0400
+        with ESMTP id S231295AbiHWRRW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 13:17:22 -0400
 Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24B9711C3F8
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 06:48:13 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id bn9so6012165ljb.6
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 06:48:13 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82F6CA4B32
+        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 06:48:32 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id x25so13548374ljm.5
+        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 06:48:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=etUNLniWHgJEJDCvw5GPxyP6mirBEPYcAYo8g53LeZg=;
-        b=G6u/gMHONj31bKntnY4mYMMepTc/qL4So3m6ypkJTVSM6Qx8oF5a7AjqcKACF0T90o
-         ABUxoYHTA10t/J7O8DagZehl8ZgohPjweSQbDRxeFvG0CKwaGJcJAsh7K0m+Ez5gy60a
-         RnrKHF312WnBAg9ACxc1UIB4SvNn7d8s9aOH2d7Pyg86qIzn+tlaKNlwpDfLpAI29njg
-         OZ9WRyx7e0k/Tbiqe6bDgOR43DH2MzXZWulM58eicHufIU36kVwe+ngKi9Xi8WGEUq26
-         3xRAi6KUKa5Wh2MS0Pm3IaPjvZMtMzUE5ikE5T/s/LxFQ++UU+SXZhe1/GLxsJ+kIC+9
-         NkYg==
+        bh=i6g1ytsthnfWXIku4aqH3xhdM/9Ri2X7FyfLWo9ROV8=;
+        b=lnuCGHm/PTxz1gMjlh6EwYedDmDSkRIcLQu70CyscsSnw1bFVmYmwYZU7Vskw193FH
+         /gaLFbR7JgbcnCLuvFKdex8r461kKWyBn1HdOLi9u6roSHpZKBEwrRM2Zsoh7+rdEsco
+         v8unp4dpv0a5xISb/Cl3YsM/lPwz1OSib5tK2KJuRZtzNKu83K17rsTRcMvMU4pWvlOd
+         1BLlHWHRD2evfPGxn+b8kZDL+cuUGoa9TdbdupPzwePky/8K2AdrQuEflNXthdxPp1YG
+         kLPS2mKpS059ru57iN+9ziA78SGoI4dugzGm0MKb1EajM98qMzCzBGoxKZmSfoCzoFNa
+         7UdA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=etUNLniWHgJEJDCvw5GPxyP6mirBEPYcAYo8g53LeZg=;
-        b=4a0JUeKkHoYL9GBezjPQmnX6qS36WWXhOTgPuC5C0Grsvu2mKO/2CLZb1FPYLAbhNh
-         k6SbocUoVIrJ+Dc+WinrPbr+5S1qzAToGqsxrP9s5bjkNkExbntqRhf8iJ8uN9MT9TVo
-         nZTUaryLUj9nP7FqooJlIHnFLASN1KLqnwmV3f2zOtcD2fkc26VFdkFiH3qiuHl/o7yi
-         Dg9YXim5m9e9BNnity2hZvKsQOF6AkgIx3FYeRfQy4WssVKd/wfjXU1CcTcf7hZv4XhP
-         I0EDpRcni1ZJfo9wXuo7zuDDaTBZDFOH9i3RRgtlRNdp0SQjd362BYZ8zaGofZX4f3zF
-         jpGQ==
-X-Gm-Message-State: ACgBeo2dTOuVT77LZGFMAHV9TYNoltUzcVEoPbEQ4o38S0sLBDSZHJcR
-        H/9UkCbczziONGdolPJU62tAig==
-X-Google-Smtp-Source: AA6agR7LLkgQKhdY0aEo6fL4eDcJ/ReUbDhzV9yPR1SsZVcB8imNPrMITsvk9qQ5MHab1vJPAgJbIA==
-X-Received: by 2002:a2e:a812:0:b0:261:8f2d:9530 with SMTP id l18-20020a2ea812000000b002618f2d9530mr6450626ljq.251.1661262492350;
-        Tue, 23 Aug 2022 06:48:12 -0700 (PDT)
+        bh=i6g1ytsthnfWXIku4aqH3xhdM/9Ri2X7FyfLWo9ROV8=;
+        b=uXChZsRIk7Z9kIrmsfgYu2NwGAQ/MsZW9/hko6udND7FX8Mh5VWep8u4y/4nt+C2rh
+         A+1CxLyPuWICjWS5QVF27qLw7UrIvohEpLzfvGEEU8Ya7rL+N8n4hwEmptz7Kh+ojc1y
+         tg88gXm5XAN/BxL71HOu67y7qTOcBKGxA9k1RXujkBPML/SrnL8oBxwdMYTC/kFUdCM7
+         EEOjfodFZ6VJs1wOKkTSNADGIAdkS5whRrX+ZwC+BMR6dVfJVZf5FXfF7DbTbLMHbVy/
+         uG61unZ/+iHj3GoGvEE3MRrFfMBSW0WcQ5R1SS6g6LY5Eif17WMoSM0spaYgtmXKydGf
+         T0mQ==
+X-Gm-Message-State: ACgBeo3ni+Q0wJ7OYHKuJgpudcVEt1Gf+N7iUZ5yLg3vF3srLLZ1mTNO
+        +q2rULaypwubLpYgH9nkZk54wQ==
+X-Google-Smtp-Source: AA6agR6/zduTpM8TBLJ4dYqpdr6hx69FMcRTHKzThqsgckEidignmxKxVwL0wGuNZc9gPHwW/XWewg==
+X-Received: by 2002:a05:651c:509:b0:261:c6f5:59e2 with SMTP id o9-20020a05651c050900b00261c6f559e2mr3908472ljp.28.1661262510922;
+        Tue, 23 Aug 2022 06:48:30 -0700 (PDT)
 Received: from [192.168.0.11] (89-27-92-210.bb.dnainternet.fi. [89.27.92.210])
-        by smtp.gmail.com with ESMTPSA id w23-20020ac24437000000b00492f6ddba59sm398330lfl.75.2022.08.23.06.48.10
+        by smtp.gmail.com with ESMTPSA id q13-20020a19430d000000b00492eb7205b0sm873422lfa.210.2022.08.23.06.48.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Aug 2022 06:48:10 -0700 (PDT)
-Message-ID: <2d2511c7-760c-31d5-5283-8ab0b20849d6@linaro.org>
-Date:   Tue, 23 Aug 2022 16:48:09 +0300
+        Tue, 23 Aug 2022 06:48:29 -0700 (PDT)
+Message-ID: <2bd97f8c-8613-1414-a185-9ef2e17925dd@linaro.org>
+Date:   Tue, 23 Aug 2022 16:48:28 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH 1/2] ASoC: mediatek: dt-bindings: modify machine bindings
+Subject: Re: [PATCH 2/2] ASoC: mediatek: dt-bindings: modify machine bindings
  for SOF
 Content-Language: en-US
 To:     Chunxu Li <chunxu.li@mediatek.com>, robh+dt@kernel.org,
@@ -66,9 +66,9 @@ Cc:     lgirdwood@gmail.com, matthias.bgg@gmail.com,
         linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
         project_global_chrome_upstream_group@mediatek.com
 References: <20220820075343.13993-1-chunxu.li@mediatek.com>
- <20220820075343.13993-2-chunxu.li@mediatek.com>
+ <20220820075343.13993-3-chunxu.li@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220820075343.13993-2-chunxu.li@mediatek.com>
+In-Reply-To: <20220820075343.13993-3-chunxu.li@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -92,13 +92,13 @@ On 20/08/2022 10:53, Chunxu Li wrote:
 > 
 > Signed-off-by: chunxu.li <chunxu.li@mediatek.com>
 > ---
->  .../bindings/sound/mt8186-mt6366-da7219-max98357.yaml  | 10 ++++++++++
+>  .../bindings/sound/mt8186-mt6366-rt1019-rt5682s.yaml   | 10 ++++++++++
 >  1 file changed, 10 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/mt8186-mt6366-da7219-max98357.yaml b/Documentation/devicetree/bindings/sound/mt8186-mt6366-da7219-max98357.yaml
-> index 513cd28b2027..d810dfccd1f8 100644
-> --- a/Documentation/devicetree/bindings/sound/mt8186-mt6366-da7219-max98357.yaml
-> +++ b/Documentation/devicetree/bindings/sound/mt8186-mt6366-da7219-max98357.yaml
+> diff --git a/Documentation/devicetree/bindings/sound/mt8186-mt6366-rt1019-rt5682s.yaml b/Documentation/devicetree/bindings/sound/mt8186-mt6366-rt1019-rt5682s.yaml
+> index 059a7629b2d3..0281984fc916 100644
+> --- a/Documentation/devicetree/bindings/sound/mt8186-mt6366-rt1019-rt5682s.yaml
+> +++ b/Documentation/devicetree/bindings/sound/mt8186-mt6366-rt1019-rt5682s.yaml
 > @@ -43,6 +43,16 @@ properties:
 >      required:
 >        - sound-dai
