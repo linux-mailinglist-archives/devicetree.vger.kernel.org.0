@@ -2,152 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5269D59D74F
-	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 11:59:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3ADA59D7B1
+	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 12:00:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238807AbiHWJbi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Aug 2022 05:31:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51216 "EHLO
+        id S245542AbiHWJj7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Aug 2022 05:39:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350351AbiHWJ3W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 05:29:22 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0826C923CA;
-        Tue, 23 Aug 2022 01:37:31 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id bt10so5716539lfb.1;
-        Tue, 23 Aug 2022 01:37:31 -0700 (PDT)
+        with ESMTP id S1351747AbiHWJjJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 05:39:09 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 129DE5AA32
+        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 01:41:04 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id s6so7476973lfo.11
+        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 01:41:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc;
-        bh=vop6fItyvbYtkrV6IP5UVBH+x7wzffEHNhLEh8TzmD8=;
-        b=PdX27RnPGKwVCyCypErvS8EGx+jQCxJQjsN3GR6KThiHAzdSrVqpzi6+4lJ0R2Z2ZN
-         J8c+VhkgdNh7L1QWqN1bD0xhl2Zvr8pmNeW/HmfGFV7Hz51OxwuRfKtNNwThdHVBPk0j
-         bvYUq4kk6NDVLPuk0qo7kCA/XHYCuEmYnKA/cVrgVYn4aCrXWyvjDKGyAij6wY0Zkn4L
-         G8Czw9HygPAE3OyoUSWKNw3+EtS92m61SuRkgwjsYNNtrTn3aYAvowO87ZJBqAvbvqT/
-         i1JEI0YVotddMgzWYR/8Bqbbu8j4sBbyAsh2KpC3196CGZdEeWXD67uDgRwaGzg89yc0
-         cjkg==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=W0I5qGBRorIzU4/M9Z2JKZBtnIIxK+lV/fotyWPu8eo=;
+        b=YfivAOPyp/S0t3HR39n5l6tvClobRS3WjgJLwTgsVGDusGuqa7DeH4gqCzzVzFxepy
+         OW9z5QACGE6BtNdpfnV1/HM8WsRwMVBLMh7YHcIyDUF2/MY8bcVlCehu+nEIZUAsWx9c
+         fkwMmvwOK97l7bl4OC/J8rsmNB/AQuWLY4nvO6ILnWgRoezZMuVZ3kY822corbLuFOpD
+         UYCZ+XlyG4PQbltck8mA2bLjjbXpqsDw1J5IxUXZd+hrmHOhLc70LrN2dJXq+xs6XeFw
+         ThxIm7/BGfRz9voj2AhZY9VnjvoLi91SlfokA7MoysD+QWK15MHumcudOkm1Oi0A03xn
+         Fw8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=vop6fItyvbYtkrV6IP5UVBH+x7wzffEHNhLEh8TzmD8=;
-        b=FOScH8dl/SzvDNQQfGWRhmEdtsXBDuIRugqaeSt+EN1aPksGKjX46cEjeY860DLJrB
-         q3CwBPZ+50XDeR9ExSKBf+YCuVif8WLNyUY+3Fer/T6fxnWHE2e82InKOzpl0SDylCHc
-         7Ldqpeje7xT6gVJIr86lwgT38bEXC9UrShCDRv8h6CmATLV4oTfX/Slj6ELgOQgkCNo4
-         GgyII5Fw37KeJfDN2XVkeiFTrVCDr3V3fis+WGIGLjtfmMfU35zDYhdvmXIzzcb+S5oX
-         VcOPdri9tUGWc6BCCqI/2VuASnMj/LvwnAuhL3MLYsgUnS7KX5wJuj0ldRnHPpJTGKIj
-         GzLQ==
-X-Gm-Message-State: ACgBeo0f+Hg5nbgidpyvSSTvP4s8+aWVMpiYRW+HGqsdf9zmcOmpmPFE
-        3LkIVBuKXcN9gwnkYQkSigc=
-X-Google-Smtp-Source: AA6agR5sCJFUy6q6BK/+a0nDOxzWJIe8zJFPRjdjmjK/QZnURboZ9UHk7Aq9/NiHjnaBrmGzTmHdqA==
-X-Received: by 2002:a05:6512:13a1:b0:48d:f14:9059 with SMTP id p33-20020a05651213a100b0048d0f149059mr8993313lfa.110.1661243811321;
-        Tue, 23 Aug 2022 01:36:51 -0700 (PDT)
-Received: from mobilestation ([95.79.140.178])
-        by smtp.gmail.com with ESMTPSA id bf40-20020a2eaa28000000b0025e59f125fbsm2259108ljb.53.2022.08.23.01.36.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Aug 2022 01:36:50 -0700 (PDT)
-Date:   Tue, 23 Aug 2022 11:36:48 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Rob Herring <robh@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Borislav Petkov <bp@alien8.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Tony Luck <tony.luck@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Manish Narani <manish.narani@xilinx.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Michail Ivanov <Michail.Ivanov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Punnaiah Choudary Kalluri 
-        <punnaiah.choudary.kalluri@xilinx.com>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        James Morse <james.morse@arm.com>,
-        Robert Richter <rric@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-edac@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 16/20] dt-bindings: memory: snps: Detach Zynq DDRC
- controller support
-Message-ID: <20220823083648.j7hmyt4py5xqnzde@mobilestation>
-References: <20220822190730.27277-1-Sergey.Semin@baikalelectronics.ru>
- <20220822190730.27277-17-Sergey.Semin@baikalelectronics.ru>
- <a5a15749-1047-74ea-831e-54d27a6d6cdf@linaro.org>
- <835938e3-e4f5-5029-9373-5dd59bc3b625@linaro.org>
- <20220823082748.td6pwkzj5grfno77@mobilestation>
- <afc181cd-46b7-4c69-d27a-d2005904f48a@linaro.org>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=W0I5qGBRorIzU4/M9Z2JKZBtnIIxK+lV/fotyWPu8eo=;
+        b=GBUmPyRk/eDK2azhA/6jVJzsZlNKKVicsmKYHKaZCXcLFYFxaS7MbqWGVWoKFF/ZO7
+         jRYgwCsYcaSHHSG2pc/DCxcnuGYvnf7lQTB4hYLQMOfQW4PWlsgWXiEleJqXKGr4TKbM
+         gAMTTdSwGlwj1b6H9PyvnOz5vstO8LCeTxXqywIKy6sW/tDYoPPo8AjkIBQ1g259xIGt
+         As4QmUdFKoY9dOy04hrElQw6vWIVsGxhF9Xph0NqD+9Dyadkqxw3kOsmIOwTcwPPVdxD
+         gVmlvkDvCNDxHa6OsV1bU3RCwXKZw+4wNX/Ac60//QAvyGWtfsegOq2FOVu2NyOCQGHY
+         DKHA==
+X-Gm-Message-State: ACgBeo3WOWbXt0g09zQYbgV1ijG9wc6IyHi125P1VUU7M5ZFsF+skumh
+        B92AHeSA6beTePXk9b8unGI1Ag==
+X-Google-Smtp-Source: AA6agR5+rUJS0PTf+2wjIEbj+myfHGedVpyDY4058HVzXxye9slAAObIkitw5XGxHJ1FVj4NKKE3Hg==
+X-Received: by 2002:a05:6512:118d:b0:492:da96:689 with SMTP id g13-20020a056512118d00b00492da960689mr4163856lfr.244.1661244020402;
+        Tue, 23 Aug 2022 01:40:20 -0700 (PDT)
+Received: from [192.168.0.11] (89-27-92-210.bb.dnainternet.fi. [89.27.92.210])
+        by smtp.gmail.com with ESMTPSA id t20-20020a2e8e74000000b0025e1ec74e25sm2247874ljk.43.2022.08.23.01.40.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Aug 2022 01:40:19 -0700 (PDT)
+Message-ID: <39f63588-bc88-a716-bc66-7f93c4aabc56@linaro.org>
+Date:   Tue, 23 Aug 2022 11:40:18 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <afc181cd-46b7-4c69-d27a-d2005904f48a@linaro.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH 3/3] arm64: dts: Modify gamma compatible for mt8195
+Content-Language: en-US
+To:     "zheng-yan.chen" <zheng-yan.chen@mediatek.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        "Jason-JH . Lin" <jason-jh.lin@mediatek.com>,
+        Singo Chang <singo.chang@mediatek.com>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220822091945.21343-1-zheng-yan.chen@mediatek.com>
+ <20220822091945.21343-4-zheng-yan.chen@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220822091945.21343-4-zheng-yan.chen@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 23, 2022 at 11:30:22AM +0300, Krzysztof Kozlowski wrote:
-> On 23/08/2022 11:27, Serge Semin wrote:
-> > On Tue, Aug 23, 2022 at 11:22:08AM +0300, Krzysztof Kozlowski wrote:
-> >> On 23/08/2022 11:17, Krzysztof Kozlowski wrote:
-> >>> On 22/08/2022 22:07, Serge Semin wrote:
-> >>>> The Zynq A05 DDRC controller has nothing in common with DW uMCTL2 DDRC:
-> >>>> the CSRs layout is absolutely different and it doesn't has IRQ unlike DW
-> >>>> uMCTL2 DDR controller of all versions (v1.x, v2.x and v3.x). Thus there is
-> >>>> no any reason to have these controllers described by the same bindings.
-> >>>> Thus let's split them up.
-> >>>>
-> >>>> While at it rename the original Synopsys uMCTL2 DT-schema file to a more
-> >>>> descriptive - snps,dw-umctl2-ddrc.yaml and add a more detailed title and
-> >>>> description of the device bindings.
-> >>>
-> >>> Filename should be based on compatible, so if renaming then
-> >>> snps,ddrc-3.80a.yaml or snps,ddrc.yaml... which leads to original
-> >>> filename anyway. Therefore nack for rename.
-> >>>
-> >>> BTW, if you perform renames, generate patches with proper -M/-C/-B
-> >>> arguments so this is detected.
-> >>>
-> >>>
-> >>>>
-> >>>> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> >>>> --->  .../snps,dw-umctl2-ddrc.yaml                  | 51 +++++++++++++
-> >>>
-> >>> This is a mess. I did not get any cover letters, any other patches any
-> >>> description of relation between this and your other one.
-> >>>
-> >>> It seems you make independent and conflicting changes to the same file,
-> >>> so this has to be properly organized.
-> >>>
-> >>> Send entire patchset with cover letter with description of all
-> >>> dependencies to all maintainers.
-> >>>
-> >>> This is unreviewable now, so a no.
-> >>
-> > 
-> >> And also untestable by Rob's bot, so will have to wait.
-> > 
-> > For what reason it's untestable? The patch has no dependencies from
-> > any other patchset.
+On 22/08/2022 12:19, zheng-yan.chen wrote:
+> Modify gamma compatible for mt8195.
 > 
-
-> This one is testable, but the next one is not, because it depends on
-> something. I don't see the reason to split the bindings between
-> different patchsets.
-
-Really, do you want me to collect all 55 patches in a single patchset?
-
-Please read the cover letter more carefully. And please don't hurry
-with your judgement before nacking here and there.
-
--Sergey
-
+> Signed-off-by: zheng-yan.chen <zheng-yan.chen@mediatek.com>
 > 
-> Best regards,
-> Krzysztof
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8195.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> index a50ebb5d145f..8504d01b103a 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> @@ -2021,8 +2021,8 @@
+>  			mediatek,gce-client-reg = <&gce0 SUBSYS_1c00XXXX 0x5000 0x1000>;
+>  		};
+>  
+> -		gamma0: gamma@1c006000 {
+> -			compatible = "mediatek,mt8195-disp-gamma", "mediatek,mt8183-disp-gamma";
+> +		gamma0: disp_gamma@1c006000 {
+
+No, really, no.
+
+Not explained in commit msg, violates naming convention, violates coding
+style, not related to the patch at all.
+
+Best regards,
+Krzysztof
