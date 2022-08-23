@@ -2,88 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 21AD459D351
-	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 10:22:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0FCA59D38E
+	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 10:22:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240594AbiHWILr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Aug 2022 04:11:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33234 "EHLO
+        id S242704AbiHWISe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Aug 2022 04:18:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241980AbiHWIKX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 04:10:23 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1F8F67CBC
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 01:06:48 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id s6so7374291lfo.11
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 01:06:48 -0700 (PDT)
+        with ESMTP id S243069AbiHWIQc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 04:16:32 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38C78DEB
+        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 01:11:12 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id x10so12791953ljq.4
+        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 01:11:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=IrN2O0F09wpaKsQU5Sw22ZwxnMPs2BdFDbis2fNQW1w=;
-        b=u5vLv6mdAr27Q4MJkcoQtIyp8eLF/BcvfOwr3yKZ6XniFst3SdMsRZlJTt/ePBo3Zf
-         Veh/z5etGN6Q3hqbHMs6vpSFufhXLeQiyzBT6tSJ7evRHIhxw3m4EdQ65IEJ5Ugnzui5
-         sutDFPdCKEvfpY/quD1ZVWaDuFnFLfpcVL2CJe1PcK0qDx22rJ8/SGZHYsHp0qtC8Fzl
-         71/dhe78rwwIgs2xg53fqtEgWYiNkDohHDviZIL3PWRESAiRN64NrWFXBZ3PS/BJFogR
-         wvEH5G1yRIld+zhT9oxYM1FMI/uAxDu44zkeTQFrqYq8R2ewMpt6WfSm3m906eZtnwJf
-         GSVg==
+        bh=HFRkd6+GWv944FyJVUBe4iftku17LMXFRqWaLXS9n3M=;
+        b=VpgaNmVgn5wH2Q3FQgcpkx4MnWNXe49SeT0FaMxhOY6HoTzKBanqTCO5Nw6LhAJN1v
+         goPIrfr9lkaxbTliET0kVj90wVaBW/8I9h69rKgjYt4qsiH0pYrkM3UVUUmR0YM4F24P
+         LtuLDE1QFEnbzD7XKrE27xq30DHCaolSr8MNW/uzY7l3CZgnXza1OcI2WtitBIirM3O9
+         9IQh3wklF+kXvv3o1tqEt8XXnvZyqiuP7fqkRbdXtDk0hq4vHi37xNSR1UAT1S8Ac4gG
+         s/5CFrQ5yh6D50x+r2jhlPwM64UzIVVyKFZ0kFUvzTtOJtdbORJ+2vscorSmZ6CDDsFb
+         feaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=IrN2O0F09wpaKsQU5Sw22ZwxnMPs2BdFDbis2fNQW1w=;
-        b=NQdO9qb8mRejmj2py0L+ctSJy7803xIKYyJp08MftrciolMv444Hp9xnpc5hl21R64
-         OWcKirieoIilkHj3486dDz2GG9GHnwutF4VK8SVfX6TL1NEDAv2rmVAtuPJZR34PvzWk
-         lR08WISqehb4Wh2o/VpMOi/hVk4I22c36899UH5LVqiT/YIoOEvBC5BlINIJrI2TbCDQ
-         LKS5udemkLU/8DEI0++m9GWlauWp5SMxZBP9+ujdbiZqEc3dKSwMvOFspDLLJjYlRXHJ
-         B+f368yxquiqj0vatEc9X8mQCY22yrVx6sczz/ifaPb6EvVACT3jbIdArPbmG/zO+g2Q
-         BFBw==
-X-Gm-Message-State: ACgBeo0EfP8OcYjKyw1KIW8iWe65tjID8qxGT8sWUouo+Unzl74jIgAv
-        t4GKP638+y0cMkdp96osGmcU0g==
-X-Google-Smtp-Source: AA6agR4qDwT8FFXck8mCt0tj/NGXEsi4Uxa/50WRbBu3xqi8DdCX+KVJwwxakS8M8WKjVsaAjaitMg==
-X-Received: by 2002:ac2:4e0f:0:b0:48b:7a5f:91c8 with SMTP id e15-20020ac24e0f000000b0048b7a5f91c8mr8748241lfr.430.1661242006895;
-        Tue, 23 Aug 2022 01:06:46 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id f10-20020a05651c02ca00b0025e6a3556ffsm595967ljo.22.2022.08.23.01.06.46
+        bh=HFRkd6+GWv944FyJVUBe4iftku17LMXFRqWaLXS9n3M=;
+        b=3HDa5X39vdDkz6Z2m289ZK8kPfX6inNrLs34craYNPJo3f9FNdXa60oJM+QaaJYcZa
+         rtSKwgYhIk8WaRObjCfLI1OgGomH4WxLHgkFCyiEVpEYwb2iAZDZOliEC/NMBngwZ+mY
+         RYZunlAqH2OIO87z+WrmqEi2TgNiEXhO28Te9hMxw4gCUMNwpRnYzGsjRlRPQBD00R6T
+         i2cWNlCiHZZxeXtfSJi222+Pfz9mXY0WeuPuHQA6AQfwILgREXBytyqeEQbQhWSpbBBB
+         CSaxr8srNnjwypNEk3Yia1tyXtmPg8PIneQgJAMfisVvMxGumoDVyJQ5nL/2Ak2lG4EM
+         TA2w==
+X-Gm-Message-State: ACgBeo1ekGvlDVYYiWDvi36QzMVKuaD5hTA9yqOqLAPbmLrrdwO8H/uH
+        9qQ+sTWdkNZRa3h8yOumvJqhJw==
+X-Google-Smtp-Source: AA6agR5C5yM6uJJzx86YW/mN+Cz8M71DBVNM97M0b2F9KrryMrLvw8XY4Pg6c2wwrKMPu9a+hv1Hsw==
+X-Received: by 2002:a05:651c:2387:b0:261:de7f:f662 with SMTP id bk7-20020a05651c238700b00261de7ff662mr79352ljb.110.1661242270317;
+        Tue, 23 Aug 2022 01:11:10 -0700 (PDT)
+Received: from [192.168.0.11] (89-27-92-210.bb.dnainternet.fi. [89.27.92.210])
+        by smtp.gmail.com with ESMTPSA id a16-20020a056512391000b0048aa9d67483sm2379557lfu.160.2022.08.23.01.11.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Aug 2022 01:06:46 -0700 (PDT)
-Message-ID: <9f802d58-e4d8-ddb7-d5a3-dd9408336379@linaro.org>
-Date:   Tue, 23 Aug 2022 11:06:45 +0300
+        Tue, 23 Aug 2022 01:11:09 -0700 (PDT)
+Message-ID: <6a803554-bc1a-9f53-b7e2-7571fffea7e0@linaro.org>
+Date:   Tue, 23 Aug 2022 11:11:08 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.1.2
-Subject: Re: [PATCH v3 06/12] virt: gunyah: Add sysfs nodes
-Content-Language: en-GB
-To:     Elliot Berman <quic_eberman@quicinc.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH 01/13] dt-bindings: memory: snps: Extend schema with
+ IRQs/resets/clocks props
+Content-Language: en-US
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Borislav Petkov <bp@alien8.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Tony Luck <tony.luck@intel.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
+        Manish Narani <manish.narani@xilinx.com>
+Cc:     Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Michail Ivanov <Michail.Ivanov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Punnaiah Choudary Kalluri 
+        <punnaiah.choudary.kalluri@xilinx.com>,
+        Dinh Nguyen <dinguyen@kernel.org>,
+        James Morse <james.morse@arm.com>,
+        Robert Richter <rric@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Will Deacon <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-References: <20220811214107.1074343-1-quic_eberman@quicinc.com>
- <20220811214107.1074343-7-quic_eberman@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20220811214107.1074343-7-quic_eberman@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-edac@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220822191957.28546-1-Sergey.Semin@baikalelectronics.ru>
+ <20220822191957.28546-2-Sergey.Semin@baikalelectronics.ru>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220822191957.28546-2-Sergey.Semin@baikalelectronics.ru>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -91,191 +93,143 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/08/2022 00:41, Elliot Berman wrote:
-> Add /sys/hypervisor support when detecting that Linux is running in a
-> Gunyah environment. Export the version of Gunyah which is reported via
-> the hyp_identify hypercall.
+On 22/08/2022 22:19, Serge Semin wrote:
+> First of all the DW uMCTL2 DDRC IP-core supports the individual IRQ lines
+> for each standard event: ECC Corrected Error, ECC Uncorrected Error, ECC
+> Address Protection, Scrubber-Done signal, DFI Parity/CRC Error. It's
+> possible that the platform engineers merge them up in the IRQ controller
+> level. So let's add both configuration support to the DT-schema.
 > 
-> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+> Secondly each IP-core interface is supplied with a clock source like APB
+> reference clock, AXI-ports clock, main DDRC core reference clock and
+> Scrubber low-power clock. In addition to that each clock domain can have a
+> dedicated reset signal. Let's add the properties for at least the denoted
+> clock sources and the corresponding reset controls.
+> 
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
 > ---
->   .../ABI/testing/sysfs-hypervisor-gunyah       | 23 +++++
->   MAINTAINERS                                   |  1 +
->   drivers/virt/Makefile                         |  1 +
->   drivers/virt/gunyah/Makefile                  |  2 +
->   drivers/virt/gunyah/sysfs.c                   | 87 +++++++++++++++++++
->   5 files changed, 114 insertions(+)
->   create mode 100644 Documentation/ABI/testing/sysfs-hypervisor-gunyah
->   create mode 100644 drivers/virt/gunyah/Makefile
->   create mode 100644 drivers/virt/gunyah/sysfs.c
+>  .../snps,dw-umctl2-ddrc.yaml                  | 65 +++++++++++++++++--
+>  1 file changed, 60 insertions(+), 5 deletions(-)
 > 
-> diff --git a/Documentation/ABI/testing/sysfs-hypervisor-gunyah b/Documentation/ABI/testing/sysfs-hypervisor-gunyah
-> new file mode 100644
-> index 000000000000..219465783a9e
-> --- /dev/null
-> +++ b/Documentation/ABI/testing/sysfs-hypervisor-gunyah
-> @@ -0,0 +1,23 @@
-> +What:		/sys/hypervisor/type
-> +Date:		August 2022
-> +KernelVersion:	6.0
-> +Contact:	linux-arm-msm@vger.kernel.org
-> +Description:	If running under Gunyah:
-> +		Type of hypervisor:
-> +		"gunyah": Gunyah hypervisor
+> diff --git a/Documentation/devicetree/bindings/memory-controllers/snps,dw-umctl2-ddrc.yaml b/Documentation/devicetree/bindings/memory-controllers/snps,dw-umctl2-ddrc.yaml
+> index 787d91d64eee..8db92210cfe1 100644
+> --- a/Documentation/devicetree/bindings/memory-controllers/snps,dw-umctl2-ddrc.yaml
+> +++ b/Documentation/devicetree/bindings/memory-controllers/snps,dw-umctl2-ddrc.yaml
+> @@ -13,13 +13,13 @@ maintainers:
+>  
+>  description: |
+>    Synopsys DesignWare Enhanced uMCTL2 DDR Memory Controller is cappable of
 
-Note, you do not need the 'type'. You already have it in form of 
-/sys/hypervisor/gunyah dir. If the VM is running under another type of 
-hypervisor, there will be a different directory for hypervisor files.
+Typo in original text: capable
+
+> -  working with DDR devices up to (LP)DDR4 protocol. It can be equipped
+> +  working with DDR devices upporting to (LP)DDR4 protocol. It can be equipped
+
+Typo - supporting?
+
+>    with SEC/DEC ECC feature if DRAM data bus width is either 16-bits or
+>    32-bits or 64-bits wide.
+>  
+> -  The ZynqMP DDR controller is based on the DW uMCTL2 v2.40a controller.
+> -  It has an optional SEC/DEC ECC support in 64-bit and 32-bit bus width
+> -  configurations.
+> +  For instance the ZynqMP DDR controller is based on the DW uMCTL2 v2.40a
+> +  controller. It has an optional SEC/DEC ECC support in 64-bit and 32-bit
+> +  bus width configurations.
+
+These changes do not look related to your patch, so split them.
+
+>  
+>  properties:
+>    compatible:
+> @@ -28,11 +28,55 @@ properties:
+>        - xlnx,zynqmp-ddrc-2.40a
+>  
+>    interrupts:
+> -    maxItems: 1
+> +    description:
+> +      DW uMCTL2 DDRC IP-core provides individual IRQ signal for each event":"
+> +      ECC Corrected Error, ECC Uncorrected Error, ECC Address Protection,
+> +      Scrubber-Done signal, DFI Parity/CRC Error. Some platforms may have the
+> +      signals merged before they reach the IRQ controller or have some of them
+> +      absent in case if the corresponding feature is unavailable/disabled.
+> +    minItems: 1
+> +    maxItems: 5
+
+List has to be strictly ordered, so instead list and describe the
+items... unless you are sure that any of these interrupt lines can be
+merged into any other one?
 
 > +
-> +What:		/sys/hypervisor/gunyah/api
-> +Date:		August 2022
-> +KernelVersion:	6.0
-> +Contact:	linux-arm-msm@vger.kernel.org
-> +Description:	If running under Gunyah:
-> +		The Gunyah API version.
+> +  interrupt-names:
+> +    minItems: 1
+> +    maxItems: 5
+> +    oneOf:
+> +      - description: Common ECC CE/UE/Scrubber/DFI Errors IRQ
+> +        items:
+> +          - const: ecc
+> +      - description: Individual ECC CE/UE/Scrubber/DFI Errors IRQs
+> +        items:
+> +          enum: [ ecc_ce, ecc_ue, ecc_ap, ecc_sbr, dfi_e ]
+>  
+>    reg:
+>      maxItems: 1
+>  
+> +  clocks:
+> +    description:
+> +      A standard set of the clock sources contains CSRs bus clock, AXI-ports
+> +      reference clock, DDRC core clock, Scrubber standalone clock
+> +      (synchronous to the DDRC clock).
+> +    minItems: 1
+> +    maxItems: 4
 
-Please provide examples here.
+I expect list to be strictly defined, not flexible.
 
 > +
-> +What:		/sys/hypervisor/gunyah/variant
-> +Date:		August 2022
-> +KernelVersion:	6.0
-> +Contact:	linux-arm-msm@vger.kernel.org
-> +Description:	If running under Gunyah:
-> +		The Gunyah variant (build) version.
-> +		The open source build of Gunyah will report "81".
-> +		The Qualcomm build of Gunyah will report "72".
+> +  clock-names:
+> +    minItems: 1
+> +    maxItems: 4
+> +    items:
+> +      enum: [ pclk, aclk, core, sbr ]
+> +
+> +  resets:
+> +    description:
+> +      Each clock domain can have separate reset signal.
+> +    minItems: 1
+> +    maxItems: 4
+> +
+> +  reset-names:
+> +    minItems: 1
+> +    maxItems: 4
+> +    items:
+> +      enum: [ prst, arst, core, sbr ]
 
-Are these numbers fixed in stone? What if some other random company adds 
-another variant of the Gunyah? What if the open source build is updated 
-at some point?
+The same.
 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index f5d5ebb62701..c774bbcdb348 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -8739,6 +8739,7 @@ M:	Elliot Berman <quic_eberman@quicinc.com>
->   M:	Murali Nalajala <quic_mnalajal@quicinc.com>
->   L:	linux-arm-msm@vger.kernel.org
->   S:	Supported
-> +F:	Documentation/ABI/testing/sysfs-hypervisor-gunyah
->   F:	Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
->   F:	Documentation/virt/gunyah/
->   F:	arch/arm64/gunyah/
-> diff --git a/drivers/virt/Makefile b/drivers/virt/Makefile
-> index 093674e05c40..5cd759f60122 100644
-> --- a/drivers/virt/Makefile
-> +++ b/drivers/virt/Makefile
-> @@ -9,5 +9,6 @@ obj-y				+= vboxguest/
->   
->   obj-$(CONFIG_NITRO_ENCLAVES)	+= nitro_enclaves/
->   obj-$(CONFIG_ACRN_HSM)		+= acrn/
-> +obj-$(CONFIG_GUNYAH)		+= gunyah/
->   obj-$(CONFIG_EFI_SECRET)	+= coco/efi_secret/
->   obj-$(CONFIG_SEV_GUEST)		+= coco/sev-guest/
-> diff --git a/drivers/virt/gunyah/Makefile b/drivers/virt/gunyah/Makefile
-> new file mode 100644
-> index 000000000000..e15f16c17142
-> --- /dev/null
-> +++ b/drivers/virt/gunyah/Makefile
-> @@ -0,0 +1,2 @@
-> +gunyah-y += sysfs.o
-> +obj-$(CONFIG_GUNYAH) += gunyah.o
-> diff --git a/drivers/virt/gunyah/sysfs.c b/drivers/virt/gunyah/sysfs.c
-> new file mode 100644
-> index 000000000000..9de700fdbfcb
-> --- /dev/null
-> +++ b/drivers/virt/gunyah/sysfs.c
-> @@ -0,0 +1,87 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
 > +
-> +#define pr_fmt(fmt) "gunyah: " fmt
+>  required:
+>    - compatible
+>    - reg
+> @@ -48,4 +92,15 @@ examples:
+>        interrupt-parent = <&gic>;
+>        interrupts = <0 112 4>;
+>      };
+> +  - |
+> +    memory-controller@fd070000 {
+> +      compatible = "snps,ddrc-3.80a";
+> +      reg = <0x3d400000 0x400000>;
 > +
-> +#include <linux/kobject.h>
-> +#include <linux/module.h>
-> +#include <linux/printk.h>
-> +#include <linux/init.h>
-> +#include <asm-generic/gunyah.h>
-> +
-> +static struct gh_hypercall_hyp_identify_resp gunyah_api;
-> +
-> +static ssize_t type_show(struct kobject *kobj, struct kobj_attribute *attr, char *buffer)
-> +{
-> +	return sysfs_emit(buffer, "gunyah\n");
-> +}
-> +static struct kobj_attribute type_attr = __ATTR_RO(type);
-> +
-> +static ssize_t api_show(struct kobject *kobj, struct kobj_attribute *attr, char *buffer)
-> +{
-> +	return sysfs_emit(buffer, "%d\n", (int)GH_API_INFO_API_VERSION(gunyah_api.api_info));
-> +}
-> +static struct kobj_attribute api_attr = __ATTR_RO(api);
-> +
-> +static ssize_t variant_show(struct kobject *kobj, struct kobj_attribute *attr, char *buffer)
-> +{
-> +	return sysfs_emit(buffer, "%d\n", (int)GH_API_INFO_VARIANT(gunyah_api.api_info));
-> +}
-> +static struct kobj_attribute variant_attr = __ATTR_RO(variant);
-> +
-> +static struct attribute *gunyah_attrs[] = {
-> +	&api_attr.attr,
-> +	&variant_attr.attr,
-> +	NULL
-> +};
-> +
-> +static const struct attribute_group gunyah_group = {
-> +	.name = "gunyah",
-> +	.attrs = gunyah_attrs,
-> +};
-> +
-> +static int __init gunyah_init(void)
-> +{
-> +	int ret;
-> +	u32 uid[4];
-> +
-> +	gh_hypercall_get_uid(uid);
-> +
-> +	if (!(gh_uid_matches(GUNYAH, uid) || gh_uid_matches(QC_HYP, uid)))
-> +		return 0;
-> +
-> +	gh_hypercall_hyp_identify(&gunyah_api);
-> +
-> +	if (GH_API_INFO_API_VERSION(gunyah_api.api_info) != 1) {
-> +		pr_warn("Unrecognized gunyah version: %llu. Currently supported: 1\n",
-> +			GH_API_INFO_API_VERSION(gunyah_api.api_info));
-> +		return 0;
-> +	}
-> +
-> +	pr_notice("Running under Gunyah hypervisor %llx/v%lld\n",
-> +		  GH_API_INFO_VARIANT(gunyah_api.api_info),
-> +		  GH_API_INFO_API_VERSION(gunyah_api.api_info));
-> +
-> +	ret = sysfs_create_file(hypervisor_kobj, &type_attr.attr);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = sysfs_create_group(hypervisor_kobj, &gunyah_group);
-> +	if (ret)
-> +		sysfs_remove_file(hypervisor_kobj, &type_attr.attr);
-> +
-> +	return ret;
-> +}
-> +module_init(gunyah_init);
-> +
-> +static void __exit gunyah_exit(void)
-> +{
-> +	sysfs_remove_group(hypervisor_kobj, &gunyah_group);
-> +	sysfs_remove_file(hypervisor_kobj, &type_attr.attr);
-> +}
-> +module_exit(gunyah_exit);
-> +
-> +MODULE_LICENSE("GPL");
-> +MODULE_DESCRIPTION("Gunyah Hypervisor Driver");
+> +      interrupts = <0 147 4>, <0 148 4>, <0 149 4>, <0 150 4>;
 
--- 
-With best wishes
-Dmitry
+Use proper defines.
 
+> +      interrupt-names = "ecc_ce", "ecc_ue", "ecc_sbr", "dfi_e";
+> +
+> +      clocks = <&rcu 0>, <&rcu 5>, <&rcu 6>, <&rcu 7>;
+> +      clock-names = "pclk", "aclk", "core", "sbr";
+> +    };
+>  ...
+
+
+Best regards,
+Krzysztof
