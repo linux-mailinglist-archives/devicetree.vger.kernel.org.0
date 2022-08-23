@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BAE0859E4A8
-	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 15:49:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2420159E49E
+	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 15:46:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240640AbiHWNth (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Aug 2022 09:49:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36120 "EHLO
+        id S240579AbiHWNqk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Aug 2022 09:46:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241050AbiHWNtI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 09:49:08 -0400
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D432A83BE6
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 03:54:54 -0700 (PDT)
-Received: by mail-lf1-f41.google.com with SMTP id z25so19133532lfr.2
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 03:54:54 -0700 (PDT)
+        with ESMTP id S240770AbiHWNqV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 09:46:21 -0400
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0FF086FC5
+        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 03:51:12 -0700 (PDT)
+Received: by mail-lj1-f176.google.com with SMTP id z20so13135089ljq.3
+        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 03:51:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=NPkz8CIReFRkXXNi+9wXJA08oHYjzaiWMjPixEXkoww=;
-        b=iigcejhnAnjVrYq+8ynJNXJJa0Vfsj8KP5tp65+xPF/AC9cPRgUrB26NE3gtauWUwx
-         qQD9jaFSKTuo5y6taEgj4zT5WglBx2XFrToeNbs7P2yVO/qXm550HoYgwANo/8U3l2X/
-         qD6uIGFVGhfDTFVBzn0eLuBTuJDoRlIwZQ+IIvjVqLH3q805BXxLnwm4kY/v8HsVVfbb
-         a8o8/TZEs0PF91gyok9kM1GOBPuEXGkN/kg9f0C7mM/4R2yBD7QZXsKgCsCNKc0P0EIV
-         jbxzrxOeX0LPVaXkLwbTQ/iqDPUtOab3XBE2USm0iPAzVuHlVxBxdzZJjjqrjHU3TtnO
-         r1pQ==
+        bh=4iCZIPBqKk4aWYa7eJT+SaYkcQXkWhohlhOpL9YUDVU=;
+        b=E/VbHdOW7s+2eeUSVsRs5XJAI+yAma5X7QmOdeUSyI23lBuncOs23O+KSvjE/CB8/x
+         vQ0yLqWOc8zCsUK3qE6LHVCT5n6wWkx1uUoexhfa/Ef7uH8kWkUNTyouNAkO1GsSvs52
+         2c5Io2guzADNJZOb5ZLlwLwyjSpbmzXGRT22xT4ArShG24fQJiRcCB7hnBvwROwTKEwA
+         O10oUQmtEZqIJJypRhKbT1R6+l93NSoAC3YtGXFDFkP0+HzvK6nbxPTK3kLElZh+fWxL
+         0YglQdYiqnYRKbYZP258n9+0y9FxZaOQk/YTqTzUUxofQdoiGFeMqFhZ6bmIPPrgIzYS
+         8kIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=NPkz8CIReFRkXXNi+9wXJA08oHYjzaiWMjPixEXkoww=;
-        b=4UqRT5qBMiUcDDfvWOkjTjU06GkEhNN0mWX3vRPyGJPE1aBsJtFrHiu6rZLd2GsT5V
-         ZdlHluTK/dw5YvfBsSONi4cfRbCul9OrgWBZzeKrmcPk7VSauCV+wQqlH+flYFJrUfp1
-         Gk4oyLNJ8qEFCg5oFu+xogbOp2HxcV7XHFBDdXirWyzkO+f2+BMs9MRqZZciqEXJp0lL
-         eeAT6JAolL2JA+oHA+J3VXrlgXb66lSmwkh5bvKVP/fTZRlcES/wEUwCRAAqod+kue1l
-         JGxQGctjMyes6+X5fkjWiCKtBhZAPH104zfys1TLLL60aTsl/ZaYMSsJzNNc9KOg3uWj
-         r/1g==
-X-Gm-Message-State: ACgBeo0f/heCml7+UJQ3Rf0qso6XtWjDmn4hf8e+4RW0ZfPRdJdFW8x1
-        UvNYfT5ORPKD9W6jFfEjRy1Q5g==
-X-Google-Smtp-Source: AA6agR7u26JTojsyB4JuWJX8y8BItLKRip4aR1+/399iD/iKWu9l7BTdi42s42J+uuQrVDAiJBBmGQ==
-X-Received: by 2002:a05:6512:c10:b0:492:d263:f918 with SMTP id z16-20020a0565120c1000b00492d263f918mr5533940lfu.501.1661251676796;
-        Tue, 23 Aug 2022 03:47:56 -0700 (PDT)
+        bh=4iCZIPBqKk4aWYa7eJT+SaYkcQXkWhohlhOpL9YUDVU=;
+        b=7VF5O+wGZMNJtZjTBvJ/b553FiDLvIwdAECO3UFEj/OKAJMTYZkn4QMQJOgsAfmRjB
+         17Zq2C53DLZ9ScVgxqkcIXypRKxBEsFpeNeUNGrJWUWvR4ytB/QSeRNpcBp5pzXTxjJy
+         cgJlSJnAietG/jzPxpfl4TkLKlkSKStL5PbfmrWM5NUvmsdFMA+NsRu46xbpeFJjwtbt
+         QJxQdRWjP4wYqR8BWF2E1MT3ahCXJY+hIdCDL+G5n4/xjFg0hsgrB9VjHSnpW2Fm5DIS
+         IXAqGG0OzIF8hZobYgQnD9+zhkE4x8CGe+ecrw2tz7DKM/lNqpmK4o2iG6ez+qh3ntYL
+         bGZQ==
+X-Gm-Message-State: ACgBeo1lei5Ny3QOkP+dkck+D5/VtIZQAnJNdgdLYQWKLIHFWXNXc5sD
+        x9qsOH7ZklpKliQ6e+y8vjhhmA==
+X-Google-Smtp-Source: AA6agR4WBOwY8UcpEmJ1aepVJpP/ZPvtXXCBnO8R0qkAsHVgv+/VM/SWcR0hP2kXefVSXz44zxUwPg==
+X-Received: by 2002:a2e:92c8:0:b0:25d:6ddf:e71d with SMTP id k8-20020a2e92c8000000b0025d6ddfe71dmr6570635ljh.170.1661251716963;
+        Tue, 23 Aug 2022 03:48:36 -0700 (PDT)
 Received: from [192.168.0.11] (89-27-92-210.bb.dnainternet.fi. [89.27.92.210])
-        by smtp.gmail.com with ESMTPSA id x16-20020a056512131000b00489e812f05asm2441697lfu.21.2022.08.23.03.47.55
+        by smtp.gmail.com with ESMTPSA id u7-20020a05651220c700b0048b003c4bf7sm1535952lfr.169.2022.08.23.03.48.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Aug 2022 03:47:56 -0700 (PDT)
-Message-ID: <c24da513-e015-8bc6-8874-ba63c22be5d6@linaro.org>
-Date:   Tue, 23 Aug 2022 13:47:54 +0300
+        Tue, 23 Aug 2022 03:48:36 -0700 (PDT)
+Message-ID: <50eaf3b1-0681-a0a9-b120-4ade4e91e83a@linaro.org>
+Date:   Tue, 23 Aug 2022 13:48:35 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH v4 4/6] dt-bindings: net: dsa: mediatek,mt7530: define
- port binding per switch
+Subject: Re: [PATCH v2 4/7] dt-bindings: net: dsa: mediatek,mt7530: define
+ port binding per compatible
 Content-Language: en-US
 To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
         Andrew Lunn <andrew@lunn.ch>,
@@ -81,10 +81,12 @@ To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
 Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220820080758.9829-1-arinc.unal@arinc9.com>
- <20220820080758.9829-5-arinc.unal@arinc9.com>
+References: <20220813154415.349091-1-arinc.unal@arinc9.com>
+ <20220813154415.349091-5-arinc.unal@arinc9.com>
+ <d2279a7d-bbc3-c772-1f30-251f056341bb@linaro.org>
+ <0bf02926-753e-e8d5-1d87-f286ed743fb2@arinc9.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220820080758.9829-5-arinc.unal@arinc9.com>
+In-Reply-To: <0bf02926-753e-e8d5-1d87-f286ed743fb2@arinc9.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -97,40 +99,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/08/2022 11:07, Arınç ÜNAL wrote:
-> Define DSA port binding per switch model as each switch model requires
-> different values for certain properties.
+On 20/08/2022 10:34, Arınç ÜNAL wrote:
+> On 19.08.2022 15:43, Krzysztof Kozlowski wrote:
+>> On 13/08/2022 18:44, Arınç ÜNAL wrote:
+>>> Define DSA port binding under each compatible device as each device
+>>> requires different values for certain properties.
+>>>
+>>> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+>>> ---
+>>>   .../bindings/net/dsa/mediatek,mt7530.yaml     | 116 +++++++++++++-----
+>>>   1 file changed, 87 insertions(+), 29 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
+>>> index cc87f48d4d07..ff51a2f6875f 100644
+>>> --- a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
+>>> +++ b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
+>>> @@ -130,35 +130,6 @@ properties:
+>>>         ethsys.
+>>>       maxItems: 1
+>>>   
+>>> -patternProperties:
+>>> -  "^(ethernet-)?ports$":
+>>> -    type: object
+>>> -
+>>> -    patternProperties:
+>>> -      "^(ethernet-)?port@[0-9]+$":
+>>> -        type: object
+>>> -        description: Ethernet switch ports
+>>> -
+>>
+>> my comments from v1 apply here
+>>
+>> None of the reasons you said force you to define properties in some
+>> allOf:if:then subblock. These force you to constrain the properties in
+>> allOf:if:then, but not define.
+>>
+>>
+>>> I can split patternProperties to two sections, but I can't directly
+>>> define the reg property like you put above.
+>>
+>> Of course you can and original bindings were doing it.
+>>
+>> Let me ask specific questions (yes, no):
+>> 1. Are ethernet-ports and ethernet-port present in each variant?
+>> 2. Is dsa-port.yaml applicable to each variant? (looks like that - three
+>> compatibles, three all:if:then)
+>> 3. If reg appearing in each variant?
+>> 4. If above is true, if reg is maximum one item in each variant?
 > 
-> Define reg property on $defs as it's the same for all switch models.
+> All yes.
 > 
-> Remove unnecessary lines as they are already included from the referred
-> dsa.yaml.
+>>
+>> Looking at your patch, I think answer is 4x yes, which means you can
+>> define them in one place and constrain in allOf:if:then, just like all
+>> other schemas, because this one is not different.
 > 
-> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
-> ---
->  .../bindings/net/dsa/mediatek,mt7530.yaml     | 56 +++++++++++--------
->  1 file changed, 34 insertions(+), 22 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-> index 657e162a1c01..7c4374e16f96 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
-> @@ -130,38 +130,47 @@ properties:
->        ethsys.
->      maxItems: 1
->  
-> -patternProperties:
-> -  "^(ethernet-)?ports$":
-> -    type: object
-> -
-> -    patternProperties:
-> -      "^(ethernet-)?port@[0-9]+$":
-> -        type: object
-> -        description: Ethernet switch ports
+> If I understand correctly, I do this already with v3. Properties are 
+> defined under the constructed node. Accepted values for properties are 
+> constrained under if:then.
 
-Again, I don't understand why do you remove definitions of these nodes
-from top-level properties. I explained what I expect in previous
-discussion and I am confused to hear "this cannot be done".
+v4 doesn't do it. You removed there patternProperties - again.
+
 
 Best regards,
 Krzysztof
