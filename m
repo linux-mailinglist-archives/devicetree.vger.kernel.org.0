@@ -2,92 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03CDA59D715
-	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 11:58:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 942BF59D7A2
+	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 11:59:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241723AbiHWJvq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Aug 2022 05:51:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55874 "EHLO
+        id S243300AbiHWJyn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Aug 2022 05:54:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245515AbiHWJuM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 05:50:12 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54D029D133
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 01:44:54 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id m5so8057840lfj.4
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 01:44:53 -0700 (PDT)
+        with ESMTP id S245327AbiHWJyC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 05:54:02 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CADE9F769
+        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 01:46:24 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id q7so15043141lfu.5
+        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 01:46:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=wLOhMX2dSEteMTksjEMlhBF251+OnM4n2eaNqEAOV54=;
-        b=PknsZfB6W2EJKNNwKk7QEfdH1d2OoV+QRXFjgxHK1if5lCTlkHp72zKFrc/8sO8TYT
-         BtFCqylmbj1htRf493fkeFyBOAMPb+XASiSyDLDIERf1hfLCkLjsTGDPH/c+gRzQVfM7
-         wYSVmVVKef5jui3VQdQM1JoXM+ahK/u/OjLsvZ1+KCXFZWGU1zr0qX+VVHQGn0cIhSec
-         MeVYYk/U4m5nxRhUcaUhnxIo5rp81h0bzYVAiC044n3pYgb3kpkgM1YUv21KDg2rdyyG
-         DATXjWQOI18vlPP1La/MPvkQRTjgBmGFxg/supoG91p66au28uNYozhaYsY9jmkiy/AW
-         QJ4w==
+        bh=mDJdLmDh7T+sgYfQaoB0rv3PTQp6t8v++tQo3R9rjBM=;
+        b=PJmCi3gmqXBwu9NZSuf1sX/qLu5JNkaEDtHWybkWrrJYNlTb7SLUl2kh2pPknLCNVo
+         kigefusDwBu8bJtOXBYCGAoZQrjxJ8TkWevNSro1LAy2tqwz/mpLnS3J+RgEwx+60sqF
+         MCo+Rp+DD6zUB5Y2PB/g5372dnqsc/RDpQPt4qLvRhF6PWs8MvW0bvLHpupMhiZyVAqT
+         xvYBti5u6pj3myvEQAbKLE3n4nONKgccg/9nG+JhhRb4MrITU8q2RgqpogSV7z9QckSU
+         YUBHuV6Obk2RTQ/ULm1FXQu+twOTmlzHwVv5bQWIZLkf1e5FaUnnhbvsmMr8pdBvO3G1
+         eDKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=wLOhMX2dSEteMTksjEMlhBF251+OnM4n2eaNqEAOV54=;
-        b=A3lSi5DpooXFT5cbproJ/x32KtZlpNGz4Vpx5j5ig5z4jwgml6R8L3CwEagJ0fX5Jq
-         YI1QVXA3cfNp0JBg+V30Al+KGIakFCrDVM27r7ttUn/gTr4OSdYQu8hZYJng5xkCi3Ch
-         LHUJU1tLZPAs/XQ1eJz4DgPhe+k34kZO845/tYvUzazw+pSM8tH/1HKBqir5w0e/hugl
-         3iB9WLFY2GNcaP2lRlAwzi209Ue4jVGcH111ZkeYTbwsui62TfqbRFy5BJkd+BqrEY+V
-         P+ZuZSNWx5gT6BTcCXpwSxPHqOd2sTB9pTwC9fEj+2CDA5800Iv3nYAMhAyVQpTIPULv
-         g51g==
-X-Gm-Message-State: ACgBeo1YT+bTqsEiS8hxuWUzv/VVCQijdc5VRzV3SCB6gVoXLHLBLvt4
-        opp6hr3B7GDAxM/qYt/hWZhxPw==
-X-Google-Smtp-Source: AA6agR7hl1CGI7r2CQqS6Ira4/M3Fw4abVlO0e7P1ZL3XHG/Tl7iMks/nNyA7kdEi1FrOfgHE/v3gQ==
-X-Received: by 2002:a05:6512:2356:b0:492:e06d:7530 with SMTP id p22-20020a056512235600b00492e06d7530mr3420177lfu.103.1661244257706;
-        Tue, 23 Aug 2022 01:44:17 -0700 (PDT)
+        bh=mDJdLmDh7T+sgYfQaoB0rv3PTQp6t8v++tQo3R9rjBM=;
+        b=bLaMTeW4N8e7nWQV8G8e8v4shw1jOB3xeeJHCjxhqxMIDcpBuEOd8kOMoGXsvnPsfc
+         muhJ6QHR7WhvbK3IFEk6qqgWvFs6CNrf0JWwWNrxYQf/sb+F6Kxqe/U3krc5iunWhJiq
+         84XwHgqnE+Vr1oN46USXlNiv64AN1FfwkhiY51vjZtX/13H0i/zyJA8JXQoa6g93pWFa
+         96ahp3EBA+5omLhBkBnlD2Uro9es/3Ba8fA3BP5DN+yuM7FuuAgSgqkAYO7/DFMx2EOe
+         A3DSY0gpUl9Gfrr01wKj0iClAW3+MFpSCQZWBtJMmfNIPxSksKqG8tQ5oVlCvmgLdd9z
+         M1+A==
+X-Gm-Message-State: ACgBeo1nB8pClM7nQ2SHWz/Eq/bNmGvtfeBJBOGUK/b+fBvbdeCDatFw
+        m5Z57L8KuRrJLnXYlW+PYtou4A==
+X-Google-Smtp-Source: AA6agR7Nq2AoAEGywDXYOyXtRoPVy5JyJcqHXZSpTRIDEZdX/31PgBVnoMZTmlWLvkRo+uqS17BH0Q==
+X-Received: by 2002:a05:6512:169e:b0:492:ebf7:7dd3 with SMTP id bu30-20020a056512169e00b00492ebf77dd3mr2420124lfb.33.1661244372109;
+        Tue, 23 Aug 2022 01:46:12 -0700 (PDT)
 Received: from [192.168.0.11] (89-27-92-210.bb.dnainternet.fi. [89.27.92.210])
-        by smtp.gmail.com with ESMTPSA id w9-20020a05651203c900b0048b0bf9f4bfsm2392165lfp.140.2022.08.23.01.44.16
+        by smtp.gmail.com with ESMTPSA id n20-20020a05651203f400b0048a85bd4429sm1097971lfq.126.2022.08.23.01.46.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Aug 2022 01:44:17 -0700 (PDT)
-Message-ID: <166c0198-17c4-3b19-77fe-632d65f17cb0@linaro.org>
-Date:   Tue, 23 Aug 2022 11:44:16 +0300
+        Tue, 23 Aug 2022 01:46:10 -0700 (PDT)
+Message-ID: <ddb805c6-940b-d25f-9fca-380d70f9f1f3@linaro.org>
+Date:   Tue, 23 Aug 2022 11:46:09 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH 16/20] dt-bindings: memory: snps: Detach Zynq DDRC
- controller support
+Subject: Re: [PATCH v2 3/4] arm64: dts: allwinner: h6: Add GPU OPP table
 Content-Language: en-US
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Rob Herring <robh@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Borislav Petkov <bp@alien8.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Tony Luck <tony.luck@intel.com>,
+To:     =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Manish Narani <manish.narani@xilinx.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Michail Ivanov <Michail.Ivanov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Punnaiah Choudary Kalluri 
-        <punnaiah.choudary.kalluri@xilinx.com>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        James Morse <james.morse@arm.com>,
-        Robert Richter <rric@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-edac@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220822190730.27277-1-Sergey.Semin@baikalelectronics.ru>
- <20220822190730.27277-17-Sergey.Semin@baikalelectronics.ru>
- <a5a15749-1047-74ea-831e-54d27a6d6cdf@linaro.org>
- <20220823083243.aovlgu22j7uv73qv@mobilestation>
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <20220821173051.155038-1-peron.clem@gmail.com>
+ <20220821173051.155038-4-peron.clem@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220823083243.aovlgu22j7uv73qv@mobilestation>
+In-Reply-To: <20220821173051.155038-4-peron.clem@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -95,46 +80,116 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/08/2022 11:32, Serge Semin wrote:
-> On Tue, Aug 23, 2022 at 11:17:23AM +0300, Krzysztof Kozlowski wrote:
->> On 22/08/2022 22:07, Serge Semin wrote:
->>> The Zynq A05 DDRC controller has nothing in common with DW uMCTL2 DDRC:
->>> the CSRs layout is absolutely different and it doesn't has IRQ unlike DW
->>> uMCTL2 DDR controller of all versions (v1.x, v2.x and v3.x). Thus there is
->>> no any reason to have these controllers described by the same bindings.
->>> Thus let's split them up.
->>>
->>> While at it rename the original Synopsys uMCTL2 DT-schema file to a more
->>> descriptive - snps,dw-umctl2-ddrc.yaml and add a more detailed title and
->>> description of the device bindings.
->>
+On 21/08/2022 20:30, Clément Péron wrote:
+> Add an Operating Performance Points table for the GPU to
+> enable Dynamic Voltage & Frequency Scaling on the H6.
 > 
->> Filename should be based on compatible, so if renaming then
->> snps,ddrc-3.80a.yaml or snps,ddrc.yaml... which leads to original
->> filename anyway. Therefore nack for rename.
+> The voltage range is set with minival voltage set to the target
+> and the maximal voltage set to 1.2V. This allow DVFS framework to
+> work properly on board with fixed regulator.
 > 
-> New requirement? I've submitted not a single patch to the DT-bindings
-> sources and didn't get any comment from Rob about that. 
+> Signed-off-by: Clément Péron <peron.clem@gmail.com>
+> ---
+>  .../boot/dts/allwinner/sun50i-h6-gpu-opp.dtsi | 88 +++++++++++++++++++
+>  1 file changed, 88 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h6-gpu-opp.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-gpu-opp.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6-gpu-opp.dtsi
+> new file mode 100644
+> index 000000000000..a66204243515
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-gpu-opp.dtsi
+> @@ -0,0 +1,88 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +// Copyright (C) 2022 Clément Péron <peron.clem@gmail.com>
+> +
+> +/ {
+> +	gpu_opp_table: gpu-opp-table {
 
-This is not a new requirement. It has been since some time and Rob gave
-such reviews.
+I don't think you tested the change with dtbs_check. This does not match
+the bindings.
 
-https://lore.kernel.org/linux-devicetree/YlhkwvGdcf4ozTzG@robh.at.kernel.org/
+> +		compatible = "operating-points-v2";
+> +
+> +		opp@216000000 {
+> +			opp-hz = /bits/ 64 <216000000>;
+> +			opp-microvolt = <810000 810000 1200000>;
+> +		};
+> +
+> +		opp@264000000 {
+> +			opp-hz = /bits/ 64 <264000000>;
+> +			opp-microvolt = <810000 810000 1200000>;
+> +		};
+> +
+> +		opp@312000000 {
+> +			opp-hz = /bits/ 64 <312000000>;
+> +			opp-microvolt = <810000 810000 1200000>;
+> +		};
+> +
+> +		opp@336000000 {
+> +			opp-hz = /bits/ 64 <336000000>;
+> +			opp-microvolt = <810000 810000 1200000>;
+> +		};
+> +
+> +		opp@360000000 {
+> +			opp-hz = /bits/ 64 <360000000>;
+> +			opp-microvolt = <820000 820000 1200000>;
+> +		};
+> +
+> +		opp@384000000 {
+> +			opp-hz = /bits/ 64 <384000000>;
+> +			opp-microvolt = <830000 830000 1200000>;
+> +		};
+> +
+> +		opp@408000000 {
+> +			opp-hz = /bits/ 64 <408000000>;
+> +			opp-microvolt = <840000 840000 1200000>;
+> +		};
+> +
+> +		opp@420000000 {
+> +			opp-hz = /bits/ 64 <420000000>;
+> +			opp-microvolt = <850000 850000 1200000>;
+> +		};
+> +
+> +		opp@432000000 {
+> +			opp-hz = /bits/ 64 <432000000>;
+> +			opp-microvolt = <860000 860000 1200000>;
+> +		};
+> +
+> +		opp@456000000 {
+> +			opp-hz = /bits/ 64 <456000000>;
+> +			opp-microvolt = <870000 870000 1200000>;
+> +		};
+> +
+> +		opp@504000000 {
+> +			opp-hz = /bits/ 64 <504000000>;
+> +			opp-microvolt = <890000 890000 1200000>;
+> +		};
+> +
+> +		opp@540000000 {
+> +			opp-hz = /bits/ 64 <540000000>;
+> +			opp-microvolt = <910000 910000 1200000>;
+> +		};
+> +
+> +		opp@576000000 {
+> +			opp-hz = /bits/ 64 <576000000>;
+> +			opp-microvolt = <930000 930000 1200000>;
+> +		};
+> +
+> +		opp@624000000 {
+> +			opp-hz = /bits/ 64 <624000000>;
+> +			opp-microvolt = <950000 950000 1200000>;
+> +		};
+> +
+> +		opp@756000000 {
+> +			opp-hz = /bits/ 64 <756000000>;
+> +			opp-microvolt = <1040000 1040000 1200000>;
+> +		};
+> +	};
+> +
 
-For devices with multiple compatibles that's a bit tricky, but assuming
-the bindings describe both original design from Synopsys and it's
-implementations, then something closer to Synopsys makes sense.
+No need for such blank lines.
 
-
-> In addition
-> There are DT bindings with names different from what is defined in the
-> compatible name. Moreover there are tons of bindings with various
-> compatible names. What name to choose then? Finally the current name
-> is too generic to use for actual DW uMCTL2 DDRC controller.
-
-There are thousands of bugs, inconsistencies, naming differences in
-kernel. I don't find these as arguments to repeat the practice...so the
-bindings file name should be based on the compatible.
 
 Best regards,
 Krzysztof
