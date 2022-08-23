@@ -2,77 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C87E59E5D5
-	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 17:17:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 136B359E5DA
+	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 17:19:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240303AbiHWPQ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Aug 2022 11:16:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37502 "EHLO
+        id S242568AbiHWPSY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Aug 2022 11:18:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243059AbiHWPNW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 11:13:22 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3258C149A35
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 03:23:36 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id l19so9916591ljg.8
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 03:23:35 -0700 (PDT)
+        with ESMTP id S242411AbiHWPSJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 11:18:09 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D9F8153FD6
+        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 03:41:17 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id gi31so20075581ejc.5
+        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 03:41:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=yn5Cp9zoeWqGbxL3HM65C3eQTNCudh4CzSg5Uvw3JAk=;
-        b=QAJc4lxwTmf0W3KWKXRjlw6qcyC3eHPyQ5QoGuhnvAn60+muAHk9sdN/Zcrm1cUMIq
-         s/MnHrcCQNq3gmf9HYQNuccxGkfgpsLZL3+qnn86GSOLQoFZfN1u8KnQ3gDYLaOCKcgW
-         fLKxap4SHvHxX6tr3L632x2JnYqbZa2/5J3CopLcqmYJfyGRzPyGN50TuOW8DZUOhphs
-         zIJsqGjIJRIiRgqM/V447asxh+qfPATLOZ2Ic9S7QL+s5C7vfITWKfI8dfruPLKw483q
-         WpUr3abO2RFu4eWv6TQUVEkjTKgPnmC0rnSEyrkHDsyWTtzGPQEzEXrNtaE6dS5IrIWZ
-         Kyjw==
+        bh=c1dA5oASWGj0rrUZ/WWyyCO38Uiq0TAfsSxGYmfkPlY=;
+        b=pJou0ZXsL1X+99tYH/vTpA2PAeq8TQDtnnogZ2rT/Gn4lNZu9+uWGqmUq28zaFjoW6
+         1Xv2tfJrgzApfi1rTqb+a4Kb3sH2AsyD34KBsrjbLezWjFOzFxhW1Ts93ES6j9z4evOD
+         2Otl/3yI1hHdn+tr0dvn+QQbGkfb5V+/i6E8YbbghU0fchDUg5GRjmNWLW+0+QS6LLr9
+         qpR9XOygAvLdBbbQgd2azeymUwWj4VSagVxzULPtVjIdlmLU1Op5nj+empBcEx3R27ym
+         GlZt6nWioLJSfZaizWat8u6OoABAC2mQKeXUD9ryImR8pgT2FoHeWfUyvLdEMUCTHj0g
+         /CNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=yn5Cp9zoeWqGbxL3HM65C3eQTNCudh4CzSg5Uvw3JAk=;
-        b=H+hgHtKHLLZH3oewU+J9wnE40aw3BhcFc1fmpFHtyWqZhpBcHBGN0YcmJYWspQ6j/F
-         5oXdMKRBRGi5ZKry4IanIH7D8SwBX0yp0XLpb1qIdSTHjlIDBmHpAM/tvhFfQAEgjfPn
-         U4Dx547yKx8WJ9kY6GbNhdQocPscpXAa02H8HsLQA8LUaoi3ZWzySkazY12rnTgd0eJ0
-         TkYE803dgWhw1dSIKn8wwuSaiy/tR414ArYDoJdD7OAsHHBfgtMFZGjvPhMUTqqa9dts
-         69cEH2F5C9wmpgl6M6NYTkBqHj0DHh4XwIAEgdG36a5pUXlelVJ19GTlrnSJzS//A4kl
-         IsuA==
-X-Gm-Message-State: ACgBeo02OgaLOXadNm8joUq2h0Y9m3NrCNC5OyS5Qe8XZJZ2aKdOSFUM
-        TAnsA7hOJ3HeZ/tYBu7d80IAvg==
-X-Google-Smtp-Source: AA6agR4D5aExJIR72fiYWF97zzNBynY+4arB6wbMmJjNpCzNC+/Ov4i9Sl/PcwnVnQxQKarFz5l0fg==
-X-Received: by 2002:a05:651c:114b:b0:25b:e13b:6900 with SMTP id h11-20020a05651c114b00b0025be13b6900mr6417785ljo.462.1661250214179;
-        Tue, 23 Aug 2022 03:23:34 -0700 (PDT)
+        bh=c1dA5oASWGj0rrUZ/WWyyCO38Uiq0TAfsSxGYmfkPlY=;
+        b=H2GXth3inrqBIy3P0ksKp/gQEpRj1WPU8FzwSpvFvB+fsF9S0891JzkhaLBCHaBOat
+         73xtGVO13QLHa4DvjoboGpnIPyJqdCpgVfo8OxxN2vcU34J3ZsovpMqBLWR2RkUv6bbY
+         XHJEnhpS2sHGAgFPKlGGEZ9UH0UQQTdvnsICNNILVbZ3jWDGCWah17zC9P2NqWyOFnao
+         UfD6dXDx5sHAZ5+XUJVj9ZOR/lNinv4JYmhZ427dNUelAGfCHlpGX0HSuShwBjO0HQbJ
+         W/cXlH43tYIOc11ToEFYwKm8FROkLPmV+RR0a5XV3n8Lpc6PvCZiZ6C1LgcdJUvVL9K+
+         kaYQ==
+X-Gm-Message-State: ACgBeo1CfBuxYWusTQXlL4q6utxOUCFxdazAMjjHMHaGxAdpaByMFSUb
+        Rn1vpj1R2WOXUG1ACY3q3aAHWqjp5CPIRUKN
+X-Google-Smtp-Source: AA6agR7wM+x9s2G0l80E0LnJODLA/PG74+Qk16IJ5VwKsCc/MbDJLPh5C/Qmli+xGAgcR8f845D2Tw==
+X-Received: by 2002:a05:6512:258b:b0:492:f472:3058 with SMTP id bf11-20020a056512258b00b00492f4723058mr857168lfb.337.1661250377095;
+        Tue, 23 Aug 2022 03:26:17 -0700 (PDT)
 Received: from [192.168.0.11] (89-27-92-210.bb.dnainternet.fi. [89.27.92.210])
-        by smtp.gmail.com with ESMTPSA id c4-20020a196544000000b00489e2156285sm2434193lfj.104.2022.08.23.03.23.33
+        by smtp.gmail.com with ESMTPSA id a16-20020a056512391000b0048aa9d67483sm2437921lfu.160.2022.08.23.03.26.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Aug 2022 03:23:33 -0700 (PDT)
-Message-ID: <c3831c5a-7e10-2112-83e0-4ec2d70001c2@linaro.org>
-Date:   Tue, 23 Aug 2022 13:23:32 +0300
+        Tue, 23 Aug 2022 03:26:16 -0700 (PDT)
+Message-ID: <2d6a6603-ae0b-6874-d92a-eeebef6abf17@linaro.org>
+Date:   Tue, 23 Aug 2022 13:26:15 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH RESEND v10 6/7] clk: baikal-t1: Add DDR/PCIe directly
- controlled resets support
+Subject: Re: [PATCH 3/4] dt-bindings: display/msm/gmu: account for different
+ GMU variants
 Content-Language: en-US
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        linux-clk@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220822182934.23734-1-Sergey.Semin@baikalelectronics.ru>
- <20220822182934.23734-7-Sergey.Semin@baikalelectronics.ru>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+References: <20220706145222.1565238-1-dmitry.baryshkov@linaro.org>
+ <20220706145222.1565238-4-dmitry.baryshkov@linaro.org>
+ <7b504ecb-b05a-549e-e2ce-18c539f68655@linaro.org>
+ <a3a917b3-5dfc-761e-e5f6-5955c89db4a4@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220822182934.23734-7-Sergey.Semin@baikalelectronics.ru>
+In-Reply-To: <a3a917b3-5dfc-761e-e5f6-5955c89db4a4@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,34 +88,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/08/2022 21:29, Serge Semin wrote:
-> Aside with a set of the trigger-like resets Baikal-T1 CCU provides two
-> additional blocks with directly controlled reset signals. In particular it
-> concerns DDR full and initial resets and various PCIe sub-domains resets.
-> Let's add the direct reset assertion/de-assertion of the corresponding
-> flags support into the Baikal-T1 CCU driver then. It will be required at
-> least for the PCIe platform driver. Obviously the DDR controller isn't
-> supposed to be fully reset in the kernel, so the corresponding controls
-> are added just for the sake of the interface implementation completeness.
+On 22/08/2022 20:58, Dmitry Baryshkov wrote:
+> On 06/07/2022 18:52, Krzysztof Kozlowski wrote:
+>> On 06/07/2022 16:52, Dmitry Baryshkov wrote:
+>>> Make display/msm/gmu.yaml describe all existing GMU variants rather than
+>>> just the 630.2 (SDM845) version of it.
+>>>
+>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>> ---
+>>>   .../devicetree/bindings/display/msm/gmu.yaml  | 166 +++++++++++++++---
+>>>   1 file changed, 146 insertions(+), 20 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/display/msm/gmu.yaml b/Documentation/devicetree/bindings/display/msm/gmu.yaml
+>>> index fe55611d2603..67fdeeabae0c 100644
+>>> --- a/Documentation/devicetree/bindings/display/msm/gmu.yaml
+>>> +++ b/Documentation/devicetree/bindings/display/msm/gmu.yaml
+>>> @@ -20,35 +20,24 @@ description: |
+>>>   properties:
+>>>     compatible:
+>>>       items:
+>>> -      - enum:
+>>> -          - qcom,adreno-gmu-630.2
+>>> +      - pattern: '^qcom,adreno-gmu-6[0-9][0-9]\.[0-9]$'
+>>>         - const: qcom,adreno-gmu
+>>>   
+>>>     reg:
+>>> -    items:
+>>> -      - description: Core GMU registers
+>>> -      - description: GMU PDC registers
+>>> -      - description: GMU PDC sequence registers
+>>> +    minItems: 3
+>>> +    maxItems: 4
+>>>   
+>>>     reg-names:
+>>> -    items:
+>>> -      - const: gmu
+>>> -      - const: gmu_pdc
+>>> -      - const: gmu_pdc_seq
+>>> +    minItems: 3
+>>> +    maxItems: 4
+>>>   
+>>>     clocks:
+>>> -    items:
+>>> -      - description: GMU clock
+>>> -      - description: GPU CX clock
+>>> -      - description: GPU AXI clock
+>>> -      - description: GPU MEMNOC clock
+>>> +    minItems: 4
+>>> +    maxItems: 7
+>>>   
+>>>     clock-names:
+>>> -    items:
+>>> -      - const: gmu
+>>> -      - const: cxo
+>>> -      - const: axi
+>>> -      - const: memnoc
+>>> +    minItems: 4
+>>> +    maxItems: 7
+>>>   
+>>>     interrupts:
+>>>       items:
+>>> @@ -76,6 +65,9 @@ properties:
+>>>   
+>>>     operating-points-v2: true
+>>>   
+>>> +  opp-table:
+>>> +    type: object
+>>
+>> instead: opp-table:true
 > 
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
-> 
-> ---
-> 
-> Changelog v6:
-> - Refactor the code to support the linear reset IDs only. (@Philipp)
-> 
-> Changelog v7:
-> - Drop empty line from the sys_rst_info structure initialization block.
->   (@Philipp)
-> ---
->  drivers/clk/baikal-t1/ccu-rst.c     | 66 +++++++++++++++++++++++++++++
->  drivers/clk/baikal-t1/ccu-rst.h     | 10 +++++
->  include/dt-bindings/reset/bt1-ccu.h |  9 ++++
+> Wouldn't this allow e.g. using just 'opp-table;' as a flag?
 
-Do not mix drivers and bindings. Bindings always go separately, so this
-has to be split.
+You're right and Rob also corrected me. Your original patch was correct
+(type:object).
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 Best regards,
 Krzysztof
