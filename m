@@ -2,103 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B97F559E74B
-	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 18:31:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EAEA59E74C
+	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 18:31:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244710AbiHWQaQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Aug 2022 12:30:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47682 "EHLO
+        id S245058AbiHWQar (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Aug 2022 12:30:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243241AbiHWQ34 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 12:29:56 -0400
-Received: from mail-io1-xd2b.google.com (mail-io1-xd2b.google.com [IPv6:2607:f8b0:4864:20::d2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED9B211FD18
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 05:57:31 -0700 (PDT)
-Received: by mail-io1-xd2b.google.com with SMTP id 10so10809207iou.2
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 05:57:31 -0700 (PDT)
+        with ESMTP id S240191AbiHWQaD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 12:30:03 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8108611FD09
+        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 05:57:30 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id m5so8890270lfj.4
+        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 05:57:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=DXlA4pH2Idgh+cA8fk4u2a6pyIz1gq6RjPYaksX10eU=;
-        b=KeK2C6ATWXGDbWzpL0lFqY/K8+HXFFGaAKyiZ3FCggfdTi4lXsFraTkrQCO8FzRaUi
-         KQOOiADO9fbeyyu4+c0ABuObO/ohlmnTysxAhiJZl62D3F65GGsNULr5k21gJkNrRnAF
-         tZOfFEHYwZ714tGYMcYJRLpyBC+D8Sqhq6Ywy1y3e5vB1gbLrRFost/QSRICNpfgNCZn
-         YMUtRWnylIEVXexqHsdGY7eEFwA3Zg+/Oiwz1XjUpTDE5KxcHyVr3xSaRzQgt+a4dAwt
-         IsD8cYBU6InxBQuP86hUa8rmjVTx4uHV8dnlP4VfdgmzYzy/38OB4QFdteF4shQkJ/RC
-         bUwQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=1avOVOvremPzgizGcj5WLFA7Q1NR0Z4dLUlm0wTw8OE=;
+        b=QYNhoLttpBbbjZVOLBf2tpHXrj7nTjLxZk7vYBZWfrlQ2N/xm2XM3MltGAv9uEPq9i
+         znp26aDtxb3ZPogWYZNufhEDrzRKh06hP+7g2rYnX6slKSM501R8AEvVUpq0slHdSY3g
+         to82g0OtUM8hx1yl+YcUrP4wRMVl++0l+XE+thuK//m3XcxzQMEpPTXqYSvacdfTDAtg
+         g/eTJVjJw6Ll7zuQ6VckPs/6XZSLs5BwCf2I0mrK6iYepQJFnnvnPikd1Iun6jA7vPGi
+         BA3EUw5FkFxctIwJfSvdvuomiLLdTYTFdZrZjkO4JAJRTbSGMek9gyQW6gZPC1vXS6EY
+         E6yg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=DXlA4pH2Idgh+cA8fk4u2a6pyIz1gq6RjPYaksX10eU=;
-        b=2DCXEfm9rHOk52AlFB0+IL8FohdGNH30RSvk4BwTTYFpYVsIlMhmqnSalv87ry6h3x
-         7jL3BP8pFNTgTqP8pZytbzhYJOGrNqiYIF8ho9xwe8CM+IU1LJ1F4GBhxOn2FMR4yceD
-         Ik1P1SMz6yGt+zil3SXzamNTCuMrRJoDABxMLn+EChqwmZaJJ49IQ/YM3fabnX8GFc+q
-         7SdJyu5f1tjY0psLUvzoWwJ98tbdYHMhhrzZbfMGIPS3nst10OORnEDOhfAsN6005qre
-         TdCAsTENNlaCY23pevCLoU8Lf909EfWWErNysLSYSCFH9xAWz7ypnfkyy/yCoWvj1DKg
-         e4QQ==
-X-Gm-Message-State: ACgBeo2FPlow5/TUIO7pRjDYA7ArjlBK5UuLAE+G3XmZQNDDdZTFUcYp
-        iuOc8D1EuWbsW0of9cyuwk7oXy7v5WgCMezLUziqbw==
-X-Google-Smtp-Source: AA6agR6FMvlHIDAHScvrEma88CrxcQ9VUCd1MdfFASVddPUA9fEX6U4b0zxtKZdCcOTU+PXlI4u99tspQIVxVGYE858=
-X-Received: by 2002:a02:ce8e:0:b0:349:ce44:38dc with SMTP id
- y14-20020a02ce8e000000b00349ce4438dcmr6183403jaq.298.1661259451083; Tue, 23
- Aug 2022 05:57:31 -0700 (PDT)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=1avOVOvremPzgizGcj5WLFA7Q1NR0Z4dLUlm0wTw8OE=;
+        b=ySA9fN0BT6L297xIeWU9YoWq+u7Rs9zCzbGdtcxdxfxkvuqtj0k+oLKs8tabMN6BCo
+         JEq9OXWKoE0mx7/Xyav7GIje/uwjJi7mPmlfHHlieLKh+szpuW9zZfHcR0CSTsuxfGGF
+         PDusg7XWF3f+LkojKoCbImDa8yRmA1IP/F+57bSytkOVP7YUlpZ+K/FWsIwtf/ARE3cq
+         0GCesbgJLUg9d2+5ZHr5lKVEA3X/LNpMou/wXEsq2Xnh+iUQb3hkcHNZzZrKGPqmg2eb
+         PR3txbNywL/k0FaDjpTynPp4SzLsQaTCLpOwWovzzPOj1D7kSdHTWDgnwbPjxaCf7yRK
+         2hPw==
+X-Gm-Message-State: ACgBeo0UNjqN6kN2/5dNut2/UFjhnpdmv3ocHokYmdeJmif4GHY33QPI
+        e0aK+h7gQlChUQR+hoWmNvMCUg==
+X-Google-Smtp-Source: AA6agR5ebvanViW4y7lh+xQR5g7xWi+K4+hnZ5po7ClqW+djA2ZZ4iS62EfTP1uWujzj9Ao043j5sQ==
+X-Received: by 2002:a05:6512:2605:b0:492:dbb3:9b85 with SMTP id bt5-20020a056512260500b00492dbb39b85mr4302890lfb.669.1661259448847;
+        Tue, 23 Aug 2022 05:57:28 -0700 (PDT)
+Received: from [192.168.0.11] (89-27-92-210.bb.dnainternet.fi. [89.27.92.210])
+        by smtp.gmail.com with ESMTPSA id b17-20020a056512071100b00492c77c55ddsm2212340lfs.67.2022.08.23.05.57.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Aug 2022 05:57:28 -0700 (PDT)
+Message-ID: <15fdd5c2-9c01-ee4e-98f9-559e926d9925@linaro.org>
+Date:   Tue, 23 Aug 2022 15:57:27 +0300
 MIME-Version: 1.0
-References: <20220818124132.125304-1-jagan@edgeble.ai> <20220818124132.125304-10-jagan@edgeble.ai>
- <20220822181009.GA80526-robh@kernel.org>
-In-Reply-To: <20220822181009.GA80526-robh@kernel.org>
-From:   Jagan Teki <jagan@edgeble.ai>
-Date:   Tue, 23 Aug 2022 18:27:20 +0530
-Message-ID: <CA+VMnFwE8jBxXwQPVEzEUosxjuEVMNGB9NnBuHYDw_360qJztQ@mail.gmail.com>
-Subject: Re: [PATCH v3 09/19] clk: rockchip: Add dt-binding header for RV1126
-To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
-        Kever Yang <kever.yang@rock-chips.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        Finley Xiao <finley.xiao@rock-chips.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH V2 0/7] i2c-imx-lpi2c: add IPG clock
+Content-Language: en-US
+To:     Peng Fan <peng.fan@nxp.com>,
+        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "wsa@kernel.org" <wsa@kernel.org>
+Cc:     "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Clark Wang <xiaoning.wang@nxp.com>
+References: <20220816125526.2978895-1-peng.fan@oss.nxp.com>
+ <DU0PR04MB9417E7BD5F1FB7A8E00BAA3F88719@DU0PR04MB9417.eurprd04.prod.outlook.com>
+ <7eb3cca0-1be6-8f7f-a7bf-f0c9478e7080@linaro.org>
+ <DU0PR04MB9417CA946AD601F900500A5488709@DU0PR04MB9417.eurprd04.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <DU0PR04MB9417CA946AD601F900500A5488709@DU0PR04MB9417.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 22 Aug 2022 at 23:40, Rob Herring <robh@kernel.org> wrote:
->
-> On Thu, Aug 18, 2022 at 06:11:22PM +0530, Jagan Teki wrote:
-> > Add the dt-bindings header for the Rockchip RV1126, that gets shared
-> > between the clock controller and the clock references in the dts.
-> >
-> > Signed-off-by: Finley Xiao <finley.xiao@rock-chips.com>
-> > Signed-off-by: Jagan Teki <jagan@edgeble.ai>
-> > ---
-> > Changes for v3:
-> > - update the file name
-> > Changes for v2:
-> > - exclude from clk patch
-> >
-> >  .../dt-bindings/clock/rockchip,rv1126-cru.h   | 632 ++++++++++++++++++
-> >  1 file changed, 632 insertions(+)
-> >  create mode 100644 include/dt-bindings/clock/rockchip,rv1126-cru.h
-> >
-> > diff --git a/include/dt-bindings/clock/rockchip,rv1126-cru.h b/include/dt-bindings/clock/rockchip,rv1126-cru.h
-> > new file mode 100644
-> > index 000000000000..cfba8226ded2
-> > --- /dev/null
-> > +++ b/include/dt-bindings/clock/rockchip,rv1126-cru.h
-> > @@ -0,0 +1,632 @@
-> > +/* SPDX-License-Identifier: GPL-2.0 */
->
-> Dual license please. Need an ack from Rockchip for that (and not just
-> on this one).
+On 23/08/2022 15:49, Peng Fan wrote:
+>> Subject: Re: [PATCH V2 0/7] i2c-imx-lpi2c: add IPG clock
+>>
+>> On 22/08/2022 11:46, Peng Fan wrote:
+>>>> Subject: [PATCH V2 0/7] i2c-imx-lpi2c: add IPG clock
+>>>
+>>> + Wolfram Sang I2C maintainer.
+>>>
+>>> Krzysztof,
+>>>
+>>> Do you have time to give a look whether this patchset is ok for you?
+>>> Please forgive if this is too early ping. Some i.MX93 dts update
+>>> pending
+>>>
+>>
+>> I don't understand the ping. You got everything needed from us, why still
+>> pinging? What that DTS has anything to do with us?
+> 
+> In last version, you raised a comment that the driver patch broke ABI, not
+> backward compatible. So I updated the driver patch to be backward
+> compatible in V3 :)
 
-Heiko or Kever.
+Awesome! But you don't need my ack after such update. The ack or review
+is expected from maintainers and I am not the maintainer of IMX I2C
+driver or IMX platform/DTS. There is no need in pinging folks just for
+some comments. We are all too busy...
 
-Can you comment on this?
+Please read:
 
-Jagan.
+https://elixir.bootlin.com/linux/v5.19/source/Documentation/process/submitting-patches.rst
+
+https://elixir.bootlin.com/linux/v5.19/source/Documentation/process/1.Intro.rst
+https://elixir.bootlin.com/linux/v5.19/source/Documentation/process/5.Posting.rst
+https://elixir.bootlin.com/linux/v5.19/source/Documentation/process/6.Followthrough.rst
+
+
+Best regards,
+Krzysztof
