@@ -2,148 +2,315 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 553CA59CF4E
-	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 05:19:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46BFA59CF80
+	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 05:27:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238467AbiHWDQU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Aug 2022 23:16:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42850 "EHLO
+        id S239562AbiHWD0J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Aug 2022 23:26:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240017AbiHWDQO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 23:16:14 -0400
-Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6B9C4DF36;
-        Mon, 22 Aug 2022 20:16:10 -0700 (PDT)
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailout.nyi.internal (Postfix) with ESMTP id 53EB25C00A0;
-        Mon, 22 Aug 2022 23:16:10 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute1.internal (MEProxy); Mon, 22 Aug 2022 23:16:10 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm2; t=1661224570; x=
-        1661310970; bh=cYmKT+EG0Bj+G1PyMV6PvL1EzCjw1wIFlNXT1MPSLoM=; b=p
-        KWPlc+cWYP9aV98RZDDXBbo1x7+JjMoQzDlXzsCk1CqXDvj/pSLbPeCuosCqCNbb
-        nXoUnn2c1qmDfiPG49ayKDsK/XtL5pHtBV/n39JWj/1Xe/C11XT6GaLWolo1Hsq/
-        Tkf9Vu54U+G2JpyUBb+jm5wMQ4rwa4iOpOxg9Fcm8LiZv72jtUZN1mvqZu+PIjIy
-        sQSS4d8vjpE8rzOLElYu7gHHEzCXccUP+uu58PnFOesvRJUwP6gg6HaClgah7UCL
-        hOOrVvIyO6HHmp3RcecOx5IcXJLdFyh0+3lEWS5lPdJP2I3uWI2sx9QHL1KzpyK4
-        DCOaas55TjCz0phzZMm+A==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:feedback-id:feedback-id:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1661224570; x=
-        1661310970; bh=cYmKT+EG0Bj+G1PyMV6PvL1EzCjw1wIFlNXT1MPSLoM=; b=4
-        NLVGMjOA2bLK4uWokogmEGGXeHNl9udHozB2J+7MwJE2yWShz5S83Xw7q/hp6v9o
-        QttOYTIT2sdZXP96EeNWVM42dBYFNs/fY+hUrMITBY0rwAquIIYpsOOz76K38LKI
-        zXsuUJlrY3hCYv4NNMvYfR8wpajvMWap1MwAl2yOH/WRNYQMIcJkb1XJEoRxTg0X
-        zWjpR3bGJFTXj4JawknrJcRIsYn9svjZYI/os+bCCrOpeRE+7EUFh66INkXhUe07
-        K4rli6jIeFpucjuHQt6cF9y0oXKQtKKy5G39wFX4EArc3RXYjw9KJzKUyoTEIlpx
-        /kvKedu/knaJ3ERxmjsEw==
-X-ME-Sender: <xms:ekYEYzCRa3-d2rH1xecEC5n9DhO1WNvU1NkDxxcDndqvoZlr6wF0zw>
-    <xme:ekYEY5gNdKXYJsvpRPt_2P48tGsnqfe2-gpVkku_FcBX_bLmdSXSRhoSdEeCjQWRE
-    Nx6YesI7h-X4WRn1g>
-X-ME-Received: <xmr:ekYEY-mxIAZ8sHmN5RHuAgNDNNq2CubwotoRkv1iTYNn7UULiT3EjNEq_AtFt7hgyzePnbiUfW-8aGzJBgu6oq8UoRaYs1wXfckzryxw_otLZNmqPtK-m0cBnA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdeikedgjedtucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepuffvvehfhffkffgfgggjtgfgsehtkeertddtfeejnecuhfhrohhmpefurghm
-    uhgvlhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenuc
-    ggtffrrghtthgvrhhnpedtvefhheehgfdvkeetffeludeuudehudeuvddtveelleekvedv
-    uedviefhkeeuheenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfh
-    hrohhmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
-X-ME-Proxy: <xmx:ekYEY1yCclEQKlei9KUq_EhZ0dXbv60c4pePkEx3hJeTnFBY5kn2oQ>
-    <xmx:ekYEY4Tt878--33jBjWkODBn8U9iwfxsBwihzBN2vs6jTX1F1XHjIQ>
-    <xmx:ekYEY4ZV19BCH8qq0-ctPTNXPtaYiT_F4rc-44sToKqEp3s7ipm0vg>
-    <xmx:ekYEY9Qt3AXoaNy1LgzT6UQdpYl521DYErEVTL10K_dHW_pTEhPCOw>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 22 Aug 2022 23:16:09 -0400 (EDT)
-Subject: Re: [PATCH v2 2/4] arm64: dts: allwinner: h6: Add cooling map for GPU
-To:     =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-References: <20220821173051.155038-1-peron.clem@gmail.com>
- <20220821173051.155038-3-peron.clem@gmail.com>
-From:   Samuel Holland <samuel@sholland.org>
-Message-ID: <72f901e6-f646-336b-70e6-2747363944ab@sholland.org>
-Date:   Mon, 22 Aug 2022 22:16:09 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+        with ESMTP id S240293AbiHWDZt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Aug 2022 23:25:49 -0400
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F4EA5C9DB
+        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 20:25:47 -0700 (PDT)
+Received: by mail-oi1-x22e.google.com with SMTP id t140so5756931oie.8
+        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 20:25:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=to:subject:message-id:date:user-agent:from:references:in-reply-to
+         :mime-version:from:to:cc;
+        bh=fffmNYLGo81FxNWq7HKUF+9vnBo+ApQB0bLNovia0Ps=;
+        b=SqIyFkbC8kfiSGs2nViNZRZfai5SQ+5Ug+q2stJagUm0xUrR4yVJjA/52qOt/F4qTT
+         cly9T2LxBvbdeUImfwcXUM3rj1CCjrPIyLbURcoxABrfIhfu/AJB5qXZtM30MDnz51Ps
+         dVAGqNNQf2R34R9TvCaUvZvu8S6fdGaWkmlTE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=to:subject:message-id:date:user-agent:from:references:in-reply-to
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=fffmNYLGo81FxNWq7HKUF+9vnBo+ApQB0bLNovia0Ps=;
+        b=DAY+1MdFpZPeJSvhe3/nbHyisETuWL8iAiGTuQW28CvhqsRQ5iOsErNUbBxv2/DARD
+         gyrHkZi69OP1ga1R5cWMp57JzPDUhRinOwv3a+I7pXO/DLElZxQS151PeJCZgGKM16/W
+         1Y3LDJvQm1g7luLdg8H1s7sdmRIu9THYmDMbs0gDaIXkoBvE9Tw/LKfvLCkFh09Tnmpy
+         Ahj8DbaOQIf0ibLRiQW5TOpA70+HMFNJGX1p2dlSH+IFRMUuUfPD/dd5m4I7pH1sqbP6
+         10OEYqkUe4qB8jyn33aNQnYWrMwzVduWAl55IxgETAFuQFaJu9SAJvY9R7XGYx+w4uJe
+         /zLA==
+X-Gm-Message-State: ACgBeo3op789KrPDdKeBZnTywQNsPX9+frA2rLPQoqiOXNtVs04DX/L2
+        vgwc6ELYNdTplN7PTXkcbOF72aFPwy17HAL4Xz7Fj6iWnAM=
+X-Google-Smtp-Source: AA6agR68Vx51dJQKbnN0lUPWYa6fMVK+jKC9+sq5Rm2J+Kz+JIetLjkYYPhvnce6qf5O0iGmCr5GPX2KW8CyLhhNQy8=
+X-Received: by 2002:a05:6808:bca:b0:344:ef42:930f with SMTP id
+ o10-20020a0568080bca00b00344ef42930fmr539274oik.0.1661225146600; Mon, 22 Aug
+ 2022 20:25:46 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 22 Aug 2022 22:25:46 -0500
 MIME-Version: 1.0
-In-Reply-To: <20220821173051.155038-3-peron.clem@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <1661156523-22611-7-git-send-email-quic_srivasam@quicinc.com>
+References: <1661156523-22611-1-git-send-email-quic_srivasam@quicinc.com> <1661156523-22611-7-git-send-email-quic_srivasam@quicinc.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Mon, 22 Aug 2022 22:25:46 -0500
+Message-ID: <CAE-0n53G_nKUPDDZtH1i9=G9s9ATV=iTdpuFcU6y1oeKyc0B9w@mail.gmail.com>
+Subject: Re: [RESEND v5 6/7] remoteproc: qcom: Add support for memory sandbox
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        agross@kernel.org, bgoswami@quicinc.com,
+        bjorn.andersson@linaro.org, broonie@kernel.org,
+        devicetree@vger.kernel.org, judyhsiao@chromium.org,
+        lgirdwood@gmail.com, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        perex@perex.cz, quic_plai@quicinc.com, quic_rohkumar@quicinc.com,
+        robh+dt@kernel.org, srinivas.kandagatla@linaro.org, tiwai@suse.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/21/22 12:30 PM, Clément Péron wrote:
-> Add a simple cooling map for the GPU.
-
-It would be good to document where the trip point temperatures came from.
-
-> Signed-off-by: Clément Péron <peron.clem@gmail.com>
-
-Acked-by: Samuel Holland <samuel@sholland.org>
-
-> ---
->  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 22 ++++++++++++++++++++
->  1 file changed, 22 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> index 5a28303d3d4c..943ae5374dd6 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> @@ -186,6 +186,7 @@ gpu: gpu@1800000 {
->  			clocks = <&ccu CLK_GPU>, <&ccu CLK_BUS_GPU>;
->  			clock-names = "core", "bus";
->  			resets = <&ccu RST_BUS_GPU>;
-> +			#cooling-cells = <2>;
->  			status = "disabled";
->  		};
->  
-> @@ -1075,6 +1076,27 @@ gpu-thermal {
->  			polling-delay-passive = <0>;
->  			polling-delay = <0>;
->  			thermal-sensors = <&ths 1>;
+Quoting Srinivasa Rao Mandadapu (2022-08-22 01:22:02)
+> diff --git a/drivers/remoteproc/qcom_q6v5_adsp.c b/drivers/remoteproc/qcom_q6v5_adsp.c
+> index b0a63a0..d01c97e 100644
+> --- a/drivers/remoteproc/qcom_q6v5_adsp.c
+> +++ b/drivers/remoteproc/qcom_q6v5_adsp.c
+> @@ -333,6 +336,185 @@ static int adsp_load(struct rproc *rproc, const struct firmware *fw)
+>         return 0;
+>  }
+>
+> +static void adsp_of_unmap_smmu(struct iommu_domain *iommu_dom, const __be32 *prop, int len)
+> +{
+> +       unsigned long iova;
+> +       unsigned int mem_size;
+> +       int i;
 > +
-> +			trips {
-> +				gpu_alert: gpu-alert {
-> +					temperature = <85000>;
-> +					hysteresis = <2000>;
-> +					type = "passive";
-> +				};
+> +       len /= sizeof(__be32);
+> +       for (i = 0; i < len; i++) {
+> +               iova = be32_to_cpu(prop[i++]);
+> +               /* Skip Physical address*/
+> +               i++;
+> +               mem_size = be32_to_cpu(prop[i++]);
+> +               iommu_unmap(iommu_dom, iova, mem_size);
+> +       }
+> +}
 > +
-> +				gpu-crit {
-> +					temperature = <100000>;
-> +					hysteresis = <0>;
-> +					type = "critical";
-> +				};
-> +			};
+> +static void adsp_rproc_unmap_smmu(struct rproc *rproc, int len)
+> +{
+> +       struct fw_rsc_devmem *rsc_fw;
+> +       struct fw_rsc_hdr *hdr;
+> +       int offset;
+> +       int i;
 > +
-> +			cooling-maps {
-> +				map0 {
-> +					trip = <&gpu_alert>;
-> +					cooling-device = <&gpu THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +				};
-> +			};
->  		};
->  	};
->  };
-> 
+> +       for (i = 0; i < len; i++) {
+> +               offset = rproc->table_ptr->offset[i];
+> +               hdr = (void *)rproc->table_ptr + offset;
+> +               rsc_fw = (struct fw_rsc_devmem *)hdr + sizeof(*hdr);
+> +
+> +               iommu_unmap(rproc->domain, rsc_fw->da, rsc_fw->len);
+> +       }
+> +}
+> +
+> +static void adsp_unmap_smmu(struct rproc *rproc)
+> +{
+> +       struct qcom_adsp *adsp = (struct qcom_adsp *)rproc->priv;
+> +       const __be32 *prop;
+> +       unsigned int len;
+> +
+> +       iommu_unmap(adsp->iommu_dom, adsp->mem_phys, adsp->mem_size);
+> +
+> +       prop = of_get_property(adsp->dev->of_node, "qcom,adsp-memory-regions", &len);
+> +       if (prop) {
+> +               adsp_of_unmap_smmu(adsp->iommu_dom, prop, len);
+> +       } else {
+> +               if (rproc->table_ptr)
+> +                       adsp_rproc_unmap_smmu(rproc, rproc->table_ptr->num);
+> +       }
+> +
+> +       iommu_domain_free(adsp->iommu_dom);
+> +}
+> +
+> +static int adsp_of_map_smmu(struct iommu_domain *iommu_dom, const __be32 *prop, int len)
+> +{
+> +       unsigned long mem_phys;
+> +       unsigned long iova;
+> +       unsigned int mem_size;
+> +       unsigned int flag;
+> +       int access_level;
+> +       int ret;
+> +       int i;
+> +
+> +       len /= sizeof(__be32);
+> +       for (i = 0; i < len; i++) {
+> +               iova = be32_to_cpu(prop[i++]);
+> +               mem_phys = be32_to_cpu(prop[i++]);
+> +               mem_size = be32_to_cpu(prop[i++]);
+> +               access_level = be32_to_cpu(prop[i]);
+> +
+> +               if (access_level)
+> +                       flag = IOMMU_READ | IOMMU_WRITE;
+> +               else
+> +                       flag = IOMMU_READ;
+> +
+> +               ret = iommu_map(iommu_dom, iova, mem_phys, mem_size, flag);
+> +               if (ret) {
+> +                       pr_err("failed to map addr = %p mem_size = %x\n", &(mem_phys), mem_size);
 
+Why can't this be dev_err()?
+
+> +                       goto of_smmu_unmap;
+> +               }
+> +       }
+> +       return 0;
+> +of_smmu_unmap:
+> +       adsp_of_unmap_smmu(iommu_dom, prop, i);
+> +       return ret;
+> +}
+> +
+> +static int adsp_rproc_map_smmu(struct rproc *rproc, int len)
+> +{
+> +       struct fw_rsc_devmem *rsc_fw;
+
+const?
+
+> +       struct fw_rsc_hdr *hdr;
+
+const?
+
+> +       int offset;
+> +       int ret;
+> +       int i;
+> +
+> +       if (!rproc->table_ptr)
+> +               return 0;
+> +
+> +       for (i = 0; i < rproc->table_ptr->num; i++) {
+> +               offset = rproc->table_ptr->offset[i];
+> +               hdr = (void *)rproc->table_ptr + offset;
+> +               rsc_fw = (struct fw_rsc_devmem *)hdr + sizeof(*hdr);
+> +
+> +               ret = iommu_map(rproc->domain, rsc_fw->da, rsc_fw->pa,
+> +                                       rsc_fw->len, rsc_fw->flags);
+> +               if (ret) {
+> +                       pr_err("failed to map addr = %x mem_size = %x\n", rsc_fw->pa, rsc_fw->len);
+
+Why can't this be dev_err()?
+
+> +                       goto  rproc_smmu_unmap;
+> +               }
+> +       }
+> +
+> +       return 0;
+> +
+> +rproc_smmu_unmap:
+> +       adsp_rproc_unmap_smmu(rproc, i);
+
+Does i need to be incremented? And/or unmap should be done in reverse.
+
+> +       return ret;
+> +}
+> +
+> +static int adsp_map_smmu(struct qcom_adsp *adsp, struct rproc *rproc)
+> +{
+> +       struct of_phandle_args args;
+> +       const __be32 *prop;
+> +       long long sid;
+> +       unsigned int len;
+> +       int ret;
+> +
+> +       ret = of_parse_phandle_with_args(adsp->dev->of_node, "iommus", "#iommu-cells", 0, &args);
+> +       if (ret < 0)
+> +               sid = -1;
+
+Is it a good idea to set the sid to -1? Does that mean all stream IDs?
+
+> +       else
+> +               sid = args.args[0] & SID_MASK_DEFAULT;
+> +
+> +       adsp->iommu_dom = iommu_domain_alloc(adsp->dev->bus);
+> +       if (!adsp->iommu_dom) {
+> +               dev_err(adsp->dev, "failed to allocate iommu domain\n");
+> +               ret = -ENOMEM;
+> +               goto domain_free;
+> +       }
+> +
+> +       ret = iommu_attach_device(adsp->iommu_dom, adsp->dev);
+> +       if (ret) {
+> +               dev_err(adsp->dev, "could not attach device ret = %d\n", ret);
+> +               ret = -EBUSY;
+
+Why do we overwrite the error value?
+
+> +               goto detach_device;
+> +       }
+> +
+> +       /* Add SID configuration for ADSP Firmware to SMMU */
+> +       adsp->mem_phys =  adsp->mem_phys | (sid << 32);
+> +
+> +       ret = iommu_map(adsp->iommu_dom, adsp->mem_phys, adsp->mem_phys,
+> +                       adsp->mem_size, IOMMU_READ | IOMMU_WRITE);
+> +       if (ret) {
+> +               dev_err(adsp->dev, "Unable to map ADSP Physical Memory\n");
+> +               goto sid_unmap;
+> +       }
+> +
+> +       prop = of_get_property(adsp->dev->of_node, "qcom,adsp-memory-regions", &len);
+
+I find it odd that we're encoding virtual addresses (iovas) into
+devicetree. Presumably the physical address needs to be in DT as a
+carveout, but after that I would think we're free to allocate the
+segments from the carveout however we see fit and then program that into
+the SMMU. Maybe DT can be a suggestion, but otherwise can it be ignored?
+
+> +       if (prop) {
+> +               ret = adsp_of_map_smmu(adsp->iommu_dom, prop, len);
+> +               if (ret) {
+> +                       dev_err(adsp->dev, "Unable to map memory regions accessed by ADSP\n");
+> +                       goto sid_unmap;
+> +               }
+> +       } else {
+> +               ret = adsp_rproc_map_smmu(rproc, len);
+> +               if (ret) {
+> +                       dev_err(adsp->dev, "Unable to map memory regions accessed by ADSP\n");
+
+Maybe this should be a different string in case it is confused with the
+above print of the same string.
+
+> +                       goto sid_unmap;
+> +               }
+> +       }
+> +       return 0;
+> +
+> +sid_unmap:
+> +       iommu_unmap(adsp->iommu_dom, adsp->mem_phys, adsp->mem_size);
+> +detach_device:
+> +       iommu_domain_free(adsp->iommu_dom);
+> +domain_free:
+> +       return ret;
+> +}
+> +
+> +
+>  static int adsp_start(struct rproc *rproc)
+>  {
+>         struct qcom_adsp *adsp = (struct qcom_adsp *)rproc->priv;
+> @@ -343,9 +525,16 @@ static int adsp_start(struct rproc *rproc)
+>         if (ret)
+>                 return ret;
+>
+> +       if (adsp->adsp_sandbox_needed) {
+> +               ret = adsp_map_smmu(adsp, rproc);
+> +               if (ret) {
+> +                       dev_err(adsp->dev, "ADSP smmu mapping failed\n");
+> +                       goto disable_irqs;
+> +               }
+> +       }
+
+Newline here please.
+
+>         ret = clk_prepare_enable(adsp->xo);
+>         if (ret)
+> -               goto disable_irqs;
+> +               goto adsp_smmu_unmap;
+>
+>         ret = qcom_rproc_pds_enable(adsp, adsp->proxy_pds,
+>                                     adsp->proxy_pd_count);
