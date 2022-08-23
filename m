@@ -2,132 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4602959E9C8
-	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 19:39:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89C4F59E9D6
+	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 19:39:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229989AbiHWRgP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Aug 2022 13:36:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35122 "EHLO
+        id S231124AbiHWRiS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Aug 2022 13:38:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230347AbiHWRe4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 13:34:56 -0400
-Received: from mail-4317.proton.ch (mail-4317.proton.ch [185.70.43.17])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C76180344
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 08:15:31 -0700 (PDT)
-Date:   Tue, 23 Aug 2022 15:15:18 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
-        s=protonmail; t=1661267729; x=1661526929;
-        bh=/a5Sr9z4hKMkNQE2RiJnMU4myUih+AbOa22vER9x60Q=;
-        h=Date:To:From:Cc:Reply-To:Subject:Message-ID:In-Reply-To:
-         References:Feedback-ID:From:To:Cc:Date:Subject:Reply-To:
-         Feedback-ID:Message-ID;
-        b=oF0ZlcI3jQo3o5di1EQm3lYNC4ZqhwDt2qOck1QEd3v0d7RAxquP6nkgnHPYV2qdH
-         WCLhYGe7AasNrtjbOhAQ5T2eDUEuE8wivgsavw8lBv3oJx4G/En4bdzrv0l4DQ91z1
-         jRkymxY7CQP77zuG7VMoO5V3GzOsRFNQdl/aK/8Q=
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-From:   Caleb Connolly <caleb@connolly.tech>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        freedreno@lists.freedesktop.org
-Reply-To: Caleb Connolly <caleb@connolly.tech>
-Subject: Re: [PATCH] arm64: dts: qcom: sm8250: move DSI opp table to the dsi0 node
-Message-ID: <2af8e228-5334-d5fe-eee5-2067d84481dc@connolly.tech>
-In-Reply-To: <20220822191138.316912-1-dmitry.baryshkov@linaro.org>
-References: <20220822191138.316912-1-dmitry.baryshkov@linaro.org>
-Feedback-ID: 10753939:user:proton
+        with ESMTP id S230218AbiHWRho (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 13:37:44 -0400
+Received: from mail-qv1-xf2c.google.com (mail-qv1-xf2c.google.com [IPv6:2607:f8b0:4864:20::f2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 058D457557;
+        Tue, 23 Aug 2022 08:22:34 -0700 (PDT)
+Received: by mail-qv1-xf2c.google.com with SMTP id de16so8419777qvb.12;
+        Tue, 23 Aug 2022 08:22:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=sclchRzcrlNQs45AXkw2Ui5z8V3RvXBbErHU2RT3Jyc=;
+        b=Fd1M7NIx0fmqMelKHydncaohrBxDgDyRoxFLWtM/Wcx47NqCJ87JIiqphh2yfkYjhf
+         G0Ye9hTNDWFqet2D4lkYBjGZjU/yKaQB8FAy8V2uYZ+6J8c+mC/LR2Gcjo5rbScSZc8G
+         VPHjMYv73frrlmAnT+6puQRQUwucw+Us4XipM5mooYcNTnD4FQZIWZ5xhiIt7B3TTmTb
+         /h2Hmo1nG07nVPCSy2bLCmAshO5h3TdXEPXcLIOt3l/tFxJZlPidDPEPlxLd4tm3Lp55
+         CMMukJ9/Rerk3acbiVuYJe+mPbKzxp1zB6ymhOKVa7+70DKgh0iL4rXxFu+2EocfpTnQ
+         h2FQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=sclchRzcrlNQs45AXkw2Ui5z8V3RvXBbErHU2RT3Jyc=;
+        b=2iazlj35Wa5VVtX9C9IYDZhoRtGQQ0zl5Mm1Vb11jDEyzd1kD+ymu4B/3enNJvf0xs
+         js5ICwBgo/p/XuMkV2GZ9yYvmPUgtqofjflx9veUh0BO/MJTuE1oVGEo3/wG3aQr8p03
+         iGk9jOi7NOON8qpCg+3tSrpaHhVNlhHxRvPEonoSs4RFNVPruds4noM5Cc/RKA9VLzAK
+         X4IoR6yewbr6Qi2alT1Y5yertb5d8E1GZ7Y3AUt4nQWmFbfDObf7oJxYkmSWbkW95BdM
+         LAHclNYUgsvuAZ5QVsNzNVaZhufeIk5zN5a4WVZeeL9Agdtvc5cAEOb2s8l63wSeFVJ7
+         2B5Q==
+X-Gm-Message-State: ACgBeo1J3sGGZ2X51hoQoOIT3V0hFpwu6Cq9S51p4DjgQ4RIGWYcdoKR
+        OeV3C3/0VyVnfzgLJKin/ssmjN8ZCRVdlES+MQy/F63UioQ=
+X-Google-Smtp-Source: AA6agR74s+Gdg75WX6h7niZAF5Whw1Aq2qTK4qGPDGrfUUokxr9hUNcPXbblY5QyY8JHU24hHN1hoGHmAnWBxe5P7Kg=
+X-Received: by 2002:ad4:5baf:0:b0:476:6a9e:b5e1 with SMTP id
+ 15-20020ad45baf000000b004766a9eb5e1mr20073228qvq.64.1661268153078; Tue, 23
+ Aug 2022 08:22:33 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+References: <20220822125106.1106798-1-ciprian.regus@analog.com>
+ <20220822125106.1106798-3-ciprian.regus@analog.com> <20220822203731.29c4c33b@jic23-huawei>
+In-Reply-To: <20220822203731.29c4c33b@jic23-huawei>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 23 Aug 2022 18:21:56 +0300
+Message-ID: <CAHp75Vft2pvXtxZcpvyV38cR9gOdDxDfCae8g5Uf2q6npWpb+Q@mail.gmail.com>
+Subject: Re: [PATCH 2/3] drivers: iio: adc: LTC2499 support
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Ciprian Regus <ciprian.regus@analog.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Aug 22, 2022 at 11:13 PM Jonathan Cameron <jic23@kernel.org> wrote:
+> On Mon, 22 Aug 2022 15:51:05 +0300
+> Ciprian Regus <ciprian.regus@analog.com> wrote:
 
+In reply to Jonathan's comments to answer his question and add more
+comments from me.
 
-On 22/08/2022 20:11, Dmitry Baryshkov wrote:
-> It makes no sense to have the OPP table for the DSI controllers in the
-> DSI1 PHY node. Move it to more logical dsi0 device node.
->
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+...
 
-Reviewed-by: Caleb Connolly <caleb@connolly.tech>
+> > Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/2499fe.pdf
+> >
+> > Signed-off-by: Ciprian Regus <ciprian.regus@analog.com>
 
-> ---
->   arch/arm64/boot/dts/qcom/sm8250.dtsi | 38 ++++++++++++++--------------
->   1 file changed, 19 insertions(+), 19 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/q=
-com/sm8250.dtsi
-> index bc773e210023..5843e46a3164 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> @@ -3571,6 +3571,25 @@ dsi0_out: endpoint {
->   =09=09=09=09=09=09};
->   =09=09=09=09=09};
->   =09=09=09=09};
-> +
-> +=09=09=09=09dsi_opp_table: opp-table {
-> +=09=09=09=09=09compatible =3D "operating-points-v2";
-> +
-> +=09=09=09=09=09opp-187500000 {
-> +=09=09=09=09=09=09opp-hz =3D /bits/ 64 <187500000>;
-> +=09=09=09=09=09=09required-opps =3D <&rpmhpd_opp_low_svs>;
-> +=09=09=09=09=09};
-> +
-> +=09=09=09=09=09opp-300000000 {
-> +=09=09=09=09=09=09opp-hz =3D /bits/ 64 <300000000>;
-> +=09=09=09=09=09=09required-opps =3D <&rpmhpd_opp_svs>;
-> +=09=09=09=09=09};
-> +
-> +=09=09=09=09=09opp-358000000 {
-> +=09=09=09=09=09=09opp-hz =3D /bits/ 64 <358000000>;
-> +=09=09=09=09=09=09required-opps =3D <&rpmhpd_opp_svs_l1>;
-> +=09=09=09=09=09};
-> +=09=09=09=09};
->   =09=09=09};
->
->   =09=09=09dsi0_phy: dsi-phy@ae94400 {
-> @@ -3663,25 +3682,6 @@ dsi1_phy: dsi-phy@ae96400 {
->   =09=09=09=09clock-names =3D "iface", "ref";
->
->   =09=09=09=09status =3D "disabled";
-> -
-> -=09=09=09=09dsi_opp_table: opp-table {
-> -=09=09=09=09=09compatible =3D "operating-points-v2";
-> -
-> -=09=09=09=09=09opp-187500000 {
-> -=09=09=09=09=09=09opp-hz =3D /bits/ 64 <187500000>;
-> -=09=09=09=09=09=09required-opps =3D <&rpmhpd_opp_low_svs>;
-> -=09=09=09=09=09};
-> -
-> -=09=09=09=09=09opp-300000000 {
-> -=09=09=09=09=09=09opp-hz =3D /bits/ 64 <300000000>;
-> -=09=09=09=09=09=09required-opps =3D <&rpmhpd_opp_svs>;
-> -=09=09=09=09=09};
-> -
-> -=09=09=09=09=09opp-358000000 {
-> -=09=09=09=09=09=09opp-hz =3D /bits/ 64 <358000000>;
-> -=09=09=09=09=09=09required-opps =3D <&rpmhpd_opp_svs_l1>;
-> -=09=09=09=09=09};
-> -=09=09=09=09};
->   =09=09=09};
->   =09=09};
->
-> --
-> 2.35.1
->
+Tag block mustn't have the blank line(s).
 
---
-Kind Regards,
-Caleb
+...
 
+> >  #include <linux/iio/iio.h>
+> >  #include <linux/iio/driver.h>
+> >  #include <linux/module.h>
+> > +#include <linux/property.h>
+> why?
+
+device_get_match_data() requires it.
+
+But why not sort them?
+
+> >  #include <linux/mod_devicetable.h>
+
+...
+
+> > -             *val = (be32_to_cpu(st->buf) >> 14) - (1 << 17);
+>
+> Old code here is less than ideal, should be reading into 3 bytes then using
+> the be24 accesors. Please fix whilst here.  You will need multiple paths here
+> depending on size.
+>
+> > +             *val = (be32_to_cpu(st->buf) >> st->sub_lsb) -
+> > +                     BIT(ddata->chip_info->resolution + 1);
+
+Shouldn't this use some kind of sign_extend()?
+
+Also with a temporary variable for chip info this line can be single.
+
+   struct ... *ci = ddata->chip_info;
+
+   ...BIT(ci->resolution + 1)
+
+...
+
+> > +     u32 resolution;
+
+Keep this in a way that the "longer lines go first".
+
+...
+
+> > +     resolution = st->common_ddata.chip_info->resolution;
+> > +     st->sub_lsb = 31 - (resolution + 1);
+> > +     st->recv_size = resolution / BITS_PER_BYTE + 1;
+
+BITS_TO_BYTES()
+
+...
+
+> >  static const struct i2c_device_id ltc2497_id[] = {
+> > -     { "ltc2497", 0 },
+> > +     { "ltc2497", TYPE_LTC2497 },
+> > +     { "ltc2499", TYPE_LTC2499 },
+
+Use pointers here like you have done for the OF table.
+
+> >       { }
+> >  };
+
+...
+
+> > +enum chip_type {
+> > +     TYPE_LTC2496,
+> > +     TYPE_LTC2497,
+> > +     TYPE_LTC2499
+
+Keep trailing comma.
+
+> > +};
+
+-- 
+With Best Regards,
+Andy Shevchenko
