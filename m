@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49E2559D07F
-	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 07:33:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C1C359D0B3
+	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 07:49:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240021AbiHWFcT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Aug 2022 01:32:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60052 "EHLO
+        id S240259AbiHWFsk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Aug 2022 01:48:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238558AbiHWFcR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 01:32:17 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 428C55D103
-        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 22:32:16 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id d23so13840434lfl.13
-        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 22:32:16 -0700 (PDT)
+        with ESMTP id S240255AbiHWFsj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 01:48:39 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43FC914D2B
+        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 22:48:32 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id bn9so4978496ljb.6
+        for <devicetree@vger.kernel.org>; Mon, 22 Aug 2022 22:48:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=R/QjFUcNKUdiXauvJpNpmHEGX/WH97nlgtVw8sVWY1g=;
-        b=TYmHBG9HD9Q1YM2al5mGOFB0/dXez1jKaL+dBGjSWlR4ECz3VY5V5pHNpv9UQ5jfAk
-         E4xPPuqeibjHcaeEq7/crPaaYl9QIYYqBrmi/wz9eQPJPByMtE8/dFh02hNt1/1hM0jA
-         /8K4F7gEmD+zNXMuHt0YK7MHImrsHYMazvW5yAIFjQYZFWt7Auh8CC9s217k3fvresQN
-         EuaKmkFB+YKGPzrq8Y0bNFdeGk9rNptxOo+3afQN1xrkn55MWjFQ5fh6XqtOLKiAR0al
-         prMKeLK94cKBna+PFB8BSnc3Wu93DhrQfbkbTkM2MO3w/+SrG5plPc2VCGIs4pjhA/1M
-         S4ZA==
+        bh=xjJQnSc1m/LkDSZsyd2cnnvHiVUTCt/MvJKy6Mk/Nng=;
+        b=V3twXRjftTua7vpFsPqNwd6umjrMhUKLmn/8JxwP6B8oksF50FXm77J7QKg/pfUr9/
+         Xkb5lrU6gEV+6vIy/BcaJMkGfZ6CZxXd7JVzLJXovDnoog0vhiVQpo/8giXlUPT7QcvD
+         nLlN8hiRP7BFw1yauIdoxlpXCHexbrJ+E9PW1MkanX0k0RE+amvWHeghciajRmvjnJlr
+         iLs9mc/SnldYB2Li7pqfMBglM6ViOBq6sDtdnKq7yob2h6j93CYuKpB1DZGBeTMcMX7A
+         hViX1ZBH5YK+RbH/6ZgPWNVOi+57qAH9dnEYrLAAaCI69h2XQADaDn1DFfXrsUI6vN6h
+         AObg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=R/QjFUcNKUdiXauvJpNpmHEGX/WH97nlgtVw8sVWY1g=;
-        b=1xjGvNgA9Rb0OCAPKOIrPLhD8tSefn61XT/LfqKbWCsAYi7m5mKXz5mxNhtnNBATHo
-         AZ0PaFlsguGIimCjX8eQCIZnmHErisK/4i0MXIEM2HyQ8NyQHyQR7KNM+ajLNZVF5CJk
-         9DwmD+fXRLfPC1PbZS7MNbcLZVySccAzhRoy6K6qAR0vNuiV5y/XeWrFfm71n/7NaVHq
-         m7Jpj429apq9ci6xJkB7RCJm4k3xJtFWd7DhWiyhU5s7it+45DycFU/OdQmK2rTPsDQL
-         4weWVjmT89gLFoQkrq2J3AGqQZvAp+TT3mOKMdkfF7yqWmPxR77y6uU6I9PKO/MWnkIU
-         WOuQ==
-X-Gm-Message-State: ACgBeo3NIDeUp2rX98PUlJmbH0FKeO6zmyiX06Ah0nKCQI1/87aXPMjv
-        IJRLg3OZLozIT1V4eeXBWUsxvQ==
-X-Google-Smtp-Source: AA6agR4OvDADMwaWRuLgwGpQwmAz8EFd9IyuXL6RMcnA9HrdZmz4xE5aeC+taMS+A4H2C29Y3KZO2Q==
-X-Received: by 2002:a05:6512:1507:b0:492:b9ae:5d51 with SMTP id bq7-20020a056512150700b00492b9ae5d51mr7677243lfb.14.1661232734412;
-        Mon, 22 Aug 2022 22:32:14 -0700 (PDT)
+        bh=xjJQnSc1m/LkDSZsyd2cnnvHiVUTCt/MvJKy6Mk/Nng=;
+        b=PoJDEubNaxv8ZJqRboO4GwEWDBD6ZMbGY/yPyUY195UoWYfModZ08sJylMC4/DRwqV
+         d0BHoiXVumH8SDW8/dqWG3Pr/Vnqej+DU8a4pydgJRv+o913Q/jbKA2YRNsvHHDXa9Ci
+         7zY3qs7x6sZagWO0jvGLIzCpzxihfKdkEdrzr47zDRhFU9mZ46dhNzXqT1HIZGiEcG+l
+         85M+UeVrxNTcvV0s2iFXsKBM0jDlWtzmfna7QXVCQCAnOahdHLOuxl6piWWwsPjTqkak
+         Mu3/qR5MzVX0FkwJIxZuJcB4C+2ciftM8qM3iQ4XskVXCQOaCFCYo5RcT23diWGfem4V
+         CHJg==
+X-Gm-Message-State: ACgBeo0wElQZYW54AdJMKyIUhtI8S4BFE75b9AncrM0YbXUG/O6r35j7
+        s73JlOtcI6MMq4hskD7gvp4BjA==
+X-Google-Smtp-Source: AA6agR4jma5MoJbeJO4WlmWXCFQ9yBES3F/wDdDwsAKT6M8Kkd+YbTCYKHlLgPgOGES1DIccYFUJ4A==
+X-Received: by 2002:a2e:b88f:0:b0:25f:efa1:a966 with SMTP id r15-20020a2eb88f000000b0025fefa1a966mr6183003ljp.67.1661233710517;
+        Mon, 22 Aug 2022 22:48:30 -0700 (PDT)
 Received: from [192.168.0.11] (89-27-92-210.bb.dnainternet.fi. [89.27.92.210])
-        by smtp.gmail.com with ESMTPSA id z28-20020a2eb53c000000b0026181a42284sm2163307ljm.88.2022.08.22.22.32.13
+        by smtp.gmail.com with ESMTPSA id b6-20020a056512070600b0047255d211b2sm895825lfs.225.2022.08.22.22.48.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Aug 2022 22:32:13 -0700 (PDT)
-Message-ID: <f56e69ae-809f-fe4e-a167-cc2ad10696f7@linaro.org>
-Date:   Tue, 23 Aug 2022 08:32:12 +0300
+        Mon, 22 Aug 2022 22:48:29 -0700 (PDT)
+Message-ID: <c9678e5b-2f8e-6672-a092-6848fb1637e9@linaro.org>
+Date:   Tue, 23 Aug 2022 08:48:28 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
@@ -77,7 +77,7 @@ Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -95,9 +95,14 @@ On 23/08/2022 05:20, Stephen Boyd wrote:
 > Is someone at Samsung going to pick up the Samsung clk driver patches
 > and send them as a PR? I didn't see anything last cycle.
 
-The DTS changes also wait for the ack on bindings (we need to split these).
+I found few other patches which were not applied:
+https://patchwork.kernel.org/project/linux-samsung-soc/list/?series=666278
+https://patchwork.kernel.org/project/linux-samsung-soc/patch/20220307033546.2075097-1-chi.minghao@zte.com.cn/
+https://patchwork.kernel.org/project/linux-samsung-soc/list/?series=646690
+https://patchwork.kernel.org/project/linux-samsung-soc/list/?series=654542
 
-Sylwester, shall I handle everything?
+I'll take all these to Samsung SoC and send to you Stephen. If anyone
+has objections or other ideas, feel free to propose other way.
 
 Best regards,
 Krzysztof
