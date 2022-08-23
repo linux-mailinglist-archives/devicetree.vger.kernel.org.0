@@ -2,93 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A2B5559D68E
-	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 11:12:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F23759D7BD
+	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 12:00:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348720AbiHWJMb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Aug 2022 05:12:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34168 "EHLO
+        id S241896AbiHWJQ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Aug 2022 05:16:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348628AbiHWJKf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 05:10:35 -0400
+        with ESMTP id S1349546AbiHWJQF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 05:16:05 -0400
 Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBD9D86883
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 01:31:14 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id m3so13005301lfg.10
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 01:31:14 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B6DA86FD8
+        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 01:32:24 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id l8so1163058lfc.12
+        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 01:32:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=jI4L08/oOi3vA6hn+7winSookomnCC3p3C6fWDFU1ZQ=;
-        b=sKEa4J+60AjbFouLxhTZ7FFrLc6wToA+E8YHmbFvZKo4SNSLs+EiU9GJmHLCt4QR0c
-         HBtnq/hax4zB6jlmw27N1BmPMQ6LtYwySctUfJGJzMamv9dvZMbLNe+31qlsAxJ4ROXE
-         vNMgTwPwEIua5mq8CI+tEUOZI8z81IHQ3zaoy4nCw6k3Hvxc8PZk9dwV8FZBX8N6VNM5
-         VOoaMV9eTmyN8POtmN/8p1ar6EH5oVaR0ZmL7scKHq2m6MYW+r3L0i7zSrLvuC21jzqm
-         AAwwAE0RhlVqTcG/Qy3CW/jMd5n/C7ZC3nX6mjfOvYXFQG/W9fiEHDrCITIDqWkreEB9
-         GCiQ==
+        bh=F+5yVrf2toWobmjjbMycRUMUYr1HibosAX8wZbYW6I8=;
+        b=ME5pga0xqukFaQ68m0vfi01ZcbRzB6yRE0fmlS7+txX0bQzWcwtEDRVyRioYOwi0MK
+         78InqOKpEzQjwwoKp2jLetMmVf+U5kGfjAGpCioYESzh0Nn7R6NnQEhEpy83phb2wUBE
+         vONvAXl1ssbqNdhWgsw2pgINK15PKwGEugYDYXQ0DvtuYmJnc+kHLoqrcq/t9TBGW18o
+         dZU7d/N5EaKR+aOL8epf9dLFNAFMKp9E+bD7gskVr4SPbXoi96eOAvH4hzX2GgWwnC3o
+         g1IWqumSlGK5va3jXsEv35nL23bMbFlCDl0w5NvXP0nYtKGxRoJwWq/DNhDBDzGG9reA
+         nMpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=jI4L08/oOi3vA6hn+7winSookomnCC3p3C6fWDFU1ZQ=;
-        b=o9YS8G+FaGt50orbn67i5kY0GncSDSuw9qVmiA5B4k50Vel9ufVWrjll6JEUYonkuv
-         3Tp1mezLNy1wbbEDTviEEqiSqmUJeXYFrSLo2/2eZeu9y5RcVPPlhFRZfCYlMwtOoul5
-         AvqxSJ8ruwY/tiOmlvwOQITZLOvkdUaq0hMug1C/rxnFY1IDa8DgUxNuL+ZwZEU7cOTg
-         LauYih/IaQyRu9mtie3sAUt1MST4ARoe1SL4bbfAwbRnToPv3PeayaG2fM/lJXHhCHZa
-         2sR4nG668mIIkd8e29FKUx92O8NGePQNt+81ZWxUGx9JZ79SATuosjyIuiALKX+Axg6f
-         82lg==
-X-Gm-Message-State: ACgBeo2sAcTC+vEHX6tuNxVElz0Ur3divxbmEyjBwheiohMDxX68VbRs
-        YPsWyYdVJfSVMguK4bcIrZEeXw==
-X-Google-Smtp-Source: AA6agR4c69hJpYe3G1HTqpbA3I/nOr5UehBAs7HWoQA/fd2Rt83G8RXxKWKGkcJln0g0NwpVQx+QSg==
-X-Received: by 2002:a05:6512:b87:b0:492:d829:36bf with SMTP id b7-20020a0565120b8700b00492d82936bfmr5558125lfv.193.1661243424994;
-        Tue, 23 Aug 2022 01:30:24 -0700 (PDT)
+        bh=F+5yVrf2toWobmjjbMycRUMUYr1HibosAX8wZbYW6I8=;
+        b=enIw++ciyxtdZdgEt4QklN93CJ2eF+HWyi2KmyfbU84rFpR1eg0v0MvGcLHrN9Hbyp
+         97hQQ5hCqhhKBgLCnbqP/RV7RJQvp/sfq799QTgmMtp4HwhWGBgiCtOyu95CMXLAX8rd
+         UITTg/75HN6Mzi5RyVY7qdLAuRNSIjItwCsrqr5G51sPxES9Z+P/kKW0BnifskicOd74
+         B6EEVqzMxtsUN7fYTIEZIwfE13VZUuGKuvv6OLiJDX/QPWIthapwMLlZxN9C9KylA8hu
+         tJyTuW/UAvIMNq1dTKxtuff3Y+beop0xqzrCkbCihh2FaAiDYwn4qep3VEbam1T9hONP
+         l7WA==
+X-Gm-Message-State: ACgBeo1h9TLTPbqPGRuyNrZu4wpDJqZuo81vH3ilda9d/35zrybLPntb
+        KkuJp4g9/4kAPcfQkLMsS+VucA==
+X-Google-Smtp-Source: AA6agR5US57wd92jMkSXVjf68U7K8XzRGHmQSa/B4s1jL0IZJ4zZqecKAkNJuoKOArqf5pabIV5IRQ==
+X-Received: by 2002:a05:6512:3d08:b0:48b:123e:fcf3 with SMTP id d8-20020a0565123d0800b0048b123efcf3mr8057965lfv.418.1661243543099;
+        Tue, 23 Aug 2022 01:32:23 -0700 (PDT)
 Received: from [192.168.0.11] (89-27-92-210.bb.dnainternet.fi. [89.27.92.210])
-        by smtp.gmail.com with ESMTPSA id v20-20020a056512349400b0047f6b4f82d1sm2387521lfr.250.2022.08.23.01.30.23
+        by smtp.gmail.com with ESMTPSA id v20-20020a05651203b400b0048a83ab2d32sm1193907lfp.0.2022.08.23.01.32.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Aug 2022 01:30:24 -0700 (PDT)
-Message-ID: <afc181cd-46b7-4c69-d27a-d2005904f48a@linaro.org>
-Date:   Tue, 23 Aug 2022 11:30:22 +0300
+        Tue, 23 Aug 2022 01:32:22 -0700 (PDT)
+Message-ID: <f621a841-593f-cfed-9560-64c011a00bdd@linaro.org>
+Date:   Tue, 23 Aug 2022 11:32:21 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH 16/20] dt-bindings: memory: snps: Detach Zynq DDRC
- controller support
+Subject: Re: [PATCH,2/2] pwm: mtk-disp: Fix the parameters calculated by the
+ enabled flag of disp_pwm.
 Content-Language: en-US
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Rob Herring <robh@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Borislav Petkov <bp@alien8.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Tony Luck <tony.luck@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Manish Narani <manish.narani@xilinx.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Michail Ivanov <Michail.Ivanov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Punnaiah Choudary Kalluri 
-        <punnaiah.choudary.kalluri@xilinx.com>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        James Morse <james.morse@arm.com>,
-        Robert Richter <rric@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-edac@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220822190730.27277-1-Sergey.Semin@baikalelectronics.ru>
- <20220822190730.27277-17-Sergey.Semin@baikalelectronics.ru>
- <a5a15749-1047-74ea-831e-54d27a6d6cdf@linaro.org>
- <835938e3-e4f5-5029-9373-5dd59bc3b625@linaro.org>
- <20220823082748.td6pwkzj5grfno77@mobilestation>
+To:     xinlei.lee@mediatek.com, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com
+Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <1661239875-19841-1-git-send-email-xinlei.lee@mediatek.com>
+ <1661239875-19841-3-git-send-email-xinlei.lee@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220823082748.td6pwkzj5grfno77@mobilestation>
+In-Reply-To: <1661239875-19841-3-git-send-email-xinlei.lee@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -96,52 +80,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/08/2022 11:27, Serge Semin wrote:
-> On Tue, Aug 23, 2022 at 11:22:08AM +0300, Krzysztof Kozlowski wrote:
->> On 23/08/2022 11:17, Krzysztof Kozlowski wrote:
->>> On 22/08/2022 22:07, Serge Semin wrote:
->>>> The Zynq A05 DDRC controller has nothing in common with DW uMCTL2 DDRC:
->>>> the CSRs layout is absolutely different and it doesn't has IRQ unlike DW
->>>> uMCTL2 DDR controller of all versions (v1.x, v2.x and v3.x). Thus there is
->>>> no any reason to have these controllers described by the same bindings.
->>>> Thus let's split them up.
->>>>
->>>> While at it rename the original Synopsys uMCTL2 DT-schema file to a more
->>>> descriptive - snps,dw-umctl2-ddrc.yaml and add a more detailed title and
->>>> description of the device bindings.
->>>
->>> Filename should be based on compatible, so if renaming then
->>> snps,ddrc-3.80a.yaml or snps,ddrc.yaml... which leads to original
->>> filename anyway. Therefore nack for rename.
->>>
->>> BTW, if you perform renames, generate patches with proper -M/-C/-B
->>> arguments so this is detected.
->>>
->>>
->>>>
->>>> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
->>>> --->  .../snps,dw-umctl2-ddrc.yaml                  | 51 +++++++++++++
->>>
->>> This is a mess. I did not get any cover letters, any other patches any
->>> description of relation between this and your other one.
->>>
->>> It seems you make independent and conflicting changes to the same file,
->>> so this has to be properly organized.
->>>
->>> Send entire patchset with cover letter with description of all
->>> dependencies to all maintainers.
->>>
->>> This is unreviewable now, so a no.
->>
+On 23/08/2022 10:31, xinlei.lee@mediatek.com wrote:
+> From: xinlei lee <xinlei.lee@mediatek.com>
 > 
->> And also untestable by Rob's bot, so will have to wait.
+> In the original mtk_disp_pwm_get_state() function, the result of reading
+> con0 & BIT(0) is enabled as disp_pwm. 
+> In order to conform to the register table, we should use the disp_pwm 
+> base address as the enabled judgment.
 > 
-> For what reason it's untestable? The patch has no dependencies from
-> any other patchset.
+> Fixes: 3f2b16734914 ("pwm: mtk-disp: Implement atomic API .get_state()")
+> Signed-off-by: xinlei lee <xinlei.lee@mediatek.com>
 
-This one is testable, but the next one is not, because it depends on
-something. I don't see the reason to split the bindings between
-different patchsets.
+This is a fix so not really related with the change adding new device.
+Send them separately in the future.
 
 Best regards,
 Krzysztof
