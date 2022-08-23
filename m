@@ -2,118 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CFB759D55C
-	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 11:09:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 26E6E59D5C0
+	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 11:10:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242019AbiHWIg4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Aug 2022 04:36:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35250 "EHLO
+        id S1346166AbiHWIip (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Aug 2022 04:38:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344297AbiHWIfV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 04:35:21 -0400
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6678275CE3;
-        Tue, 23 Aug 2022 01:16:44 -0700 (PDT)
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 27N75sfw011035;
-        Tue, 23 Aug 2022 04:15:49 -0400
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3j2whtmpgc-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 23 Aug 2022 04:15:49 -0400
-Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 27N8Fmem006842
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 23 Aug 2022 04:15:48 -0400
-Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
- ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Tue, 23 Aug 2022 04:15:47 -0400
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
- ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Tue, 23 Aug 2022 04:15:47 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Tue, 23 Aug 2022 04:15:47 -0400
-Received: from george-precision5560.ad.analog.com ([10.48.65.128])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 27N8FWog015257;
-        Tue, 23 Aug 2022 04:15:38 -0400
-From:   George Mois <george.mois@analog.com>
-To:     <jic23@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     <lucas.p.stankus@gmail.com>, George Mois <george.mois@analog.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 1/2] bindings: iio: accel: extend adxl313 documentation file
-Date:   Tue, 23 Aug 2022 11:15:19 +0300
-Message-ID: <20220823081520.30313-1-george.mois@analog.com>
-X-Mailer: git-send-email 2.30.2
+        with ESMTP id S1344243AbiHWIhO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 04:37:14 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A466A7820C
+        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 01:17:57 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id bq23so9602982lfb.7
+        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 01:17:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=9OqpWtEeuh8ypX1cXc7uAcrCW4m6r/tanmkI11A3Ifk=;
+        b=eTFAgLCB/8cpoPAhYcbVqIDJ2pl/IkkvWPYmcey5kKfMuCCk0rGizy9SyweRQyHtHl
+         WI5+Zy6cGOh/076pcrjt4lRApsuZLiwfqc8b0BBKrHceyBIeTQtrd5DooiBwhCozMI1z
+         +K58OvvT8GV8rPsenMeI2YUun/SFPmcjq31yfu6XKtvJ3U99AXwDZg2uoTyInitkHNLT
+         9ZksMgIJGPUHGoJ6vYxJk8KK4+nmKbPiOp34Y52JdEeN/18JcIS9CvFWXiEXCPo86W9/
+         sqkYy610lz1XikvfXKtzIpU1RfwKLioMZ0hyKegAHDfT3X2aIxP+gQiXMuiOfvF2+wWo
+         pzWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=9OqpWtEeuh8ypX1cXc7uAcrCW4m6r/tanmkI11A3Ifk=;
+        b=Ywf4BQzJh11v/VOIzhMfId/LITTdo7z3sEd7UFN2uMtXFrFQj9nCfrSutmk7+r66Gg
+         P8vEnU3HnlnPcooUGTXRS+23cetUKkk+31c3axtrhKoRXfzRAv1+dy3eJvddOXXT4SQN
+         9+ry1nPCLgiTmVH2Kv7lmzPUsXuHJKzcfrrabSIAi2lSzW0N+cmcwbrTP9oQfuNdHole
+         p02n5qjEScIqZ2Q81LiKXMBjqGatg8EvlTDDv0hqtPXG4xJGvcoAuYCRpZIaHsWBL7SX
+         FMprfc/8MAGK+24sZYTHZrUDlxpANu+cFvs45smHYDMCEVkDC+Xi7Q480gF82GiX3s0D
+         U2Hg==
+X-Gm-Message-State: ACgBeo2P7+RzjEWG6AzMvaifwlPsW4Irqmrga7IZ/+gDmyPLh02i4ZGv
+        6Im6L5Pc7mLaun8xeupqvpqsGQ==
+X-Google-Smtp-Source: AA6agR53e29e30P7d7REqgiaaLN5FMBaCGv2iuqS7/6pzPEEi/wAmrdSXEzVfrevBl6W4oRZ5Y2p5g==
+X-Received: by 2002:a05:6512:3b8e:b0:492:f799:76b9 with SMTP id g14-20020a0565123b8e00b00492f79976b9mr544446lfv.207.1661242645734;
+        Tue, 23 Aug 2022 01:17:25 -0700 (PDT)
+Received: from [192.168.0.11] (89-27-92-210.bb.dnainternet.fi. [89.27.92.210])
+        by smtp.gmail.com with ESMTPSA id s8-20020a19ad48000000b0048ae316caf0sm2379428lfd.18.2022.08.23.01.17.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Aug 2022 01:17:24 -0700 (PDT)
+Message-ID: <a5a15749-1047-74ea-831e-54d27a6d6cdf@linaro.org>
+Date:   Tue, 23 Aug 2022 11:17:23 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-ORIG-GUID: myYw96VtKdCjSHSw8uZtuZAns7rHYWKk
-X-Proofpoint-GUID: myYw96VtKdCjSHSw8uZtuZAns7rHYWKk
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.517,FMLib:17.11.122.1
- definitions=2022-08-23_04,2022-08-22_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 suspectscore=0
- bulkscore=0 priorityscore=1501 clxscore=1011 malwarescore=0 mlxscore=0
- phishscore=0 adultscore=0 lowpriorityscore=0 impostorscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2207270000 definitions=main-2208230032
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH 16/20] dt-bindings: memory: snps: Detach Zynq DDRC
+ controller support
+Content-Language: en-US
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Rob Herring <robh@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Borislav Petkov <bp@alien8.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Tony Luck <tony.luck@intel.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Manish Narani <manish.narani@xilinx.com>
+Cc:     Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Michail Ivanov <Michail.Ivanov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Punnaiah Choudary Kalluri 
+        <punnaiah.choudary.kalluri@xilinx.com>,
+        Dinh Nguyen <dinguyen@kernel.org>,
+        James Morse <james.morse@arm.com>,
+        Robert Richter <rric@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-edac@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220822190730.27277-1-Sergey.Semin@baikalelectronics.ru>
+ <20220822190730.27277-17-Sergey.Semin@baikalelectronics.ru>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220822190730.27277-17-Sergey.Semin@baikalelectronics.ru>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Extend the adi,adxl313.yaml file with information regrding the
-ADXL312 and ADXL314 devices.
+On 22/08/2022 22:07, Serge Semin wrote:
+> The Zynq A05 DDRC controller has nothing in common with DW uMCTL2 DDRC:
+> the CSRs layout is absolutely different and it doesn't has IRQ unlike DW
+> uMCTL2 DDR controller of all versions (v1.x, v2.x and v3.x). Thus there is
+> no any reason to have these controllers described by the same bindings.
+> Thus let's split them up.
+> 
+> While at it rename the original Synopsys uMCTL2 DT-schema file to a more
+> descriptive - snps,dw-umctl2-ddrc.yaml and add a more detailed title and
+> description of the device bindings.
 
-Signed-off-by: George Mois <george.mois@analog.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
-no changes in v2.
- .../devicetree/bindings/iio/accel/adi,adxl313.yaml     | 10 +++++++---
- 1 file changed, 7 insertions(+), 3 deletions(-)
+Filename should be based on compatible, so if renaming then
+snps,ddrc-3.80a.yaml or snps,ddrc.yaml... which leads to original
+filename anyway. Therefore nack for rename.
 
-diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adxl313.yaml b/Documentation/devicetree/bindings/iio/accel/adi,adxl313.yaml
-index d6afc1b8c272..59d48ff1a16c 100644
---- a/Documentation/devicetree/bindings/iio/accel/adi,adxl313.yaml
-+++ b/Documentation/devicetree/bindings/iio/accel/adi,adxl313.yaml
-@@ -4,20 +4,24 @@
- $id: http://devicetree.org/schemas/iio/accel/adi,adxl313.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: Analog Devices ADXL313 3-Axis Digital Accelerometer
-+title: Analog Devices ADXL312, ADXL313, and ADXL314 3-Axis Digital Accelerometers
- 
- maintainers:
-   - Lucas Stankus <lucas.p.stankus@gmail.com>
- 
- description: |
--  Analog Devices ADXL313 3-Axis Digital Accelerometer that supports
--  both I2C & SPI interfaces.
-+  Analog Devices ADXL312, ADXL313, and ADXL314 3-Axis Digital Accelerometer that
-+  support both I2C & SPI interfaces.
-+    https://www.analog.com/en/products/adxl312.html
-     https://www.analog.com/en/products/adxl313.html
-+    https://www.analog.com/en/products/adxl314.html
- 
- properties:
-   compatible:
-     enum:
-+      - adi,adxl312
-       - adi,adxl313
-+      - adi,adxl314
- 
-   reg:
-     maxItems: 1
--- 
-2.30.2
+BTW, if you perform renames, generate patches with proper -M/-C/-B
+arguments so this is detected.
 
+
+> 
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> --->  .../snps,dw-umctl2-ddrc.yaml                  | 51 +++++++++++++
+
+This is a mess. I did not get any cover letters, any other patches any
+description of relation between this and your other one.
+
+It seems you make independent and conflicting changes to the same file,
+so this has to be properly organized.
+
+Send entire patchset with cover letter with description of all
+dependencies to all maintainers.
+
+This is unreviewable now, so a no.
+
+Best regards,
+Krzysztof
