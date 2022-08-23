@@ -2,93 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A679E59DDDF
-	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 14:29:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0BFC59E07B
+	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 14:38:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243339AbiHWLdJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Aug 2022 07:33:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48516 "EHLO
+        id S1352807AbiHWLmW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Aug 2022 07:42:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60184 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357971AbiHWLcG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 07:32:06 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF4CC760F4;
-        Tue, 23 Aug 2022 02:26:21 -0700 (PDT)
-X-UUID: 9ae1a94b30e04a288145f9bc64f03866-20220823
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=/TbxRyzdztn1NiJp5R3HW5/9g2+zp5DPvsdzpL6ZGWw=;
-        b=UWQ861MW8eG1JE2iMpavk3CeEF1HT7lm6Y4YVx1ZrRPSTXWQxvhXlfqFejKfFjeMb2GjyRiLAx1UTPi/vmOXHQkNYCpNBe8VJQMd0MvD+jo/6Jfu2ahI97QiKOjinEQsLs8OCldY4FOtKB7/xbCWzqIIXxEhaSEz3aCVMOhbUY8=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.10,REQID:503480c3-383d-4958-9c17-0626e565c039,OB:0,L
-        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_
-        Ham,ACTION:release,TS:0
-X-CID-META: VersionHash:84eae18,CLOUDID:036958cf-20bd-4e5e-ace8-00692b7ab380,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:-5,EDM:-3,IP:nil,URL:0,File:ni
-        l,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 9ae1a94b30e04a288145f9bc64f03866-20220823
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw02.mediatek.com
-        (envelope-from <miles.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1248388900; Tue, 23 Aug 2022 17:26:17 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Tue, 23 Aug 2022 17:26:15 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.15 via Frontend Transport; Tue, 23 Aug 2022 17:26:15 +0800
-From:   Miles Chen <miles.chen@mediatek.com>
-To:     <xinlei.lee@mediatek.com>
-CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <devicetree@vger.kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <linux-pwm@vger.kernel.org>,
-        <matthias.bgg@gmail.com>, <robh+dt@kernel.org>,
-        <thierry.reding@gmail.com>, <u.kleine-koenig@pengutronix.de>
-Subject: Re: [PATCH,2/2] pwm: mtk-disp: Fix the parameters calculated by the enabled flag of disp_pwm.
-Date:   Tue, 23 Aug 2022 17:26:15 +0800
-Message-ID: <20220823092615.1765-1-miles.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <1661239875-19841-3-git-send-email-xinlei.lee@mediatek.com>
-References: <1661239875-19841-3-git-send-email-xinlei.lee@mediatek.com>
+        with ESMTP id S1357895AbiHWLjc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 07:39:32 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EC7E70E55;
+        Tue, 23 Aug 2022 02:28:34 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 27N9RwWQ080103;
+        Tue, 23 Aug 2022 04:27:58 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1661246878;
+        bh=xd4qm/j7upLytEKeiy06TJdA6DbvK6VC227evNzbywg=;
+        h=Date:CC:Subject:To:References:From:In-Reply-To;
+        b=MmhNIicLemZVBqA7iUZ+/2S9/VTqObVudRkclB6P03U/ynv1XIahQKCKFvLQL5mlE
+         l7SrT3cog495av+XnkJFY5VoOaCPtzsEC9AMOTPKdLFeIZhIi47KkYu9K5bsxyFbaP
+         ehswb6ecd5j3bxcZMf2/9FPNewy6Z1pJleyqVxq8=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 27N9RwZc068060
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 23 Aug 2022 04:27:58 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 23
+ Aug 2022 04:27:58 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Tue, 23 Aug 2022 04:27:58 -0500
+Received: from [10.24.69.241] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 27N9RsMR112681;
+        Tue, 23 Aug 2022 04:27:55 -0500
+Message-ID: <7cd7e745-11d1-476b-a7f6-3131a4ad2bd3@ti.com>
+Date:   Tue, 23 Aug 2022 14:57:53 +0530
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+CC:     <lee.jones@linaro.org>, <krzysztof.kozlowski@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <kishon@ti.com>,
+        <vkoul@kernel.org>, <dan.carpenter@oracle.com>,
+        <grygorii.strashko@ti.com>, <rogerq@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <s-vadapalli@ti.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: phy: ti: phy-gmii-sel: Add bindings
+ for J7200
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+References: <20220822065631.27933-1-s-vadapalli@ti.com>
+ <20220822065631.27933-2-s-vadapalli@ti.com>
+ <20220822214126.GA896562-robh@kernel.org>
+From:   Siddharth Vadapalli <s-vadapalli@ti.com>
+In-Reply-To: <20220822214126.GA896562-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> In the original mtk_disp_pwm_get_state() function, the result of reading
-> con0 & BIT(0) is enabled as disp_pwm. 
-> In order to conform to the register table, we should use the disp_pwm 
-> base address as the enabled judgment.
-> 
-> Fixes: 3f2b16734914 ("pwm: mtk-disp: Implement atomic API .get_state()")
-> Signed-off-by: xinlei lee <xinlei.lee@mediatek.com>
-> ---
->  drivers/pwm/pwm-mtk-disp.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pwm/pwm-mtk-disp.c b/drivers/pwm/pwm-mtk-disp.c
-> index c605013e4114..50425cd1de61 100644
-> --- a/drivers/pwm/pwm-mtk-disp.c
-> +++ b/drivers/pwm/pwm-mtk-disp.c
-> @@ -197,7 +197,7 @@ static void mtk_disp_pwm_get_state(struct pwm_chip *chip,
->  	rate = clk_get_rate(mdp->clk_main);
->  	con0 = readl(mdp->base + mdp->data->con0);
->  	con1 = readl(mdp->base + mdp->data->con1);
-> -	state->enabled = !!(con0 & BIT(0));
-> +	state->enabled = !!(readl(mdp->base) & BIT(0));
->  	clk_div = FIELD_GET(PWM_CLKDIV_MASK, con0);
->  	period = FIELD_GET(PWM_PERIOD_MASK, con1);
->  	/*
+Hello Rob,
 
-Reviewed-by: Miles Chen <miles.chen@mediatek.com> 
+On 23/08/22 03:11, Rob Herring wrote:
+> On Mon, Aug 22, 2022 at 12:26:30PM +0530, Siddharth Vadapalli wrote:
+>> TI's J7200 SoC supports additional PHY modes like QSGMII and SGMII
+>> that are not supported on earlier SoCs. Add a compatible for it.
+>>
+>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+>> ---
+>>  .../mfd/ti,j721e-system-controller.yaml       |  6 ++++
+>>  .../bindings/phy/ti,phy-gmii-sel.yaml         | 30 ++++++++++++++++++-
+>>  2 files changed, 35 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml b/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
+>> index 73cffc45e056..466724cb4157 100644
+>> --- a/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
+>> +++ b/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
+>> @@ -54,6 +54,12 @@ patternProperties:
+>>      description:
+>>        Clock provider for TI EHRPWM nodes.
+>>  
+>> +  "phy@[0-9a-f]+$":
+>> +    type: object
+>> +    $ref: ../phy/ti,phy-gmii-sel.yaml
+> 
+> /schemas/phy/...
 
+Thank you for reviewing the patch. I will update $ref to
+/schemas/phy/phy-provider.yaml.
+
+> 
+>> +    description:
+>> +      This is the register to set phy mode through phy-gmii-sel driver.
+>> +
+>>  required:
+>>    - compatible
+>>    - reg
+>> diff --git a/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml b/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml
+>> index ff8a6d9eb153..0ffb97f1a77c 100644
+>> --- a/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml
+>> +++ b/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml
+>> @@ -53,12 +53,24 @@ properties:
+>>        - ti,am43xx-phy-gmii-sel
+>>        - ti,dm814-phy-gmii-sel
+>>        - ti,am654-phy-gmii-sel
+>> +      - ti,j7200-cpsw5g-phy-gmii-sel
+>>  
+>>    reg:
+>>      maxItems: 1
+>>  
+>>    '#phy-cells': true
+>>  
+>> +  ti,qsgmii-main-ports:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>> +    description: |
+>> +      Required only for QSGMII mode. Array to select the port for
+>> +      QSGMII main mode. Rest of the ports are selected as QSGMII_SUB
+>> +      ports automatically. Any one of the 4 CPSW5G ports can act as the
+>> +      main port with the rest of them being the QSGMII_SUB ports.
+>> +    items:
+>> +      minimum: 1
+>> +      maximum: 4
+>> +
+>>  allOf:
+>>    - if:
+>>        properties:
+>> @@ -73,6 +85,22 @@ allOf:
+>>          '#phy-cells':
+>>            const: 1
+>>            description: CPSW port number (starting from 1)
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - ti,j7200-cpsw5g-phy-gmii-sel
+>> +    then:
+>> +      properties:
+>> +        '#phy-cells':
+>> +          const: 1
+>> +          description: CPSW port number (starting from 1)
+>> +        ti,qsgmii-main-ports:
+>> +          maxItems: 1
+> 
+> If the array size can only ever be 1, then it's a uint32, not a 
+> uint32-array.
+
+For the current device, there can be only one QSGMII main port and
+uint32 will be sufficient. However, I plan to send patches for TI's
+J721e device which supports up to 2 QSGMII main ports. I wish to
+implement the property such that it can be reused by J721e. For this
+reason, I am defining the property as a uint32-array. With this
+implementation, J7200 will use the property as an array with one
+element, while J721e will use the property as an array with two
+elements. This is being done to avoid adding a new property in the
+future just for J721e. Please let me know if this is fine.
+
+Regards,
+Siddharth.
