@@ -2,79 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 078A559E84F
-	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 19:07:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C75459E7B9
+	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 18:43:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343571AbiHWRAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Aug 2022 13:00:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60072 "EHLO
+        id S245591AbiHWQnj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Aug 2022 12:43:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343579AbiHWQ7f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 12:59:35 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F339BD2AC
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 07:13:24 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id u15so19021974ejt.6
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 07:13:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc;
-        bh=R3+PgxM8z5XizNVDlTIKe8aLZ80jC+MqfgMZyAGS5D4=;
-        b=FDDV7apJRIiE2DzIe56wIm0optzGxjCbo8HJG5mD8+1twp0EVv4WS9APAyLEy06J+H
-         5uc7xlKxvdIALiuK27lTdGfrX96Gh/aEYbefWe/pxZ+y0Wsk3VIdwW7PJo9wdIPx+z4i
-         /OhVbsRv320afGgESBwnm0HH8Nz1Phj0F7YrM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc;
-        bh=R3+PgxM8z5XizNVDlTIKe8aLZ80jC+MqfgMZyAGS5D4=;
-        b=MCZEw+BOl/ZsIpeXzKOVK//qrDZh2sokINf7azJpHKlsq7cJmCZZbj4XTz04hJfVy/
-         sKWVP4KDCYumGWad3MsoKI7bBry95nHMnjyCQzhK/rnqojzFLiaoeB7p/S/jle6K72Ow
-         rAnrdwNM7/JIStmzfbaTRWUQiOv7rWpDlt/Ntv/AFBa6LWfRelo4cJ6mNhWG4MgQD9uI
-         gGwN9SBwkUrdt8j3/ILci4IF+LATeUqefX3nrzvswBJbgy8fWW9QJM2i7mRmznPliFzO
-         Ip/UsadBGmGepyoXa37zqgOvXqXDqjxBGxihAhD+GhPw1qU1Glx1ZzWwbIFE4zBkOxjf
-         qqZw==
-X-Gm-Message-State: ACgBeo1V+ZbON6gwycA7c8FEaU3/FxtPkZ8+mWs1S0++sNU1utGr8GhZ
-        Z+9xSprwnBfuQw+JnZYW3lQxdkg1jPTo7JbvNvw=
-X-Google-Smtp-Source: AA6agR4ycwfahxeolWugc0r+fRnuycMFsgdAkgrSNlKNHDbgkvrEgap4h1nmC14Hdfofl1aupkukQg==
-X-Received: by 2002:a17:907:28d5:b0:73d:a37b:2a2e with SMTP id en21-20020a17090728d500b0073da37b2a2emr1716857ejc.436.1661264002435;
-        Tue, 23 Aug 2022 07:13:22 -0700 (PDT)
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com. [209.85.221.53])
-        by smtp.gmail.com with ESMTPSA id q22-20020a1709064cd600b007306d478c62sm7488429ejt.62.2022.08.23.07.13.21
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Aug 2022 07:13:21 -0700 (PDT)
-Received: by mail-wr1-f53.google.com with SMTP id u14so17160041wrq.9
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 07:13:21 -0700 (PDT)
-X-Received: by 2002:a05:6000:507:b0:225:5019:803b with SMTP id
- a7-20020a056000050700b002255019803bmr7303537wrf.617.1661264001119; Tue, 23
- Aug 2022 07:13:21 -0700 (PDT)
+        with ESMTP id S244922AbiHWQlD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 12:41:03 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E27DAE2C7F;
+        Tue, 23 Aug 2022 07:36:27 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 27NDMwqx020875;
+        Tue, 23 Aug 2022 14:35:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=6fn2CweGoHgya+2f7Ycyc4pUnLkSVsKXAd7bStPGUB8=;
+ b=j9BLx1ZLu3wpqeSX9ENgRVONBz2+SATIc0x6R9vKU3PyybRIJ9LoOQe5x8E9krx8LMnK
+ MDqMfkUsPOv68t8QmR5PFYyvZlnjFUOfwSzHo2zdBawfk7+2IsI9by8MoMYn/NJpvx23
+ l8P6n5HvrBR969aoOjyx+286KzUF/DecT4hBVpLu9djQpdoUblYHN4/r5KZaEz6P7/jR
+ qFpaJYoMCPklTS0e46nLnnljq4o9dfmdrmMp2DhxXNsW5vOyDkPFG0EoiQI67mE7oy/L
+ xv57jN9u4vythO++GNz7qAjbPLkNLohCpUhoENtw/hpXxtbjF2uNGUCN5HQftr3NO+ZH TA== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3j4t6xt2ph-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 23 Aug 2022 14:35:44 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 27NEZhAL018905
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 23 Aug 2022 14:35:43 GMT
+Received: from [10.216.11.8] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Tue, 23 Aug
+ 2022 07:35:37 -0700
+Message-ID: <5346e9c8-847d-d39e-5fe9-fbc393bcd57d@quicinc.com>
+Date:   Tue, 23 Aug 2022 20:05:34 +0530
 MIME-Version: 1.0
-References: <20220822074139.3810-1-jensenhuang@friendlyarm.com> <23552842.6Emhk5qWAg@diego>
-In-Reply-To: <23552842.6Emhk5qWAg@diego>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 23 Aug 2022 07:13:06 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=W-ajJDfYcP3P8Jyk_KgsUAbdTtmwiNXqJ=Ab2ojgrUGw@mail.gmail.com>
-Message-ID: <CAD=FV=W-ajJDfYcP3P8Jyk_KgsUAbdTtmwiNXqJ=Ab2ojgrUGw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: rockchip: add enable-strobe-pulldown to emmc
- phy on rk3399
-To:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Chris Ruehl <chris.ruehl@gtsys.com.hk>,
-        Jensen Huang <jensenhuang@friendlyarm.com>,
-        Brian Norris <briannorris@chromium.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [RESEND v5 3/7] remoteproc: qcom: Add compatible name for SC7280
+ ADSP
+Content-Language: en-US
+To:     Stephen Boyd <swboyd@chromium.org>, <agross@kernel.org>,
+        <bgoswami@quicinc.com>, <bjorn.andersson@linaro.org>,
+        <broonie@kernel.org>, <devicetree@vger.kernel.org>,
+        <judyhsiao@chromium.org>, <lgirdwood@gmail.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-remoteproc@vger.kernel.org>, <perex@perex.cz>,
+        <quic_plai@quicinc.com>, <quic_rohkumar@quicinc.com>,
+        <robh+dt@kernel.org>, <srinivas.kandagatla@linaro.org>,
+        <tiwai@suse.com>
+References: <1661156523-22611-1-git-send-email-quic_srivasam@quicinc.com>
+ <1661156523-22611-4-git-send-email-quic_srivasam@quicinc.com>
+ <CAE-0n52iLf0R0ovrpzMs0jp_Ty-RsONy0gcUvDsBvCz38R1fWw@mail.gmail.com>
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Organization: Qualcomm
+In-Reply-To: <CAE-0n52iLf0R0ovrpzMs0jp_Ty-RsONy0gcUvDsBvCz38R1fWw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: oT9_wJEsHpKdwh59s5YAJVVVxdKYY8oh
+X-Proofpoint-ORIG-GUID: oT9_wJEsHpKdwh59s5YAJVVVxdKYY8oh
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.517,FMLib:17.11.122.1
+ definitions=2022-08-23_05,2022-08-22_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 lowpriorityscore=0
+ priorityscore=1501 phishscore=0 impostorscore=0 clxscore=1015
+ malwarescore=0 bulkscore=0 spamscore=0 suspectscore=0 adultscore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2207270000 definitions=main-2208230059
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -83,36 +88,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-On Tue, Aug 23, 2022 at 4:53 AM Heiko St=C3=BCbner <heiko@sntech.de> wrote:
+On 8/23/2022 8:35 AM, Stephen Boyd wrote:
+Thanks for your time Stephen!!!
+> Quoting Srinivasa Rao Mandadapu (2022-08-22 01:21:59)
+>> diff --git a/drivers/remoteproc/qcom_q6v5_adsp.c b/drivers/remoteproc/qcom_q6v5_adsp.c
+>> index d0b767f..6d409ca 100644
+>> --- a/drivers/remoteproc/qcom_q6v5_adsp.c
+>> +++ b/drivers/remoteproc/qcom_q6v5_adsp.c
+>> @@ -701,6 +701,22 @@ static const struct adsp_pil_data adsp_resource_init = {
+>>          },
+>>   };
+>>
+>> +static const struct adsp_pil_data adsp_sc7280_resource_init = {
+>> +       .crash_reason_smem = 423,
+>> +       .firmware_name = "adsp.mbn",
+>> +       .load_state = "adsp",
+>> +       .ssr_name = "lpass",
+>> +       .sysmon_name = "adsp",
+>> +       .ssctl_id = 0x14,
+>> +       .is_wpss = false,
+> This can be left out, it's the default.
+Okay. Will remove it and re-spin the patch.
 >
-> Am Montag, 22. August 2022, 09:41:39 CEST schrieb Jensen Huang:
-> > Internal pull-down for strobe line (GRF_EMMCPHY_CON2[9]) was disabled
-> > by commit 8b5c2b45b8f0, which causes I/O error in HS400 mode.
-> >
-> > Tested on NanoPC-T4.
-> >
-> > Fixes: 8b5c2b45b8f0 ("phy: rockchip: set pulldown for strobe line in dt=
-s")
-> > Signed-off-by: Jensen Huang <jensenhuang@friendlyarm.com>
->
-> ok, so this looks like it restores previous functionality.
->
-> I'm just wondering as the "offending" patch is from 2020, why this
-> only turns up now. Any ideas?
-
-Ah, I see. So before the offending patch we used to just leave the
-pull state at whatever the default was when the kernel was booted.
-After the offending patch we chose a default.
-
-On kevin I see an external pull down on this line. Enabling both the
-internal and external is probably not a huge deal, it'll just affect
-the strength of the pull.
-
-On bob I _think_ the external pull down is also stuffed.
-
-...so I guess that would explain why it didn't cause a problem for at
-least those two boards?
-
--Doug
+>> +       .adsp_sandbox_needed = true,
+>> +       .auto_boot = true,
+>> +       .clk_ids = (const char*[]) {
+>> +               "gcc_cfg_noc_lpass", NULL
+>> +       },
+>> +       .num_clks = 1,
