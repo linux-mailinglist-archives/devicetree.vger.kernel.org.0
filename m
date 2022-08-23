@@ -2,54 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 326F859ED39
-	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 22:17:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DFF459ED43
+	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 22:25:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232935AbiHWURE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Aug 2022 16:17:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51922 "EHLO
+        id S231810AbiHWUZx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Aug 2022 16:25:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232937AbiHWUQt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 16:16:49 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B70259083D
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 12:39:57 -0700 (PDT)
+        with ESMTP id S231867AbiHWUZg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 16:25:36 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A1458D3DD;
+        Tue, 23 Aug 2022 12:55:14 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 3BDCCB81D55
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 19:39:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E262EC433D7
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 19:39:54 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id D3BA3B81D55;
+        Tue, 23 Aug 2022 19:55:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98F07C433D7;
+        Tue, 23 Aug 2022 19:55:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661283594;
-        bh=UmJ3SND9HrJuAc+M4OZS1CSTGJAGx0vAUcF1OwRnczY=;
+        s=k20201202; t=1661284511;
+        bh=XvqZYm/jaApQ044714/uhhh4OlYPFvuwSufaHNqcrWA=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=ZoOZl6XelUKHkLdJZGEWQmvUdjG/+zPFLvgUL/TL2Jf6wGwPDl6BHBJa4A/9sf1GP
-         LACz9XsUM6vjpH6sEl8A5S/aWVYSo/rNPGBlCrntt9i9E2GjimA4C5wOPKP3og8iAO
-         Ne3lX+C0h4I0nb0qbfj267pYO3G4ZQlNjkPCCSykJ7stCpE/U/V9hTU6NTDomQeEPe
-         PwffWjIh9mjLTOIwnKmrJituJhoLUC0q/lurMj25soaMoXibjc/6BPyNCBHJGGmU4c
-         VxEX+VU8++zuGN60Z+vyR7jZ9DbgsAho0KXDt9HM4tK1ZeHzTThzCZHZChSomLar29
-         IMkNcoch3vcBA==
-Received: by mail-vs1-f45.google.com with SMTP id 67so15480967vsv.2
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 12:39:54 -0700 (PDT)
-X-Gm-Message-State: ACgBeo1tUkRKtMSDVW22YRr3r4a2CTKzntP85sGnU5tBKSlVKYP12OBb
-        w8Tn9KYfFixLv6W4qN7VF4qOXUhBn9F7Ip1vNA==
-X-Google-Smtp-Source: AA6agR46RLTHsg0dVxUhHe9J+9UIzEhSO58YATLGNEO/uDxIxO2MtZQTrW9ZVLx9MtwTy2gv8/5IN2EESBvaFVaTDMU=
-X-Received: by 2002:a05:6102:3353:b0:38c:9170:a96b with SMTP id
- j19-20020a056102335300b0038c9170a96bmr10626722vse.26.1661283593772; Tue, 23
- Aug 2022 12:39:53 -0700 (PDT)
+        b=CTlSA1oIpIkxmMhqxXJ5ZCTLm67TmiYq2k+8Cp47Npae1I1k9U+3WZBdOnlFxREeP
+         yWM/SfZRUB7/A9/ZE8/8EnS/Y1sbc2hT8rFj+KzCHD0jo7QSlLaFhl0lgZ4jywQY6N
+         Q4iwd35d2RvWcdQhzm11X/c0tiawjT7E0IzFt5W7FrgysI61Yltf2qonHO3oF/yExp
+         XASkPmZLzyu82l716kDJpAZwd4KpxmPesVOsK+pHQjjCSKYIyhzzBYLnXVDnoMZ9zy
+         SVFKConN/9s2eEQ+r+PBnF+ObBVpC9tdJSHwFjv17N+ZDxrbTcimAJTP43T2s8brcp
+         bNmEGHM27RpqA==
+Received: by mail-vs1-f54.google.com with SMTP id 190so7285632vsz.7;
+        Tue, 23 Aug 2022 12:55:11 -0700 (PDT)
+X-Gm-Message-State: ACgBeo2ShnD2JahQIXf3eH6T245vl8G4IFvQjNOdp5KqesCjz/lfjSvx
+        EzqD4zW83pYWc976vb87p3HVOkk73lCxeHNlqg==
+X-Google-Smtp-Source: AA6agR6Vc0FN9tquEi6X4C/a7A1FnPyf8kbL730PKDf9noqjwYWd2d0aQ7EXCZ8GWYarbCks81FNRf+dgRLPImV9aIU=
+X-Received: by 2002:a67:c09c:0:b0:390:9073:1122 with SMTP id
+ x28-20020a67c09c000000b0039090731122mr329026vsi.85.1661284510497; Tue, 23 Aug
+ 2022 12:55:10 -0700 (PDT)
 MIME-Version: 1.0
-References: <Yum6Bi+vQanfTEsV@lunn.ch>
-In-Reply-To: <Yum6Bi+vQanfTEsV@lunn.ch>
+References: <437d6789-9ec0-fe4d-861a-5564dd291c39@milecki.pl>
+In-Reply-To: <437d6789-9ec0-fe4d-861a-5564dd291c39@milecki.pl>
 From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 23 Aug 2022 14:39:42 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJZhTqScATHZqOsiqqZeB-RQjPeVthnBFMzZr_5irg3iQ@mail.gmail.com>
-Message-ID: <CAL_JsqJZhTqScATHZqOsiqqZeB-RQjPeVthnBFMzZr_5irg3iQ@mail.gmail.com>
-Subject: Re: Property names regex
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Device Tree <devicetree@vger.kernel.org>
+Date:   Tue, 23 Aug 2022 14:54:59 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+F6s2jn25f7nq7gw1p5wL8W=N_dh1NmiKES6wyeiJB6w@mail.gmail.com>
+Message-ID: <CAL_Jsq+F6s2jn25f7nq7gw1p5wL8W=N_dh1NmiKES6wyeiJB6w@mail.gmail.com>
+Subject: Re: dt-bindings: generic-ehci.yaml doesn't work well with usb-hcd.yaml
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Florian Fainelli <f.fainelli@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -60,51 +64,112 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 2, 2022 at 6:58 PM Andrew Lunn <andrew@lunn.ch> wrote:
+On Thu, Jul 21, 2022 at 4:14 AM Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl> =
+wrote:
 >
-> Hi Rob
+> Hi,
 >
-> I'm slowly converting some of the Marvell binding documents to YAML.
+> I'm trying to fix ARCH_BCM_5301X=3Dy + "dtbs_check" error:
 >
-> I've got a problem with one of the interrupt controllers.
+> arch/arm/boot/dts/bcm4708-netgear-r6300-v2.dtb: usb@21000: '#address-cell=
+s', '#size-cells', '#usb-cells', 'port@1', 'port@2' do not match any of the=
+ regexes: 'pinctrl-[0-9]+'
+>          From schema: Documentation/devicetree/bindings/usb/generic-ehci.=
+yaml
+>
+> that comes from:
+>
+> usb@21000 {
+>         #usb-cells =3D <0>;
+>
+>         compatible =3D "generic-ehci";
+>         reg =3D <0x00021000 0x1000>;
+>         interrupts =3D <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>;
+>         phys =3D <&usb2_phy>;
+>
+>         #address-cells =3D <1>;
+>         #size-cells =3D <0>;
+>
+>         ehci_port1: port@1 {
 
-devicetree-spec@vger.kernel.org is less of a firehose and better for
-asking questions.
+I think the issue is usb-device.yaml says 'compatible' is required.
 
-> Documentation/devicetree/bindings/interrupt-controller/marvell,orion-intc.txt
-> includes:
+>                 reg =3D <1>;
+>                 #trigger-source-cells =3D <0>;
+>         };
 >
-> Optional properties:
-> - marvell,#interrupts: number of interrupts provided by bridge interrupt
->       controller, defaults to 32 if not set
+>         ehci_port2: port@2 {
+>                 reg =3D <2>;
+>                 #trigger-source-cells =3D <0>;
+>         };
+> };
+>
+> ##########
+>
+> If you check Documentation/devicetree/bindings/usb/generic-ehci.yaml it d=
+oes:
+>
+> allOf:
+>    - $ref: "usb-hcd.yaml"
 >
 >
-> I converted this to YAML as:
+> In the usb-hcd.yaml there is:
 >
->   'marvell,#interrupts':
->     description:
->       number of interrupts provided by bridge interrupt controller
->     $ref: /schemas/types.yaml#/definitions/uint32
->     default: 32
+> properties:
+>    "#address-cells":
+>      const: 1
 >
-> but when i run dt_binding_check, i get:
+>    "#size-cells":
+>      const: 0
 >
-> home/andrew/linux/Documentation/devicetree/bindings/interrupt-controller/marvell,orion-bridge-intc.yaml: properties: 'marvell,#interrupts' does not match '^[#$a-zA-Z][a-zA-Z0-9,+\\-._@]{0,63}$'
->         hint: Expected a valid DT property name
->         from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+> patternProperties:
+>    "^.*@[0-9a-f]{1,2}$":
+>      description: The hard wired USB devices
+>      type: object
+>      $ref: /schemas/usb/usb-device.yaml
 >
-> As far as i can see from:
+> ##########
 >
-> https://devicetree-specification.readthedocs.io/en/v0.3/devicetree-basics.html#properties
+> So all looks good at first sight. I guess it's some problem with $ref /
+> additionalProperties / unevaluatedProperties.
 >
-> A property name is allowed a # anywhere in it, not just at the start.
+> I thought that generic-ehci.yaml should do:
+> unevaluatedProperties: false
+> instead of:
+> additionalProperties: false
 
-Yes, the schemas are a bit more restrictive for modern DTs than the spec.
+Yes, and upstream does now.
 
-> How do i get this regex changed?
+>
+> but that doesn't help:
+> arch/arm/boot/dts/bcm4708-netgear-r6300-v2.dtb: usb@21000: Unevaluated pr=
+operties are not allowed ('#usb-cells', '#address-cells', '#size-cells', 'p=
+ort@1', 'port@2' were unexpected)
+>          From schema: Documentation/devicetree/bindings/usb/generic-ehci.=
+yaml
 
-I committed a fix to relax this[1].
+You will see unevaluated properties warning if any of the listed
+properties failed validation. I added your child nodes to the example
+and got:
+
+/home/rob/proj/git/linux-dt/.build-arm64/Documentation/devicetree/bindings/=
+usb/generic-ehci.example.dtb:
+usb@1c14000: port@1: 'compatible' is a required property
+        From schema:
+/home/rob/proj/git/linux-dt/Documentation/devicetree/bindings/usb/generic-e=
+hci.yaml
+/home/rob/proj/git/linux-dt/.build-arm64/Documentation/devicetree/bindings/=
+usb/generic-ehci.example.dtb:
+usb@1c14000: port@2: 'compatible' is a required property
+        From schema:
+/home/rob/proj/git/linux-dt/Documentation/devicetree/bindings/usb/generic-e=
+hci.yaml
+/home/rob/proj/git/linux-dt/.build-arm64/Documentation/devicetree/bindings/=
+usb/generic-ehci.example.dtb:
+usb@1c14000: Unevaluated properties are not allowed ('#address-cells',
+'#size-cells', 'port@1', 'port@2' were unexpected)
+        From schema:
+/home/rob/proj/git/linux-dt/Documentation/devicetree/bindings/usb/generic-e=
+hci.yaml
 
 Rob
-
-[1] https://github.com/devicetree-org/dt-schema/commit/0e28a44059a6e33314784cfaf7b45d48afd10527
