@@ -2,74 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3523F59E898
-	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 19:07:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E04F659E922
+	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 19:23:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343772AbiHWRHM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Aug 2022 13:07:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41342 "EHLO
+        id S1344704AbiHWRQT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Aug 2022 13:16:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344361AbiHWRF2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 13:05:28 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30E3015140A
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 06:34:22 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id ay12so7215293wmb.1
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 06:34:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=hANLL+7DhnD0W2kb20ZNsZlp5AERIcfuD5mxO0wOYB4=;
-        b=yzxEu+Jv+OYdYdQfrSFNwEH0jqct2PWjFD92Bkn/bdmkaz9SHPg43Y2doExDDOACPr
-         b4blOpDhvo4K/f50VBpKSzIwFVszKdGaTsrgkj4fuLQ7gn5UHKSBGyIYkQRaDzxq0xju
-         LBumSEI9K65LYixBjKqyECw50JMgEzSQX9/Ck5qTZZI3NbbO7mV/SEGpNFGSUXPdm7Ac
-         s8f4FsLal+JNqzY9U1V3DxI758HvSUye6CORlw1BfTiYHWWKTmgQXjPN04LNbipf7HIz
-         9qaXvXmUWgAqEloEqpQv5IQ9HBJf0CYiV4YZBhhxJvaYFM8M8L0jWUvSx0auzUTOkN2j
-         KJ6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=hANLL+7DhnD0W2kb20ZNsZlp5AERIcfuD5mxO0wOYB4=;
-        b=gkaoVQyROIEYuBeBQn73tZai1ZG7in73P/GBHT3xCUKP0rcGY/W54TS8jfKzvtTRba
-         nAV6i+KHVehYmxVNkn7ii2YCHMn34uetA/9nI2L7j0laNSVVz7aW3WDKP54YKjA7SurV
-         PS/dGYfLDNIxa8jvIVdKmJwk2TtevUJgwa2GZfZfuxS4B4rFnmxhIRbzgVSLeoGqUAT9
-         ZFJ+pRXKroGS5KqSkwCjL6GsqnYyJ+ve1U979y52pYlK19ttOPpL2V9Mp5RJLMSM/Q6F
-         IbwT+YTEQRI7c46A3cUFx+Kc6UC3kSV0RUAJMumZDSne206PLZJiMOYqWnhnP5Ei6w3m
-         qcvA==
-X-Gm-Message-State: ACgBeo3PJPYAKDdtKTeN+SSrpc7niaHrySCAL+lGnwa7z8OjGl3Z6QRe
-        Jyo5M40h/eh5oBB28ZLUSTm29g==
-X-Google-Smtp-Source: AA6agR4fNPahujEXCLVbndBEEdaFeTvotTYaW9PcHl55BWOG4EBrlnaOzS5Uoc7EVqqQ6npmzvFUDQ==
-X-Received: by 2002:a05:600c:25ce:b0:3a5:a3b7:bbfe with SMTP id 14-20020a05600c25ce00b003a5a3b7bbfemr2336065wml.115.1661261660575;
-        Tue, 23 Aug 2022 06:34:20 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id ay15-20020a05600c1e0f00b003a604a29a34sm18510656wmb.35.2022.08.23.06.34.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Aug 2022 06:34:19 -0700 (PDT)
-Message-ID: <4e567599-90ba-c8bd-9774-1e34ae8f8ea3@linaro.org>
-Date:   Tue, 23 Aug 2022 14:34:17 +0100
+        with ESMTP id S244541AbiHWROx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 13:14:53 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72E9D100977;
+        Tue, 23 Aug 2022 06:40:24 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6F8386154C;
+        Tue, 23 Aug 2022 13:40:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8BCBC433C1;
+        Tue, 23 Aug 2022 13:40:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1661262023;
+        bh=2+G8RngWyxAqke4bxt5usQSl46UvUFATARmSK6gRm08=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=UR4Yhx5x3P7UUehzGuqNuzCVIf2gG92TqIHiUZCgn2xLTwYRb2BVaZrDxywPFMTuS
+         DfZsw9vCLLbY7N/bQZC23Zkjy41FwvdEeo5Tun5uOeKnzCyF74pyaeEisT3P6+PjEs
+         BsgOioP5FYI114KFoLroQy1P5Lnh4LYS0nwkjlMLhNMEg8PJQXqgj+lwFwiN+c9KN8
+         8lYKt4V/iCZLVw0/KJPCUfWw+PNu4zvZrY0ehvbtPOVGWPXckhaBR3eX9u+geCzmem
+         W4PXWcPnwonjUG5yfZfHDDOds0GFC5E483C5vp3iorMnxsgwARYXAeEgllZNj0blXb
+         AiehE9Npm4yuQ==
+From:   Lorenzo Pieralisi <lpieralisi@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Jianjun Wang <jianjun.wang@mediatek.com>
+Cc:     Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Ryder Lee <ryder.lee@mediatek.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+        Rex-BC.Chen@mediatek.com, Liju-clr.Chen@mediatek.com,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Jian.Yang@mediatek.com, TingHan.Shen@mediatek.com
+Subject: Re: [PATCH v4] dt-bindings: PCI: mediatek-gen3: Add support for MT8188 and MT8195
+Date:   Tue, 23 Aug 2022 15:40:15 +0200
+Message-Id: <166126199986.63298.9651112044432926221.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220802120624.19258-1-jianjun.wang@mediatek.com>
+References: <20220802120624.19258-1-jianjun.wang@mediatek.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH] arm64: dts: qcom: pm8916: Fix pwm declaration
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        agross@kernel.org, andersson@kernel.org,
-        konrad.dybcio@somainline.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220822120300.2633790-1-bryan.odonoghue@linaro.org>
- <9022126c-2cd7-44c9-28dc-338e36a3346d@linaro.org>
- <11e20195-1383-d1e3-4715-8a1f110ed344@linaro.org>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <11e20195-1383-d1e3-4715-8a1f110ed344@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -78,52 +62,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/08/2022 13:23, Krzysztof Kozlowski wrote:
-> On 23/08/2022 15:12, Krzysztof Kozlowski wrote:
->> On 22/08/2022 15:03, Bryan O'Donoghue wrote:
->>> We need to define pwm@bc000 to stop dtbs_check from making the following
->>> complaint, text pruned.
->>>
->>> pmic@1: 'pwm' does not match any of the regexes:  'pwm@[0-9a-f]+$'
->>>
->>> Fixes: e79a1385ab74 ("arm64: dts: qcom: Add LPG to pm8916, pm8994, pmi8994 and pmi8998")
->>> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
->>> ---
->>>   arch/arm64/boot/dts/qcom/pm8916.dtsi | 2 +-
->>>   1 file changed, 1 insertion(+), 1 deletion(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/pm8916.dtsi b/arch/arm64/boot/dts/qcom/pm8916.dtsi
->>> index 606c2a6d1f0fc..d6922379729cb 100644
->>> --- a/arch/arm64/boot/dts/qcom/pm8916.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/pm8916.dtsi
->>> @@ -124,7 +124,7 @@ pm8916_1: pmic@1 {
->>>   		#address-cells = <1>;
->>>   		#size-cells = <0>;
->>>   
->>> -		pm8916_pwm: pwm {
->>> +		pm8916_pwm: pwm@bc00 {
->>>   			compatible = "qcom,pm8916-pwm";
->>
->> This does not look like proper fix.
->> 1. It requires a reg.
->> 2. reg is not allowed by pwm bindings.
->>
->> See also other wrong commit:
->> https://lore.kernel.org/all/20220719205058.1004942-1-bhupesh.sharma@linaro.org/
->>
+On Tue, 2 Aug 2022 20:06:24 +0800, Jianjun Wang wrote:
+> MT8188 and MT8195 are ARM platform SoCs with the same PCIe IP as MT8192.
 > 
-> and this:
-> https://lore.kernel.org/all/20220721195502.1525214-1-bhupesh.sharma@linaro.org/
+> Also add new clock name "peri_mem" since the MT8188 and MT8195 use clock
+> "peri_mem" instead of "top_133m".
 > 
 > 
-> Best regards,
-> Krzysztof
 
-Hmm OK.
+Applied to pci/dt, thanks!
 
-So if I've understood this conversation properly instead of converting 
-"label: nodename" to "label: nodename@xxx" and adding reg, we would just 
-revert to "nodename {};"
+[1/1] dt-bindings: PCI: mediatek-gen3: Add support for MT8188 and MT8195
+      https://git.kernel.org/lpieralisi/pci/c/7f08e806a03e
 
----
-bod
+Thanks,
+Lorenzo
