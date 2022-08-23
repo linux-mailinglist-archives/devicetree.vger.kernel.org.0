@@ -2,60 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D864D59EC9B
-	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 21:44:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FCCC59ECA1
+	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 21:44:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233406AbiHWTnW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Aug 2022 15:43:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41120 "EHLO
+        id S233394AbiHWTn1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Aug 2022 15:43:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233051AbiHWTnH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 15:43:07 -0400
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88888CF
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 11:43:40 -0700 (PDT)
-Received: by mail-pl1-x635.google.com with SMTP id g8so9693998plq.11
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 11:43:40 -0700 (PDT)
+        with ESMTP id S229555AbiHWTnM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 15:43:12 -0400
+Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABEFE7679
+        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 11:44:00 -0700 (PDT)
+Received: by mail-pg1-x52c.google.com with SMTP id w13so7937412pgq.7
+        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 11:44:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=t5Z//tr8iPA2uwuDmmL4RQBNRGpzhRZG+pPbl3yTBwA=;
-        b=7+DmvW1XLyQy51XB9jWZ4MFw60gZJBRQXQXDSHakXB5KqCkxKNJu+ya5qfofismA/Q
-         bW1M3WMA9CuKJzkfA88E+ZwmVaVaVzvvvs3Ie/NaEoIOy4jyXiZhsh0AdvM5qjYvewAT
-         dSCJxSBWyXQgBeiTcE72V9oG3bl2PgKcYTCt+DxGOKl5HpLJX9cQBE4Ua35QWly5OuVK
-         xCbYcogbFhitszbkvZJaJukpxBa3U8gFOoe4sjYWjARGXMsSl5f9t1rgqsic5WmhZ+eQ
-         9sbrCsnfhH3jvJyEPkFeYKONnQCHiBxaJlzj9vmlt1l/L3KA9Lv6Ca7rSK4jzEEml6Rp
-         rMFg==
+        bh=e6xmGRsUy5CVWXkkBzqW8hMvVXzIsvM15KrfP8pRT4c=;
+        b=XlQJ6Pmf6FM6P9HgS86MvAkKQN5SRDZxo5dgNmSgYZCoAqoxS+So9IQBVGnp0QofFD
+         dq7/OgJPv2fuAcj/nixndjIJEUHDWd1+tUutCAnEdITIeSA4hktyjdPmbNlZjSLn0Lw4
+         6HYeCCxT+BV7E/asoB7YLIr/tyGLQcgSl+D/R23WOwB+6/F8X/7P+TBf+eBk9ycAA5iR
+         EKGC5rVusVLP4Hhgc3Jw1rRMXiaRwJP77jOivbYEPZAj/66TEo9iRCoKZqoxPc3xc345
+         J4K0t66nNXqJsiimEEWVEp/4pSdsclPkZfOZhgLPnLUHClFzsyxL0qQLgDUfg2BBUswL
+         twiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=t5Z//tr8iPA2uwuDmmL4RQBNRGpzhRZG+pPbl3yTBwA=;
-        b=lyCpGhFT5fVkVCbadgm308GI9Voy0y7Jjm28G8kwyWkPo0sBKq3kajZalANuJep9+J
-         zNl04mU1OyUssfn7fv8X0GHaBS15zRZTACnMzRHnWpQP5/I5CEQ5G6G55xyiZ8jFwlum
-         Ew83iGuApUrZe7HF2bfD+Y1AyMQABmzgr0FeN4cE4FznHtHJjY0A9p6McY5RsOUYQfq4
-         pjDhGn+WyKpM18LsByCUFM+Uv6AAXQwkzMWpJjcUp6b3KvMeGB7AuTItU8U1q1zForfL
-         Do0EkB9DmUv4Ee4BcfatHl2Anux3Oy34HeskiGeJHLNG1R5B4CJVXRBVkGnxYM2hi7k9
-         0Gpg==
-X-Gm-Message-State: ACgBeo3cEQdTZMOMN6RUUygFuRpXdirU6oouWmW+QtbpQg5jpv/ehMLT
-        KMLXeaz5iAoBNTkhj0SSGJX7/s/ISGQcV5KMTpA=
-X-Google-Smtp-Source: AA6agR7ibijcF0zCQ1t7QbgF4OIa4JoXbn9v4EDttl/o5U+zle4anEu32Li68RP5+54Mv44eAzVrnQ==
-X-Received: by 2002:a17:902:8643:b0:172:e067:d7ac with SMTP id y3-20020a170902864300b00172e067d7acmr12675279plt.164.1661280219982;
-        Tue, 23 Aug 2022 11:43:39 -0700 (PDT)
+        bh=e6xmGRsUy5CVWXkkBzqW8hMvVXzIsvM15KrfP8pRT4c=;
+        b=bSgHdaouJ5D+UKyKbyQ+v4jSFtofwPDHvzlV70gpJ1Bafby8Ukb9QAuCrtclKLtTtu
+         yWv+R8o9EcAVtQkdA6xvb4gWfFYzyl0hKphJfx7MtIu2gAhgEviR+7kt86u9nTJL1BfO
+         /iWAp3yIh4ItZSHLW0HGV8BDre9qtoUSqoLILiUWiMYelTel8aXugQTiKXq4jfM7UFSj
+         iiWhzh+OLVoJKNFa+Di0Rfssj5ilXlSmJEOpkdONfsqB8Z75zZNSV88vEuhoVCNLjqaw
+         fAPNO9FNUqHvKGbcYiCcOpws/WcZA2Si+8JnWx4f6ZjQ71Qo6ryZYuqDwZaZ7RnGdBEW
+         uC7g==
+X-Gm-Message-State: ACgBeo07ByPPOBh8jDaSGhAc4KPrtenz6vZjzuifNSFThPD4GEvL0EbP
+        eBm2GEHKaT2zpr+ehtrgoxWe5A==
+X-Google-Smtp-Source: AA6agR5Vx2++EIQt2E3SmDU8RYJqzEEOCmAhZPT/gsoZWote+lPS70tGrRxhjo0nJhxCwidCNofz4Q==
+X-Received: by 2002:a63:4625:0:b0:42a:d055:22df with SMTP id t37-20020a634625000000b0042ad05522dfmr6035867pga.312.1661280239746;
+        Tue, 23 Aug 2022 11:43:59 -0700 (PDT)
 Received: from localhost.localdomain ([23.27.44.55])
-        by smtp.gmail.com with ESMTPSA id b187-20020a62cfc4000000b0053641e66825sm7767647pfg.173.2022.08.23.11.43.37
+        by smtp.gmail.com with ESMTPSA id b187-20020a62cfc4000000b0053641e66825sm7767647pfg.173.2022.08.23.11.43.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Aug 2022 11:43:39 -0700 (PDT)
+        Tue, 23 Aug 2022 11:43:59 -0700 (PDT)
 From:   Jagan Teki <jagan@edgeble.ai>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Thierry Reding <thierry.reding@gmail.com>,
         Sam Ravnborg <sam@ravnborg.org>
-Cc:     devicetree@vger.kernel.org, Jagan Teki <jagan@edgeble.ai>
-Subject: [PATCH 2/4] dt-bindings: vendor-prefixes: Document Jadard
-Date:   Wed, 24 Aug 2022 00:12:40 +0530
-Message-Id: <20220823184242.3554472-2-jagan@edgeble.ai>
+Cc:     devicetree@vger.kernel.org, Jagan Teki <jagan@edgeble.ai>,
+        dri-devel@lists.freedesktop.org
+Subject: [PATCH 3/4] dt-bindings: display: Document Jadard JD9365DA-H3 DSI panel
+Date:   Wed, 24 Aug 2022 00:12:41 +0530
+Message-Id: <20220823184242.3554472-3-jagan@edgeble.ai>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220823184242.3554472-1-jagan@edgeble.ai>
 References: <20220823184242.3554472-1-jagan@edgeble.ai>
@@ -70,29 +71,111 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Jadard Technology Inc. manufactures and distributes chips
-from Shenzhen.
+Jadard JD9365DA-H3 is WUXGA MIPI DSI panel and it support TFT
+dot matrix LCD with 800RGBx1280 dots at maximum.
 
-Add vendor prefix for it.
+Document it.
 
+Cc: dri-devel@lists.freedesktop.org
 Signed-off-by: Jagan Teki <jagan@edgeble.ai>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ .../display/panel/jadard,jd9365da-h3.yaml     | 70 +++++++++++++++++++
+ MAINTAINERS                                   |  5 ++
+ 2 files changed, 75 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index e8ee5084cb89..6ac4c1fc09c4 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -637,6 +637,8 @@ patternProperties:
-     description: ITian Corporation
-   "^iwave,.*":
-     description: iWave Systems Technologies Pvt. Ltd.
-+  "^jadard,.*":
-+    description: Jadard Technology Inc.
-   "^jdi,.*":
-     description: Japan Display Inc.
-   "^jedec,.*":
+diff --git a/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml b/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
+new file mode 100644
+index 000000000000..23dfd5b5496e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
+@@ -0,0 +1,70 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/panel/jadard,jd9365da-h3.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Jadard JD9365DA-HE WUXGA DSI panel
++
++maintainers:
++  - Jagan Teki <jagan@edgeble.ai>
++
++allOf:
++  - $ref: panel-common.yaml#
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - chongzhou,cz101b4001
++      - const: jadard,jd9365da-h3
++
++  reg: true
++
++  vdd-supply:
++    description: supply regulator for VDD, usually 3.3V
++
++  vccio-supply:
++    description: supply regulator for VCCIO, usually 1.8V
++
++  reset-gpios: true
++
++  backlight: true
++
++  port: true
++
++required:
++  - compatible
++  - reg
++  - vdd-supply
++  - vccio-supply
++  - reset-gpios
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/pinctrl/rockchip.h>
++
++    dsi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        panel@0 {
++            compatible = "chongzhou,cz101b4001", "jadard,jd9365da-h3";
++            reg = <0>;
++            vdd-supply = <&lcd_3v3>;
++            vccio-supply = <&vcca_1v8>;
++            reset-gpios = <&gpio1 RK_PC2 GPIO_ACTIVE_HIGH>;
++            backlight = <&backlight>;
++
++            port {
++                mipi_in_panel: endpoint {
++                    remote-endpoint = <&mipi_out_panel>;
++                };
++            };
++        };
++    };
++
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 5c96115c620f..2ef50447e6e8 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -6466,6 +6466,11 @@ S:	Orphan / Obsolete
+ F:	drivers/gpu/drm/i810/
+ F:	include/uapi/drm/i810_drm.h
+ 
++DRM DRIVER FOR JADARD JD9365DA-H3 MIPI-DSI LCD PANELS
++M:	Jagan Teki <jagan@edgeble.ai>
++S:	Maintained
++F:	Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
++
+ DRM DRIVER FOR LOGICVC DISPLAY CONTROLLER
+ M:	Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+ S:	Supported
 -- 
 2.25.1
 
