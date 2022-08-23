@@ -2,108 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D61C59E4C7
-	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 15:59:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E19BE59E4CD
+	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 16:04:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232491AbiHWN76 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Aug 2022 09:59:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44486 "EHLO
+        id S242090AbiHWOEP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Aug 2022 10:04:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231395AbiHWN7l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 09:59:41 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19EC9237162
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 04:06:12 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id bt10so6184660lfb.1
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 04:06:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=upMrhZzNt5L4wt+Z6rQpjqaSfbMFmcSW/S35w6kildQ=;
-        b=lUuOxQYURyFztcD8JB1k1/VOOWZsCmGTQ+yF4zeLSfv3Bl+u/6fhI2ZJtH13awkTmw
-         z0SdAS43JPtjndvCJ7drXhMDbhvXkWvgDyUKj1AqJAd4C6YvIFupEJes+bEdB7YsyL6N
-         AEV0uuAQihFB8R1Cs3VVYRjoMBZtmNKfDeAr8KrrqU7o7nC5dLIiWL5HxMb3mtgCtBmC
-         9VUZjQ+c9DYK9IS3ofubScpMHfz1EBFwnIMYBuOsQ1o6M2B5UlMjihumKecDPa5iPqRv
-         KV49raJI8eHlcG23ogtThAPwTImUTYfbfWnJdKELO6a6ewC5Lql2SjSDBh4ulDZWlvpF
-         XaWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=upMrhZzNt5L4wt+Z6rQpjqaSfbMFmcSW/S35w6kildQ=;
-        b=UnEuZT+RjMnUTOLcZLTh5SGkrrQzHp+ChqGZjp0G9sFS4J/4llFTFrD6wWl+DVB3xL
-         4sRk8kAwguGf0WJ3kSj/SCMjtVzXZG94/QUyfFe5BE1rr+2NY1G2LnCq8JNHA8rU9I4J
-         /3BtQlNJRGkBZzXGmSAHsuOz4H9JX/qWSj+V8QLEmCr8f7d9zni7Cu/+0fF8bBPOwJMX
-         Vdy9X+rrFf4QEQgfP9C+TA0nvt9qhRwrddycrX11UhdX1HqM8d6zQtQGaeKMaohzvAt9
-         JHQCp08nVyjad6hYRkevUO+sPTxVTkgmbbu42cQMz55gZ1YUjWxedxBVOCqJUXaJG6H2
-         6t+Q==
-X-Gm-Message-State: ACgBeo2LWvZX3DflOh6RyLia0VyN0cg5qgnU0Zt8jA2K4KxpCrDnJPrW
-        /4zaRiu9pBCXWtUTDyxkOitOQA==
-X-Google-Smtp-Source: AA6agR6VDkkW1YVbogAhJeIpNaNVuRjVSp+tFRcF7y4uJIoy3Tksj2HeP+xWqTXyiKRv0Qkrx1RBVQ==
-X-Received: by 2002:a05:6512:3195:b0:492:db16:ab67 with SMTP id i21-20020a056512319500b00492db16ab67mr4959077lfe.436.1661252726672;
-        Tue, 23 Aug 2022 04:05:26 -0700 (PDT)
-Received: from [192.168.0.11] (89-27-92-210.bb.dnainternet.fi. [89.27.92.210])
-        by smtp.gmail.com with ESMTPSA id e5-20020a05651c038500b00261b9df2ca2sm2139082ljp.51.2022.08.23.04.05.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Aug 2022 04:05:25 -0700 (PDT)
-Message-ID: <7d314905-676d-0c5a-59f3-034e1965a8ea@linaro.org>
-Date:   Tue, 23 Aug 2022 14:05:24 +0300
+        with ESMTP id S242407AbiHWODJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 10:03:09 -0400
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 29861246D0B;
+        Tue, 23 Aug 2022 04:12:31 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id A54398125;
+        Tue, 23 Aug 2022 10:06:25 +0000 (UTC)
+Date:   Tue, 23 Aug 2022 13:13:31 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     Romain Naour <romain.naour@smile.fr>
+Cc:     linux-omap@vger.kernel.org,
+        U-Boot Mailing List <u-boot@lists.denx.de>,
+        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        devicetree@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+        Tero Kristo <kristo@kernel.org>, s-anna@ti.com
+Subject: Re: [PATCH] ARM: dts: Use clock-output-names for dra7
+Message-ID: <YwSoSzWBZEGy5UlQ@atomide.com>
+References: <20220204080842.40673-1-tony@atomide.com>
+ <2404bcc0-d01c-1ff1-6ea1-bfdef38cb64e@smile.fr>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v3 1/8] dt-bindings: arm: fsl: Rename compatibles for
- Kontron i.MX8MM SoM/board
-Content-Language: en-US
-To:     Frieder Schrempf <frieder@fris.de>, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, Li Yang <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Denys Drozdov <denys.drozdov@toradex.com>,
-        Fabio Estevam <festevam@denx.de>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Marek Vasut <marex@denx.de>,
-        Matthias Schiffer <matthias.schiffer@tq-group.com>,
-        Max Krummenacher <max.krummenacher@toradex.com>,
-        Rob Herring <robh@kernel.org>
-References: <20220822080103.24016-1-frieder@fris.de>
- <20220822080103.24016-2-frieder@fris.de>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220822080103.24016-2-frieder@fris.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <2404bcc0-d01c-1ff1-6ea1-bfdef38cb64e@smile.fr>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/08/2022 11:00, Frieder Schrempf wrote:
-> From: Frieder Schrempf <frieder.schrempf@kontron.de>
+* Romain Naour <romain.naour@smile.fr> [220823 08:25]:
+> Hello,
 > 
-> This updates the bindings in order to use names for the boards that
-> follow the latest convention used by Kontron marketing.
+> Le 04/02/2022 à 09:08, Tony Lindgren a écrit :
+> > With the TI clocks supporting the use of clock-output-names devicetree
+> > property, we no longer need to use non-standard node names for clocks.
+> > 
+> > Depends-on: 31aa7056bbec ("ARM: dts: Don't use legacy clock defines for dra7 clkctrl")
+> > Depends-on: 9206a3af4fc0 ("clk: ti: Move dra7 clock devices out of the legacy section")
+> > Cc: Stephen Boyd <sboyd@kernel.org>
+> > Cc: Tero Kristo <kristo@kernel.org>
+> > Signed-off-by: Tony Lindgren <tony@atomide.com>
 > 
-> By updating we make sure, that we can maintain this more easily in
-> future and make sure that the proper devicetree can be selected for
-> the hardware.
+> With this patch applied, u-boot triggers a new warning while applying clock fixup:
 > 
-> Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
-> ---
+> ft_fixup_clocks failed for DSP voltage domain: <valid offset/length>
 
+Hmm sounds like u-boot might be automatically syncing to Linux dts files,
+and now needs some patching to make use of clock-output-names. The old
+non-standard method of relying for node names to get the clock name will
+not work as we use generic node names such as "clock".
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Regards,
 
-
-Best regards,
-Krzysztof
+Tony
