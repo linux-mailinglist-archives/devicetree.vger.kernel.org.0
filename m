@@ -2,85 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 36DF959E5F9
-	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 17:27:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCCA859E4E8
+	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 16:08:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243654AbiHWP1S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Aug 2022 11:27:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52730 "EHLO
+        id S241973AbiHWOI5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Aug 2022 10:08:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243634AbiHWP1C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 11:27:02 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE35CB4423
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 04:06:29 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id l21so13163601ljj.2
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 04:06:29 -0700 (PDT)
+        with ESMTP id S242406AbiHWOIh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 10:08:37 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62A6E2578F7
+        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 04:19:41 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id d21so7408192eje.3
+        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 04:19:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=yGKM2I7UEt0vdW0TbqK/IUc9qD27rValEiMJNQwZVjg=;
-        b=ufPztWR2ngWfrbxMEAb6f3dXCo0gFdTtTmwimLCWzMYoKe7v37RMteWpmqKZpPAkAV
-         1Lh0t8V9UnrpAUDwKqdvRnCVKEGY3NN7N4VjCyEP6hdzmUrsI76S+hNr31CmBbAVbXEz
-         vn06k98hKekCkp9zzj9FAKkeI3VUvEwfbIOx4PKHWJXXCp6W/2Cva8qK/4WT3FJRB2tH
-         PHqQpIPkhD0JrIuAf1kTUp6dZ+NpXqpEQLXk7BC97fPIxFKAD93CNaoORb6IyGYIzGkv
-         2qprWXTL9R2go6TJVZrE2U1xAB1zGO5u1wR33qSfiIZ2Y39KeXuv6s4RsEtzVpwnXqZG
-         xP1g==
+        bh=MrLxb4E2DjxfMfHqX0aKpuYkCzfN45dEHvfq2u/Glfc=;
+        b=oMu9LroE0RFKYUnrnUWRhbLqwE9SXGBkir2MBGkEE7vrSFbD1xoFjCFMdpG2eTJQq8
+         GpWfKMT1LLuh0BLCNuyWdS35eZ+BbWTHta3HmqkrPOXvdth/lE7EhwIL7TL1dieNQI5u
+         OhlZY3yoAKcJCmjiRKB7vWei+EB5dlzhS6au8bsxgqgLHKO2XnM1/ioP15HhbEQJlz93
+         M5ZW7Fmu47MTlftRuoeWk2DqzbXvaatLwOl/NyauE9Gcv5TbFw0SBa7vOcLs3sS2rVEn
+         Uuo0Zuy8gQUg7RiiWjfryxeinpc5E+uyw4sOGHaZgKTHRyCpEzE6jT5ep29j867EkRVJ
+         bCFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=yGKM2I7UEt0vdW0TbqK/IUc9qD27rValEiMJNQwZVjg=;
-        b=Q/Vt7M5rcxSCfnmTjpRus4rTNO7BNats33sO8UoKel+rNyuFBhsuh7anDGwn7UUhUp
-         vFS6gUKaUvgOi1KrZLLTG8eiWdGwyD02ICnUWMi6QSRjQ27qE+lvlzEpZJ1k5SHmfB3j
-         xFgQwXEipQrqnRL6I+06NOOjWcCylwtMtdphgGNa7sj+hP3pdw0TpHn4CB9FM4knWluP
-         qw8yLQ8hwiIbuQkLSqZhVkBdf+94Q7e6c9YpsamEo5rARmg0S3UAx6+Q0VooNjlaQYst
-         DL1nigZwtuQ3FJXHcNQBk5dXTe+iAWM84AsvxLdzQ1k138fom2akLgePd5tK8bChc8h2
-         A8rg==
-X-Gm-Message-State: ACgBeo0iJ4QKYxY6iXp5Hms1DgnaU27/kzCNn24s/S8EcjCp9Rw6tP/e
-        AOaP2S7EKm8tNAHAYWO87yT8OA==
-X-Google-Smtp-Source: AA6agR7LQZqic18Ny4TRgU5tXACZsr/Um9gWa1WzwzvlFs+fOfXqJ4LO1H1vqpbF9RIuGuN6WEDzYQ==
-X-Received: by 2002:a05:651c:b98:b0:261:ab8f:3905 with SMTP id bg24-20020a05651c0b9800b00261ab8f3905mr6910952ljb.518.1661252751496;
-        Tue, 23 Aug 2022 04:05:51 -0700 (PDT)
+        bh=MrLxb4E2DjxfMfHqX0aKpuYkCzfN45dEHvfq2u/Glfc=;
+        b=koWkgK9OICiGgbegIBFYE/eDO4rJcwiU2UtTnvAyNyH0TR1O6NHB8zYjet5fjwbSKf
+         Yal7PSU4AxqK5XzuY3gTv6BUSceitp9MZZnNpCL8XhMZn6i104MQCzvt2YUJw/Y9NpTC
+         wUDWuYTwsHGRb13jHgFJB+g0Xl8TL/JY6CDYJx6Vbu7AQbd9uicc/eFRP5Ap+SSvO8RY
+         YA05F+nNuuQHnKpzQoCkADZZc5g3XT6yvhTqHvNstCtEimOfav3TU16ggg6XAPkkSXuO
+         O7eeotOtMRSJ4bxbsg/tGjwFx2bM2AzVZS64QMtIHoNpK7wshVNe1kc3a3dNeMfWpS9N
+         4acQ==
+X-Gm-Message-State: ACgBeo2kjytYtQUyXaRHzUJdn6Saq15X0PAwv71fhj/M6oPURW2h+N0K
+        60qSYiMcQJBfy/mUkzHKXTb1qa5mmMXGkeg/
+X-Google-Smtp-Source: AA6agR5tvu9knEhQdwzyYF2Q1oGh+SSN0iH2VVVvmeqNz9MLv8SEOAHKU+FHbuM9D26qpMR1MObYRw==
+X-Received: by 2002:a2e:505d:0:b0:261:ce76:52b7 with SMTP id v29-20020a2e505d000000b00261ce7652b7mr2327656ljd.286.1661252943789;
+        Tue, 23 Aug 2022 04:09:03 -0700 (PDT)
 Received: from [192.168.0.11] (89-27-92-210.bb.dnainternet.fi. [89.27.92.210])
-        by smtp.gmail.com with ESMTPSA id a17-20020a19ca11000000b00492b679d5aesm1722089lfg.81.2022.08.23.04.05.50
+        by smtp.gmail.com with ESMTPSA id q9-20020a056512210900b0048b1d92991asm2375015lfr.303.2022.08.23.04.09.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Aug 2022 04:05:50 -0700 (PDT)
-Message-ID: <04f61840-451f-c323-938f-ca91bc65e854@linaro.org>
-Date:   Tue, 23 Aug 2022 14:05:49 +0300
+        Tue, 23 Aug 2022 04:09:03 -0700 (PDT)
+Message-ID: <2c14cc93-ae8d-365d-ac58-2e615d359fd7@linaro.org>
+Date:   Tue, 23 Aug 2022 14:09:02 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH v4 1/8] dt-bindings: arm: fsl: Rename compatibles for
- Kontron i.MX8MM SoM/board
+Subject: Re: [PATCH 3/3] drivers: iio: adc: Rename the LTC249x iio device
 Content-Language: en-US
-To:     Frieder Schrempf <frieder@fris.de>, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, Li Yang <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Denys Drozdov <denys.drozdov@toradex.com>,
-        Fabio Estevam <festevam@denx.de>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Marek Vasut <marex@denx.de>,
-        Matthias Schiffer <matthias.schiffer@tq-group.com>,
-        Max Krummenacher <max.krummenacher@toradex.com>,
-        Rob Herring <robh@kernel.org>
-References: <20220822080357.24478-1-frieder@fris.de>
- <20220822080357.24478-2-frieder@fris.de>
+To:     Ciprian Regus <ciprian.regus@analog.com>, jic23@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     u.kleine-koenig@pengutronix.de
+References: <20220822125106.1106798-1-ciprian.regus@analog.com>
+ <20220822125106.1106798-4-ciprian.regus@analog.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220822080357.24478-2-frieder@fris.de>
+In-Reply-To: <20220822125106.1106798-4-ciprian.regus@analog.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,20 +77,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/08/2022 11:03, Frieder Schrempf wrote:
-> From: Frieder Schrempf <frieder.schrempf@kontron.de>
-> 
-> This updates the bindings in order to use names for the boards that
-> follow the latest convention used by Kontron marketing.
-> 
-> By updating we make sure, that we can maintain this more easily in
-> future and make sure that the proper devicetree can be selected for
-> the hardware.
-> 
-> Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
+On 22/08/2022 15:51, Ciprian Regus wrote:
 
+(...)
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>  
+> diff --git a/drivers/iio/adc/ltc2497.h b/drivers/iio/adc/ltc2497.h
+> index f4d939cfd48b..0e86e38248ee 100644
+> --- a/drivers/iio/adc/ltc2497.h
+> +++ b/drivers/iio/adc/ltc2497.h
+> @@ -12,6 +12,7 @@ enum chip_type {
+>  
+>  struct chip_info {
+>  	u32 resolution;
+> +	char *name;
+
+const char *
 
 
 Best regards,
