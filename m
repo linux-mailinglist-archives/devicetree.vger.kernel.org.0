@@ -2,82 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49FA559E4BD
-	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 15:56:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6688959E4BE
+	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 15:57:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240355AbiHWN4v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Aug 2022 09:56:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40988 "EHLO
+        id S240884AbiHWN5N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Aug 2022 09:57:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240882AbiHWN40 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 09:56:26 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1188227BBA
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 04:01:36 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id z20so13161001ljq.3
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 04:01:36 -0700 (PDT)
+        with ESMTP id S241246AbiHWN4z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 09:56:55 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4618E22B8BB
+        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 04:02:59 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id bx38so13130730ljb.10
+        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 04:02:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=478xp+xXVm6+LQ5Y3hKJmtg5OeuY/mk2KivYHfJ1FyI=;
-        b=Nq2gKwXPYd00IQHol2CzP6IXX2LeLm7uHOotL89KBXhS6ZS5av7WLktBWQ7iJB6mEC
-         br9dan6yynV7jbA4OkT9Q1ztA/vTFwmKfm1uPbH5k9Og+YfRXKeE7ElBkyrdmuRXix8i
-         8Z7mWfODgyJ/8zCDULxA5X2aOBSHuSGz5R+W1HBOKXA1bhsr+v+jFJyuc29IuIiguhxf
-         Q1MEGYyObdn/bW/UKnJttO+tR5lCBjbiDOUBFqOcWglnaQ3hx3twJ/9X5GSAExlv4ymo
-         tTc6nUAnH7sSlz5JUTOhnjbZG25MIrh9s3dwIgxbY8z2eEz0lIKzBDl2+MI/JlXbNnL7
-         4BFA==
+        bh=Nh/dSfQpjawYJKjYiUJyrmH/Pdok2iA80vxKA7PHHnc=;
+        b=FEdHHqbCC7TtKYyi1L6Ks5VnxgHVgIZG9H2aCY0WL2r6YX2J+LFzAfOn6HO5uQDI/N
+         VioQTqrYqgOeSYlSKy8Aa68z0lWTheqQMMuGdCClPHt1N9/1M/GDE9wwN8zAxENmLYxZ
+         /gfXbXMVk5ecw0/NuAh5Nk921ymDUjP54UvLi4/G3pCBNy17k0s7sCVQLelgYvQ+OIUv
+         n/OLH3fbZAb9qDNSeAD0a9w6s7lORF5A8lDu+KbicYZLUeU3r4Bnvf0G3XmH+v2Z3EAo
+         9h242JRXKE5jZrnYtJOVAEOSXBD9M8Rz5dRRHGN/FE8cbqCSaP3R27EV0I7G1FW1cs0q
+         ospg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=478xp+xXVm6+LQ5Y3hKJmtg5OeuY/mk2KivYHfJ1FyI=;
-        b=Xv/HgvfLXW44jqt53qKt9hOsQUvHqcyf3xi7tCtxu2bDuPQc1AO1KTgATBVQfKdMST
-         umUv31jnL/begeHH0jikTbm2t7Em0atI/2zxrKt0HbMz+X8LRiVWQncIpT0ddqyaf0pv
-         xVJ+PJEFeXWPraX0kpHAiEiPdkqEVPAPvF1xPALMQhow6LBn2Hm0WDRRk9Vl5RQeTIpX
-         qAqSaUNKon5u1QqcZ6w1OSQTt6eFtRlFHn0mbqSctcArIy7DpxoEVaXhgtBleo6UVSlp
-         lpTgKv2h0Ux6I5xgBgrHUrku99iKyqi57dSNsydIiF40aS+zsWOfjIsSL3EIXHe8l8Jp
-         ac3g==
-X-Gm-Message-State: ACgBeo30hQro5IoPvW/dn/N6oRHyDTRLlY17xOr/elCCfkNx/4aSO+US
-        74kWMLCmRhJF8X+Id4cvITHEFw==
-X-Google-Smtp-Source: AA6agR6pHuA/Pqmja0Nyf2X+bxQ8qNJYXHFv0dFuO3RrNLaLnxBp429/iBJM6FMXPPiiCSEkUiu4KQ==
-X-Received: by 2002:a05:651c:12c4:b0:25d:d71c:e249 with SMTP id 4-20020a05651c12c400b0025dd71ce249mr6320800lje.17.1661252455406;
-        Tue, 23 Aug 2022 04:00:55 -0700 (PDT)
+        bh=Nh/dSfQpjawYJKjYiUJyrmH/Pdok2iA80vxKA7PHHnc=;
+        b=W5e/1M+HMufmEMeoouMD6jNKBggvZrlZtD0aRwtPYqCd84rbosjSPTg+IpONqll0vy
+         xDFTfYyBNtaEhFzBpCAcGxS0z1rKIFUqFmQKc6IZh1/p8u+xQEY2KcdS7dDs464K/G4D
+         goD8DpGnO/YVbEa5c1yyg2LLP1tIrMsbnNCrKJaQgiQuFSluazE+j7tMFROdjEU0AQ3r
+         ql5C9Jg/3RUteZe9gOxgYBvjHxHh77NZ9Ay9XbDybl3zBW48CbykWhgRmWlLeXDwwqJS
+         l3DSWLxC3FQvzvChBjpJ0cNCJLizcAUhey6NQYvbR/kq8KsIXuIHvUehRaooqkiMvpej
+         fwHQ==
+X-Gm-Message-State: ACgBeo1ekEO8BTHJEm1RomNUm1MROR8pap78zozc1eod1gAPMvDSLjJt
+        /rb74/7S47wiNFZAdwpUBfAdxw==
+X-Google-Smtp-Source: AA6agR5vbYNjhHFnx+6VhB11BI4MrfWNs+kd+/HTfFywhleTdAxL7fiMVIIBFB64PGTaYQ6X+iS3mg==
+X-Received: by 2002:a2e:8e75:0:b0:261:d530:86f4 with SMTP id t21-20020a2e8e75000000b00261d53086f4mr975578ljk.461.1661252564894;
+        Tue, 23 Aug 2022 04:02:44 -0700 (PDT)
 Received: from [192.168.0.11] (89-27-92-210.bb.dnainternet.fi. [89.27.92.210])
-        by smtp.gmail.com with ESMTPSA id t2-20020a19dc02000000b0047f8d7c08e4sm2449095lfg.166.2022.08.23.04.00.54
+        by smtp.gmail.com with ESMTPSA id p17-20020a2ea4d1000000b0025d64453f4dsm2316547ljm.122.2022.08.23.04.02.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Aug 2022 04:00:54 -0700 (PDT)
-Message-ID: <b59fad42-5217-8c96-a43a-d6f036766371@linaro.org>
-Date:   Tue, 23 Aug 2022 14:00:53 +0300
+        Tue, 23 Aug 2022 04:02:44 -0700 (PDT)
+Message-ID: <ae5a10b8-a459-11c9-3fac-4f5de0ba2218@linaro.org>
+Date:   Tue, 23 Aug 2022 14:02:43 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH v2 06/11] dt-bindings: display/msm: move qcom,sc7180-mdss
- schema to mdss.yaml
+Subject: Re: [PATCH v2 2/4] arm64: dts: apple: t8103: Add MCA and its support
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+To:     =?UTF-8?Q?Martin_Povi=c5=a1er?= <povik+lin@cutebit.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-References: <20220710090040.35193-1-dmitry.baryshkov@linaro.org>
- <20220710090040.35193-7-dmitry.baryshkov@linaro.org>
- <37bf0f7f-e555-7ae9-7d2b-e05a9e8db6a4@linaro.org>
- <76c05290-d957-b1ec-fa4d-1074c42979a8@linaro.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        asahi@lists.linux.dev, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220819125430.4920-1-povik+lin@cutebit.org>
+ <20220819125430.4920-3-povik+lin@cutebit.org>
+ <38094e2d-c75c-920b-4b4d-aa377971f615@linaro.org>
+ <A9E366E2-EA4D-4F35-BE28-63745296D222@cutebit.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <76c05290-d957-b1ec-fa4d-1074c42979a8@linaro.org>
+In-Reply-To: <A9E366E2-EA4D-4F35-BE28-63745296D222@cutebit.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
@@ -88,47 +85,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/08/2022 22:04, Dmitry Baryshkov wrote:
->>>   required:
->>>     - compatible
->>>     - reg
->>> @@ -177,7 +204,19 @@ patternProperties:
->>>       # TODO: add reference once the mdp5 is converted
->>>   
->>>     "^display-controller@(0|[1-9a-f][0-9a-f]*)$":
->>> -    $ref: dpu-sdm845.yaml
->>> +    oneOf:
->>> +      - $ref: dpu-sc7180.yaml
->>> +      - $ref: dpu-sdm845.yaml
->>
->> I don't think this is good approach. These are strictly tied, so you
->> should have rather per SoC MDSS schema pulling in:
->> 1. common MDSS
->> 2. specific children schemas
->>
->> This makes it quite obvious and specific. Your setup now allows putting
->> sc7180-dpu under sdm845-dpu.
+On 19/08/2022 17:24, Martin Povišer wrote:
 > 
-> Then we should probably also use very specific $ref and compat check for 
-> all other entries in this file too. I understand your concern, however 
-> I'd prefer to have the working schema which is not tight enough compared 
-> to set of schema files that completely do not work.
-
-Why they cannot be tight and working?
-
-> And current 
-> dpu-*yaml do not work as they allow just the display-controller beneath 
-> the mdss node.
-
-Sure, this can be fixed but not really in a relaxing way.
-
 > 
-> If you absolutely insist on me making the binding tight enough, I'll 
-> rework the bindings to clearly specify which SoC has which nodes.
+>> On 19. 8. 2022, at 15:12, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 19/08/2022 15:54, Martin Povišer wrote:
+>>> Add the MCA I2S transceiver node and its supporting NCO, ADMAC nodes.
+>>>
+>>> Signed-off-by: Martin Povišer <povik+lin@cutebit.org>
+>>> ---
+>>> arch/arm64/boot/dts/apple/t8103.dtsi | 70 ++++++++++++++++++++++++++++
+>>> 1 file changed, 70 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/apple/t8103.dtsi b/arch/arm64/boot/dts/apple/t8103.dtsi
+>>> index 51a63b29d404..2dc3125aca5b 100644
+>>> --- a/arch/arm64/boot/dts/apple/t8103.dtsi
+>>> +++ b/arch/arm64/boot/dts/apple/t8103.dtsi
+>>> @@ -532,6 +532,76 @@ port02: pci@2,0 {
+>>> 						<0 0 0 4 &port02 0 0 0 3>;
+>>> 			};
+>>> 		};
+>>> +
+>>> +		dart_sio: iommu@235004000 {
+>>> +			compatible = "apple,t8103-dart", "apple,dart";
+>>> +			reg = <0x2 0x35004000 0x0 0x4000>;
+>>> +			interrupt-parent = <&aic>;
+>>> +			interrupts = <AIC_IRQ 635 IRQ_TYPE_LEVEL_HIGH>;
+>>> +			#iommu-cells = <1>;
+>>> +			power-domains = <&ps_sio_cpu>;
+>>> +		};
+>>> +
+>>> +		nco_clkref: clock-ref {
+>>> +			compatible = "fixed-clock";
+>>> +			#clock-cells = <0>;
+>>> +			clock-frequency = <900000000>;
+>>> +			clock-output-names = "nco_ref";
+>>> +		};
+>>
+>> Reference clocks are usually physically outside of SoC (e.g. on the
+>> board), so:
+>> 1. Not part of "soc" node.
+>> 2. It should be defined by board. At least clock-frequency should be there.
+> 
+> Ah, right, this deserves commentary: Since this is a reverse-engineered
+> driver/platform support, we give up on knowing the clock tree exactly. Instead
+> we model the clock input to the Numerically Controlled Oscillator (‘nco’ node
+> below) with this fabulated fixed clock reference.
+> 
+> I guess eventually the clock tree is rooted off the SoC, and there’s
+> nothing guaranteeing the same reference clock to the NCO across machines (being
+> function of the board wiring and the proprietary firmware). In the end I would
+> argue for keeping the ‘clock-ref’ here in ’soc' but have the clock-frequency
+> defined by board.  Sounds reasonable?
 
-I do not see the drawbacks of specific/tight approach, so yes, please
-make it tight.
-
+Yes.
 
 Best regards,
 Krzysztof
