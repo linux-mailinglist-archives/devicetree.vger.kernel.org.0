@@ -2,76 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 95C0659E9FC
-	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 19:46:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A99259EA9A
+	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 20:14:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230135AbiHWRqO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Aug 2022 13:46:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58398 "EHLO
+        id S233598AbiHWSMF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Aug 2022 14:12:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34718 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233719AbiHWRpw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 13:45:52 -0400
-Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 210B6870B9
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 08:41:50 -0700 (PDT)
-Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-11c9af8dd3eso16888891fac.10
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 08:41:50 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=+UiTttJdSUQrpTKS9JZBGLc4xuV1vT4rWngBuSqCMUA=;
-        b=lNdX7asbSGC/glXO3BXmJD6t50zjZgjnc2jM/fWTofrgSv8fakuUEMwwA25BZC4RUn
-         XNxzoPvuVyf5/2QHQXEL+qWw2lFT+3eDtfhMuisg4nNl8FES52RaxO4ABQYqM7QL3tyv
-         Krjg65OFtK2qMaa3EVWooIQ8WL3poTvN9lTH3IcUPx1L/R9w8sz46fPBbgxK08MLYG0J
-         4DsFyJ+5AqSLfmM8quOuTs0LjbJNPFab1memO3RhYYZ0wl7zmVdvyevzI30ZMedZq0WK
-         vJhFrw46FlvLpHZxQUp7O/a0Wmpwny9wHAy8yblgnDVENt5orSJa6jPSWbx6ZcRj99wk
-         baPw==
-X-Gm-Message-State: ACgBeo3GtVYxXOHtDu57BG7bT4v3w7aO2c1jN5Y+e+cwM+irSRrnYmaX
-        KjLE3E7bKytnu4eS68ESDg==
-X-Google-Smtp-Source: AA6agR5mYKS7XtVQZe8sFeyCEcyRF+iUYJM+bgIcB3gXsnvoKso0YuEq3NELj/5YREiZzLzAgBd/qg==
-X-Received: by 2002:a05:6870:c596:b0:101:6409:ae62 with SMTP id ba22-20020a056870c59600b001016409ae62mr1678713oab.112.1661269309377;
-        Tue, 23 Aug 2022 08:41:49 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id z24-20020a9d65d8000000b00638e49d4cadsm3824347oth.36.2022.08.23.08.41.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Aug 2022 08:41:49 -0700 (PDT)
-Received: (nullmailer pid 3261416 invoked by uid 1000);
-        Tue, 23 Aug 2022 15:41:48 -0000
-Date:   Tue, 23 Aug 2022 10:41:48 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Jean-Philippe Brucker <jean-philippe@linaro.org>
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, maz@kernel.org
-Subject: Re: [PATCH 3/3] dt-bindings: interrupt-controller: arm,gic: Support
- two address and size cells
-Message-ID: <20220823154148.GA3261330-robh@kernel.org>
-References: <20220822152224.507497-1-jean-philippe@linaro.org>
- <20220822152224.507497-4-jean-philippe@linaro.org>
+        with ESMTP id S232027AbiHWSL2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 14:11:28 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA0F49C22E
+        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 09:23:18 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1oQWg7-00009i-3P; Tue, 23 Aug 2022 18:22:59 +0200
+Received: from ore by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1oQWg5-0004cc-Dq; Tue, 23 Aug 2022 18:22:57 +0200
+Date:   Tue, 23 Aug 2022 18:22:57 +0200
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>, kernel@pengutronix.de,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+        David Jander <david@protonic.nl>
+Subject: Re: [PATCH net-next v1 1/7] dt-bindings: net: pse-dt: add bindings
+ for generic PSE controller
+Message-ID: <20220823162257.GO10138@pengutronix.de>
+References: <20220819120109.3857571-1-o.rempel@pengutronix.de>
+ <20220819120109.3857571-2-o.rempel@pengutronix.de>
+ <20220822184112.GA113650-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20220822152224.507497-4-jean-philippe@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20220822184112.GA113650-robh@kernel.org>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 22 Aug 2022 16:22:24 +0100, Jean-Philippe Brucker wrote:
-> It should be valid for a GICv2m node, child of a GICv2 node, to use two
-> cells per reg address and size. The QEMU virt device-tree currently
-> fails validation because the schema imposes a single address and size
-> cell. Amend the rule.
+On Mon, Aug 22, 2022 at 01:41:12PM -0500, Rob Herring wrote:
+> On Fri, Aug 19, 2022 at 02:01:03PM +0200, Oleksij Rempel wrote:
+> > Add binding for generic Ethernet PSE controller.
+> > 
+> > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> > ---
+> >  .../bindings/net/pse-pd/generic-pse.yaml      | 40 +++++++++++++++++++
+> >  1 file changed, 40 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/net/pse-pd/generic-pse.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/pse-pd/generic-pse.yaml b/Documentation/devicetree/bindings/net/pse-pd/generic-pse.yaml
+> > new file mode 100644
+> > index 0000000000000..64f91efa79a56
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/net/pse-pd/generic-pse.yaml
+> > @@ -0,0 +1,40 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/net/pse-pd/generic-pse.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Generic Power Sourcing Equipment
+> > +
+> > +maintainers:
+> > +  - Oleksij Rempel <o.rempel@pengutronix.de>
+> > +
+> > +description: |
+> > +  Generic PSE controller. The device must be referenced by the PHY node
+> > +  to control power injection to the Ethernet cable.
 > 
-> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
-> ---
->  .../devicetree/bindings/interrupt-controller/arm,gic.yaml     | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+> Isn't this separate from the PHY other than you need to associate 
+> supplies with ethernet ports?
+> 
+> Is there a controller here? Or it is just a regulator consumer 
+> associated with an ethernet port?
+
+Current version has only regulator. It will be extended with IEEE 802.3
+specific power source classification information, wich will be overkill for the
+regulator framework. I can add it to the v2 version.
+
+> > +properties:
+> > +  compatible:
+> > +    const: ieee802.3-podl-pse-generic
+> 
+> Is this for 802.3bu only (which is where PoDL comes from) or all the 
+> flavors? If all, do they need to be distinguished?
+
+yes. ieee802.3 defines type and class with different enumeration and
+meanings for PSE and PoDL PSE. 
+
+So far we have two different modes:
+ - 802.3bu (PoDL PSE). Has own types and classes
+ - 802.3af  is extended by 802.3at, and the extended by 802.3bt
+   all of them are named as PSE and has own types and classes as well.
+
+I worry more about the fact is some one will implement HW supporting both
+modes. IMO, it is possible to take usual ethernet PHY, configure to
+10Bit half-duplex and run over single pair. In this case it is possible
+to use only PoDL PSE mode.
+
+In this case I need single generic compatible but different properties
+to describe supported PSE and PoDL PSE modes.
+
+> 'generic' is redundant.
+
+ok
+
+> > +
+> > +  '#pse-cells':
+> 
+> What's this for? You don't have a consumer.
+
+the consumer is PHY.
+
+> > +    const: 0
+> > +
+> > +  ieee802.3-podl-pse-supply:
+> 
+> Seems a bit long
+
+ok. Reduce it to pse-supply ?
+
+> > +    description: |
+> 
+> Don't need '|' if no formatting to maintain.
+
+ok
+
+> > +      Power supply for the PSE controller
+> > +
+> > +additionalProperties: false
+> > +
+> > +required:
+> > +  - compatible
+> > +  - '#pse-cells'
+> > +  - ieee802.3-podl-pse-supply
+> > +
+> > +examples:
+> > +  - |
+> > +    ethernet-pse-1 {
+> > +      compatible = "ieee802.3-podl-pse-generic";
+> > +      ieee802.3-podl-pse-supply = <&reg_t1l1>;
+> > +      #pse-cells = <0>;
+> > +    };
+> > -- 
+> > 2.30.2
+> > 
+> > 
 > 
 
-Applied, thanks!
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
