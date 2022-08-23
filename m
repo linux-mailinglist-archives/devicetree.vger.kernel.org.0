@@ -2,43 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7124259EC1C
-	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 21:21:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2B2659EC62
+	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 21:33:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231959AbiHWTVG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Aug 2022 15:21:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37958 "EHLO
+        id S232148AbiHWTbc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Aug 2022 15:31:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234384AbiHWTUn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 15:20:43 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 945A312C7DC;
-        Tue, 23 Aug 2022 10:59:53 -0700 (PDT)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1oQYBm-0006NS-G1; Tue, 23 Aug 2022 19:59:46 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Stephen Boyd <sboyd@kernel.org>, Jagan Teki <jagan@edgeble.ai>
-Cc:     Kever Yang <kever.yang@rock-chips.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v3 10/19] dt-bindings: clock: rockchip: Document RV1126 CRU
-Date:   Tue, 23 Aug 2022 19:59:45 +0200
-Message-ID: <6086608.Sb9uPGUboI@diego>
-In-Reply-To: <CA+VMnFyJOCc-RzENYs9L+U4VeJgEpMmZeSLZahcNdnL7_Cvw9Q@mail.gmail.com>
-References: <20220818124132.125304-1-jagan@edgeble.ai> <20220818212913.7FC43C433D6@smtp.kernel.org> <CA+VMnFyJOCc-RzENYs9L+U4VeJgEpMmZeSLZahcNdnL7_Cvw9Q@mail.gmail.com>
+        with ESMTP id S234199AbiHWTbG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 15:31:06 -0400
+Received: from mail-qk1-x729.google.com (mail-qk1-x729.google.com [IPv6:2607:f8b0:4864:20::729])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C91AD99EB
+        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 11:21:46 -0700 (PDT)
+Received: by mail-qk1-x729.google.com with SMTP id a15so10947049qko.4
+        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 11:21:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=VRH9i7gn6G7q7zM5zkrgK8otWVHlhX+rKEaQTiTTOG8=;
+        b=MZCbr/WEbJydxnsRP5iDs8/+UKHC04XK4zcpwO5zyFGAWWy/6HFHsOKp7qYfTJmKBT
+         fBzs3v7/7AQJ0KzQ8i+gXfbYpjMe2dGZrjRk4LEtEg8YwZ+TcO0L/E4zM2ooV1ss+2+B
+         Gr1DyQWP/qboa72UXqPFD27ZSZg7AfE02sPVw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=VRH9i7gn6G7q7zM5zkrgK8otWVHlhX+rKEaQTiTTOG8=;
+        b=hh5pWpwWfP/b+tpcKdT1pAV7L7S3im+BVGmQi2Iiid8GpPXnVv+Rx8+tDKdTctAFFC
+         sTjvGToCRT+x91QulB47C7KX4Z71ep8n3SQfogD0ktcW9x8M2aW9JNlruPFu4c4zpIM5
+         AAuRYqZvbeUfUV6HGAezJIGGwp+cmX+5nCqSPKE1KG7Jx8taysm2mzjg2p1z433U4iZu
+         vtunS2u+2+6ChEpP0k4Pd5E8tVzxwjuXJW42YK3SSPBC9MGpGnEcWzzoEUrhR32iptsE
+         Rzg8hRO/55nCQ/XsLlRyCkxlZilMdmcT6zAmPnOQbb75wX0qmZhBHIhSzSJue5pIY3fO
+         uIXQ==
+X-Gm-Message-State: ACgBeo0BBFunXYKK6Bdh+R9MOjUub8Lvk6g/3Q64DQZL3VjjbbgSHWME
+        7AxSKf5aDg2DmNfHDnKFMAkRQKNIHReGeaEJPPVYzw==
+X-Google-Smtp-Source: AA6agR7Tplpl0I6QcELlwZXfwpUh5dE7G8dVWSaIMwN975uDfjb3e5Hod1U6v27fYqIISntknbMDFc+HKE9bvLh75Ek=
+X-Received: by 2002:a05:620a:c44:b0:6b6:5c63:aebc with SMTP id
+ u4-20020a05620a0c4400b006b65c63aebcmr17241718qki.170.1661278905154; Tue, 23
+ Aug 2022 11:21:45 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+References: <20220810204750.3672362-1-bjorn.andersson@linaro.org>
+ <20220810204750.3672362-2-bjorn.andersson@linaro.org> <a13bce60-25b4-d075-d56a-d1283e91e3ba@linaro.org>
+ <20220814210104.GA690892-robh@kernel.org> <Yv1y9Wjp16CstJvK@baldur>
+ <CAE-0n53AjJ_G6yZoTALWpKvZUdF+8nFZ+TQh=Ch=8xgdMVqDkw@mail.gmail.com>
+ <CACeCKadP-AZ8OU4A=7CrwAz7yuLvMvjvAcw7K-FORFmkMvx7cA@mail.gmail.com>
+ <CAE-0n53C+D=9gdSXKsjr4KZVrb-gpeo_EyuX3DfNKp19FoicXA@mail.gmail.com>
+ <YwADGgNVwtKacUBR@builder.lan> <CACeCKaeXpU+AxFNAwkutMX9LT2XLgAv1XmwJRyj7Exqxg6v8rA@mail.gmail.com>
+ <YwBdTAIqFbedC6Oa@builder.lan>
+In-Reply-To: <YwBdTAIqFbedC6Oa@builder.lan>
+From:   Prashant Malani <pmalani@chromium.org>
+Date:   Tue, 23 Aug 2022 11:21:33 -0700
+Message-ID: <CACeCKafDfiZ8o2Ac-QYTcWT0dFtX6gXfrBPsGgwxRG+-FF4aQw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: usb: Introduce GPIO-based SBU mux
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Pin-yen Lin <treapking@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -46,44 +75,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Freitag, 19. August 2022, 23:20:03 CEST schrieb Jagan Teki:
-> On Fri, 19 Aug 2022 at 02:59, Stephen Boyd <sboyd@kernel.org> wrote:
-> >
-> > Quoting Jagan Teki (2022-08-18 05:41:23)
-> > > +
-> > > +  clocks:
-> > > +    maxItems: 1
-> > > +
-> > > +  clock-names:
-> > > +    const: xin24m
-> > > +
-> > > +  rockchip,grf:
-> > > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > > +    description:
-> > > +      Phandle to the syscon managing the "general register files" (GRF),
-> > > +      if missing pll rates are not changeable, due to the missing pll
-> > > +      lock status.
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - "#clock-cells"
-> > > +  - "#reset-cells"
-> >
-> > Why aren't clocks required?
-> 
-> I don't see any clocks being used by cru in rv1126 [1] so that is the
-> reason I didn't add any. Let me know if it is something that is
-> mandatory to add even if it's unused.
-> [1] https://github.com/rockchip-linux/kernel/blob/develop-4.19/arch/arm/boot/dts/rv1126.dtsi#L1074
+On Fri, Aug 19, 2022 at 9:04 PM Bjorn Andersson
+<bjorn.andersson@linaro.org> wrote:
+>
+> On Fri 19 Aug 17:18 CDT 2022, Prashant Malani wrote:
+>
+> > On Fri, Aug 19, 2022 at 2:39 PM Bjorn Andersson
+> > <bjorn.andersson@linaro.org> wrote:
+>
+> Are you saying that two of your SS-lanes in connector A are connected to
+> directly to the QMP PHY at the same time as two SS-lanes from connector
+> B are connected to the same two pads on the QMP PHY - without any
+> mux etc inbetween?
+>
+> I.e. that there are a set of pins in connector A which is directly
+> connected to a set of pins in connector B?
+>
+>
+> I was under the impression that in your hardware there's some component
+> muxing the single DP output to one of the connectors. If so there should
+> be no graph-link directly connecting the two usb-c-connectors and the
+> one QMP PHY.
+>
+> Is this not the case?
 
-Our clock drivers normally just expect that xin24m to be present
-but that xin24m _is_ a clock dependency for the cru and for a lot
-of Rockchip SoCs Johan did update both the binding and the dtsi-s
-to make that explicit when converting the binding over to yaml
+I can't speak to the QMP PHY specifically (since I'm not using that hardware),
+but your impression is right.
+There is a component (anx7625) muxing the single DP output to the 2
+usb-c-connectors
+(specifically, 2 lanes each from the 2 usb-c-connectors).
+The other 2 lanes (from the 2 USB-C-connectors) go to a USB3 hub; hence the need
+for 2 endpoints for each usb-c-connector).
 
-See for example the rk3399.
+So,  the anx7625 should register the mode switches and it needs the
+graph connections
+from 2 usb-c-connectors
 
-Heiko
+BR,
 
-
+-Prashant
