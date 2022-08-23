@@ -2,84 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CDA3259E8B2
-	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 19:15:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F0EB59E8C7
+	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 19:15:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343841AbiHWRLr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Aug 2022 13:11:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38078 "EHLO
+        id S245726AbiHWRLq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Aug 2022 13:11:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344215AbiHWRKh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 13:10:37 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 833B6B56C5
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 07:01:16 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id u14so17113756wrq.9
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 07:01:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=9CxBBUmjU/GRTNZigSTIxvYgBaeq6qAgAztqT+TrpaU=;
-        b=TQ8eyTTsoPt3BzutSU3DojsdAukJqYijwbs8W7hCkRKB+uaAL/z5mh6OEl2We+8uk+
-         aBQXbRVqq60yYnp56be2efIbgrY2EJ95l0Krf1wzsBL80liP2+vczoa/AURzvkkv6VCY
-         f2NmC98V+/6OgziVTVdeojEze+2UEM/7yG5+LUj4m4j/WOEd02hhhzO22se/HuXElqbH
-         gUC8+WjEZWDTbYmaesn2SC5/oo0sgNFZOZDNO3ubVtBX3q5BttKcKf7xs681YKWCJnHW
-         wNlzWYVEARvaTMXJrDCCNDSZXGdnx55Q7Pb6PaJfAT0RV/+fwaHsvbxhSFcS1xTReDNY
-         SkSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=9CxBBUmjU/GRTNZigSTIxvYgBaeq6qAgAztqT+TrpaU=;
-        b=NtJe+Nc/xAp8Mz5RdLpNZbHfdLha1jiLeUoAoppg6zHd+FDu/7K49N2HOBk44KWGyq
-         OGH7CZNCJztmZWroGv9hv+1JBwuwWd7tJoPRf4/fOa5RfR39DLVMcOlvyXpuEZlq6fbn
-         y0np6F8h47L3BBImggbq4/3LEOiG5CxoU7LI3JIOPXis4EGrEBO2uz0tnpfNwB/BTW87
-         HAQ/69OlSjIl4OVB5HFfbDnxSExEHhD1rmLUiQu3YrP/6+Lkeh/C+T5bIp4Uu3lBjTEl
-         xtsMuhaCP+xiiiHquaPlOY/Rs12mN0AiaD3wAKsj7QpnEokCPP4b3k54e421lrqnJb/t
-         CWtg==
-X-Gm-Message-State: ACgBeo35fwHsrs2ozS20ipbnbeIlba5t7cC7GzBucFX7SAXG54JU3j1A
-        IaYJCWuSbks85mL9BHpA5Zergg==
-X-Google-Smtp-Source: AA6agR7qDCXx2JKppEtNTOxlRMxTxSVRp4uB0ynxHkP1dpifVhHrD5RNB9ZD4x1/5rFYZ9roCL4mHA==
-X-Received: by 2002:a05:6000:2c4:b0:225:6782:5755 with SMTP id o4-20020a05600002c400b0022567825755mr1881200wry.299.1661263275088;
-        Tue, 23 Aug 2022 07:01:15 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id l23-20020a05600c1d1700b003a61306d79dsm21933810wms.41.2022.08.23.07.01.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Aug 2022 07:01:14 -0700 (PDT)
-Message-ID: <90c5fac6-78c2-43b8-b81f-6fa10912efff@linaro.org>
-Date:   Tue, 23 Aug 2022 15:01:13 +0100
+        with ESMTP id S1344245AbiHWRKj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 13:10:39 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0A2E753A2;
+        Tue, 23 Aug 2022 07:01:47 -0700 (PDT)
+Received: from pan.home (unknown [IPv6:2a00:23c6:c311:3401:60d6:460b:e0dc:41ba])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: martyn)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 74C2C6601DD8;
+        Tue, 23 Aug 2022 15:01:46 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1661263306;
+        bh=U+314oct9Zu4v5I9Z6fQHhGgVdlqQID9qINoCymOG0M=;
+        h=From:To:Cc:Subject:Date:From;
+        b=KEI3ObSfikbPPBkGQYCr5s/5lOkKmCmaxjj23ydmdZPlPwTLqbG7dVtgbBhkjbQDD
+         UiCBq/F8LGpY0IKeWUsKVhC0pGGv26nhnJnr8cP9sa1bEhJrfIB05/vBLPVFLxiLEL
+         s+Tc6rWA65OFDt6oxEHqpONlDZT567Ka9hyu7Y4w6ZYDwkYjjUN6pGVwAmurlF+0xj
+         qzuBDnrhS180VCqyMjNgCJ8C8fGpWV5svGZ2cnYpQPEcZk4Vhxj3at75j/fiLoEF/U
+         bNKkyY4GM47RHpXEdJZiR1DRQEu0yT72/t1N2Or7JzkY2GRFXlH6Lwmsyv9Q0K+GuP
+         9RQ4qg6YW5+Lw==
+From:   Martyn Welch <martyn.welch@collabora.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>
+Cc:     kernel@collabora.com, Martyn Welch <martyn.welch@collabora.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v7 1/2] dt-bindings: arm: fsl: Add MSC SM2S-IMX8PLUS SoM and SM2-MB-EP1 Carrier
+Date:   Tue, 23 Aug 2022 15:01:21 +0100
+Message-Id: <20220823140124.1469989-1-martyn.welch@collabora.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH] arm64: dts: qcom: pm8916: Fix pwm declaration
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        agross@kernel.org, andersson@kernel.org,
-        konrad.dybcio@somainline.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220822120300.2633790-1-bryan.odonoghue@linaro.org>
- <9022126c-2cd7-44c9-28dc-338e36a3346d@linaro.org>
- <11e20195-1383-d1e3-4715-8a1f110ed344@linaro.org>
- <4e567599-90ba-c8bd-9774-1e34ae8f8ea3@linaro.org>
- <c1357037-a280-0104-2f92-54a689d269b3@linaro.org>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <c1357037-a280-0104-2f92-54a689d269b3@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/08/2022 14:58, Krzysztof Kozlowski wrote:
-> so maybe let's choose less work?
-+1
+Add DT compatible strings for a combination of the 14N0600E variant of
+the Avnet (MSC branded) SM2S-IMX8PLUS SoM on it's own and in combination
+with the SM2-MB-EP1 carrier board.
+
+Signed-off-by: Martyn Welch <martyn.welch@collabora.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+
+Changes in v2:
+  - New addition
+
+Changes in v3:
+  - Switch to avnet vendor
+  - Shortened descriptive comment
+
+Changes in v4:
+  - No changes
+
+Changes in v5:
+  - No changes
+
+Changes in v6:
+  - No changes
+
+Changes in v7:
+  - No changes
+
+ Documentation/devicetree/bindings/arm/fsl.yaml | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 7431579ab0e8..81d90dc83385 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -936,6 +936,13 @@ properties:
+               - toradex,verdin-imx8mp-wifi  # Verdin iMX8M Plus Wi-Fi / BT Modules
+           - const: fsl,imx8mp
+ 
++      - description: Avnet (MSC Branded) Boards with SM2S i.MX8M Plus Modules
++        items:
++          - const: avnet,sm2s-imx8mp-14N0600E-ep1 # SM2S-IMX8PLUS-14N0600E on SM2-MB-EP1 Carrier Board
++          - const: avnet,sm2s-imx8mp-14N0600E     # 14N0600E variant of SM2S-IMX8PLUS SoM
++          - const: avnet,sm2s-imx8mp              # SM2S-IMX8PLUS SoM
++          - const: fsl,imx8mp
++
+       - description: Engicam i.Core MX8M Plus SoM based boards
+         items:
+           - enum:
+-- 
+2.35.1
+
