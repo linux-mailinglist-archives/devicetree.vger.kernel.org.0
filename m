@@ -2,102 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4489959EDAA
-	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 22:44:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC99B59EDC4
+	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 22:49:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231644AbiHWUoL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Aug 2022 16:44:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58410 "EHLO
+        id S231816AbiHWUtt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Aug 2022 16:49:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231587AbiHWUnz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 16:43:55 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 000EFBE1A;
-        Tue, 23 Aug 2022 13:37:11 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id bq23so12211077lfb.7;
-        Tue, 23 Aug 2022 13:37:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc;
-        bh=vQcH+/y/P9B/2raRe9zmku2I7NczMFWSxzuMB3mZnb4=;
-        b=T/mirrj8pjK6zMDCBKV8LRH/dVG3aygy1DACRYAJzIFcxOKX3eKTW6CGZMb/zsbzcb
-         qbTzq5QYOZ1XrmRsQ8F4Kam7tleixaMDSwFu5UrIHgWf1ZLIW48Mw3XDHKU1ThUS4TBG
-         RxkRUASZhAR//q0YwhMy1OmUMrVqHaAnvYMfFdhx8xFD0DvZt4sKGQmDT5M/8XTlX8Yy
-         +ZU/Zi3vA9dJvKocUfL/Wby5GcWGpgCLZvDQ22xa/Em2obQs39g+zazsmYmqMk7UQ/26
-         L1u8fCUcbUx52d+aNK1k/Pe72Exw69Y7+sqOulpaRp895lFQfLQ5rEJJmqVISHk87FBb
-         hSaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=vQcH+/y/P9B/2raRe9zmku2I7NczMFWSxzuMB3mZnb4=;
-        b=58DB/kFMX+kh/B/7gCikqI0k1zqcjGNOK6TWX7Imkvno8qOj/iiMyqdnQ+YRNQmnMH
-         wBL8j+f7WmL3sGlv3MLD6dZmiECX7EtUv9XAigrEPtDrgjqpc0b0Tf65q35trmljFk68
-         jmkpVMIRQMsaLgfR80TrAKi7txDPrUZxg3OP9HdWTCMHxepvHftPkQZR4A499F1iRqKJ
-         p4Hh1IaP9WL99v/UP9ZeUiXMNjEvvJIodVbH+sgPeQ/EQdPmU3t0+Ts9yzGvn6UbjpUT
-         l5JdZyZgYnffu5leRiRN4b0nNUepHeZ3LX3grM392BfkrlWn1bR03XPrKogXx5GlUAM+
-         Pd6Q==
-X-Gm-Message-State: ACgBeo25sPeWRhSRpN6DdWY1Ck1zWDaJ6gBQAuxihiHXcaCVzamxwgpq
-        k27wjxkfxIQu6io4rpOwHSWs8rTvbkVWBw==
-X-Google-Smtp-Source: AA6agR40SLee4SjM1i2uq9+pfjMNU9jwlzbyfW16sjS4b3hxN9Ef4RUrzOg25a5D5kdASCLRpFgCVQ==
-X-Received: by 2002:a05:6512:b01:b0:48b:a065:2a8b with SMTP id w1-20020a0565120b0100b0048ba0652a8bmr8664045lfu.401.1661287030347;
-        Tue, 23 Aug 2022 13:37:10 -0700 (PDT)
-Received: from mobilestation (ip1.ibrae.ac.ru. [91.238.191.1])
-        by smtp.gmail.com with ESMTPSA id j17-20020ac253b1000000b00491203d6cc9sm257441lfh.131.2022.08.23.13.37.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Aug 2022 13:37:09 -0700 (PDT)
-Date:   Tue, 23 Aug 2022 23:37:07 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229974AbiHWUtd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 16:49:33 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A8E1E13;
+        Tue, 23 Aug 2022 13:44:41 -0700 (PDT)
+Received: from notapiano (unknown [194.36.25.10])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: nfraprado)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 0EDE56601E65;
+        Tue, 23 Aug 2022 21:44:36 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1661287480;
+        bh=jqLAj0YQtQZUtqXH+BAY2b9SkhzwQO4Yvi/MUffe6Zs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=UXlGRT0GN5ZkJgDkdHbW6movx3CyrChqNzrWEo3lqznM7S7DDEdcOhYyAGF4rG5Za
+         UudB8D5M/M5rQxqQuU5Y1Z2ITl3UC/oSPGCiTh2I7PtLCENdiHdlwGOfzXzkcmPIbX
+         Y3ecc0PrQcgGB9dEswKsR40q7xk1MYi17F4DXhiRogX10fDeKvlsOQZ2RTSNg43UOr
+         WQnSPdmTcQS7ZUmehwrOjFWYkJ337Kux9LJOvgJhPGds3NmwYcG18ErEQ1NU4B4UVk
+         0w4oPy7AXgzNkkZvf+lrAT6vq9N2X2qmlXxd5TdLwOAQ2hHGFRLxy9enmmRbb46+QA
+         x0IR0rPcAsvbA==
+Date:   Tue, 23 Aug 2022 16:44:32 -0400
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] spi: dt-bindings: snps,dw-apb-ssi: drop ref from
- reg-io-width
-Message-ID: <20220823203707.jd4orvadad2yri3q@mobilestation>
-References: <20220823100937.386880-1-krzysztof.kozlowski@linaro.org>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Eddie Hung <eddie.hung@mediatek.com>
+Subject: Re: [PATCH 1/7] dt-bindings: phy: mediatek,tphy: add support type of
+ SGMII
+Message-ID: <20220823204432.ugfs7k3dn4ibbcky@notapiano>
+References: <20220819091344.2274-1-chunfeng.yun@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20220823100937.386880-1-krzysztof.kozlowski@linaro.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220819091344.2274-1-chunfeng.yun@mediatek.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 23, 2022 at 01:09:37PM +0300, Krzysztof Kozlowski wrote:
-> reg-io-width is a standard property, so no need for defining its type
+On Fri, Aug 19, 2022 at 05:13:38PM +0800, Chunfeng Yun wrote:
+> Add support ethernet SGMII, forgot to update type supported.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Fixes: c01608b3b46b ("dt-bindings: phy: mediatek: tphy: support type switch by pericfg")
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
 
-The patch has already been merged in, anyway thanks for the fix.
-Acked-by: Serge Semin <fancer.lancer@gmail.com>
+Hi Chunfeng,
 
--Sergey
+when sending a patch series of more than 1 patch, please add a cover letter
+describing a higher level overview of the changes done in the patches. Example:
+[1]
 
-> ---
->  Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml | 1 -
->  1 file changed, 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-> index 37c3c272407d..d33b72fabc5d 100644
-> --- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-> +++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-> @@ -104,7 +104,6 @@ properties:
->      const: spi
->  
->    reg-io-width:
-> -    $ref: /schemas/types.yaml#/definitions/uint32
->      description: I/O register width (in bytes) implemented by this device
->      default: 4
->      enum: [ 2, 4 ]
-> -- 
-> 2.34.1
-> 
+Thanks,
+Nícolas
+
+[1] https://lore.kernel.org/all/20220629155956.1138955-1-nfraprado@collabora.com/
