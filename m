@@ -2,81 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E869D59E5EE
-	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 17:23:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C60A59E5EF
+	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 17:24:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233628AbiHWPXf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Aug 2022 11:23:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42900 "EHLO
+        id S235962AbiHWPYx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Aug 2022 11:24:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244835AbiHWPQ0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 11:16:26 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A0BB1D3365
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 03:34:55 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id l23so2044642lji.1
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 03:34:55 -0700 (PDT)
+        with ESMTP id S243485AbiHWPYe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 11:24:34 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F1A6222E27
+        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 04:00:14 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id w19so26663886ejc.7
+        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 04:00:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=mubN9uvQYvqaelFvUGOLV/uSSqf/r8cU2dBz7KX7Wps=;
-        b=qFWY6NjWAV4o1T6Z/bUOiafOxEuFlqlAGXySAToBX9Mbxmug4DHCSs6f8pPo1YwUhb
-         MoNPByYuW156Ep3vctvZSpFDsu9WD+QLm1N93ALxqCj5Yjzp63bzUVUIXiOzJcC84mB6
-         4jEJHDZ8hYbHIIuPWzsEGKkyAK/PAD8D3c4A1aZ/eyzzwDxrtIyW+ghmZLD2RUu+oD4t
-         18TZ9J6KuRs0Xkv/mjFArnK/ChQOTiElidjXtyJq6m5plbIWx95S0RjeXGoWspnGt39R
-         PWntb1oLjpgkbrxoOIiGOPlqc8v7bcYckU0za5HedCvk3oO0LTPB16jrKd5yykDxbj37
-         kZOA==
+        bh=RN/LOwAs0mnCfns8ZqSzFQO5l9T587JWTtmjgOoDJU0=;
+        b=Py0wMtQJoUAEqHG39bdO2l0BFyd5gIb/rukM60FnZ1hchbdZcz/+uZHBv+PwZYsYHD
+         KPwGaoEP4kJMY7TN5kh0S2PbU/GtEAZFI6/GWecCyniqreT6ulMrcaAexk8rNouQW+pC
+         r2mpDu584TwrHqn6lCYfsCPZwrvgPTkIImrUO6nDjdM3TUwkrCUnEZ4JeI+Y7RDYZR4L
+         9/nnSDO1kK59WzFrgxbHwSPItaD3vOteBcPpxjbHQlyhLUNEWJGEX904OANzDvl/GJx3
+         XZgFnoOeWES7ce7ypMcQRWjqXoYyvB83wxa1ANQHzbjoC8isWgnJ+MVhgQkN8od+6iNh
+         LUZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=mubN9uvQYvqaelFvUGOLV/uSSqf/r8cU2dBz7KX7Wps=;
-        b=nop/iooA1oU5n5bSgzee/JqYcoYRGFz1iweCw80hbbqyHL+U2byWNMP40n5q2f5/E2
-         cNJ/hu2HT7cBa6hEt1iwabX8PzpOaQffMZCKJcJbD+RdsgoiFYwg1/0zKLv4ov3qUwEM
-         bwgpmtPIyPvvAsTTMZYWtZqh+BkWHFkJPSNXEnA9Bhgy1B1GTpHrUyf5JzgsFidvjm7p
-         OkvO9gfPp44oxTT/O3rl2yMH0YwEZe+12lxFe9cTp7tCMEbLVo15eiNxkC2QfWHKIA6i
-         qWHHGln8bYF5YLpx1ePt7HNe97J6qBBxBEdGtN1LvZJ7dVImHgXC0ieegTVQO7CTKAOy
-         S8ag==
-X-Gm-Message-State: ACgBeo1OnPkHcBSMDSodA+aZFYoDDu1Wlzfa2GhO5MHnMpsG/+//RpXJ
-        Gn5Tbqq24ADFoxFEBZUwxPI7tQ==
-X-Google-Smtp-Source: AA6agR48VHsnB0Zwbx/ckxFpRxJam2Py1a7/AX9eB8O2ot2NL9+QtniRGSAw498OpIqHMw/Tim8aGQ==
-X-Received: by 2002:a2e:5cd:0:b0:261:a774:36d0 with SMTP id 196-20020a2e05cd000000b00261a77436d0mr7050422ljf.312.1661250811356;
-        Tue, 23 Aug 2022 03:33:31 -0700 (PDT)
+        bh=RN/LOwAs0mnCfns8ZqSzFQO5l9T587JWTtmjgOoDJU0=;
+        b=Cu3Ecbn5WVQVx2DGmhBLszvyEl9127sHeIUegi+ae+enunf0ErjnsKmry9mJ8C7KjR
+         kcjCXSA90HXgoi93YiB6hgWzuPWei8Dr9kQqhfubYMtFpA6JoRNXN/Gk1T4SDq0ujEfx
+         o59sUOEY/2l3Z8ubCIMd0y/Tezbm0KdIfw3RqWRJfBzzslhk/bNfs+1fvdaVCGWKb+DA
+         iOr7IOYmDtNYw68OxDP7g2Xo5nRmrMu0acZZDbhwCVIA7eInpA1NVXWxhjBn5Z4AY3c0
+         q73zgWRCfab1Zs3bRIW8f2JbDLYiy4Ax75p/JVQIRPhI6kbQc8GvJFAJEqvPLv0dkc0d
+         hkaA==
+X-Gm-Message-State: ACgBeo0uewIK0jhIHadHgnH0OUhBJxdnBLY2dOnJVlxaQenZ+j1ZW5VV
+        9wjW2szZ0KU3AMU5+SKzWFQ+ywrF7Smj8sfO
+X-Google-Smtp-Source: AA6agR7X5sSiNq/i+Hdcr45vvYQkfwChkiEwFRHa/+jS1NGRNkHqhXgoDdJQhIB3VWwSaYKrwvZ2Ew==
+X-Received: by 2002:a05:6512:22d5:b0:492:cf78:59b7 with SMTP id g21-20020a05651222d500b00492cf7859b7mr5862437lfu.504.1661251564314;
+        Tue, 23 Aug 2022 03:46:04 -0700 (PDT)
 Received: from [192.168.0.11] (89-27-92-210.bb.dnainternet.fi. [89.27.92.210])
-        by smtp.gmail.com with ESMTPSA id n26-20020a05651203fa00b00492e6642937sm900014lfq.200.2022.08.23.03.33.30
+        by smtp.gmail.com with ESMTPSA id t14-20020a2e8e6e000000b00261af4754bbsm2299173ljk.41.2022.08.23.03.46.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Aug 2022 03:33:30 -0700 (PDT)
-Message-ID: <145e872c-e7fc-a1f9-edb2-fad507d84018@linaro.org>
-Date:   Tue, 23 Aug 2022 13:33:29 +0300
+        Tue, 23 Aug 2022 03:46:03 -0700 (PDT)
+Message-ID: <019d8f8a-cff1-4539-dc9f-8a0073b6ab32@linaro.org>
+Date:   Tue, 23 Aug 2022 13:46:02 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCHv2 resend] dt-bindings: leds: Expand LED_COLOR_ID
- definitions
+Subject: Re: [PATCH v4 3/6] dt-bindings: net: dsa: mediatek,mt7530: update
+ examples
 Content-Language: en-US
-To:     Olliver Schinagl <oliver@schinagl.nl>,
+To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Baolin Wang <baolin.wang@linaro.org>,
-        Daniel Mack <daniel@zonque.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Oleh Kravchenko <oleg@kaa.org.ua>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Simon Shields <simon@lineageos.org>,
-        Olliver Schinagl <oliver+list@schinagl.nl>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220819152904.433514-1-oliver@schinagl.nl>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        Sander Vanheule <sander@svanheule.net>,
+        =?UTF-8?Q?Ren=c3=a9_van_Dorst?= <opensource@vdorst.com>,
+        Daniel Golle <daniel@makrotopia.org>, erkin.bozoglu@xeront.com,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220820080758.9829-1-arinc.unal@arinc9.com>
+ <20220820080758.9829-4-arinc.unal@arinc9.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220819152904.433514-1-oliver@schinagl.nl>
+In-Reply-To: <20220820080758.9829-4-arinc.unal@arinc9.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,28 +97,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/08/2022 18:29, Olliver Schinagl wrote:
-> In commit 853a78a7d6c7 (dt-bindings: leds: Add LED_COLOR_ID definitions,
-> Sun Jun 9 20:19:04 2019 +0200) the most basic color definitions where
-> added. However, there's a little more very common LED colors.
+On 20/08/2022 11:07, Arınç ÜNAL wrote:
+> Update the examples on the binding.
 > 
-> While the documentation states 'add what is missing', engineers tend to
-> be lazy and will just use what currently exists. So this patch will take
-> (a) list from online retailers [0], [1], [2] and use the common LED colors
-> from there, this being reasonable as this is what is currently available to
-> purchase.
+> - Add examples which include a wide variation of configurations.
+> - Make example comments YAML comment instead of DT binding comment.
+> - Add interrupt controller to the examples. Include header file for
+> interrupt.
+> - Change reset line for MT7621 examples.
+> - Pretty formatting for the examples.
+> - Change switch reg to 0.
+> - Change port labels to fit the example, change port 4 label to wan.
 > 
-> Note, that LIME seems to be the modern take to 'Yellow-green' or
-> 'Yellowish-green' from some older datasheets.
-> 
-> [0]: https://www.digikey.com/en/products/filter/led-lighting-color/125
-> [1]: https://eu.mouser.com/c/optoelectronics/led-lighting/led-emitters/standard-leds-smd
-> [2]: https://nl.farnell.com/en-NL/c/optoelectronics-displays/led-products/standard-single-colour-leds-under-75ma
-> 
-> Signed-off-by: Olliver Schinagl <oliver@schinagl.nl>
+> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+> ---
+>  .../bindings/net/dsa/mediatek,mt7530.yaml     | 402 +++++++++++++++---
+>  1 file changed, 347 insertions(+), 55 deletions(-)
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
