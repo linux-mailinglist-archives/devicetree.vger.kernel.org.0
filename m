@@ -2,82 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6688959E4BE
-	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 15:57:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D61C59E4C7
+	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 15:59:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240884AbiHWN5N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Aug 2022 09:57:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42240 "EHLO
+        id S232491AbiHWN76 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Aug 2022 09:59:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44486 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241246AbiHWN4z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 09:56:55 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4618E22B8BB
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 04:02:59 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id bx38so13130730ljb.10
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 04:02:59 -0700 (PDT)
+        with ESMTP id S231395AbiHWN7l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 09:59:41 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19EC9237162
+        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 04:06:12 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id bt10so6184660lfb.1
+        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 04:06:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=Nh/dSfQpjawYJKjYiUJyrmH/Pdok2iA80vxKA7PHHnc=;
-        b=FEdHHqbCC7TtKYyi1L6Ks5VnxgHVgIZG9H2aCY0WL2r6YX2J+LFzAfOn6HO5uQDI/N
-         VioQTqrYqgOeSYlSKy8Aa68z0lWTheqQMMuGdCClPHt1N9/1M/GDE9wwN8zAxENmLYxZ
-         /gfXbXMVk5ecw0/NuAh5Nk921ymDUjP54UvLi4/G3pCBNy17k0s7sCVQLelgYvQ+OIUv
-         n/OLH3fbZAb9qDNSeAD0a9w6s7lORF5A8lDu+KbicYZLUeU3r4Bnvf0G3XmH+v2Z3EAo
-         9h242JRXKE5jZrnYtJOVAEOSXBD9M8Rz5dRRHGN/FE8cbqCSaP3R27EV0I7G1FW1cs0q
-         ospg==
+        bh=upMrhZzNt5L4wt+Z6rQpjqaSfbMFmcSW/S35w6kildQ=;
+        b=lUuOxQYURyFztcD8JB1k1/VOOWZsCmGTQ+yF4zeLSfv3Bl+u/6fhI2ZJtH13awkTmw
+         z0SdAS43JPtjndvCJ7drXhMDbhvXkWvgDyUKj1AqJAd4C6YvIFupEJes+bEdB7YsyL6N
+         AEV0uuAQihFB8R1Cs3VVYRjoMBZtmNKfDeAr8KrrqU7o7nC5dLIiWL5HxMb3mtgCtBmC
+         9VUZjQ+c9DYK9IS3ofubScpMHfz1EBFwnIMYBuOsQ1o6M2B5UlMjihumKecDPa5iPqRv
+         KV49raJI8eHlcG23ogtThAPwTImUTYfbfWnJdKELO6a6ewC5Lql2SjSDBh4ulDZWlvpF
+         XaWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=Nh/dSfQpjawYJKjYiUJyrmH/Pdok2iA80vxKA7PHHnc=;
-        b=W5e/1M+HMufmEMeoouMD6jNKBggvZrlZtD0aRwtPYqCd84rbosjSPTg+IpONqll0vy
-         xDFTfYyBNtaEhFzBpCAcGxS0z1rKIFUqFmQKc6IZh1/p8u+xQEY2KcdS7dDs464K/G4D
-         goD8DpGnO/YVbEa5c1yyg2LLP1tIrMsbnNCrKJaQgiQuFSluazE+j7tMFROdjEU0AQ3r
-         ql5C9Jg/3RUteZe9gOxgYBvjHxHh77NZ9Ay9XbDybl3zBW48CbykWhgRmWlLeXDwwqJS
-         l3DSWLxC3FQvzvChBjpJ0cNCJLizcAUhey6NQYvbR/kq8KsIXuIHvUehRaooqkiMvpej
-         fwHQ==
-X-Gm-Message-State: ACgBeo1ekEO8BTHJEm1RomNUm1MROR8pap78zozc1eod1gAPMvDSLjJt
-        /rb74/7S47wiNFZAdwpUBfAdxw==
-X-Google-Smtp-Source: AA6agR5vbYNjhHFnx+6VhB11BI4MrfWNs+kd+/HTfFywhleTdAxL7fiMVIIBFB64PGTaYQ6X+iS3mg==
-X-Received: by 2002:a2e:8e75:0:b0:261:d530:86f4 with SMTP id t21-20020a2e8e75000000b00261d53086f4mr975578ljk.461.1661252564894;
-        Tue, 23 Aug 2022 04:02:44 -0700 (PDT)
+        bh=upMrhZzNt5L4wt+Z6rQpjqaSfbMFmcSW/S35w6kildQ=;
+        b=UnEuZT+RjMnUTOLcZLTh5SGkrrQzHp+ChqGZjp0G9sFS4J/4llFTFrD6wWl+DVB3xL
+         4sRk8kAwguGf0WJ3kSj/SCMjtVzXZG94/QUyfFe5BE1rr+2NY1G2LnCq8JNHA8rU9I4J
+         /3BtQlNJRGkBZzXGmSAHsuOz4H9JX/qWSj+V8QLEmCr8f7d9zni7Cu/+0fF8bBPOwJMX
+         Vdy9X+rrFf4QEQgfP9C+TA0nvt9qhRwrddycrX11UhdX1HqM8d6zQtQGaeKMaohzvAt9
+         JHQCp08nVyjad6hYRkevUO+sPTxVTkgmbbu42cQMz55gZ1YUjWxedxBVOCqJUXaJG6H2
+         6t+Q==
+X-Gm-Message-State: ACgBeo2LWvZX3DflOh6RyLia0VyN0cg5qgnU0Zt8jA2K4KxpCrDnJPrW
+        /4zaRiu9pBCXWtUTDyxkOitOQA==
+X-Google-Smtp-Source: AA6agR6VDkkW1YVbogAhJeIpNaNVuRjVSp+tFRcF7y4uJIoy3Tksj2HeP+xWqTXyiKRv0Qkrx1RBVQ==
+X-Received: by 2002:a05:6512:3195:b0:492:db16:ab67 with SMTP id i21-20020a056512319500b00492db16ab67mr4959077lfe.436.1661252726672;
+        Tue, 23 Aug 2022 04:05:26 -0700 (PDT)
 Received: from [192.168.0.11] (89-27-92-210.bb.dnainternet.fi. [89.27.92.210])
-        by smtp.gmail.com with ESMTPSA id p17-20020a2ea4d1000000b0025d64453f4dsm2316547ljm.122.2022.08.23.04.02.43
+        by smtp.gmail.com with ESMTPSA id e5-20020a05651c038500b00261b9df2ca2sm2139082ljp.51.2022.08.23.04.05.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Aug 2022 04:02:44 -0700 (PDT)
-Message-ID: <ae5a10b8-a459-11c9-3fac-4f5de0ba2218@linaro.org>
-Date:   Tue, 23 Aug 2022 14:02:43 +0300
+        Tue, 23 Aug 2022 04:05:25 -0700 (PDT)
+Message-ID: <7d314905-676d-0c5a-59f3-034e1965a8ea@linaro.org>
+Date:   Tue, 23 Aug 2022 14:05:24 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH v2 2/4] arm64: dts: apple: t8103: Add MCA and its support
+Subject: Re: [PATCH v3 1/8] dt-bindings: arm: fsl: Rename compatibles for
+ Kontron i.MX8MM SoM/board
 Content-Language: en-US
-To:     =?UTF-8?Q?Martin_Povi=c5=a1er?= <povik+lin@cutebit.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Frieder Schrempf <frieder@fris.de>, devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        asahi@lists.linux.dev, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220819125430.4920-1-povik+lin@cutebit.org>
- <20220819125430.4920-3-povik+lin@cutebit.org>
- <38094e2d-c75c-920b-4b4d-aa377971f615@linaro.org>
- <A9E366E2-EA4D-4F35-BE28-63745296D222@cutebit.org>
+        linux-kernel@vger.kernel.org, Li Yang <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Denys Drozdov <denys.drozdov@toradex.com>,
+        Fabio Estevam <festevam@denx.de>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Marek Vasut <marex@denx.de>,
+        Matthias Schiffer <matthias.schiffer@tq-group.com>,
+        Max Krummenacher <max.krummenacher@toradex.com>,
+        Rob Herring <robh@kernel.org>
+References: <20220822080103.24016-1-frieder@fris.de>
+ <20220822080103.24016-2-frieder@fris.de>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <A9E366E2-EA4D-4F35-BE28-63745296D222@cutebit.org>
+In-Reply-To: <20220822080103.24016-2-frieder@fris.de>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,61 +88,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/08/2022 17:24, Martin Povišer wrote:
+On 22/08/2022 11:00, Frieder Schrempf wrote:
+> From: Frieder Schrempf <frieder.schrempf@kontron.de>
 > 
+> This updates the bindings in order to use names for the boards that
+> follow the latest convention used by Kontron marketing.
 > 
->> On 19. 8. 2022, at 15:12, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 19/08/2022 15:54, Martin Povišer wrote:
->>> Add the MCA I2S transceiver node and its supporting NCO, ADMAC nodes.
->>>
->>> Signed-off-by: Martin Povišer <povik+lin@cutebit.org>
->>> ---
->>> arch/arm64/boot/dts/apple/t8103.dtsi | 70 ++++++++++++++++++++++++++++
->>> 1 file changed, 70 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/apple/t8103.dtsi b/arch/arm64/boot/dts/apple/t8103.dtsi
->>> index 51a63b29d404..2dc3125aca5b 100644
->>> --- a/arch/arm64/boot/dts/apple/t8103.dtsi
->>> +++ b/arch/arm64/boot/dts/apple/t8103.dtsi
->>> @@ -532,6 +532,76 @@ port02: pci@2,0 {
->>> 						<0 0 0 4 &port02 0 0 0 3>;
->>> 			};
->>> 		};
->>> +
->>> +		dart_sio: iommu@235004000 {
->>> +			compatible = "apple,t8103-dart", "apple,dart";
->>> +			reg = <0x2 0x35004000 0x0 0x4000>;
->>> +			interrupt-parent = <&aic>;
->>> +			interrupts = <AIC_IRQ 635 IRQ_TYPE_LEVEL_HIGH>;
->>> +			#iommu-cells = <1>;
->>> +			power-domains = <&ps_sio_cpu>;
->>> +		};
->>> +
->>> +		nco_clkref: clock-ref {
->>> +			compatible = "fixed-clock";
->>> +			#clock-cells = <0>;
->>> +			clock-frequency = <900000000>;
->>> +			clock-output-names = "nco_ref";
->>> +		};
->>
->> Reference clocks are usually physically outside of SoC (e.g. on the
->> board), so:
->> 1. Not part of "soc" node.
->> 2. It should be defined by board. At least clock-frequency should be there.
+> By updating we make sure, that we can maintain this more easily in
+> future and make sure that the proper devicetree can be selected for
+> the hardware.
 > 
-> Ah, right, this deserves commentary: Since this is a reverse-engineered
-> driver/platform support, we give up on knowing the clock tree exactly. Instead
-> we model the clock input to the Numerically Controlled Oscillator (‘nco’ node
-> below) with this fabulated fixed clock reference.
-> 
-> I guess eventually the clock tree is rooted off the SoC, and there’s
-> nothing guaranteeing the same reference clock to the NCO across machines (being
-> function of the board wiring and the proprietary firmware). In the end I would
-> argue for keeping the ‘clock-ref’ here in ’soc' but have the clock-frequency
-> defined by board.  Sounds reasonable?
+> Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
+> ---
 
-Yes.
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 Best regards,
 Krzysztof
