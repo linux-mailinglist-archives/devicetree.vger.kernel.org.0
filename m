@@ -2,210 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9165C59D702
-	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 11:58:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5269D59D74F
+	for <lists+devicetree@lfdr.de>; Tue, 23 Aug 2022 11:59:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350433AbiHWJ3t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Aug 2022 05:29:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52444 "EHLO
+        id S238807AbiHWJbi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Aug 2022 05:31:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350042AbiHWJ1y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 05:27:54 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D384191D15
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 01:37:24 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id q18so11823234ljg.12
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 01:37:24 -0700 (PDT)
+        with ESMTP id S1350351AbiHWJ3W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 05:29:22 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0826C923CA;
+        Tue, 23 Aug 2022 01:37:31 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id bt10so5716539lfb.1;
+        Tue, 23 Aug 2022 01:37:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=+aSY9Y33CDXgz04lbF3PqxrBUx68k/v5JOdwfPTNsck=;
-        b=QkuAXN+U7cnhI883/vPgSeyqlE+WERE888alAVsSQAP6K76e4Lq6scqjW5YP5gY4Zv
-         gVD8rvePqRyUWnq08fWShX0UKGdz+64B0i1RmzOIMHquRKO34P4KjKVA1eQgbCOvET5c
-         XLxKuXdMN7i7FrPlNniRLvaqe2MWHiMxe1+cKHpfOkn+zWrbYLoyoNUBJsvd/NsQRIxV
-         0PAJTxFQYRRA1GjSzaLlvTMnfy5dlgNal0BIxfiprXMoLEB+392bMAYUtrZkZdjn3QD4
-         aRNoqblddkQYhPC/kwhTpB8oFZ8tZvUr4aA/AJhU5tY5FrlelbEHmPwxWc2JqMxLkFl+
-         3slw==
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc;
+        bh=vop6fItyvbYtkrV6IP5UVBH+x7wzffEHNhLEh8TzmD8=;
+        b=PdX27RnPGKwVCyCypErvS8EGx+jQCxJQjsN3GR6KThiHAzdSrVqpzi6+4lJ0R2Z2ZN
+         J8c+VhkgdNh7L1QWqN1bD0xhl2Zvr8pmNeW/HmfGFV7Hz51OxwuRfKtNNwThdHVBPk0j
+         bvYUq4kk6NDVLPuk0qo7kCA/XHYCuEmYnKA/cVrgVYn4aCrXWyvjDKGyAij6wY0Zkn4L
+         G8Czw9HygPAE3OyoUSWKNw3+EtS92m61SuRkgwjsYNNtrTn3aYAvowO87ZJBqAvbvqT/
+         i1JEI0YVotddMgzWYR/8Bqbbu8j4sBbyAsh2KpC3196CGZdEeWXD67uDgRwaGzg89yc0
+         cjkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=+aSY9Y33CDXgz04lbF3PqxrBUx68k/v5JOdwfPTNsck=;
-        b=4gWBQgraI3dCQZ1w+At3h35j5OIPjGsnfhiUmdfqCPeA/tG7TTwOispsgNZ5IJ8JgT
-         ati3aemcEpbGnNRN2u3dYQnuZrtiYEqXFBSZOZbZOsEgnBf6NONG/Lcg1u85VbXlZTup
-         uN82Uw5nL3bmkCxZ4ZIStVwxwyxqQJf9/hQmcpQNxtgxrouy2YzKuAirKDinMm8yXixh
-         CUt5GXh1thfKZyfpPRMYCqFGPQNWGCYR/Px0laCx6GWwB2anQFOKqJQIellV/rPasunc
-         tqeBrqCnKOMzFWpAR6MxAkS0UQfzGc1lRycvDhpLBFrsIaELXIFmXerfgUJg07JNhmvS
-         xvRw==
-X-Gm-Message-State: ACgBeo3O3bvOdEHQNahkrKk3IaefuWg7MwUBQpzDi6faSee4jzhwXyFh
-        hJKAOVdxo9oIVu7KnobrSqIJGQ==
-X-Google-Smtp-Source: AA6agR4tz09nxCgU4KECChD6CEX8ta0EVwvv34zu7NRW9WZuo44ysLqMs2v/JFtkNU1OgDp8eiWwiw==
-X-Received: by 2002:a2e:9d06:0:b0:261:d208:7475 with SMTP id t6-20020a2e9d06000000b00261d2087475mr1683044lji.113.1661243791045;
-        Tue, 23 Aug 2022 01:36:31 -0700 (PDT)
-Received: from [192.168.0.11] (89-27-92-210.bb.dnainternet.fi. [89.27.92.210])
-        by smtp.gmail.com with ESMTPSA id p18-20020a2eb992000000b00261ca006158sm1243319ljp.54.2022.08.23.01.36.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Aug 2022 01:36:30 -0700 (PDT)
-Message-ID: <ee93aa8a-d704-9d67-ad33-c81654c90ca2@linaro.org>
-Date:   Tue, 23 Aug 2022 11:36:29 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v1 1/1] dt-bindings: phy: ocelot-serdes: convert to YAML
-Content-Language: en-US
-To:     Colin Foster <colin.foster@in-advantage.com>,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-phy@lists.infradead.org
-Cc:     UNGLinuxDriver@microchip.com,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+        bh=vop6fItyvbYtkrV6IP5UVBH+x7wzffEHNhLEh8TzmD8=;
+        b=FOScH8dl/SzvDNQQfGWRhmEdtsXBDuIRugqaeSt+EN1aPksGKjX46cEjeY860DLJrB
+         q3CwBPZ+50XDeR9ExSKBf+YCuVif8WLNyUY+3Fer/T6fxnWHE2e82InKOzpl0SDylCHc
+         7Ldqpeje7xT6gVJIr86lwgT38bEXC9UrShCDRv8h6CmATLV4oTfX/Slj6ELgOQgkCNo4
+         GgyII5Fw37KeJfDN2XVkeiFTrVCDr3V3fis+WGIGLjtfmMfU35zDYhdvmXIzzcb+S5oX
+         VcOPdri9tUGWc6BCCqI/2VuASnMj/LvwnAuhL3MLYsgUnS7KX5wJuj0ldRnHPpJTGKIj
+         GzLQ==
+X-Gm-Message-State: ACgBeo0f+Hg5nbgidpyvSSTvP4s8+aWVMpiYRW+HGqsdf9zmcOmpmPFE
+        3LkIVBuKXcN9gwnkYQkSigc=
+X-Google-Smtp-Source: AA6agR5sCJFUy6q6BK/+a0nDOxzWJIe8zJFPRjdjmjK/QZnURboZ9UHk7Aq9/NiHjnaBrmGzTmHdqA==
+X-Received: by 2002:a05:6512:13a1:b0:48d:f14:9059 with SMTP id p33-20020a05651213a100b0048d0f149059mr8993313lfa.110.1661243811321;
+        Tue, 23 Aug 2022 01:36:51 -0700 (PDT)
+Received: from mobilestation ([95.79.140.178])
+        by smtp.gmail.com with ESMTPSA id bf40-20020a2eaa28000000b0025e59f125fbsm2259108ljb.53.2022.08.23.01.36.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Aug 2022 01:36:50 -0700 (PDT)
+Date:   Tue, 23 Aug 2022 11:36:48 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Rob Herring <robh@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Borislav Petkov <bp@alien8.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Tony Luck <tony.luck@intel.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>
-References: <20220823060052.3921849-1-colin.foster@in-advantage.com>
- <20220823060052.3921849-2-colin.foster@in-advantage.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220823060052.3921849-2-colin.foster@in-advantage.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Manish Narani <manish.narani@xilinx.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Michail Ivanov <Michail.Ivanov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Punnaiah Choudary Kalluri 
+        <punnaiah.choudary.kalluri@xilinx.com>,
+        Dinh Nguyen <dinguyen@kernel.org>,
+        James Morse <james.morse@arm.com>,
+        Robert Richter <rric@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-edac@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 16/20] dt-bindings: memory: snps: Detach Zynq DDRC
+ controller support
+Message-ID: <20220823083648.j7hmyt4py5xqnzde@mobilestation>
+References: <20220822190730.27277-1-Sergey.Semin@baikalelectronics.ru>
+ <20220822190730.27277-17-Sergey.Semin@baikalelectronics.ru>
+ <a5a15749-1047-74ea-831e-54d27a6d6cdf@linaro.org>
+ <835938e3-e4f5-5029-9373-5dd59bc3b625@linaro.org>
+ <20220823082748.td6pwkzj5grfno77@mobilestation>
+ <afc181cd-46b7-4c69-d27a-d2005904f48a@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <afc181cd-46b7-4c69-d27a-d2005904f48a@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/08/2022 09:00, Colin Foster wrote:
-> Convert the phy-ocelot-serdes device tree binding to the new YAML format.
+On Tue, Aug 23, 2022 at 11:30:22AM +0300, Krzysztof Kozlowski wrote:
+> On 23/08/2022 11:27, Serge Semin wrote:
+> > On Tue, Aug 23, 2022 at 11:22:08AM +0300, Krzysztof Kozlowski wrote:
+> >> On 23/08/2022 11:17, Krzysztof Kozlowski wrote:
+> >>> On 22/08/2022 22:07, Serge Semin wrote:
+> >>>> The Zynq A05 DDRC controller has nothing in common with DW uMCTL2 DDRC:
+> >>>> the CSRs layout is absolutely different and it doesn't has IRQ unlike DW
+> >>>> uMCTL2 DDR controller of all versions (v1.x, v2.x and v3.x). Thus there is
+> >>>> no any reason to have these controllers described by the same bindings.
+> >>>> Thus let's split them up.
+> >>>>
+> >>>> While at it rename the original Synopsys uMCTL2 DT-schema file to a more
+> >>>> descriptive - snps,dw-umctl2-ddrc.yaml and add a more detailed title and
+> >>>> description of the device bindings.
+> >>>
+> >>> Filename should be based on compatible, so if renaming then
+> >>> snps,ddrc-3.80a.yaml or snps,ddrc.yaml... which leads to original
+> >>> filename anyway. Therefore nack for rename.
+> >>>
+> >>> BTW, if you perform renames, generate patches with proper -M/-C/-B
+> >>> arguments so this is detected.
+> >>>
+> >>>
+> >>>>
+> >>>> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> >>>> --->  .../snps,dw-umctl2-ddrc.yaml                  | 51 +++++++++++++
+> >>>
+> >>> This is a mess. I did not get any cover letters, any other patches any
+> >>> description of relation between this and your other one.
+> >>>
+> >>> It seems you make independent and conflicting changes to the same file,
+> >>> so this has to be properly organized.
+> >>>
+> >>> Send entire patchset with cover letter with description of all
+> >>> dependencies to all maintainers.
+> >>>
+> >>> This is unreviewable now, so a no.
+> >>
+> > 
+> >> And also untestable by Rob's bot, so will have to wait.
+> > 
+> > For what reason it's untestable? The patch has no dependencies from
+> > any other patchset.
 > 
-> Additionally, add the file to MAINTAINERS since the original file didn't
-> exist.
-> 
-> Signed-off-by: Colin Foster <colin.foster@in-advantage.com>
-> ---
->  .../bindings/phy/phy-ocelot-serdes.txt        | 43 -------------
->  .../bindings/phy/phy-ocelot-serdes.yaml       | 61 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  3 files changed, 62 insertions(+), 43 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/phy/phy-ocelot-serdes.txt
->  create mode 100644 Documentation/devicetree/bindings/phy/phy-ocelot-serdes.yaml
 
-Filename based on compatible, so
-mscc,vsc7514-serdes.yaml
+> This one is testable, but the next one is not, because it depends on
+> something. I don't see the reason to split the bindings between
+> different patchsets.
+
+Really, do you want me to collect all 55 patches in a single patchset?
+
+Please read the cover letter more carefully. And please don't hurry
+with your judgement before nacking here and there.
+
+-Sergey
 
 > 
-
-
-> diff --git a/Documentation/devicetree/bindings/phy/phy-ocelot-serdes.yaml b/Documentation/devicetree/bindings/phy/phy-ocelot-serdes.yaml
-> new file mode 100644
-> index 000000000000..0666974d886a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/phy-ocelot-serdes.yaml
-> @@ -0,0 +1,61 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/phy-ocelot-serdes.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microsemi Ocelot SerDes muxing driver
-
-s/driver//
-
-Bindings are for hardware, not for Linux drivers.
-
-> +
-> +maintainers:
-> +  - Alexandre Belloni <alexandre.belloni@bootlin.com>
-> +  - UNGLinuxDriver@microchip.com
-> +
-> +description: |
-> +  On Microsemi Ocelot, there is a handful of registers in HSIO address
-> +  space for setting up the SerDes to switch port muxing.
-> +
-> +  A SerDes X can be "muxed" to work with switch port Y or Z for example.
-> +  One specific SerDes can also be used as a PCIe interface.
-> +
-> +  Hence, a SerDes represents an interface, be it an Ethernet or a PCIe one.
-> +
-> +  There are two kinds of SerDes: SERDES1G supports 10/100Mbps in
-> +  half/full-duplex and 1000Mbps in full-duplex mode while SERDES6G supports
-> +  10/100Mbps in half/full-duplex and 1000/2500Mbps in full-duplex mode.
-> +
-> +  Also, SERDES6G number (aka "macro") 0 is the only interface supporting
-> +  QSGMII.
-> +
-> +  This is a child of the HSIO syscon ("mscc,ocelot-hsio", see
-> +  Documentation/devicetree/bindings/mips/mscc.txt) on the Microsemi Ocelot.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mscc,vsc7514-serdes
-
-Missing blank line
-
-> +  "#phy-cells":
-> +    const: 2
-> +    description: |
-> +      from the generic phy bindings, must be 2. 
-
-Skip first sentence, it's obvious.
-
-The first number
-> +      defines the input port to use for a given SerDes macro. The
-> +      second defines the macro to use. They are defined in
-> +      dt-bindings/phy/phy-ocelot-serdes.h
-> +
-> +required:
-> +  - compatible
-> +  - "#phy-cells"
-
-Missing additionalProperties: false
-
-Base your YAML on example-schema.
-
-> +
-> +examlpes:
-
-Typo.
-
-
-> +  - |
-> +    serdes: serdes {
-> +      compatible = "mscc,vsc7514-serdes";
-> +      #phy-cells = <2>;
-> +    };
-> +
-> +    ethernet {
-> +      port1 {
-> +        phy-handle = <&phy_foo>;
-> +        /* Link SERDES1G_5 to port1 */
-> +        phys = <&serdes 1 SERDES1G_5>;
-> +      };
-> +    };
-
-Skip consumer examples in provider bindings. They're obvious.
-
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 714fd8b45e5a..10dd3c6ad6ad 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -13481,6 +13481,7 @@ M:	UNGLinuxDriver@microchip.com
->  L:	linux-mips@vger.kernel.org
->  S:	Supported
->  F:	Documentation/devicetree/bindings/mips/mscc.txt
-> +F:	Documentation/devicetree/bindings/phy/phy-ocelot-serdes.yaml
->  F:	Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.yaml
->  F:	Documentation/devicetree/bindings/power/reset/ocelot-reset.txt
->  F:	arch/mips/boot/dts/mscc/
-
-
-Best regards,
-Krzysztof
+> Best regards,
+> Krzysztof
