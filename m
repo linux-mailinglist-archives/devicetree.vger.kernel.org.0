@@ -2,121 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B42659FA1B
-	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 14:39:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0645759FA25
+	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 14:43:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236885AbiHXMi5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Aug 2022 08:38:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37958 "EHLO
+        id S235665AbiHXMnF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Aug 2022 08:43:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236911AbiHXMi4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 08:38:56 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C0BD8E9A1
-        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 05:38:55 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id u24so10724406lji.0
-        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 05:38:55 -0700 (PDT)
+        with ESMTP id S235074AbiHXMnE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 08:43:04 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50A9E696C6
+        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 05:43:02 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id bx38so16293773ljb.10
+        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 05:43:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=1JURZKRSXiPsq1aQoArSPrF7VbYfsdAOZBVEhHgf0qg=;
-        b=lIuQSPRYFpK3xeF/YO5ZxQ7B6w7t+DhHc3Hfgca06zyLBLitokytTZj8pnmYlOoq8V
-         qf/bFMuZA945cWHO6RCl33i697zEda6PHMHZU0pXne0e86Vh2XC6fKY1uTvj6xV2NBfT
-         kzPMocEYTZlbyQY5QVyk2mKpT9MUFbTvDlTGDu648HxCjAfuKPwkgZb6L9/Lfa8Kmd8J
-         f/MEr2C4ZFa/1CMB/Bjp+Hy/KyYnpmmM17e5NTG7x63DEN0lUK9N8Fs+1LnvikDXcjga
-         YU9tBjJEo58PCQ7i5Y1f+VHDXiPjkYdA9vvKcjn4mtZXNWsEqn8G6FYdvUa1rCGz0Cz6
-         T8yw==
+        bh=pxiXsQLkUIpn6DGyvkM4zbmFK0oHck5Mi5OKHLvklTs=;
+        b=cL14yVias6q4TrCCRX8JyZ3WRtQmRBsKcXr0WFPwQ+W703goRyFeRJbmCMpi0Nyci6
+         JN7SccWcpoEghRu5U5lpfLgsdxyvFXk7hQTkBnrO2jbLh57AhmsGzzitc1+aB8nkyP5D
+         0boEkLKRLbMBuSXVwFJ5kMUOvJHWJEwDjv/cmPKRDpoU0rco0I0Kgyg/t/rsP53LLR0H
+         MHkgYg7YZbsiQaXU2p3Bv+e5e2bJ9DPMWC7Sz2Y5c3Lo343sreSzbyngMTqhHk9Satre
+         fDoJVyysQxNqA0vPEL4L3UYlZyLGoSA8+KXuxJuT7IDSdfUg32o5DAtPzIZ5Z6fWKGOD
+         lqGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=1JURZKRSXiPsq1aQoArSPrF7VbYfsdAOZBVEhHgf0qg=;
-        b=pqi/K8hpQfYxfACbAQFfzg0jU2qCJisS7kz1KnEWT5oDYtLbQ7ubmMLR9TB4qhuCM9
-         tML5y/7EwVq87pu6bA6ovxCL28hkxpYalxDShaTCquOMvdQjODLeCOhzIvQdzY7Eve0v
-         asKRtMSiwOUEZEtYx+Dzbruq31p0l2VKKLqggRcN3WzQVhj7O6V/xdRaZxn+uN/9cfso
-         +Cmo1TOm4aOuzPPLSSu1qcuELH/DBugY+ISVrnIqjWTw+e4u+DFRJtOyIn1MRsb3YnDA
-         MjsUOdU6s7wYv/o6KvDUOeZbeTBijtcwXbsbUVFnCfXsshfiBWeMiaeqjstJXs0LRK7d
-         TV1w==
-X-Gm-Message-State: ACgBeo05RHGj6f7LnN8cxeu1TKkBXYslQjEapDONNSAinhFapiOV8wk/
-        w5eV2IJRFDS24tWCXyC546SzYg==
-X-Google-Smtp-Source: AA6agR6DDILkYCrPbHxwgs8HO8yo8QJR93m3lMZtF97e5asxsLHLBfNejtRFxVymf6v5djRy2mE5/w==
-X-Received: by 2002:a2e:a914:0:b0:25d:f74a:54c0 with SMTP id j20-20020a2ea914000000b0025df74a54c0mr8789721ljq.290.1661344734001;
-        Wed, 24 Aug 2022 05:38:54 -0700 (PDT)
-Received: from [10.243.4.185] ([194.157.23.230])
-        by smtp.gmail.com with ESMTPSA id m7-20020a056512114700b00492e5d31201sm1490440lfg.7.2022.08.24.05.38.52
+        bh=pxiXsQLkUIpn6DGyvkM4zbmFK0oHck5Mi5OKHLvklTs=;
+        b=0iXsaENYkTCFbtttLq8G5LXtrAG0L4f1PlMPhDjcppOJAW4mT/rQateWMIumI9Skp7
+         O54L/RuENE8gAFKo76gYOJm4EIAydvUg7tqxgwmWhDmsuXU0v1wus4J9ISDXAZSVLUFV
+         7QRqcHuotJqJEomS/zw+DhzOUx9nNwDyDQ0rNuc10ENdZlxKYf4TBSc5LofnoXAE2aVC
+         NXWMWxbXIKsnb/vPn2kIFqESLTlU/IITSvicpFWEkw3giW+PE01gM+45MB+qoWk4WI/l
+         3PWiRVLOjuD98ewVeayQDjaAYorvPoR6yNHdSXh0B+ksZ6BDFEBkv386KH/lhVeFvh8y
+         CjeA==
+X-Gm-Message-State: ACgBeo0cm5BsT0NWVnICi76h5NKEx4IhBLURyoxz/hAttsMfgjf6fujf
+        6KSPW7ywyYP//EWmpWc6td2aVLoHINYNVXX0xs0=
+X-Google-Smtp-Source: AA6agR7ji62LjBNkX7cD+aGHg9cuNELrVZrVNcfWS9UyQUXEbBZM0ZZvylp8anfeha84FCHLouskfQ==
+X-Received: by 2002:a2e:8844:0:b0:261:ae7e:bb93 with SMTP id z4-20020a2e8844000000b00261ae7ebb93mr8587585ljj.157.1661344980697;
+        Wed, 24 Aug 2022 05:43:00 -0700 (PDT)
+Received: from [10.243.4.185] ([193.94.200.84])
+        by smtp.gmail.com with ESMTPSA id v27-20020ac2561b000000b0048a835a60f6sm1017666lfd.251.2022.08.24.05.42.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Aug 2022 05:38:53 -0700 (PDT)
-Message-ID: <3237265e-9f1f-d5cf-c37c-ee39bce2eabf@linaro.org>
-Date:   Wed, 24 Aug 2022 15:35:07 +0300
+        Wed, 24 Aug 2022 05:43:00 -0700 (PDT)
+Message-ID: <3df563de-1900-ad60-5771-618907d5fda0@linaro.org>
+Date:   Wed, 24 Aug 2022 15:42:26 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH V2 1/2] bindings: fsl-imx-sdma: Document 'HDMI Audio'
- transfer
+Subject: Re: [PATCH 1/2] dt-bindings: arm: rockchip: Document Radxa ROCK 4C+
 Content-Language: en-US
-To:     Joy Zou <joy.zou@nxp.com>, "vkoul@kernel.org" <vkoul@kernel.org>
-Cc:     "S.J. Wang" <shengjiu.wang@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20220524080337.1322240-1-joy.zou@nxp.com>
- <AM6PR04MB592501ABD3A369F913137E1FE19D9@AM6PR04MB5925.eurprd04.prod.outlook.com>
- <AM6PR04MB5925CFC53026A11F57115D1FE1739@AM6PR04MB5925.eurprd04.prod.outlook.com>
+To:     Jagan Teki <jagan@amarulasolutions.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org,
+        linux-amarula@amarulasolutions.com
+References: <20220824080903.3696847-1-jagan@amarulasolutions.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <AM6PR04MB5925CFC53026A11F57115D1FE1739@AM6PR04MB5925.eurprd04.prod.outlook.com>
+In-Reply-To: <20220824080903.3696847-1-jagan@amarulasolutions.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/08/2022 13:31, Joy Zou wrote:
-> Gentle ping...
+On 24/08/2022 11:09, Jagan Teki wrote:
+> Document the dt-bindings for Radxa ROCK 4C+ SBC.
 > 
+> 4C+ replaced DP with HDMI and updated FPC connectors
+> for MIPI DSI/CSI compared to 4C revision.
+> 
+> Also, an official naming convention from Radxa mention
+> to remove Pi from board name, so this 4C+ is named as
+> Radxa ROCK 4C+ not Radxa ROCK Pi 4C+.
 
-You pinged again instead of implementing the review... Second ping
-instead of doing what we asked you to do. You also did not respond to
-our comments on your first ping.
+This does not look like wrapped according to Linux style.
 
-This is not how you collaborate over email.
+https://elixir.bootlin.com/linux/v5.18-rc4/source/Documentation/process/submitting-patches.rst#L586
 
-> BR
-> Joy Zou
->> -----Original Message-----
->> From: Joy Zou
->> Sent: 2022年8月2日 11:58
->> To: vkoul@kernel.org
->> Cc: S.J. Wang <shengjiu.wang@nxp.com>; robh+dt@kernel.org;
->> krzysztof.kozlowski+dt@linaro.org; shawnguo@kernel.org;
->> s.hauer@pengutronix.de; kernel@pengutronix.de; festevam@gmail.com;
->> dl-linux-imx <linux-imx@nxp.com>; dmaengine@vger.kernel.org;
->> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
->> linux-kernel@vger.kernel.org
->> Subject: FW: [PATCH V2 1/2] bindings: fsl-imx-sdma: Document 'HDMI Audio'
->> transfer
->>
->> Gentle ping...
->>
+With wrapping fixes:
 
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
