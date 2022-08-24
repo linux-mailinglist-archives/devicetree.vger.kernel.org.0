@@ -2,99 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CCCA959FA5A
-	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 14:47:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44EAF59FA6D
+	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 14:50:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237503AbiHXMry (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Aug 2022 08:47:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45860 "EHLO
+        id S235919AbiHXMul (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Aug 2022 08:50:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237421AbiHXMrr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 08:47:47 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37E1494112
-        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 05:47:45 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id q7so20149086lfu.5
-        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 05:47:45 -0700 (PDT)
+        with ESMTP id S235620AbiHXMuk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 08:50:40 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EF2095AD4
+        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 05:50:39 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id v10so16318381ljh.9
+        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 05:50:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=HCkgWRsW68okr3HXj1aoAUOQtm+hBGu9v0QWmb8CPe0=;
-        b=dWZ3lQkmAteiBhKIEs/l5SZZCUZ8+DJHs4otLWuEp1SbpTaZMfllrzHhq/mFEmZKV1
-         LqkkfKqSJRt3ev3DV5xT0uCY+vPYIQIp2xelATaYKsNjcC2VaqaVDOZASKrYV9GUHk+u
-         NGWbqEo00loFNO8FqKz67PHSIS+7q2nFag2WMRX0FmgX/xHr8hyE8ikCqrXNsOVl7Dhm
-         w+MjdLXOUozbIBTCsOsIKDn2hZzsuTGZj30Dmtu/oASHN8wU5if4RptL8yPwWkzOIKB8
-         90X5WJJaEXaeOLfBz+v5NGi0g0y4OCI9xibJAF2F53ib6vbc9eF/iI5ZRtzG3uaIsdMz
-         LUDQ==
+        bh=0O7Y3wJVPgnkwy4P2rEemJaId32uZhPl7XRxR+A9aIE=;
+        b=Yam95mWyIq0L0MGw6weU1DlJz4RMqiQEoSPqdYdcFy81HXgQk97ePlQVxKanlngc+K
+         HPCgJ6gROEYSRn95DexG04ODFwjr+N7Vov8Vr2319AMy3HTwssnYvlvI8S8ckOSaR9kp
+         uFRFJX9mvjDuNMkDBCYKiXmY316JHSzxe4vmilL/mRC+n5oIkUkCEVVF0vAT5OGhMcvh
+         RORPoEGTw2uHQV/6Xr8/cWXvH5txQJ/4+SdXqP5BuQb+Gip2Euj4geU9z56JJcTPko2k
+         txxzU7CB4NUVazI7dVgVoyYBcWNFP82sY6KhI7URrk0ZIkj/EvEMdoGFuXERGWMD6GR5
+         2LgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=HCkgWRsW68okr3HXj1aoAUOQtm+hBGu9v0QWmb8CPe0=;
-        b=7AJx/Bmo2oQXezSlx4z+9JvmHRaHzJk5loBdvVRDRadIIsBI7lM52et/yLltZCE4aX
-         eV9Wy5g4hAUyALsXybUHUu0ZO7OvqjhvRR9E+cRYm4ekFZ25AUm8i+61EelmpAV4l35P
-         AN9sD0+nYehKPRtqOTe7hpXuLrrL83J7y1WUPnO0v2JfuUpQt6lfOAZaN8fiull2yQ3R
-         AUrOmoHUkeOsdRT6U0i41TSCwezQMQGfhF10hZ/8OII7IcH966SXzDKEM4h6ej/XZ/VW
-         SL8AeXkTUqCd68ubGXlL1pbS9zDA9B2CsIjwATJXzYes1zspJftd6rfcaCtjD7/3gzzP
-         kPOQ==
-X-Gm-Message-State: ACgBeo2ecB45vFgqrVbUrnUgKVXAmdDmH+toDMWpjBdiHjICb3EqRfwJ
-        OCOQAPpLZjmxPGHeD+M1g9NNgQ==
-X-Google-Smtp-Source: AA6agR4eNUBQjn5HPo5JYDP4s9gU6xJOSJTUVA4FpSM9g3v69U0V1OpMhgoWrItrdVqemUex9AHSKQ==
-X-Received: by 2002:a05:6512:2284:b0:492:ca50:d857 with SMTP id f4-20020a056512228400b00492ca50d857mr8249169lfu.209.1661345264775;
-        Wed, 24 Aug 2022 05:47:44 -0700 (PDT)
+        bh=0O7Y3wJVPgnkwy4P2rEemJaId32uZhPl7XRxR+A9aIE=;
+        b=moLjbG0+gfa81edJMLUrtalOZfPUK5xT9y6aRfIklDk9j+JnB9Z4JiEU9mPxnbVygc
+         0jegu/K9zjMSZkf2HIJarZbYdFv4ZaLHnhP/aOLwUh4/fs7wuvIHnLCot3oJGwYgpGiL
+         fLJV48ZTHDKKEZ4toLc9+DDnZYzyJPc/Tn6iqc8Fz78znoZos3B91fkXbHQk8yE23gVB
+         wnl/RejM6dJC3ZbAdDATOkAXEGwLzZN5QXzjgoM0cgGPrABvxj99aMkmDEaOI/hQ+zWE
+         0JXZ6y0vklD5uaDLrzZgOeUTkKUZBHtsEcCv/JTWMdm8thLyUuQdwv+//CRVizaXWHWn
+         w4cQ==
+X-Gm-Message-State: ACgBeo1u0aBW6VxlkXDppTfDfq1LEd4AbmfhcXudkw0d/fSrPwwiun/3
+        H9Nh5DtTADkgmJc0mSIuC/nflw==
+X-Google-Smtp-Source: AA6agR65hBbDRBSJCxuxnnZFSQvwtE6BrqpyaIPRWhBHpgpzD629PE3LDaZFuYdEe3dkvWfNHYdAyg==
+X-Received: by 2002:a2e:9cd0:0:b0:261:e257:dfe9 with SMTP id g16-20020a2e9cd0000000b00261e257dfe9mr898830ljj.209.1661345437595;
+        Wed, 24 Aug 2022 05:50:37 -0700 (PDT)
 Received: from [10.243.4.185] ([194.157.23.230])
-        by smtp.gmail.com with ESMTPSA id p3-20020a056512138300b0048b07e82b8csm2996630lfa.55.2022.08.24.05.47.41
+        by smtp.gmail.com with ESMTPSA id n8-20020a05651203e800b0048b13d0b896sm1312261lfq.141.2022.08.24.05.50.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Aug 2022 05:47:44 -0700 (PDT)
-Message-ID: <91c2bf5f-8bbf-22be-bd57-a535bf4b95e0@linaro.org>
-Date:   Wed, 24 Aug 2022 15:47:40 +0300
+        Wed, 24 Aug 2022 05:50:37 -0700 (PDT)
+Message-ID: <fa3aae29-3445-328c-e400-5b91cb2da4c4@linaro.org>
+Date:   Wed, 24 Aug 2022 15:50:34 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH 1/2] ARM: dts: stm32: argon: remove spidev node
+Subject: Re: [PATCH v2 1/2] ASoC: mediatek: dt-bindings: modify machine
+ bindings for SOF
 Content-Language: en-US
-To:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        linux-spi@vger.kernel.org
-Cc:     Reinhold Mueller <reinhold.mueller@emtrion.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220824082130.21934-1-wsa+renesas@sang-engineering.com>
- <20220824082130.21934-2-wsa+renesas@sang-engineering.com>
+To:     Chunxu Li <chunxu.li@mediatek.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, nfraprado@collabora.com,
+        broonie@kernel.org
+Cc:     lgirdwood@gmail.com, matthias.bgg@gmail.com,
+        jiaxin.yu@mediatek.com, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        project_global_chrome_upstream_group@mediatek.com
+References: <20220824122319.23918-1-chunxu.li@mediatek.com>
+ <20220824122319.23918-2-chunxu.li@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220824082130.21934-2-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20220824122319.23918-2-chunxu.li@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/08/2022 11:21, Wolfram Sang wrote:
-> Commit 956b200a846e ("spi: spidev: Warn loudly if instantiated from DT
-> as "spidev"") states that there should not be spidev nodes in DTs.
-> Remove this non-HW description. There won't be a regression because it
-> won't bind since 2015 anyhow.
+On 24/08/2022 15:23, Chunxu Li wrote:
+> From: "chunxu.li" <chunxu.li@mediatek.com>
 > 
-> Fixes: 16e3e44c5b87 ("ARM: dts: stm32: Add support for the emtrion emSBC-Argon")
-> Cc: Reinhold Mueller <reinhold.mueller@emtrion.com>
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> ---
+> Add SOF related field.
+> 1. Add a property "mediatek,adsp", Only when adsp phandle could be
+> retrieved, from DTS, the SOF related part of machine driver is executed.
+> 2. Add a property "mediatek,dai-link" to support dai-links could be
+> specified from DTS
+> 
+> Signed-off-by: chunxu.li <chunxu.li@mediatek.com>
 
+Usually first name(s) is separated from family name(s) with a space, not
+dot. Looks like you need to configure your system.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
