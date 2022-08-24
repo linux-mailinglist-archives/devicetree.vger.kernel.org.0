@@ -2,88 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A2F3059F06D
-	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 02:50:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 646AD59F081
+	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 03:08:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230423AbiHXAuU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Aug 2022 20:50:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49026 "EHLO
+        id S229590AbiHXBIu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Aug 2022 21:08:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229590AbiHXAuU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 20:50:20 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BEC285FF7;
-        Tue, 23 Aug 2022 17:50:19 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 0F3CAB822AB;
-        Wed, 24 Aug 2022 00:50:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id B911FC433B5;
-        Wed, 24 Aug 2022 00:50:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661302216;
-        bh=x/TGu8Mqxdo/Av2cBGX54j8I4BWgJeQWDpEtXc/HWRI=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=QZtpmJeoDKGNYhQ6nPeNlIbh8eN6LyPqWYDjJAbm94luD4SHUdecSa+3VHSx6CDUq
-         TlgYpZ6Vk/CQpIcq53oTYPDWIx7OL4uz0hi2/2fZGHfNHuod9X3hpBqqiQJ84n3Krz
-         +IaD3bnH9j+svGQusFUXv46HUR16kr6frxuDnicV8B8YVhDbYG/Jj3QUhZSYdq6E0O
-         E31gOTA7wicoZEEglroRo2XnuS/uPuS6MFnad6iQhjkv8DGMgq/wTrLlzxrVxue5Vg
-         HEK+hLSLGW0rej4slaNAsIwtb/KBh4FjMpQx3MADxfzL1yvJoy+bfhe9sYFavJ++bX
-         aXFFE18XLjwYg==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 978CEC004EF;
-        Wed, 24 Aug 2022 00:50:16 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S229518AbiHXBIt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 21:08:49 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 295244F1AF;
+        Tue, 23 Aug 2022 18:08:48 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 27NNMrgB012726;
+        Wed, 24 Aug 2022 01:08:29 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=ju8dreiFKv/nF4Pg7D54M/P9AU5w7rPzGS86cxTfih8=;
+ b=aEQSPedbk/cpZ2HypBdJ4M9AXlc/MITgp5nZfOxIHRKrjvwbpZqEwYIIElELUHDCETp9
+ 6mUtcrJJp66hK3OdLaPXKissmS6V23b+viHRdZHrKmmF+FRf4ByYv+xPSdLZmiVEMiGo
+ gjJX87xbE3pHsXwqq2njUjScNvtSLxSREsjmF9ZrgA+aEDPWI80TbpPzJlVjMbTNVVQG
+ F+9BS9esPfK1ZPkPJ1F8MkeRpZ0OWLF2pp0kFSevHb/wRpgFz9/3PbYkqvMVSackiHQg
+ w41BEj9nh3e2rFiVI8Y0KUMnfpKaq1w9m/ZnL8HYzPEeT49VvkocEAihnNTJ/VcsmCw8 9w== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3j52pk9ck8-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 24 Aug 2022 01:08:28 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 27O18SKM000468
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 24 Aug 2022 01:08:28 GMT
+Received: from [10.111.161.24] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Tue, 23 Aug
+ 2022 18:08:25 -0700
+Message-ID: <31faa17e-b521-9f83-2701-12bf8fd76e4b@quicinc.com>
+Date:   Tue, 23 Aug 2022 18:08:23 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH V2 net-next 0/2] add interface mode select and RMII
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <166130221661.20408.5681001765892113009.git-patchwork-notify@kernel.org>
-Date:   Wed, 24 Aug 2022 00:50:16 +0000
-References: <20220822015949.1569969-1-wei.fang@nxp.com>
-In-Reply-To: <20220822015949.1569969-1-wei.fang@nxp.com>
-To:     Wei Fang <wei.fang@nxp.com>
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, andrew@lunn.ch,
-        f.fainelli@gmail.com, hkallweit1@gmail.com, linux@armlinux.org.uk,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.2
+Subject: Re: [PATCH v3 2/3] drm/msm/hdmi: make hdmi_phy_8996 OF clk provider
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, <linux-phy@lists.infradead.org>
+References: <20220704161148.814510-1-dmitry.baryshkov@linaro.org>
+ <20220704161148.814510-3-dmitry.baryshkov@linaro.org>
+From:   Abhinav Kumar <quic_abhinavk@quicinc.com>
+In-Reply-To: <20220704161148.814510-3-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: VdkGr2Ow7ViAMVnUT2LLdGJVNYnO4IOO
+X-Proofpoint-ORIG-GUID: VdkGr2Ow7ViAMVnUT2LLdGJVNYnO4IOO
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.517,FMLib:17.11.122.1
+ definitions=2022-08-23_10,2022-08-22_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011
+ lowpriorityscore=0 adultscore=0 priorityscore=1501 malwarescore=0
+ bulkscore=0 phishscore=0 impostorscore=0 mlxlogscore=999 spamscore=0
+ suspectscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2207270000 definitions=main-2208240001
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
 
-This series was applied to netdev/net-next.git (master)
-by Jakub Kicinski <kuba@kernel.org>:
 
-On Mon, 22 Aug 2022 09:59:47 +0800 you wrote:
-> From: Wei Fang <wei.fang@nxp.com>
+On 7/4/2022 9:11 AM, Dmitry Baryshkov wrote:
+> On MSM8996 the HDMI PHY provides the PLL clock to the MMCC. As we are
+> preparing to convert the MSM8996 to use DT clocks properties (rather
+> than global clock names), register the OF clock provider.
 > 
-> The patches add the below feature support for both TJA1100 and
-> TJA1101 PHYs cards:
-> - Add MII and RMII mode support.
-> - Add REF_CLK input/output support for RMII mode.
+> While we are at it, also change the driver to use clk_parent_data rather
+> parent_names to setup a link to the XO clock.
 > 
-> [...]
-
-Here is the summary with links:
-  - [V2,net-next,1/2] dt-bindings: net: tja11xx: add nxp,refclk_in property
-    https://git.kernel.org/netdev/net-next/c/52b2fe4535ad
-  - [V2,net-next,2/2] net: phy: tja11xx: add interface mode and RMII REF_CLK support
-    https://git.kernel.org/netdev/net-next/c/60ddc78d1636
-
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Reviewed-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
+> ---
+>   drivers/gpu/drm/msm/hdmi/hdmi_phy_8996.c | 25 +++++++++++++-----------
+>   1 file changed, 14 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/msm/hdmi/hdmi_phy_8996.c b/drivers/gpu/drm/msm/hdmi/hdmi_phy_8996.c
+> index b06d9d25a189..4dd055416620 100644
+> --- a/drivers/gpu/drm/msm/hdmi/hdmi_phy_8996.c
+> +++ b/drivers/gpu/drm/msm/hdmi/hdmi_phy_8996.c
+> @@ -691,15 +691,13 @@ static const struct clk_ops hdmi_8996_pll_ops = {
+>   	.is_enabled = hdmi_8996_pll_is_enabled,
+>   };
+>   
+> -static const char * const hdmi_pll_parents[] = {
+> -	"xo",
+> -};
+> -
+>   static const struct clk_init_data pll_init = {
+>   	.name = "hdmipll",
+>   	.ops = &hdmi_8996_pll_ops,
+> -	.parent_names = hdmi_pll_parents,
+> -	.num_parents = ARRAY_SIZE(hdmi_pll_parents),
+> +	.parent_data = (const struct clk_parent_data[]){
+> +		{ .fw_name = "xo", .name = "xo_board" },
+> +	},
+> +	.num_parents = 1,
+>   	.flags = CLK_IGNORE_UNUSED,
+>   };
+>   
+> @@ -707,8 +705,7 @@ int msm_hdmi_pll_8996_init(struct platform_device *pdev)
+>   {
+>   	struct device *dev = &pdev->dev;
+>   	struct hdmi_pll_8996 *pll;
+> -	struct clk *clk;
+> -	int i;
+> +	int i, ret;
+>   
+>   	pll = devm_kzalloc(dev, sizeof(*pll), GFP_KERNEL);
+>   	if (!pll)
+> @@ -735,10 +732,16 @@ int msm_hdmi_pll_8996_init(struct platform_device *pdev)
+>   	}
+>   	pll->clk_hw.init = &pll_init;
+>   
+> -	clk = devm_clk_register(dev, &pll->clk_hw);
+> -	if (IS_ERR(clk)) {
+> +	ret = devm_clk_hw_register(dev, &pll->clk_hw);
+> +	if (ret) {
+>   		DRM_DEV_ERROR(dev, "failed to register pll clock\n");
+> -		return -EINVAL;
+> +		return ret;
+> +	}
+> +
+> +	ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_simple_get, &pll->clk_hw);
+> +	if (ret) {
+> +		DRM_DEV_ERROR(dev, "%s: failed to register clk provider: %d\n", __func__, ret);
+> +		return ret;
+>   	}
+>   
+>   	return 0;
