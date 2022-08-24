@@ -2,90 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C61AB59FA82
+	by mail.lfdr.de (Postfix) with ESMTP id 376B459FA80
 	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 14:52:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237444AbiHXMwJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Aug 2022 08:52:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52038 "EHLO
+        id S237465AbiHXMwa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Aug 2022 08:52:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232130AbiHXMwI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 08:52:08 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0B9182D39
-        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 05:52:07 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id l1so23323851lfk.8
-        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 05:52:07 -0700 (PDT)
+        with ESMTP id S237421AbiHXMw3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 08:52:29 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 820A395E66
+        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 05:52:28 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id bq23so14814005lfb.7
+        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 05:52:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=qn9bLMzRw4TWagsZElRAxA7cKFvu2Mi/g+R4Ak/V31o=;
-        b=ny8ePsgqdUMY2aOl5GLsn9h8H1FWPjRt+PjGl1/FzaqaQ9M1fECiwE0BAO0KoKAUqD
-         HNDVxxt43whiV4mAcniuzN0VHo7iqMy8GGlYK2tTjUnMaC/qFVkTp4nOcN+CSa+nTcyn
-         dz7y0jBYhXSiYgGUAMY4wAOg8A7no246xkYM8hN9UmeKW+GTiCdkrULiCAsuUIo25lHY
-         le7f8DtwWmqY+BgRudkaXrE5z8Lr/My2e19M76+jzefjTeEsqYUu7JvRx0R9OnRWXsMt
-         xocpy5usGfAonxeJl7sar9Ldl4NNbMztM2gZlBk3FE1c7qz/S2vsZqja0RnOySS1lOkD
-         EuqQ==
+        bh=ZwNSTKnVcPIYK6dbm0TWSHkaFbJiNUWrAYxpc2cQruw=;
+        b=Ix90db/x25enO75JqAudO2Fr12aKUu/W8WOwZL7LYqPtppftySDvVFkRwUluS3S/wE
+         P0z8H6tHvrvCnNrNUzNdfBe96gzrHIGRPbZ3ZDSDSnY2H+69PyF8cvo0dHU7zNMuwYKs
+         3XAF3Dk2Yu2d/4sDOqwhuKBJ32SJiTqJTrMb61hZ9qneNiALxmXEXuf2lVoSfy2Y+nUe
+         WZGIIQsM5pIOSNKMYHnABwZkv8cKdweAPb0cbJtuGmqaZtu46nYgRfD4de1wv52ypgLJ
+         mExU9thjfVlm9wPJTNL3TbBYcjT94qPe4OZlJDUnSjrAaBynS8Yq1613gcIGOZ40wkjq
+         38Fw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=qn9bLMzRw4TWagsZElRAxA7cKFvu2Mi/g+R4Ak/V31o=;
-        b=qGPWnK+R0DZt1nHrR4dnU4WMIY6RI8n2nK8/AYMJf6uJpviORfIW/qWFrNqaLL+WyY
-         YlPXLE4CtX8Tx6nzYRdhxrnB6KiZGi6kvKyOTk9Us46DDosz5Pl1TwATP4BxvjhmjByP
-         5yUzjBqZSKmooUeBhmROpZnGe9Uzv7pAUjK+I1XkfVonRz+D6fl2fI2rp+i1m4hIx6S/
-         cpD4AXYTAEGKYvA5Nba/wFZwtYQAw3lDfRJPijkM9oNJfs1yxagIUjfjuZb8ngJkTATh
-         fJnRe/3GCAYA2FY3QNCe9f16PSZym7X3YFMWFUJJrxAq/ei2zHWfNPgMqvPbOCesYdr0
-         guhA==
-X-Gm-Message-State: ACgBeo08Sv37YbQFWHE+9VO9/L0ORuZQYecXPNJ5na8RN7Oh2QjBivtt
-        bc6EuLBFyDvDkenduf6DwYecOg==
-X-Google-Smtp-Source: AA6agR7byK21kURSxHby1jwyhJHvEgjvPK+9OE+btQG1cQszbBV8p3p3jr1j4IFzhBHhpNLlelHrOQ==
-X-Received: by 2002:a05:6512:401a:b0:492:b6b5:34d5 with SMTP id br26-20020a056512401a00b00492b6b534d5mr10121992lfb.570.1661345527495;
-        Wed, 24 Aug 2022 05:52:07 -0700 (PDT)
-Received: from [10.243.4.185] (213-212-21-103.static.ip-only.net. [213.212.21.103])
-        by smtp.gmail.com with ESMTPSA id s20-20020a056512315400b00492e69be4d6sm1464494lfi.27.2022.08.24.05.52.05
+        bh=ZwNSTKnVcPIYK6dbm0TWSHkaFbJiNUWrAYxpc2cQruw=;
+        b=iUm0TOl49p/sD5cSRdzMYb851CzxcMxNvmrCigskgKG1mAUU3UiOFm9iBVIei/MK/b
+         okOM+RITXgjbCY5LLIIds/LCp+QOB7vhZNcCeH3l8hcb/twg1VXy9u2OhelFau/OHef8
+         KhvxmutP4VUVOXUoql5Vl4+MbtoyqWkOq0d2k0nypNAMnEZOqcq151f7/dPwWsQMZvKu
+         /Y1hZPSHImxaIgjU+XBUwT2MRub5MA3F+Yj+tfdG8wDZz6bw8uviMMJKh6d/XrnQYhL4
+         pKps2B9svBVzanyuyZxIAMnzfeY3uIxXyvgXYwUHhAeW7BH2vK57Mf3JN1JeQOqHNrcP
+         zk6Q==
+X-Gm-Message-State: ACgBeo0k0T6vNz3fzwGhz6PitzWWtQkuVGKzT6CmbpZOP2L3YCFYjPAY
+        +1ra9XfWBBLo3sjVD3/uEl8XZQ==
+X-Google-Smtp-Source: AA6agR4Sl1C1PIBuf+7AFbf2WFYP6PKZHBPj1Cqt/XCdlSfl6eNtX6pgeP/X5QCWGx9INqfdG3JCNw==
+X-Received: by 2002:a05:6512:210b:b0:492:e4cb:b93a with SMTP id q11-20020a056512210b00b00492e4cbb93amr4558908lfr.601.1661345546939;
+        Wed, 24 Aug 2022 05:52:26 -0700 (PDT)
+Received: from [10.243.4.185] ([194.157.23.230])
+        by smtp.gmail.com with ESMTPSA id c4-20020a196544000000b00489e2156285sm3006920lfj.104.2022.08.24.05.52.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Aug 2022 05:52:07 -0700 (PDT)
-Message-ID: <b2340a92-c083-bd83-aca1-fc2edccc825e@linaro.org>
-Date:   Wed, 24 Aug 2022 15:52:05 +0300
+        Wed, 24 Aug 2022 05:52:25 -0700 (PDT)
+Message-ID: <72f2a044-6271-4d4e-1782-0271516cc7b3@linaro.org>
+Date:   Wed, 24 Aug 2022 15:52:24 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH 3/3] spi: renesas,sh-msiof: R-Car V3U is R-Car Gen4
+Subject: Re: [PATCH 1/2] dt-bindings: clocks: imx8mp: Add ID for usb suspend
+ clock
 Content-Language: en-US
-To:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        linux-renesas-soc@vger.kernel.org
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220824094327.33685-1-wsa+renesas@sang-engineering.com>
- <20220824094327.33685-4-wsa+renesas@sang-engineering.com>
+To:     Li Jun <jun.li@nxp.com>, abelvesa@kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com
+Cc:     linux-imx@nxp.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+References: <1661328262-3867-1-git-send-email-jun.li@nxp.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220824094327.33685-4-wsa+renesas@sang-engineering.com>
+In-Reply-To: <1661328262-3867-1-git-send-email-jun.li@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/08/2022 12:43, Wolfram Sang wrote:
-> Despite the name, R-Car V3U is the first member of the R-Car Gen4
-> family. Hence move its compatible value to the R-Car Gen4 section.
+On 24/08/2022 11:04, Li Jun wrote:
+> usb suspend clock has a gate shared with usb_root_clk.
 > 
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> ---
->  Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml | 2 +-
+> Signed-off-by: Li Jun <jun.li@nxp.com>
 
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
