@@ -2,76 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A94759FA49
-	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 14:47:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75B9D59FA56
+	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 14:47:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234910AbiHXMrj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Aug 2022 08:47:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45566 "EHLO
+        id S235874AbiHXMrp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Aug 2022 08:47:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235737AbiHXMrh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 08:47:37 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E8BB910BF
-        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 05:47:35 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id m5so13173412lfj.4
-        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 05:47:35 -0700 (PDT)
+        with ESMTP id S235982AbiHXMro (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 08:47:44 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C72079322B
+        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 05:47:42 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id s1so21039813lfp.6
+        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 05:47:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=ZUpMSIDqsTgGgd5HUMEVbQG3gXHxQEJwHf+JxBOfjok=;
-        b=OADfvvWHsXfdJrIU6icvXfguqE9THxW6oz3hk1h+6Aam4fSImoFKp+FD8DZWqH08Xs
-         bkw6eTky+GiGJ4B0ZtLz2EQkbizXh41RNFK6YC4ujGcn8KpLrHVBhwYSSQfNnXXRbSVu
-         /pEEoKH1UI0PaX7WVNYK9fBneV6XchHxJpjnA/NeZW9BGE5eEwfXB3H9yXK6SPRs/imw
-         CtemRasRteWwDwV/Wrw4POPdOsYRJqK0npdehfIpNbFy9d3F8xSwGKGJjLWeAFQi0eJP
-         KC8xmCUgVRFny+JQ9Mt4Xo9A7KTSJ7yS9GkE5BSrkPkA5JOXu5oZJv+c/O0l22YdfSbP
-         zEJQ==
+        bh=B0YHX1DxtYHmEtJGgAoy2E59Dxdr5pOaRwx+CNb8cXo=;
+        b=ExdVABFFCg0YrICjQUHrRtJdAu9Mu2FYNhpTmNxI5Oii0WNEj5VBEnO51VbBoxw/E3
+         Yp7qOO3VcJaosHeWvGY1Wu0hAIiwgBlDywDzFbUMx2CRh/E2mww94wSbXgDnlHQDPGqN
+         iisSr1MMhf6gnNgkHqKjnrPsY6TxvRSPwdGcg64FOakvPZYTHGDDQUItixN3VB34s2dA
+         HOZ/qbnzOUMatatsHAiuohCx+OW5MpYAsYd+wrDXAc0y/sfVSGA4+kFB+h+j0dMsVqm+
+         p8rWyqRaKsrOqpf7LvOe3xzo9oiEwEYu5eR/PH9cHBBldStAdy7U+X7xrLdHR0B2FxM/
+         vLwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=ZUpMSIDqsTgGgd5HUMEVbQG3gXHxQEJwHf+JxBOfjok=;
-        b=yRbVgSh9ORGURqPJxT1wJQautr1E5YVk6cO+UTRk3ff4SiPH+Dj2VjXOlOGHnr0AuT
-         xIWwkZ993HS5niAg6W4la11jyEZpVezCzXfmBlW0YeXwY8bY5mzs61tQkKeG0ZLljWd9
-         vFbIHC9ZD1KHfqWM4yXvzKsFGxQ4dextU6y65RoCnjBCav3N16Ta+A5/TYXgUGcknuok
-         Ct809QdnpRuA4z3Wp6bDK1GsQGh3wOTsAARWDCIsvkSwNNfI0JVLWt2y94HGxU+zvSPn
-         M1iCkeKM/3RRopXgHu2gVxAEEKjEyZXAUHAJlIugbVjwDQXMbLWGhBKvtTq50AUqpCfL
-         mVZA==
-X-Gm-Message-State: ACgBeo0xag5WKKkEaDlBUYjdguh73OCb1YUGtpdcJvIYJZWbuigInjEU
-        5atOUDmY2zMuraVpryY0dwYELnu7gvXYW7vHGZY=
-X-Google-Smtp-Source: AA6agR6cZ6914v1H2yOOzs8QziISFTpV/gKx4PI2mgNZIJ4eUl6+V3xKe+l/W0/ITEsLKGcKGO5XSg==
-X-Received: by 2002:ac2:5f43:0:b0:492:d6e3:1dd3 with SMTP id 3-20020ac25f43000000b00492d6e31dd3mr7798393lfz.326.1661345254041;
-        Wed, 24 Aug 2022 05:47:34 -0700 (PDT)
+        bh=B0YHX1DxtYHmEtJGgAoy2E59Dxdr5pOaRwx+CNb8cXo=;
+        b=ZP0/Yo0BNCX7AKEcuQSrw+EqC8CL3+/nYd9ykKqnLlFYuAJlDTkq5YKTzz5EZ3oCaS
+         KvvRG/QZ/hdRHIAZK7lp48jKX6ohxxyr8SIu57OlEQ+n6itQxk+4JlWbJJyjgnVh/YOJ
+         OVzm/YjsXAOa6HBrzqxFGVAYm3CUElgiov9C5O0I/mRhXL1OPZj2tA/uqTmDEGC+KBJc
+         icIHmvWw3gnSFTELnSG40r/EiUyo+U4x1B85G7ZosDesV6vCTVt/TDxlOcH0k4B1emA5
+         ZgbuyJNt2MrMxiJcCd+HPdyUgNoG+0wTILzM4Z5rlCUcGiJ9OmWL+KJc/Ilqm/qXyyPf
+         UCRQ==
+X-Gm-Message-State: ACgBeo0HYjh4g/R6ys54gwMlOfD6GKGS9tHkF3WZWawZUarzIecY3PuH
+        i/u8X8yihsrbO/E+SRsJE7HIWQ==
+X-Google-Smtp-Source: AA6agR4bRuL+NaricpxNR8LYFD1ua/hvzMiXB1+ErOc5A92wdvDFMqS/1LCh1V/LIRKZsw0D53rQxw==
+X-Received: by 2002:a05:6512:692:b0:492:ece0:32e5 with SMTP id t18-20020a056512069200b00492ece032e5mr4275032lfe.636.1661345261144;
+        Wed, 24 Aug 2022 05:47:41 -0700 (PDT)
 Received: from [10.243.4.185] ([194.204.13.210])
-        by smtp.gmail.com with ESMTPSA id p5-20020a05651238c500b0048a83336343sm3007721lft.252.2022.08.24.05.47.32
+        by smtp.gmail.com with ESMTPSA id u19-20020a05651220d300b0048b05882c28sm3006728lfr.271.2022.08.24.05.47.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Aug 2022 05:47:33 -0700 (PDT)
-Message-ID: <25820bbe-c232-fb5c-0654-fc917ed8ad92@linaro.org>
-Date:   Wed, 24 Aug 2022 15:47:30 +0300
+        Wed, 24 Aug 2022 05:47:40 -0700 (PDT)
+Message-ID: <1c2685e9-1501-8815-2cf0-b545bb91ca5d@linaro.org>
+Date:   Wed, 24 Aug 2022 15:47:36 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH 3/4] arm64: dts: ti: Add initial support for J784s4 SoC
+Subject: Re: [PATCH 2/2] powerpc/82xx: remove spidev node from mgcoge
 Content-Language: en-US
-To:     Nishanth Menon <nm@ti.com>
-Cc:     Apurva Nandan <a-nandan@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        linux-spi@vger.kernel.org
+Cc:     Heiko Schocher <hs@denx.de>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Hari Nagalla <hnagalla@ti.com>
-References: <20220819190054.31348-1-a-nandan@ti.com>
- <20220819190054.31348-4-a-nandan@ti.com>
- <b572cfa0-a051-ee7f-c720-5f0ccbea8950@linaro.org>
- <20220824050233.u4457ldxiqtiia4p@nineteen>
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Holger Brunck <holger.brunck@keymile.com>,
+        Kumar Gala <galak@kernel.crashing.org>,
+        devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org
+References: <20220824082130.21934-1-wsa+renesas@sang-engineering.com>
+ <20220824082130.21934-3-wsa+renesas@sang-engineering.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220824050233.u4457ldxiqtiia4p@nineteen>
+In-Reply-To: <20220824082130.21934-3-wsa+renesas@sang-engineering.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,25 +83,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/08/2022 08:02, Nishanth Menon wrote:
-> On 13:18-20220823, Krzysztof Kozlowski wrote:
->>> +	main_gpio_intr: interrupt-controller@a00000 {
->>> +		compatible = "ti,sci-intr";
->>> +		reg = <0x00 0x00a00000 0x00 0x800>;
->>
->> 0x0, not 0x00. Here and all other places.
+On 24/08/2022 11:21, Wolfram Sang wrote:
+> Commit 956b200a846e ("spi: spidev: Warn loudly if instantiated from DT
+> as "spidev"") states that there should not be spidev nodes in DTs.
+> Remove this non-HW description. There won't be a regression because it
+> won't bind since 2015 anyhow.
 > 
-> 
-> Krzysztof is this a convention we have started following strongly?
-> 
-> The reason I ask is to be able to cleanup elsewhere in the dts as well..
-> 
-> 
-> So far, I have insisted on 0x00 usage.
+> Fixes: 5d1d67e361ea ("powerpc/82xx: add SPI support for mgcoge")
+> Cc: Heiko Schocher <hs@denx.de>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-Not really, just stick to one. Your other nodes have 0x0, so just choose
-one. Anyway additional zeros seem redundant, but it is up to you which
-convention you prefer. Just choose one, not mixed.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 Best regards,
 Krzysztof
