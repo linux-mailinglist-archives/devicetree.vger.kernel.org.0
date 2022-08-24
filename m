@@ -2,154 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD22E59FF13
-	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 18:07:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A87259FF59
+	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 18:21:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239333AbiHXQH1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Aug 2022 12:07:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53732 "EHLO
+        id S239353AbiHXQVE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Aug 2022 12:21:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239194AbiHXQHZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 12:07:25 -0400
-Received: from hutie.ust.cz (unknown [IPv6:2a03:3b40:fe:f0::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54DFA80E82;
-        Wed, 24 Aug 2022 09:07:22 -0700 (PDT)
-From:   =?UTF-8?q?Martin=20Povi=C5=A1er?= <povik+lin@cutebit.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
-        t=1661357240; bh=aO38GJDIP/5aJG6S0vIu2Re6vO0yDujEU8aBKTpUOoc=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=Bxm61ZEynvpzn8cGD8yFgOWSblB7WYZYp8swzU6lksYgeFKL2Psl7tZMrQrQOgrEo
-         o3qi86pna0Z+tnErdiyTmXsRMS6yaSjPN4brbS0SN8OLPzluwbGpU2uGRLSkfoeim0
-         6HGwKNyD5af9aDowtXFhKbnpOaCQnNKr6itIwkgM=
-To:     =?UTF-8?q?Martin=20Povi=C5=A1er?= <povik+lin@cutebit.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S239022AbiHXQVB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 12:21:01 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC42872FE4
+        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 09:20:59 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id n7so21393455wrv.4
+        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 09:20:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=conchuod.ie; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc;
+        bh=S2tBbgrx+25RpWaqCl+haIdlbySiWC0Xb4SRnNTuZLo=;
+        b=CaBBfJ6zzlzSH8t+T5KGfrvMzLAi5AI0eoDZAVk0yw3cSoKl5RoetN0lKoKeWRh6hP
+         r5P8edcEbxW/Ad8FhnLpgrcKO9nzODroDxn0URodX5a9zfEmMBvyQNrmKmfKBYVQHrWN
+         TOX3+urD81gS9Ih4cs9hl7+KIvMTFFBJQlmcNWfGci8wUyo2NUiyTmh4MCkSTbDEhalM
+         ccAX+7RJgQlxRHJ90k2FI02f6/m0gmf3lK0EziSkKN8eoc85597K8AE4NAwEifpHvNgV
+         APwCV35SmUdKYbIxqZ2tLbzCVxnjNZX4poPem4awdsY1nLjYErALPj0Bk98N1GnJdR3t
+         cNdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
+        bh=S2tBbgrx+25RpWaqCl+haIdlbySiWC0Xb4SRnNTuZLo=;
+        b=3cHNzcoVbhcDx2PmAuIhbRnk/GPv3wGxy6WfugaEP8npE6xX6jKgTvICCdmaHjQ+RO
+         5Hefudo1OMN8tzg6BZfl8o8fDJVkjm/KlgsvTyi/AJIrB7AZteSQRsz3naW5z0+AuRol
+         gGqPUCPveZk4+VW8Mv+UJ9yrgeWJV6ds+uD9yWoFtaRCE+yFDmQSkuXczZFhioe4komd
+         0RpI0Y/CrtrodJ2aVl2FOEnjWs6uQGr8hSkCwJHPnQpc5Pkpjy1XBzSbzqLBVFXHAonr
+         htpbu45wXhDs9nYQKfzdmrFOr8g9PpIsWxxA3yxvo4KQWMnoN1mN39InSM8bz31IKRhc
+         4xvw==
+X-Gm-Message-State: ACgBeo2IZudIyL9UKpXRLIhd/7ygPxFRI3Jwv4+3ZJ53xrv3QlzR8YHg
+        trs11CPnEA5ItiU4lTs8BA+0Mw==
+X-Google-Smtp-Source: AA6agR4/6nKKtxFMnoCc84DqrjQsVm+cjtB+x8R9A0ftf1MIYOg7bI7gO59Np7Of33NfYpXfhEp05Q==
+X-Received: by 2002:a05:6000:221:b0:225:464d:b096 with SMTP id l1-20020a056000022100b00225464db096mr24122wrz.32.1661358058303;
+        Wed, 24 Aug 2022 09:20:58 -0700 (PDT)
+Received: from henark71.. ([51.37.149.245])
+        by smtp.gmail.com with ESMTPSA id l6-20020a05600c4f0600b003a690f704absm1903582wmq.4.2022.08.24.09.20.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Aug 2022 09:20:57 -0700 (PDT)
+From:   Conor Dooley <mail@conchuod.ie>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Alyssa Rosenzweig <alyssa@rosenzweig.io>, asahi@lists.linux.dev,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v3 4/4] ASoC: apple: mca: Add locking
-Date:   Wed, 24 Aug 2022 18:07:15 +0200
-Message-Id: <20220824160715.95779-5-povik+lin@cutebit.org>
-In-Reply-To: <20220824160715.95779-1-povik+lin@cutebit.org>
-References: <20220824160715.95779-1-povik+lin@cutebit.org>
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        Greentime Hu <greentime.hu@sifive.com>,
+        Conor Dooley <mail@conchuod.ie>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: (subset) [PATCH v3 0/7] Fix RISC-V/PCI dt-schema issues with dt-schema v2022.08
+Date:   Wed, 24 Aug 2022 17:19:44 +0100
+Message-Id: <166135795510.3741278.5608627370699269871.b4-ty@microchip.com>
+X-Mailer: git-send-email 2.37.1
+In-Reply-To: <20220819231415.3860210-1-mail@conchuod.ie>
+References: <20220819231415.3860210-1-mail@conchuod.ie>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_FAIL,SPF_HELO_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In DAI ops, accesses to the native cluster (of the DAI), and to data of
-clusters related to it by a DPCM frontend-backend link, should have
-been synchronized by the 'pcm_mutex' lock at ASoC level.
+From: Conor Dooley <conor.dooley@microchip.com>
 
-What is not covered are the 'port_driver' accesses on foreign clusters
-to which the current cluster has no a priori relation, so fill in
-locking for that. (This should only matter in bizarre configurations of
-sharing one MCA peripheral between ASoC cards.)
+On Sat, 20 Aug 2022 00:14:09 +0100, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
+> 
+> Hey all,
+> 
+> Got a few fixes for PCI dt-bindings that I noticed after upgrading my
+> dt-schema to v2022.08.
+> 
+> [...]
 
-Signed-off-by: Martin Povišer <povik+lin@cutebit.org>
----
- sound/soc/apple/mca.c | 23 +++++++++++++++++++++--
- 1 file changed, 21 insertions(+), 2 deletions(-)
+Applied to dt-fixes, RISC-V should be back to 0 warnings in the next
+linux-next. Thanks!
 
-diff --git a/sound/soc/apple/mca.c b/sound/soc/apple/mca.c
-index 807b85469408..aa67d57c9a9b 100644
---- a/sound/soc/apple/mca.c
-+++ b/sound/soc/apple/mca.c
-@@ -158,6 +158,9 @@ struct mca_data {
- 	struct reset_control *rstc;
- 	struct device_link *pd_link;
- 
-+	/* Mutex for accessing port_driver of foreign clusters */
-+	struct mutex port_mutex;
-+
- 	int nclusters;
- 	struct mca_cluster clusters[];
- };
-@@ -296,16 +299,21 @@ static bool mca_fe_clocks_in_use(struct mca_cluster *cl)
- 	struct mca_cluster *be_cl;
- 	int stream, i;
- 
-+	mutex_lock(&mca->port_mutex);
- 	for (i = 0; i < mca->nclusters; i++) {
- 		be_cl = &mca->clusters[i];
- 
- 		if (be_cl->port_driver != cl->no)
- 			continue;
- 
--		for_each_pcm_streams(stream)
--			if (be_cl->clocks_in_use[stream])
-+		for_each_pcm_streams(stream) {
-+			if (be_cl->clocks_in_use[stream]) {
-+				mutex_unlock(&mca->port_mutex);
- 				return true;
-+			}
-+		}
- 	}
-+	mutex_unlock(&mca->port_mutex);
- 	return false;
- }
- 
-@@ -349,6 +357,11 @@ static int mca_be_hw_free(struct snd_pcm_substream *substream,
- 	if (cl->port_driver < 0)
- 		return -EINVAL;
- 
-+	/*
-+	 * We are operating on a foreign cluster here, but since we
-+	 * belong to the same PCM, accesses should have been
-+	 * synchronized at ASoC level.
-+	 */
- 	fe_cl = &mca->clusters[cl->port_driver];
- 	if (!mca_fe_clocks_in_use(fe_cl))
- 		return 0; /* Nothing to do */
-@@ -721,7 +734,9 @@ static int mca_be_startup(struct snd_pcm_substream *substream,
- 		       cl->base + REG_PORT_CLOCK_SEL);
- 	writel_relaxed(PORT_DATA_SEL_TXA(fe_cl->no),
- 		       cl->base + REG_PORT_DATA_SEL);
-+	mutex_lock(&mca->port_mutex);
- 	cl->port_driver = fe_cl->no;
-+	mutex_unlock(&mca->port_mutex);
- 	cl->port_started[substream->stream] = true;
- 
- 	return 0;
-@@ -731,6 +746,7 @@ static void mca_be_shutdown(struct snd_pcm_substream *substream,
- 			    struct snd_soc_dai *dai)
- {
- 	struct mca_cluster *cl = mca_dai_to_cluster(dai);
-+	struct mca_data *mca = cl->host;
- 
- 	cl->port_started[substream->stream] = false;
- 
-@@ -741,7 +757,9 @@ static void mca_be_shutdown(struct snd_pcm_substream *substream,
- 		 */
- 		writel_relaxed(0, cl->base + REG_PORT_ENABLES);
- 		writel_relaxed(0, cl->base + REG_PORT_DATA_SEL);
-+		mutex_lock(&mca->port_mutex);
- 		cl->port_driver = -1;
-+		mutex_unlock(&mca->port_mutex);
- 	}
- }
- 
-@@ -962,6 +980,7 @@ static int apple_mca_probe(struct platform_device *pdev)
- 		return -ENOMEM;
- 	mca->dev = &pdev->dev;
- 	mca->nclusters = nclusters;
-+	mutex_init(&mca->port_mutex);
- 	platform_set_drvdata(pdev, mca);
- 	clusters = mca->clusters;
- 
--- 
-2.33.0
+[4/7] riscv: dts: microchip: mpfs: fix incorrect pcie child node name
+      https://git.kernel.org/conor/c/3f67e6997603
+[5/7] riscv: dts: microchip: mpfs: remove ti,fifo-depth property
+      https://git.kernel.org/conor/c/72a05748cbd2
+[6/7] riscv: dts: microchip: mpfs: remove bogus card-detect-delay
+      https://git.kernel.org/conor/c/2b55915d27dc
+[7/7] riscv: dts: microchip: mpfs: remove pci axi address translation property
+      https://git.kernel.org/conor/c/e4009c5fa77b
 
+Thanks,
+Conor.
