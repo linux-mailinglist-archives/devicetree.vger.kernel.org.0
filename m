@@ -2,70 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 376B459FA80
-	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 14:52:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AF0359FAA3
+	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 14:58:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237465AbiHXMwa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Aug 2022 08:52:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52212 "EHLO
+        id S237593AbiHXM5p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Aug 2022 08:57:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237421AbiHXMw3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 08:52:29 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 820A395E66
-        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 05:52:28 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id bq23so14814005lfb.7
-        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 05:52:28 -0700 (PDT)
+        with ESMTP id S237556AbiHXM5o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 08:57:44 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80BDE95693
+        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 05:57:43 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id u24so10770673lji.0
+        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 05:57:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=ZwNSTKnVcPIYK6dbm0TWSHkaFbJiNUWrAYxpc2cQruw=;
-        b=Ix90db/x25enO75JqAudO2Fr12aKUu/W8WOwZL7LYqPtppftySDvVFkRwUluS3S/wE
-         P0z8H6tHvrvCnNrNUzNdfBe96gzrHIGRPbZ3ZDSDSnY2H+69PyF8cvo0dHU7zNMuwYKs
-         3XAF3Dk2Yu2d/4sDOqwhuKBJ32SJiTqJTrMb61hZ9qneNiALxmXEXuf2lVoSfy2Y+nUe
-         WZGIIQsM5pIOSNKMYHnABwZkv8cKdweAPb0cbJtuGmqaZtu46nYgRfD4de1wv52ypgLJ
-         mExU9thjfVlm9wPJTNL3TbBYcjT94qPe4OZlJDUnSjrAaBynS8Yq1613gcIGOZ40wkjq
-         38Fw==
+        bh=nqd2a1NkKDVUdWFX24ptHpwYU9zy+QmGyakndaLPtWI=;
+        b=MFOuZmrAEsufXG+4mt2PNk4yf67B1k3ZxWchVBK0of2qgtPBlubt0Y1zK5CPAryzL8
+         J7jfMXXWFf3MFTbki8eoh0/c3kkFz1JaAamh5Nbx6u5TgmKYRAoEE805aqK22VB35vMJ
+         cC3EAgs5sbdCpAePy/1QV/AWLUKnvDjSCi4E9XHSe6zTY8rTTQDFktTdkqGvqwEIEOlB
+         3CY+c2cGzrEVGtewWHPfBvPndrbQfqj+8sJQZ4kU+Q91WWNvDb4eW9nx7qmC5P9EAGsx
+         FNHl/NLN1Z2HK02hko1fWiBH7WMjn0qjUqbeWCWLfaeeZnyTbdybmHsbo/UbZDOmZE22
+         MzSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=ZwNSTKnVcPIYK6dbm0TWSHkaFbJiNUWrAYxpc2cQruw=;
-        b=iUm0TOl49p/sD5cSRdzMYb851CzxcMxNvmrCigskgKG1mAUU3UiOFm9iBVIei/MK/b
-         okOM+RITXgjbCY5LLIIds/LCp+QOB7vhZNcCeH3l8hcb/twg1VXy9u2OhelFau/OHef8
-         KhvxmutP4VUVOXUoql5Vl4+MbtoyqWkOq0d2k0nypNAMnEZOqcq151f7/dPwWsQMZvKu
-         /Y1hZPSHImxaIgjU+XBUwT2MRub5MA3F+Yj+tfdG8wDZz6bw8uviMMJKh6d/XrnQYhL4
-         pKps2B9svBVzanyuyZxIAMnzfeY3uIxXyvgXYwUHhAeW7BH2vK57Mf3JN1JeQOqHNrcP
-         zk6Q==
-X-Gm-Message-State: ACgBeo0k0T6vNz3fzwGhz6PitzWWtQkuVGKzT6CmbpZOP2L3YCFYjPAY
-        +1ra9XfWBBLo3sjVD3/uEl8XZQ==
-X-Google-Smtp-Source: AA6agR4Sl1C1PIBuf+7AFbf2WFYP6PKZHBPj1Cqt/XCdlSfl6eNtX6pgeP/X5QCWGx9INqfdG3JCNw==
-X-Received: by 2002:a05:6512:210b:b0:492:e4cb:b93a with SMTP id q11-20020a056512210b00b00492e4cbb93amr4558908lfr.601.1661345546939;
-        Wed, 24 Aug 2022 05:52:26 -0700 (PDT)
+        bh=nqd2a1NkKDVUdWFX24ptHpwYU9zy+QmGyakndaLPtWI=;
+        b=trsD5HmRY1ZGBdRlts7/RH3k2km4wyFpG6diepsl3SfS8Gxo+r6m9jn/FBKJvfZSeE
+         ZY9VZbKn7g/Esux5sjkCZ0DUkZ39SRJ+PerLwn5BpEfIs67ekF+INejSi+9zI+o3mmnB
+         NaRurWXr9nLwVXXYUNea1d6aMS0BIms5CAdiTxYWmL6VCR1FFm93PqMfbx9YOoRd9uF0
+         EEtkmzgQ8zcmUb2kwZ3e4FyC3zx7cNUST/zRvk2h+D4NsweDumIKxk/lO5RoVftUbcmk
+         xin9GQtTyVq/5kLtNc4MJSHDWg9zBpvPsl+QkG6sIYJD/H29jhjfvVDVKVA8zICFrngo
+         os6A==
+X-Gm-Message-State: ACgBeo1Bx7lTl2zmKqeD3PZD/2w2hTtvPzJI7AuwpXVXbW0gdbLNMcwR
+        eLsPaz+puRdiq/J0ID3UHlxoZA==
+X-Google-Smtp-Source: AA6agR5jk3yzkhq/+4BfJtrOJ6VyWGEy/RIkF8YQnAiBBUgm7uMruWxiEpFWcax5/+jPQMi2MnRUXQ==
+X-Received: by 2002:a2e:700f:0:b0:261:c6ff:476c with SMTP id l15-20020a2e700f000000b00261c6ff476cmr5215634ljc.493.1661345861888;
+        Wed, 24 Aug 2022 05:57:41 -0700 (PDT)
 Received: from [10.243.4.185] ([194.157.23.230])
-        by smtp.gmail.com with ESMTPSA id c4-20020a196544000000b00489e2156285sm3006920lfj.104.2022.08.24.05.52.25
+        by smtp.gmail.com with ESMTPSA id a14-20020a05651c030e00b0025e728764ebsm2404858ljp.105.2022.08.24.05.57.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Aug 2022 05:52:25 -0700 (PDT)
-Message-ID: <72f2a044-6271-4d4e-1782-0271516cc7b3@linaro.org>
-Date:   Wed, 24 Aug 2022 15:52:24 +0300
+        Wed, 24 Aug 2022 05:57:40 -0700 (PDT)
+Message-ID: <09308102-f927-125e-4321-d231decbd6c9@linaro.org>
+Date:   Wed, 24 Aug 2022 15:57:37 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH 1/2] dt-bindings: clocks: imx8mp: Add ID for usb suspend
- clock
+Subject: Re: [PATCH 3/4] bindings: firmware: Update binding doc for the zynqmp
+ afi config node
 Content-Language: en-US
-To:     Li Jun <jun.li@nxp.com>, abelvesa@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com
-Cc:     linux-imx@nxp.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-References: <1661328262-3867-1-git-send-email-jun.li@nxp.com>
+To:     Nava kishore Manne <nava.kishore.manne@amd.com>, git@amd.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        michal.simek@xilinx.com, mdf@kernel.org, hao.wu@intel.com,
+        yilun.xu@intel.com, trix@redhat.com, p.zabel@pengutronix.de,
+        gregkh@linuxfoundation.org, ronak.jain@xilinx.com,
+        rajan.vaja@xilinx.com, abhyuday.godhasara@xilinx.com,
+        piyush.mehta@xilinx.com, lakshmi.sai.krishna.potthuri@xilinx.com,
+        harsha.harsha@xilinx.com, linus.walleij@linaro.org,
+        nava.manne@xilinx.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-fpga@vger.kernel.org
+References: <20220824035542.706433-1-nava.kishore.manne@amd.com>
+ <20220824035542.706433-4-nava.kishore.manne@amd.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1661328262-3867-1-git-send-email-jun.li@nxp.com>
+In-Reply-To: <20220824035542.706433-4-nava.kishore.manne@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,13 +84,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/08/2022 11:04, Li Jun wrote:
-> usb suspend clock has a gate shared with usb_root_clk.
+Use subject prefixes matching the subsystem (git log --oneline -- ...).
+
+"bindings" is no correct.
+
+On 24/08/2022 06:55, Nava kishore Manne wrote:
+> Updates binding document for the zynqmp afi config node to handle the
+> PS_PL Bus-width and resets.
+
+Use imperative language:
+https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
 > 
-> Signed-off-by: Li Jun <jun.li@nxp.com>
+> Signed-off-by: Nava kishore Manne <nava.kishore.manne@amd.com>
+> ---
+>  .../bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml     | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml b/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
+> index f14f7b454f07..9504665cad95 100644
+> --- a/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
+> +++ b/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
+> @@ -59,6 +59,13 @@ properties:
+>        controller.
+>      type: object
+>  
+> +  zynqmp-fpga:
 
+Just: fpga
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +    $ref: /schemas/fpga/xlnx,zynqmp-afi-fpga.yaml#
+> +    description: The Zynq UltraScale+ MPSoC Processing System core provides
+> +      access from PL masters to PS internal peripherals, and memory through
+> +      AXI FIFO interface(AFI)
+> +    type: object
+> +
+>  required:
+>    - compatible
+>  
 
 
 Best regards,
