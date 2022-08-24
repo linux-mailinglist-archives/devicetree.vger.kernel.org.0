@@ -2,126 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 234B459F1DC
-	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 05:11:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BAEDE59F238
+	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 05:56:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233367AbiHXDL4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Aug 2022 23:11:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55814 "EHLO
+        id S234505AbiHXD4J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Aug 2022 23:56:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230041AbiHXDLt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 23:11:49 -0400
-Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com [IPv6:2607:f8b0:4864:20::112d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B30387E32D
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 20:11:24 -0700 (PDT)
-Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-3376851fe13so395167857b3.6
-        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 20:11:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=friendlyarm-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc;
-        bh=MRoQzdOK6CWcAC6gw+P5C+x1bqwTKNwTT3AYdbkJaY8=;
-        b=U4Dn+R0xuJUm2UBAgJOnZYs5h76iFG0xeMtAjYWMUKS6kYXWmYz+W6NV1pGLm/6krp
-         cS3tSiQY56T8oztjPaOIlg/yZGc7Kcg7/w4HbuE3ZLGeyMlCIUWzt8rmakqXcjd2U8vS
-         UfUjVaw301Pex3T6NFzD5qd0vAJLc2FuS7XPqV13GnsFLnP4LXQW6Q2PvxkeMQYyX2L5
-         dw17xgsYdNnOgshkZnOSdHS9S+N7DaBPIN415F0QH98GuD6YSp7Asd1Ghj207Zxb/Djo
-         DUtZfjgshfGjX3jY/vjqIG50kPGYWu3ZQWWbACldweDUGIJttc43iKT5NO+0xcR3ETSd
-         6HPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc;
-        bh=MRoQzdOK6CWcAC6gw+P5C+x1bqwTKNwTT3AYdbkJaY8=;
-        b=KO7kCbm8/jDF2fgUOJWCJUZlURSlXrkTm0a6sxe4yWEx5Nx3wkJdrm13+xzVJ4TnY4
-         lERxKDRqA7MVF8Mk0LZWjdk+x0m8JxVC7ha1FfYJFHBSBkLRx4Vje366Q8X+gVs4Eamf
-         HJJPUjZmdN91eH2GtdyOXMzPDglDsr7qVxk2qeAwXGPJdb0sLT2Qfdxac0xuk+cuV89f
-         M4vvNsjEbm74oieSygz7NwFImiJi44QwQo9F9GsQMgEMqpsQc89iYCgJMN2EUPBjPCZx
-         LGYQqCb8W2X0F2uPm7vWQfxCQe9/CdFYW6cfogQHj1zaVbuygZ+9YByMsb8L2CDzLzkT
-         R/3Q==
-X-Gm-Message-State: ACgBeo1wK4VF5Uqm16vm5uij4TwzdCRZaiGy53n2eHRNyfrTiNarJWy0
-        5YHyI6ln/fDhPd5zK4WGLqpvD9ERGeQwzkXmMagcnQ==
-X-Google-Smtp-Source: AA6agR5azhM/Z/AXpPAiiP/iN20sesKIKrIpQUppdkgJegZcoQn5Fq6Cy100clgzY/qN6NhMdmzI7uj2aGADrU7Jipg=
-X-Received: by 2002:a25:415:0:b0:696:814:7c77 with SMTP id 21-20020a250415000000b0069608147c77mr3844588ybe.36.1661310683919;
- Tue, 23 Aug 2022 20:11:23 -0700 (PDT)
+        with ESMTP id S234048AbiHXD4H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 23:56:07 -0400
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5A822B18D;
+        Tue, 23 Aug 2022 20:56:04 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Hz4fY7Wey0iTep57usoeu5GbfsBwgnnKPWpVWnNhn7PpYG5dTf5ugM5jHS3dXfm5phVJr7LdfWDVVY4gpThHSzxRK17jt0w5ljF5l/YvPosA7UZGyO9Tqs4oPEtfkGcFiaV3PLbzP2ul1zK4pJ6KkLngN46fKjRfWiGUidukhSSBEzri+LB2PN4gusf4eC/mI9S/Tbr+pkiq8Cv8Z1211au64q34ypGLeC6ip+wGYRK/AJ6PFgkme3cbGpNRrSdqh5OTYG/U518gA6l0/rPWh08m4UK6jjQvoqz/vwRU8WGRybjyAG6kajuN1e9lDMN+knLywCREqFb1QWZfZiL3TA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=b2xqht7wLbThKdFSBdycgy1Bt3dIe66lnUe2B0kPQYY=;
+ b=QDSq5NDLESwu/blzcV3ABA6SuZsEWBGv3rmt/T2YKYSnpr7CNmaXwB2+vJ/MhTKbmmZ6bqKM32EyxkTyBKQ2YxEocfhdNVvumeIKW5XzWvBOoRkCeyPckyGBAFFFtMYniVVb2RqClwJ9zEzS/efZTh8h9NGKHtHN1bLlNNs5hVN8jvjNrjL9QZ5RYur4rgtGqJ5YZMqXV+wJmYQ5m4A1pwJEPF1fyNvuhZxHSLbQQGSTh28+N3x/ghizlYUicB/AdrW7cGE11gMu5TVCkRoVazxwxnnqGuQwHlnjR9zavSOcOz9yPFlIBNsUknnWLTYXb/ZCTDz13Zn4v9aaHW3W/g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.infradead.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=b2xqht7wLbThKdFSBdycgy1Bt3dIe66lnUe2B0kPQYY=;
+ b=4a8JrkYApFRqXzCpxyUQ/B37OOAJx5lRE82pBgafqAOGLtA1c1XuEWxcF0XZnEF9+BFlkoMPLbxgXPKnFX2pD/lrmuEE/7hCiNdXGr7Li4xz3343Hiy9oyxBHWq8aouFPYErZuvo5ohIwKzCm7EYf/S6SMaHAEDCAA54RAzD0Nc=
+Received: from MW4PR03CA0277.namprd03.prod.outlook.com (2603:10b6:303:b5::12)
+ by IA1PR12MB6652.namprd12.prod.outlook.com (2603:10b6:208:38a::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5546.22; Wed, 24 Aug
+ 2022 03:55:54 +0000
+Received: from CO1NAM11FT029.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:b5:cafe::72) by MW4PR03CA0277.outlook.office365.com
+ (2603:10b6:303:b5::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5546.21 via Frontend
+ Transport; Wed, 24 Aug 2022 03:55:53 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1NAM11FT029.mail.protection.outlook.com (10.13.174.214) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5566.15 via Frontend Transport; Wed, 24 Aug 2022 03:55:53 +0000
+Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Tue, 23 Aug
+ 2022 22:55:48 -0500
+From:   Nava kishore Manne <nava.kishore.manne@amd.com>
+To:     <git@amd.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <michal.simek@xilinx.com>,
+        <nava.kishore.manne@amd.com>, <mdf@kernel.org>, <hao.wu@intel.com>,
+        <yilun.xu@intel.com>, <trix@redhat.com>, <p.zabel@pengutronix.de>,
+        <gregkh@linuxfoundation.org>, <ronak.jain@xilinx.com>,
+        <rajan.vaja@xilinx.com>, <abhyuday.godhasara@xilinx.com>,
+        <piyush.mehta@xilinx.com>,
+        <lakshmi.sai.krishna.potthuri@xilinx.com>,
+        <harsha.harsha@xilinx.com>, <linus.walleij@linaro.org>,
+        <nava.manne@xilinx.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-fpga@vger.kernel.org>
+Subject: [PATCH 0/4]Add afi config drivers support
+Date:   Wed, 24 Aug 2022 09:25:38 +0530
+Message-ID: <20220824035542.706433-1-nava.kishore.manne@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20220822074139.3810-1-jensenhuang@friendlyarm.com>
- <23552842.6Emhk5qWAg@diego> <CAD=FV=W-ajJDfYcP3P8Jyk_KgsUAbdTtmwiNXqJ=Ab2ojgrUGw@mail.gmail.com>
-In-Reply-To: <CAD=FV=W-ajJDfYcP3P8Jyk_KgsUAbdTtmwiNXqJ=Ab2ojgrUGw@mail.gmail.com>
-From:   Jensen Huang <jensenhuang@friendlyarm.com>
-Date:   Wed, 24 Aug 2022 11:11:13 +0800
-Message-ID: <CAMpZ1qEe7xFr+XaXsS_hWDLnGGA8PfzQiToOjY1N_1ctyQ+KxA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: rockchip: add enable-strobe-pulldown to emmc
- phy on rk3399
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Chris Ruehl <chris.ruehl@gtsys.com.hk>,
-        Brian Norris <briannorris@chromium.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 7a3feabc-86e8-415c-1447-08da85848ab4
+X-MS-TrafficTypeDiagnostic: IA1PR12MB6652:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: bLBFCxkc7D1p445wIthuCMVHM8VolVHxuTRneAXC5tJa4IqyccF+802oqf+j+2lJh7jqVogz/bptz3WuVBf70w1KqF3pBN3swcPPST/HAdqk4pCip1DmBUaRg3PxdYVROB35vPEMlozVjM4VpxEP7sIn3eLf+F4YJw87CeBdQnnEnI4UUEg4nyRr+7+i36SIwP3SGDUb+lBbBj1wmD1q4DPSAFrveb7/mYpgkwh0rDzNJB6C8Vq45TcOvRXCyT64EayZxM7ldbvixcobIfTQ18XGQCDGFEscck1Kj6ZRuZGVbD8EXUrwxbSARNUQVATCx2Qm6mjv74CvNcdWY2/yr/XeBIjRbxDVwsmD1BGMqc8/8ONCfeEUbGGNrGhBdjmisznlkrqP0u659d+52VRq++7oypmpKvqoHQ9KL2pCvoZc4cIrA1Q+7hhUE4mHJqcTXSjc8rDkah6ahIWusmeugHmRZv7tD+9xaBsMLWiJGe8PlesUYrPCKyszdnbPflwCQRGEJyLWFVC6bqj+6iQ+McPL3tGQsfHhjpaGd11TKv8MNi2JUO/JH4zWLnDPzrmbH2HaLcsI7cWhQp1GZi1Ylt0akPV9EHMwGHHX1aMP3UVVSQf23ubY7GJjbjLJ8cYcj0XWGWujWaztrNf6AJnAM1RbSi37Wz3vadsm1bh9csPSC0Z/lU/s9BKUVfs1p3LArnkLmHJFPaspysZVbD7VxzQ1bERYqFNkGFALlw3Czuh3Qu2CzirKgaP67+fjA8oNiGKYrhR8qnjvWSeBpnXyQpOJrWoAGkhnK2x5BDpU9jcpTlgINn7WUmK8GcOy5z6rbTZUbkx+yq3V8OnRf0MaFm6T+ZBmJqlg3SuLKwDEdbUJreMUx9aYnYkfWdwJiKXM
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230016)(4636009)(396003)(39860400002)(346002)(136003)(376002)(36840700001)(46966006)(40470700004)(336012)(426003)(6666004)(478600001)(41300700001)(47076005)(186003)(16526019)(83380400001)(26005)(1076003)(2906002)(5660300002)(2616005)(82310400005)(7416002)(40460700003)(316002)(40480700001)(110136005)(8676002)(8936002)(70206006)(70586007)(82740400003)(103116003)(86362001)(921005)(36860700001)(356005)(36756003)(81166007)(36900700001)(83996005)(2101003);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Aug 2022 03:55:53.3706
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7a3feabc-86e8-415c-1447-08da85848ab4
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT029.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6652
+X-Spam-Status: No, score=0.9 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Xilinx SoC platforms (Zynq and ZynqMP) connect the PS to the programmable
+logic (PL) through the AXI port.This AXI port helps to establish the data
+path between the PS and PL. In-order to establish the proper communication
+data path between PS and PL the AXI port data path should be configured
+with the proper Bus-width values and it will also handle the PS-PL reset
+signals to reset the PL domain.
 
-Sorry for sending an email in HTML format.
+This patch series adds afi config drivers support to handle the PS-PL
+resets and AXI port bus-width configurations.
 
-I realized that only some devices may be affected, so I considered
-modifying rk3399-nanopi4.dtsi only,
-but other boards without external pull-down should still need this patch.
+Nava kishore Manne (4):
+  firmware: xilinx: Add afi ioctl support
+  bindings: fpga: Add binding doc for the zynqmp afi config driver
+  bindings: firmware: Update binding doc for the zynqmp afi config node
+  fpga: zynqmp: Add afi config driver
 
+ .../firmware/xilinx/xlnx,zynqmp-firmware.yaml |   7 +
+ .../bindings/fpga/xlnx,zynqmp-afi-fpga.yaml   | 100 +++++++++
+ MAINTAINERS                                   |   6 +
+ drivers/firmware/xilinx/zynqmp.c              |  14 ++
+ drivers/fpga/Kconfig                          |  13 ++
+ drivers/fpga/Makefile                         |   1 +
+ drivers/fpga/zynqmp-afi.c                     | 211 ++++++++++++++++++
+ include/linux/firmware/xlnx-zynqmp.h          |  36 +++
+ 8 files changed, 388 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/fpga/xlnx,zynqmp-afi-fpga.yaml
+ create mode 100644 drivers/fpga/zynqmp-afi.c
 
-BR,
-Jensen
+-- 
+2.25.1
 
-On Tue, Aug 23, 2022 at 10:13 PM Doug Anderson <dianders@chromium.org> wrot=
-e:
->
-> Hi,
->
-> On Tue, Aug 23, 2022 at 4:53 AM Heiko St=C3=BCbner <heiko@sntech.de> wrot=
-e:
-> >
-> > Am Montag, 22. August 2022, 09:41:39 CEST schrieb Jensen Huang:
-> > > Internal pull-down for strobe line (GRF_EMMCPHY_CON2[9]) was disabled
-> > > by commit 8b5c2b45b8f0, which causes I/O error in HS400 mode.
-> > >
-> > > Tested on NanoPC-T4.
-> > >
-> > > Fixes: 8b5c2b45b8f0 ("phy: rockchip: set pulldown for strobe line in =
-dts")
-> > > Signed-off-by: Jensen Huang <jensenhuang@friendlyarm.com>
-> >
-> > ok, so this looks like it restores previous functionality.
-> >
-> > I'm just wondering as the "offending" patch is from 2020, why this
-> > only turns up now. Any ideas?
->
-> Ah, I see. So before the offending patch we used to just leave the
-> pull state at whatever the default was when the kernel was booted.
-> After the offending patch we chose a default.
->
-> On kevin I see an external pull down on this line. Enabling both the
-> internal and external is probably not a huge deal, it'll just affect
-> the strength of the pull.
->
-> On bob I _think_ the external pull down is also stuffed.
->
-> ...so I guess that would explain why it didn't cause a problem for at
-> least those two boards?
->
-> -Doug
