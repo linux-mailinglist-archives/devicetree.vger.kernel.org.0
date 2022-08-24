@@ -2,229 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 209DE59FDFD
-	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 17:13:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0531559FE3F
+	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 17:26:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239383AbiHXPNP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Aug 2022 11:13:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40748 "EHLO
+        id S239248AbiHXP0I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Aug 2022 11:26:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239419AbiHXPNO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 11:13:14 -0400
-Received: from conssluserg-03.nifty.com (conssluserg-03.nifty.com [210.131.2.82])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5855992F67;
-        Wed, 24 Aug 2022 08:13:11 -0700 (PDT)
-Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52]) (authenticated)
-        by conssluserg-03.nifty.com with ESMTP id 27OFCjVB013992;
-        Thu, 25 Aug 2022 00:12:46 +0900
-DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-03.nifty.com 27OFCjVB013992
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
-        s=dec2015msa; t=1661353966;
-        bh=fVvaRhYbr7WqSGRQrnnYvU3l+AHOJziVA/x4NFlZgNA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=SWPfw5FByzSsAK8YH9O2qotcC/hLiEILV5uVffOA/uM4+LKlS7oFBPvuXo+DdSWxZ
-         ej/+7awez8uneRqxStI64AtKE3IK+I9nLDXF9+Y+kOzEiUg39Tq2VUbCZqTUKkxNx2
-         o6lRPsgFn6mFxm86EozCnPx+HnUgT6CIMj7AHDdNEZ1Wn1/gdY4LqxWSdySwcDFJxa
-         dyaeveEm6PYaK2iPEqw6jYWJW9fyklqOOYPXTwn61G9PZBL75G3tGNzHxz53uIOASe
-         kH60xluch7C2RzjPxplIc/q6OtBscByXqSkEpHKrodqF7d8lp/5rm0KnjrC6KWocrL
-         yR+mYxrVly2vg==
-X-Nifty-SrcIP: [209.85.210.52]
-Received: by mail-ot1-f52.google.com with SMTP id h20-20020a056830165400b00638ac7ddba5so11992125otr.4;
-        Wed, 24 Aug 2022 08:12:46 -0700 (PDT)
-X-Gm-Message-State: ACgBeo1z6lm52VFuxmSjaGnyH3/keUS6E+68CJL6ElpBqdgEOg0VGj+u
-        lPqpSivUN76P59NpJiixKR77h8seQxjwYrI28ck=
-X-Google-Smtp-Source: AA6agR6SVxhGHjPqzDSRHvstOHoynSvOcXtoHpO+BvUGcwbnHt28FtUhLXip+Cg3SfnsPxu9gTrs2FtahV+hGrPQY3I=
-X-Received: by 2002:a9d:4806:0:b0:637:cdca:f8d3 with SMTP id
- c6-20020a9d4806000000b00637cdcaf8d3mr11459091otf.225.1661353965051; Wed, 24
- Aug 2022 08:12:45 -0700 (PDT)
+        with ESMTP id S238902AbiHXP0H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 11:26:07 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A57B7FFB2
+        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 08:26:04 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id gt3so21772338ejb.12
+        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 08:26:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=+REtIHQgWG0CyX06a0bJ3AbJyKU8duln9BUWF3D/+sc=;
+        b=NS/sWXSH8u/FJaGqY/cQK1Vs9FroETLZmL8iQTV6Vs3gAeO4NYg7ZMBaULqCAeYM8b
+         cehi9lldGwWNNivBjF0I1baLZCNtH1zRBZuTgbAct/hZemxMe+QXpCHw8KaBC+BUrTSM
+         s8TPj55628lFkV8F3PlbbvuvYvn7xXN7imsCc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=+REtIHQgWG0CyX06a0bJ3AbJyKU8duln9BUWF3D/+sc=;
+        b=fkusRMr0pPd/+3tLYN6FApcGIWCOtYlUAxZvhBH4wFLrQyfMtrg3hrmylMu8BR4LQN
+         pbmU4iJ9DKyE1mpVGh8sWL2MaGHD3GWgbFWvymVNmTjl5bTXopl6nFfka1GfcYMFqqh/
+         MyNKJ+fgqjx+cB0dm6vTpoTyhEjmIWbWa3PRMk8erQl/sg3FD3oafRsZM+W7Jm5PRmaI
+         NSOoPdrEnxPpXpfv9R4a61/23kvMfqCeQdk4gdxB4wygkTRCrQ42Rj4Vkz7ROXOyfgqF
+         O3NtxADSB85EX3tcAzR05vKorBZualClJGvpH6WTfijCYczBtVvdCKGzGW3KU8jzig/0
+         O1eQ==
+X-Gm-Message-State: ACgBeo2jwRh6j5rlTIU4hcK8FY/K58QDtoluSy2MgLrXw0p12ZqO+cja
+        kEk9TGx5MgNSwJLrMEhH5iGqtYjatY9xguYT
+X-Google-Smtp-Source: AA6agR5YYCboLYomoe+g3H0B02RQyq7ic4Ayoc5HbjCeO9hNYv+rtaEQquLxna71yXI0yIkpA/Smfg==
+X-Received: by 2002:a17:906:9b8b:b0:732:d464:92ea with SMTP id dd11-20020a1709069b8b00b00732d46492eamr3358717ejc.3.1661354762491;
+        Wed, 24 Aug 2022 08:26:02 -0700 (PDT)
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com. [209.85.221.46])
+        by smtp.gmail.com with ESMTPSA id ej28-20020a056402369c00b0043d5ead65a6sm3296732edb.84.2022.08.24.08.26.01
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Aug 2022 08:26:01 -0700 (PDT)
+Received: by mail-wr1-f46.google.com with SMTP id bq11so14632827wrb.12
+        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 08:26:01 -0700 (PDT)
+X-Received: by 2002:a05:6000:2ce:b0:225:2c5f:3ba8 with SMTP id
+ o14-20020a05600002ce00b002252c5f3ba8mr16836784wry.138.1661354761632; Wed, 24
+ Aug 2022 08:26:01 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220817152027.16928-1-masahiroy@kernel.org> <20220824002355.GA391120-robh@kernel.org>
-In-Reply-To: <20220824002355.GA391120-robh@kernel.org>
-From:   Masahiro Yamada <masahiroy@kernel.org>
-Date:   Thu, 25 Aug 2022 00:12:08 +0900
-X-Gmail-Original-Message-ID: <CAK7LNASSc9Txf7dLL=Fb-uG3n9vWbHDezFMAmnMuajAm7wjHwQ@mail.gmail.com>
-Message-ID: <CAK7LNASSc9Txf7dLL=Fb-uG3n9vWbHDezFMAmnMuajAm7wjHwQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: fix wrong use of if_changed_rule
-To:     Rob Herring <robh@kernel.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
+References: <20220726094549.263899-1-jinghung.chen3@hotmail.com>
+ <SG2PR03MB5006B0C3E57803E3B1E0EDBCCC949@SG2PR03MB5006.apcprd03.prod.outlook.com>
+ <93bf8a59-34e3-e461-35c9-4f0f344dee32@quicinc.com>
+In-Reply-To: <93bf8a59-34e3-e461-35c9-4f0f344dee32@quicinc.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 24 Aug 2022 08:25:47 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=VNUh7NT5bx0uRT259CKk2ndbji6nh2=xoRNBEC1yg-XA@mail.gmail.com>
+Message-ID: <CAD=FV=VNUh7NT5bx0uRT259CKk2ndbji6nh2=xoRNBEC1yg-XA@mail.gmail.com>
+Subject: Re: [PATCH v8 3/3] arm64: dts: qcom: Add LTE SKUs for sc7280-villager family
+To:     Sibi Sankar <quic_sibis@quicinc.com>
+Cc:     Jimmy Chen <jinghung.chen3@hotmail.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Alan Huang <alan-huang@quanta.corp-partner.google.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Sam Protsenko <semen.protsenko@linaro.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_SOFTFAIL,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 24, 2022 at 9:23 AM Rob Herring <robh@kernel.org> wrote:
+Hi,
+
+On Wed, Aug 24, 2022 at 3:11 AM Sibi Sankar <quic_sibis@quicinc.com> wrote:
 >
-> On Thu, Aug 18, 2022 at 12:20:26AM +0900, Masahiro Yamada wrote:
-> > The intent for if_changed_rule is to re-run the rule when the command
-> > line is changed, but this if_changed_rule does not do anything for it.
+> Hey Jimmy,
 >
-> This is the issue with DT_SCHEMA_FILES changes not causing a rebuild?
+> Thanks for the patch.
 >
-> > $(cmd-check) for this rule is always empty because:
+> On 7/26/22 3:15 PM, Jimmy Chen wrote:
+> > This adds LTE skus for villager device tree files.
 > >
-> >  [1] $(cmd_$@) is empty because .processed-schema.json.cmd does not exist
-> >  [2] $(cmd_$1) is empty because cmd_chkdt is not defined
-> >
-> > To address [1], use cmd_and_cmdsave instead of cmd.
-> >
-> > To address [2], rename rule_chkdt to rule_mk_schema so that the stem
-> > parts of cmd_* and rule_* match, like commit 7a0496056064 ("kbuild:
-> > fix DT binding schema rule to detect command line changes").
-> >
-> > Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+> > Signed-off-by: Jimmy Chen <jinghung.chen3@hotmail.com>
+> > Reviewed-by: Douglas Anderson <dianders@chromium.org>
 > > ---
 > >
-> > Another possibility might be to split out yamllint and chk_bindings
-> > as standalone build rules instead of running them as a side-effect
-> > of the schema build. (but it it up to Rob's preference)
+> > (no changes since v6)
+> >
+> > Changes in v6:
+> > - Remove v5 accidentally added sc7280-herobrine-herobrine-r1-lte.dts
+> >
+> > Changes in v5:
+> > - Reorder '.dtb' in Makefile
+> > - Put the "interconnects" line back
+> >
+> > Changes in v4:
+> > - Reorder 'status' last
+> >
+> >   arch/arm64/boot/dts/qcom/Makefile               |  2 ++
+> >   .../boot/dts/qcom/sc7280-chrome-common.dtsi     | 11 -----------
+> >   .../boot/dts/qcom/sc7280-herobrine-crd.dts      |  1 +
+> >   .../dts/qcom/sc7280-herobrine-herobrine-r1.dts  |  1 +
+> >   .../boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi | 17 +++++++++++++++++
+> >   .../qcom/sc7280-herobrine-villager-r0-lte.dts   | 14 ++++++++++++++
+> >   .../qcom/sc7280-herobrine-villager-r1-lte.dts   | 14 ++++++++++++++
+> >   arch/arm64/boot/dts/qcom/sc7280-idp.dts         |  1 +
+> >   8 files changed, 50 insertions(+), 11 deletions(-)
+> >   create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi
+> >   create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0-lte.dts
+> >   create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1-lte.dts
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> > index 2c1605e00d349..24eacbf330880 100644
+> > --- a/arch/arm64/boot/dts/qcom/Makefile
+> > +++ b/arch/arm64/boot/dts/qcom/Makefile
+> > @@ -103,7 +103,9 @@ dtb-$(CONFIG_ARCH_QCOM)   += sc7180-trogdor-r1-lte.dtb
+> >   dtb-$(CONFIG_ARCH_QCOM)     += sc7280-herobrine-crd.dtb
+> >   dtb-$(CONFIG_ARCH_QCOM)     += sc7280-herobrine-herobrine-r1.dtb
+> >   dtb-$(CONFIG_ARCH_QCOM)     += sc7280-herobrine-villager-r0.dtb
+> > +dtb-$(CONFIG_ARCH_QCOM)      += sc7280-herobrine-villager-r0-lte.dtb
+> >   dtb-$(CONFIG_ARCH_QCOM)     += sc7280-herobrine-villager-r1.dtb
+> > +dtb-$(CONFIG_ARCH_QCOM)      += sc7280-herobrine-villager-r1-lte.dtb
+> >   dtb-$(CONFIG_ARCH_QCOM)     += sc7280-idp.dtb
+> >   dtb-$(CONFIG_ARCH_QCOM)     += sc7280-idp2.dtb
+> >   dtb-$(CONFIG_ARCH_QCOM)     += sc7280-crd-r3.dtb
+> > diff --git a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
+> > index cfe2741456a1a..25f31c81b2b74 100644
+> > --- a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
+> > @@ -83,17 +83,6 @@ spi_flash: flash@0 {
+> >       };
+> >   };
+> >
+> > -/* Modem setup is different on Chrome setups than typical Qualcomm setup */
+> > -&remoteproc_mpss {
+> > -     status = "okay";
+> > -     compatible = "qcom,sc7280-mss-pil";
+> > -     iommus = <&apps_smmu 0x124 0x0>, <&apps_smmu 0x488 0x7>;
+> > -     interconnects = <&mc_virt MASTER_LLCC 0 &mc_virt SLAVE_EBI1 0>;
+> > -     memory-region = <&mba_mem>, <&mpss_mem>;
+> > -     firmware-name = "qcom/sc7280-herobrine/modem/mba.mbn",
+> > -                     "qcom/sc7280-herobrine/modem/qdsp6sw.mbn";
+> > -};
+> > -
+> >   &remoteproc_wpss {
+> >       status = "okay";
+> >       firmware-name = "ath11k/WCN6750/hw1.0/wpss.mdt";
+> > diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
+> > index e9ca6c5d24a16..921eccfec39ae 100644
+> > --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
+> > +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
+> > @@ -9,6 +9,7 @@
+> >
+> >   #include "sc7280-herobrine.dtsi"
+> >   #include "sc7280-herobrine-audio-wcd9385.dtsi"
+> > +#include "sc7280-herobrine-lte-sku.dtsi"
+> >
+> >   / {
+> >       model = "Qualcomm Technologies, Inc. sc7280 CRD platform (rev5+)";
+> > diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts
+> > index c1647a85a371a..c1a6719687252 100644
+> > --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts
+> > +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts
+> > @@ -8,6 +8,7 @@
+> >   /dts-v1/;
+> >
+> >   #include "sc7280-herobrine.dtsi"
+> > +#include "sc7280-herobrine-lte-sku.dtsi"
+> >
+> >   / {
+> >       model = "Google Herobrine (rev1+)";
+> > diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi
+> > new file mode 100644
+> > index 0000000000000..a92eeccd2b2a9
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi
+> > @@ -0,0 +1,17 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +/*
+> > + * Google Herobrine dts fragment for LTE SKUs
+> > + *
+> > + * Copyright 2022 Google LLC.
+> > + */
+> > +/* Modem setup is different on Chrome setups than typical Qualcomm setup */
+> > +
+> > +&remoteproc_mpss {
+> > +     compatible = "qcom,sc7280-mss-pil";
+> > +     iommus = <&apps_smmu 0x124 0x0>, <&apps_smmu 0x488 0x7>;
+> > +     interconnects = <&mc_virt MASTER_LLCC 0 &mc_virt SLAVE_EBI1 0>;
+> > +     memory-region = <&mba_mem>, <&mpss_mem>;
+> > +     firmware-name = "qcom/sc7280-herobrine/modem/mba.mbn",
+> > +                     "qcom/sc7280-herobrine/modem/qdsp6sw.mbn";
+> > +     status = "okay";
+> > +};
 >
-> That is the direction I'd like to go. Something like the below patch
-> perhaps.
->
-> The main issue (or feature?) is that 'dt_binding_lint' and
-> 'dt_binding_schema' targets are still rerun every time even with the
-> dummy target files.
+> We shoud probably move the mpss_mem, mba_mem and rmtfs_mem here as
+> well, that way we save an additional ~255M.
 
+That sounds like a great idea. I wonder if it would be possible for
+Bjorn to land Jimmy's patches as-is and perhaps you could send a
+follow-up patch?
 
-Not a feature.
-It is just because the code is wrong.
-
-
-You need to add
-
-targets += dt_binding_lint.checked
-
-  or
-
-always-$(CHECK_DT_BINDING) += dt_binding_lint.checked
-
-
-
->
-> I think the top level makefile can be simplified a bit more with this
-> change, but this is what I got to being somewhat functional.
-
-
-I do not understand why the top Makefile needs a change.
-
-It is just a matter of adding the timestamp files to always-y
-in Documentation/devicetree/bindings/Makefile, isn'ts it?
-
-
-
-
-
-
-> diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
-> index 1eaccf135b30..ec3d8a926331 100644
-> --- a/Documentation/devicetree/bindings/Makefile
-> +++ b/Documentation/devicetree/bindings/Makefile
-> @@ -34,11 +34,13 @@ CHK_DT_DOCS := $(shell $(find_cmd))
->  quiet_cmd_yamllint = LINT    $(src)
->        cmd_yamllint = ($(find_cmd) | \
->                       xargs -n200 -P$$(nproc) \
-> -                    $(DT_SCHEMA_LINT) -f parsable -c $(srctree)/$(src)/.yamllint >&2) || true
-> +                    $(DT_SCHEMA_LINT) -f parsable -c $(srctree)/$(src)/.yamllint >&2) || true; \
-> +                     touch $(obj)/dt_binding_lint.checked
->
-> -quiet_cmd_chk_bindings = CHKDT   $@
-> +quiet_cmd_chk_bindings = CHKDT   $(src)
->        cmd_chk_bindings = ($(find_cmd) | \
-> -                         xargs -n200 -P$$(nproc) $(DT_DOC_CHECKER) -u $(srctree)/$(src)) || true
-> +                         xargs -n200 -P$$(nproc) $(DT_DOC_CHECKER) -u $(srctree)/$(src)) || true; \
-> +                         touch $(obj)/dt_binding_schema.checked
->
->  quiet_cmd_mk_schema = SCHEMA  $@
->        cmd_mk_schema = f=$$(mktemp) ; \
-> @@ -46,12 +48,6 @@ quiet_cmd_mk_schema = SCHEMA  $@
->                        $(DT_MK_SCHEMA) -j $(DT_MK_SCHEMA_FLAGS) @$$f > $@ ; \
->                       rm -f $$f
->
-> -define rule_chkdt
-> -       $(if $(DT_SCHEMA_LINT),$(call cmd,yamllint),)
-> -       $(call cmd,chk_bindings)
-> -       $(call cmd,mk_schema)
-> -endef
-> -
->  DT_DOCS = $(patsubst $(srctree)/%,%,$(shell $(find_all_cmd)))
->
->  override DTC_FLAGS := \
-> @@ -64,8 +60,25 @@ override DTC_FLAGS := \
->  # Disable undocumented compatible checks until warning free
->  override DT_CHECKER_FLAGS ?=
->
-> -$(obj)/processed-schema.json: $(DT_DOCS) $(src)/.yamllint check_dtschema_version FORCE
-> -       $(call if_changed_rule,chkdt)
-> +dt_binding_lint: $(obj)/dt_binding_lint.checked
-> +
-> +$(obj)/dt_binding_lint.checked: $(CHK_DT_DOCS) $(src)/.yamllint FORCE
-> +       $(call if_changed,yamllint)
-> +
-> +dt_binding_schema: $(obj)/dt_binding_schema.checked
-> +
-> +$(obj)/dt_binding_schema.checked: $(CHK_DT_DOCS) check_dtschema_version FORCE
-> +       $(call if_changed,chk_bindings)
-> +
-> +dt_binding_examples: CHECK_DT_BINDING = y
-> +
-> +dt_binding_examples: $(obj)/processed-schema.json $(patsubst $(srctree)/%.yaml,%.example.dtb, $(CHK_DT_DOCS))
-> +
-> +dt_binding_check: dt_binding_lint dt_binding_examples dt_binding_schema
-> +
-> +
-> +$(obj)/processed-schema.json: $(DT_DOCS) check_dtschema_version FORCE
-> +       $(call if_changed,mk_schema)
->
->  always-y += processed-schema.json
->  always-$(CHECK_DT_BINDING) += $(patsubst $(srctree)/$(src)/%.yaml,%.example.dts, $(CHK_DT_DOCS))
-> diff --git a/Makefile b/Makefile
-> index c7705f749601..0f197e3bd1f9 100644
-> --- a/Makefile
-> +++ b/Makefile
-> @@ -1391,7 +1391,7 @@ dtbs_prepare: include/config/kernel.release scripts_dtc
->
->  ifneq ($(filter dtbs_check, $(MAKECMDGOALS)),)
->  export CHECK_DTBS=y
-> -dtbs: dt_binding_check
-> +dtbs: dt_binding_schema
->  endif
->
->  dtbs_check: dtbs
-> @@ -1409,13 +1409,14 @@ PHONY += scripts_dtc
->  scripts_dtc: scripts_basic
->         $(Q)$(MAKE) $(build)=scripts/dtc
->
-> -ifneq ($(filter dt_binding_check, $(MAKECMDGOALS)),)
-> +ifneq ($(filter dt_binding_examples, $(MAKECMDGOALS)),)
->  export CHECK_DT_BINDING=y
->  endif
->
-> -PHONY += dt_binding_check
-> -dt_binding_check: scripts_dtc
-> -       $(Q)$(MAKE) $(build)=Documentation/devicetree/bindings
-> +DT_BINDING_TARGETS := dt_binding_check dt_binding_lint dt_binding_schema dt_binding_examples
-> +PHONY += $(DT_BINDING_TARGETS)
-> +$(DT_BINDING_TARGETS): scripts_dtc
-> +       $(Q)$(MAKE) $(build)=Documentation/devicetree/bindings $@
->
->  # ---------------------------------------------------------------------------
->  # Modules
-
-
-
--- 
-Best Regards
-Masahiro Yamada
+-Doug
