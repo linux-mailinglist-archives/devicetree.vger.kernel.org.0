@@ -2,63 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA75259FD68
-	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 16:39:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D40059FDA9
+	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 16:58:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239234AbiHXOjV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Aug 2022 10:39:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48912 "EHLO
+        id S238884AbiHXO6O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Aug 2022 10:58:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237544AbiHXOjU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 10:39:20 -0400
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B108867CAF;
-        Wed, 24 Aug 2022 07:39:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1661351959; x=1692887959;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=TWDQ6olQNWq8m9QH7Ozt/+HPJ58A66QhDRIWz18XGWY=;
-  b=WDj8RPUHPL+/zbK+8UuYsvpkPwjECSHFKWVhrpRhSzRQra8n81tYyTsR
-   8DnTQGqOuU3kIoHoFYzoiaTnXTpGc5EnQVQEIdRIXvvNNGsxQ9RJVMk1Q
-   NHCuu+veGg1DoSpLaeXpuaNXdH5cEzoZtX4Ui0AAwdMx52WksmaB7nDF7
-   tkV0ZTJEFGzm3OYqdb50bw1+4uwZlIG4KlriJkcNpj71Yl9H+eNtXo0k9
-   fBc7va6bPu8OhQRExaDphR5B7MBYwqZjMJgiLx8BTzMgOa1NYtEsJRqN8
-   qtUc3EkTceKuvTp4htzP4Ywb2w7Jkck2mSIsW4gXn5iE1hs2yxX8nJdQ9
-   A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10449"; a="294768513"
-X-IronPort-AV: E=Sophos;i="5.93,260,1654585200"; 
-   d="scan'208";a="294768513"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Aug 2022 07:39:19 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,260,1654585200"; 
-   d="scan'208";a="752107116"
-Received: from kuha.fi.intel.com ([10.237.72.185])
-  by fmsmga001.fm.intel.com with SMTP; 24 Aug 2022 07:39:15 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Wed, 24 Aug 2022 17:39:14 +0300
-Date:   Wed, 24 Aug 2022 17:39:14 +0300
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Xu Yang <xu.yang_2@nxp.com>
-Cc:     robh+dt@kernel.org, peda@axentia.se, shawnguo@kernel.org,
-        gregkh@linuxfoundation.org, linux@roeck-us.net, jun.li@nxp.com,
-        linux-usb@vger.kernel.org, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 3/4] usb: typec: mux: add typec orientation switch
- support via mux controller
-Message-ID: <YwY4Elu/W7qlojNc@kuha.fi.intel.com>
-References: <20220823195429.1243516-1-xu.yang_2@nxp.com>
- <20220823195429.1243516-4-xu.yang_2@nxp.com>
+        with ESMTP id S239381AbiHXO6I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 10:58:08 -0400
+Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com [IPv6:2607:f8b0:4864:20::d2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 734A1901B3
+        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 07:58:00 -0700 (PDT)
+Received: by mail-io1-xd2a.google.com with SMTP id q81so5951237iod.9
+        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 07:58:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc;
+        bh=yF4Z8Wba5KOhLWJ2hFirrTICWXMXcXiCQAsAVYho6bs=;
+        b=SDns1Nk4QoTPheeQ1bpwTTyzwsCPkpnhEUdDJ1mLOtNBX5aaBxoN/Pd1JSweF1nXog
+         DJd0OqK+z9SN3tXaoigWDHgRkIkvbEq+bygb3E91A/dOfk49qRSp1wuS3phar/YBrnz8
+         3SWwE/rsMfEFGfKz5ysQW9BzcVYkjdOGYHTV4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc;
+        bh=yF4Z8Wba5KOhLWJ2hFirrTICWXMXcXiCQAsAVYho6bs=;
+        b=uWrs7WjX9/DR/JVP7SMu14055FYFTIDZs5qmDm1ZAxkk2WcW2kt6Qz5BUs+/+paZ3M
+         aHHF0Kwfxhd/3mQL3AhYMEzqCj2LNs2aeVmIuZiGKSfWYimrBrDsCcN70ZaY1tUPLW8V
+         KdMKuQRtQWhCQeP8wMMXBBWCCRU4YBT8fqJ9RT0XISzyW5kSaulYlip/lsDjtRR9hRQ5
+         rR2IGmB3ofHT0QuBpVq1OtxLoOCzAikvLN8H1LNXAul5UBXNsDoh/GhQskaZVsPJzsYn
+         U7k/6iyL4OX+E9i+bi08LnwyCT7UyUgR4JYIzlGtP9+8J0Q65Rpk4ZPkZi2GmrSlu2xp
+         cvOA==
+X-Gm-Message-State: ACgBeo1EBycbnJZ3Q3HZkjNmWlm0gdzUyZ1p9x//TPKISfplnilabkfr
+        YF7SFvS5bymMk703RO+DdBccMu5mcRo2AnLtJkI=
+X-Google-Smtp-Source: AA6agR4UFaFQEKm1dR74aHvAjOcGaFTra6E9Lo0d6mJJDRWLIfzvdmWTnZqoETlTRdtonSl9KQ5bEw==
+X-Received: by 2002:a05:6602:15ce:b0:688:e4fd:bbfc with SMTP id f14-20020a05660215ce00b00688e4fdbbfcmr12562480iow.121.1661353079498;
+        Wed, 24 Aug 2022 07:57:59 -0700 (PDT)
+Received: from mail-il1-f179.google.com (mail-il1-f179.google.com. [209.85.166.179])
+        by smtp.gmail.com with ESMTPSA id b16-20020a05663801b000b0034602e741f0sm7598721jaq.67.2022.08.24.07.57.58
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Aug 2022 07:57:58 -0700 (PDT)
+Received: by mail-il1-f179.google.com with SMTP id i8so2231908ilk.8
+        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 07:57:58 -0700 (PDT)
+X-Received: by 2002:a92:60e:0:b0:2e8:f08b:de04 with SMTP id
+ x14-20020a92060e000000b002e8f08bde04mr2131199ilg.177.1661353077650; Wed, 24
+ Aug 2022 07:57:57 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220823195429.1243516-4-xu.yang_2@nxp.com>
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20220822074139.3810-1-jensenhuang@friendlyarm.com>
+ <23552842.6Emhk5qWAg@diego> <CAD=FV=W-ajJDfYcP3P8Jyk_KgsUAbdTtmwiNXqJ=Ab2ojgrUGw@mail.gmail.com>
+ <CAMpZ1qEe7xFr+XaXsS_hWDLnGGA8PfzQiToOjY1N_1ctyQ+KxA@mail.gmail.com>
+In-Reply-To: <CAMpZ1qEe7xFr+XaXsS_hWDLnGGA8PfzQiToOjY1N_1ctyQ+KxA@mail.gmail.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 24 Aug 2022 07:57:44 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=U-=2GpQTb0N1p3Qe2TAb=JhyZJw2V8T-qbLs5TYhW7qA@mail.gmail.com>
+Message-ID: <CAD=FV=U-=2GpQTb0N1p3Qe2TAb=JhyZJw2V8T-qbLs5TYhW7qA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: add enable-strobe-pulldown to emmc
+ phy on rk3399
+To:     Jensen Huang <jensenhuang@friendlyarm.com>
+Cc:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Chris Ruehl <chris.ruehl@gtsys.com.hk>,
+        Brian Norris <briannorris@chromium.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -67,128 +87,71 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi,
 
-On Wed, Aug 24, 2022 at 03:54:28AM +0800, Xu Yang wrote:
-> Some dedicated mux block can use existing mux controller as a mux
-> provider, typec port as a consumer to select channel for orientation
-> switch, this can be an alternate way to control typec orientation switch.
-> Also, one mux controller could cover highspeed, superspeed and sideband
-> use case one time in this implementation.
-> 
-> Reported-by: kernel test robot <lkp@intel.com>
+On Tue, Aug 23, 2022 at 8:11 PM Jensen Huang
+<jensenhuang@friendlyarm.com> wrote:
+>
+> Hi,
+>
+> Sorry for sending an email in HTML format.
+>
+> I realized that only some devices may be affected, so I considered
+> modifying rk3399-nanopi4.dtsi only,
+> but other boards without external pull-down should still need this patch.
 
-Drop that Reported-by tag.
+I guess the other alternative would be to change how the dt property
+works. You could say:
 
-> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
-> 
-> ---
-> Changes since v1:
-> - add build dependence (select MULTIPLEXER)
-> - improve Multiplexer control logic
-> 
->  drivers/usb/typec/Kconfig     |  1 +
->  drivers/usb/typec/mux.c       | 76 ++++++++++++++++++++++++++++++++++-
->  include/linux/usb/typec_mux.h |  7 +---
->  3 files changed, 78 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/usb/typec/Kconfig b/drivers/usb/typec/Kconfig
-> index 5defdfead653..73d4976d8148 100644
-> --- a/drivers/usb/typec/Kconfig
-> +++ b/drivers/usb/typec/Kconfig
-> @@ -2,6 +2,7 @@
->  
->  menuconfig TYPEC
->  	tristate "USB Type-C Support"
-> +	select MULTIPLEXER
+1. If `enable-strobe-pulldown` is set then enable the strobe pulldown.
 
-Whoa, do not tie TYPEC to another subsystem like that! You probable
-want to make your driver depend on that instead.
+2. If `enable-strobe-pulldown` is not set then don't touch the pin in
+the kernel.
 
->  	help
->  	  USB Type-C Specification defines a cable and connector for USB where
->  	  only one type of plug is supported on both ends, i.e. there will not
-> diff --git a/drivers/usb/typec/mux.c b/drivers/usb/typec/mux.c
-> index 464330776cd6..05e6ed217620 100644
-> --- a/drivers/usb/typec/mux.c
-> +++ b/drivers/usb/typec/mux.c
-> @@ -13,6 +13,7 @@
->  #include <linux/mutex.h>
->  #include <linux/property.h>
->  #include <linux/slab.h>
-> +#include <linux/mux/consumer.h>
->  
->  #include "class.h"
->  #include "mux.h"
-> @@ -22,6 +23,11 @@
->  struct typec_switch {
->  	struct typec_switch_dev *sw_devs[TYPEC_MUX_MAX_DEVS];
->  	unsigned int num_sw_devs;
-> +
-> +	/* Could handle HighSpeed, SuperSpeed, Sideband switch one time */
-> +	struct mux_control *mux_switch;
+3. If someone later needs to explicitly disable the strobe pulldown
+they could add a new property like `disable-strobe-pulldown`.
 
-That does not belong here...
 
-> +	/* 3 state correspond to NONE, NORMAL, REVERSE for all switches */
-> +	int mux_states[3];
->  };
->  
->  static int switch_fwnode_match(struct device *dev, const void *fwnode)
-> @@ -117,6 +123,58 @@ struct typec_switch *fwnode_typec_switch_get(struct fwnode_handle *fwnode)
->  }
->  EXPORT_SYMBOL_GPL(fwnode_typec_switch_get);
->  
-> +static struct typec_switch *mux_control_typec_switch_get(struct device *dev)
-> +{
-> +	struct typec_switch *sw;
-> +	struct mux_control *mux;
-> +	int ret;
-> +
-> +	if (!device_property_present(dev, "mux-controls"))
-> +		return NULL;
-> +
-> +	sw = kzalloc(sizeof(*sw), GFP_KERNEL);
-> +	if (!sw)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	mux = mux_control_get(dev, NULL);
-> +	if (!IS_ERR(mux)) {
-> +		sw->mux_switch = mux;
-> +		ret = device_property_read_u32_array(dev,
-> +			"typec-switch-states", sw->mux_states, 3);
-> +		if (ret) {
-> +			kfree(sw);
-> +			return ERR_PTR(ret);
-> +		}
-> +	} else {
-> +		kfree(sw);
-> +		return ERR_CAST(mux);
-> +	}
-> +
-> +	return sw;
-> +}
+Obviously there are tradeoffs between that and what you've done and
+I'm happy to let others make the call of which they'd prefer.
 
-That code is broken - you return a switch that has never been
-registered - but never mind that...
 
-You need to register the switch from the place/driver that actually
-handles the orientation. If you really think that you have to have a
-generic multiplexer class wrapper layer for these switches, then you
-need to propose a multiplexer class wrapper driver for that. Though,
-I'm not sure you need that.
-
-There is a GPIO driver proposal for these switches, so can you take a
-look if that covers your case as well:
-https://lore.kernel.org/linux-usb/20220810204750.3672362-3-bjorn.andersson@linaro.org/#t
-
-In any case, you can't mix that code into the device class code itself
-like you do above. That kind of coupling is always going to be fragile
-(as we can see above), but more importantly, it forces the dependency
-on every Type-C driver, and that is completely wrong.
-
-So please keep the subsystems themselves independent of each other and
-handle things in the device drivers.
-
-thanks,
-
--- 
-heikki
+> BR,
+> Jensen
+>
+> On Tue, Aug 23, 2022 at 10:13 PM Doug Anderson <dianders@chromium.org> wr=
+ote:
+> >
+> > Hi,
+> >
+> > On Tue, Aug 23, 2022 at 4:53 AM Heiko St=C3=BCbner <heiko@sntech.de> wr=
+ote:
+> > >
+> > > Am Montag, 22. August 2022, 09:41:39 CEST schrieb Jensen Huang:
+> > > > Internal pull-down for strobe line (GRF_EMMCPHY_CON2[9]) was disabl=
+ed
+> > > > by commit 8b5c2b45b8f0, which causes I/O error in HS400 mode.
+> > > >
+> > > > Tested on NanoPC-T4.
+> > > >
+> > > > Fixes: 8b5c2b45b8f0 ("phy: rockchip: set pulldown for strobe line i=
+n dts")
+> > > > Signed-off-by: Jensen Huang <jensenhuang@friendlyarm.com>
+> > >
+> > > ok, so this looks like it restores previous functionality.
+> > >
+> > > I'm just wondering as the "offending" patch is from 2020, why this
+> > > only turns up now. Any ideas?
+> >
+> > Ah, I see. So before the offending patch we used to just leave the
+> > pull state at whatever the default was when the kernel was booted.
+> > After the offending patch we chose a default.
+> >
+> > On kevin I see an external pull down on this line. Enabling both the
+> > internal and external is probably not a huge deal, it'll just affect
+> > the strength of the pull.
+> >
+> > On bob I _think_ the external pull down is also stuffed.
+> >
+> > ...so I guess that would explain why it didn't cause a problem for at
+> > least those two boards?
+> >
+> > -Doug
