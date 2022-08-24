@@ -2,71 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9902A5A0080
-	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 19:37:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BB9B5A0096
+	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 19:42:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240170AbiHXRhR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Aug 2022 13:37:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44376 "EHLO
+        id S239213AbiHXRmE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Aug 2022 13:42:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229640AbiHXRhO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 13:37:14 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 024C875CFF;
-        Wed, 24 Aug 2022 10:37:13 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id A5C73B8260D;
-        Wed, 24 Aug 2022 17:37:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4FEE0C43140;
-        Wed, 24 Aug 2022 17:37:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661362631;
-        bh=XEp4WEEaIZJu4cxjBAP89J0kR7LVi8xu2VmJizUyMk8=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=fg/ebInffYOAKWgh1kQVDZBK+5nIyGkYoYhjt+mJAzpTwZ0Xq96RzZHXnhwfFKISk
-         jS/2r867EP1cysXp8JCA144wXbG8jJybryH81XkWUIPVHQtmYvJgb4fiwbZdovqGdr
-         AZohIeEkCTFjRNO+bFbb7OvbgdQtAqY4/qUKsH4d+ck5bbSDylMNRpsNba4hdpQbS/
-         N1W6Ywi2iW/jYcoevfWPEM09D2KmDOkARy/oPDe8w1rCT8SqOyEGVnDuTJODPoX30f
-         QgDPixTbNgKRlbrY0IndDn2FUM1xQmVC+Vw8Io/2xADAFqWytibbfMkkgCxJrD5Q/c
-         sJVKf9h7spLHg==
-Received: by mail-ua1-f54.google.com with SMTP id s5so7003687uar.1;
-        Wed, 24 Aug 2022 10:37:11 -0700 (PDT)
-X-Gm-Message-State: ACgBeo1znigP6Ewgo2n+OTFg2aUK7zNe2ueYXwmLQxEF8JNIs3HiLpBz
-        WAP+AzI+komNAS7vwwJieqhsWTlgye9Bvg0DrQ==
-X-Google-Smtp-Source: AA6agR4/lcXZZcMBKeIOLNScXE35WDwsYTv7ijHWXb7M3whnqRMtgTblOhuemcmBqyQ5QNolbu4ezY2ZwRt31A/Xciw=
-X-Received: by 2002:ab0:1053:0:b0:391:9c29:7ca8 with SMTP id
- g19-20020ab01053000000b003919c297ca8mr18233uab.86.1661362630135; Wed, 24 Aug
- 2022 10:37:10 -0700 (PDT)
+        with ESMTP id S238822AbiHXRmD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 13:42:03 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57FFD7E82D;
+        Wed, 24 Aug 2022 10:42:00 -0700 (PDT)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1oQuNv-0004hr-Rm; Wed, 24 Aug 2022 19:41:47 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-riscv@lists.infradead.org
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Anup Patel <anup@brainfault.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Guo Ren <guoren@kernel.org>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Jessica Clarke <jrtc27@jrtc27.com>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, qemu-riscv@nongnu.org,
+        Rob Herring <robh@kernel.org>, Conor Dooley <mail@conchuod.ie>
+Subject: Re: [PATCH v4 3/4] dt-bindings: riscv: add new riscv,isa strings for emulators
+Date:   Wed, 24 Aug 2022 19:41:46 +0200
+Message-ID: <2846981.bB369e8A3T@diego>
+In-Reply-To: <20220823183319.3314940-4-mail@conchuod.ie>
+References: <20220823183319.3314940-1-mail@conchuod.ie> <20220823183319.3314940-4-mail@conchuod.ie>
 MIME-Version: 1.0
-References: <20220823145649.3118479-13-robh@kernel.org> <20220823182756.GA13402@duo.ucw.cz>
-In-Reply-To: <20220823182756.GA13402@duo.ucw.cz>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 24 Aug 2022 12:36:58 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqL6rQLkTkgaf-uyvjxtWLd++CZ1nXHrqDu3M7ybOs5i4Q@mail.gmail.com>
-Message-ID: <CAL_JsqL6rQLkTkgaf-uyvjxtWLd++CZ1nXHrqDu3M7ybOs5i4Q@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: leds: Add missing (unevaluated|additional)Properties
- on child nodes
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Vincent Knecht <vincent.knecht@mailoo.org>,
-        Nikita Travkin <nikitos.tr@gmail.com>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Yi Xin <Yixin.zhu@intel.com>,
-        Mallikarjuna reddy <mallikarjunax.reddy@intel.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        - NeilBrown <neilb@suse.de>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,27 +55,90 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 23, 2022 at 1:28 PM Pavel Machek <pavel@ucw.cz> wrote:
->
-> Hi!
->
-> > In order to ensure only documented properties are present, node schemas
-> > must have unevaluatedProperties or additionalProperties set to false
-> > (typically).
-> >
-> > Signed-off-by: Rob Herring <robh@kernel.org>
->
-> Patch does way more than that:
+Am Dienstag, 23. August 2022, 20:33:19 CEST schrieb Conor Dooley:
+> From: Conor Dooley <conor.dooley@microchip.com>
+> 
+> The QEMU virt and spike machines currently export a riscv,isa string of
+> "rv64imafdcsuh",
+> 
+> While the RISC-V foundation has been ratifying a bunch of extenstions
+> etc, the kernel has remained relatively static with what hardware is
+> supported - but the same is not true of QEMU. Using the virt machine
+> and running dt-validate on the dumped dtb fails, partly due to the
+> unexpected isa string.
+> 
+> Rather than enumerate the many many possbilities, change the pattern
+> to a regex, with the following assumptions:
+> - ima are required
+> - the single letter order is fixed & we don't care about things that
+>   can't even do "ima"
+> - the standard multi letter extensions are all in a "_z<foo>" format
+>   where the first letter of <foo> is a valid single letter extension
+> - _s & _h are used for supervisor and hyper visor extensions
+> - convention says that after the first two chars, a standard multi
+>   letter extension name could be an english word (ifencei anyone?) so
+>   it's not worth restricting the charset
+> - as the above is just convention, don't apply any charset restrictions
+>   to reduce future churn
+> - vendor ISA extensions begind with _x and have no charset restrictions
+> - we don't care about an e extension from an OS pov
+> - that attempting to validate the contents of the multiletter extensions
+>   with dt-validate beyond the formatting is a futile, massively verbose
+>   or unwieldy exercise at best
+> 
+> The following limitations also apply:
+> - multi letter extension ordering is not enforced. dt-schema does not
+>   appear to allow for named match groups, so the resulting regex would
+>   be even more of a headache
+> - ditto for the numbered extensions
 
-It only 'ensure only documented properties are present', but yeah, it
-is sometimes more than just adding unevaluatedProperties.
+That description sounds about right, though me and regexes never
+became friends, so the following will have to do:
 
-> Can we get some explanation why that's correct?
+Acked-by: Heiko Stuebner <heiko@sntech.de>
 
-...adds missing $ref if needed, and fixes resulting errors about
-unevaluatedProperties.
 
-BTW, these are just the simple ones. The led bindings with multi-led
-nodes are more of a mess. I haven't decided exactly how to fix those.
+> Finally, add me as a maintainer of the binding so that when it breaks
+> in the future, I can be held responsible!
+> 
+> Reported-by: Rob Herring <robh@kernel.org>
+> Link: https://lore.kernel.org/linux-riscv/20220803170552.GA2250266-robh@kernel.org/
+> Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
+> Acked-by: Guo Ren <guoren@kernel.org>
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+> Palmer, feel free to drop the maintainer addition. I just mostly want
+> to clean up my own mess on this when they decide to ratify more
+> extensions & this comes back up again.
+> ---
+>  Documentation/devicetree/bindings/riscv/cpus.yaml | 5 ++---
+>  1 file changed, 2 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> index 873dd12f6e89..90a7cabf58fe 100644
+> --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> @@ -9,6 +9,7 @@ title: RISC-V bindings for 'cpus' DT nodes
+>  maintainers:
+>    - Paul Walmsley <paul.walmsley@sifive.com>
+>    - Palmer Dabbelt <palmer@sifive.com>
+> +  - Conor Dooley <conor@kernel.org>
+>  
+>  description: |
+>    This document uses some terminology common to the RISC-V community
+> @@ -79,9 +80,7 @@ properties:
+>        insensitive, letters in the riscv,isa string must be all
+>        lowercase to simplify parsing.
+>      $ref: "/schemas/types.yaml#/definitions/string"
+> -    enum:
+> -      - rv64imac
+> -      - rv64imafdc
+> +    pattern: ^rv(?:64|32)imaf?d?q?c?b?v?k?h?(?:_[hsxz](?:[a-z])+)*$
+>  
+>    # RISC-V requires 'timebase-frequency' in /cpus, so disallow it here
+>    timebase-frequency: false
+> 
 
-Rob
+
+
+
