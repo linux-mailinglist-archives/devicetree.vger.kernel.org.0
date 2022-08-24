@@ -2,88 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0007259F9F6
-	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 14:30:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B42659FA1B
+	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 14:39:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236826AbiHXMaJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Aug 2022 08:30:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53750 "EHLO
+        id S236885AbiHXMi5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Aug 2022 08:38:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235766AbiHXMaI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 08:30:08 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBCBF21E0F
-        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 05:30:05 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id bj12so16175760ejb.13
-        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 05:30:05 -0700 (PDT)
+        with ESMTP id S236911AbiHXMi4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 08:38:56 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C0BD8E9A1
+        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 05:38:55 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id u24so10724406lji.0
+        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 05:38:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=A4ebziFGIGKWedk4/E9Y9YHWqlnnQT7eJEB+itOg6jY=;
-        b=JV4NxLJrrSRlvhdBCQR0BmBXWvBPD2WWY57yL9lQtZiNURXqJpW+V5TxKtgglU8sfr
-         8h0saIQScUeus/RY4HdeNiEsA6CqBZsV5Z9pDrACaY0tZcAxGuVb7q083EomrLNDC40e
-         odwPYLn28lzNGxZNRAjiuAPURDYf9lpPS9WKBAGU5Ly214gBijHGAUB5XOWefa2WXJTh
-         I4V+h/62ngM8TNNQUcvs4g16JwsYe9ZtdRvwBVyGQqgULED08G3uMVf1nyDa14i+tesK
-         7IHifg30XF+EjhDYcPgPLX+unpTE3yx0aumKCsZoelIzFF3+cnpPGECjoTxRKYH5Khuq
-         e3Dw==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=1JURZKRSXiPsq1aQoArSPrF7VbYfsdAOZBVEhHgf0qg=;
+        b=lIuQSPRYFpK3xeF/YO5ZxQ7B6w7t+DhHc3Hfgca06zyLBLitokytTZj8pnmYlOoq8V
+         qf/bFMuZA945cWHO6RCl33i697zEda6PHMHZU0pXne0e86Vh2XC6fKY1uTvj6xV2NBfT
+         kzPMocEYTZlbyQY5QVyk2mKpT9MUFbTvDlTGDu648HxCjAfuKPwkgZb6L9/Lfa8Kmd8J
+         f/MEr2C4ZFa/1CMB/Bjp+Hy/KyYnpmmM17e5NTG7x63DEN0lUK9N8Fs+1LnvikDXcjga
+         YU9tBjJEo58PCQ7i5Y1f+VHDXiPjkYdA9vvKcjn4mtZXNWsEqn8G6FYdvUa1rCGz0Cz6
+         T8yw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=A4ebziFGIGKWedk4/E9Y9YHWqlnnQT7eJEB+itOg6jY=;
-        b=3rsstVacVwmzdW3B7g3v1iajX6z+0hxvATF6uG/iuBV8aq711Y5Qgj5VK1Za6YCghE
-         HcYrDYdm5j5pB8JX6xZJ9HiqqsRtUn7/2lFX2zUd/WKngDzqFSqDEe+21TW5gzyNh3WP
-         +VJYaoiVz+5GKhwI6kiIziIZM+EoAU5yXybvZLkDxDPgt2NW0DC+ogW5+esqUMZvspp8
-         ZvQKua7QdGNqPtj6+K9ptbCDJ5/TK8Fjb8Im/VUIgAhbsC3imkCw+DhJ1qn9I/qnaJXr
-         kfEAdD1wrTXqmkPoYbti9qgqMpv/r1m6o1SXKiA21CRKTPJ3E7y1jfK3S3/jhO4feACM
-         +Kbw==
-X-Gm-Message-State: ACgBeo23dWmXM0xbkVDB20AIdBDu+d3Z58yAWq4uzvtkKSbgaBulixs3
-        dYoJpk7839JZNIO+mU+sHRkjUAuu3Kz9SemOkRBKyQ==
-X-Google-Smtp-Source: AA6agR4y8IkROVTTFYuvJGLyuFpJlX7rUg/lBd9WKIqzPf1600ZmKhkQ1tKmij2PmJr9CSFfVIP2c0YYAvxPH8SXo4Y=
-X-Received: by 2002:a17:907:6293:b0:73d:b27b:e594 with SMTP id
- nd19-20020a170907629300b0073db27be594mr2746905ejc.526.1661344204322; Wed, 24
- Aug 2022 05:30:04 -0700 (PDT)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=1JURZKRSXiPsq1aQoArSPrF7VbYfsdAOZBVEhHgf0qg=;
+        b=pqi/K8hpQfYxfACbAQFfzg0jU2qCJisS7kz1KnEWT5oDYtLbQ7ubmMLR9TB4qhuCM9
+         tML5y/7EwVq87pu6bA6ovxCL28hkxpYalxDShaTCquOMvdQjODLeCOhzIvQdzY7Eve0v
+         asKRtMSiwOUEZEtYx+Dzbruq31p0l2VKKLqggRcN3WzQVhj7O6V/xdRaZxn+uN/9cfso
+         +Cmo1TOm4aOuzPPLSSu1qcuELH/DBugY+ISVrnIqjWTw+e4u+DFRJtOyIn1MRsb3YnDA
+         MjsUOdU6s7wYv/o6KvDUOeZbeTBijtcwXbsbUVFnCfXsshfiBWeMiaeqjstJXs0LRK7d
+         TV1w==
+X-Gm-Message-State: ACgBeo05RHGj6f7LnN8cxeu1TKkBXYslQjEapDONNSAinhFapiOV8wk/
+        w5eV2IJRFDS24tWCXyC546SzYg==
+X-Google-Smtp-Source: AA6agR6DDILkYCrPbHxwgs8HO8yo8QJR93m3lMZtF97e5asxsLHLBfNejtRFxVymf6v5djRy2mE5/w==
+X-Received: by 2002:a2e:a914:0:b0:25d:f74a:54c0 with SMTP id j20-20020a2ea914000000b0025df74a54c0mr8789721ljq.290.1661344734001;
+        Wed, 24 Aug 2022 05:38:54 -0700 (PDT)
+Received: from [10.243.4.185] ([194.157.23.230])
+        by smtp.gmail.com with ESMTPSA id m7-20020a056512114700b00492e5d31201sm1490440lfg.7.2022.08.24.05.38.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Aug 2022 05:38:53 -0700 (PDT)
+Message-ID: <3237265e-9f1f-d5cf-c37c-ee39bce2eabf@linaro.org>
+Date:   Wed, 24 Aug 2022 15:35:07 +0300
 MIME-Version: 1.0
-References: <20220823145649.3118479-4-robh@kernel.org>
-In-Reply-To: <20220823145649.3118479-4-robh@kernel.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 24 Aug 2022 14:29:52 +0200
-Message-ID: <CACRpkdb28sHn3XOEJD_rqYRWU1GxWGX1udMpk8Cdu3Qn-rxS0g@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: mfd: Add missing (unevaluated|additional)Properties
- on child nodes
-To:     Rob Herring <robh@kernel.org>
-Cc:     Lee Jones <lee@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        Richard Fitzgerald <rf@opensource.cirrus.com>,
-        Tim Harvey <tharvey@gateworks.com>,
-        Robert Jones <rjones@gateworks.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        - <patches@opensource.cirrus.com>,
-        Steve Twiss <stwiss.opensource@diasemi.com>,
-        Chris Zhong <zyw@rock-chips.com>,
-        Zhang Qing <zhangqing@rock-chips.com>,
-        Alistair Francis <alistair@alistair23.me>,
-        Amelie Delaunay <amelie.delaunay@foss.st.com>,
-        Renner Berthing <kernel@esmil.dk>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH V2 1/2] bindings: fsl-imx-sdma: Document 'HDMI Audio'
+ transfer
+Content-Language: en-US
+To:     Joy Zou <joy.zou@nxp.com>, "vkoul@kernel.org" <vkoul@kernel.org>
+Cc:     "S.J. Wang" <shengjiu.wang@nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20220524080337.1322240-1-joy.zou@nxp.com>
+ <AM6PR04MB592501ABD3A369F913137E1FE19D9@AM6PR04MB5925.eurprd04.prod.outlook.com>
+ <AM6PR04MB5925CFC53026A11F57115D1FE1739@AM6PR04MB5925.eurprd04.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <AM6PR04MB5925CFC53026A11F57115D1FE1739@AM6PR04MB5925.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -92,15 +89,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 23, 2022 at 4:57 PM Rob Herring <robh@kernel.org> wrote:
+On 24/08/2022 13:31, Joy Zou wrote:
+> Gentle ping...
+> 
 
-> In order to ensure only documented properties are present, node schemas
-> must have unevaluatedProperties or additionalProperties set to false
-> (typically).
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
+You pinged again instead of implementing the review... Second ping
+instead of doing what we asked you to do. You also did not respond to
+our comments on your first ping.
 
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
+This is not how you collaborate over email.
 
-Yours,
-Linus Walleij
+> BR
+> Joy Zou
+>> -----Original Message-----
+>> From: Joy Zou
+>> Sent: 2022年8月2日 11:58
+>> To: vkoul@kernel.org
+>> Cc: S.J. Wang <shengjiu.wang@nxp.com>; robh+dt@kernel.org;
+>> krzysztof.kozlowski+dt@linaro.org; shawnguo@kernel.org;
+>> s.hauer@pengutronix.de; kernel@pengutronix.de; festevam@gmail.com;
+>> dl-linux-imx <linux-imx@nxp.com>; dmaengine@vger.kernel.org;
+>> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
+>> linux-kernel@vger.kernel.org
+>> Subject: FW: [PATCH V2 1/2] bindings: fsl-imx-sdma: Document 'HDMI Audio'
+>> transfer
+>>
+>> Gentle ping...
+>>
+
+
+Best regards,
+Krzysztof
