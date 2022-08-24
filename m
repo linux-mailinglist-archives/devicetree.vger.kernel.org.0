@@ -2,55 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B544359F9DC
-	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 14:22:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0007259F9F6
+	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 14:30:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237284AbiHXMWI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Aug 2022 08:22:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40742 "EHLO
+        id S236826AbiHXMaJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Aug 2022 08:30:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237253AbiHXMWI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 08:22:08 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C1584A803
-        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 05:22:07 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1oQpOP-0000Sq-TT; Wed, 24 Aug 2022 14:21:57 +0200
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1oQpOO-000805-Ho; Wed, 24 Aug 2022 14:21:56 +0200
-Date:   Wed, 24 Aug 2022 14:21:56 +0200
-To:     Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-Cc:     pavel@ucw.cz, robh+dt@kernel.org,
-        sven.schwermer@disruptive-technologies.com,
-        krzysztof.kozlowski+dt@linaro.org, johan+linaro@kernel.org,
-        marijn.suijten@somainline.org, bjorn.andersson@linaro.org,
-        andy.shevchenko@gmail.com, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v3 3/4] dt-bindings: leds: Add binding for a multicolor
- group of LEDs
-Message-ID: <20220824122156.GQ17485@pengutronix.de>
-References: <20220824103032.163451-1-jjhiblot@traphandler.com>
- <20220824103032.163451-4-jjhiblot@traphandler.com>
+        with ESMTP id S235766AbiHXMaI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 08:30:08 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBCBF21E0F
+        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 05:30:05 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id bj12so16175760ejb.13
+        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 05:30:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=A4ebziFGIGKWedk4/E9Y9YHWqlnnQT7eJEB+itOg6jY=;
+        b=JV4NxLJrrSRlvhdBCQR0BmBXWvBPD2WWY57yL9lQtZiNURXqJpW+V5TxKtgglU8sfr
+         8h0saIQScUeus/RY4HdeNiEsA6CqBZsV5Z9pDrACaY0tZcAxGuVb7q083EomrLNDC40e
+         odwPYLn28lzNGxZNRAjiuAPURDYf9lpPS9WKBAGU5Ly214gBijHGAUB5XOWefa2WXJTh
+         I4V+h/62ngM8TNNQUcvs4g16JwsYe9ZtdRvwBVyGQqgULED08G3uMVf1nyDa14i+tesK
+         7IHifg30XF+EjhDYcPgPLX+unpTE3yx0aumKCsZoelIzFF3+cnpPGECjoTxRKYH5Khuq
+         e3Dw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=A4ebziFGIGKWedk4/E9Y9YHWqlnnQT7eJEB+itOg6jY=;
+        b=3rsstVacVwmzdW3B7g3v1iajX6z+0hxvATF6uG/iuBV8aq711Y5Qgj5VK1Za6YCghE
+         HcYrDYdm5j5pB8JX6xZJ9HiqqsRtUn7/2lFX2zUd/WKngDzqFSqDEe+21TW5gzyNh3WP
+         +VJYaoiVz+5GKhwI6kiIziIZM+EoAU5yXybvZLkDxDPgt2NW0DC+ogW5+esqUMZvspp8
+         ZvQKua7QdGNqPtj6+K9ptbCDJ5/TK8Fjb8Im/VUIgAhbsC3imkCw+DhJ1qn9I/qnaJXr
+         kfEAdD1wrTXqmkPoYbti9qgqMpv/r1m6o1SXKiA21CRKTPJ3E7y1jfK3S3/jhO4feACM
+         +Kbw==
+X-Gm-Message-State: ACgBeo23dWmXM0xbkVDB20AIdBDu+d3Z58yAWq4uzvtkKSbgaBulixs3
+        dYoJpk7839JZNIO+mU+sHRkjUAuu3Kz9SemOkRBKyQ==
+X-Google-Smtp-Source: AA6agR4y8IkROVTTFYuvJGLyuFpJlX7rUg/lBd9WKIqzPf1600ZmKhkQ1tKmij2PmJr9CSFfVIP2c0YYAvxPH8SXo4Y=
+X-Received: by 2002:a17:907:6293:b0:73d:b27b:e594 with SMTP id
+ nd19-20020a170907629300b0073db27be594mr2746905ejc.526.1661344204322; Wed, 24
+ Aug 2022 05:30:04 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220824103032.163451-4-jjhiblot@traphandler.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-From:   Sascha Hauer <sha@pengutronix.de>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+References: <20220823145649.3118479-4-robh@kernel.org>
+In-Reply-To: <20220823145649.3118479-4-robh@kernel.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 24 Aug 2022 14:29:52 +0200
+Message-ID: <CACRpkdb28sHn3XOEJD_rqYRWU1GxWGX1udMpk8Cdu3Qn-rxS0g@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mfd: Add missing (unevaluated|additional)Properties
+ on child nodes
+To:     Rob Herring <robh@kernel.org>
+Cc:     Lee Jones <lee@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Richard Fitzgerald <rf@opensource.cirrus.com>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Robert Jones <rjones@gateworks.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        - <patches@opensource.cirrus.com>,
+        Steve Twiss <stwiss.opensource@diasemi.com>,
+        Chris Zhong <zyw@rock-chips.com>,
+        Zhang Qing <zhangqing@rock-chips.com>,
+        Alistair Francis <alistair@alistair23.me>,
+        Amelie Delaunay <amelie.delaunay@foss.st.com>,
+        Renner Berthing <kernel@esmil.dk>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -59,94 +92,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 24, 2022 at 12:30:31PM +0200, Jean-Jacques Hiblot wrote:
-> This allows to group multiple monochromatic LEDs into a multicolor
-> LED, e.g. RGB LEDs.
-> 
-> Signed-off-by: Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
->  .../bindings/leds/leds-group-multicolor.yaml  | 61 +++++++++++++++++++
->  1 file changed, 61 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml b/Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
-> new file mode 100644
-> index 000000000000..79e5882a08e2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
-> @@ -0,0 +1,61 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/leds/leds-group-multicolor.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Multi-color LED built with monochromatic LEDs
-> +
-> +maintainers:
-> +  - Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-> +
-> +description: |
-> +  This driver combines several monochromatic LEDs into one multi-color
-> +  LED using the multicolor LED class.
-> +
-> +properties:
-> +  compatible:
-> +    const: leds-group-multicolor
-> +
-> +  leds:
-> +    description:
-> +      An aray of monochromatic leds
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +
-> +required:
-> +  - leds
-> +
-> +allOf:
-> +  - $ref: leds-class-multicolor.yaml#
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/leds/common.h>
-> +
-> +    monochromatic-leds {
-> +        compatible = "gpio-leds";
-> +
-> +        led0: led-0 {
-> +            gpios = <&mcu_pio 0 GPIO_ACTIVE_LOW>;
-> +        };
-> +
-> +        led1: led-1 {
-> +            gpios = <&mcu_pio 1 GPIO_ACTIVE_HIGH>;
-> +        };
-> +
-> +        led2: led-2 {
-> +            gpios = <&mcu_pio 1 GPIO_ACTIVE_HIGH>;
-> +        };
+On Tue, Aug 23, 2022 at 4:57 PM Rob Herring <robh@kernel.org> wrote:
 
-led-2 has the same GPIO as led-1, should likely be <&mcu_pio 2 GPIO_ACTIVE_HIGH>;
+> In order to ensure only documented properties are present, node schemas
+> must have unevaluatedProperties or additionalProperties set to false
+> (typically).
+>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-> +    };
-> +
-> +    multi-led {
-> +        compatible = "leds-group-multicolor";
-> +        color = <LED_COLOR_ID_RGB>;
-> +        function = LED_FUNCTION_INDICATOR;
-> +        leds = <&led0>, <&led1>, <&led2>;
-> +    };
+Acked-by: Linus Walleij <linus.walleij@linaro.org>
 
-When reading this I wondered how the driver knows which LED has which
-color. Should you assign colors to the individual LEDs to make that
-clear in the example?
-
-Sascha
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Yours,
+Linus Walleij
