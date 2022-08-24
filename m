@@ -2,75 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8414C59FC64
-	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 15:56:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5850C59FC71
+	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 15:59:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238814AbiHXN4e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Aug 2022 09:56:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56482 "EHLO
+        id S232512AbiHXN7Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Aug 2022 09:59:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239230AbiHXNzw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 09:55:52 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B6057FE70;
-        Wed, 24 Aug 2022 06:55:07 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id ay39-20020a05600c1e2700b003a5503a80cfso908348wmb.2;
-        Wed, 24 Aug 2022 06:55:07 -0700 (PDT)
+        with ESMTP id S236040AbiHXN7J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 09:59:09 -0400
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08F93804AC;
+        Wed, 24 Aug 2022 06:59:09 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id m3-20020a05600c3b0300b003a5e0557150so2022290wms.0;
+        Wed, 24 Aug 2022 06:59:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=+TfRFZdPPa8B51MYvjdd539ePUr6kSsCQn61FGO4GdE=;
-        b=aFe6EZILPi4mhBimcUcflE/kKSW5k3aY0tETzNxA0P11eSF6STOEpvtzCCW9Uev2fN
-         a4UwvQyI6/h/IQRuU+qk0IqsnJFOJuEQTq7YJ5rHOy705kyLy0xPDgWkpQ3XYPXGmq36
-         OdzQseeK+dwILujmlW5M4npWAjrq14G+FAQLsUTCSZI9ESeTJauVjnLHvifH9ACzQ/tw
-         dXUXYPGoKk2V8GjCwEGS1qFRrcAACizGai+V8ZzWm5nXSdl6dC9JnqmswFJni9lLyejj
-         4CzvrgCrCoRPO2AZlMPi8Rzl4MXUfeJD2Pob9EIzJ7g1u4dUfw/Mqo3tPETtxZ9Zn9Y+
-         IQ7w==
+        bh=YnINneYYpss74fFaxA2QzFV2m8mTzk2bkrWfDISsTyI=;
+        b=ilfAGLNDfRjrv7v2hXx6haQXcmjYzh4TRdLS3ADcOmG8o4XYaAXVEo6gI5Y4AxMWfr
+         EE4nsM/YYdZWzWUC3lhrurWqhcSS55hSttFdJJrBMp/9Ji00cYRsoNoRSyvPY0hmY3Zp
+         gNa2y0sCTZP77OjagAze+2glbFj/y/0wpQv8fsIrvWTyViJV+YxmYXCU8OfYGaRefU+L
+         FJFGpr1nLr6KZpEwa419j6b3ARx9jfZHqXq2fVAHXeOBbrM3/Pln9oJlQGZ1cQgTNhCv
+         aZJSnr7+bTOUBJTqvPzcQpKYue1znDw/hWgrkQuhBKWERv0hMHu/1KDpYimHiF9SQwTG
+         UKUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=+TfRFZdPPa8B51MYvjdd539ePUr6kSsCQn61FGO4GdE=;
-        b=H5GLJf/CHIL2bTqim0raoyKXRsb0ufYn48rmzuOLRd+LqGc+fXATJM/V3RgAqaBNYh
-         BXM6f1XjkY48/ddaeUUn6AazvZodVO8ZJOvmmWuQzVL/H61qYJdOQoTQhHF04EAE0o0R
-         RY641VSJxtnouTudGfKccjnFzHnxsmKPTWhSvuxWQY0kYVwhQ/xnmOUWfEKqAO9tOUri
-         bCAmG9d9R8ZoFP0ZMzk17tLeDcu2fME3Hb25KFvgMW2JvJyZ+eRkL6gDUJbmUXeqkkHi
-         SPbaKHCzzkmE68KRf80Tx9GBV+MTFRQRb2aXpi4Y4rsQA6e5fJxwefSCnIWF//47rUkQ
-         8ufQ==
-X-Gm-Message-State: ACgBeo3dPX5786Co9SqoTZ0yMnivMjUci92r3SVC7Mnlvil3rzjsAlZJ
-        lEPgItdD9IoDVz8GpCgEDVs=
-X-Google-Smtp-Source: AA6agR4QxBBWMr++j4x5qmO1sVOahCNUuQT962B+1Govc61YXOhMi0sKq2jcvX6UFcV/97fPHKtdPQ==
-X-Received: by 2002:a7b:cd0f:0:b0:3a5:ec59:daf0 with SMTP id f15-20020a7bcd0f000000b003a5ec59daf0mr5305484wmj.13.1661349305735;
-        Wed, 24 Aug 2022 06:55:05 -0700 (PDT)
+        bh=YnINneYYpss74fFaxA2QzFV2m8mTzk2bkrWfDISsTyI=;
+        b=dQDbqNRfm7GMb4lo8SDdlO62pmdVY96b3lr3qwwW1zDvRYsh88k4DmOm/hQtgC83zt
+         eeuJb12DD2IlQq/fbfejRBik+eot2EXeLRtDIVE0alzpClqYG+0tAbIoTjdC7+jVDewy
+         zj++tseGKYBJKMk85xMJA0MaMRiWbj/5YNrmr0xlSEwkdLceRhgfxvQSHHvpQaWUwSIE
+         WrpmTHKMhEfUOdpOI9kylNWWP23wo2QcV1cA5AdpvymQ8XgoAnSu1kZqP8N81ORpz8Gm
+         16i/fEJrg8wFySTswSomU1PYduTk+OG91eVX1vZi+0RLMfoIhybIZIcGUxgFBSuv6vaE
+         asnQ==
+X-Gm-Message-State: ACgBeo32bK9nzWMbNwu9nXEFzPcZM6R7VnEv3MG3OlGU5NSyyGJ1rZH1
+        qZPT+G1YR++5sVFEQk6IeK0=
+X-Google-Smtp-Source: AA6agR6aunVXgh4W1vls5gdUD1YAugOnjiduggkUW4qwCv86sXjJCE4f6NzBM3Flg9r8pOFx7qRWww==
+X-Received: by 2002:a05:600c:4f90:b0:3a6:2bda:dc4e with SMTP id n16-20020a05600c4f9000b003a62bdadc4emr5429153wmq.39.1661349547561;
+        Wed, 24 Aug 2022 06:59:07 -0700 (PDT)
 Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id v8-20020a05600c214800b003a540fef440sm2239530wml.1.2022.08.24.06.55.04
+        by smtp.gmail.com with ESMTPSA id y2-20020a5d6202000000b00224f67bfc95sm16842095wru.62.2022.08.24.06.59.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Aug 2022 06:55:04 -0700 (PDT)
-Message-ID: <0557c9fa-1ec4-5413-78f6-f5d78f3f9ffb@gmail.com>
-Date:   Wed, 24 Aug 2022 15:55:03 +0200
+        Wed, 24 Aug 2022 06:59:06 -0700 (PDT)
+Message-ID: <f8a391de-dd47-1eb9-0e15-e6a651517a6f@gmail.com>
+Date:   Wed, 24 Aug 2022 15:59:05 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.1.2
-Subject: Re: [PATCH v2 0/7] Input: mt6779-keypad - double keys support
+Subject: Re: [PATCH v2 1/1] dt-binding: serial: mediatek,uart: update bingding
+ for MT8188
 Content-Language: en-US
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Mattijs Korpershoek <mkorpershoek@baylibre.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-        Fabien Parent <parent.f@gmail.com>
-References: <20220720-mt8183-keypad-v2-0-6d42c357cb76@baylibre.com>
- <YvQ3A2/Pop4YzzQ8@google.com>
+To:     kewei.xu@mediatek.com, gregkh@linuxfoundation.org,
+        robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        srv_heupstream@mediatek.com, leilk.liu@mediatek.com,
+        qii.wang@mediatek.com, liguo.zhang@mediatek.com,
+        caiyu.chen@mediatek.com, david-yh.chiu@mediatek.com
+References: <20220809084457.31381-1-kewei.xu@mediatek.com>
 From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <YvQ3A2/Pop4YzzQ8@google.com>
+In-Reply-To: <20220809084457.31381-1-kewei.xu@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,58 +81,30 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 11/08/2022 00:53, Dmitry Torokhov wrote:
-> On Tue, Jul 26, 2022 at 02:56:05PM +0200, Mattijs Korpershoek wrote:
->> The MediaTek keypad controller has multiple operating modes:
->> * single key detection (currently implemented)
->> * double key detection
->>
->> With double key detection, each (row,column) is a group that can detect
->> two keys in the key matrix.
->> This minimizes the overall pin counts for cost reduction.
->> However, pressing multiple keys in the same group will not be
->> detected properly.
->>
->> On some boards, like mt8183-pumpkin, double key detection is used.
->>
->> Signed-off-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
+On 09/08/2022 10:44, kewei.xu@mediatek.com wrote:
+> From: Kewei Xu <kewei.xu@mediatek.com>
 > 
-> Applied patches 1 through 5 (leaving dts patches out), thank you.
+> Add a DT binding documentation for the MT8188 soc.
 > 
+> Signed-off-by: Kewei Xu <kewei.xu@mediatek.com>
 
-Applied 6 and 7 now. Thanks!
+Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
 
->>
->> ---
->> Changes in v2:
->> - bindings: add matrix-keymap justification in commit message (Krzysztof)
->> - bindings: switch from double-keys(boolean) to keys-per-group(uint32) (Krzysztof)
->> - driver: add a function pointer for row/column calculation (Angelo)
->> - Link to v1: https://lore.kernel.org/r/20220720-mt8183-keypad-v1-0-ef9fc29dbff4@baylibre.com
->>
->> ---
->> Fabien Parent (2):
->>        arm64: dts: mediatek: mt8183: add keyboard node
->>        arm64: dts: mediatek: mt8183-pumpkin: add keypad support
->>
->> Mattijs Korpershoek (5):
->>        MAINTAINERS: input: add mattijs for mt6779-keypad
->>        dt-bindings: mediatek,mt6779-keypad: use unevaluatedProperties
->>        dt-bindings: mediatek,mt6779-keypad: add mediatek,keys-per-group
->>        Input: mt6779-keypad - prepare double keys support with calc_row_col
->>        Input: mt6779-keypad - support double keys matrix
->>
->>   .../bindings/input/mediatek,mt6779-keypad.yaml     |  8 ++++-
->>   MAINTAINERS                                        |  6 ++++
->>   arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts    | 21 +++++++++++
->>   arch/arm64/boot/dts/mediatek/mt8183.dtsi           |  9 +++++
->>   drivers/input/keyboard/mt6779-keypad.c             | 41 ++++++++++++++++++++--
->>   5 files changed, 82 insertions(+), 3 deletions(-)
->> ---
->> base-commit: 668af1b6548837b44a2bfe65dcbae6b250adbf63
->> change-id: 20220720-mt8183-keypad-20aa77106ff0
->>
->> Best regards,
->> -- 
->> Mattijs Korpershoek <mkorpershoek@baylibre.com>
+> ---
+> v2: Resumbit the patch based on the linux-next branch.
+> ---
+>   Documentation/devicetree/bindings/serial/mediatek,uart.yaml | 1 +
+>   1 file changed, 1 insertion(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/serial/mediatek,uart.yaml b/Documentation/devicetree/bindings/serial/mediatek,uart.yaml
+> index 4ff27d6d4d5b..fe098d98af6e 100644
+> --- a/Documentation/devicetree/bindings/serial/mediatek,uart.yaml
+> +++ b/Documentation/devicetree/bindings/serial/mediatek,uart.yaml
+> @@ -42,6 +42,7 @@ properties:
+>                 - mediatek,mt8173-uart
+>                 - mediatek,mt8183-uart
+>                 - mediatek,mt8186-uart
+> +              - mediatek,mt8188-uart
+>                 - mediatek,mt8192-uart
+>                 - mediatek,mt8195-uart
+>                 - mediatek,mt8516-uart
