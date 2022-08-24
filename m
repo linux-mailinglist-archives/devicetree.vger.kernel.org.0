@@ -2,85 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86EAA59F825
-	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 12:47:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E741159F86E
+	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 13:13:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236160AbiHXKqm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Aug 2022 06:46:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34592 "EHLO
+        id S236407AbiHXLM2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Aug 2022 07:12:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33940 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236437AbiHXKq0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 06:46:26 -0400
-Received: from muru.com (muru.com [72.249.23.125])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 8C2C4832E4
-        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 03:45:44 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 727FE80CF;
-        Wed, 24 Aug 2022 10:38:19 +0000 (UTC)
-Date:   Wed, 24 Aug 2022 13:45:27 +0300
-From:   Tony Lindgren <tony@atomide.com>
-To:     Nishanth Menon <nm@ti.com>
-Cc:     Vignesh Raghavendra <vigneshr@ti.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, Keerthy <j-keerthy@ti.com>
-Subject: Re: [PATCH 2/2] arm64: dts: ti: k3-am65: Add general purpose timers
- for am65
-Message-ID: <YwYBR0b03KO5rOfk@atomide.com>
-References: <20220407104725.41755-1-tony@atomide.com>
- <20220407104725.41755-2-tony@atomide.com>
- <20220706232157.thvbsr6emvyy6i5o@resend>
- <YvpDRLLp7rVkMDAu@atomide.com>
+        with ESMTP id S235137AbiHXLM1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 07:12:27 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C79DC67CA9;
+        Wed, 24 Aug 2022 04:12:25 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5405161931;
+        Wed, 24 Aug 2022 11:12:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95404C433B5;
+        Wed, 24 Aug 2022 11:12:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1661339544;
+        bh=H+veo+Dao6bkJ0QMyFov+hU73WKqs+8y5v0OSddUH8Y=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=kBHMSKXnm0q0/ig5wiPntO3Jl5ZlIKYg+9lyllxyXo7josUAAKfnl1BGY3qq5uhyO
+         Z39yjwD4/NFhx2B6Wc/+r0hxaXJ3UbARfcsvcwDHtrvsdD9i4JhAPciVl3T+CrM3hE
+         /EfTraglUjPsMItvnKtQPOtWdoDhkRmhY/G/3keG1xGxXbDlJUrW1CZutdptQFqyPk
+         xmLku2O2USngmtzYaRvm9/aAWs6ObNDWc20kLO8WBsH/+ochtgPB/WbGdw8JMgyDNG
+         LzO0IgWc0DDMNlWKK3zbXjCzwriQw4vMTPFYeOP0n1m836BgYwak6uCgFGY1uhlIZY
+         l8v5dwKXirf2Q==
+From:   Mark Brown <broonie@kernel.org>
+To:     Cheng-Yi Chiang <cychiang@chromium.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Jiaxin Yu <jiaxin.yu@mediatek.com>,
+        Rob Herring <robh@kernel.org>,
+        Olivier Moysan <olivier.moysan@foss.st.com>,
+        Shengjiu Wang <shengjiu.wang@nxp.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Jonathan Bakker <xc-racer2@live.ca>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Shane Chien <shane.chien@mediatek.com>
+Cc:     linux-arm-msm@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org
+In-Reply-To: <20220823145649.3118479-8-robh@kernel.org>
+References: <20220823145649.3118479-8-robh@kernel.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: Add missing (unevaluated|additional)Properties on child nodes
+Message-Id: <166133953831.17904.2785802329558247784.b4-ty@kernel.org>
+Date:   Wed, 24 Aug 2022 12:12:18 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YvpDRLLp7rVkMDAu@atomide.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.10.0-dev-0c1df
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Tony Lindgren <tony@atomide.com> [220815 16:03]:
-> Hi,
+On Tue, 23 Aug 2022 09:56:39 -0500, Rob Herring wrote:
+> In order to ensure only documented properties are present, node schemas
+> must have unevaluatedProperties or additionalProperties set to false
+> (typically).
 > 
-> * Nishanth Menon <nm@ti.com> [220706 23:16]:
-> > On 13:47-20220407, Tony Lindgren wrote:
-> > > diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> > > --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> > > +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> > > @@ -271,6 +271,114 @@ main_spi4: spi@2140000 {
-> > >  		#size-cells = <0>;
-> > >  	};
-> > >  
-> > > +	main_timer0: timer@2400000 {
-> > > +		compatible = "ti,am6-timer";
-> > > +		reg = <0x00 0x2400000 0x00 0x400>;
-> > > +		interrupts = <GIC_SPI 224 IRQ_TYPE_LEVEL_HIGH>;
-> > > +		clocks = <&k3_clks 23 12>;
-> > > +		clock-names = "fck";
-> > > +		ti,timer-pwm;
-> > > +	};
-> > 
-> > Tony,
-> > Lets hold this back one more window.. ti,am6-timer should come
-> > in the next rc1, but I still dont see this yet in next-20220706, So, i am
-> > going to have to skip this window at least.
 > 
-> I'm seeing the clock being too fast although debugfs reports the timer
-> source clock at 32k. Not quite sure what is wrong, maybe the clock index
-> should be 1 instead of 12 here. Best to wait with the dts patches until
-> the clock issue has bee sorted out.
 
-FYI the issue was caused by a wrong clock configuration. To use the 32k
-source as the default clock for main_timer0:
+Applied to
 
-clocks = <&k3_clks 23 0>;
-clock-names = "fck";
-assigned-clocks = <&k3_clks 23 0>;
-assigned-clock-parents = <&k3_clks 23 12>;
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-Regards,
+Thanks!
 
-Tony
+[1/1] ASoC: dt-bindings: Add missing (unevaluated|additional)Properties on child nodes
+      commit: 9e10a1ded6a1b7ffacbb2d9c75fe6aa91623051b
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
