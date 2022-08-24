@@ -2,45 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF28A59EFFD
-	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 01:49:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D97D559F02C
+	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 02:24:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232464AbiHWXtc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Aug 2022 19:49:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49050 "EHLO
+        id S232779AbiHXAX6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Aug 2022 20:23:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232397AbiHWXta (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 19:49:30 -0400
-Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A8058B982;
-        Tue, 23 Aug 2022 16:49:29 -0700 (PDT)
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 3C95A200C94;
-        Wed, 24 Aug 2022 01:49:28 +0200 (CEST)
-Received: from smtp.na-rdc02.nxp.com (usphx01srsp001v.us-phx01.nxp.com [134.27.49.11])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id EA130200C89;
-        Wed, 24 Aug 2022 01:49:27 +0200 (CEST)
-Received: from right.am.freescale.net (right.am.freescale.net [10.81.116.134])
-        by usphx01srsp001v.us-phx01.nxp.com (Postfix) with ESMTP id 7E0E240AAA;
-        Tue, 23 Aug 2022 16:49:26 -0700 (MST)
-From:   Li Yang <leoyang.li@nxp.com>
-To:     shawnguo@kernel.org, devicetree@vger.kernel.org
-Cc:     robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        Pankaj Bansal <pankaj.bansal@nxp.com>,
-        Sandeep Malik <sandeep.malik@nxp.com>,
-        Priyanka Jain <priyanka.jain@nxp.com>
-Subject: [PATCH v3 5/5] arm64: dts: ls208x: remove NXP Erratum A008585 from LS2088A.
-Date:   Tue, 23 Aug 2022 18:49:13 -0500
-Message-Id: <20220823234913.30325-6-leoyang.li@nxp.com>
-X-Mailer: git-send-email 2.25.1.377.g2d2118b
-In-Reply-To: <20220823234913.30325-1-leoyang.li@nxp.com>
-References: <20220823234913.30325-1-leoyang.li@nxp.com>
+        with ESMTP id S231684AbiHXAX5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 20:23:57 -0400
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0DD950075;
+        Tue, 23 Aug 2022 17:23:56 -0700 (PDT)
+Received: by mail-oi1-f170.google.com with SMTP id r124so2359753oig.11;
+        Tue, 23 Aug 2022 17:23:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+        bh=z3gbS+dvNMlzyhJK3RThDNWfcjbn/dU0DQZBMqseXn0=;
+        b=kYfxqaqaOUoPAN51plqIWtQjSFJ+NkddUfQUREc+EcgU3Syffzs5Mnvppds5G8Qesm
+         OSK2irWsWpkYPxParH3hf0pw6KjmNrjPviGI5nYPnW0q6bylQ6FxiPyFLqD5soY/N2Rn
+         mzzEKgbaJIC/mB1Hbw+7LC3umwDstea+ooHwjfjzCRKFSwpYhtJatCfw7LjFoMPybaRR
+         t6iNWniUXXCcQPLPdh1hnCOhjlKqDEToQ6OmeYWttrLiD0V8hQdwVoxYv4ZraBxX+TzH
+         UfCtfXJVmT3sU/DNKLes2uT/URGa3g8l3NGe0dpS5KvOhxZBoQYypTkY1YfPjS5+4HVK
+         IzEg==
+X-Gm-Message-State: ACgBeo2dh1gNV3fXt1rYBvqQVbx+UVjzDwYR0JWiRMelUa/XML++iPa7
+        ozKYGbLzuTeg1MMn50I7mJDNGQqmCQ==
+X-Google-Smtp-Source: AA6agR6mxgCTl0NfIJJjwFJDTc6t76xpU9NN2dg7Q7Pt77XqKHCJGPxaRenqC5Re0V2UnAbPZaSujg==
+X-Received: by 2002:a05:6808:23cd:b0:345:efa:2a40 with SMTP id bq13-20020a05680823cd00b003450efa2a40mr2229844oib.294.1661300636163;
+        Tue, 23 Aug 2022 17:23:56 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id k37-20020a05687095a500b00101bc3380a5sm669853oao.12.2022.08.23.17.23.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Aug 2022 17:23:55 -0700 (PDT)
+Received: (nullmailer pid 521915 invoked by uid 1000);
+        Wed, 24 Aug 2022 00:23:55 -0000
+Date:   Tue, 23 Aug 2022 19:23:55 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Masahiro Yamada <masahiroy@kernel.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
+        linux-kbuild@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: fix wrong use of if_changed_rule
+Message-ID: <20220824002355.GA391120-robh@kernel.org>
+References: <20220817152027.16928-1-masahiroy@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: ClamAV using ClamSMTP
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220817152027.16928-1-masahiroy@kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -48,51 +66,131 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Pankaj Bansal <pankaj.bansal@nxp.com>
+On Thu, Aug 18, 2022 at 12:20:26AM +0900, Masahiro Yamada wrote:
+> The intent for if_changed_rule is to re-run the rule when the command
+> line is changed, but this if_changed_rule does not do anything for it.
 
-NXP Erratum A008585 affects A57 core cluster used in LS2085 rev1.
-However this problem has been fixed in A72 core cluster used in LS2088.
-Therefore remove the erratum from LS2088A. Keeping it only in LS2085.
+This is the issue with DT_SCHEMA_FILES changes not causing a rebuild?
 
-Signed-off-by: Pankaj Bansal <pankaj.bansal@nxp.com>
-Reviewed-by: Sandeep Malik <sandeep.malik@nxp.com>
-Acked-by: Priyanka Jain <priyanka.jain@nxp.com>
----
- arch/arm64/boot/dts/freescale/fsl-ls2080a.dtsi | 4 ++++
- arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi | 3 +--
- 2 files changed, 5 insertions(+), 2 deletions(-)
+> $(cmd-check) for this rule is always empty because:
+> 
+>  [1] $(cmd_$@) is empty because .processed-schema.json.cmd does not exist
+>  [2] $(cmd_$1) is empty because cmd_chkdt is not defined
+> 
+> To address [1], use cmd_and_cmdsave instead of cmd.
+> 
+> To address [2], rename rule_chkdt to rule_mk_schema so that the stem
+> parts of cmd_* and rule_* match, like commit 7a0496056064 ("kbuild:
+> fix DT binding schema rule to detect command line changes").
+> 
+> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+> ---
+> 
+> Another possibility might be to split out yamllint and chk_bindings
+> as standalone build rules instead of running them as a side-effect
+> of the schema build. (but it it up to Rob's preference)
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls2080a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls2080a.dtsi
-index 6f6667b70028..a2cadf757148 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls2080a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls2080a.dtsi
-@@ -150,3 +150,7 @@ &pcie4 {
- 	ranges = <0x81000000 0x0 0x00000000 0x16 0x00010000 0x0 0x00010000   /* downstream I/O */
- 		  0x82000000 0x0 0x40000000 0x16 0x40000000 0x0 0x40000000>; /* non-prefetchable memory */
- };
+That is the direction I'd like to go. Something like the below patch 
+perhaps.
+
+The main issue (or feature?) is that 'dt_binding_lint' and 
+'dt_binding_schema' targets are still rerun every time even with the 
+dummy target files.
+
+I think the top level makefile can be simplified a bit more with this 
+change, but this is what I got to being somewhat functional.
+
+diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
+index 1eaccf135b30..ec3d8a926331 100644
+--- a/Documentation/devicetree/bindings/Makefile
++++ b/Documentation/devicetree/bindings/Makefile
+@@ -34,11 +34,13 @@ CHK_DT_DOCS := $(shell $(find_cmd))
+ quiet_cmd_yamllint = LINT    $(src)
+       cmd_yamllint = ($(find_cmd) | \
+                      xargs -n200 -P$$(nproc) \
+-		     $(DT_SCHEMA_LINT) -f parsable -c $(srctree)/$(src)/.yamllint >&2) || true
++		     $(DT_SCHEMA_LINT) -f parsable -c $(srctree)/$(src)/.yamllint >&2) || true; \
++                     touch $(obj)/dt_binding_lint.checked
+ 
+-quiet_cmd_chk_bindings = CHKDT   $@
++quiet_cmd_chk_bindings = CHKDT   $(src)
+       cmd_chk_bindings = ($(find_cmd) | \
+-                         xargs -n200 -P$$(nproc) $(DT_DOC_CHECKER) -u $(srctree)/$(src)) || true
++                         xargs -n200 -P$$(nproc) $(DT_DOC_CHECKER) -u $(srctree)/$(src)) || true; \
++                         touch $(obj)/dt_binding_schema.checked
+ 
+ quiet_cmd_mk_schema = SCHEMA  $@
+       cmd_mk_schema = f=$$(mktemp) ; \
+@@ -46,12 +48,6 @@ quiet_cmd_mk_schema = SCHEMA  $@
+                       $(DT_MK_SCHEMA) -j $(DT_MK_SCHEMA_FLAGS) @$$f > $@ ; \
+ 		      rm -f $$f
+ 
+-define rule_chkdt
+-	$(if $(DT_SCHEMA_LINT),$(call cmd,yamllint),)
+-	$(call cmd,chk_bindings)
+-	$(call cmd,mk_schema)
+-endef
+-
+ DT_DOCS = $(patsubst $(srctree)/%,%,$(shell $(find_all_cmd)))
+ 
+ override DTC_FLAGS := \
+@@ -64,8 +60,25 @@ override DTC_FLAGS := \
+ # Disable undocumented compatible checks until warning free
+ override DT_CHECKER_FLAGS ?=
+ 
+-$(obj)/processed-schema.json: $(DT_DOCS) $(src)/.yamllint check_dtschema_version FORCE
+-	$(call if_changed_rule,chkdt)
++dt_binding_lint: $(obj)/dt_binding_lint.checked
 +
-+&timer {
-+	fsl,erratum-a008585;
-+};
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-index d76f1c42f3fa..f1b9cc8714dc 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-@@ -239,13 +239,12 @@ map0 {
- 		};
- 	};
++$(obj)/dt_binding_lint.checked: $(CHK_DT_DOCS) $(src)/.yamllint FORCE
++	$(call if_changed,yamllint)
++
++dt_binding_schema: $(obj)/dt_binding_schema.checked
++
++$(obj)/dt_binding_schema.checked: $(CHK_DT_DOCS) check_dtschema_version FORCE
++	$(call if_changed,chk_bindings)
++
++dt_binding_examples: CHECK_DT_BINDING = y
++
++dt_binding_examples: $(obj)/processed-schema.json $(patsubst $(srctree)/%.yaml,%.example.dtb, $(CHK_DT_DOCS))
++
++dt_binding_check: dt_binding_lint dt_binding_examples dt_binding_schema
++
++
++$(obj)/processed-schema.json: $(DT_DOCS) check_dtschema_version FORCE
++	$(call if_changed,mk_schema)
  
--	timer {
-+	timer: timer {
- 		compatible = "arm,armv8-timer";
- 		interrupts = <1 13 4>, /* Physical Secure PPI, active-low */
- 			     <1 14 4>, /* Physical Non-Secure PPI, active-low */
- 			     <1 11 4>, /* Virtual PPI, active-low */
- 			     <1 10 4>; /* Hypervisor PPI, active-low */
--		fsl,erratum-a008585;
- 	};
+ always-y += processed-schema.json
+ always-$(CHECK_DT_BINDING) += $(patsubst $(srctree)/$(src)/%.yaml,%.example.dts, $(CHK_DT_DOCS))
+diff --git a/Makefile b/Makefile
+index c7705f749601..0f197e3bd1f9 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1391,7 +1391,7 @@ dtbs_prepare: include/config/kernel.release scripts_dtc
  
- 	pmu {
--- 
-2.37.1
-
+ ifneq ($(filter dtbs_check, $(MAKECMDGOALS)),)
+ export CHECK_DTBS=y
+-dtbs: dt_binding_check
++dtbs: dt_binding_schema
+ endif
+ 
+ dtbs_check: dtbs
+@@ -1409,13 +1409,14 @@ PHONY += scripts_dtc
+ scripts_dtc: scripts_basic
+ 	$(Q)$(MAKE) $(build)=scripts/dtc
+ 
+-ifneq ($(filter dt_binding_check, $(MAKECMDGOALS)),)
++ifneq ($(filter dt_binding_examples, $(MAKECMDGOALS)),)
+ export CHECK_DT_BINDING=y
+ endif
+ 
+-PHONY += dt_binding_check
+-dt_binding_check: scripts_dtc
+-	$(Q)$(MAKE) $(build)=Documentation/devicetree/bindings
++DT_BINDING_TARGETS := dt_binding_check dt_binding_lint dt_binding_schema dt_binding_examples
++PHONY += $(DT_BINDING_TARGETS)
++$(DT_BINDING_TARGETS): scripts_dtc
++	$(Q)$(MAKE) $(build)=Documentation/devicetree/bindings $@
+ 
+ # ---------------------------------------------------------------------------
+ # Modules
