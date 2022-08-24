@@ -2,109 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5850C59FC71
-	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 15:59:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA75259FD68
+	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 16:39:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232512AbiHXN7Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Aug 2022 09:59:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35126 "EHLO
+        id S239234AbiHXOjV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Aug 2022 10:39:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236040AbiHXN7J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 09:59:09 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08F93804AC;
-        Wed, 24 Aug 2022 06:59:09 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id m3-20020a05600c3b0300b003a5e0557150so2022290wms.0;
-        Wed, 24 Aug 2022 06:59:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=YnINneYYpss74fFaxA2QzFV2m8mTzk2bkrWfDISsTyI=;
-        b=ilfAGLNDfRjrv7v2hXx6haQXcmjYzh4TRdLS3ADcOmG8o4XYaAXVEo6gI5Y4AxMWfr
-         EE4nsM/YYdZWzWUC3lhrurWqhcSS55hSttFdJJrBMp/9Ji00cYRsoNoRSyvPY0hmY3Zp
-         gNa2y0sCTZP77OjagAze+2glbFj/y/0wpQv8fsIrvWTyViJV+YxmYXCU8OfYGaRefU+L
-         FJFGpr1nLr6KZpEwa419j6b3ARx9jfZHqXq2fVAHXeOBbrM3/Pln9oJlQGZ1cQgTNhCv
-         aZJSnr7+bTOUBJTqvPzcQpKYue1znDw/hWgrkQuhBKWERv0hMHu/1KDpYimHiF9SQwTG
-         UKUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=YnINneYYpss74fFaxA2QzFV2m8mTzk2bkrWfDISsTyI=;
-        b=dQDbqNRfm7GMb4lo8SDdlO62pmdVY96b3lr3qwwW1zDvRYsh88k4DmOm/hQtgC83zt
-         eeuJb12DD2IlQq/fbfejRBik+eot2EXeLRtDIVE0alzpClqYG+0tAbIoTjdC7+jVDewy
-         zj++tseGKYBJKMk85xMJA0MaMRiWbj/5YNrmr0xlSEwkdLceRhgfxvQSHHvpQaWUwSIE
-         WrpmTHKMhEfUOdpOI9kylNWWP23wo2QcV1cA5AdpvymQ8XgoAnSu1kZqP8N81ORpz8Gm
-         16i/fEJrg8wFySTswSomU1PYduTk+OG91eVX1vZi+0RLMfoIhybIZIcGUxgFBSuv6vaE
-         asnQ==
-X-Gm-Message-State: ACgBeo32bK9nzWMbNwu9nXEFzPcZM6R7VnEv3MG3OlGU5NSyyGJ1rZH1
-        qZPT+G1YR++5sVFEQk6IeK0=
-X-Google-Smtp-Source: AA6agR6aunVXgh4W1vls5gdUD1YAugOnjiduggkUW4qwCv86sXjJCE4f6NzBM3Flg9r8pOFx7qRWww==
-X-Received: by 2002:a05:600c:4f90:b0:3a6:2bda:dc4e with SMTP id n16-20020a05600c4f9000b003a62bdadc4emr5429153wmq.39.1661349547561;
-        Wed, 24 Aug 2022 06:59:07 -0700 (PDT)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id y2-20020a5d6202000000b00224f67bfc95sm16842095wru.62.2022.08.24.06.59.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Aug 2022 06:59:06 -0700 (PDT)
-Message-ID: <f8a391de-dd47-1eb9-0e15-e6a651517a6f@gmail.com>
-Date:   Wed, 24 Aug 2022 15:59:05 +0200
+        with ESMTP id S237544AbiHXOjU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 10:39:20 -0400
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B108867CAF;
+        Wed, 24 Aug 2022 07:39:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1661351959; x=1692887959;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=TWDQ6olQNWq8m9QH7Ozt/+HPJ58A66QhDRIWz18XGWY=;
+  b=WDj8RPUHPL+/zbK+8UuYsvpkPwjECSHFKWVhrpRhSzRQra8n81tYyTsR
+   8DnTQGqOuU3kIoHoFYzoiaTnXTpGc5EnQVQEIdRIXvvNNGsxQ9RJVMk1Q
+   NHCuu+veGg1DoSpLaeXpuaNXdH5cEzoZtX4Ui0AAwdMx52WksmaB7nDF7
+   tkV0ZTJEFGzm3OYqdb50bw1+4uwZlIG4KlriJkcNpj71Yl9H+eNtXo0k9
+   fBc7va6bPu8OhQRExaDphR5B7MBYwqZjMJgiLx8BTzMgOa1NYtEsJRqN8
+   qtUc3EkTceKuvTp4htzP4Ywb2w7Jkck2mSIsW4gXn5iE1hs2yxX8nJdQ9
+   A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10449"; a="294768513"
+X-IronPort-AV: E=Sophos;i="5.93,260,1654585200"; 
+   d="scan'208";a="294768513"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Aug 2022 07:39:19 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,260,1654585200"; 
+   d="scan'208";a="752107116"
+Received: from kuha.fi.intel.com ([10.237.72.185])
+  by fmsmga001.fm.intel.com with SMTP; 24 Aug 2022 07:39:15 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Wed, 24 Aug 2022 17:39:14 +0300
+Date:   Wed, 24 Aug 2022 17:39:14 +0300
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     Xu Yang <xu.yang_2@nxp.com>
+Cc:     robh+dt@kernel.org, peda@axentia.se, shawnguo@kernel.org,
+        gregkh@linuxfoundation.org, linux@roeck-us.net, jun.li@nxp.com,
+        linux-usb@vger.kernel.org, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 3/4] usb: typec: mux: add typec orientation switch
+ support via mux controller
+Message-ID: <YwY4Elu/W7qlojNc@kuha.fi.intel.com>
+References: <20220823195429.1243516-1-xu.yang_2@nxp.com>
+ <20220823195429.1243516-4-xu.yang_2@nxp.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.1.2
-Subject: Re: [PATCH v2 1/1] dt-binding: serial: mediatek,uart: update bingding
- for MT8188
-Content-Language: en-US
-To:     kewei.xu@mediatek.com, gregkh@linuxfoundation.org,
-        robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        srv_heupstream@mediatek.com, leilk.liu@mediatek.com,
-        qii.wang@mediatek.com, liguo.zhang@mediatek.com,
-        caiyu.chen@mediatek.com, david-yh.chiu@mediatek.com
-References: <20220809084457.31381-1-kewei.xu@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220809084457.31381-1-kewei.xu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220823195429.1243516-4-xu.yang_2@nxp.com>
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
-
-On 09/08/2022 10:44, kewei.xu@mediatek.com wrote:
-> From: Kewei Xu <kewei.xu@mediatek.com>
+On Wed, Aug 24, 2022 at 03:54:28AM +0800, Xu Yang wrote:
+> Some dedicated mux block can use existing mux controller as a mux
+> provider, typec port as a consumer to select channel for orientation
+> switch, this can be an alternate way to control typec orientation switch.
+> Also, one mux controller could cover highspeed, superspeed and sideband
+> use case one time in this implementation.
 > 
-> Add a DT binding documentation for the MT8188 soc.
+> Reported-by: kernel test robot <lkp@intel.com>
+
+Drop that Reported-by tag.
+
+> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
 > 
-> Signed-off-by: Kewei Xu <kewei.xu@mediatek.com>
-
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-
 > ---
-> v2: Resumbit the patch based on the linux-next branch.
-> ---
->   Documentation/devicetree/bindings/serial/mediatek,uart.yaml | 1 +
->   1 file changed, 1 insertion(+)
+> Changes since v1:
+> - add build dependence (select MULTIPLEXER)
+> - improve Multiplexer control logic
 > 
-> diff --git a/Documentation/devicetree/bindings/serial/mediatek,uart.yaml b/Documentation/devicetree/bindings/serial/mediatek,uart.yaml
-> index 4ff27d6d4d5b..fe098d98af6e 100644
-> --- a/Documentation/devicetree/bindings/serial/mediatek,uart.yaml
-> +++ b/Documentation/devicetree/bindings/serial/mediatek,uart.yaml
-> @@ -42,6 +42,7 @@ properties:
->                 - mediatek,mt8173-uart
->                 - mediatek,mt8183-uart
->                 - mediatek,mt8186-uart
-> +              - mediatek,mt8188-uart
->                 - mediatek,mt8192-uart
->                 - mediatek,mt8195-uart
->                 - mediatek,mt8516-uart
+>  drivers/usb/typec/Kconfig     |  1 +
+>  drivers/usb/typec/mux.c       | 76 ++++++++++++++++++++++++++++++++++-
+>  include/linux/usb/typec_mux.h |  7 +---
+>  3 files changed, 78 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/usb/typec/Kconfig b/drivers/usb/typec/Kconfig
+> index 5defdfead653..73d4976d8148 100644
+> --- a/drivers/usb/typec/Kconfig
+> +++ b/drivers/usb/typec/Kconfig
+> @@ -2,6 +2,7 @@
+>  
+>  menuconfig TYPEC
+>  	tristate "USB Type-C Support"
+> +	select MULTIPLEXER
+
+Whoa, do not tie TYPEC to another subsystem like that! You probable
+want to make your driver depend on that instead.
+
+>  	help
+>  	  USB Type-C Specification defines a cable and connector for USB where
+>  	  only one type of plug is supported on both ends, i.e. there will not
+> diff --git a/drivers/usb/typec/mux.c b/drivers/usb/typec/mux.c
+> index 464330776cd6..05e6ed217620 100644
+> --- a/drivers/usb/typec/mux.c
+> +++ b/drivers/usb/typec/mux.c
+> @@ -13,6 +13,7 @@
+>  #include <linux/mutex.h>
+>  #include <linux/property.h>
+>  #include <linux/slab.h>
+> +#include <linux/mux/consumer.h>
+>  
+>  #include "class.h"
+>  #include "mux.h"
+> @@ -22,6 +23,11 @@
+>  struct typec_switch {
+>  	struct typec_switch_dev *sw_devs[TYPEC_MUX_MAX_DEVS];
+>  	unsigned int num_sw_devs;
+> +
+> +	/* Could handle HighSpeed, SuperSpeed, Sideband switch one time */
+> +	struct mux_control *mux_switch;
+
+That does not belong here...
+
+> +	/* 3 state correspond to NONE, NORMAL, REVERSE for all switches */
+> +	int mux_states[3];
+>  };
+>  
+>  static int switch_fwnode_match(struct device *dev, const void *fwnode)
+> @@ -117,6 +123,58 @@ struct typec_switch *fwnode_typec_switch_get(struct fwnode_handle *fwnode)
+>  }
+>  EXPORT_SYMBOL_GPL(fwnode_typec_switch_get);
+>  
+> +static struct typec_switch *mux_control_typec_switch_get(struct device *dev)
+> +{
+> +	struct typec_switch *sw;
+> +	struct mux_control *mux;
+> +	int ret;
+> +
+> +	if (!device_property_present(dev, "mux-controls"))
+> +		return NULL;
+> +
+> +	sw = kzalloc(sizeof(*sw), GFP_KERNEL);
+> +	if (!sw)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	mux = mux_control_get(dev, NULL);
+> +	if (!IS_ERR(mux)) {
+> +		sw->mux_switch = mux;
+> +		ret = device_property_read_u32_array(dev,
+> +			"typec-switch-states", sw->mux_states, 3);
+> +		if (ret) {
+> +			kfree(sw);
+> +			return ERR_PTR(ret);
+> +		}
+> +	} else {
+> +		kfree(sw);
+> +		return ERR_CAST(mux);
+> +	}
+> +
+> +	return sw;
+> +}
+
+That code is broken - you return a switch that has never been
+registered - but never mind that...
+
+You need to register the switch from the place/driver that actually
+handles the orientation. If you really think that you have to have a
+generic multiplexer class wrapper layer for these switches, then you
+need to propose a multiplexer class wrapper driver for that. Though,
+I'm not sure you need that.
+
+There is a GPIO driver proposal for these switches, so can you take a
+look if that covers your case as well:
+https://lore.kernel.org/linux-usb/20220810204750.3672362-3-bjorn.andersson@linaro.org/#t
+
+In any case, you can't mix that code into the device class code itself
+like you do above. That kind of coupling is always going to be fragile
+(as we can see above), but more importantly, it forces the dependency
+on every Type-C driver, and that is completely wrong.
+
+So please keep the subsystems themselves independent of each other and
+handle things in the device drivers.
+
+thanks,
+
+-- 
+heikki
