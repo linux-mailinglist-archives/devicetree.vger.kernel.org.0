@@ -2,109 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 14DB359F18C
-	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 04:57:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 234B459F1DC
+	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 05:11:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230503AbiHXC5d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Aug 2022 22:57:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59698 "EHLO
+        id S233367AbiHXDL4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Aug 2022 23:11:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229445AbiHXC5W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 22:57:22 -0400
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00A4D7D7AC;
-        Tue, 23 Aug 2022 19:57:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1661309839; x=1692845839;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=jy6uHgqMUfjwvrFCqsckoPadRCKuYpnXSLFD6tiP3I0=;
-  b=npxwTA/EKED1rzNAWLSBGUd7A4JqneayEA75qvJGdo5FeyQiOdeBZ98s
-   3i1MvxtA89BacIcMkYGU3iu4nA1kAIaXjRXBVNJWEJucDPawOgLnKwl6a
-   lByCKWbDJiC1q9+YxOZWXJ+F+4OnH7KcjtTwXA2nxSf8xVeAU3WrELPXP
-   VdiisgDEvE+3Y+LqzwfheejavYssnZH1x+8btujcQfBszUpELn2E+YefS
-   6OV6U3ug13wZqbOdxQZMyOl28wtQY9VN77NJtrC75jkvAipiDnKNfFVKJ
-   GyhMboN5ZPZ3XQxYf4OPzp5gDlKe7QlnXew5XhB0UgOpZ3QZGeJPJ2lCW
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10448"; a="291415128"
-X-IronPort-AV: E=Sophos;i="5.93,259,1654585200"; 
-   d="scan'208";a="291415128"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Aug 2022 19:57:19 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,259,1654585200"; 
-   d="scan'208";a="937723909"
-Received: from lkp-server02.sh.intel.com (HELO 9bbcefcddf9f) ([10.239.97.151])
-  by fmsmga005.fm.intel.com with ESMTP; 23 Aug 2022 19:57:15 -0700
-Received: from kbuild by 9bbcefcddf9f with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1oQgZv-0000tf-0o;
-        Wed, 24 Aug 2022 02:57:15 +0000
-Date:   Wed, 24 Aug 2022 10:57:12 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Markus Schneider-Pargmann <msp@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Fabien Parent <parent.f@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     kbuild-all@lists.01.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Markus Schneider-Pargmann <msp@baylibre.com>
-Subject: Re: [PATCH v4 4/4] clk: mediatek: add driver for MT8365 SoC
-Message-ID: <202208241051.Xi9D8DaW-lkp@intel.com>
-References: <20220822152652.3499972-5-msp@baylibre.com>
+        with ESMTP id S230041AbiHXDLt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Aug 2022 23:11:49 -0400
+Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com [IPv6:2607:f8b0:4864:20::112d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B30387E32D
+        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 20:11:24 -0700 (PDT)
+Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-3376851fe13so395167857b3.6
+        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 20:11:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=friendlyarm-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc;
+        bh=MRoQzdOK6CWcAC6gw+P5C+x1bqwTKNwTT3AYdbkJaY8=;
+        b=U4Dn+R0xuJUm2UBAgJOnZYs5h76iFG0xeMtAjYWMUKS6kYXWmYz+W6NV1pGLm/6krp
+         cS3tSiQY56T8oztjPaOIlg/yZGc7Kcg7/w4HbuE3ZLGeyMlCIUWzt8rmakqXcjd2U8vS
+         UfUjVaw301Pex3T6NFzD5qd0vAJLc2FuS7XPqV13GnsFLnP4LXQW6Q2PvxkeMQYyX2L5
+         dw17xgsYdNnOgshkZnOSdHS9S+N7DaBPIN415F0QH98GuD6YSp7Asd1Ghj207Zxb/Djo
+         DUtZfjgshfGjX3jY/vjqIG50kPGYWu3ZQWWbACldweDUGIJttc43iKT5NO+0xcR3ETSd
+         6HPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc;
+        bh=MRoQzdOK6CWcAC6gw+P5C+x1bqwTKNwTT3AYdbkJaY8=;
+        b=KO7kCbm8/jDF2fgUOJWCJUZlURSlXrkTm0a6sxe4yWEx5Nx3wkJdrm13+xzVJ4TnY4
+         lERxKDRqA7MVF8Mk0LZWjdk+x0m8JxVC7ha1FfYJFHBSBkLRx4Vje366Q8X+gVs4Eamf
+         HJJPUjZmdN91eH2GtdyOXMzPDglDsr7qVxk2qeAwXGPJdb0sLT2Qfdxac0xuk+cuV89f
+         M4vvNsjEbm74oieSygz7NwFImiJi44QwQo9F9GsQMgEMqpsQc89iYCgJMN2EUPBjPCZx
+         LGYQqCb8W2X0F2uPm7vWQfxCQe9/CdFYW6cfogQHj1zaVbuygZ+9YByMsb8L2CDzLzkT
+         R/3Q==
+X-Gm-Message-State: ACgBeo1wK4VF5Uqm16vm5uij4TwzdCRZaiGy53n2eHRNyfrTiNarJWy0
+        5YHyI6ln/fDhPd5zK4WGLqpvD9ERGeQwzkXmMagcnQ==
+X-Google-Smtp-Source: AA6agR5azhM/Z/AXpPAiiP/iN20sesKIKrIpQUppdkgJegZcoQn5Fq6Cy100clgzY/qN6NhMdmzI7uj2aGADrU7Jipg=
+X-Received: by 2002:a25:415:0:b0:696:814:7c77 with SMTP id 21-20020a250415000000b0069608147c77mr3844588ybe.36.1661310683919;
+ Tue, 23 Aug 2022 20:11:23 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220822152652.3499972-5-msp@baylibre.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220822074139.3810-1-jensenhuang@friendlyarm.com>
+ <23552842.6Emhk5qWAg@diego> <CAD=FV=W-ajJDfYcP3P8Jyk_KgsUAbdTtmwiNXqJ=Ab2ojgrUGw@mail.gmail.com>
+In-Reply-To: <CAD=FV=W-ajJDfYcP3P8Jyk_KgsUAbdTtmwiNXqJ=Ab2ojgrUGw@mail.gmail.com>
+From:   Jensen Huang <jensenhuang@friendlyarm.com>
+Date:   Wed, 24 Aug 2022 11:11:13 +0800
+Message-ID: <CAMpZ1qEe7xFr+XaXsS_hWDLnGGA8PfzQiToOjY1N_1ctyQ+KxA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: add enable-strobe-pulldown to emmc
+ phy on rk3399
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Chris Ruehl <chris.ruehl@gtsys.com.hk>,
+        Brian Norris <briannorris@chromium.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Markus,
+Hi,
 
-Thank you for the patch! Yet something to improve:
+Sorry for sending an email in HTML format.
 
-[auto build test ERROR on clk/clk-next]
-[also build test ERROR on robh/for-next linus/master v6.0-rc2 next-20220823]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+I realized that only some devices may be affected, so I considered
+modifying rk3399-nanopi4.dtsi only,
+but other boards without external pull-down should still need this patch.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Markus-Schneider-Pargmann/clk-mediatek-Add-mt8365-support/20220822-233030
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
-config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20220824/202208241051.Xi9D8DaW-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/51c1bac1ab0d284ab6c444966eee437c23095a85
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Markus-Schneider-Pargmann/clk-mediatek-Add-mt8365-support/20220822-233030
-        git checkout 51c1bac1ab0d284ab6c444966eee437c23095a85
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=m68k SHELL=/bin/bash
 
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
+BR,
+Jensen
 
-All errors (new ones prefixed by >>, old ones prefixed by <<):
-
->> ERROR: modpost: "mtk_clk_register_gates_with_dev" [drivers/clk/mediatek/clk-mt8365-mm.ko] undefined!
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+On Tue, Aug 23, 2022 at 10:13 PM Doug Anderson <dianders@chromium.org> wrot=
+e:
+>
+> Hi,
+>
+> On Tue, Aug 23, 2022 at 4:53 AM Heiko St=C3=BCbner <heiko@sntech.de> wrot=
+e:
+> >
+> > Am Montag, 22. August 2022, 09:41:39 CEST schrieb Jensen Huang:
+> > > Internal pull-down for strobe line (GRF_EMMCPHY_CON2[9]) was disabled
+> > > by commit 8b5c2b45b8f0, which causes I/O error in HS400 mode.
+> > >
+> > > Tested on NanoPC-T4.
+> > >
+> > > Fixes: 8b5c2b45b8f0 ("phy: rockchip: set pulldown for strobe line in =
+dts")
+> > > Signed-off-by: Jensen Huang <jensenhuang@friendlyarm.com>
+> >
+> > ok, so this looks like it restores previous functionality.
+> >
+> > I'm just wondering as the "offending" patch is from 2020, why this
+> > only turns up now. Any ideas?
+>
+> Ah, I see. So before the offending patch we used to just leave the
+> pull state at whatever the default was when the kernel was booted.
+> After the offending patch we chose a default.
+>
+> On kevin I see an external pull down on this line. Enabling both the
+> internal and external is probably not a huge deal, it'll just affect
+> the strength of the pull.
+>
+> On bob I _think_ the external pull down is also stuffed.
+>
+> ...so I guess that would explain why it didn't cause a problem for at
+> least those two boards?
+>
+> -Doug
