@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 400BC59FAA5
-	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 14:58:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 763B559FAB3
+	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 15:00:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237817AbiHXM6n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Aug 2022 08:58:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60916 "EHLO
+        id S237736AbiHXNAK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Aug 2022 09:00:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237780AbiHXM6k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 08:58:40 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5351097B2C
-        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 05:58:36 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id x25so16342228ljm.5
-        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 05:58:36 -0700 (PDT)
+        with ESMTP id S237481AbiHXNAG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 09:00:06 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4EED80F45
+        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 06:00:02 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id k22so1670671ljg.2
+        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 06:00:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=1GfWJHR/x5piPvfICRZ+8DXyaOC916mUwAEahhmR7Bg=;
-        b=xBMINWQ/VnjaGVPCE/q0Fg7SvC3mM4CUg/N4QetunqsFUfusnDwjb+M95+dciFHrQu
-         RXlojLQTdMp+7djTrK32e70yvN5IzgLipK1UT80IVRp2h7k2At44LN7Pf/hyMTwZuPDb
-         77vCF+CW41bFOsBe6RDO2fGdGEsWgScEAQM0D0Sgbsu3aZc8m9eQpKecHe9vFggTmiAt
-         yU/KxNpwD+1ufHNstHzvPNZQbh75kXQ2xHT3/I5gs/l3iu4DFaEEbZYIfIvbj3RnEl24
-         05LRsymk14UyFyYOrqDGfHgmXs9cfRYI3oNNm4Q/mpZ3rex/mFE2DElbJJ7jpzqdhc8B
-         K8ng==
+        bh=hAbVBhjOPTfMrKNm7vMip2b0SbCUDi5IKdgpzFAMfGw=;
+        b=g+pyoW3Vs/G7PyIadnuuaBScMoOxN90Ic8JYrAZJJLNG4HjPINWySlrruJlTnZc+XL
+         7noZtNUYOVHllPOojKVVU91lNydxIiYaUSO8pL5o0VWFiU4SNR+TJ2t9OB3CP+fwQ+De
+         LZeMKCbaBQEUsco/OAopeDUd+4IMfovVZJ8NsZ+W2GYgNxc8HefDJvUAObV3nU1TzHHO
+         QB+gTCr8dp/se+JYdXV3cVuhs+hEcl5zgrxmTrzIc+9msllpVqGClAQEJeWcpLHe/s6a
+         uU/0LYeZxfm4Uqj4jvTpfcxeP7timtxztREKUJ+dAAZ0D/NfvP6eQuCPUl6juC3h3huz
+         t2Ow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=1GfWJHR/x5piPvfICRZ+8DXyaOC916mUwAEahhmR7Bg=;
-        b=GB+7F6lgK4v/Un4tpdiyDTwpLQy4he4hoe2O6CcqSYm/F2QM7WPvGmK+lYMC57ibRk
-         Q9t2UdLZLNsW9ndrFFhbCdPtBflWMZtSLeJ+2awgbeCLGu3jx95dmPZ0pDOEhda+M6fl
-         F8cUsR+eVe2bw8Xqgu+zeCLY1xmCV7mYtkVCfb1ZAiGfpa2x+FMkNYH2dEFnPTYb7jVp
-         iqGa5r0/yK7C6HPgRE7clxqdkcq/YdaSGRiHpi0SjgnZaPkYECEllaIMF80w6UPWx3Wf
-         JubmlyBtHsc9FYNx+VODxvfPfbYb4dVGJ5iwWyImxaKiyetfly0EjCAW3xL16jg0+2MJ
-         sEpg==
-X-Gm-Message-State: ACgBeo1aBQmVYSkuKYUGb8F9HIsCvbpP2msBZJNAfotrAx4hJbFXddFK
-        mEhRpZUAVkAXpkHtMOrECgqGcA==
-X-Google-Smtp-Source: AA6agR4upOTeoaIh6uzUsa5JU0XIzx+xlCiRe2cq6nttWmYYcb46rp7T/8gMTufYlDHBD4XEHFXbeA==
-X-Received: by 2002:a2e:bf07:0:b0:261:cafb:d4a8 with SMTP id c7-20020a2ebf07000000b00261cafbd4a8mr4318756ljr.268.1661345914326;
-        Wed, 24 Aug 2022 05:58:34 -0700 (PDT)
+        bh=hAbVBhjOPTfMrKNm7vMip2b0SbCUDi5IKdgpzFAMfGw=;
+        b=FD8Kqe2y9DLtECEka7t1ufAZ0uBa7WgZZXPD6bHwsvwguf8BS75TxDDwN9L//OtjGF
+         0Tfti5Wu+u6nHJGV8D9H/hZh9+U2WdJFwfmv/D0GrTZKJgLTpXZGwwPaNZXY2IYlPXA9
+         2uoGRBz02gml02/S0vmAo76JBslQHV+WC5bWRj2BuDdcsUYHuYt5OTln9ywofx1mwDPE
+         fZPR+jRg+NJz4d1w6Q2v8wcwVI7JnXRDWjs/7uaqj/3foSBP9G6OUb2bBG4m8AgYK6xc
+         I0G9OBN2lsFFf90tZtl29pOtDFy/qXtyC7AzJAY9Vu1ZlVz0bKcEvoPwJOsYzU4b8tZv
+         NIIA==
+X-Gm-Message-State: ACgBeo1XQDbEYKARl+X/rf2OVQMhY0EVY5sU5SKTKP/k7zGkkPKsKyYk
+        PdDUulq1kPaYFy+ErQ4j+EOHFg==
+X-Google-Smtp-Source: AA6agR6GPFbry8u5NJDphlPxo027AAqzvOm1GocHUvEiaoKUex+2hmRnYlF+nUCNuD9bBC60u4eQfA==
+X-Received: by 2002:a2e:a7ca:0:b0:261:d42c:628b with SMTP id x10-20020a2ea7ca000000b00261d42c628bmr2843065ljp.480.1661346001095;
+        Wed, 24 Aug 2022 06:00:01 -0700 (PDT)
 Received: from [10.243.4.185] ([194.157.23.230])
-        by smtp.gmail.com with ESMTPSA id o14-20020a05651205ce00b0048bd7136ef3sm3012084lfo.221.2022.08.24.05.58.32
+        by smtp.gmail.com with ESMTPSA id g8-20020a2eb5c8000000b00261c6c80b38sm2060178ljn.75.2022.08.24.05.59.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Aug 2022 05:58:33 -0700 (PDT)
-Message-ID: <f7c9c8ee-675b-216c-0e2d-28d11890477a@linaro.org>
-Date:   Wed, 24 Aug 2022 15:58:31 +0300
+        Wed, 24 Aug 2022 06:00:00 -0700 (PDT)
+Message-ID: <25b178d0-9602-99a0-46c0-0f9687d8d05a@linaro.org>
+Date:   Wed, 24 Aug 2022 15:59:58 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH 2/4] bindings: fpga: Add binding doc for the zynqmp afi
- config driver
+Subject: Re: [PATCH 4/4] fpga: zynqmp: Add afi config driver
 Content-Language: en-US
 To:     Nava kishore Manne <nava.kishore.manne@amd.com>, git@amd.com,
         robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
@@ -69,15 +68,15 @@ To:     Nava kishore Manne <nava.kishore.manne@amd.com>, git@amd.com,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         linux-fpga@vger.kernel.org
 References: <20220824035542.706433-1-nava.kishore.manne@amd.com>
- <20220824035542.706433-3-nava.kishore.manne@amd.com>
+ <20220824035542.706433-5-nava.kishore.manne@amd.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220824035542.706433-3-nava.kishore.manne@amd.com>
+In-Reply-To: <20220824035542.706433-5-nava.kishore.manne@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -85,119 +84,25 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 24/08/2022 06:55, Nava kishore Manne wrote:
-> Xilinx Zynq US+ MPSoC platform connect the PS to the programmable
-> logic(PL) through the AXI port. This AXI port helps to establish
-
-Use subject prefixes matching the subsystem (git log --oneline -- ...).
-
-> the data path between the PS and PL. In-order to establish the proper
-> communication data path between PS and PL the AXI port data path should
-> be configured with the proper Bus-width values.
-> 
-> This patch adds the binding document for the zynqmp afi config driver
-> to handle the AXI port bus-width configurations and PS-PL resets.
-
-Do not use "This commit/patch".
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-
+> Add zynqmp AXI FIFO interface(AFI) config driver. This is useful for the
+> configuration of the PS-PL interface on Zynq US+ MPSoC platform.
 > 
 > Signed-off-by: Nava kishore Manne <nava.kishore.manne@amd.com>
 > ---
->  .../bindings/fpga/xlnx,zynqmp-afi-fpga.yaml   | 100 ++++++++++++++++++
->  1 file changed, 100 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/fpga/xlnx,zynqmp-afi-fpga.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/fpga/xlnx,zynqmp-afi-fpga.yaml b/Documentation/devicetree/bindings/fpga/xlnx,zynqmp-afi-fpga.yaml
-> new file mode 100644
-> index 000000000000..faae4951e991
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/fpga/xlnx,zynqmp-afi-fpga.yaml
-> @@ -0,0 +1,100 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/fpga/xlnx,zynqmp-afi-fpga.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Xilinx ZynqMP AFI interface Manager.
-> +
-> +maintainers:
-> +  - Nava kishore Manne <nava.kishore.manne@amd.com>
-> +
-> +description: The Zynq UltraScale+ MPSoC Processing System core provides access
-> +  from PL masters to PS internal peripherals, and memory through AXI FIFO
-> +  interface(AFI)
-> +
-> +properties:
-> +  compatible:
-> +    items:
 
-No items, you have only one item.
-
-> +      - enum:
-> +          - xlnx,zynqmp-afi-fpga
-> +
-> +  resets:
-> +    description:
-> +      A list of phandles for resets listed in reset-names.
-
-You need maxItems:4
+(...)
 
 > +
-> +  reset-names:
-> +    items:
-> +      - const: pl0-rst
-> +      - const: pl1-rst
-> +      - const: pl2-rst
-> +      - const: pl3-rst
-> +
-> +patternProperties:
-> +  "^xlnx,afifm[0-6]-rd-bus-width$":
-> +    description: bus width used to configure the afifm-rd interface.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [ 32, 64, 128 ]
-> +
-> +  "^xlnx,afifm[0-6]-wr-bus-width$":
-> +    description: bus width used to configure the afifm-wr interface.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [ 32, 64, 128 ]
-> +
-> +  "^xlnx,afifs-ss[0-2]-bus-width$":
-> +    description: bus width used to configure the afifs interface.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [ 32, 64, 128 ]
-> +
-> +required:
-> +  - compatible
-> +  - xlnx,afifm0-rd-bus-width
-> +  - xlnx,afifm1-rd-bus-width
-> +  - xlnx,afifm2-rd-bus-width
-> +  - xlnx,afifm3-rd-bus-width
-> +  - xlnx,afifm4-rd-bus-width
-> +  - xlnx,afifm5-rd-bus-width
-> +  - xlnx,afifm6-rd-bus-width
-> +  - xlnx,afifm0-wr-bus-width
-> +  - xlnx,afifm1-wr-bus-width
-> +  - xlnx,afifm2-wr-bus-width
-> +  - xlnx,afifm3-wr-bus-width
-> +  - xlnx,afifm4-wr-bus-width
-> +  - xlnx,afifm5-wr-bus-width
-> +  - xlnx,afifm6-wr-bus-width
-> +  - xlnx,afifs-ss0-bus-width
-> +  - xlnx,afifs-ss1-bus-width
-> +  - xlnx,afifs-ss2-bus-width
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/reset/xlnx-zynqmp-resets.h>
-> +    zynqmp-afi {
+> +static struct platform_driver zynqmp_afi_driver = {
+> +	.probe = zynqmp_afi_probe,
+> +	.remove = zynqmp_afi_remove,
+> +	.driver = {
+> +		.name = "zynqmp_afi",
+> +		.of_match_table = of_match_ptr(zynqmp_afi_of_match),
 
-Node names should be generic.
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+It should generate warnings... test compile your driver.
 
-
+Drop of_match_ptr() or use __maybe_unused
 
 Best regards,
 Krzysztof
