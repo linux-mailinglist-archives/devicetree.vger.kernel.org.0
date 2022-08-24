@@ -2,111 +2,256 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 01F495A027D
-	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 22:09:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 067E05A02EA
+	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 22:39:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229930AbiHXUJg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Aug 2022 16:09:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57056 "EHLO
+        id S238432AbiHXUjy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Aug 2022 16:39:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229573AbiHXUJf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 16:09:35 -0400
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AD6D7C192;
-        Wed, 24 Aug 2022 13:09:34 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1661371731; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=XgjFwLYa7IBedppKBr0lLTdnZbp/TPpl8VwTvpe3PsAd2sv2DCzAKEd2AJax31Iex4F+WMiZSX/uz7zNE0HzIjRe7nDzgtVaiH+hgPJ3xBVogMm6HtxcOtHjGeTDFoYAfKVhWey6zTW/YOrQCDXkwFUdKB7gJJ1is3fppqo6j64=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1661371731; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=bS9tansBU/mS+uLByVfBLtD82ZsrEu9pPMJgjJjQdUo=; 
-        b=EWN66Zd8S+jZ5y7vztJxZeCtA29ChJ/tOAlmPXK54B4Y/1QkcPM5OKa1Qg8SS2t+Uqa5AhJxfVdE9a1I7praE9cEVLeug9dGPDOd/Exl7uRPTNiIgWN6gR7nZrHq9XNNDveHSkgaJ56/LyxmKZwrwEv1+pm4cThZq56agEvqHrE=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1661371731;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Content-Type:Content-Transfer-Encoding:From:From:Mime-Version:Subject:Subject:Date:Date:Message-Id:Message-Id:References:Cc:Cc:In-Reply-To:To:To:Reply-To;
-        bh=bS9tansBU/mS+uLByVfBLtD82ZsrEu9pPMJgjJjQdUo=;
-        b=kKccrKLa1Q2FHhRwlP7KyOqdNW0H1uLfj8lhqPnSd5Kw98/4245wTO6nTScl1MgQ
-        G9iZ4KVCDJuqvg56uFxLLT+XwhQAcLgoevgWvyDDPboILR05sO1RahksjUmudfm2XOT
-        +uk9gjIoZqjAaxzgndtgoop402w6i9kWx1FJy2BE=
-Received: from [10.10.10.4] (37.120.152.236 [37.120.152.236]) by mx.zohomail.com
-        with SMTPS id 1661371729628874.3633283035331; Wed, 24 Aug 2022 13:08:49 -0700 (PDT)
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-From:   =?utf-8?Q?Ar=C4=B1n=C3=A7_=C3=9CNAL?= <arinc.unal@arinc9.com>
-Mime-Version: 1.0 (1.0)
-Subject: Re: [PATCH v5 1/7] dt-bindings: net: dsa: mediatek,mt7530: make trivial changes
-Date:   Wed, 24 Aug 2022 23:08:40 +0300
-Message-Id: <C36EB263-8C1E-414C-B7FF-E6359AA6031A@arinc9.com>
-References: <20220824194454.GA2768100-robh@kernel.org>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        netdev@vger.kernel.org, DENG Qingfang <dqfext@gmail.com>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Sander Vanheule <sander@svanheule.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        linux-kernel@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        devicetree@vger.kernel.org, Paolo Abeni <pabeni@redhat.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
-        Daniel Golle <daniel@makrotopia.org>, erkin.bozoglu@xeront.com
-In-Reply-To: <20220824194454.GA2768100-robh@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-X-Mailer: iPhone Mail (17H35)
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S238135AbiHXUjx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 16:39:53 -0400
+Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0334A275E0;
+        Wed, 24 Aug 2022 13:39:52 -0700 (PDT)
+Received: by mail-ot1-f53.google.com with SMTP id d18-20020a9d72d2000000b0063934f06268so5805163otk.0;
+        Wed, 24 Aug 2022 13:39:51 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=scV9YhTR9B1niguuwysqb8fpuObwHxE77t6Jo9sFANg=;
+        b=iYtxBjamWvqwdBiEWktuEDFmH4dm6hCCCB17icgvgd3naYegpu2Xpl932UtD2Eo7nK
+         TIllmYG4we514LY/8kQFKLs1PpPmRy1ZhnfUoDmcTRUsiqmiRTf/i1SgNQpJQ1MWyrux
+         GMEHGdQvPGbDWQ2hNo81uG8ZF3JPJxskIvQyK3lgnHLl588sg+h3dhEJx7NA34zOpOfv
+         FzGJlJawZmophtaxatL9YIKj2fumnmeGweBp9ivBB/BAy2ZnW9A0b0Q6o1aCApjJTxFu
+         O4bpcPdy6Enj2qQd1NK1oj6RMzjetz+Y2dqggQBJ+ekKIQ/ITqZ+6HJA4bR0vDouqznl
+         pM/w==
+X-Gm-Message-State: ACgBeo33QqwHrcGlVya1wVAkWcpLgMBORdePzGaxYnjqKnpJjX3rXKX8
+        7SyE3ShvadvT38oigMJZew==
+X-Google-Smtp-Source: AA6agR7/DdwePLESoick/ulqm3oeWaSXZJbxj+dy8u9HnuOGMhdGMBRZ47ycejWXffybOhJ740JJpg==
+X-Received: by 2002:a9d:5617:0:b0:639:4766:904f with SMTP id e23-20020a9d5617000000b006394766904fmr197632oti.319.1661373591147;
+        Wed, 24 Aug 2022 13:39:51 -0700 (PDT)
+Received: from xps15.. (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.googlemail.com with ESMTPSA id x139-20020a4a4191000000b0044b4acd27c5sm333257ooa.17.2022.08.24.13.39.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Aug 2022 13:39:50 -0700 (PDT)
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Michal Marek <michal.lkml@markovi.net>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-kbuild@vger.kernel.org
+Subject: [PATCH] kbuild: Split up DT binding build targets
+Date:   Wed, 24 Aug 2022 15:39:33 -0500
+Message-Id: <20220824203934.2855320-1-robh@kernel.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> On 24 Aug 2022, at 22:44, Rob Herring <robh@kernel.org> wrote:
->=20
-> =EF=BB=BFOn Wed, 24 Aug 2022 13:40:34 +0300, Ar=C4=B1n=C3=A7 =C3=9CNAL wro=
-te:
->> Make trivial changes on the binding.
->>=20
->> - Update title to include MT7531 switch.
->> - Add me as a maintainer. List maintainers in alphabetical order by first=
+The DT binding validation target, dt_binding_check, is composed of
+multiple steps which can't be run individually. This resulted in
+the passing of make variables to control which steps were run for
+'dtbs_check'. Some steps are also doing multiple things in a single rule
+which is error prone[1].
 
->> name.
->> - Add description to compatible strings.
->> - Stretch descriptions up to the 80 character limit.
->> - Remove lists for single items.
->> - Remove quotes from $ref: "dsa.yaml#".
->>=20
->> Signed-off-by: Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc9.com>
->> ---
->> .../bindings/net/dsa/mediatek,mt7530.yaml     | 39 +++++++++++--------
->> 1 file changed, 23 insertions(+), 16 deletions(-)
->>=20
->=20
->=20
-> Please add Acked-by/Reviewed-by tags when posting new versions. However,
-> there's no need to repost patches *only* to add the tags. The upstream
-> maintainer will do that for acks received on the version they apply.
->=20
-> If a tag was not added on purpose, please state why and what changed.
+Rework the build to split each of the steps into its own make target.
+This allows users more fine grained control over what's run and makes
+for easier make dependencies. The new targets are:
 
-Thanks for the info. This is what I did on the composition for this patch se=
-ries.
+dt_binding_lint - Runs yamllint on the bindings
+dt_binding_schemas - Validates the binding schemas
+dt_binding_examples - Builds and validates the binding examples
 
-Ar=C4=B1n=C3=A7
+As before, each can be limited by setting DT_SCHEMA_FILES to a match
+file pattern (sub-string).
+
+This also has the side effect of enabling validation of %.dtb targets by
+specifying 'CHECK_DTBS=y' on the command line.
+
+[1] https://lore.kernel.org/all/20220817152027.16928-1-masahiroy@kernel.org/
+
+Cc: Masahiro Yamada <masahiroy@kernel.org>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/Makefile | 42 ++++++++++++++--------
+ Makefile                                   | 28 +++++++++------
+ scripts/Makefile.lib                       |  2 +-
+ scripts/dtc/Makefile                       |  2 +-
+ 4 files changed, 46 insertions(+), 28 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
+index 1eaccf135b30..1ac3f47b854a 100644
+--- a/Documentation/devicetree/bindings/Makefile
++++ b/Documentation/devicetree/bindings/Makefile
+@@ -29,16 +29,28 @@ find_all_cmd = find $(srctree)/$(src) \( -name '*.yaml' ! \
+ 		-name 'processed-schema*' \)
+ 
+ find_cmd = $(find_all_cmd) | grep -F "$(DT_SCHEMA_FILES)"
+-CHK_DT_DOCS := $(shell $(find_cmd))
++CHK_DT_DOCS := $(patsubst $(srctree)/%,%,$(shell $(find_cmd)))
+ 
+ quiet_cmd_yamllint = LINT    $(src)
+       cmd_yamllint = ($(find_cmd) | \
+                      xargs -n200 -P$$(nproc) \
+-		     $(DT_SCHEMA_LINT) -f parsable -c $(srctree)/$(src)/.yamllint >&2) || true
++		     $(DT_SCHEMA_LINT) -f parsable -c $(srctree)/$(src)/.yamllint >&2) || true; \
++                     touch $@
+ 
+-quiet_cmd_chk_bindings = CHKDT   $@
++dt_binding_lint: $(obj)/dt_binding_lint.checked
++
++$(obj)/dt_binding_lint.checked: $(CHK_DT_DOCS) $(src)/.yamllint FORCE
++	$(if $(DT_SCHEMA_LINT),$(call if_changed,yamllint),)
++
++quiet_cmd_chk_bindings = CHKDT   $(src)
+       cmd_chk_bindings = ($(find_cmd) | \
+-                         xargs -n200 -P$$(nproc) $(DT_DOC_CHECKER) -u $(srctree)/$(src)) || true
++                         xargs -n200 -P$$(nproc) $(DT_DOC_CHECKER) -u $(srctree)/$(src)) || true; \
++                         touch $@
++
++dt_binding_schemas: $(obj)/dt_binding_schemas.checked
++
++$(obj)/dt_binding_schemas.checked: $(CHK_DT_DOCS) check_dtschema_version FORCE
++	$(call if_changed,chk_bindings)
+ 
+ quiet_cmd_mk_schema = SCHEMA  $@
+       cmd_mk_schema = f=$$(mktemp) ; \
+@@ -46,14 +58,13 @@ quiet_cmd_mk_schema = SCHEMA  $@
+                       $(DT_MK_SCHEMA) -j $(DT_MK_SCHEMA_FLAGS) @$$f > $@ ; \
+ 		      rm -f $$f
+ 
+-define rule_chkdt
+-	$(if $(DT_SCHEMA_LINT),$(call cmd,yamllint),)
+-	$(call cmd,chk_bindings)
+-	$(call cmd,mk_schema)
+-endef
+-
+ DT_DOCS = $(patsubst $(srctree)/%,%,$(shell $(find_all_cmd)))
+ 
++dt_binding_processed_schema: $(obj)/processed-schema.json
++
++$(obj)/processed-schema.json: $(DT_DOCS) check_dtschema_version FORCE
++	$(call if_changed,mk_schema)
++
+ override DTC_FLAGS := \
+ 	-Wno-avoid_unnecessary_addr_size \
+ 	-Wno-graph_child_address \
+@@ -64,12 +75,13 @@ override DTC_FLAGS := \
+ # Disable undocumented compatible checks until warning free
+ override DT_CHECKER_FLAGS ?=
+ 
+-$(obj)/processed-schema.json: $(DT_DOCS) $(src)/.yamllint check_dtschema_version FORCE
+-	$(call if_changed_rule,chkdt)
++dt_binding_examples: $(obj)/processed-schema.json $(patsubst %.yaml,%.example.dtb, $(CHK_DT_DOCS))
++
++dt_binding_check: dt_binding_lint dt_binding_examples dt_binding_schemas
+ 
+-always-y += processed-schema.json
+-always-$(CHECK_DT_BINDING) += $(patsubst $(srctree)/$(src)/%.yaml,%.example.dts, $(CHK_DT_DOCS))
+-always-$(CHECK_DT_BINDING) += $(patsubst $(srctree)/$(src)/%.yaml,%.example.dtb, $(CHK_DT_DOCS))
++always-y += dt_binding_lint.checked dt_binding_schemas.checked processed-schema.json
++always-$(CHECK_DTBS) += $(patsubst $(src)/%.yaml,%.example.dts, $(CHK_DT_DOCS))
++always-$(CHECK_DTBS) += $(patsubst $(src)/%.yaml,%.example.dtb, $(CHK_DT_DOCS))
+ 
+ # Hack: avoid 'Argument list too long' error for 'make clean'. Remove most of
+ # build artifacts here before they are processed by scripts/Makefile.clean
+diff --git a/Makefile b/Makefile
+index c7705f749601..db456a58a823 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1391,7 +1391,10 @@ dtbs_prepare: include/config/kernel.release scripts_dtc
+ 
+ ifneq ($(filter dtbs_check, $(MAKECMDGOALS)),)
+ export CHECK_DTBS=y
+-dtbs: dt_binding_check
++endif
++
++ifeq ($(CHECK_DTBS),y)
++dtbs: dt_binding_processed_schema
+ endif
+ 
+ dtbs_check: dtbs
+@@ -1409,13 +1412,13 @@ PHONY += scripts_dtc
+ scripts_dtc: scripts_basic
+ 	$(Q)$(MAKE) $(build)=scripts/dtc
+ 
+-ifneq ($(filter dt_binding_check, $(MAKECMDGOALS)),)
+-export CHECK_DT_BINDING=y
++DT_BINDING_TARGETS := dt_binding_check dt_binding_lint dt_binding_schemas dt_binding_examples dt_binding_processed_schema
++PHONY += $(DT_BINDING_TARGETS)
++ifneq ($(filter dt_binding_examples dt_binding_check, $(MAKECMDGOALS)),)
++export CHECK_DTBS=y
+ endif
+-
+-PHONY += dt_binding_check
+-dt_binding_check: scripts_dtc
+-	$(Q)$(MAKE) $(build)=Documentation/devicetree/bindings
++$(DT_BINDING_TARGETS): scripts_dtc
++	$(Q)$(MAKE) $(build)=Documentation/devicetree/bindings $@
+ 
+ # ---------------------------------------------------------------------------
+ # Modules
+@@ -1625,10 +1628,13 @@ help:
+ 	@echo  ''
+ 	@$(if $(dtstree), \
+ 		echo 'Devicetree:'; \
+-		echo '* dtbs             - Build device tree blobs for enabled boards'; \
+-		echo '  dtbs_install     - Install dtbs to $(INSTALL_DTBS_PATH)'; \
+-		echo '  dt_binding_check - Validate device tree binding documents'; \
+-		echo '  dtbs_check       - Validate device tree source files';\
++		echo '* dtbs                - Build device tree blobs for enabled boards'; \
++		echo '  dtbs_install        - Install dtbs to $(INSTALL_DTBS_PATH)'; \
++		echo '  dtbs_check          - Validate device tree source files';\
++		echo '  dt_binding_check    - Validate device tree binding documents and examples'; \
++		echo '  dt_binding_schemas  - Validate device tree binding documents'; \
++		echo '  dt_binding_examples - Validate device tree binding examples'; \
++		echo '  dt_binding_lint     - Run yamllint on device tree binding documents'; \
+ 		echo '')
+ 
+ 	@echo 'Userspace tools targets:'
+diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
+index 3fb6a99e78c4..2a9901377e57 100644
+--- a/scripts/Makefile.lib
++++ b/scripts/Makefile.lib
+@@ -365,7 +365,7 @@ $(multi-dtb-y): FORCE
+ 	$(call if_changed,fdtoverlay)
+ $(call multi_depend, $(multi-dtb-y), .dtb, -dtbs)
+ 
+-ifneq ($(CHECK_DTBS)$(CHECK_DT_BINDING),)
++ifneq ($(CHECK_DTBS),)
+ DT_CHECKER ?= dt-validate
+ DT_CHECKER_FLAGS ?= $(if $(DT_SCHEMA_FILES),-l $(DT_SCHEMA_FILES),-m)
+ DT_BINDING_DIR := Documentation/devicetree/bindings
+diff --git a/scripts/dtc/Makefile b/scripts/dtc/Makefile
+index 4d32b9497da9..593af5d4e19c 100644
+--- a/scripts/dtc/Makefile
++++ b/scripts/dtc/Makefile
+@@ -3,7 +3,7 @@
+ 
+ # *** Also keep .gitignore in sync when changing ***
+ hostprogs-always-$(CONFIG_DTC)		+= dtc fdtoverlay
+-hostprogs-always-$(CHECK_DT_BINDING)	+= dtc
++hostprogs-always-$(CHECK_DTBS)	+= dtc
+ 
+ dtc-objs	:= dtc.o flattree.o fstree.o data.o livetree.o treesource.o \
+ 		   srcpos.o checks.o util.o
+-- 
+2.34.1
 
