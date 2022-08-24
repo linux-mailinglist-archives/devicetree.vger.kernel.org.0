@@ -2,753 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7334859F4C2
-	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 10:09:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0880D59F539
+	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 10:27:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232881AbiHXIJi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Aug 2022 04:09:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48104 "EHLO
+        id S232883AbiHXI1q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Aug 2022 04:27:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235458AbiHXIJg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 04:09:36 -0400
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC5D584EC7
-        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 01:09:34 -0700 (PDT)
-Received: by mail-pf1-x435.google.com with SMTP id w138so13150116pfc.10
-        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 01:09:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=U9jAVq30OH23+ZeFIPEN9fwYADmpKbecPVtEANoFmGY=;
-        b=plVVdTBGJre9n3XIHWK0XV6wOvGtZMXW1b4n089GiQCgi1zdrzAN4fl8gPkqimQirv
-         l42KxJo7lShDxPRTSKDdvjVPtRfmFeqzM7J3ql9LEfVjH+OZi8+PC/PQu/nHBBoRa6CS
-         QJ52XxZkQu34N28KQalw8yle68jjagvQ4IPN4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=U9jAVq30OH23+ZeFIPEN9fwYADmpKbecPVtEANoFmGY=;
-        b=g8EGo/2l/zevs2KqfFp/ZrJT6t80q2p6hHgvfaUhR8BEmcDEQHEZQp6w6m//1Q/JHH
-         srdRuaPsOZ2Sp6EC3obLcza8eFgsEUhhj+1ofv5j9gi5Nak07TPYcTwSoeWVIOSpFmjI
-         BmRZ+yTiJm8wgQwW74tRSVHJuq/45+WNLhNA+5ohBabj8mNwlp1qPNCfv5jYUoVLQuQq
-         mA6tukevwlKvJ74XbAkuipXBZrgp23ReHpHKyM7NDgEXgvB6ZRxYpfSB8QAAa4QeIykl
-         aBNb7QZRwDGvEDft8S/mQvxBa1m/jYiLKiaBDrsJoDIgh7/guQbROkY3IuzIBXomDT3V
-         GJqw==
-X-Gm-Message-State: ACgBeo1AXBMHaCru3yY2GT5B4C6tn8OQeI0dTSSYPSJEtb82HLjwIVt6
-        9jVC0PI0B0tzdhHRJC9w702GqA==
-X-Google-Smtp-Source: AA6agR5/tUCwSM8sJVZCkwOnNaWueSp3KVmA/rWDtQtpWxqLzRLnEZUJKYQEwFpDKTXlGbqp6UCLaA==
-X-Received: by 2002:a63:d3:0:b0:42a:88e6:7e44 with SMTP id 202-20020a6300d3000000b0042a88e67e44mr14424163pga.234.1661328574196;
-        Wed, 24 Aug 2022 01:09:34 -0700 (PDT)
-Received: from localhost.localdomain ([212.102.47.105])
-        by smtp.gmail.com with ESMTPSA id ik3-20020a170902ab0300b0016bdc98730bsm11859594plb.151.2022.08.24.01.09.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Aug 2022 01:09:33 -0700 (PDT)
-From:   Jagan Teki <jagan@amarulasolutions.com>
-To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org,
-        linux-amarula@amarulasolutions.com,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Stephen Chen <stephen@radxa.com>,
-        Manoj Sai <abbaraju.manojsai@amarulasolutions.com>
-Subject: [PATCH 2/2] arm64: dts: rockchip: rk3399: Radxa ROCK 4C+
-Date:   Wed, 24 Aug 2022 13:39:03 +0530
-Message-Id: <20220824080903.3696847-2-jagan@amarulasolutions.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220824080903.3696847-1-jagan@amarulasolutions.com>
-References: <20220824080903.3696847-1-jagan@amarulasolutions.com>
+        with ESMTP id S235739AbiHXI1p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 04:27:45 -0400
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2063.outbound.protection.outlook.com [40.107.21.63])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79E179353D
+        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 01:27:44 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=iZb4kqBwIEofzy7bIYw/fQ+EVYunu5zLJWV4NjzTC2neJFsGTNpbe+whjWPxlbJBTuiotIfQj/FkEmvZ6oNE3FyrpR8rs0xBIjZByIH+OOs1cyV9EREOdttKG5BesqYpVXFriyAcGOfxAH6ONr+qz7Y5lvka5g1IyO+S7r92bCsuGs4O/TuI2GmKlJ0a8VR6LZsIa9WLfEOvBn049ScA21DZIi8THxd3549IQd2y4LFZFoHaoasmF1N2Q30FM9Vl/e5vnhQ2NPxZafpnOVMP89BGRM9MEmy2ZrC7t2a1aUvTOv06QFAKIkhEiHL4UI9bt8Nquo6sw1IH3JdyD6Ffhw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vcnGrfO2KpNMBs5GBhGSgn/jvl5M9TB4Ea3WoBVGNiM=;
+ b=OUz3azeIIYQ6f1Qn6gxMr/u09c/jOBrFQbDxffzpLkaCSipcpsXvsGsbhy3j8YqP/LXsbkHGFNd9V1lS9WNDP/MdK4YgK+4AHvfthXELvDnLoMS8mO1u0wO5SBOpHqf0uJTlIUVg8Cx7/Pd9wKL81zgq0MjXepHBMiIDOXxC9l77i7OuTg3E4xBfNIjq0tcJB3t9yuseW2hNJlq9rLxJ+FRZYNMhVWyHexY7elRndfatRqx82ZSX0K8WOx3odzuhrBIsPSskEWKdHQ3wbTfK8QH1+3yKeQCo076sml9Ieyg49WR3+9EiAVjjy+drmifRMBEBYDs+RxxYhNI39JuJkQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vcnGrfO2KpNMBs5GBhGSgn/jvl5M9TB4Ea3WoBVGNiM=;
+ b=QAMkzlC5Mc4f79JBN7Y3rVoP23ZpYpxc8qigvZc/H8lvLIzofwfgDnQB3SHny0MezVrS5M5At83n0kvfKNdQpmhk0UuHhae6vUASmQprgrKeLTpfHrwwuhWUl8qwX7IL/h3w9dyKV2qX8EshEsG1knpBtG/fQDhl9JDeubp/Sfw=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PA4PR04MB9640.eurprd04.prod.outlook.com (2603:10a6:102:261::21)
+ by AM6PR04MB6279.eurprd04.prod.outlook.com (2603:10a6:20b:b7::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5546.24; Wed, 24 Aug
+ 2022 08:27:41 +0000
+Received: from PA4PR04MB9640.eurprd04.prod.outlook.com
+ ([fe80::1c65:f6a7:bc4:eb15]) by PA4PR04MB9640.eurprd04.prod.outlook.com
+ ([fe80::1c65:f6a7:bc4:eb15%6]) with mapi id 15.20.5546.022; Wed, 24 Aug 2022
+ 08:27:41 +0000
+From:   Li Jun <jun.li@nxp.com>
+To:     shawnguo@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com
+Cc:     linux-imx@nxp.com, laurent.pinchart@ideasonboard.com,
+        l.stach@pengutronix.de, marex@denx.de, peng.fan@nxp.com,
+        paul.elder@ideasonboard.com, jun.li@nxp.com,
+        Markus.Niebel@ew.tq-group.com, aford173@gmail.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH] arm64: dts: imx8mp: correct usb clocks
+Date:   Wed, 24 Aug 2022 16:10:12 +0800
+Message-Id: <1661328612-3932-1-git-send-email-jun.li@nxp.com>
+X-Mailer: git-send-email 2.7.4
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR06CA0230.apcprd06.prod.outlook.com
+ (2603:1096:4:ac::14) To PA4PR04MB9640.eurprd04.prod.outlook.com
+ (2603:10a6:102:261::21)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: c923e627-f871-4b5a-f31b-08da85aa8281
+X-MS-TrafficTypeDiagnostic: AM6PR04MB6279:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Iotmj0CG2kGjIp/AYUnsx8eQuloOhwnIAx1I9aG4llHeS8S93EuKHwBZJ5Wb7O8mWwTF32Pada0QWndcdpJCMSWGa8bOYILNRQzlUiBrPFoKEz635E+U768lOtMjfE1Xpg4KX/1U7AfLNBlCxP+wtjoVnVI8q06ZFYga5zroXwk276ucX4zVE+OP3UHac5nt/L9R4kzbKrfYgNZTXASZlFVaTm2JwA+tAgrM+mzZ5KPRlsWBb/DXEZcuztcmrgpG0Qlf5kbqjRHBzS6Qz/1xuD6LP+biYa6O7gh7onUb//ZIqOFZXGGbAiDKAE/f/lDoWau8laQzSXaAIDMVYZE8hN056+D8DQ/eP8HcuzWQix8RGTBFxRLQGJk93c4DWakjXgXz5Av6Gd1RxjH09Kr+jku9OeSM8B9uv6hCEVLbDg+42Qc8+CoTo3GKHTukKTX397c4LZVKl8Rl/3r8k/x2AB75/7NDFkbwKspIpnPOjPd0q+mvpszb9Q99sm1JvrwvdOepwRy3us/bXS9VhCf7AwKwxkkey1k6A3Y591hl5hE4lE1IUPK3Xd8rlWEPPQkbwBFd6k4tJ4LLf44YSKEYOmYTJMfz4TjYs62znl22ex7hjWDHDJSwVyIJRbLRckH3O9mgb44hrBOaeG5oSxemSwus1acaFWqebtU//+9usMd3Dy8W0CnFkFvj1rrFs0BN3zr8CtIisWKHsozufdkJzV3C9fft2n7xKsz6DfRwrp6wQVqKITYFRd5Uam8FzmpN42+wJdImLqOUHKhYxrcj0arw9UNw3lDVf8KDR8O2YLY=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9640.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(396003)(346002)(39860400002)(136003)(376002)(366004)(478600001)(8676002)(5660300002)(6666004)(4326008)(6512007)(66476007)(66556008)(2906002)(66946007)(38100700002)(38350700002)(26005)(6506007)(7416002)(86362001)(316002)(36756003)(8936002)(83380400001)(6486002)(52116002)(186003)(41300700001)(2616005)(32563001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?xanGjDG3YZmrXuXXXZTGYzUKDlXMWFZFOHQgJbtAPLoar8129sDdx4Df1Oc+?=
+ =?us-ascii?Q?abIo9ruokz1R2nvSsoND/uKjNtteV0nZf0zDRu0SgKZK2eUU47bXjLc5n4Ii?=
+ =?us-ascii?Q?AC3MzBAF86GFBdLypJGa5kDwkBpXPYKbtAmQygECehmjIyukzLY+xP3r2A0w?=
+ =?us-ascii?Q?LjHo7xyNnS2WotvWTrmlUMlXYFvfewWyWYf6J4VT/CfanDZ1KwAxPCEXQtMa?=
+ =?us-ascii?Q?WHomD/LP+15W9cJ6ZvcxBe8lV520Jwp3CEsIoH1a+FepvG/DBga7GbNmXUp4?=
+ =?us-ascii?Q?tz0+lWCi1Sa8/8mb2eWNHfjCEHThoGTyiNGoplTN+2eoeKGeA2bdualj6wOi?=
+ =?us-ascii?Q?usXUMbxtdn4aBzd5GsRr6fo3DVNwb4i95X7h85I06GgnYWcgcwIWyXD82RD6?=
+ =?us-ascii?Q?Rl4PdQ48uiQgX7WfrsNF1EVVtUvMtrZ46L1Jul9/pBbBrpsuaiAVYGAoKrqw?=
+ =?us-ascii?Q?eQmH/RhLP5mSA641rfXz85qhOtvz35xoYBwLaxeIMhDSdaxHWCJvCzEluBTw?=
+ =?us-ascii?Q?vM7F2iS69NQnNSbIzF8OBu1jb6ZM44+anhBR0afE0bQQyByBwd3DpcGcoEKu?=
+ =?us-ascii?Q?TROxpH475w/aF5si5fkK5Ti1oDxdSqjyEnAehIjgNuse0vwSz0RVQ/Sx7af5?=
+ =?us-ascii?Q?rGLYiJ1VWp60BCkPfp48l4jPQ+lDhROiCTjpCraE3eGDGxBcZDWYx2vkyydq?=
+ =?us-ascii?Q?qmEiusDtehr8YzcLxfiqa1oOVK+OVfHxaZ1QvkDSqt7vDinig3hAgzqfIvuV?=
+ =?us-ascii?Q?vsgk/3E88y/q0z7UeaGpm1NYbpK7i9STcg9QWW12TJi4jKz5aEAo1maTJB6F?=
+ =?us-ascii?Q?k1ii7IO2enK7zS6S7/DJyQMClnfulbSPBLrM9ObbbJBwbWwebD13fMrEQrdj?=
+ =?us-ascii?Q?HYs58MCIcsYE4oVsBxELUxoD+Eca6TQsoKRAEI9i4tgHsODRbTuNHD2cUTIK?=
+ =?us-ascii?Q?J4tBfSFMno5+zQA4/8XDmBJN+F/rSduhGon3V7O76YnVMtbDAp/2E0K1g+HP?=
+ =?us-ascii?Q?oD9uXteKf+qK6GclFCCP/+auEdbdTVGC6Jvnn1dOCa+u7etmZH0tqkVJVFzF?=
+ =?us-ascii?Q?d4VtcZygQqdoEXI1FhSzC4iYSPoPd+TuRkk8ACc7+GyAL5wphmUx41s0kdNs?=
+ =?us-ascii?Q?mcknesrvYbigVOh7y2XPgQzzANacb0bXf5+RFjvGVILk/dZnkkPpLHv1Rs8s?=
+ =?us-ascii?Q?saUq2se3A4Zj3oru0/XZWG1X4HvlBHfM0GnBp+dmwLUBkV1+l5kfmR8agFOP?=
+ =?us-ascii?Q?TZwARB1K9PZE4p/fVaDQHGckQ25xebiN9rYpvcm5KoKE9Kb6qQ2HnEyaptFE?=
+ =?us-ascii?Q?g0KM7hl4mEweJsAA5IgmVWvOia9lqXwb5SrjBq5t+ZQajRgKndfiyUkSEHC0?=
+ =?us-ascii?Q?0ujs7JjJnncUhQITIqh59LfI4IyipGjs1EcniPPAt/5NOPOPHrWns/HPlPBy?=
+ =?us-ascii?Q?cARuNhSGe/agjxOBDr+A1wcA5wePjrzX8OqlrYfdX3PY3doa/fU7O5lNBwGk?=
+ =?us-ascii?Q?cHh1/lxsWJPRE4msjNCPbEjA8laIfpTLq9X55bd+w1l2CmhR9Cywx6gqCS4v?=
+ =?us-ascii?Q?Mvv72I6SHGCmoDWVsqc=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c923e627-f871-4b5a-f31b-08da85aa8281
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9640.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Aug 2022 08:27:40.9022
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: QpT13nchFAWZ1Sha2wspMWVB1pwMC3tpsTBB55HgRizW8agufgjICvOuLnDjeHWv
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB6279
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for Radxa ROCK 4C+ SBC.
+After commit cf7f3f4fa9e5 ("clk: imx8mp: fix usb_root_clk parent"),
+usb_root_clk is no longer for suspend clock so update dts accordingly
+to use right bus clock and suspend clock.
 
-4C+ replaced DP with HDMI and updated FPC connectors
-for MIPI DSI/CSI compared to 4C revision.
-
-Also, an official naming convention from Radxa mention
-to remove Pi from board name, so this 4C+ is named as
-Radxa ROCK 4C+ not Radxa ROCK Pi 4C+.
-
-Signed-off-by: Stephen Chen <stephen@radxa.com>
-Signed-off-by: Manoj Sai <abbaraju.manojsai@amarulasolutions.com>
-Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+Signed-off-by: Li Jun <jun.li@nxp.com>
 ---
- arch/arm64/boot/dts/rockchip/Makefile         |   1 +
- .../boot/dts/rockchip/rk3399-rock-4c-plus.dts | 641 ++++++++++++++++++
- 2 files changed, 642 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index ef79a672804a..f92637eb6f90 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -46,6 +46,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-puma-haikou.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-roc-pc.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-roc-pc-mezzanine.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-roc-pc-plus.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rock-4c-plus.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rock-pi-4a.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rock-pi-4a-plus.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rock-pi-4b.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts b/arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts
-new file mode 100644
-index 000000000000..cf9997c011d2
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts
-@@ -0,0 +1,641 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2019 Fuzhou Rockchip Electronics Co., Ltd
-+ * Copyright (c) 2019 Radxa Limited
-+ * Copyright (c) 2022 Amarula Solutions(India)
-+ */
-+
-+/dts-v1/;
-+#include "rk3399.dtsi"
-+#include "rk3399-opp.dtsi"
-+
-+/ {
-+	model = "Radxa ROCK 4C+";
-+	compatible = "radxa,rock-4c-plus", "rockchip,rk3399";
-+
-+	aliases {
-+		mmc0 = &sdmmc;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial2:1500000n8";
-+	};
-+
-+	sdio_pwrseq: sdio-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		clocks = <&rk809 1>;
-+		clock-names = "ext_clock";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&wifi_enable_h>;
-+		reset-gpios = <&gpio0 RK_PB2 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	clkin_gmac: external-gmac-clock {
-+		compatible = "fixed-clock";
-+		clock-frequency = <125000000>;
-+		clock-output-names = "clkin_gmac";
-+		#clock-cells = <0>;
-+	};
-+
-+	vcc5v0_sys: vcc-sys {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc5v0_sys";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+	};
-+
-+	vcc5v0_host1: vcc5v0-host-regulator {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpio = <&gpio3 RK_PD6 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vcc5v0_host_en>;
-+		regulator-name = "vcc5v0_host1";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		vin-supply = <&vcc5v0_host0_s0>;
-+	};
-+
-+	vcc5v0_typec: vcc5v0-typec-regulator {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpio = <&gpio1 RK_PA3 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vcc5v0_typec0_en>;
-+		regulator-name = "vcc5v0_typec";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	vcc_lan: vcc3v3-phy-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_lan";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+};
-+
-+&cpu_l0 {
-+	cpu-supply = <&vdd_cpu_l>;
-+};
-+
-+&cpu_l1 {
-+	cpu-supply = <&vdd_cpu_l>;
-+};
-+
-+&cpu_l2 {
-+	cpu-supply = <&vdd_cpu_l>;
-+};
-+
-+&cpu_l3 {
-+	cpu-supply = <&vdd_cpu_l>;
-+};
-+
-+&cpu_b0 {
-+	cpu-supply = <&vdd_cpu_b>;
-+};
-+
-+&cpu_b1 {
-+	cpu-supply = <&vdd_cpu_b>;
-+};
-+
-+&emmc_phy {
-+	status = "okay";
-+};
-+
-+&gmac {
-+	assigned-clocks = <&cru SCLK_RMII_SRC>;
-+	assigned-clock-parents = <&clkin_gmac>;
-+	clock_in_out = "input";
-+	phy-supply = <&vcc_lan>;
-+	phy-mode = "rgmii";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&rgmii_pins>;
-+	snps,reset-gpio = <&gpio3 RK_PB7 GPIO_ACTIVE_LOW>;
-+	snps,reset-active-low;
-+	snps,reset-delays-us = <0 10000 50000>;
-+	tx_delay = <0x2a>;
-+	rx_delay = <0x21>;
-+	status = "okay";
-+};
-+
-+&gpu {
-+	mali-supply = <&vdd_gpu>;
-+	status = "okay";
-+};
-+
-+&hdmi {
-+	ddc-i2c-bus = <&i2c3>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&hdmi_cec>;
-+	status = "okay";
-+};
-+
-+&hdmi_sound {
-+	status = "okay";
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+	i2c-scl-falling-time-ns = <30>;
-+	i2c-scl-rising-time-ns = <180>;
-+	clock-frequency = <400000>;
-+
-+	rk809: pmic@20 {
-+		compatible = "rockchip,rk809";
-+		reg = <0x20>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <RK_PC5 IRQ_TYPE_LEVEL_LOW>;
-+		#clock-cells = <1>;
-+		clock-output-names = "rk808-clkout1", "rk808-clkout2";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pmic_int_l>;
-+		rockchip,system-power-controller;
-+		wakeup-source;
-+
-+		vcc1-supply = <&vcc5v0_sys>;
-+		vcc2-supply = <&vcc5v0_sys>;
-+		vcc3-supply = <&vcc5v0_sys>;
-+		vcc4-supply = <&vcc5v0_sys>;
-+		vcc5-supply = <&vcc_buck5>;
-+		vcc6-supply = <&vcc_buck5>;
-+		vcc7-supply = <&vcc5v0_sys>;
-+		vcc8-supply = <&vcc3v3_sys>;
-+		vcc9-supply = <&vcc5v0_sys>;
-+
-+		regulators {
-+			vdd_log: DCDC_REG1 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <750000>;
-+				regulator-max-microvolt = <1350000>;
-+				regulator-initial-mode = <0x2>;
-+				regulator-name = "vdd_log";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+					regulator-suspend-microvolt = <900000>;
-+				};
-+			};
-+
-+			vdd_cpu_l: DCDC_REG2 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <750000>;
-+				regulator-max-microvolt = <1350000>;
-+				regulator-ramp-delay = <6001>;
-+				regulator-initial-mode = <0x2>;
-+				regulator-name = "vdd_cpu_l";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcc_ddr: DCDC_REG3 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-name = "vcc_ddr";
-+				regulator-initial-mode = <0x2>;
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+				};
-+			};
-+
-+			vcc3v3_sys: DCDC_REG4 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-initial-mode = <0x2>;
-+				regulator-name = "vcc3v3_sys";
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <3300000>;
-+				};
-+			};
-+
-+			vcc_buck5: DCDC_REG5 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc_buck5";
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <3300000>;
-+				};
-+			};
-+
-+			vcca_0v9: LDO_REG1 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <900000>;
-+				regulator-max-microvolt = <900000>;
-+				regulator-name = "vcca_0v9";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcc_1v8: LDO_REG2 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "vcc_1v8";
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <1800000>;
-+				};
-+			};
-+
-+			vcc0v9_soc: LDO_REG3 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <900000>;
-+				regulator-max-microvolt = <900000>;
-+				regulator-name = "vcc0v9_soc";
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <900000>;
-+				};
-+			};
-+
-+			vcca_1v8: LDO_REG4 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "vcca_1v8";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcc_mipi: LDO_REG5 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <3000000>;
-+				regulator-max-microvolt = <3000000>;
-+				regulator-name = "vcc_mipi";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcc_1v5: LDO_REG6 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1500000>;
-+				regulator-max-microvolt = <1500000>;
-+				regulator-name = "vcc_1v5";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcc_3v0: LDO_REG7 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <3000000>;
-+				regulator-max-microvolt = <3000000>;
-+				regulator-name = "vcc_3v0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vccio_sd: LDO_REG8 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vccio_sd";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcc_cam: LDO_REG9 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc_cam";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcc5v0_host0_s0: SWITCH_REG1 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-name = "vcc5v0_host0_s0";
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+				};
-+			};
-+
-+			lcd_3v3: SWITCH_REG2 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-name = "lcd_3v3";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+		};
-+	};
-+
-+	vdd_cpu_b: syr827@40 {
-+		compatible = "silergy,syr827";
-+		reg = <0x40>;
-+		fcs,suspend-voltage-selector = <1>;
-+		regulator-compatible = "fan53555-reg";
-+		pinctrl-0 = <&vsel1_gpio>;
-+		vsel-gpios = <&gpio1 RK_PC1 GPIO_ACTIVE_HIGH>;
-+		regulator-name = "vdd_cpu_b";
-+		regulator-min-microvolt = <712500>;
-+		regulator-max-microvolt = <1500000>;
-+		regulator-ramp-delay = <1000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		vin-supply = <&vcc5v0_sys>;
-+		regulator-state-mem {
-+			regulator-off-in-suspend;
-+		};
-+	};
-+
-+	vdd_gpu: syr828@41 {
-+		compatible = "silergy,syr828";
-+		reg = <0x41>;
-+		fcs,suspend-voltage-selector = <1>;
-+		regulator-compatible = "fan53555-reg";
-+		pinctrl-0 = <&vsel2_gpio>;
-+		vsel-gpios = <&gpio1 RK_PB6 GPIO_ACTIVE_HIGH>;
-+		regulator-name = "vdd_gpu";
-+		regulator-min-microvolt = <712500>;
-+		regulator-max-microvolt = <1500000>;
-+		regulator-ramp-delay = <1000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		vin-supply = <&vcc5v0_sys>;
-+		regulator-initial-mode = <1>; /* 1:force PWM 2:auto */
-+		regulator-state-mem {
-+			regulator-off-in-suspend;
-+		};
-+	};
-+};
-+
-+&i2c3 {
-+	i2c-scl-rising-time-ns = <450>;
-+	i2c-scl-falling-time-ns = <15>;
-+	status = "okay";
-+};
-+
-+&io_domains {
-+	bt656-supply = <&vcc_3v0>;
-+	gpio1830-supply = <&vcc_3v0>;
-+	sdmmc-supply = <&vccio_sd>;
-+	status = "okay";
-+};
-+
-+&pinctrl {
-+	bt {
-+		bt_enable_h: bt-enable-h {
-+			rockchip,pins = <0 RK_PB1 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		bt_host_wake_l: bt-host-wake-l {
-+			rockchip,pins = <0 RK_PA4 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		bt_wake_l: bt-wake-l {
-+			rockchip,pins = <2 RK_PD3 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	pmic {
-+		pmic_int_l: pmic-int-l {
-+			rockchip,pins = <1 RK_PC5 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+
-+		vsel1_gpio: vsel1-gpio {
-+			rockchip,pins = <1 RK_PC1 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+
-+		vsel2_gpio: vsel2-gpio {
-+			rockchip,pins = <1 RK_PB6 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+	};
-+
-+	sdmmc {
-+		sdmmc_bus4: sdmmc-bus4 {
-+			rockchip,pins = <4 8 1 &pcfg_pull_up_8ma>,
-+					<4 9 1 &pcfg_pull_up_8ma>,
-+					<4 10 1 &pcfg_pull_up_8ma>,
-+					<4 11 1 &pcfg_pull_up_8ma>;
-+		};
-+
-+		sdmmc_clk: sdmmc-clk {
-+			rockchip,pins = <4 12 1 &pcfg_pull_none_18ma>;
-+		};
-+
-+		sdmmc_cmd: sdmmc-cmd {
-+			rockchip,pins = <4 13 1 &pcfg_pull_up_8ma>;
-+		};
-+	};
-+
-+	usb-typec {
-+		vcc5v0_typec0_en: vcc5v0-typec-en {
-+			rockchip,pins = <1 RK_PA3 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+	};
-+
-+	usb2 {
-+		vcc5v0_host_en: vcc5v0-host-en {
-+			rockchip,pins = <3 RK_PD6 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+	};
-+
-+	wifi {
-+		wifi_enable_h: wifi-enable-h {
-+			rockchip,pins = <0 RK_PB2 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		wifi_host_wake_l: wifi-host-wake-l {
-+			rockchip,pins = <0 RK_PA3 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+};
-+
-+&pmu_io_domains {
-+	pmu1830-supply = <&vcc_3v0>;
-+	status = "okay";
-+};
-+
-+&saradc {
-+	status = "okay";
-+	vref-supply = <&vcc_1v8>;
-+};
-+
-+&sdhci {
-+	max-frequency = <150000000>;
-+	bus-width = <8>;
-+	mmc-hs400-1_8v;
-+	supports-emmc;
-+	non-removable;
-+	mmc-hs400-enhanced-strobe;
-+	status = "okay";
-+};
-+
-+&sdio0 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	bus-width = <4>;
-+	clock-frequency = <50000000>;
-+	cap-sdio-irq;
-+	cap-sd-highspeed;
-+	keep-power-in-suspend;
-+	mmc-pwrseq = <&sdio_pwrseq>;
-+	non-removable;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&sdio0_bus4 &sdio0_cmd &sdio0_clk>;
-+	sd-uhs-sdr104;
-+	status = "okay";
-+
-+	brcmf: wifi@1 {
-+		compatible = "brcm,bcm4329-fmac";
-+		reg = <1>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <RK_PA3 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-names = "host-wake";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&wifi_host_wake_l>;
-+	};
-+};
-+
-+&sdmmc {
-+	bus-width = <4>;
-+	cap-mmc-highspeed;
-+	cap-sd-highspeed;
-+	card-detect-delay = <800>;
-+	disable-wp;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&sdmmc_clk &sdmmc_cd &sdmmc_cmd &sdmmc_bus4>;
-+	vqmmc-supply = <&vccio_sd>;
-+	status = "okay";
-+};
-+
-+&tcphy0 {
-+	status = "okay";
-+};
-+
-+&tcphy1 {
-+	status = "okay";
-+};
-+
-+&u2phy0 {
-+	status = "okay";
-+
-+	u2phy0_otg: otg-port {
-+		status = "okay";
-+	};
-+
-+	u2phy0_host: host-port {
-+		phy-supply = <&vcc5v0_host1>;
-+		status = "okay";
-+	};
-+};
-+
-+&u2phy1 {
-+	status = "okay";
-+
-+	u2phy1_otg: otg-port {
-+		status = "okay";
-+	};
-+
-+	u2phy1_host: host-port {
-+		phy-supply = <&vcc5v0_host1>;
-+		status = "okay";
-+	};
-+};
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_xfer &uart0_cts &uart0_rts>;
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "brcm,bcm4345c5";
-+		clocks = <&rk809 1>;
-+		clock-names = "lpo";
-+		device-wakeup-gpios = <&gpio2 RK_PD3 GPIO_ACTIVE_HIGH>;
-+		host-wakeup-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_HIGH>;
-+		shutdown-gpios = <&gpio0 RK_PB1 GPIO_ACTIVE_HIGH>;
-+		max-speed = <1500000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&bt_host_wake_l &bt_wake_l &bt_enable_h>;
-+		vbat-supply = <&vcc3v3_sys>;
-+		vddio-supply = <&vcc_1v8>;
-+	};
-+};
-+
-+&uart2 {
-+	status = "okay";
-+};
-+
-+&usb_host0_ehci {
-+	status = "okay";
-+};
-+
-+&usb_host0_ohci {
-+	status = "okay";
-+};
-+
-+&usb_host1_ehci {
-+	status = "okay";
-+};
-+
-+&usb_host1_ohci {
-+	status = "okay";
-+};
-+
-+&usbdrd3_0 {
-+	extcon = <&u2phy0>;
-+	status = "okay";
-+};
-+
-+&usbdrd_dwc3_0 {
-+	status = "okay";
-+	dr_mode = "host";
-+};
-+
-+&usbdrd3_1 {
-+	status = "okay";
-+};
-+
-+&usbdrd_dwc3_1 {
-+	status = "okay";
-+	dr_mode = "host";
-+};
-+
-+&vopb {
-+	status = "okay";
-+};
-+
-+&vopb_mmu {
-+	status = "okay";
-+};
-+
-+&vopl {
-+	status = "okay";
-+};
-+
-+&vopl_mmu {
-+	status = "okay";
-+};
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+index fe178b7d063c..2f18778a057f 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+@@ -1169,7 +1169,7 @@ usb3_0: usb@32f10100 {
+ 			reg = <0x32f10100 0x8>,
+ 			      <0x381f0000 0x20>;
+ 			clocks = <&clk IMX8MP_CLK_HSIO_ROOT>,
+-				 <&clk IMX8MP_CLK_USB_ROOT>;
++				 <&clk IMX8MP_CLK_USB_SUSP>;
+ 			clock-names = "hsio", "suspend";
+ 			interrupts = <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
+ 			power-domains = <&hsio_blk_ctrl IMX8MP_HSIOBLK_PD_USB>;
+@@ -1182,9 +1182,9 @@ usb3_0: usb@32f10100 {
+ 			usb_dwc3_0: usb@38100000 {
+ 				compatible = "snps,dwc3";
+ 				reg = <0x38100000 0x10000>;
+-				clocks = <&clk IMX8MP_CLK_HSIO_AXI>,
++				clocks = <&clk IMX8MP_CLK_USB_ROOT>,
+ 					 <&clk IMX8MP_CLK_USB_CORE_REF>,
+-					 <&clk IMX8MP_CLK_USB_ROOT>;
++					 <&clk IMX8MP_CLK_USB_SUSP>;
+ 				clock-names = "bus_early", "ref", "suspend";
+ 				interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
+ 				phys = <&usb3_phy0>, <&usb3_phy0>;
+@@ -1211,7 +1211,7 @@ usb3_1: usb@32f10108 {
+ 			reg = <0x32f10108 0x8>,
+ 			      <0x382f0000 0x20>;
+ 			clocks = <&clk IMX8MP_CLK_HSIO_ROOT>,
+-				 <&clk IMX8MP_CLK_USB_ROOT>;
++				 <&clk IMX8MP_CLK_USB_SUSP>;
+ 			clock-names = "hsio", "suspend";
+ 			interrupts = <GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH>;
+ 			power-domains = <&hsio_blk_ctrl IMX8MP_HSIOBLK_PD_USB>;
+@@ -1224,9 +1224,9 @@ usb3_1: usb@32f10108 {
+ 			usb_dwc3_1: usb@38200000 {
+ 				compatible = "snps,dwc3";
+ 				reg = <0x38200000 0x10000>;
+-				clocks = <&clk IMX8MP_CLK_HSIO_AXI>,
++				clocks = <&clk IMX8MP_CLK_USB_ROOT>,
+ 					 <&clk IMX8MP_CLK_USB_CORE_REF>,
+-					 <&clk IMX8MP_CLK_USB_ROOT>;
++					 <&clk IMX8MP_CLK_USB_SUSP>;
+ 				clock-names = "bus_early", "ref", "suspend";
+ 				interrupts = <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
+ 				phys = <&usb3_phy1>, <&usb3_phy1>;
 -- 
-2.25.1
+2.34.1
 
