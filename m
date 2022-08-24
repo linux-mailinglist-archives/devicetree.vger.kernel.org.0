@@ -2,62 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E71E759F3FB
-	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 09:08:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 99D5159F402
+	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 09:12:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235429AbiHXHIz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Aug 2022 03:08:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40138 "EHLO
+        id S232817AbiHXHMq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Aug 2022 03:12:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235371AbiHXHIs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 03:08:48 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5974F93507;
-        Wed, 24 Aug 2022 00:08:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1661324926; x=1692860926;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=00HIFvltqoK2q6RN6iEVaq/z31zM0MweFlDQWbq1aXU=;
-  b=ME7dxaRD34xEGEqx6VfciUK0786tcQjbfSPs5lVtmO3UamovGcnSwVl7
-   kgDYZG7txtxR276RXrTzloKdVyA2Em3XUmOAgeLKj2hb6VTGA/TtLfdg+
-   +SUTQcyzNtst6RQq/qAWBjUQ0wGWzsojjO3x3Tosn50XpuXeE2w5AMfSV
-   W20vbmREw+TcjVUvcb4SqZ0P9DEtjkUNSrpLm6UQpv6MdllSBK1AUdLNM
-   3MVAbcKIwZ4j9TdMLQJrEXl5HEu3T30vbd1g7gP83JNYCWtx11qRjnK+m
-   iC1+7K0MWVD1HnxDO65sm3LtCqnA4hpgwFSrnfkbJZRcZ4pGi45sDC+JT
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.93,260,1654585200"; 
-   d="scan'208";a="170677322"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 24 Aug 2022 00:08:45 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Wed, 24 Aug 2022 00:08:45 -0700
-Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.2507.12 via Frontend
- Transport; Wed, 24 Aug 2022 00:08:43 -0700
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Jassi Brar <jassisinghbrar@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Conor Dooley <conor.dooley@microchip.com>,
-        Daire McNamara <daire.mcnamara@microchip.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>
-Subject: [PATCH v2 3/3] mailbox: mpfs: account for mbox offsets while sending
-Date:   Wed, 24 Aug 2022 08:08:12 +0100
-Message-ID: <20220824070810.52219-4-conor.dooley@microchip.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220824070810.52219-1-conor.dooley@microchip.com>
-References: <20220824070810.52219-1-conor.dooley@microchip.com>
+        with ESMTP id S230002AbiHXHMp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 03:12:45 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CB9894104
+        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 00:12:44 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id w22so594622ljg.7
+        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 00:12:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=oz1fB+3kXBs8QJgrzWFnAfi9IHZCzH+0GYvh9BjYEfI=;
+        b=fiPyIQA9TaaY3/cOteRdnvCXxGLmK/wfMKyGgUSCdNM+u50Y7HCnnG5ES1Fr2/Sap4
+         QBAKiRkut2DZSDndJtQtuhSV5LogzxxpzVWKxT/aRMn4UZggaaLzm7wPf1ApK/jIaYg/
+         0J3W2fQlinWcWjioABjZYqoQKL3ldA4NFNItzDRr1kPfHv1UXZqAxGZMzeSZ/GoEqrz2
+         mlLlAC0v2MoosnMwZ80TtDkuaDjuhKKSFoUsjvLjAlVBAM5y++eUmOanOJZb6Xqk86He
+         7WzvqKMI8vm+WOR/VLIRGbEHjrAGut/8oWEZa0bEzaRk403cRIttxQhgmJp1E1b0VnhD
+         bHRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=oz1fB+3kXBs8QJgrzWFnAfi9IHZCzH+0GYvh9BjYEfI=;
+        b=LeNmehF92R6Kpv3kST3XklIh8yzK/0xk1zLu9W5r+JQcX0hRoZLgctxr0qYM7BJNBT
+         29jMVwm89jd0W5nosk/jZw6rjztI2gMBLnIQMdTVG77l0QsH7Evr7qB4Vyc72K/i0tZ7
+         d7aA5Hzo1oayrtuAPDU6bhDJToRAf4zkQseFN1u63iSEFSA/j9erlZk4dfF2BYPBKtq8
+         QQJsLtMbxgwKnBxxGIlWwdQ1ZaxNRFPElD4pOqXrUNrin7p+lsLf+WcaZDO/55/PMGfk
+         GwnZHXaUzaitU+zvlBGTM3NaXtZBzCNooODVG1SFxb2NUJMb1IpvQ4yG26i4zrZYIM8g
+         HhMw==
+X-Gm-Message-State: ACgBeo1YXoKKVwSxUk/+3kpBUSogOAtz4AHXCYcCfoWobkZUazUkEyU8
+        hZmCEoObOnnuzhwP2+S+0I3zQA==
+X-Google-Smtp-Source: AA6agR5+O+kkE9csXEWv5h4svRc0pDYE1xR24GwkPlBwsarwv9ryRHPEFTRmB7PfedrGP2pqKBvX9A==
+X-Received: by 2002:a2e:910f:0:b0:261:ce88:76d2 with SMTP id m15-20020a2e910f000000b00261ce8876d2mr3134129ljg.410.1661325162921;
+        Wed, 24 Aug 2022 00:12:42 -0700 (PDT)
+Received: from [192.168.0.11] (89-27-92-210.bb.dnainternet.fi. [89.27.92.210])
+        by smtp.gmail.com with ESMTPSA id c10-20020a056512074a00b0048af9576d30sm1610651lfs.83.2022.08.24.00.12.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Aug 2022 00:12:42 -0700 (PDT)
+Message-ID: <81134eb9-2b7d-05bc-3035-a47f020861a8@linaro.org>
+Date:   Wed, 24 Aug 2022 10:12:41 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH 4/4] arch: arm64: ti: Add support for J784s4 EVM board
+Content-Language: en-US
+To:     Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
+Cc:     Apurva Nandan <a-nandan@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Hari Nagalla <hnagalla@ti.com>
+References: <20220819190054.31348-1-a-nandan@ti.com>
+ <20220819190054.31348-5-a-nandan@ti.com>
+ <6c89f254-185a-4046-2bf0-a9f85713858e@linaro.org>
+ <20220824050627.nh7d4blrsfbxrvuh@clicker>
+ <734b1e1c-2416-0684-287e-a96b86a416a2@ti.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <734b1e1c-2416-0684-287e-a96b86a416a2@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,52 +83,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The mailbox offset is not only used for receiving messages, but it is
-also used by messages sent to the system controller by Linux that have a
-payload, such as the "digital signature service". It is also overloaded
-by certain other services (reprogramming of the FPGA fabric, see Link:)
-to have a meaning other than the offset the system controller should
-read from.
-When the driver was written, no such services of the latter type were
-in use & those of the former used an offset of zero so this has gone
-un-noticed.
+On 24/08/2022 08:33, Vignesh Raghavendra wrote:
+> Hi Krzysztof,
+> 
+> On 24/08/22 10:36, Nishanth Menon wrote:
+>> On 13:21-20220823, Krzysztof Kozlowski wrote:
+>>>> +
+>>>> +/ {
+>>>> +	compatible = "ti,j784s4-evm", "ti,j784s4";
+>>>> +	model = "Texas Instruments J784S4 EVM";
+>>>> +
+>>>> +	chosen {
+>>>> +		stdout-path = "serial2:115200n8";
+>>>> +		bootargs = "console=ttyS2,115200n8 earlycon=ns16550a,mmio32,0x2880000";
+>>>
+>>> earlycon is not a property of hardware. Console is defined in
+> 
+> earlycon is helpful for debugging early crashes. How is it any different
+> from "console =" property as described in
+> Documentation/devicetree/usage-model.rst?
 
-Link: https://www.microsemi.com/document-portal/doc_download/1245815-polarfire-fpga-and-polarfire-soc-fpga-system-services-user-guide # Section 5.2
-Fixes: 83d7b1560810 ("mbox: add polarfire soc system controller mailbox")
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
- drivers/mailbox/mailbox-mpfs.c | 7 +++----
- 1 file changed, 3 insertions(+), 4 deletions(-)
+choice of console is needed for basic operation and is chosen based on
+current hardware setup. earlycon is purely for debugging and should be
+enabled only when debugging is intended, not on mainline wide-available
+sources.
 
-diff --git a/drivers/mailbox/mailbox-mpfs.c b/drivers/mailbox/mailbox-mpfs.c
-index e432a8f0d148..cfacb3f320a6 100644
---- a/drivers/mailbox/mailbox-mpfs.c
-+++ b/drivers/mailbox/mailbox-mpfs.c
-@@ -100,21 +100,20 @@ static int mpfs_mbox_send_data(struct mbox_chan *chan, void *data)
- 
- 		for (index = 0; index < (msg->cmd_data_size / 4); index++)
- 			writel_relaxed(word_buf[index],
--				       mbox->mbox_base + index * 0x4);
-+				       mbox->mbox_base + msg->mbox_offset + index * 0x4);
- 		if (extra_bits) {
- 			u8 i;
- 			u8 byte_off = ALIGN_DOWN(msg->cmd_data_size, 4);
- 			u8 *byte_buf = msg->cmd_data + byte_off;
- 
--			val = readl_relaxed(mbox->mbox_base + index * 0x4);
-+			val = readl_relaxed(mbox->mbox_base + msg->mbox_offset + index * 0x4);
- 
- 			for (i = 0u; i < extra_bits; i++) {
- 				val &= ~(0xffu << (i * 8u));
- 				val |= (byte_buf[i] << (i * 8u));
- 			}
- 
--			writel_relaxed(val,
--				       mbox->mbox_base + index * 0x4);
-+			writel_relaxed(val, mbox->mbox_base + msg->mbox_offset + index * 0x4);
- 		}
- 	}
- 
--- 
-2.36.1
+> 
+>>> stdout-path, so please drop entire bootargs.
+>>
+>> We will probably have to cleanup elsewhere as well - point noted.
+>>
+> 
+> Whats the alternative to pass default bootargs to kernel if bootloader
+> does not pass bootargs via cmdline? I see quite a few dts file use
+> bootargs = "earlycon" at least
 
+Uboot, your own out-of-tree testing patches? What's the point to have
+earlycon available for every user which does not want to debug?
+
+Sorry, but bootargs are not accepted in DTS. We have several discussions
+around it over time...
+
+
+Best regards,
+Krzysztof
