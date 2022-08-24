@@ -2,92 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71CB659F50E
-	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 10:21:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B0E159F56E
+	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 10:39:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235887AbiHXIV4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Aug 2022 04:21:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58122 "EHLO
+        id S234909AbiHXIj0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Aug 2022 04:39:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235705AbiHXIVl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 04:21:41 -0400
-Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64BA88A1D8
-        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 01:21:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
-        from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=k1; bh=RRGjWF8vo1xlwr
-        bsZKBJ3tvhXOYAQLg0h4JU7SAZUfs=; b=II44+XWHJEQlN51s9LtP1BH060tBWb
-        KMTtI1Xccvm6+hGkZbBRAqwlKnDJMxQRq3YlVXPFSkkU9KqQW0M/J8JHoCzlN+V4
-        BTFBVQGwXszwlQPdzlRdDskGTA0/WkpWdUa+fAWA+ndQHK0z69Bi6dEXDOC2GDUw
-        bu/VGA5+QhxO0=
-Received: (qmail 2131871 invoked from network); 24 Aug 2022 10:21:34 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 24 Aug 2022 10:21:34 +0200
-X-UD-Smtp-Session: l3s3148p1@MmVgXvjm7OcgAwDPXxw3AFlguiwjsjwa
-From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
-To:     linux-spi@vger.kernel.org
-Cc:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Heiko Schocher <hs@denx.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Holger Brunck <holger.brunck@keymile.com>,
-        Kumar Gala <galak@kernel.crashing.org>,
-        devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] powerpc/82xx: remove spidev node from mgcoge
-Date:   Wed, 24 Aug 2022 10:21:29 +0200
-Message-Id: <20220824082130.21934-3-wsa+renesas@sang-engineering.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220824082130.21934-1-wsa+renesas@sang-engineering.com>
-References: <20220824082130.21934-1-wsa+renesas@sang-engineering.com>
+        with ESMTP id S231146AbiHXIjZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 04:39:25 -0400
+Received: from smtpout1.mo528.mail-out.ovh.net (smtpout1.mo528.mail-out.ovh.net [46.105.34.251])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15D1D67CAE;
+        Wed, 24 Aug 2022 01:39:22 -0700 (PDT)
+Received: from pro2.mail.ovh.net (unknown [10.109.138.102])
+        by mo528.mail-out.ovh.net (Postfix) with ESMTPS id A0B49122094DA;
+        Wed, 24 Aug 2022 10:39:20 +0200 (CEST)
+Received: from [192.168.1.41] (88.161.25.233) by DAG1EX1.emp2.local
+ (172.16.2.1) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12; Wed, 24 Aug
+ 2022 10:39:20 +0200
+Message-ID: <0663c616-97c8-444c-f390-275fae402453@traphandler.com>
+Date:   Wed, 24 Aug 2022 10:39:19 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [RESEND PATCH v6 2/3] leds: Add driver for the TLC5925 LED
+ controller
+Content-Language: en-US
+To:     Pavel Machek <pavel@ucw.cz>
+CC:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20220722081146.47262-1-jjhiblot@traphandler.com>
+ <20220722081146.47262-3-jjhiblot@traphandler.com>
+ <CAHp75Vdu-EJRRxkK7+TfuE=zEDkJye1QCXSB+cDLrqxuykJjkA@mail.gmail.com>
+ <5ba34982-52c7-e41a-fba8-d88d93529e47@traphandler.com>
+ <20220804210412.GA30210@duo.ucw.cz>
+From:   Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+In-Reply-To: <20220804210412.GA30210@duo.ucw.cz>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
+X-Originating-IP: [88.161.25.233]
+X-ClientProxiedBy: DAG2EX1.emp2.local (172.16.2.11) To DAG1EX1.emp2.local
+ (172.16.2.1)
+X-Ovh-Tracer-Id: 16408865246057806299
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvfedrvdejuddgtdejucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepkfffgggfuffvvehfhfgjtgfgihesthekredttdefjeenucfhrhhomheplfgvrghnqdflrggtqhhuvghsucfjihgslhhothcuoehjjhhhihgslhhothesthhrrghphhgrnhgulhgvrhdrtghomheqnecuggftrfgrthhtvghrnhepvdehueeuffduudelieefvedttdefgeeuueduteetgeethfevudetgedviefgtdeknecuffhomhgrihhnpehtihdrtghomhenucfkpheptddrtddrtddrtddpkeekrdduiedurddvhedrvdeffeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphhouhhtpdhhvghlohepphhrohdvrdhmrghilhdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomhepjhhjhhhisghlohhtsehtrhgrphhhrghnughlvghrrdgtohhmpdhnsggprhgtphhtthhopedupdhrtghpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdfovfetjfhoshhtpehmohehvdek
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit 956b200a846e ("spi: spidev: Warn loudly if instantiated from DT
-as "spidev"") states that there should not be spidev nodes in DTs.
-Remove this non-HW description. There won't be a regression because it
-won't bind since 2015 anyhow.
 
-Fixes: 5d1d67e361ea ("powerpc/82xx: add SPI support for mgcoge")
-Cc: Heiko Schocher <hs@denx.de>
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
----
+On 04/08/2022 23:04, Pavel Machek wrote:
+> On Thu 2022-08-04 22:23:00, Jean-Jacques Hiblot wrote:
+>> On 31/07/2022 21:28, Andy Shevchenko wrote:
+>>> On Fri, Jul 22, 2022 at 10:14 AM Jean-Jacques Hiblot
+>>> <jjhiblot@traphandler.com> wrote:
+>>>> The TLC5925 is a 16-channels constant-current LED sink driver.
+>>>> It is controlled via SPI but doesn't offer a register-based interface.
+>>>> Instead it contains a shift register and latches that convert the
+>>>> serial input into a parallel output.
+>>>>
+>>>> Datasheet: https://www.ti.com/lit/ds/symlink/tlc5925.pdf
+>>>> Signed-off-by: Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+>>>> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+>>> Sorry for my slowpokeness, but I just realized that this driver may
+>>> not be needed. What is the difference to existing gpio-74x164?
+>> It might work. However it might not be as practical and efficient as the
+>> dedicated LED driver.
+>>
+>> I'll give a try.
+> It is certainly preffered solution. If you decide to re-submit the
+> driver anyway, please mention that we already have GPIO driver for
+> compatible chip, and explain why this is superior.
 
-Please take it via your platform tree.
+Hi all,
 
- arch/powerpc/boot/dts/mgcoge.dts | 7 -------
- 1 file changed, 7 deletions(-)
+sorry for the delay. I tried with the  74x164 gpio driver and it works 
+as expected.
 
-diff --git a/arch/powerpc/boot/dts/mgcoge.dts b/arch/powerpc/boot/dts/mgcoge.dts
-index 7de068991bde..9cefed207234 100644
---- a/arch/powerpc/boot/dts/mgcoge.dts
-+++ b/arch/powerpc/boot/dts/mgcoge.dts
-@@ -225,13 +225,6 @@ spi@11aa0 {
- 				interrupts = <2 8>;
- 				interrupt-parent = <&PIC>;
- 				cs-gpios = < &cpm2_pio_d 19 0>;
--				#address-cells = <1>;
--				#size-cells = <0>;
--				ds3106@1 {
--					compatible = "gen,spidev";
--					reg = <0>;
--					spi-max-frequency = <8000000>;
--				};
- 			};
- 
- 		};
--- 
-2.35.1
+The only drawbacks are:
 
+- as-is the 74x164 gpio driver supports only one output-enable gpio. 
+However in practice I don't think multiple OE GPIOs will ever be used.
+
+- with this approach, every time a LED status is changed the whole 
+register has to be sent on the SPI bus. In other words, changes cannot 
+be coalesced.
+
+
+I don't know if this is enough to make a dedicated TLC5925 driver 
+desirable in the kernel.
+
+JJ
+
+>
+> Thanks,
+> 								Pavel
+>
