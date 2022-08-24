@@ -2,107 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A87259FF59
-	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 18:21:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A86559FF6A
+	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 18:24:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239353AbiHXQVE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Aug 2022 12:21:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41914 "EHLO
+        id S236653AbiHXQY1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Aug 2022 12:24:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239022AbiHXQVB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 12:21:01 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC42872FE4
-        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 09:20:59 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id n7so21393455wrv.4
-        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 09:20:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=conchuod.ie; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=S2tBbgrx+25RpWaqCl+haIdlbySiWC0Xb4SRnNTuZLo=;
-        b=CaBBfJ6zzlzSH8t+T5KGfrvMzLAi5AI0eoDZAVk0yw3cSoKl5RoetN0lKoKeWRh6hP
-         r5P8edcEbxW/Ad8FhnLpgrcKO9nzODroDxn0URodX5a9zfEmMBvyQNrmKmfKBYVQHrWN
-         TOX3+urD81gS9Ih4cs9hl7+KIvMTFFBJQlmcNWfGci8wUyo2NUiyTmh4MCkSTbDEhalM
-         ccAX+7RJgQlxRHJ90k2FI02f6/m0gmf3lK0EziSkKN8eoc85597K8AE4NAwEifpHvNgV
-         APwCV35SmUdKYbIxqZ2tLbzCVxnjNZX4poPem4awdsY1nLjYErALPj0Bk98N1GnJdR3t
-         cNdg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=S2tBbgrx+25RpWaqCl+haIdlbySiWC0Xb4SRnNTuZLo=;
-        b=3cHNzcoVbhcDx2PmAuIhbRnk/GPv3wGxy6WfugaEP8npE6xX6jKgTvICCdmaHjQ+RO
-         5Hefudo1OMN8tzg6BZfl8o8fDJVkjm/KlgsvTyi/AJIrB7AZteSQRsz3naW5z0+AuRol
-         gGqPUCPveZk4+VW8Mv+UJ9yrgeWJV6ds+uD9yWoFtaRCE+yFDmQSkuXczZFhioe4komd
-         0RpI0Y/CrtrodJ2aVl2FOEnjWs6uQGr8hSkCwJHPnQpc5Pkpjy1XBzSbzqLBVFXHAonr
-         htpbu45wXhDs9nYQKfzdmrFOr8g9PpIsWxxA3yxvo4KQWMnoN1mN39InSM8bz31IKRhc
-         4xvw==
-X-Gm-Message-State: ACgBeo2IZudIyL9UKpXRLIhd/7ygPxFRI3Jwv4+3ZJ53xrv3QlzR8YHg
-        trs11CPnEA5ItiU4lTs8BA+0Mw==
-X-Google-Smtp-Source: AA6agR4/6nKKtxFMnoCc84DqrjQsVm+cjtB+x8R9A0ftf1MIYOg7bI7gO59Np7Of33NfYpXfhEp05Q==
-X-Received: by 2002:a05:6000:221:b0:225:464d:b096 with SMTP id l1-20020a056000022100b00225464db096mr24122wrz.32.1661358058303;
-        Wed, 24 Aug 2022 09:20:58 -0700 (PDT)
-Received: from henark71.. ([51.37.149.245])
-        by smtp.gmail.com with ESMTPSA id l6-20020a05600c4f0600b003a690f704absm1903582wmq.4.2022.08.24.09.20.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Aug 2022 09:20:57 -0700 (PDT)
-From:   Conor Dooley <mail@conchuod.ie>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Daire McNamara <daire.mcnamara@microchip.com>,
-        Greentime Hu <greentime.hu@sifive.com>,
-        Conor Dooley <mail@conchuod.ie>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>
-Cc:     Conor Dooley <conor.dooley@microchip.com>,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: (subset) [PATCH v3 0/7] Fix RISC-V/PCI dt-schema issues with dt-schema v2022.08
-Date:   Wed, 24 Aug 2022 17:19:44 +0100
-Message-Id: <166135795510.3741278.5608627370699269871.b4-ty@microchip.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220819231415.3860210-1-mail@conchuod.ie>
-References: <20220819231415.3860210-1-mail@conchuod.ie>
+        with ESMTP id S231866AbiHXQY0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 12:24:26 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EC934BA68;
+        Wed, 24 Aug 2022 09:24:25 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 45DA1B825C1;
+        Wed, 24 Aug 2022 16:24:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D854C433C1;
+        Wed, 24 Aug 2022 16:24:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1661358263;
+        bh=Y4eBdkGZIGqWLszQ5IONiL0dwf3AHaygY1nAw/brFPI=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=RU2ONLK9WOfTtDPX11OYiLJ72DJnnMM4Y0r91FKLDOBr+sTrgSkpwknaS2Cxdnc4D
+         ro0B6Gvrvb91B5wBX49rJhAL2yRg+X/tblzBnIv9JRunK421naPc7yvEy16n8u4MGV
+         EKvm6J9BfGWiayrPQlUofDwLCKJVY4hRVK9tTanC9+YuDxoSMNGyE2qbmTQ2scVi2d
+         hepqZ0JdD/ItPatE9Svg3Xu4kpNPtm8yj/QeovDdlViNNJYS0jAFpOKM8UxsSV+k+n
+         0+rV9XJJZtumbZOS3h5fOKe7xOSjYWdCgktKRM5cfHXkYzAJwVfCjQnYDgQWSsMF2l
+         PgfkIHbh5Ea0A==
+From:   Mark Brown <broonie@kernel.org>
+To:     nfraprado@collabora.com, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, Chunxu Li <chunxu.li@mediatek.com>
+Cc:     project_global_chrome_upstream_group@mediatek.com,
+        jiaxin.yu@mediatek.com, lgirdwood@gmail.com,
+        devicetree@vger.kernel.org, matthias.bgg@gmail.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        alsa-devel@alsa-project.org
+In-Reply-To: <20220820075343.13993-1-chunxu.li@mediatek.com>
+References: <20220820075343.13993-1-chunxu.li@mediatek.com>
+Subject: Re: [PATCH 0/2] dt-bindings: sound: Add SOF field for mt8186
+Message-Id: <166135826016.480875.10489482967868732209.b4-ty@kernel.org>
+Date:   Wed, 24 Aug 2022 17:24:20 +0100
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-Mailer: b4 0.10.0-dev-0c1df
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Conor Dooley <conor.dooley@microchip.com>
-
-On Sat, 20 Aug 2022 00:14:09 +0100, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
+On Sat, 20 Aug 2022 15:53:41 +0800, Chunxu Li wrote:
+> From: "chunxu.li" <chunxu.li@mediatek.com>
 > 
-> Hey all,
+> These patches add SOF field for mt8186 machine driver
 > 
-> Got a few fixes for PCI dt-bindings that I noticed after upgrading my
-> dt-schema to v2022.08.
+> chunxu.li (2):
+>   ASoC: mediatek: dt-bindings: modify machine bindings for SOF
+>   ASoC: mediatek: dt-bindings: modify machine bindings for SOF
 > 
 > [...]
 
-Applied to dt-fixes, RISC-V should be back to 0 warnings in the next
-linux-next. Thanks!
+Applied to
 
-[4/7] riscv: dts: microchip: mpfs: fix incorrect pcie child node name
-      https://git.kernel.org/conor/c/3f67e6997603
-[5/7] riscv: dts: microchip: mpfs: remove ti,fifo-depth property
-      https://git.kernel.org/conor/c/72a05748cbd2
-[6/7] riscv: dts: microchip: mpfs: remove bogus card-detect-delay
-      https://git.kernel.org/conor/c/2b55915d27dc
-[7/7] riscv: dts: microchip: mpfs: remove pci axi address translation property
-      https://git.kernel.org/conor/c/e4009c5fa77b
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[1/2] ASoC: mediatek: dt-bindings: modify machine bindings for SOF
+      commit: 1173107d7c129ff87224814fd38fce5db023aaa0
+[2/2] ASoC: mediatek: dt-bindings: modify machine bindings for SOF
+      commit: 1173107d7c129ff87224814fd38fce5db023aaa0
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
 Thanks,
-Conor.
+Mark
