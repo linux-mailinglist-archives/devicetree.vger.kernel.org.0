@@ -2,135 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2846C59F31C
-	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 07:47:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A348E59F335
+	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 07:51:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229741AbiHXFre (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Aug 2022 01:47:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45958 "EHLO
+        id S234138AbiHXFv5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Aug 2022 01:51:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52376 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229446AbiHXFrd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 01:47:33 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA0896F560;
-        Tue, 23 Aug 2022 22:47:30 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S231804AbiHXFv4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 01:51:56 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FAA6642F5
+        for <devicetree@vger.kernel.org>; Tue, 23 Aug 2022 22:51:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1661320314; x=1692856314;
+  h=subject:from:to:cc:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=/vT2RTQyLbNApsavW8ctZU0rB7ip6vknIclhC31+ZW0=;
+  b=VPr8iUB/Gt8oTDiyyWDMHeMl30um5KnsoJZlANkqcVSA4IeHj5rZYlx1
+   1Buu3B5WeQq5ntzfFlZ3ofyhFbrf9AidC8KHs+p2sx5rbzIpGRPK//cTf
+   RzccsN0qGDSenC4YSbDZ2gubXIjfSv4MHzpJUhjdDN0lbswTi4oyOSjEC
+   rcclRA3h3JHjODTHsH9ItddMRcQoZJF/wTbIbHeEX25wW4DZekZYpKRnu
+   VThw71zaJq7Bg9v4cmYI0P7/KYCS0AY9G9S4yh4usVrR/QsRjrXHu9xxK
+   zcj4SMCaXCeJUhjIYjL55P2ku534Bn8RKjaKccTshNEMsywTOL5ymJbsc
+   w==;
+X-IronPort-AV: E=Sophos;i="5.93,260,1654552800"; 
+   d="scan'208";a="25767440"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 24 Aug 2022 07:51:52 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Wed, 24 Aug 2022 07:51:52 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Wed, 24 Aug 2022 07:51:52 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1661320312; x=1692856312;
+  h=from:to:cc:date:message-id:in-reply-to:references:
+   mime-version:content-transfer-encoding:subject;
+  bh=/vT2RTQyLbNApsavW8ctZU0rB7ip6vknIclhC31+ZW0=;
+  b=kaqkd/MUomOvCLUBu++puyQe1/mnTlcuNmV81YPGPaR6dSzS65a1Kd4/
+   p6PPACk5TZrkSpY7p/Ekr/5Rj3dNp6eXRdqjkqh/mnnJd8JLX8zTjwKKK
+   aCPScEXXwKiHipAjpiK5RBJAyegzInCXTI+MoMmebRDflIepfat615fY/
+   1MfolLn1QSAehtCZZ4hOSXYU+dBnPG4Zu8EGz0PgNGtri9Cys7VvFaIZN
+   5bh+5aAmWmVYryYeGqKFKvykmocWoAdb+pJCaogOlFIChxUmfcdiFJUtc
+   rQ1BcFMtHQgNtY3VQvt5DJ3YPqKKVWDhfs3CGP6aOJrJv1kKeD+PSbvCy
+   w==;
+X-IronPort-AV: E=Sophos;i="5.93,260,1654552800"; 
+   d="scan'208";a="25767439"
+Subject: Re: [PATCH] arm64: dts: imx8mp: Add SNVS LPGPR
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 24 Aug 2022 07:51:52 +0200
+Received: from steina-w.localnet (unknown [10.123.49.11])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 9E52FB822F0;
-        Wed, 24 Aug 2022 05:47:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A7D1C433D6;
-        Wed, 24 Aug 2022 05:47:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661320048;
-        bh=hqmLRG66G3VXJWEyh+sdnePdhDkvWz1Hi3kb7meLWhg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=b6QVN48Yf5S4EjQ+KiI48QiRIjg4xzhfg53IIp8nUdtxPHLEpMDZk5qm58+ASKYHD
-         DJvyUVRdNBl6ilHxmQnifA6bsvuWNks4UBd7Gt63PVilZ3rznsPnKV3c/t975jvQFv
-         WZLyW622S6prMpxWMB50IzC9XoS2dogMKt36HzNaZj7Gm68Cxzy7Z63saXwafmrL99
-         TCFuBrEHR4LssGh0Z9ezs94SuPd4C3hVgrX1vCEut20YDaUpckSByzrLtsvEjBABgF
-         Jg2Ljx7KctDhphAJZIwb1BWezzh4ajrHid0wob4YXnIPsJCfOCz4ZyuoTRzVoHEdzh
-         7T2RCthA6sPkg==
-Date:   Wed, 24 Aug 2022 07:47:21 +0200
-From:   "wsa@kernel.org" <wsa@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Peng Fan <peng.fan@nxp.com>,
-        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Clark Wang <xiaoning.wang@nxp.com>
-Subject: Re: [PATCH V2 0/7] i2c-imx-lpi2c: add IPG clock
-Message-ID: <YwW7aROy3kSkumKQ@shikoro>
-Mail-Followup-To: "wsa@kernel.org" <wsa@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Peng Fan <peng.fan@nxp.com>,
-        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Clark Wang <xiaoning.wang@nxp.com>
-References: <20220816125526.2978895-1-peng.fan@oss.nxp.com>
- <DU0PR04MB9417E7BD5F1FB7A8E00BAA3F88719@DU0PR04MB9417.eurprd04.prod.outlook.com>
- <7eb3cca0-1be6-8f7f-a7bf-f0c9478e7080@linaro.org>
- <DU0PR04MB9417CA946AD601F900500A5488709@DU0PR04MB9417.eurprd04.prod.outlook.com>
- <15fdd5c2-9c01-ee4e-98f9-559e926d9925@linaro.org>
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 1DA79280056;
+        Wed, 24 Aug 2022 07:51:52 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Marek Vasut <marex@denx.de>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Fabio Estevam <festevam@denx.de>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Peng Fan <peng.fan@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, Marek Vasut <marex@denx.de>
+Date:   Wed, 24 Aug 2022 07:51:49 +0200
+Message-ID: <11067634.nUPlyArG6x@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20220823165602.275931-1-marex@denx.de>
+References: <20220823165602.275931-1-marex@denx.de>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="25+iC2upX42eIGGl"
-Content-Disposition: inline
-In-Reply-To: <15fdd5c2-9c01-ee4e-98f9-559e926d9925@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello Marek,
 
---25+iC2upX42eIGGl
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Am Dienstag, 23. August 2022, 18:56:02 CEST schrieb Marek Vasut:
+> Add SNVS LPGPR bindings to MX8M Plus, the LPGPR is used to store
+> e.g. boot counter.
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
+> Cc: Fabio Estevam <festevam@denx.de>
+> Cc: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+> Cc: Peng Fan <peng.fan@nxp.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: NXP Linux Team <linux-imx@nxp.com>
+> Cc: devicetree@vger.kernel.org
+> To: linux-arm-kernel@lists.infradead.org
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> b/arch/arm64/boot/dts/freescale/imx8mp.dtsi index
+> f7adcb2c14880..21689e9e68170 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> @@ -478,6 +478,11 @@ snvs_pwrkey: snvs-powerkey {
+>  					wakeup-source;
+>  					status = "disabled";
+>  				};
+> +
+> +				snvs_lpgpr: snvs-lpgpr {
+> +					compatible = 
+"fsl,imx8mp-snvs-lpgpr",
+> +						     
+"fsl,imx7d-snvs-lpgpr";
+> +				};
+>  			};
+> 
+>  			clk: clock-controller@30380000 {
 
-Hi Krzysztof,
+Do you have any information that the i.MX8M Plus actually has the HPLR 
+register (at offset 0)? This is used in snvs_lpgpr_write. I can't find it in 
+the RM, although GPR_SL is referenced in LPGPRx register description.
 
-> Awesome! But you don't need my ack after such update. The ack or review
-> is expected from maintainers and I am not the maintainer of IMX I2C
-> driver or IMX platform/DTS.
-
-Despite the fact that the ping was in deed too early, I think Peng Fan
-has a point. If you suggest a change (Thanks a ton for that!), a quick
-comment on the new version if the change reflects what you had in mind,
-is fair, I'd say. Something like "Yeah, looks basically good, but the
-maintainers have to check the details." I understand the "all too busy"
-part, of course...
-
-Thanks,
-
-   Wolfram
+Best regards,
+Alexander
 
 
---25+iC2upX42eIGGl
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmMFu2UACgkQFA3kzBSg
-KbaLrg//ZQR1by58/D+EoZeqOxURRxLGkgjcTZZU7BS4AarhtiVtSlIs3AhTPL6V
-aG7JJECEhe7LOtCNAYrh/+ZINPsB9OLsMgCWGFssntZuMXiKpB8p9sbfa+4zZkA1
-xjCc3vNbHUq4gdZSrPzGT6RY3VrDHSgwYBnoGic2o8MSQb/Ih+E/5+wNdBPwTeKy
-ky52exNTSzolgUGJsJPmiCK2QYMHysKNLDV7o/jJWkpPBAqtAE+N2il7hjSBGdTZ
-IhBneFnJ/0C1kVBUoR75z+p0ShQpuTkqIc6S/DQ5+sayHJZfovEBf33VKS+XIm/o
-PdP6Whp0SNQBveB9r8y7RznSIHd3X+vnwn5fV7rvcCRzi7f7NqHz4Pfu67G4NUkm
-VpByVnyEN7yOXnSyb1gxgKPPLyujBd89MIH1OxCWY1zqmgjuJvkGnnMI9gnVqGkX
-NfyFWXM9zqtbHzNZUi7o4Y5XiwvP3nqSaMT5JP9pIRrR460eEDpkMgAVmoh3dOd6
-7qOQUDdwdaqu67eViXrVhMsBLHinUkY8wuEAHU71Wf6JeQhH4MmXsJi+ziZfCHQs
-6rV++bDOrtK/sUt4xTdpBJ5Bfk0PbXi+wTCheF6+dto/CByht+zkZRkUjh61WLta
-DqeLd7iI7vL+lGlhXLeCs8qenOIZWaKxRe/3qUMZejdF369/6SA=
-=CThz
------END PGP SIGNATURE-----
-
---25+iC2upX42eIGGl--
