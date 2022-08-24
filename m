@@ -2,92 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19A0059F8B8
-	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 13:41:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3B5559F8D5
+	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 13:50:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236010AbiHXLlT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Aug 2022 07:41:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33510 "EHLO
+        id S235888AbiHXLus (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Aug 2022 07:50:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235737AbiHXLlS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 07:41:18 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 612F08306F;
-        Wed, 24 Aug 2022 04:41:17 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id r83-20020a1c4456000000b003a5cb389944so751368wma.4;
-        Wed, 24 Aug 2022 04:41:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=iRd1JuCUsRDstQ4XnepFMXgh3KSENhu5rGylzjVtscw=;
-        b=fbFyIyGRBd1TbKvcIv6v1FsjGJ2wjibvgSzJG6K1k1Bm7S38z4wCVF4hZxlmWHl5/b
-         fU/dKju0dIcg91N4KMyF0EKx0F2NwNa3szfNglU0u28Alnoke1Csdl2xCimMmVsumlak
-         WII3ZniIifAbpLASSbzkFUrjFr042tmOyDqAEu5hydqVPoGHPR4vE5PCfaQPelEWHDnr
-         2bEsZKu1PD++Gn7PXqlY/Z72rV9Wns/0QG/m1icgDWM0P4NjmG0CAXEumS3vSZ01oP89
-         j6QoKrjWZR0E7AySBWUPZcQCctR9sUJ46+r1YYTnAJXovSwJOk5+W7RHfQP9q3kkSeug
-         ZSIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=iRd1JuCUsRDstQ4XnepFMXgh3KSENhu5rGylzjVtscw=;
-        b=YtuxUsIi/U659lHwLAY3Df3FyPDVb6gwYeVFGdOdb1A/M35yR6FJcamuCw9Jeap4pS
-         FGrS98Hiy9Kaebf6l1zm9cwC2L6yklEYShQtt7I0Z0tbiQlB4g620lasOHdZ0t6S+ehN
-         pXVluVO6wt3xVzCSlWqYAXMUP8ZSgSvUr444iHQF+fXVGbLMl9qqMex+wtoRUDzvV0Ss
-         3N1wc3df3fqXTaBWdVzaKY1QUc5IvsQn6EF5tFWn945CIJPkthg7YH3gnQ8YjX1nxq9t
-         SZ8NZpqTN3jNPuiZpi0pNGKbtMFLCZkU6cSar8kV8JouN4LikSPXXPSPfLgYTsw6JVQY
-         6U8w==
-X-Gm-Message-State: ACgBeo1d46epWqSsBpFBlIgHZHeA2I0Q3pYyknTRvQSaPVc9Kqye8X8u
-        MRx67EhXohfsIHvIzuoGfDA=
-X-Google-Smtp-Source: AA6agR5Hk4GDz/jmGGQn2rMBOj9Jqo+Vp8cc07NMZwHew1fytMh4PkKeUfXK6xMdYlVuT6cqYhYf1A==
-X-Received: by 2002:a05:600c:3509:b0:3a6:1888:a4bd with SMTP id h9-20020a05600c350900b003a61888a4bdmr5083036wmq.191.1661341275790;
-        Wed, 24 Aug 2022 04:41:15 -0700 (PDT)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id p18-20020adfce12000000b002253f18d87fsm13444017wrn.96.2022.08.24.04.41.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Aug 2022 04:41:14 -0700 (PDT)
-Message-ID: <db271721-163f-e5ec-25d8-e90357104b6c@gmail.com>
-Date:   Wed, 24 Aug 2022 13:41:12 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.1.2
-Subject: Re: [PATCH v26 07/10] soc: mediatek: mmsys: add mmsys for support 64
- reset bits
+        with ESMTP id S236272AbiHXLuq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 07:50:46 -0400
+Received: from EUR02-AM5-obe.outbound.protection.outlook.com (mail-eopbgr00100.outbound.protection.outlook.com [40.107.0.100])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AA9780B74;
+        Wed, 24 Aug 2022 04:50:44 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=iGErF6qzySpM6spLWB3HcshdAeipFldbzUy80eztl9j8zRA6JBMpG8nxrx/G2xYfRFlPoB6Dfr6wc9e1sUPFcRkdHi8m32tyUkFD3InD9+Iih8XvZLdkinQBYoQmvTBNxP5j1XO4SPL4b6UVEFE4L6QfhMssFyaqurZ+THZhhZbM3pSbgZdpRZj32cPM/8YZ9BBMyLVX6fXUWB+/ve42fnuRRh5WCPt4o0ykcuFB1PwC4FdrrFMzuE+OFasUPgDqkZBBIo0gblKT9wfedQSgbe3vij7otHTuKIroEeC3bf9rDree4dQndEcE8QzqF8wsH/a04iu/tZVwvMbiqWtaaw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=tJa0W/R+udM+MZz0HURQEdKiD/n4HyfRuwP2Qq8WI/I=;
+ b=lZ3pVEeYstE0AhOV0VIg6gjINHBCV26iKoPNgEKZh3zMLcGqAq5dsCDPu7TcO1cbEjIDhywWjj29lQot8CmgYtA/6X8F88tiWBgD4hVguDBSVPSkeO5ZQRkzQE9XdAoa8ILkqwaaWt8+dbOLjYPJY8xlor6cjWEzWjDBRVOcus8c7SQbQioVPJrZVYmBUjhzK1poE6nb1BoKl7Yh4dJyp0VU6Uyv9apUr0x7J53N6M6zixrU819Y/ESOAXXZgrbGO8ZKEfb3oXQYABA1Q6kaY1Eh/s0u5M5fTp51rRwabro01dQPMWMvoueznqSa6ykOQ8ei865yYKL3CzZRlPIS6g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=axentia.se; dmarc=pass action=none header.from=axentia.se;
+ dkim=pass header.d=axentia.se; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axentia.se;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tJa0W/R+udM+MZz0HURQEdKiD/n4HyfRuwP2Qq8WI/I=;
+ b=N73RToRa7bwLFCotBDwOHm6bcPu9ajgpL5qfXmivCMwfRObUZ82xad43lPJxKqqGSX+xEDAq2up7kYbeu1+0z64X9UEbxqtVxfrrCXmX3tpptcDOFOa6Xyh0uQBUBNrSJwjhj1uBb0Jja0jNQLRrmcbQn5ZRJdCr8UQa6EmBvTE=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=axentia.se;
+Received: from AM0PR02MB4436.eurprd02.prod.outlook.com (2603:10a6:208:ed::15)
+ by AM7PR02MB6067.eurprd02.prod.outlook.com (2603:10a6:20b:1ab::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5566.15; Wed, 24 Aug
+ 2022 11:50:41 +0000
+Received: from AM0PR02MB4436.eurprd02.prod.outlook.com
+ ([fe80::1d88:3306:c280:3179]) by AM0PR02MB4436.eurprd02.prod.outlook.com
+ ([fe80::1d88:3306:c280:3179%6]) with mapi id 15.20.5566.015; Wed, 24 Aug 2022
+ 11:50:41 +0000
+Message-ID: <dca6b5a4-9865-2d93-1cb6-ceed024b484f@axentia.se>
+Date:   Wed, 24 Aug 2022 13:50:39 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v2 3/4] usb: typec: mux: add typec orientation switch
+ support via mux controller
 Content-Language: en-US
-To:     "Nancy.Lin" <nancy.lin@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>, wim@linux-watchdog.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, linux@roeck-us.net,
-        nfraprado@collabora.com
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        "jason-jh . lin" <jason-jh.lin@mediatek.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        dri-devel@lists.freedesktop.org, llvm@lists.linux.dev,
-        singo.chang@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220819061011.7672-1-nancy.lin@mediatek.com>
- <20220819061011.7672-8-nancy.lin@mediatek.com>
- <44c86ad9-8158-0a8a-ce31-a995c8d10e0b@gmail.com>
- <140b3cd10317a5db781df180ce4efb697cdd641b.camel@mediatek.com>
- <c7c4e73f-dd03-4c88-f434-2aa3bd681e39@gmail.com>
- <7c59d86501c39fa6e0e182f4a537de814320426e.camel@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <7c59d86501c39fa6e0e182f4a537de814320426e.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Xu Yang <xu.yang_2@nxp.com>, heikki.krogerus@linux.intel.com,
+        robh+dt@kernel.org, shawnguo@kernel.org
+Cc:     gregkh@linuxfoundation.org, linux@roeck-us.net, jun.li@nxp.com,
+        linux-usb@vger.kernel.org, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20220823195429.1243516-1-xu.yang_2@nxp.com>
+ <20220823195429.1243516-4-xu.yang_2@nxp.com>
+From:   Peter Rosin <peda@axentia.se>
+In-Reply-To: <20220823195429.1243516-4-xu.yang_2@nxp.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MM0P280CA0103.SWEP280.PROD.OUTLOOK.COM
+ (2603:10a6:190:9::17) To AM0PR02MB4436.eurprd02.prod.outlook.com
+ (2603:10a6:208:ed::15)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 1daef090-8c1f-47a8-b584-08da85c6deb1
+X-MS-TrafficTypeDiagnostic: AM7PR02MB6067:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: YlKseXzUzfJSyECMBWdjCer4Ak1GcB8scDy4q6Oxkm7PgGKI932k1+cU6OVeFsJHy+n+NfUhThhC20uKmjGeD8C96gfZ2fWi6rw6KwmyiELQY3rP0Tpv3YwnKAXLlrz65ojX8s/32B0kuSl78jojYLNH+k3V65+xB6nuLLRbQY3AEhBy5JFajMvIqqGf79nwT39kS1NWnhOGVVJ7cmIaNNJwyEAnt0qxRxXbBK6DhEZJcqoeu+5aimyzojIJMZ2rT6DtjBZFlbWBNH7dEHTiA0Pcer9DGlV1cBE9r47qBK3QMdikpeiEyvje/hywuYKX/lvpXfDvqH8ODuz1zQxE2P7g6UrM4/aqc/f2jwJmn8N5oX3ZYL9i+/AcT20lg2l5IrWTea+bFIXXlMC85qiwXrHXGHlRps61vhRYkAWJH+vLLxsu26xEKHuMIBrtKNoMKBOFHtsI3efauDdbE6zwX87kiIfkPfg5piLsTmzSHX0BnlNbGSJnReH7pyWaHE0gRyojKcmQmSl1JqaMNgupkdpTsrXcmMamOP1dNrRWYLD6Lwo7zpt+Q2NNt8I26tFYdIEIf/lHUSFaCb91whwUCCYLbpIfPHmYYUrs7AograJoxtHeBAwQXTchjIoIqAjj/xWOWslB3IMrwg/qu30gbI7G/7pGwlinF0efCWtf+kh9CVFLcxpP0UFNdSScAtaNYlS4zdn2Vu9K/29SIaCzrh6H7RZxaiwEiQuNnP0FWZx+W/LVDacI8At0hCemv69iMqMktzK5fuZPxZttvfS1yIPK9Su2qzoxTEOaZ8K1Dpk=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR02MB4436.eurprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(366004)(376002)(136003)(346002)(39840400004)(396003)(38100700002)(186003)(316002)(2616005)(31696002)(66556008)(66946007)(66476007)(2906002)(41300700001)(8676002)(4326008)(6506007)(86362001)(31686004)(83380400001)(6486002)(5660300002)(6512007)(7416002)(26005)(8936002)(478600001)(36756003)(45980500001)(43740500002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NXhLajR2ZlNMbmg0WVVVcWI2YmZveEl1ZGpjOUJvbU9BNXF4ZGhKMzlUVUp4?=
+ =?utf-8?B?UTd1MVJwZGVCWVhWVFkvak16VVVWNzFDb0lQUFlRS1d6NnZnWjBjbkxPd3M2?=
+ =?utf-8?B?WUNCV1NpRi9sRm1rc3lsTG9xY3RZQ2lqRjlxZmpqWlBmUkFLZTJDNnZlR2t1?=
+ =?utf-8?B?RnhqNUF0eXc3dDJjSXVvSG1zMmMrVWtxYUJzSVNCeXRDN3d6dE1oV0F6enlr?=
+ =?utf-8?B?b1llQU4rY1dkeDN1eW00dlpCWjhHYTh2bXlsN0pTSi9rOXZOZFZ4SWU2Y2lo?=
+ =?utf-8?B?dG5hbEs4dEV2aURHQzRyMnU4R0tiSFRJSTl1SUpZOWJjTGVsREsxYkJEWXBR?=
+ =?utf-8?B?R2tEZjVpRk40b0pIMlNoWWdWU0lnaTBkQmRSOXI1RU80L2V3Sk9oSEV4ZzE2?=
+ =?utf-8?B?QkFKVk1DdHQrRndqRCthbm9KbmxIb3hCRUh5UFpnZ09tV24wUGg1alBRZE9X?=
+ =?utf-8?B?UjZHREdkNHFZWEZiMmptMHdVM2IxUjdTS1liQktpRVdvdDVOanczcUltblpO?=
+ =?utf-8?B?ODZ6TndIRS8rc0VSZ2ZWR1dGQVRrZ3BsaFR2cnJjeVo2enIwbmRGY3g1cjNX?=
+ =?utf-8?B?MjArbmw3SmdzUkRnZ1VSbk0xb2dTZ1V3aXRDdXl1akRqL0orRXFOVEttZitu?=
+ =?utf-8?B?ZXlVTzNzRHhuUFVqelFzQ2diWEJvRWxKb0c5VFJDbUhRdGJIeXk1a1JVZ2Rt?=
+ =?utf-8?B?ZzJnUjZ5dHBIZkRlOGU0ckY5NmM4RnQ1cTZqQTBFV0Q4VVExVk5UY29xZEdK?=
+ =?utf-8?B?ZDk4emUrejBMSi9kaTVINWFpcCtCdlNKUm91b1dRZXRKZlhMclAxQUxEWDdC?=
+ =?utf-8?B?bEhqalNXVTE1alFHVkk3UzQySlF2NGd1ZTNRdCtYR05sTHJRM0FKb21PdWU1?=
+ =?utf-8?B?Y2ZPQXJxZzBoUUo2RHhhMGk3TVR5b0ZOUFB2ekhuVXFjeEFVT0hrS2YxVGJT?=
+ =?utf-8?B?dS9oTks2YTlCSVgwOXpYemNwdHNka3RmQnFyVkhEVHgyL1BOM3dON1FYQ0FM?=
+ =?utf-8?B?dXM2dStRTWFDUk9ZU25FNmJEeEpiYW9QamJIeEE0UU5zUjlBTnBtMnhZT3pJ?=
+ =?utf-8?B?aERqVkdQRi93aXMzQzh5Q0RTdjF1akNCVVkxU2N1Vkp6SXEvSUdqNW8rL1la?=
+ =?utf-8?B?cjAwYi85alA3UmtjR1NhQzVUN2ZSd1ViSy9KOUhGV09JVzBSNzlxMytKWWph?=
+ =?utf-8?B?Mm9kclMzTjlLS05qU3BsMDBLZ0NqNXJLd2FNenBLaC95eHRCNFNXOEJ5Z0M3?=
+ =?utf-8?B?ZTgyaysxY2FqSmNqVzh3UjRSNlJoV1RWUi9uMWhRK2F2d0FUQ2RIOUtOTWZD?=
+ =?utf-8?B?VktEYmFWZkRvMVIzeGpOZXBleGFYNmF6QnBSSUZwWDBOQ2lUUHFHZlQwWDhY?=
+ =?utf-8?B?eGRESHB0SXAzTnY0ZldqMDU0SUg5dWZqdVBxRVNDT0l0aXdMU1k3eUE1aWdI?=
+ =?utf-8?B?ZkZFQkRUK0VhUmUwdGp6TVZwaWx3ZzhyTU4wcnliOTBBUmpGVjdXOFBBYzBZ?=
+ =?utf-8?B?SUhWREhSMEIxTEExL2RPalBoSWdEbzA2cGYrTFZ0alZFTHoxOUIvYWVONzB4?=
+ =?utf-8?B?SEl1MjUyOU5nS0JidTgrY2xJMjlUVHJBd2hBaW9Cdk5QZ3JSeHMzVnIwemJs?=
+ =?utf-8?B?dndMMlUzYVdTOURibHNneWU0VVpHSWV0aFp2dHlWLzM1cXFFUWtjSy93M1Fr?=
+ =?utf-8?B?R010ODdxZVBSYXIyTXlHWTlrUDhlL1lBeXZxTUttOGVFT2crZFV1TEVib3dB?=
+ =?utf-8?B?QlkxWU1GZ0lOVDlFcWRiYlFadVNMVXZ1bU9vaHJHL2VtcUJVVWpQV2RlYUR4?=
+ =?utf-8?B?a0lXNm9wL09GTXVaM3dJVHlhaitxUFdKajRIRTlwSDJyYjRHeVFsMkpUdWhK?=
+ =?utf-8?B?TU5RTXVpeS9HTDZWSTJTZGlqRHRsRk03L1hKZHFKR1JJZVl5K1BHYjA3M1B2?=
+ =?utf-8?B?THdybmdOc1JtcitVT2hidHlaVlVydkgrSjE2VWtnR0gzaHdiT0RHWld1N1FM?=
+ =?utf-8?B?K0EwY3RLNjZFWG9GcldFWmczc3J5Rk1sbXc4SlNFMnlQR205NGcxUTFleEZV?=
+ =?utf-8?B?bjRGeGxNSy9RaWJpT1ZmUzRXU3FxVERNMkV0V2puMy81VHQ1cEJ3THRPWjN1?=
+ =?utf-8?Q?bipADUOZI/KyyOzkPCMipnUD5?=
+X-OriginatorOrg: axentia.se
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1daef090-8c1f-47a8-b584-08da85c6deb1
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR02MB4436.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Aug 2022 11:50:41.4741
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 4ee68585-03e1-4785-942a-df9c1871a234
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: haUZlBiPprixBHEUU6ny+HCIi3DZ8mj1xKkHYIDQi/IrZKYd+/Prdt9YYqarU6RR
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR02MB6067
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
         URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -95,300 +128,194 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi!
 
+2022-08-23 at 21:54, Xu Yang wrote:
+> Some dedicated mux block can use existing mux controller as a mux
+> provider, typec port as a consumer to select channel for orientation
+> switch, this can be an alternate way to control typec orientation switch.
+> Also, one mux controller could cover highspeed, superspeed and sideband
+> use case one time in this implementation.
+> 
+> Reported-by: kernel test robot <lkp@intel.com>
+> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+> 
+> ---
+> Changes since v1:
+> - add build dependence (select MULTIPLEXER)
+> - improve Multiplexer control logic
+> 
+>  drivers/usb/typec/Kconfig     |  1 +
+>  drivers/usb/typec/mux.c       | 76 ++++++++++++++++++++++++++++++++++-
+>  include/linux/usb/typec_mux.h |  7 +---
+>  3 files changed, 78 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/usb/typec/Kconfig b/drivers/usb/typec/Kconfig
+> index 5defdfead653..73d4976d8148 100644
+> --- a/drivers/usb/typec/Kconfig
+> +++ b/drivers/usb/typec/Kconfig
+> @@ -2,6 +2,7 @@
+>  
+>  menuconfig TYPEC
+>  	tristate "USB Type-C Support"
+> +	select MULTIPLEXER
+>  	help
+>  	  USB Type-C Specification defines a cable and connector for USB where
+>  	  only one type of plug is supported on both ends, i.e. there will not
+> diff --git a/drivers/usb/typec/mux.c b/drivers/usb/typec/mux.c
+> index 464330776cd6..05e6ed217620 100644
+> --- a/drivers/usb/typec/mux.c
+> +++ b/drivers/usb/typec/mux.c
+> @@ -13,6 +13,7 @@
+>  #include <linux/mutex.h>
+>  #include <linux/property.h>
+>  #include <linux/slab.h>
+> +#include <linux/mux/consumer.h>
+>  
+>  #include "class.h"
+>  #include "mux.h"
+> @@ -22,6 +23,11 @@
+>  struct typec_switch {
+>  	struct typec_switch_dev *sw_devs[TYPEC_MUX_MAX_DEVS];
+>  	unsigned int num_sw_devs;
+> +
+> +	/* Could handle HighSpeed, SuperSpeed, Sideband switch one time */
+> +	struct mux_control *mux_switch;
+> +	/* 3 state correspond to NONE, NORMAL, REVERSE for all switches */
+> +	int mux_states[3];
+>  };
+>  
+>  static int switch_fwnode_match(struct device *dev, const void *fwnode)
+> @@ -117,6 +123,58 @@ struct typec_switch *fwnode_typec_switch_get(struct fwnode_handle *fwnode)
+>  }
+>  EXPORT_SYMBOL_GPL(fwnode_typec_switch_get);
+>  
+> +static struct typec_switch *mux_control_typec_switch_get(struct device *dev)
+> +{
+> +	struct typec_switch *sw;
+> +	struct mux_control *mux;
+> +	int ret;
+> +
+> +	if (!device_property_present(dev, "mux-controls"))
+> +		return NULL;
+> +
+> +	sw = kzalloc(sizeof(*sw), GFP_KERNEL);
+> +	if (!sw)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	mux = mux_control_get(dev, NULL);
+> +	if (!IS_ERR(mux)) {
+> +		sw->mux_switch = mux;
+> +		ret = device_property_read_u32_array(dev,
+> +			"typec-switch-states", sw->mux_states, 3);
+> +		if (ret) {
+> +			kfree(sw);
+> +			return ERR_PTR(ret);
+> +		}
+> +	} else {
+> +		kfree(sw);
+> +		return ERR_CAST(mux);
+> +	}
+> +
+> +	return sw;
+> +}
+> +
+> +/**
+> + * typec_switch_get - Find USB Type-C orientation switch
+> + * @dev: The device using switch
+> + *
+> + * Finds a switch used by @dev. Returns a reference to the switch on
+> + * success, NULL if no matching connection was found, or
+> + * ERR_PTR(-EPROBE_DEFER) when a connection was found but the switch
+> + * has not been enumerated yet, or ERR_PTR with a negative errno.
+> + */
+> +struct typec_switch *typec_switch_get(struct device *dev)
+> +{
+> +	struct typec_switch *sw;
+> +
+> +	sw = fwnode_typec_switch_get(dev_fwnode(dev));
+> +	if (!sw)
+> +		/* Try get switch based on mux control */
+> +		sw = mux_control_typec_switch_get(dev);
+> +
+> +	return sw;
+> +}
+> +EXPORT_SYMBOL_GPL(typec_switch_get);
+> +
+>  /**
+>   * typec_switch_put - Release USB Type-C orientation switch
+>   * @sw: USB Type-C orientation switch
+> @@ -137,6 +195,10 @@ void typec_switch_put(struct typec_switch *sw)
+>  		module_put(sw_dev->dev.parent->driver->owner);
+>  		put_device(&sw_dev->dev);
+>  	}
+> +
+> +	if (sw->mux_switch)
+> +		mux_control_put(sw->mux_switch);
+> +
+>  	kfree(sw);
+>  }
+>  EXPORT_SYMBOL_GPL(typec_switch_put);
+> @@ -204,6 +266,7 @@ int typec_switch_set(struct typec_switch *sw,
+>  		     enum typec_orientation orientation)
+>  {
+>  	struct typec_switch_dev *sw_dev;
+> +	struct mux_control *mux;
+>  	unsigned int i;
+>  	int ret;
+>  
+> @@ -218,7 +281,18 @@ int typec_switch_set(struct typec_switch *sw,
+>  			return ret;
+>  	}
+>  
+> -	return 0;
+> +	mux = sw->mux_switch;
+> +	if (!mux)
+> +		return 0;
+> +
+> +	ret = mux_control_select(mux, sw->mux_states[orientation]);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Keep it as it is since idle_state is MUX_IDLE_AS_IS */
+> +	ret = mux_control_deselect(mux);
 
-On 24/08/2022 04:44, Nancy.Lin wrote:
-> Hi Matthias,
-> 
-> Thanks for your comment.
-> 
-> On Tue, 2022-08-23 at 14:08 +0200, Matthias Brugger wrote:
->>
->> On 23/08/2022 13:30, Nancy.Lin wrote:
->>> Hi Matthias,
->>>
->>> Thanks for the review.
->>>
->>> On Tue, 2022-08-23 at 12:20 +0200, Matthias Brugger wrote:
->>>>
->>>> On 19/08/2022 08:10, Nancy.Lin wrote:
->>>>> Add mmsys for support 64 reset bits. It is a preparation for
->>>>> MT8195
->>>>> vdosys1 HW reset. MT8195 vdosys1 has more than 32 reset bits.
->>>>>
->>>>> 1. Add the number of reset bits in mmsys private data
->>>>> 2. move the whole "reset register code section" behind the
->>>>> "get mmsys->data" code section for getting the num_resets in
->>>>> mmsys-
->>>>>> data.
->>>>>
->>>>> Signed-off-by: Nancy.Lin <nancy.lin@mediatek.com>
->>>>> Reviewed-by: AngeloGioacchino Del Regno <
->>>>> angelogioacchino.delregno@collabora.com>
->>>>> Reviewed-by: CK Hu <ck.hu@mediatek.com>
->>>>> Tested-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
->>>>> ---
->>>>>     drivers/soc/mediatek/mtk-mmsys.c | 40 +++++++++++++++++++++-
->>>>> ---
->>>>> -------
->>>>>     drivers/soc/mediatek/mtk-mmsys.h |  1 +
->>>>>     2 files changed, 27 insertions(+), 14 deletions(-)
->>>>>
->>>>> diff --git a/drivers/soc/mediatek/mtk-mmsys.c
->>>>> b/drivers/soc/mediatek/mtk-mmsys.c
->>>>> index 999be064103b..20ae751ad8a7 100644
->>>>> --- a/drivers/soc/mediatek/mtk-mmsys.c
->>>>> +++ b/drivers/soc/mediatek/mtk-mmsys.c
->>>>> @@ -20,6 +20,8 @@
->>>>>     #include "mt8195-mmsys.h"
->>>>>     #include "mt8365-mmsys.h"
->>>>>     
->>>>> +#define MMSYS_SW_RESET_PER_REG 32
->>>>> +
->>>>>     static const struct mtk_mmsys_driver_data
->>>>> mt2701_mmsys_driver_data = {
->>>>>     	.clk_driver = "clk-mt2701-mm",
->>>>>     	.routes = mmsys_default_routing_table,
->>>>> @@ -86,6 +88,7 @@ static const struct mtk_mmsys_driver_data
->>>>> mt8173_mmsys_driver_data = {
->>>>>     	.routes = mmsys_default_routing_table,
->>>>>     	.num_routes = ARRAY_SIZE(mmsys_default_routing_table),
->>>>>     	.sw0_rst_offset = MT8183_MMSYS_SW0_RST_B,
->>>>> +	.num_resets = 32,
->>>>>     };
->>>>>     
->>>>>     static const struct mtk_mmsys_match_data
->>>>> mt8173_mmsys_match_data
->>>>> = {
->>>>> @@ -100,6 +103,7 @@ static const struct mtk_mmsys_driver_data
->>>>> mt8183_mmsys_driver_data = {
->>>>>     	.routes = mmsys_mt8183_routing_table,
->>>>>     	.num_routes = ARRAY_SIZE(mmsys_mt8183_routing_table),
->>>>>     	.sw0_rst_offset = MT8183_MMSYS_SW0_RST_B,
->>>>> +	.num_resets = 32,
->>>>>     };
->>>>>     
->>>>>     static const struct mtk_mmsys_match_data
->>>>> mt8183_mmsys_match_data
->>>>> = {
->>>>> @@ -114,6 +118,7 @@ static const struct mtk_mmsys_driver_data
->>>>> mt8186_mmsys_driver_data = {
->>>>>     	.routes = mmsys_mt8186_routing_table,
->>>>>     	.num_routes = ARRAY_SIZE(mmsys_mt8186_routing_table),
->>>>>     	.sw0_rst_offset = MT8186_MMSYS_SW0_RST_B,
->>>>> +	.num_resets = 32,
->>>>>     };
->>>>>     
->>>>>     static const struct mtk_mmsys_match_data
->>>>> mt8186_mmsys_match_data
->>>>> = {
->>>>> @@ -128,6 +133,7 @@ static const struct mtk_mmsys_driver_data
->>>>> mt8192_mmsys_driver_data = {
->>>>>     	.routes = mmsys_mt8192_routing_table,
->>>>>     	.num_routes = ARRAY_SIZE(mmsys_mt8192_routing_table),
->>>>>     	.sw0_rst_offset = MT8186_MMSYS_SW0_RST_B,
->>>>> +	.num_resets = 32,
->>>>
->>>> You didn't reply to Nicolas regarding the reset numbers. I
->>>> actually
->>>> agree with
->>>> him that we will need the num_resets declared for all devices.
->>>> Why do
->>>> you think
->>>> this is not the case?
->>>>
->>>> Regards,
->>>> Matthias
->>>>
->>>
->>> Sorry, I lost Nicolas's email.
->>>
->>> I checked with the mmsys git log with reset controller function.
->>>
->>> 1. Enric add mmsys reset controller function in [1]/[2].
->>>      => in mtk_mmsys_reset_update(), all mmsys reset offset is
->>> MMSYS_SW0_RST_B (0x140).
->>>
->>> 2. After Enric's patch, Rex add sw0_rst_offset in mmsys driver data
->>> in
->>> [3].
->>>
->>> So, I think sw0_rst_offset is not zero. Instead of only add
->>> num_resets
->>> but also need to add sw0_rst_offset for all mmsys. What do you
->>> think ?
->>>
->>
->> Good point. It seems we have a bug in the driver. Either all SoCs
->> have the
->> reset, but it's broken since
->> 62dc30150c06 ("soc: mediatek: mmsys: add sw0_rst_offset in mmsys
->> driver data")
->> or we are adding a reset controller independently if the silicon has
->> one, which
->> would be an error in:
->> f27ef2856343 ("soc: mediatek: mmsys: Add reset controller support")
->>
->> We have to find that out.
->>
->> Regards,
->> Matthias
-> 
-> 
-> In [2], I think the first revision of Enric's reset controller is added
-> for 8173 and 8183, not for all mmsys device.
->      =>[v3,4/7] arm64: dts: mt8173: Add the mmsys reset bit to reset the
-> dsi0
->      =>[v3,5/7] arm64: dts: mt8183: Add the mmsys reset bit to reset the
-> dsi0
-> 
-> In [3], Rex only add sw0_rst_offset in 8173 and 8183 mmsys driver data.
->>
-> 
-> For other SoCs, like mt2701,mt2712..., these SoCs even don't define
-> mmsys hw reset bit[4]. So I think only set the num_resets to 32 or 64
-> to those mmsys devices who really need the reset control, others set to
-> 0(same as my v26 patch).
-> 
+No, this is also broken. You cannot, in any client driver, rely on a
+mux keeping its state unless you keep it selected. As soon as you
+deselect it, it might be selected by some other driver. Sure, you
+might know that there are no other users of the mux in question, and
+you might also know that the idles state is "as-is". But the driver
+does not see the bigger picture and has no way of knowing that. So,
+it needs to keep the mux selected.
 
-Thanks for looking into this, please see my comment further below.
+Cheers,
+Peter
 
-
-> 
-> [4]mt2701-resets.h
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/include/dt-bindings/reset/mt2701-resets.h?id=62dc30150c06774a8122c52aedd0eddaceaf5940
-> 
-> Regards,
-> Nancy
-> 
-> 
->>> [1]
->>>
-> https://urldefense.com/v3/__https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/drivers/soc/mediatek/mtk-mmsys.c?id=f27ef2856343e2ddc392975d7b15120442e4d7b7__;!!CTRNKA9wMg0ARbw!3cWAYlD1mrWRmNZy0zoJs8MNiD3s7K9PteJI9cGEvu_qp3VShfqxsBTb_fKynszs$
->>>   
->>> [2]
->>>
->>>
-> https://urldefense.com/v3/__https://patchwork.kernel.org/project/linux-mediatek/cover/20210825102632.601614-1-enric.balletbo@collabora.com/__;!!CTRNKA9wMg0ARbw!3cWAYlD1mrWRmNZy0zoJs8MNiD3s7K9PteJI9cGEvu_qp3VShfqxsBTb_cH-3nM8$
->>>   
->>> [3]
->>>
->>>
-> https://urldefense.com/v3/__https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/drivers/soc/mediatek/mtk-mmsys.c?id=62dc30150c06774a8122c52aedd0eddaceaf5940__;!!CTRNKA9wMg0ARbw!3cWAYlD1mrWRmNZy0zoJs8MNiD3s7K9PteJI9cGEvu_qp3VShfqxsBTb_VXEsbNa$
->>>   
->>>
->>> Regards,
->>> Nancy
->>>>
->>>>>     };
->>>>>     
->>>>>     static const struct mtk_mmsys_match_data
->>>>> mt8192_mmsys_match_data
->>>>> = {
->>>>> @@ -288,13 +294,19 @@ static int mtk_mmsys_reset_update(struct
->>>>> reset_controller_dev *rcdev, unsigned l
->>>>>     {
->>>>>     	struct mtk_mmsys *mmsys = container_of(rcdev, struct
->>>>> mtk_mmsys,
->>>>> rcdev);
->>>>>     	unsigned long flags;
->>>>> +	u32 offset;
->>>>> +	u32 reg;
->>>>> +
->>>>> +	offset = (id / MMSYS_SW_RESET_PER_REG) * sizeof(u32);
->>>>> +	id = id % MMSYS_SW_RESET_PER_REG;
->>>>> +	reg = mmsys->data->sw0_rst_offset + offset;
->>>>>     
->>>>>     	spin_lock_irqsave(&mmsys->lock, flags);
->>>>>     
->>>>>     	if (assert)
->>>>> -		mtk_mmsys_update_bits(mmsys, mmsys->data-
->>>>>> sw0_rst_offset, BIT(id), 0, NULL);
->>>>>
->>>>> +		mtk_mmsys_update_bits(mmsys, reg, BIT(id), 0,
->>>>> NULL);
->>>>>     	else
->>>>> -		mtk_mmsys_update_bits(mmsys, mmsys->data-
->>>>>> sw0_rst_offset, BIT(id), BIT(id), NULL);
->>>>>
->>>>> +		mtk_mmsys_update_bits(mmsys, reg, BIT(id),
->>>>> BIT(id),
->>>>> NULL);
->>>>>     
->>>>>     	spin_unlock_irqrestore(&mmsys->lock, flags);
->>>>>     
->>>>> @@ -351,18 +363,6 @@ static int mtk_mmsys_probe(struct
->>>>> platform_device *pdev)
->>>>>     		return ret;
->>>>>     	}
->>>>>     
->>>>> -	spin_lock_init(&mmsys->lock);
->>>>> -
->>>>> -	mmsys->rcdev.owner = THIS_MODULE;
->>>>> -	mmsys->rcdev.nr_resets = 32;
->>>>> -	mmsys->rcdev.ops = &mtk_mmsys_reset_ops;
->>>>> -	mmsys->rcdev.of_node = pdev->dev.of_node;
->>>>> -	ret = devm_reset_controller_register(&pdev->dev,
->>>>> &mmsys-
->>>>>> rcdev);
->>>>>
->>>>> -	if (ret) {
->>>>> -		dev_err(&pdev->dev, "Couldn't register mmsys
->>>>> reset
->>>>> controller: %d\n", ret);
->>>>> -		return ret;
->>>>> -	}
->>>>> -
->>>>>     	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->>>>>     	if (!res) {
->>>>>     		dev_err(dev, "Couldn't get mmsys resource\n");
->>>>> @@ -384,6 +384,18 @@ static int mtk_mmsys_probe(struct
->>>>> platform_device *pdev)
->>>>>     		mmsys->data = match_data->drv_data[0];
->>>>>     	}
->>>>>     
->>>>> +	spin_lock_init(&mmsys->lock);
->>>>> +
->>>>> +	mmsys->rcdev.owner = THIS_MODULE;
->>>>> +	mmsys->rcdev.nr_resets = mmsys->data->num_resets;
->>>>> +	mmsys->rcdev.ops = &mtk_mmsys_reset_ops;
->>>>> +	mmsys->rcdev.of_node = pdev->dev.of_node;
->>>>> +	ret = devm_reset_controller_register(&pdev->dev,
->>>>> &mmsys-
->>>>>> rcdev);
->>>>>
->>>>> +	if (ret) {
->>>>> +		dev_err(&pdev->dev, "Couldn't register mmsys
->>>>> reset
->>>>> controller: %d\n", ret);
->>>>> +		return ret;
->>>>> +	}
->>>>> +
-
-
-This code is only relevant if mmsys->data->num_resets > 0. Let's check for that 
-before setting up and registering an interrupt controller. What do you think?
-
-Regards,
-Matthias
-
->>>>>     #if IS_REACHABLE(CONFIG_MTK_CMDQ)
->>>>>     	ret = cmdq_dev_get_client_reg(dev, &mmsys->cmdq_base,
->>>>> 0);
->>>>>     	if (ret)
->>>>> diff --git a/drivers/soc/mediatek/mtk-mmsys.h
->>>>> b/drivers/soc/mediatek/mtk-mmsys.h
->>>>> index f01ba206481d..20a271b80b3b 100644
->>>>> --- a/drivers/soc/mediatek/mtk-mmsys.h
->>>>> +++ b/drivers/soc/mediatek/mtk-mmsys.h
->>>>> @@ -92,6 +92,7 @@ struct mtk_mmsys_driver_data {
->>>>>     	const struct mtk_mmsys_routes *routes;
->>>>>     	const unsigned int num_routes;
->>>>>     	const u16 sw0_rst_offset;
->>>>> +	const u32 num_resets;
->>>>>     };
->>>>>     
->>>>>     struct mtk_mmsys_match_data {
->>>>
->>>>
-> 
+> +
+> +	return ret;
+>  }
+>  EXPORT_SYMBOL_GPL(typec_switch_set);
+>  
+> diff --git a/include/linux/usb/typec_mux.h b/include/linux/usb/typec_mux.h
+> index 9292f0e07846..2287e5a5f591 100644
+> --- a/include/linux/usb/typec_mux.h
+> +++ b/include/linux/usb/typec_mux.h
+> @@ -24,16 +24,13 @@ struct typec_switch_desc {
+>  	void *drvdata;
+>  };
+>  
+> +
+> +struct typec_switch *typec_switch_get(struct device *dev);
+>  struct typec_switch *fwnode_typec_switch_get(struct fwnode_handle *fwnode);
+>  void typec_switch_put(struct typec_switch *sw);
+>  int typec_switch_set(struct typec_switch *sw,
+>  		     enum typec_orientation orientation);
+>  
+> -static inline struct typec_switch *typec_switch_get(struct device *dev)
+> -{
+> -	return fwnode_typec_switch_get(dev_fwnode(dev));
+> -}
+> -
+>  struct typec_switch_dev *
+>  typec_switch_register(struct device *parent,
+>  		      const struct typec_switch_desc *desc);
