@@ -2,46 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 993325A023B
-	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 21:45:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01F495A027D
+	for <lists+devicetree@lfdr.de>; Wed, 24 Aug 2022 22:09:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238001AbiHXTo6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Aug 2022 15:44:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41936 "EHLO
+        id S229930AbiHXUJg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Aug 2022 16:09:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229664AbiHXTo6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 15:44:58 -0400
-Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1496A2D1F5;
-        Wed, 24 Aug 2022 12:44:57 -0700 (PDT)
-Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-11dca1c9c01so5274729fac.2;
-        Wed, 24 Aug 2022 12:44:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc;
-        bh=GGbTiH5MlwiXaRbgDFTCR8WHSkMV+X8PO6SJOF3rCjU=;
-        b=wSp+vyBHWsXKfDv03XgmUgTZVRdH9F2o9+i42RGg1pXtRTNkWmKo5H+/wHvypB++SD
-         k+kEYR3rTMQpVVciI5VXWwpy9hz0k09SZ5skVg0Nb4Y3ql4+yPjqAcMA+K+aToLEKmOy
-         DSrA61Pmoi9jVeW32xTRDcEP9DZ9pjfKcdkCjMm4heHAQMIf/5Hmv0FmNFQG7cV8HNVm
-         LcTM0vCd+TjglWaVjOdLJT1u3UO8I2e4hwvlQ42FsbMq4CeeiBhNMASt+80eoH7SXg9r
-         3+k1lOwJUCjcD5r6ShhpkPMPynPhXM2u61PRCebpXHyoi6hFEScZwOaDJwaz602FmCHe
-         GFYQ==
-X-Gm-Message-State: ACgBeo31gImf7eHZ9QdUAZESo9oEQXQAOoJCwwoepG6CPs4i0Mfehw5N
-        4ajTGH7iRYQnd8/ljTSiog==
-X-Google-Smtp-Source: AA6agR7g9enQ2VOPXxjiBBaQyiivB97fu0ajQpyomq4xaBUyjmklH9YO+Uml4yuCLV96TFgcFbgd0g==
-X-Received: by 2002:a05:6870:f6a3:b0:11d:1ca9:ed55 with SMTP id el35-20020a056870f6a300b0011d1ca9ed55mr4500889oab.121.1661370296312;
-        Wed, 24 Aug 2022 12:44:56 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id p1-20020a544601000000b00344cc0c4606sm4284544oip.58.2022.08.24.12.44.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Aug 2022 12:44:55 -0700 (PDT)
-Received: (nullmailer pid 2768602 invoked by uid 1000);
-        Wed, 24 Aug 2022 19:44:54 -0000
-Date:   Wed, 24 Aug 2022 14:44:54 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+        with ESMTP id S229573AbiHXUJf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 16:09:35 -0400
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AD6D7C192;
+        Wed, 24 Aug 2022 13:09:34 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1661371731; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=XgjFwLYa7IBedppKBr0lLTdnZbp/TPpl8VwTvpe3PsAd2sv2DCzAKEd2AJax31Iex4F+WMiZSX/uz7zNE0HzIjRe7nDzgtVaiH+hgPJ3xBVogMm6HtxcOtHjGeTDFoYAfKVhWey6zTW/YOrQCDXkwFUdKB7gJJ1is3fppqo6j64=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1661371731; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=bS9tansBU/mS+uLByVfBLtD82ZsrEu9pPMJgjJjQdUo=; 
+        b=EWN66Zd8S+jZ5y7vztJxZeCtA29ChJ/tOAlmPXK54B4Y/1QkcPM5OKa1Qg8SS2t+Uqa5AhJxfVdE9a1I7praE9cEVLeug9dGPDOd/Exl7uRPTNiIgWN6gR7nZrHq9XNNDveHSkgaJ56/LyxmKZwrwEv1+pm4cThZq56agEvqHrE=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1661371731;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=Content-Type:Content-Transfer-Encoding:From:From:Mime-Version:Subject:Subject:Date:Date:Message-Id:Message-Id:References:Cc:Cc:In-Reply-To:To:To:Reply-To;
+        bh=bS9tansBU/mS+uLByVfBLtD82ZsrEu9pPMJgjJjQdUo=;
+        b=kKccrKLa1Q2FHhRwlP7KyOqdNW0H1uLfj8lhqPnSd5Kw98/4245wTO6nTScl1MgQ
+        G9iZ4KVCDJuqvg56uFxLLT+XwhQAcLgoevgWvyDDPboILR05sO1RahksjUmudfm2XOT
+        +uk9gjIoZqjAaxzgndtgoop402w6i9kWx1FJy2BE=
+Received: from [10.10.10.4] (37.120.152.236 [37.120.152.236]) by mx.zohomail.com
+        with SMTPS id 1661371729628874.3633283035331; Wed, 24 Aug 2022 13:08:49 -0700 (PDT)
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+From:   =?utf-8?Q?Ar=C4=B1n=C3=A7_=C3=9CNAL?= <arinc.unal@arinc9.com>
+Mime-Version: 1.0 (1.0)
+Subject: Re: [PATCH v5 1/7] dt-bindings: net: dsa: mediatek,mt7530: make trivial changes
+Date:   Wed, 24 Aug 2022 23:08:40 +0300
+Message-Id: <C36EB263-8C1E-414C-B7FF-E6359AA6031A@arinc9.com>
+References: <20220824194454.GA2768100-robh@kernel.org>
 Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
         linux-mediatek@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org,
@@ -63,48 +63,50 @@ Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
         Vladimir Oltean <olteanv@gmail.com>,
         Luiz Angelo Daros de Luca <luizluca@gmail.com>,
         Daniel Golle <daniel@makrotopia.org>, erkin.bozoglu@xeront.com
-Subject: Re: [PATCH v5 1/7] dt-bindings: net: dsa: mediatek,mt7530: make
- trivial changes
-Message-ID: <20220824194454.GA2768100-robh@kernel.org>
-References: <20220824104040.17527-1-arinc.unal@arinc9.com>
- <20220824104040.17527-2-arinc.unal@arinc9.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220824104040.17527-2-arinc.unal@arinc9.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20220824194454.GA2768100-robh@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+X-Mailer: iPhone Mail (17H35)
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 24 Aug 2022 13:40:34 +0300, Arınç ÜNAL wrote:
-> Make trivial changes on the binding.
-> 
-> - Update title to include MT7531 switch.
-> - Add me as a maintainer. List maintainers in alphabetical order by first
-> name.
-> - Add description to compatible strings.
-> - Stretch descriptions up to the 80 character limit.
-> - Remove lists for single items.
-> - Remove quotes from $ref: "dsa.yaml#".
-> 
-> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
-> ---
->  .../bindings/net/dsa/mediatek,mt7530.yaml     | 39 +++++++++++--------
->  1 file changed, 23 insertions(+), 16 deletions(-)
-> 
+> On 24 Aug 2022, at 22:44, Rob Herring <robh@kernel.org> wrote:
+>=20
+> =EF=BB=BFOn Wed, 24 Aug 2022 13:40:34 +0300, Ar=C4=B1n=C3=A7 =C3=9CNAL wro=
+te:
+>> Make trivial changes on the binding.
+>>=20
+>> - Update title to include MT7531 switch.
+>> - Add me as a maintainer. List maintainers in alphabetical order by first=
 
+>> name.
+>> - Add description to compatible strings.
+>> - Stretch descriptions up to the 80 character limit.
+>> - Remove lists for single items.
+>> - Remove quotes from $ref: "dsa.yaml#".
+>>=20
+>> Signed-off-by: Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc9.com>
+>> ---
+>> .../bindings/net/dsa/mediatek,mt7530.yaml     | 39 +++++++++++--------
+>> 1 file changed, 23 insertions(+), 16 deletions(-)
+>>=20
+>=20
+>=20
+> Please add Acked-by/Reviewed-by tags when posting new versions. However,
+> there's no need to repost patches *only* to add the tags. The upstream
+> maintainer will do that for acks received on the version they apply.
+>=20
+> If a tag was not added on purpose, please state why and what changed.
 
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
+Thanks for the info. This is what I did on the composition for this patch se=
+ries.
 
-If a tag was not added on purpose, please state why and what changed.
+Ar=C4=B1n=C3=A7
 
