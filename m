@@ -2,80 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C74285A1B0D
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 23:31:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 953AE5A1B20
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 23:33:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232783AbiHYVbB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 17:31:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49948 "EHLO
+        id S243686AbiHYVdu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 17:33:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231807AbiHYVbA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 17:31:00 -0400
+        with ESMTP id S243684AbiHYVds (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 17:33:48 -0400
 Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D867BB680
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 14:30:59 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A958BFC41
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 14:33:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1661463058;
+        s=mimecast20190719; t=1661463226;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          in-reply-to:in-reply-to:references:references;
-        bh=LY0dJI+HK3FIyhOwsV0Ul5xZhYFbnAopq+3Lt6Gqi0I=;
-        b=f5YY2U0K2Hhw3Dmv2CE5ulOQxaUQ6srd4fib/qStqZ+OUHTQigj6dElz05fev0WmSDE8+E
-        TrhWE3D4uWIj6asmVJcAlntEtKzVVb4FOyq1StQ6VrR8QXiz1bGCrrM25pN6X8aToXd3pB
-        kss3HQPTEN2R9yo5Krab/VjuqKungSQ=
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com
- [209.85.160.199]) by relay.mimecast.com with ESMTP with STARTTLS
+        bh=6aPloejq6vPvAglHpAJmylSnk+VauqCSWbgwN5T3xFw=;
+        b=Grkq6sFxGeijgzavNrx3RzYW4crjFNq5iXHmX8beLBSokZcFt6DW3dIj+wU3WzS+rFWSlh
+        Wp6ItaFjjTz1KDIlJiJ90BnEjOqXPg084p5qL6MtylK9TQutkbYe7/KdAVxob9W24Ai7hx
+        8lDiWPNnIG4lhRBr+WZ56r7sx0ubxdM=
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com
+ [209.85.219.72]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-617-l45EDqY9OoGO3Jws6mqjTQ-1; Thu, 25 Aug 2022 17:30:57 -0400
-X-MC-Unique: l45EDqY9OoGO3Jws6mqjTQ-1
-Received: by mail-qt1-f199.google.com with SMTP id ff27-20020a05622a4d9b00b0034306b77c08so15998830qtb.6
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 14:30:57 -0700 (PDT)
+ us-mta-593-q1_8DmWrOxqhLtxa40_7dQ-1; Thu, 25 Aug 2022 17:33:40 -0400
+X-MC-Unique: q1_8DmWrOxqhLtxa40_7dQ-1
+Received: by mail-qv1-f72.google.com with SMTP id lj8-20020a0562145c8800b00496ceb190d4so9433970qvb.3
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 14:33:40 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=LY0dJI+HK3FIyhOwsV0Ul5xZhYFbnAopq+3Lt6Gqi0I=;
-        b=tqJQWE3X5MxVpIOB3cjTRr4SbjpdBT1Ye2JDlSePZjay8NdWtAEj08JA8GGq6c655s
-         7qGRWzgSpeDWE+gufB/8zrl73AuH75iFOIPxp3/scGlTurb7lXv4+z9kaj3FdQNem500
-         wnNqqFDFwgJ4hapaw7LBes9Ql/gqm6p+O/bx4ePWLOlam4AXdnBqnWXRcPIwg38DM4FM
-         hu10kTJztl/Oee2O/M5Of/7a0aazy79eM5+AxG8VxO9Q4psJT/aGshN0Rm//c392rCSc
-         +jMqtwGESCqWzt+qyz3Xtp2F024GfguXsEC+KEBTeYe4n/kxDg7bcvwFiLifcvwW3Ygx
-         RIcw==
-X-Gm-Message-State: ACgBeo0ohyIseRORCk3GHV8Mhd1B/ndoV6fcZy4CH3Fjwx2/9ZMlWLEx
-        gYVx8PhmoOhHMk8WTN4h+KyiHwUEX5AGJUAOH4GslldFd/J9KUDz8dsgl9ojzKBCMfaSzHH/Z0D
-        awStv03+OWtEJTPGohfjszA==
-X-Received: by 2002:ad4:5de2:0:b0:477:f5e6:e13 with SMTP id jn2-20020ad45de2000000b00477f5e60e13mr5423061qvb.31.1661463056657;
-        Thu, 25 Aug 2022 14:30:56 -0700 (PDT)
-X-Google-Smtp-Source: AA6agR7xkZetSsMyk6rm1K+UpYZVkmzuXPO46vRqd+KLaE2CVCyFwQLP8z/A95Kj/ZKZzhHK07guDg==
-X-Received: by 2002:ad4:5de2:0:b0:477:f5e6:e13 with SMTP id jn2-20020ad45de2000000b00477f5e60e13mr5423047qvb.31.1661463056397;
-        Thu, 25 Aug 2022 14:30:56 -0700 (PDT)
+        bh=6aPloejq6vPvAglHpAJmylSnk+VauqCSWbgwN5T3xFw=;
+        b=pA18wPoVyuANr4naOgFVmvOIWrwcjPkzmZS8Do3Cb8fYlMjqDSGilQPUHSjkGR7Ivw
+         DjFmDvbM0KopXDJS4Jd2iJ7ZL1b6aWIM5m+STjgsW6hZinL+OTKRGJI5RIXcL8sXkwIO
+         5AcQDJy6+OG2yC4qD5rCl/dEiXb7LHFVtG0ZS7yMbBuj4K1wDfygkt1qVK12dyQQBJ9S
+         e++7zLK6SOR7ZWKc6TcgDEYOfL82DGj3QwbpdO4MmPo+V9d67Dd317IfkjSIianVmgGB
+         Iun/Zy/SruqcvHZ/hnkCZPVKSEH/H1midBe0pEwX8ELbSG7/+lYpBS1KPNkgLAKPweVD
+         nIUA==
+X-Gm-Message-State: ACgBeo1kmaQ3jaD23Vs2JtRWuiYJKbu8C/lF8M8F1yte/Iv6bmPa43Ud
+        kAFBsCDPLJ1lSZ2mX4lhZMFXqpGDEs1sHCIxeq+1n/Ignw611S53mo1XSS1qXjDguacvlIfUVwz
+        dpHe/+ZonI8oaHDSSHlNa7Q==
+X-Received: by 2002:a05:622a:342:b0:343:71c7:9be6 with SMTP id r2-20020a05622a034200b0034371c79be6mr5617602qtw.72.1661463219745;
+        Thu, 25 Aug 2022 14:33:39 -0700 (PDT)
+X-Google-Smtp-Source: AA6agR4rio0ubMv+vXsQgasbaBeWjrLzOszpzRC+aB0GsBY5/h2vBh2/WaaV1Gk73dWYTWUJ4jVdwg==
+X-Received: by 2002:a05:622a:342:b0:343:71c7:9be6 with SMTP id r2-20020a05622a034200b0034371c79be6mr5617582qtw.72.1661463219519;
+        Thu, 25 Aug 2022 14:33:39 -0700 (PDT)
 Received: from halaneylaptop ([2600:1700:1ff0:d0e0::48])
-        by smtp.gmail.com with ESMTPSA id m14-20020a05620a24ce00b006b9a89d408csm427775qkn.100.2022.08.25.14.30.55
+        by smtp.gmail.com with ESMTPSA id o6-20020a05620a2a0600b006baf3ffba23sm411321qkp.38.2022.08.25.14.33.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Aug 2022 14:30:55 -0700 (PDT)
-Date:   Thu, 25 Aug 2022 16:30:53 -0500
+        Thu, 25 Aug 2022 14:33:39 -0700 (PDT)
+Date:   Thu, 25 Aug 2022 16:33:37 -0500
 From:   Andrew Halaney <ahalaney@redhat.com>
 To:     Douglas Anderson <dianders@chromium.org>
 Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
         Mark Brown <broonie@kernel.org>,
         Andy Gross <agross@kernel.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/7] arm64: dts: qcom: sa8155p-adp: Specify which LDO
+Subject: Re: [PATCH 2/7] arm64: dts: qcom: sa8295p-adp: Specify which LDO
  modes are allowed
-Message-ID: <20220825213053.5xxiljfjkhnpy53p@halaneylaptop>
+Message-ID: <20220825213337.3h3in2csbdcom7on@halaneylaptop>
 References: <20220825164205.4060647-1-dianders@chromium.org>
- <20220825094155.1.Id59c32b560c4662d8b3697de2bd494d08d654806@changeid>
+ <20220825094155.2.I430a56702ab0af65244e62667bb7743107de0c96@changeid>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220825094155.1.Id59c32b560c4662d8b3697de2bd494d08d654806@changeid>
+In-Reply-To: <20220825094155.2.I430a56702ab0af65244e62667bb7743107de0c96@changeid>
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,7 +83,7 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 25, 2022 at 09:41:59AM -0700, Douglas Anderson wrote:
+On Thu, Aug 25, 2022 at 09:42:00AM -0700, Douglas Anderson wrote:
 > This board uses RPMH, specifies "regulator-allow-set-load" for LDOs,
 > but doesn't specify any modes with "regulator-allowed-modes".
 > 
@@ -98,32 +98,161 @@ On Thu, Aug 25, 2022 at 09:41:59AM -0700, Douglas Anderson wrote:
 > 
 > [1] https://lore.kernel.org/r/20220824142229.RFT.v2.2.I6f77860e5cd98bf5c67208fa9edda4a08847c304@changeid
 > 
-> Fixes: 5b85e8f2225c ("arm64: dts: qcom: sa8155p-adp: Add base dts file")
+> Fixes: 519183af39b2 ("arm64: dts: qcom: add SA8540P and ADP")
 > Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> ---
-> 
->  arch/arm64/boot/dts/qcom/sa8155p-adp.dts | 13 ++++++++++++-
->  1 file changed, 12 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
-> index ba547ca9fc6b..ddb9cb182152 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
-> @@ -43,7 +43,6 @@ vreg_s4a_1p8: smps4 {
->  
->  		regulator-always-on;
->  		regulator-boot-on;
-> -		regulator-allow-set-load;
-
-I could see this deserving its own commit or a line in the commit
-message, but not a big deal to me:
 
 Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
 
+> ---
+> 
+>  arch/arm64/boot/dts/qcom/sa8295p-adp.dts | 45 ++++++++++++++++++++++++
+>  1 file changed, 45 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
+> index 9398f0349944..6d05cb54e32f 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
+> @@ -36,6 +36,9 @@ vreg_l3a: ldo3 {
+>  			regulator-max-microvolt = <1208000>;
+>  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>  			regulator-allow-set-load;
+> +			regulator-allowed-modes =
+> +			    <RPMH_REGULATOR_MODE_LPM
+> +			     RPMH_REGULATOR_MODE_HPM>;
+>  		};
 >  
->  		vin-supply = <&vreg_3p3>;
+>  		vreg_l5a: ldo5 {
+> @@ -44,6 +47,9 @@ vreg_l5a: ldo5 {
+>  			regulator-max-microvolt = <912000>;
+>  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>  			regulator-allow-set-load;
+> +			regulator-allowed-modes =
+> +			    <RPMH_REGULATOR_MODE_LPM
+> +			     RPMH_REGULATOR_MODE_HPM>;
+>  		};
+>  
+>  		vreg_l7a: ldo7 {
+> @@ -52,6 +58,9 @@ vreg_l7a: ldo7 {
+>  			regulator-max-microvolt = <1800000>;
+>  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>  			regulator-allow-set-load;
+> +			regulator-allowed-modes =
+> +			    <RPMH_REGULATOR_MODE_LPM
+> +			     RPMH_REGULATOR_MODE_HPM>;
+>  		};
+>  
+>  		vreg_l13a: ldo13 {
+> @@ -60,6 +69,9 @@ vreg_l13a: ldo13 {
+>  			regulator-max-microvolt = <3072000>;
+>  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>  			regulator-allow-set-load;
+> +			regulator-allowed-modes =
+> +			    <RPMH_REGULATOR_MODE_LPM
+> +			     RPMH_REGULATOR_MODE_HPM>;
+>  		};
 >  	};
-> @@ -137,6 +136,9 @@ vreg_l5a_0p88: ldo5 {
+>  
+> @@ -73,6 +85,9 @@ vreg_l1c: ldo1 {
+>  			regulator-max-microvolt = <912000>;
+>  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>  			regulator-allow-set-load;
+> +			regulator-allowed-modes =
+> +			    <RPMH_REGULATOR_MODE_LPM
+> +			     RPMH_REGULATOR_MODE_HPM>;
+>  		};
+>  
+>  		vreg_l2c: ldo2 {
+> @@ -81,6 +96,9 @@ vreg_l2c: ldo2 {
+>  			regulator-max-microvolt = <3072000>;
+>  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>  			regulator-allow-set-load;
+> +			regulator-allowed-modes =
+> +			    <RPMH_REGULATOR_MODE_LPM
+> +			     RPMH_REGULATOR_MODE_HPM>;
+>  		};
+>  
+>  		vreg_l3c: ldo3 {
+> @@ -89,6 +107,9 @@ vreg_l3c: ldo3 {
+>  			regulator-max-microvolt = <1200000>;
+>  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>  			regulator-allow-set-load;
+> +			regulator-allowed-modes =
+> +			    <RPMH_REGULATOR_MODE_LPM
+> +			     RPMH_REGULATOR_MODE_HPM>;
+>  		};
+>  
+>  		vreg_l4c: ldo4 {
+> @@ -97,6 +118,9 @@ vreg_l4c: ldo4 {
+>  			regulator-max-microvolt = <1208000>;
+>  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>  			regulator-allow-set-load;
+> +			regulator-allowed-modes =
+> +			    <RPMH_REGULATOR_MODE_LPM
+> +			     RPMH_REGULATOR_MODE_HPM>;
+>  		};
+>  
+>  		vreg_l6c: ldo6 {
+> @@ -105,6 +129,9 @@ vreg_l6c: ldo6 {
+>  			regulator-max-microvolt = <1200000>;
+>  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>  			regulator-allow-set-load;
+> +			regulator-allowed-modes =
+> +			    <RPMH_REGULATOR_MODE_LPM
+> +			     RPMH_REGULATOR_MODE_HPM>;
+>  		};
+>  
+>  		vreg_l7c: ldo7 {
+> @@ -113,6 +140,9 @@ vreg_l7c: ldo7 {
+>  			regulator-max-microvolt = <1800000>;
+>  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>  			regulator-allow-set-load;
+> +			regulator-allowed-modes =
+> +			    <RPMH_REGULATOR_MODE_LPM
+> +			     RPMH_REGULATOR_MODE_HPM>;
+>  		};
+>  
+>  		vreg_l10c: ldo10 {
+> @@ -121,6 +151,9 @@ vreg_l10c: ldo10 {
+>  			regulator-max-microvolt = <2504000>;
+>  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>  			regulator-allow-set-load;
+> +			regulator-allowed-modes =
+> +			    <RPMH_REGULATOR_MODE_LPM
+> +			     RPMH_REGULATOR_MODE_HPM>;
+>  		};
+>  
+>  		vreg_l17c: ldo17 {
+> @@ -129,6 +162,9 @@ vreg_l17c: ldo17 {
+>  			regulator-max-microvolt = <2504000>;
+>  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>  			regulator-allow-set-load;
+> +			regulator-allowed-modes =
+> +			    <RPMH_REGULATOR_MODE_LPM
+> +			     RPMH_REGULATOR_MODE_HPM>;
+>  		};
+>  	};
+>  
+> @@ -142,6 +178,9 @@ vreg_l3g: ldo3 {
+>  			regulator-max-microvolt = <1200000>;
+>  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>  			regulator-allow-set-load;
+> +			regulator-allowed-modes =
+> +			    <RPMH_REGULATOR_MODE_LPM
+> +			     RPMH_REGULATOR_MODE_HPM>;
+>  		};
+>  
+>  		vreg_l7g: ldo7 {
+> @@ -150,6 +189,9 @@ vreg_l7g: ldo7 {
+>  			regulator-max-microvolt = <1800000>;
+>  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>  			regulator-allow-set-load;
+> +			regulator-allowed-modes =
+> +			    <RPMH_REGULATOR_MODE_LPM
+> +			     RPMH_REGULATOR_MODE_HPM>;
+>  		};
+>  
+>  		vreg_l8g: ldo8 {
+> @@ -158,6 +200,9 @@ vreg_l8g: ldo8 {
 >  			regulator-max-microvolt = <880000>;
 >  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
 >  			regulator-allow-set-load;
@@ -131,38 +260,8 @@ Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
 > +			    <RPMH_REGULATOR_MODE_LPM
 > +			     RPMH_REGULATOR_MODE_HPM>;
 >  		};
->  
->  		vreg_l7a_1p8: ldo7 {
-> @@ -152,6 +154,9 @@ vreg_l10a_2p96: ldo10 {
->  			regulator-max-microvolt = <2960000>;
->  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->  			regulator-allow-set-load;
-> +			regulator-allowed-modes =
-> +			    <RPMH_REGULATOR_MODE_LPM
-> +			     RPMH_REGULATOR_MODE_HPM>;
->  		};
->  
->  		vreg_l11a_0p8: ldo11 {
-> @@ -258,6 +263,9 @@ vreg_l5c_1p2: ldo5 {
->  			regulator-max-microvolt = <1200000>;
->  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->  			regulator-allow-set-load;
-> +			regulator-allowed-modes =
-> +			    <RPMH_REGULATOR_MODE_LPM
-> +			     RPMH_REGULATOR_MODE_HPM>;
->  		};
->  
->  		vreg_l7c_1p8: ldo7 {
-> @@ -273,6 +281,9 @@ vreg_l8c_1p2: ldo8 {
->  			regulator-max-microvolt = <1200000>;
->  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->  			regulator-allow-set-load;
-> +			regulator-allowed-modes =
-> +			    <RPMH_REGULATOR_MODE_LPM
-> +			     RPMH_REGULATOR_MODE_HPM>;
->  		};
->  
->  		vreg_l10c_3p3: ldo10 {
+>  	};
+>  };
 > -- 
 > 2.37.2.672.g94769d06f0-goog
 > 
