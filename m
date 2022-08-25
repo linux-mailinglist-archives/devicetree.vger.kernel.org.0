@@ -2,109 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BBFD5A0B41
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 10:23:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93AFA5A0B70
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 10:26:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237317AbiHYIXX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 04:23:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49306 "EHLO
+        id S239718AbiHYI0z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 04:26:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235663AbiHYIXV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 04:23:21 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3BC1A5991
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 01:23:19 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id x10so18703347ljq.4
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 01:23:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=QcYaN0JPky1EGXbRY64NqWC+vf4pbZdpI3za5tFR27Y=;
-        b=R6+bJKdroxxLZUeNX914wnlRmrBnu6dnYD5EjdF8U/Fu7DzRIGzlImTazksz7MMUE+
-         AtYJCGUm2qYs2ilZeWHBntZNyFAgv/64O/Q3WuNZ23BwxjUACbevkfowc+3UN52EvTk/
-         I2UxdF2QChDaiSduTt5APgjpVYLTTZ0WvNNnd3bxttbBn1TnZkgU/Syw4DI8wLeLaxXT
-         4RaxgB2NrE0LukyVvLOJzaMXXKUcLcTj4SqG8OORdb+VquhoJUuNYd3+U1ppcEe3ZJ4p
-         fKvSBT72f7NpcwIJlLNxO1tuBXskIFyFncojPfy3ahZbUoEpX316AcmPWVra2cbdWfYa
-         rECg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=QcYaN0JPky1EGXbRY64NqWC+vf4pbZdpI3za5tFR27Y=;
-        b=uddVhN4quN6+It11+hY0jQh8cWnWMipW5PR/gDgxS3XxielzyLAWohJnZ3ik183ruy
-         7qin6WJRxLfq3fX9ChUw1mva0E70F9XlBeVEiq62075haX2xfv1F97ThhLTR6sGZNc9/
-         kkXlo3+4GMj5u3AA8V8dLrxzW0CosaUjVv5uGEFwtQBtTLXID+6mJtX/cSfA7YHE2aI/
-         IlaLbIesRtRnIpT1rcgEZRuGZLr8viYKU083gLOYxbZBC9o8gUTdr6eI/ZJd9B2E2q7n
-         h67VoGr5Vu4SkMQZFmsPJjsGMwNSPf2tstpA0EB1EdOc+PY3cABWkGsX8saOrNQaG3GX
-         iMaw==
-X-Gm-Message-State: ACgBeo2MjuoBmxjDBK+ySJZiPtdK+cH5BZ69J+JDvymhZVPConwTgil8
-        rzpuS+tW5ZP4c0aE86J7Gc4Gug==
-X-Google-Smtp-Source: AA6agR78g9/aWyse4FQH581ZrbhVy37gSTslIw8h/JN2EkuNfJP5xOpXkmesnAnV+MzF5s5aBmGV0A==
-X-Received: by 2002:a2e:bf11:0:b0:261:9343:fb2 with SMTP id c17-20020a2ebf11000000b0026193430fb2mr770866ljr.47.1661415797930;
-        Thu, 25 Aug 2022 01:23:17 -0700 (PDT)
-Received: from [192.168.0.71] (82.131.98.15.cable.starman.ee. [82.131.98.15])
-        by smtp.gmail.com with ESMTPSA id c11-20020a056512074b00b0048a7c162bbesm356757lfs.279.2022.08.25.01.23.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Aug 2022 01:23:17 -0700 (PDT)
-Message-ID: <1491c83f-cd75-4de3-ec26-86db4adb2ade@linaro.org>
-Date:   Thu, 25 Aug 2022 11:23:16 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH] dt-bindings: remoteproc: Add missing
- (unevaluated|additional)Properties on child nodes
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        with ESMTP id S231305AbiHYI0U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 04:26:20 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD37B754A8;
+        Thu, 25 Aug 2022 01:26:10 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id BE0A72B3;
+        Thu, 25 Aug 2022 10:26:07 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1661415968;
+        bh=X4RKLM6nZha11KVzOR4E3qEaILGKdu9AsG61iMaOD6k=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=GKqHIYed1FsvhTFUXye6GN7FYnGtdKtVnLewNV+R1gj8BitTCRU4Rf8Ca3y+Y8tLY
+         bxJZab2tA4yoV99a6SzBDm/lr0DYW/IuQa19+n/pyCSWojsjDZSO0HjTlAc319HhSz
+         5uV1iSXeKY9cN8BBWEXXx34FYFRd4Tr/Hq29K4vw=
+Date:   Thu, 25 Aug 2022 11:26:01 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sibi Sankar <quic_sibis@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220823145649.3118479-10-robh@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220823145649.3118479-10-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: display: adi,adv75xx: Add missing graph
+ schema references
+Message-ID: <YwcyGfJ+vTx09cAN@pendragon.ideasonboard.com>
+References: <20220823145649.3118479-12-robh@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220823145649.3118479-12-robh@kernel.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/08/2022 17:56, Rob Herring wrote:
-> In order to ensure only documented properties are present, node schemas
-> must have unevaluatedProperties or additionalProperties set to false
-> (typically).
+Hi Rob,
+
+Thank you for the patch.
+
+On Tue, Aug 23, 2022 at 09:56:43AM -0500, Rob Herring wrote:
+> DT bindings using the graph binding must have references to the graph
+> binding schema. These are missing from the adi,adv7511 and adi,adv7533
+> bindings, so add them.
 > 
 > Signed-off-by: Rob Herring <robh@kernel.org>
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
 > ---
->  .../devicetree/bindings/remoteproc/qcom,sc7180-mss-pil.yaml      | 1 +
->  .../devicetree/bindings/remoteproc/qcom,sc7280-mss-pil.yaml      | 1 +
->  .../devicetree/bindings/remoteproc/qcom,sc7280-wpss-pil.yaml     | 1 +
->  3 files changed, 3 insertions(+)
+>  .../bindings/display/bridge/adi,adv7511.yaml       | 14 ++++++--------
+>  .../bindings/display/bridge/adi,adv7533.yaml       | 14 ++++++--------
+>  2 files changed, 12 insertions(+), 16 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sc7180-mss-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sc7180-mss-pil.yaml
-> index e76c861165dd..e4a7da8020f4 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/qcom,sc7180-mss-pil.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,sc7180-mss-pil.yaml
-> @@ -140,6 +140,7 @@ properties:
+> diff --git a/Documentation/devicetree/bindings/display/bridge/adi,adv7511.yaml b/Documentation/devicetree/bindings/display/bridge/adi,adv7511.yaml
+> index f08a01dfedf3..5bbe81862c8f 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/adi,adv7511.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/adi,adv7511.yaml
+> @@ -117,23 +117,21 @@ properties:
 >  
->    glink-edge:
->      $ref: qcom,glink-edge.yaml#
-> +    unevaluatedProperties: false
+>    ports:
+>      description:
+> -      The ADV7511(W)/13 has two video ports and one audio port. This node
+> -      models their connections as documented in
+> -      Documentation/devicetree/bindings/media/video-interfaces.txt
+> -      Documentation/devicetree/bindings/graph.txt
+> -    type: object
+> +      The ADV7511(W)/13 has two video ports and one audio port.
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+>      properties:
+>        port@0:
+>          description: Video port for the RGB or YUV input.
+> -        type: object
+> +        $ref: /schemas/graph.yaml#/properties/port
+>  
+>        port@1:
+>          description: Video port for the HDMI output.
+> -        type: object
+> +        $ref: /schemas/graph.yaml#/properties/port
+>  
+>        port@2:
+>          description: Audio port for the HDMI output.
+> -        type: object
+> +        $ref: /schemas/graph.yaml#/properties/port
+>  
+>  # adi,input-colorspace and adi,input-clock are required except in
+>  # "rgb 1x" and "yuv444 1x" modes, in which case they must not be
+> diff --git a/Documentation/devicetree/bindings/display/bridge/adi,adv7533.yaml b/Documentation/devicetree/bindings/display/bridge/adi,adv7533.yaml
+> index f36209137c8a..987aa83c2649 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/adi,adv7533.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/adi,adv7533.yaml
+> @@ -91,25 +91,23 @@ properties:
+>  
+>    ports:
+>      description:
+> -      The ADV7533/35 has two video ports and one audio port. This node
+> -      models their connections as documented in
+> -      Documentation/devicetree/bindings/media/video-interfaces.txt
+> -      Documentation/devicetree/bindings/graph.txt
+> -    type: object
+> +      The ADV7533/35 has two video ports and one audio port.
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+>      properties:
+>        port@0:
+>          description:
+>            Video port for the DSI input. The remote endpoint phandle
+>            should be a reference to a valid mipi_dsi_host_device.
+> -        type: object
+> +        $ref: /schemas/graph.yaml#/properties/port
+>  
+>        port@1:
+>          description: Video port for the HDMI output.
+> -        type: object
+> +        $ref: /schemas/graph.yaml#/properties/port
+>  
+>        port@2:
+>          description: Audio port for the HDMI output.
+> -        type: object
+> +        $ref: /schemas/graph.yaml#/properties/port
+>  
+>  required:
+>    - compatible
 
-Is it actually needed? The qcom,glink-edge.yaml has
-additionalProperties:false, so I expect it to complain if anything
-appears here.
+-- 
+Regards,
 
-Best regards,
-Krzysztof
+Laurent Pinchart
