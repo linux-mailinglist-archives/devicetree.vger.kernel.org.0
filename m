@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A6F25A1849
+	by mail.lfdr.de (Postfix) with ESMTP id 9213D5A184A
 	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 20:05:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243018AbiHYSFa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 14:05:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52116 "EHLO
+        id S243021AbiHYSFb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 14:05:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242980AbiHYSF2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 14:05:28 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1123072EDF
+        with ESMTP id S243003AbiHYSF3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 14:05:29 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E744274B9A
         for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 11:05:27 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id s23so10594606wmj.4
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 11:05:26 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id r83-20020a1c4456000000b003a5cb389944so3136673wma.4
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 11:05:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=conchuod.ie; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc;
-        bh=JUTRY4gaK8Gdeip+jNVieK44Ohhk3yQH8niH5zENkSw=;
-        b=UQRwsSKSQOopSzPEnfGl08Wcz8NArorGUNMK0W1lv9/M3NFHsrXasUoP/8N6hnNLyh
-         Db+QzkVDzRMXC3hgUyXq0p/ra8hm2s0axZjgkn5/xzjO73xUBq3NWFs8zslI3FobG/9q
-         ElabZvviGU6oh6mONYgE7ezidVx0xJSjXX7zA3rtbmtllF1f27STAnj3DnA+VfAXUkMl
-         Da7Z8W1c5erVgM2O39G0VW5VS1MZds4EV6uliQXvj/E8xFQyQSOgSyjZyifITgzLG8Ka
-         oMAd0Sich0b0OCAAyxB0J9XknMkajEdI82BQg3Gwbo/HoD4VPnFnOKOAkEkcJMZH3M23
-         2JKQ==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc;
+        bh=5kPI6Qs1t3E/Vre1WWWz4/JhFarqPVXyanwUw3KaQHk=;
+        b=NZc4I9raPbnA1Ar1KT9PpzcSORFhiRGZW00QQnnsNCfX+UA9fN8e25WfeTa2gIAszy
+         yYh6YEmHrE28o56XN6T99ABnc3BSAk5dlqkn1tzopVXhxfMTXfKofWOXMAQCiTb7O7SB
+         35NF/0DLWKOipmiXt0UsyVRYkwVNQlnuhpy7pRyPXLPav0JxXZWXFz7RmFsyUb6OG3TK
+         Smx+eSOJbGKcGQzEF4fROCh0FJY5p6s8lkAmTP4fNau84OQYtDXNbJkgZj93UpEho0b2
+         Pagl00f0USQNmgRJZ3+CmaSU9OuSNPuvnzgkr4Gb6gjo9089EdKp2dB1zBLn5rUwHnyi
+         vCFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc;
-        bh=JUTRY4gaK8Gdeip+jNVieK44Ohhk3yQH8niH5zENkSw=;
-        b=A4q+J2MacptvBi/Hi+uzxI3yXLsilCtr4kWl+5duFRsova4P2mtKnLwcCDA+Wn7die
-         0DE2yUoUD0MDcLmPhh2dnuxlcnR/3bIDDIRKgfgw/qe6T2LZ0pQ4ia3otqIJx+Ipuk0i
-         Rb0FXTGd+5WFRPxRIvrmWFD7DoGp32G1ETSm5lbgvilrJDVMaXZ0mVpwc7Bm89NGJAQk
-         6reiVEZbccfJmHlOBl5TcjsTQ7r5Me9kZy8Xzn+3MklKGBGVOknOwkL7JQQMNs6HiNQ1
-         +yi7NiYFgQpfa4bIK0U7i7TL3hIE+Psy7OraezAkyfRRtIT3vJ5et5rwR7M4FDxAAryF
-         QtLw==
-X-Gm-Message-State: ACgBeo0t/koa7B61RAJuMrIdrLrfVifstS72N9X5knyjS1ZSbtCi3vw5
-        fB2OB4khrf2P+4zjKSSBbn2LyQ==
-X-Google-Smtp-Source: AA6agR5biMHZOOviA7RBIh8sODjlp+ZpN4gWA6662c/obgpPYUJW3Xon/lSc/ip8BcNFU0lBj4jAww==
-X-Received: by 2002:a05:600c:3d09:b0:3a5:e408:ca19 with SMTP id bh9-20020a05600c3d0900b003a5e408ca19mr3121650wmb.135.1661450725527;
-        Thu, 25 Aug 2022 11:05:25 -0700 (PDT)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
+        bh=5kPI6Qs1t3E/Vre1WWWz4/JhFarqPVXyanwUw3KaQHk=;
+        b=Y+t9Yfhijlmff6y0+07NtP+Q1H/2y5YGIas1v5qwJwTOAhlwPWtDjeUaTcjXMY068O
+         MxkI9llI1J+JVu1CPZp1YhwLAejl8Bx8EfyDOGAVUZGo8oD20rQvq7fnlKonZuXCqgYL
+         wfwjVFIjsvVZI7xtD0L3NWCqI7pUMUZUPk3BtxetbV/mIusIqecri/wtkcm8gOPLYK8p
+         tdK8zvDoXBMbBPqfDk7jJ4kYxv9C1juMyneIC8Vg6/y+96F6KUrls8Xow+z/kqpacUOI
+         47lz/QGjyLbAI51sKbqnZ5aL76S32cRFcykNVL7DJHrLCsTolwP3MvKy4HX2XQQK6qoU
+         3VOg==
+X-Gm-Message-State: ACgBeo0kKLCbdYYj3P0mb6I+md7SAje309lczjCRqljLWz76jp6kyJVV
+        amlAWaU/sMKVCveW/Otq0ORs5g==
+X-Google-Smtp-Source: AA6agR4YnT0SvuQmkQdKdz4yxQ9gsM05hvgrTnIF0ZSrNkirKKaE92hf/lz+3Y5yEEfdR7RcHv+3mQ==
+X-Received: by 2002:a05:600c:34d3:b0:3a5:fea5:1be8 with SMTP id d19-20020a05600c34d300b003a5fea51be8mr8888820wmq.106.1661450726491;
+        Thu, 25 Aug 2022 11:05:26 -0700 (PDT)
 Received: from henark71.. ([51.37.149.245])
-        by smtp.gmail.com with ESMTPSA id j4-20020a5d6044000000b002254a7f4b9csm14967970wrt.48.2022.08.25.11.05.24
+        by smtp.gmail.com with ESMTPSA id j4-20020a5d6044000000b002254a7f4b9csm14967970wrt.48.2022.08.25.11.05.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Aug 2022 11:05:25 -0700 (PDT)
+        Thu, 25 Aug 2022 11:05:26 -0700 (PDT)
 From:   Conor Dooley <mail@conchuod.ie>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -60,16 +60,18 @@ Cc:     Sagar Kadam <sagar.kadam@sifive.com>,
         Atish Patra <atishp@atishpatra.org>,
         devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 0/2] Add a PolarFire SoC l2 compatible
-Date:   Thu, 25 Aug 2022 19:04:16 +0100
-Message-Id: <20220825180417.1259360-1-mail@conchuod.ie>
+Subject: [PATCH 1/2] dt-bindings: riscv: sifive-l2: add a PolarFire SoC compatible
+Date:   Thu, 25 Aug 2022 19:04:17 +0100
+Message-Id: <20220825180417.1259360-2-mail@conchuod.ie>
 X-Mailer: git-send-email 2.37.1
+In-Reply-To: <20220825180417.1259360-1-mail@conchuod.ie>
+References: <20220825180417.1259360-1-mail@conchuod.ie>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -78,34 +80,124 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Conor Dooley <conor.dooley@microchip.com>
 
-Whilst re-running checks before sending my dt-fixes PR today I noticed
-that I had introduced another dtbs_check warning by applying one of the
-patches in it.
+The l2 cache on PolarFire SoC is cross between that of the fu540 and
+the fu740. It has the extra interrupt from the fu740 but the lower
+number of cache-sets. Add a specific compatible to avoid the likes
+of:
 
-PolarFire SoC has 4 cache interrupts, unlike the fu540 (which the dts
-re-uses the compatible of currently) which only has 3. Add a new string
-to the binding like should've been done in the first place...
+mpfs-polarberry.dtb: cache-controller@2010000: interrupts: [[1], [3], [4], [2]] is too long
 
-The driver does not care which compatible it matches against, and just
-uses as many interrupts as are in the dts so will happily work away
-without any needed changes there.
-
-@Palmer, you can take this directly as long as my fixes PR for rc3 is
-merged if you like, since the application path for the binding is via
-you anyway. I suppose I could take both too, but whatever works best
-for you (:
-
-Thanks,
-Conor.
-
-Conor Dooley (2):
-  dt-bindings: riscv: sifive-l2: add a PolarFire SoC compatible
-  riscv: dts: microchip: use an mpfs specific l2 compatible
-
+Fixes: 34fc9cc3aebe ("riscv: dts: microchip: correct L2 cache interrupts")
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+---
  .../bindings/riscv/sifive-l2-cache.yaml       | 79 ++++++++++++-------
- arch/riscv/boot/dts/microchip/mpfs.dtsi       |  2 +-
- 2 files changed, 50 insertions(+), 31 deletions(-)
+ 1 file changed, 49 insertions(+), 30 deletions(-)
 
+diff --git a/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml b/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
+index 69cdab18d629..ca3b9be58058 100644
+--- a/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
++++ b/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
+@@ -17,9 +17,6 @@ description:
+   acts as directory-based coherency manager.
+   All the properties in ePAPR/DeviceTree specification applies for this platform.
+ 
+-allOf:
+-  - $ref: /schemas/cache-controller.yaml#
+-
+ select:
+   properties:
+     compatible:
+@@ -33,11 +30,16 @@ select:
+ 
+ properties:
+   compatible:
+-    items:
+-      - enum:
+-          - sifive,fu540-c000-ccache
+-          - sifive,fu740-c000-ccache
+-      - const: cache
++    oneOf:
++      - items:
++          - enum:
++              - sifive,fu540-c000-ccache
++              - sifive,fu740-c000-ccache
++          - const: cache
++      - items:
++          - const: microchip,mpfs-ccache
++          - const: sifive,fu540-c000-ccache
++          - const: cache
+ 
+   cache-block-size:
+     const: 64
+@@ -72,29 +74,46 @@ properties:
+       The reference to the reserved-memory for the L2 Loosely Integrated Memory region.
+       The reserved memory node should be defined as per the bindings in reserved-memory.txt.
+ 
+-if:
+-  properties:
+-    compatible:
+-      contains:
+-        const: sifive,fu540-c000-ccache
++allOf:
++  - $ref: /schemas/cache-controller.yaml#
+ 
+-then:
+-  properties:
+-    interrupts:
+-      description: |
+-        Must contain entries for DirError, DataError and DataFail signals.
+-      maxItems: 3
+-    cache-sets:
+-      const: 1024
+-
+-else:
+-  properties:
+-    interrupts:
+-      description: |
+-        Must contain entries for DirError, DataError, DataFail, DirFail signals.
+-      minItems: 4
+-    cache-sets:
+-      const: 2048
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - sifive,fu740-c000-ccache
++              - microchip,mpfs-ccache
++
++    then:
++      properties:
++        interrupts:
++          description: |
++            Must contain entries for DirError, DataError, DataFail, DirFail signals.
++          minItems: 4
++
++    else:
++      properties:
++        interrupts:
++          description: |
++            Must contain entries for DirError, DataError and DataFail signals.
++          maxItems: 3
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: sifive,fu740-c000-ccache
++
++    then:
++      properties:
++        cache-sets:
++          const: 2048
++
++    else:
++      properties:
++        cache-sets:
++          const: 1024
+ 
+ additionalProperties: false
+ 
 -- 
 2.37.1
 
