@@ -2,78 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42D895A1B37
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 23:39:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 631725A1B4D
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 23:41:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243855AbiHYVjJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 17:39:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33756 "EHLO
+        id S243847AbiHYVki (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 17:40:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243811AbiHYVjI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 17:39:08 -0400
+        with ESMTP id S244041AbiHYVkL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 17:40:11 -0400
 Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A692DC12E7
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 14:39:07 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BCD84D830
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 14:40:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1661463546;
+        s=mimecast20190719; t=1661463603;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          in-reply-to:in-reply-to:references:references;
-        bh=ZcIFJ5ndstDXyueuKitLh0n6/PvdcwcoUpyPYLTHmOk=;
-        b=JZh7txnM1KHUTdFLXrkjTNF3CDH+NjPWL2isOcZmD1T4W8C+u8M+5uMfh6k0MxuR36lIt6
-        WfYPshByOWX2UOQpGv+pyj/zBjGSU3rszBfWLEAAJbTP4xgZgvRTSQojC/HIasLwXua0Nz
-        TmdyhEr5vEh9dGnYRqZX50pw80qjc7Y=
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
- [209.85.222.199]) by relay.mimecast.com with ESMTP with STARTTLS
+        bh=TpiWfUhlZ2jUxhN+MMbGvXsRCYfyKWQ6ow6O6tQAlI0=;
+        b=BchyBMlfTbIVXEycgV1pbb9zi1OKu9Dj6gKQRbRXpapj3yLJ56mCrRdTiO2eCjpbOung29
+        4OiiQcvj4g66zbofmjhAVfmB2FOjp+XAR3o2a/60cI6WCyNbzTLB06w40sBPo6gubAFZ9Z
+        v5ggg8NSkMCUS0Z+gUo6M5oWEqGdLU0=
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
+ [209.85.219.71]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-184-0KUm4bjuNzK3U07CztkCJg-1; Thu, 25 Aug 2022 17:39:05 -0400
-X-MC-Unique: 0KUm4bjuNzK3U07CztkCJg-1
-Received: by mail-qk1-f199.google.com with SMTP id w22-20020a05620a445600b006bb7f43d1cfso18330353qkp.16
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 14:39:05 -0700 (PDT)
+ us-mta-664-Wy6sab0FMg-S_4yZMJFcfg-1; Thu, 25 Aug 2022 17:40:02 -0400
+X-MC-Unique: Wy6sab0FMg-S_4yZMJFcfg-1
+Received: by mail-qv1-f71.google.com with SMTP id ly9-20020a0562145c0900b00496e3810e40so8435976qvb.12
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 14:40:02 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=ZcIFJ5ndstDXyueuKitLh0n6/PvdcwcoUpyPYLTHmOk=;
-        b=rXl40a9iRIRDF3wuyF5HdZ5D2/8u2z5u/48RLX9rTLaCBlSoW30vx/1aBqymteQL9F
-         7k/iLFSGcNvKO+GnXAvke0mhRtswnE7eXrD7FEetQWuEhONm2d3Yi3qSK4DMhTSrBXzY
-         X/ucO9a3dpdkTuwdN1c6YMBUPsZr3wkJIh130/OV5aWeIzX1VrogxcNovpxIuAGRZNYw
-         KWiGi4OpiJ+LDDXVe3VRyNiBgd+yrnmAR6uK/y7621lkolDNv8P3ALaoPgRipNBsvJF/
-         3+MfH1XfK+CmXv1QE243Jr6Mz3bdi/yawgWwa8Er/qfPPh396b/4oHVOPXNqt9Azjvu2
-         FI3Q==
-X-Gm-Message-State: ACgBeo1q7zvc8CqKYynMkUftxXNYxNsLmpBxQzO1KddAL+q/VTmAIMrR
-        JgfKjP03my5ozTB6qHtpkx++50FMalGoWh5Z3NdhZfgo6JX8y1z4YVc7irSqwp/JAICj/4PMY+Z
-        PpW9MRGzDZd+Z7GhxqIxCtQ==
-X-Received: by 2002:ac8:4e4f:0:b0:344:a6db:1b58 with SMTP id e15-20020ac84e4f000000b00344a6db1b58mr5373561qtw.38.1661463545342;
-        Thu, 25 Aug 2022 14:39:05 -0700 (PDT)
-X-Google-Smtp-Source: AA6agR67T1K+fOtvPPC/ltEVEu6YGotNZqvbRbsVHyqcHmcKx11ioEat7LIJRldMn2RlqIek12eCsw==
-X-Received: by 2002:ac8:4e4f:0:b0:344:a6db:1b58 with SMTP id e15-20020ac84e4f000000b00344a6db1b58mr5373551qtw.38.1661463545129;
-        Thu, 25 Aug 2022 14:39:05 -0700 (PDT)
+        bh=TpiWfUhlZ2jUxhN+MMbGvXsRCYfyKWQ6ow6O6tQAlI0=;
+        b=XY0dj1gK+aiLPUzaGXlOL/L8Q4WtW9Pnim42wNvyG+rW7hQqpq3JQgLpANDj39KH++
+         4lthXKVMDn2X5ChNfAOLYalPhP+8EvdfuvhMhkRqhvV28Yb7Nzc9zJVqK9FxqrTj6xLT
+         FRdYveYP8qfEo/4/YXjIfxc4aR4OZZz0kyjNWQxBmAyb6xtdUo1eVk3P7f+ka7rZYUQM
+         4eRgC+fA7WbFNkgw2fifmtBMCtEWAZqiNcWzx47Ktm1KeKWqyaZECLSuOLDGnnxvGZ10
+         CDrCTMRXaS3NZABqlNUWPzFwZfV8kYcYv3gu3k6ZLW/7PgcN+/awkAXCE3qaQ7Q87tjL
+         sAsg==
+X-Gm-Message-State: ACgBeo2glUuevcL5lxOrj55mXivtHRK0dWH/PnYwvc5by0qmD6ETmMVz
+        iG7lwKKRbrDwtRFoLl7vpP2SWRi8/M/UT4Op+CJiXlDMiHvRen/stUVfBAnRUchKy9/KVHSgMu/
+        /BKUqll/bQ7aihyBNuOB3VA==
+X-Received: by 2002:ae9:ed81:0:b0:6bb:7a53:fbb with SMTP id c123-20020ae9ed81000000b006bb7a530fbbmr4588052qkg.495.1661463601765;
+        Thu, 25 Aug 2022 14:40:01 -0700 (PDT)
+X-Google-Smtp-Source: AA6agR6Nerzm4YQT8Tx+ilb6qBkrlQoRWCe3dB2Vlq/Vh0LYFnSA4FNKWkAqrEccjRaeEE0wlrLEyA==
+X-Received: by 2002:ae9:ed81:0:b0:6bb:7a53:fbb with SMTP id c123-20020ae9ed81000000b006bb7a530fbbmr4588044qkg.495.1661463601540;
+        Thu, 25 Aug 2022 14:40:01 -0700 (PDT)
 Received: from halaneylaptop ([2600:1700:1ff0:d0e0::48])
-        by smtp.gmail.com with ESMTPSA id s22-20020a05620a0bd600b006bb9125363fsm476966qki.121.2022.08.25.14.39.04
+        by smtp.gmail.com with ESMTPSA id r21-20020ac867d5000000b0034300e35487sm40110qtp.54.2022.08.25.14.40.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Aug 2022 14:39:04 -0700 (PDT)
-Date:   Thu, 25 Aug 2022 16:39:02 -0500
+        Thu, 25 Aug 2022 14:40:01 -0700 (PDT)
+Date:   Thu, 25 Aug 2022 16:39:59 -0500
 From:   Andrew Halaney <ahalaney@redhat.com>
 To:     Douglas Anderson <dianders@chromium.org>
 Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
         Mark Brown <broonie@kernel.org>,
         Andy Gross <agross@kernel.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 5/7] arm64: dts: qcom: sm8150-xperia-kumano: Specify
- which LDO modes are allowed
-Message-ID: <20220825213902.3pz37c7e4qarzs7w@halaneylaptop>
+Subject: Re: [PATCH 6/7] arm64: dts: qcom: sm8250-xperia-edo: Specify which
+ LDO modes are allowed
+Message-ID: <20220825213959.pdiwfa7qxq37tjdz@halaneylaptop>
 References: <20220825164205.4060647-1-dianders@chromium.org>
- <20220825094155.5.I51d60414a42ba9e3008e208d60a04c9ffc425fa7@changeid>
+ <20220825094155.6.Ie446d5183d8b1e9ec4e32228ca300e604e3315eb@changeid>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220825094155.5.I51d60414a42ba9e3008e208d60a04c9ffc425fa7@changeid>
+In-Reply-To: <20220825094155.6.Ie446d5183d8b1e9ec4e32228ca300e604e3315eb@changeid>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -84,7 +82,7 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 25, 2022 at 09:42:03AM -0700, Douglas Anderson wrote:
+On Thu, Aug 25, 2022 at 09:42:04AM -0700, Douglas Anderson wrote:
 > This board uses RPMH, specifies "regulator-allow-set-load" for LDOs,
 > but doesn't specify any modes with "regulator-allowed-modes".
 > 
@@ -99,21 +97,21 @@ On Thu, Aug 25, 2022 at 09:42:03AM -0700, Douglas Anderson wrote:
 > 
 > [1] https://lore.kernel.org/r/20220824142229.RFT.v2.2.I6f77860e5cd98bf5c67208fa9edda4a08847c304@changeid
 > 
-> Fixes: d0a6ce59ea4e ("arm64: dts: qcom: sm8150: Add support for SONY Xperia 1 / 5 (Kumano platform)")
+> Fixes: 69cdb97ef652 ("arm64: dts: qcom: sm8250: Add support for SONY Xperia 1 II / 5 II (Edo platform)")
 > Signed-off-by: Douglas Anderson <dianders@chromium.org>
 
 Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
 
 > ---
 > 
->  arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi | 6 ++++++
+>  arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi | 6 ++++++
 >  1 file changed, 6 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi b/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi
-> index 014fe3a31548..fb6e5a140c9f 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi
-> @@ -348,6 +348,9 @@ vreg_l6c_2p9: ldo6 {
+> diff --git a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
+> index 549e0a2aa9fe..5428aab3058d 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
+> @@ -317,6 +317,9 @@ vreg_l6c_2p9: ldo6 {
 >  			regulator-max-microvolt = <2960000>;
 >  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
 >  			regulator-allow-set-load;
@@ -122,8 +120,8 @@ Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
 > +			     RPMH_REGULATOR_MODE_HPM>;
 >  		};
 >  
->  		vreg_l7c_3p0: ldo7 {
-> @@ -367,6 +370,9 @@ vreg_l9c_2p9: ldo9 {
+>  		vreg_l7c_2p85: ldo7 {
+> @@ -339,6 +342,9 @@ vreg_l9c_2p9: ldo9 {
 >  			regulator-max-microvolt = <2960000>;
 >  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
 >  			regulator-allow-set-load;
