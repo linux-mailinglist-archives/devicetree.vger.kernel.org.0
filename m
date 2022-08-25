@@ -2,72 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F302B5A10A5
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 14:36:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 986945A10AE
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 14:38:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241728AbiHYMf4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 08:35:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49476 "EHLO
+        id S240735AbiHYMie (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 08:38:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240735AbiHYMfy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 08:35:54 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 031A52B60E;
-        Thu, 25 Aug 2022 05:35:49 -0700 (PDT)
-Received: from mail-ej1-f52.google.com ([209.85.218.52]) by
- mrelayeu.kundenserver.de (mreue011 [213.165.67.97]) with ESMTPSA (Nemesis) id
- 1MIdNt-1oczuz0kQn-00EhZG; Thu, 25 Aug 2022 14:35:48 +0200
-Received: by mail-ej1-f52.google.com with SMTP id u15so30577386ejt.6;
-        Thu, 25 Aug 2022 05:35:48 -0700 (PDT)
-X-Gm-Message-State: ACgBeo0BY3XN+xnZnI1GU0F9C2kCOeSy1f8zTwkgqo3BzBNOEOy3DUEd
-        UtJ7I0jXXmWCJ4Wc35Wx0rgKe7O5MN+ZW8z4M9I=
-X-Google-Smtp-Source: AA6agR7fgaLb9s7H5/Li4IutxFIzar492nAzVxOsAVeMPK8zWfEAvRnEz1Shj5SNAoM6ETiorM4CGcoYPkDi98xLJSQ=
-X-Received: by 2002:a17:906:8458:b0:73d:d0e9:4b27 with SMTP id
- e24-20020a170906845800b0073dd0e94b27mr1897590ejy.766.1661430947749; Thu, 25
- Aug 2022 05:35:47 -0700 (PDT)
+        with ESMTP id S235148AbiHYMid (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 08:38:33 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BBD8B2769;
+        Thu, 25 Aug 2022 05:38:32 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 45F4BB826B9;
+        Thu, 25 Aug 2022 12:38:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72A73C433C1;
+        Thu, 25 Aug 2022 12:38:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1661431110;
+        bh=LgDF5Ox+bjDfNVdxCe2AZEmz1pOP9XOBZQajiIKH80Y=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=MgtYnyeRFhEsP1zYUeNrVMqrlICIhJG92NLRD989jirXfF/alwMsyXEstwEPS8VMy
+         QT1vLMosW8nNHRF8iaq+i7PqTJZyfVuDi0Qzuu8ZxH3CX0CK2oIQsaDemK5VxuNXP7
+         6o1lzQm/+BEz11aEtp1QaW3oEsVcjSEqPEdnh8LqDDyGQ7bPiLLVLSJ/1BpFx34jY3
+         deM2BdS5raEY6pfV8F0vGQa2lps5uA92HpGHJc0JoIl6dr3zCXoruMVPAYyFHkeimg
+         feXhbZ+gq291hSBa5A5GOlauzzKbd3zaQ+GdF6b9FMWn/YeOO5BiZb4UDVa2pFjazf
+         VvZUpVfAonogg==
+From:   Mark Brown <broonie@kernel.org>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        Chunxu Li <chunxu.li@mediatek.com>, nfraprado@collabora.com
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        matthias.bgg@gmail.com, alsa-devel@alsa-project.org,
+        project_global_chrome_upstream_group@mediatek.com,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        lgirdwood@gmail.com, jiaxin.yu@mediatek.com
+In-Reply-To: <20220824122319.23918-1-chunxu.li@mediatek.com>
+References: <20220824122319.23918-1-chunxu.li@mediatek.com>
+Subject: Re: [PATCH v2 0/2] ASoC: mediatek: dt-bindings: modify machine
+Message-Id: <166143110713.95415.18123711454744125570.b4-ty@kernel.org>
+Date:   Thu, 25 Aug 2022 13:38:27 +0100
 MIME-Version: 1.0
-References: <20220817071539.176110-1-quan@os.amperecomputing.com>
- <20220817071539.176110-3-quan@os.amperecomputing.com> <CACPK8XdDpG3ONM1=-E6qvHL1FgMNWSMPoL_sVGJK6BmmnT3w_w@mail.gmail.com>
- <CAK8P3a2LZKfZpdTQ-R4o9mJ6dk52VRF+Bxj=PJEx-1MA4yH8+w@mail.gmail.com> <673e200f-f458-7866-f956-3d5bd7160a49@os.amperecomputing.com>
-In-Reply-To: <673e200f-f458-7866-f956-3d5bd7160a49@os.amperecomputing.com>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Thu, 25 Aug 2022 14:35:31 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a3MU7shuBpcpRNC5L6xxQmSy8FXCX1jvYXhv-NT3PMYOw@mail.gmail.com>
-Message-ID: <CAK8P3a3MU7shuBpcpRNC5L6xxQmSy8FXCX1jvYXhv-NT3PMYOw@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] ARM: dts: aspeed: Add device tree for Ampere's Mt.
- Mitchell BMC
-To:     Quan Nguyen <quan@os.amperecomputing.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Joel Stanley <joel@jms.id.au>,
-        openbmc@lists.ozlabs.org, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
-        Open Source Submission <patches@amperecomputing.com>,
-        Phong Vo <phong@os.amperecomputing.com>,
-        thang@os.amperecomputing.com
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:CMx3gnZOfz+oDvuTsUhIquf2PXorwNr3JkTa0/7BR95mHqAIkcq
- I6ZDIYVJpxn3ngQ72l0iAwzTo4ln9hb2ugHXtGvm7xaKvz3FiyDd4UVqSAdzh6RX1khxI57
- qKyR+5n+zpZt5xN+fpFHZ1OujZGVjDPwsTH3PNTi/+r4aD9EPi7yo1K5Clw3lv0LE1PItBF
- oKtzFo6SL0RTMDpg9C0mg==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:B7MQp7YNmHc=:cjPQDaSoBcrhHusXDe8mFM
- sDcViBtPZISPyQ8sqtdIchhgUfIqr8xoB/p7KXZXsRyf4Y56tepbGf1cqDJ6mtcR3qtpiA5E2
- rFOglaHtLTyni7z7deGBebZjaas/cKs1mHm/E+se57nUlgqp5Esyh4plplAnmz2cKeeqovdme
- l0Z+/TACPRRAOK+1wj+nzX4pRYAZlkRxVNhp1LzMXdQbtP/fqjUZK7pBZ8BbJgzfnqy9Rb9h5
- FZstQKNkaMX3Pr5Bp3wN1GV/zIU7h6LjWYi2oYBO4KkycbNy9EzCVWI9VfWFpOXV2MJvm5kCB
- PeifqGecbxcyYQ6CT6W31+ATr9/DBrAzhsTlveiq7HdSjQOciPys3JZ2gUpqscc2i492jXnUn
- CywzI0fn7p7CyQjBW82cqybxg9u46g3kldSsYvyap1raqkeHFjPXEEt9GDG5SY7vGTeL8LAuQ
- d8HSU675TJ51FRwlatsEybJMxCO5WPzHM/0s0BvxqrlFOmGKMFXoaezWT8DqrFhNUnFgTeOA3
- 5cNdqoCiB+V3eq80DmH0Tdqnd3ZD7wDbJmZCz/Wd5FRaeMYP9n51tkMsZ1P8hxfTsesm1UZhR
- ucNWjbKI+NpXBh3YXNAM4giwwYY/HQgA4jjKfe/dZRexNWtn92oobRip3j/YMnslfDwKjINdi
- riRgRqSfjPXHvxWBf8oPlJn9kiHTpoS4BsvOyLBTG3H5Mx4hfqnsoQu4VGoeKgcUdVwfYbD+a
- MAond/Z86Uji/bZGG4DkPP8HkzKQpgosKVUN764wqq+RFR2ypZtPf1Bok6LzZgSmn5F5mtuLe
- v2z1Em+V+94OtJwZRlylhwZFuSxaUYLXt3ayoOOBesfrTymStIeyFb9wP8eOR5clRpgCsDjup
- BEi5/brDnJQnAPR80uew==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.10.0-dev-0c1df
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,21 +58,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 23, 2022 at 10:27 AM Quan Nguyen
-<quan@os.amperecomputing.com> wrote:
-> On 18/08/2022 19:06, Arnd Bergmann wrote:
->
-> Thanks Arnd for the comment.
->
-> I think adding -append could solve the issue.
->
-> But as the bootargs still exist in all other
-> arch/arm/boot/dts/aspeed-bmc-*.dts should we still keep bootargs for
-> this dts?
+On Wed, 24 Aug 2022 20:23:17 +0800, Chunxu Li wrote:
+> From: "chunxu.li" <chunxu.li@mediatek.com>
+> 
+> Changes since V1:
+>   - remove unnecessary quotes
+> 
+> Add SOF related field.
+> 1. Add a property "mediatek,adsp", Only when adsp phandle could be retrieved,
+>  from DTS, the SOF related part of machine driver is executed.
+> 2. Add a property "mediatek,dai-link" to support dai-links could be specified
+>  from DTS
+> 
+> [...]
 
-I think it should still be removed. Only 238 of 2547 set the console using
-bootargs, so that would make it more consistent with the other files.
+Applied to
 
-Changing the files that have the same issue is a separate matter.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-      Arnd
+Thanks!
+
+[1/2] ASoC: mediatek: dt-bindings: modify machine bindings for SOF
+      commit: 1173107d7c129ff87224814fd38fce5db023aaa0
+[2/2] ASoC: mediatek: dt-bindings: modify machine bindings for SOF
+      commit: 1173107d7c129ff87224814fd38fce5db023aaa0
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
