@@ -2,113 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 033605A11A5
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 15:13:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9999D5A11E2
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 15:22:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242391AbiHYNNs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 09:13:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57610 "EHLO
+        id S241663AbiHYNWB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 09:22:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242393AbiHYNNo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 09:13:44 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FDC1B24B2;
-        Thu, 25 Aug 2022 06:13:38 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A141A61B0B;
-        Thu, 25 Aug 2022 13:13:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12B2BC433C1;
-        Thu, 25 Aug 2022 13:13:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661433217;
-        bh=IZW5T8bTR6zlpO6HLb6mRol+oyWLXS34Ih/Xhypaguk=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=kMCucpv40+yoTKei7Vb+5ENQbEIz+hcPGK5+mqkpGqnhBHKfMa3V8YY2uFQPHbuWA
-         UYm5vFaTmXEg5r2azsBJFoS2ZAo6UMzg2NLcwUQdDa2jxw092nxypn31yMlnfCNP3Q
-         Pw1nYRsAV8WsH8sKUMYu5zTf3EoenvbsAMcawH6vRF2RV+7XQaZnDr/PAj1uYvX/ZD
-         uFRxcL5YalTayWJpmSZGhfFBmwSgZEjhVLT+tTIGbXFmU4yA6r1yQqPtRQBrIa7vKb
-         RDl3I2thfA3TQSNF+TGkEMf6dEvtIU37m3GXu+YeCid5kTybU1/Tr8a3CAjdBb4/QR
-         cYj9FpbGADa1Q==
-Received: by mail-vs1-f41.google.com with SMTP id m66so20787188vsm.12;
-        Thu, 25 Aug 2022 06:13:37 -0700 (PDT)
-X-Gm-Message-State: ACgBeo2KUZUkTIvJjxXw2ILZ6V1eeJPQdMdsi+89HwYsYjq48cpwpgOl
-        vfW9fM+lrzBIdaO6KiwTv1k2Ymu0vdQtAI36sw==
-X-Google-Smtp-Source: AA6agR5HHV9M9yXhQz5Wv4Fn3tOpZtPr51oSEmjee6h8mCyA1xklEwT58PruXe9mpGP3Rkw2EvGjEX5bSYAZLj5ddgM=
-X-Received: by 2002:a67:c09c:0:b0:390:9073:1122 with SMTP id
- x28-20020a67c09c000000b0039090731122mr1350519vsi.85.1661433216073; Thu, 25
- Aug 2022 06:13:36 -0700 (PDT)
+        with ESMTP id S236695AbiHYNWA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 09:22:00 -0400
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 402E2A50CB;
+        Thu, 25 Aug 2022 06:21:59 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.93,263,1654527600"; 
+   d="scan'208";a="130585741"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 25 Aug 2022 22:21:59 +0900
+Received: from localhost.localdomain (unknown [10.226.93.110])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 94213400C0B1;
+        Thu, 25 Aug 2022 22:21:53 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        linux-media@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Subject: [PATCH v13 1/5] media: dt-bindings: media: renesas,vsp1: Document RZ/G2L VSPD bindings
+Date:   Thu, 25 Aug 2022 14:21:40 +0100
+Message-Id: <20220825132144.2619239-2-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220825132144.2619239-1-biju.das.jz@bp.renesas.com>
+References: <20220825132144.2619239-1-biju.das.jz@bp.renesas.com>
 MIME-Version: 1.0
-References: <20220823145649.3118479-10-robh@kernel.org> <1491c83f-cd75-4de3-ec26-86db4adb2ade@linaro.org>
-In-Reply-To: <1491c83f-cd75-4de3-ec26-86db4adb2ade@linaro.org>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 25 Aug 2022 08:13:24 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJx1s5ez-ojP8ZK_MPBWuuLRyekjK1qhHd6Ezaimna8JQ@mail.gmail.com>
-Message-ID: <CAL_JsqJx1s5ez-ojP8ZK_MPBWuuLRyekjK1qhHd6Ezaimna8JQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: remoteproc: Add missing (unevaluated|additional)Properties
- on child nodes
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sibi Sankar <quic_sibis@quicinc.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:REMOTE PROCESSOR (REMOTEPROC) SUBSYSTEM" 
-        <linux-remoteproc@vger.kernel.org>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 25, 2022 at 3:23 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 23/08/2022 17:56, Rob Herring wrote:
-> > In order to ensure only documented properties are present, node schemas
-> > must have unevaluatedProperties or additionalProperties set to false
-> > (typically).
-> >
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---
-> >  .../devicetree/bindings/remoteproc/qcom,sc7180-mss-pil.yaml      | 1 +
-> >  .../devicetree/bindings/remoteproc/qcom,sc7280-mss-pil.yaml      | 1 +
-> >  .../devicetree/bindings/remoteproc/qcom,sc7280-wpss-pil.yaml     | 1 +
-> >  3 files changed, 3 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sc7180-mss-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sc7180-mss-pil.yaml
-> > index e76c861165dd..e4a7da8020f4 100644
-> > --- a/Documentation/devicetree/bindings/remoteproc/qcom,sc7180-mss-pil.yaml
-> > +++ b/Documentation/devicetree/bindings/remoteproc/qcom,sc7180-mss-pil.yaml
-> > @@ -140,6 +140,7 @@ properties:
-> >
-> >    glink-edge:
-> >      $ref: qcom,glink-edge.yaml#
-> > +    unevaluatedProperties: false
->
-> Is it actually needed? The qcom,glink-edge.yaml has
-> additionalProperties:false, so I expect it to complain if anything
-> appears here.
+Document VSPD found in RZ/G2L SoC. VSPD block is similar to VSP2-D
+found on R-Car SoC's, but it does not have a version register and
+it has 3 clocks compared to 1 clock on vsp1 and vsp2.
 
-Perhaps not, but I'm trying to come up with a meta-schema to check
-these though I'm not sure I can get to no warnings which is how I
-found all these cases. The main remaining warnings are bus child node
-pattern schemas which can perhaps be handled with
-'additionalProperties: true'. The rule I have says if properties or
-patternProperties is present then unevaluatedProperties or
-additionalProperties must be. To handle this case, I think we'd have
-to walk the $ref and check it.
+This patch introduces a new compatible 'renesas,r9a07g044-vsp2' to
+handle these differences.
 
-Anyways, we can hold off on this one until when and if there's a
-meta-schema in place.
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+---
+v12->v13:
+ * No change.
+v11->v12:
+ * No change.
+v10->v11:
+ * No change
+v9->v10:
+ * No change
+v8->v9:
+ * No change
+v7->v8:
+ * Added Clock-names to false for Non RZ/G2L SoC's
+ * Replaced compatble 'renesas,rzg2l-vsp2'->'renesas,r9a07g044-vsp2'
+ * Removed RZ/V2L SoC, will be added later after testing it.
+ * Added Rb tag from Laurent.
+v6->v7:
+ * No change
+v5->v6:
+ * Removed LCDC reference clock description
+ * Changed the clock name from du.0->aclk
+v4->v5:
+ * No change
+v3->v4:
+ * No change
+v2->v3:
+ * Added Rb tag from Krzysztof.
+v1->v2:
+ * Changed compatible from vsp2-rzg2l->rzg2l-vsp2
+RFC->v1:
+ * Updated commit description
+ * Changed compatible from vsp2-r9a07g044->vsp2-rzg2l
+ * Defined the clocks
+ * Clock max Items is based on SoC Compatible string
+RFC:
+ * https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220112174612.10773-20-biju.das.jz@bp.renesas.com/
+---
+ .../bindings/media/renesas,vsp1.yaml          | 53 ++++++++++++++-----
+ 1 file changed, 40 insertions(+), 13 deletions(-)
 
-Rob
+diff --git a/Documentation/devicetree/bindings/media/renesas,vsp1.yaml b/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
+index 990e9c1dbc43..7a8f32473852 100644
+--- a/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
++++ b/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
+@@ -17,6 +17,7 @@ description:
+ properties:
+   compatible:
+     enum:
++      - renesas,r9a07g044-vsp2 # RZ/G2L
+       - renesas,vsp1 # R-Car Gen2 and RZ/G1
+       - renesas,vsp2 # R-Car Gen3 and RZ/G2
+ 
+@@ -26,8 +27,8 @@ properties:
+   interrupts:
+     maxItems: 1
+ 
+-  clocks:
+-    maxItems: 1
++  clocks: true
++  clock-names: true
+ 
+   power-domains:
+     maxItems: 1
+@@ -50,17 +51,43 @@ required:
+ 
+ additionalProperties: false
+ 
+-if:
+-  properties:
+-    compatible:
+-      items:
+-        - const: renesas,vsp1
+-then:
+-  properties:
+-    renesas,fcp: false
+-else:
+-  required:
+-    - renesas,fcp
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: renesas,vsp1
++    then:
++      properties:
++        renesas,fcp: false
++    else:
++      required:
++        - renesas,fcp
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: renesas,r9a07g044-vsp2
++    then:
++      properties:
++        clocks:
++          items:
++            - description: Main clock
++            - description: Register access clock
++            - description: Video clock
++        clock-names:
++          items:
++            - const: aclk
++            - const: pclk
++            - const: vclk
++      required:
++        - clock-names
++    else:
++      properties:
++        clocks:
++          maxItems: 1
++        clock-names: false
+ 
+ examples:
+   # R8A7790 (R-Car H2) VSP1-S
+-- 
+2.25.1
+
