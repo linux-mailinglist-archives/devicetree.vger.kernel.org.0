@@ -2,247 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C0995A07AB
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 05:36:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 376255A0871
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 07:27:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232366AbiHYDf7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Aug 2022 23:35:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56554 "EHLO
+        id S233811AbiHYF1r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 01:27:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229577AbiHYDfq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 23:35:46 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFD6B564C0;
-        Wed, 24 Aug 2022 20:35:29 -0700 (PDT)
-X-UUID: 4f08e4b054ed424a8dc360fc0a80509f-20220825
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=QOBOjdM80auaLFqiLz2HryuF9Bx4PCj92SDetnBUxZU=;
-        b=NL0GZK25BIh/BLmYn9YAeKLrlUh9zPFgcivkjareyNF+fG6IUvs6suYpuJxB7POmS6J0kXWOWsU/8RSiPVQfezxPZ7aOnN4EvsyC2w+Rpx7uZDn9eFn2pDDsGes8efvjQGKKSv+sJQQEZVhkN4ecpztvq688BQQf3YriOab8w3Q=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.10,REQID:c641f423-7d6b-48b2-802d-6cfa24f99bb6,OB:0,L
-        OB:0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release
-        _Ham,ACTION:release,TS:-5
-X-CID-META: VersionHash:84eae18,CLOUDID:119f0920-1c20-48a5-82a0-25f9c331906d,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 4f08e4b054ed424a8dc360fc0a80509f-20220825
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw02.mediatek.com
-        (envelope-from <moudy.ho@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1616451944; Thu, 25 Aug 2022 11:35:24 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Thu, 25 Aug 2022 11:35:22 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Thu, 25 Aug 2022 11:35:22 +0800
-Message-ID: <e9cf051675a9fad161a2e49116397690c28cb6f1.camel@mediatek.com>
-Subject: Re: [PATCH v28 4/4] media: platform: mtk-mdp3: add MediaTek MDP3
- driver
-From:   moudy ho <moudy.ho@mediatek.com>
-To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S232090AbiHYF1q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 01:27:46 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC8DF9E6BD;
+        Wed, 24 Aug 2022 22:27:45 -0700 (PDT)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 27P3AB66007269;
+        Thu, 25 Aug 2022 05:27:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=u2Gkmj5V4DLfOx9YRRaR1k3C2BrSI3oo9A9oeQegpts=;
+ b=AkpqIKrBCM1op3+i0RNVyUyfI1A9WkOoyIKJIOB1ZIQis9VsBmmaEVPKl493W0lAIZ8X
+ Jn7hXGIxzoPk2YEdrX5beLL3pc+xYy9z+etvI0L/2mLh25RZhnVMGaat6N0XSNbvev9h
+ nyjOeEnXgJB/QAdHr3BFaxkznrUfZz0TnhEvgl1Ph9lCyuXHXvkb8eD7s5eLxhbxuo5J
+ pKNzI8WeKGHUuG4FDxq84hE/Ce8G3+OUeG6T3tYkF2a4/9mS+Uoa5QdG7NS5bVLK1bc3
+ v6NOnJzPy2EieVLP6rWkb13GTsWbIBmpV4Ng67/CanvHitsQmhy/gaB1cpw/nopXTftM Ug== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3j5xcugkc3-2
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 25 Aug 2022 05:27:34 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 27P5DehQ029387
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 25 Aug 2022 05:13:40 GMT
+Received: from [10.79.43.230] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Wed, 24 Aug
+ 2022 22:13:37 -0700
+Subject: Re: [PATCH v8 3/3] arm64: dts: qcom: Add LTE SKUs for sc7280-villager
+ family
+To:     Doug Anderson <dianders@chromium.org>
+CC:     Jimmy Chen <jinghung.chen3@hotmail.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Rob Landley <rob@landley.net>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        <tfiga@chromium.org>, <drinkcat@chromium.org>,
-        <pihsun@chromium.org>, <hsinyi@google.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <cellopoint.kai@gmail.com>,
-        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
-        daoyuan huang <daoyuan.huang@mediatek.com>
-Date:   Thu, 25 Aug 2022 11:35:22 +0800
-In-Reply-To: <3ccf3023-9b1c-2ae6-dd70-6f318eec22e2@xs4all.nl>
-References: <20220823023803.27850-1-moudy.ho@mediatek.com>
-         <20220823023803.27850-5-moudy.ho@mediatek.com>
-         <3ccf3023-9b1c-2ae6-dd70-6f318eec22e2@xs4all.nl>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Alan Huang <alan-huang@quanta.corp-partner.google.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+References: <20220726094549.263899-1-jinghung.chen3@hotmail.com>
+ <SG2PR03MB5006B0C3E57803E3B1E0EDBCCC949@SG2PR03MB5006.apcprd03.prod.outlook.com>
+ <93bf8a59-34e3-e461-35c9-4f0f344dee32@quicinc.com>
+ <CAD=FV=VNUh7NT5bx0uRT259CKk2ndbji6nh2=xoRNBEC1yg-XA@mail.gmail.com>
+From:   Sibi Sankar <quic_sibis@quicinc.com>
+Message-ID: <7c60fcfa-9df8-dcb3-e5d8-f24b520c55d2@quicinc.com>
+Date:   Thu, 25 Aug 2022 10:43:34 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
+In-Reply-To: <CAD=FV=VNUh7NT5bx0uRT259CKk2ndbji6nh2=xoRNBEC1yg-XA@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_BLOCKED,
-        URIBL_CSS autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: lCqq5dObxE7uDtAvtxrkCnUc_sHziyjH
+X-Proofpoint-ORIG-GUID: lCqq5dObxE7uDtAvtxrkCnUc_sHziyjH
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.517,FMLib:17.11.122.1
+ definitions=2022-08-25_03,2022-08-22_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 phishscore=0
+ adultscore=0 malwarescore=0 suspectscore=0 mlxlogscore=999 impostorscore=0
+ spamscore=0 priorityscore=1501 lowpriorityscore=0 clxscore=1015 mlxscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2207270000
+ definitions=main-2208250018
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hans,
 
-Thank you for your time and effort.
-As a small reminder, Matthias also mentioned that he will help apply
-patches 1 and 2.
 
-Regards,
-Moudy
+On 8/24/22 8:55 PM, Doug Anderson wrote:
+> Hi,
+> 
+> On Wed, Aug 24, 2022 at 3:11 AM Sibi Sankar <quic_sibis@quicinc.com> wrote:
+>>
+>> Hey Jimmy,
+>>
+>> Thanks for the patch.
+>>
+>> On 7/26/22 3:15 PM, Jimmy Chen wrote:
+>>> This adds LTE skus for villager device tree files.
+>>>
+>>> Signed-off-by: Jimmy Chen <jinghung.chen3@hotmail.com>
+>>> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+>>> ---
+>>>
+>>> (no changes since v6)
+>>>
+>>> Changes in v6:
+>>> - Remove v5 accidentally added sc7280-herobrine-herobrine-r1-lte.dts
+>>>
+>>> Changes in v5:
+>>> - Reorder '.dtb' in Makefile
+>>> - Put the "interconnects" line back
+>>>
+>>> Changes in v4:
+>>> - Reorder 'status' last
+>>>
+>>>    arch/arm64/boot/dts/qcom/Makefile               |  2 ++
+>>>    .../boot/dts/qcom/sc7280-chrome-common.dtsi     | 11 -----------
+>>>    .../boot/dts/qcom/sc7280-herobrine-crd.dts      |  1 +
+>>>    .../dts/qcom/sc7280-herobrine-herobrine-r1.dts  |  1 +
+>>>    .../boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi | 17 +++++++++++++++++
+>>>    .../qcom/sc7280-herobrine-villager-r0-lte.dts   | 14 ++++++++++++++
+>>>    .../qcom/sc7280-herobrine-villager-r1-lte.dts   | 14 ++++++++++++++
+>>>    arch/arm64/boot/dts/qcom/sc7280-idp.dts         |  1 +
+>>>    8 files changed, 50 insertions(+), 11 deletions(-)
+>>>    create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi
+>>>    create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0-lte.dts
+>>>    create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1-lte.dts
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+>>> index 2c1605e00d349..24eacbf330880 100644
+>>> --- a/arch/arm64/boot/dts/qcom/Makefile
+>>> +++ b/arch/arm64/boot/dts/qcom/Makefile
+>>> @@ -103,7 +103,9 @@ dtb-$(CONFIG_ARCH_QCOM)   += sc7180-trogdor-r1-lte.dtb
+>>>    dtb-$(CONFIG_ARCH_QCOM)     += sc7280-herobrine-crd.dtb
+>>>    dtb-$(CONFIG_ARCH_QCOM)     += sc7280-herobrine-herobrine-r1.dtb
+>>>    dtb-$(CONFIG_ARCH_QCOM)     += sc7280-herobrine-villager-r0.dtb
+>>> +dtb-$(CONFIG_ARCH_QCOM)      += sc7280-herobrine-villager-r0-lte.dtb
+>>>    dtb-$(CONFIG_ARCH_QCOM)     += sc7280-herobrine-villager-r1.dtb
+>>> +dtb-$(CONFIG_ARCH_QCOM)      += sc7280-herobrine-villager-r1-lte.dtb
+>>>    dtb-$(CONFIG_ARCH_QCOM)     += sc7280-idp.dtb
+>>>    dtb-$(CONFIG_ARCH_QCOM)     += sc7280-idp2.dtb
+>>>    dtb-$(CONFIG_ARCH_QCOM)     += sc7280-crd-r3.dtb
+>>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
+>>> index cfe2741456a1a..25f31c81b2b74 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
+>>> @@ -83,17 +83,6 @@ spi_flash: flash@0 {
+>>>        };
+>>>    };
+>>>
+>>> -/* Modem setup is different on Chrome setups than typical Qualcomm setup */
+>>> -&remoteproc_mpss {
+>>> -     status = "okay";
+>>> -     compatible = "qcom,sc7280-mss-pil";
+>>> -     iommus = <&apps_smmu 0x124 0x0>, <&apps_smmu 0x488 0x7>;
+>>> -     interconnects = <&mc_virt MASTER_LLCC 0 &mc_virt SLAVE_EBI1 0>;
+>>> -     memory-region = <&mba_mem>, <&mpss_mem>;
+>>> -     firmware-name = "qcom/sc7280-herobrine/modem/mba.mbn",
+>>> -                     "qcom/sc7280-herobrine/modem/qdsp6sw.mbn";
+>>> -};
+>>> -
+>>>    &remoteproc_wpss {
+>>>        status = "okay";
+>>>        firmware-name = "ath11k/WCN6750/hw1.0/wpss.mdt";
+>>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
+>>> index e9ca6c5d24a16..921eccfec39ae 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
+>>> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
+>>> @@ -9,6 +9,7 @@
+>>>
+>>>    #include "sc7280-herobrine.dtsi"
+>>>    #include "sc7280-herobrine-audio-wcd9385.dtsi"
+>>> +#include "sc7280-herobrine-lte-sku.dtsi"
+>>>
+>>>    / {
+>>>        model = "Qualcomm Technologies, Inc. sc7280 CRD platform (rev5+)";
+>>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts
+>>> index c1647a85a371a..c1a6719687252 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts
+>>> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts
+>>> @@ -8,6 +8,7 @@
+>>>    /dts-v1/;
+>>>
+>>>    #include "sc7280-herobrine.dtsi"
+>>> +#include "sc7280-herobrine-lte-sku.dtsi"
+>>>
+>>>    / {
+>>>        model = "Google Herobrine (rev1+)";
+>>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi
+>>> new file mode 100644
+>>> index 0000000000000..a92eeccd2b2a9
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi
+>>> @@ -0,0 +1,17 @@
+>>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>>> +/*
+>>> + * Google Herobrine dts fragment for LTE SKUs
+>>> + *
+>>> + * Copyright 2022 Google LLC.
+>>> + */
+>>> +/* Modem setup is different on Chrome setups than typical Qualcomm setup */
+>>> +
+>>> +&remoteproc_mpss {
+>>> +     compatible = "qcom,sc7280-mss-pil";
+>>> +     iommus = <&apps_smmu 0x124 0x0>, <&apps_smmu 0x488 0x7>;
+>>> +     interconnects = <&mc_virt MASTER_LLCC 0 &mc_virt SLAVE_EBI1 0>;
+>>> +     memory-region = <&mba_mem>, <&mpss_mem>;
+>>> +     firmware-name = "qcom/sc7280-herobrine/modem/mba.mbn",
+>>> +                     "qcom/sc7280-herobrine/modem/qdsp6sw.mbn";
+>>> +     status = "okay";
+>>> +};
+>>
+>> We shoud probably move the mpss_mem, mba_mem and rmtfs_mem here as
+>> well, that way we save an additional ~255M.
+> 
+> That sounds like a great idea. I wonder if it would be possible for
+> Bjorn to land Jimmy's patches as-is and perhaps you could send a
+> follow-up patch?
 
-On Wed, 2022-08-24 at 10:39 +0200, Hans Verkuil wrote:
-> Hi Moudy,
-> 
-> On 23/08/2022 04:38, Moudy Ho wrote:
-> > This patch adds driver for MediaTek's Media Data Path ver.3 (MDP3).
-> > It provides the following functions:
-> >   color transform, format conversion, resize, crop, rotate, flip
-> >   and additional image quality enhancement.
-> > 
-> > The MDP3 driver is mainly used for Google Chromebook products to
-> > import the new architecture to set the HW settings as shown below:
-> >   User -> V4L2 framework
-> >     -> MDP3 driver -> SCP (setting calculations)
-> >       -> MDP3 driver -> CMDQ (GCE driver) -> HW
-> > 
-> > Each modules' related operation control is sited in mtk-mdp3-comp.c
-> > Each modules' register table is defined in file with "mdp_reg_"
-> > prefix
-> > GCE related API, operation control  sited in mtk-mdp3-cmdq.c
-> > V4L2 m2m device functions are implemented in mtk-mdp3-m2m.c
-> > Probe, power, suspend/resume, system level functions are defined in
-> > mtk-mdp3-core.c
-> > 
-> > Signed-off-by: Ping-Hsun Wu <ping-hsun.wu@mediatek.com>
-> > Signed-off-by: daoyuan huang <daoyuan.huang@mediatek.com>
-> > Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
-> > Tested-by: AngeloGioacchino Del Regno <
-> > angelogioacchino.delregno@collabora.com>
-> > ---
-> >  drivers/media/platform/mediatek/Kconfig       |    1 +
-> >  drivers/media/platform/mediatek/Makefile      |    1 +
-> >  drivers/media/platform/mediatek/mdp3/Kconfig  |   20 +
-> >  drivers/media/platform/mediatek/mdp3/Makefile |    6 +
-> >  .../platform/mediatek/mdp3/mdp_reg_ccorr.h    |   19 +
-> >  .../platform/mediatek/mdp3/mdp_reg_rdma.h     |   65 ++
-> >  .../platform/mediatek/mdp3/mdp_reg_rsz.h      |   39 +
-> >  .../platform/mediatek/mdp3/mdp_reg_wdma.h     |   47 +
-> >  .../platform/mediatek/mdp3/mdp_reg_wrot.h     |   55 +
-> >  .../platform/mediatek/mdp3/mtk-img-ipi.h      |  290 +++++
-> >  .../platform/mediatek/mdp3/mtk-mdp3-cmdq.c    |  466 ++++++++
-> >  .../platform/mediatek/mdp3/mtk-mdp3-cmdq.h    |   43 +
-> >  .../platform/mediatek/mdp3/mtk-mdp3-comp.c    | 1033
-> > +++++++++++++++++
-> >  .../platform/mediatek/mdp3/mtk-mdp3-comp.h    |  186 +++
-> >  .../platform/mediatek/mdp3/mtk-mdp3-core.c    |  357 ++++++
-> >  .../platform/mediatek/mdp3/mtk-mdp3-core.h    |   94 ++
-> >  .../platform/mediatek/mdp3/mtk-mdp3-m2m.c     |  724 ++++++++++++
-> >  .../platform/mediatek/mdp3/mtk-mdp3-m2m.h     |   48 +
-> >  .../platform/mediatek/mdp3/mtk-mdp3-regs.c    |  735 ++++++++++++
-> >  .../platform/mediatek/mdp3/mtk-mdp3-regs.h    |  373 ++++++
-> >  .../platform/mediatek/mdp3/mtk-mdp3-vpu.c     |  313 +++++
-> >  .../platform/mediatek/mdp3/mtk-mdp3-vpu.h     |   78 ++
-> >  22 files changed, 4993 insertions(+)
-> >  create mode 100644 drivers/media/platform/mediatek/mdp3/Kconfig
-> >  create mode 100644 drivers/media/platform/mediatek/mdp3/Makefile
-> >  create mode 100644
-> > drivers/media/platform/mediatek/mdp3/mdp_reg_ccorr.h
-> >  create mode 100644
-> > drivers/media/platform/mediatek/mdp3/mdp_reg_rdma.h
-> >  create mode 100644
-> > drivers/media/platform/mediatek/mdp3/mdp_reg_rsz.h
-> >  create mode 100644
-> > drivers/media/platform/mediatek/mdp3/mdp_reg_wdma.h
-> >  create mode 100644
-> > drivers/media/platform/mediatek/mdp3/mdp_reg_wrot.h
-> >  create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-img-
-> > ipi.h
-> >  create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-
-> > cmdq.c
-> >  create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-
-> > cmdq.h
-> >  create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-
-> > comp.c
-> >  create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-
-> > comp.h
-> >  create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-
-> > core.c
-> >  create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-
-> > core.h
-> >  create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-
-> > m2m.c
-> >  create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-
-> > m2m.h
-> >  create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-
-> > regs.c
-> >  create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-
-> > regs.h
-> >  create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-
-> > vpu.c
-> >  create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-
-> > vpu.h
-> > 
-> > diff --git a/drivers/media/platform/mediatek/Kconfig
-> > b/drivers/media/platform/mediatek/Kconfig
-> > index af47d9888552..84104e2cd024 100644
-> > --- a/drivers/media/platform/mediatek/Kconfig
-> > +++ b/drivers/media/platform/mediatek/Kconfig
-> > @@ -6,3 +6,4 @@ source
-> > "drivers/media/platform/mediatek/jpeg/Kconfig"
-> >  source "drivers/media/platform/mediatek/mdp/Kconfig"
-> >  source "drivers/media/platform/mediatek/vcodec/Kconfig"
-> >  source "drivers/media/platform/mediatek/vpu/Kconfig"
-> > +source "drivers/media/platform/mediatek/mdp3/Kconfig"
-> > diff --git a/drivers/media/platform/mediatek/Makefile
-> > b/drivers/media/platform/mediatek/Makefile
-> > index d3850a13f128..38e6ba917fe5 100644
-> > --- a/drivers/media/platform/mediatek/Makefile
-> > +++ b/drivers/media/platform/mediatek/Makefile
-> > @@ -3,3 +3,4 @@ obj-y += jpeg/
-> >  obj-y += mdp/
-> >  obj-y += vcodec/
-> >  obj-y += vpu/
-> > +obj-y += mdp3/
-> > diff --git a/drivers/media/platform/mediatek/mdp3/Kconfig
-> > b/drivers/media/platform/mediatek/mdp3/Kconfig
-> > new file mode 100644
-> > index 000000000000..af371c17c386
-> > --- /dev/null
-> > +++ b/drivers/media/platform/mediatek/mdp3/Kconfig
-> > @@ -0,0 +1,20 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only
-> > +config VIDEO_MEDIATEK_MDP3
-> > +	tristate "MediaTek MDP v3 driver"
-> > +	depends on MTK_IOMMU || COMPILE_TEST
-> > +	depends on VIDEO_DEV
-> > +	depends on ARCH_MEDIATEK || COMPILE_TEST
-> > +	depends on HAS_DMA
-> 
-> A 'depends on REMOTEPROC' is missing here (see the 'kernel test
-> robot' email
-> you received), but I have added that myself.
-> 
-> It's now in my for-v6.1c branch. If I don't see any new 'kernel test
-> robot'
-> emails in the next few days, then I'll make a PR early next week.
-> 
-> Regards,
-> 
-> 	Hans
-> 
-> > +	select VIDEOBUF2_DMA_CONTIG
-> > +	select V4L2_MEM2MEM_DEV
-> > +	select MTK_MMSYS
-> > +	select VIDEO_MEDIATEK_VPU
-> > +	select MTK_CMDQ
-> > +	select MTK_SCP
-> > +	default n
-> > +	help
-> > +	    It is a v4l2 driver and present in MediaTek MT8183 SoC.
-> > +	    The driver supports scaling and color space conversion.
-> > +
-> > +	    To compile this driver as a module, choose M here: the
-> > +	    module will be called mtk-mdp3.
+ack
 
+Reviewed-by: Sibi Sankar <quic_sibis@quicinc.com>
+
+> 
+> -Doug
+> 
