@@ -2,147 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A86765A0B0D
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 10:08:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B77B75A0B1E
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 10:13:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235888AbiHYIHb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 04:07:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44806 "EHLO
+        id S239431AbiHYINb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 04:13:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234467AbiHYIHa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 04:07:30 -0400
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 292298670B;
-        Thu, 25 Aug 2022 01:07:27 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1661414807; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=GPPQ95Ij6UbK9cbdbMjwj3IxV6MmdWMA267hSYszjyUDLDVIWmWLieL9hwf9Si9RpkNXNC7+7yRLuyyvgIqOf1JKVOmqfa2zc9OkZp4PSpCXnF0LU71pRb4ssN9DLyaFNI5TWPFnghHI95Yd0jJQeBkdRJ1UmWLTRvJIMxLJirk=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1661414807; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=4JsieqXDivmRRvE/zWwLdZw6fqOmBPCekC3LYmW4t64=; 
-        b=Q/oh6A4YvYlHfL0xTF1YvF8rL0otqnlGAn1E5jvc8DG6U0TrOvH0AGYaG5Ae+dPA9uAQmFGgS2BcQvzGN7BsxCaGyuYputrWdRDx5ULjIqub6IZ2YDuoFME34nuxK3Wy/99r5JDZ74ON9r0d4IKWlVU5CKAOo5u5mu3dFVTdSgE=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1661414807;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=4JsieqXDivmRRvE/zWwLdZw6fqOmBPCekC3LYmW4t64=;
-        b=F/SWD+LHEElDMK1k3KlaBPED4fBlWutYwKB9PXDF8rgMuI4KbfmzsGA4chOkWLQt
-        TV0IpYKp8DC1pZ5Acq7fzhEU5ragF51BJ3azjmeQGIzmgTDvBTnY2gs0ZCMYV5blpJo
-        nyxrL/Y8Elkx/+CbWBgBJt+KzRXEszGUqrja4fro=
-Received: from [10.10.10.3] (37.120.152.236 [37.120.152.236]) by mx.zohomail.com
-        with SMTPS id 1661414805043384.980663798763; Thu, 25 Aug 2022 01:06:45 -0700 (PDT)
-Message-ID: <e2679c3f-87f4-4705-a820-72b46975c851@arinc9.com>
-Date:   Thu, 25 Aug 2022 11:06:37 +0300
+        with ESMTP id S235888AbiHYINb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 04:13:31 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0028F558C7
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 01:13:27 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id bx38so18647330ljb.10
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 01:13:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=qn5tnLFNpGNvBrf/K98/ZrzIzWDByL2/KUE+XN0e2lI=;
+        b=ZAkMiEwm1HWoU57iTsHZcx4crwgdjTbODQ5RTgCOhXbJF2c2UfRpNRQByhuFrxaLt2
+         /jt0tiffVj5XoGQirXeuwMRm6rDtV954NtlKcxvgyKZ1/ArLeA0aL45SW76utZHFzVhb
+         m8EehFJCDeX0WZDyXTc8PLfidLri9PJD/JP82XqEsBf8Qzy54p6m+5/ltJ+3xHGe50IS
+         +kTZLbTvjgmAqUYh41o3UvLDmp2TR9kDXNmQxIeY2yCe8nFQcA9R8762uEUtSHT0ckbP
+         gBqwltQVcBlHAuPr+fQX3w4JFdGmbvdTN2l92vMNVEFHACvYYdFugMxeD4P9u6CHei2T
+         UDmA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=qn5tnLFNpGNvBrf/K98/ZrzIzWDByL2/KUE+XN0e2lI=;
+        b=AzZqaJmwtOu07EiMN5yv435nE36ZuJ29ilrxWvTUr2PP7/LrSz+oVFYM06LjCtmiDN
+         pQcrgPX2z2ebQdp48wG5ubkB5CkLjFXaipmKDEpv/NeHiWNcHeGJeZ/R9qpJniaVUTK6
+         33jSuKSCgKoxRYFs92Q1py+z2HfAiS0Hvq7OSgxpv+Ymw9jIyDiYnYnTL47gTEC7wjAs
+         zXlLVEAGXdxLyb1g8uaJ9wEeFfNOk91Mb2cYdyowmXWsDskb4cEJyUN7DfauZDYYTy2b
+         EmBpZEZL2KA0bE3M0bSIMrJsxCvWrjcTtn2+IcTpXPjJd6ybRdPJIuRaRqAjGCnrS1wQ
+         ePqw==
+X-Gm-Message-State: ACgBeo0fuLKfSxGzyBWRV7ZMA88i4ycXLpYxU317gq+Sz05zXe8dVGDE
+        Phw40bKVBAUODEI1ZnDoS2mCUQ==
+X-Google-Smtp-Source: AA6agR4WcpGmr3YAjURQJ1NfYCPefM99Q4A+Vkw54i+ZJfnnK14evDd3BR8AXou5krL0fKPpiRaMWg==
+X-Received: by 2002:a2e:824c:0:b0:25f:de27:f013 with SMTP id j12-20020a2e824c000000b0025fde27f013mr709733ljh.447.1661415206244;
+        Thu, 25 Aug 2022 01:13:26 -0700 (PDT)
+Received: from [192.168.0.71] (82.131.98.15.cable.starman.ee. [82.131.98.15])
+        by smtp.gmail.com with ESMTPSA id y7-20020a05651c106700b0025e42f8e771sm406559ljm.34.2022.08.25.01.13.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 Aug 2022 01:13:25 -0700 (PDT)
+Message-ID: <eb8dc532-f8d8-15ed-af12-a0d945db9a5e@linaro.org>
+Date:   Thu, 25 Aug 2022 11:13:24 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v4 4/6] dt-bindings: net: dsa: mediatek,mt7530: define
- port binding per switch
+ Thunderbird/91.13.0
+Subject: Re: [PATCH] dt-bindings: arm: mediatek: mmsys: change compatible for
+ MT8195
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
-        Sander Vanheule <sander@svanheule.net>,
-        =?UTF-8?Q?Ren=c3=a9_van_Dorst?= <opensource@vdorst.com>,
-        Daniel Golle <daniel@makrotopia.org>, erkin.bozoglu@xeront.com,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220820080758.9829-1-arinc.unal@arinc9.com>
- <20220820080758.9829-5-arinc.unal@arinc9.com>
- <c24da513-e015-8bc6-8874-ba63c22be5d6@linaro.org>
- <ea3ceeab-d92b-6ce5-8ea9-aebb3eaa0a91@arinc9.com>
- <7248cbce-29b9-aad6-c970-8e150bc23df8@linaro.org>
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <7248cbce-29b9-aad6-c970-8e150bc23df8@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
+To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
+Cc:     =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= 
+        <Jason-JH.Lin@mediatek.com>,
+        =?UTF-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
+        =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
+        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+        "angelogioacchino.delregno@collabora.com" 
+        <angelogioacchino.delregno@collabora.com>,
+        "hsinyi@google.com" <hsinyi@google.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+References: <20220825055658.12429-1-rex-bc.chen@mediatek.com>
+ <3ff08ae9-a4b6-2b74-23cb-69ea1d7e1033@linaro.org>
+ <d5a00dc88bed1680caa8af895a1140324b9d079e.camel@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <d5a00dc88bed1680caa8af895a1140324b9d079e.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25.08.2022 09:33, Krzysztof Kozlowski wrote:
-> On 23/08/2022 15:29, Arınç ÜNAL wrote:
->>
->>
->> On 23.08.2022 13:47, Krzysztof Kozlowski wrote:
->>> On 20/08/2022 11:07, Arınç ÜNAL wrote:
->>>> Define DSA port binding per switch model as each switch model requires
->>>> different values for certain properties.
->>>>
->>>> Define reg property on $defs as it's the same for all switch models.
->>>>
->>>> Remove unnecessary lines as they are already included from the referred
->>>> dsa.yaml.
->>>>
->>>> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
->>>> ---
->>>>    .../bindings/net/dsa/mediatek,mt7530.yaml     | 56 +++++++++++--------
->>>>    1 file changed, 34 insertions(+), 22 deletions(-)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
->>>> index 657e162a1c01..7c4374e16f96 100644
->>>> --- a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
->>>> +++ b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
->>>> @@ -130,38 +130,47 @@ properties:
->>>>          ethsys.
->>>>        maxItems: 1
->>>>    
->>>> -patternProperties:
->>>> -  "^(ethernet-)?ports$":
->>>> -    type: object
->>>> -
->>>> -    patternProperties:
->>>> -      "^(ethernet-)?port@[0-9]+$":
->>>> -        type: object
->>>> -        description: Ethernet switch ports
->>>
->>> Again, I don't understand why do you remove definitions of these nodes
->>> from top-level properties. I explained what I expect in previous
->>> discussion and I am confused to hear "this cannot be done".
->>
->> I agree it can be done, but the binding is done with less lines the
->> current way.
->>
->> I would need to add more lines than just for creating the node structure
->> since dsa.yaml is not referred.
->>
->> Then, I would have to create the node structure again for the dsa-port
->> checks.
+On 25/08/2022 09:59, Bo-Chen Chen wrote:
 > 
-> I understand you can create binding more concise, but not necessarily
-> more readable. The easiest to grasp is to define all the nodes in
-> top-level and customize them in allOf:if:then. This was actually also
-> needed for earlier dtschema with additionalProperties:false. You keep
-> defining properties in allOf:if:then, even though they are all
-> applicable to all variants. That's unusual and even if it reduces the
-> lines does not make it easier to grasp.
+> Hello Krzysztof,
+> 
+> Thanks for yor review.
+> 
+> From the functions perspective:
+> 
+> Hardware pipeline of VDOSYS0 has these components: COLOR, CCORR, AAL,
+> GAMMA, DITHER.
+> They are related to PQ (Picture Quality) functions and they makes
+> VDOSYS0 supports PQ function while they are not including in VDOSYS1.
+> 
+> Hardware pipeline of VDOSYS1 has the component ETHDR (HDR related
+> component).
+> It makes VDOSYS1 supports the HDR function while it's not including in
+> VDOSYS0.
+> 
+> About mediatek ETHDR, you can refer to this series:
+> 
+> https://lore.kernel.org/all/20220819061456.8042-2-nancy.lin@mediatek.com/
+> 
+> To summary:
+> Only VDOSYS0 can support PQ adjustment.
+> Only VDOSYS1 can support HDR adjustment.
+> 
+> Is this description ok for you?
+> If it is ok, I will put them into commit message in next version.
+> 
 
-Understood. Will send v6 with respect to this.
+Yes.
 
-Arınç
+Best regards,
+Krzysztof
