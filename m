@@ -2,251 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B9AE5A1AD9
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 23:12:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B50C95A1AE8
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 23:18:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240501AbiHYVMp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 17:12:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55552 "EHLO
+        id S243489AbiHYVR5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 17:17:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232136AbiHYVMo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 17:12:44 -0400
-Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB1F6B1BBD;
-        Thu, 25 Aug 2022 14:12:43 -0700 (PDT)
-Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-11c5505dba2so26530515fac.13;
-        Thu, 25 Aug 2022 14:12:43 -0700 (PDT)
+        with ESMTP id S229736AbiHYVR4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 17:17:56 -0400
+Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16A19B69C7;
+        Thu, 25 Aug 2022 14:17:56 -0700 (PDT)
+Received: by mail-ot1-f47.google.com with SMTP id o15-20020a9d718f000000b00638c1348012so14804524otj.2;
+        Thu, 25 Aug 2022 14:17:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=7cYyxg+Rjs2OKuzQlOjAlSHEpxBggE7h7LYSTjnsFQY=;
-        b=O0aNaAc2BQP/ZfLv6yEbmA7bMaS/MztotiuxUg7TSVRYePqhPtj7sLJooCKs3GbMEn
-         +EJG02mkjQAjlnPoYp1BbKgDpJjqcwlcjaX+PeYpJxWq8pioUOuPndHkKjemKfknxj71
-         SD2qcI5FHgXw3bHxiFf25nWo9ZNF/+Y9IXJXaQEkjHJnluxXJNjUsbNkuRqamgN3eEFK
-         OX6bAW7tQfR6rJg1s16eu7xPTjL15gQrbx43X0+yTcamssJG5pPkRGgAi9Tq9zYabhSD
-         5rQ0Qv8OS0b+V73BIvWNSji+P19wAGui9MAnpFlzcPCYRS4tzONLepYemKtKWevyJ0Ip
-         3cEw==
-X-Gm-Message-State: ACgBeo3ZrUeuSdkeGRRseI2Aw2cOTERypth7jFey+Yezus7dtjJqlvJE
-        LLSwBf/D3rXS8Ykh0kBkaw==
-X-Google-Smtp-Source: AA6agR7L4kQd6z1UzBVG2YOwp2flBq48abWOo4dTD4AKZRma54US5SS++O70oOI3XePD8j7/qDEheA==
-X-Received: by 2002:a05:6870:438b:b0:11c:ecf2:e4ca with SMTP id r11-20020a056870438b00b0011cecf2e4camr449518oah.122.1661461963080;
-        Thu, 25 Aug 2022 14:12:43 -0700 (PDT)
+        bh=hwV//rNcbQ3+qAB3daw/4GgV/Z1x4soD0T+4tNDY0tA=;
+        b=MaaPqdQEsxJmvrF/97EBH2PgcuLQST+8K+29tN7xh0jPKMuTCojFOQZvepp4Zz8k1t
+         9ufAOn95O+i2L6ERbfeDYt6CnAKjRikYo/grh50RN3V05M53M8by4t03N8fApOoaMKWE
+         v/2HjoGX2yck/it98KpXWxKt0GO13FdleFkw5Xo2G5AiiEevpCOq7gIskBjEwwi/W8fi
+         y2vHoH36cmY0AngFHV/dOmF60L73fRNwDQUnV+WyekO2NHeo6iwS2CsdGDaZPJzAKSYd
+         maHuvWzD81kGqhB1idcdmlimW5FMkBVxoZPpXue7nB+LvkRkPJ8o8kGMRjYBJz/dHVnQ
+         uR3g==
+X-Gm-Message-State: ACgBeo0rCD6MvcS278uTQb6ceIuLEutp/oPdXLxSaOsnKzezqQ+yFzfA
+        FUIv0EOvhPBJ1gXqxXuNGA==
+X-Google-Smtp-Source: AA6agR5ixmp6Z28HcogDYhiF72sAG63FXLBl/ZP/60D9Q1GSLvk1YFQKRZhsLMFb6kb/KMiIP6jXXg==
+X-Received: by 2002:a05:6830:449e:b0:638:c72b:68ff with SMTP id r30-20020a056830449e00b00638c72b68ffmr361404otv.26.1661462275255;
+        Thu, 25 Aug 2022 14:17:55 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id o12-20020a9d5c0c000000b0061d31170573sm92760otk.20.2022.08.25.14.12.42
+        by smtp.gmail.com with ESMTPSA id s23-20020a9d7597000000b006391adb6034sm51044otk.72.2022.08.25.14.17.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Aug 2022 14:12:42 -0700 (PDT)
-Received: (nullmailer pid 1696440 invoked by uid 1000);
-        Thu, 25 Aug 2022 21:12:41 -0000
-Date:   Thu, 25 Aug 2022 16:12:41 -0500
+        Thu, 25 Aug 2022 14:17:54 -0700 (PDT)
+Received: (nullmailer pid 1704224 invoked by uid 1000);
+        Thu, 25 Aug 2022 21:17:54 -0000
+Date:   Thu, 25 Aug 2022 16:17:54 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Cc:     linux-kernel@vger.kernel.org,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Amarula patchwork <linux-amarula@amarulasolutions.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        michael@amarulasolutions.com, Dario Binacchi <dariobin@libero.it>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-can@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com, netdev@vger.kernel.org
-Subject: Re: [RFC PATCH v2 1/4] dt-bindings: net: can: add STM32 bxcan DT
- bindings
-Message-ID: <20220825211241.GA1688421-robh@kernel.org>
-References: <20220820082936.686924-1-dario.binacchi@amarulasolutions.com>
- <20220820082936.686924-2-dario.binacchi@amarulasolutions.com>
+To:     Liu Ying <victor.liu@nxp.com>
+Cc:     gregkh@linuxfoundation.org, s.hauer@pengutronix.de,
+        devicetree@vger.kernel.org, geert+renesas@glider.be,
+        kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org,
+        krzysztof.kozlowski+dt@linaro.org, saravanak@google.com,
+        linux-imx@nxp.com, linux-kernel@vger.kernel.org,
+        festevam@gmail.com, krzysztof.kozlowski@linaro.org,
+        robh+dt@kernel.org, shawnguo@kernel.org
+Subject: Re: [PATCH RESEND v4 2/2] dt-bindings: bus: Add Freescale i.MX8qxp
+ pixel link MSI bus binding
+Message-ID: <20220825211754.GA1704113-robh@kernel.org>
+References: <20220822060323.3481384-1-victor.liu@nxp.com>
+ <20220822060323.3481384-3-victor.liu@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220820082936.686924-2-dario.binacchi@amarulasolutions.com>
+In-Reply-To: <20220822060323.3481384-3-victor.liu@nxp.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 20, 2022 at 10:29:33AM +0200, Dario Binacchi wrote:
-> Add documentation of device tree bindings for the STM32 basic extended
-> CAN (bxcan) controller.
+On Mon, 22 Aug 2022 14:03:23 +0800, Liu Ying wrote:
+> Freescale i.MX8qxp pixel link MSI bus is a simple memory-mapped bus.
+> It is used to access peripherals in i.MX8qm/qxp imaging, LVDS, MIPI
+> DSI and HDMI TX subsystems, like I2C controller, PWM controller,
+> MIPI DSI controller and Control and Status Registers (CSR) module.
 > 
-> Signed-off-by: Dario Binacchi <dariobin@libero.it>
-> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> Reference simple-pm-bus bindings and add Freescale i.MX8qxp pixel
+> link MSI bus specific bindings.
 > 
+> Signed-off-by: Liu Ying <victor.liu@nxp.com>
 > ---
+> v3->v4:
+> * Add child nodes in the example MSI bus node of the MSI bus dt-binding. (Krzysztof)
+> * Resend v4 to imply this patch is based on v6.0-rc1 so that there are not any
+>   dependencies. (Rob)
 > 
-> Changes in v2:
-> - Change the file name into 'st,stm32-bxcan-core.yaml'.
-> - Rename compatibles:
->   - st,stm32-bxcan-core -> st,stm32f4-bxcan-core
->   - st,stm32-bxcan -> st,stm32f4-bxcan
-> - Rename master property to st,can-master.
-> - Remove the status property from the example.
-> - Put the node child properties as required.
+> v2->v3:
+> * Add a pattern property to allow child nodes. (Rob)
 > 
->  .../bindings/net/can/st,stm32-bxcan.yaml      | 136 ++++++++++++++++++
->  1 file changed, 136 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/can/st,stm32-bxcan.yaml
+> v1->v2:
+> Address Krzysztof's comments:
+> * Add a select to explicitly select the MSI bus dt-binding.
+> * List 'simple-pm-bus' explicitly as one item of compatible strings.
+> * Require compatible and reg properties.
+> * Put reg property just after compatible property in example.
 > 
-> diff --git a/Documentation/devicetree/bindings/net/can/st,stm32-bxcan.yaml b/Documentation/devicetree/bindings/net/can/st,stm32-bxcan.yaml
-> new file mode 100644
-> index 000000000000..288631b5556d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/can/st,stm32-bxcan.yaml
-> @@ -0,0 +1,136 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/can/st,stm32-bxcan.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: STMicroelectronics bxCAN controller
-> +
-> +description: STMicroelectronics BxCAN controller for CAN bus
-> +
-> +maintainers:
-> +  - Dario Binacchi <dario.binacchi@amarulasolutions.com>
-> +
-> +allOf:
-> +  - $ref: can-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - st,stm32f4-bxcan-core
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    description:
-> +      Input clock for registers access
-> +    maxItems: 1
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - resets
-> +  - clocks
-> +  - '#address-cells'
-> +  - '#size-cells'
-> +
-> +patternProperties:
-> +  "^can@[0-9]+$":
-> +    type: object
-> +    description:
-> +      A CAN block node contains two subnodes, representing each one a CAN
-> +      instance available on the machine.
-> +
-> +    properties:
-> +      compatible:
-> +        enum:
-> +          - st,stm32f4-bxcan
-> +
-> +      st,can-master:
-> +        description:
-> +          Master and slave mode of the bxCAN peripheral is only relevant
-> +          if the chip has two CAN peripherals. In that case they share
-> +          some of the required logic, and that means you cannot use the
-> +          slave CAN without the master CAN.
-> +        type: boolean
-> +
-> +      reg:
-> +        description: |
-> +          Offset of CAN instance in CAN block. Valid values are:
-> +            - 0x0:   CAN1
-> +            - 0x400: CAN2
-> +        maxItems: 1
-> +
-> +      interrupts:
-> +        items:
-> +          - description: transmit interrupt
-> +          - description: FIFO 0 receive interrupt
-> +          - description: FIFO 1 receive interrupt
-> +          - description: status change error interrupt
-> +
-> +      interrupt-names:
-> +        items:
-> +          - const: tx
-> +          - const: rx0
-> +          - const: rx1
-> +          - const: sce
-> +
-> +      resets:
-> +        maxItems: 1
-> +
-> +      clocks:
-> +        description:
-> +          Input clock for registers access
-> +        maxItems: 1
-> +
-> +    additionalProperties: false
-> +
-> +    required:
-> +      - compatible
-> +      - reg
-> +      - interrupts
-> +      - resets
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/stm32fx-clock.h>
-> +    #include <dt-bindings/mfd/stm32f4-rcc.h>
-> +
-> +    can: can@40006400 {
-> +        compatible = "st,stm32f4-bxcan-core";
-> +        reg = <0x40006400 0x800>;
-> +        resets = <&rcc STM32F4_APB1_RESET(CAN1)>;
-> +        clocks = <&rcc 0 STM32F4_APB1_CLOCK(CAN1)>;
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
+>  .../bus/fsl,imx8qxp-pixel-link-msi-bus.yaml   | 232 ++++++++++++++++++
+>  1 file changed, 232 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/bus/fsl,imx8qxp-pixel-link-msi-bus.yaml
+> 
 
-Missing 'ranges'.
-
-> +        can1: can@0 {
-> +            compatible = "st,stm32f4-bxcan";
-> +            reg = <0x0>;
-> +            interrupts = <19>, <20>, <21>, <22>;
-> +            interrupt-names = "tx", "rx0", "rx1", "sce";
-> +            resets = <&rcc STM32F4_APB1_RESET(CAN1)>;
-> +            st,can-master;
-
-No clocks?
-
-> +        };
-> +
-> +        can2: can@400 {
-> +            compatible = "st,stm32f4-bxcan";
-> +            reg = <0x400>;
-> +            interrupts = <63>, <64>, <65>, <66>;
-> +            interrupt-names = "tx", "rx0", "rx1", "sce";
-> +            resets = <&rcc STM32F4_APB1_RESET(CAN2)>;
-> +            clocks = <&rcc 0 STM32F4_APB1_CLOCK(CAN2)>;
-> +        };
-> +    };
-> -- 
-> 2.32.0
-> 
-> 
+Reviewed-by: Rob Herring <robh@kernel.org>
