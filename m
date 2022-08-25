@@ -2,236 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B07C5A18D8
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 20:37:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8901A5A18DF
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 20:39:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243107AbiHYShE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 14:37:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56558 "EHLO
+        id S242941AbiHYSjG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 14:39:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243434AbiHYSg7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 14:36:59 -0400
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5851B9108D
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 11:36:54 -0700 (PDT)
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com [209.85.128.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id DE92841F5E
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 18:36:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1661452612;
-        bh=dpAjbusN9yBD9N/QzCXa1x041iuJNs+syZnqbC+IIao=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=EYEce1S2Xh3NG/f2iXGbPdH8B4uD7mjMdTGZUsDiDutNBXrgG8IjFhNyIhcmBfqKH
-         yzb7BSacwLRwP8MYq80ru5deh3tmWvzc7OhJma2+c8L0YPeCkKf2147DdL8/VkergO
-         8hHff57XoRIrGUuDCKP0xeQQ5xDmMilQekI4ICJrz8ex88CkO9NxT+DRinQZBO1OPz
-         azOl+7LEXDbo2RZPip9O77ofUSgPa//ldR0BS7G2PV0TwATtDzZ8ZTwNzitrdCvOpV
-         2CMdc9Z8oBFy39xXV1tlBZepMBdQ3kcY2oll2CBiXAekwEoL5MWT6Wm0VBnmbBUrM7
-         LQdLtat3GvoXg==
-Received: by mail-wm1-f70.google.com with SMTP id f9-20020a7bcd09000000b003a62725489bso1028324wmj.2
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 11:36:52 -0700 (PDT)
+        with ESMTP id S241391AbiHYSjF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 14:39:05 -0400
+Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6F7FA99F6
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 11:39:04 -0700 (PDT)
+Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-33dba2693d0so70978647b3.12
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 11:39:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=B+6GHANqVGrhre1yIICjUKUVABFJYsXY9KlsXWrq0g0=;
+        b=B85LgmnE6J6rXg7BVngfQTw4IEjIKrGKdqIeDIjR3AWtFqojLHLJcIFpUb/kio7nLp
+         Q+Ui7InM8EeA6fFs7Ovf0/ZosbdTVjCy7D8cMlV6fDhzod2KJN/4nk9mVhQ0FZQbE+Ky
+         QstKO/uftXpVDD4tBNkWiPAMtu3ZT8/ej/ZSvGUcLEWZFY0lt12Otkn4bzRlVnhh1rx6
+         v1MWHoVRbsz20H7ZjCC6iSK7MQfC7xupNt5YGgKQ0K9Dy210qTIgMkNTvPpIjL3nfH+N
+         uZ86ViMYJrB57R5lrqCVZJvZgKRj3BRPaPN1gFz3nUQyy9V9YzX1BsykChMTGDUfqP+t
+         jUKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=dpAjbusN9yBD9N/QzCXa1x041iuJNs+syZnqbC+IIao=;
-        b=7Hi9DC5sbhk6aG8L9gyjUKda6WcHfxqKDjl+/JYZixggrIKtzM02zazMQJBGo8bMjD
-         U2w3avo6r/HrKtAulE2ZMjMgwJPErra0aCSJCk04ntRrDmoU+n18gSFXdIBYBa+9oRMc
-         onOpHLGGZwdbi0WFNqGlqvKT0ybuZ0g7CDWdLeFJUly98EEUWt4Ffo/Bwi3Djy5xQEud
-         uLs8fyqKtN53siIcTSq78iFvWI2Mhl/j6mG3vgnD1SkF28mfWZs6GT+MkGsNOoNi55eP
-         l0z1ABoZzpI3rU5cYtPNzaW0IFhYfGrLlaUPoQd86qclrPnwCl9N49x0+1mV5R/SpVD7
-         5hiQ==
-X-Gm-Message-State: ACgBeo1LdcQFnEapGSoZUzu9fLUNAW0mBOTGXApmQayj65Mpz7YW0Z/6
-        rgB2xtXRQypX36JVI0Oxu5olnXGWTD+nOOOLhLAf9jDRqcjLVsVd2+shtLQH3CkKBNhKpa5H867
-        l+dR3ydQZJcOZbCovtdWlRoaOrrGjaQwJvSX598M=
-X-Received: by 2002:a05:600c:3d0f:b0:3a5:eece:c061 with SMTP id bh15-20020a05600c3d0f00b003a5eecec061mr3126679wmb.74.1661452612260;
-        Thu, 25 Aug 2022 11:36:52 -0700 (PDT)
-X-Google-Smtp-Source: AA6agR4LuVbPZRwE3Kvu/sLxz4WiXDcnE8lKeB5AJKOBKdr9/2gXIomWNDt5/HMCk1Ye4DwHolXA3w==
-X-Received: by 2002:a05:600c:3d0f:b0:3a5:eece:c061 with SMTP id bh15-20020a05600c3d0f00b003a5eecec061mr3126655wmb.74.1661452611922;
-        Thu, 25 Aug 2022 11:36:51 -0700 (PDT)
-Received: from [192.168.123.94] (ip-084-118-157-002.um23.pools.vodafone-ip.de. [84.118.157.2])
-        by smtp.gmail.com with ESMTPSA id k5-20020a05600c1c8500b003a5f3de6fddsm6392341wms.25.2022.08.25.11.36.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Aug 2022 11:36:51 -0700 (PDT)
-Message-ID: <5f00ab85-d5ac-728d-2157-e70f2a46cc90@canonical.com>
-Date:   Thu, 25 Aug 2022 20:36:49 +0200
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=B+6GHANqVGrhre1yIICjUKUVABFJYsXY9KlsXWrq0g0=;
+        b=USBNtXaGMkOQXNWLL+clQNv+3vcvJnhRW09pHN7qEAwHY4hQgtaV4+Cxx8HsTR76mR
+         QWtEnTfIrC77UR7AgLxRPr5vs/PQBAayEN4sBz7r7MpKY8YbT+r3jiQZRXazX0LKihqN
+         4rLAO7SG5zpUX6NqPuwL1GNRdXsHnQrBbRyKsbbyl7nrfgW23vc6N8DJqlAhQbXiDxH9
+         lIm61/zLIgSzXv2ys5xIc8onlCPItVyioLymPS6OnoEUYihBavBMzG1nmzlj5T1qYKVc
+         dmzZIDWks4dsE5lU3+SjhzQjfEmXbG1QuYpTbNtyIjworIN3UQwsBeQZJC+tWxEmm064
+         WuLg==
+X-Gm-Message-State: ACgBeo0bmAP5pMvYeFSc6qVw0FoiZ0DCreznQauA/BhLdfql+aAzmP+H
+        NDqgerjpxZYdyKI7b2gCPmhA/tJKRMGNIV8XXi0Hyw==
+X-Google-Smtp-Source: AA6agR7rapIlRr0/fCZEKhWKbo6XO2p0rUFCMJJnqLNETdiYbschnHcx4RcKE15j7E+GKxzg5bqk9rgOYhmm6A46bj4=
+X-Received: by 2002:a25:94b:0:b0:68f:4e05:e8f0 with SMTP id
+ u11-20020a25094b000000b0068f4e05e8f0mr4506829ybm.115.1661452743474; Thu, 25
+ Aug 2022 11:39:03 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.0
-Subject: Re: [PATCH 1/2] dt-bindings: riscv: sifive-l2: add a PolarFire SoC
- compatible
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     Sagar Kadam <sagar.kadam@sifive.com>,
-        Atish Patra <atishp@atishpatra.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Albert Ou <aou@eecs.berkeley.edu>,
-        Daire McNamara <daire.mcnamara@microchip.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <mail@conchuod.ie>
-References: <20220825180417.1259360-1-mail@conchuod.ie>
- <20220825180417.1259360-2-mail@conchuod.ie>
-Content-Language: en-US
-From:   Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
-In-Reply-To: <20220825180417.1259360-2-mail@conchuod.ie>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+References: <20220803122655.100254-1-nipun.gupta@amd.com> <20220817150542.483291-1-nipun.gupta@amd.com>
+ <20220817150542.483291-3-nipun.gupta@amd.com> <Yv0KHROjESUI59Pd@kroah.com>
+ <DM6PR12MB3082D966CFC0FA1C2148D8FAE8719@DM6PR12MB3082.namprd12.prod.outlook.com>
+ <YwOEv6107RfU5p+H@kroah.com> <DM6PR12MB3082B4BDD39632264E7532B8E8739@DM6PR12MB3082.namprd12.prod.outlook.com>
+ <YwYVhJCSAuYcgj1/@kroah.com> <20220824233122.GA4068@nvidia.com>
+In-Reply-To: <20220824233122.GA4068@nvidia.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Thu, 25 Aug 2022 11:38:27 -0700
+Message-ID: <CAGETcx846Pomh_DUToncbaOivHMhHrdt-MTVYqkfLUKvM8b=6w@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 2/6] bus/cdx: add the cdx bus driver
+To:     Jason Gunthorpe <jgg@nvidia.com>
+Cc:     Greg KH <gregkh@linuxfoundation.org>,
+        "Gupta, Nipun" <Nipun.Gupta@amd.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "rafael@kernel.org" <rafael@kernel.org>,
+        "eric.auger@redhat.com" <eric.auger@redhat.com>,
+        "alex.williamson@redhat.com" <alex.williamson@redhat.com>,
+        "cohuck@redhat.com" <cohuck@redhat.com>,
+        "Gupta, Puneet (DCG-ENG)" <puneet.gupta@amd.com>,
+        "song.bao.hua@hisilicon.com" <song.bao.hua@hisilicon.com>,
+        "mchehab+huawei@kernel.org" <mchehab+huawei@kernel.org>,
+        "maz@kernel.org" <maz@kernel.org>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "jeffrey.l.hugo@gmail.com" <jeffrey.l.hugo@gmail.com>,
+        "Michael.Srba@seznam.cz" <Michael.Srba@seznam.cz>,
+        "mani@kernel.org" <mani@kernel.org>,
+        "yishaih@nvidia.com" <yishaih@nvidia.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+        "okaya@kernel.org" <okaya@kernel.org>,
+        "Anand, Harpreet" <harpreet.anand@amd.com>,
+        "Agarwal, Nikhil" <nikhil.agarwal@amd.com>,
+        "Simek, Michal" <michal.simek@amd.com>,
+        "git (AMD-Xilinx)" <git@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/25/22 20:04, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
-> 
-> The l2 cache on PolarFire SoC is cross between that of the fu540 and
-> the fu740. It has the extra interrupt from the fu740 but the lower
-> number of cache-sets. Add a specific compatible to avoid the likes
-> of:
-> 
-> mpfs-polarberry.dtb: cache-controller@2010000: interrupts: [[1], [3], [4], [2]] is too long
+On Wed, Aug 24, 2022 at 4:31 PM Jason Gunthorpe <jgg@nvidia.com> wrote:
+>
+> On Wed, Aug 24, 2022 at 02:11:48PM +0200, Greg KH wrote:
+> > > We can share the RFC in case you are interested in looking at code flow
+> > > using the of_dynamic approach.
+> >
+> > Please no more abuse of the platform device.
+>
+> Last time this came up there was some disagreement from the ARM folks,
+> they were not keen on having xx_drivers added all over the place to
+> support the same OF/DT devices just discovered in a different way. It is
+> why ACPI is mapped to platform_device even in some cases.
+>
+> I think if you push them down this path they will get resistance to
+> get the needed additional xx_drivers into the needed places.
+>
+> > If your device can be discovered by scanning a bus, it is not a platform
+> > device.
+>
+> A DT fragment loaded during boot binds a driver using a
+> platform_driver, why should a DT fragment loaded post-boot bind using
+> an XX_driver and further why should the CDX way of getting the DT
+> raise to such importantance that it gets its own cdx_driver ?
+>
+> In the end the driver does not care about how the DT was loaded.
+> None of these things are on a discoverable bus in any sense like PCI
+> or otherwise. They are devices described by a DT fragement and they
+> take all their parameters from that chunk of DT.
+>
+> How the DT was loaded into the system is not a useful distinction that
+> raises the level of needing an entire new set of xx_driver structs all
+> over the tree, IMHO.
 
-Where is such a message written? I couldn't find the string in 
-next-20220825 (git grep -n 'is too long"').
+Jason, I see your point or rather the point the ARM folks might have
+made. But in this case, why not use DT overlays to add these devices?
+IIRC there's an in kernel API to add DT overlays. If so, should this
+be more of a FPGA driver that reads FPGA stuff and adds DT overlays?
+That'd at least make a stronger case for why this isn't a separate
+bus.
 
-Why should a different number of cache sets require an extra compatible 
-string. cache-size is simply a parameter going with the existing 
-compatible strings.
 
-I would assume that you only need an extra compatible string if there is 
-a functional difference that can not be expressed with the existing 
-parameters.
-
-> 
-> Fixes: 34fc9cc3aebe ("riscv: dts: microchip: correct L2 cache interrupts")
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->   .../bindings/riscv/sifive-l2-cache.yaml       | 79 ++++++++++++-------
->   1 file changed, 49 insertions(+), 30 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml b/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
-> index 69cdab18d629..ca3b9be58058 100644
-> --- a/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
-> +++ b/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
-> @@ -17,9 +17,6 @@ description:
->     acts as directory-based coherency manager.
->     All the properties in ePAPR/DeviceTree specification applies for this platform.
->   
-> -allOf:
-> -  - $ref: /schemas/cache-controller.yaml#
-> -
->   select:
->     properties:
->       compatible:
-> @@ -33,11 +30,16 @@ select:
->   
->   properties:
->     compatible:
-> -    items:
-> -      - enum:
-> -          - sifive,fu540-c000-ccache
-> -          - sifive,fu740-c000-ccache
-
-Why can't you simply add microchip,mpfs-ccache here?
-
-> -      - const: cache
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - sifive,fu540-c000-ccache
-> +              - sifive,fu740-c000-ccache
-> +          - const: cache
-> +      - items:
-> +          - const: microchip,mpfs-ccache
-> +          - const: sifive,fu540-c000-ccache
-
-Why do we need 'sifive,fu540-c000-ccache' twice?
-
-Best regards
-
-Heinrich
-
-> +          - const: cache
->   
->     cache-block-size:
->       const: 64
-> @@ -72,29 +74,46 @@ properties:
->         The reference to the reserved-memory for the L2 Loosely Integrated Memory region.
->         The reserved memory node should be defined as per the bindings in reserved-memory.txt.
->   
-> -if:
-> -  properties:
-> -    compatible:
-> -      contains:
-> -        const: sifive,fu540-c000-ccache
-> +allOf:
-> +  - $ref: /schemas/cache-controller.yaml#
->   
-> -then:
-> -  properties:
-> -    interrupts:
-> -      description: |
-> -        Must contain entries for DirError, DataError and DataFail signals.
-> -      maxItems: 3
-> -    cache-sets:
-> -      const: 1024
-> -
-> -else:
-> -  properties:
-> -    interrupts:
-> -      description: |
-> -        Must contain entries for DirError, DataError, DataFail, DirFail signals.
-> -      minItems: 4
-> -    cache-sets:
-> -      const: 2048
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - sifive,fu740-c000-ccache
-> +              - microchip,mpfs-ccache
-> +
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          description: |
-> +            Must contain entries for DirError, DataError, DataFail, DirFail signals.
-> +          minItems: 4
-> +
-> +    else:
-> +      properties:
-> +        interrupts:
-> +          description: |
-> +            Must contain entries for DirError, DataError and DataFail signals.
-> +          maxItems: 3
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: sifive,fu740-c000-ccache
-> +
-> +    then:
-> +      properties:
-> +        cache-sets:
-> +          const: 2048
-> +
-> +    else:
-> +      properties:
-> +        cache-sets:
-> +          const: 1024
->   
->   additionalProperties: false
->   
+-Saravana
