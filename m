@@ -2,70 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F36435A0FEE
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 14:05:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 125475A1001
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 14:10:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241319AbiHYMFc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 08:05:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46356 "EHLO
+        id S241208AbiHYMKf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 08:10:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241072AbiHYMF2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 08:05:28 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03BE667C81;
-        Thu, 25 Aug 2022 05:05:24 -0700 (PDT)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1oRBbh-0001K3-BL; Thu, 25 Aug 2022 14:05:09 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Samuel Holland <samuel@sholland.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev, Samuel Holland <samuel@sholland.org>
-Subject: Re: [PATCH 1/4] nvmem: sunxi_sid: Always use 32-bit MMIO reads
-Date:   Thu, 25 Aug 2022 14:05:08 +0200
-Message-ID: <5410996.rnE6jSC6OK@diego>
-In-Reply-To: <20220814173656.11856-2-samuel@sholland.org>
-References: <20220814173656.11856-1-samuel@sholland.org> <20220814173656.11856-2-samuel@sholland.org>
+        with ESMTP id S235589AbiHYMKe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 08:10:34 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E70096FF8
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 05:10:32 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id bx38so19204768ljb.10
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 05:10:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=n9pMH2H5Xekwc4hhOKpfLB4HqSCAO2/+9Ps6poR2Wbo=;
+        b=xWvGHAcbKndQ46QgWUjkmXeKciR8JRbi1w3t7S650F5f5PY+QPbwfvaaL9fdob0/xm
+         AEjiq0m1OdZpshX5x+QHGJ2cM6ra+5a9IDyswHcejTa5iGiSrzOXuRxlu6l27EIjlo74
+         xwF+IUWPAbd1nUv+YqQUsga7OHs1znP+GNDMDKawbFMGJ2HXKtoMo+FgeEeTnnN881aP
+         a9FO9g5Syw9pNfaQPKBhmxuk+PmRViCldPNzECiEQ3/BkHzLT1zopc9cltNc3oxyr6/g
+         RRR1wYOIk56R2RK+Z+tpyevChyma4kPCDXPAj+ZRptTJF4YxDBocGrjAwp8px5hUFpqR
+         F8JA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=n9pMH2H5Xekwc4hhOKpfLB4HqSCAO2/+9Ps6poR2Wbo=;
+        b=VwbH9OHetDybNWhmjAxgw3nJd2G4R56TSyx1YrEW39ymEol55OKS+yxpmqJ4GPJ4zW
+         4Tt6PyYc2Mo8VBBXC3YNbstM0IlFaJJHwsykdWu1dTfK0dGVklsGStWJVkXGwisfTer/
+         KA9UoYlrZd0QGjHVZqeEg5BKLmmwgR5YrSY+29nMh2XsELy+rLwEeds816mO81B8pf3n
+         bZu9rY+ZKED54h2TUmMowdJZw9xNIVcT9t4ThxdpkwSRTOULy6GM938ioZigEpQH+Npk
+         4bfvcMuFkz3dAJ7TimpWlkqrGX9WFPgqMf5o5eFUYhJQ2/bTde+NKWeS8OoIJpgfqWQ8
+         L5Fw==
+X-Gm-Message-State: ACgBeo0US7a0Xhl64vNhCGA71zDKq7LnacY5jr2Ggk694ZJP8+1G6lLR
+        3Q04y7V5uucAanfUL0QB7I5EGw==
+X-Google-Smtp-Source: AA6agR4do4MtgbwG+5E36jRCy//yvPStmF90VOaXwMtYlWscV8f7H0M9Pw8v4W4Dq9e1nE1pwlw3Pw==
+X-Received: by 2002:a2e:3512:0:b0:261:c683:18a0 with SMTP id z18-20020a2e3512000000b00261c68318a0mr1014604ljz.7.1661429431027;
+        Thu, 25 Aug 2022 05:10:31 -0700 (PDT)
+Received: from [192.168.0.71] (82.131.98.15.cable.starman.ee. [82.131.98.15])
+        by smtp.gmail.com with ESMTPSA id v10-20020a056512096a00b00492eea55c58sm460099lft.198.2022.08.25.05.10.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 Aug 2022 05:10:30 -0700 (PDT)
+Message-ID: <0ecf1664-03a2-71ac-b967-6905b96c7ce0@linaro.org>
+Date:   Thu, 25 Aug 2022 15:10:28 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH] dt-bindings: gpio: mpfs-gpio: allow parsing of hog child
+ nodes.
+Content-Language: en-US
+To:     Conor Dooley <mail@conchuod.ie>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor.dooley@microchip.com>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220820204130.1380270-1-mail@conchuod.ie>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220820204130.1380270-1-mail@conchuod.ie>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Sonntag, 14. August 2022, 19:36:52 CEST schrieb Samuel Holland:
-> The SID SRAM on at least some SoCs (A64 and D1) returns different values
-> when read with bus cycles narrower than 32 bits. This is not immediately
-> obvious, because memcpy_fromio() uses word-size accesses as long as
-> enough data is being copied.
+On 20/08/2022 23:41, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
 > 
-> The vendor driver always uses 32-bit MMIO reads, so do the same here.
-> This is faster than the register-based method, which is currently used
-> as a workaround on A64. And it fixes the values returned on D1, where
-> the SRAM method was being used.
+> The SD card and eMMC on PolarFire SoC based dev boards are sometimes
+> statically muxed using a GPIO. To facilitate this, enable gpio-hog
+> child node properties.
 > 
-> The special case for the last word is needed to maintain .word_size == 1
-> for sysfs ABI compatibility, as noted previously in commit de2a3eaea552
-> ("nvmem: sunxi_sid: Optimize register read-out method").
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+>  .../bindings/gpio/microchip,mpfs-gpio.yaml     | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
 > 
-> Fixes: 07ae4fde9efa ("nvmem: sunxi_sid: Add support for D1 variant")
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
+> diff --git a/Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml b/Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml
+> index 110651eafa70..6704a7a52cd0 100644
+> --- a/Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml
+> @@ -44,6 +44,24 @@ properties:
+>  
+>    gpio-controller: true
+>  
+> +patternProperties:
+> +  "^.+-hog(?:-[0-9]+)?$":
 
-On a D1-Nezha:
-Tested-by: Heiko Stuebner <heiko@sntech.de>
+What is this pattern about: "(?:" ?
 
+> +    type: object
+> +
+> +    properties:
+> +      gpio-hog: true
+> +      gpios: true
+> +      input: true
+> +      output-high: true
+> +      output-low: true
+> +      line-name: true
+> +
+> +    required:
+> +      - gpio-hog
+> +      - gpios
+> +
+> +    additionalProperties: false
 
+Put it after type:object. Easier to read/find.
+
+Best regards,
+Krzysztof
