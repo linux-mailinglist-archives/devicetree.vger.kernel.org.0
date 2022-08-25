@@ -2,77 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E60415A1340
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 16:17:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 988195A13B8
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 16:36:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241303AbiHYORV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 10:17:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58804 "EHLO
+        id S241995AbiHYOgS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 10:36:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33400 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241229AbiHYORQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 10:17:16 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9537DA1A72
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 07:17:13 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id bt10so15460276lfb.1
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 07:17:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=eKQ1RbXwOC6zGcrhn3vCU5z+POMesdAR7pXy72wDAkk=;
-        b=uumy1Ow7CgrfcOdwchTvHJTMp93riJC/m2ZjeqySaoGDiNTq4GGSzMqb0Pl9Ac6peB
-         syOauHwQeSSQXfzI6K6ZLvQLlBKgGZYD2b6FDfw6TnY+MQ3r8KlSqYxIHGz3CHW/R0Qv
-         cQ4seYeHcs92Tt79h7W6RspjpHkr2cNrOLz7KWR7hDls67MIRsRUYzfkWIrFFypYstUu
-         QlqIAf1LEo0IsDAH1CYOOW3qubd2sRjWxGXxL5MQoRU0q7wjPRiGDkSotTfDPztFE2pF
-         OdplW31SoOVU7fRHUDHpGoZXhrGEdY6L/i8q80E9st+Z0d0D8kvZ48oLyjqBC69pvXc3
-         1tfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=eKQ1RbXwOC6zGcrhn3vCU5z+POMesdAR7pXy72wDAkk=;
-        b=RgKqOb4iFdLXonkOONdHchSaTzwdbOTyceyyDij6bEAMfGwJy57Te+vt5bN3bbZkE3
-         CsGcsAINrHeEo44zmpg42n9pM+0S6gxZ5UKSvXQkD0IVsTgXX4McDnJQn5Ypw59MmE4i
-         t760cev/Vhs0b+i77dvPXCsVOGKgfcyCdyqsybZ9Hogze1I/MhFQlynDhUO9A4oI0Vuo
-         Rf1AFoWz7hqRyDciI9qWu5Ha948vvWV6kxOIW+4ItTWL6RD+uNktu6s637KGHGudza+4
-         sR2bxnPP5SgHiA/erMkTquvhOqm8O4JGx+3GX/Uh6iHyQg2RBJ6fRw7vOdCFA6NvnYgB
-         uCxw==
-X-Gm-Message-State: ACgBeo2smfOfEjPdJIVpmdRaSVX61nC0c8quvEmSeb36SdRvEAjzMof1
-        DoeRbI9yHCdq8/1Ya3P+EOY+FQ==
-X-Google-Smtp-Source: AA6agR52SKThKo1JHDLhl+xCQIf0ysmSGmllYxgUw/FdXSKfpY66PWC8EUPs7oPEUWcECuqLRsxwMQ==
-X-Received: by 2002:a05:6512:23a1:b0:48a:fde8:ce8c with SMTP id c33-20020a05651223a100b0048afde8ce8cmr1312907lfv.393.1661437031860;
-        Thu, 25 Aug 2022 07:17:11 -0700 (PDT)
-Received: from [192.168.0.71] (82.131.98.15.cable.starman.ee. [82.131.98.15])
-        by smtp.gmail.com with ESMTPSA id r1-20020a2e8e21000000b00261a8e56fe4sm593436ljk.55.2022.08.25.07.17.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Aug 2022 07:17:11 -0700 (PDT)
-Message-ID: <f64f493b-aad9-1811-3a9e-790f7613b99b@linaro.org>
-Date:   Thu, 25 Aug 2022 17:17:10 +0300
+        with ESMTP id S241895AbiHYOgQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 10:36:16 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44E56A61E1;
+        Thu, 25 Aug 2022 07:36:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1661438173; x=1692974173;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=phSuuXXl4YEtWyDnHAU+d+JU7bFN1Ijd9OinFLNU96s=;
+  b=UOEjSyjBhw9iSu9/awJsMlG+58Vjrzl4vohq68ySwFV1s5VoA+Bs0DXG
+   7uJEVI54vmjVaQoKzy7TpJ2/zklstknyvAtN+D32xuHNpNTlsuKVqwUUh
+   8UQmKa3InOR/4VzzJ51c2eGcTYXTX5nOFwbAiJrkpcAuWXNiq0XYY+yMb
+   iJlNnLMClh/IZ68qW1kJY+gn/bDZXYF977TBuSZSj4VlGiDWHLmosgf9t
+   js9Qf6YayiyJwzQd+V7OSaHTntM+YYVDJNC0SlXEiVw9GI1Sc8+lNOVtl
+   Pcj1C01Hn13/bG7hA65iK9PtiZMHyPEx1PG4qckVPkYx0ddlgKFuIsHEk
+   w==;
+X-IronPort-AV: E=Sophos;i="5.93,263,1654585200"; 
+   d="scan'208";a="110734230"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 Aug 2022 07:36:12 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Thu, 25 Aug 2022 07:36:10 -0700
+Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server id 15.1.2507.12 via Frontend
+ Transport; Thu, 25 Aug 2022 07:36:09 -0700
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     <brgl@bgdev.pl>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linus.walleij@linaro.org>, <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v2] dt-bindings: gpio: mpfs-gpio: allow parsing of hog child nodes.
+Date:   Thu, 25 Aug 2022 15:35:23 +0100
+Message-ID: <20220825143522.3102546-1-conor.dooley@microchip.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v2] hwmon: tps23861: add support for initializing the chip
-Content-Language: en-US
-To:     =?UTF-8?Q?Andreas_B=c3=b6hler?= <dev@aboehler.at>
-Cc:     Robert Marko <robert.marko@sartura.hr>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220825141043.75354-1-dev@aboehler.at>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220825141043.75354-1-dev@aboehler.at>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,21 +61,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/08/2022 17:10, Andreas Böhler wrote:
-> The tps23861 driver does not initialize the chip and relies on it being
-> in auto-mode by default. On some devices, these controllers default to
-> OFF-Mode and hence cannot be used at all.
-> 
-> This brings minimal support for initializing the controller in a user-
-> defined mode.
-> 
-> Tested on a TP-Link TL-SG2452P with 12x TI TPS23861 controllers.
-> 
-> Signed-off-by: Andreas Böhler <dev@aboehler.at>
-> ---
->  .../bindings/hwmon/ti,tps23861.yaml           | 76 +++++++++++++++++
+The SD card and eMMC on PolarFire SoC are sometimes muxed using a GPIO
+by the bootloader. Add a hog child property to facilitate this.
 
-Please run scripts/checkpatch.pl and fix the warnings.
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+---
+Changes since v1:
+- move addtionalProperties up under type:
+- drop the explicit match group syntax
+---
+ .../bindings/gpio/microchip,mpfs-gpio.yaml     | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml b/Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml
+index 110651eafa70..fdc16822fd4b 100644
+--- a/Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml
++++ b/Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml
+@@ -44,6 +44,24 @@ properties:
+ 
+   gpio-controller: true
+ 
++patternProperties:
++  "^.+-hog(-[0-9]+)?$":
++    type: object
++
++    additionalProperties: false
++
++    properties:
++      gpio-hog: true
++      gpios: true
++      input: true
++      output-high: true
++      output-low: true
++      line-name: true
++
++    required:
++      - gpio-hog
++      - gpios
++
+ required:
+   - compatible
+   - reg
+-- 
+2.36.1
+
