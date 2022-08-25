@@ -2,66 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BAC15A0FA1
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 13:54:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4CB85A0FA8
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 13:55:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234550AbiHYLy2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 07:54:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57650 "EHLO
+        id S235857AbiHYLzq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 07:55:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232349AbiHYLy1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 07:54:27 -0400
-Received: from mail-sz.amlogic.com (mail-sz.amlogic.com [211.162.65.117])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95B2CA4B1A;
-        Thu, 25 Aug 2022 04:54:26 -0700 (PDT)
-Received: from rd02-sz.amlogic.software (10.28.8.43) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server id 15.1.2507.6; Thu, 25 Aug 2022
- 19:54:22 +0800
-From:   Huqiang Qin <huqiang.qin@amlogic.com>
-To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <narmstrong@baylibre.com>, <khilman@baylibre.com>,
-        <jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Huqiang Qin <huqiang.qin@amlogic.com>
-Subject: [PATCH] arm64: dts: meson-s4: include meson-s4-gpio.h
-Date:   Thu, 25 Aug 2022 19:51:54 +0800
-Message-ID: <20220825115154.2150323-1-huqiang.qin@amlogic.com>
-X-Mailer: git-send-email 2.37.1
+        with ESMTP id S239234AbiHYLzn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 07:55:43 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFE31A2A87
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 04:55:42 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id by6so19168982ljb.11
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 04:55:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=6XKZfRQTbqgRZcANt6xELc2SVlUljiEWEfQE8Qx9J+8=;
+        b=Qqf/eZldqtrSxY+Imp6UQb0gxT52HRHcfkvEHvpCVlEEUx0bABCkhI5Hvn07yHr970
+         9O1i9/E74Y7k/gH4VzdlpLrv+Ux1Uq2HRIZKdWGlNX8tx/FSUy4N7jQ2gnh0FtBa0+9M
+         Mr98uzkTkMjZWF9QwkwxNgCu/omlrI90+2tBpOgf3zutgux+DG3HoUNAAEk2z04tfckB
+         oGNxAxuxM0m88qTgHjFll5yF32EOvSXwbRop+3MRbNazeGMyskV/tvIZlyqUf1klOdQj
+         LkYesc9VmoU0fgEzD1pF/ezlRP7TFOBi/5gIHUoA8ofCsX/5YZ5EEHuBAfJog1gVnvgL
+         GLzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=6XKZfRQTbqgRZcANt6xELc2SVlUljiEWEfQE8Qx9J+8=;
+        b=wauEgsHmgqQLI91LpqMdb1MW7quxBP49ZNMVwNv6QzXqsZsdY9z02Zcvzg3DsrQq5G
+         kUotWTY6JcTxJIvxAChljgqpbKVwomyDG3SgieABXFKly5yUb1c5NLkF1LlNYpdd1/Nj
+         EGR/YzMKIhBXVITB1MC4GUcqk2dEXB71cpVXdiuUUpbNMEtazm1LMCWCDhvow83IlEaT
+         Gdwt5zENDGV6OytEnJtVJbk5Ms2/9gZOBIzG2lt2T56uLrgYbRQt3yFkKvuy2LPmrjtb
+         mzeML4Fd4bpAEvAtJymNRu14QXuHkt1P8wFVchJR8ueeDNEjrEueXPhaXr8INKaonSQt
+         P4Bg==
+X-Gm-Message-State: ACgBeo0h4MXxNGSDdB0mRtc1lM5CnJWuyY3r16kzMn88EMCmxF4DaBrR
+        2dkdT4weTLbeIfzR3ExLHN0ssQ==
+X-Google-Smtp-Source: AA6agR6iJRh4adLmym6DhicDyzYTJIpz7bsuJ8SQG/bWGZqpju0gBB68YyMlqiclDMC2VDp5to2LeQ==
+X-Received: by 2002:a05:651c:1025:b0:261:c071:c473 with SMTP id w5-20020a05651c102500b00261c071c473mr1002073ljm.71.1661428541105;
+        Thu, 25 Aug 2022 04:55:41 -0700 (PDT)
+Received: from [192.168.0.71] (82.131.98.15.cable.starman.ee. [82.131.98.15])
+        by smtp.gmail.com with ESMTPSA id r15-20020a056512102f00b0048b0176bac6sm464706lfr.93.2022.08.25.04.55.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 Aug 2022 04:55:40 -0700 (PDT)
+Message-ID: <a0eb1fd7-4bc4-f62e-b61a-f02e388afda4@linaro.org>
+Date:   Thu, 25 Aug 2022 14:55:39 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.28.8.43]
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v4 01/10] dt-bindings: display/msm: split qcom,mdss
+ bindings
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+References: <20220825095103.624891-1-dmitry.baryshkov@linaro.org>
+ <20220825095103.624891-2-dmitry.baryshkov@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220825095103.624891-2-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the included meson-s4-gpio.h in the meson-s4.dtsi
+On 25/08/2022 12:50, Dmitry Baryshkov wrote:
 
-Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+(...)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-index ad50cba42d19..44cce8b0fcef 100644
---- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-@@ -6,6 +6,7 @@
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/gpio/meson-s4-gpio.h>
- 
- / {
- 	cpus {
--- 
-2.37.1
+> +    minItems: 1
+> +    maxItems: 4
+> +
+> +  clock-names:
+> +    minItems: 1
+> +    maxItems: 4
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 1
+> +
+> +  ranges:
+> +    true
+> +
+> +  resets:
+> +    items:
+> +      - description: MDSS_CORE reset
+> +
+> +oneOf:
+> +  - properties:
+> +      clocks:
+> +        minItems: 3
+> +        maxItems: 4
+> +
+> +      clock-names:
+> +        minItems: 3
+> +        items:
+> +          - const: iface
+> +          - const: bus
+> +          - const: vsync
+> +          - const: core
+> +  - properties:
+> +      clocks:
+> +        minItems: 1
+> +        maxItems: 2
+> +
+> +      clock-names:
+> +        minItems: 1
+> +        items:
+> +          - const: iface
+> +          - const: core
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - interrupts
+> +  - interrupt-controller
+> +  - "#interrupt-cells"
+> +  - power-domains
+> +  - clocks
+> +  - clock-names
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +  - ranges
+> +
+> +patternProperties:
 
+This goes after properties, not after required.
+
+Best regards,
+Krzysztof
