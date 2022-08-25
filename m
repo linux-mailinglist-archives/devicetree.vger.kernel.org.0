@@ -2,163 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 88EA35A13EE
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 16:39:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B0535A13F8
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 16:39:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242407AbiHYOi1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 10:38:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33776 "EHLO
+        id S242502AbiHYOik (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 10:38:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242372AbiHYOhs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 10:37:48 -0400
-Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com [66.111.4.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B593B69D6;
-        Thu, 25 Aug 2022 07:37:40 -0700 (PDT)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.nyi.internal (Postfix) with ESMTP id 7C17F5C00A6;
-        Thu, 25 Aug 2022 10:37:39 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Thu, 25 Aug 2022 10:37:39 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm2; t=1661438259; x=
-        1661524659; bh=uQZAkfIx3BtXGm6NsJ9y2axRk4c1HylK1+1Iy6cM5qM=; b=c
-        bRaru4GC2gO7/NsJgLNSC7kPw5lEOXfQhCBenCG+ykPTz9ye7y+CqCzJeq8AEqE0
-        GYLg0SLqCPcq17RFjk5QaFP0VPCTsADN7gpBatGAmwILkg4QDrZbnHTKc25eDmMY
-        jsUnjB1v2uKCWO3ppIr30qA0OKt7rqs0bCPSJ6QJQ2ujYz4o8Sun54+WoFh8xEsi
-        EBiQGvVjObDvfYaRGOWOnALcoOqMCkz1BIZ8z6sxITr46WG/nBNyw1DI166mCG3a
-        ucYdoLpAsHrAEhrLD8o7f7O6j+q10F1VjAffT7hrkG8lGgDsubFhOa8PlTL4jgG5
-        N3JuEtdTy3g4lZj4i1tGA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:feedback-id:feedback-id:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1661438259; x=
-        1661524659; bh=uQZAkfIx3BtXGm6NsJ9y2axRk4c1HylK1+1Iy6cM5qM=; b=d
-        zCzKqjhUGuHGxMq8DZxIHFgJIN0+PZFEen85/okLW7fnVb9RtTB/XzO/S8XTSVH5
-        SDaV4pK3xNTdFVObfPjh/OMsOg+7za5EaZNcnc2GFgktGGR/R8xSc+5miOkLp7c+
-        7MjQn/M4WkhWUCWJdFM2SM2HyGikqt7vGiQaGKKh9800dlQeuZ7ej2rzFKITfVQS
-        VVM4ek89oEIDz6wlFhiR9Zd7QDH9abVd/Xnf6KKwnZWzYjIuwdjX4LXta+KWrosS
-        cujV9P1xiV8P+MVXcCo3n1+wCqt/ZaPv46gV4iBAH5s4duWayYiduDY2+ZYxxiCn
-        QrBY1Zcz9Hi6ZV7kx3nuw==
-X-ME-Sender: <xms:MokHY9ytPkTelAYkCj0iAzVWDqlrgLIGuw0E_hxgdx2iyzD0l8oFrA>
-    <xme:MokHY9TKqbXS0yMdtPT3tS84Lb1DwPQqoF7k8cZgsWUnLSCMRLnfCZEZLjKiKiE7s
-    8jhHZ6JJdcCWH3ikA>
-X-ME-Received: <xmr:MokHY3UsVrDjl35b9s1YJpNcsdIjn0VHXocn46bjZw51AuAt7y4dqAmZy99kkEWAH4NeC2d2MFdZPNToC6_Vnkt01oSEy9cndwzwnxlAME8Yn75E2j_0Q4yelQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdejfedgjeekucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepuffvvehfhffkffgfgggjtgfgsehtjeertddtfeejnecuhfhrohhmpefurghm
-    uhgvlhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenuc
-    ggtffrrghtthgvrhhnpeeitedvhfejhfdvjefggeeutdegteejfffgvedtjedukefgueek
-    tddtvdegfedtgfenucffohhmrghinhepghhithhhuhgsrdgtohhmnecuvehluhhsthgvrh
-    fuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepshgrmhhuvghlsehshhholhhl
-    rghnugdrohhrgh
-X-ME-Proxy: <xmx:MokHY_h3YTcDjZq0MRYPBf26oIlQvEjMzMId5yc-Ay03yFu7MNu2qQ>
-    <xmx:MokHY_CoLAv5UX4krtnT5UK1jnBH7SrUcBfwqNTlOYvd21H11pHC9Q>
-    <xmx:MokHY4Iq8j-Jkd-3UOB6BRLmn4qtxtYRxkv46gHUHCLyDlnJso79wA>
-    <xmx:M4kHY_wMZpDE9efVbs_vbH2-tFpL-K1rK9zFl-k-J0r4XT05Xy_C4w>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 25 Aug 2022 10:37:38 -0400 (EDT)
-Subject: Re: [PATCH 4/8] dt-bindings: sun6i-a31-mipi-dphy: Add the A100 DPHY
- variant
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, linux-sunxi@lists.linux.dev
-References: <20220812075603.59375-1-samuel@sholland.org>
- <20220812075603.59375-5-samuel@sholland.org> <YwdRvBSGDNIUOMnH@aptenodytes>
-From:   Samuel Holland <samuel@sholland.org>
-Message-ID: <95464d37-6da5-1f63-8f21-93ede5666312@sholland.org>
-Date:   Thu, 25 Aug 2022 09:37:37 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+        with ESMTP id S242280AbiHYOiI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 10:38:08 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B214B72AC
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 07:37:47 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id l8so10995336lfc.12
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 07:37:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=g63m48g6pKVW9XDR0Qw7L/yMCNONa5W212iG6eOgwVY=;
+        b=QqSaNSUp1lcAMQKMVTopIDHEFWnJYAKE4t4Aa214Dxy+p0MWct8ITG7C5Sl2JJ2JR5
+         0GDOBulQxXM0y8hmuN23uKUQKHV8YfyC5AAeswLm3mMNfK2sW9XtjHNowDf29xq/HOKq
+         Jdo3l5BbVi8Ii6E3dUr3dfblUTxG8Iz0z5g2kVXaPyAeft33yeHngMmkczZK+Bp4jfbW
+         ewE6OImRXYuEd/2oeiTgG1Q29hTQvaZOjfMqoMu9lqrTuaDRzofAYUHMcZb+4gcRQB6J
+         yNgmIJcQQa/26Cqn5n3l8TZp20/QQnmw6mymfDHDQSd/E81qjWr0JWEQL7Al69Vi/Mw7
+         a/Eg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=g63m48g6pKVW9XDR0Qw7L/yMCNONa5W212iG6eOgwVY=;
+        b=h8Gsmwg8vLy5A8jqWnROU7Agf58r0EkZ3Teuu2t379M9yxtu/Q5Dji8f3DB6A8QXIR
+         K7QML0O3uspxUom4KI/FHEhClahp7YckBgyZRe8x2e2liFfKoyjaKCtJcwLdghbgnV3F
+         iNmMpSukZnnRIGn1vDI1rZqpiVlfBUvCi6cowKjrunVdU7QfWijVN7e6VkDjpdBn2ZOM
+         b8s5nUJA+/3nukTCmwFn1kjrKMiKkXpyiaQ4PAg0ZVKjN08utCAELzAO0driXxJqrQQj
+         6ofL2+8dxMDTNkxZTBlmhEkwmcw32as7J619cwztEWHkkXrGy7HCfbsWHYtBzjVxFAAM
+         /2jw==
+X-Gm-Message-State: ACgBeo1Hnv5ITws5nrg2p9Lrifc2Mn4tqSu16AEp1rWN1HpBE9bYXTmD
+        CdGHYJSeOXGjsC3+8PJ4Q4WweA==
+X-Google-Smtp-Source: AA6agR7ggezKzDkha1/jrr1gqinbb89IwcfWGyZ+Sycky0YQcHwsYNOUzF9VtkgDcYFWm2wHWG0ozw==
+X-Received: by 2002:ac2:4c4e:0:b0:492:e3a0:1f01 with SMTP id o14-20020ac24c4e000000b00492e3a01f01mr1186682lfk.465.1661438265047;
+        Thu, 25 Aug 2022 07:37:45 -0700 (PDT)
+Received: from [192.168.0.71] (82.131.98.15.cable.starman.ee. [82.131.98.15])
+        by smtp.gmail.com with ESMTPSA id f12-20020ac24e4c000000b00492c59a2d06sm525205lfr.164.2022.08.25.07.37.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 Aug 2022 07:37:44 -0700 (PDT)
+Message-ID: <375daf2f-9b8b-597f-41ae-b5be27e22e80@linaro.org>
+Date:   Thu, 25 Aug 2022 17:37:43 +0300
 MIME-Version: 1.0
-In-Reply-To: <YwdRvBSGDNIUOMnH@aptenodytes>
-Content-Type: text/plain; charset=utf-8
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v4 03/10] dt-bindings: display/msm: move qcom,sc7180-mdss
+ schema to mdss.yaml
 Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+References: <20220825095103.624891-1-dmitry.baryshkov@linaro.org>
+ <20220825095103.624891-4-dmitry.baryshkov@linaro.org>
+ <8e0ab9f0-cc27-f472-ce5c-b9f4a9d94005@linaro.org>
+ <b01585c9-1810-2f25-d4dd-bea31b685e79@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <b01585c9-1810-2f25-d4dd-bea31b685e79@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/25/22 5:41 AM, Paul Kocialkowski wrote:
-> Hi Samuel,
-> 
-> On Fri 12 Aug 22, 02:55, Samuel Holland wrote:
->> A100 features an updated DPHY, which moves PLL control inside the DPHY
->> register space. (Previously PLL-MIPI was controlled from the CCU. This
->> does not affect the "clocks" property because the link between PLL-MIPI
->> and the DPHY was never represented in the devicetree.) It also requires
->> a modified analog power-on sequence. Finally, the new DPHY adds support
->> for operating as an LVDS PHY. D1 uses this same variant.
-> 
-> Do you have some pointers about that? I'd be surprised that this PHY is now
-> used for "traditional" LVDS display output, which is usually done with a simpler
-> LVDS phy attached to the display controller.
-
-Yes, this is documented in the A133 User Manual. As for the BSP code, see:
-
-https://github.com/Tina-Linux/tina-d1x-linux-5.4/blob/master/drivers/video/fbdev/sunxi/disp2/disp/de/lowlevel_v2x/de_dsi.c#L773
-https://github.com/Tina-Linux/tina-d1x-linux-5.4/blob/master/drivers/video/fbdev/sunxi/disp2/disp/de/lowlevel_v2x/de_lcd_sun50iw10.c#L390
-https://github.com/Tina-Linux/tina-d1x-linux-5.4/blob/master/drivers/video/fbdev/sunxi/disp2/disp/de/disp_lcd.c#L786
-
-Regards,
-Samuel
-
-> However I've seen that some new Allwinner SoCs come with sub-LVDS camera input,
-> which typically requires a more complex PHY due to the high number of lanes.
-> 
-> Anyway for now this is:
-> Reviewed-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> 
-> Cheers,
-> 
-> Paul
-> 
->> Signed-off-by: Samuel Holland <samuel@sholland.org>
->> ---
+On 25/08/2022 15:40, Dmitry Baryshkov wrote:
+>>>     clock-names:
+>>>       items:
+>>> +      - const: bus
+>>>         - const: iface
+>>> -      - const: ahb
+>>> +      - const: rot
+>>> +      - const: lut
+>>>         - const: core
+>>> +      - const: vsync
 >>
->>  .../bindings/phy/allwinner,sun6i-a31-mipi-dphy.yaml           | 4 ++++
->>  1 file changed, 4 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/phy/allwinner,sun6i-a31-mipi-dphy.yaml b/Documentation/devicetree/bindings/phy/allwinner,sun6i-a31-mipi-dphy.yaml
->> index cf49bd99b3e2..b88c4b52af7d 100644
->> --- a/Documentation/devicetree/bindings/phy/allwinner,sun6i-a31-mipi-dphy.yaml
->> +++ b/Documentation/devicetree/bindings/phy/allwinner,sun6i-a31-mipi-dphy.yaml
->> @@ -17,9 +17,13 @@ properties:
->>    compatible:
->>      oneOf:
->>        - const: allwinner,sun6i-a31-mipi-dphy
->> +      - const: allwinner,sun50i-a100-mipi-dphy
->>        - items:
->>            - const: allwinner,sun50i-a64-mipi-dphy
->>            - const: allwinner,sun6i-a31-mipi-dphy
->> +      - items:
->> +          - const: allwinner,sun20i-d1-mipi-dphy
->> +          - const: allwinner,sun50i-a100-mipi-dphy
->>  
->>    reg:
->>      maxItems: 1
->> -- 
->> 2.35.1
->>
+>> All these changes point that device schemas are simply different and
+>> trying to unify them is not correct approach.
 > 
+> I'm not going the argue the mdss-common + platform specifics, but please 
+> note that these changes are coming from me removing one extra level of 
+> depth in dpu-smth.yaml. Currently these files have both mdss and dpu 
+> devices, I'm stripping the mdss out of them.
 
+True, it's second time I got myself looking at wrong part of diff hunk.
+Still your allOf:if:then grows with different cases. I guess the biggest
+differences came with sdm845 and later only children and clocks differ.
+
+Best regards,
+Krzysztof
