@@ -2,75 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58BD15A08AF
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 08:14:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADB035A08B2
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 08:15:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234597AbiHYGNu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 02:13:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52082 "EHLO
+        id S234917AbiHYGPY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 02:15:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229577AbiHYGNu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 02:13:50 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0396A9F756
-        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 23:13:49 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id n15so5807663lfe.3
-        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 23:13:48 -0700 (PDT)
+        with ESMTP id S234067AbiHYGPX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 02:15:23 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCC7B9F772
+        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 23:15:21 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id d23so22534162lfl.13
+        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 23:15:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=wlxyyEdyz9YeaP+PKKdOU9ZrYBY0DMAseQm1V42ntwY=;
-        b=UPsydeRD7QmyNX/kxeY7lnbMw8ie0nb0OcFrbQmJnaxJ6xd8fOfUaQYv1HClHxFWY9
-         6Rnsl+fo0GzF/eGP/wAUkgjfz+5e6Bx6m/c6XN2xIHnuTh2E4N+99ZRmtffu7EpXPqKE
-         WZGM2MQLyqUebHOwjMVTRo+BE4arXXFGOiuMkk9LQ3cj8tyKygNyMACti9WBehBXcR3G
-         nyoCzs12K4eFrNEz0BLTAQJ3vkgKE5f/52AVZ6Cy+ttumgSp+GTUMbaa46OZbmn5KPF+
-         l/8cCWewOQG7ojKLIJoDQPjT1CP44wbuyX12WzJm39iXkLkuYfIwiP7HFNix/58PLeNS
-         8a9Q==
+        bh=3Nti9hv6DeyPKfJj5p6BSfYPiwYGhxhttJgua1AQjnM=;
+        b=qEkujIEiAGOsvsa+AZMtnZJSHXCDxAxY7Y/fPg6MN6K06AhRrf0Ifzgscpjl/WUBQc
+         yHtQ3lS79ivsiXdlUee54uzNS5zpVtLsbybCLHGjT9Ir6BlerPw8HOSKjDi7kLtcZvGL
+         I0EUfGbLnSw5YwthZFK2RpHn6x9ZzYnszG81/kPUxEy2knM9xKqJOBSC3PEZ3G83GVlO
+         wdvGwH3S3Ax+XXMOzBcl0Jfrc6lCpFSRiRmlCcBOgfaN8BGHp/Ffjjg26emEJ+EjgwPH
+         N4PjpMwEouEpz9nYpv5eQo6ldifiqsYJ+/DxiXr75Ifbvb+BhamuKugaTgs5KU8W33/8
+         yuhA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=wlxyyEdyz9YeaP+PKKdOU9ZrYBY0DMAseQm1V42ntwY=;
-        b=0YqUSa6jQzUFX9o3TEV8xomTKYmW7eYznq9Lr1H1JmEW7CfXZWGqDYAO6FAx0ieVCi
-         QuVDE67NlN/nHFmeioN2hPAt+g7BRy7hvq60N/tmPEa1HAsROtWoIBUBti6Qz0TIrEUl
-         Z1veW0g4t7JHy+shUe8tCNl1V1noROkQGAH7mthMvmxyw1GmgxRPVhxHpFXEUKAQN8Lq
-         BQON5E+IuTj2wbEpqti5zWAJLcNCJ8907Y9HawmNPjdLf8eAOjA1+sW0CSjZkOpC+abE
-         lsx1MSOuQMSrpkNVuLY5slWGL896oA6Z+ovUTldVkZx3+/Ear6vSegkiRhDIODJDOv29
-         Yybg==
-X-Gm-Message-State: ACgBeo2eUnzNdmk56FFe/BZ9XdV1Liq3SpdVOJfTEcYtEfA6INgb5cQc
-        m0/5aWj1nhswewsF2NeVVzCptw==
-X-Google-Smtp-Source: AA6agR7UqmyD7JRBfuRRmBmdO0IXT/oW/WrgCHd1/0DNqYVZ+wtbYs/xMKgsSXJIPZ4+fxXOwAvASw==
-X-Received: by 2002:a05:6512:3a90:b0:48a:fcf6:3137 with SMTP id q16-20020a0565123a9000b0048afcf63137mr605815lfu.255.1661408027387;
-        Wed, 24 Aug 2022 23:13:47 -0700 (PDT)
+        bh=3Nti9hv6DeyPKfJj5p6BSfYPiwYGhxhttJgua1AQjnM=;
+        b=hifGU6eqPFcGgU7Nqg6jAXGOKr1olfGB4xEI4dDRcc9vrA2Y+/zy7YIja2O2/LcY/j
+         Cd2V4Bve6OjSDykOdxHBT/BbGQJ8T+ltiVMP3lgiVmUmR/gCz0scVLZSJ9LF3cgQV5lw
+         +/iUPpF/MC1h7QphPL2QnPjsKrvlQv/E+rYYslb5R/3Zmci8Z/DNOOv01NK4efRrrcpU
+         H5DiDr3yV6Sfr+TBh4/O2cJNjsk1V7EsEOvxd6sHLoTw4G/IzKq0RR541ldZAn1D9j1b
+         QEOGQXya3XGZWVF/8DSrjM+CEuoGl7cF5oLhT8uat12At/IWTZwcIlovJbzrxujcPw1g
+         VhgA==
+X-Gm-Message-State: ACgBeo3gZsJIy/6sHKpmbRW0gDjGF2ezx5tPLfMgznOwJdNvm1QhSazr
+        gT3G5pY+A4swQL/13u+tPC7GBA==
+X-Google-Smtp-Source: AA6agR4tiaowhUIgTlsa8a2jWIDtSbCYO5nt3pM1ZBue2+MYGKUaweFGXAu//9a9AXmDYtCozTtkqA==
+X-Received: by 2002:a05:6512:4012:b0:492:c667:c899 with SMTP id br18-20020a056512401200b00492c667c899mr645201lfb.48.1661408120185;
+        Wed, 24 Aug 2022 23:15:20 -0700 (PDT)
 Received: from [192.168.0.71] (82.131.98.15.cable.starman.ee. [82.131.98.15])
-        by smtp.gmail.com with ESMTPSA id f17-20020ac25091000000b0048a8586293asm323218lfm.48.2022.08.24.23.13.46
+        by smtp.gmail.com with ESMTPSA id w12-20020a05651234cc00b0048b37d29256sm322714lfr.63.2022.08.24.23.15.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Aug 2022 23:13:46 -0700 (PDT)
-Message-ID: <b906210e-6857-82bf-755b-760e33d3a338@linaro.org>
-Date:   Thu, 25 Aug 2022 09:13:45 +0300
+        Wed, 24 Aug 2022 23:15:19 -0700 (PDT)
+Message-ID: <aa76756f-6f0a-0342-c654-5fb8fee54bcd@linaro.org>
+Date:   Thu, 25 Aug 2022 09:15:17 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH v3 1/4] dt-bindings: sound: Add Apple MCA I2S transceiver
+Subject: Re: [PATCH v5 1/7] dt-bindings: net: dsa: mediatek,mt7530: make
+ trivial changes
 Content-Language: en-US
-To:     =?UTF-8?Q?Martin_Povi=c5=a1er?= <povik+lin@cutebit.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Alyssa Rosenzweig <alyssa@rosenzweig.io>, asahi@lists.linux.dev,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220824160715.95779-1-povik+lin@cutebit.org>
- <20220824160715.95779-2-povik+lin@cutebit.org>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        Sander Vanheule <sander@svanheule.net>,
+        Daniel Golle <daniel@makrotopia.org>, erkin.bozoglu@xeront.com,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220824104040.17527-1-arinc.unal@arinc9.com>
+ <20220824104040.17527-2-arinc.unal@arinc9.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220824160715.95779-2-povik+lin@cutebit.org>
+In-Reply-To: <20220824104040.17527-2-arinc.unal@arinc9.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,11 +96,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/08/2022 19:07, Martin Povišer wrote:
-> Add binding schema for MCA I2S transceiver found on Apple M1 and other
-> chips.
+On 24/08/2022 13:40, Arınç ÜNAL wrote:
+> Make trivial changes on the binding.
 > 
-> Signed-off-by: Martin Povišer <povik+lin@cutebit.org>
+> - Update title to include MT7531 switch.
+> - Add me as a maintainer. List maintainers in alphabetical order by first
+> name.
+> - Add description to compatible strings.
+> - Stretch descriptions up to the 80 character limit.
+> - Remove lists for single items.
+> - Remove quotes from $ref: "dsa.yaml#".
 
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
