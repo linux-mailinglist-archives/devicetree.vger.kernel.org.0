@@ -2,114 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DCE5E5A08F2
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 08:37:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 570C25A0911
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 08:47:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232089AbiHYGhh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 02:37:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45444 "EHLO
+        id S229741AbiHYGqu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 02:46:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229834AbiHYGhg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 02:37:36 -0400
-Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AE2DA0264
-        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 23:37:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=k1; bh=8gyh56S0jJ8LLoS1339jRMBclOya
-        sljMtl5KEZS7o/0=; b=c3ylfx1lW/nGWWeim7QGDoeA/0UmV58mmX+u7SA8Fk4w
-        0u61xFM771ExunkbLfUIGlJoLk75Y57wg66ljx+cdlUHaO/lBlU4xEWcTvtpuA4S
-        szVrWg2vZNMq2qUVMFJkDS/AqFMsu1DZoqdgh8PZR9gb6BhjulCN/UliaL9yzkI=
-Received: (qmail 2542699 invoked from network); 25 Aug 2022 08:37:30 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 25 Aug 2022 08:37:30 +0200
-X-UD-Smtp-Session: l3s3148p1@MNcXCAvnfLEucrTo
-Date:   Thu, 25 Aug 2022 08:37:29 +0200
-From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
+        with ESMTP id S229909AbiHYGqt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 02:46:49 -0400
+Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com [209.85.219.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E1A56E888;
+        Wed, 24 Aug 2022 23:46:48 -0700 (PDT)
+Received: by mail-qv1-f54.google.com with SMTP id s1so264016qvn.11;
+        Wed, 24 Aug 2022 23:46:48 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=43pvZDEQJXRSfKZfubT69fa51qDaLqvq+73XhQCzP4o=;
+        b=an2fe+azkRK/nwHRRPVrZ54loFd7MuuZGzqpI02HiQTe0EgcttzVKo0+zZhmj0bgzg
+         dw5Py670buSeWVtCXZUmvOsgt72p5fM3GJXnZq0Z8/PBRXjrlXzmPpG0eC3reD0MXjK1
+         KrsCjPhrTmv4dUgW98SDE7dVcv8Y9CWJut5JC5zroVsSqHvbgWmYe/6GIcnCGWNufVp6
+         HYD7r0lddNoxBkykvHYr6SRcnzxdcLINOtgr0FHr+n+jmYhxq4nzk7BUbFDB5ayvHKho
+         eKpRT1GCm4JPPbx/J//fNOQtc8R2SeFeDOKNu8NhFlwBQvwrVPlC80DDM7qsGMzfqTGi
+         lLTA==
+X-Gm-Message-State: ACgBeo3991kJVdGm7K0ucLp1TGGCGdwPCktA3KlOeVqRYnPbScqP0Ll8
+        DbFkxhHpl5tQTs4gTgILnka3i7fFBjxASw==
+X-Google-Smtp-Source: AA6agR4LEVq69RQXS4NnoLH/U+ex9XlHaVsD9NqHK47uPmHTU5KFjaOGxlXzikVNA72YRmQfmYvs1A==
+X-Received: by 2002:a05:6214:544a:b0:486:ccc8:be5a with SMTP id kz10-20020a056214544a00b00486ccc8be5amr2320766qvb.91.1661410007419;
+        Wed, 24 Aug 2022 23:46:47 -0700 (PDT)
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com. [209.85.128.177])
+        by smtp.gmail.com with ESMTPSA id u4-20020a05620a454400b006bbe7ded98csm13753046qkp.112.2022.08.24.23.46.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Aug 2022 23:46:47 -0700 (PDT)
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-31f445bd486so516683057b3.13;
+        Wed, 24 Aug 2022 23:46:46 -0700 (PDT)
+X-Received: by 2002:a25:ec03:0:b0:695:faae:ab9c with SMTP id
+ j3-20020a25ec03000000b00695faaeab9cmr2192118ybh.89.1661410006572; Wed, 24 Aug
+ 2022 23:46:46 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220729164425.11062-1-wsa+renesas@sang-engineering.com>
+ <CAMuHMdWW0kPATT4zGcjcEPw6XO+18MWJAn_HESe3rrtoEoF=FA@mail.gmail.com> <YwcYqbIuwtImOQ7/@shikoro>
+In-Reply-To: <YwcYqbIuwtImOQ7/@shikoro>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 25 Aug 2022 08:46:35 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdU4rfOe-58rG4b31VT9QXnGL0rLnanv4z+fvhwxsGOGdw@mail.gmail.com>
+Message-ID: <CAMuHMdU4rfOe-58rG4b31VT9QXnGL0rLnanv4z+fvhwxsGOGdw@mail.gmail.com>
+Subject: Re: [PATCH 0/5] arm64: dts: renesas: move I2C aliases to board files
+To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
 Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 0/5] arm64: dts: renesas: move I2C aliases to board files
-Message-ID: <YwcYqbIuwtImOQ7/@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>
-References: <20220729164425.11062-1-wsa+renesas@sang-engineering.com>
- <CAMuHMdWW0kPATT4zGcjcEPw6XO+18MWJAn_HESe3rrtoEoF=FA@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="vlcxb54n4PfOZJyX"
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdWW0kPATT4zGcjcEPw6XO+18MWJAn_HESe3rrtoEoF=FA@mail.gmail.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Wolfram,
 
---vlcxb54n4PfOZJyX
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Thu, Aug 25, 2022 at 8:37 AM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> > I have never been a fan of the i2c aliases in the SoC-specific .dtsi files,
+> > as aliases are typically board-specific.
+> > We also don't have physical connectors labeled "i2c<N>" on any of
+> > the affected boards.  But people like the i2c aliases, because i2c
+>
+> The reasoning here was that the busses were named like this in the
+> schematics. Debugging was confusing if these numbers were mixed.
 
-Hi Geert,
+OK.
 
-> I have never been a fan of the i2c aliases in the SoC-specific .dtsi file=
-s,
-> as aliases are typically board-specific.
-> We also don't have physical connectors labeled "i2c<N>" on any of
-> the affected boards.  But people like the i2c aliases, because i2c
+> > exposes the full buses to userspace, and the aliases fix the userspace
+> > naming of /dev/i2c-<N> (I believe there is no better way to identify
+> > i2c buses from userspace?).
+>
+> The proper way is udev rules.
 
-The reasoning here was that the busses were named like this in the
-schematics. Debugging was confusing if these numbers were mixed.
+Great!
 
-> exposes the full buses to userspace, and the aliases fix the userspace
-> naming of /dev/i2c-<N> (I believe there is no better way to identify
-> i2c buses from userspace?).
+> > So moving the i2c aliases to the board files is definitely a step in
+> > the good direction.
+> >
+> > BTW, you missed r8a774a1.dtsi in your update.
+>
+> Okay, so I will send v2 with the above SoC converted as well?
 
-The proper way is udev rules.
+Yes, please. Thanks!
 
-> So moving the i2c aliases to the board files is definitely a step in
-> the good direction.
->=20
-> BTW, you missed r8a774a1.dtsi in your update.
+Gr{oetje,eeting}s,
 
-Okay, so I will send v2 with the above SoC converted as well?
+                        Geert
 
-Thanks for your comments,
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-   Wolfram
-
-
---vlcxb54n4PfOZJyX
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmMHGKkACgkQFA3kzBSg
-KbbaYg//Sxg95wFf1S5jvVkEuTJZAB+hrsrS+2LQJHg+XKkvmWdsFT21ctQaunu5
-g43Z9CQ3W0TgLAF8R9jO6tuwRq3og4xcxmvOT2FrGc4ThEOfSmV054yWRrZqZUGm
-kvm2nx3bPrsI0rP6Oz7LMX5pWxwoaBZGB1lvlTdc/b6GL+jmlkiRqzKnUXubSgkO
-mLnN1960UHrVQuom1nq9k+ysghIhA05vLWeghAa5OVPewmypMytjoazpwGvXp/gN
-ITT7AmnHYc1lfLap2gKHbjIZKaZbd/sOy3IpGhl68tX4WmMErjZMMS+Dtl2sBRIz
-BtBHU4fJ+xfrv+M2WqMO1+qF62KvBosl+5vrNpq9hcd/VbugSXWZJhl+bm4uZ4Nd
-qo6+h4Nopuxls8N+WR3wupB6mBFtXkRm+zXa86pC7y/sWdTjvWx1nw2+/SJa9Ave
-BluFnswgcqab7yGpEVOS4wjwNu7C7zFz6mcnhOxZbKv81YnN0ajVYVJSbUuPjrBw
-c4Pjyl7TwWTMHJiXX9Ve5uhXjerqPfdJf1gMq3IUHiSc5lczfGeuERxBu1un48Go
-8kB7uHxP6YpZ6Tz0C3lFRc5tRrkK2eiRwriuD6ZgMwkppxWKERIZWxsJlF8rYUTf
-vAKgGxpfkG/HPZGX5g9rxddKyUhb0bXUNL/3j+0WombKEs+/WFE=
-=sJ1X
------END PGP SIGNATURE-----
-
---vlcxb54n4PfOZJyX--
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
