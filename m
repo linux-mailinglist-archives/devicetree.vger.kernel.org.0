@@ -2,108 +2,251 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 162345A1AC4
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 23:04:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B9AE5A1AD9
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 23:12:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230181AbiHYVC4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 17:02:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41328 "EHLO
+        id S240501AbiHYVMp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 17:12:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240501AbiHYVCz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 17:02:55 -0400
-Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DE0E27CEC;
-        Thu, 25 Aug 2022 14:02:54 -0700 (PDT)
-Received: by mail-ot1-f41.google.com with SMTP id q39-20020a056830442700b0063889adc0ddso14766474otv.1;
-        Thu, 25 Aug 2022 14:02:54 -0700 (PDT)
+        with ESMTP id S232136AbiHYVMo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 17:12:44 -0400
+Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB1F6B1BBD;
+        Thu, 25 Aug 2022 14:12:43 -0700 (PDT)
+Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-11c5505dba2so26530515fac.13;
+        Thu, 25 Aug 2022 14:12:43 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=zlDgSVi6ybm28ADf/l4jQxot81q6KSDv8EU/4KXm+fU=;
-        b=uvz1NVeiZG6mXoPFHHOdiuHmMKISfR9QWNh4zUw+9cvUjuBM9GKmoCQZAu9u6cA/y+
-         89QniYnc1QYxdcyejmsUY/0aIJwsc/ZuHPtw1mgBHtGwLL44TBFbBUndmF18SO+XUUXh
-         jAC+YrA+VgB+pQp2eICaITh6GevSr6GDRPPZ6eT3exE+OYVCrfZMgpmu1bLQG+RLVZOL
-         s3lTqjoIKn/D04NhSgn7f24Cm3zdqp4F5W24W1TA/6vFxrzmjTzDQclmQhwLDryC/ia/
-         wSyTb1WiphCCbAlGo4Hxyh/JB0dJofLgxtbTD6etTW2RKdA/vzNRKax6JBF6SCRD6lHX
-         ahqA==
-X-Gm-Message-State: ACgBeo0vT+kdfAW+Jr8NVjGVrsGBLiMW9Br1/9fuYXHP73xjy2E39p4t
-        V4XsfWpHG27laRL4DklqaA==
-X-Google-Smtp-Source: AA6agR6Vlp9ebEknuUxzZiq3qwYENpFauxFBuzd6t2b++gnkgaGivXI0o6LrZdEEH5fh0PFr5laTyg==
-X-Received: by 2002:a9d:748a:0:b0:637:1cf2:c8c4 with SMTP id t10-20020a9d748a000000b006371cf2c8c4mr338370otk.274.1661461373789;
-        Thu, 25 Aug 2022 14:02:53 -0700 (PDT)
+        bh=7cYyxg+Rjs2OKuzQlOjAlSHEpxBggE7h7LYSTjnsFQY=;
+        b=O0aNaAc2BQP/ZfLv6yEbmA7bMaS/MztotiuxUg7TSVRYePqhPtj7sLJooCKs3GbMEn
+         +EJG02mkjQAjlnPoYp1BbKgDpJjqcwlcjaX+PeYpJxWq8pioUOuPndHkKjemKfknxj71
+         SD2qcI5FHgXw3bHxiFf25nWo9ZNF/+Y9IXJXaQEkjHJnluxXJNjUsbNkuRqamgN3eEFK
+         OX6bAW7tQfR6rJg1s16eu7xPTjL15gQrbx43X0+yTcamssJG5pPkRGgAi9Tq9zYabhSD
+         5rQ0Qv8OS0b+V73BIvWNSji+P19wAGui9MAnpFlzcPCYRS4tzONLepYemKtKWevyJ0Ip
+         3cEw==
+X-Gm-Message-State: ACgBeo3ZrUeuSdkeGRRseI2Aw2cOTERypth7jFey+Yezus7dtjJqlvJE
+        LLSwBf/D3rXS8Ykh0kBkaw==
+X-Google-Smtp-Source: AA6agR7L4kQd6z1UzBVG2YOwp2flBq48abWOo4dTD4AKZRma54US5SS++O70oOI3XePD8j7/qDEheA==
+X-Received: by 2002:a05:6870:438b:b0:11c:ecf2:e4ca with SMTP id r11-20020a056870438b00b0011cecf2e4camr449518oah.122.1661461963080;
+        Thu, 25 Aug 2022 14:12:43 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id t5-20020a4ab585000000b00448aff53822sm142942ooo.40.2022.08.25.14.02.52
+        by smtp.gmail.com with ESMTPSA id o12-20020a9d5c0c000000b0061d31170573sm92760otk.20.2022.08.25.14.12.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Aug 2022 14:02:53 -0700 (PDT)
-Received: (nullmailer pid 1682027 invoked by uid 1000);
-        Thu, 25 Aug 2022 21:02:52 -0000
-Date:   Thu, 25 Aug 2022 16:02:52 -0500
+        Thu, 25 Aug 2022 14:12:42 -0700 (PDT)
+Received: (nullmailer pid 1696440 invoked by uid 1000);
+        Thu, 25 Aug 2022 21:12:41 -0000
+Date:   Thu, 25 Aug 2022 16:12:41 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+To:     Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Amarula patchwork <linux-amarula@amarulasolutions.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        michael@amarulasolutions.com, Dario Binacchi <dariobin@libero.it>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH 3/4] dt-bindings: nvmem: Allow bit offsets greater than a
- byte
-Message-ID: <20220825210252.GA1671168-robh@kernel.org>
-References: <20220814173656.11856-1-samuel@sholland.org>
- <20220814173656.11856-4-samuel@sholland.org>
+        linux-can@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com, netdev@vger.kernel.org
+Subject: Re: [RFC PATCH v2 1/4] dt-bindings: net: can: add STM32 bxcan DT
+ bindings
+Message-ID: <20220825211241.GA1688421-robh@kernel.org>
+References: <20220820082936.686924-1-dario.binacchi@amarulasolutions.com>
+ <20220820082936.686924-2-dario.binacchi@amarulasolutions.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220814173656.11856-4-samuel@sholland.org>
+In-Reply-To: <20220820082936.686924-2-dario.binacchi@amarulasolutions.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Aug 14, 2022 at 12:36:54PM -0500, Samuel Holland wrote:
-> Some NVMEM devices contain cells which do not start at a multiple of the
-> device's stride. However, the "reg" property of a cell must be aligned
-> to its provider device's stride.
-
-How is a DT author supposed to know this? 
-
-I would lean toward it's the OS's problem to deal with (your option 1 I 
-guess). I worry that one client could expect it one way and another 
-client the other. Or folks making DT changes to 'fix' things.
-
+On Sat, Aug 20, 2022 at 10:29:33AM +0200, Dario Binacchi wrote:
+> Add documentation of device tree bindings for the STM32 basic extended
+> CAN (bxcan) controller.
 > 
-> These cells can be represented in the DT using the "bits" property if
-> that property allows offsets up to the full stride. 63 is chosen
-> assuming that NVMEM devices will not have strides larger than 8 bytes.
+> Signed-off-by: Dario Binacchi <dariobin@libero.it>
+> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 > 
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
 > ---
 > 
->  Documentation/devicetree/bindings/nvmem/nvmem.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> Changes in v2:
+> - Change the file name into 'st,stm32-bxcan-core.yaml'.
+> - Rename compatibles:
+>   - st,stm32-bxcan-core -> st,stm32f4-bxcan-core
+>   - st,stm32-bxcan -> st,stm32f4-bxcan
+> - Rename master property to st,can-master.
+> - Remove the status property from the example.
+> - Put the node child properties as required.
 > 
-> diff --git a/Documentation/devicetree/bindings/nvmem/nvmem.yaml b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
-> index 3bb349c634cb..4f440ab6a13c 100644
-> --- a/Documentation/devicetree/bindings/nvmem/nvmem.yaml
-> +++ b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
-> @@ -53,7 +53,7 @@ patternProperties:
->          $ref: /schemas/types.yaml#/definitions/uint32-array
->          items:
->            - minimum: 0
-> -            maximum: 7
-> +            maximum: 63
->              description:
->                Offset in bit within the address range specified by reg.
->            - minimum: 1
+>  .../bindings/net/can/st,stm32-bxcan.yaml      | 136 ++++++++++++++++++
+>  1 file changed, 136 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/can/st,stm32-bxcan.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/can/st,stm32-bxcan.yaml b/Documentation/devicetree/bindings/net/can/st,stm32-bxcan.yaml
+> new file mode 100644
+> index 000000000000..288631b5556d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/can/st,stm32-bxcan.yaml
+> @@ -0,0 +1,136 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/can/st,stm32-bxcan.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: STMicroelectronics bxCAN controller
+> +
+> +description: STMicroelectronics BxCAN controller for CAN bus
+> +
+> +maintainers:
+> +  - Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> +
+> +allOf:
+> +  - $ref: can-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - st,stm32f4-bxcan-core
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    description:
+> +      Input clock for registers access
+> +    maxItems: 1
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - resets
+> +  - clocks
+> +  - '#address-cells'
+> +  - '#size-cells'
+> +
+> +patternProperties:
+> +  "^can@[0-9]+$":
+> +    type: object
+> +    description:
+> +      A CAN block node contains two subnodes, representing each one a CAN
+> +      instance available on the machine.
+> +
+> +    properties:
+> +      compatible:
+> +        enum:
+> +          - st,stm32f4-bxcan
+> +
+> +      st,can-master:
+> +        description:
+> +          Master and slave mode of the bxCAN peripheral is only relevant
+> +          if the chip has two CAN peripherals. In that case they share
+> +          some of the required logic, and that means you cannot use the
+> +          slave CAN without the master CAN.
+> +        type: boolean
+> +
+> +      reg:
+> +        description: |
+> +          Offset of CAN instance in CAN block. Valid values are:
+> +            - 0x0:   CAN1
+> +            - 0x400: CAN2
+> +        maxItems: 1
+> +
+> +      interrupts:
+> +        items:
+> +          - description: transmit interrupt
+> +          - description: FIFO 0 receive interrupt
+> +          - description: FIFO 1 receive interrupt
+> +          - description: status change error interrupt
+> +
+> +      interrupt-names:
+> +        items:
+> +          - const: tx
+> +          - const: rx0
+> +          - const: rx1
+> +          - const: sce
+> +
+> +      resets:
+> +        maxItems: 1
+> +
+> +      clocks:
+> +        description:
+> +          Input clock for registers access
+> +        maxItems: 1
+> +
+> +    additionalProperties: false
+> +
+> +    required:
+> +      - compatible
+> +      - reg
+> +      - interrupts
+> +      - resets
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/stm32fx-clock.h>
+> +    #include <dt-bindings/mfd/stm32f4-rcc.h>
+> +
+> +    can: can@40006400 {
+> +        compatible = "st,stm32f4-bxcan-core";
+> +        reg = <0x40006400 0x800>;
+> +        resets = <&rcc STM32F4_APB1_RESET(CAN1)>;
+> +        clocks = <&rcc 0 STM32F4_APB1_CLOCK(CAN1)>;
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+
+Missing 'ranges'.
+
+> +        can1: can@0 {
+> +            compatible = "st,stm32f4-bxcan";
+> +            reg = <0x0>;
+> +            interrupts = <19>, <20>, <21>, <22>;
+> +            interrupt-names = "tx", "rx0", "rx1", "sce";
+> +            resets = <&rcc STM32F4_APB1_RESET(CAN1)>;
+> +            st,can-master;
+
+No clocks?
+
+> +        };
+> +
+> +        can2: can@400 {
+> +            compatible = "st,stm32f4-bxcan";
+> +            reg = <0x400>;
+> +            interrupts = <63>, <64>, <65>, <66>;
+> +            interrupt-names = "tx", "rx0", "rx1", "sce";
+> +            resets = <&rcc STM32F4_APB1_RESET(CAN2)>;
+> +            clocks = <&rcc 0 STM32F4_APB1_CLOCK(CAN2)>;
+> +        };
+> +    };
 > -- 
-> 2.35.1
+> 2.32.0
 > 
 > 
