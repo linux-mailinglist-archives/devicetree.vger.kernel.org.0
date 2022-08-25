@@ -2,79 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F34E45A1AF9
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 23:23:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C74285A1B0D
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 23:31:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229675AbiHYVXb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 17:23:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38736 "EHLO
+        id S232783AbiHYVbB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 17:31:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49948 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233230AbiHYVXa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 17:23:30 -0400
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10F68BB03F;
-        Thu, 25 Aug 2022 14:23:29 -0700 (PDT)
-Received: by mail-ot1-f50.google.com with SMTP id q39-20020a056830442700b0063889adc0ddso14799358otv.1;
-        Thu, 25 Aug 2022 14:23:29 -0700 (PDT)
+        with ESMTP id S231807AbiHYVbA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 17:31:00 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D867BB680
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 14:30:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1661463058;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=LY0dJI+HK3FIyhOwsV0Ul5xZhYFbnAopq+3Lt6Gqi0I=;
+        b=f5YY2U0K2Hhw3Dmv2CE5ulOQxaUQ6srd4fib/qStqZ+OUHTQigj6dElz05fev0WmSDE8+E
+        TrhWE3D4uWIj6asmVJcAlntEtKzVVb4FOyq1StQ6VrR8QXiz1bGCrrM25pN6X8aToXd3pB
+        kss3HQPTEN2R9yo5Krab/VjuqKungSQ=
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com
+ [209.85.160.199]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-617-l45EDqY9OoGO3Jws6mqjTQ-1; Thu, 25 Aug 2022 17:30:57 -0400
+X-MC-Unique: l45EDqY9OoGO3Jws6mqjTQ-1
+Received: by mail-qt1-f199.google.com with SMTP id ff27-20020a05622a4d9b00b0034306b77c08so15998830qtb.6
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 14:30:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=51otqrz0GPgz+ixQCPPF1nsKQtLGKD6gtswOkCmqupY=;
-        b=r49Uawrho4E26aRNOAUw11L+WdKPp5DBV5iBucQb1TAkVw5IbQFSikPWTsilIlH82Q
-         QQTceKSrqUfrmP6ZCtCml+nPckMYvX2WbaLKnX5fxW2n4EGdFSJoIfoJMOx9SSasvtFM
-         t4MPLVX43N7BWq8xSxFf0O23iiVWAFqBCGq/97P0FT/NtITBBqDZ/hxEXT3CBffGHKx2
-         +CCvQ57ZVa6gUoZPpHTgCsfzwRm2vQzjJ+fUZfoZUh6m2SgDLJ1tFL36oHriUXSXUr9R
-         lcVfVM8eAq/MKAxLkL3YtsIUSZGMEcbuSLLHBkJEqWfuofbeBbY2o2rJ2DQY0eWmPjWB
-         xprg==
-X-Gm-Message-State: ACgBeo3R1O/edtjDSWL/9eCt4HpKAYTffmezMebuo90rQbxteCV97iAb
-        2tqm9ZPCAy0yBxRvvVBLAg==
-X-Google-Smtp-Source: AA6agR6PhtqkCr+FV3HlhKF7GnDgDMVSpDf5Wzi8ihB9/ihsD9LmNjahCY9mq7ClC16Dz+LsK4odQQ==
-X-Received: by 2002:a9d:6d1a:0:b0:638:b3a7:c1da with SMTP id o26-20020a9d6d1a000000b00638b3a7c1damr362646otp.324.1661462608348;
-        Thu, 25 Aug 2022 14:23:28 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id d30-20020a9d2921000000b00636deb2bfe6sm58809otb.68.2022.08.25.14.23.27
+        bh=LY0dJI+HK3FIyhOwsV0Ul5xZhYFbnAopq+3Lt6Gqi0I=;
+        b=tqJQWE3X5MxVpIOB3cjTRr4SbjpdBT1Ye2JDlSePZjay8NdWtAEj08JA8GGq6c655s
+         7qGRWzgSpeDWE+gufB/8zrl73AuH75iFOIPxp3/scGlTurb7lXv4+z9kaj3FdQNem500
+         wnNqqFDFwgJ4hapaw7LBes9Ql/gqm6p+O/bx4ePWLOlam4AXdnBqnWXRcPIwg38DM4FM
+         hu10kTJztl/Oee2O/M5Of/7a0aazy79eM5+AxG8VxO9Q4psJT/aGshN0Rm//c392rCSc
+         +jMqtwGESCqWzt+qyz3Xtp2F024GfguXsEC+KEBTeYe4n/kxDg7bcvwFiLifcvwW3Ygx
+         RIcw==
+X-Gm-Message-State: ACgBeo0ohyIseRORCk3GHV8Mhd1B/ndoV6fcZy4CH3Fjwx2/9ZMlWLEx
+        gYVx8PhmoOhHMk8WTN4h+KyiHwUEX5AGJUAOH4GslldFd/J9KUDz8dsgl9ojzKBCMfaSzHH/Z0D
+        awStv03+OWtEJTPGohfjszA==
+X-Received: by 2002:ad4:5de2:0:b0:477:f5e6:e13 with SMTP id jn2-20020ad45de2000000b00477f5e60e13mr5423061qvb.31.1661463056657;
+        Thu, 25 Aug 2022 14:30:56 -0700 (PDT)
+X-Google-Smtp-Source: AA6agR7xkZetSsMyk6rm1K+UpYZVkmzuXPO46vRqd+KLaE2CVCyFwQLP8z/A95Kj/ZKZzhHK07guDg==
+X-Received: by 2002:ad4:5de2:0:b0:477:f5e6:e13 with SMTP id jn2-20020ad45de2000000b00477f5e60e13mr5423047qvb.31.1661463056397;
+        Thu, 25 Aug 2022 14:30:56 -0700 (PDT)
+Received: from halaneylaptop ([2600:1700:1ff0:d0e0::48])
+        by smtp.gmail.com with ESMTPSA id m14-20020a05620a24ce00b006b9a89d408csm427775qkn.100.2022.08.25.14.30.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Aug 2022 14:23:27 -0700 (PDT)
-Received: (nullmailer pid 1712083 invoked by uid 1000);
-        Thu, 25 Aug 2022 21:23:27 -0000
-Date:   Thu, 25 Aug 2022 16:23:27 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Jerry Ray <jerry.ray@microchip.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Ludovic Desroches <ludovic.desroches@microchip.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>
-Subject: Re: [linux][PATCH v2 1/2] dts: arm: Adding docs for SAMA5D3-EDS board
-Message-ID: <20220825212327.GA1712004-robh@kernel.org>
-References: <20220822181314.8325-1-jerry.ray@microchip.com>
+        Thu, 25 Aug 2022 14:30:55 -0700 (PDT)
+Date:   Thu, 25 Aug 2022 16:30:53 -0500
+From:   Andrew Halaney <ahalaney@redhat.com>
+To:     Douglas Anderson <dianders@chromium.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/7] arm64: dts: qcom: sa8155p-adp: Specify which LDO
+ modes are allowed
+Message-ID: <20220825213053.5xxiljfjkhnpy53p@halaneylaptop>
+References: <20220825164205.4060647-1-dianders@chromium.org>
+ <20220825094155.1.Id59c32b560c4662d8b3697de2bd494d08d654806@changeid>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220822181314.8325-1-jerry.ray@microchip.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20220825094155.1.Id59c32b560c4662d8b3697de2bd494d08d654806@changeid>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 22 Aug 2022 13:13:13 -0500, Jerry Ray wrote:
-> Adding the SAMA5D3-EDS board from Microchip into the atmel AT91 board
-> description yaml file.
+On Thu, Aug 25, 2022 at 09:41:59AM -0700, Douglas Anderson wrote:
+> This board uses RPMH, specifies "regulator-allow-set-load" for LDOs,
+> but doesn't specify any modes with "regulator-allowed-modes".
 > 
-> Signed-off-by: Jerry Ray <jerry.ray@microchip.com>
+> Prior to commit efb0cb50c427 ("regulator: qcom-rpmh: Implement
+> get_optimum_mode(), not set_load()") the above meant that we were able
+> to set either LPM or HPM mode. After that commit (and fixes [1]) we'll
+> be stuck at the initial mode. Discussion of this has resulted in the
+> decision that the old dts files were wrong and should be fixed to
+> fully restore old functionality.
+> 
+> Let's re-enable the old functionality by fixing the dts.
+> 
+> [1] https://lore.kernel.org/r/20220824142229.RFT.v2.2.I6f77860e5cd98bf5c67208fa9edda4a08847c304@changeid
+> 
+> Fixes: 5b85e8f2225c ("arm64: dts: qcom: sa8155p-adp: Add base dts file")
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
 > ---
-> v1->v2:
->  - Added Device Tree documentation for Microchip SAMA5D3-EDS board
-> ---
->  Documentation/devicetree/bindings/arm/atmel-at91.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
+> 
+>  arch/arm64/boot/dts/qcom/sa8155p-adp.dts | 13 ++++++++++++-
+>  1 file changed, 12 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
+> index ba547ca9fc6b..ddb9cb182152 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
+> @@ -43,7 +43,6 @@ vreg_s4a_1p8: smps4 {
+>  
+>  		regulator-always-on;
+>  		regulator-boot-on;
+> -		regulator-allow-set-load;
+
+I could see this deserving its own commit or a line in the commit
+message, but not a big deal to me:
+
+Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
+
+>  
+>  		vin-supply = <&vreg_3p3>;
+>  	};
+> @@ -137,6 +136,9 @@ vreg_l5a_0p88: ldo5 {
+>  			regulator-max-microvolt = <880000>;
+>  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>  			regulator-allow-set-load;
+> +			regulator-allowed-modes =
+> +			    <RPMH_REGULATOR_MODE_LPM
+> +			     RPMH_REGULATOR_MODE_HPM>;
+>  		};
+>  
+>  		vreg_l7a_1p8: ldo7 {
+> @@ -152,6 +154,9 @@ vreg_l10a_2p96: ldo10 {
+>  			regulator-max-microvolt = <2960000>;
+>  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>  			regulator-allow-set-load;
+> +			regulator-allowed-modes =
+> +			    <RPMH_REGULATOR_MODE_LPM
+> +			     RPMH_REGULATOR_MODE_HPM>;
+>  		};
+>  
+>  		vreg_l11a_0p8: ldo11 {
+> @@ -258,6 +263,9 @@ vreg_l5c_1p2: ldo5 {
+>  			regulator-max-microvolt = <1200000>;
+>  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>  			regulator-allow-set-load;
+> +			regulator-allowed-modes =
+> +			    <RPMH_REGULATOR_MODE_LPM
+> +			     RPMH_REGULATOR_MODE_HPM>;
+>  		};
+>  
+>  		vreg_l7c_1p8: ldo7 {
+> @@ -273,6 +281,9 @@ vreg_l8c_1p2: ldo8 {
+>  			regulator-max-microvolt = <1200000>;
+>  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>  			regulator-allow-set-load;
+> +			regulator-allowed-modes =
+> +			    <RPMH_REGULATOR_MODE_LPM
+> +			     RPMH_REGULATOR_MODE_HPM>;
+>  		};
+>  
+>  		vreg_l10c_3p3: ldo10 {
+> -- 
+> 2.37.2.672.g94769d06f0-goog
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
