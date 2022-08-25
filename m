@@ -2,223 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D40A5A1B69
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 23:46:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 345E55A1BCD
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 23:59:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244067AbiHYVpp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 17:45:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47268 "EHLO
+        id S244097AbiHYV7V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 17:59:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244083AbiHYVpT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 17:45:19 -0400
-Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F048AA34B;
-        Thu, 25 Aug 2022 14:44:56 -0700 (PDT)
-Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.3ffe.de (Postfix) with ESMTPSA id D5F339A87;
-        Thu, 25 Aug 2022 23:44:42 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
-        t=1661463883;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=zRsiRxIvVLTYwaf26x4VwnBi3EbjID5udnHi2XzBIfw=;
-        b=HvLpgjGf5vCpML4fJ45VTKnfE2+kWLhHEE77sMdrn9QN+K7etxrUhHzJEkUyCENYNekVQE
-        V/b4W3o02ecbprcD0+eU6Pdod0YFWvU1HZPV4RMBDr7VPy0CWqLSNKuYX4EFvDHEdy5F4C
-        tzX4eV8DRKwkIF/k59VifKAM76DMpdp0nvliYGmkbsDmEqhLZ6jwuu5XjRaZY2RsfeNnLk
-        Q/LFlg/X3sfZMo/fy0/lit8vgHMlVysK2uMZHQ1z33cyXfLDowO13sgBB5bnVv4wuAU9ZY
-        IDYsbcTrbERQ93Zn/m2lZUWBrbTRt7RSVAgjupzfDECPtbKYFhS7+OqE2CayTQ==
-From:   Michael Walle <michael@walle.cc>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        netdev@vger.kernel.org, Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        Michael Walle <michael@walle.cc>
-Subject: [PATCH v1 14/14] arm64: dts: ls1028a: sl28: get MAC addresses from VPD
-Date:   Thu, 25 Aug 2022 23:44:23 +0200
-Message-Id: <20220825214423.903672-15-michael@walle.cc>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220825214423.903672-1-michael@walle.cc>
-References: <20220825214423.903672-1-michael@walle.cc>
+        with ESMTP id S244203AbiHYV7U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 17:59:20 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4708A99B41
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 14:59:15 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id bj12so25043704ejb.13
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 14:59:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=ZWZIyKcotrv3NEmO67KClX9EqNqs0MIDHUX0uHrtkjE=;
+        b=g8/rsxUneSNTvyAX/My2MOeR5KSLY9Rg/6OmuA3mo6wuxVL4yZk8GRe4P42gRuSGYY
+         5o/riDIc3W226S/XAgbuMlSnghvwTZQj9UIRcIL71AI+lwfaqe+0yd9ZMeDrBW+XReH0
+         HeG7kNZkWgj06gz6aqBW2Pg4+wFveT436fTg0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=ZWZIyKcotrv3NEmO67KClX9EqNqs0MIDHUX0uHrtkjE=;
+        b=PHbadfr5GDaYgTkTebFcBGSnpaXYWrmF/CFnSqU6PqATKHpFHcQbF269sQGDaydkhX
+         pw1TtGKPqXPENn6/tD25z05ZEsqHyq/XdldyEhCqM6Rx3JJgfFZVt5q2FS5H1gBRovgU
+         aNIzW7FWq5fQXPp/weHTbUJaBXnzHg+h7hKmCk3BNz4L07oBJJITNc7ypwAJsJzFcJNN
+         zY2+P9Dw9h9BCA8WThUD7UxfjzJ6d6fm4/AdqSLLyxGf0Jx9/8wfDI4RmAlYWPwon7Lb
+         HmXGvjZQ7vgojcuTucB/XvO6eK8VQ1cXfD8jxV2NLlVCWHqSdcy8wn6d+H6vX4fnWX+F
+         l1kQ==
+X-Gm-Message-State: ACgBeo2QsKEnGNDSRzDZUK++ayBJyv28u0hn4X/eXOYm2ksPUUsj8b8q
+        1Agjw0KmbCpyhwcV+vebl7PSG0wvml1XbjBCHZw=
+X-Google-Smtp-Source: AA6agR7X8B+SV5C39SeLoMdlYWt8lXIDvJWjAdfOZUfJUjbA5YTbyULi4CBUnK3pKTOR5zV0SViH7w==
+X-Received: by 2002:a17:906:d7a9:b0:731:2189:4f58 with SMTP id pk9-20020a170906d7a900b0073121894f58mr3746073ejb.471.1661464753652;
+        Thu, 25 Aug 2022 14:59:13 -0700 (PDT)
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com. [209.85.128.50])
+        by smtp.gmail.com with ESMTPSA id l18-20020a1709060cd200b007389c5a45f0sm121871ejh.148.2022.08.25.14.59.11
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 Aug 2022 14:59:11 -0700 (PDT)
+Received: by mail-wm1-f50.google.com with SMTP id n23-20020a7bc5d7000000b003a62f19b453so3428336wmk.3
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 14:59:11 -0700 (PDT)
+X-Received: by 2002:a05:600c:42c3:b0:3a6:431:91bf with SMTP id
+ j3-20020a05600c42c300b003a6043191bfmr9014430wme.188.1661464751060; Thu, 25
+ Aug 2022 14:59:11 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam: Yes
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20220825164205.4060647-1-dianders@chromium.org>
+ <20220825094155.1.Id59c32b560c4662d8b3697de2bd494d08d654806@changeid> <20220825213053.5xxiljfjkhnpy53p@halaneylaptop>
+In-Reply-To: <20220825213053.5xxiljfjkhnpy53p@halaneylaptop>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Thu, 25 Aug 2022 14:58:58 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=VPFvMoPvdYmdXAp+oEBDyNzuaTBNd=g4=+T=itiyVoAw@mail.gmail.com>
+Message-ID: <CAD=FV=VPFvMoPvdYmdXAp+oEBDyNzuaTBNd=g4=+T=itiyVoAw@mail.gmail.com>
+Subject: Re: [PATCH 1/7] arm64: dts: qcom: sa8155p-adp: Specify which LDO
+ modes are allowed
+To:     Andrew Halaney <ahalaney@redhat.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now that it is finally possible to get the MAC addresses from the OTP
-memory, use it to set the addresses of the network devices.
+Hi,
 
-There are 8 reserved MAC addresses in total per board. Distribute them
-as follows:
+On Thu, Aug 25, 2022 at 2:31 PM Andrew Halaney <ahalaney@redhat.com> wrote:
+>
+> On Thu, Aug 25, 2022 at 09:41:59AM -0700, Douglas Anderson wrote:
+> > This board uses RPMH, specifies "regulator-allow-set-load" for LDOs,
+> > but doesn't specify any modes with "regulator-allowed-modes".
+> >
+> > Prior to commit efb0cb50c427 ("regulator: qcom-rpmh: Implement
+> > get_optimum_mode(), not set_load()") the above meant that we were able
+> > to set either LPM or HPM mode. After that commit (and fixes [1]) we'll
+> > be stuck at the initial mode. Discussion of this has resulted in the
+> > decision that the old dts files were wrong and should be fixed to
+> > fully restore old functionality.
+> >
+> > Let's re-enable the old functionality by fixing the dts.
+> >
+> > [1] https://lore.kernel.org/r/20220824142229.RFT.v2.2.I6f77860e5cd98bf5c67208fa9edda4a08847c304@changeid
+> >
+> > Fixes: 5b85e8f2225c ("arm64: dts: qcom: sa8155p-adp: Add base dts file")
+> > Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> > ---
+> >
+> >  arch/arm64/boot/dts/qcom/sa8155p-adp.dts | 13 ++++++++++++-
+> >  1 file changed, 12 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
+> > index ba547ca9fc6b..ddb9cb182152 100644
+> > --- a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
+> > +++ b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
+> > @@ -43,7 +43,6 @@ vreg_s4a_1p8: smps4 {
+> >
+> >               regulator-always-on;
+> >               regulator-boot-on;
+> > -             regulator-allow-set-load;
+>
+> I could see this deserving its own commit or a line in the commit
+> message, but not a big deal to me:
+>
+> Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
 
-+----------+------+------+------+------+------+
-|          | var1 | var2 | var3 | var4 | kbox |
-+----------+------+------+------+------+------+
-| enetc #0 |   +0 |      |      |   +0 |   +0 |
-| enetc #1 |      |      |   +0 |   +1 |   +1 |
-| enetc #2 | rand | rand | rand | rand | rand |
-| enetc #3 |      |      |      |      |      |
-| felix p0 |      |   +0 |      |      |   +4 |
-| felix p1 |      |   +1 |      |      |   +5 |
-| felix p2 |      |      |      |      |   +6 |
-| felix p3 |      |      |      |      |   +7 |
-| felix p4 |      |      |      |      |      |
-| felix p5 |      |      |      |      |      |
-+----------+------+------+------+------+------+
+Ah right. I mentioned it in the cover letter but forgot to mention it
+in this commit message.
 
-An empty cell means, the port is not available and thus doesn't need an
-ethernet address.
+I'll assume that this isn't a big deal but if Bjorn wants a quick spin
+with this mentioned in the commit message (or broken into a separate
+commit) then I can do so. I'll wait for direction before spinning,
+though.
 
-Signed-off-by: Michael Walle <michael@walle.cc>
----
- .../freescale/fsl-ls1028a-kontron-kbox-a-230-ls.dts |  8 ++++++++
- .../dts/freescale/fsl-ls1028a-kontron-sl28-var1.dts |  2 ++
- .../dts/freescale/fsl-ls1028a-kontron-sl28-var2.dts |  4 ++++
- .../dts/freescale/fsl-ls1028a-kontron-sl28-var4.dts |  2 ++
- .../boot/dts/freescale/fsl-ls1028a-kontron-sl28.dts | 13 +++++++++++++
- 5 files changed, 29 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-kbox-a-230-ls.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-kbox-a-230-ls.dts
-index 6b575efd84a7..b5c874c145d3 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-kbox-a-230-ls.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-kbox-a-230-ls.dts
-@@ -76,6 +76,8 @@ &mscc_felix_port0 {
- 	managed = "in-band-status";
- 	phy-handle = <&qsgmii_phy0>;
- 	phy-mode = "qsgmii";
-+	nvmem-cells = <&base_mac_address 4>;
-+	nvmem-cell-names = "mac-address";
- 	status = "okay";
- };
- 
-@@ -84,6 +86,8 @@ &mscc_felix_port1 {
- 	managed = "in-band-status";
- 	phy-handle = <&qsgmii_phy1>;
- 	phy-mode = "qsgmii";
-+	nvmem-cells = <&base_mac_address 5>;
-+	nvmem-cell-names = "mac-address";
- 	status = "okay";
- };
- 
-@@ -92,6 +96,8 @@ &mscc_felix_port2 {
- 	managed = "in-band-status";
- 	phy-handle = <&qsgmii_phy2>;
- 	phy-mode = "qsgmii";
-+	nvmem-cells = <&base_mac_address 6>;
-+	nvmem-cell-names = "mac-address";
- 	status = "okay";
- };
- 
-@@ -100,6 +106,8 @@ &mscc_felix_port3 {
- 	managed = "in-band-status";
- 	phy-handle = <&qsgmii_phy3>;
- 	phy-mode = "qsgmii";
-+	nvmem-cells = <&base_mac_address 7>;
-+	nvmem-cell-names = "mac-address";
- 	status = "okay";
- };
- 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dts
-index 7cd29ab970d9..1f34c7553459 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dts
-@@ -55,5 +55,7 @@ &enetc_port0 {
- &enetc_port1 {
- 	phy-handle = <&phy0>;
- 	phy-mode = "rgmii-id";
-+	nvmem-cells = <&base_mac_address 0>;
-+	nvmem-cell-names = "mac-address";
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var2.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var2.dts
-index 330e34f933a3..0ed0d2545922 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var2.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var2.dts
-@@ -48,6 +48,8 @@ &mscc_felix_port0 {
- 	managed = "in-band-status";
- 	phy-handle = <&phy0>;
- 	phy-mode = "sgmii";
-+	nvmem-cells = <&base_mac_address 0>;
-+	nvmem-cell-names = "mac-address";
- 	status = "okay";
- };
- 
-@@ -56,6 +58,8 @@ &mscc_felix_port1 {
- 	managed = "in-band-status";
- 	phy-handle = <&phy1>;
- 	phy-mode = "sgmii";
-+	nvmem-cells = <&base_mac_address 1>;
-+	nvmem-cell-names = "mac-address";
- 	status = "okay";
- };
- 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var4.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var4.dts
-index 9b5e92fb753e..a4421db3784e 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var4.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var4.dts
-@@ -43,5 +43,7 @@ vddh: vddh-regulator {
- &enetc_port1 {
- 	phy-handle = <&phy1>;
- 	phy-mode = "rgmii-id";
-+	nvmem-cells = <&base_mac_address 1>;
-+	nvmem-cell-names = "mac-address";
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dts
-index 4ab17b984b03..72429b37a8b4 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dts
-@@ -92,6 +92,8 @@ &enetc_port0 {
- 	phy-handle = <&phy0>;
- 	phy-mode = "sgmii";
- 	managed = "in-band-status";
-+	nvmem-cells = <&base_mac_address 0>;
-+	nvmem-cell-names = "mac-address";
- 	status = "okay";
- };
- 
-@@ -154,6 +156,17 @@ partition@3e0000 {
- 				label = "bootloader environment";
- 			};
- 		};
-+
-+		otp-1 {
-+			compatible = "kontron,sl28-vpd", "user-otp";
-+
-+			serial_number: serial-number {
-+			};
-+
-+			base_mac_address: base-mac-address {
-+				#nvmem-cell-cells = <1>;
-+			};
-+		};
- 	};
- };
- 
--- 
-2.30.2
-
+-Doug
