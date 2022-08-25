@@ -2,135 +2,238 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D50605A095C
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 09:01:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A5B65A0976
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 09:06:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229741AbiHYG7k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 02:59:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53064 "EHLO
+        id S236852AbiHYHG0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 03:06:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236593AbiHYG71 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 02:59:27 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6391A1D13;
-        Wed, 24 Aug 2022 23:59:25 -0700 (PDT)
-X-UUID: 1457bb8bcaca4f6b9983a606c598a6c1-20220825
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=ownQ93bhTx2wCDrHvGFfWGNUedELMU2o04x/3pYfzZ8=;
-        b=GdlFEJ7Bmjk3CS2AwYowhLKNixUS52ntwyIZ29Yxab+JA0IAqLBsT6QIK01ZfWPFRi825XyZkxbxCQ9ntBIq0pRc/BncE4Tau2zR9D2h8xe5hpUyvnv+3JKg4DkbinRSm1pXNqC8ha0zWHMCP+NFtDYQOTUZ00TDel4ZLo8SMhY=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.10,REQID:c1c5b8f9-c37e-4c26-9f54-11c631d61410,OB:0,L
-        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_
-        Ham,ACTION:release,TS:0
-X-CID-META: VersionHash:84eae18,CLOUDID:e2ed0f20-1c20-48a5-82a0-25f9c331906d,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
-        ,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 1457bb8bcaca4f6b9983a606c598a6c1-20220825
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw02.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1789223745; Thu, 25 Aug 2022 14:59:22 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
- MTKMBS09N1.mediatek.inc (172.21.101.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Thu, 25 Aug 2022 14:59:20 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Thu, 25 Aug 2022 14:59:20 +0800
-Message-ID: <d5a00dc88bed1680caa8af895a1140324b9d079e.camel@mediatek.com>
-Subject: Re: [PATCH] dt-bindings: arm: mediatek: mmsys: change compatible
- for MT8195
-From:   Bo-Chen Chen <rex-bc.chen@mediatek.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
-CC:     Jason-JH Lin =?UTF-8?Q?=28=E6=9E=97=E7=9D=BF=E7=A5=A5=29?= 
-        <Jason-JH.Lin@mediatek.com>,
-        Nancy Lin =?UTF-8?Q?=28=E6=9E=97=E6=AC=A3=E8=9E=A2=29?= 
-        <Nancy.Lin@mediatek.com>,
-        "CK Hu =?UTF-8?Q?=28=E8=83=A1=E4=BF=8A=E5=85=89=29?=" 
-        <ck.hu@mediatek.com>,
-        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        "hsinyi@google.com" <hsinyi@google.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Thu, 25 Aug 2022 14:59:20 +0800
-In-Reply-To: <3ff08ae9-a4b6-2b74-23cb-69ea1d7e1033@linaro.org>
-References: <20220825055658.12429-1-rex-bc.chen@mediatek.com>
-         <3ff08ae9-a4b6-2b74-23cb-69ea1d7e1033@linaro.org>
+        with ESMTP id S236566AbiHYHGZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 03:06:25 -0400
+Received: from comms.puri.sm (comms.puri.sm [159.203.221.185])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC1B96D56F;
+        Thu, 25 Aug 2022 00:06:22 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+        by comms.puri.sm (Postfix) with ESMTP id D1C31E11BC;
+        Thu, 25 Aug 2022 00:06:22 -0700 (PDT)
+Received: from comms.puri.sm ([127.0.0.1])
+        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id F9caSXysCpjt; Thu, 25 Aug 2022 00:06:21 -0700 (PDT)
+Message-ID: <3bbba64dc4fd9ef37fb937f5176b1ef50b8b2d73.camel@puri.sm>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=puri.sm; s=comms;
+        t=1661411181; bh=XXMdNjo3qg/zPAEYx0MvDsz7VX60NpEYc1P2Apa2KLg=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+        b=XXRksyTmgBWWhkfMl7wCBMuh5oHkadhmqnIQmaIPor/McqME4jCPoy05sOKeDBJO7
+         uU0EnhlA5MKoFot2jWgs/EL9NeGhkFmgPt+vzdv89nlSNWubaVdY1hseomLiSBfr6Q
+         Qe+MMW1yQnBtlVaQDtCjiNqEe5Nbu9GDNjxveKskL4Hvf7xQc0CCtjtXq9KQvuxbmB
+         uEeKlSgd36/hG4Z/Xb576arZvDPyBHAvzUl/3CVEn6QVUfNh/C58/vbrlB6THawxb6
+         EC+HacR04H7426ty9W+rWcs4cwD3wQxLBtoNAUBWV3kRcXl5a1758piIX5nZSx0tRr
+         ajJAi8WDlhkpA==
+Subject: Re: [PATCH v6 1/2] power: domain: handle genpd correctly when
+ needing interrupts
+From:   Martin Kepplinger <martin.kepplinger@puri.sm>
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     rafael@kernel.org, khilman@kernel.org, robh@kernel.org,
+        krzysztof.kozlowski@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, festevam@gmail.com, pavel@ucw.cz,
+        kernel@puri.sm, linux-imx@nxp.com, broonie@kernel.org,
+        l.stach@pengutronix.de, aford173@gmail.com,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Date:   Thu, 25 Aug 2022 09:06:16 +0200
+In-Reply-To: <CAPDyKFoS=E3c9XWWCaG2byMm-3nvvW5jXS0X7Bh-NK_msTUykQ@mail.gmail.com>
+References: <20220726083257.1730630-1-martin.kepplinger@puri.sm>
+         <20220726083257.1730630-2-martin.kepplinger@puri.sm>
+         <CAPDyKFrLLw=y9+t3f_bOH2mw2NVDGJxKE5=+XHY7C6SUzLzUDg@mail.gmail.com>
+         <d1db07c8ca57c72b4f0820fcb6832dd7e4501055.camel@puri.sm>
+         <CAPDyKFpz0HG_AzCkj8LkyisO1fjJiiyX2QjKTWDTLng2O7PDgA@mail.gmail.com>
+         <77baacb930bf2ba1a65cb1515e6795b48d2d4ed5.camel@puri.sm>
+         <CAPDyKFoS=E3c9XWWCaG2byMm-3nvvW5jXS0X7Bh-NK_msTUykQ@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+User-Agent: Evolution 3.38.3-1 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,RDNS_NONE,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,
-        URIBL_BLOCKED,URIBL_CSS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2022-08-25 at 14:11 +0800, Krzysztof Kozlowski wrote:
-> On 25/08/2022 08:56, Bo-Chen Chen wrote:
-> > From: "Jason-JH.Lin" <jason-jh.lin@mediatek.com>
+Am Mittwoch, dem 24.08.2022 um 15:30 +0200 schrieb Ulf Hansson:
+> On Mon, 22 Aug 2022 at 10:38, Martin Kepplinger
+> <martin.kepplinger@puri.sm> wrote:
 > > 
-> > For previous MediaTek SoCs, such as MT8173, there are 2 display HW
-> > pipelines binding to 1 mmsys with the same power domain, the same
-> > clock driver and the same mediatek-drm driver.
+> > Am Freitag, dem 19.08.2022 um 16:53 +0200 schrieb Ulf Hansson:
+> > > On Fri, 19 Aug 2022 at 11:17, Martin Kepplinger
+> > > <martin.kepplinger@puri.sm> wrote:
+> > > > 
+> > > > Am Dienstag, dem 26.07.2022 um 17:07 +0200 schrieb Ulf Hansson:
+> > > > > On Tue, 26 Jul 2022 at 10:33, Martin Kepplinger
+> > > > > <martin.kepplinger@puri.sm> wrote:
+> > > > > > 
+> > > > > > If for example the power-domains' power-supply node
+> > > > > > (regulator)
+> > > > > > needs
+> > > > > > interrupts to work, the current setup with noirq callbacks
+> > > > > > cannot
+> > > > > > work; for example a pmic regulator on i2c, when suspending,
+> > > > > > usually
+> > > > > > already
+> > > > > > times out during suspend_noirq:
+> > > > > > 
+> > > > > > [   41.024193] buck4: failed to disable: -ETIMEDOUT
+> > > > > > 
+> > > > > > So fix system suspend and resume for these power-domains by
+> > > > > > using
+> > > > > > the
+> > > > > > "outer" suspend/resume callbacks instead. Tested on the
+> > > > > > imx8mq-
+> > > > > > librem5 board,
+> > > > > > but by looking at the dts, this will fix imx8mq-evk and
+> > > > > > possibly
+> > > > > > many other
+> > > > > > boards too.
+> > > > > > 
+> > > > > > This is designed so that genpd providers just say "this
+> > > > > > genpd
+> > > > > > needs
+> > > > > > interrupts" (by setting the flag) - without implying an
+> > > > > > implementation.
+> > > > > > 
+> > > > > > Initially system suspend problems had been discussed at
+> > > > > > https://lore.kernel.org/linux-arm-kernel/20211002005954.1367653-8-l.stach@pengutronix.de/
+> > > > > > which led to discussing the pmic that contains the
+> > > > > > regulators
+> > > > > > which
+> > > > > > serve as power-domain power-supplies:
+> > > > > > https://lore.kernel.org/linux-pm/573166b75e524517782471c2b7f96e03fd93d175.camel@puri.sm/T/
+> > > > > > 
+> > > > > > Signed-off-by: Martin Kepplinger
+> > > > > > <martin.kepplinger@puri.sm>
+> > > > > > ---
+> > > > > >  drivers/base/power/domain.c | 13 +++++++++++--
+> > > > > >  include/linux/pm_domain.h   |  5 +++++
+> > > > > >  2 files changed, 16 insertions(+), 2 deletions(-)
+> > > > > > 
+> > > > > > diff --git a/drivers/base/power/domain.c
+> > > > > > b/drivers/base/power/domain.c
+> > > > > > index 5a2e0232862e..58376752a4de 100644
+> > > > > > --- a/drivers/base/power/domain.c
+> > > > > > +++ b/drivers/base/power/domain.c
+> > > > > > @@ -130,6 +130,7 @@ static const struct genpd_lock_ops
+> > > > > > genpd_spin_ops = {
+> > > > > >  #define genpd_is_active_wakeup(genpd)  (genpd->flags &
+> > > > > > GENPD_FLAG_ACTIVE_WAKEUP)
+> > > > > >  #define genpd_is_cpu_domain(genpd)     (genpd->flags &
+> > > > > > GENPD_FLAG_CPU_DOMAIN)
+> > > > > >  #define genpd_is_rpm_always_on(genpd)  (genpd->flags &
+> > > > > > GENPD_FLAG_RPM_ALWAYS_ON)
+> > > > > > +#define genpd_irq_on(genpd)            (genpd->flags &
+> > > > > > GENPD_FLAG_IRQ_ON)
+> > > > > > 
+> > > > > >  static inline bool irq_safe_dev_in_sleep_domain(struct
+> > > > > > device
+> > > > > > *dev,
+> > > > > >                 const struct generic_pm_domain *genpd)
+> > > > > > @@ -2065,8 +2066,15 @@ int pm_genpd_init(struct
+> > > > > > generic_pm_domain
+> > > > > > *genpd,
+> > > > > >         genpd->domain.ops.runtime_suspend =
+> > > > > > genpd_runtime_suspend;
+> > > > > >         genpd->domain.ops.runtime_resume =
+> > > > > > genpd_runtime_resume;
+> > > > > >         genpd->domain.ops.prepare = genpd_prepare;
+> > > > > > -       genpd->domain.ops.suspend_noirq =
+> > > > > > genpd_suspend_noirq;
+> > > > > > -       genpd->domain.ops.resume_noirq =
+> > > > > > genpd_resume_noirq;
+> > > > > > +
+> > > > > > +       if (genpd_irq_on(genpd)) {
+> > > > > > +               genpd->domain.ops.suspend =
+> > > > > > genpd_suspend_noirq;
+> > > > > > +               genpd->domain.ops.resume =
+> > > > > > genpd_resume_noirq;
+> > > > > > +       } else {
+> > > > > > +               genpd->domain.ops.suspend_noirq =
+> > > > > > genpd_suspend_noirq;
+> > > > > > +               genpd->domain.ops.resume_noirq =
+> > > > > > genpd_resume_noirq;
+> > > > > 
+> > > > > As we discussed previously, I am thinking that it may be
+> > > > > better
+> > > > > to
+> > > > > move to using genpd->domain.ops.suspend_late and
+> > > > > genpd->domain.ops.resume_early instead.
+> > > > 
+> > > > Wouldn't that better be a separate patch (on top)? Do you
+> > > > really
+> > > > want
+> > > > me to change the current behaviour (default case) to from noirq
+> > > > to
+> > > > late? Then I'll resend this series with such a patch added.
+> > > 
+> > > Sorry, I wasn't clear enough, the default behaviour should remain
+> > > as
+> > > is.
+> > > 
+> > > What I meant was, when genpd_irq_on() is true, we should use the
+> > > genpd->domain.ops.suspend_late and genpd-
+> > > >domain.ops.resume_early.
 > > 
-> > For MT8195, VDOSYS0 and VDOSYS1 are 2 display HW pipelines binding
-> > to
-> > 2 different power domains, different clock drivers and different
-> > mediatek-drm drivers.
+> > Testing that shows that this isn't working. I can provide the logs
+> > later, but suspend fails and I think it makes sense: "suspend_late"
+> > is
+> > simply already too late when i2c (or any needed driver) uses
+> > "suspend".
 > 
-> I don't see binding to different clock drivers and anyway that's not
-> really an argument here. Please focus in description on hardware
-> properties, IOW, are devices compatible or different. What is the
-> incompatible difference between VDOSYS0 and 1?
+> Okay, I see.
 > 
-> Best regards,
-> Krzysztof
+> The reason why I suggested moving the callbacks to "suspend_late",
+> was
+> that I was worried that some of the attached devices to genpd could
+> use "suspend_late" themselves. This is the case for some drivers for
+> DMA/clock/gpio/pinctrl-controllers, for example. That said, I am
+> curious to look at the DT files for the platform you are running,
+> would you mind giving me a pointer?
 
-Hello Krzysztof,
+I'm running
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
+with these (small) patches on top:
+https://source.puri.sm/martin.kepplinger/linux-next/-/commits/5.19.3/librem5
 
-Thanks for yor review.
+> 
+> So, this made me think about this a bit more. In the end, just using
+> different levels (suspend, suspend_late, suspend_noirq) of callbacks
+> are just papering over the real *dependency* problem.
 
-From the functions perspective:
+true, it doesn't feel like a stable solution.
 
-Hardware pipeline of VDOSYS0 has these components: COLOR, CCORR, AAL,
-GAMMA, DITHER.
-They are related to PQ (Picture Quality) functions and they makes
-VDOSYS0 supports PQ function while they are not including in VDOSYS1.
+> 
+> What we need for the genpd provider driver, is to be asked to be
+> suspended under the following conditions:
+> 1. All consumer devices (and child-domains) for its corresponding PM
+> domain have been suspended.
+> 2. All its supplier devices supplies must remain resumed, until the
+> genpd provider has been suspended.
+> 
+> Please allow me a few more days to think in more detail about this.
 
-Hardware pipeline of VDOSYS1 has the component ETHDR (HDR related
-component).
-It makes VDOSYS1 supports the HDR function while it's not including in
-VDOSYS0.
+Thanks a lot for thinking about this!
 
-About mediatek ETHDR, you can refer to this series:
+> 
+> In some way, it looks like we should be able to combine the
+> information genpd has about its devices and child-domains, use PM
+> callbacks for the genpd provider driver - so we can rely on the
+> depency-path the fw_devlinks would give us for its supplier devices.
+> 
+> Kind regards
+> Uffe
 
-https://lore.kernel.org/all/20220819061456.8042-2-nancy.lin@mediatek.com/
+                          martin
 
-To summary:
-Only VDOSYS0 can support PQ adjustment.
-Only VDOSYS1 can support HDR adjustment.
-
-Is this description ok for you?
-If it is ok, I will put them into commit message in next version.
-
-BRs,
-Bo-Chen
 
