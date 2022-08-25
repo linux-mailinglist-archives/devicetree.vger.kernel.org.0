@@ -2,111 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BD735A19D5
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 21:51:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7476F5A19DE
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 21:58:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243000AbiHYTvy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 15:51:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52304 "EHLO
+        id S236470AbiHYT6D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 15:58:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230343AbiHYTvw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 15:51:52 -0400
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB0C3B249C
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 12:51:51 -0700 (PDT)
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com [209.85.128.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 776973FFAF
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 19:51:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1661457109;
-        bh=Q62BFbHdLMiC8G/bwUd9Yr2gMAz6rRKsbknA9dRkewI=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=rtjLkwE8PV6EPJScXcrwwV91fPx1YNxDW/IFK5rCRFa7ryjhLUtQEcsuv5IZsY+xl
-         vIWaJLh9L1iWeLasLEBNZL8HIyt1Z9lytp82iP5tRKT/68pi0QAXWD6KKghs9qnYF1
-         ie69kSrKkv6QqiyKOHuy6cnXeXcWQzegB62R+9c3kdRhS+ASnaVmTlP6rivXychqEs
-         aERyE4brqMXZ+0CVtlABKzkBAIacSw10bSuNh9XeMUAUzjc4vCqMU+Hm5vsCfXHw5q
-         CVtkbKRl3SpzHmRqlzVb1VmoPGD51XgVaAG8PMIUXxquMSDuQqER6eIrb3q0qcNu9U
-         cXLcCRzm/rMtg==
-Received: by mail-wm1-f70.google.com with SMTP id v3-20020a1cac03000000b003a7012c430dso147207wme.3
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 12:51:49 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=Q62BFbHdLMiC8G/bwUd9Yr2gMAz6rRKsbknA9dRkewI=;
-        b=zqpWacGx9w/NsRCtw/cdAK8m9+upvm6ccY6bQwSbEvlYo/9LO7dUE+ycQwTKqJjbmY
-         JiIP2y9IN+1CuVw0PxlpmPhjLLni5QxOFRNdWIQmG6a3qHQaVo9e5WNRodMSV315c5VF
-         khbupLQKY/mvVGYrDlWKBjTj/2rp+VXizKhcDhcd4Lfq+r3tI/F5WnQNVm5KhfLp+3hf
-         TXkv/SojZvn644N37mXmmeFPysUljUdrX9fyx8TkiOykuXtwLMgJ1QMyKlXoJ22anGtf
-         Nm0MWIrmH6gt0L6MZYxk3eSKnsN68E9INoveaIUJRL+fR+1UdtBCnIadv2h/EgdVkAA1
-         lo0Q==
-X-Gm-Message-State: ACgBeo2P19K9KAFMD8GxKrY6E35oRKxBNprq+pDhUg5H+swBwk7Yp41q
-        rSAjYq1E21DY3tRlFQ1yQc7VpVT7UyQ+6sAnxsaUp5j3KbdA4RSSae01iOdNrCPWZd9CoM6xS8L
-        n0TbtUWpH2ijLQbY0K9x47xg72Nol7W19s6etzzo=
-X-Received: by 2002:adf:e199:0:b0:225:2f90:9178 with SMTP id az25-20020adfe199000000b002252f909178mr3172742wrb.318.1661457108841;
-        Thu, 25 Aug 2022 12:51:48 -0700 (PDT)
-X-Google-Smtp-Source: AA6agR5gPIeNGUoC6hcPYARO1uBIm6Y8DVcE9uV1yA75S5qG3Gwf33wyGXkmtIe0/KVCGk8RLOqckQ==
-X-Received: by 2002:adf:e199:0:b0:225:2f90:9178 with SMTP id az25-20020adfe199000000b002252f909178mr3172728wrb.318.1661457108594;
-        Thu, 25 Aug 2022 12:51:48 -0700 (PDT)
-Received: from [192.168.123.94] (ip-084-118-157-002.um23.pools.vodafone-ip.de. [84.118.157.2])
-        by smtp.gmail.com with ESMTPSA id c13-20020adffb0d000000b0022511d35d5bsm130449wrr.12.2022.08.25.12.51.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Aug 2022 12:51:48 -0700 (PDT)
-Message-ID: <18f0c833-94c6-616c-ce21-384492945240@canonical.com>
-Date:   Thu, 25 Aug 2022 21:51:46 +0200
+        with ESMTP id S234643AbiHYT6B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 15:58:01 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 13B512981B;
+        Thu, 25 Aug 2022 12:58:00 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 57027D6E;
+        Thu, 25 Aug 2022 12:58:04 -0700 (PDT)
+Received: from [10.57.16.12] (unknown [10.57.16.12])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C5BDA3F67D;
+        Thu, 25 Aug 2022 12:57:55 -0700 (PDT)
+Message-ID: <a6ca5a5a-8424-c953-6f76-c9212db88485@arm.com>
+Date:   Thu, 25 Aug 2022 20:57:49 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
  Thunderbird/102.2.0
-Subject: Re: [PATCH 2/2] riscv: dts: microchip: use an mpfs specific l2
- compatible
-Content-Language: en-US
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     Sagar Kadam <sagar.kadam@sifive.com>,
-        Atish Patra <atishp@atishpatra.org>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        Daire McNamara <daire.mcnamara@microchip.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <mail@conchuod.ie>
-References: <20220825180417.1259360-1-mail@conchuod.ie>
- <20220825180417.1259360-3-mail@conchuod.ie>
-From:   Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
-In-Reply-To: <20220825180417.1259360-3-mail@conchuod.ie>
+Subject: Re: [RFC PATCH v2 2/6] bus/cdx: add the cdx bus driver
+Content-Language: en-GB
+To:     Saravana Kannan <saravanak@google.com>,
+        Jason Gunthorpe <jgg@nvidia.com>
+Cc:     Greg KH <gregkh@linuxfoundation.org>,
+        "Gupta, Nipun" <Nipun.Gupta@amd.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "rafael@kernel.org" <rafael@kernel.org>,
+        "eric.auger@redhat.com" <eric.auger@redhat.com>,
+        "alex.williamson@redhat.com" <alex.williamson@redhat.com>,
+        "cohuck@redhat.com" <cohuck@redhat.com>,
+        "Gupta, Puneet (DCG-ENG)" <puneet.gupta@amd.com>,
+        "song.bao.hua@hisilicon.com" <song.bao.hua@hisilicon.com>,
+        "mchehab+huawei@kernel.org" <mchehab+huawei@kernel.org>,
+        "maz@kernel.org" <maz@kernel.org>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "jeffrey.l.hugo@gmail.com" <jeffrey.l.hugo@gmail.com>,
+        "Michael.Srba@seznam.cz" <Michael.Srba@seznam.cz>,
+        "mani@kernel.org" <mani@kernel.org>,
+        "yishaih@nvidia.com" <yishaih@nvidia.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+        "okaya@kernel.org" <okaya@kernel.org>,
+        "Anand, Harpreet" <harpreet.anand@amd.com>,
+        "Agarwal, Nikhil" <nikhil.agarwal@amd.com>,
+        "Simek, Michal" <michal.simek@amd.com>,
+        "git (AMD-Xilinx)" <git@amd.com>
+References: <20220803122655.100254-1-nipun.gupta@amd.com>
+ <20220817150542.483291-1-nipun.gupta@amd.com>
+ <20220817150542.483291-3-nipun.gupta@amd.com> <Yv0KHROjESUI59Pd@kroah.com>
+ <DM6PR12MB3082D966CFC0FA1C2148D8FAE8719@DM6PR12MB3082.namprd12.prod.outlook.com>
+ <YwOEv6107RfU5p+H@kroah.com>
+ <DM6PR12MB3082B4BDD39632264E7532B8E8739@DM6PR12MB3082.namprd12.prod.outlook.com>
+ <YwYVhJCSAuYcgj1/@kroah.com> <20220824233122.GA4068@nvidia.com>
+ <CAGETcx846Pomh_DUToncbaOivHMhHrdt-MTVYqkfLUKvM8b=6w@mail.gmail.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <CAGETcx846Pomh_DUToncbaOivHMhHrdt-MTVYqkfLUKvM8b=6w@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 8/25/22 20:04, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
+On 2022-08-25 19:38, Saravana Kannan wrote:
+> On Wed, Aug 24, 2022 at 4:31 PM Jason Gunthorpe <jgg@nvidia.com> wrote:
+>>
+>> On Wed, Aug 24, 2022 at 02:11:48PM +0200, Greg KH wrote:
+>>>> We can share the RFC in case you are interested in looking at code flow
+>>>> using the of_dynamic approach.
+>>>
+>>> Please no more abuse of the platform device.
+>>
+>> Last time this came up there was some disagreement from the ARM folks,
+>> they were not keen on having xx_drivers added all over the place to
+>> support the same OF/DT devices just discovered in a different way. It is
+>> why ACPI is mapped to platform_device even in some cases.
+>>
+>> I think if you push them down this path they will get resistance to
+>> get the needed additional xx_drivers into the needed places.
+>>
+>>> If your device can be discovered by scanning a bus, it is not a platform
+>>> device.
+>>
+>> A DT fragment loaded during boot binds a driver using a
+>> platform_driver, why should a DT fragment loaded post-boot bind using
+>> an XX_driver and further why should the CDX way of getting the DT
+>> raise to such importantance that it gets its own cdx_driver ?
+>>
+>> In the end the driver does not care about how the DT was loaded.
+>> None of these things are on a discoverable bus in any sense like PCI
+>> or otherwise. They are devices described by a DT fragement and they
+>> take all their parameters from that chunk of DT.
+>>
+>> How the DT was loaded into the system is not a useful distinction that
+>> raises the level of needing an entire new set of xx_driver structs all
+>> over the tree, IMHO.
 > 
-> PolarFire SoC does not have the same l2 cache controller as the fu540,
-> featuring an extra interrupt. Appease the devicetree checker overlords
-> by adding a PolarFire SoC specific compatible to fix the below sort of
-> warnings:
-> 
-> mpfs-polarberry.dtb: cache-controller@2010000: interrupts: [[1], [3], [4], [2]] is too long
-> 
-> Fixes: 0fa6107eca41 ("RISC-V: Initial DTS for Microchip ICICLE board")
-> Fixes: 34fc9cc3aebe ("riscv: dts: microchip: correct L2 cache interrupts")
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> Jason, I see your point or rather the point the ARM folks might have
+> made. But in this case, why not use DT overlays to add these devices?
+> IIRC there's an in kernel API to add DT overlays. If so, should this
+> be more of a FPGA driver that reads FPGA stuff and adds DT overlays?
+> That'd at least make a stronger case for why this isn't a separate
+> bus.
 
-Reviewed-by: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
+Right, that's exactly where this discussion started.
+
+To my mind, it would definitely help to understand if this is a *real* 
+discoverable bus in hardware, i.e. does one have to configure one's 
+device with some sort of CDX wrapper at FPGA synthesis time, that then 
+physically communicates with some sort of CDX controller to identify 
+itself once loaded; or is it "discoverable" in the sense that there's 
+some firmware on an MCU controlling what gets loaded into the FPGA, and 
+software can query that and get back whatever precompiled DTB fragment 
+came bundled with the bitstream, i.e. it's really more like fpga-mgr in 
+a fancy hat?
+
+It's pretty much impossible to judge from all the empty placeholder code 
+here how much is real and constrained by hardware and how much is 
+firmware abstraction, which makes it particularly hard to review whether 
+any proposal heading in the right direction.
+
+Even if it *is* entirely firmware smoke-and-mirrors, if that firmware 
+can provide a standardised discovery and configuration interface for 
+common resources, it can be a bus. But then it should *be* a bus, with 
+its own bus_type and its own device type to model those standard 
+interfaces and IDs and resources. Or if it is really just a very clever 
+dynamic DT overlay manager for platform devices, then it can be that 
+instead. But what it should clearly not be is some in-between mess 
+making the worst of both worlds, which is what the code here inescapably 
+smells of.
+
+Thanks,
+Robin.
