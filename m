@@ -2,107 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EDF805A0F93
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 13:51:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BAC15A0FA1
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 13:54:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241266AbiHYLvH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 07:51:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54380 "EHLO
+        id S234550AbiHYLy2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 07:54:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241188AbiHYLvG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 07:51:06 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 686B26CD2B
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 04:51:04 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id m3so22180877lfg.10
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 04:51:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=QslpZXG7w6+Zu0cuJpcihO4wL0ZcP7qpvE0bMlNnn88=;
-        b=LimlF0C4WC4ny6FZr0Orj0k40ks11cTYtD5QO6JSOvOvUpPD6Tv8nuYA9QS41unyqI
-         0XMpNFV+o0pFIMKNO2PvGCJVjErilKa8Ag04mNQX1YsdE75zQRkjq+c3e31bJUP6G7Qc
-         pTsppBNUcnEnI4wqGFgVUDLx4ztOU3d/reKjqYDsWcQbNGjud8Wws64NEP2d2gkwR6IS
-         qnzTm/627wp16BwyEkoJPPAe42iKhoVzlzs6orQzwu+l20/0VUmk4XRM/TJ5DvuUPfxe
-         R/5bxx4a6QFN3EVbi3xGMdLw4HOo3hENHyQeuPrt+93o/IzoCqTYhXMtadmC0lT4V3rt
-         /EaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=QslpZXG7w6+Zu0cuJpcihO4wL0ZcP7qpvE0bMlNnn88=;
-        b=GxDzkQcDwYkhIfD4jmhzo2U/BNbyqUpN2aKOHD/fRjiE3uL5YuHVfVfzVNdYod1h1S
-         wZ0MdDpt2m6D+P3AgVRBMNldTbgLzg6KrOj180iUcpyuOVPN2X09o8QuVZlbova522Zd
-         5WtgbbB5bsGXG174amA3lcdk4oH3hWwXgPDLkBBpg0BLylQK0QXW54beBO9qRnvBX6Zc
-         xs4owuPaYzgQAzL7IY9F1oZHoha9zV7Ja2o38FFIkOpFa5cu1vbtiOFIBheeREeZJvJf
-         ygICnELxLBnYdCAftcBRVqw2zNGDTODngYYUdo7U6W05oxcisuKxiahO6HwLeWmFn+So
-         Iygg==
-X-Gm-Message-State: ACgBeo3XjbRgo2nZC7flC3pKs37HEC5jhy6Y9zEsGr6sCxOjggH65pso
-        h1GOxDs9h9/OzD06tCsD65cnLQ==
-X-Google-Smtp-Source: AA6agR7b6cEUO9K0Iijpg8ftzYlO5oAvjsgLr4FBxw+igjm+vGxsRNZiXOqbvoyl252nS7ROZq43VQ==
-X-Received: by 2002:a19:e04a:0:b0:492:f96f:85b7 with SMTP id g10-20020a19e04a000000b00492f96f85b7mr980042lfj.141.1661428262801;
-        Thu, 25 Aug 2022 04:51:02 -0700 (PDT)
-Received: from [192.168.0.71] (82.131.98.15.cable.starman.ee. [82.131.98.15])
-        by smtp.gmail.com with ESMTPSA id s4-20020a056512314400b0048fdb3efa20sm455083lfi.185.2022.08.25.04.51.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Aug 2022 04:51:01 -0700 (PDT)
-Message-ID: <0048ccbe-e8dc-2ce8-a8a7-68a5ad4194ac@linaro.org>
-Date:   Thu, 25 Aug 2022 14:51:00 +0300
+        with ESMTP id S232349AbiHYLy1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 07:54:27 -0400
+Received: from mail-sz.amlogic.com (mail-sz.amlogic.com [211.162.65.117])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95B2CA4B1A;
+        Thu, 25 Aug 2022 04:54:26 -0700 (PDT)
+Received: from rd02-sz.amlogic.software (10.28.8.43) by mail-sz.amlogic.com
+ (10.28.11.5) with Microsoft SMTP Server id 15.1.2507.6; Thu, 25 Aug 2022
+ 19:54:22 +0800
+From:   Huqiang Qin <huqiang.qin@amlogic.com>
+To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <narmstrong@baylibre.com>, <khilman@baylibre.com>,
+        <jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Huqiang Qin <huqiang.qin@amlogic.com>
+Subject: [PATCH] arm64: dts: meson-s4: include meson-s4-gpio.h
+Date:   Thu, 25 Aug 2022 19:51:54 +0800
+Message-ID: <20220825115154.2150323-1-huqiang.qin@amlogic.com>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v4 01/10] dt-bindings: display/msm: split qcom,mdss
- bindings
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-References: <20220825095103.624891-1-dmitry.baryshkov@linaro.org>
- <20220825095103.624891-2-dmitry.baryshkov@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220825095103.624891-2-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.28.8.43]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/08/2022 12:50, Dmitry Baryshkov wrote:
-> Split Mobile Display SubSystem (MDSS) root node bindings to the separate
-> yaml file. Changes to the existing (txt) schema:
->  - Added optional "vbif_nrt_phys" region used by msm8996
->  - Made "bus" and "vsync" clocks optional (they are not used by some
->    platforms)
->  - Added (optional) "core" clock added recently to the mdss driver
->  - Added optional resets property referencing MDSS reset
->  - Defined child nodes pointing to corresponding reference schema.
->  - Dropped the "lut" clock. It was added to the schema by mistake (it is
->    a part of mdp4 schema, not the mdss).
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Add the included meson-s4-gpio.h in the meson-s4.dtsi
 
+Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+index ad50cba42d19..44cce8b0fcef 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+@@ -6,6 +6,7 @@
+ #include <dt-bindings/interrupt-controller/irq.h>
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+ #include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/gpio/meson-s4-gpio.h>
+ 
+ / {
+ 	cpus {
+-- 
+2.37.1
 
-
-Best regards,
-Krzysztof
