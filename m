@@ -2,157 +2,282 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 561255A1281
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 15:41:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D9255A128E
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 15:42:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240817AbiHYNlH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 09:41:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57504 "EHLO
+        id S240614AbiHYNms (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 09:42:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239774AbiHYNlG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 09:41:06 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47ADDA2619;
-        Thu, 25 Aug 2022 06:41:04 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id m17-20020a7bce11000000b003a5bedec07bso2729275wmc.0;
-        Thu, 25 Aug 2022 06:41:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=P62ueRssPRWFG3vaYmpYNrxNqu1MLhdwYO9xXHU3Eok=;
-        b=o5f4hFjZI45NTZlz/j+gp1PsNXot+ZFmfK1pjCF3c/ZkKON5KO2U/U4z3qjDJ5pKHh
-         CfMu6+BUgs0fadkrXr33bOXYs5nZcCUNtREG1btzb00TRe5IV0Fw2MLKDbobygsbSmv+
-         ulmFWzsKO1LCy7kZMuRaScxVZX/sSB2Q1tOelifSdAS+YWR/Dfk2+lsEoaDrc5WOpa8s
-         +ALI41zvnNIBFnNZ3Y4wAAIGxZ9es+16UZ//ZoLewVyBXhkaVmHAnoKsi1PE0YD7jzTi
-         +TLD7NKMIzJAoYCRfdP2kxriS9Khnex1VnPO48BPSWgzf7BXhICyZIiRB72cN/l9tpvT
-         6VXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=P62ueRssPRWFG3vaYmpYNrxNqu1MLhdwYO9xXHU3Eok=;
-        b=IwBL15BB0QmbRPxTuN8tS/5qxL48hJLmDHNH2QFtaOr1eBA37H2v4TQnWvL13ScKMM
-         6lvqdNOzNgOtW4B5IsEtc4kg3boRIFWIV+uYuSwmEZPS1zJ2hz4byNUCdovQ+P4Z012Z
-         kaFHC9hEmPePWcbDMcOHVH5ilvjGvzyUFPJEEhhExlbqr0AXoVl9QRTY7slVf2OQlipj
-         ZqIPD0WgUbKhuuuPEL9CIJ1xTNAdNu4UsAXY15NvXDv3+D0wJF1UCFrt2GasWmn1kvp8
-         vjrPWk7iEg4Hf241thNzvR2XWwPvQ8a10EQ3JG/aSHpm/g564uZyndahDLa+QyE8q11S
-         Ntng==
-X-Gm-Message-State: ACgBeo2yXRSA417Y7g2bAa6gFKZZqWVNJ9AlARas5vb8GuwzBF63SxbX
-        styFOg1upDTjY7Y333I4Akg=
-X-Google-Smtp-Source: AA6agR6HwtACnz86Wj1DGMwmnKmttU1V08jHhgJSrlxz8gPmsiWwe1E9CpRcuRMT3D/r04OwZIh6QA==
-X-Received: by 2002:a05:600c:3508:b0:3a6:10a9:8115 with SMTP id h8-20020a05600c350800b003a610a98115mr8721228wmq.164.1661434862814;
-        Thu, 25 Aug 2022 06:41:02 -0700 (PDT)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id g8-20020adffc88000000b002258619d342sm641503wrr.2.2022.08.25.06.41.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Aug 2022 06:41:01 -0700 (PDT)
-Message-ID: <ad4d2ed4-5ea0-f6a8-65da-9f61ca54b891@gmail.com>
-Date:   Thu, 25 Aug 2022 15:41:00 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.1.2
-Subject: Re: [PATCH v6 01/20] dt-bindings: iommu: mediatek: Increase max
- interrupt number
-Content-Language: en-US
-To:     Tinghan Shen <tinghan.shen@mediatek.com>,
-        Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
+        with ESMTP id S233743AbiHYNmq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 09:42:46 -0400
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 19D6CB5A6E;
+        Thu, 25 Aug 2022 06:42:44 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.93,263,1654527600"; 
+   d="scan'208";a="130587087"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 25 Aug 2022 22:42:44 +0900
+Received: from localhost.localdomain (unknown [10.226.93.110])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 89573425D7F5;
+        Thu, 25 Aug 2022 22:42:37 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lee Jones <lee@kernel.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        MandyJH Liu <mandyjh.liu@mediatek.com>
-Cc:     iommu@lists.linux.dev, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220811025813.21492-1-tinghan.shen@mediatek.com>
- <20220811025813.21492-2-tinghan.shen@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220811025813.21492-2-tinghan.shen@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Subject: [PATCH v5 1/2] dt-bindings: display: bridge: Document RZ/G2L MIPI DSI TX bindings
+Date:   Thu, 25 Aug 2022 14:42:28 +0100
+Message-Id: <20220825134229.2620498-2-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220825134229.2620498-1-biju.das.jz@bp.renesas.com>
+References: <20220825134229.2620498-1-biju.das.jz@bp.renesas.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The RZ/G2L MIPI DSI TX is embedded in the Renesas RZ/G2L family SoC's. It
+can operate in DSI mode, with up to four data lanes.
 
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+v4->v5:
+ * No change.
+v3->v4:
+ * No change.
+v2->v3:
+ * Added Rb tag from Geert and Laurent
+ * Fixed the typo "Receive" -> "transmit"
+ * Added accepible values for data-lanes
+ * Sorted Header file in the example
+ * Added SoC specific compaible along with generic one.
+v1->v2:
+ * Added full path for dsi-controller.yaml
+ * Modeled DSI + D-PHY as single block and updated reg property
+ * Fixed typo D_PHY->D-PHY
+ * Updated description
+ * Added interrupts and interrupt-names and updated the example 
+RFC->v1:
+ * Added a ref to dsi-controller.yaml.
+RFC:-
+ * https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220112174612.10773-22-biju.das.jz@bp.renesas.com/
+---
+ .../bindings/display/bridge/renesas,dsi.yaml  | 182 ++++++++++++++++++
+ 1 file changed, 182 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
 
-On 11/08/2022 04:57, Tinghan Shen wrote:
-> mt8195 infra iommu uses 5 interrupts.
-> 
-> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+diff --git a/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
+new file mode 100644
+index 000000000000..131d5b63ec4f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
+@@ -0,0 +1,182 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/bridge/renesas,dsi.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Renesas RZ/G2L MIPI DSI Encoder
++
++maintainers:
++  - Biju Das <biju.das.jz@bp.renesas.com>
++
++description: |
++  This binding describes the MIPI DSI encoder embedded in the Renesas
++  RZ/G2L alike family of SoC's. The encoder can operate in DSI mode, with
++  up to four data lanes.
++
++allOf:
++  - $ref: /schemas/display/dsi-controller.yaml#
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - renesas,r9a07g044-mipi-dsi # RZ/G2{L,LC}
++      - const: renesas,rzg2l-mipi-dsi
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    items:
++      - description: Sequence operation channel 0 interrupt
++      - description: Sequence operation channel 1 interrupt
++      - description: Video-Input operation channel 1 interrupt
++      - description: DSI Packet Receive interrupt
++      - description: DSI Fatal Error interrupt
++      - description: DSI D-PHY PPI interrupt
++      - description: Debug interrupt
++
++  interrupt-names:
++    items:
++      - const: seq0
++      - const: seq1
++      - const: vin1
++      - const: rcv
++      - const: ferr
++      - const: ppi
++      - const: debug
++
++  clocks:
++    items:
++      - description: DSI D-PHY PLL multiplied clock
++      - description: DSI D-PHY system clock
++      - description: DSI AXI bus clock
++      - description: DSI Register access clock
++      - description: DSI Video clock
++      - description: DSI D-PHY Escape mode transmit clock
++
++  clock-names:
++    items:
++      - const: pllclk
++      - const: sysclk
++      - const: aclk
++      - const: pclk
++      - const: vclk
++      - const: lpclk
++
++  resets:
++    items:
++      - description: MIPI_DSI_CMN_RSTB
++      - description: MIPI_DSI_ARESET_N
++      - description: MIPI_DSI_PRESET_N
++
++  reset-names:
++    items:
++      - const: rst
++      - const: arst
++      - const: prst
++
++  power-domains:
++    maxItems: 1
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++
++    properties:
++      port@0:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: Parallel input port
++
++      port@1:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
++        description: DSI output port
++
++        properties:
++          endpoint:
++            $ref: /schemas/media/video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              data-lanes:
++                description: array of physical DSI data lane indexes.
++                minItems: 1
++                items:
++                  - const: 1
++                  - const: 2
++                  - const: 3
++                  - const: 4
++
++            required:
++              - data-lanes
++
++    required:
++      - port@0
++      - port@1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - interrupt-names
++  - clocks
++  - clock-names
++  - resets
++  - reset-names
++  - power-domains
++  - ports
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/r9a07g044-cpg.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    dsi0: dsi@10850000 {
++        compatible = "renesas,r9a07g044-mipi-dsi", "renesas,rzg2l-mipi-dsi";
++        reg = <0x10850000 0x20000>;
++        interrupts = <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
++        interrupt-names = "seq0", "seq1", "vin1", "rcv",
++                          "ferr", "ppi", "debug";
++        clocks = <&cpg CPG_MOD R9A07G044_MIPI_DSI_PLLCLK>,
++                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_SYSCLK>,
++                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_ACLK>,
++                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_PCLK>,
++                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_VCLK>,
++                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_LPCLK>;
++        clock-names = "pllclk", "sysclk", "aclk", "pclk", "vclk", "lpclk";
++        resets = <&cpg R9A07G044_MIPI_DSI_CMN_RSTB>,
++                 <&cpg R9A07G044_MIPI_DSI_ARESET_N>,
++                 <&cpg R9A07G044_MIPI_DSI_PRESET_N>;
++        reset-names = "rst", "arst", "prst";
++        power-domains = <&cpg>;
++
++        ports {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            port@0 {
++                reg = <0>;
++                dsi0_in: endpoint {
++                    remote-endpoint = <&du_out_dsi0>;
++                };
++            };
++
++            port@1 {
++                reg = <1>;
++                dsi0_out: endpoint {
++                    data-lanes = <1 2 3 4>;
++                    remote-endpoint = <&adv7535_in>;
++                };
++            };
++        };
++    };
++...
+-- 
+2.25.1
 
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-
-Joerg, will you take this through your tree or shall I take care of it?
-
-Regards,
-Matthias
-
-> ---
->   .../bindings/iommu/mediatek,iommu.yaml        | 29 ++++++++++++++-----
->   1 file changed, 22 insertions(+), 7 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
-> index fee0241b50988..f5634c1642e20 100644
-> --- a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
-> +++ b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
-> @@ -91,7 +91,8 @@ properties:
->       maxItems: 1
->   
->     interrupts:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 5
->   
->     clocks:
->       items:
-> @@ -183,14 +184,28 @@ allOf:
->         required:
->           - mediatek,infracfg
->   
-> -  - if: # The IOMMUs don't have larbs.
-> -      not:
-> -        properties:
-> -          compatible:
-> -            contains:
-> -              const: mediatek,mt8195-iommu-infra
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: mediatek,mt8195-iommu-infra
->   
->       then:
-> +      properties:
-> +        interrupts:
-> +          description: The IOMMU has 5 banks. Each bank has its own interrupt.
-> +          items:
-> +            - description: The interrupt for IOMMU bank0
-> +            - description: The interrupt for IOMMU bank1
-> +            - description: The interrupt for IOMMU bank2
-> +            - description: The interrupt for IOMMU bank3
-> +            - description: The interrupt for IOMMU bank4
-> +
-> +    else: # For the MM IOMMU
-> +      properties:
-> +        interrupts:
-> +          maxItems: 1
-> +
->         required:
->           - mediatek,larbs
->   
