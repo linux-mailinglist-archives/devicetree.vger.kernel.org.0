@@ -2,157 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 56E5C5A0BE5
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 10:51:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 270595A0C46
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 11:15:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233348AbiHYIvu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 04:51:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37868 "EHLO
+        id S238574AbiHYJPK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 05:15:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232464AbiHYIvt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 04:51:49 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 734ACA8302;
-        Thu, 25 Aug 2022 01:51:48 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 564422B3;
-        Thu, 25 Aug 2022 10:51:46 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1661417506;
-        bh=hqjjTfpHavt0j/vu7b/diKsDIw1QdqTc5yyTW7GYfo8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Z8pStjaw+wTHpUqjfkrNYv4yhEOMiZpey4BovUqFDdUKaiJRG3zr27mJb+3KOVnqv
-         SeSwIWuxOsniVY0CtkTuJBrvvODxoS4qbCjAnkQGfS00GuyUS1Limb9dDBRxhVsFoW
-         HVOrzfbF2aIEGVjQzg6fMImib3ZqHBM+/31mCM9o=
-Date:   Thu, 25 Aug 2022 11:51:40 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     "James (Qian) Wang" <james.qian.wang@arm.com>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Mihail Atanassov <mihail.atanassov@arm.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, Inki Dae <inki.dae@samsung.com>,
-        Seung-Woo Kim <sw0312.kim@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: display: Add missing
- (unevaluated|additional)Properties on child nodes
-Message-ID: <Ywc4HGS+7aq9Fbk1@pendragon.ideasonboard.com>
-References: <20220823145649.3118479-11-robh@kernel.org>
+        with ESMTP id S229657AbiHYJPJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 05:15:09 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17E3312D03;
+        Thu, 25 Aug 2022 02:14:59 -0700 (PDT)
+X-UUID: 38e818b9c7a84807a68c81bd719794c7-20220825
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=d27K2ZYpgSlJivuuUIEZmgJTuKQyXeb2NK4ggG+e144=;
+        b=IK8t1VwxfVc6qKsG2+psKpSLeKecmgwjjMSyIP8CdFQ35lXCsTTehjgfnknEmzsUR3Ea5gn5DSj7IRowHD0rOvW/dDRJREQpcNzIswt0b7417iyBUQ+kdif67ueuc2FC2I85bf8JCXJJDlUAHk/ILpjA8DjVpw76FWGnC2a0p1w=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.10,REQID:c8b035c6-4ca2-43ad-943f-741063b39028,OB:0,L
+        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_
+        Ham,ACTION:release,TS:0
+X-CID-META: VersionHash:84eae18,CLOUDID:e9098c55-e800-47dc-8adf-0c936acf4f1b,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
+        ,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 38e818b9c7a84807a68c81bd719794c7-20220825
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 822603366; Thu, 25 Aug 2022 17:14:51 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Thu, 25 Aug 2022 17:14:49 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.15 via Frontend Transport; Thu, 25 Aug 2022 17:14:49 +0800
+From:   Bo-Chen Chen <rex-bc.chen@mediatek.com>
+To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <matthias.bgg@gmail.com>
+CC:     <jason-jh.lin@mediatek.com>, <nancy.lin@mediatek.com>,
+        <ck.hu@mediatek.com>, <chunkuang.hu@kernel.org>,
+        <angelogioacchino.delregno@collabora.com>, <hsinyi@google.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Bo-Chen Chen <rex-bc.chen@mediatek.com>
+Subject: [PATCH v2] dt-bindings: arm: mediatek: mmsys: change compatible for MT8195
+Date:   Thu, 25 Aug 2022 17:14:48 +0800
+Message-ID: <20220825091448.14008-1-rex-bc.chen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220823145649.3118479-11-robh@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_BLOCKED,URIBL_CSS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+From: "Jason-JH.Lin" <jason-jh.lin@mediatek.com>
 
-Thank you for the patch.
+For previous MediaTek SoCs, such as MT8173, there are 2 display HW
+pipelines binding to 1 mmsys with the same power domain, the same
+clock driver and the same mediatek-drm driver.
 
-On Tue, Aug 23, 2022 at 09:56:42AM -0500, Rob Herring wrote:
-> In order to ensure only documented properties are present, node schemas
-> must have unevaluatedProperties or additionalProperties set to false
-> (typically).
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+For MT8195, VDOSYS0 and VDOSYS1 are 2 display HW pipelines binding to
+2 different power domains, different clock drivers and different
+mediatek-drm drivers.
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Moreover, Hardware pipeline of VDOSYS0 has these components: COLOR,
+CCORR, AAL, GAMMA, DITHER. They are related to the PQ (Picture Quality)
+and they makes VDOSYS0 supports PQ function while they are not
+including in VDOSYS1.
 
-> ---
->  Documentation/devicetree/bindings/display/arm,komeda.yaml        | 1 +
->  Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml | 1 +
->  Documentation/devicetree/bindings/display/msm/gpu.yaml           | 1 +
->  .../bindings/display/samsung/samsung,exynos7-decon.yaml          | 1 +
->  .../devicetree/bindings/display/samsung/samsung,fimd.yaml        | 1 +
->  5 files changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/arm,komeda.yaml b/Documentation/devicetree/bindings/display/arm,komeda.yaml
-> index 9f4aade97f10..3ad3eef89ca8 100644
-> --- a/Documentation/devicetree/bindings/display/arm,komeda.yaml
-> +++ b/Documentation/devicetree/bindings/display/arm,komeda.yaml
-> @@ -58,6 +58,7 @@ properties:
->  patternProperties:
->    '^pipeline@[01]$':
->      type: object
-> +    additionalProperties: false
->      description:
->        clocks
->  
-> diff --git a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
-> index 3a8614e0f627..84aafcbf0919 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
-> @@ -51,6 +51,7 @@ properties:
->      properties:
->        port@0:
->          $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
->          description: |
->            For LVDS encoders, port 0 is the parallel input
->            For LVDS decoders, port 0 is the LVDS input
-> diff --git a/Documentation/devicetree/bindings/display/msm/gpu.yaml b/Documentation/devicetree/bindings/display/msm/gpu.yaml
-> index 3397bc31d087..0179c816fa6d 100644
-> --- a/Documentation/devicetree/bindings/display/msm/gpu.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/gpu.yaml
-> @@ -81,6 +81,7 @@ properties:
->  
->    zap-shader:
->      type: object
-> +    additionalProperties: false
->      description: |
->        For a5xx and a6xx devices this node contains a memory-region that
->        points to reserved memory to store the zap shader that can be used to
-> diff --git a/Documentation/devicetree/bindings/display/samsung/samsung,exynos7-decon.yaml b/Documentation/devicetree/bindings/display/samsung/samsung,exynos7-decon.yaml
-> index 969bd8c563a5..dec1c9058876 100644
-> --- a/Documentation/devicetree/bindings/display/samsung/samsung,exynos7-decon.yaml
-> +++ b/Documentation/devicetree/bindings/display/samsung/samsung,exynos7-decon.yaml
-> @@ -37,6 +37,7 @@ properties:
->  
->    i80-if-timings:
->      type: object
-> +    additionalProperties: false
->      description: timing configuration for lcd i80 interface support
->      properties:
->        cs-setup:
-> diff --git a/Documentation/devicetree/bindings/display/samsung/samsung,fimd.yaml b/Documentation/devicetree/bindings/display/samsung/samsung,fimd.yaml
-> index 5d5cc220f78a..7593938601bb 100644
-> --- a/Documentation/devicetree/bindings/display/samsung/samsung,fimd.yaml
-> +++ b/Documentation/devicetree/bindings/display/samsung/samsung,fimd.yaml
-> @@ -40,6 +40,7 @@ properties:
->  
->    i80-if-timings:
->      type: object
-> +    additionalProperties: false
->      description: |
->        Timing configuration for lcd i80 interface support.
->        The parameters are defined as::
+Hardware pipeline of VDOSYS1 has the component ETHDR (HDR related
+component). It makes VDOSYS1 supports the HDR function while it's not
+including in VDOSYS0.
 
+To summarize0:
+Only VDOSYS0 can support PQ adjustment.
+Only VDOSYS1 can support HDR adjustment.
+
+Therefore, we need to separate these two different mmsys hardwares to
+2 different compatibles for MT8195.
+
+Fixes: 81c5a41d10b9 ("dt-bindings: arm: mediatek: mmsys: add mt8195 SoC binding")
+Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
+Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+---
+Changes for v2:
+1. Add hardware difference for VDOSYS0 and VDOSYS1 in commit message.
+---
+ .../devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml       | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+index 6ad023eec193..bfbdd30d2092 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
++++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+@@ -31,7 +31,8 @@ properties:
+               - mediatek,mt8183-mmsys
+               - mediatek,mt8186-mmsys
+               - mediatek,mt8192-mmsys
+-              - mediatek,mt8195-mmsys
++              - mediatek,mt8195-vdosys0
++              - mediatek,mt8195-vdosys1
+               - mediatek,mt8365-mmsys
+           - const: syscon
+       - items:
 -- 
-Regards,
+2.18.0
 
-Laurent Pinchart
