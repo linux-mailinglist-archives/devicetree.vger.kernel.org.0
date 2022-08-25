@@ -2,99 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 001365A1516
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 17:03:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A41325A153E
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 17:08:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242665AbiHYPCv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 11:02:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53872 "EHLO
+        id S241514AbiHYPIC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 11:08:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242641AbiHYPCq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 11:02:46 -0400
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8365FB6D04;
-        Thu, 25 Aug 2022 08:02:38 -0700 (PDT)
-Received: by mail-pj1-x102d.google.com with SMTP id x14-20020a17090a8a8e00b001fb61a71d99so5235268pjn.2;
-        Thu, 25 Aug 2022 08:02:38 -0700 (PDT)
+        with ESMTP id S241003AbiHYPIC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 11:08:02 -0400
+Received: from mail-oa1-x2e.google.com (mail-oa1-x2e.google.com [IPv6:2001:4860:4864:20::2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D45096FE0
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 08:07:58 -0700 (PDT)
+Received: by mail-oa1-x2e.google.com with SMTP id 586e51a60fabf-11cb3c811d9so23580145fac.1
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 08:07:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:sender
-         :from:to:cc;
-        bh=zutck/R4vqfMAc9Va/gxGNWESNQWNEXtjaZOSwVGyI0=;
-        b=BxEAB+ML6Cs3qV3m80uUvlOwixZb3aVojqiTwiuDpdcH4iLVZHpRDW8VD0/fbXaN8m
-         dx+ha4FpP7cZtUuGloMebxSEaD04mQTWBMcPF4c/sL8fRjEhmtjmx//rA8dN6lXSV1lb
-         FqoQRSUMxiptTtm56midQKAiyL31CnTW8mZzKlpMn3LqVEdC2fxhwHdFrsIPipPYDDZO
-         18sPeffUwM7PZrSK/v9C0umdLj5GMgZnlFzz5NVCaDpussYxnvHhYARWE5w0qdMFSUGc
-         FS7HFwyVUcejcH2hk09n73mtL/UdvTyOpH3kXiFcAzxVbWL6fyo1jwfqW6oVNE0zuTzG
-         k+yw==
+        d=sartura.hr; s=sartura;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc;
+        bh=T+Absj8wDJ7ls5xDxkdfAwuouIdYDX1GOTPe01NBZ0g=;
+        b=YPMYZE5LIzanTCYfvLgrXImNQuxwJN6yHc4JZLD8+TlBk5I4ZVrqA4U+EJlYWZXKU7
+         A+KV/bnVI8ExLt04X6y3OBMBrMk0H0FQ35REFRj6+Fi/DupjhmzP4wRb/Oxh398pO7cF
+         GDCDHfWymFxwqxselbAuLoP45JMzK0IvElU8tOKUkRUPWbEAv8Lmpghkbtjge73kvbPf
+         Ky9cwCjkW7YnrP54mzmJj14Yi2e092pre7ovFJMfv0z+Ccmp7OuTLInBu8R/5IuFLHyW
+         q/6wFmBlkUo40DgaME9Q3LksUuDeq2VzmLTNEkbVv3D627otkZJMXTEbVG63T0F7g//5
+         bHdA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:sender
-         :x-gm-message-state:from:to:cc;
-        bh=zutck/R4vqfMAc9Va/gxGNWESNQWNEXtjaZOSwVGyI0=;
-        b=V+buGC1+l20ur0m3nSfOEZxlYo36DEnVjq4URcgVSecfjWxVSXuLQlFiPIUeUu0Ar5
-         cKr1s0jhps7aZMgKQ9KJIIins3LOLw5W+1JgewDmqQou7O5Pr1f8qIUC/JEJswstyA3+
-         WEKSliv+pSHj+NybO5YPAPa+gxoGM3djRJN32n0HGv6Ktxt3CMIsGelDquH1I0L2LmBx
-         pAMQcgONdbS8hmAwNIWToZbpBS9I5b7+K+wn5GolyS4fpwXu4aVB3i1j3239cQgzQKO7
-         MM3gbH4QGcQD6sYZEQEnLV+GDgCbQpRWiePxPmOZ+uRUudOIm1l26F+gd2pd5+r+WEGr
-         mTLA==
-X-Gm-Message-State: ACgBeo1lwB2k0dZFBcctB9BWFosBes2K9xjgZ9mskajc2DtpQvxPuStO
-        2Eq+AI0pdvdw0VYZYrL6KVMulxM0MpY=
-X-Google-Smtp-Source: AA6agR5Ya9hfbu7fsJXYg/tRtDApX1RWXNjmeinDvxDjm0BIfpCQfVwdvDffF+wmBD0SjmKJ6Gcdkw==
-X-Received: by 2002:a17:90b:3144:b0:1f5:829e:cd49 with SMTP id ip4-20020a17090b314400b001f5829ecd49mr14601038pjb.80.1661439757721;
-        Thu, 25 Aug 2022 08:02:37 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id c127-20020a621c85000000b0052ddaffbcc1sm15233869pfc.30.2022.08.25.08.02.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Aug 2022 08:02:37 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Thu, 25 Aug 2022 08:02:36 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Andreas =?iso-8859-1?Q?B=F6hler?= <dev@aboehler.at>
-Cc:     Robert Marko <robert.marko@sartura.hr>,
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc;
+        bh=T+Absj8wDJ7ls5xDxkdfAwuouIdYDX1GOTPe01NBZ0g=;
+        b=iezslaJOiimzjSWKbdqNL4UyGENHIi2LtVTtkqbiXIqzZwiUUKJgHvji1g3Jqe0J+T
+         UBfuLjzDXXVD+L8a7xQnIsaaxgTYcb6taGZgIpiE45Cj78iH9zzAzjPtcolspoatReXG
+         TvOXKtvKA5WqH5Vk/iUH7ei851DgCbwXoKnzrSnpGrp603cJ6u7iQ8yo/1RG0kKXUyhQ
+         J83IVpiuvia/pwuJkyzm2iYxXisUDwoZu9DJ/R9jxt2Svzxmf8tlU/vJqx7KQQ46c1PW
+         1tp1w0EDyk+swVZ4ztxaCu86KgleepOyqXanJshu4RiwojACMDLYoSqTVFj75q6vwzCP
+         Vl/w==
+X-Gm-Message-State: ACgBeo2SznPqwDa6aRYg3RTlnQGPXHH8n+Z6n3RVGHK2BW7BgP4aDR45
+        ypEJhNJtBmvIcwPCi5mS7fo0WKT2lDsRFg0CSTZJlw==
+X-Google-Smtp-Source: AA6agR6yZCXiFCpL69abgNHrru8XFObl2zxSCVXAqYoZsmmClhVrrkmXYSSbjwy2HqXz2fmW8AHWPpeHGQLRf+Q93A8=
+X-Received: by 2002:a05:6870:9a22:b0:11d:bb4:490e with SMTP id
+ fo34-20020a0568709a2200b0011d0bb4490emr6381060oab.8.1661440076703; Thu, 25
+ Aug 2022 08:07:56 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220825143737.77732-1-dev@aboehler.at> <20220825150236.GB240395@roeck-us.net>
+In-Reply-To: <20220825150236.GB240395@roeck-us.net>
+From:   Robert Marko <robert.marko@sartura.hr>
+Date:   Thu, 25 Aug 2022 17:07:45 +0200
+Message-ID: <CA+HBbNEEvyn7a-CXzbFHywvHBky-Kwu8O3POrqo=huOJf-n2pQ@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] Documentation: devicetree: update bindings for tps23861
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     =?UTF-8?Q?Andreas_B=C3=B6hler?= <dev@aboehler.at>,
         Luka Perkov <luka.perkov@sartura.hr>,
         Jean Delvare <jdelvare@suse.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] Documentation: devicetree: update bindings for
- tps23861
-Message-ID: <20220825150236.GB240395@roeck-us.net>
-References: <20220825143737.77732-1-dev@aboehler.at>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220825143737.77732-1-dev@aboehler.at>
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 25, 2022 at 04:37:36PM +0200, Andreas Böhler wrote:
-> The tps23861 driver does not initialize the chip and relies on it being
-> in auto-mode by default. On some devices, these controllers default to
-> OFF-Mode and hence cannot be used at all.
-> 
-> This brings minimal support for initializing the controller in a user-
-> defined mode.
-> 
-> Signed-off-by: Andreas Böhler <dev@aboehler.at>
+On Thu, Aug 25, 2022 at 5:02 PM Guenter Roeck <linux@roeck-us.net> wrote:
+>
+> On Thu, Aug 25, 2022 at 04:37:36PM +0200, Andreas B=C3=B6hler wrote:
+> > The tps23861 driver does not initialize the chip and relies on it being
+> > in auto-mode by default. On some devices, these controllers default to
+> > OFF-Mode and hence cannot be used at all.
+> >
+> > This brings minimal support for initializing the controller in a user-
+> > defined mode.
+> >
+> > Signed-off-by: Andreas B=C3=B6hler <dev@aboehler.at>
+>
+> nack for the series, sorry. The suggested properties are not hardware
+> monitoring but phy properties. There should be a separate phy driver
+> to manage those.
+>
+> Also, as mentioned, the hwmon 'enable' attribute is abused to control
+> port functionality and should be removed.
 
-nack for the series, sorry. The suggested properties are not hardware
-monitoring but phy properties. There should be a separate phy driver
-to manage those.
+Hi Guenter,
+Are you referring to an ethernet PHY driver or the generic PHY framework?
 
-Also, as mentioned, the hwmon 'enable' attribute is abused to control
-port functionality and should be removed.
+Regards,
+Robert
+>
+> Guenter
 
-Guenter
+
+
+--=20
+Robert Marko
+Staff Embedded Linux Engineer
+Sartura Ltd.
+Lendavska ulica 16a
+10000 Zagreb, Croatia
+Email: robert.marko@sartura.hr
+Web: www.sartura.hr
