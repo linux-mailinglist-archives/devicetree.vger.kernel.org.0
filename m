@@ -2,138 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8901A5A18DF
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 20:39:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83C465A1900
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 20:48:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242941AbiHYSjG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 14:39:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58392 "EHLO
+        id S242945AbiHYSsG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 14:48:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241391AbiHYSjF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 14:39:05 -0400
-Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6F7FA99F6
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 11:39:04 -0700 (PDT)
-Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-33dba2693d0so70978647b3.12
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 11:39:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=B+6GHANqVGrhre1yIICjUKUVABFJYsXY9KlsXWrq0g0=;
-        b=B85LgmnE6J6rXg7BVngfQTw4IEjIKrGKdqIeDIjR3AWtFqojLHLJcIFpUb/kio7nLp
-         Q+Ui7InM8EeA6fFs7Ovf0/ZosbdTVjCy7D8cMlV6fDhzod2KJN/4nk9mVhQ0FZQbE+Ky
-         QstKO/uftXpVDD4tBNkWiPAMtu3ZT8/ej/ZSvGUcLEWZFY0lt12Otkn4bzRlVnhh1rx6
-         v1MWHoVRbsz20H7ZjCC6iSK7MQfC7xupNt5YGgKQ0K9Dy210qTIgMkNTvPpIjL3nfH+N
-         uZ86ViMYJrB57R5lrqCVZJvZgKRj3BRPaPN1gFz3nUQyy9V9YzX1BsykChMTGDUfqP+t
-         jUKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=B+6GHANqVGrhre1yIICjUKUVABFJYsXY9KlsXWrq0g0=;
-        b=USBNtXaGMkOQXNWLL+clQNv+3vcvJnhRW09pHN7qEAwHY4hQgtaV4+Cxx8HsTR76mR
-         QWtEnTfIrC77UR7AgLxRPr5vs/PQBAayEN4sBz7r7MpKY8YbT+r3jiQZRXazX0LKihqN
-         4rLAO7SG5zpUX6NqPuwL1GNRdXsHnQrBbRyKsbbyl7nrfgW23vc6N8DJqlAhQbXiDxH9
-         lIm61/zLIgSzXv2ys5xIc8onlCPItVyioLymPS6OnoEUYihBavBMzG1nmzlj5T1qYKVc
-         dmzZIDWks4dsE5lU3+SjhzQjfEmXbG1QuYpTbNtyIjworIN3UQwsBeQZJC+tWxEmm064
-         WuLg==
-X-Gm-Message-State: ACgBeo0bmAP5pMvYeFSc6qVw0FoiZ0DCreznQauA/BhLdfql+aAzmP+H
-        NDqgerjpxZYdyKI7b2gCPmhA/tJKRMGNIV8XXi0Hyw==
-X-Google-Smtp-Source: AA6agR7rapIlRr0/fCZEKhWKbo6XO2p0rUFCMJJnqLNETdiYbschnHcx4RcKE15j7E+GKxzg5bqk9rgOYhmm6A46bj4=
-X-Received: by 2002:a25:94b:0:b0:68f:4e05:e8f0 with SMTP id
- u11-20020a25094b000000b0068f4e05e8f0mr4506829ybm.115.1661452743474; Thu, 25
- Aug 2022 11:39:03 -0700 (PDT)
+        with ESMTP id S242083AbiHYSsF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 14:48:05 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C47121811
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 11:48:04 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1oRHt8-00034B-3Y; Thu, 25 Aug 2022 20:47:34 +0200
+Received: from ore by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1oRHt2-00079v-SE; Thu, 25 Aug 2022 20:47:28 +0200
+Date:   Thu, 25 Aug 2022 20:47:28 +0200
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Jakub Kicinski <kuba@kernel.org>
+Cc:     kernel@pengutronix.de, Andrew Lunn <andrew@lunn.ch>,
+        Robert Marko <robert.marko@sartura.hr>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        kernel test robot <lkp@intel.com>,
+        Jonathan Corbet <corbet@lwn.net>, netdev@vger.kernel.org,
+        linux-doc@vger.kernel.org, Russell King <linux@armlinux.org.uk>,
+        linux-kernel@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        David Jander <david@protonic.nl>,
+        Paolo Abeni <pabeni@redhat.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, Heiner Kallweit <hkallweit1@gmail.com>
+Subject: Re: [PATCH net-next v2 6/7] ethtool: add interface to interact with
+ Ethernet Power Equipment
+Message-ID: <20220825184728.GA2116@pengutronix.de>
+References: <20220825130211.3730461-1-o.rempel@pengutronix.de>
+ <20220825130211.3730461-7-o.rempel@pengutronix.de>
+ <20220825111019.1dc3dae0@kernel.org>
 MIME-Version: 1.0
-References: <20220803122655.100254-1-nipun.gupta@amd.com> <20220817150542.483291-1-nipun.gupta@amd.com>
- <20220817150542.483291-3-nipun.gupta@amd.com> <Yv0KHROjESUI59Pd@kroah.com>
- <DM6PR12MB3082D966CFC0FA1C2148D8FAE8719@DM6PR12MB3082.namprd12.prod.outlook.com>
- <YwOEv6107RfU5p+H@kroah.com> <DM6PR12MB3082B4BDD39632264E7532B8E8739@DM6PR12MB3082.namprd12.prod.outlook.com>
- <YwYVhJCSAuYcgj1/@kroah.com> <20220824233122.GA4068@nvidia.com>
-In-Reply-To: <20220824233122.GA4068@nvidia.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Thu, 25 Aug 2022 11:38:27 -0700
-Message-ID: <CAGETcx846Pomh_DUToncbaOivHMhHrdt-MTVYqkfLUKvM8b=6w@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 2/6] bus/cdx: add the cdx bus driver
-To:     Jason Gunthorpe <jgg@nvidia.com>
-Cc:     Greg KH <gregkh@linuxfoundation.org>,
-        "Gupta, Nipun" <Nipun.Gupta@amd.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "rafael@kernel.org" <rafael@kernel.org>,
-        "eric.auger@redhat.com" <eric.auger@redhat.com>,
-        "alex.williamson@redhat.com" <alex.williamson@redhat.com>,
-        "cohuck@redhat.com" <cohuck@redhat.com>,
-        "Gupta, Puneet (DCG-ENG)" <puneet.gupta@amd.com>,
-        "song.bao.hua@hisilicon.com" <song.bao.hua@hisilicon.com>,
-        "mchehab+huawei@kernel.org" <mchehab+huawei@kernel.org>,
-        "maz@kernel.org" <maz@kernel.org>,
-        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
-        "jeffrey.l.hugo@gmail.com" <jeffrey.l.hugo@gmail.com>,
-        "Michael.Srba@seznam.cz" <Michael.Srba@seznam.cz>,
-        "mani@kernel.org" <mani@kernel.org>,
-        "yishaih@nvidia.com" <yishaih@nvidia.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
-        "okaya@kernel.org" <okaya@kernel.org>,
-        "Anand, Harpreet" <harpreet.anand@amd.com>,
-        "Agarwal, Nikhil" <nikhil.agarwal@amd.com>,
-        "Simek, Michal" <michal.simek@amd.com>,
-        "git (AMD-Xilinx)" <git@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220825111019.1dc3dae0@kernel.org>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 24, 2022 at 4:31 PM Jason Gunthorpe <jgg@nvidia.com> wrote:
->
-> On Wed, Aug 24, 2022 at 02:11:48PM +0200, Greg KH wrote:
-> > > We can share the RFC in case you are interested in looking at code flow
-> > > using the of_dynamic approach.
-> >
-> > Please no more abuse of the platform device.
->
-> Last time this came up there was some disagreement from the ARM folks,
-> they were not keen on having xx_drivers added all over the place to
-> support the same OF/DT devices just discovered in a different way. It is
-> why ACPI is mapped to platform_device even in some cases.
->
-> I think if you push them down this path they will get resistance to
-> get the needed additional xx_drivers into the needed places.
->
-> > If your device can be discovered by scanning a bus, it is not a platform
-> > device.
->
-> A DT fragment loaded during boot binds a driver using a
-> platform_driver, why should a DT fragment loaded post-boot bind using
-> an XX_driver and further why should the CDX way of getting the DT
-> raise to such importantance that it gets its own cdx_driver ?
->
-> In the end the driver does not care about how the DT was loaded.
-> None of these things are on a discoverable bus in any sense like PCI
-> or otherwise. They are devices described by a DT fragement and they
-> take all their parameters from that chunk of DT.
->
-> How the DT was loaded into the system is not a useful distinction that
-> raises the level of needing an entire new set of xx_driver structs all
-> over the tree, IMHO.
+On Thu, Aug 25, 2022 at 11:10:19AM -0700, Jakub Kicinski wrote:
+> On Thu, 25 Aug 2022 15:02:10 +0200 Oleksij Rempel wrote:
+> > +enum ethtool_podl_pse_admin_state {
+> > +	ETHTOOL_PODL_PSE_ADMIN_STATE_UNKNOWN = 1,
+> 
+> Why define UNKNOWN.. as 1? No real objection here, just in my head
+> somehow UNKNOWN = 0 or just start from 1.
 
-Jason, I see your point or rather the point the ARM folks might have
-made. But in this case, why not use DT overlays to add these devices?
-IIRC there's an in kernel API to add DT overlays. If so, should this
-be more of a FPGA driver that reads FPGA stuff and adds DT overlays?
-That'd at least make a stronger case for why this isn't a separate
-bus.
+I need to keep difference between not supported functionality and
+supported but unknown.
 
+> > +	ETHTOOL_PODL_PSE_ADMIN_STATE_DISABLED,
+> > +	ETHTOOL_PODL_PSE_ADMIN_STATE_ENABLED,
+> > +
+> > +	/* add new constants above here */
+> > +	ETHTOOL_PODL_PSE_ADMIN_STATE_COUNT
+> 
+> Why define count for a value enum like this? For attrs we define it
+> because it's used to size tables, don't think anyone will size tables
+> based on states.
 
--Saravana
+ok, i'll remove it.
+
+> There's a bunch of kdoc warnings in the patches as well.
+
+ok.
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
