@@ -2,185 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9999D5A11E2
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 15:22:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A8D95A11E6
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 15:22:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241663AbiHYNWB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 09:22:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45882 "EHLO
+        id S239092AbiHYNWI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 09:22:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236695AbiHYNWA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 09:22:00 -0400
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 402E2A50CB;
-        Thu, 25 Aug 2022 06:21:59 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.93,263,1654527600"; 
-   d="scan'208";a="130585741"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 25 Aug 2022 22:21:59 +0900
-Received: from localhost.localdomain (unknown [10.226.93.110])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 94213400C0B1;
-        Thu, 25 Aug 2022 22:21:53 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        linux-media@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Subject: [PATCH v13 1/5] media: dt-bindings: media: renesas,vsp1: Document RZ/G2L VSPD bindings
-Date:   Thu, 25 Aug 2022 14:21:40 +0100
-Message-Id: <20220825132144.2619239-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220825132144.2619239-1-biju.das.jz@bp.renesas.com>
-References: <20220825132144.2619239-1-biju.das.jz@bp.renesas.com>
+        with ESMTP id S242460AbiHYNWI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 09:22:08 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E579498D21;
+        Thu, 25 Aug 2022 06:22:06 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id h204-20020a1c21d5000000b003a5b467c3abso2674055wmh.5;
+        Thu, 25 Aug 2022 06:22:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=LjNH+rDqugavNJp3hfKsPFFkZZAo40JmydtK1bPNImg=;
+        b=IBdWEMzcIojQZhI6OxSv036EP2WxO8Z5sdu1IsUfKrxTEe4fRKdC71m3L6wNR0n2BH
+         p+44qjioNE2OML0H/G8/uxcmc1JPx2xSNQqDyRCMGpuPQHpx8YZUENODrvw2fskG3qMQ
+         IgarLHEEsN/R93RwIag0s2En4aArQPmZhZu11nGTjYo0ed59bL1cYvnXQmGbpjE6f5bd
+         wWNTJFlpl0VxSr7uniTQ12erkIG0f+P2S2zy9V24DJZ99vpEG6ahP6xlhlbuM3yOEk0K
+         jNuEdxfN2rVyar9PSEkFNmVtzup41r2moXkXAxcy/a+kRkjS/uKMyxJH4EqZQcTep5oB
+         5HUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=LjNH+rDqugavNJp3hfKsPFFkZZAo40JmydtK1bPNImg=;
+        b=tTCLJnks5G0SXj2QuH7/sDeZx/gNteRcq8nkHEiNYcqbJHsc1RoB5T2ZRZFFi34xAy
+         j6ss6ihymbMJr5X5xFmKiFYaXxXqWkUnNvbh/woFOr6EXRto1+dWgeYKzFSVgMwLinEl
+         0JQQOPJNrqttrk9RUg/iBXuFNVdwdba0CCdbu3qlyUQ7N6a9vgEmTv38o0V64xLuMr7v
+         MmjwiTNGPUWIhqSbwdH2HDv9GfvN32sCNgdoWOViF+Mf4peLYmzO14QH7I9f5Ikq09Hj
+         0DEWrKnglAuUD/R3TshEpYWKz8HcA2FPbhrnPcP1k980WlBGBU6tSOaVUfXaJfmyVGup
+         +hbg==
+X-Gm-Message-State: ACgBeo1aGVlW+/soCpwqq4rNQTfBwg7+4DOjICHX/RklPBJVt8eBHv0m
+        c8YFyHIEDFBFPZa6GFKstJA=
+X-Google-Smtp-Source: AA6agR7l+54/fC4VeqRxOTYKdGD9z1iXyk9d6Zeg/VujSTEWSl+r+eiSo8RmJd+yuHHXLVr7pwZS/A==
+X-Received: by 2002:a1c:4c11:0:b0:3a5:4d01:54be with SMTP id z17-20020a1c4c11000000b003a54d0154bemr8559682wmf.32.1661433725318;
+        Thu, 25 Aug 2022 06:22:05 -0700 (PDT)
+Received: from [192.168.2.177] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id m10-20020a5d56ca000000b002207cec45cesm23191455wrw.81.2022.08.25.06.22.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 Aug 2022 06:22:04 -0700 (PDT)
+Message-ID: <f07cf9b9-aec9-2564-03c6-bf2f0acf897c@gmail.com>
+Date:   Thu, 25 Aug 2022 15:22:03 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.1.2
+Subject: Re: [PATCH] dt-bindings: soc: mediatek: pwrap: add compatible for
+ mt8188
+Content-Language: en-US
+To:     Sen Chu <sen.chu@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Hui Liu <hui.liu@mediatek.com>
+References: <20220726104242.24839-1-sen.chu@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20220726104242.24839-1-sen.chu@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document VSPD found in RZ/G2L SoC. VSPD block is similar to VSP2-D
-found on R-Car SoC's, but it does not have a version register and
-it has 3 clocks compared to 1 clock on vsp1 and vsp2.
 
-This patch introduces a new compatible 'renesas,r9a07g044-vsp2' to
-handle these differences.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
----
-v12->v13:
- * No change.
-v11->v12:
- * No change.
-v10->v11:
- * No change
-v9->v10:
- * No change
-v8->v9:
- * No change
-v7->v8:
- * Added Clock-names to false for Non RZ/G2L SoC's
- * Replaced compatble 'renesas,rzg2l-vsp2'->'renesas,r9a07g044-vsp2'
- * Removed RZ/V2L SoC, will be added later after testing it.
- * Added Rb tag from Laurent.
-v6->v7:
- * No change
-v5->v6:
- * Removed LCDC reference clock description
- * Changed the clock name from du.0->aclk
-v4->v5:
- * No change
-v3->v4:
- * No change
-v2->v3:
- * Added Rb tag from Krzysztof.
-v1->v2:
- * Changed compatible from vsp2-rzg2l->rzg2l-vsp2
-RFC->v1:
- * Updated commit description
- * Changed compatible from vsp2-r9a07g044->vsp2-rzg2l
- * Defined the clocks
- * Clock max Items is based on SoC Compatible string
-RFC:
- * https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220112174612.10773-20-biju.das.jz@bp.renesas.com/
----
- .../bindings/media/renesas,vsp1.yaml          | 53 ++++++++++++++-----
- 1 file changed, 40 insertions(+), 13 deletions(-)
+On 26/07/2022 12:42, Sen Chu wrote:
+> Add dt-binding documentation of pwrap for Mediatek MT8188
+> 
+> Signed-off-by: Sen Chu <sen.chu@mediatek.com>
 
-diff --git a/Documentation/devicetree/bindings/media/renesas,vsp1.yaml b/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
-index 990e9c1dbc43..7a8f32473852 100644
---- a/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
-+++ b/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
-@@ -17,6 +17,7 @@ description:
- properties:
-   compatible:
-     enum:
-+      - renesas,r9a07g044-vsp2 # RZ/G2L
-       - renesas,vsp1 # R-Car Gen2 and RZ/G1
-       - renesas,vsp2 # R-Car Gen3 and RZ/G2
- 
-@@ -26,8 +27,8 @@ properties:
-   interrupts:
-     maxItems: 1
- 
--  clocks:
--    maxItems: 1
-+  clocks: true
-+  clock-names: true
- 
-   power-domains:
-     maxItems: 1
-@@ -50,17 +51,43 @@ required:
- 
- additionalProperties: false
- 
--if:
--  properties:
--    compatible:
--      items:
--        - const: renesas,vsp1
--then:
--  properties:
--    renesas,fcp: false
--else:
--  required:
--    - renesas,fcp
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: renesas,vsp1
-+    then:
-+      properties:
-+        renesas,fcp: false
-+    else:
-+      required:
-+        - renesas,fcp
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: renesas,r9a07g044-vsp2
-+    then:
-+      properties:
-+        clocks:
-+          items:
-+            - description: Main clock
-+            - description: Register access clock
-+            - description: Video clock
-+        clock-names:
-+          items:
-+            - const: aclk
-+            - const: pclk
-+            - const: vclk
-+      required:
-+        - clock-names
-+    else:
-+      properties:
-+        clocks:
-+          maxItems: 1
-+        clock-names: false
- 
- examples:
-   # R8A7790 (R-Car H2) VSP1-S
--- 
-2.25.1
+Applied, thanks!
 
+
+Matthias
+
+> ---
+>   Documentation/devicetree/bindings/soc/mediatek/pwrap.txt | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/mediatek/pwrap.txt b/Documentation/devicetree/bindings/soc/mediatek/pwrap.txt
+> index 0581dbda4828..d24e2bc444be 100644
+> --- a/Documentation/devicetree/bindings/soc/mediatek/pwrap.txt
+> +++ b/Documentation/devicetree/bindings/soc/mediatek/pwrap.txt
+> @@ -28,6 +28,7 @@ Required properties in pwrap device node.
+>   	"mediatek,mt8173-pwrap" for MT8173 SoCs
+>   	"mediatek,mt8183-pwrap" for MT8183 SoCs
+>   	"mediatek,mt8186-pwrap" for MT8186 SoCs
+> +	"mediatek,mt8188-pwrap", "mediatek,mt8195-pwrap" for MT8188 SoCs
+>   	"mediatek,mt8195-pwrap" for MT8195 SoCs
+>   	"mediatek,mt8516-pwrap" for MT8516 SoCs
+>   - interrupts: IRQ for pwrap in SOC
