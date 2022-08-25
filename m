@@ -2,135 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E70AC5A16C0
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 18:38:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AC1B5A16C3
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 18:38:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235857AbiHYQiK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 12:38:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35942 "EHLO
+        id S242080AbiHYQiU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 12:38:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229657AbiHYQiI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 12:38:08 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3E87B9F86
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 09:38:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1661445487;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=wHBvwoMalP4JkIrKUYzLNQpQCPRkdCcMetm62WKyV70=;
-        b=FvLu7lO0ZM/6/BrLMcXqzFKxM6gVkpkPBjYzUc4lg+MQeNaS00RzM/qwdHrAAiOtIMyaTy
-        52CNFO/NH57uJUZdJVPKtQjlnRjuHduQ3zZw7fa3QwVfY1CpCKmgj+gPfvVTG11SINnhg+
-        EfI2Hvgvg9WtcIWxvEPDov2xwKu7jC0=
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
- [209.85.222.197]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-208-h1gYUUDpN-2_dydNuLdYkQ-1; Thu, 25 Aug 2022 12:38:05 -0400
-X-MC-Unique: h1gYUUDpN-2_dydNuLdYkQ-1
-Received: by mail-qk1-f197.google.com with SMTP id w22-20020a05620a445600b006bb7f43d1cfso17713341qkp.16
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 09:38:05 -0700 (PDT)
+        with ESMTP id S231604AbiHYQiO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 12:38:14 -0400
+Received: from mail-il1-x133.google.com (mail-il1-x133.google.com [IPv6:2607:f8b0:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86EA3B9F96;
+        Thu, 25 Aug 2022 09:38:13 -0700 (PDT)
+Received: by mail-il1-x133.google.com with SMTP id d6so9479180ilg.4;
+        Thu, 25 Aug 2022 09:38:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=cg4DKuqZRXI8XygUcYOSntZBB49Z7XOxAN4MDp/rKMw=;
+        b=KiqFMG0trws4p7kItu23a0fBvq++91aZ80QsPUnlOD9g6nUwgaF/RmfrTrK8fJJXr8
+         iUue/c52TU7d4ZglonAvDypXzOl/O4iNXjZdoNAk2gXZWUAjGOPG8nrP9gmNRR4nruKG
+         R+kRm/FV/Vkc6rX9Wvbdh4MMMvVT0wmeehPZA9i7jcsb5G2oTWCh5zMNoCsWGT6M/Ray
+         WmaJi3pi8D6f53Cg0K9jS/W7aEFnclWZ1SEi0YVJpHQSF2KeqG3SS08n83XjENeQVxPP
+         P3K5LgzpynqMybjfdLpuv5QwoRRGUXQVgN3sOiXoaNbgvHNQdKCFVu2PDiNalDU5i7YV
+         tgpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc;
-        bh=wHBvwoMalP4JkIrKUYzLNQpQCPRkdCcMetm62WKyV70=;
-        b=ZCdMihszGbGwtyF2GYu7QJ6vCI5MQorjpG+o9zWbuCMkDJjI08gVmlTIA/z9rKhCgM
-         rDEMcqT6RqqB7tAN92iXegckWKdG+8XauOHdxp5eYfhldncS6TKed9RAXk8ABCxXU0k6
-         J0n5VCZu4HgST/jhmmBFJh1eGi1jYx/3Cw7IHeDNGxPuLYEuDtqCp3GZ7u8M6v7tkpri
-         pVSOi2PMRVj/YLRWgfcKrPB+RGHECoz62n8OZTXQKUMqB4BzUPVDudUW8uG6pDcu5Kq4
-         Ixo677M/H1J5pYjA7zw70a+vCEA/zwNqse9PS2u/DdnOElIjzmHBVL8gbmd1qiicpCK2
-         URyw==
-X-Gm-Message-State: ACgBeo0dyxMH8r1lT3luY+ejZueHtIL6ZjsiBXmO1G2cMQDy6ahuKKQ2
-        i/nsDGrhj3blX2QVHyomLqE7UmVa8EiY8s9CrHxQ4ms9xl0I0vViExE8uM3ahKATWEkekzS5xzV
-        GvXsoQbP5niTwiyOGEZ4tkQ==
-X-Received: by 2002:a05:6214:4006:b0:48d:3f52:52e7 with SMTP id kd6-20020a056214400600b0048d3f5252e7mr4245947qvb.113.1661445485409;
-        Thu, 25 Aug 2022 09:38:05 -0700 (PDT)
-X-Google-Smtp-Source: AA6agR4AMzIB1MVesZLd1jTiFIVhtyRBdbIE4HGHoHVZClnHnZjeWAdOLo/bBWgmWCpuEVz3RrVSHA==
-X-Received: by 2002:a05:6214:4006:b0:48d:3f52:52e7 with SMTP id kd6-20020a056214400600b0048d3f5252e7mr4245928qvb.113.1661445485189;
-        Thu, 25 Aug 2022 09:38:05 -0700 (PDT)
-Received: from xps13.redhat.com (c-98-239-145-235.hsd1.wv.comcast.net. [98.239.145.235])
-        by smtp.gmail.com with ESMTPSA id u9-20020a05620a430900b006af08c26774sm18240952qko.47.2022.08.25.09.38.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Aug 2022 09:38:04 -0700 (PDT)
-From:   Brian Masney <bmasney@redhat.com>
-To:     andersson@kernel.org
-Cc:     agross@kernel.org, konrad.dybcio@somainline.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ahalaney@redhat.com,
-        echanude@redhat.com
-Subject: [PATCH v2] arm64: dts: qcom: sc8280xp: correct ref_aux clock for ufs_mem_phy
-Date:   Thu, 25 Aug 2022 12:37:55 -0400
-Message-Id: <20220825163755.683843-1-bmasney@redhat.com>
-X-Mailer: git-send-email 2.37.1
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=cg4DKuqZRXI8XygUcYOSntZBB49Z7XOxAN4MDp/rKMw=;
+        b=chdHC7UAlhZjKXIN1jghc12CzCmhPpOm32DwYq+8xbU+NYhVtdmf+w/RgZDclvYSkL
+         H5ulP/n593I3yWmOAWQaRqVYva7gMJclrPnngn6DumYM+A4QQoQYZnU/EMxOsYdeebD5
+         85EzdmdVZ90fTUAkITAj+E+W3V9tL4p4UPcDDvfaZndQ+Onnoufopo9ycml2v9yhRhDu
+         Me4BNkgen93stp/58ch51GYoMmdUKAfr167r7vVCzkqtkcNwO2zwxLcGzvxjj+TdoYY9
+         XlbXYNsOm7bVWtR+W1LuSzIzTa0CzlNw1DfSlW6+PNrayO9ReG0cM/RMtx2pCxIwsVOP
+         lXZg==
+X-Gm-Message-State: ACgBeo1iKs2SGJYyLE+35XcEzA0/xgpwaZ8L5uZtKbUNcQs1DY6LKtHq
+        onQWKzTlJ/PiN3zUv4RokTY=
+X-Google-Smtp-Source: AA6agR6x34SkG5dp3T5Li7CZq6no4k62eMJxDTDbSDL7DC1g4ZhKftOOvN1IvNHx7ghLp1vK9PfxYA==
+X-Received: by 2002:a05:6e02:18cd:b0:2de:73e8:3f0 with SMTP id s13-20020a056e0218cd00b002de73e803f0mr2348747ilu.69.1661445492977;
+        Thu, 25 Aug 2022 09:38:12 -0700 (PDT)
+Received: from ?IPV6:2600:1700:2442:6db0:1906:ee71:4d12:9d74? ([2600:1700:2442:6db0:1906:ee71:4d12:9d74])
+        by smtp.gmail.com with ESMTPSA id y10-20020a056e02118a00b002e9818bc2dfsm2370346ili.8.2022.08.25.09.38.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 Aug 2022 09:38:12 -0700 (PDT)
+Message-ID: <1ecf05ab-b1f7-d0be-fac4-7941a306aa42@gmail.com>
+Date:   Thu, 25 Aug 2022 11:38:11 -0500
 MIME-Version: 1.0
-Content-type: text/plain
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH] of/device: Fix up of_dma_configure_id() stub
+Content-Language: en-US
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220824153256.1437483-1-thierry.reding@gmail.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+In-Reply-To: <20220824153256.1437483-1-thierry.reding@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The first UFS host controller fails to start on the SA8540P automotive
-board (QDrive3) due to the following errors:
+On 8/24/22 10:32, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
+> 
+> Since the stub version of of_dma_configure_id() was added in commit
+> a081bd4af4ce ("of/device: Add input id to of_dma_configure()"), it has
+> not matched the signature of the full function, leading to build failure
+> reports when code using this function is built on !OF configurations.
+> 
+> Fixes: a081bd4af4ce ("of/device: Add input id to of_dma_configure()")
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> ---
+>  include/linux/of_device.h | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+> 
+> diff --git a/include/linux/of_device.h b/include/linux/of_device.h
+> index 1d7992a02e36..1a803e4335d3 100644
+> --- a/include/linux/of_device.h
+> +++ b/include/linux/of_device.h
+> @@ -101,8 +101,9 @@ static inline struct device_node *of_cpu_device_node_get(int cpu)
+>  }
+>  
+>  static inline int of_dma_configure_id(struct device *dev,
+> -				   struct device_node *np,
+> -				   bool force_dma)
+> +				      struct device_node *np,
+> +				      bool force_dma,
+> +				      const u32 *id)
+>  {
+>  	return 0;
+>  }
 
-    ufshcd-qcom 1d84000.ufs: ufshcd_query_flag: Sending flag query for idn 18 failed, err = 253
-    ufshcd-qcom 1d84000.ufs: ufshcd_query_flag: Sending flag query for idn 18 failed, err = 253
-    ufshcd-qcom 1d84000.ufs: ufshcd_query_flag: Sending flag query for idn 18 failed, err = 253
-    ufshcd-qcom 1d84000.ufs: ufshcd_query_flag_retry: query attribute, opcode 5, idn 18, failed
-        with error 253 after 3 retries
 
-The system eventually fails to boot with the warning:
-
-    gcc_ufs_phy_axi_clk status stuck at 'off'
-
-This issue can be worked around by adding clk_ignore_unused to the
-kernel command line since the system firmware sets up this clock for us.
-
-Let's fix this issue by updating the ref_aux clock on ufs_mem_phy. Note
-that the downstream MSM 5.4 sources list this as ref_clk_parent. With
-this patch, the SA8540P is able to be booted without clk_ignore_unused.
-
-Signed-off-by: Brian Masney <bmasney@redhat.com>
-Fixes: 152d1faf1e2f3 ("arm64: dts: qcom: add SC8280XP platform")
----
-v1 of this patch can be found at
-https://lore.kernel.org/lkml/20220623142837.3140680-1-bmasney@redhat.com/T/#u
-
-Note that there's also a similar issue with the second UFS controller
-(ufs_card_hc) since it separately fails with:
-
-    ufshcd-qcom 1da4000.ufs: Controller enable failed
-    ufshcd-qcom 1da4000.ufs: link startup failed 1
-    ...
-    gcc_ufs_card_axi_clk status stuck at 'off'
-
-We are currently disabling the second UFS host controller (ufs_card_hc) in
-our DTS at the moment. I'm still looking through the downstream code to
-try to track this particular issue down.
-
- arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-index 49ea8b5612fc..4117ec0ffefc 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-@@ -892,7 +892,7 @@ ufs_mem_phy: phy@1d87000 {
- 			clock-names = "ref",
- 				      "ref_aux";
- 			clocks = <&rpmhcc RPMH_CXO_CLK>,
--				 <&gcc GCC_UFS_PHY_PHY_AUX_CLK>;
-+				 <&gcc GCC_UFS_REF_CLKREF_CLK>;
- 
- 			resets = <&ufs_mem_hc 0>;
- 			reset-names = "ufsphy";
--- 
-2.37.1
-
+Reviewed-by: Frank Rowand <frank.rowand@sony.com>
