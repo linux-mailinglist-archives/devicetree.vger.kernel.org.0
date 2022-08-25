@@ -2,64 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DC0C5A1095
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 14:33:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 744915A10A2
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 14:35:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241813AbiHYMdX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 08:33:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43110 "EHLO
+        id S241895AbiHYMfT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 08:35:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241797AbiHYMdV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 08:33:21 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 692B9B2D81
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 05:33:19 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id lx1so2810127ejb.12
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 05:33:19 -0700 (PDT)
+        with ESMTP id S241856AbiHYMfO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 08:35:14 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DFDF11141
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 05:35:10 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id bt10so15062358lfb.1
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 05:35:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=mrkgyGGtG0jCfP1J/Gr+LuHZyy102jnVtkJW4o5/K2U=;
-        b=a2Hx/pby3RqQVZ3lXhAV3SRnPmT+K86WrrkAi+DMK5IBicJ1T3pVTzg7KuOxngrM7i
-         I3Cy6mpc7/So6EQh07ASDIGl9/WW2KpPLc9QdffpxXBPsZC8FAsc6fnJx03LhffWK/sz
-         0CZZ5skMt74mGN4yumGfogm8bbGuZAvjMZagYf5yBLOfw4PDOhjiWHfVnvfzYRk9zMMB
-         4vTplAyYn0OWY28fcgIQD2+sjAnJ1K5k0qyU6D299laQAfFHDZkHXAZJOAz6WxXbTlu6
-         wuUCN6ZjJ7xFwJ+RvoPO27YZcdqi7FNriXol+l1HOtiz0uh/mRWc3HfaalyqEdz3/s43
-         95TA==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=qm1VFnM17ulLUrYUN8fcZvzp7VH3d31REMQB+ckUr3Q=;
+        b=SpA2HYm9DLnU/EXciLfX4A051CrgLyim57EoHljXjxMDOJzuIuHsTIfyLNawHMMfpq
+         4hUhutxecfAcXgQAaJvmAQ2GK+I3zIrSiM/8Nn069NgUfZtRgLn2R1dXmnCt0rTRjsJt
+         KBKevfnQo/bqs0PShPn3ofhrbTR+Va8ZS2ptv+anFlFJsqq/E7U6tfThUdIKt1oKfSdj
+         1PE/YTa9umNdULjsEwOdN1YdUHarRcufEzwVRj4rlBlKUWgWpWQsVHjXYzYlIRN1HN5T
+         eYn/IJzQmWb1a6vpVt+TbCkAM6ltU8Ym3Y76pST3SZgYHoqDUZbl2bMTVyZO1sqooAp1
+         Vu7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=mrkgyGGtG0jCfP1J/Gr+LuHZyy102jnVtkJW4o5/K2U=;
-        b=XGYrtIPe94yhdXpDGjKFKHWR56k08J9LkWCDM46tHLOrI0dCy2YAHHGy4I6sSuzCpa
-         QfjBHhOaO1oDOlMGIzgYM2hWms5rgZP2Zq0p+KaQydQ7AVA5qkZTYEN4f70SgsV/zKUb
-         1Zc40Tt4MSG2v3PZRx+HGgVc0iyS6xCZm8OAMmCzKi9mvYM5CTGhbfE2AXPsN8/ees1L
-         WnQFRRzWw94iSGl0c3xBInp0dHsbeH2nMN8V0pF/PPsnMgQTuCUfIFSmRuLPS5W2rVUj
-         9muhHC4Vct7di4xVSE1Fd0Xo+j1C0FQLZq68WXO1G77RO8E2wB2qq7pZSQceQWwazsjX
-         NyDA==
-X-Gm-Message-State: ACgBeo1c0V7zPYWg2GhqvPGw3man5+AhEyCEgFm5n+UHgaW8lGyW1zKP
-        ttytKRWIWYL5ORVA+TliBtTRtXDVQPS5fmuYI5oM0A==
-X-Google-Smtp-Source: AA6agR6Y6aMNqLvf9WqNGvXBiKIOeakFImIcJi3RY5vbXejOHjkUjqois26pyvHKxFEw75phZeuE6OVe2QoXM6s96zc=
-X-Received: by 2002:a17:906:58c8:b0:6fe:91d5:18d2 with SMTP id
- e8-20020a17090658c800b006fe91d518d2mr2435316ejs.190.1661430797685; Thu, 25
- Aug 2022 05:33:17 -0700 (PDT)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=qm1VFnM17ulLUrYUN8fcZvzp7VH3d31REMQB+ckUr3Q=;
+        b=xfrjl9eFJrC7E8fHYRgDgP7KrwYNvqor91aWuy3CvUFQ7myyxheKUd5BbgNmrfXRMV
+         NeGE1NRLg9t6CLP8sfrd7GgCIzV/C69vsBC1jKjJYIswsUCT0Ku8w5+X1tp+PP+oYtAH
+         6EdB8SO7mznYufyO5Z0KZh345WTEGjz+OcDUxu/hT0tsDlUD98OnMOFuSXgVSdvLGUa2
+         iZ3sdCGeCst53TJR4FUIBWBSgZqlmCwbmDUkd1hzugqamJnEPEKKbZGsUG4rVids5Keb
+         ro8AjsTsJ23BRKXllZrZsJKahoEayKAatI/aHLXKXUVaVvoMojtmAf93op7ez2D3tlQq
+         oUHw==
+X-Gm-Message-State: ACgBeo3E1j6EFeA5sPmFfm3ehzpN5tG1GXG9GzghEtGvs3rS6YopneSI
+        6LwJVQYs5+PHsVRRtOFk/7UyXQ==
+X-Google-Smtp-Source: AA6agR7wYAyBxPj4P3PZ4zX1SnUixQzufvZLeLxinIuBXty/IhtA6LoAayUEHcXGZdGsFDQ5Gmp7Rg==
+X-Received: by 2002:a05:6512:39cf:b0:492:dbf8:990 with SMTP id k15-20020a05651239cf00b00492dbf80990mr1191416lfu.39.1661430908704;
+        Thu, 25 Aug 2022 05:35:08 -0700 (PDT)
+Received: from [192.168.0.71] (82.131.98.15.cable.starman.ee. [82.131.98.15])
+        by smtp.gmail.com with ESMTPSA id p11-20020a05651211eb00b0047f647414efsm473024lfs.190.2022.08.25.05.35.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 Aug 2022 05:35:08 -0700 (PDT)
+Message-ID: <109c37f0-8b1a-40d0-7b86-dde80fb77081@linaro.org>
+Date:   Thu, 25 Aug 2022 15:35:07 +0300
 MIME-Version: 1.0
-References: <20220817113747.9111-1-srinivas.kandagatla@linaro.org>
-In-Reply-To: <20220817113747.9111-1-srinivas.kandagatla@linaro.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 25 Aug 2022 14:33:06 +0200
-Message-ID: <CACRpkdY692EGPuTCbmr-rmpPg3BkGQBWtxA0cseGgOHrgsMRmg@mail.gmail.com>
-Subject: Re: [PATCH v2 0/2] pinctrl: add support for SC8280XP LPASS LPI pinctrl
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org,
-        konrad.dybcio@somainline.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH] dt-bindings: gpio: mpfs-gpio: allow parsing of hog child
+ nodes.
+Content-Language: en-US
+To:     Conor.Dooley@microchip.com, mail@conchuod.ie,
+        linus.walleij@linaro.org, brgl@bgdev.pl, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+References: <20220820204130.1380270-1-mail@conchuod.ie>
+ <0ecf1664-03a2-71ac-b967-6905b96c7ce0@linaro.org>
+ <e94c1de8-e5e3-2325-38f9-1606c9369aef@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <e94c1de8-e5e3-2325-38f9-1606c9369aef@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -68,29 +79,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 17, 2022 at 1:38 PM Srinivas Kandagatla
-<srinivas.kandagatla@linaro.org> wrote:
+On 25/08/2022 15:30, Conor.Dooley@microchip.com wrote:
+> On 25/08/2022 13:10, Krzysztof Kozlowski wrote:
+>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+>>
+>> On 20/08/2022 23:41, Conor Dooley wrote:
+>>> From: Conor Dooley <conor.dooley@microchip.com>
+>>>
+>>> The SD card and eMMC on PolarFire SoC based dev boards are sometimes
+>>> statically muxed using a GPIO. To facilitate this, enable gpio-hog
+>>> child node properties.
+>>>
+>>> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+>>> ---
+>>>   .../bindings/gpio/microchip,mpfs-gpio.yaml     | 18 ++++++++++++++++++
+>>>   1 file changed, 18 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml b/Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml
+>>> index 110651eafa70..6704a7a52cd0 100644
+>>> --- a/Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml
+>>> +++ b/Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml
+>>> @@ -44,6 +44,24 @@ properties:
+>>>
+>>>     gpio-controller: true
+>>>
+>>> +patternProperties:
+>>> +  "^.+-hog(?:-[0-9]+)?$":
+>>
+>> What is this pattern about: "(?:" ?
+> 
+> Me being a pedant I suppose. "()" is a capture while "(?:)" is a match.
+> However, it does seem like json-schema suggests using "()":
+> https://json-schema.org/understanding-json-schema/reference/regular_expressions.html
+> 
+> I don't mind & neither does the schema checker.
 
-> This patchset adds pinctrl driver to support pin configuration for LPASS
-> (Low Power Audio SubSystem) LPI (Low Power Island) pinctrl on SC8280XP.
->
-> This IP is an additional pin control block for Audio Pins on top the
-> existing SoC Top level pin-controller.
->
-> Tested this on Thinkpad X13s
->
-> Thanks,
-> Srini
->
-> Changes since v1:
->         - removed unnecessary quotes in bindings
->         - remove lable in bindings
->         - fixed gpio pattern and removed an extra line after alt functions.
+Use what existing sources are doing, so "^.+-hog(-[0-9]+)?$"
 
-These patches applied too, same comment, if any further issues appear
-the easiest is to just patch on top. It's nice to get some rotation in
-linux-next
-for these.
-
-Yours,
-Linus Walleij
+Best regards,
+Krzysztof
