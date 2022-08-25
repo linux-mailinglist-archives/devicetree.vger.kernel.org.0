@@ -2,92 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BF255A08DA
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 08:30:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB3085A08E6
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 08:34:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232550AbiHYGaP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 02:30:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39584 "EHLO
+        id S235639AbiHYGdO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 02:33:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231604AbiHYGaN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 02:30:13 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5415172FF6
-        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 23:30:12 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id q7so23238542lfu.5
-        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 23:30:12 -0700 (PDT)
+        with ESMTP id S235727AbiHYGdE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 02:33:04 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CCE9A0306
+        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 23:33:03 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id n15so5855863lfe.3
+        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 23:33:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=06xW1jLI62seO9Abhqf7FvVwnPtCd5zQbyZloWjUVF8=;
-        b=Xp1VJitjfneppA5ItyJbrwobLKiJktUPWTA3Y1e1m8wRQrWcEUDLziByK6pc4otLjj
-         WfLxaGtsT9q2g+Pf/M9H6mCz9mwaVGySTC2KCsil15m19xi0KzeJQmmaZGg1evoc5IxO
-         mcuVCcZ8H+ZAksS/LnZNZGjsOdf4mrk7+wtqUvSsD2XfExoNatAshEygSvmYd90xKNyC
-         +73IxW2mSkX/spKZzU80B48EZ5YPWpnVhbUVx7VjEMGb9FMeRVsOQiMv3r5ueN9aPhMP
-         JhpO2ZCNHy80Dk8qZgubo0tF1HwcqmaaCDZ05OX01xcbFrXXR9bFHiGdzTRrvaqfH3yM
-         /GwQ==
+        bh=jjb0wRVho1IbfKOm+QRWs6abzY2pnVDemjVYoIt+vcs=;
+        b=t5qX2ZwFRSwBn7O7CkXQqXzasT+loOrUHXDGUumDRuWD+3IBYgV+YraXQu9RHfxdCy
+         Zh71qivAjZLQwCvqAQ57NAwBop9P2lQ4skoEKRYsQH07N7UKLkiQTqbJchgvg9DNy/QA
+         1SOsoER0W3I4lj8yr6EhuArJ/mDiYDrKnrFstWDZgsCmxfHL/8TMNx4Li0bcsmuvLQKD
+         COKYjAyxuz7HUZcoBcpYMlFRHz85vO1R6mwp61pSuew8T7gC5b6pLaQC8nHpSZO9UK1R
+         jvs+xtGh6XfgFyGT9G4ulVnizIxD6h6HJrlZ/nYKvRhM4A2khL9rW3TWKpE3uVmiO44+
+         4qQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=06xW1jLI62seO9Abhqf7FvVwnPtCd5zQbyZloWjUVF8=;
-        b=Ef7ZmgKUl3TDjUmyezhrV4vjP8ky9i5XFaUZkzkSBul6lljh6MDyJxyVTxGZ2i+OvI
-         wx6bsmZSg8ZKoPY9XHm7q6b4dQfMz9gK7vA6tC/AfES8MERaiS7ueWKtLEzQpFz5U0Nb
-         tm1N92hkty8++1yHH+8NEpFALLsVtznnvvk6TxjjZMIrPiFkv05zC9tpr77EPSjVsXRj
-         0xIpLpPM3O8FmoiL25RoI7sUKGpgB3CuM44o+C4CKJ2TrQloHXBb+ARFKsqmMXzBqjWn
-         GPTqddXTjJtiQ7XMCeX9yYPdjqKIp7+qw8TqiTM1R7trBfTE8AMFXcWdwu5022XVQqEB
-         ixag==
-X-Gm-Message-State: ACgBeo3Uzrw3wz9r1mzpfDuCUaky/bNuPqUpXL2isiR3dn4qV33X7pZq
-        0lLkjZJqDrRkgX8OFqqRJ+NK7Q==
-X-Google-Smtp-Source: AA6agR5voLFMZFTTgJvhNlxJQbRcDTQfj4hRCUGwRZmiTfWs0TLDdpCmpd7u6VEOeHEanOx6DfWmwA==
-X-Received: by 2002:a05:6512:c12:b0:48d:231c:3099 with SMTP id z18-20020a0565120c1200b0048d231c3099mr634468lfu.462.1661409010359;
-        Wed, 24 Aug 2022 23:30:10 -0700 (PDT)
+        bh=jjb0wRVho1IbfKOm+QRWs6abzY2pnVDemjVYoIt+vcs=;
+        b=OtAqiZipfJxyhZkjjmzVM55KoaCLq1nBGz2m5DlcTfoFBtFdeSreYN5S9vS1DnrQKY
+         g4kqV7hzqcS/9k6gXyHrYcayZ5dm807hrs4jPINkgDxysGexzWJ7UpKS2YRMehExwtFj
+         90sgzoC3Df6Li4rpBOZ2wqlR93/O9FcSNevpSiXOYapFNUVui7R1OJ/uj09Q2OtpBOdR
+         jYllZoPULZiL2SwSBFsm94bu6bC9BNaeUocMiNwFt1BQQirWaCRhjyk8OF32u2af81XX
+         M/S85lvQqacqIIEytQg+c6by0Zv3Uzut8hh4+Vbka45Fps0emxbUofzaQPW+hTSCcD2L
+         1yaA==
+X-Gm-Message-State: ACgBeo3hpg/v3qPI6ZsqDOn3fgfnxLdQdNSDUxvkoWOU+Js7sKN553jh
+        hFBhCb82f4AfEw7qNNOKDJ60ew==
+X-Google-Smtp-Source: AA6agR4I4yjF/QiNBfJc1j5Y8lITB8zsTBX7CYP2sWhLpA2MPjNjOSJwTPxzRKG69SqnrxcemVRG7A==
+X-Received: by 2002:a05:6512:159a:b0:492:8c61:1991 with SMTP id bp26-20020a056512159a00b004928c611991mr620418lfb.245.1661409181980;
+        Wed, 24 Aug 2022 23:33:01 -0700 (PDT)
 Received: from [192.168.0.71] (82.131.98.15.cable.starman.ee. [82.131.98.15])
-        by smtp.gmail.com with ESMTPSA id x4-20020ac24884000000b00492c2394ea5sm321001lfc.165.2022.08.24.23.30.09
+        by smtp.gmail.com with ESMTPSA id h27-20020a19ca5b000000b0048af397c827sm316655lfj.218.2022.08.24.23.33.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Aug 2022 23:30:09 -0700 (PDT)
-Message-ID: <7c502652-983b-f282-f989-b224942f27bb@linaro.org>
-Date:   Thu, 25 Aug 2022 09:30:08 +0300
+        Wed, 24 Aug 2022 23:33:01 -0700 (PDT)
+Message-ID: <7248cbce-29b9-aad6-c970-8e150bc23df8@linaro.org>
+Date:   Thu, 25 Aug 2022 09:33:00 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH] dt-bindings: pinctrl: Add missing
- (unevaluated|additional)Properties on child nodes
+Subject: Re: [PATCH v4 4/6] dt-bindings: net: dsa: mediatek,mt7530: define
+ port binding per switch
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
+To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.neuschaefer@gmx.net>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        Sowjanya D <lakshmi.sowjanya.d@intel.com>,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        Andy Teng <andy.teng@mediatek.com>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Sean Wang <sean.wang@mediatek.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        Sander Vanheule <sander@svanheule.net>,
+        =?UTF-8?Q?Ren=c3=a9_van_Dorst?= <opensource@vdorst.com>,
+        Daniel Golle <daniel@makrotopia.org>, erkin.bozoglu@xeront.com,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, openbmc@lists.ozlabs.org,
-        linux-renesas-soc@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com
-References: <20220823145649.3118479-6-robh@kernel.org>
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220820080758.9829-1-arinc.unal@arinc9.com>
+ <20220820080758.9829-5-arinc.unal@arinc9.com>
+ <c24da513-e015-8bc6-8874-ba63c22be5d6@linaro.org>
+ <ea3ceeab-d92b-6ce5-8ea9-aebb3eaa0a91@arinc9.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220823145649.3118479-6-robh@kernel.org>
+In-Reply-To: <ea3ceeab-d92b-6ce5-8ea9-aebb3eaa0a91@arinc9.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
@@ -98,15 +99,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/08/2022 17:56, Rob Herring wrote:
-> In order to ensure only documented properties are present, node schemas
-> must have unevaluatedProperties or additionalProperties set to false
-> (typically).
+On 23/08/2022 15:29, Arınç ÜNAL wrote:
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> 
+> On 23.08.2022 13:47, Krzysztof Kozlowski wrote:
+>> On 20/08/2022 11:07, Arınç ÜNAL wrote:
+>>> Define DSA port binding per switch model as each switch model requires
+>>> different values for certain properties.
+>>>
+>>> Define reg property on $defs as it's the same for all switch models.
+>>>
+>>> Remove unnecessary lines as they are already included from the referred
+>>> dsa.yaml.
+>>>
+>>> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+>>> ---
+>>>   .../bindings/net/dsa/mediatek,mt7530.yaml     | 56 +++++++++++--------
+>>>   1 file changed, 34 insertions(+), 22 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
+>>> index 657e162a1c01..7c4374e16f96 100644
+>>> --- a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
+>>> +++ b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
+>>> @@ -130,38 +130,47 @@ properties:
+>>>         ethsys.
+>>>       maxItems: 1
+>>>   
+>>> -patternProperties:
+>>> -  "^(ethernet-)?ports$":
+>>> -    type: object
+>>> -
+>>> -    patternProperties:
+>>> -      "^(ethernet-)?port@[0-9]+$":
+>>> -        type: object
+>>> -        description: Ethernet switch ports
+>>
+>> Again, I don't understand why do you remove definitions of these nodes
+>> from top-level properties. I explained what I expect in previous
+>> discussion and I am confused to hear "this cannot be done".
+> 
+> I agree it can be done, but the binding is done with less lines the 
+> current way.
+> 
+> I would need to add more lines than just for creating the node structure 
+> since dsa.yaml is not referred.
+> 
+> Then, I would have to create the node structure again for the dsa-port 
+> checks.
 
+I understand you can create binding more concise, but not necessarily
+more readable. The easiest to grasp is to define all the nodes in
+top-level and customize them in allOf:if:then. This was actually also
+needed for earlier dtschema with additionalProperties:false. You keep
+defining properties in allOf:if:then, even though they are all
+applicable to all variants. That's unusual and even if it reduces the
+lines does not make it easier to grasp.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
