@@ -2,216 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 816795A0C5A
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 11:17:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EBD815A0C62
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 11:19:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236497AbiHYJRo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 05:17:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46956 "EHLO
+        id S234323AbiHYJT1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 05:19:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239263AbiHYJRh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 05:17:37 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34349A7210
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 02:17:34 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id h5so22966095wru.7
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 02:17:33 -0700 (PDT)
+        with ESMTP id S238758AbiHYJTJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 05:19:09 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C179A0337
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 02:19:05 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id w22so3861959ljg.7
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 02:19:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc;
-        bh=hfCNevAxgJvLuTWr8SaR94vFPaHmg4R55Me0Hy0yr2E=;
-        b=sufzBfPfVuYtZY3PY6wJVunOCdpmjJtQQ3FShdHH3SEHEyKMq5q/+m/yebsuQQx1qS
-         llyt6o4dRKXF3slpTAZiYDGMSflHDfzU4hYAuErYehIDmubif2jMd/K0skC2jf/jbcFy
-         Jw3Dfj9frjUsQW7jTk0q/e8lf4AwohHw0nzfuSQkrgKW12Cig8SaWrl+4/1EICnw8Cge
-         4mg+TsmDVqY9AVATxJbHX6ESt19x22Ryvn3LmTVUk/Rtcs75HBZiZgapVQXeih8iZqwn
-         4rfKr85mbi78EPBASw1zKovtnQIOgt9fZtwqY7ECo8F1eoNvryGVjqB8WxQCC1dvfm2/
-         DfKw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=5sLLJwx5fDC65ir0hnf5+Sti6dIGOgbuBhKyXjwz+yI=;
+        b=ImaL0OaB9DjV2I8mkss1KZt4fNOL2+FNjkJF3NAfXpxW6Sq/5kT4TtIScleWrCpXu9
+         2ZPt5iPa+dWQ6O2gghcDPruzZaJbyfIK25OxZh0psTEQM2QIvr5rO35LFLqa2YXCUiM/
+         Vx8/zYDbS6OxE+Kf5BYILq2Gn3wv8/rDqEANRG5zf1Spn7x3YPSnzrPNp0zKMEO1hW9y
+         kTX4mL5D25AkYis2JucJBd9GCbD+gKtRHYKL/IH+rgRGNpBc0c/lX+HcYKmlSmPtMpuj
+         StqZhYLWJqLhSW6cSc3EVHK5Bl5xVJ61Isop9APpsAm5RzyWLfjQli4PFBb46MEQAev2
+         VO+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=hfCNevAxgJvLuTWr8SaR94vFPaHmg4R55Me0Hy0yr2E=;
-        b=mnA6wSC6Soh2ypnyTUlcineanub9kUJnaMKUJo+dx3Cml1OXwskaQ2Kk4MEAkNtaDz
-         8ItjgunhcbCtzq/cys8TrseluDcCRMtpD3ThI5fEDlX02e0ZwSKEAHgrym/eGHpsfRVm
-         0fcBfhicYF4IB7clM+CgFcT9nhrY9VO0felDkDZ2i3jmPgyaNUdZurBqnC/AgWRZthJx
-         oqVRjHX0muqupRR5g9LBSNZMk+Me0zn0j0W5tgVD964uPY0IxUP8aHRa5jLZlLB1wFD6
-         cigmT47uDZ8BbwXpYnBj/WTqAAIt9ubZmZ+7PguFYYOUPDiYTxGaLfE5CUtYFXHKawmQ
-         Oe3A==
-X-Gm-Message-State: ACgBeo0VAZ8Ylr4JobNTQoImBdTw7EvrdW1pBaofRr5RbbC3W5WttbYA
-        e3jWw6e8BSzxzeLQuJ4sFOvIxA==
-X-Google-Smtp-Source: AA6agR7yRTc1Q1vuAsghCBmXdphB36jE4XFkP7yyuUUAWwoYNpY0fEPzoiHLn303PEfylE6f5KDSxA==
-X-Received: by 2002:a05:6000:12cd:b0:225:35b2:c020 with SMTP id l13-20020a05600012cd00b0022535b2c020mr1638661wrx.61.1661419052365;
-        Thu, 25 Aug 2022 02:17:32 -0700 (PDT)
-Received: from blmsp ([2001:4090:a245:8020:2658:1f7c:362:3e99])
-        by smtp.gmail.com with ESMTPSA id o8-20020a05600c4fc800b003a603fbad5bsm4956489wmq.45.2022.08.25.02.17.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Aug 2022 02:17:31 -0700 (PDT)
-Date:   Thu, 25 Aug 2022 11:17:30 +0200
-From:   Markus Schneider-Pargmann <msp@baylibre.com>
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Jerome Neanne <jneanne@baylibre.com>, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, nm@ti.com,
-        kristo@kernel.org, khilman@baylibre.com, narmstrong@baylibre.com,
-        j-keerthy@ti.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Lee Jones <lee@kernel.org>
-Subject: Re: [PATCH v2 06/11] mfd: drivers: Add TI TPS65219 PMIC support
-Message-ID: <20220825091730.i7qi7lnfq44cffjh@blmsp>
-References: <20220726103355.17684-1-jneanne@baylibre.com>
- <20220726103355.17684-7-jneanne@baylibre.com>
- <YvEwpXKyMmfdWyfT@google.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=5sLLJwx5fDC65ir0hnf5+Sti6dIGOgbuBhKyXjwz+yI=;
+        b=EiMFekW0vA6ig7TT6B061dvZJGqzQNyClkFyxQYAiVEFvWqdWIqXM+1SHyQll6iRlD
+         OeFQZlPPf++eFa3xE1uMHb3JuqgyqGQs+mC8V19tzhAXrMLvcSfBMbyK8cGSNxvyho/P
+         4gs39vkyEMrrJVcpS16dBURqhNngboj0Kh5VSoBB4nIsYXq6HPo1YxAEhEuKU56pj5QN
+         gFaGyD6r15jujU4Z5v+2ZTref2jGHf6L9faIPmyWDNtQVRpCKp6f7OnoLtk4vZyjQEVR
+         wgL0ehEbxSSD9D1guHPlBzlRRTtsgSknnf+iUSUyaeVOxAStvKqp5pUpW9CJLbjvIKdw
+         Ufzg==
+X-Gm-Message-State: ACgBeo3szTwD3FpqTuHYVLIZ4+qW2lK05zRunln+qnZ7xtd4Mde5v+d+
+        La+xr3fJHafj5besnE591OJB/g==
+X-Google-Smtp-Source: AA6agR5cLMW6dK0mLYBJEmmbS+0xSE4i8FRTC6oNzAhVSwFOrGPK4zJGdxvlic8d5WSygG0ZBfZ2og==
+X-Received: by 2002:a05:651c:2d0:b0:25e:6c94:59d5 with SMTP id f16-20020a05651c02d000b0025e6c9459d5mr863198ljo.488.1661419143569;
+        Thu, 25 Aug 2022 02:19:03 -0700 (PDT)
+Received: from [192.168.0.71] (82.131.98.15.cable.starman.ee. [82.131.98.15])
+        by smtp.gmail.com with ESMTPSA id u19-20020a05651220d300b00492db7f47f2sm383198lfr.275.2022.08.25.02.19.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 Aug 2022 02:19:02 -0700 (PDT)
+Message-ID: <72e484c8-16ce-9ccd-3bf2-4097eca937e1@linaro.org>
+Date:   Thu, 25 Aug 2022 12:19:01 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <YvEwpXKyMmfdWyfT@google.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v2 1/2] dt-bindings: edac: Add bindings for Xilinx ZynqMP
+ OCM
+Content-Language: en-US
+To:     "Potthuri, Sai Krishna" <sai.krishna.potthuri@amd.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Borislav Petkov <bp@alien8.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Tony Luck <tony.luck@intel.com>,
+        James Morse <james.morse@arm.com>,
+        Robert Richter <rric@kernel.org>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>,
+        "saikrishna12468@gmail.com" <saikrishna12468@gmail.com>,
+        "git (AMD-Xilinx)" <git@amd.com>,
+        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+References: <20220822115821.3907-1-sai.krishna.potthuri@amd.com>
+ <20220822115821.3907-2-sai.krishna.potthuri@amd.com>
+ <52fa28d6-4d48-bd0c-40e6-4f8855c4eac8@linaro.org>
+ <BY5PR12MB42589769EF9702D7A0F83989DB729@BY5PR12MB4258.namprd12.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <BY5PR12MB42589769EF9702D7A0F83989DB729@BY5PR12MB4258.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lee,
+On 25/08/2022 11:50, Potthuri, Sai Krishna wrote:
+>>> diff --git
+>>> a/Documentation/devicetree/bindings/edac/xlnx,zynqmp-ocmc.yaml
+>>> b/Documentation/devicetree/bindings/edac/xlnx,zynqmp-ocmc.yaml
+>>> new file mode 100644
+>>> index 000000000000..6389fcb7ed69
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/edac/xlnx,zynqmp-ocmc.yaml
+>>> @@ -0,0 +1,45 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause) %YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/edac/xlnx,zynqmp-ocmc.yaml#
+>>
+>> Filename should be based on compatible, so xlnx,zynqmp-ocmc-1.0.yaml
+> I will fix in v3, Just want to know in case if we have multiple compatibles, 
+> how to handle such cases?
 
-thanks for your comments. I am pushing the next version v4 for Jerome
-and fixed most of your comments. Some inline comments.
+Then something generic would fit, but you don't have them...
 
-On Mon, Aug 08, 2022 at 04:49:57PM +0100, Lee Jones wrote:
-> On Tue, 26 Jul 2022, Jerome Neanne wrote:
-> 
-> > The TPS65219 is a power management IC PMIC designed
-> > to supply a wide range of SoCs
-> > in both portable and stationary applications.
-> > Any SoC can control TPS65219 over a standard I2C interface.
-> 
-> Really odd line break choices here.
-> 
-> > It contains the following components:
-> > - Regulators.
-> > - Over Temperature warning and Shut down.
-> > - GPIOs
-> > - Multi Function Pins (MFP)
-> > 
-> > This patch adds support for tps65219 mfd device. At this time only
-> 
-> No such thing as an MFD device, what is it?  PMIC, no?
-> 
-> > the functionalities listed below are made available:
-> > 
-> > - Regulators probe and functionalities
-> > - warm and cold reset support
-> > - SW shutdown support
-> > 
-> > Signed-off-by: Jerome Neanne <jneanne@baylibre.com>
-> > ---
-> >  MAINTAINERS                  |   1 +
-> >  drivers/mfd/Kconfig          |  15 +++
-> >  drivers/mfd/Makefile         |   1 +
-> >  drivers/mfd/tps65219.c       | 214 +++++++++++++++++++++++++++++
-> >  include/linux/mfd/tps65219.h | 251 +++++++++++++++++++++++++++++++++++
-> >  5 files changed, 482 insertions(+)
-> >  create mode 100644 drivers/mfd/tps65219.c
-> >  create mode 100644 include/linux/mfd/tps65219.h
-> > 
-
-...
-
-> > diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-> > index 858cacf659d6..a8ff3d6ea3ab 100644
-> > --- a/drivers/mfd/Makefile
-> > +++ b/drivers/mfd/Makefile
-
-...
-
-> 
-> > +//
-> > +// Copyright (C) 2022 BayLibre Incorporated - https://www.baylibre.com/
-> > +//
-> > +// This implementation derived from tps65218 authored by
-> > +// "J Keerthy <j-keerthy@ti.com>"
-> 
-> Which he probably copied from elsewhere.
-> 
-> Please drop this line.
-> 
-> > +//
-> 
-> Drop this empty comment
-> 
-> Only C++ for the SPDX line please.
-
-Mark Brown wanted this the other way around:
-
-"Please make the entire comment a C++ one so things look more
-intentional."
-https://lore.kernel.org/all/YtayikFdidxXXubS@sirena.org.uk/
-
-Let me know what I should do here.
-
-...
-
-> 
-> > +		if (pm_power_off)
-> > +			dev_warn(tps->dev, "Setup as system-power-controller but pm_power_off function already registered, overwriting\n");
-> 
-> Is that really what you want?
-> 
-> What about the other driver that thinks it's the
-> system-power-controller? Seems wrong.
-
-I am now not overwriting pm_power_off but print an error and probe
-successfully.
-
-...
-
-> > diff --git a/include/linux/mfd/tps65219.h b/include/linux/mfd/tps65219.h
-> > new file mode 100644
-> > index 000000000000..e9197ab8bc75
-> > --- /dev/null
-> > +++ b/include/linux/mfd/tps65219.h
-> > @@ -0,0 +1,251 @@
-> > +/* SPDX-License-Identifier: GPL-2.0 */
-> > +/*
-> > + * linux/mfd/tps65219.h
-> 
-> No filenames please.  They tend to become unsynced.
-> 
-> > + * Functions to access TPS65219 power management chip.
-> 
-> As above.
-> 
-> > + * Copyright (C) 2022 BayLibre Incorporated - https://www.baylibre.com/
-> > + */
-> > +
-> > +#ifndef __LINUX_MFD_TPS65219_H
-> > +#define __LINUX_MFD_TPS65219_H
-> 
-> LINUX?
-
-This seems to be quite common in include/linux/mfd/*.h to have
-__LINUX_MFD_ as prefix (probably for the directory they are in). I am
-assuming that's not the right style. What should be used instead?
-__MFD_TPS65219_H or MFD_TPS65219_H or maybe something else?
-
-...
-
-> > +
-> > +/**
-> > + * struct tps65219 - tps65219 sub-driver chip access routines
-> > + *
-> > + * Device data may be used to access the TPS65219 chip
-> > + */
-> 
-> This is not a complete kerneldoc header.
-> 
-> Please compile test with W=1.
-
-I didn't see any errors reported for this struct with W=1. I am assuming
-you meant missing field descriptions and added them.
-
-Thanks,
-Markus
+Best regards,
+Krzysztof
