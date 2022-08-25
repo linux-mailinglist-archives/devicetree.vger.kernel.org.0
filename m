@@ -2,118 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B445C5A1580
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 17:23:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6473D5A15BA
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 17:29:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236857AbiHYPXJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 11:23:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33120 "EHLO
+        id S242798AbiHYP3a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 11:29:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229454AbiHYPXI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 11:23:08 -0400
-Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B77FB69E7;
-        Thu, 25 Aug 2022 08:23:07 -0700 (PDT)
-Received: by mail-pg1-x52f.google.com with SMTP id v4so18161956pgi.10;
-        Thu, 25 Aug 2022 08:23:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=sERSCfKpMmgiaBBPRfCq70Yp+FzXmqp9Gg4aLfwlsec=;
-        b=hnBMUgTu1qgmDE+P4BqRtyUQlZTWTsKiHQYBl5qdKHkmcjvh5s7xse+dXLZXJanm0H
-         1/1ojUZwYlj8afQjz4dGYIev/ip9MaoFQAK/fOLUVMzLCLqb/8NLmNrigoreFcTIxZwW
-         ChyfGHBfeh9MUIrBaXADmBjOVNhWoSaqZPlaScNQk+T+UKVy78kQKiAEMYcYui/oyfC7
-         K9sDDpB8AQDlqemEKTmikiWX2icYayhkSQwnT0zDBBKTv9SAfVig/MQIBFNkk44Bqp/4
-         Kh++PTp2XbVVTvgpYcxgg4NCjwsNvlehEUnC4tUopXwuTy5IwZ4QYDLUcILs35uHaega
-         +tMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=sERSCfKpMmgiaBBPRfCq70Yp+FzXmqp9Gg4aLfwlsec=;
-        b=VihGWCxT0H57xIz9YYiX+a2lchUL1S4prUrNzkXYdDvg4ToUdLOP67uiZ/mkZPZTiy
-         +jb6Sphzh8Rwnfm4E1YlOFfSAH5pym9qW3wL3Pnwl5XeUk2G9P/Nlp19n6RJthkoqDsv
-         ifkBRVPd5afCvOFmY/J5qSWpniCfwELa8s5XzGcxA00Ya8/0h2cCSAoZabm0MYuP6BXs
-         tGTJyKq+M+Y+/oiGsHMFvfdwQBoQ9u4qJQETbJukMUIV1gROySvHfWJ4UF3Yd19L8Qng
-         ioTMpNBMstQUTVYn9m3OYzUX8qODoQ7AqjB0FfmAjxglxluRPPaOekhdLm9BxD8IKGPg
-         Ntdg==
-X-Gm-Message-State: ACgBeo3s5MOr2FhqNaDhSBQSy5sq439/hmOwKqSIhInEpCsv+hT9tDcO
-        Q8mSTw4WXBzPoBZ4DlyuFW50/WVtuBuezL1dO6ethE+w
-X-Google-Smtp-Source: AA6agR6U9SLlrt3DTF4rqwvHO9B2zZAcSk8TEg+ykZLSaeShpevNYMyikrace7g1C+FJQdG/+F1NL7tROG7YPqf+E0Y=
-X-Received: by 2002:a63:d84e:0:b0:42b:5834:fd73 with SMTP id
- k14-20020a63d84e000000b0042b5834fd73mr2170721pgj.506.1661440987087; Thu, 25
- Aug 2022 08:23:07 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220816183911.2517173-1-robh@kernel.org>
-In-Reply-To: <20220816183911.2517173-1-robh@kernel.org>
-From:   Jonas Gorski <jonas.gorski@gmail.com>
-Date:   Thu, 25 Aug 2022 17:22:55 +0200
-Message-ID: <CAOiHx=k1=GG7JNBJ-mqySSqv3d2OeLzWP+Vf1fXKtf0t-O+Kpg@mail.gmail.com>
-Subject: Re: [RFC] dt-bindings: pinctrl: brcm: Ensure all child node
- properties are documented
-To:     Rob Herring <robh@kernel.org>
-Cc:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        =?UTF-8?Q?Fern=C3=A1ndez_Rojas?= <noltari@gmail.com>,
-        linux-gpio@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        with ESMTP id S242812AbiHYP3G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 11:29:06 -0400
+Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66857B99E6;
+        Thu, 25 Aug 2022 08:27:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+        d=metrotek.ru; s=mail;
+        h=from:subject:date:message-id:to:cc:mime-version:content-transfer-encoding:
+         in-reply-to:references;
+        bh=jzpzNoW001lI1c/jqIo38qIsNA0EE0LctYct+yyRZk4=;
+        b=fCK5amHx9F1ssz6YEgqkRbkKfG1LDtS2Bkw05hMj+yZIWOTq6CDlTyZFrd2SUYxte6kltsmutNkuf
+         2v4QhxHpWNQ8n2NlcENQtYvRJ/Vtftuobdvte+DQGgKSDnbrN44tPU2bndoFc/LPJ/WQQYt4fv7uXg
+         ZWCUDhBLdeuj3q//uka+al8jRqR7DnEp5CmCPZWc3TnnMBXxxnqya+hs61aXl3aTm5sRLVf3FOEsOT
+         V95rUfJ3hyhIRcKNzg/HCb9SMDvI6BRktTqqYHH8OWEFrtiqr12K6OuZ3IMPR1Nylfm/hzWnXy+AgU
+         bEgByFRHn6APJG4cIojn6lXrZpOi2LA==
+X-Kerio-Anti-Spam:  Build: [Engines: 2.16.4.1445, Stamp: 3], Multi: [Enabled, t: (0.000009,0.004364)], BW: [Enabled, t: (0.000015,0.000001)], RTDA: [Enabled, t: (0.079266), Hit: No, Details: v2.41.0; Id: 15.52k3u2.1gbappi5t.4bu; mclb], total: 0(700)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
+X-Spam-Level: 
+X-Footer: bWV0cm90ZWsucnU=
+Received: from h-e2.ddg ([85.143.252.66])
+        (authenticated user i.bornyakov@metrotek.ru)
+        by mail.pr-group.ru with ESMTPSA
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
+        Thu, 25 Aug 2022 18:26:35 +0300
+From:   Ivan Bornyakov <i.bornyakov@metrotek.ru>
+To:     j.zink@pengutronix.de
+Cc:     Ivan Bornyakov <i.bornyakov@metrotek.ru>,
+        devicetree@vger.kernel.org, hao.wu@intel.com,
+        kernel@pengutronix.de, linux-fpga@vger.kernel.org, mdf@kernel.org,
+        robh+dt@kernel.org, yilun.xu@intel.com
+Subject: Re: [PATCH 00/16] Add support for Lattice MachXO2 programming via I2C
+Date:   Thu, 25 Aug 2022 18:25:14 +0300
+Message-Id: <20220825152514.9926-1-i.bornyakov@metrotek.ru>
+X-Mailer: git-send-email 2.37.2
+In-Reply-To: <20220825141343.1375690-1-j.zink@pengutronix.de>
+References: 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 16 Aug 2022 at 20:39, Rob Herring <robh@kernel.org> wrote:
->
-> The Broadcom pinctrl bindings are incomplete for child nodes as they are
-> missing 'unevaluatedProperties: false' to prevent unknown properties.
-> Fixing this reveals many warnings including having grandchild nodes in some
-> cases.
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
-> This recursive schema requires a fix not yet committed in dtschema.
->
-> I'm looking for feedback on whether group->pins or group->groups is the
-> right fix here. There's more warnings with this change in the gpio-sysctl
-> bindings.
+Hi, Johannes!
 
-The answer is "yes", though pins is probably the closest for most.
+I just came across your patches. Surprisingly, our work interferes.
 
-bcm6318 has multiple field-per-pin registers, where each pin is
-controlled separately, with more fields than available GPIOs, and the
-pins outside the GPIO range controlling other functions, like
-switching the second USB port between host and client mode.
+I recently posted patch-series for configuring ECP5 and was asked to make
+generalized sysCONFIG driver with support for both ECP5 and MachXO2, which
+I did. Sadly I don't have hardware with MachXO2, but you clearly do :)
 
-bcm6328/6362/6368/63268 have two registers. The first one enables an
-alternative function for the first 32 GPIOs, with a 1:1 mapping of
-bits to GPIO. The second one enables a function for whole, arbitrary
-groups. These groups can overlap, and may also target pins outside the
-first 32 GPIOs. The actual pins in use are not documented, and can
-sometimes be guessed/inferred by the function names (e.g. "GPIO35"),
-sometimes not ("NAND", "UTOPIA").
+Please, take a look at
 
-bcm6358 has only the groups register, which also includes non GPIO
-related functions, like inversing the MII clocks for the integrated
-macs.
+https://lore.kernel.org/linux-fpga/20220825112433.14583-1-i.bornyakov@metrotek.ru/
 
-Not supported is bcm6348, which would be the only one where groups
-would definitely make more sense: there are 5 groups of 8 GPIOs, where
-each group can be set to a certain function (but not all functions are
-valid for all groups). E.g. for PCI support, you would need to set the
-fields to PCI for groups 0, 1 and 3 (and 2 and 5 could be set to a
-different function). You can ignore this though, as bcm6348 is ancient
-(doesn't even support ADSL2+).
+and please help test MachXO2 variant. When we pull this off, you may add I2C
+interface on top.
 
-Hope that helps a bit.
-
-Best regards,
-Jonas
