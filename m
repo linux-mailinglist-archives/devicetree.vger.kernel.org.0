@@ -2,77 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1ED7F5A14DB
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 16:52:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 594545A14F0
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 16:58:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235510AbiHYOwu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 10:52:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38168 "EHLO
+        id S242354AbiHYO6H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 10:58:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234556AbiHYOwt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 10:52:49 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12A88B515B;
-        Thu, 25 Aug 2022 07:52:48 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id h5so24142039wru.7;
-        Thu, 25 Aug 2022 07:52:47 -0700 (PDT)
+        with ESMTP id S242315AbiHYO57 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 10:57:59 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBE2CB5A44;
+        Thu, 25 Aug 2022 07:57:55 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id h1so10385334wmd.3;
+        Thu, 25 Aug 2022 07:57:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=EuJPtoYgjjN5/e0jyvbLMFRYdN9rtOzOfHKRxWyYoBU=;
-        b=eg7BC7KjISFyUh8Fm26l56dTvHw7nfA0x7+7uYfoLZ4Dyk6v88U+OAMc9JIripiW4H
-         E8Rnc+Tq5whRFWEewjB8GSe+zjUlUbwJ49gkVu4T+6S35u+S2RoD+QFM4+XYL6b1ombc
-         PYGGjlcqmZrIxw8GD3Jj5qN3+60Su5jPaLNjZmE9BXRM+TGBTVNrPtQWiKLOam6OwaqB
-         bIiCXfHjH9O/kbBUrEYy0bwGcCBhz2UZ/IzCkG1RApHHhMhLUlX4cja/VgIyIMpdVE9Y
-         51S7IwNis/iWsX/XLc/uRkXUn2FPVITfB6IL1MaHfxJyu4Z9CNppmAQGj7a1isZqh4Or
-         vGGA==
+        bh=bKqxJIBDaoN4leoGC948rXDy4btWZwIIKEVGbDwuJbM=;
+        b=niwLkKWApxiZ9LaQP6x2ZLxlpmxSFUjIjBrJm4WXIOlbAS6k3JphAY/ug4U7/qDzZr
+         1BCAnDAPUB96BFamev8xVvVo/rtd5+HhoGPBKJEGXhjkrtGtZlGbICR7qdNqqbOCL9V/
+         PdJhXg+5FI0mnSBK+yS8l6n8Qb5RD8hMP6yHXJu2Bbk09B91YpjiIbOIra7NK8F9+uXS
+         Ghdppms8BAgMaJkmk4oH05DX9DaJWvlh51FshpMIZBf5iM7eTvpGzNGa6nDdjtHWvBZz
+         99iLZjHEgqQp8O4vLf6oqCXffSuB+c0pV4PsiV1WOXQK4GSy8w3ypP447AXKQZWWP+s3
+         HjAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=EuJPtoYgjjN5/e0jyvbLMFRYdN9rtOzOfHKRxWyYoBU=;
-        b=P1116+FiRPiCchp6tJb06bEf6OVMiwrxcVzImpdrUVxuDG2aXWDcqUdyMxc6PG3in1
-         QEdSGYi66wLbUfkQEpR6EU/WzuRdN7TBT4mICvWdrNk6ir1BCssByR+65dmIxYEMr1Lb
-         x4VSnOZB02YNJrQhenE/8YQi19pn2yarcuuyfac9Mf3XiY8pyXT7AfO8E4OTUz0DgZUk
-         Tmg1SrjILL996MdwqiDnKFpOp8P3s2KSpiWip4ywDuVC92QPH1nLknCLpM1QqWkCg5Jr
-         zyhNp1O2uXrspyn/aRE8+dYD5eWh7INO7Fj/qNOnLGmlKTCQ5gAb4ywTyxf0wha82DyK
-         RPhQ==
-X-Gm-Message-State: ACgBeo3OFnHY0L0vWYAOr3Sac9D16vtshdLoAcDO6yhi33oeRCnfgjij
-        +s1FXheVlpMSjKrdaukNyDQ=
-X-Google-Smtp-Source: AA6agR5xjrDrbHwGtRMFWO2CBXbtGRrUyxMfRYWrcPVy4NZm6akviQOSxZVXcpH40iI9WsgKXmA9xQ==
-X-Received: by 2002:a05:6000:1d82:b0:220:5f9b:9a77 with SMTP id bk2-20020a0560001d8200b002205f9b9a77mr2511169wrb.622.1661439166564;
-        Thu, 25 Aug 2022 07:52:46 -0700 (PDT)
+        bh=bKqxJIBDaoN4leoGC948rXDy4btWZwIIKEVGbDwuJbM=;
+        b=Z6qOJNlj+YH1xyRO2H+QpXxN2cEO39gZLU9hw+Qg8dfE/27A2u54ytFHVKGfko7Ldi
+         FIRg6h0IdJX2nuQc4FNhtw/6VtIalQM3qlKq8pX4zn6m3qC9QxWlz5nN5nLWZtW2oALn
+         NDo6bxEwcGhORpFA293lzJ2RN2xdI5rjqo/Y6kKguuwRIcLVQuTNQkmODyrMJyJ5/XaE
+         scRFXWjyNZfIaIkGlHFMOupPGBbfLSLhyC+b3GzWvZEJz+7Tg9Yr1xAF89eDfJpTq2L6
+         aArB6Fh/bqK8KoAveRqvJ0KjULllaA5bgv1aNpAWL0/lRBaetL6S/QayDKHOCppMrPuK
+         j/tA==
+X-Gm-Message-State: ACgBeo3UNxR2KpmnqS79LvsD3Wgxki/O3qhczhCXbUTJR4ekwQ+TxEI7
+        XFm8XQHQDTBk/FEoz1jhhOo=
+X-Google-Smtp-Source: AA6agR7DjigTUF9DSPLsJPn+n8QozB6Xr2ap0MfMSl098vyNmB/BNSxC6kMjQVy++uy2E6Cq9djLOQ==
+X-Received: by 2002:a05:600c:657:b0:3a5:e4e6:ee24 with SMTP id p23-20020a05600c065700b003a5e4e6ee24mr8225959wmm.68.1661439474250;
+        Thu, 25 Aug 2022 07:57:54 -0700 (PDT)
 Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id v7-20020a5d5907000000b00220592005edsm19918911wrd.85.2022.08.25.07.52.44
+        by smtp.gmail.com with ESMTPSA id s1-20020a7bc381000000b003a35ec4bf4fsm5403928wmj.20.2022.08.25.07.57.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Aug 2022 07:52:45 -0700 (PDT)
-Message-ID: <e48c22e9-3fa6-2d26-4829-77b7fb737da5@gmail.com>
-Date:   Thu, 25 Aug 2022 16:52:44 +0200
+        Thu, 25 Aug 2022 07:57:53 -0700 (PDT)
+Message-ID: <3ed3d73a-1671-708e-7c42-498cca6aaf1d@gmail.com>
+Date:   Thu, 25 Aug 2022 16:57:51 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.1.2
-Subject: Re: [PATCH v6 00/20] Add driver nodes for MT8195 SoC
+Subject: Re: [PATCH v2] dt-bindings: arm: mediatek: mmsys: change compatible
+ for MT8195
 Content-Language: en-US
-To:     Tinghan Shen <tinghan.shen@mediatek.com>,
-        Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lee Jones <lee@kernel.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        MandyJH Liu <mandyjh.liu@mediatek.com>
-Cc:     iommu@lists.linux.dev, linux-mediatek@lists.infradead.org,
+To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     jason-jh.lin@mediatek.com, nancy.lin@mediatek.com,
+        ck.hu@mediatek.com, chunkuang.hu@kernel.org,
+        angelogioacchino.delregno@collabora.com, hsinyi@google.com,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
         Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220811025813.21492-1-tinghan.shen@mediatek.com>
+References: <20220825091448.14008-1-rex-bc.chen@mediatek.com>
 From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220811025813.21492-1-tinghan.shen@mediatek.com>
+In-Reply-To: <20220825091448.14008-1-rex-bc.chen@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -87,93 +83,64 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 11/08/2022 04:57, Tinghan Shen wrote:
-> Add driver nodes for MT8195 SoC.
+On 25/08/2022 11:14, Bo-Chen Chen wrote:
+> From: "Jason-JH.Lin" <jason-jh.lin@mediatek.com>
 > 
+> For previous MediaTek SoCs, such as MT8173, there are 2 display HW
+> pipelines binding to 1 mmsys with the same power domain, the same
+> clock driver and the same mediatek-drm driver.
+> 
+> For MT8195, VDOSYS0 and VDOSYS1 are 2 display HW pipelines binding to
+> 2 different power domains, different clock drivers and different
+> mediatek-drm drivers.
+> 
+> Moreover, Hardware pipeline of VDOSYS0 has these components: COLOR,
+> CCORR, AAL, GAMMA, DITHER. They are related to the PQ (Picture Quality)
+> and they makes VDOSYS0 supports PQ function while they are not
+> including in VDOSYS1.
+> 
+> Hardware pipeline of VDOSYS1 has the component ETHDR (HDR related
+> component). It makes VDOSYS1 supports the HDR function while it's not
+> including in VDOSYS0.
+> 
+> To summarize0:
+> Only VDOSYS0 can support PQ adjustment.
+> Only VDOSYS1 can support HDR adjustment.
+> 
+> Therefore, we need to separate these two different mmsys hardwares to
+> 2 different compatibles for MT8195.
+> 
+> Fixes: 81c5a41d10b9 ("dt-bindings: arm: mediatek: mmsys: add mt8195 SoC binding")
+> Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
+> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> ---
+> Changes for v2:
+> 1. Add hardware difference for VDOSYS0 and VDOSYS1 in commit message.
+> ---
+>   .../devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml       | 3 ++-
+>   1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+> index 6ad023eec193..bfbdd30d2092 100644
+> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+> @@ -31,7 +31,8 @@ properties:
+>                 - mediatek,mt8183-mmsys
+>                 - mediatek,mt8186-mmsys
+>                 - mediatek,mt8192-mmsys
+> -              - mediatek,mt8195-mmsys
+> +              - mediatek,mt8195-vdosys0
 
-Applied 7-20 of this series.
-Patches 3-5 were taken from v4 by accident but AFAICS didn't change.
+Thanks for you patch. As I mentioned on v1, I propose to set 
+mediatek,mt8195-mmsys as fallback for mediatek,mt8195-vdosys0 to not break 
+backwards compatibility.
 
-Thanks,
+Apart from that, the binding change will need some changes to support the new 
+binding. Please provide these together with this patch.
+
+Regards,
 Matthias
 
-> ---
-> v5 -> v6:
->    - rebased on linux-next/next-20220809
->    - update the if/else condition comment in iommu.yaml
->    - some v5 patches are corrupted caused by extra line wrapping
-> 
-> v4 -> v5:
->    - rebased on linux-next/next-20220802
->    - fix indentation in scpsys.yaml
->    - rewrite if/else condition for infra iommu in iommu.yaml
->    - remove unused clock from infra iommu node
-> 
-> v3 -> v4:
->    - remove unit address of power-controller node name from v3 scpsys bindings
->    - v3 patchset 7 and v3 patchset 6 are combined as v4 patchset 6
->    - add more commit descriptions for updating mt81xx scpsys node
-> 
-> v2 -> v3:
->    - fix dsp node name
->    - add descriptions for iommu interrupts
->    - limit the levels of power domain nodes
->    - update maintainer list of power controller yaml
->    - support naming power controller node with unit address
->    - add SoC specific compatible string to scpsys yaml
-> 
-> v1 -> v2:
->    - add new dt-bindings: mfd/mediatek,scpsys.yaml
->      - update compatible string for mt81xx scpsys nodes
->    - apply comments for yaml files: iommu, smi-common, and power-controller
->    - apply comments for dts nodes: power domain, vdosys0.
->    - apply comments for commit message of watchdog, i2c, and smi-common.
->    - add review-by tags
-> 
-> ---
-> Jason-JH.Lin (2):
->    arm64: dts: mt8195: Add gce node
->    arm64: dts: mt8195: Add display node for vdosys0
-> 
-> Tinghan Shen (14):
->    dt-bindings: iommu: mediatek: Increase max interrupt number
->    dt-bindings: memory: mediatek: Update condition for mt8195 smi node
->    dt-bindings: power: mediatek: Refine multiple level power domain nodes
->    dt-bindings: power: mediatek: Support naming power controller node
->      with unit address
->    dt-bindings: power: mediatek: Update maintainer list
->    dt-bindings: power: mediatek: Add bindings for MediaTek SCPSYS
->    arm64: dts: mediatek: Update mt81xx scpsys node to align with
->      dt-bindings
->    arm64: dts: mt8195: Disable watchdog external reset signal
->    arm64: dts: mt8195: Add vdosys and vppsys clock nodes
->    arm64: dts: mt8195: Add power domains controller
->    arm64: dts: mt8195: Add spmi node
->    arm64: dts: mt8195: Add scp node
->    arm64: dts: mt8195: Add audio related nodes
->    arm64: dts: mt8195: Add iommu and smi nodes
-> 
-> Trevor Wu (1):
->    arm64: dts: mt8195: Specify audio reset controller
-> 
-> Tzung-Bi Shih (1):
->    arm64: dts: mt8195: Disable I2C0 node
-> 
-> YC Hung (1):
->    arm64: dts: mt8195: Add adsp node and adsp mailbox nodes
-> 
-> YT Lee (1):
->    arm64: dts: mt8195: Add cpufreq node
-> 
->   .../bindings/iommu/mediatek,iommu.yaml        |   29 +-
->   .../mediatek,smi-common.yaml                  |   11 +-
->   .../bindings/mfd/mediatek,mt8195-scpsys.yaml  |   67 ++
->   .../power/mediatek,power-controller.yaml      |  137 +--
->   arch/arm64/boot/dts/mediatek/mt8167.dtsi      |    3 +-
->   arch/arm64/boot/dts/mediatek/mt8173.dtsi      |    3 +-
->   arch/arm64/boot/dts/mediatek/mt8183.dtsi      |    3 +-
->   arch/arm64/boot/dts/mediatek/mt8192.dtsi      |    3 +-
->   arch/arm64/boot/dts/mediatek/mt8195.dtsi      | 1054 ++++++++++++++++-
->   9 files changed, 1176 insertions(+), 134 deletions(-)
->   create mode 100644 Documentation/devicetree/bindings/mfd/mediatek,mt8195-scpsys.yaml
-> 
+> +              - mediatek,mt8195-vdosys >                 - mediatek,mt8365-mmsys
+>             - const: syscon
+>         - items:
