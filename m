@@ -2,78 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C93525A129A
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 15:45:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D60915A12CB
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 15:58:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235589AbiHYNpK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 09:45:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36100 "EHLO
+        id S239259AbiHYN6z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 09:58:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233743AbiHYNpJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 09:45:09 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D8FB11C2C;
-        Thu, 25 Aug 2022 06:45:07 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id l23so8458579lji.1;
-        Thu, 25 Aug 2022 06:45:07 -0700 (PDT)
+        with ESMTP id S229604AbiHYN6x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 09:58:53 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 996859DFA5
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 06:58:49 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id l23so8497915lji.1
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 06:58:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc;
-        bh=LNQ1P5VfR2hkrO1KVSkVyiPofBvt2GF2rWkw17ZqdPc=;
-        b=Uj3kdoKnIficr7T0mxpriXp3Bhpz+uGwLNnfEOqvw4QJBLkF1DPeQBXj12Rx9AMBHl
-         /9GbNFs8SAt20sraYH0vWtihEXigfs1Jz46PtgxQE3fCnhweauy24KnfVUNMHylbAN7q
-         488xIslKivbNcFC3fszq2p6rOXKAPj4tWhBr4T9LkyA7Vcee4QBsYWXl4wfaEruusuy0
-         HThiG1HWcPt9moxHpq1CsIqfQHvtpTKBVSbOdEOWRkVNbvYr5WzgHwriNyqvWlyeXMxP
-         havgWHIFHhQzEi88LyOBZ9EOyCS05e6rQGAVvgIqIjVh8ICOQT27pErGJzvTJxJy3dW4
-         baHw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=BTlM/cFLD+1CkNW/ZxmFzzxJ0bHJWjGuLz6k/+RSnoE=;
+        b=ZT/KPG2upbkbFl3GYmUPXQ9LhQ4Wl0ciLlKUKAT+nl5Vc8TvOTF2dP0CRUAkVDNa0S
+         OQ3MwzXMS6QHiKl5Ch9iMcUswkIbtyyDWNwj6JTS/pDK7YewdDk25cJNM2mm4IhB6wvF
+         HBfRruXHfP6kcAY1GsVpyg7k0/oVrGiTmBd9e2gpJzIWMo9k/d+z/OXDsb7UpeC5mtUE
+         huE2KTtCO9A31XR1S3pjOIu7ccwO590loDbfhqB0LbXlBjlUJaBp8VwTTnn+0HAOqKgv
+         MBz0Y5HmthYIg6F5CYT1Czc3TbvPu73SoySSAyXQkNdfS13K8FFKf7LTMO5dNBQlps7l
+         MAiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=LNQ1P5VfR2hkrO1KVSkVyiPofBvt2GF2rWkw17ZqdPc=;
-        b=mpzA2x12QaKTXcUcIxAo8ZsuHjpyjV1YhDIuCqBl0/8IengnmckaxpW1LVBjAXZSPF
-         KZSP6KocW6KVqMyePR2uv7mzFjSPdfIzfA80Dh81CQRyq2+NQA1CM+L44Dtf5tuYKmJB
-         VgwQd6f1NfwqDMCSNYcAQeNKiM9nUzGyJeVJAgnvZfOI3bVk2xOQCqKutB3xe5o1CFLC
-         EOcSIjxBR2p1xwuGGK1GWQKKpmP085UjukrXnxUM1kEsLvZs1ehjTXka6FuUspGSXUMq
-         Fvt21+WkJ5P5tWPA/vjqZw5mR0yzmYHFShmtMFmcl4ioxvUdLkAOMWBISAJdtKZo0ENO
-         61nA==
-X-Gm-Message-State: ACgBeo335xD7DC2Ou2rXe6kH3ehRt881SnHQ6hQAwZQ3EuxOIqBRwqj/
-        ep6CzKVAzGUUjI4TLtQSHU+jy7m/7M+8sw==
-X-Google-Smtp-Source: AA6agR6W/G7rOoiqL0vEYBlVB5eoB4lN8B1UfT+c7FAeskxQeqGUO6kguGNrdSz6l9Bzihl67aZmPQ==
-X-Received: by 2002:a05:651c:221e:b0:25f:f069:1c13 with SMTP id y30-20020a05651c221e00b0025ff0691c13mr1200422ljq.390.1661435105696;
-        Thu, 25 Aug 2022 06:45:05 -0700 (PDT)
-Received: from mobilestation ([95.79.140.178])
-        by smtp.gmail.com with ESMTPSA id a12-20020ac25e6c000000b0048af0df1041sm496671lfr.255.2022.08.25.06.45.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Aug 2022 06:45:05 -0700 (PDT)
-Date:   Thu, 25 Aug 2022 16:45:02 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        linux-clk@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH RESEND v10 6/7] clk: baikal-t1: Add DDR/PCIe directly
- controlled resets support
-Message-ID: <20220825134502.alxzlikv7ftir2fi@mobilestation>
-References: <20220822182934.23734-1-Sergey.Semin@baikalelectronics.ru>
- <20220822182934.23734-7-Sergey.Semin@baikalelectronics.ru>
- <c3831c5a-7e10-2112-83e0-4ec2d70001c2@linaro.org>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=BTlM/cFLD+1CkNW/ZxmFzzxJ0bHJWjGuLz6k/+RSnoE=;
+        b=sHkgkCcoha6x+B+9iQctx6rGSov+9opfrTWQsaMoLaej7kbxICQvnHgPFCSmJP1s2W
+         iRboNNPCYh/TXxSRpr4FaeYCVQw6BYcWKt5Kv+3NsLTR8monIiI2TLRioS5GixdhSU3p
+         XXilrAldc0m7U4L4Yt4Epv8y703MCRQgB6D5/Z5dFqDCpurjcdzrN5V0059/rTZwa29c
+         nMneqXj6YM5ApI/oCF6Dlu/4yrHtSrhb/tYf56dswjtb/UYgt/civfZyIHslavyaJEmn
+         +V1+h9oIXyQDS9Mxn10GDfiZBb5Inw3jwT38HLMHQnZPueCAQGVQj6xwPloeYMYMI5eO
+         x+5w==
+X-Gm-Message-State: ACgBeo2DWZkaokJnXPlqIK8zj5XjhATK7Y2iT/R4fs66prFDUlpJlKw4
+        jI2aU5VzJwz+wjjus+QNaCvSDg==
+X-Google-Smtp-Source: AA6agR66QlOHRdbYRDfA/bk3bB2fVwl/UWRqczjm3EFBzKwgFc8k97B9US4HVGX/D76CKnFRwR1BHA==
+X-Received: by 2002:a2e:98da:0:b0:261:d386:e748 with SMTP id s26-20020a2e98da000000b00261d386e748mr1089731ljj.148.1661435927943;
+        Thu, 25 Aug 2022 06:58:47 -0700 (PDT)
+Received: from [192.168.0.71] (82.131.98.15.cable.starman.ee. [82.131.98.15])
+        by smtp.gmail.com with ESMTPSA id s9-20020ac24649000000b0048b03d1ca4asm511051lfo.161.2022.08.25.06.58.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 Aug 2022 06:58:47 -0700 (PDT)
+Message-ID: <d908fd53-1944-6f48-8d8e-4b3f1ec41156@linaro.org>
+Date:   Thu, 25 Aug 2022 16:58:46 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c3831c5a-7e10-2112-83e0-4ec2d70001c2@linaro.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v13 1/5] media: dt-bindings: media: renesas,vsp1: Document
+ RZ/G2L VSPD bindings
+Content-Language: en-US
+To:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        linux-media@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+References: <20220825132144.2619239-1-biju.das.jz@bp.renesas.com>
+ <20220825132144.2619239-2-biju.das.jz@bp.renesas.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220825132144.2619239-2-biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,41 +86,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 23, 2022 at 01:23:32PM +0300, Krzysztof Kozlowski wrote:
-> On 22/08/2022 21:29, Serge Semin wrote:
-> > Aside with a set of the trigger-like resets Baikal-T1 CCU provides two
-> > additional blocks with directly controlled reset signals. In particular it
-> > concerns DDR full and initial resets and various PCIe sub-domains resets.
-> > Let's add the direct reset assertion/de-assertion of the corresponding
-> > flags support into the Baikal-T1 CCU driver then. It will be required at
-> > least for the PCIe platform driver. Obviously the DDR controller isn't
-> > supposed to be fully reset in the kernel, so the corresponding controls
-> > are added just for the sake of the interface implementation completeness.
-> > 
-> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
-> > 
-> > ---
-> > 
-> > Changelog v6:
-> > - Refactor the code to support the linear reset IDs only. (@Philipp)
-> > 
-> > Changelog v7:
-> > - Drop empty line from the sys_rst_info structure initialization block.
-> >   (@Philipp)
-> > ---
-> >  drivers/clk/baikal-t1/ccu-rst.c     | 66 +++++++++++++++++++++++++++++
-> >  drivers/clk/baikal-t1/ccu-rst.h     | 10 +++++
-> >  include/dt-bindings/reset/bt1-ccu.h |  9 ++++
+On 25/08/2022 16:21, Biju Das wrote:
+> Document VSPD found in RZ/G2L SoC. VSPD block is similar to VSP2-D
+> found on R-Car SoC's, but it does not have a version register and
+> it has 3 clocks compared to 1 clock on vsp1 and vsp2.
 > 
-
-> Do not mix drivers and bindings. Bindings always go separately, so this
-> has to be split.
-
-Ok. Sigh...
-
--Sergey
-
+> This patch introduces a new compatible 'renesas,r9a07g044-vsp2' to
+> handle these differences.
 > 
-> Best regards,
-> Krzysztof
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+
+To avoid any annoying bounces, you can replace it with:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
