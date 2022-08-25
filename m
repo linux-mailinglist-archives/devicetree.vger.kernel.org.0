@@ -2,70 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82FC65A0F5F
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 13:36:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDF805A0F93
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 13:51:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235466AbiHYLg6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 07:36:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49758 "EHLO
+        id S241266AbiHYLvH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 07:51:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241663AbiHYLgk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 07:36:40 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4617458DD4
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 04:36:07 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id q7so24136563lfu.5
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 04:36:06 -0700 (PDT)
+        with ESMTP id S241188AbiHYLvG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 07:51:06 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 686B26CD2B
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 04:51:04 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id m3so22180877lfg.10
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 04:51:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=oZwcSMvVsfx9doV0q7DqmNxQNSEHGaC/BV7ytitFLGU=;
-        b=BdGYPXBSS3V3bAhz4zNmfM4vKCiupnBooioav9iBsx4+IpX8WeZo2k59N2aLpbd7ia
-         iw2iZyQQh5vrRFLpAYGkUp1RkoGOXXObTXQZxVXz2o92bV30eN5chDzO0xgnpiy9FUkb
-         jQNIwGCVfoon+wpMvaBzlKyWGG0LVfqoM7P2TVheMhlcSA+gxCD/6fAiWv/IfIh0/vXJ
-         mChmaaPcD0YFLiGLeTBuPi1SjnQHqmVdIxial2oYUQJaSEUa30uZFO3gELAyqTOvm1B0
-         EQ1lyBer/tgmDHiB+92AAyJUjGhBUrKyO8q6MhnCrTO4etn28PJtVA+UIuviXNiR49a5
-         TEkg==
+        bh=QslpZXG7w6+Zu0cuJpcihO4wL0ZcP7qpvE0bMlNnn88=;
+        b=LimlF0C4WC4ny6FZr0Orj0k40ks11cTYtD5QO6JSOvOvUpPD6Tv8nuYA9QS41unyqI
+         0XMpNFV+o0pFIMKNO2PvGCJVjErilKa8Ag04mNQX1YsdE75zQRkjq+c3e31bJUP6G7Qc
+         pTsppBNUcnEnI4wqGFgVUDLx4ztOU3d/reKjqYDsWcQbNGjud8Wws64NEP2d2gkwR6IS
+         qnzTm/627wp16BwyEkoJPPAe42iKhoVzlzs6orQzwu+l20/0VUmk4XRM/TJ5DvuUPfxe
+         R/5bxx4a6QFN3EVbi3xGMdLw4HOo3hENHyQeuPrt+93o/IzoCqTYhXMtadmC0lT4V3rt
+         /EaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=oZwcSMvVsfx9doV0q7DqmNxQNSEHGaC/BV7ytitFLGU=;
-        b=36u/LQ3S8KtUX1U+wQHzrFwbxinJbKl9ujQ5wv0kL4CxHINslWrl2w3/b3CflxzT7a
-         JPYBOAtb6xvIz2fVfFIoP14rGT2endrKmupHbExoBIxY06qoGUTmiT4JbO9xOvYxdIiK
-         aZno9EZwWEMwOq9e7U8HiDbOa/+hq1P/lTjHSnD0tGEizd5/Pgy/44Qh+6f966QjjNjd
-         Zkg6SGf85CI8u1hbxb3VS2nbCEF/NHNhYwyNEwze/ualnV3urTMAVVgP8HLJcfI22Ifn
-         lVxYsR8pOQx47mm/p0iFKkcQYme4SXFLBffDMu4qkfBSfQezlhNusGwFYu77BpvpckSw
-         VBDw==
-X-Gm-Message-State: ACgBeo0Et4z24Dcmp66hou0Igc3dU98Qb2oShvv5+vRCbhnVn+EZpcDs
-        UNW0fTxnp1LKIpE95qT2urJjafv04ro6v5uPo0E=
-X-Google-Smtp-Source: AA6agR6HWa0LiqyvcF2tneJITEdLk6Y94XPwsN0P1Z3BTUsFLertwvgdBvc6gEah4VXzUNeMbrKIZQ==
-X-Received: by 2002:a05:6512:3e03:b0:492:e10a:eb73 with SMTP id i3-20020a0565123e0300b00492e10aeb73mr948559lfv.609.1661427365410;
-        Thu, 25 Aug 2022 04:36:05 -0700 (PDT)
+        bh=QslpZXG7w6+Zu0cuJpcihO4wL0ZcP7qpvE0bMlNnn88=;
+        b=GxDzkQcDwYkhIfD4jmhzo2U/BNbyqUpN2aKOHD/fRjiE3uL5YuHVfVfzVNdYod1h1S
+         wZ0MdDpt2m6D+P3AgVRBMNldTbgLzg6KrOj180iUcpyuOVPN2X09o8QuVZlbova522Zd
+         5WtgbbB5bsGXG174amA3lcdk4oH3hWwXgPDLkBBpg0BLylQK0QXW54beBO9qRnvBX6Zc
+         xs4owuPaYzgQAzL7IY9F1oZHoha9zV7Ja2o38FFIkOpFa5cu1vbtiOFIBheeREeZJvJf
+         ygICnELxLBnYdCAftcBRVqw2zNGDTODngYYUdo7U6W05oxcisuKxiahO6HwLeWmFn+So
+         Iygg==
+X-Gm-Message-State: ACgBeo3XjbRgo2nZC7flC3pKs37HEC5jhy6Y9zEsGr6sCxOjggH65pso
+        h1GOxDs9h9/OzD06tCsD65cnLQ==
+X-Google-Smtp-Source: AA6agR7b6cEUO9K0Iijpg8ftzYlO5oAvjsgLr4FBxw+igjm+vGxsRNZiXOqbvoyl252nS7ROZq43VQ==
+X-Received: by 2002:a19:e04a:0:b0:492:f96f:85b7 with SMTP id g10-20020a19e04a000000b00492f96f85b7mr980042lfj.141.1661428262801;
+        Thu, 25 Aug 2022 04:51:02 -0700 (PDT)
 Received: from [192.168.0.71] (82.131.98.15.cable.starman.ee. [82.131.98.15])
-        by smtp.gmail.com with ESMTPSA id s10-20020a056512202a00b00492ef1ee7b0sm438565lfs.290.2022.08.25.04.36.04
+        by smtp.gmail.com with ESMTPSA id s4-20020a056512314400b0048fdb3efa20sm455083lfi.185.2022.08.25.04.51.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Aug 2022 04:36:04 -0700 (PDT)
-Message-ID: <7772baf3-1e76-9f0a-2e77-cdf852137ae6@linaro.org>
-Date:   Thu, 25 Aug 2022 14:36:03 +0300
+        Thu, 25 Aug 2022 04:51:01 -0700 (PDT)
+Message-ID: <0048ccbe-e8dc-2ce8-a8a7-68a5ad4194ac@linaro.org>
+Date:   Thu, 25 Aug 2022 14:51:00 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v8 2/2] dt-bindings: fpga: document Lattice sysCONFIG FPGA
- manager
+Subject: Re: [PATCH v4 01/10] dt-bindings: display/msm: split qcom,mdss
+ bindings
 Content-Language: en-US
-To:     Ivan Bornyakov <i.bornyakov@metrotek.ru>, mdf@kernel.org,
-        hao.wu@intel.com, yilun.xu@intel.com, trix@redhat.com,
-        dg@emlix.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, system@metrotek.ru
-References: <20220825112433.14583-1-i.bornyakov@metrotek.ru>
- <20220825112433.14583-3-i.bornyakov@metrotek.ru>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+References: <20220825095103.624891-1-dmitry.baryshkov@linaro.org>
+ <20220825095103.624891-2-dmitry.baryshkov@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220825112433.14583-3-i.bornyakov@metrotek.ru>
+In-Reply-To: <20220825095103.624891-2-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,11 +86,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/08/2022 14:24, Ivan Bornyakov wrote:
-> Add Device Tree Binding doc for configuring Lattice ECP5 and MachXO2
-> FPGAs over Slave SPI sysCONFIG interface.
+On 25/08/2022 12:50, Dmitry Baryshkov wrote:
+> Split Mobile Display SubSystem (MDSS) root node bindings to the separate
+> yaml file. Changes to the existing (txt) schema:
+>  - Added optional "vbif_nrt_phys" region used by msm8996
+>  - Made "bus" and "vsync" clocks optional (they are not used by some
+>    platforms)
+>  - Added (optional) "core" clock added recently to the mdss driver
+>  - Added optional resets property referencing MDSS reset
+>  - Defined child nodes pointing to corresponding reference schema.
+>  - Dropped the "lut" clock. It was added to the schema by mistake (it is
+>    a part of mdp4 schema, not the mdss).
 > 
-> Signed-off-by: Ivan Bornyakov <i.bornyakov@metrotek.ru>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
