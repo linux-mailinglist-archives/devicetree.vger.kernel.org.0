@@ -2,160 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B9A55A08A4
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 08:06:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 406EB5A08A7
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 08:11:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233321AbiHYGGs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 02:06:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46676 "EHLO
+        id S233847AbiHYGLj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 02:11:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232750AbiHYGGr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 02:06:47 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 359C59F1B9
-        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 23:06:46 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id l23so7375665lji.1
-        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 23:06:46 -0700 (PDT)
+        with ESMTP id S233120AbiHYGLh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 02:11:37 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2BE29E2D0
+        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 23:11:36 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id m5so16220061lfj.4
+        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 23:11:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=olx/ATZA2V0ZzWbXgDfIkW1Q9WuG7O6K9lzCa3iTnVQ=;
-        b=K7hkRlQGQAhrZwDVl0snou7VU3K79DIdp+9pBegNC7RbACR4+X7EJs3kPP14UHgsyE
-         pxVZVQb1T42Zf6Bddds/dlIvsLtZmSWY7IjO8uY8tTAaoiEIXuO/ijNF6cC4EpIBQ0kb
-         3nwcDAjmh7ns4PtwRfudGTkQqhe4mFeUlSt4t5FoF1ONA5nb9NpSU1B+jmvwyAwN3Wig
-         3qBjzJRG0U4O/p3BR0XWhrcZhZL9P+XW50t44CW53Gmtw3RaRQbMJiXweTTpRcQMhpJr
-         6uXstAIrkvvtxIhT43ZHV0jnuP0ujcBthinSkEz94Nu0J2ocvdibhRNJRDLEQGKyIYYr
-         fuIQ==
+        bh=ummFVBGk0kSJ29azYUV4PMm88NyQ23LzzWJDNGG28Ko=;
+        b=OFtTB6mVUJ7bt1R90wBtz2Y6zQCVFUpiOuFR6YC6KJ3Y15humtnaF40mxEMcSq4Fj3
+         IeH6p4VgBaGRevW24zfAkORoqg6d9zBGd5onw0wtuYYPkQHJQpswVnr9XfDncaoaTd1p
+         ZK2EXKpA3/xUw6k0OJmc5V7raAnoKDI02lHDche9JSt9hLHI0mUD2+QjMezZtQIwVU/V
+         vqyuT8OcjcO+wXnsvv8i7QvZRwTkspGofiAtPDY4AXFeftS1ZNh3UKQ09+/7rp89BaR2
+         su15G0IEwNyOs9QPcqpJs8W5d7Vb6KjH4Oj72OaOfYFKNcVNOvf21ELAEMX/URcT2Fow
+         sYwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=olx/ATZA2V0ZzWbXgDfIkW1Q9WuG7O6K9lzCa3iTnVQ=;
-        b=fgesnPXCdqRXDM6y/r9dhW7f/ZPgrBe4eBDv0wNy1lynwUrFA5kB8jIlM1tfWoXQNZ
-         SegeWuSsa8nIsFIf7Qb5iYWMFBYtarZq8mH7WuoCd0Wk3hO1jvz0wt1FIX6eGOf59Hzv
-         Q8EVJRaqO53LWrfeCcoI7ppmxoy8EKwseTE/IsNST6RIG/B7VmLg4WixWqrsbVUHVppR
-         J/TIA7tQDFuUwaNoc4MzMnlMUXqWuuRbNcLxdadcc0NnSlhYhl7k7lLX4I80OHuKIY7V
-         5JwE8bT/UB821fxK0XEey1m3RnMT3U+nurQUMaZg5+AUisN/k94Z1hmYQnbw9Kr/hvj6
-         TCoQ==
-X-Gm-Message-State: ACgBeo2LnzitcPR6nRpem22xEXG4KNzeE7uKFG00zW7kwc7ExZTeFvx8
-        Khdj37QtfElsxerCdbzsaKz2DA==
-X-Google-Smtp-Source: AA6agR5QBRKXZanSA8gmZ93Z6gOnhbSvg9XlOxZ5KCEOkCJ1wttIow4xsE77cP3aGxYyw1o/Zm4siw==
-X-Received: by 2002:a05:651c:4d1:b0:261:c74b:ca6a with SMTP id e17-20020a05651c04d100b00261c74bca6amr609991lji.294.1661407604483;
-        Wed, 24 Aug 2022 23:06:44 -0700 (PDT)
+        bh=ummFVBGk0kSJ29azYUV4PMm88NyQ23LzzWJDNGG28Ko=;
+        b=rAVvWTFiAVkNv9cdnp/zmhwRLLBrCEjC48PLMtAzEUcAaPGlpeIM/3QjB+zWjIY+KF
+         SmGxvyRDBa5+h1HzQwvTCri3fbv0FkUQZfVk/k0ZgCl/M5WhReLkTrzbiB0WkqyL0R2x
+         oDeQZoQND42v7/Bnxqo4Uu7vHTD+AvJ5GE/M2RODTM+AlUBtZWQLsOdJP2zSsZkpLFv9
+         1NOOwP8/9Ghkkn5BECsW9zvHUNwiQV3IIdj0O464K1OLyiZdXmcBRvtx4+0NVyJviXFx
+         0tNfQTmvotHLTpYtINMVMbQzV2s+OwlMyxphIykmTAACXDPLS8wGWyc4G0Hewsz28yU2
+         vw9g==
+X-Gm-Message-State: ACgBeo1J1/+Ntsv1aBrv6PnnGxRhDZ2PaBS+gRh0IqCCG1S+qpBrBTeS
+        /REgiKVHFdK13HXpZm0NUX++aQ==
+X-Google-Smtp-Source: AA6agR4niBBOUXc8ecge5sCF13gIkJ6mIJGsa30laM0Wak9E8xVD2qZSPleZA9pDzcn970EDeqF0YQ==
+X-Received: by 2002:a05:6512:220e:b0:492:db7f:e0b3 with SMTP id h14-20020a056512220e00b00492db7fe0b3mr618143lfu.142.1661407895137;
+        Wed, 24 Aug 2022 23:11:35 -0700 (PDT)
 Received: from [192.168.0.71] (82.131.98.15.cable.starman.ee. [82.131.98.15])
-        by smtp.gmail.com with ESMTPSA id s16-20020a056512215000b0048b17852938sm312759lfr.162.2022.08.24.23.06.43
+        by smtp.gmail.com with ESMTPSA id t19-20020a195f13000000b004896ed8dce3sm325213lfb.2.2022.08.24.23.11.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Aug 2022 23:06:43 -0700 (PDT)
-Message-ID: <a04f6b56-4bca-cc86-c51f-3a7c6c7ef02a@linaro.org>
-Date:   Thu, 25 Aug 2022 09:06:42 +0300
+        Wed, 24 Aug 2022 23:11:34 -0700 (PDT)
+Message-ID: <3ff08ae9-a4b6-2b74-23cb-69ea1d7e1033@linaro.org>
+Date:   Thu, 25 Aug 2022 09:11:33 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH 16/20] dt-bindings: memory: snps: Detach Zynq DDRC
- controller support
+Subject: Re: [PATCH] dt-bindings: arm: mediatek: mmsys: change compatible for
+ MT8195
 Content-Language: en-US
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Rob Herring <robh@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Borislav Petkov <bp@alien8.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Tony Luck <tony.luck@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Manish Narani <manish.narani@xilinx.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Michail Ivanov <Michail.Ivanov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Punnaiah Choudary Kalluri 
-        <punnaiah.choudary.kalluri@xilinx.com>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        James Morse <james.morse@arm.com>,
-        Robert Richter <rric@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-edac@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220822190730.27277-1-Sergey.Semin@baikalelectronics.ru>
- <20220822190730.27277-17-Sergey.Semin@baikalelectronics.ru>
- <a5a15749-1047-74ea-831e-54d27a6d6cdf@linaro.org>
- <20220823083243.aovlgu22j7uv73qv@mobilestation>
- <166c0198-17c4-3b19-77fe-632d65f17cb0@linaro.org>
- <20220823114516.4mcufkbmzy5gjdcr@mobilestation>
- <6661dcc1-cc93-efbb-b248-0d93f681a1bf@linaro.org>
- <20220824172724.ny2xpryn76h6ftv6@mobilestation>
+To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com
+Cc:     jason-jh.lin@mediatek.com, nancy.lin@mediatek.com,
+        ck.hu@mediatek.com, chunkuang.hu@kernel.org,
+        angelogioacchino.delregno@collabora.com, hsinyi@google.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220825055658.12429-1-rex-bc.chen@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220824172724.ny2xpryn76h6ftv6@mobilestation>
+In-Reply-To: <20220825055658.12429-1-rex-bc.chen@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/08/2022 20:27, Serge Semin wrote:
+On 25/08/2022 08:56, Bo-Chen Chen wrote:
+> From: "Jason-JH.Lin" <jason-jh.lin@mediatek.com>
+> 
+> For previous MediaTek SoCs, such as MT8173, there are 2 display HW
+> pipelines binding to 1 mmsys with the same power domain, the same
+> clock driver and the same mediatek-drm driver.
+> 
+> For MT8195, VDOSYS0 and VDOSYS1 are 2 display HW pipelines binding to
+> 2 different power domains, different clock drivers and different
+> mediatek-drm drivers.
 
-> 
-> Note what Rob said concerned the generic compatible "fallback" case,
-> not the generic compatible string in general. It's ok to have a
-> generic device name defined irrespective to the platform vendor.
-> Moreover it's applicable in case of the DW uMCTL2 DDRC IP-core since
-> first IP-core version is auto-detectable starting from v3.20a and
-> second I managed to implement auto-detection solutions for almost
-> all the DDR/ECC-specific parameters. So I am more inclined to the
-> solution 1) suggested by me in the previous email message:
-> - deprecate "snps,ddrc-3.80a" string.
-> - add new generic "snps,dw-umctl2-ddrc" compatible string.
-> - rename the DT-bindings file.
-
-Sounds ok.
-
-> 
->>
->> Here the Linux driver also binds to generic synopsys compatible, so I
->> would assume it has a meaning and use case on its own.
-> 
-> Please see my messages above regarding the current Synopsys DW uMCTL2
-> EDAC driver implementation.
-> 
->>
->>>
->>> What do you think?
->>>
->>> * Note I've got it you'd prefer the renaming being performed in a
->>> separate patch.
->>
->> The rename could be in the split patch as here, but then I assume the
->> rename part to be detected by git and be a pure rename. However:
->> 1. The git did not mark it as rename (you might need to use custom
->> arguments to -M/-B/-C),
-> 
-> Of course git hasn't detected it as rename, because aside with renaming
-> I've split the bindings up. Splitting these two updates up into two
-> patches will give us what you said. So to speak I suggest the next
-> updates for v2:
-> PATCH X. Detach the Zynq A05 DDRC DT-bindings to a separate schema.
-> PATCH X + 1. Rename the Synopsys DW uMCTL2 DDRC bindings file and add a more
-> descriptive generic compatible string name.
-> 
-> What do you think?
-
-Regardless of the split the rename can be and should be detected by Git.
-That's why we have these options. If it is not detected, you changed too
-much during rename, so it is not a rename anymore. Relatively small
-amount of changes would still be detected.
-
-> 
->> 2. There were also changes in the process (allOf:if:then).
-> 
-> Right. But this is in another patchset. I'll address your notes in there.
-
+I don't see binding to different clock drivers and anyway that's not
+really an argument here. Please focus in description on hardware
+properties, IOW, are devices compatible or different. What is the
+incompatible difference between VDOSYS0 and 1?
 
 Best regards,
 Krzysztof
