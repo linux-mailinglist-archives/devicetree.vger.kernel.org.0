@@ -2,174 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C452C5A0EAC
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 13:06:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 623405A0EBF
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 13:10:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238494AbiHYLG3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 07:06:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44202 "EHLO
+        id S241407AbiHYLK1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 07:10:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233935AbiHYLG2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 07:06:28 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9AD6ACA2E;
-        Thu, 25 Aug 2022 04:06:25 -0700 (PDT)
-X-UUID: 27c4fb813392466e8f016f7ea3aad5e2-20220825
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=01Nmx2oJ4z1kTa8TMnh7NdI8MATbh8efPG1hyIJFvwI=;
-        b=FoPTuMNvW+7fYYjm31X5eymsW1xHriQY9KSU2TR6tKaH8xEGyslosSuPortgsfFJgaFjQ8GHOdbrrICfark5j9Mo2Gwdd8b9msiDsmK3Y3OyZeXAFmuY2rCbd2cXK/mUu7aZMzn+qX4aPL5lPto1cBjjzxAnDo1XF1JmDPl4cXw=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.10,REQID:f33e9ec0-009e-485c-a606-7605ded6ae85,OB:0,L
-        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:28,RULE:Releas
-        e_Ham,ACTION:release,TS:73
-X-CID-INFO: VERSION:1.1.10,REQID:f33e9ec0-009e-485c-a606-7605ded6ae85,OB:0,LOB
-        :0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:28,RULE:Spam_GS9
-        81B3D,ACTION:quarantine,TS:73
-X-CID-META: VersionHash:84eae18,CLOUDID:58c998cf-20bd-4e5e-ace8-00692b7ab380,C
-        OID:271962e93667,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:1,File:nil,Bulk:40|20,QS:nil,BEC:nil,COL:0
-X-UUID: 27c4fb813392466e8f016f7ea3aad5e2-20220825
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 946427092; Thu, 25 Aug 2022 19:06:20 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- MTKMBS09N1.mediatek.inc (172.21.101.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Thu, 25 Aug 2022 19:06:18 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Thu, 25 Aug 2022 19:06:18 +0800
-Message-ID: <781356a88b502661ec23b3869679d80cf682017d.camel@mediatek.com>
-Subject: Re: [PATCH] dt-bindings: arm: mediatek: mmsys: change compatible
- for MT8195
-From:   Bo-Chen Chen <rex-bc.chen@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     Jason-JH Lin =?UTF-8?Q?=28=E6=9E=97=E7=9D=BF=E7=A5=A5=29?= 
-        <Jason-JH.Lin@mediatek.com>,
-        Nancy Lin =?UTF-8?Q?=28=E6=9E=97=E6=AC=A3=E8=9E=A2=29?= 
-        <Nancy.Lin@mediatek.com>,
-        "CK Hu =?UTF-8?Q?=28=E8=83=A1=E4=BF=8A=E5=85=89=29?=" 
-        <ck.hu@mediatek.com>,
-        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        "hsinyi@google.com" <hsinyi@google.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Thu, 25 Aug 2022 19:06:18 +0800
-In-Reply-To: <f7ec45b8-ccd7-4776-0524-269e3188883d@gmail.com>
-References: <20220825055658.12429-1-rex-bc.chen@mediatek.com>
-         <3ff08ae9-a4b6-2b74-23cb-69ea1d7e1033@linaro.org>
-         <d5a00dc88bed1680caa8af895a1140324b9d079e.camel@mediatek.com>
-         <f7ec45b8-ccd7-4776-0524-269e3188883d@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S235527AbiHYLKZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 07:10:25 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 641F999B6B
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 04:10:24 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id bq23so18700982lfb.7
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 04:10:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=TeFvcw/6IdsOusNCl9n7pDR9ukoMvAj+lFQVR4XnUbc=;
+        b=MIpYXDJNY+ShXDSfOa3TQKDK7aCcqReWHSqfgpQCLd4EvtBbg+pH99VyxZB4PLczXX
+         CNlop6VSuGicScuum7IBHT/hV4cx4iEZyr/SPB2qM0lOy4RdWCmOW97a2J5nj2/EcrBr
+         Tpo6yXvb+83a2uZCbobMC4krRKcmvaj2F4JCnd+eFGArXOpvrzX7E6cdNq87PhszvQD5
+         G0LTbDnzc86otQG9Kw3UrYBUvdsTaBg6wrc6B2A6uQ++VBnbxR5pFi78opn0ChmgErU0
+         nmjovPQ8RjugWiaotFnwL8N3zjeUrRNl5Vi8MOauEwHSOWJ5WJiDUiflXaKdSqOrwEsl
+         +D+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=TeFvcw/6IdsOusNCl9n7pDR9ukoMvAj+lFQVR4XnUbc=;
+        b=uo5TtfnbXn3b9/0lVDDQ/+sC4aDoQZXQqwxe8ZJ4HyUShttl45RNsaInL9zXSxY/Yq
+         eYQ/OTkOGYY4/p58xcPc99d4s0dNqPV1TNAoId6cXHOmR0OFOOYi1AnNBBien3vlRzqG
+         nF8hnqNCFNqNsQVJAbSvUBgg2HRvmNokX+cEEQMYgNlWWs0U2CSy6u5UhXsRe12Ie2Mm
+         eqXyXrwN0KBhXL40MveVB+JBV1FGsq/XmQ7TMZkAZccGIGL0GUVPmdqHSR7ouYK6sMLh
+         Qv3mUtCS1MsGOxSu9lSF+IRk0wZzFFj62iqV10UWLJOKvZHVQ2wJTetpwCBAkAaQQ3Fj
+         rqeA==
+X-Gm-Message-State: ACgBeo12Olu0Xw9i9jnF5GfUCnB0o5tvdNzCPLpTG9hTZa9eWiiNfMZg
+        xbK91uXkIQemjsFYXoKWDqBupg==
+X-Google-Smtp-Source: AA6agR40s26AqR4oTbnYAh3g4eHAduWY6waQtKrOGrMB9fZonpVRdeuwigS5+rGWIVurAjNU7bKUIg==
+X-Received: by 2002:ac2:5f57:0:b0:493:774:675c with SMTP id 23-20020ac25f57000000b004930774675cmr1068956lfz.433.1661425822661;
+        Thu, 25 Aug 2022 04:10:22 -0700 (PDT)
+Received: from [192.168.0.71] (82.131.98.15.cable.starman.ee. [82.131.98.15])
+        by smtp.gmail.com with ESMTPSA id s10-20020a05651c048a00b00261e2aab7c2sm494950ljc.58.2022.08.25.04.10.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 Aug 2022 04:10:21 -0700 (PDT)
+Message-ID: <4a2a5eeb-aa65-2b33-e7ff-c1d318a9b76f@linaro.org>
+Date:   Thu, 25 Aug 2022 14:10:20 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_BLOCKED,
-        URIBL_CSS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH] dt-binding: gpio: publish binding IDs under dual license
+Content-Language: en-US
+To:     Etienne Carriere <etienne.carriere@linaro.org>,
+        linux-kernel@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Stephen Warren <swarren@nvidia.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Laxman Dewangan <ldewangan@nvidia.com>,
+        Charles Keepax <ckeepax@opensource.wolfsonmicro.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        =?UTF-8?Q?Nuno_S=c3=a1?= <nuno.sa@analog.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+References: <20220825104505.79718-1-etienne.carriere@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220825104505.79718-1-etienne.carriere@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2022-08-25 at 18:55 +0800, Matthias Brugger wrote:
+On 25/08/2022 13:45, Etienne Carriere wrote:
+> Changes gpio.h DT binding header file to be published under GPLv2 or
+> BSD-3-Clause license terms. This change allows these GPIO generic
+> bindings header file to be used in software components as bootloaders
+> and OSes that are not published under GPLv2 terms.
 > 
-> On 25/08/2022 08:59, Bo-Chen Chen wrote:
-> > On Thu, 2022-08-25 at 14:11 +0800, Krzysztof Kozlowski wrote:
-> > > On 25/08/2022 08:56, Bo-Chen Chen wrote:
-> > > > From: "Jason-JH.Lin" <jason-jh.lin@mediatek.com>
-> > > > 
-> > > > For previous MediaTek SoCs, such as MT8173, there are 2 display
-> > > > HW
-> > > > pipelines binding to 1 mmsys with the same power domain, the
-> > > > same
-> > > > clock driver and the same mediatek-drm driver.
-> > > > 
-> > > > For MT8195, VDOSYS0 and VDOSYS1 are 2 display HW pipelines
-> > > > binding
-> > > > to
-> > > > 2 different power domains, different clock drivers and
-> > > > different
-> > > > mediatek-drm drivers.
+> All contributors to gpio.h file in copy.
 > 
-> drop clock driver example here.
+> Cc: Stephen Warren <swarren@nvidia.com>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Laxman Dewangan <ldewangan@nvidia.com>
+> Cc: Charles Keepax <ckeepax@opensource.wolfsonmicro.com>
+> Cc: Andrew Jeffery <andrew@aj.id.au>
+> Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+> Cc: Nuno Sá <nuno.sa@analog.com>
+> Cc: Bartosz Golaszewski <brgl@bgdev.pl>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 > 
-
-Hello Matthias,
-
-Thanks for your review.
-I am not sure what do you mean.
-Could you explain more detailedly?
-
-> > > 
-> > > I don't see binding to different clock drivers and anyway that's
-> > > not
-> > > really an argument here. Please focus in description on hardware
-> > > properties, IOW, are devices compatible or different. What is the
-> > > incompatible difference between VDOSYS0 and 1?
-> > > 
-> > > Best regards,
-> > > Krzysztof
-> > 
-> > Hello Krzysztof,
-> > 
-> > Thanks for yor review.
-> > 
-> >  From the functions perspective:
-> > 
-> > Hardware pipeline of VDOSYS0 has these components: COLOR, CCORR,
-> > AAL,
-> > GAMMA, DITHER.
-> > They are related to PQ (Picture Quality) functions and they makes
-> > VDOSYS0 supports PQ function while they are not including in
-> > VDOSYS1.
-> > 
-> > Hardware pipeline of VDOSYS1 has the component ETHDR (HDR related
-> > component).
-> > It makes VDOSYS1 supports the HDR function while it's not including
-> > in
-> > VDOSYS0.
-> > 
+> Signed-off-by: Etienne Carriere <etienne.carriere@linaro.org>
+> ---
+>  include/dt-bindings/gpio/gpio.h | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> Please include a description of this in the commit message.
-> 
+> diff --git a/include/dt-bindings/gpio/gpio.h b/include/dt-bindings/gpio/gpio.h
+> index 5566e58196a2..f8df7511b8b4 100644
+> --- a/include/dt-bindings/gpio/gpio.h
+> +++ b/include/dt-bindings/gpio/gpio.h
+> @@ -1,4 +1,4 @@
+> -/* SPDX-License-Identifier: GPL-2.0 */
+> +/* SPDX-License-Identifier: (GPL-2.0 OR BSD-3-Clause) */
 
-Yes, I have sent v2 and add these to commit meesage.
+Why BSD-3 clause? Bindings are expected to be "OR BSD-2-Clause".
 
-https://lore.kernel.org/all/20220825091448.14008-1-rex-bc.chen@mediatek.com/
-
-BRs,
-Bo-chen
-
-> > About mediatek ETHDR, you can refer to this series:
-> > 
-> > 
-https://lore.kernel.org/all/20220819061456.8042-2-nancy.lin@mediatek.com/
-> > 
-> > To summary:
-> > Only VDOSYS0 can support PQ adjustment.
-> > Only VDOSYS1 can support HDR adjustment.
-> > 
-> > Is this description ok for you?
-> > If it is ok, I will put them into commit message in next version.
-> > 
-> > BRs,
-> > Bo-Chen
-> > 
-
+Best regards,
+Krzysztof
