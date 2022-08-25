@@ -2,93 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FCD95A0F0C
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 13:28:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B44E25A0F2B
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 13:33:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240285AbiHYL21 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 07:28:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41438 "EHLO
+        id S241609AbiHYLds (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 07:33:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230523AbiHYL20 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 07:28:26 -0400
-Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21806A8959
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 04:28:24 -0700 (PDT)
-Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-33dba2693d0so39401907b3.12
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 04:28:24 -0700 (PDT)
+        with ESMTP id S241544AbiHYLdp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 07:33:45 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CBF8ADCF9
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 04:33:42 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id m3so22125455lfg.10
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 04:33:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc;
-        bh=kncW2zoYdO5wqDEc9msMKDZoMpdAKqI3NmnBNZDVg9w=;
-        b=lyzW7OeI2jijMo5dhN4JAzMEA+fRYJ+Ow7MqUyIOFCs/b8Xx4J6K15h1JDK5FFTjHG
-         wbHrYlYr95d0t8SXhh/hfUImkzSkW5RtKxM4PD+0C+M2Reuv5PE3IYrkUa/Z+xE2OBeT
-         ZiT4pAO0Yzl0zixJTrnbKC82QTP+rQUgvaay62gNfj6PzRr1cU4gKF5ca5Mpch2s78Xf
-         BgF+SvBwYyG8wNvwJDSG0cCnFC2gQBuLeIfUwjfjXKOctF1OKS2dZ/pzbfbe+A5b5qkW
-         8nPEiOFQLIiOiFW+sAJdlwo8dfr8MPFcEw8DvgCPzfdPZyc+7YK+ICJ6dgcXW5NRwKB8
-         AGzA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=5f5tWhIstVtTSwKpxEt2LvelJrCKuLR3PL365pf4QS4=;
+        b=pVklcWuFNgj8ttdDE9REKfypKLdUtCn9f/ySSF5qEbDM/toFxSWpQc/MYxWQdNJwu2
+         Nlxa70HrmyrR9cDd2ZqKYbbg+kl+13HsP2FwR/+Rx4XiXKvXvRRdSuWC1A0icUhGCx6t
+         dyQS15jw+p54nSqSS7aYeOmv5lRBCq2ZIJl3w9gYWBtDZwVXTrp2kpRCb9dwndNZKsQS
+         d3lPhpObnhcUhkTmK3xq7CFa+pTwJ8rVaSIjbMnWZgnivbeSC14doHc5zQ2dow6ptE9t
+         ZDrOv/Qk+ajcw68RlQ0dUOTHllKHqhtxZw3Ir/BzshJmyMCx1LVCdufFSby1sGYV316g
+         ttPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=to:subject:message-id:date:from:reply-to:mime-version
-         :x-gm-message-state:from:to:cc;
-        bh=kncW2zoYdO5wqDEc9msMKDZoMpdAKqI3NmnBNZDVg9w=;
-        b=PCTjvDiuC/N9NM3m9amTw/Vwv3deHEV85af3SVYSVqH9A9+rlr1LrXdWifcXOzeX4k
-         I4gDKdtV7/w3/LbxXHwbtkrVty2oaD1cxKcsP7VzlRb7M/RXxuf676JtAPjbRk3/mJxE
-         LiGC8PAy1PAErkffwKbC2E3RUavlTsENr62PbO6qNNra4ShNH/WkfyoD/JK+7uIaIVY6
-         6/M4zdBxPxasmQjok6klQzr2duQbPH1eOoqVuH2laD0fio/yz730zFNR9IeKsWmdyb4U
-         FpHoEfMBoCHQaUmBVz+nhX1QM7YkWBx05s7+2CFm/h7ImPsiYGXjhp4w+h6l1NCcZWST
-         9xXA==
-X-Gm-Message-State: ACgBeo00MMjYgLgj94Od8upCOqRZm99tF19E5x4abFGIGJCpdk1BsL0x
-        dFfRT8XGz9zrrJvkSc67ctv8jUYRJttOBFq8PjA=
-X-Google-Smtp-Source: AA6agR62KvAescww8VNqJqGW3hhNZho561jn/FuKE2hdgobAp1qCRfwKpK/zAICB7yKLd+8qSoYqjUhQKpgUo8khSPw=
-X-Received: by 2002:a81:138e:0:b0:333:5acd:9557 with SMTP id
- 136-20020a81138e000000b003335acd9557mr3220695ywt.509.1661426903423; Thu, 25
- Aug 2022 04:28:23 -0700 (PDT)
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=5f5tWhIstVtTSwKpxEt2LvelJrCKuLR3PL365pf4QS4=;
+        b=BJSYMvt7miE6y723aKpMKV/F5T42H6Fd0ZU5d8DRbhizsQVOs76bYRoLBUr445bFT8
+         j0E6305/kA+RloAB9HhxUfh3XksrjMZeTQRIY2iMkvNw1Rf8rPHiEsk5ZZvLBW7grZqu
+         JadPLopfSa1XViDTdEgOl9Ubf+REAsPXGPy8dPDFeyWD1YSmo8yDoEfpR3BmP5iQAOhO
+         2zkUcGviTUNLnA3lL8mQqmjicr8aJJkqwDOTbSeqt+pPELMQSYTlmATHqOCzQPcCT0Fe
+         hzH9SJrOGRwO6lZYI3PUM4X+sssxPkCR00p2UD3/GI/6TPY6A7wKKYI3uT9X2uIEH6wt
+         8QTQ==
+X-Gm-Message-State: ACgBeo15ukMKHnkhJjgCDhXpT+rRF/0KF4pVcPgor+/V4Gt6anOIDlyk
+        sq8FscH2+lXHL+qBK/qk202Mdg==
+X-Google-Smtp-Source: AA6agR5Cwlt1QnJQbh16uHaNZuyEAqyKIdLBAYRJgSNUyF+xnOQylMkrtQ8mBl4L0+NErXHiMNgWew==
+X-Received: by 2002:a05:6512:3905:b0:493:80a:46ba with SMTP id a5-20020a056512390500b00493080a46bamr956006lfu.69.1661427220406;
+        Thu, 25 Aug 2022 04:33:40 -0700 (PDT)
+Received: from krzk-bin.starman.ee (82.131.98.15.cable.starman.ee. [82.131.98.15])
+        by smtp.gmail.com with ESMTPSA id e18-20020a195012000000b0048b0aa2f87csm446764lfb.181.2022.08.25.04.33.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Aug 2022 04:33:39 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Vladimir Zapolskiy <vz@mleia.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, Inki Dae <inki.dae@samsung.com>,
+        Seung-Woo Kim <sw0312.kim@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Andre Przywara <andre.przywara@arm.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Marek Vasut <marex@denx.de>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-ide@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org, linux-crypto@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, linux-tegra@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/5] dt-bindings: socionext,uniphier-system-cache: drop minItems equal to maxItems
+Date:   Thu, 25 Aug 2022 14:33:30 +0300
+Message-Id: <20220825113334.196908-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Received: by 2002:a05:7108:4407:0:0:0:0 with HTTP; Thu, 25 Aug 2022 04:28:22
- -0700 (PDT)
-Reply-To: fionahill.usa@outlook.com
-From:   Fiona Hill <ahmadangela32@gmail.com>
-Date:   Thu, 25 Aug 2022 04:28:22 -0700
-Message-ID: <CA+d=AUYJuFMOyBf_wE-ysD9nVv2Xr8hkKYjf_4Wry-EhybwTqw@mail.gmail.com>
-Subject: 
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: Yes, score=5.0 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,FREEMAIL_REPLYTO,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNDISC_FREEM autolearn=no
-        autolearn_force=no version=3.4.6
-X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-        *      https://www.dnswl.org/, no trust
-        *      [2607:f8b0:4864:20:0:0:0:112f listed in]
-        [list.dnswl.org]
-        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-        *      [score: 0.5001]
-        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-        *      provider
-        *      [ahmadangela32[at]gmail.com]
-        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
-        *       in digit
-        *      [ahmadangela32[at]gmail.com]
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
-        *  3.2 UNDISC_FREEM Undisclosed recipients + freemail reply-to
-        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
-        *      different freemails
-X-Spam-Level: *****
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+minItems, if missing, are implicitly equal to maxItems, so drop
+redundant piece to reduce size of code.
+
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../bindings/arm/socionext/socionext,uniphier-system-cache.yaml  | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/arm/socionext/socionext,uniphier-system-cache.yaml b/Documentation/devicetree/bindings/arm/socionext/socionext,uniphier-system-cache.yaml
+index 7ca5375f278f..6096c082d56d 100644
+--- a/Documentation/devicetree/bindings/arm/socionext/socionext,uniphier-system-cache.yaml
++++ b/Documentation/devicetree/bindings/arm/socionext/socionext,uniphier-system-cache.yaml
+@@ -22,7 +22,6 @@ properties:
+     description: |
+       should contain 3 regions: control register, revision register,
+       operation register, in this order.
+-    minItems: 3
+     maxItems: 3
+ 
+   interrupts:
 -- 
- Did you receive my message?
+2.34.1
+
