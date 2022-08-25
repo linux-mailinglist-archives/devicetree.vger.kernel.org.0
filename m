@@ -2,53 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 569C65A191A
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 20:52:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 148555A1917
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 20:51:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243536AbiHYSvy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 14:51:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53872 "EHLO
+        id S243630AbiHYSvk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 14:51:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243539AbiHYSvg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 14:51:36 -0400
-Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78D41BD17C;
-        Thu, 25 Aug 2022 11:51:28 -0700 (PDT)
-Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-11c4d7d4683so26049965fac.8;
-        Thu, 25 Aug 2022 11:51:27 -0700 (PDT)
+        with ESMTP id S243511AbiHYSve (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 14:51:34 -0400
+Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62AAEBB028
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 11:51:22 -0700 (PDT)
+Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-f2a4c51c45so26051063fac.9
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 11:51:22 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=message-id:date:subject:references:in-reply-to:cc:to:from
          :x-gm-message-state:from:to:cc;
-        bh=EBafd0kuWiSBNItH915K6mPKFUjNeQe/adJ0bJpSIs4=;
-        b=7vPCeKOFBqvAmXdOOTYkzRsoXLZxfcbL9PyNsj+mhF5o/YJfdUd2CbvJg/uHi3mG5D
-         zrzbme+pOkcQ6bzf547WdWv2yHyKzKYVD72imXlFyN82tX68bnfJFU3V62qEwpB6JlRy
-         YDNR+m9V9Omn9poo539zxtHmeIkbo+DrvtBePujSmGIMi4oXJEZXfUuRYm1TBSZFrug8
-         Wm2b/nPbS0f+he53hi1RaOuoc0YaL8mJdvCbuOx+0nCfppKhsxYtYJiL3PNIf3t07B4/
-         B2byiasoymwYxgqoEnTlQSul9FMPEdF816RDiZ8qyqZlVmfUh1mg/UNcP7r6u9Wi1vO1
-         JGOA==
-X-Gm-Message-State: ACgBeo2OJdHCQe7B8+8P3tKHCabpbhoRR3VyqFwLzAqOTBLPchsviTVw
-        Isz12vt0+j3fb+caGU0svA==
-X-Google-Smtp-Source: AA6agR5R2gPKUY6/Z6J+Oled6GhByMV7AQAwU8460e49jcL2j2hGAoM5AdWskXfqWCD2RHavojwzuQ==
-X-Received: by 2002:a05:6870:249c:b0:10c:7f4d:71ab with SMTP id s28-20020a056870249c00b0010c7f4d71abmr193954oaq.15.1661453486986;
-        Thu, 25 Aug 2022 11:51:26 -0700 (PDT)
+        bh=X/cVd+KOZMnW5AEd2SXFiu5+u+UnvgqvwY4tvjFkN5w=;
+        b=dTfNqdxvUqlMdz7MKIe7Lfl5on34EW55OYVFt9aactzpTNKk6clYSvkfeUCWjyiG07
+         IRQvDhq2lHxxgfA4YQ7xa/LXI4bguaxukdMoeG/sDEAS9LS9fcKBK/0UIzjFNck90+ZX
+         t5fwLJBlcjMqE0fsmbbmyNaKEr+TTV0k5ECvrrwhWoDhf5SRUXpdbBneve1VHfvRFuo6
+         rYdl7ChTVXUy/mq0+ssZU+4APiGhtZ+HOzOxj7eCliPVDWpdktCvavKER1tbZniO1GRt
+         4o8jPBOBcVaA/spCzDy+YcoGa9fUTGsA499KjY3o3yb/SEzTXFXY0jjP7lQ1eDPyFU15
+         JsXA==
+X-Gm-Message-State: ACgBeo29s6UXcoYpeFE08yoCwkSWnoj9eT5WVhBK32TElY5IDuMubwom
+        9BuaCR4upNb1xn5SBmsFJA==
+X-Google-Smtp-Source: AA6agR5at6NFTKiUyIw1Kb0xcXmMgTMvsyGSZx2gNvzl8dWpbxREgES9FDOSuEVhyNfyXQj8Dhkkag==
+X-Received: by 2002:a05:6870:b148:b0:112:cfe1:5062 with SMTP id a8-20020a056870b14800b00112cfe15062mr227632oal.297.1661453481259;
+        Thu, 25 Aug 2022 11:51:21 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id i22-20020a056870891600b0011e37fb5493sm416060oao.30.2022.08.25.11.51.25
+        by smtp.gmail.com with ESMTPSA id f20-20020a9d0394000000b0063736db0ae9sm5573904otf.15.2022.08.25.11.51.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Aug 2022 11:51:26 -0700 (PDT)
-Received: (nullmailer pid 1486942 invoked by uid 1000);
+        Thu, 25 Aug 2022 11:51:20 -0700 (PDT)
+Received: (nullmailer pid 1486937 invoked by uid 1000);
         Thu, 25 Aug 2022 18:51:19 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Johannes Zink <j.zink@pengutronix.de>
-Cc:     linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
-        Moritz Fischer <mdf@kernel.org>, kernel@pengutronix.de,
-        Wu Hao <hao.wu@intel.com>, Rob Herring <robh+dt@kernel.org>,
-        Xu Yilun <yilun.xu@intel.com>
-In-Reply-To: <20220825141343.1375690-4-j.zink@pengutronix.de>
-References: <20220825141343.1375690-1-j.zink@pengutronix.de> <20220825141343.1375690-4-j.zink@pengutronix.de>
-Subject: Re: [PATCH 03/16] dt-bindings: fpga: machxo2-slave: add pin for program sequence init
+To:     Daniel Mack <daniel@zonque.org>
+Cc:     ryan.lee.analog@gmail.com, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, alsa-devel@alsa-project.org, broonie@kernel.org
+In-Reply-To: <20220825140412.2297211-1-daniel@zonque.org>
+References: <20220825140412.2297211-1-daniel@zonque.org>
+Subject: Re: [PATCH v2 1/2] ASoC: dt-bindings: max98396: Document data monitor properties
 Date:   Thu, 25 Aug 2022 13:51:19 -0500
-Message-Id: <1661453479.997595.1486941.nullmailer@robh.at.kernel.org>
+Message-Id: <1661453479.979911.1486936.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -60,14 +58,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 25 Aug 2022 16:13:30 +0200, Johannes Zink wrote:
-> This commit adds a pin which initiates the FPGA programming sequence
-> once pulsed low.
+On Thu, 25 Aug 2022 16:04:11 +0200, Daniel Mack wrote:
+> This device features a data monitor that puts the device in software reset
+> upon a configurable set of events.
 > 
-> Signed-off-by: Johannes Zink <j.zink@pengutronix.de>
+> Signed-off-by: Daniel Mack <daniel@zonque.org>
 > ---
->  .../devicetree/bindings/fpga/lattice,machxo2-slave.yaml    | 7 +++++++
->  1 file changed, 7 insertions(+)
+> v1 -> v2: fix a typo and remove a stray blank line
+> 
+>  .../bindings/sound/adi,max98396.yaml          | 37 +++++++++++++++++++
+>  1 file changed, 37 insertions(+)
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -76,11 +76,14 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/fpga/lattice,machxo2-slave.example.dts:28.51-52 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:384: Documentation/devicetree/bindings/fpga/lattice,machxo2-slave.example.dtb] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1420: dt_binding_check] Error 2
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/adi,max98396.yaml: properties:adi,dmon-stuck-threshold-bits: '$ref' should not be valid under {'const': '$ref'}
+	hint: Standard unit suffix properties don't need a type $ref
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/adi,max98396.yaml: properties:adi,dmon-magnitude-threshold-bits: '$ref' should not be valid under {'const': '$ref'}
+	hint: Standard unit suffix properties don't need a type $ref
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/adi,max98396.yaml: ignoring, error in schema: properties: adi,dmon-stuck-threshold-bits
+Documentation/devicetree/bindings/sound/adi,max98396.example.dtb:0:0: /example-0/i2c/amplifier@39: failed to match any schema with compatible: ['adi,max98396']
 
 doc reference errors (make refcheckdocs):
 
