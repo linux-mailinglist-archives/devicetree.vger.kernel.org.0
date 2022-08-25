@@ -2,87 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 01F0A5A0FD4
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 14:02:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87D175A0FDE
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 14:03:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239754AbiHYMCj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 08:02:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40896 "EHLO
+        id S241077AbiHYMDX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 08:03:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240419AbiHYMCi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 08:02:38 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32AA6923FC
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 05:02:36 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id u24so13627033lji.0
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 05:02:36 -0700 (PDT)
+        with ESMTP id S240846AbiHYMDS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 08:03:18 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58E9596FC6
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 05:03:17 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id d8so15530851lfq.0
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 05:03:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=o6731Xg3uO5AI5x1e5LBWQaIC7OQDL55NoHUUcojApI=;
-        b=P/0dLvrSbYllUSKNvLcVaTp/7rEj9xNoOXS9wBI5Pz3SHQCDQECfMJpzwQA2h8/QX8
-         rndTmAuJxXOT4pF861scjFqx4+O9kfdK6sofBbQSun3MwD/bWYzOhUGqSI6by6n2Khpn
-         HFT44xpkDWe+xGpDMu/Cx8/77trn3yIRZc06MTeaghRZXgzCaMM1RpwMkte53I+fwKYA
-         XuJdMt2PPS0VN1lwevlr3f5eG88M7srNyMO9aZYVoRYLx7fYe2lBbF0cim+jK9hctwYB
-         ZXuDcxJ1oCiJ5sxZFGvuXBoOPVnp5yMGYxgLJ4DEEeWusz3Z6pcFaA2dPatQS1Du19Xg
-         NVtA==
+        bh=/aAGWIDmltGqXOS1ncXoIYBBvj6+VUj5xGoOzvsU0MA=;
+        b=WdUenM7VDQ0dUtNevmd85i9vmMaUSqNHQU4niT4Ub0JHAgEIrUdbwe9jod52jKPcLZ
+         gu67LhhSXPaScJLsv3RoowAZksCBs3zCpf9jcGgkIFT5oBgyN25F/NlOaBRkgnNyVGNR
+         +iyjhGFeReL/ofScX74LsFDV+4RKeyjpgIv+YXaWm1WI82ZNivhiU2PNYA/bPV1PxfmI
+         igK7n+OJAPtUNlUDmZmG4JOSVXTOC11Wf+QNEodulOeyJbqfTydeuuvC+7eBjzdo7Ajy
+         OZpwemzf8gfGavcsUHOo9THEM1Q6PrkRSIISVE8QtpaujETvyFl39yR6DA0aPRX4sBcq
+         ddBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=o6731Xg3uO5AI5x1e5LBWQaIC7OQDL55NoHUUcojApI=;
-        b=ZUwZLD0z6BhFZKFRF+gq7G8cJEJb6GJtFaQf5Ak/i/K0+0p6oDrX4xFzfML+rb855o
-         keB7X/+POYXCFgn2ox3KnH0dVpNbIOWiRJaxKYCUMYYVVVFPk/qr3j4t1xJtdw38au6O
-         O3HpV8uHxhmfrD6ZchW43AE05zZKTwWCbljRIPx/VyiVbInUXAC9VO9OhGzSBQ9d/oxg
-         bM76OQsjHAsj3K7BcczK/VrLdJI0BuwOpQ1xxmNLJUSpe+biaTHFPgeXzNKN8DPG/Uoc
-         SoNNT0HvhJU7grtYq205c+nAt9joNbzuhxPX5pfCQzN7aUPvRD0lt3xeTP/R1WYCWREz
-         RVCw==
-X-Gm-Message-State: ACgBeo2knw2q2vRYJno30j/C1vvj01k0GlROjTlgM25T4FpdGIQ1Q2sp
-        TcAd1YbwsuBfU33aKLkA0E2NVN8TEhfBohKhqW4=
-X-Google-Smtp-Source: AA6agR55GD5od73dv0g9JiBl5UZUqTJtQdGJesoeHaC6tznWWEUcvvev13E7N+dsDBjpXhVKDLAZxw==
-X-Received: by 2002:a2e:9515:0:b0:261:b705:9909 with SMTP id f21-20020a2e9515000000b00261b7059909mr980260ljh.508.1661428954598;
-        Thu, 25 Aug 2022 05:02:34 -0700 (PDT)
+        bh=/aAGWIDmltGqXOS1ncXoIYBBvj6+VUj5xGoOzvsU0MA=;
+        b=xkbp8lvlt0XvdCuP6g4x7dSj9wam30fcmbcwWmuIXmll51hg8Ws/y8CREyd+Mq1cam
+         9LhgBqSceC2Hx0w5U8Yvz4YfxG9bWcFia2xJcWZoxd8G4xBFBM/01HgVNy8/bT+HJxsP
+         tiIR1BaTqzYNPK0OQcHqEhNg2weWeV0Azamj+CumXYOOkiqoTDpNINbonZs0ljInFb5T
+         YVzJoGZlvOXZ3PT6YPscLA+nLZjssnrYmBrQIU1zSsHx/yEebRvDbdInqwl2nWKbYqJg
+         hxU0/mg05bYewQwVLxZWtUfNXgqx+yN2Upe/th4l8Qb21OEjRLOqgi9yh11T5lFq/MVZ
+         1UcA==
+X-Gm-Message-State: ACgBeo22PPc+pOCPU7XYDU3qG7GgbNv81AqMPnfW3fCYuha6atw+ieBh
+        cJmVMbua4RuCnDmQXHEJY0tmTA==
+X-Google-Smtp-Source: AA6agR7l941MLJuNHsUITWiNqmNN3tuVDbhPikxJIUstI7F8Dic+VWnl0D5cWHe0KuARV/pswRivug==
+X-Received: by 2002:a05:6512:3983:b0:492:dcac:331 with SMTP id j3-20020a056512398300b00492dcac0331mr1004792lfu.385.1661428995616;
+        Thu, 25 Aug 2022 05:03:15 -0700 (PDT)
 Received: from [192.168.0.71] (82.131.98.15.cable.starman.ee. [82.131.98.15])
-        by smtp.gmail.com with ESMTPSA id g9-20020a19ac09000000b0048aef1abb06sm471094lfc.69.2022.08.25.05.02.32
+        by smtp.gmail.com with ESMTPSA id x10-20020a056512078a00b0048a757d1303sm455979lfr.217.2022.08.25.05.03.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Aug 2022 05:02:33 -0700 (PDT)
-Message-ID: <debf4f0f-7d94-4fe3-c1a4-9e986e113c9d@linaro.org>
-Date:   Thu, 25 Aug 2022 15:02:31 +0300
+        Thu, 25 Aug 2022 05:03:14 -0700 (PDT)
+Message-ID: <cb6c855c-2931-b957-8cab-5df33de4792e@linaro.org>
+Date:   Thu, 25 Aug 2022 15:03:12 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH] arm64: dts: meson-s4: include meson-s4-gpio.h
+Subject: Re: [PATCH] dt-bindings: usb: Add missing
+ (unevaluated|additional)Properties on child nodes
 Content-Language: en-US
-To:     Huqiang Qin <huqiang.qin@amlogic.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, narmstrong@baylibre.com,
-        khilman@baylibre.com, jbrunet@baylibre.com,
-        martin.blumenstingl@googlemail.com
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220825115154.2150323-1-huqiang.qin@amlogic.com>
+To:     Rob Herring <robh@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Xin Ji <xji@analogixsemi.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Amelie Delaunay <amelie.delaunay@foss.st.com>,
+        Samuel Holland <samuel@sholland.org>
+Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org
+References: <20220823145649.3118479-9-robh@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220825115154.2150323-1-huqiang.qin@amlogic.com>
+In-Reply-To: <20220823145649.3118479-9-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/08/2022 14:51, Huqiang Qin wrote:
-> Add the included meson-s4-gpio.h in the meson-s4.dtsi
+On 23/08/2022 17:56, Rob Herring wrote:
+> In order to ensure only documented properties are present, node schemas
+> must have unevaluatedProperties or additionalProperties set to false
+> (typically).
 > 
 
-Why? We can see what you did here, but commit msg should explain why you
-do it...
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 Best regards,
 Krzysztof
