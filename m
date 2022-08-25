@@ -2,73 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 897F05A1349
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 16:18:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E60415A1340
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 16:17:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240358AbiHYORL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 10:17:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58464 "EHLO
+        id S241303AbiHYORV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 10:17:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240615AbiHYORJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 10:17:09 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B8CFA6C30;
-        Thu, 25 Aug 2022 07:17:08 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id D5810B82958;
-        Thu, 25 Aug 2022 14:17:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C7BAC433C1;
-        Thu, 25 Aug 2022 14:17:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661437025;
-        bh=RGbu5Vn25p9iZKa8664W6/TF1O6hzGjkkQucuvSbfLo=;
-        h=From:To:Cc:Subject:Date:From;
-        b=aDXxAMAE8v/tgx5BG+irGyQCIdwGo01vX0Ui6jzDhqxQ8HRDJirP25bn0CtVHbAmz
-         Wz0kwLC2mkMymod31AYmjvD1XEcuapkQV71cII5j80kUhFmrQsRHwa+eQlDirUVvsq
-         MJ6fbnFEWolvpM9tudSjR4xeWupvtq8hw7ON+Z6hhM6/qtovmidTwP/rVq1XMdvtkQ
-         b8KguTh9DMu3bOjTb4R/Mzkt/1Ag7fpzpIrEDmcZ3x7w4YhPFPA0nmuE1Keumztb5w
-         9FuGj/EwyOHr2XzPjM0/BwUsNN51sf9WRNB/MHMZlKLRF06Jc5B3+0vkSqHOgYlLoS
-         Hka9PfLlV+imA==
-From:   matthias.bgg@kernel.org
-To:     lee@kernel.org, robh+dt@kernel.org
-Cc:     krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        mandyjh.liu@mediatek.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Matthias Brugger <mbrugger@suse.com>
-Subject: [PATCH] dt-bindings: mfd: Rename mediatek,mt8195-scpsys.yaml
-Date:   Thu, 25 Aug 2022 16:16:56 +0200
-Message-Id: <20220825141656.15747-1-matthias.bgg@kernel.org>
-X-Mailer: git-send-email 2.37.2
+        with ESMTP id S241229AbiHYORQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 10:17:16 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9537DA1A72
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 07:17:13 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id bt10so15460276lfb.1
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 07:17:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=eKQ1RbXwOC6zGcrhn3vCU5z+POMesdAR7pXy72wDAkk=;
+        b=uumy1Ow7CgrfcOdwchTvHJTMp93riJC/m2ZjeqySaoGDiNTq4GGSzMqb0Pl9Ac6peB
+         syOauHwQeSSQXfzI6K6ZLvQLlBKgGZYD2b6FDfw6TnY+MQ3r8KlSqYxIHGz3CHW/R0Qv
+         cQ4seYeHcs92Tt79h7W6RspjpHkr2cNrOLz7KWR7hDls67MIRsRUYzfkWIrFFypYstUu
+         QlqIAf1LEo0IsDAH1CYOOW3qubd2sRjWxGXxL5MQoRU0q7wjPRiGDkSotTfDPztFE2pF
+         OdplW31SoOVU7fRHUDHpGoZXhrGEdY6L/i8q80E9st+Z0d0D8kvZ48oLyjqBC69pvXc3
+         1tfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=eKQ1RbXwOC6zGcrhn3vCU5z+POMesdAR7pXy72wDAkk=;
+        b=RgKqOb4iFdLXonkOONdHchSaTzwdbOTyceyyDij6bEAMfGwJy57Te+vt5bN3bbZkE3
+         CsGcsAINrHeEo44zmpg42n9pM+0S6gxZ5UKSvXQkD0IVsTgXX4McDnJQn5Ypw59MmE4i
+         t760cev/Vhs0b+i77dvPXCsVOGKgfcyCdyqsybZ9Hogze1I/MhFQlynDhUO9A4oI0Vuo
+         Rf1AFoWz7hqRyDciI9qWu5Ha948vvWV6kxOIW+4ItTWL6RD+uNktu6s637KGHGudza+4
+         sR2bxnPP5SgHiA/erMkTquvhOqm8O4JGx+3GX/Uh6iHyQg2RBJ6fRw7vOdCFA6NvnYgB
+         uCxw==
+X-Gm-Message-State: ACgBeo2smfOfEjPdJIVpmdRaSVX61nC0c8quvEmSeb36SdRvEAjzMof1
+        DoeRbI9yHCdq8/1Ya3P+EOY+FQ==
+X-Google-Smtp-Source: AA6agR52SKThKo1JHDLhl+xCQIf0ysmSGmllYxgUw/FdXSKfpY66PWC8EUPs7oPEUWcECuqLRsxwMQ==
+X-Received: by 2002:a05:6512:23a1:b0:48a:fde8:ce8c with SMTP id c33-20020a05651223a100b0048afde8ce8cmr1312907lfv.393.1661437031860;
+        Thu, 25 Aug 2022 07:17:11 -0700 (PDT)
+Received: from [192.168.0.71] (82.131.98.15.cable.starman.ee. [82.131.98.15])
+        by smtp.gmail.com with ESMTPSA id r1-20020a2e8e21000000b00261a8e56fe4sm593436ljk.55.2022.08.25.07.17.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 Aug 2022 07:17:11 -0700 (PDT)
+Message-ID: <f64f493b-aad9-1811-3a9e-790f7613b99b@linaro.org>
+Date:   Thu, 25 Aug 2022 17:17:10 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v2] hwmon: tps23861: add support for initializing the chip
+Content-Language: en-US
+To:     =?UTF-8?Q?Andreas_B=c3=b6hler?= <dev@aboehler.at>
+Cc:     Robert Marko <robert.marko@sartura.hr>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220825141043.75354-1-dev@aboehler.at>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220825141043.75354-1-dev@aboehler.at>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Matthias Brugger <mbrugger@suse.com>
+On 25/08/2022 17:10, Andreas Böhler wrote:
+> The tps23861 driver does not initialize the chip and relies on it being
+> in auto-mode by default. On some devices, these controllers default to
+> OFF-Mode and hence cannot be used at all.
+> 
+> This brings minimal support for initializing the controller in a user-
+> defined mode.
+> 
+> Tested on a TP-Link TL-SG2452P with 12x TI TPS23861 controllers.
+> 
+> Signed-off-by: Andreas Böhler <dev@aboehler.at>
+> ---
+>  .../bindings/hwmon/ti,tps23861.yaml           | 76 +++++++++++++++++
 
-The file describes the scpsys node for all SoCs and not only the mt8195.
-Rename it to reflect this fact.
+Please run scripts/checkpatch.pl and fix the warnings.
 
-Signed-off-by: Matthias Brugger <mbrugger@suse.com>
----
- .../mfd/{mediatek,mt8195-scpsys.yaml => mediatek,scpsys.yaml}     | 0
- 1 file changed, 0 insertions(+), 0 deletions(-)
- rename Documentation/devicetree/bindings/mfd/{mediatek,mt8195-scpsys.yaml => mediatek,scpsys.yaml} (100%)
-
-diff --git a/Documentation/devicetree/bindings/mfd/mediatek,mt8195-scpsys.yaml b/Documentation/devicetree/bindings/mfd/mediatek,scpsys.yaml
-similarity index 100%
-rename from Documentation/devicetree/bindings/mfd/mediatek,mt8195-scpsys.yaml
-rename to Documentation/devicetree/bindings/mfd/mediatek,scpsys.yaml
--- 
-2.37.2
-
+Best regards,
+Krzysztof
