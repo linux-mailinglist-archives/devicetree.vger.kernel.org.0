@@ -2,147 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59DA25A0E0C
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 12:41:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 655EF5A0E42
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 12:46:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234809AbiHYKlK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 06:41:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55764 "EHLO
+        id S241288AbiHYKqA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 06:46:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241045AbiHYKlJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 06:41:09 -0400
-Received: from relay12.mail.gandi.net (relay12.mail.gandi.net [IPv6:2001:4b98:dc4:8::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96403A98E0;
-        Thu, 25 Aug 2022 03:41:04 -0700 (PDT)
-Received: (Authenticated sender: paul.kocialkowski@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 510FC20000D;
-        Thu, 25 Aug 2022 10:41:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1661424062;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=pUD02sVmbLJE2+6sVaN3pLzxdMGTdYLqIRnLS0WJnRI=;
-        b=nHn+mAjxrOh0cxofo5b1LCgvuIQeHEE61oHF+f7T2b7K7sGJ3y5U6ZMbzD4vkDv9Yj2nAM
-        jj0aP8e+7FohVNevoe8+Hws3EcC29Qxqzi6TycGRujaypPBSxcMMtGRkeLnPvwyjqDTlR9
-        G2vCJIjbN+HEduetWXSxEGi9GfzxsQLPzfLl5VmGm0inqyIkW6FOdtlsgF0pxYbz1BC/CM
-        GoMkgmyCyexMXT/AlQSPQ2BDmJg6yNDDx1fVQrPd5BP7ZnuFCzcclVAK2LDeronYjeOxSg
-        pM7vHEl6cZa3aF36MBvtYETDoKR1cxG1KXDl4VT/kMjVawra13+8NRMQfcy9+A==
-Date:   Thu, 25 Aug 2022 12:41:00 +0200
-From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH 4/8] dt-bindings: sun6i-a31-mipi-dphy: Add the A100 DPHY
- variant
-Message-ID: <YwdRvBSGDNIUOMnH@aptenodytes>
-References: <20220812075603.59375-1-samuel@sholland.org>
- <20220812075603.59375-5-samuel@sholland.org>
+        with ESMTP id S241289AbiHYKpl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 06:45:41 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66C851DA7B
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 03:45:29 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id lx1so2274475ejb.12
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 03:45:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=B74MyhI1tqmo0N64Inyl8esUuDcVbj2gBgBeF+qJP5E=;
+        b=PZHIXpE/xPX9CT5ZHM4d+9cCdZN89cD4SQNr8YhLlIMieRHKGykVgI+jDOMzDRroGc
+         AlfdL1r2it8Bf5eh/N0PkHr697t49G8rxXovx/WzfdLh0mIrWqJZiAlyzGuOl4Bw5r/Y
+         /7mvd/ZQEx/Zi7eSclX7RKQ9uxLgBYQkqNZc1ONafRO1ZhouYsLVUoSWOZlCHBrOa+gM
+         nQV4wqFq2t0UhN9+2xUcVJdEkXgi/2lZXF2Wppr1x9MgzzrNTjIZlzh9BP24cHbiB4BK
+         mB+n6e1+PFzfrafCTG4+5BiJuKuz2+0mGNkIaJtdou1Y9m71b/lTLktdnsTsqxQOwUmo
+         dhbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=B74MyhI1tqmo0N64Inyl8esUuDcVbj2gBgBeF+qJP5E=;
+        b=kYMN1KTmLxRKVNRJDgRftf1XeFM8Yb2dm5ZXjGwrU+FxxPPqGDfviDe1IsnnYruuwn
+         YJ/uEc+YMPDeKWIvHuuBMVvLrqBJ2AbgqTtWYunE5aD9YfuODqJ9n+K0tIIpoUtVkw9s
+         kN7xKRoDd1e2Yb2VGVkcbGkCIR0FEGwWZe3Qzy/yA3YZ73TIxcAmvljnAn93A/LnxoZ2
+         edqu6n4D4hn33mAadWuqToD7W10GRrtE8D11kvdwhcbmn/nH9Aqj/9KqpDL68WJ7ZmVt
+         QbIEo45na35bFGDHa5/JyzVMvtZA8wBTUkYYK/6QQ26sSoZbBeNCwvP923LhsqG5C4if
+         aDBA==
+X-Gm-Message-State: ACgBeo3racGdxsexp9za9bSQRT3kgPLdmAzXhw1RwHQAaSjT32K7swqZ
+        hd9D7Bl3GbRzsbYU7mgoaI/afw==
+X-Google-Smtp-Source: AA6agR4qLgr5vYaOZYjvjciwtlrfRGqpaImV9NhFTR1KXt+7nKJDpKyq7HWhpthJ3AbnmAAYa4mG+w==
+X-Received: by 2002:a17:907:7e9e:b0:73d:ae12:5f11 with SMTP id qb30-20020a1709077e9e00b0073dae125f11mr2132957ejc.176.1661424315701;
+        Thu, 25 Aug 2022 03:45:15 -0700 (PDT)
+Received: from lmecxl1178.lme.st.com ([2a04:cec0:1164:5cc1:3e9e:c41c:ad2b:22b0])
+        by smtp.gmail.com with ESMTPSA id o9-20020aa7d3c9000000b00447c89a63f4sm341700edr.35.2022.08.25.03.45.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Aug 2022 03:45:15 -0700 (PDT)
+From:   Etienne Carriere <etienne.carriere@linaro.org>
+To:     linux-kernel@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Etienne Carriere <etienne.carriere@linaro.org>,
+        Stephen Warren <swarren@nvidia.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Laxman Dewangan <ldewangan@nvidia.com>,
+        Charles Keepax <ckeepax@opensource.wolfsonmicro.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: [PATCH] dt-binding: gpio: publish binding IDs under dual license
+Date:   Thu, 25 Aug 2022 12:45:05 +0200
+Message-Id: <20220825104505.79718-1-etienne.carriere@linaro.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="zRrg/vp27ssDoOSm"
-Content-Disposition: inline
-In-Reply-To: <20220812075603.59375-5-samuel@sholland.org>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Changes gpio.h DT binding header file to be published under GPLv2 or
+BSD-3-Clause license terms. This change allows these GPIO generic
+bindings header file to be used in software components as bootloaders
+and OSes that are not published under GPLv2 terms.
 
---zRrg/vp27ssDoOSm
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+All contributors to gpio.h file in copy.
 
-Hi Samuel,
+Cc: Stephen Warren <swarren@nvidia.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>
+Cc: Laxman Dewangan <ldewangan@nvidia.com>
+Cc: Charles Keepax <ckeepax@opensource.wolfsonmicro.com>
+Cc: Andrew Jeffery <andrew@aj.id.au>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Cc: Nuno Sá <nuno.sa@analog.com>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 
-On Fri 12 Aug 22, 02:55, Samuel Holland wrote:
-> A100 features an updated DPHY, which moves PLL control inside the DPHY
-> register space. (Previously PLL-MIPI was controlled from the CCU. This
-> does not affect the "clocks" property because the link between PLL-MIPI
-> and the DPHY was never represented in the devicetree.) It also requires
-> a modified analog power-on sequence. Finally, the new DPHY adds support
-> for operating as an LVDS PHY. D1 uses this same variant.
+Signed-off-by: Etienne Carriere <etienne.carriere@linaro.org>
+---
+ include/dt-bindings/gpio/gpio.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Do you have some pointers about that? I'd be surprised that this PHY is now
-used for "traditional" LVDS display output, which is usually done with a si=
-mpler
-LVDS phy attached to the display controller.
+diff --git a/include/dt-bindings/gpio/gpio.h b/include/dt-bindings/gpio/gpio.h
+index 5566e58196a2..f8df7511b8b4 100644
+--- a/include/dt-bindings/gpio/gpio.h
++++ b/include/dt-bindings/gpio/gpio.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: GPL-2.0 */
++/* SPDX-License-Identifier: (GPL-2.0 OR BSD-3-Clause) */
+ /*
+  * This header provides constants for most GPIO bindings.
+  *
+-- 
+2.25.1
 
-However I've seen that some new Allwinner SoCs come with sub-LVDS camera in=
-put,
-which typically requires a more complex PHY due to the high number of lanes.
-
-Anyway for now this is:
-Reviewed-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-
-Cheers,
-
-Paul
-
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
-> ---
->=20
->  .../bindings/phy/allwinner,sun6i-a31-mipi-dphy.yaml           | 4 ++++
->  1 file changed, 4 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/phy/allwinner,sun6i-a31-mi=
-pi-dphy.yaml b/Documentation/devicetree/bindings/phy/allwinner,sun6i-a31-mi=
-pi-dphy.yaml
-> index cf49bd99b3e2..b88c4b52af7d 100644
-> --- a/Documentation/devicetree/bindings/phy/allwinner,sun6i-a31-mipi-dphy=
-=2Eyaml
-> +++ b/Documentation/devicetree/bindings/phy/allwinner,sun6i-a31-mipi-dphy=
-=2Eyaml
-> @@ -17,9 +17,13 @@ properties:
->    compatible:
->      oneOf:
->        - const: allwinner,sun6i-a31-mipi-dphy
-> +      - const: allwinner,sun50i-a100-mipi-dphy
->        - items:
->            - const: allwinner,sun50i-a64-mipi-dphy
->            - const: allwinner,sun6i-a31-mipi-dphy
-> +      - items:
-> +          - const: allwinner,sun20i-d1-mipi-dphy
-> +          - const: allwinner,sun50i-a100-mipi-dphy
-> =20
->    reg:
->      maxItems: 1
-> --=20
-> 2.35.1
->=20
-
---=20
-Paul Kocialkowski, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
-
---zRrg/vp27ssDoOSm
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmMHUbwACgkQ3cLmz3+f
-v9EsaQf/bBXRX7dkItKf753uxFAwb2gmuOBMHvYFGbeRA9QvZTcqNV98aQUlGM4w
-isH8tUkRSXwpC5WIKuUDyGeZ6BCZo/870HZsUmeKIRkKRGnatZsW1sD8/tYn0Wmm
-br/ublpR94o2SDtV2gaK9gblfjg+KlABewz5sBN0UTuZPLFTJvDrkid1+4VpuNxk
-g/cwpn+BwyP6ljjMP93qfQQ7zc9JelE8z0USlYemXZ6+kn4rBRgBslga2GyYlkSa
-86dcFRqqU0zhkmFaZ2rb+qFR3cc4IAC3xRtuMw/zeEJ3quQ7GvBa14mq3EZOi1QS
-IyCir6uT1GrpdpBKEHMxEGT40U9F0A==
-=Qxrk
------END PGP SIGNATURE-----
-
---zRrg/vp27ssDoOSm--
