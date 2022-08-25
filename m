@@ -2,284 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F8B85A16B9
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 18:32:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E70AC5A16C0
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 18:38:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237678AbiHYQcS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 12:32:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59834 "EHLO
+        id S235857AbiHYQiK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 12:38:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233477AbiHYQcR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 12:32:17 -0400
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CFE0B81F2
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 09:32:16 -0700 (PDT)
-Received: by mail-pj1-x102d.google.com with SMTP id p9-20020a17090a2d8900b001fb86ec43aaso5283150pjd.0
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 09:32:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc;
-        bh=sPnypK+omnN4NaKyZT/jJYzqdJLQrrS9NmH3ZYgM+1c=;
-        b=Sd1KVFPrdCZf7Afab7qAt7rAKxXkdSaydhBN2TY7lxwcH7lh11Bb5qE6LQFvcq6y/w
-         u37tdcyA/7+vo5Vjrn/eHyXPULWhbKrRd+PctBVJC7ZnTGGhvBeJE6bOvpFFoNY2Cvdn
-         LXIpnQ69V4lR4u69xO9vty38GUHaJOXxIqp4p7l+E6W8qnlZofexhXDG1AgZQ3mr4C/m
-         MURrPCnnyE7iGf/gb9XMT3RelVphZ32/cB07R/S4Z65Vggk/4KrQ7b+HzDvAMS9SO/kH
-         samVKKG/Mlm6NPLdH8jiIBp/5f9JVx6Dpj5i2EJg3if/IfiRo0ymVvipR1LHbXK8p49m
-         mI4Q==
+        with ESMTP id S229657AbiHYQiI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 12:38:08 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3E87B9F86
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 09:38:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1661445487;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=wHBvwoMalP4JkIrKUYzLNQpQCPRkdCcMetm62WKyV70=;
+        b=FvLu7lO0ZM/6/BrLMcXqzFKxM6gVkpkPBjYzUc4lg+MQeNaS00RzM/qwdHrAAiOtIMyaTy
+        52CNFO/NH57uJUZdJVPKtQjlnRjuHduQ3zZw7fa3QwVfY1CpCKmgj+gPfvVTG11SINnhg+
+        EfI2Hvgvg9WtcIWxvEPDov2xwKu7jC0=
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
+ [209.85.222.197]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-208-h1gYUUDpN-2_dydNuLdYkQ-1; Thu, 25 Aug 2022 12:38:05 -0400
+X-MC-Unique: h1gYUUDpN-2_dydNuLdYkQ-1
+Received: by mail-qk1-f197.google.com with SMTP id w22-20020a05620a445600b006bb7f43d1cfso17713341qkp.16
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 09:38:05 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=sPnypK+omnN4NaKyZT/jJYzqdJLQrrS9NmH3ZYgM+1c=;
-        b=w08Z+vBETtvJewyrcdKTXqEgu8PGUWM52F+w5sRL/D4oyKkJKowpx17sZmS6VEw84G
-         PH7fQ653Zc3hRaXLrDfvMM54Ah0QGNAtsTzUCf03Nq2tY2f6GxzZwKjHzl9EOjR5WWAH
-         Uwz1Cs2ZYgnjcv5TcfzY5sXc/aIGm5TUg4I34IOg98YA14G115pZrM2LOifoWWVMqckF
-         C3cd/XEr/aoP05Q3l+hoyaRevE2wfo7Q+nKEtPKYVKtpv9XLXJuGB3/J+rmAEb4X3+mu
-         RemzcnceFyVWakOO7SG66pxamQJfd+rtnwsxQvuKGvs0gunQATM+R34pFIKoBVgaZO+v
-         IszQ==
-X-Gm-Message-State: ACgBeo2WJ+Ko7nN2WW2j5Xw7eho9/ZXRhOcBVlsGMhBK6T9aeddoBi95
-        l+BwXT7soEM4IKalxQDcZi1t0Q==
-X-Google-Smtp-Source: AA6agR7mz8cQUwkxL9Bv/hIpB+gTpvIF8B7Hkh4amGYsubylHmdqLgf+o9KxCVhz7JzWeXfZ52Z5nw==
-X-Received: by 2002:a17:90b:4b47:b0:1f7:2e06:5752 with SMTP id mi7-20020a17090b4b4700b001f72e065752mr5520149pjb.187.1661445136082;
-        Thu, 25 Aug 2022 09:32:16 -0700 (PDT)
-Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id b14-20020a170903228e00b001728eb339e2sm14983625plh.286.2022.08.25.09.32.14
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=wHBvwoMalP4JkIrKUYzLNQpQCPRkdCcMetm62WKyV70=;
+        b=ZCdMihszGbGwtyF2GYu7QJ6vCI5MQorjpG+o9zWbuCMkDJjI08gVmlTIA/z9rKhCgM
+         rDEMcqT6RqqB7tAN92iXegckWKdG+8XauOHdxp5eYfhldncS6TKed9RAXk8ABCxXU0k6
+         J0n5VCZu4HgST/jhmmBFJh1eGi1jYx/3Cw7IHeDNGxPuLYEuDtqCp3GZ7u8M6v7tkpri
+         pVSOi2PMRVj/YLRWgfcKrPB+RGHECoz62n8OZTXQKUMqB4BzUPVDudUW8uG6pDcu5Kq4
+         Ixo677M/H1J5pYjA7zw70a+vCEA/zwNqse9PS2u/DdnOElIjzmHBVL8gbmd1qiicpCK2
+         URyw==
+X-Gm-Message-State: ACgBeo0dyxMH8r1lT3luY+ejZueHtIL6ZjsiBXmO1G2cMQDy6ahuKKQ2
+        i/nsDGrhj3blX2QVHyomLqE7UmVa8EiY8s9CrHxQ4ms9xl0I0vViExE8uM3ahKATWEkekzS5xzV
+        GvXsoQbP5niTwiyOGEZ4tkQ==
+X-Received: by 2002:a05:6214:4006:b0:48d:3f52:52e7 with SMTP id kd6-20020a056214400600b0048d3f5252e7mr4245947qvb.113.1661445485409;
+        Thu, 25 Aug 2022 09:38:05 -0700 (PDT)
+X-Google-Smtp-Source: AA6agR4AMzIB1MVesZLd1jTiFIVhtyRBdbIE4HGHoHVZClnHnZjeWAdOLo/bBWgmWCpuEVz3RrVSHA==
+X-Received: by 2002:a05:6214:4006:b0:48d:3f52:52e7 with SMTP id kd6-20020a056214400600b0048d3f5252e7mr4245928qvb.113.1661445485189;
+        Thu, 25 Aug 2022 09:38:05 -0700 (PDT)
+Received: from xps13.redhat.com (c-98-239-145-235.hsd1.wv.comcast.net. [98.239.145.235])
+        by smtp.gmail.com with ESMTPSA id u9-20020a05620a430900b006af08c26774sm18240952qko.47.2022.08.25.09.38.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Aug 2022 09:32:15 -0700 (PDT)
-Date:   Thu, 25 Aug 2022 10:32:12 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        Leo Yan <leo.yan@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Coresight ML <coresight@lists.linaro.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/STM32 ARCHITECTURE" 
-        <linux-stm32@st-md-mailman.stormreply.com>
-Subject: Re: [PATCH 1/2] dt-bindings: arm: coresight: Add 'power-domains'
- property
-Message-ID: <20220825163212.GA1909152@p14s>
-References: <20220721212718.1980905-1-robh@kernel.org>
- <CAL_JsqJCGPSxYb5CqiEM9YAmJjQE4wp_0HCWgBSqPDBBAJRMBA@mail.gmail.com>
+        Thu, 25 Aug 2022 09:38:04 -0700 (PDT)
+From:   Brian Masney <bmasney@redhat.com>
+To:     andersson@kernel.org
+Cc:     agross@kernel.org, konrad.dybcio@somainline.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ahalaney@redhat.com,
+        echanude@redhat.com
+Subject: [PATCH v2] arm64: dts: qcom: sc8280xp: correct ref_aux clock for ufs_mem_phy
+Date:   Thu, 25 Aug 2022 12:37:55 -0400
+Message-Id: <20220825163755.683843-1-bmasney@redhat.com>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqJCGPSxYb5CqiEM9YAmJjQE4wp_0HCWgBSqPDBBAJRMBA@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-type: text/plain
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 24, 2022 at 02:04:31PM -0500, Rob Herring wrote:
-> On Thu, Jul 21, 2022 at 4:27 PM Rob Herring <robh@kernel.org> wrote:
-> >
-> > Coresight components may be in a power domain which is the case for the Arm
-> > Juno board. Allow a single 'power-domains' entry for Coresight components.
-> 
-> Ping.
+The first UFS host controller fails to start on the SA8540P automotive
+board (QDrive3) due to the following errors:
 
-Somehow this fell through the cracks.  I've applied both patches.
+    ufshcd-qcom 1d84000.ufs: ufshcd_query_flag: Sending flag query for idn 18 failed, err = 253
+    ufshcd-qcom 1d84000.ufs: ufshcd_query_flag: Sending flag query for idn 18 failed, err = 253
+    ufshcd-qcom 1d84000.ufs: ufshcd_query_flag: Sending flag query for idn 18 failed, err = 253
+    ufshcd-qcom 1d84000.ufs: ufshcd_query_flag_retry: query attribute, opcode 5, idn 18, failed
+        with error 253 after 3 retries
 
-Thanks,
-Mathieu
+The system eventually fails to boot with the warning:
 
-> 
-> >
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---
-> >  Documentation/devicetree/bindings/arm/arm,coresight-catu.yaml  | 3 +++
-> >  Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml   | 3 +++
-> >  .../devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml  | 3 +++
-> >  .../bindings/arm/arm,coresight-dynamic-replicator.yaml         | 3 +++
-> >  Documentation/devicetree/bindings/arm/arm,coresight-etb10.yaml | 3 +++
-> >  Documentation/devicetree/bindings/arm/arm,coresight-etm.yaml   | 3 +++
-> >  .../devicetree/bindings/arm/arm,coresight-static-funnel.yaml   | 3 +++
-> >  .../bindings/arm/arm,coresight-static-replicator.yaml          | 3 +++
-> >  Documentation/devicetree/bindings/arm/arm,coresight-stm.yaml   | 3 +++
-> >  Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml   | 3 +++
-> >  Documentation/devicetree/bindings/arm/arm,coresight-tpiu.yaml  | 3 +++
-> >  .../devicetree/bindings/arm/arm,embedded-trace-extension.yaml  | 3 +++
-> >  12 files changed, 36 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-catu.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-catu.yaml
-> > index d783d9276124..2bae06eed693 100644
-> > --- a/Documentation/devicetree/bindings/arm/arm,coresight-catu.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/arm,coresight-catu.yaml
-> > @@ -61,6 +61,9 @@ properties:
-> >      maxItems: 1
-> >      description: Address translation error interrupt
-> >
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> >    in-ports:
-> >      $ref: /schemas/graph.yaml#/properties/ports
-> >      additionalProperties: false
-> > diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml
-> > index 72ffe4d1e948..0c5b875cb654 100644
-> > --- a/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml
-> > @@ -98,6 +98,9 @@ properties:
-> >        base cti node if compatible string arm,coresight-cti-v8-arch is used,
-> >        or may appear in a trig-conns child node when appropriate.
-> >
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> >    arm,cti-ctm-id:
-> >      $ref: /schemas/types.yaml#/definitions/uint32
-> >      description:
-> > diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml
-> > index 1eeedc22857c..44a1041cb0fc 100644
-> > --- a/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml
-> > @@ -54,6 +54,9 @@ properties:
-> >        - const: apb_pclk
-> >        - const: atclk
-> >
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> >    in-ports:
-> >      $ref: /schemas/graph.yaml#/properties/ports
-> >
-> > diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-replicator.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-replicator.yaml
-> > index a26ed9214e00..03792e9bd97a 100644
-> > --- a/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-replicator.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-replicator.yaml
-> > @@ -54,6 +54,9 @@ properties:
-> >        - const: apb_pclk
-> >        - const: atclk
-> >
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> >    qcom,replicator-loses-context:
-> >      type: boolean
-> >      description:
-> > diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-etb10.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-etb10.yaml
-> > index fd06ede26ceb..90679788e0bf 100644
-> > --- a/Documentation/devicetree/bindings/arm/arm,coresight-etb10.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/arm,coresight-etb10.yaml
-> > @@ -54,6 +54,9 @@ properties:
-> >        - const: apb_pclk
-> >        - const: atclk
-> >
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> >    in-ports:
-> >      $ref: /schemas/graph.yaml#/properties/ports
-> >      additionalProperties: false
-> > diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-etm.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-etm.yaml
-> > index e0377ce48537..01200f67504a 100644
-> > --- a/Documentation/devicetree/bindings/arm/arm,coresight-etm.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/arm,coresight-etm.yaml
-> > @@ -73,6 +73,9 @@ properties:
-> >        - const: apb_pclk
-> >        - const: atclk
-> >
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> >    arm,coresight-loses-context-with-cpu:
-> >      type: boolean
-> >      description:
-> > diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-static-funnel.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-static-funnel.yaml
-> > index b9da30ab9ccd..06a1d346982c 100644
-> > --- a/Documentation/devicetree/bindings/arm/arm,coresight-static-funnel.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/arm,coresight-static-funnel.yaml
-> > @@ -27,6 +27,9 @@ properties:
-> >    compatible:
-> >      const: arm,coresight-static-funnel
-> >
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> >    in-ports:
-> >      $ref: /schemas/graph.yaml#/properties/ports
-> >
-> > diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-static-replicator.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-static-replicator.yaml
-> > index 66ee97370fb2..5178e7fdff0b 100644
-> > --- a/Documentation/devicetree/bindings/arm/arm,coresight-static-replicator.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/arm,coresight-static-replicator.yaml
-> > @@ -27,6 +27,9 @@ properties:
-> >    compatible:
-> >      const: arm,coresight-static-replicator
-> >
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> >    in-ports:
-> >      $ref: /schemas/graph.yaml#/properties/ports
-> >      additionalProperties: false
-> > diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-stm.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-stm.yaml
-> > index 905008faa012..378380c3f5aa 100644
-> > --- a/Documentation/devicetree/bindings/arm/arm,coresight-stm.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/arm,coresight-stm.yaml
-> > @@ -61,6 +61,9 @@ properties:
-> >        - const: apb_pclk
-> >        - const: atclk
-> >
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> >    out-ports:
-> >      $ref: /schemas/graph.yaml#/properties/ports
-> >      additionalProperties: false
-> > diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml
-> > index 3463b6e53aef..e0b88a71356a 100644
-> > --- a/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml
-> > @@ -55,6 +55,9 @@ properties:
-> >        - const: apb_pclk
-> >        - const: atclk
-> >
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> >    arm,buffer-size:
-> >      $ref: /schemas/types.yaml#/definitions/uint32
-> >      deprecated: true
-> > diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-tpiu.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-tpiu.yaml
-> > index e80d48200c37..61a0cdc27745 100644
-> > --- a/Documentation/devicetree/bindings/arm/arm,coresight-tpiu.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/arm,coresight-tpiu.yaml
-> > @@ -54,6 +54,9 @@ properties:
-> >        - const: apb_pclk
-> >        - const: atclk
-> >
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> >    in-ports:
-> >      $ref: /schemas/graph.yaml#/properties/ports
-> >      additionalProperties: false
-> > diff --git a/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml b/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml
-> > index 5f07fb166c56..108460627d9a 100644
-> > --- a/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml
-> > @@ -33,6 +33,9 @@ properties:
-> >        Handle to the cpu this ETE is bound to.
-> >      $ref: /schemas/types.yaml#/definitions/phandle
-> >
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> >    out-ports:
-> >      description: |
-> >        Output connections from the ETE to legacy CoreSight trace bus.
-> > --
-> > 2.34.1
-> >
+    gcc_ufs_phy_axi_clk status stuck at 'off'
+
+This issue can be worked around by adding clk_ignore_unused to the
+kernel command line since the system firmware sets up this clock for us.
+
+Let's fix this issue by updating the ref_aux clock on ufs_mem_phy. Note
+that the downstream MSM 5.4 sources list this as ref_clk_parent. With
+this patch, the SA8540P is able to be booted without clk_ignore_unused.
+
+Signed-off-by: Brian Masney <bmasney@redhat.com>
+Fixes: 152d1faf1e2f3 ("arm64: dts: qcom: add SC8280XP platform")
+---
+v1 of this patch can be found at
+https://lore.kernel.org/lkml/20220623142837.3140680-1-bmasney@redhat.com/T/#u
+
+Note that there's also a similar issue with the second UFS controller
+(ufs_card_hc) since it separately fails with:
+
+    ufshcd-qcom 1da4000.ufs: Controller enable failed
+    ufshcd-qcom 1da4000.ufs: link startup failed 1
+    ...
+    gcc_ufs_card_axi_clk status stuck at 'off'
+
+We are currently disabling the second UFS host controller (ufs_card_hc) in
+our DTS at the moment. I'm still looking through the downstream code to
+try to track this particular issue down.
+
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+index 49ea8b5612fc..4117ec0ffefc 100644
+--- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+@@ -892,7 +892,7 @@ ufs_mem_phy: phy@1d87000 {
+ 			clock-names = "ref",
+ 				      "ref_aux";
+ 			clocks = <&rpmhcc RPMH_CXO_CLK>,
+-				 <&gcc GCC_UFS_PHY_PHY_AUX_CLK>;
++				 <&gcc GCC_UFS_REF_CLKREF_CLK>;
+ 
+ 			resets = <&ufs_mem_hc 0>;
+ 			reset-names = "ufsphy";
+-- 
+2.37.1
+
