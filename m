@@ -2,159 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB3085A08E6
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 08:34:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DCE5E5A08F2
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 08:37:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235639AbiHYGdO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 02:33:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40962 "EHLO
+        id S232089AbiHYGhh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 02:37:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235727AbiHYGdE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 02:33:04 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CCE9A0306
-        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 23:33:03 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id n15so5855863lfe.3
-        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 23:33:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=jjb0wRVho1IbfKOm+QRWs6abzY2pnVDemjVYoIt+vcs=;
-        b=t5qX2ZwFRSwBn7O7CkXQqXzasT+loOrUHXDGUumDRuWD+3IBYgV+YraXQu9RHfxdCy
-         Zh71qivAjZLQwCvqAQ57NAwBop9P2lQ4skoEKRYsQH07N7UKLkiQTqbJchgvg9DNy/QA
-         1SOsoER0W3I4lj8yr6EhuArJ/mDiYDrKnrFstWDZgsCmxfHL/8TMNx4Li0bcsmuvLQKD
-         COKYjAyxuz7HUZcoBcpYMlFRHz85vO1R6mwp61pSuew8T7gC5b6pLaQC8nHpSZO9UK1R
-         jvs+xtGh6XfgFyGT9G4ulVnizIxD6h6HJrlZ/nYKvRhM4A2khL9rW3TWKpE3uVmiO44+
-         4qQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=jjb0wRVho1IbfKOm+QRWs6abzY2pnVDemjVYoIt+vcs=;
-        b=OtAqiZipfJxyhZkjjmzVM55KoaCLq1nBGz2m5DlcTfoFBtFdeSreYN5S9vS1DnrQKY
-         g4kqV7hzqcS/9k6gXyHrYcayZ5dm807hrs4jPINkgDxysGexzWJ7UpKS2YRMehExwtFj
-         90sgzoC3Df6Li4rpBOZ2wqlR93/O9FcSNevpSiXOYapFNUVui7R1OJ/uj09Q2OtpBOdR
-         jYllZoPULZiL2SwSBFsm94bu6bC9BNaeUocMiNwFt1BQQirWaCRhjyk8OF32u2af81XX
-         M/S85lvQqacqIIEytQg+c6by0Zv3Uzut8hh4+Vbka45Fps0emxbUofzaQPW+hTSCcD2L
-         1yaA==
-X-Gm-Message-State: ACgBeo3hpg/v3qPI6ZsqDOn3fgfnxLdQdNSDUxvkoWOU+Js7sKN553jh
-        hFBhCb82f4AfEw7qNNOKDJ60ew==
-X-Google-Smtp-Source: AA6agR4I4yjF/QiNBfJc1j5Y8lITB8zsTBX7CYP2sWhLpA2MPjNjOSJwTPxzRKG69SqnrxcemVRG7A==
-X-Received: by 2002:a05:6512:159a:b0:492:8c61:1991 with SMTP id bp26-20020a056512159a00b004928c611991mr620418lfb.245.1661409181980;
-        Wed, 24 Aug 2022 23:33:01 -0700 (PDT)
-Received: from [192.168.0.71] (82.131.98.15.cable.starman.ee. [82.131.98.15])
-        by smtp.gmail.com with ESMTPSA id h27-20020a19ca5b000000b0048af397c827sm316655lfj.218.2022.08.24.23.33.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Aug 2022 23:33:01 -0700 (PDT)
-Message-ID: <7248cbce-29b9-aad6-c970-8e150bc23df8@linaro.org>
-Date:   Thu, 25 Aug 2022 09:33:00 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v4 4/6] dt-bindings: net: dsa: mediatek,mt7530: define
- port binding per switch
-Content-Language: en-US
-To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S229834AbiHYGhg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 02:37:36 -0400
+Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AE2DA0264
+        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 23:37:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=k1; bh=8gyh56S0jJ8LLoS1339jRMBclOya
+        sljMtl5KEZS7o/0=; b=c3ylfx1lW/nGWWeim7QGDoeA/0UmV58mmX+u7SA8Fk4w
+        0u61xFM771ExunkbLfUIGlJoLk75Y57wg66ljx+cdlUHaO/lBlU4xEWcTvtpuA4S
+        szVrWg2vZNMq2qUVMFJkDS/AqFMsu1DZoqdgh8PZR9gb6BhjulCN/UliaL9yzkI=
+Received: (qmail 2542699 invoked from network); 25 Aug 2022 08:37:30 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 25 Aug 2022 08:37:30 +0200
+X-UD-Smtp-Session: l3s3148p1@MNcXCAvnfLEucrTo
+Date:   Thu, 25 Aug 2022 08:37:29 +0200
+From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
-        Sander Vanheule <sander@svanheule.net>,
-        =?UTF-8?Q?Ren=c3=a9_van_Dorst?= <opensource@vdorst.com>,
-        Daniel Golle <daniel@makrotopia.org>, erkin.bozoglu@xeront.com,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220820080758.9829-1-arinc.unal@arinc9.com>
- <20220820080758.9829-5-arinc.unal@arinc9.com>
- <c24da513-e015-8bc6-8874-ba63c22be5d6@linaro.org>
- <ea3ceeab-d92b-6ce5-8ea9-aebb3eaa0a91@arinc9.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ea3ceeab-d92b-6ce5-8ea9-aebb3eaa0a91@arinc9.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 0/5] arm64: dts: renesas: move I2C aliases to board files
+Message-ID: <YwcYqbIuwtImOQ7/@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>
+References: <20220729164425.11062-1-wsa+renesas@sang-engineering.com>
+ <CAMuHMdWW0kPATT4zGcjcEPw6XO+18MWJAn_HESe3rrtoEoF=FA@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="vlcxb54n4PfOZJyX"
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdWW0kPATT4zGcjcEPw6XO+18MWJAn_HESe3rrtoEoF=FA@mail.gmail.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/08/2022 15:29, Arınç ÜNAL wrote:
-> 
-> 
-> On 23.08.2022 13:47, Krzysztof Kozlowski wrote:
->> On 20/08/2022 11:07, Arınç ÜNAL wrote:
->>> Define DSA port binding per switch model as each switch model requires
->>> different values for certain properties.
->>>
->>> Define reg property on $defs as it's the same for all switch models.
->>>
->>> Remove unnecessary lines as they are already included from the referred
->>> dsa.yaml.
->>>
->>> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
->>> ---
->>>   .../bindings/net/dsa/mediatek,mt7530.yaml     | 56 +++++++++++--------
->>>   1 file changed, 34 insertions(+), 22 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
->>> index 657e162a1c01..7c4374e16f96 100644
->>> --- a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
->>> +++ b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
->>> @@ -130,38 +130,47 @@ properties:
->>>         ethsys.
->>>       maxItems: 1
->>>   
->>> -patternProperties:
->>> -  "^(ethernet-)?ports$":
->>> -    type: object
->>> -
->>> -    patternProperties:
->>> -      "^(ethernet-)?port@[0-9]+$":
->>> -        type: object
->>> -        description: Ethernet switch ports
->>
->> Again, I don't understand why do you remove definitions of these nodes
->> from top-level properties. I explained what I expect in previous
->> discussion and I am confused to hear "this cannot be done".
-> 
-> I agree it can be done, but the binding is done with less lines the 
-> current way.
-> 
-> I would need to add more lines than just for creating the node structure 
-> since dsa.yaml is not referred.
-> 
-> Then, I would have to create the node structure again for the dsa-port 
-> checks.
 
-I understand you can create binding more concise, but not necessarily
-more readable. The easiest to grasp is to define all the nodes in
-top-level and customize them in allOf:if:then. This was actually also
-needed for earlier dtschema with additionalProperties:false. You keep
-defining properties in allOf:if:then, even though they are all
-applicable to all variants. That's unusual and even if it reduces the
-lines does not make it easier to grasp.
+--vlcxb54n4PfOZJyX
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi Geert,
+
+> I have never been a fan of the i2c aliases in the SoC-specific .dtsi file=
+s,
+> as aliases are typically board-specific.
+> We also don't have physical connectors labeled "i2c<N>" on any of
+> the affected boards.  But people like the i2c aliases, because i2c
+
+The reasoning here was that the busses were named like this in the
+schematics. Debugging was confusing if these numbers were mixed.
+
+> exposes the full buses to userspace, and the aliases fix the userspace
+> naming of /dev/i2c-<N> (I believe there is no better way to identify
+> i2c buses from userspace?).
+
+The proper way is udev rules.
+
+> So moving the i2c aliases to the board files is definitely a step in
+> the good direction.
+>=20
+> BTW, you missed r8a774a1.dtsi in your update.
+
+Okay, so I will send v2 with the above SoC converted as well?
+
+Thanks for your comments,
+
+   Wolfram
 
 
-Best regards,
-Krzysztof
+--vlcxb54n4PfOZJyX
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmMHGKkACgkQFA3kzBSg
+KbbaYg//Sxg95wFf1S5jvVkEuTJZAB+hrsrS+2LQJHg+XKkvmWdsFT21ctQaunu5
+g43Z9CQ3W0TgLAF8R9jO6tuwRq3og4xcxmvOT2FrGc4ThEOfSmV054yWRrZqZUGm
+kvm2nx3bPrsI0rP6Oz7LMX5pWxwoaBZGB1lvlTdc/b6GL+jmlkiRqzKnUXubSgkO
+mLnN1960UHrVQuom1nq9k+ysghIhA05vLWeghAa5OVPewmypMytjoazpwGvXp/gN
+ITT7AmnHYc1lfLap2gKHbjIZKaZbd/sOy3IpGhl68tX4WmMErjZMMS+Dtl2sBRIz
+BtBHU4fJ+xfrv+M2WqMO1+qF62KvBosl+5vrNpq9hcd/VbugSXWZJhl+bm4uZ4Nd
+qo6+h4Nopuxls8N+WR3wupB6mBFtXkRm+zXa86pC7y/sWdTjvWx1nw2+/SJa9Ave
+BluFnswgcqab7yGpEVOS4wjwNu7C7zFz6mcnhOxZbKv81YnN0ajVYVJSbUuPjrBw
+c4Pjyl7TwWTMHJiXX9Ve5uhXjerqPfdJf1gMq3IUHiSc5lczfGeuERxBu1un48Go
+8kB7uHxP6YpZ6Tz0C3lFRc5tRrkK2eiRwriuD6ZgMwkppxWKERIZWxsJlF8rYUTf
+vAKgGxpfkG/HPZGX5g9rxddKyUhb0bXUNL/3j+0WombKEs+/WFE=
+=sJ1X
+-----END PGP SIGNATURE-----
+
+--vlcxb54n4PfOZJyX--
