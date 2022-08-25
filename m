@@ -2,142 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BFF85A04AF
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 01:32:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11C545A05A7
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 03:33:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229884AbiHXXbq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Aug 2022 19:31:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44206 "EHLO
+        id S232069AbiHYBda (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Aug 2022 21:33:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229793AbiHXXbi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 19:31:38 -0400
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2080.outbound.protection.outlook.com [40.107.93.80])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F044E8287B;
-        Wed, 24 Aug 2022 16:31:27 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hYr0n1Oop31xRzsdG4jYQjPGNUK8QY0R0oZLazxgqw6YmQm/VnmTIJnObxCG+6dTDL91Nit0L/0sqoRCitQxKe9kuBIKdCzLMBMkQRJ8dBiFv97JpdMzPb5+nzf9ykif3kpsUc+qGaDxVRAS1ib4BJpRFNDvv2tzaF/u0JQbvAL0kyfEAsapftfRcDxmgcg3HakDuFQEKP42laP+Fvlvfixd5lWw07Vv0HnQGteV3okL1xlN3Eax9fRIS/FNCmj5Wa9nN29R69SVxBuT+iOgbBnCZeJCypteH9/KfLIoNC1OuuW4T9fm66dFVn+yPrQRCWYtxWyZEAxuWwY3kVk8LQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ru1zbkITnIFzBDhFmI4CkX+uFFYRNYAaxggYHNxULGU=;
- b=lP2sWwMNBy/vL/djUG+qPdaEEgoBrct5nTLu3Py0RtkO1HSrw63OTWkUI/X7+wz9qXDBMyB7gFAqjGj8CiSMY0cMT0pQGryBXdxRkmuXPlEingegMOertSpEFlwj5zwk4Vamt41ac2tSGwXF80pxoRasEhcvVr5avF3PpzZDjRHebjXDiIosLcJBnx2I++qhYeo3oS86pChOReDCKQHp3MxcixHdutYnc6XHQ9O8Yte20QtDkZSPYieB/s+Z+h22qQyVEOPSMkX0EjJs6Yy17c+CbQnQtPbutO+WNq7QhFVRO6061YYZNGCkYFAYDkz+cp1QwEHmQlwEqS4pkZqx5Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ru1zbkITnIFzBDhFmI4CkX+uFFYRNYAaxggYHNxULGU=;
- b=YpWvN65fS7gFPD+Vslr9RkRSe9jEMAVBkWG4ctOevUAAU2PaGznEIMSBP+r48w+72vLGPY30uvQo8IONMogLEmJtWCUyPaY2ITfnOMcp6jaP48sRfRQ2GLTV8/J5HsKqGNDXYql0NNuVK45eoDdKfcq0SOfRQjMydHvkXKXsnmuw9i0WWiZG97mPHOQZn40H7kbhAWcIgZmFgTz1bspkGKpqkHdKfHIoB3gWmhj/QkF1qHI/+eYzcWQ4h4NK1F6gC9tL3PhNNs7qUIgEiEjqmYBzsJCb9hCgyK7QriBbNPBR3MLh7sDRk1Hgh1pXqHVDheEOq3evnIWA/uRUqI6hiw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from MN2PR12MB4192.namprd12.prod.outlook.com (2603:10b6:208:1d5::15)
- by SA1PR12MB7294.namprd12.prod.outlook.com (2603:10b6:806:2b8::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5546.20; Wed, 24 Aug
- 2022 23:31:25 +0000
-Received: from MN2PR12MB4192.namprd12.prod.outlook.com
- ([fe80::462:7fe:f04f:d0d5]) by MN2PR12MB4192.namprd12.prod.outlook.com
- ([fe80::462:7fe:f04f:d0d5%8]) with mapi id 15.20.5546.025; Wed, 24 Aug 2022
- 23:31:25 +0000
-Date:   Wed, 24 Aug 2022 20:31:22 -0300
-From:   Jason Gunthorpe <jgg@nvidia.com>
-To:     Greg KH <gregkh@linuxfoundation.org>
-Cc:     "Gupta, Nipun" <Nipun.Gupta@amd.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "rafael@kernel.org" <rafael@kernel.org>,
-        "eric.auger@redhat.com" <eric.auger@redhat.com>,
-        "alex.williamson@redhat.com" <alex.williamson@redhat.com>,
-        "cohuck@redhat.com" <cohuck@redhat.com>,
-        "Gupta, Puneet (DCG-ENG)" <puneet.gupta@amd.com>,
-        "song.bao.hua@hisilicon.com" <song.bao.hua@hisilicon.com>,
-        "mchehab+huawei@kernel.org" <mchehab+huawei@kernel.org>,
-        "maz@kernel.org" <maz@kernel.org>,
-        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
-        "jeffrey.l.hugo@gmail.com" <jeffrey.l.hugo@gmail.com>,
-        "saravanak@google.com" <saravanak@google.com>,
-        "Michael.Srba@seznam.cz" <Michael.Srba@seznam.cz>,
-        "mani@kernel.org" <mani@kernel.org>,
-        "yishaih@nvidia.com" <yishaih@nvidia.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
-        "okaya@kernel.org" <okaya@kernel.org>,
-        "Anand, Harpreet" <harpreet.anand@amd.com>,
-        "Agarwal, Nikhil" <nikhil.agarwal@amd.com>,
-        "Simek, Michal" <michal.simek@amd.com>,
-        "git (AMD-Xilinx)" <git@amd.com>
-Subject: Re: [RFC PATCH v2 2/6] bus/cdx: add the cdx bus driver
-Message-ID: <20220824233122.GA4068@nvidia.com>
-References: <20220803122655.100254-1-nipun.gupta@amd.com>
- <20220817150542.483291-1-nipun.gupta@amd.com>
- <20220817150542.483291-3-nipun.gupta@amd.com>
- <Yv0KHROjESUI59Pd@kroah.com>
- <DM6PR12MB3082D966CFC0FA1C2148D8FAE8719@DM6PR12MB3082.namprd12.prod.outlook.com>
- <YwOEv6107RfU5p+H@kroah.com>
- <DM6PR12MB3082B4BDD39632264E7532B8E8739@DM6PR12MB3082.namprd12.prod.outlook.com>
- <YwYVhJCSAuYcgj1/@kroah.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YwYVhJCSAuYcgj1/@kroah.com>
-X-ClientProxiedBy: YQBPR0101CA0276.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:c01:68::30) To MN2PR12MB4192.namprd12.prod.outlook.com
- (2603:10b6:208:1d5::15)
+        with ESMTP id S231964AbiHYBd2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Aug 2022 21:33:28 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E837A8E443
+        for <devicetree@vger.kernel.org>; Wed, 24 Aug 2022 18:33:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:
+        Cc:To:From:From:Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:
+        Content-Type:Content-Transfer-Encoding:Content-ID:Content-Description:
+        Content-Disposition:In-Reply-To:References;
+        bh=evoJrkAK0wRgY9NFjgia2FSCX8sU7dzwslKQg7yUQig=; b=21M5JCdp51rZTkkx17fS+o2cHU
+        5wBSzLndmEaSA4sHX5fr7xTWSjzOktcKVS6Q6i2x6s4VmEyKdZ1V7dqNhU+EMktMGvLEczlqD0U9Z
+        35/Enh7ZpUQAYG50NEk780yOGLq2qVKcDU4cwDB0W4zBx3Xv28MUj0KPvfMjL/twjubk=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1oR1kH-00EW2b-9d; Thu, 25 Aug 2022 03:33:21 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Gregory Clement <gregory.clement@bootlin.com>
+Cc:     arm-soc <arm@kernel.org>, Device Tree <devicetree@vger.kernel.org>,
+        Andrew Lunn <andrew@lunn.ch>
+Subject: [PATCH v2 00/12] Start converting MVEBU bindings to DT Schema
+Date:   Thu, 25 Aug 2022 03:32:46 +0200
+Message-Id: <20220825013258.3459714-1-andrew@lunn.ch>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: cbcc189b-f062-4324-2831-08da8628c2f1
-X-MS-TrafficTypeDiagnostic: SA1PR12MB7294:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: R0dkRS4lF4wplvTW7mjhH8v2Do442aiA7cGPNSzMCbcfBQSOCbDlO8MVQfJvfGr7vICV15Q678fA7MsTOcb+7Gpow4c7QFv/8gMyTJGaea6JfIat97YTgBthdmGmP9vj1AD698e1CYbd8R6nW3nuKg4XPFCCbkFmxmGzVpwW0SJADu20FwFk8Kw4WzPlUGhCsXc5GXctlg4VFoVoT9zb/a1naJS1kimp7bDTpH0fr2dI47eBM6jQOKReIMO7wH35+Hi6R+J4j49/EPXc/1Fakh0rXnV1Mv1LW0C3fU65kh1LoDcHkpar2IXp/KT0uR94pE+FfZ6zTF+4La1iSEG9/6jXGZRyCCUeeXTWZQX9oV+4okcLLBWgyK+zlyCepPeK6dx2IOQ0kEK4cyqJzO7T7wpwh+v3wDB84GWufXbJgrDodeBOcsVfqWMMZq2Qoq9+CzPppLQZQhBRfL3BEEcE/GYsmcvzoEXqZLmI7kZaiEqv6PKq0K2qEjzMGyV6nq5CXEPyoPFt7E6g0IiXDca+mXBVycuH8KdG2darQzCn6cNAOMAkFprW9zogK6A+RcbnNoTtwUAD99R6AWA3HUBVKnB5CmXi0Eswpb1EgU0fkT55vg6bW+SHHA3f9LjyPhaXFiT8aKgfUQv9LWulrOnyWctI+/lmnuoFT7NfXJQvG/YmOJTpaujTmtGeuhSYcdDFpMBKzTamR1H266OzarYggA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR12MB4192.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(366004)(136003)(376002)(39860400002)(346002)(396003)(1076003)(2616005)(4326008)(66556008)(54906003)(316002)(8676002)(6916009)(36756003)(66946007)(186003)(66476007)(26005)(6506007)(2906002)(6512007)(8936002)(478600001)(41300700001)(5660300002)(33656002)(6486002)(38100700002)(6666004)(7416002)(86362001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?4T/k79OXxraoaFX2QSsP7iq66x9QzxN2fZi1KtZW3bu4NtnsiY5PTEc5uRKW?=
- =?us-ascii?Q?HNb1Smu2+x1vihxMPHPCyQ2y6ArTdj1WbdkWtFhcEkaGAAX8AluhPP9KxjXq?=
- =?us-ascii?Q?FQudaMJ0N+8laEeg/JesMkEHxQQk2R5EVKCCCJ1NViT0/oPwWIklWZ6e6Zy/?=
- =?us-ascii?Q?rWFR62HiLFd+c5M6bLfdDXD8xJi52PEg7Nob/pbA4H6bTqHhaYdzaq+zxK5F?=
- =?us-ascii?Q?9meBwoKf5k7oDZcbyPLXiE6ybt32lAAwiDSpz1L2gQGPBWhZj2Egu5Ih8QHR?=
- =?us-ascii?Q?vZrX0vSNX0KkRbuqE/OIozoI0opNvrNKiqNg3UbFk1i9HAmArvf3KYfapQaD?=
- =?us-ascii?Q?mssfcjh260KeiIcaQ9AIFr4hMNWEje3NlnS6xiW5QbNydfkYBlKbGC6p0iSJ?=
- =?us-ascii?Q?yR5LjopMR4ne918BP7pETqrADUqFmBKI5qovgJs3yezxEzHVZHzn9SD/M4pL?=
- =?us-ascii?Q?ZANNsqXXRxocgYwVptzGCzD9qUhK2saXejKRvAPcOlLPy7CedepzFRu6BPMJ?=
- =?us-ascii?Q?DVuzqBeQ1Mo7cg12rYsDwnjegjDPe8EifR4sj6DSs36nOhKjHiwM259/e6vJ?=
- =?us-ascii?Q?37fs6vWp/wmiCTj6IKbCGfLiBPEBuvsSUieLYS9KODEZnZPQRb/0YEkIIDzv?=
- =?us-ascii?Q?vZARenswenfi9xi0L7P8ijvEOmrqxdab2zE007i5IQEVbnAVF8BNl7xcdGQc?=
- =?us-ascii?Q?yWJUPEEmcq1bD2BCKlXv6M4JUg5PmWjsksvAJ7TCl4f1WBVcMaEJt/dMa/4o?=
- =?us-ascii?Q?I2RVyAFphdPdInjCgMRnPcP4qiBUYcsQkK4ZktgKz0VJn1gGBjJV7qHUX7wb?=
- =?us-ascii?Q?ynAd0UuJO6DE2lCU9p9olnV0shSDBBcRwcDv7uwPE3wzH2uotGp0enOGkS/9?=
- =?us-ascii?Q?IJAI8C12xVE7hGGSC0LDRfZHmT2KTEZSP7BPCcNkHvMSwh86Sh1vcJoERyrv?=
- =?us-ascii?Q?YT+21mbVliOIClJiL13U1f2qcjy+IDhdbxETOf1sFVoOYDWlD95X/iO2WyMQ?=
- =?us-ascii?Q?oMOyUyBW79xjYF8sgVVacnEmkymAzIMX0LMANgDCnx0x7ehEP5BX9unxfKaD?=
- =?us-ascii?Q?v4x2/3gFHoE/cQoek/6qBrkQ68FA0dWcwizlxZ5DI5xo75gdvY32cbBCLOtb?=
- =?us-ascii?Q?Vy41leXnmankL9DR6zeGIPwsd/yv4AA6YvMkyHibzdqgwtl4W/ma6y/IF5y0?=
- =?us-ascii?Q?p8bEhHzkmHRzZqknoDaJCIceGbEUctJka7aqKv9p2gmAc677Otwd7luwt9ji?=
- =?us-ascii?Q?KRHX+Q0l3OrbAKOxNuucvlIsl/MD0lRDjP6DxMaKSFl5h5Td1vt8EkuMur/K?=
- =?us-ascii?Q?5brZ4vXGH4zbJGaYbrkkVacQFvqTuoqq4WS/3o89gPsTOQEm4THJuTz4YHzn?=
- =?us-ascii?Q?1GIGrAwYWr6fpRm9DakkF4FDLlTmxXWRCMYvJMfCOagEvatE2bP+0GhPtOsZ?=
- =?us-ascii?Q?nhwpwVyJPR7sxvObaEAiH1vt/QywAQ/D4vWzCz8ebFtpL4D0oKyy3kOsr0xD?=
- =?us-ascii?Q?zKHOGv07VubgJdQkKd5m/nfFevkA2ulSlj5jNgNXwsWGa/deU3qs4o6uvu+L?=
- =?us-ascii?Q?aJ6ttfRt4qidUb7cP4NhLjFyJvs3SQZjkoRTW00p?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cbcc189b-f062-4324-2831-08da8628c2f1
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4192.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Aug 2022 23:31:25.7504
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: wDWZdbHUpNa/fK2bU5OXwaPjJ6HTWzOZfS7NyTsbxWfchi646f9XrcHrEXBuJZnL
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7294
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -145,35 +45,97 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 24, 2022 at 02:11:48PM +0200, Greg KH wrote:
-> > We can share the RFC in case you are interested in looking at code flow
-> > using the of_dynamic approach.
-> 
-> Please no more abuse of the platform device.
+This is the first batch of patches converting the Marvell MVEBU driver
+bindings from .txt to .yaml. So far, kirkwood has been used for
+testing, but these drivers apply to a range of Marvell SoCs.
 
-Last time this came up there was some disagreement from the ARM folks,
-they were not keen on having xx_drivers added all over the place to
-support the same OF/DT devices just discovered in a different way. It is
-why ACPI is mapped to platform_device even in some cases.
+In order to reduce the number of warnings from the DT schema checking
+tools, a few minor changes have been made to a few DT files. No actual
+errors have been found, the changes just make the checker quiet.
 
-I think if you push them down this path they will get resistance to
-get the needed additional xx_drivers into the needed places.
+I propose these patches are merged via mvebu to arm-soc. No conflicts
+are expected with these patches.
 
-> If your device can be discovered by scanning a bus, it is not a platform
-> device.
+v2:
 
-A DT fragment loaded during boot binds a driver using a
-platform_driver, why should a DT fragment loaded post-boot bind using
-an XX_driver and further why should the CDX way of getting the DT
-raise to such importantance that it gets its own cdx_driver ?
+s/^DT/dt-bindings/
+s/YAML/DT schema/
+Drop 'Device Tree Bindings' from title:
+pinctrl:
+  Add additionalProperties: false
+  requires for marvell,function & marvell,pins
+  regex for mpp values
+Split pinctrl/marvell,ac5-pinctrl.yaml cleanup into its own patch
+Add interrupts-extended to marvell,orion-wdt.yaml
+Replace compatible 'bar' with 'arm,pl353-nand-r2p1' to avoid unknown warning
+Fix some of the USB controller warnings. It is unclear if the kirkwood
+warnings are valid usage of the core USB binding or not.
 
-In the end the driver does not care about how the DT was loaded.
-None of these things are on a discoverable bus in any sense like PCI
-or otherwise. They are devices described by a DT fragement and they
-take all their parameters from that chunk of DT.
+Andrew Lunn (12):
+  dt-bindings: RTC: orion-rtc: Convert to DT schema
+  dt-bindings: thermal: marvell,kirkwood-thermal: Convert to DT schema
+  dt-bindings: pinctrl: Convert marvell,kirkwood-pintctrl to DT schema
+  dt-bindings: marvell,ac5-pinctrl: Refactor to look like other Marvell
+    pinctrl files
+  dt-bindings: USB: Convert ehci-orion to DT schema
+  dt-bindings: watchdog: Convert marvel.txt to DT schema
+  arm: DT: kirkwood/orion5: Rename watchdog node
+  dt-bindings: nand-controller: Reflect reality of marvell,orion-nand
+  dt-bindings: mtd: Convert orion-nand to DT schema
+  arm: DT: kirkwood.dtsi: Rename nand to nand-controller
+  dt-bindings: timer: Convert marvell,orion-timer.txt to DT schema
+  dt-bindings: clock: Convert mvebu-gated-clock.txt to DT schema
 
-How the DT was loaded into the system is not a useful distinction that
-raises the level of needing an entire new set of xx_driver structs all
-over the tree, IMHO.
+ .../clock/marvell,kirkwood-gating-clock.yaml  | 229 +++++++++++
+ .../bindings/clock/mvebu-gated-clock.txt      | 205 ----------
+ .../bindings/mtd/marvell,orion-nand.yaml      |  98 +++++
+ .../bindings/mtd/nand-controller.yaml         |  17 +-
+ .../devicetree/bindings/mtd/orion-nand.txt    |  50 ---
+ .../pinctrl/marvell,88f6180-pinctrl.yaml      |  73 ++++
+ .../pinctrl/marvell,88f6190-pinctrl.yaml      |  73 ++++
+ .../pinctrl/marvell,88f6192-pinctrl.yaml      |  73 ++++
+ .../pinctrl/marvell,88f6281-pinctrl.yaml      |  74 ++++
+ .../pinctrl/marvell,88f6282-pinctrl.yaml      |  74 ++++
+ .../pinctrl/marvell,98dx1135-pinctrl.yaml     |  72 ++++
+ .../pinctrl/marvell,98dx4122-pinctrl.yaml     |  72 ++++
+ .../bindings/pinctrl/marvell,ac5-pinctrl.yaml |  23 +-
+ .../pinctrl/marvell,kirkwood-pinctrl.txt      | 359 ------------------
+ .../bindings/rtc/marvell,orion-rtc.yaml       |  48 +++
+ .../devicetree/bindings/rtc/orion-rtc.txt     |  18 -
+ .../bindings/thermal/kirkwood-thermal.txt     |  15 -
+ .../thermal/marvell,kirkwood-thermal.yaml     |  32 ++
+ .../bindings/timer/marvell,orion-timer.txt    |  16 -
+ .../bindings/timer/marvell,orion-timer.yaml   |  51 +++
+ .../devicetree/bindings/usb/ehci-orion.txt    |  22 --
+ .../bindings/usb/marvell,orion-ehci.yaml      |  48 +++
+ .../devicetree/bindings/watchdog/marvel.txt   |  45 ---
+ .../bindings/watchdog/marvell,orion-wdt.yaml  | 101 +++++
+ arch/arm/boot/dts/kirkwood.dtsi               |   4 +-
+ arch/arm/boot/dts/orion5x.dtsi                |   2 +-
+ 26 files changed, 1150 insertions(+), 744 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/marvell,kirkwood-gating-clock.yaml
+ delete mode 100644 Documentation/devicetree/bindings/clock/mvebu-gated-clock.txt
+ create mode 100644 Documentation/devicetree/bindings/mtd/marvell,orion-nand.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mtd/orion-nand.txt
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/marvell,88f6180-pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/marvell,88f6190-pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/marvell,88f6192-pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/marvell,88f6281-pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/marvell,88f6282-pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/marvell,98dx1135-pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/marvell,98dx4122-pinctrl.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/marvell,kirkwood-pinctrl.txt
+ create mode 100644 Documentation/devicetree/bindings/rtc/marvell,orion-rtc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/rtc/orion-rtc.txt
+ delete mode 100644 Documentation/devicetree/bindings/thermal/kirkwood-thermal.txt
+ create mode 100644 Documentation/devicetree/bindings/thermal/marvell,kirkwood-thermal.yaml
+ delete mode 100644 Documentation/devicetree/bindings/timer/marvell,orion-timer.txt
+ create mode 100644 Documentation/devicetree/bindings/timer/marvell,orion-timer.yaml
+ delete mode 100644 Documentation/devicetree/bindings/usb/ehci-orion.txt
+ create mode 100644 Documentation/devicetree/bindings/usb/marvell,orion-ehci.yaml
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/marvel.txt
+ create mode 100644 Documentation/devicetree/bindings/watchdog/marvell,orion-wdt.yaml
 
-Jason
+-- 
+2.37.2
+
