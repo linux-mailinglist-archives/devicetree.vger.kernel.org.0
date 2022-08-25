@@ -2,297 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E8DFE5A0D5B
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 11:54:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA6355A0D5F
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 11:54:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238964AbiHYJyH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 05:54:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35238 "EHLO
+        id S235494AbiHYJy0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 05:54:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240985AbiHYJxp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 05:53:45 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86D07AE850
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 02:51:46 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id bn9so11341639ljb.6
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 02:51:46 -0700 (PDT)
+        with ESMTP id S234505AbiHYJyG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 05:54:06 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86F52AC270
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 02:52:18 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id d8so15114622lfq.0
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 02:52:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=DvaJK17gV4B+bl1ZbEWU+oqW67fAbVfCADxcKfyU+fo=;
-        b=jrMX2sKeb7fmWWgdwU0PRGp30JE12BX2p6j9usPnDrXjswJ4bzVW1QN3IlrPHB62Bi
-         +EFnKvG7IvmbLuwH4GiwE2lrxqWAUCT6nk1vVWJlPSGkwMh+CqVpZwkOw9MGxIyghOWG
-         c6I7mhb7EPuxMwtG2InqAxOCsfKCjOUpJ5v8uBazJEdiDtbVyrc22rrbpbVVazy1e9Pn
-         8RWOnSABSUWvSzKr8KqT/gD5zeUgri2Fx4v6K0YE7yrk3ICuVMgfSsMuCE23gku0kQWQ
-         HC6R1yJRJdZDWFOE49kEHMX+aI0ArOyaY0j+ucltO6vQjFr81G+RRj4zgJDJxc2othN1
-         48Lg==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=/Xjm3zsGuKOlz7T50ivA2r0C2gPq3B5LrNzOmebJTKc=;
+        b=VoKHBwr6XgeoBUP6orl2mDo0itQeZmtAVL7Ce3/QulBkW6wNNWoRjUMaGIGARvBgMZ
+         jjdcSQybfLV+KDtA6/6UtdmwCJmeFJMREsXmTnpdBvukHBkITbl6+mCagHzFCDdmzCzy
+         FhSFnmp9W+2uIi55Y/kJaxDeuIj79/AjCZ479t6WvmpB84Ypj7do2hR6yeLDGsX8SElG
+         bx4GIw1T+rAktwui5kZpomK9zs7qvfa5uOmkXfnd78w7ayASPRfRTOpSTL+vgz8dMKVD
+         r02UbVYozeSkKtfGDUgQmG+nwDMNHcUjRbgENUf95iD1HK41kmiYNS7GhImPde9CYNjI
+         RMzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=DvaJK17gV4B+bl1ZbEWU+oqW67fAbVfCADxcKfyU+fo=;
-        b=oe69bYtCH5MMZz8zF3JwuXi6uWmZXw7UoAHJXAne8qqu1QBnDAJqh8lZgyARPER6T2
-         8JtDBWRmisnV5IrSIoks5cyorUyxZpanH6YGkXHmWa9vspkFKcCQ3tMRe4NFSgYxBseo
-         9oEzicUtDXaiQ94UeVgVWpnj7IMlNKIj7k++Vtf1C1jS8LWqxYwYBYsWgc7IMDvQbC4T
-         9bRdaV+8n+PjFfFMaB2OfH2bWcYW9FnYdjumSD2ACtnXm/OEvJ+673mC7HNbONFv6qH8
-         kTL1iZ+GJ+t11WVqnpGtJRbK+sC/72nNgnP2J3rR3Dr93t3eL1BAELZPNi+FHymlQnmL
-         gfEg==
-X-Gm-Message-State: ACgBeo37ZUo0h4j/BUFJwMLanvmkN5mCVYZrg88b1e5SSqFxD6nqzmT3
-        wgq48qK3vBvoYVlpvIOUOkbTAA==
-X-Google-Smtp-Source: AA6agR6YfoBwsTqR20ybFZO3sNncqpFoke6wtT679ceGxCwxo1h5VJwbmkf3yMwRokjXS5wG7ZrvsA==
-X-Received: by 2002:a2e:84d7:0:b0:261:e692:511a with SMTP id q23-20020a2e84d7000000b00261e692511amr847690ljh.32.1661421074575;
-        Thu, 25 Aug 2022 02:51:14 -0700 (PDT)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id h10-20020a056512220a00b00492cfecf1c0sm398502lfu.245.2022.08.25.02.51.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Aug 2022 02:51:14 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-Subject: [PATCH v4 10/10] dt-bindings: display/msm: add support for the display on SM8250
-Date:   Thu, 25 Aug 2022 12:51:03 +0300
-Message-Id: <20220825095103.624891-11-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220825095103.624891-1-dmitry.baryshkov@linaro.org>
-References: <20220825095103.624891-1-dmitry.baryshkov@linaro.org>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=/Xjm3zsGuKOlz7T50ivA2r0C2gPq3B5LrNzOmebJTKc=;
+        b=rDASgh3jHly0qBNz7sAl6Qml0Q+EUqw09Svw3aesPK4dKPMiDF25MPY2qDzG6EMFnm
+         nJg+3avHlUF/6wRDgFpsYtwMZTMuoddpbQ9+XWYkG32pP2Om6UbU3czQ6jkR0ZyLExD9
+         hQL4nq6I7ilpsVLu50PaONJAzqEv5AnjTzoQelLYakbthGtXZsYqCSQn/spRQQ4YEPE7
+         ZAUjta/Gqitp9i2vVKibvlV3ToDNbncfJGt8RQVnDznZlfl4hFh2zeBD+IN7rtfrNYex
+         mcztUD1NQeLoFoa2t0H28fwUn4PHAqJBNgtWJtj9SktmFJX7MN5+KixDOOoKW+IMd8MB
+         GBfw==
+X-Gm-Message-State: ACgBeo2AOJSr1ZmV0jUlr9JmOrHS8HAXQkqfhFYF2SUKk6jZC8SZ4+sj
+        45WxiL29cOANek7Trl6u+FkbET3YM9z7QfDu5vKMkQ==
+X-Google-Smtp-Source: AA6agR6DhLp3M8c7w7bIMGuhp2NG6eDLu/F6OQp/nGH+cyEvLm4tf0Rmr/KNhBxMXmjxcratFTKQEiipPgKwSCTojGU=
+X-Received: by 2002:a05:6512:6ca:b0:492:ef21:c085 with SMTP id
+ u10-20020a05651206ca00b00492ef21c085mr938731lff.71.1661421104640; Thu, 25 Aug
+ 2022 02:51:44 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20220823145649.3118479-15-robh@kernel.org>
+In-Reply-To: <20220823145649.3118479-15-robh@kernel.org>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Thu, 25 Aug 2022 11:51:08 +0200
+Message-ID: <CAPDyKFriYXh2EwqyPH7MMbt-2FAYZFrBhNFTFvNrPn=W_5VEKg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: power: Add missing (unevaluated|additional)Properties
+ on child nodes
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Andrey Smirnov <andrew.smirnov@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DPU schema and extend MDSS schema to describe MDSS and DPU blocks on
-Qualcomm SM8250 platform.
+On Tue, 23 Aug 2022 at 16:57, Rob Herring <robh@kernel.org> wrote:
+>
+> In order to ensure only documented properties are present, node schemas
+> must have unevaluatedProperties or additionalProperties set to false
+> (typically).
+>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- .../bindings/display/msm/dpu-sm8250.yaml      | 123 ++++++++++++++++++
- .../devicetree/bindings/display/msm/mdss.yaml |  51 ++++++++
- 2 files changed, 174 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/msm/dpu-sm8250.yaml
+Acked-by: Ulf Hansson <ulf.hansson@linaro.org>
 
-diff --git a/Documentation/devicetree/bindings/display/msm/dpu-sm8250.yaml b/Documentation/devicetree/bindings/display/msm/dpu-sm8250.yaml
-new file mode 100644
-index 000000000000..26e71a0feb96
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/msm/dpu-sm8250.yaml
-@@ -0,0 +1,123 @@
-+# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/msm/dpu-sm8250.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm Display DPU dt properties for SM8250
-+
-+maintainers:
-+  - Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-+
-+description: |
-+  Device tree bindings for the DPU display controller for SM8250 target.
-+
-+properties:
-+  compatible:
-+    const: qcom,sm8250-dpu
-+
-+  reg:
-+    items:
-+      - description: Address offset and size for mdp register set
-+      - description: Address offset and size for vbif register set
-+
-+  reg-names:
-+    items:
-+      - const: mdp
-+      - const: vbif
-+
-+  clocks:
-+    items:
-+      - description: Display ahb clock
-+      - description: Display hf axi clock
-+      - description: Display core clock
-+      - description: Display vsync clock
-+
-+  clock-names:
-+    items:
-+      - const: iface
-+      - const: bus
-+      - const: core
-+      - const: vsync
-+
-+allOf:
-+  - $ref: "/schemas/display/msm/dpu-common.yaml#"
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/qcom,dispcc-sm8250.h>
-+    #include <dt-bindings/clock/qcom,gcc-sm8250.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interconnect/qcom,sm8250.h>
-+    #include <dt-bindings/power/qcom-rpmpd.h>
-+
-+    mdss@ae00000 {
-+      #address-cells = <1>;
-+      #size-cells = <1>;
-+      compatible = "qcom,sm8250-mdss";
-+      reg = <0x0ae00000 0x1000>;
-+      reg-names = "mdss";
-+
-+      interconnects = <&mmss_noc MASTER_MDP_PORT0 &mc_virt SLAVE_EBI_CH0>,
-+                      <&mmss_noc MASTER_MDP_PORT1 &mc_virt SLAVE_EBI_CH0>;
-+      interconnect-names = "mdp0-mem", "mdp1-mem";
-+
-+      power-domains = <&dispcc MDSS_GDSC>;
-+
-+      clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
-+               <&gcc GCC_DISP_HF_AXI_CLK>,
-+               <&gcc GCC_DISP_SF_AXI_CLK>,
-+               <&dispcc DISP_CC_MDSS_MDP_CLK>;
-+      clock-names = "iface", "bus", "nrt_bus", "core";
-+
-+      interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
-+      interrupt-controller;
-+      #interrupt-cells = <1>;
-+
-+      iommus = <&apps_smmu 0x820 0x402>;
-+      ranges;
-+
-+      display-controller@ae01000 {
-+        compatible = "qcom,sm8250-dpu";
-+        reg = <0x0ae01000 0x8f000>,
-+              <0x0aeb0000 0x2008>;
-+        reg-names = "mdp", "vbif";
-+
-+        clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
-+                 <&gcc GCC_DISP_HF_AXI_CLK>,
-+                 <&dispcc DISP_CC_MDSS_MDP_CLK>,
-+                 <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
-+        clock-names = "iface", "bus", "core", "vsync";
-+
-+        assigned-clocks = <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
-+        assigned-clock-rates = <19200000>;
-+
-+        operating-points-v2 = <&mdp_opp_table>;
-+        power-domains = <&rpmhpd SM8250_MMCX>;
-+
-+        interrupt-parent = <&mdss>;
-+        interrupts = <0>;
-+
-+        ports {
-+          #address-cells = <1>;
-+          #size-cells = <0>;
-+
-+          port@0 {
-+            reg = <0>;
-+            endpoint {
-+              remote-endpoint = <&dsi0_in>;
-+            };
-+          };
-+
-+          port@1 {
-+            reg = <1>;
-+            endpoint {
-+              remote-endpoint = <&dsi1_in>;
-+            };
-+          };
-+        };
-+      };
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/display/msm/mdss.yaml b/Documentation/devicetree/bindings/display/msm/mdss.yaml
-index 1b469893732a..57fa8dedc82b 100644
---- a/Documentation/devicetree/bindings/display/msm/mdss.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/mdss.yaml
-@@ -23,6 +23,7 @@ properties:
-       - qcom,sc7180-mdss
-       - qcom,sc7280-mdss
-       - qcom,sdm845-mdss
-+      - qcom,sm8250-mdss
- 
-   reg:
-     minItems: 1
-@@ -232,6 +233,30 @@ allOf:
-         iommus:
-           minItems: 2
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: qcom,sm8250-mdss
-+    then:
-+      properties:
-+        clocks:
-+          items:
-+            - description: Display AHB clock
-+            - description: Display hf axi clock
-+            - description: Display sf axi clock
-+            - description: Display core clock
-+
-+        clock-names:
-+          items:
-+            - const: iface
-+            - const: bus
-+            - const: nrt_bus
-+            - const: core
-+
-+        iommus:
-+          minItems: 1
-+
-   - if:
-       properties:
-         compatible:
-@@ -441,6 +466,32 @@ allOf:
-               enum:
-                 - qcom,dsi-phy-10nm
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: qcom,sm8250-mdss
-+    then:
-+      patternProperties:
-+        "^display-controller@[1-9a-f][0-9a-f]*$":
-+          type: object
-+          properties:
-+            compatible:
-+              const: qcom,sm8250-dpu
-+
-+        "^dsi@[1-9a-f][0-9a-f]*$":
-+          type: object
-+          properties:
-+            compatible:
-+              const: qcom,mdss-dsi-ctrl
-+
-+        "^dsi-phy@[1-9a-f][0-9a-f]*$":
-+          type: object
-+          properties:
-+            compatible:
-+              enum:
-+                - qcom,dsi-phy-7nm
-+
- required:
-   - compatible
-   - reg
--- 
-2.35.1
+Kind regards
+Uffe
 
+> ---
+>  .../bindings/power/domain-idle-state.yaml          | 10 ++++++++++
+>  .../devicetree/bindings/power/fsl,imx-gpc.yaml     | 14 ++++++++++++++
+>  .../devicetree/bindings/power/fsl,imx-gpcv2.yaml   | 14 ++++++++++++++
+>  3 files changed, 38 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/power/domain-idle-state.yaml b/Documentation/devicetree/bindings/power/domain-idle-state.yaml
+> index 6a12efdf436a..4ee920a1de69 100644
+> --- a/Documentation/devicetree/bindings/power/domain-idle-state.yaml
+> +++ b/Documentation/devicetree/bindings/power/domain-idle-state.yaml
+> @@ -20,6 +20,7 @@ properties:
+>  patternProperties:
+>    "^(cpu|cluster|domain)-":
+>      type: object
+> +    additionalProperties: false
+>      description:
+>        Each state node represents a domain idle state description.
+>
+> @@ -44,6 +45,15 @@ patternProperties:
+>            state will yield power benefits, after overcoming the overhead while
+>            entering the idle state.
+>
+> +      arm,psci-suspend-param:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: |
+> +          power_state parameter to pass to the ARM PSCI suspend call.
+> +
+> +          Device tree nodes that require usage of PSCI CPU_SUSPEND function
+> +          (i.e. idle states node with entry-method property is set to "psci")
+> +          must specify this property.
+> +
+>      required:
+>        - compatible
+>        - entry-latency-us
+> diff --git a/Documentation/devicetree/bindings/power/fsl,imx-gpc.yaml b/Documentation/devicetree/bindings/power/fsl,imx-gpc.yaml
+> index a055b3e819d8..777e1d852ddd 100644
+> --- a/Documentation/devicetree/bindings/power/fsl,imx-gpc.yaml
+> +++ b/Documentation/devicetree/bindings/power/fsl,imx-gpc.yaml
+> @@ -43,11 +43,21 @@ properties:
+>
+>    pgc:
+>      type: object
+> +    additionalProperties: false
+>      description: list of power domains provided by this controller.
+>
+> +    properties:
+> +      '#address-cells':
+> +        const: 1
+> +
+> +      '#size-cells':
+> +        const: 0
+> +
+>      patternProperties:
+>        "power-domain@[0-9]$":
+>          type: object
+> +        additionalProperties: false
+> +
+>          properties:
+>
+>            '#power-domain-cells':
+> @@ -78,6 +88,10 @@ properties:
+>            - '#power-domain-cells'
+>            - reg
+>
+> +    required:
+> +      - '#address-cells'
+> +      - '#size-cells'
+> +
+>  required:
+>    - compatible
+>    - reg
+> diff --git a/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml b/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml
+> index 747622bdc57b..3b161e01f920 100644
+> --- a/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml
+> +++ b/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml
+> @@ -42,11 +42,21 @@ properties:
+>
+>    pgc:
+>      type: object
+> +    additionalProperties: false
+>      description: list of power domains provided by this controller.
+>
+> +    properties:
+> +      '#address-cells':
+> +        const: 1
+> +
+> +      '#size-cells':
+> +        const: 0
+> +
+>      patternProperties:
+>        "power-domain@[0-9]$":
+>          type: object
+> +        additionalProperties: false
+> +
+>          properties:
+>
+>            '#power-domain-cells':
+> @@ -85,6 +95,10 @@ properties:
+>            - '#power-domain-cells'
+>            - reg
+>
+> +    required:
+> +      - '#address-cells'
+> +      - '#size-cells'
+> +
+>  required:
+>    - compatible
+>    - reg
+> --
+> 2.34.1
+>
