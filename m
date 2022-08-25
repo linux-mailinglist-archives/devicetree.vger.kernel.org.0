@@ -2,80 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B0535A13F8
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 16:39:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8223E5A1471
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 16:41:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242502AbiHYOik (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 10:38:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36450 "EHLO
+        id S242093AbiHYOlZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 10:41:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242280AbiHYOiI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 10:38:08 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B214B72AC
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 07:37:47 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id l8so10995336lfc.12
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 07:37:46 -0700 (PDT)
+        with ESMTP id S242661AbiHYOkg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 10:40:36 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4FF5B7293
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 07:39:10 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id m5so17857709lfj.4
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 07:39:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=g63m48g6pKVW9XDR0Qw7L/yMCNONa5W212iG6eOgwVY=;
-        b=QqSaNSUp1lcAMQKMVTopIDHEFWnJYAKE4t4Aa214Dxy+p0MWct8ITG7C5Sl2JJ2JR5
-         0GDOBulQxXM0y8hmuN23uKUQKHV8YfyC5AAeswLm3mMNfK2sW9XtjHNowDf29xq/HOKq
-         Jdo3l5BbVi8Ii6E3dUr3dfblUTxG8Iz0z5g2kVXaPyAeft33yeHngMmkczZK+Bp4jfbW
-         ewE6OImRXYuEd/2oeiTgG1Q29hTQvaZOjfMqoMu9lqrTuaDRzofAYUHMcZb+4gcRQB6J
-         yNgmIJcQQa/26Cqn5n3l8TZp20/QQnmw6mymfDHDQSd/E81qjWr0JWEQL7Al69Vi/Mw7
-         a/Eg==
+        bh=nSmn/Yyj9DKCgM+N60piaxupqHYJ46TSL1XyqG6tkgg=;
+        b=Gpy2x12/cadnPkLNfCGDF56/f5kbMRqU93C2pq1OcIEtF874xkVgIYDxNlwwdJJNCD
+         vv98D8Ynh1WUvBuxTjwv2oxhIzKM/Kgle3k0HrvrpT9l+ZY1obHTplNbS4T8tUM3nTPn
+         k5Qu9LeyBxZHRCldXOZvNNzwFfumnePA9MkoQIZbIkj/Pd57Pp25N7WYfBs7SHwH7QTe
+         6bt7r1u0vhsqT9v/ao1gnuwZZZR4wxnfBmvScGpWHvuSkAkKRZqdb8rZKD0eo/AhRSvg
+         peol75kJVd4Meln/E5Bf542LVPggxA6W8qD4alOZTvZzEr/ES71os+6B9NinFXAHy4Ee
+         h8Yw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=g63m48g6pKVW9XDR0Qw7L/yMCNONa5W212iG6eOgwVY=;
-        b=h8Gsmwg8vLy5A8jqWnROU7Agf58r0EkZ3Teuu2t379M9yxtu/Q5Dji8f3DB6A8QXIR
-         K7QML0O3uspxUom4KI/FHEhClahp7YckBgyZRe8x2e2liFfKoyjaKCtJcwLdghbgnV3F
-         iNmMpSukZnnRIGn1vDI1rZqpiVlfBUvCi6cowKjrunVdU7QfWijVN7e6VkDjpdBn2ZOM
-         b8s5nUJA+/3nukTCmwFn1kjrKMiKkXpyiaQ4PAg0ZVKjN08utCAELzAO0driXxJqrQQj
-         6ofL2+8dxMDTNkxZTBlmhEkwmcw32as7J619cwztEWHkkXrGy7HCfbsWHYtBzjVxFAAM
-         /2jw==
-X-Gm-Message-State: ACgBeo1Hnv5ITws5nrg2p9Lrifc2Mn4tqSu16AEp1rWN1HpBE9bYXTmD
-        CdGHYJSeOXGjsC3+8PJ4Q4WweA==
-X-Google-Smtp-Source: AA6agR7ggezKzDkha1/jrr1gqinbb89IwcfWGyZ+Sycky0YQcHwsYNOUzF9VtkgDcYFWm2wHWG0ozw==
-X-Received: by 2002:ac2:4c4e:0:b0:492:e3a0:1f01 with SMTP id o14-20020ac24c4e000000b00492e3a01f01mr1186682lfk.465.1661438265047;
-        Thu, 25 Aug 2022 07:37:45 -0700 (PDT)
+        bh=nSmn/Yyj9DKCgM+N60piaxupqHYJ46TSL1XyqG6tkgg=;
+        b=6SBAbIl4TpcnoBcdLb5g/kLTjE6dpqtvAdNXXf5ZmVyBBfxE64DAMvQrW6rfarFqOe
+         tWufhcryrbtsnZI/+8YDarsxesuJFQuvzLd9vZGNZEnIK7rCXOi7O2CR0Sy+yG3fGPJt
+         KHgMbGmZkHHF3L/gn91WQlFYiXW3F7ZcYtLcsfCPGZxsYcBy6bZuOVJiCjIo6paxOhjo
+         yOYLU7aw9D0wFnwhISIZrri5C22dNgnDKDTbHOaJ1yTatudU4klOtLU3HUapiiL/0Tc0
+         7cxvh7lbZl6ZF+XeX9XzdhKu5lZaABxsIsuS1OECR4noYbuh/ogpyRUSDyFseKS6vH10
+         Oy/A==
+X-Gm-Message-State: ACgBeo0uVTtZvyZ5v+SWnMaW2IoyjLf90pUUWfgA7ahUtEb5dyooxuvp
+        p3TclKl6AKCFUzl6g1mjXZTjPQ==
+X-Google-Smtp-Source: AA6agR67FCoHqMJJ4JUHZwutVBTI6wmpIj6U5TfJNwM72fQASqurH+pIT7bkkPMzerkMvAFNp+mmuw==
+X-Received: by 2002:a05:6512:3b14:b0:492:dbf2:a5a0 with SMTP id f20-20020a0565123b1400b00492dbf2a5a0mr1217292lfv.46.1661438349297;
+        Thu, 25 Aug 2022 07:39:09 -0700 (PDT)
 Received: from [192.168.0.71] (82.131.98.15.cable.starman.ee. [82.131.98.15])
-        by smtp.gmail.com with ESMTPSA id f12-20020ac24e4c000000b00492c59a2d06sm525205lfr.164.2022.08.25.07.37.43
+        by smtp.gmail.com with ESMTPSA id b15-20020a05651c0b0f00b00261e42b463dsm594411ljr.84.2022.08.25.07.39.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Aug 2022 07:37:44 -0700 (PDT)
-Message-ID: <375daf2f-9b8b-597f-41ae-b5be27e22e80@linaro.org>
-Date:   Thu, 25 Aug 2022 17:37:43 +0300
+        Thu, 25 Aug 2022 07:39:08 -0700 (PDT)
+Message-ID: <f088f873-6e40-0548-77f3-378c87ecd812@linaro.org>
+Date:   Thu, 25 Aug 2022 17:39:08 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v4 03/10] dt-bindings: display/msm: move qcom,sc7180-mdss
- schema to mdss.yaml
+Subject: Re: [PATCH v2] dt-bindings: gpio: mpfs-gpio: allow parsing of hog
+ child nodes.
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-References: <20220825095103.624891-1-dmitry.baryshkov@linaro.org>
- <20220825095103.624891-4-dmitry.baryshkov@linaro.org>
- <8e0ab9f0-cc27-f472-ce5c-b9f4a9d94005@linaro.org>
- <b01585c9-1810-2f25-d4dd-bea31b685e79@linaro.org>
+To:     Conor Dooley <conor.dooley@microchip.com>, brgl@bgdev.pl,
+        krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org,
+        robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220825143522.3102546-1-conor.dooley@microchip.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <b01585c9-1810-2f25-d4dd-bea31b685e79@linaro.org>
+In-Reply-To: <20220825143522.3102546-1-conor.dooley@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -88,28 +77,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/08/2022 15:40, Dmitry Baryshkov wrote:
->>>     clock-names:
->>>       items:
->>> +      - const: bus
->>>         - const: iface
->>> -      - const: ahb
->>> +      - const: rot
->>> +      - const: lut
->>>         - const: core
->>> +      - const: vsync
->>
->> All these changes point that device schemas are simply different and
->> trying to unify them is not correct approach.
+On 25/08/2022 17:35, Conor Dooley wrote:
+> The SD card and eMMC on PolarFire SoC are sometimes muxed using a GPIO
+> by the bootloader. Add a hog child property to facilitate this.
 > 
-> I'm not going the argue the mdss-common + platform specifics, but please 
-> note that these changes are coming from me removing one extra level of 
-> depth in dpu-smth.yaml. Currently these files have both mdss and dpu 
-> devices, I'm stripping the mdss out of them.
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+> Changes since v1:
+> - move addtionalProperties up under type:
+> - drop the explicit match group syntax
+> ---
+>  .../bindings/gpio/microchip,mpfs-gpio.yaml     | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml b/Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml
+> index 110651eafa70..fdc16822fd4b 100644
+> --- a/Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml
+> @@ -44,6 +44,24 @@ properties:
+>  
+>    gpio-controller: true
+>  
+> +patternProperties:
+> +  "^.+-hog(-[0-9]+)?$":
+> +    type: object
+> +
 
-True, it's second time I got myself looking at wrong part of diff hunk.
-Still your allOf:if:then grows with different cases. I guess the biggest
-differences came with sdm845 and later only children and clocks differ.
+No need for blank line, but it's ok as well.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
