@@ -2,109 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AC1B5A16C3
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 18:38:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EFBD5A16CF
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 18:41:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242080AbiHYQiU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 12:38:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36026 "EHLO
+        id S231594AbiHYQk6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 12:40:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231604AbiHYQiO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 12:38:14 -0400
-Received: from mail-il1-x133.google.com (mail-il1-x133.google.com [IPv6:2607:f8b0:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86EA3B9F96;
-        Thu, 25 Aug 2022 09:38:13 -0700 (PDT)
-Received: by mail-il1-x133.google.com with SMTP id d6so9479180ilg.4;
-        Thu, 25 Aug 2022 09:38:13 -0700 (PDT)
+        with ESMTP id S233141AbiHYQk6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 12:40:58 -0400
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 407DBB99D8
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 09:40:55 -0700 (PDT)
+Received: by mail-pj1-x102f.google.com with SMTP id s36-20020a17090a69a700b001faad0a7a34so5503747pjj.4
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 09:40:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=cg4DKuqZRXI8XygUcYOSntZBB49Z7XOxAN4MDp/rKMw=;
-        b=KiqFMG0trws4p7kItu23a0fBvq++91aZ80QsPUnlOD9g6nUwgaF/RmfrTrK8fJJXr8
-         iUue/c52TU7d4ZglonAvDypXzOl/O4iNXjZdoNAk2gXZWUAjGOPG8nrP9gmNRR4nruKG
-         R+kRm/FV/Vkc6rX9Wvbdh4MMMvVT0wmeehPZA9i7jcsb5G2oTWCh5zMNoCsWGT6M/Ray
-         WmaJi3pi8D6f53Cg0K9jS/W7aEFnclWZ1SEi0YVJpHQSF2KeqG3SS08n83XjENeQVxPP
-         P3K5LgzpynqMybjfdLpuv5QwoRRGUXQVgN3sOiXoaNbgvHNQdKCFVu2PDiNalDU5i7YV
-         tgpQ==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc;
+        bh=LDr/sJt39r59Eo+e73KguU3ty95m0EiQpUCtWbdHjmA=;
+        b=8H3dvlqkg8SU0/OkxYfNKolK0VF2T7mLeOEHCxx6rmCAg/5HtUDbEK8/iMstXUYpRq
+         1vHJODxz5kZW7WZQHbmPVuXKke2yfBTfMMZgRW95C1GHjfEiU+Po4JNnRb9iy8NLE/sA
+         4Yf3eoCsWrxwQQT6mmaPyRosEv1sCICKuVk1go1Yg+KT5xxAQxJIB0OpqBVdYkUNy47s
+         74pS2IP9e2xaH0fBKYuTowJ01OZ5kNoSriunu+LRZLLJzzns3n8NctDKj0WnDTa3Rk6+
+         pcWLE8ilUaxBd4yvsQBlj/Lu9L5pF7JokNDH0I2Dwze2eZqHUYbDM31GpDXUZl+qeS5I
+         Uzfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=cg4DKuqZRXI8XygUcYOSntZBB49Z7XOxAN4MDp/rKMw=;
-        b=chdHC7UAlhZjKXIN1jghc12CzCmhPpOm32DwYq+8xbU+NYhVtdmf+w/RgZDclvYSkL
-         H5ulP/n593I3yWmOAWQaRqVYva7gMJclrPnngn6DumYM+A4QQoQYZnU/EMxOsYdeebD5
-         85EzdmdVZ90fTUAkITAj+E+W3V9tL4p4UPcDDvfaZndQ+Onnoufopo9ycml2v9yhRhDu
-         Me4BNkgen93stp/58ch51GYoMmdUKAfr167r7vVCzkqtkcNwO2zwxLcGzvxjj+TdoYY9
-         XlbXYNsOm7bVWtR+W1LuSzIzTa0CzlNw1DfSlW6+PNrayO9ReG0cM/RMtx2pCxIwsVOP
-         lXZg==
-X-Gm-Message-State: ACgBeo1iKs2SGJYyLE+35XcEzA0/xgpwaZ8L5uZtKbUNcQs1DY6LKtHq
-        onQWKzTlJ/PiN3zUv4RokTY=
-X-Google-Smtp-Source: AA6agR6x34SkG5dp3T5Li7CZq6no4k62eMJxDTDbSDL7DC1g4ZhKftOOvN1IvNHx7ghLp1vK9PfxYA==
-X-Received: by 2002:a05:6e02:18cd:b0:2de:73e8:3f0 with SMTP id s13-20020a056e0218cd00b002de73e803f0mr2348747ilu.69.1661445492977;
-        Thu, 25 Aug 2022 09:38:12 -0700 (PDT)
-Received: from ?IPV6:2600:1700:2442:6db0:1906:ee71:4d12:9d74? ([2600:1700:2442:6db0:1906:ee71:4d12:9d74])
-        by smtp.gmail.com with ESMTPSA id y10-20020a056e02118a00b002e9818bc2dfsm2370346ili.8.2022.08.25.09.38.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Aug 2022 09:38:12 -0700 (PDT)
-Message-ID: <1ecf05ab-b1f7-d0be-fac4-7941a306aa42@gmail.com>
-Date:   Thu, 25 Aug 2022 11:38:11 -0500
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc;
+        bh=LDr/sJt39r59Eo+e73KguU3ty95m0EiQpUCtWbdHjmA=;
+        b=wMun1e2Vykq24aQuwyX/fpn2cdeoWUCEAQHAacyjzW74QNixMaxIE/vWiBp6poy0BD
+         sLRYWlNNmLAHBIQ4Mzp7Xpg0GXcM/yScOWYz2CxYR19FknMoPALHf21V1x6jDT8Tki7x
+         PXzzZckd6Y7YtewS4UCDmwcvD20albMLQwFwqdL5L72pcgqL9zCvdunFJS/v2oAsovwU
+         lBO/e0BmGhT+FvIyRj6FSxriZIcBReDzthsWItc8IF7UP0+brorWZWB+Ol9CtYsKPnHK
+         VAjZbva5pdXdLKkmjVENntdVr7nJsBb7db+2yDVfYfU8Spob3gDgBUYX7HRW2cm/Wn5p
+         vjdQ==
+X-Gm-Message-State: ACgBeo0mfXl9mmvf6eknhl6D4jOFv3g/dLyZEegFe1Bjwo/Xrn19h68z
+        UAAQo2xNAoQNzOrfUubjLp7qSQ==
+X-Google-Smtp-Source: AA6agR6Zl3jv0CpD891d5be2m1yD6+A31QDkeEMLmLCb5bkHhoecqXaZMJEQvAt9eyJEogL7KxddtA==
+X-Received: by 2002:a17:902:f70d:b0:16c:50a2:78d1 with SMTP id h13-20020a170902f70d00b0016c50a278d1mr4451004plo.34.1661445654721;
+        Thu, 25 Aug 2022 09:40:54 -0700 (PDT)
+Received: from localhost ([76.146.1.42])
+        by smtp.gmail.com with ESMTPSA id iw3-20020a170903044300b00172709064besm14801735plb.46.2022.08.25.09.40.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Aug 2022 09:40:54 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Huqiang Qin <huqiang.qin@amlogic.com>
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        Huqiang Qin <huqiang.qin@amlogic.com>
+Subject: Re: [PATCH] dts: meson: Add the included meson-s4-gpio.h in the
+ meson-s4.dtsi
+In-Reply-To: <20220825084000.3402908-1-huqiang.qin@amlogic.com>
+References: <20220825084000.3402908-1-huqiang.qin@amlogic.com>
+Date:   Thu, 25 Aug 2022 09:40:53 -0700
+Message-ID: <7htu60i8dm.fsf@baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH] of/device: Fix up of_dma_configure_id() stub
-Content-Language: en-US
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220824153256.1437483-1-thierry.reding@gmail.com>
-From:   Frank Rowand <frowand.list@gmail.com>
-In-Reply-To: <20220824153256.1437483-1-thierry.reding@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/24/22 10:32, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
-> 
-> Since the stub version of of_dma_configure_id() was added in commit
-> a081bd4af4ce ("of/device: Add input id to of_dma_configure()"), it has
-> not matched the signature of the full function, leading to build failure
-> reports when code using this function is built on !OF configurations.
-> 
-> Fixes: a081bd4af4ce ("of/device: Add input id to of_dma_configure()")
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
->  include/linux/of_device.h | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
-> 
-> diff --git a/include/linux/of_device.h b/include/linux/of_device.h
-> index 1d7992a02e36..1a803e4335d3 100644
-> --- a/include/linux/of_device.h
-> +++ b/include/linux/of_device.h
-> @@ -101,8 +101,9 @@ static inline struct device_node *of_cpu_device_node_get(int cpu)
->  }
->  
->  static inline int of_dma_configure_id(struct device *dev,
-> -				   struct device_node *np,
-> -				   bool force_dma)
-> +				      struct device_node *np,
-> +				      bool force_dma,
-> +				      const u32 *id)
->  {
->  	return 0;
->  }
+Hi Huqiang,
 
+Huqiang Qin <huqiang.qin@amlogic.com> writes:
 
-Reviewed-by: Frank Rowand <frank.rowand@sony.com>
+> When the meson-s4-gpio.h is missing, the properties in the node cannot
+> refer to the gpio number
+>
+> Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
+
+Thanks for your patch.
+
+Could you please resend this inluding the Amlogic list:
+linux-amlogic@lists.infradead.org
+
+Thanks,
+
+Kevin
