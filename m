@@ -2,87 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 913A75A1A13
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 22:11:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D87745A1A17
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 22:12:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242106AbiHYULw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 16:11:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50756 "EHLO
+        id S243526AbiHYUMd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 16:12:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51030 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240732AbiHYULv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 16:11:51 -0400
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DC91B99DB;
-        Thu, 25 Aug 2022 13:11:51 -0700 (PDT)
-Received: by mail-ot1-f53.google.com with SMTP id d18-20020a9d72d2000000b0063934f06268so7905360otk.0;
-        Thu, 25 Aug 2022 13:11:51 -0700 (PDT)
+        with ESMTP id S231398AbiHYUMd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 16:12:33 -0400
+Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67142B99E1;
+        Thu, 25 Aug 2022 13:12:32 -0700 (PDT)
+Received: by mail-qt1-x82a.google.com with SMTP id cb8so16176430qtb.0;
+        Thu, 25 Aug 2022 13:12:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=pGYo7MgM4ntqJX0vqGEGbqHVguM5P8C7f8EezOlQTHg=;
+        b=HfPj2BmNqHO+f4BQZjcu7YafJWAMqQcvYdDb0aeIrS/YafRs+39ImkXbw45p0Dj1OV
+         JAG3JCDBUrWxWyYnAhkzU+Gv4KhdIgy6o0rXgpw557QT85sSkaTZF2xl9sUs6yB2hckO
+         nTfSPe8MMNUMOCbEEu8FiorTgSKsuOi1Lb+se/UqtY2pkqxUJTyb7PKGyMbPDLSfROEF
+         XGfzj2NU4zYNk7IMVMwsOePJ/YUL0XVODBDcHHn1bUf9QvzIXAW74mDCkwQHdYkaIe59
+         8trvc+VWfIiq1xNHYvKNkWFlOvno2TuWIDyahveGPzo3KFxk7a+W/+tUNRq1/D9L3Zbv
+         erZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=Oj86uGkClNsnwE1dPgwe6HKsJXAs0gnD9U8fRVhpgYA=;
-        b=unLAfDLm6C+V8xfIZwP0BaEG+Q97YcQVTaRnRLsxM0k324GbI2WxirFEXwygFAW288
-         y8maztEC5P+MoaJU5+CFmLH0KvekY3NgM+6bM5ZncihRvNNm9GrsbK4/Tnd4TdYDpYTR
-         +Wz1WDmwANf5JJIaBe7BFiPGMj6o7dM7iCVlpuU/PAMg8WE9nAk8bdflKJk/tVyu3MH0
-         hmREpKgsGHvaKVHnxDO9cItbhtW3M8tBQK9yWF0kHkZaREtz0v2UxrMpDDbm7YwwaRii
-         W7lfXEB74CAGAujaSSoq1AnMi3O+9SGWI+MfuD8+Eo5QbPMAA72Z1bnsVpH7qU2aGMk5
-         BS0g==
-X-Gm-Message-State: ACgBeo2UIDeOdMYwXoLR7y3H2jvNh2TWv5okCoB5ujOD5czh5NCXYDJE
-        IqoGx6r083DO7xpNcM88bg==
-X-Google-Smtp-Source: AA6agR5hwcOt2GSmumZQPTU+DdvLWeb8FIdquxqTRq407DHgvOQFNI+9yln3wmNE7EjAWVfmy4sDkw==
-X-Received: by 2002:a05:6830:d7:b0:639:ac3:7a6 with SMTP id x23-20020a05683000d700b006390ac307a6mr276969oto.162.1661458310460;
-        Thu, 25 Aug 2022 13:11:50 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id y16-20020a056870429000b0010bf07976c9sm73446oah.41.2022.08.25.13.11.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Aug 2022 13:11:49 -0700 (PDT)
-Received: (nullmailer pid 1610468 invoked by uid 1000);
-        Thu, 25 Aug 2022 20:11:48 -0000
-Date:   Thu, 25 Aug 2022 15:11:48 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-Subject: Re: [PATCH v4 00/10] dt-bindings: display/msm: rework MDSS and DPU
- bindings
-Message-ID: <20220825201148.GA1607980-robh@kernel.org>
-References: <20220825095103.624891-1-dmitry.baryshkov@linaro.org>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=pGYo7MgM4ntqJX0vqGEGbqHVguM5P8C7f8EezOlQTHg=;
+        b=PeG8Lx8EDTWCHkZk7z1G1Eyd76CmQrTaXILHmhnLLM1ngsnD+2SGWw5tre5NUvz/V6
+         cvbi/7RekRKIt1u8aW+fjLleCOZ/uyfhN+wV0YdrxxOL0Nr9xmXnyHuH7cUPHV0f6Arq
+         CqnQq8Y0eaMmTh/haDDEZ28ZWCO2VDF8oXgnv+azeNK6OpBfWG8LR5NWZ5RkdLp9p3X4
+         q7VoKKa0fUMSAQTBQRwMpXqvG7sjYejgFyM1B+8uNalvG7/k0KqZw3IGwPEEpB/NAf8c
+         gRLVegSfcvywECLwqiPX2QXnINj08aSVrgoF9IlEoJDQKscds05uHtxZwx+YBQfqEVVL
+         cjrg==
+X-Gm-Message-State: ACgBeo02aYgPsmlv2zjUzH5cCVvxNpatUTJ4TL/VLykYFiWp64xnbYal
+        3BI1iz/brl3fERZLy8ZaVGFYZ2EG6LSYkgG5M6EI7g3aQko=
+X-Google-Smtp-Source: AA6agR7FS23bQp6uuqGhFRmQ6qNFnWot94d8f/D3GbqmtaHSFbUX523BypBhI/yRwc3hRlLN/ZPGcY+U+IfsvOWmX4g=
+X-Received: by 2002:a05:622a:40a:b0:343:77ba:727f with SMTP id
+ n10-20020a05622a040a00b0034377ba727fmr5185305qtx.481.1661458351521; Thu, 25
+ Aug 2022 13:12:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220825095103.624891-1-dmitry.baryshkov@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+References: <20220824125203.685287-1-ramona.bolboaca@analog.com> <20220824125203.685287-3-ramona.bolboaca@analog.com>
+In-Reply-To: <20220824125203.685287-3-ramona.bolboaca@analog.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Thu, 25 Aug 2022 23:11:55 +0300
+Message-ID: <CAHp75VeP_ZLYSty2x_m27M_1HzsXx_DX=UsZopPEonAfr7_RyA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] iio: adc: add max11205 adc driver
+To:     Ramona Bolboaca <ramona.bolboaca@analog.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 25, 2022 at 12:50:53PM +0300, Dmitry Baryshkov wrote:
-> Create separate YAML schema for MDSS devicesd$ (both for MDP5 and DPU
-> devices). Cleanup DPU schema files, so that they do not contain schema
-> for both MDSS and DPU nodes. Apply misc small fixes to the DPU schema
-> afterwards.
-> 
-> Changes since v3:
->  - Changed mdss->(dpu, dsi, etc.) relationship into the tight binding
->    dependin on the mdss compatible string.
->  - Added sm8250 dpu schema and added qcom,sm8250-mdss to mdss.yaml
+On Wed, Aug 24, 2022 at 3:56 PM Ramona Bolboaca
+<ramona.bolboaca@analog.com> wrote:
+>
+> Adding support for max11205 16-bit single-channel ultra-low power
+> delta-sigma adc.
+> The MAX11205 is compatible with the 2-wire interface and uses
+> SCLK and RDY/DOUT for serial communica- tions. In this mode, all
+> controls are implemented by tim- ing the high or low phase of the SCLK.
+> The 2-wire serial interface only allows for data to be read out through the
+> RDY/DOUT output.
 
-My scripts tell me I reviewed these, but I don't really follow what's 
-changed.
+Is there any existing driver that can be extended to support this chip?
 
-Rob
+...
+
+> +       st->chip_info = device_get_match_data(&spi->dev);
+
+And if chip_info is NULL?
+
+...
+
+> +static void max11205_remove(struct spi_device *spi)
+> +{
+> +       struct iio_dev *indio_dev = spi_get_drvdata(spi);
+> +       struct max11205_state *st = iio_priv(indio_dev);
+
+> +       iio_device_unregister(indio_dev);
+> +       regulator_disable(st->vref);
+> +}
+
+Have you tested module removal?
+
+> +
+
+...
+
+> +static const struct chip_info max11205_chip_info[] = {
+> +       [TYPE_MAX11205A] = {
+> +               .out_data_rate = MAX11205A_OUT_DATA_RATE,
+
+> +               .name = "max11205a"
+
++ Comma
+
+> +       },
+> +       [TYPE_MAX11205B] = {
+> +               .out_data_rate = MAX11205B_OUT_DATA_RATE,
+
+> +               .name = "max11205b"
+
+Ditto.
+
+> +       }
+
+Ditto.
+
+> +};
+
+...
+
+> +
+
+Redundant blank line.
+
+> +module_spi_driver(max11205_spi_driver);
+
+-- 
+With Best Regards,
+Andy Shevchenko
