@@ -2,117 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A2D85A17F7
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 19:30:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A6F25A1849
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 20:05:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242468AbiHYR36 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 13:29:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37334 "EHLO
+        id S243018AbiHYSFa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 14:05:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241625AbiHYR35 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 13:29:57 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 412FB14D23
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 10:29:55 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id u5so17683454wrt.11
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 10:29:55 -0700 (PDT)
+        with ESMTP id S242980AbiHYSF2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 14:05:28 -0400
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1123072EDF
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 11:05:27 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id s23so10594606wmj.4
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 11:05:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=xv80AdlB+SsjBLoDIgwEjmBWdBKDGfqlqLNj3IFDEQs=;
-        b=MStK53Ak1Gk5mCSta3xroLD0KsZQ6DY4QsKYMe4pOrMp2u1HfYHa1m2wMVMyTSHmwb
-         pS9G587JwlukyBLYXS4dWDK4ZJEBFfRRfMU8BIUXyps9qcHjYepPp5l9vtZCSA+FRQY7
-         5Ym5jfikNtrThLCo6a8KYEHLolX5oMux7G5jVQ/qGES6XtoscQ3oyVgxP6SpqCsjANeL
-         ntr7Jx/gfyYtsPd3d4Nhjqnaab+pID5+OPeW7AI7cgHR/PlrBmChuA8owNxA4iVdmd+D
-         uR/ZT8N35oCgJRj2Q6wPHJ8zb4bs2hlkrqOdDJUnbKDR366whziUl3ha9uHOlgILoB9+
-         BNBw==
+        d=conchuod.ie; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=JUTRY4gaK8Gdeip+jNVieK44Ohhk3yQH8niH5zENkSw=;
+        b=UQRwsSKSQOopSzPEnfGl08Wcz8NArorGUNMK0W1lv9/M3NFHsrXasUoP/8N6hnNLyh
+         Db+QzkVDzRMXC3hgUyXq0p/ra8hm2s0axZjgkn5/xzjO73xUBq3NWFs8zslI3FobG/9q
+         ElabZvviGU6oh6mONYgE7ezidVx0xJSjXX7zA3rtbmtllF1f27STAnj3DnA+VfAXUkMl
+         Da7Z8W1c5erVgM2O39G0VW5VS1MZds4EV6uliQXvj/E8xFQyQSOgSyjZyifITgzLG8Ka
+         oMAd0Sich0b0OCAAyxB0J9XknMkajEdI82BQg3Gwbo/HoD4VPnFnOKOAkEkcJMZH3M23
+         2JKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=xv80AdlB+SsjBLoDIgwEjmBWdBKDGfqlqLNj3IFDEQs=;
-        b=b99VEG6cdPJCZD6Mac6d17Pt0RYsqkAww6nOsStQm16pon5kKq3xmav4ONbtWDGV3X
-         h/RhRL9/FopAjLUS827bYhzxLBGcWW7sTaRNJW7U7kmXlOwOTJslf43yg0lL6pV1C+xZ
-         RdcZxlJy9zU7KJvTNkEFwZE9Og8coIbXqW1Un7ztq1rtJZvC11tMWpNyavWYKoU0lyLm
-         6fSLBGUoX4hCxlLt4vDxoCS6dT44ORSrR7nQiHuNzOmaRUmBz7YDWZWxbF4cgBHy3/1V
-         Hk13g3hSx8gatsYAtwfjG5nMSXkKZOcRzV90PwuQUMZkBWSX7vaXcYlhPb2GhivyfKs9
-         PgCw==
-X-Gm-Message-State: ACgBeo0OgvYurztKLgMKzRNo4dMbw12zuki8ZPO86NkNqe+he9r5FUDW
-        q1if+lF1leUUyyoQGNzNcmnWYA==
-X-Google-Smtp-Source: AA6agR6BAArwEMQHc3BN5JDrOtUJIEACpOEZOvDPNRStjOFBQDS3wXj0/ux78aI79Rkb/tnmA2dKtQ==
-X-Received: by 2002:a05:6000:1446:b0:222:c466:58a0 with SMTP id v6-20020a056000144600b00222c46658a0mr2973130wrx.53.1661448593721;
-        Thu, 25 Aug 2022 10:29:53 -0700 (PDT)
-Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id g13-20020adfe40d000000b0021f15514e7fsm24976334wrm.0.2022.08.25.10.29.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Aug 2022 10:29:53 -0700 (PDT)
-Message-ID: <05fa19f7-7997-51c3-767f-c40cb321d2a4@linaro.org>
-Date:   Thu, 25 Aug 2022 19:29:51 +0200
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=JUTRY4gaK8Gdeip+jNVieK44Ohhk3yQH8niH5zENkSw=;
+        b=A4q+J2MacptvBi/Hi+uzxI3yXLsilCtr4kWl+5duFRsova4P2mtKnLwcCDA+Wn7die
+         0DE2yUoUD0MDcLmPhh2dnuxlcnR/3bIDDIRKgfgw/qe6T2LZ0pQ4ia3otqIJx+Ipuk0i
+         Rb0FXTGd+5WFRPxRIvrmWFD7DoGp32G1ETSm5lbgvilrJDVMaXZ0mVpwc7Bm89NGJAQk
+         6reiVEZbccfJmHlOBl5TcjsTQ7r5Me9kZy8Xzn+3MklKGBGVOknOwkL7JQQMNs6HiNQ1
+         +yi7NiYFgQpfa4bIK0U7i7TL3hIE+Psy7OraezAkyfRRtIT3vJ5et5rwR7M4FDxAAryF
+         QtLw==
+X-Gm-Message-State: ACgBeo0t/koa7B61RAJuMrIdrLrfVifstS72N9X5knyjS1ZSbtCi3vw5
+        fB2OB4khrf2P+4zjKSSBbn2LyQ==
+X-Google-Smtp-Source: AA6agR5biMHZOOviA7RBIh8sODjlp+ZpN4gWA6662c/obgpPYUJW3Xon/lSc/ip8BcNFU0lBj4jAww==
+X-Received: by 2002:a05:600c:3d09:b0:3a5:e408:ca19 with SMTP id bh9-20020a05600c3d0900b003a5e408ca19mr3121650wmb.135.1661450725527;
+        Thu, 25 Aug 2022 11:05:25 -0700 (PDT)
+Received: from henark71.. ([51.37.149.245])
+        by smtp.gmail.com with ESMTPSA id j4-20020a5d6044000000b002254a7f4b9csm14967970wrt.48.2022.08.25.11.05.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Aug 2022 11:05:25 -0700 (PDT)
+From:   Conor Dooley <mail@conchuod.ie>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Daire McNamara <daire.mcnamara@microchip.com>
+Cc:     Sagar Kadam <sagar.kadam@sifive.com>,
+        Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
+        Atish Patra <atishp@atishpatra.org>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] Add a PolarFire SoC l2 compatible
+Date:   Thu, 25 Aug 2022 19:04:16 +0100
+Message-Id: <20220825180417.1259360-1-mail@conchuod.ie>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v9,4/7] thermal: mediatek: Add LVTS driver for mt8192
- thermal zones
-Content-Language: en-US
-To:     bchihi@baylibre.com, rafael@kernel.org, rui.zhang@intel.com,
-        amitk@kernel.org
-Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        khilman@baylibre.com, mka@chromium.org, robh+dt@kernel.org,
-        krzk+dt@kernel.org, matthias.bgg@gmail.com, p.zabel@pengutronix.de,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, james.lo@mediatek.com,
-        fan.chen@mediatek.com, louis.yu@mediatek.com,
-        rex-bc.chen@mediatek.com, abailon@baylibre.com
-References: <20220817080757.352021-1-bchihi@baylibre.com>
- <20220817080757.352021-5-bchihi@baylibre.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20220817080757.352021-5-bchihi@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Conor Dooley <conor.dooley@microchip.com>
 
-Hi Balsam,
+Whilst re-running checks before sending my dt-fixes PR today I noticed
+that I had introduced another dtbs_check warning by applying one of the
+patches in it.
 
-On 17/08/2022 10:07, bchihi@baylibre.com wrote:
-> From: Michael Kao <michael.kao@mediatek.com>
-> 
-> Add LVTS v4 (Low Voltage Thermal Sensor) driver to report junction
-> temperatures in MediaTek SoC mt8192 and register the maximum temperature
-> of sensors and each sensor as a thermal zone.
+PolarFire SoC has 4 cache interrupts, unlike the fu540 (which the dts
+re-uses the compatible of currently) which only has 3. Add a new string
+to the binding like should've been done in the first place...
 
-Thanks for your work
+The driver does not care which compatible it matches against, and just
+uses as many interrupts as are in the dts so will happily work away
+without any needed changes there.
 
-First of all, the patch is way too big.
+@Palmer, you can take this directly as long as my fixes PR for rc3 is
+merged if you like, since the application path for the binding is via
+you anyway. I suppose I could take both too, but whatever works best
+for you (:
 
-The organization of the data is hard to understand.
+Thanks,
+Conor.
 
-Could you give a description of the sensors, how they are organized ?
+Conor Dooley (2):
+  dt-bindings: riscv: sifive-l2: add a PolarFire SoC compatible
+  riscv: dts: microchip: use an mpfs specific l2 compatible
 
-I can see the there are 'tc' and each have a group of sensing points? Is 
-that correct? Do have the 'tc's a shared clock? etc ...
-
-I have another email with the comments inline but without more insights 
-on the hardware it is difficult to review accurately. This driver looks 
-more complex than the other ones I've reviewed. At least that is what 
-looks like with the different macros names found.
-
-
+ .../bindings/riscv/sifive-l2-cache.yaml       | 79 ++++++++++++-------
+ arch/riscv/boot/dts/microchip/mpfs.dtsi       |  2 +-
+ 2 files changed, 50 insertions(+), 31 deletions(-)
 
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+2.37.1
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
