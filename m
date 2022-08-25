@@ -2,87 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B77B75A0B1E
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 10:13:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6E325A0B31
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 10:21:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239431AbiHYINb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 04:13:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55776 "EHLO
+        id S233215AbiHYIVG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 04:21:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235888AbiHYINb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 04:13:31 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0028F558C7
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 01:13:27 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id bx38so18647330ljb.10
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 01:13:27 -0700 (PDT)
+        with ESMTP id S239563AbiHYIVE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 04:21:04 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F5CE73332
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 01:21:03 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id z6so27216840lfu.9
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 01:21:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=qn5tnLFNpGNvBrf/K98/ZrzIzWDByL2/KUE+XN0e2lI=;
-        b=ZAkMiEwm1HWoU57iTsHZcx4crwgdjTbODQ5RTgCOhXbJF2c2UfRpNRQByhuFrxaLt2
-         /jt0tiffVj5XoGQirXeuwMRm6rDtV954NtlKcxvgyKZ1/ArLeA0aL45SW76utZHFzVhb
-         m8EehFJCDeX0WZDyXTc8PLfidLri9PJD/JP82XqEsBf8Qzy54p6m+5/ltJ+3xHGe50IS
-         +kTZLbTvjgmAqUYh41o3UvLDmp2TR9kDXNmQxIeY2yCe8nFQcA9R8762uEUtSHT0ckbP
-         gBqwltQVcBlHAuPr+fQX3w4JFdGmbvdTN2l92vMNVEFHACvYYdFugMxeD4P9u6CHei2T
-         UDmA==
+        bh=wXqYQNt6cQwwovEWaPctQuIwu12r6o/ryFEQHXvmidw=;
+        b=RQXOc2sOHOJavrUi2DGvmpi8DUDu+vUEzSkpJ26fRoN6ZKmym27UYpXBTK8ZA1u7wq
+         tnnjAynV39vfbvdTeFCS1BO7qjXPbjsd1q+EC55JkzzUY2D4eSPmYIBn9RpdYa4QJYaD
+         z3cVF/OO8WP0NAChZ94KMTjPaQhrN+6ZXx4odIe82FSdaJF+bGk7rRSMLFpp9hwEbMP0
+         laK3LgbY8vzgK6bKA6E9gqG3DDec6qaZJ1ROHDCdGcb1ysNWt/+9k3jqb9Ljjw67dtfS
+         lLiv2mPqZKG5RlfPOU6JkCGfyKd7J39nVXrjQCrpu7u452QA9/U/bZnrDY4pSO7W3Nu3
+         4YSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=qn5tnLFNpGNvBrf/K98/ZrzIzWDByL2/KUE+XN0e2lI=;
-        b=AzZqaJmwtOu07EiMN5yv435nE36ZuJ29ilrxWvTUr2PP7/LrSz+oVFYM06LjCtmiDN
-         pQcrgPX2z2ebQdp48wG5ubkB5CkLjFXaipmKDEpv/NeHiWNcHeGJeZ/R9qpJniaVUTK6
-         33jSuKSCgKoxRYFs92Q1py+z2HfAiS0Hvq7OSgxpv+Ymw9jIyDiYnYnTL47gTEC7wjAs
-         zXlLVEAGXdxLyb1g8uaJ9wEeFfNOk91Mb2cYdyowmXWsDskb4cEJyUN7DfauZDYYTy2b
-         EmBpZEZL2KA0bE3M0bSIMrJsxCvWrjcTtn2+IcTpXPjJd6ybRdPJIuRaRqAjGCnrS1wQ
-         ePqw==
-X-Gm-Message-State: ACgBeo0fuLKfSxGzyBWRV7ZMA88i4ycXLpYxU317gq+Sz05zXe8dVGDE
-        Phw40bKVBAUODEI1ZnDoS2mCUQ==
-X-Google-Smtp-Source: AA6agR4WcpGmr3YAjURQJ1NfYCPefM99Q4A+Vkw54i+ZJfnnK14evDd3BR8AXou5krL0fKPpiRaMWg==
-X-Received: by 2002:a2e:824c:0:b0:25f:de27:f013 with SMTP id j12-20020a2e824c000000b0025fde27f013mr709733ljh.447.1661415206244;
-        Thu, 25 Aug 2022 01:13:26 -0700 (PDT)
+        bh=wXqYQNt6cQwwovEWaPctQuIwu12r6o/ryFEQHXvmidw=;
+        b=2yZOp1i1dV+p5FWKbiVIUaa0D+IB0U0zN8tQDVvhKZD46S7Azy1aTnlPgj/w7MviZo
+         vUgV8NgKmU6e2RmsuwpbkmDjCF/Oeqr5hIiv9NuN3LN2UAHYo7sr2g7T+SyIoi31TxfM
+         mSEHeJ/zgLvJJb1qRyIvKrjQm0UKvXGIrEPKcaLAGa49z43Jd2g8+Yrd9u0mA5qX+tDa
+         GuMJfpvWWxnvBrRchm03cAjqkMoyzJTh4suPwtiL6tmteL02pGaSpDauCdpuulJS9nUk
+         YizFlNm1CjeWOzdRjGcNeziPyF15IHOB2jVFKLMds3gSwiQ+5aDsP+YADkWMrjhGMxAp
+         n9EQ==
+X-Gm-Message-State: ACgBeo0qn+/l31vuk22BlkA1tcr9NL+H/jZGLj0hjdM3I1TMVgijh51t
+        nj6AKy8vMeuXMfyOYpkM1GURRQ==
+X-Google-Smtp-Source: AA6agR6bA3D0kudkV+rJ8q5luTUFTVPCxjbWRw/0Kby3FAirVfzs4WMuoDsySqUDQzHrrf2WagAFpw==
+X-Received: by 2002:a05:6512:681:b0:489:d509:e076 with SMTP id t1-20020a056512068100b00489d509e076mr901305lfe.618.1661415661568;
+        Thu, 25 Aug 2022 01:21:01 -0700 (PDT)
 Received: from [192.168.0.71] (82.131.98.15.cable.starman.ee. [82.131.98.15])
-        by smtp.gmail.com with ESMTPSA id y7-20020a05651c106700b0025e42f8e771sm406559ljm.34.2022.08.25.01.13.25
+        by smtp.gmail.com with ESMTPSA id s8-20020a2e1508000000b0025e6a598037sm384287ljd.137.2022.08.25.01.20.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Aug 2022 01:13:25 -0700 (PDT)
-Message-ID: <eb8dc532-f8d8-15ed-af12-a0d945db9a5e@linaro.org>
-Date:   Thu, 25 Aug 2022 11:13:24 +0300
+        Thu, 25 Aug 2022 01:21:00 -0700 (PDT)
+Message-ID: <517702b1-1fb8-705c-a927-83ff21a87390@linaro.org>
+Date:   Thu, 25 Aug 2022 11:20:58 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH] dt-bindings: arm: mediatek: mmsys: change compatible for
- MT8195
+Subject: Re: [PATCH] dt-bindings: timer: Add missing
+ (unevaluated|additional)Properties on child nodes
 Content-Language: en-US
-To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
-Cc:     =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= 
-        <Jason-JH.Lin@mediatek.com>,
-        =?UTF-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
-        =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
-        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        "hsinyi@google.com" <hsinyi@google.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-References: <20220825055658.12429-1-rex-bc.chen@mediatek.com>
- <3ff08ae9-a4b6-2b74-23cb-69ea1d7e1033@linaro.org>
- <d5a00dc88bed1680caa8af895a1140324b9d079e.camel@mediatek.com>
+To:     Rob Herring <robh@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Paul Cercueil <paul@crapouillou.net>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220823145649.3118479-16-robh@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <d5a00dc88bed1680caa8af895a1140324b9d079e.camel@mediatek.com>
+In-Reply-To: <20220823145649.3118479-16-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -95,37 +80,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/08/2022 09:59, Bo-Chen Chen wrote:
+On 23/08/2022 17:56, Rob Herring wrote:
+> In order to ensure only documented properties are present, node schemas
+> must have unevaluatedProperties or additionalProperties set to false
+> (typically).
 > 
-> Hello Krzysztof,
-> 
-> Thanks for yor review.
-> 
-> From the functions perspective:
-> 
-> Hardware pipeline of VDOSYS0 has these components: COLOR, CCORR, AAL,
-> GAMMA, DITHER.
-> They are related to PQ (Picture Quality) functions and they makes
-> VDOSYS0 supports PQ function while they are not including in VDOSYS1.
-> 
-> Hardware pipeline of VDOSYS1 has the component ETHDR (HDR related
-> component).
-> It makes VDOSYS1 supports the HDR function while it's not including in
-> VDOSYS0.
-> 
-> About mediatek ETHDR, you can refer to this series:
-> 
-> https://lore.kernel.org/all/20220819061456.8042-2-nancy.lin@mediatek.com/
-> 
-> To summary:
-> Only VDOSYS0 can support PQ adjustment.
-> Only VDOSYS1 can support HDR adjustment.
-> 
-> Is this description ok for you?
-> If it is ok, I will put them into commit message in next version.
-> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
 
-Yes.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 Best regards,
 Krzysztof
