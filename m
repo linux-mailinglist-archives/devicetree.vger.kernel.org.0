@@ -2,186 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47CEC5A0EFF
-	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 13:26:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FCD95A0F0C
+	for <lists+devicetree@lfdr.de>; Thu, 25 Aug 2022 13:28:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241544AbiHYL00 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 07:26:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37984 "EHLO
+        id S240285AbiHYL21 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 07:28:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241548AbiHYL0Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 07:26:25 -0400
-Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 959886BD53;
-        Thu, 25 Aug 2022 04:26:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-        d=metrotek.ru; s=mail;
-        h=from:subject:date:message-id:to:cc:mime-version:content-transfer-encoding:
-         in-reply-to:references;
-        bh=K3VpJkw9tEa+HvAMHqXTLzBe8mZdLAZPPmOrPYfRi5w=;
-        b=BA35LFrTyCY/ChguZvkx78iWYyF1KyFWpbxhBencG3JvOjeKUHYHtmU045W33E18TGRyJpF1n3peQ
-         CTIE6ZWWNC9kAr6/qQmzIOII/xsI9W63kd6YaJtdPOKKWgBbAuzUgZw4z1bvB5+3d+0LnN5XJNJOWS
-         afRAG7L9dobiqxBvPdsifZhJFxwc9/sMmJa7mgISxblezCxQTvE2NmTf6xJ+mYsfCp8N/OhoiQGzTF
-         kx6Sq16Q5zJXTOxIn4P+hBkI7b7GlUiVAwx2MBXnHZNM107C7EKIPn2a4/2892dDR+7clkxR1l5jWW
-         7T45Klr+I2rO4yFfrcSz538m1fFGL4g==
-X-Kerio-Anti-Spam:  Build: [Engines: 2.16.4.1445, Stamp: 3], Multi: [Enabled, t: (0.000012,0.014863)], BW: [Enabled, t: (0.000016,0.000001)], RTDA: [Enabled, t: (0.085401), Hit: No, Details: v2.41.0; Id: 15.52k4qu.1gbac0kml.7isp; mclb], total: 0(700)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
-X-Spam-Level: 
-X-Footer: bWV0cm90ZWsucnU=
-Received: from h-e2.ddg ([85.143.252.66])
-        (authenticated user i.bornyakov@metrotek.ru)
-        by mail.pr-group.ru with ESMTPSA
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
-        Thu, 25 Aug 2022 14:25:49 +0300
-From:   Ivan Bornyakov <i.bornyakov@metrotek.ru>
-To:     mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
-        trix@redhat.com, dg@emlix.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     Ivan Bornyakov <i.bornyakov@metrotek.ru>,
-        linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, system@metrotek.ru
-Subject: [PATCH v8 2/2] dt-bindings: fpga: document Lattice sysCONFIG FPGA manager
-Date:   Thu, 25 Aug 2022 14:24:33 +0300
-Message-Id: <20220825112433.14583-3-i.bornyakov@metrotek.ru>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20220825112433.14583-1-i.bornyakov@metrotek.ru>
-References: <20220825112433.14583-1-i.bornyakov@metrotek.ru>
+        with ESMTP id S230523AbiHYL20 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 07:28:26 -0400
+Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21806A8959
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 04:28:24 -0700 (PDT)
+Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-33dba2693d0so39401907b3.12
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 04:28:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc;
+        bh=kncW2zoYdO5wqDEc9msMKDZoMpdAKqI3NmnBNZDVg9w=;
+        b=lyzW7OeI2jijMo5dhN4JAzMEA+fRYJ+Ow7MqUyIOFCs/b8Xx4J6K15h1JDK5FFTjHG
+         wbHrYlYr95d0t8SXhh/hfUImkzSkW5RtKxM4PD+0C+M2Reuv5PE3IYrkUa/Z+xE2OBeT
+         ZiT4pAO0Yzl0zixJTrnbKC82QTP+rQUgvaay62gNfj6PzRr1cU4gKF5ca5Mpch2s78Xf
+         BgF+SvBwYyG8wNvwJDSG0cCnFC2gQBuLeIfUwjfjXKOctF1OKS2dZ/pzbfbe+A5b5qkW
+         8nPEiOFQLIiOiFW+sAJdlwo8dfr8MPFcEw8DvgCPzfdPZyc+7YK+ICJ6dgcXW5NRwKB8
+         AGzA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=to:subject:message-id:date:from:reply-to:mime-version
+         :x-gm-message-state:from:to:cc;
+        bh=kncW2zoYdO5wqDEc9msMKDZoMpdAKqI3NmnBNZDVg9w=;
+        b=PCTjvDiuC/N9NM3m9amTw/Vwv3deHEV85af3SVYSVqH9A9+rlr1LrXdWifcXOzeX4k
+         I4gDKdtV7/w3/LbxXHwbtkrVty2oaD1cxKcsP7VzlRb7M/RXxuf676JtAPjbRk3/mJxE
+         LiGC8PAy1PAErkffwKbC2E3RUavlTsENr62PbO6qNNra4ShNH/WkfyoD/JK+7uIaIVY6
+         6/M4zdBxPxasmQjok6klQzr2duQbPH1eOoqVuH2laD0fio/yz730zFNR9IeKsWmdyb4U
+         FpHoEfMBoCHQaUmBVz+nhX1QM7YkWBx05s7+2CFm/h7ImPsiYGXjhp4w+h6l1NCcZWST
+         9xXA==
+X-Gm-Message-State: ACgBeo00MMjYgLgj94Od8upCOqRZm99tF19E5x4abFGIGJCpdk1BsL0x
+        dFfRT8XGz9zrrJvkSc67ctv8jUYRJttOBFq8PjA=
+X-Google-Smtp-Source: AA6agR62KvAescww8VNqJqGW3hhNZho561jn/FuKE2hdgobAp1qCRfwKpK/zAICB7yKLd+8qSoYqjUhQKpgUo8khSPw=
+X-Received: by 2002:a81:138e:0:b0:333:5acd:9557 with SMTP id
+ 136-20020a81138e000000b003335acd9557mr3220695ywt.509.1661426903423; Thu, 25
+ Aug 2022 04:28:23 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Received: by 2002:a05:7108:4407:0:0:0:0 with HTTP; Thu, 25 Aug 2022 04:28:22
+ -0700 (PDT)
+Reply-To: fionahill.usa@outlook.com
+From:   Fiona Hill <ahmadangela32@gmail.com>
+Date:   Thu, 25 Aug 2022 04:28:22 -0700
+Message-ID: <CA+d=AUYJuFMOyBf_wE-ysD9nVv2Xr8hkKYjf_4Wry-EhybwTqw@mail.gmail.com>
+Subject: 
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: Yes, score=5.0 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,FREEMAIL_REPLYTO,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNDISC_FREEM autolearn=no
+        autolearn_force=no version=3.4.6
+X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+        *      https://www.dnswl.org/, no trust
+        *      [2607:f8b0:4864:20:0:0:0:112f listed in]
+        [list.dnswl.org]
+        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+        *      [score: 0.5001]
+        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+        *      provider
+        *      [ahmadangela32[at]gmail.com]
+        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
+        *       in digit
+        *      [ahmadangela32[at]gmail.com]
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
+        *  3.2 UNDISC_FREEM Undisclosed recipients + freemail reply-to
+        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
+        *      different freemails
+X-Spam-Level: *****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Device Tree Binding doc for configuring Lattice ECP5 and MachXO2
-FPGAs over Slave SPI sysCONFIG interface.
-
-Signed-off-by: Ivan Bornyakov <i.bornyakov@metrotek.ru>
----
- .../bindings/fpga/lattice,sysconfig.yaml      | 109 ++++++++++++++++++
- 1 file changed, 109 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/fpga/lattice,sysconfig.yaml
-
-diff --git a/Documentation/devicetree/bindings/fpga/lattice,sysconfig.yaml b/Documentation/devicetree/bindings/fpga/lattice,sysconfig.yaml
-new file mode 100644
-index 000000000000..3ea338a05bb5
---- /dev/null
-+++ b/Documentation/devicetree/bindings/fpga/lattice,sysconfig.yaml
-@@ -0,0 +1,109 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/fpga/lattice,sysconfig.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Lattice Slave SPI sysCONFIG FPGA manager
-+
-+maintainers:
-+  - Ivan Bornyakov <i.bornyakov@metrotek.ru>
-+
-+description: |
-+  Lattice sysCONFIG port, which is used for FPGA configuration, among others,
-+  have Slave Serial Peripheral Interface. Only full reconfiguration is
-+  supported.
-+
-+  Programming of ECP5 is done by writing uncompressed bitstream image in .bit
-+  format into FPGA's SRAM configuration memory.
-+
-+  Programming of MachXO2 is done by writing configuration data into device's
-+  internal non-volatile Flash memory, then Self-Download of data from Flash
-+  into SRAM is issued.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - lattice,ecp5-fpga-mgr
-+      - lattice,machxo2-fpga-mgr
-+
-+  reg:
-+    maxItems: 1
-+
-+  program-gpios:
-+    description:
-+      A GPIO line connected to PROGRAMN (active low) pin of the device.
-+      Initiates configuration sequence.
-+    maxItems: 1
-+
-+  init-gpios:
-+    description:
-+      A GPIO line connected to INITN (active low) pin of the device.
-+      Indicates that the FPGA is ready to be configured.
-+    maxItems: 1
-+
-+  done-gpios:
-+    description:
-+      A GPIO line connected to DONE (active high) pin of the device.
-+      Indicates that the configuration sequence is complete.
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+allOf:
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: lattice,machxo2-fpga-mgr
-+    then:
-+      properties:
-+        spi-max-frequency:
-+          maximum: 66000000
-+        program-gpios: false
-+        init-gpios: false
-+        done-gpios: false
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: lattice,ecp5-fpga-mgr
-+    then:
-+      properties:
-+        spi-max-frequency:
-+          maximum: 60000000
-+      required:
-+        - program-gpios
-+        - init-gpios
-+        - done-gpios
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        fpga-mgr@0 {
-+            compatible = "lattice,ecp5-fpga-mgr";
-+            reg = <0>;
-+            spi-max-frequency = <20000000>;
-+            program-gpios = <&gpio3 4 GPIO_ACTIVE_LOW>;
-+            init-gpios = <&gpio3 3 GPIO_ACTIVE_LOW>;
-+            done-gpios = <&gpio3 2 GPIO_ACTIVE_HIGH>;
-+        };
-+
-+        fpga-mgr@1 {
-+            compatible = "lattice,machxo2-fpga-mgr";
-+            reg = <1>;
-+            spi-max-frequency = <20000000>;
-+        };
-+    };
 -- 
-2.37.2
-
-
+ Did you receive my message?
