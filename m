@@ -2,115 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25B6E5A22D5
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 10:20:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1773A5A22E2
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 10:22:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230109AbiHZIUf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 04:20:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50388 "EHLO
+        id S245414AbiHZIWu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 04:22:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245678AbiHZIU1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 04:20:27 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C8A26427
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 01:20:25 -0700 (PDT)
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 27Q0bUuq002123;
-        Fri, 26 Aug 2022 10:20:19 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=iwdNRJes/FHUbLpSzkbIp+P/N5DO2F/eXU20QGD2NMg=;
- b=0KqZ22H/Nhw4+lcjNxGq8zl8VFEYKLeU82wVeZHdysHWCdqk5d8SQpfbwSd+gmo7QeK0
- ZfjLtyzWmtT4jd2uPJNgP0+3T+Lcwrnl5iRqUUR76cecFKKOAGW5PCNFkzJiqT/onLYZ
- laCZclHC9sdco5rMuqS4pVo0w7VC8xiY+h+2LB4K2/3LxrxvhAtfH5Uyih00FRbsxzQz
- ikowau0Yj63JLpAfUFBi3nrO8leWZmz4b8VYF0uYF0AMBCuC8WPBZZ1WXMusd17M6jZL
- K1wP/JT/IgEYLxsPTFKjg88gp5tCJlMAaZE9XUiM6b/5rSvVmBmZu7ZONWVy1nwt0Mvu Ew== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3j5h4wmvag-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 26 Aug 2022 10:20:19 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id E551F100038;
-        Fri, 26 Aug 2022 10:20:18 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 99E59216838;
-        Fri, 26 Aug 2022 10:20:18 +0200 (CEST)
-Received: from [10.201.21.93] (10.75.127.47) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Fri, 26 Aug
- 2022 10:20:18 +0200
-Message-ID: <983664cb-ca09-6283-9e5a-8517cb324505@foss.st.com>
-Date:   Fri, 26 Aug 2022 10:20:17 +0200
+        with ESMTP id S245096AbiHZIWm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 04:22:42 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B962D4BE0
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 01:22:41 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id lx1so1727535ejb.12
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 01:22:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=FkjE6GGUo5m4bQQxcxS9cC2SHMb+1PtXHXgXEs/AakI=;
+        b=J8AHzY00e7vOUMndst4CE5NEyNLo1kreuduD834orDAuKaERoW0ZAXNbuR3ArhAzO2
+         wBC1P8YXH5CjHjXL1vK0NgP/x1bDu5ZyJCdIv2gWrFbDSqL6XUGwHjmRC1h1VAMp2RYe
+         RvIMIrdUR3n6KgZFv5dV6aR7bvu9Tv1rwSCzLS79DJIXo9sQ8eyPi3X8Ob8edyPwQozE
+         Jh+vetNalim7teCGBzeV7lfRV0jg3QFoAyqeb3Me8vX7w9EP84IR7GWyckggefRzW5SY
+         MJ6/+D6I1arLhHdd1ACPyYbo9Hb3vJfCapwmhD2PJ/bHiD9SNuGoZSfXWSnwyfZess7u
+         q5JQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=FkjE6GGUo5m4bQQxcxS9cC2SHMb+1PtXHXgXEs/AakI=;
+        b=tvujyW68Hs/FjODbDnWTppCu6meJodbNhPuSX75IsM/8x8QCwnFE2vhWZ/f6nRAqRe
+         JWiCOfkEOdqqDYgnE34Jhq/jBiTwk5LfSJ1ozMFDIG/S+KU8sGaecummwLcEqafmLXq0
+         BV7qqlmb/9f8VwnagmQ3b8vZIMs+7Cm1LtfTaU0yIcaPRKfa8EOuiTacOLbqL7kbEO9U
+         jzYB/8v1BTyVtDrr2JzR8mX2FBxwEzniyAt+JMqMw01lqsAh3EVEWxAex+L28GxGL9xV
+         zpVUjlz5ur0MRd5M7+T4KFvOCTGLilE9/CrE1QvD2pZS6JNaMUlqfFtghy55hBk1qgKO
+         C2Hw==
+X-Gm-Message-State: ACgBeo3k3LVdUNaXgvlD/I5F4xo/gUFFp5FfgHk069vjp61UePyDZyFp
+        OlGXaTI5HS90E4UlaLKKAnnp5aTM9MZUESxo4jCkRQ==
+X-Google-Smtp-Source: AA6agR7vmSRcjidQzAHSj1ZN34Lh2USrc196LGQSLvsjNYigmEaK006EtBkxYxY4U4QIcbVPUgQlNM6zCi1SJk5BKGU=
+X-Received: by 2002:a17:907:6293:b0:73d:b27b:e594 with SMTP id
+ nd19-20020a170907629300b0073db27be594mr4913613ejc.526.1661502159873; Fri, 26
+ Aug 2022 01:22:39 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v2] ARM: dts: stm32: Fix typo in license text for Engicam
- boards
-Content-Language: en-US
-To:     Jagan Teki <jagan@amarulasolutions.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-amarula@amarulasolutions.com>
-References: <20220823125517.1232448-1-jagan@amarulasolutions.com>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20220823125517.1232448-1-jagan@amarulasolutions.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.47]
-X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.517,FMLib:17.11.122.1
- definitions=2022-08-26_03,2022-08-25_01,2022-06-22_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20220805134908.749935-1-conor.dooley@microchip.com>
+ <CACRpkdb1jnq2C+ke1i-tis-2jMLjxbb14YusMRp607Avm4k6ow@mail.gmail.com> <9056a25e-930d-7ac7-25c8-169d43191974@microchip.com>
+In-Reply-To: <9056a25e-930d-7ac7-25c8-169d43191974@microchip.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 26 Aug 2022 10:22:28 +0200
+Message-ID: <CACRpkdYJC-Wxq_xqAmisavuq3+d7_f5p0f1_EbZy-uPy2kip1g@mail.gmail.com>
+Subject: Re: [PATCH] MAINTAINERS: add PolarFire SoC dt bindings
+To:     Conor.Dooley@microchip.com
+Cc:     Daire.McNamara@microchip.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        broonie@kernel.org, wsa@kernel.org, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, jassisinghbrar@gmail.com,
+        brgl@bgdev.pl, wg@grandegger.com, mkl@pengutronix.de,
+        gregkh@linuxfoundation.org, arnd@arndb.de, olof@lixom.net,
+        mturquette@baylibre.com, sboyd@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jagan
+On Sat, Aug 20, 2022 at 12:21 AM <Conor.Dooley@microchip.com> wrote:
+> On 19/08/2022 23:13, Linus Walleij wrote:
 
-On 8/23/22 14:55, Jagan Teki wrote:
-> Fix the Amarula Solutions typo mistake in license text added in below
-> commits.
-> 
-> commit <3ff0810ffc479> ("ARM: dts: stm32: Add Engicam i.Core STM32MP1
-> C.TOUCH 2.0 10.1" OF")
-> commit <6ca2898df59f7> ("ARM: dts: stm32: Add Engicam i.Core STM32MP1
-> C.TOUCH 2.0")
-> commit <adc0496104b64> ("ARM: dts: stm32: Add Engicam i.Core STM32MP1
-> EDIMM2.2 Starter Kit")
-> commit <30f9a9da4ee13> ("ARM: dts: stm32: Add Engicam i.Core STM32MP1
-> SoM")
-> commit <1d278204cbaa1> ("ARM: dts: stm32: Add Engicam MicroGEA STM32MP1
-> MicroDev 2.0 7" OF")
-> commit <f838dae7afd00> ("ARM: dts: stm32: Add Engicam MicroGEA STM32MP1
-> MicroDev 2.0 board")
-> commit <0be81dfaeaf89> ("ARM: dts: stm32: Add Engicam MicroGEA STM32MP1
-> SoM")
-> 
-> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> ---
-> Changes for v2:
-> - s/lisense/license/
-> 
->   arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-ctouch2-of10.dts   | 2 +-
->   arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-ctouch2.dts        | 2 +-
->   arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-edimm2.2.dts       | 2 +-
->   arch/arm/boot/dts/stm32mp157a-icore-stm32mp1.dtsi               | 2 +-
->   .../boot/dts/stm32mp157a-microgea-stm32mp1-microdev2.0-of7.dts  | 2 +-
->   arch/arm/boot/dts/stm32mp157a-microgea-stm32mp1-microdev2.0.dts | 2 +-
->   arch/arm/boot/dts/stm32mp157a-microgea-stm32mp1.dtsi            | 2 +-
->   7 files changed, 7 insertions(+), 7 deletions(-)
-> 
-Applied on stm32-next.
+> >
+> > The Subject on this patch is wrong?
+>
+> How so?
 
-Thanks.
-Alex
+It says it adds bindings but it adds a maintainer for the bindings.
+Which is implicit since it is patching MAINTAINERS.
+
+No big deal, sorry for an early morning OCD-thing from my side.
+
+Yours,
+Linus Walleij
