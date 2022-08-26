@@ -2,69 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A42D5A2D93
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 19:35:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02BB05A2DA8
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 19:39:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344712AbiHZRfk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 13:35:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39330 "EHLO
+        id S1344752AbiHZRiV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 13:38:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233017AbiHZRfi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 13:35:38 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1124ADF4C1
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 10:35:35 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id s6so2854656lfo.11
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 10:35:34 -0700 (PDT)
+        with ESMTP id S1344726AbiHZRiH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 13:38:07 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C589EE0FFB
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 10:38:03 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id bn9so2245356ljb.6
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 10:38:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=ttMc37H8pH28vYwoV7jZJZLaqeNebCOygS3CZlC39l8=;
-        b=E9ttpgovEiuYBamfXIDbqF7Jk/OED8nrstutjgPv1G3S/BdOc2olP41oKsPEEhdhjB
-         uUoMWv4qJ415FPN9V3AbkA5qExNDp1Xj16U415iw/LhiOCQI/bCnl1nigjBn6f3Tnwa3
-         2Epl+cwkJ4hCWWk2C3bi4uXJH7DgRSi0D8uetwUO3/EmAZBD7ynEcTKS9iUcXK2uLrbv
-         UXuL5hXquxVc1q/j+0fuOuGIBM7C5rfTT42utxkcmRkSDe/9Txm8ETx43fI1DktKntMn
-         UfdvTqeqP7XuhRmaHVuB+Q8xqC0yJsCbndfw2WqnEEc61ML30kKZiErVAuZepZ1OgrpX
-         KQlQ==
+        bh=hVv2xtEscyFntrXDnbpei4sjwnUpyNXGOcuaqpRAwaY=;
+        b=vS8SExfcZQHCyp11tDc1Zq/QHXBKeWtdcgshHK9KRsaxDsup00AY6hDDp7vOmOW9Nq
+         WsAydJYvqx9t2a0gSgAflER/oKOwbUTysCUqRNFQovcNKVqJGsQzTylNGz1pl1Dcbu7Q
+         rZ3OlXqtsKJdCmInjS9Vrj1IEeJx8C5zV1HMTOQMQlpzqMT5YgH4fooSbz0p3pnAUtKR
+         xJNTR9a3IaL2ZbdZ1hAY8ZmowyEZapoGK1qQdpoV4+SVT7/K5EpZxqtdgSGER0Ania03
+         7cOr2SZOPHqq1+RmaptUlj/swW2rYcefKKbn9GeaBGwYSD2leLpLrQ4PA7Gkc1PqJ0ga
+         4VsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=ttMc37H8pH28vYwoV7jZJZLaqeNebCOygS3CZlC39l8=;
-        b=hVoHKjHhGk59iRWxFAUdUtGq48lBwNNVrN7gzNRukr34eKRbJ364ik0XpUCfhLmbU6
-         NgdVf8UIxGoq81aDd4d50CiyVsGmHMYhUwRBm34zB5a/WWmMWrgr8yIBCf+oilsg01Md
-         OJNFwJo1gpe9t5w3Dkra8OE93gHKcV7EiY6ha6W+2ZQ0pNAai0jAOWhwaFN0bkumvLZZ
-         wz9vAdEqOI2JU9wBQOYZnrNITbVHdOoQvRvSFotvhbcyMoMtYPu8X19RmWgHSNbi8vzD
-         nwR7rvJEnQWd1vd3p/lauwY0IXygUEhCThwtsrwuDb8wHyZoROaOhb9MjnTdzwal9tu4
-         nOcg==
-X-Gm-Message-State: ACgBeo36uBcS9rKMJiWaW+MvnZONOc1vheHFuAwyHUDwl3NVv7LSC+ha
-        87A+TN+YDIBQ398J3tZQFu6gEg==
-X-Google-Smtp-Source: AA6agR6RZL5+Pi3SBjYBdT7S7bcodHI3WkiGTwF13HcbTIapK4GLd/ZR1lax4Hxv4ZLfJQSimaldXA==
-X-Received: by 2002:a05:6512:2605:b0:492:dbb3:9b85 with SMTP id bt5-20020a056512260500b00492dbb39b85mr2614686lfb.669.1661535332804;
-        Fri, 26 Aug 2022 10:35:32 -0700 (PDT)
+        bh=hVv2xtEscyFntrXDnbpei4sjwnUpyNXGOcuaqpRAwaY=;
+        b=GWTKuIqxAhJ0SI3zruBwNXQRX9sZ++XiYl1IiiOaYq11NZVZUScEQBuhYSyLFlgLux
+         us/nxRV0JI3BKwFU3FfPy7XyLv1imvTpgno46ubHU8+mE3NsVGeh9HSYthrDTMXe/t8j
+         YEDsds9ceXMes5HUo7RlfnvK/s7XoCOCcekea4UvmfF1hm+VOoIMtjHfkrZv/Jlr7wR/
+         83/0poaqwR3edvHqyzjXZ+Jq+lr7LCLb9lBjdvpVUCStXYy6gQ5G39irnUGwprxFrcoI
+         ShPQH0m+2e+8NrCIojYrpCKizhDND6VAKubbU9kkl05vdPDKclYniazYatrpwnraQLoj
+         Dy1Q==
+X-Gm-Message-State: ACgBeo0/j7rOMVNXICs8QteUmoCf3qjlWZ6CPeEsFpKHEZzMGbubXzyD
+        9CGFoTyHRv/nrBI8tL9UmV7keA==
+X-Google-Smtp-Source: AA6agR53vjYKoNPH5ayU6MuRyMLjlIpHOq5kRJdPSSdqIcSVIQBWTjD0tEE/n+RfBE+RJlZIbr2bEw==
+X-Received: by 2002:a2e:a5c3:0:b0:261:ac2d:2820 with SMTP id n3-20020a2ea5c3000000b00261ac2d2820mr2751676ljp.243.1661535481694;
+        Fri, 26 Aug 2022 10:38:01 -0700 (PDT)
 Received: from [192.168.0.71] (82.131.98.15.cable.starman.ee. [82.131.98.15])
-        by smtp.gmail.com with ESMTPSA id a21-20020a05651c031500b0025e0bb97f8fsm523588ljp.116.2022.08.26.10.35.30
+        by smtp.gmail.com with ESMTPSA id f1-20020a2eb5a1000000b0025e01de57dcsm526955ljn.90.2022.08.26.10.37.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 Aug 2022 10:35:31 -0700 (PDT)
-Message-ID: <eebef02c-e9b9-2ab0-5178-7996cb62a116@linaro.org>
-Date:   Fri, 26 Aug 2022 20:35:29 +0300
+        Fri, 26 Aug 2022 10:37:59 -0700 (PDT)
+Message-ID: <bb0331e7-2203-e8cb-70b6-5d43bf6a0aaf@linaro.org>
+Date:   Fri, 26 Aug 2022 20:37:56 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH 2/2] arm64: tegra: Add user PWM support on Jetson Orin
+Subject: Re: [PATCH v2 1/2] dt-bindings: lan9662-otpc: document Lan9662 OTPC
 Content-Language: en-US
-To:     Sandipan Patra <spatra@nvidia.com>, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     bbasu@nvidia.com, kyarlagadda@nvidia.com
-References: <20220826121746.32003-1-spatra@nvidia.com>
- <20220826121746.32003-2-spatra@nvidia.com>
+To:     Horatiu Vultur <horatiu.vultur@microchip.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, UNGLinuxDriver@microchip.com
+References: <20220825204041.1485731-1-horatiu.vultur@microchip.com>
+ <20220825204041.1485731-2-horatiu.vultur@microchip.com>
+ <96da4897-7b55-84d5-8f1d-892e116153df@linaro.org>
+ <20220826073103.kkotbaxc3latculo@soft-dev3-1.localhost>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220826121746.32003-2-spatra@nvidia.com>
+In-Reply-To: <20220826073103.kkotbaxc3latculo@soft-dev3-1.localhost>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,30 +78,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/08/2022 15:17, Sandipan Patra wrote:
-> Enable in device tree and use it to drive the PWM controllers on
-> 40 pin header of Orin dev-kit.
+On 26/08/2022 10:31, Horatiu Vultur wrote:
+> The 08/26/2022 09:42, Krzysztof Kozlowski wrote:
 > 
-> Signed-off-by: Sandipan Patra <spatra@nvidia.com>
+> Hi Krzysztof,
+> 
+>>> +properties:
+>>> +  compatible:
+>>> +    items:
+>>> +      - const: microchip,lan9662-otpc
+>>> +      - const: microchip,lan9668-otpc
+>>
+>> Does not look like you tested the bindings. Please run `make
+>> dt_binding_check` (see
+>> Documentation/devicetree/bindings/writing-schema.rst for instructions).
+>>
+>> This won't work...
+> 
+> You are right. That was a silly mistake on my side.
+> 
+> It should be:
 > ---
->  .../arm64/boot/dts/nvidia/tegra234-p3737-0000.dtsi | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
+> properties:
+>   compatible:
+>     enum:
+>       - microchip,lan9662-otpc
+>       - microchip,lan9668-otpc
+> ---
+> Because what I want to achive is to be able to use any of
+> string(microchip,lan9662-otpc or microchip,lan9668-otpc) as compatible
+> string.
 > 
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000.dtsi b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000.dtsi
-> index a85993c85e45..e76894574d32 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000.dtsi
-> +++ b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000.dtsi
-> @@ -2,4 +2,18 @@
->  
->  / {
->  	compatible = "nvidia,p3737-0000";
-> +
-> +	bus@0 {
-> +		pwm@3280000 {
-> +			status = "okay";
-> +		};
+> Or this is not the correct change?
+> At least with this change dt_binding_check is happy.
 
-Overriding by node path is error-prone. You should override by label.
+This would be correct from syntax point of view, however maybe not the
+best choice from functional point of view. How you wrote the driver and
+bindings, these devices are compatible, so why this is not expressed as
+compatible devices?
 
 Best regards,
 Krzysztof
