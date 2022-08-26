@@ -2,60 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FC065A21CA
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 09:27:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F2005A2247
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 09:50:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245312AbiHZH1C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 03:27:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38662 "EHLO
+        id S245631AbiHZHuS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 03:50:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245327AbiHZH0u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 03:26:50 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A521E5F120;
-        Fri, 26 Aug 2022 00:26:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1661498809; x=1693034809;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=bQ66rxBi1p20bacYHk7InPQ7hqfavItr+gjhZj1ZfJU=;
-  b=RNVuZPXOwxtg95z7OPGo4elBGb5uz4lguNoTsWAwbfTa6RU+kvR2DNJW
-   G1SkAiPHrjqXS8YlxQUyrPzKzCgppf9D7JOF3aerM+77V3DdTecQgibBP
-   HJWZ+P9t+DIPDSYjpvMFiCKOxh4rUNPriFUkmVY7I1z9zOxCGRS6IYnqa
-   mVpuhsAu2MfoRZW7Ox+thkyzM6DZHJB3qsYUfC5Xfsy6A6YKQBBIDI3+7
-   oBgfyiAPXo4BnYTcBF3DD4II/zLXTDOE66EIJGYs1Yp6ragigY//9xrA/
-   97xdNiEcn0CHQE7Uisuw5HT7ZB2cmmTG5ISyll4pQ+Ts6AUFng/rBFJj2
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.93,264,1654585200"; 
-   d="scan'208";a="174276053"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 26 Aug 2022 00:26:48 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Fri, 26 Aug 2022 00:26:48 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.12 via Frontend
- Transport; Fri, 26 Aug 2022 00:26:48 -0700
-Date:   Fri, 26 Aug 2022 09:31:03 +0200
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <srinivas.kandagatla@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <UNGLinuxDriver@microchip.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: lan9662-otpc: document Lan9662 OTPC
-Message-ID: <20220826073103.kkotbaxc3latculo@soft-dev3-1.localhost>
-References: <20220825204041.1485731-1-horatiu.vultur@microchip.com>
- <20220825204041.1485731-2-horatiu.vultur@microchip.com>
- <96da4897-7b55-84d5-8f1d-892e116153df@linaro.org>
+        with ESMTP id S245624AbiHZHuJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 03:50:09 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CE8B61715
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 00:50:07 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1oRU64-0000y3-No; Fri, 26 Aug 2022 09:49:44 +0200
+Received: from ore by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1oRU60-0004kp-Q4; Fri, 26 Aug 2022 09:49:40 +0200
+Date:   Fri, 26 Aug 2022 09:49:40 +0200
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Heiner Kallweit <hkallweit1@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>, kernel@pengutronix.de,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+        David Jander <david@protonic.nl>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Robert Marko <robert.marko@sartura.hr>
+Subject: Re: [PATCH net-next v2 1/7] dt-bindings: net: pse-dt: add bindings
+ for generic PSE controller
+Message-ID: <20220826074940.GC2116@pengutronix.de>
+References: <20220825130211.3730461-1-o.rempel@pengutronix.de>
+ <20220825130211.3730461-2-o.rempel@pengutronix.de>
+ <Ywf3Z+1VFy/2+P78@lunn.ch>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <96da4897-7b55-84d5-8f1d-892e116153df@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <Ywf3Z+1VFy/2+P78@lunn.ch>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,42 +67,142 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 08/26/2022 09:42, Krzysztof Kozlowski wrote:
-
-Hi Krzysztof,
-
-> > +properties:
-> > +  compatible:
+On Fri, Aug 26, 2022 at 12:27:51AM +0200, Andrew Lunn wrote:
+> > +  ieee802.3-pairs:
+> > +    $ref: /schemas/types.yaml#/definitions/int8-array
+> > +    description: Array of number of twisted-pairs capable to deliver power.
+> > +      Since not all circuits are able to support all pair variants, the array of
+> > +      supported variants should be specified.
+> > +      Note - single twisted-pair PSE is formally know as PoDL PSE.
 > > +    items:
-> > +      - const: microchip,lan9662-otpc
-> > +      - const: microchip,lan9668-otpc
+> > +      enum: [1, 2, 4]
 > 
-> Does not look like you tested the bindings. Please run `make
-> dt_binding_check` (see
-> Documentation/devicetree/bindings/writing-schema.rst for instructions).
+> It is not clear to me what you are describing here. It looks like the
+> number of pairs? That does not seem like a hardware property. The
+> controller itself should be able to tell you how many pairs it can
+> feed.
 > 
-> This won't work...
+> A hardware property would be which pairs of the socket are connected
+> to a PSE and so can be used to deliver power.
 
-You are right. That was a silly mistake on my side.
+Good point, this will be needed as well. But not right now.
 
-It should be:
----
-properties:
-  compatible:
-    enum:
-      - microchip,lan9662-otpc
-      - microchip,lan9668-otpc
----
-Because what I want to achive is to be able to use any of
-string(microchip,lan9662-otpc or microchip,lan9668-otpc) as compatible
-string.
+> But i'm not sure how
+> that would be useful to know. I suppose a controller capable of
+> powering 4 pair, but connected to a socket only wired to supply 2, can
+> then disable 2 pairs?
 
-Or this is not the correct change?
-At least with this change dt_binding_check is happy.
+Not only. Here are following reasons:
+- not all boards use a controller in form of IC. Some boards are the
+  controller. So, there is no other place to describe, what kind of
+  controller this board is. For example - currently there are no known
+  ICs to support PoDL (ieee802.3-pairs == 1), early adopters are
+  implementing it by using MOSFETs coupled with ADCs and some extra
+  logic on CPU side:
+  https://www.ti.com/lit/an/snla395/snla395.pdf
+- not all ICs provide a way for advanced communication (I2C, SPI, MDIO).
+  Some of them will provide only bootstrapping and some pin status
+  feedback:
+  https://www.analog.com/media/en/technical-documentation/data-sheets/4279fa.pdf
+- Even if we are able to communicate with the IC, there are still board
+  specific limitations.
 
+I hope we can agree that some property is need to tell what kind of PSE
+specification is used by this node.
+
+The next challenge is to name it. We have following options:
+1. PoE, PoE+, PoE++, 4PPoE, PoDL
+2. 802.3af, 802.3at, 802.bt, 802.3bu, 802.3cg
+3. Physical property of this specifications
+
+Option 1 is mostly using marketing names, except of PoDL. This names are
+not used in the ieee 802.3-2018 specification. Systematic research of
+this marketing names would give following results:
+- PoE is about delivering power over two twisted pairs and is related to
+  802.3af and 802.3at specs.
+- PoE+ is about delivering power over two twisted pairs and is related
+  only to 802.3at.
+- PoE++ is the same as 4PPoE or power over four twisted pairs and is related
+  to 802.3bt.
+- PoDL is related to 802.3bu and 802.3cg. Which is power over one
+  twisted pair
+
+All of this names combine different properties: number of twisted pairs
+used to deliver power, maximal supported power by the system and
+recommendation for digital interface to communicate with the PSE
+controller (MDIO registers). Since system I currently use do not follow
+all of this recommendations, it is needed to describe them separately.
+
+Option 2 is interesting only for archaeological investigation. Final
+snapshots of 802.3 specification do not provide mapping of extensions to
+actual parts of the spec. I assume, no software developer will be able
+to properly set the devicetree property by using specification extension
+names.
+
+Option 3 provide exact physical property of implementation by using same
+wording provided by the  802.3-2018 spec. This option is easy to verify
+by reviewing the board schematics and it is easy to understand without
+doing historical analysis of 802.3 spec.
+
+> > +
+> > +  ieee802.3-pse-type:
+> > +    $ref: /schemas/types.yaml#/definitions/uint8
+> > +    minimum: 1
+> > +    maximum: 2
+> > +    description: PSE Type. Describes classification- and class-capabilities.
+> > +      Not compatible with PoDL PSE Type.
+> > +      Type 1 - provides a Class 0, 1, 2, or 3 signature during Physical Layer
+> > +      classification.
+> > +      Type 2 - provides a Class 4 signature during Physical Layer
+> > +      classification, understands 2-Event classification, and is capable of
+> > +      Data Link Layer classification.
 > 
-> Best regards,
-> Krzysztof
+> Again, the controller should know what class it can support. Why do we
+> need to specify it?  What could make sense is we want to limit the
+> controller to a specific type? 
+
+If we are using existing controller - yes. But this binding is designed for the
+system where no special PSE IC is used. This Types and Classes depends on the
+board implementation and should be provided by the vendor as part of
+product certification. This information can be used by the system
+administrators to verify compatibility between PSE and PD, especially if
+no automatic classification is not implemented on this board.
+
+And even if auto classification is implemented by the software, we need
+to know which classes we should announce.
+
+> > +  ieee802.3-podl-pse-class:
+> > +    $ref: /schemas/types.yaml#/definitions/int8-array
+> > +    items:
+> > +      enum: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+> > +    description: PoDL PSE Class. Array of supported classes by the
+> > +      single twisted-pair PoDL PSE.
+> 
+> Why? I could understand we might want to limit the higher classes,
+> because the board is not designed for them, but the controller on the
+> board can actually offer them. But if it tries to use them, the board
+> will melt/blow a fuse.
+> 
+> So i'm wondering if it should actually be something like:
+> 
+> > +  ieee802.3-podl-limit-pse-classes:
+> > +    $ref: /schemas/types.yaml#/definitions/int8-array
+> > +    items:
+> > +      enum: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+> > +    description: PoDL PSE Class. Limit the PoDL PSE to only these classes,
+>          due to hardware design limitations. If not specified, the PoDL PSE
+> 	 will offer all classes its supports.
+
+Sounds good, this can be an extra property for PSE ICs, not for boards
+without dedicated ICs.
+
+> Remember, DT describes the hardware, not software configuration of the
+> hardware.
+
+Ack, I agree.
 
 -- 
-/Horatiu
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
