@@ -2,80 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B25555A2D26
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 19:15:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A42D5A2D93
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 19:35:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344745AbiHZRPV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 13:15:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36556 "EHLO
+        id S1344712AbiHZRfk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 13:35:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242293AbiHZRPU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 13:15:20 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F6442F67C
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 10:15:13 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id x93so2729610ede.6
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 10:15:13 -0700 (PDT)
+        with ESMTP id S233017AbiHZRfi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 13:35:38 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1124ADF4C1
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 10:35:35 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id s6so2854656lfo.11
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 10:35:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=g1nhytGbLlPdFV0nY3tszrR1h/TIhkoKAPu2ahL0p/k=;
-        b=b6SDldaWa7pnH5+2X9Grz6EJaMgJ2WMkQlr77r5OvIob6I976rGlXH0vexkLDXx7U3
-         0OwV2PETanSenQ1JiMZzz9h6XEA+sgT3AFQpsSSkXNG+Cekpcplt3HHFKmFNiYEdyS19
-         k/JyheHd2Fv+PSyCmDoRlTs4+oNEusAljCg9s=
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=ttMc37H8pH28vYwoV7jZJZLaqeNebCOygS3CZlC39l8=;
+        b=E9ttpgovEiuYBamfXIDbqF7Jk/OED8nrstutjgPv1G3S/BdOc2olP41oKsPEEhdhjB
+         uUoMWv4qJ415FPN9V3AbkA5qExNDp1Xj16U415iw/LhiOCQI/bCnl1nigjBn6f3Tnwa3
+         2Epl+cwkJ4hCWWk2C3bi4uXJH7DgRSi0D8uetwUO3/EmAZBD7ynEcTKS9iUcXK2uLrbv
+         UXuL5hXquxVc1q/j+0fuOuGIBM7C5rfTT42utxkcmRkSDe/9Txm8ETx43fI1DktKntMn
+         UfdvTqeqP7XuhRmaHVuB+Q8xqC0yJsCbndfw2WqnEEc61ML30kKZiErVAuZepZ1OgrpX
+         KQlQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=g1nhytGbLlPdFV0nY3tszrR1h/TIhkoKAPu2ahL0p/k=;
-        b=YerP7p2S3TlhLsSJUz6nGAnnj4QTV+ngpSNkYAaBIuWBDuTJQUyY5Cgu0PAiXYz5PX
-         jmqmN3ftW0FI0OyQCntjYs4r4LG1pkJ2dKEZDDPvrhFYn/mp4Y6aaVp2gLh3UQpYDnnU
-         cNEDTNZWM+isqwmJXQovpOKhoaI99Ep62UcUjYRZCEHtm8XT+bwkFNyIo0DONfnfHEpK
-         UQR2WzaQNPdzBKMZEusx/Ifd2PSTdsz03nCPtN020iSgbH71bloDfD45DB42qg/zS13s
-         wyzZv83FBA8/Iu1wwUJQrAE3nHQSMtmy4aM7VItMFqA1Pj13ZFka97OsDi+t3NKyezRP
-         PCUQ==
-X-Gm-Message-State: ACgBeo069mzaZpl7CIbk58Zrq8k7m2ooDa/QnB9kgvsmJP2klCTRgKhu
-        KAQtQgMd9uIvokub4QsulGifMOzzvK4rzvTP
-X-Google-Smtp-Source: AA6agR4R1RIuJxzayyusuK7QYP5E6x8zO9GYiXEU+ESyEUkvKu/UUZSAL39/5YlQ/nagPNF0TQy4Mw==
-X-Received: by 2002:a05:6402:2682:b0:446:a78b:b49f with SMTP id w2-20020a056402268200b00446a78bb49fmr7380255edd.390.1661534111996;
-        Fri, 26 Aug 2022 10:15:11 -0700 (PDT)
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com. [209.85.128.49])
-        by smtp.gmail.com with ESMTPSA id ku13-20020a170907788d00b0073d53f4e053sm1117068ejc.104.2022.08.26.10.15.10
-        for <devicetree@vger.kernel.org>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=ttMc37H8pH28vYwoV7jZJZLaqeNebCOygS3CZlC39l8=;
+        b=hVoHKjHhGk59iRWxFAUdUtGq48lBwNNVrN7gzNRukr34eKRbJ364ik0XpUCfhLmbU6
+         NgdVf8UIxGoq81aDd4d50CiyVsGmHMYhUwRBm34zB5a/WWmMWrgr8yIBCf+oilsg01Md
+         OJNFwJo1gpe9t5w3Dkra8OE93gHKcV7EiY6ha6W+2ZQ0pNAai0jAOWhwaFN0bkumvLZZ
+         wz9vAdEqOI2JU9wBQOYZnrNITbVHdOoQvRvSFotvhbcyMoMtYPu8X19RmWgHSNbi8vzD
+         nwR7rvJEnQWd1vd3p/lauwY0IXygUEhCThwtsrwuDb8wHyZoROaOhb9MjnTdzwal9tu4
+         nOcg==
+X-Gm-Message-State: ACgBeo36uBcS9rKMJiWaW+MvnZONOc1vheHFuAwyHUDwl3NVv7LSC+ha
+        87A+TN+YDIBQ398J3tZQFu6gEg==
+X-Google-Smtp-Source: AA6agR6RZL5+Pi3SBjYBdT7S7bcodHI3WkiGTwF13HcbTIapK4GLd/ZR1lax4Hxv4ZLfJQSimaldXA==
+X-Received: by 2002:a05:6512:2605:b0:492:dbb3:9b85 with SMTP id bt5-20020a056512260500b00492dbb39b85mr2614686lfb.669.1661535332804;
+        Fri, 26 Aug 2022 10:35:32 -0700 (PDT)
+Received: from [192.168.0.71] (82.131.98.15.cable.starman.ee. [82.131.98.15])
+        by smtp.gmail.com with ESMTPSA id a21-20020a05651c031500b0025e0bb97f8fsm523588ljp.116.2022.08.26.10.35.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 Aug 2022 10:15:11 -0700 (PDT)
-Received: by mail-wm1-f49.google.com with SMTP id s23so1206727wmj.4
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 10:15:10 -0700 (PDT)
-X-Received: by 2002:a05:600c:4e8b:b0:3a5:f5bf:9c5a with SMTP id
- f11-20020a05600c4e8b00b003a5f5bf9c5amr357285wmq.85.1661534110473; Fri, 26 Aug
- 2022 10:15:10 -0700 (PDT)
+        Fri, 26 Aug 2022 10:35:31 -0700 (PDT)
+Message-ID: <eebef02c-e9b9-2ab0-5178-7996cb62a116@linaro.org>
+Date:   Fri, 26 Aug 2022 20:35:29 +0300
 MIME-Version: 1.0
-References: <20220826065621.2255795-1-judyhsiao@chromium.org>
-In-Reply-To: <20220826065621.2255795-1-judyhsiao@chromium.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Fri, 26 Aug 2022 10:14:58 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=VrgrvJb_sJ8AO6pN8dRNXzzOJ9WvngeJrtVYw_wD1Akg@mail.gmail.com>
-Message-ID: <CAD=FV=VrgrvJb_sJ8AO6pN8dRNXzzOJ9WvngeJrtVYw_wD1Akg@mail.gmail.com>
-Subject: Re: [PATCH v4] arm64: dts: qcom: sc7280: Fix Dmic no sound on villager-r1
-To:     Judy Hsiao <judyhsiao@chromium.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Jimmy Cheng-Yi Chiang <cychiang@google.com>,
-        Judy Hsiao <judyhsiao@google.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH 2/2] arm64: tegra: Add user PWM support on Jetson Orin
+Content-Language: en-US
+To:     Sandipan Patra <spatra@nvidia.com>, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     bbasu@nvidia.com, kyarlagadda@nvidia.com
+References: <20220826121746.32003-1-spatra@nvidia.com>
+ <20220826121746.32003-2-spatra@nvidia.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220826121746.32003-2-spatra@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,44 +77,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Thu, Aug 25, 2022 at 11:56 PM Judy Hsiao <judyhsiao@chromium.org> wrote:
->
-> Fix the DMIC no sound issue of villager-r1 by using "PP1800_L2C" as the
-> DMIC power source to match the hardware schematic.
->
-> This patch:
->    1. set vdd-micb-supply to PP1800_L2C as the MIC Bias voltage regulator.
->    2. In audio-routing, set VA DMIC01~VA DMIC03 to use the vdd-micb-supply
->       setting.
->
-> Co-developed-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
+On 26/08/2022 15:17, Sandipan Patra wrote:
+> Enable in device tree and use it to drive the PWM controllers on
+> 40 pin header of Orin dev-kit.
+> 
+> Signed-off-by: Sandipan Patra <spatra@nvidia.com>
 > ---
-> Changes since V3:
->   -- Update the commit message and fix extra blank line.
-> Changes since V2:
->   -- Update the commit message.
-> Changes since V1:
->   -- Update the commit message.
->
-> This patch depends on:
-> arm64: dts: qcom: sc7280: Add herobrine-villager-r1. [1]
->
-> [1] https://patchwork.kernel.org/patch/12929106
+>  .../arm64/boot/dts/nvidia/tegra234-p3737-0000.dtsi | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000.dtsi b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000.dtsi
+> index a85993c85e45..e76894574d32 100644
+> --- a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000.dtsi
+> +++ b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000.dtsi
+> @@ -2,4 +2,18 @@
+>  
+>  / {
+>  	compatible = "nvidia,p3737-0000";
+> +
+> +	bus@0 {
+> +		pwm@3280000 {
+> +			status = "okay";
+> +		};
 
-After applying your [1] then your patch applies without merge
-conflicts. However, it still doesn't compile. You also depend on
-whatever patch adds the nodes "lpass_va_macro" and "sound" since
-you're referencing them in your patch. I haven't been keeping track of
-the latest status of all the audio patches, so I myself can't point to
-exactly what patches you depend on and whether those patches are ready
-to land.
+Overriding by node path is error-prone. You should override by label.
 
-In any case, the contents of this patch seem OK assuming the dependent
-patches cause something that looks like the current (downstream)
-chromeos-5.15 tree.
-
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+Best regards,
+Krzysztof
