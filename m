@@ -2,120 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F8B75A23D9
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 11:13:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CC535A23DC
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 11:13:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245672AbiHZJMX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 05:12:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59618 "EHLO
+        id S245707AbiHZJMJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 05:12:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245675AbiHZJMH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 05:12:07 -0400
-Received: from mail.bugwerft.de (mail.bugwerft.de [46.23.86.59])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 14F8BD0207;
-        Fri, 26 Aug 2022 02:12:05 -0700 (PDT)
-Received: from hq-00021.fritz.box (p57bc9b74.dip0.t-ipconnect.de [87.188.155.116])
-        by mail.bugwerft.de (Postfix) with ESMTPSA id 61DD750525B;
-        Fri, 26 Aug 2022 09:11:34 +0000 (UTC)
-From:   Daniel Mack <daniel@zonque.org>
-To:     mturquette@baylibre.com, sboyd@kernel.org
-Cc:     linux-clk@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, kuninori.morimoto.gx@renesas.com,
-        Daniel Mack <daniel@zonque.org>
-Subject: [PATCH v2 2/2] clk: cs2000-cp: make PLL lock timeout configurable
-Date:   Fri, 26 Aug 2022 11:11:22 +0200
-Message-Id: <20220826091122.2344503-2-daniel@zonque.org>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20220826091122.2344503-1-daniel@zonque.org>
-References: <20220826091122.2344503-1-daniel@zonque.org>
+        with ESMTP id S245551AbiHZJL6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 05:11:58 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DC85D6BA7;
+        Fri, 26 Aug 2022 02:11:56 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 27Q9Bil5015593;
+        Fri, 26 Aug 2022 04:11:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1661505104;
+        bh=+46x+HLUlBkt4yUclJTZivGkoE1QCQMQ73VLUsdQx2A=;
+        h=From:To:CC:Subject:Date;
+        b=ZgWXmP4RyxPlK6xTtNVVOv+11sNpwNoPv84sQ4+qvDVvkA0NETeLKnpGW4JpUzxR4
+         zq64RoFD0mczNjSTqpArSeJTLLJv1+qXngiIwOiSQdTV8e09voXfAPZHGD+RcT7M4C
+         7k/3gHit2DwtCOmRT8DISPCgeeGGue/HNWflPDVk=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 27Q9BiEI045059
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 26 Aug 2022 04:11:44 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Fri, 26
+ Aug 2022 04:11:43 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Fri, 26 Aug 2022 04:11:43 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 27Q9BhwG130182;
+        Fri, 26 Aug 2022 04:11:43 -0500
+From:   Jayesh Choudhary <j-choudhary@ti.com>
+To:     <herbert@gondor.apana.org.au>
+CC:     <davem@davemloft.net>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <j-keerthy@ti.com>,
+        <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [RESEND PATCH] dt-bindings: crypto: ti,sa2ul: drop dma-coherent property
+Date:   Fri, 26 Aug 2022 14:41:42 +0530
+Message-ID: <20220826091142.262325-1-j-choudhary@ti.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The driver currently does 256 iterations of reads from the DEVICE_CTRL
-register to wait for the PLL_LOCK bit to clear, and sleeps one
-microsecond after each attempt.
+crypto driver itself is not dma-coherent. It is the dmaengine
+that moves data and the buffers are to be mapped to the
+dmaengine provider. So this property should be dropped.
 
-This isn't ideal because
-
- a) the total time this allows for the device to settle depends on the I2C
-    bus speed, and
- b) the device might need more time, depending on the application.
-
-This patch allows users to configure this timeout through a new device-tree
-property "cirrus,pll-lock-timeout-ms".
-
-In order to not break existing applications, a default value of 100 ms is
-assumed: For each read cycle, 8 bits are sent for the register address, and
-8 bits are read with the values. 16 bits take about 160 us on a 100 kHz bus
-and 40 us on a 400 kHz bus. Hence 256 iterations would take a maximum of
-around 44 ms. Round up and double that value to be on the safe side.
-
-Signed-off-by: Daniel Mack <daniel@zonque.org>
+Fixes: 2ce9a7299bf6 ('dt-bindings: crypto: Add TI SA2UL crypto accelerator documentation')
+Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
 ---
- drivers/clk/clk-cs2000-cp.c | 25 +++++++++++++------------
- 1 file changed, 13 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/clk/clk-cs2000-cp.c b/drivers/clk/clk-cs2000-cp.c
-index aa5c72bab83e..2b33617727c2 100644
---- a/drivers/clk/clk-cs2000-cp.c
-+++ b/drivers/clk/clk-cs2000-cp.c
-@@ -110,6 +110,8 @@ struct cs2000_priv {
- 	bool lf_ratio;
- 	bool clk_skip;
+Resending the patch as it got ACK-ed but did not get MERGED.
+(https://lore.kernel.org/all/2935fd8e-ceda-fec9-db47-65d3ec142e32@linaro.org/)
+We get some warnings which are expected. I will post the dt-node
+fixes once this patch gets merged.
+
+ .../devicetree/bindings/crypto/ti,sa2ul.yaml        | 13 -------------
+ 1 file changed, 13 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml b/Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml
+index 02f47c2e7998..0c15fefb6671 100644
+--- a/Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml
++++ b/Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml
+@@ -35,8 +35,6 @@ properties:
+       - const: rx1
+       - const: rx2
  
-+	unsigned int pll_lock_timeout_ms;
-+
- 	/* suspend/resume */
- 	unsigned long saved_rate;
- 	unsigned long saved_parent_rate;
-@@ -171,21 +173,16 @@ static int cs2000_ref_clk_bound_rate(struct cs2000_priv *priv,
- static int cs2000_wait_pll_lock(struct cs2000_priv *priv)
- {
- 	struct device *dev = priv_to_dev(priv);
--	unsigned int i, val;
-+	unsigned int val;
- 	int ret;
- 
--	for (i = 0; i < 256; i++) {
--		ret = regmap_read(priv->regmap, DEVICE_CTRL, &val);
--		if (ret < 0)
--			return ret;
--		if (!(val & PLL_UNLOCK))
--			return 0;
--		udelay(1);
--	}
+-  dma-coherent: true
 -
--	dev_err(dev, "pll lock failed\n");
-+	ret = regmap_read_poll_timeout(priv->regmap, DEVICE_CTRL, val,
-+				       !(val & PLL_UNLOCK), USEC_PER_MSEC,
-+				       priv->pll_lock_timeout_ms * USEC_PER_MSEC);
-+	if (ret < 0)
-+		dev_err(dev, "pll lock failed\n");
+   "#address-cells":
+     const: 2
  
--	return -ETIMEDOUT;
-+	return ret;
- }
+@@ -72,16 +70,6 @@ required:
+   - dmas
+   - dma-names
  
- static int cs2000_clk_out_enable(struct cs2000_priv *priv, bool enable)
-@@ -481,6 +478,10 @@ static int cs2000_clk_register(struct cs2000_priv *priv)
- 	if (ret < 0)
- 		return ret;
+-if:
+-  properties:
+-    compatible:
+-      enum:
+-        - ti,j721e-sa2ul
+-        - ti,am654-sa2ul
+-then:
+-  required:
+-    - dma-coherent
+-
+ additionalProperties: false
  
-+	priv->pll_lock_timeout_ms = 100;
-+	of_property_read_u32(np, "cirrus,pll-lock-timeout-ms",
-+			     &priv->pll_lock_timeout_ms);
-+
- 	priv->clk_skip = of_property_read_bool(np, "cirrus,clock-skip");
- 
- 	ref_clk_rate = clk_get_rate(priv->ref_clk);
+ examples:
+@@ -95,5 +83,4 @@ examples:
+         dmas = <&main_udmap 0xc000>, <&main_udmap 0x4000>,
+                <&main_udmap 0x4001>;
+         dma-names = "tx", "rx1", "rx2";
+-        dma-coherent;
+     };
 -- 
-2.37.2
+2.25.1
 
