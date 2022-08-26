@@ -2,116 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EB8F5A23CF
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 11:11:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 881B05A23DA
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 11:13:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245643AbiHZJL3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 05:11:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59092 "EHLO
+        id S245702AbiHZJLs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 05:11:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245652AbiHZJL0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 05:11:26 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F7B1D1241
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 02:11:14 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id y3so1996454ejc.1
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 02:11:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=EHyZfx9f30GYvoWGWrL1/d31tZ2j1jnuSexhcB0B028=;
-        b=H4E8O/FZWenOUNLemv28DGZCdkWQLC1IHud8bPn1Zt5jaLswZKwZ4GWY7Kc+M5rne0
-         tpnyVWL+K70RTKeP6Bi8rlmmmKFJoH2Mr2fMWrJ6n7yZt6SXe/jVP4fIlidg2biWXXN0
-         Y8rKFfD9nTJwjEPs7e7k//u4sUtCL0mi9DCoCyyN5qUUwXJ1jiNv7YgjeURYOUbaviXg
-         pa7H5LGylpM4+N7+ZDMbT9UESKOsCUS4rQUGz7Nal5bwJmhHY8tHsZ4YysgvyYJzqJQw
-         7fqodXyghB4EZTmrIPPiAqhO3pE0vXrgJCRjYWOmJ8cPMSL+azcEJDf5q6VpSkMBPq7L
-         rtxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=EHyZfx9f30GYvoWGWrL1/d31tZ2j1jnuSexhcB0B028=;
-        b=nX2YPfr/4gplmOSqRkbmFNYib3ilG1QeSp9vT4UJwrGfqguUckGngLHdWh/1wMLDQK
-         8byxFjO2f0feCkDakfUDZfXkc6JPQCk4FwKn1lnmTt8Y/M9nqSP4TUAuWMYtqayVYwoz
-         CGgihtXkBcpq/H0fsRDuvR+clVFbmhC6H5RWG7HcIMyx6TX+UXoYjk+sAJDCYPSGx2I1
-         n5+KSZ30wG12KPjAUg1PcejvV50HWAzCUojuK75dPVRWDCDBTSOLoylBaOklXekxhIM7
-         IGtBrC7HfN0XFRrRpPDAaUzt9o47lq7iY5L4pEhh0BjQ3d0cpiFTRWLjRaHmeVQBwFCK
-         gbuA==
-X-Gm-Message-State: ACgBeo052K3sEmiHXRXgf9PC8Nj54wFgBK0s8tuwNMyVFtP0IWE2UpXo
-        BeXAPNynY3W7RwpVjuzz5Simd2ABHpioSk+k+jQ+abEq850Wyg==
-X-Google-Smtp-Source: AA6agR5U9DH1rbFPNvHxj4z3/uS3uREKQVB/qGqSV8z1JZu3or4hPsIAC6EDv2Kf4X2wkJYTbMZlZ+2xYACgMT5wbTI=
-X-Received: by 2002:a17:906:478f:b0:73d:7919:b23 with SMTP id
- cw15-20020a170906478f00b0073d79190b23mr4546844ejc.690.1661505073018; Fri, 26
- Aug 2022 02:11:13 -0700 (PDT)
+        with ESMTP id S245710AbiHZJLj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 05:11:39 -0400
+Received: from mail.bugwerft.de (mail.bugwerft.de [46.23.86.59])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0A28ECEB2C;
+        Fri, 26 Aug 2022 02:11:35 -0700 (PDT)
+Received: from hq-00021.fritz.box (p57bc9b74.dip0.t-ipconnect.de [87.188.155.116])
+        by mail.bugwerft.de (Postfix) with ESMTPSA id B9BD528E698;
+        Fri, 26 Aug 2022 09:11:33 +0000 (UTC)
+From:   Daniel Mack <daniel@zonque.org>
+To:     mturquette@baylibre.com, sboyd@kernel.org
+Cc:     linux-clk@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, kuninori.morimoto.gx@renesas.com,
+        Daniel Mack <daniel@zonque.org>
+Subject: [PATCH v2 1/2] dt-bindings: clock: cs2000-cp: Document cirrus,pll-lock-timeout-ms
+Date:   Fri, 26 Aug 2022 11:11:21 +0200
+Message-Id: <20220826091122.2344503-1-daniel@zonque.org>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
-References: <20220722081146.47262-1-jjhiblot@traphandler.com>
- <20220722081146.47262-3-jjhiblot@traphandler.com> <CAHp75Vdu-EJRRxkK7+TfuE=zEDkJye1QCXSB+cDLrqxuykJjkA@mail.gmail.com>
- <5ba34982-52c7-e41a-fba8-d88d93529e47@traphandler.com> <20220804210412.GA30210@duo.ucw.cz>
- <0663c616-97c8-444c-f390-275fae402453@traphandler.com> <CAHp75Vf1cT81cx38VQ80PbyG9i9xbiegMnQoMWwZEZf+7fWJuQ@mail.gmail.com>
- <5bb9955e-4c2f-ca55-0e77-c082a868371a@traphandler.com> <CAHp75Vc5g0OL6YUY2WsUZA6bovB+sdJE3Bv3SWp-1pRh3kyiow@mail.gmail.com>
-In-Reply-To: <CAHp75Vc5g0OL6YUY2WsUZA6bovB+sdJE3Bv3SWp-1pRh3kyiow@mail.gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 26 Aug 2022 11:11:01 +0200
-Message-ID: <CACRpkdYs03HhXNwx3BmzrvNx6biGc1FPEUE2eoc9XZ-9O5M4Rg@mail.gmail.com>
-Subject: Re: [RESEND PATCH v6 2/3] leds: Add driver for the TLC5925 LED controller
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Jean-Jacques Hiblot <jjhiblot@traphandler.com>,
-        Linus Walleij <linusw@kernel.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 24, 2022 at 12:19 PM Andy Shevchenko
-<andy.shevchenko@gmail.com> wrote:
+This property can be used to set the maximum time to wait for the PLL to
+lock.
 
-> > >> I don't know if this is enough to make a dedicated TLC5925 driver
-> > >> desirable in the kernel.
-> > > I don't think you have enough justification for a new driver.
+Signed-off-by: Daniel Mack <daniel@zonque.org>
+---
+v1 -> v2: rename property to standard unit suffix, drop $ref, amend default value
+ 
+.../devicetree/bindings/clock/cirrus,cs2000-cp.yaml          | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-One thing to keep in mind is that LEDs are MMI (man-machine-interface)
-and designed as such, so small glitches etc are fine as long as they are
-not noticeable by human perception...
+diff --git a/Documentation/devicetree/bindings/clock/cirrus,cs2000-cp.yaml b/Documentation/devicetree/bindings/clock/cirrus,cs2000-cp.yaml
+index 0abd6ba82dfd..8e68e1746d1c 100644
+--- a/Documentation/devicetree/bindings/clock/cirrus,cs2000-cp.yaml
++++ b/Documentation/devicetree/bindings/clock/cirrus,cs2000-cp.yaml
+@@ -62,6 +62,11 @@ properties:
+       output signal directly from the REF_CLK input.
+     $ref: /schemas/types.yaml#/definitions/flag
+ 
++  cirrus,pll-lock-timeout-ms:
++    description:
++      Specifies the maximum time to wait for the PLL to lock, in milliseconds.
++    default: 100
++
+ required:
+   - compatible
+   - reg
+-- 
+2.37.2
 
-> After this message I first must withdraw my Rb tag, and turn my voice
-> against this driver because of the above. On the contrary we might ask
-> the GPIO library for a specific API to have what you do with the
-> user's consent of side effects. Linus, Bart, I'm talking of the
-> delayed (async) version of gpio_set_multiple(). But personally I think
-> it's not so easy to implement in a bugless manner (because we need to
-> synchronize it forcibly at any time we call another GPIO API against
-> the same chip).
-
-I suppose this can just be a gpio-led using the GPIO driver
-underneath?
-
-If the usecase for TLC5925 is such that it is often (as defined by
-experienced developers having seen it on boards in the wild) used
-as a GPIO expander rather than a pure LED driver, then it is better
-to have this in the GPIO subsystem in some or other form.
-
-If it is always just used for LEDs then my first comment about
-this being MMI applies I suppose. Or rather, ask the question
-from an operator point of view rather than a logic level point of
-view. (I think that was Andy's point though.)
-
-I agree that we probably need some generic library to properly handle
-the jungle of funny TTL-type constructs that is popping up left and
-right for GPIO. Someone should ideally sit down and think about
-what is common among these.
-
-Yours,
-Linus Walleij
