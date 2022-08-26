@@ -2,81 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 276BD5A2360
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 10:43:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B21725A2375
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 10:46:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244907AbiHZInY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 04:43:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43244 "EHLO
+        id S229940AbiHZIqM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 04:46:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52042 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245475AbiHZInI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 04:43:08 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B32F1AF0E;
-        Fri, 26 Aug 2022 01:42:50 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2562061D97;
-        Fri, 26 Aug 2022 08:42:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E07CBC433B5;
-        Fri, 26 Aug 2022 08:42:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661503369;
-        bh=f9rCle8MUuHrWBuriqQEAYyLqTTaXKIX/4G+WKekalc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=T8XpBKO/c2SqgP7OgMapol886WwD/tRHfcQrWPCfqpAOjdIgJSRRPiKL1onSeiF4k
-         e1WUbBtMN/Mb3veFETj7rbIervebAokt6rHL/X0OtoKz4iHNyBppj1eDPld9oLF0bd
-         WEJgO4fgVJlNt9UzYzhLS/J4G42v+cdYqzvu7fjLMsqhJfTdZvez3Cqu5I1Jyt/Xml
-         X4q8u1qrCULUJ4GYnVJ16fJhAw4jfZuqyvT9UZW2NkgiOXmZpHw91ZBrN54fTyIKZC
-         W1dk20OFG6KucjHwNAmeN4cKf2EyQu6JJTKxudQ4WaJzIV2MzS+e3BkhT8sNJgWBBv
-         xWZjwxQj6EVjA==
-Date:   Fri, 26 Aug 2022 10:42:41 +0200
-From:   Lorenzo Pieralisi <lpieralisi@kernel.org>
-To:     Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
-Cc:     Mauri Sandberg <maukka@ext.kapsi.fi>, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, bhelgaas@google.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        andrew@lunn.ch, sebastian.hesselbarth@gmail.com,
-        gregory.clement@bootlin.com, linux@armlinux.org.uk, kw@linux.com,
-        thomas.petazzoni@bootlin.com
-Subject: Re: [PATCH v2 2/2] PCI: mvebu: add support for orion5x
-Message-ID: <YwiHgd+9MygsMPzi@lpieralisi>
-References: <20220718202843.6766-1-maukka@ext.kapsi.fi>
- <20220802173423.47230-1-maukka@ext.kapsi.fi>
- <20220802173423.47230-3-maukka@ext.kapsi.fi>
- <YweSGDN7rei2Ugwp@lpieralisi>
- <20220825160051.z52ak45apjcgf3sl@pali>
+        with ESMTP id S245239AbiHZIqK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 04:46:10 -0400
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDA176B8DF;
+        Fri, 26 Aug 2022 01:46:07 -0700 (PDT)
+Received: by mail-qt1-f171.google.com with SMTP id a4so744399qto.10;
+        Fri, 26 Aug 2022 01:46:07 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=o4DTZaQCZNcA9UZkl0hcqgSEdHaR0mKbqsnuvAS05gY=;
+        b=KYgLDC5P9mnqOTYDtW65F+MDfufdSGBBqIu7k+JsgchzSrVg9ycQeJo5iIpuQT4bX7
+         sysfnQzu0KQj2z5ppPIGOCtyCU8ZrJGZDyyouXtosgJAiMWvTYu+J2IsJR0+AmcRGrde
+         WrcaGaGcXLs1zyTYrQi47SlTv2Hravwd/BQMSbujK8eOd/3JUbHFOKTdZgvLiOsm+/ys
+         F0Ipewmbpvt5AkyPo7D0l78D5ld0JqPZdssvxAo8EaOGneHY6/IlJBVg1RAbHBZainCg
+         Zm1zmIvkOkW6ZBzrLnSCs6u/8xIi3IfI7y6u6MkywDGC3+9J6KReCvB1enOyXSDjikBw
+         eB4A==
+X-Gm-Message-State: ACgBeo1b5M8dOSBcqrxmbzd4bEmolQWTzzj9Pteal6R/Xq5OlMX4jRM9
+        N0krHT84KFcZXwD1c0XgB9dxOgrqlBeXYA==
+X-Google-Smtp-Source: AA6agR40bS0kXHJfn911mfRKa6f2abzY8auQX/4lrw5rlIufgqs0eUGUch7PIGqal+D0KGpyEIVOBA==
+X-Received: by 2002:ac8:584b:0:b0:343:6f4a:d04e with SMTP id h11-20020ac8584b000000b003436f4ad04emr6912128qth.425.1661503566731;
+        Fri, 26 Aug 2022 01:46:06 -0700 (PDT)
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
+        by smtp.gmail.com with ESMTPSA id hh11-20020a05622a618b00b0033aac3da27dsm899247qtb.19.2022.08.26.01.46.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 Aug 2022 01:46:06 -0700 (PDT)
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-33dc31f25f9so19147207b3.11;
+        Fri, 26 Aug 2022 01:46:06 -0700 (PDT)
+X-Received: by 2002:a25:d80b:0:b0:696:6d79:4891 with SMTP id
+ p11-20020a25d80b000000b006966d794891mr1516074ybg.89.1661503566221; Fri, 26
+ Aug 2022 01:46:06 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220825160051.z52ak45apjcgf3sl@pali>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220824094327.33685-1-wsa+renesas@sang-engineering.com> <20220824094327.33685-2-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20220824094327.33685-2-wsa+renesas@sang-engineering.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 26 Aug 2022 10:45:54 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUXSniVs_LmdDpwqjR2i1KERS6T0pUAyBrQZoBUXkLtYw@mail.gmail.com>
+Message-ID: <CAMuHMdUXSniVs_LmdDpwqjR2i1KERS6T0pUAyBrQZoBUXkLtYw@mail.gmail.com>
+Subject: Re: [PATCH 1/3] spi: renesas,sh-msiof: Add generic Gen4 and r8a779f0 support
+To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 25, 2022 at 06:00:51PM +0200, Pali Rohár wrote:
-> On Thursday 25 August 2022 17:15:36 Lorenzo Pieralisi wrote:
-> > On Tue, Aug 02, 2022 at 08:34:23PM +0300, Mauri Sandberg wrote:
-> > > Add support for orion5x PCIe controller.
-> > > 
-> > > There is Orion-specific errata that config space via CF8/CFC registers
-> > > is broken. Workaround documented in errata documented (linked from above
-> > > documentation) does not work when DMA is used and instead other
-> > 
-> > Linked to which documentation ?
-> 
-> Hello! Orion Errata document is linked from kernel doc:
-> https://www.kernel.org/doc/html/latest/arm/marvell.html
+On Wed, Aug 24, 2022 at 11:43 AM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-Add a Link: tag to the patch, thanks.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Lorenzo
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
