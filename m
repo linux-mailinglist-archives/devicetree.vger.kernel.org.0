@@ -2,83 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B89595A216D
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 09:06:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36BCF5A217C
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 09:12:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245119AbiHZHGc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 03:06:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55904 "EHLO
+        id S243137AbiHZHMh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 03:12:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244999AbiHZHGb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 03:06:31 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC26DD2901
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 00:06:29 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id l23so750625lji.1
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 00:06:29 -0700 (PDT)
+        with ESMTP id S245103AbiHZHMg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 03:12:36 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44C63D2B22
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 00:12:34 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id z6so864079lfu.9
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 00:12:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=4wMiB10DWKAsIGrfK9n8/nTyZKEz22qtcMUofwVgOcU=;
-        b=eNwzp1KzoyUMHWs4CjfO/mhp+UxQSAzBFS8Frd2G7osH5xdmeJNfkwHppcOKB7hkNy
-         aBrcgFnafibpUUMV6G2DGA1hpcPlIbo3FnXJm12HZUFNcuayvcWdUsxOEoJbbdn/DEod
-         +yAbjpASLAkAFrOHSYp4FbQ6k+U9rCNhw20ieoce9EC/b5JVUjdUALW7U27mTFW/K9du
-         Lju+fU34EY9EiZjRK/bzwkoau9JKp6/aN/GCU/I7+fzXEfghlOuwQmjKPE07DWjGSwPx
-         XVZwZqv3HVoHVxErm19gsPwPjRBZlSmZ9ckf+cfVNtRpauXpGPOAB7RyBCYwY9SaKVaK
-         pvWg==
+        d=amarulasolutions.com; s=google;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc;
+        bh=TsGga+p3/E9an7wI98rRb/MFwrywOK8BvinFvruEnr4=;
+        b=P42W/vx34Oi+AYvrGS4jqaKlFDewTQhYL4ODI5SFqrhkKEDPUmG5xuyuoz6/7/3WvV
+         bpYw1dlQLRoPG+DiwwlfJxCdGmlPdnf/UCBNIowzO+wyD8JVTESRd84prKTjzIryZqJi
+         0maAw46JHNlMVTaDLJ5espB4KYWCgnXqPBKJU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=4wMiB10DWKAsIGrfK9n8/nTyZKEz22qtcMUofwVgOcU=;
-        b=KRX+OolKAf4tbpKazS6LpVNm4v85HV2o11Yu7BPrkGhXDxS++pwVn5qlBFzAut63k2
-         ebupzMwPCyP0wrmN73YcV/3DxOLdT58IJy/EI87WRY9Nj+Sf6TUJsANDWRFA9w9nIfTL
-         ByceV2nle9PeYBQS5aSWtYQJlJHkbY1cfz4/ltw+dUF44sKDr+cXHzaux4nE3uk2KRh/
-         dnGyd5uAqQx+dA+wqXnL5LTY2Z0FaaYSKPx3NXzMJAZwotOrfPbvixK1voGcf/g9MrZ8
-         MKFhKH59kg7kwvXGluPVvhZoXuNR+uIr7wh7DDkbYlkgEC3ppeJ9UvHP4+f3QLo4TXdR
-         0OUw==
-X-Gm-Message-State: ACgBeo2RjQFptWzsCJrNV7gJ/+A1136piQewSZqzJpV6ssJOBHX+LnXc
-        vt2XZqqVCofTs/tHfZyMUXsaLA==
-X-Google-Smtp-Source: AA6agR6+X76BDtY4oCG20XVZf/XbydGFc7PDTeSFC5U9apBX5+w0myvGBkmD5YLKl5F1HOCKy0wFCA==
-X-Received: by 2002:a2e:a589:0:b0:261:b223:488b with SMTP id m9-20020a2ea589000000b00261b223488bmr2087361ljp.33.1661497588252;
-        Fri, 26 Aug 2022 00:06:28 -0700 (PDT)
-Received: from [192.168.0.71] (82.131.98.15.cable.starman.ee. [82.131.98.15])
-        by smtp.gmail.com with ESMTPSA id v20-20020a2e2f14000000b0025e60089f34sm336110ljv.52.2022.08.26.00.06.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 Aug 2022 00:06:27 -0700 (PDT)
-Message-ID: <4165f771-c983-b452-5730-d80532658aaf@linaro.org>
-Date:   Fri, 26 Aug 2022 10:06:25 +0300
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc;
+        bh=TsGga+p3/E9an7wI98rRb/MFwrywOK8BvinFvruEnr4=;
+        b=rmJHvX5S2iJi88eFdX0iOpnezXsqbSW5B9XbMxmfrrT+pvgM+Jd8ci7muYiDAYATGh
+         eA4yQgiU4ABOYSawYdA0LeNm9qsDZ8msukEFrwKeKtNpsgMAjyPjDnxmR8w2vrPyfP4J
+         lqlqMYwqE/h1+bmvgLd5NDVq76r38ZjKQl0ISpSljwvl2CYjxxcxm8x8q5PW+ts7ZQU3
+         cM4ar8wWUdl3wdBTDo+8czFj+nrCZ35zz2lhj0/W/dBX9EHWSHpJkzvTImVFwZhUQ1wF
+         ERm67BUMK8HnDUTzDptcg1v00DVogojn2u3cxqj2243MsHcx4dfUawz7B9zCsudonMfF
+         jHcA==
+X-Gm-Message-State: ACgBeo0dC2GN0vZcym20XZbwMbEOLhesdehtxgHBe+B5LPU3iMYwsKF+
+        fYSoNY41e2SMA5bMDMFzJm/mAn0agbWo9SGUSDYTbw==
+X-Google-Smtp-Source: AA6agR7CkxZMhLsDqNufa2XQws9YeFkWd1TvveuOauUFwiJpdK+2brKqI5N9qCf01ayFkWEcv+/FL2+Q6RobfuyrFxU=
+X-Received: by 2002:a05:6512:1585:b0:48d:158:7013 with SMTP id
+ bp5-20020a056512158500b0048d01587013mr2305322lfb.536.1661497952481; Fri, 26
+ Aug 2022 00:12:32 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v4 0/6] Add support for TI TPS65219 PMIC.
-Content-Language: en-US
-To:     Markus Schneider-Pargmann <msp@baylibre.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20220820082936.686924-1-dario.binacchi@amarulasolutions.com>
+ <20220820082936.686924-2-dario.binacchi@amarulasolutions.com> <fe2041cc-dd8b-6695-1fc8-6c1c49dd7220@linaro.org>
+In-Reply-To: <fe2041cc-dd8b-6695-1fc8-6c1c49dd7220@linaro.org>
+From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Date:   Fri, 26 Aug 2022 09:12:21 +0200
+Message-ID: <CABGWkvrdqE=1JpOvzs9u9j_gYFsDuKQ92ruzwc=CJQBB5jaj4g@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 1/4] dt-bindings: net: can: add STM32 bxcan DT bindings
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-kernel@vger.kernel.org,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Amarula patchwork <linux-amarula@amarulasolutions.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        michael@amarulasolutions.com, Dario Binacchi <dariobin@libero.it>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Lee Jones <lee@kernel.org>, Tony Lindgren <tony@atomide.com>,
-        nm@ti.com, kristo@kernel.org
-Cc:     Jerome Neanne <jneanne@baylibre.com>, khilman@baylibre.com,
-        narmstrong@baylibre.com, j-keerthy@ti.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
-        linux-omap@vger.kernel.org
-References: <20220825150224.826258-1-msp@baylibre.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220825150224.826258-1-msp@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-can@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com, netdev@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,21 +78,159 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/08/2022 18:02, Markus Schneider-Pargmann wrote:
-> Hi everyone,
-> 
-> I am submitting this update for Jerome, he will probably do the next
-> version again.
-> 
-> v4 is a lot smaller now as I squashed some patches as requested and
-> some were applied. It is mainly the fixes of the things that Lee Jones
-> pointed out in his review on v2, thanks for that.
-> 
-> It is now based on the regulator tree branch for-6.1:
-> https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git
+Hi Krzysztof,
 
-Instead please mention that bindings are already there... Otherwise you
-might got premature nak for missing bindings.
+On Tue, Aug 23, 2022 at 3:41 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 20/08/2022 11:29, Dario Binacchi wrote:
+> > Add documentation of device tree bindings for the STM32 basic extended
+> > CAN (bxcan) controller.
+> >
+> > Signed-off-by: Dario Binacchi <dariobin@libero.it>
+> > Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> >
+> > ---
+> >
+> > Changes in v2:
+> > - Change the file name into 'st,stm32-bxcan-core.yaml'.
+> > - Rename compatibles:
+> >   - st,stm32-bxcan-core -> st,stm32f4-bxcan-core
+> >   - st,stm32-bxcan -> st,stm32f4-bxcan
+> > - Rename master property to st,can-master.
+> > - Remove the status property from the example.
+> > - Put the node child properties as required.
+> >
+> >  .../bindings/net/can/st,stm32-bxcan.yaml      | 136 ++++++++++++++++++
+> >  1 file changed, 136 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/net/can/st,stm32-=
+bxcan.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/net/can/st,stm32-bxcan.y=
+aml b/Documentation/devicetree/bindings/net/can/st,stm32-bxcan.yaml
+> > new file mode 100644
+> > index 000000000000..288631b5556d
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/net/can/st,stm32-bxcan.yaml
+> > @@ -0,0 +1,136 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/net/can/st,stm32-bxcan.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: STMicroelectronics bxCAN controller
+> > +
+> > +description: STMicroelectronics BxCAN controller for CAN bus
+> > +
+> > +maintainers:
+> > +  - Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> > +
+> > +allOf:
+> > +  - $ref: can-controller.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - st,stm32f4-bxcan-core
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  resets:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    description:
+> > +      Input clock for registers access
+> > +    maxItems: 1
+> > +
+> > +  '#address-cells':
+> > +    const: 1
+> > +
+> > +  '#size-cells':
+> > +    const: 0
+> > +
+> > +additionalProperties: false
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - resets
+> > +  - clocks
+> > +  - '#address-cells'
+> > +  - '#size-cells'
+> > +
+> > +patternProperties:
+>
+> No improvements here, so my comment stay. Please fix it.
 
-Best regards,
-Krzysztof
+Sorry, I'ff fix it in version 3.
+
+>
+>
+> > +  "^can@[0-9]+$":
+> > +    type: object
+> > +    description:
+> > +      A CAN block node contains two subnodes, representing each one a =
+CAN
+> > +      instance available on the machine.
+>
+> I still do not understand why you need children. You did not CC me on
+> driver change, so difficult to say. You did not describe the parent
+
+On the next submissions I'll send you all the series patches.
+
+> device - there is no description.
+
+Ok, I'll do it.
+
+> Why do you need parent device at all?
+> This looks like some driver-driven-bindings instead of just real
+> hardware description.
+
+The two devices are not independent.
+As described in the reference manual RM0386 (STM32F469xx and STM32F479xx
+advanced Arm=C2=AE-based 32-bit MCUs) in paragraph 34.2, the bxCAN controll=
+er is a
+dual CAN peripheral configuration:
+
+=E2=80=A2 CAN1: Master bxCAN for managing the communication between a Slave=
+ bxCAN and
+the 512-byte SRAM memory
+=E2=80=A2 CAN2: Slave bxCAN, with no direct access to the SRAM memory.
+
+So, if I want to use CAN2 only (and not CAN1), I need to be able to use sha=
+red
+resources with CAN1 without having to probe the CAN1 driver. IMHO here is t=
+he
+justification of the parent node.
+
+Thanks and regards,
+Dario
+
+>
+> Best regards,
+> Krzysztof
+
+
+
+--=20
+
+Dario Binacchi
+
+Embedded Linux Developer
+
+dario.binacchi@amarulasolutions.com
+
+__________________________________
+
+
+Amarula Solutions SRL
+
+Via Le Canevare 30, 31100 Treviso, Veneto, IT
+
+T. +39 042 243 5310
+info@amarulasolutions.com
+
+www.amarulasolutions.com
