@@ -2,159 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 393225A290D
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 16:06:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31B9F5A291C
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 16:09:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344166AbiHZOGF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 10:06:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44770 "EHLO
+        id S239844AbiHZOJM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 10:09:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344389AbiHZOGD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 10:06:03 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55D39C0B56
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 07:05:59 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id bs25so1955061wrb.2
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 07:05:59 -0700 (PDT)
+        with ESMTP id S1344391AbiHZOJK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 10:09:10 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55375C3F6E
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 07:09:05 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id s1so2147255lfp.6
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 07:09:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=Z+0yDajJ0wMjpgyqOUnKw47mL+zdc8UQAtbyK28TADE=;
-        b=1TrEMsMjrNGXQg3zlIfMbp6DcGA/mnvnYEcXOVNWIZtxGMMtIIDBXFAdTbQdg1JhiZ
-         NOUGwIig0tV7ocKG7N6MfxSRKKhCjxzyzNULveaen25A473Kz6VG6VewMXb6F9ODrHl3
-         prvKMEYieaPC+isGsSBb5ZIGpmk1EXoIf7Xw/CMMowCQsPdIVOPsUbH3NE90Rjt6Vgsb
-         wFetqy6U4nj5bS5DNnxsjUfxh4KXHMP2z9YMVBFv7o0B8WdX4pq+IybwfAv9Uh3nXWjK
-         EtbG3Zxi2O/zO0WdLbyauOW08/7V+J6sJJ+2QI6d9IPSydep7VVX/UsSRlXBZFPlcItP
-         /Dkg==
+        bh=/jvB3Zk9Ur35ndfTH3ClegVJp3L5YsswZJHu0HBwLYs=;
+        b=jQx3CjsoG4/KqyBTEu7I7zus+LfGm5o2i5DJwYB8PEnBnlqdKMQzoZvzit0d6HbeH0
+         792OCLK+089fkSLzsDQuf2cforIA6vpukpmf76nehp/qDWBuiYMLjsmWpN7WNH5AxDdU
+         qpnOWvv9wKrOoyONFNZu8kA2YQFNeacvY52jZO1JOzAfRuPnJ64iqc/6Bj7UjCoJT6WC
+         zyeDGn0/ILk/Tj/GtHLoIKMB53JY16zqhRiRyTuqu7Y39WVoUVn4D7QLzoexl5+rPLhO
+         uOcCOqIghY4npZvkgBcYBxMGS4rUzVeEnIKhbPm0++/HPXlt1SnjdlVgM4xqrUkhK7kO
+         o9iQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=Z+0yDajJ0wMjpgyqOUnKw47mL+zdc8UQAtbyK28TADE=;
-        b=vewVK+q6JvOfBwaCD1mipMrZCvR3p/NN44VPcf/V2sz9l7Ax+bsZkhlM54Yd1rgFHA
-         p5Pq+aC7iJtcWqERSE/HsGj94/xrlG8q/F0eGWrl8dSVfQD3BfoSwOpFVEUNCpx6GK7E
-         yl+ESU3LXYyl9X8qed8CZpdOa8106dJYUqfF7hRu93w0p9eZOsyyTOS6cOfC+JotgjrF
-         mEYXZRynjeOdYmMceLC2jADccGMooNjG0FZ3g2DahxbKvNFbODWPlWX65CkzPbfqP1Yo
-         6huOep1YRzAxkPB5lPSvfgPWxK96aUyvj+POE+hn79u4m/p7N963DmXWS2mdAtIe/gHI
-         P3Fw==
-X-Gm-Message-State: ACgBeo0nb4mb6rbtBKlY9Dqx8jB4RPx3AJ04wV+5qtdXr0zuhCcQFlvy
-        45CLDedPB3XMg01UOdUdrjdeGA==
-X-Google-Smtp-Source: AA6agR5LuyIlDMydRhgyzTFzClAGY8aeGYDhoH5FtmW4fur5TkLAwiWQlSHq4jMGUpVO741aer/a0w==
-X-Received: by 2002:a5d:5305:0:b0:225:453a:be9b with SMTP id e5-20020a5d5305000000b00225453abe9bmr5058563wrv.516.1661522757838;
-        Fri, 26 Aug 2022 07:05:57 -0700 (PDT)
-Received: from [192.168.0.20] (210.145.15.109.rev.sfr.net. [109.15.145.210])
-        by smtp.gmail.com with ESMTPSA id j2-20020adff542000000b0021e51c039c5sm1967727wrp.80.2022.08.26.07.05.56
+        bh=/jvB3Zk9Ur35ndfTH3ClegVJp3L5YsswZJHu0HBwLYs=;
+        b=u+3xgiKP6F/1hIstAynlthgsxNoy6yIbqmMEBJc/JIJFuKd1aB21PTsDHae4i3hKJY
+         QPFTsOzMyCs18j3RBgr6rvFdtM8aJtrJIoqw0GUgpll43INuGVScSmPmd91uM3zQUZdy
+         hQu4YFvhXW/m4q24+3x+lecGDrAx+hFGmayPOl4IgWJOIqYrFYuhL3n8hzoM7XCx5LIA
+         4x04B8GOA8OxOqkb8sQZLZbvMXgh/8fqyDjfV+/CvDUxVrPoFVES9ygU7oQDvoz+NNm5
+         0Bbn4+Tw2+7Xo6fS5KuiXxCB98Es8roYEEpmqxMjKTeQFWOPvbUgW88kHeFsk1sph50A
+         97Ag==
+X-Gm-Message-State: ACgBeo3JxxHegr9i4xj0iFjGBVhMHVHJRHioGKlwQ3Z0VRpDRGG/Uaj8
+        /1bR/D92qdDVruV+/RckdPGhIw==
+X-Google-Smtp-Source: AA6agR7HiAAjmQ+OSdNfaAHoyknzoyrjx3MUmL1Ng+Vf6qRLQP4g75Bp3THQvj6bRqHPWOxdn6lnQw==
+X-Received: by 2002:a05:6512:68d:b0:492:ec42:1dd2 with SMTP id t13-20020a056512068d00b00492ec421dd2mr2597519lfe.55.1661522944058;
+        Fri, 26 Aug 2022 07:09:04 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id s10-20020a19ad4a000000b00492c017de43sm390763lfd.127.2022.08.26.07.09.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 Aug 2022 07:05:57 -0700 (PDT)
-Message-ID: <cf60d0a7-2dec-a6c7-879f-ab4812a1e034@baylibre.com>
-Date:   Fri, 26 Aug 2022 16:05:54 +0200
+        Fri, 26 Aug 2022 07:09:03 -0700 (PDT)
+Message-ID: <37834264-f6a0-fe71-e4c6-2edca9475d5a@linaro.org>
+Date:   Fri, 26 Aug 2022 17:09:02 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v2 3/4] thermal: mediatek: control buffer enablement
- tweaks
-Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, matthias.bgg@gmail.com
-Cc:     rafael@kernel.org, fparent@baylibre.com, amitk@kernel.org,
-        daniel.lezcano@linaro.org, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org,
-        robh+dt@kernel.org, rui.zhang@intel.com,
-        Markus Schneider-Pargmann <msp@baylibre.com>
-References: <20220720181854.547881-1-aouledameur@baylibre.com>
- <20220720181854.547881-4-aouledameur@baylibre.com>
- <a143dfcd-7a6a-49ff-6bed-4ffdb0fa1c4a@collabora.com>
-From:   Amjad Ouled-Ameur <aouledameur@baylibre.com>
-In-Reply-To: <a143dfcd-7a6a-49ff-6bed-4ffdb0fa1c4a@collabora.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.1.2
+Subject: Re: [v1 2/2] drm/msm/disp/dpu1: enable crtc color management based on
+ encoder topology
+Content-Language: en-GB
+To:     Kalyan Thota <kalyant@qti.qualcomm.com>,
+        "Kalyan Thota (QUIC)" <quic_kalyant@quicinc.com>,
+        "robdclark@gmail.com" <robdclark@gmail.com>
+Cc:     "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+        "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "dianders@chromium.org" <dianders@chromium.org>,
+        "swboyd@chromium.org" <swboyd@chromium.org>,
+        "Vinod Polimera (QUIC)" <quic_vpolimer@quicinc.com>,
+        "Abhinav Kumar (QUIC)" <quic_abhinavk@quicinc.com>
+References: <1655802387-15275-1-git-send-email-quic_kalyant@quicinc.com>
+ <1655802387-15275-2-git-send-email-quic_kalyant@quicinc.com>
+ <CAA8EJponMDAXDAZ9zpkYEZvONDAztuXhjwZ6y7rgo1HtQOMtfQ@mail.gmail.com>
+ <BN0PR02MB81426CB90870085223C308A496B99@BN0PR02MB8142.namprd02.prod.outlook.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <BN0PR02MB81426CB90870085223C308A496B99@BN0PR02MB8142.namprd02.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Angelo,
+On 27/06/2022 14:56, Kalyan Thota wrote:
+> Thanks for the comments, Dmitry. I haven't noticed mode->hdisplay being used. My idea was to run thru the topology and tie up the encoders with dspp to the CRTCs.
+> Since mode is available only in the commit, we cannot use the dpu_encoder_get_topology during initialization sequence.
+> 
+> The requirement here is that when we initialize the crtc, we need to enable drm_crtc_enable_color_mgmt only for the crtcs that support it. As I understand from Rob, chrome framework will check for the enablement in order to exercise the feature.
+> 
+> Do you have any ideas on how to handle this requirement ? Since we will reserve the dspp's only when a commit is issued, I guess it will be too late to enable color management by then.
 
-On 7/21/22 10:11, AngeloGioacchino Del Regno wrote:
-> Il 20/07/22 20:18, Amjad Ouled-Ameur ha scritto:
->> From: Markus Schneider-Pargmann <msp@baylibre.com>
->>
->> Add logic in order to be able to turn on the control buffer on MT8365.
->> This change now allows to have control buffer support for 
->> MTK_THERMAL_V1,
->> and it allows to define the register offset, and mask used to enable it.
->>
->> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
->> Signed-off-by: Fabien Parent <fparent@baylibre.com>
->> Reviewed-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
->> Tested-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
->> ---
->>   drivers/thermal/mtk_thermal.c | 23 +++++++++++++++++------
->>   1 file changed, 17 insertions(+), 6 deletions(-)
->>
->> diff --git a/drivers/thermal/mtk_thermal.c 
->> b/drivers/thermal/mtk_thermal.c
->> index 216eb0d61c5b..1dc276f8c4f1 100644
->> --- a/drivers/thermal/mtk_thermal.c
->> +++ b/drivers/thermal/mtk_thermal.c
->> @@ -283,6 +283,9 @@ struct mtk_thermal_data {
->>       bool need_switch_bank;
->>       struct thermal_bank_cfg bank_data[MAX_NUM_ZONES];
->>       enum mtk_thermal_version version;
->> +    u32 apmixed_buffer_ctl_reg;
->> +    u32 apmixed_buffer_ctl_mask;
->> +    u32 apmixed_buffer_ctl_set;
->>   };
->>     struct mtk_thermal {
->> @@ -578,6 +581,9 @@ static const struct mtk_thermal_data 
->> mt7622_thermal_data = {
->>       .adcpnp = mt7622_adcpnp,
->>       .sensor_mux_values = mt7622_mux_values,
->>       .version = MTK_THERMAL_V2,
->> +    .apmixed_buffer_ctl_reg = APMIXED_SYS_TS_CON1,
->> +    .apmixed_buffer_ctl_mask = ~0x37,
->
-> This is effectively GENMASK(31, 6) | BIT(3) :-)
->
->> +    .apmixed_buffer_ctl_set = 0x1,
->
-> ...and this is BIT(0)
->
-Thank you for the catch, will update them appropriately.
->>   }; >
->>   /*
->> @@ -1031,14 +1037,18 @@ static const struct of_device_id 
->> mtk_thermal_of_match[] = {
->>   };
->>   MODULE_DEVICE_TABLE(of, mtk_thermal_of_match);
->>   -static void mtk_thermal_turn_on_buffer(void __iomem *apmixed_base)
->> +static void mtk_thermal_turn_on_buffer(struct mtk_thermal *mt,
->> +                       void __iomem *apmixed_base)
->>   {
->>       int tmp;
->
-> Since you're practically restructuring this function, please fix this 
-> wrong
-> variable type, as this should be a u32.
->
-Sure agreed.
+I have been thinking about this for quite a while.
 
+Basically I fear you have two options:
+- Register the color management for all CRTCs. In dpu_rm_reserve() check 
+for the ctm, allocate LMs taking the available DSPPs into account. Fail 
+the atomic_check() if there are no available LMs with required 
+capabilities. Additional bonus point for moving LM/DSPP resource 
+allocation from dpu_encoder into dpu_crtc.
 
-Thank you Angelo for the review.
+- Register CRTCs and it's colormanagement properties according to exact 
+available hardware. Let the userspace composer select the CRTC for the 
+connector basing on the availability of the CTM support.
 
-Regards,
+I'd vote strongly against any attempt to put the policy ('e.g. enable 
+CTM only for the eDP and first DSI display') into the kernel, because we 
+can not predict the actual usecases the user needs. It well might be 
+that the user of the laptop will work with DP displays only and thus 
+require color management for DP.
 
-Amjad
+> 
+> @robdclark@gmail.com
+> Is it okay, if we disable color management for all the crtcs during initialization and enable it when we have dspps available during modeset. Can we framework code query for the property before issuing a commit for the frame after modeset ?
+> 
 
-> Regards,
-> Angelo
+-- 
+With best wishes
+Dmitry
+
