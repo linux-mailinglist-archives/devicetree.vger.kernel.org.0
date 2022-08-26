@@ -2,76 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E48735A26B9
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 13:17:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2612B5A26C8
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 13:22:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230083AbiHZLRf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 07:17:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45578 "EHLO
+        id S236831AbiHZLW4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 07:22:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229888AbiHZLRe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 07:17:34 -0400
-Received: from mail.3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7CFCDABBE;
-        Fri, 26 Aug 2022 04:17:32 -0700 (PDT)
-Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.3ffe.de (Postfix) with ESMTPSA id 01C918390;
-        Fri, 26 Aug 2022 13:17:29 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
-        t=1661512650;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=VYrOOXu1iOXhcNJLhBSXyeV6CEPCzQ7u865rUJky4TM=;
-        b=f8EVQ+ZWMiASuhP7rbJA3sMVfG0acOg0zJuCcxzpnPyRuem6a7oWgJ9idRnxl65fCTCxDt
-        1C5E5lN97NW3SYCtPyFM8andVjRhLqO1AOF2eG9xLJQ/t5BPv99gx48p7sHwYBS5Aa7Lam
-        5SB3LSOMC/2fu15cAcpGrMVjVRlIiJZHOhnkKbW8NqtVaLN4citdFqXjo+LpLh4K1QKXbH
-        //MQE42OvJPlnW0Tk3YmW08tX9ZrisqHxnIp6sKWRXuIeUYZk3AHk6oQSSs70VQgv1VDgY
-        xQ/1Lidh+NiSoZeL7Tz+zclxHp0wq8KVfqfoGTyvD7gfWHOLnnT2FoYDMOvNrA==
+        with ESMTP id S230141AbiHZLWz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 07:22:55 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A13DDAEE5;
+        Fri, 26 Aug 2022 04:22:52 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 27QBMXjO053966;
+        Fri, 26 Aug 2022 06:22:33 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1661512953;
+        bh=ePfG0EpOr92S+PbFmQ5kcqb6z6CZ0FlDegmJSjIPXS4=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=X1jqprEr5Ge3M5OAjXkoOT61Kl+0cQDUwmmHg9e8CfjE2SWtIZycC5Gz/trZ+j2BH
+         PCjYT+LI5MupgxV300uEAbu06/UJM8RSb8+mxND9RsegQOWKDxZwUB75LBEVCFaJPT
+         HlZik/MSp9FALpDmBb15ackyCrY8K5tbFyBWZgpI=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 27QBMXKf032353
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 26 Aug 2022 06:22:33 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Fri, 26
+ Aug 2022 06:22:32 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Fri, 26 Aug 2022 06:22:32 -0500
+Received: from [172.24.145.182] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 27QBMSws052231;
+        Fri, 26 Aug 2022 06:22:29 -0500
+Message-ID: <fd8bdb08-5ed3-8d97-c394-0cab5460df1c@ti.com>
+Date:   Fri, 26 Aug 2022 16:52:28 +0530
 MIME-Version: 1.0
-Date:   Fri, 26 Aug 2022 13:17:29 +0200
-From:   Michael Walle <michael@walle.cc>
-To:     Lars Povlsen <lars.povlsen@microchip.com>,
-        Steen Hegelund <Steen.Hegelund@microchip.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH 2/4] dt-bindings: pinctrl: k3: Introduce pinmux
+ definitions for J784s4
+Content-Language: en-US
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Apurva Nandan <a-nandan@ti.com>
+CC:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        UNGLinuxDriver@microchip.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: sparx5: rename pinctrl nodes
-In-Reply-To: <20220420194600.3416282-1-michael@walle.cc>
-References: <20220420194600.3416282-1-michael@walle.cc>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <f524d345e2f304df9b38b5d5097f7619@walle.cc>
-X-Sender: michael@walle.cc
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, Hari Nagalla <hnagalla@ti.com>
+References: <20220819190054.31348-1-a-nandan@ti.com>
+ <20220819190054.31348-3-a-nandan@ti.com>
+ <CACRpkdaktinAJveF_nH9NYYk7mAvnResRzoyuVDVWpwKKq6JOQ@mail.gmail.com>
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+In-Reply-To: <CACRpkdaktinAJveF_nH9NYYk7mAvnResRzoyuVDVWpwKKq6JOQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-[+ Arnd because he was the one who picked the first two
-patches of this file. ]
 
-Am 2022-04-20 21:46, schrieb Michael Walle:
-> The pinctrl device tree binding will be converted to YAML format. 
-> Rename
-> the pin nodes so they end with "-pins" to match the schema.
+
+On 26/08/22 13:59, Linus Walleij wrote:
+> On Fri, Aug 19, 2022 at 9:01 PM Apurva Nandan <a-nandan@ti.com> wrote:
 > 
-> Signed-off-by: Michael Walle <michael@walle.cc>
-> ---
-> The YAML conversion patch is alread in
-> https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git/log/?h=devel
+>> Add pinctrl macros for J784s4 SoC. These macro definitions are
+>> similar to that of J721s2, but adding new definitions to avoid
+>> any naming confusions in the soc dts files.
+>>
+>> checkpatch insists the following error exists:
+>> ERROR: Macros with complex values should be enclosed in parentheses
+>>
+>> However, we do not need parentheses enclosing the values for this
+>> macro as we do intend it to generate two separate values as has been
+>> done for other similar platforms.
+>>
+>> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
+>> Signed-off-by: Apurva Nandan <a-nandan@ti.com>
+> 
+> Acked-by: Linus Walleij <linus.walleij@linaro.org>
+> I guess you will merge these patches together?
+> Tell me if you rather want that I apply this one patch to the pinctrl tree.
+> 
 
-Ping. Who is picking this one up?
-
--michael
+I will the patch via TI K3 SoC tree once other patches are in good shape.
+Thanks for the review!
+-- 
+Regards
+Vignesh
