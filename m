@@ -2,152 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 597615A2763
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 14:06:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 519125A2769
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 14:08:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230157AbiHZMGU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 08:06:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33632 "EHLO
+        id S230132AbiHZMIi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 08:08:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236026AbiHZMGQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 08:06:16 -0400
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2071.outbound.protection.outlook.com [40.107.244.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F310352E7F;
-        Fri, 26 Aug 2022 05:06:14 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fQNpukhUiQWt2OZjUxDCX/t5z9OzdVg8vNpi5YcOMx+c2R9ed3NJ1Qq+0XkaCZT6nJWo4279zOlmyC8QNHOeGBNujGzvj+TT/MOGcABt11ElmdLrfQpcJpRVezZIGIS3+WzXK0WYBwRERmCssfXf03ouuFcGQeVlYb8b+8tdb7ETX51oUqbSwQ7TnE/dfg60fIcsy+D8EFPrQ/rUd+add+SUOzo6Yc5belf1Lk/4CBDl7lr+59Rak8U2UErQ3omcXfkv02QA9cAnpNR7WkREYv9NBG32IBVy/e737hjHhsM5Q6N76PGKqWjpGxpJzDz3VmpGzqK36iXHkwFvRIpZdg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kXRe4yCQjOglGZiEXFoHN5ZIAXcazcGo6p4Pvns968s=;
- b=at5/ZcI9/njtr3JzqK9DY8Bwbhyr82a/BwCfNHntmTii3fr71CcV34Aaoy5OKJkRD/LvvL9QsxLKhaqJdeuAmPVjFxSGzJonuX4fRRZ/K9G3Dg+jR4j56CDMby+IqVex+i07FkwKTv8HJbqm9oisB0ESmBNHHaayX05/VSh9WX7vJsaMMTRzU5FnTaGU9O16jU16muOVaj+zOjQCoFff5vJRzMiFfkMPPGDBvyCjXxt0YQrq4DCe5iNZd4bRdHWD14h7OGH09/aWBhAgTEeWqwaUqEOh+7mHtqBnHhPzROHhBYaV3T7zol4h4rg/Knv94CjNz0E8oBn2ZabAUqfeFA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kXRe4yCQjOglGZiEXFoHN5ZIAXcazcGo6p4Pvns968s=;
- b=kvWEOBxyCBbJRlJN6k+8pyMzbUMnIL2bTALkaQYavUr64SmDcz715Jk1b0uKB22eylXf09e58aSzhxNh7+SNLLOynt3/kIg54/l0lnBzgme5/m6Wtf7OkjsrTFvfhCqiHPeage+XQIT0dSSar+OMSPJq5kEIWzibIx14ukY/bZs=
-Received: from DM6PR06CA0064.namprd06.prod.outlook.com (2603:10b6:5:54::41) by
- BYAPR12MB3431.namprd12.prod.outlook.com (2603:10b6:a03:da::26) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5546.22; Fri, 26 Aug 2022 12:06:11 +0000
-Received: from DM6NAM11FT027.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:54:cafe::7b) by DM6PR06CA0064.outlook.office365.com
- (2603:10b6:5:54::41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5566.15 via Frontend
- Transport; Fri, 26 Aug 2022 12:06:11 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- DM6NAM11FT027.mail.protection.outlook.com (10.13.172.205) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5566.15 via Frontend Transport; Fri, 26 Aug 2022 12:06:11 +0000
-Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Fri, 26 Aug
- 2022 07:06:10 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB07.amd.com
- (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Fri, 26 Aug
- 2022 05:06:10 -0700
-Received: from xhdlakshmis40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
- Transport; Fri, 26 Aug 2022 07:06:07 -0500
-From:   Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-To:     <linux-serial@vger.kernel.org>
-CC:     <git@amd.com>, <devicetree@vger.kernel.org>,
-        <jirislaby@kernel.org>, <linux@armlinux.org.uk>,
-        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
-        <gregkh@linuxfoundation.org>
-Subject: [PATCH v4 2/2] serial: pl011: Add reg-io-width parameters
-Date:   Fri, 26 Aug 2022 17:35:59 +0530
-Message-ID: <20220826120559.2122-3-shubhrajyoti.datta@amd.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220826120559.2122-1-shubhrajyoti.datta@amd.com>
-References: <20220826120559.2122-1-shubhrajyoti.datta@amd.com>
+        with ESMTP id S229957AbiHZMIh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 08:08:37 -0400
+Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0128DD4E9
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 05:08:36 -0700 (PDT)
+Received: by mail-pg1-x52c.google.com with SMTP id d71so1206045pgc.13
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 05:08:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=D3lfFqV/J6np/aW5HDDLz5odIk3AM7hN1s/0B3dYotU=;
+        b=gAfZvDAdktIb5TyU9JIzfgSHc7/cF9NEnuBaYDA69C3HDO5Gf7klwiAIhHMmWL13Ou
+         NGtasPQ02ONGFVScwbo42v1TAcJJ+n9t2tfMR8t5gB3VWgwWoGnFMUJj3hvaMxrg9oZ3
+         o7Modppjeop5I4upslDnJCbe/MFAYcyGZ6Rz8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=D3lfFqV/J6np/aW5HDDLz5odIk3AM7hN1s/0B3dYotU=;
+        b=I3/wg21h88KZukHx3lT6YxnqZfwI6Wyim0ZTO4NW5lmJenOiM0hJkh69szUMHQcqWX
+         9Mv0N8YvZCVoTpAgBHnqUxWMVwgluC+JrlYQh3ZWqxj/5KZepN0o5YOrssxtJZtcBAti
+         a+COjTuOq2T5p15/l7VwpjkUYz89Qq5LJKASQ7EQm0FC2FaxwmU1NXg1gBNQNG40gjb3
+         Ze/y/bMSgoB+6SqH5txSjDmX/KVDgkGpjsXkRFDaO4K4bniiCCyl5r3um6nysKeqSZMs
+         9+TrEVF0b3JbRdU9zwHj4o4avSOgnhRGthxyHSjh3NC0Owi5rxq6cqiy9M0jDe1EwgEq
+         Cg3g==
+X-Gm-Message-State: ACgBeo0AoPYSVnAsxcg2eukRCPjABrg4lO9oH5qJzOFEhpuaoB/OpXaF
+        eQgH7of89Lv8xhXrqN3XgA56OQ==
+X-Google-Smtp-Source: AA6agR7MB+OcGuWwGdUko5ghXWjA/zoHklq9WWg0sAeH2yRes0aBG1YitjbkGEXe+ZssLdhQJtgD7w==
+X-Received: by 2002:a05:6a00:174b:b0:52f:c4d1:d12d with SMTP id j11-20020a056a00174b00b0052fc4d1d12dmr3603050pfc.41.1661515716228;
+        Fri, 26 Aug 2022 05:08:36 -0700 (PDT)
+Received: from localhost.localdomain ([23.27.44.247])
+        by smtp.gmail.com with ESMTPSA id w2-20020a170902e88200b0016f1aa00abbsm1416364plg.195.2022.08.26.05.08.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 Aug 2022 05:08:35 -0700 (PDT)
+From:   Jagan Teki <jagan@amarulasolutions.com>
+To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org,
+        linux-amarula@amarulasolutions.com,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 1/2] dt-bindings: arm: rockchip: Document Radxa ROCK 4C+
+Date:   Fri, 26 Aug 2022 17:38:16 +0530
+Message-Id: <20220826120817.1623536-1-jagan@amarulasolutions.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 871d8aad-b395-4cfe-0fd1-08da875b5e09
-X-MS-TrafficTypeDiagnostic: BYAPR12MB3431:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Vuppo6IyBvhH2liCHLx6JXZoTYM5GOJR3r6cpbjAjXxXMOoTRX52ou5dYbsF9TSuZRHHUqifMJehe9pHvHZA2WLx3JOI1R1dqn9d/sqAQ0FObeNEzeoNsp1+IoN+iGs2axwbgnzBw+2JUIaHix3B3Nm1EWqZnMXjULXsjp+mYpUrFB1i8cwZUk2KJ5zS7EIdVuhxZnVA2kd8Xiflt8b5law6wepCHqDgp90+GMOSXIG/exf6zHtbEe0ywIMBIHS5U8wfx2KXqe62UHgBzY4t9zyAqNwYT/RhNFa4mj53pEazlUmTM2Tls2+UjdeO3CooSudu+RacEwMoWwxkmM+wzy2Nl4g2VbEfU2jXR53V2SWmlpdXnwpFKOp3HidRdo23BLC1pc0DdaSD1qQKP0KOuf5OTaxiVS/xqp6L61BdjQNDNco61Nqu2zvuDc58cz1OSWMqUbn+7tEdbs3KyxLIq7dAAprJ318WMjMQzKw2SKDF1s5fD2T2xd0ALDlMV603ZaiiwOKchyKS+x4rWMBIjeZfdqIzX4OHqJFo5uKtjw+FUGH1wJ7tCM9DkjjXRiPl2gS0LHqEhg2OwB0OdIong4lK43001mpe9dgtsccGL3h9XiS+nGY12DoFiOHwOdugjzvSCf7a5vIybus5QMsYsPB9EuMOy92bJj/6b7ST4qYcMPHLVY3LyVKK+6s4yDkGwykH+N5KsS4H2wrcsCK42jZ1SqCuiRJnkhxnOqZY0qkwuRJUX4/9G+vOghZ/zUf9Z6VB2q2pxDCfnCsGQzl/8AQGE7mn25XC08rHbs1T4e4=
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230016)(4636009)(396003)(136003)(346002)(376002)(39860400002)(40470700004)(46966006)(36840700001)(82740400003)(2906002)(356005)(83380400001)(40460700003)(40480700001)(36756003)(4326008)(70206006)(81166007)(36860700001)(70586007)(8676002)(8936002)(6666004)(26005)(5660300002)(44832011)(82310400005)(316002)(6916009)(478600001)(41300700001)(47076005)(426003)(2616005)(86362001)(336012)(186003)(54906003)(1076003)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Aug 2022 12:06:11.4678
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 871d8aad-b395-4cfe-0fd1-08da875b5e09
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT027.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB3431
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some of the implementations can read only 32 bits because of
-the interface limitations of the port they are connected to.
-Add a parameter reg-io-width for supporting such platforms.
+Document the dt-bindings for Radxa ROCK 4C+ SBC.
 
-Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+4C+ replaced DP with HDMI and updated MIPI DSI/CSI FPC connectors
+compared to 4C revision.
+
+Also, an official naming convention from Radxa mention to remove
+Pi from board name, so this 4C+ is named as Radxa ROCK 4C+ not
+Radxa ROCK Pi 4C+.
+
+Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
-v4:
-No change
+Changes for v2:
+- fix line wrapping
+- collect Krzysztof Ack
 
- drivers/tty/serial/amba-pl011.c | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/tty/serial/amba-pl011.c b/drivers/tty/serial/amba-pl011.c
-index 15f0e4d88c5a..033bf8699540 100644
---- a/drivers/tty/serial/amba-pl011.c
-+++ b/drivers/tty/serial/amba-pl011.c
-@@ -2777,6 +2777,7 @@ static int pl011_probe(struct amba_device *dev, const struct amba_id *id)
- 	struct uart_amba_port *uap;
- 	struct vendor_data *vendor = id->data;
- 	int portnr, ret;
-+	u32 val;
+diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+index 7811ba64149c..ec3525fb1e60 100644
+--- a/Documentation/devicetree/bindings/arm/rockchip.yaml
++++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+@@ -537,6 +537,11 @@ properties:
+           - const: radxa,rockpi4
+           - const: rockchip,rk3399
  
- 	portnr = pl011_find_free_port();
- 	if (portnr < 0)
-@@ -2801,6 +2802,21 @@ static int pl011_probe(struct amba_device *dev, const struct amba_id *id)
- 	uap->port.rs485_supported = pl011_rs485_supported;
- 	snprintf(uap->type, sizeof(uap->type), "PL011 rev%u", amba_rev(dev));
- 
-+	if (device_property_read_u32(&dev->dev, "reg-io-width", &val) == 0) {
-+		switch (val) {
-+		case 1:
-+			uap->port.iotype = UPIO_MEM;
-+			break;
-+		case 4:
-+			uap->port.iotype = UPIO_MEM32;
-+			break;
-+		default:
-+			dev_warn(&dev->dev, "unsupported reg-io-width (%d)\n",
-+				 val);
-+			return -EINVAL;
-+		}
-+	}
++      - description: Radxa ROCK 4C+
++        items:
++          - const: radxa,rock-4c-plus
++          - const: rockchip,rk3399
 +
- 	ret = pl011_setup_port(&dev->dev, uap, &dev->res, portnr);
- 	if (ret)
- 		return ret;
+       - description: Radxa ROCK Pi E
+         items:
+           - const: radxa,rockpi-e
 -- 
-2.17.1
+2.25.1
 
