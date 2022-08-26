@@ -2,85 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1D275A2131
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 08:50:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE7FF5A213C
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 08:56:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229838AbiHZGul (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 02:50:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58556 "EHLO
+        id S239595AbiHZG4e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 02:56:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229496AbiHZGuk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 02:50:40 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89935BB023
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 23:50:38 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id bn9so703318ljb.6
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 23:50:38 -0700 (PDT)
+        with ESMTP id S237088AbiHZG4e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 02:56:34 -0400
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D733DD1260
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 23:56:32 -0700 (PDT)
+Received: by mail-pg1-x533.google.com with SMTP id bh13so619490pgb.4
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 23:56:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=7ucuTjvwcIeRgdHUmyQVPcOH0rtFIB9s92k3HvPl+Lg=;
-        b=UYyICR8Kxwxx3N+l7H9vpwbhmxjQgKuED9l4C3BW8de56rIH6/rCSVoGsirsqC/mlY
-         HrUIIH136YrjQQs+UW8+I8ekNgXkQSZCQF4jkpaO7nwf98t8ccK4S7wUh9dHlDIR8eve
-         UMSCAYrj8MenS4A6DSa5fgg//e/PFeYV6tXhiwRgfQLwWI1gPaITe3lGvI4a/TKiuIj1
-         7kfY1ByEIJDuPuNsOGqZWdmgqY2brrV/nGQoHVebnrKB1m5aAB5i65lTaPXnziflxP7D
-         bzOrlMOKv8+8alYcPSRsVmz+amuXm6ReASHU/u+5nq7OTJtARrH2ICC/kvxGZWE9LJPL
-         rLnw==
+        d=chromium.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=UnLcczHHvwGYAXvgM/40CcIoX6vGDJJQPGBGsmiKVWg=;
+        b=CVBEV9H+l5dg4mJq+PF9bB7HmM69WekRsNI7sTjerDHLtdc49qoctvx3IeJGjwGzw2
+         Pjg6S9sPMIQUB58XfjpNlf8hP4nNklwPHvRdBA3jm4Qkis0ImpfSfEGbPYsTYFDRx9js
+         iFotn7YSPTevT6CJ72ejrnAjyAaFeynOx5RIE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=7ucuTjvwcIeRgdHUmyQVPcOH0rtFIB9s92k3HvPl+Lg=;
-        b=ESgS5OiRGSRiN5sfE0kjOY8RtgIEgT3RazAkSNSB1cE4VLBJgRF3F36XufdA8/ie6V
-         l+fotVENGgyOF/Ff8+yCueoVuS739iQ/a3DwHxx5wzlHvSo8WgfNnrCzaopMtYv77h+j
-         DiV1A4EtlkdYj+nzPMmPjAiY5PVxff0GPao9iQB8W07zFVCCHUfdiqss6wx9PfhqWU3a
-         SvGmXOvi4k34JDmuTAxMA/Y/k5CYknp/cBxx259QHUAiknQh9Dpt703M/9T/hS0hMY54
-         4kRyv6fSuCxUyhIOrcM9h0OnIS/+4w7g75oEFIf8AgviS+4fRsaJaHg3w5CCNVmLJ1UT
-         QG1g==
-X-Gm-Message-State: ACgBeo2ukDmpeM2bSxwUv4cJlOGLCr4SLJtZE0ttpM5ClDNkzyurs2Ez
-        p4Cro/AC+Sf7tQ4FSz3o3Go87g==
-X-Google-Smtp-Source: AA6agR55muQUl0EGQptKMs7t57bYTpy+EF08JVpOQGsnvB+PmIqzUrrBi05Mcf4CLakmC5vokewSKg==
-X-Received: by 2002:a2e:54d:0:b0:261:bbfc:23f8 with SMTP id 74-20020a2e054d000000b00261bbfc23f8mr1743546ljf.145.1661496636932;
-        Thu, 25 Aug 2022 23:50:36 -0700 (PDT)
-Received: from [192.168.0.71] (82.131.98.15.cable.starman.ee. [82.131.98.15])
-        by smtp.gmail.com with ESMTPSA id w27-20020ac2443b000000b00492faa68260sm258539lfl.229.2022.08.25.23.50.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Aug 2022 23:50:36 -0700 (PDT)
-Message-ID: <cae915f6-c951-ba97-346d-00922c85067d@linaro.org>
-Date:   Fri, 26 Aug 2022 09:50:34 +0300
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=UnLcczHHvwGYAXvgM/40CcIoX6vGDJJQPGBGsmiKVWg=;
+        b=h79jnJl7ZpzJ5UKzhZRcnEQ6z86tkXzvrEgf8f7XoN9X/AGaJJw/bGEn0Gr1n7CTcK
+         uWHx8qet1NmH2ITjThI8URV94ggIWfg70xG8/X72OSaCqWkX5Z6g4YJuwJX87xSXNxmv
+         4H8C3lewTX7pjnMm0kI+PfiCam0rynd++awrqh4hwb1jrl+BIbiQ4x6abmhDAC101ABJ
+         94LujtqhrSvJvDxgHkJLclBFx+Nj2fMvmeMNMxdNgKwHmKo9eTp3oolGHf1G7IenMAc+
+         CnlQKyF7ZYqkd6n1L7SgWtgjZgdisKiuUUZlIYVpO9I/LNw8aNh9VTmD3sbc+yO9BqzU
+         cyKw==
+X-Gm-Message-State: ACgBeo1JpJPX8a+DpjrvoBQJTNtaPiPMPJZRfXSo0+jNACLmrCK23anK
+        FR4cL9SiRRMdLh+J2/CxdxAnuQ==
+X-Google-Smtp-Source: AA6agR7s9JoNJYMNtSlhqZL4v1UgLd6seI0FVQAjQpS3GdgSNoTFS9i/iseMH+t8FZCnmJfnT7Cq2Q==
+X-Received: by 2002:a63:68c2:0:b0:421:9e8f:35c4 with SMTP id d185-20020a6368c2000000b004219e8f35c4mr2153619pgc.363.1661496992364;
+        Thu, 25 Aug 2022 23:56:32 -0700 (PDT)
+Received: from judyhsiao0523.c.googlers.com.com (21.160.199.104.bc.googleusercontent.com. [104.199.160.21])
+        by smtp.gmail.com with ESMTPSA id m8-20020a170902db0800b0016f1319d2aasm747329plx.171.2022.08.25.23.56.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Aug 2022 23:56:31 -0700 (PDT)
+From:   Judy Hsiao <judyhsiao@chromium.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        dianders@chromium.org, mka@chromium.org, cychiang@google.com,
+        judyhsiao@google.com, swboyd@chromium.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Judy Hsiao <judyhsiao@chromium.org>,
+        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Subject: [PATCH v4] arm64: dts: qcom: sc7280: Fix Dmic no sound on villager-r1
+Date:   Fri, 26 Aug 2022 06:56:21 +0000
+Message-Id: <20220826065621.2255795-1-judyhsiao@chromium.org>
+X-Mailer: git-send-email 2.37.2.672.g94769d06f0-goog
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v5 5/5] arm64: dts: rockchip: Add PCIe v3 nodes to
- BPI-R2-Pro
-Content-Language: en-US
-To:     Frank Wunderlich <linux@fw-web.de>,
-        linux-rockchip@lists.infradead.org
-Cc:     Frank Wunderlich <frank-w@public-files.de>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Yifeng Zhao <yifeng.zhao@rock-chips.com>,
-        Johan Jonker <jbx6244@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Simon Xue <xxm@rock-chips.com>, Liang Chen <cl@rock-chips.com>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220825193836.54262-1-linux@fw-web.de>
- <20220825193836.54262-6-linux@fw-web.de>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220825193836.54262-6-linux@fw-web.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -89,90 +70,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/08/2022 22:38, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
-> 
-> Add Nodes to Bananapi-R2-Pro board to support PCIe v3 and
-> set PCIe related regulators to always on.
-> 
-> Suggested-by: Peter Geis <pgwipeout@gmail.com>
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-> ---
-> v5:
-> - rebase on 6.0-rc1
-> - add pinctrl for pcie
-> - fix ngff pwr_en_h gpio for hw ref 1.1
-> 
-> v4:
-> - change u8 lane-map to u32 data-lanes
-> 
-> v3:
-> - squash lane-map over bifurcation property
-> - add comment which slot is M2 and which one if mPCIe
-> - fixes from Peter:
->   - drop regulator-always-on/regulator-boot-on from regulators
->   - increase startup-delay-us for regulators
->   - set phy-mode on PCIe3-phy
->   - add num-lanes to PCIe overrides
->   - add usb node for to PCIe/m2
->   - move lane-map from PCIe controller to PCIe-phy
-> 
-> v2:
-> - underscores in nodenames
-> - rockchip,bifurcation to vendor unspecific bifurcation
-> - fix trailing space
-> ---
->  .../boot/dts/rockchip/rk3568-bpi-r2-pro.dts   | 117 ++++++++++++++++++
->  1 file changed, 117 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts b/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
-> index 93d383b8be87..40b90c052634 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
-> @@ -86,6 +86,66 @@ vcc5v0_sys: vcc5v0-sys {
->  		vin-supply = <&dc_12v>;
->  	};
->  
-> +	pcie30_avdd0v9: pcie30-avdd0v9 {
+Fix the DMIC no sound issue of villager-r1 by using "PP1800_L2C" as the
+DMIC power source to match the hardware schematic.
 
-Use consistent naming, so if other nodes have "regulator" suffix, use it
-here as well.
+This patch:
+   1. set vdd-micb-supply to PP1800_L2C as the MIC Bias voltage regulator.
+   2. In audio-routing, set VA DMIC01~VA DMIC03 to use the vdd-micb-supply
+      setting.
 
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "pcie30_avdd0v9";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt = <900000>;
-> +		regulator-max-microvolt = <900000>;
-> +		vin-supply = <&vcc3v3_sys>;
-> +	};
-> +
-> +	pcie30_avdd1v8: pcie30-avdd1v8 {
+Co-developed-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
+---
+Changes since V3:
+  -- Update the commit message and fix extra blank line.
+Changes since V2:
+  -- Update the commit message.
+Changes since V1:
+  -- Update the commit message.
 
-Ditto.
+This patch depends on:
+arm64: dts: qcom: sc7280: Add herobrine-villager-r1. [1]
 
+[1] https://patchwork.kernel.org/patch/12929106
 
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "pcie30_avdd1v8";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		vin-supply = <&vcc3v3_sys>;
-> +	};
-> +
-> +	/* pi6c pcie clock generator feeds both ports */
-> +	vcc3v3_pi6c_05: vcc3v3-pi6c-05-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc3v3_pcie";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		enable-active-high;
-> +		gpios = <&gpio0 RK_PD4 GPIO_ACTIVE_HIGH>;
-> +		startup-delay-us = <200000>;
-> +		vin-supply = <&vcc5v0_sys>;
-> +	};
-> +
+.../dts/qcom/sc7280-herobrine-villager-r1.dts | 27 +++++++++++++++++++
+ 1 file changed, 27 insertions(+)
 
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1.dts
+index c03b3ae4de50..fd202a8f6a33 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1.dts
++++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1.dts
+@@ -12,3 +12,30 @@ / {
+ 	model = "Google Villager (rev1+)";
+ 	compatible = "google,villager", "qcom,sc7280";
+ };
++
++&lpass_va_macro {
++	vdd-micb-supply = <&pp1800_l2c>;
++};
++
++&sound {
++	audio-routing =
++			"IN1_HPHL", "HPHL_OUT",
++			"IN2_HPHR", "HPHR_OUT",
++			"AMIC1", "MIC BIAS1",
++			"AMIC2", "MIC BIAS2",
++			"VA DMIC0", "vdd-micb",
++			"VA DMIC1", "vdd-micb",
++			"VA DMIC2", "vdd-micb",
++			"VA DMIC3", "vdd-micb",
++			"TX SWR_ADC0", "ADC1_OUTPUT",
++			"TX SWR_ADC1", "ADC2_OUTPUT",
++			"TX SWR_ADC2", "ADC3_OUTPUT",
++			"TX SWR_DMIC0", "DMIC1_OUTPUT",
++			"TX SWR_DMIC1", "DMIC2_OUTPUT",
++			"TX SWR_DMIC2", "DMIC3_OUTPUT",
++			"TX SWR_DMIC3", "DMIC4_OUTPUT",
++			"TX SWR_DMIC4", "DMIC5_OUTPUT",
++			"TX SWR_DMIC5", "DMIC6_OUTPUT",
++			"TX SWR_DMIC6", "DMIC7_OUTPUT",
++			"TX SWR_DMIC7", "DMIC8_OUTPUT";
++};
+-- 
+2.37.2.672.g94769d06f0-goog
+
