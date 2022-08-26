@@ -2,74 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 36BCF5A217C
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 09:12:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D980C5A2180
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 09:13:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243137AbiHZHMh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 03:12:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36810 "EHLO
+        id S245050AbiHZHNI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 03:13:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245103AbiHZHMg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 03:12:36 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44C63D2B22
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 00:12:34 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id z6so864079lfu.9
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 00:12:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc;
-        bh=TsGga+p3/E9an7wI98rRb/MFwrywOK8BvinFvruEnr4=;
-        b=P42W/vx34Oi+AYvrGS4jqaKlFDewTQhYL4ODI5SFqrhkKEDPUmG5xuyuoz6/7/3WvV
-         bpYw1dlQLRoPG+DiwwlfJxCdGmlPdnf/UCBNIowzO+wyD8JVTESRd84prKTjzIryZqJi
-         0maAw46JHNlMVTaDLJ5espB4KYWCgnXqPBKJU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc;
-        bh=TsGga+p3/E9an7wI98rRb/MFwrywOK8BvinFvruEnr4=;
-        b=rmJHvX5S2iJi88eFdX0iOpnezXsqbSW5B9XbMxmfrrT+pvgM+Jd8ci7muYiDAYATGh
-         eA4yQgiU4ABOYSawYdA0LeNm9qsDZ8msukEFrwKeKtNpsgMAjyPjDnxmR8w2vrPyfP4J
-         lqlqMYwqE/h1+bmvgLd5NDVq76r38ZjKQl0ISpSljwvl2CYjxxcxm8x8q5PW+ts7ZQU3
-         cM4ar8wWUdl3wdBTDo+8czFj+nrCZ35zz2lhj0/W/dBX9EHWSHpJkzvTImVFwZhUQ1wF
-         ERm67BUMK8HnDUTzDptcg1v00DVogojn2u3cxqj2243MsHcx4dfUawz7B9zCsudonMfF
-         jHcA==
-X-Gm-Message-State: ACgBeo0dC2GN0vZcym20XZbwMbEOLhesdehtxgHBe+B5LPU3iMYwsKF+
-        fYSoNY41e2SMA5bMDMFzJm/mAn0agbWo9SGUSDYTbw==
-X-Google-Smtp-Source: AA6agR7CkxZMhLsDqNufa2XQws9YeFkWd1TvveuOauUFwiJpdK+2brKqI5N9qCf01ayFkWEcv+/FL2+Q6RobfuyrFxU=
-X-Received: by 2002:a05:6512:1585:b0:48d:158:7013 with SMTP id
- bp5-20020a056512158500b0048d01587013mr2305322lfb.536.1661497952481; Fri, 26
- Aug 2022 00:12:32 -0700 (PDT)
+        with ESMTP id S245205AbiHZHNE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 03:13:04 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99A20D2B15;
+        Fri, 26 Aug 2022 00:13:01 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 6B70DB82F0D;
+        Fri, 26 Aug 2022 07:13:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0EC8DC433D6;
+        Fri, 26 Aug 2022 07:12:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1661497979;
+        bh=GWbxaqQPf3YDrh/wku55nuv0G5gGQpAu0zw/lIu2ong=;
+        h=From:To:Cc:Subject:Date:From;
+        b=TErPfgUVDm2fH9fSCeiWSoXacYedd/MShDs0cjDxm13D3+I4Ne5r1XEunXO92CzVV
+         mDo3WH1FZp2C/TD8j+10D/WG5YL8ejPBWHmWqXQSxOYuFRnaXrBFf1zoSvj2QRieP6
+         5g7fJDF0eq02Iz4NGaF2ISqOa2MTd+JphqijcfBZ0YT9ejiBftiI3iO4vSl30xW2u7
+         7UVcQHA1E/dMlmE/rkCNTVhCe/pZIuf6rCKLed35Oh0miVg01KlEi7SjMJ+UAzye5E
+         kzuy7jW5eicnvdcvcvqD9G2DK50M2/ILMTW7ukFh2NV1T7169mC/W+hjEuHhqCtnHU
+         0UhI2I0qaQKdg==
+From:   Eric Biggers <ebiggers@kernel.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: sm8450: add Inline Crypto Engine registers and clock
+Date:   Fri, 26 Aug 2022 00:12:44 -0700
+Message-Id: <20220826071244.185584-1-ebiggers@kernel.org>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
-References: <20220820082936.686924-1-dario.binacchi@amarulasolutions.com>
- <20220820082936.686924-2-dario.binacchi@amarulasolutions.com> <fe2041cc-dd8b-6695-1fc8-6c1c49dd7220@linaro.org>
-In-Reply-To: <fe2041cc-dd8b-6695-1fc8-6c1c49dd7220@linaro.org>
-From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Date:   Fri, 26 Aug 2022 09:12:21 +0200
-Message-ID: <CABGWkvrdqE=1JpOvzs9u9j_gYFsDuKQ92ruzwc=CJQBB5jaj4g@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 1/4] dt-bindings: net: can: add STM32 bxcan DT bindings
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-kernel@vger.kernel.org,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Amarula patchwork <linux-amarula@amarulasolutions.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        michael@amarulasolutions.com, Dario Binacchi <dariobin@libero.it>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-can@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com, netdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -78,159 +52,70 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+From: Eric Biggers <ebiggers@google.com>
 
-On Tue, Aug 23, 2022 at 3:41 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 20/08/2022 11:29, Dario Binacchi wrote:
-> > Add documentation of device tree bindings for the STM32 basic extended
-> > CAN (bxcan) controller.
-> >
-> > Signed-off-by: Dario Binacchi <dariobin@libero.it>
-> > Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-> >
-> > ---
-> >
-> > Changes in v2:
-> > - Change the file name into 'st,stm32-bxcan-core.yaml'.
-> > - Rename compatibles:
-> >   - st,stm32-bxcan-core -> st,stm32f4-bxcan-core
-> >   - st,stm32-bxcan -> st,stm32f4-bxcan
-> > - Rename master property to st,can-master.
-> > - Remove the status property from the example.
-> > - Put the node child properties as required.
-> >
-> >  .../bindings/net/can/st,stm32-bxcan.yaml      | 136 ++++++++++++++++++
-> >  1 file changed, 136 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/net/can/st,stm32-=
-bxcan.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/net/can/st,stm32-bxcan.y=
-aml b/Documentation/devicetree/bindings/net/can/st,stm32-bxcan.yaml
-> > new file mode 100644
-> > index 000000000000..288631b5556d
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/net/can/st,stm32-bxcan.yaml
-> > @@ -0,0 +1,136 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/net/can/st,stm32-bxcan.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: STMicroelectronics bxCAN controller
-> > +
-> > +description: STMicroelectronics BxCAN controller for CAN bus
-> > +
-> > +maintainers:
-> > +  - Dario Binacchi <dario.binacchi@amarulasolutions.com>
-> > +
-> > +allOf:
-> > +  - $ref: can-controller.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - st,stm32f4-bxcan-core
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  resets:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    description:
-> > +      Input clock for registers access
-> > +    maxItems: 1
-> > +
-> > +  '#address-cells':
-> > +    const: 1
-> > +
-> > +  '#size-cells':
-> > +    const: 0
-> > +
-> > +additionalProperties: false
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - resets
-> > +  - clocks
-> > +  - '#address-cells'
-> > +  - '#size-cells'
-> > +
-> > +patternProperties:
->
-> No improvements here, so my comment stay. Please fix it.
+Add the registers and clock for the Inline Crypto Engine (ICE) to the
+device tree node for the UFS host controller on sm8450.  This makes
+ufs_qcom support inline encryption when CONFIG_SCSI_UFS_CRYPTO=y.
 
-Sorry, I'ff fix it in version 3.
+The address and size of the register range, and the minimum and maximum
+frequency of the ICE core clock, all match the values used downstream.
 
->
->
-> > +  "^can@[0-9]+$":
-> > +    type: object
-> > +    description:
-> > +      A CAN block node contains two subnodes, representing each one a =
-CAN
-> > +      instance available on the machine.
->
-> I still do not understand why you need children. You did not CC me on
-> driver change, so difficult to say. You did not describe the parent
+I've validated this on an SM8450 HDK using the 'encrypt' group of
+xfstests on ext4 with MOUNT_OPTIONS="-o inlinecrypt".
 
-On the next submissions I'll send you all the series patches.
+Signed-off-by: Eric Biggers <ebiggers@google.com>
+---
+ arch/arm64/boot/dts/qcom/sm8450.dtsi | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
 
-> device - there is no description.
+diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+index 4978c5ba5dd085..517b3a1fbe7c04 100644
+--- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+@@ -3069,7 +3069,9 @@ system-cache-controller@19200000 {
+ 		ufs_mem_hc: ufshc@1d84000 {
+ 			compatible = "qcom,sm8450-ufshc", "qcom,ufshc",
+ 				     "jedec,ufs-2.0";
+-			reg = <0 0x01d84000 0 0x3000>;
++			reg = <0 0x01d84000 0 0x3000>,
++			      <0 0x01d88000 0 0x8000>;
++			reg-names = "std", "ice";
+ 			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
+ 			phys = <&ufs_mem_phy_lanes>;
+ 			phy-names = "ufsphy";
+@@ -3093,7 +3095,8 @@ ufs_mem_hc: ufshc@1d84000 {
+ 				"ref_clk",
+ 				"tx_lane0_sync_clk",
+ 				"rx_lane0_sync_clk",
+-				"rx_lane1_sync_clk";
++				"rx_lane1_sync_clk",
++				"ice_core_clk";
+ 			clocks =
+ 				<&gcc GCC_UFS_PHY_AXI_CLK>,
+ 				<&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
+@@ -3102,7 +3105,8 @@ ufs_mem_hc: ufshc@1d84000 {
+ 				<&rpmhcc RPMH_CXO_CLK>,
+ 				<&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
+ 				<&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
+-				<&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>;
++				<&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>,
++				<&gcc GCC_UFS_PHY_ICE_CORE_CLK>;
+ 			freq-table-hz =
+ 				<75000000 300000000>,
+ 				<0 0>,
+@@ -3111,7 +3115,8 @@ ufs_mem_hc: ufshc@1d84000 {
+ 				<75000000 300000000>,
+ 				<0 0>,
+ 				<0 0>,
+-				<0 0>;
++				<0 0>,
++				<75000000 300000000>;
+ 			status = "disabled";
+ 		};
+ 
 
-Ok, I'll do it.
+base-commit: 1c23f9e627a7b412978b4e852793c5e3c3efc555
+-- 
+2.37.2
 
-> Why do you need parent device at all?
-> This looks like some driver-driven-bindings instead of just real
-> hardware description.
-
-The two devices are not independent.
-As described in the reference manual RM0386 (STM32F469xx and STM32F479xx
-advanced Arm=C2=AE-based 32-bit MCUs) in paragraph 34.2, the bxCAN controll=
-er is a
-dual CAN peripheral configuration:
-
-=E2=80=A2 CAN1: Master bxCAN for managing the communication between a Slave=
- bxCAN and
-the 512-byte SRAM memory
-=E2=80=A2 CAN2: Slave bxCAN, with no direct access to the SRAM memory.
-
-So, if I want to use CAN2 only (and not CAN1), I need to be able to use sha=
-red
-resources with CAN1 without having to probe the CAN1 driver. IMHO here is t=
-he
-justification of the parent node.
-
-Thanks and regards,
-Dario
-
->
-> Best regards,
-> Krzysztof
-
-
-
---=20
-
-Dario Binacchi
-
-Embedded Linux Developer
-
-dario.binacchi@amarulasolutions.com
-
-__________________________________
-
-
-Amarula Solutions SRL
-
-Via Le Canevare 30, 31100 Treviso, Veneto, IT
-
-T. +39 042 243 5310
-info@amarulasolutions.com
-
-www.amarulasolutions.com
