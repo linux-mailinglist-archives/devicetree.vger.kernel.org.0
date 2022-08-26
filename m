@@ -2,61 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E9B715A2739
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 13:56:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 919835A2755
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 14:04:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240884AbiHZL4V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 07:56:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41300 "EHLO
+        id S242864AbiHZMD6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 08:03:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240024AbiHZL4U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 07:56:20 -0400
-Received: from mail.3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C376D6F258;
-        Fri, 26 Aug 2022 04:56:15 -0700 (PDT)
-Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.3ffe.de (Postfix) with ESMTPSA id 703F483E3;
-        Fri, 26 Aug 2022 13:56:13 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
-        t=1661514973;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=gWGyQWM8OXSvJySwbiAhGUCbHok4M4ZkpORs44F2o94=;
-        b=R9GgofqNh8ffJi2Q++3eaQW8kyZebCFvo6relTQwzWR6tRt6nSXNv9+Mi/sZXXnAnL5uuG
-        z/f7eXXsENymMEMqVdbUbhG5SQv1aWcLasxq5e61Go2eb2+b8/ok2kxY78u2vgpYGjAZRX
-        RCMCAMCDKX78znzg5aBZTusX0IlpFRsk03tktYLkDYjlGoqiDtHB4OM5jiRaEywVWYF8IJ
-        mn0FotCsN81g84tzOvaP21hskr0UyARWF0mbIT7ExqdFxAux5pdDifN0kqJ2F2OBj9FGph
-        aFWhQgH8VeeulDulnSo5zTvcFwMd+3hdxhN0nzHRPpyiVcRw+7ZX2n0WvRg1hQ==
-From:   Michael Walle <michael@walle.cc>
-To:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S231846AbiHZMD4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 08:03:56 -0400
+Received: from mail-yw1-x1130.google.com (mail-yw1-x1130.google.com [IPv6:2607:f8b0:4864:20::1130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B050D75A3
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 05:03:55 -0700 (PDT)
+Received: by mail-yw1-x1130.google.com with SMTP id 00721157ae682-33dc345ad78so30601817b3.3
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 05:03:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=friendlyarm-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc;
+        bh=nMtNIpyaxV6n6y1j4kQGb3c6ARKMgnzuDhHNiwEVBA4=;
+        b=NDXiZwcPZjtmeIncwlMtPlhsL6rDiS/IDxaxVsoPMFZbAprw6sE4IhTH1pd7ZBiU8n
+         Lz+K/SwbUm2CzgbeGFBJ4zLa/SMhAKc70eTfAi9+XBUGZ3DIkJUrmn6yMll46vjB0C6v
+         vvp14qIMvKqsiLCGAfO4mGTHJqQOk8t9A+Sdg1RFmsPnJKfYd/L20bU5Q3mTb/sWqyeD
+         VnY2tjHPxu7AntPtHTerHp2KDD6id6NEpy6yuKLhuiY+GHebX1xP6F5ripEBeRvOPnf0
+         a5Zg2dgJPOPSdBlPgKXMZN60iV52WsjLYLX/F7C2pwCxIPfe75Ff2khcY/rmRoTeLgbM
+         +Q+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc;
+        bh=nMtNIpyaxV6n6y1j4kQGb3c6ARKMgnzuDhHNiwEVBA4=;
+        b=KZ1zeF/+rKlu28lXwhgi1MHUKMbgwB/AUnaruWVLiwkRkwcG6QW382rqlDkJmhFOYO
+         cZbE8qLqjDwqXFCHHUWs2q8e/0DzptSkAyVGltb81tv4xZ04YdP/VehvJC01rROJbeil
+         yAR8bbE2L31TBdNyD3IoyY0OHgNepHCCydc5EOzfnWY8arq6VXZtNO0a8h81t3R5aN23
+         MuMk86kic0mx8NoG/c1QV3ih5HBwiBJE6jihOK6fki3oI22ji2splNAWUcqm+vvgcK/o
+         Rhe98yetg6Dce3RhkApQr2g0qbvSSUx9s6Ctk3V612eOHM7bkczRlE1O9CAFcoTxcLwv
+         xYyQ==
+X-Gm-Message-State: ACgBeo3uJWkIu3M+Skuz0diRu57we/MFEabbyFj3we1DhSl3RAz/fMsE
+        c0yXmfOoYujbgg/GHVc6gQYO9wJ5zRBL22MxAuEi/Q==
+X-Google-Smtp-Source: AA6agR6GAz4sMztYMnrEfA1yl8CfSLqn+NtlwlcSGb20UhZtyE2nH6eK1+0G+qYfDcSJubGiroR8mCp+hNugAhCXgrI=
+X-Received: by 2002:a0d:ea90:0:b0:33d:faad:db54 with SMTP id
+ t138-20020a0dea90000000b0033dfaaddb54mr2214939ywe.116.1661515434826; Fri, 26
+ Aug 2022 05:03:54 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220822074139.3810-1-jensenhuang@friendlyarm.com>
+ <23552842.6Emhk5qWAg@diego> <CAD=FV=W-ajJDfYcP3P8Jyk_KgsUAbdTtmwiNXqJ=Ab2ojgrUGw@mail.gmail.com>
+ <CAMpZ1qEe7xFr+XaXsS_hWDLnGGA8PfzQiToOjY1N_1ctyQ+KxA@mail.gmail.com> <CAD=FV=U-=2GpQTb0N1p3Qe2TAb=JhyZJw2V8T-qbLs5TYhW7qA@mail.gmail.com>
+In-Reply-To: <CAD=FV=U-=2GpQTb0N1p3Qe2TAb=JhyZJw2V8T-qbLs5TYhW7qA@mail.gmail.com>
+From:   Jensen Huang <jensenhuang@friendlyarm.com>
+Date:   Fri, 26 Aug 2022 20:03:43 +0800
+Message-ID: <CAMpZ1qGya8zr-QJZHY4OqEg0NLo_db6ttnf6Ai2NHdUL1+6qBw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: add enable-strobe-pulldown to emmc
+ phy on rk3399
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Steen Hegelund <Steen.Hegelund@microchip.com>,
-        Horatiu Vultur <horatiu.vultur@microchip.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     UNGLinuxDriver@microchip.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Michael Walle <michael@walle.cc>
-Subject: [PATCH 3/3] net: lan966x: make reset optional
-Date:   Fri, 26 Aug 2022 13:56:07 +0200
-Message-Id: <20220826115607.1148489-4-michael@walle.cc>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220826115607.1148489-1-michael@walle.cc>
-References: <20220826115607.1148489-1-michael@walle.cc>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam: Yes
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        Vinod Koul <vkoul@kernel.org>,
+        Chris Ruehl <chris.ruehl@gtsys.com.hk>,
+        Brian Norris <briannorris@chromium.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,30 +77,89 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There is no dedicated reset for just the switch core. The reset which
-is used up until now, is more of a global reset, resetting almost the
-whole SoC and cause spurious errors by doing so. Make it possible to
-handle the reset elsewhere and mark the reset as optional.
+Hi,
 
-Signed-off-by: Michael Walle <michael@walle.cc>
----
- drivers/net/ethernet/microchip/lan966x/lan966x_main.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Thanks!
+I understand that this patch does potentially affect boards with
+external pull down.
+To avoid this, I will move `enable-strobe-pulldown` to
+rk3399-nanopi4.dtsi and send patch v2.
 
-diff --git a/drivers/net/ethernet/microchip/lan966x/lan966x_main.c b/drivers/net/ethernet/microchip/lan966x/lan966x_main.c
-index 2ad078608c45..e2c77f954a3d 100644
---- a/drivers/net/ethernet/microchip/lan966x/lan966x_main.c
-+++ b/drivers/net/ethernet/microchip/lan966x/lan966x_main.c
-@@ -971,7 +971,8 @@ static int lan966x_reset_switch(struct lan966x *lan966x)
- 	int val = 0;
- 	int ret;
- 
--	switch_reset = devm_reset_control_get_shared(lan966x->dev, "switch");
-+	switch_reset = devm_reset_control_get_optional_shared(lan966x->dev,
-+							      "switch");
- 	if (IS_ERR(switch_reset))
- 		return dev_err_probe(lan966x->dev, PTR_ERR(switch_reset),
- 				     "Could not obtain switch reset");
--- 
-2.30.2
 
+BR,
+Jensen
+
+On Wed, Aug 24, 2022 at 10:58 PM Doug Anderson <dianders@chromium.org> wrot=
+e:
+>
+> Hi,
+>
+> On Tue, Aug 23, 2022 at 8:11 PM Jensen Huang
+> <jensenhuang@friendlyarm.com> wrote:
+> >
+> > Hi,
+> >
+> > Sorry for sending an email in HTML format.
+> >
+> > I realized that only some devices may be affected, so I considered
+> > modifying rk3399-nanopi4.dtsi only,
+> > but other boards without external pull-down should still need this patc=
+h.
+>
+> I guess the other alternative would be to change how the dt property
+> works. You could say:
+>
+> 1. If `enable-strobe-pulldown` is set then enable the strobe pulldown.
+>
+> 2. If `enable-strobe-pulldown` is not set then don't touch the pin in
+> the kernel.
+>
+> 3. If someone later needs to explicitly disable the strobe pulldown
+> they could add a new property like `disable-strobe-pulldown`.
+>
+>
+> Obviously there are tradeoffs between that and what you've done and
+> I'm happy to let others make the call of which they'd prefer.
+>
+>
+> > BR,
+> > Jensen
+> >
+> > On Tue, Aug 23, 2022 at 10:13 PM Doug Anderson <dianders@chromium.org> =
+wrote:
+> > >
+> > > Hi,
+> > >
+> > > On Tue, Aug 23, 2022 at 4:53 AM Heiko St=C3=BCbner <heiko@sntech.de> =
+wrote:
+> > > >
+> > > > Am Montag, 22. August 2022, 09:41:39 CEST schrieb Jensen Huang:
+> > > > > Internal pull-down for strobe line (GRF_EMMCPHY_CON2[9]) was disa=
+bled
+> > > > > by commit 8b5c2b45b8f0, which causes I/O error in HS400 mode.
+> > > > >
+> > > > > Tested on NanoPC-T4.
+> > > > >
+> > > > > Fixes: 8b5c2b45b8f0 ("phy: rockchip: set pulldown for strobe line=
+ in dts")
+> > > > > Signed-off-by: Jensen Huang <jensenhuang@friendlyarm.com>
+> > > >
+> > > > ok, so this looks like it restores previous functionality.
+> > > >
+> > > > I'm just wondering as the "offending" patch is from 2020, why this
+> > > > only turns up now. Any ideas?
+> > >
+> > > Ah, I see. So before the offending patch we used to just leave the
+> > > pull state at whatever the default was when the kernel was booted.
+> > > After the offending patch we chose a default.
+> > >
+> > > On kevin I see an external pull down on this line. Enabling both the
+> > > internal and external is probably not a huge deal, it'll just affect
+> > > the strength of the pull.
+> > >
+> > > On bob I _think_ the external pull down is also stuffed.
+> > >
+> > > ...so I guess that would explain why it didn't cause a problem for at
+> > > least those two boards?
+> > >
+> > > -Doug
