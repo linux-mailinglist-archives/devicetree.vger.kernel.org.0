@@ -2,66 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A03E5A1F35
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 05:02:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 952CB5A1FA4
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 06:09:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244954AbiHZDCg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 23:02:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51538 "EHLO
+        id S234463AbiHZEJF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 00:09:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244571AbiHZDC2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 23:02:28 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C473C7BA7;
-        Thu, 25 Aug 2022 20:02:27 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 3512CB82F70;
-        Fri, 26 Aug 2022 03:02:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01C02C43146;
-        Fri, 26 Aug 2022 03:02:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661482945;
-        bh=aDWk/NLAsxgaYns6YJ3y13aGi/6vCL4IXLiBcKHqoJU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=GYh6N+WoIvNjoVSOVe4OAmKSuAU2BpxaH4uTDmferqVfwOLCl8S4XWq4Mt9qMqOkz
-         wAARiiWNH+91hu3f96S3K22lPakbDqp1lAoV48OxGweseJC1qBF0BP1oqI+1qjSs77
-         klFZBUqqeQxX3fobNJ7/6iozsdVtFKzr3TvquA6CqTJ7rW0lJ2x4EoGON2WzUFrjvH
-         uZEmAnNNLxDG6zdEtbGv1Lq1pG7JSlunHVdbDJHUTNEdNs9aMFepvNmAhqb07VWRHH
-         /oFpDlXeCtAK9tuiDM3f8tgWAPcTp8WWSL0U6W+DcQUemwA6hDOfZMNpFd5O3WfXSU
-         HRrOUwcGvO0fQ==
-Date:   Thu, 25 Aug 2022 22:02:22 -0500
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Prashant Malani <pmalani@chromium.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Pin-yen Lin <treapking@chromium.org>
-Subject: Re: [PATCH 1/2] dt-bindings: usb: Introduce GPIO-based SBU mux
-Message-ID: <20220826030222.jmgjlsf7p3sx2lld@baldur>
-References: <20220810204750.3672362-2-bjorn.andersson@linaro.org>
- <a13bce60-25b4-d075-d56a-d1283e91e3ba@linaro.org>
- <20220814210104.GA690892-robh@kernel.org>
- <Yv1y9Wjp16CstJvK@baldur>
- <CAE-0n53AjJ_G6yZoTALWpKvZUdF+8nFZ+TQh=Ch=8xgdMVqDkw@mail.gmail.com>
- <CACeCKadP-AZ8OU4A=7CrwAz7yuLvMvjvAcw7K-FORFmkMvx7cA@mail.gmail.com>
- <YwAIGf59H9iKUhXF@builder.lan>
- <CACeCKadt3aoz8MZvy+tGHCxiHOPty4cLcG7AGS+oMEVnREt4sw@mail.gmail.com>
- <YwBei45gx4oVqSql@builder.lan>
- <CACeCKaewr92JcouMgyiL5rKdHf_dDmoWoyoW-U2snCNBkNijQg@mail.gmail.com>
+        with ESMTP id S234108AbiHZEJD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 00:09:03 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DA59C6EB8
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 21:09:02 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id y3so933962ejc.1
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 21:09:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=nfavuWqsga9k882E8+MW27Dc7w6nkSmp6dmrzCaSBa8=;
+        b=auaX9NL078V2jQ22g6geanRo4qZgCfxascPAwZLxdTpxPyzPYywc2dou1ZYhcRULDj
+         SPoXe+ojJ8cZ26IfVZM+1e593dZ30nsOzMbK8OQ3BD+4Ii44ZUIxjQxzbARwlnIbYBZ4
+         eFv5ITB4zd1gSGzc6fvPICF/Xe8xA2tDVwNX8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=nfavuWqsga9k882E8+MW27Dc7w6nkSmp6dmrzCaSBa8=;
+        b=W9Vy7oPb7T+w6T/kXso3bW9kvyEeDpuBA27lUMfCpxK4MPy2xN+w9EWctjB6KGqE3J
+         DgfeHufww99NpN/LK5AyNviAI4oevEvfEZDc78EwkWoSt1cHTLN21scd1UOH2/5D1KPf
+         tNccfcaQvykC5uO3KdXCIQDH6W9+ABCnBnq7kmda1clUaDdh0c9rt05XtGGwDOWYjv6R
+         RcSwPnBin4DcLngDO85FQP5QYkz7p0zxCynARMRdHMO6PpYDJz3wNI5tldxfdA88YSlN
+         JDCIiOKmIKMBDss89kghWi0TuRYWzKHoItPCTqe6jZ39Bf+g/EzGtQkR28ZNbl3qvs5U
+         4VIg==
+X-Gm-Message-State: ACgBeo0b/xCjHJMRF1PnPzlP8FTFYi9Zf9LtSx9VKgpKkblqZdLUlX1X
+        AHPq1xPPzDxf82J3AvGB4yH0CJXAIQc4PGAToUQ3JQ==
+X-Google-Smtp-Source: AA6agR4P9lJ2jCOXLxO3fu5pzVr8QQon3biII9pZufVQXE6IfPh3piLXnL5yinNDFW3MHI/dSrraW9UClF4wseNeZfY=
+X-Received: by 2002:a17:907:60c7:b0:739:52ba:cbd0 with SMTP id
+ hv7-20020a17090760c700b0073952bacbd0mr4329186ejc.152.1661486940981; Thu, 25
+ Aug 2022 21:09:00 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CACeCKaewr92JcouMgyiL5rKdHf_dDmoWoyoW-U2snCNBkNijQg@mail.gmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+References: <20220720085731.11011-1-irui.wang@mediatek.com> <20220720085731.11011-5-irui.wang@mediatek.com>
+In-Reply-To: <20220720085731.11011-5-irui.wang@mediatek.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Fri, 26 Aug 2022 12:08:49 +0800
+Message-ID: <CAGXv+5Eqcv-K1O-5foTcHYXKh+0yipo-i+EjgYOMemS3_82fAQ@mail.gmail.com>
+Subject: Re: [PATCH v2, 4/6] media: mediatek: vcodec: Remove encoder driver
+ get IRQ resource
+To:     Irui Wang <irui.wang@mediatek.com>
+Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        angelogioacchino.delregno@collabora.com,
+        Maoguang Meng <maoguang.meng@mediatek.com>,
+        Longfei Wang <longfei.wang@mediatek.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -70,68 +75,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 23, 2022 at 11:54:53AM -0700, Prashant Malani wrote:
-> On Fri, Aug 19, 2022 at 9:09 PM Bjorn Andersson
-> <bjorn.andersson@linaro.org> wrote:
-> >
-> >
-> > We're talking about the static configuration here, where you describe
-> > which component are connected together. We can not dynamically switch
-> > the Devicetree representation around to match what the Type-C controller
-> > negotiates.
-> 
-> Yes, but we don't need to switch the device tree representation at all.
-> The pin routing/connections from the connector (not the cable or the partner),
-> to the muxing hardware (QMP phy or anx7625) remains fixed always
-> The port driver tells what orientation the peripheral is connected with,
-> and the muxing/orientation hardware routes the signals according to that.
-> 
-> >
-> > But why do you need to express the relationship between these 2
-> > components with > 1 link in the graph?
-> >
-> > > The graph is static, since the hardware line routing between components
-> > > doesn't change (e.g SSTX1 from the Type-C port is always routed to Pin
-> > > X1,X2 on the switch hardware), but that is what the switch is for.
-> > > Note that in this case, the expectation is that
-> > > the switch driver only registers 1 switch (it can figure out that all
-> > > 4 endpoints
-> > > go to the same Type-C port).
-> > >
-> >
-> > Why do we need to express this with 4 endpoints and then implement code
-> > to discover that the 4 endpoints points to the same remote? Why not just
-> > describe the logical relationship between the two components in one
-> > endpoint reference?
-> 
-> The issue I see is with the "supplier" side of that graph relationship
-> (i.e the DRM bridge side).
-> Since the bridge can be directly connected to a DP panel, the
-> endpoints can (technically)
-> represent a single DP lane. So, using 4 end-points for the
-> usb-c-connector port@1 gives
-> us something which is compatible with the bridge side endpoints too
-> (regardless of what
-> the bridge is connected to on the "output" side).
-> Reading the discussion, I agree 4 lanes is over-specifying, and 2
-> endpoints is probably
-> enough (especially if we can use data-lanes on the bridge side
-> to define the number of lanes if needed for DP panel connections).
-> 
+Hi,
 
-I'm sorry, but the part I don't understand is what you gain from
-representing each physical line in your connection with a
-remote-endpoint pair?
+On Wed, Jul 20, 2022 at 4:58 PM Irui Wang <irui.wang@mediatek.com> wrote:
+>
+> The "platform_get_resource(pdev, IORESOURCE_IRQ, 0)" is no longer
+> used after commit a1a2b7125e107("of/platform: Drop static setup of
+> IRQ resource from DT core"), so just remove the function in
+> encoder driver to avoid driver probe failed.
+>
+> Signed-off-by: Irui Wang <irui.wang@mediatek.com>
+> ---
+>  .../media/platform/mediatek/vcodec/mtk_vcodec_enc_drv.c   | 8 --------
+>  1 file changed, 8 deletions(-)
+>
+> diff --git a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_enc_drv.c b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_enc_drv.c
+> index ea667b867b56..6d8964fb4fa2 100644
+> --- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_enc_drv.c
+> +++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_enc_drv.c
+> @@ -228,7 +228,6 @@ static int mtk_vcodec_probe(struct platform_device *pdev)
+>  {
+>         struct mtk_vcodec_dev *dev;
+>         struct video_device *vfd_enc;
+> -       struct resource *res;
+>         phandle rproc_phandle;
+>         enum mtk_vcodec_fw_type fw_type;
+>         int ret;
+> @@ -272,13 +271,6 @@ static int mtk_vcodec_probe(struct platform_device *pdev)
+>                 goto err_res;
+>         }
+>
+> -       res = platform_get_resource(pdev, IORESOURCE_IRQ, 0);
+> -       if (res == NULL) {
+> -               dev_err(&pdev->dev, "failed to get irq resource");
+> -               ret = -ENOENT;
+> -               goto err_res;
+> -       }
+> -
+>         dev->enc_irq = platform_get_irq(pdev, 0);
 
-What I propose is that you tie the two pieces together with a single
-reference. If you need to express the number of data-lanes we have
-several places where this is described separately, using the
-"data-lanes" property.
+platform_get_irq() returns a negative number on failure. You should
+check for errors here as the previous check was removed.
+
+The description of platform_get_irq() explicitly mentions:
+
+    Device drivers should check the return value for errors so as to
+    not pass a negative integer value to the request_irq() APIs.
+
+Hans has queued up this patch, so maybe you could provide a follow-up
+patch to fix this?
 
 
-With this model, if you have a 1:1 connection you have a single
-remote-endpoint pair, if you have a 1:N connection, then you would have
-N remote-endpoint pairs.
+Regards
+ChenYu
 
-Regards,
-Bjorn
+
+>         irq_set_status_flags(dev->enc_irq, IRQ_NOAUTOEN);
+>         ret = devm_request_irq(&pdev->dev, dev->enc_irq,
+> --
+> 2.18.0
+>
