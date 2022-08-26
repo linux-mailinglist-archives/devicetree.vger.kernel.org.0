@@ -2,146 +2,264 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 164B45A2B5C
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 17:36:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA8115A2B6B
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 17:39:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243956AbiHZPgP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 11:36:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60696 "EHLO
+        id S234340AbiHZPjy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 11:39:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243036AbiHZPgF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 11:36:05 -0400
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10E9332ED2;
-        Fri, 26 Aug 2022 08:36:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1661528163; x=1693064163;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=uHvW9uDwxRGySey1R8sl3cAN9zKy6edBHbMcHu5b++Y=;
-  b=G2pEkUejzpep8HOpz4zlc13VG1pP98p4u/rq1g2MxcnkJPFLqxkanXDM
-   8oFCLV5IhIoK1PxGMSt8vqziyMKNzX8U+L1GztW8Mj4yBvIQ2/zDD8TuW
-   n7NopYECUqrioSUwMxfMvkhNhJobRVeXolBf9qm6T9L1ulFYZ5ouEFHEk
-   YUeERyhMeyxPe12nvQhxkG+RCemo/J232izrw+foeDIAP6e3VpRqqMlKN
-   2ibi5XQv0NlZYZR8YfI8l80asLJTnotJ+d7TB5anar4hGrW0ho/DFugnm
-   5v5bIBMSKiImeExCg+Hvv1F7314G8KnfPUnKMNEpF54qBURiOMrzBYanf
-   A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10451"; a="292110863"
-X-IronPort-AV: E=Sophos;i="5.93,265,1654585200"; 
-   d="scan'208";a="292110863"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Aug 2022 08:36:02 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,265,1654585200"; 
-   d="scan'208";a="640097687"
-Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
-  by orsmga008.jf.intel.com with ESMTP; 26 Aug 2022 08:35:59 -0700
-Date:   Fri, 26 Aug 2022 23:26:44 +0800
-From:   Xu Yilun <yilun.xu@intel.com>
-To:     Ivan Bornyakov <i.bornyakov@metrotek.ru>
-Cc:     Sascha Hauer <sha@pengutronix.de>, j.zink@pengutronix.de,
-        devicetree@vger.kernel.org, linux-fpga@vger.kernel.org,
-        robh+dt@kernel.org, mdf@kernel.org, kernel@pengutronix.de,
-        hao.wu@intel.com
-Subject: Re: [PATCH 00/16] Add support for Lattice MachXO2 programming via I2C
-Message-ID: <YwjmNAmfMSSTrbkS@yilunxu-OptiPlex-7050>
-References: <20220825141343.1375690-1-j.zink@pengutronix.de>
- <20220825152514.9926-1-i.bornyakov@metrotek.ru>
- <20220826082539.GA12909@pengutronix.de>
- <20220826090042.jhngyeufei55b5c2@h-e2.ddg>
- <20220826091912.xunn3cv3gwhktjib@h-e2.ddg>
+        with ESMTP id S230057AbiHZPjx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 11:39:53 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81A6B11A1C;
+        Fri, 26 Aug 2022 08:39:51 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id k17so1092558wmr.2;
+        Fri, 26 Aug 2022 08:39:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=MOtWtmaDFMIySeLE9Js113f5P0+EXoCQS1R6JsEcSbQ=;
+        b=gZtzZqqAQtgWdXborkrmVTMGKMSHVjEIEnLiJkdCqn3zzJqPr8bPJULbLqZ8ikl37a
+         +7HTYejc+nHXOManj2mYNhzvqnN3XYmD3P8KC6J/SB0VWIIppXEUqAoSmT1LaFtf/fSO
+         PvutQ61YcBLdm4XjGIQxCa921kUpR9xrz2BhkCYY3NwCB1ZJDnPDuFvhkccxagn63c5y
+         ybim+hig6TobRv8l5JL8mQcB2lW7F5fvKwMiAej6Px7gJ+ympkCIpyVEyYDQvYF5Au6H
+         3nKOUg6EwbjYmKT+pyrY8TWT2fZedIFapE3Px4lJ8QbBdzAcXZPWFMoug+/CVrnBsnzV
+         a0TA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=MOtWtmaDFMIySeLE9Js113f5P0+EXoCQS1R6JsEcSbQ=;
+        b=oOTvHXo7ly/j3AsIqg0WXkkcWI7jA+AFvmF69uoyWuF6g3Lbq5BnV8sNA4JtV0UTcZ
+         4bVjXGB6+jTucpeOPO5Fwf9HFyePqv0k3xUEZnSv3gkuBG2R7FqmtXkHX73yAlhsAdNM
+         rUE6fBYf99OWlld3hbHBgZgIkE85Ch11U9E4tflRgKU05YKV4fUDqyWJxV7UhNTJ9ld/
+         pvCZA9dLQS8yH4E0ZLr/Ye5R7D1mrK7ZpSXMbAFeFMJxCfQtXoAOPJXfrfbkF1pjm/3p
+         7HPqiOe9VIBKIKY0pP6bqpCP3VgYv+EUkdCMOfBsIodV8J54gqjhpGydi9LxO9HlCFaN
+         4k/Q==
+X-Gm-Message-State: ACgBeo1ASwP8HEIfBUyk8YYAUKHyZAfG0B9OreqDQ3IMlUS7aEYjFq7a
+        VOzx8mUmIWpA5xKS/9ao3Xg=
+X-Google-Smtp-Source: AA6agR5AoXPkL721SdanPx83BCkCCPrUSRFNojtDVoeIavHfGdwo4ztYoyqHkgG0kLOwPtD5BNFJ6w==
+X-Received: by 2002:a7b:ce11:0:b0:3a6:1e4d:8d7b with SMTP id m17-20020a7bce11000000b003a61e4d8d7bmr35044wmc.101.1661528389951;
+        Fri, 26 Aug 2022 08:39:49 -0700 (PDT)
+Received: from [192.168.1.130] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id j18-20020a05600c191200b003a5c1e916c8sm17667866wmq.1.2022.08.26.08.39.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 Aug 2022 08:39:48 -0700 (PDT)
+Message-ID: <efedfd3d-9779-514b-0481-f0b669d2e326@gmail.com>
+Date:   Fri, 26 Aug 2022 17:39:47 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220826091912.xunn3cv3gwhktjib@h-e2.ddg>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.1.2
+Subject: Re: [PATCH v2] dt-bindings: arm: mediatek: mmsys: change compatible
+ for MT8195
+Content-Language: en-US
+To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>
+Cc:     =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= 
+        <Jason-JH.Lin@mediatek.com>,
+        =?UTF-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
+        =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
+        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+        "angelogioacchino.delregno@collabora.com" 
+        <angelogioacchino.delregno@collabora.com>,
+        "hsinyi@google.com" <hsinyi@google.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+References: <20220825091448.14008-1-rex-bc.chen@mediatek.com>
+ <3ed3d73a-1671-708e-7c42-498cca6aaf1d@gmail.com>
+ <8f3dba943170361211d9bb4c8bf1be12bbfdec20.camel@mediatek.com>
+ <adcbb2b7-cddd-4546-bdf2-66d056a40c1d@linaro.org>
+ <916bd99bcc4fa77eae5734b22365ce73acd90d58.camel@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <916bd99bcc4fa77eae5734b22365ce73acd90d58.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-08-26 at 12:19:12 +0300, Ivan Bornyakov wrote:
-> On Fri, Aug 26, 2022 at 12:00:44PM +0300, Ivan Bornyakov wrote:
-> > On Fri, Aug 26, 2022 at 10:25:39AM +0200, Sascha Hauer wrote:
-> > > Hi Ivan,
-> > > 
-> > > On Thu, Aug 25, 2022 at 06:25:14PM +0300, Ivan Bornyakov wrote:
-> > > > Hi, Johannes!
-> > > > 
-> > > > I just came across your patches. Surprisingly, our work interferes.
-> > > > 
-> > > > I recently posted patch-series for configuring ECP5 and was asked to make
-> > > > generalized sysCONFIG driver with support for both ECP5 and MachXO2, which
-> > > > I did. Sadly I don't have hardware with MachXO2, but you clearly do :)
-> > > > 
-> > > > Please, take a look at
-> > > > 
-> > > > https://lore.kernel.org/linux-fpga/20220825112433.14583-1-i.bornyakov@metrotek.ru/
-> > > > 
-> > > > and please help test MachXO2 variant. When we pull this off, you may add I2C
-> > > > interface on top.
-> > > 
-> > > You are adding a new driver for something we already have a driver for
-> > > in the tree.
-> > 
-> > My intent was to add new driver and drop old one once the new driver is
-> > proven to be working.
-> > 
-> > > The final goal should be that we only have a single driver
-> > > for sysconfig based FPGAs in the tree.
-> > 
-> > It is.
-> > 
-> > > Johannes' series is a step in
-> > > that direction: He cleans up the existing driver and starts abstracting
-> > > out common sysconfig functions so that they can be used by both the I2C
-> > > and SPI interface. He just told me that the abstraction is likely not
-> > > enough to integrate ECP5 support right away, one reason being that the
-> > > machxo2 has a flash whereas the ECP5 does not.
-> > > 
-> > > Unless you can explain why the existing driver is broken beyond repair
-> > > I think we should rather incrementally improve the existing driver
-> > > instead of adding a new one with a conflicting compatible.
-> > 
-> > Yeah, conflicting compatible was my oversight.
-> > 
+
+
+On 26/08/2022 09:13, Bo-Chen Chen wrote:
+> On Fri, 2022-08-26 at 15:00 +0800, Krzysztof Kozlowski wrote:
+>> On 26/08/2022 05:07, Bo-Chen Chen wrote:
+>>> On Thu, 2022-08-25 at 22:57 +0800, Matthias Brugger wrote:
+>>>>
+>>>> On 25/08/2022 11:14, Bo-Chen Chen wrote:
+>>>>> From: "Jason-JH.Lin" <jason-jh.lin@mediatek.com>
+>>>>>
+>>>>> For previous MediaTek SoCs, such as MT8173, there are 2 display
+>>>>> HW
+>>>>> pipelines binding to 1 mmsys with the same power domain, the
+>>>>> same
+>>>>> clock driver and the same mediatek-drm driver.
+>>>>>
+>>>>> For MT8195, VDOSYS0 and VDOSYS1 are 2 display HW pipelines
+>>>>> binding
+>>>>> to
+>>>>> 2 different power domains, different clock drivers and
+>>>>> different
+>>>>> mediatek-drm drivers.
+>>>>>
+>>>>> Moreover, Hardware pipeline of VDOSYS0 has these components:
+>>>>> COLOR,
+>>>>> CCORR, AAL, GAMMA, DITHER. They are related to the PQ (Picture
+>>>>> Quality)
+>>>>> and they makes VDOSYS0 supports PQ function while they are not
+>>>>> including in VDOSYS1.
+>>>>>
+>>>>> Hardware pipeline of VDOSYS1 has the component ETHDR (HDR
+>>>>> related
+>>>>> component). It makes VDOSYS1 supports the HDR function while
+>>>>> it's
+>>>>> not
+>>>>> including in VDOSYS0.
+>>>>>
+>>>>> To summarize0:
+>>>>> Only VDOSYS0 can support PQ adjustment.
+>>>>> Only VDOSYS1 can support HDR adjustment.
+>>>>>
+>>>>> Therefore, we need to separate these two different mmsys
+>>>>> hardwares
+>>>>> to
+>>>>> 2 different compatibles for MT8195.
+>>>>>
+>>>>> Fixes: 81c5a41d10b9 ("dt-bindings: arm: mediatek: mmsys: add
+>>>>> mt8195
+>>>>> SoC binding")
+>>>>> Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
+>>>>> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+>>>>> ---
+>>>>> Changes for v2:
+>>>>> 1. Add hardware difference for VDOSYS0 and VDOSYS1 in commit
+>>>>> message.
+>>>>> ---
+>>>>>   
+>>>>> .../devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+>>>>> |
+>>>>> 3 ++-
+>>>>>    1 file changed, 2 insertions(+), 1 deletion(-)
+>>>>>
+>>>>> diff --git
+>>>>> a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys
+>>>>> .yam
+>>>>> l
+>>>>> b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys
+>>>>> .yam
+>>>>> l
+>>>>> index 6ad023eec193..bfbdd30d2092 100644
+>>>>> ---
+>>>>> a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys
+>>>>> .yam
+>>>>> l
+>>>>> +++
+>>>>> b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys
+>>>>> .yam
+>>>>> l
+>>>>> @@ -31,7 +31,8 @@ properties:
+>>>>>                  - mediatek,mt8183-mmsys
+>>>>>                  - mediatek,mt8186-mmsys
+>>>>>                  - mediatek,mt8192-mmsys
+>>>>> -              - mediatek,mt8195-mmsys
+>>>>> +              - mediatek,mt8195-vdosys0
+>>>>
+>>>> Thanks for you patch. As I mentioned on v1, I propose to set
+>>>> mediatek,mt8195-mmsys as fallback for mediatek,mt8195-vdosys0 to
+>>>> not
+>>>> break
+>>>> backwards compatibility.
+>>>>
+>>>> Apart from that, the binding change will need some changes to
+>>>> support
+>>>> the new
+>>>> binding. Please provide these together with this patch.
+>>>>
+>>>> Regards,
+>>>> Matthias
+>>>>
+>>>
+>>> Hello Matthias,
+>>>
+>>> Thanks for your comments.
+>>> The purpose of this patch is to confirm we can separate mt8195
+>>> mmsys
+>>> into two compatibles. I think this modification is accepted.
+>>
+>> No, it is not accepted following Matthias comments. You received my
+>> ack
+>> based on assumption that ABI break is perfectly ok for platform
+>> maintainer, as he has decisive voice. If anyone is not happy with a
+>> ABI
+>> break, then his concerns must be addressed.
+>>
+>> So let it be specific:
+>> NAK.
+>>
+>>>
+>>> After this, I think Jason-JH will push another series with this
+>>> binding
+>>> patch.
+>>
+>> I don't know what do you mean here - another series on top of wrong
+>> patch?
+>>
 > 
-> Wait! They are not conflicting :) The new one is "lattice,machxo2-fpga-mgr",
-> the old one is "lattice,machxo2-slave-spi"
+> Hello Krzysztof,
 > 
-> > > So despite you were in the room earlier I think you should rather base
-> > > your work on Johannes' series.
-> > 
-> > We on par here. You guys didn't join ongoing work, I didn't rework
-> > existing driver.
+> For this mt8195 mmsys binding separation, we still need to modify
+> driver for this. The reason I send this patch is to confirm we can do
+> this binding modification and I also think we can not pick this patch
+> here.
+> 
+> We will push another series and it contains modification of binding and
+> drivers. (The series will push by Jason-JH Lin)
+> 
 
-I didn't look into the code yet, so maybe some misunderstanding.
+Sounds good. So lets wait for Jason-JH Lin to send this series and we can go on 
+with the review.
 
-I'd rather we pay more attention on the code design for the FULL feature
-of this sysCONFIG interface, rather than worrying about whose patches should
-go first.
+Thanks!
+Matthias
 
-So just review patches for each other and collabrate for a well design,
-then your features can be accepted faster.
-
-Thanks,
-Yilun
-
-> > 
-> > > 
-> > > Just my 2 cents, maybe one of the maintainers has a few words on it.
-> > > 
-> > > Sascha
-> > > 
-> > > 
-> > > -- 
-> > > Pengutronix e.K.                           |                             |
-> > > Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-> > > 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-> > > Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+> Maybe I should use "RFC" for this series, and I think it's more
+> correct.
+> 
+> BRs,
+> Bo-Chen
+> 
+>>> In Jason-JH's series, we will modify mmsys driver based on this.
+>>> And I think we don't need to keep "mediatek,mt8195-mmsys" if we
+>>> also
+>>> modify mmsys drivers in the same series.
+>>
+>> This does not fux ABI break and broken bisectability.
+>>
+>>>
+>>> Is it ok that postpones to pick this patch until we finish review
+>>> follow-up series?
+>>>
+>>
+>> No. You got a clear review to fix.
+>>
+>> Best regards,
+>> Krzysztof
 > 
