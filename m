@@ -2,115 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 41C5B5A2A06
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 16:52:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 024135A2A08
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 16:52:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229863AbiHZOwC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 10:52:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37918 "EHLO
+        id S229810AbiHZOwO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 10:52:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229810AbiHZOwC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 10:52:02 -0400
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6225ED8B2B;
-        Fri, 26 Aug 2022 07:52:00 -0700 (PDT)
-Received: by mail-qk1-f180.google.com with SMTP id n21so1279696qkk.3;
-        Fri, 26 Aug 2022 07:52:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=/EULlMcFWN8bwYrlTfSgo209cnQT1LoK3WzcPgYa3PQ=;
-        b=j5UtwCowN1LIkX3IiKEDZjfADh9CUcV0XFi8rZZalq5ONVdZlFqUm08MSwFUvgiGAl
-         JpKbsky36rxQ4tCab//QGYeVo/9UW1Jhlx3OvMXMOm3w4vd9lLQR/gw6yK41fH1dxOup
-         t3/uGvmyDTToRhdrCxdp1GFSlcaHO2qAb3mUfYe4odAhP41EWywAHnt0Grt1Gc6AWrBS
-         E9eQd84025M9Ryf6hywHoPUCzpNJHTZyK88JsfQPOtzu2eo0LZ3QSiheAsZ5G2VSGiRC
-         RYGevveaIwFr5pg10UbB5uAULZKDKgppIDICltYKqsxVpeQzG0ZuVUY7kovTvcYSTh1S
-         cjKQ==
-X-Gm-Message-State: ACgBeo3TAxmgHrBYNz0MJvlZ1xG7csylRLeha3g5xwE0ltQPLptkpES+
-        jPvXDHw4J63MBcSiIM6t0v59o/A8edJyiw==
-X-Google-Smtp-Source: AA6agR5EHTedsIAM0Shy/gvM7B0EYSAV5c1Ulh6lshLcTzS/XqzSKANDn3JCgT5RBWE53x8M1pE+fA==
-X-Received: by 2002:a05:620a:2584:b0:6ab:91fd:15dd with SMTP id x4-20020a05620a258400b006ab91fd15ddmr15115qko.287.1661525519372;
-        Fri, 26 Aug 2022 07:51:59 -0700 (PDT)
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com. [209.85.128.169])
-        by smtp.gmail.com with ESMTPSA id b23-20020ac86bd7000000b00342fb07944fsm1329501qtt.82.2022.08.26.07.51.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 Aug 2022 07:51:59 -0700 (PDT)
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-3321c2a8d4cso41964177b3.5;
-        Fri, 26 Aug 2022 07:51:59 -0700 (PDT)
-X-Received: by 2002:a25:d80b:0:b0:696:6d79:4891 with SMTP id
- p11-20020a25d80b000000b006966d794891mr12980ybg.89.1661525518754; Fri, 26 Aug
- 2022 07:51:58 -0700 (PDT)
+        with ESMTP id S229922AbiHZOwN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 10:52:13 -0400
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1E4AD8B1A;
+        Fri, 26 Aug 2022 07:52:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1661525532; x=1693061532;
+  h=date:from:to:cc:subject:in-reply-to:message-id:
+   references:mime-version:content-id;
+  bh=o4zl2/94nYD0TeHRyR/L7P8QHLcI6dL7OhrMf0XiAEo=;
+  b=lm3BBaP+x0Jk7JKRNxmEiCDaqB+kGdMRh5cTVWN1JeuUkb1IgOifwqjy
+   Rmr7XouJhHOgsGRSNtCP9Y7h98kV+QVL3AKxXq9saG9so25v5n61pd+OW
+   q7aLhM/1RNFXOJIozAeGipxtgsQnHsnB4+LrrB6L6vFgR+LJLqu7ds08k
+   X1fxg6uwnjSAvb2QRT7GtWQ8EfR4SNyYaJYDEUlPyo0b6kNC1/UhPCc83
+   2XUZQYxve8/GPQXbrw23szBO1R7d8M6HiQRq9dDRZtz3AYys16mdcshlW
+   qJTXKJHL6jAL9ZwKAynjnFuKM2A8mnJeMuElj4ADKXCzRZjUaGTf+f3OS
+   A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10451"; a="295794367"
+X-IronPort-AV: E=Sophos;i="5.93,265,1654585200"; 
+   d="scan'208";a="295794367"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Aug 2022 07:52:12 -0700
+X-IronPort-AV: E=Sophos;i="5.93,265,1654585200"; 
+   d="scan'208";a="671490027"
+Received: from syeghiay-mobl.ger.corp.intel.com ([10.252.41.100])
+  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Aug 2022 07:52:09 -0700
+Date:   Fri, 26 Aug 2022 17:52:07 +0300 (EEST)
+From:   =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
+To:     Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+cc:     linux-serial <linux-serial@vger.kernel.org>, git@amd.com,
+        devicetree@vger.kernel.org, Jiri Slaby <jirislaby@kernel.org>,
+        linux@armlinux.org.uk, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Subject: Re: [PATCH v4 2/2] serial: pl011: Add reg-io-width parameters
+In-Reply-To: <20220826120559.2122-3-shubhrajyoti.datta@amd.com>
+Message-ID: <5ee24dad-e5b4-206f-7ebc-d9a2d4b572@linux.intel.com>
+References: <20220826120559.2122-1-shubhrajyoti.datta@amd.com> <20220826120559.2122-3-shubhrajyoti.datta@amd.com>
 MIME-Version: 1.0
-References: <20220825071022.7864-1-wsa+renesas@sang-engineering.com> <20220825071022.7864-7-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20220825071022.7864-7-wsa+renesas@sang-engineering.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 26 Aug 2022 16:51:47 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVMZf80hVE6YbsVxxByJQ3onJKk5KwVvB=+PaQkahRAVQ@mail.gmail.com>
-Message-ID: <CAMuHMdVMZf80hVE6YbsVxxByJQ3onJKk5KwVvB=+PaQkahRAVQ@mail.gmail.com>
-Subject: Re: [PATCH v2 6/6] arm64: dts: renesas: r8a774a1: put I2C aliases to
- board files
-To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Type: multipart/mixed; BOUNDARY="8323329-353544485-1661525329=:1606"
+Content-ID: <f8af40c7-d22-15ba-7c9-da7747968451@linux.intel.com>
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Wolfram,
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-On Thu, Aug 25, 2022 at 9:11 AM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> I2C aliases are not a property of a SoC. They belong to board files
-> where they are named accordingly in the schematics.
->
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+--8323329-353544485-1661525329=:1606
+Content-Type: text/plain; CHARSET=ISO-8859-15
+Content-Transfer-Encoding: 8BIT
+Content-ID: <38586ab-17b-a2d3-308e-c51b82855c7a@linux.intel.com>
 
-Thanks for your patch!
+On Fri, 26 Aug 2022, Shubhrajyoti Datta wrote:
 
-> --- a/arch/arm64/boot/dts/renesas/hihope-common.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/hihope-common.dtsi
-> @@ -10,6 +10,14 @@
->
->  / {
->         aliases {
-> +               i2c0 = &i2c0;
-> +               i2c1 = &i2c1;
-> +               i2c2 = &i2c2;
-> +               i2c3 = &i2c3;
-> +               i2c4 = &i2c4;
-> +               i2c5 = &i2c5;
-> +               i2c6 = &i2c6;
-> +               i2c7 = &iic_pmic;
->                 serial0 = &scif2;
->                 serial1 = &hscif0;
->                 mmc0 = &sdhi3;
+> Some of the implementations can read only 32 bits because of
+> the interface limitations of the port they are connected to.
+> Add a parameter reg-io-width for supporting such platforms.
+> 
+> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
 
-Oops:
+Reviewed-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
 
-    arch/arm64/boot/dts/renesas/hihope-common.dtsi:12.10-26.4: ERROR
-(path_references): /aliases: Reference to non-existent node or label
-"iic_pmic"
+-- 
+ i.
 
-I've sent a fix: "[PATCH] arm64: dts: renesas: r8a774e1: Rename i2c_dvfs
-to iic_pmic"
-https://lore.kernel.org/r/7d60653d4d63904dc025a133297a53eb885fa064.1661525361.git.geert+renesas@glider.be
 
-Gr{oetje,eeting}s,
+> ---
+> v4:
+> No change
+> 
+>  drivers/tty/serial/amba-pl011.c | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+> 
+> diff --git a/drivers/tty/serial/amba-pl011.c b/drivers/tty/serial/amba-pl011.c
+> index 15f0e4d88c5a..033bf8699540 100644
+> --- a/drivers/tty/serial/amba-pl011.c
+> +++ b/drivers/tty/serial/amba-pl011.c
+> @@ -2777,6 +2777,7 @@ static int pl011_probe(struct amba_device *dev, const struct amba_id *id)
+>  	struct uart_amba_port *uap;
+>  	struct vendor_data *vendor = id->data;
+>  	int portnr, ret;
+> +	u32 val;
+>  
+>  	portnr = pl011_find_free_port();
+>  	if (portnr < 0)
+> @@ -2801,6 +2802,21 @@ static int pl011_probe(struct amba_device *dev, const struct amba_id *id)
+>  	uap->port.rs485_supported = pl011_rs485_supported;
+>  	snprintf(uap->type, sizeof(uap->type), "PL011 rev%u", amba_rev(dev));
+>  
+> +	if (device_property_read_u32(&dev->dev, "reg-io-width", &val) == 0) {
+> +		switch (val) {
+> +		case 1:
+> +			uap->port.iotype = UPIO_MEM;
+> +			break;
+> +		case 4:
+> +			uap->port.iotype = UPIO_MEM32;
+> +			break;
+> +		default:
+> +			dev_warn(&dev->dev, "unsupported reg-io-width (%d)\n",
+> +				 val);
+> +			return -EINVAL;
+> +		}
+> +	}
+> +
+>  	ret = pl011_setup_port(&dev->dev, uap, &dev->res, portnr);
+>  	if (ret)
+>  		return ret;
 
-                        Geert
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+--8323329-353544485-1661525329=:1606--
