@@ -2,70 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F4BA5A2DAB
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 19:39:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A76225A2DAE
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 19:40:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344827AbiHZRjB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 13:39:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43248 "EHLO
+        id S241831AbiHZRk2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 13:40:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344891AbiHZRix (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 13:38:53 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E11BDE1AA3
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 10:38:50 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id q16so2242451ljp.8
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 10:38:50 -0700 (PDT)
+        with ESMTP id S1344930AbiHZRkX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 13:40:23 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FA7FE0E6
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 10:40:17 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id q7so2888541lfu.5
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 10:40:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=e2IfiBb0W8qqFbCW2qSjgP3+vMQrquSqpbONfR0RqQA=;
-        b=kv7O+CHk3Xotu+SMyz7bFHT+oaIsYprV/N2I5Kob2cbI92pGqeTTyhpT8+gMSg1BjO
-         6hDabb2ZamzgLvPpW9m9fVAF9EdXRLoBTczVWoesjQtGFFfnV/rArQJNAb1JzrablBVa
-         y3XpkoFODbBDragyspimZ4L3vfM8SPsBD8UJ1+zE4pzmhNABgRRmLPW/Rsd2kN2lQhvl
-         vnpNrsSH4yIO3ikR4daNNTess1LN/TTI2qxhGa0h0ML46SZrdRY1R4KlrlSOC/fPWKvO
-         lgNtrjckynPIAEdYjjRmB+PVn15QxNF7a3Zyw7Li+IB51j8078dZ3EJH5NjvpgsWTtWU
-         RTTg==
+        bh=OTdc27ee6jSrb6BUWefWgtonG87QJUY3qmhGjbQcM9o=;
+        b=RXmV26SRp6JLrCtA+SI6m7ulgY5sVdkzCAeNCuwfF+qmPjgknJENdubUmhtapnYta+
+         P4aEeukQwfu2z6s2CP+hHyAE+ft4N9uWPhv1Ta84x/KsOCv2WYmyf/B0E1PsBMuBw0xZ
+         Ci1aPK9D7DPbsAczrbVCmb/2govUqFOBsZl3pnsa0f2tgsUYsBD5PtDBMCBg31Mq9B5o
+         DjgFFcKZxBq7D8nA9vk5bPvVgCexttrcbYrEqa8UEiRDtn+SLA8kS+O5m6utB1NZqYqx
+         rvuAWtnj2uZkTETPDZ5G8G9uuCaxFfW9vRm2XAH+uTPfCWPY8Zrvwvl2ilH/uJn+yBhk
+         yJlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=e2IfiBb0W8qqFbCW2qSjgP3+vMQrquSqpbONfR0RqQA=;
-        b=Mbob5I3VNiwe/CA1a7aEq4CN6IQLK+gADdB1irvLOqYbnD8SCpQXZroPrXxeltORqr
-         +ccVTZsS2hC01eUH3qbDjuWfmfGqgCbmlKPn5FEA30peCLibkgqkJ/QW610QClJkfgsH
-         ccM2ek68HShJxxyfv7ZjVeDWNhtEEIeJXsmy+WFo0epyIpXGtylj8RUiRrOqqhgKKKg9
-         otOm7WNs6rPPTeXy89136s3WZm1fqqxbnZSmM0Y8icrHe8ZGFNfKj/vq//7tBsD+ppKT
-         qDIT+4VegFfQfm4hKZgE2L67P693V6UlC8pcqK8el506It/3LeACwSe2sUvru5sa+fVF
-         P6qw==
-X-Gm-Message-State: ACgBeo2AzwgAKdqQOUliYIBvBWduTwb7vsa7ohvWm1rLh7/P0q+w5VID
-        RlB7nCpAc08MkZ7YJTCk6Gk6AQ==
-X-Google-Smtp-Source: AA6agR6kKJcOX2vRNumOkiAthPve37jQ6XfAbkTySIH4NYnC7nkBamSfP5cdxg1q0EHBUCXVoMQ6VA==
-X-Received: by 2002:a2e:3504:0:b0:261:e52c:80b8 with SMTP id z4-20020a2e3504000000b00261e52c80b8mr2501617ljz.144.1661535529301;
-        Fri, 26 Aug 2022 10:38:49 -0700 (PDT)
+        bh=OTdc27ee6jSrb6BUWefWgtonG87QJUY3qmhGjbQcM9o=;
+        b=hR81Q0auucMT416eGfCqA8ZDD+pWqFRoBfLrCpn9FKkqwR7Bj9qTsnxMw53xaJm1CZ
+         uMMbZG03q/31mryI7IOcI3/8lHqnr9i3c3z0emQREUwqFL3OdmpYI1cMkcpA8hyg16Wa
+         vEix18C6oL8LkPNtdNBaVeNEuDATzQWJOyZK7gKqRYQeENADGTfvGdz9AcYHDxkGZT8K
+         ifAHBoPIBF5EFePbSwcmrlucsGEY18LLVEYJOyCy3QgWAYJKz7YtifsWAq+lFyDOQvis
+         pzQbrbtXOrDiaX6b4c8RlbyH9BXgiLrwQ27NUy/E1gCF8qEesALn7jgeMIA9GAa3Dj2x
+         VONA==
+X-Gm-Message-State: ACgBeo1tblkkEg+61efBhSxaEBV88tgJjH5S5YOYgxFtNqqnxDmkRtkO
+        rYziONoNahofO7iogDl4yZG4uQ==
+X-Google-Smtp-Source: AA6agR7LN4RGaM5qPxnsCAzc7OIKFH1FnfWKbhbLHWggszDp6UWrWAHHSAubsHoPD0z7IhpDHQRdpg==
+X-Received: by 2002:a19:9149:0:b0:492:cb89:ecc4 with SMTP id y9-20020a199149000000b00492cb89ecc4mr2619171lfj.447.1661535614991;
+        Fri, 26 Aug 2022 10:40:14 -0700 (PDT)
 Received: from [192.168.0.71] (82.131.98.15.cable.starman.ee. [82.131.98.15])
-        by smtp.gmail.com with ESMTPSA id s30-20020a19771e000000b00477c0365b20sm429768lfc.188.2022.08.26.10.38.47
+        by smtp.gmail.com with ESMTPSA id o10-20020ac24e8a000000b0048b08124139sm431721lfr.177.2022.08.26.10.40.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 Aug 2022 10:38:47 -0700 (PDT)
-Message-ID: <32009f7c-ce00-d2a7-0794-166da6293bde@linaro.org>
-Date:   Fri, 26 Aug 2022 20:38:46 +0300
+        Fri, 26 Aug 2022 10:40:14 -0700 (PDT)
+Message-ID: <fd2c9ca1-5ff6-3c45-fc10-90167c413061@linaro.org>
+Date:   Fri, 26 Aug 2022 20:40:13 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v4 1/2] dt-bindings: serial: pl011: Add a reg-io-width
- parameter
+Subject: Re: [PATCH v2] arm64: dts: meson-s4: include meson-s4-gpio.h
 Content-Language: en-US
-To:     Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
-        linux-serial@vger.kernel.org
-Cc:     git@amd.com, devicetree@vger.kernel.org, jirislaby@kernel.org,
-        linux@armlinux.org.uk, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, gregkh@linuxfoundation.org
-References: <20220826120559.2122-1-shubhrajyoti.datta@amd.com>
- <20220826120559.2122-2-shubhrajyoti.datta@amd.com>
+To:     Huqiang Qin <huqiang.qin@amlogic.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, narmstrong@baylibre.com,
+        khilman@baylibre.com, jbrunet@baylibre.com,
+        martin.blumenstingl@googlemail.com
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220826122338.2452433-1-huqiang.qin@amlogic.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220826120559.2122-2-shubhrajyoti.datta@amd.com>
+In-Reply-To: <20220826122338.2452433-1-huqiang.qin@amlogic.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,15 +77,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/08/2022 15:05, Shubhrajyoti Datta wrote:
-> Some of the implementations support only 32-bit accesses.
-> Add a parameter reg-io-width for such platforms.
+On 26/08/2022 15:23, Huqiang Qin wrote:
+> In the future, meson-s4.dtsi will have some nodes that need
+> to use the meson-s4-gpio.h file.
 > 
-> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+> e.g.
+>   * Bluetooth enable pin:
+>     bt_en-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
+>   * Audio mute pin:
+>     spk_mute-gpios = <&gpio GPIOH_8 GPIO_ACTIVE_LOW>;
+>   * ...
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+Then the header should be added when the need is implemented. Do not add
+unused headers to files.
 
 Best regards,
 Krzysztof
