@@ -2,82 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 953A55A20C6
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 08:19:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D651B5A20CE
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 08:22:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244962AbiHZGT1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 02:19:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37666 "EHLO
+        id S229556AbiHZGW3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 02:22:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244959AbiHZGTY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 02:19:24 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DD09BD298
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 23:19:22 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id bq23so732836lfb.7
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 23:19:22 -0700 (PDT)
+        with ESMTP id S229459AbiHZGW2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 02:22:28 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FBACCEB00
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 23:22:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1661494944; x=1693030944;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=NGp2oC0mzsrCjLzmvN/6fLR7ZVL+2yVYbYZdiakJp7k=;
+  b=OSSBSzCopO2vSM0rH8XRFO2bQWuJOF71TdnAtsqHOmvVQ3s+R8Agxl5w
+   siRT9y/L26G8mE338ykPkkNzgtjYI8W8sKguTkSDJ9f8/Bi4iBSiXkTI/
+   IJNiZMeLCJfkW9Q+Rv+p9gzaLp7y37StPaNrWwhIvy74YknIcAuYN80r5
+   zkIsh95bYDr4dV2rY1WX4BMh/SXxKvoOkGrmF4v2eHRaFRRXV9BfdrJwu
+   K5vswUE1l+aKYpqnmoJ12OSaRYbeJ4vCSPZUUOOemmxqWbvX6Nc4VK2YP
+   4IQlqCGhKX2KUD5kspKF1aTOSb8fTCwsWmO5ohKUFfYraIp8MU8HbgC1f
+   w==;
+X-IronPort-AV: E=Sophos;i="5.93,264,1654585200"; 
+   d="scan'208";a="177962894"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 Aug 2022 23:22:12 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Thu, 25 Aug 2022 23:22:12 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (10.10.215.89) by
+ email.microchip.com (10.10.87.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12 via Frontend
+ Transport; Thu, 25 Aug 2022 23:22:12 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=kwL8VHhCt8pP5bFjQRnvK1mO5jd+izoZyp+EVSyfK87pkJgXbbt0X6YCTCVhHTVE9Gdz6jX5yewEkjoAmdmcjh6SmBTErVjoYDn9C47H17rABCFEYOhswB7wBQXBMiLOPJk8enixNkHOhrwfvICMpoAh7v6g8Kp5u/Kufsor7IDSscn/akCvTUqMyVWMmF3QMX1HKD+f2vDUuNyIMr5crydbeX/h4fJngr6l82smyGnvaWlScfxvFSR/3WrZUWQtOf5e4dH+VFzqrFfp8K59zm5vNq1sEudjpBdTZj2K46iR5y+qtPrazrEG9S7a3J9AXG3NXGGdwUS96spFIS5AwQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=NGp2oC0mzsrCjLzmvN/6fLR7ZVL+2yVYbYZdiakJp7k=;
+ b=V4BzRJ71SVOa2Qf4J1aWkBn2rKJXYTPB8BNzOOCYcdv3Az/eVR+sXYSg5tjsZNKQMuMwd0GG5a8ImjFSzmWuUmUUYdSg/VgHTz8xm6oB8QXADxN3lsfmQ0FuXVcCJTkU2iDO+aRBjqAShCRw/CxilAu7+v9zlNzAQ8c1KTKtViM3MM9/cbvdo2gDglZF8qzZ4fFce+e38LNVG34gK5UqyrvXeCYKjSxW4BK5JxqZ7b6ecjvE9BJ1kKxo3+nbvMwimvUJbQNPp2kAlDWkWiorQiAt58ZQq2GbQCZ1+1123NNxJRstRqJaaRLzJ3e+YvOF1/LY8CAMcaA9lJFqU1w/IA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=IWS8JKWz75o/tyFJVlcO0u3nY2nMGgxlstXU+vNhUYY=;
-        b=PTOX4eZo3au7x2ua0rwkqeVyPaYl1sms+TYrAkEO5uQdVHn8e43gb7K/YH3QOioTIT
-         vYZ4ipsviVMQDruLeDkFaj3ZyVUxZc+V8J37aJiYlOp/xWqeoyhAhclnZP/rZsBlsehH
-         qQRBefEbYs0HQP9vl7vLqXmzGbtlk+UOZ2iJ6QPRel0Ii5cbKJt2+5u1UB8nSqaA6Z99
-         4R56+Y6xfFowmnvg7whmI7ggQTioviUFGaeONEP8IglZW+j8TlTEkXxl9RGMVuHUh7e9
-         I1R+KnAj+nxgDbFVWjbDznUlcPnyXVgu5DrFs01AuRlXoa3Pjf9NtOpdp6UD/0J8LeQt
-         fYzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=IWS8JKWz75o/tyFJVlcO0u3nY2nMGgxlstXU+vNhUYY=;
-        b=ojJdRz4vEe+BuLSFbqwgWbHypwg0s1I+rBwvXiYBeclsIs4BXMhdFmxQhtYDWXMmVP
-         cwmLuK6oVw4cww+muzbZ0gPDcB+760CivUoacHEt/+Qe6xhdKM793iuMYAR1WC+UBhoR
-         gJACx94P0VWxdCHh3RR9++TPnouwfWe5MuPj9+O/n5PhDLfqlquyGut0/Gx57HVI+PFj
-         hYLu/Bc/dajAiHDXO8flBOQajTNdmBZnhnAvHP3UBPaxjlK0iz/6X5Gq6e0HFK3dU/kU
-         Mo3TZG1MdNAHRAjLDjgHWqQveIhOfLiWX/mRErQPyhojNRFb6CqcvzKCKr6BzByJmPHH
-         Yd0Q==
-X-Gm-Message-State: ACgBeo0QoOZn7LMRxQLARc4C+qqto0iBRJtiEa9hPg26my2YfMWbuvrX
-        VsByvwcVsdJoyfxymFUFg2xSqg==
-X-Google-Smtp-Source: AA6agR4EGgyGn1ent3TwSlY5F52Gh3VviAOmzGSwXgW4lFYhiNuN7BSGLZIdYaDikQzy1JSZqF+/TQ==
-X-Received: by 2002:a19:7714:0:b0:492:df83:8a0b with SMTP id s20-20020a197714000000b00492df838a0bmr1882594lfc.104.1661494760801;
-        Thu, 25 Aug 2022 23:19:20 -0700 (PDT)
-Received: from [192.168.0.71] (82.131.98.15.cable.starman.ee. [82.131.98.15])
-        by smtp.gmail.com with ESMTPSA id c26-20020a05651200da00b0048b1d92991asm240700lfp.303.2022.08.25.23.19.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Aug 2022 23:19:18 -0700 (PDT)
-Message-ID: <15a997b2-966b-3a6f-aa75-3a21b268351d@linaro.org>
-Date:   Fri, 26 Aug 2022 09:19:16 +0300
+ d=microchiptechnology.onmicrosoft.com;
+ s=selector2-microchiptechnology-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NGp2oC0mzsrCjLzmvN/6fLR7ZVL+2yVYbYZdiakJp7k=;
+ b=CBzUv5xqahvvfjZ+8dqQeclOL49mOohqqG0OIRbdjlbYpEqMRFH8suU99mkbjlcWDNRv8PMZBeMjz5HXnwKrUMFGCxX81YwsBO5GCxT+vfkw7wTSd51tk3uEpWfs8p5UYmMp8XvJlFfZzOkwjPTlLHmKxb1ul777l+5iGMkYTLQ=
+Received: from CO1PR11MB5154.namprd11.prod.outlook.com (2603:10b6:303:99::15)
+ by BYAPR11MB3765.namprd11.prod.outlook.com (2603:10b6:a03:f6::25) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5566.15; Fri, 26 Aug
+ 2022 06:22:07 +0000
+Received: from CO1PR11MB5154.namprd11.prod.outlook.com
+ ([fe80::ac89:75cd:26e0:51c3]) by CO1PR11MB5154.namprd11.prod.outlook.com
+ ([fe80::ac89:75cd:26e0:51c3%9]) with mapi id 15.20.5566.015; Fri, 26 Aug 2022
+ 06:22:07 +0000
+From:   <Conor.Dooley@microchip.com>
+To:     <palmer@dabbelt.com>, <arnd@arndb.de>
+CC:     <soc@kernel.org>, <Daire.McNamara@microchip.com>,
+        <broonie@kernel.org>, <wsa@kernel.org>, <thierry.reding@gmail.com>,
+        <u.kleine-koenig@pengutronix.de>, <jassisinghbrar@gmail.com>,
+        <linus.walleij@linaro.org>, <brgl@bgdev.pl>,
+        <gregkh@linuxfoundation.org>, <olof@lixom.net>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+Subject: Re: [RESEND/PULL PATCH 0/2] MAINTAINERS updates for PolarFire SoC
+Thread-Topic: [RESEND/PULL PATCH 0/2] MAINTAINERS updates for PolarFire SoC
+Thread-Index: AQHYrMIE51FEp2TUrE6UKiLrU4uIQ63AaGqAgABmUgA=
+Date:   Fri, 26 Aug 2022 06:22:07 +0000
+Message-ID: <196dcae3-542a-2cf3-ebee-e7ecc4a8a330@microchip.com>
+References: <mhng-9fab66cf-3d6c-417b-9233-8030c256aea9@palmer-mbp2014>
+In-Reply-To: <mhng-9fab66cf-3d6c-417b-9233-8030c256aea9@palmer-mbp2014>
+Accept-Language: en-IE, en-US
+Content-Language: en-IE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 27f12380-0508-4851-7681-08da872b4d36
+x-ms-traffictypediagnostic: BYAPR11MB3765:EE_
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 03V8NfewAgU6iJDfTZ7UEZNJ5y+/qdqmUwMith70ipLRckxENqm7M2HDfw7ClWkmK4vcoJK3IdACgYNePW4wuIG60S+0IDBno2buqrsRilvuT+qjgVZL4XgK5ofRt55UXQjgQYgY9iNXyunb9XyZDOE0R9kvmYBxEbR4KIfkuSTkpVLED2etYv3aO2OtEA8gbRipFTH1asR9ndZSWVTtSDhac65xKDl7wPu7jEQeeP7ClsT0gSebbSWjO5aOmm7IvyK4XYACicieYFJ82WOzezAoO/x0pF5t+Xl7GlAko03gMGN8lFGw1NfBKjh+LlE8kNPtJnsWBy/SkeuY99uyItqoCn8lSA8MwxIMRpeIDAELJFAc4amaW1tg6MSV1poYW7xGDn8YuLMK9lddxfByJusj9p7D9mV74zyBBUJ/jKheu5BtDALBR/t5dmVIM8Y4+nndA/WOktKjZJ84k0PFZdOsr2JKHZhTY72DR41dExxoYYqTjDDNrPLB9MEmUe3Gv5N80l8mkSFFjdzhIy38iNAyi0feb71R+KmSfp8g3io8rB718Cw4FMWRKlLr8zl91TJ1SRF+CPGjRrrhqep8QDamz+X/8zdpFidJx8CiY4Amk5DZIi09ofZdqjcdZyYEy6oDMSxMVci452x5UngUCkoypPMm8Bvo2q2Ix9VVP9v47QzxwIr2dNrj+EpWn86bHK+N5SBsnRFQur9QZs/D2ZX5n+rtPM/mVnKeDXtMmbKPfLroh04ZU/eWuTWd96+D/LMV70b7OyNQAKno65JgeXeGJGOgQkPboyTtt9NRDWBSQoLbFh1RZwg20abiIWbZyGYmxl9adxXBpHvmG8qL9A==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB5154.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(346002)(39860400002)(396003)(136003)(376002)(366004)(38070700005)(2906002)(6512007)(26005)(38100700002)(36756003)(71200400001)(31686004)(110136005)(54906003)(316002)(91956017)(478600001)(53546011)(8936002)(41300700001)(66556008)(2616005)(6506007)(5660300002)(8676002)(4326008)(6486002)(66476007)(76116006)(66946007)(66446008)(4744005)(64756008)(186003)(7416002)(31696002)(86362001)(122000001)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?bjBzaG4rQ0xIVjJlVTl5RU80WGsxd1k2cE5LSitUVjkwdXlwQWNmVDlQcUdK?=
+ =?utf-8?B?clZvWlpEdnFyK0gwQmJpb3hqb1NOek1nNU41ckFNbFo2MnVPVmhacEhpeko5?=
+ =?utf-8?B?dVhMNGNkY2ZUdmowa0tsZTA2Y09zNWdiSFhlQmoxTXVmZkJCYkJnb0NGWENE?=
+ =?utf-8?B?UnI0L0Uwa3ZIc3Jzc2xHODNlbENYMUhKUWlIa2tBSnM5MldNSVdVOHVuTWk4?=
+ =?utf-8?B?SjQyN3lqMmU2dU9SdXVZczVLcSt1ZzR3UWFGcFRBL1FkWHovQmxKNzRRUEd4?=
+ =?utf-8?B?d0xwdkxiODdQY1dyZjhLMFFoZ21zVkVuWk1pN0RUK010OVFueGpiWkNORWRW?=
+ =?utf-8?B?K09MNENYRDE5TnN0OVFzZlF2di90NW54VUJyT21ldWsvc3ZobndPVlhaSkVJ?=
+ =?utf-8?B?dTdoWTRFNGJDSTVpeXlieGNWd0FKTFNxRUtyR3hXTStXdmZDdDhBMmxFb2JN?=
+ =?utf-8?B?RXBHMnFuQ01CWXNGY2RLanpjcWVscmZxcThCRlNFUDB1VElWUkh0UlZkRWhT?=
+ =?utf-8?B?MDBjL3MvWmNQQ05xN0l3OUVkREhSUmt1R0tkUjVGUFVxZ0JvdjRXY0ZMVWN5?=
+ =?utf-8?B?MkJ0UkZieFo5Q2h1dDY0Sm44dW05c2Y0Q0hyUERoUDdBbXl3Zks0VDY1UzFE?=
+ =?utf-8?B?NW5hKzFGSkZZSUVzaEw1Wi9yODY2MTcrSjhLWVo4T0JQZVMvMU9CbkJGRmlR?=
+ =?utf-8?B?WWM2VFQ4ak5QbGR4ZmY0RkgwU3E4UTZabFpFUkFBNGN3ZHVXclhXa1JKM3Bm?=
+ =?utf-8?B?NzVZMmpZcllVQnQrb3N5REVVS3JqMlJ1d1hHejJlbWZ1aEtiWlZ5QTFhM0Ry?=
+ =?utf-8?B?Tit1T1EwQ3hJdUtUUTNqUWM2Z3RDdmVtMXNpK01xL2o2SXZBZW1Ob3RlMFp6?=
+ =?utf-8?B?SDdZdkl5U3poV0RvaTNMTFJDK0Z5elUyeGtURm9VQ0dxQytrY2FWV3hpYTR3?=
+ =?utf-8?B?YzByVm9TTlRnRXFKL0dpUnlwMXFDeGQvU2hmVVNvck5qRjlFY2tjMTZOOWFQ?=
+ =?utf-8?B?V0wwSzg3US9wRlRraThhNTE1ZHlSN3h0OFdwUVpZNkkvVjE4WTI1VnUwM1o4?=
+ =?utf-8?B?TWVWLzVVbzdvYzcrcWpWUEdUSE9MS0wzcVRhcUlpZTQrbUxUMFdvZEFhd1VB?=
+ =?utf-8?B?eCtWdjJuZC85dzV1L3RVVkRIdXdwRFNReFAxcHBMSFdCME5xRS9lMytmVVhV?=
+ =?utf-8?B?cTlnamRMc3RHRGJ3dXlZYyt4bzM0VjY3QWFxNy96Wm80WGlNaEtaemJ3SElQ?=
+ =?utf-8?B?NEZmWmZHV2pZekNSRSs5QXYyZm5SVC9XZm5hdGE5ZFc4NlY2YWxvUGh1VkZ6?=
+ =?utf-8?B?M05hOEc4NUFYbXg0SGJDNnZldUx0aml4azNNaExDdUtEVmZ6b1IyRHVWQUJP?=
+ =?utf-8?B?b3U4d2F0NHIyK2t1NjNvS2JRY0Q4OWRnSlo2UHhCQWhsaE5BSnh2MEozaHh1?=
+ =?utf-8?B?ZEhEYlBaRnRCSWcvOTlWS1d3OXJXblh1aE4wbnN2Rm00bll3dWFkWUxRUllW?=
+ =?utf-8?B?SVU2ZTNIZEZQQ010eEcxbm9XZGdYbUk2WThEUzVKQUhKSldwYk5maSt0ZkxS?=
+ =?utf-8?B?eFViQ1dyT1F5a2Z6V0ljUy9UYmpDM0ZLdm4wQ0ZZeDJLQkxjSzE3NzF3czFI?=
+ =?utf-8?B?N04zb1R1b24zNi9YL29xTXlEQXA4NjAxYkhiUTBHazluV0oxKzE1UnpvaTBD?=
+ =?utf-8?B?enEyb1dnMEd2ZWdSNG9HZHUyc1FXVUtMdDB4eUgveE9QVHFIRUVuaHYwNWFM?=
+ =?utf-8?B?RTBpUGVSS1RxalFGVnhPTmhUOGtOTmJ5bTRETFF2N1F2T3ZEZGR6ZElBUGcv?=
+ =?utf-8?B?cWxuTzJLSFNsS3plS3JBdVpwRmNvWTVDbVRPSDM4TDFZMS9HQjF3RUhIc3lr?=
+ =?utf-8?B?UXUzSWlqK0htbEZhTVVFV3d1ZWs3RmI2cnc2T1BrNEtleDdxUG1tOGNCUFJD?=
+ =?utf-8?B?VDB5VHF4RlppeDE1WmY2Qk43RmVzUy9NZG5JeWFwQXlPejl6NmN6b2poYzFE?=
+ =?utf-8?B?cW1GRHdEdHdTditpOTdHTUkwOG1HaDFsZzNGam12QzJlMXRKb1A3Ym55WlE2?=
+ =?utf-8?B?Tlg1eWptT0F0dUNFSzMwL0RXNExNb2pyZjdlenZERk5HL211eDZHaVFqRmV4?=
+ =?utf-8?Q?Xl00g35+Cc1woW/gOS0BsgX6B?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <ECFA4090DA71D240BE25023B2B6380FE@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH] dt-bindings: remoteproc: Add missing
- (unevaluated|additional)Properties on child nodes
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sibi Sankar <quic_sibis@quicinc.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:REMOTE PROCESSOR (REMOTEPROC) SUBSYSTEM" 
-        <linux-remoteproc@vger.kernel.org>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20220823145649.3118479-10-robh@kernel.org>
- <1491c83f-cd75-4de3-ec26-86db4adb2ade@linaro.org>
- <CAL_JsqJx1s5ez-ojP8ZK_MPBWuuLRyekjK1qhHd6Ezaimna8JQ@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAL_JsqJx1s5ez-ojP8ZK_MPBWuuLRyekjK1qhHd6Ezaimna8JQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5154.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 27f12380-0508-4851-7681-08da872b4d36
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Aug 2022 06:22:07.4636
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: eiUVvb9BqVHCF8QkTDqLprptxclKwyNW3oSVsSupfwHBNJLnHfua7X/JM8NPhYJDe+K3azEn8UY75C8ZGD1OMVo25WM/XOUVnTxQ8Hko1Ow=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR11MB3765
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,62 +158,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/08/2022 16:13, Rob Herring wrote:
-> On Thu, Aug 25, 2022 at 3:23 AM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 23/08/2022 17:56, Rob Herring wrote:
->>> In order to ensure only documented properties are present, node schemas
->>> must have unevaluatedProperties or additionalProperties set to false
->>> (typically).
->>>
->>> Signed-off-by: Rob Herring <robh@kernel.org>
->>> ---
->>>  .../devicetree/bindings/remoteproc/qcom,sc7180-mss-pil.yaml      | 1 +
->>>  .../devicetree/bindings/remoteproc/qcom,sc7280-mss-pil.yaml      | 1 +
->>>  .../devicetree/bindings/remoteproc/qcom,sc7280-wpss-pil.yaml     | 1 +
->>>  3 files changed, 3 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sc7180-mss-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sc7180-mss-pil.yaml
->>> index e76c861165dd..e4a7da8020f4 100644
->>> --- a/Documentation/devicetree/bindings/remoteproc/qcom,sc7180-mss-pil.yaml
->>> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,sc7180-mss-pil.yaml
->>> @@ -140,6 +140,7 @@ properties:
->>>
->>>    glink-edge:
->>>      $ref: qcom,glink-edge.yaml#
->>> +    unevaluatedProperties: false
->>
->> Is it actually needed? The qcom,glink-edge.yaml has
->> additionalProperties:false, so I expect it to complain if anything
->> appears here.
-> 
-> Perhaps not, but I'm trying to come up with a meta-schema to check
-> these though I'm not sure I can get to no warnings which is how I
-> found all these cases. The main remaining warnings are bus child node
-> pattern schemas which can perhaps be handled with
-> 'additionalProperties: true'. The rule I have says if properties or
-> patternProperties is present then unevaluatedProperties or
-> additionalProperties must be. To handle this case, I think we'd have
-> to walk the $ref and check it.
-> 
-> Anyways, we can hold off on this one until when and if there's a
-> meta-schema in place.
-
-For me adding unevaluatedProp:false everywhere with $ref is okay and it
-makes the code easier to read - no need to dive into referenced schema
-to remember if it allows or does not allow additional properties. It is
-also a safer choice if referenced schema forgot to set additionalProp:false.
-
-However if referenced schema has additionalProp:false, then
-unevaluatedProp:false here is redundant and question is whether the
-redundancy is worth additional readability/obviousness.
-
-To me, unevaluatedProp:false here would during review save time - no
-need to jump into referenced schema to check what is there. If we make
-it a rule / coding convention, then I am in.
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
+T24gMjYvMDgvMjAyMiAwMToxNSwgUGFsbWVyIERhYmJlbHQgd3JvdGU6DQo+IEVYVEVSTkFMIEVN
+QUlMOiBEbyBub3QgY2xpY2sgbGlua3Mgb3Igb3BlbiBhdHRhY2htZW50cyB1bmxlc3MgeW91IGtu
+b3cgdGhlIGNvbnRlbnQgaXMgc2FmZQ0KPiANCj4gT24gV2VkLCAxMCBBdWcgMjAyMiAwNzowMjo0
+MiBQRFQgKC0wNzAwKSwgY29ub3IuZG9vbGV5QG1pY3JvY2hpcC5jb20gd3JvdGU6DQo+PiBIZXkg
+QXJuZCwNCj4+DQo+PiBDb3VsZCB5b3UgcGxlYXNlIHRha2UgdGhlIGZvbGxvd2luZyB0d28gcGF0
+Y2hlcyB2aWEgdGhlIHNvYyB0cmVlIHdoZW4NCj4+IHlvdSBnZXQgYSBjaGFuY2U/DQoNCj4gVGhh
+bmtzLCB0aGVzZSBhcmUgb24gZml4ZXMuDQoNCkkgdGhpbmsgdGhlc2UgYWxyZWFkeSB3ZXJlIGFw
+cGxpZWQgYnkgQXJuZC4gSSBndWVzcyB0aGUgc29jIHBhdGNod29yaw0KYm90IGRvZXMgbm90IEND
+IHRoZSBwZW9wbGUgb24gdGhlIG9yaWdpbmFsIG1haWwsIG9ubHkgdGhlIGF1dGhvci4NCg==
