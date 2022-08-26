@@ -2,185 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 086205A1E8A
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 04:08:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93ADA5A1F2C
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 05:00:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230308AbiHZCIH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Aug 2022 22:08:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53252 "EHLO
+        id S244909AbiHZDA1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Aug 2022 23:00:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229512AbiHZCIG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 22:08:06 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB917CACB6;
-        Thu, 25 Aug 2022 19:08:04 -0700 (PDT)
-X-UUID: 8b52145f80f44bd3aec98913f8f8437f-20220826
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=KgBpaU7vRZoDlQXa+zssEHDfGBzr1B9I2Bio6kdXfOU=;
-        b=U5qNUb/ICHSrFGDajBga2+HPy+9PZsQdnNX6o4BZiWyETFZzfZh7SBA8tBHl+j9wRSkqhrosZqhWUqnbXDsCnRb43+WEDitaJ3xbcau/ztr5esBLjwwVa0DMcMnCfgHlX3RjzWbTgLuKSEhDyD5b7V1T0btTOLVDo/ZL/21QsHY=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.10,REQID:8e2f6988-934e-4294-8818-24dc287055dc,OB:0,L
-        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:28,RULE:Releas
-        e_Ham,ACTION:release,TS:73
-X-CID-INFO: VERSION:1.1.10,REQID:8e2f6988-934e-4294-8818-24dc287055dc,OB:0,LOB
-        :0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:28,RULE:Spam_GS9
-        81B3D,ACTION:quarantine,TS:73
-X-CID-META: VersionHash:84eae18,CLOUDID:74fa2520-1c20-48a5-82a0-25f9c331906d,C
-        OID:e39118a24036,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:40|20,QS:nil,BEC:nil,COL:0
-X-UUID: 8b52145f80f44bd3aec98913f8f8437f-20220826
-Received: from mtkmbs09n1.mediatek.inc [(172.21.101.35)] by mailgw01.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1964532857; Fri, 26 Aug 2022 10:07:58 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Fri, 26 Aug 2022 10:07:57 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Fri, 26 Aug 2022 10:07:57 +0800
-Message-ID: <8f3dba943170361211d9bb4c8bf1be12bbfdec20.camel@mediatek.com>
-Subject: Re: [PATCH v2] dt-bindings: arm: mediatek: mmsys: change compatible
- for MT8195
-From:   Bo-Chen Chen <rex-bc.chen@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     Jason-JH Lin =?UTF-8?Q?=28=E6=9E=97=E7=9D=BF=E7=A5=A5=29?= 
-        <Jason-JH.Lin@mediatek.com>,
-        Nancy Lin =?UTF-8?Q?=28=E6=9E=97=E6=AC=A3=E8=9E=A2=29?= 
-        <Nancy.Lin@mediatek.com>,
-        "CK Hu =?UTF-8?Q?=28=E8=83=A1=E4=BF=8A=E5=85=89=29?=" 
-        <ck.hu@mediatek.com>,
-        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        "hsinyi@google.com" <hsinyi@google.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Fri, 26 Aug 2022 10:07:56 +0800
-In-Reply-To: <3ed3d73a-1671-708e-7c42-498cca6aaf1d@gmail.com>
-References: <20220825091448.14008-1-rex-bc.chen@mediatek.com>
-         <3ed3d73a-1671-708e-7c42-498cca6aaf1d@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S244929AbiHZDAU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Aug 2022 23:00:20 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0C6E40E1A;
+        Thu, 25 Aug 2022 20:00:18 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 823A7B82F72;
+        Fri, 26 Aug 2022 03:00:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 28F6CC433D7;
+        Fri, 26 Aug 2022 03:00:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1661482816;
+        bh=lhOK0hN5NUnvLWU7XQhshd4+QudR/OnZ1UDqoKn9XmM=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=pheTM+Iv1gAfD3BqcsheVT5roQfzETnyE4zKJa6BSSSWrlLNLqQLpEmbaJOmPr/Ql
+         S69xiCm6KMof2CCr8ZtdnVYAJbNJIVW3mfFxpQWeeSIhxf1/cRwA553n3kHFPraJlx
+         OqLMqtmT71HSazDJuZ948XpI6IfrMEJF7MDp9jEZfupnziNfbmy421qGJE5DtWvkrb
+         5pGB0/12Bc674X2bfQFSnW0VBWLC8DgVznzb+l7eBjpo16gP9yTKGJbVU09LUJtjcc
+         e3iKg9kAp/F6UJmIDbGlmjIYhJQVR3v/Jq3QequRYCSFhUB6oHrvpmBbckDKSPGUwX
+         dOgoEtqp8Z/jw==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 05E04E2A040;
+        Fri, 26 Aug 2022 03:00:16 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_CSS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v2] dt-bindings: net: Add missing
+ (unevaluated|additional)Properties on child nodes
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <166148281601.17475.2210507730801372556.git-patchwork-notify@kernel.org>
+Date:   Fri, 26 Aug 2022 03:00:16 +0000
+References: <20220825192609.1538463-1-robh@kernel.org>
+In-Reply-To: <20220825192609.1538463-1-robh@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     ulli.kroll@googlemail.com, linus.walleij@linaro.org,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, krzysztof.kozlowski+dt@linaro.org,
+        lars.povlsen@microchip.com, Steen.Hegelund@microchip.com,
+        UNGLinuxDriver@microchip.com, wellslutw@gmail.com,
+        grygorii.strashko@ti.com, nsekhar@ti.com,
+        steen.hegelund@microchip.com, linux-arm-kernel@lists.infradead.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2022-08-25 at 22:57 +0800, Matthias Brugger wrote:
-> 
-> On 25/08/2022 11:14, Bo-Chen Chen wrote:
-> > From: "Jason-JH.Lin" <jason-jh.lin@mediatek.com>
-> > 
-> > For previous MediaTek SoCs, such as MT8173, there are 2 display HW
-> > pipelines binding to 1 mmsys with the same power domain, the same
-> > clock driver and the same mediatek-drm driver.
-> > 
-> > For MT8195, VDOSYS0 and VDOSYS1 are 2 display HW pipelines binding
-> > to
-> > 2 different power domains, different clock drivers and different
-> > mediatek-drm drivers.
-> > 
-> > Moreover, Hardware pipeline of VDOSYS0 has these components: COLOR,
-> > CCORR, AAL, GAMMA, DITHER. They are related to the PQ (Picture
-> > Quality)
-> > and they makes VDOSYS0 supports PQ function while they are not
-> > including in VDOSYS1.
-> > 
-> > Hardware pipeline of VDOSYS1 has the component ETHDR (HDR related
-> > component). It makes VDOSYS1 supports the HDR function while it's
-> > not
-> > including in VDOSYS0.
-> > 
-> > To summarize0:
-> > Only VDOSYS0 can support PQ adjustment.
-> > Only VDOSYS1 can support HDR adjustment.
-> > 
-> > Therefore, we need to separate these two different mmsys hardwares
-> > to
-> > 2 different compatibles for MT8195.
-> > 
-> > Fixes: 81c5a41d10b9 ("dt-bindings: arm: mediatek: mmsys: add mt8195
-> > SoC binding")
-> > Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
-> > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> > ---
-> > Changes for v2:
-> > 1. Add hardware difference for VDOSYS0 and VDOSYS1 in commit
-> > message.
-> > ---
-> >   .../devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml       |
-> > 3 ++-
-> >   1 file changed, 2 insertions(+), 1 deletion(-)
-> > 
-> > diff --git
-> > a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yam
-> > l
-> > b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yam
-> > l
-> > index 6ad023eec193..bfbdd30d2092 100644
-> > ---
-> > a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yam
-> > l
-> > +++
-> > b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yam
-> > l
-> > @@ -31,7 +31,8 @@ properties:
-> >                 - mediatek,mt8183-mmsys
-> >                 - mediatek,mt8186-mmsys
-> >                 - mediatek,mt8192-mmsys
-> > -              - mediatek,mt8195-mmsys
-> > +              - mediatek,mt8195-vdosys0
-> 
-> Thanks for you patch. As I mentioned on v1, I propose to set 
-> mediatek,mt8195-mmsys as fallback for mediatek,mt8195-vdosys0 to not
-> break 
-> backwards compatibility.
-> 
-> Apart from that, the binding change will need some changes to support
-> the new 
-> binding. Please provide these together with this patch.
-> 
-> Regards,
-> Matthias
-> 
+Hello:
 
-Hello Matthias,
+This patch was applied to netdev/net-next.git (master)
+by Jakub Kicinski <kuba@kernel.org>:
 
-Thanks for your comments.
-The purpose of this patch is to confirm we can separate mt8195 mmsys
-into two compatibles. I think this modification is accepted.
+On Thu, 25 Aug 2022 14:26:07 -0500 you wrote:
+> In order to ensure only documented properties are present, node schemas
+> must have unevaluatedProperties or additionalProperties set to false
+> (typically). Add missing properties/$refs as exposed by this addition.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+> v2:
+>  - Add microchip,sparx5-switch.yaml and sunplus,sp7021-emac.yaml
+> 
+> [...]
 
-After this, I think Jason-JH will push another series with this binding
-patch. In Jason-JH's series, we will modify mmsys driver based on this.
-And I think we don't need to keep "mediatek,mt8195-mmsys" if we also
-modify mmsys drivers in the same series.
+Here is the summary with links:
+  - [v2] dt-bindings: net: Add missing (unevaluated|additional)Properties on child nodes
+    https://git.kernel.org/netdev/net-next/c/057062adb49b
 
-Is it ok that postpones to pick this patch until we finish review
-follow-up series?
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
-BRs,
-Bo-Chen
-> > +              - mediatek,mt8195-vdosys >                 -
-> > mediatek,mt8365-mmsys
-> >             - const: syscon
-> >         - items:
 
