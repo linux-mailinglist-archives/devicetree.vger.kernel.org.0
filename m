@@ -2,50 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A4F635A22ED
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 10:25:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41CCA5A2307
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 10:30:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245050AbiHZIZp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 04:25:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33348 "EHLO
+        id S1343621AbiHZIaK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 04:30:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245114AbiHZIZo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 04:25:44 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9827B26113
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 01:25:43 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1oRUer-0006ip-Uw; Fri, 26 Aug 2022 10:25:41 +0200
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1oRUep-00077G-Qx; Fri, 26 Aug 2022 10:25:39 +0200
-Date:   Fri, 26 Aug 2022 10:25:39 +0200
-To:     Ivan Bornyakov <i.bornyakov@metrotek.ru>
-Cc:     j.zink@pengutronix.de, devicetree@vger.kernel.org,
-        linux-fpga@vger.kernel.org, robh+dt@kernel.org, mdf@kernel.org,
-        kernel@pengutronix.de, yilun.xu@intel.com, hao.wu@intel.com
-Subject: Re: [PATCH 00/16] Add support for Lattice MachXO2 programming via I2C
-Message-ID: <20220826082539.GA12909@pengutronix.de>
-References: <20220825141343.1375690-1-j.zink@pengutronix.de>
- <20220825152514.9926-1-i.bornyakov@metrotek.ru>
+        with ESMTP id S245046AbiHZIaI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 04:30:08 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5286E9FF4
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 01:30:03 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id tl26so1063567ejc.9
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 01:30:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=2w7uDDGae7lPC9PBKoaaB26gLASkKWk1Ljox9Qb8l6Q=;
+        b=WzlJoUzfNCpYcC/wKzgOZa08JruxJVjED39QeHg1/uZzWWP49D65DM1aFYc3qaKtvn
+         Q6zinWKDzFkDnxkWbGAh3BdqVKj2p2Y8GJhTsY/Pxt17M0r3EvJJymiAQrA33yDj5s17
+         X9iqJjwU09qVwnXAfOZGVQrRe+vzz3SkUiI7GmHzLQav3BjthDp7VmNiWuFuuAFntQ8c
+         meb78ZzYilLV0zjJZ/sdxprNpg3psTxruUB6RB89PizXIEEFmMorRbzKW8fkamtp+eE/
+         UP/DeTKxY08moOLhnrFO8NtHOaRtGKMwmVAnVvG2+YiB6+su8G33EAWTxccYf6n5zxDH
+         Bt8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=2w7uDDGae7lPC9PBKoaaB26gLASkKWk1Ljox9Qb8l6Q=;
+        b=YeAcGg11qKTpnE/A7+09xwbp+N9XnekheWBJVDADnX2+ZZwS+ER3aWIc+6BaY5Ci3B
+         +te2fb1Kvx2gnfXyGyHo6ppXceB60pf651dEr/4I03EaCnG8atvTZ/X+AETnMV9MDP+Q
+         EcF7DvEvGREICpVjaMsvYzDZSyZQVP7VC6RlIpdrWlc8DJZBCN7FoXOJ+gKtPBEEE/pX
+         5RtdDxehErfWWwALKF3QM4GcPUX835wV6iU35AKDZtD2vYEIqXISivwgwvCjFc5sMqfn
+         4LHhwFn853wj+Q9VHpCmKq8Qh5edBS4tEfYkLO6hEB+3HH7wsK2mAlPhw1HgwJkU51/P
+         d8Hw==
+X-Gm-Message-State: ACgBeo0ZvVqykpI1Rvg1Ioyi9AsekX8trls7SR2MZXrguTZj6FBae8ip
+        sZ+J62h7PQpVc3zyQ+OsVJv/o202EQToJljgqljsxA==
+X-Google-Smtp-Source: AA6agR5Mur9vHmJyu+/jiMMkqB3v9LgJ6NwVlpsA0j4qLjcco/mAHvxbCi0JTgMvXiCAzfETgkWpYo/C46NbmmoWnWI=
+X-Received: by 2002:a17:907:6293:b0:73d:b27b:e594 with SMTP id
+ nd19-20020a170907629300b0073db27be594mr4929048ejc.526.1661502601587; Fri, 26
+ Aug 2022 01:30:01 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220825152514.9926-1-i.bornyakov@metrotek.ru>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-From:   Sascha Hauer <sha@pengutronix.de>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+References: <20220819190054.31348-1-a-nandan@ti.com> <20220819190054.31348-3-a-nandan@ti.com>
+In-Reply-To: <20220819190054.31348-3-a-nandan@ti.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 26 Aug 2022 10:29:50 +0200
+Message-ID: <CACRpkdaktinAJveF_nH9NYYk7mAvnResRzoyuVDVWpwKKq6JOQ@mail.gmail.com>
+Subject: Re: [PATCH 2/4] dt-bindings: pinctrl: k3: Introduce pinmux
+ definitions for J784s4
+To:     Apurva Nandan <a-nandan@ti.com>
+Cc:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Hari Nagalla <hnagalla@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -54,46 +71,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ivan,
+On Fri, Aug 19, 2022 at 9:01 PM Apurva Nandan <a-nandan@ti.com> wrote:
 
-On Thu, Aug 25, 2022 at 06:25:14PM +0300, Ivan Bornyakov wrote:
-> Hi, Johannes!
-> 
-> I just came across your patches. Surprisingly, our work interferes.
-> 
-> I recently posted patch-series for configuring ECP5 and was asked to make
-> generalized sysCONFIG driver with support for both ECP5 and MachXO2, which
-> I did. Sadly I don't have hardware with MachXO2, but you clearly do :)
-> 
-> Please, take a look at
-> 
-> https://lore.kernel.org/linux-fpga/20220825112433.14583-1-i.bornyakov@metrotek.ru/
-> 
-> and please help test MachXO2 variant. When we pull this off, you may add I2C
-> interface on top.
+> Add pinctrl macros for J784s4 SoC. These macro definitions are
+> similar to that of J721s2, but adding new definitions to avoid
+> any naming confusions in the soc dts files.
+>
+> checkpatch insists the following error exists:
+> ERROR: Macros with complex values should be enclosed in parentheses
+>
+> However, we do not need parentheses enclosing the values for this
+> macro as we do intend it to generate two separate values as has been
+> done for other similar platforms.
+>
+> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
+> Signed-off-by: Apurva Nandan <a-nandan@ti.com>
 
-You are adding a new driver for something we already have a driver for
-in the tree. The final goal should be that we only have a single driver
-for sysconfig based FPGAs in the tree. Johannes' series is a step in
-that direction: He cleans up the existing driver and starts abstracting
-out common sysconfig functions so that they can be used by both the I2C
-and SPI interface. He just told me that the abstraction is likely not
-enough to integrate ECP5 support right away, one reason being that the
-machxo2 has a flash whereas the ECP5 does not.
+Acked-by: Linus Walleij <linus.walleij@linaro.org>
+I guess you will merge these patches together?
+Tell me if you rather want that I apply this one patch to the pinctrl tree.
 
-Unless you can explain why the existing driver is broken beyond repair
-I think we should rather incrementally improve the existing driver
-instead of adding a new one with a conflicting compatible.
-So despite you were in the room earlier I think you should rather base
-your work on Johannes' series.
-
-Just my 2 cents, maybe one of the maintainers has a few words on it.
-
-Sascha
-
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Yours,
+Linus Walleij
