@@ -2,74 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA4C55A27CA
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 14:27:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CBCA5A27E7
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 14:36:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229970AbiHZM0t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 08:26:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43614 "EHLO
+        id S1344293AbiHZMgC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 08:36:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230132AbiHZM0s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 08:26:48 -0400
-Received: from mail-sz.amlogic.com (mail-sz.amlogic.com [211.162.65.117])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04720D8B34;
-        Fri, 26 Aug 2022 05:26:47 -0700 (PDT)
-Received: from rd02-sz.amlogic.software (10.28.8.43) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server id 15.1.2507.6; Fri, 26 Aug 2022
- 20:26:44 +0800
-From:   Huqiang Qin <huqiang.qin@amlogic.com>
-To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <narmstrong@baylibre.com>, <khilman@baylibre.com>,
-        <jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Huqiang Qin <huqiang.qin@amlogic.com>
-Subject: [PATCH v2] arm64: dts: meson-s4: include meson-s4-gpio.h
-Date:   Fri, 26 Aug 2022 20:23:40 +0800
-Message-ID: <20220826122338.2452433-1-huqiang.qin@amlogic.com>
+        with ESMTP id S1344192AbiHZMfw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 08:35:52 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D3AEC2766
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 05:35:51 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id bs25so1668832wrb.2
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 05:35:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=fBJ7mlL4B6dgX7Jn6GDpLICbORkPdqsPpx/Irv1VRwQ=;
+        b=vt5+zcek6yOoHf/CxBlmXehhdTslXBuD7tniMBJ+mhzL6P2aogKD9cBvN31VrVbyCM
+         g0AgGqqWjXuHd17+vb/G4xz7nk2Ty8uuni1loh0Xzt9ByQ8vAEWsjXyz+WrgfedjlWC1
+         IUHl/I0mE3+Os+lmkhopvNrJgKqZ1Jv8419PDfORgSXd+sHugc6Qt1619tq8l3ChPiAR
+         dYZB6NCUdIFf4/QCaQKwJLjLSBVe3C587ZtwnT5Y20HXnQhi+xk0tkLkJwvDybFmR6I8
+         Z9sNGbC43iR4ADkygF+ZbNMMehJx+EX9ZwE4v40j/YtNbilMkGSuK23FoVAjeFhSxFjl
+         Enlg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=fBJ7mlL4B6dgX7Jn6GDpLICbORkPdqsPpx/Irv1VRwQ=;
+        b=rio46rv5QNhrpaPVYrfW6IGo+xiWA71yaWaOTuP90wT9ltM4p8aAYOvX0VVvxp5Su8
+         qmzfp/KjFBw/3ZqGlnMI9XCbsJr9STlPy6act2sKFXCzAo8BD5t6B8FgJyD7MntjPqFA
+         Ba9g2zpF14yWNNULUojETaUpSXWX3M3ATYwyaDnSkj7W7cFO2Xn1/Iz0ns1w59Sk+HLz
+         YhAyrKzOls1n48aR6bg/5dCteL2h1TjOE3CIjiU6F1HVT3PPgy3NyEKlE0s6YrRoymst
+         Wl6kSmhS80R2WBpVAV8j2oXtmlLrclHdIS+ePjKvmmcahLetXgFo5aKOYVhDFpoC9GbL
+         6URA==
+X-Gm-Message-State: ACgBeo06mAXslLFOfxGv48Ab4OuIxb1FgmACc/aQoS+yAYOMFU+dz7OH
+        nzbgMwYDXAqDt3UzqJlRb44udA==
+X-Google-Smtp-Source: AA6agR6qZYt3ipgSrUHrq5Or8V1GGMtjI4XbWNdIX4nd22sW82VcnQ4wznzUGx6InHLLyJtTSyGyWw==
+X-Received: by 2002:a05:6000:184e:b0:225:4608:c6a6 with SMTP id c14-20020a056000184e00b002254608c6a6mr4745717wri.108.1661517349800;
+        Fri, 26 Aug 2022 05:35:49 -0700 (PDT)
+Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id q62-20020a1c4341000000b003a3442f1229sm8359839wma.29.2022.08.26.05.35.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 Aug 2022 05:35:49 -0700 (PDT)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     agross@kernel.org, andersson@kernel.org,
+        konrad.dybcio@somainline.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     bryan.odonoghue@linaro.org
+Subject: [PATCH v2 0/1] arm64: dts: qcom: pwm: Drop PWM reg dependency
+Date:   Fri, 26 Aug 2022 13:35:46 +0100
+Message-Id: <20220826123547.3392457-1-bryan.odonoghue@linaro.org>
 X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.28.8.43]
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In the future, meson-s4.dtsi will have some nodes that need
-to use the meson-s4-gpio.h file.
+The accompanying patch removes reg = <> and pwm@reg from the yaml and dtsi.
+This follows on from discussions between Bupesh, Dmitry, Bjorn, Krzysztof and myself.
 
-e.g.
-  * Bluetooth enable pin:
-    bt_en-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
-  * Audio mute pin:
-    spk_mute-gpios = <&gpio GPIOH_8 GPIO_ACTIVE_LOW>;
-  * ...
+https://lore.kernel.org/all/20220719205058.1004942-1-bhupesh.sharma@linaro.org/
+https://lore.kernel.org/all/20220721195502.1525214-1-bhupesh.sharma@linaro.org/
+https://lore.kernel.org/all/20220822120300.2633790-1-bryan.odonoghue@linaro.org/
 
-Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+The previous discussion tended towards either removing pwm@reg and reg = <> or
+extending out the yaml to support multiple reg declarations for PWM compatible.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-index ad50cba42d19..44cce8b0fcef 100644
---- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-@@ -6,6 +6,7 @@
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/gpio/meson-s4-gpio.h>
- 
- / {
- 	cpus {
+This patch does the former. I've left node: label in place, dropped both pwm@reg
+and reg = <> I kept "label: nodename" though because it looked more like what we
+already have for rpm regulators.
+
+Per our previous discussion I've modified the yaml and dtsi in one go.
+
+Bryan O'Donoghue (1):
+  arm64: dts: qcom: pwm: Drop PWM reg dependency
+
+ Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 8 ++++----
+ arch/arm64/boot/dts/qcom/pm8350c.dtsi                     | 3 +--
+ 2 files changed, 5 insertions(+), 6 deletions(-)
+
 -- 
 2.37.1
 
