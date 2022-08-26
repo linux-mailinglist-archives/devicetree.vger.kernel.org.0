@@ -2,91 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9443C5A299A
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 16:34:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41C5B5A2A06
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 16:52:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343887AbiHZOdK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 10:33:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36274 "EHLO
+        id S229863AbiHZOwC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 10:52:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37918 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344482AbiHZOdJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 10:33:09 -0400
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E33E186DF
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 07:33:08 -0700 (PDT)
-Received: by mail-pl1-x636.google.com with SMTP id w2so1769412pld.0
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 07:33:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:from:to:cc;
-        bh=MoYO0aV4Sdt+1lFREzXlZRwm/vMSBTGBOAkrIfrb15g=;
-        b=CT/xwp8bf+4WnGL54CNyZVkKySUwDtUNmpjzpWsUyLOkBg8sDDdOeo80hAORi+whLq
-         sMEt6SfNb8fzZ/lW58Zxz7NMrPe/IxhVPmObYrXUNgSerKsYN4hGPzf/JSZ7hI3w1m7I
-         av7swLyoioe1Kc08F6JDrl/BvN2m6DS8uNXjLQvTyXSLVG5pOAAXF6X2LRIHR2vJxTrH
-         DtLAB/OLA+v+FlOftUF45005OE7IQES8bTIxlWWNe9+r3PDCjF5OGUmEsUCapuAgMK0S
-         jTV1SRf3gAkWtYXgEVs+sIuSK6tELwPF/xoeTn+V0fKMvXaSdzvi49AlF3HNzBLvregm
-         utcg==
+        with ESMTP id S229810AbiHZOwC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 10:52:02 -0400
+Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6225ED8B2B;
+        Fri, 26 Aug 2022 07:52:00 -0700 (PDT)
+Received: by mail-qk1-f180.google.com with SMTP id n21so1279696qkk.3;
+        Fri, 26 Aug 2022 07:52:00 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:x-gm-message-state:from:to:cc;
-        bh=MoYO0aV4Sdt+1lFREzXlZRwm/vMSBTGBOAkrIfrb15g=;
-        b=we5K3zmiNlzp/Exjk0xZdEGTTsqixkklPah5mNGGmX0n+Hv1bS9b1yIWnKKjDxxk1O
-         dY+abMXXKxMAOGUXqOdSrSAp3DEKI9AriachXw2AjwbduW54rtmD37ikImfpQB5gr5aZ
-         cXe5zD522EG59X4T1qxszWMfnR60X4Ih9rE/MGzd/QZzk7+fEJMgS7UzR4Bjxq38Lyf4
-         H1wIKzBNwtXaqVRrZ0OrrrcYakXmjhUrLKqCu1jDv8qs0QkH791WCGRFIiCgZNfa503V
-         F5UNmVpabX6pU3C6NPh3MhN4Lg6voUzih6IDhI1/j30wWmztqm1rWyP6CxuA4tUEPPkK
-         uzUw==
-X-Gm-Message-State: ACgBeo3xpBzM3aE+1QjH56VeGBi6y/Ks8Za/fuPdSoFvrf7bmo9wxYOL
-        laY6u9mc4vMfpze+r6TmN+lSwg==
-X-Google-Smtp-Source: AA6agR7zB0GXZEcvFu4C6QCUUhy/MR+Rz11NBBQC8ja8lj3FFezrrr0OxS3nFw6wcE24xBi7lBRTxA==
-X-Received: by 2002:a17:902:f542:b0:173:4136:83cb with SMTP id h2-20020a170902f54200b00173413683cbmr3905017plf.4.1661524387807;
-        Fri, 26 Aug 2022 07:33:07 -0700 (PDT)
-Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
-        by smtp.gmail.com with ESMTPSA id i72-20020a62874b000000b0052e987c64efsm1871933pfe.174.2022.08.26.07.33.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Aug 2022 07:33:07 -0700 (PDT)
-Date:   Fri, 26 Aug 2022 07:33:07 -0700 (PDT)
-X-Google-Original-Date: Fri, 26 Aug 2022 07:33:05 PDT (-0700)
-Subject:     Re: [RESEND/PULL PATCH 0/2] MAINTAINERS updates for PolarFire SoC
-In-Reply-To: <196dcae3-542a-2cf3-ebee-e7ecc4a8a330@microchip.com>
-CC:     Arnd Bergmann <arnd@arndb.de>, soc@kernel.org,
-        Daire.McNamara@microchip.com, broonie@kernel.org, wsa@kernel.org,
-        thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
-        jassisinghbrar@gmail.com, linus.walleij@linaro.org, brgl@bgdev.pl,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Olof Johansson <olof@lixom.net>, mturquette@baylibre.com,
-        sboyd@kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-From:   Palmer Dabbelt <palmer@dabbelt.com>
-To:     Conor.Dooley@microchip.com
-Message-ID: <mhng-5a6ac7a8-1caa-433b-909b-438a1c05f320@palmer-mbp2014>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=/EULlMcFWN8bwYrlTfSgo209cnQT1LoK3WzcPgYa3PQ=;
+        b=j5UtwCowN1LIkX3IiKEDZjfADh9CUcV0XFi8rZZalq5ONVdZlFqUm08MSwFUvgiGAl
+         JpKbsky36rxQ4tCab//QGYeVo/9UW1Jhlx3OvMXMOm3w4vd9lLQR/gw6yK41fH1dxOup
+         t3/uGvmyDTToRhdrCxdp1GFSlcaHO2qAb3mUfYe4odAhP41EWywAHnt0Grt1Gc6AWrBS
+         E9eQd84025M9Ryf6hywHoPUCzpNJHTZyK88JsfQPOtzu2eo0LZ3QSiheAsZ5G2VSGiRC
+         RYGevveaIwFr5pg10UbB5uAULZKDKgppIDICltYKqsxVpeQzG0ZuVUY7kovTvcYSTh1S
+         cjKQ==
+X-Gm-Message-State: ACgBeo3TAxmgHrBYNz0MJvlZ1xG7csylRLeha3g5xwE0ltQPLptkpES+
+        jPvXDHw4J63MBcSiIM6t0v59o/A8edJyiw==
+X-Google-Smtp-Source: AA6agR5EHTedsIAM0Shy/gvM7B0EYSAV5c1Ulh6lshLcTzS/XqzSKANDn3JCgT5RBWE53x8M1pE+fA==
+X-Received: by 2002:a05:620a:2584:b0:6ab:91fd:15dd with SMTP id x4-20020a05620a258400b006ab91fd15ddmr15115qko.287.1661525519372;
+        Fri, 26 Aug 2022 07:51:59 -0700 (PDT)
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com. [209.85.128.169])
+        by smtp.gmail.com with ESMTPSA id b23-20020ac86bd7000000b00342fb07944fsm1329501qtt.82.2022.08.26.07.51.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 Aug 2022 07:51:59 -0700 (PDT)
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-3321c2a8d4cso41964177b3.5;
+        Fri, 26 Aug 2022 07:51:59 -0700 (PDT)
+X-Received: by 2002:a25:d80b:0:b0:696:6d79:4891 with SMTP id
+ p11-20020a25d80b000000b006966d794891mr12980ybg.89.1661525518754; Fri, 26 Aug
+ 2022 07:51:58 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220825071022.7864-1-wsa+renesas@sang-engineering.com> <20220825071022.7864-7-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20220825071022.7864-7-wsa+renesas@sang-engineering.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 26 Aug 2022 16:51:47 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVMZf80hVE6YbsVxxByJQ3onJKk5KwVvB=+PaQkahRAVQ@mail.gmail.com>
+Message-ID: <CAMuHMdVMZf80hVE6YbsVxxByJQ3onJKk5KwVvB=+PaQkahRAVQ@mail.gmail.com>
+Subject: Re: [PATCH v2 6/6] arm64: dts: renesas: r8a774a1: put I2C aliases to
+ board files
+To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 25 Aug 2022 23:22:07 PDT (-0700), Conor.Dooley@microchip.com wrote:
-> On 26/08/2022 01:15, Palmer Dabbelt wrote:
->> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
->> 
->> On Wed, 10 Aug 2022 07:02:42 PDT (-0700), conor.dooley@microchip.com wrote:
->>> Hey Arnd,
->>>
->>> Could you please take the following two patches via the soc tree when
->>> you get a chance?
-> 
->> Thanks, these are on fixes.
-> 
-> I think these already were applied by Arnd. I guess the soc patchwork
-> bot does not CC the people on the original mail, only the author.
+Hi Wolfram,
 
-Ok, I've dropped them.  Thanks!
+On Thu, Aug 25, 2022 at 9:11 AM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> I2C aliases are not a property of a SoC. They belong to board files
+> where they are named accordingly in the schematics.
+>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+
+Thanks for your patch!
+
+> --- a/arch/arm64/boot/dts/renesas/hihope-common.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/hihope-common.dtsi
+> @@ -10,6 +10,14 @@
+>
+>  / {
+>         aliases {
+> +               i2c0 = &i2c0;
+> +               i2c1 = &i2c1;
+> +               i2c2 = &i2c2;
+> +               i2c3 = &i2c3;
+> +               i2c4 = &i2c4;
+> +               i2c5 = &i2c5;
+> +               i2c6 = &i2c6;
+> +               i2c7 = &iic_pmic;
+>                 serial0 = &scif2;
+>                 serial1 = &hscif0;
+>                 mmc0 = &sdhi3;
+
+Oops:
+
+    arch/arm64/boot/dts/renesas/hihope-common.dtsi:12.10-26.4: ERROR
+(path_references): /aliases: Reference to non-existent node or label
+"iic_pmic"
+
+I've sent a fix: "[PATCH] arm64: dts: renesas: r8a774e1: Rename i2c_dvfs
+to iic_pmic"
+https://lore.kernel.org/r/7d60653d4d63904dc025a133297a53eb885fa064.1661525361.git.geert+renesas@glider.be
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
