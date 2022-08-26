@@ -2,101 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27DF45A2C1E
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 18:17:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A25F65A2CBB
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 18:48:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343750AbiHZQQp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 12:16:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50804 "EHLO
+        id S1344849AbiHZQrG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 12:47:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343514AbiHZQQn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 12:16:43 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7ACF3D8B27
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 09:16:42 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id x93so2544996ede.6
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 09:16:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=KGLrHWIlQkkcGAYUa/2yGh2hQoX6jmYun770U+54jAw=;
-        b=cxz0/t2rB1fyMtx/h4P5N1RTo7JQXkfoidhaIHDxpHnV6nbuvzSUAMKDk9qjHlr6vP
-         sq5QfqwyT3JKzLcYr8qoJNE3PqSsGL1vXZvfqPEFoe0vLZ8Q6nMr3lNADWmO0oVLr8gi
-         INR7ioc1nZg98YbN0WNHwsg7R13yRBf4FcA0k=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=KGLrHWIlQkkcGAYUa/2yGh2hQoX6jmYun770U+54jAw=;
-        b=LiS2o3KA5dIdv1PSern6fu6l8g/hzp0YFctJjirSzcxaw/06UCnqnMojUn8dK3RN4k
-         qrq9kgfpUjrFQj9I7BmC49ECxW7QLd5foiCxme5/ly8lFp5uDBvtTRE6qhSS1140z3Nj
-         2iPFumOTSCTJCH9m20IcXYJOYft0tz11IQUWAkvAeIeJ5HNSt9TcCe/pDHmK3Zi0/kk0
-         7j/nUZDs+smcfSNXmeoHFMxn7ajVAdJXbnLTcWIsTNDFFfEGznPd+3nHhYti37HeNiYY
-         WFpYbffbjsBgYjZ8oCBQIcd1EqeMVtNhMjMOf+qNShCAI4tazHqV+RWE/h3Oe8KvV7u8
-         RoHw==
-X-Gm-Message-State: ACgBeo3664H8stZLnuwjn+tOMjQ1xEgJp0/KFpVlG4qZTQv39l3TMrXU
-        Si+1lFLhwx9B5Pc1oPuRoolqZjoJCSa1O0pS
-X-Google-Smtp-Source: AA6agR7pOXDoyj8lR/0tVi2qwwoXwPiKZcdK8Jbd0hK0OMYEn+lnZ1LJXWUM48oJmeh5oORcjlkLDA==
-X-Received: by 2002:a05:6402:501d:b0:443:1c7:ccb9 with SMTP id p29-20020a056402501d00b0044301c7ccb9mr7398959eda.101.1661530600909;
-        Fri, 26 Aug 2022 09:16:40 -0700 (PDT)
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com. [209.85.221.46])
-        by smtp.gmail.com with ESMTPSA id y27-20020a1709060a9b00b0073d7bef38e3sm1071151ejf.45.2022.08.26.09.16.39
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 Aug 2022 09:16:39 -0700 (PDT)
-Received: by mail-wr1-f46.google.com with SMTP id u5so2346035wrt.11
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 09:16:39 -0700 (PDT)
-X-Received: by 2002:adf:f90d:0:b0:20c:de32:4d35 with SMTP id
- b13-20020adff90d000000b0020cde324d35mr207547wrr.583.1661530599315; Fri, 26
- Aug 2022 09:16:39 -0700 (PDT)
+        with ESMTP id S1344827AbiHZQqX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 12:46:23 -0400
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A126A2B630;
+        Fri, 26 Aug 2022 09:45:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=1+qrU9950QfzNnLy0WDyq6B9ElOQ/hOzcQZFWjhLUSY=; b=DlSwWLoexpRsAd5rM+5oPmPbtA
+        LYXDunXdQNtLVpyDSrjeR3EwECgk27UzGIrYOmkQH404X3qICozaO049ARu9AKHmjefl2co9PkToN
+        otQ1nc5OCMdQbYMyhP6R5CiMDfjHb0izpE8oB2BOZ3e0svblbCrwd/RprEDzUpRhZ1RZahgm5oJXF
+        pyXpiPNsXBrDu6QnqB0cD28tCVcEPOsfU8xGdMeXfnJszqX8mcYQPG+T/f+oO+KOTYLIW7E02qmvt
+        RCdh6lj/3xaEAeUc09mxuFu12yd58MhPzvdh2foQsY5f3BsncoEr9xt3Ed63qo3NHN3SGLskRLsW6
+        Ug7ATD/w==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:33948)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1oRcSK-0006Un-7r; Fri, 26 Aug 2022 17:45:18 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1oRcSH-0006Dj-J4; Fri, 26 Aug 2022 17:45:13 +0100
+Date:   Fri, 26 Aug 2022 17:45:13 +0100
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Maxime Chevallier <maxime.chevallier@bootlin.com>
+Cc:     davem@davemloft.net, Rob Herring <robh+dt@kernel.org>,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        thomas.petazzoni@bootlin.com, Andrew Lunn <andrew@lunn.ch>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 3/5] net: pcs: add new PCS driver for altera TSE
+ PCS
+Message-ID: <Ywj4mQDyLzwbvxt8@shell.armlinux.org.uk>
+References: <20220826135451.526756-1-maxime.chevallier@bootlin.com>
+ <20220826135451.526756-4-maxime.chevallier@bootlin.com>
 MIME-Version: 1.0
-References: <20220826084813.1.I8c9a771fcf4d1cfb6e8e0ef17a153143af9a644d@changeid>
-In-Reply-To: <20220826084813.1.I8c9a771fcf4d1cfb6e8e0ef17a153143af9a644d@changeid>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Fri, 26 Aug 2022 09:16:27 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=X0FVeEKS9OLXrsK+S==BvxrnG8wZ-fjasJ-=kOPr=-=Q@mail.gmail.com>
-Message-ID: <CAD=FV=X0FVeEKS9OLXrsK+S==BvxrnG8wZ-fjasJ-=kOPr=-=Q@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sc7280-herobrine: Don't enable the USB
- 2.0 port
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220826135451.526756-4-maxime.chevallier@bootlin.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
- Hi,
+On Fri, Aug 26, 2022 at 03:54:49PM +0200, Maxime Chevallier wrote:
+> +
+> +/* SGMII PCS register addresses
+> + */
+> +#define SGMII_PCS_SCRATCH	0x10
+> +#define SGMII_PCS_REV		0x11
+> +#define SGMII_PCS_LINK_TIMER_0	0x12
+> +#define   SGMII_PCS_LINK_TIMER_REG(x)		(0x12 + (x))
+> +#define SGMII_PCS_LINK_TIMER_1	0x13
+> +#define SGMII_PCS_IF_MODE	0x14
+> +#define   PCS_IF_MODE_SGMII_ENA		BIT(0)
+> +#define   PCS_IF_MODE_USE_SGMII_AN	BIT(1)
+> +#define   PCS_IF_MODE_SGMI_SPEED_MASK	GENMASK(3, 2)
+> +#define   PCS_IF_MODE_SGMI_SPEED_10	(0 << 2)
+> +#define   PCS_IF_MODE_SGMI_SPEED_100	(1 << 2)
+> +#define   PCS_IF_MODE_SGMI_SPEED_1000	(2 << 2)
+> +#define   PCS_IF_MODE_SGMI_HALF_DUPLEX	BIT(4)
+> +#define   PCS_IF_MODE_SGMI_PHY_AN	BIT(5)
 
-On Fri, Aug 26, 2022 at 8:48 AM Matthias Kaehlcke <mka@chromium.org> wrote:
->
-> The USB 2.0 port of sc7280 is currently not used by any herobrine
-> board. Delete the device tree entries that enable it.
->
-> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> ---
-> I was also told that the 2.0 port is for the Embedded USB Debugger
-> (EUD) only, but I'm not sure if that's true. From the Linux side
-> it looks like a regular dwc3 controller.
->
->  arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi | 12 ------------
->  1 file changed, 12 deletions(-)
+This looks very similar to pcs-lynx's register layout. I wonder if it's
+the same underlying hardware.
 
-I can confirm it's not hooked up anywhere on herobrine-class boards.
-Disabling looks good to me. If we later have a herobrine variant where
-this is enabled we can enable it just for that variant.
+> +static int alt_tse_pcs_config(struct phylink_pcs *pcs, unsigned int mode,
+> +			      phy_interface_t interface,
+> +			      const unsigned long *advertising,
+> +			      bool permit_pause_to_mac)
+> +{
+> +	struct altera_tse_pcs *tse_pcs = phylink_pcs_to_tse_pcs(pcs);
+> +	u32 ctrl, if_mode;
+> +
+> +	if (interface != PHY_INTERFACE_MODE_SGMII &&
+> +	    interface != PHY_INTERFACE_MODE_1000BASEX)
+> +		return 0;
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+I would suggest doing this check in .pcs_validate() to catch anyone
+attaching the PCS with an unsupported interface mode.
+
+> +static void alt_tse_pcs_an_restart(struct phylink_pcs *pcs)
+> +{
+> +	struct altera_tse_pcs *tse_pcs = phylink_pcs_to_tse_pcs(pcs);
+> +	u16 bmcr;
+> +
+> +	bmcr = tse_pcs_read(tse_pcs, MII_BMCR);
+> +	bmcr |= BMCR_ANRESTART;
+> +	tse_pcs_write(tse_pcs, MII_BMCR, bmcr);
+> +
+> +	tse_pcs_reset(tse_pcs);
+
+Any ideas why a reset is necessary after setting BMCR_ANRESTART?
+Normally, this is not required.
+
+> diff --git a/include/linux/pcs-altera-tse.h b/include/linux/pcs-altera-tse.h
+> new file mode 100644
+> index 000000000000..9c85e7c8ef70
+> --- /dev/null
+> +++ b/include/linux/pcs-altera-tse.h
+> @@ -0,0 +1,17 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright (C) 2022 Bootlin
+> + *
+> + * Maxime Chevallier <maxime.chevallier@bootlin.com>
+> + */
+> +
+> +#ifndef __LINUX_PCS_ALTERA_TSE_H
+> +#define __LINUX_PCS_ALTERA_TSE_H
+> +
+> +struct phylink;
+
+Don't you want "struct phylink_pcs;" here?
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
