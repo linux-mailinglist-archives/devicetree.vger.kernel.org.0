@@ -2,90 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E30A55A2297
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 10:07:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF67A5A22C1
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 10:16:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244973AbiHZIHB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 04:07:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58670 "EHLO
+        id S1343617AbiHZIQ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 04:16:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245228AbiHZIHA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 04:07:00 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D4FED4745
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 01:06:57 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id h22so1704145ejk.4
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 01:06:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=EFxNeR78FI3l0OC7HZl6P9i468zpQHaQ3saZGSwaod0=;
-        b=uFWdeiGlLmROCVF+abK6O/n+PsbMttVes6THDJ8y2LAohfjd6WA5TiVYxHj9GMiEz/
-         /o2V0PIbRDule0ccYIFRdZqGaS9X6IIiTK5sAY+4lr1s+PApBmbeMsf7OoMrRngJUAci
-         edcD4w4NCdSLmcDx6yybnDfSf6SiGAgoLVS/GZvRyKoMrkMjOKtyciatt+Ty2YNT8HGU
-         W2ZfCiIBS5BvuTIcEt6NeCnP+KlL1qfENeyWPlxMhtoJQoctwMLSzjoreyHbpHL1pS28
-         rkXNjwvoCskyZQU3peT9/0ORJnwuJxAG5hncEAo/N+YUhHmm+S22atJYioIyqr7giWqe
-         M0Yw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=EFxNeR78FI3l0OC7HZl6P9i468zpQHaQ3saZGSwaod0=;
-        b=VBwlFDThdY8rbkWQ2hRUFfacaJ6JKd2Wzw2Y7DMO1iF+42P7Ng2mcUOSmMKOH6MQ7h
-         nKRW7e63s+o8oEKhHHPxB3lTQSK7estAN2D40T8O1b2yw8yqmzWytC9bW21aR5BKr7Kl
-         klIBSvRztJMHXQXJXgs7Ke3uYNW76kEu/mZhyhTsN72oCaELRZZ5Q1BNxkIf/qT2Mwak
-         sSztOmsogStfIvovBti9BKByMgc+PYQIjYoamhzkgcdSA/fN+WAFyO+PTi0Hq/qHQoHK
-         0fknCw5j3rn/MIBIzUIAFKpmbkMvWEFA72ymAll/k9fxldvS4Pj6VTFY8aUgQdUiENb0
-         NIcQ==
-X-Gm-Message-State: ACgBeo3TN3euRQ6aAYpBYBNpC5DG3RwLaypIPEarW33emD/zBolUgcTL
-        0U12ey+te4DJENbtkEa+Rq3G4iV+FneV7wK36zApAQ==
-X-Google-Smtp-Source: AA6agR7jN7XyheMHhzyh7YMEy8KcA8oU9ydIho7xiM2GGzQ4ny4ssMEayxNW/Er2QZsizb6/p3b/jGMLqTYIWr3h2tY=
-X-Received: by 2002:a17:906:478f:b0:73d:7919:b23 with SMTP id
- cw15-20020a170906478f00b0073d79190b23mr4413839ejc.690.1661501216423; Fri, 26
- Aug 2022 01:06:56 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220816133016.77553-1-krzysztof.kozlowski@linaro.org> <20220816133016.77553-2-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220816133016.77553-2-krzysztof.kozlowski@linaro.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 26 Aug 2022 10:06:45 +0200
-Message-ID: <CACRpkdYDAY-OA=YJU4J=-16PNmYb9LdnowFoMSbhQHKqNWxmVA@mail.gmail.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: pinctrl: samsung: stop using bindings
- header with constants
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Tomasz Figa <tomasz.figa@gmail.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        with ESMTP id S1343601AbiHZIQs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 04:16:48 -0400
+Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AED0D4758;
+        Fri, 26 Aug 2022 01:16:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+        d=metrotek.ru; s=mail;
+        h=from:subject:date:message-id:to:cc:mime-version:content-type:
+         content-transfer-encoding:in-reply-to:references;
+        bh=GgM9jd2gfjdVIiQkM15Sjc/NpQmQKqWnNl2+Tz982U0=;
+        b=YTHGiGWauR9+kRWkYLgKVFYGPbBU968unR1+7JEcqiNKxy2Jw4CkFLn6uanf5sq+8wI0nzNOh2ZNS
+         81MpJXS47bHa3EJ7PlPB0ljhGsXLsQWfBo//7ouDtyodpZoXJFN7Zwd12ZHLUW1G1cSXv2WCilm71C
+         toBLJrgoSkmJribf5kmUojgndRoTlMLgjrePvxYBwBYo5vPDhlUrvuBIrTcJymWGpfQi2q8VfmAwAc
+         e/WtmHnqWDkwzhODJZF4j4DQ3HyDzTxFrCQZ/IbWBeN4GAYQDK+tDgwizOcen2ZWJc+EBWVJ4/3lew
+         UKl9dcWy2A1o/T9iyp0egQPshU5nc0Q==
+X-Kerio-Anti-Spam:  Build: [Engines: 2.16.4.1445, Stamp: 3], Multi: [Enabled, t: (0.000017,0.009778)], BW: [Enabled, t: (0.000017,0.000001)], RTDA: [Enabled, t: (0.084197), Hit: No, Details: v2.41.0; Id: 15.52katr.1gbcjiluu.1gj; mclb], total: 0(700)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Level: 
+X-Footer: bWV0cm90ZWsucnU=
+Received: from h-e2.ddg ([85.143.252.66])
+        (authenticated user i.bornyakov@metrotek.ru)
+        by mail.pr-group.ru with ESMTPSA
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
+        Fri, 26 Aug 2022 11:16:28 +0300
+Date:   Fri, 26 Aug 2022 11:15:30 +0300
+From:   Ivan Bornyakov <i.bornyakov@metrotek.ru>
+To:     Johannes Zink <j.zink@pengutronix.de>
+Cc:     devicetree@vger.kernel.org, linux-fpga@vger.kernel.org,
+        robh+dt@kernel.org, mdf@kernel.org, kernel@pengutronix.de,
+        yilun.xu@intel.com, hao.wu@intel.com
+Subject: Re: [PATCH 00/16] Add support for Lattice MachXO2 programming via I2C
+Message-ID: <20220826081530.qd4or3fo275m7tyj@h-e2.ddg>
+References: <20220825152514.9926-1-i.bornyakov@metrotek.ru>
+ <b65b274e797fef70ee5824953d4bcda2c32d3624.camel@pengutronix.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <b65b274e797fef70ee5824953d4bcda2c32d3624.camel@pengutronix.de>
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 16, 2022 at 3:30 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+On Fri, Aug 26, 2022 at 08:32:49AM +0200, Johannes Zink wrote:
+> On Thu, 2022-08-25 at 18:25 +0300, Ivan Bornyakov wrote:
+> > Hi, Johannes!
+> 
+> Hi Ivan,
+> > 
+> > I just came across your patches. Surprisingly, our work interferes.
+> > 
+> > I recently posted patch-series for configuring ECP5 and was asked to
+> > make
+> > generalized sysCONFIG driver with support for both ECP5 and MachXO2,
+> > which
+> > I did. 
+> 
+> That looks very interesting indeed.
+> 
+> > Sadly I don't have hardware with MachXO2, but you clearly do :)
+> > 
+> > Please, take a look at
+> > 
+> >  
+> > https://lore.kernel.org/linux-fpga/20220825112433.14583-1-i.bornyakov@metrotek.ru/
+> > 
+> > and please help test MachXO2 variant. When we pull this off, you may
+> > add I2C
+> > interface on top.
+> > 
+> > 
+> > 
+> 
+> my hardware has only I2C connected to the MachXO2 (hence the patch
+> series...), so I cannot test your patches directly.
 
-> The bindings header with pin controller register values is being
-> deprecated and DTS already switched to a DTS-local header.
->
-> Do not reference the bindings header in schema and replace the defines
-> with raw values.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+That's unfortunate, anyway please join the review so your changes would
+be easier to apply on top.
 
-Looks good to me:
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
+> 
+> Since adding I2C requires some quirks with respect to the programming
+> commands (some are differ to the SPI ones, ...) it will take me some
+> time to add my patches on top of yours in order to test, but after
+> having had a short glance at your patch series, I think it should be
+> feasible.
+> 
+> Though, I think you should allow the program-gpios, init-gpios and
+> done-gpios for machxo2 and have them as optional, at least for machxo2.
+> 
+> Best regards
+> Johannes
+> 
+> -- 
+> Pengutronix e.K.                | Johannes Zink                  |
+> Steuerwalder Str. 21            | https://www.pengutronix.de/    |
+> 31137 Hildesheim, Germany       | Phone: +49-5121-206917-0       |
+> Amtsgericht Hildesheim, HRA 2686| Fax:   +49-5121-206917-5555    |
+> 
 
-I expect this to come to me with some pull request later.
-
-Yours,
-Linus Walleij
