@@ -2,62 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B79DC5A2334
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 10:38:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F4A05A235A
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 10:42:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245507AbiHZIh4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 04:37:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58104 "EHLO
+        id S245501AbiHZImm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 04:42:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241853AbiHZIhl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 04:37:41 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25AD7D2E8A;
-        Fri, 26 Aug 2022 01:37:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1661503056; x=1693039056;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=v/GMC8+uXpbJ05sehOG56CNutF0wXIfUIa6mE5Vt65Y=;
-  b=Q6MxTT9EmDA6Bywn7OyxNvawqbqjVTh15P430xTCtHO2N1Ok3GhPaD84
-   zp2vK58zOkjB6lQtPiatcpfqc4VX8IsNwfyZ+TL1ULdsWNI+T9ZIplfob
-   IbYKUeo+lgdOa42EhCsdIApGOKeMuGKkp6OIrhT4vQ923DClnwvF019aK
-   GIUDr73okpnBRPKkF5tLqWyMnUrhBpyopzeTId4X4OOF3juKC0EPavrl5
-   wNhN0TCGRqX0QdHpzEtIumjUkDX6jUCxJ0Vm0tw5nB/mAg4H35Jv8BE1K
-   fuBrYVn/Q5jt52JRS2eBQK5wAb9F5J55Dro+ZmC+RFZ0V8kBrAPvqKIP5
-   w==;
-X-IronPort-AV: E=Sophos;i="5.93,264,1654585200"; 
-   d="scan'208";a="188164749"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 26 Aug 2022 01:37:35 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Fri, 26 Aug 2022 01:37:33 -0700
-Received: from localhost.localdomain (10.10.115.15) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2507.12 via Frontend Transport; Fri, 26 Aug 2022 01:37:30 -0700
-From:   Claudiu Beznea <claudiu.beznea@microchip.com>
-To:     <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-        <claudiu.beznea@microchip.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <linux@armlinux.org.uk>,
-        <arnd@arndb.de>
-CC:     <cristian.birsan@microchip.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH 9/9] ARM: dts: at91: sam9x60ek: remove simple-bus for regulators
-Date:   Fri, 26 Aug 2022 11:39:27 +0300
-Message-ID: <20220826083927.3107272-10-claudiu.beznea@microchip.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20220826083927.3107272-1-claudiu.beznea@microchip.com>
-References: <20220826083927.3107272-1-claudiu.beznea@microchip.com>
+        with ESMTP id S245332AbiHZImW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 04:42:22 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49E71D5E82
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 01:41:33 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id m3so1103338lfg.10
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 01:41:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=jkT6gfgICzVkFvceCDxEfQxnxppLCkfQb5gmM0FPJRg=;
+        b=rin1WIxVfyiLMGrE8Uh+xahqZfKsOPuxS3QTtDklgYTUzlvoE5bB1IVgg3SNDIJHUx
+         CG7kgg6SG8vQn7GiIxIRtSbqy9FzTM29mYE2eZQEih+v19mqG9T0zv2FOUy6V0APQZ/g
+         9Ws8U04aMXHtV1hYL1Uo5uqKK5wtoSOY6o1Q/WiiTItE95E2uqGOZIMwHXxQr3CI2GJz
+         lwr/S1aIs78HaihY5rrwtIdXucXVORiCXfjExvgZSr0d3crgS/OLOKqaCb7LiwEGrcfA
+         +jG/wpNRqQluD1aBZf5w8htL5VlAkPA64qWePYOmER2pipKHjhGGYHIdMddI2ILRoyx6
+         5lyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=jkT6gfgICzVkFvceCDxEfQxnxppLCkfQb5gmM0FPJRg=;
+        b=kJxrBWgM0cCBAKmAHp0c3iNvbgzZ/mv9dY1rvcZxdRaMrgjovpow7xXSRelxmqIy7g
+         CByd2FdykEKsX79Sq9To8zLao/60rIMVg9+81TX+BdQW2rNfhhc8AEf4z1KWMOICrM3w
+         djdBlKYGbyP46g+gn+waxaYsw7K3BQGTfD2diULSYLn780UzJYaHeQDfhlFjowMKigay
+         H6Fb3ja6FPjZhBVa19oRnD6JaRxfvTb+FxEebqNgD1+j0SF7FTzdkcwHkZtXcdZQEPpV
+         5uwfVzarKZABO7CCSI7gqag2MSlPzAHNBDVrNalOV1Kr9KESGbpHBEF/RG+xQjzvdGka
+         WVvg==
+X-Gm-Message-State: ACgBeo0YmepPLdqgtu3YQNETAZeYP4T1Jaq/xDHd8TO77F71RIaMECrq
+        VXWeyfAYhQZnXNwSQLC5+z/X5Y39TaxdZw==
+X-Google-Smtp-Source: AA6agR5A/b73aktwecITAWQUppQ5OiPqU+lEF99OaO/Wi/Q0aVV+ToX6wP4FSKt7x8kynNkKltrQaw==
+X-Received: by 2002:a05:6512:39d3:b0:492:e172:e313 with SMTP id k19-20020a05651239d300b00492e172e313mr2006474lfu.628.1661503291407;
+        Fri, 26 Aug 2022 01:41:31 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id u11-20020a05651220cb00b00492df838a40sm295396lfr.280.2022.08.26.01.41.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 Aug 2022 01:41:30 -0700 (PDT)
+Message-ID: <f70f9f1b-c835-7baf-974d-87f2bf6e4e53@linaro.org>
+Date:   Fri, 26 Aug 2022 11:41:29 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.1.2
+Subject: Re: [v2] drm/msm: add null checks for drm device to avoid crash
+ during probe defer
+Content-Language: en-GB
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Vinod Polimera <quic_vpolimer@quicinc.com>,
+        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        dianders@chromium.org, vpolimer@quicinc.com, swboyd@chromium.org,
+        kalyant@quicinc.com
+References: <1654249343-24959-1-git-send-email-quic_vpolimer@quicinc.com>
+ <29ae886c-b2b2-2387-87cb-e4a885080418@linaro.org>
+In-Reply-To: <29ae886c-b2b2-2387-87cb-e4a885080418@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,116 +79,81 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Keep regulators as individual devices. There is no need to have them
-under simple bus. This will throw compilation warnings like:
-- unnecessary #address-cells/#size-cells without "ranges" or child "reg"
-property.
-- node has a unit name, but no reg or ranges property.
+On 15/06/2022 15:23, Dmitry Baryshkov wrote:
+> On 03/06/2022 12:42, Vinod Polimera wrote:
+>> During probe defer, drm device is not initialized and an external
+>> trigger to shutdown is trying to clean up drm device leading to crash.
+>> Add checks to avoid drm device cleanup in such cases.
+>>
+>> BUG: unable to handle kernel NULL pointer dereference at virtual
+>> address 00000000000000b8
+>>
+>> Call trace:
+>>
+>> drm_atomic_helper_shutdown+0x44/0x144
+>> msm_pdev_shutdown+0x2c/0x38
+>> platform_shutdown+0x2c/0x38
+>> device_shutdown+0x158/0x210
+>> kernel_restart_prepare+0x40/0x4c
+>> kernel_restart+0x20/0x6c
+>> __arm64_sys_reboot+0x194/0x23c
+>> invoke_syscall+0x50/0x13c
+>> el0_svc_common+0xa0/0x17c
+>> do_el0_svc_compat+0x28/0x34
+>> el0_svc_compat+0x20/0x70
+>> el0t_32_sync_handler+0xa8/0xcc
+>> el0t_32_sync+0x1a8/0x1ac
+>>
+>> Changes in v2:
+>> - Add fixes tag.
+>>
+>> Fixes: 623f279c778 ("drm/msm: fix shutdown hook in case GPU components 
+>> failed to bind")
+>> Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
+>> ---
+>>   drivers/gpu/drm/msm/msm_drv.c | 6 +++++-
+>>   1 file changed, 5 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/msm/msm_drv.c 
+>> b/drivers/gpu/drm/msm/msm_drv.c
+>> index 4448536..d62ac66 100644
+>> --- a/drivers/gpu/drm/msm/msm_drv.c
+>> +++ b/drivers/gpu/drm/msm/msm_drv.c
+>> @@ -142,6 +142,9 @@ static void msm_irq_uninstall(struct drm_device *dev)
+>>       struct msm_drm_private *priv = dev->dev_private;
+>>       struct msm_kms *kms = priv->kms;
+>> +    if (!irq_has_action(kms->irq))
+>> +        return;
+> 
+> As a second thought I'd still prefer a variable here. irq_has_action 
+> would check that there is _any_ IRQ handler for this IRQ. While we do 
+> not have anybody sharing this IRQ, I'd prefer to be clear here, that we 
+> do not want to uninstall our IRQ handler rather than any IRQ handler.
 
-While at it move it down a bit in the file to keep entries sorted
-alphabetically.
+Vinod, do we still want to pursue this fix? If so, could you please 
+update it according to the comment.
 
-Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
----
- arch/arm/boot/dts/at91-sam9x60ek.dts | 78 +++++++++++++---------------
- 1 file changed, 36 insertions(+), 42 deletions(-)
+> 
+>> +
+>>       kms->funcs->irq_uninstall(kms);
+>>       if (kms->irq_requested)
+>>           free_irq(kms->irq, dev);
+>> @@ -259,6 +262,7 @@ static int msm_drm_uninit(struct device *dev)
+>>       ddev->dev_private = NULL;
+>>       drm_dev_put(ddev);
+>> +    priv->dev = NULL;
+>>       destroy_workqueue(priv->wq);
+>> @@ -1167,7 +1171,7 @@ void msm_drv_shutdown(struct platform_device *pdev)
+>>       struct msm_drm_private *priv = platform_get_drvdata(pdev);
+>>       struct drm_device *drm = priv ? priv->dev : NULL;
+>> -    if (!priv || !priv->kms)
+>> +    if (!priv || !priv->kms || !drm)
+>>           return;
+>>       drm_atomic_helper_shutdown(drm);
+> 
+> 
 
-diff --git a/arch/arm/boot/dts/at91-sam9x60ek.dts b/arch/arm/boot/dts/at91-sam9x60ek.dts
-index 81c38e101f58..7ade9979e1c6 100644
---- a/arch/arm/boot/dts/at91-sam9x60ek.dts
-+++ b/arch/arm/boot/dts/at91-sam9x60ek.dts
-@@ -34,48 +34,6 @@ main_xtal {
- 		};
- 	};
- 
--	regulators: regulators {
--		compatible = "simple-bus";
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		vdd_1v8: fixed-regulator-vdd_1v8@0 {
--			compatible = "regulator-fixed";
--			regulator-name = "VDD_1V8";
--			regulator-min-microvolt = <1800000>;
--			regulator-max-microvolt = <1800000>;
--			regulator-always-on;
--			status = "okay";
--		};
--
--		vdd_1v15: fixed-regulator-vdd_1v15@1 {
--			compatible = "regulator-fixed";
--			regulator-name = "VDD_1V15";
--			regulator-min-microvolt = <1150000>;
--			regulator-max-microvolt = <1150000>;
--			regulator-always-on;
--			status = "okay";
--		};
--
--		vdd1_3v3: fixed-regulator-vdd1_3v3@2 {
--			compatible = "regulator-fixed";
--			regulator-name = "VDD1_3V3";
--			regulator-min-microvolt = <3300000>;
--			regulator-max-microvolt = <3300000>;
--			regulator-always-on;
--			status = "okay";
--		};
--
--		vdd2_3v3: regulator-fixed-vdd2_3v3@3 {
--			compatible = "regulator-fixed";
--			regulator-name = "VDD2_3V3";
--			regulator-min-microvolt = <3300000>;
--			regulator-max-microvolt = <3300000>;
--			regulator-always-on;
--			status = "okay";
--		};
--	};
--
- 	gpio-keys {
- 		compatible = "gpio-keys";
- 		pinctrl-names = "default";
-@@ -111,6 +69,42 @@ blue {
- 			linux,default-trigger = "heartbeat";
- 		};
- 	};
-+
-+	vdd_1v8: fixed-regulator-vdd_1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDD_1V8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-always-on;
-+		status = "okay";
-+	};
-+
-+	vdd_1v15: fixed-regulator-vdd_1v15 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDD_1V15";
-+		regulator-min-microvolt = <1150000>;
-+		regulator-max-microvolt = <1150000>;
-+		regulator-always-on;
-+		status = "okay";
-+	};
-+
-+	vdd1_3v3: fixed-regulator-vdd1_3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDD1_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+		status = "okay";
-+	};
-+
-+	vdd2_3v3: regulator-fixed-vdd2_3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDD2_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+		status = "okay";
-+	};
- };
- 
- &adc {
 -- 
-2.34.1
+With best wishes
+Dmitry
 
