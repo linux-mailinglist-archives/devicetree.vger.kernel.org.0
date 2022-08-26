@@ -2,70 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE67B5A2BF0
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 18:06:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27DF45A2C1E
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 18:17:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239224AbiHZQFr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 12:05:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59646 "EHLO
+        id S1343750AbiHZQQp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 12:16:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344189AbiHZQFn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 12:05:43 -0400
-Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27630BBA50;
-        Fri, 26 Aug 2022 09:05:40 -0700 (PDT)
-Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-11d2dcc31dbso2593876fac.7;
-        Fri, 26 Aug 2022 09:05:40 -0700 (PDT)
+        with ESMTP id S1343514AbiHZQQn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 12:16:43 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7ACF3D8B27
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 09:16:42 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id x93so2544996ede.6
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 09:16:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=KGLrHWIlQkkcGAYUa/2yGh2hQoX6jmYun770U+54jAw=;
+        b=cxz0/t2rB1fyMtx/h4P5N1RTo7JQXkfoidhaIHDxpHnV6nbuvzSUAMKDk9qjHlr6vP
+         sq5QfqwyT3JKzLcYr8qoJNE3PqSsGL1vXZvfqPEFoe0vLZ8Q6nMr3lNADWmO0oVLr8gi
+         INR7ioc1nZg98YbN0WNHwsg7R13yRBf4FcA0k=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=message-id:date:subject:references:in-reply-to:cc:to:from
-         :x-gm-message-state:from:to:cc;
-        bh=Bt46CA3gkhtjHQtX98/khRB3Yq8EzK753ZbUa2Xb1R4=;
-        b=kIkRE0KZbp4pkk4FPR93yi1zSdmDWHVWbnKB1c/rrNfb9sSWBcLPwABmAqkz/F80w0
-         IExWhsSBC0tR9XKkD/hFMSkLigyShCYZKrFk9x57VWfK6lNpGe3kIU+n6OXWUyweySbR
-         Q4t3MnESINyKAaD/AVJr2TIl5wuiw54eo48gmG4AcOKlA/uXd0Xhodw+pIu7dxETRhKH
-         m/Q/zHqm5dciTW6z6jfvQsf9RG+5geRub8t7hji/Yzc53f7CAvZGiv6hfGkNmeWCJpd2
-         SWp2zjDYjtQr9dguT8iKp/NXGUWhJUmhheZhYbmynStSUJXWyQhrG5PTRa8SYYfXQZsC
-         q1Jg==
-X-Gm-Message-State: ACgBeo3sY8g9IhGVuleTsJe3cdLUxD/EV40JKnB4dFjxxu+oc+S1IyLX
-        HeAucVo90sehVjJwlqc6mg==
-X-Google-Smtp-Source: AA6agR5qo/Htznv740wYaz6ZBJU7DWuY9xkifeqYbjUccJ1C8uL4cnUGayiUfnbXUI+6wiQlGYSgNw==
-X-Received: by 2002:a05:6870:3484:b0:11e:4465:3d9b with SMTP id n4-20020a056870348400b0011e44653d9bmr2311584oah.46.1661529939549;
-        Fri, 26 Aug 2022 09:05:39 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id y16-20020a056870429000b0010bf07976c9sm1465908oah.41.2022.08.26.09.05.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Aug 2022 09:05:39 -0700 (PDT)
-Received: (nullmailer pid 3267073 invoked by uid 1000);
-        Fri, 26 Aug 2022 16:05:31 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Michael Walle <michael@walle.cc>
-Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Eric Dumazet <edumazet@google.com>, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, Paolo Abeni <pabeni@redhat.com>,
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=KGLrHWIlQkkcGAYUa/2yGh2hQoX6jmYun770U+54jAw=;
+        b=LiS2o3KA5dIdv1PSern6fu6l8g/hzp0YFctJjirSzcxaw/06UCnqnMojUn8dK3RN4k
+         qrq9kgfpUjrFQj9I7BmC49ECxW7QLd5foiCxme5/ly8lFp5uDBvtTRE6qhSS1140z3Nj
+         2iPFumOTSCTJCH9m20IcXYJOYft0tz11IQUWAkvAeIeJ5HNSt9TcCe/pDHmK3Zi0/kk0
+         7j/nUZDs+smcfSNXmeoHFMxn7ajVAdJXbnLTcWIsTNDFFfEGznPd+3nHhYti37HeNiYY
+         WFpYbffbjsBgYjZ8oCBQIcd1EqeMVtNhMjMOf+qNShCAI4tazHqV+RWE/h3Oe8KvV7u8
+         RoHw==
+X-Gm-Message-State: ACgBeo3664H8stZLnuwjn+tOMjQ1xEgJp0/KFpVlG4qZTQv39l3TMrXU
+        Si+1lFLhwx9B5Pc1oPuRoolqZjoJCSa1O0pS
+X-Google-Smtp-Source: AA6agR7pOXDoyj8lR/0tVi2qwwoXwPiKZcdK8Jbd0hK0OMYEn+lnZ1LJXWUM48oJmeh5oORcjlkLDA==
+X-Received: by 2002:a05:6402:501d:b0:443:1c7:ccb9 with SMTP id p29-20020a056402501d00b0044301c7ccb9mr7398959eda.101.1661530600909;
+        Fri, 26 Aug 2022 09:16:40 -0700 (PDT)
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com. [209.85.221.46])
+        by smtp.gmail.com with ESMTPSA id y27-20020a1709060a9b00b0073d7bef38e3sm1071151ejf.45.2022.08.26.09.16.39
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 Aug 2022 09:16:39 -0700 (PDT)
+Received: by mail-wr1-f46.google.com with SMTP id u5so2346035wrt.11
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 09:16:39 -0700 (PDT)
+X-Received: by 2002:adf:f90d:0:b0:20c:de32:4d35 with SMTP id
+ b13-20020adff90d000000b0020cde324d35mr207547wrr.583.1661530599315; Fri, 26
+ Aug 2022 09:16:39 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220826084813.1.I8c9a771fcf4d1cfb6e8e0ef17a153143af9a644d@changeid>
+In-Reply-To: <20220826084813.1.I8c9a771fcf4d1cfb6e8e0ef17a153143af9a644d@changeid>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 26 Aug 2022 09:16:27 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=X0FVeEKS9OLXrsK+S==BvxrnG8wZ-fjasJ-=kOPr=-=Q@mail.gmail.com>
+Message-ID: <CAD=FV=X0FVeEKS9OLXrsK+S==BvxrnG8wZ-fjasJ-=kOPr=-=Q@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sc7280-herobrine: Don't enable the USB
+ 2.0 port
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org,
-        =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Richard Weinberger <richard@nod.at>,
-        linux-kernel@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linux-mtd@lists.infradead.org,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-In-Reply-To: <20220825214423.903672-10-michael@walle.cc>
-References: <20220825214423.903672-1-michael@walle.cc> <20220825214423.903672-10-michael@walle.cc>
-Subject: Re: [PATCH v1 09/14] dt-bindings: nvmem: add YAML schema for the sl28 vpd layout
-Date:   Fri, 26 Aug 2022 11:05:31 -0500
-Message-Id: <1661529931.067130.3267072.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,41 +79,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 25 Aug 2022 23:44:18 +0200, Michael Walle wrote:
-> Add a schema for the NVMEM layout on Kontron's sl28 boards.
-> 
-> Signed-off-by: Michael Walle <michael@walle.cc>
+ Hi,
+
+On Fri, Aug 26, 2022 at 8:48 AM Matthias Kaehlcke <mka@chromium.org> wrote:
+>
+> The USB 2.0 port of sc7280 is currently not used by any herobrine
+> board. Delete the device tree entries that enable it.
+>
+> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
 > ---
->  .../nvmem/layouts/kontron,sl28-vpd.yaml       | 52 +++++++++++++++++++
->  1 file changed, 52 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/nvmem/layouts/kontron,sl28-vpd.yaml
-> 
+> I was also told that the 2.0 port is for the Embedded USB Debugger
+> (EUD) only, but I'm not sure if that's true. From the Linux side
+> it looks like a regular dwc3 controller.
+>
+>  arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi | 12 ------------
+>  1 file changed, 12 deletions(-)
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+I can confirm it's not hooked up anywhere on herobrine-class boards.
+Disabling looks good to me. If we later have a herobrine variant where
+this is enabled we can enable it just for that variant.
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/mtd.example.dtb: otp-2: compatible:0: 'kontron,sl28-vpd' was expected
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/nvmem/layouts/kontron,sl28-vpd.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/mtd.example.dtb: otp-2: compatible: ['user-otp'] is too short
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/nvmem/layouts/kontron,sl28-vpd.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/mtd.example.dtb: otp-2: '#address-cells', '#size-cells', 'mac-address@0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/nvmem/layouts/kontron,sl28-vpd.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
