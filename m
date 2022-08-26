@@ -2,54 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 767135A22E6
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 10:24:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4F635A22ED
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 10:25:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236026AbiHZIYQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 04:24:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57610 "EHLO
+        id S245050AbiHZIZp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 04:25:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234463AbiHZIYP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 04:24:15 -0400
-Received: from mail-sz.amlogic.com (mail-sz.amlogic.com [211.162.65.117])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F35DDD2B04
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 01:24:13 -0700 (PDT)
-Received: from [10.28.39.83] (10.28.39.83) by mail-sz.amlogic.com (10.28.11.5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Fri, 26 Aug
- 2022 16:24:09 +0800
-From:   Huqiang Qin <huqiang.qin@amlogic.com>
-Subject: Re: [PATCH] dts: meson: Add the included meson-s4-gpio.h in the
- meson-s4.dtsi
-To:     Kevin Hilman <khilman@baylibre.com>
-CC:     <robh+dt@kernel.org>, <devicetree@vger.kernel.org>
-Message-ID: <67bf8b28-feb3-ee54-b364-fdddcdd4e52f@amlogic.com>
-Date:   Fri, 26 Aug 2022 16:24:09 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        with ESMTP id S245114AbiHZIZo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 04:25:44 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9827B26113
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 01:25:43 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1oRUer-0006ip-Uw; Fri, 26 Aug 2022 10:25:41 +0200
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1oRUep-00077G-Qx; Fri, 26 Aug 2022 10:25:39 +0200
+Date:   Fri, 26 Aug 2022 10:25:39 +0200
+To:     Ivan Bornyakov <i.bornyakov@metrotek.ru>
+Cc:     j.zink@pengutronix.de, devicetree@vger.kernel.org,
+        linux-fpga@vger.kernel.org, robh+dt@kernel.org, mdf@kernel.org,
+        kernel@pengutronix.de, yilun.xu@intel.com, hao.wu@intel.com
+Subject: Re: [PATCH 00/16] Add support for Lattice MachXO2 programming via I2C
+Message-ID: <20220826082539.GA12909@pengutronix.de>
+References: <20220825141343.1375690-1-j.zink@pengutronix.de>
+ <20220825152514.9926-1-i.bornyakov@metrotek.ru>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.28.39.83]
-X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
- (10.28.11.5)
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220825152514.9926-1-i.bornyakov@metrotek.ru>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+User-Agent: Mutt/1.10.1 (2018-07-13)
+From:   Sascha Hauer <sha@pengutronix.de>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kevin,
+Hi Ivan,
 
-On 2022/8/26 0:40, Kevin Hilman wrote:
-> Could you please resend this inluding the Amlogic list:
-> linux-amlogic@lists.infradead.org
+On Thu, Aug 25, 2022 at 06:25:14PM +0300, Ivan Bornyakov wrote:
+> Hi, Johannes!
+> 
+> I just came across your patches. Surprisingly, our work interferes.
+> 
+> I recently posted patch-series for configuring ECP5 and was asked to make
+> generalized sysCONFIG driver with support for both ECP5 and MachXO2, which
+> I did. Sadly I don't have hardware with MachXO2, but you clearly do :)
+> 
+> Please, take a look at
+> 
+> https://lore.kernel.org/linux-fpga/20220825112433.14583-1-i.bornyakov@metrotek.ru/
+> 
+> and please help test MachXO2 variant. When we pull this off, you may add I2C
+> interface on top.
 
-I understand, thank you very much.
+You are adding a new driver for something we already have a driver for
+in the tree. The final goal should be that we only have a single driver
+for sysconfig based FPGAs in the tree. Johannes' series is a step in
+that direction: He cleans up the existing driver and starts abstracting
+out common sysconfig functions so that they can be used by both the I2C
+and SPI interface. He just told me that the abstraction is likely not
+enough to integrate ECP5 support right away, one reason being that the
+machxo2 has a flash whereas the ECP5 does not.
 
-Huqiang
+Unless you can explain why the existing driver is broken beyond repair
+I think we should rather incrementally improve the existing driver
+instead of adding a new one with a conflicting compatible.
+So despite you were in the room earlier I think you should rather base
+your work on Johannes' series.
 
+Just my 2 cents, maybe one of the maintainers has a few words on it.
+
+Sascha
+
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
