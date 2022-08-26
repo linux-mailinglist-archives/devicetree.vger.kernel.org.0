@@ -2,94 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 41CCA5A2307
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 10:30:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71C6A5A2313
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 10:34:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343621AbiHZIaK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 04:30:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42742 "EHLO
+        id S229776AbiHZIeK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 04:34:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245046AbiHZIaI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 04:30:08 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5286E9FF4
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 01:30:03 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id tl26so1063567ejc.9
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 01:30:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=2w7uDDGae7lPC9PBKoaaB26gLASkKWk1Ljox9Qb8l6Q=;
-        b=WzlJoUzfNCpYcC/wKzgOZa08JruxJVjED39QeHg1/uZzWWP49D65DM1aFYc3qaKtvn
-         Q6zinWKDzFkDnxkWbGAh3BdqVKj2p2Y8GJhTsY/Pxt17M0r3EvJJymiAQrA33yDj5s17
-         X9iqJjwU09qVwnXAfOZGVQrRe+vzz3SkUiI7GmHzLQav3BjthDp7VmNiWuFuuAFntQ8c
-         meb78ZzYilLV0zjJZ/sdxprNpg3psTxruUB6RB89PizXIEEFmMorRbzKW8fkamtp+eE/
-         UP/DeTKxY08moOLhnrFO8NtHOaRtGKMwmVAnVvG2+YiB6+su8G33EAWTxccYf6n5zxDH
-         Bt8Q==
+        with ESMTP id S229992AbiHZIeJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 04:34:09 -0400
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAEC8D4F62;
+        Fri, 26 Aug 2022 01:34:08 -0700 (PDT)
+Received: by mail-qt1-f180.google.com with SMTP id a4so730226qto.10;
+        Fri, 26 Aug 2022 01:34:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc;
-        bh=2w7uDDGae7lPC9PBKoaaB26gLASkKWk1Ljox9Qb8l6Q=;
-        b=YeAcGg11qKTpnE/A7+09xwbp+N9XnekheWBJVDADnX2+ZZwS+ER3aWIc+6BaY5Ci3B
-         +te2fb1Kvx2gnfXyGyHo6ppXceB60pf651dEr/4I03EaCnG8atvTZ/X+AETnMV9MDP+Q
-         EcF7DvEvGREICpVjaMsvYzDZSyZQVP7VC6RlIpdrWlc8DJZBCN7FoXOJ+gKtPBEEE/pX
-         5RtdDxehErfWWwALKF3QM4GcPUX835wV6iU35AKDZtD2vYEIqXISivwgwvCjFc5sMqfn
-         4LHhwFn853wj+Q9VHpCmKq8Qh5edBS4tEfYkLO6hEB+3HH7wsK2mAlPhw1HgwJkU51/P
-         d8Hw==
-X-Gm-Message-State: ACgBeo0ZvVqykpI1Rvg1Ioyi9AsekX8trls7SR2MZXrguTZj6FBae8ip
-        sZ+J62h7PQpVc3zyQ+OsVJv/o202EQToJljgqljsxA==
-X-Google-Smtp-Source: AA6agR5Mur9vHmJyu+/jiMMkqB3v9LgJ6NwVlpsA0j4qLjcco/mAHvxbCi0JTgMvXiCAzfETgkWpYo/C46NbmmoWnWI=
-X-Received: by 2002:a17:907:6293:b0:73d:b27b:e594 with SMTP id
- nd19-20020a170907629300b0073db27be594mr4929048ejc.526.1661502601587; Fri, 26
- Aug 2022 01:30:01 -0700 (PDT)
+        bh=O6VZsg9bRhmabSz16OhI5qwy1yHhHa5ahFeheIGdlKQ=;
+        b=wQtlDqG+PV3vnvKRpYbhAWORUPAgs2K3Cwsi0ZfspkXtwamkG5fhZCFAvUNrf07j47
+         Ju3R8LChUROiE44QSVOvOMcrGktgQuJlTzfxkpp7rPhJGr1o1bzwAcA7zWJPqYAhNqXf
+         dtywEH3PxaCpbUw4FrtlSj1bYskGfRXYZCbonROa8++gL3SdAkSC0bd/q9CUtl7Lz9MY
+         Hg6/Xf09bZGMNy+KU1e8r1LAE1fc6jKBv6TEsXVBLv0+3evtPDgV3KZxRswY5nvaXOWM
+         OoUvzTpzczGDIOMfueUVfYLSZod6ycQg8TW0Dg/hOJnIYrSdjfW1Qmw6EPgKpWFHK9We
+         LK8A==
+X-Gm-Message-State: ACgBeo1iL0xyIlHZm6bdg0emy3wyrfz4iDmzbMN4WekrXhNxM6OoHgvv
+        5RuNhRtIT6XTuAxMff4NzVu1xyjABzr/4g==
+X-Google-Smtp-Source: AA6agR6dMP2u+D5hyCfx9vSHpqCxX5Euz3nrXbTHkFhZ0b1I1LvaFc6edcFxsv2KhwGY/HBderCUmw==
+X-Received: by 2002:ac8:7d8a:0:b0:344:65fe:834a with SMTP id c10-20020ac87d8a000000b0034465fe834amr6839386qtd.649.1661502847836;
+        Fri, 26 Aug 2022 01:34:07 -0700 (PDT)
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com. [209.85.128.181])
+        by smtp.gmail.com with ESMTPSA id x19-20020a05620a449300b006b629f86244sm1509039qkp.50.2022.08.26.01.34.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 Aug 2022 01:34:07 -0700 (PDT)
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-33dc31f25f9so18540057b3.11;
+        Fri, 26 Aug 2022 01:34:07 -0700 (PDT)
+X-Received: by 2002:a25:d80b:0:b0:696:6d79:4891 with SMTP id
+ p11-20020a25d80b000000b006966d794891mr1488374ybg.89.1661502847334; Fri, 26
+ Aug 2022 01:34:07 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220819190054.31348-1-a-nandan@ti.com> <20220819190054.31348-3-a-nandan@ti.com>
-In-Reply-To: <20220819190054.31348-3-a-nandan@ti.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 26 Aug 2022 10:29:50 +0200
-Message-ID: <CACRpkdaktinAJveF_nH9NYYk7mAvnResRzoyuVDVWpwKKq6JOQ@mail.gmail.com>
-Subject: Re: [PATCH 2/4] dt-bindings: pinctrl: k3: Introduce pinmux
- definitions for J784s4
-To:     Apurva Nandan <a-nandan@ti.com>
-Cc:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Hari Nagalla <hnagalla@ti.com>
+References: <20220819193944.337599-1-phil.edworthy@renesas.com> <20220819193944.337599-3-phil.edworthy@renesas.com>
+In-Reply-To: <20220819193944.337599-3-phil.edworthy@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 26 Aug 2022 10:33:55 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdU3kvg6qUQ1w3HDLEL3=3G79gSiyHbAKNwgYp3ghgog0g@mail.gmail.com>
+Message-ID: <CAMuHMdU3kvg6qUQ1w3HDLEL3=3G79gSiyHbAKNwgYp3ghgog0g@mail.gmail.com>
+Subject: Re: [PATCH 2/3] arm64: dts: renesas: r9a09g011: Add i2c nodes
+To:     Phil Edworthy <phil.edworthy@renesas.com>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 19, 2022 at 9:01 PM Apurva Nandan <a-nandan@ti.com> wrote:
+Hi Phil,
 
-> Add pinctrl macros for J784s4 SoC. These macro definitions are
-> similar to that of J721s2, but adding new definitions to avoid
-> any naming confusions in the soc dts files.
->
-> checkpatch insists the following error exists:
-> ERROR: Macros with complex values should be enclosed in parentheses
->
-> However, we do not need parentheses enclosing the values for this
-> macro as we do intend it to generate two separate values as has been
-> done for other similar platforms.
->
-> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
-> Signed-off-by: Apurva Nandan <a-nandan@ti.com>
+On Fri, Aug 19, 2022 at 9:40 PM Phil Edworthy <phil.edworthy@renesas.com> wrote:
+> Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
 
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
-I guess you will merge these patches together?
-Tell me if you rather want that I apply this one patch to the pinctrl tree.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.1 with
 
-Yours,
-Linus Walleij
+"Add device nodes for the I2C controllers that are not assigned to the ISP".
+
+added.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
