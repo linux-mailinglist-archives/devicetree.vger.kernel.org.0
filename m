@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9565B5A211A
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 08:46:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A25215A212E
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 08:49:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245109AbiHZGqR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 02:46:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49698 "EHLO
+        id S243938AbiHZGtK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 02:49:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245093AbiHZGqA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 02:46:00 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FCBECEB12
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 23:45:59 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id bn9so694687ljb.6
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 23:45:58 -0700 (PDT)
+        with ESMTP id S236831AbiHZGtJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 02:49:09 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C13B1BB03B
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 23:49:07 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id z6so803237lfu.9
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 23:49:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=kS++P7f/sxm+5fpcUlBki4yBaSJvYpRpgROhsMETBW8=;
-        b=g2PebV7DA2dG91zJ+3A5Ck9fY4G2rWpOELAfA2Ey7hk2LYZzSBnkKYTY7Zr6rAbdFd
-         q46AAJBJE7yTCTd+hQDxa0jNPkVOv6mbAFOM4C+ydfPvRyUAa72QWu+0x1jf6bRp+k79
-         lnGUQedJWnwGTSwtefSnqfcdXKg/IVEad78NLN2cumTD4n0okhNXYRHGQtKwsTfJ5sJn
-         Wqz+JOCykDAXL+y297nti4d0npk/wvA06rQKSCKAFQeCih8lregz+K+CbeJZe8GzmywA
-         PdzsHZaJNXcDaszh3RQOSIntAryy2ULRKf0t72Ibxvpf1CrUBguJYGKnt6cX4aKaaVBP
-         DhGg==
+        bh=8shYHI5qnyesibZOJHcF69skgsSb++vkrS1ksDjd804=;
+        b=MH7c4PTN5491vzJaxItrJvsp2d54VdHCleNKYtUufTivwe8sp8YtCzh0L2FmeW9dmk
+         cPC6Giw77c99htJDRJsu1c3pkn0AE/2MmQEO5RXvMKpobhfK6ybYGyCI03FLGHYre8Ff
+         FnVmEb2Hqs+bP4F0rdJnDpuC50IHB0b6+QfNx9fOR+MQMrkZ+uk/iKSQzG2jJwmrJW65
+         kX+eQtPxqW9fBgeKH/iHADmXjHLdCHAcemrawwjCu/PqirMZxeIgJ3FhJlSwnxMY+pdt
+         qCWT+VH0PjC7BeGmrh5ST2hkUxAHCn39yxaoTC1Ca2f7reZc7/lmj7adqCxUvhfGpcxd
+         ABDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=kS++P7f/sxm+5fpcUlBki4yBaSJvYpRpgROhsMETBW8=;
-        b=Ynsl07qrYNGbfKLUijf+UUYKHXq8FSOdmfbEmX6PQSgW5WNK2s6nnJwGwN0px6wcRJ
-         RzWWnPMA5Gv0Dr1tC6I+bLJHwhdu7Cfx1u0AUnC/B3ZuEFdQVPhLBvcqTSChU8qF2hsK
-         dvUnk0qCIYvmGspcr6zW1BEpACBNWRGBYcz/UygcmK2tFPDOP0FpxlW89MOcIoOmHt4f
-         bZfwFPnCKv70DsuyyaWB5D7QaBXiAlZma/gNKrMxut0Azh6u46WQdrNhiBxZGiZ5IzQb
-         Ag2rR6U7IVpwQCBuIjrs+L/swcRU48t0TrAiodORijzyHDu0MO07UJjQSZ5a9sz7X3zk
-         pczQ==
-X-Gm-Message-State: ACgBeo3HllnNWrd2kNgw3oeaNVe0oscmlGLStLp0j3UWw/gOElThrDsd
-        OdIgt3s39HColi+EO6zmMenmaA==
-X-Google-Smtp-Source: AA6agR4P1Lppd9IyB4a2iit7fR1482AuCseveFfT3iZ+aY3X33NJaw9K20gOE/6FuNs2mXlh6X8R1A==
-X-Received: by 2002:a05:651c:90a:b0:25d:57c9:30c4 with SMTP id e10-20020a05651c090a00b0025d57c930c4mr1790962ljq.386.1661496357412;
-        Thu, 25 Aug 2022 23:45:57 -0700 (PDT)
+        bh=8shYHI5qnyesibZOJHcF69skgsSb++vkrS1ksDjd804=;
+        b=uMzKEjg5Z+EBevb8DJxRhlDz9BUq855lAothypG0aD6O+ZA5sUFjVbZckq71DD9pMO
+         wnmo8oeCySmB2HarDObH6xpHZ6xvCdWf1QUtRMNctNm5pjwXCTHGg21kbvtwuIjjXWq3
+         nXASMByM0iWOdTXFtgWZcSGQNSqpT8Ltp0awlIeScmTeb/1mb+v9ARwoBfnwNIl3Sr11
+         j/f5FKAPl1bnK8A48/Q+ZBx2f/JTc1PFW+JwpxMJduf/WN+ff0RWSw6kZGXJ0Td0F6nb
+         4MAIhPF8b8F4NEzI0l3+bSF/9Ky2Bne2VT7kGD3eUQOE6FZW87yLDO0ajTPcKZOtx2V9
+         aCDA==
+X-Gm-Message-State: ACgBeo26WBt1x4QWOnHarszVbBgWkO3AYjuRq/rOEeNTgmdfiQlWgyjO
+        gip8MiygxeICcje65QGJZN0hAQ==
+X-Google-Smtp-Source: AA6agR4n8wu6cU+e1LJN+2qT52EhS0729YcyXjrhMcjUf6IOv1gJPCfT/e0dK9/QvHZSzhUsmvvuXQ==
+X-Received: by 2002:ac2:4907:0:b0:493:266:74d6 with SMTP id n7-20020ac24907000000b00493026674d6mr2270018lfi.36.1661496546143;
+        Thu, 25 Aug 2022 23:49:06 -0700 (PDT)
 Received: from [192.168.0.71] (82.131.98.15.cable.starman.ee. [82.131.98.15])
-        by smtp.gmail.com with ESMTPSA id f18-20020a056512229200b0048a73d83b7csm262960lfu.133.2022.08.25.23.45.56
+        by smtp.gmail.com with ESMTPSA id w3-20020a05651234c300b00492eebe1f09sm269321lfr.74.2022.08.25.23.49.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Aug 2022 23:45:56 -0700 (PDT)
-Message-ID: <c5e22875-745d-7334-84bf-d854b2011af3@linaro.org>
-Date:   Fri, 26 Aug 2022 09:45:55 +0300
+        Thu, 25 Aug 2022 23:49:05 -0700 (PDT)
+Message-ID: <a1c4e262-caf5-7369-f8f7-02d790fa1947@linaro.org>
+Date:   Fri, 26 Aug 2022 09:49:03 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v6 0/6] completely rework mediatek,mt7530 binding
+Subject: Re: [PATCH v6 5/6] dt-bindings: net: dsa: mediatek,mt7530: define
+ phy-mode per switch
 Content-Language: en-US
 To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
         Andrew Lunn <andrew@lunn.ch>,
@@ -80,8 +81,9 @@ Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20220825082301.409450-1-arinc.unal@arinc9.com>
+ <20220825082301.409450-6-arinc.unal@arinc9.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220825082301.409450-1-arinc.unal@arinc9.com>
+In-Reply-To: <20220825082301.409450-6-arinc.unal@arinc9.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -94,29 +96,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/08/2022 11:22, Arınç ÜNAL wrote:
-> Hello.
+On 25/08/2022 11:23, Arınç ÜNAL wrote:
+> Define acceptable phy-mode values for the CPU ports of mt7530 and mt7531
+> switches. Remove relevant information from the description of the binding.
 > 
-> This patch series brings complete rework of the mediatek,mt7530 binding.
-> 
-> The binding is checked with "make dt_binding_check
-> DT_SCHEMA_FILES=mediatek,mt7530.yaml".
-> 
-> If anyone knows the GIC bit for interrupt for multi-chip module MT7530 in
-> MT7623AI SoC, let me know. I'll add it to the examples.
-> 
-> If anyone got a Unielec U7623 or another MT7623AI board, please reach out.
-> 
-> v6:
-> - Do not remove binding for DSA ports from top level.
-> - On the first patch, remove requiring reg as it's already required by
-> dsa-port.yaml and define acceptable reg values for the CPU ports.
-> - Add Krzysztof's Reviewed-by: and Acked-by: to where they're given except
-> the first patch because of the changes above.
+> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
 
-Review should have stayed. It's a close to trivial change.
 
-https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 Best regards,
 Krzysztof
