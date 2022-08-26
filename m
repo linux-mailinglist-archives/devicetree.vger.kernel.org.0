@@ -2,85 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 050B75A2182
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 09:13:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DAF625A21A4
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 09:20:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244814AbiHZHNZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 03:13:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37790 "EHLO
+        id S245143AbiHZHUx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 03:20:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244863AbiHZHNY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 03:13:24 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDB89D2B13;
-        Fri, 26 Aug 2022 00:13:16 -0700 (PDT)
-X-UUID: 242eb3be533a430e8b9c4073669c76a0-20220826
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=394UNmo0dlilNl7TS7agMGFKl0Cm8pk4mL85CkB70vc=;
-        b=k7d9MEro5qgHxCK6h3T9VRe5uxmkEstCEUBOll6HBuRA81sQE7AbKjY30c4klBhWX3GLmhGUbqisMdkeZkdBpp1E0Lk0iS+Jx6j+YwSFnUjXN5VkxRnMN9CVApwKlRppkRWvH7+iGqg66nz+8I4Nkri2B1d0foPK9LlhyCOGaMQ=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.10,REQID:22bcf2d3-1b49-4beb-aa20-7e6f585b3ec2,OB:0,L
-        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:28,RULE:Releas
-        e_Ham,ACTION:release,TS:73
-X-CID-INFO: VERSION:1.1.10,REQID:22bcf2d3-1b49-4beb-aa20-7e6f585b3ec2,OB:0,LOB
-        :0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:28,RULE:Spam_GS9
-        81B3D,ACTION:quarantine,TS:73
-X-CID-META: VersionHash:84eae18,CLOUDID:134c2f20-1c20-48a5-82a0-25f9c331906d,C
-        OID:cf454214b1af,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:40|20,QS:nil,BEC:nil,COL:0
-X-UUID: 242eb3be533a430e8b9c4073669c76a0-20220826
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 492750950; Fri, 26 Aug 2022 15:13:08 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Fri, 26 Aug 2022 15:13:07 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Fri, 26 Aug 2022 15:13:07 +0800
-Message-ID: <916bd99bcc4fa77eae5734b22365ce73acd90d58.camel@mediatek.com>
-Subject: Re: [PATCH v2] dt-bindings: arm: mediatek: mmsys: change compatible
- for MT8195
-From:   Bo-Chen Chen <rex-bc.chen@mediatek.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     Jason-JH Lin =?UTF-8?Q?=28=E6=9E=97=E7=9D=BF=E7=A5=A5=29?= 
-        <Jason-JH.Lin@mediatek.com>,
-        Nancy Lin =?UTF-8?Q?=28=E6=9E=97=E6=AC=A3=E8=9E=A2=29?= 
-        <Nancy.Lin@mediatek.com>,
-        "CK Hu =?UTF-8?Q?=28=E8=83=A1=E4=BF=8A=E5=85=89=29?=" 
-        <ck.hu@mediatek.com>,
-        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        "hsinyi@google.com" <hsinyi@google.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Fri, 26 Aug 2022 15:13:06 +0800
-In-Reply-To: <adcbb2b7-cddd-4546-bdf2-66d056a40c1d@linaro.org>
-References: <20220825091448.14008-1-rex-bc.chen@mediatek.com>
-         <3ed3d73a-1671-708e-7c42-498cca6aaf1d@gmail.com>
-         <8f3dba943170361211d9bb4c8bf1be12bbfdec20.camel@mediatek.com>
-         <adcbb2b7-cddd-4546-bdf2-66d056a40c1d@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S244814AbiHZHUu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 03:20:50 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3745B33A15
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 00:20:48 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id z25so910391lfr.2
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 00:20:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=CEGNVel+DD71gCbMY4+NplXPx6ttJvqdwAiSfqWyuyc=;
+        b=jQ86Y7gtk1EpU4RztWNT1iTdh2AUuRrwXfiVeyrNKILZFHEST2uROvFtOFKzico+PW
+         JdiP0jlcR/My88TNoWLOM2Dt+q69rIK++vjnpB/CrldlJdpweNn/cdutT1KaTsGdYAD0
+         Qy6yv5wVKl49zb+u45pbzd7pK90bqNa5NjHr0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=CEGNVel+DD71gCbMY4+NplXPx6ttJvqdwAiSfqWyuyc=;
+        b=RSn+coFHI2K3Lk7sooHUqSGZzU91hanP/4gtYSZBMxjT84L2+mKLDzYIO4hM4CAq6s
+         mDLM7ilSvzH/SmYaRgArP8YxjJoaTp8/41Azx9Djh1Y2FpGzrFGOVEOcRue6dsPRdu8V
+         FBH67BfBs5xk1TLNNKN/zwBNagkkqcJ5O63gsFrcDBgRWTiuIR8vWHBhAm6+y+qbUfDl
+         8hJ+H62sxvNY/DdWrnjdG00zvd2zosjO0PN656cRmpPHngmm3TEl2isHeSAaJoKJG5QL
+         lYmaZv9JTdmiQfHmrG64K/2RsKnBmelE9YLoMncCQmJ6sfhi5klN22zW0oHRb6WExJGW
+         6JDQ==
+X-Gm-Message-State: ACgBeo34gKPY9dl5hkmlpEZzetqNL1tZtwA603M5f+A0n/ZI6QiQjbgb
+        HnyA+5jxpvc2fu4vuOPeSs/Raf2UHYCXW/QcoyCzWA==
+X-Google-Smtp-Source: AA6agR5E9rzLsk8Bxfltxj6vo0as9RfWJbfBdrR4zX1Gwkiwxtu0fySwDNeWtkDdUojuZHozS10XTuWSiLTeFSkQNck=
+X-Received: by 2002:a05:6512:3503:b0:48a:6060:5ebb with SMTP id
+ h3-20020a056512350300b0048a60605ebbmr1974187lfs.429.1661498446570; Fri, 26
+ Aug 2022 00:20:46 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_MSPIKE_H2,RDNS_NONE,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_CSS autolearn=no
+References: <20220817143529.257908-1-dario.binacchi@amarulasolutions.com>
+ <20220817143529.257908-2-dario.binacchi@amarulasolutions.com>
+ <b851147b-6453-c19e-7c31-a9cf8f87c1a4@linaro.org> <CABGWkvomGpo9zWi59YNYfRfzAZZ90D9_HaiVV3Gs_x_eQ59e5A@mail.gmail.com>
+ <d8db1648-edcd-3580-60d3-96ef91d6bbed@linaro.org>
+In-Reply-To: <d8db1648-edcd-3580-60d3-96ef91d6bbed@linaro.org>
+From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Date:   Fri, 26 Aug 2022 09:20:35 +0200
+Message-ID: <CABGWkvpBHFUx_KHKxeL2sEK8bO7=+3HCUAgJM7zphM3q7soczg@mail.gmail.com>
+Subject: Re: [RFC PATCH 1/4] dt-bindings: net: can: add STM32 bxcan DT bindings
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-kernel@vger.kernel.org,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Amarula patchwork <linux-amarula@amarulasolutions.com>,
+        michael@amarulasolutions.com,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Dario Binacchi <dariobin@libero.it>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        devicetree@vger.kernel.org, linux-can@vger.kernel.org,
+        netdev@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,159 +78,181 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2022-08-26 at 15:00 +0800, Krzysztof Kozlowski wrote:
-> On 26/08/2022 05:07, Bo-Chen Chen wrote:
-> > On Thu, 2022-08-25 at 22:57 +0800, Matthias Brugger wrote:
-> > > 
-> > > On 25/08/2022 11:14, Bo-Chen Chen wrote:
-> > > > From: "Jason-JH.Lin" <jason-jh.lin@mediatek.com>
-> > > > 
-> > > > For previous MediaTek SoCs, such as MT8173, there are 2 display
-> > > > HW
-> > > > pipelines binding to 1 mmsys with the same power domain, the
-> > > > same
-> > > > clock driver and the same mediatek-drm driver.
-> > > > 
-> > > > For MT8195, VDOSYS0 and VDOSYS1 are 2 display HW pipelines
-> > > > binding
-> > > > to
-> > > > 2 different power domains, different clock drivers and
-> > > > different
-> > > > mediatek-drm drivers.
-> > > > 
-> > > > Moreover, Hardware pipeline of VDOSYS0 has these components:
-> > > > COLOR,
-> > > > CCORR, AAL, GAMMA, DITHER. They are related to the PQ (Picture
-> > > > Quality)
-> > > > and they makes VDOSYS0 supports PQ function while they are not
-> > > > including in VDOSYS1.
-> > > > 
-> > > > Hardware pipeline of VDOSYS1 has the component ETHDR (HDR
-> > > > related
-> > > > component). It makes VDOSYS1 supports the HDR function while
-> > > > it's
-> > > > not
-> > > > including in VDOSYS0.
-> > > > 
-> > > > To summarize0:
-> > > > Only VDOSYS0 can support PQ adjustment.
-> > > > Only VDOSYS1 can support HDR adjustment.
-> > > > 
-> > > > Therefore, we need to separate these two different mmsys
-> > > > hardwares
-> > > > to
-> > > > 2 different compatibles for MT8195.
-> > > > 
-> > > > Fixes: 81c5a41d10b9 ("dt-bindings: arm: mediatek: mmsys: add
-> > > > mt8195
-> > > > SoC binding")
-> > > > Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
-> > > > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> > > > ---
-> > > > Changes for v2:
-> > > > 1. Add hardware difference for VDOSYS0 and VDOSYS1 in commit
-> > > > message.
-> > > > ---
-> > > >  
-> > > > .../devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml       
-> > > > |
-> > > > 3 ++-
-> > > >   1 file changed, 2 insertions(+), 1 deletion(-)
-> > > > 
-> > > > diff --git
-> > > > a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys
-> > > > .yam
-> > > > l
-> > > > b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys
-> > > > .yam
-> > > > l
-> > > > index 6ad023eec193..bfbdd30d2092 100644
-> > > > ---
-> > > > a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys
-> > > > .yam
-> > > > l
-> > > > +++
-> > > > b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys
-> > > > .yam
-> > > > l
-> > > > @@ -31,7 +31,8 @@ properties:
-> > > >                 - mediatek,mt8183-mmsys
-> > > >                 - mediatek,mt8186-mmsys
-> > > >                 - mediatek,mt8192-mmsys
-> > > > -              - mediatek,mt8195-mmsys
-> > > > +              - mediatek,mt8195-vdosys0
-> > > 
-> > > Thanks for you patch. As I mentioned on v1, I propose to set 
-> > > mediatek,mt8195-mmsys as fallback for mediatek,mt8195-vdosys0 to
-> > > not
-> > > break 
-> > > backwards compatibility.
-> > > 
-> > > Apart from that, the binding change will need some changes to
-> > > support
-> > > the new 
-> > > binding. Please provide these together with this patch.
-> > > 
-> > > Regards,
-> > > Matthias
-> > > 
-> > 
-> > Hello Matthias,
-> > 
-> > Thanks for your comments.
-> > The purpose of this patch is to confirm we can separate mt8195
-> > mmsys
-> > into two compatibles. I think this modification is accepted.
-> 
-> No, it is not accepted following Matthias comments. You received my
-> ack
-> based on assumption that ABI break is perfectly ok for platform
-> maintainer, as he has decisive voice. If anyone is not happy with a
-> ABI
-> break, then his concerns must be addressed.
-> 
-> So let it be specific:
-> NAK.
-> 
-> > 
-> > After this, I think Jason-JH will push another series with this
-> > binding
-> > patch. 
-> 
-> I don't know what do you mean here - another series on top of wrong
-> patch?
-> 
+Hi Krzysztof,
 
-Hello Krzysztof,
+On Mon, Aug 22, 2022 at 7:39 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 20/08/2022 11:08, Dario Binacchi wrote:
+> > Hi Krzysztof,
+> >
+> > On Thu, Aug 18, 2022 at 10:22 AM Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> On 17/08/2022 17:35, Dario Binacchi wrote:
+> >>> Add documentation of device tree bindings for the STM32 basic extended
+> >>> CAN (bxcan) controller.
+> >>>
+> >>> Signed-off-by: Dario Binacchi <dariobin@libero.it>
+> >>> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> >>
+> >> You do not need two SoBs. Keep only one, matching the From field.
+> >
+> > I started implementing this driver in my spare time, so my intention
+> > was to keep track of it.
+>
+> SoB is not related to copyrights. Keep personal copyrights (with/next to
+> work ones), but SoB is coming from a person and that's only one. Choose
+> one "person".
 
-For this mt8195 mmsys binding separation, we still need to modify
-driver for this. The reason I send this patch is to confirm we can do
-this binding modification and I also think we can not pick this patch
-here.
+Ok, I got it.
 
-We will push another series and it contains modification of binding and
-drivers. (The series will push by Jason-JH Lin)
+>
+> >
+> >>
+> >>> ---
+> >>>
+> >>>  .../devicetree/bindings/net/can/st,bxcan.yaml | 139 ++++++++++++++++++
+> >>>  1 file changed, 139 insertions(+)
+> >>>  create mode 100644 Documentation/devicetree/bindings/net/can/st,bxcan.yaml
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/net/can/st,bxcan.yaml b/Documentation/devicetree/bindings/net/can/st,bxcan.yaml
+> >>> new file mode 100644
+> >>> index 000000000000..f4cfd26e4785
+> >>> --- /dev/null
+> >>> +++ b/Documentation/devicetree/bindings/net/can/st,bxcan.yaml
+> >>
+> >> File name like compatible, so st,stm32-bxcan-core.yaml (or some other
+> >> name, see comment later)
+> >
+> >>
+> >>> @@ -0,0 +1,139 @@
+> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >>> +%YAML 1.2
+> >>> +---
+> >>> +$id: http://devicetree.org/schemas/net/can/st,bxcan.yaml#
+> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>> +
+> >>> +title: STMicroelectronics bxCAN controller Device Tree Bindings
+> >>
+> >> s/Device Tree Bindings//
+> >
+> >>
+> >>> +
+> >>> +description: STMicroelectronics BxCAN controller for CAN bus
+> >>> +
+> >>> +maintainers:
+> >>> +  - Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> >>> +
+> >>> +allOf:
+> >>> +  - $ref: can-controller.yaml#
+> >>> +
+> >>> +properties:
+> >>> +  compatible:
+> >>> +    enum:
+> >>> +      - st,stm32-bxcan-core
+> >>
+> >> compatibles are supposed to be specific. If this is some type of
+> >> micro-SoC, then it should have its name/number. If it is dedicated
+> >> device, is the final name bxcan core? Google says  the first is true, so
+> >> you miss specific device part.
+> >
+> > I don't know if I understand correctly, I hope the change in version 2
+> > is what you requested.
+>
+> What is the name of the SoC, where this is in?
 
-Maybe I should use "RFC" for this series, and I think it's more
-correct.
+STM32F4
 
-BRs,
-Bo-Chen
+>
+> >
+> >>
+> >>> +
+> >>> +  reg:
+> >>> +    maxItems: 1
+> >>> +
+> >>> +  resets:
+> >>> +    maxItems: 1
+> >>> +
+> >>> +  clocks:
+> >>> +    description:
+> >>> +      Input clock for registers access
+> >>> +    maxItems: 1
+> >>> +
+> >>> +  '#address-cells':
+> >>> +    const: 1
+> >>> +
+> >>> +  '#size-cells':
+> >>> +    const: 0
+> >>> +
+> >>> +required:
+> >>> +  - compatible
+> >>> +  - reg
+> >>> +  - resets
+> >>> +  - clocks
+> >>> +  - '#address-cells'
+> >>> +  - '#size-cells'
+> >>> +
+> >>> +additionalProperties: false
+> >>> +
+> >>> +patternProperties:
+> >>
+> >> This goes after "properties: in top level (before "required").
+> >>
+> >>> +  "^can@[0-9]+$":
+> >>> +    type: object
+> >>> +    description:
+> >>> +      A CAN block node contains two subnodes, representing each one a CAN
+> >>> +      instance available on the machine.
+> >>> +
+> >>> +    properties:
+> >>> +      compatible:
+> >>> +        enum:
+> >>> +          - st,stm32-bxcan
+> >>
+> >> Why exactly do you need compatible for the child? Is it an entierly
+> >> separate device?
+> >
+> > I took inspiration from other drivers for ST microcontroller
+> > peripherals (e. g. drivers/iio/adc/stm32-adc-core.c,
+> > drivers/iio/adc/stm32-adc.c) where
+> > some resources are shared between the peripheral instances. In the
+> > case of CAN, master (CAN1) and slave (CAN2) share the registers for
+> > configuring the filters and the clock.
+> > In the core module you can find the functions about the shared
+> > resources, while the childrens implement the driver.
+>
+> In both cases you refer to the driver, but we talk here about bindings
+> which are rather not related. So I repeat the question - is the child
+> entirely separate device which can be used in other devices?
 
-> > In Jason-JH's series, we will modify mmsys driver based on this.
-> > And I think we don't need to keep "mediatek,mt8195-mmsys" if we
-> > also
-> > modify mmsys drivers in the same series.
-> 
-> This does not fux ABI break and broken bisectability.
-> 
-> > 
-> > Is it ok that postpones to pick this patch until we finish review
-> > follow-up series?
-> > 
-> 
-> No. You got a clear review to fix.
-> 
+IMHO, I think so.
+
+Thanks and regards,
+Dario
+>
+>
 > Best regards,
 > Krzysztof
 
+
+
+-- 
+
+Dario Binacchi
+
+Embedded Linux Developer
+
+dario.binacchi@amarulasolutions.com
+
+__________________________________
+
+
+Amarula Solutions SRL
+
+Via Le Canevare 30, 31100 Treviso, Veneto, IT
+
+T. +39 042 243 5310
+info@amarulasolutions.com
+
+www.amarulasolutions.com
