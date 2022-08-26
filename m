@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A7455A24E3
+	by mail.lfdr.de (Postfix) with ESMTP id ADEBA5A24E5
 	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 11:49:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343786AbiHZJtF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 05:49:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48228 "EHLO
+        id S245433AbiHZJtQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 05:49:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243137AbiHZJs7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 05:48:59 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2DAFD7CF6
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 02:48:56 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id l23so1081814lji.1
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 02:48:56 -0700 (PDT)
+        with ESMTP id S1344062AbiHZJtN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 05:49:13 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6031ED7D0A
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 02:49:08 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id d23so1280495lfl.13
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 02:49:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=TkqTmoi1tOqF4HMRlYNheKD9nEw5Pj8tNzIuXeNE4iM=;
-        b=EQFZJSsNvYyxtp06L5o2aPeIvRVgy+df9Ssuq4i0UbRzsx0gG3J3svHwlcq1PGwAi2
-         mZFQbY1Ux3++T7kPhEQ9624nB9K/Fz2T6KA3OMO5pP7XWZdRncCgVt2RmvrRYRSGwX6Z
-         VPQ5apGl40gAESdjsSBq5aIrqn1xoaQQ/wFCL8WnNC+u6rPD4r+JcmUCB503CajIhGKV
-         k9yJqemevwFdM2hTJSrfc7xBWX32HBoqDsPGDjapISVnECAAPkTuHWH7PGUsmsqnzvLb
-         u1d9ZWxbFPa7IqOxWL8YRp3S1toreSApRZb74+oIqCogDS5md9iEtlUlDYhbR1CRvuFJ
-         V9Nw==
+        bh=UN9UNIYBZ5uGaqYCoTZ9HAq/Y6zWrMkzm6pHK+dxe5A=;
+        b=L5OXYT+liCL+/QGJXKJIyiz5VcXhwEDMb5oV0Pve/89FEkMLfV3mgowMShnYIC6CKG
+         b0LHap0ys0CWPTK4HJCusslBIXgYoBy9EnQsUoUBy/9xoQNLDSivlfJdAP192l7qu2Ol
+         Ymk2z1OwlXV7yoVbZYOHEF3PB4yy/c+BJ+ub38cvBeSMD4tVL8UZL9PRRCl1btg7hAwR
+         D4lrN31eYUG4xEZwWSOFB8QSmG8EdPPmutENh90ugKark7fVWEUmQMNYgElpaKy01tLN
+         QybG5XMkIqTG58E5N31Fb3uU8Q+e8k/JmkkKN4YCUgT1CQiYxoqP0Y8bezu9u4Ym+/ui
+         iTrg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=TkqTmoi1tOqF4HMRlYNheKD9nEw5Pj8tNzIuXeNE4iM=;
-        b=wMbaBjVTxb4qXqV1kFu33262fEPGw2e/FmjLIqoqL41MCQpIXnyRbYj0Il0jPjkzwV
-         WNdVSorWOSga09sX3RTTRDtA5w/9YfTEED/IsE+5A2oId00ggtdJf0o6qRBi6g3hYME2
-         Xre5+gHEO7eNd6+nfTjpayWXWPRu62Uym94ZyUQgdyqRDGsb+OqEQnKt4TehFY2srMCy
-         BmO+s2nOSzgNaUAGFLix3IIV7hop/gINgn9tMnjXIZU07GLXm5/DQAn3I1DW4pD2LBdO
-         tWMUI4bSBgYC1zT0jQ7HrXchK3NeI0TKE6BW1MUqBAlABRITQ5CieQroV9o2sV5oDlun
-         QtyA==
-X-Gm-Message-State: ACgBeo1ZUsMiZE29xVQV4lOH1jkcw5dT0Tid/wPj9BDvw64Uy0FH0G7F
-        CeXnuLfkwfWUzojXEvwvVcIKEQ==
-X-Google-Smtp-Source: AA6agR6jczYcy+0sMAbwo/6hLXzTNzwXZSfY4M2/FtvC1XCFcvMDBDdf92yDw7Yko9914GrpUtyU+Q==
-X-Received: by 2002:a2e:9b59:0:b0:261:d61d:5f51 with SMTP id o25-20020a2e9b59000000b00261d61d5f51mr1978993ljj.418.1661507335234;
-        Fri, 26 Aug 2022 02:48:55 -0700 (PDT)
+        bh=UN9UNIYBZ5uGaqYCoTZ9HAq/Y6zWrMkzm6pHK+dxe5A=;
+        b=4CqdTpBntTiB0eoxpruJYiSo0ECV79i8RZa7nNF5+Ki/gg607HOLt2Slrw9ijqCZic
+         7Sf9NIzwftvVSTNIaF6gHXj8VVcVHs/A5JCZMtllSGZ0xj4W1iEwqFM0aREpALiuKpWl
+         QiFvbyqJ5p7j2JdzsYHH1b/f2xmcUiJp2wY+Th1sfVvLOLa53+yxdxvjhFaN/T9Id3Bc
+         AlzlEdL9nTFnQTZO1qfeCER8EHMTEhub2af3IZcPoeXX6ZjMomrFXvOWkdmUIBh197cl
+         XV/LDJIVQ6TBVthjB2aDtLuCWyvBXI1gCzVJJxpzwmGMvdZzCcc+EwnVAQ+bsIWK+uUv
+         bUjw==
+X-Gm-Message-State: ACgBeo1Ut3NdW5NMoi8wdOMqPPRMceMcPv3Mx6N8Au+ElB+C1t/qF4hc
+        VqdUsxlMPb48/xz3oW2lxrOZYg==
+X-Google-Smtp-Source: AA6agR6MpFJqQMrOTZPh3nHGr7fhGGF/zOA3ps/9gCfSND5LRAOU+SUC4fx2y97CPu544wYrT23ztQ==
+X-Received: by 2002:a05:6512:3159:b0:492:d660:4dd7 with SMTP id s25-20020a056512315900b00492d6604dd7mr2101345lfi.204.1661507346709;
+        Fri, 26 Aug 2022 02:49:06 -0700 (PDT)
 Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id 11-20020ac25f0b000000b00492c1e36b22sm317540lfq.262.2022.08.26.02.48.54
+        by smtp.gmail.com with ESMTPSA id c6-20020ac25f66000000b0048afe02c925sm320409lfc.219.2022.08.26.02.49.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 Aug 2022 02:48:54 -0700 (PDT)
-Message-ID: <051c5463-77b5-cb29-a4d3-6b9645b365ba@linaro.org>
-Date:   Fri, 26 Aug 2022 12:48:54 +0300
+        Fri, 26 Aug 2022 02:49:06 -0700 (PDT)
+Message-ID: <53c72da6-b632-058d-9e3d-b00c286d9e09@linaro.org>
+Date:   Fri, 26 Aug 2022 12:49:05 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.1.2
-Subject: Re: [PATCH v2 1/5] dt-bindings: display/msm: dpu-msm8998: add missing
+Subject: Re: [PATCH v2 2/5] dt-bindings: display/msm: dpu-qcm2290: add missing
  DPU opp-table
 Content-Language: en-GB
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
@@ -74,14 +74,14 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20220817062059.18640-1-krzysztof.kozlowski@linaro.org>
- <20220817062059.18640-2-krzysztof.kozlowski@linaro.org>
+ <20220817062059.18640-3-krzysztof.kozlowski@linaro.org>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20220817062059.18640-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220817062059.18640-3-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -94,7 +94,7 @@ On 17/08/2022 09:20, Krzysztof Kozlowski wrote:
 > opp-table, so reference it which allows restricting DPU schema to fixed
 > list of properties.
 > 
-> Fixes: 6e986a8f1cf1 ("dt-bindings: display: msm: Add binding for msm8998 dpu")
+> Fixes: 164f69d9d45a ("dt-bindings: msm: disp: add yaml schemas for QCM2290 DPU bindings")
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
 
