@@ -2,118 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3308A5A23A9
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 11:01:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EB8F5A23CF
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 11:11:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241109AbiHZJB5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 05:01:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45282 "EHLO
+        id S245643AbiHZJL3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 05:11:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229904AbiHZJB4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 05:01:56 -0400
-Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF12AD39B9;
-        Fri, 26 Aug 2022 02:01:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-        d=metrotek.ru; s=mail;
-        h=from:subject:date:message-id:to:cc:mime-version:content-type:in-reply-to:
-         references;
-        bh=PqdOCysNyoeX+3vKTwVHuyFennZ69yEbZJEUljzyxto=;
-        b=hOdAqTCPt5A4bXYLTKZWTHQVs2Qa92cyeVhq3jk/663xTIWQoEuWkfyPt2c1IZe5m8s8tc1pNYdTM
-         IFOgoKFwRBnkt8Y3/HyMDNWcJyPFq115dlhqlZjfj8WzYliijtAoL3eP/tiI90oD+roT9SrZ1HvcaG
-         3JDSxknJeoJqjs6gCYWdYHk4ijfsUTRtt1hNnXdwU3IH2NJIn49bTkyy+BJEvHDMc5MlOZ25j7Z0a+
-         6TdSedpOZQ/KFS36sY2RpMTL7mSYxMQVf2i6M0f1NcnexiySNRFmOBtXIKmOsXmA9fAX/hyl4AnS2T
-         AILLbP6RaV2C5Z8c15wVeHDNHiPdISQ==
-X-Kerio-Anti-Spam:  Build: [Engines: 2.16.4.1445, Stamp: 3], Multi: [Enabled, t: (0.000010,0.011247)], BW: [Enabled, t: (0.000014,0.000001)], RTDA: [Enabled, t: (0.076999), Hit: No, Details: v2.41.0; Id: 15.52k1ho.1gbcm5ev6.14n; mclb], total: 0(700)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Level: 
-X-Footer: bWV0cm90ZWsucnU=
-Received: from h-e2.ddg ([85.143.252.66])
-        (authenticated user i.bornyakov@metrotek.ru)
-        by mail.pr-group.ru with ESMTPSA
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
-        Fri, 26 Aug 2022 12:01:40 +0300
-Date:   Fri, 26 Aug 2022 12:00:42 +0300
-From:   Ivan Bornyakov <i.bornyakov@metrotek.ru>
-To:     Sascha Hauer <sha@pengutronix.de>
-Cc:     j.zink@pengutronix.de, devicetree@vger.kernel.org,
-        linux-fpga@vger.kernel.org, robh+dt@kernel.org, mdf@kernel.org,
-        kernel@pengutronix.de, yilun.xu@intel.com, hao.wu@intel.com
-Subject: Re: [PATCH 00/16] Add support for Lattice MachXO2 programming via I2C
-Message-ID: <20220826090042.jhngyeufei55b5c2@h-e2.ddg>
-References: <20220825141343.1375690-1-j.zink@pengutronix.de>
- <20220825152514.9926-1-i.bornyakov@metrotek.ru>
- <20220826082539.GA12909@pengutronix.de>
+        with ESMTP id S245652AbiHZJL0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 05:11:26 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F7B1D1241
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 02:11:14 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id y3so1996454ejc.1
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 02:11:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=EHyZfx9f30GYvoWGWrL1/d31tZ2j1jnuSexhcB0B028=;
+        b=H4E8O/FZWenOUNLemv28DGZCdkWQLC1IHud8bPn1Zt5jaLswZKwZ4GWY7Kc+M5rne0
+         tpnyVWL+K70RTKeP6Bi8rlmmmKFJoH2Mr2fMWrJ6n7yZt6SXe/jVP4fIlidg2biWXXN0
+         Y8rKFfD9nTJwjEPs7e7k//u4sUtCL0mi9DCoCyyN5qUUwXJ1jiNv7YgjeURYOUbaviXg
+         pa7H5LGylpM4+N7+ZDMbT9UESKOsCUS4rQUGz7Nal5bwJmhHY8tHsZ4YysgvyYJzqJQw
+         7fqodXyghB4EZTmrIPPiAqhO3pE0vXrgJCRjYWOmJ8cPMSL+azcEJDf5q6VpSkMBPq7L
+         rtxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=EHyZfx9f30GYvoWGWrL1/d31tZ2j1jnuSexhcB0B028=;
+        b=nX2YPfr/4gplmOSqRkbmFNYib3ilG1QeSp9vT4UJwrGfqguUckGngLHdWh/1wMLDQK
+         8byxFjO2f0feCkDakfUDZfXkc6JPQCk4FwKn1lnmTt8Y/M9nqSP4TUAuWMYtqayVYwoz
+         CGgihtXkBcpq/H0fsRDuvR+clVFbmhC6H5RWG7HcIMyx6TX+UXoYjk+sAJDCYPSGx2I1
+         n5+KSZ30wG12KPjAUg1PcejvV50HWAzCUojuK75dPVRWDCDBTSOLoylBaOklXekxhIM7
+         IGtBrC7HfN0XFRrRpPDAaUzt9o47lq7iY5L4pEhh0BjQ3d0cpiFTRWLjRaHmeVQBwFCK
+         gbuA==
+X-Gm-Message-State: ACgBeo052K3sEmiHXRXgf9PC8Nj54wFgBK0s8tuwNMyVFtP0IWE2UpXo
+        BeXAPNynY3W7RwpVjuzz5Simd2ABHpioSk+k+jQ+abEq850Wyg==
+X-Google-Smtp-Source: AA6agR5U9DH1rbFPNvHxj4z3/uS3uREKQVB/qGqSV8z1JZu3or4hPsIAC6EDv2Kf4X2wkJYTbMZlZ+2xYACgMT5wbTI=
+X-Received: by 2002:a17:906:478f:b0:73d:7919:b23 with SMTP id
+ cw15-20020a170906478f00b0073d79190b23mr4546844ejc.690.1661505073018; Fri, 26
+ Aug 2022 02:11:13 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220826082539.GA12909@pengutronix.de>
+References: <20220722081146.47262-1-jjhiblot@traphandler.com>
+ <20220722081146.47262-3-jjhiblot@traphandler.com> <CAHp75Vdu-EJRRxkK7+TfuE=zEDkJye1QCXSB+cDLrqxuykJjkA@mail.gmail.com>
+ <5ba34982-52c7-e41a-fba8-d88d93529e47@traphandler.com> <20220804210412.GA30210@duo.ucw.cz>
+ <0663c616-97c8-444c-f390-275fae402453@traphandler.com> <CAHp75Vf1cT81cx38VQ80PbyG9i9xbiegMnQoMWwZEZf+7fWJuQ@mail.gmail.com>
+ <5bb9955e-4c2f-ca55-0e77-c082a868371a@traphandler.com> <CAHp75Vc5g0OL6YUY2WsUZA6bovB+sdJE3Bv3SWp-1pRh3kyiow@mail.gmail.com>
+In-Reply-To: <CAHp75Vc5g0OL6YUY2WsUZA6bovB+sdJE3Bv3SWp-1pRh3kyiow@mail.gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 26 Aug 2022 11:11:01 +0200
+Message-ID: <CACRpkdYs03HhXNwx3BmzrvNx6biGc1FPEUE2eoc9XZ-9O5M4Rg@mail.gmail.com>
+Subject: Re: [RESEND PATCH v6 2/3] leds: Add driver for the TLC5925 LED controller
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Jean-Jacques Hiblot <jjhiblot@traphandler.com>,
+        Linus Walleij <linusw@kernel.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 26, 2022 at 10:25:39AM +0200, Sascha Hauer wrote:
-> Hi Ivan,
-> 
-> On Thu, Aug 25, 2022 at 06:25:14PM +0300, Ivan Bornyakov wrote:
-> > Hi, Johannes!
-> > 
-> > I just came across your patches. Surprisingly, our work interferes.
-> > 
-> > I recently posted patch-series for configuring ECP5 and was asked to make
-> > generalized sysCONFIG driver with support for both ECP5 and MachXO2, which
-> > I did. Sadly I don't have hardware with MachXO2, but you clearly do :)
-> > 
-> > Please, take a look at
-> > 
-> > https://lore.kernel.org/linux-fpga/20220825112433.14583-1-i.bornyakov@metrotek.ru/
-> > 
-> > and please help test MachXO2 variant. When we pull this off, you may add I2C
-> > interface on top.
-> 
-> You are adding a new driver for something we already have a driver for
-> in the tree.
+On Wed, Aug 24, 2022 at 12:19 PM Andy Shevchenko
+<andy.shevchenko@gmail.com> wrote:
 
-My intent was to add new driver and drop old one once the new driver is
-proven to be working.
+> > >> I don't know if this is enough to make a dedicated TLC5925 driver
+> > >> desirable in the kernel.
+> > > I don't think you have enough justification for a new driver.
 
-> The final goal should be that we only have a single driver
-> for sysconfig based FPGAs in the tree.
+One thing to keep in mind is that LEDs are MMI (man-machine-interface)
+and designed as such, so small glitches etc are fine as long as they are
+not noticeable by human perception...
 
-It is.
+> After this message I first must withdraw my Rb tag, and turn my voice
+> against this driver because of the above. On the contrary we might ask
+> the GPIO library for a specific API to have what you do with the
+> user's consent of side effects. Linus, Bart, I'm talking of the
+> delayed (async) version of gpio_set_multiple(). But personally I think
+> it's not so easy to implement in a bugless manner (because we need to
+> synchronize it forcibly at any time we call another GPIO API against
+> the same chip).
 
-> Johannes' series is a step in
-> that direction: He cleans up the existing driver and starts abstracting
-> out common sysconfig functions so that they can be used by both the I2C
-> and SPI interface. He just told me that the abstraction is likely not
-> enough to integrate ECP5 support right away, one reason being that the
-> machxo2 has a flash whereas the ECP5 does not.
-> 
-> Unless you can explain why the existing driver is broken beyond repair
-> I think we should rather incrementally improve the existing driver
-> instead of adding a new one with a conflicting compatible.
+I suppose this can just be a gpio-led using the GPIO driver
+underneath?
 
-Yeah, conflicting compatible was my oversight.
+If the usecase for TLC5925 is such that it is often (as defined by
+experienced developers having seen it on boards in the wild) used
+as a GPIO expander rather than a pure LED driver, then it is better
+to have this in the GPIO subsystem in some or other form.
 
-> So despite you were in the room earlier I think you should rather base
-> your work on Johannes' series.
+If it is always just used for LEDs then my first comment about
+this being MMI applies I suppose. Or rather, ask the question
+from an operator point of view rather than a logic level point of
+view. (I think that was Andy's point though.)
 
-We on par here. You guys didn't join ongoing work, I didn't rework
-existing driver.
+I agree that we probably need some generic library to properly handle
+the jungle of funny TTL-type constructs that is popping up left and
+right for GPIO. Someone should ideally sit down and think about
+what is common among these.
 
-> 
-> Just my 2 cents, maybe one of the maintainers has a few words on it.
-> 
-> Sascha
-> 
-> 
-> -- 
-> Pengutronix e.K.                           |                             |
-> Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
-
+Yours,
+Linus Walleij
