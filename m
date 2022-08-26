@@ -2,61 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CBCA5A27E7
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 14:36:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E0A95A27E4
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 14:36:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344293AbiHZMgC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 08:36:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55264 "EHLO
+        id S1344221AbiHZMgD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 08:36:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344192AbiHZMfw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 08:35:52 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D3AEC2766
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 05:35:51 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id bs25so1668832wrb.2
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 05:35:51 -0700 (PDT)
+        with ESMTP id S1344205AbiHZMfz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 08:35:55 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94415C3F5E
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 05:35:52 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id t12so1651458wrm.8
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 05:35:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc;
-        bh=fBJ7mlL4B6dgX7Jn6GDpLICbORkPdqsPpx/Irv1VRwQ=;
-        b=vt5+zcek6yOoHf/CxBlmXehhdTslXBuD7tniMBJ+mhzL6P2aogKD9cBvN31VrVbyCM
-         g0AgGqqWjXuHd17+vb/G4xz7nk2Ty8uuni1loh0Xzt9ByQ8vAEWsjXyz+WrgfedjlWC1
-         IUHl/I0mE3+Os+lmkhopvNrJgKqZ1Jv8419PDfORgSXd+sHugc6Qt1619tq8l3ChPiAR
-         dYZB6NCUdIFf4/QCaQKwJLjLSBVe3C587ZtwnT5Y20HXnQhi+xk0tkLkJwvDybFmR6I8
-         Z9sNGbC43iR4ADkygF+ZbNMMehJx+EX9ZwE4v40j/YtNbilMkGSuK23FoVAjeFhSxFjl
-         Enlg==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc;
+        bh=O/Lx2MkqBrAhaHiPTvS464mpFRQpG/kYU6veErIutKY=;
+        b=e7yZB4GefIJDZESuXbkAhv46mvE1UmvkaMYB3FWHxuEzLjUlg80Qw/2O84HlGeSIf3
+         8KP4uC1LzKqxgtum98z8M/+4efMa8wnxsHPIDujcY6rcXDOCPsCIAWNzysmSxzie5LXn
+         zp4asZdSVB6TCmwz0AHkZN0U+TjgPww7bfwBYCh+7/V85C7hRbc3vgSYLZsJ2cduuZN+
+         iRAyhnKK0nM5TM5okhXfyY7Os85Vw45qkL27BkVDHluZuYwLw2PAJFic7P039GLTxX4H
+         OnSTxjZqTzXn6/YYu9G1ZXJME5YXR3gStORfk+Yt85OPVXlvxclcpvFybvW5nnww1vmr
+         CzWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc;
-        bh=fBJ7mlL4B6dgX7Jn6GDpLICbORkPdqsPpx/Irv1VRwQ=;
-        b=rio46rv5QNhrpaPVYrfW6IGo+xiWA71yaWaOTuP90wT9ltM4p8aAYOvX0VVvxp5Su8
-         qmzfp/KjFBw/3ZqGlnMI9XCbsJr9STlPy6act2sKFXCzAo8BD5t6B8FgJyD7MntjPqFA
-         Ba9g2zpF14yWNNULUojETaUpSXWX3M3ATYwyaDnSkj7W7cFO2Xn1/Iz0ns1w59Sk+HLz
-         YhAyrKzOls1n48aR6bg/5dCteL2h1TjOE3CIjiU6F1HVT3PPgy3NyEKlE0s6YrRoymst
-         Wl6kSmhS80R2WBpVAV8j2oXtmlLrclHdIS+ePjKvmmcahLetXgFo5aKOYVhDFpoC9GbL
-         6URA==
-X-Gm-Message-State: ACgBeo06mAXslLFOfxGv48Ab4OuIxb1FgmACc/aQoS+yAYOMFU+dz7OH
-        nzbgMwYDXAqDt3UzqJlRb44udA==
-X-Google-Smtp-Source: AA6agR6qZYt3ipgSrUHrq5Or8V1GGMtjI4XbWNdIX4nd22sW82VcnQ4wznzUGx6InHLLyJtTSyGyWw==
-X-Received: by 2002:a05:6000:184e:b0:225:4608:c6a6 with SMTP id c14-20020a056000184e00b002254608c6a6mr4745717wri.108.1661517349800;
-        Fri, 26 Aug 2022 05:35:49 -0700 (PDT)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
+        bh=O/Lx2MkqBrAhaHiPTvS464mpFRQpG/kYU6veErIutKY=;
+        b=jzlgFKe+DfLwSiFeeY8t8TelC5yQnlyJfCTYyH7+F7MU0XlbEqNbV1kWzVwv+ypn+Q
+         +neV5iN0bhU087ORUkvYelrgRtQuGEpbir7QATDejVEEY5Xf/2MP63k8G+UaNMDiQtiB
+         JMBfxQtzXVicJsCpZ6S7+EQiIrhwt0sJ77xKq9Qu5EPXxdgXQ07EFjKG0hG4F6IcvpqQ
+         n4yAjZHdlIe9FI0n+pOlV/hjDIx4hEkoELm/iyzdXU0K3le32l5ZFEgM2VPzDhwdCk1/
+         gKK4DoWM/OohaNjvZWjWOLLkLCk7JvItNA6pqLN6bOzvUbr3JOSeDPKArTiQ0915SmJ/
+         ZqXw==
+X-Gm-Message-State: ACgBeo3UR5xCIt84IEH57tH7deNjU4Cqv2UAM/8HZYz6dNwXFip36qMQ
+        A/jK6b3ldDh5zR/szN6+acK7pQ==
+X-Google-Smtp-Source: AA6agR4xySxtsS4JDK9bqBYTRiftUFtnOxjFFlPS52QHj8asS/p3oWUI9wKEGBdtqajqEXnIEaA8vA==
+X-Received: by 2002:a5d:6c6f:0:b0:225:3cbf:eab7 with SMTP id r15-20020a5d6c6f000000b002253cbfeab7mr4878176wrz.264.1661517350888;
+        Fri, 26 Aug 2022 05:35:50 -0700 (PDT)
 Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id q62-20020a1c4341000000b003a3442f1229sm8359839wma.29.2022.08.26.05.35.48
+        by smtp.gmail.com with ESMTPSA id q62-20020a1c4341000000b003a3442f1229sm8359839wma.29.2022.08.26.05.35.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Aug 2022 05:35:49 -0700 (PDT)
+        Fri, 26 Aug 2022 05:35:50 -0700 (PDT)
 From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 To:     agross@kernel.org, andersson@kernel.org,
         konrad.dybcio@somainline.org, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org
 Cc:     bryan.odonoghue@linaro.org
-Subject: [PATCH v2 0/1] arm64: dts: qcom: pwm: Drop PWM reg dependency
-Date:   Fri, 26 Aug 2022 13:35:46 +0100
-Message-Id: <20220826123547.3392457-1-bryan.odonoghue@linaro.org>
+Subject: [PATCH v2 1/1] arm64: dts: qcom: pwm: Drop PWM reg dependency
+Date:   Fri, 26 Aug 2022 13:35:47 +0100
+Message-Id: <20220826123547.3392457-2-bryan.odonoghue@linaro.org>
 X-Mailer: git-send-email 2.37.1
+In-Reply-To: <20220826123547.3392457-1-bryan.odonoghue@linaro.org>
+References: <20220826123547.3392457-1-bryan.odonoghue@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -69,29 +71,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The accompanying patch removes reg = <> and pwm@reg from the yaml and dtsi.
-This follows on from discussions between Bupesh, Dmitry, Bjorn, Krzysztof and myself.
+Drop the reg dependency from the qcom PWM description.
 
-https://lore.kernel.org/all/20220719205058.1004942-1-bhupesh.sharma@linaro.org/
-https://lore.kernel.org/all/20220721195502.1525214-1-bhupesh.sharma@linaro.org/
-https://lore.kernel.org/all/20220822120300.2633790-1-bryan.odonoghue@linaro.org/
+The PWM driver doesn't depend on the reg so we should drop the dependency
+and remove the pwm@reg from the nodename.
 
-The previous discussion tended towards either removing pwm@reg and reg = <> or
-extending out the yaml to support multiple reg declarations for PWM compatible.
-
-This patch does the former. I've left node: label in place, dropped both pwm@reg
-and reg = <> I kept "label: nodename" though because it looked more like what we
-already have for rpm regulators.
-
-Per our previous discussion I've modified the yaml and dtsi in one go.
-
-Bryan O'Donoghue (1):
-  arm64: dts: qcom: pwm: Drop PWM reg dependency
-
+Fixes: e79a1385ab74 ("arm64: dts: qcom: Add LPG to pm8916, pm8994, pmi8994 and pmi8998")
+Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+---
  Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 8 ++++----
  arch/arm64/boot/dts/qcom/pm8350c.dtsi                     | 3 +--
  2 files changed, 5 insertions(+), 6 deletions(-)
 
+diff --git a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
+index 65cbc6dee545e..2a5bafe0660a0 100644
+--- a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
++++ b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
+@@ -92,6 +92,10 @@ properties:
+     type: object
+     $ref: /schemas/regulator/regulator.yaml#
+ 
++  pwm:
++    type: object
++    $ref: /schemas/leds/leds-qcom-lpg.yaml#
++
+ patternProperties:
+   "^adc@[0-9a-f]+$":
+     type: object
+@@ -117,10 +121,6 @@ patternProperties:
+     type: object
+     $ref: /schemas/power/reset/qcom,pon.yaml#
+ 
+-  "pwm@[0-9a-f]+$":
+-    type: object
+-    $ref: /schemas/leds/leds-qcom-lpg.yaml#
+-
+   "^rtc@[0-9a-f]+$":
+     type: object
+     $ref: /schemas/rtc/qcom-pm8xxx-rtc.yaml#
+diff --git a/arch/arm64/boot/dts/qcom/pm8350c.dtsi b/arch/arm64/boot/dts/qcom/pm8350c.dtsi
+index e0bbb67717fec..f28e71487d5c7 100644
+--- a/arch/arm64/boot/dts/qcom/pm8350c.dtsi
++++ b/arch/arm64/boot/dts/qcom/pm8350c.dtsi
+@@ -30,9 +30,8 @@ pm8350c_gpios: gpio@8800 {
+ 			#interrupt-cells = <2>;
+ 		};
+ 
+-		pm8350c_pwm: pwm@e800 {
++		pm8350c_pwm: pwm {
+ 			compatible = "qcom,pm8350c-pwm";
+-			reg = <0xe800>;
+ 			#pwm-cells = <2>;
+ 			status = "disabled";
+ 		};
 -- 
 2.37.1
 
