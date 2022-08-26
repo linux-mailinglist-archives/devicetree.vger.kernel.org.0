@@ -2,121 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C8705A2588
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 12:11:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83AF05A25D3
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 12:27:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245240AbiHZKLE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 06:11:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39536 "EHLO
+        id S229991AbiHZK1P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 06:27:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242795AbiHZKK6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 06:10:58 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EED6A894B
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 03:10:57 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id z6so1370546lfu.9
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 03:10:57 -0700 (PDT)
+        with ESMTP id S245618AbiHZK1O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 06:27:14 -0400
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CCA4CD515
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 03:27:14 -0700 (PDT)
+Received: by mail-pf1-x434.google.com with SMTP id p185so1137010pfb.13
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 03:27:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=zBsaAPXHP/WINN92NN7t+ecJR0ITtEiUOYhWSRxDrOo=;
-        b=ZUeoL8+bFhmGyi/2xXx0UdI4XZSmxqCoQ/yHxfiLH/DU9QQGvq9wEZGUVjYwgMXwKi
-         26HcnUPfHIWYzIKhYqQoZx90f3H0nrZfVGP/eqKhMhYGWJD04pqDRjmwvRzRM6h1tcaE
-         LRVVaFFo/wx3mmsFyOheVWHkOmEb2o1C4IziuaZBI94AH62n4M11qRSK7FOIrfQIzNf5
-         vThpod+1K9nDrs5ER0gKpQtabrijnomOc8918irJfKNNhsd2DNxbrg/VkjLVjWgoWFMf
-         kj7VPv/e9UqGXTgGWpvzn4orocfJ1/AjcFV9M5WeSnycQn0CMeGRZYnXfyhfkU9f+5aT
-         EtmA==
+        d=ecs-corp-partner-google-com.20210112.gappssmtp.com; s=20210112;
+        h=message-id:date:subject:cc:to:from:from:to:cc;
+        bh=fO7KL3cm/qIPOC8UecVFXzf3EKkcw+jqA4gikcKM8lI=;
+        b=K2BTt0VcJ4sYcngEjxV7pnzwQwmizrXBFjeez1wbX5TycUbJKWh7gh5HfvT0COwabF
+         XfLDDbzF/Ntzp3YkSYEexF+YHaI7ufrdkPBTNXZES5E4UXD3nDBROaKqw003GOTS3EqO
+         BajDAtofubaai5gGoe20665Nh+mFhr+jTK0JohFB0lHcoLPuZz7TxFTlokaTl/XKJcfK
+         fX4zE9fLMElNDOWBUu2cAC4RwsZgYN3aIqGsuigH/D/ptgdXNUgvD5Ll7SfNtCZx9m3o
+         IwzVqhXrAYA+qImN4jVszsgjbnZH+/u95iiUR7dGpDvQYBVJdDcoNdJU+fPOg8Rca6yQ
+         62ag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=zBsaAPXHP/WINN92NN7t+ecJR0ITtEiUOYhWSRxDrOo=;
-        b=uuedEQuQRp8KOBxycAfc295OTlXqDeI7WYolD1Z0GR5xTS+Haklz1vLddofIqB5VIJ
-         jqYLFxuJHlIm/P0zrqgsShnfYtOA5IEf3kFsv1cdkWiKiZHHusEPlW50KY+Z1BFGk5gr
-         lKzPtmfBziE/5CI9TuZsi2cIKtDMODvH7hnWl0bNQ82ChDsYMie3YqKAR9uEKJQEisck
-         kvV4unQmy1SSp+tCU3fqCu2AuWfZnYIy5ROYJ6DlKvsGO6ajSVkoTWw5iHPIWUhg/02A
-         X2mrE916y63NbyO02Q9ex/PaR7mpWLx1rY1JTChSK4zSSTjrgE47Ya1LEz9yeXy5dXfa
-         ej1Q==
-X-Gm-Message-State: ACgBeo2+hp5h9/I7ck+RPxOCfc837H5mYkol7Adf23ysjN7lj0I+YzKB
-        UQYsebFmgmc/aXYrh60jM3y7BA==
-X-Google-Smtp-Source: AA6agR5Ibvjx4/X46gslkNdnrORZcJxR+lxt0sY3ESbw+/23dXGNcAwyX3sJKgTU+5hglvPmE7IBFg==
-X-Received: by 2002:a05:6512:2248:b0:48a:f8f9:3745 with SMTP id i8-20020a056512224800b0048af8f93745mr2137147lfu.256.1661508655644;
-        Fri, 26 Aug 2022 03:10:55 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id s15-20020a056512314f00b0047f7419de4asm330732lfi.180.2022.08.26.03.10.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 Aug 2022 03:10:55 -0700 (PDT)
-Message-ID: <47e1460f-e775-d1cb-f622-ccac3044ff86@linaro.org>
-Date:   Fri, 26 Aug 2022 13:10:54 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.1.2
-Subject: Re: [PATCH] dt-bindings: display: Add missing
- (unevaluated|additional)Properties on child nodes
-Content-Language: en-GB
-To:     Rob Herring <robh@kernel.org>,
-        "James (Qian) Wang" <james.qian.wang@arm.com>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Mihail Atanassov <mihail.atanassov@arm.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
+        bh=fO7KL3cm/qIPOC8UecVFXzf3EKkcw+jqA4gikcKM8lI=;
+        b=5NQRwK9NCZRaGbtZoJARAVGcjQ+kRZZnevplYGULllnIPJfH8cTXnLBUOWIoCmrNWn
+         vkkMyC4BO0wilUXy+/H81jqIfdmjF18zweR4T1laTibTHpGZZcE5T6Qxwtz5uK7f6HoP
+         DTb52LF3BdTcofNDZiRFSvTyoh/CnEyh4lvq1YKySI2sZWa2FRmnEWb9SsdMFZBo1R1S
+         yeDSoz+1ArHRIsyrRzho9QOLbI+laI/waPp2P0hbYdb9cH9devjImDlZiQQrYgPTWE11
+         Nja0nDEOyrXXAR+1jB24Yqb0rPR0cDO3r6pSwk+JMV9X3mtel1BpC46ffHcTqsiJD8VF
+         Heng==
+X-Gm-Message-State: ACgBeo2sKKny454fkGlR6C89VOLWuLJn+j44kgynm9S8Yxt8oGDO7bLc
+        REaEupxZ0krhKCYL+/0Zv/9P1A==
+X-Google-Smtp-Source: AA6agR6zcJ3+LpttCrblYmJEF7TpFa9w6DSDtPCB/iNYo6AC188ibR46pgLmWOaT9w/GHqiKAHhNrA==
+X-Received: by 2002:aa7:8096:0:b0:52d:d5f6:2ea6 with SMTP id v22-20020aa78096000000b0052dd5f62ea6mr3410295pff.0.1661509633472;
+        Fri, 26 Aug 2022 03:27:13 -0700 (PDT)
+Received: from localhost.localdomain ([103.150.184.130])
+        by smtp.gmail.com with ESMTPSA id d11-20020a62f80b000000b0053624c50d74sm1333866pfh.126.2022.08.26.03.27.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 Aug 2022 03:27:13 -0700 (PDT)
+From:   Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>
+To:     LKML <linux-kernel@vger.kernel.org>
+Cc:     Bob Moragues <moragues@chromium.org>,
+        Henry Sun <henrysun@google.com>,
+        Douglas Anderson <dianders@chromium.org>,
+        Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>, Inki Dae <inki.dae@samsung.com>,
-        Seung-Woo Kim <sw0312.kim@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Andre Przywara <andre.przywara@arm.com>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-References: <20220823145649.3118479-11-robh@kernel.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20220823145649.3118479-11-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: arm: qcom: Document additional skus for sc7180 pazquel360
+Date:   Fri, 26 Aug 2022 10:26:07 +0000
+Message-Id: <20220826102513.1.If97ef7a7d84bcc2cf20e0479b3e00c4a8fb5a2fd@changeid>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/08/2022 17:56, Rob Herring wrote:
-> In order to ensure only documented properties are present, node schemas
-> must have unevaluatedProperties or additionalProperties set to false
-> (typically).
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->   Documentation/devicetree/bindings/display/arm,komeda.yaml        | 1 +
->   Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml | 1 +
->   Documentation/devicetree/bindings/display/msm/gpu.yaml           | 1 +
+pazquel360 is an extension project based on pazquel.
+We create 3 sku on pazquel360:
+   sku 20 for LTE with physical SIM _and_ eSIM and WiFi
+   sku 21 for WiFi only
+   sku 22 for LTE with only a physical SIM
+ Both sku20 and sku22 are LTE SKUs.
+ One has the eSIM stuffed and one doesn't.
+ There is a single shared device tree for the two.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org> # msm
+Signed-off-by: Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>
 
->   .../bindings/display/samsung/samsung,exynos7-decon.yaml          | 1 +
->   .../devicetree/bindings/display/samsung/samsung,fimd.yaml        | 1 +
->   5 files changed, 5 insertions(+)
+---
 
+ Documentation/devicetree/bindings/arm/qcom.yaml | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index fb1d00bcc847..851cf5edb582 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -459,6 +459,17 @@ properties:
+           - const: google,pazquel-sku2
+           - const: qcom,sc7180
+ 
++      - description: Google Pazquel360 with LTE (newest rev)
++        items:
++          - const: google,pazquel-sku22
++          - const: google,pazquel-sku20
++          - const: qcom,sc7180
++
++      - description: Google Pazquel360 with WiFi (newest rev)
++        items:
++          - const: google,pazquel-sku21
++          - const: qcom,sc7180
++
+       - description: Sharp Dynabook Chromebook C1 (rev1)
+         items:
+           - const: google,pompom-rev1
 -- 
-With best wishes
-Dmitry
+2.17.1
 
