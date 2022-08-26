@@ -2,56 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B78F5A28E9
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 15:56:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 910BE5A28FE
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 16:02:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344388AbiHZNzg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 09:55:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57788 "EHLO
+        id S1343803AbiHZOCY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 10:02:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344389AbiHZNzN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 09:55:13 -0400
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CA2F4AD55;
-        Fri, 26 Aug 2022 06:55:08 -0700 (PDT)
-Received: (Authenticated sender: maxime.chevallier@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id DF9AF240009;
-        Fri, 26 Aug 2022 13:55:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1661522106;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=f0n7NDlZ2x9VzdQiJVmYZllt4f0/gdngUBcBYKLIb78=;
-        b=N1lWP89KO4Wy/SS5jPW0Q62BS1zHctafmqh5matVeboaDAVEmVQPCreJWUIqD07qax0c7i
-        BtiCq5loF74KAFQJVdfsqvk/lP805ksWNA7uNTcrYdPGJyR1BFoSqKmtFv/8iB1XngxnK7
-        8KJUKJ/ZB+/h+AAPf/Vyxt5St9BjWWUf4StfpFjNDIjLWoOy5c8R40fnaGoOd+jAkRosBh
-        k4Lc2NjZq5Z1Gy3/QtGPnOdza4/oDNyI7bjptLNgCecGFD4ku+rvjrBM+265LwesXlRg4m
-        Bk0BNeaPmKVH9P+HECcZTjdHQJrvuzrHieVMOPkJuD9CugHzlopNPp0+gk5SJQ==
-From:   Maxime Chevallier <maxime.chevallier@bootlin.com>
-To:     davem@davemloft.net, Rob Herring <robh+dt@kernel.org>
-Cc:     Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        thomas.petazzoni@bootlin.com, Andrew Lunn <andrew@lunn.ch>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH net-next 5/5] dt-bindings: net: altera: tse: add an optional pcs register range
-Date:   Fri, 26 Aug 2022 15:54:51 +0200
-Message-Id: <20220826135451.526756-6-maxime.chevallier@bootlin.com>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20220826135451.526756-1-maxime.chevallier@bootlin.com>
-References: <20220826135451.526756-1-maxime.chevallier@bootlin.com>
+        with ESMTP id S1344251AbiHZOCX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 10:02:23 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 545C1C04DD
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 07:02:21 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id m10-20020a05600c3b0a00b003a603fc3f81so913929wms.0
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 07:02:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=eCr/Ohj0kZaDpLmya5seSXAptOWWnifNHkRP0hKQPHU=;
+        b=q0qzPf1nziC/DQNNLVQLS+/5Uc0MBYAygLzDVbUqGH/1jeVvU3gGjUoeZ+BOZ4o++H
+         c3WMDjYshzjJEJlsFC+QdF9+Rt5odJ94r+B4wk+pXrYeY8lRuwQxGr+SXiTaY+J0kqOb
+         3+OvtWjevF4RZnx1GlufEIFATNt6jgMYJusBNIfEzhhNvFJep8AKG7OYQiwDh1IvLcCE
+         dLTRaM9frO9cjymw9bF2Lo/yW1L+C7Ryfb5Nl01+j7N8ket9PRAWuXMx8IF8zzocMNZN
+         G9TJHA2P/fZWgH8pKQVPNHnXU2xbqsbTlH2mdbYojIwqoWzY1xDza1Dy/0wR4mWT/eKa
+         sPXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=eCr/Ohj0kZaDpLmya5seSXAptOWWnifNHkRP0hKQPHU=;
+        b=LIe9ZGfLkstx8hwrglP3v47gdJOwaYfZMH1ukPP2o1nFd+u0EwqJvh8eSAAIXt5bj5
+         jTPNNWazkVKklillq9Tp0m9AOgN1YdWSxxlJJtGIs70dCVtQX9Wl1Pg3jTKckuFQ3RQp
+         GroT7vgJhzszyzUxRwjrQQnNE8oyuDzGRbCOqhuYpkO68OPI/tUiqauxGGGHsRI14uSp
+         pVfpUKoyZW2eKjmgw6YjPndBjZFXn8KMjNqtWormt4Jzb1QfJVspi+w+QzFyT7gUgBfq
+         aazi2+qIWM1G+n1p0kZWwcojCjEoSum2MIoHYafV0JUbBzZlpZ65/M4B6ElHPwjuMhGc
+         OuMg==
+X-Gm-Message-State: ACgBeo0E5jGIvi3WXRQI0V4s1YPvSZBte3SK4UD0fyOSxsaINN0C9OJs
+        N8BKMnOiQRNgDmLtdFe68Xgarw==
+X-Google-Smtp-Source: AA6agR7/NSeMRDVgG/yEJTSWQZQkmxXOs1otSi8LjI4tN8VM5kuDlQbvNw8kIMB+wkzE5oVTFW5Lgg==
+X-Received: by 2002:a05:600c:1009:b0:3a5:4512:5f71 with SMTP id c9-20020a05600c100900b003a545125f71mr11571178wmc.134.1661522539663;
+        Fri, 26 Aug 2022 07:02:19 -0700 (PDT)
+Received: from [192.168.0.20] (210.145.15.109.rev.sfr.net. [109.15.145.210])
+        by smtp.gmail.com with ESMTPSA id bi24-20020a05600c3d9800b003a4efb794d7sm2850243wmb.36.2022.08.26.07.02.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 Aug 2022 07:02:18 -0700 (PDT)
+Message-ID: <ac5d557b-ca4e-3e8e-9956-c6c5754fe5a7@baylibre.com>
+Date:   Fri, 26 Aug 2022 16:02:17 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v2 2/4] thermal: mediatek: add support for MT8365 SoC
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        matthias.bgg@gmail.com
+Cc:     rafael@kernel.org, fparent@baylibre.com, amitk@kernel.org,
+        daniel.lezcano@linaro.org, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org,
+        robh+dt@kernel.org, rui.zhang@intel.com
+References: <20220720181854.547881-1-aouledameur@baylibre.com>
+ <20220720181854.547881-3-aouledameur@baylibre.com>
+ <67796aa8-6509-620f-f96a-ff22218f1b0c@linaro.org>
+From:   Amjad Ouled-Ameur <aouledameur@baylibre.com>
+In-Reply-To: <67796aa8-6509-620f-f96a-ff22218f1b0c@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,71 +80,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some implementations of the TSE have their PCS as an external bloc,
-exposed at its own register range. Document this, and add a new example
-showing a case using the pcs and the new phylink conversion to connect
-an sfp port to a TSE mac.
+Hi Krzysztof,
 
-Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
----
- .../devicetree/bindings/net/altr,tse.yaml     | 28 +++++++++++++++++++
- 1 file changed, 28 insertions(+)
+On 7/21/22 18:37, Krzysztof Kozlowski wrote:
+> On 20/07/2022 20:18, Amjad Ouled-Ameur wrote:
+>> From: Fabien Parent <fparent@baylibre.com>
+>>
+>> MT8365 is similar to the other SoCs supported by the driver. It has only
+>> one bank and 3 actual sensors that can be multiplexed. There is another
+>> one sensor that does not have usable data.
+>>
+>> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+>> Reviewed-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
+>> Tested-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
+> Just like in all other cases - you miss your SoB which is necessary for
+> the chain.
 
-diff --git a/Documentation/devicetree/bindings/net/altr,tse.yaml b/Documentation/devicetree/bindings/net/altr,tse.yaml
-index 24e081cd1aa9..921011fc93f9 100644
---- a/Documentation/devicetree/bindings/net/altr,tse.yaml
-+++ b/Documentation/devicetree/bindings/net/altr,tse.yaml
-@@ -40,8 +40,10 @@ allOf:
-       properties:
-         reg:
-           minItems: 6
-+          maxItems: 7
-         reg-names:
-           minItems: 6
-+          maxItems: 7
-           items:
-             - const: control_port
-             - const: rx_csr
-@@ -49,6 +51,7 @@ allOf:
-             - const: rx_resp
-             - const: tx_csr
-             - const: tx_desc
-+            - const: pcs
- 
- properties:
-   compatible:
-@@ -99,6 +102,31 @@ required:
- unevaluatedProperties: false
- 
- examples:
-+  - |
-+    tse_sub_0: ethernet@c0100000 {
-+        compatible = "altr,tse-msgdma-1.0";
-+        reg = <0xc0100000 0x00000400>,
-+              <0xc0101000 0x00000020>,
-+              <0xc0102000 0x00000020>,
-+              <0xc0103000 0x00000008>,
-+              <0xc0104000 0x00000020>,
-+              <0xc0105000 0x00000020>,
-+              <0xc0106000 0x00000100>;
-+        reg-names = "control_port", "rx_csr", "rx_desc", "rx_resp", "tx_csr", "tx_desc", "pcs";
-+        interrupt-parent = <&intc>;
-+        interrupts = <0 44 4>,<0 45 4>;
-+        interrupt-names = "rx_irq","tx_irq";
-+        rx-fifo-depth = <2048>;
-+        tx-fifo-depth = <2048>;
-+        address-bits = <48>;
-+        max-frame-size = <1500>;
-+        local-mac-address = [ 00 0C ED 00 00 02 ];
-+        altr,has-supplementary-unicast;
-+        altr,has-hash-multicast-filter;
-+        sfp = <&sfp0>;
-+        phy-mode = "sgmii";
-+        managed = "in-band-status";
-+    };
-   - |
-     tse_sub_1_eth_tse_0: ethernet@1,00001000 {
-         compatible = "altr,tse-msgdma-1.0";
--- 
-2.37.2
+Right, will add my SoB in V3, thank you!
 
+Regards,
+
+Amjad
+
+>
+> Best regards,
+> Krzysztof
