@@ -2,173 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF6975A3006
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 21:33:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B6C095A3017
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 21:37:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230408AbiHZTdW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 15:33:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35376 "EHLO
+        id S231652AbiHZThH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 15:37:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229676AbiHZTdW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 15:33:22 -0400
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E2DBE094D;
-        Fri, 26 Aug 2022 12:33:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1661542401; x=1693078401;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=uc2TYwlN7Q3eN+h/6L2zTtzGkQz/C51IfpFs5f9w59U=;
-  b=SS4HQoWYCzgwnE8P5uo7rl0IvajnwMt/rydVO/LKuASvW1HtSanUj6gc
-   d0dd5rk0r1xS+TWhjbgF6/Zo4TvEP6a1oONrqGJtnKmY2x8T1Kpvm/lop
-   Maobh/bHUycS7itUOaySfWXTdlMRjvC6ggnEeYPUD8ZVMqU5T0bW/3zh2
-   szHayErfMHaz+maP9aEy1YlecqVrWfP0q8Ohnnv38LapJRNlcAzcrfAP8
-   nqBmmUx4CZ0NQ1Wvz9ShPpPqcIbwCUuE3mX3OWROIR3I0o1rvt0uYb8Kl
-   c3HGWDmMpgkqm9cT+zkp+/yHvk3f9pPXqVbcjrtHP9PVIdH9PKkzBRI5H
-   A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10451"; a="356295960"
-X-IronPort-AV: E=Sophos;i="5.93,266,1654585200"; 
-   d="scan'208";a="356295960"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Aug 2022 12:33:15 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,266,1654585200"; 
-   d="scan'208";a="561548154"
-Received: from lkp-server01.sh.intel.com (HELO 71b0d3b5b1bc) ([10.239.97.150])
-  by orsmga003.jf.intel.com with ESMTP; 26 Aug 2022 12:33:11 -0700
-Received: from kbuild by 71b0d3b5b1bc with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1oRf4o-0000KH-2I;
-        Fri, 26 Aug 2022 19:33:10 +0000
-Date:   Sat, 27 Aug 2022 03:32:17 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        davem@davemloft.net, Rob Herring <robh+dt@kernel.org>
-Cc:     kbuild-all@lists.01.org,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        linux-arm-kernel@lists.infradead.org,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Robert Marko <robert.marko@sartura.hr>
-Subject: Re: [PATCH net-next v3 1/5] net: ipqess: introduce the Qualcomm
- IPQESS driver
-Message-ID: <202208270327.kMRdLLxb-lkp@intel.com>
-References: <20220826154650.615582-2-maxime.chevallier@bootlin.com>
+        with ESMTP id S232244AbiHZThF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 15:37:05 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78B94D2B2A
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 12:37:04 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id D62C52B3;
+        Fri, 26 Aug 2022 21:37:01 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1661542622;
+        bh=Jn/CmBJ+bsugW3aE7kSyGIdCbJd/B+MpKaoeREH+L6w=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Dc+suvu5dWjzY/0AJSl5WL9TrzPCJj4CtBlXzrJleqalrDdjn1k5MEmlnaIzQKVzf
+         obTZQhVh/BGXB6M4N69/iRLQdlrs+YFW88lwHd5kiUZKx3pd+GxStNqgmMGucaF8IJ
+         IaaQuYdHcI5QX0dBjizmOt7nDGwfSUHpDV/ecP3U=
+Date:   Fri, 26 Aug 2022 22:36:54 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Lucas Stach <l.stach@pengutronix.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liu Ying <victor.liu@nxp.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Marek Vasut <marex@denx.de>, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, patchwork-lst@pengutronix.de,
+        kernel@pengutronix.de
+Subject: Re: [PATCH 1/4] dt-bindings: display: imx: add binding for i.MX8MP
+ HDMI TX
+Message-ID: <Ywkg1jpYM+dBDxdE@pendragon.ideasonboard.com>
+References: <20220826192424.3216734-1-l.stach@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20220826154650.615582-2-maxime.chevallier@bootlin.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220826192424.3216734-1-l.stach@pengutronix.de>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Maxime,
+Hi Lucas,
 
-I love your patch! Perhaps something to improve:
+Thank you for the patch.
 
-[auto build test WARNING on net-next/master]
+On Fri, Aug 26, 2022 at 09:24:21PM +0200, Lucas Stach wrote:
+> The HDMI TX controller on the i.MX8MP SoC is a Synopsys designware IP
+> core with a little bit of SoC integration around it.
+> 
+> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> Tested-by: Marek Vasut <marex@denx.de>
+> ---
+>  .../bindings/display/imx/fsl,imx8mp-hdmi.yaml | 74 +++++++++++++++++++
+>  1 file changed, 74 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi.yaml b/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi.yaml
+> new file mode 100644
+> index 000000000000..14f7cd47209c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi.yaml
+> @@ -0,0 +1,74 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/imx/fsl,imx8mp-hdmi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale i.MX8MP DWC HDMI TX Encoder
+> +
+> +maintainers:
+> +  - Lucas Stach <l.stach@pengutronix.de>
+> +
+> +description: |
+> +  The HDMI transmitter is a Synopsys DesignWare HDMI 2.0 TX controller IP.
+> +
+> +allOf:
+> +  - $ref: ../bridge/synopsys,dw-hdmi.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - fsl,imx8mp-hdmi
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  reg-io-width:
+> +    const: 1
+> +
+> +  clocks:
+> +    maxItems: 5
+> +
+> +  clock-names:
+> +    items:
+> +      - {}
+> +      - {}
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Maxime-Chevallier/net-ipqess-introduce-Qualcomm-IPQESS-driver/20220826-234846
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/davem/net-next.git 44387d1736c40a74085be354e2b5f37ca0689608
-config: arc-allyesconfig (https://download.01.org/0day-ci/archive/20220827/202208270327.kMRdLLxb-lkp@intel.com/config)
-compiler: arceb-elf-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/7a04850338791b6a0d192df5be0e4317e6961fc4
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Maxime-Chevallier/net-ipqess-introduce-Qualcomm-IPQESS-driver/20220826-234846
-        git checkout 7a04850338791b6a0d192df5be0e4317e6961fc4
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arc SHELL=/bin/bash drivers/net/ethernet/qualcomm/ipqess/
+I assume these are not named as synopsys,dw-hdmi.yaml already checks
+them, but would it hurt to list them here for clarity ? I don't mind
+much either way.
 
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
-All warnings (new ones prefixed by >>):
-
-   In file included from include/linux/device.h:15,
-                    from include/linux/dma-mapping.h:7,
-                    from include/linux/skbuff.h:31,
-                    from include/net/net_namespace.h:43,
-                    from include/linux/netdevice.h:38,
-                    from include/linux/if_vlan.h:10,
-                    from drivers/net/ethernet/qualcomm/ipqess/ipqess.c:12:
-   drivers/net/ethernet/qualcomm/ipqess/ipqess.c: In function 'ipqess_rx_buf_prepare':
-   drivers/net/ethernet/qualcomm/ipqess/ipqess.c:180:30: warning: format '%x' expects argument of type 'unsigned int', but argument 3 has type 'dma_addr_t' {aka 'long long unsigned int'} [-Wformat=]
-     180 |                              "IPQESS DMA mapping failed for linear address %x",
-         |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/dev_printk.h:110:30: note: in definition of macro 'dev_printk_index_wrap'
-     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
-         |                              ^~~
-   include/linux/dev_printk.h:144:56: note: in expansion of macro 'dev_fmt'
-     144 |         dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
-         |                                                        ^~~~~~~
-   include/linux/dev_printk.h:174:17: note: in expansion of macro 'dev_err'
-     174 |                 dev_level(dev, fmt, ##__VA_ARGS__);                     \
-         |                 ^~~~~~~~~
-   include/linux/dev_printk.h:192:9: note: in expansion of macro 'dev_level_once'
-     192 |         dev_level_once(dev_err, dev, fmt, ##__VA_ARGS__)
-         |         ^~~~~~~~~~~~~~
-   drivers/net/ethernet/qualcomm/ipqess/ipqess.c:179:17: note: in expansion of macro 'dev_err_once'
-     179 |                 dev_err_once(rx_ring->ppdev,
-         |                 ^~~~~~~~~~~~
-   drivers/net/ethernet/qualcomm/ipqess/ipqess.c:180:77: note: format string is defined here
-     180 |                              "IPQESS DMA mapping failed for linear address %x",
-         |                                                                            ~^
-         |                                                                             |
-         |                                                                             unsigned int
-         |                                                                            %llx
->> drivers/net/ethernet/qualcomm/ipqess/ipqess.c:188:43: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
-     188 |         rx_ring->hw_desc[rx_ring->head] = (struct ipqess_rx_desc *)buf->dma;
-         |                                           ^
-
-
-vim +188 drivers/net/ethernet/qualcomm/ipqess/ipqess.c
-
-   170	
-   171	static int ipqess_rx_buf_prepare(struct ipqess_buf *buf,
-   172					 struct ipqess_rx_ring *rx_ring)
-   173	{
-   174		memset(buf->skb->data, 0, sizeof(struct ipqess_rx_desc));
-   175	
-   176		buf->dma = dma_map_single(rx_ring->ppdev, buf->skb->data,
-   177					  IPQESS_RX_HEAD_BUFF_SIZE, DMA_FROM_DEVICE);
-   178		if (dma_mapping_error(rx_ring->ppdev, buf->dma)) {
-   179			dev_err_once(rx_ring->ppdev,
-   180				     "IPQESS DMA mapping failed for linear address %x",
-   181				     buf->dma);
-   182			dev_kfree_skb_any(buf->skb);
-   183			buf->skb = NULL;
-   184			return -EFAULT;
-   185		}
-   186	
-   187		buf->length = IPQESS_RX_HEAD_BUFF_SIZE;
- > 188		rx_ring->hw_desc[rx_ring->head] = (struct ipqess_rx_desc *)buf->dma;
-   189		rx_ring->head = (rx_ring->head + 1) % IPQESS_RX_RING_SIZE;
-   190	
-   191		ipqess_m32(rx_ring->ess, IPQESS_RFD_PROD_IDX_BITS,
-   192			   (rx_ring->head + IPQESS_RX_RING_SIZE - 1) % IPQESS_RX_RING_SIZE,
-   193			   IPQESS_REG_RFD_IDX_Q(rx_ring->idx));
-   194	
-   195		return 0;
-   196	}
-   197	
+> +      - const: cec
+> +      - const: pix
+> +      - const: fdcc
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - interrupts
+> +  - power-domains
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/clock/imx8mp-clock.h>
+> +    #include <dt-bindings/power/imx8mp-power.h>
+> +
+> +    hdmi@32fd8000 {
+> +        compatible = "fsl,imx8mp-hdmi";
+> +        reg = <0x32fd8000 0x7eff>;
+> +        interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks = <&clk IMX8MP_CLK_HDMI_APB>,
+> +                 <&clk IMX8MP_CLK_HDMI_REF_266M>,
+> +                 <&clk IMX8MP_CLK_HDMI_FDCC_TST>,
+> +                 <&clk IMX8MP_CLK_32K>,
+> +                 <&hdmi_tx_phy>;
+> +        clock-names = "iahb", "isfr", "fdcc", "cec", "pix";
+> +        power-domains = <&hdmi_blk_ctrl IMX8MP_HDMIBLK_PD_HDMI_TX>;
+> +        reg-io-width = <1>;
+> +    };
 
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+Regards,
+
+Laurent Pinchart
