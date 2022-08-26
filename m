@@ -2,71 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 952CB5A1FA4
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 06:09:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 547FC5A200F
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 06:57:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234463AbiHZEJF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 00:09:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46418 "EHLO
+        id S234108AbiHZE4r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 00:56:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234108AbiHZEJD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 00:09:03 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DA59C6EB8
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 21:09:02 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id y3so933962ejc.1
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 21:09:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=nfavuWqsga9k882E8+MW27Dc7w6nkSmp6dmrzCaSBa8=;
-        b=auaX9NL078V2jQ22g6geanRo4qZgCfxascPAwZLxdTpxPyzPYywc2dou1ZYhcRULDj
-         SPoXe+ojJ8cZ26IfVZM+1e593dZ30nsOzMbK8OQ3BD+4Ii44ZUIxjQxzbARwlnIbYBZ4
-         eFv5ITB4zd1gSGzc6fvPICF/Xe8xA2tDVwNX8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=nfavuWqsga9k882E8+MW27Dc7w6nkSmp6dmrzCaSBa8=;
-        b=W9Vy7oPb7T+w6T/kXso3bW9kvyEeDpuBA27lUMfCpxK4MPy2xN+w9EWctjB6KGqE3J
-         DgfeHufww99NpN/LK5AyNviAI4oevEvfEZDc78EwkWoSt1cHTLN21scd1UOH2/5D1KPf
-         tNccfcaQvykC5uO3KdXCIQDH6W9+ABCnBnq7kmda1clUaDdh0c9rt05XtGGwDOWYjv6R
-         RcSwPnBin4DcLngDO85FQP5QYkz7p0zxCynARMRdHMO6PpYDJz3wNI5tldxfdA88YSlN
-         JDCIiOKmIKMBDss89kghWi0TuRYWzKHoItPCTqe6jZ39Bf+g/EzGtQkR28ZNbl3qvs5U
-         4VIg==
-X-Gm-Message-State: ACgBeo0b/xCjHJMRF1PnPzlP8FTFYi9Zf9LtSx9VKgpKkblqZdLUlX1X
-        AHPq1xPPzDxf82J3AvGB4yH0CJXAIQc4PGAToUQ3JQ==
-X-Google-Smtp-Source: AA6agR4P9lJ2jCOXLxO3fu5pzVr8QQon3biII9pZufVQXE6IfPh3piLXnL5yinNDFW3MHI/dSrraW9UClF4wseNeZfY=
-X-Received: by 2002:a17:907:60c7:b0:739:52ba:cbd0 with SMTP id
- hv7-20020a17090760c700b0073952bacbd0mr4329186ejc.152.1661486940981; Thu, 25
- Aug 2022 21:09:00 -0700 (PDT)
+        with ESMTP id S232163AbiHZE4q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 00:56:46 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A351C9A9EB;
+        Thu, 25 Aug 2022 21:56:45 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3F4D0614CC;
+        Fri, 26 Aug 2022 04:56:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13BA1C433D6;
+        Fri, 26 Aug 2022 04:56:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1661489804;
+        bh=b+RI5o5YmlV7YRcmNodCky267Qbp9qGWKb/djtyTr9c=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=O8dMCOkiJ9+1adaxVvCI57NYV6wTFuDAeUni9Yq2MvC9OqpXw+XQgW2U3PPN3j932
+         a8GYAIdcPzqmZix6WwmN1GX4WQhUY69UKWRU7Elphidac1fuTk/wEb9LLyXZ1nutdt
+         bjW1SdQLyyaqyFqHjQciftd6YKPLYjjC217N+5PGPYRoc2NaL5RK5mH9PTJEdJpufY
+         1sze9Taxeln4Lf/rI3mGr4YyCt760DIxjcGFpFdqS4tsDQBqtFZQ8+RJNO5qFcduD9
+         K2HUh6pBrX3PTD+hHCmPRhV1EQY2DlgHbw44IMV4T4T280r+zYu3uIy+lIIrN1rDvv
+         fidonidW8OFwA==
+Date:   Fri, 26 Aug 2022 10:26:39 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Douglas Anderson <dianders@chromium.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andrew Halaney <ahalaney@redhat.com>,
+        Mark Brown <broonie@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 7/7] arm64: dts: qcom: sm8350-hdk: Specify which LDO
+ modes are allowed
+Message-ID: <YwhSh3Toswds25Gi@matsya>
+References: <20220825164205.4060647-1-dianders@chromium.org>
+ <20220825094155.7.I6799be85cf36d3b494f803cba767a569080624f5@changeid>
 MIME-Version: 1.0
-References: <20220720085731.11011-1-irui.wang@mediatek.com> <20220720085731.11011-5-irui.wang@mediatek.com>
-In-Reply-To: <20220720085731.11011-5-irui.wang@mediatek.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Fri, 26 Aug 2022 12:08:49 +0800
-Message-ID: <CAGXv+5Eqcv-K1O-5foTcHYXKh+0yipo-i+EjgYOMemS3_82fAQ@mail.gmail.com>
-Subject: Re: [PATCH v2, 4/6] media: mediatek: vcodec: Remove encoder driver
- get IRQ resource
-To:     Irui Wang <irui.wang@mediatek.com>
-Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        angelogioacchino.delregno@collabora.com,
-        Maoguang Meng <maoguang.meng@mediatek.com>,
-        Longfei Wang <longfei.wang@mediatek.com>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220825094155.7.I6799be85cf36d3b494f803cba767a569080624f5@changeid>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -75,63 +61,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 25-08-22, 09:42, Douglas Anderson wrote:
+> This board uses RPMH, specifies "regulator-allow-set-load" for LDOs,
+> but doesn't specify any modes with "regulator-allowed-modes".
+> 
+> Prior to commit efb0cb50c427 ("regulator: qcom-rpmh: Implement
+> get_optimum_mode(), not set_load()") the above meant that we were able
+> to set either LPM or HPM mode. After that commit (and fixes [1]) we'll
+> be stuck at the initial mode. Discussion of this has resulted in the
+> decision that the old dts files were wrong and should be fixed to
+> fully restore old functionality.
+> 
+> Let's re-enable the old functionality by fixing the dts.
 
-On Wed, Jul 20, 2022 at 4:58 PM Irui Wang <irui.wang@mediatek.com> wrote:
->
-> The "platform_get_resource(pdev, IORESOURCE_IRQ, 0)" is no longer
-> used after commit a1a2b7125e107("of/platform: Drop static setup of
-> IRQ resource from DT core"), so just remove the function in
-> encoder driver to avoid driver probe failed.
->
-> Signed-off-by: Irui Wang <irui.wang@mediatek.com>
-> ---
->  .../media/platform/mediatek/vcodec/mtk_vcodec_enc_drv.c   | 8 --------
->  1 file changed, 8 deletions(-)
->
-> diff --git a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_enc_drv.c b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_enc_drv.c
-> index ea667b867b56..6d8964fb4fa2 100644
-> --- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_enc_drv.c
-> +++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_enc_drv.c
-> @@ -228,7 +228,6 @@ static int mtk_vcodec_probe(struct platform_device *pdev)
->  {
->         struct mtk_vcodec_dev *dev;
->         struct video_device *vfd_enc;
-> -       struct resource *res;
->         phandle rproc_phandle;
->         enum mtk_vcodec_fw_type fw_type;
->         int ret;
-> @@ -272,13 +271,6 @@ static int mtk_vcodec_probe(struct platform_device *pdev)
->                 goto err_res;
->         }
->
-> -       res = platform_get_resource(pdev, IORESOURCE_IRQ, 0);
-> -       if (res == NULL) {
-> -               dev_err(&pdev->dev, "failed to get irq resource");
-> -               ret = -ENOENT;
-> -               goto err_res;
-> -       }
-> -
->         dev->enc_irq = platform_get_irq(pdev, 0);
+Reviewed-by: Vinod Koul <vkoul@kernel.org>
 
-platform_get_irq() returns a negative number on failure. You should
-check for errors here as the previous check was removed.
-
-The description of platform_get_irq() explicitly mentions:
-
-    Device drivers should check the return value for errors so as to
-    not pass a negative integer value to the request_irq() APIs.
-
-Hans has queued up this patch, so maybe you could provide a follow-up
-patch to fix this?
-
-
-Regards
-ChenYu
-
-
->         irq_set_status_flags(dev->enc_irq, IRQ_NOAUTOEN);
->         ret = devm_request_irq(&pdev->dev, dev->enc_irq,
-> --
-> 2.18.0
->
+-- 
+~Vinod
