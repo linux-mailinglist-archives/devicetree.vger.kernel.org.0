@@ -2,205 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A6395A23A5
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 11:00:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3308A5A23A9
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 11:01:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245084AbiHZJAH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 05:00:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42622 "EHLO
+        id S241109AbiHZJB5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 05:01:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244907AbiHZJAG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 05:00:06 -0400
-Received: from mail.bugwerft.de (mail.bugwerft.de [46.23.86.59])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 22F6E44569
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 02:00:03 -0700 (PDT)
-Received: from hq-00021.fritz.box (p57bc9b74.dip0.t-ipconnect.de [87.188.155.116])
-        by mail.bugwerft.de (Postfix) with ESMTPSA id A1282421376;
-        Fri, 26 Aug 2022 08:59:32 +0000 (UTC)
-From:   Daniel Mack <daniel@zonque.org>
-To:     broonie@kernel.org, ryan.lee.analog@gmail.com
-Cc:     robh+dt@kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, Daniel Mack <daniel@zonque.org>
-Subject: [PATCH v3 2/2] ASoC: max98396: Make data monitor features configurable
-Date:   Fri, 26 Aug 2022 10:59:27 +0200
-Message-Id: <20220826085927.2336224-2-daniel@zonque.org>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20220826085927.2336224-1-daniel@zonque.org>
-References: <20220826085927.2336224-1-daniel@zonque.org>
+        with ESMTP id S229904AbiHZJB4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 05:01:56 -0400
+Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF12AD39B9;
+        Fri, 26 Aug 2022 02:01:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+        d=metrotek.ru; s=mail;
+        h=from:subject:date:message-id:to:cc:mime-version:content-type:in-reply-to:
+         references;
+        bh=PqdOCysNyoeX+3vKTwVHuyFennZ69yEbZJEUljzyxto=;
+        b=hOdAqTCPt5A4bXYLTKZWTHQVs2Qa92cyeVhq3jk/663xTIWQoEuWkfyPt2c1IZe5m8s8tc1pNYdTM
+         IFOgoKFwRBnkt8Y3/HyMDNWcJyPFq115dlhqlZjfj8WzYliijtAoL3eP/tiI90oD+roT9SrZ1HvcaG
+         3JDSxknJeoJqjs6gCYWdYHk4ijfsUTRtt1hNnXdwU3IH2NJIn49bTkyy+BJEvHDMc5MlOZ25j7Z0a+
+         6TdSedpOZQ/KFS36sY2RpMTL7mSYxMQVf2i6M0f1NcnexiySNRFmOBtXIKmOsXmA9fAX/hyl4AnS2T
+         AILLbP6RaV2C5Z8c15wVeHDNHiPdISQ==
+X-Kerio-Anti-Spam:  Build: [Engines: 2.16.4.1445, Stamp: 3], Multi: [Enabled, t: (0.000010,0.011247)], BW: [Enabled, t: (0.000014,0.000001)], RTDA: [Enabled, t: (0.076999), Hit: No, Details: v2.41.0; Id: 15.52k1ho.1gbcm5ev6.14n; mclb], total: 0(700)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Level: 
+X-Footer: bWV0cm90ZWsucnU=
+Received: from h-e2.ddg ([85.143.252.66])
+        (authenticated user i.bornyakov@metrotek.ru)
+        by mail.pr-group.ru with ESMTPSA
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
+        Fri, 26 Aug 2022 12:01:40 +0300
+Date:   Fri, 26 Aug 2022 12:00:42 +0300
+From:   Ivan Bornyakov <i.bornyakov@metrotek.ru>
+To:     Sascha Hauer <sha@pengutronix.de>
+Cc:     j.zink@pengutronix.de, devicetree@vger.kernel.org,
+        linux-fpga@vger.kernel.org, robh+dt@kernel.org, mdf@kernel.org,
+        kernel@pengutronix.de, yilun.xu@intel.com, hao.wu@intel.com
+Subject: Re: [PATCH 00/16] Add support for Lattice MachXO2 programming via I2C
+Message-ID: <20220826090042.jhngyeufei55b5c2@h-e2.ddg>
+References: <20220825141343.1375690-1-j.zink@pengutronix.de>
+ <20220825152514.9926-1-i.bornyakov@metrotek.ru>
+ <20220826082539.GA12909@pengutronix.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220826082539.GA12909@pengutronix.de>
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allow the data monitor features to be enabled explicitly, and enable control
-over their details.
+On Fri, Aug 26, 2022 at 10:25:39AM +0200, Sascha Hauer wrote:
+> Hi Ivan,
+> 
+> On Thu, Aug 25, 2022 at 06:25:14PM +0300, Ivan Bornyakov wrote:
+> > Hi, Johannes!
+> > 
+> > I just came across your patches. Surprisingly, our work interferes.
+> > 
+> > I recently posted patch-series for configuring ECP5 and was asked to make
+> > generalized sysCONFIG driver with support for both ECP5 and MachXO2, which
+> > I did. Sadly I don't have hardware with MachXO2, but you clearly do :)
+> > 
+> > Please, take a look at
+> > 
+> > https://lore.kernel.org/linux-fpga/20220825112433.14583-1-i.bornyakov@metrotek.ru/
+> > 
+> > and please help test MachXO2 variant. When we pull this off, you may add I2C
+> > interface on top.
+> 
+> You are adding a new driver for something we already have a driver for
+> in the tree.
 
-Signed-off-by: Daniel Mack <daniel@zonque.org>
----
- sound/soc/codecs/max98396.c | 102 ++++++++++++++++++++++++++++++++++++
- sound/soc/codecs/max98396.h |  14 +++++
- 2 files changed, 116 insertions(+)
+My intent was to add new driver and drop old one once the new driver is
+proven to be working.
 
-diff --git a/sound/soc/codecs/max98396.c b/sound/soc/codecs/max98396.c
-index 42479f3ab663..b74d667d1476 100644
---- a/sound/soc/codecs/max98396.c
-+++ b/sound/soc/codecs/max98396.c
-@@ -1486,6 +1486,87 @@ static int max98396_probe(struct snd_soc_component *component)
- 			   MAX98396_CLK_MON_AUTO_RESTART_MASK,
- 			   MAX98396_CLK_MON_AUTO_RESTART_MASK);
- 
-+	regmap_update_bits(max98396->regmap,
-+			   MAX98396_R203F_ENABLE_CTRLS,
-+			   MAX98396_CTRL_DMON_STUCK_EN_MASK,
-+			   max98396->dmon_stuck_enable ?
-+				MAX98396_CTRL_DMON_STUCK_EN_MASK : 0);
-+
-+	regmap_update_bits(max98396->regmap,
-+			   MAX98396_R203F_ENABLE_CTRLS,
-+			   MAX98396_CTRL_DMON_MAG_EN_MASK,
-+			   max98396->dmon_mag_enable ?
-+				MAX98396_CTRL_DMON_MAG_EN_MASK : 0);
-+
-+	switch (max98396->dmon_duration) {
-+	case 64:
-+		regmap_update_bits(max98396->regmap,
-+				   MAX98396_R2039_DATA_MON_CTRL,
-+				   MAX98396_DMON_DURATION_MASK, 0);
-+		break;
-+	case 256:
-+		regmap_update_bits(max98396->regmap,
-+				   MAX98396_R2039_DATA_MON_CTRL,
-+				   MAX98396_DMON_DURATION_MASK, 1);
-+		break;
-+	case 1024:
-+		regmap_update_bits(max98396->regmap,
-+				   MAX98396_R2039_DATA_MON_CTRL,
-+				   MAX98396_DMON_DURATION_MASK, 2);
-+		break;
-+	case 4096:
-+		regmap_update_bits(max98396->regmap,
-+				   MAX98396_R2039_DATA_MON_CTRL,
-+				   MAX98396_DMON_DURATION_MASK, 3);
-+		break;
-+	default:
-+		dev_err(component->dev, "Invalid DMON duration %d\n",
-+			max98396->dmon_duration);
-+	}
-+
-+	switch (max98396->dmon_stuck_threshold) {
-+	case 15:
-+		regmap_update_bits(max98396->regmap,
-+				   MAX98396_R2039_DATA_MON_CTRL,
-+				   MAX98396_DMON_STUCK_THRESH_MASK,
-+				   0 << MAX98396_DMON_STUCK_THRESH_SHIFT);
-+		break;
-+	case 13:
-+		regmap_update_bits(max98396->regmap,
-+				   MAX98396_R2039_DATA_MON_CTRL,
-+				   MAX98396_DMON_STUCK_THRESH_MASK,
-+				   1 << MAX98396_DMON_STUCK_THRESH_SHIFT);
-+		break;
-+	case 22:
-+		regmap_update_bits(max98396->regmap,
-+				   MAX98396_R2039_DATA_MON_CTRL,
-+				   MAX98396_DMON_STUCK_THRESH_MASK,
-+				   2 << MAX98396_DMON_STUCK_THRESH_SHIFT);
-+		break;
-+	case 9:
-+		regmap_update_bits(max98396->regmap,
-+				   MAX98396_R2039_DATA_MON_CTRL,
-+				   MAX98396_DMON_STUCK_THRESH_MASK,
-+				   3 << MAX98396_DMON_STUCK_THRESH_SHIFT);
-+		break;
-+	default:
-+		dev_err(component->dev, "Invalid DMON stuck threshold %d\n",
-+			max98396->dmon_stuck_threshold);
-+	}
-+
-+	switch (max98396->dmon_mag_threshold) {
-+	case 2 ... 5:
-+		regmap_update_bits(max98396->regmap,
-+				   MAX98396_R2039_DATA_MON_CTRL,
-+				   MAX98396_DMON_STUCK_THRESH_MASK,
-+				   (5 - max98396->dmon_mag_threshold)
-+					<< MAX98396_DMON_MAG_THRESH_SHIFT);
-+		break;
-+	default:
-+		dev_err(component->dev, "Invalid DMON magnitude threshold %d\n",
-+			max98396->dmon_mag_threshold);
-+	}
-+
- 	/* Speaker Amplifier PCM RX Enable by default */
- 	regmap_update_bits(max98396->regmap,
- 			   MAX98396_R205E_PCM_RX_EN,
-@@ -1619,6 +1700,27 @@ static void max98396_read_device_property(struct device *dev,
- 		max98396->bypass_slot = value & 0xF;
- 	else
- 		max98396->bypass_slot = 0;
-+
-+	max98396->dmon_stuck_enable =
-+		device_property_read_bool(dev, "adi,dmon-stuck-enable");
-+
-+	if (!device_property_read_u32(dev, "adi,dmon-stuck-threshold-bits", &value))
-+		max98396->dmon_stuck_threshold = value;
-+	else
-+		max98396->dmon_stuck_threshold = 15;
-+
-+	max98396->dmon_mag_enable =
-+		device_property_read_bool(dev, "adi,dmon-magnitude-enable");
-+
-+	if (!device_property_read_u32(dev, "adi,dmon-magnitude-threshold-bits", &value))
-+		max98396->dmon_mag_threshold = value;
-+	else
-+		max98396->dmon_mag_threshold = 5;
-+
-+	if (!device_property_read_u32(dev, "adi,dmon-duration-ms", &value))
-+		max98396->dmon_duration = value;
-+	else
-+		max98396->dmon_duration = 64;
- }
- 
- static void max98396_core_supplies_disable(void *priv)
-diff --git a/sound/soc/codecs/max98396.h b/sound/soc/codecs/max98396.h
-index 7278c779989a..d396aa3e698b 100644
---- a/sound/soc/codecs/max98396.h
-+++ b/sound/soc/codecs/max98396.h
-@@ -212,8 +212,17 @@
- #define MAX98396_CLK_MON_AUTO_RESTART_MASK	(0x1 << 0)
- #define MAX98396_CLK_MON_AUTO_RESTART_SHIFT	(0)
- 
-+/* MAX98396_R2039_DATA_MON_CTRL */
-+#define MAX98396_DMON_MAG_THRESH_SHIFT		(4)
-+#define MAX98396_DMON_MAG_THRESH_MASK		(0x3 << MAX98396_DMON_MAG_THRESH_SHIFT)
-+#define MAX98396_DMON_STUCK_THRESH_SHIFT	(2)
-+#define MAX98396_DMON_STUCK_THRESH_MASK		(0x3 << MAX98396_DMON_STUCK_THRESH_SHIFT)
-+#define MAX98396_DMON_DURATION_MASK		(0x3)
-+
- /* MAX98396_R203F_ENABLE_CTRLS */
- #define MAX98396_CTRL_CMON_EN_SHIFT		(0)
-+#define MAX98396_CTRL_DMON_STUCK_EN_MASK	(0x1 << 1)
-+#define MAX98396_CTRL_DMON_MAG_EN_MASK		(0x1 << 2)
- 
- /* MAX98396_R2041_PCM_MODE_CFG */
- #define MAX98396_PCM_MODE_CFG_FORMAT_MASK	(0x7 << 3)
-@@ -305,6 +314,11 @@ struct max98396_priv {
- 	unsigned int i_slot;
- 	unsigned int spkfb_slot;
- 	unsigned int bypass_slot;
-+	bool dmon_stuck_enable;
-+	unsigned int dmon_stuck_threshold;
-+	bool dmon_mag_enable;
-+	unsigned int dmon_mag_threshold;
-+	unsigned int dmon_duration;
- 	bool interleave_mode;
- 	bool tdm_mode;
- 	int tdm_max_samplerate;
--- 
-2.37.2
+> The final goal should be that we only have a single driver
+> for sysconfig based FPGAs in the tree.
+
+It is.
+
+> Johannes' series is a step in
+> that direction: He cleans up the existing driver and starts abstracting
+> out common sysconfig functions so that they can be used by both the I2C
+> and SPI interface. He just told me that the abstraction is likely not
+> enough to integrate ECP5 support right away, one reason being that the
+> machxo2 has a flash whereas the ECP5 does not.
+> 
+> Unless you can explain why the existing driver is broken beyond repair
+> I think we should rather incrementally improve the existing driver
+> instead of adding a new one with a conflicting compatible.
+
+Yeah, conflicting compatible was my oversight.
+
+> So despite you were in the room earlier I think you should rather base
+> your work on Johannes' series.
+
+We on par here. You guys didn't join ongoing work, I didn't rework
+existing driver.
+
+> 
+> Just my 2 cents, maybe one of the maintainers has a few words on it.
+> 
+> Sascha
+> 
+> 
+> -- 
+> Pengutronix e.K.                           |                             |
+> Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
