@@ -2,73 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F40EF5A2103
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 08:43:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 99F3B5A210D
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 08:45:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245049AbiHZGnJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 02:43:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42290 "EHLO
+        id S243137AbiHZGpa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 02:45:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244989AbiHZGnI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 02:43:08 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD73CD125E
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 23:43:07 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id q16so686347ljp.8
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 23:43:07 -0700 (PDT)
+        with ESMTP id S244023AbiHZGpX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 02:45:23 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8852FAA4D0
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 23:45:21 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id m5so813250lfj.4
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 23:45:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=BC6xgpuPVrsYHJWMCxjbD8/CEKHAHjyVQ6dzDES7reE=;
-        b=lk6N21IAZL6YGX+9AhHhJif0mxd8PuPEOdIgBWgumETu3a0ApfkcOIzzJ819JeUVvp
-         XKkj07BYNiJQJ4ScmW7gOO4Rp/jFGWBYI+kzbGukF4r9FcWP3vOq7ws3l4LpjiNzrbID
-         vAvMPoUgR3k5nZhC8keGGwOw4GsHaXt9WYrfqzjLNMIYHQrwGW08akRKDIMsYNSo/HdP
-         iiOAMFiPEWjwT5bIAGQG8CJE5/Q+zeGwlnuRo15r7+AlmbxHymeKgNrqJjzm5KmU0I6V
-         tuBoR4ke/tS26JCT+9cdfuV3oqddorubz834i4/6bdM8tGl4yl/OxVIQl/Lky7HF4N6s
-         2s1w==
+        bh=76qBouYIHeC6d/ctco6Wmf4ZHs3wGtu4s1Cs+RWbvmI=;
+        b=wv+Xyza+ltAZ/PD/0TreZBciu5zRPf/PRZBnb5o2mANd+7GTTG1nuu0dL/DQDdHhYJ
+         pG7GSLsTYDS+wHn4+4AlZOWOMGPRbSG7TYDmIg78dgSixEyISbKBWPaF/P1RBGUfGpIQ
+         tRKFnWCkmBZWnRJRKNsBUqK+tU6ol1pKsXqXWgRF37hzHVyaNcxIpFxWbMH4Wcp0vw/a
+         R+swT8rzKXaNHTEuYHex5nQgvIpSHXVltY/qkHU64n2WOr1wTt/xJ34ROF53svJqfU9S
+         FSAuNfeZh676JzS3ssEWim1DWTi4NJRGn75HsBHgzfprjdQcL+TUR1OQHddPMjmy0Jmd
+         xiTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=BC6xgpuPVrsYHJWMCxjbD8/CEKHAHjyVQ6dzDES7reE=;
-        b=f6OaThPlZoeBZej0ekIwSqyPZDzRQPZ/8YgNFsyCOFyLU9aNAC4gQ7DGcGY4f3ETJD
-         Moa/d3WVXKESmlRRzjt5ScTzfm+LqNva6S/1gTRkJN7i08IVQEor1ir9rMTXmuybcowZ
-         aNKb6tnnmnKMblQPihO2CPYdA9Jln/nHfJzBR4fWHX78VSi9r2n5o2bkPOF5oWIB7SMj
-         MfuxMFD9/az4WGIB6yL6XA7LPFIGWvJHNX3jo7GyEdPepJqIurmbTBQFFQ2AEB3P2f1/
-         NS5Eurv1+QEt5XI2DqmGnIqzdJwPemN0EZAYTTXLSmNp8EroCP8FRmIpb2TEbmP1i+Ju
-         oKHA==
-X-Gm-Message-State: ACgBeo3/5KRem7koFVkTKiQMxcPbnjCLF8dG+TIGrv23+LENm5/xaZ/i
-        6HFA5P1ZeImYXiML+SxmMIaKjQ==
-X-Google-Smtp-Source: AA6agR5WFVb1ntXNTkav2V0MvRlR4UsAwX6g20NgInvBS7sNVmxVVZmWLCVO+QvSg+V52HgOtK3zwQ==
-X-Received: by 2002:a2e:9c8c:0:b0:261:d87c:8626 with SMTP id x12-20020a2e9c8c000000b00261d87c8626mr1884267lji.150.1661496185893;
-        Thu, 25 Aug 2022 23:43:05 -0700 (PDT)
+        bh=76qBouYIHeC6d/ctco6Wmf4ZHs3wGtu4s1Cs+RWbvmI=;
+        b=oX5kJclvCcou4iMEkPZcoIhjLCtkTMDtrRBWCxhYFSiWbWZ4bp5ljs95Ep92yguI1w
+         SSSOc0yUNImln2gIVVC7JuIvvdOk/cCdiJoSbnhAMjp+dCR2G/eo9n5bTawyMxekQycm
+         I3L+ILzOYHKKF2ktoX55M9DgxMl5Uo+6FDBxRFWHwBChRP3YwDMPnNLBdlzpcxGPIZHq
+         pEUK313SPz4G5Is0kJTd75iAI0YI7X1Xju51jUgG3Rj78vQKwddL0FYyPMcRH+B/ct8H
+         oFLWVikC90m8JgDrEQAfX9kI4CaQc8B+0dPjkS4+UMwEMjZcRb7yKSv3GnAGJCt5FWmb
+         fJQw==
+X-Gm-Message-State: ACgBeo3laNqJ702FWT2C7352bOqkE16QJCjG4JNfltVqa3S9Qn1Gmbvw
+        IFgBs7xj9GyQUK5CMp1yoG8Rbg==
+X-Google-Smtp-Source: AA6agR4SJUwINorjaTc/7IHwXWRWERcYLsGWka9nNqc0mk3QNBrJYwP+7oaIoI2J1QriQ4TjtdnkuQ==
+X-Received: by 2002:ac2:52ad:0:b0:492:d8ae:364f with SMTP id r13-20020ac252ad000000b00492d8ae364fmr1907211lfm.249.1661496319499;
+        Thu, 25 Aug 2022 23:45:19 -0700 (PDT)
 Received: from [192.168.0.71] (82.131.98.15.cable.starman.ee. [82.131.98.15])
-        by smtp.gmail.com with ESMTPSA id x27-20020a19e01b000000b00492c6ce35basm265784lfg.79.2022.08.25.23.43.04
+        by smtp.gmail.com with ESMTPSA id m6-20020a056512114600b0048af6242892sm274234lfg.14.2022.08.25.23.45.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Aug 2022 23:43:05 -0700 (PDT)
-Message-ID: <571db5f6-1221-f8e0-1cc6-ff84dcf83cf9@linaro.org>
-Date:   Fri, 26 Aug 2022 09:43:03 +0300
+        Thu, 25 Aug 2022 23:45:18 -0700 (PDT)
+Message-ID: <f85c693b-daf4-c2d5-9ad8-88aef99eecaf@linaro.org>
+Date:   Fri, 26 Aug 2022 09:45:15 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v2 2/2] nvmem: lan9662-otp: add support.
+Subject: Re: [PATCH v6 1/6] dt-bindings: net: dsa: mediatek,mt7530: make
+ trivial changes
 Content-Language: en-US
-To:     Horatiu Vultur <horatiu.vultur@microchip.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, UNGLinuxDriver@microchip.com
-References: <20220825204041.1485731-1-horatiu.vultur@microchip.com>
- <20220825204041.1485731-3-horatiu.vultur@microchip.com>
+To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        Sander Vanheule <sander@svanheule.net>,
+        Daniel Golle <daniel@makrotopia.org>, erkin.bozoglu@xeront.com,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220825082301.409450-1-arinc.unal@arinc9.com>
+ <20220825082301.409450-2-arinc.unal@arinc9.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220825204041.1485731-3-horatiu.vultur@microchip.com>
+In-Reply-To: <20220825082301.409450-2-arinc.unal@arinc9.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,36 +96,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/08/2022 23:40, Horatiu Vultur wrote:
-> +static int lan9662_otp_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct nvmem_device *nvmem;
-> +	struct lan9662_otp *otp;
-> +
-> +	otp = devm_kzalloc(&pdev->dev, sizeof(*otp), GFP_KERNEL);
-> +	if (!otp)
-> +		return -ENOMEM;
-> +
-> +	otp->dev = dev;
-> +	otp->base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(otp->base))
-> +		return PTR_ERR(otp->base);
-> +
-> +	otp_config.priv = otp;
-> +	otp_config.dev = dev;
-> +
-> +	nvmem = devm_nvmem_register(dev, &otp_config);
-> +
-> +	return PTR_ERR_OR_ZERO(nvmem);
-> +}
-> +
-> +static const struct of_device_id lan9662_otp_match[] = {
-> +	{ .compatible = "microchip,lan9662-otp", },
-> +	{ .compatible = "microchip,lan9668-otp", },
+On 25/08/2022 11:22, Arınç ÜNAL wrote:
+> Make trivial changes on the binding.
+> 
+> - Update title to include MT7531 switch.
+> - Add me as a maintainer. List maintainers in alphabetical order by first
+> name.
+> - Add description to compatible strings.
+> - Stretch descriptions up to the 80 character limit.
+> - Remove lists for single items.
+> - Remove requiring reg as it's already required by dsa-port.yaml.
+> - Define acceptable reg values for the CPU ports.
+> - Remove quotes from $ref: "dsa.yaml#".
+> 
+> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
 
-Why do you need two compatibles here? Your bindings are saying only one
-is needed...
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 Best regards,
 Krzysztof
