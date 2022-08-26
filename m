@@ -2,29 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23A8E5A23A4
+	by mail.lfdr.de (Postfix) with ESMTP id 9A6395A23A5
 	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 11:00:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245267AbiHZJAH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S245084AbiHZJAH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Fri, 26 Aug 2022 05:00:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42624 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245084AbiHZJAG (ORCPT
+        with ESMTP id S244907AbiHZJAG (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 05:00:06 -0400
 Received: from mail.bugwerft.de (mail.bugwerft.de [46.23.86.59])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id DC06946D83
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 22F6E44569
         for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 02:00:03 -0700 (PDT)
 Received: from hq-00021.fritz.box (p57bc9b74.dip0.t-ipconnect.de [87.188.155.116])
-        by mail.bugwerft.de (Postfix) with ESMTPSA id 3DDDC421361;
+        by mail.bugwerft.de (Postfix) with ESMTPSA id A1282421376;
         Fri, 26 Aug 2022 08:59:32 +0000 (UTC)
 From:   Daniel Mack <daniel@zonque.org>
 To:     broonie@kernel.org, ryan.lee.analog@gmail.com
 Cc:     robh+dt@kernel.org, alsa-devel@alsa-project.org,
         devicetree@vger.kernel.org, Daniel Mack <daniel@zonque.org>
-Subject: [PATCH v3 1/2] ASoC: dt-bindings: max98396: Document data monitor properties
-Date:   Fri, 26 Aug 2022 10:59:26 +0200
-Message-Id: <20220826085927.2336224-1-daniel@zonque.org>
+Subject: [PATCH v3 2/2] ASoC: max98396: Make data monitor features configurable
+Date:   Fri, 26 Aug 2022 10:59:27 +0200
+Message-Id: <20220826085927.2336224-2-daniel@zonque.org>
 X-Mailer: git-send-email 2.37.2
+In-Reply-To: <20220826085927.2336224-1-daniel@zonque.org>
+References: <20220826085927.2336224-1-daniel@zonque.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
@@ -36,62 +38,169 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This device features a data monitor that puts the device in software reset
-upon a configurable set of events.
+Allow the data monitor features to be enabled explicitly, and enable control
+over their details.
 
 Signed-off-by: Daniel Mack <daniel@zonque.org>
 ---
-v1 -> v2: fix a typo and remove a stray blank line
-v2 -> v3: Rename device tree properties, drop $ref for standard unit suffix properties
+ sound/soc/codecs/max98396.c | 102 ++++++++++++++++++++++++++++++++++++
+ sound/soc/codecs/max98396.h |  14 +++++
+ 2 files changed, 116 insertions(+)
 
- .../bindings/sound/adi,max98396.yaml          | 34 +++++++++++++++++++
- 1 file changed, 34 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/sound/adi,max98396.yaml b/Documentation/devicetree/bindings/sound/adi,max98396.yaml
-index 8d2ef991db40..7985b1410017 100644
---- a/Documentation/devicetree/bindings/sound/adi,max98396.yaml
-+++ b/Documentation/devicetree/bindings/sound/adi,max98396.yaml
-@@ -78,6 +78,40 @@ properties:
-       interleaved on a single output channel.
-     type: boolean
+diff --git a/sound/soc/codecs/max98396.c b/sound/soc/codecs/max98396.c
+index 42479f3ab663..b74d667d1476 100644
+--- a/sound/soc/codecs/max98396.c
++++ b/sound/soc/codecs/max98396.c
+@@ -1486,6 +1486,87 @@ static int max98396_probe(struct snd_soc_component *component)
+ 			   MAX98396_CLK_MON_AUTO_RESTART_MASK,
+ 			   MAX98396_CLK_MON_AUTO_RESTART_MASK);
  
-+  adi,dmon-stuck-enable:
-+    description:
-+      Enables the "data monitor stuck" feature. Once the data monitor is
-+      enabled, it actively monitors the selected input data (from DIN) to the
-+      speaker amplifier. Once a data error is detected, the data monitor
-+      automatically places the device into software shutdown.
-+    type: boolean
++	regmap_update_bits(max98396->regmap,
++			   MAX98396_R203F_ENABLE_CTRLS,
++			   MAX98396_CTRL_DMON_STUCK_EN_MASK,
++			   max98396->dmon_stuck_enable ?
++				MAX98396_CTRL_DMON_STUCK_EN_MASK : 0);
 +
-+  adi,dmon-stuck-threshold-bits:
-+    description:
-+      Sets the threshold for the "data monitor stuck" feature, in bits.
-+    enum: [9, 11, 13, 15]
-+    default: 15
++	regmap_update_bits(max98396->regmap,
++			   MAX98396_R203F_ENABLE_CTRLS,
++			   MAX98396_CTRL_DMON_MAG_EN_MASK,
++			   max98396->dmon_mag_enable ?
++				MAX98396_CTRL_DMON_MAG_EN_MASK : 0);
 +
-+  adi,dmon-magnitude-enable:
-+    description:
-+      Enables the "data monitor magnitude" feature. Once the data monitor is
-+      enabled, it actively monitors the selected input data (from DIN) to the
-+      speaker amplifier. Once a data error is detected, the data monitor
-+      automatically places the device into software shutdown.
-+    type: boolean
++	switch (max98396->dmon_duration) {
++	case 64:
++		regmap_update_bits(max98396->regmap,
++				   MAX98396_R2039_DATA_MON_CTRL,
++				   MAX98396_DMON_DURATION_MASK, 0);
++		break;
++	case 256:
++		regmap_update_bits(max98396->regmap,
++				   MAX98396_R2039_DATA_MON_CTRL,
++				   MAX98396_DMON_DURATION_MASK, 1);
++		break;
++	case 1024:
++		regmap_update_bits(max98396->regmap,
++				   MAX98396_R2039_DATA_MON_CTRL,
++				   MAX98396_DMON_DURATION_MASK, 2);
++		break;
++	case 4096:
++		regmap_update_bits(max98396->regmap,
++				   MAX98396_R2039_DATA_MON_CTRL,
++				   MAX98396_DMON_DURATION_MASK, 3);
++		break;
++	default:
++		dev_err(component->dev, "Invalid DMON duration %d\n",
++			max98396->dmon_duration);
++	}
 +
-+  adi,dmon-magnitude-threshold-bits:
-+    description:
-+      Sets the threshold for the "data monitor magnitude" feature, in bits.
-+    enum: [2, 3, 4, 5]
-+    default: 5
++	switch (max98396->dmon_stuck_threshold) {
++	case 15:
++		regmap_update_bits(max98396->regmap,
++				   MAX98396_R2039_DATA_MON_CTRL,
++				   MAX98396_DMON_STUCK_THRESH_MASK,
++				   0 << MAX98396_DMON_STUCK_THRESH_SHIFT);
++		break;
++	case 13:
++		regmap_update_bits(max98396->regmap,
++				   MAX98396_R2039_DATA_MON_CTRL,
++				   MAX98396_DMON_STUCK_THRESH_MASK,
++				   1 << MAX98396_DMON_STUCK_THRESH_SHIFT);
++		break;
++	case 22:
++		regmap_update_bits(max98396->regmap,
++				   MAX98396_R2039_DATA_MON_CTRL,
++				   MAX98396_DMON_STUCK_THRESH_MASK,
++				   2 << MAX98396_DMON_STUCK_THRESH_SHIFT);
++		break;
++	case 9:
++		regmap_update_bits(max98396->regmap,
++				   MAX98396_R2039_DATA_MON_CTRL,
++				   MAX98396_DMON_STUCK_THRESH_MASK,
++				   3 << MAX98396_DMON_STUCK_THRESH_SHIFT);
++		break;
++	default:
++		dev_err(component->dev, "Invalid DMON stuck threshold %d\n",
++			max98396->dmon_stuck_threshold);
++	}
 +
-+  adi,dmon-duration-ms:
-+    description:
-+      Sets the duration for the "data monitor" feature, in milliseconds.
-+    enum: [64, 256, 1024, 4096]
-+    default: 64
++	switch (max98396->dmon_mag_threshold) {
++	case 2 ... 5:
++		regmap_update_bits(max98396->regmap,
++				   MAX98396_R2039_DATA_MON_CTRL,
++				   MAX98396_DMON_STUCK_THRESH_MASK,
++				   (5 - max98396->dmon_mag_threshold)
++					<< MAX98396_DMON_MAG_THRESH_SHIFT);
++		break;
++	default:
++		dev_err(component->dev, "Invalid DMON magnitude threshold %d\n",
++			max98396->dmon_mag_threshold);
++	}
 +
-   reset-gpios:
-     maxItems: 1
+ 	/* Speaker Amplifier PCM RX Enable by default */
+ 	regmap_update_bits(max98396->regmap,
+ 			   MAX98396_R205E_PCM_RX_EN,
+@@ -1619,6 +1700,27 @@ static void max98396_read_device_property(struct device *dev,
+ 		max98396->bypass_slot = value & 0xF;
+ 	else
+ 		max98396->bypass_slot = 0;
++
++	max98396->dmon_stuck_enable =
++		device_property_read_bool(dev, "adi,dmon-stuck-enable");
++
++	if (!device_property_read_u32(dev, "adi,dmon-stuck-threshold-bits", &value))
++		max98396->dmon_stuck_threshold = value;
++	else
++		max98396->dmon_stuck_threshold = 15;
++
++	max98396->dmon_mag_enable =
++		device_property_read_bool(dev, "adi,dmon-magnitude-enable");
++
++	if (!device_property_read_u32(dev, "adi,dmon-magnitude-threshold-bits", &value))
++		max98396->dmon_mag_threshold = value;
++	else
++		max98396->dmon_mag_threshold = 5;
++
++	if (!device_property_read_u32(dev, "adi,dmon-duration-ms", &value))
++		max98396->dmon_duration = value;
++	else
++		max98396->dmon_duration = 64;
+ }
  
+ static void max98396_core_supplies_disable(void *priv)
+diff --git a/sound/soc/codecs/max98396.h b/sound/soc/codecs/max98396.h
+index 7278c779989a..d396aa3e698b 100644
+--- a/sound/soc/codecs/max98396.h
++++ b/sound/soc/codecs/max98396.h
+@@ -212,8 +212,17 @@
+ #define MAX98396_CLK_MON_AUTO_RESTART_MASK	(0x1 << 0)
+ #define MAX98396_CLK_MON_AUTO_RESTART_SHIFT	(0)
+ 
++/* MAX98396_R2039_DATA_MON_CTRL */
++#define MAX98396_DMON_MAG_THRESH_SHIFT		(4)
++#define MAX98396_DMON_MAG_THRESH_MASK		(0x3 << MAX98396_DMON_MAG_THRESH_SHIFT)
++#define MAX98396_DMON_STUCK_THRESH_SHIFT	(2)
++#define MAX98396_DMON_STUCK_THRESH_MASK		(0x3 << MAX98396_DMON_STUCK_THRESH_SHIFT)
++#define MAX98396_DMON_DURATION_MASK		(0x3)
++
+ /* MAX98396_R203F_ENABLE_CTRLS */
+ #define MAX98396_CTRL_CMON_EN_SHIFT		(0)
++#define MAX98396_CTRL_DMON_STUCK_EN_MASK	(0x1 << 1)
++#define MAX98396_CTRL_DMON_MAG_EN_MASK		(0x1 << 2)
+ 
+ /* MAX98396_R2041_PCM_MODE_CFG */
+ #define MAX98396_PCM_MODE_CFG_FORMAT_MASK	(0x7 << 3)
+@@ -305,6 +314,11 @@ struct max98396_priv {
+ 	unsigned int i_slot;
+ 	unsigned int spkfb_slot;
+ 	unsigned int bypass_slot;
++	bool dmon_stuck_enable;
++	unsigned int dmon_stuck_threshold;
++	bool dmon_mag_enable;
++	unsigned int dmon_mag_threshold;
++	unsigned int dmon_duration;
+ 	bool interleave_mode;
+ 	bool tdm_mode;
+ 	int tdm_max_samplerate;
 -- 
 2.37.2
 
