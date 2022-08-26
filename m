@@ -2,124 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 030CD5A2422
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 11:21:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52A205A2466
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 11:31:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245712AbiHZJUk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 05:20:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48590 "EHLO
+        id S1343778AbiHZJ3V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 05:29:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343645AbiHZJUa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 05:20:30 -0400
-Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 662F6C6CF3;
-        Fri, 26 Aug 2022 02:20:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-        d=metrotek.ru; s=mail;
-        h=from:subject:date:message-id:to:cc:mime-version:content-type:in-reply-to:
-         references;
-        bh=2AKJkBRzZEXX9oMXeLTTHymBPdK/bRW+qRnxJRAdUtY=;
-        b=NJhBm/AwFKnOcGxAg7z3XwYvLazErcCyihTKGixiQzHd3hIleMAMNlru+I8cnUP0HgfSflJBUaweX
-         qu7bsAGTM6rNcRajozOI1jwIckGKlDAocVUfzrjpvzHM2mAcqaMd9reCZR2uwLeTChr7Wg0SXnRQdB
-         4otBIRLfEcHvd3QII67G2b1JRwo7TfXgXku436TkgMKlgrWralYYwdAVFWWXqu5vMqmgLwUe1MzaPg
-         QfAHdiAhFImpPOKylBoL3507UjKLPwKzGqVQzpsrkcTQmaL0tMCzpRuI/+/sKGnwztvXoe+9EHp4QB
-         9mbiP+Ljjymi+MwB6a8l9/YuW4xWFkw==
-X-Kerio-Anti-Spam:  Build: [Engines: 2.16.4.1445, Stamp: 3], Multi: [Enabled, t: (0.000011,0.012105)], BW: [Enabled, t: (0.000024,0.000001)], RTDA: [Enabled, t: (0.343412), Hit: No, Details: v2.41.0; Id: 15.52kaig.1gbcn79br.13s; mclb], total: 0(700)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Level: 
-X-Footer: bWV0cm90ZWsucnU=
-Received: from h-e2.ddg ([85.143.252.66])
-        (authenticated user i.bornyakov@metrotek.ru)
-        by mail.pr-group.ru with ESMTPSA
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
-        Fri, 26 Aug 2022 12:20:09 +0300
-Date:   Fri, 26 Aug 2022 12:19:12 +0300
-From:   Ivan Bornyakov <i.bornyakov@metrotek.ru>
-To:     Sascha Hauer <sha@pengutronix.de>
-Cc:     j.zink@pengutronix.de, devicetree@vger.kernel.org,
-        linux-fpga@vger.kernel.org, robh+dt@kernel.org, mdf@kernel.org,
-        kernel@pengutronix.de, yilun.xu@intel.com, hao.wu@intel.com
-Subject: Re: [PATCH 00/16] Add support for Lattice MachXO2 programming via I2C
-Message-ID: <20220826091912.xunn3cv3gwhktjib@h-e2.ddg>
-References: <20220825141343.1375690-1-j.zink@pengutronix.de>
- <20220825152514.9926-1-i.bornyakov@metrotek.ru>
- <20220826082539.GA12909@pengutronix.de>
- <20220826090042.jhngyeufei55b5c2@h-e2.ddg>
+        with ESMTP id S1343772AbiHZJ3R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 05:29:17 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F684D7D10;
+        Fri, 26 Aug 2022 02:29:15 -0700 (PDT)
+X-UUID: abb1907b200543a891c6c44336e114fb-20220826
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=jY8phmZztrWIcfUtaeVr9kuoCdktR8X67vNWupv29y8=;
+        b=vDo/JIDJi17M/BgaMWuW18qmjN3MTBl0rSduAklIdof8GYUJLSji0OARJhzQ4d2/mxrhDDlHpXfyn/FF+qGmZcVqVw1mVCtwMzIq6xDyhg2DiG8WV+ib4QAfE98xeD6hAB6BCzXmnfLtJFBbJRJiD3ejTSIKb7oGpZhjhNT9ikE=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.10,REQID:17125e6e-1f72-4983-8f84-fa4d48a947a1,OB:0,L
+        OB:0,IP:0,URL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Releas
+        e_Ham,ACTION:release,TS:-25
+X-CID-META: VersionHash:84eae18,CLOUDID:2359aa55-e800-47dc-8adf-0c936acf4f1b,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
+        ,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: abb1907b200543a891c6c44336e114fb-20220826
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
+        (envelope-from <irui.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1080767275; Fri, 26 Aug 2022 17:29:09 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Fri, 26 Aug 2022 17:29:07 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkmbs11n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
+ Transport; Fri, 26 Aug 2022 17:29:07 +0800
+From:   Irui Wang <irui.wang@mediatek.com>
+To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        <angelogioacchino.delregno@collabora.com>,
+        <nicolas.dufresne@collabora.com>, <wenst@chromium.org>,
+        kyrie wu <kyrie.wu@mediatek.com>
+CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Tomasz Figa <tfiga@chromium.org>, <xia.jiang@mediatek.com>,
+        <maoguang.meng@mediatek.com>
+Subject: [V7,0/8] Support multi-hardware jpeg decoder for MT8195
+Date:   Fri, 26 Aug 2022 17:28:56 +0800
+Message-ID: <20220826092904.10283-1-irui.wang@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220826090042.jhngyeufei55b5c2@h-e2.ddg>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_CSS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 26, 2022 at 12:00:44PM +0300, Ivan Bornyakov wrote:
-> On Fri, Aug 26, 2022 at 10:25:39AM +0200, Sascha Hauer wrote:
-> > Hi Ivan,
-> > 
-> > On Thu, Aug 25, 2022 at 06:25:14PM +0300, Ivan Bornyakov wrote:
-> > > Hi, Johannes!
-> > > 
-> > > I just came across your patches. Surprisingly, our work interferes.
-> > > 
-> > > I recently posted patch-series for configuring ECP5 and was asked to make
-> > > generalized sysCONFIG driver with support for both ECP5 and MachXO2, which
-> > > I did. Sadly I don't have hardware with MachXO2, but you clearly do :)
-> > > 
-> > > Please, take a look at
-> > > 
-> > > https://lore.kernel.org/linux-fpga/20220825112433.14583-1-i.bornyakov@metrotek.ru/
-> > > 
-> > > and please help test MachXO2 variant. When we pull this off, you may add I2C
-> > > interface on top.
-> > 
-> > You are adding a new driver for something we already have a driver for
-> > in the tree.
-> 
-> My intent was to add new driver and drop old one once the new driver is
-> proven to be working.
-> 
-> > The final goal should be that we only have a single driver
-> > for sysconfig based FPGAs in the tree.
-> 
-> It is.
-> 
-> > Johannes' series is a step in
-> > that direction: He cleans up the existing driver and starts abstracting
-> > out common sysconfig functions so that they can be used by both the I2C
-> > and SPI interface. He just told me that the abstraction is likely not
-> > enough to integrate ECP5 support right away, one reason being that the
-> > machxo2 has a flash whereas the ECP5 does not.
-> > 
-> > Unless you can explain why the existing driver is broken beyond repair
-> > I think we should rather incrementally improve the existing driver
-> > instead of adding a new one with a conflicting compatible.
-> 
-> Yeah, conflicting compatible was my oversight.
-> 
+From: kyrie wu <kyrie.wu@mediatek.com>
 
-Wait! They are not conflicting :) The new one is "lattice,machxo2-fpga-mgr",
-the old one is "lattice,machxo2-slave-spi"
+This series adds support for multi hardware jpeg decoding,
+by first adding use of_platform_populate to manage each hardware
+information: interrupt, clock, register bases and power.
+Secondly add decoding work queue to deal with the decoding requests
+of multi-hardware at the same time. Lastly, add output picture
+reorder function interface to eliminate the out of order images.
 
-> > So despite you were in the room earlier I think you should rather base
-> > your work on Johannes' series.
-> 
-> We on par here. You guys didn't join ongoing work, I didn't rework
-> existing driver.
-> 
-> > 
-> > Just my 2 cents, maybe one of the maintainers has a few words on it.
-> > 
-> > Sascha
-> > 
-> > 
-> > -- 
-> > Pengutronix e.K.                           |                             |
-> > Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-> > 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-> > Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+This series has been tested with both MT8195.
+Decoding worked for this chip.
+
+Patch 1 Adds jpeg decoder dt-bindings for mt8195
+
+Patches 2 jpeg decoder builds three module for using Multi-HW,
+export some functions to make them visible by other modules.
+
+Patch 3 use of_platform_populate to manage multi-hardware.
+
+Patch 4 add jpeg decoding timeout function to judge hardware timeout.
+
+Patch 5 add decoding work queue to deal with multi-hardware decoding
+at the same time.
+
+Patch 6 add output picture reorder function to order images.
+
+Patch 7 refactor jpegdec func interface for HW working.
+
+Patch 8 add stop cmd function to deal with EOS operation.
+
+---
+This series patches dependent on:
+media_stage tree:
+[1]
+https://git.linuxtv.org/media_stage.git/commit/?id=b3627647f9ea7473d10fb08a95fd7c4133a17ca4
+
+patch1 new jpegdec dt-bindings included files
+[2] MM IOMMU binding:
+https://patchwork.kernel.org/project/linux-mediatek/patch/20220217113453.13658-2-yong.wu@mediatek.com/
+
+[3] MT8195 power domain:
+https://patchwork.kernel.org/project/linux-mediatek/list/?series=580579
+
+Changes compared with v6:
+- some modifications for patch v6's review comments.
+
+Changes compared with v5:
+- some modifications for patch v5's review comments.
+- fix yaml file check errors.
+
+Changes compared with v4:
+- some modifications for patch v4's review comments.
+- fix Gstreamer test errors.
+
+Changes compared with v3:
+- some modifications for patch v3's review comments.
+
+Changes compared with v2:
+- add stop cmd function.
+- some modifications for patch v1's review comments.
+
+Changes compared with v1:
+- new yaml file for mt8195 jpeg decoder.
+- some modifications for patch v1's review comments.
+
+kyrie wu (8):
+  dt-bindings: mediatek: Add mediatek,mt8195-jpgdec compatible
+  media: mtk-jpegdec: export jpeg decoder functions
+  media: mtk-jpegdec: support jpegdec multi-hardware
+  media: mtk-jpegdec: add jpegdec timeout func interface
+  media: mtk-jpegdec: add jpeg decode worker interface
+  media: mtk-jpegdec: add output pic reorder interface
+  media: mtk-jpegdec: refactor jpegdec func interface
+  mtk-jpegdec: add stop cmd interface for jpgdec
+
+ .../media/mediatek,mt8195-jpegdec.yaml        | 169 ++++++++++
+ drivers/media/platform/mediatek/jpeg/Makefile |   5 +-
+ .../platform/mediatek/jpeg/mtk_jpeg_core.c    | 233 ++++++++++++-
+ .../platform/mediatek/jpeg/mtk_jpeg_core.h    |  46 +++
+ .../platform/mediatek/jpeg/mtk_jpeg_dec_hw.c  | 314 ++++++++++++++++--
+ .../platform/mediatek/jpeg/mtk_jpeg_dec_hw.h  |   3 +-
+ .../platform/mediatek/jpeg/mtk_jpeg_dec_reg.h |   1 +
+ 7 files changed, 739 insertions(+), 32 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt8195-jpegdec.yaml
+
+-- 
+2.18.0
 
