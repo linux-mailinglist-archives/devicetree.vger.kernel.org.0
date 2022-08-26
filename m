@@ -2,81 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 162795A228D
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 10:05:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DE925A2291
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 10:06:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245280AbiHZIFm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 04:05:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56298 "EHLO
+        id S1343527AbiHZIGe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 04:06:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244944AbiHZIFl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 04:05:41 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06AC3C00E0
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 01:05:39 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id og21so1712639ejc.2
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 01:05:38 -0700 (PDT)
+        with ESMTP id S1343522AbiHZIGd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 04:06:33 -0400
+Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3257D4745
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 01:06:30 -0700 (PDT)
+Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-3321c2a8d4cso17554767b3.5
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 01:06:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc;
-        bh=us6a+2w38MVWRp+x+cBiJGnbvKgPbkAshBT44b7qxRo=;
-        b=SuM/dfQorTdjvY+sn9+yhhK0yYIFo96ETN6NZBz3VXQa87jm2uhSY/+QAfrn1dDMiy
-         gNMach8yNQg3PiqRLOaYWuOXpuyKOOFEXx3LaEAPfw0+A7bn6TUuCTsaqxavyxdziHPm
-         QVdsTar93YJvIHlAALTt4aWO0PV+h0F9v2vnjwVfqOFYkbl62v9wAS4kxYoQLWG86L+f
-         t0NPncepnJDq4oW5uOqLks514SifS/JS26L8vevZg6NM85WS5j1DEKNRrjCb8I3rtag+
-         8ySmlyc/FLZc12algffeOLulK/yhR+B7ciw9aqOPM8JrDmkQrOPTY+zm2HQFNubbqrkW
-         Um9A==
+        bh=7Mq11P25bR3wlSS6rhp/KK7HEHcVP2nqSIE7qecBSHI=;
+        b=A6bJ+AnhSeKOqL2xoFgZgqXmcNg60G7gBzknU5skktv31cbrZtiqklVBvs+nmq2jBm
+         y6mTIeVsVgtR5v+CnFSal6nO1qBaDJMjwBpArsPYg63W9RrTb5QhdkZMrcMdTmgS5jkv
+         PMo5OKXzNGhw7zJ1mOVDZwD2NFY60tqzH//Wul+1voGYIhOKpA/VvmtTNtQXnVHsK7a3
+         BcWq3qzH65wl9D4aFjgTkN1zLOTRuV259Th5v16GqLTjQZyxO+JmhDNCEB4Q9PRuIt9J
+         NjkE58DwKus4IgFslbGcg0EtNvBEX/paL9LgvEz0rilkjPBepSdq5S1JAQvLlAqunZrs
+         1WFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc;
-        bh=us6a+2w38MVWRp+x+cBiJGnbvKgPbkAshBT44b7qxRo=;
-        b=x1zxuY05EQ2hLIqSY+2AS03cE/2u+SJFbMsJqO7rhbvAXmVXf/JfMgJ2gwSdJc8ZTm
-         og1Rf/1DNhBxrXWogrucPLiebIT/Gqgt50D67RADe+IyzSKTTKFQ63dpvis/FJAMwBLO
-         o3+5t+rSI95LdL79oZdW5u+/yhfczgkibdC7yN2YQnc9zHxi0vgGilPX5lIw2hiJnwHP
-         LQKVUI0zF2cjX1KP+OQ3LabLb6N7oqciYaBH7FvZMHu+6279rAEWECadHmYISI9uPS87
-         O+1Krk8Ac30fFiizJBgWwkMpStzMMBOCWsJNVbSRqL0k368F3JYmjugx8lFK/1QC2lE4
-         CJ0Q==
-X-Gm-Message-State: ACgBeo1436ZJ58+tgbbAibyJ477DNt2JWJNFZ0PUMt3yB3fNRDcDC+TJ
-        cOCv+lyyR+diQzHoVZizfc9kfYhfahmyAfwflQmTkA==
-X-Google-Smtp-Source: AA6agR482POjrHU7UEj08J/xiUvRkTbGO3ZP9C1XXIt/DeZCorz43iLD519ONM1EksuUcQhKLggIFuOQqGAS3Zv6bLU=
-X-Received: by 2002:a17:906:58c8:b0:6fe:91d5:18d2 with SMTP id
- e8-20020a17090658c800b006fe91d518d2mr4861877ejs.190.1661501137575; Fri, 26
- Aug 2022 01:05:37 -0700 (PDT)
+        bh=7Mq11P25bR3wlSS6rhp/KK7HEHcVP2nqSIE7qecBSHI=;
+        b=7oKyfXmhDpKdH7/1YCFfI66t4HYIiwjF9TNvO1VuPpb+3lDzbUd9KEoQJJwY3g+KGK
+         yrQtW8XEAp4LOvypMFdQyk4mrCnlShFc9OwgszekrU9inS3+fU101mMKRjPSc/SJBiuO
+         TZZbff4XSpVHrw9phYHjPM4E1Y4znsTSdLhiMM6pH3VMG8oRpm45l4tHLdAPOJlSmvKo
+         49/PWm60U1AbQTjpgTCVRd6mVQ501uHc+oWCWPl+1CQ0P0Hh3euGNKYbu2E9pRIiBrDV
+         6de+IiPJyCXaFA5K1XuFCR92NDh7Cu6T6vo/wqluoBpnSOo8Bh3jdZg1XtKb2Sbwkdlh
+         v38g==
+X-Gm-Message-State: ACgBeo0hX46p7w/5lA7AH6aJrnGvk+7FxtosqNXACEH8Hruccnkj6xDQ
+        CoT3EDhU03CoePar/jRv1ceJLBjdI0ogvZaQ+tvDXA==
+X-Google-Smtp-Source: AA6agR6FRbsPnMzYQMsuZG4nfrnAtmeF6GVqmVA9wFaaxz61tGMBwBc+pUgqKF23zqjXCnnpgwdYoweEHrVV87xeqLE=
+X-Received: by 2002:a81:9296:0:b0:33c:ba30:6ff8 with SMTP id
+ j144-20020a819296000000b0033cba306ff8mr7080387ywg.285.1661501190206; Fri, 26
+ Aug 2022 01:06:30 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220818172528.23062-1-pali@kernel.org> <20220818172528.23062-2-pali@kernel.org>
-In-Reply-To: <20220818172528.23062-2-pali@kernel.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 26 Aug 2022 10:05:26 +0200
-Message-ID: <CACRpkdYWQVW_akJS7hvtU2=c063LCMfjN22X-neTfuTZRbt+yw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] leds: syscon: Implement support for active-low property
-To:     =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>
-Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        =?UTF-8?B?TWFyZWsgQmVow7pu?= <kabel@kernel.org>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+References: <20220817080757.352021-1-bchihi@baylibre.com> <20220817080757.352021-5-bchihi@baylibre.com>
+ <05fa19f7-7997-51c3-767f-c40cb321d2a4@linaro.org>
+In-Reply-To: <05fa19f7-7997-51c3-767f-c40cb321d2a4@linaro.org>
+From:   Balsam CHIHI <bchihi@baylibre.com>
+Date:   Fri, 26 Aug 2022 10:05:52 +0200
+Message-ID: <CAGuA+opoKKvQvC0aij_L1t8BQG2rHJDwx-U=XjgvaqK5Bg-WdQ@mail.gmail.com>
+Subject: Re: [PATCH v9,4/7] thermal: mediatek: Add LVTS driver for mt8192
+ thermal zones
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc:     rafael@kernel.org, rui.zhang@intel.com, amitk@kernel.org,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        khilman@baylibre.com, mka@chromium.org, robh+dt@kernel.org,
+        krzk+dt@kernel.org, matthias.bgg@gmail.com, p.zabel@pengutronix.de,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, james.lo@mediatek.com,
+        fan.chen@mediatek.com, louis.yu@mediatek.com,
+        rex-bc.chen@mediatek.com, abailon@baylibre.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 18, 2022 at 7:25 PM Pali Roh=C3=A1r <pali@kernel.org> wrote:
+Hello Daniel,
 
-> This new active-low property specify that LED has inverted logic
-> (0 - enable LED, 1 - disable LED).
+Thank you for the feedback.
+
+I hope this information will explain better the LVTS Driver.
+I will add this like the following.
+Is this ok for you?
+
+[v9,7/7] thermal: mediatek: Add LVTS driver settings for mt8195 thermal zon=
+es
+One Clock and one Reset for Thermal.
+Thermal have two domain : CPU related (mcu) and non-CPU related (ap).
+TC : Thermal Controller to control the thermal sensor's HW behavior.
+TS : Thermal Sensor for measuring temperature the HW module.
+thermal
+=E2=94=9C=E2=94=80=E2=94=80 ap
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 tc_0
+=E2=94=82 =E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 TS4_0 - vpu1
+=E2=94=82 =E2=94=82 =E2=94=94=E2=94=80=E2=94=80 TS4_1 - vpu2
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 tc_1
+=E2=94=82 =E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 TS5_0 - gpu1
+=E2=94=82 =E2=94=82 =E2=94=94=E2=94=80=E2=94=80 TS5_1 - gpu2
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 tc_2
+=E2=94=82 =E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 TS6_0 - vdec
+=E2=94=82 =E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 TS6_1 - img
+=E2=94=82 =E2=94=82 =E2=94=94=E2=94=80=E2=94=80 TS6_2 - infra
+=E2=94=82 =E2=94=94=E2=94=80=E2=94=80 tc_3
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 TS7_0 - cam1
+=E2=94=82 =E2=94=94=E2=94=80=E2=94=80 TS7_1 - cam2
+=E2=94=94=E2=94=80=E2=94=80 mcu
+=E2=94=9C=E2=94=80=E2=94=80 tc_0
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 TS1_0 - cpu_big1
+=E2=94=82 =E2=94=94=E2=94=80=E2=94=80 TS1_1 - cpu_big2
+=E2=94=9C=E2=94=80=E2=94=80 tc_1
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 TS2_0 - cpu_big3
+=E2=94=82 =E2=94=94=E2=94=80=E2=94=80 TS2_1 - cpu_big4
+=E2=94=94=E2=94=80=E2=94=80 tc_2
+=E2=94=9C=E2=94=80=E2=94=80 TS3_0 - cpu_little1
+=E2=94=9C=E2=94=80=E2=94=80 TS3_1 - cpu_little2
+=E2=94=9C=E2=94=80=E2=94=80 TS3_2 - cpu_little3
+=E2=94=94=E2=94=80=E2=94=80 TS3_3 - cpu_little4
+
+[v9,4/7] thermal: mediatek: Add LVTS driver for mt8192 thermal zones
+One Clock and one Reset for Thermal.
+Thermal have two domain : CPU related (mcu) and non-CPU related (ap).
+TC : Thermal Controller to control the thermal sensor's HW behavior.
+TS : Thermal Sensor for measuring temperature the HW module.
+thermal
+=E2=94=9C=E2=94=80=E2=94=80 ap
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 tc_0
+=E2=94=82 =E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 TS4_0 - vpu1
+=E2=94=82 =E2=94=82 =E2=94=94=E2=94=80=E2=94=80 TS4_1 - vpu2
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 tc_1
+=E2=94=82 =E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 TS5_0 - gpu1
+=E2=94=82 =E2=94=82 =E2=94=94=E2=94=80=E2=94=80 TS5_1 - gpu2
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 tc_2
+=E2=94=82 =E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 TS6_0 - infra
+=E2=94=82 =E2=94=82 =E2=94=94=E2=94=80=E2=94=80 TS6_1 - cam
+=E2=94=82 =E2=94=94=E2=94=80=E2=94=80 tc_3
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 TS7_0 - md2
+=E2=94=82 =E2=94=94=E2=94=80=E2=94=80 TS7_1 - md3
+| =E2=94=94=E2=94=80=E2=94=80 TS6_2 - md1
+=E2=94=94=E2=94=80=E2=94=80 mcu
+=E2=94=9C=E2=94=80=E2=94=80 tc_0
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 TS1_0 - cpu_big1
+=E2=94=82 =E2=94=94=E2=94=80=E2=94=80 TS1_1 - cpu_big2
+=E2=94=9C=E2=94=80=E2=94=80 tc_1
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 TS2_0 - cpu_big3
+=E2=94=82 =E2=94=94=E2=94=80=E2=94=80 TS2_1 - cpu_big4
+=E2=94=94=E2=94=80=E2=94=80 tc_2
+=E2=94=9C=E2=94=80=E2=94=80 TS3_0 - cpu_little1
+=E2=94=9C=E2=94=80=E2=94=80 TS3_1 - cpu_little2
+=E2=94=9C=E2=94=80=E2=94=80 TS3_2 - cpu_little3
+=E2=94=94=E2=94=80=E2=94=80 TS3_3 - cpu_little4
+
+Best regards,
+Balsam.
+
+On Thu, Aug 25, 2022 at 7:29 PM Daniel Lezcano
+<daniel.lezcano@linaro.org> wrote:
 >
-> Signed-off-by: Pali Roh=C3=A1r <pali@kernel.org>
-
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
-
-Yours,
-Linus Walleij
+>
+> Hi Balsam,
+>
+> On 17/08/2022 10:07, bchihi@baylibre.com wrote:
+> > From: Michael Kao <michael.kao@mediatek.com>
+> >
+> > Add LVTS v4 (Low Voltage Thermal Sensor) driver to report junction
+> > temperatures in MediaTek SoC mt8192 and register the maximum temperatur=
+e
+> > of sensors and each sensor as a thermal zone.
+>
+> Thanks for your work
+>
+> First of all, the patch is way too big.
+>
+> The organization of the data is hard to understand.
+>
+> Could you give a description of the sensors, how they are organized ?
+>
+> I can see the there are 'tc' and each have a group of sensing points? Is
+> that correct? Do have the 'tc's a shared clock? etc ...
+>
+> I have another email with the comments inline but without more insights
+> on the hardware it is difficult to review accurately. This driver looks
+> more complex than the other ones I've reviewed. At least that is what
+> looks like with the different macros names found.
+>
+>
+>
+> --
+> <http://www.linaro.org/> Linaro.org =E2=94=82 Open source software for AR=
+M SoCs
+>
+> Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+> <http://twitter.com/#!/linaroorg> Twitter |
+> <http://www.linaro.org/linaro-blog/> Blog
