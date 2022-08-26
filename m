@@ -2,113 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF67A5A22C1
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 10:16:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BEE515A22BE
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 10:16:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343617AbiHZIQ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 04:16:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46984 "EHLO
+        id S245046AbiHZIQQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 04:16:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343601AbiHZIQs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 04:16:48 -0400
-Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AED0D4758;
-        Fri, 26 Aug 2022 01:16:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-        d=metrotek.ru; s=mail;
-        h=from:subject:date:message-id:to:cc:mime-version:content-type:
-         content-transfer-encoding:in-reply-to:references;
-        bh=GgM9jd2gfjdVIiQkM15Sjc/NpQmQKqWnNl2+Tz982U0=;
-        b=YTHGiGWauR9+kRWkYLgKVFYGPbBU968unR1+7JEcqiNKxy2Jw4CkFLn6uanf5sq+8wI0nzNOh2ZNS
-         81MpJXS47bHa3EJ7PlPB0ljhGsXLsQWfBo//7ouDtyodpZoXJFN7Zwd12ZHLUW1G1cSXv2WCilm71C
-         toBLJrgoSkmJribf5kmUojgndRoTlMLgjrePvxYBwBYo5vPDhlUrvuBIrTcJymWGpfQi2q8VfmAwAc
-         e/WtmHnqWDkwzhODJZF4j4DQ3HyDzTxFrCQZ/IbWBeN4GAYQDK+tDgwizOcen2ZWJc+EBWVJ4/3lew
-         UKl9dcWy2A1o/T9iyp0egQPshU5nc0Q==
-X-Kerio-Anti-Spam:  Build: [Engines: 2.16.4.1445, Stamp: 3], Multi: [Enabled, t: (0.000017,0.009778)], BW: [Enabled, t: (0.000017,0.000001)], RTDA: [Enabled, t: (0.084197), Hit: No, Details: v2.41.0; Id: 15.52katr.1gbcjiluu.1gj; mclb], total: 0(700)
+        with ESMTP id S1343595AbiHZIQP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 04:16:15 -0400
+X-Greylist: delayed 37897 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 26 Aug 2022 01:16:14 PDT
+Received: from mail.3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CCFDD11F0;
+        Fri, 26 Aug 2022 01:16:13 -0700 (PDT)
+Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.3ffe.de (Postfix) with ESMTPSA id 1844F402B;
+        Fri, 26 Aug 2022 10:16:12 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
+        t=1661501772;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=SYNkW/xHpAgk1nrcO4FJOnWLgD0dwYS942MxgxMADVg=;
+        b=ibgQnPuJQxdddEiyOpCPcp4EyUM2+ItJGhAR5Few5nDl3ZN3BqFPu5zY/DNhwiMT/FKHsj
+        5HvGF9JPOF75j+aWyLNd0FPKSCtC3yzpow9736CofUZ8/1g5LKPyWn6zS3yBKb3DsyK7PM
+        IrG9Z5U/ksvzbOcCwz+KC8vqqaWwglw0x+1Jpcs8M8v6i9epMKl4Cud8Od+JndP96zt94F
+        ojltn7kqvYNEzVkWfSHYehDnrv3ZTqEaQqR0u/WKTONGdY02CL1+qgvyj/bDyLWs4JLblH
+        JZxS6oBkpsFwXmhkLFor/k6QCq4nPKOKOyh38fF0QNJNt7AyqzEY5q+jVMA+IA==
+MIME-Version: 1.0
+Date:   Fri, 26 Aug 2022 10:16:11 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        netdev@vger.kernel.org, Ahmad Fatoum <a.fatoum@pengutronix.de>
+Subject: Re: [PATCH v1 06/14] nvmem: core: introduce NVMEM layouts
+In-Reply-To: <20220825214423.903672-7-michael@walle.cc>
+References: <20220825214423.903672-1-michael@walle.cc>
+ <20220825214423.903672-7-michael@walle.cc>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <51cbe913705a6d4484bca640f591ecec@walle.cc>
+X-Sender: michael@walle.cc
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Level: 
-X-Footer: bWV0cm90ZWsucnU=
-Received: from h-e2.ddg ([85.143.252.66])
-        (authenticated user i.bornyakov@metrotek.ru)
-        by mail.pr-group.ru with ESMTPSA
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
-        Fri, 26 Aug 2022 11:16:28 +0300
-Date:   Fri, 26 Aug 2022 11:15:30 +0300
-From:   Ivan Bornyakov <i.bornyakov@metrotek.ru>
-To:     Johannes Zink <j.zink@pengutronix.de>
-Cc:     devicetree@vger.kernel.org, linux-fpga@vger.kernel.org,
-        robh+dt@kernel.org, mdf@kernel.org, kernel@pengutronix.de,
-        yilun.xu@intel.com, hao.wu@intel.com
-Subject: Re: [PATCH 00/16] Add support for Lattice MachXO2 programming via I2C
-Message-ID: <20220826081530.qd4or3fo275m7tyj@h-e2.ddg>
-References: <20220825152514.9926-1-i.bornyakov@metrotek.ru>
- <b65b274e797fef70ee5824953d4bcda2c32d3624.camel@pengutronix.de>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <b65b274e797fef70ee5824953d4bcda2c32d3624.camel@pengutronix.de>
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 26, 2022 at 08:32:49AM +0200, Johannes Zink wrote:
-> On Thu, 2022-08-25 at 18:25 +0300, Ivan Bornyakov wrote:
-> > Hi, Johannes!
-> 
-> Hi Ivan,
-> > 
-> > I just came across your patches. Surprisingly, our work interferes.
-> > 
-> > I recently posted patch-series for configuring ECP5 and was asked to
-> > make
-> > generalized sysCONFIG driver with support for both ECP5 and MachXO2,
-> > which
-> > I did. 
-> 
-> That looks very interesting indeed.
-> 
-> > Sadly I don't have hardware with MachXO2, but you clearly do :)
-> > 
-> > Please, take a look at
-> > 
-> >  
-> > https://lore.kernel.org/linux-fpga/20220825112433.14583-1-i.bornyakov@metrotek.ru/
-> > 
-> > and please help test MachXO2 variant. When we pull this off, you may
-> > add I2C
-> > interface on top.
-> > 
-> > 
-> > 
-> 
-> my hardware has only I2C connected to the MachXO2 (hence the patch
-> series...), so I cannot test your patches directly.
+Am 2022-08-25 23:44, schrieb Michael Walle:
 
-That's unfortunate, anyway please join the review so your changes would
-be easier to apply on top.
+> +struct nvmem_layout {
+> +	const char *name;
+> +	const struct of_device_id *of_match_table;
+> +	int (*add_cells)(struct nvmem_device *nvmem, struct nvmem_layout 
+> *layout);
 
-> 
-> Since adding I2C requires some quirks with respect to the programming
-> commands (some are differ to the SPI ones, ...) it will take me some
-> time to add my patches on top of yours in order to test, but after
-> having had a short glance at your patch series, I think it should be
-> feasible.
-> 
-> Though, I think you should allow the program-gpios, init-gpios and
-> done-gpios for machxo2 and have them as optional, at least for machxo2.
-> 
-> Best regards
-> Johannes
-> 
-> -- 
-> Pengutronix e.K.                | Johannes Zink                  |
-> Steuerwalder Str. 21            | https://www.pengutronix.de/    |
-> 31137 Hildesheim, Germany       | Phone: +49-5121-206917-0       |
-> Amtsgericht Hildesheim, HRA 2686| Fax:   +49-5121-206917-5555    |
-> 
+This must be:
+int (*add_cells)(struct device *dev, struct nvmem_device *nvmem, struct 
+nvmem_layout *layout);
 
+> +	struct list_head node;
+> +};
+> +
