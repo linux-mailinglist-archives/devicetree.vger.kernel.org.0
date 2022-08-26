@@ -2,147 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EB625A2B98
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 17:49:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D586C5A2B9D
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 17:49:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344661AbiHZPrs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 11:47:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55822 "EHLO
+        id S1344700AbiHZPtP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 11:49:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243036AbiHZPrn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 11:47:43 -0400
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17A82832F2;
-        Fri, 26 Aug 2022 08:47:04 -0700 (PDT)
-Received: (Authenticated sender: maxime.chevallier@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 633821BF214;
-        Fri, 26 Aug 2022 15:47:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1661528823;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=ivRzjl5qUIz2Ua1g0XEeYuwvzQgIfKK29gqGyWgdHhk=;
-        b=RRsxhFsMdM8xxhiMq7jbWY6kGdNncUDlEDyjXymkHSxctnuDoH4X+ygMKgGhLY+/xkvPv7
-        W7q/KspQKtmyvA5XrMopXhN35W3GoFCJIJgz73bis08BOlxA4/9liiJXCX23wd9fmnCiv8
-        q+2M6H5H2nwKLygUclfPCDP2TW0bWTFMbuzep+dQfa0sRayXKZ1VHOgTwQQvUNA/Np0boy
-        +H6342b8mEVG6LaCIKysN64+8gp+4NEIwCp7ORaoysyzma0ceXJMtxrdcLTU6xsxaZaGVe
-        GS6tXDOEtMUPzTd6C6CTresIaSsCIF8tk7qa4qwTo1fr0t/7ahvX+8sWPnoFEg==
-From:   Maxime Chevallier <maxime.chevallier@bootlin.com>
-To:     davem@davemloft.net, Rob Herring <robh+dt@kernel.org>
-Cc:     Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        linux-arm-kernel@lists.infradead.org,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Robert Marko <robert.marko@sartura.hr>
-Subject: [PATCH net-next v3 5/5] ARM: dts: qcom: ipq4019: Add description for the IPQESS Ethernet controller
-Date:   Fri, 26 Aug 2022 17:46:50 +0200
-Message-Id: <20220826154650.615582-6-maxime.chevallier@bootlin.com>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20220826154650.615582-1-maxime.chevallier@bootlin.com>
-References: <20220826154650.615582-1-maxime.chevallier@bootlin.com>
+        with ESMTP id S1344675AbiHZPs5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 11:48:57 -0400
+Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37428BC80E
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 08:48:31 -0700 (PDT)
+Received: by mail-pf1-x436.google.com with SMTP id p185so1892438pfb.13
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 08:48:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=Mf80pPSOt68AVyO6JRAxIAPhPC5Lg00EXSnvADeGlwc=;
+        b=CczP7/mGYxwFCyTdD8tvgGZ/PJEzMOXFl503j1qb+YoVvVMnhwrZ0fq+Y5ekCacgWS
+         7WZW9ejgt3/4Xki3XewdfCJETl+lOoezPg/DvP3ez808rjkC4RfY4rFeUEpQOFPYSK69
+         AY4K0JbzAI1sNcubxs0rzfihDMYm0ozuK1uKQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=Mf80pPSOt68AVyO6JRAxIAPhPC5Lg00EXSnvADeGlwc=;
+        b=vzVif45DGYr6zCaUGk4D1Q41UTz4kmKVO/HGIra9u6EH/mKy7qkUipRbeTS+yFFGk/
+         Q2d1qS94a6TFuFGp0VFlA86qq42lZb1w2lYbcLMQWO0ljpgNgHjJpRmShtdBd4YiZGH8
+         eHUuJujH717zTyj2VIkU8Z4hkAkGoetjGjCuLK7hYQ1mBd2FHe6pNryQ0aaRjd6qxSVW
+         VHfPGD1I/WctACkRmO21mWvA7WNxRkaUQM4DLEs2XqnNj/NhLGt8gGDsTnqlaFOLLEUy
+         CKr77D19xtuZRlZr4jkfJpYGeX0V3BqwlBFdEganx8It2jwaa4IIVLMlEtRLmr0zjya6
+         Hgcg==
+X-Gm-Message-State: ACgBeo16Mqmg96bXnnDocxgLC3WhMlL5J5tTDjw1J+hJtwPqeheqO1as
+        9vMHkKDdABx/E+OFoZmqj9lHaw==
+X-Google-Smtp-Source: AA6agR7l0tJ6T0uxcqDa1jUTXaa8LBhJu4T6X5A5koZMODWC23lbcnZhB3dqXlIYTt+QmuaUrOfNZA==
+X-Received: by 2002:a63:43c7:0:b0:429:7abb:aaf7 with SMTP id q190-20020a6343c7000000b004297abbaaf7mr3659377pga.204.1661528910700;
+        Fri, 26 Aug 2022 08:48:30 -0700 (PDT)
+Received: from localhost ([2620:15c:11a:202:87ff:bd4c:214b:f283])
+        by smtp.gmail.com with UTF8SMTPSA id n7-20020a170902e54700b0016a6caacaefsm1745330plf.103.2022.08.26.08.48.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 Aug 2022 08:48:30 -0700 (PDT)
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>
+Subject: [PATCH] arm64: dts: qcom: sc7280-herobrine: Don't enable the USB 2.0 port
+Date:   Fri, 26 Aug 2022 08:48:27 -0700
+Message-Id: <20220826084813.1.I8c9a771fcf4d1cfb6e8e0ef17a153143af9a644d@changeid>
+X-Mailer: git-send-email 2.37.2.672.g94769d06f0-goog
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Qualcomm IPQ4019 includes an internal 5 ports switch, which is
-connected to the CPU through the internal IPQESS Ethernet controller.
+The USB 2.0 port of sc7280 is currently not used by any herobrine
+board. Delete the device tree entries that enable it.
 
-This commit adds support for this internal interface, which is
-internally connected to a modified version of the QCA8K Ethernet switch.
-
-This Ethernet controller only support a specific internal interface mode
-for connection to the switch.
-
-Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
 ---
-V2->V3:
- - No Changes
-V1->V2:
- - Added clock and resets
+I was also told that the 2.0 port is for the Embedded USB Debugger
+(EUD) only, but I'm not sure if that's true. From the Linux side
+it looks like a regular dwc3 controller.
 
- arch/arm/boot/dts/qcom-ipq4019.dtsi | 46 +++++++++++++++++++++++++++++
- 1 file changed, 46 insertions(+)
+ arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi | 12 ------------
+ 1 file changed, 12 deletions(-)
 
-diff --git a/arch/arm/boot/dts/qcom-ipq4019.dtsi b/arch/arm/boot/dts/qcom-ipq4019.dtsi
-index bb307b8f678c..8cf1c5e6724f 100644
---- a/arch/arm/boot/dts/qcom-ipq4019.dtsi
-+++ b/arch/arm/boot/dts/qcom-ipq4019.dtsi
-@@ -38,6 +38,7 @@ aliases {
- 		spi1 = &blsp1_spi2;
- 		i2c0 = &blsp1_i2c3;
- 		i2c1 = &blsp1_i2c4;
-+		ethernet0 = &gmac;
- 	};
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+index 3f8996c00b05..b2f0404d3f71 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+@@ -606,18 +606,6 @@ &usb_1_qmpphy {
+ 	status = "okay";
+ };
  
- 	cpus {
-@@ -590,6 +591,51 @@ wifi1: wifi@a800000 {
- 			status = "disabled";
- 		};
+-&usb_2 {
+-	status = "okay";
+-};
+-
+-&usb_2_dwc3 {
+-	dr_mode = "host";
+-};
+-
+-&usb_2_hsphy {
+-	status = "okay";
+-};
+-
+ /* PINCTRL - ADDITIONS TO NODES IN PARENT DEVICE TREE FILES */
  
-+		gmac: ethernet@c080000 {
-+			compatible = "qcom,ipq4019-ess-edma";
-+			reg = <0xc080000 0x8000>;
-+			resets = <&gcc ESS_RESET>;
-+			reset-names = "ess";
-+			clocks = <&gcc GCC_ESS_CLK>;
-+			clock-names = "ess";
-+			interrupts = <GIC_SPI  65 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  66 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  67 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  68 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  69 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  70 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  71 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  72 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  73 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  74 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  75 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  76 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  77 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  78 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  79 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  80 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 240 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 241 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 242 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 243 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 244 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 245 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 246 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 247 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 248 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 249 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 250 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 251 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 252 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 253 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 254 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 255 IRQ_TYPE_EDGE_RISING>;
-+
-+			status = "disabled";
-+
-+			phy-mode = "internal";
-+		};
-+
- 		mdio: mdio@90000 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
+ &dp_hot_plug_det {
 -- 
-2.37.2
+2.37.2.672.g94769d06f0-goog
 
