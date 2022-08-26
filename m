@@ -2,81 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 300855A28A6
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 15:34:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90AD55A28D7
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 15:51:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344380AbiHZNeH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 09:34:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58588 "EHLO
+        id S1344188AbiHZNv3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 09:51:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344368AbiHZNeF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 09:34:05 -0400
-Received: from mail-yw1-x1130.google.com (mail-yw1-x1130.google.com [IPv6:2607:f8b0:4864:20::1130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9872DC5F6
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 06:34:03 -0700 (PDT)
-Received: by mail-yw1-x1130.google.com with SMTP id 00721157ae682-33dba2693d0so35792107b3.12
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 06:34:03 -0700 (PDT)
+        with ESMTP id S1343798AbiHZNv2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 09:51:28 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 737FEBFA99
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 06:51:25 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id z6so2077418lfu.9
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 06:51:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc;
-        bh=qiR3kqY1FtS7aluiuV2htyDwOrHtB3ABTNirVnY7LY0=;
-        b=Badek9Z3Zw7k7MP3T3YzVdM7CAxTgNBC24Y9sxs8xUcI7ApWgF7W8s+Gcvz5ZVhKP1
-         Gv/BM4JpKuQ0UsB3GLYAcuMHJrwhuMYNb4FXaxY6qW5KzLK0QVcBuDwguYH4jNNxTedj
-         lCUZuv+5g6OWaGpzsg7CujNCCX8jo0zwxY/d62havl0hP9HtOY07Lla1ygso+jhceuRo
-         c6zerpixbQK+eKtQ2/j8/OVTJ7t+7dCHSEbF6H4JAlv0ncMGq4l8alqAwd7ZBJWq49W7
-         dduQbKTdmgNjW5trp2/imaB1kqDb2eJN79QRGfSzutp/zKzz9em/stAFPeeyWGJku245
-         agtQ==
+        bh=Y2l9bTh3XUs5YKIzQSTCxLqvYEJTEkHLpP5cGtmOIiw=;
+        b=zLLCu36Iy57QP/hL5yT4LCCazH11eC6IZlsw0aIIwlGZh+KImrOh2dn8PBwe9YwdTQ
+         ZBujQ/kcT5HwGE7ec3XCxSDovJbcicsQbZiNxvL0JC9seelbJ3TA5Pt6HxjE6lnbPU55
+         Kxko21qWFVeTm8r+PEPSzveLwSrbP3g7RvsX5o4TCLC92rbsBilUWnTedD6MyUilE5Aa
+         bLiZEi1fciLdZIMGxuyAjdkunYZBgGZHBLQfuFRdEbU3AaQTu2nnoiwXrI6gRXsfn0mQ
+         qHZBlhZ7Lm96Nn2rK3oRiCQ3GOO1DUDNZATRgSFa2iFxA4A+26KBIjoyS31iPW/dm9Ib
+         u+WQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc;
-        bh=qiR3kqY1FtS7aluiuV2htyDwOrHtB3ABTNirVnY7LY0=;
-        b=cjyrX3SWNN/O8b5pDDjGUMxOeH/fXw5hR9BCowaAG/6ymYu21lUCrklSRcEyfyltmD
-         ePvllzIyIRpC8XHh+4nSK3HtG8U272YLwKvTcV8KFdYBFGDqkerpZDNzf8hXFS+3KeTR
-         qhzZxjxE79NYqhG2h2NTpJbIGhQDPs1C7Wsusg9cAQItTG0dg48HNLoslJo5QBMa5nb8
-         JeMKzu0E5kGypUdp3kAQ4YY64A9RyU2qDZsnkbz9MdpqKHL8hK2wTqjy6hlZYevmFJ0R
-         0qcW3fhuvVYMD+N2cIAp5bH1xRFk1u2Gchl7KUea6pDxKjeNcpdSX3Kju6wwWOXOwoJf
-         0uLQ==
-X-Gm-Message-State: ACgBeo0y8Pvd/3E4BYKg3fXHOHPQ4hFvo/Ewtqs4NnDl51AKr0+q1rF5
-        0zivb7YZVF3y1cPI+mciwp262WApZnX1GQ6x+67+0g==
-X-Google-Smtp-Source: AA6agR4cSYDUjHjKqgs9zKaZ58NNESabUJfIrLT+OTCGH4HwSfACpDx/ctbx5ozgIrEgXjQk7zDpKuMhmKfrTiLRGm0=
-X-Received: by 2002:a05:6902:124e:b0:668:222c:e8da with SMTP id
- t14-20020a056902124e00b00668222ce8damr7302689ybu.383.1661520843052; Fri, 26
- Aug 2022 06:34:03 -0700 (PDT)
+        bh=Y2l9bTh3XUs5YKIzQSTCxLqvYEJTEkHLpP5cGtmOIiw=;
+        b=0uNSauu6PCs/CYByFi4EEo65oupuhMxpeHi+PD9fJAHTXL4+GPNqbVGnxvWO42HXrF
+         os7vTPjYHFrLASWZD1lNSvFsQmylir8oql6Onys1TE5thGXnqT/pCFlwBRiFVJN8jIpT
+         ZHZyNp3C9CfMYBhdlgJaJGyjjUAGW9IpKklrkQphFqh0ElJuNhLONbfeDajCKFfAOrw5
+         JYOp1ANQ1PYIbfhCSlR/YsGCYJvDetUIvHQ1m/LHfeYFxvHDBQpWfgXXdZ0ACOLp3v2D
+         5IfDdKXGtvrbu2G4tno7PPdRfEEY53vwlzrW/XaJfXNqPMNqt3Q7ieO+n34lHRu4fSEJ
+         zjag==
+X-Gm-Message-State: ACgBeo14R0nj0eafpOFeNQZV+jMkEKMv6l4kS58RTeK5X4FE7MTqRt+A
+        pEedWYm0uUMfK0hQ+FFgEIp7B1NGUvJ8gCEu4S5u9Q==
+X-Google-Smtp-Source: AA6agR6731hY6W3f0y2L3JzHdc41U+Xgvox8D2w/g/nEHhwlH5Uv+hyHCT1xMzOJCEW3F0U0J5cyBh0Rie5REAA42Vo=
+X-Received: by 2002:ac2:59cf:0:b0:492:bf97:9a03 with SMTP id
+ x15-20020ac259cf000000b00492bf979a03mr2837904lfn.233.1661521883493; Fri, 26
+ Aug 2022 06:51:23 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220823145649.3118479-6-robh@kernel.org>
-In-Reply-To: <20220823145649.3118479-6-robh@kernel.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 26 Aug 2022 15:33:51 +0200
-Message-ID: <CACRpkdZ3syQzLaZJ1aksB6o7Q_xOMGSC1RfT_9iVYgpXHi_mfw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: pinctrl: Add missing (unevaluated|additional)Properties
- on child nodes
-To:     Rob Herring <robh@kernel.org>
-Cc:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
+References: <20220609150851.23084-1-max.oss.09@gmail.com> <CACRpkdZ0=8poNcFaCYSmMyg1GBfkHLAr3QvvzFKweLPr3UM2vg@mail.gmail.com>
+ <CAEHkU3Wya0nRhaBDisAQBm5kf=2YcdJYzz2jKiL___mZQzL_Sw@mail.gmail.com>
+ <CAPDyKFrEYCx3L94gz27Pk_=HdwA4GNGE9Lvz+HGUW0P7Qt-mBw@mail.gmail.com>
+ <20220726160337.GA41736@francesco-nb.int.toradex.com> <CAPDyKFqGFjywJ-Vmmn9=-NOzJX=24mH9A03H9djS=nJotKWK8A@mail.gmail.com>
+ <20220728112146.GA97654@francesco-nb.int.toradex.com>
+In-Reply-To: <20220728112146.GA97654@francesco-nb.int.toradex.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Fri, 26 Aug 2022 15:50:46 +0200
+Message-ID: <CAPDyKFqtCxrjALeCmhuqQ2VmmUHhi-DjXO30uHChTPFeDbp+JQ@mail.gmail.com>
+Subject: Re: [PATCH v1 0/5] power: domain: Add driver for a PM domain provider
+ which controls
+To:     Francesco Dolcini <francesco.dolcini@toradex.com>
+Cc:     Mark Brown <broonie@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Max Krummenacher <max.oss.09@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Max Krummenacher <max.krummenacher@toradex.com>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Kevin Hilman <khilman@kernel.org>,
+        Andrejs Cainikovs <andrejs.cainikovs@toradex.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Fabio Estevam <festevam@gmail.com>,
         Geert Uytterhoeven <geert+renesas@glider.be>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        Sowjanya D <lakshmi.sowjanya.d@intel.com>,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        Andy Teng <andy.teng@mediatek.com>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, openbmc@lists.ozlabs.org,
-        linux-renesas-soc@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Will Deacon <will@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
@@ -88,15 +95,77 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 23, 2022 at 4:57 PM Rob Herring <robh@kernel.org> wrote:
-
-> In order to ensure only documented properties are present, node schemas
-> must have unevaluatedProperties or additionalProperties set to false
-> (typically).
+On Thu, 28 Jul 2022 at 13:21, Francesco Dolcini
+<francesco.dolcini@toradex.com> wrote:
 >
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> On Thu, Jul 28, 2022 at 11:37:07AM +0200, Ulf Hansson wrote:
+> > On Tue, 26 Jul 2022 at 18:03, Francesco Dolcini
+> > <francesco.dolcini@toradex.com> wrote:
+> > >
+> > > Hello Ulf and everybody,
+> > >
+> > > On Wed, Jul 13, 2022 at 01:43:28PM +0200, Ulf Hansson wrote:
+> > > > On Thu, 23 Jun 2022 at 18:14, Max Krummenacher <max.oss.09@gmail.com> wrote:
+> > > > > So our plan is to explicitly handle a (shared) regulator in every
+> > > > > driver involved, adding that regulator capability for drivers not
+> > > > > already having one.
+> > > >
+> > > > Please don't! I have recently rejected a similar approach for Tegra
+> > > > platforms, which now have been converted into using the power domain
+> > > > approach.
+> > >
+> > > Just to quickly re-iterate how our hardware design looks like, we do
+> > > have a single gpio that control the power of a whole board area that is
+> > > supposed to be powered-off in suspend mode, this area could contains
+> > > devices that have a proper Linux driver and some passive driver-less
+> > > components (e.g. level shifter) - the exact mix varies.
+> > >
+> > > Our proposal in this series was to model this as a power domain that
+> > > could be controlled with a regulator. Krzysztof, Robin and others
+> > > clearly argued against this idea.
+> >
+> > Well, historically we haven't modelled these kinds of power-rails
+> > other than through power-domains. And this is exactly what genpd and
+> > PM domains in Linux are there to help us with.
+> >
+> > Moreover, on another SoC/platform, maybe the power-rails are deployed
+> > differently and maybe those have the ability to scale performance too.
+> > Then it doesn't really fit well with the regulator model anymore.
+> >
+> > If we want to continue to keep drivers portable, I don't see any
+> > better option than continuing to model these power-rails as
+> > power-domains.
+> >
+> > >
+> > > The other approach would be to have a single regulator shared with the
+> > > multiple devices we have there (still not clear how that would work in
+> > > case we have only driver-less passive components). This is just a
+> > > device-tree matter, maybe we would need to add support for a supply to
+> > > some device drivers.
+> > >
+> > > Honestly my conclusion from this discussion is that the only viable
+> > > option is this second one, do I miss something?
+> >
+> > No thanks!
+> >
+> > Well, unless you can convince me there are benefits to this approach
+> > over the power-domain approach.
+>
+> I'm fine with our current power-domain proposal here, I do not need to
+> convince you, I have the other problem to convince someone to merge
+> it :-)
+>
+> Maybe Krzysztof, Robin or Mark can comment again after you explained
+> your view on this topic.
 
-Patch applied to the pinctrl tree for v6.1
+To move things forward, I suggest you re-start with the power domain approach.
 
-Yours,
-Linus Walleij
+Moreover, to avoid any churns, just implement it as another new SoC
+specific genpd provider and let the provider deal with the regulator.
+In this way, you don't need to invent any new types of DT bindings,
+but can re-use existing ones.
+
+If you post a new version, please keep me cced, then I will help to review it.
+
+Kind regards
+Uffe
