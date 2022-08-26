@@ -2,83 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDAEC5A2DAF
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 19:41:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F08985A2DBC
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 19:43:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344798AbiHZRlM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 13:41:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50100 "EHLO
+        id S1344726AbiHZRmV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 13:42:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344682AbiHZRlK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 13:41:10 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72CF16BD75
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 10:41:09 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id s6so2872828lfo.11
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 10:41:09 -0700 (PDT)
+        with ESMTP id S1344933AbiHZRmE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 13:42:04 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF17EE2C7D
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 10:42:01 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id bn9so2254886ljb.6
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 10:42:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=nUlx9ko8wwPIWaajdN+H4sVBBElh2+eZYyvp7hKDYR0=;
-        b=BWXNrhThS6OFkl+q4j2ahLFw+oYkV5gbm2UT63gW70zIS56ctTW6eRPta91Erwwn4o
-         7P/Lfa6XIO1j+uMwa5+MxXIciTcG/FIA4SyIyBpuv5cXW+7sEU/Per0jCUg58rwU4po5
-         wjWuBFVvTFiNarwcIIxkQ0wtIfLF67a6uVIz2gibU/+zwuH/bH3wea4xhHS0nQa57AP3
-         VzttVucMvEOkGLpjKqF7Ggkjck64pF2U2jA8gK5Bml2xPsBAus4qh54BZ9JDrCqghsno
-         v6OBb8Qg5SB7e6etkZvHz5RllGTZ17kRXGtCJEzsDVMFWrobk49TIvlF0zxQTbcMRYHT
-         aXuQ==
+        bh=rw3ft7Xiuq6jQh7CexeaJRVGi6CosNconl2BfPOtJXg=;
+        b=s847w+OO7cYhJyVS3QmbSC+ByjtLv8K5yKznoyPw5hZeTr4Bek8MTxQEaof5/WC8Gf
+         pwxv/xSzlQA9YefMjG/9uI/pKA3KUT93EN1o+cVxKj9RaxHdjMSmcBWzrXNjfMgFUWvy
+         tMYh1xSmY8EkAu2FJET39FDgmdDpVOqajSQvmNw1wWFo1qMpzK2amdWuDd/JNbIQXSSh
+         8wjGDV+o5d9/o7zJbIV502ev5GDKfTHqmOo9abPNo1GrGju9iSLJlQqOIbx0XwapaHGX
+         umrbKtRe92nJj8Sx+mflxGhb//qti5iUngVfK3wcsIJLEf+O+M6gOMDSHuXj7Doy+6jo
+         lkRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=nUlx9ko8wwPIWaajdN+H4sVBBElh2+eZYyvp7hKDYR0=;
-        b=R90KW4hMXCFDtN3n95thdGINSLU6pJFWbxeByCrgY1nRdAPGBVP8ontzIa045T09V+
-         nEaiWG2g/AjNrky/bx7tmr3RoBby7rcy9BkmdWvLu82qzlPcB3AOhYJh5Js5SFyGoczF
-         ITy+etBf0z8Rg/8aplg5gAFAUdMbirzi7Rq1TdmCI2mZb3UvjchXqfL9L1mn9SPKDr90
-         OuGFTMMyRisecSVWZSGa3NQa2y0n6XLOfoFl03GNy28epvKT+p2JBwYR4P02Q76UeJaf
-         cV8PAWrIyFjaY8kcUjxg9g2r7qqUxfUGfo3vxld1Gp0LaaE8vZIDUo6Gr4QtyVEkCD8h
-         BkuQ==
-X-Gm-Message-State: ACgBeo0k6afvh9k1pWCyaYiPwkaQF2bjE5hXalajjLSCbqx76KhV+OCF
-        kp6crXmiN4lPOouQwWabSehUFw==
-X-Google-Smtp-Source: AA6agR5moO6beTsi7x5rTAlv81zymG0N3o7VTs6or6Mmy9ttqgUCtxtTmpvU07eWCklNUKhtsBkNHQ==
-X-Received: by 2002:a05:6512:ba8:b0:492:e5e5:b0ea with SMTP id b40-20020a0565120ba800b00492e5e5b0eamr3122546lfv.555.1661535667848;
-        Fri, 26 Aug 2022 10:41:07 -0700 (PDT)
+        bh=rw3ft7Xiuq6jQh7CexeaJRVGi6CosNconl2BfPOtJXg=;
+        b=6JkUT2XF3qSQ0dITl7MhejtXNfD7Of/ZWJpuE0x1kRGFUU0xBIYAstHONCwLomMNc3
+         GKktqn64nfvV50oi3OS+aMJQZtNGPw81ya2wFB8Sesn2kp6j04ZkR7U9i5wVAw7b+B9N
+         YU9vw+YGUyKSJi+xBslxH+ajP8sDJXP5qVFaynhK9DSnB9TYfMJVtItAyFUp6csDmsKI
+         lmU4rLaCQo3SXypKLCje3O4VUK1O6Hef+Eo/xSKfGrjrF1GH4yEV6Gy6dxkHNdPMXykk
+         bT4Idu8fdy4BGkFxWW/q5tq+g8u2dysDJ+3Brws6lvxDwGkltQoWs4jM9HUaq90rNOF4
+         vzZw==
+X-Gm-Message-State: ACgBeo19+H5558x0gZ6UdmzE3QhbPL03mXp/FkDbdNHVewJlewRdZTPF
+        FlMYdPQ14laH6ZYEqI5aVkSBdQ==
+X-Google-Smtp-Source: AA6agR5O4np8N7uZzKIuzC3AmkW23UMkTi/wwqOWxiQRm5W1buJbivDheV/iRyfq+Jvv1q4deP+neg==
+X-Received: by 2002:a2e:93c8:0:b0:261:e5a7:56ed with SMTP id p8-20020a2e93c8000000b00261e5a756edmr2689909ljh.483.1661535720141;
+        Fri, 26 Aug 2022 10:42:00 -0700 (PDT)
 Received: from [192.168.0.71] (82.131.98.15.cable.starman.ee. [82.131.98.15])
-        by smtp.gmail.com with ESMTPSA id b16-20020a056512025000b0048a891e4d88sm431575lfo.193.2022.08.26.10.41.05
+        by smtp.gmail.com with ESMTPSA id c28-20020ac244bc000000b00492ef1ee7b0sm422450lfm.290.2022.08.26.10.41.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 Aug 2022 10:41:06 -0700 (PDT)
-Message-ID: <8dd88179-66e5-2f08-4cb9-6677b154a2d7@linaro.org>
-Date:   Fri, 26 Aug 2022 20:41:05 +0300
+        Fri, 26 Aug 2022 10:41:59 -0700 (PDT)
+Message-ID: <58d791f3-2a45-1ddb-79ac-852656be2b50@linaro.org>
+Date:   Fri, 26 Aug 2022 20:41:58 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH 2/3] dt-bindings: net: sparx5: don't require a reset line
+Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom: Document additional skus for
+ sc7180 pazquel360
 Content-Language: en-US
-To:     Michael Walle <michael@walle.cc>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>,
+        LKML <linux-kernel@vger.kernel.org>
+Cc:     Bob Moragues <moragues@chromium.org>,
+        Henry Sun <henrysun@google.com>,
+        Douglas Anderson <dianders@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Steen Hegelund <Steen.Hegelund@microchip.com>,
-        Horatiu Vultur <horatiu.vultur@microchip.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     UNGLinuxDriver@microchip.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20220826115607.1148489-1-michael@walle.cc>
- <20220826115607.1148489-3-michael@walle.cc>
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+References: <20220826102513.1.If97ef7a7d84bcc2cf20e0479b3e00c4a8fb5a2fd@changeid>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220826115607.1148489-3-michael@walle.cc>
+In-Reply-To: <20220826102513.1.If97ef7a7d84bcc2cf20e0479b3e00c4a8fb5a2fd@changeid>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,14 +83,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/08/2022 14:56, Michael Walle wrote:
-> Make the reset line optional. It turns out, there is no dedicated reset
-> for the switch. Instead, the reset which was used up until now, was kind
-> of a global reset. This is now handled elsewhere, thus don't require a
-> reset.
+On 26/08/2022 13:26, Yunlong Jia wrote:
+> pazquel360 is an extension project based on pazquel.
+> We create 3 sku on pazquel360:
+>    sku 20 for LTE with physical SIM _and_ eSIM and WiFi
+>    sku 21 for WiFi only
+>    sku 22 for LTE with only a physical SIM
+>  Both sku20 and sku22 are LTE SKUs.
+>  One has the eSIM stuffed and one doesn't.
+>  There is a single shared device tree for the two.
 > 
-> Signed-off-by: Michael Walle <michael@walle.cc>
-> ---
+> Signed-off-by: Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>
+
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
