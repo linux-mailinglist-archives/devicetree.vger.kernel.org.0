@@ -2,68 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D86935A20E6
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 08:32:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C9585A20E8
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 08:33:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245010AbiHZGc5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 02:32:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58638 "EHLO
+        id S229662AbiHZGdJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 02:33:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245009AbiHZGc4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 02:32:56 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A813D11CE
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 23:32:53 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id z6so764967lfu.9
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 23:32:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=+qU9ctcrY7mtJ7WOAIohkf0A848XGp2YRevCX8i4gts=;
-        b=C7HaYeqFpX0lS9ll1R6ZCwBkm8QpDYZfuNWeuq8t0XEvQUmiGWlAwZ92EXwJeoD4J+
-         HhrTOmbUp2lx/PBx34u5s9RtG5xGwYCqitwzWsE9tNWsKG4h4D9o4WCojuyM8IRP0AvA
-         2Q3oTSAcRaBDuC05Vpm59LuL+Js5fRXqt+8lY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=+qU9ctcrY7mtJ7WOAIohkf0A848XGp2YRevCX8i4gts=;
-        b=cTOqGxnlut+tCUkZF/NS1gp0DV0JPzE9trypCHBZf26OfAxHYU8OU2QInw7wPCmN+U
-         tct+Nt5b4BLCbRZOA+OqV0CB5ffC2+yjHKiFYMkM4XKdRHheyxPvg37ZhdJMpLk1HMFp
-         vZRK1662h6UolNwwXY316Htdq77zQqIdAUre839xZknih7nYCwHlEyKzGqnPYj/yI/zg
-         eduoXHekIOeFbWg2p8+v/zWoxPGPv0wdHPzqElYOky1AHz5qABnpMlM6nUxVgGpl0fwV
-         eVKnt9Lv6lCe8RaShn2GPZ5LWfKKEvQRhwXY1ubuT7zRAs3Pse3Bw1iZKWx4qWdSGGXe
-         pT/A==
-X-Gm-Message-State: ACgBeo1ultnm+ibJbs/IuECa83ZJDblg1avYsiwa6de2ih3dKwL41Lmp
-        o/OtaE/3SC9novp/67U28WIpupecFEIIYphhOjQmpN/2Sk3F9Q==
-X-Google-Smtp-Source: AA6agR6XzaZ+tjS2B38+xX/5fv3zVFoMbmEjVYn3rbhESLg5eHnuuhXweWowUZRe3isFIyyq67NglnbcGPdP3p8ht3c=
-X-Received: by 2002:a05:6512:1694:b0:48a:9d45:763f with SMTP id
- bu20-20020a056512169400b0048a9d45763fmr1987125lfb.662.1661495571621; Thu, 25
- Aug 2022 23:32:51 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220820082936.686924-1-dario.binacchi@amarulasolutions.com>
- <20220820082936.686924-4-dario.binacchi@amarulasolutions.com> <c74b4464-ec28-eff6-86e2-2b0e5e9e992b@linaro.org>
-In-Reply-To: <c74b4464-ec28-eff6-86e2-2b0e5e9e992b@linaro.org>
-From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Date:   Fri, 26 Aug 2022 08:32:40 +0200
-Message-ID: <CABGWkvryfr84eZyQzB4Cf17kBBNBRGRi3TxK24tesq=k56_uQw@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 3/4] ARM: dts: stm32: add pin map for CAN
- controller on stm32f4
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-kernel@vger.kernel.org,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Amarula patchwork <linux-amarula@amarulasolutions.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        michael@amarulasolutions.com, Dario Binacchi <dariobin@libero.it>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com
+        with ESMTP id S245018AbiHZGdH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 02:33:07 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED574D11D9
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 23:33:06 -0700 (PDT)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=irc.pengutronix.de)
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <j.zink@pengutronix.de>)
+        id 1oRStt-0007pU-87; Fri, 26 Aug 2022 08:33:05 +0200
+Message-ID: <b65b274e797fef70ee5824953d4bcda2c32d3624.camel@pengutronix.de>
+Subject: Re: [PATCH 00/16] Add support for Lattice MachXO2 programming via
+ I2C
+From:   Johannes Zink <j.zink@pengutronix.de>
+To:     Ivan Bornyakov <i.bornyakov@metrotek.ru>
+Cc:     devicetree@vger.kernel.org, linux-fpga@vger.kernel.org,
+        robh+dt@kernel.org, mdf@kernel.org, kernel@pengutronix.de,
+        yilun.xu@intel.com, hao.wu@intel.com
+Date:   Fri, 26 Aug 2022 08:32:49 +0200
+In-Reply-To: <20220825152514.9926-1-i.bornyakov@metrotek.ru>
+References: <20220825152514.9926-1-i.bornyakov@metrotek.ru>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Evolution 3.38.3-1 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: j.zink@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -72,74 +46,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On Thu, 2022-08-25 at 18:25 +0300, Ivan Bornyakov wrote:
+> Hi, Johannes!
 
-On Tue, Aug 23, 2022 at 3:43 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 20/08/2022 11:29, Dario Binacchi wrote:
-> > Add pin configurations for using CAN controller on stm32f469-disco
-> > board. They are located on the Arduino compatible connector CN5 (CAN1)
-> > and on the extension connector CN12 (CAN2).
-> >
-> > Signed-off-by: Dario Binacchi <dariobin@libero.it>
-> > Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
->
-> Do not ignore review. This is not correct. You are mixing copyright with
-> SoC...
+Hi Ivan,
+> 
+> I just came across your patches. Surprisingly, our work interferes.
+> 
+> I recently posted patch-series for configuring ECP5 and was asked to
+> make
+> generalized sysCONFIG driver with support for both ECP5 and MachXO2,
+> which
+> I did. 
 
-OK. I got it. I will drop one SOB in version 3.
+That looks very interesting indeed.
 
->
-> >
->
->
-> > +                     can2_pins_b: can2-1 {
-> > +                             pins1 {
-> > +                                     pinmux = <STM32_PINMUX('B', 13, AF9)>; /* CAN2_TX */
-> > +                             };
-> > +                             pins2 {
-> > +                                     pinmux = <STM32_PINMUX('B', 12, AF9)>; /* CAN2_RX */
-> > +                                     bias-pull-up;
-> > +                             };
-> > +                     };
-> > +
->
-> Don't ignore review.
+> Sadly I don't have hardware with MachXO2, but you clearly do :)
+> 
+> Please, take a look at
+> 
+>  
+> https://lore.kernel.org/linux-fpga/20220825112433.14583-1-i.bornyakov@metrotek.ru/
+> 
+> and please help test MachXO2 variant. When we pull this off, you may
+> add I2C
+> interface on top.
+> 
+> 
+> 
 
-Sorry, I didn't want to ignore your review, I thought the blank line
-to be removed was another.
-Actually I had to remove two blank lines and I left out the one you suggested.
+my hardware has only I2C connected to the MachXO2 (hence the patch
+series...), so I cannot test your patches directly. 
 
-Thanks and regards,
-Dario
+Since adding I2C requires some quirks with respect to the programming
+commands (some are differ to the SPI ones, ...) it will take me some
+time to add my patches on top of yours in order to test, but after
+having had a short glance at your patch series, I think it should be
+feasible.
 
->
-> That's second one, so that's a no.. :(
+Though, I think you should allow the program-gpios, init-gpios and
+done-gpios for machxo2 and have them as optional, at least for machxo2.
 
-
->
-> Best regards,
-> Krzysztof
-
-
+Best regards
+Johannes
 
 -- 
+Pengutronix e.K.                | Johannes Zink                  |
+Steuerwalder Str. 21            | https://www.pengutronix.de/    |
+31137 Hildesheim, Germany       | Phone: +49-5121-206917-0       |
+Amtsgericht Hildesheim, HRA 2686| Fax:   +49-5121-206917-5555    |
 
-Dario Binacchi
-
-Embedded Linux Developer
-
-dario.binacchi@amarulasolutions.com
-
-__________________________________
-
-
-Amarula Solutions SRL
-
-Via Le Canevare 30, 31100 Treviso, Veneto, IT
-
-T. +39 042 243 5310
-info@amarulasolutions.com
-
-www.amarulasolutions.com
