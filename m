@@ -2,52 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 80F465A3036
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 21:52:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CBB25A30D8
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 23:13:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344827AbiHZTwb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 15:52:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34428 "EHLO
+        id S241599AbiHZVNL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 17:13:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54400 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344817AbiHZTw3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 15:52:29 -0400
+        with ESMTP id S231388AbiHZVNK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 17:13:10 -0400
 Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A9EEE7270
-        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 12:52:27 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FF74E58A1;
+        Fri, 26 Aug 2022 14:13:09 -0700 (PDT)
 Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id CA72A3F1;
-        Fri, 26 Aug 2022 21:52:24 +0200 (CEST)
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 823F12B3;
+        Fri, 26 Aug 2022 23:13:06 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1661543545;
-        bh=pxDWoc6HHlc6ObY4f/XUHXN7eaWL6EKlUFTO8nQeR84=;
+        s=mail; t=1661548386;
+        bh=5f0gP12QTNlFrSClyCypQH3rw2Mfu1Bl+NgEw0jt7uY=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Um4bWNz0Svq7GF95PxqlPuSBnH+atumuxXCqAkY/iNqjAxlO5demyc+9gvVG8Msi0
-         zKP426HSxvFs8ZsojGcOjgetmmF/0qvLxav6qljChpw46Z958PeWu14D5wa3qELcYJ
-         EKRJt+iqTTU5ONTFuCQfkqLRHoT3mUDUEVHt2Ghg=
-Date:   Fri, 26 Aug 2022 22:52:17 +0300
+        b=W5ZD/HuZPyLfhQlfYVDxqXyy1oqcuOWmG7pEWy4zYFGS7AzmsQQTSRMgLF1/WV2HU
+         Nw+wa29mQ1vpUGhmGm8gxU9sHFPhTM9LMxw12xtnF4eAXNGbQMfqr1NbtmcPYWE5bu
+         4DRN1Pyi8Un37f4VWWALCWvmY8aLBjhN/yYmKMxg=
+Date:   Sat, 27 Aug 2022 00:12:59 +0300
 From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Lucas Stach <l.stach@pengutronix.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liu Ying <victor.liu@nxp.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Marek Vasut <marex@denx.de>, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, patchwork-lst@pengutronix.de,
-        kernel@pengutronix.de
-Subject: Re: [PATCH 3/4] dt-bindings: display: imx: add binding for i.MX8MP
- HDMI PVI
-Message-ID: <YwkkcW4rJF/t/JY6@pendragon.ideasonboard.com>
-References: <20220826192424.3216734-1-l.stach@pengutronix.de>
- <20220826192424.3216734-3-l.stach@pengutronix.de>
+To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v6 1/6] dt-bindings: media: Add Allwinner A31 ISP
+ bindings documentation
+Message-ID: <Ywk3W6pTOOlzLYVn@pendragon.ideasonboard.com>
+References: <20220826184144.605605-1-paul.kocialkowski@bootlin.com>
+ <20220826184144.605605-2-paul.kocialkowski@bootlin.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20220826192424.3216734-3-l.stach@pengutronix.de>
+In-Reply-To: <20220826184144.605605-2-paul.kocialkowski@bootlin.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
@@ -57,69 +59,76 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lucas,
+Hi Paul,
 
 Thank you for the patch.
 
-On Fri, Aug 26, 2022 at 09:24:23PM +0200, Lucas Stach wrote:
-> Add binding for the i.MX8MP HDMI parallel video interface block.
+On Fri, Aug 26, 2022 at 08:41:39PM +0200, Paul Kocialkowski wrote:
+> This introduces YAML bindings documentation for the Allwinner A31 Image
+> Signal Processor (ISP).
 > 
-> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-> Tested-by: Marek Vasut <marex@denx.de>
+> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 > ---
->  .../display/imx/fsl,imx8mp-hdmi-pvi.yaml      | 83 +++++++++++++++++++
->  1 file changed, 83 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi-pvi.yaml
+>  .../media/allwinner,sun6i-a31-isp.yaml        | 97 +++++++++++++++++++
+>  1 file changed, 97 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/allwinner,sun6i-a31-isp.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi-pvi.yaml b/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi-pvi.yaml
+> diff --git a/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-isp.yaml b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-isp.yaml
 > new file mode 100644
-> index 000000000000..bf25d29c03ab
+> index 000000000000..2fda6e05e16c
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi-pvi.yaml
-> @@ -0,0 +1,83 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +++ b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-isp.yaml
+> @@ -0,0 +1,97 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/display/imx/fsl,imx8mp-hdmi-pvi.yaml#
+> +$id: http://devicetree.org/schemas/media/allwinner,sun6i-a31-isp.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Freescale i.MX8MP HDMI Parallel Video Interface
+> +title: Allwinner A31 Image Signal Processor Driver (ISP) Device Tree Bindings
 > +
 > +maintainers:
-> +  - Lucas Stach <l.stach@pengutronix.de>
-> +
-> +description: |
-> +  The HDMI parallel video interface is timing and sync generator block in the
-> +  i.MX8MP SoC, that sits between the video source and the HDMI TX controller.
+> +  - Paul Kocialkowski <paul.kocialkowski@bootlin.com>
 > +
 > +properties:
 > +  compatible:
 > +    enum:
-> +      - fsl,imx8mp-hdmi-pvi
+> +      - allwinner,sun6i-a31-isp
+> +      - allwinner,sun8i-v3s-isp
 > +
 > +  reg:
 > +    maxItems: 1
 > +
-> +  power-domains:
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: Bus Clock
+> +      - description: Module Clock
+> +      - description: DRAM Clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: bus
+> +      - const: mod
+> +      - const: ram
+> +
+> +  resets:
 > +    maxItems: 1
 > +
 > +  ports:
 > +    $ref: /schemas/graph.yaml#/properties/ports
-> +    description: |
-> +      This device has two video ports.
-
-You could possibly drop the description here, this is made evident by
-the two ports below, up to you.
-
 > +
 > +    properties:
 > +      port@0:
 > +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Input from the LCDIF controller.
+> +        description: CSI0 input port
 > +
 > +      port@1:
 > +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Output to the HDMI TX controller
+> +        description: CSI1 input port
 > +
 > +    anyOf:
 > +      - required:
@@ -127,27 +136,38 @@ the two ports below, up to you.
 > +      - required:
 > +          - port@1
 
-Both exist and need to be connected, is there a reason not to require
-both ?
+I'd still like to see all ports that exist in the hardware being
+mandatory. I assume at least one of the A31 and V3s has two connected
+ports in the SoC or you wouldn't declare them both here :-)
+
+Apart from that, this looks good.
 
 > +
 > +required:
 > +  - compatible
 > +  - reg
-> +  - power-domains
-> +  - ports
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - resets
 > +
 > +additionalProperties: false
 > +
 > +examples:
 > +  - |
-> +    #include <dt-bindings/clock/imx8mp-clock.h>
-> +    #include <dt-bindings/power/imx8mp-power.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/sun8i-v3s-ccu.h>
+> +    #include <dt-bindings/reset/sun8i-v3s-ccu.h>
 > +
-> +    display-bridge@32fc4000 {
-> +        compatible = "fsl,imx8mp-hdmi-pvi";
-> +        reg = <0x32fc4000 0x40>;
-> +        power-domains = <&hdmi_blk_ctrl IMX8MP_HDMIBLK_PD_PVI>;
+> +    isp: isp@1cb8000 {
+> +        compatible = "allwinner,sun8i-v3s-isp";
+> +        reg = <0x01cb8000 0x1000>;
+> +        interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks = <&ccu CLK_BUS_CSI>,
+> +             <&ccu CLK_CSI1_SCLK>,
+> +             <&ccu CLK_DRAM_CSI>;
+> +        clock-names = "bus", "mod", "ram";
+> +        resets = <&ccu RST_BUS_CSI>;
 > +
 > +        ports {
 > +            #address-cells = <1>;
@@ -155,19 +175,15 @@ both ?
 > +
 > +            port@0 {
 > +                reg = <0>;
-> +                pvi_from_lcdif3: endpoint {
-> +                    remote-endpoint = <&lcdif3_to_pvi>;
-> +                };
-> +            };
 > +
-> +            port@1 {
-> +                reg = <1>;
-> +                pvi_to_hdmi_tx: endpoint {
-> +                    remote-endpoint = <&hdmi_tx_from_pvi>;
+> +                isp_in_csi0: endpoint {
+> +                    remote-endpoint = <&csi0_out_isp>;
 > +                };
 > +            };
 > +        };
 > +    };
+> +
+> +...
 
 -- 
 Regards,
