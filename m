@@ -2,85 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13D845A2034
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 07:10:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E7AD5A205B
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 07:37:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244621AbiHZFK3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 01:10:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60776 "EHLO
+        id S230357AbiHZFhB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 01:37:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244538AbiHZFKH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 01:10:07 -0400
-Received: from wout1-smtp.messagingengine.com (wout1-smtp.messagingengine.com [64.147.123.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03403275DA;
-        Thu, 25 Aug 2022 22:10:04 -0700 (PDT)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.west.internal (Postfix) with ESMTP id 4B6A13200A1A;
-        Fri, 26 Aug 2022 01:10:03 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute3.internal (MEProxy); Fri, 26 Aug 2022 01:10:04 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm2; t=1661490602; x=1661577002; bh=lg
-        MUYAy9j4HMAzVd6ulb5pY9oKdUbr3uOMOw2xD/sDA=; b=DpPNMSmHU0i37Vmbcc
-        qCoHGnn+LrspEAmECTrWmummsYrYWJf9mb9q+xXbTsDrpMAV5XYiWrLwNGRmUw5n
-        otrnEMz0lL9PX+ff+ibQ8+mfj1/SREJq/irGU9Z+V/uQaFL6FfzfwDsETiud4Yef
-        4K/9UN3QIkFjRj4X4M9IA09BWyURU5Sv06GqnKct5rJjrVTWOki7QYFbnYzxJ3gC
-        ctI96I5pUC9kepWgrxCTs9FYiR50Ey4DKhTw9FJ0NTXbD5jAzSTlzvAodtAC5O5l
-        6L+cGFB/GnbIBg4F2VhVMG5s+1R4baYzTNub+Ltaqq/vALXNz34U1qt3uDfEeYXW
-        LO9g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; t=1661490602; x=1661577002; bh=lgMUYAy9j4HMA
-        zVd6ulb5pY9oKdUbr3uOMOw2xD/sDA=; b=HdOFS5T2V1Zn0gW2HR2TDHlGpXR9f
-        jpRm6qNysvjwWQCuw4sgw1HE/25CuGLB2QlSesn4brA+SqM4q+BXPAPXds9ut8Bt
-        zMB3edJwf4rsnXzTEvX0Fg4uOz79RyVu0k8HLpNnp1xOOVbESIABrmB29tyToRWb
-        ZxzWt5pbwUfIWbWj4lRQa0sz9JgXCMroJXKFYL2YKTUPSyrJ4TDdqTbij1WkJ3Lf
-        EwFlM6qI185JoCUDr8UUX3csloaQVgRh0lL5JxPdiXUCZy9jxNFG0TiHUDy6hEXx
-        DNXRl0Mx9RNQRVlnD7g7e9CfQD12AQZX/Sp1lg3WNJjp3xXz/rbPpm5Gw==
-X-ME-Sender: <xms:qlUIYxseD6rLT8TxSLogbtleYlWuixK5tIf5IgZCls-aAP-gzZjmvw>
-    <xme:qlUIY6cvVnDF00ZR9SgdwgIbo1nfUGpmq9dTtPrucH3aGWX91d1Fkylz86tpLvdCL
-    Fbe3ygEwxc-atFfQw>
-X-ME-Received: <xmr:qlUIY0ys1vqhUiultf3p3OgysMd1GhbRbuCZssKDWZBcUSFUOybu17Atc6M4p1a7w6buwrBblpNOKwMKz_vAxxqXjDTxrBCTAQux5oibGGRsNO8KspfWjCn7ct3vyP7uWgel5A>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdejgedgledvucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvvefufffkofgjfhgggfestdekredtredttdenucfhrhhomhepufgrmhhu
-    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
-    ftrfgrthhtvghrnhepudekteeuudehtdelteevgfduvddvjefhfedulefgudevgeeghefg
-    udefiedtveetnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
-    homhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
-X-ME-Proxy: <xmx:qlUIY4MQJ6-pd4xuotE1dE2OI9_UQ5pQq-I8Y0pJ0g7oWH1g_TFcug>
-    <xmx:qlUIYx9-f7vuFwGJ1vGihx_81H5K3tXk_lxLTMr78Zeaj6QpbzFHXA>
-    <xmx:qlUIY4UpEwgxXlw3FXsXX9OjMd7Z2TCW4ICn9_RnS2SPr3dxlLY5Yg>
-    <xmx:qlUIYy3WzfBMGpC62woSvziMxyaELkQdIhL1KM877PiSs3_CVkjxuQ>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 26 Aug 2022 01:10:01 -0400 (EDT)
-From:   Samuel Holland <samuel@sholland.org>
-To:     Pavel Machek <pavel@ucw.cz>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        linux-leds@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-riscv@lists.infradead.org,
+        with ESMTP id S229740AbiHZFhA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 01:37:00 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 151AFCEB2A;
+        Thu, 25 Aug 2022 22:36:52 -0700 (PDT)
+X-UUID: 40cb4b3af52a4a089a91cbee1026d513-20220826
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=vr+SHYsQa0ePNCtafTguBsuC9if01uyMQhqyKREu3S8=;
+        b=RfUeec6gH6goFXeLfeBg1LHOrv+jbDkOZm5vi8EqcwGjwI/xhLV897O6OMOMuwuPT9xieKqnQdDyq4+kQPTvoRzH5OGH+V2z2nfGGkMW2lNbv3Z+7rcaylkMyRosdssX56wrK+37GpBBO6ys6KDwOxcegmJXHXtHjCVLGgg57qM=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.10,REQID:b3e1148c-2d1f-4c76-8ba7-f5d0bc246fbe,OB:0,L
+        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_
+        Ham,ACTION:release,TS:0
+X-CID-META: VersionHash:84eae18,CLOUDID:0245a355-e800-47dc-8adf-0c936acf4f1b,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:11|1,File:
+        nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 40cb4b3af52a4a089a91cbee1026d513-20220826
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1855589256; Fri, 26 Aug 2022 13:36:45 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Fri, 26 Aug 2022 13:36:44 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 26 Aug 2022 13:36:44 +0800
+Message-ID: <1a16cce9fe164bafc06ae193310be71c6f645d75.camel@mediatek.com>
+Subject: Re: [PATCH 2/7] dt-bindings: phy: mediatek,tphy: add property to
+ set pre-emphasis
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>
+CC:     Kishon Vijay Abraham I <kishon@ti.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Samuel Holland <samuel@sholland.org>
-Subject: [PATCH v5 6/6] riscv: dts: allwinner: d1: Add RGB LEDs to boards
-Date:   Fri, 26 Aug 2022 00:09:42 -0500
-Message-Id: <20220826050942.20067-7-samuel@sholland.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220826050942.20067-1-samuel@sholland.org>
-References: <20220826050942.20067-1-samuel@sholland.org>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Eddie Hung <eddie.hung@mediatek.com>
+Date:   Fri, 26 Aug 2022 13:36:43 +0800
+In-Reply-To: <bee8abe5-0299-d05e-643c-4810aa33f978@linaro.org>
+References: <20220819091344.2274-1-chunfeng.yun@mediatek.com>
+         <20220819091344.2274-2-chunfeng.yun@mediatek.com>
+         <438da392-f419-ad76-7e91-aa4aab36e12c@linaro.org>
+         <816ecf6287533137b750c8bde9de5830e4229c56.camel@mediatek.com>
+         <bee8abe5-0299-d05e-643c-4810aa33f978@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY,URIBL_CSS
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,72 +73,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some D1-based boards feature an onboard RGB LED. Enable them.
+On Tue, 2022-08-23 at 13:24 +0300, Krzysztof Kozlowski wrote:
+> On 22/08/2022 10:07, Chunfeng Yun wrote:
+> > On Fri, 2022-08-19 at 15:15 +0300, Krzysztof Kozlowski wrote:
+> > > On 19/08/2022 12:13, Chunfeng Yun wrote:
+> > > > Add a property to set usb2 phy's pre-emphasis.
+> > > > 
+> > > > Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> > > > ---
+> > > >  Documentation/devicetree/bindings/phy/mediatek,tphy.yaml | 7
+> > > > +++++++
+> > > >  1 file changed, 7 insertions(+)
+> > > > 
+> > > > diff --git
+> > > > a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
+> > > > b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
+> > > > index 848edfb1f677..aee2f3027371 100644
+> > > > --- a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
+> > > > +++ b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
+> > > > @@ -219,6 +219,13 @@ patternProperties:
+> > > >          minimum: 1
+> > > >          maximum: 15
+> > > >  
+> > > > +      mediatek,pre-emphasis:
+> > > > +        description:
+> > > > +          The selection of pre-emphasis (U2 phy)
+> > > > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > > > +        minimum: 1
+> > > > +        maximum: 3
+> > > 
+> > > Instead of hard-coding register values in bindings, you should
+> > > rather
+> > > describe here feature/effect. If it is in units, use unit
+> > > suffixes.
+> > > If
+> > > it is some choice, usually string enum is appropriate.
+> > 
+> > How about changing description as bellow:
+> > 
+> > "The level of pre-emphasis, increases one level, boosts the
+> > relative
+> > amplitudes of signal's higher frequencies components about 4.16%
+> > (U2
+> > phy)"
+> > 
+> 
+> Still the question is what is the unit. 4.16%?
+No unit, it's a level value, like an index of array.
 
-Signed-off-by: Samuel Holland <samuel@sholland.org>
----
-
-Changes in v5:
- - New patch for v5
-
- .../boot/dts/allwinner/sun20i-d1-lichee-rv-dock.dts | 12 ++++++++++++
- arch/riscv/boot/dts/allwinner/sun20i-d1-nezha.dts   | 13 +++++++++++++
- 2 files changed, 25 insertions(+)
-
-diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-dock.dts b/arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-dock.dts
-index ca36a5d75a7f..02d13e987e02 100644
---- a/arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-dock.dts
-+++ b/arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-dock.dts
-@@ -25,6 +25,18 @@ &ehci1 {
- 	status = "okay";
- };
- 
-+&ledc {
-+	pinctrl-0 = <&ledc_pc0_pin>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+
-+	multi-led@0 {
-+		reg = <0x0>;
-+		color = <LED_COLOR_ID_RGB>;
-+		function = LED_FUNCTION_STATUS;
-+	};
-+};
-+
- &lradc {
- 	status = "okay";
- 
-diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1-nezha.dts b/arch/riscv/boot/dts/allwinner/sun20i-d1-nezha.dts
-index df865ee15fcf..099075462998 100644
---- a/arch/riscv/boot/dts/allwinner/sun20i-d1-nezha.dts
-+++ b/arch/riscv/boot/dts/allwinner/sun20i-d1-nezha.dts
-@@ -5,6 +5,7 @@
- 
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
- 
- #include "sun20i-d1.dtsi"
- #include "sun20i-d1-common-regulators.dtsi"
-@@ -90,6 +91,18 @@ pcf8574a: gpio@38 {
- 	};
- };
- 
-+&ledc {
-+	pinctrl-0 = <&ledc_pc0_pin>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+
-+	multi-led@0 {
-+		reg = <0x0>;
-+		color = <LED_COLOR_ID_RGB>;
-+		function = LED_FUNCTION_STATUS;
-+	};
-+};
-+
- &lradc {
- 	status = "okay";
- 
--- 
-2.35.1
+> 
+> Best regards,
+> Krzysztof
 
