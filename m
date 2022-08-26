@@ -2,196 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 048B35A2DF1
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 20:03:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 413F85A2DFB
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 20:08:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245417AbiHZSDf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 14:03:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60048 "EHLO
+        id S1344511AbiHZSIs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 14:08:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230453AbiHZSDe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 14:03:34 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F8D99D13C;
-        Fri, 26 Aug 2022 11:03:32 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id m3so2947044lfg.10;
-        Fri, 26 Aug 2022 11:03:32 -0700 (PDT)
+        with ESMTP id S232362AbiHZSIq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 14:08:46 -0400
+Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62799B56C5
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 11:08:45 -0700 (PDT)
+Received: by mail-ot1-x32c.google.com with SMTP id z22-20020a056830129600b0063711f456ceso1516039otp.7
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 11:08:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc;
-        bh=nN6w6sWQ+M9O3+SbU/L9UQPJ6uhDVHY44yRSnhXBG2Q=;
-        b=Zjcw2tEC7LCiCHeV9kInMVYMRpmy9FO40aLz7vstZ8VBdbHoWrY8VbN+grSflt4dt0
-         vpt/oW/a57hcgZD6dD9zCxw7sMDThJkaTtBP9PR80z40B7LPGoLviZDDV0SW8OMzagTr
-         QxUkoSMgkWMsUZoO8eEEHGu8QROsLF4QqFO3xCldYhya2drghTmwshfm7cMkV49KfKP/
-         vltjWUEY/O48ijdLXiRgtH1t0CcP3HIrAK8dngL06VvAB7d/pR7N1wohyuRbTP1IB7/O
-         NoJBL5IV3PRWUP+lFc6zx8Km85H0uDBid07u3vIfjcC/GORkMbxC5oIllQ2Ptd6bW6vO
-         0weg==
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:from:to:cc;
+        bh=CppDCJwy+pfEiyfqdA6WVXDmtoQK9zZP2tsICyNNVEI=;
+        b=WcpwYf06HlBBYhu1jCwEnSlaeCtDD4JcNogXLv536HCUQ3n8SvF/CVfVSux27Zi1ye
+         OpXtUIBQ21q1V+qG8E7umV2AntflsEY9ab1lsThMByh7/f0/opzsKRl2Jf+LV75oMXGD
+         X5AZZ58yNTqRMfOzD9T6sCkrezZ2IZrPgNJWU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=nN6w6sWQ+M9O3+SbU/L9UQPJ6uhDVHY44yRSnhXBG2Q=;
-        b=mKixcI91A4kNV2S5WjisdWVU6qrOrukw8bXro5p+kdVNiy+8pyz5B+slTXdCfZetg9
-         2kGD9WQl5Ys9r+taxGnwTqzgCm/7r9CfVBHIolA5b5YNAfVK1U3B5haW1FgL1/Eop1QI
-         jphCjKRR+6uh7qpSdrIjJsGY8wZ4w2kpoRt13dnm4527nPONcklu4pt5BKdgqE/mR1cM
-         nkjZLr7+R63Dh9De49UM7asvrWcNoTOLWcPPv7RM52J6zhPw+v+cNUZx/yzZmLDOg3rk
-         SZbtLLDT33sbXtHGiqkTWAZ0zBwTw84L9uSU1fkhfcsAvunJncRITwr10Kd21QIcW4T7
-         o6sA==
-X-Gm-Message-State: ACgBeo0o/oQF0o/GcvfwTCaHOn9kPTWpfJqa8VPtKUWnID0lgC/GDMJI
-        B+qnSJRHpxKdMTGTtfRc4IE=
-X-Google-Smtp-Source: AA6agR72FDX83CKrMH1ppMdJEGUa7hjVbvDIDtWig2tmOQcmWnVFTMlWLKO6CWjN64R3I+BNEm/x/w==
-X-Received: by 2002:a05:6512:131f:b0:494:5d2f:c34b with SMTP id x31-20020a056512131f00b004945d2fc34bmr34433lfu.324.1661537010406;
-        Fri, 26 Aug 2022 11:03:30 -0700 (PDT)
-Received: from mobilestation ([95.79.140.178])
-        by smtp.gmail.com with ESMTPSA id be18-20020a05651c171200b0025e41bbf225sm534412ljb.39.2022.08.26.11.03.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Aug 2022 11:03:29 -0700 (PDT)
-Date:   Fri, 26 Aug 2022 21:03:27 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Sudip Mukherjee <sudip.mukherjee@sifive.com>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        greentime.hu@sifive.com, jude.onyenegecha@sifive.com,
-        william.salmon@sifive.com, adnan.chowdhury@sifive.com,
-        ben.dooks@sifive.com, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        jeegar.lakhani@sifive.com
-Subject: Re: [PATCH 00/11] Add support for enhanced SPI for Designware SPI
- controllers
-Message-ID: <20220826180327.yazfoydjiyygd7qf@mobilestation>
-References: <20220802175755.6530-1-sudip.mukherjee@sifive.com>
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:x-gm-message-state:from:to:cc;
+        bh=CppDCJwy+pfEiyfqdA6WVXDmtoQK9zZP2tsICyNNVEI=;
+        b=0hNpzO0BEMMWBQbXeWhRSbm1HxFRGWn9HJT6L/zMltjJy7rmc27sge8oLNpuuEMum1
+         Lifp9Wamv5QaN459ZopwhIfA1wFmctJ3xtSQfgPLTG2IkNlJZ2xqTK0saJlz+/CzdTVE
+         kZ1ZMA6jsTGeImINGIQKh/kh3km6QghcAESoo4oK3fmtpCFk0krsBJIwQv8RQfGbEW+E
+         YTaEsLmxDSxSC9sCcVrVg2Exqw4cKcnXgHu9sMHL91PTqosTH7VTdYfHfflXXw9mYtlQ
+         MbB91pvS8SOOj+SKDG0RQYaGKkhWDWPJT3tS+ENuow7I4EU/b5uy7VvDxZnEriHEY1J+
+         659w==
+X-Gm-Message-State: ACgBeo25x7h1Im5IMauNGMjpjqf8GIlMdqrxzulrNOzlslnZprktVrx1
+        OnntSm14cY0Rhw0QPx0e0vEWsO8Lpk9DYBOG8zbw5IXJ9fE=
+X-Google-Smtp-Source: AA6agR4OYCRv3RliIFEMCZX/FFk7+UtuEH6UFx2i07S0YUDQ71aNSZY9yYdxDpVAk/Ize79lNJgrkD6Ks9ttmzX0DWI=
+X-Received: by 2002:a9d:53cb:0:b0:637:1ddc:615c with SMTP id
+ i11-20020a9d53cb000000b006371ddc615cmr1908132oth.3.1661537324727; Fri, 26 Aug
+ 2022 11:08:44 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 26 Aug 2022 13:08:44 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220802175755.6530-1-sudip.mukherjee@sifive.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220826065621.2255795-1-judyhsiao@chromium.org>
+References: <20220826065621.2255795-1-judyhsiao@chromium.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Fri, 26 Aug 2022 13:08:44 -0500
+Message-ID: <CAE-0n51WNeMy5gEEQ9XpR1k2g=jSiknNkwJLz-bQbMN115JSxg@mail.gmail.com>
+Subject: Re: [PATCH v4] arm64: dts: qcom: sc7280: Fix Dmic no sound on villager-r1
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Judy Hsiao <judyhsiao@chromium.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        dianders@chromium.org, mka@chromium.org, cychiang@google.com,
+        judyhsiao@google.com, linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Sudip
+Quoting Judy Hsiao (2022-08-25 23:56:21)
+> Fix the DMIC no sound issue of villager-r1 by using "PP1800_L2C" as the
+> DMIC power source to match the hardware schematic.
+>
+> This patch:
+>    1. set vdd-micb-supply to PP1800_L2C as the MIC Bias voltage regulator.
+>    2. In audio-routing, set VA DMIC01~VA DMIC03 to use the vdd-micb-supply
+>       setting.
+>
+> Co-developed-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+> Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
 
-On Tue, Aug 02, 2022 at 06:57:44PM +0100, Sudip Mukherjee wrote:
-> Some Synopsys SSI controllers support enhanced SPI which includes
-> Dual mode, Quad mode and Octal mode. DWC_ssi includes clock stretching
-> feature in enhanced SPI modes which can be used to prevent FIFO underflow
-> and overflow conditions while transmitting or receiving the data respectively.
-> This is only tested on controller version 1.03a.
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
 
-Thank you very much the patchset. As I already said adding new
-controller features support is always welcome. Yet there are some
-things which need to be fixed before the series would be fully
-suitable to be merged in into the kernel. Here is a short summary
-of ones:
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1.dts
+> index c03b3ae4de50..fd202a8f6a33 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1.dts
+> @@ -12,3 +12,30 @@ / {
+>         model = "Google Villager (rev1+)";
+>         compatible = "google,villager", "qcom,sc7280";
+>  };
+> +
+> +&lpass_va_macro {
+> +       vdd-micb-supply = <&pp1800_l2c>;
+> +};
 
-1. The eSPI capability isn't specific for the DW AHB SSI controller
-only. It can be found on the DW APB SSI controllers of v4.x and newer
-(though the SPI_FRF field is placed at different offset in CTRL0 CSR).
-Thus your patches will need to be fixed so the in-driver infrastructure
-would imply that.
-
-2. The mem ops check procedure provided by you doesn't verify whether
-the passed cmd, address and dummy data lengths meet the controller
-constraints or at least the constraints set by your code. You always
-expect the address and command being 4 and 1 bytes long, which is way
-not always true. So the implementation provided by you just won't
-correctly work for the unsupported cases with no any error returned.
-
-3. From what I see WAIT_CYCLES is specific for the Read-operations
-only (see the controller HW manual, the paragraphs like "Write
-Operation in Enhanced SPI Modes" or the SPI_CTRL0.WAIT_CYCLES field
-description). So any dummy-bytes requested for the Tx operations just
-won't be sent. Even though AFAICS the dummy cycles are specific for
-the Read SPI NAND/NOR operations it still would be correct to
-explicitly refuse the non-Rx transactions with non-zero dummy data
-length.
-
-4. I don't really see a reason of adding the address, command and
-dummy data length constraints. You can as easily update the
-command/address/dummy lengths passed in the SPI mem-op structure
-thus providing wider SPI memory devices range support.
-
-5. The main problem I can see in your implementation is that you try
-to assimilate the eSPI feature for the current DW SSI EEPROM
-read/write infrastructure. Note the SPI MEM ops currently available in
-the driver have been specifically created for the platforms with the
-native CS'es used to access the EEPROM devices. For such cases I had to
-use some not that nice solutions like IRQ-less transfers, local IRQs
-disabling and the outbound data collection in a single buffer in order
-to bypass the nasty DW SSI controller peculiarities. All of that isn't
-required in your case. You can implement a very nice and robust
-algorithm.
-
-6. You said your controller supports the clock stretching on Tx and Rx
-transfers. This is a very useful feature which can be used to bypass
-the main DW SSI controller problem connected with the native CS
-auto-toggling when the Tx FIFO gets empty or data loose due to the Rx
-FIFO overruns. Thus you won't need to always keep up with the Tx/Rx
-FIFO levels and implement the IRQ-based SPI MEM transfers.
-
-7. You unconditionally enable the eSPI support for the generic device
-snps,dwc-ssi-1.03a while this is an optional feature which yet can be
-disabled for any new controllers (see the SSI_SPI_MODE IP-core
-synthesize parameter). What you really need is to simply auto-detect
-the eSPI feature availability by checking whether the SPI_FRF field is
-writable for the DW APB SSI v4.0a and newer and for any DWC AHB SSI.
-
-8. There is no need in the IP-core version added to the compatible
-string because it can be retrieved from the SSI_VERSION_ID CSR. I
-would suggest to add a new generic compatible string "snps,dw-ahb-ssi"
-for the DW AHB SSI controllers and forget about the compatible strings
-versioning.
-
-9. Always study the driver coding convention before updating. In this
-particular case should you need to add new methods, macros, etc please
-add the vendor-specific prefix as is done for the rest of the driver
-entities.
-
-I've deliberately collected all the generic comments here so you'd be
-aware of the required changes in total, because I very much doubt all
-of them could be fixed at once via a single patchset iteration. But as
-soon as all of them are fixed we'll get a very nice and neat solution
-for the eSPI feature.
-
-I'll give you some more detailed comments right in the corresponding
-patches, but they won't cover all the issues noted above on this
-patchset iteration. So feel free to update your series based on your
-understanding of the issues (you can ask me if you don't fully get
-what I said above). It may reduce the number of the further series
-re-submissions.
-
--Sergey
-
-> 
-> Ben Dooks (1):
->   spi: dw-apb-ssi: add generic 1.03a version
-> 
-> Sudip Mukherjee (10):
->   spi: dw: define capability for enhanced spi
->   spi: dw: add check for support of dual/quad/octal
->   spi: dw: define spi_frf for dual/quad/octal modes
->   spi: dw: use TMOD_RO to read in enhanced spi modes
->   spi: dw: define SPI_CTRLR0 register and its fields
->   spi: dw: update SPI_CTRLR0 register
->   spi: dw: update NDF while writing in enhanced spi mode
->   spi: dw: update buffer for enhanced spi mode
->   spi: dw: prepare the transfer routine for enhanced mode
->   spi: dw: initialize dwc-ssi-1.03a controller
-> 
->  .../bindings/spi/snps,dw-apb-ssi.yaml         |   1 +
->  drivers/spi/spi-dw-core.c                     | 288 ++++++++++++++++--
->  drivers/spi/spi-dw-mmio.c                     |  10 +
->  drivers/spi/spi-dw.h                          |  19 ++
->  4 files changed, 291 insertions(+), 27 deletions(-)
-> 
-> -- 
-> 2.30.2
-> 
+I wonder if we'll want to move this to some common "lpass audio" mixin
+dtsi file, but we can do that later.
