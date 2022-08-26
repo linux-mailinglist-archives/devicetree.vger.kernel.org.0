@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CFAA05A2084
-	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 07:53:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 326965A2085
+	for <lists+devicetree@lfdr.de>; Fri, 26 Aug 2022 07:53:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244967AbiHZFxt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 01:53:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57590 "EHLO
+        id S244946AbiHZFxv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 01:53:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244952AbiHZFxp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 01:53:45 -0400
+        with ESMTP id S244621AbiHZFxs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 01:53:48 -0400
 Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB6AED0767
-        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 22:53:42 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F5A9D0773
+        for <devicetree@vger.kernel.org>; Thu, 25 Aug 2022 22:53:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1661493222; x=1693029222;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=EO4GrkBGO3J15bFXLCROCV4FJ5z9mshbanIARgc+PGw=;
-  b=QFzkbA/QsBSpkQz56CHWi5ofpSHIFRlzKAM8heP0WbfOaj47oITtlv2E
-   wDdOlpey2VdCsLVBsm4dR2RlYQVCmvpuYfSNfNdYD1QJNVecgQCquSwne
-   5jtvbn4uqrhUAVW4n8b+vFDuihepKKqPq4txFRfKxDMHAvt2Qt1U7kOYM
-   UOBDnGJYGodVmCksOmN5BOTtaWOY8y/odYoNZiW6hyOud5T8YGfyicSIJ
-   8frlFo1WRsrQgXMD+MNo+DWGbMuVCUUow7I/9D7pLJrDkKM0zZg3K+1t2
-   jFHvXDZj/foJJt1oqJkemT1g/IDuQCULF/l7OwVGQ6zJO41MIU6XiJ1Of
+  t=1661493226; x=1693029226;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=jzri5mj3l8x8M1kRd/jrwwKNa1NhX9w69txpfhYg3ec=;
+  b=KJSLDkNTem8t43Y5met/CI5Ci+4SGdgISORI713BPf/zd9Lcw93qrKoE
+   /S7aK+GiXeVZvfZPVVZGF3+ZLY4LHFsBIPWC5fhAYgaXeTEFIlTn3TwO7
+   sB28yHDa7Da82vhoT6KDC6fs0bmjvKkJ9s78rJMHYlN0rcJhxDqofWpjQ
+   FYeXNckzTDzPf+i/0c77jTpJvvyPa370oYxSVhHIv+K2mUyNEdaXbiMXl
+   59mKTmC02sPqYMHjLiflkM0ioLK3hkFR4rRfT5CRdvS0BqqqdbVxX/7sw
+   zCC80Yx04yZTaEXNFZJjWTRFx5E/H+H2EoBH+7Bh6lFHkMVXqaq60K1T9
    g==;
 X-IronPort-AV: E=Sophos;i="5.93,264,1654552800"; 
-   d="scan'208";a="25816942"
+   d="scan'208";a="25816944"
 Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 26 Aug 2022 07:53:40 +0200
+  by mx1-pgp.tq-group.com with ESMTP; 26 Aug 2022 07:53:41 +0200
 Received: from mx1.tq-group.com ([192.168.6.7])
   by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Fri, 26 Aug 2022 07:53:40 +0200
+  Fri, 26 Aug 2022 07:53:41 +0200
 X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Fri, 26 Aug 2022 07:53:40 +0200
+        by tq-pgp-pr1.tq-net.de on Fri, 26 Aug 2022 07:53:41 +0200
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1661493220; x=1693029220;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=EO4GrkBGO3J15bFXLCROCV4FJ5z9mshbanIARgc+PGw=;
-  b=GTqqPNs5E+3fmovXQmnB3N8A7IrsbNBwPa7M2QpooMZICnb9nGB+mgXP
-   JpuwB/003zKfFWzW6nBvgvkYlQipmqlHoWkQYN15rNIN+rSg7yfqMh4ku
-   py8ezB9LBPhDvFCY/J6Msc2qBOJ9IiRbSoIwsmjMQsEBswLgSnoDFU1sc
-   Rb/vB2uR6pqO5Ofq0IhQJLDrVkzLMSbaTEbPpP57jGbg4t0j5jlmJilWe
-   1OPHHEKiyy5tCLOi0FzbLTsZpfen3n3sntH3+h2YluzTqUU7iz28MeQ37
-   lRyvNbkkeOXw+AmHyTcdvC1zxglvrph/4UpGLr1TtM+VEkcrhsw/Ok9DL
-   A==;
+  t=1661493221; x=1693029221;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=jzri5mj3l8x8M1kRd/jrwwKNa1NhX9w69txpfhYg3ec=;
+  b=ogFHDTbpISR8t+1JDLKShCjhGXJ0jdOkC7mX/0CiM68jHJkA7Ji8TSCL
+   Qp1AHC2LaLC13Eonek0jdvsez3043ZuitjQL5zpaP2tpY+3CT0pj7sKST
+   L3ST8UIWoGuKzU646iTL7G0h1Op2fSl+cNn2iKrvnsLT3jWq8zABKRzZP
+   09sPovLH5Xu982Hb6dyK8kPPhYw/j0SJOAcJ2QbXjy7EEPpRR6efMrHnc
+   CKNT4UH2zlszK8KNK2W8qxz3a+Os9i3ok9jb+MDAtAllu8Lzt3SKGZzFK
+   WMC1tfrqKUM4ZYIhnJrYxha6MoNqVs18IAWDa4OwLaghLOzkszloMureH
+   w==;
 X-IronPort-AV: E=Sophos;i="5.93,264,1654552800"; 
-   d="scan'208";a="25816941"
+   d="scan'208";a="25816943"
 Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 26 Aug 2022 07:53:40 +0200
+  by mx1.tq-group.com with ESMTP; 26 Aug 2022 07:53:41 +0200
 Received: from steina-w.tq-net.de (unknown [10.123.49.11])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 96EC4280056;
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id CFAA0280072;
         Fri, 26 Aug 2022 07:53:40 +0200 (CEST)
 From:   Alexander Stein <alexander.stein@ew.tq-group.com>
 To:     Rob Herring <robh+dt@kernel.org>,
@@ -68,10 +68,12 @@ Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
         Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 0/6] Add missing sram properties for imx6
-Date:   Fri, 26 Aug 2022 07:53:30 +0200
-Message-Id: <20220826055336.2821876-1-alexander.stein@ew.tq-group.com>
+Subject: [PATCH 1/6] ARM: dts: imx6q: add missing properties for sram
+Date:   Fri, 26 Aug 2022 07:53:31 +0200
+Message-Id: <20220826055336.2821876-2-alexander.stein@ew.tq-group.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220826055336.2821876-1-alexander.stein@ew.tq-group.com>
+References: <20220826055336.2821876-1-alexander.stein@ew.tq-group.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,30 +85,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi all,
+All 3 properties are required by sram.yaml. Fixes the dtbs_check warning:
+sram@900000: '#address-cells' is a required property
+sram@900000: '#size-cells' is a required property
+sram@900000: 'ranges' is a required property
 
-this is another bunch of imx6 DT fixes for sram, similar to 5655699cf5cf
-("ARM: dts: imx6ul: add missing properties for sram").
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+ arch/arm/boot/dts/imx6q.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Best regards,
-Alexander
-
-Alexander Stein (6):
-  ARM: dts: imx6q: add missing properties for sram
-  ARM: dts: imx6dl: add missing properties for sram
-  ARM: dts: imx6qp: add missing properties for sram
-  ARM: dts: imx6sl: add missing properties for sram
-  ARM: dts: imx6sll: add missing properties for sram
-  ARM: dts: imx6sx: add missing properties for sram
-
- arch/arm/boot/dts/imx6dl.dtsi  | 3 +++
- arch/arm/boot/dts/imx6q.dtsi   | 3 +++
- arch/arm/boot/dts/imx6qp.dtsi  | 6 ++++++
- arch/arm/boot/dts/imx6sl.dtsi  | 3 +++
- arch/arm/boot/dts/imx6sll.dtsi | 3 +++
- arch/arm/boot/dts/imx6sx.dtsi  | 6 ++++++
- 6 files changed, 24 insertions(+)
-
+diff --git a/arch/arm/boot/dts/imx6q.dtsi b/arch/arm/boot/dts/imx6q.dtsi
+index 3b77eae40e39..df86049a695b 100644
+--- a/arch/arm/boot/dts/imx6q.dtsi
++++ b/arch/arm/boot/dts/imx6q.dtsi
+@@ -163,6 +163,9 @@ soc: soc {
+ 		ocram: sram@900000 {
+ 			compatible = "mmio-sram";
+ 			reg = <0x00900000 0x40000>;
++			ranges = <0 0x00900000 0x40000>;
++			#address-cells = <1>;
++			#size-cells = <1>;
+ 			clocks = <&clks IMX6QDL_CLK_OCRAM>;
+ 		};
+ 
 -- 
 2.25.1
 
