@@ -2,195 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3616B5A350A
-	for <lists+devicetree@lfdr.de>; Sat, 27 Aug 2022 08:31:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 739255A3616
+	for <lists+devicetree@lfdr.de>; Sat, 27 Aug 2022 10:50:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229449AbiH0GbG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 Aug 2022 02:31:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41452 "EHLO
+        id S230499AbiH0Iuf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 Aug 2022 04:50:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230027AbiH0GbF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Aug 2022 02:31:05 -0400
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29C7040E0B;
-        Fri, 26 Aug 2022 23:31:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1661581864; x=1693117864;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=2RdCy6tyMucjJ+3ngZSsWyiE4xxEX4EO/OwoRyYj4oU=;
-  b=T/egcI7soO5io6EVHok/Son4qe+lEiRXzrPyYpt0qqulVpUiq8dHXJfM
-   gd/pHoXeDf5LC/CtZXHwJ418PD248nHg4zyu4B6Xo3hEC7L/9U7Ftq46h
-   IqDbbfOE54hptl/ApGpbRGj5e3PFMkTg9bxtD3mOIDDmtc1ITI9flFbC+
-   7Esk6hd+6t2EJ82NKJ2rx0O/JMCBL+HCNxafnu7nYVoPRviKRJ9nrGgo3
-   nmKJzTO3Xo4JK0B7DejmGNzZNVfcLjyPWMKnyt7XJuT41iIUHg57YTQ43
-   XZH4J0ME15vbMP3sG3yhSQqWN4/AKAeOq8g+Sq4c6D1pwQ1+69chNUwPE
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10451"; a="275044533"
-X-IronPort-AV: E=Sophos;i="5.93,267,1654585200"; 
-   d="scan'208";a="275044533"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Aug 2022 23:31:03 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,267,1654585200"; 
-   d="scan'208";a="938992735"
-Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
-  by fmsmga005.fm.intel.com with ESMTP; 26 Aug 2022 23:30:58 -0700
-Date:   Sat, 27 Aug 2022 14:21:42 +0800
-From:   Xu Yilun <yilun.xu@intel.com>
-To:     Nava kishore Manne <nava.kishore.manne@amd.com>
-Cc:     git@amd.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        michal.simek@xilinx.com, mdf@kernel.org, hao.wu@intel.com,
-        trix@redhat.com, p.zabel@pengutronix.de,
-        gregkh@linuxfoundation.org, ronak.jain@xilinx.com,
-        rajan.vaja@xilinx.com, abhyuday.godhasara@xilinx.com,
-        piyush.mehta@xilinx.com, lakshmi.sai.krishna.potthuri@xilinx.com,
-        harsha.harsha@xilinx.com, linus.walleij@linaro.org,
-        nava.manne@xilinx.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-fpga@vger.kernel.org, yilun.xu@intel.com
-Subject: Re: [PATCH 1/4] firmware: xilinx: Add afi ioctl support
-Message-ID: <Ywm39iYGLliU9ncv@yilunxu-OptiPlex-7050>
-References: <20220824035542.706433-1-nava.kishore.manne@amd.com>
- <20220824035542.706433-2-nava.kishore.manne@amd.com>
+        with ESMTP id S232934AbiH0Iue (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Aug 2022 04:50:34 -0400
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B6CD2A435;
+        Sat, 27 Aug 2022 01:50:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1661590200;
+        bh=sLqA9Nhv1LxIrayZxnMdcIGoDvAaLN5XDUzwmP9YimQ=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=EdR/oW4bV7hX9TXH3hCs1b8ae02GLGT8/zQXzlH33lbg2FD7EK5m+etim2qbck7Lo
+         KX46ga/l4XBAVynrKpj7gZqYlvgfEw0jKA707w0FqjIumz+4siXiW5elrQ8P/Pr3sz
+         DnDH3mOSIdBFfvuU833dhdLFKth5dbjzKQ9PkuCE=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [80.245.78.141] ([80.245.78.141]) by web-mail.gmx.net
+ (3c-app-gmx-bs16.server.lan [172.19.170.68]) (via HTTP); Sat, 27 Aug 2022
+ 10:50:00 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220824035542.706433-2-nava.kishore.manne@amd.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Message-ID: <trinity-88fbbdbe-de76-4479-9580-70edc34a4181-1661590200169@3c-app-gmx-bs16>
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Frank Wunderlich <linux@fw-web.de>,
+        linux-rockchip@lists.infradead.org,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Yifeng Zhao <yifeng.zhao@rock-chips.com>,
+        Johan Jonker <jbx6244@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Simon Xue <xxm@rock-chips.com>, Liang Chen <cl@rock-chips.com>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Aw: Re: [PATCH v5 5/5] arm64: dts: rockchip: Add PCIe v3 nodes to
+ BPI-R2-Pro
+Content-Type: text/plain; charset=UTF-8
+Date:   Sat, 27 Aug 2022 10:50:00 +0200
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <cae915f6-c951-ba97-346d-00922c85067d@linaro.org>
+References: <20220825193836.54262-1-linux@fw-web.de>
+ <20220825193836.54262-6-linux@fw-web.de>
+ <cae915f6-c951-ba97-346d-00922c85067d@linaro.org>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:ymlk8MTehRHvDLV/NMrQKgASYE/0aSiP2iwFAlrEWCCttBVnPTYScFUExZcU50B+XqKmI
+ BuXBhJkCJj+2+/eoNz7ggJl2WQsoY705NyEf1FfXeY6RoQRbpXbEhBcjGEgshMvFE1b/kzeklzyz
+ Jc+/8hiL2Y17nZT3O8suJSkmPFwGr0/x8ClhHdnHuXhW8+f/AtXrnSC0ajepwD78P6b2Wi5iFTRu
+ gZMdH2cYUDUn7qoiKoSAr5SVtZCbW0Yzw4xk9lH9dbzVhilPFBKfkY6PPotFi6k0Y4A/KyPx9UB5
+ ak=
+X-UI-Out-Filterresults: notjunk:1;V03:K0:14K1gCFI7Lg=:IESHyz8gkpbbCdxNp9VwOq
+ g91zU7UP3wl4gBf5hwPu1Kt/Ci46gU1S5IePgbdx27d4rk+8XLkZZkTbe4lwX+bOQXhBdC9AR
+ FpG19k2DcAhUm3pDO5Cao94DPHxIasUiUjs5+TjmYes7jAfNiZeAEdiqqHVeu1m+EN4XU+Bxq
+ CxYPS63stl1VPJxrUVO5aAlOeiWVJMpHx39GTls0vFHhTsNp2VyKd1Qm+rkIATDq7NuwMk2Wr
+ PyroUfSCVp4LucSYsVvpjRhCn/OKjFR7ZTBNejGRVei+Q7qM22t3UI5zBj7e4fe9e0uY2K2j0
+ a2lzJQrhy0bcptY4+HdG2EbkQwGouZRiHTxqHF7NCf+cKg/E8i4ibWIaFilmNjL0eWj9YAewG
+ a+C7+3ejYYjoX9Y181gr2SuHQ8ATaVS8DaQfN/trfJnJH+MlfALu0IjXAWY4WPJeM+Fhx2Fqb
+ rW9GucSJyWptQaz8Fv9HvM0xundhAFv79C0boRusyZQ7ZxCL2ZW3cfiqJsn5I+N5BXAXldxwW
+ dLxaNx66xtaSb4VDHIPUjVFrfl/8TFf/Zy44PmjFq5m4VZJ62iF7dF5K1dvh4s+bvm7g8ly9n
+ C35AmnZ2vbGAOQ6RDuuCcaZuhMQT3ZB6arKVCfYBG469OZ4HatS/HHnnWudZyvYv/SE0/HZkg
+ ptCNpN7LXjFAZJK6V9fG0wXfFH0mJ4Vo0m4j3gsJc9FulmhYpPVUxYxO5HZRTRpMzDoNN8Lw2
+ idg2jRqNtU72VknArJFbOHJG4CX0CYNV1TbgpJ2XTQgJQRKWTcYcrt70zam6gq9hpKV5oHSXA
+ +Ho6+gE
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-08-24 at 09:25:39 +0530, Nava kishore Manne wrote:
-> Adds afi ioctl to support dynamic PS-PL bus width settings.
+Hi
 
-Please also describe what is afi, PS, PL here, Patch #0 won't appear in
-upstream tree finally.
+> Gesendet: Freitag, 26. August 2022 um 08:50 Uhr
+> Von: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
+> On 25/08/2022 22:38, Frank Wunderlich wrote:
+> > From: Frank Wunderlich <frank-w@public-files.de>
 
-Thanks,
-Yilun
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts b/arch=
+/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
+> > index 93d383b8be87..40b90c052634 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
+> > @@ -86,6 +86,66 @@ vcc5v0_sys: vcc5v0-sys {
+> >  		vin-supply =3D <&dc_12v>;
+> >  	};
+> >
+> > +	pcie30_avdd0v9: pcie30-avdd0v9 {
+>
+> Use consistent naming, so if other nodes have "regulator" suffix, use it
+> here as well.
 
-> 
-> Signed-off-by: Nava kishore Manne <nava.kishore.manne@amd.com>
-> ---
->  drivers/firmware/xilinx/zynqmp.c     | 14 +++++++++++
->  include/linux/firmware/xlnx-zynqmp.h | 36 ++++++++++++++++++++++++++++
->  2 files changed, 50 insertions(+)
-> 
-> diff --git a/drivers/firmware/xilinx/zynqmp.c b/drivers/firmware/xilinx/zynqmp.c
-> index d1f652802181..cbd84c96a66a 100644
-> --- a/drivers/firmware/xilinx/zynqmp.c
-> +++ b/drivers/firmware/xilinx/zynqmp.c
-> @@ -843,6 +843,20 @@ int zynqmp_pm_read_pggs(u32 index, u32 *value)
->  }
->  EXPORT_SYMBOL_GPL(zynqmp_pm_read_pggs);
->  
-> +/**
-> + * zynqmp_pm_afi() - PM API for setting the PS-PL bus width
-> + * @config_id:	Register index value
-> + * @bus_width:	Afi interface bus width value.
-> + *
-> + * Return:	Returns status, either success or error+reason
+only these 3 new have the suffix:
 
-I see other functions are also like this, but I still can't figure out
-what values for success and what for error+reason.
+vcc3v3_pi6c_05: vcc3v3-pi6c-05-regulator
+vcc3v3_minipcie: vcc3v3-minipcie-regulator
+vcc3v3_ngff: vcc3v3-ngff-regulator
 
-Thanks,
-Yilun
+so i would drop it there...
 
-> + */
-> +int zynqmp_pm_afi(u32 config_id, u32 bus_width)
-> +{
-> +	return zynqmp_pm_invoke_fn(PM_IOCTL, 0, IOCTL_AFI,
-> +				   config_id, bus_width, NULL);
-> +}
-> +EXPORT_SYMBOL_GPL(zynqmp_pm_afi);
-> +
->  /**
->   * zynqmp_pm_set_boot_health_status() - PM API for setting healthy boot status
->   * @value:	Status value to be written
-> diff --git a/include/linux/firmware/xlnx-zynqmp.h b/include/linux/firmware/xlnx-zynqmp.h
-> index 9f50dacbf7d6..7d0d98303acc 100644
-> --- a/include/linux/firmware/xlnx-zynqmp.h
-> +++ b/include/linux/firmware/xlnx-zynqmp.h
-> @@ -78,6 +78,16 @@
->  #define EVENT_ERROR_PSM_ERR1	(0x28108000U)
->  #define EVENT_ERROR_PSM_ERR2	(0x2810C000U)
->  
-> +#define AFIFM_BUS_WIDTH_128_CONFIG_VAL	0x0U
-> +#define AFIFM_BUS_WIDTH_64_CONFIG_VAL	0x1U
-> +#define AFIFM_BUS_WIDTH_32_CONFIG_VAL	0x2U
-> +
-> +#define AFIFS_SS0_SS2_BUS_WIDTH_128_CONFIG_VAL	0x200U
-> +#define AFIFS_SS0_SS2_BUS_WIDTH_64_CONFIG_VAL	0x100U
-> +#define AFIFS_SS1_BUS_WIDTH_128_CONFIG_VAL	0x800U
-> +#define AFIFS_SS1_BUS_WIDTH_64_CONFIG_VAL	0x400U
-> +#define AFIFS_SS_BUS_WIDTH_32_CONFIG_VAL	0x0U
-> +
->  enum pm_api_cb_id {
->  	PM_INIT_SUSPEND_CB = 30,
->  	PM_ACKNOWLEDGE_CB = 31,
-> @@ -147,6 +157,7 @@ enum pm_ioctl_id {
->  	IOCTL_READ_PGGS = 15,
->  	/* Set healthy bit value */
->  	IOCTL_SET_BOOT_HEALTH_STATUS = 17,
-> +	IOCTL_AFI = 18,
->  	IOCTL_OSPI_MUX_SELECT = 21,
->  	/* Register SGI to ATF */
->  	IOCTL_REGISTER_SGI = 25,
-> @@ -155,6 +166,25 @@ enum pm_ioctl_id {
->  	IOCTL_GET_FEATURE_CONFIG = 27,
->  };
->  
-> +enum pm_afi_config_id {
-> +	AFIFM0_RDCTRL = 0,
-> +	AFIFM0_WRCTRL = 1,
-> +	AFIFM1_RDCTRL = 2,
-> +	AFIFM1_WRCTRL = 3,
-> +	AFIFM2_RDCTRL = 4,
-> +	AFIFM2_WRCTRL = 5,
-> +	AFIFM3_RDCTRL = 6,
-> +	AFIFM3_WRCTRL = 7,
-> +	AFIFM4_RDCTRL = 8,
-> +	AFIFM4_WRCTRL = 9,
-> +	AFIFM5_RDCTRL = 10,
-> +	AFIFM5_WRCTRL = 11,
-> +	AFIFM6_RDCTRL = 12,
-> +	AFIFM6_WRCTRL = 13,
-> +	AFIFS = 14,
-> +	AFIFS_SS2 = 15,
-> +};
-> +
->  enum pm_query_id {
->  	PM_QID_INVALID = 0,
->  	PM_QID_CLOCK_GET_NAME = 1,
-> @@ -475,6 +505,7 @@ int zynqmp_pm_is_function_supported(const u32 api_id, const u32 id);
->  int zynqmp_pm_set_feature_config(enum pm_feature_config_id id, u32 value);
->  int zynqmp_pm_get_feature_config(enum pm_feature_config_id id, u32 *payload);
->  int zynqmp_pm_register_sgi(u32 sgi_num, u32 reset);
-> +int zynqmp_pm_afi(u32 config_id, u32 bus_width);
->  #else
->  static inline int zynqmp_pm_get_api_version(u32 *version)
->  {
-> @@ -745,6 +776,11 @@ static inline int zynqmp_pm_register_sgi(u32 sgi_num, u32 reset)
->  {
->  	return -ENODEV;
->  }
-> +
-> +static inline int zynqmp_pm_afi(u32 config_id, u32 bus_width)
-> +{
-> +	return -ENODEV;
-> +}
->  #endif
->  
->  #endif /* __FIRMWARE_ZYNQMP_H__ */
-> -- 
-> 2.25.1
-> 
+so i end up with (including existing ones to compare):
+
+vcc3v3_sys: vcc3v3-sys
+vcc5v0_sys: vcc5v0-sys
+pcie30_avdd0v9: pcie30-avdd0v9
+pcie30_avdd1v8: pcie30-avdd1v8
+vcc3v3_pi6c_05: vcc3v3-pi6c-05
+vcc3v3_minipcie: vcc3v3-minipcie
+vcc3v3_ngff: vcc3v3-ngff
+vcc5v0_usb: vcc5v0_usb
+vcc5v0_usb_host: vcc5v0-usb-host
+vcc5v0_usb_otg: vcc5v0-usb-otg
+
+is this ok?
+
+maybe swap avdd* and pcie30 part to have voltage in front of function.
+
+> > +		compatible =3D "regulator-fixed";
+> > +		regulator-name =3D "pcie30_avdd0v9";
+> > +		regulator-always-on;
+> > +		regulator-boot-on;
+> > +		regulator-min-microvolt =3D <900000>;
+> > +		regulator-max-microvolt =3D <900000>;
+> > +		vin-supply =3D <&vcc3v3_sys>;
+> > +	};
+> > +
+> > +	pcie30_avdd1v8: pcie30-avdd1v8 {
+>
+> Ditto.
+>
+>
+> > +		compatible =3D "regulator-fixed";
+> > +		regulator-name =3D "pcie30_avdd1v8";
+> > +		regulator-always-on;
+> > +		regulator-boot-on;
+> > +		regulator-min-microvolt =3D <1800000>;
+> > +		regulator-max-microvolt =3D <1800000>;
+> > +		vin-supply =3D <&vcc3v3_sys>;
+> > +	};
+> > +
+> > +	/* pi6c pcie clock generator feeds both ports */
+> > +	vcc3v3_pi6c_05: vcc3v3-pi6c-05-regulator {
+> > +		compatible =3D "regulator-fixed";
+> > +		regulator-name =3D "vcc3v3_pcie";
+> > +		regulator-min-microvolt =3D <3300000>;
+> > +		regulator-max-microvolt =3D <3300000>;
+> > +		enable-active-high;
+> > +		gpios =3D <&gpio0 RK_PD4 GPIO_ACTIVE_HIGH>;
+> > +		startup-delay-us =3D <200000>;
+> > +		vin-supply =3D <&vcc5v0_sys>;
+> > +	};
+> > +
+>
+> Best regards,
+> Krzysztof
+>
