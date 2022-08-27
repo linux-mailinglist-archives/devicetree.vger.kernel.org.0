@@ -2,83 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CEC675A3648
-	for <lists+devicetree@lfdr.de>; Sat, 27 Aug 2022 11:23:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 826395A3650
+	for <lists+devicetree@lfdr.de>; Sat, 27 Aug 2022 11:27:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232098AbiH0JXN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 Aug 2022 05:23:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39724 "EHLO
+        id S233171AbiH0J1r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 Aug 2022 05:27:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232059AbiH0JXM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Aug 2022 05:23:12 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E29492BB03
-        for <devicetree@vger.kernel.org>; Sat, 27 Aug 2022 02:23:10 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id bn9so3616440ljb.6
-        for <devicetree@vger.kernel.org>; Sat, 27 Aug 2022 02:23:10 -0700 (PDT)
+        with ESMTP id S232059AbiH0J1q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Aug 2022 05:27:46 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E209E31341
+        for <devicetree@vger.kernel.org>; Sat, 27 Aug 2022 02:27:43 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id t23so83708lfr.3
+        for <devicetree@vger.kernel.org>; Sat, 27 Aug 2022 02:27:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=nhQRAKR4zHjEdCb0JVELtrGk2wyQLykl6TatRm0eanw=;
-        b=FZ6G0Dbx+imj+WfEdZ5oIvV3nFXHxmMjXXxuZOnoiBTegvtYnT5zYj9chduYPwToA+
-         lEaHcuAutIBJIcnG3aVaGE8nT7ejSTlQbAHTt6UZ4pC/Jf1XOOHbxXKwqegbTEg5rLNW
-         IhEdCQgTxoOFnqWiVgDsU2NoDA7g+m7ErjvCReMo8ptaDwUUSmD60A9Y2PWBui7i6f4F
-         CuPL+odQ0sJ+dXDK0cXkoL7kORkBzaVB3p2D/a3LOZlbXIOjee11HVv6C09L6yS+W6XX
-         +9pl1gQ17c5H68VeQbCf+Otk3mAaEeG28PLFOzyEnvBTrOR4/KXMx3LtkA0pTxtJ8CQX
-         ULWA==
+        bh=QoG2kZvANOa1KzzuAuqk4o6JucinunK2vlw0X+QpXJI=;
+        b=Z1XCv78/uwaC/R1lp+NBHe2pSJ65LzVuSNGJVVMElD1qqWM5rnLWO+B3jUii+tDa33
+         NWlSin+243HoiAO2JBE/YNjAe89eVM8OvIjLLHNO3+TB1K2PrsjfeZ/p5cKY1ytSQoNp
+         vPXZ8bm+X0ncJVX9f0SZjK9ma+d6VJ4eLdk/yz2RiJQQaWb8CF6rCty/yGuoi02AzCLD
+         66Ozfl7eOFGKi6/aubb3bc2pa59RJmVQQ0DG6y3fRtkSYWpHfFNcuwepo0onN5FqNMCc
+         hIhCOa8scrwM1XhN3R5bOeh2SgOpexr1T/Diawo6JjF8K61hzetiehznWqMnzri9R55C
+         1ADA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=nhQRAKR4zHjEdCb0JVELtrGk2wyQLykl6TatRm0eanw=;
-        b=FxqFTlWwnxWzB4cb2UfKD3KkKmUD2tMPQ6z7j0JLe1VgrxDpGJwTb2UvniZF1FqZmL
-         skpCqe5/uyFB0fq106d4+pdP1RnVMyHUbx17TbbdKcfpNsujtuscIV0LNK8ZvjplVazj
-         gzH4IHGGGxDcSSfeHU+9E1IfYzT8FpBwRXfd1zf4YWpO4/OAwtJQ8JLh+rpGSnbZnneQ
-         zkro+c4GiBnPP30mIisAovl5/7iS/F/HS0uPyCUC4t4i6ONozSbXjg0YdekySYmJ06HA
-         7yCyRrS7Wsd7YJk1pNqRG+T/2XocIqepmO0IoWZbtuP2mRXoZBX0dpXXIBs04MUMC4Xu
-         +rmw==
-X-Gm-Message-State: ACgBeo1T3hZsVPIpf9pOO6azTxh+wDOT4LJzPKwsEb2wNCyrL+Ww+7vf
-        M/hc1wCqGw/Mh15Lc5Nm0yOx2A==
-X-Google-Smtp-Source: AA6agR4IOei6b7fi96xie1hkpHeN51u8OsJV5bD52jcUaGAHsunyWj3db6JHei0L9njsv+peuxbAwg==
-X-Received: by 2002:a05:651c:1149:b0:25e:6918:22bf with SMTP id h9-20020a05651c114900b0025e691822bfmr3242922ljo.258.1661592189285;
-        Sat, 27 Aug 2022 02:23:09 -0700 (PDT)
+        bh=QoG2kZvANOa1KzzuAuqk4o6JucinunK2vlw0X+QpXJI=;
+        b=nXNEtiWAD8aTSxp8R5j+F4fSybxBthQwLisM2Uaa+jMwVYNQ2rFqIt/+ECIlccN4k+
+         U2i4y308c1ZHcpzQZejfQmQk955jekaFx18Ui41XcBTQC1jgzO/ga9G2+S59Cpf00YYu
+         VdEvMW8I1Taq4XIDyM545O9O5yoMuy6Iimeb2ELge9T3x1jEvEHNQFTb5MpQZcf3xxeX
+         A4gaaJsbd/UsLwyWdLARd8Uep9CI0f8QQgGGx7ifho9oTVR6+efmC1ii04vUDOSGpl/S
+         bpK9YCD/y4vVtxYZ6Kmz9THwQqqpQ3XHvvz6v0LH49OKNWxxplQq7LcJ1u6w2kTXcpMX
+         opQA==
+X-Gm-Message-State: ACgBeo3Tg2yZv911okfHzeHplpLoAuEAIH+xRSOfaGIUt0iEONo2WVz6
+        8/M3SpqL8OHRvLHiPXW+V8VU+Q==
+X-Google-Smtp-Source: AA6agR7xvA7Q7WV4WaiBEj+7ndyUmtAVj4UMbhqL7EDPKvtjGa20fUGDe3o+z/JjZBcKbBrXBIuK7Q==
+X-Received: by 2002:a05:6512:3084:b0:492:ecf8:3de1 with SMTP id z4-20020a056512308400b00492ecf83de1mr3739463lfd.575.1661592462300;
+        Sat, 27 Aug 2022 02:27:42 -0700 (PDT)
 Received: from [192.168.0.71] (82.131.98.15.cable.starman.ee. [82.131.98.15])
-        by smtp.gmail.com with ESMTPSA id f14-20020a05651c02ce00b00261c30d71e5sm682410ljo.67.2022.08.27.02.23.08
+        by smtp.gmail.com with ESMTPSA id z21-20020a195055000000b0048b969ac5cdsm134147lfj.5.2022.08.27.02.27.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 27 Aug 2022 02:23:08 -0700 (PDT)
-Message-ID: <715c2639-c94c-259c-f6bb-cec80afa30ed@linaro.org>
-Date:   Sat, 27 Aug 2022 12:23:07 +0300
+        Sat, 27 Aug 2022 02:27:41 -0700 (PDT)
+Message-ID: <a70a3d3d-8edd-5355-2e38-4d6285850229@linaro.org>
+Date:   Sat, 27 Aug 2022 12:27:40 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH 3/9] dt-bindings: riscv: microchip: document the sev kit
+Subject: Re: [PATCH] dt-bindings: Remove 'Device Tree Bindings' from end of
+ title:
 Content-Language: en-US
-To:     Conor Dooley <conor.dooley@microchip.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Daire McNamara <daire.mcnamara@microchip.com>,
-        Shravan Chippa <shravan.chippa@microchip.com>
-Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Cyril Jean <Cyril.Jean@microchip.com>,
-        Lewis Hanly <lewis.hanly@microchip.com>,
-        Vattipalli Praveen <praveen.kumar@microchip.com>,
-        Wolfgang Grandegger <wg@aries-embedded.de>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20220826142806.3658434-1-conor.dooley@microchip.com>
- <20220826142806.3658434-4-conor.dooley@microchip.com>
+To:     Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh@kernel.org>
+Cc:     Device Tree <devicetree@vger.kernel.org>
+References: <20220825020427.3460650-1-andrew@lunn.ch>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220826142806.3658434-4-conor.dooley@microchip.com>
+In-Reply-To: <20220825020427.3460650-1-andrew@lunn.ch>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,20 +74,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/08/2022 17:28, Conor Dooley wrote:
-> From: Shravan Chippa <shravan.chippa@microchip.com>
+On 25/08/2022 05:04, Andrew Lunn wrote:
+> As indicated in
+> link: https://lore.kernel.org/all/20220822204945.GA808626-robh@kernel.org/
 > 
-> Update devicetree bindings document with PolarFire SoC Video Kit, known
-> by its "sev-kit" product code.
+> DT schema files should not have 'Device Tree Binding' as part of there
+> title: line. Remove this in most .yaml files, so hopefully preventing
+> developers copying it into new .yaml files, and being asked to remove
+> it.
 > 
-> Link: https://onlinedocs.microchip.com/pr/GUID-404D3738-DC76-46BA-8683-6A77E837C2DD-en-US-1/index.html?GUID-065AEBEE-7B2C-4895-8579-B1D73D797F06
-> Signed-off-by: Shravan Chippa <shravan.chippa@microchip.com>
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
+> Signed-off-by: Andrew Lunn <andrew@lunn.ch>
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+I understand you did not want to use scripts/get_maintainers.pl for all
+files, but at least you could use it for subsystem...
 
 Best regards,
 Krzysztof
