@@ -2,108 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7963C5A32AA
-	for <lists+devicetree@lfdr.de>; Sat, 27 Aug 2022 01:33:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EF645A32E4
+	for <lists+devicetree@lfdr.de>; Sat, 27 Aug 2022 02:05:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231731AbiHZXdL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Aug 2022 19:33:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36044 "EHLO
+        id S1345086AbiH0AFz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Aug 2022 20:05:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55310 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229704AbiHZXdK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 19:33:10 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9BEEE3C04;
-        Fri, 26 Aug 2022 16:33:09 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id z20so2933411ljq.3;
-        Fri, 26 Aug 2022 16:33:09 -0700 (PDT)
+        with ESMTP id S237072AbiH0AFy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Aug 2022 20:05:54 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F3B2C9265
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 17:05:53 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id a36so85986edf.5
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 17:05:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc;
-        bh=5AXWR4TpQid/hNoRIKM4TMgy6TBS7PDYRLOMZ30iE3Y=;
-        b=m0EkXge2NHZHTBiEIBu720vdlfOdmGev+aLGNetjKVmeeJBtcHaztiHAzT9DEfdyte
-         9VlVtgsmcoYbICMRTdy5vrV/iLeV/vU8hNnqWhIksld/T8QeTuyuHYQELovZzxemM5SR
-         FRLUZCMctfYPL27qqlO0I9vk4njrk6+HVpGewz3HTDSIzN3kYlMshh6ZgxOVGoSFGBpG
-         GIw5uwi3vjX0D0J1qMdC1jtDHH2VB5EuyDZlK+xi/YtUEuwiFSQcwlNwW+dM/qA/Y17O
-         g97ESQZBBMssND0vGBi6b7RhkD+5ae6lxZjryywENqNjsjFP/fukxKSkIXqQoKnnCjDb
-         JmQA==
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=Mw13r/NEf88HLkO79A/I8TLHBHsGJ5L1+z1A/fwUkZU=;
+        b=HXNmQQEsYibEClG/SsXww2ky1RfNOXWRhD3re/kBNX4EekQfiNPs6Zqmp5ExEyRuQu
+         BZnaHAdPOByqFC9fSq3kQp8chfLErStT7s3Pdfrm0LFy4gY9kXlWaCajirTBBg7cErZD
+         DTLB/4aHi4sGMSUHjM8BTbsUiYZP5zLmrP8G8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=5AXWR4TpQid/hNoRIKM4TMgy6TBS7PDYRLOMZ30iE3Y=;
-        b=qwk/jnfF29oR6lbQEbTJf684dtYABoyezZqyJIkwiqsEc6/dYLezQ9T/K6W+g1ksfL
-         Fv3ka2hh1t5DSDnWrghXbxpwylVDoLu88ILnhe04k1HdeDVylmJUenRw7jFVE/3ggkRn
-         VJQuVDUCuQP3WakDJ/M7SknirQVDlD0yf8WVEO0BFSVgw0uCHAw7LUkdkT5r5Vp1vmOr
-         m6YOvFdQXttZmy5qsO1/QnL/ycg54Qugm63k+OEStYBoFALyxr5xPC+PZ3LL3yWTKNJf
-         /5Nxq5YjWND2VVC8T05Zml44Bq1E8rqgqWWFcN9gutMrgdyMLGF3jOpCCiPbdIw3J9NV
-         dGOw==
-X-Gm-Message-State: ACgBeo2Fn/y0JH+x0FABsuwTyI2HhW0fixgdlVgQStabYU5gLfdofOQ2
-        hG2qdqOq4gEM5gpSbJrl4fU=
-X-Google-Smtp-Source: AA6agR524STUpvZz6zOJZvL1bdxwiCFo8pCI8dMmc2ZA+xl5+SfDq2IASND7t5+tqSjN2d9V5jk55g==
-X-Received: by 2002:a2e:93c8:0:b0:261:e5a7:56ed with SMTP id p8-20020a2e93c8000000b00261e5a756edmr2952397ljh.483.1661556788130;
-        Fri, 26 Aug 2022 16:33:08 -0700 (PDT)
-Received: from mobilestation ([95.79.140.178])
-        by smtp.gmail.com with ESMTPSA id k10-20020a2eb74a000000b0025e42b981f9sm603578ljo.44.2022.08.26.16.33.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Aug 2022 16:33:07 -0700 (PDT)
-Date:   Sat, 27 Aug 2022 02:33:05 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Sudip Mukherjee <sudip.mukherjee@sifive.com>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        greentime.hu@sifive.com, jude.onyenegecha@sifive.com,
-        william.salmon@sifive.com, adnan.chowdhury@sifive.com,
-        ben.dooks@sifive.com, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        jeegar.lakhani@sifive.com
-Subject: Re: [PATCH 10/11] spi: dw-apb-ssi: add generic 1.03a version
-Message-ID: <20220826233305.5ugpukokzldum7y5@mobilestation>
-References: <20220802175755.6530-1-sudip.mukherjee@sifive.com>
- <20220802175755.6530-11-sudip.mukherjee@sifive.com>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=Mw13r/NEf88HLkO79A/I8TLHBHsGJ5L1+z1A/fwUkZU=;
+        b=v1hgpLFXg9QM+ea4OYUCOkUe/49SJwNHRWF2Fj5ssozehTRniLOZdRzqX3t9w71oeP
+         TWa/flzBvOF4wNq2NcnlfoZ5MfXxruy6RM5VbDwXqP+W+Zd1hHNPNhAHPHKqq4Tk0gFG
+         orSAvgsbbAjJI0pCL1kO0ZPmHhxFuSVShybQwfgyTHbs+qpfbZ1bFxaQyCR+soYn91oU
+         wGiRjpX+YMN3aln4ou/8fWta9QncZAbhDIcPnfbMW6Yk58v2rzzY1CLgh6Hc+uVUzaJ1
+         dILyRdnUL0plD5m6wRHg/kCfmld21yHtypN6XKmSAQ6utDgcAS0P32XXu45nmA9DkGuQ
+         /VoA==
+X-Gm-Message-State: ACgBeo3Txb0R1tI6gl0LEXB7YY/jey7IkPUvRas36pACzE7POLYt3IxG
+        shWV6n7/zQXDeWhVx3e4JsrITkhJUfObAkIQ
+X-Google-Smtp-Source: AA6agR7vfAlWhpvERN9UiwhQzffusEoR9ArSk0EGxYv9ivieGl7pvHIyG1B2PM99/IxTxwC4qXTIWw==
+X-Received: by 2002:aa7:c946:0:b0:43d:3038:1381 with SMTP id h6-20020aa7c946000000b0043d30381381mr8402455edt.354.1661558751853;
+        Fri, 26 Aug 2022 17:05:51 -0700 (PDT)
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com. [209.85.221.42])
+        by smtp.gmail.com with ESMTPSA id i12-20020a05640200cc00b00445b3cab975sm1977209edu.56.2022.08.26.17.05.49
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 Aug 2022 17:05:50 -0700 (PDT)
+Received: by mail-wr1-f42.google.com with SMTP id n17so3507418wrm.4
+        for <devicetree@vger.kernel.org>; Fri, 26 Aug 2022 17:05:49 -0700 (PDT)
+X-Received: by 2002:adf:f90d:0:b0:20c:de32:4d35 with SMTP id
+ b13-20020adff90d000000b0020cde324d35mr942817wrr.583.1661558749013; Fri, 26
+ Aug 2022 17:05:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220802175755.6530-11-sudip.mukherjee@sifive.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220826102513.1.If97ef7a7d84bcc2cf20e0479b3e00c4a8fb5a2fd@changeid>
+ <20220826102513.2.If877318e8cb2a43e6a0ba3e9ab5b8d3a93467db1@changeid>
+In-Reply-To: <20220826102513.2.If877318e8cb2a43e6a0ba3e9ab5b8d3a93467db1@changeid>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 26 Aug 2022 17:05:37 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=Ua+JLaOxUgecjeTzO-07itmkCaWcvW93ADkZ7qcfA3Qg@mail.gmail.com>
+Message-ID: <CAD=FV=Ua+JLaOxUgecjeTzO-07itmkCaWcvW93ADkZ7qcfA3Qg@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: Add sc7180-pazquel360
+To:     Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Bob Moragues <moragues@chromium.org>,
+        Henry Sun <henrysun@google.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 02, 2022 at 06:57:54PM +0100, Sudip Mukherjee wrote:
-> From: Ben Dooks <ben.dooks@sifive.com>
-> 
-> Add new snps,dw-ssi-1.03a version to the bindings.
-> 
-> Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
-> Signed-off-by: Sudip Mukherjee <sudip.mukherjee@sifive.com>
-> ---
->  Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-> index 37c3c272407d..35aa04a85813 100644
-> --- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-> +++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-> @@ -45,6 +45,7 @@ properties:
->          enum:
->            - snps,dw-apb-ssi
->            - snps,dwc-ssi-1.01a
+Hi,
 
-> +          - snps,dwc-ssi-1.03a
+On Fri, Aug 26, 2022 at 3:27 AM Yunlong Jia
+<yunlong.jia@ecs.corp-partner.google.com> wrote:
+>
+> +ap_ts_pen_1v8: &i2c4 {
+> +       status = "okay";
+> +       clock-frequency = <400000>;
+> +       ap_ts: touchscreen@10 {
+> +               compatible = "elan,ekth3500";
 
-Just add the "snps,dw-ahb-ssi" compatible string instead.
+As per offline discussion, we're not 100% sure if we'll need a slight
+variant on the touchscreen compatible. However, to me that feels like
+it can be a followup patch.
 
--Sergey
-
->        - description: Microsemi Ocelot/Jaguar2 SoC SPI Controller
->          items:
->            - enum:
-> -- 
-> 2.30.2
-> 
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
