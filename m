@@ -2,65 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 043EA5A379F
-	for <lists+devicetree@lfdr.de>; Sat, 27 Aug 2022 14:36:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B684B5A37C6
+	for <lists+devicetree@lfdr.de>; Sat, 27 Aug 2022 15:05:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232789AbiH0MgD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 Aug 2022 08:36:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58152 "EHLO
+        id S230107AbiH0NFu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 Aug 2022 09:05:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232793AbiH0MgC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Aug 2022 08:36:02 -0400
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C49425C49;
-        Sat, 27 Aug 2022 05:35:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1661603760; x=1693139760;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=z1GOHa4sbRW9EZHujjqjnAI2Ul+W2EA/lajLX5wB5rk=;
-  b=LoP6UL0mQxpUnnJObbYHao4lsglsoqq7pfZtLdxmxJVOeR4oquCDrkcu
-   in+7olA+ibllt3JchvhZhJDuzkCm1VHviFS2oKa0uppgs1lvLQuPpdOsx
-   Z2m9ZH8KVR4wzio5MgVba2lMKSGwLSEIHb5rY/wKWY4IAIbbbvVdxcL0E
-   fdi8NPnClSbFOVTuhEoRSyv3BZXHIyl/RZG+fLitI/byt5FgU3LE1JyD8
-   zXhA5IBynEbv5ESX6ScvbSUI/hek/Ub3T7Sf8NF0htLGfOzWNfxlGA2oD
-   0544nUdGaqslhXXjwyGc4QBH9DzmkOj3B9ZKge1RfFwQJdSZxbgXDM7yD
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10451"; a="294668945"
-X-IronPort-AV: E=Sophos;i="5.93,267,1654585200"; 
-   d="scan'208";a="294668945"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Aug 2022 05:35:50 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,267,1654585200"; 
-   d="scan'208";a="671805359"
-Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
-  by fmsmga008.fm.intel.com with ESMTP; 27 Aug 2022 05:35:45 -0700
-Date:   Sat, 27 Aug 2022 20:26:29 +0800
-From:   Xu Yilun <yilun.xu@intel.com>
-To:     Nava kishore Manne <nava.kishore.manne@amd.com>
-Cc:     git@amd.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        michal.simek@xilinx.com, mdf@kernel.org, hao.wu@intel.com,
-        trix@redhat.com, p.zabel@pengutronix.de,
-        gregkh@linuxfoundation.org, ronak.jain@xilinx.com,
-        rajan.vaja@xilinx.com, abhyuday.godhasara@xilinx.com,
-        piyush.mehta@xilinx.com, lakshmi.sai.krishna.potthuri@xilinx.com,
-        harsha.harsha@xilinx.com, linus.walleij@linaro.org,
-        nava.manne@xilinx.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-fpga@vger.kernel.org
-Subject: Re: [PATCH 4/4] fpga: zynqmp: Add afi config driver
-Message-ID: <YwoNdUPoSKKHhzxx@yilunxu-OptiPlex-7050>
-References: <20220824035542.706433-1-nava.kishore.manne@amd.com>
- <20220824035542.706433-5-nava.kishore.manne@amd.com>
+        with ESMTP id S229677AbiH0NFt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Aug 2022 09:05:49 -0400
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D18F55A3D6;
+        Sat, 27 Aug 2022 06:05:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1661605529;
+        bh=NVXCqOY1o0HLhE9U42CLQq+iogrS7/vsx1EZqNj3yZc=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=NqmXTfRdSsyiFrwjumChhs3v+hHHtXCj47dFS02rOqncX4lw9lCHMbVvz74poND2q
+         kYB7ifzVtOnm4Ci45ApqXV0sUWuuYoh3z8azMuaa/A6OWd1fTO3M3B+VKMZBlrG27X
+         M7rGYF+rQV/XzULi9Ddno2q51Dci64piZB8zdBY0=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [141.72.241.228] ([141.72.241.228]) by web-mail.gmx.net
+ (3c-app-gmx-bap34.server.lan [172.19.172.104]) (via HTTP); Sat, 27 Aug 2022
+ 15:05:29 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220824035542.706433-5-nava.kishore.manne@amd.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+Message-ID: <trinity-be166cb2-a06f-4a08-8e24-800e11652def-1661605529717@3c-app-gmx-bap34>
+From:   Max.Buchholz@gmx.de
+To:     Rob Herring <robh@kernel.org>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Sameer Pujar <spujar@nvidia.com>,
+        David Heidelberg <david@ixit.cz>, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Aw: Re: [PATCH v3] dt-bindings: nvidia,tegra20-kbc: Convert to
+ json-schema
+Content-Type: text/plain; charset=UTF-8
+Date:   Sat, 27 Aug 2022 15:05:29 +0200
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <20220720215449.GA4031847-robh@kernel.org>
+References: <20220715131422.51143-1-max.buchholz@gmx.de>
+ <20220720215449.GA4031847-robh@kernel.org>
+Content-Transfer-Encoding: quoted-printable
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:IRP6iRTR2SPbpPTqHONGYmQCOzLWai9l0EHInV5m1cd8EP0eeReSCiP+Fn3L1yzjJ4G7U
+ he4pwEV30wBIBQyIvOtmCqYBE+un2O6y1sYOVSPEcXgikxr7yKnzIRlC3U6ZHcw9/NN+1s65RIl1
+ 8vxDA+IJ8UH+7b9cabahalAmSm97Qak0uyUREU5hTyJ5ZMUHJOwOzcXqeGukuIJiLDhrMoKUNca4
+ g8sdCz5muk5LrYnDkYEt8kQaFQDWaJbbiIp7pAuzGDtCC8z9EQGpxwMIhbQNFr0ouIhCpz91Ckw5
+ i0=
+X-UI-Out-Filterresults: notjunk:1;V03:K0:AuEDtR6gQAs=:z9lWspvmh42aU8xCszTnGt
+ QJFGmkhSX5FHGXfJgsfXCFYBg4I6fAeCJfkg/+wAaANu9khLSaxutF//jsRCnwm2e/bYNqVvf
+ 9ibHezTwdadAbUO85uGT6sK5S0wP0QHGOlEi6ugABAjh+L2maaoA90R7m7kOKHt/gE0ThE80X
+ UkfJzO8QA7ZrfE9COD+D95QeE11WUiNrsPfWAAPUhM7ahTjFO2suEfGZZlZk77sJ7V1irhnPV
+ TQAWJ6/K1WHOmtOKAe34crooYn2pyZJOOqbgqImHraFkvwtZa8mzHxos0weSgDV875tECnfNy
+ a83Bmz6mWXmILeBoiQDAxIMBtAsRUKaClwYmYtvPShMW71vbvUDaqzeKunnxWbSPEHwSZs3NR
+ nSVtXMw49M48GqwoJo25KNEUHjpJZ8e3IGU/uoElScFHq8d2Mz2PF04Epv8Dw6qrRBqj7n+Vd
+ xewOjKvTzMzF3hMHjyNDD1QYFkTHTqU3flGImbY2p8gFf0Xq5bZha7PEX7ZQssnWj4hl4TDXP
+ vIyaq4mCBu/XhSL1bRVWTDcE+coTVspLp3RbK+I546VPThjmkge3x2VHEI9PrPBaFVivMm3V5
+ DbGSo+iFcroUduezn5TSHWwVCWaPVeYaAZR/XZjHTZmkhcvOw3Irn2B9Sr+qKB/I7m/CVmjpu
+ CCQ3advMx7Ykg+aJjf6kT1rsguXUimzlKdQ76zSGB235aIQoWdx4q7fAfmETbxbZG5xZEVUE/
+ 6J0gOg3a4teZphuIrJc4h8CPO11ywLykiFEkpu3tTDncEPcDTBqG/Veu5Hu0RJoaKMcNqVV/2
+ erjGTzt
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,311 +76,273 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-08-24 at 09:25:42 +0530, Nava kishore Manne wrote:
-> Add zynqmp AXI FIFO interface(AFI) config driver. This is useful for the
-> configuration of the PS-PL interface on Zynq US+ MPSoC platform.
+Hi,
 
-Please help illustrate how to use the device for FPGA reprogramming, why
-it should be implemented as an FPGA bridge.
+> items:
+> maximum: 24 (or 23?)
 
-From the code I actually didn't see any operation that gates the
-fpga-region from other part of the machine.
+I do not exactly get what you mean with this and how you get to 24, which =
+isn't the maximum of the kbc-row-pins, but the maximum of kbc-row-pins and =
+kbc-col-pins added=2E I would be glad to get some more clarification abou t=
+hat=2E
 
-> 
-> Signed-off-by: Nava kishore Manne <nava.kishore.manne@amd.com>
+Additionally thanks for yll the feedback so far, really appreciate it=2E
+
+regards
+
+Max Buchholz
+=C2=A0
+
+> From: Max Buchholz <Max=2EBuchholz@gmx=2Ede>
+>
+> This converts the Nvidia Tegra keyboard controller bindings to YAML
+> and fix them up a bit=2E
+>
+> Reviewed-by: David Heidelberg <david@ixit=2Ecz>
+> Signed-off-by: Max Buchholz <max=2Ebuchholz@gmx=2Ede>
 > ---
->  MAINTAINERS               |   6 ++
->  drivers/fpga/Kconfig      |  13 +++
->  drivers/fpga/Makefile     |   1 +
->  drivers/fpga/zynqmp-afi.c | 211 ++++++++++++++++++++++++++++++++++++++
->  4 files changed, 231 insertions(+)
->  create mode 100644 drivers/fpga/zynqmp-afi.c
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 20ffac651214..957e753e6406 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -8032,6 +8032,12 @@ F:	Documentation/fpga/
->  F:	drivers/fpga/
->  F:	include/linux/fpga/
->  
-> +FPGA ZYNQMP PS-PL BRIDGE DRIVER
-> +M:	Nava kishore Manne <nava.kishore.manne@amd.com>
-> +S:	Supported
-> +F:	Documentation/devicetree/bindings/fpga/xlnx,zynqmp-afi-fpga.yaml
-> +F:	drivers/fpga/zynqmp-afi.c
-> +
->  INTEL MAX10 BMC SECURE UPDATES
->  M:	Russ Weight <russell.h.weight@intel.com>
->  L:	linux-fpga@vger.kernel.org
-> diff --git a/drivers/fpga/Kconfig b/drivers/fpga/Kconfig
-> index 6c416955da53..c08794d30fb5 100644
-> --- a/drivers/fpga/Kconfig
-> +++ b/drivers/fpga/Kconfig
-> @@ -130,6 +130,19 @@ config XILINX_PR_DECOUPLER
->  	  reconfiguration, preventing the system deadlock that can
->  	  occur if AXI transactions are interrupted by DFX.
->  
-> +config ZYNQMP_AFI
-> +	tristate "Xilinx ZYNQMP AFI support"
-> +	depends on FPGA_BRIDGE
-> +	help
-> +	  Say Y to enable drivers to handle the PS-PL clocks configurations
-> +	  and PS-PL Bus-width. Xilinx Zynq US+ MPSoC connect the PS to the
-> +	  programmable logic (PL) through the AXI port. This AXI port helps
-> +	  to establish the data path between the PS and PL.
-> +	  In-order to establish the proper communication path between PS and PL,
-> +	  the AXI port data path should be configured with the proper Bus-width
-> +	  values and it will also handles the PS-PL reset signals to reset the
-> +	  PL domain.
-
-Same concern, please describe its relationship to FPGA reprogramming.
-
-> +
->  config FPGA_REGION
->  	tristate "FPGA Region"
->  	depends on FPGA_BRIDGE
-> diff --git a/drivers/fpga/Makefile b/drivers/fpga/Makefile
-> index 42ae8b58abce..94cfe60972db 100644
-> --- a/drivers/fpga/Makefile
-> +++ b/drivers/fpga/Makefile
-> @@ -31,6 +31,7 @@ obj-$(CONFIG_FPGA_BRIDGE)		+= fpga-bridge.o
->  obj-$(CONFIG_SOCFPGA_FPGA_BRIDGE)	+= altera-hps2fpga.o altera-fpga2sdram.o
->  obj-$(CONFIG_ALTERA_FREEZE_BRIDGE)	+= altera-freeze-bridge.o
->  obj-$(CONFIG_XILINX_PR_DECOUPLER)	+= xilinx-pr-decoupler.o
-> +obj-$(CONFIG_ZYNQMP_AFI)		+= zynqmp-afi.o
->  
->  # High Level Interfaces
->  obj-$(CONFIG_FPGA_REGION)		+= fpga-region.o
-> diff --git a/drivers/fpga/zynqmp-afi.c b/drivers/fpga/zynqmp-afi.c
+> v3:
+> - fixed maxItems for array properties
+> v2:
+> - rework the file according to the feedback
+>
+> =2E=2E=2E/bindings/input/nvidia,tegra20-kbc=2Etxt | 55 ---------
+> =2E=2E=2E/bindings/input/nvidia,tegra20-kbc=2Eyaml | 111 +++++++++++++++=
++++
+> =2E=2E=2E/bindings/power/wakeup-source=2Etxt | 2 +-
+> 3 files changed, 112 insertions(+), 56 deletions(-)
+> delete mode 100644 Documentation/devicetree/bindings/input/nvidia,tegra2=
+0-kbc=2Etxt
+> create mode 100644 Documentation/devicetree/bindings/input/nvidia,tegra2=
+0-kbc=2Eyaml
+>
+> diff --git a/Documentation/devicetree/bindings/input/nvidia,tegra20-kbc=
+=2Etxt b/Documentation/devicetree/bindings/input/nvidia,tegra20-kbc=2Etxt
+> deleted file mode 100644
+> index 1faa7292e21f=2E=2E000000000000
+> --- a/Documentation/devicetree/bindings/input/nvidia,tegra20-kbc=2Etxt
+> +++ /dev/null
+> @@ -1,55 +0,0 @@
+> -* Tegra keyboard controller
+> -The key controller has maximum 24 pins to make matrix keypad=2E Any pin
+> -can be configured as row or column=2E The maximum column pin can be 8
+> -and maximum row pins can be 16 for Tegra20/Tegra30=2E
+> -
+> -Required properties:
+> -- compatible: "nvidia,tegra20-kbc"
+> -- reg: Register base address of KBC=2E
+> -- interrupts: Interrupt number for the KBC=2E
+> -- nvidia,kbc-row-pins: The KBC pins which are configured as row=2E This=
+ is an
+> - array of pin numbers which is used as rows=2E
+> -- nvidia,kbc-col-pins: The KBC pins which are configured as column=2E T=
+his is an
+> - array of pin numbers which is used as column=2E
+> -- linux,keymap: The keymap for keys as described in the binding documen=
+t
+> - devicetree/bindings/input/matrix-keymap=2Etxt=2E
+> -- clocks: Must contain one entry, for the module clock=2E
+> - See =2E=2E/clocks/clock-bindings=2Etxt for details=2E
+> -- resets: Must contain an entry for each entry in reset-names=2E
+> - See =2E=2E/reset/reset=2Etxt for details=2E
+> -- reset-names: Must include the following entries:
+> - - kbc
+> -
+> -Optional properties, in addition to those specified by the shared
+> -matrix-keyboard bindings:
+> -
+> -- linux,fn-keymap: a second keymap, same specification as the
+> - matrix-keyboard-controller spec but to be used when the KEY_FN modifie=
+r
+> - key is pressed=2E
+> -- nvidia,debounce-delay-ms: delay in milliseconds per row scan for debo=
+uncing
+> -- nvidia,repeat-delay-ms: delay in milliseconds before repeat starts
+> -- nvidia,ghost-filter: enable ghost filtering for this device
+> -- wakeup-source: configure keyboard as a wakeup source for suspend/resu=
+me
+> - (Legacy property supported: "nvidia,wakeup-source")
+> -
+> -Example:
+> -
+> -keyboard: keyboard {
+> - compatible =3D "nvidia,tegra20-kbc";
+> - reg =3D <0x7000e200 0x100>;
+> - interrupts =3D <0 85 0x04>;
+> - clocks =3D <&tegra_car 36>;
+> - resets =3D <&tegra_car 36>;
+> - reset-names =3D "kbc";
+> - nvidia,ghost-filter;
+> - nvidia,debounce-delay-ms =3D <640>;
+> - nvidia,kbc-row-pins =3D <0 1 2>; /* pin 0, 1, 2 as rows */
+> - nvidia,kbc-col-pins =3D <11 12 13>; /* pin 11, 12, 13 as columns */
+> - linux,keymap =3D <0x00000074
+> - 0x00010067
+> - 0x00020066
+> - 0x01010068
+> - 0x02000069
+> - 0x02010070
+> - 0x02020071>;
+> -};
+> diff --git a/Documentation/devicetree/bindings/input/nvidia,tegra20-kbc=
+=2Eyaml b/Documentation/devicetree/bindings/input/nvidia,tegra20-kbc=2Eyaml
 > new file mode 100644
-> index 000000000000..bc975d304039
+> index 000000000000=2E=2E8e1eaad2fdc1
 > --- /dev/null
-> +++ b/drivers/fpga/zynqmp-afi.c
-> @@ -0,0 +1,211 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2022 Xilinx, Inc.
-> + */
+> +++ b/Documentation/devicetree/bindings/input/nvidia,tegra20-kbc=2Eyaml
+> @@ -0,0 +1,111 @@
+> +# SPDX-License-Identifier: (GPL-2=2E0-only OR BSD-2-Clause)
+> +%YAML 1=2E2
+> +---
+> +$id: "http://devicetree=2Eorg/schemas/input/nvidia,tegra20-kbc=2Eyaml#"
+> +$schema: "http://devicetree=2Eorg/meta-schemas/core=2Eyaml#[http://devi=
+cetree=2Eorg/meta-schemas/core=2Eyaml#]"
 > +
-> +#include <linux/err.h>
-> +#include <linux/firmware/xlnx-zynqmp.h>
-> +#include <linux/fpga/fpga-bridge.h>
-> +#include <linux/io.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/reset.h>
-> +#include <linux/slab.h>
+> +title: Nvidia Tegra keyboard controller
 > +
-> +/* Registers and special values for doing register-based operations */
-> +#define AFI_RDCHAN_CTRL_OFFSET	0x00
-> +#define AFI_WRCHAN_CTRL_OFFSET	0x14
-> +#define AFI_BUSWIDTH_MASK	BIT(0)
+> +maintainers:
+> + - Jon Hunter <jonathanh@nvidia=2Ecom>
+> + - Sameer Pujar <spujar@nvidia=2Ecom>
 > +
-> +/**
-> + * struct zynqmp_afi - AFI register description.
-> + * @dev: device that owns this.
-> + * @of_node: Device Tree overlay.
-> + * @resets: Pointer to the reset control for ps-pl resets.
-> + */
-> +struct zynqmp_afi {
-> +	struct device *dev;
-> +	struct device_node *of_node;
-> +	struct reset_control *resets;
-> +};
+> +description: The key controller has maximum 24 pins to make matrix keyp=
+ad=2E Any pin
+> + can be configured as row or column=2E
 > +
-> +/**
-> + * struct zynqmp_afi_configreg - AFI configuration registers info.
-> + * @reg:	Name of the AFI configuration register.
-> + * @id:		Register index value.
-> + */
-> +struct zynqmp_afi_configreg {
-> +	char *reg;
-> +	u32 id;
-> +};
+> +allOf:
+> + - $ref: "/schemas/input/matrix-keymap=2Eyaml#"
 > +
-> +static struct zynqmp_afi_configreg afi_cfgreg[] = {
-> +	{.reg = "xlnx,afi-fm0-rd-bus-width",	.id = AFIFM0_RDCTRL},
-> +	{.reg = "xlnx,afi-fm1-rd-bus-width",	.id = AFIFM1_RDCTRL},
-> +	{.reg = "xlnx,afi-fm2-rd-bus-width",	.id = AFIFM2_RDCTRL},
-> +	{.reg = "xlnx,afi-fm3-rd-bus-width",	.id = AFIFM3_RDCTRL},
-> +	{.reg = "xlnx,afi-fm4-rd-bus-width",	.id = AFIFM4_RDCTRL},
-> +	{.reg = "xlnx,afi-fm5-rd-bus-width",	.id = AFIFM5_RDCTRL},
-> +	{.reg = "xlnx,afi-fm6-rd-bus-width",	.id = AFIFM6_RDCTRL},
-> +	{.reg = "xlnx,afi-fm0-wr-bus-width",	.id = AFIFM0_WRCTRL},
-> +	{.reg = "xlnx,afi-fm1-wr-bus-width",	.id = AFIFM1_WRCTRL},
-> +	{.reg = "xlnx,afi-fm2-wr-bus-width",	.id = AFIFM2_WRCTRL},
-> +	{.reg = "xlnx,afi-fm3-wr-bus-width",	.id = AFIFM3_WRCTRL},
-> +	{.reg = "xlnx,afi-fm4-wr-bus-width",	.id = AFIFM4_WRCTRL},
-> +	{.reg = "xlnx,afi-fm5-wr-bus-width",	.id = AFIFM5_WRCTRL},
-> +	{.reg = "xlnx,afi-fm6-wr-bus-width",	.id = AFIFM6_WRCTRL},
-> +	{.reg = "xlnx,afi-fs-ss0-bus-width",	.id = AFIFS},
-> +	{.reg = "xlnx,afi-fs-ss2-bus-width",	.id = AFIFS_SS2},
-> +	{}
-> +};
+> +properties:
+> + compatible:
+> + oneOf:
+> + - items:
+> + - const: nvidia,tegra30-kbc
+> + - const: nvidia,tegra20-kbc
+> + - items:
+> + - const: nvidia,tegra20-kbc
 > +
-> +static int zynqmp_afi_config(struct zynqmp_afi *afi_data)
-> +{
-> +	struct zynqmp_afi_configreg *cfgptr = afi_cfgreg;
-> +	struct device_node *np = afi_data->of_node;
-> +	u32 afi_ss0_val, afi_ss1_val, bus_width;
-> +	int ret;
+> + reg:
+> + maxItems: 1
 > +
-> +	while (cfgptr->reg) {
-> +		ret = of_property_read_u32(np, cfgptr->reg, &bus_width);
-> +		if (!ret) {
-> +			if (cfgptr->id == AFIFS_SS2) {
-> +				if (bus_width == 32)
-> +					ret = zynqmp_pm_afi(AFIFS_SS2,
-> +							    AFIFS_SS_BUS_WIDTH_32_CONFIG_VAL);
-> +				else if (bus_width == 64)
-> +					ret = zynqmp_pm_afi(AFIFS_SS2,
-> +							    AFIFS_SS0_SS2_BUS_WIDTH_64_CONFIG_VAL);
-> +				else if (bus_width == 128)
-> +					ret = zynqmp_pm_afi(AFIFS_SS2,
-> +							    AFIFS_SS0_SS2_BUS_WIDTH_128_CONFIG_VAL);
-> +				else
-> +					return -EINVAL;
-> +			} else if (cfgptr->id == AFIFS) {
-> +				if (bus_width == 32)
-> +					afi_ss0_val = AFIFS_SS_BUS_WIDTH_32_CONFIG_VAL;
-> +				else if (bus_width == 64)
-> +					afi_ss0_val = AFIFS_SS0_SS2_BUS_WIDTH_64_CONFIG_VAL;
-> +				else if (bus_width == 128)
-> +					afi_ss0_val = AFIFS_SS0_SS2_BUS_WIDTH_128_CONFIG_VAL;
-> +				else
-> +					return -EINVAL;
+> + interrupts:
+> + maxItems: 1
 > +
-> +				ret = of_property_read_u32(np, "xlnx,afi-fs-ss1-bus-width",
-> +							   &bus_width);
-> +				if (!ret) {
-> +					if (bus_width == 32)
-> +						afi_ss1_val = AFIFS_SS_BUS_WIDTH_32_CONFIG_VAL;
-> +					else if (bus_width == 64)
-> +						afi_ss1_val = AFIFS_SS1_BUS_WIDTH_64_CONFIG_VAL;
-> +					else if (bus_width == 128)
-> +						afi_ss1_val = AFIFS_SS1_BUS_WIDTH_128_CONFIG_VAL;
-> +					else
-> +						return -EINVAL;
-> +
-> +					ret = zynqmp_pm_afi(AFIFS, afi_ss1_val | afi_ss0_val);
-> +				}
-> +			} else {
-> +				if (bus_width == 32)
-> +					ret = zynqmp_pm_afi(cfgptr->id,
-> +							    AFIFM_BUS_WIDTH_32_CONFIG_VAL);
-> +				else if (bus_width == 64)
-> +					ret = zynqmp_pm_afi(cfgptr->id,
-> +							    AFIFM_BUS_WIDTH_64_CONFIG_VAL);
-> +				else if (bus_width == 128)
-> +					ret = zynqmp_pm_afi(cfgptr->id,
-> +							    AFIFM_BUS_WIDTH_128_CONFIG_VAL);
-> +				else
-> +					return -EINVAL;
-> +			}
-> +		}
-> +		cfgptr++;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int zynqmp_afi_enable_set(struct fpga_bridge *bridge, bool enable)
-> +{
-> +	struct device_node *overlay = bridge->info->overlay;
-> +	struct zynqmp_afi *priv = bridge->priv;
-> +	int ret = 0;
-> +
-> +	if (enable) {
-> +		reset_control_reset(priv->resets);
-> +		return 0;
-> +	}
-> +
-> +	of_node_get(overlay);
-> +	priv->of_node =
-> +	of_find_node_with_property(overlay,
-> +				   "xlnx,afi-fm0-rd-bus-width");
+> + nvidia,kbc-row-pins:
+> + minItems: 1
+> + maxItems: 16
+> + description: KBC pins which are configured as row
+> + $ref: /schemas/types=2Eyaml#/definitions/uint32-array
 
-I'm a little confused here. The fpga_image_info.overlay is for
-fpga-region, but from your binding doc this property is for this afi
-device. You want to add another overlay targeting afi dev node during
-reprograming?
+items:
+maximum: 24 (or 23?)
 
-> +	if (priv->of_node)
-> +		ret = zynqmp_afi_config(priv);
-> +	of_node_put(priv->of_node);
 > +
-> +	return ret;
-> +}
-> +
-> +static const struct fpga_bridge_ops zynqmp_afi_br_ops = {
-> +	.enable_set = zynqmp_afi_enable_set,
-> +};
-> +
-> +static const struct of_device_id zynqmp_afi_of_match[] = {
-> +	{ .compatible =  "xlnx,zynqmp-afi-fpga" },
-> +	{ },
-> +};
-> +MODULE_DEVICE_TABLE(of, zynqmp_afi_of_match);
-> +
-> +static int zynqmp_afi_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct zynqmp_afi *priv;
-> +	struct fpga_bridge *br;
-> +
-> +	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	priv->dev = dev;
-> +
-> +	priv->resets = devm_reset_control_array_get_optional_exclusive(&pdev->dev);
-> +	if (IS_ERR(priv->resets))
-> +		return PTR_ERR(priv->resets);
-> +
-> +	br = fpga_bridge_register(dev, "Xilinx ZynqMP AFI",
-> +				  &zynqmp_afi_br_ops, priv);
-> +	if (IS_ERR(br)) {
-> +		dev_err(dev, "unable to register Xilinx ZynqMP AFI");
+> + nvidia,kbc-col-pins:
+> + minItems: 1
+> + maxItems: 8
+> + description: KBC pins which are configured as column
+> + $ref: /schemas/types=2Eyaml#/definitions/uint32-array
 
-Need a "\n" at the end?
+Same here=2E
 
-Thanks,
-Yilun
+> +
+> + clocks:
+> + maxItems: 1
+> +
+> + resets:
+> + maxItems: 1
+> +
+> + reset-names:
+> + const: kbc
+> +
+> + linux,fn-keymap:
 
-> +		return PTR_ERR(br);
-> +	}
+While mentioned in matrix-keymap=2Eyaml, it is not defined as a schema
+anywhere=2E It needs a type=2E I guess here is fine as this doesn't seem
+to be used much=2E
+
+> + description: a secondary keymap to be used when the KEY_FN modifier ke=
+y is pressed
 > +
-> +	platform_set_drvdata(pdev, br);
+> + nvidia,debounce-delay-ms:
+> + description: delay in milliseconds per row scan for debouncing
 > +
-> +	return 0;
-> +}
+> + nvidia,repeat-delay-ms:
+> + description: delay in milliseconds before repeat starts
 > +
-> +static int zynqmp_afi_remove(struct platform_device *pdev)
-> +{
-> +	struct fpga_bridge *bridge = platform_get_drvdata(pdev);
+> + nvidia,ghost-filter:
+> + description: enable ghost filtering for this device
+> + type: boolean
 > +
-> +	fpga_bridge_unregister(bridge);
+> + wakeup-source:
+> + description: configure keyboard as a wakeup source for suspend/resume
 > +
-> +	return 0;
-> +}
+> + nvidia,wakeup-source:
+> + description: configure keyboard as a wakeup source for suspend/resume
+> + deprecated: true
+> + type: boolean
+
+Deprecated for 7 years=2E Could be dropped?
+
 > +
-> +static struct platform_driver zynqmp_afi_driver = {
-> +	.probe = zynqmp_afi_probe,
-> +	.remove = zynqmp_afi_remove,
-> +	.driver = {
-> +		.name = "zynqmp_afi",
-> +		.of_match_table = of_match_ptr(zynqmp_afi_of_match),
-> +	},
-> +};
+> +required:
+> + - compatible
+> + - reg
+> + - interrupts
+> + - nvidia,kbc-row-pins
+> + - nvidia,kbc-col-pins
+> + - linux,keymap
+> + - clocks
+> + - resets
+> + - reset-names
 > +
-> +module_platform_driver(zynqmp_afi_driver);
+> +unevaluatedProperties: false
 > +
-> +MODULE_DESCRIPTION("ZYNQMP FPGA AXI FIFO interface configuration module");
-> +MODULE_AUTHOR("Nava kishore Manne <nava.kishore.manne@amd.com>");
-> +MODULE_LICENSE("GPL");
-> -- 
-> 2.25.1
-> 
+> +examples:
+> + - |
+> + #include <dt-bindings/interrupt-controller/arm-gic=2Eh>
+> +
+> + kbc@7000e200 {
+
+keyboard@=2E=2E=2E
+
+> + compatible =3D "nvidia,tegra20-kbc";
+> + reg =3D <0x7000e200 0x100>;
+> + interrupts =3D <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>;
+> + clocks =3D <&tegra_car 36>;
+> + resets =3D <&tegra_car 36>;
+> + reset-names =3D "kbc";
+> + nvidia,ghost-filter;
+> + nvidia,debounce-delay-ms =3D <640>;
+> + nvidia,kbc-row-pins =3D <0 1 2>; /* pin 0, 1, 2 as rows */
+> + nvidia,kbc-col-pins =3D <11 12 13>; /* pin 11, 12, 13 as columns */
+> + linux,keymap =3D <0x00000074
+> + 0x00010067
+> + 0x00020066
+> + 0x01010068
+> + 0x02000069
+> + 0x02010070
+> + 0x02020071>;
+> + };
+> diff --git a/Documentation/devicetree/bindings/power/wakeup-source=2Etxt=
+ b/Documentation/devicetree/bindings/power/wakeup-source=2Etxt
+> index cfd74659fbed=2E=2E728f88de371d 100644
+> --- a/Documentation/devicetree/bindings/power/wakeup-source=2Etxt
+> +++ b/Documentation/devicetree/bindings/power/wakeup-source=2Etxt
+> @@ -25,7 +25,7 @@ List of legacy properties and respective binding docum=
+ent
+> Documentation/devicetree/bindings/input/touchscreen/ads7846=2Etxt
+> 5=2E "linux,keypad-wakeup" Documentation/devicetree/bindings/input/qcom,=
+pm8xxx-keypad=2Etxt
+> 6=2E "linux,input-wakeup" Documentation/devicetree/bindings/input/samsun=
+g-keypad=2Etxt
+> -7=2E "nvidia,wakeup-source" Documentation/devicetree/bindings/input/nvi=
+dia,tegra20-kbc=2Etxt
+> +7=2E "nvidia,wakeup-source" Documentation/devicetree/bindings/input/nvi=
+dia,tegra20-kbc=2Eyaml
+>
+> Examples
+> --------
+> --
+> 2=2E37=2E0
+>
+>
