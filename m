@@ -2,114 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 166EF5A3656
-	for <lists+devicetree@lfdr.de>; Sat, 27 Aug 2022 11:31:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36D025A3700
+	for <lists+devicetree@lfdr.de>; Sat, 27 Aug 2022 12:27:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233836AbiH0JbT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 Aug 2022 05:31:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50006 "EHLO
+        id S234333AbiH0K0w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 Aug 2022 06:26:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232912AbiH0JbR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Aug 2022 05:31:17 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0011A8284A
-        for <devicetree@vger.kernel.org>; Sat, 27 Aug 2022 02:31:14 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id m2so1116847lfp.11
-        for <devicetree@vger.kernel.org>; Sat, 27 Aug 2022 02:31:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=5+tRsHHFtIYtEhRxkDNtf2U4lHNbX9lSZYaEEg4PydM=;
-        b=Gi8PUcyXTSmlMbVRETv1LJq3ymkcoTm9baot4bjs4PL7z7YF/rCeORhvyXC489Kprz
-         AfT+zGYWDR5bZthID+qTc4HFO5om7t2NE+ubE1pGlP6QYZ0karOz4zvvOsLtPEuyPCn7
-         O978JHSWbrXzYLcUni4fIQF0iz2FtS/jW/Pa9Atj96eDUBFDBKv0JxzOjOor5XqE7xgC
-         8UOkQyCuOLlNz26/FAmLN9qQj8NOfWQMyNWeba6dD+7Osd2KO8Hfme+PWwmXSktLcC4f
-         PeEVua/v8nhg8ZPgZ7Qda3T7cBvlA39p+8pCUIMVpbwbgME3Jg2pv49T1UfKwQ73UsWo
-         86Qg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=5+tRsHHFtIYtEhRxkDNtf2U4lHNbX9lSZYaEEg4PydM=;
-        b=XW1mUIDyubAVo0RlvZGk/C4gOcq7JKwVVZYodO7z3r+tfZVWfKoKDmkeIOUxDVVSa/
-         JGEjUGl8grQtb2PaMlkSZCQgjl2Xfphyz2fuhNqZvieWYiJNzCatvP00TiwEErSSo+I9
-         Bb027nkUyt6eLw3GT1lzwui2WlS4/cyjayv+SkwPvokPryfRIPhz58qyNMwrbR0yCdOj
-         Z01nr4UKo+UyxPP5XfESbR+4PvCLIYEWZsyM8+OaZOzpFe4iIHcsaiLbAJMoU6kC/MqJ
-         r1pjvCWhL35Q0AucyYSqmmrMw94XdpKi9meMi9UTw2ddQjiS02boSSfx3zz0ZWs8bM18
-         P7Bw==
-X-Gm-Message-State: ACgBeo02ZBcDXYZMPscqjxHeGDI8Kx5TnVh0Mn6DskVzc24tKbfAlyEU
-        5BkC1fPL6B7ygCEBK24aloqdCQ==
-X-Google-Smtp-Source: AA6agR7qqC2eQCM1x4pzhwMiF1ifFxSB9CvlDk/+rtzCjkzVYtMtC8P18Wt7CaFtjNbZ/KuH1CaruQ==
-X-Received: by 2002:a05:6512:1687:b0:492:db5e:7768 with SMTP id bu7-20020a056512168700b00492db5e7768mr3750470lfb.118.1661592673212;
-        Sat, 27 Aug 2022 02:31:13 -0700 (PDT)
-Received: from [192.168.0.71] (82.131.98.15.cable.starman.ee. [82.131.98.15])
-        by smtp.gmail.com with ESMTPSA id d5-20020ac24c85000000b0048b0526070fsm626416lfl.71.2022.08.27.02.31.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 27 Aug 2022 02:31:12 -0700 (PDT)
-Message-ID: <15d7c1a8-18b6-e2a7-e4c1-1cdad6f3604f@linaro.org>
-Date:   Sat, 27 Aug 2022 12:31:09 +0300
+        with ESMTP id S233731AbiH0K0u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Aug 2022 06:26:50 -0400
+Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEB9A101FD;
+        Sat, 27 Aug 2022 03:26:47 -0700 (PDT)
+Received: from dggpemm500024.china.huawei.com (unknown [172.30.72.57])
+        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4MFCSJ5fWmzYcvT;
+        Sat, 27 Aug 2022 18:22:24 +0800 (CST)
+Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
+ dggpemm500024.china.huawei.com (7.185.36.203) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.24; Sat, 27 Aug 2022 18:26:45 +0800
+Received: from [10.174.178.55] (10.174.178.55) by
+ dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.24; Sat, 27 Aug 2022 18:26:44 +0800
+Subject: Re: [BUG] amba: Remove deferred device addition
+To:     Saravana Kannan <saravanak@google.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        <devicetree@vger.kernel.org>, Russell King <linux@armlinux.org.uk>,
+        "Linus Walleij" <linus.walleij@linaro.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        <linux-input@vger.kernel.org>
+References: <20210816074619.177383-1-wangkefeng.wang@huawei.com>
+ <20210816074619.177383-4-wangkefeng.wang@huawei.com>
+ <CAL_JsqLBddXVeP-t++wqPNp=xYF7tvEcnCbjFnK9CUBLK2+9JA@mail.gmail.com>
+ <CAGETcx8SY14rcd7g=Gdwmw7sUMb=jdEV+ffuNpg6btDoL1jmWw@mail.gmail.com>
+ <ee649111-dc07-d6db-8872-dcb692802236@huawei.com>
+ <CAGETcx9drOdE_vfn-nhDZM9MbgxGxYJN6ydiAVxo_Ltqve9eTg@mail.gmail.com>
+ <b5eb935f-26e1-6475-63af-e7f6101eb017@huawei.com>
+ <CAGETcx9yaWZOzt=gcyNAshoHdPoYizhmrKS-kU9c2QM2+HqeEw@mail.gmail.com>
+ <df8e7756-8b0d-d7de-a9ff-3f6eb0ffa8a5@huawei.com>
+ <CAGETcx-47yRUcBjEdWFBtroSEkHXRNrJ4zaD8WpE0DPEPp9NxQ@mail.gmail.com>
+ <85b28900-5f42-b997-2ded-0b952bc2a03e@huawei.com>
+ <CAGETcx-N4+u0iw9n5ncx_9MNnTa3ViyesxsDD7xN3jtEPT-uBw@mail.gmail.com>
+ <265bb783-10da-a7c1-2625-055dec5643a3@huawei.com>
+ <CAGETcx9m4=7V25nvYa0030ChKeJw5bu3ogs6gjFpjNKdq+_B_Q@mail.gmail.com>
+ <4a8b0a6d-b1d5-ffe9-8e31-61844cb9bd89@huawei.com>
+ <CAGETcx8RLor0JcboBuMrB96xUot14P1CAcqoen7ZHnYRi7KMEQ@mail.gmail.com>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <051f1eb5-67f1-b3f9-cc4e-c5902068532f@huawei.com>
+Date:   Sat, 27 Aug 2022 18:26:32 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v2 1/1] arm64: dts: qcom: pwm: Drop PWM reg dependency
+In-Reply-To: <CAGETcx8RLor0JcboBuMrB96xUot14P1CAcqoen7ZHnYRi7KMEQ@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@somainline.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220826123547.3392457-1-bryan.odonoghue@linaro.org>
- <20220826123547.3392457-2-bryan.odonoghue@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220826123547.3392457-2-bryan.odonoghue@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.174.178.55]
+X-ClientProxiedBy: dggems705-chm.china.huawei.com (10.3.19.182) To
+ dggpemm500006.china.huawei.com (7.185.36.236)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/08/2022 15:35, Bryan O'Donoghue wrote:
-> Drop the reg dependency from the qcom PWM description.
+
+
+On 2022/7/6 3:25, Saravana Kannan wrote:
+> On Fri, Sep 10, 2021 at 12:59 AM Kefeng Wang <wangkefeng.wang@huawei.com> wrote:
+>>
+>>
+>> On 2021/9/9 11:30, Saravana Kannan wrote:
+>>> On Fri, Aug 27, 2021 at 6:09 PM Kefeng Wang <wangkefeng.wang@huawei.com> wrote:
+>>>>
+>>>> On 2021/8/28 3:09, Saravana Kannan wrote:
+>>>>> On Fri, Aug 27, 2021 at 7:38 AM Kefeng Wang <wangkefeng.wang@huawei.com> wrote:
+>>>>>> On 2021/8/27 8:04, Saravana Kannan wrote:
+>>>>>>> On Thu, Aug 26, 2021 at 1:22 AM Kefeng Wang <wangkefeng.wang@huawei.com> wrote:
+>>>>>>>>>>> Btw, I've been working on [1] cleaning up the one-off deferred probe
+>>>>>>>>>>> solution that we have for amba devices. That causes a bunch of other
+>>>>>>>>>>> headaches. Your patch 3/3 takes us further in the wrong direction by
+>>>>>>>>>>> adding more reasons for delaying the addition of the device.
+>>>>>>>> Hi Saravana, I try the link[1], but with it, there is a crash when boot
+>>>>>>>> (qemu-system-arm -M vexpress-a15),
+>>>>> I'm assuming it's this one?
+>>>>> arch/arm/boot/dts/vexpress-v2p-ca15_a7.dts
+>>>> I use arch/arm/boot/dts/vexpress-v2p-ca15-tc1.dts.
+>>>>
+>>>> qemu-system-arm -M vexpress-a15 -dtb vexpress-v2p-ca15-tc1.dtb -cpu
+>>>> cortex-a15 -smp 2 -m size=3G -kernel zImage -rtc base=localtime -initrd
+>>>> initrd-arm32 -append 'console=ttyAMA0 cma=0 kfence.sample_interval=0
+>>>> earlyprintk debug ' -device virtio-net-device,netdev=net8 -netdev
+>>>> type=tap,id=net8,script=/etc/qemu-ifup,downscript=/etc/qemu-ifdown
+>>>> -nographic
+>>>>
+>>>>>>> Hi,
+>>>>>>>
+>>>>>>> It's hard to make sense of the logs. Looks like two different threads
+>>>>>>> might be printing to the log at the same time? Can you please enable
+>>>>>>> the config that prints the thread ID (forgot what it's called) and
+>>>>>>> collect this again? With what I could tell the crash seems to be
+>>>>>>> happening somewhere in platform_match(), but that's not related to
+>>>>>>> this patch at all?
+>>>>>> Can you reproduce it? it is very likely related(without your patch, the
+>>>>>> boot is fine),
+>>>>> Sorry, I haven't ever setup qemu and booted vexpress. Thanks for your help.
+>>>>>
+>>>>>> the NULL ptr is about serio, it is registed from amba driver.
+>>>>>>
+>>>>>> ambakmi_driver_init
+>>>>>>
+>>>>>>     -- amba_kmi_probe
+>>>>>>
+>>>>>>       -- __serio_register_port
+>>>>> Thanks for the pointer. I took a look at the logs and the code. It's
+>>>>> very strange. As you can see from the backtrace, platform_match() is
+>>>>> being called for the device_add() from serio_handle_event(). But the
+>>>>> device that gets added there is on the serio_bus which obviously
+>>>>> should be using the serio_bus_match.
+>>>> Yes, I am confused too.
+>>>>>> +Dmitry and input maillist, is there some known issue about serio ?
+>>>>>>
+>>>>>> I add some debug, the full log is attached.
+>>>>>>
+>>>>>> [    2.958355][   T41] input: AT Raw Set 2 keyboard as
+>>>>>> /devices/platform/bus@8000000/bus@8000000:motherboard-bus/bus@8000000:motherboard-bus:iofpga-bus@300000000/1c060000.kmi/serio0/input/input0
+>>>>>> [    2.977441][   T41] serio serio1: pdev c1e05508, pdev->name (null),
+>>>>>> drv c1090fc0, drv->name vexpress-reset
+>>>>> Based on the logs you added, it's pretty clear we are getting to
+>>>>> platform_match(). It's also strange that the drv->name is
+>>>>> vexpress-reset
+>>>> ...
+>>>>>> [    3.003113][   T41] Backtrace:
+>>>>>> [    3.003451][   T41] [<c0560bb4>] (strcmp) from [<c0646358>] (platform_match+0xdc/0xf0)
+>>>>>> [    3.003963][   T41] [<c064627c>] (platform_match) from [<c06437d4>] (__device_attach_driver+0x3c/0xf4)
+>>>>>> [    3.004769][   T41] [<c0643798>] (__device_attach_driver) from [<c0641180>] (bus_for_each_drv+0x68/0xc8)
+>>>>>> [    3.005481][   T41] [<c0641118>] (bus_for_each_drv) from [<c0642f40>] (__device_attach+0xf0/0x16c)
+>>>>>> [    3.006152][   T41] [<c0642e50>] (__device_attach) from [<c06439d4>] (device_initial_probe+0x1c/0x20)
+>>>>>> [    3.006853][   T41] [<c06439b8>] (device_initial_probe) from [<c0642030>] (bus_probe_device+0x94/0x9c)
+>>>>>> [    3.007259][   T41] [<c0641f9c>] (bus_probe_device) from [<c063f9cc>] (device_add+0x408/0x8b8)
+>>>>>> [    3.007900][   T41] [<c063f5c4>] (device_add) from [<c071c1cc>] (serio_handle_event+0x1b8/0x234)
+>>>>>> [    3.008824][   T41] [<c071c014>] (serio_handle_event) from [<c01475a4>] (process_one_work+0x238/0x594)
+>>>>>> [    3.009737][   T41] [<c014736c>] (process_one_work) from [<c014795c>] (worker_thread+0x5c/0x5f4)
+>>>>>> [    3.010638][   T41] [<c0147900>] (worker_thread) from [<c014feb4>] (kthread+0x178/0x194)
+>>>>>> [    3.011496][   T41] [<c014fd3c>] (kthread) from [<c0100150>] (ret_from_fork+0x14/0x24)
+>>>>>> [    3.011860][   T41] Exception stack(0xc1675fb0 to 0xc1675ff8)
+>>>>> But the platform_match() is happening for the device_add() from
+>>>>> serio_event_handle() that's adding a device to the serio_bus and it
+>>>>> should be using serio_bus_match().
+>>>>>
+>>>>> I haven't reached any conclusion yet, but my current thought process
+>>>>> is that it's either:
+>>>>> 1. My patch is somehow causing list corruption. But I don't directly
+>>>>> touch any list in my change (other than deleting a list entirely), so
+>>>>> it's not clear how that would be happening.
+>>>> Maybe some concurrent driver load？
+>>>>
+>>>>> 2. Without my patch, these AMBA device's probe would be delayed at
+>>>>> least until 5 seconds or possibly later. I'm wondering if my patch is
+>>>>> catching some bad timing assumptions in other code.
+>>>> After Rob's patch, It will retry soon.
+>>>>
+>>>> commit 039599c92d3b2e73689e8b6e519d653fd4770abb
+>>>> Author: Rob Herring <robh@kernel.org>
+>>>> Date:   Wed Apr 29 15:58:12 2020 -0500
+>>>>
+>>>>       amba: Retry adding deferred devices at late_initcall
+>>>>
+>>>>       If amba bus devices defer when adding, the amba bus code simply retries
+>>>>       adding the devices every 5 seconds. This doesn't work well as it
+>>>>       completely unsynchronized with starting the init process which can
+>>>>       happen in less than 5 secs. Add a retry during late_initcall. If the
+>>>>       amba devices are added, then deferred probe takes over. If the
+>>>>       dependencies have not probed at this point, then there's no improvement
+>>>>       over previous behavior. To completely solve this, we'd need to retry
+>>>>       after every successful probe as deferred probe does.
+>>>>
+>>>>       The list_empty() check now happens outside the mutex, but the mutex
+>>>>       wasn't necessary in the first place.
+>>>>
+>>>>       This needed to use deferred probe instead of fragile initcall ordering
+>>>>       on 32-bit VExpress systems where the apb_pclk has a number of probe
+>>>>       dependencies (vexpress-sysregs, vexpress-config).
+>>>>
+>>>>
+>>>>> You might be able to test out theory (2) by DEFERRED_DEVICE_TIMEOUT to
+>>>>> a much smaller number. Say 500ms or 100ms. If it doesn't crash, it
+>>>>> doesn't mean it's not (2), but if it does, then we know for sure it's
+>>>>> (2).
+>>>> ok, I will try this one, but due to above patch, it may not work.
+>>> Were you able to find anything more?
+>> I can't find any clue， and have no time to check this for now, is there
+>> any news from your side?
+
+Hi, Saravana and Kefeng:
+  I've spent the whole afternoon trying to figure this out, and the fix
+patch has been cc you two.
+
 > 
-> The PWM driver doesn't depend on the reg so we should drop the dependency
-> and remove the pwm@reg from the nodename.
-
-Driver is not really a sufficient reason. Based on
-https://lore.kernel.org/all/CAA8EJppGS38aP7gyd1c3kNgraAVJDoqUef2cDfZpu2aL_iwW0g@mail.gmail.com/
-reason could be:
-
-The PWM node is not a separate device and is expected to be part of
-parent SPMI PMIC node, thus it obtains the address space from the
-parent. One IO address in "reg" is also not correct description because
-LPG block maps to several regions.
-
+> To close out this thread, the issue was due to a UAF bug in driver
+> core that was fixed by:
+> https://lore.kernel.org/all/20220513112444.45112-1-schspa@gmail.com/
 > 
-> Fixes: e79a1385ab74 ("arm64: dts: qcom: Add LPG to pm8916, pm8994, pmi8994 and pmi8998")
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
->  Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 8 ++++----
->  arch/arm64/boot/dts/qcom/pm8350c.dtsi                     | 3 +--
-
-Patches should be split. One patchset, but two patches.
-
->  2 files changed, 5 insertions(+), 6 deletions(-)
+> With that fix, there wouldn't have been a crash, but amba driver
+> registration would have failed (because match returned
+> non-EPROBE_DEFER error).
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
-> index 65cbc6dee545e..2a5bafe0660a0 100644
-> --- a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
-> @@ -92,6 +92,10 @@ properties:
->      type: object
->      $ref: /schemas/regulator/regulator.yaml#
->  
+> -Saravana
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> 
 
-Best regards,
-Krzysztof
+-- 
+Regards,
+  Zhen Lei
