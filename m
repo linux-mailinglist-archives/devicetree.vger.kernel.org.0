@@ -2,83 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A701F5A361D
-	for <lists+devicetree@lfdr.de>; Sat, 27 Aug 2022 10:56:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 035165A362B
+	for <lists+devicetree@lfdr.de>; Sat, 27 Aug 2022 11:08:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232850AbiH0I4S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 Aug 2022 04:56:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57680 "EHLO
+        id S229618AbiH0JIb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 Aug 2022 05:08:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231391AbiH0I4P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Aug 2022 04:56:15 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AF1A2AC
-        for <devicetree@vger.kernel.org>; Sat, 27 Aug 2022 01:56:14 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id y10so445980ljq.0
-        for <devicetree@vger.kernel.org>; Sat, 27 Aug 2022 01:56:13 -0700 (PDT)
+        with ESMTP id S229561AbiH0JIa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Aug 2022 05:08:30 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57A1350041
+        for <devicetree@vger.kernel.org>; Sat, 27 Aug 2022 02:08:29 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id h8so1239574lfm.8
+        for <devicetree@vger.kernel.org>; Sat, 27 Aug 2022 02:08:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=QJ4HT0he87HIgYoNNPjNZYpebuQrG8KDl61t9yCXsaY=;
-        b=BaWqQvP4at07HKbZdqtc0L8oDdEaQYPfd7KBR+mYZ/CisEiBqIcJ8kzbcAY2g2tYpZ
-         jHbuE8F56jVyhmXF3ZjAmh5frvuiJEj9ruNZ+R7Re30akwJLgkyZaaFhNCReoJ0zQnqE
-         c6QURcK7vm1ofxsR4SZTKRJfxQPJchPhBaikT8MV9E7QdtmjnVowN/tH3cspjNnyH3zT
-         n+rECFpc95h6++tIo/KGObvUOBkXmwlEh7Z9ya8k0ZfrYOImfWvcH6QL4ODDidNyS+vg
-         alkBLFySZiDrf151hSSbeO8v/KExGY1SZBxdhNDnlPYHb3H1RjXG1/bl+hhAg3vaRLac
-         RFmg==
+        bh=FSNTuMMXeoC70lxTKB570T+X2lQfg//2X9+xflsPUaU=;
+        b=euY+IKg1WUwyREaVEkC0vU0Uiy/uYIpgANHbnYpTVD/4w2Wr8nhaBpwM2t1AcH+N25
+         cuT7659vaQd7rrq4jKApPhnVWFpSr0L+GwVVNeieQ0GKuAWjWh0KIhqshC8IXsymjoKb
+         M0IHcmjiLUF1FBuAnpiHI5j1uwvGIjc9vB5Sxi5lclwcz4v1PO/y1PrQD3rkGtBshsfX
+         Tb+29FfeAwzTSzIpHYPFqws8kKPQqCNidSIHCZnZ47gFf6/G8385bznQzr/pXffeMc48
+         ueaJYBcXp0iAcdqITrpTT3F9ohgo+ZgrTHTJ1JX1/eYopbfnLchcB0zJFSBVCAGlyjba
+         qZyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=QJ4HT0he87HIgYoNNPjNZYpebuQrG8KDl61t9yCXsaY=;
-        b=Y21OF3eXv8QeyEvx5Y+jhzYRL3TkWSrXtgzR85/psCGDJnBbY665/UaPlF3WcC5f9n
-         FR+4loU20x8/5vaiATdcaoKs7/pm+IQeU417TdItwO8XF11xkuSneXRkKjt9OraGLWa0
-         41jP06VXRq7UODHKD9B2B5S070mOMreoqqmXuS9jYvM2HPW6did948fziANGY31HlScI
-         gkGKnNnker/LXvnPV5VsCQcTiiNN8UAWMTKJe5fEl3k4SX4iO/gB9eVAisRdT13aku3w
-         NG+mXZewOf06Hnv+ocURSoJ5ISq+thOtA2WmchMDwMR73hUJ09QwQ+YKYz7XN+MFpvCx
-         HLdg==
-X-Gm-Message-State: ACgBeo0LwFJjB2vqF2KSOL0accAql5lyWHgVAFvU1/1SqCsJjwdIE9Wp
-        Qg0F4bUTIDeeZesrTrmJ8oKHHg==
-X-Google-Smtp-Source: AA6agR5Gf2HiB0PYqIOyopTJHVHjtmH8tqD3JHxMYot9zAwjH2AhyPPMzu27/HBBbMawPBnpWAwh0Q==
-X-Received: by 2002:a2e:a78e:0:b0:261:d661:14b8 with SMTP id c14-20020a2ea78e000000b00261d66114b8mr3384038ljf.452.1661590572347;
-        Sat, 27 Aug 2022 01:56:12 -0700 (PDT)
+        bh=FSNTuMMXeoC70lxTKB570T+X2lQfg//2X9+xflsPUaU=;
+        b=m4sIWou1ysX1bqD2CJwJNIc+oHmrIPk0XcwEX86zoY5llPJbd4D6Ru2zgRZfHT5wJy
+         6C+ooH4kE4AIsumEuOqbhI4c5BABBr37hAUrZaAhgNdktbhxTABRhJ3m2douYfOJRcr2
+         NQKUT18DIDxlQjDoxLAyIZIn+dO0N4ECo6lx38DyJkO299jUBeihynNNtB7F6twtro9L
+         ub3CskprYXygXph/PI7+h8t2UyPH69VN4u3GjOzfS/zkk4w4kCwHW0jv1ykelH/Fc6YZ
+         VCPo9xLM5yYIVonKfNYPPsK0q/ensXV1Uq5uKItyu68bfNcj7vxmZG+cnZ1TwItGuDik
+         mycg==
+X-Gm-Message-State: ACgBeo1G4PV/8M/u1EKbNiHvE82c2xO9X6Gz7RThaPeTw91hKsMxLZ1G
+        6xovEiCv/tn4dD3dsalAb8XU5g==
+X-Google-Smtp-Source: AA6agR7eHbsuSjMDWmlRF4XAP2ouN+fu6UYv20PiYQrU2hi7LhX6V6Xtz4JdK1hSZIBLuss6y/sPGg==
+X-Received: by 2002:a19:dc4a:0:b0:493:e21:b77d with SMTP id f10-20020a19dc4a000000b004930e21b77dmr3422263lfj.580.1661591307685;
+        Sat, 27 Aug 2022 02:08:27 -0700 (PDT)
 Received: from [192.168.0.71] (82.131.98.15.cable.starman.ee. [82.131.98.15])
-        by smtp.gmail.com with ESMTPSA id u16-20020a056512129000b00492c2394ea5sm41760lfs.165.2022.08.27.01.56.11
+        by smtp.gmail.com with ESMTPSA id n3-20020a05651203e300b0048a757d1303sm606847lfq.217.2022.08.27.02.08.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 27 Aug 2022 01:56:11 -0700 (PDT)
-Message-ID: <ee6dc940-8b90-1f57-28b7-6de8e3483027@linaro.org>
-Date:   Sat, 27 Aug 2022 11:56:10 +0300
+        Sat, 27 Aug 2022 02:08:27 -0700 (PDT)
+Message-ID: <e072a8aa-512c-12f5-85e8-aa2fd46ebe8c@linaro.org>
+Date:   Sat, 27 Aug 2022 12:08:26 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: Aw: Re: [PATCH v5 5/5] arm64: dts: rockchip: Add PCIe v3 nodes to
- BPI-R2-Pro
+Subject: Re: [PATCH 1/4] dt-bindings: display: imx: add binding for i.MX8MP
+ HDMI TX
 Content-Language: en-US
-To:     Frank Wunderlich <frank-w@public-files.de>
-Cc:     Frank Wunderlich <linux@fw-web.de>,
-        linux-rockchip@lists.infradead.org,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
+To:     Lucas Stach <l.stach@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Yifeng Zhao <yifeng.zhao@rock-chips.com>,
-        Johan Jonker <jbx6244@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Simon Xue <xxm@rock-chips.com>, Liang Chen <cl@rock-chips.com>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220825193836.54262-1-linux@fw-web.de>
- <20220825193836.54262-6-linux@fw-web.de>
- <cae915f6-c951-ba97-346d-00922c85067d@linaro.org>
- <trinity-88fbbdbe-de76-4479-9580-70edc34a4181-1661590200169@3c-app-gmx-bs16>
+        Liu Ying <victor.liu@nxp.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Marek Vasut <marex@denx.de>, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, patchwork-lst@pengutronix.de,
+        kernel@pengutronix.de
+References: <20220826192424.3216734-1-l.stach@pengutronix.de>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <trinity-88fbbdbe-de76-4479-9580-70edc34a4181-1661590200169@3c-app-gmx-bs16>
+In-Reply-To: <20220826192424.3216734-1-l.stach@pengutronix.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -91,56 +86,90 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/08/2022 11:50, Frank Wunderlich wrote:
-> Hi
+On 26/08/2022 22:24, Lucas Stach wrote:
+> The HDMI TX controller on the i.MX8MP SoC is a Synopsys designware IP
+> core with a little bit of SoC integration around it.
 > 
->> Gesendet: Freitag, 26. August 2022 um 08:50 Uhr
->> Von: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
->> On 25/08/2022 22:38, Frank Wunderlich wrote:
->>> From: Frank Wunderlich <frank-w@public-files.de>
-> 
->>> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts b/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
->>> index 93d383b8be87..40b90c052634 100644
->>> --- a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
->>> +++ b/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
->>> @@ -86,6 +86,66 @@ vcc5v0_sys: vcc5v0-sys {
->>>  		vin-supply = <&dc_12v>;
->>>  	};
->>>
->>> +	pcie30_avdd0v9: pcie30-avdd0v9 {
->>
->> Use consistent naming, so if other nodes have "regulator" suffix, use it
->> here as well.
-> 
-> only these 3 new have the suffix:
-> 
-> vcc3v3_pi6c_05: vcc3v3-pi6c-05-regulator
-> vcc3v3_minipcie: vcc3v3-minipcie-regulator
-> vcc3v3_ngff: vcc3v3-ngff-regulator
-> 
-> so i would drop it there...
-> 
-> so i end up with (including existing ones to compare):
-> 
-> vcc3v3_sys: vcc3v3-sys
-> vcc5v0_sys: vcc5v0-sys
-> pcie30_avdd0v9: pcie30-avdd0v9
-> pcie30_avdd1v8: pcie30-avdd1v8
-> vcc3v3_pi6c_05: vcc3v3-pi6c-05
-> vcc3v3_minipcie: vcc3v3-minipcie
-> vcc3v3_ngff: vcc3v3-ngff
-> vcc5v0_usb: vcc5v0_usb
-> vcc5v0_usb_host: vcc5v0-usb-host
-> vcc5v0_usb_otg: vcc5v0-usb-otg
-> 
-> is this ok?
-> 
-> maybe swap avdd* and pcie30 part to have voltage in front of function.
-> 
+> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> Tested-by: Marek Vasut <marex@denx.de>
 
-I prefer all of them have regulator suffix. I think reasonable is also
-to rename the old ones and then add new ones with suffix.
+What tested-by means in the terms of bindings? What tests were applied
+exactly?
 
+> ---
+>  .../bindings/display/imx/fsl,imx8mp-hdmi.yaml | 74 +++++++++++++++++++
+>  1 file changed, 74 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi.yaml b/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi.yaml
+> new file mode 100644
+> index 000000000000..14f7cd47209c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi.yaml
+> @@ -0,0 +1,74 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/imx/fsl,imx8mp-hdmi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale i.MX8MP DWC HDMI TX Encoder
+> +
+> +maintainers:
+> +  - Lucas Stach <l.stach@pengutronix.de>
+> +
+> +description: |
+> +  The HDMI transmitter is a Synopsys DesignWare HDMI 2.0 TX controller IP.
+> +
+> +allOf:
+> +  - $ref: ../bridge/synopsys,dw-hdmi.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - fsl,imx8mp-hdmi
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  reg-io-width:
+> +    const: 1
+> +
+> +  clocks:
+> +    maxItems: 5
+> +
+> +  clock-names:
+> +    items:
+> +      - {}
+> +      - {}
+
+Clocks should be strictly defined.
+
+> +      - const: cec
+> +      - const: pix
+> +      - const: fdcc
+> +
+> +  interrupts:
+> +    maxItems: 1
+
+This is coming from synopsys. Skip it and use unevaluatedProperties:false
+
+reg actually as well...
+
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - interrupts
+> +  - power-domains
+> +
+> +additionalProperties: false
+> +
 
 Best regards,
 Krzysztof
