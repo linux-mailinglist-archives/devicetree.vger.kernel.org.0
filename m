@@ -2,229 +2,377 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 36D025A3700
-	for <lists+devicetree@lfdr.de>; Sat, 27 Aug 2022 12:27:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 043EA5A379F
+	for <lists+devicetree@lfdr.de>; Sat, 27 Aug 2022 14:36:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234333AbiH0K0w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 Aug 2022 06:26:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44208 "EHLO
+        id S232789AbiH0MgD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 Aug 2022 08:36:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233731AbiH0K0u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Aug 2022 06:26:50 -0400
-Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEB9A101FD;
-        Sat, 27 Aug 2022 03:26:47 -0700 (PDT)
-Received: from dggpemm500024.china.huawei.com (unknown [172.30.72.57])
-        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4MFCSJ5fWmzYcvT;
-        Sat, 27 Aug 2022 18:22:24 +0800 (CST)
-Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
- dggpemm500024.china.huawei.com (7.185.36.203) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.24; Sat, 27 Aug 2022 18:26:45 +0800
-Received: from [10.174.178.55] (10.174.178.55) by
- dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.24; Sat, 27 Aug 2022 18:26:44 +0800
-Subject: Re: [BUG] amba: Remove deferred device addition
-To:     Saravana Kannan <saravanak@google.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        <devicetree@vger.kernel.org>, Russell King <linux@armlinux.org.uk>,
-        "Linus Walleij" <linus.walleij@linaro.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        <linux-input@vger.kernel.org>
-References: <20210816074619.177383-1-wangkefeng.wang@huawei.com>
- <20210816074619.177383-4-wangkefeng.wang@huawei.com>
- <CAL_JsqLBddXVeP-t++wqPNp=xYF7tvEcnCbjFnK9CUBLK2+9JA@mail.gmail.com>
- <CAGETcx8SY14rcd7g=Gdwmw7sUMb=jdEV+ffuNpg6btDoL1jmWw@mail.gmail.com>
- <ee649111-dc07-d6db-8872-dcb692802236@huawei.com>
- <CAGETcx9drOdE_vfn-nhDZM9MbgxGxYJN6ydiAVxo_Ltqve9eTg@mail.gmail.com>
- <b5eb935f-26e1-6475-63af-e7f6101eb017@huawei.com>
- <CAGETcx9yaWZOzt=gcyNAshoHdPoYizhmrKS-kU9c2QM2+HqeEw@mail.gmail.com>
- <df8e7756-8b0d-d7de-a9ff-3f6eb0ffa8a5@huawei.com>
- <CAGETcx-47yRUcBjEdWFBtroSEkHXRNrJ4zaD8WpE0DPEPp9NxQ@mail.gmail.com>
- <85b28900-5f42-b997-2ded-0b952bc2a03e@huawei.com>
- <CAGETcx-N4+u0iw9n5ncx_9MNnTa3ViyesxsDD7xN3jtEPT-uBw@mail.gmail.com>
- <265bb783-10da-a7c1-2625-055dec5643a3@huawei.com>
- <CAGETcx9m4=7V25nvYa0030ChKeJw5bu3ogs6gjFpjNKdq+_B_Q@mail.gmail.com>
- <4a8b0a6d-b1d5-ffe9-8e31-61844cb9bd89@huawei.com>
- <CAGETcx8RLor0JcboBuMrB96xUot14P1CAcqoen7ZHnYRi7KMEQ@mail.gmail.com>
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Message-ID: <051f1eb5-67f1-b3f9-cc4e-c5902068532f@huawei.com>
-Date:   Sat, 27 Aug 2022 18:26:32 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        with ESMTP id S232793AbiH0MgC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Aug 2022 08:36:02 -0400
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C49425C49;
+        Sat, 27 Aug 2022 05:35:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1661603760; x=1693139760;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=z1GOHa4sbRW9EZHujjqjnAI2Ul+W2EA/lajLX5wB5rk=;
+  b=LoP6UL0mQxpUnnJObbYHao4lsglsoqq7pfZtLdxmxJVOeR4oquCDrkcu
+   in+7olA+ibllt3JchvhZhJDuzkCm1VHviFS2oKa0uppgs1lvLQuPpdOsx
+   Z2m9ZH8KVR4wzio5MgVba2lMKSGwLSEIHb5rY/wKWY4IAIbbbvVdxcL0E
+   fdi8NPnClSbFOVTuhEoRSyv3BZXHIyl/RZG+fLitI/byt5FgU3LE1JyD8
+   zXhA5IBynEbv5ESX6ScvbSUI/hek/Ub3T7Sf8NF0htLGfOzWNfxlGA2oD
+   0544nUdGaqslhXXjwyGc4QBH9DzmkOj3B9ZKge1RfFwQJdSZxbgXDM7yD
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10451"; a="294668945"
+X-IronPort-AV: E=Sophos;i="5.93,267,1654585200"; 
+   d="scan'208";a="294668945"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Aug 2022 05:35:50 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,267,1654585200"; 
+   d="scan'208";a="671805359"
+Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
+  by fmsmga008.fm.intel.com with ESMTP; 27 Aug 2022 05:35:45 -0700
+Date:   Sat, 27 Aug 2022 20:26:29 +0800
+From:   Xu Yilun <yilun.xu@intel.com>
+To:     Nava kishore Manne <nava.kishore.manne@amd.com>
+Cc:     git@amd.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        michal.simek@xilinx.com, mdf@kernel.org, hao.wu@intel.com,
+        trix@redhat.com, p.zabel@pengutronix.de,
+        gregkh@linuxfoundation.org, ronak.jain@xilinx.com,
+        rajan.vaja@xilinx.com, abhyuday.godhasara@xilinx.com,
+        piyush.mehta@xilinx.com, lakshmi.sai.krishna.potthuri@xilinx.com,
+        harsha.harsha@xilinx.com, linus.walleij@linaro.org,
+        nava.manne@xilinx.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-fpga@vger.kernel.org
+Subject: Re: [PATCH 4/4] fpga: zynqmp: Add afi config driver
+Message-ID: <YwoNdUPoSKKHhzxx@yilunxu-OptiPlex-7050>
+References: <20220824035542.706433-1-nava.kishore.manne@amd.com>
+ <20220824035542.706433-5-nava.kishore.manne@amd.com>
 MIME-Version: 1.0
-In-Reply-To: <CAGETcx8RLor0JcboBuMrB96xUot14P1CAcqoen7ZHnYRi7KMEQ@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.174.178.55]
-X-ClientProxiedBy: dggems705-chm.china.huawei.com (10.3.19.182) To
- dggpemm500006.china.huawei.com (7.185.36.236)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220824035542.706433-5-nava.kishore.manne@amd.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 2022-08-24 at 09:25:42 +0530, Nava kishore Manne wrote:
+> Add zynqmp AXI FIFO interface(AFI) config driver. This is useful for the
+> configuration of the PS-PL interface on Zynq US+ MPSoC platform.
 
+Please help illustrate how to use the device for FPGA reprogramming, why
+it should be implemented as an FPGA bridge.
 
-On 2022/7/6 3:25, Saravana Kannan wrote:
-> On Fri, Sep 10, 2021 at 12:59 AM Kefeng Wang <wangkefeng.wang@huawei.com> wrote:
->>
->>
->> On 2021/9/9 11:30, Saravana Kannan wrote:
->>> On Fri, Aug 27, 2021 at 6:09 PM Kefeng Wang <wangkefeng.wang@huawei.com> wrote:
->>>>
->>>> On 2021/8/28 3:09, Saravana Kannan wrote:
->>>>> On Fri, Aug 27, 2021 at 7:38 AM Kefeng Wang <wangkefeng.wang@huawei.com> wrote:
->>>>>> On 2021/8/27 8:04, Saravana Kannan wrote:
->>>>>>> On Thu, Aug 26, 2021 at 1:22 AM Kefeng Wang <wangkefeng.wang@huawei.com> wrote:
->>>>>>>>>>> Btw, I've been working on [1] cleaning up the one-off deferred probe
->>>>>>>>>>> solution that we have for amba devices. That causes a bunch of other
->>>>>>>>>>> headaches. Your patch 3/3 takes us further in the wrong direction by
->>>>>>>>>>> adding more reasons for delaying the addition of the device.
->>>>>>>> Hi Saravana, I try the link[1], but with it, there is a crash when boot
->>>>>>>> (qemu-system-arm -M vexpress-a15),
->>>>> I'm assuming it's this one?
->>>>> arch/arm/boot/dts/vexpress-v2p-ca15_a7.dts
->>>> I use arch/arm/boot/dts/vexpress-v2p-ca15-tc1.dts.
->>>>
->>>> qemu-system-arm -M vexpress-a15 -dtb vexpress-v2p-ca15-tc1.dtb -cpu
->>>> cortex-a15 -smp 2 -m size=3G -kernel zImage -rtc base=localtime -initrd
->>>> initrd-arm32 -append 'console=ttyAMA0 cma=0 kfence.sample_interval=0
->>>> earlyprintk debug ' -device virtio-net-device,netdev=net8 -netdev
->>>> type=tap,id=net8,script=/etc/qemu-ifup,downscript=/etc/qemu-ifdown
->>>> -nographic
->>>>
->>>>>>> Hi,
->>>>>>>
->>>>>>> It's hard to make sense of the logs. Looks like two different threads
->>>>>>> might be printing to the log at the same time? Can you please enable
->>>>>>> the config that prints the thread ID (forgot what it's called) and
->>>>>>> collect this again? With what I could tell the crash seems to be
->>>>>>> happening somewhere in platform_match(), but that's not related to
->>>>>>> this patch at all?
->>>>>> Can you reproduce it? it is very likely related(without your patch, the
->>>>>> boot is fine),
->>>>> Sorry, I haven't ever setup qemu and booted vexpress. Thanks for your help.
->>>>>
->>>>>> the NULL ptr is about serio, it is registed from amba driver.
->>>>>>
->>>>>> ambakmi_driver_init
->>>>>>
->>>>>>     -- amba_kmi_probe
->>>>>>
->>>>>>       -- __serio_register_port
->>>>> Thanks for the pointer. I took a look at the logs and the code. It's
->>>>> very strange. As you can see from the backtrace, platform_match() is
->>>>> being called for the device_add() from serio_handle_event(). But the
->>>>> device that gets added there is on the serio_bus which obviously
->>>>> should be using the serio_bus_match.
->>>> Yes, I am confused too.
->>>>>> +Dmitry and input maillist, is there some known issue about serio ?
->>>>>>
->>>>>> I add some debug, the full log is attached.
->>>>>>
->>>>>> [    2.958355][   T41] input: AT Raw Set 2 keyboard as
->>>>>> /devices/platform/bus@8000000/bus@8000000:motherboard-bus/bus@8000000:motherboard-bus:iofpga-bus@300000000/1c060000.kmi/serio0/input/input0
->>>>>> [    2.977441][   T41] serio serio1: pdev c1e05508, pdev->name (null),
->>>>>> drv c1090fc0, drv->name vexpress-reset
->>>>> Based on the logs you added, it's pretty clear we are getting to
->>>>> platform_match(). It's also strange that the drv->name is
->>>>> vexpress-reset
->>>> ...
->>>>>> [    3.003113][   T41] Backtrace:
->>>>>> [    3.003451][   T41] [<c0560bb4>] (strcmp) from [<c0646358>] (platform_match+0xdc/0xf0)
->>>>>> [    3.003963][   T41] [<c064627c>] (platform_match) from [<c06437d4>] (__device_attach_driver+0x3c/0xf4)
->>>>>> [    3.004769][   T41] [<c0643798>] (__device_attach_driver) from [<c0641180>] (bus_for_each_drv+0x68/0xc8)
->>>>>> [    3.005481][   T41] [<c0641118>] (bus_for_each_drv) from [<c0642f40>] (__device_attach+0xf0/0x16c)
->>>>>> [    3.006152][   T41] [<c0642e50>] (__device_attach) from [<c06439d4>] (device_initial_probe+0x1c/0x20)
->>>>>> [    3.006853][   T41] [<c06439b8>] (device_initial_probe) from [<c0642030>] (bus_probe_device+0x94/0x9c)
->>>>>> [    3.007259][   T41] [<c0641f9c>] (bus_probe_device) from [<c063f9cc>] (device_add+0x408/0x8b8)
->>>>>> [    3.007900][   T41] [<c063f5c4>] (device_add) from [<c071c1cc>] (serio_handle_event+0x1b8/0x234)
->>>>>> [    3.008824][   T41] [<c071c014>] (serio_handle_event) from [<c01475a4>] (process_one_work+0x238/0x594)
->>>>>> [    3.009737][   T41] [<c014736c>] (process_one_work) from [<c014795c>] (worker_thread+0x5c/0x5f4)
->>>>>> [    3.010638][   T41] [<c0147900>] (worker_thread) from [<c014feb4>] (kthread+0x178/0x194)
->>>>>> [    3.011496][   T41] [<c014fd3c>] (kthread) from [<c0100150>] (ret_from_fork+0x14/0x24)
->>>>>> [    3.011860][   T41] Exception stack(0xc1675fb0 to 0xc1675ff8)
->>>>> But the platform_match() is happening for the device_add() from
->>>>> serio_event_handle() that's adding a device to the serio_bus and it
->>>>> should be using serio_bus_match().
->>>>>
->>>>> I haven't reached any conclusion yet, but my current thought process
->>>>> is that it's either:
->>>>> 1. My patch is somehow causing list corruption. But I don't directly
->>>>> touch any list in my change (other than deleting a list entirely), so
->>>>> it's not clear how that would be happening.
->>>> Maybe some concurrent driver load？
->>>>
->>>>> 2. Without my patch, these AMBA device's probe would be delayed at
->>>>> least until 5 seconds or possibly later. I'm wondering if my patch is
->>>>> catching some bad timing assumptions in other code.
->>>> After Rob's patch, It will retry soon.
->>>>
->>>> commit 039599c92d3b2e73689e8b6e519d653fd4770abb
->>>> Author: Rob Herring <robh@kernel.org>
->>>> Date:   Wed Apr 29 15:58:12 2020 -0500
->>>>
->>>>       amba: Retry adding deferred devices at late_initcall
->>>>
->>>>       If amba bus devices defer when adding, the amba bus code simply retries
->>>>       adding the devices every 5 seconds. This doesn't work well as it
->>>>       completely unsynchronized with starting the init process which can
->>>>       happen in less than 5 secs. Add a retry during late_initcall. If the
->>>>       amba devices are added, then deferred probe takes over. If the
->>>>       dependencies have not probed at this point, then there's no improvement
->>>>       over previous behavior. To completely solve this, we'd need to retry
->>>>       after every successful probe as deferred probe does.
->>>>
->>>>       The list_empty() check now happens outside the mutex, but the mutex
->>>>       wasn't necessary in the first place.
->>>>
->>>>       This needed to use deferred probe instead of fragile initcall ordering
->>>>       on 32-bit VExpress systems where the apb_pclk has a number of probe
->>>>       dependencies (vexpress-sysregs, vexpress-config).
->>>>
->>>>
->>>>> You might be able to test out theory (2) by DEFERRED_DEVICE_TIMEOUT to
->>>>> a much smaller number. Say 500ms or 100ms. If it doesn't crash, it
->>>>> doesn't mean it's not (2), but if it does, then we know for sure it's
->>>>> (2).
->>>> ok, I will try this one, but due to above patch, it may not work.
->>> Were you able to find anything more?
->> I can't find any clue， and have no time to check this for now, is there
->> any news from your side?
-
-Hi, Saravana and Kefeng:
-  I've spent the whole afternoon trying to figure this out, and the fix
-patch has been cc you two.
+From the code I actually didn't see any operation that gates the
+fpga-region from other part of the machine.
 
 > 
-> To close out this thread, the issue was due to a UAF bug in driver
-> core that was fixed by:
-> https://lore.kernel.org/all/20220513112444.45112-1-schspa@gmail.com/
+> Signed-off-by: Nava kishore Manne <nava.kishore.manne@amd.com>
+> ---
+>  MAINTAINERS               |   6 ++
+>  drivers/fpga/Kconfig      |  13 +++
+>  drivers/fpga/Makefile     |   1 +
+>  drivers/fpga/zynqmp-afi.c | 211 ++++++++++++++++++++++++++++++++++++++
+>  4 files changed, 231 insertions(+)
+>  create mode 100644 drivers/fpga/zynqmp-afi.c
 > 
-> With that fix, there wouldn't have been a crash, but amba driver
-> registration would have failed (because match returned
-> non-EPROBE_DEFER error).
-> 
-> -Saravana
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
-> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 20ffac651214..957e753e6406 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -8032,6 +8032,12 @@ F:	Documentation/fpga/
+>  F:	drivers/fpga/
+>  F:	include/linux/fpga/
+>  
+> +FPGA ZYNQMP PS-PL BRIDGE DRIVER
+> +M:	Nava kishore Manne <nava.kishore.manne@amd.com>
+> +S:	Supported
+> +F:	Documentation/devicetree/bindings/fpga/xlnx,zynqmp-afi-fpga.yaml
+> +F:	drivers/fpga/zynqmp-afi.c
+> +
+>  INTEL MAX10 BMC SECURE UPDATES
+>  M:	Russ Weight <russell.h.weight@intel.com>
+>  L:	linux-fpga@vger.kernel.org
+> diff --git a/drivers/fpga/Kconfig b/drivers/fpga/Kconfig
+> index 6c416955da53..c08794d30fb5 100644
+> --- a/drivers/fpga/Kconfig
+> +++ b/drivers/fpga/Kconfig
+> @@ -130,6 +130,19 @@ config XILINX_PR_DECOUPLER
+>  	  reconfiguration, preventing the system deadlock that can
+>  	  occur if AXI transactions are interrupted by DFX.
+>  
+> +config ZYNQMP_AFI
+> +	tristate "Xilinx ZYNQMP AFI support"
+> +	depends on FPGA_BRIDGE
+> +	help
+> +	  Say Y to enable drivers to handle the PS-PL clocks configurations
+> +	  and PS-PL Bus-width. Xilinx Zynq US+ MPSoC connect the PS to the
+> +	  programmable logic (PL) through the AXI port. This AXI port helps
+> +	  to establish the data path between the PS and PL.
+> +	  In-order to establish the proper communication path between PS and PL,
+> +	  the AXI port data path should be configured with the proper Bus-width
+> +	  values and it will also handles the PS-PL reset signals to reset the
+> +	  PL domain.
 
--- 
-Regards,
-  Zhen Lei
+Same concern, please describe its relationship to FPGA reprogramming.
+
+> +
+>  config FPGA_REGION
+>  	tristate "FPGA Region"
+>  	depends on FPGA_BRIDGE
+> diff --git a/drivers/fpga/Makefile b/drivers/fpga/Makefile
+> index 42ae8b58abce..94cfe60972db 100644
+> --- a/drivers/fpga/Makefile
+> +++ b/drivers/fpga/Makefile
+> @@ -31,6 +31,7 @@ obj-$(CONFIG_FPGA_BRIDGE)		+= fpga-bridge.o
+>  obj-$(CONFIG_SOCFPGA_FPGA_BRIDGE)	+= altera-hps2fpga.o altera-fpga2sdram.o
+>  obj-$(CONFIG_ALTERA_FREEZE_BRIDGE)	+= altera-freeze-bridge.o
+>  obj-$(CONFIG_XILINX_PR_DECOUPLER)	+= xilinx-pr-decoupler.o
+> +obj-$(CONFIG_ZYNQMP_AFI)		+= zynqmp-afi.o
+>  
+>  # High Level Interfaces
+>  obj-$(CONFIG_FPGA_REGION)		+= fpga-region.o
+> diff --git a/drivers/fpga/zynqmp-afi.c b/drivers/fpga/zynqmp-afi.c
+> new file mode 100644
+> index 000000000000..bc975d304039
+> --- /dev/null
+> +++ b/drivers/fpga/zynqmp-afi.c
+> @@ -0,0 +1,211 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2022 Xilinx, Inc.
+> + */
+> +
+> +#include <linux/err.h>
+> +#include <linux/firmware/xlnx-zynqmp.h>
+> +#include <linux/fpga/fpga-bridge.h>
+> +#include <linux/io.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/reset.h>
+> +#include <linux/slab.h>
+> +
+> +/* Registers and special values for doing register-based operations */
+> +#define AFI_RDCHAN_CTRL_OFFSET	0x00
+> +#define AFI_WRCHAN_CTRL_OFFSET	0x14
+> +#define AFI_BUSWIDTH_MASK	BIT(0)
+> +
+> +/**
+> + * struct zynqmp_afi - AFI register description.
+> + * @dev: device that owns this.
+> + * @of_node: Device Tree overlay.
+> + * @resets: Pointer to the reset control for ps-pl resets.
+> + */
+> +struct zynqmp_afi {
+> +	struct device *dev;
+> +	struct device_node *of_node;
+> +	struct reset_control *resets;
+> +};
+> +
+> +/**
+> + * struct zynqmp_afi_configreg - AFI configuration registers info.
+> + * @reg:	Name of the AFI configuration register.
+> + * @id:		Register index value.
+> + */
+> +struct zynqmp_afi_configreg {
+> +	char *reg;
+> +	u32 id;
+> +};
+> +
+> +static struct zynqmp_afi_configreg afi_cfgreg[] = {
+> +	{.reg = "xlnx,afi-fm0-rd-bus-width",	.id = AFIFM0_RDCTRL},
+> +	{.reg = "xlnx,afi-fm1-rd-bus-width",	.id = AFIFM1_RDCTRL},
+> +	{.reg = "xlnx,afi-fm2-rd-bus-width",	.id = AFIFM2_RDCTRL},
+> +	{.reg = "xlnx,afi-fm3-rd-bus-width",	.id = AFIFM3_RDCTRL},
+> +	{.reg = "xlnx,afi-fm4-rd-bus-width",	.id = AFIFM4_RDCTRL},
+> +	{.reg = "xlnx,afi-fm5-rd-bus-width",	.id = AFIFM5_RDCTRL},
+> +	{.reg = "xlnx,afi-fm6-rd-bus-width",	.id = AFIFM6_RDCTRL},
+> +	{.reg = "xlnx,afi-fm0-wr-bus-width",	.id = AFIFM0_WRCTRL},
+> +	{.reg = "xlnx,afi-fm1-wr-bus-width",	.id = AFIFM1_WRCTRL},
+> +	{.reg = "xlnx,afi-fm2-wr-bus-width",	.id = AFIFM2_WRCTRL},
+> +	{.reg = "xlnx,afi-fm3-wr-bus-width",	.id = AFIFM3_WRCTRL},
+> +	{.reg = "xlnx,afi-fm4-wr-bus-width",	.id = AFIFM4_WRCTRL},
+> +	{.reg = "xlnx,afi-fm5-wr-bus-width",	.id = AFIFM5_WRCTRL},
+> +	{.reg = "xlnx,afi-fm6-wr-bus-width",	.id = AFIFM6_WRCTRL},
+> +	{.reg = "xlnx,afi-fs-ss0-bus-width",	.id = AFIFS},
+> +	{.reg = "xlnx,afi-fs-ss2-bus-width",	.id = AFIFS_SS2},
+> +	{}
+> +};
+> +
+> +static int zynqmp_afi_config(struct zynqmp_afi *afi_data)
+> +{
+> +	struct zynqmp_afi_configreg *cfgptr = afi_cfgreg;
+> +	struct device_node *np = afi_data->of_node;
+> +	u32 afi_ss0_val, afi_ss1_val, bus_width;
+> +	int ret;
+> +
+> +	while (cfgptr->reg) {
+> +		ret = of_property_read_u32(np, cfgptr->reg, &bus_width);
+> +		if (!ret) {
+> +			if (cfgptr->id == AFIFS_SS2) {
+> +				if (bus_width == 32)
+> +					ret = zynqmp_pm_afi(AFIFS_SS2,
+> +							    AFIFS_SS_BUS_WIDTH_32_CONFIG_VAL);
+> +				else if (bus_width == 64)
+> +					ret = zynqmp_pm_afi(AFIFS_SS2,
+> +							    AFIFS_SS0_SS2_BUS_WIDTH_64_CONFIG_VAL);
+> +				else if (bus_width == 128)
+> +					ret = zynqmp_pm_afi(AFIFS_SS2,
+> +							    AFIFS_SS0_SS2_BUS_WIDTH_128_CONFIG_VAL);
+> +				else
+> +					return -EINVAL;
+> +			} else if (cfgptr->id == AFIFS) {
+> +				if (bus_width == 32)
+> +					afi_ss0_val = AFIFS_SS_BUS_WIDTH_32_CONFIG_VAL;
+> +				else if (bus_width == 64)
+> +					afi_ss0_val = AFIFS_SS0_SS2_BUS_WIDTH_64_CONFIG_VAL;
+> +				else if (bus_width == 128)
+> +					afi_ss0_val = AFIFS_SS0_SS2_BUS_WIDTH_128_CONFIG_VAL;
+> +				else
+> +					return -EINVAL;
+> +
+> +				ret = of_property_read_u32(np, "xlnx,afi-fs-ss1-bus-width",
+> +							   &bus_width);
+> +				if (!ret) {
+> +					if (bus_width == 32)
+> +						afi_ss1_val = AFIFS_SS_BUS_WIDTH_32_CONFIG_VAL;
+> +					else if (bus_width == 64)
+> +						afi_ss1_val = AFIFS_SS1_BUS_WIDTH_64_CONFIG_VAL;
+> +					else if (bus_width == 128)
+> +						afi_ss1_val = AFIFS_SS1_BUS_WIDTH_128_CONFIG_VAL;
+> +					else
+> +						return -EINVAL;
+> +
+> +					ret = zynqmp_pm_afi(AFIFS, afi_ss1_val | afi_ss0_val);
+> +				}
+> +			} else {
+> +				if (bus_width == 32)
+> +					ret = zynqmp_pm_afi(cfgptr->id,
+> +							    AFIFM_BUS_WIDTH_32_CONFIG_VAL);
+> +				else if (bus_width == 64)
+> +					ret = zynqmp_pm_afi(cfgptr->id,
+> +							    AFIFM_BUS_WIDTH_64_CONFIG_VAL);
+> +				else if (bus_width == 128)
+> +					ret = zynqmp_pm_afi(cfgptr->id,
+> +							    AFIFM_BUS_WIDTH_128_CONFIG_VAL);
+> +				else
+> +					return -EINVAL;
+> +			}
+> +		}
+> +		cfgptr++;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int zynqmp_afi_enable_set(struct fpga_bridge *bridge, bool enable)
+> +{
+> +	struct device_node *overlay = bridge->info->overlay;
+> +	struct zynqmp_afi *priv = bridge->priv;
+> +	int ret = 0;
+> +
+> +	if (enable) {
+> +		reset_control_reset(priv->resets);
+> +		return 0;
+> +	}
+> +
+> +	of_node_get(overlay);
+> +	priv->of_node =
+> +	of_find_node_with_property(overlay,
+> +				   "xlnx,afi-fm0-rd-bus-width");
+
+I'm a little confused here. The fpga_image_info.overlay is for
+fpga-region, but from your binding doc this property is for this afi
+device. You want to add another overlay targeting afi dev node during
+reprograming?
+
+> +	if (priv->of_node)
+> +		ret = zynqmp_afi_config(priv);
+> +	of_node_put(priv->of_node);
+> +
+> +	return ret;
+> +}
+> +
+> +static const struct fpga_bridge_ops zynqmp_afi_br_ops = {
+> +	.enable_set = zynqmp_afi_enable_set,
+> +};
+> +
+> +static const struct of_device_id zynqmp_afi_of_match[] = {
+> +	{ .compatible =  "xlnx,zynqmp-afi-fpga" },
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(of, zynqmp_afi_of_match);
+> +
+> +static int zynqmp_afi_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct zynqmp_afi *priv;
+> +	struct fpga_bridge *br;
+> +
+> +	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	priv->dev = dev;
+> +
+> +	priv->resets = devm_reset_control_array_get_optional_exclusive(&pdev->dev);
+> +	if (IS_ERR(priv->resets))
+> +		return PTR_ERR(priv->resets);
+> +
+> +	br = fpga_bridge_register(dev, "Xilinx ZynqMP AFI",
+> +				  &zynqmp_afi_br_ops, priv);
+> +	if (IS_ERR(br)) {
+> +		dev_err(dev, "unable to register Xilinx ZynqMP AFI");
+
+Need a "\n" at the end?
+
+Thanks,
+Yilun
+
+> +		return PTR_ERR(br);
+> +	}
+> +
+> +	platform_set_drvdata(pdev, br);
+> +
+> +	return 0;
+> +}
+> +
+> +static int zynqmp_afi_remove(struct platform_device *pdev)
+> +{
+> +	struct fpga_bridge *bridge = platform_get_drvdata(pdev);
+> +
+> +	fpga_bridge_unregister(bridge);
+> +
+> +	return 0;
+> +}
+> +
+> +static struct platform_driver zynqmp_afi_driver = {
+> +	.probe = zynqmp_afi_probe,
+> +	.remove = zynqmp_afi_remove,
+> +	.driver = {
+> +		.name = "zynqmp_afi",
+> +		.of_match_table = of_match_ptr(zynqmp_afi_of_match),
+> +	},
+> +};
+> +
+> +module_platform_driver(zynqmp_afi_driver);
+> +
+> +MODULE_DESCRIPTION("ZYNQMP FPGA AXI FIFO interface configuration module");
+> +MODULE_AUTHOR("Nava kishore Manne <nava.kishore.manne@amd.com>");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.25.1
+> 
