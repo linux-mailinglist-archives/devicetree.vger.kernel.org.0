@@ -2,76 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD0DE5A38E5
-	for <lists+devicetree@lfdr.de>; Sat, 27 Aug 2022 18:51:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 26CC15A392D
+	for <lists+devicetree@lfdr.de>; Sat, 27 Aug 2022 19:23:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233658AbiH0Qvt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 Aug 2022 12:51:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44834 "EHLO
+        id S233974AbiH0RXs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 Aug 2022 13:23:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230346AbiH0Qvs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Aug 2022 12:51:48 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C062952E7A;
-        Sat, 27 Aug 2022 09:51:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=/jjJwMIKq+LkKLsQ3h3uBoD2NrQzjkqoycsjMRPfpkY=; b=ftnHIn1BMISOUlm3ZGPblgRYuN
-        jfFUUeFilOhnIKjVGA/b0ZNyuyfWwgBdnebgTvFHG2K/LSMwKzUfWtJcag1VDNRSoZkW2Vt88MWpY
-        A0rXrzWbhQC4Y9fBImdSpEdqAJZ5IPYlbagzIqTzQGB2F3xDjQzA8MSSY3OYA40x9ZwY=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1oRz1y-00En20-QT; Sat, 27 Aug 2022 18:51:34 +0200
-Date:   Sat, 27 Aug 2022 18:51:34 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     Heiner Kallweit <hkallweit1@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        kernel test robot <lkp@intel.com>, kernel@pengutronix.de,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-        David Jander <david@protonic.nl>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Robert Marko <robert.marko@sartura.hr>
-Subject: Re: [PATCH net-next v3 6/7] ethtool: add interface to interact with
- Ethernet Power Equipment
-Message-ID: <YwpLlr3nr0rM/JPY@lunn.ch>
-References: <20220827051033.3903585-1-o.rempel@pengutronix.de>
- <20220827051033.3903585-7-o.rempel@pengutronix.de>
+        with ESMTP id S231920AbiH0RXr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Aug 2022 13:23:47 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 951402A72D
+        for <devicetree@vger.kernel.org>; Sat, 27 Aug 2022 10:23:45 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id p5so2701425lfc.6
+        for <devicetree@vger.kernel.org>; Sat, 27 Aug 2022 10:23:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=0Mev3wBjKkNkiFX8lECGnY4J/j2vehNJSt2NBjpTkII=;
+        b=zwgU9H9OFoS/MCha3D3T74FztIUntYk0w7GricFMydQ02R6PZaY8fSgXHfEIYrzsq4
+         CwTKGebSWniXKRREJn0FUhXjQ8Wbw5DhcHw2mk3L+vNbM7ts8O08TKtMdlaV5XiWCR9Y
+         dY3BvvTqZCyh1WNsfZGmx04UoSPWI9AmWd6LvU2K2kDpsJ9Rik3rsiJhkOS6ZjPjD8k1
+         XaWrUpw3T0sq3IYZpC3uyN5kfekE9FjtXYqo64ob2x9SRHVDgcucxUzooaPFiqFIAPh9
+         Yi1mbp1xuzWpFpwYXGUZOLQ+axT0p3hWsK71/j4+ub+MBZp1nCdro/4gajyMbobFlklY
+         WR3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=0Mev3wBjKkNkiFX8lECGnY4J/j2vehNJSt2NBjpTkII=;
+        b=kvw8KxmvJg+WGMPcG9gJZglZL7vFjsyo+fyfFFVe3W8NBOlGcLYWDgU6omhIi1JVnx
+         S2ezAaFZ0oM/rL4DUzBOcNXnuHaoBfy6TvrS1oEmFZB7kGLatiYILd4tLAKQ/2j/kiGn
+         skXF7Pn1qYOoLk3yLyfV76QpY4DDVD5Fvs7xnEh729yIl5ma0SO1p47Lrc4gcqD5+W10
+         Wmw0ha51iYUJA3y87K8/9vSC26bmeBfPB5sKh87SgJKBmL9rse9dH3cSAbdWzDLZcOMQ
+         oC2IS49caILnsgrb8wr9M41YYbdZTtt4UzS5eM8KV0Ula3obl1ErtlSx0JnH6jIa9klK
+         gs3g==
+X-Gm-Message-State: ACgBeo2qE/p6YZZzOEsGFXbcmF7re+Qjim8tQpDmlOTNT3pEdHbBiqIV
+        cbQeW3AW2TDjD6tQR0Vx1/KA7A==
+X-Google-Smtp-Source: AA6agR4bp19iDkCA8mqVi96q7/mlsslLYUFbkHAqosVaZwo7xhtLr4GTcc2/bXIfPNJA5sfm6qM2jQ==
+X-Received: by 2002:a05:6512:3b90:b0:494:256d:943f with SMTP id g16-20020a0565123b9000b00494256d943fmr2441662lfv.497.1661621023972;
+        Sat, 27 Aug 2022 10:23:43 -0700 (PDT)
+Received: from [192.168.0.71] (82.131.98.15.cable.starman.ee. [82.131.98.15])
+        by smtp.gmail.com with ESMTPSA id q16-20020a0565123a9000b00492a0f02758sm725059lfu.28.2022.08.27.10.23.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 27 Aug 2022 10:23:43 -0700 (PDT)
+Message-ID: <a73e509a-5260-41ff-2fb4-54b975ea59e9@linaro.org>
+Date:   Sat, 27 Aug 2022 20:23:42 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220827051033.3903585-7-o.rempel@pengutronix.de>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v1 5/5] dt-bindings: imx8ulp: clock: no spaces before tabs
+Content-Language: en-US
+To:     Marcel Ziswiler <marcel@ziswiler.com>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Abel Vesa <abelvesa@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220826192252.794651-1-marcel@ziswiler.com>
+ <20220826192252.794651-6-marcel@ziswiler.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220826192252.794651-6-marcel@ziswiler.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> +Kernel response contents:
-> +
-> +  ======================================  ======  =============================
-> +  ``ETHTOOL_A_PSE_HEADER``                nested  reply header
-> +  ``ETHTOOL_A_PODL_PSE_ADMIN_STATE``          u8  Operational state of the PoDL
-> +                                                  PSE functions
-> +  ``ETHTOOL_A_PODL_PSE_PW_D_STATUS``          u8  power detection status of the
-> +                                                  PoDL PSE.
-> +  ======================================  ======  =============================
+On 26/08/2022 22:22, Marcel Ziswiler wrote:
+> From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+> 
+> This fixes the following warnings:
+> 
+> include/dt-bindings/clock/imx8ulp-clock.h:204: warning: please, no space
+>  before tabs
+> include/dt-bindings/clock/imx8ulp-clock.h:215: warning: please, no space
+>  before tabs
+> 
+> Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 
-It would be good to document that everything but ETHTOOL_A_PSE_HEADER
-is optional.
 
-     Andrew
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
+Best regards,
+Krzysztof
