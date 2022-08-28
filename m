@@ -2,64 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E68B95A3DB5
-	for <lists+devicetree@lfdr.de>; Sun, 28 Aug 2022 15:26:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B8655A3DBF
+	for <lists+devicetree@lfdr.de>; Sun, 28 Aug 2022 15:33:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229458AbiH1N04 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Aug 2022 09:26:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56760 "EHLO
+        id S229651AbiH1Ndl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Aug 2022 09:33:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60918 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229498AbiH1N0y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Aug 2022 09:26:54 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A45A72317C
-        for <devicetree@vger.kernel.org>; Sun, 28 Aug 2022 06:26:53 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id b5so7112034wrr.5
-        for <devicetree@vger.kernel.org>; Sun, 28 Aug 2022 06:26:53 -0700 (PDT)
+        with ESMTP id S229511AbiH1Ndk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Aug 2022 09:33:40 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6B9124F0F
+        for <devicetree@vger.kernel.org>; Sun, 28 Aug 2022 06:33:38 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id lx1so10950572ejb.12
+        for <devicetree@vger.kernel.org>; Sun, 28 Aug 2022 06:33:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=HykuBI5xToy8Y53SKmj40eGehy+Koxti7iT6gLB1tdA=;
-        b=M/1MAcG0vd9sz6JaXtzdg6XQbvI7tsLlL9g8POBwJLGJ3/p3Rkfh4DbUafZBYH+GhV
-         qc8ebq3N9qtUNXSorYXKDkErMIvlQwU8BjcZd8gB6u125K0ZTFyU8bCAdOECZNDIbC0r
-         hWWiytfoZO6kv9OBH9+mRtWHF0/CBuc58o8NGbaO0RtP0VhmYsNmdppVEbANIwSAC60p
-         /7viAoOaSDcNUAGxUC7XPwsF3H5QYjxjh0+WQR5hDBZpI1pVcJfEDYAWjxh+oUpRC5ia
-         Kbt22IenSXjJRk58Qk3AGTk7MlxVkEMH7yu3gzny9UyNiSvm5isaBYOkpxbf0z/AgDJf
-         Ebjw==
+        d=amarulasolutions.com; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=DNUvT1ZZ3fFrLVQIyi9us/iFYLs4Qz0Ypyc3D33P4jw=;
+        b=RwRoWd9AYF8OGCjv58SePtwQnPalN5pnfcu2PcXDc0X7SEZ27f2l6auvNoy6bXv/f3
+         s1Jz5d6OXF0ydCOHiLCPggZ95FgKN7QL6W+ILfKCFECPetB1kiMS2E8RRcVVgX0n6TZj
+         CPBbEDkleISRtbCLdgimRmsY6T0ErgmyzHeAA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=HykuBI5xToy8Y53SKmj40eGehy+Koxti7iT6gLB1tdA=;
-        b=lh+in5RtD+wNJFAIOYHULdzke4Ce9niQ7ei4d2/JStSl835F/Te3SOTH8z9rGUElgo
-         VHp87ZTIEfFiXYB4Kvwi8n+RqBsSrdOA6zHWgynh9qEvh15WCD8Z/a2D/GPXcuzNk+Wf
-         xXaYCdq0KJe2KBIjvDX80nMhGMEcq4rt7Obwr/uoCvzapfbXVkCoanOjBllLvdhBkjPr
-         R5LKFwUQIsqNSfR2yuGhAE9lnMgcJ+ubSf0z8xzQaDE/P6RGXwy1fcW5bx/QsMD8dF7G
-         9UgQKWc/SIMTewC/3EXrpmeIlml+uSbWNYETwrTXDiKC+5bfNArfly1OeVyoeNL/BDRj
-         U5yQ==
-X-Gm-Message-State: ACgBeo1kuf3tMdFNm1F6HBh3XrqzHThtBNFhGO5iE8TztiDDUx93IxqM
-        HL9mCi4+HyH1bepy/QHA3yBQKw==
-X-Google-Smtp-Source: AA6agR6wfDx5Dx75+UCCPwrelranCdATSrJjyrrP8Kcu/Lapl7ybNJdIWHISMO1xjaaWGEGQIXG53A==
-X-Received: by 2002:a5d:60cf:0:b0:225:8a17:fe1 with SMTP id x15-20020a5d60cf000000b002258a170fe1mr4153042wrt.490.1661693212262;
-        Sun, 28 Aug 2022 06:26:52 -0700 (PDT)
-Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id e15-20020adffc4f000000b0021e51c039c5sm4518874wrs.80.2022.08.28.06.26.51
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=DNUvT1ZZ3fFrLVQIyi9us/iFYLs4Qz0Ypyc3D33P4jw=;
+        b=NFRJyHmfb1FWboxMqo0z/u+H9QMACDaDM/kWJGTc7PKMK3JlzsfxprvVd8xivIiV6w
+         Hk38QzeamQQncmiV7L2oVPamhUhyE9UNnc27DPC6+mXfIXa3vZKRi19M+pFgqNY5IohC
+         AF00WibsMNm0dQ1jpydpTWAd36cfP2vSYsyrTBNJyNBLNFAFOEB8mYsaQR64nz1Axghw
+         vxtXQfkkrYjYR2P9/kGYcRLHprz7xMDL2QjlH5kAR92qmj12xByo28Oib5xJ3REaGUFs
+         poBZYc13VqbV/FdIInhjYrpoYB+oDDyfpJp/Hg5uBxkVy6FB/STJXnrKwzzIWvpaykwM
+         OLlw==
+X-Gm-Message-State: ACgBeo1kwZu95etZoNszJqziey0r7poA4nswjsBMYwpGDBaqQLotpe4m
+        gLjQ9UxsYyBzxS9CNO/XTX+LPQ==
+X-Google-Smtp-Source: AA6agR589FF7S2UjahMF8q4laiggfgapRLShsh241BpWLPPW6mBtYh3v02vIrAfWhFEGX8XoEZ4PZQ==
+X-Received: by 2002:a17:907:6d24:b0:731:7720:bb9b with SMTP id sa36-20020a1709076d2400b007317720bb9bmr10836381ejc.717.1661693617054;
+        Sun, 28 Aug 2022 06:33:37 -0700 (PDT)
+Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-79-31-31-9.retail.telecomitalia.it. [79.31.31.9])
+        by smtp.gmail.com with ESMTPSA id u26-20020a1709064ada00b007313a25e56esm3247669ejt.29.2022.08.28.06.33.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 28 Aug 2022 06:26:51 -0700 (PDT)
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To:     agross@kernel.org, andersson@kernel.org,
-        konrad.dybcio@somainline.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     bryan.odonoghue@linaro.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v4 2/2] arm64: dts: qcom: pm8350c: Drop PWM reg declaration
-Date:   Sun, 28 Aug 2022 14:26:48 +0100
-Message-Id: <20220828132648.3624126-3-bryan.odonoghue@linaro.org>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220828132648.3624126-1-bryan.odonoghue@linaro.org>
-References: <20220828132648.3624126-1-bryan.odonoghue@linaro.org>
+        Sun, 28 Aug 2022 06:33:36 -0700 (PDT)
+From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Marc Kleine-Budde <mkl@pengutronix.de>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        michael@amarulasolutions.com,
+        Amarula patchwork <linux-amarula@amarulasolutions.com>,
+        Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-can@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com, netdev@vger.kernel.org
+Subject: [RFC PATCH v3 0/4] can: bxcan: add support for ST bxCAN controller
+Date:   Sun, 28 Aug 2022 15:33:25 +0200
+Message-Id: <20220828133329.793324-1-dario.binacchi@amarulasolutions.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -72,32 +81,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The PWM is a part of the SPMI PMIC block and maps several different
-addresses within the SPMI block. It is not accurate to describe as pwm@reg
-as a result.
+The series adds support for the basic extended CAN controller (bxCAN)
+found in many low- to middle-end STM32 SoCs.
 
-Fixes: 5be66d2dc887 ("arm64: dts: qcom: pm8350c: Add pwm support")
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- arch/arm64/boot/dts/qcom/pm8350c.dtsi | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+The driver design (one core module and one driver module) was inspired
+by other ST drivers (e. g. drivers/iio/adc/stm32-adc.c,
+drivers/iio/adc/stm32-adc-core.c) where device instances share resources.
+The shared resources functions are implemented in the core module, the
+device driver in a separate module.
 
-diff --git a/arch/arm64/boot/dts/qcom/pm8350c.dtsi b/arch/arm64/boot/dts/qcom/pm8350c.dtsi
-index e0bbb67717fec..f28e71487d5c7 100644
---- a/arch/arm64/boot/dts/qcom/pm8350c.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm8350c.dtsi
-@@ -30,9 +30,8 @@ pm8350c_gpios: gpio@8800 {
- 			#interrupt-cells = <2>;
- 		};
- 
--		pm8350c_pwm: pwm@e800 {
-+		pm8350c_pwm: pwm {
- 			compatible = "qcom,pm8350c-pwm";
--			reg = <0xe800>;
- 			#pwm-cells = <2>;
- 			status = "disabled";
- 		};
+The driver has been tested on the stm32f469i-discovery board with a
+kernel version 5.19.0-rc2 in loopback + silent mode:
+
+ip link set can0 type can bitrate 125000 loopback on listen-only on
+ip link set up can0
+candump can0 -L &
+cansend can0 300#AC.AB.AD.AE.75.49.AD.D1
+
+For uboot and kernel compilation, as well as for rootfs creation I used
+buildroot:
+
+make stm32f469_disco_sd_defconfig
+make
+
+but I had to patch can-utils and busybox as can-utils and iproute are
+not compiled for MMU-less microcotrollers. In the case of can-utils,
+replacing the calls to fork() with vfork(), I was able to compile the
+package with working candump and cansend applications, while in the
+case of iproute, I ran into more than one problem and finally I decided
+to extend busybox's ip link command for CAN-type devices. I'm still
+wondering if it was really necessary, but this way I was able to test
+the driver.
+
+Changes in v3:
+- Remove 'Dario Binacchi <dariobin@libero.it>' SOB.
+- Add description to the parent of the two child nodes.
+- Move "patterProperties:" after "properties: in top level before "required".
+- Add "clocks" to the "required:" list of the child nodes.
+- Remove 'Dario Binacchi <dariobin@libero.it>' SOB.
+- Add "clocks" to can@0 node.
+- Remove 'Dario Binacchi <dariobin@libero.it>' SOB.
+- Remove a blank line.
+- Remove 'Dario Binacchi <dariobin@libero.it>' SOB.
+- Fix the documentation file path in the MAINTAINERS entry.
+- Do not increment the "stats->rx_bytes" if the frame is remote.
+- Remove pr_debug() call from bxcan_rmw().
+
+Changes in v2:
+- Change the file name into 'st,stm32-bxcan-core.yaml'.
+- Rename compatibles:
+  - st,stm32-bxcan-core -> st,stm32f4-bxcan-core
+  - st,stm32-bxcan -> st,stm32f4-bxcan
+- Rename master property to st,can-master.
+- Remove the status property from the example.
+- Put the node child properties as required.
+- Remove a blank line.
+- Fix sparse errors.
+- Create a MAINTAINERS entry.
+- Remove the print of the registers address.
+- Remove the volatile keyword from bxcan_rmw().
+- Use tx ring algorithm to manage tx mailboxes.
+- Use can_{get|put}_echo_skb().
+- Update DT properties.
+
+Dario Binacchi (4):
+  dt-bindings: net: can: add STM32 bxcan DT bindings
+  ARM: dts: stm32: add CAN support on stm32f429
+  ARM: dts: stm32: add pin map for CAN controller on stm32f4
+  can: bxcan: add support for ST bxCAN controller
+
+ .../bindings/net/can/st,stm32-bxcan.yaml      |  142 +++
+ MAINTAINERS                                   |    7 +
+ arch/arm/boot/dts/stm32f4-pinctrl.dtsi        |   30 +
+ arch/arm/boot/dts/stm32f429.dtsi              |   31 +
+ drivers/net/can/Kconfig                       |    1 +
+ drivers/net/can/Makefile                      |    1 +
+ drivers/net/can/bxcan/Kconfig                 |   34 +
+ drivers/net/can/bxcan/Makefile                |    4 +
+ drivers/net/can/bxcan/bxcan-core.c            |  200 ++++
+ drivers/net/can/bxcan/bxcan-core.h            |   31 +
+ drivers/net/can/bxcan/bxcan-drv.c             | 1045 +++++++++++++++++
+ 11 files changed, 1526 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/can/st,stm32-bxcan.yaml
+ create mode 100644 drivers/net/can/bxcan/Kconfig
+ create mode 100644 drivers/net/can/bxcan/Makefile
+ create mode 100644 drivers/net/can/bxcan/bxcan-core.c
+ create mode 100644 drivers/net/can/bxcan/bxcan-core.h
+ create mode 100644 drivers/net/can/bxcan/bxcan-drv.c
+
 -- 
-2.37.1
+2.32.0
 
