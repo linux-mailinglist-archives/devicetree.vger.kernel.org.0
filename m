@@ -2,140 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D2C8B5A3DC6
-	for <lists+devicetree@lfdr.de>; Sun, 28 Aug 2022 15:34:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AE2F5A3E12
+	for <lists+devicetree@lfdr.de>; Sun, 28 Aug 2022 16:34:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229842AbiH1Ndz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Aug 2022 09:33:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32830 "EHLO
+        id S229785AbiH1Odo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Aug 2022 10:33:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229737AbiH1Ndp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Aug 2022 09:33:45 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7791624F1F
-        for <devicetree@vger.kernel.org>; Sun, 28 Aug 2022 06:33:44 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id c59so1071714edf.10
-        for <devicetree@vger.kernel.org>; Sun, 28 Aug 2022 06:33:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=olNapHSIxEXV/j68X2DSb6GA5s0CD+ILvvqYswhlRrM=;
-        b=ptcQCXsHLLK3toTiJrVtNK1GifF5qfJRikV8CrxsZ2iTVLvrah6mSolRcQRnLycQ3P
-         2dP3PGOipJStLIrORwrRYWysk8kuT3rvjaZt1boB1h/6cJ9L5HimwPp4tZMPDtM5TxOb
-         OIRFEAgYPxIOIHEbFztlN6D76NLngRU5Kg8Cc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=olNapHSIxEXV/j68X2DSb6GA5s0CD+ILvvqYswhlRrM=;
-        b=AlQj9eYvjRjy6XDQKl7wz4N9e0lHLA1a+cRwuuw9sEAHBV9BFh1i+n5ojNpJtnooJp
-         PcWeazVnj14r70FALrL4MLDb0ZDqeoYcdGycAhztvdMWd1lAHImmfaZAkCDcfVp4dQbb
-         EKJCgkqY/jM0QisvnzN4wLSywSoTU1xq6Tu+sGL/SCDijWUtN48g56529KWXRnkHitbj
-         JwfcnTlcpnpx3+wSv1VzLRTOwOPiUttr3bQ2adMm04Km/4bf3N0kU57fgxYcyfjX8M33
-         kI/hMFv4jxnWwqZYc4A4lu8MIXf0dKpQr75V6ljSr7NDaPPusnAZ3OiD+A44zy2Qk1y7
-         LZxw==
-X-Gm-Message-State: ACgBeo3jIbcHLirb4e4R5grU5c+4mf5NqA1JwGbUoDR6s6DMYFkV7JsQ
-        L9y+WOivvLT+adMLXlgAafFzlg==
-X-Google-Smtp-Source: AA6agR4C0hyJ+1kxqMtNtBNnuPblwiwNAMjYnzqwkv9YZm3cFwmNajdCri4JsEkrluZM4XKIVzLCfw==
-X-Received: by 2002:a05:6402:3596:b0:447:11ea:362d with SMTP id y22-20020a056402359600b0044711ea362dmr13480103edc.117.1661693622388;
-        Sun, 28 Aug 2022 06:33:42 -0700 (PDT)
-Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-79-31-31-9.retail.telecomitalia.it. [79.31.31.9])
-        by smtp.gmail.com with ESMTPSA id u26-20020a1709064ada00b007313a25e56esm3247669ejt.29.2022.08.28.06.33.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 28 Aug 2022 06:33:41 -0700 (PDT)
-From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Marc Kleine-Budde <mkl@pengutronix.de>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        michael@amarulasolutions.com,
-        Amarula patchwork <linux-amarula@amarulasolutions.com>,
-        Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com
-Subject: [RFC PATCH v3 3/4] ARM: dts: stm32: add pin map for CAN controller on stm32f4
-Date:   Sun, 28 Aug 2022 15:33:28 +0200
-Message-Id: <20220828133329.793324-4-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220828133329.793324-1-dario.binacchi@amarulasolutions.com>
-References: <20220828133329.793324-1-dario.binacchi@amarulasolutions.com>
+        with ESMTP id S229734AbiH1Odn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Aug 2022 10:33:43 -0400
+X-Greylist: delayed 1205 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 28 Aug 2022 07:33:41 PDT
+Received: from 20.mo583.mail-out.ovh.net (20.mo583.mail-out.ovh.net [91.121.55.239])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E067426542
+        for <devicetree@vger.kernel.org>; Sun, 28 Aug 2022 07:33:41 -0700 (PDT)
+Received: from player157.ha.ovh.net (unknown [10.111.208.218])
+        by mo583.mail-out.ovh.net (Postfix) with ESMTP id 4CA6322EB9
+        for <devicetree@vger.kernel.org>; Sun, 28 Aug 2022 13:55:54 +0000 (UTC)
+Received: from milecki.pl (ip-194-187-74-233.konfederacka.maverick.com.pl [194.187.74.233])
+        (Authenticated sender: rafal@milecki.pl)
+        by player157.ha.ovh.net (Postfix) with ESMTPSA id 1047C2DF32520;
+        Sun, 28 Aug 2022 13:55:32 +0000 (UTC)
+Authentication-Results: garm.ovh; auth=pass (GARM-99G003f23c38e5-03f4-4967-903a-0a692511f0a2,
+                    E8B3FA25B4F8D98D1FC0498694F8FFDB0E70245B) smtp.auth=rafal@milecki.pl
+X-OVh-ClientIp: 194.187.74.233
+Message-ID: <ca7d8fe6-023f-1e2d-da34-c23d0cdc3b03@milecki.pl>
+Date:   Sun, 28 Aug 2022 15:55:31 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
+ Thunderbird/96.0
+Subject: Re: [RFC PATCH v1 13/14] nvmem: layouts: u-boot-env: add device node
+To:     Michael Walle <michael@walle.cc>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        netdev@vger.kernel.org, Ahmad Fatoum <a.fatoum@pengutronix.de>
+References: <20220825214423.903672-1-michael@walle.cc>
+ <20220825214423.903672-14-michael@walle.cc>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+In-Reply-To: <20220825214423.903672-14-michael@walle.cc>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Ovh-Tracer-Id: 8352488460933508027
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvfedrvdejledgjeefucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepkfffgggfuffvvehfhfgjtgfgsehtjeertddtfeejnecuhfhrohhmpeftrghfrghlucfoihhlvggtkhhiuceorhgrfhgrlhesmhhilhgvtghkihdrphhlqeenucggtffrrghtthgvrhhnpefftedtteffieevudduueelkeeukefhhfelvdevleffhfeiueelffegtddvudejvdenucffohhmrghinhepohiilhgrsghsrdhorhhgnecukfhppedtrddtrddtrddtpdduleegrddukeejrdejgedrvdeffeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphhouhhtpdhhvghlohepphhlrgihvghrudehjedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehrrghfrghlsehmihhlvggtkhhirdhplhdpnhgspghrtghpthhtohepuddprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdpoffvtefjohhsthepmhhoheekfe
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add pin configurations for using CAN controller on stm32f469-disco
-board. They are located on the Arduino compatible connector CN5 (CAN1)
-and on the extension connector CN12 (CAN2).
+On 25.08.2022 23:44, Michael Walle wrote:
+> Register the device node so we can actually make use of the cells from
+> within the device tree.
+> 
+> This obviously only works if the environment variable name can be mapped
+> to the device node, which isn't always the case. Think of "_" vs "-".
+> But for simple things like ethaddr, this will work.
 
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+We probably shouldn't support undocumented syntax (bindings).
 
----
-
-Changes in v3:
-- Remove 'Dario Binacchi <dariobin@libero.it>' SOB.
-- Remove a blank line.
-
-Changes in v2:
-- Remove a blank line.
-
- arch/arm/boot/dts/stm32f4-pinctrl.dtsi | 30 ++++++++++++++++++++++++++
- 1 file changed, 30 insertions(+)
-
-diff --git a/arch/arm/boot/dts/stm32f4-pinctrl.dtsi b/arch/arm/boot/dts/stm32f4-pinctrl.dtsi
-index 500bcc302d42..8a4d51f97248 100644
---- a/arch/arm/boot/dts/stm32f4-pinctrl.dtsi
-+++ b/arch/arm/boot/dts/stm32f4-pinctrl.dtsi
-@@ -448,6 +448,36 @@ pins2 {
- 					slew-rate = <2>;
- 				};
- 			};
-+
-+			can1_pins_a: can1-0 {
-+				pins1 {
-+					pinmux = <STM32_PINMUX('B', 9, AF9)>; /* CAN1_TX */
-+				};
-+				pins2 {
-+					pinmux = <STM32_PINMUX('B', 8, AF9)>; /* CAN1_RX */
-+					bias-pull-up;
-+				};
-+			};
-+
-+			can2_pins_a: can2-0 {
-+				pins1 {
-+					pinmux = <STM32_PINMUX('B', 13, AF9)>; /* CAN2_TX */
-+				};
-+				pins2 {
-+					pinmux = <STM32_PINMUX('B', 5, AF9)>; /* CAN2_RX */
-+					bias-pull-up;
-+				};
-+			};
-+
-+			can2_pins_b: can2-1 {
-+				pins1 {
-+					pinmux = <STM32_PINMUX('B', 13, AF9)>; /* CAN2_TX */
-+				};
-+				pins2 {
-+					pinmux = <STM32_PINMUX('B', 12, AF9)>; /* CAN2_RX */
-+					bias-pull-up;
-+				};
-+			};
- 		};
- 	};
- };
--- 
-2.32.0
-
+I've identical local patch that waits for
+[PATCH] dt-bindings: nvmem: u-boot,env: add basic NVMEM cells
+https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20220703084843.21922-1-zajec5@gmail.com/
+to be accepted.
