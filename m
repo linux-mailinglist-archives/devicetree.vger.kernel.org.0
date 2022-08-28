@@ -2,68 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D445F5A3C47
-	for <lists+devicetree@lfdr.de>; Sun, 28 Aug 2022 08:42:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C87515A3C4A
+	for <lists+devicetree@lfdr.de>; Sun, 28 Aug 2022 08:42:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231874AbiH1GmX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Aug 2022 02:42:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38870 "EHLO
+        id S231919AbiH1Gml (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Aug 2022 02:42:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231496AbiH1GmW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Aug 2022 02:42:22 -0400
+        with ESMTP id S229527AbiH1Gmk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Aug 2022 02:42:40 -0400
 Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A117552811
-        for <devicetree@vger.kernel.org>; Sat, 27 Aug 2022 23:42:21 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id m5so7191334lfj.4
-        for <devicetree@vger.kernel.org>; Sat, 27 Aug 2022 23:42:21 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F7E152812
+        for <devicetree@vger.kernel.org>; Sat, 27 Aug 2022 23:42:39 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id m3so7169276lfg.10
+        for <devicetree@vger.kernel.org>; Sat, 27 Aug 2022 23:42:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=7Z2MVTrx+8XosRuc2Y0DzRfrNKrAHd0V8sNT4/qug8U=;
-        b=bC/WvUz9U4twqm4fiBe6atLcph822ki9/Z1BrbgAubum7g5pc3U3FgO/4Dr+qe5a5W
-         ogxdI2RbgqBCHMQAB32yB/H2tfrrcQjhFXAPIC8rO8pDSD8l6PSZv7wv63Pupy7vWxoQ
-         d9AdHpGiE559iUnr3NZ6tbgnzv2Nj2gDYmjqPwnNSYLAwYKrzhvmsPs+o5Qx+f2cAINo
-         g/xNZ4nWw9ZNnJb3JqSHJKw1uFnLtH881xJ9/NP0PhHXiGa0p786jgNZ5tRLoWzlp+ZD
-         cXFkKQlttZ+2ksO+6iiVpat5kL25yoe3Snlc+2N3Txvj8FVJIMLLlRg6H0FqkP38FHGE
-         G33w==
+        bh=sEMNhIcOlVKnYwk7ASfSWk7+WBtIO9W2J7suDApZ3Pc=;
+        b=YsJKcrgNsJ8FZQ7PomNNTACGwo9EeISe6ePM9nwiyIrEk90Od/TeUdHvnn/LEHlf5R
+         +pwh5ZAVHMrnGll+UcXBI7hleE4DZQxekkJIcYpptmUQ3geAeofrZNexRSLPjiNZWC/r
+         A9FRsIa1HLNkJ8gumLSALLwUJX6dCOAF8zD0f9CG/sXDBPspQz335OGiKhme8Tp/05Fw
+         Rb02fkHNOzG4nuE644MX7iNqdwTc+WvPHoY6CkcOXLUOC7wlLw3+kM/Ng0TjTjxpp9zD
+         TsKY9WJZs0hWkpHvRDQtBdkKlrGCN0Fm8YpfZjoWHUV5WyqfzysrfkXsHaqFupIt3LL8
+         cURw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=7Z2MVTrx+8XosRuc2Y0DzRfrNKrAHd0V8sNT4/qug8U=;
-        b=nmddB7WIUfPq76ijGF400si9mYIe8HDp/zlY+ZKPPY66Vdoi0mZlEUIbDSmPOq/lmy
-         Bl6BSFd49+AvdbWwhTgz79JJ2Lk3+THn19MyRFVU0nvyFR5e2egGp0eDjC3/2WItxo7A
-         kRqvzaYvJuJSXYMXKpau6nIgaK7nUZSLXjiA8YW+H+ZFwIOE3T8rjavaVd9wQWFw7spt
-         JbUtgchHujGtv6R/T7V/X1QG7sfKLAtMeDEa1+mU6xRlBWpaYOVLa9GyNDut9qbdTaxU
-         LPkTd/1RyD5cO/aPL1VGNvLFcapymZeXqdAdHnzsn1txQicUBurysuk4Hb1ehWslBdfw
-         U+0g==
-X-Gm-Message-State: ACgBeo0wMHVdfvbcfr5v8EXFGLOocdekfRBFC/y0/QJTNxw/+FyY1oj3
-        CazM+8tpbCjdw4MT+vUWUFAP8A==
-X-Google-Smtp-Source: AA6agR6aO9eEAmoEQbJ9QOzlR7kpGXMXhNDCfgaUE8PDhtLnwFXs0cteoPWquQon+NFPXbIuNYhBOQ==
-X-Received: by 2002:a05:6512:3f06:b0:492:f6b6:ad8b with SMTP id y6-20020a0565123f0600b00492f6b6ad8bmr4517470lfa.544.1661668939899;
-        Sat, 27 Aug 2022 23:42:19 -0700 (PDT)
+        bh=sEMNhIcOlVKnYwk7ASfSWk7+WBtIO9W2J7suDApZ3Pc=;
+        b=yiB6nU1zO2xJdv8SN9+JXM3J5ppnZcvgxTWbJplwigbE/A6Lse8qtjNaX87EiekSmH
+         y8dTflUbMbIWvUS1Z+V575V8nCYgnf2ao9BSJ3Ox4ViLXvx6Sqnu88ytbrqabFYGkkLV
+         ZAw2CgfyVkvNZMVlAUxXA56ePRNJVfmqdjZFZy6yMwv6CIlyI4EYOVQkVZKhAH1PrK+9
+         LeI7q4Vbff+f8EmU8EGxzsfnqtPtFcUL+QxNWkdYwG2XOFghtU55rnM77bAxBrUqub1L
+         dovfdqKGTu+45eHcORvt846Y//brn9Mm71+qbTgABtZBfi7Y+1fPDNpa+Fi02Anqp/+i
+         bI9g==
+X-Gm-Message-State: ACgBeo1gptBYQ8Kq0ze5B9A9gnFuVtT2LMFZI3yzF961dQ4ijvl+Mly9
+        e/fIMZbWcueKzgXPK9hS42Qkmg==
+X-Google-Smtp-Source: AA6agR6bht7J6KntKXSqBDwKtz1RNLoZViW2TULlmvnb7xG1bKZzIqFHj0nHzIjXQETHOb24oI9wEw==
+X-Received: by 2002:a19:6b03:0:b0:492:c560:b733 with SMTP id d3-20020a196b03000000b00492c560b733mr4802862lfa.320.1661668957662;
+        Sat, 27 Aug 2022 23:42:37 -0700 (PDT)
 Received: from [192.168.0.71] (82.131.98.15.cable.starman.ee. [82.131.98.15])
-        by smtp.gmail.com with ESMTPSA id u15-20020ac2518f000000b00492d064e8f8sm861537lfi.263.2022.08.27.23.42.19
+        by smtp.gmail.com with ESMTPSA id b5-20020a056512070500b0048a7ef09b22sm865260lfs.274.2022.08.27.23.42.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 27 Aug 2022 23:42:19 -0700 (PDT)
-Message-ID: <7da2d069-1f42-5e4c-385d-0218b9e97173@linaro.org>
-Date:   Sun, 28 Aug 2022 09:42:18 +0300
+        Sat, 27 Aug 2022 23:42:37 -0700 (PDT)
+Message-ID: <141fe8e3-9075-304c-3d93-151773356054@linaro.org>
+Date:   Sun, 28 Aug 2022 09:42:36 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v3 1/2] dt-bindings: spmi: Drop PWM reg dependency
+Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: pm8350c: Drop PWM reg
+ declaration
 Content-Language: en-US
 To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, agross@kernel.org,
         andersson@kernel.org, konrad.dybcio@somainline.org,
         robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
 References: <20220827145640.3530878-1-bryan.odonoghue@linaro.org>
- <20220827145640.3530878-2-bryan.odonoghue@linaro.org>
+ <20220827145640.3530878-3-bryan.odonoghue@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220827145640.3530878-2-bryan.odonoghue@linaro.org>
+In-Reply-To: <20220827145640.3530878-3-bryan.odonoghue@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,13 +78,11 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 27/08/2022 17:56, Bryan O'Donoghue wrote:
-> The PWM node is not a separate device and is expected to be part of parent
-> SPMI PMIC node, thus it obtains the address space from the parent. One IO
-> address in "reg" is also not correct description because LPG block maps to
-> several regions.
+> The PWM is a part of the SPMI PMIC block and maps several different
+> addresses within the SPMI block. It is not accurate to describe as pwm@reg
+> as a result.
 > 
-> Fixes: 3f5117be9584 ("dt-bindings: mfd: convert to yaml Qualcomm SPMI PMIC")
-> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Fixes: 5be66d2dc887 ("arm64: dts: qcom: pm8350c: Add pwm support")
 > Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
 
