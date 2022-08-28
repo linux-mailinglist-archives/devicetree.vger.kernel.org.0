@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F3EE5A3CDE
-	for <lists+devicetree@lfdr.de>; Sun, 28 Aug 2022 10:47:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0E0E5A3CDC
+	for <lists+devicetree@lfdr.de>; Sun, 28 Aug 2022 10:47:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233905AbiH1Ioh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Aug 2022 04:44:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51922 "EHLO
+        id S233956AbiH1Iol (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Aug 2022 04:44:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233655AbiH1IoQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Aug 2022 04:44:16 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47ACE2F008
-        for <devicetree@vger.kernel.org>; Sun, 28 Aug 2022 01:44:00 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id q7so7366878lfu.5
-        for <devicetree@vger.kernel.org>; Sun, 28 Aug 2022 01:44:00 -0700 (PDT)
+        with ESMTP id S233506AbiH1IoY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Aug 2022 04:44:24 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 257C32F01D
+        for <devicetree@vger.kernel.org>; Sun, 28 Aug 2022 01:44:02 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id t23so2583195lfr.3
+        for <devicetree@vger.kernel.org>; Sun, 28 Aug 2022 01:44:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=nM4yfzJ2q/SPSZ/URGP+BdMN7FGkjiXY4m9ev5phHHo=;
-        b=eho3RnZKI3+xT8GnI5NCFSxLP4flQCw2sK5F/LcXPtzUPkzIsFPTQw+ly0as5RcXjb
-         uaKFIB4kYwUhZwtSbD2ECY8jJKMOqN3nDp/g2ymGVOQ1LB/C+4eTZkKyFFEGPhQx9uTc
-         /dRee1qCnP2iwfssy3+dCf6faXPsACBQij1oGnYtd0DFB7mQb9vSKy0sapndC3maW3Fv
-         BT/Sc01Zbtpc9BgI2wAAFTHRbFtlHCUS0FFNCYfT1S55w51otuLxQyFEW+0F3uORhR1O
-         BZJ8ii/WReCHFcvx5zovoSaOjM8arb/ndEsRQEPPOnN0XHAOeqjCpfqdAacxe0RgXuUY
-         3fIw==
+        bh=75ciJJEb0fjQQAUZH+zRMedVcWRRAgKZoJmNIvnx7Ts=;
+        b=mNpdriymM/xZ3/9ht8WqMck8iiOidkaMGTIesyWAq/ZRL7SwUvb6gzV+63k8OZyY+M
+         Q+FiXtYQHfGfAXECwObeYBRZpZ21u9PJI9UYEK4FwYCGOqMq990dtNYbWbkNwBaMStl7
+         DI3kqBAc1Gb1gE/1F0kZFfIv3UKBxHmgA7KOA2kOmiMteORvV+/2Uv3o5qTOaZRZ0vXv
+         r0ecyGNVqOE5IycipcrQLjYY1therN4v+a84IYi6zqAqVO2RcVcckVEyHDSl2wE8/2y3
+         cAcHvextSpHLQ3yBLbMwqGYT4QvvF/mW0gNnXeBgpxMDxrWudC0VE6hS0LlH9qtMXhBK
+         R1kg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=nM4yfzJ2q/SPSZ/URGP+BdMN7FGkjiXY4m9ev5phHHo=;
-        b=cKduoO52izb0YHCkHToIfkuWEfdaSwVBNycu/u7nANml48zhWa/8eNTxBTX+QE4bot
-         +CSnc5Q0jE0GKaDiy3OMCisV4i4NDDSkGXsnSAn27yGY5zlk9749D5NaNEiC+QIB99S8
-         CZOkbHPX6ODiIoqORvSfYLxRbWHSRfLEWb7JiHBWl6kxFNa2eIIwGy/2Tdx10Y/0rxq2
-         tF6dv91CTSUpXoVATEMtxY7cWZAcZLL8EqjE2vSSbx5QfdO9giCfs9KaNC3r3i1BYD6z
-         jZIjVkohn2IQTNQan9GKB0APnFlcOsY2OSAQxZKBN7JfKgXAJXxa9ykHElWELgnO7fv3
-         bmvg==
-X-Gm-Message-State: ACgBeo0bTBibhNY4HJIninJqV80gKQlEOMBocyq/DkjkqTTEGtNN5Fsz
-        4ufpO/SBhz9bjowaSvaWQN4IlA==
-X-Google-Smtp-Source: AA6agR4iwwkRp8WfcxhNnZSzna6uxn0MmtYb7J9EtoNTNBopKmm6iwIJcheUOiBasmGBHNuFJq25lg==
-X-Received: by 2002:a05:6512:692:b0:492:ece0:32e5 with SMTP id t18-20020a056512069200b00492ece032e5mr5332902lfe.636.1661676240403;
-        Sun, 28 Aug 2022 01:44:00 -0700 (PDT)
+        bh=75ciJJEb0fjQQAUZH+zRMedVcWRRAgKZoJmNIvnx7Ts=;
+        b=gVZtoI2h/udq4q9n71kscQ3OVxXtr5o7RH9LczuR5t/oTWgS3gUwNNR90P4PELa9Dg
+         q3yH+rhrlTPMCIiud4qt9zd6tGCOBwT8+Q9vJyeCIlsfyL/pLTfC/3mj2UfBd3OG6drM
+         ZPXU2h07wk6IkLKKKTV3AJYjUQ9Lifl0h1DEfhbkOjrM0IwDQzmR8f/X+btWUuYRSrca
+         sXCG1aUa6dCkDQj1T+cAB4z+ApPlsjDzbouQESm/jtnAcOMwPrbJVF3QAfnrCB04MUfW
+         QMWBiXT5yxR/kMKdU1ykfEdQD3hVMS/iE9EoLJ2J7VokNGs4IAkG+jditSKTPh+4bnHE
+         XCng==
+X-Gm-Message-State: ACgBeo0XArClyvmWC4EjKyMh7Hv2ZVfY7RUGHOszjjBf5MU2nPCxCHEH
+        zS1+kOh1AgQe1q6iwPbDCwrC3w==
+X-Google-Smtp-Source: AA6agR6n0d1QebXhA3AzIiNNgXJnLXpvhckfJa56xot7iJnpPWbZAh6mB7caWu2ENnjnNRs7tAWgjQ==
+X-Received: by 2002:a05:6512:23a5:b0:492:f76b:dfea with SMTP id c37-20020a05651223a500b00492f76bdfeamr4704421lfv.5.1661676241413;
+        Sun, 28 Aug 2022 01:44:01 -0700 (PDT)
 Received: from krzk-bin.starman.ee (82.131.98.15.cable.starman.ee. [82.131.98.15])
-        by smtp.gmail.com with ESMTPSA id c6-20020ac25f66000000b0048afe02c925sm890114lfc.219.2022.08.28.01.43.59
+        by smtp.gmail.com with ESMTPSA id c6-20020ac25f66000000b0048afe02c925sm890114lfc.219.2022.08.28.01.44.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 28 Aug 2022 01:43:59 -0700 (PDT)
+        Sun, 28 Aug 2022 01:44:00 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -59,9 +59,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-kernel@vger.kernel.org
 Cc:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 13/14] dt-bindings: mfd: qcom,spmi-pmic: fix regulator node schema
-Date:   Sun, 28 Aug 2022 11:43:40 +0300
-Message-Id: <20220828084341.112146-14-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 14/14] dt-bindings: mfd: qcom,spmi-pmic: fix TM ADC node schema on PM8998
+Date:   Sun, 28 Aug 2022 11:43:41 +0300
+Message-Id: <20220828084341.112146-15-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220828084341.112146-1-krzysztof.kozlowski@linaro.org>
 References: <20220828084341.112146-1-krzysztof.kozlowski@linaro.org>
@@ -69,7 +69,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,28 +77,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The regulators node of Qualcomm SPMI PMIC represents sub-device, so it
-has its own compatible, multiple regulators and uses dedicated bindings.
+There are two bindings for Qualcomm SPMI PMIC Thermal Monitoring ADC:
+one for ADC HC and one for ADC TM5 and TM7.  PM8998 uses the former one,
+so fix matching of child schema:
+
+  qcom/msm8998-asus-novago-tp370ql.dtb: pmic@0: adc-tm@3400:compatible:0: 'qcom,spmi-adc-tm-hc' is not one of ['qcom,spmi-adc-tm5', 'qcom,spmi-adc-tm5-gen2', 'qcom,adc-tm7']
 
 Fixes: 3f5117be9584 ("dt-bindings: mfd: convert to yaml Qualcomm SPMI PMIC")
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../bindings/mfd/qcom,spmi-pmic.yaml           | 18 +++++++++++++++++-
+ 1 file changed, 17 insertions(+), 1 deletion(-)
 
 diff --git a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
-index 7e42ab75d71b..e062de7510ca 100644
+index e062de7510ca..2946d08dd42f 100644
 --- a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
 +++ b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
-@@ -94,7 +94,7 @@ properties:
+@@ -107,7 +107,7 @@ patternProperties:
  
-   regulators:
+   "^adc-tm@[0-9a-f]+$":
      type: object
--    $ref: /schemas/regulator/regulator.yaml#
-+    $ref: /schemas/regulator/qcom,spmi-regulator.yaml#
+-    $ref: /schemas/thermal/qcom-spmi-adc-tm5.yaml#
++    # ref depends on compatible, see allOf below
  
-   pwm:
+   "^audio-codec@[0-9a-f]+$":
      type: object
+@@ -150,6 +150,22 @@ required:
+   - compatible
+   - reg
+ 
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - qcom,pm8998
++    then:
++      patternProperties:
++        "^adc-tm@[0-9a-f]+$":
++          $ref: /schemas/thermal/qcom-spmi-adc-tm-hc.yaml#
++    else:
++      patternProperties:
++        "^adc-tm@[0-9a-f]+$":
++          $ref: /schemas/thermal/qcom-spmi-adc-tm5.yaml#
++
+ additionalProperties: false
+ 
+ examples:
 -- 
 2.34.1
 
