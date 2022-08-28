@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 14BF75A3CCF
-	for <lists+devicetree@lfdr.de>; Sun, 28 Aug 2022 10:47:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8A625A3CDF
+	for <lists+devicetree@lfdr.de>; Sun, 28 Aug 2022 10:47:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233670AbiH1IoR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Aug 2022 04:44:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51716 "EHLO
+        id S234065AbiH1Io6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Aug 2022 04:44:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233470AbiH1IoJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Aug 2022 04:44:09 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 118EE2E9EA
-        for <devicetree@vger.kernel.org>; Sun, 28 Aug 2022 01:43:58 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id z6so7361896lfu.9
-        for <devicetree@vger.kernel.org>; Sun, 28 Aug 2022 01:43:58 -0700 (PDT)
+        with ESMTP id S233552AbiH1Io0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Aug 2022 04:44:26 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E7402ED51
+        for <devicetree@vger.kernel.org>; Sun, 28 Aug 2022 01:43:59 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id bq23so7374391lfb.7
+        for <devicetree@vger.kernel.org>; Sun, 28 Aug 2022 01:43:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=w46QTzHiliFXMgbuwtIv8+OqfbhHs2gqUEaLL/ymU0k=;
-        b=vHaG3zjD5j+7XpGoP0dGNrXSCEXv1+8DxvjWCGF7yB7+ZJ/ABSyzSPLTKlg9cF4TcZ
-         jlKGYtWONeXUtYjJRpwqy0Vz7fhi+iZhADJpQ2HivtzIFS1/ZiEU6ynRKt041qWoehCE
-         /Lr6GMVFTgZdNefYtgu/4zzH1SE+NK6yLxUTOcGIiABOhU2o2DfbGuGaAMLl2X3xoWfj
-         7wy+po5qIbYdRM4ayZE71TTfWKnnIPADGKgyRezkY+UqJ29XlKTOXn7vVgpFs5El2EO8
-         TB7U1n5Q5k51oEUKcrXrnK1RVq6EGsYxUiwntVGQnVD+AP4ScZdJpwW3E61TDfY8Mm/w
-         bI+w==
+        bh=pn7zvEd3qTCZPHapj3e/ijoqlm/5im0DzgowdUXAlAI=;
+        b=Lz3WrfhXkzIRS8bEalzlXs7j0WJcoeUYdm7OFa/L6Bm76eUH0C1zlQAtOCa1iKQ9Wa
+         CNUM+6trWOrjooxmULMpMW1eCAT8f76Gt82GWXaeNABrsVWP7pWq+ATwNgIPr6giMgeS
+         hw4+hA8B8OH0Rh1J9rZeNcqoPu1KRaspi5BoWuyuyQWBvmNouuRXrjMR8MjpNHBJZbOZ
+         ZbUP95O5czqWXPEgNVOwug/Nhw0UL9VF0WkMuz+50PdPg3nYLU4TCRZxFZamxUeN8jtp
+         5btPq+C2DQjlOG5AphE727IFJltqIEekIUEmvNKd3nTO9UeghqRWwgA3kfYN3ZsUwFji
+         3nYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=w46QTzHiliFXMgbuwtIv8+OqfbhHs2gqUEaLL/ymU0k=;
-        b=L23c0XRLcBqI+ZUmSYDBH0r3+GFxTVEnU+o69Xf9QXLJ6Qdf0uN2/xANjSF3fjt8N/
-         MuFm4lGZaR1FhraLcieklldZ6OktI6sH9issCNrSjIB+m6ZQNoZsrjdtEmg01bfNLRRq
-         an7n+Gvg+fxnMfg24MSk0rQIHxGNWzwzU2mihDNIckc3nc5Ec3Q1mYaUtQxJ1hueF6UE
-         WDRerkDyaG7/j155eQJ54sQLgprvj5ldgN+l9BaalN74gCSFgn1vuxssvCWWnhpDaetq
-         /+XEN/aG+yQh3GhnrETBv+a7wuVI6ijb13d4XXatY5wgegyQp1PhfOYjSjvyxp52Ftfo
-         /2VA==
-X-Gm-Message-State: ACgBeo3nU43QvbXQwJZ/Enuhm4sROicaFQ/XGJNlWi1Zyx3LZ0tfk3ak
-        mz9ytjLWo6xkAHLz10RtipigqQ==
-X-Google-Smtp-Source: AA6agR6vJ7epFCfbZJvz8TimxpKRLS/McwkvBhIJ3uhYnlAZbRWvnq2J/ciaL/x/GLIhtM2ioNoRpw==
-X-Received: by 2002:ac2:4f02:0:b0:481:43a8:e368 with SMTP id k2-20020ac24f02000000b0048143a8e368mr4597736lfr.65.1661676238293;
-        Sun, 28 Aug 2022 01:43:58 -0700 (PDT)
+        bh=pn7zvEd3qTCZPHapj3e/ijoqlm/5im0DzgowdUXAlAI=;
+        b=z7zmkN2+zKu/rHQlf18gVqfHmJlG9jA3gYc+7P21gAnFE/8L3cDldiKK74ODnEELpK
+         IDq6f47U0XZ7mbTH9AkrJwT5bScABb10e99NvaOvcS9qH2mv9UtW1wtKmGuTSkAf/Nuq
+         31nUkJhgatISMrUusOvPFiAAp5DSrT5ZLn9ZvLwwnEdi8uChyevptGWWuJzkc+dRKw3R
+         fgEH9/MqGz1vydLCDfd/bx4vuZe8MHrJCU0gHTwgW7ymtSbK5E44iMYnKV7zi+w/MoAq
+         p2h074t9+sc14r+LdAXkq5IYv+2FoqizS3s1kAMwP2QhFWc4HF7tJHEeIRGGgfNyprDy
+         5sHg==
+X-Gm-Message-State: ACgBeo0RKjgA0XhRO3GtK8b5FFf7Ga/IbHE8jC2yQetN2YfpecAVjmAX
+        rcs4wX1zliOmcf/tEOxCB3d59g==
+X-Google-Smtp-Source: AA6agR77tlbUMZ14mX/MWczEvMCzVIt2a2+PjmMM/c+NYBUHzbY/V3W8Gf0gLMfxtDW1uQsmFdGbpg==
+X-Received: by 2002:a05:6512:13a4:b0:479:3b9f:f13c with SMTP id p36-20020a05651213a400b004793b9ff13cmr4575623lfa.380.1661676239359;
+        Sun, 28 Aug 2022 01:43:59 -0700 (PDT)
 Received: from krzk-bin.starman.ee (82.131.98.15.cable.starman.ee. [82.131.98.15])
-        by smtp.gmail.com with ESMTPSA id c6-20020ac25f66000000b0048afe02c925sm890114lfc.219.2022.08.28.01.43.57
+        by smtp.gmail.com with ESMTPSA id c6-20020ac25f66000000b0048afe02c925sm890114lfc.219.2022.08.28.01.43.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 28 Aug 2022 01:43:57 -0700 (PDT)
+        Sun, 28 Aug 2022 01:43:58 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -58,10 +58,11 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 11/14] arm64: dts: qcom: sc7280-idp: correct ADC channel node name and unit address
-Date:   Sun, 28 Aug 2022 11:43:38 +0300
-Message-Id: <20220828084341.112146-12-krzysztof.kozlowski@linaro.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        stable@vger.kernel.org
+Subject: [PATCH 12/14] arm64: dts: qcom: sdm845-mtp: correct ADC settle time
+Date:   Sun, 28 Aug 2022 11:43:39 +0300
+Message-Id: <20220828084341.112146-13-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220828084341.112146-1-krzysztof.kozlowski@linaro.org>
 References: <20220828084341.112146-1-krzysztof.kozlowski@linaro.org>
@@ -77,46 +78,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Correct SPMI PMIC VADC channel node name:
-1. Use hyphens instead of underscores,
-2. Add missing unit address.
+The PMIC's VADC property for settle time is qcom,hw-settle-time, not
+qcom,hw-settle-time-us.  The latter is used in PMIC's TM ADC.
 
-This fixes `make dtbs_check` warnings like:
+  qcom/sdm845-mtp.dtb: pmic@0: adc@3100:adc-chan@4c: 'qcom,hw-settle-time-us' does not match any of the regexes: 'pinctrl-[0-9]+'
 
-  qcom/sc7280-idp.dtb: pmic@0: adc@3100: 'pmk8350_die_temp', 'pmr735a_die_temp' do not match any of the regexes: '^.*@[0-9a-f]+$', 'pinctrl-[0-9]+'
-
+Fixes: d5e12f3823ae ("arm64: dts: qcom: sdm845: mtp: Add vadc channels and thermal zones")
+Cc: <stable@vger.kernel.org>
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sc7280-idp.dts  | 2 +-
- arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/qcom/sdm845-mtp.dts | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-index 6d3ff80582ae..e2e37a0292ad 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-@@ -78,7 +78,7 @@ &nvme_3v3_regulator {
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
+index 7713e8060c5b..de2d10e0315a 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
+@@ -536,42 +536,42 @@ adc-chan@4c {
+ 		reg = <ADC5_XO_THERM_100K_PU>;
+ 		label = "xo_therm";
+ 		qcom,ratiometric;
+-		qcom,hw-settle-time-us = <200>;
++		qcom,hw-settle-time = <200>;
+ 	};
+ 
+ 	adc-chan@4d {
+ 		reg = <ADC5_AMUX_THM1_100K_PU>;
+ 		label = "msm_therm";
+ 		qcom,ratiometric;
+-		qcom,hw-settle-time-us = <200>;
++		qcom,hw-settle-time = <200>;
+ 	};
+ 
+ 	adc-chan@4f {
+ 		reg = <ADC5_AMUX_THM3_100K_PU>;
+ 		label = "pa_therm1";
+ 		qcom,ratiometric;
+-		qcom,hw-settle-time-us = <200>;
++		qcom,hw-settle-time = <200>;
+ 	};
+ 
+ 	adc-chan@51 {
+ 		reg = <ADC5_AMUX_THM5_100K_PU>;
+ 		label = "quiet_therm";
+ 		qcom,ratiometric;
+-		qcom,hw-settle-time-us = <200>;
++		qcom,hw-settle-time = <200>;
+ 	};
+ 
+ 	adc-chan@83 {
+ 		reg = <ADC5_VPH_PWR>;
+ 		label = "vph_pwr";
+ 		qcom,ratiometric;
+-		qcom,hw-settle-time-us = <200>;
++		qcom,hw-settle-time = <200>;
+ 	};
+ 
+ 	adc-chan@85 {
+ 		reg = <ADC5_VCOIN>;
+ 		label = "vcoin";
+ 		qcom,ratiometric;
+-		qcom,hw-settle-time-us = <200>;
++		qcom,hw-settle-time = <200>;
+ 	};
  };
  
- &pmk8350_vadc {
--	pmr735a_die_temp {
-+	pmr735a-die-temp@403 {
- 		reg = <PMR735A_ADC7_DIE_TEMP>;
- 		label = "pmr735a_die_temp";
- 		qcom,pre-scaling = <1 1>;
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-index a74e0b730db6..27c47ddbdf02 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-@@ -264,7 +264,7 @@ &pcie1_phy {
- };
- 
- &pmk8350_vadc {
--	pmk8350_die_temp {
-+	pmk8350-die-temp@3 {
- 		reg = <PMK8350_ADC7_DIE_TEMP>;
- 		label = "pmk8350_die_temp";
- 		qcom,pre-scaling = <1 1>;
 -- 
 2.34.1
 
