@@ -2,77 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 158E55A3E52
-	for <lists+devicetree@lfdr.de>; Sun, 28 Aug 2022 17:20:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 994E85A3E65
+	for <lists+devicetree@lfdr.de>; Sun, 28 Aug 2022 17:43:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229873AbiH1PUb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Aug 2022 11:20:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50674 "EHLO
+        id S229768AbiH1Pk4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Aug 2022 11:40:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229850AbiH1PUa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Aug 2022 11:20:30 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C784A442
-        for <devicetree@vger.kernel.org>; Sun, 28 Aug 2022 08:20:28 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id m5so8097904lfj.4
-        for <devicetree@vger.kernel.org>; Sun, 28 Aug 2022 08:20:28 -0700 (PDT)
+        with ESMTP id S229470AbiH1Pkz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Aug 2022 11:40:55 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88BC01DA5F
+        for <devicetree@vger.kernel.org>; Sun, 28 Aug 2022 08:40:53 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id x10so5894194ljq.4
+        for <devicetree@vger.kernel.org>; Sun, 28 Aug 2022 08:40:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=vWIOQpau8zQvC+oLMoO5r2Km1y79obld+jCRMXEUpCM=;
-        b=xT1o18rUcGpZ3RG16y1ykyDsE+uYyBezJ/Yhy2Pmt4LyzuVcJTQ2P+LFPyfrTkF2xh
-         y/bgkHMP6OjtslrEWRI/ME7PAMkXHeRyVTm219hm/cU/3JrH9FQ8cmdJ+/MZe3N5etHX
-         3tus2lT9cr2R/lraI2GbcDAIe/TyIFLa9gvkBEyv0uls207JxPDyVn0FZCwyMwG6ugPe
-         /hL3TO9JZPlTVp+YAsPx4cndE8NqL4duxyWttnruKBBZ8S5cfgRDREqaMM50sSqFeXXK
-         7sDTO6x1TKobNlAxz0fsM2SvD6HdshpqZz+qgpKehUxtU9sHf9yH85Iy078Tl3N8bOvE
-         AKNA==
+        bh=38oxNFO9Mw1uMALP3WOGPasfWjHLRuiM1zg8Pz8ylVU=;
+        b=vEOr7DxJ/oFLM3GtgmXWtP3X4p1HmT1e6mjCbWgmWCxv163TP23UPsoiw92mDuU/cz
+         pDPfHXrKD8KRY2R795JWX0twOJ8OUMJaD0Yn+DgT1rJiyNhGu8vyFy+SUeoAtEKvNc1N
+         OrW1vNLUPcDTZ4a3shSjYEHeEjLHvPZCTlrX6qb+uztCbOw/jDVOu1lmpTTXagky8qNa
+         YAbh/ZqtZQ/hzijuMxjFp/J78JUmgwC4TgwzTV56DZA7zns5CLCHeNL22zAr51NoiMx+
+         xWwPWCAbobW+hBtTueir3Gbllm+jDJ8GRKoOqXwNbvpoEG1SaKWPFDimtspasMIc8ZKf
+         aoJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=vWIOQpau8zQvC+oLMoO5r2Km1y79obld+jCRMXEUpCM=;
-        b=vyL8XPmKXlkMXo85fyE45XRewLNfbmDlhTGrrl+UvRRzyrkDzdjZ1NwBStYR4hQv3v
-         UBpe/t+q2lxPKdh3UxKzzA3IQzQypRSGoVYCdjJ1dcSCFixdzIIEKr12V7DpF9Yk6eVq
-         5yJ75wJojLW9PDyHAenyA354S3wleWTjkeaX2NFovoIHHqF1/7xCK0Lqw/EqrfMc+Q+k
-         X76HLe3EQ8U73qWLT1jR4UNYgVscgxDvSzajtsH7l9CKYrjud1OwBa3KsXXriLOKMHHR
-         NUIN22gnB7qF4CHz8OzYUggYO2yO63qQnUoklVu0rY/wcqv2yrBjprFCP6E45NKIyXjj
-         YCfA==
-X-Gm-Message-State: ACgBeo0Fl7lHygak6tnHQK38bTHYrWHyHbDeEiz69UiWurbNPyw1f59a
-        v+dpqVGhNnzviBmHu06iuwCrxQ==
-X-Google-Smtp-Source: AA6agR7ao95Gd2XL1wwjOZr62Pf1iHe0P8rgzdfClnLgH62TbMoV2cQubN9/jy6g3IMS28JGptP+tg==
-X-Received: by 2002:a05:6512:32b6:b0:494:6ab2:b997 with SMTP id q22-20020a05651232b600b004946ab2b997mr772250lfe.193.1661700026700;
-        Sun, 28 Aug 2022 08:20:26 -0700 (PDT)
+        bh=38oxNFO9Mw1uMALP3WOGPasfWjHLRuiM1zg8Pz8ylVU=;
+        b=dVXqoBVEq7E/YUbb3XiZ4aiNo9xEazPiHLl81uFsLR9VhMmMpCXQpX93VJzWNhTEsN
+         ciT4bhAliz+BPlGF/vKSSwD9sj5JTm7ceGwTqDo7Vwc+LaODozNclD0DeeDpcz+qaI/x
+         ZwcBN+ThebxFiRNVrjpS0hs+VXuw+B7ZzyTMa0wEkz5NP9wSehMM4hGosD6GvsOlLCW0
+         yB3yp9WVs+15l1/qVHu1nj0OHB4mrJM0fDaYgxrwwV7Zx1VR6VTG0gL8JOT9vHwMAr0P
+         c93Fsmnue7jBGLMYtLgZ4R7UgF+g75Nh1MgqFdYIg4KN/qSCLno9Gnaa6dQF8TFBKgSt
+         /kMw==
+X-Gm-Message-State: ACgBeo1bGiouSfe1s4npJw0XxPJgF+DpjkR083DaleniocecQ+1tKLwC
+        ctkgzCgq4eWNLSeQsGiUz2j+RA==
+X-Google-Smtp-Source: AA6agR4x84VsuVlFbZvcqBYBpvnYvmlQvI8T6yphb0Aawwi+aWB0x1G23gHzEkMrauoLgBfNlcAifw==
+X-Received: by 2002:a05:651c:c88:b0:261:e2fe:f0b7 with SMTP id bz8-20020a05651c0c8800b00261e2fef0b7mr4305801ljb.304.1661701251560;
+        Sun, 28 Aug 2022 08:40:51 -0700 (PDT)
 Received: from [192.168.0.71] (82.131.98.15.cable.starman.ee. [82.131.98.15])
-        by smtp.gmail.com with ESMTPSA id v28-20020ac25b1c000000b00492d09aed44sm971777lfn.195.2022.08.28.08.20.23
+        by smtp.gmail.com with ESMTPSA id h24-20020ac25978000000b0048b003c4bf7sm359034lfp.169.2022.08.28.08.40.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 28 Aug 2022 08:20:25 -0700 (PDT)
-Message-ID: <b188b3fe-cc35-f902-b316-0c1632893e9d@linaro.org>
-Date:   Sun, 28 Aug 2022 18:20:21 +0300
+        Sun, 28 Aug 2022 08:40:50 -0700 (PDT)
+Message-ID: <844375c6-b4d7-f329-739b-772c1b40144f@linaro.org>
+Date:   Sun, 28 Aug 2022 18:40:47 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH 09/11] dt-bindings: PCI: qcom-ep: Define clocks per
- platform
+Subject: Re: [PATCH 1/2] dt-bindings: phy: add binding for the i.MX8MP HDMI
+ PHY
 Content-Language: en-US
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        lpieralisi@kernel.org, robh@kernel.org, andersson@kernel.org
-Cc:     kw@linux.com, bhelgaas@google.com, linux-pci@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        konrad.dybcio@somainline.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        dmitry.baryshkov@linaro.org
-References: <20220826181923.251564-1-manivannan.sadhasivam@linaro.org>
- <20220826181923.251564-10-manivannan.sadhasivam@linaro.org>
+To:     Lucas Stach <l.stach@pengutronix.de>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        patchwork-lst@pengutronix.de, kernel@pengutronix.de
+References: <20220826192023.3216389-1-l.stach@pengutronix.de>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220826181923.251564-10-manivannan.sadhasivam@linaro.org>
+In-Reply-To: <20220826192023.3216389-1-l.stach@pengutronix.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,79 +81,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/08/2022 21:19, Manivannan Sadhasivam wrote:
-> In preparation of adding the bindings for future SoCs, let's define the
-> clocks per platform.
+On 26/08/2022 22:20, Lucas Stach wrote:
+> Add a DT binding for the HDMI PHY found on the i.MX8MP SoC.
 > 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
 > ---
->  .../devicetree/bindings/pci/qcom,pcie-ep.yaml | 46 +++++++++++--------
->  1 file changed, 27 insertions(+), 19 deletions(-)
+>  .../bindings/phy/fsl,imx8mp-hdmi-phy.yaml     | 63 +++++++++++++++++++
+>  1 file changed, 63 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/fsl,imx8mp-hdmi-phy.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
-> index b728ede3f09f..83a2cfc63bc1 100644
-> --- a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
-> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
-> @@ -9,9 +9,6 @@ title: Qualcomm PCIe Endpoint Controller binding
->  maintainers:
->    - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
->  
-> -allOf:
-> -  - $ref: "pci-ep.yaml#"
-> -
->  properties:
->    compatible:
->      const: qcom,sdx55-pcie-ep
-> @@ -35,24 +32,12 @@ properties:
->        - const: mmio
->  
->    clocks:
-> -    items:
-> -      - description: PCIe Auxiliary clock
-> -      - description: PCIe CFG AHB clock
-> -      - description: PCIe Master AXI clock
-> -      - description: PCIe Slave AXI clock
-> -      - description: PCIe Slave Q2A AXI clock
-> -      - description: PCIe Sleep clock
-> -      - description: PCIe Reference clock
-> +    minItems: 7
-> +    maxItems: 7
->  
->    clock-names:
-> -    items:
-> -      - const: aux
-> -      - const: cfg
-> -      - const: bus_master
-> -      - const: bus_slave
-> -      - const: slave_q2a
-> -      - const: sleep
-> -      - const: ref
-> +    minItems: 7
-> +    maxItems: 7
->  
->    qcom,perst-regs:
->      description: Reference to a syscon representing TCSR followed by the two
-> @@ -112,6 +97,29 @@ required:
->    - reset-names
->    - power-domains
->  
-> +allOf:
-> +  - $ref: "pci-ep.yaml#"
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,sdx55-pcie-ep
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 7
-> +          maxItems: 7
+> diff --git a/Documentation/devicetree/bindings/phy/fsl,imx8mp-hdmi-phy.yaml b/Documentation/devicetree/bindings/phy/fsl,imx8mp-hdmi-phy.yaml
+> new file mode 100644
+> index 000000000000..2118f964cad4
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/fsl,imx8mp-hdmi-phy.yaml
+> @@ -0,0 +1,63 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/fsl,imx8mp-hdmi-phy.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale i.MX8MP HDMI PHY binding
+> +
+> +maintainers:
+> +  - Lucas Stach <l.stach@pengutronix.de>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - fsl,imx8mp-hdmi-phy
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#clock-cells":
+> +    const: 0
+> +
+> +  clocks:
+> +    minItems: 2
 
-One more thing - the previous way of describing items is more readable
-instead of names followed by a comment, so I propose to keep it. This
-applies also to patch 10.
+No need for minItems.
+
+> +    maxItems: 2
+> +
+
+Rest looks ok, so with above:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
