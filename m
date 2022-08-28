@@ -2,191 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EA505A3E42
-	for <lists+devicetree@lfdr.de>; Sun, 28 Aug 2022 17:13:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 372155A3E3E
+	for <lists+devicetree@lfdr.de>; Sun, 28 Aug 2022 17:13:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229517AbiH1PNg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Aug 2022 11:13:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42584 "EHLO
+        id S229912AbiH1PNB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Aug 2022 11:13:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229489AbiH1PNf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Aug 2022 11:13:35 -0400
-X-Greylist: delayed 4657 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 28 Aug 2022 08:13:34 PDT
-Received: from 12.mo583.mail-out.ovh.net (12.mo583.mail-out.ovh.net [46.105.39.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F3EA32B8F
-        for <devicetree@vger.kernel.org>; Sun, 28 Aug 2022 08:13:34 -0700 (PDT)
-Received: from player756.ha.ovh.net (unknown [10.109.156.194])
-        by mo583.mail-out.ovh.net (Postfix) with ESMTP id 7A3C322E08
-        for <devicetree@vger.kernel.org>; Sun, 28 Aug 2022 15:06:16 +0000 (UTC)
-Received: from milecki.pl (ip-194-187-74-233.konfederacka.maverick.com.pl [194.187.74.233])
-        (Authenticated sender: rafal@milecki.pl)
-        by player756.ha.ovh.net (Postfix) with ESMTPSA id 296002D1E2613;
-        Sun, 28 Aug 2022 15:05:54 +0000 (UTC)
-Authentication-Results: garm.ovh; auth=pass (GARM-101G0040d0c2933-f865-4457-8ea0-b423c711832b,
-                    E8B3FA25B4F8D98D1FC0498694F8FFDB0E70245B) smtp.auth=rafal@milecki.pl
-X-OVh-ClientIp: 194.187.74.233
-Message-ID: <768ff63a-54f5-9cde-e888-206cdf018df3@milecki.pl>
-Date:   Sun, 28 Aug 2022 17:05:53 +0200
+        with ESMTP id S229874AbiH1PM7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Aug 2022 11:12:59 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3227F32BB6
+        for <devicetree@vger.kernel.org>; Sun, 28 Aug 2022 08:12:57 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id p5so4935271lfc.6
+        for <devicetree@vger.kernel.org>; Sun, 28 Aug 2022 08:12:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=OtM7iPNjdY/5wZ1fS/xdrs+Yl/HaQkufjAk9Dk8g/F4=;
+        b=ZM9+t75/Iyhz/lVJ4dOs+/qO7x3tO4hFdfVYKfJAKuZtKyO0dYezs2g8vYXYLIPrgv
+         0THHHcwNDPJR/dGl7hpzW5jhbj7wa7lJHZvMgEFaHe1pqdTYPUEttNy2XsAXrIJL3B6s
+         OfljqMOZhjzRj2nRTGyB2cE/4MPxAesLsxCsMU8my4rlUdYwfsgzSeWjKyHHIncaTeTK
+         36DijBVMrf13XmSw/tz6YXINirzTxABTTunVY1jBpbTFOF5uTeJRmL3HZUnnhcL7wMD7
+         qetrttlyczmEIVMiPk229AcL65+w8/VHzxIUhMskDFqjvUHT7VOY9HsIrPNcK3utCzYQ
+         xe5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=OtM7iPNjdY/5wZ1fS/xdrs+Yl/HaQkufjAk9Dk8g/F4=;
+        b=lO6FVo2Wp7kgbTPfqobnxw1ew9cXTyL/CkNp4lEt/w0f2gCWpvYGy9DUOPJwWEnDzs
+         U5sBG3N4tfkjBatYTxgdoHNemv0Dya4TfnjDwl+DToTk2kYps2V8f0c1c0stDBuEmyT/
+         O1TigHLFDrSPHZRccFOgggyztW9raBTjAnWOCD4W57jEnK4AkJxzi2L7wKhpedqVTbfJ
+         C/Ff0gBpXrSVOf4FTcSA0HInNsiT1K8xCZYqwlnP/nOMg4A74d99jdfKXAlp3JYmiSeP
+         GlmV18Y1LNc6EbF48J3pTVYE17z08LLTkRXxL9M0n/q2CBg5Sd6DtDbmxAwQSPeBJccX
+         UPvA==
+X-Gm-Message-State: ACgBeo2jD9yMYJ4jgnOueLi/XdbvtPyRoieOvtiRYVEvskrt29wXDw8u
+        zq+2fpoUfBLZn/wABZVgL8D1iA==
+X-Google-Smtp-Source: AA6agR5BQ9SYbGpzS3uLENZcMMQo2IUbuXQi9Ks69vuUcUBcnzw3LTesdRgczeXwLvS6raLMb76axw==
+X-Received: by 2002:a05:6512:1583:b0:492:c028:d2f3 with SMTP id bp3-20020a056512158300b00492c028d2f3mr5750535lfb.216.1661699575603;
+        Sun, 28 Aug 2022 08:12:55 -0700 (PDT)
+Received: from [192.168.0.71] (82.131.98.15.cable.starman.ee. [82.131.98.15])
+        by smtp.gmail.com with ESMTPSA id c9-20020a2e9d89000000b002655fb689a6sm78562ljj.139.2022.08.28.08.12.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 28 Aug 2022 08:12:55 -0700 (PDT)
+Message-ID: <cf49e23e-69f8-e8e7-056a-2b3c281ff214@linaro.org>
+Date:   Sun, 28 Aug 2022 18:12:53 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
- Thunderbird/96.0
-Subject: Re: [PATCH v1 00/14] nvmem: core: introduce NVMEM layouts
-To:     Michael Walle <michael@walle.cc>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        netdev@vger.kernel.org, Ahmad Fatoum <a.fatoum@pengutronix.de>
-References: <20220825214423.903672-1-michael@walle.cc>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-In-Reply-To: <20220825214423.903672-1-michael@walle.cc>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH 07/11] dt-bindings: PCI: qcom-ep: Make PERST separation
+ optional
+Content-Language: en-US
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        lpieralisi@kernel.org, robh@kernel.org, andersson@kernel.org
+Cc:     kw@linux.com, bhelgaas@google.com, linux-pci@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        konrad.dybcio@somainline.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        dmitry.baryshkov@linaro.org
+References: <20220826181923.251564-1-manivannan.sadhasivam@linaro.org>
+ <20220826181923.251564-8-manivannan.sadhasivam@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220826181923.251564-8-manivannan.sadhasivam@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Ovh-Tracer-Id: 9540875810652269499
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvfedrvdejledgkeejucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepkfffgggfuffvvehfhfgjtgfgsehtjeertddtfeejnecuhfhrohhmpeftrghfrghlucfoihhlvggtkhhiuceorhgrfhgrlhesmhhilhgvtghkihdrphhlqeenucggtffrrghtthgvrhhnpeehkeevtdeiudeffeefjeevffdvteeuhfegfffgveefffejkeeuieetueevtdeutdenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecukfhppedtrddtrddtrddtpdduleegrddukeejrdejgedrvdeffeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphhouhhtpdhhvghlohepphhlrgihvghrjeehiedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehrrghfrghlsehmihhlvggtkhhirdhplhdpnhgspghrtghpthhtohepuddprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdpoffvtefjohhsthepmhhoheekfe
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25.08.2022 23:44, Michael Walle wrote:
-> This is now the third attempt to fetch the MAC addresses from the VPD
-> for the Kontron sl28 boards. Previous discussions can be found here:
-> https://lore.kernel.org/lkml/20211228142549.1275412-1-michael@walle.cc/
+On 26/08/2022 21:19, Manivannan Sadhasivam wrote:
+> PERST separation is an optional debug feature used to collect the crash
+> dump from the PCIe endpoint devices by the PCIe host when the endpoint
+> crashes. This feature keeps the PCIe link up by separating the PCIe IP
+> block from the SoC reset logic.
 > 
+> So remove the corresponding property "qcom,perst-regs" from the required
+> properties list.
 > 
-> NVMEM cells are typically added by board code or by the devicetree. But
-> as the cells get more complex, there is (valid) push back from the
-> devicetree maintainers to not put that handling in the devicetree.
-
-I dropped the ball waiting for Rob's reponse in the
-[PATCH 0/2] dt-bindings: nvmem: support describing cells
-https://lore.kernel.org/linux-arm-kernel/0b7b8f7ea6569f79524aea1a3d783665@walle.cc/T/
-
-Before we go any further can we have a clear answer from Rob (or
-Krzysztof now too?):
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
 
-Is there any point in having bindings like:
-
-compatible = "mac-address";
-
-for NVMEM cells nodes? So systems (Linux, U-Boot) can handle them in a
-more generic way?
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
-Or do we prefer more conditional drivers code (or layouts code as in
-this Michael's proposal) that will handle cells properly based on their
-names?
-
-
-I'm not arguing for any solution. I just want to make sure we choose the
-right way to proceed.
-
-
-> Therefore, introduce NVMEM layouts. They operate on the NVMEM device and
-> can add cells during runtime. That way it is possible to add complex
-> cells than it is possible right now with the offset/length/bits
-> description in the device tree. For example, you can have post processing
-> for individual cells (think of endian swapping, or ethernet offset
-> handling). You can also have cells which have no static offset, like the
-> ones in an u-boot environment. The last patches will convert the current
-> u-boot environment driver to a NVMEM layout and lifting the restriction
-> that it only works with mtd devices. But as it will change the required
-> compatible strings, it is marked as RFC for now. It also needs to have
-> its device tree schema update which is left out here.
-
-So do I get it right that we want to have:
-
-1. NVMEM drivers for providing I/O access to NVMEM devices
-2. NVMEM layouts for parsing & NVMEM cells and translating their content
-?
-
-I guess it sounds good and seems to be a clean solution.
-
-
-One thing I believe you need to handle is replacing "cell_post_process"
-callback with your layout thing.
-
-I find it confusing to have
-1. cell_post_process() CB at NVMEM device level
-2. post_process() CB at NVMEM cell level
-
-
-> For now, the layouts are selected by a specifc compatible string in a
-> device tree. E.g. the VPD on the kontron sl28 do (within a SPI flash node):
->    compatible = "kontron,sl28-vpd", "user-otp";
-> or if you'd use the u-boot environment (within an MTD patition):
->    compatible = "u-boot,env", "nvmem";
-> 
-> The "user-otp" (or "nvmem") will lead to a NVMEM device, the
-> "kontron,sl28-vpd" (or "u-boot,env") will then apply the specific layout
-> on top of the NVMEM device.
-> 
-> NVMEM layouts as modules?
-> While possible in principle, it doesn't make any sense because the NVMEM
-> core can't be compiled as a module. The layouts needs to be available at
-> probe time. (That is also the reason why they get registered with
-> subsys_initcall().) So if the NVMEM core would be a module, the layouts
-> could be modules, too.
-> 
-> Michael Walle (14):
->    net: add helper eth_addr_add()
->    of: base: add of_parse_phandle_with_optional_args()
->    nvmem: core: add an index parameter to the cell
->    nvmem: core: drop the removal of the cells in nvmem_add_cells()
->    nvmem: core: add nvmem_add_one_cell()
->    nvmem: core: introduce NVMEM layouts
->    nvmem: core: add per-cell post processing
->    dt-bindings: mtd: relax the nvmem compatible string
->    dt-bindings: nvmem: add YAML schema for the sl28 vpd layout
->    nvmem: layouts: add sl28vpd layout
->    nvmem: core: export nvmem device size
->    nvmem: layouts: rewrite the u-boot-env driver as a NVMEM layout
->    nvmem: layouts: u-boot-env: add device node
->    arm64: dts: ls1028a: sl28: get MAC addresses from VPD
-> 
->   .../devicetree/bindings/mtd/mtd.yaml          |   7 +-
->   .../nvmem/layouts/kontron,sl28-vpd.yaml       |  52 +++++
->   .../fsl-ls1028a-kontron-kbox-a-230-ls.dts     |   8 +
->   .../fsl-ls1028a-kontron-sl28-var1.dts         |   2 +
->   .../fsl-ls1028a-kontron-sl28-var2.dts         |   4 +
->   .../fsl-ls1028a-kontron-sl28-var4.dts         |   2 +
->   .../freescale/fsl-ls1028a-kontron-sl28.dts    |  13 ++
->   drivers/nvmem/Kconfig                         |   2 +
->   drivers/nvmem/Makefile                        |   1 +
->   drivers/nvmem/core.c                          | 183 +++++++++++----
->   drivers/nvmem/imx-ocotp.c                     |   4 +-
->   drivers/nvmem/layouts/Kconfig                 |  22 ++
->   drivers/nvmem/layouts/Makefile                |   7 +
->   drivers/nvmem/layouts/sl28vpd.c               | 144 ++++++++++++
->   drivers/nvmem/layouts/u-boot-env.c            | 147 ++++++++++++
->   drivers/nvmem/u-boot-env.c                    | 218 ------------------
->   include/linux/etherdevice.h                   |  14 ++
->   include/linux/nvmem-consumer.h                |  11 +
->   include/linux/nvmem-provider.h                |  47 +++-
->   include/linux/of.h                            |  25 ++
->   20 files changed, 649 insertions(+), 264 deletions(-)
->   create mode 100644 Documentation/devicetree/bindings/nvmem/layouts/kontron,sl28-vpd.yaml
->   create mode 100644 drivers/nvmem/layouts/Kconfig
->   create mode 100644 drivers/nvmem/layouts/Makefile
->   create mode 100644 drivers/nvmem/layouts/sl28vpd.c
->   create mode 100644 drivers/nvmem/layouts/u-boot-env.c
->   delete mode 100644 drivers/nvmem/u-boot-env.c
+Best regards,
+Krzysztof
