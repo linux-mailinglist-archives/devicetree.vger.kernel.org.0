@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4430B5A3CC9
-	for <lists+devicetree@lfdr.de>; Sun, 28 Aug 2022 10:47:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14BF75A3CCF
+	for <lists+devicetree@lfdr.de>; Sun, 28 Aug 2022 10:47:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232853AbiH1IoM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Aug 2022 04:44:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51524 "EHLO
+        id S233670AbiH1IoR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Aug 2022 04:44:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233434AbiH1IoJ (ORCPT
+        with ESMTP id S233470AbiH1IoJ (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Sun, 28 Aug 2022 04:44:09 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 791BB2E9D2
-        for <devicetree@vger.kernel.org>; Sun, 28 Aug 2022 01:43:57 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id z25so7378128lfr.2
-        for <devicetree@vger.kernel.org>; Sun, 28 Aug 2022 01:43:57 -0700 (PDT)
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 118EE2E9EA
+        for <devicetree@vger.kernel.org>; Sun, 28 Aug 2022 01:43:58 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id z6so7361896lfu.9
+        for <devicetree@vger.kernel.org>; Sun, 28 Aug 2022 01:43:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=JV2YXvwvyqMzto/q6SO+g2woGhq18/GRqDT7Fs8aiqE=;
-        b=maaSQWFBEa8G4sTJACk/W7JFvlXLtQNZgbBib2l656o/yKPT2fusd3OS43JS/6ANIR
-         6PTJvZlkeNqBl7FNe8uPXFsoypLFvoCZ3V97SnPeG6/tvRRF3N90di8aKJDWoAIUgRbA
-         aTz+K1G3L8LhPx2BX7GDTou3dCbqleA5/4v66zqY55ti+c5bXu0hixydyUu9hwdKYAib
-         7VYv9IGwjOSO/MKcVBRNj8R+ozYqlJoovdQE4S1WGObxeQar7lDfFxdEccCJfudGwIjb
-         Q33B41taWVnJrc/DHAL/WWlTo3J3GLtt6xBSoOlqOEA29zFqDlBZljUG+D628nOLy6yH
-         JLjg==
+        bh=w46QTzHiliFXMgbuwtIv8+OqfbhHs2gqUEaLL/ymU0k=;
+        b=vHaG3zjD5j+7XpGoP0dGNrXSCEXv1+8DxvjWCGF7yB7+ZJ/ABSyzSPLTKlg9cF4TcZ
+         jlKGYtWONeXUtYjJRpwqy0Vz7fhi+iZhADJpQ2HivtzIFS1/ZiEU6ynRKt041qWoehCE
+         /Lr6GMVFTgZdNefYtgu/4zzH1SE+NK6yLxUTOcGIiABOhU2o2DfbGuGaAMLl2X3xoWfj
+         7wy+po5qIbYdRM4ayZE71TTfWKnnIPADGKgyRezkY+UqJ29XlKTOXn7vVgpFs5El2EO8
+         TB7U1n5Q5k51oEUKcrXrnK1RVq6EGsYxUiwntVGQnVD+AP4ScZdJpwW3E61TDfY8Mm/w
+         bI+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=JV2YXvwvyqMzto/q6SO+g2woGhq18/GRqDT7Fs8aiqE=;
-        b=XhflnX6wqN90zjzTQUtnEs55MCwxzhTqzGQvwohonn+7+5566egIg4fhibJT77Gg0/
-         QWTDiNlzTZvV8hju/THVGLr00v7Z3d8iCfr+55FUmWg8HmaWM+18GomOpcXmi6Nu1JIH
-         ZQFXo8C1C61y0sy4pF89s82UGtFMtuDIYP1+oX0BNC9VbyZeuf+CANE4d79J643TdXcF
-         fM7YyehYv0xQNIrbDHAxlCJVM7MEXN4bByfkCBjcf7evTLXS+tPO9hV2Vxq1BK3JpJVX
-         0s/47D7CGg0dNAIsIe4ZLQGC9W8PSUeBKjJaSOvVJjlXbO6BAkDyfpAhbH+IVwFKicgY
-         sO9g==
-X-Gm-Message-State: ACgBeo2D8vyZmDo5zYzS93ZV8hxl4CtL5ItKJtdWtvquj6n4l978ZYeP
-        qW1KDySSxN1ExgrKrZ4Fomi4YA==
-X-Google-Smtp-Source: AA6agR5tp22AlmMPfTra2aVV/ahG72TIZEzbgfXSJGhBsYciCli+AchbxdW4PFjmZ3A0GYKEL9X4oA==
-X-Received: by 2002:a05:6512:21c9:b0:492:f0f7:d82f with SMTP id d9-20020a05651221c900b00492f0f7d82fmr4618408lft.588.1661676237076;
-        Sun, 28 Aug 2022 01:43:57 -0700 (PDT)
+        bh=w46QTzHiliFXMgbuwtIv8+OqfbhHs2gqUEaLL/ymU0k=;
+        b=L23c0XRLcBqI+ZUmSYDBH0r3+GFxTVEnU+o69Xf9QXLJ6Qdf0uN2/xANjSF3fjt8N/
+         MuFm4lGZaR1FhraLcieklldZ6OktI6sH9issCNrSjIB+m6ZQNoZsrjdtEmg01bfNLRRq
+         an7n+Gvg+fxnMfg24MSk0rQIHxGNWzwzU2mihDNIckc3nc5Ec3Q1mYaUtQxJ1hueF6UE
+         WDRerkDyaG7/j155eQJ54sQLgprvj5ldgN+l9BaalN74gCSFgn1vuxssvCWWnhpDaetq
+         /+XEN/aG+yQh3GhnrETBv+a7wuVI6ijb13d4XXatY5wgegyQp1PhfOYjSjvyxp52Ftfo
+         /2VA==
+X-Gm-Message-State: ACgBeo3nU43QvbXQwJZ/Enuhm4sROicaFQ/XGJNlWi1Zyx3LZ0tfk3ak
+        mz9ytjLWo6xkAHLz10RtipigqQ==
+X-Google-Smtp-Source: AA6agR6vJ7epFCfbZJvz8TimxpKRLS/McwkvBhIJ3uhYnlAZbRWvnq2J/ciaL/x/GLIhtM2ioNoRpw==
+X-Received: by 2002:ac2:4f02:0:b0:481:43a8:e368 with SMTP id k2-20020ac24f02000000b0048143a8e368mr4597736lfr.65.1661676238293;
+        Sun, 28 Aug 2022 01:43:58 -0700 (PDT)
 Received: from krzk-bin.starman.ee (82.131.98.15.cable.starman.ee. [82.131.98.15])
-        by smtp.gmail.com with ESMTPSA id c6-20020ac25f66000000b0048afe02c925sm890114lfc.219.2022.08.28.01.43.55
+        by smtp.gmail.com with ESMTPSA id c6-20020ac25f66000000b0048afe02c925sm890114lfc.219.2022.08.28.01.43.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 28 Aug 2022 01:43:56 -0700 (PDT)
+        Sun, 28 Aug 2022 01:43:57 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -59,9 +59,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-kernel@vger.kernel.org
 Cc:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 10/14] arm64: dts: qcom: align PMIC GPIO pin configuration with DT schema
-Date:   Sun, 28 Aug 2022 11:43:37 +0300
-Message-Id: <20220828084341.112146-11-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 11/14] arm64: dts: qcom: sc7280-idp: correct ADC channel node name and unit address
+Date:   Sun, 28 Aug 2022 11:43:38 +0300
+Message-Id: <20220828084341.112146-12-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220828084341.112146-1-krzysztof.kozlowski@linaro.org>
 References: <20220828084341.112146-1-krzysztof.kozlowski@linaro.org>
@@ -77,43 +77,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DT schema expects PMIC GPIO pin configuration nodes to be named with
-'-state' suffix:
+Correct SPMI PMIC VADC channel node name:
+1. Use hyphens instead of underscores,
+2. Add missing unit address.
 
-  qcom/sc7280-herobrine-crd.dtb: pmic@2: gpio@8800: 'edp-bl-reg-en' does not match any of the regexes: '-state$', 'pinctrl-[0-9]+'
+This fixes `make dtbs_check` warnings like:
+
+  qcom/sc7280-idp.dtb: pmic@0: adc@3100: 'pmk8350_die_temp', 'pmr735a_die_temp' do not match any of the regexes: '^.*@[0-9a-f]+$', 'pinctrl-[0-9]+'
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts  | 2 +-
- arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts | 2 +-
+ arch/arm64/boot/dts/qcom/sc7280-idp.dts  | 2 +-
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 2 +-
  2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
-index 7881bbc641a0..269bc4c42791 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
-@@ -167,7 +167,7 @@ &pm8350c_gpios {
- 			  "PMIC_EDP_BL_PWM",
- 			  "";
- 
--	edp_bl_reg_en: edp-bl-reg-en {
-+	edp_bl_reg_en: edp-bl-reg-en-state {
- 		pins = "gpio6";
- 		function = "normal";
- 		bias-disable;
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
-index 7747081b9887..56a510b150ab 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
-@@ -522,7 +522,7 @@ &pmi8998_wled {
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+index 6d3ff80582ae..e2e37a0292ad 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
++++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+@@ -78,7 +78,7 @@ &nvme_3v3_regulator {
  };
  
- &pm8998_gpio {
--	volume_up_gpio: pm8998_gpio6 {
-+	volume_up_gpio: pm8998-gpio6-state {
- 		pinconf {
- 			qcom,drive-strength = <PMIC_GPIO_STRENGTH_NO>;
- 			function = "normal";
+ &pmk8350_vadc {
+-	pmr735a_die_temp {
++	pmr735a-die-temp@403 {
+ 		reg = <PMR735A_ADC7_DIE_TEMP>;
+ 		label = "pmr735a_die_temp";
+ 		qcom,pre-scaling = <1 1>;
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+index a74e0b730db6..27c47ddbdf02 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+@@ -264,7 +264,7 @@ &pcie1_phy {
+ };
+ 
+ &pmk8350_vadc {
+-	pmk8350_die_temp {
++	pmk8350-die-temp@3 {
+ 		reg = <PMK8350_ADC7_DIE_TEMP>;
+ 		label = "pmk8350_die_temp";
+ 		qcom,pre-scaling = <1 1>;
 -- 
 2.34.1
 
