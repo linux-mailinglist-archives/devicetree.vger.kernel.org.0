@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B5FAB5A3DC9
-	for <lists+devicetree@lfdr.de>; Sun, 28 Aug 2022 15:34:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2C8B5A3DC6
+	for <lists+devicetree@lfdr.de>; Sun, 28 Aug 2022 15:34:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229779AbiH1Ndx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Aug 2022 09:33:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60986 "EHLO
+        id S229842AbiH1Ndz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Aug 2022 09:33:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229530AbiH1Ndo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Aug 2022 09:33:44 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6932C24F07
-        for <devicetree@vger.kernel.org>; Sun, 28 Aug 2022 06:33:42 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id t5so7259606edc.11
-        for <devicetree@vger.kernel.org>; Sun, 28 Aug 2022 06:33:42 -0700 (PDT)
+        with ESMTP id S229737AbiH1Ndp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Aug 2022 09:33:45 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7791624F1F
+        for <devicetree@vger.kernel.org>; Sun, 28 Aug 2022 06:33:44 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id c59so1071714edf.10
+        for <devicetree@vger.kernel.org>; Sun, 28 Aug 2022 06:33:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=amarulasolutions.com; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=RJr2H0obYN3pbdXZsdt8e1JbQn4d3baYnjPncxC8Sds=;
-        b=J46e2leNHzPU4TQrl7M2tfofAsrAQ/U9ei/aP9tvHa5eHX1ABsGsXCprvYYIAGt+/S
-         RLg1sDK21NULsyjqqNbkPTRCFdCxlXxSad2gXYyJ4hfNyEQk67PEb41jERPh/zgG/ZVo
-         f88xaaVo36j8JDCJqp+4IJbtf+VZnvmG1hgzU=
+        bh=olNapHSIxEXV/j68X2DSb6GA5s0CD+ILvvqYswhlRrM=;
+        b=ptcQCXsHLLK3toTiJrVtNK1GifF5qfJRikV8CrxsZ2iTVLvrah6mSolRcQRnLycQ3P
+         2dP3PGOipJStLIrORwrRYWysk8kuT3rvjaZt1boB1h/6cJ9L5HimwPp4tZMPDtM5TxOb
+         OIRFEAgYPxIOIHEbFztlN6D76NLngRU5Kg8Cc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=RJr2H0obYN3pbdXZsdt8e1JbQn4d3baYnjPncxC8Sds=;
-        b=lRp8+aoVMnEACMNo/ZCTcsvkCEA4ufV+Zqq0/L9StO6JBBU4g7gx3XhB+Jh5TSiKVr
-         rRi2vpFgLvLsYA68mRGDnVRzsVg6qEypVyS4ayssZ5JdJcNA9gfODbf76UYjH8hBPeQJ
-         PQx3XgROuTLJ/NAfgUH+tklcSylfZJ7DdsZd4NqqbElIZYTUPg0/3+JDSe2sBIN90LTI
-         GSgQR/FQMBNj6d1tpClKKhvzC8oZwgtd8bCI1om69WqocYMftm/kQcoKx61A/JuqHC33
-         Vh81dDxM/vdBYh6tSTjIsf/QsrpbU7Kwzpd3Qax+pgAjAcbfDc8ky8xoZ6fg7KenVvIn
-         vQxQ==
-X-Gm-Message-State: ACgBeo3GpWCXczxPOzum+1+P5psMGIS5da3507PTRnzPiIhZe5x6sskl
-        Ldi0jlGM8QT8e83Tz+yxRt07eQ==
-X-Google-Smtp-Source: AA6agR6pEdfi+YcBAUXSwmbacRCfYOgXN1othTOfvrhzGRq2bayOsuG5Mnhl9CV1tJrsk8vlN3hMNA==
-X-Received: by 2002:aa7:cfcb:0:b0:447:b4e5:22fb with SMTP id r11-20020aa7cfcb000000b00447b4e522fbmr12466111edy.190.1661693620710;
-        Sun, 28 Aug 2022 06:33:40 -0700 (PDT)
+        bh=olNapHSIxEXV/j68X2DSb6GA5s0CD+ILvvqYswhlRrM=;
+        b=AlQj9eYvjRjy6XDQKl7wz4N9e0lHLA1a+cRwuuw9sEAHBV9BFh1i+n5ojNpJtnooJp
+         PcWeazVnj14r70FALrL4MLDb0ZDqeoYcdGycAhztvdMWd1lAHImmfaZAkCDcfVp4dQbb
+         EKJCgkqY/jM0QisvnzN4wLSywSoTU1xq6Tu+sGL/SCDijWUtN48g56529KWXRnkHitbj
+         JwfcnTlcpnpx3+wSv1VzLRTOwOPiUttr3bQ2adMm04Km/4bf3N0kU57fgxYcyfjX8M33
+         kI/hMFv4jxnWwqZYc4A4lu8MIXf0dKpQr75V6ljSr7NDaPPusnAZ3OiD+A44zy2Qk1y7
+         LZxw==
+X-Gm-Message-State: ACgBeo3jIbcHLirb4e4R5grU5c+4mf5NqA1JwGbUoDR6s6DMYFkV7JsQ
+        L9y+WOivvLT+adMLXlgAafFzlg==
+X-Google-Smtp-Source: AA6agR4C0hyJ+1kxqMtNtBNnuPblwiwNAMjYnzqwkv9YZm3cFwmNajdCri4JsEkrluZM4XKIVzLCfw==
+X-Received: by 2002:a05:6402:3596:b0:447:11ea:362d with SMTP id y22-20020a056402359600b0044711ea362dmr13480103edc.117.1661693622388;
+        Sun, 28 Aug 2022 06:33:42 -0700 (PDT)
 Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-79-31-31-9.retail.telecomitalia.it. [79.31.31.9])
-        by smtp.gmail.com with ESMTPSA id u26-20020a1709064ada00b007313a25e56esm3247669ejt.29.2022.08.28.06.33.39
+        by smtp.gmail.com with ESMTPSA id u26-20020a1709064ada00b007313a25e56esm3247669ejt.29.2022.08.28.06.33.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 28 Aug 2022 06:33:40 -0700 (PDT)
+        Sun, 28 Aug 2022 06:33:41 -0700 (PDT)
 From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
 To:     linux-kernel@vger.kernel.org
 Cc:     Marc Kleine-Budde <mkl@pengutronix.de>,
@@ -59,9 +59,9 @@ Cc:     Marc Kleine-Budde <mkl@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-stm32@st-md-mailman.stormreply.com
-Subject: [RFC PATCH v3 2/4] ARM: dts: stm32: add CAN support on stm32f429
-Date:   Sun, 28 Aug 2022 15:33:27 +0200
-Message-Id: <20220828133329.793324-3-dario.binacchi@amarulasolutions.com>
+Subject: [RFC PATCH v3 3/4] ARM: dts: stm32: add pin map for CAN controller on stm32f4
+Date:   Sun, 28 Aug 2022 15:33:28 +0200
+Message-Id: <20220828133329.793324-4-dario.binacchi@amarulasolutions.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20220828133329.793324-1-dario.binacchi@amarulasolutions.com>
 References: <20220828133329.793324-1-dario.binacchi@amarulasolutions.com>
@@ -77,10 +77,9 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for bxcan (Basic eXtended CAN controller) to STM32F429. The
-chip contains two CAN peripherals, CAN1 the master and CAN2 the slave,
-that share some of the required logic like clock and filters. This means
-that the slave CAN can't be used without the master CAN.
+Add pin configurations for using CAN controller on stm32f469-disco
+board. They are located on the Arduino compatible connector CN5 (CAN1)
+and on the extension connector CN12 (CAN2).
 
 Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 
@@ -88,53 +87,55 @@ Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 
 Changes in v3:
 - Remove 'Dario Binacchi <dariobin@libero.it>' SOB.
-- Add "clocks" to can@0 node.
+- Remove a blank line.
 
- arch/arm/boot/dts/stm32f429.dtsi | 31 +++++++++++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
+Changes in v2:
+- Remove a blank line.
 
-diff --git a/arch/arm/boot/dts/stm32f429.dtsi b/arch/arm/boot/dts/stm32f429.dtsi
-index c31ceb821231..e04cf73a8caa 100644
---- a/arch/arm/boot/dts/stm32f429.dtsi
-+++ b/arch/arm/boot/dts/stm32f429.dtsi
-@@ -362,6 +362,37 @@ i2c3: i2c@40005c00 {
- 			status = "disabled";
+ arch/arm/boot/dts/stm32f4-pinctrl.dtsi | 30 ++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
+
+diff --git a/arch/arm/boot/dts/stm32f4-pinctrl.dtsi b/arch/arm/boot/dts/stm32f4-pinctrl.dtsi
+index 500bcc302d42..8a4d51f97248 100644
+--- a/arch/arm/boot/dts/stm32f4-pinctrl.dtsi
++++ b/arch/arm/boot/dts/stm32f4-pinctrl.dtsi
+@@ -448,6 +448,36 @@ pins2 {
+ 					slew-rate = <2>;
+ 				};
+ 			};
++
++			can1_pins_a: can1-0 {
++				pins1 {
++					pinmux = <STM32_PINMUX('B', 9, AF9)>; /* CAN1_TX */
++				};
++				pins2 {
++					pinmux = <STM32_PINMUX('B', 8, AF9)>; /* CAN1_RX */
++					bias-pull-up;
++				};
++			};
++
++			can2_pins_a: can2-0 {
++				pins1 {
++					pinmux = <STM32_PINMUX('B', 13, AF9)>; /* CAN2_TX */
++				};
++				pins2 {
++					pinmux = <STM32_PINMUX('B', 5, AF9)>; /* CAN2_RX */
++					bias-pull-up;
++				};
++			};
++
++			can2_pins_b: can2-1 {
++				pins1 {
++					pinmux = <STM32_PINMUX('B', 13, AF9)>; /* CAN2_TX */
++				};
++				pins2 {
++					pinmux = <STM32_PINMUX('B', 12, AF9)>; /* CAN2_RX */
++					bias-pull-up;
++				};
++			};
  		};
- 
-+		can: can@40006400 {
-+			compatible = "st,stm32f4-bxcan-core";
-+			reg = <0x40006400 0x800>;
-+			resets = <&rcc STM32F4_APB1_RESET(CAN1)>;
-+			clocks = <&rcc 0 STM32F4_APB1_CLOCK(CAN1)>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+
-+			can1: can@0 {
-+				compatible = "st,stm32f4-bxcan";
-+				reg = <0x0>;
-+				interrupts = <19>, <20>, <21>, <22>;
-+				interrupt-names = "tx", "rx0", "rx1", "sce";
-+				resets = <&rcc STM32F4_APB1_RESET(CAN1)>;
-+				clocks = <&rcc 0 STM32F4_APB1_CLOCK(CAN1)>;
-+				st,can-master;
-+				status = "disabled";
-+			};
-+
-+			can2: can@400 {
-+				compatible = "st,stm32f4-bxcan";
-+				reg = <0x400>;
-+				interrupts = <63>, <64>, <65>, <66>;
-+				interrupt-names = "tx", "rx0", "rx1", "sce";
-+				resets = <&rcc STM32F4_APB1_RESET(CAN2)>;
-+				clocks = <&rcc 0 STM32F4_APB1_CLOCK(CAN2)>;
-+				status = "disabled";
-+			};
-+		};
-+
- 		dac: dac@40007400 {
- 			compatible = "st,stm32f4-dac-core";
- 			reg = <0x40007400 0x400>;
+ 	};
+ };
 -- 
 2.32.0
 
