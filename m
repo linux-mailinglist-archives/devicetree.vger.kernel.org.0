@@ -2,76 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B13B5A5444
-	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 20:59:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73D0A5A54A6
+	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 21:42:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229629AbiH2S7U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Aug 2022 14:59:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49062 "EHLO
+        id S229890AbiH2Tmy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Aug 2022 15:42:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229446AbiH2S7T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 14:59:19 -0400
-Received: from smtp-fw-33001.amazon.com (smtp-fw-33001.amazon.com [207.171.190.10])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE1FB7A75D;
-        Mon, 29 Aug 2022 11:59:18 -0700 (PDT)
+        with ESMTP id S229885AbiH2Tmy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 15:42:54 -0400
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27A417391B
+        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 12:42:52 -0700 (PDT)
+Received: by mail-pl1-x62c.google.com with SMTP id m2so8996832pls.4
+        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 12:42:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1661799559; x=1693335559;
-  h=message-id:date:mime-version:to:cc:references:from:
-   in-reply-to:content-transfer-encoding:subject;
-  bh=Z4Fdi6PwUtHcQnapaTAtmWhU3/hJH2D6O3lKYqCKvok=;
-  b=cNORc9M2i68WOKYrtN5ieXmryq+EQUyTxlAUaCzjIWvurCXMpLtFpRvB
-   hIFpKEMWSGWW6kclQ0NgOapcEIchigz0NOecvrg0V/ORV+hvKwt/87N4y
-   BdqOoc6+6YTbvAi/QqTPv7PQ4T9jsCtcFB0BsV+nW/mk8V+MqhMh/P/bF
-   E=;
-X-IronPort-AV: E=Sophos;i="5.93,273,1654560000"; 
-   d="scan'208";a="221794884"
-Subject: Re: [PATCH v2 14/16] hwmon: (mr75203) parse thermal coefficients from
- device-tree
-Received: from iad12-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-pdx-2c-d9fba5dd.us-west-2.amazon.com) ([10.43.8.6])
-  by smtp-border-fw-33001.sea14.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Aug 2022 18:59:17 +0000
-Received: from EX13MTAUEE001.ant.amazon.com (pdx1-ws-svc-p6-lb9-vlan2.pdx.amazon.com [10.236.137.194])
-        by email-inbound-relay-pdx-2c-d9fba5dd.us-west-2.amazon.com (Postfix) with ESMTPS id BA87E44CAC;
-        Mon, 29 Aug 2022 18:59:15 +0000 (UTC)
-Received: from EX13D08UEB001.ant.amazon.com (10.43.60.245) by
- EX13MTAUEE001.ant.amazon.com (10.43.62.226) with Microsoft SMTP Server (TLS)
- id 15.0.1497.38; Mon, 29 Aug 2022 18:59:12 +0000
-Received: from EX13MTAUWB001.ant.amazon.com (10.43.161.207) by
- EX13D08UEB001.ant.amazon.com (10.43.60.245) with Microsoft SMTP Server (TLS)
- id 15.0.1497.38; Mon, 29 Aug 2022 18:59:11 +0000
-Received: from [192.168.93.244] (10.85.143.174) by mail-relay.amazon.com
- (10.43.161.249) with Microsoft SMTP Server id 15.0.1497.38 via Frontend
- Transport; Mon, 29 Aug 2022 18:59:06 +0000
-Message-ID: <cf67db7e-f707-2448-4648-3cffa459355a@amazon.com>
-Date:   Mon, 29 Aug 2022 21:59:05 +0300
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc;
+        bh=DRojyyEkQJaI3ruqXF8PA7dAvzuh8TA99+WmvS2ccKU=;
+        b=brVaxPBLPju5jff8Pa4EVeXfGeOA9i5nUT87DXILuVueaT0W9QC8g08MaV43qdMLt0
+         xdzv7YPwS6Ej+TFQAZmh8l/6gX8+G2XJ2GzP0H/vZaquWkB6ymcIBxY/Afg1FsytrXzX
+         o5gbJ9ODI6Q3IGOXRCjKFqa0TvtZzEMKSXieCKU6tOeXe+8W20B+CHkaQpCfqHKeWBHj
+         hHqF7WQhterfKsvpanzDK/PvEUMzp7lxtSeZY8Ps9ZPztTCNtx9XxeZmXL7MACAkuMfe
+         wtive/YlA7RDrhk6/jJJ039P2HFEVIXJqhgRx2eF5apskE3YbhKuqGR63DdXcKQvL0E5
+         jH9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+        bh=DRojyyEkQJaI3ruqXF8PA7dAvzuh8TA99+WmvS2ccKU=;
+        b=4pYQYuWSLq+tDdwC8u3GiiXVQ1IFK3PhMmF7hVzI+4EVPpzP4HVQzQKZ48bDWyhFbM
+         jBQS/67xVUZm1/HR5rpNox3Ow+Gm+u3ZeFRe3R4bgDeLR8M/8VevKOBQGD7pXr6a4F1a
+         ICRZ2vItgVfpgQltEXmdYJEykKDxUJwx40gGKvSqOG/okG4wy7LlqbJHumCRvCTaj2wI
+         ID99itxa4CVeBh0uBUPlfN3h7W2aAj6RtuM6RQ5wBSoK6mA/doTwM2ps6+RRHHQsmicv
+         FC2wCNpc8t9Zd/0MD2ITW/64gTghdTkIuce+3KTPnlgBZ6gx3LpamYgL37JijuhjAMhv
+         jUDg==
+X-Gm-Message-State: ACgBeo2jVxf4nW2KNQAohEubzfNhKXjgh0g+/3qXrCnTDd7PPhD734jj
+        rocPb+RdYPBhU4maDVVhVJUKmQ==
+X-Google-Smtp-Source: AA6agR73dJ6zqJdEqwSre7rs9UMvyIM4SDNkPl6iDWE7C8VSfpk2HWHFiKxa7FMIROFlJaab1ETldg==
+X-Received: by 2002:a17:902:f64f:b0:172:a790:320a with SMTP id m15-20020a170902f64f00b00172a790320amr17692944plg.149.1661802171623;
+        Mon, 29 Aug 2022 12:42:51 -0700 (PDT)
+Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id a13-20020a170902b58d00b00172f4835f60sm7840088pls.189.2022.08.29.12.42.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Aug 2022 12:42:50 -0700 (PDT)
+Date:   Mon, 29 Aug 2022 13:42:47 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Tinghan Shen <tinghan.shen@mediatek.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Daisuke Nojiri <dnojiri@chromium.org>,
+        Kees Cook <keescook@chromium.org>,
+        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+        Prashant Malani <pmalani@chromium.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        chrome-platform@lists.linux.dev,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        weishunc@google.com
+Subject: Re: [PATCH v2 4/9] remoteproc: mediatek: Support probing for the 2nd
+ core of dual-core SCP
+Message-ID: <20220829194247.GC2264818@p14s>
+References: <20220608083553.8697-1-tinghan.shen@mediatek.com>
+ <20220608083553.8697-5-tinghan.shen@mediatek.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.0
-Content-Language: en-US
-To:     Guenter Roeck <linux@roeck-us.net>
-CC:     <jdelvare@suse.com>, <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <talel@amazon.com>,
-        <hhhawa@amazon.com>, <jonnyc@amazon.com>, <hanochu@amazon.com>,
-        <ronenk@amazon.com>, <itamark@amazon.com>, <shellykz@amazon.com>,
-        <shorer@amazon.com>, <amitlavi@amazon.com>, <almogbs@amazon.com>,
-        <dwmw@amazon.co.uk>, <rtanwar@maxlinear.com>,
-        "Farber, Eliav" <farbere@amazon.com>
-References: <20220817054321.6519-1-farbere@amazon.com>
- <20220817054321.6519-15-farbere@amazon.com>
- <20220818202839.GA3431511@roeck-us.net>
- <e0b133e7-ac81-acf4-3783-44edf58d6426@amazon.com>
- <20220819113842.GD3106213@roeck-us.net>
- <20200e60-c4e2-d272-1417-005994766380@amazon.com>
- <20220822163142.GE4098765@roeck-us.net>
-From:   "Farber, Eliav" <farbere@amazon.com>
-In-Reply-To: <20220822163142.GE4098765@roeck-us.net>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-11.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_SPF_WL autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220608083553.8697-5-tinghan.shen@mediatek.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,21 +88,114 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/22/2022 7:31 PM, Guenter Roeck wrote:
-> It should not be necessary to provide explicit default values for any 
-> of the
-> series. Yes, default values can be overwritten with explicit coefficient
-> properties, but it should not be necessary to provide those if the 
-> defaults
-> are used. So I would expect separate compatible properties for each of 
-> the
-> supported series plus separate coefficient properties.
-I added a "moortec,ts-series" so that user will not need to provide all
-4 coefficients.
-The values of the "moortec,ts-series" can be 5 (default) or 6.
-I didn't do it as a compatible property because the the driver is for
-the Moortec controller (mr75203) while series 5 or 6 are only relevant
-for the thermal sensor (mr74137).
+On Wed, Jun 08, 2022 at 04:35:48PM +0800, Tinghan Shen wrote:
+> The mtk_scp.c driver only supports the single core SCP and the
+> 1st core of a dual-core SCP. This patch extends it for the 2nd core.
+> 
+> MT8195 SCP is a dual-core MCU. Both cores are housed in the same subsys.
 
---
-Thanks, Eliav
+s/subsys/subsystem
+
+> They have the same viewpoint of registers and memory.
+> 
+> Core 1 of the SCP features its own set of core configuration registers,
+> interrupt controller, timers, and DMAs. The rest of the peripherals
+> in this subsystem are shared by core 0 and core 1.
+> 
+> As for memory, core 1 has its own cache memory. the SCP SRAM is shared
+
+/the/The
+
+> by core 0 and core 1.
+> 
+> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> ---
+>  drivers/remoteproc/mtk_scp.c | 22 ++++++++++++++++++++--
+>  1 file changed, 20 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/remoteproc/mtk_scp.c b/drivers/remoteproc/mtk_scp.c
+> index 3510c6d0bbc8..91b4aefde4ac 100644
+> --- a/drivers/remoteproc/mtk_scp.c
+> +++ b/drivers/remoteproc/mtk_scp.c
+> @@ -23,6 +23,10 @@
+>  #define MAX_CODE_SIZE 0x500000
+>  #define SECTION_NAME_IPI_BUFFER ".ipi_buffer"
+>  
+> +#define SCP_CORE_0 0
+> +#define SCP_CORE_1 1
+> +#define SCP_CORE_SINGLE 0xF
+> +
+>  /**
+>   * scp_get() - get a reference to SCP.
+>   *
+> @@ -836,6 +840,7 @@ static int scp_probe(struct platform_device *pdev)
+>  	struct resource *res;
+>  	const char *fw_name = "scp.img";
+>  	int ret, i;
+> +	u32 core_id = SCP_CORE_SINGLE;
+>  
+>  	ret = rproc_of_parse_firmware(dev, 0, &fw_name);
+>  	if (ret < 0 && ret != -EINVAL)
+> @@ -851,8 +856,16 @@ static int scp_probe(struct platform_device *pdev)
+>  	scp->data = of_device_get_match_data(dev);
+>  	platform_set_drvdata(pdev, scp);
+>  
+> +	ret = of_property_read_u32_index(dev->of_node, "mediatek,scp-core", 1, &core_id);
+> +	if (ret == 0)
+> +		dev_info(dev, "Boot SCP dual core %u\n", core_id);
+
+Why is the DT property "mediatek,scp-core" needed at all?  Since the compatible
+"mediatek,mt8195-scp-dual" has already been defined previously in this patchset,
+initialising the second core, if present, is a matter of looking at the
+compatile string. 
+
+> +
+>  	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "sram");
+> -	scp->sram_base = devm_ioremap_resource(dev, res);
+> +	if (core_id == SCP_CORE_1)
+> +		scp->sram_base = devm_ioremap(dev, res->start, resource_size(res));
+> +	else
+> +		scp->sram_base = devm_ioremap_resource(dev, res);
+> +
+
+This looks very broken...  For this to work you would need to have two DT
+entries with the "mediatek,mt8195-scp-dual" compatible properly, one with
+"mediatek,scp-core = <&scp_dual1 0>;" and another one with "mediatek,scp-core = <&scp_dual0 1>;".
+
+Which is also very broken...  Here you have a binding whose first argument is a
+reference to the core sibling while the second argument is a characteristic of
+the current core, which is highly confusing.
+
+I suggest what when you see the compatible binding "mediatek,mt8195-scp", a
+single core is initialized.  If you see "mediatek,mt8195-scp-dual", both cores
+are initialized as part of the _same_ probe.
+
+If the above analysis is not correct it means I misinterpreted your
+work and if so, a serious amount of comments is needed _and_ a very detailed
+example in "mtk,scp.yaml" that leaves no room for interpretation.
+
+I will stop reviewing this patchset until you have clarified how this works.
+
+Thanks,
+Mathieu
+
+>  	if (IS_ERR(scp->sram_base))
+>  		return dev_err_probe(dev, PTR_ERR(scp->sram_base),
+>  				     "Failed to parse and map sram memory\n");
+> @@ -873,7 +886,12 @@ static int scp_probe(struct platform_device *pdev)
+>  		scp->l1tcm_phys = res->start;
+>  	}
+>  
+> -	scp->reg_base = devm_platform_ioremap_resource_byname(pdev, "cfg");
+> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "cfg");
+> +	if (core_id == SCP_CORE_1)
+> +		scp->reg_base = devm_ioremap(dev, res->start, resource_size(res));
+> +	else
+> +		scp->reg_base = devm_ioremap_resource(dev, res);
+> +
+>  	if (IS_ERR(scp->reg_base))
+>  		return dev_err_probe(dev, PTR_ERR(scp->reg_base),
+>  				     "Failed to parse and map cfg memory\n");
+> -- 
+> 2.18.0
+> 
