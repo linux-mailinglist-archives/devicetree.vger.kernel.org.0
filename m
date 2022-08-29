@@ -2,146 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E01F45A4119
-	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 04:37:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B3685A413D
+	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 05:06:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229476AbiH2Chk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Aug 2022 22:37:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44814 "EHLO
+        id S229682AbiH2DGx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Aug 2022 23:06:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229453AbiH2Chj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Aug 2022 22:37:39 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 676CA3C8E6;
-        Sun, 28 Aug 2022 19:37:35 -0700 (PDT)
-X-UUID: 9f87e7b61458457d868f169ed8cc0cc4-20220829
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=pMxL4qDPpxQ5G6XsiawgSYIMi9de2EXDfLP+YzVPj3Q=;
-        b=AJYf630YX9H+iJkopq1LZhD1UEA2TWo6ZTeeH2y+KtBzvFqV/KmJ1HRzfMXAYFSn5hY4K6cT+qKEB8RXRjKu9dEgbhI6G6rqB47+bnRG1uWbE/netN40BmswAJ2ZBy/sVMWVXWlwZ52RrWm+WRyIvsvBfazcgMiUd4GUARsd/zE=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.10,REQID:01446251-077a-4ceb-b61f-1c498d690dc6,OB:0,L
-        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_
-        Ham,ACTION:release,TS:0
-X-CID-META: VersionHash:84eae18,CLOUDID:44395d20-1c20-48a5-82a0-25f9c331906d,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:11|1,File:
-        nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 9f87e7b61458457d868f169ed8cc0cc4-20220829
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 289164118; Mon, 29 Aug 2022 10:37:30 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Mon, 29 Aug 2022 10:37:29 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 29 Aug 2022 10:37:28 +0800
-Message-ID: <114c357f8d7f049d21ede789a292a8e2d45f4c61.camel@mediatek.com>
-Subject: Re: [PATCH 2/7] dt-bindings: phy: mediatek,tphy: add property to
- set pre-emphasis
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>
-CC:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Eddie Hung <eddie.hung@mediatek.com>
-Date:   Mon, 29 Aug 2022 10:37:28 +0800
-In-Reply-To: <000babd8-5980-3d77-f156-324b3442cbe7@linaro.org>
-References: <20220819091344.2274-1-chunfeng.yun@mediatek.com>
-         <20220819091344.2274-2-chunfeng.yun@mediatek.com>
-         <438da392-f419-ad76-7e91-aa4aab36e12c@linaro.org>
-         <816ecf6287533137b750c8bde9de5830e4229c56.camel@mediatek.com>
-         <bee8abe5-0299-d05e-643c-4810aa33f978@linaro.org>
-         <1a16cce9fe164bafc06ae193310be71c6f645d75.camel@mediatek.com>
-         <000babd8-5980-3d77-f156-324b3442cbe7@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S229668AbiH2DGx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Aug 2022 23:06:53 -0400
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D967371BC;
+        Sun, 28 Aug 2022 20:06:52 -0700 (PDT)
+Received: by mail-pj1-x1030.google.com with SMTP id t11-20020a17090a510b00b001fac77e9d1fso13264634pjh.5;
+        Sun, 28 Aug 2022 20:06:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:subject:cc:to:from:from:to:cc;
+        bh=SHFI7KtF/4EdUvL9JCtWG9NI+uEC+BREujAzYelFCr0=;
+        b=PcC3zq7uFX7iBXv8JDYqbGP9G7BYYGGKvR3aS8or3BZuXCM6uAvqDlFu5sxDyf59v7
+         6ykmyabD3LE1Y8ApnHH1O6AZqYzRudlqHq6liyJNXdVr+8e0lmA74UnJIfGjou9rtKHf
+         26Ykizx7H5b1qUJ7GLRV3l6N5i0NAIQK9KyGgJOVul+6/jzbrp/4oh5uUzKYj/SVuAys
+         oHyhIZ/5KkTTXcnk4a/HsYsMe+ra7PqvVl1YpYoRcl9TfnCYrfqSpeisG6Tk3MMUCsmz
+         W3hCLXRIOe51pgt9TMUWCt1KzLML5ZRw7yLmKMGTe3RTKJv8eXQ83ubvXStkBVx0f+sE
+         TMPQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
+        bh=SHFI7KtF/4EdUvL9JCtWG9NI+uEC+BREujAzYelFCr0=;
+        b=7buxa2cOwEZA/kSMwZ1YEyBNrKP0CZny0B9I4uaNZnYP48Xxp98m+bGJizrCfrBLXT
+         sLOaVTLTJnPmgL6xS7bTXV2N/s2qj7PcFkwMPyPz/kHv9wfCfKSshtsYI8xIoak9h1GO
+         o6iyFPkFFt1o4MGZg5y5P9Iv3Fpiioq7y6i3dRCOwZknR98J5jfedVRA65+VZBauxBdb
+         XhgYK0FnJiGJKPGOuj6N50VA2PZWwb7GyQsaBHOju8VLmZxwRZKlTVfkXhHCOidPW7ED
+         nvNS202n2TK+v0H+6P6vIlYpU282/E5aLdM9SwnlzoDr0mDV5wB/Wqbk1hrl6cw10JL7
+         EoWA==
+X-Gm-Message-State: ACgBeo0uZZ/V8Af58/lYUY8Q2I/Xa0Mw/wzD+UClWtxpztgbw8WVAD/6
+        uRfW0HB+Ry/vdpsY38enol4=
+X-Google-Smtp-Source: AA6agR4QGBvLx0PLjokfyPSOco5N8lTdDu2/rn3TtoLnnWir5vXAQObhaj2lVExpw51CRNFHWerI5g==
+X-Received: by 2002:a17:90b:4a09:b0:1fd:d4be:fed4 with SMTP id kk9-20020a17090b4a0900b001fdd4befed4mr2281055pjb.6.1661742411528;
+        Sun, 28 Aug 2022 20:06:51 -0700 (PDT)
+Received: from localhost.localdomain ([2402:7500:469:7020:1d84:ae39:a965:2e45])
+        by smtp.gmail.com with ESMTPSA id b9-20020a170903228900b001714c36a6e7sm6105839plh.284.2022.08.28.20.06.46
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 28 Aug 2022 20:06:50 -0700 (PDT)
+From:   cy_huang <u0084500@gmail.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        sre@kernel.org
+Cc:     mazziesaccount@gmail.com, alina_yu@richtek.com,
+        cy_huang@richtek.com, alinayu829@gmail.com,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/3] Add Richtek RT9471 3A battery charger support
+Date:   Mon, 29 Aug 2022 11:06:28 +0800
+Message-Id: <1661742391-11378-1-git-send-email-u0084500@gmail.com>
+X-Mailer: git-send-email 2.7.4
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2022-08-26 at 09:36 +0300, Krzysztof Kozlowski wrote:
-> On 26/08/2022 08:36, Chunfeng Yun wrote:
-> > On Tue, 2022-08-23 at 13:24 +0300, Krzysztof Kozlowski wrote:
-> > > On 22/08/2022 10:07, Chunfeng Yun wrote:
-> > > > On Fri, 2022-08-19 at 15:15 +0300, Krzysztof Kozlowski wrote:
-> > > > > On 19/08/2022 12:13, Chunfeng Yun wrote:
-> > > > > > Add a property to set usb2 phy's pre-emphasis.
-> > > > > > 
-> > > > > > Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> > > > > > ---
-> > > > > >  Documentation/devicetree/bindings/phy/mediatek,tphy.yaml |
-> > > > > > 7
-> > > > > > +++++++
-> > > > > >  1 file changed, 7 insertions(+)
-> > > > > > 
-> > > > > > diff --git
-> > > > > > a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-> > > > > > b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-> > > > > > index 848edfb1f677..aee2f3027371 100644
-> > > > > > ---
-> > > > > > a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-> > > > > > +++
-> > > > > > b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-> > > > > > @@ -219,6 +219,13 @@ patternProperties:
-> > > > > >          minimum: 1
-> > > > > >          maximum: 15
-> > > > > >  
-> > > > > > +      mediatek,pre-emphasis:
-> > > > > > +        description:
-> > > > > > +          The selection of pre-emphasis (U2 phy)
-> > > > > > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > > > > > +        minimum: 1
-> > > > > > +        maximum: 3
-> > > > > 
-> > > > > Instead of hard-coding register values in bindings, you
-> > > > > should
-> > > > > rather
-> > > > > describe here feature/effect. If it is in units, use unit
-> > > > > suffixes.
-> > > > > If
-> > > > > it is some choice, usually string enum is appropriate.
-> > > > 
-> > > > How about changing description as bellow:
-> > > > 
-> > > > "The level of pre-emphasis, increases one level, boosts the
-> > > > relative
-> > > > amplitudes of signal's higher frequencies components about
-> > > > 4.16%
-> > > > (U2
-> > > > phy)"
-> > > > 
-> > > 
-> > > Still the question is what is the unit. 4.16%?
-> > 
-> > No unit, it's a level value, like an index of array.
-> > 
-> 
-> So a value from register/device programming? 
-Yes
-> Rather a regular units
-> should be used if that's possible. If not, this should be clearly
-> described here, not some magical number which you encode into DTS...
-Ok, I'll add more descriptions.
+From: ChiYuan Huang <cy_huang@richtek.com>
 
-Thanks a lot
+This patch set is to add Richtek RT9471 charger support.
 
-> 
-> Best regards,
-> Krzysztof
+The RT9471/D is a highly-integrated 3A switch mode battery charge management
+and system power path management device for single cell Li-Ion and Li-polymer
+battery. The low impedance power path optimizes switch-mode operation
+efficiency, reduces battery charging time and extends battery life during
+discharging phase.
+
+Since v4:
+- Remove the line for the owner field in driver.
+- Add the documentation for sysfs entries.
+
+Since v3:
+- Move unevaluatedProperties line after $ref for binding patch.
+- Add Reviewed-by tag for binding patch.
+
+Since v2:
+- Remove the properties for interrupt controller things in the binding documentation.
+- Fix dtc error for typo, it's 'regulator-name', not 'regulator-compatible'.
+- Add regulator min/max microamp to allow otg vbus current adjustable in example.
+- Specify the active-level for charge-enable-gpios in binding example.
+- Fix checkpatch error about 'foo * bar' to 'foo *bar' in psy_device_to_chip function.
+- Specify the member name directly for the use of linear range.
+
+ChiYuan Huang (3):
+  dt-bindings: power: supply: Add Richtek RT9471 battery charger
+  power: supply: rt9471: Add Richtek RT9471 charger driver
+  Documentation: power: rt9471: Document exported sysfs entries
+
+ Documentation/ABI/testing/sysfs-class-power        |  44 +
+ .../bindings/power/supply/richtek,rt9471.yaml      |  73 ++
+ drivers/power/supply/Kconfig                       |  16 +
+ drivers/power/supply/Makefile                      |   1 +
+ drivers/power/supply/rt9471.c                      | 952 +++++++++++++++++++++
+ drivers/power/supply/rt9471.h                      |  76 ++
+ 6 files changed, 1162 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/power/supply/richtek,rt9471.yaml
+ create mode 100644 drivers/power/supply/rt9471.c
+ create mode 100644 drivers/power/supply/rt9471.h
+
+-- 
+2.7.4
 
