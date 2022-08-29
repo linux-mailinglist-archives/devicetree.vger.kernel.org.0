@@ -2,63 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB2835A516B
-	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 18:18:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 242355A51DD
+	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 18:34:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229522AbiH2QSx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Aug 2022 12:18:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39330 "EHLO
+        id S229507AbiH2QeS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Aug 2022 12:34:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229713AbiH2QSh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 12:18:37 -0400
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF83163F33;
-        Mon, 29 Aug 2022 09:18:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1661789913; x=1693325913;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=5YrP855ERhlgkIMwJ5dllzWtfxwklTQGqVE1b1A/OXQ=;
-  b=knjf8/gvvRi+sWrQvmZOeowcZyRrtGCj2cigIY7hFfKzkU1fTUcoH+2V
-   S+k/mQDAqW8CojMg8C/JStKPvm2mkITfMJlRAVbhcSXvXaka2GLqCeVj0
-   O1NZ0cqoIk1/+OOIJqVKUkwESXoPn/IpJqU95xrLrcsNP3SDaLZOWnTOT
-   w+1IFrVMAgEUa4kZvJ/jRGeZs+ieuX1N6kfnS0SIeUZedpna0fIwIHx82
-   fr/OP4V0g3CegPI2XsXrPDKsBJYrjEZf3vrvJ4uxvIp/wgz3xzx+mneSJ
-   ou7mGAHFvJ/lOaczVjG66mRD8cHMa3edPfWiz6W0fwEca+YvFORmroxWu
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10454"; a="294922973"
-X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; 
-   d="scan'208";a="294922973"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Aug 2022 08:07:02 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; 
-   d="scan'208";a="607474442"
-Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
-  by orsmga007.jf.intel.com with ESMTP; 29 Aug 2022 08:07:00 -0700
-Date:   Mon, 29 Aug 2022 22:57:42 +0800
-From:   Xu Yilun <yilun.xu@intel.com>
-To:     Johannes Zink <j.zink@pengutronix.de>
-Cc:     devicetree@vger.kernel.org, linux-fpga@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Moritz Fischer <mdf@kernel.org>, kernel@pengutronix.de,
-        Wu Hao <hao.wu@intel.com>
-Subject: Re: [PATCH 15/16] fpga: machxo2: extend erase timeout for machxo2
- FPGA
-Message-ID: <YwzT5imor+I4Bf1q@yilunxu-OptiPlex-7050>
-References: <20220825141343.1375690-1-j.zink@pengutronix.de>
- <20220825141343.1375690-16-j.zink@pengutronix.de>
- <YwyGWELZ7WfCE3FS@yilunxu-OptiPlex-7050>
- <c93207c6ec63c70918ae0989ec67f37771504123.camel@pengutronix.de>
+        with ESMTP id S229502AbiH2QeR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 12:34:17 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6A7A8F97A;
+        Mon, 29 Aug 2022 09:34:16 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 6FEC3B81160;
+        Mon, 29 Aug 2022 16:34:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79BADC433C1;
+        Mon, 29 Aug 2022 16:34:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1661790853;
+        bh=EHNP4RzQnuQOX+7RxLEAqc1syZDl49UGa8ehhKTXRQg=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=cDp7X8gBmpAOAKJ8Rlu6UmYCh/TwfAd+Jwhm1G1Jt0ADl/0+xpDQqwt1xfPELrpMx
+         ldgBmtZYVf7Ppsyy3Pytt6xBmXCK6ejuba3d7PxD8NolqsJPBsZepd0w9dBLtnRFfV
+         ONSDgqTK/PV84hBTcRtABTBs1RaIeKNRoOpAa3CJOPACNNqoRQ8KCvkDNT7jCAuU0S
+         kb2ekjtAWyRQD1WjoPZRpVw+FP+Oe+/QVHD6QAmMR/6FyMdCw2MqByS5BbA8lB9y4G
+         04a3AvVZ9ZNMS6LkZqYUQinoBzbvgdpDDaze8B1XDISXxfQSH8AviJsLmWtCdeHzfX
+         fOJH30FPzz/NQ==
+Date:   Mon, 29 Aug 2022 16:59:50 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Olivier Moysan <olivier.moysan@foss.st.com>,
+        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Cosmin Tanislav <cosmin.tanislav@analog.com>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Alexandru Tachici <alexandru.tachici@analog.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] dt-bindings: iio: Add missing
+ (unevaluated|additional)Properties on child nodes
+Message-ID: <20220829165950.268433ca@jic23-huawei>
+In-Reply-To: <20220829141029.GA1470207-robh@kernel.org>
+References: <20220823145649.3118479-2-robh@kernel.org>
+        <99dfcc39-ab1b-1b24-c6b2-67de5509f5ac@linaro.org>
+        <20220828180050.51c3e857@jic23-huawei>
+        <20220829141029.GA1470207-robh@kernel.org>
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <c93207c6ec63c70918ae0989ec67f37771504123.camel@pengutronix.de>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,135 +77,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-08-29 at 12:51:19 +0200, Johannes Zink wrote:
-> Hi Yilun, 
-> 
-> On Mon, 2022-08-29 at 17:26 +0800, Xu Yilun wrote:
-> > On 2022-08-25 at 16:13:42 +0200, Johannes Zink wrote:
-> > > Measurements showed that some FPGAs take significantly longer than
-> > > the
-> > > default wait function supplied. The datasheet inidicates up to 30
-> > > seconds erase times for some MachXO2 FPGAs, depending on the number
-> > > of
-> > > LUTs (and the corresponding configuration flash size).
-> > > 
-> > > Signed-off-by: Johannes Zink <j.zink@pengutronix.de>
-> > > ---
-> > >  drivers/fpga/machxo2-common.c | 28 ++++++++++++++++++++++++++--
-> > >  1 file changed, 26 insertions(+), 2 deletions(-)
-> > > 
-> > > diff --git a/drivers/fpga/machxo2-common.c b/drivers/fpga/machxo2-
-> > > common.c
-> > > index ccf9a50fc590..e8967cdee2c6 100644
-> > > --- a/drivers/fpga/machxo2-common.c
-> > > +++ b/drivers/fpga/machxo2-common.c
-> > > @@ -17,6 +17,8 @@
-> > >  #include <linux/module.h>
-> > >  #include <linux/of.h>
-> > >  #include <linux/property.h>
-> > > +#include <linux/iopoll.h>
-> > > +#include <linux/time.h>
-> > >  #include "machxo2-common.h"
-> > >  
-> > >  #define MACHXO2_LOW_DELAY_USEC          5
-> > > @@ -24,6 +26,8 @@
-> > >  #define MACHXO2_REFRESH_USEC            4800
-> > >  #define MACHXO2_MAX_BUSY_LOOP           128
-> > >  #define MACHXO2_MAX_REFRESH_LOOP        16
-> > > +#define MACHXO2_MAX_ERASE_USEC          (30 * USEC_PER_SEC)
-> > > +#define MACHXO2_ERASE_USEC_SLEEP        (20 * USEC_PER_MSEC)
-> > >  
-> > >  #define MACHXO2_PAGE_SIZE               16
-> > >  #define MACHXO2_BUF_SIZE                (MACHXO2_PAGE_SIZE + 4)
-> > > @@ -54,6 +58,18 @@
-> > >  #define ISC_ERASE_FEATURE_ROW  BIT(17)
-> > >  #define ISC_ERASE_UFM          BIT(19)
-> > >  
-> > > +static inline int machxo2_wait_until_not_busy_timeout(struct
-> > > machxo2_common_priv *priv)
-> > > +{
-> > > +       int ret, pollret;
-> > > +       u32 status = MACHXO2_BUSY;
-> > > +
-> > > +       pollret = read_poll_timeout(priv->get_status, ret,
-> > > +                                   (ret && ret != -EAGAIN) ||
-> > > !(status & MACHXO2_BUSY),
-> > > +                                   MACHXO2_ERASE_USEC_SLEEP,
-> > > MACHXO2_MAX_ERASE_USEC,
-> > > +                                   true, priv, &status);
-> > 
-> > Why just taking care of erase timeout? I see the busy wait in many
-> > places.
-> > 
-> 
-> Erasing the flash memory takes significantly longer than the other
-> operations (up to 30s), which is why I decided to use this separate
-> implementation. For other commands the fpga indicates no-more-busy much
-> faster than for the erase_flash command.
+On Mon, 29 Aug 2022 09:10:29 -0500
+Rob Herring <robh@kernel.org> wrote:
 
-It is almost always better to have a relatively measureable timeout,
-unless it is really time critical. Apparently spi/i2c transfer is not
-time critical itself. So since you have implemented a better function,
-why not use it?
-
-Thanks,
-Yilun
-
-> 
-> > > +
-> > > +       return ret ?: pollret;
-> > > +}
-> > >  
-> > >  static inline u8 get_err(u32 status)
-> > >  {
-> > > @@ -114,6 +130,12 @@ static int machxo2_cleanup(struct fpga_manager
-> > > *mgr)
-> > >         if (ret)
-> > >                 goto fail;
-> > >  
-> > > +       ret = machxo2_wait_until_not_busy_timeout(priv);
-> > > +       if (ret) {
-> > > +               dev_err(&mgr->dev, "Erase operation failed (%d)",
-> > > ret);
-> > > +               goto fail;
-> > > +       }
-> > > +
-> > >         ret = machxo2_wait_until_not_busy(priv);
-> > 
-> > Is this line still needed?
-> 
-> agreed, this line should become obsolete, since if we reach this point
-> the fpga is not indicating busy any longer or the wait has been aborted
-> due to an error. I will remove it in v2.
-> 
-> > 
-> > >         if (ret)
-> > >                 goto fail;
-> > > @@ -192,9 +214,11 @@ static int machxo2_write_init(struct
-> > > fpga_manager *mgr,
-> > >         if (ret)
-> > >                 goto fail;
-> > >  
-> > > -       ret = machxo2_wait_until_not_busy(priv);
-> > > -       if (ret)
-> > > +       ret = machxo2_wait_until_not_busy_timeout(priv);
-> > > +       if (ret) {
-> > > +               dev_err(&mgr->dev, "Erase operation failed (%d)",
-> > > ret);
-> > >                 goto fail;
-> > > +       }
-> > >  
-> > >         priv->get_status(priv, &status);
-> > >         if (status & MACHXO2_FAIL) {
-> > > -- 
-> > > 2.30.2
+> On Sun, Aug 28, 2022 at 06:01:41PM +0100, Jonathan Cameron wrote:
+> > On Thu, 25 Aug 2022 15:04:33 +0300
+> > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> >   
+> > > On 23/08/2022 17:56, Rob Herring wrote:  
+> > > > In order to ensure only documented properties are present, node schemas
+> > > > must have unevaluatedProperties or additionalProperties set to false
+> > > > (typically).
+> > > >     
 > > > 
+> > > 
+> > > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>  
 > > 
-> > 
+> > Applied to the togreg branch of iio.git and pushed out as testing for 0-day
+> > to poke at it before I push out as togreg for linux-next to pick up.  
 > 
-> -- 
-> Pengutronix e.K.                | Johannes Zink                  |
-> Steuerwalder Str. 21            | https://www.pengutronix.de/    |
-> 31137 Hildesheim, Germany       | Phone: +49-5121-206917-0       |
-> Amtsgericht Hildesheim, HRA 2686| Fax:   +49-5121-206917-5555    |
+> Thanks.
 > 
+> > Side note. Some odd entries in your cc list...  alsa-devel?  
+> 
+> Blame MAINTAINERS:
+> 
+> STM32 AUDIO (ASoC) DRIVERS
+> M:      Olivier Moysan <olivier.moysan@foss.st.com>
+> M:      Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+> L:      alsa-devel@alsa-project.org (moderated for non-subscribers)
+> S:      Maintained
+> F:      Documentation/devicetree/bindings/iio/adc/st,stm32-dfsdm-adc.yaml
+> F:      Documentation/devicetree/bindings/sound/st,stm32-*.yaml
+> F:      sound/soc/stm/
+
+There is some logic to that entry I suppose.
+
+Thanks for explanation!
+
+Jonathan
