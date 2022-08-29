@@ -2,84 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2191B5A5543
-	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 22:02:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED72E5A555D
+	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 22:12:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229475AbiH2UCM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Aug 2022 16:02:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43138 "EHLO
+        id S229475AbiH2UMw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Aug 2022 16:12:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229635AbiH2UCL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 16:02:11 -0400
-Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 701E79752B;
-        Mon, 29 Aug 2022 13:02:10 -0700 (PDT)
-Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-11edd61a9edso5773873fac.5;
-        Mon, 29 Aug 2022 13:02:10 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=heDlxahlElGXVYwB2W6L7qQGe7aDiUidQ7Kv6j0r3rE=;
-        b=3pKca5LrgBZzgEvgAH1vI5fHTFCG1K8hfa6ioss/fBjQHstJ2b7i0DH+fOJ9Pg9P/m
-         q8eA3TJ7z/lRxDXkYwjvw2JjXOudY676Xq3Zf7hxuWTyJj8BGv0pfx+SIIKpGsNb8iIX
-         YyoBuCVYuunynUqQqUdJopm3/haVO49Fp6EqDHD8JAQYr8PERk5ZyUbKeqFQ31UXBIiN
-         K1uHbQiDwPFaXEK2FtNHi3e48xhlO4lmd+bviACeaFnUkg8Lth/vyyg7c9d9vNNX/mTS
-         g2VKxb6oPjo+LjB9+FnIrSuKjvhto/A0FCgLNVA9+pDx0qp/gLBnhw3/gv63L5iN7N0W
-         4Rsw==
-X-Gm-Message-State: ACgBeo1+mLYSvmFbhsP1gmFOKtWzqXD3pqj+G0U9KVTH4NEGD0J8ifDQ
-        PmiFJ+ftm4HnsTwj6lL2Aw==
-X-Google-Smtp-Source: AA6agR7imhGalw24paYm0hGoNiPCs9z3xZhA32pXWQg75grNPB3xOQUmklHt6R+BJxACdjCgZwSwEg==
-X-Received: by 2002:a05:6870:3906:b0:11e:4c51:13d1 with SMTP id b6-20020a056870390600b0011e4c5113d1mr8702681oap.281.1661803329741;
-        Mon, 29 Aug 2022 13:02:09 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id e20-20020a056830201400b006394756c04fsm6068234otp.0.2022.08.29.13.02.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Aug 2022 13:02:09 -0700 (PDT)
-Received: (nullmailer pid 2323558 invoked by uid 1000);
-        Mon, 29 Aug 2022 20:02:08 -0000
-Date:   Mon, 29 Aug 2022 15:02:08 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Jayesh Choudhary <j-choudhary@ti.com>
-Cc:     linux-kernel@vger.kernel.org, linux-crypto@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, davem@davemloft.net,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        herbert@gondor.apana.org.au, j-keerthy@ti.com
-Subject: Re: [RESEND PATCH] dt-bindings: crypto: ti,sa2ul: drop dma-coherent
- property
-Message-ID: <20220829200208.GA2323499-robh@kernel.org>
-References: <20220826091142.262325-1-j-choudhary@ti.com>
+        with ESMTP id S229457AbiH2UMv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 16:12:51 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 614087677D;
+        Mon, 29 Aug 2022 13:12:51 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id F372060F9D;
+        Mon, 29 Aug 2022 20:12:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8943CC433C1;
+        Mon, 29 Aug 2022 20:12:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1661803970;
+        bh=IdZ+uoQ3EC8NwQGLKdf5Zi5eK3XOasnGV90en56Ucfw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=mKC821qwvXEgbVk5A/LIR1+Wrufo92a6pb2mB7Ut1YC/T0ISSq4Ecf6CMmONuFiMW
+         2e+Azq80oG4accfETbXOH0bzUck80RDPrHu8TrQRkv2AXerpg9FkTYkNxm1I5DrrYR
+         Geu/EamXR9D0w9RMw/5EBsInZ39l1n5NnP0tFD0lAX5NT8uM1QCKIL8sy45T+39egx
+         sKkdq0P7RwisdnOhK9+VwJqepCYxlz9ufBPYjEZZCSNXkIAndEl1BnmXV8TG9z8gHn
+         V/PnHN2d2NduJXvzvrRh7XTvnd4y1zhSO79HV2YDXo9tlqyw+okczvDGdep61bxt7l
+         6mhO/92SdasaA==
+Date:   Mon, 29 Aug 2022 22:12:46 +0200
+From:   Wolfram Sang <wsa@kernel.org>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     aisheng.dong@nxp.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, xiaoning.wang@nxp.com,
+        Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH V3 7/7] i2c: imx-lpi2c: use bulk clk API
+Message-ID: <Yw0dvtRTkW/ISgna@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, aisheng.dong@nxp.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, xiaoning.wang@nxp.com,
+        Peng Fan <peng.fan@nxp.com>
+References: <20220823030215.870414-1-peng.fan@oss.nxp.com>
+ <20220823030215.870414-8-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="T0u3L3wlujZ6XOZ/"
 Content-Disposition: inline
-In-Reply-To: <20220826091142.262325-1-j-choudhary@ti.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20220823030215.870414-8-peng.fan@oss.nxp.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 26 Aug 2022 14:41:42 +0530, Jayesh Choudhary wrote:
-> crypto driver itself is not dma-coherent. It is the dmaengine
-> that moves data and the buffers are to be mapped to the
-> dmaengine provider. So this property should be dropped.
-> 
-> Fixes: 2ce9a7299bf6 ('dt-bindings: crypto: Add TI SA2UL crypto accelerator documentation')
-> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
-> ---
-> 
-> Resending the patch as it got ACK-ed but did not get MERGED.
-> (https://lore.kernel.org/all/2935fd8e-ceda-fec9-db47-65d3ec142e32@linaro.org/)
-> We get some warnings which are expected. I will post the dt-node
-> fixes once this patch gets merged.
-> 
->  .../devicetree/bindings/crypto/ti,sa2ul.yaml        | 13 -------------
->  1 file changed, 13 deletions(-)
-> 
 
-Applied, thanks!
+--T0u3L3wlujZ6XOZ/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, Aug 23, 2022 at 11:02:15AM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+>=20
+> The current driver only support one clock, however LPI2C requires
+> two clocks: PER and IPG.
+>=20
+> To make sure old dts could work with newer kernel, use bulk clk
+> API.
+>=20
+> Reviewed-by: Dong Aisheng <aisheng.dong@nxp.com>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+
+Applied to for-next, thanks!
+
+
+--T0u3L3wlujZ6XOZ/
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmMNHb0ACgkQFA3kzBSg
+Kbampg//XOxRtSBD8sZTgSXDMiiW5+y0Em8wGArEmm8E7MbTGYf/s9At7mZU6uKA
+nDHa5YbysOOgQxiLjsqGKD2pU741aym+wJxVgsxjcWLKCA1WaaZbwsXMS4n4tIKE
+B3IIizRGwPo/6DfDlb1+GMtbYJu2AKg06KIFMgHGZP8V5zuOpI9mXTUlRxUZVNAu
+RAwsbf3AO0+dxHyn8KBHh6DbC5g4be56VWAPaYXcjab0tWkbPX8TaWV8/Y0kKFns
+slKWOWoiPbf7UF5R72BlgOb6nVaQZLJgq8MvhWH8M5L+ZXP0yvCLQSjoY3n7J9zd
+LGJh91IBVPdQZWy5SpExa2dhnntDdhk69PQCY+ee9j0iwvOZ4UBvg1DSJLkVTEHG
+UJ8z2Ro3P7v7dnlZVWru8zsQfpmjHSXhxS6v6Uaz1ecVR7RxLfaAvtJHHcQ7Fa61
+PZ1Tf79095MClX4lgI0ws/ujXMeiPCaXhney7FlkUi6E6UmUe4EhHehiS0zDWHQS
+CUsHMr17+UZhT0V4H7LSpgowQ4vSsUhgHHi+n65vEbmbxxWannmL/OZa0QzlruWm
+HdDqqzsGyULLtwLVv0zfuFZh4pIeHZYKtleDl6jHDZqZ83PEmgUY4tngikkBxT7Q
+LEPrbyKptV+iKPU5k87YKipVPwVgObZs47rhaXMr8R38n96eRnc=
+=N3ek
+-----END PGP SIGNATURE-----
+
+--T0u3L3wlujZ6XOZ/--
