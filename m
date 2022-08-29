@@ -2,57 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE83F5A4603
-	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 11:24:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 384ED5A45EB
+	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 11:19:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229689AbiH2JY1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Aug 2022 05:24:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51734 "EHLO
+        id S229628AbiH2JTV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Aug 2022 05:19:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229556AbiH2JY0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 05:24:26 -0400
-X-Greylist: delayed 423 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 29 Aug 2022 02:24:17 PDT
-Received: from mail.thorsis.com (mail.thorsis.com [92.198.35.195])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F30F85B06B
-        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 02:24:17 -0700 (PDT)
-Date:   Mon, 29 Aug 2022 11:17:05 +0200
-From:   Alexander Dahl <ada@thorsis.com>
-To:     Olliver Schinagl <oliver@schinagl.nl>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Baolin Wang <baolin.wang@linaro.org>,
-        Daniel Mack <daniel@zonque.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Oleh Kravchenko <oleg@kaa.org.ua>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Simon Shields <simon@lineageos.org>,
-        Olliver Schinagl <oliver+list@schinagl.nl>,
-        devicetree@vger.kernel.org,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2] dt-bindings: leds: Expand LED_COLOR_ID definitions
-Message-ID: <YwyEEYRUF3WoQr0M@ada.ifak-system.com>
-Mail-Followup-To: Olliver Schinagl <oliver@schinagl.nl>,
+        with ESMTP id S229577AbiH2JTT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 05:19:19 -0400
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BD0CB5AA20;
+        Mon, 29 Aug 2022 02:19:17 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.93,272,1654527600"; 
+   d="scan'208";a="132941440"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 29 Aug 2022 18:19:17 +0900
+Received: from localhost.localdomain (unknown [10.226.93.63])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 2B7DE40083DE;
+        Mon, 29 Aug 2022 18:19:09 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Baolin Wang <baolin.wang@linaro.org>,
-        Daniel Mack <daniel@zonque.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Oleh Kravchenko <oleg@kaa.org.ua>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Simon Shields <simon@lineageos.org>,
-        Olliver Schinagl <oliver+list@schinagl.nl>,
-        devicetree@vger.kernel.org,
-        linux-kernel <linux-kernel@vger.kernel.org>
-References: <7c688821-140b-4b05-651b-337f602dc1fe@schinagl.nl>
- <6ec9eaa1-2bc2-a32f-6685-4a2a645a5a59@schinagl.nl>
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Subject: [PATCH v6 1/2] dt-bindings: display: bridge: Document RZ/G2L MIPI DSI TX bindings
+Date:   Mon, 29 Aug 2022 10:19:00 +0100
+Message-Id: <20220829091901.641784-2-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220829091901.641784-1-biju.das.jz@bp.renesas.com>
+References: <20220829091901.641784-1-biju.das.jz@bp.renesas.com>
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <6ec9eaa1-2bc2-a32f-6685-4a2a645a5a59@schinagl.nl>
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,84 +57,229 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Olliver,
+The RZ/G2L MIPI DSI TX is embedded in the Renesas RZ/G2L family SoC's. It
+can operate in DSI mode, with up to four data lanes.
 
-Am Fri, Aug 12, 2022 at 04:31:55PM +0200 schrieb Olliver Schinagl:
-> In commit 853a78a7d6c7 (dt-bindings: leds: Add LED_COLOR_ID definitions,
-> 
-> Sun Jun 9 20:19:04 2019 +0200) the most basic color definitions where
-> added. However, there's a little more very common LED colors.
-> 
-> While the documentation states 'add what is missing', engineers tend to
-> be lazy and will just use what currently exists. So this patch will take
-> (a) list from online retailers [0], [1], [2] and use the common LED colors
-> from
-> there, this being reasonable as this is what is currently available to
-> purchase.
-> 
-> Note, that LIME seems to be the modern take to 'Yellow-green' or
-> 'Yellowish-green' from some older datasheets.
-> 
-> [0]: https://www.digikey.com/en/products/filter/led-lighting-color/125
-> [1]: https://eu.mouser.com/c/optoelectronics/led-lighting/led-emitters/standard-leds-smd
-> [2]: https://nl.farnell.com/en-NL/c/optoelectronics-displays/led-products/standard-single-colour-leds-under-75ma
-> 
-> Signed-off-by: Olliver Schinagl <oliver@schinagl.nl>
-> ---
-> 
-> Changes since v1: Unbreak existing definitions.
-> 
->  include/dt-bindings/leds/common.h | 28 ++++++++++++++++------------
->  1 file changed, 16 insertions(+), 12 deletions(-)
-> 
-> diff --git a/include/dt-bindings/leds/common.h
-> b/include/dt-bindings/leds/common.h
-> index 3be89a7c20a9..04bf94523ea3 100644
-> --- a/include/dt-bindings/leds/common.h
-> +++ b/include/dt-bindings/leds/common.h
-> @@ -22,18 +22,22 @@
->  #define LEDS_BOOST_FIXED    2
-> 
->  /* Standard LED colors */
-> -#define LED_COLOR_ID_WHITE    0
-> -#define LED_COLOR_ID_RED    1
-> -#define LED_COLOR_ID_GREEN    2
-> -#define LED_COLOR_ID_BLUE    3
-> -#define LED_COLOR_ID_AMBER    4
-> -#define LED_COLOR_ID_VIOLET    5
-> -#define LED_COLOR_ID_YELLOW    6
-> -#define LED_COLOR_ID_IR        7
-> -#define LED_COLOR_ID_MULTI    8    /* For multicolor LEDs */
-> -#define LED_COLOR_ID_RGB    9    /* For multicolor LEDs that can do
-> arbitrary color,
-> -                       so this would include RGBW and similar */
-> -#define LED_COLOR_ID_MAX    10
-> +#define LED_COLOR_ID_WHITE      0
-> +#define LED_COLOR_ID_RED        1
-> +#define LED_COLOR_ID_GREEN      2
-> +#define LED_COLOR_ID_BLUE       3
-> +#define LED_COLOR_ID_AMBER      4
-> +#define LED_COLOR_ID_VIOLET     5
-> +#define LED_COLOR_ID_YELLOW     6
-> +#define LED_COLOR_ID_IR         7
-> +#define LED_COLOR_ID_MULTI      8 /* For multicolor LEDs */
-> +#define LED_COLOR_ID_RGB        9 /* For multicolor LEDs that can do
-> arbitrary color, including RGBW etc. */
-> +#define LED_COLOR_ID_PUPRPLE   10
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+v5->v6:
+ * No change.
+v4->v5:
+ * No change.
+v3->v4:
+ * No change.
+v2->v3:
+ * Added Rb tag from Geert and Laurent
+ * Fixed the typo "Receive" -> "transmit"
+ * Added accepible values for data-lanes
+ * Sorted Header file in the example
+ * Added SoC specific compaible along with generic one.
+v1->v2:
+ * Added full path for dsi-controller.yaml
+ * Modeled DSI + D-PHY as single block and updated reg property
+ * Fixed typo D_PHY->D-PHY
+ * Updated description
+ * Added interrupts and interrupt-names and updated the example 
+RFC->v1:
+ * Added a ref to dsi-controller.yaml.
+RFC:-
+ * https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220112174612.10773-22-biju.das.jz@bp.renesas.com/
+---
+ .../bindings/display/bridge/renesas,dsi.yaml  | 182 ++++++++++++++++++
+ 1 file changed, 182 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
 
-Typo? Should be LED_COLOR_ID_PURPLE, right?
+diff --git a/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
+new file mode 100644
+index 000000000000..131d5b63ec4f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
+@@ -0,0 +1,182 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/bridge/renesas,dsi.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Renesas RZ/G2L MIPI DSI Encoder
++
++maintainers:
++  - Biju Das <biju.das.jz@bp.renesas.com>
++
++description: |
++  This binding describes the MIPI DSI encoder embedded in the Renesas
++  RZ/G2L alike family of SoC's. The encoder can operate in DSI mode, with
++  up to four data lanes.
++
++allOf:
++  - $ref: /schemas/display/dsi-controller.yaml#
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - renesas,r9a07g044-mipi-dsi # RZ/G2{L,LC}
++      - const: renesas,rzg2l-mipi-dsi
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    items:
++      - description: Sequence operation channel 0 interrupt
++      - description: Sequence operation channel 1 interrupt
++      - description: Video-Input operation channel 1 interrupt
++      - description: DSI Packet Receive interrupt
++      - description: DSI Fatal Error interrupt
++      - description: DSI D-PHY PPI interrupt
++      - description: Debug interrupt
++
++  interrupt-names:
++    items:
++      - const: seq0
++      - const: seq1
++      - const: vin1
++      - const: rcv
++      - const: ferr
++      - const: ppi
++      - const: debug
++
++  clocks:
++    items:
++      - description: DSI D-PHY PLL multiplied clock
++      - description: DSI D-PHY system clock
++      - description: DSI AXI bus clock
++      - description: DSI Register access clock
++      - description: DSI Video clock
++      - description: DSI D-PHY Escape mode transmit clock
++
++  clock-names:
++    items:
++      - const: pllclk
++      - const: sysclk
++      - const: aclk
++      - const: pclk
++      - const: vclk
++      - const: lpclk
++
++  resets:
++    items:
++      - description: MIPI_DSI_CMN_RSTB
++      - description: MIPI_DSI_ARESET_N
++      - description: MIPI_DSI_PRESET_N
++
++  reset-names:
++    items:
++      - const: rst
++      - const: arst
++      - const: prst
++
++  power-domains:
++    maxItems: 1
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++
++    properties:
++      port@0:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: Parallel input port
++
++      port@1:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
++        description: DSI output port
++
++        properties:
++          endpoint:
++            $ref: /schemas/media/video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              data-lanes:
++                description: array of physical DSI data lane indexes.
++                minItems: 1
++                items:
++                  - const: 1
++                  - const: 2
++                  - const: 3
++                  - const: 4
++
++            required:
++              - data-lanes
++
++    required:
++      - port@0
++      - port@1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - interrupt-names
++  - clocks
++  - clock-names
++  - resets
++  - reset-names
++  - power-domains
++  - ports
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/r9a07g044-cpg.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    dsi0: dsi@10850000 {
++        compatible = "renesas,r9a07g044-mipi-dsi", "renesas,rzg2l-mipi-dsi";
++        reg = <0x10850000 0x20000>;
++        interrupts = <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
++        interrupt-names = "seq0", "seq1", "vin1", "rcv",
++                          "ferr", "ppi", "debug";
++        clocks = <&cpg CPG_MOD R9A07G044_MIPI_DSI_PLLCLK>,
++                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_SYSCLK>,
++                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_ACLK>,
++                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_PCLK>,
++                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_VCLK>,
++                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_LPCLK>;
++        clock-names = "pllclk", "sysclk", "aclk", "pclk", "vclk", "lpclk";
++        resets = <&cpg R9A07G044_MIPI_DSI_CMN_RSTB>,
++                 <&cpg R9A07G044_MIPI_DSI_ARESET_N>,
++                 <&cpg R9A07G044_MIPI_DSI_PRESET_N>;
++        reset-names = "rst", "arst", "prst";
++        power-domains = <&cpg>;
++
++        ports {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            port@0 {
++                reg = <0>;
++                dsi0_in: endpoint {
++                    remote-endpoint = <&du_out_dsi0>;
++                };
++            };
++
++            port@1 {
++                reg = <1>;
++                dsi0_out: endpoint {
++                    data-lanes = <1 2 3 4>;
++                    remote-endpoint = <&adv7535_in>;
++                };
++            };
++        };
++    };
++...
+-- 
+2.25.1
 
-Greets
-Alex
-
-> +#define LED_COLOR_ID_ORANGE    11
-> +#define LED_COLOR_ID_PINK      12
-> +#define LED_COLOR_ID_CYAN      13
-> +#define LED_COLOR_ID_LIME      14
-> +#define LED_COLOR_ID_MAX       15
-> 
->  /* Standard LED functions */
->  /* Keyboard LEDs, usually it would be input4::capslock etc. */
-> -- 
-> 2.37.1
-> 
