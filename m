@@ -2,131 +2,236 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 122E35A4D8D
-	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 15:19:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E58B5A4DDE
+	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 15:25:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230048AbiH2NSE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Aug 2022 09:18:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33740 "EHLO
+        id S230027AbiH2NZ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Aug 2022 09:25:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230142AbiH2NRQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 09:17:16 -0400
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C778A1C939;
-        Mon, 29 Aug 2022 06:16:42 -0700 (PDT)
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 27TCgHnP025952;
-        Mon, 29 Aug 2022 09:15:17 -0400
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3j7g673cf5-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 29 Aug 2022 09:15:17 -0400
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 27TDFGck019146
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 29 Aug 2022 09:15:16 -0400
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Mon, 29 Aug
- 2022 09:15:15 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Mon, 29 Aug 2022 09:15:15 -0400
-Received: from nsa.ad.analog.com ([10.44.3.68])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 27TDEeiU026449;
-        Mon, 29 Aug 2022 09:15:08 -0400
-From:   =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>
-To:     <linux-kernel@vger.kernel.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        <devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        <linux-input@vger.kernel.org>,
-        =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>
-CC:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        with ESMTP id S230048AbiH2NZH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 09:25:07 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 753318B997
+        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 06:22:12 -0700 (PDT)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=irc.pengutronix.de)
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <j.zink@pengutronix.de>)
+        id 1oSehr-00082j-Ii; Mon, 29 Aug 2022 15:21:35 +0200
+Message-ID: <2800bc77abb68c721feb5569608684414ae3f6be.camel@pengutronix.de>
+Subject: Re: [PATCH 16/16] fpga: machxo2: add configuration over i2c
+From:   Johannes Zink <j.zink@pengutronix.de>
+To:     Xu Yilun <yilun.xu@intel.com>
+Cc:     linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Hennerich <michael.hennerich@analog.com>
-Subject: [PATCH v4 10/10] input: keyboard: adp5588-keys: Use new PM macros
-Date:   Mon, 29 Aug 2022 15:15:53 +0200
-Message-ID: <20220829131553.690063-11-nuno.sa@analog.com>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20220829131553.690063-1-nuno.sa@analog.com>
-References: <20220829131553.690063-1-nuno.sa@analog.com>
-MIME-Version: 1.0
+        Moritz Fischer <mdf@kernel.org>, Wu Hao <hao.wu@intel.com>,
+        kernel@pengutronix.de
+Date:   Mon, 29 Aug 2022 15:21:19 +0200
+In-Reply-To: <YwyLOSKy6kUFsFOB@yilunxu-OptiPlex-7050>
+References: <20220825141343.1375690-1-j.zink@pengutronix.de>
+         <20220825141343.1375690-17-j.zink@pengutronix.de>
+         <YwyLOSKy6kUFsFOB@yilunxu-OptiPlex-7050>
 Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.3-1 
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-ORIG-GUID: HzHZf3F1q6vI2raEM49qHnp9POj5dtts
-X-Proofpoint-GUID: HzHZf3F1q6vI2raEM49qHnp9POj5dtts
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.517,FMLib:17.11.122.1
- definitions=2022-08-29_07,2022-08-25_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- lowpriorityscore=0 spamscore=0 phishscore=0 mlxlogscore=999 malwarescore=0
- impostorscore=0 mlxscore=0 adultscore=0 bulkscore=0 suspectscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2207270000 definitions=main-2208290061
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: j.zink@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-With the new PM macros (DEFINE_SIMPLE_DEV_PM_OPS() and pm_sleep_ptr()), the
-compiler has visibility to see that the functions are not used when
-!CONFIG_PM and hence, remove the dead code. As such, there's no need
-for '__maybe_unused'.
+Hi Yilun, 
 
-Signed-off-by: Nuno Sá <nuno.sa@analog.com>
-Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
----
- drivers/input/keyboard/adp5588-keys.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+On Mon, 2022-08-29 at 17:47 +0800, Xu Yilun wrote:
+> On 2022-08-25 at 16:13:43 +0200, Johannes Zink wrote:
+> > From: Peter Jensen <pdj@bang-olufsen.dk>
+> > 
+> > The configuration flash of the machxo2 fpga can also be erased and
+> > written over i2c instead of spi. Add this functionality to the
+> > refactored common driver. Since some commands are shorter over I2C
+> > than
+> > they are over SPI some quirks are added to the common driver in
+> > order to
+> > account for that.
+> > 
+> > Signed-off-by: Peter Jensen <pdj@bang-olufsen.dk>
+> > Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+> > Signed-off-by: Johannes Zink <j.zink@pengutronix.de>
+> > ---
 
-diff --git a/drivers/input/keyboard/adp5588-keys.c b/drivers/input/keyboard/adp5588-keys.c
-index 0e6f4a47bb9c..7cb120ad3a68 100644
---- a/drivers/input/keyboard/adp5588-keys.c
-+++ b/drivers/input/keyboard/adp5588-keys.c
-@@ -825,7 +825,7 @@ static void adp5588_remove(struct i2c_client *client)
- 	/* all resources will be freed by devm */
- }
- 
--static int __maybe_unused adp5588_suspend(struct device *dev)
-+static int adp5588_suspend(struct device *dev)
- {
- 	struct i2c_client *client = to_i2c_client(dev);
- 
-@@ -834,7 +834,7 @@ static int __maybe_unused adp5588_suspend(struct device *dev)
- 	return 0;
- }
- 
--static int __maybe_unused adp5588_resume(struct device *dev)
-+static int adp5588_resume(struct device *dev)
- {
- 	struct i2c_client *client = to_i2c_client(dev);
- 
-@@ -843,7 +843,7 @@ static int __maybe_unused adp5588_resume(struct device *dev)
- 	return 0;
- }
- 
--static SIMPLE_DEV_PM_OPS(adp5588_dev_pm_ops, adp5588_suspend, adp5588_resume);
-+static DEFINE_SIMPLE_DEV_PM_OPS(adp5588_dev_pm_ops, adp5588_suspend, adp5588_resume);
- 
- static const struct i2c_device_id adp5588_id[] = {
- 	{ "adp5588-keys", 0 },
-@@ -863,7 +863,7 @@ static struct i2c_driver adp5588_driver = {
- 	.driver = {
- 		.name = KBUILD_MODNAME,
- 		.of_match_table = adp5588_of_match,
--		.pm   = &adp5588_dev_pm_ops,
-+		.pm   = pm_sleep_ptr(&adp5588_dev_pm_ops),
- 	},
- 	.probe    = adp5588_probe,
- 	.remove   = adp5588_remove,
+[snip]
+> 
+
+> > +static int machxo2_i2c_get_status(struct machxo2_common_priv *bus,
+> > u32 *status)
+> > +{
+> > +       struct machxo2_i2c_priv *i2cPriv =
+> > to_machxo2_i2c_priv(bus);
+> > +       struct i2c_client *client = i2cPriv->client;
+> > +       u8 read_status[] = LSC_READ_STATUS;
+> 
+> The command word could also be bus agnostic. I think a callback like
+> write_then_read(bus, txbuf, n_tx, rxbuf, n_rx) could be a better
+> abstraction.
+
+I agree. The only command reading from the fpga is the get_status 
+functionality but your proposal provides a cleaner implementation. 
+I will add it in v2.
+> 
+> > +       __be32 tmp;
+> > +       int ret;
+> > +       struct i2c_msg msg[] = {
+> > +               {
+> > +                       .addr = client->addr,
+> > +                       .flags = 0,
+> > +                       .buf = read_status,
+> > +                       .len = ARRAY_SIZE(read_status),
+> > +               }, {
+> > +                       .addr = client->addr,
+> > +                       .flags = I2C_M_RD,
+> > +                       .buf = (u8 *) &tmp,
+> > +                       .len = sizeof(tmp)
+> > +               }
+> > +       };
+> > +
+> > +       ret = i2c_transfer(client->adapter, msg, ARRAY_SIZE(msg));
+> > +       if (ret < 0)
+> > +               return ret;
+> > +       if (ret != ARRAY_SIZE(msg))
+> > +               return -EIO;
+> > +       *status = be32_to_cpu(tmp);
+> > +
+> > +       return 0;
+> > +}
+> > +
+> > +static int machxo2_i2c_write(struct machxo2_common_priv *common,
+> > +                            struct machxo2_cmd *cmds, size_t
+> > cmd_count)
+> > +{
+> > +       struct machxo2_i2c_priv *i2c_priv =
+> > to_machxo2_i2c_priv(common);
+> > +       struct i2c_client *client = i2c_priv->client;
+> > +       size_t i;
+> > +       int ret;
+> > +
+> > +       for (i = 0; i < cmd_count; i++) {
+> > +               struct i2c_msg msg[] = {
+> > +                       {
+> > +                               .addr = client->addr,
+> > +                               .buf = cmds[i].cmd,
+> > +                               .len = cmds[i].cmd_len,
+> > +                       },
+> > +               };
+> > +
+> > +               ret = i2c_transfer(client->adapter, msg,
+> > ARRAY_SIZE(msg));
+> > +               if (ret < 0)
+> > +                       return ret;
+> > +               if (ret != ARRAY_SIZE(msg))
+> > +                       return -EIO;
+> > +               if (cmds[i].delay_us)
+> > +                       usleep_range(cmds[i].delay_us,
+> > cmds[i].delay_us +
+> > +                                    cmds[i].delay_us / 4);
+> > +               if (i < cmd_count - 1) /* on any iteration except
+> > for the last one... */
+> > +                       ret = machxo2_wait_until_not_busy(common);
+> 
+> Seems no need to implement the loop and wait in transportation layer,
+> they are common. A callback like write(bus, txbuf, n_tx) is better?
+> 
+> Thanks,
+> Yilun
+
+I have chosen this implementation mostly due to the fact that I don't
+have a SPI machxo2 device to test against, so I am intentionally
+keeping changes to a minimum. 
+
+Moving the wait between single commands into the transport layer is not
+functionally equivalent, e.g. the ISC_ENABLE - ISC_ERASE command
+sequence in the machxo2_write_init function would require two separate
+messages with a wait time between them, which would deassert the CS
+line between sending the messages via SPI if not sent as a sequence of
+SPI transfers. For some of the commands, the fpga requires a delay
+between the different commands, which was implemented by setting the
+delay property of the spi transfer objects in the original driver.
+
+This implementation tries to mimic the timing behaviour of the SPI
+transfer delay property for the I2C implementation. 
+
+Best regards
+Johannes
+
+> 
+> > +       }
+> > +
+> > +       return 0;
+> > +}
+> > +
+> > +static int machxo2_i2c_probe(struct i2c_client *client,
+> > +                       const struct i2c_device_id *id)
+> > +{
+> > +       struct device *dev = &client->dev;
+> > +       struct machxo2_i2c_priv *priv;
+> > +
+> > +       priv = devm_kzalloc(dev, sizeof(struct machxo2_i2c_priv),
+> > GFP_KERNEL);
+> > +       if (!priv)
+> > +               return -ENOMEM;
+> > +
+> > +       priv->client = client;
+> > +       priv->common.get_status = machxo2_i2c_get_status;
+> > +       priv->common.write_commands = machxo2_i2c_write;
+> > +
+> > +       /* Commands are usually 4b, but these aren't for i2c */
+> > +       priv->common.enable_3b = true;
+> > +       priv->common.refresh_3b = true;
+> > +
+> > +       return machxo2_common_init(&priv->common, dev);
+> > +}
+> > +
+> > +static const struct of_device_id of_match[] = {
+> > +       { .compatible = "lattice,machxo2-slave-i2c", },
+> > +       { },
+> > +};
+> > +MODULE_DEVICE_TABLE(of, of_match);
+> > +
+> > +static const struct i2c_device_id lattice_ids[] = {
+> > +       { "machxo2-slave-i2c", 0 },
+> > +       { },
+> > +};
+> > +MODULE_DEVICE_TABLE(i2c, lattice_ids);
+> > +
+> > +static struct i2c_driver machxo2_i2c_driver = {
+> > +       .driver = {
+> > +               .name = "machxo2-slave-i2c",
+> > +               .of_match_table = of_match_ptr(of_match),
+> > +       },
+> > +       .probe = machxo2_i2c_probe,
+> > +       .id_table = lattice_ids,
+> > +};
+> > +
+> > +module_i2c_driver(machxo2_i2c_driver);
+> > +
+> > +MODULE_AUTHOR("Peter Jensen <pdj@bang-olufsen.dk>");
+> > +MODULE_DESCRIPTION("Load Lattice FPGA firmware over I2C");
+> > +MODULE_LICENSE("GPL");
+> > -- 
+> > 2.30.2
+> > 
+> 
+
 -- 
-2.37.2
+Pengutronix e.K.                | Johannes Zink                  |
+Steuerwalder Str. 21            | https://www.pengutronix.de/    |
+31137 Hildesheim, Germany       | Phone: +49-5121-206917-0       |
+Amtsgericht Hildesheim, HRA 2686| Fax:   +49-5121-206917-5555    |
 
