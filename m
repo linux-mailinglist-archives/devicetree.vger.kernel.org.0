@@ -2,284 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 384ED5A45EB
-	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 11:19:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 772245A45F7
+	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 11:22:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229628AbiH2JTV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Aug 2022 05:19:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44408 "EHLO
+        id S229625AbiH2JWf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Aug 2022 05:22:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229577AbiH2JTT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 05:19:19 -0400
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BD0CB5AA20;
-        Mon, 29 Aug 2022 02:19:17 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.93,272,1654527600"; 
-   d="scan'208";a="132941440"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 29 Aug 2022 18:19:17 +0900
-Received: from localhost.localdomain (unknown [10.226.93.63])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 2B7DE40083DE;
-        Mon, 29 Aug 2022 18:19:09 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: [PATCH v6 1/2] dt-bindings: display: bridge: Document RZ/G2L MIPI DSI TX bindings
-Date:   Mon, 29 Aug 2022 10:19:00 +0100
-Message-Id: <20220829091901.641784-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220829091901.641784-1-biju.das.jz@bp.renesas.com>
-References: <20220829091901.641784-1-biju.das.jz@bp.renesas.com>
+        with ESMTP id S229457AbiH2JWe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 05:22:34 -0400
+Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CD115A806;
+        Mon, 29 Aug 2022 02:22:33 -0700 (PDT)
+Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.3ffe.de (Postfix) with ESMTPSA id 30DEF38F;
+        Mon, 29 Aug 2022 11:22:31 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
+        t=1661764951;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=OUc1LWdpbz87/rNtBwzA999uipsSxmoZtcNrouUeHHE=;
+        b=VXlqjc+QqsODaMUjfx6UczpKtVyzDsKuFWOsE/xhziHxDKsN9y0pb6hWS1PuiFLeWiUhNB
+        GCrNztMmGP/YkZ6aaoW4Pki5uDc1mlc4DGRWi1hUeCgZzlBI3zXLBfVVtKxDMzfaBnkmda
+        /z8wJPQEkrwMwAkVjTD6UAHUIzGKWojx+MbkHwKmk7eO4EttsvqywM8gz2GjTaRcuuLXZQ
+        +wSYq5YX2UbZaYKCofGSYeYVWC93PpSiIeUscJFMHuH/XiwzLHdnejxyxvF+8R454nrQM9
+        Bs8GxzeJPIg8JSOfFM4g+Ya+YxBgQf+PLqNm08o7VE0MevpZxrKuyAZDxISPnQ==
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Date:   Mon, 29 Aug 2022 11:22:30 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     Steen Hegelund <steen.hegelund@microchip.com>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        UNGLinuxDriver@microchip.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] reset: microchip-sparx5: issue a reset on startup
+In-Reply-To: <578bdccee9a92dd74bb6a1b87fb5011bf7279e57.camel@microchip.com>
+References: <20220826115607.1148489-1-michael@walle.cc>
+ <20220826115607.1148489-2-michael@walle.cc>
+ <578bdccee9a92dd74bb6a1b87fb5011bf7279e57.camel@microchip.com>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <392c923d59b581fdc9c8f8a13a2ae258@walle.cc>
+X-Sender: michael@walle.cc
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The RZ/G2L MIPI DSI TX is embedded in the Renesas RZ/G2L family SoC's. It
-can operate in DSI mode, with up to four data lanes.
+Hi Steen,
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-v5->v6:
- * No change.
-v4->v5:
- * No change.
-v3->v4:
- * No change.
-v2->v3:
- * Added Rb tag from Geert and Laurent
- * Fixed the typo "Receive" -> "transmit"
- * Added accepible values for data-lanes
- * Sorted Header file in the example
- * Added SoC specific compaible along with generic one.
-v1->v2:
- * Added full path for dsi-controller.yaml
- * Modeled DSI + D-PHY as single block and updated reg property
- * Fixed typo D_PHY->D-PHY
- * Updated description
- * Added interrupts and interrupt-names and updated the example 
-RFC->v1:
- * Added a ref to dsi-controller.yaml.
-RFC:-
- * https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220112174612.10773-22-biju.das.jz@bp.renesas.com/
----
- .../bindings/display/bridge/renesas,dsi.yaml  | 182 ++++++++++++++++++
- 1 file changed, 182 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
+Am 2022-08-29 11:14, schrieb Steen Hegelund:
+> On Fri, 2022-08-26 at 13:56 +0200, Michael Walle wrote:
+>> EXTERNAL EMAIL: Do not click links or open attachments unless you know 
+>> the content is safe
+>> 
+>> Originally this was used in by the switch core driver to issue a 
+>> reset.
+>> But it turns out, this isn't just a switch core reset but instead it
+>> will reset almost the complete SoC.
+>> 
+>> Instead of adding almost all devices of the SoC a shared reset line,
+>> issue the reset once early on startup. Keep the reset controller for
+>> backwards compatibility, but make the actual reset a noop.
+>> 
+>> Suggested-by: Philipp Zabel <p.zabel@pengutronix.de>
+>> Signed-off-by: Michael Walle <michael@walle.cc>
+..
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
-new file mode 100644
-index 000000000000..131d5b63ec4f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
-@@ -0,0 +1,182 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/bridge/renesas,dsi.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas RZ/G2L MIPI DSI Encoder
-+
-+maintainers:
-+  - Biju Das <biju.das.jz@bp.renesas.com>
-+
-+description: |
-+  This binding describes the MIPI DSI encoder embedded in the Renesas
-+  RZ/G2L alike family of SoC's. The encoder can operate in DSI mode, with
-+  up to four data lanes.
-+
-+allOf:
-+  - $ref: /schemas/display/dsi-controller.yaml#
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - renesas,r9a07g044-mipi-dsi # RZ/G2{L,LC}
-+      - const: renesas,rzg2l-mipi-dsi
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    items:
-+      - description: Sequence operation channel 0 interrupt
-+      - description: Sequence operation channel 1 interrupt
-+      - description: Video-Input operation channel 1 interrupt
-+      - description: DSI Packet Receive interrupt
-+      - description: DSI Fatal Error interrupt
-+      - description: DSI D-PHY PPI interrupt
-+      - description: Debug interrupt
-+
-+  interrupt-names:
-+    items:
-+      - const: seq0
-+      - const: seq1
-+      - const: vin1
-+      - const: rcv
-+      - const: ferr
-+      - const: ppi
-+      - const: debug
-+
-+  clocks:
-+    items:
-+      - description: DSI D-PHY PLL multiplied clock
-+      - description: DSI D-PHY system clock
-+      - description: DSI AXI bus clock
-+      - description: DSI Register access clock
-+      - description: DSI Video clock
-+      - description: DSI D-PHY Escape mode transmit clock
-+
-+  clock-names:
-+    items:
-+      - const: pllclk
-+      - const: sysclk
-+      - const: aclk
-+      - const: pclk
-+      - const: vclk
-+      - const: lpclk
-+
-+  resets:
-+    items:
-+      - description: MIPI_DSI_CMN_RSTB
-+      - description: MIPI_DSI_ARESET_N
-+      - description: MIPI_DSI_PRESET_N
-+
-+  reset-names:
-+    items:
-+      - const: rst
-+      - const: arst
-+      - const: prst
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+
-+    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Parallel input port
-+
-+      port@1:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description: DSI output port
-+
-+        properties:
-+          endpoint:
-+            $ref: /schemas/media/video-interfaces.yaml#
-+            unevaluatedProperties: false
-+
-+            properties:
-+              data-lanes:
-+                description: array of physical DSI data lane indexes.
-+                minItems: 1
-+                items:
-+                  - const: 1
-+                  - const: 2
-+                  - const: 3
-+                  - const: 4
-+
-+            required:
-+              - data-lanes
-+
-+    required:
-+      - port@0
-+      - port@1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+  - clocks
-+  - clock-names
-+  - resets
-+  - reset-names
-+  - power-domains
-+  - ports
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/r9a07g044-cpg.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    dsi0: dsi@10850000 {
-+        compatible = "renesas,r9a07g044-mipi-dsi", "renesas,rzg2l-mipi-dsi";
-+        reg = <0x10850000 0x20000>;
-+        interrupts = <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-names = "seq0", "seq1", "vin1", "rcv",
-+                          "ferr", "ppi", "debug";
-+        clocks = <&cpg CPG_MOD R9A07G044_MIPI_DSI_PLLCLK>,
-+                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_SYSCLK>,
-+                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_ACLK>,
-+                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_PCLK>,
-+                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_VCLK>,
-+                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_LPCLK>;
-+        clock-names = "pllclk", "sysclk", "aclk", "pclk", "vclk", "lpclk";
-+        resets = <&cpg R9A07G044_MIPI_DSI_CMN_RSTB>,
-+                 <&cpg R9A07G044_MIPI_DSI_ARESET_N>,
-+                 <&cpg R9A07G044_MIPI_DSI_PRESET_N>;
-+        reset-names = "rst", "arst", "prst";
-+        power-domains = <&cpg>;
-+
-+        ports {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            port@0 {
-+                reg = <0>;
-+                dsi0_in: endpoint {
-+                    remote-endpoint = <&du_out_dsi0>;
-+                };
-+            };
-+
-+            port@1 {
-+                reg = <1>;
-+                dsi0_out: endpoint {
-+                    data-lanes = <1 2 3 4>;
-+                    remote-endpoint = <&adv7535_in>;
-+                };
-+            };
-+        };
-+    };
-+...
--- 
-2.25.1
+> Tested-by: Steen Hegelund <Steen.Hegelund@microchip.com> on Sparx5
 
+Thanks for testing!
+
+-michael
