@@ -2,46 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 682895A57F2
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 01:47:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B67505A57DD
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 01:47:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229778AbiH2Xqg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Aug 2022 19:46:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34644 "EHLO
+        id S229797AbiH2Xqh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Aug 2022 19:46:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229651AbiH2Xqa (ORCPT
+        with ESMTP id S229750AbiH2Xqa (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 19:46:30 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 125E699275;
-        Mon, 29 Aug 2022 16:46:24 -0700 (PDT)
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFB4998A66;
+        Mon, 29 Aug 2022 16:46:25 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id ED7D6CE16CF;
+        by ams.source.kernel.org (Postfix) with ESMTPS id 3A85EB815D5;
+        Mon, 29 Aug 2022 23:46:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C93FC43146;
         Mon, 29 Aug 2022 23:46:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD7EDC433C1;
-        Mon, 29 Aug 2022 23:46:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661816781;
-        bh=4ZaELrMBK58SC+pH3H3x8zk8Iwfn8L+wtlnGDw4Gjno=;
-        h=From:To:Subject:Date:In-Reply-To:References:From;
-        b=MZqE6cquW4uQq+qS454R+AeE3B19tLdPpufishZOsvJdhYE8YkaGt3+pB6KyiAuLJ
-         WJnegcsdpI58jZOcmydpLlufdP+rQaKJ+bdkLN7qxlFbw2S/bpfPjUYfWSU2TcIsz/
-         HOXxcw4/+5gpLAi7Gs/qd99hqUeVGKpBU6BhrU/jcHmzJKTSbSUZ2Dp5TVEzuAISLc
-         V6BcLN9dHLhg+uhhPxWxTY9h3ibGIYmanR4Bo6Vi+WceDD3lctxEKxfSdDce6ToP45
-         7Uzaple5hvv0KHEVeRFK6zlCV73PKh4ZbcYFlNWPQE6MLzTSClm/VRSSiBmWdxWuvn
-         IQD+y4rVhpSHA==
+        s=k20201202; t=1661816783;
+        bh=BcISCDdMWOEJ+xzkFdwcDlRGMcDYB/o5RAI/t3OmKcY=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=bwQl48SSoyQuulN2Gy7WU4X004ZR/96+PACXaHzZL5CVvZZm0C3oKQVpLcCIzgjm7
+         hEQKyPM5BBo7sXHJCEpqupq3jSb94Rm81jlZ5qNdfDHdOATA2z/FSBctMoraXvQSfq
+         GHT+jT6Gjmd+49901Q+wHfeVCqVwHs3+l0MrnZlMz/F+QgPgcjzvboq2hhGFxfpzfX
+         KYjsgs5goqDjDDH29aifS39I7S84TuJk50qziUk4IiPsZvgDfGh8MQ89N//rCHrd6a
+         LLCjfDTDCFRWNfcQrstcDc/REqmoUFWUgZf1bASSmQ0tCCOgLe5calEsKvN+QDs1Pt
+         tfAdp+mKXtrtQ==
 From:   Bjorn Andersson <andersson@kernel.org>
-To:     bryan.odonoghue@linaro.org, linux-arm-msm@vger.kernel.org,
-        robh+dt@kernel.org, konrad.dybcio@somainline.org,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+To:     dmitry.baryshkov@linaro.org, robh+dt@kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        konrad.dybcio@somainline.org, krzysztof.kozlowski+dt@linaro.org,
         agross@kernel.org
-Subject: Re: (subset) [PATCH v4 0/2] arm64: dts: qcom: pwm: Drop PWM reg dependency
-Date:   Mon, 29 Aug 2022 18:45:43 -0500
-Message-Id: <166181675987.322065.8296651935482445190.b4-ty@kernel.org>
+Cc:     freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sm8250: move DSI opp table to the dsi0 node
+Date:   Mon, 29 Aug 2022 18:45:45 -0500
+Message-Id: <166181675991.322065.10538388207761075162.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220828132648.3624126-1-bryan.odonoghue@linaro.org>
-References: <20220828132648.3624126-1-bryan.odonoghue@linaro.org>
+In-Reply-To: <20220822191138.316912-1-dmitry.baryshkov@linaro.org>
+References: <20220822191138.316912-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -55,21 +57,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 28 Aug 2022 14:26:46 +0100, Bryan O'Donoghue wrote:
-> V4:
-> - Churn patch#1 prefix to "dt-bindings: mfd: qcom,spmi-pmic:" - Krzysztof
-> - Add's Krzysztof's RB as indicated
+On Mon, 22 Aug 2022 22:11:38 +0300, Dmitry Baryshkov wrote:
+> It makes no sense to have the OPP table for the DSI controllers in the
+> DSI1 PHY node. Move it to more logical dsi0 device node.
 > 
-> V3:
-> - Splits dtsi and yaml
-> - Uses Krzysztof's suggested commit log in the yaml
 > 
-> [...]
 
 Applied, thanks!
 
-[2/2] arm64: dts: qcom: pm8350c: Drop PWM reg declaration
-      commit: eeca7d46217ccfe9289530e959c0fb29190af0d6
+[1/1] arm64: dts: qcom: sm8250: move DSI opp table to the dsi0 node
+      commit: 9ea5ae629914c265c0ebb008865f93bd3480e09a
 
 Best regards,
 -- 
