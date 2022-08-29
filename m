@@ -2,59 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C313F5A408E
-	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 03:12:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E01F45A4119
+	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 04:37:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229520AbiH2BM4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Aug 2022 21:12:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53804 "EHLO
+        id S229476AbiH2Chk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Aug 2022 22:37:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229447AbiH2BMz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Aug 2022 21:12:55 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D2D4220FA;
-        Sun, 28 Aug 2022 18:12:55 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E7D7160EC3;
-        Mon, 29 Aug 2022 01:12:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55D01C433D6;
-        Mon, 29 Aug 2022 01:12:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661735574;
-        bh=zFqjuwqIWouk+2CU9A+4UkGZ/bu8uW65TiM98RFbFJo=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=LziecWemS/NQiruZfoaLBNXhnZ+rRBS9CwwJQnwFEyZYACssk0C6duY8jgQZDkVmI
-         afIF1VqOrCyYf4uqB1dgqw/+V9c1wkrfnruMVYOcF9swSlRIK5eFKlWn9nhO5tpojt
-         D4NIOtzc40MBVpPBNhv5/lY8r6w9rzMZFOZcA+D9o6rupnontXZiscq3M6fmP34x1A
-         Oy9Zns4uw+/1B62ODqKWiVrHP91lnWqUk6i52w+5X8oZdEkJHNt98MsoenvT5mkUse
-         DzTfjwS9EcDxwnhdq8JUsTZhAOX2tmZC89Nbo2Tf+s0SD2pstVgBm0qvvK+E7fHEEp
-         c5igHTdQlxOrg==
-Received: by mail-vk1-f182.google.com with SMTP id 134so3098110vkz.11;
-        Sun, 28 Aug 2022 18:12:54 -0700 (PDT)
-X-Gm-Message-State: ACgBeo329AZnfuPeKyfeimDJsLIUKPrLjUoR6zqh6XKLcK778lXGdGqz
-        M9PdhNPJ29zOFNhgUqsBMJf/KD7kKQ9sQXKDSQ==
-X-Google-Smtp-Source: AA6agR5oS9oQQOdGApVtuYwt0XsdrLxayRvoV8H9X3o1gYde808KCwua7rcGgBSHbiJpO1EjXbMbseD1+AvGadM/wa4=
-X-Received: by 2002:a05:6122:d86:b0:37d:3fe:df43 with SMTP id
- bc6-20020a0561220d8600b0037d03fedf43mr2496106vkb.15.1661735573306; Sun, 28
- Aug 2022 18:12:53 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220826220017.188066-1-marek.bykowski@gmail.com>
-In-Reply-To: <20220826220017.188066-1-marek.bykowski@gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Sun, 28 Aug 2022 20:12:41 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKGgZOSdWQ2ithipvrRAYwt-vOL1z9-RM++-_h6pA=C_Q@mail.gmail.com>
-Message-ID: <CAL_JsqKGgZOSdWQ2ithipvrRAYwt-vOL1z9-RM++-_h6pA=C_Q@mail.gmail.com>
-Subject: Re: [PATCH] of/fdt: Don't calculate initrd_start from the DT if
- 'linux,initrd-end' is 0
-To:     Marek Bykowski <marek.bykowski@gmail.com>
-Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+        with ESMTP id S229453AbiH2Chj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Aug 2022 22:37:39 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 676CA3C8E6;
+        Sun, 28 Aug 2022 19:37:35 -0700 (PDT)
+X-UUID: 9f87e7b61458457d868f169ed8cc0cc4-20220829
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=pMxL4qDPpxQ5G6XsiawgSYIMi9de2EXDfLP+YzVPj3Q=;
+        b=AJYf630YX9H+iJkopq1LZhD1UEA2TWo6ZTeeH2y+KtBzvFqV/KmJ1HRzfMXAYFSn5hY4K6cT+qKEB8RXRjKu9dEgbhI6G6rqB47+bnRG1uWbE/netN40BmswAJ2ZBy/sVMWVXWlwZ52RrWm+WRyIvsvBfazcgMiUd4GUARsd/zE=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.10,REQID:01446251-077a-4ceb-b61f-1c498d690dc6,OB:0,L
+        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_
+        Ham,ACTION:release,TS:0
+X-CID-META: VersionHash:84eae18,CLOUDID:44395d20-1c20-48a5-82a0-25f9c331906d,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:11|1,File:
+        nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 9f87e7b61458457d868f169ed8cc0cc4-20220829
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 289164118; Mon, 29 Aug 2022 10:37:30 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Mon, 29 Aug 2022 10:37:29 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 29 Aug 2022 10:37:28 +0800
+Message-ID: <114c357f8d7f049d21ede789a292a8e2d45f4c61.camel@mediatek.com>
+Subject: Re: [PATCH 2/7] dt-bindings: phy: mediatek,tphy: add property to
+ set pre-emphasis
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>
+CC:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Eddie Hung <eddie.hung@mediatek.com>
+Date:   Mon, 29 Aug 2022 10:37:28 +0800
+In-Reply-To: <000babd8-5980-3d77-f156-324b3442cbe7@linaro.org>
+References: <20220819091344.2274-1-chunfeng.yun@mediatek.com>
+         <20220819091344.2274-2-chunfeng.yun@mediatek.com>
+         <438da392-f419-ad76-7e91-aa4aab36e12c@linaro.org>
+         <816ecf6287533137b750c8bde9de5830e4229c56.camel@mediatek.com>
+         <bee8abe5-0299-d05e-643c-4810aa33f978@linaro.org>
+         <1a16cce9fe164bafc06ae193310be71c6f645d75.camel@mediatek.com>
+         <000babd8-5980-3d77-f156-324b3442cbe7@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,24 +75,73 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 26, 2022 at 5:00 PM Marek Bykowski <marek.bykowski@gmail.com> wrote:
->
-> If the 'linux,initrd-end' property is 0 and 'linux,initrd-start' property
-> is other than 0, then phys_initrd_size calculated from 'linux,initrd-end'
-> - 'linux,initrd-start' is negative, that subsequently gets converted to
-> a high positive value as being u64.
->
-> For example if 'linux,initrd-start' is 8800_0000, 'linux,initrd-end' is 0,
-> then the phys_initrd_size calculated is ffff_ffff_7800_0000 (= 0 -
-> 8800_0000 = -8800_0000 + ULLONG_MAX + 1). On my system, FVP ARM64,
-> the intird memory region with the (wrong) size is added to the bootmem and
-> then attempted to being paged in paging_init() that results in the kernel
-> oops as shown below.
+On Fri, 2022-08-26 at 09:36 +0300, Krzysztof Kozlowski wrote:
+> On 26/08/2022 08:36, Chunfeng Yun wrote:
+> > On Tue, 2022-08-23 at 13:24 +0300, Krzysztof Kozlowski wrote:
+> > > On 22/08/2022 10:07, Chunfeng Yun wrote:
+> > > > On Fri, 2022-08-19 at 15:15 +0300, Krzysztof Kozlowski wrote:
+> > > > > On 19/08/2022 12:13, Chunfeng Yun wrote:
+> > > > > > Add a property to set usb2 phy's pre-emphasis.
+> > > > > > 
+> > > > > > Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> > > > > > ---
+> > > > > >  Documentation/devicetree/bindings/phy/mediatek,tphy.yaml |
+> > > > > > 7
+> > > > > > +++++++
+> > > > > >  1 file changed, 7 insertions(+)
+> > > > > > 
+> > > > > > diff --git
+> > > > > > a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
+> > > > > > b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
+> > > > > > index 848edfb1f677..aee2f3027371 100644
+> > > > > > ---
+> > > > > > a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
+> > > > > > +++
+> > > > > > b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
+> > > > > > @@ -219,6 +219,13 @@ patternProperties:
+> > > > > >          minimum: 1
+> > > > > >          maximum: 15
+> > > > > >  
+> > > > > > +      mediatek,pre-emphasis:
+> > > > > > +        description:
+> > > > > > +          The selection of pre-emphasis (U2 phy)
+> > > > > > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > > > > > +        minimum: 1
+> > > > > > +        maximum: 3
+> > > > > 
+> > > > > Instead of hard-coding register values in bindings, you
+> > > > > should
+> > > > > rather
+> > > > > describe here feature/effect. If it is in units, use unit
+> > > > > suffixes.
+> > > > > If
+> > > > > it is some choice, usually string enum is appropriate.
+> > > > 
+> > > > How about changing description as bellow:
+> > > > 
+> > > > "The level of pre-emphasis, increases one level, boosts the
+> > > > relative
+> > > > amplitudes of signal's higher frequencies components about
+> > > > 4.16%
+> > > > (U2
+> > > > phy)"
+> > > > 
+> > > 
+> > > Still the question is what is the unit. 4.16%?
+> > 
+> > No unit, it's a level value, like an index of array.
+> > 
+> 
+> So a value from register/device programming? 
+Yes
+> Rather a regular units
+> should be used if that's possible. If not, this should be clearly
+> described here, not some magical number which you encode into DTS...
+Ok, I'll add more descriptions.
 
-Shouldn't we just check that start < end?
+Thanks a lot
 
-Can we check this somewhere not DT specific (and also not arch
-specific)? Then we don't have to worry if any other method of setting
-initrd could have the same error.
+> 
+> Best regards,
+> Krzysztof
 
-Rob
