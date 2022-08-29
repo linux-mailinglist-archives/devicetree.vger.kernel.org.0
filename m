@@ -2,318 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30F195A5137
-	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 18:14:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB2835A516B
+	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 18:18:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229717AbiH2QOM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Aug 2022 12:14:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34274 "EHLO
+        id S229522AbiH2QSx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Aug 2022 12:18:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230000AbiH2QOK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 12:14:10 -0400
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA1B791D1F;
-        Mon, 29 Aug 2022 09:14:09 -0700 (PDT)
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 27T9r0el025958;
-        Mon, 29 Aug 2022 09:15:12 -0400
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3j7g673cek-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 29 Aug 2022 09:15:12 -0400
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 27TDFBQR019122
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 29 Aug 2022 09:15:11 -0400
-Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
- ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Mon, 29 Aug 2022 09:15:10 -0400
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
- ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Mon, 29 Aug 2022 09:15:10 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Mon, 29 Aug 2022 09:15:10 -0400
-Received: from nsa.ad.analog.com ([10.44.3.68])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 27TDEeiR026449;
-        Mon, 29 Aug 2022 09:15:03 -0400
-From:   =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>
-To:     <linux-kernel@vger.kernel.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        <devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        <linux-input@vger.kernel.org>,
-        =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>
-CC:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        with ESMTP id S229713AbiH2QSh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 12:18:37 -0400
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF83163F33;
+        Mon, 29 Aug 2022 09:18:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1661789913; x=1693325913;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=5YrP855ERhlgkIMwJ5dllzWtfxwklTQGqVE1b1A/OXQ=;
+  b=knjf8/gvvRi+sWrQvmZOeowcZyRrtGCj2cigIY7hFfKzkU1fTUcoH+2V
+   S+k/mQDAqW8CojMg8C/JStKPvm2mkITfMJlRAVbhcSXvXaka2GLqCeVj0
+   O1NZ0cqoIk1/+OOIJqVKUkwESXoPn/IpJqU95xrLrcsNP3SDaLZOWnTOT
+   w+1IFrVMAgEUa4kZvJ/jRGeZs+ieuX1N6kfnS0SIeUZedpna0fIwIHx82
+   fr/OP4V0g3CegPI2XsXrPDKsBJYrjEZf3vrvJ4uxvIp/wgz3xzx+mneSJ
+   ou7mGAHFvJ/lOaczVjG66mRD8cHMa3edPfWiz6W0fwEca+YvFORmroxWu
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10454"; a="294922973"
+X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; 
+   d="scan'208";a="294922973"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Aug 2022 08:07:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; 
+   d="scan'208";a="607474442"
+Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
+  by orsmga007.jf.intel.com with ESMTP; 29 Aug 2022 08:07:00 -0700
+Date:   Mon, 29 Aug 2022 22:57:42 +0800
+From:   Xu Yilun <yilun.xu@intel.com>
+To:     Johannes Zink <j.zink@pengutronix.de>
+Cc:     devicetree@vger.kernel.org, linux-fpga@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Hennerich <michael.hennerich@analog.com>
-Subject: [PATCH v4 07/10] input: keyboard: adp5588-keys: fix coding style warnings
-Date:   Mon, 29 Aug 2022 15:15:50 +0200
-Message-ID: <20220829131553.690063-8-nuno.sa@analog.com>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20220829131553.690063-1-nuno.sa@analog.com>
-References: <20220829131553.690063-1-nuno.sa@analog.com>
+        Moritz Fischer <mdf@kernel.org>, kernel@pengutronix.de,
+        Wu Hao <hao.wu@intel.com>
+Subject: Re: [PATCH 15/16] fpga: machxo2: extend erase timeout for machxo2
+ FPGA
+Message-ID: <YwzT5imor+I4Bf1q@yilunxu-OptiPlex-7050>
+References: <20220825141343.1375690-1-j.zink@pengutronix.de>
+ <20220825141343.1375690-16-j.zink@pengutronix.de>
+ <YwyGWELZ7WfCE3FS@yilunxu-OptiPlex-7050>
+ <c93207c6ec63c70918ae0989ec67f37771504123.camel@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-ORIG-GUID: iTuBsIWWFquh14KQwhUY9XBlKULKyB08
-X-Proofpoint-GUID: iTuBsIWWFquh14KQwhUY9XBlKULKyB08
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.517,FMLib:17.11.122.1
- definitions=2022-08-29_07,2022-08-25_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- lowpriorityscore=0 spamscore=0 phishscore=0 mlxlogscore=999 malwarescore=0
- impostorscore=0 mlxscore=0 adultscore=0 bulkscore=0 suspectscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2207270000 definitions=main-2208290061
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <c93207c6ec63c70918ae0989ec67f37771504123.camel@pengutronix.de>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Just some code cleanup regarding coding style. With the introduction of
-the bits.h macros changes in the code are indeed introduced.
+On 2022-08-29 at 12:51:19 +0200, Johannes Zink wrote:
+> Hi Yilun, 
+> 
+> On Mon, 2022-08-29 at 17:26 +0800, Xu Yilun wrote:
+> > On 2022-08-25 at 16:13:42 +0200, Johannes Zink wrote:
+> > > Measurements showed that some FPGAs take significantly longer than
+> > > the
+> > > default wait function supplied. The datasheet inidicates up to 30
+> > > seconds erase times for some MachXO2 FPGAs, depending on the number
+> > > of
+> > > LUTs (and the corresponding configuration flash size).
+> > > 
+> > > Signed-off-by: Johannes Zink <j.zink@pengutronix.de>
+> > > ---
+> > >  drivers/fpga/machxo2-common.c | 28 ++++++++++++++++++++++++++--
+> > >  1 file changed, 26 insertions(+), 2 deletions(-)
+> > > 
+> > > diff --git a/drivers/fpga/machxo2-common.c b/drivers/fpga/machxo2-
+> > > common.c
+> > > index ccf9a50fc590..e8967cdee2c6 100644
+> > > --- a/drivers/fpga/machxo2-common.c
+> > > +++ b/drivers/fpga/machxo2-common.c
+> > > @@ -17,6 +17,8 @@
+> > >  #include <linux/module.h>
+> > >  #include <linux/of.h>
+> > >  #include <linux/property.h>
+> > > +#include <linux/iopoll.h>
+> > > +#include <linux/time.h>
+> > >  #include "machxo2-common.h"
+> > >  
+> > >  #define MACHXO2_LOW_DELAY_USEC          5
+> > > @@ -24,6 +26,8 @@
+> > >  #define MACHXO2_REFRESH_USEC            4800
+> > >  #define MACHXO2_MAX_BUSY_LOOP           128
+> > >  #define MACHXO2_MAX_REFRESH_LOOP        16
+> > > +#define MACHXO2_MAX_ERASE_USEC          (30 * USEC_PER_SEC)
+> > > +#define MACHXO2_ERASE_USEC_SLEEP        (20 * USEC_PER_MSEC)
+> > >  
+> > >  #define MACHXO2_PAGE_SIZE               16
+> > >  #define MACHXO2_BUF_SIZE                (MACHXO2_PAGE_SIZE + 4)
+> > > @@ -54,6 +58,18 @@
+> > >  #define ISC_ERASE_FEATURE_ROW  BIT(17)
+> > >  #define ISC_ERASE_UFM          BIT(19)
+> > >  
+> > > +static inline int machxo2_wait_until_not_busy_timeout(struct
+> > > machxo2_common_priv *priv)
+> > > +{
+> > > +       int ret, pollret;
+> > > +       u32 status = MACHXO2_BUSY;
+> > > +
+> > > +       pollret = read_poll_timeout(priv->get_status, ret,
+> > > +                                   (ret && ret != -EAGAIN) ||
+> > > !(status & MACHXO2_BUSY),
+> > > +                                   MACHXO2_ERASE_USEC_SLEEP,
+> > > MACHXO2_MAX_ERASE_USEC,
+> > > +                                   true, priv, &status);
+> > 
+> > Why just taking care of erase timeout? I see the busy wait in many
+> > places.
+> > 
+> 
+> Erasing the flash memory takes significantly longer than the other
+> operations (up to 30s), which is why I decided to use this separate
+> implementation. For other commands the fpga indicates no-more-busy much
+> faster than for the erase_flash command.
 
-Signed-off-by: Nuno SÃ¡ <nuno.sa@analog.com>
-Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
----
- drivers/input/keyboard/adp5588-keys.c | 98 +++++++++++++--------------
- 1 file changed, 48 insertions(+), 50 deletions(-)
+It is almost always better to have a relatively measureable timeout,
+unless it is really time critical. Apparently spi/i2c transfer is not
+time critical itself. So since you have implemented a better function,
+why not use it?
 
-diff --git a/drivers/input/keyboard/adp5588-keys.c b/drivers/input/keyboard/adp5588-keys.c
-index e716efbb2105..3a234ec37fd4 100644
---- a/drivers/input/keyboard/adp5588-keys.c
-+++ b/drivers/input/keyboard/adp5588-keys.c
-@@ -8,6 +8,7 @@
-  * Copyright (C) 2008-2010 Analog Devices Inc.
-  */
- 
-+#include <linux/bits.h>
- #include <linux/delay.h>
- #include <linux/errno.h>
- #include <linux/gpio/driver.h>
-@@ -29,16 +30,16 @@
- #define CFG 0x01		/* Configuration Register1 */
- #define INT_STAT 0x02		/* Interrupt Status Register */
- #define KEY_LCK_EC_STAT 0x03	/* Key Lock and Event Counter Register */
--#define Key_EVENTA 0x04		/* Key Event Register A */
--#define Key_EVENTB 0x05		/* Key Event Register B */
--#define Key_EVENTC 0x06		/* Key Event Register C */
--#define Key_EVENTD 0x07		/* Key Event Register D */
--#define Key_EVENTE 0x08		/* Key Event Register E */
--#define Key_EVENTF 0x09		/* Key Event Register F */
--#define Key_EVENTG 0x0A		/* Key Event Register G */
--#define Key_EVENTH 0x0B		/* Key Event Register H */
--#define Key_EVENTI 0x0C		/* Key Event Register I */
--#define Key_EVENTJ 0x0D		/* Key Event Register J */
-+#define KEY_EVENTA 0x04		/* Key Event Register A */
-+#define KEY_EVENTB 0x05		/* Key Event Register B */
-+#define KEY_EVENTC 0x06		/* Key Event Register C */
-+#define KEY_EVENTD 0x07		/* Key Event Register D */
-+#define KEY_EVENTE 0x08		/* Key Event Register E */
-+#define KEY_EVENTF 0x09		/* Key Event Register F */
-+#define KEY_EVENTG 0x0A		/* Key Event Register G */
-+#define KEY_EVENTH 0x0B		/* Key Event Register H */
-+#define KEY_EVENTI 0x0C		/* Key Event Register I */
-+#define KEY_EVENTJ 0x0D		/* Key Event Register J */
- #define KP_LCK_TMR 0x0E		/* Keypad Lock1 to Lock2 Timer */
- #define UNLOCK1 0x0F		/* Unlock Key1 */
- #define UNLOCK2 0x10		/* Unlock Key2 */
-@@ -66,9 +67,9 @@
- #define GPIO_INT_LVL1 0x26	/* GPIO Edge/Level Detect */
- #define GPIO_INT_LVL2 0x27	/* GPIO Edge/Level Detect */
- #define GPIO_INT_LVL3 0x28	/* GPIO Edge/Level Detect */
--#define Debounce_DIS1 0x29	/* Debounce Disable */
--#define Debounce_DIS2 0x2A	/* Debounce Disable */
--#define Debounce_DIS3 0x2B	/* Debounce Disable */
-+#define DEBOUNCE_DIS1 0x29	/* Debounce Disable */
-+#define DEBOUNCE_DIS2 0x2A	/* Debounce Disable */
-+#define DEBOUNCE_DIS3 0x2B	/* Debounce Disable */
- #define GPIO_PULL1 0x2C		/* GPIO Pull Disable */
- #define GPIO_PULL2 0x2D		/* GPIO Pull Disable */
- #define GPIO_PULL3 0x2E		/* GPIO Pull Disable */
-@@ -91,27 +92,27 @@
- #define ADP5588_DEVICE_ID_MASK	0xF
- 
-  /* Configuration Register1 */
--#define ADP5588_AUTO_INC	(1 << 7)
--#define ADP5588_GPIEM_CFG	(1 << 6)
--#define ADP5588_OVR_FLOW_M	(1 << 5)
--#define ADP5588_INT_CFG		(1 << 4)
--#define ADP5588_OVR_FLOW_IEN	(1 << 3)
--#define ADP5588_K_LCK_IM	(1 << 2)
--#define ADP5588_GPI_IEN		(1 << 1)
--#define ADP5588_KE_IEN		(1 << 0)
-+#define ADP5588_AUTO_INC	BIT(7)
-+#define ADP5588_GPIEM_CFG	BIT(6)
-+#define ADP5588_OVR_FLOW_M	BIT(5)
-+#define ADP5588_INT_CFG		BIT(4)
-+#define ADP5588_OVR_FLOW_IEN	BIT(3)
-+#define ADP5588_K_LCK_IM	BIT(2)
-+#define ADP5588_GPI_IEN		BIT(1)
-+#define ADP5588_KE_IEN		BIT(0)
- 
- /* Interrupt Status Register */
--#define ADP5588_CMP2_INT	(1 << 5)
--#define ADP5588_CMP1_INT	(1 << 4)
--#define ADP5588_OVR_FLOW_INT	(1 << 3)
--#define ADP5588_K_LCK_INT	(1 << 2)
--#define ADP5588_GPI_INT		(1 << 1)
--#define ADP5588_KE_INT		(1 << 0)
-+#define ADP5588_CMP2_INT	BIT(5)
-+#define ADP5588_CMP1_INT	BIT(4)
-+#define ADP5588_OVR_FLOW_INT	BIT(3)
-+#define ADP5588_K_LCK_INT	BIT(2)
-+#define ADP5588_GPI_INT		BIT(1)
-+#define ADP5588_KE_INT		BIT(0)
- 
- /* Key Lock and Event Counter Register */
--#define ADP5588_K_LCK_EN	(1 << 6)
-+#define ADP5588_K_LCK_EN	BIT(6)
- #define ADP5588_LCK21		0x30
--#define ADP5588_KEC		0xF
-+#define ADP5588_KEC		GENMASK(3, 0)
- 
- #define ADP5588_MAXGPIO		18
- #define ADP5588_BANK(offs)	((offs) >> 3)
-@@ -158,10 +159,10 @@
- #define ADP5588_GPIMAPSIZE_MAX (GPI_PIN_END - GPI_PIN_BASE + 1)
- 
- /* Key Event Register xy */
--#define KEY_EV_PRESSED		(1 << 7)
--#define KEY_EV_MASK		(0x7F)
-+#define KEY_EV_PRESSED		BIT(7)
-+#define KEY_EV_MASK		GENMASK(6, 0)
- 
--#define KP_SEL(x)		(0xFFFF >> (16 - x))	/* 2^x-1 */
-+#define KP_SEL(x)		(BIT(x) - 1)	/* 2^x-1 */
- 
- #define KEYP_MAX_EVENT		10
- 
-@@ -211,7 +212,7 @@ static int adp5588_write(struct i2c_client *client, u8 reg, u8 val)
- 	return i2c_smbus_write_byte_data(client, reg, val);
- }
- 
--static int adp5588_gpio_get_value(struct gpio_chip *chip, unsigned off)
-+static int adp5588_gpio_get_value(struct gpio_chip *chip, unsigned int off)
- {
- 	struct adp5588_kpad *kpad = gpiochip_get_data(chip);
- 	unsigned int bank = ADP5588_BANK(kpad->gpiomap[off]);
-@@ -231,7 +232,7 @@ static int adp5588_gpio_get_value(struct gpio_chip *chip, unsigned off)
- }
- 
- static void adp5588_gpio_set_value(struct gpio_chip *chip,
--				   unsigned off, int val)
-+				   unsigned int off, int val)
- {
- 	struct adp5588_kpad *kpad = gpiochip_get_data(chip);
- 	unsigned int bank = ADP5588_BANK(kpad->gpiomap[off]);
-@@ -244,8 +245,7 @@ static void adp5588_gpio_set_value(struct gpio_chip *chip,
- 	else
- 		kpad->dat_out[bank] &= ~bit;
- 
--	adp5588_write(kpad->client, GPIO_DAT_OUT1 + bank,
--			   kpad->dat_out[bank]);
-+	adp5588_write(kpad->client, GPIO_DAT_OUT1 + bank, kpad->dat_out[bank]);
- 
- 	mutex_unlock(&kpad->gpio_lock);
- }
-@@ -284,7 +284,7 @@ static int adp5588_gpio_set_config(struct gpio_chip *chip,  unsigned int off,
- 	return ret;
- }
- 
--static int adp5588_gpio_direction_input(struct gpio_chip *chip, unsigned off)
-+static int adp5588_gpio_direction_input(struct gpio_chip *chip, unsigned int off)
- {
- 	struct adp5588_kpad *kpad = gpiochip_get_data(chip);
- 	unsigned int bank = ADP5588_BANK(kpad->gpiomap[off]);
-@@ -302,7 +302,7 @@ static int adp5588_gpio_direction_input(struct gpio_chip *chip, unsigned off)
- }
- 
- static int adp5588_gpio_direction_output(struct gpio_chip *chip,
--					 unsigned off, int val)
-+					 unsigned int off, int val)
- {
- 	struct adp5588_kpad *kpad = gpiochip_get_data(chip);
- 	unsigned int bank = ADP5588_BANK(kpad->gpiomap[off]);
-@@ -319,12 +319,11 @@ static int adp5588_gpio_direction_output(struct gpio_chip *chip,
- 		kpad->dat_out[bank] &= ~bit;
- 
- 	ret = adp5588_write(kpad->client, GPIO_DAT_OUT1 + bank,
--				 kpad->dat_out[bank]);
-+			    kpad->dat_out[bank]);
- 	if (ret)
- 		goto out_unlock;
- 
--	ret = adp5588_write(kpad->client, GPIO_DIR1 + bank,
--				 kpad->dir[bank]);
-+	ret = adp5588_write(kpad->client, GPIO_DIR1 + bank, kpad->dir[bank]);
- 
- out_unlock:
- 	mutex_unlock(&kpad->gpio_lock);
-@@ -524,7 +523,7 @@ static void adp5588_report_events(struct adp5588_kpad *kpad, int ev_cnt)
- 	int i;
- 
- 	for (i = 0; i < ev_cnt; i++) {
--		int key = adp5588_read(kpad->client, Key_EVENTA + i);
-+		int key = adp5588_read(kpad->client, KEY_EVENTA + i);
- 		int key_val = key & KEY_EV_MASK;
- 		int key_press = key & KEY_EV_PRESSED;
- 
-@@ -624,21 +623,20 @@ static int adp5588_setup(struct adp5588_kpad *kpad)
- 	}
- 
- 	for (i = 0; i < KEYP_MAX_EVENT; i++) {
--		ret = adp5588_read(client, Key_EVENTA);
-+		ret = adp5588_read(client, KEY_EVENTA);
- 		if (ret)
- 			return ret;
- 	}
- 
- 	ret = adp5588_write(client, INT_STAT,
--				ADP5588_CMP2_INT | ADP5588_CMP1_INT |
--				ADP5588_OVR_FLOW_INT | ADP5588_K_LCK_INT |
--				ADP5588_GPI_INT | ADP5588_KE_INT); /* Status is W1C */
-+			    ADP5588_CMP2_INT | ADP5588_CMP1_INT |
-+			    ADP5588_OVR_FLOW_INT | ADP5588_K_LCK_INT |
-+			    ADP5588_GPI_INT | ADP5588_KE_INT); /* Status is W1C */
- 	if (ret)
- 		return ret;
- 
- 	return adp5588_write(client, CFG, ADP5588_INT_CFG |
--					  ADP5588_OVR_FLOW_IEN |
--					  ADP5588_KE_IEN);
-+			     ADP5588_OVR_FLOW_IEN | ADP5588_KE_IEN);
- }
- 
- static int adp5588_fw_parse(struct adp5588_kpad *kpad)
-@@ -722,7 +720,7 @@ static int adp5588_probe(struct i2c_client *client,
- 	int error;
- 
- 	if (!i2c_check_functionality(client->adapter,
--					I2C_FUNC_SMBUS_BYTE_DATA)) {
-+				     I2C_FUNC_SMBUS_BYTE_DATA)) {
- 		dev_err(&client->dev, "SMBUS Byte Data not Supported\n");
- 		return -EIO;
- 	}
-@@ -746,7 +744,7 @@ static int adp5588_probe(struct i2c_client *client,
- 	if (ret < 0)
- 		return ret;
- 
--	revid = (u8) ret & ADP5588_DEVICE_ID_MASK;
-+	revid = ret & ADP5588_DEVICE_ID_MASK;
- 	if (WA_DELAYED_READOUT_REVID(revid))
- 		kpad->delay = msecs_to_jiffies(WA_DELAYED_READOUT_TIME);
- 
--- 
-2.37.2
+Thanks,
+Yilun
 
+> 
+> > > +
+> > > +       return ret ?: pollret;
+> > > +}
+> > >  
+> > >  static inline u8 get_err(u32 status)
+> > >  {
+> > > @@ -114,6 +130,12 @@ static int machxo2_cleanup(struct fpga_manager
+> > > *mgr)
+> > >         if (ret)
+> > >                 goto fail;
+> > >  
+> > > +       ret = machxo2_wait_until_not_busy_timeout(priv);
+> > > +       if (ret) {
+> > > +               dev_err(&mgr->dev, "Erase operation failed (%d)",
+> > > ret);
+> > > +               goto fail;
+> > > +       }
+> > > +
+> > >         ret = machxo2_wait_until_not_busy(priv);
+> > 
+> > Is this line still needed?
+> 
+> agreed, this line should become obsolete, since if we reach this point
+> the fpga is not indicating busy any longer or the wait has been aborted
+> due to an error. I will remove it in v2.
+> 
+> > 
+> > >         if (ret)
+> > >                 goto fail;
+> > > @@ -192,9 +214,11 @@ static int machxo2_write_init(struct
+> > > fpga_manager *mgr,
+> > >         if (ret)
+> > >                 goto fail;
+> > >  
+> > > -       ret = machxo2_wait_until_not_busy(priv);
+> > > -       if (ret)
+> > > +       ret = machxo2_wait_until_not_busy_timeout(priv);
+> > > +       if (ret) {
+> > > +               dev_err(&mgr->dev, "Erase operation failed (%d)",
+> > > ret);
+> > >                 goto fail;
+> > > +       }
+> > >  
+> > >         priv->get_status(priv, &status);
+> > >         if (status & MACHXO2_FAIL) {
+> > > -- 
+> > > 2.30.2
+> > > 
+> > 
+> > 
+> 
+> -- 
+> Pengutronix e.K.                | Johannes Zink                  |
+> Steuerwalder Str. 21            | https://www.pengutronix.de/    |
+> 31137 Hildesheim, Germany       | Phone: +49-5121-206917-0       |
+> Amtsgericht Hildesheim, HRA 2686| Fax:   +49-5121-206917-5555    |
+> 
