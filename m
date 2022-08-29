@@ -2,114 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 36EA65A4EDB
-	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 16:10:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3F545A4EE8
+	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 16:12:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230252AbiH2OKl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Aug 2022 10:10:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55428 "EHLO
+        id S230249AbiH2OMZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Aug 2022 10:12:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230229AbiH2OKi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 10:10:38 -0400
-Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD9AF6BD69;
-        Mon, 29 Aug 2022 07:10:31 -0700 (PDT)
-Received: by mail-ot1-f51.google.com with SMTP id z22-20020a056830129600b0063711f456ceso5963602otp.7;
-        Mon, 29 Aug 2022 07:10:31 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=opbj1lT2rqww+Ko38iiUdytadU+k9CoQLS7KnrXSbyY=;
-        b=wbQbQl9+s2rVlBIofj2GiXT37b2zWTDhTmTcchKG7EIJvuRm4V0C23ExIvweNk/P5v
-         NM9DTrkW1fu7MSET6QkwIVaZfN06z5GYxSpAttJSoADwTaOH+vdNooBI4ZWNiUTAXCRe
-         T39xcUx0wox8tT+ggOuSHwuitD5C5kyPEF1rapK0qA+BssbcQc6rall9CN/lmDAZVG5S
-         QeCR0ZF4nGangKBkzpMi4rXLy93NWcrSLtdy/Rr5eJGqBRsjHLaifLpYf/zUZeQsWbQc
-         Z+raDVLMimDok94WonC107/7hGE4zgy+vXHXy+0Rt6+D8Lah7YKqmncpkIWtrx1Bh5Hg
-         Q2qA==
-X-Gm-Message-State: ACgBeo1gj1GxFjI8RC8StcDpqA7BjlP2Wvh0pAKmMX6PYlVNMOVkmsu/
-        i0jit8CUl1MsRFLozi+BQw==
-X-Google-Smtp-Source: AA6agR7WIHe/AiLYD102e5d5uKFjLIhVyxUpACShz6LmoyBGjUcs44MJ20snIPOKxNFUVwlVnmhpXw==
-X-Received: by 2002:a05:6830:3914:b0:638:f80c:e964 with SMTP id br20-20020a056830391400b00638f80ce964mr6530478otb.220.1661782231113;
-        Mon, 29 Aug 2022 07:10:31 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id y5-20020a056830070500b0063b2875246dsm2805095ots.49.2022.08.29.07.10.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Aug 2022 07:10:30 -0700 (PDT)
-Received: (nullmailer pid 1485236 invoked by uid 1000);
-        Mon, 29 Aug 2022 14:10:29 -0000
-Date:   Mon, 29 Aug 2022 09:10:29 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        with ESMTP id S230454AbiH2OMI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 10:12:08 -0400
+Received: from mail.thorsis.com (mail.thorsis.com [92.198.35.195])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D07596775;
+        Mon, 29 Aug 2022 07:12:06 -0700 (PDT)
+Date:   Mon, 29 Aug 2022 16:12:00 +0200
+From:   Alexander Dahl <ada@thorsis.com>
+To:     Olliver Schinagl <oliver@schinagl.nl>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Olivier Moysan <olivier.moysan@foss.st.com>,
-        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Cosmin Tanislav <cosmin.tanislav@analog.com>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Alexandru Tachici <alexandru.tachici@analog.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: iio: Add missing
- (unevaluated|additional)Properties on child nodes
-Message-ID: <20220829141029.GA1470207-robh@kernel.org>
-References: <20220823145649.3118479-2-robh@kernel.org>
- <99dfcc39-ab1b-1b24-c6b2-67de5509f5ac@linaro.org>
- <20220828180050.51c3e857@jic23-huawei>
-MIME-Version: 1.0
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Baolin Wang <baolin.wang@linaro.org>,
+        Daniel Mack <daniel@zonque.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Oleh Kravchenko <oleg@kaa.org.ua>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Simon Shields <simon@lineageos.org>,
+        Olliver Schinagl <oliver+list@schinagl.nl>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCHv2 resend] dt-bindings: leds: Expand LED_COLOR_ID
+ definitions
+Message-ID: <YwzJMAaYT/frJLaT@ada.ifak-system.com>
+Mail-Followup-To: Olliver Schinagl <oliver@schinagl.nl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Baolin Wang <baolin.wang@linaro.org>,
+        Daniel Mack <daniel@zonque.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Oleh Kravchenko <oleg@kaa.org.ua>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Simon Shields <simon@lineageos.org>,
+        Olliver Schinagl <oliver+list@schinagl.nl>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220819152904.433514-1-oliver@schinagl.nl>
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220828180050.51c3e857@jic23-huawei>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20220819152904.433514-1-oliver@schinagl.nl>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Aug 28, 2022 at 06:01:41PM +0100, Jonathan Cameron wrote:
-> On Thu, 25 Aug 2022 15:04:33 +0300
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+Hei Olliver,
+
+Am Fri, Aug 19, 2022 at 05:29:04PM +0200 schrieb Olliver Schinagl:
+> In commit 853a78a7d6c7 (dt-bindings: leds: Add LED_COLOR_ID definitions,
+> Sun Jun 9 20:19:04 2019 +0200) the most basic color definitions where
+> added. However, there's a little more very common LED colors.
 > 
-> > On 23/08/2022 17:56, Rob Herring wrote:
-> > > In order to ensure only documented properties are present, node schemas
-> > > must have unevaluatedProperties or additionalProperties set to false
-> > > (typically).
-> > >   
-> > 
-> > 
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> While the documentation states 'add what is missing', engineers tend to
+> be lazy and will just use what currently exists. So this patch will take
+> (a) list from online retailers [0], [1], [2] and use the common LED colors
+> from there, this being reasonable as this is what is currently available to
+> purchase.
 > 
-> Applied to the togreg branch of iio.git and pushed out as testing for 0-day
-> to poke at it before I push out as togreg for linux-next to pick up.
+> Note, that LIME seems to be the modern take to 'Yellow-green' or
+> 'Yellowish-green' from some older datasheets.
 
-Thanks.
+Just noticed you did not send this to neither linux-leds mailing list
+nor the LED subsystem maintainer. Maybe you want to do this in v3?
 
-> Side note. Some odd entries in your cc list...  alsa-devel?
+Greets
+Alex
 
-Blame MAINTAINERS:
-
-STM32 AUDIO (ASoC) DRIVERS
-M:      Olivier Moysan <olivier.moysan@foss.st.com>
-M:      Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-L:      alsa-devel@alsa-project.org (moderated for non-subscribers)
-S:      Maintained
-F:      Documentation/devicetree/bindings/iio/adc/st,stm32-dfsdm-adc.yaml
-F:      Documentation/devicetree/bindings/sound/st,stm32-*.yaml
-F:      sound/soc/stm/
+> 
+> [0]: https://www.digikey.com/en/products/filter/led-lighting-color/125
+> [1]: https://eu.mouser.com/c/optoelectronics/led-lighting/led-emitters/standard-leds-smd
+> [2]: https://nl.farnell.com/en-NL/c/optoelectronics-displays/led-products/standard-single-colour-leds-under-75ma
+> 
+> Signed-off-by: Olliver Schinagl <oliver@schinagl.nl>
+> ---
+> 
+> Changes since v1: Unbreak existing definitions.
+> 
+> 
+>  include/dt-bindings/leds/common.h | 28 ++++++++++++++++------------
+>  1 file changed, 16 insertions(+), 12 deletions(-)
+> 
+> diff --git a/include/dt-bindings/leds/common.h b/include/dt-bindings/leds/common.h
+> index 3be89a7c20a9..04bf94523ea3 100644
+> --- a/include/dt-bindings/leds/common.h
+> +++ b/include/dt-bindings/leds/common.h
+> @@ -22,18 +22,22 @@
+>  #define LEDS_BOOST_FIXED	2
+>  
+>  /* Standard LED colors */
+> -#define LED_COLOR_ID_WHITE	0
+> -#define LED_COLOR_ID_RED	1
+> -#define LED_COLOR_ID_GREEN	2
+> -#define LED_COLOR_ID_BLUE	3
+> -#define LED_COLOR_ID_AMBER	4
+> -#define LED_COLOR_ID_VIOLET	5
+> -#define LED_COLOR_ID_YELLOW	6
+> -#define LED_COLOR_ID_IR		7
+> -#define LED_COLOR_ID_MULTI	8	/* For multicolor LEDs */
+> -#define LED_COLOR_ID_RGB	9	/* For multicolor LEDs that can do arbitrary color,
+> -					   so this would include RGBW and similar */
+> -#define LED_COLOR_ID_MAX	10
+> +#define LED_COLOR_ID_WHITE      0
+> +#define LED_COLOR_ID_RED        1
+> +#define LED_COLOR_ID_GREEN      2
+> +#define LED_COLOR_ID_BLUE       3
+> +#define LED_COLOR_ID_AMBER      4
+> +#define LED_COLOR_ID_VIOLET     5
+> +#define LED_COLOR_ID_YELLOW     6
+> +#define LED_COLOR_ID_IR         7
+> +#define LED_COLOR_ID_MULTI      8 /* For multicolor LEDs */
+> +#define LED_COLOR_ID_RGB        9 /* For multicolor LEDs that can do arbitrary color, including RGBW etc. */
+> +#define LED_COLOR_ID_PUPRPLE   10
+> +#define LED_COLOR_ID_ORANGE    11
+> +#define LED_COLOR_ID_PINK      12
+> +#define LED_COLOR_ID_CYAN      13
+> +#define LED_COLOR_ID_LIME      14
+> +#define LED_COLOR_ID_MAX       15
+>  
+>  /* Standard LED functions */
+>  /* Keyboard LEDs, usually it would be input4::capslock etc. */
+> -- 
+> 2.37.2
+> 
