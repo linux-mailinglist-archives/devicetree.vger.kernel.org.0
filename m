@@ -2,160 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 45AB05A573C
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 00:45:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E723D5A576A
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 01:08:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229601AbiH2Wp2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Aug 2022 18:45:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53604 "EHLO
+        id S229490AbiH2XIo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Aug 2022 19:08:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229469AbiH2WpZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 18:45:25 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7C045A8AC
-        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 15:45:23 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id br21so7388107lfb.0
-        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 15:45:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=w8vHlMWoeAuOeDevoCzckAlsluuYN2+2EOqFRzUR6LQ=;
-        b=EgdVUtIaBz3PJrSEdW3ShS71l1g0wEde/cZ4LmI6/dqmBRlVRcKbt4hH6JPuKw3jOo
-         C5xR/TvroaRBUyygmn3XmMoFlE7/Co1prmfSsyjmq1qH73or1H6tTxB4rT38KyojLv/D
-         BDRD1aiHK3IMFNvZvMnRs42KFsvgUC91Mw9kFfSk/6jashPcqbX1Aowc/EHf/oX94FgU
-         MyOIOdFutFHoq/BBuppqcsdAD79JX/wNTpi+wedaS959KCevMPyoZChTxbpTuMzWhshz
-         N8sCQxLwRJ/B5TVsbOcfL/9JOVD7kbJysLpJBAXMpz3PgWhxD9WLDBqBEV6x8b+OQ533
-         hWIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=w8vHlMWoeAuOeDevoCzckAlsluuYN2+2EOqFRzUR6LQ=;
-        b=gRKF64cCxI0D29mjqtSQMgDyBcQ7isbRsiwAHbNYQPR61Up4YKtS+sS1KB7Q1U8XFb
-         DmcLcbpb/+jsWAiL5bGPOkS9hXSkepMkEcOUTQADK7vcgAHSZ5le5OvdusLMPl5HkA0S
-         ACnIGdiRSfCOTA7JYHciyJTdPLtJ4KOPAj2juw1deSntxbjEye4u7c7eoN7Y10fqrpUu
-         mto1Ef48KrVjVC6EC549sARi9tN84SV1oeOx7kQ43RwAAyHd0R4j9FPVNXZdY0V3/AYy
-         OqtbtjWRxcxbtyuRQULiohhUw3fClH+w5lnENltGrLHY5KqmWv80S3A6dDWNgk7iqvCO
-         EvmA==
-X-Gm-Message-State: ACgBeo3y/fAsMj4hxjREmUxyrtkFm9Lp/6moDYFPRNelZ3ARbXRw3i+R
-        Lq32uaUBPgTZ7WETYTvXTVvY8g==
-X-Google-Smtp-Source: AA6agR5lq3sYw8fJb8G908q8Sgl3+o1MpEj872+aoJcrZp2ill7/GcE0NAkRjIOiiR1wPSaoSkyB0g==
-X-Received: by 2002:a05:6512:3a87:b0:48b:16fb:79b8 with SMTP id q7-20020a0565123a8700b0048b16fb79b8mr7057682lfu.438.1661813122074;
-        Mon, 29 Aug 2022 15:45:22 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id c9-20020a2e9d89000000b002655fb689a6sm534238ljj.139.2022.08.29.15.45.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Aug 2022 15:45:21 -0700 (PDT)
-Message-ID: <0ac86ecb-bff4-6f13-1109-0410c8050cab@linaro.org>
-Date:   Tue, 30 Aug 2022 01:45:20 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.1.2
-Subject: Re: [PATCH v3 2/2] spmi: pmic-arb: Add support for PMIC v7
-Content-Language: en-GB
-To:     Vinod Koul <vkoul@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S229453AbiH2XIm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 19:08:42 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 674857CB49;
+        Mon, 29 Aug 2022 16:08:39 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 90431481;
+        Tue, 30 Aug 2022 01:08:36 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1661814516;
+        bh=V/noL5H3GGat0X1qZ40oI+6OfQ6QMlmf7rC/4vB+poY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=liE817KLQtHDm3GEbvXYnedB96v9ivXs4fQlkLc2UOi/l+cAVbqGII2V1UvJ3dDke
+         1DF/inO4KuoaB+FNGd1bxvt53gRAy381yS0GEZ1YU9ojkb80WeNk4Kl2rvcvLxGzZv
+         aXw7BCWF2W6GEwvaL0fYudC5jljkpIVyrZe2XMNM=
+Date:   Tue, 30 Aug 2022 02:08:27 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        David Collins <quic_collinsd@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        David Collins <collinsd@codeaurora.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        David Dai <daidavid1@codeaurora.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220201134108.2677578-1-vkoul@kernel.org>
- <20220201134108.2677578-3-vkoul@kernel.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20220201134108.2677578-3-vkoul@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: Re: [PATCH] dt-bindings: display: bridge: renesas,dw-hdmi: Fix
+ 'unevaluatedProperties' warnings
+Message-ID: <Yw1G69ny9tZrFWk4@pendragon.ideasonboard.com>
+References: <20220829215816.6206-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220829215816.6206-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/02/2022 16:41, Vinod Koul wrote:
-> From: David Collins <collinsd@codeaurora.org>
+Hi Prabhakar,
+
+Thank you for the patch.
+
+On Mon, Aug 29, 2022 at 10:58:16PM +0100, Lad Prabhakar wrote:
+> With 'unevaluatedProperties' support implemented, there's a number of
+> warnings when running dtbs_check:
 > 
-> PMIC v7 has different offset values and seqeunces, so add support for
-> this new version of PMIC
+> arch/arm64/boot/dts/renesas/r8a774b1-hihope-rzg2n-rev2-ex-idk-1110wr.dtb: hdmi@fead0000: Unevaluated properties are not allowed ('resets' was unexpected)
+> 	From schema: Documentation/devicetree/bindings/display/bridge/renesas,dw-hdmi.yaml
 > 
-> Signed-off-by: David Collins <collinsd@codeaurora.org>
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> The main problem is that SoC DTSI's are including resets property, whereas
+> the renesas,dw-hdmi.yaml has 'unevaluatedProperties: false'. So just add
+> optional resets property to the binding.
+
+Given that all the DT sources in the kernel specify the resets property,
+how about making it mandatory ?
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > ---
->   drivers/spmi/spmi-pmic-arb.c | 233 ++++++++++++++++++++++++++++++++---
->   1 file changed, 214 insertions(+), 19 deletions(-)
-
-
-As I was asking Stephen about the fate of this patch series I could not 
-stop my self from noticing that one of his comments ([1]) from v1 was 
-ignored.
-Let me quote it here:
-
- > The driver is already pretty hard to read because it combines so many
- > generations of spmi arbiter hardware from qcom into one file. It would
- > probably be better to start over and simplify the new version of the
- > driver, possibly sharing code between the two files if possible, but
- > otherwise dropping lots of cruft along the way and simplifying review
- > burden.
-
-After taking a glance, I thought maybe we should really follow this 
-approach. And it also allows us to start with the new bindings:
-
-spmi@c400000 {
-    compatible = "qcom,spmi-pmic-arb-v7";
-
-    reg = <..... both arb registers as following....>;
-    reg-names = "core", "chnls", "observer", "cnfg0", "intr0", "cnfg1", 
-"intr1";
-
-    interrupts = <&pdc 1 HIGH>, <&pdc 3 HIGH>;
-    interrupt-names = "arb0", "arb1"; /* are the names necessary at all? */
-
-    #address-cells = <1>;
-    #size-cells = <0>;
-
-    spmi_bus: bus@0 {
-       reg = <0>;
-       #address-cells = <2>;
-       #size-cells = <0>;
-       #interrupt-cells = <4>;
-       interrupt-controller;
-
-       pmic@.... {
-           // etc.
-       };
-
-    };
-
-    spmi1_bus: bus@1 {
-       reg = <1>;
-       #address-cells = <2>;
-       #size-cells = <0>;
-       #interrupt-cells = <4>;
-       interrupt-controller;
-    };
-};
-
-Note, this drops the qcom,ee (which is always 0 for all devices I see in 
-mainline)) and qcom,channel (which if I understood correctly is used 
-only for pmic-arb-v1, ugh). It uses common reg = <N> property instead of
-cooked qcom,bus-id. And last, but not least, it save us from huuge 
-comments in the source code telling why devm_platform_ioremap_resource 
-can not be used.
-
-[1] 
-https://lore.kernel.org/linux-arm-msm/20211210020148.B2EA6C004DD@smtp.kernel.org/
-
+>  .../devicetree/bindings/display/bridge/renesas,dw-hdmi.yaml    | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/renesas,dw-hdmi.yaml b/Documentation/devicetree/bindings/display/bridge/renesas,dw-hdmi.yaml
+> index 0c9785c8db51..a7e44e249dd3 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/renesas,dw-hdmi.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/renesas,dw-hdmi.yaml
+> @@ -38,6 +38,9 @@ properties:
+>    clock-names:
+>      maxItems: 2
+>  
+> +  resets:
+> +    maxItems: 1
+> +
+>    ports:
+>      $ref: /schemas/graph.yaml#/properties/ports
+>  
 
 -- 
-With best wishes
-Dmitry
+Regards,
 
+Laurent Pinchart
