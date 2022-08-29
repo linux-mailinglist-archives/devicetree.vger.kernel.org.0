@@ -2,84 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A20245A535B
-	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 19:40:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE3D05A5370
+	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 19:46:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229630AbiH2Rk2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Aug 2022 13:40:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42940 "EHLO
+        id S229632AbiH2RqK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Aug 2022 13:46:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229587AbiH2Rk1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 13:40:27 -0400
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9BB66577
-        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 10:40:25 -0700 (PDT)
-Received: by mail-pj1-x102f.google.com with SMTP id i5-20020a17090a2a0500b001fd8708ffdfso6202472pjd.2
-        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 10:40:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc;
-        bh=s6bYNpML21qzhk9c6rS49HOi5hkJ5sJySwf5mxEe49g=;
-        b=rRgo00unpZZnp/iKatcDw2P9q6aBOTa3VIJ41hGdq2Ue/i2CtTN2avO+BGFzPm7ldJ
-         Q4fcuykOqMRAXY15s1bCTM3iY+m2zAG0mUi09ztJOxDuEVlbao5Vu0ZROdDmba5HZX9z
-         mHPC7Jp3kLqFIbD03qnGdPz08YXFSVzC23jN911UhzBB9JMn0vPw9BKRahCzStPcwpJL
-         vAL6DWNqiIGoRocETe742dBQeMUzBWmIX9gHDnCjreZ718lu4bVA8ktqsjs9QMNp8WVb
-         I3YkJ71m+b5yYqo/m3O5I9esu+OgU2Cw/ZIRjR2ssuxrgD3GVRjq6S7inlqGU5kDWqvQ
-         gd4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=s6bYNpML21qzhk9c6rS49HOi5hkJ5sJySwf5mxEe49g=;
-        b=uO7s876v6fVakt3AOvPdHK69OSgPd6fkQvRzuSOW65s/TRb2Xc1OgzmmZ08ajYgthC
-         lhMGNGk2COOVa4bvTCznY2eet5I0CEwN7F0GZjKgwte4CJqRnP2ueGPM61qK07uftA5M
-         ZyKISFzUOrnshg5Lsdp5wpjZvA2BpxydzqxVGh2Ld8PkxH5YesDIV2oU9Lt4GkSL7KL7
-         4fc+PimHC2YluSTb9z+uFSw5Scj1fBHP/AtGEBtJo3DgsQyKOMN2GvKnQazDUSb3WCEf
-         0IcYAWWLq5ngrH9avYL3+rFLDPHipijU+pZC774WZ3uUBdvWa+YywmPG3uFqVo9iFUdR
-         oLiw==
-X-Gm-Message-State: ACgBeo3ZIiYaWoWwtukg+heDdm0EYphQrEzfDFLkSUGAiH5o99tEhS5r
-        mfXLTu4gsr7AjGswHXlNhFq44A==
-X-Google-Smtp-Source: AA6agR5A1l3owXOrDlGd71lrBje/h4zCkOyCf84EtysjEUjXD5K1Zz+Ho52D2qgBJcB1fk3TqmErmw==
-X-Received: by 2002:a17:902:9b85:b0:16e:cc02:b9b2 with SMTP id y5-20020a1709029b8500b0016ecc02b9b2mr17622412plp.74.1661794824904;
-        Mon, 29 Aug 2022 10:40:24 -0700 (PDT)
-Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id r2-20020aa79882000000b0053826ec2a68sm3224505pfl.191.2022.08.29.10.40.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Aug 2022 10:40:23 -0700 (PDT)
-Date:   Mon, 29 Aug 2022 11:40:21 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Tinghan Shen <tinghan.shen@mediatek.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Daisuke Nojiri <dnojiri@chromium.org>,
-        Kees Cook <keescook@chromium.org>,
-        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
-        Prashant Malani <pmalani@chromium.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        chrome-platform@lists.linux.dev,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        weishunc@google.com
-Subject: Re: [PATCH v2 2/9] remoteproc: mediatek: Support hanlding scp core 1
- wdt timeout
-Message-ID: <20220829174021.GA2264818@p14s>
-References: <20220608083553.8697-1-tinghan.shen@mediatek.com>
- <20220608083553.8697-3-tinghan.shen@mediatek.com>
+        with ESMTP id S229600AbiH2RqI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 13:46:08 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33FAE50189;
+        Mon, 29 Aug 2022 10:46:07 -0700 (PDT)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 27THTQBT032586;
+        Mon, 29 Aug 2022 17:45:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=qcULhw5na7WjnVO6idPF+u7elRJBnOtSnTWNF45lrK0=;
+ b=MQG854inpk+i52c05fTdp6Dn9b5i50eF+AOAc94zwO+fmY7VziZl0fJN1kXA920vQ+CV
+ /bceIzxfNWfaQGYDLj5QgnAwnJ90+tf2JECHXayBSExZiGDf7w5d0hgGpr9xsPBNwem9
+ EeWZ3D8woz6luJZgFhDFkUN/2o4j3Qq7Z1qbkVtkux96NwRhFCpyQVozK2/8Bpt9e8Pg
+ XPTdT1p2rhy1V1tzdr08ejf32sLlIV2T0H7+QailY3E6NPPZp3vZg+acZzrsOp+Cp3JA
+ sQ9fo4sSL/oZXdBZzdgs8RDH33UirKEQtxJXacj4TAsiwxGVleoMbQ9grrxouO67tLrf Zw== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3j7bndwm2m-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 29 Aug 2022 17:45:56 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 27THjtjv014865
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 29 Aug 2022 17:45:55 GMT
+Received: from [10.216.51.151] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Mon, 29 Aug
+ 2022 10:45:47 -0700
+Message-ID: <3dd98ae4-8b19-e241-3b64-fe24509d2cb4@quicinc.com>
+Date:   Mon, 29 Aug 2022 23:15:43 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220608083553.8697-3-tinghan.shen@mediatek.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v2 2/3] dt-bindings: pci: QCOM Adding sc7280 aggre0,
+ aggre1 clocks
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <helgaas@kernel.org>
+CC:     <linux-pci@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <mka@chromium.org>,
+        <quic_vbadigan@quicinc.com>, <quic_hemantk@quicinc.com>,
+        <quic_nitegupt@quicinc.com>, <quic_skananth@quicinc.com>,
+        <quic_ramkri@quicinc.com>, <manivannan.sadhasivam@linaro.org>,
+        <swboyd@chromium.org>, <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        "Bjorn Helgaas" <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+References: <1656062391-14567-1-git-send-email-quic_krichai@quicinc.com>
+ <1656691899-21315-1-git-send-email-quic_krichai@quicinc.com>
+ <1656691899-21315-3-git-send-email-quic_krichai@quicinc.com>
+ <1fb5f0c6-ff72-b9ba-175a-b5197ed658a7@linaro.org>
+ <9de4c3a0-eb95-f4e9-b828-2343241fff41@quicinc.com>
+ <75f8b257-7e0a-d871-ab30-37a72f7da56e@linaro.org>
+From:   Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
+In-Reply-To: <75f8b257-7e0a-d871-ab30-37a72f7da56e@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: i5v9jAkoA5ZchZG-MAsPuuu2LDEWx41G
+X-Proofpoint-ORIG-GUID: i5v9jAkoA5ZchZG-MAsPuuu2LDEWx41G
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.517,FMLib:17.11.122.1
+ definitions=2022-08-29_08,2022-08-25_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 clxscore=1011
+ mlxscore=0 malwarescore=0 bulkscore=0 impostorscore=0 mlxlogscore=999
+ lowpriorityscore=0 priorityscore=1501 spamscore=0 phishscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2207270000 definitions=main-2208290081
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -88,92 +97,117 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tinghan,
 
-I have started reviewing this set and I expect comments to be spread out over a few
-days.  I will tell you when I am done.
+On 7/6/2022 8:29 PM, Krzysztof Kozlowski wrote:
+> On 06/07/2022 13:55, Krishna Chaitanya Chundru wrote:
+>> On 7/4/2022 1:54 PM, Krzysztof Kozlowski wrote:
+>>> On 01/07/2022 18:11, Krishna chaitanya chundru wrote:
+>>>> Adding aggre0 and aggre1 clock entries to PCIe node.
+>>>>
+>>>> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+>>>> ---
+>>>>    Documentation/devicetree/bindings/pci/qcom,pcie.yaml | 6 ++++--
+>>>>    1 file changed, 4 insertions(+), 2 deletions(-)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+>>>> index 0b69b12..8f29bdd 100644
+>>>> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+>>>> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+>>>> @@ -423,8 +423,8 @@ allOf:
+>>>>        then:
+>>>>          properties:
+>>>>            clocks:
+>>>> -          minItems: 11
+>>>> -          maxItems: 11
+>>>> +          minItems: 13
+>>>> +          maxItems: 13
+>>>>            clock-names:
+>>>>              items:
+>>>>                - const: pipe # PIPE clock
+>>>> @@ -437,6 +437,8 @@ allOf:
+>>>>                - const: bus_slave # Slave AXI clock
+>>>>                - const: slave_q2a # Slave Q2A clock
+>>>>                - const: tbu # PCIe TBU clock
+>>>> +            - const: aggre0 # Aggre NoC PCIe CENTER SF AXI clock
+>>>> +            - const: aggre1 # Aggre NoC PCIe1 AXI clock
+>>> You ignored my comments from v1 - please don't. This is not accepted.
+>>>
+>>> Also, please do not send new versions of patchset as reply to some other
+>>> threads. It's extremely confusing to find it under something else.
+>>>
+>>> Best regards,
+>>> Krzysztof
+>> Hi
+>>
+>> Krzysztof,
+>>
+>> Sorry for confusion created which replying this patch.
+>>
+>> The only comment I got from v1 from you is to run make dtbs_check.
+>>
+>> I ran that command I found the errors and fixed them and I ran the make dtbs_check again
+>> before on v2 and made sure there are no errors.
+>>
+>> Can you please tell me is there any steps I missed.
+> The comment was:
+> "This won't work. You need to update other entry."
+>
+> and then a conditional: "If you test it with
+> `make dtbs_check` you will see the errors."
+>
+> So let's run it together:
+>
+> /home/krzk/dev/linux/linux/out/arch/arm64/boot/dts/qcom/sc7280-idp.dtb:
+> pci@1c08000: clocks: [[42, 55], [42, 56], [41, 0], [39, 0], [42, 50],
+> [42, 52], [42, 53], [42, 57], [42, 58], [42, 177], [42, 178], [42, 8],
+> [42, 21]] is too long
+>
+> 	From schema:
+> /home/krzk/dev/linux/linux/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+>
+> /home/krzk/dev/linux/linux/out/arch/arm64/boot/dts/qcom/sc7280-idp.dtb:
+> pci@1c08000: clock-names: ['pipe', 'pipe_mux', 'phy_pipe', 'ref', 'aux',
+> 'cfg', 'bus_master', 'bus_slave', 'slave_q2a', 'tbu', 'aggre0',
+> 'aggre1', 'ddrss_sf_tbu'] is too long
+>
+>
+> clocks and clock-names can be maximum 12 items, as defined by schema in
+> "properties:" section. You cannot extend it in one place to 13 but leave
+> 12 in other, because both constraints are applicable.
+>
+> If you test it, you will see the errors.
+>
+> Best regards,
+> Krzysztof
 
-Please see below for comments...
+Hi Krzysztof,
 
-On Wed, Jun 08, 2022 at 04:35:46PM +0800, Tinghan Shen wrote:
-> MT8195 SCP is a dual-core processor. The SCP core 1 watchdog timeout
-> interrupt uses the same interrupt line of SCP core 0 watchdog timeout
-> interrupt.
-> 
-> Add support for handling SCP core 1 watchdog timeout interrupt in the
-> SCP IRQ handler.
-> 
-> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-> ---
->  drivers/remoteproc/mtk_common.h |  4 ++++
->  drivers/remoteproc/mtk_scp.c    | 27 ++++++++++++++++++++++++++-
->  2 files changed, 30 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/remoteproc/mtk_common.h b/drivers/remoteproc/mtk_common.h
-> index ea6fa1100a00..73e8adf00de3 100644
-> --- a/drivers/remoteproc/mtk_common.h
-> +++ b/drivers/remoteproc/mtk_common.h
-> @@ -54,6 +54,10 @@
->  #define MT8192_CORE0_WDT_IRQ		0x10030
->  #define MT8192_CORE0_WDT_CFG		0x10034
->  
-> +#define MT8195_SYS_STATUS		0x4004
-> +#define MT8195_CORE0_WDT		BIT(16)
-> +#define MT8195_CORE1_WDT		BIT(17)
-> +
->  #define MT8195_L1TCM_SRAM_PDN_RESERVED_RSI_BITS		GENMASK(7, 4)
->  
->  #define SCP_FW_VER_LEN			32
-> diff --git a/drivers/remoteproc/mtk_scp.c b/drivers/remoteproc/mtk_scp.c
-> index 47b2a40e1b4a..3510c6d0bbc8 100644
-> --- a/drivers/remoteproc/mtk_scp.c
-> +++ b/drivers/remoteproc/mtk_scp.c
-> @@ -212,6 +212,31 @@ static void mt8192_scp_irq_handler(struct mtk_scp *scp)
->  	}
->  }
->  
-> +static void mt8195_scp_irq_handler(struct mtk_scp *scp)
-> +{
-> +	u32 scp_to_host;
-> +
-> +	scp_to_host = readl(scp->reg_base + MT8192_SCP2APMCU_IPC_SET);
-> +
-> +	if (scp_to_host & MT8192_SCP_IPC_INT_BIT) {
-> +		scp_ipi_handler(scp);
-> +
-> +		/*
-> +		 * SCP won't send another interrupt until we clear
-> +		 * MT8192_SCP2APMCU_IPC.
-> +		 */
-> +		writel(MT8192_SCP_IPC_INT_BIT,
-> +		       scp->reg_base + MT8192_SCP2APMCU_IPC_CLR);
-> +	} else {
-> +		if (readl(scp->reg_base + MT8195_SYS_STATUS) & MT8195_CORE1_WDT) {
-> +			writel(1, scp->reg_base + MT8195_CORE1_WDT_IRQ);
-> +		} else {
-> +			writel(1, scp->reg_base + MT8192_CORE0_WDT_IRQ);
-> +			scp_wdt_handler(scp, scp_to_host);
+Sorry for very late reply.
 
-Why is scp_wdt_handler() not called when CORE1 signals a watchdog failure?  If
-this is the intended behaviour there is no way for anyone but you to know that
-it is the case.  
+If we increase the common definitions of clocks properties to "13" it is 
+sufficient right.
 
-> +		}
-> +	}
-> +}
-> +
->  static irqreturn_t scp_irq_handler(int irq, void *priv)
->  {
->  	struct mtk_scp *scp = priv;
-> @@ -961,7 +986,7 @@ static const struct mtk_scp_of_data mt8192_of_data = {
->  static const struct mtk_scp_of_data mt8195_of_data = {
->  	.scp_clk_get = mt8195_scp_clk_get,
->  	.scp_before_load = mt8195_scp_before_load,
-> -	.scp_irq_handler = mt8192_scp_irq_handler,
-> +	.scp_irq_handler = mt8195_scp_irq_handler,
->  	.scp_reset_assert = mt8192_scp_reset_assert,
->  	.scp_reset_deassert = mt8192_scp_reset_deassert,
->  	.scp_stop = mt8195_scp_stop,
-> -- 
-> 2.18.0
-> 
+
+diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml 
+b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+index 92402f1..c9e268d 100644
+--- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
++++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+@@ -53,11 +53,11 @@ properties:
+    # Platform constraints are described later.
+    clocks:
+      minItems: 3
+-    maxItems: 12
++    maxItems: 13
+
+    clock-names:
+      minItems: 3
+-    maxItems: 12
++    maxItems: 13
+
+    resets:
+
+Thanks & Regards,
+
+Krishna Chaitanya.
+
