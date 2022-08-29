@@ -2,63 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DF6F5A5587
-	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 22:29:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC1E45A559D
+	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 22:35:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229975AbiH2U3G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Aug 2022 16:29:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46224 "EHLO
+        id S229806AbiH2UfZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Aug 2022 16:35:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229475AbiH2U3F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 16:29:05 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82C3285A9D
-        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 13:29:04 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id h5so6437639ejb.3
-        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 13:29:04 -0700 (PDT)
+        with ESMTP id S229644AbiH2UfY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 16:35:24 -0400
+Received: from mail-oa1-x2b.google.com (mail-oa1-x2b.google.com [IPv6:2001:4860:4864:20::2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39D2478580
+        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 13:35:23 -0700 (PDT)
+Received: by mail-oa1-x2b.google.com with SMTP id 586e51a60fabf-11dca1c9c01so12062327fac.2
+        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 13:35:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=iBDrYuK38tP07AWX3QFXuLOTrIhoz52xxnkZBhXnKGc=;
-        b=eFddmdZPTAsCg08ovPXyoXSHP6EXZ0661ss+xIP0mD30x6tQaHosOhgiWaSkYc7ypK
-         2lpIjsDNS2wSj2/YBuO8s2SHN2v2MvSfIRO3z764xmDPke4LY8oxmu8r798mZqARRua0
-         b/qCsQ6lTXYRQZeq5ey6d0bEbJUXpmrzlu0Do=
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:from:to:cc;
+        bh=TWr3TDm9avVPonPTqZ8cUHmP3gOyN78ms22mt44A4BA=;
+        b=Kcmk8a1VG0mh4MVJt1/BosKmHsd8u7eRp44VVAGwsoMWNpp7CysGzRWyiNC/8lJrSo
+         48GDKBnn0P/JJ/xyPgIavaeqckB2M7Dhfovv1DdouDJ0fXQksy93uOowjbUCvqx7v8J/
+         MKOZu4BwH/lHh5HigZqtIzBDvNYxWtelUKXwQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=iBDrYuK38tP07AWX3QFXuLOTrIhoz52xxnkZBhXnKGc=;
-        b=35zFlOvypwWM8AFKIclow6U8HSb5/Fb4YwuPotXyqlSZc32IP2NkpQutxM+3k1BpAL
-         Zq34ig9G06+4CDq54RtngLQU+6suJulsdwaYpltfF3Mc5yDP+PA89eHm1hi6kRCPxZP2
-         /BbBFBzsaGVovfTdhf++eUuX7C/uwS2+Re8SP47EgP+mcAywnqxl+3NezlYW05ojNdty
-         /YHSbcbvNxQxEztV6DFyMjfVfl0tfE4RLL0x/G1w1v12QW+DD9xSBN26LJBYJiXwIk6p
-         jxeLnoKP6UMbaTCC2sJ0QrWu5pvZ6Lj7ELm7jVjzfmMRiMllCiNG0idfsJ+rq5r+4ygr
-         dbWQ==
-X-Gm-Message-State: ACgBeo0CWNxFC2drhBenMsK013mVKlgXIkyQDobXM4qPZvBRxjuz7aSf
-        2+lof2rVFGCyrQMSbhhjGV9pc8lyqCv333waXrwbLQ==
-X-Google-Smtp-Source: AA6agR6x/XIaAtR0Mo8JnsIAoaBx+9lRxsyXhIku7RHf1MsEnL3pU3ewTtuOL4HG9TWgyomlKkagwsvL9tX6SCpjqqs=
-X-Received: by 2002:a17:907:6089:b0:734:be0c:e0cd with SMTP id
- ht9-20020a170907608900b00734be0ce0cdmr15135531ejc.474.1661804943116; Mon, 29
- Aug 2022 13:29:03 -0700 (PDT)
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:x-gm-message-state:from:to:cc;
+        bh=TWr3TDm9avVPonPTqZ8cUHmP3gOyN78ms22mt44A4BA=;
+        b=eYFgMI9h22i2Jqk0cgeHT9BVsVmHyUhe/3QqdL0LetwBC38fTAZ/2yrQ/UMR1zaVTk
+         eTP5VUaaxUFW2tCBjc2dXI9eat/qjQRKHWH1nMI/DePgEvUnaN9p2WBKm8TCsI9kk4RM
+         uJIf9wqg5ZF7YKsWZOkeDCWuXEYMownbnU9fwp3+xv+7AKkY64atnSLfRWe+L8/Puhw6
+         Ou48wEZEB68E7Iy/Vz7JdbtOR4aw350kgMOjpbL+WvKgqS8+7mzSHbiggIK4J8mhj4F/
+         119fcnptZ5i/2c4v6G5Av9pHmb7hiOJ9gI61Q96NF/hut+ZwHPeXq4uu7/283cwgUApA
+         BOjA==
+X-Gm-Message-State: ACgBeo10WNY9TAuA52nirVgmDikGbhSEXmxFQzk7GsQxMXK0NfTswp+M
+        od7choPkMHgXG12ESs7A6K8sHJq1QMjqBb8w3QOoTg==
+X-Google-Smtp-Source: AA6agR4Lu5UWdr0LmgmFR4I9mbK8Vk3GAncKRJqKl9w2iKJ8h1UMLCmJk/2ZASLN1J8YDCUQA9s95qmhETYrrzckAN4=
+X-Received: by 2002:a05:6808:bca:b0:344:ef42:930f with SMTP id
+ o10-20020a0568080bca00b00344ef42930fmr7779595oik.0.1661805322493; Mon, 29 Aug
+ 2022 13:35:22 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 29 Aug 2022 15:35:21 -0500
 MIME-Version: 1.0
-References: <20220824080903.3696847-2-jagan@amarulasolutions.com> <20220829201752.518374-1-naoki@radxa.com>
-In-Reply-To: <20220829201752.518374-1-naoki@radxa.com>
-From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Tue, 30 Aug 2022 01:58:52 +0530
-Message-ID: <CAMty3ZDxvaFSYpjYniXwpA6Wfyyn=c8mW5XNNUaiuqSb1niC9w@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: rk3399: Radxa ROCK 4C+
-To:     FUKAUMI Naoki <naoki@radxa.com>
-Cc:     abbaraju.manojsai@amarulasolutions.com, devicetree@vger.kernel.org,
-        heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
-        linux-amarula@amarulasolutions.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, robh+dt@kernel.org,
-        stephen@radxa.com
+In-Reply-To: <1661754153-14813-3-git-send-email-quic_c_skakit@quicinc.com>
+References: <1661754153-14813-1-git-send-email-quic_c_skakit@quicinc.com> <1661754153-14813-3-git-send-email-quic_c_skakit@quicinc.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Mon, 29 Aug 2022 15:35:21 -0500
+Message-ID: <CAE-0n50oOi99jgL7Z=Dt784XEv-Q3O9TSDT4ZiRz8t_X8fV0ZQ@mail.gmail.com>
+Subject: Re: [PATCH V8 2/5] clk: qcom: lpass: Handle the regmap overlap of
+ lpasscc and lpass_aon
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Satya Priya <quic_c_skakit@quicinc.com>
+Cc:     Douglas Anderson <dianders@chromium.org>,
+        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_tdas@quicinc.com, linux-clk@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,62 +70,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 30, 2022 at 1:48 AM FUKAUMI Naoki <naoki@radxa.com> wrote:
+Quoting Satya Priya (2022-08-28 23:22:30)
+> Move registration of lpass_q6ss_ahbm_clk and lpass_q6ss_ahbs_clk to
+> lpass_aon_cc_sc7280_probe and register them only if "qcom,adsp-pil-mode"
+> is enabled in the lpass_aon DT node.
 >
-> Hello,
->
-> thank you very much for your work!
->
-> > +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rock-4c-plus.dtb
->
-> this is not an objection, just a note for me, currently our(Radxa)
-> u-boot try to load "rk3399-rock-pi-4c-plus.dtb".
->
-> > +#include "rk3399-opp.dtsi"
->
-> ROCK 4C+ has RK3399-T. it needs different opp table.
+> Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
+> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
 
-Yes, I will update this in V3.
+Your Signed-off-by should be last. If Taniya's SoB is present then I'd
+expect a Co-developed-by tag as well, or the author should be Taniya.
+Either way Taniya's SoB should be first.
 
->
-> > +     aliases {
-> > +             mmc0 = &sdmmc;
->
-> please add
->
->                 mmc1 = &sdhci;
->
-> as like as other ROCK (Pi) 4 series.
->
-> > +&hdmi_sound {
-> > +     status = "okay";
-> > +};
->
-> please add
->
-> &i2s2 {
->         status = "okay";
-> };
->
-> too.
->
-> > +&sdmmc {
-> > +     bus-width = <4>;
-> > +     cap-mmc-highspeed;
-> > +     cap-sd-highspeed;
-> > +     card-detect-delay = <800>;
-> > +     disable-wp;
-> > +     pinctrl-names = "default";
-> > +     pinctrl-0 = <&sdmmc_clk &sdmmc_cd &sdmmc_cmd &sdmmc_bus4>;
-> > +     vqmmc-supply = <&vccio_sd>;
-> > +     status = "okay";
-> > +};
->
-> does card detect work for you? it doesn't work for me. I think it
-> needs
-
-Yes. it is detecting for me. I've booted from SD. 2022.03.04 V1.2
-revision board.
-
-Thanks,
-Jagan.
+> Reviewed-by: Stephen Boyd <sboyd@kernel.org>
