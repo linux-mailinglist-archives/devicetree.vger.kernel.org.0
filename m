@@ -2,85 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AEE995A5376
-	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 19:46:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C9A1D5A53E1
+	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 20:21:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230013AbiH2Rqq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Aug 2022 13:46:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52166 "EHLO
+        id S229671AbiH2SVP convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 29 Aug 2022 14:21:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229955AbiH2Rqp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 13:46:45 -0400
-Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C5795C940
-        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 10:46:43 -0700 (PDT)
-Received: by mail-pg1-x52e.google.com with SMTP id x80so4763949pgx.0
-        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 10:46:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc;
-        bh=aP8hdsX7w+lAko8aJQsw+FTPWreKWJ2EVj6LyJvUNh0=;
-        b=VwYCcxEf5UykaTaEGbwdLPWk3ws3rUXSTUcxdbBe8d2AqIPcT7lgI7CaGsFQdvNMtB
-         jKhpVlfEJ+nJsizNCDaP63n5XPBS0w9V7BMGkPAdAjj0DmzwAb516anjc2665EqDnZQi
-         UksP91Twx00G3j5ZThFpWYEcPTr02IX+keje+1Ry63LiK6qREy5wMeY2IOUZcvVMxfkP
-         dLUqPy7/RzlcKR1KZUlN8DipmtWLN2zOJumJhpWFg5Hg4AHKNl4MZuvrW+GDFxgiI8Nd
-         +Sm0lxCV6DpFzKSMoGs/P/t2FpEB7C7/emCoZSX9S9yce8Jk6eG2aCedJI8MSHbh0bSg
-         cU0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=aP8hdsX7w+lAko8aJQsw+FTPWreKWJ2EVj6LyJvUNh0=;
-        b=pT5FFT15wpFe4o2mjLndvNGGDFEmEWZZJkNAU0ikkmBz4X0RLbI3LM9yPCm4i83spB
-         6EjqWVZW8f6hdvyfbmE+W78LGbfR6lsx713ZQZzAo0KpHKhv/p1j9vFOp/M/7C64lnxC
-         VzLfeSaLe6G7xtQ/4fgdxoxjFmGSyyXsOzPT5g2Vb07zMaDeVfhLU9t/54mfUZH/qZ0B
-         vbecsX7lAiKQ1A/1WB98gP04T9xMW3vP9k7h4rsatcHpcGN9wU9BQasm05gN7ypaaBN3
-         KiDfWvOj64k0PRqLL14jO8xW1dci45ezEwopYvirQLqYYbFKMa+tiJMq8mMNiTL50Dll
-         4CqQ==
-X-Gm-Message-State: ACgBeo17+hUjoNXfj2jBjphZ0D73gRv96eKp0jyspf2JlJomgG6NBvJV
-        fkGJvyAa5CDKOk/PTGGO583BgQ==
-X-Google-Smtp-Source: AA6agR5zgWfQgTrxIOf8Ia3na5HyhsYLWrqsHU9Njtdw1MGbp9RefMUARzblYmeTR6HLM/kev46Weg==
-X-Received: by 2002:a63:91c1:0:b0:42b:50f8:774c with SMTP id l184-20020a6391c1000000b0042b50f8774cmr14896896pge.496.1661795202958;
-        Mon, 29 Aug 2022 10:46:42 -0700 (PDT)
-Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id x9-20020a170902a38900b0016f154c8910sm5644434pla.204.2022.08.29.10.46.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Aug 2022 10:46:42 -0700 (PDT)
-Date:   Mon, 29 Aug 2022 11:46:38 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Tinghan Shen <tinghan.shen@mediatek.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        with ESMTP id S229475AbiH2SVO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 14:21:14 -0400
+Received: from de-smtp-delivery-113.mimecast.com (de-smtp-delivery-113.mimecast.com [194.104.109.113])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A21058B73
+        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 11:21:13 -0700 (PDT)
+Received: from CHE01-ZR0-obe.outbound.protection.outlook.com
+ (mail-zr0che01lp2110.outbound.protection.outlook.com [104.47.22.110]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ de-mta-15-L6OWYYDuPJKhRBRMQqNgZw-2; Mon, 29 Aug 2022 20:21:08 +0200
+X-MC-Unique: L6OWYYDuPJKhRBRMQqNgZw-2
+Received: from ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:2e::8) by
+ GVAP278MB0408.CHEP278.PROD.OUTLOOK.COM (2603:10a6:710:38::10) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5566.14; Mon, 29 Aug 2022 18:21:05 +0000
+Received: from ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM
+ ([fe80::1057:15ae:2a7a:de8e]) by ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM
+ ([fe80::1057:15ae:2a7a:de8e%6]) with mapi id 15.20.5566.021; Mon, 29 Aug 2022
+ 18:21:05 +0000
+Date:   Mon, 29 Aug 2022 20:21:04 +0200
+From:   Francesco Dolcini <francesco.dolcini@toradex.com>
+To:     Max Krummenacher <max.oss.09@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Max Krummenacher <max.krummenacher@toradex.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Philippe Schenker <philippe.schenker@toradex.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Daisuke Nojiri <dnojiri@chromium.org>,
-        Kees Cook <keescook@chromium.org>,
-        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
-        Prashant Malani <pmalani@chromium.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        chrome-platform@lists.linux.dev,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        weishunc@google.com
-Subject: Re: [PATCH v2 3/9] remoteproc: mediatek: Add SCP core 1 register
- definitions
-Message-ID: <20220829174638.GB2264818@p14s>
-References: <20220608083553.8697-1-tinghan.shen@mediatek.com>
- <20220608083553.8697-4-tinghan.shen@mediatek.com>
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: imx8mp-verdin: add cpu-supply
+Message-ID: <20220829182104.GA87202@francesco-nb.int.toradex.com>
+References: <20220822075342.2611279-1-max.oss.09@gmail.com>
+In-Reply-To: <20220822075342.2611279-1-max.oss.09@gmail.com>
+X-ClientProxiedBy: MR2P264CA0016.FRAP264.PROD.OUTLOOK.COM
+ (2603:10a6:500:1::28) To ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:2e::8)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 73ed8f01-7d0b-40f3-9e0c-08da89eb3cb8
+X-MS-TrafficTypeDiagnostic: GVAP278MB0408:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0
+X-Microsoft-Antispam-Message-Info: eHvgf+q8lM9ch9UEmp28ptc8dZtlCYgpLWZiM8ADyqhZCJhblOUYNMudfGIxHDW6kG7j6Tw+O7mN658XXZPpqOFxktiqUGgSRgNYE06E2VZ95hvE2zHTigCEJuEn3lDkhHb9FY29kG8CgEUAmLTRKt2yp/psOKQ4joaBiyVoAaEjQV8ZBJMf1X9UM9lthpY9RLASipkuKqEaDENT2Bd/Af3GS9gFF+ywj3gJbvzXMdOusI1snuz1WxOvemJeYce4LYxtzrOfcPaRHEq2FwFjwe89J+oQIa9G2Ea3v29AJGErFuwvbb3gGw2qzecCGfIMx7iLBVViC/wtABC3EHRH9bv98fI973yRicWNHc2jkrYWeCtR7j5dyeDCnFzyvzp4o10BrwbQvGA3Rv8abcs/1NeeX4u+XsStCr4rPcQURJvUadx4WmRCyPl6ElaZlPhbEu0sMmq+l11Jifsi1noIZnpLAg8LnjdFUHCXGADN8ieb5NgjSJ2uNvPYysUVRobw0N2/Itg5yWFod30mGqZyFHuaXtWJ3qrK92iV1736iMCy8NKkKXJCkhlJSvFLCR2m8w+BnEmn0j7Abh9O8qNozdRGJ7OGdcNYzGh5T+vaM5CP/l/2Wo9GqhoF7T+rEYp0XVVdr6ANlbLQDvrXASfyzrN2i1NtkCYukHnxHSmN/s1IlWACXJ9FMsqYTK6SK+0h0ypHnZR4ZLpVqcHH4r6N2aOBuoWGFbt2eWDo3uLZsOo1HaWErV4UTTTJ5V6g/zPM+p1MIPjG0TXegTYh0pA3Q2XlAhEmlR4gVtE/5oX1sSs=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230016)(4636009)(376002)(136003)(39840400004)(346002)(396003)(366004)(44832011)(66946007)(2906002)(4744005)(66556008)(52116002)(33656002)(6506007)(8676002)(8936002)(6486002)(41300700001)(7416002)(186003)(86362001)(5660300002)(66476007)(478600001)(4326008)(1076003)(26005)(6512007)(38350700002)(38100700002)(316002)(54906003)(32563001);DIR:OUT;SFP:1102
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?KizZN/K6UuWfzZxGQFMiT8GDug5vmd7u+FQQmZEkZ7YqQHs59ICVyYh1P799?=
+ =?us-ascii?Q?WkWGwBiSNUkP8m22SiUpPJhy4VBVkgN6zkkmra+aPnn7NiC0owxj6XyYm9qW?=
+ =?us-ascii?Q?MPjidGJK5+Aa/AoX0ZuWKbL7cvAbZW09RjLAkT43904apclRtgf8pAFbePkl?=
+ =?us-ascii?Q?R4zDqS4QUbnx0sWOTkCu9MtI6aX4B077u2vGp3dA/g0606LTxS0er3gHCi4o?=
+ =?us-ascii?Q?IR5ZVvTntqshTpfjgVRCWvAxcCbQIlwL8O+jY9uhgwkPthAZ6zEoyqzAmVaQ?=
+ =?us-ascii?Q?/OHQjJ7rqZyywWlhSuclkxojKfiyyr+Qw9ABd3OvBHOlFoJLpf14HlFnwKx+?=
+ =?us-ascii?Q?CIFxo44bt7ExluVq9uYytQx8cTZgU9BVjlYNZDLm/iuALGnSKmotGF/R+Wz1?=
+ =?us-ascii?Q?eJOq1mg863tRl5p/uGQKEVLTSaAhu57Mz+oZHmxaq9rzYyZmpBaMRu/dFIZQ?=
+ =?us-ascii?Q?B7fikBMwpFmbpijq1qBLdyyaqneRDi3JXC1C3S37vH8E43og4V1159Rn6Dl/?=
+ =?us-ascii?Q?zk3Z83PUI1iaVBayBHX125bB4XLJ42l6GAj7dslks/77Z9CVJ8new+W+3VtW?=
+ =?us-ascii?Q?4KfQoTGCnNyZHfkLxZVN/BWUyi1gKBE5esivxzzXThrKB5QA2s2U+AICDsHE?=
+ =?us-ascii?Q?wgbTYuiQxodb1qklQ89q03kHNDYrWIDec1Nbe8E8Y6NNXOVzV1oHz1t/3xdz?=
+ =?us-ascii?Q?T4Z6I6Uh8pDsZ/0JokO2nJPu+2fP4ZnIcRvY33M/ANxOmxheghMFBIH/pJMq?=
+ =?us-ascii?Q?iZ8/YIWM9N5V9wsVFjPWB4qrO/frsnXL3A4DPXO0n44LwQDIZ9OtH6i30V8f?=
+ =?us-ascii?Q?AA/eBXZvkEiSHvK+6iJ1FQXb+N5CuNRJbcoAPEbn6AWP0/zci0Uv77Igmg63?=
+ =?us-ascii?Q?1FXl2UgptuubiMYp4Z2XP0odjIqoUpfu6yjLzSd6qwKiXDnhyZyzpkRV2S4h?=
+ =?us-ascii?Q?UnLYK12w6qZQmCS9UTC+EsLvdOqKyiPh4fMcxJuVGC3QCSkK9DXexZb9dcWY?=
+ =?us-ascii?Q?oDLvdbuI8Pz9JfjLmoOpSPm4G08z2KLF0Z+uU7+Jn0+mnRsgJ5eyX+0g82xP?=
+ =?us-ascii?Q?ANt/bFArPTsjMqbau+LdLscHinudXPIfHN+kiYF9W8XH40JEtEYcT952f9oW?=
+ =?us-ascii?Q?l/KCaJLrdaUX9V6XLf4AYrctC4tMoceUQwJYvAInMeXSozNEMo5c/Lu1k99E?=
+ =?us-ascii?Q?2BsfTM/9G8Gj/FmhxnWX9Bo7Is+GIpwpB74CDvGr6TJWyo80CFLe8Eg/iHpu?=
+ =?us-ascii?Q?2HQbNnW/Xqz/oGJnibOThrKrcVkWnJYy6sf5z2h6eay0kHdhV2JU4U8ofh6K?=
+ =?us-ascii?Q?nlWdDcqZxr/tmEc9oHugcB7zwfIry9xs4imS1NhiASXSrlOXa8GSA6zqWkzo?=
+ =?us-ascii?Q?Z7YIIa/GpAw/ixX1L3Cwvq4L+mHJMWH5pxNiUJ8gS3BSE1I3fXeKpOvR390r?=
+ =?us-ascii?Q?4yLScYo6a6L4JErfKxRPST1U2EIuH98xYxU2+l8Bw9BqTPiKfQcjy3c6Efyd?=
+ =?us-ascii?Q?GC5V5r/Km3K42XgSu0COLOlH160KFEWu54LZiqp9wcquL20YgvKJDsa991eI?=
+ =?us-ascii?Q?qqYhpm1dEd2wWOQRrR/6M92Un16fZIvPnaTh96zg081RC2HZR6S8ev0DIAKd?=
+ =?us-ascii?Q?yw=3D=3D?=
+X-OriginatorOrg: toradex.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 73ed8f01-7d0b-40f3-9e0c-08da89eb3cb8
+X-MS-Exchange-CrossTenant-AuthSource: ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Aug 2022 18:21:05.6179
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: d9995866-0d9b-4251-8315-093f062abab4
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ya7WYC5qbgXRXpXXV2mG8DIqgTOnGWIkf/OfnBuzGvb41xIjg/z+qJL/UG+9ukq9hmIZb/RNpoTAQK1oIxqBOVjQ9Qpi4kHytU7R3e5ghDo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVAP278MB0408
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: toradex.com
+Content-Type: text/plain; charset=WINDOWS-1252
 Content-Disposition: inline
-In-Reply-To: <20220608083553.8697-4-tinghan.shen@mediatek.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,56 +114,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 08, 2022 at 04:35:47PM +0800, Tinghan Shen wrote:
-> Add MT8195 SCP core 1 related register definitions.
+On Mon, Aug 22, 2022 at 09:53:42AM +0200, Max Krummenacher wrote:
+> From: Max Krummenacher <max.krummenacher@toradex.com>
 > 
-> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-> ---
->  drivers/remoteproc/mtk_common.h | 21 +++++++++++++++++++++
->  1 file changed, 21 insertions(+)
+> Add the cpu-supply property to all CPU nodes to enable the cpufreq
+> driver.
 > 
-> diff --git a/drivers/remoteproc/mtk_common.h b/drivers/remoteproc/mtk_common.h
-> index 73e8adf00de3..5582f4207fbf 100644
-> --- a/drivers/remoteproc/mtk_common.h
-> +++ b/drivers/remoteproc/mtk_common.h
-> @@ -47,6 +47,7 @@
->  #define MT8192_SCP2SPM_IPC_CLR		0x4094
->  #define MT8192_GIPC_IN_SET		0x4098
->  #define MT8192_HOST_IPC_INT_BIT		BIT(0)
-> +#define MT8195_CORE1_HOST_IPC_INT_BIT	BIT(4)
->  
->  #define MT8192_CORE0_SW_RSTN_CLR	0x10000
->  #define MT8192_CORE0_SW_RSTN_SET	0x10004
-> @@ -60,6 +61,26 @@
->  
->  #define MT8195_L1TCM_SRAM_PDN_RESERVED_RSI_BITS		GENMASK(7, 4)
->  
-> +#define MT8195_CPU1_SRAM_PD			0x1084
-> +#define MT8195_SSHUB2APMCU_IPC_SET		0x4088
-> +#define MT8195_SSHUB2APMCU_IPC_CLR		0x408C
-> +#define MT8195_CORE1_SW_RSTN_CLR		0x20000
-> +#define MT8195_CORE1_SW_RSTN_SET		0x20004
-> +#define MT8195_CORE1_MEM_ATT_PREDEF		0x20008
-> +#define MT8195_CORE1_WDT_IRQ			0x20030
-> +#define MT8195_CORE1_WDT_CFG			0x20034
-> +
-> +#define MT8195_SEC_CTRL				0x85000
-> +#define MT8195_CORE_OFFSET_ENABLE_D		BIT(13)
-> +#define MT8195_CORE_OFFSET_ENABLE_I		BIT(12)
-> +#define MT8195_L2TCM_OFFSET_RANGE_0_LOW		0x850b0
-> +#define MT8195_L2TCM_OFFSET_RANGE_0_HIGH	0x850b4
-> +#define MT8195_L2TCM_OFFSET			0x850d0
-> +#define SCP_SRAM_REMAP_LOW			0
-> +#define SCP_SRAM_REMAP_HIGH			1
-> +#define SCP_SRAM_REMAP_OFFSET			2
-> +#define SCP_SRAM_REMAP_SIZE			3
-> +
->  #define SCP_FW_VER_LEN			32
->  #define SCP_SHARE_BUFFER_SIZE		288
+> Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
 
-Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
+This would need a fixes tag IMO:
 
->  
-> -- 
-> 2.18.0
-> 
+Fixes: a39ed23bdf6e ("arm64: dts: freescale: add initial support for verdin imx8m plus")
+
+Francesco
+
