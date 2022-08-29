@@ -2,71 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 99D2E5A5232
-	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 18:51:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E1295A523A
+	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 18:52:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230386AbiH2Quy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Aug 2022 12:50:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40118 "EHLO
+        id S229457AbiH2Qwe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Aug 2022 12:52:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230152AbiH2Quq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 12:50:46 -0400
-Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEDF77AC2D
-        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 09:50:26 -0700 (PDT)
-Received: by mail-pf1-x431.google.com with SMTP id y141so8759496pfb.7
-        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 09:50:26 -0700 (PDT)
+        with ESMTP id S231172AbiH2QwP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 12:52:15 -0400
+Received: from mail-io1-xd33.google.com (mail-io1-xd33.google.com [IPv6:2607:f8b0:4864:20::d33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C64E7392D
+        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 09:51:56 -0700 (PDT)
+Received: by mail-io1-xd33.google.com with SMTP id b142so7033481iof.10
+        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 09:51:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=woneQpwMOMgIO7e0hCdrCZoj4JrbV7vkhMtZpv1/ep8=;
-        b=kmSDFY9nq5Z5Qb5YraZhZdKCocvVR+dWWSurViHAeY24Ijr3xQyq61FPn2WNDBleHT
-         iiG4iERxcptn2BsoT3XiLjGtMjivx/5G9UueB3ywrsSXZxfv5ftP1eSjabPgj4NKMXrh
-         qt8vfKX4rym2utpsMZdYtSymG8SUSMgUAjjAw=
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=pNNDtWhRQjr1AbDSAN5+sxqnMgrurCAJQVg6nJa7vfw=;
+        b=X1qDKkSS9TNEmj3bF7vdVkXX21PIwg6DSgGwldzYDeoH3mrqhKbD5dIiG/W/rE/c88
+         hqD+dF0v7EStFR9p/AywuaafIIdLE67ZDf4RdqvUo5u9CrVs2bt2xR6MnsjQ66h/7QNv
+         HQHEZQNcgqFKT6wlRymcQavXXBoN6H40vWOog=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=woneQpwMOMgIO7e0hCdrCZoj4JrbV7vkhMtZpv1/ep8=;
-        b=avmmV6Bsuh2cM0mI9QAF0RN2WWbHAtKEzOz5nLptNCR5+xTT34JIf0NdE8UmNiWEVv
-         ptgd14kpmshQ9NRHJvfmHHQsbya8dKV8REgy4hRxI+zBoualDC/nuFkp9ckd3KC4lCDx
-         BtduYasMjFoZQ9FAKN0O8PKLtSsjzh0Fg0Df/0wa52q9m47Yy3YTkf49Z105paLCuRPU
-         380RY4aRy9aZpUQa4KS/OVeJPXjUOxQqaFmhaLzOmNqQY9u+M80J49QzPYNIyx03PTiX
-         mGa3UmKr4BLxON/swQtIqtynkMRqWTtGyRihTUara9f3D2mfN25UkQ8G2MQ060WFFNWv
-         0w2g==
-X-Gm-Message-State: ACgBeo30S/GRmdgldOSuATtHxKzWpSfZh2ipv2WcCFUi0qlLwTrQL4SP
-        km3N+cIfd4TqLw4E71jSOvVGNg==
-X-Google-Smtp-Source: AA6agR4VOEmzb8h688Hlh10n5OC2JGl7tx4FZ9QIiaFqDYhrKJQYQ0M7KGv2bhGU1bVC3w2/4zclgw==
-X-Received: by 2002:a63:6a46:0:b0:41a:3e67:67cd with SMTP id f67-20020a636a46000000b0041a3e6767cdmr14844814pgc.94.1661791825380;
-        Mon, 29 Aug 2022 09:50:25 -0700 (PDT)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:202:201:3a97:5017:7e33:8964])
-        by smtp.gmail.com with ESMTPSA id l1-20020a170902f68100b001729db603bcsm7864238plg.126.2022.08.29.09.50.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Aug 2022 09:50:24 -0700 (PDT)
-From:   Douglas Anderson <dianders@chromium.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Johan Hovold <johan@kernel.org>,
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=pNNDtWhRQjr1AbDSAN5+sxqnMgrurCAJQVg6nJa7vfw=;
+        b=XKOx7bhUTOaxxgYdJHMsMD+Qvts9/4g/qtqlSVixfV6gSC8SMRZJnpnnAUZINVHoHZ
+         DucJKTAXpJP2aSnViEVLYz3+jVbtJfxgFOKXIfO+Z+D0NLHMGFCC/+Dq+79kGN289yFl
+         N6Lis+P0LtosU0ex1wXlB5EkqGGxy4wgpi0ec3+nJrdffSoFRVb31Gpa/zIfZoipTJop
+         Kb/Rww6SsNfMI1uVPhJXUz7A2gQRFTIIoM6fuxXNF4KOXJugV3EyzBcL+AWe1kjS+Mnh
+         Wdv5WrLC5p+F7m6Z7ieb12rbymUP55RgepYG5iskK9dP1KNO9uSthVDDDAPJ/usiJCOw
+         7jEg==
+X-Gm-Message-State: ACgBeo2A5PakugwSSOSIB3RSTCS8EcbVkpX8KYS/La8y6XNv5LLM/WAU
+        JXx/3gV+gQPnUKwPm36veX3RGep/2Rwp5S+I
+X-Google-Smtp-Source: AA6agR7/8mw9Hw+GHzrfxChbWJ74rCqe/Zt2KZzXy/9RuX2fvB6ySgfD4Ip64ezhgXvepQXJrYCYoQ==
+X-Received: by 2002:a05:6638:1244:b0:34a:1104:afa with SMTP id o4-20020a056638124400b0034a11040afamr9863965jas.244.1661791915595;
+        Mon, 29 Aug 2022 09:51:55 -0700 (PDT)
+Received: from mail-il1-f172.google.com (mail-il1-f172.google.com. [209.85.166.172])
+        by smtp.gmail.com with ESMTPSA id w12-20020a92ad0c000000b002de8d930b2dsm744411ilh.86.2022.08.29.09.51.53
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 29 Aug 2022 09:51:54 -0700 (PDT)
+Received: by mail-il1-f172.google.com with SMTP id s11so794006iln.12
+        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 09:51:53 -0700 (PDT)
+X-Received: by 2002:a05:6e02:16ca:b0:2e9:c225:3f82 with SMTP id
+ 10-20020a056e0216ca00b002e9c2253f82mr10397435ilx.254.1661791913591; Mon, 29
+ Aug 2022 09:51:53 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220825164205.4060647-1-dianders@chromium.org> <YwhwIX+Ib8epUYWS@hovoldconsulting.com>
+In-Reply-To: <YwhwIX+Ib8epUYWS@hovoldconsulting.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Mon, 29 Aug 2022 09:51:40 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XV2Tjuh+AfaQ3gdnBvy27okb2zgbQ6e+23KGBZo38Y7w@mail.gmail.com>
+Message-ID: <CAD=FV=XV2Tjuh+AfaQ3gdnBvy27okb2zgbQ6e+23KGBZo38Y7w@mail.gmail.com>
+Subject: Re: [PATCH 0/7] arm64: dts: qcom: Fix broken regulator spec on RPMH boards
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
         Andrew Halaney <ahalaney@redhat.com>,
         Mark Brown <broonie@kernel.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Andy Gross <agross@kernel.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 6/6] arm64: dts: qcom: sm8350-hdk: Specify which LDO modes are allowed
-Date:   Mon, 29 Aug 2022 09:49:52 -0700
-Message-Id: <20220829094903.v2.6.I6799be85cf36d3b494f803cba767a569080624f5@changeid>
-X-Mailer: git-send-email 2.37.2.672.g94769d06f0-goog
-In-Reply-To: <20220829164952.2672848-1-dianders@chromium.org>
-References: <20220829164952.2672848-1-dianders@chromium.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        Rob Herring <robh+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,76 +86,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This board uses RPMH, specifies "regulator-allow-set-load" for LDOs,
-but doesn't specify any modes with "regulator-allowed-modes".
+Hi,
 
-Prior to commit efb0cb50c427 ("regulator: qcom-rpmh: Implement
-get_optimum_mode(), not set_load()") the above meant that we were able
-to set either LPM or HPM mode. After that commit (and fixes [1]) we'll
-be stuck at the initial mode. Discussion of this has resulted in the
-decision that the old dts files were wrong and should be fixed to
-fully restore old functionality.
+On Fri, Aug 26, 2022 at 12:02 AM Johan Hovold <johan@kernel.org> wrote:
+>
+> > Douglas Anderson (7):
+> >   arm64: dts: qcom: sa8155p-adp: Specify which LDO modes are allowed
+>
+> >   arm64: dts: qcom: sa8295p-adp: Specify which LDO modes are allowed
+> >   arm64: dts: qcom: sc8280xp-crd: Specify which LDO modes are allowed
+>
+> These two should be rebased on
+>
+>         https://lore.kernel.org/all/20220803121942.30236-1-johan+linaro@kernel.org/
+>
+> which disallows mode-switching for all but the UFS regulators (this
+> series addresses the DP PHY LPM regression we've discussed elsewhere).
+>
+> >   arm64: dts: qcom: sc8280xp-thinkpad-x13s: Specify which LDO modes are
+> >     allowed
+>
+> And this one should not be needed at all with the above series applied.
+>
+> >   arm64: dts: qcom: sm8150-xperia-kumano: Specify which LDO modes are
+> >     allowed
+> >   arm64: dts: qcom: sm8250-xperia-edo: Specify which LDO modes are
+> >     allowed
+> >   arm64: dts: qcom: sm8350-hdk: Specify which LDO modes are allowed
 
-Let's re-enable the old functionality by fixing the dts.
+Thanks! v2 has been sent and it's rebased upon your series:
 
-[1] https://lore.kernel.org/r/20220824142229.RFT.v2.2.I6f77860e5cd98bf5c67208fa9edda4a08847c304@changeid
-
-Fixes: 9208c19f2124 ("arm64: dts: qcom: Introduce SM8350 HDK")
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
-Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
-Reviewed-by: Vinod Koul <vkoul@kernel.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
----
-
-(no changes since v1)
-
- arch/arm64/boot/dts/qcom/sm8350-hdk.dts | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-index 0fcf5bd88fc7..69ae6503c2f6 100644
---- a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-@@ -107,6 +107,9 @@ vreg_l5b_0p88: ldo5 {
- 			regulator-max-microvolt = <888000>;
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
- 			regulator-allow-set-load;
-+			regulator-allowed-modes =
-+			    <RPMH_REGULATOR_MODE_LPM
-+			     RPMH_REGULATOR_MODE_HPM>;
- 		};
- 
- 		vreg_l6b_1p2: ldo6 {
-@@ -115,6 +118,9 @@ vreg_l6b_1p2: ldo6 {
- 			regulator-max-microvolt = <1208000>;
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
- 			regulator-allow-set-load;
-+			regulator-allowed-modes =
-+			    <RPMH_REGULATOR_MODE_LPM
-+			     RPMH_REGULATOR_MODE_HPM>;
- 		};
- 
- 		vreg_l7b_2p96: ldo7 {
-@@ -123,6 +129,9 @@ vreg_l7b_2p96: ldo7 {
- 			regulator-max-microvolt = <2504000>;
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
- 			regulator-allow-set-load;
-+			regulator-allowed-modes =
-+			    <RPMH_REGULATOR_MODE_LPM
-+			     RPMH_REGULATOR_MODE_HPM>;
- 		};
- 
- 		vreg_l9b_1p2: ldo9 {
-@@ -131,6 +140,9 @@ vreg_l9b_1p2: ldo9 {
- 			regulator-max-microvolt = <1200000>;
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
- 			regulator-allow-set-load;
-+			regulator-allowed-modes =
-+			    <RPMH_REGULATOR_MODE_LPM
-+			     RPMH_REGULATOR_MODE_HPM>;
- 		};
- 	};
- 
--- 
-2.37.2.672.g94769d06f0-goog
-
+https://lore.kernel.org/r/20220829164952.2672848-1-dianders@chromium.org
