@@ -2,223 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 247C55A560F
-	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 23:24:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7C915A5635
+	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 23:31:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229522AbiH2VYj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Aug 2022 17:24:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57358 "EHLO
+        id S229807AbiH2Vbp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Aug 2022 17:31:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229446AbiH2VYi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 17:24:38 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1D4E86B7A;
-        Mon, 29 Aug 2022 14:24:36 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6116561210;
-        Mon, 29 Aug 2022 21:24:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B67B8C433C1;
-        Mon, 29 Aug 2022 21:24:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661808275;
-        bh=YhHEv7KSm28wyjioyO11RwThDZ/cHhzV+SbcRuiXD30=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=a1Pp0y7GLcgpoARejTqXecBwJYgsTTnho1MwnzIMCjMYulc3Z2EJxhBICOVZoYhFc
-         Lw8CmTX1gfXpy/NFy7OtU5hR83H1ciRYsIKculDi7GXkuky8EY6yCHNR0rdXF0T8TU
-         8L4tDQ8duZLUyTyeMfya3UcpQ3qu5t09cexv6pkCggAiLqs/DyxSB8ANEGI+00hzZg
-         PBuLxWVEtrMFbqHkQBg8fsfaOXk1OX04tFozEcr6hCW9HGA7Rhf1HKhcMxEwrxqTDK
-         SdZHz5AHlFaCEoXnuJfYMxUGacb57kDRlwV2Mwgk6jout9xHtKxPT0Glk9XO/D0D58
-         Xr+uR3Hxc7IXA==
-Date:   Mon, 29 Aug 2022 16:24:32 -0500
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Adam Skladowski <a39.skl@gmail.com>
-Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] clk: qcom: Add display clock controller driver
- for SM6115
-Message-ID: <20220829212432.nyxvcw6amypuwhwp@builder.lan>
-References: <20220819201231.23474-1-a39.skl@gmail.com>
- <20220819201231.23474-3-a39.skl@gmail.com>
+        with ESMTP id S229725AbiH2Vb1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 17:31:27 -0400
+Received: from mail-io1-xd34.google.com (mail-io1-xd34.google.com [IPv6:2607:f8b0:4864:20::d34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EE7399B5E;
+        Mon, 29 Aug 2022 14:30:39 -0700 (PDT)
+Received: by mail-io1-xd34.google.com with SMTP id q81so7713221iod.9;
+        Mon, 29 Aug 2022 14:30:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=ZzLF3Zpb2/6xSumnVVpMWDck1aMiBeVtZex1RW6P1FI=;
+        b=mmkgecyQE1OTUA7TBoutytmXccFptEA8GgRHydXKbCjhJ9/4LEJHA2yYgXFLZ3vDvr
+         t6t7xGbEV5IUrxMsmBwWfqagADcjaWjmxpMH8fa1CujXCi/SJ/wv//bUGFC9nlLmoKAk
+         iTESS9NS/78WtZmxaGLpkgYtn78DYo9u4FLRfF3nQJpu9Y0WToxNRNEOplLNV736bnKU
+         QUOutt3PJ89MkCoK85UrCpSQln1c7UsZwVrD2pextscsD+s9rfClPpiu5qoXRw6vk5E/
+         OD5NvxMbTqgM4GbKaJd/CSNgoL1qOHVoO4Wt6yueZtCCQDGWicvYrtw6jDrkvx0jvbea
+         K0lA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=ZzLF3Zpb2/6xSumnVVpMWDck1aMiBeVtZex1RW6P1FI=;
+        b=lDtVammyDC8zOUVBYG/qMxSy8sknuYrxQhXRXioFLymo6khCZWeiWUbWBiX2mlfPuS
+         F4ICkJcsG/7csa8dQxivoBRHVSQnDYn0P/Mm0Xq/RNuCnK/IOamqd7lGhxDM2GBEIgHc
+         rKBovFOqP38DoYcCleP3zHtpi6hNOkIpyRscQ6cjWaN0ufaQ19F/bbridEFO3G1EZbpN
+         WyuQtwBvt7G/jCktQcchz85R9LYx6FJf9o4HfYDrKh4YkBXh+rRoWFqnhUSkQsBAei1j
+         wEyElqMeLfmYuhHRyJ02I96Wn5AOdvKSEL8dJ1BIBBHVpaW8UfyCf/CsABBHoxJh6KEk
+         ulIg==
+X-Gm-Message-State: ACgBeo0tq2Nc+jun0wDu9EhzUYeM1+nR8xgYgZnuF8OlVce8IAo9akbp
+        9MnrXlHyE3+aV5392U6rlXo=
+X-Google-Smtp-Source: AA6agR4A46YqPYgmjacBLOtKx0hpt07rHl9E8iNpwSKM7/zuZLvPzv1bo8ejDH+Cl7gKH6/N09cOXQ==
+X-Received: by 2002:a05:6638:1485:b0:348:b986:6e62 with SMTP id j5-20020a056638148500b00348b9866e62mr11001575jak.236.1661808591586;
+        Mon, 29 Aug 2022 14:29:51 -0700 (PDT)
+Received: from ?IPV6:2600:1700:2442:6db0:1485:e42c:9c81:f760? ([2600:1700:2442:6db0:1485:e42c:9c81:f760])
+        by smtp.gmail.com with ESMTPSA id i189-20020a6bb8c6000000b0068acff8cfe7sm5582926iof.44.2022.08.29.14.29.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 29 Aug 2022 14:29:51 -0700 (PDT)
+Message-ID: <8c436553-e35c-4e46-1407-24184fd113ba@gmail.com>
+Date:   Mon, 29 Aug 2022 16:29:50 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220819201231.23474-3-a39.skl@gmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH -next 3/4] spi: mockup: Add runtime device tree overlay
+ interface
+Content-Language: en-US
+To:     Wei Yongjun <weiyongjun1@huawei.com>,
+        Mark Brown <broonie@kernel.org>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Ingo Molnar <mingo@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20220826144341.532265-1-weiyongjun1@huawei.com>
+ <20220826144341.532265-4-weiyongjun1@huawei.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+In-Reply-To: <20220826144341.532265-4-weiyongjun1@huawei.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 19, 2022 at 10:12:22PM +0200, Adam Skladowski wrote:
-> Add support for the display clock controller found in SM6115/SM4250
-> based devices. This clock controller feeds the Multimedia Display
-> SubSystem (MDSS).
-> This driver is based upon one submitted for QCM2290.
+comment inline below, plus adding to cc: and to: list
+
+On 8/26/22 09:43, Wei Yongjun wrote:
+> Add a runtime device tree overlay interface for device need dts file.
+> With it its possible to use device tree overlays without having to use
+> a per-platform overlay manager.
+
+Why is an overlay needed?  The documentation in patch 4 shows providing
+a dtb as an argument to the qemu-system-x86_64 command, which should be
+sufficient to supply the appropriate dtb.
+
+-Frank
+
 > 
-> Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
+> Add a new device by command:
+> $ cat test.dtbo > /sys/class/spi_master/spi0/overlay_fdto
+> 
+> Remove the device by command:
+> $ echo remove > /sys/class/spi_master/spi0/overlay_fdto
+> 
+> Signed-off-by: Wei Yongjun <weiyongjun1@huawei.com>
 > ---
->  drivers/clk/qcom/Kconfig         |   9 +
->  drivers/clk/qcom/Makefile        |   1 +
->  drivers/clk/qcom/dispcc-sm6115.c | 615 +++++++++++++++++++++++++++++++
->  3 files changed, 625 insertions(+)
->  create mode 100644 drivers/clk/qcom/dispcc-sm6115.c
+>  drivers/spi/Kconfig      |  2 ++
+>  drivers/spi/spi-mockup.c | 48 ++++++++++++++++++++++++++++++++++++++++
+>  2 files changed, 50 insertions(+)
 > 
-> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
-> index 1cf1ef70e347..852888a849ae 100644
-> --- a/drivers/clk/qcom/Kconfig
-> +++ b/drivers/clk/qcom/Kconfig
-> @@ -616,6 +616,15 @@ config SM_CAMCC_8450
->  	  Support for the camera clock controller on SM8450 devices.
->  	  Say Y if you want to support camera devices and camera functionality.
+> diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
+> index e0f0fa2746ad..4b7c84ddb367 100644
+> --- a/drivers/spi/Kconfig
+> +++ b/drivers/spi/Kconfig
+> @@ -1161,6 +1161,8 @@ config SPI_TLE62X0
+>  config SPI_MOCKUP
+>  	tristate "SPI controller Testing Driver"
+>  	depends on OF
+> +	select OF_EARLY_FLATTREE
+> +	select OF_RESOLVE
+>  	select BPF_EVENTS
+>  	help
+>  	  This enables SPI controller testing driver, which provides a way to
+> diff --git a/drivers/spi/spi-mockup.c b/drivers/spi/spi-mockup.c
+> index 7a93b194ee53..404ad821bf6a 100644
+> --- a/drivers/spi/spi-mockup.c
+> +++ b/drivers/spi/spi-mockup.c
+> @@ -21,6 +21,9 @@
+>  struct mockup_spi {
+>  	struct mutex lock;
+>  	struct spi_device *devs[MOCKUP_CHIPSELECT_MAX];
+> +
+> +	void *fdto;
+> +	int ovcs_id;
+>  };
 >  
-> +config SM_DISPCC_6115
-> +	tristate "SM6115 Display Clock Controller"
-> +	depends on SM_GCC_6115
-> +	help
-> +	  Support for the display clock controller on Qualcomm Technologies, Inc
-> +	  SM6115/SM4250 devices.
-> +	  Say Y if you want to support display devices and functionality such as
-> +	  splash screen
-> +
->  config SM_DISPCC_6125
->  	tristate "SM6125 Display Clock Controller"
->  	depends on SM_GCC_6125
-> diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
-> index fbcf04073f07..a732ccb3b912 100644
-> --- a/drivers/clk/qcom/Makefile
-> +++ b/drivers/clk/qcom/Makefile
-> @@ -90,6 +90,7 @@ obj-$(CONFIG_SDX_GCC_55) += gcc-sdx55.o
->  obj-$(CONFIG_SDX_GCC_65) += gcc-sdx65.o
->  obj-$(CONFIG_SM_CAMCC_8250) += camcc-sm8250.o
->  obj-$(CONFIG_SM_CAMCC_8450) += camcc-sm8450.o
-> +obj-$(CONFIG_SM_DISPCC_6115) += dispcc-sm6115.o
->  obj-$(CONFIG_SM_DISPCC_6125) += dispcc-sm6125.o
->  obj-$(CONFIG_SM_DISPCC_6350) += dispcc-sm6350.o
->  obj-$(CONFIG_SM_DISPCC_8250) += dispcc-sm8250.o
-> diff --git a/drivers/clk/qcom/dispcc-sm6115.c b/drivers/clk/qcom/dispcc-sm6115.c
-> new file mode 100644
-> index 000000000000..6a8994bfe9d0
-> --- /dev/null
-> +++ b/drivers/clk/qcom/dispcc-sm6115.c
-> @@ -0,0 +1,615 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Based on dispcc-qcm2290.c
-> + * Copyright (c) 2020, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2021, Linaro Ltd.
-> + */
-> +
-> +#include <linux/err.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/of.h>
-> +#include <linux/regmap.h>
-> +
-> +#include <dt-bindings/clock/qcom,sm6115-dispcc.h>
-> +
-> +#include "clk-alpha-pll.h"
-> +#include "clk-branch.h"
-> +#include "clk-rcg.h"
-> +#include "clk-regmap.h"
-> +#include "clk-regmap-divider.h"
-> +#include "common.h"
-> +#include "gdsc.h"
-> +
-> +enum {
-> +	P_BI_TCXO,
-> +	P_DISP_CC_PLL0_OUT_MAIN,
-> +	P_DSI0_PHY_PLL_OUT_BYTECLK,
-> +	P_DSI0_PHY_PLL_OUT_DSICLK,
-> +	P_DSI1_PHY_PLL_OUT_DSICLK,
-> +	P_GPLL0_OUT_MAIN,
-> +	P_SLEEP_CLK,
-> +};
-> +
-> +static const struct pll_vco spark_vco[] = {
-> +	{ 500000000, 1000000000, 2 },
-> +};
-> +
-> +/* 768MHz configuration */
-> +static const struct alpha_pll_config disp_cc_pll0_config = {
-> +	.l = 0x28,
-> +	.alpha = 0x0,
-> +	.alpha_en_mask = BIT(24),
-> +	.vco_val = 0x2 << 20,
-> +	.vco_mask = GENMASK(21, 20),
-> +	.main_output_mask = BIT(0),
-> +	.config_ctl_val = 0x4001055B,
-> +};
-> +
-> +static struct clk_alpha_pll disp_cc_pll0 = {
-> +	.offset = 0x0,
-> +	.vco_table = spark_vco,
-> +	.num_vco = ARRAY_SIZE(spark_vco),
-> +	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_DEFAULT],
-> +	.clkr = {
-> +		.hw.init = &(struct clk_init_data){
-> +			.name = "disp_cc_pll0",
-> +			.parent_data = &(const struct clk_parent_data){
-> +				.fw_name = "bi_tcxo",
-
-It's recently been decided that we would like to avoid using fw_name in
-new Qualcomm clock bindings/drivers. Can you please rework this to use
-.index instead?
-
-As done in e.g.:
-https://lore.kernel.org/all/20220811041211.3825786-3-bjorn.andersson@linaro.org/
-
-
-Also for bi_tcxo, I'd prefer if you break that out to its own definition
-that you can reuse.
-
-> +			},
-> +			.num_parents = 1,
-> +			.ops = &clk_alpha_pll_ops,
-> +		},
-> +	},
-> +};
-[..]
-> +static int __init disp_cc_sm6115_init(void)
+>  static struct spi_master *to_spi_master(struct device *dev)
+> @@ -145,9 +148,53 @@ delete_device_store(struct device *dev, struct device_attribute *attr,
+>  }
+>  static DEVICE_ATTR_WO(delete_device);
+>  
+> +static ssize_t
+> +overlay_fdto_store(struct device *dev, struct device_attribute *attr,
+> +		   const char *buf, size_t count)
 > +{
-> +	return platform_driver_register(&disp_cc_sm6115_driver);
-> +}
-> +subsys_initcall(disp_cc_sm6115_init);
-
-module_platform_driver() should be sufficient, and is slightly cleaner.
-
+> +	struct spi_master *master = to_spi_master(dev);
+> +	struct mockup_spi *mock = spi_master_get_devdata(master);
+> +	int ret;
 > +
-> +static void __exit disp_cc_sm6115_exit(void)
-> +{
-> +	platform_driver_unregister(&disp_cc_sm6115_driver);
-> +}
-> +module_exit(disp_cc_sm6115_exit);
+> +	mutex_lock(&mock->lock);
 > +
-> +MODULE_DESCRIPTION("QTI DISP_CC sm6115 Driver");
+> +	if (strncmp(buf, "remove\n", count) == 0) {
+> +		if (mock->ovcs_id < 0) {
+> +			ret = -ENOENT;
+> +			goto out_unlock;
+> +		}
+> +		of_overlay_remove(&mock->ovcs_id);
+> +		kfree(mock->fdto);
+> +		mock->ovcs_id = -1;
+> +		mock->fdto = NULL;
+> +	} else {
+> +		if (mock->ovcs_id >= 0) {
+> +			ret = -EINVAL;
+> +			goto out_unlock;
+> +		}
+> +		mock->fdto = kmemdup(buf, count, GFP_KERNEL);
+> +		if (!mock->fdto) {
+> +			ret = -ENOMEM;
+> +			goto out_unlock;
+> +		}
+> +		ret = of_overlay_fdt_apply(mock->fdto, count, &mock->ovcs_id);
+> +		if (ret < 0)
+> +			goto out_unlock;
+> +	}
+> +
+> +	mutex_unlock(&mock->lock);
+> +	return count;
+> +
+> +out_unlock:
+> +	mutex_unlock(&mock->lock);
+> +	return ret;
+> +}
+> +static DEVICE_ATTR_WO(overlay_fdto);
+> +
+>  static struct attribute *spi_mockup_attrs[] = {
+>  	&dev_attr_new_device.attr,
+>  	&dev_attr_delete_device.attr,
+> +	&dev_attr_overlay_fdto.attr,
+>  	NULL
+>  };
+>  ATTRIBUTE_GROUPS(spi_mockup);
+> @@ -227,6 +274,7 @@ static int spi_mockup_probe(struct platform_device *pdev)
+>  
+>  	mock = spi_master_get_devdata(master);
+>  	mutex_init(&mock->lock);
+> +	mock->ovcs_id = -1;
+>  
+>  	ret = spi_register_master(master);
+>  	if (ret) {
 
-"Qualcomm SM6115 Display Clock controller"?
-
-> +MODULE_LICENSE("GPL v2");
-
-As reported by checkpatch, this should simply be "GPL".
-
-Regards,
-Bjorn
-
-> -- 
-> 2.25.1
-> 
