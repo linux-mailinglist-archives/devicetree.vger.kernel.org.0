@@ -2,59 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C53E5A4690
-	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 11:57:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 495915A4679
+	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 11:51:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229687AbiH2J5C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Aug 2022 05:57:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43920 "EHLO
+        id S229552AbiH2Jv3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Aug 2022 05:51:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36476 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229663AbiH2J5B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 05:57:01 -0400
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 537015EDC3;
-        Mon, 29 Aug 2022 02:56:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1661767018; x=1693303018;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ApEJEqVmn8ds7J7rifKwOfp8OKvwLFeIMQbTX1DLLfU=;
-  b=MB5uMayExZhEEQcKhPtPhWMZx5QfjbJ0pbwm0oekz158CpjIQWJGDODo
-   YRg6H/6RBWv6xgWwsGzRmkqLHP9ahCUfv/VtlPJEM4b6q1epB0/WjIN58
-   VRZzg7ZHlvnHIBN81MMXZWjTTpppxYwopsRra1CTVnFpuKWC7cQDG/q/8
-   Pw8DK2oe6X8xj0XvxDc/1eXJJFtdk19XdnV8N3sT0T5ZCI2Z2oS4QdKb8
-   2mJlRKDSj7459lLG3oCbTfhdlpAySrMhLLUyN6c0h5vgKdY5WltdhgpPh
-   pg1hGjfcV2kv0lQdko+NILK/E0WnUxtgBXpIN8HlCRW+xN4y4G7O7BSO2
-   w==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10453"; a="320977757"
-X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; 
-   d="scan'208";a="320977757"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Aug 2022 02:56:58 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; 
-   d="scan'208";a="640878763"
-Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
-  by orsmga008.jf.intel.com with ESMTP; 29 Aug 2022 02:56:55 -0700
-Date:   Mon, 29 Aug 2022 17:47:37 +0800
-From:   Xu Yilun <yilun.xu@intel.com>
-To:     Johannes Zink <j.zink@pengutronix.de>
-Cc:     linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Moritz Fischer <mdf@kernel.org>, Wu Hao <hao.wu@intel.com>,
-        kernel@pengutronix.de
-Subject: Re: [PATCH 16/16] fpga: machxo2: add configuration over i2c
-Message-ID: <YwyLOSKy6kUFsFOB@yilunxu-OptiPlex-7050>
-References: <20220825141343.1375690-1-j.zink@pengutronix.de>
- <20220825141343.1375690-17-j.zink@pengutronix.de>
+        with ESMTP id S229598AbiH2Jv1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 05:51:27 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63F6D5E32B
+        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 02:51:25 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id k6-20020a05600c1c8600b003a54ecc62f6so4122784wms.5
+        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 02:51:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:in-reply-to:date
+         :subject:to:from:user-agent:references:from:to:cc;
+        bh=tOx2tqybefFHeIMLUW+su+XgGbavJfHYGjEPqAfEtak=;
+        b=RYKk0fDG8yPKxONFHoSpdDlNNVRBa8zF+ikdW+hDUIfh+D0dOUIanORctEiBjEypK8
+         gPTFoc9XdwBgOrXm1/IDyKsi/bdf+i8ThBebydsCJYVUngxxDUhhxQqFL9Yw5WqHE2Qr
+         VihDTL9zqrh2gbyVAic3nQ6VJY4525qfn+LE4e6Ffrok2xQ2wV0T6zykyENEKPcM3ZHB
+         tB4CYIkfgpRkfI8DIK4bHFVtI3oXP1A2ietFu9qDfyfw0S/owqfBFzXp9VfVxC9OBHS6
+         uX1KZG/3Ip8xcIoNrjSjnEmYP+Jgoh6GMpnh+/nj1MsXIrCUy0b0hNTUrOPtoAIwyzBb
+         jb0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:in-reply-to:date
+         :subject:to:from:user-agent:references:x-gm-message-state:from:to:cc;
+        bh=tOx2tqybefFHeIMLUW+su+XgGbavJfHYGjEPqAfEtak=;
+        b=Ymu6oonxX+50E5Y9YzgRIdr89H2/w5W8g1v+EoCpADHndeBv6ewfqGL486SlJ1skVK
+         XTTqo+kIa76nWZZ7wa0kQsc7ey9weHEv/n5mbabrOSrV0jOCG3RtVKb4t93D0n6XpwbW
+         rl5VtRw+1DjrwRIFcUmw1H0yM52Z8g7+89zTTlJirdZLjphaJMaTpvtdWNFPLpU976w7
+         plx2EeNoOQCqUPhKPQGmkxty9/WCaeg9y1oU41I5sLHxiuGu4ijJDqAA+IK1ScgrD+Or
+         ILXLtZVWxSMrjFDJCxRHxbaDZqTNTMM4aB0C9llKz1dsSk7IuJyH9ubtJ2mVXVKgU0O+
+         TLlw==
+X-Gm-Message-State: ACgBeo1/uyKuyQwjJT3eVmCMnPHbtGnV9WeEzTZ06b6Wn9Rxa5Bdyq6z
+        UUA+aQgdnVf02H0ubL7ePJLvVA==
+X-Google-Smtp-Source: AA6agR64cwUPnhx/Tf1ejw/jlZS5h7uLh23KiCPqziDo8ptC4sx4Y1k3FIdRq0G7ItXcWgl0sii7YQ==
+X-Received: by 2002:a05:600c:1e1c:b0:3a5:b668:4e2 with SMTP id ay28-20020a05600c1e1c00b003a5b66804e2mr6401869wmb.112.1661766683496;
+        Mon, 29 Aug 2022 02:51:23 -0700 (PDT)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id e15-20020adffc4f000000b0021e51c039c5sm6498175wrs.80.2022.08.29.02.51.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Aug 2022 02:51:23 -0700 (PDT)
+References: <20220805085716.5635-1-yu.tu@amlogic.com>
+ <20220805085716.5635-4-yu.tu@amlogic.com>
+ <1jiln0yzgj.fsf@starbuckisacylon.baylibre.com>
+ <ed4038fb-c230-fc27-800c-c99bd1770a1c@amlogic.com>
+ <4e3cdd6b-5861-8a4f-1df7-af763f77bad5@amlogic.com>
+User-agent: mu4e 1.8.7; emacs 28.1
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: Re: [PATCH V3 3/6] clk: meson: S4: add support for Amlogic S4 SoC
+ PLL clock driver
+Date:   Mon, 29 Aug 2022 11:48:21 +0200
+In-reply-to: <4e3cdd6b-5861-8a4f-1df7-af763f77bad5@amlogic.com>
+Message-ID: <1jsflftm1y.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220825141343.1375690-17-j.zink@pengutronix.de>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,277 +81,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-08-25 at 16:13:43 +0200, Johannes Zink wrote:
-> From: Peter Jensen <pdj@bang-olufsen.dk>
-> 
-> The configuration flash of the machxo2 fpga can also be erased and
-> written over i2c instead of spi. Add this functionality to the
-> refactored common driver. Since some commands are shorter over I2C than
-> they are over SPI some quirks are added to the common driver in order to
-> account for that.
-> 
-> Signed-off-by: Peter Jensen <pdj@bang-olufsen.dk>
-> Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
-> Signed-off-by: Johannes Zink <j.zink@pengutronix.de>
-> ---
->  drivers/fpga/Kconfig          |   8 ++
->  drivers/fpga/Makefile         |   1 +
->  drivers/fpga/machxo2-common.c |  15 +++-
->  drivers/fpga/machxo2-common.h |   3 +
->  drivers/fpga/machxo2-i2c.c    | 137 ++++++++++++++++++++++++++++++++++
->  5 files changed, 163 insertions(+), 1 deletion(-)
->  create mode 100644 drivers/fpga/machxo2-i2c.c
-> 
-> diff --git a/drivers/fpga/Kconfig b/drivers/fpga/Kconfig
-> index e5869a732246..97081bbd7c19 100644
-> --- a/drivers/fpga/Kconfig
-> +++ b/drivers/fpga/Kconfig
-> @@ -90,6 +90,14 @@ config FPGA_MGR_MACHXO2_SPI
->  	  FPGA manager driver support for Lattice MachXO2 configuration
->  	  over slave SPI interface.
->  
-> +config FPGA_MGR_MACHXO2_I2C
-> +	tristate "Lattice MachXO2 I2C"
-> +	depends on I2C
-> +	select FPGA_MGR_MACHXO2_COMMON
-> +	help
-> +	  FPGA manager driver support for Lattice MachXO2 configuration
-> +	  over slave I2C interface.
-> +
->  config FPGA_MGR_TS73XX
->  	tristate "Technologic Systems TS-73xx SBC FPGA Manager"
->  	depends on ARCH_EP93XX && MACH_TS72XX
-> diff --git a/drivers/fpga/Makefile b/drivers/fpga/Makefile
-> index f247a8de83ad..fcdf79f4d424 100644
-> --- a/drivers/fpga/Makefile
-> +++ b/drivers/fpga/Makefile
-> @@ -12,6 +12,7 @@ obj-$(CONFIG_FPGA_MGR_ALTERA_PS_SPI)	+= altera-ps-spi.o
->  obj-$(CONFIG_FPGA_MGR_ICE40_SPI)	+= ice40-spi.o
->  obj-$(CONFIG_FPGA_MGR_MACHXO2_COMMON)	+= machxo2-common.o
->  obj-$(CONFIG_FPGA_MGR_MACHXO2_SPI)	+= machxo2-spi.o
-> +obj-$(CONFIG_FPGA_MGR_MACHXO2_I2C)	+= machxo2-i2c.o
->  obj-$(CONFIG_FPGA_MGR_SOCFPGA)		+= socfpga.o
->  obj-$(CONFIG_FPGA_MGR_SOCFPGA_A10)	+= socfpga-a10.o
->  obj-$(CONFIG_FPGA_MGR_STRATIX10_SOC)	+= stratix10-soc.o
-> diff --git a/drivers/fpga/machxo2-common.c b/drivers/fpga/machxo2-common.c
-> index e8967cdee2c6..0a3c126675da 100644
-> --- a/drivers/fpga/machxo2-common.c
-> +++ b/drivers/fpga/machxo2-common.c
-> @@ -100,7 +100,7 @@ static void dump_status_reg(struct device *dev, u32 status)
->  		!!FIELD_GET(MACHXO2_DVER, status), get_err_string(get_err(status)));
->  }
->  
-> -static int machxo2_wait_until_not_busy(struct machxo2_common_priv *priv)
-> +int machxo2_wait_until_not_busy(struct machxo2_common_priv *priv)
->  {
->  	u32 status;
->  	int ret, loop = 0;
-> @@ -143,6 +143,11 @@ static int machxo2_cleanup(struct fpga_manager *mgr)
->  	cmd.cmd = refresh;
->  	cmd.cmd_len = sizeof(refresh);
->  	cmd.delay_us = MACHXO2_REFRESH_USEC;
-> +
-> +	/* quirk: refresh command over i2c is 1 byte shorter */
-> +	if (priv->refresh_3b)
-> +		cmd.cmd_len--;
-> +
->  	ret = priv->write_commands(priv, &cmd, 1);
->  	if (ret)
->  		goto fail;
-> @@ -207,6 +212,10 @@ static int machxo2_write_init(struct fpga_manager *mgr,
->  	cmd[0].cmd_len = sizeof(enable);
->  	cmd[0].delay_us = MACHXO2_LOW_DELAY_USEC;
->  
-> +	/* quirk: enable command over i2c is 1 byte shorter */
-> +	if (priv->enable_3b)
-> +		cmd[0].cmd_len--;
-> +
->  	cmd[1].cmd = (u8 *)&priv->erase_cmd;
->  	cmd[1].cmd_len = sizeof(priv->erase_cmd);
->  
-> @@ -313,6 +322,10 @@ static int machxo2_write_complete(struct fpga_manager *mgr,
->  	cmd.cmd_len = sizeof(refresh);
->  	cmd.delay_us = MACHXO2_REFRESH_USEC;
->  
-> +	/* quirk: refresh command over i2c is 1 byte shorter */
-> +	if (priv->refresh_3b)
-> +		cmd.cmd_len--;
-> +
->  	do {
->  		ret = priv->write_commands(priv, &cmd, 1);
->  		if (ret)
-> diff --git a/drivers/fpga/machxo2-common.h b/drivers/fpga/machxo2-common.h
-> index 0f9f53b48152..8c09345adee5 100644
-> --- a/drivers/fpga/machxo2-common.h
-> +++ b/drivers/fpga/machxo2-common.h
-> @@ -32,9 +32,12 @@ struct machxo2_common_priv {
->  	int (*get_status)(struct machxo2_common_priv *priv, u32 *status);
->  	struct device *dev;
->  	__be32 erase_cmd;
-> +	u8 enable_3b:1;
-> +	u8 refresh_3b:1;
->  	struct gpio_desc *fpga_program_n;
->  };
->  
->  int machxo2_common_init(struct machxo2_common_priv *priv, struct device *dev);
-> +int machxo2_wait_until_not_busy(struct machxo2_common_priv *priv);
->  
->  #endif
-> diff --git a/drivers/fpga/machxo2-i2c.c b/drivers/fpga/machxo2-i2c.c
-> new file mode 100644
-> index 000000000000..a309016def1c
-> --- /dev/null
-> +++ b/drivers/fpga/machxo2-i2c.c
-> @@ -0,0 +1,137 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Lattice MachXO2 Slave I2C Driver
-> + *
-> + * Manage Lattice FPGA firmware that is loaded over I2C using
-> + * the slave serial configuration interface.
-> + *
-> + * Copyright (C) 2018 Paolo Pisati <p.pisati@gmail.com>
-> + * Copyright (C) 2021 Peter Jensen <pdj@bang-olufsen.dk>
-> + */
-> +
-> +#include <linux/i2c.h>
-> +#include <linux/container_of.h>
-> +#include <linux/delay.h>
-> +#include "machxo2-common.h"
-> +
-> +
-> +struct machxo2_i2c_priv {
-> +	struct machxo2_common_priv common;
-> +	struct i2c_client *client;
-> +};
-> +
-> +static inline struct machxo2_i2c_priv *to_machxo2_i2c_priv(struct machxo2_common_priv *common)
-> +{
-> +	return container_of(common, struct machxo2_i2c_priv, common);
-> +}
-> +
-> +static int machxo2_i2c_get_status(struct machxo2_common_priv *bus, u32 *status)
-> +{
-> +	struct machxo2_i2c_priv *i2cPriv = to_machxo2_i2c_priv(bus);
-> +	struct i2c_client *client = i2cPriv->client;
-> +	u8 read_status[] = LSC_READ_STATUS;
-
-The command word could also be bus agnostic. I think a callback like
-write_then_read(bus, txbuf, n_tx, rxbuf, n_rx) could be a better
-abstraction.
-
-> +	__be32 tmp;
-> +	int ret;
-> +	struct i2c_msg msg[] = {
-> +		{
-> +			.addr = client->addr,
-> +			.flags = 0,
-> +			.buf = read_status,
-> +			.len = ARRAY_SIZE(read_status),
-> +		}, {
-> +			.addr = client->addr,
-> +			.flags = I2C_M_RD,
-> +			.buf = (u8 *) &tmp,
-> +			.len = sizeof(tmp)
-> +		}
-> +	};
-> +
-> +	ret = i2c_transfer(client->adapter, msg, ARRAY_SIZE(msg));
-> +	if (ret < 0)
-> +		return ret;
-> +	if (ret != ARRAY_SIZE(msg))
-> +		return -EIO;
-> +	*status = be32_to_cpu(tmp);
-> +
-> +	return 0;
-> +}
-> +
-> +static int machxo2_i2c_write(struct machxo2_common_priv *common,
-> +			     struct machxo2_cmd *cmds, size_t cmd_count)
-> +{
-> +	struct machxo2_i2c_priv *i2c_priv = to_machxo2_i2c_priv(common);
-> +	struct i2c_client *client = i2c_priv->client;
-> +	size_t i;
-> +	int ret;
-> +
-> +	for (i = 0; i < cmd_count; i++) {
-> +		struct i2c_msg msg[] = {
-> +			{
-> +				.addr = client->addr,
-> +				.buf = cmds[i].cmd,
-> +				.len = cmds[i].cmd_len,
-> +			},
-> +		};
-> +
-> +		ret = i2c_transfer(client->adapter, msg, ARRAY_SIZE(msg));
-> +		if (ret < 0)
-> +			return ret;
-> +		if (ret != ARRAY_SIZE(msg))
-> +			return -EIO;
-> +		if (cmds[i].delay_us)
-> +			usleep_range(cmds[i].delay_us, cmds[i].delay_us +
-> +				     cmds[i].delay_us / 4);
-> +		if (i < cmd_count - 1) /* on any iteration except for the last one... */
-> +			ret = machxo2_wait_until_not_busy(common);
-
-Seems no need to implement the loop and wait in transportation layer,
-they are common. A callback like write(bus, txbuf, n_tx) is better?
-
-Thanks,
-Yilun
-
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int machxo2_i2c_probe(struct i2c_client *client,
-> +			const struct i2c_device_id *id)
-> +{
-> +	struct device *dev = &client->dev;
-> +	struct machxo2_i2c_priv *priv;
-> +
-> +	priv = devm_kzalloc(dev, sizeof(struct machxo2_i2c_priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	priv->client = client;
-> +	priv->common.get_status = machxo2_i2c_get_status;
-> +	priv->common.write_commands = machxo2_i2c_write;
-> +
-> +	/* Commands are usually 4b, but these aren't for i2c */
-> +	priv->common.enable_3b = true;
-> +	priv->common.refresh_3b = true;
-> +
-> +	return machxo2_common_init(&priv->common, dev);
-> +}
-> +
-> +static const struct of_device_id of_match[] = {
-> +	{ .compatible = "lattice,machxo2-slave-i2c", },
-> +	{ },
-> +};
-> +MODULE_DEVICE_TABLE(of, of_match);
-> +
-> +static const struct i2c_device_id lattice_ids[] = {
-> +	{ "machxo2-slave-i2c", 0 },
-> +	{ },
-> +};
-> +MODULE_DEVICE_TABLE(i2c, lattice_ids);
-> +
-> +static struct i2c_driver machxo2_i2c_driver = {
-> +	.driver = {
-> +		.name = "machxo2-slave-i2c",
-> +		.of_match_table = of_match_ptr(of_match),
-> +	},
-> +	.probe = machxo2_i2c_probe,
-> +	.id_table = lattice_ids,
-> +};
-> +
-> +module_i2c_driver(machxo2_i2c_driver);
-> +
-> +MODULE_AUTHOR("Peter Jensen <pdj@bang-olufsen.dk>");
-> +MODULE_DESCRIPTION("Load Lattice FPGA firmware over I2C");
-> +MODULE_LICENSE("GPL");
-> -- 
-> 2.30.2
-> 
+DQpPbiBNb24gMTUgQXVnIDIwMjIgYXQgMjE6MjAsIFl1IFR1IDx5dS50dUBhbWxvZ2ljLmNvbT4g
+d3JvdGU6DQoNCj4+Pj4gKw0KPj4+PiArc3RhdGljIHN0cnVjdCBjbGtfcmVnbWFwIHM0X2hkbWlf
+cGxsX2RjbyA9IHsNCj4+Pj4gK8KgwqDCoCAuZGF0YSA9ICYoc3RydWN0IG1lc29uX2Nsa19wbGxf
+ZGF0YSl7DQo+Pj4+ICvCoMKgwqDCoMKgwqDCoCAuZW4gPSB7DQo+Pj4+ICvCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgIC5yZWdfb2ZmID0gQU5BQ1RSTF9IRE1JUExMX0NUUkwwLA0KPj4+PiArwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoCAuc2hpZnTCoMKgID0gMjgsDQo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgIC53aWR0aMKgwqAgPSAxLA0KPj4+PiArwqDCoMKgwqDCoMKgwqAgfSwNCj4+Pj4gK8Kg
+wqDCoMKgwqDCoMKgIC5tID0gew0KPj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAucmVnX29m
+ZiA9IEFOQUNUUkxfSERNSVBMTF9DVFJMMCwNCj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
+LnNoaWZ0wqDCoCA9IDAsDQo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC53aWR0aMKgwqAg
+PSA4LA0KPj4+PiArwqDCoMKgwqDCoMKgwqAgfSwNCj4+Pj4gK8KgwqDCoMKgwqDCoMKgIC5uID0g
+ew0KPj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAucmVnX29mZiA9IEFOQUNUUkxfSERNSVBM
+TF9DVFJMMCwNCj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgLnNoaWZ0wqDCoCA9IDEwLA0K
+Pj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAud2lkdGjCoMKgID0gNSwNCj4+Pj4gK8KgwqDC
+oMKgwqDCoMKgIH0sDQo+Pj4+ICvCoMKgwqDCoMKgwqDCoCAuZnJhYyA9IHsNCj4+Pj4gK8KgwqDC
+oMKgwqDCoMKgwqDCoMKgwqAgLnJlZ19vZmYgPSBBTkFDVFJMX0hETUlQTExfQ1RSTDEsDQo+Pj4+
+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC5zaGlmdMKgwqAgPSAwLA0KPj4+PiArwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoCAud2lkdGjCoMKgID0gMTcsDQo+Pj4+ICvCoMKgwqDCoMKgwqDCoCB9LA0K
+Pj4+PiArwqDCoMKgwqDCoMKgwqAgLmwgPSB7DQo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+IC5yZWdfb2ZmID0gQU5BQ1RSTF9IRE1JUExMX0NUUkwwLA0KPj4+PiArwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoCAuc2hpZnTCoMKgID0gMzEsDQo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC53
+aWR0aMKgwqAgPSAxLA0KPj4+PiArwqDCoMKgwqDCoMKgwqAgfSwNCj4+Pj4gK8KgwqDCoMKgwqDC
+oMKgIC5yc3QgPSB7DQo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC5yZWdfb2ZmID0gQU5B
+Q1RSTF9IRE1JUExMX0NUUkwwLA0KPj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAuc2hpZnTC
+oMKgID0gMjksDQo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC53aWR0aMKgwqAgPSAxLA0K
+Pj4+PiArwqDCoMKgwqDCoMKgwqAgfSwNCj4+Pj4gK8KgwqDCoCB9LA0KPj4+PiArwqDCoMKgIC5o
+dy5pbml0ID0gJihzdHJ1Y3QgY2xrX2luaXRfZGF0YSl7DQo+Pj4+ICvCoMKgwqDCoMKgwqDCoCAu
+bmFtZSA9ICJoZG1pX3BsbF9kY28iLA0KPj4+PiArwqDCoMKgwqDCoMKgwqAgLm9wcyA9ICZtZXNv
+bl9jbGtfcGxsX3JvX29wcywNCj4+Pj4gK8KgwqDCoMKgwqDCoMKgIC5wYXJlbnRfZGF0YSA9IChj
+b25zdCBzdHJ1Y3QgY2xrX3BhcmVudF9kYXRhIFtdKSB7DQo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgIHsgLmZ3X25hbWUgPSAieHRhbCIsIH0NCj4+Pj4gK8KgwqDCoMKgwqDCoMKgIH0sDQo+
+Pj4+ICvCoMKgwqDCoMKgwqDCoCAubnVtX3BhcmVudHMgPSAxLA0KPj4+PiArwqDCoMKgwqDCoMKg
+wqAgLyoNCj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqAgKiBEaXNwbGF5IGRpcmVjdGx5IGhhbmRsZSBo
+ZG1pIHBsbCByZWdpc3RlcnMgQVRNLCB3ZSBuZWVkDQo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgICog
+Tk9DQUNIRSB0byBrZWVwIG91ciB2aWV3IG9mIHRoZSBjbG9jayBhcyBhY2N1cmF0ZSBhcw0KPj4+
+PiArwqDCoMKgwqDCoMKgwqDCoCAqIHBvc3NpYmxlDQo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgICov
+DQo+Pj4NCj4+PiBJcyBpdCByZWFsbHkgPw0KPj4+DQo+Pj4gR2l2ZW4gdGhhdCBIRE1JIHN1cHBv
+cnQgZm9yIHRoZSBzNCBpcyB0aGVyZSB5ZXQsIHRoZQ0KPj4+IGFkZHJlc3NlcyBoYXZlIGNoYW5n
+ZXMgYW5kIHRoZSByZWdpb24gaXMgbm8gbG9uZ2VyIGEgc3lzY29uLCBpdCBpcyB0aW1lDQo+Pj4g
+Zm9yIHRoZSBIRE1JIGRyaXZlciB0byBnZXQgZml4ZWQuDQo+IFRoZSBIRE1JIFBMTCBpcyBjb25m
+aWd1cmVkIGluIHRoZSBVYm9vdCBwaGFzZSBhbmQgZG9lcyBub3QgY2hhbmdlIHRoZQ0KPiBmcmVx
+dWVuY3kgaW4gdGhlIGtlcm5lbCBwaGFzZS4gU28gd2UgdXNlIHRoZSBOT0NBQ0hFIGZsYWcgYW5k
+DQo+ICJyb19vcHMiLg0KDQpUaGF0J3Mgbm8gcmVhc29uIHRvIHB1dCBOT0NBQ0hFIG9yIHJvLW9w
+cw0KDQpJZiB5b3Ugd2FudCB0aGUgZnJlcXVlbmNpZXMgdG8gYmUgc3RhdGljYWxseSBhc3Npbmdl
+ZCwgdGhlIGNvcnJlY3Qgd2F5DQp3b3VsZCBiZSB0aHJvdWdoIGFzc2lnbmVkLXJhdGUgaW4gRFQg
+SSBndWVzcy4NCg0K
