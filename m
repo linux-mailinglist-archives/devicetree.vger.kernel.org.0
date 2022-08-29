@@ -2,546 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9212C5A421A
-	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 07:01:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 891D65A4270
+	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 07:41:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229610AbiH2FBI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Aug 2022 01:01:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33448 "EHLO
+        id S229608AbiH2Fl0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Aug 2022 01:41:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229469AbiH2FBI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 01:01:08 -0400
-Received: from wout2-smtp.messagingengine.com (wout2-smtp.messagingengine.com [64.147.123.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F9D82B638;
-        Sun, 28 Aug 2022 22:01:06 -0700 (PDT)
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailout.west.internal (Postfix) with ESMTP id AFC9D32001FC;
-        Mon, 29 Aug 2022 01:01:04 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute1.internal (MEProxy); Mon, 29 Aug 2022 01:01:05 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        tom-fitzhenry.me.uk; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm1; t=1661749264; x=1661835664; bh=rs4hYXLnSQ
-        LhW6WVTL+FB//GZviYwTPquSyzRniqD0g=; b=nSRg2/NBw/NXZGNGVCH62+JPwS
-        swifY05749yqVCowstLk6EPwYlyXbgxxTEgvkEsHEYQ2R0fO2zWc6X0A8W6lxZ/A
-        lQwpg3otXM1/BX7+ng+UjHnEY1EFcnIe4LsZ9wfsrT1B2leGf6dBEAmvqWfxGco5
-        Dm9S4983bdlxoKZ2Lwndsk+2jiFJ8wwA2O9mu7FX5XslnIUG5lMxPDBnWQx34FmW
-        Swz+ebbFV+FBbK3koJpxgRQUsi+vaPJ5sEpTFB7B6CijixhsjrL7G1exzoFU0TQw
-        bJDXitvax+LqdPy8gggx4V8ELmBdx+I4435LPE2W3l9mw1MTXVt+IzipyJ7A==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:feedback-id:feedback-id:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1661749264; x=
-        1661835664; bh=rs4hYXLnSQLhW6WVTL+FB//GZviYwTPquSyzRniqD0g=; b=q
-        GFz/w678uJVGcPP0jQ7wVEnF7qwsSnA8jdjbUiHeUvqegWEr7CWqKvOoRxJxzCnk
-        iYf6mfOdgleGunp21xG/rBo1XKgU2ADR45VuWa0XR+17JOuH45W8QQ2hp1hbkvPF
-        C+aG9KOOGpZQyCof11BuJBbY/9vHo+N96LQBmS/sRrvdf5b3bIoVWoRDSlpd7FVZ
-        I7yzFAjGpyF4uLYLMFFSgTexQtw8W33vPyaoB5Unott3Ws6FfnP0HxYEyQHGT+Hz
-        IKEmwSeoJm0TC1yp6GJgRnFzvJoQiEjNj8mm5IMeOXfCQGN4jiZz78r46gQ+Qi2+
-        kQ48PDQT089+NWVoqH5Fw==
-X-ME-Sender: <xms:D0gMYwophcIfiWNCxhc_r4pVLJWHjNvCTq2ja60AwNmo6w41C2vT0Q>
-    <xme:D0gMY2qRvz51Ui_eBBr1z70LWBZsUo_GLgMxflNYTTDJKXtHaROJL4vNTN8UVwJro
-    T60ycu-XeV5Sl5KJw>
-X-ME-Received: <xmr:D0gMY1N-TsWUdXpEpLERHOA9BBxOkGCgl5pwgvn22XvcIpdujHQwOLwXivX6-W_eiWGXBG-9Y_uz>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdektddgledvucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvvefufffkofgjfhggtgfgsehtkeertdertdejnecuhfhrohhmpefvohhm
-    ucfhihhtiihhvghnrhihuceothhomhesthhomhdqfhhithiihhgvnhhrhidrmhgvrdhukh
-    eqnecuggftrfgrthhtvghrnhepheeikefgtedvfeegteefueekgefgleffhedugfduvdff
-    kedukeeihfegjeffveefnecuffhomhgrihhnpehpihhnvgeigedrohhrghdpmhgvghhouh
-    hsrdgtohhmpdhgihhtlhgrsgdrtghomhenucevlhhushhtvghrufhiiigvpedtnecurfgr
-    rhgrmhepmhgrihhlfhhrohhmpehtohhmsehtohhmqdhfihhtiihhvghnrhihrdhmvgdruh
-    hk
-X-ME-Proxy: <xmx:D0gMY37HUTsA-b4lV6BgtfeHw7QKDj90gQjJ_PPsLtnP4UMTS_ZuHQ>
-    <xmx:D0gMY_7oeCP9AaduAJnQGpChiyKUmJ0wA_d5JRzKnNVTKht6WVqgcQ>
-    <xmx:D0gMY3gE3kqxlLRbTKYuR_DYVfLp7HW4dBl0JPLa9xyZl63r_KoAUQ>
-    <xmx:EEgMYzqEVgMFqUS5-T0ENo3kYTIP3ZPJ_EhDXpJQxSgrMSsU-ud9vQ>
-Feedback-ID: iefc945ae:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 29 Aug 2022 01:01:02 -0400 (EDT)
-From:   Tom Fitzhenry <tom@tom-fitzhenry.me.uk>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229504AbiH2FlX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 01:41:23 -0400
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2051.outbound.protection.outlook.com [40.107.21.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C803225589;
+        Sun, 28 Aug 2022 22:41:22 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=n4v6YIocwBog3TfbHtyh/EFvbwRKgRKPKFqrTGS3gvEkrrbmQsHQ+1z1CwDepxEyKWKmbgUc1PeD8LA8lpl4V3mzofLm0LBGtyts3+OxzgUnFXY1iM4EOzB/lNfqqYQaep8apsWOCAJamdxYJ1TIcUFk/ZbUR1nZlYj0M7Srljabp/MmdZ71GYrOk/1N5FAzKCU912oP0O/341PO+0W7po92CXQi/3l92hVOoghsy5T0rBo1g+ifmaKhClQ6qUSW66SUaNuC6JqSqUtc5xMbBwEqkiPfBc6JmG9ftAzCA2T/d4I1LNMB7BlCovE+35akFBdQHDzMiW6DXMoA9MseQA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=IfSbwQrIO9R21GSt/b+himE5Q+JeEAk+XFfTJfxiJJM=;
+ b=QXCfQJL5fbCKsFDx5OrLlsTP4jG4zLTbXgd1wYNNT/jZTz3CiQ9ZEYok++CfsRN1A9ShXW+aBvK6OHFYar9tVKY8TxMMWIqHE+C5PTBC6Dmv1vBeffOlqzh+vzmKYqqln49YcuIQtMKLMFexJBwErNzBDc3r8uJ7bgSIFu+B8UccUt776SMPBw/7okYNkvobU9z8hPDfnElTNeLJHXS0yf6YHCYAoz+SdmQTacKf3Y9BJMUrcZqKvZcYNIWcR88ow3OYQeUaNCzGWC/BpVivFlTeXx1g0F1GbarbqkGgvvhZ9nHFuHN79dPUdwVR19X86bhfmzhDoQXCXpK69WfT8g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=IfSbwQrIO9R21GSt/b+himE5Q+JeEAk+XFfTJfxiJJM=;
+ b=fFxE41Deuq5qMBlSUUa4Mc6UhklBRBGUpPtV6oyaJS3yN6r/4Q+dNO2/jlgi6ViyhyNYKjGW433h8KRLjARvHbI3ME5UUO+VuktYevfNDFiEyffNTZxxMl5ClftVSyWfozv8vfSqVHkH1lX8J3is9tvb8aGJqRhrmHykWOewRFg=
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by DB6PR0402MB2886.eurprd04.prod.outlook.com (2603:10a6:4:97::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5566.21; Mon, 29 Aug
+ 2022 05:41:18 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::2d22:3315:6f9b:82c7]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::2d22:3315:6f9b:82c7%6]) with mapi id 15.20.5566.021; Mon, 29 Aug 2022
+ 05:41:18 +0000
+From:   Peng Fan <peng.fan@nxp.com>
+To:     Marcel Ziswiler <marcel@ziswiler.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+CC:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Jacky Bai <ping.bai@nxp.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org, Martijn Braam <martijn@brixit.nl>,
-        =?UTF-8?q?Kamil=20Trzci=C5=84ski?= <ayufan@ayufan.eu>,
-        Ondrej Jirman <megi@xff.cz>,
-        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
-        Caleb Connolly <kc@postmarketos.org>,
-        =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
-        <n@nfraprado.net>
-Subject: [PATCH v5 1/1] arm64: dts: rockchip: Add initial support for Pine64 PinePhone Pro
-Date:   Mon, 29 Aug 2022 15:00:40 +1000
-Message-Id: <20220829050040.17330-2-tom@tom-fitzhenry.me.uk>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220829050040.17330-1-tom@tom-fitzhenry.me.uk>
-References: <20220829050040.17330-1-tom@tom-fitzhenry.me.uk>
+        dl-linux-imx <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH v1 3/5] arm64: dts: imx8ulp: no executable source file
+ permission
+Thread-Topic: [PATCH v1 3/5] arm64: dts: imx8ulp: no executable source file
+ permission
+Thread-Index: AQHYuYFHALjJdq4o7EqA39cHolr15a3FYMhA
+Date:   Mon, 29 Aug 2022 05:41:18 +0000
+Message-ID: <DU0PR04MB9417C07E03D931C982B1645888769@DU0PR04MB9417.eurprd04.prod.outlook.com>
+References: <20220826192252.794651-1-marcel@ziswiler.com>
+ <20220826192252.794651-4-marcel@ziswiler.com>
+In-Reply-To: <20220826192252.794651-4-marcel@ziswiler.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: d5dba9d6-8fa2-4666-39b3-08da898118dc
+x-ms-traffictypediagnostic: DB6PR0402MB2886:EE_
+x-ld-processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: jz8LbICQC/3ltyalSyBnxCOtemeA5KX7lfx37gJ+JoqKEauCbvd72qodn+KFCbO05g5Ugdh//5E+ZRewL7WVSwWvBgnT2RnZAlSLqerM3G0nUNBlzqOwHCtaGbRNJzmtPNqRdKh/MXL5NW7Jtv1XgczJHH1cgcwZoZcFaVPTK/Hk7qwl7uZ0ygWRNIQgwDYCDvgLvJKNLz5mHQG5lv6y75F0zmp37WljBxM49D47UIqIl3emHar9KMMKP09rZhfwfBeFjapYDU/ICTNseIsXX6Mf2FkzxbWH/nGk1hkkH6NlOPsn9AzyuTm0KDnU841EWdOsWN2i1tcYzXAnxzZuCOgq8Ki8blf5YZGQnG+rwWOvzjdpoKcIJUqmNSv/DgU/UPTijYy5OPILB0XLiliGlwTrSEsv1naWRZ8F0ErrNm5zj/SU+5Ggli4d6Va6r/cxm1GhXBE+77QoXMsZWyrq0xAYWicpKTN2N9ilVQYsp2XhlmaFrqAmSKjmEkFuOjx8GElwGsswM9JLmNfbPYPAEwVbk0j/QP4nvlbnlahdwWUdEq+lT5bEK73u1NFxOj9KoyUHh2mFkC+v04WEud9pIAjw8kF3z8AOrTu5bCYk0U2j9yFkgC23HT+DQAFEVSpmzn0qo4ta/4RbyLlJIcjlZo1kigNjNyVZvitZGJmhYf+9NhbacwXUZRvoHFfzF0uiAqmChqlByQCvsJvbwMCTOV6vHoeWPDh9j4sKoxY3M7pJewLTaDqtU7crZft3B6lezOxt4VlkRG2PY4z2TjQ/4UlJ9d/C61PpQIFslfZxsP8=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(136003)(396003)(39860400002)(376002)(346002)(366004)(64756008)(38070700005)(478600001)(71200400001)(55016003)(7416002)(4326008)(8676002)(66946007)(66476007)(33656002)(76116006)(83380400001)(54906003)(41300700001)(110136005)(5660300002)(4744005)(26005)(86362001)(38100700002)(6506007)(66446008)(7696005)(66556008)(186003)(8936002)(2906002)(9686003)(52536014)(316002)(44832011)(122000001)(32563001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?9fsboFD/0Cd/vaXanKJ6vs9srrutH4G2boS3NhuFnhqCCunNZ3GBsQzxl1lA?=
+ =?us-ascii?Q?mdRff0Sply1bg+1RTA8dVKLnOj29oxEZp7hqBa0mFfE5I2MNAMz+iAsoZJUf?=
+ =?us-ascii?Q?nQ15gKQRIYWeium5fF7vaGqUG5sQE/fiNkATAhAGo2ihsGeEZsdHMLf0YrwS?=
+ =?us-ascii?Q?A4VtDJHvCutCQLwtvXfk5li/eHgM96oWK5b+kmbBZIZw80Am3kXrGoXx1FS/?=
+ =?us-ascii?Q?L4V53xM+gzNHCkqMCGQbNEBLGEXEXe8TTG+rK0pu6QCK6By4lgg1JaEx2W6+?=
+ =?us-ascii?Q?s+hIv4nNsJK+rpE7++YXup8x9PrVmgv/aZ/9rO8vnLvOvXKhLJgplyq3Pwoy?=
+ =?us-ascii?Q?mNwbl6BrABD1gXE2QgIZnYgw/6KQGQvVNBOuhfZuf316uCVXTjPBw6pE+eFw?=
+ =?us-ascii?Q?iBGPQH7JcyBpkVouauWYXrvmEwQwIUW672kr8zjRObjdnmOVWxfuPvPJQZDm?=
+ =?us-ascii?Q?4Irq+SUfqVHrC9NG0FQZIpqGglGzxKbrLMt0j2qxCsOJLYGM0gbtBffiB96g?=
+ =?us-ascii?Q?0zkY8Vck9pfoGzODKtQMOGG8Zc4ud6qL18mkms/TpsfTuaCpv7ostuQ5z1sg?=
+ =?us-ascii?Q?dzlcUm4QQftIuWTk8Gbg62kPvHPLAsbCnkuLuandA/kCUJnTJUlQ/GFDNFjs?=
+ =?us-ascii?Q?gVZtV34RQ9ORqA6bvxeNtC8XyZgl3ZYqIXGLfzEuZEFe9J65N2Gmt/eJxzin?=
+ =?us-ascii?Q?U6yIdKCWaPBEJ687pihbis4kdlemfQ51rKX1hZ4tP+WFh2WyxiK+n7owKz91?=
+ =?us-ascii?Q?SypscX0+Y4iNcARa8oRlgeY2d8OMv7WEPUwQAilcDH8lsZK/WNJaknS0atb2?=
+ =?us-ascii?Q?1LLmpWr+y9BhZbxmrSDmFXHmZJLlt4nlp5iHZR3RA6cXKTvDBeot3/dq3kXR?=
+ =?us-ascii?Q?WHeXW8nWcaGM6gORCYRCX4XwS6q57CM/ALQgdxKZfpK/lEYRQ0PQtwDd3WST?=
+ =?us-ascii?Q?wlDK2AnwqEpLNEbvCj3sOwwZjCcqbgz9vYfPseAs6/5ttpixmewVs4nkFQV3?=
+ =?us-ascii?Q?6xtZF1o8koG5bFDAuknfbp4PwLUt24J2GtSzOzEdZJNkbr1ybg6doYvdWctZ?=
+ =?us-ascii?Q?z5iCxriBF60GJbStR4nUJukh1n3SVLDM82dpNnQc/SXI+zRRRUQ+guQC/n03?=
+ =?us-ascii?Q?lwRqhheolSSDiegWyTHoSTUzA/wQgpf5dTIgXiYY0FxnHvH/60IkuunjZkUX?=
+ =?us-ascii?Q?mcblfKurn4bjyaB6ibh5C1vJ7OkUnZhhNtpHBOrozI420ow/JwNZIFY5BbpT?=
+ =?us-ascii?Q?Fh2Jci3n5rDsyS+5sk0jDwjlHFTmCmMTsZzWlcnwoHs4yTqeYNVZ2deU1hca?=
+ =?us-ascii?Q?tzqpc7GsdTZURDaTGLT8ITLDmwrgYXitVSe+2NjPjh6UgxFWYDDw2g++DSRi?=
+ =?us-ascii?Q?WEDCDL8U2sSQAx7ziQaVYljxN3p3mg8PemSN13q6F/FjppS7yhFRPut9UtO7?=
+ =?us-ascii?Q?Z9+loc6xWfIsm8GkC9h6zqMjsC7i4ShyTUA9PKjYmradN6KxXHqEyKWTV5Wb?=
+ =?us-ascii?Q?wN/rFOSrXYTy//iSGv3dY3x27aBnGrD6dwN5vTX/5pyrUNo1Hl+x+Ziv8s20?=
+ =?us-ascii?Q?y0udlglUpXVOxQwKsOg=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d5dba9d6-8fa2-4666-39b3-08da898118dc
+X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Aug 2022 05:41:18.6750
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: MLQ4k6W1Ank3Ijs6p46CbAcBI/FyFfxIn1hORNqxhxMx7fZfLawh/+USWHQXJoMIdTP6774vAvk7zruvwxEu6w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR0402MB2886
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Martijn Braam <martijn@brixit.nl>
+> Subject: [PATCH v1 3/5] arm64: dts: imx8ulp: no executable source file
+> permission
+>=20
+> From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+>=20
+> This fixes the following error:
+>=20
+> arch/arm64/boot/dts/freescale/imx8ulp-pinfunc.h: error: do not set
+> execute permissions for source files
+>=20
+> Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 
-This is a basic DT containing regulators and UART, intended to be a
-base that myself and others can add additional nodes in future patches.
-
-Tested to work: booting from eMMC/SD, output over UART.
-
-https://wiki.pine64.org/wiki/PinePhone_Pro
-
-This is derived from the community pine64-org repo[0] with fixes from
-https://megous.com/git/linux.
-
-0. https://gitlab.com/pine64-org/linux/-/commit/261d3b5f8ac503f97da810986d1d6422430c8531
-
-Signed-off-by: Martijn Braam <martijn@brixit.nl>
-Co-developed-by: Kamil Trzciński <ayufan@ayufan.eu>
-[no SoB, but Kamil is happy for this patch to be submitted]
-Co-developed-by: Ondrej Jirman <megi@xff.cz>
-Signed-off-by: Ondrej Jirman <megi@xff.cz>
-Co-developed-by: Tom Fitzhenry <tom@tom-fitzhenry.me.uk>
-Signed-off-by: Tom Fitzhenry <tom@tom-fitzhenry.me.uk>
-Reviewed-by: Caleb Connolly <kc@postmarketos.org>
-Reviewed-by: Nícolas F. R. A. Prado <n@nfraprado.net>
-Tested-by: Nícolas F. R. A. Prado <n@nfraprado.net>
----
- arch/arm64/boot/dts/rockchip/Makefile         |   1 +
- .../dts/rockchip/rk3399-pinephone-pro.dts     | 398 ++++++++++++++++++
- 2 files changed, 399 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index ef79a672804a..cb42e0a15808 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -42,6 +42,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-nanopi-neo4.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-nanopi-r4s.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-orangepi.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-pinebook-pro.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-pinephone-pro.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-puma-haikou.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-roc-pc.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-roc-pc-mezzanine.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-new file mode 100644
-index 000000000000..f00c80361377
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-@@ -0,0 +1,398 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2020 Martijn Braam <martijn@brixit.nl>
-+ * Copyright (c) 2021 Kamil Trzciński <ayufan@ayufan.eu>
-+ */
-+
-+/*
-+ * PinePhone Pro datasheet:
-+ * https://files.pine64.org/doc/PinePhonePro/PinephonePro-Schematic-V1.0-20211127.pdf
-+ */
-+
-+/dts-v1/;
-+#include <dt-bindings/input/linux-event-codes.h>
-+#include "rk3399.dtsi"
-+#include "rk3399-opp.dtsi"
-+
-+/ {
-+	model = "Pine64 PinePhonePro";
-+	compatible = "pine64,pinephone-pro", "rockchip,rk3399";
-+	chassis-type = "handset";
-+
-+	aliases {
-+		mmc0 = &sdio0;
-+		mmc1 = &sdmmc;
-+		mmc2 = &sdhci;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial2:115200n8";
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pwrbtn_pin>;
-+
-+		key-power {
-+			debounce-interval = <20>;
-+			gpios = <&gpio0 RK_PA5 GPIO_ACTIVE_LOW>;
-+			label = "Power";
-+			linux,code = <KEY_POWER>;
-+			wakeup-source;
-+		};
-+	};
-+
-+	vcc_sys: vcc-sys-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_sys";
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vcc3v3_sys: vcc3v3-sys-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3_sys";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc_sys>;
-+	};
-+
-+	vcca1v8_s3: vcc1v8-s3-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcca1v8_s3";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc3v3_sys>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vcc1v8_codec: vcc1v8-codec-regulator {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpio = <&gpio3 RK_PA4 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vcc1v8_codec_en>;
-+		regulator-name = "vcc1v8_codec";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc3v3_sys>;
-+	};
-+};
-+
-+&cpu_l0 {
-+	cpu-supply = <&vdd_cpu_l>;
-+};
-+
-+&cpu_l1 {
-+	cpu-supply = <&vdd_cpu_l>;
-+};
-+
-+&cpu_l2 {
-+	cpu-supply = <&vdd_cpu_l>;
-+};
-+
-+&cpu_l3 {
-+	cpu-supply = <&vdd_cpu_l>;
-+};
-+
-+&cpu_b0 {
-+	cpu-supply = <&vdd_cpu_b>;
-+};
-+
-+&cpu_b1 {
-+	cpu-supply = <&vdd_cpu_b>;
-+};
-+
-+&emmc_phy {
-+	status = "okay";
-+};
-+
-+&i2c0 {
-+	clock-frequency = <400000>;
-+	i2c-scl-rising-time-ns = <168>;
-+	i2c-scl-falling-time-ns = <4>;
-+	status = "okay";
-+
-+	rk818: pmic@1c {
-+		compatible = "rockchip,rk818";
-+		reg = <0x1c>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <RK_PC5 IRQ_TYPE_LEVEL_LOW>;
-+		#clock-cells = <1>;
-+		clock-output-names = "xin32k", "rk808-clkout2";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pmic_int_l>;
-+		rockchip,system-power-controller;
-+		wakeup-source;
-+
-+		vcc1-supply = <&vcc_sys>;
-+		vcc2-supply = <&vcc_sys>;
-+		vcc3-supply = <&vcc_sys>;
-+		vcc4-supply = <&vcc_sys>;
-+		vcc6-supply = <&vcc_sys>;
-+		vcc7-supply = <&vcc3v3_sys>;
-+		vcc8-supply = <&vcc_sys>;
-+		vcc9-supply = <&vcc3v3_sys>;
-+
-+		regulators {
-+			vdd_cpu_l: DCDC_REG1 {
-+				regulator-name = "vdd_cpu_l";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <875000>;
-+				regulator-max-microvolt = <975000>;
-+				regulator-ramp-delay = <6001>;
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdd_center: DCDC_REG2 {
-+				regulator-name = "vdd_center";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <1000000>;
-+				regulator-ramp-delay = <6001>;
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcc_ddr: DCDC_REG3 {
-+				regulator-name = "vcc_ddr";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+				};
-+			};
-+
-+			vcc_1v8: DCDC_REG4 {
-+				regulator-name = "vcc_1v8";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+				};
-+			};
-+
-+			vcca3v0_codec: LDO_REG1 {
-+				regulator-name = "vcca3v0_codec";
-+				regulator-min-microvolt = <3000000>;
-+				regulator-max-microvolt = <3000000>;
-+			};
-+
-+			vcc3v0_touch: LDO_REG2 {
-+				regulator-name = "vcc3v0_touch";
-+				regulator-min-microvolt = <3000000>;
-+				regulator-max-microvolt = <3000000>;
-+			};
-+
-+			vcca1v8_codec: LDO_REG3 {
-+				regulator-name = "vcca1v8_codec";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+			};
-+
-+			rk818_pwr_on: LDO_REG4 {
-+				regulator-name = "rk818_pwr_on";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+				};
-+			};
-+
-+			vcc_3v0: LDO_REG5 {
-+				regulator-name = "vcc_3v0";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <3000000>;
-+				regulator-max-microvolt = <3000000>;
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+				};
-+			};
-+
-+			vcc_1v5: LDO_REG6 {
-+				regulator-name = "vcc_1v5";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1500000>;
-+				regulator-max-microvolt = <1500000>;
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+				};
-+			};
-+
-+			vcc1v8_dvp: LDO_REG7 {
-+				regulator-name = "vcc1v8_dvp";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+			};
-+
-+			vcc3v3_s3: LDO_REG8 {
-+				regulator-name = "vcc3v3_s3";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vccio_sd: LDO_REG9 {
-+				regulator-name = "vccio_sd";
-+				regulator-min-microvolt = <1710000>;
-+				regulator-max-microvolt = <3150000>;
-+			};
-+
-+			vcc3v3_s0: SWITCH_REG {
-+				regulator-name = "vcc3v3_s0";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+				};
-+			};
-+		};
-+	};
-+
-+	vdd_cpu_b: regulator@40 {
-+		compatible = "silergy,syr827";
-+		reg = <0x40>;
-+		fcs,suspend-voltage-selector = <1>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vsel1_pin>;
-+		regulator-name = "vdd_cpu_b";
-+		regulator-min-microvolt = <875000>;
-+		regulator-max-microvolt = <1150000>;
-+		regulator-ramp-delay = <1000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+
-+		regulator-state-mem {
-+			regulator-off-in-suspend;
-+		};
-+	};
-+
-+	vdd_gpu: regulator@41 {
-+		compatible = "silergy,syr828";
-+		reg = <0x41>;
-+		fcs,suspend-voltage-selector = <1>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vsel2_pin>;
-+		regulator-name = "vdd_gpu";
-+		regulator-min-microvolt = <875000>;
-+		regulator-max-microvolt = <975000>;
-+		regulator-ramp-delay = <1000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+
-+		regulator-state-mem {
-+			regulator-off-in-suspend;
-+		};
-+	};
-+};
-+
-+&cluster0_opp {
-+	opp04 {
-+		status = "disabled";
-+	};
-+
-+	opp05 {
-+		status = "disabled";
-+	};
-+};
-+
-+&cluster1_opp {
-+	opp06 {
-+		opp-hz = /bits/ 64 <1500000000>;
-+		opp-microvolt = <1100000 1100000 1150000>;
-+	};
-+
-+	opp07 {
-+		status = "disabled";
-+	};
-+};
-+
-+&io_domains {
-+	bt656-supply = <&vcc1v8_dvp>;
-+	audio-supply = <&vcca1v8_codec>;
-+	sdmmc-supply = <&vccio_sd>;
-+	gpio1830-supply = <&vcc_3v0>;
-+	status = "okay";
-+};
-+
-+&pmu_io_domains {
-+	pmu1830-supply = <&vcc_1v8>;
-+	status = "okay";
-+};
-+
-+&pinctrl {
-+	buttons {
-+		pwrbtn_pin: pwrbtn-pin {
-+			rockchip,pins = <0 RK_PA5 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+	};
-+
-+	pmic {
-+		pmic_int_l: pmic-int-l {
-+			rockchip,pins = <1 RK_PC5 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+
-+		vsel1_pin: vsel1-pin {
-+			rockchip,pins = <1 RK_PC1 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+
-+		vsel2_pin: vsel2-pin {
-+			rockchip,pins = <1 RK_PB6 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+	};
-+
-+	sound {
-+		vcc1v8_codec_en: vcc1v8-codec-en {
-+			rockchip,pins = <3 RK_PA4 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+	};
-+};
-+
-+&sdmmc {
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	cd-gpios = <&gpio0 RK_PA7 GPIO_ACTIVE_LOW>;
-+	disable-wp;
-+	max-frequency = <150000000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&sdmmc_clk &sdmmc_cmd &sdmmc_cd &sdmmc_bus4>;
-+	vmmc-supply = <&vcc3v3_sys>;
-+	vqmmc-supply = <&vccio_sd>;
-+	status = "okay";
-+};
-+
-+&sdhci {
-+	bus-width = <8>;
-+	mmc-hs200-1_8v;
-+	non-removable;
-+	status = "okay";
-+};
-+
-+&tsadc {
-+	rockchip,hw-tshut-mode = <1>;
-+	rockchip,hw-tshut-polarity = <1>;
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	status = "okay";
-+};
--- 
-2.37.1
+Acked-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>=20
+>  arch/arm64/boot/dts/freescale/imx8ulp-pinfunc.h | 0
+>  1 file changed, 0 insertions(+), 0 deletions(-)  mode change 100755 =3D>
+> 100644 arch/arm64/boot/dts/freescale/imx8ulp-pinfunc.h
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/imx8ulp-pinfunc.h
+> b/arch/arm64/boot/dts/freescale/imx8ulp-pinfunc.h
+> old mode 100755
+> new mode 100644
+> --
+> 2.36.1
 
