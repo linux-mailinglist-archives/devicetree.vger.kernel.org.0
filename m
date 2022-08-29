@@ -2,82 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 405AC5A5429
-	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 20:45:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76C615A5420
+	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 20:42:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229703AbiH2Spt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Aug 2022 14:45:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36810 "EHLO
+        id S229948AbiH2Sma (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Aug 2022 14:42:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229652AbiH2Sps (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 14:45:48 -0400
-X-Greylist: delayed 398 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 29 Aug 2022 11:45:46 PDT
-Received: from mx3.wp.pl (mx3.wp.pl [212.77.101.10])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6C877B7AE
-        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 11:45:46 -0700 (PDT)
-Received: (wp-smtpd smtp.wp.pl 11137 invoked from network); 29 Aug 2022 20:39:01 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=1024a;
-          t=1661798341; bh=KYk0F5rL/05QNecCXVHTwCSPO4E26vN1t3B/MPgqtXU=;
-          h=From:To:Subject;
-          b=oCLypSCnPUWbNEt1vQo9pF0GQA8JSbAWHE6hp4muHV0TZx6fQaVATbRPkaqC8lpl3
-           2wkejebz78+YoJwbfNHewVfyuMA79hUu9XWis6T+usiLbLHtXniYrnAIEhpvjliCek
-           j5kazUWT3MK409iM+JVTt36t/wUL14KGFcoCpfxU=
-Received: from ip-137-21.ds.pw.edu.pl (HELO LAPTOP-OLEK.lan) (olek2@wp.pl@[194.29.137.21])
-          (envelope-sender <olek2@wp.pl>)
-          by smtp.wp.pl (WP-SMTPD) with ECDHE-RSA-AES256-GCM-SHA384 encrypted SMTP
-          for <robh+dt@kernel.org>; 29 Aug 2022 20:39:01 +0200
-From:   Aleksander Jan Bajkowski <olek2@wp.pl>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        tsbogend@alpha.franken.de, olek2@wp.pl, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] MIPS: dts: lantiq: rename dts files with soc name being the prefix
-Date:   Mon, 29 Aug 2022 20:37:17 +0200
-Message-Id: <20220829183717.4394-1-olek2@wp.pl>
-X-Mailer: git-send-email 2.30.2
+        with ESMTP id S229971AbiH2SmX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 14:42:23 -0400
+Received: from smtp-fw-9102.amazon.com (smtp-fw-9102.amazon.com [207.171.184.29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B63A0832C2;
+        Mon, 29 Aug 2022 11:42:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1661798542; x=1693334542;
+  h=message-id:date:mime-version:to:cc:references:from:
+   in-reply-to:content-transfer-encoding:subject;
+  bh=XTJr3HmYry0IYzQ6gYwbM4reF5LT9fKouCMQdpXCxXE=;
+  b=khEMP/ebZBUJBXAbY08HXUHq9mTr9HX5FzSWeViB9TEBaNRWgz0SVMNR
+   hMcS24J39a1a15PZsHC14+XcZpMiTlmXHf1+/vJlOaHIc7BJsXHt7rcLb
+   OyUU5YHcz5uNBFkPQaAFsVWlyZec6KrYuMRSQcIBx+6b2niY+Lrk7Pclp
+   M=;
+X-IronPort-AV: E=Sophos;i="5.93,273,1654560000"; 
+   d="scan'208";a="253995778"
+Subject: Re: [PATCH v2 16/16] hwmon: (mr75203) add debugfs to read and write
+ temperature coefficients
+Received: from pdx4-co-svc-p1-lb2-vlan2.amazon.com (HELO email-inbound-relay-pdx-2c-72dc3927.us-west-2.amazon.com) ([10.25.36.210])
+  by smtp-border-fw-9102.sea19.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Aug 2022 18:42:05 +0000
+Received: from EX13MTAUWB001.ant.amazon.com (pdx1-ws-svc-p6-lb9-vlan2.pdx.amazon.com [10.236.137.194])
+        by email-inbound-relay-pdx-2c-72dc3927.us-west-2.amazon.com (Postfix) with ESMTPS id 41E2544F43;
+        Mon, 29 Aug 2022 18:42:05 +0000 (UTC)
+Received: from EX19D013UWB002.ant.amazon.com (10.13.138.21) by
+ EX13MTAUWB001.ant.amazon.com (10.43.161.249) with Microsoft SMTP Server (TLS)
+ id 15.0.1497.38; Mon, 29 Aug 2022 18:42:04 +0000
+Received: from EX13MTAUWB001.ant.amazon.com (10.43.161.207) by
+ EX19D013UWB002.ant.amazon.com (10.13.138.21) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1118.12;
+ Mon, 29 Aug 2022 18:42:04 +0000
+Received: from [192.168.93.244] (10.85.143.174) by mail-relay.amazon.com
+ (10.43.161.249) with Microsoft SMTP Server id 15.0.1497.38 via Frontend
+ Transport; Mon, 29 Aug 2022 18:41:59 +0000
+Message-ID: <d5ea08a4-9094-8a7a-093c-0e6459281c1d@amazon.com>
+Date:   Mon, 29 Aug 2022 21:41:58 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-WP-MailID: de3215a5c917005624290f2748c79044
-X-WP-AV: skaner antywirusowy Poczty Wirtualnej Polski
-X-WP-SPAM: NO 0000000 [4bOU]                               
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+To:     Guenter Roeck <linux@roeck-us.net>
+CC:     <jdelvare@suse.com>, <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <talel@amazon.com>,
+        <hhhawa@amazon.com>, <jonnyc@amazon.com>, <hanochu@amazon.com>,
+        <ronenk@amazon.com>, <itamark@amazon.com>, <shellykz@amazon.com>,
+        <shorer@amazon.com>, <amitlavi@amazon.com>, <almogbs@amazon.com>,
+        <dwmw@amazon.co.uk>, <rtanwar@maxlinear.com>,
+        "Farber, Eliav" <farbere@amazon.com>
+References: <20220817054321.6519-1-farbere@amazon.com>
+ <20220817054321.6519-17-farbere@amazon.com>
+ <20220818231106.GA3505191@roeck-us.net>
+ <75165e58-8601-1fe5-7bdb-98761a73701f@amazon.com>
+ <20220822162805.GD4098765@roeck-us.net>
+Content-Language: en-US
+From:   "Farber, Eliav" <farbere@amazon.com>
+In-Reply-To: <20220822162805.GD4098765@roeck-us.net>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-14.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_SPF_WL autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rename lantiq dts files with soc name being the prefix, so that the
-board dts file can be located easily by soc name, and we also gain
-the consistency of naming.
+On 8/22/2022 7:28 PM, Guenter Roeck wrote:
+> There needs to be an overflow protection. I am quite sure that 0xffffffff
+> would result in overflows and thus in quite random reported values. 
+Added overflow protection.
+Will be part of v3.
 
-This patch is a preparation for the addition of dts for newer SoCs
-(Lantiq ARX100, VRX200 and xRX330).
-
-Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
----
- arch/mips/boot/dts/lantiq/Makefile                              | 2 +-
- .../boot/dts/lantiq/{easy50712.dts => danube_easy50712.dts}     | 0
- 2 files changed, 1 insertion(+), 1 deletion(-)
- rename arch/mips/boot/dts/lantiq/{easy50712.dts => danube_easy50712.dts} (100%)
-
-diff --git a/arch/mips/boot/dts/lantiq/Makefile b/arch/mips/boot/dts/lantiq/Makefile
-index f5dfc06242b9..ae6e3e21ebeb 100644
---- a/arch/mips/boot/dts/lantiq/Makefile
-+++ b/arch/mips/boot/dts/lantiq/Makefile
-@@ -1,4 +1,4 @@
- # SPDX-License-Identifier: GPL-2.0
--dtb-$(CONFIG_DT_EASY50712)	+= easy50712.dtb
-+dtb-$(CONFIG_DT_EASY50712)	+= danube_easy50712.dtb
- 
- obj-$(CONFIG_BUILTIN_DTB)	+= $(addsuffix .o, $(dtb-y))
-diff --git a/arch/mips/boot/dts/lantiq/easy50712.dts b/arch/mips/boot/dts/lantiq/danube_easy50712.dts
-similarity index 100%
-rename from arch/mips/boot/dts/lantiq/easy50712.dts
-rename to arch/mips/boot/dts/lantiq/danube_easy50712.dts
--- 
-2.30.2
-
+--
+Thanks, Eliav
