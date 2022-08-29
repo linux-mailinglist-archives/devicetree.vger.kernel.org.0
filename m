@@ -2,115 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 74C1A5A464A
-	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 11:41:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06E8F5A4651
+	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 11:45:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229731AbiH2Jl3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Aug 2022 05:41:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51136 "EHLO
+        id S229678AbiH2Jpf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Aug 2022 05:45:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56486 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230043AbiH2JlH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 05:41:07 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F1AA5D137
-        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 02:40:54 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id bu22so9090149wrb.3
-        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 02:40:54 -0700 (PDT)
+        with ESMTP id S229453AbiH2Jpe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 05:45:34 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 841512CE3D
+        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 02:45:28 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id v7-20020a1cac07000000b003a6062a4f81so7861101wme.1
+        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 02:45:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc;
-        bh=FM+u/mT19a85swWLirrWas+cuEiZlUx6xGmwi5sOw9Q=;
-        b=CR/429N71yazrm5/GlvVbONcJoh6cPfXGYcwqJEQTMhYzAMFpXA+Pf13aXAA5ocPLQ
-         PyO7mI3WKEZbFSHVp8DN8HtyhahXiQ1vJQZoDmPmfpfUSUFNMk7llu6DyryxCtPx51QM
-         UggdjRr6OCpz2I1aB+YBSjdf7baBkWv2LNjU15dug5RLH3NaZuT1TGf4hhVoihKnyOrn
-         KS0aId49TCKXRZ+8As1clAfdlLcfqjkFqBKf6TJnPItx+8Wd42Cuzq29FQqGL0n0vdPc
-         MWlZHocaeL1NO/HzOZLtPJ3ZWcqMRTdFyyeXatsF/XKP99Km19neLAkjnP+4aVzKklhJ
-         Cigw==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:in-reply-to:date
+         :subject:to:from:user-agent:references:from:to:cc;
+        bh=fEw88egTf3n0WTxLSAsw2MCw2Md2Dd4XGwp5wqMSg0E=;
+        b=DwxDMo+IMLmKaXg/GER2cKmuOn7dWteIo52dvOH/RD7vw7Uh7Vz/yGz0pH5Je/yzKk
+         1qal1Nxmkh+wMeSF9lKRyM14qNMjFMtmX1+ZD9lAgoSgetgNt15RTNPjjMH67WQExw5O
+         FJjhHT15HricLe7QIdVxc0JRNsPMapAOoKsAnO3wlKxBlut82KQ7CdT7YxejErHAkII4
+         eb3wMj5H7HYiC0XggRvhqjI0un9eq92+QXG861izN/l8tN8OaWwGiFiJGdXW+mZT+paJ
+         jhD9cD4KTKtMHLrJ0ndcwJztmLJFnr57VZa6aXFXV1HQGGJ1DAsVp/Or9S4hgxeKEGcN
+         quoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=FM+u/mT19a85swWLirrWas+cuEiZlUx6xGmwi5sOw9Q=;
-        b=fdjkupnCMty3Dav8UP4zKfjUR6dVmJW4yjX7UHrYTPMnqN7clBsSWF9bXL43yd5xs0
-         C6+Ll27gbDAQcOx3o8e19GfYz/6pX0GxfrxKTD8e+aScVztyMsI9U4Bjz3kSq2aOtefN
-         yEUUr58lQ8NvjLK4BZBNx9ljy/c5RTIm3tbGlTan8MFGb7AVr3d1EA2YbbXtWzz2jn5y
-         KO/bGxlAgxf+bniQzTGe7kMxmgVSTj8D42LorQvZRnz9v0C/cH/pGVzLD/3+al2/9Qzw
-         NPry6l6d5zNp1nbb4w7Q8aKAHnTE6uHpVgFz7KG89z0ICp3Te/EgPIVW0jZCXRTW9s1a
-         QxMA==
-X-Gm-Message-State: ACgBeo3rfB6ma7LW3L7cTLEti7ud80zRv9+q+m34mUpxjm9ynHaY7YI+
-        aCwFzFln5N7Ya7PgB4IWTGDO2yBe2xMjQWG4
-X-Google-Smtp-Source: AA6agR6yz+KetRQLU5z5+8USMBrJz6Xsi96fJACvOe/SZcUPY6d6c25Q1ykCxbsnofqIb7BISTZIQQ==
-X-Received: by 2002:a05:6000:1045:b0:226:df71:fd5e with SMTP id c5-20020a056000104500b00226df71fd5emr588745wrx.427.1661766053017;
-        Mon, 29 Aug 2022 02:40:53 -0700 (PDT)
-Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id k13-20020a7bc40d000000b003a83ac538a1sm7489435wmi.29.2022.08.29.02.40.51
+        h=content-transfer-encoding:mime-version:message-id:in-reply-to:date
+         :subject:to:from:user-agent:references:x-gm-message-state:from:to:cc;
+        bh=fEw88egTf3n0WTxLSAsw2MCw2Md2Dd4XGwp5wqMSg0E=;
+        b=umZ2iIZt1Ar2A7jKxx5VtwVca1+676QRDaYCR1WIpu5emUcvl2STxkbm/l5VEWSJZu
+         FkfYjGoLFqo8MdCmRnj+DbbPJr6B1M0fSWkRQW5V2VLNwoOoo249S7BaDN+p6kbiGhHM
+         vofMSCBDhLJzslq1hwxaj2IZCsLRUdCdY+1/HgDHhIVE6WCMggOshSAJQJIbNz+n1Q3T
+         NtEvW4NbTF2F5ZL/jKa1+h9q+BrY3dD38RPXBOcBsB0zs3xQpTaNRuvID7iJT7dZUNtS
+         eXAhD4a/iyXg1PRR9lj8KnKbaZGFBClUWmnBebLJDJFFaR5jS2UxqTcnCUlVUy7Mcx31
+         dJxg==
+X-Gm-Message-State: ACgBeo2GQSqCEbfkpz0tYWYDho7fs7fEGep7+FZCvtBbGxtCPX1j4G9E
+        2+u6al07WilDhK/J+OCIWUr76w==
+X-Google-Smtp-Source: AA6agR7V29Ev8Tjiea8ZG9KuxzLha718wql0Sq8Ph0UsiqYwTHvcN78mFkUWvyy69pfvCkHGvNHM6w==
+X-Received: by 2002:a05:600c:28c8:b0:3a8:40bb:be4c with SMTP id h8-20020a05600c28c800b003a840bbbe4cmr3795642wmd.28.1661766326649;
+        Mon, 29 Aug 2022 02:45:26 -0700 (PDT)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id q3-20020a1ce903000000b003a61306d79dsm8616834wmc.41.2022.08.29.02.45.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Aug 2022 02:40:52 -0700 (PDT)
-Date:   Mon, 29 Aug 2022 12:40:50 +0300
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Marcel Ziswiler <marcel@ziswiler.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Abel Vesa <abelvesa@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mon, 29 Aug 2022 02:45:26 -0700 (PDT)
+References: <20220805085716.5635-1-yu.tu@amlogic.com>
+ <20220805085716.5635-3-yu.tu@amlogic.com>
+ <19654574-bdc0-9fa5-6465-fc88b20e20c5@linaro.org>
+ <c223a85a-b76e-0e82-9a8c-6b60588dc03a@amlogic.com>
+ <1jmtccz0f4.fsf@starbuckisacylon.baylibre.com>
+ <edc9b0bd-6c69-0562-05ca-db0496897cf1@amlogic.com>
+User-agent: mu4e 1.8.7; emacs 28.1
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Yu Tu <yu.tu@amlogic.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
         Michael Turquette <mturquette@baylibre.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 4/5] clk: imx6sll: add proper spdx license identifier
-Message-ID: <YwyJorBWti0FTYg/@linaro.org>
-References: <20220826192252.794651-1-marcel@ziswiler.com>
- <20220826192252.794651-5-marcel@ziswiler.com>
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: Re: [PATCH V3 2/6] arm64: dts: meson: add S4 Soc PLL clock
+ controller in DT
+Date:   Mon, 29 Aug 2022 11:43:43 +0200
+In-reply-to: <edc9b0bd-6c69-0562-05ca-db0496897cf1@amlogic.com>
+Message-ID: <1j1qszv0wa.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220826192252.794651-5-marcel@ziswiler.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-08-26 21:22:51, Marcel Ziswiler wrote:
-> From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-> 
-> This fixes the following error:
-> 
-> include/dt-bindings/clock/imx6sll-clock.h:1: warning: Improper SPDX
->  comment style for 'include/dt-bindings/clock/imx6sll-clock.h', please
->  use '/*' instead
-> include/dt-bindings/clock/imx6sll-clock.h:1: warning: Missing or
->  malformed SPDX-License-Identifier tag in line 1
-> 
-> Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 
-Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
+On Mon 15 Aug 2022 at 14:17, Yu Tu <yu.tu@amlogic.com> wrote:
 
-> ---
-> 
->  include/dt-bindings/clock/imx6sll-clock.h | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/include/dt-bindings/clock/imx6sll-clock.h b/include/dt-bindings/clock/imx6sll-clock.h
-> index f446710fe63d..494fd0c37fb5 100644
-> --- a/include/dt-bindings/clock/imx6sll-clock.h
-> +++ b/include/dt-bindings/clock/imx6sll-clock.h
-> @@ -1,4 +1,4 @@
-> -// SPDX-License-Identifier: GPL-2.0
-> +/* SPDX-License-Identifier: GPL-2.0 */
->  /*
->   * Copyright (C) 2016 Freescale Semiconductor, Inc.
->   * Copyright 2017-2018 NXP.
-> -- 
-> 2.36.1
-> 
+> Hi Jerome=EF=BC=8C
+>
+> On 2022/8/10 21:32, Jerome Brunet wrote:
+>> [ EXTERNAL EMAIL ]
+>> On Fri 05 Aug 2022 at 17:39, Yu Tu <yu.tu@amlogic.com> wrote:
+>>=20
+>>> Hi Krzysztof,
+>>>      Thank you for your reply.
+>>>
+>>> On 2022/8/5 17:16, Krzysztof Kozlowski wrote:
+>>>> [ EXTERNAL EMAIL ]
+>>>> On 05/08/2022 10:57, Yu Tu wrote:
+>>>>> Added information about the S4 SOC PLL Clock controller in DT.
+>>>>>
+>>>>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
+>>>>> ---
+>>>>>    arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 8 ++++++++
+>>>>>    1 file changed, 8 insertions(+)
+>>>>>
+>>>>> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/b=
+oot/dts/amlogic/meson-s4.dtsi
+>>>>> index ff213618a598..a816b1f7694b 100644
+>>>>> --- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+>>>>> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+>>>>> @@ -92,6 +92,14 @@ apb4: apb4@fe000000 {
+>>>>>    			#size-cells =3D <2>;
+>>>>>    			ranges =3D <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
+>>>>>    +			clkc_pll: pll-clock-controller@8000 {
+>>>> Node names should be generic - clock-controller.
+>>>> https://devicetree-specification.readthedocs.io/en/latest/chapter2-dev=
+icetree-basics.html#generic-names-recommendation
+>>>>
+>>> I will change to clkc_pll: clock-controller@8000, in next version.
+>> Same comment applies to the binding doc.
+> OKay.
+>> Also it would be nice to split this in two series.
+>> Bindings and drivers in one, arm64 dt in the other. These changes goes
+>> in through different trees.
+> At present, Bindings, DTS and drivers are three series. Do you mean to put
+> Bindings and drivers together? If so, checkpatch.pl will report a warning.
+
+Yes because patches are not in yet so there is a good reason to ignore
+the warning. Warning will never show up on the actual tree if the
+patches are correctly ordered.
+
+>
+>>=20
+>>>> Best regards,
+>>>> Krzysztof
+>>>> .
+>> .
+
