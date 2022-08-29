@@ -2,87 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E0B25A419A
-	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 05:53:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4942D5A41F2
+	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 06:28:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229533AbiH2DxK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Aug 2022 23:53:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58254 "EHLO
+        id S229486AbiH2E2d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Aug 2022 00:28:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229544AbiH2DxA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Aug 2022 23:53:00 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E138141D1E;
-        Sun, 28 Aug 2022 20:52:54 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id t5so8550738edc.11;
-        Sun, 28 Aug 2022 20:52:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=i3P9yvcZ5w9JMjlHaA5/F93BbKF3hEM1ahs4PE9M3sU=;
-        b=EbOKh9LMbPDhquOkY6YMTz7GEGWR8BQdmUe/hFPRalUfSmCBlFoBUeVaRDfwPdTYaV
-         tW0Ke+svFy/1TG35d4XkmsssGORHSWaWeQSJGYLARCGoyZekbQVmVCzkyKsJUs8Kbz50
-         13OVjkFXLZiHB/zBnBRgwyiBwb0DGcWicq0vxESy5yojgC5M+ig19TPHSHLQZ5BOVW98
-         i5XBk/IOxwBBpBz6cQ2j/GDO00HBpM/Z7aWO8iJ4mTvN2IJb+bzs/m9cKSr8hDXeC9eK
-         1jihznrGnU21jYVBlVrhl/WnVScOON0o8Yd2PtBg7CqNE70hpQn1y4ifwYZVvYXVRe9e
-         +3PA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=i3P9yvcZ5w9JMjlHaA5/F93BbKF3hEM1ahs4PE9M3sU=;
-        b=mP+WqKAiyyRLkNZzfG9CZArEOrfRG2oxXBLICbvKwGwg20K57h/hgsBDY0CBtJmwbl
-         91dRgnsUNG/n3rdvLeOMR/vyXWqxR9+ac7FgFwmI6MF/j2LsI0T/gw6ZONYV1uyV77pF
-         sAAghFseIsL/4uFQs/gjtds9powQ/dQd8DM6qhydxUvimiv2P0GrP8lMidset/DeBPko
-         b/wBGLDL7VT+49LxjICeQRzPh0R6fDdo7V9sv+1XoZy+Bppssh7wJkWUUltr+wHlTgyb
-         t3dDXPPpJIZdiI/wE6tdbSgJZF5xqtCb9xratjma7O9yMlXuNRrtjAOC05tLVatqMfZU
-         TofA==
-X-Gm-Message-State: ACgBeo1ZT9v99jXZeQuQea/YM1yWZoQqWcf7iSgsSEsBqjkFQHVMddre
-        K0PYpAQu8QGTvFDe+b39VQzNFBfoTH9G9tB3CYw=
-X-Google-Smtp-Source: AA6agR7gHwwO7J0rRiChvfQJve8VQ06faGb/93y5NKqE+1wlyC2GzzLvQxic3/P0jIdT/P1vktF+OzV/JS5XKJ3fcFI=
-X-Received: by 2002:a05:6402:34cd:b0:448:8286:23f0 with SMTP id
- w13-20020a05640234cd00b00448828623f0mr1259550edc.40.1661745173471; Sun, 28
- Aug 2022 20:52:53 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220816094641.8484-1-milkfafa@gmail.com> <20220816094641.8484-3-milkfafa@gmail.com>
- <20220818144442.GB1829017-robh@kernel.org>
-In-Reply-To: <20220818144442.GB1829017-robh@kernel.org>
-From:   Kun-Fa Lin <milkfafa@gmail.com>
-Date:   Mon, 29 Aug 2022 11:52:42 +0800
-Message-ID: <CADnNmFqPmr7Af1ROALPbfoj73p5d1bKjhYV+MuO9KhCQMk=FAQ@mail.gmail.com>
-Subject: Re: [PATCH v13 2/3] dt-bindings: edac: nuvoton: Add document for NPCM
- memory controller
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-edac <linux-edac@vger.kernel.org>, rric@kernel.org,
-        James Morse <james.morse@arm.com>, tony.luck@intel.com,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Borislav Petkov <bp@alien8.de>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        CS20 KWLiu <KWLIU@nuvoton.com>, YSCHU@nuvoton.com,
-        Benjamin Fair <benjaminfair@google.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        KFTING <KFTING@nuvoton.com>, JJLIU0@nuvoton.com,
-        Tali Perry <tali.perry1@gmail.com>, ctcchien@nuvoton.com,
-        Marvin Lin <kflin@nuvoton.com>,
-        Tomer Maimon <tmaimon77@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229450AbiH2E2c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 00:28:32 -0400
+Received: from wout2-smtp.messagingengine.com (wout2-smtp.messagingengine.com [64.147.123.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D5713DBF1;
+        Sun, 28 Aug 2022 21:28:30 -0700 (PDT)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+        by mailout.west.internal (Postfix) with ESMTP id F12233200684;
+        Mon, 29 Aug 2022 00:28:26 -0400 (EDT)
+Received: from imap46 ([10.202.2.96])
+  by compute2.internal (MEProxy); Mon, 29 Aug 2022 00:28:28 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        tom-fitzhenry.me.uk; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm1; t=1661747306; x=1661833706; bh=7f5gUMyENX
+        zYFC/ZQNB5KKhl9DF71UmgTG9JV/GtQd8=; b=hmn02Qf0uEQelPuAsQJ5ZnUE4Q
+        xQmoqWN2UacAqvaRq12ZKbf5tlFwbZsKQCDAjYNhRqbmDV1c55UrdL7L698rfVJ/
+        yuXr5daTrDDI70KTiCs9qp9ZKgZxDAuzrwV8OShx7oVI35ylE2LajJzVPR9Ck4lW
+        rvTwTmMXfCJ68ZbYLUsiGBsH5m+OJWsEXmGT6WaBkGNXB13DgvLNiTnS+9baPsmz
+        m8wXdoUdKd85+15e7I8sWQNiJiqQ7Wm1+ytVVmZ6GbQJXyanIlafUmc8Mo/X1mGF
+        Z4H/7mkfLS7f0Xt1FylqVCymZI5fsUYjoS+fmMBMORNQWeBzH0tMj/NAniMg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:feedback-id:feedback-id:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1661747306; x=
+        1661833706; bh=7f5gUMyENXzYFC/ZQNB5KKhl9DF71UmgTG9JV/GtQd8=; b=L
+        bu4AgXDZz8O9nzp65MSNkKZIRJP8N+hz1Yx9ZEn/iY/itxZoW99UNMieTrYViYL2
+        9q6QJEsRzEAdtI9/K4ZgYBdOKqIwg2AMZ6azxM109K6PAn7u00Fl9tgGl6AoUuip
+        JfXMi+S+CvZOLpOsoXxsrk1/OE1IMkskrXe/t7fREV/ajw7VgZZzkXtqTI47QCnN
+        6P7JtRFIe9rrAbiu7KqseKbNQ2jDD1ARxpuwFL6baAvN0U8wnyGvyjA8HhRN0+at
+        fIJePQ94Ra7xmjjkHTYcyUuL1+PHd5P9OzfbU0/SEllyhj+glUYzdyWyFJGFytCd
+        jO+r0t7oziA8F625NFONA==
+X-ME-Sender: <xms:aEAMY8QrbOmutEU30XGSFse7XEDO0i1EP3LpCn45AJKtlPY7qQO-Yw>
+    <xme:aEAMY5zWBiu3rdljYwD_K5-XpWX3iP6ZaSj06CR_nywrqD1If9_WT9HY_3bwYCVjk
+    jI5BQtUFCZ-NfGmQQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdektddgkeehucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtgfesthhqredtreerjeenucfhrhhomhepfdfv
+    ohhmucfhihhtiihhvghnrhihfdcuoehtohhmsehtohhmqdhfihhtiihhvghnrhihrdhmvg
+    druhhkqeenucggtffrrghtthgvrhhnpeegfffffeduteeutdeikeelvefgheeigfelgfei
+    teejvefgjeekieekudehueevkeenucffohhmrghinhepmhgvghhouhhsrdgtohhmnecuve
+    hluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepthhomhesthho
+    mhdqfhhithiihhgvnhhrhidrmhgvrdhukh
+X-ME-Proxy: <xmx:aUAMY53g6Y1zsNxUGlwyiU7nbIpviAYJ0Avac5Yvd5aSN8x2pAAuXw>
+    <xmx:aUAMYwAdAQhqPMuN-BNnbia_ooXCTQ2ASvzexdxHuFt92OLgBnBCuQ>
+    <xmx:aUAMY1gdy2Bkb0sQh9PZHa1c6ht-vE6rNBjGNjoW0ai1cPDxUGoNnA>
+    <xmx:akAMY15NcvR_okLgwZSwTB0mv6GQU4FW2p85w5_0G-jaySqCTC5GIg>
+Feedback-ID: iefc945ae:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id EA7332A20079; Mon, 29 Aug 2022 00:28:24 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-841-g7899e99a45-fm-20220811.002-g7899e99a
+Mime-Version: 1.0
+Message-Id: <7782b803-b331-4b19-84f5-86d1f06b0259@www.fastmail.com>
+In-Reply-To: <20220822083339.o6bqlyirrm5hvjbc@core>
+References: <20220822012449.21005-1-tom@tom-fitzhenry.me.uk>
+ <20220822012449.21005-2-tom@tom-fitzhenry.me.uk>
+ <20220822083339.o6bqlyirrm5hvjbc@core>
+Date:   Mon, 29 Aug 2022 04:28:03 +0000
+From:   "Tom Fitzhenry" <tom@tom-fitzhenry.me.uk>
+To:     =?UTF-8?Q?Ond=C5=99ej_Jirman?= <megi@xff.cz>
+Cc:     "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "Heiko Stuebner" <heiko@sntech.de>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        phone-devel@vger.kernel.org, "Martijn Braam" <martijn@brixit.nl>,
+        =?UTF-8?Q?Kamil_Trzci=C5=84ski?= <ayufan@ayufan.eu>,
+        "Caleb Connolly" <kc@postmarketos.org>,
+        =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?= <n@nfraprado.net>
+Subject: Re: [PATCH v4 1/1] arm64: dts: rockchip: Add initial support for Pine64
+ PinePhone Pro
+Content-Type: text/plain;charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Thanks for the review Megi.
 
-Thanks for the review.
+On Mon, 22 Aug 2022, at 8:33 AM, Ond=C5=99ej Jirman wrote:
+>> +			vdd_center: DCDC_REG2 {
+>> +				regulator-name =3D "vdd_center";
+>> +				regulator-always-on;
+>> +				regulator-boot-on;
+>> +				regulator-min-microvolt =3D <800000>;
+>> +				regulator-max-microvolt =3D <1350000>;
+>
+> Looks like a wrong top voltage. https://megous.com/dl/tmp/ad3dcc62bd00=
+f41f.png
 
-Regards,
-Marvin
+I will fix this in v5.
+
+>> +			vcca3v0_codec: LDO_REG1 {
+>> +				regulator-name =3D "vcca3v0_codec";
+>> +				regulator-always-on;
+>> +				regulator-boot-on;
+>
+> This should not be always on, but only enabled by the codec when neede=
+d.
+> You don't have codec described in this DT.
+
+I will fix this in v5.
+
+>> +			vcc3v0_touch: LDO_REG2 {
+>> +				regulator-name =3D "vcc3v0_touch";
+>> +				regulator-always-on;
+>> +				regulator-boot-on;
+>
+> This should not be always on. It should be enabled by touch controller,
+> when needed. You don't have touch controller described in this DT.
+
+I will fix this in v5.
+
+>> +			vcca1v8_codec: LDO_REG3 {
+>> +				regulator-name =3D "vcca1v8_codec";
+>> +				regulator-always-on;
+>> +				regulator-boot-on;
+>
+> This should not be always on, but only enabled by the codec when neede=
+d,
+> I suppose. Also modem codec is supplied by vcc1v8_codec which may need
+> a gpio configured as pull-down or drive low to be properly disabled,
+> and it is not defined in this DT. Please make sure that regulator's in=
+put
+> doesn't float and is disabled by default.
+
+I will fix this in v5, including adding a regulator for vcc1v8_codec.
+
+>> +&gpu_opp_table {
+>> +	opp00 {
+>> +		opp-hz =3D /bits/ 64 <200000000>;
+>> +		opp-microvolt =3D <825000 825000 975000>;
+>> +	};
+>> +	opp01 {
+>> +		opp-hz =3D /bits/ 64 <297000000>;
+>> +		opp-microvolt =3D <825000 825000 975000>;
+>> +	};
+>> +	opp02 {
+>> +		opp-hz =3D /bits/ 64 <400000000>;
+>> +		opp-microvolt =3D <825000 825000 975000>;
+>> +	};
+>> +	opp03 {
+>> +		opp-hz =3D /bits/ 64 <500000000>;
+>> +		opp-microvolt =3D <875000 875000 975000>;
+>> +	};
+>> +	opp04 {
+>> +		opp-hz =3D /bits/ 64 <600000000>;
+>> +		opp-microvolt =3D <925000 925000 975000>;
+>> +	};
+>
+> ^^^ Why replicate all these OPPs, when they have identical preferred v=
+oltage
+> in rk3399-opp.dtsi? Also GPU is not being enabled in the DT.
+>
+> You don't need display output support to enable the gpu right away.
+
+My bad, I had forgotten that I'd originally decided to leave this out of=
+ the first patch series. I will address this in the patch series when I =
+enable the GPU.
+
+>> +	opp05 {
+>> +		status =3D "disabled";
+>> +	};
+>> +};
+>> +
+>> +
+>
+> ^ extra space
+
+I will fix this in v5.
