@@ -2,39 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C12D5A55DA
-	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 23:02:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86C595A55E0
+	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 23:04:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229595AbiH2VCG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Aug 2022 17:02:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34294 "EHLO
+        id S229543AbiH2VEO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Aug 2022 17:04:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229692AbiH2VCF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 17:02:05 -0400
-Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80DCA7E02C
-        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 14:02:02 -0700 (PDT)
-Received: from secure.fukaumi.org ([10.0.0.2])
-        by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 27TL15mO030743;
-        Tue, 30 Aug 2022 06:01:06 +0900
-From:   FUKAUMI Naoki <naoki@radxa.com>
-To:     jagan@amarulasolutions.com
-Cc:     abbaraju.manojsai@amarulasolutions.com, devicetree@vger.kernel.org,
-        heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
-        linux-amarula@amarulasolutions.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, naoki@radxa.com,
-        robh+dt@kernel.org, stephen@radxa.com
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: rk3399: Radxa ROCK 4C+
-Date:   Mon, 29 Aug 2022 21:01:03 +0000
-Message-Id: <20220829210103.518467-1-naoki@radxa.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <CAMty3ZDxvaFSYpjYniXwpA6Wfyyn=c8mW5XNNUaiuqSb1niC9w@mail.gmail.com>
-References: <CAMty3ZDxvaFSYpjYniXwpA6Wfyyn=c8mW5XNNUaiuqSb1niC9w@mail.gmail.com>
+        with ESMTP id S229490AbiH2VEN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 17:04:13 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7EBD7E31C;
+        Mon, 29 Aug 2022 14:04:12 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 645AF611F8;
+        Mon, 29 Aug 2022 21:04:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F8FCC433D7;
+        Mon, 29 Aug 2022 21:04:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1661807051;
+        bh=BDArk8/2LJG4f0JlM21frot7U4ElFgCGdWkTcw+GNrI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=hLNBIu9Td+/t9fmiuV63RFNrmX+4JMVfBhrmcGSE96BFapYdzIYYh8RcQphz7k1iz
+         CZ3SuEm/suUhALwjEkfNYk9eCIsLfXy4Z2dWolV85Hdm5M71fCn0NyWZ2iu46Gaygp
+         N+AmdNp/oPGjTH5H4w1n9rLNe5wGuXKrANyj0EOcypNEG33T6SfexYjsbR4iItQjUc
+         mbtefgnDmoBjH0sa46lAl5qiOPupyhdF+SOqlIFBkSg9EiMTWPcJfU3sBcuYHKia/e
+         HN/kvHCZFfXusXi+zMjQ0mOxvlZlXq0gk9kCHX01FYPSnIOb3EA1jYxNTFqUwBwlIb
+         gaiGx0dDJ8f1A==
+Date:   Mon, 29 Aug 2022 16:04:08 -0500
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        ~postmarketos/upstreaming@lists.sr.ht, martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: clock: qcom,rpmcc: Add compatible for
+ SM6375
+Message-ID: <20220829210408.gxbv6szxfwiiwrbv@builder.lan>
+References: <20220716192714.454031-1-konrad.dybcio@somainline.org>
+ <991f085e-ae79-bf67-d063-51484a0ba344@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00,KHOP_HELO_FCRDNS,
-        SPF_HELO_NONE,SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE autolearn=no
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <991f085e-ae79-bf67-d063-51484a0ba344@linaro.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -42,33 +65,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-sorry, I noticed I sent previous email to wrong thread (v1, not v2).
-
-> > > +&sdmmc {
-> > > +     bus-width = <4>;
-> > > +     cap-mmc-highspeed;
-> > > +     cap-sd-highspeed;
-> > > +     card-detect-delay = <800>;
-> > > +     disable-wp;
-> > > +     pinctrl-names = "default";
-> > > +     pinctrl-0 = <&sdmmc_clk &sdmmc_cd &sdmmc_cmd &sdmmc_bus4>;
-> > > +     vqmmc-supply = <&vccio_sd>;
-> > > +     status = "okay";
-> > > +};
-> >
-> > does card detect work for you? it doesn't work for me. I think it
-> > needs
+On Wed, Jul 20, 2022 at 08:30:13AM +0200, Krzysztof Kozlowski wrote:
+> On 16/07/2022 21:27, Konrad Dybcio wrote:
+> > Add a compatible for RPMCC on SM6375.
+> > 
+> > Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> > ---
+> >  Documentation/devicetree/bindings/clock/qcom,rpmcc.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/clock/qcom,rpmcc.yaml b/Documentation/devicetree/bindings/clock/qcom,rpmcc.yaml
+> > index 9d296b89a8d0..f22febdfdce7 100644
+> > --- a/Documentation/devicetree/bindings/clock/qcom,rpmcc.yaml
+> > +++ b/Documentation/devicetree/bindings/clock/qcom,rpmcc.yaml
+> > @@ -43,6 +43,7 @@ properties:
+> >            - qcom,rpmcc-sdm660
+> >            - qcom,rpmcc-sm6115
+> >            - qcom,rpmcc-sm6125
+> > +          - qcom,sm6375-rpmcc
 > 
-> Yes. it is detecting for me. I've booted from SD. 2022.03.04 V1.2
-> revision board.
+> I am fine with it, although this contradicts a bit
+> https://lore.kernel.org/all/20220705161301.493364-1-krzysztof.kozlowski@linaro.org/
+> 
+> Would be nice to get Bjorn's opinion/preference on this.
+> 
 
-I have same board, but I'm using eMMC as boot media. do you have any
-eMMC module?
+While global consistency is nice, I think we should just stick with
+qcom,rpmcc-<soc>, to keep this binding nice and tidy.
 
-what I tried was inserting uSD card while running Linux on eMMC. it
-didn't work.
+Regards,
+Bjorn
 
-Best regards,
-
---
-FUKAUMI Naoki
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> 
+> Best regards,
+> Krzysztof
