@@ -2,240 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 94FB35A57BB
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 01:42:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8CE35A57C2
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 01:46:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229703AbiH2XmU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Aug 2022 19:42:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57670 "EHLO
+        id S229453AbiH2XqV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Aug 2022 19:46:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229594AbiH2XmT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 19:42:19 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E249832DE;
-        Mon, 29 Aug 2022 16:42:18 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7E947481;
-        Tue, 30 Aug 2022 01:42:16 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1661816536;
-        bh=ngFFZ6dOmWMcFpZ3IKwPW1v4ZbMsWtMoV3OBJVEtv+k=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=rlno3YaeDukmu2MSL5qYBY5uEvaJGMEG8W580K5sxVOZ7LhvaH7XvzImKh2oPLLq0
-         uP/2NXzr1IKTDAbY1TQlFJOlSUEmJnD1sY6+u2A8sFrlcBThNbE+e0AR8QF7kVvZrw
-         OiJohc4h23aFg/LbadFnqPnNeOT9QVUY/nc/g8bk=
-Date:   Tue, 30 Aug 2022 02:42:07 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Subject: Re: [PATCH 2/4] media: dt-bindings: media: Document RZ/G2L CRU
-Message-ID: <Yw1Oz5Zcwgig8/Xy@pendragon.ideasonboard.com>
-References: <20220801214718.16943-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220801214718.16943-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        with ESMTP id S229446AbiH2XqU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 19:46:20 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF9F598588;
+        Mon, 29 Aug 2022 16:46:19 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 4FEB1B815A1;
+        Mon, 29 Aug 2022 23:46:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E13DC433D6;
+        Mon, 29 Aug 2022 23:46:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1661816777;
+        bh=+VvePBFLp/LWmK5hX6RIjAP6zHRRsMudqWZ6EI8ufAk=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=BEUFplEohMizRY5cMmxOHX5fEqyEQp1OOmKmxtPpmCx/tDNAJRtzpsc3cnZ6Zz9nt
+         NFeXcVoAOSpjyB3BN4Tn669fMPUe7CRfsrTq0EJglgoSO8V1UJce1rc5QTl2d0YEik
+         1cxbbMZ1dm16q+rZzR7k+izR1LqEi5aTHvPx3E7Tu8fFfAgv7xOEVCBYPHFgLG4yPC
+         xlI66+r26noL8Wo9denx0EXkWNsVPwfg1gNf5O8cv/lmzktFdH9lccrcTwX9ipbRoA
+         LMa3PIaOd+stnvWxcLv8shrEP3l31Wu1lBl2AalOkd70k0dWRxnFgVL6M2dMwlhkSq
+         cY7NJzt/xL3jw==
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     a39.skl@gmail.com
+Cc:     linux-pm@vger.kernel.org, linux-mmc@vger.kernel.org,
+        vkoul@kernel.org, linux-arm-msm@vger.kernel.org, will@kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, iommu@lists.linux.dev,
+        konrad.dybcio@somainline.org, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, agross@kernel.org,
+        linux-arm-kernel@lists.infradead.org, robdclark@chromium.org,
+        loic.poulain@linaro.org, rafael@kernel.org,
+        dmaengine@vger.kernel.org, bhupesh.sharma@linaro.org,
+        phone-devel@vger.kernel.org, robin.murphy@arm.com,
+        Viresh Kumar <viresh.kumar@linaro.org>, ulf.hansson@linaro.org,
+        emma@anholt.net, robh+dt@kernel.org, joro@8bytes.org,
+        linux-kernel@vger.kernel.org, quic_saipraka@quicinc.com
+Subject: Re: (subset) [PATCH 0/7] Compatibles for SM6115
+Date:   Mon, 29 Aug 2022 18:45:38 -0500
+Message-Id: <166181675976.322065.5888575144597732401.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.37.1
+In-Reply-To: <20220815100952.23795-1-a39.skl@gmail.com>
+References: <20220815100952.23795-1-a39.skl@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220801214718.16943-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
-
-Thank you for the patch.
-
-On Mon, Aug 01, 2022 at 10:47:16PM +0100, Lad Prabhakar wrote:
-> Document the CRU block found on Renesas RZ/G2L SoC's.
+On Mon, 15 Aug 2022 12:09:38 +0200, Adam Skladowski wrote:
+> This patch series add bunch of compatibles in preparation
+> for sending device tree patches for Snapdragon 662 SoC
 > 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> RFC v2 -> v1
-> * Dropped endpoint stuff from port1 as suggested by Rob
-> * Updated description for endpoint
+> Adam Skladowski (7):
+>   dt-bindings: dmaengine: qcom: gpi: add compatible for SM6115
+>   dmaengine: qcom: gpi: Add SM6115 support
+>   dt-bindings: mmc: sdhci-msm: Document the SM6115 compatible
+>   cpufreq: Add SM6115 to cpufreq-dt-platdev blocklist
+>   dt-bindings: arm-smmu: Add compatible for Qualcomm SM6115
+>   iommu/arm-smmu-qcom: Add SM6115 support
+>   dt-bindings: firmware: document Qualcomm SM6115 SCM
 > 
-> RFC v1 -> RFC v2
-> * Dropped CSI
-> ---
->  .../bindings/media/renesas,rzg2l-cru.yaml     | 142 ++++++++++++++++++
->  1 file changed, 142 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml b/Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml
-> new file mode 100644
-> index 000000000000..d7389693dae9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml
-> @@ -0,0 +1,142 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright (C) 2022 Renesas Electronics Corp.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/renesas,rzg2l-cru.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas RZ/G2L (and alike SoC's) Camera Data Receiving Unit (CRU) Image processing
-> +
-> +maintainers:
-> +  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> +
-> +description:
-> +  The CRU image processing module is a data conversion module equipped with pixel
-> +  color space conversion, LUT, pixel format conversion, etc. An MIPI CSI-2 input and
-> +  parallel (including ITU-R BT.656) input are provided as the image sensor interface.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
+> [...]
 
-No oneOf here either.
+Applied, thanks!
 
-> +      - items:
-> +          - enum:
-> +              - renesas,r9a07g044-cru     # RZ/G2{L,LC}
-> +              - renesas,r9a07g054-cru     # RZ/V2L
-> +          - const: renesas,rzg2l-cru
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 3
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: image_conv
-> +      - const: image_conv_err
-> +      - const: axi_mst_err
-> +
-> +  clocks:
-> +    items:
-> +      - description: CRU Main clock
-> +      - description: CPU Register access clock
-> +      - description: CRU image transfer clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: vclk
-> +      - const: pclk
-> +      - const: aclk
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    items:
-> +      - description: CRU_PRESETN reset terminal
-> +      - description: CRU_ARESETN reset terminal
-> +
-> +  reset-names:
-> +    items:
-> +      - const: presetn
-> +      - const: aresetn
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description:
-> +          Input port node, single endpoint describing a parallel input source.
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              hsync-active: true
-> +              vsync-active: true
-> +              bus-width: true
-> +              data-shift: true
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description:
-> +          Input port node, describing the Image Processing module connected to the
-> +          CSI-2 receiver.
+[7/7] dt-bindings: firmware: document Qualcomm SM6115 SCM
+      commit: f2567b732b0aa2160228a956e0c2007feaeb4b64
 
-Both ports should be mandatory as they exist at the hardware level.
-Connections (through endpoints) are optional.
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - interrupt-names
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - reset-names
-> +  - power-domains
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  # Device node example with CSI-2
-> +  - |
-> +    #include <dt-bindings/clock/r9a07g044-cpg.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    cru: video@10830000 {
-> +            compatible = "renesas,r9a07g044-cru", "renesas,rzg2l-cru";
-> +            reg = <0x10830000 0x400>;
-> +            interrupts = <GIC_SPI 167 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 168 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 169 IRQ_TYPE_LEVEL_HIGH>;
-> +            interrupt-names = "image_conv", "image_conv_err", "axi_mst_err";
-> +            clocks = <&cpg CPG_MOD R9A07G044_CRU_VCLK>,
-> +                     <&cpg CPG_MOD R9A07G044_CRU_PCLK>,
-> +                     <&cpg CPG_MOD R9A07G044_CRU_ACLK>;
-> +            clock-names = "vclk", "pclk", "aclk";
-> +            power-domains = <&cpg>;
-> +            resets = <&cpg R9A07G044_CRU_PRESETN>,
-> +                     <&cpg R9A07G044_CRU_ARESETN>;
-> +            reset-names = "presetn", "aresetn";
-> +
-> +            ports {
-> +                    #address-cells = <1>;
-> +                    #size-cells = <0>;
-> +
-> +                    port@1 {
-> +                            #address-cells = <1>;
-> +                            #size-cells = <0>;
-> +
-> +                            reg = <1>;
-> +
-> +                            crucsi2: endpoint@0 {
-> +                                    reg = <0>;
-> +                                    remote-endpoint= <&csi2cru>;
-> +                            };
-> +                    };
-> +            };
-> +    };
-
+Best regards,
 -- 
-Regards,
-
-Laurent Pinchart
+Bjorn Andersson <andersson@kernel.org>
