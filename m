@@ -2,75 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C65CD5A542D
-	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 20:47:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C35295A543C
+	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 20:56:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229653AbiH2SrA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Aug 2022 14:47:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37438 "EHLO
+        id S229593AbiH2S4J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Aug 2022 14:56:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229786AbiH2Sq6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 14:46:58 -0400
-Received: from smtp-fw-33001.amazon.com (smtp-fw-33001.amazon.com [207.171.190.10])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1A407F248;
-        Mon, 29 Aug 2022 11:46:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1661798818; x=1693334818;
-  h=message-id:date:mime-version:to:cc:references:from:
-   in-reply-to:content-transfer-encoding:subject;
-  bh=kWXrMWoxMKnXgpeIogynQ/syzVdwWbA9O/ME+kKgv98=;
-  b=i5bTBg1S4Y5C/VbztFAotyDSUIlnihntbNL+EUHF9yjReDygrENLj9+T
-   OMpqOt0nZfkHSWXYG3YISJHVPF+vdebsx+xb6miL4DcNPXR+ryFPDqBj/
-   gMTOKwEj7s/t7h5PnQAW83+h+x5zYs7QV0CXR5do4XWE3Nxt4Rt8riwJj
-   I=;
-X-IronPort-AV: E=Sophos;i="5.93,273,1654560000"; 
-   d="scan'208";a="221791250"
-Subject: Re: [PATCH v2 13/16] hwmon: (mr75203) add thermal coefficient properties for
- Moortec PVT controller
-Received: from iad12-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-iad-1e-fc41acad.us-east-1.amazon.com) ([10.43.8.6])
-  by smtp-border-fw-33001.sea14.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Aug 2022 18:46:44 +0000
-Received: from EX13MTAUWA001.ant.amazon.com (iad12-ws-svc-p26-lb9-vlan3.iad.amazon.com [10.40.163.38])
-        by email-inbound-relay-iad-1e-fc41acad.us-east-1.amazon.com (Postfix) with ESMTPS id C59E1C08ED;
-        Mon, 29 Aug 2022 18:46:40 +0000 (UTC)
-Received: from EX19D013UWA001.ant.amazon.com (10.13.138.253) by
- EX13MTAUWA001.ant.amazon.com (10.43.160.118) with Microsoft SMTP Server (TLS)
- id 15.0.1497.38; Mon, 29 Aug 2022 18:46:40 +0000
-Received: from EX13MTAUWB001.ant.amazon.com (10.43.161.207) by
- EX19D013UWA001.ant.amazon.com (10.13.138.253) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1118.12;
- Mon, 29 Aug 2022 18:46:40 +0000
-Received: from [192.168.93.244] (10.85.143.174) by mail-relay.amazon.com
- (10.43.161.249) with Microsoft SMTP Server id 15.0.1497.38 via Frontend
- Transport; Mon, 29 Aug 2022 18:46:33 +0000
-Message-ID: <ae479eb4-5367-b688-4084-6bf2ded90a5f@amazon.com>
-Date:   Mon, 29 Aug 2022 21:46:32 +0300
+        with ESMTP id S229484AbiH2S4I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 14:56:08 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 650F87CB76;
+        Mon, 29 Aug 2022 11:56:05 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7F9F461345;
+        Mon, 29 Aug 2022 18:56:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E27BFC433C1;
+        Mon, 29 Aug 2022 18:56:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1661799363;
+        bh=TamrP8iZ3a/vwgNl6jeDj9HDRxUSmknwoJjwZBLDgZY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=KQSQvxsbeIzLLxiwlVjxFLR3ADrZcGpYgb0rnA2Gj7j9j3KfTgZgKN4g+/UhIvJMO
+         SOLXQwI7NIbj+ZS3tgc0smVXv1AX9v5oZzhjASP/JoZRo+vJmIms3LQhRczoIzZDGg
+         8uAtSEpbdBeKpaXA2DKuVdckUbKt5q9r7YAkguWMBM1D8I7V/sHkis490ERcpUYMfN
+         8FudKRGCp3jqO4TLZ4XywvXiKpWcae3MAYoJ4ULv210JBOxg3D5RPNtgETYiq8lW+7
+         1he/aZaCwwmgF5VySnbOYmFP/5FUowYnvS2YMvq/O8pC7Kahhi8Yafg3O+OWcAw1Cm
+         3ZL8Vw8VmBGgw==
+Received: by mail-vs1-f48.google.com with SMTP id n125so9263960vsc.5;
+        Mon, 29 Aug 2022 11:56:03 -0700 (PDT)
+X-Gm-Message-State: ACgBeo3bFoEieJgvVV/IUFUY+z4d9DsyzzEOYKjsa85EUgpARwM9sgng
+        d51AJ2KxSgZksPhOuYBrX4g5J2g2E6g9lcUIJQ==
+X-Google-Smtp-Source: AA6agR6grX62i/E7StDauHsP3fBx3+bPYIqqhnUmd09JKq60dD7onEKO6KegzCgQzwWjRmCEa5WeupJu32B4Li6Aoes=
+X-Received: by 2002:a05:6102:3353:b0:38c:9170:a96b with SMTP id
+ j19-20020a056102335300b0038c9170a96bmr4295635vse.26.1661799362886; Mon, 29
+ Aug 2022 11:56:02 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.0
-Content-Language: en-US
-To:     Guenter Roeck <linux@roeck-us.net>
-CC:     <jdelvare@suse.com>, <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <talel@amazon.com>,
-        <hhhawa@amazon.com>, <jonnyc@amazon.com>, <hanochu@amazon.com>,
-        <ronenk@amazon.com>, <itamark@amazon.com>, <shellykz@amazon.com>,
-        <shorer@amazon.com>, <amitlavi@amazon.com>, <almogbs@amazon.com>,
-        <dwmw@amazon.co.uk>, <rtanwar@maxlinear.com>,
-        "Farber, Eliav" <farbere@amazon.com>
-References: <20220817054321.6519-1-farbere@amazon.com>
- <20220817054321.6519-14-farbere@amazon.com>
- <20220818202531.GA3431466@roeck-us.net>
- <58a79e41-4d20-0e30-cecd-4ca37dd3dbfd@amazon.com>
- <20220822162519.GC4098765@roeck-us.net>
-From:   "Farber, Eliav" <farbere@amazon.com>
-In-Reply-To: <20220822162519.GC4098765@roeck-us.net>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-11.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_SPF_WL autolearn=ham
+References: <20220828154904.20477-1-farbere@amazon.com> <20220828154904.20477-2-farbere@amazon.com>
+In-Reply-To: <20220828154904.20477-2-farbere@amazon.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 29 Aug 2022 13:55:51 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqL1UAM80wydnq7hjsKB1zO9tE_Xnba8U3KjDiFY157TOA@mail.gmail.com>
+Message-ID: <CAL_JsqL1UAM80wydnq7hjsKB1zO9tE_Xnba8U3KjDiFY157TOA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: at24: add new optional power-supply property
+To:     Eliav Farber <farbere@amazon.com>
+Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Linux I2C <linux-i2c@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Talel Shenhar <talel@amazon.com>,
+        "Hawa, Hanna" <hhhawa@amazon.com>,
+        Jonathan Chocron <jonnyc@amazon.com>,
+        "Hanoch, Uri" <hanochu@amazon.com>,
+        "Krupnik, Ronen" <ronenk@amazon.com>, itamark@amazon.com,
+        shellykz@amazon.com, shorer@amazon.com, amitlavi@amazon.com,
+        almogbs@amazon.com, dkl@amazon.com,
+        "Woodhouse, David" <dwmw@amazon.co.uk>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,33 +74,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/22/2022 7:25 PM, Guenter Roeck wrote:
-> On Mon, Aug 22, 2022 at 04:24:20PM +0300, Farber, Eliav wrote:
->> On 8/18/2022 11:25 PM, Guenter Roeck wrote:
->> > On Wed, Aug 17, 2022 at 05:43:18AM +0000, Eliav Farber wrote:
->> > > Add optional "ts-coeff-g", "ts-coeff-h", "ts-coeff-cal5" and
->> > > "ts-coeff-j" properties to be used instead of defaults for the
->> > > thermal equasion.
->> > >
->> > Vendor prefix again, and shouldn;t there be some note about the
->> > to-be-used defaults ?
->> Can you please explain why to add a vendor prefix to these properties
->> (and also to all other properties I added in this series)?
->> All the properties I added are not specific to our SOC, and any other
->> vendor using the same mr75203 ip block in their SOC, can also use the 
->> new
->> properties.
+On Sun, Aug 28, 2022 at 10:49 AM Eliav Farber <farbere@amazon.com> wrote:
 >
-> To me it seems that the properties are very mr75203 and thus vendor
-> specific.
+> Boards using the AT24 EEPROMs might have a GPIO that controls the power
+> supply of the chip, and it must be set to enable the usage of it.
 >
-> However, I am not a DT maintainer. Stepping back to let DT maintainers
-> respond and state their preferences.
+> Add a new optional property to the device tree binding document, which
+> allows to specify a GPIO regulator for the pin that controls the power.
+>
+> On Linux this means that we need to enable the GPIO at the beginning of
+> probe function, before trying to access the chip.
+>
+> Signed-off-by: Eliav Farber <farbere@amazon.com>
+> ---
+> V2 -> V3:
+> Apply on top of v6.0-rc1
+>
+>  Documentation/devicetree/bindings/eeprom/at24.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/eeprom/at24.yaml b/Documentation/devicetree/bindings/eeprom/at24.yaml
+> index d14e0accbda8..82f0046f67a9 100644
+> --- a/Documentation/devicetree/bindings/eeprom/at24.yaml
+> +++ b/Documentation/devicetree/bindings/eeprom/at24.yaml
+> @@ -179,6 +179,10 @@ properties:
+>      description:
+>        phandle of the regulator that provides the supply voltage.
+>
+> +  power-supply:
 
-I added "moortec" prefix to all the new properties I added in this
-series.
-Will be part of v3.
+The datasheets I looked at say the supply name is 'VCC', so vcc-supply.
 
---
-Thanks, Eliav
+> +    description:
+> +      phandle of the gpio regulator that provides the supply voltage.
 
+What the connection is is outside the scope of the binding. IOW, it
+might not be a GPIO controlled regulator. So drop the description.
+
+> +
+>  required:
+>    - compatible
+>    - reg
+> --
+> 2.37.1
+>
