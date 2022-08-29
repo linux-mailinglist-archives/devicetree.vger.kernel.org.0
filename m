@@ -2,106 +2,337 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D221F5A466A
-	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 11:48:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C53E5A4690
+	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 11:57:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229616AbiH2JsW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Aug 2022 05:48:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60170 "EHLO
+        id S229687AbiH2J5C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Aug 2022 05:57:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229630AbiH2JsV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 05:48:21 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D43C5D135
-        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 02:48:14 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id m16so9427695wru.9
-        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 02:48:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:to:from:user-agent
-         :references:from:to:cc;
-        bh=yviMMnGD2NIBrfVD3zjnDAjWREiyBqmeaA8vluhbBlM=;
-        b=MYtv7NXErfomVhACj4CvcivN5wiwJFqlN/QkD3Svj6b+WfT5ZQsEZdIQtNq5LdrJFa
-         RMPVkYu7i4Ao/HAeEVdQI/hPwa0SOR7tS0YwhsxrvZMUfdd5jz1tEnycF0VAGFJgXxZt
-         4r2zyWzIvXrnVb4vivTUZvwWkFML9pIjnCB3FoRM9Y8V3Q4X+hXchhnV8fEF+FRyh9kg
-         4sfg6zLbTCqB391xVq4TU4s50ywE5qP/MQb03XMu2ewstmrrh316bKCwTNEJCmLNEYnk
-         T0pV9Gz12E8gxs2Whz60vjZwFASEgdbJ+FM+vYHtNiJgXjTwNesDLcFAzehwL4QQyY1v
-         sAcg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:to:from:user-agent
-         :references:x-gm-message-state:from:to:cc;
-        bh=yviMMnGD2NIBrfVD3zjnDAjWREiyBqmeaA8vluhbBlM=;
-        b=5L/bRNTK71hxBxc4pJ8Dz5q7ruMZE93oK2vjCLYLVK1tcUbi76jqD6C8EUOMiEdVla
-         OIfCjApMIExqke4e4evUZns/bdYsM9bDGrrBOXU0QXxehNIID6PPJ6ja0CxMu1WjcP/C
-         q+LMbg6YenlCG76K9Sb6b/QKb+Ew/SfXvtmrsQQsBhIS8AufmPyHzuCVQ3PnOBxS8eZy
-         FrXut3GPOpeLTYckD1tmCrb6bvVCuqT/Ra17g01eQpswoOqJSQ6fKpDfCeA3mfG5Elo5
-         zGjudO2trWT4LC7C8abH89qgUSsmQht88cfwiNCiFqSYkPvpFCJ+4sNZS+Ucv+PyO8qo
-         6ztQ==
-X-Gm-Message-State: ACgBeo2V9bUvjAj+Nr5PQvP1l60XHr6VozKdc2oin1A58jt7YjSNqUr1
-        ve4agt8HsWIzy+PwLC24sha41g==
-X-Google-Smtp-Source: AA6agR5lYEMVig3bo2NMgSo95EVg/KNxIK82zRJNlw7Kiy2jmOtoTniZzwOoPGDhG5XQe7+GIZSwaA==
-X-Received: by 2002:adf:ea91:0:b0:226:dce6:c344 with SMTP id s17-20020adfea91000000b00226dce6c344mr1354957wrm.3.1661766492719;
-        Mon, 29 Aug 2022 02:48:12 -0700 (PDT)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id bd22-20020a05600c1f1600b003a8436e2a94sm4385979wmb.16.2022.08.29.02.48.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Aug 2022 02:48:12 -0700 (PDT)
-References: <20220805085716.5635-1-yu.tu@amlogic.com>
- <20220805085716.5635-4-yu.tu@amlogic.com>
- <1jiln0yzgj.fsf@starbuckisacylon.baylibre.com>
- <ed4038fb-c230-fc27-800c-c99bd1770a1c@amlogic.com>
-User-agent: mu4e 1.8.7; emacs 28.1
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH V3 3/6] clk: meson: S4: add support for Amlogic S4 SoC
- PLL clock driver
-Date:   Mon, 29 Aug 2022 11:46:20 +0200
-In-reply-to: <ed4038fb-c230-fc27-800c-c99bd1770a1c@amlogic.com>
-Message-ID: <1jwnartm78.fsf@starbuckisacylon.baylibre.com>
+        with ESMTP id S229663AbiH2J5B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 05:57:01 -0400
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 537015EDC3;
+        Mon, 29 Aug 2022 02:56:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1661767018; x=1693303018;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ApEJEqVmn8ds7J7rifKwOfp8OKvwLFeIMQbTX1DLLfU=;
+  b=MB5uMayExZhEEQcKhPtPhWMZx5QfjbJ0pbwm0oekz158CpjIQWJGDODo
+   YRg6H/6RBWv6xgWwsGzRmkqLHP9ahCUfv/VtlPJEM4b6q1epB0/WjIN58
+   VRZzg7ZHlvnHIBN81MMXZWjTTpppxYwopsRra1CTVnFpuKWC7cQDG/q/8
+   Pw8DK2oe6X8xj0XvxDc/1eXJJFtdk19XdnV8N3sT0T5ZCI2Z2oS4QdKb8
+   2mJlRKDSj7459lLG3oCbTfhdlpAySrMhLLUyN6c0h5vgKdY5WltdhgpPh
+   pg1hGjfcV2kv0lQdko+NILK/E0WnUxtgBXpIN8HlCRW+xN4y4G7O7BSO2
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10453"; a="320977757"
+X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; 
+   d="scan'208";a="320977757"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Aug 2022 02:56:58 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; 
+   d="scan'208";a="640878763"
+Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
+  by orsmga008.jf.intel.com with ESMTP; 29 Aug 2022 02:56:55 -0700
+Date:   Mon, 29 Aug 2022 17:47:37 +0800
+From:   Xu Yilun <yilun.xu@intel.com>
+To:     Johannes Zink <j.zink@pengutronix.de>
+Cc:     linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Moritz Fischer <mdf@kernel.org>, Wu Hao <hao.wu@intel.com>,
+        kernel@pengutronix.de
+Subject: Re: [PATCH 16/16] fpga: machxo2: add configuration over i2c
+Message-ID: <YwyLOSKy6kUFsFOB@yilunxu-OptiPlex-7050>
+References: <20220825141343.1375690-1-j.zink@pengutronix.de>
+ <20220825141343.1375690-17-j.zink@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220825141343.1375690-17-j.zink@pengutronix.de>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 2022-08-25 at 16:13:43 +0200, Johannes Zink wrote:
+> From: Peter Jensen <pdj@bang-olufsen.dk>
+> 
+> The configuration flash of the machxo2 fpga can also be erased and
+> written over i2c instead of spi. Add this functionality to the
+> refactored common driver. Since some commands are shorter over I2C than
+> they are over SPI some quirks are added to the common driver in order to
+> account for that.
+> 
+> Signed-off-by: Peter Jensen <pdj@bang-olufsen.dk>
+> Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+> Signed-off-by: Johannes Zink <j.zink@pengutronix.de>
+> ---
+>  drivers/fpga/Kconfig          |   8 ++
+>  drivers/fpga/Makefile         |   1 +
+>  drivers/fpga/machxo2-common.c |  15 +++-
+>  drivers/fpga/machxo2-common.h |   3 +
+>  drivers/fpga/machxo2-i2c.c    | 137 ++++++++++++++++++++++++++++++++++
+>  5 files changed, 163 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/fpga/machxo2-i2c.c
+> 
+> diff --git a/drivers/fpga/Kconfig b/drivers/fpga/Kconfig
+> index e5869a732246..97081bbd7c19 100644
+> --- a/drivers/fpga/Kconfig
+> +++ b/drivers/fpga/Kconfig
+> @@ -90,6 +90,14 @@ config FPGA_MGR_MACHXO2_SPI
+>  	  FPGA manager driver support for Lattice MachXO2 configuration
+>  	  over slave SPI interface.
+>  
+> +config FPGA_MGR_MACHXO2_I2C
+> +	tristate "Lattice MachXO2 I2C"
+> +	depends on I2C
+> +	select FPGA_MGR_MACHXO2_COMMON
+> +	help
+> +	  FPGA manager driver support for Lattice MachXO2 configuration
+> +	  over slave I2C interface.
+> +
+>  config FPGA_MGR_TS73XX
+>  	tristate "Technologic Systems TS-73xx SBC FPGA Manager"
+>  	depends on ARCH_EP93XX && MACH_TS72XX
+> diff --git a/drivers/fpga/Makefile b/drivers/fpga/Makefile
+> index f247a8de83ad..fcdf79f4d424 100644
+> --- a/drivers/fpga/Makefile
+> +++ b/drivers/fpga/Makefile
+> @@ -12,6 +12,7 @@ obj-$(CONFIG_FPGA_MGR_ALTERA_PS_SPI)	+= altera-ps-spi.o
+>  obj-$(CONFIG_FPGA_MGR_ICE40_SPI)	+= ice40-spi.o
+>  obj-$(CONFIG_FPGA_MGR_MACHXO2_COMMON)	+= machxo2-common.o
+>  obj-$(CONFIG_FPGA_MGR_MACHXO2_SPI)	+= machxo2-spi.o
+> +obj-$(CONFIG_FPGA_MGR_MACHXO2_I2C)	+= machxo2-i2c.o
+>  obj-$(CONFIG_FPGA_MGR_SOCFPGA)		+= socfpga.o
+>  obj-$(CONFIG_FPGA_MGR_SOCFPGA_A10)	+= socfpga-a10.o
+>  obj-$(CONFIG_FPGA_MGR_STRATIX10_SOC)	+= stratix10-soc.o
+> diff --git a/drivers/fpga/machxo2-common.c b/drivers/fpga/machxo2-common.c
+> index e8967cdee2c6..0a3c126675da 100644
+> --- a/drivers/fpga/machxo2-common.c
+> +++ b/drivers/fpga/machxo2-common.c
+> @@ -100,7 +100,7 @@ static void dump_status_reg(struct device *dev, u32 status)
+>  		!!FIELD_GET(MACHXO2_DVER, status), get_err_string(get_err(status)));
+>  }
+>  
+> -static int machxo2_wait_until_not_busy(struct machxo2_common_priv *priv)
+> +int machxo2_wait_until_not_busy(struct machxo2_common_priv *priv)
+>  {
+>  	u32 status;
+>  	int ret, loop = 0;
+> @@ -143,6 +143,11 @@ static int machxo2_cleanup(struct fpga_manager *mgr)
+>  	cmd.cmd = refresh;
+>  	cmd.cmd_len = sizeof(refresh);
+>  	cmd.delay_us = MACHXO2_REFRESH_USEC;
+> +
+> +	/* quirk: refresh command over i2c is 1 byte shorter */
+> +	if (priv->refresh_3b)
+> +		cmd.cmd_len--;
+> +
+>  	ret = priv->write_commands(priv, &cmd, 1);
+>  	if (ret)
+>  		goto fail;
+> @@ -207,6 +212,10 @@ static int machxo2_write_init(struct fpga_manager *mgr,
+>  	cmd[0].cmd_len = sizeof(enable);
+>  	cmd[0].delay_us = MACHXO2_LOW_DELAY_USEC;
+>  
+> +	/* quirk: enable command over i2c is 1 byte shorter */
+> +	if (priv->enable_3b)
+> +		cmd[0].cmd_len--;
+> +
+>  	cmd[1].cmd = (u8 *)&priv->erase_cmd;
+>  	cmd[1].cmd_len = sizeof(priv->erase_cmd);
+>  
+> @@ -313,6 +322,10 @@ static int machxo2_write_complete(struct fpga_manager *mgr,
+>  	cmd.cmd_len = sizeof(refresh);
+>  	cmd.delay_us = MACHXO2_REFRESH_USEC;
+>  
+> +	/* quirk: refresh command over i2c is 1 byte shorter */
+> +	if (priv->refresh_3b)
+> +		cmd.cmd_len--;
+> +
+>  	do {
+>  		ret = priv->write_commands(priv, &cmd, 1);
+>  		if (ret)
+> diff --git a/drivers/fpga/machxo2-common.h b/drivers/fpga/machxo2-common.h
+> index 0f9f53b48152..8c09345adee5 100644
+> --- a/drivers/fpga/machxo2-common.h
+> +++ b/drivers/fpga/machxo2-common.h
+> @@ -32,9 +32,12 @@ struct machxo2_common_priv {
+>  	int (*get_status)(struct machxo2_common_priv *priv, u32 *status);
+>  	struct device *dev;
+>  	__be32 erase_cmd;
+> +	u8 enable_3b:1;
+> +	u8 refresh_3b:1;
+>  	struct gpio_desc *fpga_program_n;
+>  };
+>  
+>  int machxo2_common_init(struct machxo2_common_priv *priv, struct device *dev);
+> +int machxo2_wait_until_not_busy(struct machxo2_common_priv *priv);
+>  
+>  #endif
+> diff --git a/drivers/fpga/machxo2-i2c.c b/drivers/fpga/machxo2-i2c.c
+> new file mode 100644
+> index 000000000000..a309016def1c
+> --- /dev/null
+> +++ b/drivers/fpga/machxo2-i2c.c
+> @@ -0,0 +1,137 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Lattice MachXO2 Slave I2C Driver
+> + *
+> + * Manage Lattice FPGA firmware that is loaded over I2C using
+> + * the slave serial configuration interface.
+> + *
+> + * Copyright (C) 2018 Paolo Pisati <p.pisati@gmail.com>
+> + * Copyright (C) 2021 Peter Jensen <pdj@bang-olufsen.dk>
+> + */
+> +
+> +#include <linux/i2c.h>
+> +#include <linux/container_of.h>
+> +#include <linux/delay.h>
+> +#include "machxo2-common.h"
+> +
+> +
+> +struct machxo2_i2c_priv {
+> +	struct machxo2_common_priv common;
+> +	struct i2c_client *client;
+> +};
+> +
+> +static inline struct machxo2_i2c_priv *to_machxo2_i2c_priv(struct machxo2_common_priv *common)
+> +{
+> +	return container_of(common, struct machxo2_i2c_priv, common);
+> +}
+> +
+> +static int machxo2_i2c_get_status(struct machxo2_common_priv *bus, u32 *status)
+> +{
+> +	struct machxo2_i2c_priv *i2cPriv = to_machxo2_i2c_priv(bus);
+> +	struct i2c_client *client = i2cPriv->client;
+> +	u8 read_status[] = LSC_READ_STATUS;
 
-On Mon 15 Aug 2022 at 14:34, Yu Tu <yu.tu@amlogic.com> wrote:
+The command word could also be bus agnostic. I think a callback like
+write_then_read(bus, txbuf, n_tx, rxbuf, n_rx) could be a better
+abstraction.
 
-> Hi Jerome,
->
-> On 2022/8/10 21:47, Jerome Brunet wrote:
->> [ EXTERNAL EMAIL ]
->> On Fri 05 Aug 2022 at 16:57, Yu Tu <yu.tu@amlogic.com> wrote:
->> */
+> +	__be32 tmp;
+> +	int ret;
+> +	struct i2c_msg msg[] = {
+> +		{
+> +			.addr = client->addr,
+> +			.flags = 0,
+> +			.buf = read_status,
+> +			.len = ARRAY_SIZE(read_status),
+> +		}, {
+> +			.addr = client->addr,
+> +			.flags = I2C_M_RD,
+> +			.buf = (u8 *) &tmp,
+> +			.len = sizeof(tmp)
+> +		}
+> +	};
+> +
+> +	ret = i2c_transfer(client->adapter, msg, ARRAY_SIZE(msg));
+> +	if (ret < 0)
+> +		return ret;
+> +	if (ret != ARRAY_SIZE(msg))
+> +		return -EIO;
+> +	*status = be32_to_cpu(tmp);
+> +
+> +	return 0;
+> +}
+> +
+> +static int machxo2_i2c_write(struct machxo2_common_priv *common,
+> +			     struct machxo2_cmd *cmds, size_t cmd_count)
+> +{
+> +	struct machxo2_i2c_priv *i2c_priv = to_machxo2_i2c_priv(common);
+> +	struct i2c_client *client = i2c_priv->client;
+> +	size_t i;
+> +	int ret;
+> +
+> +	for (i = 0; i < cmd_count; i++) {
+> +		struct i2c_msg msg[] = {
+> +			{
+> +				.addr = client->addr,
+> +				.buf = cmds[i].cmd,
+> +				.len = cmds[i].cmd_len,
+> +			},
+> +		};
+> +
+> +		ret = i2c_transfer(client->adapter, msg, ARRAY_SIZE(msg));
+> +		if (ret < 0)
+> +			return ret;
+> +		if (ret != ARRAY_SIZE(msg))
+> +			return -EIO;
+> +		if (cmds[i].delay_us)
+> +			usleep_range(cmds[i].delay_us, cmds[i].delay_us +
+> +				     cmds[i].delay_us / 4);
+> +		if (i < cmd_count - 1) /* on any iteration except for the last one... */
+> +			ret = machxo2_wait_until_not_busy(common);
 
-[... ]
+Seems no need to implement the loop and wait in transportation layer,
+they are common. A callback like write(bus, txbuf, n_tx) is better?
 
->>> +#define ANACTRL_FIXPLL_CTRL0                       (0x0010 << 2)
->> I already commented on the "<< 2" . Remove them please.
-> Sorry, maybe I didn't pay attention to this comment earlier. A little bit
-> of a question why is this not okay? I understand isn't it better for the
-> compiler to help with this calculation itself?
+Thanks,
+Yilun
 
-Because it is aweful to read
-
-Also please trim your replies.
-It is a bit annoying to search for your comments in the replies
-
-
-
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int machxo2_i2c_probe(struct i2c_client *client,
+> +			const struct i2c_device_id *id)
+> +{
+> +	struct device *dev = &client->dev;
+> +	struct machxo2_i2c_priv *priv;
+> +
+> +	priv = devm_kzalloc(dev, sizeof(struct machxo2_i2c_priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	priv->client = client;
+> +	priv->common.get_status = machxo2_i2c_get_status;
+> +	priv->common.write_commands = machxo2_i2c_write;
+> +
+> +	/* Commands are usually 4b, but these aren't for i2c */
+> +	priv->common.enable_3b = true;
+> +	priv->common.refresh_3b = true;
+> +
+> +	return machxo2_common_init(&priv->common, dev);
+> +}
+> +
+> +static const struct of_device_id of_match[] = {
+> +	{ .compatible = "lattice,machxo2-slave-i2c", },
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(of, of_match);
+> +
+> +static const struct i2c_device_id lattice_ids[] = {
+> +	{ "machxo2-slave-i2c", 0 },
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(i2c, lattice_ids);
+> +
+> +static struct i2c_driver machxo2_i2c_driver = {
+> +	.driver = {
+> +		.name = "machxo2-slave-i2c",
+> +		.of_match_table = of_match_ptr(of_match),
+> +	},
+> +	.probe = machxo2_i2c_probe,
+> +	.id_table = lattice_ids,
+> +};
+> +
+> +module_i2c_driver(machxo2_i2c_driver);
+> +
+> +MODULE_AUTHOR("Peter Jensen <pdj@bang-olufsen.dk>");
+> +MODULE_DESCRIPTION("Load Lattice FPGA firmware over I2C");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.30.2
+> 
