@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BB3A5A5223
-	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 18:50:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F51E5A5225
+	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 18:50:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229934AbiH2QuY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Aug 2022 12:50:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39966 "EHLO
+        id S229992AbiH2Qu0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Aug 2022 12:50:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229748AbiH2QuU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 12:50:20 -0400
-Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 100734E623
-        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 09:50:19 -0700 (PDT)
-Received: by mail-pg1-x52a.google.com with SMTP id r22so8200315pgm.5
-        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 09:50:19 -0700 (PDT)
+        with ESMTP id S229579AbiH2QuW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 12:50:22 -0400
+Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7BF361D59
+        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 09:50:20 -0700 (PDT)
+Received: by mail-pf1-x42d.google.com with SMTP id 142so8746086pfu.10
+        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 09:50:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=9W9NsQUbz7AavjIDVz3BLDZG1GcuJCI43e/2DHtW2Y0=;
-        b=ht5+HjIYWz4mvtqaU4uf/mWFrg2hKAMlh6K/v8r52ZJa0oOrP2weoPFbV0SZ/SObnt
-         ywW0rBWAxRY4FXH1FpwW/w+MR02Ff5J0c760h6rOEUMqnTULT6DtgO5/cT+wm3GsXSV0
-         hMr5LnIxgHq7KS1O/iXKj4zPRW3vNoZ/xECRE=
+        bh=19oJyst1cXhX6ExrR+4lzX9FM+Aou98SW9ohKM60LiE=;
+        b=FdwePFKjyhAG2YJEV2p+eSvD9wAlfIXs+xt3A2gYuxH8ASej4TPnhf2V5z3S7jXTNY
+         ymKKBFCJV+4lva7k6btjMrpOpWfBY+osD1B7gWEfaRXUKPjDRrX9E+A+5n/QmmJltPtJ
+         dnFJrESa/htd5+ntnX+GgIVsuCWMi1ltmFcmU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=9W9NsQUbz7AavjIDVz3BLDZG1GcuJCI43e/2DHtW2Y0=;
-        b=MxE8WVAkbFxx55HNMfl3mRvqZ6pvHm8dOBl6OHX/cCr+4RNf8D6cnik7YVmLFmJ9Ls
-         6/XHcbaGMTgMO6mhotx0ojBfgac3qRVA18Aa9OmJr4eSPy89/Z8EineNGUfAr6cLuCiq
-         YbIgbhUnyVAplaLXLbBEBlH+nGHTG6Ukf3mQs4OprXrK5aWgBqj9aqeHDkmxD9BkVH1t
-         Is/8XBw7pHgzdChLrr9/ITO+KRWNpt2eMNR4uDcv4oZDAu0VkfOo0T96tsSgcyMBsaLd
-         aLY5fCYQq9WvX1avBTeLLjqSuU7QK3hBiVutRDBe1f9k0Lh9El96YDEwAO76yjjDRTkj
-         ntnw==
-X-Gm-Message-State: ACgBeo2YFlv91LUzxlIWMR3U8UNT7oiR6hK6mhKEii585r6oNMCRyVa+
-        UHjaElEyJdeDY2ViUh16gr+Rwg==
-X-Google-Smtp-Source: AA6agR5AqZJZaSTtizeBZ9ngSnj9GjAhvUxOaHQpix0O57qZk+CRLhrsw+lkhaf51mA7ZC5xypbA7A==
-X-Received: by 2002:a63:334f:0:b0:42b:15a6:826a with SMTP id z76-20020a63334f000000b0042b15a6826amr14486037pgz.14.1661791818594;
-        Mon, 29 Aug 2022 09:50:18 -0700 (PDT)
+        bh=19oJyst1cXhX6ExrR+4lzX9FM+Aou98SW9ohKM60LiE=;
+        b=vMfVAejD7AUvuVX0m/bJ6LZLwQ45iADWUNr9bPI9d1GJwCKIup0YOQw1ikrXoewVtm
+         U9buxP2Dh4DtK9TfuMH3XvBanof92j4Arw1xJ77zwJAQ+Av7Q2Tc6kZEsGboEqCLE0xD
+         Z6C92z6g8SeLzVlR71uZ8RtpgyKEymN+0L3vksb5leuPbjmIBt5/qX0f+vb+VqKVQ8dD
+         XmxmL4RClkCpL+8fnB3k4xj6v824JumeCCaxc6Dvd7AfH0Abp5ODcG7GnZxOZpgumlem
+         gd9RsfcnEtKBpsNKsLRmZKtd+txagzW6FvydrQAaf7KizsqPsNWqqXmdW5cZGQ7Qc3ZH
+         MKyQ==
+X-Gm-Message-State: ACgBeo2xuIWA5xM763RW/QYVWa+RamIJeymzwGHpglgVL7NyH+mj8js6
+        X3zaw5PkBwwwUlJfnOeT33oVQQ==
+X-Google-Smtp-Source: AA6agR7wP/U/djs4TOG4BcQegSxHOfMHn/NiIKogfPKTanFruFSM5vbVqZ4vop+1Fm/kzKbn+eW8Ww==
+X-Received: by 2002:a63:40e:0:b0:42b:890d:594e with SMTP id 14-20020a63040e000000b0042b890d594emr11792368pge.331.1661791820217;
+        Mon, 29 Aug 2022 09:50:20 -0700 (PDT)
 Received: from tictac2.mtv.corp.google.com ([2620:15c:202:201:3a97:5017:7e33:8964])
-        by smtp.gmail.com with ESMTPSA id l1-20020a170902f68100b001729db603bcsm7864238plg.126.2022.08.29.09.50.17
+        by smtp.gmail.com with ESMTPSA id l1-20020a170902f68100b001729db603bcsm7864238plg.126.2022.08.29.09.50.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Aug 2022 09:50:18 -0700 (PDT)
+        Mon, 29 Aug 2022 09:50:19 -0700 (PDT)
 From:   Douglas Anderson <dianders@chromium.org>
 To:     Bjorn Andersson <bjorn.andersson@linaro.org>
 Cc:     Johan Hovold <johan@kernel.org>,
@@ -56,9 +56,9 @@ Cc:     Johan Hovold <johan@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/6] arm64: dts: qcom: sa8295p-adp: Specify which LDO modes are allowed
-Date:   Mon, 29 Aug 2022 09:49:48 -0700
-Message-Id: <20220829094903.v2.2.I430a56702ab0af65244e62667bb7743107de0c96@changeid>
+Subject: [PATCH v2 3/6] arm64: dts: qcom: sc8280xp-crd: Specify which LDO modes are allowed
+Date:   Mon, 29 Aug 2022 09:49:49 -0700
+Message-Id: <20220829094903.v2.3.Ie7d2c50d2b42ef2d364f3a0c8e300e5ce1875b79@changeid>
 X-Mailer: git-send-email 2.37.2.672.g94769d06f0-goog
 In-Reply-To: <20220829164952.2672848-1-dianders@chromium.org>
 References: <20220829164952.2672848-1-dianders@chromium.org>
@@ -88,43 +88,23 @@ Let's re-enable the old functionality by fixing the dts.
 
 [1] https://lore.kernel.org/r/20220824142229.RFT.v2.2.I6f77860e5cd98bf5c67208fa9edda4a08847c304@changeid
 
-Fixes: 519183af39b2 ("arm64: dts: qcom: add SA8540P and ADP")
+Fixes: ccd3517faf18 ("arm64: dts: qcom: sc8280xp: Add reference device")
 Signed-off-by: Douglas Anderson <dianders@chromium.org>
 Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
 Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 ---
 
 Changes in v2:
-- Rebased atop ("...: sa8295p-adp: disallow regulator mode switches")
+- Rebased atop ("...: sc8280xp-crd: disallow regulator mode switches")
 
- arch/arm64/boot/dts/qcom/sa8295p-adp.dts | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ arch/arm64/boot/dts/qcom/sc8280xp-crd.dts | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-index ca5f5ad32ce5..5b16ac76fefb 100644
---- a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-+++ b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-@@ -83,6 +83,9 @@ vreg_l3c: ldo3 {
- 			regulator-max-microvolt = <1200000>;
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
- 			regulator-allow-set-load;
-+			regulator-allowed-modes =
-+			    <RPMH_REGULATOR_MODE_LPM
-+			     RPMH_REGULATOR_MODE_HPM>;
- 		};
- 
- 		vreg_l4c: ldo4 {
-@@ -98,6 +101,9 @@ vreg_l6c: ldo6 {
- 			regulator-max-microvolt = <1200000>;
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
- 			regulator-allow-set-load;
-+			regulator-allowed-modes =
-+			    <RPMH_REGULATOR_MODE_LPM
-+			     RPMH_REGULATOR_MODE_HPM>;
- 		};
- 
- 		vreg_l7c: ldo7 {
-@@ -113,6 +119,9 @@ vreg_l10c: ldo10 {
+diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
+index fea7d8273ccd..5e30349efd20 100644
+--- a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
++++ b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
+@@ -124,6 +124,9 @@ vreg_l7c: ldo7 {
  			regulator-max-microvolt = <2504000>;
  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
  			regulator-allow-set-load;
@@ -133,17 +113,17 @@ index ca5f5ad32ce5..5b16ac76fefb 100644
 +			     RPMH_REGULATOR_MODE_HPM>;
  		};
  
- 		vreg_l17c: ldo17 {
-@@ -121,6 +130,9 @@ vreg_l17c: ldo17 {
- 			regulator-max-microvolt = <2504000>;
+ 		vreg_l13c: ldo13 {
+@@ -146,6 +149,9 @@ vreg_l3d: ldo3 {
+ 			regulator-max-microvolt = <1200000>;
  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
  			regulator-allow-set-load;
 +			regulator-allowed-modes =
 +			    <RPMH_REGULATOR_MODE_LPM
 +			     RPMH_REGULATOR_MODE_HPM>;
  		};
- 	};
  
+ 		vreg_l4d: ldo4 {
 -- 
 2.37.2.672.g94769d06f0-goog
 
