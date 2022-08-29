@@ -2,78 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 495915A4679
-	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 11:51:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0520E5A46BF
+	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 12:04:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229552AbiH2Jv3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Aug 2022 05:51:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36476 "EHLO
+        id S229619AbiH2KEs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Aug 2022 06:04:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229598AbiH2Jv1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 05:51:27 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63F6D5E32B
-        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 02:51:25 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id k6-20020a05600c1c8600b003a54ecc62f6so4122784wms.5
-        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 02:51:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:in-reply-to:date
-         :subject:to:from:user-agent:references:from:to:cc;
-        bh=tOx2tqybefFHeIMLUW+su+XgGbavJfHYGjEPqAfEtak=;
-        b=RYKk0fDG8yPKxONFHoSpdDlNNVRBa8zF+ikdW+hDUIfh+D0dOUIanORctEiBjEypK8
-         gPTFoc9XdwBgOrXm1/IDyKsi/bdf+i8ThBebydsCJYVUngxxDUhhxQqFL9Yw5WqHE2Qr
-         VihDTL9zqrh2gbyVAic3nQ6VJY4525qfn+LE4e6Ffrok2xQ2wV0T6zykyENEKPcM3ZHB
-         tB4CYIkfgpRkfI8DIK4bHFVtI3oXP1A2ietFu9qDfyfw0S/owqfBFzXp9VfVxC9OBHS6
-         uX1KZG/3Ip8xcIoNrjSjnEmYP+Jgoh6GMpnh+/nj1MsXIrCUy0b0hNTUrOPtoAIwyzBb
-         jb0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:in-reply-to:date
-         :subject:to:from:user-agent:references:x-gm-message-state:from:to:cc;
-        bh=tOx2tqybefFHeIMLUW+su+XgGbavJfHYGjEPqAfEtak=;
-        b=Ymu6oonxX+50E5Y9YzgRIdr89H2/w5W8g1v+EoCpADHndeBv6ewfqGL486SlJ1skVK
-         XTTqo+kIa76nWZZ7wa0kQsc7ey9weHEv/n5mbabrOSrV0jOCG3RtVKb4t93D0n6XpwbW
-         rl5VtRw+1DjrwRIFcUmw1H0yM52Z8g7+89zTTlJirdZLjphaJMaTpvtdWNFPLpU976w7
-         plx2EeNoOQCqUPhKPQGmkxty9/WCaeg9y1oU41I5sLHxiuGu4ijJDqAA+IK1ScgrD+Or
-         ILXLtZVWxSMrjFDJCxRHxbaDZqTNTMM4aB0C9llKz1dsSk7IuJyH9ubtJ2mVXVKgU0O+
-         TLlw==
-X-Gm-Message-State: ACgBeo1/uyKuyQwjJT3eVmCMnPHbtGnV9WeEzTZ06b6Wn9Rxa5Bdyq6z
-        UUA+aQgdnVf02H0ubL7ePJLvVA==
-X-Google-Smtp-Source: AA6agR64cwUPnhx/Tf1ejw/jlZS5h7uLh23KiCPqziDo8ptC4sx4Y1k3FIdRq0G7ItXcWgl0sii7YQ==
-X-Received: by 2002:a05:600c:1e1c:b0:3a5:b668:4e2 with SMTP id ay28-20020a05600c1e1c00b003a5b66804e2mr6401869wmb.112.1661766683496;
-        Mon, 29 Aug 2022 02:51:23 -0700 (PDT)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id e15-20020adffc4f000000b0021e51c039c5sm6498175wrs.80.2022.08.29.02.51.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Aug 2022 02:51:23 -0700 (PDT)
-References: <20220805085716.5635-1-yu.tu@amlogic.com>
- <20220805085716.5635-4-yu.tu@amlogic.com>
- <1jiln0yzgj.fsf@starbuckisacylon.baylibre.com>
- <ed4038fb-c230-fc27-800c-c99bd1770a1c@amlogic.com>
- <4e3cdd6b-5861-8a4f-1df7-af763f77bad5@amlogic.com>
-User-agent: mu4e 1.8.7; emacs 28.1
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH V3 3/6] clk: meson: S4: add support for Amlogic S4 SoC
- PLL clock driver
-Date:   Mon, 29 Aug 2022 11:48:21 +0200
-In-reply-to: <4e3cdd6b-5861-8a4f-1df7-af763f77bad5@amlogic.com>
-Message-ID: <1jsflftm1y.fsf@starbuckisacylon.baylibre.com>
+        with ESMTP id S229490AbiH2KEr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 06:04:47 -0400
+Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7561C4F182;
+        Mon, 29 Aug 2022 03:04:41 -0700 (PDT)
+Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.3ffe.de (Postfix) with ESMTPSA id 1C99838F;
+        Mon, 29 Aug 2022 12:04:39 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
+        t=1661767479;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=vCIErdxtYSs48v8IzFvX4Iwt90EXPm6+TYmgBg9KbBw=;
+        b=x9jrPLve1l3tLiKr84DdJ/XSBTPHTkqiUwKL5ANRrnhHyyd7yRhxcaVjU9g36XlmI4ny2/
+        seE3vX2yFczl11K63REpyr7kegG/cW4jgHEAwwGi8jvrBcNEFai6161Qboa6jiHGW/klJu
+        7DT+tA6hyKb5w47L2wOf21ILsqP3bR7lFJyL2PjRkJ/6SFDoLa89Ag9HrGCqXismm27f30
+        qGJDNKdMmZnG9Tj8470tB9Uro+qxOwm+AfmbvRW3c3ePH5GNENxrmBvpMB+TXg7UQUcMgr
+        XZj99YtAtqZWQ1ksZ1hkzTe+OXE6JHknvbbgxw/CZKpUjlpiPjdd/n13aNYtoQ==
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: base64
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+Date:   Mon, 29 Aug 2022 12:04:38 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+Cc:     Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Pratyush Yadav <pratyush@kernel.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-kernel@vger.kernel.org, saikrishna12468@gmail.com,
+        git@amd.com
+Subject: Re: [PATCH 2/2] mtd: spi-nor: Add support for flash reset
+In-Reply-To: <20220829090528.21613-3-sai.krishna.potthuri@amd.com>
+References: <20220829090528.21613-1-sai.krishna.potthuri@amd.com>
+ <20220829090528.21613-3-sai.krishna.potthuri@amd.com>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <be7f0b7bbb25d86ac079502babbf5f1b@walle.cc>
+X-Sender: michael@walle.cc
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,49 +65,124 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQpPbiBNb24gMTUgQXVnIDIwMjIgYXQgMjE6MjAsIFl1IFR1IDx5dS50dUBhbWxvZ2ljLmNvbT4g
-d3JvdGU6DQoNCj4+Pj4gKw0KPj4+PiArc3RhdGljIHN0cnVjdCBjbGtfcmVnbWFwIHM0X2hkbWlf
-cGxsX2RjbyA9IHsNCj4+Pj4gK8KgwqDCoCAuZGF0YSA9ICYoc3RydWN0IG1lc29uX2Nsa19wbGxf
-ZGF0YSl7DQo+Pj4+ICvCoMKgwqDCoMKgwqDCoCAuZW4gPSB7DQo+Pj4+ICvCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgIC5yZWdfb2ZmID0gQU5BQ1RSTF9IRE1JUExMX0NUUkwwLA0KPj4+PiArwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoCAuc2hpZnTCoMKgID0gMjgsDQo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgIC53aWR0aMKgwqAgPSAxLA0KPj4+PiArwqDCoMKgwqDCoMKgwqAgfSwNCj4+Pj4gK8Kg
-wqDCoMKgwqDCoMKgIC5tID0gew0KPj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAucmVnX29m
-ZiA9IEFOQUNUUkxfSERNSVBMTF9DVFJMMCwNCj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-LnNoaWZ0wqDCoCA9IDAsDQo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC53aWR0aMKgwqAg
-PSA4LA0KPj4+PiArwqDCoMKgwqDCoMKgwqAgfSwNCj4+Pj4gK8KgwqDCoMKgwqDCoMKgIC5uID0g
-ew0KPj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAucmVnX29mZiA9IEFOQUNUUkxfSERNSVBM
-TF9DVFJMMCwNCj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgLnNoaWZ0wqDCoCA9IDEwLA0K
-Pj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAud2lkdGjCoMKgID0gNSwNCj4+Pj4gK8KgwqDC
-oMKgwqDCoMKgIH0sDQo+Pj4+ICvCoMKgwqDCoMKgwqDCoCAuZnJhYyA9IHsNCj4+Pj4gK8KgwqDC
-oMKgwqDCoMKgwqDCoMKgwqAgLnJlZ19vZmYgPSBBTkFDVFJMX0hETUlQTExfQ1RSTDEsDQo+Pj4+
-ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC5zaGlmdMKgwqAgPSAwLA0KPj4+PiArwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoCAud2lkdGjCoMKgID0gMTcsDQo+Pj4+ICvCoMKgwqDCoMKgwqDCoCB9LA0K
-Pj4+PiArwqDCoMKgwqDCoMKgwqAgLmwgPSB7DQo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-IC5yZWdfb2ZmID0gQU5BQ1RSTF9IRE1JUExMX0NUUkwwLA0KPj4+PiArwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoCAuc2hpZnTCoMKgID0gMzEsDQo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC53
-aWR0aMKgwqAgPSAxLA0KPj4+PiArwqDCoMKgwqDCoMKgwqAgfSwNCj4+Pj4gK8KgwqDCoMKgwqDC
-oMKgIC5yc3QgPSB7DQo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC5yZWdfb2ZmID0gQU5B
-Q1RSTF9IRE1JUExMX0NUUkwwLA0KPj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAuc2hpZnTC
-oMKgID0gMjksDQo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC53aWR0aMKgwqAgPSAxLA0K
-Pj4+PiArwqDCoMKgwqDCoMKgwqAgfSwNCj4+Pj4gK8KgwqDCoCB9LA0KPj4+PiArwqDCoMKgIC5o
-dy5pbml0ID0gJihzdHJ1Y3QgY2xrX2luaXRfZGF0YSl7DQo+Pj4+ICvCoMKgwqDCoMKgwqDCoCAu
-bmFtZSA9ICJoZG1pX3BsbF9kY28iLA0KPj4+PiArwqDCoMKgwqDCoMKgwqAgLm9wcyA9ICZtZXNv
-bl9jbGtfcGxsX3JvX29wcywNCj4+Pj4gK8KgwqDCoMKgwqDCoMKgIC5wYXJlbnRfZGF0YSA9IChj
-b25zdCBzdHJ1Y3QgY2xrX3BhcmVudF9kYXRhIFtdKSB7DQo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgIHsgLmZ3X25hbWUgPSAieHRhbCIsIH0NCj4+Pj4gK8KgwqDCoMKgwqDCoMKgIH0sDQo+
-Pj4+ICvCoMKgwqDCoMKgwqDCoCAubnVtX3BhcmVudHMgPSAxLA0KPj4+PiArwqDCoMKgwqDCoMKg
-wqAgLyoNCj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqAgKiBEaXNwbGF5IGRpcmVjdGx5IGhhbmRsZSBo
-ZG1pIHBsbCByZWdpc3RlcnMgQVRNLCB3ZSBuZWVkDQo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgICog
-Tk9DQUNIRSB0byBrZWVwIG91ciB2aWV3IG9mIHRoZSBjbG9jayBhcyBhY2N1cmF0ZSBhcw0KPj4+
-PiArwqDCoMKgwqDCoMKgwqDCoCAqIHBvc3NpYmxlDQo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgICov
-DQo+Pj4NCj4+PiBJcyBpdCByZWFsbHkgPw0KPj4+DQo+Pj4gR2l2ZW4gdGhhdCBIRE1JIHN1cHBv
-cnQgZm9yIHRoZSBzNCBpcyB0aGVyZSB5ZXQsIHRoZQ0KPj4+IGFkZHJlc3NlcyBoYXZlIGNoYW5n
-ZXMgYW5kIHRoZSByZWdpb24gaXMgbm8gbG9uZ2VyIGEgc3lzY29uLCBpdCBpcyB0aW1lDQo+Pj4g
-Zm9yIHRoZSBIRE1JIGRyaXZlciB0byBnZXQgZml4ZWQuDQo+IFRoZSBIRE1JIFBMTCBpcyBjb25m
-aWd1cmVkIGluIHRoZSBVYm9vdCBwaGFzZSBhbmQgZG9lcyBub3QgY2hhbmdlIHRoZQ0KPiBmcmVx
-dWVuY3kgaW4gdGhlIGtlcm5lbCBwaGFzZS4gU28gd2UgdXNlIHRoZSBOT0NBQ0hFIGZsYWcgYW5k
-DQo+ICJyb19vcHMiLg0KDQpUaGF0J3Mgbm8gcmVhc29uIHRvIHB1dCBOT0NBQ0hFIG9yIHJvLW9w
-cw0KDQpJZiB5b3Ugd2FudCB0aGUgZnJlcXVlbmNpZXMgdG8gYmUgc3RhdGljYWxseSBhc3Npbmdl
-ZCwgdGhlIGNvcnJlY3Qgd2F5DQp3b3VsZCBiZSB0aHJvdWdoIGFzc2lnbmVkLXJhdGUgaW4gRFQg
-SSBndWVzcy4NCg0K
+Hi,
+
+Am 2022-08-29 11:05, schrieb Sai Krishna Potthuri:
+> Add support for spi-nor flash reset via GPIO controller by reading the
+> reset-gpio property. If there is a valid GPIO specifier then reset will
+> be performed by asserting and deasserting the GPIO using gpiod APIs
+> otherwise it will not perform any operation.
+> 
+> Signed-off-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+> ---
+>  drivers/mtd/spi-nor/core.c | 50 +++++++++++++++++++++++++++++++++++---
+>  1 file changed, 46 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/mtd/spi-nor/core.c b/drivers/mtd/spi-nor/core.c
+> index f2c64006f8d7..d4703ff69ad0 100644
+> --- a/drivers/mtd/spi-nor/core.c
+> +++ b/drivers/mtd/spi-nor/core.c
+> @@ -2401,12 +2401,8 @@ static void spi_nor_no_sfdp_init_params(struct
+> spi_nor *nor)
+>   */
+>  static void spi_nor_init_flags(struct spi_nor *nor)
+>  {
+> -	struct device_node *np = spi_nor_get_flash_node(nor);
+>  	const u16 flags = nor->info->flags;
+> 
+> -	if (of_property_read_bool(np, "broken-flash-reset"))
+> -		nor->flags |= SNOR_F_BROKEN_RESET;
+> -
+>  	if (flags & SPI_NOR_SWP_IS_VOLATILE)
+>  		nor->flags |= SNOR_F_SWP_IS_VOLATILE;
+> 
+> @@ -2933,9 +2929,47 @@ static void spi_nor_set_mtd_info(struct spi_nor 
+> *nor)
+>  	mtd->_put_device = spi_nor_put_device;
+>  }
+> 
+> +static int spi_nor_hw_reset(struct spi_nor *nor)
+> +{
+> +	struct gpio_desc *reset;
+> +	int ret;
+> +
+> +	reset = devm_gpiod_get_optional(nor->dev, "reset", GPIOD_ASIS);
+
+devm_gpiod_get_optional(nor->dev, "reset", GPIOD_OUT_HIGH);
+
+> +	if (IS_ERR_OR_NULL(reset))
+> +		return PTR_ERR_OR_ZERO(reset);
+> +
+> +	/* Set the direction as output and enable the output */
+> +	ret = gpiod_direction_output(reset, 1);
+
+Not necessary then.
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	/*
+> +	 * Experimental Minimum Chip select high to Reset delay value
+> +	 * based on the flash device spec.
+> +	 */
+
+Which flash device spec?
+
+> +	usleep_range(1, 5);
+> +	gpiod_set_value(reset, 0);
+
+Mh, is your logic inverted here? If I read the code correctly,
+you should use a value of 1 to take the device into reset. The
+device tree should then have a flag "active low", which will
+invert the value here. Also please use the cansleep() variant.
+
+> +	/*
+> +	 * Experimental Minimum Reset pulse width value based on the
+> +	 * flash device spec.
+> +	 */
+> +	usleep_range(10, 15);
+> +	gpiod_set_value(reset, 1);
+> +
+> +	/*
+> +	 * Experimental Minimum Reset recovery delay value based on the
+> +	 * flash device spec.
+> +	 */
+> +	usleep_range(35, 40);
+> +
+> +	return 0;
+> +}
+> +
+>  int spi_nor_scan(struct spi_nor *nor, const char *name,
+>  		 const struct spi_nor_hwcaps *hwcaps)
+>  {
+> +	struct device_node *np = spi_nor_get_flash_node(nor);
+>  	const struct flash_info *info;
+>  	struct device *dev = nor->dev;
+>  	struct mtd_info *mtd = &nor->mtd;
+> @@ -2965,6 +2999,14 @@ int spi_nor_scan(struct spi_nor *nor, const char 
+> *name,
+>  	if (!nor->bouncebuf)
+>  		return -ENOMEM;
+> 
+> +	if (of_property_read_bool(np, "broken-flash-reset")) {
+> +		nor->flags |= SNOR_F_BROKEN_RESET;
+> +	} else {
+> +		ret = spi_nor_hw_reset(nor);
+> +		if (ret)
+> +			return ret;
+> +	}
+
+This should be done unconditionally, no? Even if the reset
+pin is broken, we know we have one (otherwise the device
+tree would be broken) and we can do a reset in any case.
+
+Also, which tree are you using? That was moved into
+spi_nor_init_flags() some time ago. Please rebase to latest
+spi-next.
+
+-michael
+
+> +
+>  	info = spi_nor_get_flash_info(nor, name);
+>  	if (IS_ERR(info))
+>  		return PTR_ERR(info);
