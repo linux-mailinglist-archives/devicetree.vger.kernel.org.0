@@ -2,90 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A9ED5A4E54
-	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 15:39:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33C735A4E62
+	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 15:42:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230183AbiH2Njj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Aug 2022 09:39:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34026 "EHLO
+        id S229726AbiH2NmV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Aug 2022 09:42:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229958AbiH2Njg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 09:39:36 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED992915E9;
-        Mon, 29 Aug 2022 06:39:35 -0700 (PDT)
-Received: from pan.home (unknown [IPv6:2a00:23c6:c311:3401:c9c8:35ca:a27e:68d0])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: martyn)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id EFEF56601EF8;
-        Mon, 29 Aug 2022 14:39:33 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1661780374;
-        bh=fl7+lflxCH9Rw0rOoUbIJKkLQbH0fp7tF0ZZogSLMl8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=XWu7It+Y3R6i1jK0zlTO9mEQ5N1BRzolj3xJWDouS6D1y0nKw8sFTvMgIxFzp7UIk
-         pbVenjrVt9+ySnAado7NKJmdH+UIibVF5QbYwSpOW8Yb+GDbaFlFTsKeUx6FyMaxKE
-         2lnu1ovyC19YSfNiGYOFdXkSc/nX92GnrIpSWaY9fD0SzDjHOlb4rlkyUg1JUt0R/B
-         7GgzNFJ5qPh8LIOmjc1HmUBarpjBWAwe4CsI2qJo7EzBc8DTofKmFY5uAsTqEyT8g2
-         AoYPb30Pz8ce3TdKSGpaeJCMGziXRLWQIeo+ksrRZeXt+lWpS658Bt0IB/iVSrhIkS
-         KZg3gqQw/1CLQ==
-From:   Martyn Welch <martyn.welch@collabora.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
+        with ESMTP id S229695AbiH2NmU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 09:42:20 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C57F8FD50;
+        Mon, 29 Aug 2022 06:42:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1661780537; x=1693316537;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=Dm77TZdDOsxyEUyf3mIDyCgCwIVjRlmyzDrQ7gf/weQ=;
+  b=syv2Uck76t7FxDhBNmfPDEbPS08tHJ5EcpFUYNvzdbo7hmlH9OeulUve
+   eKcyEBwbNlQ2Uwef3d+A2mog2JkdnBiCprgLBvHYpbHiITn1nKwISPGgw
+   THgNxicjc3jzPaCTNsa+yJtv0NC2MUZNR9otA3c8kw+G4PwLtgkkUCvqF
+   Fp4TGNwIOLKwCvqAxAxBSYhfkZZDD4/TPYQBUxUdqaTPHlVVngkl7aByt
+   Clr6SbUM/bOIhiDa9JbhoOah6Z+ErZ1sC18ajisT9Z46721WghO1ZeppY
+   LCwTmTbWR5iq/n4UE3DSFUEhdHdyUWNruzFa/u2N/kM4RFh6g2IKyi68+
+   A==;
+X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; 
+   d="scan'208";a="174633417"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 29 Aug 2022 06:42:16 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Mon, 29 Aug 2022 06:42:16 -0700
+Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.12 via Frontend
+ Transport; Mon, 29 Aug 2022 06:42:13 -0700
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Conor Dooley <conor.dooley@microchip.com>,
+        Daire McNamara <daire.mcnamara@microchip.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     kernel@collabora.com, Martyn Welch <martyn.welch@collabora.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/5] dt-bindings: gpio: pca95xx: add entry for pcal6534 and PI4IOE5V6534Q
-Date:   Mon, 29 Aug 2022 14:39:19 +0100
-Message-Id: <20220829133923.1114555-2-martyn.welch@collabora.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220829133923.1114555-1-martyn.welch@collabora.com>
-References: <20220829133923.1114555-1-martyn.welch@collabora.com>
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>
+CC:     Cyril Jean <cyril.jean@microchip.com>,
+        Lewis Hanly <lewis.hanly@microchip.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        "Palmer Dabbelt" <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH] dt-bindings: riscv: update microchip.yaml's maintainership
+Date:   Mon, 29 Aug 2022 14:41:04 +0100
+Message-ID: <20220829134102.1248504-1-conor.dooley@microchip.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The NXP PCAL6534 is a 34-bit I2C I/O expander similar to the PCAL6524. The
-Diodes PI4IOE5V6534Q is a functionally identical chip provided by Diodes
-Inc.
+Daire and I are the platform maintainers for Microchip's RISC-V
+FPGAs. Update the maintainers in microchip.yaml to reflect this and
+explicitly add the binding to the SoC's MAINTAINERS entry.
 
-Signed-off-by: Martyn Welch <martyn.welch@collabora.com>
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+Two patches seemed overkill for this, but scream and I will split them.
+I figured I would take this for 6.1 myself on top of my other changes
+to microchip.yaml.
+---
+ Documentation/devicetree/bindings/riscv/microchip.yaml | 4 ++--
+ MAINTAINERS                                            | 1 +
+ 2 files changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml b/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml
-index 977b14db09b0..b8106348e025 100644
---- a/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml
-+++ b/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml
-@@ -16,6 +16,7 @@ description: |+
- properties:
-   compatible:
-     enum:
-+      - diodes,pi4ioe5v6534q
-       - exar,xra1202
-       - maxim,max7310
-       - maxim,max7312
-@@ -49,6 +50,7 @@ properties:
-       - nxp,pca9698
-       - nxp,pcal6416
-       - nxp,pcal6524
-+      - nxp,pcal6534
-       - nxp,pcal9535
-       - nxp,pcal9554b
-       - nxp,pcal9555a
+diff --git a/Documentation/devicetree/bindings/riscv/microchip.yaml b/Documentation/devicetree/bindings/riscv/microchip.yaml
+index 37f97ee4fe46..9eaa21769457 100644
+--- a/Documentation/devicetree/bindings/riscv/microchip.yaml
++++ b/Documentation/devicetree/bindings/riscv/microchip.yaml
+@@ -7,8 +7,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Microchip PolarFire SoC-based boards
+ 
+ maintainers:
+-  - Cyril Jean <Cyril.Jean@microchip.com>
+-  - Lewis Hanly <lewis.hanly@microchip.com>
++  - Conor Dooley <conor.dooley@microchip.com>
++  - Daire McNamara <daire.mcnamara@microchip.com>
+ 
+ description:
+   Microchip PolarFire SoC-based boards
+diff --git a/MAINTAINERS b/MAINTAINERS
+index cc549debe20c..7d788e064390 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -17572,6 +17572,7 @@ F:	Documentation/devicetree/bindings/i2c/microchip,corei2c.yaml
+ F:	Documentation/devicetree/bindings/mailbox/microchip,mpfs-mailbox.yaml
+ F:	Documentation/devicetree/bindings/net/can/microchip,mpfs-can.yaml
+ F:	Documentation/devicetree/bindings/pwm/microchip,corepwm.yaml
++F:	Documentation/devicetree/bindings/riscv/microchip.yaml
+ F:	Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-sys-controller.yaml
+ F:	Documentation/devicetree/bindings/spi/microchip,mpfs-spi.yaml
+ F:	Documentation/devicetree/bindings/usb/microchip,mpfs-musb.yaml
 -- 
-2.35.1
+2.36.1
 
