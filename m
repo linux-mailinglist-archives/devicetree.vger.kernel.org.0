@@ -2,46 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C7C45A4794
-	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 12:51:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9464E5A47A8
+	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 12:57:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229920AbiH2Kvi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Aug 2022 06:51:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60820 "EHLO
+        id S229559AbiH2K5G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Aug 2022 06:57:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38094 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229913AbiH2Kvh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 06:51:37 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54F425D0DC
-        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 03:51:36 -0700 (PDT)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=irc.pengutronix.de)
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <j.zink@pengutronix.de>)
-        id 1oScMg-0003TI-J2; Mon, 29 Aug 2022 12:51:34 +0200
-Message-ID: <c93207c6ec63c70918ae0989ec67f37771504123.camel@pengutronix.de>
-Subject: Re: [PATCH 15/16] fpga: machxo2: extend erase timeout for machxo2
- FPGA
-From:   Johannes Zink <j.zink@pengutronix.de>
-To:     Xu Yilun <yilun.xu@intel.com>
-Cc:     devicetree@vger.kernel.org, linux-fpga@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Moritz Fischer <mdf@kernel.org>, kernel@pengutronix.de,
-        Wu Hao <hao.wu@intel.com>
-Date:   Mon, 29 Aug 2022 12:51:19 +0200
-In-Reply-To: <YwyGWELZ7WfCE3FS@yilunxu-OptiPlex-7050>
-References: <20220825141343.1375690-1-j.zink@pengutronix.de>
-         <20220825141343.1375690-16-j.zink@pengutronix.de>
-         <YwyGWELZ7WfCE3FS@yilunxu-OptiPlex-7050>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.3-1 
+        with ESMTP id S229478AbiH2K5F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 06:57:05 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5959E5D110;
+        Mon, 29 Aug 2022 03:57:02 -0700 (PDT)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=phil.lan)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1oScRv-0007z6-1j; Mon, 29 Aug 2022 12:56:59 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Michael Riesch <michael.riesch@wolfvision.net>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH 1/3] arm64: dts: rockchip: add vcc_cam regulator to rock-3a
+Date:   Mon, 29 Aug 2022 12:56:57 +0200
+Message-Id: <166177061356.1804690.5092608099700382034.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220712133204.2524942-1-michael.riesch@wolfvision.net>
+References: <20220712133204.2524942-1-michael.riesch@wolfvision.net>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: j.zink@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -49,125 +43,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yilun, 
+On Tue, 12 Jul 2022 15:32:02 +0200, Michael Riesch wrote:
+> The Radxa ROCK3 Model A features a voltage regulator that provides
+> a 3V3 supply to the MIPI CSI connector. Add this regulator to the
+> device tree of the board.
 
-On Mon, 2022-08-29 at 17:26 +0800, Xu Yilun wrote:
-> On 2022-08-25 at 16:13:42 +0200, Johannes Zink wrote:
-> > Measurements showed that some FPGAs take significantly longer than
-> > the
-> > default wait function supplied. The datasheet inidicates up to 30
-> > seconds erase times for some MachXO2 FPGAs, depending on the number
-> > of
-> > LUTs (and the corresponding configuration flash size).
-> > 
-> > Signed-off-by: Johannes Zink <j.zink@pengutronix.de>
-> > ---
-> >  drivers/fpga/machxo2-common.c | 28 ++++++++++++++++++++++++++--
-> >  1 file changed, 26 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/drivers/fpga/machxo2-common.c b/drivers/fpga/machxo2-
-> > common.c
-> > index ccf9a50fc590..e8967cdee2c6 100644
-> > --- a/drivers/fpga/machxo2-common.c
-> > +++ b/drivers/fpga/machxo2-common.c
-> > @@ -17,6 +17,8 @@
-> >  #include <linux/module.h>
-> >  #include <linux/of.h>
-> >  #include <linux/property.h>
-> > +#include <linux/iopoll.h>
-> > +#include <linux/time.h>
-> >  #include "machxo2-common.h"
-> >  
-> >  #define MACHXO2_LOW_DELAY_USEC          5
-> > @@ -24,6 +26,8 @@
-> >  #define MACHXO2_REFRESH_USEC            4800
-> >  #define MACHXO2_MAX_BUSY_LOOP           128
-> >  #define MACHXO2_MAX_REFRESH_LOOP        16
-> > +#define MACHXO2_MAX_ERASE_USEC          (30 * USEC_PER_SEC)
-> > +#define MACHXO2_ERASE_USEC_SLEEP        (20 * USEC_PER_MSEC)
-> >  
-> >  #define MACHXO2_PAGE_SIZE               16
-> >  #define MACHXO2_BUF_SIZE                (MACHXO2_PAGE_SIZE + 4)
-> > @@ -54,6 +58,18 @@
-> >  #define ISC_ERASE_FEATURE_ROW  BIT(17)
-> >  #define ISC_ERASE_UFM          BIT(19)
-> >  
-> > +static inline int machxo2_wait_until_not_busy_timeout(struct
-> > machxo2_common_priv *priv)
-> > +{
-> > +       int ret, pollret;
-> > +       u32 status = MACHXO2_BUSY;
-> > +
-> > +       pollret = read_poll_timeout(priv->get_status, ret,
-> > +                                   (ret && ret != -EAGAIN) ||
-> > !(status & MACHXO2_BUSY),
-> > +                                   MACHXO2_ERASE_USEC_SLEEP,
-> > MACHXO2_MAX_ERASE_USEC,
-> > +                                   true, priv, &status);
-> 
-> Why just taking care of erase timeout? I see the busy wait in many
-> places.
-> 
+Applied, thanks!
 
-Erasing the flash memory takes significantly longer than the other
-operations (up to 30s), which is why I decided to use this separate
-implementation. For other commands the fpga indicates no-more-busy much
-faster than for the erase_flash command.
+[1/3] arm64: dts: rockchip: add vcc_cam regulator to rock-3a
+      commit: 2fd8bd005897436c5a6d2d150d7b1ae2907f8b06
+[2/3] arm64: dts: rockchip: add vcc_mipi regulator to rock-3a
+      commit: 7a3eabdcd0fdc344d31b18e78e4f4b5d94db8df5
+[3/3] arm64: dts: rockchip: specify pinctrl for i2c adapters on rock-3a
+      commit: a233ea1e6268a779d5c8c427eb14a2a89f95f4f9
 
-> > +
-> > +       return ret ?: pollret;
-> > +}
-> >  
-> >  static inline u8 get_err(u32 status)
-> >  {
-> > @@ -114,6 +130,12 @@ static int machxo2_cleanup(struct fpga_manager
-> > *mgr)
-> >         if (ret)
-> >                 goto fail;
-> >  
-> > +       ret = machxo2_wait_until_not_busy_timeout(priv);
-> > +       if (ret) {
-> > +               dev_err(&mgr->dev, "Erase operation failed (%d)",
-> > ret);
-> > +               goto fail;
-> > +       }
-> > +
-> >         ret = machxo2_wait_until_not_busy(priv);
-> 
-> Is this line still needed?
-
-agreed, this line should become obsolete, since if we reach this point
-the fpga is not indicating busy any longer or the wait has been aborted
-due to an error. I will remove it in v2.
-
-> 
-> >         if (ret)
-> >                 goto fail;
-> > @@ -192,9 +214,11 @@ static int machxo2_write_init(struct
-> > fpga_manager *mgr,
-> >         if (ret)
-> >                 goto fail;
-> >  
-> > -       ret = machxo2_wait_until_not_busy(priv);
-> > -       if (ret)
-> > +       ret = machxo2_wait_until_not_busy_timeout(priv);
-> > +       if (ret) {
-> > +               dev_err(&mgr->dev, "Erase operation failed (%d)",
-> > ret);
-> >                 goto fail;
-> > +       }
-> >  
-> >         priv->get_status(priv, &status);
-> >         if (status & MACHXO2_FAIL) {
-> > -- 
-> > 2.30.2
-> > 
-> 
-> 
-
+Best regards,
 -- 
-Pengutronix e.K.                | Johannes Zink                  |
-Steuerwalder Str. 21            | https://www.pengutronix.de/    |
-31137 Hildesheim, Germany       | Phone: +49-5121-206917-0       |
-Amtsgericht Hildesheim, HRA 2686| Fax:   +49-5121-206917-5555    |
-
+Heiko Stuebner <heiko@sntech.de>
