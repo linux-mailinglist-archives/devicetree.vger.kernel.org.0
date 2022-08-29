@@ -2,58 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E0BEE5A4FB0
-	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 16:55:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4416A5A4FD0
+	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 17:07:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229456AbiH2OzP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Aug 2022 10:55:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35920 "EHLO
+        id S229611AbiH2PHI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Aug 2022 11:07:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229540AbiH2OzO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 10:55:14 -0400
-Received: from ixit.cz (ip-94-112-206-30.bb.vodafone.cz [94.112.206.30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A45618E32;
-        Mon, 29 Aug 2022 07:55:09 -0700 (PDT)
-Received: from [10.0.0.163] (_gateway [10.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id 807EB2007F;
-        Mon, 29 Aug 2022 16:55:06 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1661784906;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=fcOyAdhL0e725PTjlCm05qqk/N8FhIWvp30pFdmFqnc=;
-        b=sIevvRJarXsV56W6HXfjQiUGFgV+UK9OMBU3+LLCAunIqa0kN2WxdW1pOHkHyT0AkfMuKO
-        eQUQdYfimU9L0FIGVciXny+1ITnMXgA5GPEgHfqXXt7TTIrqI3mSl7SPE/pY1NWJAsjS02
-        t3fi+zkXTo0IxDz1VQxgHSHJqxrgScA=
-Message-ID: <7d5ee68e-eaad-9269-e276-1844081a2a2e@ixit.cz>
-Date:   Mon, 29 Aug 2022 16:54:44 +0200
+        with ESMTP id S229926AbiH2PHH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 11:07:07 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4678982F96
+        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 08:07:06 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id u9so16325230ejy.5
+        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 08:07:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=NkjtLGODakxw34RE1ZSCHsppEOgNT9LnIfBodvI5KF0=;
+        b=fdvDTlOSk7+R063mphDzc2gTmV8LTm+g93undrgWcmR/VgD6QbDtnXVEw+dxIZ/8nR
+         xMoTTkAalTtTS9HV1GX7uSkp2czJriwlDUDK37whez6z/OAlT1OsBIJqka+DR8t0+Cge
+         mzP2FRAXlC74Y2mkb9sa+2e0gfIgaNazvcdRf/ZerZmZliy6Z3hLp6Oj4enGV19rA21D
+         1btbZEZ5NywIIa8648wDvGaYsl4HiBtonAQsZJJ1YRGX7Pboa+SNDnp5YXdz9trdu8iD
+         BMw0gV0nDJ3ak+IkqKD4sYfuNqrXD2cKwTM3PCRfrLbY4j8UqzG01Eaa/ApT78sN7qPS
+         S0Ow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=NkjtLGODakxw34RE1ZSCHsppEOgNT9LnIfBodvI5KF0=;
+        b=sMvG1Kpn+IU3MpPs4S7y6dx2VHZ89kn4rEwQHTEbcfyF22SANZyc1QRP9V0ZqnBMOn
+         F1Mdsap860VS332BaxSXOK+oI+OzI8CKl+jLzEMrrtzKF0RCvCTzkht4BRiA840QM2hB
+         9s0feqm694FE1jDgtBx1wnls6io67yuaytdfiljusSctfTIuxvB6PSxADVdiX7GFzXgV
+         NM775NMESIf+tH0ST1HZtnWig7UU2gxUkNIDtBc9+wx3Sq/INzo1Hgc7FN90YjRmXxmO
+         XeGM3A27x47TMuoy2LjUBWrLI0G2bk6DzLeBs4IDV6Y8nbnRPgAy9/UxYmLAzfQWsmxT
+         X98A==
+X-Gm-Message-State: ACgBeo2MRCmrUOFd/8kldNViSKV2CsBdtGe2Hb+lDIX37cL9B7O7R1fk
+        P+gpuoDlx0VvphTsMYyEuf57tblyDuVCYwFzj2vKRw==
+X-Google-Smtp-Source: AA6agR7MIb19AtTjOyeksEjWUxq8gktFe79/+VMQqBQ/V9UYwiymcHXnHZzTOjVyarRcq0QfPghC9876jcMKi8NBcrc=
+X-Received: by 2002:a17:907:6092:b0:731:59f0:49ac with SMTP id
+ ht18-20020a170907609200b0073159f049acmr13841200ejc.383.1661785624682; Mon, 29
+ Aug 2022 08:07:04 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:104.0) Gecko/20100101
- Thunderbird/104.0
-Subject: Re: [PATCH 00/14] arm64/dt-bindings: mfd: qcom: SPMI PMIC fixes
-Content-Language: en-US
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-References: <20220828084341.112146-1-krzysztof.kozlowski@linaro.org>
-From:   David Heidelberg <david@ixit.cz>
-In-Reply-To: <20220828084341.112146-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RDNS_DYNAMIC,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+References: <20220530150548.1236307-1-m.felsch@pengutronix.de> <20220726091228.nvvyzab7wyzrnfrr@pengutronix.de>
+In-Reply-To: <20220726091228.nvvyzab7wyzrnfrr@pengutronix.de>
+From:   Robert Foss <robert.foss@linaro.org>
+Date:   Mon, 29 Aug 2022 17:06:53 +0200
+Message-ID: <CAG3jFyt6A2L0Feeibv_76tVhQ_PjRpowQ=CeJ9FaOOshrEWLuQ@mail.gmail.com>
+Subject: Re: [PATCH 0/6] TI SN65DSI83 Features
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     laurent.pinchart@ideasonboard.com, jernej.skrabec@gmail.com,
+        jonas@kwiboo.se, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, sam@ravnborg.org,
+        maxime@cerno.tech, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,70 +68,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Patches 1 ‒ 3 and 7 ‒ 13
+Hey Marco,
 
-Reviewed-by: David Heidelberg <david@ixit.cz>
+Sorry about the slow reply.
 
-On 28/08/2022 10:43, Krzysztof Kozlowski wrote:
-> Hi,
->
-> The Qualcomm SPMI PMIC DT schema conversion was not really tested and several
-> issues in the bindings and DTS should be corrected.
->
-> 1. The DTS patches can go independently.
-> 2. The binding change continuous work of PWM reg fix and depends on it in
->     context (diff hunk):
->     https://lore.kernel.org/all/20220827145640.3530878-1-bryan.odonoghue@linaro.org/
->     Binidings changes and above, can be taken via MFD tree (fixed commit was
->     merged in v6.0-rc1).
->
-> Best regards,
-> Krzysztof
->
-> Krzysztof Kozlowski (14):
->    ARM: dts: qcom: align SPMI PMIC ADC node name with dtschema
->    ARM: dts: qcom: pm8941: align SPMI PMIC LPG node name with dtschema
->    ARM: dts: qcom: pmx55: align SPMI PMIC Power-on node name with
->      dtschema
->    arm64: dts: qcom: pmk8350: drop incorrect io-channel-ranges
->    arm64: dts: qcom: pmk8350: drop interrupt-names from ADC
->    arm64: dts: qcom: align SPMI PMIC ADC node name with dtschema
->    arm64: dts: qcom: align SPMI PMIC regulators node name with dtschema
->    arm64: dts: qcom: align SPMI PMIC LPG node name with dtschema
->    arm64: dts: qcom: align SPMI PMIC Power-on node name with dtschema
->    arm64: dts: qcom: align PMIC GPIO pin configuration with DT schema
->    arm64: dts: qcom: sc7280-idp: correct ADC channel node name and unit
->      address
->    arm64: dts: qcom: sdm845-mtp: correct ADC settle time
->    dt-bindings: mfd: qcom,spmi-pmic: fix regulator node schema
->    dt-bindings: mfd: qcom,spmi-pmic: fix TM ADC node schema on PM8998
->
->   .../bindings/mfd/qcom,spmi-pmic.yaml          | 20 +++++++++++++++++--
->   arch/arm/boot/dts/qcom-pm8941.dtsi            |  4 ++--
->   arch/arm/boot/dts/qcom-pma8084.dtsi           |  2 +-
->   arch/arm/boot/dts/qcom-pmx55.dtsi             |  2 +-
->   arch/arm64/boot/dts/qcom/pm660.dtsi           |  2 +-
->   arch/arm64/boot/dts/qcom/pm660l.dtsi          |  4 ++--
->   arch/arm64/boot/dts/qcom/pm8150.dtsi          |  2 +-
->   arch/arm64/boot/dts/qcom/pm8150b.dtsi         |  4 ++--
->   arch/arm64/boot/dts/qcom/pm8150l.dtsi         |  4 ++--
->   arch/arm64/boot/dts/qcom/pm8953.dtsi          |  2 +-
->   arch/arm64/boot/dts/qcom/pm8994.dtsi          |  2 +-
->   arch/arm64/boot/dts/qcom/pmi8994.dtsi         |  2 +-
->   arch/arm64/boot/dts/qcom/pmi8998.dtsi         |  2 +-
->   arch/arm64/boot/dts/qcom/pmk8350.dtsi         |  3 ---
->   arch/arm64/boot/dts/qcom/pmm8155au_1.dtsi     |  2 +-
->   arch/arm64/boot/dts/qcom/pmm8155au_2.dtsi     |  2 +-
->   .../boot/dts/qcom/sc7280-herobrine-crd.dts    |  2 +-
->   arch/arm64/boot/dts/qcom/sc7280-idp.dts       |  2 +-
->   arch/arm64/boot/dts/qcom/sc7280-idp.dtsi      |  2 +-
->   arch/arm64/boot/dts/qcom/sdm845-mtp.dts       | 12 +++++------
->   .../boot/dts/qcom/sdm845-xiaomi-polaris.dts   |  2 +-
->   21 files changed, 46 insertions(+), 33 deletions(-)
->
--- 
-David Heidelberg
-Consultant Software Engineer
+This series no longer applies on drm-misc-next. Can you rebase this
+series and send it out a v2?
 
-Matrix: @okias:matrix.org
 
+Rob.
