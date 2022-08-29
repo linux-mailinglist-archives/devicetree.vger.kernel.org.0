@@ -2,154 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CCEE5A4383
-	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 09:05:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C0E75A43CE
+	for <lists+devicetree@lfdr.de>; Mon, 29 Aug 2022 09:35:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229453AbiH2HFT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Aug 2022 03:05:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49848 "EHLO
+        id S229628AbiH2HfW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Aug 2022 03:35:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229457AbiH2HFS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 03:05:18 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F2D32251A;
-        Mon, 29 Aug 2022 00:05:16 -0700 (PDT)
+        with ESMTP id S229526AbiH2HfU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 03:35:20 -0400
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12DB4659F;
+        Mon, 29 Aug 2022 00:35:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1661756717; x=1693292717;
-  h=from:to:subject:date:message-id:references:in-reply-to:
-   content-id:content-transfer-encoding:mime-version;
-  bh=uz/Hs0cZBPlOrYO/SqoExl5sbFkIsHnKtkvbt5Mx5o4=;
-  b=FadlvNfwL2UG6X8SJ6oHKN9o/Bltj5sDNgOPBRQvmWTd03xS9A5apjxf
-   n168E0V1EeeNQBtMXe5Kl3wSK/dIbyDZyOyczpi0qR3uL130CIT9yPRdl
-   UHOLN80+S6VidFLlEVUw6FrmSSrfVSeomGwie+rYf7zJOn81UPPT8BWLT
-   +Knn/dP2RJQC4r8BXtfv1iNeOYpGxwr/PJZhMrT9OxVoRkCsi7pMM0/Xh
-   3ISZPojJ51cE2Eez+8r0572baieMLxr3JXsmXi9pFsVoUuuRk34PVG325
-   WVGfyWGPnDMa00cIggnfN+GHHIrjc1jC4XDcUZcgI0czi5rPHaAae4FfP
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1661758519; x=1693294519;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=UUB6493Q1pZjoX9Bwip7PW18Z1ZeqNdC0dzgAAKfa84=;
+  b=Q4I4KS+5Nm65dFy0A0PjH91OkuNX3Zl/P8XAo+MRRf06vbu5j1oQCo05
+   +lpssY44S+xyWqg6CESx035X+vAZ+DF/v+YFGq5nQ/J7VOL5RUsROrbfn
+   NO2Z5wPo9LSL0LDwrkdiNtxr6pqodSpiPFY5Gr8rPNUYJY1IQo78rV0Bw
+   CVgTvCJf8T3ODvLNKQ69etLolGLmE71d2qqBvsLG6zxLMBwbLOdZBhr9R
+   I3ghLfniPNqMphfwJ4073HUhhPWLgHc293lSqL2dv4CXRleL1+iAc5Wo0
+   WC9yM1sVgkaA3v9g7K9RVVo9an27Q2Cs+AYZkGeYlzuujkLVszVNPBBv9
    w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10453"; a="274582402"
 X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; 
-   d="scan'208";a="171364084"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 29 Aug 2022 00:05:15 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Mon, 29 Aug 2022 00:05:14 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.72) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12 via Frontend
- Transport; Mon, 29 Aug 2022 00:05:14 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VUsJ+sN16xYTaeQ/sofYN638sc/D4J+R4rnsccZ8zc8kB8O9HIZvOzWJ4I5h60sdl+Y3XDDzXt//XIOmvNbUiKkxmh/aOFt2ttLjWMsBJWzisiL92a917FqC6kvzBdNUG93U94YxKd6pRMB+QJQ64cADOsh4JEVBpPW/M5dGOzxw51hdpxJFY8NcpD8apxtWNr5vvzeEJ0oE6leEUgg1myixotKZ/oYS/vVBmNtUXppjJOaFeBVpPWcVXYi6KTt/KR3rEiLq29XIj5A13KjKa/yoDge0kROgmjJI+8uz39ZR4VuxZEiCojyv8Q9yeAqkCvX6H9ZjpVsKjIfBi0iKtg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uz/Hs0cZBPlOrYO/SqoExl5sbFkIsHnKtkvbt5Mx5o4=;
- b=EZ1tRQ8TA8PsmCWaJgO8UKwlPg88WDVrV3xJgNMr1zetf3JmjW4qJbkDg+ljODYuq2QMBhFlxm8IXWD1/7dJnqTeGDdoltMTJEuCJiuTGeprhd5fawFTnSkPuU/AIQJHpNTiC4o2VCoZ4GuBcrczvUzyO+yAfluuisaKaSNscfCneYH2z+0WeCECz7ix7a+uCshsCty0eWLTqZl01CtK2+Lj0Tg92fds0TmRu0H76UOYnXGl6uhtysmwrFWBgXgOptwwvDX0bptW+3kxTRlFBaeOA9jbwfOBrtZDq/nbrWVzd9Fq1ZnJsSXmV4+3YEfuVvBxmHnnnDp0t5//4ejX3A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uz/Hs0cZBPlOrYO/SqoExl5sbFkIsHnKtkvbt5Mx5o4=;
- b=eDxQIR63l5SuDoDzKwW5agHQnwfQh5yyajgLSR9Nv3QqrNX7STAuap6oZ1O+HC/xx7fWCitEzAL6OfeGMyRD6Mi7WRUzPPdbNivyq4+9BGJPq/Z5HXkzuV/zTZf9gpyf7bcfz0jMLDL1Xts5zXKyjQhWONIEEdZ0EgLUq7DJpIE=
-Received: from CO1PR11MB5154.namprd11.prod.outlook.com (2603:10b6:303:99::15)
- by DM5PR1101MB2363.namprd11.prod.outlook.com (2603:10b6:3:a7::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5566.15; Mon, 29 Aug
- 2022 07:05:09 +0000
-Received: from CO1PR11MB5154.namprd11.prod.outlook.com
- ([fe80::ac89:75cd:26e0:51c3]) by CO1PR11MB5154.namprd11.prod.outlook.com
- ([fe80::ac89:75cd:26e0:51c3%9]) with mapi id 15.20.5566.021; Mon, 29 Aug 2022
- 07:05:09 +0000
-From:   <Conor.Dooley@microchip.com>
-To:     <zong.li@sifive.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <palmer@dabbelt.com>,
-        <paul.walmsley@sifive.com>, <aou@eecs.berkeley.edu>,
-        <greentime.hu@sifive.com>, <devicetree@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/3] soc: sifive: l2 cache: Rename SiFive L2 cache to
- composible cache.
-Thread-Topic: [PATCH 2/3] soc: sifive: l2 cache: Rename SiFive L2 cache to
- composible cache.
-Thread-Index: AQHYu2+0mRQQ5mCpPkuQboDoEF5AOK3FdGUA
-Date:   Mon, 29 Aug 2022 07:05:09 +0000
-Message-ID: <1a0da77e-8b26-a6aa-4af2-bf852470230a@microchip.com>
-References: <20220829062202.3287-1-zong.li@sifive.com>
- <20220829062202.3287-3-zong.li@sifive.com>
-In-Reply-To: <20220829062202.3287-3-zong.li@sifive.com>
-Accept-Language: en-IE, en-US
-Content-Language: en-IE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 2870178d-adc5-4e1a-06a3-08da898ccf86
-x-ms-traffictypediagnostic: DM5PR1101MB2363:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: nN3/5SL/NxZET28ZJ5PQlmSo9kKarRmnhRVq0Ytahy81jpXF5n5eZb+b9bvQ9QdYdPeWjRDt0ePPdzMc3qaLfZrD9GCegjTXbFuhUo/0QPIjhXplkxlhBhgNjHLkb05To4Z+5xISDaxFyzk8K9jdAOO4mJ6E/6dQrimKtjqxoxqSKaRv60vMnZk8lmaV36yaAA9MF/x/tDW2StBeim6hfWhjg8oLCLZweW6B1kds3wyuEMKaavHTj+DMeqBDGxXnkNjO52bVQCQi0562UFkBUpG6gf+IB5yfDKVEcAc+iys63inmZqJKyH4UN0DmVBz7xprMz1Zrvuq8XejdlG5X8E/BPQfe5FVc/QRxK726tSSHy/OrJlxDVSf219SbRFspecZ9bJVrl+nHKYFROEtKSg30+yYGjVp289EeWfSnWC68VQB6jw2Tmzh2D2ZXCTwsatVDUDAjjTrvTn460XlZATvg+GyBecDZUzGNDm0LtjD12mWrVpSafEmiBqR2a2TymFcLAyrHwqFi+e2V5ptYSNxeRoWngjdPbHO6Zg++3oHRixHcpmaNtJKgawBGCPJ+t/XL0cOhtioJWFLBeZ+6bzZpqb2iruwLkXuBW4UL98qx8eLST0SyPgNUwKoCG3UPgr4j/M7a9G2UAJOhoPK8qmAFOiBEA9MwrULWTAO5ef2jWqJAJ6w7bYfevhViEIT8exmXnDPSsoIMi/bYACmmW496MBeHUK7gJDMrvNP7LTrOpJJVkEMCrzcrrAluPXNteuypjPIP97dC5K6Q3hHqts/Cf8tmLKi4+SzM8wF4wNVVua8kgqCWKKRYtYPO6RX2UzJ/4gPfGRJZ3UU0Yk6j7A==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB5154.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(6029001)(346002)(396003)(366004)(136003)(39860400002)(376002)(2906002)(6512007)(26005)(122000001)(53546011)(6506007)(38100700002)(2616005)(186003)(83380400001)(71200400001)(316002)(110136005)(8676002)(64756008)(66446008)(66476007)(66556008)(66946007)(31686004)(76116006)(6486002)(31696002)(91956017)(7416002)(41300700001)(5660300002)(8936002)(921005)(36756003)(86362001)(38070700005)(478600001)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?WmxKZFRtelRRNEhvNHRXSmJHQXJieDhJRnRoQW5NVGNuR0tHRm1xZzVVWXdD?=
- =?utf-8?B?MjU5ekV4aHNZSFpzQXpqd2FjbGRST1M5QlhQRDNRNmN0bDNyVEhWM3NMaklj?=
- =?utf-8?B?bFFZYWxkVUVyMWhsU0ExV0pWSDRUQm94THJhUG5uOWhqbjh0bXljaUFtR2Zv?=
- =?utf-8?B?Si9KVnFDMzM1eUt5WW1oaE9wbVdBR21pcVEwbU9vZ3RnS0ZyM1dWd0pkWDl1?=
- =?utf-8?B?eXZlbnpRSURNS1ZoTGs0KzI1amd3d3lpbDZKWGg3ZVp3Z0E2TWcwWmlmYnJz?=
- =?utf-8?B?cTVsVHI2WmdZNjBJYXpYRzd2Y3RCa1NsYXIwM0x4d2pPdVBNRFdGVHRlQjhk?=
- =?utf-8?B?NFJqdXlQT1NPUENiQ0dPVE14SytCeUF5U0lIZFdjbzAyNnE0WHRDYnFSM2Zj?=
- =?utf-8?B?aFd4R0FqQlJuTlEwZjNvai9nOHAvL1hiK0psRHdEZVhqanRMeUd6OWd3MDh5?=
- =?utf-8?B?aW9uNndITStZS1dDakY4L1kvT2c5S1daMFZmZzlNaWwwLzJ2QVBvVXgrcUc5?=
- =?utf-8?B?R2N3T0FDNU5Hb21LVG1GdDFiRXZLT0puK2VIdFhtTiszbTVGZzQ3R1lEQWY0?=
- =?utf-8?B?Ryt1ZjhiRHJHdEhkamF0TXF1cVJkN0llSlRPVThvdEJ5bGZUcDJwNXhwSG9Z?=
- =?utf-8?B?TnoreHlpaWRUUTkyOCtQdzlSbHI5Nk5iY01MYWJmRG9TeWY5MkJ1d0czZnhm?=
- =?utf-8?B?c1lFQUF4TjdocURFdDBkVWMramVOQ25idUxLQjRTMGVNSC9jNjBrOHY0R1JW?=
- =?utf-8?B?YUxXekJvNUFiWklmOVhKYWlUMkduMTZQcUN1Y1FWb0RsSVdDMnpqVnp0WWx3?=
- =?utf-8?B?WkU5aTZ3bDVBSHVWSG9URWVjNWluajRPY2FMVFdsUnJWWk1nSzNGeERwS2hj?=
- =?utf-8?B?Tk1kMmxlekJ3eWUzMXh4TVM1ZFBWOGpKaENSaWNia0VUbkJPWlRMWHQrSnA4?=
- =?utf-8?B?eWJyZ25LdDBuRVRmUS9pRkpuQ0h6ak9DOWRMTGF6NEV3clhSc0VKYW56Nmt3?=
- =?utf-8?B?dXlDWUJKQnFBbms5ZDRkcFU2RlFBVnZ0aVV2NTdvRTJKVjJNTDdLNjhRaUp3?=
- =?utf-8?B?RlNYQklzZmt3K0VaTHlkTnFYMGtSaEJobmZoRk5Fc1d0VmtiY2ZsRWpRUFRR?=
- =?utf-8?B?VXZoVGZVWThscUhGMmpHYm5kSU1WZ1pLM2xROVg4MDMrZ0RyWFVjdkVDTHU3?=
- =?utf-8?B?VytUL003QmExbVN5S3hFRWZpYW5oeTkzbWxqRDhSV2swTzlFeXloS2EzQXBT?=
- =?utf-8?B?aEkvbHl0U3N3VWpybFJ6R2VtR2xjWXlIMk5XMUZHdkNlSEVFejlZaVJ0dnBZ?=
- =?utf-8?B?REt5VzV5TUE1M2E0S1dGQmFUSms2R3FBYkppbmFGaE5ONk0xNTl0ZFRCbnEz?=
- =?utf-8?B?RW1ETjhNK0VtcHJ3eXNpclA4LzBkVGhITURzQk00cTZlRWF1MTVJYTQ1ZVZ0?=
- =?utf-8?B?ZkxhN0tvV3FwOHN6Sy9JYzlTbjVqRjJWdkI1c3BHaVBRQ0wrOCtpdWNRUzZm?=
- =?utf-8?B?WDVpdXR0OEJlaE5BSy9iZFRvMnlycnBXYmQrT3VFSXBvNEJ0US9oSjYzVmVN?=
- =?utf-8?B?c2tpOWF2RlpiczVGbzZuQnJaUEVYaEh0eDRaS0J3Vk1waVdFUDNDL0JXODQx?=
- =?utf-8?B?c1h3STNWdFl1ZEVhaVRCamdqWXVJMkp5OTR0RXVQRGVkSnp0aE9UZFRhc1NP?=
- =?utf-8?B?YlJndlBnSzBqc2ZRcTF0dXJaQUQwV2lic1RWWUVKMm4yWVM1bDRlWmUxdnpR?=
- =?utf-8?B?QVZodU5GUzJORUxhaWF6Zm94dzFEMDRHS2ZkdU42ZE9TY1pZWDY5M2lJb2Rv?=
- =?utf-8?B?V2NIa2dKNzRYeDFyWFM0bFVwK2I0dXREMFlpNUZidmx4L0NrQjdubFpqNC9y?=
- =?utf-8?B?UlpTTjNWNW5QQVNKaTlSN1oyZnhXQ2VLNWFkUDd2QXFtcmwyVU5OVjk3T1g4?=
- =?utf-8?B?ZEtxMERIUllVaXVZeXlVWkl5K3ZJWlpjTS95RHVGd0FpbGdTM0EzU3NlWElr?=
- =?utf-8?B?c1l3NkMzWkQ4NFk5RTlDeGRySm9VRUJPYVU1WXlGRTVuOE1Pd3NXT2ZVZmJW?=
- =?utf-8?B?SXRFSkp4Tmx2WC9PR0QrYkJTUGRhYTZpRWI1RXBHSXBuQ1RXMFJVSFdlckJv?=
- =?utf-8?Q?4uCP+ZR7TwmWxdLxNPzSEsH+M?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <00CF326C450B444E8243A5E9191C04C3@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+   d="scan'208";a="274582402"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Aug 2022 00:35:13 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,272,1654585200"; 
+   d="scan'208";a="588065545"
+Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
+  by orsmga006.jf.intel.com with ESMTP; 29 Aug 2022 00:34:59 -0700
+Date:   Mon, 29 Aug 2022 15:25:41 +0800
+From:   Xu Yilun <yilun.xu@intel.com>
+To:     Ivan Bornyakov <i.bornyakov@metrotek.ru>
+Cc:     mdf@kernel.org, hao.wu@intel.com, trix@redhat.com, dg@emlix.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, system@metrotek.ru
+Subject: Re: [PATCH v8 1/2] fpga: lattice-sysconfig-spi: add Lattice
+ sysCONFIG FPGA manager
+Message-ID: <Ywxp9XgcjM0LIIC2@yilunxu-OptiPlex-7050>
+References: <20220825112433.14583-1-i.bornyakov@metrotek.ru>
+ <20220825112433.14583-2-i.bornyakov@metrotek.ru>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5154.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2870178d-adc5-4e1a-06a3-08da898ccf86
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Aug 2022 07:05:09.5971
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: gO/Kj1/RwbUT3HrKd3capP3LJOLtDmYfuGHmE7B5WF0obHGLSkCG2SnaforLorIaw9cMl9nqLLl7s5sgOQivELJozJkhyVXAhYHeay4h8QY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR1101MB2363
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220825112433.14583-2-i.bornyakov@metrotek.ru>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -157,72 +63,711 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGV5IFpvbmcsDQoNCk9uIDI5LzA4LzIwMjIgMDc6MjIsIFpvbmcgTGkgd3JvdGU6DQo+IEVYVEVS
-TkFMIEVNQUlMOiBEbyBub3QgY2xpY2sgbGlua3Mgb3Igb3BlbiBhdHRhY2htZW50cyB1bmxlc3Mg
-eW91IGtub3cgdGhlIGNvbnRlbnQgaXMgc2FmZQ0KPiANCj4gRnJvbTogR3JlZW50aW1lIEh1IDxn
-cmVlbnRpbWUuaHVAc2lmaXZlLmNvbT4NCj4gDQo+IFNpbmNlIGNvbXBvc2libGUgY2FjaGUgbWF5
-IGJlIEwzIGNhY2hlIGlmIHBMMiBjYWNoZSBleGlzdHMsIHdlIHNob3VsZCB1c2UNCj4gaXRzIG9y
-aWdpbmFsIG5hbWUgY29tcG9zaWJsZSBjYWNoZSB0byBwcmV2ZW50IGNvbmZ1c2lvbi4NCj4gDQo+
-IFNpZ25lZC1vZmYtYnk6IEdyZWVudGltZSBIdSA8Z3JlZW50aW1lLmh1QHNpZml2ZS5jb20+DQo+
-IFNpZ25lZC1vZmYtYnk6IFpvbmcgTGkgPHpvbmcubGlAc2lmaXZlLmNvbT4NCj4gLS0tDQo+ICAg
-ZHJpdmVycy9zb2Mvc2lmaXZlL0tjb25maWcgICAgICAgICAgIHwgICA3ICstDQo+ICAgZHJpdmVy
-cy9zb2Mvc2lmaXZlL01ha2VmaWxlICAgICAgICAgIHwgICAyICstDQo+ICAgZHJpdmVycy9zb2Mv
-c2lmaXZlL3NpZml2ZV9jY2FjaGUuYyAgIHwgMjIxICsrKysrKysrKysrKysrKysrKysrKysrKysN
-Cj4gICBkcml2ZXJzL3NvYy9zaWZpdmUvc2lmaXZlX2wyX2NhY2hlLmMgfCAyMzcgLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tDQoNCldoZXJlIGRpZCB0aGUgMTYgbGluZXMgZ28/IENvdWxkIHlv
-dSBwbGVhc2Ugc3BsaXQgcmVuYW1lcyBvZmYgZnJvbSBhbnkNCm90aGVyIGNoYW5nZXMgc28gdGhh
-dCBpdCBpcyBlYXNpZXIgdG8gc2VlIHdoYXQgaGFzIGNoYW5nZWQ/DQoNCj4gICBpbmNsdWRlL3Nv
-Yy9zaWZpdmUvc2lmaXZlX2NjYWNoZS5oICAgfCAgMTYgKysNCj4gICBpbmNsdWRlL3NvYy9zaWZp
-dmUvc2lmaXZlX2wyX2NhY2hlLmggfCAgMTYgLS0NCj4gICA2IGZpbGVzIGNoYW5nZWQsIDI0MiBp
-bnNlcnRpb25zKCspLCAyNTcgZGVsZXRpb25zKC0pDQo+ICAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRy
-aXZlcnMvc29jL3NpZml2ZS9zaWZpdmVfY2NhY2hlLmMNCj4gICBkZWxldGUgbW9kZSAxMDA2NDQg
-ZHJpdmVycy9zb2Mvc2lmaXZlL3NpZml2ZV9sMl9jYWNoZS5jDQo+ICAgY3JlYXRlIG1vZGUgMTAw
-NjQ0IGluY2x1ZGUvc29jL3NpZml2ZS9zaWZpdmVfY2NhY2hlLmgNCj4gICBkZWxldGUgbW9kZSAx
-MDA2NDQgaW5jbHVkZS9zb2Mvc2lmaXZlL3NpZml2ZV9sMl9jYWNoZS5oDQo+IA0KPiBkaWZmIC0t
-Z2l0IGEvZHJpdmVycy9zb2Mvc2lmaXZlL0tjb25maWcgYi9kcml2ZXJzL3NvYy9zaWZpdmUvS2Nv
-bmZpZw0KPiBpbmRleCA1OGNmOGM0MGQwOGQuLjNkNjVkMjc3MWY5YSAxMDA2NDQNCj4gLS0tIGEv
-ZHJpdmVycy9zb2Mvc2lmaXZlL0tjb25maWcNCj4gKysrIGIvZHJpdmVycy9zb2Mvc2lmaXZlL0tj
-b25maWcNCj4gQEAgLTIsOSArMiwxMCBAQA0KPiANCj4gICBpZiBTT0NfU0lGSVZFDQo+IA0KPiAt
-Y29uZmlnIFNJRklWRV9MMg0KPiAtICAgICAgIGJvb2wgIlNpZml2ZSBMMiBDYWNoZSBjb250cm9s
-bGVyIg0KPiArY29uZmlnIFNJRklWRV9DQ0FDSEUNCj4gKyAgICAgICBib29sICJTaWZpdmUgY29t
-cG9zYWJsZSBDYWNoZSBjb250cm9sbGVyIg0KPiArICAgICAgIGRlZmF1bHQgeQ0KDQpDaGFuZ2lu
-ZyB0aGlzIHRvIGRlZmF1bHQgb24gaXMgbm90IGEgcmVuYW1lIG9mIHRoZSBmaWxlLi4NClRoaXMg
-c2hvdWxkIGJlIGluIGEgZGlmZmVyZW50IHBhdGNoLg0KDQo+ICAgICAgICAgIGhlbHANCj4gLSAg
-ICAgICAgIFN1cHBvcnQgZm9yIHRoZSBMMiBjYWNoZSBjb250cm9sbGVyIG9uIFNpRml2ZSBwbGF0
-Zm9ybXMuDQo+ICsgICAgICAgICBTdXBwb3J0IGZvciB0aGUgY29tcG9zYWJsZSBjYWNoZSBjb250
-cm9sbGVyIG9uIFNpRml2ZSBwbGF0Zm9ybXMuDQo+IA0KPiAgIGVuZGlmDQo+IGRpZmYgLS1naXQg
-YS9kcml2ZXJzL3NvYy9zaWZpdmUvTWFrZWZpbGUgYi9kcml2ZXJzL3NvYy9zaWZpdmUvTWFrZWZp
-bGUNCj4gaW5kZXggYjVjYWZmNzc5MzhmLi4xZjVkYzMzOWJmODIgMTAwNjQ0DQo+IC0tLSBhL2Ry
-aXZlcnMvc29jL3NpZml2ZS9NYWtlZmlsZQ0KPiArKysgYi9kcml2ZXJzL3NvYy9zaWZpdmUvTWFr
-ZWZpbGUNCj4gQEAgLTEsMyArMSwzIEBADQo+ICAgIyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjog
-R1BMLTIuMA0KPiANCj4gLW9iai0kKENPTkZJR19TSUZJVkVfTDIpICAgICAgICArPSBzaWZpdmVf
-bDJfY2FjaGUubw0KPiArb2JqLSQoQ09ORklHX1NJRklWRV9DQ0FDSEUpICAgICs9IHNpZml2ZV9j
-Y2FjaGUubw0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9zb2Mvc2lmaXZlL3NpZml2ZV9jY2FjaGUu
-YyBiL2RyaXZlcnMvc29jL3NpZml2ZS9zaWZpdmVfY2NhY2hlLmMNCj4gbmV3IGZpbGUgbW9kZSAx
-MDA2NDQNCj4gaW5kZXggMDAwMDAwMDAwMDAwLi40NmNlMzNkYjdkMzANCj4gLS0tIC9kZXYvbnVs
-bA0KPiArKysgYi9kcml2ZXJzL3NvYy9zaWZpdmUvc2lmaXZlX2NjYWNoZS5jDQo+IEBAIC0wLDAg
-KzEsMjIxIEBADQo+ICsvLyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogR1BMLTIuMA0KPiArLyoN
-Cj4gKyAqIFNpRml2ZSBjb21wb3NhYmxlIGNhY2hlIGNvbnRyb2xsZXIgRHJpdmVyDQo+ICsgKg0K
-PiArICogQ29weXJpZ2h0IChDKSAyMDE4LTIwMTkgU2lGaXZlLCBJbmMuDQo+ICsgKg0KPiArICov
-DQo+ICsjaW5jbHVkZSA8bGludXgvZGVidWdmcy5oPg0KPiArI2luY2x1ZGUgPGxpbnV4L2ludGVy
-cnVwdC5oPg0KPiArI2luY2x1ZGUgPGxpbnV4L29mX2lycS5oPg0KPiArI2luY2x1ZGUgPGxpbnV4
-L29mX2FkZHJlc3MuaD4NCj4gKyNpbmNsdWRlIDxsaW51eC9kZXZpY2UuaD4NCj4gKyNpbmNsdWRl
-IDxhc20vY2FjaGVpbmZvLmg+DQo+ICsjaW5jbHVkZSA8c29jL3NpZml2ZS9zaWZpdmVfY2NhY2hl
-Lmg+DQo+ICsNCj4gKyNkZWZpbmUgU0lGSVZFX0NDQUNIRV9ESVJFQ0NGSVhfTE9XIDB4MTAwDQo+
-ICsjZGVmaW5lIFNJRklWRV9DQ0FDSEVfRElSRUNDRklYX0hJR0ggMHgxMDQNCj4gKyNkZWZpbmUg
-U0lGSVZFX0NDQUNIRV9ESVJFQ0NGSVhfQ09VTlQgMHgxMDgNCj4gKw0KPiArI2RlZmluZSBTSUZJ
-VkVfQ0NBQ0hFX0RBVEVDQ0ZJWF9MT1cgMHgxNDANCj4gKyNkZWZpbmUgU0lGSVZFX0NDQUNIRV9E
-QVRFQ0NGSVhfSElHSCAweDE0NA0KPiArI2RlZmluZSBTSUZJVkVfQ0NBQ0hFX0RBVEVDQ0ZJWF9D
-T1VOVCAweDE0OA0KPiArDQo+ICsjZGVmaW5lIFNJRklWRV9DQ0FDSEVfREFURUNDRkFJTF9MT1cg
-MHgxNjANCj4gKyNkZWZpbmUgU0lGSVZFX0NDQUNIRV9EQVRFQ0NGQUlMX0hJR0ggMHgxNjQNCj4g
-KyNkZWZpbmUgU0lGSVZFX0NDQUNIRV9EQVRFQ0NGQUlMX0NPVU5UIDB4MTY4DQo+ICsNCj4gKyNk
-ZWZpbmUgU0lGSVZFX0NDQUNIRV9DT05GSUcgMHgwMA0KPiArI2RlZmluZSBTSUZJVkVfQ0NBQ0hF
-X1dBWUVOQUJMRSAweDA4DQo+ICsjZGVmaW5lIFNJRklWRV9DQ0FDSEVfRUNDSU5KRUNURVJSIDB4
-NDANCg0KIEZyb20gd2hhdCBJIGNhbiBzZWUsIHlvdSd2ZSBhbHNvIGNoYW5nZWQgdGhlc2UgYXJv
-dW5kIHRvbz8NClBsZWFzZSBnZW5lcmF0ZSB0aGUgcGF0Y2gncyBkaWZmIHNvIHRoYXQgdGhlIHJl
-bmFtZSBpcyBkZXRlY3RlZCAmIHRoZQ0KZGlmZiBzaG93cyBvbmx5IHdoYXQgY2hhbmdlZCBpbiB0
-aGUgZmlsZS4gVGhlIC1NIG9wdGlvbiBpcyB3aGF0IHlvdQ0KYXJlIGxvb2tpbmcgZm9yLg0KDQpJ
-IGhhdmUgYSBjb3VwbGUgb3RoZXIgY29tbWVudHMgdG8gbWFrZSBhYm91dCB3aGF0J3MgY2hhbmdl
-ZCBoZXJlIG90aGVyLA0KdGhhdG4gdGhlIHJlbmFtZSBidXQgSSB3aWxsIGRvIHNvIGFnYWluc3Qg
-YSB2MiB3aGVyZSB0aGUgZGlmZiBpcyB1c2FibGUuDQoNClRoYW5rcywNCkNvbm9yLg0KDQo+ICsN
-Cj4gKyNkZWZpbmUgU0lGSVZFX0NDQUNIRV9NQVhfRUNDSU5UUiAzDQo=
+On 2022-08-25 at 14:24:32 +0300, Ivan Bornyakov wrote:
+> Add support to the FPGA manager for programming Lattice ECP5 and MachXO2
+> FPGAs over slave SPI sysCONFIG interface.
+> 
+> Signed-off-by: Ivan Bornyakov <i.bornyakov@metrotek.ru>
+> ---
+>  drivers/fpga/Kconfig                 |   7 +
+>  drivers/fpga/Makefile                |   1 +
+>  drivers/fpga/lattice-sysconfig-spi.c | 630 +++++++++++++++++++++++++++
+>  3 files changed, 638 insertions(+)
+>  create mode 100644 drivers/fpga/lattice-sysconfig-spi.c
+> 
+> diff --git a/drivers/fpga/Kconfig b/drivers/fpga/Kconfig
+> index 6c416955da53..991d9d976dca 100644
+> --- a/drivers/fpga/Kconfig
+> +++ b/drivers/fpga/Kconfig
+> @@ -263,4 +263,11 @@ config FPGA_MGR_MICROCHIP_SPI
+>  	  programming over slave SPI interface with .dat formatted
+>  	  bitstream image.
+>  
+> +config FPGA_MGR_LATTICE_SPI
+> +	tristate "Lattice sysCONFIG SPI FPGA manager"
+> +	depends on SPI
+> +	help
+> +	  FPGA manager driver support for Lattice FPGAs programming over slave
+> +	  SPI sysCONFIG interface.
+> +
+>  endif # FPGA
+> diff --git a/drivers/fpga/Makefile b/drivers/fpga/Makefile
+> index 42ae8b58abce..115dba916024 100644
+> --- a/drivers/fpga/Makefile
+> +++ b/drivers/fpga/Makefile
+> @@ -20,6 +20,7 @@ obj-$(CONFIG_FPGA_MGR_ZYNQ_FPGA)	+= zynq-fpga.o
+>  obj-$(CONFIG_FPGA_MGR_ZYNQMP_FPGA)	+= zynqmp-fpga.o
+>  obj-$(CONFIG_FPGA_MGR_VERSAL_FPGA)	+= versal-fpga.o
+>  obj-$(CONFIG_FPGA_MGR_MICROCHIP_SPI)	+= microchip-spi.o
+> +obj-$(CONFIG_FPGA_MGR_LATTICE_SPI)	+= lattice-sysconfig-spi.o
+>  obj-$(CONFIG_ALTERA_PR_IP_CORE)		+= altera-pr-ip-core.o
+>  obj-$(CONFIG_ALTERA_PR_IP_CORE_PLAT)	+= altera-pr-ip-core-plat.o
+>  
+> diff --git a/drivers/fpga/lattice-sysconfig-spi.c b/drivers/fpga/lattice-sysconfig-spi.c
+> new file mode 100644
+> index 000000000000..145b5b27b88d
+> --- /dev/null
+> +++ b/drivers/fpga/lattice-sysconfig-spi.c
+> @@ -0,0 +1,630 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Lattice FPGA programming over slave SPI sysCONFIG interface.
+> + */
+> +
+> +#include <linux/delay.h>
+> +#include <linux/fpga/fpga-mgr.h>
+> +#include <linux/of_device.h>
+> +#include <linux/spi/spi.h>
+> +
+> +#define	SYSCONFIG_ISC_ENABLE		{0xC6, 0x00, 0x00, 0x00}
+> +#define	SYSCONFIG_ISC_DISABLE		{0x26, 0x00, 0x00, 0x00}
+> +#define	SYSCONFIG_ISC_ERASE		{0x0E, 0x00, 0x00, 0x00}
+> +#define	SYSCONFIG_ISC_PROGRAM_DONE	{0x5E, 0x00, 0x00, 0x00}
+> +#define	SYSCONFIG_LSC_READ_STATUS	{0x3C, 0x00, 0x00, 0x00}
+> +#define	SYSCONFIG_LSC_CHECK_BUSY	{0xF0, 0x00, 0x00, 0x00}
+> +#define	SYSCONFIG_LSC_REFRESH		{0x79, 0x00, 0x00, 0x00}
+> +#define	SYSCONFIG_LSC_INIT_ADDR		{0x46, 0x00, 0x00, 0x00}
+> +#define	SYSCONFIG_LSC_BITSTREAM_BURST	{0x7a, 0x00, 0x00, 0x00}
+> +#define	SYSCONFIG_LSC_PROG_INCR_NV	{0x70, 0x00, 0x00, 0x01}
+> +
+> +#define	SYSCONFIG_STATUS_DONE		BIT(8)
+> +#define	SYSCONFIG_STATUS_BUSY		BIT(12)
+> +#define	SYSCONFIG_STATUS_FAIL		BIT(13)
+> +#define	SYSCONFIG_STATUS_ERR		(BIT(23) | BIT(24) | BIT(25))
+> +
+> +#define	SYSCONFIG_POLL_RETRIES		100000
+> +
+> +#define	ECP5_SPI_MAX_SPEED_HZ		60000000
+> +#define	ECP5_ISC_ERASE_OPERAND		0x01
+> +
+> +#define	MACHXO2_SPI_MAX_SPEED_HZ	66000000
+> +#define	MACHXO2_PAGE_SIZE		16
+> +#define	MACHXO2_ISC_ENABLE_OPERAND	0x08
+> +#define	MACHXO2_ISC_ERASE_OPERAND	0x04
+
+You need to deliver the meaning of each operand, rather than just point
+out this is for machxo2, that is for esp5. I assume the sysCONFIG will
+not deliberately design different commands with the exact same
+functionality for different boards.
+
+We should have a set of common configurations with finer granularity that
+board specific fpga manager device could select from, rather than create
+more and more similar macros for each new board.
+
+Back to the 2 operands, what's the meaning of 0x1 & 0x4 for erase, also
+0x0 & 0x8 for enable?
+
+> +
+> +struct sysconfig_priv {
+> +	struct gpio_desc *program;
+> +	struct gpio_desc *init;
+> +	struct gpio_desc *done;
+> +	struct spi_device *spi;
+> +	u8 isc_enable_operand;
+> +	u8 isc_erase_operand;
+> +};
+> +
+> +static int sysconfig_poll_busy(struct sysconfig_priv *data)
+> +{
+> +	const u8 lsc_check_busy[] = SYSCONFIG_LSC_CHECK_BUSY;
+> +	int ret, retries = SYSCONFIG_POLL_RETRIES;
+> +	u8 busy;
+> +
+> +	while (retries--) {
+> +		ret = spi_write_then_read(data->spi,
+> +					  lsc_check_busy, sizeof(lsc_check_busy),
+> +					  &busy, sizeof(busy));
+> +		if (ret)
+> +			return ret;
+> +
+> +		if (!busy)
+> +			return 0;
+> +
+> +		usleep_range(50, 100);
+> +	}
+> +
+> +	return -EBUSY;
+> +}
+> +
+> +static int sysconfig_read_status(struct sysconfig_priv *data, u32 *status)
+> +{
+> +	const u8 lsc_read_status[] = SYSCONFIG_LSC_READ_STATUS;
+> +	__be32 device_status;
+> +	int ret;
+> +
+> +	ret = spi_write_then_read(data->spi,
+> +				  lsc_read_status, sizeof(lsc_read_status),
+> +				  &device_status, sizeof(device_status));
+> +	if (ret)
+> +		return ret;
+> +
+> +	*status = be32_to_cpu(device_status);
+> +
+> +	return 0;
+> +}
+> +
+> +static int sysconfig_poll_status(struct sysconfig_priv *data, u32 *status)
+> +{
+> +	int ret;
+> +
+> +	ret = sysconfig_poll_busy(data);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return sysconfig_read_status(data, status);
+> +}
+> +
+> +static int sysconfig_poll_gpio(struct gpio_desc *gpio, bool is_active)
+> +{
+> +	int value, retries = SYSCONFIG_POLL_RETRIES;
+> +
+> +	while (retries--) {
+> +		value = gpiod_get_value(gpio);
+> +		if (value < 0)
+> +			return value;
+> +
+> +		if ((!is_active && !value) || (is_active && value))
+> +			return 0;
+> +
+> +		ndelay(10);
+> +	}
+> +
+> +	return -ETIMEDOUT;
+> +}
+> +
+> +static int sysconfig_refresh(struct sysconfig_priv *data)
+> +{
+> +	static const u8 lsc_refresh[] = SYSCONFIG_LSC_REFRESH;
+> +	int ret;
+> +
+> +	ret = spi_write(data->spi, lsc_refresh, sizeof(lsc_refresh));
+> +	if (ret)
+> +		return ret;
+> +
+> +	usleep_range(4000, 8000);
+> +
+> +	return 0;
+> +}
+> +
+> +static int sysconfig_isc_enable(struct sysconfig_priv *data)
+> +{
+> +	u8 isc_enable[] = SYSCONFIG_ISC_ENABLE;
+> +	u32 status;
+> +	int ret;
+> +
+> +	isc_enable[1] = data->isc_enable_operand;
+> +
+> +	ret = spi_write(data->spi, isc_enable, sizeof(isc_enable));
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = sysconfig_poll_status(data, &status);
+> +	if (ret || (status & SYSCONFIG_STATUS_FAIL))
+> +		return ret ? : -EFAULT;
+> +
+> +	return 0;
+> +}
+> +
+> +static int sysconfig_isc_erase(struct sysconfig_priv *data)
+> +{
+> +	u8 isc_erase[] = SYSCONFIG_ISC_ERASE;
+> +	u32 status;
+> +	int ret;
+> +
+> +	isc_erase[1] = data->isc_erase_operand;
+> +
+> +	ret = spi_write(data->spi, isc_erase, sizeof(isc_erase));
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = sysconfig_poll_status(data, &status);
+> +	if (ret || (status & SYSCONFIG_STATUS_FAIL))
+> +		return ret ? : -EFAULT;
+> +
+> +	return 0;
+> +}
+> +
+> +static int sysconfig_isc_init(struct sysconfig_priv *data)
+> +{
+> +	int ret;
+> +
+> +	ret = sysconfig_isc_enable(data);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return sysconfig_isc_erase(data);
+> +}
+> +
+> +static int sysconfig_lsc_init_addr(struct sysconfig_priv *data)
+> +{
+> +	const u8 lsc_init_addr[] = SYSCONFIG_LSC_INIT_ADDR;
+> +
+> +	return spi_write(data->spi, lsc_init_addr, sizeof(lsc_init_addr));
+> +}
+> +
+> +static int sysconfig_lsc_bitstream_burst(struct sysconfig_priv *data)
+> +{
+> +	const u8 lsc_bitstream_burst[] = SYSCONFIG_LSC_BITSTREAM_BURST;
+> +	struct spi_transfer xfer = {
+> +		.tx_buf = lsc_bitstream_burst,
+> +		.len = sizeof(lsc_bitstream_burst),
+> +		.cs_change = 1,
+> +	};
+> +	struct spi_message msg;
+> +
+> +	spi_message_init_with_transfers(&msg, &xfer, 1);
+> +
+> +	return spi_sync_locked(data->spi, &msg);
+> +}
+> +
+> +static int sysconfig_isc_prog_done(struct sysconfig_priv *data)
+> +{
+> +	const u8 isc_prog_done[] = SYSCONFIG_ISC_PROGRAM_DONE;
+> +	u32 status;
+> +	int ret;
+> +
+> +	ret = spi_write(data->spi, isc_prog_done, sizeof(isc_prog_done));
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = sysconfig_poll_status(data, &status);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (status & SYSCONFIG_STATUS_DONE)
+> +		return 0;
+> +
+> +	return -EFAULT;
+> +}
+> +
+> +static int sysconfig_isc_disable(struct sysconfig_priv *data)
+> +{
+> +	const u8 isc_disable[] = SYSCONFIG_ISC_DISABLE;
+> +
+> +	return spi_write(data->spi, isc_disable, sizeof(isc_disable));
+> +}
+> +
+> +static enum fpga_mgr_states ecp5_ops_state(struct fpga_manager *mgr)
+> +{
+> +	struct sysconfig_priv *priv = mgr->priv;
+> +
+> +	return (gpiod_get_value(priv->done) > 0) ? FPGA_MGR_STATE_OPERATING :
+> +						   FPGA_MGR_STATE_UNKNOWN;
+> +}
+> +
+> +static int ecp5_ops_write_init(struct fpga_manager *mgr,
+> +			       struct fpga_image_info *info,
+> +			       const char *buf, size_t count)
+> +{
+> +	struct sysconfig_priv *priv = mgr->priv;
+> +	struct spi_device *spi = priv->spi;
+> +	struct device *dev = &mgr->dev;
+> +	struct gpio_desc *program;
+> +	struct gpio_desc *init;
+> +	struct gpio_desc *done;
+> +	int ret;
+> +
+> +	if (info->flags & FPGA_MGR_PARTIAL_RECONFIG) {
+> +		dev_err(dev, "Partial reconfiguration is not supported\n");
+> +		return -EOPNOTSUPP;
+> +	}
+> +
+> +	program = priv->program;
+> +	init = priv->init;
+> +	done = priv->done;
+> +
+> +	/* Enter init mode */
+> +	gpiod_set_value(program, 1);
+
+Same concern, provide gpio or command options for all board specific
+fpga manager to select. 
+
+I'll not list each features one by one below.
+
+some more comments below.
+
+> +
+> +	ret = sysconfig_poll_gpio(init, true);
+> +	if (!ret)
+> +		ret = sysconfig_poll_gpio(done, false);
+> +
+> +	if (ret) {
+> +		dev_err(dev, "Failed to go to init mode\n");
+> +		return ret;
+> +	}
+> +
+> +	/* Enter program mode */
+> +	gpiod_set_value(program, 0);
+> +
+> +	ret = sysconfig_poll_gpio(init, false);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to go to program mode\n");
+> +		return ret;
+> +	}
+> +
+> +	/* Enter ISC mode */
+> +	ret = sysconfig_isc_init(priv);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to go to ISC mode\n");
+> +		return ret;
+> +	}
+> +
+> +	/* Initialize the Address Shift Register */
+> +	ret = sysconfig_lsc_init_addr(priv);
+> +	if (ret) {
+> +		dev_err(dev,
+> +			"Failed to initialize the Address Shift Register\n");
+> +		return ret;
+> +	}
+> +
+> +	/*
+> +	 * Lock SPI bus for exclusive usage until FPGA programming is done.
+> +	 * SPI bus will be released in ecp5_ops_write_complete() or on error.
+> +	 */
+> +	spi_bus_lock(spi->controller);
+> +
+> +	/* Prepare for bitstream burst write */
+> +	ret = sysconfig_lsc_bitstream_burst(priv);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to prepare for bitstream burst write\n");
+> +		spi_bus_unlock(spi->controller);
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static int ecp5_ops_write(struct fpga_manager *mgr, const char *buf, size_t count)
+> +{
+> +	struct sysconfig_priv *priv = mgr->priv;
+> +	struct spi_device *spi = priv->spi;
+> +	struct spi_transfer xfer = {
+> +		.tx_buf = buf,
+> +		.len = count,
+> +		.cs_change = 1,
+> +	};
+> +	struct spi_message msg;
+> +	int ret;
+> +
+> +	spi_message_init_with_transfers(&msg, &xfer, 1);
+> +	ret = spi_sync_locked(spi, &msg);
+> +	if (ret)
+> +		spi_bus_unlock(spi->controller);
+> +
+> +	return ret;
+> +}
+> +
+> +static int ecp5_ops_write_complete(struct fpga_manager *mgr,
+> +				   struct fpga_image_info *info)
+> +{
+> +	struct sysconfig_priv *priv = mgr->priv;
+> +	struct spi_device *spi = priv->spi;
+> +	struct device *dev = &mgr->dev;
+> +	int ret;
+> +
+> +	/* Bitstream burst write is done, release SPI bus */
+> +	spi_bus_unlock(spi->controller);
+> +
+> +	/* Toggle CS and wait for bitstream write to finish */
+> +	ret = spi_write(spi, NULL, 0);
+> +	if (!ret)
+> +		ret = sysconfig_poll_busy(priv);
+> +
+> +	if (ret) {
+> +		dev_err(dev, "Error while waiting bitstream write to finish\n");
+> +		return ret;
+> +	}
+> +
+> +	/* Exit ISC mode */
+> +	ret = sysconfig_isc_disable(priv);
+> +	if (!ret)
+> +		ret = sysconfig_poll_gpio(priv->done, true);
+> +
+> +	if (ret)
+> +		dev_err(dev, "Failed to finish ISC\n");
+> +
+> +	return ret;
+> +}
+> +
+> +static const struct fpga_manager_ops ecp5_fpga_ops = {
+> +	.state = ecp5_ops_state,
+> +	.write_init = ecp5_ops_write_init,
+> +	.write = ecp5_ops_write,
+> +	.write_complete = ecp5_ops_write_complete,
+> +};
+> +
+> +static int ecp5_probe(struct sysconfig_priv *priv)
+> +{
+> +	struct spi_device *spi = priv->spi;
+> +	struct device *dev = &spi->dev;
+> +	struct fpga_manager *mgr;
+> +	int ret;
+> +
+> +	if (spi->max_speed_hz > ECP5_SPI_MAX_SPEED_HZ) {
+> +		dev_err(dev, "SPI speed %u is too high, maximum speed is %u\n",
+> +			spi->max_speed_hz, ECP5_SPI_MAX_SPEED_HZ);
+> +		return -EINVAL;
+> +	}
+> +
+> +	priv->isc_erase_operand = ECP5_ISC_ERASE_OPERAND;
+> +
+> +	priv->done = devm_gpiod_get(dev, "done", GPIOD_IN);
+> +	if (IS_ERR(priv->done)) {
+> +		ret = PTR_ERR(priv->done);
+> +		dev_err(dev, "Failed to get DONE GPIO: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	priv->init = devm_gpiod_get(dev, "init", GPIOD_IN);
+> +	if (IS_ERR(priv->init)) {
+> +		ret = PTR_ERR(priv->init);
+> +		dev_err(dev, "Failed to get INIT GPIO: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	priv->program = devm_gpiod_get(dev, "program", GPIOD_OUT_LOW);
+> +	if (IS_ERR(priv->program)) {
+> +		ret = PTR_ERR(priv->program);
+> +		dev_err(dev, "Failed to get PROGRAM GPIO: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	mgr = devm_fpga_mgr_register(dev, "Lattice ECP5 SPI FPGA Manager",
+> +				     &ecp5_fpga_ops, priv);
+> +
+> +	return PTR_ERR_OR_ZERO(mgr);
+> +}
+> +
+> +static enum fpga_mgr_states machxo2_ops_state(struct fpga_manager *mgr)
+> +{
+> +	struct sysconfig_priv *priv = mgr->priv;
+> +	u32 status;
+> +	int ret;
+> +
+> +	ret = sysconfig_read_status(priv, &status);
+> +	if (ret || !(status & SYSCONFIG_STATUS_DONE))
+> +		return FPGA_MGR_STATE_UNKNOWN;
+> +
+> +	return FPGA_MGR_STATE_OPERATING;
+> +}
+> +
+> +static int machxo2_ops_write_init(struct fpga_manager *mgr,
+> +				  struct fpga_image_info *info,
+> +				  const char *buf, size_t count)
+> +{
+> +	struct sysconfig_priv *priv = mgr->priv;
+> +	struct device *dev = &mgr->dev;
+> +	int ret;
+> +
+> +	if (info->flags & FPGA_MGR_PARTIAL_RECONFIG) {
+> +		dev_err(dev, "Partial reconfiguration is not supported\n");
+> +		return -EOPNOTSUPP;
+> +	}
+> +
+> +	/* Enter ISC mode */
+> +	ret = sysconfig_isc_init(priv);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to go to ISC mode\n");
+> +		return ret;
+> +	}
+> +
+> +	/* Initialize the Address Shift Register */
+> +	ret = sysconfig_lsc_init_addr(priv);
+> +	if (ret)
+> +		dev_err(dev,
+> +			"Failed to initialize the Address Shift Register\n");
+> +
+> +	return ret;
+> +}
+> +
+> +static int machxo2_ops_write(struct fpga_manager *mgr, const char *buf, size_t count)
+> +{
+> +	const u8 lsc_progincr[] = SYSCONFIG_LSC_PROG_INCR_NV;
+> +	struct sysconfig_priv *priv = mgr->priv;
+> +	struct device *dev = &mgr->dev;
+> +	struct spi_transfer xfers[2] = {
+> +		{
+> +			.tx_buf = lsc_progincr,
+> +			.len = sizeof(lsc_progincr),
+> +		}, {
+> +			.len = MACHXO2_PAGE_SIZE,
+> +		},
+> +	};
+> +	size_t i;
+> +	int ret;
+> +
+> +	if (count % MACHXO2_PAGE_SIZE) {
+> +		dev_err(dev, "Malformed payload.\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	for (i = 0; i < count; i += MACHXO2_PAGE_SIZE) {
+> +		xfers[1].tx_buf = buf + i;
+> +
+> +		ret = spi_sync_transfer(priv->spi, xfers, 2);
+> +		if (!ret)
+> +			ret = sysconfig_poll_busy(priv);
+> +
+> +		if (ret) {
+> +			dev_err(dev, "Failed to write frame %zu of %zu\n",
+> +				i / MACHXO2_PAGE_SIZE, count / MACHXO2_PAGE_SIZE);
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void machxo2_cleanup(struct sysconfig_priv *data)
+> +{
+> +	sysconfig_isc_erase(data);
+> +	sysconfig_refresh(data);
+> +}
+> +
+> +static int machxo2_ops_write_complete(struct fpga_manager *mgr,
+> +				      struct fpga_image_info *info)
+> +{
+> +	int ret, retries = SYSCONFIG_POLL_RETRIES;
+> +	struct sysconfig_priv *priv = mgr->priv;
+> +	struct device *dev = &mgr->dev;
+> +	u32 status;
+> +
+> +	ret = sysconfig_isc_prog_done(priv);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to enable Self-Download Mode\n");
+> +		goto fail;
+> +	}
+> +
+> +	ret = sysconfig_isc_disable(priv);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to disable Configuration Interface\n");
+> +		goto fail;
+> +	}
+> +
+> +	while (retries--) {
+> +		ret = sysconfig_refresh(priv);
+> +		if (!ret)
+> +			ret = sysconfig_read_status(priv, &status);
+> +
+> +		if (ret) {
+> +			dev_err(dev, "Failed to refresh\n");
+> +			break;
+> +		}
+> +
+> +		if (status & SYSCONFIG_STATUS_DONE &&
+> +		    !(status & SYSCONFIG_STATUS_BUSY) &&
+> +		    !(status & SYSCONFIG_STATUS_ERR))
+> +			return 0;
+> +	}
+> +
+> +fail:
+> +	machxo2_cleanup(priv);
+> +
+> +	return -EFAULT;
+> +}
+> +
+> +static const struct fpga_manager_ops machxo2_fpga_ops = {
+> +	.state = machxo2_ops_state,
+> +	.write_init = machxo2_ops_write_init,
+> +	.write = machxo2_ops_write,
+> +	.write_complete = machxo2_ops_write_complete,
+> +};
+> +
+> +static int machxo2_probe(struct sysconfig_priv *priv)
+> +{
+> +	struct spi_device *spi = priv->spi;
+> +	struct device *dev = &spi->dev;
+> +	struct fpga_manager *mgr;
+> +
+> +	if (spi->max_speed_hz > MACHXO2_SPI_MAX_SPEED_HZ) {
+> +		dev_err(dev, "SPI speed %u is too high, maximum speed is %u\n",
+> +			spi->max_speed_hz, MACHXO2_SPI_MAX_SPEED_HZ);
+> +		return -EINVAL;
+> +	}
+> +
+> +	priv->isc_enable_operand = MACHXO2_ISC_ENABLE_OPERAND;
+> +	priv->isc_erase_operand = MACHXO2_ISC_ERASE_OPERAND;
+> +
+> +	mgr = devm_fpga_mgr_register(dev, "Lattice MachXO2 SPI FPGA Manager",
+> +				     &machxo2_fpga_ops, priv);
+> +
+> +	return PTR_ERR_OR_ZERO(mgr);
+> +}
+> +
+> +typedef int (*lattice_fpga_probe_func)(struct sysconfig_priv *);
+> +
+> +static int sysconfig_probe(struct spi_device *spi)
+> +{
+> +	const struct spi_device_id *dev_id;
+> +	lattice_fpga_probe_func probe_func;
+> +	struct device *dev = &spi->dev;
+> +	struct sysconfig_priv *priv;
+> +
+> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	priv->spi = spi;
+> +
+> +	probe_func = of_device_get_match_data(&spi->dev);
+> +	if (!probe_func) {
+> +		dev_id = spi_get_device_id(spi);
+> +		if (!dev_id)
+> +			return -ENODEV;
+> +
+> +		probe_func = (lattice_fpga_probe_func)dev_id->driver_data;
+> +	}
+> +
+> +	if (!probe_func)
+> +		return -EINVAL;
+> +
+> +	return probe_func(priv);
+> +}
+> +
+> +static const struct spi_device_id sysconfig_spi_ids[] = {
+> +	{
+> +		.name = "ecp5-fpga-mgr",
+> +		.driver_data = (kernel_ulong_t)ecp5_probe,
+> +	}, {
+> +		.name = "machxo2-fpga-mgr",
+> +		.driver_data = (kernel_ulong_t)machxo2_probe,
+
+Putting the whole probe flow in driver_data is the same as providing 2
+drivers. The purpose is not to put all the code in one file.
+
+Thanks,
+Yilun
+
+> +	}, {},
+> +};
+> +MODULE_DEVICE_TABLE(spi, sysconfig_spi_ids);
+> +
+> +#if IS_ENABLED(CONFIG_OF)
+> +static const struct of_device_id sysconfig_of_ids[] = {
+> +	{
+> +		.compatible = "lattice,ecp5-fpga-mgr",
+> +		.data = ecp5_probe,
+> +	}, {
+> +		.compatible = "lattice,machxo2-fpga-mgr",
+> +		.data = machxo2_probe
+> +	}, {},
+> +};
+> +MODULE_DEVICE_TABLE(of, sysconfig_of_ids);
+> +#endif /* IS_ENABLED(CONFIG_OF) */
+> +
+> +static struct spi_driver lattice_sysconfig_driver = {
+> +	.probe = sysconfig_probe,
+> +	.id_table = sysconfig_spi_ids,
+> +	.driver = {
+> +		.name = "lattice_sysconfig_spi_fpga_mgr",
+> +		.of_match_table = of_match_ptr(sysconfig_of_ids),
+> +	},
+> +};
+> +
+> +module_spi_driver(lattice_sysconfig_driver);
+> +
+> +MODULE_DESCRIPTION("Lattice sysCONFIG Slave SPI FPGA Manager");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.37.2
+> 
+> 
