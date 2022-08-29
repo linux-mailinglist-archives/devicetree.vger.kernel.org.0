@@ -2,48 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7161F5A5821
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 01:49:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FF635A5818
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 01:49:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229905AbiH2Xsp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Aug 2022 19:48:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34650 "EHLO
+        id S230000AbiH2Xsa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Aug 2022 19:48:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35150 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230024AbiH2XsS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 19:48:18 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 121D0A894C;
-        Mon, 29 Aug 2022 16:47:14 -0700 (PDT)
+        with ESMTP id S230004AbiH2Xrs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 19:47:48 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FB06A74D8;
+        Mon, 29 Aug 2022 16:47:03 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id ECFCFB815DD;
+        by ams.source.kernel.org (Postfix) with ESMTPS id 8E2C9B815E0;
+        Mon, 29 Aug 2022 23:46:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8FB81C43143;
         Mon, 29 Aug 2022 23:46:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6C32C43140;
-        Mon, 29 Aug 2022 23:46:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661816809;
-        bh=OW81wvyMt27kPdb6wCMng77CaUWg/2WZUezvbrn0ghM=;
+        s=k20201202; t=1661816811;
+        bh=KahG2xDxCoetzNW8Gajuh3YY+vG3D5HNu1BmVl41zG8=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=ksnQjk4vSgPF31ExZixgMAe8d5Ft8sRdRSeZYIIFzYgrUceJPyDXrTQ27RueMjL/A
-         SzmY3UmHZqUcapCG/xdDiNhSFDmgrsr+XGOtgCemiEKg7nar+ub89FKuxb1sFusQCN
-         rNRRnGfDF8obFEarLtIYIHSRHxBiKUAFh0P9I9FDpeNisbjO+TTH/0+6REGyvSeUEc
-         Nrdp1ZL4jjB2+rDDBZ0EVbem+1E1UbHINjvASHFFHLVNs/+uxKhjMons7N/MZ/foAE
-         UBKXvWeSQbbqI7iHnZHDmXAtPFz/HD252pxx9jQ2BdIcK4tJncKIezkgyuBU7pBrNj
-         9h9rEsqEgFvvg==
+        b=QuYMnycXgxXjN/B7vb8RZh4qYzhBtESW6p3EtevAvLNO8SptT0UziIMPdKROgT7KQ
+         JQ1Lff/iLFlqwd+Bz/UG6z/e1cokexrPWtb2hVTZkHl4oSSaX7SZ2zg5b+Vix3ENLM
+         WJSOAEWQ1wsyt8UI1cevBBlSDhFp2T2/8Bw0LTdb67Cb+TzB2H30bn/COMKWWRdOUt
+         frLUI+gFRZaLy9FGEhwv077pvEl5abanHKw0C8d6glaiZ2USb2n+ZvNMqzNdyB4d/K
+         UN9c0RekjpDTnxZvHhDm6tU3/ZThNlV8oBxNcwMlslqefv7cDDX0HFKjL1tAe9YTk5
+         C11RZeIEgWdTg==
 From:   Bjorn Andersson <andersson@kernel.org>
-To:     robh+dt@kernel.org, Bjorn Andersson <andersson@kernel.org>,
-        yassine.oudjana@gmail.com, konrad.dybcio@somainline.org,
-        krzysztof.kozlowski+dt@linaro.org, agross@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, y.oudjana@protonmail.com,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: msm8996-xiaomi-*: Add LEDs
-Date:   Mon, 29 Aug 2022 18:46:12 -0500
-Message-Id: <166181675986.322065.8253509414799485162.b4-ty@kernel.org>
+To:     LKML <linux-kernel@vger.kernel.org>,
+        yunlong.jia@ecs.corp-partner.google.com
+Cc:     dianders@chromium.org, linux-arm-msm@vger.kernel.org,
+        robh+dt@kernel.org, konrad.dybcio@somainline.org,
+        moragues@chromium.org, henrysun@google.com,
+        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        agross@kernel.org
+Subject: Re: (subset) [PATCH v3 1/2] arm64: dts: qcom: Add SKU6 for sc7180-trogdor-pazquel-lte-parade
+Date:   Mon, 29 Aug 2022 18:46:14 -0500
+Message-Id: <166181675965.322065.1296946255841771215.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220728180120.97968-1-y.oudjana@protonmail.com>
-References: <20220728180120.97968-1-y.oudjana@protonmail.com>
+In-Reply-To: <20220721033918.v3.1.I10519ca1bf88233702a90e296088808d18cdc7b1@changeid>
+References: <20220721033918.v3.1.I10519ca1bf88233702a90e296088808d18cdc7b1@changeid>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -57,21 +58,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 28 Jul 2022 19:01:20 +0100, Yassine Oudjana wrote:
-> From: Yassine Oudjana <y.oudjana@protonmail.com>
+On Thu, 21 Jul 2022 03:58:42 +0000, Yunlong Jia wrote:
+> SKU6 is LTE(w/o eSIM)+WIFI+Parade
 > 
-> Add LEDs found on the Xiaomi MSM8996 devices. The devices share
-> a status RGB LED mounted on the front, as well as a PWM-driven
-> IR LED for remote control (sometimes known as an IR blaster).
-> The Mi Note 2 has an additional pair of white LEDs used as backlights
-> for the touchkeys driven by the PM8994 LPG block.
 > 
-> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: msm8996-xiaomi-*: Add LEDs
-      commit: d710fdfe484491679209ae0e11ac118da02f5d82
+[1/2] arm64: dts: qcom: Add SKU6 for sc7180-trogdor-pazquel-lte-parade
+      commit: 030a7bfb365fd19714e25e9547764bff690cb227
+[2/2] dt-bindings: arm: qcom: Document additional sku6 for sc7180 pazquel
+      commit: 07603a1c17cf9eec5c963b470daba780cd7b9981
 
 Best regards,
 -- 
