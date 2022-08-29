@@ -2,47 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 084245A5810
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 01:49:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7161F5A5821
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 01:49:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230075AbiH2Xs1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Aug 2022 19:48:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35652 "EHLO
+        id S229905AbiH2Xsp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Aug 2022 19:48:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229905AbiH2Xrp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 19:47:45 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61086A722A;
-        Mon, 29 Aug 2022 16:47:01 -0700 (PDT)
+        with ESMTP id S230024AbiH2XsS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 19:48:18 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 121D0A894C;
+        Mon, 29 Aug 2022 16:47:14 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 76EA561414;
+        by ams.source.kernel.org (Postfix) with ESMTPS id ECFCFB815DD;
+        Mon, 29 Aug 2022 23:46:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6C32C43140;
         Mon, 29 Aug 2022 23:46:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 467A3C433C1;
-        Mon, 29 Aug 2022 23:46:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661816807;
-        bh=QYMLga9CqiAFWS9re24LJM8iwKIx2i4jrQzFcMgOlfM=;
+        s=k20201202; t=1661816809;
+        bh=OW81wvyMt27kPdb6wCMng77CaUWg/2WZUezvbrn0ghM=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=K5F7lfo3mRqFU4of21qbfrfstESkCPU9JxV+BTnJ3NnJZjraNPrnjjvqPbX24hOnZ
-         3a0BIKytZzG1Z3eqZFGaV+ba54R4q9l2zFHPdGqjeTz5q09fGng+F5xQpyK6GU95Qx
-         7S/V7/4bnH8i3kk5EsmdqIPBEd1hLWUyaQf1npRSooR3rfIky+L9YMXbgSd4NdFyW/
-         SxEii5+9TvyPJgIupi4PVTGM2jmIMEFo8S2pmcHRkfUIqHUaTWZglJlNLPvkN4xzYI
-         0YVvtJmaXGZfvqyqriyQGk0QWH9ZnQEAYaIJP3/8MsPpJFI0Vs+UjcWFO6sPqKKPVh
-         0VI7ALuVA7tZw==
+        b=ksnQjk4vSgPF31ExZixgMAe8d5Ft8sRdRSeZYIIFzYgrUceJPyDXrTQ27RueMjL/A
+         SzmY3UmHZqUcapCG/xdDiNhSFDmgrsr+XGOtgCemiEKg7nar+ub89FKuxb1sFusQCN
+         rNRRnGfDF8obFEarLtIYIHSRHxBiKUAFh0P9I9FDpeNisbjO+TTH/0+6REGyvSeUEc
+         Nrdp1ZL4jjB2+rDDBZ0EVbem+1E1UbHINjvASHFFHLVNs/+uxKhjMons7N/MZ/foAE
+         UBKXvWeSQbbqI7iHnZHDmXAtPFz/HD252pxx9jQ2BdIcK4tJncKIezkgyuBU7pBrNj
+         9h9rEsqEgFvvg==
 From:   Bjorn Andersson <andersson@kernel.org>
-To:     steev@kali.org
-Cc:     robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, konrad.dybcio@somainline.org,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        agross@kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: thinkpad-x13s: Fix firmware location
-Date:   Mon, 29 Aug 2022 18:46:10 -0500
-Message-Id: <166181675971.322065.15985449789465456864.b4-ty@kernel.org>
+To:     robh+dt@kernel.org, Bjorn Andersson <andersson@kernel.org>,
+        yassine.oudjana@gmail.com, konrad.dybcio@somainline.org,
+        krzysztof.kozlowski+dt@linaro.org, agross@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, y.oudjana@protonmail.com,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: msm8996-xiaomi-*: Add LEDs
+Date:   Mon, 29 Aug 2022 18:46:12 -0500
+Message-Id: <166181675986.322065.8253509414799485162.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220817231236.3971-1-steev@kali.org>
-References: <20220817231236.3971-1-steev@kali.org>
+In-Reply-To: <20220728180120.97968-1-y.oudjana@protonmail.com>
+References: <20220728180120.97968-1-y.oudjana@protonmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -56,16 +57,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 17 Aug 2022 18:12:36 -0500, Steev Klimaszewski wrote:
-> The firmware for the Lenovo Thinkpad X13s has been submitted, accepted
-> and merged upstream, so update to the correct path.
+On Thu, 28 Jul 2022 19:01:20 +0100, Yassine Oudjana wrote:
+> From: Yassine Oudjana <y.oudjana@protonmail.com>
 > 
+> Add LEDs found on the Xiaomi MSM8996 devices. The devices share
+> a status RGB LED mounted on the front, as well as a PWM-driven
+> IR LED for remote control (sometimes known as an IR blaster).
+> The Mi Note 2 has an additional pair of white LEDs used as backlights
+> for the touchkeys driven by the PM8994 LPG block.
 > 
+> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: thinkpad-x13s: Fix firmware location
-      commit: b6a6535b339776d32fa515a18a93b1b317e9b063
+[1/1] arm64: dts: qcom: msm8996-xiaomi-*: Add LEDs
+      commit: d710fdfe484491679209ae0e11ac118da02f5d82
 
 Best regards,
 -- 
