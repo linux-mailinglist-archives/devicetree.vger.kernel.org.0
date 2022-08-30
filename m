@@ -2,140 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BCDE5A5D26
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 09:42:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0472C5A5D2C
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 09:42:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231134AbiH3HmH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 03:42:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37492 "EHLO
+        id S229994AbiH3Hmh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 03:42:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229807AbiH3HmG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 03:42:06 -0400
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39894A221B;
-        Tue, 30 Aug 2022 00:42:04 -0700 (PDT)
-Received: (Authenticated sender: gregory.clement@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 90C381C000B;
-        Tue, 30 Aug 2022 07:42:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1661845322;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=OlJsykSuKUj404P3HmaG9eK2FUUXIkKuT4JtjowBQZQ=;
-        b=kb3YuCStxdgM8c7BnX9v8sq2Dq25KzFhRtYTBt14EnoPA4vS5/Ydpz2SXeC1kR3lmzHVK0
-        PMyzQbQsYhwnCIpApS2jY0zpjSOosSNlI51XjqxgxiWi+89q48hrEAczm1LN0mEyIbtASk
-        80VsTFVPGwpKhBXz4z/mRAt9vSk5gGGvB0+InLwVH+u5lOj96WudzIT/M95aegn6MVnTa3
-        l1gN+u+hCD1ExxftigI+eU9iJL0Kd6tQFyuN7eJz38ZYKWxGU9uWTQ4kY/Rm6u30XUOGll
-        mxJ9oVorjw4+CRw16xMf2/8bPbUzu3suARsCxdHONwJ2qvDOLvS02MHGWXdtyg==
-From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     Robert Marko <robert.marko@sartura.hr>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, andrew@lunn.ch,
-        sebastian.hesselbarth@gmail.com, kostap@marvell.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v4 10/10] arm64: dts: marvell: add support for Methode eDPU
-In-Reply-To: <CA+HBbNF2R--984SdB0v42GMQOwAx4pTEz_FHifTtebN05ELU-Q@mail.gmail.com>
-References: <20220516124828.45144-1-robert.marko@sartura.hr>
- <20220516124828.45144-10-robert.marko@sartura.hr>
- <CA+HBbNF2R--984SdB0v42GMQOwAx4pTEz_FHifTtebN05ELU-Q@mail.gmail.com>
-Date:   Tue, 30 Aug 2022 09:42:00 +0200
-Message-ID: <87mtbm5gaf.fsf@BL-laptop>
+        with ESMTP id S231203AbiH3Hmg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 03:42:36 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAEB3A1A73
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 00:42:33 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id j14so4026302lfu.4
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 00:42:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=c+BAz5TKARnaA7ePcUOXjPEFWuKXdNXQbdrTJXQiOA8=;
+        b=cE6M+jIIm2JY5p5Gd+AJwb7gJD4EP8fNwBY5jsaBGDhUk5F47Jt1yWBILhG6/v01t9
+         iPmhdwwrzBtw2x8aWbrqV+HzC2xg+2gh7HYHRgdMVVFmwVlzQ99Fm0baz8MI1lUb8qt3
+         feihot3Aru7Q+6iAzlZo6vbOUk9At8lVccORWCmbwDzrqW4edMA5kmWyevdx4RhwEOse
+         j2nkWQmsH5mFYVGNVninKWpd4zF8bX0AyOFpUcJTQkCpRidRU+wHEw2YrkiKp1EOy7/N
+         MYYSS+KwJvlA2Z1fJAWGwWJKMEVN7VMuU3IXuwWy8k5VHpFEg0Mt4Bpdx+zIrmUUjzNd
+         k8Gw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=c+BAz5TKARnaA7ePcUOXjPEFWuKXdNXQbdrTJXQiOA8=;
+        b=4NKV+oLK7TXmLKYAzO8TA74IiSpSkJfMC/3WBFxM80/WLKk8zE2Ak1wRUVftV3nK+C
+         guGKzfhjtQ2FO0naD+a5VfMZzWf7mNqsK1rrAHnn5krn7beWzmnf/mJz4Z7PjQhs1S3L
+         jttuw2LeeUWNfrvIRgprRIcP7ith/j2wheBNFvgXIGnpScVERbAR4+lHKdtuZqoZdBKV
+         ep5SJVH+1JcuEtAYJ2jpQGeS3XbiGe4qliqEB0+H/RPBJfqAkUD+loFPNUQNHKWJQ4jp
+         l6KSGKAnss/hhcdYaQYd6Nk6cbfz3Voa/O7fT8NwQnjZi4CsFTMyy9LgfqWgxuZAnz20
+         3tdQ==
+X-Gm-Message-State: ACgBeo0qjyWaY2esEo1jP1SHZeMxHHoj8Mv01px+5vWPr6i+mrLrUEDW
+        s17tcCrsMcFwM2mfTaeiuafkSA==
+X-Google-Smtp-Source: AA6agR5e7+jk6RNyxPoSGiPYTuNDPyAoTBhOV75Af0njmGE2v5/xj4Z02ryp1GDslTWJlAu/Y3EvVg==
+X-Received: by 2002:a05:6512:1684:b0:47f:5f27:b006 with SMTP id bu4-20020a056512168400b0047f5f27b006mr7304537lfb.225.1661845352094;
+        Tue, 30 Aug 2022 00:42:32 -0700 (PDT)
+Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
+        by smtp.gmail.com with ESMTPSA id g6-20020a056512118600b00492d270db5esm1520758lfr.242.2022.08.30.00.42.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Aug 2022 00:42:31 -0700 (PDT)
+Message-ID: <52336b1e-f0b3-c828-48ef-b6977fd90547@linaro.org>
+Date:   Tue, 30 Aug 2022 10:42:29 +0300
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v4] regulator: dt-bindings: mediatek: add mt6366
+Content-Language: en-US
+To:     "zhiyong.tao" <zhiyong.tao@mediatek.com>, lee.jones@linaro.org,
+        robh+dt@kernel.org, matthias.bgg@gmail.com, lgirdwood@gmail.com,
+        broonie@kernel.org, eddie.huang@mediatek.com, a.zummo@towertech.it,
+        alexandre.belloni@bootlin.com, fshao@chromium.org
+Cc:     sen.chu@mediatek.com, hui.liu@mediatek.com,
+        allen-kh.cheng@mediatek.com, hsin-hsiung.wang@mediatek.com,
+        sean.wang@mediatek.com, macpaul.lin@mediatek.com,
+        wen.su@mediatek.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20220823123745.14061-1-zhiyong.tao@mediatek.com>
+ <57d259cd-613b-a608-5b67-01aa72c2babb@linaro.org>
+ <93bb8a3f7f5567cfe427ed067f68d5c8b6db776d.camel@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <93bb8a3f7f5567cfe427ed067f68d5c8b6db776d.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Robert Marko <robert.marko@sartura.hr> writes:
-
-> On Mon, May 16, 2022 at 2:48 PM Robert Marko <robert.marko@sartura.hr> wrote:
+On 29/08/2022 06:25, zhiyong.tao wrote:
+>>> +properties:
+>>> +  compatible:
+>>> +    const: mediatek,mt6366-regulator
 >>
->> Methode eDPU is an Armada 3720 powered board based on the Methode uDPU.
+>> This looks incomplete. How does it bind? Further pieces also suggest
+>> you
+>> send something incomplete.
+> ==>
+> 
+> The project dts file(such as 8186-evb.dts) will add the compatible.
+> The project dts file is examining.
+> 
+
+I don't understand this at all. I am not talking about DTS, but about
+bindings which look incomplete. Although seeing entire DTS would
+probably help understand the context.
+
+(...)
+
 >>
->> They feature the same CPU, RAM, and storage as well as the form factor.
 >>
->> However, eDPU only has one SFP slot plus a copper G.hn port.
+>>> +        type: object
+>>> +        $ref: regulator.yaml#
+>>> +        unevaluatedProperties: false
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - regulators
+>>> +
+>>> +additionalProperties: false
+>>> +
+>>> +examples:
+
+>>> +  - |
+>>> +    pmic {
+>>> +        compatible = "mediatek,mt6366-regulator";
+>>> +
+>>> +        regulators {
+>>> +            mt6366_vdram1_reg: buck-vdram1 {
 >>
->> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->> Changes in v2:
->> * Make the DTS split a separate commit
->> ---
->>  arch/arm64/boot/dts/marvell/Makefile             |  1 +
->>  arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts | 14 ++++++++++++++
->>  2 files changed, 15 insertions(+)
->>  create mode 100644 arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts
+>> Drop the labels here and further. Why you do not have here any
+>> regular
+>> constraints like min/max voltage?
+> 
+> we will add properties min/max voltag on project dts file.
+
+Example should be complete. DTS does not matter here.
+
+> 
 >>
->> diff --git a/arch/arm64/boot/dts/marvell/Makefile b/arch/arm64/boot/dts/marvell/Makefile
->> index 1c794cdcb8e6..104d7d7e8215 100644
->> --- a/arch/arm64/boot/dts/marvell/Makefile
->> +++ b/arch/arm64/boot/dts/marvell/Makefile
->> @@ -1,6 +1,7 @@
->>  # SPDX-License-Identifier: GPL-2.0
->>  # Mvebu SoC Family
->>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-db.dtb
->> +dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-eDPU.dtb
->>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin.dtb
->>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-emmc.dtb
->>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-ultra.dtb
->> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts b/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts
->> new file mode 100644
->> index 000000000000..57fc698e55d0
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts
->> @@ -0,0 +1,14 @@
->> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->> +
->> +/dts-v1/;
->> +
->> +#include "armada-3720-uDPU.dtsi"
->> +
->> +/ {
->> +       model = "Methode eDPU Board";
->> +       compatible = "methode,edpu", "marvell,armada3720", "marvell,armada3710";
->> +};
->> +
->> +&eth0 {
->> +       phy-mode = "2500base-x";
->> +};
->> --
->> 2.36.1
+>>> +                regulator-ramp-delay = <12500>;
+>>> +                regulator-enable-ramp-delay = <0>;
+>>> +                regulator-allowed-modes = <0 1>;
 >>
->
-> Hi Gregory,
-Hello Roberto,
+>> Where do you explain the meaning of modes?
+> support pwm mode.
 
-> Is there something else that I can improve in the series?
+The question was "Where". Where did you explain them?
 
-Sorry for having missed this series. At first view it seems OK, I am
-going to have a closer look this week.
+(...)
 
-Gregory
+>>> +
+>>> +            mt6366_vsim2_reg: ldo-vsim2 {
+>>> +                regulator-enable-ramp-delay = <540>;
+>>> +            };
+>>> +
+>>> +            mt6366_vcore_sshub_reg: buck-vcore-sshub {
+>>
+>> Empty node? What does it do?
+> just define here, we will add properties on project dts file.
 
+How is it related to bindings?
 
->
-> Regards,
-> Robert
->
-> -- 
-> Robert Marko
-> Staff Embedded Linux Engineer
-> Sartura Ltd.
-> Lendavska ulica 16a
-> 10000 Zagreb, Croatia
-> Email: robert.marko@sartura.hr
-> Web: www.sartura.hr
-
--- 
-Gregory Clement, Bootlin
-Embedded Linux and Kernel engineering
-http://bootlin.com
+Best regards,
+Krzysztof
