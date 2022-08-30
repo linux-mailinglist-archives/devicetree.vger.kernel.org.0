@@ -2,82 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 637305A6D05
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 21:22:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 094195A6D6C
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 21:32:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229569AbiH3TWX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 15:22:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58798 "EHLO
+        id S231184AbiH3Tcv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 15:32:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230462AbiH3TWW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 15:22:22 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC27579A56
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 12:22:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=pkWcx0o+0LUwEyaoVC+PhGx4f4ropxLGGmhXhsbPxOI=; b=MmIUTMNNtWx86qtzkcv1JZNZLl
-        oPHmqno05FWVwtib94IV1kDRdQK2wbGLFSZ1Ctv8OYpQXEWA1w70+VpVoy52VaBM9TlA7KdI6SZLn
-        VmsBXDGFoYs0sg1TZXm8M+AePMwabHFwSUjgycWEqbJLDvwR9YzEF3wqeSs72K/FcIOo=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1oT6oV-00F7oI-At; Tue, 30 Aug 2022 21:22:19 +0200
-Date:   Tue, 30 Aug 2022 21:22:19 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Gregory Clement <gregory.clement@bootlin.com>,
-        arm-soc <arm@kernel.org>,
-        Device Tree <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 00/12] Start converting MVEBU bindings to DT Schema
-Message-ID: <Yw5jaz/EqNS0hT/T@lunn.ch>
-References: <20220825013258.3459714-1-andrew@lunn.ch>
- <20220830184334.GA1825505-robh@kernel.org>
+        with ESMTP id S230214AbiH3Tcu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 15:32:50 -0400
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E128A49B58
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 12:32:45 -0700 (PDT)
+Received: by mail-pl1-x632.google.com with SMTP id w2so12129820pld.0
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 12:32:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=OYzA9p0n5o59safiaW4KMlIlfnAxPamL+boi+em99/M=;
+        b=W851mZSHA2NuVBwcGoGcf21aojaeZQ6itzde6gqVH7X2Aejqg6gmKniUdZpYCGwMgr
+         /VYzjXwux5er4xhFoJ0SDpu1AxswH9or1LBBQDLKe2Ys/Yy9YyeyaOpZ8rS2ida5eoV6
+         X2Ic6/yFW7PMZ82ej3p8GBPLvZV4vcpIpyLIg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=OYzA9p0n5o59safiaW4KMlIlfnAxPamL+boi+em99/M=;
+        b=d1biB0Qi9chzzdCWciEr7GpELtPEZ5ivQK1ut4m+r/B/NwO+6eSGtP+u6IILdC06BL
+         wuPMSoPpa1S8iGRby4yjZwDyovk9vwlrIC2PI7F4KiJyesftpcgcxJ0XHjH+cCSjsZzI
+         SiVPACQIZIvce2bMSf7PAWTmGWFhdpP5vLuAwt87EiwbvkDWEimWlz5qVgpdDroQjK1u
+         Icvdsuh9CoIYxkAGzED9jGqOr+yw4FscAo/vaMx1WrJF6LqnMcuS1SblocjO6+IczZaI
+         UeAGsQ6FldQgrgS2eiYUg8IrcJylBZeCuSKiVO5PC/hvg1gdWIik4NPhszOGAW7KyRs4
+         ydPg==
+X-Gm-Message-State: ACgBeo3I0BdsmqX9sXx6NV5CCgg5kOfHvJkpfCxQY3rYdBOF/998bWvb
+        kEYrEY2R7DoyWV8jSFGJKbVy5w==
+X-Google-Smtp-Source: AA6agR5a1ydzTy5CU1whWuOm/VAiahfPCvqjM4F31B9VPVSXp3Z7Evq1Nk8FjLUtWiUUav60coeBOQ==
+X-Received: by 2002:a17:902:d501:b0:174:c4c9:9b77 with SMTP id b1-20020a170902d50100b00174c4c99b77mr10894828plg.67.1661887965373;
+        Tue, 30 Aug 2022 12:32:45 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:d14a:ebf8:88f1:35e])
+        by smtp.gmail.com with UTF8SMTPSA id z5-20020a17090a66c500b001f334aa9170sm8868376pjl.48.2022.08.30.12.32.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Aug 2022 12:32:44 -0700 (PDT)
+From:   Brian Norris <briannorris@chromium.org>
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     zain wang <wzz@rock-chips.com>, Lin Huang <hl@rock-chips.com>,
+        linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Douglas Anderson <dianders@chromium.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Brian Norris <briannorris@chromium.org>
+Subject: [PATCH] arm64: dts: rockchip: Set RK3399-Gru PCLK_EDP to 24 MHz
+Date:   Tue, 30 Aug 2022 12:32:33 -0700
+Message-Id: <20220830123231.1.I98d30623f13b785ca77094d0c0fd4339550553b6@changeid>
+X-Mailer: git-send-email 2.37.2.672.g94769d06f0-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220830184334.GA1825505-robh@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 30, 2022 at 01:43:34PM -0500, Rob Herring wrote:
-> On Thu, Aug 25, 2022 at 03:32:46AM +0200, Andrew Lunn wrote:
-> > This is the first batch of patches converting the Marvell MVEBU driver
-> > bindings from .txt to .yaml. So far, kirkwood has been used for
-> > testing, but these drivers apply to a range of Marvell SoCs.
-> > 
-> > In order to reduce the number of warnings from the DT schema checking
-> > tools, a few minor changes have been made to a few DT files. No actual
-> > errors have been found, the changes just make the checker quiet.
-> > 
-> > I propose these patches are merged via mvebu to arm-soc. No conflicts
-> > are expected with these patches.
-> 
-> Why? I strongly prefer the bindings go via subsystem trees. That is the 
-> documented way.
+We've found the AUX channel to be less reliable with PCLK_EDP at a
+higher rate (typically 25 MHz). This is especially important on systems
+with PSR-enabled panels (like Gru-Kevin), since we make heavy, constant
+use of AUX.
 
-I have 50 patches to convert kirkwood from .txt to .yaml. probably
-around 30 subsystems.
+According to Rockchip, using any rate other than 24 MHz can cause
+"problems between syncing the PHY an PCLK", which leads to all sorts of
+unreliabilities around register operations.
 
-1) Complete nightmare to keep track of so many different patchsets
-   going in 30 different directions.
+Signed-off-by: zain wang <wzz@rock-chips.com>
+Signed-off-by: Brian Norris <briannorris@chromium.org>
+---
 
-2) None of these patches change any driver code. This is pure
-   'Documentation'. The subsystem probably reviewed the .txt file 10
-   years ago when I and other mvebu maintainers submitted
-   them. Nothing is changing in the kernel code base, except now we
-   gain some degree of validation for this 'Documentation'.
+ arch/arm64/boot/dts/rockchip/rk3399-gru-chromebook.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-3) Pretty much all of these were merged via arm-soc 10 years ago. Why
-   do it different now? What is gained by not going via arm-soc?
-
-   Andrew
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-gru-chromebook.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-gru-chromebook.dtsi
+index 45796b9fd94f..ee6095baba4d 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-gru-chromebook.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-gru-chromebook.dtsi
+@@ -244,6 +244,14 @@ &dmc {
+ &edp {
+ 	status = "okay";
+ 
++	/*
++	 * eDP PHY/clk don't sync reliably at anything other than 24 MHz. Only
++	 * set this here, because rk3399-gru.dtsi ensures we can generate this
++	 * off GPLL=600MHz, whereas some other RK3399 boards may not.
++	 */
++	assigned-clocks = <&cru PCLK_EDP>;
++	assigned-clock-rates = <24000000>;
++
+ 	ports {
+ 		edp_out: port@1 {
+ 			reg = <1>;
+-- 
+2.37.2.672.g94769d06f0-goog
 
