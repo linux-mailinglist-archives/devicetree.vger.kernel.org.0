@@ -2,68 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 601525A5EFE
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 11:15:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DA505A5F1D
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 11:19:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230077AbiH3JPF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 05:15:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42696 "EHLO
+        id S231521AbiH3JS7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 05:18:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231192AbiH3JPD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 05:15:03 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACA202C132
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 02:15:01 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id b26so3747361ljk.12
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 02:15:01 -0700 (PDT)
+        with ESMTP id S231524AbiH3JS4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 05:18:56 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A3F5D598D
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 02:18:52 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id b26so3756851ljk.12
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 02:18:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=mQ1R8RcwP/tDgQqtrGeS5/cc9K/I9GILUBCYhQFlkf4=;
-        b=DH9FJmepKcIheEYhRqnHcdsUNeJ2eX0KBXt/4fK/dirqflk9fMTaqmyKJ3oWEmLvn0
-         QKn/L9WMi0ePZVVOk8bbQe+zw1phTFHkc+sqZuxVKQh+jo6zinqVsaIjpfilfRE8BwE/
-         bQfbcm7OdDwHKx28V3zHd0V57jp8nDMt8T3Krw0ZuRt8BgYtKk9n3uZdUA31GknIW8aY
-         VyMIpakDwDzrqEvBo+jFQFdzfLjI6LO5ZNMz3/+HyUlvFckdc78wjab8ioJphaMVRQuU
-         yKbeXRjeTzWsXUNlCgDVO+Y6e5Ffl6c+9NKrJTz0itr5qOOvboCpZbYA0gza9XoSqeOF
-         h91g==
+        bh=dAQKouAgPWkFgT/L79DpCLEZVs1s1eMpf1fs8oVBpVQ=;
+        b=nx+b9zWTRn8VBKy2hv2AW48rKFz7yDy7ZCwY4g8fh3Dr5MIhGzmiv9vamitvGAop9j
+         uR7aswDYelsTXdH4tN7LHERpElabXR2NyqVONA/Ix5r4VxMY1/mStBYGWbirrfZl1k9C
+         FgqVai25gyW1uhAonEqfXSg2H0JIX4qMgEz/lE9f1nyHaNndzq1x2lYZYP/T4Ixmkp4Q
+         R2HklRoNZEH+enzMmFuBv7Bg6Shc7vMH4E9lphwi0irurXMKWm0u+yuUDG6m0DiVjlXp
+         W1VSnhrTul2IBpQSNu5O7H/fSlBsH/ykUdWFO8C+Hda0PJjV0YVQ8IAUB07YZYGCqex7
+         Xyzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=mQ1R8RcwP/tDgQqtrGeS5/cc9K/I9GILUBCYhQFlkf4=;
-        b=C3+hRfO1JmsmNcFw55whzbpKoRWJTk/N1NULnAkUORBO4+lWJTQSMoqjFkpyNTWf3w
-         D8+gDqcjbyCMOj1KLP/zjbAE2jEQebvty/MVNzPdaKwI0hgZFPLKzkeyp3KmTjqS3yf5
-         DNzD3j/mjdU7uiv6ZUEImauzKY6A9bwEwWWcviTYCnbLKtvyjzagsOvHmkQAskAk4dKC
-         CiD6HnAzNfayLs1xJs2UpaIhrSP7fi2yIMnqGv8+OHY6xU0+niC4K7s2F2SD44n65ueQ
-         eOS1341QxQXKE0wlNCfslkfECwQezAo7rT9Uw00y0wFtl7Ne5EoznfMOiC+2QsfJbIri
-         vUxw==
-X-Gm-Message-State: ACgBeo0I4aJJnnkJPAkB+6GgutmtD85PAGYi/z9akXadDnzfWWw+O2bI
-        vQ7rixpWeYsCbt/TGpV1u/ABcg==
-X-Google-Smtp-Source: AA6agR4mjpxqV76Y/yBmdlPIWYz25w2cWQRfhhg5nB8mFSzLDDdTfPdcYkDBoKO+uIutMHwMXSzE8Q==
-X-Received: by 2002:a2e:1f01:0:b0:25f:ea3a:4ef0 with SMTP id f1-20020a2e1f01000000b0025fea3a4ef0mr6372995ljf.330.1661850899598;
-        Tue, 30 Aug 2022 02:14:59 -0700 (PDT)
+        bh=dAQKouAgPWkFgT/L79DpCLEZVs1s1eMpf1fs8oVBpVQ=;
+        b=NkJjFjO6opsBiVugrrQfRyu7DvsP61h+sdN6j3tOhkFPttWD6baM0nzpvXVfJX1Y44
+         B2Z8gaX75PYCTf1zHQVOkaYG3hqy5qI/Q4nikZBEh1CTJ5AKp5OOwjPpAq0zRfXj2qtA
+         pMpA5nZ5EC3yT0SNWAqs5c7z5k5q7ztWbHr6ABZPqmSQtI1TagkPx/IKsLeKD0Jajxoy
+         dZNAXrxX42h3GrndlSO03DP2qVnPHCM6of5r1dEHjmqLYwOjljAiAiEcSVMA6SqcmSBR
+         25taAdNdIrmFRYy31WOnAd/4VcyQOe2b+LV8gHTe3o/duHUxTJbClNqzYxTAt92MtCYc
+         1yoQ==
+X-Gm-Message-State: ACgBeo1lKiXH5yOKKUh355QEf/2w1W8tZIus4edaTw3f2A/cCwbV6ays
+        U6M0XRYZbOMF3rPKdzT2PXM2KA==
+X-Google-Smtp-Source: AA6agR4UDLA9aC7NOX4uB7Mk2+pP5fmbHLtmhnkg6QTxLXxp91xsFSmr40D9xuX4dP0masF2L8Hj6A==
+X-Received: by 2002:a2e:8749:0:b0:25e:4357:8ef7 with SMTP id q9-20020a2e8749000000b0025e43578ef7mr7171083ljj.319.1661851129908;
+        Tue, 30 Aug 2022 02:18:49 -0700 (PDT)
 Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id a28-20020a2eb55c000000b0025e2c5a12b6sm822809ljn.129.2022.08.30.02.14.58
+        by smtp.gmail.com with ESMTPSA id f27-20020a05651c02db00b00261800f0e02sm1682559ljo.26.2022.08.30.02.18.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Aug 2022 02:14:58 -0700 (PDT)
-Message-ID: <453ac258-ac6c-a9e4-ccc5-b687aa260df3@linaro.org>
-Date:   Tue, 30 Aug 2022 12:14:57 +0300
+        Tue, 30 Aug 2022 02:18:49 -0700 (PDT)
+Message-ID: <787d6aa5-ff85-dede-cc16-958290cd77b3@linaro.org>
+Date:   Tue, 30 Aug 2022 12:18:48 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH 1/5] dt-bindings: vendor-prefixes: add Diodes
+Subject: Re: [PATCH v2] dt-bindings: spi: renesas,sh-msiof: Fix
+ 'unevaluatedProperties' warnings
 Content-Language: en-US
-To:     Martyn Welch <martyn.welch@collabora.com>,
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     kernel@collabora.com, Rob Herring <robh@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220829133923.1114555-1-martyn.welch@collabora.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+References: <20220829220334.6379-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220829133923.1114555-1-martyn.welch@collabora.com>
+In-Reply-To: <20220829220334.6379-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -76,17 +81,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/08/2022 16:39, Martyn Welch wrote:
-> Diodes Incorporated is a manufacturer of application specific standard
-> products within the discrete, logic, analog, and mixed-signal semiconductor
-> markets.
+On 30/08/2022 01:03, Lad Prabhakar wrote:
+> With 'unevaluatedProperties' support implemented, there's a number of
+> warnings when running dtbs_check:
 > 
-> https://www.diodes.com/
+> arch/arm64/boot/dts/renesas/r8a77951-ulcb-kf.dtb: spi@e6e90000: Unevaluated properties are not allowed ('power-domains', 'resets' were unexpected)
+> 	From schema: Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
 > 
-> Signed-off-by: Martyn Welch <martyn.welch@collabora.com>
+> The main problem is that SoC DTSI's include power-domains and resets
+> property, whereas the renesas,sh-msiof.yaml has 'unevaluatedProperties:
+> false'. So just add optional power-domains and resets properties.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+This is not the  main problem. Main problem is that this device is in
+power domain and/or uses resets, so the bindings are incomplete. Please
+rephrase the commit msg.
 
 Best regards,
 Krzysztof
