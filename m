@@ -2,109 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB4CC5A6AEB
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 19:36:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EBFD5A6B44
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 19:52:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232163AbiH3Rga (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 13:36:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48108 "EHLO
+        id S231244AbiH3RwM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 13:52:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232062AbiH3RgD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 13:36:03 -0400
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F1C812A5E4
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 10:32:29 -0700 (PDT)
-Received: by mail-lj1-f169.google.com with SMTP id z23so9261430ljk.1
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 10:32:29 -0700 (PDT)
+        with ESMTP id S231238AbiH3Rv6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 13:51:58 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36418167EB
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 10:48:36 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id bu22so14877510wrb.3
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 10:48:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=4oLornOVjulEhAP01pKqWVy9qULQoBVG2owDVTSt2sY=;
-        b=JqQvaKAyf4NiH7wH0XvTGOv7bwgM02SZ2JlPTqBr+6bjakQ88TGk6oKBe14UVEMDfe
-         HMO1MtVqLdcXBs7NtWWeekV6URrE3hVxnSAb8JPxoMd9af1aJBAbthn3NmOryfdAJhdh
-         ah2NqPyrBlwfY4EOxBMU85j4+XkJsQ4Shy2L2o2zyBoIFqwwLrIxleWNuUhwrwh6Z+WN
-         o+AuVEvbnHSg6x/xyWOrKJUgED8OE1oppPESoxyZXbCuk8eFX5z9/vbXgdaZu6Qsrbdg
-         gk/sYfHZjwthuI4Czn9yIB9wTVytIoZ6cfz8pvNtENcfwTt1ucC9zBV8Z+SoMdDNsKwI
-         2kZw==
+        bh=rmlcaT4uod7PpBdmIDlVofuYmhAw0mWF1ocMR7J7jHQ=;
+        b=cVmXkrXVB/VhRGL6WXUplEkAQijZtZRPc62bxRDQjALkNmsWvRBHB8+SZLdTSrr7Q2
+         jJNPQDHL443hUjM3gm9pRsjjswMMUUxwAqnjJ44an8iwVtGJlPxWlPBGfVEN0PSk3fd+
+         X+K160op9w//KYces00QD69pfUOTiQTGjOuQTQVU5NvlTqXtaYCcyzab4kSChbBP2AvF
+         cw4SrUCA15vFvM6aZQFS1XZeIaQvGIENMA7nLQ/WODSBrmSLF8GYf6oHwHXfBmhEnv7O
+         bq2DewdxbnUmsAbQejrrnx3RQO+QBInCtHIXVri/Q9fTZ16CIKB6QI3CpcUI/nSZE5Ul
+         8AHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=4oLornOVjulEhAP01pKqWVy9qULQoBVG2owDVTSt2sY=;
-        b=5mKsYsdA8XpHhDhHTSxevQSiqGM89VAwGCdaKJj44frjHJB7W9+3wyI58FHCvxJh01
-         vF9l4JHZmLz0R2PimjR5ym7zGOWkRfdQo1P6YK5NnCBidnw3zAoRr4niJiwFEpZmHIaD
-         U4qiOWq0mixecdICenHBYdxi/8thJK1XsM/9Df1n8N6NrBTpe57koUsjYcxz7smtFO4w
-         DOT1QunPffIcnB7PdA2EwW8toamrL4pmBNnbA9cFjMqp1N/zGPFvesMJNsvJCXrbLc+l
-         nezmdDNoku3P2PLCIeIhCwBcwJerGm5Rcf1315eBltcMFBEa5cF8mbUB3pS62R8PRWF4
-         SNkw==
-X-Gm-Message-State: ACgBeo1OmH9zgc2hpHpz3NNeXurXIFh/F88YGUnSK/uUqvzXRl5xDv2y
-        KK1XmC7dBGFxYdZM7IyIRrt9EFz9UpDA4hI1
-X-Google-Smtp-Source: AA6agR5LlXfJrdqDnVn0v8peNaVh8plpRRfBgPhdV098SOCTZ2Bo0ipZxlJJHCZdZCRPOLbkya6dKw==
-X-Received: by 2002:a2e:9c88:0:b0:263:d696:75b7 with SMTP id x8-20020a2e9c88000000b00263d69675b7mr3926487lji.461.1661880610307;
-        Tue, 30 Aug 2022 10:30:10 -0700 (PDT)
+        bh=rmlcaT4uod7PpBdmIDlVofuYmhAw0mWF1ocMR7J7jHQ=;
+        b=R7naFZId8myY3XXvgvyaDKUpET48dBGKrwVNPyw/Xx6kn+VwVuG0hUmP+sIT5IY5FU
+         toJRnoJVZUZrolbMGm7qtLl3Q88UOOK+mXWDqu2nQ9Porn866FJGWqJ6j0pin/40xA1X
+         LQaZmV0ovxMnEbcWNnBiI7rBX+y/H7T3rnIy5fZXF5OkJGGlHsHg73sFcNYeg4kAs9LW
+         pL5tP72fBm38xE+da7zY4R9Hqkvs7KzBYZxuk84lre3CzJQRphWhTiWtkij+9UODsZYo
+         GOpJUXNjTao74KNjEb1fATMoaC0wlPhcTaVb8TxmkaS+/EV5wb4K0TvNaCiSE3GWAcAo
+         9MUA==
+X-Gm-Message-State: ACgBeo363I1h3jmHITlLscQOvyXjH13HiAQDpF/okykkJYFHKd4JwpnI
+        DVZwRwuhsYXSxPq9llmONPHP6LJCEsw8hg0P
+X-Google-Smtp-Source: AA6agR4PY6CaaARXSRtsxN/bcXrQHnxvJheo2EM1aAUGuEOPcsmtvuMW25Oc0Y2r7Drxt2Wkb0cBYQ==
+X-Received: by 2002:a05:6512:3b20:b0:492:c04a:1520 with SMTP id f32-20020a0565123b2000b00492c04a1520mr8189476lfv.86.1661880699713;
+        Tue, 30 Aug 2022 10:31:39 -0700 (PDT)
 Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id bj36-20020a2eaaa4000000b002641ede39e1sm1112468ljb.9.2022.08.30.10.30.08
+        by smtp.gmail.com with ESMTPSA id 13-20020a2e050d000000b0026392faf543sm1235119ljf.77.2022.08.30.10.31.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Aug 2022 10:30:09 -0700 (PDT)
-Message-ID: <dc3bd6c6-852d-30a5-2ec1-ab5f7fd1488c@linaro.org>
-Date:   Tue, 30 Aug 2022 20:30:07 +0300
+        Tue, 30 Aug 2022 10:31:39 -0700 (PDT)
+Message-ID: <23539312-caaa-78f0-cd6c-899a826f9947@linaro.org>
+Date:   Tue, 30 Aug 2022 20:31:37 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v2 2/9] dt-bindings: riscv: microchip: document the aries
- m100pfsevp
+Subject: Re: [PATCH v3 1/3] dt-bindings: can: nxp,sja1000: Document RZ/N1
+ power-domains support
 Content-Language: en-US
-To:     Conor.Dooley@microchip.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, Daire.McNamara@microchip.com,
-        Shravan.Chippa@microchip.com
-Cc:     paul.walmsley@sifive.com, palmer@dabbelt.com,
-        aou@eecs.berkeley.edu, Cyril.Jean@microchip.com,
-        Lewis.Hanly@microchip.com, Praveen.Kumar@microchip.com,
-        wg@aries-embedded.de, Hugh.Breslin@microchip.com,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20220830101803.1456180-1-conor.dooley@microchip.com>
- <20220830101803.1456180-3-conor.dooley@microchip.com>
- <a3a8e2ba-a6bd-6e66-fd04-e3a46661a34d@linaro.org>
- <27b8aa9e-9173-b40e-8f9c-a53fa5ba36c8@microchip.com>
- <1065bc99-d73a-9d19-7f09-26cd862fe0c7@linaro.org>
- <69027950-f18d-c9a7-9f0b-d73ef68197c7@microchip.com>
+To:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-can@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+References: <20220830164518.1381632-1-biju.das.jz@bp.renesas.com>
+ <20220830164518.1381632-2-biju.das.jz@bp.renesas.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <69027950-f18d-c9a7-9f0b-d73ef68197c7@microchip.com>
+In-Reply-To: <20220830164518.1381632-2-biju.das.jz@bp.renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/08/2022 19:59, Conor.Dooley@microchip.com wrote:
->>> w dts were
->>> needed so that the gpio-hog could be set correctly. Out of curiosity, I can
->>> have the same compatible in multiple devicetrees right? In that case, it
->>> would just be "aries,m100pfsevp" here and I could put that in both?
->>> Would make things easier..
->>
->> Depends, but I would say for this case rather not. The compatible should
->> identify the board. If the boards are different, one compatible should
->> not identify both of them. Imagine U-Boot (or something else) trying to
->> match the DTS.
+On 30/08/2022 19:45, Biju Das wrote:
+> Document RZ/N1 power-domains support. Also update the example with
+> power-domains property.
 > 
-> It is the same board though, the way the bootloader works is that if it
-> detects an SD-card it will use that to boot from, and if not will fall back
-> to the emmc.
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+> v3:
+>  * Documented power-domains support.
 
-Wait, I might miss that part. So this is exactly the same hardware with
-the same SoM/SoC, same eMMC and SD card, except that one has plugged
-this SD card (as it is hot-pluggable)?
+You made them required, so it would be nice to see reason in such
+change. The commit msg says only what you did, but not why you did it.
 
 Best regards,
 Krzysztof
