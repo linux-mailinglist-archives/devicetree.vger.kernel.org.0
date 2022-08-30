@@ -2,226 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DAF7B5A6CFC
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 21:19:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04E415A6D18
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 21:22:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229607AbiH3TTU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 15:19:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52116 "EHLO
+        id S230212AbiH3TWl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 15:22:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231428AbiH3TTR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 15:19:17 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63F8C786CB
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 12:19:12 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id bx38so12390965ljb.10
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 12:19:12 -0700 (PDT)
+        with ESMTP id S231442AbiH3TWf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 15:22:35 -0400
+Received: from smtp-fw-80007.amazon.com (smtp-fw-80007.amazon.com [99.78.197.218])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D141279EC6;
+        Tue, 30 Aug 2022 12:22:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=/6LyHTH38BgY0ADcdGBfZVTBqdZgfLuEbTGF5dLunuo=;
-        b=hO62t4GV1LIJ8G8QoUwW8V2/xBSvQhASIkjPuucMOlEmS69QhTSItRIwJNp0cvysTH
-         QQcWYZ6Ju9ckQiXoigOFbXCNApCr8BpaeCnLmud2OV0Egl6ip9uYJDbfzOIy7g+7x+15
-         t+p7GjKmXxt51yTWqHw9GALpa9u2Af+2s25v5YHHu7AmdP0EDcKlv9ovddd0HwehL6iV
-         OWCsU4+kaL8xL/t1ADgowuzgU0gtwit9Mcf8dCd9B8qnpW2whzAy1TDg+DezQnD1hGmY
-         +pTWB6/kY3T88JUEvjMgr+8HdKCj5kYpbKQSH+NSa7V3hYJhW1qu/oIfeCO15XvOhUuI
-         AThQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=/6LyHTH38BgY0ADcdGBfZVTBqdZgfLuEbTGF5dLunuo=;
-        b=F0dnn4jd+mQrWUH9/lMmYD77sxAOKy50fqs9fcqRivn1DNyXutDrY2Yc6h0+6cd74s
-         TKNd8s3C/+JOiogM7z8bZLuojeYgf8Bhl2yOIR0YWsnmLD6klZfG/U0ZXklgCrUO2O9z
-         4fGters5XCL7TDT2s3OTYn2h9WieQfl2BGCoudQxphUkmCaIgvwucHQ0bKaDWvusSLQJ
-         +mfFf6SrYjoRQnlISYaO4zJgIjYu0Zt0/nnlPa1elPqcDmFiqXea+tvek80FtcxB7dFH
-         STyKgRPY/cCd8tyoLy7tMABOI769XwjuTDf971yQOrZPkcPpkfaQ7tGkN6cXxBnaCgaj
-         ImBA==
-X-Gm-Message-State: ACgBeo3rPxEIoPqIJHsNZJbq+USPL1D2eQICLB7I30RcNxS0UArR7bgk
-        c/SI0+sndbh4Qn32P429qrhCEw==
-X-Google-Smtp-Source: AA6agR7145igvHGfdZHSgAoxdGPymGfhempqbzQL8ie7cg1cpL7s/xcLE5T2BWNxethJ3rFwI9FUSg==
-X-Received: by 2002:a05:651c:154b:b0:261:d6f3:5550 with SMTP id y11-20020a05651c154b00b00261d6f35550mr7607592ljp.528.1661887151106;
-        Tue, 30 Aug 2022 12:19:11 -0700 (PDT)
-Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id i23-20020a2e8097000000b00261bfa93f55sm1879969ljg.11.2022.08.30.12.19.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Aug 2022 12:19:10 -0700 (PDT)
-Message-ID: <b88512ff-d062-276c-981d-98ec65cb8527@linaro.org>
-Date:   Tue, 30 Aug 2022 22:19:09 +0300
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1661887354; x=1693423354;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=4emJdCv2xuSuLRmEmSsy8bbTKz8TFWCnyVKKSowhnVE=;
+  b=Bt9/240H16IvUss0OibHMDbjLLmfN/UXk6gQrK8jMrt6NNWmGshitXsi
+   RwpZqL2ZNZeYl3rT/fB65XoH3TVPRbtahq9ZJqtpMPQrK0aHPt3+co/BL
+   UceTKESmvXJ8XuKZk2AY16cN4rzawyW4GQ0lCESFFbO3fo0BYYod7kM3A
+   U=;
+X-IronPort-AV: E=Sophos;i="5.93,275,1654560000"; 
+   d="scan'208";a="125055804"
+Received: from pdx4-co-svc-p1-lb2-vlan3.amazon.com (HELO email-inbound-relay-iad-1a-87b71607.us-east-1.amazon.com) ([10.25.36.214])
+  by smtp-border-fw-80007.pdx80.corp.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Aug 2022 19:22:18 +0000
+Received: from EX13MTAUWA001.ant.amazon.com (iad12-ws-svc-p26-lb9-vlan3.iad.amazon.com [10.40.163.38])
+        by email-inbound-relay-iad-1a-87b71607.us-east-1.amazon.com (Postfix) with ESMTPS id 7160314109C;
+        Tue, 30 Aug 2022 19:22:15 +0000 (UTC)
+Received: from EX19D013UWA004.ant.amazon.com (10.13.138.207) by
+ EX13MTAUWA001.ant.amazon.com (10.43.160.118) with Microsoft SMTP Server (TLS)
+ id 15.0.1497.38; Tue, 30 Aug 2022 19:22:14 +0000
+Received: from EX13MTAUWB001.ant.amazon.com (10.43.161.207) by
+ EX19D013UWA004.ant.amazon.com (10.13.138.207) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1118.12;
+ Tue, 30 Aug 2022 19:22:13 +0000
+Received: from dev-dsk-farbere-1a-46ecabed.eu-west-1.amazon.com
+ (172.19.116.181) by mail-relay.amazon.com (10.43.161.249) with Microsoft SMTP
+ Server id 15.0.1497.38 via Frontend Transport; Tue, 30 Aug 2022 19:22:13
+ +0000
+Received: by dev-dsk-farbere-1a-46ecabed.eu-west-1.amazon.com (Postfix, from userid 14301484)
+        id 5BA6A4D50; Tue, 30 Aug 2022 19:22:12 +0000 (UTC)
+From:   Eliav Farber <farbere@amazon.com>
+To:     <jdelvare@suse.com>, <linux@roeck-us.net>, <robh+dt@kernel.org>,
+        <p.zabel@pengutronix.de>, <rtanwar@maxlinear.com>,
+        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     <farbere@amazon.com>, <talel@amazon.com>, <hhhawa@amazon.com>,
+        <jonnyc@amazon.com>, <hanochu@amazon.com>, <ronenk@amazon.com>,
+        <itamark@amazon.com>, <shellykz@amazon.com>, <shorer@amazon.com>,
+        <amitlavi@amazon.com>, <almogbs@amazon.com>, <dkl@amazon.com>,
+        <rahul.tanwar@linux.intel.com>, <andriy.shevchenko@intel.com>
+Subject: [PATCH v3 00/19] Variety of fixes and new features for mr75203 driver
+Date:   Tue, 30 Aug 2022 19:21:53 +0000
+Message-ID: <20220830192212.28570-1-farbere@amazon.com>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH net-next v2 1/5] dt-bindings: net: Convert Altera TSE
- bindings to yaml
-Content-Language: en-US
-To:     Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc:     davem@davemloft.net, Rob Herring <robh+dt@kernel.org>,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        thomas.petazzoni@bootlin.com, Andrew Lunn <andrew@lunn.ch>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-References: <20220830095549.120625-1-maxime.chevallier@bootlin.com>
- <20220830095549.120625-2-maxime.chevallier@bootlin.com>
- <4a37d318-8c83-148b-89b3-9729bc7c9761@linaro.org>
- <20220830211617.54d2abc9@pc-10.home>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220830211617.54d2abc9@pc-10.home>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-11.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        USER_IN_DEF_SPF_WL autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/08/2022 22:16, Maxime Chevallier wrote:
->>> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>  
->>
->> Rebase your changes on some decent kernel and use
->> get_maintainers.pl...
-> 
-> I'm rebased against net-next, so I don't understand how I'm supposed to
-> do for this series, should I sent binding patches separately and based
-> on another tree ?
-> 
-> I'll cc you next time, sorry about that.
+List of fixes:
+ - Fix "intel,vm-map" property to be optional.
+ - Fix VM sensor allocation when "intel,vm-map" not defined.
+ - Fix multi-channel voltage reading.
+ - Fix voltage equation for negative source input.
+ - Modify the temperature equation according to series 5 datasheet.
+ - Fix coding style issue.
 
-net-next is correct, I just assumed it is some older tree since you did
-not Cc me.
+List of new features:
+- Modify "reset" property to be optional.
+- Add optional "moortec,vm-active-channels" property to define the number
+  of active channels per VM.
+- Add support for mr76006 pre-scaler to multiply the voltage result by 2.
+- Add support for series 6 temperature equation.
+- Add coefficient properties to fine tune the temperature equation.
+- Add debugfs to read and write temperature coefficients
 
-> 
->>> ---
->>> V1->V2:
->>>  - Removed unnedded maxItems
->>>  - Added missing minItems
->>>  - Fixed typos in some properties names
->>>  - Fixed the mdio subnode definition
->>>
->>>  .../devicetree/bindings/net/altera_tse.txt    | 113 -------------
->>>  .../devicetree/bindings/net/altr,tse.yaml     | 156
->>> ++++++++++++++++++ 2 files changed, 156 insertions(+), 113
->>> deletions(-) delete mode 100644
->>> Documentation/devicetree/bindings/net/altera_tse.txt create mode
->>> 100644 Documentation/devicetree/bindings/net/altr,tse.yaml 
->>
->> (...)
->>
->>> diff --git a/Documentation/devicetree/bindings/net/altr,tse.yaml
->>> b/Documentation/devicetree/bindings/net/altr,tse.yaml new file mode
->>> 100644 index 000000000000..1676e13b8c64
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/net/altr,tse.yaml
->>> @@ -0,0 +1,156 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/net/altr,tse.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Altera Triple Speed Ethernet MAC driver (TSE)
->>> +
->>> +maintainers:
->>> +  - Maxime Chevallier <maxime.chevallier@bootlin.com>
->>> +
->>> +allOf:  
->>
->> Put allOf below "required".
-> 
-> Ack
-> 
->>> +  - $ref: "ethernet-controller.yaml#"
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            enum:
->>> +              - altr,tse-1.0
->>> +              - ALTR,tse-1.0
->>> +    then:
->>> +      properties:
->>> +        reg:
->>> +          minItems: 4
->>> +        reg-names:
->>> +          items:
->>> +            - const: control_port
->>> +            - const: rx_csr
->>> +            - const: tx_csr
->>> +            - const: s1
->>> +
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            enum:
->>> +              - altr,tse-msgdma-1.0
->>> +    then:
->>> +      properties:
->>> +        reg:
->>> +          minItems: 6
->>> +        reg-names:
->>> +          minItems: 6  
->>
->> No need for minItems.
-> 
-> Ok I'll remove it
-> 
->>> +          items:
->>> +            - const: control_port
->>> +            - const: rx_csr
->>> +            - const: rx_desc
->>> +            - const: rx_resp
->>> +            - const: tx_csr
->>> +            - const: tx_desc
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - altr,tse-1.0
->>> +      - ALTR,tse-1.0  
->>
->> This is deprecated compatible. You need oneOf and then deprecated:
->> true.
-> 
-> Ok thanks for the tip
-> 
->>> +      - altr,tse-msgdma-1.0
->>> +
->>> +  reg:
->>> +    minItems: 4
->>> +    maxItems: 6
->>> +
->>> +  reg-names:
->>> +    minItems: 4
->>> +    items:
->>> +      - const: control_port
->>> +      - const: rx_csr
->>> +      - const: rx_desc
->>> +      - const: rx_resp
->>> +      - const: tx_csr
->>> +      - const: tx_desc
->>> +      - const: s1  
->>
->> This is messed up. You allow only 6 items maximum, but list 7. It
->> contradicts your other variants in allOf:if:then.
-> 
-> I'll remove that part then, apparently it's not needed at all if the
-> allOf:if:then cover all cases.
+---------
 
-Right. The typical pattern is like clocks/clock-names here:
+Changes between v2 and v3:
+*) Add "moortec" prefix to all new device-tree properties.
+*) Change order of patches.
+*) Add explanations to better understand the changes.
+*) Change "reset" property to be optional and remove the
+  "reset-control-skip" property.
+*) Split the patch for "fix multi-channel voltage reading" to two
+   patches.
+*) Change pre-scaler property format and fix typo (scalar --> scaler).
+*) Fix voltage equation to support negative values instead of limiting
+   value to zero.
+*) Temperature equation - protect from overflow and add clamping.
+*) Add new "moortec,ts-series" property to select between temperature
+   equation of series 5 or series 6.
 
-https://elixir.bootlin.com/linux/v5.19-rc6/source/Documentation/devicetree/bindings/clock/samsung,exynos7-clock.yaml#L57
+Changes between v1 and v2:
+ *) Fix compilation error for patch 08/16:
+    "warning: ISO C90 forbids variable length array"
 
-Best regards,
-Krzysztof
+---------
+
+Eliav Farber (19):
+  dt-bindings: hwmon: (mr75203) update "intel,vm-map" property to be
+    optional
+  hwmon: (mr75203) fix VM sensor allocation when "intel,vm-map" not
+    defined
+  hwmon: (mr75203) update pvt->v_num to the actual number of used
+    sensors
+  dt-bindings: hwmon: (mr75203) change "reset" property to be optional
+  hwmon: (mr75203) skip reset-control deassert for SOCs that don't
+    support it
+  hwmon: (mr75203) fix multi-channel voltage reading
+  hwmon: (mr75203) enable polling for all VM channels
+  dt-bindings: hwmon: (mr75203) add "moortec,vm-active-channels"
+    property
+  hwmon: (mr75203) add VM active channel support
+  dt-bindings: hwmon: (mr75203) add "moortec,vm-pre-scaler" property
+  hwmon: (mr75203) add VM pre-scaler support
+  hwmon: (mr75203) fix voltage equation for negative source input
+  hwmon: (mr75203) modify the temperature equation according to series 5
+    datasheet
+  dt-bindings: hwmon: (mr75203) add "moortec,ts-series" property
+  hwmon: (mr75203) add support for series 6 temperature equation
+  dt-bindings: hwmon: (mr75203) add coefficient properties for the
+    thermal equation
+  hwmon: (mr75203) parse temperature coefficients from device-tree
+  hwmon: (mr75203) add debugfs to read and write temperature
+    coefficients
+  hwmon: (mr75203) fix coding style space errors
+
+ .../bindings/hwmon/moortec,mr75203.yaml       |  67 ++-
+ drivers/hwmon/mr75203.c                       | 568 ++++++++++++++++--
+ 2 files changed, 569 insertions(+), 66 deletions(-)
+
+-- 
+2.37.1
+
