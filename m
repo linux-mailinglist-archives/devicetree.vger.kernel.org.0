@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75EDA5A6E6A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 22:25:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B89E5A6E76
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 22:31:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230056AbiH3UZ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 16:25:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57032 "EHLO
+        id S229829AbiH3UbB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 16:31:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229999AbiH3UZ1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 16:25:27 -0400
-Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9347E20BD3;
-        Tue, 30 Aug 2022 13:25:25 -0700 (PDT)
-Received: by mail-ot1-f54.google.com with SMTP id br15-20020a056830390f00b0061c9d73b8bdso8889007otb.6;
-        Tue, 30 Aug 2022 13:25:25 -0700 (PDT)
+        with ESMTP id S231567AbiH3UbA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 16:31:00 -0400
+Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4911A7960E;
+        Tue, 30 Aug 2022 13:30:57 -0700 (PDT)
+Received: by mail-ot1-f49.google.com with SMTP id m21-20020a9d6ad5000000b00638df677850so8905171otq.5;
+        Tue, 30 Aug 2022 13:30:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=Tj4CsI96CjSjdfLbbYWWFgXSfTixivMeud5ZwWBQkhA=;
-        b=sV4CcrTFr5TdMFPOaOPMC3uQRH3/2XXJ95A8LSqFrWzvXMWQ3yNWAHPzJaTEHHqSS6
-         fzBRnqi1Q+jWxzDKz0PEwucV07IRrDZfpYJJsp1GQ2iN+kaTv01cY9MWpGMSnt+4WwMy
-         iZaboDIjaZZrIByP9CiKR12bHKDVE58gUt5IaUC1l1dDWnzhqO8Jciojm318Ukq0VTVu
-         oTAaJS6TIhhUsUf9GK3Bs0IwNANjApy56srHllGkjrqXEK1YUGr6NZ7GjO63hEhygBWP
-         OKHKNVOjtyzMu64AiGPhJAeUVjwPcoi7zzNH6NbRC7uxOYroKnlLfgPZp0Abk8Wgw4m2
-         YR5g==
-X-Gm-Message-State: ACgBeo2aHWoxamPpodOTCKzZEGdUCN7d/vrUZaCX8YBglv60mEVioO+s
-        Ni+5twhLWMyAIo/RbxyCYg==
-X-Google-Smtp-Source: AA6agR44QFXaVTLoVdfdBD39OtxZChKA1FfiUuvrEsa0YWZU90ufr34W1rBh380qhYIKvXbaWVzBTg==
-X-Received: by 2002:a9d:bf3:0:b0:638:b4aa:508c with SMTP id 106-20020a9d0bf3000000b00638b4aa508cmr9120044oth.43.1661891124804;
-        Tue, 30 Aug 2022 13:25:24 -0700 (PDT)
+        bh=rmEy0B0NtOXNNKtRjySg/TnwvjbOM4n62zg2mMsSUUM=;
+        b=S+RAlKcPtTArCB6eGF3BfQDOwZfzYQwnejqXVAHb7DvOS4M9BjLd+ct4x6cecUAfcE
+         9cqDw5e0UjmXoKxHtDFeu43XKDXDEZbFsa4PgycT4Tgif2MFGmocG0/ITqW6qR3TO1mC
+         9FUgXA7g0SgU06LT3mrn+xKq3weQiWmWYhuVBBkyOu7nr0dM+iqO/AdG3JEAh3rJK7nL
+         vNMjrOIukgrayjYoUoVmNfiKgwn6QWLEBKMp2dOIiDQj5LesQirOA6XyPK4Xy+ifENII
+         +sm0fhc934UloGjvjHCjpGdaibVOeXzSv/q2qNYNyfLhoaxlthdDQKfwFSiD23e9MBJn
+         YgHA==
+X-Gm-Message-State: ACgBeo1qDNsKkZbLCzDx8US2ziFXxexVojDfGYD5JfAjKL5U2iI9GI7F
+        k2LzfXEspNQccCeEZ8tJ+A==
+X-Google-Smtp-Source: AA6agR6wv7sb60rVMo+ajcw6DL4GkCgRNMsmx4TQGT5PNfIatpDtqpF4AOiv2Fbpo0IHQj9Nnm735A==
+X-Received: by 2002:a05:6830:4429:b0:638:8f6c:2096 with SMTP id q41-20020a056830442900b006388f6c2096mr8973978otv.336.1661891456864;
+        Tue, 30 Aug 2022 13:30:56 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id e5-20020a9d5605000000b00636e9a0cce5sm7829933oti.60.2022.08.30.13.25.23
+        by smtp.gmail.com with ESMTPSA id bj37-20020a05680819a500b0033ad6ea8d11sm6704102oib.47.2022.08.30.13.30.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Aug 2022 13:25:24 -0700 (PDT)
-Received: (nullmailer pid 2002663 invoked by uid 1000);
-        Tue, 30 Aug 2022 20:25:23 -0000
-Date:   Tue, 30 Aug 2022 15:25:23 -0500
+        Tue, 30 Aug 2022 13:30:56 -0700 (PDT)
+Received: (nullmailer pid 2011586 invoked by uid 1000);
+        Tue, 30 Aug 2022 20:30:55 -0000
+Date:   Tue, 30 Aug 2022 15:30:55 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Daniel Mack <daniel@zonque.org>, mturquette@baylibre.com,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        kuninori.morimoto.gx@renesas.com
-Subject: Re: [PATCH v2 2/2] clk: cs2000-cp: make PLL lock timeout configurable
-Message-ID: <20220830202523.GA1996382-robh@kernel.org>
-References: <20220826091122.2344503-1-daniel@zonque.org>
- <20220826091122.2344503-2-daniel@zonque.org>
- <20220830014909.64D78C433D6@smtp.kernel.org>
+To:     Johannes Zink <j.zink@pengutronix.de>
+Cc:     linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
+        Moritz Fischer <mdf@kernel.org>, Wu Hao <hao.wu@intel.com>,
+        Xu Yilun <yilun.xu@intel.com>, kernel@pengutronix.de
+Subject: Re: [PATCH 01/16] dt-bindings: fpga: convert Lattice MachXO2 Slave
+ binding to YAML
+Message-ID: <20220830203055.GA2003370-robh@kernel.org>
+References: <20220825141343.1375690-1-j.zink@pengutronix.de>
+ <20220825141343.1375690-2-j.zink@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220830014909.64D78C433D6@smtp.kernel.org>
+In-Reply-To: <20220825141343.1375690-2-j.zink@pengutronix.de>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -64,28 +64,115 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 29, 2022 at 06:49:06PM -0700, Stephen Boyd wrote:
-> Quoting Daniel Mack (2022-08-26 02:11:22)
-> > The driver currently does 256 iterations of reads from the DEVICE_CTRL
-> > register to wait for the PLL_LOCK bit to clear, and sleeps one
-> > microsecond after each attempt.
-> > 
-> > This isn't ideal because
-> > 
-> >  a) the total time this allows for the device to settle depends on the I2C
-> >     bus speed, and
-> >  b) the device might need more time, depending on the application.
-> > 
-> > This patch allows users to configure this timeout through a new device-tree
-> > property "cirrus,pll-lock-timeout-ms".
+On Thu, Aug 25, 2022 at 04:13:28PM +0200, Johannes Zink wrote:
+> This commit prepares adding additional properties to the machxo2-slave
+> device. No functional changes.
+
+Please use get_maintainers.pl so *all* the maintainers/lists get Cc'ed. 
+
 > 
-> It's a timeout, so why not just increase the timeout regardless of
-> everything else? Or can we parse the bus speed (100kHz or 400kHz)
-> instead of adding a new property?
+> Signed-off-by: Johannes Zink <j.zink@pengutronix.de>
+> ---
+>  .../bindings/fpga/lattice,machxo2-slave.yaml  | 46 +++++++++++++++++++
+>  .../bindings/fpga/lattice-machxo2-spi.txt     | 29 ------------
+>  2 files changed, 46 insertions(+), 29 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/fpga/lattice,machxo2-slave.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/fpga/lattice-machxo2-spi.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/fpga/lattice,machxo2-slave.yaml b/Documentation/devicetree/bindings/fpga/lattice,machxo2-slave.yaml
+> new file mode 100644
+> index 000000000000..d05acd6b0fc6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/fpga/lattice,machxo2-slave.yaml
+> @@ -0,0 +1,46 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/fpga/lattice,machxo2-slave.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Lattice MachXO2 Slave FPGA Manager Device Tree Bindings
+> +
+> +maintainers:
+> +  - Johannes Zink <j.zink@pengutronix.de>
+> +
+> +description: |
+> +  Device used for loading the bitstream of Lattice MachXO2 FPGAs. The
+> +  programming sequence is described in FPGA-TN-02155 on www.latticesemi.com
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: lattice,machxo2-slave-spi
+> +    then:
+> +      $ref: /schemas/spi/spi-peripheral-props.yaml#
 
-My thought too. Usually PLLs have a spec for max/typ lock times. Given 
-it's a should never happen type of thing, it doesn't seem like we need a 
-super precise time.
+You don't need the 'if' because the schema is only applied if the 
+compatible matches.
 
-Rob
+Blank line needed here.
 
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - lattice,machxo2-slave-spi
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    spi0 {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        fpga@0 {
+> +            compatible = "lattice,machxo2-slave-spi";
+> +            spi-max-frequency = <8000000>;
+> +            reg = <0>;
+> +        };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/fpga/lattice-machxo2-spi.txt b/Documentation/devicetree/bindings/fpga/lattice-machxo2-spi.txt
+> deleted file mode 100644
+> index a8c362eb160c..000000000000
+> --- a/Documentation/devicetree/bindings/fpga/lattice-machxo2-spi.txt
+> +++ /dev/null
+> @@ -1,29 +0,0 @@
+> -Lattice MachXO2 Slave SPI FPGA Manager
+> -
+> -Lattice MachXO2 FPGAs support a method of loading the bitstream over
+> -'slave SPI' interface.
+> -
+> -See 'MachXO2ProgrammingandConfigurationUsageGuide.pdf' on www.latticesemi.com
+> -
+> -Required properties:
+> -- compatible: should contain "lattice,machxo2-slave-spi"
+> -- reg: spi chip select of the FPGA
+> -
+> -Example for full FPGA configuration:
+> -
+> -	fpga-region0 {
+> -		compatible = "fpga-region";
+> -		fpga-mgr = <&fpga_mgr_spi>;
+> -		#address-cells = <0x1>;
+> -		#size-cells = <0x1>;
+> -	};
+> -
+> -	spi1: spi@2000 {
+> -        ...
+> -
+> -		fpga_mgr_spi: fpga-mgr@0 {
+> -			compatible = "lattice,machxo2-slave-spi";
+> -			spi-max-frequency = <8000000>;
+> -			reg = <0>;
+> -		};
+> -	};
+> -- 
+> 2.30.2
+> 
+> 
