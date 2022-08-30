@@ -2,98 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AE495A6F2F
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 23:33:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A87F25A6F60
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 23:45:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229921AbiH3Vdb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 17:33:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58560 "EHLO
+        id S231447AbiH3VpM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 17:45:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229522AbiH3Vdb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 17:33:31 -0400
-Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83EEA89CD1;
-        Tue, 30 Aug 2022 14:33:30 -0700 (PDT)
-Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-11f11d932a8so11544882fac.3;
-        Tue, 30 Aug 2022 14:33:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=GOTFRorBIBX66XRGhGzIOArD4XzR32U93olT+o6d4TA=;
-        b=VuJMpl9oAxY06r4R75Gk7VsDfq5b8jBPNia7nHXsPfk7TrFFtA9AlGEyfoZ1HNL2Fa
-         0yasx+tStgUwIok13KPxh7GUAv20CUY/jHOaRaoPew9SB5Y04WmKMVtsIlE10+C+Sl35
-         QyqTmqkex+YVQMUpw/Zs/xFPUOMRy086sNKLTIkFYkaEGv1AJYHEDy9KNnOWL9bR4yQl
-         BC5gIZyjCp0ycarRrbTHrSbs4ky9Kkz/Zpyv2rDj149LKj17F/AG6fSWUIWFtJxdUZFl
-         UAfUJ+7nTdjKTS/FeZYtk5FxUsIE42SWRmRz6l1ZXoNaKoJd8YTwVwinBR/c2SHYkm8r
-         SpUg==
-X-Gm-Message-State: ACgBeo1550/Mv+dNqLG2CoV0SWqnKYHqVyhcvP0XAA3Rg7PnoddFpW3X
-        6B1CG+B84SXyla2/WVGaZg==
-X-Google-Smtp-Source: AA6agR4k02r9J+x1/GLhvNLKKpUomnGSi6dqOqh4iMGYwbRwkQ6CKz7vjvtcYrTFM+ll8SfyT0J2Wg==
-X-Received: by 2002:a05:6808:e8a:b0:337:9846:931a with SMTP id k10-20020a0568080e8a00b003379846931amr78260oil.215.1661895209805;
-        Tue, 30 Aug 2022 14:33:29 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id g15-20020a056830160f00b00636eeba9209sm7977462otr.52.2022.08.30.14.33.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Aug 2022 14:33:29 -0700 (PDT)
-Received: (nullmailer pid 2113828 invoked by uid 1000);
-        Tue, 30 Aug 2022 21:33:28 -0000
-Date:   Tue, 30 Aug 2022 16:33:28 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Frank Li <Frank.Li@nxp.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v5 02/20] dt-bindings: visconti-pcie: Fix interrupts
- array max constraints
-Message-ID: <20220830213328.GA2112212-robh@kernel.org>
-References: <20220822184701.25246-1-Sergey.Semin@baikalelectronics.ru>
- <20220822184701.25246-3-Sergey.Semin@baikalelectronics.ru>
+        with ESMTP id S231522AbiH3Vos (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 17:44:48 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F00758FD6D;
+        Tue, 30 Aug 2022 14:44:19 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 27ULiBbK012170;
+        Tue, 30 Aug 2022 16:44:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1661895851;
+        bh=z2NpbXDIb3DC16WpA+fL1a0l8vRBTWpRJulyloiQvqw=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=N3oCaYFPvGM9nSkpBChbc6zf0n4gMR+V2oVfEc8yOQJlxVqztedH2heIWp+7wLluv
+         w6h8GMZrZ3nHci4WgJX9AaAR59yPjZz5eW6x2dqJMM3rbX9wzuMah21kWTi1Rlu4IH
+         qdjXG+39ovbVFrKJBJRUjw2tVklLE0KbIpFn19ps=
+Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 27ULiBQh087521
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 30 Aug 2022 16:44:11 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 30
+ Aug 2022 16:44:11 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Tue, 30 Aug 2022 16:44:11 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 27ULiBHI011808;
+        Tue, 30 Aug 2022 16:44:11 -0500
+Date:   Tue, 30 Aug 2022 16:44:11 -0500
+From:   Bryan Brattlof <bb@ti.com>
+To:     Roger Quadros <rogerq@kernel.org>
+CC:     <nm@ti.com>, <vigneshr@ti.com>, <kishon@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 0/2] arm64: dts: ti: k3-am64-main: Add GPMC & ELM nodes
+Message-ID: <20220830214411.rqbrt5mgnuhwojz4@bryanbrattlof.com>
+References: <20220802104456.11069-1-rogerq@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <20220822184701.25246-3-Sergey.Semin@baikalelectronics.ru>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20220802104456.11069-1-rogerq@kernel.org>
+X-PGP-Fingerprint: D3D1 77E4 0A38 DF4D 1853 FEEF 41B9 0D5D 71D5 6CE0
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 22, 2022 at 09:46:43PM +0300, Serge Semin wrote:
-> In accordance with the way the device DT-node is actually defined in
-> arch/arm64/boot/dts/toshiba/tmpv7708.dtsi and the way the device is probed
-> by the DW PCIe driver there are two IRQs it actually has. It's MSI IRQ the
-> DT-bindings lack. Let's extend the interrupts property constraints then
-> and fix the schema example so one would be acceptable by the actual device
-> DT-bindings.
-> 
-> Fixes: 17c1b16340f0 ("dt-bindings: pci: Add DT binding for Toshiba Visconti PCIe controller")
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> 
-> ---
-> 
-> Changelog v5:
-> - This is a new patch added on the v5 release of the patchset.
-> ---
->  .../devicetree/bindings/pci/toshiba,visconti-pcie.yaml     | 7 ++++---
->  1 file changed, 4 insertions(+), 3 deletions(-)
+Hi Roger!
 
-No need for this to be in this series.
+On August  2, 2022 thus sayeth Roger Quadros:
+> Hi Nishanth,
+> 
+> This series adds GPMC and ELM controller device tree nodes to
+> AM64 SoC's dtsi file.
+> 
+> Changelog:
+> v4
+> - Rebased to v5.19
+> - use 'ti,am64-elm' compatible for ELM node
+> 
+> v3
+> - Rebased to v5.17-rc1
+> 
+> v2
+> - Fix register sizes for GPMC node.
+> - Disable GPMC and ELM nodes in board files. They will be enabled in
+> NAND card device tree overlay.
+> 
+> Roger Quadros (2):
+>   arm64: dts: ti: k3-am64-main: Add GPMC memory controller node
+>   arm64: dts: ti: k3-am64-main: Add ELM (Error Location Module) node
+>
+>  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 28 ++++++++++++++++++++++++
+>  arch/arm64/boot/dts/ti/k3-am642-evm.dts  |  8 +++++++
+>  arch/arm64/boot/dts/ti/k3-am642-sk.dts   |  8 +++++++
+>  3 files changed, 44 insertions(+)
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Bryan Brattlof <bb@ti.com>
+
+These look good to me :)
+
+~Bryan
