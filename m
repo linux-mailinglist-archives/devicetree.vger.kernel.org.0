@@ -2,73 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E30C95A62DC
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 14:08:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66D435A6322
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 14:21:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229510AbiH3MIL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 08:08:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54730 "EHLO
+        id S229739AbiH3MVO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 08:21:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229864AbiH3MIH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 08:08:07 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E2E682D0F
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 05:08:06 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id az27so13932384wrb.6
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 05:08:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=txqy7IQO4adVXLjCmBxiWt9FrkxitKDVktW9zB6/Sm0=;
-        b=g//nI5O/Y/KJQSCTUTpEiWS6dJSa42IgP52RT+hemywKAxqRoyjX8pYJ24cixRkWYI
-         GEDj2pCiprB0hRpChqywALjnyBpdy9LP3MR5VvmuhI9DH7IXfwLGofuotjN1Kh/RGX3j
-         RnNaWh+adrEqWOcAUTTHOr6KhppcfLFkCRH0cum5EVFTbJoUEJ2rEmKN+pDzbf7nwj/w
-         V7t+KkdnXEVbFDnJBaVxJmBWUKAUVegUW3XRxeqIpJvCPxyTiOXYaUmGVS7eOdIG0/ss
-         URJ8FTgWx8CUHey0TpAbAnhy99RQwMk8IX/ZYz96cV0jHEM1gy7oX4oVYhuFKKC0UGCo
-         5rMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=txqy7IQO4adVXLjCmBxiWt9FrkxitKDVktW9zB6/Sm0=;
-        b=fvyvq+r84WQ7XFkzBATt6zEp/CCdvMBIoUwdfvMIzxVnxUtBIxymMKthU/pt4UhYib
-         lXoHJCmCiry+nUikexcRZUDmGWKC7OOXCsAot+/JrdRyHxEc5pgTaoMaWEBWrmzswr/d
-         w2mnCQoPpLblKFqycRwQWq2GhIi+eL++HWJqCQ35qlknBu6Pi+fQdJJLSHDveG7OBfge
-         A8AVaQWoOE1eCAgZjf34aB7jz3r1Wuoq2MexEVa4Z+FARHR071Yb+ghW7I7sFoiWZ/Zb
-         aVWmwIF1urU0wj4K01xvG8XThWtw/OdCgKnHXcecVDiy8K1SzIu5541lOBFG12Bhl7iG
-         p6sg==
-X-Gm-Message-State: ACgBeo0yfZvIJqQtNtVVakuPvXkDwiqkcN00x5OrCqVnbyYe/AHqkYhq
-        j0aAXxvzlYLUu/i5ooHN4Tvu6w==
-X-Google-Smtp-Source: AA6agR7ENt6NZEpV9I2ZJp2WfCdYLW90CRY+gNQYrk08+S7A9SBlvu2Fic2vPHQAU7Nq+nJ1FiafuQ==
-X-Received: by 2002:a05:6000:1d84:b0:224:f447:b1a7 with SMTP id bk4-20020a0560001d8400b00224f447b1a7mr8455663wrb.688.1661861284570;
-        Tue, 30 Aug 2022 05:08:04 -0700 (PDT)
-Received: from [192.168.86.238] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
-        by smtp.googlemail.com with ESMTPSA id z7-20020a05600c0a0700b003a5c1e916c8sm3545673wmp.1.2022.08.30.05.08.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Aug 2022 05:08:04 -0700 (PDT)
-Message-ID: <4788e399-b292-9da7-3d62-75bb0312d4b9@linaro.org>
-Date:   Tue, 30 Aug 2022 13:08:03 +0100
+        with ESMTP id S229869AbiH3MVN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 08:21:13 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B649923FC;
+        Tue, 30 Aug 2022 05:21:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1661862072; x=1693398072;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=lMLf1aqqIFgOxzgozsPwTfQbYVnam9wTvijjocKUJKs=;
+  b=PsqMugXBnjeDc0XXu0Whal/XX9pXxum4Alf4FyTeHsHp7lvGvqkX+Ae+
+   lqka/tlnF5INw0ujzZJANWqxpX38SSiZ6osOt4wTKdal9BA3qmDkzXqJr
+   EheyETa6e5aSjPOAK78GzPb1HaAFvX/96Z6mTQPTawui0jbSMvtSWQtQE
+   nSYuBJ3q6ERUUkB9CdJgysQSQM0kJA3bDB3Z6E/snO+HlTZY2TgQMlV84
+   zmsasnJwgZyweqG5sX510Oh/myfIKo90NBjylUM80OZDiUo727dR8VcmG
+   MoNGMU38R544HATaVuLMNSeSUGFOoRSjG+I0AWwEVhcBWTVozvU7JFT70
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.93,274,1654585200"; 
+   d="scan'208";a="111374795"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 30 Aug 2022 05:21:11 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Tue, 30 Aug 2022 05:21:08 -0700
+Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.12 via Frontend
+ Transport; Tue, 30 Aug 2022 05:21:06 -0700
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        Hugh Breslin <hugh.breslin@microchip.com>
+CC:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+Subject: [PATCH v3 0/5] Add PolarFire SoC Fabric Clock Conditioning Circuitry Support
+Date:   Tue, 30 Aug 2022 13:20:19 +0100
+Message-ID: <20220830122023.2204485-1-conor.dooley@microchip.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v2 2/2] nvmem: lan9662-otp: add support.
-Content-Language: en-US
-To:     Horatiu Vultur <horatiu.vultur@microchip.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        UNGLinuxDriver@microchip.com
-References: <20220825204041.1485731-1-horatiu.vultur@microchip.com>
- <20220825204041.1485731-3-horatiu.vultur@microchip.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20220825204041.1485731-3-horatiu.vultur@microchip.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,223 +69,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hey all,
+
+PolarFire SoC has 4 clock source blocks, each with 2 PLLs and 2 DLLs,
+in the corners of the FPGA fabric. Add bindings, a driver supporting
+the PLLs and the requisite changes to the devicetrees for PolarFire
+SoC based boards. These clocks were already in use, but which clock
+specifically was chosen was decided by the synthesis tool. In our
+end-of-September release of our FPGA reference design, constraints will
+be added to force the synthesis tool to pick the "north west" CCC,
+making it possible to read the configuration from the CCC's registers.
+
+There are no maintainers changes in this series, but they are required
+due to the binding rename. I am waiting for some changes queued in the
+soc tree before rebasing on a later -rc before including that patch.
+
+The dts patch conflicts with some other dts patches I have submitted,
+so I will take the final patch myself once the rest of this is
+applied.
+
+Thanks,
+Conor.
+
+Changes since v3:
+- return devm_of_clk_add_hw_provider() directly in probe
+- add a `hw_data.num = num_clks` that got lost along the way somewhere
+- mark all output clocks as CLK_DIVIDER_ONE_BASED
+
+Changes since v2:
+- Removed the unintentionaly leftover clock-output-names
+- Dropped the riscv/microchip dt-binding update. I am moving it to
+  another series so that another series for the dts, which is likely to
+  be applied first would not depend on this series.
+
+Changes since v1:
+- Stopped using the dt node name to generate the clk name. Rather than
+  use clock-output-names etc, I just opted to call each PLL after it's
+  individual base address:
+  cccrefclk
+    ccc@38100000_pll0
+      ccc@38100000_pll0_out3
+      ccc@38100000_pll0_out2
+      ccc@38100000_pll0_out1
+      ccc@38100000_pll0_out0
+- dt nodes are now all called "clock-controller"
+
+Conor Dooley (5):
+  dt-bindings: clk: rename mpfs-clkcfg binding
+  dt-bindings: clk: document PolarFire SoC fabric clocks
+  dt-bindings: clk: add PolarFire SoC fabric clock ids
+  clk: microchip: add PolarFire SoC fabric clock support
+  riscv: dts: microchip: add the mpfs' fabric clock control
+
+ .../bindings/clock/microchip,mpfs-ccc.yaml    |  80 +++++
+ ...p,mpfs.yaml => microchip,mpfs-clkcfg.yaml} |   2 +-
+ .../dts/microchip/mpfs-icicle-kit-fabric.dtsi |  27 +-
+ .../boot/dts/microchip/mpfs-icicle-kit.dts    |   4 +
+ .../dts/microchip/mpfs-polarberry-fabric.dtsi |   5 +
+ arch/riscv/boot/dts/microchip/mpfs.dtsi       |  34 +-
+ drivers/clk/microchip/Makefile                |   1 +
+ drivers/clk/microchip/clk-mpfs-ccc.c          | 290 ++++++++++++++++++
+ .../dt-bindings/clock/microchip,mpfs-clock.h  |  23 ++
+ 9 files changed, 453 insertions(+), 13 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/microchip,mpfs-ccc.yaml
+ rename Documentation/devicetree/bindings/clock/{microchip,mpfs.yaml => microchip,mpfs-clkcfg.yaml} (96%)
+ create mode 100644 drivers/clk/microchip/clk-mpfs-ccc.c
 
 
-On 25/08/2022 21:40, Horatiu Vultur wrote:
-> Add support for OTP controller available on LAN9662. The OTPC controls
-> the access to a non-volatile memory. The size of the memory is 8KB.
-> The OTPC can access the memory based on an offset.
-> Implement both the read and the write functionality.
-> 
-> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
-> ---
->   drivers/nvmem/Kconfig        |   8 ++
->   drivers/nvmem/Makefile       |   2 +
->   drivers/nvmem/lan9662-otpc.c | 249 +++++++++++++++++++++++++++++++++++
->   3 files changed, 259 insertions(+)
->   create mode 100644 drivers/nvmem/lan9662-otpc.c
-> 
-> diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
-> index 967d0084800e..c9929ec35a39 100644
-> --- a/drivers/nvmem/Kconfig
-> +++ b/drivers/nvmem/Kconfig
-> @@ -84,6 +84,14 @@ config NVMEM_LPC18XX_OTP
->   	  To compile this driver as a module, choose M here: the module
->   	  will be called nvmem_lpc18xx_otp.
->   
-> +config NVMEM_LAN9662_OTPC
-> +	tristate "Microchip LAN9662 OTP controller support"
-> +	depends on SOC_LAN966 || COMPILE_TEST
-> +	depends on HAS_IOMEM
-> +	help
-> +	  This driver enables the OTP controller available on Microchip LAN9662
-> +	  SoCs. It controlls the access to the OTP memory connected to it.
-> +
+base-commit: b90cb1053190353cc30f0fef0ef1f378ccc063c5
+-- 
+2.36.1
 
-s/controlls/controls/
-
-
->   config NVMEM_MXS_OCOTP
->   	tristate "Freescale MXS On-Chip OTP Memory Support"
->   	depends on ARCH_MXS || COMPILE_TEST
-> diff --git a/drivers/nvmem/Makefile b/drivers/nvmem/Makefile
-> index 00e136a0a123..e1baface2c53 100644
-> --- a/drivers/nvmem/Makefile
-> +++ b/drivers/nvmem/Makefile
-> @@ -21,6 +21,8 @@ obj-$(CONFIG_NVMEM_LPC18XX_EEPROM)	+= nvmem_lpc18xx_eeprom.o
->   nvmem_lpc18xx_eeprom-y	:= lpc18xx_eeprom.o
->   obj-$(CONFIG_NVMEM_LPC18XX_OTP)	+= nvmem_lpc18xx_otp.o
->   nvmem_lpc18xx_otp-y		:= lpc18xx_otp.o
-> +obj-$(CONFIG_NVMEM_LAN9662_OTPC)	+= nvmem-lan9662-otpc.o
-> +nvmem-lan9662-otpc-y		:= lan9662-otpc.o
->   obj-$(CONFIG_NVMEM_MXS_OCOTP)	+= nvmem-mxs-ocotp.o
->   nvmem-mxs-ocotp-y		:= mxs-ocotp.o
->   obj-$(CONFIG_NVMEM_NINTENDO_OTP)	+= nvmem-nintendo-otp.o
-> diff --git a/drivers/nvmem/lan9662-otpc.c b/drivers/nvmem/lan9662-otpc.c
-> new file mode 100644
-> index 000000000000..302a5bae04dc
-> --- /dev/null
-> +++ b/drivers/nvmem/lan9662-otpc.c
-> @@ -0,0 +1,249 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +#include <linux/iopoll.h>
-> +#include <linux/module.h>
-> +#include <linux/nvmem-provider.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +
-> +#define OTP_OTP_PWR_DN(t)			(t + 0x00)
-> +#define OTP_OTP_PWR_DN_OTP_PWRDN_N		BIT(0)
-> +#define OTP_OTP_ADDR_HI(t)			(t + 0x04)
-> +#define OTP_OTP_ADDR_LO(t)			(t + 0x08)
-> +#define OTP_OTP_PRGM_DATA(t)			(t + 0x10)
-> +#define OTP_OTP_PRGM_MODE(t)			(t + 0x14)
-> +#define OTP_OTP_PRGM_MODE_OTP_PGM_MODE_BYTE	BIT(0)
-> +#define OTP_OTP_RD_DATA(t)			(t + 0x18)
-> +#define OTP_OTP_FUNC_CMD(t)			(t + 0x20)
-> +#define OTP_OTP_FUNC_CMD_OTP_PROGRAM		BIT(1)
-> +#define OTP_OTP_FUNC_CMD_OTP_READ		BIT(0)
-> +#define OTP_OTP_CMD_GO(t)			(t + 0x28)
-> +#define OTP_OTP_CMD_GO_OTP_GO			BIT(0)
-> +#define OTP_OTP_PASS_FAIL(t)			(t + 0x2c)
-> +#define OTP_OTP_PASS_FAIL_OTP_READ_PROHIBITED	BIT(3)
-> +#define OTP_OTP_PASS_FAIL_OTP_WRITE_PROHIBITED	BIT(2)
-> +#define OTP_OTP_PASS_FAIL_OTP_FAIL		BIT(0)
-> +#define OTP_OTP_STATUS(t)			(t + 0x30)
-> +#define OTP_OTP_STATUS_OTP_CPUMPEN		BIT(1)
-> +#define OTP_OTP_STATUS_OTP_BUSY			BIT(0)
-> +
-> +#define OTP_MEM_SIZE 8192
-> +#define OTP_SLEEP_US 10
-> +#define OTP_TIMEOUT_US 500000
-> +
-> +struct lan9662_otp {
-> +	struct device *dev;
-> +	void __iomem *base;
-> +};
-> +
-> +static inline void lan9662_writel(void __iomem *addr, u32 val)
-> +{
-> +	writel(val, addr);
-> +}
-> +
-> +static inline u32 lan9662_readl(void __iomem *addr)
-> +{
-> +	return readl(addr);
-> +}
-> +
-
-Why these boiler plate functions?
-
-> +static inline void lan9662_clrbits(void __iomem *addr, u32 clear)
-> +{
-> +	writel(readl(addr) & ~clear, addr);
-> +}
-> +
-> +static inline void lan9662_setbits(void __iomem *addr, u32 set)
-> +{
-> +	writel(readl(addr) | set, addr);
-> +}
-
-These two functions are called just once and I see no point in having a 
-wrapper function for this, instead you could use them directly or use 
-./include/linux/bitfield.h helper macros.
-
-> +
-> +static bool lan9662_otp_wait_flag_clear(void __iomem *reg, u32 flag)
-> +{
-> +	u32 val;
-> +
-> +	return readl_poll_timeout(reg, val, !(val & flag),
-> +				  OTP_SLEEP_US, OTP_TIMEOUT_US);
-> +}
-> +
-> +static int lan9662_otp_power(struct lan9662_otp *otp, bool up)
-> +{
-> +	if (up) {
-> +		lan9662_clrbits(OTP_OTP_PWR_DN(otp->base),
-> +				OTP_OTP_PWR_DN_OTP_PWRDN_N);
-> +		if (lan9662_otp_wait_flag_clear(OTP_OTP_STATUS(otp->base),
-> +						OTP_OTP_STATUS_OTP_CPUMPEN))
-> +			return -ETIMEDOUT;
-> +	} else {
-> +		lan9662_setbits(OTP_OTP_PWR_DN(otp->base),
-> +				OTP_OTP_PWR_DN_OTP_PWRDN_N);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int lan9662_otp_execute(struct lan9662_otp *otp)
-> +{
-> +	if (lan9662_otp_wait_flag_clear(OTP_OTP_CMD_GO(otp->base),
-> +					OTP_OTP_CMD_GO_OTP_GO))
-> +		return -ETIMEDOUT;
-> +
-> +	if (lan9662_otp_wait_flag_clear(OTP_OTP_STATUS(otp->base),
-> +					OTP_OTP_STATUS_OTP_BUSY))
-> +		return -ETIMEDOUT;
-> +
-> +	return 0;
-> +}
-> +
-> +static void lan9662_otp_set_address(struct lan9662_otp *otp, u32 offset)
-> +{
-> +	WARN_ON(offset >= OTP_MEM_SIZE);
-> +
-would we ever hit this condition? looks like unecessary check.
-
-
-
-> +	lan9662_writel(OTP_OTP_ADDR_HI(otp->base), 0xff & (offset >> 8));
-> +	lan9662_writel(OTP_OTP_ADDR_LO(otp->base), 0xff & offset);
-> +}
-> +
-> +static int lan9662_otp_read_byte(struct lan9662_otp *otp, u32 offset, u8 *dst)
-> +{
-> +	u32 pass;
-> +	int rc;
-> +
-> +	lan9662_otp_set_address(otp, offset);
-> +	lan9662_writel(OTP_OTP_FUNC_CMD(otp->base),
-> +		       OTP_OTP_FUNC_CMD_OTP_READ);
-> +	lan9662_writel(OTP_OTP_CMD_GO(otp->base),
-> +		       OTP_OTP_CMD_GO_OTP_GO);
-Can be wrapped into single line.
-
-> +	rc = lan9662_otp_execute(otp);
-> +	if (!rc) {
-> +		pass = lan9662_readl(OTP_OTP_PASS_FAIL(otp->base));
-> +		if (pass & OTP_OTP_PASS_FAIL_OTP_READ_PROHIBITED)
-> +			return -EACCES;
-> +		*dst = (u8) lan9662_readl(OTP_OTP_RD_DATA(otp->base));
-> +	}
-> +	return rc;
-> +}
-> +
-
-...
-
-thanks,
-srini
-> +
-> +static const struct of_device_id lan9662_otp_match[] = {
-> +	{ .compatible = "microchip,lan9662-otp", },
-> +	{ .compatible = "microchip,lan9668-otp", },
-> +	{ },
-> +};
-> +MODULE_DEVICE_TABLE(of, lan9662_otp_match);
-> +
-> +static struct platform_driver lan9662_otp_driver = {
-> +	.probe = lan9662_otp_probe,
-> +	.driver = {
-> +		.name = "lan9662-otp",
-> +		.of_match_table = lan9662_otp_match,
-> +	},
-> +};
-> +module_platform_driver(lan9662_otp_driver);
-> +
-> +MODULE_AUTHOR("Horatiu Vultur <horatiu.vultur@microchip.com>");
-> +MODULE_DESCRIPTION("lan9662 OTP driver");
-> +MODULE_LICENSE("GPL");
