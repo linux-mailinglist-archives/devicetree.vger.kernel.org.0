@@ -2,84 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C08265A6B7C
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 19:59:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A3B05A6B82
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 19:59:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231319AbiH3R7B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 13:59:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38404 "EHLO
+        id S229913AbiH3R7c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 13:59:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232240AbiH3R6n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 13:58:43 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2A0665FC
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 10:57:55 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id q7so16579355lfu.5
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 10:57:55 -0700 (PDT)
+        with ESMTP id S231382AbiH3R7J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 13:59:09 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83D76E91
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 10:58:54 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id bn9so12189197ljb.6
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 10:58:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=Vuo5xXbseR9WXiFJ4+y6+qbPTjY/jtEcAv7SSn7pWgo=;
-        b=QfXlW4IuU99OY2q6gNRj7GVsdw2bqbps4mZGeVw2wZ9OaVaWnEaCBL0OpgnSwAZhx0
-         v/7YH20sa3p/JsJ4eqCXBHIQqTFrLLoIu70ws6znoXqfUrHFy1vMjDfvXKLKA/o+wlbu
-         1gVaNrPQZBkHjEsI72GdwpooycLxcLBcfurY4OiAqHlRdWrAzCvGasco4ZvLvcgTZhJZ
-         +l3qbujcw68yIvwZ8hoKNwTQG/Y3+EJM1muHeduNLwv/d1XBTxw3gjKyxHglbyPdblNW
-         hrUFsUWfoVGj7SlmBOhmBNnS8ODKjbcWMeV3DBO/2TkawtupEIKSWyqkODDFwbD9jOh2
-         nvJA==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc;
+        bh=zOi9kFOde5m40Z0kzt7eejwPpj0TyHiFN0Epj0E8EcY=;
+        b=kOSsVdTVsCPhkycrz9pFHCagY9vhvZ/ZsHKsO5/WpC2KatVlstdZC08p4rRCGwGnlI
+         vvMTass1nOfPlNAGL9Trvt+FHMNNL7Qh2MzuJ8CqKER9ItW1mo6hIDF7t4D+lvlbJRJM
+         rwZGQV18MmjoPqeP1qNb3zT8C9aHqzsQ9F3uXBaEMUDEJYzA6Mn8HSdI2Cm4L5LR6TOE
+         QC0prfswFQK60mYEimHhLstNDjvG79CMdJd13Xbb9Hbaa+857gKoePXq3i1OXGPD16FH
+         eaLK/BIKs1UvuaajzvE6hn8fEg7e8WMWUbGpiGOI0e8kml4OBsZQO3TYsDM7Qezz3RFa
+         lqWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=Vuo5xXbseR9WXiFJ4+y6+qbPTjY/jtEcAv7SSn7pWgo=;
-        b=Du8R6eg9NCf0VRvTFTrVHVwZNH/eor1CElAWcPRCu+034eRXNTm3E2gEfIVbKPClFd
-         zkbmflgSj3WqpiVN7EgZLx6bhpCYtBIWGFPUWvcE+UHzY2rs//Xvlw2PiEUhgeC+O+GR
-         CXPQvsiiC/F47JrDkBsOJmeR6x3//H1nnn+lsb51yLNJd+AZ2HxKi72+8o0AYk7mm1sX
-         8JtoMaQsn7Zwucd0OOeCacm4zLbOCyGlAVOZ/z9mNo+nOuNi2W98yx0bOrZhvW+Bx5Qb
-         03ZYF99p+cKEjF8Jf4afKnzLT44emYuoPhSXKoNt+3ojTcnjwre05ywTq1l9lzA5x+Aa
-         ffjw==
-X-Gm-Message-State: ACgBeo1/JUfI2Wl3CCtiLWhIHI5jM2RgO2LZfDsks/sBwFwT91x5WdjV
-        yVNAmkEnWiSpkODipzvulkAAqQ==
-X-Google-Smtp-Source: AA6agR4j3+LglVzZoY1U2SUJyCi9sxbKq0ZtPQG6bJaaRx5hv6JS+nLvIPeE95vVFpUbNOJLV4pjlQ==
-X-Received: by 2002:a05:6512:3087:b0:494:6180:ba85 with SMTP id z7-20020a056512308700b004946180ba85mr5240743lfd.165.1661882274172;
-        Tue, 30 Aug 2022 10:57:54 -0700 (PDT)
-Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id w20-20020a05651234d400b0048b0099f40fsm1676191lfr.216.2022.08.30.10.57.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Aug 2022 10:57:53 -0700 (PDT)
-Message-ID: <366e5719-c477-1645-4f5f-0a0233c0accc@linaro.org>
-Date:   Tue, 30 Aug 2022 20:57:52 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH 2/2] dt-bindings: memory-controllers: fsl,imx8m-ddrc: drop
- Leonard Crestez
-Content-Language: en-US
-To:     Peng Fan <peng.fan@nxp.com>, Georgi Djakov <djakov@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20220817065946.24303-1-krzysztof.kozlowski@linaro.org>
- <20220817065946.24303-2-krzysztof.kozlowski@linaro.org>
- <DU0PR04MB9417C2A5495EC2E009A1B3ED886A9@DU0PR04MB9417.eurprd04.prod.outlook.com>
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
+        bh=zOi9kFOde5m40Z0kzt7eejwPpj0TyHiFN0Epj0E8EcY=;
+        b=QFq870kHnq6W4gP1hrh5FnrMXg6c7NHMwWTYpjsPr2tsQacp0fTQMOCumY9rZ4h6PJ
+         pZfs9lbPlg+dYGdkZ5nmox/R8f9X+h8knWV3cGPTsR/7H31PhcziQelLyNwSFcN5tdy3
+         tkeyt/NXxvovV13fsDN4+54JPJcEsObpTq+KmG/rF1Svgp6KIUbxeZrJS20rOkWD/cY/
+         y80su5cFmOX87e7Cn80t/zKgBLa9FC+e1hqVT4D2uVJU7kfNEeJdk/CxM9hKKxS7KnTv
+         iV7HgjpZy7nBpNqti1T7oAy8xkKO52kdeDTJic/R8PkzJ/sEDh4CmOu1HoG4VGHhVbPT
+         sMgQ==
+X-Gm-Message-State: ACgBeo0RcAwZinvMKXz+Kqx5YmXKa21Cvw1l+SfZzJUe8RZDHYpi5YBe
+        JU+UnGIQfK1mq/jy327eycxLFA==
+X-Google-Smtp-Source: AA6agR5fB8tcI6nebScGu9KgPYQP+YMJ6wrIkqasj8/WnuIm+BOxrAGCTs+OgaoBOeK4z79Jb3aqmw==
+X-Received: by 2002:a2e:be9b:0:b0:25f:e027:4999 with SMTP id a27-20020a2ebe9b000000b0025fe0274999mr7477279ljr.395.1661882332908;
+        Tue, 30 Aug 2022 10:58:52 -0700 (PDT)
+Received: from krzk-bin.. (balticom-73-99-134.balticom.lv. [109.73.99.134])
+        by smtp.gmail.com with ESMTPSA id h5-20020a2ea485000000b0025e6a3556ffsm1851394lji.22.2022.08.30.10.58.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Aug 2022 10:58:52 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <DU0PR04MB9417C2A5495EC2E009A1B3ED886A9@DU0PR04MB9417.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+To:     matthias.bgg@gmail.com, robh+dt@kernel.org, yong.wu@mediatek.com,
+        chengci.xu@mediatek.com
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org, yi.kuo@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        anthony.huang@mediatek.com, wendy-st.lin@mediatek.com,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v5 0/4] MT8188 SMI SUPPORT
+Date:   Tue, 30 Aug 2022 20:58:49 +0300
+Message-Id: <166188232676.14577.13660349538278549218.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220817124608.10062-1-chengci.xu@mediatek.com>
+References: <20220817124608.10062-1-chengci.xu@mediatek.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,19 +75,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/08/2022 10:02, Peng Fan wrote:
->> Subject: [PATCH 2/2] dt-bindings: memory-controllers: fsl,imx8m-ddrc: drop
->> Leonard Crestez
->>
->> Emails to Leonard Crestez bounce ("550 5.4.1 Recipient address rejected:
->> Access denied:), so change maintainer to Peng Fan from NXP.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Wed, 17 Aug 2022 20:46:04 +0800, Chengci.Xu wrote:
+> This patchset adds MT8188 SMI support.
 > 
-> Thanks. Acked-by: Peng Fan <peng.fan@nxp.com>
+> MT8188, similar to mt8195, there are two SMI-common HW, one is for
+> VDO(video output), the other is for VPP(video processing pipe). They
+> connect with different SMI-larbs, then some setting(bus_sel) is
+> different.
+> 
+> [...]
 
-Thanks for the Ack. Please keep it in new line, because otherwise it
-does not go well with the b4/tools.
+Applied, thanks!
+
+[1/4] dt-bindings: memory: mediatek: Add mt8188 smi binding
+      https://git.kernel.org/krzk/linux-mem-ctrl/c/9d9fde47430298455544b283cffa390c40d58bfc
+[2/4] memory: mtk-smi: Add return value for configure port function
+      https://git.kernel.org/krzk/linux-mem-ctrl/c/8c1561edc0692fa8e321daf2777c3c32454b5748
+[3/4] memory: mtk-smi: Add enable IOMMU SMC command for MM master
+      https://git.kernel.org/krzk/linux-mem-ctrl/c/4e508b259ed02f5fa608cdd83b817a7f49c22271
+[4/4] memory: mtk-smi: mt8188: Add SMI Support
+      https://git.kernel.org/krzk/linux-mem-ctrl/c/673e71df5ccfaefeb32bb5b3130a5d397b742194
 
 Best regards,
-Krzysztof
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
