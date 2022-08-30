@@ -2,56 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A7E1D5A6119
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 12:49:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 811815A6155
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 13:07:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229967AbiH3Ktd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 06:49:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50956 "EHLO
+        id S230140AbiH3LHd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 07:07:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229775AbiH3Kta (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 06:49:30 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51F23E343F;
-        Tue, 30 Aug 2022 03:49:26 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id EA6A661508;
-        Tue, 30 Aug 2022 10:49:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7543C433D6;
-        Tue, 30 Aug 2022 10:49:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661856565;
-        bh=hN4IvqLBUwQ7LA2EASNAfcsy15aflmpkS+M3B+PyQbA=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=BGnjqLXZ93XxFzw3bOsPTLNxqBkFUkOfGzLocWniOUzIY9hEr6OgjETiJqhlQPFU5
-         msPaD2phFgaFY9f1KMA9iHokmReJcHod3g+08+in04V4cJ33N3AJ/J5OP16wbp0AdJ
-         CT9RFxgLuKLop7Zu/lgGVyKgWIX+K7tlqDvHNb3lzRO/Vo7cxKb/ewUuQG425+W2Ir
-         AH/fqszLfgCIpRduolgFeeExfIM5bYkAJKBN/9ND1fMcr/7+sxsmHhQAtsPNU6rctO
-         6SvgggVyWgz0NhE3HyZ89PXKHuQ/ILXOZOZNnK7ETVlWIz5FJAFnSDhjaD8l0n7uPs
-         jyKMB47LmX+Eg==
-From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
+        with ESMTP id S229570AbiH3LH3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 07:07:29 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45D49B5E58
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 04:07:28 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1oSz5M-00075y-Ls; Tue, 30 Aug 2022 13:07:12 +0200
+Received: from [2a0a:edc0:0:1101:1d::ac] (helo=dude04.red.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ore@pengutronix.de>)
+        id 1oSz5L-002rJ5-J6; Tue, 30 Aug 2022 13:07:11 +0200
+Received: from ore by dude04.red.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ore@pengutronix.de>)
+        id 1oSz5K-008Y0d-Rl; Tue, 30 Aug 2022 13:07:10 +0200
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Prabhakar <prabhakar.csengg@gmail.com>, linux-spi@vger.kernel.org
-In-Reply-To: <20220829220334.6379-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20220829220334.6379-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v2] dt-bindings: spi: renesas,sh-msiof: Fix 'unevaluatedProperties' warnings
-Message-Id: <166185656353.1130408.6017479791067634652.b4-ty@kernel.org>
-Date:   Tue, 30 Aug 2022 11:49:23 +0100
+Cc:     Oleksij Rempel <o.rempel@pengutronix.de>, kernel@pengutronix.de,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v1 1/3] dt-bindings: iio: adc: ti,tsc2046: add vref-supply property
+Date:   Tue, 30 Aug 2022 13:07:07 +0200
+Message-Id: <20220830110709.2037302-1-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.10.0-dev-65ba7
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,43 +53,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 29 Aug 2022 23:03:34 +0100, Lad Prabhakar wrote:
-> With 'unevaluatedProperties' support implemented, there's a number of
-> warnings when running dtbs_check:
-> 
-> arch/arm64/boot/dts/renesas/r8a77951-ulcb-kf.dtb: spi@e6e90000: Unevaluated properties are not allowed ('power-domains', 'resets' were unexpected)
-> 	From schema: Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
-> 
-> The main problem is that SoC DTSI's include power-domains and resets
-> property, whereas the renesas,sh-msiof.yaml has 'unevaluatedProperties:
-> false'. So just add optional power-domains and resets properties.
-> 
-> [...]
+Add property for the voltage reference supply.
 
-Applied to
+Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+---
+ Documentation/devicetree/bindings/iio/adc/ti,tsc2046.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
-   broonie/spi.git for-next
+diff --git a/Documentation/devicetree/bindings/iio/adc/ti,tsc2046.yaml b/Documentation/devicetree/bindings/iio/adc/ti,tsc2046.yaml
+index 601d69971d84a..7faf12b1598b9 100644
+--- a/Documentation/devicetree/bindings/iio/adc/ti,tsc2046.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/ti,tsc2046.yaml
+@@ -25,6 +25,9 @@ properties:
+ 
+   spi-max-frequency: true
+ 
++  vref-supply:
++    description: Optional supply of the reference voltage
++
+   "#io-channel-cells":
+     const: 1
+ 
+-- 
+2.30.2
 
-Thanks!
-
-[1/1] dt-bindings: spi: renesas,sh-msiof: Fix 'unevaluatedProperties' warnings
-      commit: f4d381038700361f92d157288b0e18d87fab6c6d
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
