@@ -2,65 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E59DF5A6228
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 13:39:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CABD45A6295
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 13:57:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229848AbiH3LjO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 07:39:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43932 "EHLO
+        id S230160AbiH3L46 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 07:56:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231160AbiH3Lie (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 07:38:34 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7577228E30;
-        Tue, 30 Aug 2022 04:37:19 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id A84AFB81A60;
-        Tue, 30 Aug 2022 11:37:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40DC5C433C1;
-        Tue, 30 Aug 2022 11:37:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661859435;
-        bh=EYBRvvBGDd6OFvpW88VMSSaRRt5bbgJi+wdWKcCg88M=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bcTzFLWNeGw294xYrs5lPduDPIgiOiXr5GIlpOknRxEry/14FwMDYggldm2YTI2B2
-         CdFHbLcVlHQvtSfofi/JPsZ2zFfldHLZs3q0vm+ECP/cnRJSmv7wyLn1TyIPYilZgy
-         T1PGV0dCM1EN4LFWT6m7jJBL5+mZiWZHeE1llodoMR2b/iGfrwGWIZ6+l3q4y1LxR6
-         ya2X+psVY5Hj7xguBvllrp9omFUKjoc+i/MN4d8QyG0CXkOIzzT32OvM5CfF96IF6o
-         8Q5cSZHv1r1+wq11XL9GaWs49D/8SebazGxE/8SUoC0rgYSZQjIyYW8FRexAUFVpGH
-         TKDCkX7RcBjSw==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1oSzYO-0008Sb-M5; Tue, 30 Aug 2022 13:37:12 +0200
-Date:   Tue, 30 Aug 2022 13:37:12 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 00/30] phy: qcom,qmp: fix dt-bindings and deprecate
- lane suffix
-Message-ID: <Yw32aOuN3rkTBJAy@hovoldconsulting.com>
-References: <20220714124333.27643-1-johan+linaro@kernel.org>
- <Yw2a44l9a6zz5qTJ@matsya>
- <Yw21t1SUGjCcUuuw@hovoldconsulting.com>
- <aeec2729-e610-f266-f336-847675cf85ec@linaro.org>
+        with ESMTP id S229844AbiH3L4z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 07:56:55 -0400
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F3B1D91FE
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 04:56:50 -0700 (PDT)
+Received: by mail-pj1-x102f.google.com with SMTP id z3-20020a17090abd8300b001fd803e34f1so9073132pjr.1
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 04:56:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc;
+        bh=7yXaKsnP0ODtMHSK3xa0NyjfxvosTqnSzBxIBWoTewg=;
+        b=Bt82UCf8F8+6IR0fSl9Hq+ekNNU8enCID21or2aO9jzWwCCLyHWPiKl2F8Lo9k3q6R
+         pOC7miXL4WE7RsektcI0XwP5ucZquiXsdY+0H2ykinufOxw2XMT10ahC5XJj++nL0WkF
+         y7eBCgXgxukSrJzEHSDBGw34wmTl3TlYen8l1eQVNb3IUOJnMXGXaeAmJx4IIy1EAqmu
+         TFC/WO+mTVhDoe+d9Sh4no1DXfk/xL72BRC79Y8c8fgHJN+iSak8YZRp7hbjnqJlI/gx
+         K6xDjD7VnGHZqGU5SGRnoWuYzLAiXUeGfbsj68WktG1IVuA+aKId0fkufV2A6jsgkTsA
+         hVeg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc;
+        bh=7yXaKsnP0ODtMHSK3xa0NyjfxvosTqnSzBxIBWoTewg=;
+        b=umYiSwtAqRK7Ep8SBM8Y65cBtzFIXTNINROXoQbD9bKunsDDPBV0W2efGs0aDMpHC+
+         QmT9iL4BUPwbbwqDBS55SvMJK4s/+2zHPoOQ3JsO+qUyx1V1Zd7zQY26KwqLJALbGs0c
+         RHRIyDy+Argb4lxEELFYWyIK1wixPnWM2gcmKeznjcSq+V4TrRxPL79wWU10mUa5kR4f
+         q0YW6oNvaocFUolTHwLGuimBef7GD8j2rpg/x7kJxJwHdqmjT04Tyl4oRVewY8OsHTAF
+         oQJZ1UvW/udrCyx8GFKEJrT09Qbyp2WlvID0cBJK2oR44HqzuaLVj0kw8WTMNPZkG+Jj
+         oVAg==
+X-Gm-Message-State: ACgBeo10t4Q834WPHAbSam65x8KB7yxtQ3//w1ccoJ7RQmK73na8Sd8j
+        /lSwfMqAa3Ob2Sd/tcrnahDL
+X-Google-Smtp-Source: AA6agR53rvKvchcIFuOoaSkHx7i/ftfAYGl03OXOxdaMHuD2/IxrisPpudtStL0yM7Ioz6h++XbVYQ==
+X-Received: by 2002:a17:902:c651:b0:174:36ce:49ce with SMTP id s17-20020a170902c65100b0017436ce49cemr20733934pls.87.1661860609266;
+        Tue, 30 Aug 2022 04:56:49 -0700 (PDT)
+Received: from thinkpad ([117.217.182.234])
+        by smtp.gmail.com with ESMTPSA id z124-20020a626582000000b00537e328bc11sm7313942pfb.31.2022.08.30.04.56.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Aug 2022 04:56:48 -0700 (PDT)
+Date:   Tue, 30 Aug 2022 17:26:42 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     lpieralisi@kernel.org, robh@kernel.org, andersson@kernel.org,
+        kw@linux.com, bhelgaas@google.com, linux-pci@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        konrad.dybcio@somainline.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        dmitry.baryshkov@linaro.org
+Subject: Re: [PATCH 09/11] dt-bindings: PCI: qcom-ep: Define clocks per
+ platform
+Message-ID: <20220830115642.GE135982@thinkpad>
+References: <20220826181923.251564-1-manivannan.sadhasivam@linaro.org>
+ <20220826181923.251564-10-manivannan.sadhasivam@linaro.org>
+ <b188b3fe-cc35-f902-b316-0c1632893e9d@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <aeec2729-e610-f266-f336-847675cf85ec@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <b188b3fe-cc35-f902-b316-0c1632893e9d@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,31 +79,89 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 30, 2022 at 12:32:04PM +0300, Dmitry Baryshkov wrote:
-> On 30/08/2022 10:01, Johan Hovold wrote:
-> > On Tue, Aug 30, 2022 at 10:36:43AM +0530, Vinod Koul wrote:
-> >> On 14-07-22, 14:43, Johan Hovold wrote:
-> 
-> [skipped]
-> 
-> >>> The final patches add support for the updated binding to the (recently
-> >>> split up) PHY drivers. Included is also a related combo PHY cleanup.
-> >>
-> >> This fails at patch 2 for me on v6.0-rc1, please rebase and resend
+On Sun, Aug 28, 2022 at 06:20:21PM +0300, Krzysztof Kozlowski wrote:
+> On 26/08/2022 21:19, Manivannan Sadhasivam wrote:
+> > In preparation of adding the bindings for future SoCs, let's define the
+> > clocks per platform.
 > > 
-> > Are you sure you haven't applied anything to your local tree that causes
-> > this?
-> 
-> When doing the QMP split, we ended up in a similar situation if I 
-> remember correctly. Most probably the easiest way is to provide a branch 
-> for Vinod to pull in addition to the patches being sent to ML.
-
-Hopefully v4 will just work now.
-
-> > I just tried fetching the v3 series from lore and it applies just fine
-> > on top of 6.0-rc1.
+> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > ---
+> >  .../devicetree/bindings/pci/qcom,pcie-ep.yaml | 46 +++++++++++--------
+> >  1 file changed, 27 insertions(+), 19 deletions(-)
 > > 
-> > Note that if you've added a new compatible string locally, the second
-> > patch which sorts the compatible strings is likely to fail to apply.
+> > diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+> > index b728ede3f09f..83a2cfc63bc1 100644
+> > --- a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+> > +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+> > @@ -9,9 +9,6 @@ title: Qualcomm PCIe Endpoint Controller binding
+> >  maintainers:
+> >    - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> >  
+> > -allOf:
+> > -  - $ref: "pci-ep.yaml#"
+> > -
+> >  properties:
+> >    compatible:
+> >      const: qcom,sdx55-pcie-ep
+> > @@ -35,24 +32,12 @@ properties:
+> >        - const: mmio
+> >  
+> >    clocks:
+> > -    items:
+> > -      - description: PCIe Auxiliary clock
+> > -      - description: PCIe CFG AHB clock
+> > -      - description: PCIe Master AXI clock
+> > -      - description: PCIe Slave AXI clock
+> > -      - description: PCIe Slave Q2A AXI clock
+> > -      - description: PCIe Sleep clock
+> > -      - description: PCIe Reference clock
+> > +    minItems: 7
+> > +    maxItems: 7
+> >  
+> >    clock-names:
+> > -    items:
+> > -      - const: aux
+> > -      - const: cfg
+> > -      - const: bus_master
+> > -      - const: bus_slave
+> > -      - const: slave_q2a
+> > -      - const: sleep
+> > -      - const: ref
+> > +    minItems: 7
+> > +    maxItems: 7
+> >  
+> >    qcom,perst-regs:
+> >      description: Reference to a syscon representing TCSR followed by the two
+> > @@ -112,6 +97,29 @@ required:
+> >    - reset-names
+> >    - power-domains
+> >  
+> > +allOf:
+> > +  - $ref: "pci-ep.yaml#"
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - qcom,sdx55-pcie-ep
+> > +    then:
+> > +      properties:
+> > +        clocks:
+> > +          minItems: 7
+> > +          maxItems: 7
+> 
+> One more thing - the previous way of describing items is more readable
+> instead of names followed by a comment, so I propose to keep it. This
+> applies also to patch 10.
+> 
 
-Johan
+Okay.
+
+Thanks,
+Mani
+
+> Best regards,
+> Krzysztof
+
+-- 
+மணிவண்ணன் சதாசிவம்
