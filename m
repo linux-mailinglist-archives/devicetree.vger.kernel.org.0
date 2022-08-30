@@ -2,64 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F40A65A67DD
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 18:05:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71CF85A67E5
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 18:07:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229929AbiH3QFW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 12:05:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49342 "EHLO
+        id S229709AbiH3QHt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 12:07:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230486AbiH3QFV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 12:05:21 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D2F3786C2;
-        Tue, 30 Aug 2022 09:05:19 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 27UG59nQ050775;
-        Tue, 30 Aug 2022 11:05:09 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1661875509;
-        bh=1G4ZEtaZd/IgJ3Gszv4C0SPbop3rpeLAcLzhdcf66ec=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=O3mFdGqip+9A8sPjRUDZos++QJSEm/NnZXAiN774dslL65cMsP641cjgsru9KPQEW
-         NT10s/7efrH9YdjHTEwzv79Lth8uNKD25npkccLOoEykieL4vwraXIzcZWYx+yEHBJ
-         872qERw2xbfgfg++7ZRc8J5ON2Rro+Mpnm86TCn8=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 27UG59Vs041634
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 30 Aug 2022 11:05:09 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 30
- Aug 2022 11:05:08 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Tue, 30 Aug 2022 11:05:08 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 27UG58Gm026907;
-        Tue, 30 Aug 2022 11:05:08 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-CC:     Tero Kristo <kristo@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] dt-bindings: arm: ti: k3: Sort the SoC definitions alphabetically
-Date:   Tue, 30 Aug 2022 11:05:07 -0500
-Message-ID: <20220830160507.7726-3-nm@ti.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20220830160507.7726-1-nm@ti.com>
-References: <20220830160507.7726-1-nm@ti.com>
+        with ESMTP id S229573AbiH3QHt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 12:07:49 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E8EBF23D1
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 09:07:48 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1oT3mA-00071b-F1; Tue, 30 Aug 2022 18:07:42 +0200
+Received: from ore by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1oT3m6-0004SO-0i; Tue, 30 Aug 2022 18:07:38 +0200
+Date:   Tue, 30 Aug 2022 18:07:37 +0200
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Cc:     devicetree@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, kernel@pengutronix.de,
+        Jonathan Cameron <jic23@kernel.org>
+Subject: Re: [PATCH v1 3/3] iio: adc: tsc2046: silent spi_device_id warning
+Message-ID: <20220830160737.GC16715@pengutronix.de>
+References: <20220830110709.2037302-1-o.rempel@pengutronix.de>
+ <20220830110709.2037302-3-o.rempel@pengutronix.de>
+ <20220830140228.000013ca@huawei.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220830140228.000013ca@huawei.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -68,81 +57,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use alphabetical sort to organize the SoCs
+On Tue, Aug 30, 2022 at 02:02:28PM +0100, Jonathan Cameron wrote:
+> On Tue, 30 Aug 2022 13:07:09 +0200
+> Oleksij Rempel <o.rempel@pengutronix.de> wrote:
+> 
+> > Add spi_device_id to silent following warning:
+> >  SPI driver tsc2046 has no spi_device_id for ti,tsc2046e-adc
+> > 
+> > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> > ---
+> >  drivers/iio/adc/ti-tsc2046.c | 17 ++++++++++++++++-
+> >  1 file changed, 16 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/iio/adc/ti-tsc2046.c b/drivers/iio/adc/ti-tsc2046.c
+> > index bbc8b4137b0b1..b9a1fac659d46 100644
+> > --- a/drivers/iio/adc/ti-tsc2046.c
+> > +++ b/drivers/iio/adc/ti-tsc2046.c
+> > @@ -761,7 +761,15 @@ static int tsc2046_adc_probe(struct spi_device *spi)
+> >  		return -EINVAL;
+> >  	}
+> >  
+> > -	dcfg = device_get_match_data(dev);
+> > +	if (!dev_fwnode(dev)) {
+> > +		const struct spi_device_id *id;
+> > +
+> > +		id = spi_get_device_id(spi);
+> > +		dcfg = (const struct tsc2046_adc_dcfg *)id->driver_data;
+> 
+> Driver data not set below.
 
-Reported-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Nishanth Menon <nm@ti.com>
----
- .../devicetree/bindings/arm/ti/k3.yaml        | 42 +++++++++----------
- 1 file changed, 21 insertions(+), 21 deletions(-)
+..facepalm..
 
-diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
-index 7e93e87dcdf4..aeef800eb6ec 100644
---- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
-+++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
-@@ -19,6 +19,19 @@ properties:
-   compatible:
-     oneOf:
- 
-+      - description: K3 AM625 SoC
-+        items:
-+          - enum:
-+              - ti,am625-sk
-+          - const: ti,am625
-+
-+      - description: K3 AM642 SoC
-+        items:
-+          - enum:
-+              - ti,am642-evm
-+              - ti,am642-sk
-+          - const: ti,am642
-+
-       - description: K3 AM654 SoC
-         items:
-           - enum:
-@@ -29,15 +42,6 @@ properties:
-               - ti,am654-evm
-           - const: ti,am654
- 
--      - description: K3 J721E SoC
--        oneOf:
--          - const: ti,j721e
--          - items:
--              - enum:
--                  - ti,j721e-evm
--                  - ti,j721e-sk
--              - const: ti,j721e
--
-       - description: K3 J7200 SoC
-         oneOf:
-           - const: ti,j7200
-@@ -46,18 +50,14 @@ properties:
-                   - ti,j7200-evm
-               - const: ti,j7200
- 
--      - description: K3 AM625 SoC
--        items:
--          - enum:
--              - ti,am625-sk
--          - const: ti,am625
--
--      - description: K3 AM642 SoC
--        items:
--          - enum:
--              - ti,am642-evm
--              - ti,am642-sk
--          - const: ti,am642
-+      - description: K3 J721E SoC
-+        oneOf:
-+          - const: ti,j721e
-+          - items:
-+              - enum:
-+                  - ti,j721e-evm
-+                  - ti,j721e-sk
-+              - const: ti,j721e
- 
-       - description: K3 J721s2 SoC
-         items:
+> Otherwise this looks good to me.  An alternative more common form (I think...)
+> is call device_get_match_data() unconditionally and if that is null follow
+> the driver_data path. Either way is fine though.
+> 
+> Could you add to the patch description where
+> the warning is coming from?   Build time / runtime etc and what tool?
+
+ack. It is runtime warning in the kernel log.
+
+Regards,
+Oleksij
 -- 
-2.31.1
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
