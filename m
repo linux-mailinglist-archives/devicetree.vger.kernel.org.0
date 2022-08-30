@@ -2,63 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD0115A66ED
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 17:10:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3A4D5A6707
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 17:13:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230165AbiH3PJ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 11:09:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52688 "EHLO
+        id S230232AbiH3PNT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 11:13:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230223AbiH3PJ4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 11:09:56 -0400
-Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6451A64F7;
-        Tue, 30 Aug 2022 08:09:54 -0700 (PDT)
-Received: by mail-pf1-x42e.google.com with SMTP id 145so11271438pfw.4;
-        Tue, 30 Aug 2022 08:09:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:subject:cc:to:from:from:to:cc;
-        bh=bhFPbBH1HWG+CvWDsxibGSv/KPEHci/JQzJBudsEayE=;
-        b=QGg80NnGeBhVPnHboz7i1txHnXiJDru0SsdoFYy5VFP3kIP+JI1pUvlKwAG9PSUvSq
-         QCzabiZFYg3USdQx9/BV9kxpxNNx9Ft2eOlgWvZdSwOYTZZDOymXwmLfoMvYgYGR07WE
-         ffA+C/2GU2fiLfX+tlPM3PQVIgwE/cNBuCmq2RlhHfkW9SQGWlvDhnuZIIK47zvJOiVn
-         3hhNkvA7krBVw2bF0NuJg5FBRl39DDywgSVVfmplpYIwG1/EIJgjseBD/HNnc8gzDJEE
-         tB7dLNAZuYrWS48/2bx3EyxizaJYMzLyp2ByasWMpOkEGoFYRdZ6oWyGwj+TvGe7z+n1
-         EACA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=bhFPbBH1HWG+CvWDsxibGSv/KPEHci/JQzJBudsEayE=;
-        b=ur1w8eKC77W7rVRvpnj4k/9HQpJw3qNzu3XscFDv23UK8e0alfV1weN3q015bah+Ny
-         T8+8caTkaWa8oREthO5JG7ZMZ+1/zkE7tiZngexpSuXEOmibR2W38DLPTGv/d1RvgTf7
-         Is28Pj1x8Tv8S4B/aay34Ieq94JkOK18qCvPdqEH9jk2UzU/RmWqbFt9UHV8H6qSycKa
-         f5xTZoIg3glRDnWhn2JLtMpAzMlHvgUJXsIn/Y1P5m64JMdHI93tpWmsMVGZgsZ44Hls
-         r0l5l7xBk7010ZUX8CVqh08N7WYYZAm+JCZKl+keEGw3SogazrUlAjRZOEqvLrqnPAjx
-         o7OQ==
-X-Gm-Message-State: ACgBeo1WlpvyNkazgWyGAi+3t7DTOO606Dvczs1XOi65Tdu8QFfxxqQq
-        t32BhfBZRbC9T8TSwiDr3g==
-X-Google-Smtp-Source: AA6agR6G5wrT02zhPRWkd66J1541yZke46MrQ+RAEnYcSITk+77l1M0g+9mUTUo4Sx1SgXD/zhcg0Q==
-X-Received: by 2002:a05:6a00:a04:b0:534:d8a6:40ce with SMTP id p4-20020a056a000a0400b00534d8a640cemr22063954pfh.15.1661872193784;
-        Tue, 30 Aug 2022 08:09:53 -0700 (PDT)
-Received: from localhost.localdomain ([116.30.109.180])
-        by smtp.gmail.com with ESMTPSA id p9-20020a1709027ec900b00172c7d6badcsm9717778plb.251.2022.08.30.08.09.48
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 30 Aug 2022 08:09:53 -0700 (PDT)
-From:   Ban Tao <fengzheng923@gmail.com>
-To:     fengzheng923@gmail.com, lgirdwood@gmail.com, broonie@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        wens@csie.org, jernej.skrabec@gmail.com, samuel@sholland.org,
-        alsa-devel@alsa-project.org
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: [PATCH v9 2/2] ASoC: sun50i-dmic: dt-bindings: add DT bindings for DMIC controller
-Date:   Tue, 30 Aug 2022 08:07:19 -0700
-Message-Id: <1661872039-40174-1-git-send-email-fengzheng923@gmail.com>
-X-Mailer: git-send-email 2.7.4
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        with ESMTP id S229736AbiH3PNN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 11:13:13 -0400
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 049901286F7;
+        Tue, 30 Aug 2022 08:13:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1661872392; x=1693408392;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=wTIUsBF5sTdJ6JbPdR2fBQZlqEWSeLoC7AVXPmb6j1c=;
+  b=cF8HA9zl2aRv0tb2hi69bsC/kc7LoUHCIqOZw0PlDqFTRx5Ycjh1pm//
+   s/S4nbwW6s8MIXUnx6LjAtUMfFuUo/bkSWcy3cxti0Kx2vs5LTVsYDZjt
+   dT3Tg48bdx3J3UdJPCjGzzBqA397zGaRb+EnJ5uIy/DvJJfZcvwXfRuGk
+   jaHIM6pUQIY6ZJ/3B+DmXUBqfac/adfYDlHaw32AZqJ9mviKY/U0LmiHz
+   63uFowhgaJMjEThcMONk3+LNEQnQrlqvzySmCS+7LXhkzNI+aIxOY/Qy+
+   UOas9UPM8uNHLNejFcoxHQeAZoaacAwWIfnm264tIvUcX4zy0ZE8rF6Th
+   g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10455"; a="295984540"
+X-IronPort-AV: E=Sophos;i="5.93,275,1654585200"; 
+   d="scan'208";a="295984540"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Aug 2022 08:13:11 -0700
+X-IronPort-AV: E=Sophos;i="5.93,275,1654585200"; 
+   d="scan'208";a="562682956"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Aug 2022 08:13:05 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1oT2vF-0060PI-2k;
+        Tue, 30 Aug 2022 18:13:01 +0300
+Date:   Tue, 30 Aug 2022 18:13:01 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     ChiaEn Wu <peterwu.pub@gmail.com>
+Cc:     lee@kernel.org, daniel.thompson@linaro.org, jingoohan1@gmail.com,
+        pavel@ucw.cz, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        sre@kernel.org, jic23@kernel.org, lars@metafoo.de, deller@gmx.de,
+        broonie@kernel.org, mazziesaccount@gmail.com,
+        chiaen_wu@richtek.com, alice_chen@richtek.com,
+        cy_huang@richtek.com, dri-devel@lists.freedesktop.org,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-fbdev@vger.kernel.org, szunichen@gmail.com
+Subject: Re: [PATCH v9 00/10] Add MediaTek MT6370 PMIC support
+Message-ID: <Yw4o/Sx6frEtaFDp@smile.fi.intel.com>
+References: <20220830033729.9219-1-peterwu.pub@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220830033729.9219-1-peterwu.pub@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,126 +73,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DT binding documentation for this new ASoC driver.
+On Tue, Aug 30, 2022 at 11:37:20AM +0800, ChiaEn Wu wrote:
+> From: ChiaEn Wu <chiaen_wu@richtek.com>
+> 
+> This patch series add MediaTek MT6370 PMIC support and add a index macro
+> to <linear_range.h>. The MT6370 is a highly-integrated smart power
+> management IC, which includes a single cell Li-Ion/Li-Polymer switching
+> battery charger, a USB Type-C & Power Delivery (PD) controller, dual
+> Flash LED current sources, a RGB LED driver, a backlight WLED driver,
+> a display bias driver and a general LDO for portable devices.
+> 
+> First, in this series of patches,
+> 'dt-binding: mfd', 'mfd driver' has been applied by Lee in the v7.
+> https://lore.kernel.org/all/YvJdpq0MWNPQZw5c@google.com/
+> https://lore.kernel.org/all/YvJdxEpC2cB58Bq9@google.com/
+> 
+> 'tcpci driver' has been applied by Greg in the v8.
+> https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git/commit/?h=usb-next&id=c2a8ea5997fdfeb43eda259d5533234c3cae05d7
+> 
+> Second, the LED RGB driver is based on Andy's patch which moves
+> led_init_default_state_get() to the global header.
+> https://lore.kernel.org/all/20220805154907.32263-3-andriy.shevchenko@linux.intel.com/
+> 
+> In addition, we added a macro to the <linear_range.h> for declaring the
+> linear_range struct simply (see patch v9-0005) and made some changes for
+> MT6370 drivers (see v9 section of the change log below).
 
-Signed-off-by: Ban Tao <fengzheng923@gmail.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Maxime Ripard <maxime@cerno.tech>
----
-v1->v2:
-1.Fix some build errors.
+Your cover letter is dangling. Make sure you are using --cover-letter --thread
+when preparing the series.
 
-v2->v3:
-1.Fix some build errors.
-
-v3->v4:
-1.None.
-
-v4->v5:
-1.Add interrupt.
-2.Keep clock and reset index.
-
-v5->v6:
-1.None.
-
-v6->v7:
-1.None.
-
-v7->v8:
-1.Fix some build errors.
-
-v8->v9:
-1.None.
----
- .../bindings/sound/allwinner,sun50i-h6-dmic.yaml   | 79 ++++++++++++++++++++++
- 1 file changed, 79 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/allwinner,sun50i-h6-dmic.yaml
-
-diff --git a/Documentation/devicetree/bindings/sound/allwinner,sun50i-h6-dmic.yaml b/Documentation/devicetree/bindings/sound/allwinner,sun50i-h6-dmic.yaml
-new file mode 100644
-index 0000000..0cfc07f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/allwinner,sun50i-h6-dmic.yaml
-@@ -0,0 +1,79 @@
-+# SPDX-License-Identifier: (GPL-2.0+ OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/allwinner,sun50i-h6-dmic.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Allwinner H6 DMIC Device Tree Bindings
-+
-+maintainers:
-+  - Ban Tao <fengzheng923@gmail.com>
-+
-+properties:
-+  "#sound-dai-cells":
-+    const: 0
-+
-+  compatible:
-+    const: allwinner,sun50i-h6-dmic
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: Bus Clock
-+      - description: Module Clock
-+
-+  clock-names:
-+    items:
-+      - const: bus
-+      - const: mod
-+
-+  dmas:
-+    items:
-+      - description: RX DMA Channel
-+
-+  dma-names:
-+    items:
-+      - const: rx
-+
-+  resets:
-+    maxItems: 1
-+
-+required:
-+  - "#sound-dai-cells"
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - dmas
-+  - dma-names
-+  - resets
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    #include <dt-bindings/clock/sun50i-h6-ccu.h>
-+    #include <dt-bindings/reset/sun50i-h6-ccu.h>
-+
-+    dmic: dmic@5095000 {
-+      #sound-dai-cells = <0>;
-+      compatible = "allwinner,sun50i-h6-dmic";
-+      reg = <0x05095000 0x400>;
-+      interrupts = <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>;
-+      clocks = <&ccu CLK_BUS_DMIC>, <&ccu CLK_DMIC>;
-+      clock-names = "bus", "mod";
-+      dmas = <&dma 7>;
-+      dma-names = "rx";
-+      resets = <&ccu RST_BUS_DMIC>;
-+    };
-+
-+...
 -- 
-2.7.4
+With Best Regards,
+Andy Shevchenko
+
 
