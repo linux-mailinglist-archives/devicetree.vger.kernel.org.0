@@ -2,102 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D1D135A6008
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 12:00:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 373165A601B
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 12:03:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229868AbiH3KAf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 06:00:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38472 "EHLO
+        id S229752AbiH3KDI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 06:03:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229978AbiH3J75 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 05:59:57 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE6A4E114F;
-        Tue, 30 Aug 2022 02:58:23 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 27U9vtBW095771;
-        Tue, 30 Aug 2022 04:57:55 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1661853475;
-        bh=6Q7ULugHo37nln8nzyLFaaxX9W7rkL2u1jeBIGNhYso=;
-        h=Date:Subject:To:References:From:In-Reply-To;
-        b=sEqpaMWAnIfCX1u2Oy3hJDalwxz5prIGOJTiW5bGfzq1eo3F7d6buhC0luHoBpgv3
-         PNjLxdQ+J1Q7YQcdffljGgNjrN0NDnHU0l3BjZv0Wu0kp8+qy31gT9HeUjNi1ytu6G
-         Ija0FbjpNWiRaakwxbbFGaUvNaTVC76HtrTppSno=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 27U9vtFV001580
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 30 Aug 2022 04:57:55 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 30
- Aug 2022 04:57:54 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Tue, 30 Aug 2022 04:57:54 -0500
-Received: from [172.24.145.136] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 27U9vpMD128617;
-        Tue, 30 Aug 2022 04:57:52 -0500
-Message-ID: <04ea4219-d28b-9b91-5d7f-7da777e5c08f@ti.com>
-Date:   Tue, 30 Aug 2022 15:27:51 +0530
+        with ESMTP id S229679AbiH3KCW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 06:02:22 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB7ABAB436
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 03:00:32 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id v7-20020a1cac07000000b003a6062a4f81so9622073wme.1
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 03:00:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=0b21QXH6O+BTSjJFC+3rM4trmoZDQJp1tN7KcWJ7AWo=;
+        b=bj2skJMvdzjz078Ov7MeI6BrC+N8Z5RAt9LSxeTNWaAnfcX8+MsUHuhMzu6Zr43jXl
+         5eYhsEw9px1Nr+tnrxEsaTOoR2yVUPieVwxjNScLwOhaMlJWU4hQBD6dhxYJMR8uOcor
+         vVG1GtsCq7uf6ByVQ9ZNo6fepvO8/Ok3rtJfuXaSI2CHFZZn/04ojSlQQRVWucmrnauV
+         2Htia78+PAK8OqN2EiI+gwGHBBnlaQ4BKEz1X6+7kjG725Bx1m5INH+w9BABmX2/EPhK
+         1nv5lhnddkrwyEQHNAgxL4HnwjXIAiHaayAilECTJYlSW+2n2Ts92WPKc85Tb4391coD
+         suTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=0b21QXH6O+BTSjJFC+3rM4trmoZDQJp1tN7KcWJ7AWo=;
+        b=Pkj7Ng8UmyjPHbdiA8af4uuxO4a4+o5LjnfRpmmHmjfUBdRvmrap2C0//bLD4J03SM
+         TH/ysD5TL+Zl5uk7PNTFX1yHprmDDzvsL8KbdH1QVag2KMcWhbcQb9lq4KMCzdgVeCyF
+         jy3KiFhTRH5kx3gGZpjOmhvOghD87gQlxftuedSjPmJVurvj+Ls4p+hoPptXQLKNNt48
+         AqyZ+DW3hFcDova6QeuSNfOZ9bbWpI7iVrO1+GfindWtaIuWa2tNcw5nii4kPYVOIDrE
+         yynDl6TNpE6OQm3xUCSkbmzZ84d4YsebWwqXwDQ1rlw6KspQjRZ71hgUkEJx5xi1VBMq
+         5PsQ==
+X-Gm-Message-State: ACgBeo21kEJDqdtVC1XrfF8x1qYhAVGtPCWYD3EgMb3D3AbU8CqQC6L2
+        u/KfzxUfOXwztPThUzEVMYc2UE9UIXnNe5bILBDVTw==
+X-Google-Smtp-Source: AA6agR6aNmu8tqzPRfJhzC1q15Zhh3XEe9S9CQ3NvFq+tQCjwhaY+BTSAAxNwSJGvY+m7hbap1HrnznQheLiT4TU10o=
+X-Received: by 2002:a05:600c:1550:b0:3a6:1d8c:247e with SMTP id
+ f16-20020a05600c155000b003a61d8c247emr9133266wmg.63.1661853630619; Tue, 30
+ Aug 2022 03:00:30 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v2 2/4] arm64: dts: ti: k3-am65-main: Move SA2UL to unused
- PSI-L thread ID
-Content-Language: en-US
-To:     Andrew Davis <afd@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+References: <20220829065044.1736-1-anand@edgeble.ai>
+In-Reply-To: <20220829065044.1736-1-anand@edgeble.ai>
+From:   Jagan Teki <jagan@edgeble.ai>
+Date:   Tue, 30 Aug 2022 15:30:19 +0530
+Message-ID: <CA+VMnFwF4UVah9rbdhwjbuTuYFXwNFuDD==x0oYDxYiO+V-c-Q@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: net: rockchip-dwmac: add rv1126
+ compatible string
+To:     Anand Moon <anand@edgeble.ai>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20220823001136.10944-1-afd@ti.com>
- <20220823001136.10944-2-afd@ti.com>
-From:   Jayesh Choudhary <j-choudhary@ti.com>
-In-Reply-To: <20220823001136.10944-2-afd@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Heiko Stuebner <heiko@sntech.de>,
+        David Wu <david.wu@rock-chips.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 23/08/22 05:41, Andrew Davis wrote:
-> The first TX and first two RX PSI-L threads for SA2UL are used
-> by SYSFW on High Security(HS) devices. Use the next available
-> threads to prevent resource allocation conflicts.
-> 
-> Signed-off-by: Andrew Davis <afd@ti.com>
+On Mon, 29 Aug 2022 at 12:23, Anand Moon <anand@edgeble.ai> wrote:
+>
+> Add compatible string for RV1126 gmac, and constrain it to
+> be compatible with Synopsys dwmac 4.20a.
+>
+> Signed-off-by: Jagan Teki <jagan@edgeble.ai>
+> Signed-off-by: Anand Moon <anand@edgeble.ai>
 > ---
->   arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> index b3e714e1abed..165f53bd058b 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> @@ -117,8 +117,8 @@ crypto: crypto@4e00000 {
->   		#size-cells = <2>;
->   		ranges = <0x0 0x04e00000 0x00 0x04e00000 0x0 0x30000>;
->   
-> -		dmas = <&main_udmap 0xc000>, <&main_udmap 0x4000>,
-> -				<&main_udmap 0x4001>;
-> +		dmas = <&main_udmap 0xc001>, <&main_udmap 0x4002>,
-> +				<&main_udmap 0x4003>;
->   		dma-names = "tx", "rx1", "rx2";
->   		dma-coherent;
->   
+>  Documentation/devicetree/bindings/net/rockchip-dwmac.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
+> index 083623c8d718..346e248a6ba5 100644
+> --- a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
+> @@ -26,6 +26,7 @@ select:
+>            - rockchip,rk3399-gmac
+>            - rockchip,rk3568-gmac
+>            - rockchip,rv1108-gmac
+> +          - rockchip,rv1126-gmac
 
-Reviewed-by: Jayesh Choudhary <j-choudhary@ti.com>
-
+it needs to be in the properties menu as well.
