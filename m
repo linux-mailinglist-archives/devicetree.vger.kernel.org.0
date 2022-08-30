@@ -2,81 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A46B5A5F43
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 11:23:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C93B5A5F4C
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 11:24:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231734AbiH3JW4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 05:22:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52446 "EHLO
+        id S231795AbiH3JYN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 05:24:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231731AbiH3JWb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 05:22:31 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14693DDB7B
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 02:21:44 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id bx38so10657017ljb.10
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 02:21:44 -0700 (PDT)
+        with ESMTP id S231928AbiH3JXr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 05:23:47 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD3CC272E
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 02:23:45 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id bt10so14685161lfb.1
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 02:23:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=t2+Vzdbmp1Zj1Ubn+bhI2XCo+Y34oD2vP1kC7goh3Bw=;
-        b=X6FnQQTX10HojjPRr3B1zGRv1y5UZb7bIMt1siV1lv3+CH5P/DZcWxPMxp3IsdC6r9
-         Of0mU8sRK/7nvVLEgEVukOLGijmUWq5Da4p7o7+3HLFtdQdjabb+/nHaMQ+lGLhLXcT3
-         YnBVCRxnn+IhV6KPozHi3MO0S2nSSK/I6mEhc9QLI8Ct5NDUwSTqRzoqtXr0JOVFwhxP
-         ybvsHs9QlUZIbtI2yU2gt5c7ihP1EI5dhuKr+lYwFNJVP88PyBR7KzZMROckPDjookf2
-         N0UIcnIPbrmOGeCPdkML+QYXmSAT3s0/KT93n+bM2X+FirQmni8h6wAtX/n1QKvu3XXU
-         8wuQ==
+        bh=P3jHDFf6ZF+eC8L7gPkS3nO/hYBt1WKKSDQdwcqbM1g=;
+        b=ro7d5377lQTowObZV1r5vVfKkJrhWz3A2GZD1czofP56rGrxWgIkvq/uDSV/wfiX8o
+         wC1r5NrB8aG89lxXz7q8/wFkSqWyaLgn0PAM+y9znsmg+f+IeV/ZaHwy7LRLWB/z+Xaz
+         RLl2KnYdbjNELU8jqx89db3PTYyKp8j/lzKW1fv+Dk4Jrb3mkSM8ti5AWHwYQRGwXRRU
+         HDr1I0GTI8/DTnNIo9A1TZ4XwgHW98XuJZnPYvrAyxbpmD86JtBcg9mBz+aFF6W2cC7w
+         lEaPFlms3BH5KoEJ6V2129cwHbHd+kteFPE0ht7gXMGMdDs3MAIG8R0e0jb3oPlEoGrX
+         Axtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=t2+Vzdbmp1Zj1Ubn+bhI2XCo+Y34oD2vP1kC7goh3Bw=;
-        b=nq7OTN02s9cDoePPk9HKVAtmK9FKkUKKleSBIDOxX2RESl4RTeHgKyPhStf+VH0pSW
-         PXY8Ml7qHufHBwIqSq38yWyeQ/ab/UxMv1UF3K/6ZVnb/Aa0cW6M2FfllAbA49bdiljf
-         nr+BZyEGlI7b1rnDhVw+YJ0NY83V99vHYekufB2qZlKDz6d264YMOHNZiq0ayaT9OieC
-         8uAjOa5w4CEXUprA/6PzRtfpP86X0xLReq5NYQKuUrw97M7p7FH0wOUhAA/TNAJRR0z7
-         4QFKnINn+G8fkPL3PXdJbeBadc1W9c0VPWEyrWV6cREFTZl4WItSkzlNTWG04oBhQ95p
-         2iEQ==
-X-Gm-Message-State: ACgBeo2L3pfWxxA6RSirHnRlRyzUX+lkfjoKztlN069BNjm8wfoq2+pD
-        quM1W6GQPRFkbBjIW1VuZQp9t+TZfiKf9BjJjQE=
-X-Google-Smtp-Source: AA6agR5zv64xIKhp5mngmPjgak7Swpb4ZKHAk+rW+baGQB1oMx+uhC/VI6E/0/k/pe8ZVO//UspI1Q==
-X-Received: by 2002:a05:651c:2d0:b0:25e:6c94:59d5 with SMTP id f16-20020a05651c02d000b0025e6c9459d5mr7057524ljo.488.1661851302780;
-        Tue, 30 Aug 2022 02:21:42 -0700 (PDT)
+        bh=P3jHDFf6ZF+eC8L7gPkS3nO/hYBt1WKKSDQdwcqbM1g=;
+        b=ZX00xZ7jQykKimsV5iYYCPvSVRAEIAQVON4EX+AK2njB34q7EJ1zqS1OhpA+/6/y2e
+         sq4x7RDuQfQBE2v1cWah3H56mQ+A3Uv7taE4Pki5njt/OwVZpGux8tqvGu/4qitCZ7X4
+         hQOJwirHawDMdTKQDJLW1+zVZKPB74A1qJs7gQzqUWw4GuPjXG2bhuFb4TnslhIRInTI
+         iWx/K7D0T53f9sj03/exFT1fhpgQ/qksXA0esE5WCaTrnmLxr5h5zda2NKCDi78JPQdA
+         2piNWmK0ZipjwmesUnGr+YWvsxjvO1u+0oUTtMSARiptyD+lWilirFopKN/nu1SteMEr
+         aFfQ==
+X-Gm-Message-State: ACgBeo14eTSVuOkB/1a01x6WorbUm+YLNa98NxHh+vGdi2Ei1me+SdY8
+        D6dkxJVGr+5xuQxYrDaWe7V/Hw==
+X-Google-Smtp-Source: AA6agR6coigoibJ+B2ksKkaYEzr/2jSNslM78cgAgVd2xOmffVB501Xp5K5bVDHQxYg/RB+HGi2ehA==
+X-Received: by 2002:a05:6512:32c9:b0:492:f53d:9c1 with SMTP id f9-20020a05651232c900b00492f53d09c1mr7151142lfg.127.1661851424008;
+        Tue, 30 Aug 2022 02:23:44 -0700 (PDT)
 Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id o14-20020ac25e2e000000b004946da0f075sm577821lfg.135.2022.08.30.02.21.41
+        by smtp.gmail.com with ESMTPSA id c19-20020a056512325300b0048cdf54a44dsm1544581lfr.266.2022.08.30.02.23.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Aug 2022 02:21:42 -0700 (PDT)
-Message-ID: <9a63271b-48c0-1b31-c450-5abc9eedbced@linaro.org>
-Date:   Tue, 30 Aug 2022 12:21:41 +0300
+        Tue, 30 Aug 2022 02:23:43 -0700 (PDT)
+Message-ID: <e455ebd7-7949-47d6-5f9b-9869dfdd601d@linaro.org>
+Date:   Tue, 30 Aug 2022 12:23:42 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH 1/2] dt-bindings: mtd: spi-nor: Add reset-gpios property
+Subject: Re: [PATCH] dt-bindings: display: bridge: renesas,dw-hdmi: Fix
+ 'unevaluatedProperties' warnings
 Content-Language: en-US
-To:     Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Pratyush Yadav <pratyush@kernel.org>,
-        Michael Walle <michael@walle.cc>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-kernel@vger.kernel.org, saikrishna12468@gmail.com,
-        git@amd.com
-References: <20220829090528.21613-1-sai.krishna.potthuri@amd.com>
- <20220829090528.21613-2-sai.krishna.potthuri@amd.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+References: <20220829215816.6206-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220829090528.21613-2-sai.krishna.potthuri@amd.com>
+In-Reply-To: <20220829215816.6206-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,36 +89,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/08/2022 12:05, Sai Krishna Potthuri wrote:
-> SPI-NOR flashes have RESET pin which can be toggled using GPIO
-> controller, for those platforms reset-gpios property can be used to
-> reset the flash device.
+On 30/08/2022 00:58, Lad Prabhakar wrote:
+> With 'unevaluatedProperties' support implemented, there's a number of
+> warnings when running dtbs_check:
 > 
-> Signed-off-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
-> ---
->  Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+> arch/arm64/boot/dts/renesas/r8a774b1-hihope-rzg2n-rev2-ex-idk-1110wr.dtb: hdmi@fead0000: Unevaluated properties are not allowed ('resets' was unexpected)
+> 	From schema: Documentation/devicetree/bindings/display/bridge/renesas,dw-hdmi.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> index 7149784a36ac..d2fc8e9c787f 100644
-> --- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> @@ -70,6 +70,12 @@ properties:
->        be used on such systems, to denote the absence of a reliable reset
->        mechanism.
->  
-> +  reset-gpios:
-> +    description:
-> +      contains a GPIO specifier. 
+> The main problem is that SoC DTSI's are including resets property, whereas
+> the renesas,dw-hdmi.yaml has 'unevaluatedProperties: false'. So just add
+> optional resets property to the binding.
 
-Skip this part - obvious.
-
-> The reset GPIO is asserted and then deasserted
-> +      to perform device reset. If "broken-flash-reset" is present then having
-> +      this property does not make any difference.
-
-Isn't then broken-flash-reset conflicting with this one (e.g.
-disallowing it)?
+This is not main problem. I already commented on two of your similar
+patches, so same applies here. Please describe real problem.
 
 Best regards,
 Krzysztof
