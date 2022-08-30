@@ -2,52 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EC8E5A6579
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 15:50:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B06505A65A0
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 15:53:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231201AbiH3Nti (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 09:49:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37474 "EHLO
+        id S230224AbiH3NxU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 09:53:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37928 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231451AbiH3NtC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 09:49:02 -0400
+        with ESMTP id S231171AbiH3Nw6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 09:52:58 -0400
 Received: from 7of9.schinagl.nl (7of9.connected.by.freedominter.net [185.238.129.13])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5140B1037F5;
-        Tue, 30 Aug 2022 06:46:41 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFC4327E;
+        Tue, 30 Aug 2022 06:51:41 -0700 (PDT)
 Received: from [10.2.12.24] (unknown [10.2.12.24])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by 7of9.schinagl.nl (Postfix) with ESMTPSA id 5C7DE186AE54;
-        Tue, 30 Aug 2022 15:40:37 +0200 (CEST)
+        by 7of9.schinagl.nl (Postfix) with ESMTPSA id 460C5186AE58;
+        Tue, 30 Aug 2022 15:42:58 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=schinagl.nl; s=7of9;
-        t=1661866837; bh=QkP2rkDehwBSgpkLqWhg0SK62w0hxaRkEmx2wFzDvpY=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To;
-        b=f6ABrVy6bO3nlMdiBhuXoDGeIXTsdsKNSqq+xT3bRsvVp39Vb+AezWjHr2IjF9MDa
-         +wX7JY3ODlzt0oXnXVBkxEX/bkM1S4OUK0HvgISfKki9AiJSiYbkUi5egAJCld+PCp
-         2iJnOSari/WzosWMx/jJWLHcAvX9kgU2vVvoEnSA=
-Message-ID: <f9e6e452-0e00-785c-1f4f-43f7754ab720@schinagl.nl>
-Date:   Tue, 30 Aug 2022 15:40:36 +0200
+        t=1661866978; bh=VGw2Qzyj3OF2DuUcVdIgndrfA7vp4cP/flSebzN5Nhw=;
+        h=Date:Subject:To:References:From:In-Reply-To;
+        b=FrDLdcWtc/a0geROqdLM6MqQbXUDZWXwWK1rBR9Q5J9CzRNuL6X1XpYfL49GqULLG
+         hpzweGZUX/tshrvI4tLDgW/vBKqFINnUAcrvxFO9ljf2VLQZeN7/SM/hdDRWeiM1bJ
+         LalZzZAOcK3/1Ik4q/CsRJiZT8JkiIfIQrZEQzx8=
+Message-ID: <81566e5b-297a-4db4-b741-3a80dbf875ac@schinagl.nl>
+Date:   Tue, 30 Aug 2022 15:42:57 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCHv2 resend] dt-bindings: leds: Expand LED_COLOR_ID
- definitions
-Content-Language: en-US
-To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Baolin Wang <baolin.wang@linaro.org>,
-        Daniel Mack <daniel@zonque.org>,
+Subject: Re: [PATCH v3] dt-bindings: leds: Expand LED_COLOR_ID definitions
+Content-Language: nl
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Pavel Machek <pavel@ucw.cz>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        linux-leds@vger.kernel.org, Daniel Mack <daniel@zonque.org>,
         Linus Walleij <linus.walleij@linaro.org>,
         Oleh Kravchenko <oleg@kaa.org.ua>,
         Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Simon Shields <simon@lineageos.org>,
         Olliver Schinagl <oliver+list@schinagl.nl>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220819152904.433514-1-oliver@schinagl.nl>
- <44eec926-b7d0-f8eb-f944-d28e3b35257a@gmail.com>
+References: <20220830084454.1133369-1-oliver@schinagl.nl>
+ <Yw37exBark8pCE2p@ada.ifak-system.com>
 From:   Olliver Schinagl <oliver@schinagl.nl>
-In-Reply-To: <44eec926-b7d0-f8eb-f944-d28e3b35257a@gmail.com>
+In-Reply-To: <Yw37exBark8pCE2p@ada.ifak-system.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -60,19 +58,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30-08-2022 12:28, Jacek Anaszewski wrote:
-> Hi Oliver,
+On 30-08-2022 13:58, Alexander Dahl wrote:
+> Hello Olliver,
 >
-> On 8/19/22 17:29, Olliver Schinagl wrote:
+> Am Tue, Aug 30, 2022 at 10:44:54AM +0200 schrieb Olliver Schinagl:
 >> In commit 853a78a7d6c7 (dt-bindings: leds: Add LED_COLOR_ID definitions,
 >> Sun Jun 9 20:19:04 2019 +0200) the most basic color definitions where
 >> added. However, there's a little more very common LED colors.
 >>
 >> While the documentation states 'add what is missing', engineers tend to
 >> be lazy and will just use what currently exists. So this patch will take
->> (a) list from online retailers [0], [1], [2] and use the common LED colors
->> from there, this being reasonable as this is what is currently available to
->> purchase.
+>> (a) list from online retailers [0], [1], [2] and use the common LED colors from
+>> there, this being reasonable as this is what is currently available to purchase.
 >>
 >> Note, that LIME seems to be the modern take to 'Yellow-green' or
 >> 'Yellowish-green' from some older datasheets.
@@ -83,21 +80,20 @@ On 30-08-2022 12:28, Jacek Anaszewski wrote:
 >>
 >> Signed-off-by: Olliver Schinagl <oliver@schinagl.nl>
 >> ---
->>
+>> No chances since v2: Re-send with the proper e-mails.
 >> Changes since v1: Unbreak existing definitions.
 >>
->>
->>    include/dt-bindings/leds/common.h | 28 ++++++++++++++++------------
->>    1 file changed, 16 insertions(+), 12 deletions(-)
+>>   include/dt-bindings/leds/common.h | 28 ++++++++++++++++------------
+>>   1 file changed, 16 insertions(+), 12 deletions(-)
 >>
 >> diff --git a/include/dt-bindings/leds/common.h b/include/dt-bindings/leds/common.h
 >> index 3be89a7c20a9..04bf94523ea3 100644
 >> --- a/include/dt-bindings/leds/common.h
 >> +++ b/include/dt-bindings/leds/common.h
 >> @@ -22,18 +22,22 @@
->>    #define LEDS_BOOST_FIXED	2
->>    
->>    /* Standard LED colors */
+>>   #define LEDS_BOOST_FIXED	2
+>>   
+>>   /* Standard LED colors */
 >> -#define LED_COLOR_ID_WHITE	0
 >> -#define LED_COLOR_ID_RED	1
 >> -#define LED_COLOR_ID_GREEN	2
@@ -121,24 +117,21 @@ On 30-08-2022 12:28, Jacek Anaszewski wrote:
 >> +#define LED_COLOR_ID_MULTI      8 /* For multicolor LEDs */
 >> +#define LED_COLOR_ID_RGB        9 /* For multicolor LEDs that can do arbitrary color, including RGBW etc. */
 >> +#define LED_COLOR_ID_PUPRPLE   10
-> typo - as already mentioned
-Sorry, I did not receive your earlier mail it seems, or it's not showing 
-up in the thread; well caught!
+> This is still a typo, isn't it? Purple?
+Yes sir, And the spacing too, as you mentioned on the v2;
+>
+> Greets
+> Alex
 >
 >> +#define LED_COLOR_ID_ORANGE    11
 >> +#define LED_COLOR_ID_PINK      12
 >> +#define LED_COLOR_ID_CYAN      13
 >> +#define LED_COLOR_ID_LIME      14
 >> +#define LED_COLOR_ID_MAX       15
->>    
->>    /* Standard LED functions */
->>    /* Keyboard LEDs, usually it would be input4::capslock etc. */
-> And it seems that change in spacing between definition name and value
-> is not required, is it? Without that change, it would be easier to
-> notice what really changes here.
->
-Yes, you are correct, I initially had LimeGreen there, which made it 
-longer, as I later found out, that LimeGreen could actually just be Lime 
-as much, I forgot to 're-shorten it. The fixed diff for v4 does look as 
-expected! thanks for that one.
+>>   
+>>   /* Standard LED functions */
+>>   /* Keyboard LEDs, usually it would be input4::capslock etc. */
+>> -- 
+>> 2.37.2
+>>
 
