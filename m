@@ -2,78 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD9A75A699A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 19:21:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 34BCB5A6A62
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 19:28:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231299AbiH3RVR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 13:21:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60428 "EHLO
+        id S231681AbiH3R2a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 13:28:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231233AbiH3RUk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 13:20:40 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3927618E13
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 10:19:51 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id bt10so16473228lfb.1
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 10:19:51 -0700 (PDT)
+        with ESMTP id S231726AbiH3R1t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 13:27:49 -0400
+Received: from mail-io1-xd34.google.com (mail-io1-xd34.google.com [IPv6:2607:f8b0:4864:20::d34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7366FDF48
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 10:25:08 -0700 (PDT)
+Received: by mail-io1-xd34.google.com with SMTP id h78so9797136iof.13
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 10:25:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=Jg6jD+CrZfA3+ErsJegtnFyWel1/wg6TBa1uQnpYkRk=;
-        b=WaIC5OO9eshVf6BBCqhHQeOCg7yAkPDaJ88dkCrizU24wDn+NJORKY5EZxxa4LAAB8
-         VOWto4Sl4pFLdVEHBmNE4+lbugz5Kd99gyFm8hsGWv7RioRLj4MxHLoP4JZ6BtDUS6pu
-         T6KdxyVxEOaZ2vtrW2hyUIgrv00n7knWGipMO6lPCBd5+dyrjecZBsIGrpBb6bsS2aV2
-         aEeE8xShfrZ24KEx/Zju1SgylZ8YViLbYULR4gsE+Xg/xkSJE3ntGluUNOmeroVkzFhU
-         xX/TNr2hZ7203joOlAVn67Ovn3qWnA/VBJ9jbLGsjmv4kAFBzR2asTosXhvgICO1vWp1
-         v/FQ==
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=SmSdpqqfvhuzBeG/p+7mNhDOexI5aI2aAxoNsJihLIw=;
+        b=MwDNBXN8YnULPfgN5yg8hA/ERoe4PKJ3NdV4H3LBuK3diQMkKr9cIVUpBkhp0GFul7
+         xFM3eJ+klfy1CjKvDD1Do+ILnhEFPDprBhHlJ3Xr7sCEauXpNsnplfq6tPGAs3ejXHNH
+         8lfx2cndEqpo6Na7ga1peK96Bzlgck8g6Ahbw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=Jg6jD+CrZfA3+ErsJegtnFyWel1/wg6TBa1uQnpYkRk=;
-        b=OURRqNLzwHJtqGdEd1bJSmYU/XMzwoMtjQ19lF+qaeaiYOi1ewUslMClO+PUvnZxSi
-         HouwPz82BP7zi0B99fu7dXmvhdSO5mPHWn9LDt2/GtxGXiVan8OuXrt/VHlqWc6J3lCp
-         GZL7ntxIdLRS4+X1l40jvXmQ1PR7RlYmsZhTTyZzqnRqmyda3PVKWfyOhEOC0BCVWFV8
-         3KKl9+3u2AVXxrzHRePsZOVfaJLcV8sgmvg35TOkGrB7kJoOuEksS6GVDIc80CDoj1i2
-         4x+2QC9Yzmy6F2A/v1Me8/NrX3EyfaW3IcZzo+f5d3hW5+iYsBzGDwgltOmkCGiHMEXu
-         mx5A==
-X-Gm-Message-State: ACgBeo0KoJg7k279vAVuxQWHU8fDE+bysK3/QG2IERqwr3edrRxNSDqW
-        hgRgVWMIbgELcIdMeRSFK9+iwQ==
-X-Google-Smtp-Source: AA6agR5jQT5br8ySZXEzSuLI6UszqeyyUvObvZcBRyykloe0v1NhNfv4SgXtPIKFHfDQo3EkpSorYQ==
-X-Received: by 2002:a05:6512:6cc:b0:48d:acaa:8a66 with SMTP id u12-20020a05651206cc00b0048dacaa8a66mr8786986lff.272.1661879988498;
-        Tue, 30 Aug 2022 10:19:48 -0700 (PDT)
-Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id u14-20020a2eb80e000000b002647530f3b6sm1035235ljo.137.2022.08.30.10.19.46
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=SmSdpqqfvhuzBeG/p+7mNhDOexI5aI2aAxoNsJihLIw=;
+        b=fqJxYmMRFFaB3xSM+milM0VsuuEV1ZZsQP+dlB9dIqeF4lbatuh/cD3tF5mfcTFJ/5
+         ONJzfe4DuRYpApIvnDQ5Udt4bjm9W/HBX0kBKuKWlP2EhiYmlfPQIDytVzV2N6WMFn+s
+         q2TPMm1xtSs9rHVf2xmgO/DWGoYThK9T77xVbEbSRBvcv8FCZ9zuqvx7lMGs5bEJbsEP
+         ZCHzYlO2r4iANJ2trmmucsdSJDDqALFfaX0+974x9EOfbu7j8X/yZcDH6kdz2QmQSvqj
+         hEywImxHgKBI4KuegXmA8ghPmcD3gHJOO7YihEBpUvxEoTvaM2Gtp1w3rjb7ZBbqLHsA
+         25QA==
+X-Gm-Message-State: ACgBeo0DOhF4jqb0rDntsBtMC3S0zchM2X6o3qWbq1I6jC3j+FebooMw
+        rNU7D3yGvrvtgLQ4P5g5ThW6vxp32/xSV+GD
+X-Google-Smtp-Source: AA6agR6jC9Hz/K4KMYjJMQFl7UnZI7jcAD2xkHMiD+o2UkwTk51XCUGMAgQB1prQmgRPcSQmgAPFNQ==
+X-Received: by 2002:a05:6638:ed1:b0:349:ce2b:3f4 with SMTP id q17-20020a0566380ed100b00349ce2b03f4mr12933112jas.155.1661880238954;
+        Tue, 30 Aug 2022 10:23:58 -0700 (PDT)
+Received: from mail-io1-f49.google.com (mail-io1-f49.google.com. [209.85.166.49])
+        by smtp.gmail.com with ESMTPSA id h24-20020a0566380f1800b003434ba08e11sm5720523jas.115.2022.08.30.10.23.57
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Aug 2022 10:19:47 -0700 (PDT)
-Message-ID: <a3a93acc-434e-4a94-6ba6-6a71f2da8736@linaro.org>
-Date:   Tue, 30 Aug 2022 20:19:46 +0300
+        Tue, 30 Aug 2022 10:23:58 -0700 (PDT)
+Received: by mail-io1-f49.google.com with SMTP id d68so9792261iof.11
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 10:23:57 -0700 (PDT)
+X-Received: by 2002:a05:6638:14d0:b0:349:d176:d376 with SMTP id
+ l16-20020a05663814d000b00349d176d376mr12105487jak.58.1661880236045; Tue, 30
+ Aug 2022 10:23:56 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v14 2/3] dt-bindings: edac: nuvoton: Add document for NPCM
- memory controller
-Content-Language: en-US
-To:     Marvin Lin <milkfafa@gmail.com>, linux-edac@vger.kernel.org,
-        rric@kernel.org, james.morse@arm.com, tony.luck@intel.com,
-        mchehab@kernel.org, bp@alien8.de, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, openbmc@lists.ozlabs.org,
-        benjaminfair@google.com, yuenn@google.com, venture@google.com,
-        KWLIU@nuvoton.com, YSCHU@nuvoton.com, JJLIU0@nuvoton.com,
-        KFTING@nuvoton.com, avifishman70@gmail.com, tmaimon77@gmail.com,
-        tali.perry1@gmail.com, ctcchien@nuvoton.com, kflin@nuvoton.com
-References: <20220830022238.28379-1-milkfafa@gmail.com>
- <20220830022238.28379-3-milkfafa@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220830022238.28379-3-milkfafa@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+References: <20220830053307.3997495-1-sheng-liang.pan@quanta.corp-partner.google.com>
+In-Reply-To: <20220830053307.3997495-1-sheng-liang.pan@quanta.corp-partner.google.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Tue, 30 Aug 2022 10:23:44 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XXV4x-Hpa9-GUzkwS+cxfvpL93HBCUrn_bvMK8hBAaBA@mail.gmail.com>
+Message-ID: <CAD=FV=XXV4x-Hpa9-GUzkwS+cxfvpL93HBCUrn_bvMK8hBAaBA@mail.gmail.com>
+Subject: Re: [PATCH 0/1] Add a new board device tree named 'evoker' for
+ herobrine variant.
+To:     Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -82,35 +81,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/08/2022 05:22, Marvin Lin wrote:
-> Add dt-bindings document for Nuvoton NPCM memory controller.
-> 
-> Signed-off-by: Marvin Lin <milkfafa@gmail.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
->  .../edac/nuvoton,npcm-memory-controller.yaml  | 54 +++++++++++++++++++
->  1 file changed, 54 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/edac/nuvoton,npcm-memory-controller.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/edac/nuvoton,npcm-memory-controller.yaml b/Documentation/devicetree/bindings/edac/nuvoton,npcm-memory-controller.yaml
-> new file mode 100644
-> index 000000000000..d5ef7e7a65f9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/edac/nuvoton,npcm-memory-controller.yaml
-> @@ -0,0 +1,54 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/edac/nuvoton,npcm-memory-controller.yaml#
+Hi,
 
-This should be in memory-controllers directory.
+On Mon, Aug 29, 2022 at 10:33 PM Sheng-Liang Pan
+<sheng-liang.pan@quanta.corp-partner.google.com> wrote:
+>
+> This patch add the initial dts file for new board 'evoker'.
+>
+>
+>
+> Sheng-Liang Pan (1):
+>   arm64: dts: qcom: sc7280: Add device tree for herobrine evoker
+>
+>  arch/arm64/boot/dts/qcom/Makefile             |   1 +
+>  .../dts/qcom/sc7280-herobrine-evoker-r0.dts   | 333 ++++++++++++++++++
+>  2 files changed, 334 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker-r0.dts
 
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Nuvoton NPCM Memory Controller Device Tree Bindings
+Just as a heads up, usually you don't need a cover letter if you're
+just sending one patch.
 
-s/Device Tree Bindings//
-
-Best regards,
-Krzysztof
+-Doug
