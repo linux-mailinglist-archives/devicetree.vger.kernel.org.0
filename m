@@ -2,173 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 15DA25A6E26
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 22:09:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE6BE5A6E2D
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 22:11:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229973AbiH3UJr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 16:09:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56504 "EHLO
+        id S231228AbiH3ULL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 16:11:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229513AbiH3UJq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 16:09:46 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB07B75FF8;
-        Tue, 30 Aug 2022 13:09:43 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 27UK9NHi114191;
-        Tue, 30 Aug 2022 15:09:23 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1661890163;
-        bh=MGaUNOMjOPEfn4vlyIIkJ5sPBMGzyhbOAMe1O0L6SHc=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=tF4Jwr0+6fYb5w9JRGvr8E6vN2IIj4HOPBWuUyrTKIiQ7tfvvg2PBX2rqfNF/Tl3B
-         2VSnL391o9QlLAxWKdf1+VXeUjbuYcpwIYneOTxfu0wMQmufDmN9Yb3JhXxPRQR8Ic
-         KzBMD+Lx51xc/2UaazJ61z3GJP1DPFdQ4LUuviDc=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 27UK9N7t033401
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 30 Aug 2022 15:09:23 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 30
- Aug 2022 15:09:23 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Tue, 30 Aug 2022 15:09:23 -0500
-Received: from ubuntu (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 27UK9GZB122208;
-        Tue, 30 Aug 2022 15:09:17 -0500
-Date:   Tue, 30 Aug 2022 13:09:14 -0700
-From:   Matt Ranostay <mranostay@ti.com>
-To:     Lee Jones <lee@kernel.org>
-CC:     <nm@ti.com>, <j-keerthy@ti.com>, <linux-kernel@vger.kernel.org>,
-        <linux-rtc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v2 2/6] MFD: TPS6594x: Add new PMIC device driver for
- TPS6594x chips
-Message-ID: <Yw5t4G6hbn+mSD8y@ubuntu>
-References: <20220812032242.564026-1-mranostay@ti.com>
- <20220812032242.564026-3-mranostay@ti.com>
- <YvX6sBMItZoAhLKe@google.com>
+        with ESMTP id S231129AbiH3UK5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 16:10:57 -0400
+Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE9DA543C4;
+        Tue, 30 Aug 2022 13:10:56 -0700 (PDT)
+Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-11e9a7135easo16964006fac.6;
+        Tue, 30 Aug 2022 13:10:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+        bh=HN9nt5MKpRjQf+XTDn3zjxFKHaai2Dr1l/AVE9BA+h0=;
+        b=k6B82L5JO2i5bPd9UEDC0TYJoNihZix4rc02ilpj2YhfjI4YRfZPHkXEg1Lw93dQfr
+         NLSt9SzZa2favB7OpSw/jYk5bH4N3uO4BWtqOcZyz27oZAHOO/ESO9de09bkIiMKoW5Q
+         MZCaT3Dbj7aBb/vG5qo7aNWFGdFZn6+kl2BMqc57SJNMZWcZuQqHdcgVwBeONKx0qAHY
+         vOkxSRXJ3eXsM4oIMmcwKk9XLFrBm3WxD8cBTbB/0bv+2qJ/5VSZi1VLU+jUpSHNCpMd
+         adV0llaHtHShXwJ/LqvnVyeFMV4gOwv9eD5oDv2+1CmStieb+jnH+rclkzaRETuTkQdK
+         +pYg==
+X-Gm-Message-State: ACgBeo3H3CB0E3Q2vDfxdLIF/w+aQZQuZgRTVwyLoC/v3SnPNaUgpZeK
+        q5WGKcNv1IPNmla66NSRdw==
+X-Google-Smtp-Source: AA6agR73UpzSjVGGVSnUe9wraiSZ2NR0x+XejVAx+JPYkja6UEbBNNj6vmJbuGRsY+4GdYfN08ZYqw==
+X-Received: by 2002:a05:6808:d48:b0:343:1ed2:7d08 with SMTP id w8-20020a0568080d4800b003431ed27d08mr10040929oik.197.1661890255976;
+        Tue, 30 Aug 2022 13:10:55 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id t27-20020a056808159b00b0034305ddc29dsm6731909oiw.28.2022.08.30.13.10.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Aug 2022 13:10:55 -0700 (PDT)
+Received: (nullmailer pid 1979150 invoked by uid 1000);
+        Tue, 30 Aug 2022 20:10:54 -0000
+Date:   Tue, 30 Aug 2022 15:10:54 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>, kernel@pengutronix.de,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+        David Jander <david@protonic.nl>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Robert Marko <robert.marko@sartura.hr>
+Subject: Re: [PATCH net-next v4 6/7] dt-bindings: net: pse-dt: add bindings
+ for generic PSE controller
+Message-ID: <20220830201054.GA1874385-robh@kernel.org>
+References: <20220828063021.3963761-1-o.rempel@pengutronix.de>
+ <20220828063021.3963761-7-o.rempel@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <YvX6sBMItZoAhLKe@google.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220828063021.3963761-7-o.rempel@pengutronix.de>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 12, 2022 at 08:01:04AM +0100, Lee Jones wrote:
-> On Thu, 11 Aug 2022, Matt Ranostay wrote:
+On Sun, Aug 28, 2022 at 08:30:20AM +0200, Oleksij Rempel wrote:
+> Add binding for generic Ethernet PSE controller.
 > 
-> > From: Keerthy <j-keerthy@ti.com>
-> > 
-> > The TPS6594x chip is a PMIC, and contains the following components:
-> > 
-> > - Regulators
-> > - GPIO controller
-> > - RTC
-> > 
-> > However initially only RTC is supported.
-> > 
-> > Signed-off-by: Keerthy <j-keerthy@ti.com>
-> > Signed-off-by: Matt Ranostay <mranostay@ti.com>
-> > ---
-> >  drivers/mfd/Kconfig          |  14 ++++
-> >  drivers/mfd/Makefile         |   1 +
-> >  drivers/mfd/tps6594x.c       | 121 +++++++++++++++++++++++++++++++++++
-> >  include/linux/mfd/tps6594x.h |  84 ++++++++++++++++++++++++
-> >  4 files changed, 220 insertions(+)
-> >  create mode 100644 drivers/mfd/tps6594x.c
-> >  create mode 100644 include/linux/mfd/tps6594x.h
-> > 
-> > diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-> > index abb58ab1a1a4..4845683ae1d0 100644
-> > --- a/drivers/mfd/Kconfig
-> > +++ b/drivers/mfd/Kconfig
-> > @@ -1547,6 +1547,20 @@ config MFD_TI_LP873X
-> >  	  This driver can also be built as a module. If so, the module
-> >  	  will be called lp873x.
-> >  
-> > +config MFD_TPS6594X
-> > +	tristate "TI TPS6594X Power Management IC"
-> > +	depends on I2C && OF
-> > +	select MFD_CORE
-> > +	select REGMAP_I2C
-> > +	help
-> > +	  If you say yes here then you get support for the TPS6594X series of
-> > +	  Power Management Integrated Circuits (PMIC).
-> > +	  These include voltage regulators, RTS, configurable
-> > +	  General Purpose Outputs (GPO) that are used in portable devices.
-> > +
-> > +	  This driver can also be built as a module. If so, the module
-> > +	  will be called tps6594x.
-> > +
-> >  config MFD_TI_LP87565
-> >  	tristate "TI LP87565 Power Management IC"
-> >  	depends on I2C && OF
-> > diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-> > index 858cacf659d6..7ff6a8a57d55 100644
-> > --- a/drivers/mfd/Makefile
-> > +++ b/drivers/mfd/Makefile
-> > @@ -105,6 +105,7 @@ obj-$(CONFIG_MFD_TPS65910)	+= tps65910.o
-> >  obj-$(CONFIG_MFD_TPS65912)	+= tps65912-core.o
-> >  obj-$(CONFIG_MFD_TPS65912_I2C)	+= tps65912-i2c.o
-> >  obj-$(CONFIG_MFD_TPS65912_SPI)  += tps65912-spi.o
-> > +obj-$(CONFIG_MFD_TPS6594X)	+= tps6594x.o
-> >  obj-$(CONFIG_MENELAUS)		+= menelaus.o
-> >  
-> >  obj-$(CONFIG_TWL4030_CORE)	+= twl-core.o twl4030-irq.o twl6030-irq.o
-> > diff --git a/drivers/mfd/tps6594x.c b/drivers/mfd/tps6594x.c
-> > new file mode 100644
-> > index 000000000000..ff265b91db3e
-> > --- /dev/null
-> > +++ b/drivers/mfd/tps6594x.c
-> > @@ -0,0 +1,121 @@
-> > +// SPDX-License-Identifier: GPL-2.0-or-later
-> > +/*
-> > + * Driver for tps6594x PMIC chips
-> > + *
-> > + * Copyright (C) 2022 Texas Instruments Incorporated - https://www.ti.com/
-> > + * Author: Keerthy <j-keerthy@ti.com>
-> > + */
-> > +
-> > +#include <linux/of.h>
-> > +#include <linux/of_device.h>
-> > +#include <linux/mfd/core.h>
-> > +#include <linux/mfd/tps6594x.h>
-> > +#include <linux/module.h>
-> > +#include <linux/i2c.h>
-> > +#include <linux/regmap.h>
-> > +
-> > +static const struct regmap_config tps6594x_regmap_config = {
-> > +	.reg_bits = 8,
-> > +	.val_bits = 8,
-> > +	.max_register = TPS6594X_REG_MAX,
-> > +};
-> > +
-> > +static const struct mfd_cell tps6594x_cells[] = {
-> > +	{ .name = "tps6594x-gpio" },
-> > +	{ .name = "tps6594x-regulator" },
-> > +	{ .name = "tps6594x-rtc" },
-> > +};
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> ---
+> changes v4:
+> - rename to PSE regulator
+> - drop currently unused properties
+> - use own compatible for PoDL PSE
+> changes v2:
+> - rename compatible to more generic "ieee802.3-pse"
+> - add class and type properties for PoDL and PoE variants
+> - add pairs property
+> ---
+>  .../bindings/net/pse-pd/pse-regulator.yaml    | 40 +++++++++++++++++++
+>  1 file changed, 40 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/pse-pd/pse-regulator.yaml
 > 
-> Where are the device drivers for these?
->
+> diff --git a/Documentation/devicetree/bindings/net/pse-pd/pse-regulator.yaml b/Documentation/devicetree/bindings/net/pse-pd/pse-regulator.yaml
+> new file mode 100644
+> index 0000000000000..1a906d2135a7a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/pse-pd/pse-regulator.yaml
+> @@ -0,0 +1,40 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/pse-pd/pse-regulator.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Regulator based Power Sourcing Equipment
+> +
+> +maintainers:
+> +  - Oleksij Rempel <o.rempel@pengutronix.de>
+> +
+> +description: Regulator based PSE controller. The device must be referenced by
+> +  the PHY node to control power injection to the Ethernet cable.
+> +
+> +properties:
+> +  compatible:
+> +    description: Regulator based PoDL PSE controller for a single twisted-pair
+> +      link.
+> +    const: podl-pse-regulator
+> +
+> +  '#pse-cells':
+> +    const: 0
 
-They currently don't exist. Would these need to be merged/developed
-before the acceptance of the mfd driver?
+Do you have intentions that this would be non-zero? This series is 
+defining a new common binding, but only creating a specific schema. 
+You need to define in a common schema what the purpose of the cells may 
+be and if there's common constraints defining those in the common 
+schema. There's several examples where only 0 or 1 is allowed for 
+example.
 
-- Matt
+There's a standard pattern of '#foo-cells' for the provider and 'foos' 
+for the consumer. Ultimately, anything that doesn't follow that pattern 
+needs explicit support in dtschema to decode the consumers. IOW, try to 
+follow the pattern. Either '#ieee802.3-pse-cells'/'ieee802.3-pses' or 
+'#pse-cells'/'pses'. Neither seems great to me. The former is a bit too 
+specific and the latter a bit too short. Shrug.
 
-> -- 
-> Lee Jones [李琼斯]
+Rob
+
