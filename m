@@ -2,43 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D9FA15A65B8
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 15:56:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4AC75A65E8
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 16:07:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231280AbiH3Nzy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 09:55:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51162 "EHLO
+        id S229909AbiH3OHW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 10:07:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231296AbiH3NzV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 09:55:21 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BBAD5D12F;
-        Tue, 30 Aug 2022 06:55:08 -0700 (PDT)
+        with ESMTP id S229699AbiH3OHV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 10:07:21 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15ADBF72D0;
+        Tue, 30 Aug 2022 07:07:19 -0700 (PDT)
 Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 27UDssoS015439;
-        Tue, 30 Aug 2022 08:54:54 -0500
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 27UE74LJ033683;
+        Tue, 30 Aug 2022 09:07:04 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1661867694;
-        bh=Ibq5djXv+iTal2Io0T+5lRTHqikjmYj4LLSTJV1j26g=;
+        s=ti-com-17Q1; t=1661868424;
+        bh=fMJU+CdfgTgvGibIly+sF9LbY8bZkcS5EvqunW4kU8s=;
         h=From:To:CC:Subject:In-Reply-To:References:Date;
-        b=rbbO7IEB5gnrOpY5NtxKtoeYusVKfTKtjTNTWgG9v4O7ffdZtsioX5WhG8iXNtDb1
-         79SENaqrMaXvs5+3Rj0QWOceX3L16eLfmaZdgSnrPOXxVR7kMzZHSZH+KZNQ4yBaPE
-         dXawoeuSiGvemwmxqAYgNSbPjemEX+H17kpP4qME=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 27UDssgZ101014
+        b=aA63REEvErCg+vblsrEycBzLb5bMzOEblBasonhQ+kPaWRPirfqeWHqxHa+CtUNNg
+         77MBMMMSUFVlI8Rh1R5Nr5JDcfhBXgt09YncBn9OoR0XCyEm1DumPbPZJwBTWzzTAc
+         MKgSDBbOwvKT9sfHl6Y7MehSFGjRQpn+yVuoIKRU=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 27UE7482108318
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 30 Aug 2022 08:54:54 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+        Tue, 30 Aug 2022 09:07:04 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 30
- Aug 2022 08:54:54 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ Aug 2022 09:07:04 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Tue, 30 Aug 2022 08:54:54 -0500
+ Frontend Transport; Tue, 30 Aug 2022 09:07:03 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 27UDsrA9082524;
-        Tue, 30 Aug 2022 08:54:53 -0500
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 27UE73KN076517;
+        Tue, 30 Aug 2022 09:07:03 -0500
 From:   Kamlesh Gurudasani <kamlesh@ti.com>
 To:     Jayesh Choudhary <j-choudhary@ti.com>, <nm@ti.com>,
         <vigneshr@ti.com>, <devicetree@vger.kernel.org>
@@ -46,18 +46,18 @@ CC:     <kristo@kernel.org>, <robh+dt@kernel.org>,
         <krzysztof.kozlowski+dt@linaro.org>,
         <linux-arm-kernel@lists.infradead.org>,
         <linux-kernel@vger.kernel.org>, <j-choudhary@ti.com>
-Subject: Re: [PATCH v2 1/2] arm64: dts: ti: k3-am64: Add SA2UL address space
- to Main CBASS ranges
-In-Reply-To: <20220711085743.10128-2-j-choudhary@ti.com>
+Subject: Re: [PATCH v2 2/2] arm64: dts: ti: k3-am64-main: Enable crypto
+ accelerator
+In-Reply-To: <20220711085743.10128-3-j-choudhary@ti.com>
 References: <20220711085743.10128-1-j-choudhary@ti.com>
- <20220711085743.10128-2-j-choudhary@ti.com>
-Date:   Tue, 30 Aug 2022 19:24:53 +0530
-Message-ID: <8735ddu98y.fsf@kamlesh.i-did-not-set--mail-host-address--so-tickle-me>
+ <20220711085743.10128-3-j-choudhary@ti.com>
+Date:   Tue, 30 Aug 2022 19:37:02 +0530
+Message-ID: <87wnapsu49.fsf@kamlesh.i-did-not-set--mail-host-address--so-tickle-me>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -68,30 +68,49 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Jayesh Choudhary <j-choudhary@ti.com> writes:
 
-> From: Suman Anna <s-anna@ti.com>
+> From: Peter Ujfalusi <peter.ujfalusi@ti.com>
 >
-> Add the address space for the SA2UL in MAIN domain to the ranges property
-> of the cbass_main interconnect node so that the addresses within the
-> corresponding sram nodes and its children can be translated properly by
-> the relevant OF address API.
+> Add the node for SA2UL.
 >
+> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+> [s-anna@ti.com: drop label, minor cleanups]
 > Signed-off-by: Suman Anna <s-anna@ti.com>
+> [j-choudhary@ti.com: disable rng-node, change flag to shared]
 > Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
 > ---
->  arch/arm64/boot/dts/ti/k3-am64.dtsi | 1 +
->  1 file changed, 1 insertion(+)
+>  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 20 ++++++++++++++++++++
+>  1 file changed, 20 insertions(+)
 >
-> diff --git a/arch/arm64/boot/dts/ti/k3-am64.dtsi b/arch/arm64/boot/dts/ti/k3-am64.dtsi
-> index 016dd8511ca6..c858725133af 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am64.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am64.dtsi
-> @@ -82,6 +82,7 @@
->  			 <0x00 0x3b000000 0x00 0x3b000000 0x00 0x00000400>, /* GPMC0_CFG */
->  			 <0x00 0x3cd00000 0x00 0x3cd00000 0x00 0x00000200>, /* TIMERMGR0_CONFIG */
->  			 <0x00 0x3f004000 0x00 0x3f004000 0x00 0x00000400>, /* GICSS0_REGS */
-> +			 <0x00 0x40900000 0x00 0x40900000 0x00 0x00030000>, /* SA2_UL0 */
->  			 <0x00 0x43000000 0x00 0x43000000 0x00 0x00020000>, /* CTRL_MMR0 */
->  			 <0x00 0x44043000 0x00 0x44043000 0x00 0x00000fe0>, /* TI SCI DEBUG */
->  			 <0x00 0x48000000 0x00 0x48000000 0x00 0x06400000>, /* DMASS */
+> diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+> index ada00575f0f2..06fada0d82b1 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+> @@ -1308,4 +1308,24 @@
+>  		interrupt-names = "int0", "int1";
+>  		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
+>  	};
+> +
+> +	crypto: crypto@40900000 {
+> +		compatible = "ti,am64-sa2ul";
+> +		reg = <0x00 0x40900000 0x00 0x1200>;
+> +		power-domains = <&k3_pds 133 TI_SCI_PD_SHARED>;
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges = <0x00 0x40900000 0x00 0x40900000 0x00 0x30000>;
+> +		dmas = <&main_pktdma 0xc001 0>, <&main_pktdma 0x4002 0>,
+> +		       <&main_pktdma 0x4003 0>;
+> +		dma-names = "tx", "rx1", "rx2";
+> +
+> +		rng: rng@40910000 {
+> +			compatible = "inside-secure,safexcel-eip76";
+> +			reg = <0x00 0x40910000 0x00 0x7d>;
+> +			interrupts = <GIC_SPI 168 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&k3_clks 133 0>;
+> +			status = "disabled"; /* Used by OP-TEE */
+> +		};
+> +	};
+>  };
+
+Both patches look good to me.
 
 Reviewed-by: Kamlesh Gurudasani <kamlesh@ti.com>
