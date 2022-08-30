@@ -2,189 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 72BF95A60CF
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 12:33:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B5985A60D5
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 12:34:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229683AbiH3KdP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 06:33:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53358 "EHLO
+        id S229832AbiH3Kee (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 06:34:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229446AbiH3KdO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 06:33:14 -0400
-Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7364A3D5D;
-        Tue, 30 Aug 2022 03:33:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-        d=metrotek.ru; s=mail;
-        h=from:subject:date:message-id:to:cc:mime-version:content-type:in-reply-to:
-         references;
-        bh=llGPjFGwJB/wfY44LT3rb5OTwIONCk545lArJ09EwdM=;
-        b=d8NgS0QG94kN53tMYz9L97aD8JmAvM5y3Pjb+auL5tVDM7BRnTyjWX+fOsVxocIVCZx4ee8/d/FFA
-         o6hbq2ALOKlQMPgZ+0AiK9avUSNlPVO0HMXeJb1tF1CKP8h3J5lHWSYD1AkT/vGoAhxm+Nq7rzQT20
-         P8iQbpCJzGzVQ+XOuomBqZiV7By52iHjp9lN/RBtATnHOJPQPDdWagNZPTThL5RpBA/h8gjEaNphw7
-         PgdMaWjFEOf1FLHCCOSiBpPFePcwtHpfeKgzfV/XkJKH9+xj9LGfX+IBwPKaoAgRG6vcV2Fn+h9v55
-         kcHuRDIPcSBwRa67f2lkg01SGi0ALiw==
-X-Kerio-Anti-Spam:  Build: [Engines: 2.16.4.1445, Stamp: 3], Multi: [Enabled, t: (0.000010,0.015701)], BW: [Enabled, t: (0.000014,0.000001)], RTDA: [Enabled, t: (0.078785), Hit: No, Details: v2.41.0; Id: 15.52kem9.1gbn4vlpc.vtp; mclb], total: 0(700)
-X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLACK autolearn=no autolearn_force=no
-        version=3.4.6
-X-Spam-Level: 
-X-Footer: bWV0cm90ZWsucnU=
-Received: from h-e2.ddg ([85.143.252.66])
-        (authenticated user i.bornyakov@metrotek.ru)
-        by mail.pr-group.ru with ESMTPSA
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
-        Tue, 30 Aug 2022 13:33:03 +0300
-Date:   Tue, 30 Aug 2022 13:32:01 +0300
-From:   Ivan Bornyakov <i.bornyakov@metrotek.ru>
-To:     mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
-        trix@redhat.com, dg@emlix.com, j.zink@pengutronix.de,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
-        system@metrotek.ru
-Subject: Re: [PATCH v9 2/2] dt-bindings: fpga: document Lattice sysCONFIG
- FPGA manager
-Message-ID: <20220830103201.dmtvotiq43g742v5@h-e2.ddg>
-References: <20220830095405.31609-1-i.bornyakov@metrotek.ru>
- <20220830095405.31609-3-i.bornyakov@metrotek.ru>
+        with ESMTP id S229819AbiH3Ked (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 06:34:33 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F548A99D6;
+        Tue, 30 Aug 2022 03:34:32 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id b26so3958411ljk.12;
+        Tue, 30 Aug 2022 03:34:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:from:to:cc;
+        bh=UCod0/HFGUKrf2p2FZSzQ0kgTIqag5Zo13Nui3Avcqk=;
+        b=noyZtazLMxDeLMfMDx3LzywqrsR+b2bysTT2q3oiIa9pxwlngpzxZTDp13jqqd6dCX
+         +iruMKgnQOuteRSP16gDFsiPCoF8X2cOaqV47Oqp+djtXyA+CjsWoKiOvMqp2+zFk3h9
+         Edg/HiO1bLa3dtSePz0K6bXpcgaMOAAVybubczCy4zESHU8A6j4Hqk2cDHQlQPn1rgs4
+         XjWKTmSKEr8NywzyeQvckAGZEvmrOO/3MjkfonVyUZXCRpxVZqkGHyc5QCbVn8ZWo7EK
+         VLBl0XbKPSzOeoGKkV+mILUlAr43vEefx0LUkmTabu1Zku3CQcOxCE6s+FqLHeEIgwQW
+         3wOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=UCod0/HFGUKrf2p2FZSzQ0kgTIqag5Zo13Nui3Avcqk=;
+        b=akbcr7J/hs3f9yKI9ZwKw4kcOB6TT3Ga3ButDNw5RsN/frY80u6Vel14nQVNIR24O9
+         jXmvikorCv+gVKpPX1qyqhK4qI0BMgLlLoLA5UzESB6PvDypgsA2zD4qbq+HpsqAhIHy
+         0JrEqj6lIcrIvWEbQVJ1JxnbhOYqHptny3N40TBYgBioeLwwUteyTgwODXlFxVPRlVKn
+         qBQAn+kIgTRxrEkYNDXq5cpyZXqWH0o9z5miAZazR8PqXEJ/wm7bsjqjuCrvtHBssRYZ
+         aJujxTm+bBn/85HFwrFU+2wJvpVO+MI1OOQOYm/y1NHtR7zJ1waE+8G4EGuFu4nBYLIL
+         eZ1Q==
+X-Gm-Message-State: ACgBeo0M/GH2Cz8AjURxCoMCFvtmRcvG0MGhjWGO4lKKVUvjkYelCbwW
+        NOKAiIJsJM7s8eJh3fZjpMA=
+X-Google-Smtp-Source: AA6agR42HvKOpgztKSbICMioabWyivzr6d0K3E8tGVuitdTRPJulyJHicb40e5bgT5czhA+yR45EiQ==
+X-Received: by 2002:a05:651c:1993:b0:263:a41d:3d7b with SMTP id bx19-20020a05651c199300b00263a41d3d7bmr3523730ljb.63.1661855670682;
+        Tue, 30 Aug 2022 03:34:30 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:16f3:4a00::1? (dc75zzyyyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::1])
+        by smtp.gmail.com with ESMTPSA id e20-20020a196914000000b0048b17852938sm1099036lfc.162.2022.08.30.03.34.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Aug 2022 03:34:30 -0700 (PDT)
+Message-ID: <8f501644-9793-214f-8a19-45ee8af3c907@gmail.com>
+Date:   Tue, 30 Aug 2022 13:34:28 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220830095405.31609-3-i.bornyakov@metrotek.ru>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Content-Language: en-US
+To:     ChiaEn Wu <peterwu.pub@gmail.com>, lee@kernel.org,
+        daniel.thompson@linaro.org, jingoohan1@gmail.com, pavel@ucw.cz,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com, sre@kernel.org, jic23@kernel.org,
+        lars@metafoo.de, deller@gmx.de, broonie@kernel.org,
+        andriy.shevchenko@linux.intel.com
+Cc:     chiaen_wu@richtek.com, alice_chen@richtek.com,
+        cy_huang@richtek.com, dri-devel@lists.freedesktop.org,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-fbdev@vger.kernel.org, szunichen@gmail.com,
+        andy.shevchenko@gmail.com
+References: <20220830034042.9354-2-peterwu.pub@gmail.com>
+ <20220830034042.9354-8-peterwu.pub@gmail.com>
+From:   Matti Vaittinen <mazziesaccount@gmail.com>
+Subject: Re: [PATCH v9 07/10] power: supply: mt6370: Add MediaTek MT6370
+ charger driver
+In-Reply-To: <20220830034042.9354-8-peterwu.pub@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 30, 2022 at 12:54:05PM +0300, Ivan Bornyakov wrote:
-> Add Device Tree Binding doc for configuring Lattice ECP5 and MachXO2
-> FPGAs over Slave SPI sysCONFIG interface.
+On 8/30/22 06:40, ChiaEn Wu wrote:
+> From: ChiaEn Wu <chiaen_wu@richtek.com>
 > 
-> Signed-off-by: Ivan Bornyakov <i.bornyakov@metrotek.ru>
+> MediaTek MT6370 is a SubPMIC consisting of a single cell battery charger
+> with ADC monitoring, RGB LEDs, dual channel flashlight, WLED backlight
+> driver, display bias voltage supply, one general purpose LDO, and the
+> USB Type-C & PD controller complies with the latest USB Type-C and PD
+> standards.
+> 
+> Add support for the MediaTek MT6370 Charger driver. The charger module
+> of MT6370 supports High-Accuracy Voltage/Current Regulation,
+> Average Input Current Regulation, Battery Temperature Sensing,
+> Over-Temperature Protection, DPDM Detection for BC1.2.
+> 
+> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+> Signed-off-by: ChiaEn Wu <chiaen_wu@richtek.com>
 > ---
->  .../bindings/fpga/lattice,sysconfig.yaml      | 102 ++++++++++++++++++
->  1 file changed, 102 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/fpga/lattice,sysconfig.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/fpga/lattice,sysconfig.yaml b/Documentation/devicetree/bindings/fpga/lattice,sysconfig.yaml
-> new file mode 100644
-> index 000000000000..17f1e0c50bc4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/fpga/lattice,sysconfig.yaml
-> @@ -0,0 +1,102 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/fpga/lattice,sysconfig.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Lattice Slave SPI sysCONFIG FPGA manager
-> +
-> +maintainers:
-> +  - Ivan Bornyakov <i.bornyakov@metrotek.ru>
-> +
-> +description: |
-> +  Lattice sysCONFIG port, which is used for FPGA configuration, among others,
-> +  have Slave Serial Peripheral Interface. Only full reconfiguration is
-> +  supported.
-> +
-> +  Programming of ECP5 is done by writing uncompressed bitstream image in .bit
-> +  format into FPGA's SRAM configuration memory.
-> +
-> +  Programming of MachXO2 is done by writing configuration data into device's
-> +  internal non-volatile Flash memory, then Self-Download of data from Flash
-> +  into SRAM is issued.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - lattice,ecp5-fpga-mgr
-> +      - lattice,machxo2-fpga-mgr
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  program-gpios:
-> +    description:
-> +      A GPIO line connected to PROGRAMN (active low) pin of the device.
-> +      Initiates configuration sequence.
-> +    maxItems: 1
-> +
-> +  init-gpios:
-> +    description:
-> +      A GPIO line connected to INITN (active low) pin of the device.
-> +      Indicates that the FPGA is ready to be configured.
-> +    maxItems: 1
-> +
-> +  done-gpios:
-> +    description:
-> +      A GPIO line connected to DONE (active high) pin of the device.
-> +      Indicates that the configuration sequence is complete.
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +allOf:
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: lattice,machxo2-fpga-mgr
-> +    then:
-> +      properties:
-> +        spi-max-frequency:
-> +          maximum: 66000000
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: lattice,ecp5-fpga-mgr
-> +    then:
-> +      properties:
-> +        spi-max-frequency:
-> +          maximum: 60000000
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    spi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        fpga-mgr@0 {
-> +            compatible = "lattice,ecp5-fpga-mgr";
-> +            reg = <0>;
-> +            spi-max-frequency = <20000000>;
-> +            program-gpios = <&gpio3 4 GPIO_ACTIVE_LOW>;
-> +            init-gpios = <&gpio3 3 GPIO_ACTIVE_LOW>;
-> +            done-gpios = <&gpio3 2 GPIO_ACTIVE_HIGH>;
-> +        };
-> +
-> +        fpga-mgr@1 {
-> +            compatible = "lattice,machxo2-fpga-mgr";
-> +            reg = <1>;
-> +            spi-max-frequency = <20000000>;
-> +        };
-> +    };
-> -- 
-> 2.37.2
-> 
+> +static const struct linear_range mt6370_chg_ranges[MT6370_RANGE_F_MAX] = {
+> +	LINEAR_RANGE_IDX(MT6370_RANGE_F_IAICR, 100000, 0x0, 0x3F, 50000),
+> +	LINEAR_RANGE_IDX(MT6370_RANGE_F_VOREG, 3900000, 0x0, 0x51, 10000),
+> +	LINEAR_RANGE_IDX(MT6370_RANGE_F_VMIVR, 3900000, 0x0, 0x5F, 100000),
+> +	LINEAR_RANGE_IDX(MT6370_RANGE_F_ICHG, 900000, 0x08, 0x31, 100000),
+> +	LINEAR_RANGE_IDX(MT6370_RANGE_F_IPREC, 100000, 0x0, 0x0F, 50000),
+> +	LINEAR_RANGE_IDX(MT6370_RANGE_F_IEOC, 100000, 0x0, 0x0F, 50000),
+> +};
 
-Sorry, I forgot to add a tag from Krzysztof. Since there is not much
-change here, I think the tag is still valid.
+This looks good to me now :) Thanks for the linear-range improvement!
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +	INIT_DELAYED_WORK(&priv->mivr_dwork, mt6370_chg_mivr_dwork_func);
+> +	ret = devm_add_action_or_reset(dev, mt6370_chg_cancel_mivr_dwork,
+> +				       &priv->mivr_dwork);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to init mivr dwork\n");
 
+I just noticed this. Maybe this could be done using 
+devm_delayed_work_autocancel() ?
 
+Yours
+-- Matti
 
+-- 
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
