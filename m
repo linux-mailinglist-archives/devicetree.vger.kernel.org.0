@@ -2,78 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B45F35A5B97
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 08:14:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4F555A5BA9
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 08:20:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229868AbiH3GOH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 02:14:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42422 "EHLO
+        id S229549AbiH3GUL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 02:20:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229817AbiH3GOF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 02:14:05 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9C2FB81D5
-        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 23:14:03 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id z29so5554400lfb.13
-        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 23:14:03 -0700 (PDT)
+        with ESMTP id S229507AbiH3GUK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 02:20:10 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9EA93E745
+        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 23:20:07 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id m1so12826874edb.7
+        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 23:20:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=f7Qyc4+Tcj4HKD3nfJDeYBjnlk9zHLIWyrvpr52gQSY=;
-        b=tvoTZD8WzYAXPwu1p166Vdlb+BHgSRLS6+r9sYH4LYgnoEbrzOOIWPlmGHlGUjkASv
-         W/cfOTlj142TqatCzxwfDEBv9b1pf/CI+8pSCNOYEJvl+gN+FKrtJ3z4147EZG7bnedi
-         0nTyo6CXPSrSkeqvDZt5dfgDhQ48aiX3VeFyqx/Eh04TiRUs6fxyhD8mU+XJU0m9922T
-         gZ2C6CEP38fy93AFLhTy2nmo6LGC2GHf6tNcT3idV/Nvc1+U88NtcL8sAbXu2EWxns8W
-         gIAen1gn8Et4QKdyM6Um3Hh5osxqzTh2tdFhWPsOvQw5LnhlSCMTdm3wVnzhXzMoTLbe
-         /yWg==
+        d=amarulasolutions.com; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=++JdMGtMD26Cu+yzgg5WWgx+GFtBxRSzs+SJ9mrdYSs=;
+        b=RuopdrOnXcvGPQpkkU5y7aUfCeDwL2Vk+B0uFOGQ31l8vnTiZTHYk6ihBlMJAYdYI2
+         w4ks2FybqN28VPifo1EW556toPVbTZb+gsL67qEjMjDbbs8dY/9J+/irPaOKW1jFSQBg
+         BlZpdpQeU9e9TLTY2vUo5zOqs6uvetWvKh144=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=f7Qyc4+Tcj4HKD3nfJDeYBjnlk9zHLIWyrvpr52gQSY=;
-        b=B+3oHc/6QRqSkXz8lm47LOPYuKYBqtJea2y+yXz1SQ6I82Gr++14MAjJVVL04LO7Bq
-         K6W4q7Qse0feANa0omYeiP7ljMTaabBoGOaI/rPyrL5HNb/05ULZC4lVWob6yLWHLs2x
-         gWAR9RLEUfffZiEAtx6w7qSmnW/gwoLh4dP1CMRDjJNbkF1FKPFrmCZIlV1YI95vYbZM
-         MxujLhNByQENZ2PxZBQiKkmuHLTYzJY0t1lOcpBxD+sEt+5om7Ur2EwkePZILWeCV3dO
-         pcfOFW4eR3D6YXjyLIVd7tgfzRZZkKC/GNVfTZ3bgbwHfvuo0Q7dmZx2HgRio83eDUpb
-         kC+A==
-X-Gm-Message-State: ACgBeo29viqGmFk/ABijD4xWfG22/TAMDX5sp2juqio7QzVYBM5+vQSD
-        7ZlcvP8R5U+bAx60ybTm8yJhcPMOIn3G9gzBnLQ=
-X-Google-Smtp-Source: AA6agR7vf1NbhaiKgNrNi6NAyaevkiM1S2zz7vgqfNCJRkaCV6MnL2fbTb9/0uQISNCPQC0DCakmdQ==
-X-Received: by 2002:a05:6512:3b9d:b0:492:d0c5:c3a5 with SMTP id g29-20020a0565123b9d00b00492d0c5c3a5mr6974630lfv.129.1661840042217;
-        Mon, 29 Aug 2022 23:14:02 -0700 (PDT)
-Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id u7-20020a056512094700b0048aeff37812sm1480396lft.308.2022.08.29.23.14.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Aug 2022 23:14:01 -0700 (PDT)
-Message-ID: <65e0c02a-41dd-0858-58f2-7b06b8ab5780@linaro.org>
-Date:   Tue, 30 Aug 2022 09:13:59 +0300
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=++JdMGtMD26Cu+yzgg5WWgx+GFtBxRSzs+SJ9mrdYSs=;
+        b=R4S6xxi1wr/OPnYOQuMfaXG8S8/hMbPIcFa5vJdRMGxmMQY3u2xUzbfEAMDbAp7KJ5
+         WBoWX1jQ5DdiG2KwzKOCXIB+v3VOWv3RMgKv+fg97vVTzhbSMXuir/rHl8DLPHSzXx7J
+         EBeLh5Ngi/DZaoeR2g6f04m6NeEd/DgIBp3d4KkGryqBQ4fbQL/I8zejUs+I4AslZ6Ij
+         4dakIfLBKDTOo6F2V3gh6mlSIluiRC6vpwQGBUTrHESD6ZkhScJ3W2E2REhrqfzgWsHY
+         clwOby+qXSEklGTb/XMj3CLszNgn0Pi3EQkW10yMbLfhb9v4L2/gHuq3o7SsXXjbRNsb
+         gDzg==
+X-Gm-Message-State: ACgBeo0G8Cc/261E9YC5RAzxJw5Tm+FAHqekSdw3kNs9TJSqIxzhjpyr
+        OfeYpkuCArsaywN7czuv+RwBSbTFkj5HlfGRapiTbg==
+X-Google-Smtp-Source: AA6agR4+X1HPMOGOCekLTu6kouxtunRcm+JWVbIlAPGOJ9Se/iF2PG5WIT30LAM1ip8dpzPQ0uRuj18BopHLMsP7L9M=
+X-Received: by 2002:a05:6402:428c:b0:440:8259:7a2b with SMTP id
+ g12-20020a056402428c00b0044082597a2bmr18557129edc.329.1661840406408; Mon, 29
+ Aug 2022 23:20:06 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v6 2/3] soc: qcom: socinfo: create soc_id table from
- bindings
-Content-Language: en-US
-To:     Bjorn Andersson <andersson@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220705130300.100882-1-krzysztof.kozlowski@linaro.org>
- <20220705130300.100882-3-krzysztof.kozlowski@linaro.org>
- <20220829204930.27wg2htgbq23kgeg@builder.lan>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220829204930.27wg2htgbq23kgeg@builder.lan>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <CAMty3ZD2QDPKwAvJWB=kTJ+5ZtcdZhcT+No9joTkvBWnrKRmOQ@mail.gmail.com>
+ <20220830054317.181733-1-naoki@radxa.com>
+In-Reply-To: <20220830054317.181733-1-naoki@radxa.com>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Tue, 30 Aug 2022 11:49:55 +0530
+Message-ID: <CAMty3ZCJ7oA8V72n2RTEBnyM9dH9uHd_a2XG0GUY8qyp0MpwtA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: rk3399: Radxa ROCK 4C+
+To:     FUKAUMI Naoki <naoki@radxa.com>
+Cc:     abbaraju.manojsai@amarulasolutions.com, devicetree@vger.kernel.org,
+        heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
+        linux-amarula@amarulasolutions.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, robh+dt@kernel.org,
+        stephen@radxa.com
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,62 +67,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/08/2022 23:49, Bjorn Andersson wrote:
-> On Tue, Jul 05, 2022 at 03:02:59PM +0200, Krzysztof Kozlowski wrote:
->> The Qualcomm SoC ID values are encoded in few places: DTS files,
->> Devicetree bindings (both used by some of Qualcomm bootloaders or tools)
->> and in soc_id table of socinfo driver.  Do not duplicate the actual
->> values in the last one but use the constants from the bindings.
->>
->> Tested by comparing output object file (exactly the same).
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> I didn't have a strong opinion either way on this, so was hoping someone
-> else would chime in. Doesn't seem like that has happened, but
-> unfortunately the soc_id[] list has changed.
-> 
-> Would you mind rebasing the two patches to match the latest list?
+On Tue, Aug 30, 2022 at 11:13 AM FUKAUMI Naoki <naoki@radxa.com> wrote:
+>
+> > > > > does card detect work for you? it doesn't work for me. I think it
+> > > > > needs
+> > > >
+> > > > Yes. it is detecting for me. I've booted from SD. 2022.03.04 V1.2
+> > > > revision board.
+> > >
+> > > I have same board, but I'm using eMMC as boot media. do you have any
+> > > eMMC module?
+> > >
+> > > what I tried was inserting uSD card while running Linux on eMMC. it
+> > > didn't work.
+> >
+> > Here is booted from SD with eMMC inserted on board.
+> > https://gist.github.com/openedev/85fb939664b6f0803c9ce02c5b275167
+>
+> please try
+>
+> 1. power off
+> 2. remove SD
+> 3. attach bootable eMMC
+> 4. power on
+> 5. insert SD
+> 6. see what happen
 
-Sure.
+Got it. I'm sending V3 for updated changes.
 
-> 
->> ---
->>  drivers/soc/qcom/socinfo.c | 259 +++++++++++++++++++------------------
->>  1 file changed, 133 insertions(+), 126 deletions(-)
->>
->> diff --git a/drivers/soc/qcom/socinfo.c b/drivers/soc/qcom/socinfo.c
->> index cee579a267a6..d515d3a97f0e 100644
->> --- a/drivers/soc/qcom/socinfo.c
->> +++ b/drivers/soc/qcom/socinfo.c
->> @@ -12,11 +12,14 @@
->>  #include <linux/slab.h>
->>  #include <linux/soc/qcom/smem.h>
->>  #include <linux/string.h>
->> +#include <linux/stringify.h>
->>  #include <linux/sys_soc.h>
->>  #include <linux/types.h>
->>  
->>  #include <asm/unaligned.h>
->>  
->> +#include <dt-bindings/arm/qcom,ids.h>
->> +
->>  /*
->>   * SoC version type with major number in the upper 16 bits and minor
->>   * number in the lower 16 bits.
->> @@ -25,6 +28,10 @@
->>  #define SOCINFO_MINOR(ver) ((ver) & 0xffff)
->>  #define SOCINFO_VERSION(maj, min)  ((((maj) & 0xffff) << 16)|((min) & 0xffff))
->>  
->> +/* Helper macros to create soc_id table */
->> +#define qcom_board_id(id) QCOM_ID_ ## id, __stringify(id)
->> +#define qcom_board_id2(id, name) QCOM_ID_ ## id, (name)
-> 
-> How about naming this qcom_board_id_named() ?
-
-
-Yes, sure.
-
-
-Best regards,
-Krzysztof
+Thanks,
+Jagan.
