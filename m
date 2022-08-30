@@ -2,76 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CBCF5A5FD6
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 11:51:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F2EB5A5FD9
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 11:52:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229670AbiH3Jvk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 05:51:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59664 "EHLO
+        id S229691AbiH3Jw5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 05:52:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229636AbiH3Jvj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 05:51:39 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 321A2A5984
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 02:51:38 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id p18so7432001ljc.9
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 02:51:38 -0700 (PDT)
+        with ESMTP id S229569AbiH3Jw4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 05:52:56 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8ADCFC04DB
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 02:52:55 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id q16so10755319ljp.8
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 02:52:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=OZx7CXPFdb10H0xu0NSPqWrYCSjPK24Uy/HfTWOH//4=;
-        b=kC5A1mX+xDikgnDcr7JMJ7Xh9FA5m6m/stgKGiyrNn7X1h4MSJQr3CKRu3mcr0IVx6
-         G8v6uEAhqkW/LNunRbgLqfwXKtS9F9O6f/It3ql33artcKjJATnx32DCvQy3CIoVkWOQ
-         7Ej9rIdgH3JzgwL1zn8mrBUbk8710oRo/QNyzf0A4PLc1lmThYPckg8BHj9o38qkt5RK
-         KDX58RY6Un0UvirfySmINKbNRGx5lgZxxbQIShWD4DR+KNO2Ug/sjbTq3vjEQHqp+I80
-         ujHrLu5sZQduZIOTZL0GAgBpwttvFpPn6jt9WDH5eJTeCG+93pAGr6jofOp1IF1Etcxf
-         0FBQ==
+        bh=X4ivbhRWgyxT7Llsm52Y29ov7cWVmlpwCa1zS7A+iTI=;
+        b=BrUHgkIAA7hxrxeShkvcVe7ewUG8TegLxze05ZQy3NiTQchhEioyqbpdqvq0SS9bms
+         jpuhGh57J4IZFFXC1hTkrC4Lh1KbUXB2kl2n/5EsGznZrkv4vLGe9lrr+LgZA3M3CsFV
+         Lz7stAVUvk92hP4gKo9qNZjJ4NHmY7wY3U+mQeaR8QDoBlCn4qZIs2wVycl61eg3HZza
+         /o33ugK9TrsTlMXu9TOFEjFB1JqvleLD5CGkfX7/k2dYTx9NUPQM3b90lW3sOYaJgMzU
+         uhKpon6risOpRbEC9KewJ98+e3LNVIIntRmNo5WuL3CNPK0K2AOL5T1Cm4gVUbP/F+BT
+         FnNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=OZx7CXPFdb10H0xu0NSPqWrYCSjPK24Uy/HfTWOH//4=;
-        b=vPrKJeJywTYGqDCi8uaIf+5nasPeeiZP+JP0Bq7PhaYuMTXIhzklj4/Jo+JZelF4xA
-         3HUBeczEGY3Hl/5YGzv/eC7KbbUCwICXYC23FQaizIsNafHpWMJqZKV0+buYTp+XebV4
-         Gbt2jZlYJQ03AqX08Y6TAlKnDXnZTAe3mKzGEU1DTN9f4QefPNzbhD4fruxavmyL9sGy
-         SsUZLBHOF1JodWE3XljYYwR8wVcwPOwmYw6EMrWxETO4U8IcDkjdih0veScbknLdKxba
-         LZ7GhWjIYgnyQXjPe2/+j7tqK7Hr2XmotgKXVJZr+s2Mjjuh1Y7zslJuSKoix3IjUasX
-         hGVw==
-X-Gm-Message-State: ACgBeo0d1B6f92kfbodYi6RAsk4dIv89Qn7D+3DZU57scRl7bD1MS7UA
-        LBgLfWaNc5+Rw14/xHb/02UdQQ==
-X-Google-Smtp-Source: AA6agR5v85O5PIwaAIzwgZ0Qweg2MSL5uz1/BanFJtMm/TtLQSKoRfwm/67TG+/dKxbrv7SQ53m9aw==
-X-Received: by 2002:a2e:8553:0:b0:265:d5df:e137 with SMTP id u19-20020a2e8553000000b00265d5dfe137mr2107520ljj.70.1661853096592;
-        Tue, 30 Aug 2022 02:51:36 -0700 (PDT)
+        bh=X4ivbhRWgyxT7Llsm52Y29ov7cWVmlpwCa1zS7A+iTI=;
+        b=j0WQhFL2bVulLEBrQDaV+qQS4V29868g9WSJpb3Q0WlXp7pl+/VSeVkmTy+klB9+PD
+         uqSIeeI3I3L7b4Z9dYNPMOPlWSQZPDxij+VUU1cMDxw/fAXvLBH0JSf+yagd1wHJ9HTz
+         8kdTUAcRVkIFmfQNLeu2YunOPy5Q0AI/xG7aDbPd9GuyVuxRu/TNG1yMInvNfiFVxgCl
+         2DYfwfAUQZIOpUdq4cYEBppCP2EUw1br7gjcG12WdVnkiMwsUUYGt/cqrKu86oEai3R7
+         9aiY6/SXrXsBX+Cu0uQLC/zVdaKTjoeyu3mwdn0o5dkATR8pZd8lQIHoXZfzypLmMXvl
+         pkNQ==
+X-Gm-Message-State: ACgBeo2FJpjHpcuw81C18mqEeWnGuly630IvHHwfY9Im6bUF2eXOAUzv
+        qETSVP0ztoSLiCLaq+Q6tQdlqg==
+X-Google-Smtp-Source: AA6agR6bxNa/mrr4BFpFfg6fe90+ux9IdJyCtMlNr9+Sq8EPuTBGmx2+ozMF88ZqYDXhKJyE1Xoh7g==
+X-Received: by 2002:a2e:8508:0:b0:265:a8f8:4f7b with SMTP id j8-20020a2e8508000000b00265a8f84f7bmr2325043lji.157.1661853173971;
+        Tue, 30 Aug 2022 02:52:53 -0700 (PDT)
 Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id c28-20020ac244bc000000b00492ef1ee7b0sm1541791lfm.290.2022.08.30.02.51.35
+        by smtp.gmail.com with ESMTPSA id z22-20020a2e8e96000000b00261cf066d1csm809518ljk.130.2022.08.30.02.52.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Aug 2022 02:51:36 -0700 (PDT)
-Message-ID: <e4d6eba8-497f-adb2-6f34-35883b8ec50d@linaro.org>
-Date:   Tue, 30 Aug 2022 12:51:34 +0300
+        Tue, 30 Aug 2022 02:52:53 -0700 (PDT)
+Message-ID: <d7303503-70ef-7307-8cc0-1bc334c9e6af@linaro.org>
+Date:   Tue, 30 Aug 2022 12:52:52 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH 1/2] dt-bindings: net: rockchip-dwmac: add rv1126
- compatible string
+Subject: Re: [PATCH 1/4] dt-bindings: arm: ti: Add bindings for AM62A7 SoC
 Content-Language: en-US
-To:     Anand Moon <anand@edgeble.ai>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+To:     Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        David Wu <david.wu@rock-chips.com>
-Cc:     Jagan Teki <jagan@edgeble.ai>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220829065044.1736-1-anand@edgeble.ai>
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Bryan Brattlof <bb@ti.com>
+References: <20220829082200.241653-1-vigneshr@ti.com>
+ <20220829082200.241653-2-vigneshr@ti.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220829065044.1736-1-anand@edgeble.ai>
+In-Reply-To: <20220829082200.241653-2-vigneshr@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,28 +80,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/08/2022 09:50, Anand Moon wrote:
-> Add compatible string for RV1126 gmac, and constrain it to
-> be compatible with Synopsys dwmac 4.20a.
+On 29/08/2022 11:21, Vignesh Raghavendra wrote:
+> This adds bindings for TI's AM62A7 family of devices.
 > 
-> Signed-off-by: Jagan Teki <jagan@edgeble.ai>
-> Signed-off-by: Anand Moon <anand@edgeble.ai>
+> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
 > ---
->  Documentation/devicetree/bindings/net/rockchip-dwmac.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/arm/ti/k3.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
-> index 083623c8d718..346e248a6ba5 100644
-> --- a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
-> @@ -26,6 +26,7 @@ select:
->            - rockchip,rk3399-gmac
->            - rockchip,rk3568-gmac
->            - rockchip,rv1108-gmac
-> +          - rockchip,rv1126-gmac
+> diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> index 61c6ab4f52e2..28f6ea4c007e 100644
+> --- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> +++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> @@ -65,6 +65,12 @@ properties:
+>                - ti,j721s2-evm
+>            - const: ti,j721s2
+>  
+> +      - description: K3 AM62A7 SoC
+> +        items:
+> +          - enum:
+> +              - ti,am62a7-sk
+> +          - const: ti,am62a7
 
-That's not a complete change. What about the other place listing
-compatibles? Did you test the bindings on your DTS?
+Is it possible to have some order in the file?
 
 Best regards,
 Krzysztof
