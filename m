@@ -2,78 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DABBC5A60AB
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 12:23:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A4455A60C2
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 12:28:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230358AbiH3KXS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 06:23:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58740 "EHLO
+        id S229488AbiH3K2p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 06:28:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46712 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230282AbiH3KWu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 06:22:50 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D1F177579;
-        Tue, 30 Aug 2022 03:22:18 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id p7so3732264lfu.3;
-        Tue, 30 Aug 2022 03:22:17 -0700 (PDT)
+        with ESMTP id S229469AbiH3K2n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 06:28:43 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84B5CA0313;
+        Tue, 30 Aug 2022 03:28:39 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id bq23so14896160lfb.7;
+        Tue, 30 Aug 2022 03:28:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=ewFvocVNfh/1BMVRJJhj6y+q9DXa1cklPYO4jJJ+ZPI=;
-        b=G9w+EHsaYTf3RTd0wF+VIfFaIZEtTiw4ylQgi2J4gfawcB7MJij1hAOQqp127Cp3sV
-         9Tzei6RF70Zq7P0eHDXPdurkyOZKpYeFgoxBN0D5cMrM0uLxYqhKS0l/yQ44wCBmxaY1
-         AUBPV/+Z8fqfQYJ8GHWpjeAs5IfSkBqKmy7vOWlOkf8c5T+fXxDFhYycK2i6UO53EhTY
-         cG5QhtsblzJeRgBxxQjOmn9uK0CJfYkOLVZ3wmGlUZ6MuDmSfKC5y/ZbnjyB+sUEmXyL
-         jv0sIEergg/34/jqdrJr6jA1UbDviYTis75trAfEUisn8YAmdt9KwvPDvprXRBd0r+Wp
-         1VSQ==
+        bh=b/nZhE2dp650uWokYI5aEvFvA+EjweB+oPyz5jhQ7To=;
+        b=IMmOBMRF7ildEi2x+68UlBrMLKhaNizFH6b5sKnld3AN3qCGFUY6WvTzF/TfYsdV6y
+         gyp2ffrBBc1fpXsEH582OuiumAN4O4vBZ3e3RXlFg0ffdhM+3XO3hwjjyGF1nVNwVdfT
+         Azv28mftuojHL0gyxJUSq4rqJISWLySDqliqxX3+PNsQio8sDxxhHVeLEnD0vJYgh2lp
+         RcMJ+27dRKYGeoOZJr9xnXjcjxE2tfknzHqiiT/IWiM7exhOS3JKxn+kWGwIrG5nPNqE
+         IEUyO7m3UbNZaYzZBL08zRN1E16t2BdTxKnzcARz8B/TTLopWYiXxyt8IRMMenFPr2dy
+         Dq8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=ewFvocVNfh/1BMVRJJhj6y+q9DXa1cklPYO4jJJ+ZPI=;
-        b=nWihu9Z4Jfx4rVigjr9y4GmfqfpNuoS0cMe7W2ak8+6APlH68PZ1AT/p/wWFJt2agH
-         h8Dxr/EmZl4DY+V/dmRhMEpM03wJNehhFxgsPuq7kHnozmmjLUuwScb6h1xESjftN3Dp
-         IRkRWzIwK6E01wsJTIFS9+bJ/dD7ZP7rVNzPIvJgxRJzOTc6rBgm5iE+KK6zv36yhObp
-         wdBXg9qarBsgM7ZoisXrOJZkshSPHD5xnGzP7NLdogMgRU9SvNbRybyKNYeV66L+60he
-         Ax+4Jm2O4iH3//fUd+IgwqjtmMPmohg+DX/3u+DlSYaMTAqxHxkx3E7CN/A0wb+06F+c
-         xaaQ==
-X-Gm-Message-State: ACgBeo1r62u8Hm1kaIeRO2fqmfih65FG7au16y0DKeMnv1C+2/rEaU+g
-        rVvyp4Yar6Us/3YhcW/4/Y0=
-X-Google-Smtp-Source: AA6agR6roG+6pfy1GbA43X3JSuD5tBGJOEwN6P3O5bTo8eY5FYH8nUbstwZW9bi3uCb39lJN5D/lvA==
-X-Received: by 2002:a19:911d:0:b0:494:6701:1d17 with SMTP id t29-20020a19911d000000b0049467011d17mr3991390lfd.31.1661854936337;
-        Tue, 30 Aug 2022 03:22:16 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:16f3:4a00::1? (dc75zzyyyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::1])
-        by smtp.gmail.com with ESMTPSA id t17-20020ac25491000000b004946d1f3cc4sm613954lfk.164.2022.08.30.03.22.14
+        bh=b/nZhE2dp650uWokYI5aEvFvA+EjweB+oPyz5jhQ7To=;
+        b=sXPkKwyE8jcPW5xpyWL1d1XRBrCwoaDM8fHIg9iYJ+L86+pPQzdz4RjYAXBwdjw9ur
+         SD7RBjACjLf+Qw5tnMZ3BEV0xNYMwZHfaloGY6BEps44hKIMjC9dGvNNwdUlfH1DT1eg
+         V4peh970v883udvVFisDDBZoy998lyFmJ4k4YjeuTPadDJ1nngFLoqY577Rq0WUq9bx4
+         I91sTM3q7pJT6EXUlKLTcWkUxmtorEQ53/2t22Mc3cUNN6OKQ89QcgZPN/htOgjZxlVh
+         mNTp2+6GsfmQ/JdHrLAt6VSVfolJrRzRPQb/DHahfpTCB1vNe498jI+kPDpO+826Qa+E
+         va1A==
+X-Gm-Message-State: ACgBeo11kjwI3WJpVnvMVPGSB+UWsO0ZUzvu6LGuI6NzBOJUdWAadwFe
+        694Ex14Hn3cFAmzrshCThS4=
+X-Google-Smtp-Source: AA6agR4ol7l2p4EEDDRFTHZ38xomYM3+zr1fCVdpTRO+ShN8H7kCrp9FJSTGJ2W+oC+5DvL+iHKqfg==
+X-Received: by 2002:a05:6512:1385:b0:491:4152:c9d7 with SMTP id p5-20020a056512138500b004914152c9d7mr7742666lfa.675.1661855317663;
+        Tue, 30 Aug 2022 03:28:37 -0700 (PDT)
+Received: from [192.168.0.131] ([194.183.54.57])
+        by smtp.gmail.com with ESMTPSA id b24-20020a05651c033800b0025fdf1af42asm1703777ljp.78.2022.08.30.03.28.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Aug 2022 03:22:15 -0700 (PDT)
-Message-ID: <a97be2ae-b7d2-2ecf-fa17-de2d8755fb83@gmail.com>
-Date:   Tue, 30 Aug 2022 13:22:13 +0300
+        Tue, 30 Aug 2022 03:28:36 -0700 (PDT)
+Message-ID: <44eec926-b7d0-f8eb-f944-d28e3b35257a@gmail.com>
+Date:   Tue, 30 Aug 2022 12:28:35 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v9 05/10] lib: add linear range index macro
+ Thunderbird/91.11.0
+Subject: Re: [PATCHv2 resend] dt-bindings: leds: Expand LED_COLOR_ID
+ definitions
 Content-Language: en-US
-To:     ChiaEn Wu <peterwu.pub@gmail.com>, lee@kernel.org,
-        daniel.thompson@linaro.org, jingoohan1@gmail.com, pavel@ucw.cz,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, sre@kernel.org, jic23@kernel.org,
-        lars@metafoo.de, deller@gmx.de, broonie@kernel.org,
-        andriy.shevchenko@linux.intel.com
-Cc:     chiaen_wu@richtek.com, alice_chen@richtek.com,
-        cy_huang@richtek.com, dri-devel@lists.freedesktop.org,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-iio@vger.kernel.org,
-        linux-fbdev@vger.kernel.org, szunichen@gmail.com,
-        andy.shevchenko@gmail.com
-References: <20220830034042.9354-2-peterwu.pub@gmail.com>
- <20220830034042.9354-6-peterwu.pub@gmail.com>
-From:   Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20220830034042.9354-6-peterwu.pub@gmail.com>
+To:     Olliver Schinagl <oliver@schinagl.nl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Baolin Wang <baolin.wang@linaro.org>,
+        Daniel Mack <daniel@zonque.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Oleh Kravchenko <oleg@kaa.org.ua>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Simon Shields <simon@lineageos.org>,
+        Olliver Schinagl <oliver+list@schinagl.nl>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220819152904.433514-1-oliver@schinagl.nl>
+From:   Jacek Anaszewski <jacek.anaszewski@gmail.com>
+In-Reply-To: <20220819152904.433514-1-oliver@schinagl.nl>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,50 +83,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/30/22 06:40, ChiaEn Wu wrote:
-> From: ChiaEn Wu <chiaen_wu@richtek.com>
-> 
-> Add linear_range_idx macro for declaring the linear_range struct simply.
-> 
-> Signed-off-by: ChiaEn Wu <chiaen_wu@richtek.com>
+Hi Oliver,
 
-Reviewed-by: Matti Vaittinen <mazziesaccount@gmail.com>
-
+On 8/19/22 17:29, Olliver Schinagl wrote:
+> In commit 853a78a7d6c7 (dt-bindings: leds: Add LED_COLOR_ID definitions,
+> Sun Jun 9 20:19:04 2019 +0200) the most basic color definitions where
+> added. However, there's a little more very common LED colors.
+> 
+> While the documentation states 'add what is missing', engineers tend to
+> be lazy and will just use what currently exists. So this patch will take
+> (a) list from online retailers [0], [1], [2] and use the common LED colors
+> from there, this being reasonable as this is what is currently available to
+> purchase.
+> 
+> Note, that LIME seems to be the modern take to 'Yellow-green' or
+> 'Yellowish-green' from some older datasheets.
+> 
+> [0]: https://www.digikey.com/en/products/filter/led-lighting-color/125
+> [1]: https://eu.mouser.com/c/optoelectronics/led-lighting/led-emitters/standard-leds-smd
+> [2]: https://nl.farnell.com/en-NL/c/optoelectronics-displays/led-products/standard-single-colour-leds-under-75ma
+> 
+> Signed-off-by: Olliver Schinagl <oliver@schinagl.nl>
 > ---
 > 
-> v9
-> - Revise LINEAR_RANGE() and LINEAR_RANGE_IDX()
-> ---
->   include/linux/linear_range.h | 11 +++++++++++
->   1 file changed, 11 insertions(+)
+> Changes since v1: Unbreak existing definitions.
 > 
-> diff --git a/include/linux/linear_range.h b/include/linux/linear_range.h
-> index fd3d0b3..2e4f4c3 100644
-> --- a/include/linux/linear_range.h
-> +++ b/include/linux/linear_range.h
-> @@ -26,6 +26,17 @@ struct linear_range {
->   	unsigned int step;
->   };
+> 
+>   include/dt-bindings/leds/common.h | 28 ++++++++++++++++------------
+>   1 file changed, 16 insertions(+), 12 deletions(-)
+> 
+> diff --git a/include/dt-bindings/leds/common.h b/include/dt-bindings/leds/common.h
+> index 3be89a7c20a9..04bf94523ea3 100644
+> --- a/include/dt-bindings/leds/common.h
+> +++ b/include/dt-bindings/leds/common.h
+> @@ -22,18 +22,22 @@
+>   #define LEDS_BOOST_FIXED	2
 >   
-> +#define LINEAR_RANGE(_min, _min_sel, _max_sel, _step)		\
-> +	{							\
-> +		.min = _min,					\
-> +		.min_sel = _min_sel,				\
-> +		.max_sel = _max_sel,				\
-> +		.step = _step,					\
-> +	}
-> +
-> +#define LINEAR_RANGE_IDX(_idx, _min, _min_sel, _max_sel, _step)	\
-> +	[_idx] = LINEAR_RANGE(_min, _min_sel, _max_sel, _step)
-> +
->   unsigned int linear_range_values_in_range(const struct linear_range *r);
->   unsigned int linear_range_values_in_range_array(const struct linear_range *r,
->   						int ranges);
+>   /* Standard LED colors */
+> -#define LED_COLOR_ID_WHITE	0
+> -#define LED_COLOR_ID_RED	1
+> -#define LED_COLOR_ID_GREEN	2
+> -#define LED_COLOR_ID_BLUE	3
+> -#define LED_COLOR_ID_AMBER	4
+> -#define LED_COLOR_ID_VIOLET	5
+> -#define LED_COLOR_ID_YELLOW	6
+> -#define LED_COLOR_ID_IR		7
+> -#define LED_COLOR_ID_MULTI	8	/* For multicolor LEDs */
+> -#define LED_COLOR_ID_RGB	9	/* For multicolor LEDs that can do arbitrary color,
+> -					   so this would include RGBW and similar */
+> -#define LED_COLOR_ID_MAX	10
+> +#define LED_COLOR_ID_WHITE      0
+> +#define LED_COLOR_ID_RED        1
+> +#define LED_COLOR_ID_GREEN      2
+> +#define LED_COLOR_ID_BLUE       3
+> +#define LED_COLOR_ID_AMBER      4
+> +#define LED_COLOR_ID_VIOLET     5
+> +#define LED_COLOR_ID_YELLOW     6
+> +#define LED_COLOR_ID_IR         7
+> +#define LED_COLOR_ID_MULTI      8 /* For multicolor LEDs */
+> +#define LED_COLOR_ID_RGB        9 /* For multicolor LEDs that can do arbitrary color, including RGBW etc. */
+> +#define LED_COLOR_ID_PUPRPLE   10
 
+typo - as already mentioned
+
+> +#define LED_COLOR_ID_ORANGE    11
+> +#define LED_COLOR_ID_PINK      12
+> +#define LED_COLOR_ID_CYAN      13
+> +#define LED_COLOR_ID_LIME      14
+> +#define LED_COLOR_ID_MAX       15
+>   
+>   /* Standard LED functions */
+>   /* Keyboard LEDs, usually it would be input4::capslock etc. */
+
+And it seems that change in spacing between definition name and value
+is not required, is it? Without that change, it would be easier to
+notice what really changes here.
 
 -- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
+Best regards,
+Jacek Anaszewski
