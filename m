@@ -2,70 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 542595A6656
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 16:32:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A48835A6667
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 16:37:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230096AbiH3OcV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 10:32:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56100 "EHLO
+        id S229716AbiH3Ohl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 10:37:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229607AbiH3OcU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 10:32:20 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A049CB2775
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 07:32:18 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id m2so12031000lfp.11
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 07:32:18 -0700 (PDT)
+        with ESMTP id S229508AbiH3Ohl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 10:37:41 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B17FEDCFD8
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 07:37:39 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id b26so4675486ljk.12
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 07:37:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=C9hMrmnRCeOxtJSBU+xDskBEasH7EBMzC7Z87lKYcrk=;
-        b=C3y1zxG+qaBopF3ylPypT8F90mDv06KIyA3ct8e05qPAV6oqFEh+T/cKlYXpjIC2v1
-         47pSwcytxVOu/yzUhlM6cipUVH19dgIxO2eIimscfr3Mxv3GvRMr5ywhx643sJ/SZ/n/
-         uHyaJ/ltJdqcpnaBrLdUl8+cJVKj788odF0hsZTvQiAP4Cu5tQmyjNl0bvteGdgnVUFj
-         MyYvD3t2ThHSSzJ9PSLxvXRy/g7dmAQTUMujn+LOHJ7k2D5vYT2SQDbQUlETvVWg6kPU
-         k8OLJlDQJ00GWKlJapuwerMSw/S72Q6IhPBghfCCot63BSjlFdzMgK0mFxbHy4TwpPsQ
-         DKWQ==
+        bh=S7F9EmKhAxxlR+AEkU5K8Cyl9dGbdduAx/ZasRGJQAw=;
+        b=kixapq35uVt4DzdUz9BbgA9n3vUIV7izZddPnm1MWYzS3VY72nTrczIB17rUlvUCxV
+         XKDOGRYQI7cwYzV4oOXMXzaKgcn0uqtrGMV+gqqkc60BylWldlJ3V1uVO2GP3JXsyoDv
+         s/QD1tdIWmdWVVuFdFM2Oef5KZXFvQnh50xnzzebENuNuztfq0bh4+9bmhXGuOVu8mjT
+         5GJ7w+YcZwqMesnfiEoxw4ZfaMcgDfmKhLZQbeXVVXMpJidc4A2iyDO8/aboHFVLT+kT
+         tEtlEGMV4wP7yUx2z3fHlL2/NUhkJuFYebQJfu26jaTNb6SGAtH30fAGyJH+TLG5vjbA
+         ln2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=C9hMrmnRCeOxtJSBU+xDskBEasH7EBMzC7Z87lKYcrk=;
-        b=WKklVaBHQEvOmhZ9Tuayy3lE4/dwPxt86594NcSAxIqvTzwT616brdK4rwlLAsWw1N
-         8wIydZqS7tGbtDTjoG0ohD6VnG37b9HUhfVS12mhYtAYn2QxGUFKgwUHDEiW0YvlU6au
-         kX4Y3yxE9nHcgShB0wfSLTtgKWq7qAfggfFsExY07GMA33iHxrAZDj+gFOCqF54gGLTz
-         zYXpV5n6Z8/M6jKpkVMVchjpsuijFs2oKaOCXoTZzKNSa/OGscUtEOhOgz1YqcsexXqf
-         cmXR266VcXsbi0Pyr+eZ4yynj9ktesqUhYoDszhcehbqKjWsn2vt/sCI3L7uIoRjpSEr
-         Q+eQ==
-X-Gm-Message-State: ACgBeo37Mi1uApntoOl5qFE/wRzRIX9LNhBKJMwHfUzfZ0d7x/TOtUNo
-        qWBBA9n5FJKTbbs+0yrvkEbez4rxcbCS7LLM0ZE=
-X-Google-Smtp-Source: AA6agR6RrgJXyfpzXFNbCthcWbJ0OhEgloy1Szcy3cQyXNHecr2Pdwq6I15ti8Pop7FAZwJtlo6rHQ==
-X-Received: by 2002:a19:e04a:0:b0:492:f96f:85b7 with SMTP id g10-20020a19e04a000000b00492f96f85b7mr7387760lfj.141.1661869937015;
-        Tue, 30 Aug 2022 07:32:17 -0700 (PDT)
+        bh=S7F9EmKhAxxlR+AEkU5K8Cyl9dGbdduAx/ZasRGJQAw=;
+        b=7539CgLRyuvS4M4lI9xPpHBIPfNv56KCLHCCX9R2B0w+IGPd/6aYU3eyNkE5TASh4m
+         ASswI8cNgiMGpy+AVegwoGg1WLx9dKS3cT4ZPzFhiKgvDfMWYzYP4t587/FfEDbjJGXX
+         vepBrbLIvDu7M1wBgVtU3Np6vG8ltCVkV7VWUNuQh0hGYFGVRDMBK+SAUZCz9Nfe3D8A
+         KdklAC+bDMPEtYCb5ILRfNTlqc6w3ukxfH3dEUCruao1orNlR5yTSb+0dqI0ljZMNX3Q
+         2t/3cG7IJZGHKbf0f6EIgERSFCGbBm+swB9Rqdme5NoeRdJ7HCdG7MY1VY8ubhgh4yRC
+         drYg==
+X-Gm-Message-State: ACgBeo3pf3U+PEHp95dzQjSPjJVqiH8m31DxmKD13WIs8O9R3j7bYGC5
+        0Oc3j8bZLd5psK9Sy+Xp2sQ6Dw==
+X-Google-Smtp-Source: AA6agR7PccUNihvG+BB4x1t3fmKV5KUECGFzGTU7UR1DHggFInARzwQIRqnDF8wEfYC1iIDZ6xekDQ==
+X-Received: by 2002:a2e:bd8b:0:b0:264:8256:c23f with SMTP id o11-20020a2ebd8b000000b002648256c23fmr3305328ljq.508.1661870258088;
+        Tue, 30 Aug 2022 07:37:38 -0700 (PDT)
 Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id v3-20020a056512348300b0048af2fe78c4sm52684lfr.3.2022.08.30.07.32.15
+        by smtp.gmail.com with ESMTPSA id f13-20020a056512092d00b00492ed031aacsm1629189lft.173.2022.08.30.07.37.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Aug 2022 07:32:16 -0700 (PDT)
-Message-ID: <7ed1a3db-e0de-fd2e-3206-0a95fed3052a@linaro.org>
-Date:   Tue, 30 Aug 2022 17:32:15 +0300
+        Tue, 30 Aug 2022 07:37:37 -0700 (PDT)
+Message-ID: <a3a8e2ba-a6bd-6e66-fd04-e3a46661a34d@linaro.org>
+Date:   Tue, 30 Aug 2022 17:37:36 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH 1/1] spi: spi-rockchip: Add rk3588-spi compatible
+Subject: Re: [PATCH v2 2/9] dt-bindings: riscv: microchip: document the aries
+ m100pfsevp
 Content-Language: en-US
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Heiko Stuebner <heiko@sntech.de>,
+To:     Conor Dooley <conor.dooley@microchip.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@collabora.com
-References: <20220830124452.33561-1-sebastian.reichel@collabora.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        Shravan Chippa <shravan.chippa@microchip.com>
+Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Cyril Jean <Cyril.Jean@microchip.com>,
+        Lewis Hanly <lewis.hanly@microchip.com>,
+        Vattipalli Praveen <praveen.kumar@microchip.com>,
+        Wolfgang Grandegger <wg@aries-embedded.de>,
+        Hugh Breslin <hugh.breslin@microchip.com>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20220830101803.1456180-1-conor.dooley@microchip.com>
+ <20220830101803.1456180-3-conor.dooley@microchip.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220830124452.33561-1-sebastian.reichel@collabora.com>
+In-Reply-To: <20220830101803.1456180-3-conor.dooley@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,15 +88,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/08/2022 15:44, Sebastian Reichel wrote:
-> This adds a compatible string for the SPI controller found in
-> the RK3588 and RK3588s SoCs.
+On 30/08/2022 13:17, Conor Dooley wrote:
+> Add compatibles for both configurations of the Aries Embedded
+> M100PFSEVP SOM + EVK platform.
 > 
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> Link: https://www.aries-embedded.com/polarfire-soc-fpga-microsemi-m100pfs-som-mpfs025t-pcie-serdes
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+>  Documentation/devicetree/bindings/riscv/microchip.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/riscv/microchip.yaml b/Documentation/devicetree/bindings/riscv/microchip.yaml
+> index 485981fbfb4b..04ebd48caaa7 100644
+> --- a/Documentation/devicetree/bindings/riscv/microchip.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/microchip.yaml
+> @@ -27,9 +27,12 @@ properties:
+>  
+>        - items:
+>            - enum:
+> +              - aries,m100pfsevp-emmc
+> +              - aries,m100pfsevp-sdcard
 
+Usually sd card is pluggable, so what is the actual difference here? For
+example this one:
+https://shop.aries-embedded.de/evaluation-kit/m/m100pfsevp/445/m100pfsevp-250baab
+has eMMC and SD card...
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>                - sundance,polarberry
+>            - const: microchip,mpfs
+>  
+> +
 
+No need for line break.
 
 Best regards,
 Krzysztof
