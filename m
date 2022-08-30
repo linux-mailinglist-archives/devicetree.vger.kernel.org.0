@@ -2,156 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F8935A5CB7
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 09:17:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C28A5A5CC1
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 09:19:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230076AbiH3HRi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 03:17:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55956 "EHLO
+        id S230109AbiH3HTA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 03:19:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57482 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230201AbiH3HRg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 03:17:36 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2F6CC6501
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 00:17:34 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id br21so8523831lfb.0
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 00:17:34 -0700 (PDT)
+        with ESMTP id S229977AbiH3HS7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 03:18:59 -0400
+Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9434C59EF
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 00:18:58 -0700 (PDT)
+Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-3413ad0640dso96258357b3.13
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 00:18:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=3O0C0ibabQ2kzRRob/kKyfutI+yQz7ByGXq7nhg3wpA=;
-        b=BqOadVrMSHIuZzrHmIfEvLiCtkExRNhBc64IOGtdT5KGjR2WfTfkRzYiyzq+CVenV2
-         kLtM+B3Mg9hhdvpQ03c1wYV4t/LASTo20Yu5YYsYtsMhcAxXYQ1oRSe6IOjPEAl3bk3X
-         8NqLHuKCZx1r02PK9FNNgYi6QRnu9lGTgid/MtcN67KCWo8Nax0AVkj6PHc9C6a+Po5H
-         JzDhUHJsJHVaKC4vhu8N8TFxs2RFyrdU+iVZ3PYtDlq2FM1C6HucTTr5KWH4i4HPEu0h
-         MolkuWFaJpFflbVCDdKHmcEBircjLTa3057dxkL8i9OLsRZiYXKZRBrPnlTPoqnkuslh
-         tA1w==
+        d=google.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc;
+        bh=MpEKkG58U2QHlnMaUFyq17zJo7RrLc8a2XhryqGBt3c=;
+        b=qHpbBTd+DiMOOKYv3JZ6+NXuPNqx6HDmym/WH/VHmzGftYl5YtLM4LYqdUQ/xUtPLV
+         AROfcOYVywU64ZJL4qXCuuZPfuff2/FOqLCRXoODckK2pdfcXzGsYsa7nOBzl+ReJQAl
+         FoHFkUuLONXmaiSSyqUlmydvsBeSe5vcZB6YwrhW4M0fzNclzd2TbkZTUJhMraYiOPjD
+         q/bIQ+4USeWfUsirfJlM9pYZkW+5KarBuC2lYPBkD7XkIcfY5lmdWFhS8iFdd5nvNOBj
+         CmoH7lpxKsnjwjxXLDsehoAfekpykRAucSNW1HtptaQrRDrnnUAemmyOfJSpXOZECcPV
+         BDzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=3O0C0ibabQ2kzRRob/kKyfutI+yQz7ByGXq7nhg3wpA=;
-        b=Vu127eQcs8xhYsDzIJ9MNQyicPHYe+DA2051wJfpM9s/MAxjXGtenxfzpLmSvEd2D9
-         Tv5VEIzomKxf6LKWT81Y9RalezN/n7mJgu33P+kHnWWyLFaNActir7jtt1gBbOSKkJtB
-         vIjp3M+toAbSVo8bcK3zN38ou4oe/lDQy8XyIMEn827QBDbaHSrE8GoojHBr/wNPHvn/
-         WFgWvKwtIOMSua/sXIWtDQGdKFnjV3mNUQ3c+swPOnZGe3FYjFeV+s7ZW0fk3rrzv/qg
-         g3YHtq0j/IKAlyXLSMl4nlgLvRC2BOzOuB3zpHky+WLuWujHSP5MzvMV/oOy4hSrbAwj
-         DWRg==
-X-Gm-Message-State: ACgBeo0nHt/crPZprVjIImQAQpwEFfc2VPNimzEFEpY5wOALX0oC0Q6C
-        FUlvaydtKEdPVuD+OSlCDgZQWQ==
-X-Google-Smtp-Source: AA6agR5zbBki4lnt2t/PPoo8jW6J/wS2qXXubnvPEktay27HaFWdk/1m0muXhWDDMZyRf+HuGdfVAw==
-X-Received: by 2002:ac2:4c50:0:b0:492:e648:5bc0 with SMTP id o16-20020ac24c50000000b00492e6485bc0mr5351406lfk.288.1661843853195;
-        Tue, 30 Aug 2022 00:17:33 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id a22-20020a2eb556000000b0025e428ba415sm1661411ljn.38.2022.08.30.00.17.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Aug 2022 00:17:32 -0700 (PDT)
-Message-ID: <993d642a-29aa-1c98-bb2d-ddade46caad6@linaro.org>
-Date:   Tue, 30 Aug 2022 10:17:31 +0300
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc;
+        bh=MpEKkG58U2QHlnMaUFyq17zJo7RrLc8a2XhryqGBt3c=;
+        b=4WfDgZLWKUcJnehP4Vw0kIOw9gK3fqxku6T2DYm5oh4+HBCRKw0sC2xYvBRumgpIqD
+         VyQS563DoZQbuJk3ntFt94Ew90WKJAshXPlLdte8ajHPcDPquSF+EUXmqOuQTk9x+Xl1
+         HD45PgUq4XN0FPzjw0lR4LcAGy5Y2RX+IVlTqmHtoyS+VSEfWmGXAyEMZ8m1tNXE3PRn
+         pAQ6TER06vuYRcE6MqgYUmZr0Pw6AJfuxjeKkVa9GU3njlS392X9qiVwSXUJgs7BGau8
+         oI0CF+vIM6VDs4fM2Ek45rDsMdGg762DG6Qi2hw8jBCe0T0hdqt2FNQKtrxh6e8MKF2e
+         Z3xg==
+X-Gm-Message-State: ACgBeo0zYMpyF+y1JSk1lDp9ia7Ri1HurAcxmhD54DpN+Ny32u0MXJc9
+        Ufih/PHkzeOsiF6i8nugurrX2zsM+gkXHOUbxxm91EVgZjg=
+X-Google-Smtp-Source: AA6agR7w3M2ZJOl12uwmtMVO0cTCIwI2zkESBmdz5I2uiocO9DkGwUBdHd3wNfriQmYm9jWHEP8KAUjd6FSoyMABcr4=
+X-Received: by 2002:a25:bd4d:0:b0:696:489a:3a86 with SMTP id
+ p13-20020a25bd4d000000b00696489a3a86mr10172453ybm.447.1661843937729; Tue, 30
+ Aug 2022 00:18:57 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.1.2
-Subject: Re: [PATCH 02/15] dt-bindings: clocks: qcom,mmcc: define
- clocks/clock-names for MSM8960
-Content-Language: en-GB
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220623120418.250589-1-dmitry.baryshkov@linaro.org>
- <20220623120418.250589-3-dmitry.baryshkov@linaro.org>
- <21efbf73-74af-8f80-3577-b82f39e161e6@linaro.org>
- <CAA8EJpp+pTPjFnGXaWvjUBFc=B9b=OwnHYUP33MNQOsaxwqk4w@mail.gmail.com>
-In-Reply-To: <CAA8EJpp+pTPjFnGXaWvjUBFc=B9b=OwnHYUP33MNQOsaxwqk4w@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <696cb2da-20b9-b3dd-46d9-de4bf91a1506@gmail.com>
+ <22bc845c-dffc-7967-a542-f0697feec603@gmail.com> <7be3df2e-2250-8542-1707-121373213fe1@gmail.com>
+In-Reply-To: <7be3df2e-2250-8542-1707-121373213fe1@gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Tue, 30 Aug 2022 00:18:21 -0700
+Message-ID: <CAGETcx-3AkOjmx+=vwiiYfDc8tGNnSa+MTyEeB92Xgou0zWKPA@mail.gmail.com>
+Subject: Re: fw_devlink=on breaks probing devices when of_platform_populate()
+ is used
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Ansuel Smith <ansuelsmth@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/06/2022 03:00, Dmitry Baryshkov wrote:
-> On Fri, 24 Jun 2022 at 18:57, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 23/06/2022 14:04, Dmitry Baryshkov wrote:
->>> Define clock/clock-names properties of the MMCC device node to be used
->>> on MSM8960/APQ8064 platform.
->>>
->>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>> ---
->>>   .../devicetree/bindings/clock/qcom,mmcc.yaml  | 31 +++++++++++++++++++
->>>   1 file changed, 31 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/clock/qcom,mmcc.yaml b/Documentation/devicetree/bindings/clock/qcom,mmcc.yaml
->>> index d02fe6dc79b5..c13243682365 100644
->>> --- a/Documentation/devicetree/bindings/clock/qcom,mmcc.yaml
->>> +++ b/Documentation/devicetree/bindings/clock/qcom,mmcc.yaml
->>> @@ -82,6 +82,37 @@ then:
->>>       - clock-names
->>>
->>>   allOf:
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            enum:
->>> +              - qcom,mmcc-apq8064
->>> +              - qcom,mmcc-msm8960
->>> +    then:
->>> +      properties:
->>> +        clocks:
->>> +          items:
->>> +            - description: Board PXO source
->>> +            - description: PLL 3 clock
->>> +            - description: PLL 3 Vote clock
->>> +            - description: DSI phy instance 1 dsi clock
->>> +            - description: DSI phy instance 1 byte clock
->>> +            - description: DSI phy instance 2 dsi clock
->>> +            - description: DSI phy instance 2 byte clock
->>> +            - description: HDMI phy PLL clock
->>> +
->>> +        clock-names:
->>> +          items:
->>> +            - const: pxo
->>> +            - const: pll3
->>> +            - const: pll8_vote
->>> +            - const: dsi1pll
->>> +            - const: dsi1pllbyte
->>> +            - const: dsi2pll
->>> +            - const: dsi2pllbyte
->>> +            - const: hdmipll
->>
->> The clocks are listed in properties, so they have min/max constraints
->> set implicitly. Are you sure this now works fine?
-> 
-> I mentioned this while listing dependencies in the patchset description (00/15):
-> 
-> Dependencies: [1] (whole series), [2], [3]
-> [...]
-> [2] https://lore.kernel.org/linux-arm-msm/20220617122922.769562-2-dmitry.baryshkov@linaro.org/
-> 
-> This patch moves clocks/clock-names to the conditional clause.
+On Sun, Aug 28, 2022 at 7:39 AM Rafa=C5=82 Mi=C5=82ecki <zajec5@gmail.com> =
+wrote:
+>
+> On 30.07.2022 09:36, Rafa=C5=82 Mi=C5=82ecki wrote:
+> > On 16.07.2022 22:50, Rafa=C5=82 Mi=C5=82ecki wrote:
+> >> I added of_platform_populate() calls in mtd subsystem in the commit
+> >> bcdf0315a61a2 ("mtd: call of_platform_populate() for MTD partitions"):
+> >> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/com=
+mit/?id=3Dbcdf0315a61a29eb753a607d3a85a4032de72d94
+> >>
+> >> I recently backported that commit in OpenWrt to kernels 5.10 and 5.15.
+> >> We started receiving reports that probing Ethernet devices stopped
+> >> working in kernel 5.15. I bisected it down to the kernel 5.13 change:
+> >>
+> >> commit ea718c699055c8566eb64432388a04974c43b2ea (refs/bisect/bad)
+> >> Author: Saravana Kannan <saravanak@google.com>
+> >> Date:   Tue Mar 2 13:11:32 2021 -0800
+> >>
+> >>      Revert "Revert "driver core: Set fw_devlink=3Don by default""
+> >>
+> >>      This reverts commit 3e4c982f1ce75faf5314477b8da296d2d00919df.
+> >>
+> >>      Since all reported issues due to fw_devlink=3Don should be addres=
+sed by
+> >>      this series, revert the revert. fw_devlink=3Don Take II.
+> >>
+> >>      Signed-off-by: Saravana Kannan <saravanak@google.com>
+> >>      Link: https://lore.kernel.org/r/20210302211133.2244281-4-saravana=
+k@google.com
+> >>      Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> >>
+> >> For me with above commit kernel just never calls bcm4908_enet_probe().
+> >> Reverting it from the top of 5.13.19 and 5.15.50 fixes it. I believe t=
+he
+> >> same issue happens with other drivers.
+> >>
+> >> Critical detail is that in DT Ethernet block node references NVMEM cel=
+l
+> >> of MTD partition (see below).
+> >>
+> >> Could you help me dealing with this issue, please? Can you see somethi=
+ng
+> >> obvious breaking fw_devlink=3Don + of_platform_populate() case? Can I
+> >> provide some extra information to help fixing it?
+> >
+> > Any ideas about this problem / solution?
+>
+> I didn't get any reponse for this bug for 6 weeks now. Is that OK if I
+> send a revert patch then?
 
-Krzysztof, as now the dependencies have landed into Bjorn's tree, could 
-you please take another glance onto the bindings?
+fw_devlink=3Don and of_platform_populate() have been working without any
+problems for a while now. If your MTD change is causing an issue, why
+not start debugging from there instead of suggesting reverting a
+change that has been there before your change?
 
--- 
-With best wishes
-Dmitry
+Most of us are busy getting stuff ready for LPC. So, things are going
+to be a bit slow. I'm also working on other fw_devlink fixes. I can't
+get to this quickly. So if you can debug this further and point out
+where exactly it's getting caught up that'd help.
 
+Enabling debug logs in drivers/base/core.c and drivers/base/dd.c might
+make it easier for you to debug. Also, you can check the
+<debugfs>/devices_deferred to tell why a device isn't getting probed
+yet.
+
+-Saravana
+
+>
+>
+> >> Relevant DT part:
+> >>
+> >> partitions {
+> >>      compatible =3D "fixed-partitions";
+> >>      #address-cells =3D <1>;
+> >>      #size-cells =3D <1>;
+> >>
+> >>      partition@0 {
+> >>          compatible =3D "nvmem-cells";
+> >>          reg =3D <0x0 0x100000>;
+> >>          label =3D "bootloader";
+> >>
+> >>          #address-cells =3D <1>;
+> >>          #size-cells =3D <1>;
+> >>          ranges =3D <0 0x0 0x100000>;
+> >>
+> >>          base_mac_addr: mac@106a0 {
+> >>              reg =3D <0x106a0 0x6>;
+> >>          };
+> >>      };
+> >>
+> >>      partition@100000 {
+> >>          reg =3D <0x100000 0x5700000>;
+> >>          label =3D "firmware";
+> >>      };
+> >> };
+> >>
+> >> ethernet@2000 {
+> >>      compatible =3D "brcm,bcm4908-enet";
+> >>      reg =3D <0x2000 0x1000>;
+> >>
+> >>      interrupts =3D <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>,
+> >>              <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>;
+> >>      interrupt-names =3D "rx", "tx";
+> >>
+> >>      nvmem-cells =3D <&base_mac_addr>;
+> >>      nvmem-cell-names =3D "mac-address";
+> >> };
+> >>
+> >> OpenWrt bug report:
+> >> https://github.com/openwrt/openwrt/issues/10232
+>
