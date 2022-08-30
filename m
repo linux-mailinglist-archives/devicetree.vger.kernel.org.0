@@ -2,123 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13DBB5A5BDA
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 08:31:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E41F5A5BE6
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 08:32:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230153AbiH3Gbf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 02:31:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39200 "EHLO
+        id S230194AbiH3Gc2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 02:32:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230133AbiH3Gbd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 02:31:33 -0400
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-eopbgr80054.outbound.protection.outlook.com [40.107.8.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 497577CAAB;
-        Mon, 29 Aug 2022 23:31:31 -0700 (PDT)
+        with ESMTP id S230186AbiH3GcT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 02:32:19 -0400
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2080.outbound.protection.outlook.com [40.107.220.80])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB734B14D4;
+        Mon, 29 Aug 2022 23:32:18 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=C6G4lF/fqeoYMmcQ2t2ooUIh3Gr8Dz1kH+ddvPybh744/Ie3rf3HPMPnLrW4cmL0pQRNd7srZOi1qb5+NzuSVLoEgPUOLrOpsP8MmJbKpN+jgC7c7Z8cjpwFOGv/5Ce2JHQ9u7qKctclAgSXrCW55ZciKFxxnNLC5h4uh4+IPSaOdNjlk6uZqffnx8VSQon0OezEet/AisrgUURVby5fYF5MoNSuRwrryjub++YuKMz76mzAWRGeQtciQhPvHXfLT1NR//kskrviFOVCnEJo54ziOLaeHM/Q7xpEh3rWk/6DIJooZJLmih2DwG2fUJFQc79jiyiW0L2zik6wzmFkKg==
+ b=aVd7Pbwt1gGO04mV7xaafYNZrPFE1oB0Jy2gILCIMbeso/fMDMmWDmoqm9na+9Qk4xAR9HmAZkw+wUFJygvlECctK2xaSS5uBo83yUPeBrU/LsWWmBkD8gkV9kCo7CGdrzcPzOqCBR+Qx7H5sKTIepy9pCgv3OUSpoIa/mtARVZ2uDUL3MoCnBxbAlXBXYE3WFZhmfV6/d+CgYv74GIY9fKV4pN9oJtqaZo/zI0/HdFaDRWoALtN0oyiYVXL3qDJVjTEaUltvOBvn94PLUOFoip+glaZiA1IgV3QG8ZqDt1lAt5yjVjoWJNh4C4JY6NUA7IfV2KqnQjwKoZsROmKuQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PwXP5SMtyE04bOBH8XFq8vDH4DxauUpXC3pR9MeQTgA=;
- b=P/bkozPZ4UH/uoK+BVT5Jm2BbYnnUo0KlEimuvqoyQ9Vm34n1NwitNZNXSj3cz9eQQ+0QKAl/zxPPVdHut3bOPI0yIImt/sKnwsirtmqk+zcQXQXzA2GIIR0kuGsgDsTJo2e6+QlhvmrjBlChyhkuV+1qEukqCkBVbviRcKZJ5ZYPJNoA64A+Pw+qNUUDszL5uYY8uCgIPrDK9FF7c8rFnWKtHlR63CZ3oA0bUm8gmI14vIfOSJ4RoEPxfjWaYJEmrlQQXjLegaBr9mx2gNBWkgXy7Aci1/7AcdkX2XDcpg+OcR1J18+FcJ6NiAFE4ib1IdboyH1+B6QRhX2RwlHjQ==
+ bh=DdihtU68v+QIY3bklQVv9lvUABOCu3SvKdc7sIgOIwE=;
+ b=US4EU6NISZ2KaABJi5+2IvqseTnOCor/snYvv/hnPCFiCQOk1j/o3XLC/XoB8YHF2pbJBfe141l6Qb6mC0Yj2ckRWIenc0TIG0ze4rE1ei5vLSuoubgwVteIP6dh/R+ivWNykfgP2QshE31XZS0kmJGjc0RR1rzjGFyKOTYcwA7bFFpXMU+8Xt/O5YNtg34SVh9p6xNU563ugHVRhikoLVSL05QYfulRJieEaJz3kR8YNTmCaVhqbVNWAmvj/XALrM4jSBZDpcttG/iYI7oPTprVlunjPd8Kc6a7EajJgnFFUU5KPnheX/SbGcGadW07gQGuidgJe9xkf6ygLkhLMg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PwXP5SMtyE04bOBH8XFq8vDH4DxauUpXC3pR9MeQTgA=;
- b=YGKikfhzBYl4j5zAvRuDxbcfxBwijyirgw+FV5Hvb2mz80QHUgAab49JzAYaVhGh66+T2TeYS6ikLiQGmTZsMPcEzQThbnQ02aw06NaZ7MJ8wMEOjDszCLhP94+RMrxtwP76oG7RtnMcGU6wFFq2Y0kaxOr8owukikq1Tv11yg8=
-Received: from GV1PR04MB9183.eurprd04.prod.outlook.com (2603:10a6:150:27::9)
- by HE1PR04MB2953.eurprd04.prod.outlook.com (2603:10a6:7:1a::33) with
+ bh=DdihtU68v+QIY3bklQVv9lvUABOCu3SvKdc7sIgOIwE=;
+ b=n1upUArYpivPeMWFyBlDBzdqGdixhZhZbN5vA0gRvFCQZnTROIa5jiP/YS6Yg2kvXN4wVxXhfKugWHKY/7C7W40E1RhwEqiE4TUTRefcoyvQRQ9iuJ1vOdOpogJeXL/YzieiNIdf2AVt2U8x/ESi1Dsll/Kl+4vTBb/r6fQDBFk=
+Received: from BY5PR12MB4258.namprd12.prod.outlook.com (2603:10b6:a03:20d::10)
+ by DM6PR12MB4484.namprd12.prod.outlook.com (2603:10b6:5:28f::24) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5566.21; Tue, 30 Aug
- 2022 06:31:28 +0000
-Received: from GV1PR04MB9183.eurprd04.prod.outlook.com
- ([fe80::28cf:2839:247c:b34e]) by GV1PR04MB9183.eurprd04.prod.outlook.com
- ([fe80::28cf:2839:247c:b34e%6]) with mapi id 15.20.5566.021; Tue, 30 Aug 2022
- 06:31:27 +0000
-From:   "S.J. Wang" <shengjiu.wang@nxp.com>
-To:     Chancel Liu <chancel.liu@nxp.com>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "perex@perex.cz" <perex@perex.cz>,
-        "tiwai@suse.com" <tiwai@suse.com>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5566.14; Tue, 30 Aug
+ 2022 06:32:14 +0000
+Received: from BY5PR12MB4258.namprd12.prod.outlook.com
+ ([fe80::28ea:aeb4:301e:c253]) by BY5PR12MB4258.namprd12.prod.outlook.com
+ ([fe80::28ea:aeb4:301e:c253%4]) with mapi id 15.20.5566.021; Tue, 30 Aug 2022
+ 06:32:13 +0000
+From:   "Potthuri, Sai Krishna" <sai.krishna.potthuri@amd.com>
+To:     Michael Walle <michael@walle.cc>
+CC:     Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Pratyush Yadav <pratyush@kernel.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "Xiubo.Lee@gmail.com" <Xiubo.Lee@gmail.com>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "nicoleotsuka@gmail.com" <nicoleotsuka@gmail.com>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
-Subject: RE: [PATCH 3/5] ASoC: imx-pcm-rpmsg: Register different platform
- drivers
-Thread-Topic: [PATCH 3/5] ASoC: imx-pcm-rpmsg: Register different platform
- drivers
-Thread-Index: AQHYu3zMYmOVvaPO90OGp9+KALSMdq3G/IvA
-Date:   Tue, 30 Aug 2022 06:31:27 +0000
-Message-ID: <GV1PR04MB91831EF183F0D0E6E9BBD9E9E3799@GV1PR04MB9183.eurprd04.prod.outlook.com>
-References: <20220829075144.2405000-1-chancel.liu@nxp.com>
- <20220829075144.2405000-4-chancel.liu@nxp.com>
-In-Reply-To: <20220829075144.2405000-4-chancel.liu@nxp.com>
+        "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "saikrishna12468@gmail.com" <saikrishna12468@gmail.com>,
+        "git (AMD-Xilinx)" <git@amd.com>
+Subject: RE: [PATCH 2/2] mtd: spi-nor: Add support for flash reset
+Thread-Topic: [PATCH 2/2] mtd: spi-nor: Add support for flash reset
+Thread-Index: AQHYu4bSUGIrY8nYfU66nbvPu6SLyK3FpnEAgAAQlYA=
+Date:   Tue, 30 Aug 2022 06:32:13 +0000
+Message-ID: <BY5PR12MB425817D90687D37ABDC638EADB799@BY5PR12MB4258.namprd12.prod.outlook.com>
+References: <20220829090528.21613-1-sai.krishna.potthuri@amd.com>
+ <20220829090528.21613-3-sai.krishna.potthuri@amd.com>
+ <be7f0b7bbb25d86ac079502babbf5f1b@walle.cc>
+In-Reply-To: <be7f0b7bbb25d86ac079502babbf5f1b@walle.cc>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
+ header.d=none;dmarc=none action=none header.from=amd.com;
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 4ac7239c-22ae-4bbe-6d4a-08da8a5144c1
-x-ms-traffictypediagnostic: HE1PR04MB2953:EE_
+x-ms-office365-filtering-correlation-id: f92a9372-ab85-4b05-b1a9-08da8a516041
+x-ms-traffictypediagnostic: DM6PR12MB4484:EE_
+x-ld-processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: dOYEdoikss+2Yc81n2hVhSn2Z1VghPmHm/Qf9o2G1Qdr2peqzJmsImJWyTkaEjuMEnjeobJZ8koDMu4d355O7sOneMHKCuu0pKRjZerqKexzFL4bpNNEDcRKKrFILzF36hp9MW8zKL4xWLJuouGLERVApHR/8Hl1K6oJnBlm8oWx8B62oH/kEM/XiqbvoxBFYUI7bFoIw5xaAltmPFC4jHQDYu1/PanI7LwNxZlA5d393NOt8Yh/JE1a6r+vs+z6kl5EHF2jxp+ssnq0R2cnX3Etk5NqWmRpUWSWzk4KOi8oZ9VisOCc+DhFKZ/HSpAswtN9WBTtMHU0b9h/PI8/IFqtims5uRzbSSHA4AFPsoayqCQO/LwU2OiTCLQRutLX6dbLHHNpTeCrE9O1BY4g4fxAIoJQ2zwoJLOTXghn0S2tiG+9XneVDUxNt6raDUyTqm1j2xaiwuEUchQENNgQK1onJlaoJFE3MVF25o6/0zKwbA7ckT4Y27HZ8b71CTSPJY1sVUIA+4FqJXTSz0B9o9PqGewjqsAf+uVDRihB9UQLdgGf4s8B5O+wF9+xi9JzHBFnbgCHhmGuqqiCoEApESw96tSII0ECU1u9AY87CLuJ2SQJZpQW2yU2ayGwwEOKMX1KQU2B/Q0QtlaBcRs7YclwkjSnK+sqYqIQurhEiojBEnjt9K/zWfdB++RTmEjjisqScZBufpao0Jcx+UM8ZFw+4IP/0lNjj52ilHoZalhAhSSlq2Ac81N2QyJUQK+e2PtyGzm62yBWXib2mWM9XRVGXP4AOJZ3x3jsHo2LSVc=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV1PR04MB9183.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(376002)(39860400002)(396003)(366004)(136003)(346002)(26005)(9686003)(55016003)(71200400001)(86362001)(478600001)(6506007)(7696005)(41300700001)(186003)(38100700002)(122000001)(921005)(38070700005)(83380400001)(66476007)(64756008)(110136005)(2906002)(66556008)(8936002)(5660300002)(8676002)(52536014)(66446008)(66946007)(316002)(7416002)(76116006)(33656002);DIR:OUT;SFP:1101;
+x-microsoft-antispam-message-info: gxz5ePyRUa6ZX8Qhfhahn55H+6rOEkXUK6sbwY+WIiH1dJddKu3j0ynwut6ZXA0ABgm3GM+zojZq8UEIBjEb12TIcMcevTj/Xs7EY97Q2GciiVY5yMIQMswrbywhDLO4h5jUUmqDAdm8QNCGnRoeY9eHzRrxokE16xO5OCIhc9jnKe+dJ65X88cbCrM+iLjA3+I1guPQmPg/Je37X7Avykk2Z9V6PMvuSYajDNqXNk27ZrIMLyYQV6PmaSftfSrOIjehL2dq2GNo/bIzuh6JcJYdxUOVWs2/roz0VLuhlKNkwxzbcta/H4L10yeuJowx0LK47fb2OlrJmgEcg62osMZAvtt2Q+yH6NMK4bCIRTqqpHNptxjGI61fSwESI1Rge8cvWiX4mkVP4RRKRxvIC4RZQJIytjqe7PiXH0tAm7pryeGm91DiXUEhrk0fV45LWdM2PY9y4ReqpZyqC4LVO3b4TFDYPtnKfgS3lXuyGUOrJmjdTJqGTjyXhz20sRlJHXN8ZAJlKJigowfagxoznJsNXRlFyjlSeq+s29N4u0bzj6rep3M341CxcLrIkQw04UdI3DIkc76OTRA9ABUl6Nn6ZCo9kDu1FjX8qntlrnktFNSXJYKW2J+Ydha0y9A8aGjBRJSMtKhA4ZF52rj2q2EVeBF3HOLRT2uplpzFOX+hwU52nsqj8FbugG7bK+ZU/BC7YKHRuZ2qMysIracAxiK9lbNPIDYBxg3p37FRpUEyi5jAAKgl/Xxvw8gtA9YBj5lcKSqbOJNSxYiZ9s9C4Q==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR12MB4258.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(376002)(346002)(39860400002)(136003)(366004)(396003)(38100700002)(122000001)(186003)(2906002)(26005)(53546011)(7696005)(6506007)(86362001)(9686003)(83380400001)(55016003)(33656002)(38070700005)(64756008)(66446008)(66476007)(66556008)(66946007)(76116006)(316002)(478600001)(8676002)(4326008)(71200400001)(6916009)(54906003)(8936002)(52536014)(41300700001)(5660300002)(7416002);DIR:OUT;SFP:1101;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?JgPjEXyfkwNiYPny0Ak2giJX+K9X89haSEnSdfDG2miCpuDusvUz50wFRHiR?=
- =?us-ascii?Q?jS09GEeRDCglumeNXLNN6mh54QRmjHRyLVsceTGQtMdL27WBI6q9qY/b2x2s?=
- =?us-ascii?Q?AYBdMY1yo907M+xw7wX2jNDZkV1TqFOA0toTnb0oc3HazCN6vlNZ1t6EIpXc?=
- =?us-ascii?Q?j6dOIgDLxj66DcdQsKdfxWp4tsq22YupagBKr96waZky3LgRirGdBuo2E0Fn?=
- =?us-ascii?Q?UXjkbZJP/jbu5Q3AMnd21XuexYz7cDLsXUMf8HUtm+ej0grF8f6UWajgDAFK?=
- =?us-ascii?Q?VnICVfp08mBtWke2D4cr6dKxg74mOkOPIdeL6fOrHsxKRuxnUu8JPCnSUZfg?=
- =?us-ascii?Q?uV9dKbbeOK3s8HPFoQZLJlnGwAkkMBbyQbOA6ito35swcoVdAeoY6GI+JrFx?=
- =?us-ascii?Q?1pNgo+ktxa0RBZ4SZzbLrC4j/HI/3/lrKPZLH/AMc/0BR1SpYCzRjnG3Fd37?=
- =?us-ascii?Q?VLN5Or2eeS2SsaSeMgDBgNoKYnnUqxGgGBR7UBBOl7HD8f67wwni93ANHv5B?=
- =?us-ascii?Q?SINhYO5BpYeQVVf87spqw9cQChA5ggD1gCTB3rb3CmDeyYDOqGm6acPvesdR?=
- =?us-ascii?Q?LKzC7rB+a1DaiGw2CbHMz4Zx4hodvTZwX3w2X7yNrAYNSkNJU0ec8wetPn0h?=
- =?us-ascii?Q?2t9cwmMdyV0j1kWCwbfYvzqskhfRMfB8oUtJyZZou0wAAJGbN+6B8LY+cteR?=
- =?us-ascii?Q?dIhNR0ihS0xH/ttWPphOFa5DAJluFEgEE7ZKf+NKomrxg0rAo6t3lZHQ2HUI?=
- =?us-ascii?Q?UTVcpNd3gl75C8odwPpqHBfYxiFENAjuZ6uM6DFj2GM7vxb5Mwnh6KryGG0Y?=
- =?us-ascii?Q?qRFF00+Y71MDPZNK9IkkkSP2sY4l4+D7RvdpYznkmHl+HtceD6TgS/7vZcGD?=
- =?us-ascii?Q?OmAsuf9S64tKwCRllqrX6r9/je4yxmFVN4LFG/nnUVIoXYFf+Bd1kRvZU1m1?=
- =?us-ascii?Q?4hWO6x3n9ceBthAGTo0R43QDNFJbma3yAg1UjlEJBqbW9QJorZHzTJY6v+Gz?=
- =?us-ascii?Q?oNU/xVa5e2EELXs6T3+DmkYHxULL/89/otOuSUbx49Zo8xuCVjdQh2MB47DY?=
- =?us-ascii?Q?/GxNpgKnf6fUWlzpT4oCUVnjTzWkKBTh2FXzDE7RLhDhB4MdzhkiJgXDC+Ba?=
- =?us-ascii?Q?GuVwBqLoCEcW4MohRB1Wgl2QUikxmhXC0XMmJNazHqBaN6KOF3dS5Z8L6ppS?=
- =?us-ascii?Q?K8Hy597vfOi2qM+v8lAESdcSBXt02nFBTGTFzwHy7Qp/08PCf+ESZok3zYLi?=
- =?us-ascii?Q?8e8JL8dYUzkaRzZQI8IcpFzOqQKt5pCJEYMldLTxRiFxGXXnFZTn3MgrGEWK?=
- =?us-ascii?Q?Sm95BHEn6z4TpDroFTTCR8EQ2c0YmzcNgYMUYORKauiyl09v4Fo4l25rGRbo?=
- =?us-ascii?Q?8i0441I1wpbg5QdpGosueDIfX4Jj0L0KsEd+/wA5oa+mU3mu1XnpcQE3iRiV?=
- =?us-ascii?Q?6e+okwl2zbBvmvqgymt3KQOPJqO9pOyKW7aFIlylMxBcUlvMaq9SDxluAZzJ?=
- =?us-ascii?Q?3A6zlm7NwTBvAAZXPskSo20GGvNKy/rCahWR9xeXef0jgoWhVOqCj063FCUt?=
- =?us-ascii?Q?VPlUjtjZBsoYyGjf09l3LMjyCgYQnvsEMsn7n7FJ?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?9LzC+hR43/+rUJlRxCy5I0LUDDoCnCRdUECst+sRt8EnBQMC8d+XSxWDtOhZ?=
+ =?us-ascii?Q?C50Ltdnrgz4Zt2FlfuNIzSpVipKsnHDI2MwtT5ev7CgFEPcDYWz2Zm3DecLI?=
+ =?us-ascii?Q?kh/MvV8ZiQLZztjaGf9QC2D+z2vdQO5bwqUvnFPDeVsAPp8frEi8KgqXXri5?=
+ =?us-ascii?Q?4BwIFzejo/vCj0KJzHVjBvmEddtYm10m03ZJesFyfV7ojnP4qathj3TVEIHB?=
+ =?us-ascii?Q?4A8TBApE24+bLb0bxqMqzAUp+sAbIEEzvG4B51/Ef5AnIjfwoy4MF0RvtsV1?=
+ =?us-ascii?Q?L+BfI3aH6BVo77kdjYXAXc9HRiIt8gs+3KAamCZf90YuPdSzKxdsqWXNSbTP?=
+ =?us-ascii?Q?cEVtk7zGEHZy3FJnQiO4f9/Gm005ZzV6veH+e3VCwjUnelP9Iwfk7CpGBC2P?=
+ =?us-ascii?Q?WOAWP5qiEqiENK0n/BFmGB0Hix1igSDQWlI9LFnHqBijtj7+sH4RrK4IGkVZ?=
+ =?us-ascii?Q?nvQjoJ00iiasthL9gLvbDZy+8lD1xjhOlDunR+BLajTF7czWkhRkclsKepx7?=
+ =?us-ascii?Q?OZII1q17fISKtxE3+uFIGKULALYEpOfqmyTfAmdOzlcMJX3kw3pUDp1Xj0Jn?=
+ =?us-ascii?Q?+0SkAKxo0u5xQ6ghX7Yz4FsTx4qMr0J7CILEIPJPsszu6gYYwJaBP+iziG6P?=
+ =?us-ascii?Q?8uc5OiDGVr692RYPUSq0W+nSYtK9pLQlSvCk8Xg2ZErayBdZ6gpUQkICofcb?=
+ =?us-ascii?Q?2YgtMt5yFXbT8/zKHKC7gzZdn/S37sVqPkTCJyIbMWPUwAjT4xWntklzbjf9?=
+ =?us-ascii?Q?3A8dxl51ILTaSrnsJCbRP3Z0OXND+N1+BjLU1+dXhBwynkva+C750oghL9JP?=
+ =?us-ascii?Q?4Ybwb/eKcniXgpRYGZFinIW1JQa0dZ/v1/mcGE4uq08jmHWkn8z0EJAIDtO+?=
+ =?us-ascii?Q?p5m3g+zttgB2fwItKAKbf1FX53+i56U8jtl3Pi2gs6ImxvciVcX7jhh54EGa?=
+ =?us-ascii?Q?G0nG8pH1ovKq3XTDaGjtCRzGtB8o0oQfhvr7N1UKw/CODqvGTASgeQmf/JEQ?=
+ =?us-ascii?Q?Xq7aZwqwHsaGwyrNKa4ucqAKv9QEnz76IOQkk6IsIqgIOZ+/CWfQZMawlX13?=
+ =?us-ascii?Q?5v66JaR7YGKkegYk70XXLLJB5MEwzFYgHz0UmaFUhmrXmH5SFL3Mz20oy7UR?=
+ =?us-ascii?Q?WWJc7LdsNNaOlPAl/NU0Xj7juUVkNLLiqA9S/YIJ2z7FflWLiCe2A2xZ0M1w?=
+ =?us-ascii?Q?NR6agxJrKPWRi3SmuPJSB1OH2xFE6GIjd5dnpzdakbWTUvEaGKJw2fDFP57t?=
+ =?us-ascii?Q?PqaQ/AbB8m91oRfyZYMWOF1Qf9lPjIktQAjuUp9rYuCWGfpH0Ejfhj2kpZuq?=
+ =?us-ascii?Q?h5xm99biL+laGRBYlTZVn163JsW7fJgH4lV7gKVFUL8L7tuLGua8OIw8WM+L?=
+ =?us-ascii?Q?Sfi7G1QNjkGkhmEcxjQJ7ZfX3TRPX47XFbUxw5vcuXmmedUD1fKz9m5fTT40?=
+ =?us-ascii?Q?2opn9XQ38y1cg+FPQTjtW/IMoNQN1zKCbhe1XDYxtJftnQD/8/i8GkURacPX?=
+ =?us-ascii?Q?nqE323OTlSN/dZZKUoFvevRY5HQkWMTRpjICNvqGSXu8UDwq0gXM9PVlp4Dl?=
+ =?us-ascii?Q?Dr1K8VpGV8EmXyhD9jA=3D?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
+X-OriginatorOrg: amd.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: GV1PR04MB9183.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4ac7239c-22ae-4bbe-6d4a-08da8a5144c1
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Aug 2022 06:31:27.6545
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR12MB4258.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f92a9372-ab85-4b05-b1a9-08da8a516041
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Aug 2022 06:32:13.7936
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: OMFquitHciJcD1/o+xGZuiwGbI3+yMjot0X5rrpTBYQeyMJHyZK9hV52b1G5peKAciLCf9typo8dCWvNZXjZfQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR04MB2953
+X-MS-Exchange-CrossTenant-userprincipalname: 9U4k3KKn5WTCcjCktaidGU1ZnJaeAbMlGBdnohHARkCssl6OhXCjjQXIkqsazSXMyNA3bzS52B61sSNAYMzAnA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4484
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -129,70 +127,163 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
->=20
-> This patch can register different ASoC platform drivers in reference to
-> "fsl,platform" property of the corresponding node in dts. So sound cards
-> based on different rpmsg channels can link to their respective platform
-> drivers.
->=20
-> Signed-off-by: Chancel Liu <chancel.liu@nxp.com>
-> ---
->  sound/soc/fsl/imx-pcm-rpmsg.c | 10 +++++++---
->  1 file changed, 7 insertions(+), 3 deletions(-)
->=20
-> diff --git a/sound/soc/fsl/imx-pcm-rpmsg.c b/sound/soc/fsl/imx-pcm-
-> rpmsg.c index 35049043e532..2f310994f7ee 100644
-> --- a/sound/soc/fsl/imx-pcm-rpmsg.c
-> +++ b/sound/soc/fsl/imx-pcm-rpmsg.c
-> @@ -178,7 +178,7 @@ static int imx_rpmsg_pcm_hw_params(struct
-> snd_soc_component *component,
->  		msg->s_msg.param.channels =3D RPMSG_CH_STEREO;
->  		break;
->  	default:
-> -		ret =3D -EINVAL;
-> +		msg->s_msg.param.channels =3D params_channels(params);
+Hi Michael,
 
-Please use separate commit for this change, I think the fsl_rpmsg_dai. chan=
-nels_max
-Should be updated also?
-
-Best regards
-Wang shengjiug
-
->  		break;
->  	}
+> -----Original Message-----
+> From: Michael Walle <michael@walle.cc>
+> Sent: Monday, August 29, 2022 3:35 PM
+> To: Potthuri, Sai Krishna <sai.krishna.potthuri@amd.com>
+> Cc: Tudor Ambarus <tudor.ambarus@microchip.com>; Pratyush Yadav
+> <pratyush@kernel.org>; Miquel Raynal <miquel.raynal@bootlin.com>;
+> Richard Weinberger <richard@nod.at>; Vignesh Raghavendra
+> <vigneshr@ti.com>; Rob Herring <robh+dt@kernel.org>; Krzysztof Kozlowski
+> <krzysztof.kozlowski+dt@linaro.org>; devicetree@vger.kernel.org; linux-
+> mtd@lists.infradead.org; linux-kernel@vger.kernel.org;
+> saikrishna12468@gmail.com; git (AMD-Xilinx) <git@amd.com>
+> Subject: Re: [PATCH 2/2] mtd: spi-nor: Add support for flash reset
 >=20
-> @@ -684,7 +684,7 @@ static int imx_rpmsg_pcm_probe(struct
-> platform_device *pdev)
->  	info->rpdev =3D container_of(pdev->dev.parent, struct rpmsg_device,
-> dev);
->  	info->dev =3D &pdev->dev;
->  	/* Setup work queue */
-> -	info->rpmsg_wq =3D alloc_ordered_workqueue("rpmsg_audio",
-> +	info->rpmsg_wq =3D alloc_ordered_workqueue(info->rpdev->id.name,
->  						 WQ_HIGHPRI |
->  						 WQ_UNBOUND |
->  						 WQ_FREEZABLE);
-> @@ -723,11 +723,15 @@ static int imx_rpmsg_pcm_probe(struct
-> platform_device *pdev)
->  	if (ret)
->  		goto fail;
+> Hi,
 >=20
-> -	component =3D snd_soc_lookup_component(&pdev->dev,
-> IMX_PCM_DRV_NAME);
-> +	component =3D snd_soc_lookup_component(&pdev->dev, NULL);
->  	if (!component) {
->  		ret =3D -EINVAL;
->  		goto fail;
->  	}
-> +
-> +	/* platform component name is used by machine driver to link with
-> */
-> +	component->name =3D info->rpdev->id.name;
-> +
->  #ifdef CONFIG_DEBUG_FS
->  	component->debugfs_prefix =3D "rpmsg";
->  #endif
-> --
-> 2.25.1
+> Am 2022-08-29 11:05, schrieb Sai Krishna Potthuri:
+> > Add support for spi-nor flash reset via GPIO controller by reading the
+> > reset-gpio property. If there is a valid GPIO specifier then reset will
+> > be performed by asserting and deasserting the GPIO using gpiod APIs
+> > otherwise it will not perform any operation.
+> >
+> > Signed-off-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+> > ---
+> >  drivers/mtd/spi-nor/core.c | 50
+> +++++++++++++++++++++++++++++++++++---
+> >  1 file changed, 46 insertions(+), 4 deletions(-)
+> >
+> > diff --git a/drivers/mtd/spi-nor/core.c b/drivers/mtd/spi-nor/core.c
+> > index f2c64006f8d7..d4703ff69ad0 100644
+> > --- a/drivers/mtd/spi-nor/core.c
+> > +++ b/drivers/mtd/spi-nor/core.c
+> > @@ -2401,12 +2401,8 @@ static void spi_nor_no_sfdp_init_params(struct
+> > spi_nor *nor)
+> >   */
+> >  static void spi_nor_init_flags(struct spi_nor *nor)
+> >  {
+> > -	struct device_node *np =3D spi_nor_get_flash_node(nor);
+> >  	const u16 flags =3D nor->info->flags;
+> >
+> > -	if (of_property_read_bool(np, "broken-flash-reset"))
+> > -		nor->flags |=3D SNOR_F_BROKEN_RESET;
+> > -
+> >  	if (flags & SPI_NOR_SWP_IS_VOLATILE)
+> >  		nor->flags |=3D SNOR_F_SWP_IS_VOLATILE;
+> >
+> > @@ -2933,9 +2929,47 @@ static void spi_nor_set_mtd_info(struct spi_nor
+> > *nor)
+> >  	mtd->_put_device =3D spi_nor_put_device;
+> >  }
+> >
+> > +static int spi_nor_hw_reset(struct spi_nor *nor)
+> > +{
+> > +	struct gpio_desc *reset;
+> > +	int ret;
+> > +
+> > +	reset =3D devm_gpiod_get_optional(nor->dev, "reset", GPIOD_ASIS);
+>=20
+> devm_gpiod_get_optional(nor->dev, "reset", GPIOD_OUT_HIGH);
+>=20
+> > +	if (IS_ERR_OR_NULL(reset))
+> > +		return PTR_ERR_OR_ZERO(reset);
+> > +
+> > +	/* Set the direction as output and enable the output */
+> > +	ret =3D gpiod_direction_output(reset, 1);
+>=20
+> Not necessary then.
+Agree, I will fix in v2.
+>=20
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	/*
+> > +	 * Experimental Minimum Chip select high to Reset delay value
+> > +	 * based on the flash device spec.
+> > +	 */
+>=20
+> Which flash device spec?
+I referred some of the qspi, ospi flash vendors datasheets like Micron,
+Macronix, ISSI, gigadevice, spansion.
+>=20
+> > +	usleep_range(1, 5);
+> > +	gpiod_set_value(reset, 0);
+>=20
+> Mh, is your logic inverted here? If I read the code correctly,
+> you should use a value of 1 to take the device into reset. The
+> device tree should then have a flag "active low", which will
+Reset Sequence which I implemented here is high(1)->low(0)->high(1).
+By doing this sequence (active low), flash device is getting reset, this se=
+quence
+is tested using Octal SPI flash device.
 
+> invert the value here. Also please use the cansleep() variant.
+Ok, I will use gpiod_set_value_cansleep() in v2.
+>=20
+> > +	/*
+> > +	 * Experimental Minimum Reset pulse width value based on the
+> > +	 * flash device spec.
+> > +	 */
+> > +	usleep_range(10, 15);
+> > +	gpiod_set_value(reset, 1);
+> > +
+> > +	/*
+> > +	 * Experimental Minimum Reset recovery delay value based on the
+> > +	 * flash device spec.
+> > +	 */
+> > +	usleep_range(35, 40);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> >  int spi_nor_scan(struct spi_nor *nor, const char *name,
+> >  		 const struct spi_nor_hwcaps *hwcaps)
+> >  {
+> > +	struct device_node *np =3D spi_nor_get_flash_node(nor);
+> >  	const struct flash_info *info;
+> >  	struct device *dev =3D nor->dev;
+> >  	struct mtd_info *mtd =3D &nor->mtd;
+> > @@ -2965,6 +2999,14 @@ int spi_nor_scan(struct spi_nor *nor, const char
+> > *name,
+> >  	if (!nor->bouncebuf)
+> >  		return -ENOMEM;
+> >
+> > +	if (of_property_read_bool(np, "broken-flash-reset")) {
+> > +		nor->flags |=3D SNOR_F_BROKEN_RESET;
+> > +	} else {
+> > +		ret =3D spi_nor_hw_reset(nor);
+> > +		if (ret)
+> > +			return ret;
+> > +	}
+>=20
+> This should be done unconditionally, no? Even if the reset
+> pin is broken, we know we have one (otherwise the device
+> tree would be broken) and we can do a reset in any case.
+Agree, we can do it unconditionally without checking for reset
+pin broken. If we have reset specifier in the device tree, then we
+can do the reset.
+I will update in v2.
+
+>=20
+> Also, which tree are you using? That was moved into
+> spi_nor_init_flags() some time ago. Please rebase to latest
+> spi-next.
+Yes, reset pin broken property moved to spi_nor_init_flags().
+I moved this from spi_nor_init_flags() to spi_nor_scan() (which is part of =
+this
+patch) to decide on the flash reset part.
+With the above agreement (reset not to depend on reset broken pin), I will
+Revert this change.
+
+Regards
+Sai Krishna
+>=20
+> -michael
+>=20
+> > +
+> >  	info =3D spi_nor_get_flash_info(nor, name);
+> >  	if (IS_ERR(info))
+> >  		return PTR_ERR(info);
