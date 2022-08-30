@@ -2,61 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C249F5A6C4E
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 20:35:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 396515A6C5A
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 20:40:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229836AbiH3Sfr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 14:35:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38882 "EHLO
+        id S231124AbiH3SkQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 14:40:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229736AbiH3Sfq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 14:35:46 -0400
-Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB740606AB
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 11:35:45 -0700 (PDT)
-Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-11dca1c9c01so18860831fac.2
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 11:35:45 -0700 (PDT)
+        with ESMTP id S229607AbiH3SkO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 14:40:14 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A31F81BEAF
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 11:40:12 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id k22so12304266ljg.2
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 11:40:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=CH2sJI+/EHW23gGx/MNS2o0Bd1ZGntsk+d3f7yO/CWc=;
+        b=U3vJvHzALZt1J5DH2Gy1Bu2Ysxq9QepKsd6g4sHJTAH248qiMSJaaEamAat+U5v9RB
+         w5Bur0zB4aHESKvYwayBz9te4/6pTQpMLqEg39s9tpxX4pA7QRu/RyyF2eKplXiPsekt
+         kWa1TDXVaS7hlF/KAG38/NunnstiXt8AXBhWmt8m6mK2oPO6ON2dh5rX4/tyG8+OeUMr
+         BRHRIr3/jFrDQIvo5k9L7m9nMtoNBOaz0Dy1b0oUPkOffEB//o02zztAox9V8GMqAFrH
+         zUyfk28puaDx4/rP+kKvLNQfQt0KeUjGI82xR4MEW/xAg/ywND+L/OJAcv3/IXXUHW8T
+         Msgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=s+37fRPFMxmXAJ4VHnz6r1f26rT3ROa7J+qGjKVDu08=;
-        b=JxAO15fCVlP7oz4L0pdLsNFIgAEXAVSOxo3yzr73OLdq7r1lzAF6JblR4uCNn4jj5c
-         u9ph9Lk6FbfJpI1hqUQMHHgm9MC2LnKPoxz1wZ12diG+OieAlzdHhQ0/inFPkFdU8535
-         7RH1MtoAuJ2qAc3y2BiVxNCY9VkBDBuTgWQ08NTx/lcpdx4ARB0C8Yk4YBZPUqf4efVT
-         OUg+iUaMKiLQkZudrU1TV1dDdX0tDJjPMDpLVSS6D3wxj9G52JQkNINT6DU7zFcNPLMN
-         QZccdYTzyB5KIpZ2u13wxVkMDr7RG49niC62B63CoAcioPhfnIAAC3ps0KFHyuE13qC0
-         /2/w==
-X-Gm-Message-State: ACgBeo1qGd6C6r6Eccij/3pefz4Uxoh1Ox0CueY6cbSiwsXWaIBm8/ZW
-        MHBKkfc5z7H/hAWx6PKXRF6YtMwZQg==
-X-Google-Smtp-Source: AA6agR5nZAeJJ1RfK097wT0B8bteTpQtrHAJXYKt3hea3H0GIkM/je3+va/IpiJpXa7MJCt/T3da6w==
-X-Received: by 2002:a05:6870:7390:b0:11c:fe11:da56 with SMTP id z16-20020a056870739000b0011cfe11da56mr10349165oam.235.1661884545020;
-        Tue, 30 Aug 2022 11:35:45 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id h17-20020a056870d35100b0010c727a3c79sm8483418oag.26.2022.08.30.11.35.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Aug 2022 11:35:44 -0700 (PDT)
-Received: (nullmailer pid 1823993 invoked by uid 1000);
-        Tue, 30 Aug 2022 18:35:43 -0000
-Date:   Tue, 30 Aug 2022 13:35:43 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Device Tree <devicetree@vger.kernel.org>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        arm-soc <arm@kernel.org>
-Subject: Re: [PATCH v2 02/12] dt-bindings: thermal: marvell,kirkwood-thermal:
- Convert to DT schema
-Message-ID: <20220830183543.GA1823932-robh@kernel.org>
-References: <20220825013258.3459714-1-andrew@lunn.ch>
- <20220825013258.3459714-3-andrew@lunn.ch>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=CH2sJI+/EHW23gGx/MNS2o0Bd1ZGntsk+d3f7yO/CWc=;
+        b=lu5bK/omiBl0TVklzwiCZh7MRmgoFNumzmB/HFYjXVy1cJVMPyiHxsiz99EE/fE2lk
+         mq8P/eIVGl1O/0cuk3+N6RdehiWR3prfXdidD5NZkx4T05E0J5ela9QI8U7lGfy60Z+N
+         30vxnoWskMu4rGp4IJK9q33RTc4hmUg21l2uUtWg3/whOh1axi27AZEFmMX+S6nFoiWt
+         1KAjKJvlN/ddgH8rc/xvG21IrHZGiCN1hIL8mJpCeIeIOW6JtZx8yox8XqjHn3oirVQw
+         qDPJaeISy+qeplh2IuwZGQgpZT036fW693F9KP36iJqC5k5hcCIKwmPZG575l+Wu7PqR
+         MIZw==
+X-Gm-Message-State: ACgBeo1GzUlbd+M4qGM3leZZ7vTUL0AvfrEWS+6F3p8PBSQQLedQMqi+
+        5FaHipdUTTUV0tpRsP+qm/FnHA==
+X-Google-Smtp-Source: AA6agR5Mj63I86ioy8izFwu1w7QEc/dz5ZGAPKJEer38bm/Y7Tral/tf+edsE1ql9U2+D9yjhw4LRg==
+X-Received: by 2002:a2e:9d06:0:b0:261:d208:7475 with SMTP id t6-20020a2e9d06000000b00261d2087475mr7533564lji.113.1661884810974;
+        Tue, 30 Aug 2022 11:40:10 -0700 (PDT)
+Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
+        by smtp.gmail.com with ESMTPSA id du13-20020a056512298d00b0048b969ac5cdsm675736lfb.5.2022.08.30.11.40.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Aug 2022 11:40:10 -0700 (PDT)
+Message-ID: <673bafdb-4e76-7dc9-6ab1-a60a44d0c238@linaro.org>
+Date:   Tue, 30 Aug 2022 21:40:09 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220825013258.3459714-3-andrew@lunn.ch>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v2 09/11] dt-bindings: PCI: qcom-ep: Define clocks per
+ platform
+Content-Language: en-US
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        lpieralisi@kernel.org, robh@kernel.org, andersson@kernel.org
+Cc:     kw@linux.com, bhelgaas@google.com, linux-pci@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        konrad.dybcio@somainline.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        dmitry.baryshkov@linaro.org
+References: <20220830165817.183571-1-manivannan.sadhasivam@linaro.org>
+ <20220830165817.183571-10-manivannan.sadhasivam@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220830165817.183571-10-manivannan.sadhasivam@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,17 +80,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 25 Aug 2022 03:32:48 +0200, Andrew Lunn wrote:
-> Add a simple YAML description of the thermal binding for the kirkwood
-> thermal sensor.
+On 30/08/2022 19:58, Manivannan Sadhasivam wrote:
+> In preparation of adding the bindings for future SoCs, let's define the
+> clocks per platform.
 > 
-> Signed-off-by: Andrew Lunn <andrew@lunn.ch>
-> ---
->  .../bindings/thermal/kirkwood-thermal.txt     | 15 ---------
->  .../thermal/marvell,kirkwood-thermal.yaml     | 32 +++++++++++++++++++
->  2 files changed, 32 insertions(+), 15 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/thermal/kirkwood-thermal.txt
->  create mode 100644 Documentation/devicetree/bindings/thermal/marvell,kirkwood-thermal.yaml
-> 
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Thank you for your patch. There is something to discuss/improve.
+
+(....)
+
+>  
+>    qcom,perst-regs:
+>      description: Reference to a syscon representing TCSR followed by the two
+> @@ -112,6 +95,36 @@ required:
+>    - reset-names
+>    - power-domains
+>  
+> +allOf:
+> +  - $ref: pci-ep.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,sdx55-pcie-ep
+> +    then:
+> +      properties:
+> +        clocks:
+> +          maxItems: 7
+
+maxItems is not needed now.
+
+
+Best regards,
+Krzysztof
