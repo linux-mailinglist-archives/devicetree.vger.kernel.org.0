@@ -2,68 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26B725A6029
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 12:04:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17D7D5A6040
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 12:06:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230060AbiH3KEb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 06:04:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50560 "EHLO
+        id S229689AbiH3KGi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 06:06:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50718 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230102AbiH3KDq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 06:03:46 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C2284B499;
-        Tue, 30 Aug 2022 03:01:45 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 27UA1P1n072699;
-        Tue, 30 Aug 2022 05:01:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1661853685;
-        bh=rA0l0kMxcWsrdBCeVjS7sz/SB9EJAgl9ijOnOgpt8IM=;
-        h=Date:Subject:To:References:From:In-Reply-To;
-        b=cjlEMu5KXVIhDxBUD+Sjna5+nc+4G8L5ivvJzO/jbd2hYZJpHo6U8lohN7JtSv0yu
-         W9BTeMcVvqi6X3YR+KQgkAhqu3zkgzE906aBEsqi64oD8OWYYDzAVbo2a1zN4YrV/u
-         ejCnKap4nUCvHLzosSwzrsLs5ZWXCJyfPH/AJzbU=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 27UA1Poj115432
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 30 Aug 2022 05:01:25 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 30
- Aug 2022 05:01:24 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Tue, 30 Aug 2022 05:01:24 -0500
-Received: from [172.24.145.136] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 27UA1L0G020617;
-        Tue, 30 Aug 2022 05:01:22 -0500
-Message-ID: <c6285157-480d-d8f6-f11f-25604455ece0@ti.com>
-Date:   Tue, 30 Aug 2022 15:31:21 +0530
+        with ESMTP id S229827AbiH3KGA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 06:06:00 -0400
+Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AB6BF1B59;
+        Tue, 30 Aug 2022 03:03:14 -0700 (PDT)
+Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-33dba2693d0so259618567b3.12;
+        Tue, 30 Aug 2022 03:03:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=I3uyFklCX86QnaO4FGwtK3r174JBbykuqGUsbUF86CM=;
+        b=SvE6u95A8KIYBCs4xKxTiCYBbxBSN2iF5GZ9kH5C/9wkg0aMPTTH37wmp6hMOIWLtS
+         kC/9M7nTr3ZMa29TCkbg8BVblGpxJtPFxhnW8FJqUavlqEUtwodde3Xio4iCYWBbiz+z
+         hHvwesFhf9khHthd7cskM2WeM28No/t0xUfgmB4T+KGuP5CQTrgnZvlIHI7T9gdPywIU
+         tdb0UkPXOLOJwSGT6n2VUf/sjEKB0/gcO6ewRhMieGfTGS2g1d0Tl8nqGkj44st+zkfF
+         f3/s9my62nvIu2qVuPTxTwzHqj5p7ZazPXEyDGE/e08LSjCIVVwpX0hJFmgu9qKGUShC
+         NX8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=I3uyFklCX86QnaO4FGwtK3r174JBbykuqGUsbUF86CM=;
+        b=5RSdjygaB7xHVzgbopVulnnX5DmxLEc7cdUjHwN2zTnkZfRW7EKiVXjZZLR0eh9SCi
+         BmRclojWmrkTnRpbFrcHNKgWCAAR/hvE38XwgbxMpYsewja/OiRa9r6kNv8Z8YUxgfMS
+         3JYtzkjWC7GlV8jGXrUG4I1EK4Cg0npUmqZymUaRiOybamuop677VyPhEsvZRmJQaE+G
+         10nBych+G+11wpy6UjhIwxR7gg/PoTTIOIDS9dq/gEBGnVVQwpiWI+vTwwxjwD3qKapD
+         gqxPaAvR+vJP99ssnEzMdTgnDJ0yar3C3O24FC8yD3HX489su45y9p9WlUS6g5BYekSW
+         ssbA==
+X-Gm-Message-State: ACgBeo1Xttp4BuIx7QEZm2MBYAg2uizqCeZe2TxvxKDy5P4MTIHnglS1
+        c9apbUwTI3uM+bKmkQuDrp4+CiVDalY786gLJSI=
+X-Google-Smtp-Source: AA6agR7cJuSH4etKCu9hKCZHGR2bD5vDU9CYpMir88OlfN8Q5rHi5hJI+n41bex3eVce9XadXKx3EOprlFLuWLXffl4=
+X-Received: by 2002:a05:6902:1146:b0:699:ba1f:8934 with SMTP id
+ p6-20020a056902114600b00699ba1f8934mr10959552ybu.354.1661853792903; Tue, 30
+ Aug 2022 03:03:12 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v2 3/4] arm64: dts: ti: k3-am65-main: Do not exclusively
- claim SA2UL
-Content-Language: en-US
-To:     Andrew Davis <afd@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+References: <20220829215816.6206-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <e455ebd7-7949-47d6-5f9b-9869dfdd601d@linaro.org>
+In-Reply-To: <e455ebd7-7949-47d6-5f9b-9869dfdd601d@linaro.org>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Tue, 30 Aug 2022 11:02:46 +0100
+Message-ID: <CA+V-a8so2GYf5PZAPmCzyZayYXVqnVZ7LBLbb-WUqSeWvVX_vA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: display: bridge: renesas,dw-hdmi: Fix
+ 'unevaluatedProperties' warnings
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20220823001136.10944-1-afd@ti.com>
- <20220823001136.10944-3-afd@ti.com>
-From:   Jayesh Choudhary <j-choudhary@ti.com>
-In-Reply-To: <20220823001136.10944-3-afd@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,31 +83,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Krzysztof,
 
+Thank you for the review.
 
-On 23/08/22 05:41, Andrew Davis wrote:
-> The SA2UL hardware is also used by SYSFW and OP-TEE. It should be
-> requested using the shared TI-SCI flags instead of the exclusive
-> flags or the request will fail.
-> 
-> Signed-off-by: Andrew Davis <afd@ti.com>
-> ---
->   arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> index 165f53bd058b..4005a73cfea9 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> @@ -112,7 +112,7 @@ main_uart2: serial@2820000 {
->   	crypto: crypto@4e00000 {
->   		compatible = "ti,am654-sa2ul";
->   		reg = <0x0 0x4e00000 0x0 0x1200>;
-> -		power-domains = <&k3_pds 136 TI_SCI_PD_EXCLUSIVE>;
-> +		power-domains = <&k3_pds 136 TI_SCI_PD_SHARED>;
->   		#address-cells = <2>;
->   		#size-cells = <2>;
->   		ranges = <0x0 0x04e00000 0x00 0x04e00000 0x0 0x30000>;
+On Tue, Aug 30, 2022 at 10:23 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 30/08/2022 00:58, Lad Prabhakar wrote:
+> > With 'unevaluatedProperties' support implemented, there's a number of
+> > warnings when running dtbs_check:
+> >
+> > arch/arm64/boot/dts/renesas/r8a774b1-hihope-rzg2n-rev2-ex-idk-1110wr.dtb: hdmi@fead0000: Unevaluated properties are not allowed ('resets' was unexpected)
+> >       From schema: Documentation/devicetree/bindings/display/bridge/renesas,dw-hdmi.yaml
+> >
+> > The main problem is that SoC DTSI's are including resets property, whereas
+> > the renesas,dw-hdmi.yaml has 'unevaluatedProperties: false'. So just add
+> > optional resets property to the binding.
+>
+> This is not main problem. I already commented on two of your similar
+> patches, so same applies here. Please describe real problem.
+>
+Sure will do that and send a v2 (and also for the reset of the patches).
 
-Reviewed-by: Jayesh Choudhary <j-choudhary@ti.com>
-
+Cheers,
+Prabhakar
