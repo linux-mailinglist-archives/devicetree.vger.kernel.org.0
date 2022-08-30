@@ -2,72 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E2CA75A5FAF
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 11:45:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1CE35A5FBC
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 11:47:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230338AbiH3JpK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 05:45:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46484 "EHLO
+        id S229513AbiH3JrC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 05:47:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230223AbiH3JpH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 05:45:07 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 898A81FCD0
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 02:45:03 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id x10so10737083ljq.4
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 02:45:03 -0700 (PDT)
+        with ESMTP id S229646AbiH3JrA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 05:47:00 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37811A571B
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 02:46:57 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id z6so14734464lfu.9
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 02:46:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=N4LheGfogZwAoz4Rv/ngvYZ5qgXotWdDTgd++DbmjE4=;
-        b=yMR844Oy9Ze/yRFGOhG2S6WZEqMvDZZHFlHeR7wdxfjeHJF+5QfyF0dGuHL6yp4fOv
-         rdvMTpaNfQOfuWbxl/n8XZtzDwbHrmQL4gAMgF5UsOQAskIfHOw20OGjIwCE9Fa+DlHK
-         DeKJg7zSZ220l4BZbyyAbdYz/9b/pIjRCMPTRWI0NHt9eTAOlnRwcf52BjFzEi6noU2L
-         9cF1NkvS72kEfqAO9URotrJ4ea9X7yvpIEzevtnnb0t0h+vMwo6wSKE8uw8s5BLFUCEn
-         p91Bb0oubgM6vyWgbqwV1uY9oeSlN2se9vAVKn5rjiFcdjWyRWsxxsNLQKnutsIFuPBI
-         qewQ==
+        bh=ARnBgTXJwj6DmQt+EzTT3aM9SP3zEs9cq/60/7HSjsk=;
+        b=SlkCjvpLZ7rwqWZjZ83/UodBCExhC9lqb5k0nl4bFW/y6HKNX7q+hNL+CwANK2QPHQ
+         Gr6yM7ON2sXs1mzTaBd/aVvPsMH5qSS4QLOERxRONxemGRvu0XsYMOUV5FVbtREPhxee
+         gYd0fb0IOePEX9EK3tepxbFdMhpXMB4QUCpkbEHosiju27IBSK4r+b3fAymsMwUpQXZs
+         U22Xy1Ris3KbVFgDocctFjBRG1q7A4yclKZYzA7nFvuhKwlueLxt2q/9+ucQC/hRH7do
+         BFglFL9dLkWfw03nY/Fy2fZCl5RyQDw3qia2EGJF39UhOZ1SyFrdWQnljF725E/Y+okO
+         FCGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=N4LheGfogZwAoz4Rv/ngvYZ5qgXotWdDTgd++DbmjE4=;
-        b=GpRHD5hfSU/XA91LKT2te51xpaMN3NFlFCwis4HRSSxh8/dl2hWWubP/eupiiQnyEX
-         dcaUdXaV7talfV6mxAXDc/dvvOyz1JvkeKWXaWn8bl2UqRSKc/XOwREYhgviX4uEDwtO
-         LTHOg08lZmdKplXdPKXBvwI+vSs/2WH4aX1ODU/69KeD509+vM3HYStA25/8s6h0BGWp
-         EWzO6c55fo8f73ZRbfbVb0PVPv4f8xNc4Ak2T/MveVcfzsB7+niUHfCgc6MOt5Iedguf
-         fi7NdfK6yYX2TeTdfZyCVXOB9wy8iFWHjVUaLymhtWafd4Ctac+05S3D89IODyKqyCQc
-         sHyQ==
-X-Gm-Message-State: ACgBeo1t4TaqA49mSkyIKbX7eV6K9HdAw9wIHXFlmgCP6xvau9OmIP/v
-        0ZMOPdGA3zGqe9y+aMW2eDV+ESHvETZPJ0YIgdc=
-X-Google-Smtp-Source: AA6agR4jn6kVx3JsJKuIGOtqSpsDxFV6XeVfQe6nNwKELDQnsJHDnsIDeT+6VZnDMYThKJJoXi2+FA==
-X-Received: by 2002:a05:651c:88e:b0:261:b5e5:8622 with SMTP id d14-20020a05651c088e00b00261b5e58622mr6375100ljq.99.1661852701925;
-        Tue, 30 Aug 2022 02:45:01 -0700 (PDT)
+        bh=ARnBgTXJwj6DmQt+EzTT3aM9SP3zEs9cq/60/7HSjsk=;
+        b=pcmsBxZ4TSljtLlhXMEhJhj5bQq+HRGVQrhvYVxYhisRJlfR9maQBBqFJaN+lpqErE
+         B7scifGe19WACOxKnWgBkeB/cZyxtHJKmLxCqjTO7XZasdJzLrVrf9u3HYJAJtGkmOcC
+         FqBNZI4hnKpdRsaEZsYGqA6DOVIA89pCNfcq3J/ARHW1egmX26/CItBOABGUD6/Z4JST
+         N9fD06gQJFeHrFasvxFheVEtGdaJMGv1fjB1TBFPQmeet8c6/YLgprOhpV6E4Z3UknyG
+         ILW3GvJf7h9x1naW3BJ5gn2CDJqBgKI3BbjCk8AQrAv4hab5BUAxWdAJ/05fbIN9dn0g
+         7U4w==
+X-Gm-Message-State: ACgBeo1568QZRGaW+HSwrwGwrepL26TDq9xaxUAvrDuqrHero5Wi7FFh
+        zUk4+Dm7H+UV+/9xgdJDboylzQ==
+X-Google-Smtp-Source: AA6agR4e7vv3rYEHPAmYlgqT4CHZnZmiHX++FxH0tia4po2x7kGbWA0tJQKo9IcRCnmCChpFc+zVBA==
+X-Received: by 2002:a05:6512:328d:b0:494:8238:1c with SMTP id p13-20020a056512328d00b004948238001cmr177671lfe.416.1661852816203;
+        Tue, 30 Aug 2022 02:46:56 -0700 (PDT)
 Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id f10-20020a056512360a00b004946e72711bsm552290lfs.76.2022.08.30.02.44.59
+        by smtp.gmail.com with ESMTPSA id f14-20020a05651c02ce00b00261c30d71e5sm1637304ljo.67.2022.08.30.02.46.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Aug 2022 02:45:00 -0700 (PDT)
-Message-ID: <9bbce65a-b955-cc76-ebba-266675c95964@linaro.org>
-Date:   Tue, 30 Aug 2022 12:44:59 +0300
+        Tue, 30 Aug 2022 02:46:55 -0700 (PDT)
+Message-ID: <b6dae743-8910-1cc2-9b3f-382c6a926b4c@linaro.org>
+Date:   Tue, 30 Aug 2022 12:46:53 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v1 1/2] doc: dt-binding: mxs-usb-phy: fix
- fsl,tx-cal-45-dn-ohms max and min value
+Subject: Re: [PATCH v4 4/6] mfd: drivers: Add TI TPS65219 PMIC support
 Content-Language: en-US
-To:     Frank Li <Frank.Li@nxp.com>, kishon@ti.com, vkoul@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, balbi@kernel.org,
-        gregkh@linuxfoundation.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        imx@lists.linux.dev
-References: <20220829153124.2791210-1-Frank.Li@nxp.com>
+To:     Markus Schneider-Pargmann <msp@baylibre.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Lee Jones <lee@kernel.org>, Tony Lindgren <tony@atomide.com>,
+        nm@ti.com, kristo@kernel.org
+Cc:     Jerome Neanne <jneanne@baylibre.com>, khilman@baylibre.com,
+        narmstrong@baylibre.com, j-keerthy@ti.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
+        linux-omap@vger.kernel.org
+References: <20220825150224.826258-1-msp@baylibre.com>
+ <20220825150224.826258-5-msp@baylibre.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220829153124.2791210-1-Frank.Li@nxp.com>
+In-Reply-To: <20220825150224.826258-5-msp@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,23 +87,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/08/2022 18:31, Frank Li wrote:
-> According to spec:
-> 	0000 +19.95%
-> 	....
-> 	1111 -21.68%
+On 25/08/2022 18:02, Markus Schneider-Pargmann wrote:
+> From: Jerome Neanne <jneanne@baylibre.com>
 > 
-> 45 * (1 + 19.95%) = 53.9775
-> 45 * (1 - 21.68%) = 35.244
+> The TPS65219 is a power management IC PMIC designed to supply a wide
+> range of SoCs in both portable and stationary applications. Any SoC can
+> control TPS65219 over a standard I2C interface.
 > 
-> Chanege fsl,tx-cal-45-dn-ohms and fsl,tx-cal-45-dp-ohms range to [35-54]
-> from [30-55]
+> It contains the following components:
+> - Regulators.
+> - Over Temperature warning and Shut down.
+> - GPIOs
+> - Multi Function Pins (MFP)
+> - power-button
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> This patch adds support for tps65219 PMIC. At this time only
+> the functionalities listed below are made available:
+> 
+> - Regulators probe and functionalities
+> - warm and cold reset support
+> - SW shutdown support
+> - Regulator warnings via IRQs
+> - Power-button via IRQ
+> 
+> Signed-off-by: Jerome Neanne <jneanne@baylibre.com>
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> ---
+> 
+> Notes:
+>     Changes in v4:
+>     - Removed unused fields from struct tps65219
+>     - Added description for the fields in struct tps65219
+>     - Fixed coding style
+>     - Squash all patches into one mfd patch
+>     - Call devm_mfd_add_devices multiple times to clean up the code
+>     - Remove debug prints and fixup other messages
+>     - Use new_probe instead of probe
+> 
+>  MAINTAINERS                  |   1 +
+>  drivers/mfd/Kconfig          |  14 ++
+>  drivers/mfd/Makefile         |   1 +
+>  drivers/mfd/tps65219.c       | 357 +++++++++++++++++++++++++++++++++++
+>  include/linux/mfd/tps65219.h | 345 +++++++++++++++++++++++++++++++++
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+Use subject prefixes matching the subsystem (git log --oneline -- ...).
 
 Best regards,
 Krzysztof
