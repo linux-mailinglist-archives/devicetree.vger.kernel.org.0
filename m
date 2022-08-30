@@ -2,129 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90A1C5A64E9
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 15:37:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EC8E5A6579
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 15:50:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230204AbiH3Nhr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 09:37:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40782 "EHLO
+        id S231201AbiH3Nti (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 09:49:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230177AbiH3Nhq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 09:37:46 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A215EDF654
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 06:37:44 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id bs25so14286759wrb.2
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 06:37:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=eJwvPnyxYM+rkWN/B5T3u9GVEhfio+TrUX3WU5XcQn0=;
-        b=eJ8Q9S1/vCT7cijJVAWN8HR5xnr4XG/bT9gfNLUDKdyxQxPABjo+s4Y6pUxKK4Tl4O
-         jPc2/lY4v59LZSUGa9aKxBb01w/WAWEog2r8xqVxzlhi7sYloua5sSMoo8h1Ju3qINN/
-         3avwaD6Hws/C4g+njGzPWYxF+RusS9DNMyl9nt2y5ZJnNdOG5bGLLNdGTXWMMHpi5f2E
-         IIjR87c/vXSr0+OPP2cwmM1pzjUy5FHA+vG4pvTZWF9oCnm1SdWfv32yZASc1o+ERboZ
-         XMrCHtZPBtVNx/gkiYGlNPnexb2ABfjXNmkHIEWQAhFq4YntlmA92bdCXkafb7r0LXVd
-         7Eiw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=eJwvPnyxYM+rkWN/B5T3u9GVEhfio+TrUX3WU5XcQn0=;
-        b=XSv25iFH83lm0NDxEs3Sz31cNEm1ccHor6n4TDn1u/Yy6o4lw6YM3mDrGogaKkUUG0
-         UGC0VzpH9QIOcD/QKn47U90HRQuasir4XEamI6aMNCG409Pcs09Xx1RvANapeELCmfbt
-         bIat///diXJzdAT15Hy9bkNw7nmFZl/EqtMKnP7z4AeOyY1htOwHW6J7eA/Wd+tjiZWl
-         yANZuvgTXmcnvz1hMAHkPZYljL7kjEL+59byQjlNEH0QULy2bW8rL4X27LPQpje2ilJy
-         te8iaOoYQZfkrMX/HtSbMcaw2cXHRup38/WD5JZGuSRZ+naQffHGmTyKLBjNg6QymLLF
-         3LBA==
-X-Gm-Message-State: ACgBeo0fKp4Xd7Zuf75tp3qwPkUdsliXHjYhSi41rgU9BLWSeY477oE5
-        QNKRbVVQ2n/mvaHffy9XMamDCQ==
-X-Google-Smtp-Source: AA6agR4QHq093VZ3/eQb0FJDYlUt9A1Mn1xHd/D1qdIE2cMIfLfOMQUBjFLqXGMVXyoshwbgON+EAQ==
-X-Received: by 2002:adf:dec9:0:b0:226:e033:c048 with SMTP id i9-20020adfdec9000000b00226e033c048mr3225813wrn.577.1661866663228;
-        Tue, 30 Aug 2022 06:37:43 -0700 (PDT)
-Received: from [192.168.86.238] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
-        by smtp.googlemail.com with ESMTPSA id n8-20020a5d4848000000b00226d01a4635sm9658965wrs.35.2022.08.30.06.37.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Aug 2022 06:37:42 -0700 (PDT)
-Message-ID: <791ea3b6-c326-9e71-e23b-93206e305c85@linaro.org>
-Date:   Tue, 30 Aug 2022 14:37:41 +0100
+        with ESMTP id S231451AbiH3NtC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 09:49:02 -0400
+Received: from 7of9.schinagl.nl (7of9.connected.by.freedominter.net [185.238.129.13])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5140B1037F5;
+        Tue, 30 Aug 2022 06:46:41 -0700 (PDT)
+Received: from [10.2.12.24] (unknown [10.2.12.24])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by 7of9.schinagl.nl (Postfix) with ESMTPSA id 5C7DE186AE54;
+        Tue, 30 Aug 2022 15:40:37 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=schinagl.nl; s=7of9;
+        t=1661866837; bh=QkP2rkDehwBSgpkLqWhg0SK62w0hxaRkEmx2wFzDvpY=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To;
+        b=f6ABrVy6bO3nlMdiBhuXoDGeIXTsdsKNSqq+xT3bRsvVp39Vb+AezWjHr2IjF9MDa
+         +wX7JY3ODlzt0oXnXVBkxEX/bkM1S4OUK0HvgISfKki9AiJSiYbkUi5egAJCld+PCp
+         2iJnOSari/WzosWMx/jJWLHcAvX9kgU2vVvoEnSA=
+Message-ID: <f9e6e452-0e00-785c-1f4f-43f7754ab720@schinagl.nl>
+Date:   Tue, 30 Aug 2022 15:40:36 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v1 00/14] nvmem: core: introduce NVMEM layouts
+ Thunderbird/91.12.0
+Subject: Re: [PATCHv2 resend] dt-bindings: leds: Expand LED_COLOR_ID
+ definitions
 Content-Language: en-US
-To:     Michael Walle <michael@walle.cc>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        netdev@vger.kernel.org, Ahmad Fatoum <a.fatoum@pengutronix.de>
-References: <20220825214423.903672-1-michael@walle.cc>
- <768ff63a-54f5-9cde-e888-206cdf018df3@milecki.pl>
- <267821eee5dcab79fd0ecebe0d9f8b0c@walle.cc>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <267821eee5dcab79fd0ecebe0d9f8b0c@walle.cc>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Baolin Wang <baolin.wang@linaro.org>,
+        Daniel Mack <daniel@zonque.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Oleh Kravchenko <oleg@kaa.org.ua>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Simon Shields <simon@lineageos.org>,
+        Olliver Schinagl <oliver+list@schinagl.nl>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220819152904.433514-1-oliver@schinagl.nl>
+ <44eec926-b7d0-f8eb-f944-d28e3b35257a@gmail.com>
+From:   Olliver Schinagl <oliver@schinagl.nl>
+In-Reply-To: <44eec926-b7d0-f8eb-f944-d28e3b35257a@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks Michael for the work.
-
-On 29/08/2022 09:22, Michael Walle wrote:
-> 
->> One thing I believe you need to handle is replacing "cell_post_process"
->> callback with your layout thing.
+On 30-08-2022 12:28, Jacek Anaszewski wrote:
+> Hi Oliver,
+>
+> On 8/19/22 17:29, Olliver Schinagl wrote:
+>> In commit 853a78a7d6c7 (dt-bindings: leds: Add LED_COLOR_ID definitions,
+>> Sun Jun 9 20:19:04 2019 +0200) the most basic color definitions where
+>> added. However, there's a little more very common LED colors.
 >>
->> I find it confusing to have
->> 1. cell_post_process() CB at NVMEM device level
->> 2. post_process() CB at NVMEM cell level
-> 
-> What is wrong with having a callback at both levels?
+>> While the documentation states 'add what is missing', engineers tend to
+>> be lazy and will just use what currently exists. So this patch will take
+>> (a) list from online retailers [0], [1], [2] and use the common LED colors
+>> from there, this being reasonable as this is what is currently available to
+>> purchase.
+>>
+>> Note, that LIME seems to be the modern take to 'Yellow-green' or
+>> 'Yellowish-green' from some older datasheets.
+>>
+>> [0]: https://www.digikey.com/en/products/filter/led-lighting-color/125
+>> [1]: https://eu.mouser.com/c/optoelectronics/led-lighting/led-emitters/standard-leds-smd
+>> [2]: https://nl.farnell.com/en-NL/c/optoelectronics-displays/led-products/standard-single-colour-leds-under-75ma
+>>
+>> Signed-off-by: Olliver Schinagl <oliver@schinagl.nl>
+>> ---
+>>
+>> Changes since v1: Unbreak existing definitions.
+>>
+>>
+>>    include/dt-bindings/leds/common.h | 28 ++++++++++++++++------------
+>>    1 file changed, 16 insertions(+), 12 deletions(-)
+>>
+>> diff --git a/include/dt-bindings/leds/common.h b/include/dt-bindings/leds/common.h
+>> index 3be89a7c20a9..04bf94523ea3 100644
+>> --- a/include/dt-bindings/leds/common.h
+>> +++ b/include/dt-bindings/leds/common.h
+>> @@ -22,18 +22,22 @@
+>>    #define LEDS_BOOST_FIXED	2
+>>    
+>>    /* Standard LED colors */
+>> -#define LED_COLOR_ID_WHITE	0
+>> -#define LED_COLOR_ID_RED	1
+>> -#define LED_COLOR_ID_GREEN	2
+>> -#define LED_COLOR_ID_BLUE	3
+>> -#define LED_COLOR_ID_AMBER	4
+>> -#define LED_COLOR_ID_VIOLET	5
+>> -#define LED_COLOR_ID_YELLOW	6
+>> -#define LED_COLOR_ID_IR		7
+>> -#define LED_COLOR_ID_MULTI	8	/* For multicolor LEDs */
+>> -#define LED_COLOR_ID_RGB	9	/* For multicolor LEDs that can do arbitrary color,
+>> -					   so this would include RGBW and similar */
+>> -#define LED_COLOR_ID_MAX	10
+>> +#define LED_COLOR_ID_WHITE      0
+>> +#define LED_COLOR_ID_RED        1
+>> +#define LED_COLOR_ID_GREEN      2
+>> +#define LED_COLOR_ID_BLUE       3
+>> +#define LED_COLOR_ID_AMBER      4
+>> +#define LED_COLOR_ID_VIOLET     5
+>> +#define LED_COLOR_ID_YELLOW     6
+>> +#define LED_COLOR_ID_IR         7
+>> +#define LED_COLOR_ID_MULTI      8 /* For multicolor LEDs */
+>> +#define LED_COLOR_ID_RGB        9 /* For multicolor LEDs that can do arbitrary color, including RGBW etc. */
+>> +#define LED_COLOR_ID_PUPRPLE   10
+> typo - as already mentioned
+Sorry, I did not receive your earlier mail it seems, or it's not showing 
+up in the thread; well caught!
+>
+>> +#define LED_COLOR_ID_ORANGE    11
+>> +#define LED_COLOR_ID_PINK      12
+>> +#define LED_COLOR_ID_CYAN      13
+>> +#define LED_COLOR_ID_LIME      14
+>> +#define LED_COLOR_ID_MAX       15
+>>    
+>>    /* Standard LED functions */
+>>    /* Keyboard LEDs, usually it would be input4::capslock etc. */
+> And it seems that change in spacing between definition name and value
+> is not required, is it? Without that change, it would be easier to
+> notice what really changes here.
+>
+Yes, you are correct, I initially had LimeGreen there, which made it 
+longer, as I later found out, that LimeGreen could actually just be Lime 
+as much, I forgot to 're-shorten it. The fixed diff for v4 does look as 
+expected! thanks for that one.
 
-we should converge this tbh, its more than one code paths to deal with 
-similar usecases.
-
-I have put down some thoughts in "[PATCH v1 06/14] nvmem: core: 
-introduce NVMEM layouts" and "[PATCH v1 07/14] nvmem: core: add per-cell 
-post processing" review.
-
-
---srini
-> 
-> Granted, in this particular case (it is just used at one place), I still
-> think that it is the wrong approach to add this transformation in the
-> driver (in this particular case). The driver is supposed to give you
-> access to the SoC's fuse box, but it will magically change the content
-> of a cell if the nvmem consumer named this cell "mac-address" (which
-> you also found confusing the last time and I do too!).
-> 
-> The driver itself doesn't add any cells on its own, so I cannot register
-> a .post_process hook there. Therefore, you'd need that post_process hook
-> on every cell, which is equivalent to have a post_process hook at
-> device level.
-> 
-> Unless you have a better idea. I'll leave that up to NXP to fix that (or
-> leave it like that).
-> 
-> -michael
