@@ -2,158 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D66D35A5921
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 04:08:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B917E5A5950
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 04:22:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229602AbiH3CIg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Aug 2022 22:08:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50140 "EHLO
+        id S229925AbiH3CW4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Aug 2022 22:22:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229729AbiH3CIb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 22:08:31 -0400
-Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B405E85FE8;
-        Mon, 29 Aug 2022 19:08:30 -0700 (PDT)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
-        by mailout.nyi.internal (Postfix) with ESMTP id 2035A5C01A0;
-        Mon, 29 Aug 2022 22:08:30 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute2.internal (MEProxy); Mon, 29 Aug 2022 22:08:30 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm2; t=1661825310; x=1661911710; bh=Fk
-        X4dRzih+XcP2CW0zREdq7aeZbkdtKNx9OgLkoxSes=; b=rDBaoXhcqQEA0OpLaU
-        QEw9B3LnbTvWO9/ZUvZYc8W9lDDhg/ih/e/ivxppFCVF6z3HzzqtIB7Ae5jCKQyW
-        +gBwT0dPYWg2QMIsIBNlZ3azbmNuUjyCu99CzbbuYp2BwckmaVNTOdZizGte+QP6
-        sVzYBXUoMwG3YoZ8CBjiXULQcC2hguDYFqfVAdmKDX52Z5+aB8VGa3ju7kT7NcvY
-        5yRcpuxVVfd2kfoxewhhcc8REvcb/+ReYSETJbuN+Ny43hdX/7dBABKODykD47ya
-        CsUSxbd2w6hB/uTSyJR7puLCINeRHKgJ6t24dYZeE0ADh0Yb0JB9C3faS3QdCeUX
-        NE2Q==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; t=1661825310; x=1661911710; bh=FkX4dRzih+XcP
-        2CW0zREdq7aeZbkdtKNx9OgLkoxSes=; b=o9QEkRMFE6bjjUAAq21RkekJNXQgX
-        z79Rw1D+s2kVQvPOf2rIlhOEMCLfC10+BVjO+FnAp8KfrR/r0Od1cd+pl4CMbwLk
-        jTF/W1m19LX17escy+pfmzJwenSXncdLQDNMletfBbvUXTsWbZtzGzCc6olPZBNJ
-        GKzQgVN+RfPSMhBzOZwBMnfTM3AX705KOTo6i8+88zmuyeQAcTmRlm6Omq9Yb3gj
-        ieNx6t/Q8Br8frwrOuzfTMsIAOFd7T3MOxMy4ywyiwheru8YkR6ZQfnyJgSNhZkE
-        XxmF443zQjijim72zfpfJteAr/3rWh7OOhhPh9QGRIK/V12eoB8KAPQ5Q==
-X-ME-Sender: <xms:HXENYxmVhE1xrC9W_uJQfN5WKIkH2ipFO3Wn9dyoBfXXyUbclwOJBw>
-    <xme:HXENY80Naoi1qiLBMXsH-Kwd3e7cyTWUrJYFu-Fd-r--kh31ijEBd_FqJ_xRQA7_h
-    Rbh4Hvs-pC3cJUgeQ>
-X-ME-Received: <xmr:HXENY3pm6tNhGWV3n3xip_Eb59UZ7D6Cz08076Rhw_QvxYb6ahLLWLWp1mLoCY9GoJjjJA1kRQLnOiaUF9P2ReTHvHpFs-AA-OAHf0xR41xUV6H4cONtgAG22CuQ1qfHRwVz1g>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdekvddgheehucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvvefufffkofgjfhgggfestdekredtredttdenucfhrhhomhepufgrmhhu
-    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
-    ftrfgrthhtvghrnhepudekteeuudehtdelteevgfduvddvjefhfedulefgudevgeeghefg
-    udefiedtveetnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
-    homhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
-X-ME-Proxy: <xmx:HXENYxmqOlwdwQ3VDTCkTsDN5zT2jq-CX0-JsK21mj0g4egJRlzYJA>
-    <xmx:HXENY_2mHLPLwkUMkUcBHgitSvZgeCamcRocfPv9ja7-Qk1X0dtjlQ>
-    <xmx:HXENYwsEXdnm_lZKbDyH8ctIiC5v6vjXS1C82txGaDebbw9uPaMuLg>
-    <xmx:HnENYxyDonDBi3IZOj6K0-MOkq4iov0ZvBiO_62MlQFNGCFSSLDg-w>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 29 Aug 2022 22:08:29 -0400 (EDT)
-From:   Samuel Holland <samuel@sholland.org>
-To:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc:     Samuel Holland <samuel@sholland.org>,
-        Gregory CLEMENT <gregory.clement@bootlin.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev
-Subject: [PATCH 3/3] arm64: dts: allwinner: a100: Add I2C DMA requests
-Date:   Mon, 29 Aug 2022 21:08:24 -0500
-Message-Id: <20220830020824.62288-4-samuel@sholland.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220830020824.62288-1-samuel@sholland.org>
-References: <20220830020824.62288-1-samuel@sholland.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S229831AbiH3CW4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Aug 2022 22:22:56 -0400
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFF259A9E5;
+        Mon, 29 Aug 2022 19:22:54 -0700 (PDT)
+Received: by mail-pl1-x633.google.com with SMTP id p18so9735688plr.8;
+        Mon, 29 Aug 2022 19:22:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:subject:cc:to:from:from:to:cc;
+        bh=/6PPh9l5vsaOt8qDO3Ez01p7E33dQteARC0QV6D3NwI=;
+        b=OYj2omWdT1HXZUp1tH7NwgUMRFIv2F4Eo+t7nMRMgtt4+ZOU5zWb8yRWVlzzERtvta
+         QDcY0X8IHlNtdhHfPfpmzTnuVvn+c8qqjedTwPA/C3uJ+Pc0g+dizYe2eX31uIh+/rNx
+         g49BjoFLhLXXVEjtiQIHqA4ZZxzgsqtiPfHifHYVhUSliZXlUlmOuOd9Sui5Ftpj5e1L
+         0TrcMLds/ScYVcVS8aDKI0bnQUgfK9k8mAqDx5iQkmflV8OUYnt8KafY6wnuiUPLS3/d
+         8i3XucImgitH8Eiy2+BhnD0V7/4nHnnf55+B3J4exmKcLwDu8SQ3hzOoNBzeSSOeWqiq
+         0wnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
+        bh=/6PPh9l5vsaOt8qDO3Ez01p7E33dQteARC0QV6D3NwI=;
+        b=suNzU0vVRTv8sALupF9LnadKHgRU0SHNY4P1w2GgBs6eiuyQvMfrojXppcnF9Qf9Gp
+         41eXsIra+rCgJdwTQ4k4zATiMhqeMVIcwfLAPBVpFweFDa8mtHK07kYineOfxvfpW0z8
+         TCwGkJqPnRH6O347NalOMGrEJOThivNp0bwgn6Qgen++bR5iNsOPCls/ZylrbxaT6qrJ
+         rPdvvGJIqD01ScWlxy+TlRR8QMbcrPtIPZQDZ9+3DSfFaOnfbYc9dgM2Ho/PWEtOIIZ8
+         TAQwzGSgC82/9cesn34lkP/g1+VZkhXOv1XMMTY3fYoy1ibkIYF0kOXoKMPR6z0cGpXw
+         oWqQ==
+X-Gm-Message-State: ACgBeo2UFbEvPqvCW6eYPzK8+1Qh2BC+pJIs139zr/93cVeG68VYRF1J
+        /F5tq+2pesu6dTiiBQQZJPW6DHzQjR6t4A==
+X-Google-Smtp-Source: AA6agR6qaMqZKVUaPCzsKu+BoWnKtLk5qUQv9370Sb7fpu7MQNjYpNaybN34miguWBt8kG6Jp1RB/w==
+X-Received: by 2002:a17:90a:cf8c:b0:1fd:7783:c340 with SMTP id i12-20020a17090acf8c00b001fd7783c340mr17244081pju.16.1661826173725;
+        Mon, 29 Aug 2022 19:22:53 -0700 (PDT)
+Received: from localhost.localdomain (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id c78-20020a621c51000000b00536531536adsm7916841pfc.47.2022.08.29.19.22.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Aug 2022 19:22:52 -0700 (PDT)
+From:   Marvin Lin <milkfafa@gmail.com>
+To:     linux-edac@vger.kernel.org, rric@kernel.org, james.morse@arm.com,
+        tony.luck@intel.com, mchehab@kernel.org, bp@alien8.de,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, openbmc@lists.ozlabs.org,
+        benjaminfair@google.com, yuenn@google.com, venture@google.com,
+        KWLIU@nuvoton.com, YSCHU@nuvoton.com, JJLIU0@nuvoton.com,
+        KFTING@nuvoton.com, avifishman70@gmail.com, tmaimon77@gmail.com,
+        tali.perry1@gmail.com, ctcchien@nuvoton.com, kflin@nuvoton.com,
+        Marvin Lin <milkfafa@gmail.com>
+Subject: [PATCH v14 0/3] EDAC/nuvoton: Add NPCM memory controller driver
+Date:   Tue, 30 Aug 2022 10:22:35 +0800
+Message-Id: <20220830022238.28379-1-milkfafa@gmail.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The I2C controllers in the A100 SoC are all connected to the DMA engine.
+This patch series add DTS node, dt-bindings document and driver for memory
+controller present on Nuvoton NPCM SoCs.
 
-Signed-off-by: Samuel Holland <samuel@sholland.org>
----
+The memory controller supports single bit error correction and double bit
+error detection (in-line ECC in which a section 1/8th of the memory device
+used to store data is used for ECC storage).
 
- arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+Changes in v14:
+  - Fix compile warnings
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
-index 5453a3bb7d81..97e3e6907acd 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
-@@ -221,6 +221,8 @@ i2c0: i2c@5002000 {
- 			interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&ccu CLK_BUS_I2C0>;
- 			resets = <&ccu RST_BUS_I2C0>;
-+			dmas = <&dma 43>, <&dma 43>;
-+			dma-names = "rx", "tx";
- 			status = "disabled";
- 			#address-cells = <1>;
- 			#size-cells = <0>;
-@@ -234,6 +236,8 @@ i2c1: i2c@5002400 {
- 			interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&ccu CLK_BUS_I2C1>;
- 			resets = <&ccu RST_BUS_I2C1>;
-+			dmas = <&dma 44>, <&dma 44>;
-+			dma-names = "rx", "tx";
- 			status = "disabled";
- 			#address-cells = <1>;
- 			#size-cells = <0>;
-@@ -247,6 +251,8 @@ i2c2: i2c@5002800 {
- 			interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&ccu CLK_BUS_I2C2>;
- 			resets = <&ccu RST_BUS_I2C2>;
-+			dmas = <&dma 45>, <&dma 45>;
-+			dma-names = "rx", "tx";
- 			status = "disabled";
- 			#address-cells = <1>;
- 			#size-cells = <0>;
-@@ -260,6 +266,8 @@ i2c3: i2c@5002c00 {
- 			interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&ccu CLK_BUS_I2C3>;
- 			resets = <&ccu RST_BUS_I2C3>;
-+			dmas = <&dma 46>, <&dma 46>;
-+			dma-names = "rx", "tx";
- 			status = "disabled";
- 			#address-cells = <1>;
- 			#size-cells = <0>;
-@@ -337,6 +345,8 @@ r_i2c0: i2c@7081400 {
- 			interrupts = <GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&r_ccu CLK_R_APB2_I2C0>;
- 			resets = <&r_ccu RST_R_APB2_I2C0>;
-+			dmas = <&dma 50>, <&dma 50>;
-+			dma-names = "rx", "tx";
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&r_i2c0_pins>;
- 			status = "disabled";
-@@ -352,6 +362,8 @@ r_i2c1: i2c@7081800 {
- 			interrupts = <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&r_ccu CLK_R_APB2_I2C1>;
- 			resets = <&r_ccu RST_R_APB2_I2C1>;
-+			dmas = <&dma 51>, <&dma 51>;
-+			dma-names = "rx", "tx";
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&r_i2c1_pins>;
- 			status = "disabled";
+Changes in v13:
+  - Support error injection via debugfs
+  - Fix coding style issues
+
+Marvin Lin (3):
+  arm: dts: nuvoton: Add node for NPCM memory controller
+  dt-bindings: edac: nuvoton: Add document for NPCM memory controller
+  EDAC/nuvoton: Add NPCM memory controller driver
+
+ .../edac/nuvoton,npcm-memory-controller.yaml  |  54 ++
+ MAINTAINERS                                   |   7 +
+ arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi |   7 +
+ drivers/edac/Kconfig                          |  11 +
+ drivers/edac/Makefile                         |   1 +
+ drivers/edac/npcm_edac.c                      | 516 ++++++++++++++++++
+ 6 files changed, 596 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/edac/nuvoton,npcm-memory-controller.yaml
+ create mode 100644 drivers/edac/npcm_edac.c
+
 -- 
-2.35.1
+2.17.1
 
