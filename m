@@ -2,169 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E0385A6002
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 11:59:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1D135A6008
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 12:00:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229959AbiH3J7O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 05:59:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39952 "EHLO
+        id S229868AbiH3KAf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 06:00:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230012AbiH3J6l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 05:58:41 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC3F9E9245
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 02:57:21 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id z23so7915673ljk.1
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 02:57:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=kmj0Xve7PzhuEnAE0eUuSiLK/6HmDewHaNe2a46Ej6k=;
-        b=HCSqQVG4A1ntcdR+y9sZ9YccYIvP1a++XIv91E8zg0Xl0VhOEVmqogg6gzljVnco1W
-         JKBNQBAj1g4LxlihgxmTBlEZ1Q+ExpcpBMXP3E4qWEwRP5DvcETmexHLW1zNW1H3uTdp
-         T32xbvwKt89l+cI9Cm7JZeTFN2mEG7A35zDqLfy7BUna4TsNqK/7h4wEp+5ahQWhCroy
-         bICBIQcpTtlExRWSzlAgc9ntpH+iO9cVxAH+pvbtMiDJEID0Dc0WJ30lJDITplnA1DYl
-         XdrGKAPoF1zStH/9yIxDVj0O/t7tui51WOWgfdMBKqZcjVaXgViQuv2OcDfYmQsGCm7H
-         c7qA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=kmj0Xve7PzhuEnAE0eUuSiLK/6HmDewHaNe2a46Ej6k=;
-        b=EUq3aj/58lgX+GHaTW99VDNbgGkM5YPt0iFS1jgM6Uo9r9ag5mHMUs0DFY94isw8BX
-         58mAj3SXpPO0FAa0w42OpZJVQQI4xlB0vfo8XUM+ZVLBIFl04qWJdL+kRWPTvIvPeOnJ
-         oDSD1zi8Q6LgcwUCQLJ+N+zeiN8PzPOPEusk+bK3Lnw+6BLl/mJkIWvUS4gv3mJ/r+ir
-         6C4apN8X6yM7dcYvTRBPHNmx76NLrXunPOZBEPmtR88yY4VBMapg1/OMFDWKvQxaIise
-         keu49cscNvwqnq5Ms7NiOx54cPSNwQ/C9M9XqKzjufHm52F02a2B1NNP3IGJfpvXDPJY
-         NPsg==
-X-Gm-Message-State: ACgBeo3PSL6GuuB8lUh5ZCPctp/RIjj77zM4mmADUIFs2RoLAdhA2wRR
-        lmPpnVgRtlK01D0QUfFn4w6+cg==
-X-Google-Smtp-Source: AA6agR7wR03gXVIP4KGvGUJ6C9qZaYbod0zvUoe0O3SpvH36KlmnqJ695erWFGW5JyRyQ5Q7kUDC+A==
-X-Received: by 2002:a2e:1613:0:b0:267:8c60:148f with SMTP id w19-20020a2e1613000000b002678c60148fmr576335ljd.262.1661853439179;
-        Tue, 30 Aug 2022 02:57:19 -0700 (PDT)
-Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id n25-20020a05651203f900b0048abf3a550asm1553056lfq.224.2022.08.30.02.57.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Aug 2022 02:57:18 -0700 (PDT)
-Message-ID: <323dc2e1-68fb-df0c-38b0-5af6d087248e@linaro.org>
-Date:   Tue, 30 Aug 2022 12:57:17 +0300
+        with ESMTP id S229978AbiH3J75 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 05:59:57 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE6A4E114F;
+        Tue, 30 Aug 2022 02:58:23 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 27U9vtBW095771;
+        Tue, 30 Aug 2022 04:57:55 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1661853475;
+        bh=6Q7ULugHo37nln8nzyLFaaxX9W7rkL2u1jeBIGNhYso=;
+        h=Date:Subject:To:References:From:In-Reply-To;
+        b=sEqpaMWAnIfCX1u2Oy3hJDalwxz5prIGOJTiW5bGfzq1eo3F7d6buhC0luHoBpgv3
+         PNjLxdQ+J1Q7YQcdffljGgNjrN0NDnHU0l3BjZv0Wu0kp8+qy31gT9HeUjNi1ytu6G
+         Ija0FbjpNWiRaakwxbbFGaUvNaTVC76HtrTppSno=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 27U9vtFV001580
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 30 Aug 2022 04:57:55 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 30
+ Aug 2022 04:57:54 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Tue, 30 Aug 2022 04:57:54 -0500
+Received: from [172.24.145.136] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 27U9vpMD128617;
+        Tue, 30 Aug 2022 04:57:52 -0500
+Message-ID: <04ea4219-d28b-9b91-5d7f-7da777e5c08f@ti.com>
+Date:   Tue, 30 Aug 2022 15:27:51 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH 4/4] arm64: dts: ti: Add support for AM62A7-SK
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2 2/4] arm64: dts: ti: k3-am65-main: Move SA2UL to unused
+ PSI-L thread ID
 Content-Language: en-US
-To:     Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
+To:     Andrew Davis <afd@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Bryan Brattlof <bb@ti.com>
-References: <20220829082200.241653-1-vigneshr@ti.com>
- <20220829082200.241653-5-vigneshr@ti.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220829082200.241653-5-vigneshr@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20220823001136.10944-1-afd@ti.com>
+ <20220823001136.10944-2-afd@ti.com>
+From:   Jayesh Choudhary <j-choudhary@ti.com>
+In-Reply-To: <20220823001136.10944-2-afd@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/08/2022 11:22, Vignesh Raghavendra wrote:
-> AM62A StarterKit (SK) board is a low cost, small form factor board
-> designed for TI’s AM62A7 SoC. It supports the following interfaces:
-> * 2 GB LPDDR4 RAM
-> * x1 Gigabit Ethernet interface
-> * x1 HDMI Port with audio
-> * x1 Headphone Jack
-> * x1 USB2.0 Hub with two Type A host and x1 USB Type-C DRP Port
-> * x1 UHS-1 capable µSD card slot
-> * M.2 SDIO Wifi + UART slot
-> * 1Gb OSPI NAND flash
-> * x4 UART through UART-USB bridge
-> * XDS110 for onboard JTAG debug using USB
-> * Temperature sensors, user push buttons and LEDs
-> * 40-pin User Expansion Connector
-> * 24-pin header for peripherals in MCU island (I2C, UART, SPI, IO)
-> * 20-pin header for Programmable Realtime Unit (PRU) IO pins
-> * 40-pin CSI header
+
+
+On 23/08/22 05:41, Andrew Davis wrote:
+> The first TX and first two RX PSI-L threads for SA2UL are used
+> by SYSFW on High Security(HS) devices. Use the next available
+> threads to prevent resource allocation conflicts.
 > 
-> Add basic support for AM62A7-SK.
-> 
-> Schematics: https://www.ti.com/lit/zip/sprr459
-> 
-> Co-developed-by: Bryan Brattlof <bb@ti.com>
-> Signed-off-by: Bryan Brattlof <bb@ti.com>
-> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+> Signed-off-by: Andrew Davis <afd@ti.com>
 > ---
->  arch/arm64/boot/dts/ti/Makefile         |   2 +
->  arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 224 ++++++++++++++++++++++++
->  2 files changed, 226 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+>   arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-> index 02e5d80344d0..4555a5be2257 100644
-> --- a/arch/arm64/boot/dts/ti/Makefile
-> +++ b/arch/arm64/boot/dts/ti/Makefile
-> @@ -23,3 +23,5 @@ dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb
->  dtb-$(CONFIG_ARCH_K3) += k3-am642-sk.dtb
->  
->  dtb-$(CONFIG_ARCH_K3) += k3-am625-sk.dtb
-> +
-> +dtb-$(CONFIG_ARCH_K3) += k3-am62a7-sk.dtb
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-> new file mode 100644
-> index 000000000000..994ed6865551
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-> @@ -0,0 +1,224 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * AM62A SK: https://www.ti.com/lit/zip/sprr459
-> + *
-> + * Copyright (C) 2022 Texas Instruments Incorporated - https://www.ti.com/
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/leds/common.h>
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include "k3-am62a7.dtsi"
-> +
-> +/ {
-> +	compatible =  "ti,am62a7-sk", "ti,am62a7";
-> +	model = "Texas Instruments AM62A7 SK";
-> +
-> +	aliases {
-> +		serial2 = &main_uart0;
-> +		mmc1 = &sdhci1;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial2:115200n8";
-> +	};
-> +
-> +	memory@80000000 {
-> +		device_type = "memory";
-> +		/* 2G RAM */
-> +		reg = <0x00000000 0x80000000 0x00000000 0x80000000>;
-> +
+> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> index b3e714e1abed..165f53bd058b 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> @@ -117,8 +117,8 @@ crypto: crypto@4e00000 {
+>   		#size-cells = <2>;
+>   		ranges = <0x0 0x04e00000 0x00 0x04e00000 0x0 0x30000>;
+>   
+> -		dmas = <&main_udmap 0xc000>, <&main_udmap 0x4000>,
+> -				<&main_udmap 0x4001>;
+> +		dmas = <&main_udmap 0xc001>, <&main_udmap 0x4002>,
+> +				<&main_udmap 0x4003>;
+>   		dma-names = "tx", "rx1", "rx2";
+>   		dma-coherent;
+>   
 
-No need for blank line.
+Reviewed-by: Jayesh Choudhary <j-choudhary@ti.com>
 
-With that:
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
