@@ -2,263 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 72C0D5A5C97
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 09:09:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 172815A5C99
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 09:10:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230453AbiH3HJ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 03:09:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37498 "EHLO
+        id S230451AbiH3HKN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 03:10:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230451AbiH3HJG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 03:09:06 -0400
-Received: from muru.com (muru.com [72.249.23.125])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2337AC4809
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 00:08:17 -0700 (PDT)
-Received: from hillo.muru.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTP id BD53A8227;
-        Tue, 30 Aug 2022 07:00:48 +0000 (UTC)
-From:   Tony Lindgren <tony@atomide.com>
-To:     devicetree@vger.kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org, Keerthy <j-keerthy@ti.com>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-Subject: [PATCH v2 2/2] arm64: dts: ti: k3-am65: Add general purpose timers for am65
-Date:   Tue, 30 Aug 2022 10:07:49 +0300
-Message-Id: <20220830070750.30640-3-tony@atomide.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220830070750.30640-1-tony@atomide.com>
-References: <20220830070750.30640-1-tony@atomide.com>
+        with ESMTP id S231131AbiH3HJz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 03:09:55 -0400
+Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83E76E4E;
+        Tue, 30 Aug 2022 00:09:47 -0700 (PDT)
+Received: by mail-qt1-f172.google.com with SMTP id r6so7880139qtx.6;
+        Tue, 30 Aug 2022 00:09:47 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=kvehLYa8RckdOHZiyCr1n+0fIpZ/1DX6g3S67QojAKk=;
+        b=LUyB9UaH3iN+wPpx6xBh/pOFCnPLE9bSgaOb0/z33lotPOGDueMWq8qIfCq0NOO25e
+         MOEmF4ZDLiu9sp+8tF35G8OsxiG4/JzETvaGvVuYnPZQQ5GnCIOPP5mzTRQD5GG9oLFM
+         VmZTBY5KGsLDMmKDAET8cUZ67uxSamKnYZgCC9Uh0z0rIjbpfuGpGrsAv0quiv1NE7mp
+         O0SSucQnKFC5tFeemof2hJTcmsg4RfjMXCDhQDfikCFtXqrIyVtwRbu9iRKiCKpKdT9r
+         58OpRLBKzl0lcyS/TV36qzEBNld2iDmTDz6dXTQRpJjbDt6zKhaWEYjj2ZqMIl9kfhJ9
+         tgtw==
+X-Gm-Message-State: ACgBeo33rnRyxP9Itw2yhAQI+f5jvHqZZLLqJWtHtBrl2aGhKTVEeXzF
+        /3+p5piJAMKfnc3J2ZtRT4eCrXLrTPmb8w==
+X-Google-Smtp-Source: AA6agR7OzLQymi4nFNOzzqioDGvDod9M3yrbunBtTzTOPOhQJ5gO4g7ikkDyUbBHWYLpmMH6psZjfg==
+X-Received: by 2002:ac8:6b18:0:b0:343:6b3:60ff with SMTP id w24-20020ac86b18000000b0034306b360ffmr13695593qts.176.1661843385968;
+        Tue, 30 Aug 2022 00:09:45 -0700 (PDT)
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com. [209.85.128.177])
+        by smtp.gmail.com with ESMTPSA id v13-20020a05620a440d00b006bb29d932e1sm8037817qkp.105.2022.08.30.00.09.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Aug 2022 00:09:45 -0700 (PDT)
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-333a4a5d495so250799757b3.10;
+        Tue, 30 Aug 2022 00:09:45 -0700 (PDT)
+X-Received: by 2002:a0d:e895:0:b0:340:ab79:3285 with SMTP id
+ r143-20020a0de895000000b00340ab793285mr12995245ywe.358.1661843385104; Tue, 30
+ Aug 2022 00:09:45 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20220829214730.5752-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20220829214730.5752-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 30 Aug 2022 09:09:33 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdW92V6R2f97sEO9phBqDTDywXkjbjURv3Ntj_YczCQ05Q@mail.gmail.com>
+Message-ID: <CAMuHMdW92V6R2f97sEO9phBqDTDywXkjbjURv3Ntj_YczCQ05Q@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: i2c: renesas,riic: Fix 'unevaluatedProperties'
+ warnings
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Chris Brandt <chris.brandt@renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Linux I2C <linux-i2c@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There are 12 general purpose timers on am65 that can be used for things
-like PWM using pwm-omap-dmtimer driver. There are also additional four
-timers in the MCU domain that do not have interrupts routable for Linux.
+On Mon, Aug 29, 2022 at 11:47 PM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> With 'unevaluatedProperties' support implemented, there's a number of
+> warnings when running dtbs_check:
+>
+> arch/arm64/boot/dts/renesas/r9a07g043u11-smarc.dtb: i2c@10058000: Unevaluated properties are not allowed ('resets' was unexpected)
+>         From schema: Documentation/devicetree/bindings/i2c/renesas,riic.yaml
+>
+> The main problem is that bindings schema marks resets as a required
+> property for RZ/G2L (and alike) SoC's but resets property is not part
+> of schema. So to fix this just add a resets property with maxItems
+> set to 1.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-We configure the timers with the 25 MHz input clock by default as the
-32.768 kHz clock may not be wired on the device. We leave the MCU domain
-timers clock mux unconfigured, and mark the MCU domain timers reserved.
-The MCU domain timers are likely reserved by the software for the ESM
-module.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Compared to am64, the timer clocks are different on am65. And the MCU
-timers are at a different IO address. Then j72 adds more timers compared
-to am65 with a total of 30 timers. And the j72 clocks are different.
+Gr{oetje,eeting}s,
 
-To avoid duplication for dtsi files, eventually we may want to consider
-adding timer specific shared dtsi files with the timer clocks mapped
-using SoC specific files in include/dt-bindings/clock. But let's get
-am65 timers usable first.
+                        Geert
 
-Cc: Keerthy <j-keerthy@ti.com>
-Cc: Nishanth Menon <nm@ti.com>
-Cc: Vignesh Raghavendra <vigneshr@ti.com>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
----
- arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 132 +++++++++++++++++++++++
- arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi  |  41 +++++++
- 2 files changed, 173 insertions(+)
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
---- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-@@ -271,6 +271,138 @@ main_spi4: spi@2140000 {
- 		#size-cells = <0>;
- 	};
- 
-+	main_timer0: timer@2400000 {
-+		compatible = "ti,am654-timer";
-+		reg = <0x00 0x2400000 0x00 0x400>;
-+		interrupts = <GIC_SPI 224 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&k3_clks 23 0>;
-+		clock-names = "fck";
-+		assigned-clocks = <&k3_clks 23 0>;
-+		assigned-clock-parents = <&k3_clks 23 1>;
-+		ti,timer-pwm;
-+	};
-+
-+	main_timer1: timer@2410000 {
-+		compatible = "ti,am654-timer";
-+		reg = <0x00 0x2410000 0x00 0x400>;
-+		interrupts = <GIC_SPI 225 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&k3_clks 24 0>;
-+		clock-names = "fck";
-+		assigned-clocks = <&k3_clks 24 0>;
-+		assigned-clock-parents = <&k3_clks 24 1>;
-+		ti,timer-pwm;
-+	};
-+
-+	main_timer2: timer@2420000 {
-+		compatible = "ti,am654-timer";
-+		reg = <0x00 0x2420000 0x00 0x400>;
-+		interrupts = <GIC_SPI 226 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&k3_clks 27 0>;
-+		clock-names = "fck";
-+		assigned-clocks = <&k3_clks 27 0>;
-+		assigned-clock-parents = <&k3_clks 27 1>;
-+		ti,timer-pwm;
-+	};
-+
-+	main_timer3: timer@2430000 {
-+		compatible = "ti,am654-timer";
-+		reg = <0x00 0x2430000 0x00 0x400>;
-+		interrupts = <GIC_SPI 227 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&k3_clks 28 0>;
-+		clock-names = "fck";
-+		assigned-clocks = <&k3_clks 28 0>;
-+		assigned-clock-parents = <&k3_clks 28 1>;
-+		ti,timer-pwm;
-+	};
-+
-+	main_timer4: timer@2440000 {
-+		compatible = "ti,am654-timer";
-+		reg = <0x00 0x2440000 0x00 0x400>;
-+		interrupts = <GIC_SPI 228 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&k3_clks 29 0>;
-+		clock-names = "fck";
-+		assigned-clocks = <&k3_clks 29 0>;
-+		assigned-clock-parents = <&k3_clks 29 1>;
-+		ti,timer-pwm;
-+	};
-+
-+	main_timer5: timer@2450000 {
-+		compatible = "ti,am654-timer";
-+		reg = <0x00 0x2450000 0x00 0x400>;
-+		interrupts = <GIC_SPI 229 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&k3_clks 30 0>;
-+		clock-names = "fck";
-+		assigned-clocks = <&k3_clks 30 0>;
-+		assigned-clock-parents = <&k3_clks 30 1>;
-+		ti,timer-pwm;
-+	};
-+
-+	main_timer6: timer@2460000 {
-+		compatible = "ti,am654-timer";
-+		reg = <0x00 0x2460000 0x00 0x400>;
-+		interrupts = <GIC_SPI 230 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&k3_clks 31 0>;
-+		assigned-clocks = <&k3_clks 31 0>;
-+		assigned-clock-parents = <&k3_clks 31 1>;
-+		clock-names = "fck";
-+		ti,timer-pwm;
-+	};
-+
-+	main_timer7: timer@2470000 {
-+		compatible = "ti,am654-timer";
-+		reg = <0x00 0x2470000 0x00 0x400>;
-+		interrupts = <GIC_SPI 231 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&k3_clks 32 0>;
-+		clock-names = "fck";
-+		assigned-clocks = <&k3_clks 32 0>;
-+		assigned-clock-parents = <&k3_clks 32 1>;
-+		ti,timer-pwm;
-+	};
-+
-+	main_timer8: timer@2480000 {
-+		compatible = "ti,am654-timer";
-+		reg = <0x00 0x2480000 0x00 0x400>;
-+		interrupts = <GIC_SPI 232 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&k3_clks 33 0>;
-+		clock-names = "fck";
-+		assigned-clocks = <&k3_clks 33 0>;
-+		assigned-clock-parents = <&k3_clks 33 1>;
-+		ti,timer-pwm;
-+	};
-+
-+	main_timer9: timer@2490000 {
-+		compatible = "ti,am654-timer";
-+		reg = <0x00 0x2490000 0x00 0x400>;
-+		interrupts = <GIC_SPI 233 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&k3_clks 34 0>;
-+		clock-names = "fck";
-+		ti,timer-pwm;
-+		assigned-clocks = <&k3_clks 34 0>;
-+		assigned-clock-parents = <&k3_clks 34 1>;
-+	};
-+
-+	main_timer10: timer@24a0000 {
-+		compatible = "ti,am654-timer";
-+		reg = <0x00 0x24a0000 0x00 0x400>;
-+		interrupts = <GIC_SPI 234 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&k3_clks 25 0>;
-+		clock-names = "fck";
-+		assigned-clocks = <&k3_clks 25 0>;
-+		assigned-clock-parents = <&k3_clks 25 1>;
-+		ti,timer-pwm;
-+	};
-+
-+	main_timer11: timer@24b0000 {
-+		compatible = "ti,am654-timer";
-+		reg = <0x00 0x24b0000 0x00 0x400>;
-+		interrupts = <GIC_SPI 235 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&k3_clks 26 0>;
-+		clock-names = "fck";
-+		assigned-clocks = <&k3_clks 26 0>;
-+		assigned-clock-parents = <&k3_clks 26 1>;
-+		ti,timer-pwm;
-+	};
-+
- 	sdhci0: mmc@4f80000 {
- 		compatible = "ti,am654-sdhci-5.1";
- 		reg = <0x0 0x4f80000 0x0 0x260>, <0x0 0x4f90000 0x0 0x134>;
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
---- a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
-@@ -132,6 +132,47 @@ adc {
- 		};
- 	};
- 
-+	/*
-+	 * The MCU domain timer interrupts are routed only to the ESM module,
-+	 * and not currently available for Linux. The MCU domain timers are
-+	 * of limited use without interrupts, and likely reserved by the ESM.
-+	 */
-+	mcu_timer0: timer@40400000 {
-+		compatible = "ti,am654-timer";
-+		reg = <0x00 0x40400000 0x00 0x400>;
-+		clocks = <&k3_clks 35 0>;
-+		clock-names = "fck";
-+		ti,timer-pwm;
-+		status = "reserved";
-+	};
-+
-+	mcu_timer1: timer@40410000 {
-+		compatible = "ti,am654-timer";
-+		reg = <0x00 0x40410000 0x00 0x400>;
-+		clocks = <&k3_clks 36 0>;
-+		clock-names = "fck";
-+		ti,timer-pwm;
-+		status = "reserved";
-+	};
-+
-+	mcu_timer2: timer@40420000 {
-+		compatible = "ti,am654-timer";
-+		reg = <0x00 0x40420000 0x00 0x400>;
-+		clocks = <&k3_clks 37 0>;
-+		clock-names = "fck";
-+		ti,timer-pwm;
-+		status = "reserved";
-+	};
-+
-+	mcu_timer3: timer@40430000 {
-+		compatible = "ti,am654-timer";
-+		reg = <0x00 0x40430000 0x00 0x400>;
-+		clocks = <&k3_clks 38 0>;
-+		clock-names = "fck";
-+		ti,timer-pwm;
-+		status = "reserved";
-+	};
-+
- 	mcu_navss: bus@28380000 {
- 		compatible = "simple-mfd";
- 		#address-cells = <2>;
--- 
-2.37.1
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
