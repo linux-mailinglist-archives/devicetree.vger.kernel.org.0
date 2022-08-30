@@ -2,65 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 37FB65A5D1F
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 09:38:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BCDE5A5D26
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 09:42:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231200AbiH3HiX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 03:38:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59948 "EHLO
+        id S231134AbiH3HmH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 03:42:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231206AbiH3HiT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 03:38:19 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F294C7F9A;
-        Tue, 30 Aug 2022 00:38:18 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D046D614DA;
-        Tue, 30 Aug 2022 07:38:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AAAB4C433C1;
-        Tue, 30 Aug 2022 07:38:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661845097;
-        bh=a1VeHRSBHSS7rf/yq2/xorcuUbYUfWNTRpIjfM6yn6s=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=QJyPkXExYyaudVb9dm57jlNwJ0zKgPgZH1qqEsZ26rmO/2cpripu2PwNJynB5YSYr
-         +B7KMyPLpRNq4/yt084OgOWDVxCYZ82nGQj7rMbSfycZLMC8ew8sYBj9YmupQ/c2l6
-         9MCKE/Mv3dH5Kk3Nu9Fh+HyONkMBn/TtDUSg7dzvazwH+/ZbZhNs6XZSp0XOY2N8fm
-         Egn38A0QmhUOxaNhJigLcZlHndouJKUzawQcJulHywgPxrDIRNl9PnTGDE6v6c3UxK
-         ToF7yGsea1p4I3xp+0+Lwj5phUq0z9/5VGRNObbgJTDG34958MT9UHrqwWo3gfQ+iR
-         j57Z5CmjVwcCw==
-Date:   Tue, 30 Aug 2022 13:08:12 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/4] phy: qcom-qmp: Add SC8280XP USB PHYs
-Message-ID: <Yw2+ZOn6pVN37NyO@matsya>
-References: <20220810042303.3583194-1-bjorn.andersson@linaro.org>
+        with ESMTP id S229807AbiH3HmG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 03:42:06 -0400
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39894A221B;
+        Tue, 30 Aug 2022 00:42:04 -0700 (PDT)
+Received: (Authenticated sender: gregory.clement@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 90C381C000B;
+        Tue, 30 Aug 2022 07:42:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1661845322;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=OlJsykSuKUj404P3HmaG9eK2FUUXIkKuT4JtjowBQZQ=;
+        b=kb3YuCStxdgM8c7BnX9v8sq2Dq25KzFhRtYTBt14EnoPA4vS5/Ydpz2SXeC1kR3lmzHVK0
+        PMyzQbQsYhwnCIpApS2jY0zpjSOosSNlI51XjqxgxiWi+89q48hrEAczm1LN0mEyIbtASk
+        80VsTFVPGwpKhBXz4z/mRAt9vSk5gGGvB0+InLwVH+u5lOj96WudzIT/M95aegn6MVnTa3
+        l1gN+u+hCD1ExxftigI+eU9iJL0Kd6tQFyuN7eJz38ZYKWxGU9uWTQ4kY/Rm6u30XUOGll
+        mxJ9oVorjw4+CRw16xMf2/8bPbUzu3suARsCxdHONwJ2qvDOLvS02MHGWXdtyg==
+From:   Gregory CLEMENT <gregory.clement@bootlin.com>
+To:     Robert Marko <robert.marko@sartura.hr>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, andrew@lunn.ch,
+        sebastian.hesselbarth@gmail.com, kostap@marvell.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v4 10/10] arm64: dts: marvell: add support for Methode eDPU
+In-Reply-To: <CA+HBbNF2R--984SdB0v42GMQOwAx4pTEz_FHifTtebN05ELU-Q@mail.gmail.com>
+References: <20220516124828.45144-1-robert.marko@sartura.hr>
+ <20220516124828.45144-10-robert.marko@sartura.hr>
+ <CA+HBbNF2R--984SdB0v42GMQOwAx4pTEz_FHifTtebN05ELU-Q@mail.gmail.com>
+Date:   Tue, 30 Aug 2022 09:42:00 +0200
+Message-ID: <87mtbm5gaf.fsf@BL-laptop>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220810042303.3583194-1-bjorn.andersson@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09-08-22, 21:22, Bjorn Andersson wrote:
-> Introduce UNI and combo USB PHYs for the Qualcomm SC8280XP platform.
+Robert Marko <robert.marko@sartura.hr> writes:
 
-Applied, thanks
+> On Mon, May 16, 2022 at 2:48 PM Robert Marko <robert.marko@sartura.hr> wrote:
+>>
+>> Methode eDPU is an Armada 3720 powered board based on the Methode uDPU.
+>>
+>> They feature the same CPU, RAM, and storage as well as the form factor.
+>>
+>> However, eDPU only has one SFP slot plus a copper G.hn port.
+>>
+>> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>> Changes in v2:
+>> * Make the DTS split a separate commit
+>> ---
+>>  arch/arm64/boot/dts/marvell/Makefile             |  1 +
+>>  arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts | 14 ++++++++++++++
+>>  2 files changed, 15 insertions(+)
+>>  create mode 100644 arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts
+>>
+>> diff --git a/arch/arm64/boot/dts/marvell/Makefile b/arch/arm64/boot/dts/marvell/Makefile
+>> index 1c794cdcb8e6..104d7d7e8215 100644
+>> --- a/arch/arm64/boot/dts/marvell/Makefile
+>> +++ b/arch/arm64/boot/dts/marvell/Makefile
+>> @@ -1,6 +1,7 @@
+>>  # SPDX-License-Identifier: GPL-2.0
+>>  # Mvebu SoC Family
+>>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-db.dtb
+>> +dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-eDPU.dtb
+>>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin.dtb
+>>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-emmc.dtb
+>>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-ultra.dtb
+>> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts b/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts
+>> new file mode 100644
+>> index 000000000000..57fc698e55d0
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts
+>> @@ -0,0 +1,14 @@
+>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>> +
+>> +/dts-v1/;
+>> +
+>> +#include "armada-3720-uDPU.dtsi"
+>> +
+>> +/ {
+>> +       model = "Methode eDPU Board";
+>> +       compatible = "methode,edpu", "marvell,armada3720", "marvell,armada3710";
+>> +};
+>> +
+>> +&eth0 {
+>> +       phy-mode = "2500base-x";
+>> +};
+>> --
+>> 2.36.1
+>>
+>
+> Hi Gregory,
+Hello Roberto,
+
+> Is there something else that I can improve in the series?
+
+Sorry for having missed this series. At first view it seems OK, I am
+going to have a closer look this week.
+
+Gregory
+
+
+>
+> Regards,
+> Robert
+>
+> -- 
+> Robert Marko
+> Staff Embedded Linux Engineer
+> Sartura Ltd.
+> Lendavska ulica 16a
+> 10000 Zagreb, Croatia
+> Email: robert.marko@sartura.hr
+> Web: www.sartura.hr
 
 -- 
-~Vinod
+Gregory Clement, Bootlin
+Embedded Linux and Kernel engineering
+http://bootlin.com
