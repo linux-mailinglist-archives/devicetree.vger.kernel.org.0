@@ -2,60 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C1C95A6CA7
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 20:58:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 533185A6CB3
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 21:03:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229522AbiH3S6p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 14:58:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46996 "EHLO
+        id S230144AbiH3TDZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 15:03:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229476AbiH3S6p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 14:58:45 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35FFE76759
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 11:58:44 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D0D82616ED
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 18:58:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33F1DC433B5
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 18:58:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661885923;
-        bh=UYHgBV+4vixipQlg73oRKuMjEI0LBX2eLl4qrlCo+io=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=O50BKqkVSvvKoEWniqFC+XYC+vJmB+S6CrUk03yTkwNhxiZpvXXBjyGP8vLPsBnoe
-         s76q9GkGq1fwm2JQQfw9HdBhDa8BMFYekZSgBHei+Zk8Tb2rNde8DoWoXn34DSwp9x
-         hwwTKXh0k7r3+7DLq9Rve7V+xOlsiG2bvFG+Sq4KawtWJNoZe/4ZFVYt8lto5lKNJT
-         /+1rm2g68bVvY8G+3IW/McB/C8wlHQ32WXD8468MYRtTASlrwt2yGEb0UCXxIEr2e7
-         hzSzzy/r7kHi+Eyq3eoc1ZlbEnEYkeQz6/vJ39FmGjQkNjUWRSN4xCFJQaxKrW3Kp/
-         UmPlZAXdTn8fA==
-Received: by mail-ua1-f45.google.com with SMTP id x15so4243531uat.2
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 11:58:43 -0700 (PDT)
-X-Gm-Message-State: ACgBeo2aeCB7Jat+kAz66JKN5pacv2ndPkIDQX1J9/FPzOkx2vu9Vm7c
-        5OX4hXSl6x+9X12xBtpxFmRrd6MBc/YmHUq4zA==
-X-Google-Smtp-Source: AA6agR57o0zHpieTDGeM9YdxMK5F56W9O8E/PNP3bVjL7EW/wZfqHUmUZLDJP3R/pVze9XE/8M3zJpYGSt4nn7xAeN8=
-X-Received: by 2002:a9f:23ec:0:b0:39e:c54f:ffc7 with SMTP id
- 99-20020a9f23ec000000b0039ec54fffc7mr5832204uao.17.1661885922123; Tue, 30 Aug
- 2022 11:58:42 -0700 (PDT)
+        with ESMTP id S230117AbiH3TDY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 15:03:24 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AC785F22A
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 12:03:22 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id x10so12368657ljq.4
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 12:03:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=gXK/wYTrdjw1OFwGZvQGSVF4ZM2/PXgjnzR2P4z9JVU=;
+        b=RfyVD3awpAa0llxye9rwb8D/ncwSK7kal8kbOTuM8IbDZFVDp3nkj1DLplToMDLPH9
+         29f5OmifJuPUSCaaEHSautt/YWR1ko394Ac4+Ke0yY9H8LAKIKnGvXOra5p9wX83TobH
+         NC+3MQoXk+6m+I67DPYLhh4r3IBHjXl796aNlSoHAxzoi9U7xscBQorR3pulfB4bkwLV
+         zaVyrK2txt0sbDMiOJ57bjrByubi+NWvB97jNTBLHnzP57aUdknZ7o2zUn9M2GeojJqg
+         VsxHRqHM4b3XJrCDpFHi8Qkqhh+fuabfsP4hykouZxs3r5PGUipSMx8rhjE+Q44E0Cww
+         WJOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=gXK/wYTrdjw1OFwGZvQGSVF4ZM2/PXgjnzR2P4z9JVU=;
+        b=yjss16hsYuW+rSBmKihbdIcxwb+Dh0XxNoyMytU4unnovy829GE6uZqm9CDexkjRQq
+         Ocx0qF5jOdHI9GLKQV9oAQmcHIRbgGhAikEntF3gKqZ//bxHv05C74lu2kbM4jXz5pZ4
+         xnJ7FQTNWlclQJGMTU9l2hzspD2wg9Sc5c0LYQyIMlxn+BP8zOCyxihqfHX52CmTFT9C
+         7JtdKzF/upfJ8+p2FzetXVucx+IUvE2rIrr16PyQxNEwUfIWi8j15D4qpORlmmtfPFRA
+         Q4zW/2IrR7OhQsJJ2WbDHQD8XZOQI+SFuQVtuT8j2U0IKz4v6hh/UZALjMQR5c3DrUhM
+         9QHQ==
+X-Gm-Message-State: ACgBeo2hKNHox2/zsyoTpFN5itkeNk0JdZO6iClDXCgsOBIAlKu+ZXoE
+        1JfsAd0EmIrgCmMYpt31uyUBOA==
+X-Google-Smtp-Source: AA6agR7XX821cAlmC8c6TzfFWW/lCcMRA71i63MiH9w6y67HfOTP74/INxmWqpqcMogEbXBBQEmDJQ==
+X-Received: by 2002:a2e:b0f9:0:b0:266:d31e:3061 with SMTP id h25-20020a2eb0f9000000b00266d31e3061mr2075012ljl.391.1661886200513;
+        Tue, 30 Aug 2022 12:03:20 -0700 (PDT)
+Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
+        by smtp.gmail.com with ESMTPSA id z9-20020a056512308900b00492f21c161esm1691923lfd.123.2022.08.30.12.03.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Aug 2022 12:03:19 -0700 (PDT)
+Message-ID: <1ef5dbd4-806f-ac1d-0ad5-0f8359a560de@linaro.org>
+Date:   Tue, 30 Aug 2022 22:03:18 +0300
 MIME-Version: 1.0
-References: <20220820194804.3352415-1-andrew@lunn.ch> <20220822135323.GA3758572-robh@kernel.org>
- <YwOSqRxv/MZxpXL8@lunn.ch>
-In-Reply-To: <YwOSqRxv/MZxpXL8@lunn.ch>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 30 Aug 2022 13:58:30 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+fvBfUSaDRjyj0NWCcn5XmP6etoYq1tVwtkK82SMthug@mail.gmail.com>
-Message-ID: <CAL_Jsq+fvBfUSaDRjyj0NWCcn5XmP6etoYq1tVwtkK82SMthug@mail.gmail.com>
-Subject: Re: [PATCH 00/11] Start converting MVEBU bindings to YAML
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Gregory Clement <gregory.clement@bootlin.com>,
-        arm-soc <arm@kernel.org>,
-        Device Tree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v3 1/3] dt-bindings: can: nxp,sja1000: Document RZ/N1
+ power-domains support
+Content-Language: en-US
+To:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     "linux-can@vger.kernel.org" <linux-can@vger.kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+References: <20220830164518.1381632-1-biju.das.jz@bp.renesas.com>
+ <20220830164518.1381632-2-biju.das.jz@bp.renesas.com>
+ <23539312-caaa-78f0-cd6c-899a826f9947@linaro.org>
+ <OS0PR01MB592292E8BE619470F4C621A186799@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <OS0PR01MB592292E8BE619470F4C621A186799@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,40 +93,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 22, 2022 at 9:29 AM Andrew Lunn <andrew@lunn.ch> wrote:
->
-> On Mon, Aug 22, 2022 at 08:53:23AM -0500, Rob Herring wrote:
-> > On Sat, Aug 20, 2022 at 09:47:53PM +0200, Andrew Lunn wrote:
-> > > This is the first batch of patches converting the Marvell MVEBU driver
-> > > bindings from .txt to .yaml. So far, kirkwood has been used for
-> > > testing, but these drivers apply to a range of Marvell SoCs.
-> > >
-> > > In order to reduce the number of warnings from the DT schema checking
-> > > tools, a few minor changes have been made to a few DT files. No actual
-> > > errors have been found, the changes just make the checker quiet.
-> > >
-> > > Andrew Lunn (11):
-> > >   DT: RTC: orion-rtc: Convert to YAML
-> > >   DT: thermal: marvell,kirkwood-thermal: Convert to YAML
-> > >   DT: pinctrl: Convert marvell,kirkwood-pintctrl to YAML
-> > >   DT: USB: Convert ehci-orion to YAML
-> > >   DT: watchdog: Convert marvel.txt to YAML
-> > >   arm: DT: kirkwood/orion5: Rename watchdog node
-> > >   DT: nand-controller: Reflect reality of marvell,orion-nand
-> > >   DT: mtd: Convert orion-nand to YAML
-> > >   arm: DT: kirkwood.dtsi: Rename nand to nand-controller
-> > >   DT: timer: Convert marvell,orion-timer.txt to YAML
-> > >   DT: clock: Convert mvebu-gated-clock.txt to YAML
-> >
-> > Also, there's not any dependency between most of these patches and they
-> > all go thru different subsystems, so no need for this to be 1 series.
->
-> My intention was for them all to go through mvebu, to arm-soc and in.
-> That is how all these .txt files got merged many years ago.
+On 30/08/2022 20:47, Biju Das wrote:
+> Hi Krzysztof Kozlowski,
+> 
+> Thanks for the feedback.
+> 
+>> Subject: Re: [PATCH v3 1/3] dt-bindings: can: nxp,sja1000: Document
+>> RZ/N1 power-domains support
+>>
+>> On 30/08/2022 19:45, Biju Das wrote:
+>>> Document RZ/N1 power-domains support. Also update the example with
+>>> power-domains property.
+>>>
+>>> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+>>> ---
+>>> v3:
+>>>  * Documented power-domains support.
+>>
+>> You made them required, so it would be nice to see reason in such
+>> change. The commit msg says only what you did, but not why you did it.
+> 
+> It is simple. As you see from [1] and [2] power-domains are enabled by default in RZ/N1 SoC.
+> So there is nothing prevent us to document this property for all IP's present in
+> RZ/N1 SoC.
 
-Yes, that did happen some, but the documented path in for bindings is
-via subsystem maintainers (with the driver for new bindings). The 2nd
-preference is the DT tree as I'm about the only one testing (or
-continuously testing) the schemas.
+Any explanation I expect to see in commit msg.
 
-Rob
+Anyway you referred to Linux drivers, which is not actually a reason.
+What if some device is not in a power domain?
+
+Best regards,
+Krzysztof
