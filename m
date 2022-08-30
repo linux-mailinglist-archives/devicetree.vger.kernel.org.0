@@ -2,127 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 633625A6BEE
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 20:19:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CD615A6C11
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 20:26:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231152AbiH3STw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 14:19:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32792 "EHLO
+        id S229999AbiH3SZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 14:25:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230348AbiH3STu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 14:19:50 -0400
-Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0C77F60;
-        Tue, 30 Aug 2022 11:19:47 -0700 (PDT)
-Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-11c4d7d4683so18700446fac.8;
-        Tue, 30 Aug 2022 11:19:47 -0700 (PDT)
+        with ESMTP id S231622AbiH3SZn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 14:25:43 -0400
+Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D38ADEE4;
+        Tue, 30 Aug 2022 11:25:42 -0700 (PDT)
+Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-11ba6e79dd1so18714034fac.12;
+        Tue, 30 Aug 2022 11:25:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=Xjuomzo4081p59XEJk05rr72jAWwRfBKhPuPEHTtXsY=;
-        b=RljrkpPQnu7QkSDMD9B1+frIu99ls1CVeTM8/7zpKzxTzp0Wv9x4b6SVzwDKuk5XEE
-         nxqMWAYZgtQ7C6YARqNiHwVLheCtlJWvM5PPiGW2DxLYDImU2vTebDhm503mMFoebraT
-         QhYtPfZMkrFZQRGEoJ1Y3FrDBjuG13i4im61Px9h2sAaXev6UAD7c8pmxnnq6GSYK3o9
-         2TGgBvBFoXw5+kqYCdsieZDmvflJto4EKcdoXND7J6QYbHNG+LM951uFMf0egh3v7QMC
-         vsTxqMEE6JHm9VkBI2J++5kHKENwWTyKK8Es5TE1T6Wg9yk+12JBkrTEreVBO84snCsZ
-         gC7g==
-X-Gm-Message-State: ACgBeo2invcIrukGniDGmcmmYezWA6NhqFBVem2yW1wgsZ6l3uaeoqVi
-        Hu5mfev7fViJdYZmVvlOkg==
-X-Google-Smtp-Source: AA6agR5GK/WtkfDUqcEl4Ale7ROP128S3ilt5oR7/PvZ0Fsg7CBPmSk83ICmsulN7Bxchj4xxrDXPg==
-X-Received: by 2002:a05:6870:5a4:b0:11d:37b3:ff54 with SMTP id m36-20020a05687005a400b0011d37b3ff54mr10357600oap.172.1661883586704;
-        Tue, 30 Aug 2022 11:19:46 -0700 (PDT)
+        bh=rJF6FPuXk90xNKy2lI+ujwUtcQT5l1Vprj6x03j+OIc=;
+        b=qeQFP9C4cssjDmNbE9GKRbC3X7gZH1Ktj0JaUSRPHaNjqPHq8Kyie32c/qqTJh3PZR
+         hFo15UA2upcsDD9KTSLyNBFDmb2Z5DLh8GyetKs6fd5wQxnhn3X2HYx2FN1H3WFe0sMJ
+         eE4/W/Bc7zzyVRPEiNnjZscVZv7YVJ3Bs/JFDd/o/mKRrJc8QyuYlAvkmfToO7nbiUuh
+         GhZTjh5QGZgSEXrhTjCiEefWajWgzFz/r77mAC1yIPOxvnvPLkWPAH7wk6axuEaJFlL6
+         QwV8vaRANqUvVSMvt7Bh2fHJL71NCLlI99x9kFyr+crY38y6QJmucIbPxZzpM551RAuA
+         9kKg==
+X-Gm-Message-State: ACgBeo2yxoifJwRjnZcV7vhrqfVNW9gFUnjj/wkDA71YfUJDKDz6GRFj
+        Hj1gkTqfaaV6kgzppDB/4VKsBCOefw==
+X-Google-Smtp-Source: AA6agR6ygJdX/TKP+OEp3znfX1qDsOC2jEjLqIQVe68VQRMegXFFesfpgf4wZSriCW1FgRxZP1rfUA==
+X-Received: by 2002:a05:6808:2d9:b0:343:3143:8727 with SMTP id a25-20020a05680802d900b0034331438727mr9876862oid.114.1661883941572;
+        Tue, 30 Aug 2022 11:25:41 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id ay13-20020a056808300d00b003431d9b3edfsm746803oib.2.2022.08.30.11.19.45
+        by smtp.gmail.com with ESMTPSA id l9-20020a4ae389000000b0044b47bb023fsm7023099oov.37.2022.08.30.11.25.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Aug 2022 11:19:46 -0700 (PDT)
-Received: (nullmailer pid 1796966 invoked by uid 1000);
-        Tue, 30 Aug 2022 18:19:45 -0000
-Date:   Tue, 30 Aug 2022 13:19:45 -0500
+        Tue, 30 Aug 2022 11:25:41 -0700 (PDT)
+Received: (nullmailer pid 1806693 invoked by uid 1000);
+        Tue, 30 Aug 2022 18:25:40 -0000
+Date:   Tue, 30 Aug 2022 13:25:40 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Xu Yang <xu.yang_2@nxp.com>
-Cc:     heikki.krogerus@linux.intel.com, peda@axentia.se,
-        shawnguo@kernel.org, gregkh@linuxfoundation.org,
-        linux@roeck-us.net, jun.li@nxp.com, linux-usb@vger.kernel.org,
-        linux-imx@nxp.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/4] dt-bindings: connector: Add typec orientation
- switch properties
-Message-ID: <20220830181945.GA1770115-robh@kernel.org>
-References: <20220823195429.1243516-1-xu.yang_2@nxp.com>
- <20220823195429.1243516-2-xu.yang_2@nxp.com>
+To:     Nava kishore Manne <nava.kishore.manne@amd.com>
+Cc:     git@amd.com, krzysztof.kozlowski+dt@linaro.org,
+        michal.simek@xilinx.com, mdf@kernel.org, hao.wu@intel.com,
+        yilun.xu@intel.com, trix@redhat.com, p.zabel@pengutronix.de,
+        gregkh@linuxfoundation.org, ronak.jain@xilinx.com,
+        rajan.vaja@xilinx.com, abhyuday.godhasara@xilinx.com,
+        piyush.mehta@xilinx.com, lakshmi.sai.krishna.potthuri@xilinx.com,
+        harsha.harsha@xilinx.com, linus.walleij@linaro.org,
+        nava.manne@xilinx.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-fpga@vger.kernel.org
+Subject: Re: [PATCH 2/4] bindings: fpga: Add binding doc for the zynqmp afi
+ config driver
+Message-ID: <20220830182540.GA1797396-robh@kernel.org>
+References: <20220824035542.706433-1-nava.kishore.manne@amd.com>
+ <20220824035542.706433-3-nava.kishore.manne@amd.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220823195429.1243516-2-xu.yang_2@nxp.com>
+In-Reply-To: <20220824035542.706433-3-nava.kishore.manne@amd.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 24, 2022 at 03:54:26AM +0800, Xu Yang wrote:
-> Typec orientation switch can be implemented as a consumer of mux
-> controller. So we can use mux controller to control simple gpio switch
-> or other types of switch. This will cover the following typec switch
-> use case: High Speed, Super Speed and Sideband switch.
+On Wed, Aug 24, 2022 at 09:25:40AM +0530, Nava kishore Manne wrote:
+> Xilinx Zynq US+ MPSoC platform connect the PS to the programmable
+> logic(PL) through the AXI port. This AXI port helps to establish
+> the data path between the PS and PL. In-order to establish the proper
+> communication data path between PS and PL the AXI port data path should
+> be configured with the proper Bus-width values.
 > 
-> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
-
-Please see and participate in the recent discussions around USB-C 
-connectors:
-
-https://lore.kernel.org/all/20220810204750.3672362-2-bjorn.andersson@linaro.org/
-https://lore.kernel.org/all/20220622173605.1168416-1-pmalani@chromium.org/
-
-As mentioned there, I want to see block diagrams of the h/w for these 
-bindings.
-
-The mux binding may be a good solution here, but different muxing 
-scenarios need to be considered.
-
-
+> This patch adds the binding document for the zynqmp afi config driver
+> to handle the AXI port bus-width configurations and PS-PL resets.
+> 
+> Signed-off-by: Nava kishore Manne <nava.kishore.manne@amd.com>
 > ---
-> Changes since v1:
-> - No changes.
+>  .../bindings/fpga/xlnx,zynqmp-afi-fpga.yaml   | 100 ++++++++++++++++++
+>  1 file changed, 100 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/fpga/xlnx,zynqmp-afi-fpga.yaml
 > 
->  .../bindings/connector/usb-connector.yaml      | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/connector/usb-connector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
-> index ae515651fc6b..47f53cdbf31a 100644
-> --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
-> +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
-> @@ -221,6 +221,24 @@ properties:
->        SNK_READY for non-pd link.
->      type: boolean
->  
-> +  # The following are optional properties for "usb-c-connector".
-> +  mux-controls:
-> +    description: Mux controller node to use for orientation switch selection. This mux controller
-> +      could handle High Speed, Super Speed and Sideband switch use case one time. In orde to do so,
-> +      besides mux settings need to be properly configured for each switch under mux-controller node,
-> +      correct states should also be assigned to typec-switch-states parameter.
-
-Wrap lines at 80 char.
-
-> +    maxItems: 1
+> diff --git a/Documentation/devicetree/bindings/fpga/xlnx,zynqmp-afi-fpga.yaml b/Documentation/devicetree/bindings/fpga/xlnx,zynqmp-afi-fpga.yaml
+> new file mode 100644
+> index 000000000000..faae4951e991
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/fpga/xlnx,zynqmp-afi-fpga.yaml
+> @@ -0,0 +1,100 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/fpga/xlnx,zynqmp-afi-fpga.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +  typec-switch-states:
-> +    description: An ordered u32 array describing the mux state value for each typec orientations.
-> +      Three states correspond to NONE(high impedance), NORMAL, REVERSE respectively. If there is
-> +      no HW mux state for NONE, use value of NORMAL or REVERSE for it. If this mux controller
-> +      handle more than 1 switch, correct states value need to be caculated according to the mux
-> +      settings.
-> +    minItems: 3
-> +    maxItems: 3
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +title: Xilinx ZynqMP AFI interface Manager.
+> +
+> +maintainers:
+> +  - Nava kishore Manne <nava.kishore.manne@amd.com>
+> +
+> +description: The Zynq UltraScale+ MPSoC Processing System core provides access
+> +  from PL masters to PS internal peripherals, and memory through AXI FIFO
+> +  interface(AFI)
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - xlnx,zynqmp-afi-fpga
+> +
+> +  resets:
+> +    description:
+> +      A list of phandles for resets listed in reset-names.
+> +
+> +  reset-names:
+> +    items:
+> +      - const: pl0-rst
+> +      - const: pl1-rst
+> +      - const: pl2-rst
+> +      - const: pl3-rst
 
-I think that 'mux-states' is what you want to use here.
+Not all that useful of names given it is just indices. Minimally, '-rst' 
+is redundant and I don't know what 'pl' means.
 
-Rob
+> +
+> +patternProperties:
+> +  "^xlnx,afifm[0-6]-rd-bus-width$":
+> +    description: bus width used to configure the afifm-rd interface.
+
+...width in bits...
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 32, 64, 128 ]
+> +
+> +  "^xlnx,afifm[0-6]-wr-bus-width$":
+
+Can combine these 2:
+
+"^xlnx,afifm[0-6]-(wr|rd)-bus-width$"
+
+> +    description: bus width used to configure the afifm-wr interface.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 32, 64, 128 ]
+> +
+> +  "^xlnx,afifs-ss[0-2]-bus-width$":
+> +    description: bus width used to configure the afifs interface.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 32, 64, 128 ]
+> +
+> +required:
+> +  - compatible
+> +  - xlnx,afifm0-rd-bus-width
+> +  - xlnx,afifm1-rd-bus-width
+> +  - xlnx,afifm2-rd-bus-width
+> +  - xlnx,afifm3-rd-bus-width
+> +  - xlnx,afifm4-rd-bus-width
+> +  - xlnx,afifm5-rd-bus-width
+> +  - xlnx,afifm6-rd-bus-width
+> +  - xlnx,afifm0-wr-bus-width
+> +  - xlnx,afifm1-wr-bus-width
+> +  - xlnx,afifm2-wr-bus-width
+> +  - xlnx,afifm3-wr-bus-width
+> +  - xlnx,afifm4-wr-bus-width
+> +  - xlnx,afifm5-wr-bus-width
+> +  - xlnx,afifm6-wr-bus-width
+> +  - xlnx,afifs-ss0-bus-width
+> +  - xlnx,afifs-ss1-bus-width
+> +  - xlnx,afifs-ss2-bus-width
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/reset/xlnx-zynqmp-resets.h>
+> +    zynqmp-afi {
+> +      compatible = "xlnx,zynqmp-afi-fpga";
+> +      xlnx,afifm0-rd-bus-width = <32>;
+> +      xlnx,afifm1-rd-bus-width = <32>;
+> +      xlnx,afifm2-rd-bus-width = <64>;
+> +      xlnx,afifm3-rd-bus-width = <128>;
+> +      xlnx,afifm4-rd-bus-width = <32>;
+> +      xlnx,afifm5-rd-bus-width = <64>;
+> +      xlnx,afifm6-rd-bus-width = <128>;
+> +      xlnx,afifm0-wr-bus-width = <32>;
+> +      xlnx,afifm1-wr-bus-width = <32>;
+> +      xlnx,afifm2-wr-bus-width = <64>;
+> +      xlnx,afifm3-wr-bus-width = <128>;
+> +      xlnx,afifm4-wr-bus-width = <32>;
+> +      xlnx,afifm5-wr-bus-width = <64>;
+> +      xlnx,afifm6-wr-bus-width = <128>;
+> +      xlnx,afifs-ss0-bus-width = <64>;
+> +      xlnx,afifs-ss1-bus-width = <64>;
+> +      xlnx,afifs-ss2-bus-width = <64>;
+> +      resets = <&zynqmp_reset ZYNQMP_RESET_PS_PL0>,
+> +               <&zynqmp_reset ZYNQMP_RESET_PS_PL1>,
+> +               <&zynqmp_reset ZYNQMP_RESET_PS_PL2>,
+> +               <&zynqmp_reset ZYNQMP_RESET_PS_PL3>;
+> +      reset-names = "pl0-rst", "pl1-rst", "pl2-rst", "pl3-rst";
+
+Should devices on this bus be child devices or do they fit on some other 
+bus?
+
+> +    };
+> +
+> +...
+> -- 
+> 2.25.1
+> 
+> 
