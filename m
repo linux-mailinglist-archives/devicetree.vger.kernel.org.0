@@ -2,103 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34BCB5A6A62
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 19:28:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CE345A6AEA
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 19:36:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231681AbiH3R2a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 13:28:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46518 "EHLO
+        id S232127AbiH3RgZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 13:36:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231726AbiH3R1t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 13:27:49 -0400
-Received: from mail-io1-xd34.google.com (mail-io1-xd34.google.com [IPv6:2607:f8b0:4864:20::d34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7366FDF48
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 10:25:08 -0700 (PDT)
-Received: by mail-io1-xd34.google.com with SMTP id h78so9797136iof.13
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 10:25:07 -0700 (PDT)
+        with ESMTP id S232133AbiH3Rfz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 13:35:55 -0400
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94C2E2496F
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 10:32:17 -0700 (PDT)
+Received: by mail-lj1-f177.google.com with SMTP id bx38so12084735ljb.10
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 10:32:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=SmSdpqqfvhuzBeG/p+7mNhDOexI5aI2aAxoNsJihLIw=;
-        b=MwDNBXN8YnULPfgN5yg8hA/ERoe4PKJ3NdV4H3LBuK3diQMkKr9cIVUpBkhp0GFul7
-         xFM3eJ+klfy1CjKvDD1Do+ILnhEFPDprBhHlJ3Xr7sCEauXpNsnplfq6tPGAs3ejXHNH
-         8lfx2cndEqpo6Na7ga1peK96Bzlgck8g6Ahbw=
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=KgBuun5MUMbC1cLHpEsYOW1ltE2MSZUVgIoptXfoUwU=;
+        b=PHQq8Bm1Aa8YGdbMElujp9pCW2YsHrzcvSqwHbA/ocHa8ELvDwUfUUqGsjHz/KK3QP
+         mMeNiQrIvUcjRCAmKhiAYPbfH0v7xgkrb/atZgLSKAhFVaw80k9efhb8hmYUTz0LsvGz
+         K+TJid5kHjDJqYbqZcT695AA2oUccvIugvOhv/cOGpneAwHI/4J+WnvHBWgpXkGUbG0M
+         AH2qqVpxMdklLa6+q4KFlVgL4FeVQJejFdHYvx0hc/i0xA/qN9IzUNFbpKxJUHUHylbh
+         UshwJkOuAOf4FohPIvyKjz9c6gRQdCs+IQ3CraCSg0j5QPYzdKKkQJQSwajFheM7jLSn
+         wn5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=SmSdpqqfvhuzBeG/p+7mNhDOexI5aI2aAxoNsJihLIw=;
-        b=fqJxYmMRFFaB3xSM+milM0VsuuEV1ZZsQP+dlB9dIqeF4lbatuh/cD3tF5mfcTFJ/5
-         ONJzfe4DuRYpApIvnDQ5Udt4bjm9W/HBX0kBKuKWlP2EhiYmlfPQIDytVzV2N6WMFn+s
-         q2TPMm1xtSs9rHVf2xmgO/DWGoYThK9T77xVbEbSRBvcv8FCZ9zuqvx7lMGs5bEJbsEP
-         ZCHzYlO2r4iANJ2trmmucsdSJDDqALFfaX0+974x9EOfbu7j8X/yZcDH6kdz2QmQSvqj
-         hEywImxHgKBI4KuegXmA8ghPmcD3gHJOO7YihEBpUvxEoTvaM2Gtp1w3rjb7ZBbqLHsA
-         25QA==
-X-Gm-Message-State: ACgBeo0DOhF4jqb0rDntsBtMC3S0zchM2X6o3qWbq1I6jC3j+FebooMw
-        rNU7D3yGvrvtgLQ4P5g5ThW6vxp32/xSV+GD
-X-Google-Smtp-Source: AA6agR6jC9Hz/K4KMYjJMQFl7UnZI7jcAD2xkHMiD+o2UkwTk51XCUGMAgQB1prQmgRPcSQmgAPFNQ==
-X-Received: by 2002:a05:6638:ed1:b0:349:ce2b:3f4 with SMTP id q17-20020a0566380ed100b00349ce2b03f4mr12933112jas.155.1661880238954;
-        Tue, 30 Aug 2022 10:23:58 -0700 (PDT)
-Received: from mail-io1-f49.google.com (mail-io1-f49.google.com. [209.85.166.49])
-        by smtp.gmail.com with ESMTPSA id h24-20020a0566380f1800b003434ba08e11sm5720523jas.115.2022.08.30.10.23.57
-        for <devicetree@vger.kernel.org>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=KgBuun5MUMbC1cLHpEsYOW1ltE2MSZUVgIoptXfoUwU=;
+        b=OztkXuvExGhpd/EXZur0N7qzvm/Ur+lBme5UwOYj1cmQjjE82CTKQO6EECf4BpSCP5
+         U4CzkS2f4mLTettk7QthbO5otQ7bavA47kUP8b45Tecd+IiJQEdwMu5cuco+K9wPz9FF
+         dx/5WFUPoMrA5JA2+EElVyTcQXZdV1pV2pUM5ndml2h3kH46Do1+Th5dLXG7O0XQxeBP
+         bRU1WYF25651AbqKpK9D8it20f9CpKKTiexN2eo4EhvvYvMpnLVcc38t0dSyLUWBfys+
+         s+7lomRmB1QbRhff39qqmpKpV21BrrxPGlpmYskb02Rc6aW927yamneUVrAKrbK8XDWf
+         dkUQ==
+X-Gm-Message-State: ACgBeo1odKt3I7fgiXz10UiRzMTHeM85Vt7qkyhKyl1WuyMZYdL7weD7
+        j2g23jxw205bKy9lgDZTf90HovoM2fpElGb2
+X-Google-Smtp-Source: AA6agR7AMkNLzldsN7CSndDsJ/IajUZ+QIqAcfUHAeF1dxFSuX7EUio6GcUstiS8SvFpou+/tJ1xFw==
+X-Received: by 2002:a2e:8857:0:b0:261:b1b3:ab93 with SMTP id z23-20020a2e8857000000b00261b1b3ab93mr7776341ljj.270.1661880357694;
+        Tue, 30 Aug 2022 10:25:57 -0700 (PDT)
+Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
+        by smtp.gmail.com with ESMTPSA id c11-20020a19654b000000b0049461118812sm270646lfj.285.2022.08.30.10.25.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Aug 2022 10:23:58 -0700 (PDT)
-Received: by mail-io1-f49.google.com with SMTP id d68so9792261iof.11
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 10:23:57 -0700 (PDT)
-X-Received: by 2002:a05:6638:14d0:b0:349:d176:d376 with SMTP id
- l16-20020a05663814d000b00349d176d376mr12105487jak.58.1661880236045; Tue, 30
- Aug 2022 10:23:56 -0700 (PDT)
+        Tue, 30 Aug 2022 10:25:57 -0700 (PDT)
+Message-ID: <3b169ca3-2962-339f-c8cb-c48ac41c9aa5@linaro.org>
+Date:   Tue, 30 Aug 2022 20:25:56 +0300
 MIME-Version: 1.0
-References: <20220830053307.3997495-1-sheng-liang.pan@quanta.corp-partner.google.com>
-In-Reply-To: <20220830053307.3997495-1-sheng-liang.pan@quanta.corp-partner.google.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 30 Aug 2022 10:23:44 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=XXV4x-Hpa9-GUzkwS+cxfvpL93HBCUrn_bvMK8hBAaBA@mail.gmail.com>
-Message-ID: <CAD=FV=XXV4x-Hpa9-GUzkwS+cxfvpL93HBCUrn_bvMK8hBAaBA@mail.gmail.com>
-Subject: Re: [PATCH 0/1] Add a new board device tree named 'evoker' for
- herobrine variant.
-To:     Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v2 1/2] dt: bindings: net: add bindings to add WoW support
+ for WCN6750
+Content-Language: en-US
+To:     Manikanta Pubbisetty <quic_mpubbise@quicinc.com>,
+        ath11k@lists.infradead.org
+Cc:     linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
+        robh@kernel.org
+References: <20220829124323.26874-1-quic_mpubbise@quicinc.com>
+ <20220829124323.26874-2-quic_mpubbise@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220829124323.26874-2-quic_mpubbise@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 29/08/2022 15:43, Manikanta Pubbisetty wrote:
+> Add required bindings to support WoW (Wake on Wireless) for
+> WCN6750 which is based on ath11k driver.
+> 
+> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
 
-On Mon, Aug 29, 2022 at 10:33 PM Sheng-Liang Pan
-<sheng-liang.pan@quanta.corp-partner.google.com> wrote:
->
-> This patch add the initial dts file for new board 'evoker'.
->
->
->
-> Sheng-Liang Pan (1):
->   arm64: dts: qcom: sc7280: Add device tree for herobrine evoker
->
->  arch/arm64/boot/dts/qcom/Makefile             |   1 +
->  .../dts/qcom/sc7280-herobrine-evoker-r0.dts   | 333 ++++++++++++++++++
->  2 files changed, 334 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker-r0.dts
+Use scripts/get_maintainers.pl to CC all maintainers and relevant
+mailing lists.
 
-Just as a heads up, usually you don't need a cover letter if you're
-just sending one patch.
+> ---
+>  .../bindings/net/wireless/qcom,ath11k.yaml      | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+> index a677b056f112..307a5b9d1588 100644
+> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+> @@ -66,6 +66,14 @@ properties:
+>      required:
+>        - iommus
+>  
+> +  qcom,smem-states:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description: State bits used in WCN6750 to signal the firmware
+> +                 to exit from WoW.
 
--Doug
+You need to describe the item (s).
+
+> +
+> +  qcom,smem-state-names:
+> +    description: The names of the state bits used for SMP2P output
+
+You need to describe the item (s).
+
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -410,6 +418,13 @@ examples:
+>          };
+>      };
+>  
+> +    smp2p-wpss {
+> +        wlan_smp2p_out: wlan_smp2p_out {
+
+No underscores in node names. This example is incomplete and I am not
+sure what is the benefit of adding provider example to the consumer
+binding... Just skip it.
+
+Best regards,
+Best regards,
+Krzysztof
