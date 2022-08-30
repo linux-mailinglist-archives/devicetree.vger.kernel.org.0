@@ -2,103 +2,515 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9302C5A5E7C
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 10:48:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39A005A5E8E
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 10:49:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231583AbiH3Isv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 04:48:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59744 "EHLO
+        id S231686AbiH3Itq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 04:49:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231574AbiH3Isu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 04:48:50 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16AB3BB690
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 01:48:48 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id a36so9448829edf.5
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 01:48:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=7iCvOssdkyuxbhoQt5lAWcL9dGnbKNvL6gaRHI/rUIE=;
-        b=e1waB5CIdo3f9+WqVOb5fZZ2HpfISqnyynQUiahYiWLbFsihpG9YE7QGYopiztHtXQ
-         YXEVdbX5AT4GycNvKMv93DvvepUVg+cxuEJlA0UotKWcwF/kSBe2qXUNXMGy9guT6bV5
-         AWSQtUErN9c0DciG1ox0ijf+yrYasDH4uJBLnx8hbOrv6gv7x85Jec8rXbrE0LjZj9sk
-         93q8Ykimr38kngAzUz8DKwDpkYE3jYvNo7+WdsjBp53wMiCrqp/oeTJzQjx6/W2HSGhW
-         u4Y5/h24B6BB5dnDQ/Ib5Lz38xBIe+zaPEQSgnFMnVmjsBqoTuzLc4NulAl2wPP3JkyF
-         Ynjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=7iCvOssdkyuxbhoQt5lAWcL9dGnbKNvL6gaRHI/rUIE=;
-        b=7GQXuwYJWQk0v4tQqSdWZBJaCGVRInrzQDgy6IKBa+MrS33mFdva041ZCtHT9++vYm
-         /t/Bya41/pL+lqfcsB5yalOTwWshbTWFR6NH3aUijmVR2xTRx1FM/A0LfB5K5kiKW3hv
-         YjTtWXeoHvF56s91MMc7/xSk7Ud6/JsqBR34LAMWGn0lB3GvikbxnM7LsR1dP+UFz7lN
-         4iBy38P3au50oc/12fos0RTgqc7XCVgvCdAzeNXxkjEcJeXOW3zed1SOt1JlIWssCRAL
-         BlqhEujLh+wsEqNp2FYkfIJ1FlccUOo+9D+W9byuwp/iF5K2FM+u1lMg8HfBR6jPgca1
-         7TFw==
-X-Gm-Message-State: ACgBeo25gDJM1lOczH0vOw/q1vNCoWByAFxFsLVIvTpZ7Y26le939mto
-        0g+3kfbrbi8Ed8ZSougec8Nbhgspm/kNCNTbWBDtNg==
-X-Google-Smtp-Source: AA6agR6mBK9z4mx3yoZ8UY/yL9aH81E4FjsmEQwAZZK0RoH7oRkvILaIaW6x0TDSxBaGMRQvceJsm6oUWvUFEePGLIk=
-X-Received: by 2002:a05:6402:4446:b0:43b:e1f4:8525 with SMTP id
- o6-20020a056402444600b0043be1f48525mr19520149edb.236.1661849326660; Tue, 30
- Aug 2022 01:48:46 -0700 (PDT)
+        with ESMTP id S231666AbiH3Itl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 04:49:41 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0B08B99E7;
+        Tue, 30 Aug 2022 01:49:38 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id AC6CB6601E8E;
+        Tue, 30 Aug 2022 09:49:35 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1661849377;
+        bh=BzYQv5SyDeOC0RvJR6By0SIblbhuVKWfe2nPF1J9ai4=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=UaPgfY2Q5LVtRq/bWkihHN3QDTjrUU9ONZL2n8Ku/o1PLqo8dcAMQtU2hbdE5rzto
+         JhjRoNubQWgwjmNvsBQ2otjcn0fs8kEM/FhYulYp1G5ZShBkMpYZqg4SdYP80JzMKE
+         IM/b9K6pdhcBKb2Dkr78Q1LcBIiyshgCv8E3GI1oEXi4Xm2EugUd3rKEi8pkzvbphv
+         w25eLqRt414RTHfnn6P4TU+N8OtZvTKRlBGUJSe1gaU2oux7EN78lfOKOgeAKCa06Q
+         YGC26hIjewzQshS3U3traT1wUC4zs39GdZ2LsElL1HggR7pQ8ctFIeFhi4BFR/Xjec
+         AG+L6SWZcMHIQ==
+Message-ID: <d78a91f3-483d-75f2-f867-f1a4e4876743@collabora.com>
+Date:   Tue, 30 Aug 2022 10:49:33 +0200
 MIME-Version: 1.0
-References: <20220802175755.6530-1-sudip.mukherjee@sifive.com> <20220826180327.yazfoydjiyygd7qf@mobilestation>
-In-Reply-To: <20220826180327.yazfoydjiyygd7qf@mobilestation>
-From:   Sudip Mukherjee <sudip.mukherjee@sifive.com>
-Date:   Tue, 30 Aug 2022 09:48:35 +0100
-Message-ID: <CAHyZL-cmyRprNmr_DtUQaZFXJtcV-6r-UOksFJeMz=XgDhnMNw@mail.gmail.com>
-Subject: Re: [PATCH 00/11] Add support for enhanced SPI for Designware SPI controllers
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greentime Hu <greentime.hu@sifive.com>,
-        Jude Onyenegecha <jude.onyenegecha@sifive.com>,
-        William Salmon <william.salmon@sifive.com>,
-        Adnan Chowdhury <adnan.chowdhury@sifive.com>,
-        Ben Dooks <ben.dooks@sifive.com>, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jeegar Lakhani <jeegar.lakhani@sifive.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v9 09/10] leds: flash: mt6370: Add MediaTek MT6370
+ flashlight support
+Content-Language: en-US
+To:     ChiaEn Wu <peterwu.pub@gmail.com>, lee@kernel.org,
+        daniel.thompson@linaro.org, jingoohan1@gmail.com, pavel@ucw.cz,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com, sre@kernel.org, jic23@kernel.org,
+        lars@metafoo.de, deller@gmx.de, broonie@kernel.org,
+        mazziesaccount@gmail.com, andriy.shevchenko@linux.intel.com
+Cc:     chiaen_wu@richtek.com, alice_chen@richtek.com,
+        cy_huang@richtek.com, dri-devel@lists.freedesktop.org,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-fbdev@vger.kernel.org, szunichen@gmail.com,
+        andy.shevchenko@gmail.com
+References: <20220830034042.9354-2-peterwu.pub@gmail.com>
+ <20220830034042.9354-10-peterwu.pub@gmail.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220830034042.9354-10-peterwu.pub@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 26, 2022 at 7:03 PM Serge Semin <fancer.lancer@gmail.com> wrote:
->
-> Hello Sudip
->
-> On Tue, Aug 02, 2022 at 06:57:44PM +0100, Sudip Mukherjee wrote:
-> > Some Synopsys SSI controllers support enhanced SPI which includes
-> > Dual mode, Quad mode and Octal mode. DWC_ssi includes clock stretching
-> > feature in enhanced SPI modes which can be used to prevent FIFO underflow
-> > and overflow conditions while transmitting or receiving the data respectively.
-> > This is only tested on controller version 1.03a.
->
+Il 30/08/22 05:40, ChiaEn Wu ha scritto:
+> From: Alice Chen <alice_chen@richtek.com>
+> 
+> The MediaTek MT6370 is a highly-integrated smart power management IC,
+> which includes a single cell Li-Ion/Li-Polymer switching battery
+> charger, a USB Type-C & Power Delivery (PD) controller, dual Flash
+> LED current sources, a RGB LED driver, a backlight WLED driver,
+> a display bias driver and a general LDO for portable devices.
+> 
+> Add support for the MT6370 Flash LED driver. Flash LED in MT6370
+> has 2 channels and support torch/strobe mode.
+> 
+> Signed-off-by: Alice Chen <alice_chen@richtek.com>
+> Signed-off-by: ChiaEn Wu <chiaen_wu@richtek.com>
+> ---
+> 
+> v9
+> - Revise the format of the comments.
+> ---
+>   drivers/leds/flash/Kconfig             |  14 +
+>   drivers/leds/flash/Makefile            |   1 +
+>   drivers/leds/flash/leds-mt6370-flash.c | 632 +++++++++++++++++++++++++++++++++
+>   3 files changed, 647 insertions(+)
+>   create mode 100644 drivers/leds/flash/leds-mt6370-flash.c
+> 
+> diff --git a/drivers/leds/flash/Kconfig b/drivers/leds/flash/Kconfig
+> index d3eb689..405bd16 100644
+> --- a/drivers/leds/flash/Kconfig
+> +++ b/drivers/leds/flash/Kconfig
+> @@ -61,6 +61,20 @@ config LEDS_MT6360
+>   	  Independent current sources supply for each flash LED support torch
+>   	  and strobe mode.
+>   
+> +config LEDS_MT6370_FLASH
+> +	tristate "Flash LED Support for MediaTek MT6370 PMIC"
+> +	depends on LEDS_CLASS && OF
+> +	depends on LEDS_CLASS_FLASH || !LEDS_CLASS_FLASH
+> +	depends on V4L2_FLASH_LED_CLASS || !V4L2_FLASH_LED_CLASS
+> +	depends on MFD_MT6370
+> +	help
+> +	  Support 2 channels and torch/strobe mode.
+> +	  Say Y here to enable support for
+> +	  MT6370_FLASH_LED device.
+> +
+> +	  This driver can also be built as a module. If so, the module
+> +	  will be called "leds-mt6370-flash".
+> +
+>   config LEDS_RT4505
+>   	tristate "LED support for RT4505 flashlight controller"
+>   	depends on I2C && OF
+> diff --git a/drivers/leds/flash/Makefile b/drivers/leds/flash/Makefile
+> index 0acbddc..0c1f3c5 100644
+> --- a/drivers/leds/flash/Makefile
+> +++ b/drivers/leds/flash/Makefile
+> @@ -9,3 +9,4 @@ obj-$(CONFIG_LEDS_MAX77693)	+= leds-max77693.o
+>   obj-$(CONFIG_LEDS_RT4505)	+= leds-rt4505.o
+>   obj-$(CONFIG_LEDS_RT8515)	+= leds-rt8515.o
+>   obj-$(CONFIG_LEDS_SGM3140)	+= leds-sgm3140.o
+> +obj-$(CONFIG_LEDS_MT6370_FLASH)	+= leds-mt6370-flash.o
+> diff --git a/drivers/leds/flash/leds-mt6370-flash.c b/drivers/leds/flash/leds-mt6370-flash.c
+> new file mode 100644
+> index 0000000..a8ec7e1
+> --- /dev/null
+> +++ b/drivers/leds/flash/leds-mt6370-flash.c
+> @@ -0,0 +1,632 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (C) 2022 Richtek Technology Corp.
+> + *
+> + * Author: Alice Chen <alice_chen@richtek.com>
+> + */
+> +
+> +#include <linux/bitops.h>
+> +#include <linux/delay.h>
+> +#include <linux/init.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/kernel.h>
+> +#include <linux/led-class-flash.h>
+> +#include <linux/module.h>
+> +#include <linux/mutex.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/property.h>
+> +#include <linux/regmap.h>
+> +
+> +#include <media/v4l2-flash-led-class.h>
+> +
+> +enum {
+> +	MT6370_LED_FLASH1,
+> +	MT6370_LED_FLASH2,
+> +	MT6370_MAX_LEDS
+> +};
+> +
+> +/* Virtual definition for multicolor */
+> +
+> +#define MT6370_REG_FLEDEN		0x17E
+> +#define MT6370_REG_STRBTO		0x173
+> +#define MT6370_REG_CHGSTAT2		0x1D1
+> +#define MT6370_REG_FLEDSTAT1		0x1D9
+> +#define MT6370_REG_FLEDISTRB(_id)	(0x174 + 4 * (_id))
+> +#define MT6370_REG_FLEDITOR(_id)	(0x175 + 4 * (_id))
+> +#define MT6370_ITORCH_MASK		GENMASK(4, 0)
+> +#define MT6370_ISTROBE_MASK		GENMASK(6, 0)
+> +#define MT6370_STRBTO_MASK		GENMASK(6, 0)
+> +#define MT6370_TORCHEN_MASK		BIT(3)
+> +#define MT6370_STROBEN_MASK		BIT(2)
+> +#define MT6370_FLCSEN_MASK(_id)		BIT(MT6370_LED_FLASH2 - (_id))
+> +#define MT6370_FLCSEN_MASK_ALL		GENMASK(1, 0)
+> +#define MT6370_FLEDCHGVINOVP_MASK	BIT(3)
+> +#define MT6370_FLED1STRBTO_MASK		BIT(11)
+> +#define MT6370_FLED2STRBTO_MASK		BIT(10)
+> +#define MT6370_FLED1STRB_MASK		BIT(9)
+> +#define MT6370_FLED2STRB_MASK		BIT(8)
+> +#define MT6370_FLED1SHORT_MASK		BIT(7)
+> +#define MT6370_FLED2SHORT_MASK		BIT(6)
+> +#define MT6370_FLEDLVF_MASK		BIT(3)
+> +
+> +#define MT6370_LED_JOINT		2
+> +#define MT6370_RANGE_FLED_REG		4
+> +#define MT6370_ITORCH_MIN_uA		25000
+> +#define MT6370_ITORCH_STEP_uA		12500
+> +#define MT6370_ITORCH_MAX_uA		400000
+> +#define MT6370_ITORCH_DOUBLE_MAX_uA	800000
+> +#define MT6370_ISTRB_MIN_uA		50000
+> +#define MT6370_ISTRB_STEP_uA		12500
+> +#define MT6370_ISTRB_MAX_uA		1500000
+> +#define MT6370_ISTRB_DOUBLE_MAX_uA	3000000
+> +#define MT6370_STRBTO_MIN_US		64000
+> +#define MT6370_STRBTO_STEP_US		32000
+> +#define MT6370_STRBTO_MAX_US		2432000
+> +
+> +#define STATE_OFF			0
+> +#define STATE_KEEP			1
+> +#define STATE_ON			2
+> +
+> +#define to_mt6370_led(ptr, member) container_of(ptr, struct mt6370_led, member)
+> +
+> +struct mt6370_led {
+> +	struct led_classdev_flash flash;
+> +	struct v4l2_flash *v4l2_flash;
+> +	struct mt6370_priv *priv;
+> +	u32 led_no;
 
-<snip>
+The maximum value that we will ever see for `led_no` is 2: this means
+that we don't need 32 full bits here.
 
->
-> I've deliberately collected all the generic comments here so you'd be
-> aware of the required changes in total, because I very much doubt all
-> of them could be fixed at once via a single patchset iteration. But as
-> soon as all of them are fixed we'll get a very nice and neat solution
-> for the eSPI feature.
->
+	u8 led_no;
 
-Thanks a lot for the summary here Sergey. I am sure I will have a few
-questions for you after I start with the changes.
+> +	u32 default_state;
 
--- 
-Regards
-Sudip
+This should be...
+
+	enum led_default_state default_state;
+
+...but then, you're never using this variable as far as I can see, apart from
+initializing it in mt6370_init_common_properties, for which, there's a comment
+below.
+
+In any case, please either fix the initialization and actually make use of
+this variable, or remove it entirely.
+
+> +};
+> +
+> +struct mt6370_priv {
+> +	struct device *dev;
+> +	struct regmap *regmap;
+> +	struct mutex lock;
+> +	unsigned int fled_strobe_used;
+> +	unsigned int fled_torch_used;
+> +	unsigned int leds_active;
+> +	unsigned int leds_count;
+> +	struct mt6370_led leds[];
+> +};
+> +
+> +static int mt6370_torch_brightness_set(struct led_classdev *lcdev,
+> +				       enum led_brightness level)
+> +{
+> +	struct mt6370_led *led = to_mt6370_led(lcdev, flash.led_cdev);
+> +	struct mt6370_priv *priv = led->priv;
+> +	u32 led_enable_mask = (led->led_no == MT6370_LED_JOINT) ?
+> +			      MT6370_FLCSEN_MASK_ALL :
+> +			      MT6370_FLCSEN_MASK(led->led_no);
+> +	u32 enable_mask = MT6370_TORCHEN_MASK | led_enable_mask;
+> +	u32 val = level ? led_enable_mask : 0;
+> +	u32 curr;
+> +	int ret, i;
+> +
+> +	mutex_lock(&priv->lock);
+> +
+> +	/*
+> +	 * There is only one set of flash control logic, and this
+> +	 * flag is used to check if 'strobe' is currently being used.
+> +	 */
+> +	if (priv->fled_strobe_used) {
+> +		dev_warn(lcdev->dev, "Please disable strobe first [%d]\n",
+> +			 priv->fled_strobe_used);
+> +		ret = -EBUSY;
+> +		goto unlock;
+> +	}
+> +
+> +	if (level)
+> +		curr = priv->fled_torch_used | BIT(led->led_no);
+> +	else
+> +		curr = priv->fled_torch_used & ~BIT(led->led_no);
+> +
+> +	if (curr)
+> +		val |= MT6370_TORCHEN_MASK;
+> +
+> +	if (level) {
+> +		level -= 1;
+> +		if (led->led_no == MT6370_LED_JOINT) {
+> +			int flevel[MT6370_MAX_LEDS];
+> +
+> +			flevel[0] = level / 2;
+> +			flevel[1] = level - flevel[0];
+> +			for (i = 0; i < MT6370_MAX_LEDS; i++) {
+> +				ret = regmap_update_bits(priv->regmap,
+> +						MT6370_REG_FLEDITOR(i),
+> +						MT6370_ITORCH_MASK, flevel[i]);
+> +				if (ret)
+> +					goto unlock;
+> +			}
+> +		} else {
+> +			ret = regmap_update_bits(priv->regmap,
+> +					MT6370_REG_FLEDITOR(led->led_no),
+> +					MT6370_ITORCH_MASK, level);
+> +			if (ret)
+> +				goto unlock;
+> +		}
+> +	}
+> +
+> +	ret = regmap_update_bits(priv->regmap, MT6370_REG_FLEDEN,
+> +				 enable_mask, val);
+> +	if (ret)
+> +		goto unlock;
+> +
+> +	priv->fled_torch_used = curr;
+> +
+> +unlock:
+> +	mutex_unlock(&priv->lock);
+> +	return ret;
+> +}
+> +
+> +static int mt6370_flash_brightness_set(struct led_classdev_flash *fl_cdev,
+> +				       u32 brightness)
+> +{
+> +	/*
+> +	 * Because of the current spikes when turning on the flash,
+> +	 * the brightness should be kept by the LED framework. This
+> +	 * empty function is used to prevent checking failure when
+> +	 * led_classdev_flash registers ops.
+> +	 */
+> +	return 0;
+> +}
+> +
+> +static int _mt6370_flash_brightness_set(struct led_classdev_flash *fl_cdev,
+> +					u32 brightness)
+> +{
+> +	struct mt6370_led *led = to_mt6370_led(fl_cdev, flash);
+> +	struct mt6370_priv *priv = led->priv;
+> +	struct led_flash_setting *s = &fl_cdev->brightness;
+> +	u32 val = (brightness - s->min) / s->step;
+> +	int ret, i;
+> +
+> +	if (led->led_no == MT6370_LED_JOINT) {
+> +		int flevel[MT6370_MAX_LEDS];
+
+Since you're writing this value to registers, please use fixed size variables.
+If this is really supposed to be a signed value, it would be:
+
+		s32 flevel[MT6370_MAX_LEDS];
+
+> +
+> +		flevel[0] = val / 2;
+> +		flevel[1] = val - flevel[0];
+> +		for (i = 0; i < MT6370_MAX_LEDS; i++) {
+> +			ret = regmap_update_bits(priv->regmap,
+> +						 MT6370_REG_FLEDISTRB(i),
+> +						 MT6370_ISTROBE_MASK, flevel[i]);
+> +			if (ret)
+> +				return ret;
+> +		}
+> +	} else {
+> +		return regmap_update_bits(priv->regmap,
+> +					  MT6370_REG_FLEDISTRB(led->led_no),
+> +					  MT6370_ISTROBE_MASK, val);
+> +	}
+> +
+> +	return 0;
+
+If we reach this point, this means that led_no is out of range (which is never
+supposed to happen - I know).
+Since that condition is something unexpected and unhandled, you should return
+an error here.
+
+> +}
+> +
+> +static int mt6370_strobe_set(struct led_classdev_flash *fl_cdev, bool state)
+> +{
+> +	struct mt6370_led *led = to_mt6370_led(fl_cdev, flash);
+> +	struct mt6370_priv *priv = led->priv;
+> +	struct led_classdev *lcdev = &fl_cdev->led_cdev;
+> +	struct led_flash_setting *s = &fl_cdev->brightness;
+> +	u32 led_enable_mask = (led->led_no == MT6370_LED_JOINT) ?
+> +			      MT6370_FLCSEN_MASK_ALL :
+> +			      MT6370_FLCSEN_MASK(led->led_no);
+> +	u32 enable_mask = MT6370_STROBEN_MASK | led_enable_mask;
+> +	u32 val = state ? led_enable_mask : 0;
+> +	u32 curr;
+> +	int ret;
+> +
+> +	mutex_lock(&priv->lock);
+> +
+> +	/*
+> +	 * There is only one set of flash control logic, and this
+> +	 * flag is used to check if 'torch' is currently being used.
+> +	 */
+> +	if (priv->fled_torch_used) {
+> +		dev_warn(lcdev->dev, "Please disable torch first [0x%x]\n",
+> +				      priv->fled_torch_used);
+> +		ret = -EBUSY;
+> +		goto unlock;
+> +	}
+> +
+> +	if (state)
+> +		curr = priv->fled_strobe_used | BIT(led->led_no);
+> +	else
+> +		curr = priv->fled_strobe_used & ~BIT(led->led_no);
+> +
+> +	if (curr)
+> +		val |= MT6370_STROBEN_MASK;
+> +
+> +	ret = regmap_update_bits(priv->regmap, MT6370_REG_FLEDEN, enable_mask,
+> +				 val);
+> +	if (ret) {
+> +		dev_err(lcdev->dev, "[%d] control current source %d fail\n",
+> +				     led->led_no, state);
+> +		goto unlock;
+> +	}
+> +
+> +	/*
+> +	 * If the flash needs to turn on, configure the flash current to
+> +	 * ramp up to the setting value. Otherwise, always revert to the
+> +	 * minimum one.
+> +	 */
+> +	ret = _mt6370_flash_brightness_set(fl_cdev, state ? s->val : s->min);
+> +	if (ret)
+> +		goto unlock;
+
+If this fails, I think that we should revert the previous changes to FLEDEN
+before returning.
+
+> +
+> +	/*
+> +	 * For the flash to turn on/off, we must wait for HW ramping
+> +	 * up/down time 5ms/500us to prevent the unexpected problem.
+> +	 */
+> +	if (!priv->fled_strobe_used && curr)
+> +		usleep_range(5000, 6000);
+> +	else if (priv->fled_strobe_used && !curr)
+> +		usleep_range(500, 600);
+> +
+> +	priv->fled_strobe_used = curr;
+> +
+> +unlock:
+> +	mutex_unlock(&priv->lock);
+> +	return ret;
+> +}
+> +
+
+..snip..
+
+> +
+> +static int mt6370_init_common_properties(struct mt6370_led *led,
+> +					 struct led_init_data *init_data)
+> +{
+> +	const char * const states[] = { "off", "keep", "on" };
+> +	const char *str = states[STATE_OFF];
+> +	int ret;
+> +
+> +	fwnode_property_read_string(init_data->fwnode, "default-state", &str);
+> +	ret = match_string(states, ARRAY_SIZE(states), str);
+> +	if (ret >= 0)
+> +		led->default_state = ret;
+> +
+> +	return 0;
+> +}
+> +
+> +static int mt6370_led_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct mt6370_priv *priv;
+> +	struct fwnode_handle *child;
+> +	size_t count;
+> +	int i = 0, ret;
+> +
+> +	count = device_get_child_node_count(dev);
+> +	if (!count || count > MT6370_MAX_LEDS)
+> +		return dev_err_probe(dev, -EINVAL,
+> +		       "No child node or node count over max led number %zu\n", count);
+> +
+> +	priv = devm_kzalloc(dev, struct_size(priv, leds, count), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	priv->leds_count = count;
+> +	priv->dev = dev;
+> +	mutex_init(&priv->lock);
+> +
+> +	priv->regmap = dev_get_regmap(dev->parent, NULL);
+> +	if (!priv->regmap)
+> +		return dev_err_probe(dev, -ENODEV, "Failed to get parent regmap\n");
+> +
+> +	device_for_each_child_node(dev, child) {
+> +		struct mt6370_led *led = priv->leds + i;
+> +		struct led_init_data init_data = { .fwnode = child, };
+> +
+> +		led->priv = priv;
+> +		ret = mt6370_init_common_properties(led, &init_data);
+
+This is only initializing the default state, for which you do have a helper.
+
+Please use led_init_default_state_get(fwnode).
+
+> +		if (ret)
+> +			return ret;
+> +
+> +		ret = mt6370_init_flash_properties(led, &init_data);
+> +		if (ret)
+> +			return ret;
+> +
+> +		ret = mt6370_led_register(dev, led, &init_data);
+> +		if (ret)
+> +			return ret;
+> +
+> +		i++;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+
+Regards,
+Angelo
+
