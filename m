@@ -2,86 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EBFD5A6B44
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 19:52:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 833F35A6AF7
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 19:38:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231244AbiH3RwM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 13:52:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55212 "EHLO
+        id S231819AbiH3RiX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 13:38:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231238AbiH3Rv6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 13:51:58 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36418167EB
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 10:48:36 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id bu22so14877510wrb.3
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 10:48:36 -0700 (PDT)
+        with ESMTP id S232051AbiH3RiE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 13:38:04 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F87E136B1D
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 10:34:55 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id v26so6264547lfd.10
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 10:34:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=rmlcaT4uod7PpBdmIDlVofuYmhAw0mWF1ocMR7J7jHQ=;
-        b=cVmXkrXVB/VhRGL6WXUplEkAQijZtZRPc62bxRDQjALkNmsWvRBHB8+SZLdTSrr7Q2
-         jJNPQDHL443hUjM3gm9pRsjjswMMUUxwAqnjJ44an8iwVtGJlPxWlPBGfVEN0PSk3fd+
-         X+K160op9w//KYces00QD69pfUOTiQTGjOuQTQVU5NvlTqXtaYCcyzab4kSChbBP2AvF
-         cw4SrUCA15vFvM6aZQFS1XZeIaQvGIENMA7nLQ/WODSBrmSLF8GYf6oHwHXfBmhEnv7O
-         bq2DewdxbnUmsAbQejrrnx3RQO+QBInCtHIXVri/Q9fTZ16CIKB6QI3CpcUI/nSZE5Ul
-         8AHg==
+        bh=e7JEKYuofd3ohVuN0wQat/Bd3pvagzYZJuquu9YnaTc=;
+        b=sccqeAOnaZ63YsK2QiDUkPx1XiQueuhmVcEyY7D1/T3NLqy3NAh1+Rn5w6JOBChXhu
+         ofeHiBKfVgGiNTBIcjYbaWG0bevSh3X+fk5q7sb5LCLRS+4DyYSJ+uG/vBOBiWAMmKDW
+         jyvx+aaIJMt2iCgo44tfCGHh4nDVa8QMUy6otmtxcqjNbWx6q/0MDzbY2s7hU9faiC5X
+         cdgbRrNnmv9X+w1NVtP+ut5y/2I9SI0LdciIfqtNo7Eop8so4Is9jCUG+1q2fBdQQcD0
+         D4DjZbo9t1yznxP0R1uwKzA4EyA2VIJBZJdJZy4sYf9PIhWN6ow3ixkbKogA3GvRC2QN
+         MhHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=rmlcaT4uod7PpBdmIDlVofuYmhAw0mWF1ocMR7J7jHQ=;
-        b=R7naFZId8myY3XXvgvyaDKUpET48dBGKrwVNPyw/Xx6kn+VwVuG0hUmP+sIT5IY5FU
-         toJRnoJVZUZrolbMGm7qtLl3Q88UOOK+mXWDqu2nQ9Porn866FJGWqJ6j0pin/40xA1X
-         LQaZmV0ovxMnEbcWNnBiI7rBX+y/H7T3rnIy5fZXF5OkJGGlHsHg73sFcNYeg4kAs9LW
-         pL5tP72fBm38xE+da7zY4R9Hqkvs7KzBYZxuk84lre3CzJQRphWhTiWtkij+9UODsZYo
-         GOpJUXNjTao74KNjEb1fATMoaC0wlPhcTaVb8TxmkaS+/EV5wb4K0TvNaCiSE3GWAcAo
-         9MUA==
-X-Gm-Message-State: ACgBeo363I1h3jmHITlLscQOvyXjH13HiAQDpF/okykkJYFHKd4JwpnI
-        DVZwRwuhsYXSxPq9llmONPHP6LJCEsw8hg0P
-X-Google-Smtp-Source: AA6agR4PY6CaaARXSRtsxN/bcXrQHnxvJheo2EM1aAUGuEOPcsmtvuMW25Oc0Y2r7Drxt2Wkb0cBYQ==
-X-Received: by 2002:a05:6512:3b20:b0:492:c04a:1520 with SMTP id f32-20020a0565123b2000b00492c04a1520mr8189476lfv.86.1661880699713;
-        Tue, 30 Aug 2022 10:31:39 -0700 (PDT)
+        bh=e7JEKYuofd3ohVuN0wQat/Bd3pvagzYZJuquu9YnaTc=;
+        b=OegHGRcPLRje/5+kTrK3AYvBii9m4ylGMApYJhkYAiPoCrTLItgVu/6usgivxAJhvU
+         aW7aHA28C0tnz7a6LHJuPXF/+9nUpGrpu9x21U7N8SNX6YVU3EPEWt6ieWg6e75OJULO
+         o9Czz60FTmCOa0wsofluslQwu1LkTMniaaVvYas3wZcLS4OcCCWNg5FHBQJf+9zFbpQU
+         65BfxS+s6xEKoeLtD0DjO/cGuOlD76Vzodg5z6jyTyWGUJp9ek7TTBrdJuo4/iIFtDur
+         KHijdIIYVpwsCKLecz0w3B7MXpHQacP//CqGPdM15q8j02fj4JKLs3kQsrbJBI1r/S+s
+         Xy/A==
+X-Gm-Message-State: ACgBeo2kM6HQhVPtBsSajltdYzLJU8deqQ6SkewEJqKDjAk3BtoRlnqV
+        YYI08v4OcPgVSd08EMkAiUpmZg==
+X-Google-Smtp-Source: AA6agR71Ri1C6ITQXhDL5pZbp01DKxvtr8nIL2S4m+SgX2lfZcjbi0Z3IVSXrgmMwJay7vslWOAXeg==
+X-Received: by 2002:a05:6512:3d1e:b0:48b:3f76:eff with SMTP id d30-20020a0565123d1e00b0048b3f760effmr8545084lfv.312.1661880765623;
+        Tue, 30 Aug 2022 10:32:45 -0700 (PDT)
 Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id 13-20020a2e050d000000b0026392faf543sm1235119ljf.77.2022.08.30.10.31.38
+        by smtp.gmail.com with ESMTPSA id q7-20020a2eb4a7000000b00263d44b079bsm1166844ljm.99.2022.08.30.10.32.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Aug 2022 10:31:39 -0700 (PDT)
-Message-ID: <23539312-caaa-78f0-cd6c-899a826f9947@linaro.org>
-Date:   Tue, 30 Aug 2022 20:31:37 +0300
+        Tue, 30 Aug 2022 10:32:44 -0700 (PDT)
+Message-ID: <af1dd205-149b-034e-5f35-727ac1d151f2@linaro.org>
+Date:   Tue, 30 Aug 2022 20:32:43 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v3 1/3] dt-bindings: can: nxp,sja1000: Document RZ/N1
- power-domains support
+Subject: Re: [PATCH v1 1/1] usb: phy: mxs: apply board calibration value base
+ on chip trim value
 Content-Language: en-US
-To:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-can@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-References: <20220830164518.1381632-1-biju.das.jz@bp.renesas.com>
- <20220830164518.1381632-2-biju.das.jz@bp.renesas.com>
+To:     Frank Li <Frank.Li@nxp.com>, kishon@ti.com, vkoul@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, balbi@kernel.org,
+        gregkh@linuxfoundation.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        imx@lists.linux.dev
+References: <20220830162538.2845274-1-Frank.Li@nxp.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220830164518.1381632-2-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20220830162538.2845274-1-Frank.Li@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,17 +80,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/08/2022 19:45, Biju Das wrote:
-> Document RZ/N1 power-domains support. Also update the example with
-> power-domains property.
+On 30/08/2022 19:25, Frank Li wrote:
+> USBPHY_TRIM_OVERRIDE provide chip trim value. DTS provide board level
+> calibration data. Board level calibration data should be base on chip
+> trim value.
 > 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> For example, TXCAL45DP board level hope add +2.85% register base on
+> standard 45ohm. But chip trim value is -5.25% to get 45ohm output.
+> Actually finial TXCAL45DP should be -5.25% + 2.85% = -2.4%.
+> 
+> If chip have not trim value at USBPHY_TRIM_OVERRIDE, No behavior change.
+> board level calibration will be applied.
+> 
+> If chip have trim value at USBPHY_TRIM_OVERRIDE and no DTS board level
+> data, chip trim value will be applied.
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
-> v3:
->  * Documented power-domains support.
+>  drivers/usb/phy/phy-mxs-usb.c | 40 ++++++++++++++++++++++++++++++++---
+>  1 file changed, 37 insertions(+), 3 deletions(-)
 
-You made them required, so it would be nice to see reason in such
-change. The commit msg says only what you did, but not why you did it.
+Use scripts/get_maintainers.pl to CC all maintainers and relevant
+mailing lists.... and do not Cc unrelated folks.
 
 Best regards,
 Krzysztof
