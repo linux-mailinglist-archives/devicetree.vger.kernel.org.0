@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F084F5A5F88
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 11:35:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A76825A5F8A
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 11:36:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231538AbiH3JfQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 05:35:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49330 "EHLO
+        id S231145AbiH3JgR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 05:36:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231849AbiH3JeE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 05:34:04 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA6A5E58B0
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 02:33:06 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id w8so5651336lft.12
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 02:33:06 -0700 (PDT)
+        with ESMTP id S231363AbiH3Jfp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 05:35:45 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52333E095A
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 02:33:33 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id x10so10706632ljq.4
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 02:33:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=Sg21c2U2EDU591BTmReyYxGtxFU2rdWH4lXcz9Jl/oQ=;
-        b=UwZYN0UUvos+DFIuMcMKB3/g70v3pn0hSXod2WnobjsosLlxM6kc3MnjSquBQ4YB01
-         C8+4FlN6dJKloZ6tAHIniVANNjj2S3Uj7hAfJ121LePeGSAg8R2qs82XPu3yrtSqV5uB
-         4lr3R3VIprm4JwhjyDgYyHRY8lN5UKqy2h/RzKb1+6pOdBz7CQ6EHJK1tdSWmRhBk86x
-         2oDZpP8yBcbncwsxoHSVZiyT1xccZcfZzLIHwL5rQC748fggv06LdR34ktXRtdB8COQI
-         T9wVYQ59zQ9ui9T/fcB0oxAaBSZWz5A+hGMm5QcuTJUwey65/YnoUEwSDp1fDyMZzA5b
-         gMMw==
+        bh=8jLhtnIVjN/sROM6rGUEJSLxhjc41TVh4VC82bHwbSY=;
+        b=z13p8nSsHlnc2WlRI3gE1BGc+ZZF+OEOnqIGGnp/9JM+rMpBm5njAyfuLFD6hBGzMK
+         83NaOvwJBC/1HbFRiwRka/5Xxe+wqRJDM0oAwH22vBmKEZFI/EeTEfrBMXmTMAzRuuRA
+         fqIjWuygbjf+MYU5d07gEEny4azu0sMuewlszqX0Apr/TALpZiGDiJy5p7Dwd4lILeiF
+         DKIbKNljhX3dim3EDesV3mCjOIzwnXvq/yyJHHX6KfOsGkRd1QQJZhX1mjE1XU3yKBg+
+         AU//NNFT8jsyF1bYGoTvu2kHYFY5aB8BpLrWhrcf7/Sez9rPCXOAsLX900qAGw3Y3u2k
+         k5aA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=Sg21c2U2EDU591BTmReyYxGtxFU2rdWH4lXcz9Jl/oQ=;
-        b=q5VgYTZVtIgwI0QR3cZcyopnxi6KI3TEGMiNIcJ46G/6Zd9SjXm0a1g8VJIIqXRXF6
-         MHuz5Ss7/7wapPDrB90B6zrtu0n6ZQ8hK7tBIOA89p7Mvm34t/+Sq9S0j+qQQM1GMzIA
-         Wi+E4pC5cR8vxhkX85ynP6IHpL6Ne5wUaoWhvNXwBkzFcgn7ijMzp/vbT2PmdxQT2nJV
-         QLO7OHIve2+i22gf4L4kXwy+LStcDytAjoHqPA88JhjMwbZP5fO95TQ/bF4OgGRRPtUS
-         X1FB77CNEM3yFib2EuP1A+Fyi7W0YnR6neFw+sUKYImWmzwJIWfG1ZfcKHbcF5InB8g2
-         99ag==
-X-Gm-Message-State: ACgBeo2HUxvuVzkF1UgWZpYhJzilmHc7t9N6geH0tQ/SpCxi/6lbU3KA
-        O8aNvPTLojSZjeVhls1zPY0ZhQ==
-X-Google-Smtp-Source: AA6agR5yh8X5BmKU4wxxWdgpsp/W/CNveRawwlV8nLGSOyxDU0ID2dkfzy1lRZaQcQkOIti+Cy+hYQ==
-X-Received: by 2002:ac2:5462:0:b0:48b:2a7b:3c15 with SMTP id e2-20020ac25462000000b0048b2a7b3c15mr7783055lfn.489.1661851981612;
-        Tue, 30 Aug 2022 02:33:01 -0700 (PDT)
+        bh=8jLhtnIVjN/sROM6rGUEJSLxhjc41TVh4VC82bHwbSY=;
+        b=HE/5WM2toEbLyWOL4svXs+ysbKA989ptnlcJZu+dXMTqQk2Tkj7uqMFhh3KZ8/aIph
+         a+n0miPvh7nRwGDlQSv/OF1SzJLn1gv53vVUmJibXXKS8K2rAKiF5VXJu7TcGpXMMGgw
+         lm2q5PwSPJuWAb4qbp4yZntHMo7p++7tCwlfeauvnqX9jruMMnwaZSXbNlFYJ8cI6u9G
+         511MC73w4TP20Xl8M9b82twfbRMEzIG1/DdCTeeNSkuigT/UJTSr3ooRwRlo58STdnR/
+         fhmJdZCq6wTshuaIsY42lzLM9q9Q4Fv9rMINC+xznP+SDATQtJ7ykvcgHQjs+D9COSAa
+         bRKg==
+X-Gm-Message-State: ACgBeo1tlwvSQyzlAleTlqpBFoSpL6ENRUki/XbSamwr1U/BYh9CSH8+
+        dABbdOuJE6yvzgjgd2JsBXtmNQ==
+X-Google-Smtp-Source: AA6agR5rDpXTINB0t6CY1m8qyUHEvTl7b7yra5ZZrgOSbhUtIvb+lpGvcayneP88lZdREf5a7J99Gw==
+X-Received: by 2002:a2e:a1c8:0:b0:261:e4e5:1cc3 with SMTP id c8-20020a2ea1c8000000b00261e4e51cc3mr7107767ljm.248.1661852010357;
+        Tue, 30 Aug 2022 02:33:30 -0700 (PDT)
 Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id a13-20020ac2520d000000b0048a9603399csm1556472lfl.116.2022.08.30.02.33.00
+        by smtp.gmail.com with ESMTPSA id f6-20020a056512360600b0049288e0bd61sm1561420lfs.58.2022.08.30.02.33.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Aug 2022 02:33:01 -0700 (PDT)
-Message-ID: <184d4ff5-e80c-6a24-8071-0b0a69710685@linaro.org>
-Date:   Tue, 30 Aug 2022 12:32:59 +0300
+        Tue, 30 Aug 2022 02:33:29 -0700 (PDT)
+Message-ID: <74aa8d80-c176-7c8e-e80e-8d8910d10d8c@linaro.org>
+Date:   Tue, 30 Aug 2022 12:33:28 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
@@ -102,50 +102,8 @@ On 30/08/2022 08:33, Sheng-Liang Pan wrote:
 >  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-herobrine-r1.dtb
 >  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-villager-r0.dtb
 > +dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-evoker-r0.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-idp.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-idp2.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-crd-r3.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker-r0.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker-r0.dts
-> new file mode 100644
-> index 0000000000000..ccbe50b6249ab
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker-r0.dts
-> @@ -0,0 +1,333 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Google Evoker board device tree source
-> + *
-> + * Copyright 2022 Google LLC.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "sc7280-herobrine.dtsi"
-> +
-> +/ {
-> +	model = "Google Evoker";
-> +	compatible = "google,evoker", "qcom,sc7280";
 
-Undocumented compatible.
-
-Please run scripts/checkpatch.pl and fix reported warnings.
-
-Does not look like you tested the bindings. Please run `make
-dt_binding_check` (see
-Documentation/devicetree/bindings/writing-schema.rst for instructions).
-
-> +};
-> +
-> +/*
-> + * ADDITIONS TO FIXED REGULATORS DEFINED IN PARENT DEVICE TREE FILES
-
-What does it mean and why it's SCREAMING?
-
-> + *
-> + * Sort order matches the order in the parent files (parents before children).
-
-Why? Sorting should be rather alphabetical.
-
+Why breaking ordering?
 
 Best regards,
 Krzysztof
