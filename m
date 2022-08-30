@@ -2,92 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE7DF5A704A
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 00:02:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BF2D5A707F
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 00:19:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230483AbiH3WCr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 18:02:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56326 "EHLO
+        id S229453AbiH3WTc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 18:19:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232195AbiH3WC0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 18:02:26 -0400
-Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D66D91D20;
-        Tue, 30 Aug 2022 14:59:04 -0700 (PDT)
-Received: by mail-ot1-f41.google.com with SMTP id l5-20020a05683004a500b0063707ff8244so9043250otd.12;
-        Tue, 30 Aug 2022 14:59:04 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=c/mrE4x9g0huZBo1ugVDt1ad905oGNnLQIQ5LBb4CBI=;
-        b=NcIY6NkzNR74thJGbz+oCMiBavT+cCKGawax5DpLKQxtN7H3xhFv07setxTnm401ll
-         1oWy0MSoQIurLcr+K9RTlz5zIaaI6npQ3SBRr4uImwLC0sMUiLRkC0jiSN9h4jpKP1oX
-         LVSx0kAiskotCG53EUfAv1tTanE6DCsP6EYOc/ehbPgNCJp4wwvIBTheMzN6jm2E56eA
-         itLLAzYquzxDukbY+NC33F72CyvUPSkahV2EvyLTgFryZo32rlwY0RQzo7VCX8njstzI
-         4x+3gkfUpsD7fJsI1U09RkNyrxWaZXqpAGDsR14b8zPC3Zg73sbMH9RfrXVIjO0I3xhY
-         fn/Q==
-X-Gm-Message-State: ACgBeo0dLTfoQW3ZjJawrmN/UztJUH7iNN89bjDPumdDp0oaZhynXXpm
-        Rlz9JRYbqDXqVp1oOkCUFCE/GWvFNw==
-X-Google-Smtp-Source: AA6agR71tq++21E81nS1qjOGVLtVmMpvSKqybPuf6VKvptEt5YSJ3AZQMb63n+WeA2kCVWWehZ1y8w==
-X-Received: by 2002:a05:6830:929:b0:63b:25ba:dfe4 with SMTP id v41-20020a056830092900b0063b25badfe4mr6463836ott.311.1661896743283;
-        Tue, 30 Aug 2022 14:59:03 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id z7-20020a056870e30700b0011e4893127bsm8804950oad.38.2022.08.30.14.59.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Aug 2022 14:59:02 -0700 (PDT)
-Received: (nullmailer pid 2162196 invoked by uid 1000);
-        Tue, 30 Aug 2022 21:59:00 -0000
-Date:   Tue, 30 Aug 2022 16:59:00 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Conor Dooley <mail@conchuod.ie>
-Cc:     Daire McNamara <daire.mcnamara@microchip.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        linux-riscv@lists.infradead.org,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Atish Patra <atishp@atishpatra.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
-Subject: Re: [PATCH 1/2] dt-bindings: riscv: sifive-l2: add a PolarFire SoC
- compatible
-Message-ID: <20220830215900.GA2162133-robh@kernel.org>
-References: <20220825180417.1259360-1-mail@conchuod.ie>
- <20220825180417.1259360-2-mail@conchuod.ie>
+        with ESMTP id S229565AbiH3WT3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 18:19:29 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E09D6D9E7
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 15:19:27 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 27UMJCZS002994;
+        Tue, 30 Aug 2022 17:19:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1661897952;
+        bh=JN6JUuYgAqymz7RY7tcaiDfkt0RnJfsoLuo8MrTmSvM=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=gkviOJb6rNv75v2GJm0bt4N04XgDbU0dW2uGClAOvHnDJwwNl8LMkNTZFKYvlsVc/
+         +H2am3PxNzhUf20obnMIrwl5OvS7uDamTBFrH6LRLDuJrXoyHodE1MT16963itLuI1
+         If9CX0WBc0WuNQ2G1CuTaScC9FvGEDGBguwlHiyQ=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 27UMJCc3000958
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 30 Aug 2022 17:19:12 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 30
+ Aug 2022 17:19:12 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Tue, 30 Aug 2022 17:19:12 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 27UMJCCU031062;
+        Tue, 30 Aug 2022 17:19:12 -0500
+Date:   Tue, 30 Aug 2022 17:19:12 -0500
+From:   Bryan Brattlof <bb@ti.com>
+To:     Julien Panis <jpanis@baylibre.com>
+CC:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v1 0/2] AM62x watchdog support
+Message-ID: <20220830221912.5xfagplrbejzh52m@bryanbrattlof.com>
+References: <20220718122328.251602-1-jpanis@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <20220825180417.1259360-2-mail@conchuod.ie>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20220718122328.251602-1-jpanis@baylibre.com>
+X-PGP-Fingerprint: D3D1 77E4 0A38 DF4D 1853 FEEF 41B9 0D5D 71D5 6CE0
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 25 Aug 2022 19:04:17 +0100, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
+Hi Julien!
+
+On July 18, 2022 thus sayeth Julien Panis:
+> This patch series adds support for AM62x watchdog.
 > 
-> The l2 cache on PolarFire SoC is cross between that of the fu540 and
-> the fu740. It has the extra interrupt from the fu740 but the lower
-> number of cache-sets. Add a specific compatible to avoid the likes
-> of:
+> Changes since v0:
+> 	- Mark MCU & WKUP watchdogs as reserved
 > 
-> mpfs-polarberry.dtb: cache-controller@2010000: interrupts: [[1], [3], [4], [2]] is too long
+> Julien Panis (2):
+>   arm64: dts: ti: k3-am62: add watchdog nodes
+>   arm64: dts: ti: k3-am625-sk: mark MCU and WKUP watchdogs as reserved
 > 
-> Fixes: 34fc9cc3aebe ("riscv: dts: microchip: correct L2 cache interrupts")
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  .../bindings/riscv/sifive-l2-cache.yaml       | 79 ++++++++++++-------
->  1 file changed, 49 insertions(+), 30 deletions(-)
+>  arch/arm64/boot/dts/ti/k3-am62-main.dtsi   | 45 ++++++++++++++++++++++
+>  arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi    |  9 +++++
+>  arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi |  9 +++++
+>  arch/arm64/boot/dts/ti/k3-am625-sk.dts     | 10 +++++
+>  4 files changed, 73 insertions(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+These patches look great to me!
+
+Reviewed-by: Bryan Brattlof <bb@ti.com>
+
+~Bryan
