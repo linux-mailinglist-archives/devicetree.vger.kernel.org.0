@@ -2,97 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C03A5A5EC4
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 10:57:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F9A75A5EBF
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 10:57:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231153AbiH3I5p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 04:57:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49212 "EHLO
+        id S229449AbiH3I5b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 04:57:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231213AbiH3I5l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 04:57:41 -0400
-Received: from albert.telenet-ops.be (albert.telenet-ops.be [IPv6:2a02:1800:110:4::f00:1a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E91479F753
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 01:57:37 -0700 (PDT)
-Received: from ramsan.of.borg ([84.195.186.194])
-        by albert.telenet-ops.be with bizsmtp
-        id DkxV2800S4C55Sk06kxV52; Tue, 30 Aug 2022 10:57:34 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1oSx3o-003FFv-Np; Tue, 30 Aug 2022 10:57:28 +0200
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1oSx3o-001y3V-AQ; Tue, 30 Aug 2022 10:57:28 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        iommu@lists.linux.dev, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Joerg Roedel <jroedel@suse.de>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>
-Subject: [PATCH v2 resend] dt-bindings: iommu: renesas,ipmmu-vmsa: R-Car V3U is R-Car Gen4
-Date:   Tue, 30 Aug 2022 10:57:22 +0200
-Message-Id: <36400fe2cc6b6dcc0d6984fb77338d4d163e84dc.1661849638.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S230145AbiH3I5a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 04:57:30 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A5769E0CB
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 01:57:28 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id bq23so14597768lfb.7
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 01:57:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=GqxXJYLcgxzpP2ZXiJpKYao0UsYj8w9DXe+9ym7gme0=;
+        b=ujObYb7BZjSY2DG1cWtiXE+XefTdW9gkANM8ivM/MyZaWp2WACtiRtjyn9khuMY6dL
+         7xUWQE/PGwBxSRXLV9PYIOx6nGWmv+nQ3T1/vQnrHh8AwYM+oNFlit+m23uReoNY1LCQ
+         bp41qS+zVwBwi7JDyvD29HsZ9GPn12z10Dm9eP49yjHEBVJWyO/XCpu9UMxdd5B2/Y4M
+         28dCWyzz+s01uq9wDqUJGS58VnQRCtUsghnGTwjqaGFj9zUgkUfQQ92Zl3A9CUWGZW98
+         4oOXfroo9QygAIsAaCszAk/SlpVh5P3h7kghynKiDVCGlt0b814ZRJrxokUIATYQXzak
+         NbTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=GqxXJYLcgxzpP2ZXiJpKYao0UsYj8w9DXe+9ym7gme0=;
+        b=W8N19/LNf6iYyhtl9kWzDWBmqyYntDwA9i6m+6DX1AjJfoX/5S91RcHQdm7/CZf1Ov
+         gotXzWAEUjbmHLq8uochov5WhNq2aJFt8iUJLywNRKmyPqvOfx8KbYK69P/XaLtCwd1U
+         cEQBO0qvnfn6CEqpmXnEXppcGyUzHEPECrYNrz8Dtcpjs/bpz1K7nfHwz1wfC39ftuKU
+         3nRWoD8Kbx5yTYtftoQzoIJkLbahGxTFa+LGRnwvqFpzCkgvWLg1tr0kNBbY0aH1r+3V
+         sxvyxY6tXEunYYSpaTkQ81opTrXg+zS5hJyhsAVCDvzL18FHoHV2PYX2RFfhV/zWtMwE
+         LjZg==
+X-Gm-Message-State: ACgBeo3cZtFUPeEotwwUA2G+I9EugIT+33VKVJ9PhYwHIOtdJvkeM7z6
+        AC1mKy+mnCMbabZx8H4gQvOKgBx6JhOFoMECRU8=
+X-Google-Smtp-Source: AA6agR4EU+9shH21zvi7esssrpBh2nzV77A/AczGVMGQGOf/eJ1aqB+K9adBP6pNavBwjlUVXcwY3w==
+X-Received: by 2002:a05:6512:108f:b0:494:7299:7152 with SMTP id j15-20020a056512108f00b0049472997152mr1954983lfg.514.1661849846799;
+        Tue, 30 Aug 2022 01:57:26 -0700 (PDT)
+Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
+        by smtp.gmail.com with ESMTPSA id c9-20020a2e9d89000000b002655fb689a6sm718889ljj.139.2022.08.30.01.57.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Aug 2022 01:57:26 -0700 (PDT)
+Message-ID: <40577a34-6046-a10b-e444-4fb36d13e8e6@linaro.org>
+Date:   Tue, 30 Aug 2022 11:57:25 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH V3 1/2] dt-bindings: fsl-imx-sdma: Convert imx sdma to DT
+ schema
+Content-Language: en-US
+To:     Joy Zou <joy.zou@nxp.com>
+Cc:     shengjiu.wang@nxp.com, vkoul@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20220830081839.1201720-1-joy.zou@nxp.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220830081839.1201720-1-joy.zou@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Despite the name, R-Car V3U is the first member of the R-Car Gen4
-family.  Hence move its compatible value to the R-Car Gen4 section.
+On 30/08/2022 11:18, Joy Zou wrote:
+> Convert the i.MX SDMA binding to DT schema format using
+> json-schema. In addition, add new peripheral types HDMI
+> Audio.
+> 
+> when run dtbs_check will occur nodename not match issue
+> because the old dts nodename can't match new rule. I have
+> modified thoes old dts, and will upstream in the near future.
+> 
+> Signed-off-by: Joy Zou <joy.zou@nxp.com>
+> ---
+> Changes since (implicit) v2:
+> modify the commit message in patch v3.
+> modify the filename in patch v3.
+> modify the maintainer in patch v3.
+> delete the unnecessary comment in patch v3.
+> modify the compatible and run dt_binding_check and
+> dtbs_check in patch v3.
+> add clocks and clock-names property in patch v3.
+> delete the reg description and add maxItems in patch v3.
+> delete the interrupts description and add maxItems in patch v3.
+> add ref for gpr property.
+> modify the fsl,sdma-event-remap ref type and add items
+> in patch v3.
+> delete consumer example in patch v3.
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Acked-by: Joerg Roedel <jroedel@suse.de>
-Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
----
-v2:
-  - Add Acked-by, Reviewed-by,
-  - Add blank lines to improve readability.
----
- .../devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml       | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+This is patch 1/2. Where is 2/2?
 
-diff --git a/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml b/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
-index 8854569ca3a6c949..26d0a5121f02a153 100644
---- a/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
-+++ b/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
-@@ -29,6 +29,7 @@ properties:
-               - renesas,ipmmu-r8a7793  # R-Car M2-N
-               - renesas,ipmmu-r8a7794  # R-Car E2
-           - const: renesas,ipmmu-vmsa  # R-Mobile APE6 or R-Car Gen2 or RZ/G1
-+
-       - items:
-           - enum:
-               - renesas,ipmmu-r8a774a1 # RZ/G2M
-@@ -43,10 +44,11 @@ properties:
-               - renesas,ipmmu-r8a77980 # R-Car V3H
-               - renesas,ipmmu-r8a77990 # R-Car E3
-               - renesas,ipmmu-r8a77995 # R-Car D3
--              - renesas,ipmmu-r8a779a0 # R-Car V3U
-+
-       - items:
-           - enum:
--              - renesas,ipmmu-r8a779f0 # R-Car S4-8
-+              - renesas,ipmmu-r8a779a0           # R-Car V3U
-+              - renesas,ipmmu-r8a779f0           # R-Car S4-8
-           - const: renesas,rcar-gen4-ipmmu-vmsa  # R-Car Gen4
- 
-   reg:
--- 
-2.25.1
-
+Best regards,
+Krzysztof
