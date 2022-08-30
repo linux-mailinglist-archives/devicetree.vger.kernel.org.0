@@ -2,108 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3A4D5A6707
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 17:13:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4F4B5A6730
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 17:22:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230232AbiH3PNT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 11:13:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59892 "EHLO
+        id S230237AbiH3PWF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 11:22:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44604 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229736AbiH3PNN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 11:13:13 -0400
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 049901286F7;
-        Tue, 30 Aug 2022 08:13:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1661872392; x=1693408392;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=wTIUsBF5sTdJ6JbPdR2fBQZlqEWSeLoC7AVXPmb6j1c=;
-  b=cF8HA9zl2aRv0tb2hi69bsC/kc7LoUHCIqOZw0PlDqFTRx5Ycjh1pm//
-   s/S4nbwW6s8MIXUnx6LjAtUMfFuUo/bkSWcy3cxti0Kx2vs5LTVsYDZjt
-   dT3Tg48bdx3J3UdJPCjGzzBqA397zGaRb+EnJ5uIy/DvJJfZcvwXfRuGk
-   jaHIM6pUQIY6ZJ/3B+DmXUBqfac/adfYDlHaw32AZqJ9mviKY/U0LmiHz
-   63uFowhgaJMjEThcMONk3+LNEQnQrlqvzySmCS+7LXhkzNI+aIxOY/Qy+
-   UOas9UPM8uNHLNejFcoxHQeAZoaacAwWIfnm264tIvUcX4zy0ZE8rF6Th
-   g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10455"; a="295984540"
-X-IronPort-AV: E=Sophos;i="5.93,275,1654585200"; 
-   d="scan'208";a="295984540"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Aug 2022 08:13:11 -0700
-X-IronPort-AV: E=Sophos;i="5.93,275,1654585200"; 
-   d="scan'208";a="562682956"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Aug 2022 08:13:05 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1oT2vF-0060PI-2k;
-        Tue, 30 Aug 2022 18:13:01 +0300
-Date:   Tue, 30 Aug 2022 18:13:01 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     ChiaEn Wu <peterwu.pub@gmail.com>
-Cc:     lee@kernel.org, daniel.thompson@linaro.org, jingoohan1@gmail.com,
-        pavel@ucw.cz, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        sre@kernel.org, jic23@kernel.org, lars@metafoo.de, deller@gmx.de,
-        broonie@kernel.org, mazziesaccount@gmail.com,
-        chiaen_wu@richtek.com, alice_chen@richtek.com,
-        cy_huang@richtek.com, dri-devel@lists.freedesktop.org,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-iio@vger.kernel.org,
-        linux-fbdev@vger.kernel.org, szunichen@gmail.com
-Subject: Re: [PATCH v9 00/10] Add MediaTek MT6370 PMIC support
-Message-ID: <Yw4o/Sx6frEtaFDp@smile.fi.intel.com>
-References: <20220830033729.9219-1-peterwu.pub@gmail.com>
+        with ESMTP id S230296AbiH3PV4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 11:21:56 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BB40B7EFE;
+        Tue, 30 Aug 2022 08:21:54 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 27UFLcs1054555;
+        Tue, 30 Aug 2022 10:21:38 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1661872898;
+        bh=g7Q8aqW9afFjMHMjY1T11nciRO0hWKdM3FcRNCvcGVU=;
+        h=From:To:CC:Subject:Date;
+        b=stCDzRhfc0FthWphQNmVyLYnFUKNBAGLxAXmBxxXEBdFQ/YYOHg2udPy2A0grBh13
+         aTSVOWKvoNldZ/F5kx1hXhENPXXmxojIc/gjlwOfRll7MgB2i/jA0AS+VwW7O7AJn6
+         u5iPLk92CHZF/u6MT1ndg40QQ+rSfAeodh8rX9EY=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 27UFLcn2017997
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 30 Aug 2022 10:21:38 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 30
+ Aug 2022 10:21:37 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Tue, 30 Aug 2022 10:21:37 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 27UFLb8a022740;
+        Tue, 30 Aug 2022 10:21:37 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+CC:     Tero Kristo <kristo@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH 0/4] arm64: dts: ti: *: Define aliases in board file
+Date:   Tue, 30 Aug 2022 10:21:28 -0500
+Message-ID: <20220830152132.23916-1-nm@ti.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220830033729.9219-1-peterwu.pub@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 30, 2022 at 11:37:20AM +0800, ChiaEn Wu wrote:
-> From: ChiaEn Wu <chiaen_wu@richtek.com>
-> 
-> This patch series add MediaTek MT6370 PMIC support and add a index macro
-> to <linear_range.h>. The MT6370 is a highly-integrated smart power
-> management IC, which includes a single cell Li-Ion/Li-Polymer switching
-> battery charger, a USB Type-C & Power Delivery (PD) controller, dual
-> Flash LED current sources, a RGB LED driver, a backlight WLED driver,
-> a display bias driver and a general LDO for portable devices.
-> 
-> First, in this series of patches,
-> 'dt-binding: mfd', 'mfd driver' has been applied by Lee in the v7.
-> https://lore.kernel.org/all/YvJdpq0MWNPQZw5c@google.com/
-> https://lore.kernel.org/all/YvJdxEpC2cB58Bq9@google.com/
-> 
-> 'tcpci driver' has been applied by Greg in the v8.
-> https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git/commit/?h=usb-next&id=c2a8ea5997fdfeb43eda259d5533234c3cae05d7
-> 
-> Second, the LED RGB driver is based on Andy's patch which moves
-> led_init_default_state_get() to the global header.
-> https://lore.kernel.org/all/20220805154907.32263-3-andriy.shevchenko@linux.intel.com/
-> 
-> In addition, we added a macro to the <linear_range.h> for declaring the
-> linear_range struct simply (see patch v9-0005) and made some changes for
-> MT6370 drivers (see v9 section of the change log below).
+This series moves the aliases definitions in various TI SoC dts files
+from SoC level to the board level.
 
-Your cover letter is dangling. Make sure you are using --cover-letter --thread
-when preparing the series.
+Verification done:
+a) build dtbs without the patches, regenerate dts using dtc -s -I dtb
+b) build dtbs with the patches, regenerate the dts using dtc -s -I dtb
+c) compare the regenerated dts file between a and b and ensure 0 delta
+
+Nishanth Menon (4):
+  arm64: dts: ti: am65*: Define aliases in board files
+  arm64: dts: ti: j721e*: Define aliases in board files
+  arm64: dts: ti: j7200*: Define aliases in board files
+  arm64: dts: ti: am64*: Define aliases in board files
+
+ arch/arm64/boot/dts/ti/k3-am64.dtsi           | 16 ----------------
+ arch/arm64/boot/dts/ti/k3-am642-evm.dts       | 16 ++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am642-sk.dts        | 16 ++++++++++++++++
+ .../boot/dts/ti/k3-am65-iot2050-common.dtsi   | 12 ++++++++++++
+ arch/arm64/boot/dts/ti/k3-am65.dtsi           | 17 -----------------
+ .../arm64/boot/dts/ti/k3-am654-base-board.dts | 17 +++++++++++++++++
+ .../dts/ti/k3-j7200-common-proc-board.dts     | 17 +++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j7200.dtsi          | 17 -----------------
+ .../dts/ti/k3-j721e-common-proc-board.dts     | 19 +++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j721e-sk.dts        | 19 +++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j721e.dtsi          | 19 -------------------
+ 11 files changed, 116 insertions(+), 69 deletions(-)
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.31.1
 
