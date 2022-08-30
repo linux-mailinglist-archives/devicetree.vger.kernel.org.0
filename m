@@ -2,113 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84BFE5A6434
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 14:58:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E965F5A6448
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 15:01:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229670AbiH3M6Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 08:58:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48902 "EHLO
+        id S230047AbiH3NBi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 09:01:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229468AbiH3M6Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 08:58:16 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6636F7645
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 05:58:15 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id m16so14085238wru.9
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 05:58:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=YGmkAZyavh+X9La7k+CFGGjIc+C3jV0M+2ia4/QWjpk=;
-        b=nAszEbPHvTpl4eyJg2fuRS7ZObScYrqd1N/RhNUC43Hyeu3SMZO5iY+wvqOFUaysJx
-         siq91yP79RGZRyAGXtSxRYbHENA2EZBjnR1mOUY1QjbRvpGf9fFltg2PUNK8w+viOecx
-         hiMOOsVI5a4/nrqi4vJmuXhAOmdFSRay5yXiVueQ90Pob6BdW3OdkeYXrxkKZuRH/Gkh
-         3IWJsU/KZOXZzR5MpVFluwpvqJQU2wu8DHSXs2PT1Lf1fHbBcywk0YDQAqTSp/Oxjnb4
-         raN3nvqUR6nMgoSIzAj+b7rHtuvpT3TJTdraYkNRXrj7kxguhup/RPD1rl3YCj3KX9tw
-         SgoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=YGmkAZyavh+X9La7k+CFGGjIc+C3jV0M+2ia4/QWjpk=;
-        b=FmvB49ou3nVrh4OtlI4mjkB0jraHBmEkso8tjPuGmJN42jjQjXNbRaDsHurGK578ir
-         oPKnt8PJhjwnzh9Bo3Mu1mtgJVIHdYHpQ2riiHOK794JbKkgHd5esUTpC1664qWeXSHt
-         ORviGKq1tQ8AuEQGJL1uE6xJHn08yB5mzmhtLow0QBUO/IFGVu+mX4z51tWgUefBA/QU
-         T2dKIdohSkDpvk3ZHkNnJsd0Jui1tyX54pMFsCIX3l+UBa8tBpksDHaPNrfLki0R6cP+
-         57KhvzhA9eNNGuytHUhss5rSFtoYwu/j3rvb7leFtF9rCWA/W/jrmXJNCWtkExYfhZWm
-         KXrA==
-X-Gm-Message-State: ACgBeo1J6a5LIP2JbDp6Dzqh7IN3ApYve4tD5Bp5PPr8YIVFCCghlmjD
-        HGjBqA81UbWDQuzAE2m7rDLHCA==
-X-Google-Smtp-Source: AA6agR51p0EDWKeeNESKGCHV+BZqCfWQ96nO9J+kb64Y+l4lI4KMbkrcUhW3hqrmrES73N832iz+dw==
-X-Received: by 2002:adf:e18a:0:b0:225:8c08:2411 with SMTP id az10-20020adfe18a000000b002258c082411mr8631521wrb.548.1661864293933;
-        Tue, 30 Aug 2022 05:58:13 -0700 (PDT)
-Received: from [10.35.5.6] ([167.98.27.226])
-        by smtp.gmail.com with ESMTPSA id q28-20020a056000137c00b002205cbc1c74sm9543475wrz.101.2022.08.30.05.58.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Aug 2022 05:58:13 -0700 (PDT)
-Message-ID: <6b6837c1-5a2c-567b-ba64-72a1dca38807@sifive.com>
-Date:   Tue, 30 Aug 2022 13:58:12 +0100
+        with ESMTP id S229796AbiH3NBd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 09:01:33 -0400
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2086.outbound.protection.outlook.com [40.107.244.86])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B16004BD37;
+        Tue, 30 Aug 2022 06:01:32 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=QIaM5GPcW/6NUizh6PZTajSa3MaQalKulUnGaO3KUFWsYckidYFuESQcr3R5mmnxhTBvar47rw4WGH1ggb8+QJP0TvdiFmW4Q2K0avc8OgU+AU33p8hSXn7eDJxm9U7nxj0i6O1es805SZ9Jf3SrQ3wz+H2frYzlmABDXkCSkC+jWMvU3vrecMARHf9wY+oTQ37INi441I9JMpfluSLDu+TNatSeSV+sBXtuOD5HVcrU+X0SVVYK4FPSRwxUEu0hfGqcEg2eLKz6t3GBykjGthptwb25fAcAVz1vLQdZTZ/0QXFqppPcyLrYjukb86A/A2iX/59rtVLxrik9uIVxRA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=mjKudDZNgLYgc4XBq5aYSAELlvltGk3PSjasQQS1prE=;
+ b=cPdsJYXCjPG+6WLid/7RdtlJeOdDYnUK0xGdU0D+hNfGJIg/mhaiti6We3rQhI4qihQoU/ChVUc/3BiBAuetXKKxnI+bjzMNge6c9DbowSIaEYLpQnjqR8Brq1ntTJJPcD+5dzxJdMi+/XcNRnfLw6ZDvkmT2iF1QFv9dRdtEXTV3Xh5Z/9QoBFEeRDa1AV1mlw18ytQY/VTDORkjPZRFazEQLPW+pYqaQfPR6qTZxP29nh8T0LNYDwCvbnIyXrs4OG0Nw8m9rRcBd79txb3kkfFkjDoQ0yXOeZM5uq+xPHRruAOmNGQz6FDO5sDu4EaL4sLQ92QOzxgBJmnbGWHHg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mjKudDZNgLYgc4XBq5aYSAELlvltGk3PSjasQQS1prE=;
+ b=BfqhkpKdVc51DwiWe4/PCjZ57gDjp4X0ZMP/nc7TSUhI9FyX+45ueT/bvU89M+QEggW8wNKXsx91TUEtAhui2eHQPx4TK4UEFXBEM+jkpgV5SjASaek3iP5ud6vIK+0ftfa00U2YPvSx+u7QdsTLc3ixnRpsz6UxF9eQ9rbbytdBNKoTBGfXQmo/WkMTg0TqcKP8bPtIMIw3NwRHttC00ZzoaCanjFjPT3APRmTi3LI9UEAPJr/RT3sUKluXRm0S4/1UtmzoZG48YpUCuRwX02UU70GwixBfiNaSv3zlRNxZui4pMRtGlwVl1PxodxpjffgI85HmAPmF254aJHhH3w==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from MN2PR12MB4192.namprd12.prod.outlook.com (2603:10b6:208:1d5::15)
+ by SN6PR12MB5695.namprd12.prod.outlook.com (2603:10b6:805:e1::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5566.16; Tue, 30 Aug
+ 2022 13:01:31 +0000
+Received: from MN2PR12MB4192.namprd12.prod.outlook.com
+ ([fe80::462:7fe:f04f:d0d5]) by MN2PR12MB4192.namprd12.prod.outlook.com
+ ([fe80::462:7fe:f04f:d0d5%8]) with mapi id 15.20.5566.021; Tue, 30 Aug 2022
+ 13:01:30 +0000
+Date:   Tue, 30 Aug 2022 10:01:29 -0300
+From:   Jason Gunthorpe <jgg@nvidia.com>
+To:     "Gupta, Nipun" <Nipun.Gupta@amd.com>
+Cc:     Robin Murphy <robin.murphy@arm.com>,
+        Saravana Kannan <saravanak@google.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "rafael@kernel.org" <rafael@kernel.org>,
+        "eric.auger@redhat.com" <eric.auger@redhat.com>,
+        "alex.williamson@redhat.com" <alex.williamson@redhat.com>,
+        "cohuck@redhat.com" <cohuck@redhat.com>,
+        "Gupta, Puneet (DCG-ENG)" <puneet.gupta@amd.com>,
+        "song.bao.hua@hisilicon.com" <song.bao.hua@hisilicon.com>,
+        "mchehab+huawei@kernel.org" <mchehab+huawei@kernel.org>,
+        "maz@kernel.org" <maz@kernel.org>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "jeffrey.l.hugo@gmail.com" <jeffrey.l.hugo@gmail.com>,
+        "Michael.Srba@seznam.cz" <Michael.Srba@seznam.cz>,
+        "mani@kernel.org" <mani@kernel.org>,
+        "yishaih@nvidia.com" <yishaih@nvidia.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+        "okaya@kernel.org" <okaya@kernel.org>,
+        "Anand, Harpreet" <harpreet.anand@amd.com>,
+        "Agarwal, Nikhil" <nikhil.agarwal@amd.com>,
+        "Simek, Michal" <michal.simek@amd.com>,
+        "git (AMD-Xilinx)" <git@amd.com>
+Subject: Re: [RFC PATCH v2 2/6] bus/cdx: add the cdx bus driver
+Message-ID: <Yw4KKWIGsR8MKa1j@nvidia.com>
+References: <DM6PR12MB3082D966CFC0FA1C2148D8FAE8719@DM6PR12MB3082.namprd12.prod.outlook.com>
+ <YwOEv6107RfU5p+H@kroah.com>
+ <DM6PR12MB3082B4BDD39632264E7532B8E8739@DM6PR12MB3082.namprd12.prod.outlook.com>
+ <YwYVhJCSAuYcgj1/@kroah.com>
+ <20220824233122.GA4068@nvidia.com>
+ <CAGETcx846Pomh_DUToncbaOivHMhHrdt-MTVYqkfLUKvM8b=6w@mail.gmail.com>
+ <a6ca5a5a-8424-c953-6f76-c9212db88485@arm.com>
+ <DM6PR12MB30824C5129A7251C589F1461E8769@DM6PR12MB3082.namprd12.prod.outlook.com>
+ <Ywzb4RmbgbnQYTIl@nvidia.com>
+ <MN2PR12MB30870CE2759A9ABE652FAFD8E8799@MN2PR12MB3087.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <MN2PR12MB30870CE2759A9ABE652FAFD8E8799@MN2PR12MB3087.namprd12.prod.outlook.com>
+X-ClientProxiedBy: MN2PR11CA0019.namprd11.prod.outlook.com
+ (2603:10b6:208:23b::24) To MN2PR12MB4192.namprd12.prod.outlook.com
+ (2603:10b6:208:1d5::15)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.1.1
-Subject: Re: [RESEND PATCH] dt-bindings: sifive-ccache: fix cache level for l3
- cache
-Content-Language: en-GB
-To:     Conor.Dooley@microchip.com, palmer@dabbelt.com,
-        paul.walmsley@sifive.com, aou@eecs.berkeley.edu,
-        greentime.hu@sifive.com, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
-References: <20220829062202.3287-1-zong.li@sifive.com>
- <20220830125133.1698781-1-ben.dooks@sifive.com>
- <b810d354-18f3-9ae0-6310-57d9e36f4f9b@microchip.com>
-From:   Ben Dooks <ben.dooks@sifive.com>
-In-Reply-To: <b810d354-18f3-9ae0-6310-57d9e36f4f9b@microchip.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: a5a89d7e-2843-4c8e-a920-08da8a87c1e8
+X-MS-TrafficTypeDiagnostic: SN6PR12MB5695:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Y55oKkr+jlDAzkPF+xSExS+0seYaAwbmAFvrr5BsQIS401oTO8WnytRmtiVq2woBBhziqWbOUAXT5pM1dBwmC8R4JFtO/B1pWbLaMqSOI5MfC2s+FOvKoXbjXAlyRRT7sPVbc/P7XyatXb5hRJcERFvpoKHJaON70Y7Y/xNN4Iv35KO7C82I2vUlM0m9PY3Xyc/KlvsDvxx8i0ERJq6wQJr8DUhK3fC9CLlPdUBtRuHEcPW9mXAyWFgxUFPjDJyXoLeOjcL/0GcJSYjJf42UAJ/mPmU3JzYy4UFnRLg357yTNxFKZeYyAWfn+2iovaHHBnSXEoqmHzQrVvk1RxF3g2izrkqKaYXHU2C2sTURD7NFCuw2/fO2cNk5b3ohuRSFkDpWuII7RT+yE+ITixRhQvuaWNsd5qEYu1yOeypOxGHovKvqn1k0ClDDFkSLV2RJzCGRLK3/6wqrNc2yhIL0cPf/vS+YcRcuZNt5Ef8y9QokjIC+AY8A73LV/xmRRA2lSjsZVXQpsWZ0u4+xLWYcOviuVdXbRafKtn+sBNxkAtTQUIkhLR1mJ5BGiT56wLh6FtLjt9i6STBIzvsuv7bevzzrXCsfXxDb7nuMZkqKyScNCf6l53BX+4rR/HWeR0wB85bC1nJMlIn1z32lQCVXy512vzstWq9A3OrhEls49+eDvLZY320oEfp/FeQrj9nLvZiywwO3ZuAAUoSMrxtz0A==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR12MB4192.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(136003)(366004)(346002)(376002)(39860400002)(396003)(478600001)(6916009)(316002)(8676002)(6486002)(86362001)(66946007)(66476007)(4326008)(54906003)(66556008)(5660300002)(36756003)(8936002)(41300700001)(7416002)(2616005)(38100700002)(6506007)(2906002)(53546011)(83380400001)(6512007)(26005)(186003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?nrkx/LzMITkZLq75K4KfvuwxGBq9tPBEyIwBP5J43ir0XCpDNVHNA+fAPukx?=
+ =?us-ascii?Q?z/bwBgHdMyZfs/+nVY/f7Fp6NFEGdjBoM/E1q/S7qkMpqre0/h7ls/1SXBOl?=
+ =?us-ascii?Q?0OYqZWrLdhAnRaHyEGVgq36RrQnDXL+/bR30Kj4lXKg+eKqlakrCans7ZhhG?=
+ =?us-ascii?Q?huPpR2X4BRcenSu9vDlJUwbckWiiY2xM5fUuvzjYFN+VzaVGqU95nN4DBCdl?=
+ =?us-ascii?Q?AE14dTn6c67cKVOyASd37JyMBaHkT6xaRbvZk+nS/74rhnFeyPJZyQwCjvan?=
+ =?us-ascii?Q?Z/fDILdlddlIHzrEVV2VyXve11TelViAai+qGjaUM9FDBqbWy/W7/TrqI+io?=
+ =?us-ascii?Q?73LjT0t+M+Ofc9Azs7bFVcMlla46OwjscuKA4ZtF3nyA02oGJs5tOXS8wpfO?=
+ =?us-ascii?Q?uC0CeOFL54Q09e9uGU6IEWtcnM0tLUkhoSSO2LZDhYnseR289KQELVV7p4F5?=
+ =?us-ascii?Q?6aNukUFLDxexOConpjSlpR/PE2XVYIdFQLk34vag8RBOZHtUXxCJovmrs/t4?=
+ =?us-ascii?Q?HsCB1EehgX9QcZzKJJW8pYjhY2WRV2VM+Ta6cG4q4vpnukce22qCR9NkWy6D?=
+ =?us-ascii?Q?ynabWS0GfT2wri+983lMuTKcL/4wRExrlHrMqNX59A1MbgR2ikzmwKDLj+zv?=
+ =?us-ascii?Q?vJZXNvX3Tz+6axvlFb7FnryCd5vVzDemhaWFbTXqYtWF1ElJvUFvojdWv1Ai?=
+ =?us-ascii?Q?mxg/U8q5fz3+o71YI5OcjIUK2S3ZmBOHqt4luzOjs4PPyC05Lgp+y/gqHN/o?=
+ =?us-ascii?Q?dtOaojmgucM/LWBv8H3QAR6mlePchKLtpyywPZvf3epXqhDmGpCoW3rO7jF8?=
+ =?us-ascii?Q?pf2L3NR9m6scvEem0EVLRccC3KYZtritdgvhvrRjZHt5JnKGAcakzbwvWsGO?=
+ =?us-ascii?Q?WIg451ojS+jIPmQCE+dpaKsnhyLNrhe+1/klrGqeb/u6O4Ae1ylGwxrYh+kh?=
+ =?us-ascii?Q?7USjwpNlpgOy1qlOWQS4vq/vINTnMQSPhRiSd3FwlHvDjYzZrpBnBC5l3E6l?=
+ =?us-ascii?Q?/QEsZA7zNb/a3ijQAtqAlF40yAYJrJQZ8GDQvst2Ro68utMRc8XQEFc0QAnZ?=
+ =?us-ascii?Q?2DHLkj88PZ4ST8C3pTnXkXsA2iZKyLWzdVBat59lingaT/362mVmOo1ekJdh?=
+ =?us-ascii?Q?JPZzRTsS9H/QTUA2AnjwD1E18ENrHn2Xkr0Rn3F2VMOiHjhvfgMZfJ0HyuxS?=
+ =?us-ascii?Q?99d4cfq3qZ7I/ZkQoJCxbhdc/dtCn7rWWrgh//jl/JpM4c/+KUelDJePpq4W?=
+ =?us-ascii?Q?vSJbZQtIero9GLgRvEPh+w5PqXXOncp9QFUPUd9XU9U6jWeskc5t4ShYZDvz?=
+ =?us-ascii?Q?+YIBqaKodXGpE5ubzbFp3Tb9c+t2ux57wnRGJ7jMAv/qc/+cq2T/bR7yx8G0?=
+ =?us-ascii?Q?uE1SSjW3Rzi8/W3ZUfDgCxBRc+lexyQmr0t1Nwep7PK9snMWzM7vwhlLaOd+?=
+ =?us-ascii?Q?ZPDDmQEwqN6/3E/r48zcYJXDleCNbMB8CFnyl3+0Y2C1Y7YMaWXUidyUBbRT?=
+ =?us-ascii?Q?4TcnC5mJIJtzri1zg5vlhlF2Vs+mPIdv2R3xNJi4ORFHiG5QeuLp0Ox3dz/i?=
+ =?us-ascii?Q?r/GPx6xb5l8+uMfp2C2WYX2uOwjRNdtRX92mEjyx?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a5a89d7e-2843-4c8e-a920-08da8a87c1e8
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4192.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Aug 2022 13:01:30.7158
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9vjjT/nmZj32NcF7kuHwGGKn7RxUSMAgtj7ZYeadAiJwRet51xglW0loQxEngVmF
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR12MB5695
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/08/2022 13:56, Conor.Dooley@microchip.com wrote:
-> On 30/08/2022 13:51, Ben Dooks wrote:
->> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
->>
->> With newer cores such as the p550, the SiFive composable cache can be
->> a level 3 cache. Update the cache level to be one of 2 or 3.
->>
->> Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
->> ---
->>    Documentation/devicetree/bindings/riscv/sifive-ccache.yaml | 2 +-
->>    1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/riscv/sifive-ccache.yaml b/Documentation/devicetree/bindings/riscv/sifive-ccache.yaml
->> index 1a64a5384e36..6190deb65455 100644
->> --- a/Documentation/devicetree/bindings/riscv/sifive-ccache.yaml
->> +++ b/Documentation/devicetree/bindings/riscv/sifive-ccache.yaml
->> @@ -45,7 +45,7 @@ properties:
->>        const: 64
->>
->>      cache-level:
->> -    const: 2
->> +    enum: [2, 3]
+On Tue, Aug 30, 2022 at 07:06:12AM +0000, Gupta, Nipun wrote:
+> [AMD Official Use Only - General]
 > 
-> Do we want to enforce the cache level like we currently do for
-> interrupts and cache-sets?
+> 
+> 
+> > -----Original Message-----
+> > From: Jason Gunthorpe <jgg@nvidia.com>
+> > Sent: Monday, August 29, 2022 9:02 PM
+> > To: Gupta, Nipun <Nipun.Gupta@amd.com>
+> > Cc: Robin Murphy <robin.murphy@arm.com>; Saravana Kannan
+> > <saravanak@google.com>; Greg KH <gregkh@linuxfoundation.org>;
+> > robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org; rafael@kernel.org;
+> > eric.auger@redhat.com; alex.williamson@redhat.com; cohuck@redhat.com;
+> > Gupta, Puneet (DCG-ENG) <puneet.gupta@amd.com>;
+> > song.bao.hua@hisilicon.com; mchehab+huawei@kernel.org;
+> > maz@kernel.org; f.fainelli@gmail.com; jeffrey.l.hugo@gmail.com;
+> > Michael.Srba@seznam.cz; mani@kernel.org; yishaih@nvidia.com; linux-
+> > kernel@vger.kernel.org; devicetree@vger.kernel.org; kvm@vger.kernel.org;
+> > okaya@kernel.org; Anand, Harpreet <harpreet.anand@amd.com>; Agarwal,
+> > Nikhil <nikhil.agarwal@amd.com>; Simek, Michal <michal.simek@amd.com>;
+> > git (AMD-Xilinx) <git@amd.com>
+> > Subject: Re: [RFC PATCH v2 2/6] bus/cdx: add the cdx bus driver
+> > 
+> > [CAUTION: External Email]
+> > 
+> > On Mon, Aug 29, 2022 at 04:49:02AM +0000, Gupta, Nipun wrote:
+> > 
+> > > Devices are created in FPFGA with a CDX wrapper, and CDX
+> > controller(firmware)
+> > > reads that CDX wrapper to find out new devices. Host driver then interacts
+> > with
+> > > firmware to find newly discovered devices. This bus aligns with PCI
+> > infrastructure.
+> > > It happens to be an embedded interface as opposed to off-chip
+> > connection.
+> > 
+> > Why do you need an FW in all of this?
+> > 
+> > And why do you need DT at all?
+> 
+> We need DT to describe the CDX controller only, similar to
+> how PCI controller is described in DT. PCI devices are
+> never enumerated in DT. All children are to be dynamically
+> discovered. 
+> 
+> Children devices do not require DT as they will be discovered
+> by the bus driver.
+> 
+> Like PCI controller talks to PCI device over PCI spec defined channel,
+> we need CDX controller to talk to CDX device over a custom
+> defined (FW managed) channel.
 
-Not sure on that, for the P550 cores the ccache is going to be level3
-and my colleague has said it does confuse some tooling if the level is
-not set correctly.
+It would be alot clearer to see a rfc cdx driver that doesn't have all
+the dt,fwnode,of stuff in it and works like PCI does, with a custom
+matcher and custom properies instead of trying to co-opt the DT things:
 
--- 
-Ben
+Eg stuff like this make it look like you are building DT nodes:
 
++	struct property_entry port_props[] = {
++		PROPERTY_ENTRY_STRING("compatible",
++			dev_types[dev_params->dev_type_idx].compat),
++		{ }
+
++			ret = of_map_id(np, req_id, "iommu-map", "iommu-map-mask",
++					NULL, &dev_params.stream_id);
+
+I still don't understand why FW would be involved, we usually don't
+involve FW for PCI..
+
+Jason
