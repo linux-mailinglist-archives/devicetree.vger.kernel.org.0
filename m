@@ -2,64 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC7B15A6EDE
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 23:08:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7EB75A6EE5
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 23:11:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229740AbiH3VIz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 17:08:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50324 "EHLO
+        id S229998AbiH3VLb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 17:11:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229720AbiH3VIz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 17:08:55 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EF847C1A3;
-        Tue, 30 Aug 2022 14:08:53 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 27UL8kfG130221;
-        Tue, 30 Aug 2022 16:08:46 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1661893726;
-        bh=NtKcwczTeR2CPHLoKmnqcAiFTJkPBNRBY1w2UEeVEY4=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=Ytan+20x+E6POnMychilOPBCWYZdKY4xPQXg53yvIKGSKxbdbm309bKG+dDX3U2b+
-         vlY+PAc19pc0yhBrwcMo9/rp/+UgcdeMBcBOrUkauiQLG1q7XHPND0ZDhpcWNJz7Nj
-         k+Yg51D1CzxTVtjx2bogG9ajBrE8bwlM7UiAvar4=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 27UL8kFB017745
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 30 Aug 2022 16:08:46 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 30
- Aug 2022 16:08:46 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Tue, 30 Aug 2022 16:08:45 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 27UL8jt1085284;
-        Tue, 30 Aug 2022 16:08:45 -0500
-Date:   Tue, 30 Aug 2022 16:08:45 -0500
-From:   Bryan Brattlof <bb@ti.com>
-To:     Vignesh Raghavendra <vigneshr@ti.com>
-CC:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3] arm64: dts: ti: k3-am642-sk: Add DT entry for onboard
- LEDs
-Message-ID: <20220830210845.tohj2gm5po4bndtl@bryanbrattlof.com>
-References: <20220830123254.522222-1-vigneshr@ti.com>
-MIME-Version: 1.0
+        with ESMTP id S229720AbiH3VLb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 17:11:31 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8280583BC9;
+        Tue, 30 Aug 2022 14:11:30 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1EA2A6189B;
+        Tue, 30 Aug 2022 21:11:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D60EC433C1;
+        Tue, 30 Aug 2022 21:11:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1661893889;
+        bh=YQczJDoWHrrzHXLNRmEXxN/XN8OekTTO/w8CYT9s7Gk=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=B2WRfYXjcjJGlnFPKD5M6ghoxmQnEpee9Mr0TVTjurh4kJgO++pN6ZEbaz6j4BEt7
+         kdgS5Q/ZLxvOOPJkfHMh179ewQDIH+qIOZwR1O0fQ1DPfl+PVSTCiOL2g/hRPsc3GE
+         6cpcG8lE/IxJbP5jYobFBVTkPJIAjNlcawiiSvC+yNPlaMaWKQ05wrfzjJLaNnu3ZL
+         nOu7XFqzU+ooLTsgcyXexX25WfU+nFoH0DrOeLcqeYQHtAavEGdlxr8L9+Z+wOSxJl
+         BB4VjdTMlecIuDXNFKozxH+TdWD9IUKU1DRR9ApsN/Jkvj/d1G3oUHaYGZhcRf4YXG
+         uyfn6u+97XWaQ==
 Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <20220830123254.522222-1-vigneshr@ti.com>
-X-PGP-Fingerprint: D3D1 77E4 0A38 DF4D 1853 FEEF 41B9 0D5D 71D5 6CE0
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <Yw2TsARPfuCLvDg0@matsya>
+References: <20220201134108.2677578-1-vkoul@kernel.org> <YhUVAwtfjuIdKrRQ@matsya> <1c66890b-6736-61ef-7d16-619f90ced4a0@linaro.org> <4f1ae43c-0f22-19fe-0794-3cc268104396@linaro.org> <20220829222601.47241C433C1@smtp.kernel.org> <Yw2TsARPfuCLvDg0@matsya>
+Subject: Re: [PATCH v3 0/2] spmi: pmic-arb: Add support for PMIC v7
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     David Collins <quic_collinsd@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        David Dai <daidavid1@codeaurora.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+To:     Vinod Koul <vkoul@kernel.org>
+Date:   Tue, 30 Aug 2022 14:11:27 -0700
+User-Agent: alot/0.10
+Message-Id: <20220830211129.6D60EC433C1@smtp.kernel.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -68,31 +60,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Aparna & Vignesh!
+Quoting Vinod Koul (2022-08-29 21:36:00)
+> On 29-08-22, 15:25, Stephen Boyd wrote:
+> > Quoting Dmitry Baryshkov (2022-06-18 08:29:58)
+> > > On 01/05/2022 22:41, Dmitry Baryshkov wrote:
+> > > > On 22/02/2022 19:53, Vinod Koul wrote:
+> > > >> On 01-02-22, 19:11, Vinod Koul wrote:
+> > > >>> Hello,
+> > > >>>
+> > > >>> The is version 3 of support for PMIC v7. I have added a new prope=
+rty
+> > > >>> qcom,bus-id for supporting v7 and then add driver changes for v7
+> > > >>>
+> > > >>> This depends on yaml conversion patch:
+> > > >>> https://lore.kernel.org/linux-arm-msm/20211227170151.73116-1-davi=
+d@ixit.cz/=20
+> > > >>>
+> > > >>
+> > > >> Any feedback on this...
+> > > >=20
+> > > > Another gracious reminder about these patches. At this moment this =
+is=20
+> > > > one of the important pieces lacking for the full SM8450 support in =
+the=20
+> > > > upstream kernel.
+> > >=20
+> > > Stephen, yet another ping. This is the blocking point for the further=
+=20
+> > > SM8450 progress.
+> > >=20
+> >=20
+> > Sorry I completely missed this one as it fell off the end of my inbox
+> > into the abyss.
+>=20
+> Thanks for the reply. Is this applied now or you have some feedback for
+> me to address..
+>=20
 
-On August 30, 2022 thus sayeth Vignesh Raghavendra:
-> From: Aparna M <a-m1@ti.com>
-> 
-> AM642 SK has 8 leds connected to tpic2810 onboard. Add support for these
-> gpio leds.
-> 
-> Signed-off-by: Aparna M <a-m1@ti.com>
-> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+Does it apply along with the series from qcom[1]? I have to check and
+make sure they both work together.
 
-Reviewed-by: Bryan Brattlof <bb@ti.com>
-
-Looks great to me!
-
-> ---
-> v3:
-> Fix compile error due to missing header
-> Fix whitespace issues
-> 
-> v2: https://lore.kernel.org/all/20220629075859.6939-1-a-m1@ti.com/
-> 
->  arch/arm64/boot/dts/ti/k3-am642-sk.dts | 70 ++++++++++++++++++++++++++
->  1 file changed, 70 insertions(+)
-> 
-
-Thanks for getting the leds working :)
-~Bryan
+[1] https://lore.kernel.org/r/1651108369-11059-1-git-send-email-quic_fengli=
+nw@quicinc.com
