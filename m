@@ -2,78 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0546A5A6BD3
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 20:11:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 633625A6BEE
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 20:19:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229990AbiH3SLN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 14:11:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48294 "EHLO
+        id S231152AbiH3STw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 14:19:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229716AbiH3SLJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 14:11:09 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26278786D6
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 11:11:08 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id q7so16626366lfu.5
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 11:11:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=0jx9VNj/HcW0dooShctB6tlNBtRfv946EPoOPim3t0E=;
-        b=IdHkGy3kZluHn+s1pCS1fWDIsltwMDgJ5SLNDPu4jLO5nDxOv7HtdjosNkKuyV0DmG
-         eUVjPmcsRIc71d5lUiyCBv5yz5iwuKITxlkI2CCTrVITfLANq+620vJrpokgFTnjMf65
-         PPqxsSS+0cG9/10Su2NyJ/PoPuhyRXxyjcg+WLJwi+0JwWn4830Atw3YAVd9seGZ8bBd
-         pQb455HbnE8H9AyoNrefVsPmjpWDZYG8ji2B4reou+a4cddd1nX5+NK/Opneeh+VVpgv
-         0tybYtY7AnI1k1Wc5+hDcL2lPd/zK924fpvX3KRBLJpdU13SX0L3NR2Wv2HkylcGhsWw
-         6Kig==
+        with ESMTP id S230348AbiH3STu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 14:19:50 -0400
+Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0C77F60;
+        Tue, 30 Aug 2022 11:19:47 -0700 (PDT)
+Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-11c4d7d4683so18700446fac.8;
+        Tue, 30 Aug 2022 11:19:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=0jx9VNj/HcW0dooShctB6tlNBtRfv946EPoOPim3t0E=;
-        b=5I4DNpTmNDVjQpM00Zruay7K+mhcjaaIMtc5lSnIkz3aGJxYfkJ/Z8EXZV/GXec36d
-         OyI7Ef5eg1Sq+SFbfB+nkazeu/ZP+wFKYYQdzySgIjC3BUrD0boF+j5EnGWu7z+f9YSV
-         /240nWvElDKXiDIpxXPIQZVMQyru86uaxhLlWNA4iX2wGcuxQIKTyX1hKMVBfu/S1jvF
-         M7/7vUjuoA/kRixl+VZA/0z3oDVMsW8UWlNqeY6LUnWunkJnch4EmggexOFkdyC7KXen
-         id/+9XbLegmlSzd6zCyTaILc+zx33vyrIW64i1DtWco4TBL766MEwVHS/VqfhPi1hSXh
-         sfzg==
-X-Gm-Message-State: ACgBeo31xbMEnDDEq2XF5j3P1SZ8t9wpBJvOwku8G/4A7T2Bxg6eTy8e
-        fezNGpiJ1HiLKroyr2qY76Hi4w==
-X-Google-Smtp-Source: AA6agR4LS54/XWSxpR5JM4CrvVaGHIeYIc+KzFnzxBcHugfK4mmyTYOXAfXMhla6rcSZpaiqZFIh6g==
-X-Received: by 2002:a05:6512:3503:b0:481:4470:4128 with SMTP id h3-20020a056512350300b0048144704128mr7794471lfs.303.1661883066495;
-        Tue, 30 Aug 2022 11:11:06 -0700 (PDT)
-Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id o17-20020ac24e91000000b00492ef074fc1sm1683629lfr.183.2022.08.30.11.11.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Aug 2022 11:11:05 -0700 (PDT)
-Message-ID: <ce096b36-b678-63e1-e98c-7549f3df357f@linaro.org>
-Date:   Tue, 30 Aug 2022 21:11:03 +0300
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+        bh=Xjuomzo4081p59XEJk05rr72jAWwRfBKhPuPEHTtXsY=;
+        b=RljrkpPQnu7QkSDMD9B1+frIu99ls1CVeTM8/7zpKzxTzp0Wv9x4b6SVzwDKuk5XEE
+         nxqMWAYZgtQ7C6YARqNiHwVLheCtlJWvM5PPiGW2DxLYDImU2vTebDhm503mMFoebraT
+         QhYtPfZMkrFZQRGEoJ1Y3FrDBjuG13i4im61Px9h2sAaXev6UAD7c8pmxnnq6GSYK3o9
+         2TGgBvBFoXw5+kqYCdsieZDmvflJto4EKcdoXND7J6QYbHNG+LM951uFMf0egh3v7QMC
+         vsTxqMEE6JHm9VkBI2J++5kHKENwWTyKK8Es5TE1T6Wg9yk+12JBkrTEreVBO84snCsZ
+         gC7g==
+X-Gm-Message-State: ACgBeo2invcIrukGniDGmcmmYezWA6NhqFBVem2yW1wgsZ6l3uaeoqVi
+        Hu5mfev7fViJdYZmVvlOkg==
+X-Google-Smtp-Source: AA6agR5GK/WtkfDUqcEl4Ale7ROP128S3ilt5oR7/PvZ0Fsg7CBPmSk83ICmsulN7Bxchj4xxrDXPg==
+X-Received: by 2002:a05:6870:5a4:b0:11d:37b3:ff54 with SMTP id m36-20020a05687005a400b0011d37b3ff54mr10357600oap.172.1661883586704;
+        Tue, 30 Aug 2022 11:19:46 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id ay13-20020a056808300d00b003431d9b3edfsm746803oib.2.2022.08.30.11.19.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Aug 2022 11:19:46 -0700 (PDT)
+Received: (nullmailer pid 1796966 invoked by uid 1000);
+        Tue, 30 Aug 2022 18:19:45 -0000
+Date:   Tue, 30 Aug 2022 13:19:45 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Xu Yang <xu.yang_2@nxp.com>
+Cc:     heikki.krogerus@linux.intel.com, peda@axentia.se,
+        shawnguo@kernel.org, gregkh@linuxfoundation.org,
+        linux@roeck-us.net, jun.li@nxp.com, linux-usb@vger.kernel.org,
+        linux-imx@nxp.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: connector: Add typec orientation
+ switch properties
+Message-ID: <20220830181945.GA1770115-robh@kernel.org>
+References: <20220823195429.1243516-1-xu.yang_2@nxp.com>
+ <20220823195429.1243516-2-xu.yang_2@nxp.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v9 2/2] ASoC: sun50i-dmic: dt-bindings: add DT bindings
- for DMIC controller
-Content-Language: en-US
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Ban Tao <fengzheng923@gmail.com>, lgirdwood@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        wens@csie.org, jernej.skrabec@gmail.com, samuel@sholland.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org
-References: <1661872039-40174-1-git-send-email-fengzheng923@gmail.com>
- <25072fba-64e2-df11-c8f0-a274037141f0@linaro.org>
- <Yw5Qd7ZNPIc/o7+6@sirena.org.uk>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Yw5Qd7ZNPIc/o7+6@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220823195429.1243516-2-xu.yang_2@nxp.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,23 +66,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/08/2022 21:01, Mark Brown wrote:
-> On Tue, Aug 30, 2022 at 08:35:09PM +0300, Krzysztof Kozlowski wrote:
->> On 30/08/2022 18:07, Ban Tao wrote:
->>> DT binding documentation for this new ASoC driver.
+On Wed, Aug 24, 2022 at 03:54:26AM +0800, Xu Yang wrote:
+> Typec orientation switch can be implemented as a consumer of mux
+> controller. So we can use mux controller to control simple gpio switch
+> or other types of switch. This will cover the following typec switch
+> use case: High Speed, Super Speed and Sideband switch.
 > 
->>> +properties:
->>> +  "#sound-dai-cells":
->>> +    const: 0
->>> +
->>> +  compatible:
->>> +    const: allwinner,sun50i-h6-dmic
-> 
->> Put compatible first in the list of properties (also in required:).
-> 
-> Can the tooling be taught about this?
+> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
 
-Probably could save me some time in writing reviews... Let me look.
+Please see and participate in the recent discussions around USB-C 
+connectors:
 
-Best regards,
-Krzysztof
+https://lore.kernel.org/all/20220810204750.3672362-2-bjorn.andersson@linaro.org/
+https://lore.kernel.org/all/20220622173605.1168416-1-pmalani@chromium.org/
+
+As mentioned there, I want to see block diagrams of the h/w for these 
+bindings.
+
+The mux binding may be a good solution here, but different muxing 
+scenarios need to be considered.
+
+
+> ---
+> Changes since v1:
+> - No changes.
+> 
+>  .../bindings/connector/usb-connector.yaml      | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/connector/usb-connector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> index ae515651fc6b..47f53cdbf31a 100644
+> --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> @@ -221,6 +221,24 @@ properties:
+>        SNK_READY for non-pd link.
+>      type: boolean
+>  
+> +  # The following are optional properties for "usb-c-connector".
+> +  mux-controls:
+> +    description: Mux controller node to use for orientation switch selection. This mux controller
+> +      could handle High Speed, Super Speed and Sideband switch use case one time. In orde to do so,
+> +      besides mux settings need to be properly configured for each switch under mux-controller node,
+> +      correct states should also be assigned to typec-switch-states parameter.
+
+Wrap lines at 80 char.
+
+> +    maxItems: 1
+> +
+> +  typec-switch-states:
+> +    description: An ordered u32 array describing the mux state value for each typec orientations.
+> +      Three states correspond to NONE(high impedance), NORMAL, REVERSE respectively. If there is
+> +      no HW mux state for NONE, use value of NORMAL or REVERSE for it. If this mux controller
+> +      handle more than 1 switch, correct states value need to be caculated according to the mux
+> +      settings.
+> +    minItems: 3
+> +    maxItems: 3
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+
+I think that 'mux-states' is what you want to use here.
+
+Rob
