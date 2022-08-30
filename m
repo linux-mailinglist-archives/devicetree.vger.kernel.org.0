@@ -2,421 +2,436 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E2D0E5A5DE8
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 10:17:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 228A15A5DF1
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 10:20:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230332AbiH3IRm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 04:17:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40448 "EHLO
+        id S231453AbiH3IUQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 04:20:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230160AbiH3IRk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 04:17:40 -0400
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2082.outbound.protection.outlook.com [40.107.22.82])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D927BC04E0;
-        Tue, 30 Aug 2022 01:17:34 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jTJpK+6S5AAFqgHAMLaACJ/88yF9qnHl9oLLAmV6gyNYsLt7Z6JfjXjkF8hxLGKFrJNK2/vFWcr6e5RBnp5/L9oV/VHJ0KCO4EWgiK/B4ZhWqklMGzMP6KyMwYZkGv+wTiBf0/fpz+SFMvNnOHhQavIaPERlEfhvIup+SGYyXLf8dXm2UqOLbRzUUeNT/n1ZiLTLm9y9gN7l1sCfPOBtSiGS1Eqcom3siWkGhKKZpK/Rzji1fdJUZJqwFCf2cEEMefEPLPdlCzaB0Jl0A4ess9Hd5Z1YB6OFqZz2abBTJ6qyfoz3jjiWaYMf8NOWhu820sCRxqpUFEFsigNy0KyBXA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=N5/mF1q/gaHy3KjXpOkLy83ssrXXpHYJTBBgLzglGYA=;
- b=MADOPjePZZk1jM2iVL0g+3PmCL336AKJCk9w+QW91SQ+AHnFtDxacXW64b9t2h9jh4Oz0TH1QniRPWBw4eJkMFM9QNBlRx5i3oh2S4mT2vNlqfIlRTAeUwptsGVrKqXwbf9KuE3g5X5LHCnWIhSXTqsU+jV7E8RDd/sB007Zuh8LPg9oC5MGyv6FX+8VFA3oApKKn+eohvY1CBdc6iWk4BeF1BmpKiS68Vr81AqOQIeQxSYdS5uhIsNKnb8aONbJ2sXKZqpLSfWHtqImwXp/x4vZeScFauGCqnkxMbVpeDF7Ve/C2hxSV14CnUxDc0V6K6GRO4IRbvRGeIPEIW2/4g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=N5/mF1q/gaHy3KjXpOkLy83ssrXXpHYJTBBgLzglGYA=;
- b=EzGYMM78o9NqjgLT557KifR2xWDHq3OxvzIshx55fZV7AlWmPm0VKX/pGMHMX33N2XXap5rH3ehg9x6WRpTNsnLTW3uUeKou3JrYrVW53Ue4SeC5rBVjHUsKzgQDIVTt2PtDPmae7k1S7uF8poOeG0zrnhGJoV7uxePOCCtbUT8=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from VI1PR04MB5936.eurprd04.prod.outlook.com (2603:10a6:803:e1::18)
- by PA4PR04MB7645.eurprd04.prod.outlook.com (2603:10a6:102:eb::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5566.21; Tue, 30 Aug
- 2022 08:17:31 +0000
-Received: from VI1PR04MB5936.eurprd04.prod.outlook.com
- ([fe80::41bc:4ee:98cf:efcb]) by VI1PR04MB5936.eurprd04.prod.outlook.com
- ([fe80::41bc:4ee:98cf:efcb%5]) with mapi id 15.20.5566.021; Tue, 30 Aug 2022
- 08:17:31 +0000
-From:   Joy Zou <joy.zou@nxp.com>
-To:     krzysztof.kozlowski@linaro.org
-Cc:     shengjiu.wang@nxp.com, vkoul@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH V3 1/2] dt-bindings: fsl-imx-sdma: Convert imx sdma to DT schema
-Date:   Tue, 30 Aug 2022 16:18:39 +0800
-Message-Id: <20220830081839.1201720-1-joy.zou@nxp.com>
-X-Mailer: git-send-email 2.37.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR02CA0129.apcprd02.prod.outlook.com
- (2603:1096:4:188::19) To VI1PR04MB5936.eurprd04.prod.outlook.com
- (2603:10a6:803:e1::18)
+        with ESMTP id S231449AbiH3IUO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 04:20:14 -0400
+Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E14D911A27;
+        Tue, 30 Aug 2022 01:20:08 -0700 (PDT)
+Received: from [10.18.29.47] (10.18.29.47) by mail-sh.amlogic.com (10.18.11.5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.9; Tue, 30 Aug
+ 2022 16:20:05 +0800
+Message-ID: <2b6035f3-8cbe-ab75-bed9-5751b141d3d6@amlogic.com>
+Date:   Tue, 30 Aug 2022 16:20:05 +0800
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: db50176f-6436-4c8b-0428-08da8a6015b3
-X-MS-TrafficTypeDiagnostic: PA4PR04MB7645:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: i91GN/UNoKBDbD2rhdf448u/mn+thZzMeDNrqqHaSVli76Tzm0Oz3m+AodCllzGyZgydH3vPOmJWkRKVkrlbzsoU6nBPLj0zb/WWFdeluMGQbFzYemEa4gfwdhLdQ/qQ3vfUxG41Y4te2rRFURxqZh0jcbEwi1TYsHLr4yI+mV1RQtNOi64HQqpXLWcfLw3ow5gwjPnY07sJo8CMMMg5fz341g/YlVD/ZfF5faGAFpW4+wDILljvIQKbCrGp58CsVSxN3o2smj0P6wJLyCEPiIDrGq3s587qspI0i4Vm6xruq0HvUkzcmZ+wR0XxT1+ZAefizyoYTDPY6mtbb44tz4iBqZYx2hwho+N4sRa5s4lzgFfS1PkVCGHhmAG5oWPC/4NZBq09KOMjnt8u4NYH97nMrUtW5E8vWdnNihj0IlUduqsS3qh2/KcEfrVFsUDdPwWWATEAqsojK/BEfIM2C0jfIa9o6WQbs1fwLu7XxOmRkHE1RfgqSYq2ObGoA4ZhDi548Fy9Ht0KLPg+Ru7bUkuk5amdMqFTwIgi+b8YhEIqQWWqCVTskqrQCXK2nSLaQ0jiferv6KpmlVydkTzPI7uDiHm1pEQsPpU0414qi9rQWPSsA7Z8mxL9wV9enlQV6/bFhHhqrxqek32w9woaWAS/MCI84PvwYtGxcDvooaThpii2IEbAugNOoaBsRMBGszIze40rJAl6Nhobh+E1e/PWhkJW8IXp3hEe+pEUOq+bwyM70utoxyG5T2ffgisEuHVMcyiiaTUIO8ujUT8GFnigofCYceouLp7X7hde4F1KjG5yOlheyBlJjS9pqZ2aUWRWp5F8jqKSNj8OAuYvEw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5936.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(39860400002)(346002)(136003)(366004)(376002)(396003)(6916009)(38100700002)(26005)(6512007)(38350700002)(316002)(41300700001)(44832011)(7416002)(5660300002)(478600001)(86362001)(8936002)(6506007)(6486002)(2906002)(966005)(8676002)(4326008)(66476007)(52116002)(66946007)(66556008)(2616005)(186003)(83380400001)(36756003)(1076003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?5XWW2Izh+Lfe5HS5ttTnsEuR/D62xyxbi49OsAu6mO09lWWj+kDYONCBXi3j?=
- =?us-ascii?Q?qUgim4XVOzEK0dTWoT55SnU2c0NhHhx4J342dkVn8K9wCP63EinqLcWsLpnC?=
- =?us-ascii?Q?HPZ+lYDEVsUW+xIO8dVrgAYclQPf3nblgW3iZ4CMmots0OTODYJrPghVr8yv?=
- =?us-ascii?Q?XXoaXsTSxJG8ITokqlVq18MPTh/RpHKfR9y2YruQnRhx+3cW5NuYEILsZZqG?=
- =?us-ascii?Q?8oXc8zEMLGEtvWVt08n2caU0NRFTVYJF14CyjxEdymMBce4ZPPWsCpnQRxpG?=
- =?us-ascii?Q?oHbFpvWOGURCWm78ZCMoD6dkmCVlJIplhB40Mr9Vth5vEUJWtH2Kxr1V5o75?=
- =?us-ascii?Q?uwPu1/oZT0TzAxvzg91Wt7P4tA3eO6JGhj76Fb51IxJVjrySVzmxQEY+mZfD?=
- =?us-ascii?Q?MhVlXmcnrJqJAZuuieg4ZEUYD+kh58HDgGtV90DJakTZ/eq5wxNu0kvplhia?=
- =?us-ascii?Q?MUXlo8KsPxdIxMzZoZjXTKRSTtbfAsM36IzidmuxA8o4r69WoLlMc48wond4?=
- =?us-ascii?Q?b1FYjfO6Em8Gt1d4TARrN1SjrEvI+2Yzn5/1EqMUzkRBptA4rDgxq8iT7o0h?=
- =?us-ascii?Q?mpB2pa+pKFAjjr/G0Y0A4fsrk82SWQ7pRFys6VXvIj8uIfqYvqg21r4pUsV7?=
- =?us-ascii?Q?6d9X7gwe98PQNhFy+OaMpdAHBOz3sKN26W26uiEMliyDXb0N1/7R4uzM9+B2?=
- =?us-ascii?Q?hZhukkx8ZbNlONZVALsADi0qmdPpR9wgDM2CyVsRnhqAxXp3BJxh+8bA0nUP?=
- =?us-ascii?Q?cCWbDkxU9NvJ8DNAXd267SAWUYBwdkqPtQ/EQYwMLm9kLB3VXamghyhpqpdn?=
- =?us-ascii?Q?m067C60OvPzKI4OVhOrasehR69q8K/FB2364bdE13kmktw/xumJb/sa+zdwl?=
- =?us-ascii?Q?dL659V2K7EaXAmYMR4+ckGI1cRHup0NYEu8PyGXO4x4u40+iep7LfSeKi4iD?=
- =?us-ascii?Q?KN8gFm4PTyJddYil776vwyxqkFdpBstHV3jP9SDZyhpBLUcXrExL43AQ7Gr9?=
- =?us-ascii?Q?mD2biNJN6bCqGnkqiMTYAntYPRx2uBGMeJBfC9u8dtkJ7iS1bM50kNO3HRqA?=
- =?us-ascii?Q?7zHVF5qNcfC+ysPBPFlZR1mnhOa++kS/6yd/MxJwmKuZZ85DV9iqYp0UNBkw?=
- =?us-ascii?Q?z6YUJ+dt4lz34jXl2s5egQ/veKq8pIOAbiUFrugcfzdTLOW8KnHTfHQ1O5Bl?=
- =?us-ascii?Q?dbhXpDMmlau+mAdNoiUIPMq3Q7jEURnoOAsDPvL4Mse6iO7D227D8cPlltsz?=
- =?us-ascii?Q?KE27yUfGVORr7rhBw20LO8GWswYZ3GFD24TRpkfpt9ilUR5s8U0TfQM7E2Dz?=
- =?us-ascii?Q?acWZ8gqRaNr1y60oVN7i9tPfaW8xI2RE8L8YZ1FbHgR9GZhOYw00TrAL5e+o?=
- =?us-ascii?Q?wscb8M2zalifIJr/RmRD3ZHH9RhokloNvj2OPWdthBl7PTDP+2oaVSsvB288?=
- =?us-ascii?Q?YyH4I4Z9YEDsHe0pExx2LnhxQFEO4itkLuQk5sAu05E+OAsAXFCRPn9cPB9I?=
- =?us-ascii?Q?dFcvV+IWoxUoBDiJIFARxLxLqe+9N90c0s9yEBXC/ICj7EtgRAX1Q1o3DPzV?=
- =?us-ascii?Q?EvRcCKonrE6AdU4viZbD6U/TG2czdX0hIcdohYmp?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: db50176f-6436-4c8b-0428-08da8a6015b3
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5936.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Aug 2022 08:17:31.5018
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: zBaPrg1eae3JfeldokAQR6UeKfY6RRN3oY8EQBeJySAO/xdCupmnGHp5wv0wle47
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7645
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH V3 6/6] clk: meson: s4: add s4 SoC peripheral clock
+ controller driver
+Content-Language: en-US
+To:     Jerome Brunet <jbrunet@baylibre.com>, <linux-clk@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+References: <20220805085716.5635-1-yu.tu@amlogic.com>
+ <20220805085716.5635-7-yu.tu@amlogic.com>
+ <1jedxlzxyz.fsf@starbuckisacylon.baylibre.com>
+ <8f40cb49-fdc5-20cd-343b-8ce50e5d6d97@amlogic.com>
+ <1j7d2rte33.fsf@starbuckisacylon.baylibre.com>
+From:   Yu Tu <yu.tu@amlogic.com>
+In-Reply-To: <1j7d2rte33.fsf@starbuckisacylon.baylibre.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.18.29.47]
+X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
+ (10.18.11.5)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the i.MX SDMA binding to DT schema format using
-json-schema. In addition, add new peripheral types HDMI
-Audio.
 
-when run dtbs_check will occur nodename not match issue
-because the old dts nodename can't match new rule. I have
-modified thoes old dts, and will upstream in the near future.
 
-Signed-off-by: Joy Zou <joy.zou@nxp.com>
----
-Changes since (implicit) v2:
-modify the commit message in patch v3.
-modify the filename in patch v3.
-modify the maintainer in patch v3.
-delete the unnecessary comment in patch v3.
-modify the compatible and run dt_binding_check and
-dtbs_check in patch v3.
-add clocks and clock-names property in patch v3.
-delete the reg description and add maxItems in patch v3.
-delete the interrupts description and add maxItems in patch v3.
-add ref for gpr property.
-modify the fsl,sdma-event-remap ref type and add items
-in patch v3.
-delete consumer example in patch v3.
----
- .../devicetree/bindings/dma/fsl,imx-sdma.yaml | 142 ++++++++++++++++++
- .../devicetree/bindings/dma/fsl-imx-sdma.txt  | 118 ---------------
- 2 files changed, 142 insertions(+), 118 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/dma/fsl,imx-sdma.yaml
- delete mode 100644 Documentation/devicetree/bindings/dma/fsl-imx-sdma.txt
+On 2022/8/29 20:19, Jerome Brunet wrote:
+> [ EXTERNAL EMAIL ]
+> 
+> 
+> On Tue 16 Aug 2022 at 20:00, Yu Tu <yu.tu@amlogic.com> wrote:
+> 
+> Please trim your replies
+> 
+>>>> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+>>>> index f4244edc7b28..ec6beb9284d3 100644
+>>>> --- a/drivers/clk/meson/Kconfig
+>>>> +++ b/drivers/clk/meson/Kconfig
+>>>> @@ -127,4 +127,17 @@ config COMMON_CLK_S4_PLL
+>>>>    	  Support for the pll clock controller on Amlogic S805X2 and S905Y4 devices,
+>>>>    	  aka s4. Amlogic S805X2 and S905Y4 devices include AQ222 and AQ229.
+>>>>    	  Say Y if you want peripherals and CPU frequency scaling to work.
+>>>> +
+>>>> +config COMMON_CLK_S4
+>>>> +	tristate "S4 SoC Peripherals clock controllers support"
+>>>> +	depends on ARM64
+>>>> +	default y
+>>>> +	select COMMON_CLK_MESON_REGMAP
+>>>> +	select COMMON_CLK_MESON_DUALDIV
+>>>> +	select COMMON_CLK_MESON_VID_PLL_DIV
+>>>> +	select COMMON_CLK_S4_PLL
+>>> Do you really this ? your driver does not even include the related
+>>> header.
+>> If the PLL driver is not turned on in DTS, will it not cause an error?
+>>>
+> 
+> I don't get the question.
+> Kconfig list compile deps. S4 PLL is not a compile dep of the peripheral
+> controller.
+> 
+> If you really want to, you may use 'imply'.
 
-diff --git a/Documentation/devicetree/bindings/dma/fsl,imx-sdma.yaml b/Documentation/devicetree/bindings/dma/fsl,imx-sdma.yaml
-new file mode 100644
-index 000000000000..54cd99ae127f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/dma/fsl,imx-sdma.yaml
-@@ -0,0 +1,142 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/dma/fsl,imx-sdma.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale Smart Direct Memory Access (SDMA) Controller for i.MX
-+
-+maintainers:
-+  - Joy Zou <joy.zou@nxp.com>
-+
-+allOf:
-+  - $ref: "dma-controller.yaml#"
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - fsl,imx50-sdma
-+              - fsl,imx51-sdma
-+              - fsl,imx53-sdma
-+              - fsl,imx6q-sdma
-+              - fsl,imx7d-sdma
-+          - const: fsl,imx35-sdma
-+      - items:
-+          - enum:
-+              - fsl,imx6sx-sdma
-+              - fsl,imx6ul-sdma
-+              - fsl,imx6sl-sdma
-+          - const: fsl,imx6q-sdma
-+      - items:
-+          - const: fsl,imx6ul-sdma
-+          - const: fsl,imx6q-sdma
-+          - const: fsl,imx35-sdma
-+      - items:
-+          - const: fsl,imx6sll-sdma
-+          - const: fsl,imx6ul-sdma
-+      - items:
-+          - const: fsl,imx8mq-sdma
-+          - const: fsl,imx7d-sdma
-+      - items:
-+          - enum:
-+              - fsl,imx8mp-sdma
-+              - fsl,imx8mn-sdma
-+              - fsl,imx8mm-sdma
-+          - const: fsl,imx8mq-sdma
-+      - items:
-+          - const: fsl,imx25-sdma
-+      - items:
-+          - const: fsl,imx31-sdma
-+      - items:
-+          - const: fsl,imx35-sdma
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  fsl,sdma-ram-script-name:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description: Should contain the full path of SDMA RAM scripts firmware.
-+
-+  "#dma-cells":
-+    const: 3
-+    description: |
-+      The first cell: request/event ID
-+
-+      The second cell: peripheral types ID
-+        enum:
-+          - MCU domain SSI: 0
-+          - Shared SSI: 1
-+          - MMC: 2
-+          - SDHC: 3
-+          - MCU domain UART: 4
-+          - Shared UART: 5
-+          - FIRI: 6
-+          - MCU domain CSPI: 7
-+          - Shared CSPI: 8
-+          - SIM: 9
-+          - ATA: 10
-+          - CCM: 11
-+          - External peripheral: 12
-+          - Memory Stick Host Controller: 13
-+          - Shared Memory Stick Host Controller: 14
-+          - DSP: 15
-+          - Memory: 16
-+          - FIFO type Memory: 17
-+          - SPDIF: 18
-+          - IPU Memory: 19
-+          - ASRC: 20
-+          - ESAI: 21
-+          - SSI Dual FIFO: 22
-+              description: needs firmware more than ver 2
-+          - Shared ASRC: 23
-+          - SAI: 24
-+          - HDMI Audio: 25
-+
-+       The third cell: transfer priority ID
-+         enum:
-+           - High: 0
-+           - Medium: 1
-+           - Low: 2
-+
-+  gpr:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: The phandle to the General Purpose Register (GPR) node
-+
-+  fsl,sdma-event-remap:
-+    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-+    items:
-+      - description: The GPR register offset, shift and value for RX
-+      - description: The GPR register offset, shift and value for TX
-+    description: |
-+      Register bits of sdma event remap, the format is <reg shift val>.
-+
-+  clocks:
-+    maxItems: 2
-+
-+  clock-names:
-+    maxItems: 2
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - fsl,sdma-ram-script-name
-+  - "#dma-cells"
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    sdma: dma-controller@83fb0000 {
-+      compatible = "fsl,imx51-sdma", "fsl,imx35-sdma";
-+      reg = <0x83fb0000 0x4000>;
-+      interrupts = <6>;
-+      #dma-cells = <3>;
-+      fsl,sdma-ram-script-name = "sdma-imx51.bin";
-+    };
-+
-+...
-diff --git a/Documentation/devicetree/bindings/dma/fsl-imx-sdma.txt b/Documentation/devicetree/bindings/dma/fsl-imx-sdma.txt
-deleted file mode 100644
-index 12c316ff4834..000000000000
---- a/Documentation/devicetree/bindings/dma/fsl-imx-sdma.txt
-+++ /dev/null
-@@ -1,118 +0,0 @@
--* Freescale Smart Direct Memory Access (SDMA) Controller for i.MX
--
--Required properties:
--- compatible : Should be one of
--      "fsl,imx25-sdma"
--      "fsl,imx31-sdma", "fsl,imx31-to1-sdma", "fsl,imx31-to2-sdma"
--      "fsl,imx35-sdma", "fsl,imx35-to1-sdma", "fsl,imx35-to2-sdma"
--      "fsl,imx51-sdma"
--      "fsl,imx53-sdma"
--      "fsl,imx6q-sdma"
--      "fsl,imx7d-sdma"
--      "fsl,imx6ul-sdma"
--      "fsl,imx8mq-sdma"
--      "fsl,imx8mm-sdma"
--      "fsl,imx8mn-sdma"
--      "fsl,imx8mp-sdma"
--  The -to variants should be preferred since they allow to determine the
--  correct ROM script addresses needed for the driver to work without additional
--  firmware.
--- reg : Should contain SDMA registers location and length
--- interrupts : Should contain SDMA interrupt
--- #dma-cells : Must be <3>.
--  The first cell specifies the DMA request/event ID.  See details below
--  about the second and third cell.
--- fsl,sdma-ram-script-name : Should contain the full path of SDMA RAM
--  scripts firmware
--
--The second cell of dma phandle specifies the peripheral type of DMA transfer.
--The full ID of peripheral types can be found below.
--
--	ID	transfer type
--	---------------------
--	0	MCU domain SSI
--	1	Shared SSI
--	2	MMC
--	3	SDHC
--	4	MCU domain UART
--	5	Shared UART
--	6	FIRI
--	7	MCU domain CSPI
--	8	Shared CSPI
--	9	SIM
--	10	ATA
--	11	CCM
--	12	External peripheral
--	13	Memory Stick Host Controller
--	14	Shared Memory Stick Host Controller
--	15	DSP
--	16	Memory
--	17	FIFO type Memory
--	18	SPDIF
--	19	IPU Memory
--	20	ASRC
--	21	ESAI
--	22	SSI Dual FIFO	(needs firmware ver >= 2)
--	23	Shared ASRC
--	24	SAI
--
--The third cell specifies the transfer priority as below.
--
--	ID	transfer priority
--	-------------------------
--	0	High
--	1	Medium
--	2	Low
--
--Optional properties:
--
--- gpr : The phandle to the General Purpose Register (GPR) node.
--- fsl,sdma-event-remap : Register bits of sdma event remap, the format is
--  <reg shift val>.
--    reg is the GPR register offset.
--    shift is the bit position inside the GPR register.
--    val is the value of the bit (0 or 1).
--
--Examples:
--
--sdma@83fb0000 {
--	compatible = "fsl,imx51-sdma", "fsl,imx35-sdma";
--	reg = <0x83fb0000 0x4000>;
--	interrupts = <6>;
--	#dma-cells = <3>;
--	fsl,sdma-ram-script-name = "sdma-imx51.bin";
--};
--
--DMA clients connected to the i.MX SDMA controller must use the format
--described in the dma.txt file.
--
--Examples:
--
--ssi2: ssi@70014000 {
--	compatible = "fsl,imx51-ssi", "fsl,imx21-ssi";
--	reg = <0x70014000 0x4000>;
--	interrupts = <30>;
--	clocks = <&clks 49>;
--	dmas = <&sdma 24 1 0>,
--	       <&sdma 25 1 0>;
--	dma-names = "rx", "tx";
--	fsl,fifo-depth = <15>;
--};
--
--Using the fsl,sdma-event-remap property:
--
--If we want to use SDMA on the SAI1 port on a MX6SX:
--
--&sdma {
--	gpr = <&gpr>;
--	/* SDMA events remap for SAI1_RX and SAI1_TX */
--	fsl,sdma-event-remap = <0 15 1>, <0 16 1>;
--};
--
--The fsl,sdma-event-remap property in this case has two values:
--- <0 15 1> means that the offset is 0, so GPR0 is the register of the
--SDMA remap. Bit 15 of GPR0 selects between UART4_RX and SAI1_RX.
--Setting bit 15 to 1 selects SAI1_RX.
--- <0 16 1> means that the offset is 0, so GPR0 is the register of the
--SDMA remap. Bit 16 of GPR0 selects between UART4_TX and SAI1_TX.
--Setting bit 16 to 1 selects SAI1_TX.
--- 
-2.37.1
+V4 has been changed as you suggested.
 
+>>>
+>>>> +static const struct clk_parent_data sys_ab_clk_parent_data[] = {
+>>>> +	{ .fw_name = "xtal" },
+>>>> +	{ .fw_name = "fclk_div2" },
+>>>> +	{ .fw_name = "fclk_div3" },
+>>>> +	{ .fw_name = "fclk_div4" },
+>>>> +	{ .fw_name = "fclk_div5" },
+>>>> +	{ .fw_name = "fclk_div7" },
+>>>> +	{ .hw = &s4_rtc_clk.hw }
+>>>> +};
+>>>> +
+>>>> +static struct clk_regmap s4_sysclk_b_sel = {
+>>>> +	.data = &(struct clk_regmap_mux_data){
+>>>> +		.offset = CLKCTRL_SYS_CLK_CTRL0,
+>>>> +		.mask = 0x7,
+>>>> +		.shift = 26,
+>>>> +		.table = mux_table_sys_ab_clk_sel,
+>>>> +	},
+>>>> +	.hw.init = &(struct clk_init_data){
+>>>> +		.name = "sysclk_b_sel",
+>>>> +		.ops = &clk_regmap_mux_ro_ops,
+>>> Why is this using the RO ops ?
+>> Sys_clk is initialized during the Uboot phase and is fixed at
+>> 166.666MHz. So I'm going to change it to ro.
+> 
+> That really much depends on the bootloader and is a pretty weak design.
+> The bootloader deps should be kept as minimal as possible.
+> 
+> I see no reason for RO.
+> 
+> You may cut rate propagation on the user if you need to and continue to
+> whatever you want in your u-boot
+
+I think I know what you mean. But we let the user be in control and not 
+set the frequency, which can be risky. If you insist, I will change it 
+as you suggest.
+
+> 
+>>>
+>>>> +		.parent_data = sys_ab_clk_parent_data,
+>>>> +		.num_parents = ARRAY_SIZE(sys_ab_clk_parent_data),
+>>>> +	},
+>>>> +};
+>>>> +
+>>>> +static struct clk_regmap s4_sysclk_b_div = {
+>>>> +	.data = &(struct clk_regmap_div_data){
+>>>> +		.offset = CLKCTRL_SYS_CLK_CTRL0,
+>>>> +		.shift = 16,
+>>>> +		.width = 10,
+>>>> +	},
+>>>> +	.hw.init = &(struct clk_init_data){
+>>>> +		.name = "sysclk_b_div",
+>>>> +		.ops = &clk_regmap_divider_ro_ops,
+>>> Same here and for the rest of the sys part
+>> Same above.
+> 
+> We can play that game for a while
+
+Ah, you're so funny.
+
+> 
+>>>> +
+>>>> +/* Video Clocks */
+>>>> +static struct clk_regmap s4_vid_pll_div = {
+>>>> +	.data = &(struct meson_vid_pll_div_data){
+>>>> +		.val = {
+>>>> +			.reg_off = CLKCTRL_VID_PLL_CLK_DIV,
+>>>> +			.shift   = 0,
+>>>> +			.width   = 15,
+>>>> +		},
+>>>> +		.sel = {
+>>>> +			.reg_off = CLKCTRL_VID_PLL_CLK_DIV,
+>>>> +			.shift   = 16,
+>>>> +			.width   = 2,
+>>>> +		},
+>>>> +	},
+>>>> +	.hw.init = &(struct clk_init_data) {
+>>>> +		.name = "vid_pll_div",
+>>>> +		.ops = &meson_vid_pll_div_ro_ops,
+>>> Why RO ? applies to the rest of the video part.
+>> Because vid_pll_div parent is HDMI_PLL, and HDMI_PLL is a fixed
+>> frequency. Flags is CLK_SET_RATE_PARENT. So we use RO.
+> 
+> If the HDMI_PLL is fixed somehow, that is not reason for this clock to
+> be RO
+> 
+>> Can I remove RO and use CLK_SET_RATE_NO_REPARENT instead, which one do you
+>> think is more reasonable?
+> 
+> Neither. CLK_SET_RATE_NO_REPARENT makes no sense, it is not mux
+> 
+
+"drivers/clk/meson/vid-pll-div.c"
+This file only provides ro_ops. Maybe the submission records will give 
+us the answer.
+
+In fact, our hardware design is the same as the G12 series.
+
+>>
+>>>
+>>>> +		.parent_data = (const struct clk_parent_data []) {
+>>>> +			{ .fw_name = "hdmi_pll", }
+>>>> +		},
+>>>> +		.num_parents = 1,
+>>>> +		.flags = CLK_SET_RATE_PARENT,
+>>>> +	},
+>>>> +};
+>>>> +
+>>>> +static struct clk_regmap s4_vid_pll_sel = {
+>>>> +	.data = &(struct clk_regmap_mux_data){
+>>>> +		.offset = CLKCTRL_VID_PLL_CLK_DIV,
+>>>> +		.mask = 0x1,
+>>>> +		.shift = 18,
+>>>> +	},
+>>>> +	.hw.init = &(struct clk_init_data){
+>>>> +		.name = "vid_pll_sel",
+>>>> +		.ops = &clk_regmap_mux_ops,
+>>>> +		/*
+>>>> +		 * bit 18 selects from 2 possible parents:
+>>>> +		 * vid_pll_div or hdmi_pll
+>>>> +		 */
+>>>> +		.parent_data = (const struct clk_parent_data []) {
+>>>> +			{ .hw = &s4_vid_pll_div.hw },
+>>>> +			{ .fw_name = "hdmi_pll", }
+>>>> +		},
+>>>> +		.num_parents = 2,
+>>>> +		.flags = CLK_SET_RATE_NO_REPARENT,
+>>> Why ? are you planning to DT assigned clocks to statically set this ?
+>> Because vid_pll_sel one parent is HDMI_PLL, and HDMI_PLL is a fixed
+>> frequency. To prevent modification, use CLK_SET_RATE_NO_REPARENT.
+> 
+> Again, this makes no sense.
+
+Unfortunately you don't read V4, in fact I have corrected in V4.
+
+".flags = CLK_SET_RATE_PARENT," in V4. Is that okay with you?
+
+> 
+>>>
+>>>> +	},
+>>>> +};
+>>>> +
+>>>> +static struct clk_regmap s4_vid_pll = {
+>>>> +	.data = &(struct clk_regmap_gate_data){
+>>>> +		.offset = CLKCTRL_VID_PLL_CLK_DIV,
+>>>> +		.bit_idx = 19,
+>>>> +	},
+>>>> +	.hw.init = &(struct clk_init_data) {
+>>>> +		.name = "vid_pll",
+>>>> +		.ops = &clk_regmap_gate_ops,
+>>>> +		.parent_hws = (const struct clk_hw *[]) {
+>>>> +			&s4_vid_pll_sel.hw
+>>>> +		},
+>>>> +		.num_parents = 1,
+>>>> +		.flags = CLK_SET_RATE_PARENT,
+>>>> +	},
+>>>> +};
+>>>> +
+>>>> +static const struct clk_parent_data s4_vclk_parent_data[] = {
+>>>> +	{ .hw = &s4_vid_pll.hw },
+>>>> +	{ .fw_name = "gp0_pll", },
+>>>> +	{ .fw_name = "hifi_pll", },
+>>>> +	{ .fw_name = "mpll1", },
+>>>> +	{ .fw_name = "fclk_div3", },
+>>>> +	{ .fw_name = "fclk_div4", },
+>>>> +	{ .fw_name = "fclk_div5", },
+>>>> +	{ .fw_name = "fclk_div7", },
+>>>> +};
+>>>> +
+>>>> +static struct clk_regmap s4_vclk_sel = {
+>>>> +	.data = &(struct clk_regmap_mux_data){
+>>>> +		.offset = CLKCTRL_VID_CLK_CTRL,
+>>>> +		.mask = 0x7,
+>>>> +		.shift = 16,
+>>>> +	},
+>>>> +	.hw.init = &(struct clk_init_data){
+>>>> +		.name = "vclk_sel",
+>>>> +		.ops = &clk_regmap_mux_ops,
+>>>> +		.parent_data = s4_vclk_parent_data,
+>>>> +		.num_parents = ARRAY_SIZE(s4_vclk_parent_data),
+>>>> +		.flags = CLK_SET_RATE_NO_REPARENT,
+>>> Same
+>> Since fclk_div* is a fixed frequency value, mplL1 and hifi_pll and gp0_pll
+>> are used by other specialized modules, vid_pll has CLK_SET_RATE_PARENT. The
+>> parent of vid_pll is that vid_pll_sel uses CLK_SET_RATE_NO_REPARENT.
+> 
+> Still not good.
+> 
+> You don't have CLK_SET_RATE, propagation is stopped and parent clock
+> will not changed. The best parent will be picked but not changed.
+> 
+> If one parent MUST NOT be picked, just remove it from the list and add a
+> explaining why
+> 
+> [...]
+
+Okay.
+
+> 
+>>>> +
+>>>> +static struct clk_regmap s4_ts_clk_div = {
+>>>> +	.data = &(struct clk_regmap_div_data){
+>>>> +		.offset = CLKCTRL_TS_CLK_CTRL,
+>>>> +		.shift = 0,
+>>>> +		.width = 8,
+>>>> +	},
+>>>> +	.hw.init = &(struct clk_init_data){
+>>>> +		.name = "ts_clk_div",
+>>>> +		.ops = &clk_regmap_divider_ops,
+>>>> +		.parent_data = &(const struct clk_parent_data) {
+>>>> +			.fw_name = "xtal",
+>>>> +		},
+>>>> +		.num_parents = 1,
+>>> propagation stopped ?
+>> Its parent is xtal, so I should use CLK_SET_RATE_NO_REPARENT.
+> 
+> Still no. You seem to have problem with the meaning of
+> CLK_SET_RATE_NO_REPARENT.
+> 
+> * CLK_SET_RATE_NO_REPARENT: means the parent will no be changed, even if
+>    selecting another parent would result in a closer rate to the
+>    request. It makes sense only if the clock has several parents
+> 
+> * CLK_SET_RATE_PARENT: means rate change may propagate the parent,
+>    meaning the rate of the parent may change if it help the child achieve
+>    a closer rate to the request
+
+Thank you for explaining.I got it.
+
+> 
+>>>
+>>>> +	},
+>>>> +};
+>>>> +
+>>>> +static struct clk_regmap s4_ts_clk_gate = {
+>>>> +	.data = &(struct clk_regmap_gate_data){
+>>>> +		.offset = CLKCTRL_TS_CLK_CTRL,
+>>>> +		.bit_idx = 8,
+>>>> +	},
+>>>> +	.hw.init = &(struct clk_init_data){
+>>>> +		.name = "ts_clk",
+>>>> +		.ops = &clk_regmap_gate_ops,
+>>>> +		.parent_hws = (const struct clk_hw *[]) {
+>>>> +			&s4_ts_clk_div.hw
+>>>> +		},
+>>>> +		.num_parents = 1,
+>>>> +	},
+>>> propagation stopped ?
+>> I will add CLK_SET_RATE_PARENT.
+> 
+> [...]
+> 
+>>>> +/* EMMC/NAND clock */
+>>>> +
+>>>> +static const struct clk_parent_data s4_sd_emmc_clk0_parent_data[] = {
+>>>> +	{ .fw_name = "xtal", },
+>>>> +	{ .fw_name = "fclk_div2", },
+>>>> +	{ .fw_name = "fclk_div3", },
+>>>> +	{ .fw_name = "hifi_pll", },
+>>>> +	{ .fw_name = "fclk_div2p5", },
+>>>> +	/*
+>>>> +	 * Following these parent clocks, we should also have had mpll2, mpll3
+>>>> +	 * and gp0_pll but these clocks are too precious to be used here. All
+>>>> +	 * the necessary rates for MMC and NAND operation can be acheived using
+>>>> +	 * hifi_pll or fclk_div clocks
+>>>> +	 */
+>>> You don't want to list mplls but hifi_pll is fine ? seems dangerous.
+>> hifi pll is for EMMC and NAND on this SoC.
+> 
+> That deserve a better explanation.
+> Why can't it use fdiv2 and xtal like the previous SoCs ?
+> 
+> Which PLLs are you using for Audio then ?
+> Typical operation on these SoCs usually require 3 PLLs to acheive all rates
+> 
+
+I'll list all the clocks and let the driver itself select Parent as needed.
+
+>>>
+> 
+> 
+>>>> +/*
+>>>> + * gen clk is designed for debug/monitor some internal clock quality. Some of the
+>>>> + * corresponding clock sources are not described in the clock tree, so they are skipped.
+>>>> + */
+>>> Still feels a bit light, don't you think ? Among all the clocks, can't
+>>> you add a bit more parents here ? It would certainly help debug down the road
+>> [16:12]	is gen_clk source select.All is:
+>> 0: cts_oscin_clk
+>> 1:cts_rtc_clk
+>> 2:sys_pll_div16 (internal clock)
+>> 3:ddr_pll_div32  (internal clock)
+>> 4: vid_pll
+>> 5: gp0_pll
+>> 7: hifi_pll
+>> 10:adc_dpll_clk_b3 (internal clock for debug)
+>> 11:adc_dpll_intclk (internal clock for debug)
+>> 12:clk_msr_src(select from all internal clock except PLLs);
+>> 16: no used
+>> 17: sys_cpu_clk_div16 (internal clock)
+>> 19: fclk_div2
+>> 20: fclk_div2p5
+>> 21: fclk_div3
+>> 22: fclk_div4
+>> 23: fclk_div5
+>> 24: fclk_div7
+>> 25: mpll0
+>> 26: mpll1
+>> 27: mpll2
+>> 28: mpll3
+>> So i only added the clocks that will actually be used, and some debugging
+>> clock peripherals will not be used.
+> 
+> you may at least add vid_pll
+
+Okay.
+
+> 
+>>>
+>>>> +static u32 s4_gen_clk_mux_table[] = { 0, 5, 7, 19, 21, 22,
+>>>> +				      23, 24, 25, 26, 27, 28 };
+>>>> +static const struct clk_parent_data s4_gen_clk_parent_data[] = {
+>>>> +	{ .fw_name = "xtal", },
+>>>> +	{ .fw_name = "gp0_pll", },
+>>>> +	{ .fw_name = "hifi_pll", },
+>>>> +	{ .fw_name = "fclk_div2", },
+>>>> +	{ .fw_name = "fclk_div3", },
+>>>> +	{ .fw_name = "fclk_div4", },
+>>>> +	{ .fw_name = "fclk_div5", },
+>>>> +	{ .fw_name = "fclk_div7", },
+>>>> +	{ .fw_name = "mpll0", },
+>>>> +	{ .fw_name = "mpll1", },
+>>>> +	{ .fw_name = "mpll2", },
+>>>> +	{ .fw_name = "mpll3", },
+>>>> +};
+> 
+> .
