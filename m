@@ -2,67 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3D085A6B27
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 19:48:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E39635A6B0B
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 19:44:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232043AbiH3RsD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 13:48:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43340 "EHLO
+        id S232042AbiH3Rox (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 13:44:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232164AbiH3Rri (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 13:47:38 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FA8723BED;
-        Tue, 30 Aug 2022 10:44:13 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 27UHcCrg080481;
-        Tue, 30 Aug 2022 12:38:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1661881092;
-        bh=76Q7cq/AR/+iJyWKEKNDDgUJpWOaO+SHwO2XSEGZ4h0=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=IzfFP6MrvdxpXcmxYeE1V8Q4JS38TTWejMIJQrRMKWDJ3ZH5sKreY02nrFIAn+gKi
-         TG05ngCr7GmcwriybH/I2NFCYllesuVY8+1rACGQB+RwDMeoPx4vwJg3P20zjLcObd
-         Xq364P74xmBlfdJRLqdZCSyBkM5z3RdwJqqrgsoE=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 27UHcCld029103
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 30 Aug 2022 12:38:12 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 30
- Aug 2022 12:38:12 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Tue, 30 Aug 2022 12:38:12 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 27UHcC3h015049;
-        Tue, 30 Aug 2022 12:38:12 -0500
-Date:   Tue, 30 Aug 2022 12:38:12 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 1/2] dt-bindings: arm: ti: k3: Sort the am654 board enums
-Message-ID: <20220830173812.knnavya6uud56wsa@unrefined>
-References: <20220830160507.7726-1-nm@ti.com>
- <20220830160507.7726-2-nm@ti.com>
- <6d558914-2667-9e48-b662-980b9c7ca094@linaro.org>
+        with ESMTP id S231799AbiH3Rog (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 13:44:36 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED0FF163B47
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 10:41:21 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id w19so9175897ljj.7
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 10:41:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=g068sDOtegZG3B0E3N9qqa73w8mC4luwa5PK1E841Oc=;
+        b=OXFHI8yptvhucT4YUUOtygY4O7bsAiXGdV3sDBj4S+zCmz1ExWyE5Lrl/YAU0EQt3e
+         DGiqZsoyHdZGWxAR791s3ykxSAKk9LaPiUPPlLblSgHmFTuFinaSfSvMkZeFSvkUz0xm
+         SMxLLMEFPxRr+jU9Gg6SrQd7V3caOTsV7RpSXgxLP84LZZ5nrdf6x2Gtn58CpSYKn7Ik
+         gAAtZd3LTMKXhxyF79ygES+pSq3T2kz3zuASe5uQrH6/yvqBZIIGLdYW81ORN+njF2y5
+         MZ/35FjfCPC5TGpqRrXmotp+iCvxIF1b5Gjjc4vIG1F03NYQo5fOT1Ts/jrvVHa0I8ry
+         hEGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=g068sDOtegZG3B0E3N9qqa73w8mC4luwa5PK1E841Oc=;
+        b=7QfftDIhM3zbL0NV8+KC1djmrotPFNZzM0buSFNT08FmWNxNwyIQkuiRh9vVX/6OfH
+         k44MXTvqe+u9iTzTzPgw0RT/T1Nr0pInyzbELtqmIwsB+yU9kqhtYJd75NH5Dbr45iH/
+         D8KJgqLvjxk4ksAE6GJJ0bvAcVwzq+492e+QT37Sh6anC9IdT4VijktK680iy/4D4PMV
+         Jb40KdeBmUBM5fKz2KFvYicEQ1q+33AnXM0zAfbSJAhojImLoQtuTb5iFkaAoSe6fuB6
+         d3pp8hg2H6769bU+kiOwLteSLZHgPh0JGLB27B3QwiHRITyeXvZmegr3FtQ16vA8hrRJ
+         Hz+g==
+X-Gm-Message-State: ACgBeo0VdIYR/hPvqYS/nfF7h5intuiiwdftrNmKYVkuPhNEOMOx09z9
+        3uv3aEwb9MMPFCEae+QZw6k5Ug==
+X-Google-Smtp-Source: AA6agR5vWqwc+VWS2HuKV8dho5GMBIfDIOF3NRboTp2dc6BcMwmp9hIlM7n+IYTRLFa+HruvI7r9NQ==
+X-Received: by 2002:a05:651c:238c:b0:261:d468:d633 with SMTP id bk12-20020a05651c238c00b00261d468d633mr7294676ljb.479.1661881275308;
+        Tue, 30 Aug 2022 10:41:15 -0700 (PDT)
+Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
+        by smtp.gmail.com with ESMTPSA id h5-20020a2ea485000000b0025e6a3556ffsm1846445lji.22.2022.08.30.10.41.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Aug 2022 10:41:14 -0700 (PDT)
+Message-ID: <ee9bf56b-9624-b695-d724-2bf237c9c241@linaro.org>
+Date:   Tue, 30 Aug 2022 20:41:13 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <6d558914-2667-9e48-b662-980b9c7ca094@linaro.org>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH net-next v4 6/7] dt-bindings: net: pse-dt: add bindings
+ for generic PSE controller
+Content-Language: en-US
+To:     Oleksij Rempel <o.rempel@pengutronix.de>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>
+Cc:     kernel@pengutronix.de, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-doc@vger.kernel.org, David Jander <david@protonic.nl>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Robert Marko <robert.marko@sartura.hr>
+References: <20220828063021.3963761-1-o.rempel@pengutronix.de>
+ <20220828063021.3963761-7-o.rempel@pengutronix.de>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220828063021.3963761-7-o.rempel@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,29 +89,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19:50-20220830, Krzysztof Kozlowski wrote:
-> On 30/08/2022 19:05, Nishanth Menon wrote:
-> > Use alphabetical sort to organize the am654 board names.
-> > 
-> > Reported-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On 28/08/2022 09:30, Oleksij Rempel wrote:
+> Add binding for generic Ethernet PSE controller.
 > 
-> It's not a bug, so it should be rather "Suggested-by".
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> ---
+> changes v4:
+> - rename to PSE regulator
+> - drop currently unused properties
+> - use own compatible for PoDL PSE
+> changes v2:
+> - rename compatible to more generic "ieee802.3-pse"
+> - add class and type properties for PoDL and PoE variants
+> - add pairs property
+> ---
+>  .../bindings/net/pse-pd/pse-regulator.yaml    | 40 +++++++++++++++++++
+>  1 file changed, 40 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/pse-pd/pse-regulator.yaml
 > 
-> > Signed-off-by: Nishanth Menon <nm@ti.com>
-> > ---
-> >  Documentation/devicetree/bindings/arm/ti/k3.yaml | 6 +++---
-> >  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> Best regards,
-> Krzysztof
+> diff --git a/Documentation/devicetree/bindings/net/pse-pd/pse-regulator.yaml b/Documentation/devicetree/bindings/net/pse-pd/pse-regulator.yaml
+> new file mode 100644
+> index 0000000000000..1a906d2135a7a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/pse-pd/pse-regulator.yaml
+> @@ -0,0 +1,40 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/pse-pd/pse-regulator.yaml#
 
-Thanks - Vignesh: let me know if you'd like a v2 with
-s/Reported-by/Suggested-by update.
+The convention is filename based on compatible, so "podl-pse-regulator.yaml"
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Regulator based Power Sourcing Equipment
+> +
+> +maintainers:
+> +  - Oleksij Rempel <o.rempel@pengutronix.de>
+> +
+> +description: Regulator based PSE controller. The device must be referenced by
+> +  the PHY node to control power injection to the Ethernet cable.
+> +
+> +properties:
+> +  compatible:
+> +    description: Regulator based PoDL PSE controller for a single twisted-pair
+> +      link.
+
+Why description of compatible? Description of hardware goes to top-level
+description.
+
+> +    const: podl-pse-regulator
+> +
+> +  '#pse-cells':
+> +    const: 0
+> +
+> +  pse-supply:
+> +    description: Power supply for the PSE controller
+> +
+> +additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - '#pse-cells'
+> +  - pse-supply
+> +
+> +examples:
+> +  - |
+> +    pse_t1l2: ethernet-pse-1 {
+
+Node name: ethernet-pse
+(unless -1 stands for something generic?)
+
+Also, no need for label.
+
+Best regards,
+Krzysztof
