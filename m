@@ -2,79 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A76825A5F8A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 11:36:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E06245A5F98
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 11:39:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231145AbiH3JgR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 05:36:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50284 "EHLO
+        id S229550AbiH3Ji6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 05:38:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231363AbiH3Jfp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 05:35:45 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52333E095A
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 02:33:33 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id x10so10706632ljq.4
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 02:33:32 -0700 (PDT)
+        with ESMTP id S231436AbiH3Jie (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 05:38:34 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E97A7E9255
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 02:36:35 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id z20so10744460ljq.3
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 02:36:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=8jLhtnIVjN/sROM6rGUEJSLxhjc41TVh4VC82bHwbSY=;
-        b=z13p8nSsHlnc2WlRI3gE1BGc+ZZF+OEOnqIGGnp/9JM+rMpBm5njAyfuLFD6hBGzMK
-         83NaOvwJBC/1HbFRiwRka/5Xxe+wqRJDM0oAwH22vBmKEZFI/EeTEfrBMXmTMAzRuuRA
-         fqIjWuygbjf+MYU5d07gEEny4azu0sMuewlszqX0Apr/TALpZiGDiJy5p7Dwd4lILeiF
-         DKIbKNljhX3dim3EDesV3mCjOIzwnXvq/yyJHHX6KfOsGkRd1QQJZhX1mjE1XU3yKBg+
-         AU//NNFT8jsyF1bYGoTvu2kHYFY5aB8BpLrWhrcf7/Sez9rPCXOAsLX900qAGw3Y3u2k
-         k5aA==
+        bh=kCi8L1+oD+4JTBvg0D7KspDhAid2IOnvW3ckVIUBt9U=;
+        b=YO/VLJYgQtWvyKOuDYePVhu0MG9qTHHNwyrER5jP7xrz5Ovu8sFTgTrT9hUTRdyN3+
+         4TFLgf2CI3a5HHtqwqZ/JiUdBvEVWGpzZBskvMxHeqBgofR6zQjMX+YCXZevj+KiQj5Z
+         Q1unqYNIZPZEVMqv8FrAEl7qK38tahod0e5h3d+ECr9O1oMkNGId9Oviz7MsvZUJwVOt
+         1NF497u1MgpgtGPjqkVGj3GGumW0HBKkE2S3x3tAwK8XgJ6oyVgF09DpwatmEyCHYFEs
+         FALpdbKoWv3Kr/BmJ+mDTqr8a5WOoGXvutD/GcI/HUrqfzyLnqQd4Jwuddr8bkVAXRpY
+         biGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=8jLhtnIVjN/sROM6rGUEJSLxhjc41TVh4VC82bHwbSY=;
-        b=HE/5WM2toEbLyWOL4svXs+ysbKA989ptnlcJZu+dXMTqQk2Tkj7uqMFhh3KZ8/aIph
-         a+n0miPvh7nRwGDlQSv/OF1SzJLn1gv53vVUmJibXXKS8K2rAKiF5VXJu7TcGpXMMGgw
-         lm2q5PwSPJuWAb4qbp4yZntHMo7p++7tCwlfeauvnqX9jruMMnwaZSXbNlFYJ8cI6u9G
-         511MC73w4TP20Xl8M9b82twfbRMEzIG1/DdCTeeNSkuigT/UJTSr3ooRwRlo58STdnR/
-         fhmJdZCq6wTshuaIsY42lzLM9q9Q4Fv9rMINC+xznP+SDATQtJ7ykvcgHQjs+D9COSAa
-         bRKg==
-X-Gm-Message-State: ACgBeo1tlwvSQyzlAleTlqpBFoSpL6ENRUki/XbSamwr1U/BYh9CSH8+
-        dABbdOuJE6yvzgjgd2JsBXtmNQ==
-X-Google-Smtp-Source: AA6agR5rDpXTINB0t6CY1m8qyUHEvTl7b7yra5ZZrgOSbhUtIvb+lpGvcayneP88lZdREf5a7J99Gw==
-X-Received: by 2002:a2e:a1c8:0:b0:261:e4e5:1cc3 with SMTP id c8-20020a2ea1c8000000b00261e4e51cc3mr7107767ljm.248.1661852010357;
-        Tue, 30 Aug 2022 02:33:30 -0700 (PDT)
+        bh=kCi8L1+oD+4JTBvg0D7KspDhAid2IOnvW3ckVIUBt9U=;
+        b=sPXg4UqKaZ8DBJEljzpTw8CisqtmjDLfA8mzsfXkkuDZGz6to0o9ILSPKCr3EqB00e
+         fip8628Dkfa8C+byO2lvS6PVW97SpLrbvl+9JHdd/if3G0roJywXwwg8QvUy/FrW4zjE
+         bDcUEJT+ORinAw5DZChWhfhG4dWcB8WZrSGchsHvOVr/YbMRVPb+jtFy4LxwqcI8J79p
+         Xyhez4SB64ldp1qLdlWl6tIVJqqaYg3eH1pi+F2/gqG37P+Vv6PQbey4T3LImlYds9Rq
+         yAZWk/gqI8PZmb39cljZEoyMmSbOL8M62whjoZ5k9m36nxghNN+2n2yaZ+wm9sWsTSM/
+         rblQ==
+X-Gm-Message-State: ACgBeo27bLuNlid4E7tLNZskwQD6SY7cSiKb3i6Hr6Cpwe5xgS5fku81
+        whJHl7y6fUJXo8VQwkiYYeARNVKIqCGw3xbUfsg=
+X-Google-Smtp-Source: AA6agR4d1/sQGxXZPNDK/31Tjg9grm6UsSbjOwAS5Sq/aDGVQCp4oN3d9PYLjMqb5EjZ0bcCmPIeQg==
+X-Received: by 2002:a2e:3006:0:b0:266:6677:5125 with SMTP id w6-20020a2e3006000000b0026666775125mr1872362ljw.352.1661852193294;
+        Tue, 30 Aug 2022 02:36:33 -0700 (PDT)
 Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id f6-20020a056512360600b0049288e0bd61sm1561420lfs.58.2022.08.30.02.33.29
+        by smtp.gmail.com with ESMTPSA id c9-20020a05651c014900b0025e15fe421bsm1705374ljd.17.2022.08.30.02.36.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Aug 2022 02:33:29 -0700 (PDT)
-Message-ID: <74aa8d80-c176-7c8e-e80e-8d8910d10d8c@linaro.org>
-Date:   Tue, 30 Aug 2022 12:33:28 +0300
+        Tue, 30 Aug 2022 02:36:32 -0700 (PDT)
+Message-ID: <1c9cb6c2-2030-257d-a50d-dada0ab4449e@linaro.org>
+Date:   Tue, 30 Aug 2022 12:36:31 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH 1/1] arm64: dts: qcom: sc7280: Add device tree for
- herobrine evoker
+Subject: Re: [PATCH 1/3] dt-bindings: i2c: mv64xxx: Document DMA properties
 Content-Language: en-US
-To:     Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>,
-        LKML <linux-kernel@vger.kernel.org>
-Cc:     mka@chromium.org, dianders@chromium.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+To:     Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc:     Gregory CLEMENT <gregory.clement@bootlin.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-References: <20220830053307.3997495-1-sheng-liang.pan@quanta.corp-partner.google.com>
- <20220830133300.1.I7dd7a79c4cc5fe91c3feb004473feb3b34b7b2d8@changeid>
+        linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev
+References: <20220830020824.62288-1-samuel@sholland.org>
+ <20220830020824.62288-2-samuel@sholland.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220830133300.1.I7dd7a79c4cc5fe91c3feb004473feb3b34b7b2d8@changeid>
+In-Reply-To: <20220830020824.62288-2-samuel@sholland.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,28 +79,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/08/2022 08:33, Sheng-Liang Pan wrote:
-> Add a basic device tree for the herobrine evoker board.
+On 30/08/2022 05:08, Samuel Holland wrote:
+> Allwinner's I2C offload engine includes bidirectional DMA support. Add
+> the properties for describing this in the devicetree. "dmas" is optional
+> because not all instances of the controller have their DRQs hooked up.
+> For example, R_I2C0 and R_I2C1 on V536 have no DRQ number assigned.
 > 
-> Signed-off-by: Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
+
+Thank you for your patch. There is something to discuss/improve.
+
 > ---
 > 
->  arch/arm64/boot/dts/qcom/Makefile             |   1 +
->  .../dts/qcom/sc7280-herobrine-evoker-r0.dts   | 333 ++++++++++++++++++
->  2 files changed, 334 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker-r0.dts
+>  .../bindings/i2c/marvell,mv64xxx-i2c.yaml           | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 1d86a33de528c..59c22ba54a366 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -103,6 +103,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-r1-lte.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-crd.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-herobrine-r1.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-villager-r0.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-evoker-r0.dtb
+> diff --git a/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml b/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml
+> index 0ec033e48830..63d665a4f9bb 100644
+> --- a/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml
+> +++ b/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml
+> @@ -66,6 +66,19 @@ properties:
+>    resets:
+>      maxItems: 1
+>  
+> +  dmas:
+> +    items:
+> +      - description: RX DMA Channel
+> +      - description: TX DMA Channel
+> +
+> +  dma-names:
+> +    items:
+> +      - const: rx
+> +      - const: tx
+> +
+> +dependencies:
+> +  dmas: [ dma-names ]
 
-Why breaking ordering?
+Dependency is not needed. meta-schema has it.
 
 Best regards,
 Krzysztof
