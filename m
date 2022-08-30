@@ -2,59 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECECC5A5AD0
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 06:36:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE4EE5A5AF0
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 06:56:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229817AbiH3EgK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 00:36:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49124 "EHLO
+        id S229834AbiH3E4R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 00:56:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229437AbiH3EgJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 00:36:09 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8ABB978233;
-        Mon, 29 Aug 2022 21:36:06 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0B808611DA;
-        Tue, 30 Aug 2022 04:36:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85B12C433D6;
-        Tue, 30 Aug 2022 04:36:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661834165;
-        bh=M5yG2yTFswgWexgNhMPM7W1/h1WPqfE4dGt85x2Ogls=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=V87okQhwG7UDqSnF8GLIb/Aqt2Ig1X+KyVJezb7nrkUeVx9PiVFad8Y4HIvC9yP9Y
-         Zx582UPhmxVtJpOA/Nwu+Qf/k1NhKre/OXxO7bBc/jhOfYX+NdqzfCzUFX7CTjLNPc
-         pwGOB+y2y20HVfcMRJEplQdI4wAo4X9w4xoRytDMx9bFYsDc904F8q8vjH9mKOrpNw
-         xFyf3Qki+Kf1CN3hQXESPv6Pqlgb5fP55VYjVxPe+XopDM79aeS7irGvxZPza4W2E8
-         IdWidQ72Fx52rVcNEGnpBDMDMJOeHNgq8y4PLo6HAx+2PLU4npEIdy9yD16UZsZ0bx
-         QKSE9mO7Kiibg==
-Date:   Tue, 30 Aug 2022 10:06:00 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     David Collins <quic_collinsd@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        David Dai <daidavid1@codeaurora.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/2] spmi: pmic-arb: Add support for PMIC v7
-Message-ID: <Yw2TsARPfuCLvDg0@matsya>
-References: <20220201134108.2677578-1-vkoul@kernel.org>
- <YhUVAwtfjuIdKrRQ@matsya>
- <1c66890b-6736-61ef-7d16-619f90ced4a0@linaro.org>
- <4f1ae43c-0f22-19fe-0794-3cc268104396@linaro.org>
- <20220829222601.47241C433C1@smtp.kernel.org>
+        with ESMTP id S229437AbiH3E4P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 00:56:15 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF57266A7A
+        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 21:56:13 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id z8so3829961edb.6
+        for <devicetree@vger.kernel.org>; Mon, 29 Aug 2022 21:56:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=Ct12KTYjiiY5loIbV4mY2fxWIuXj8jz58iaHIjxHic8=;
+        b=lna4QNb5nnAPp1vH6NVXtxzsSFkSKU2mg3KMsHJJ7kj++9vTwz1uSkt33p1QTddnAa
+         LU5go2AcbcSI9C8eoj+0B6yhKdjLkr2c53xALiMcYPrkEXq732K9mhl0QuQXNpxY6p2z
+         CPQcO2yc+iTb46wsdrmcqhfv9a562NHCDRDp8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=Ct12KTYjiiY5loIbV4mY2fxWIuXj8jz58iaHIjxHic8=;
+        b=PakFTtYGB7c7apG/Ax1Vbllbxctt2sSySO6pncVJQMQ/F47Sk5H++WyE1bKu5QI9xA
+         KMkE4/VWxe7AH+ywmi6jKWK85YRa+v8b1yJIlUvSb4SAEqOVP53QHaMFWAPZj65l2Zd9
+         KYiesyV0qy49rb+MEGHFngNIH/1mpcKmahY97sma4bYL8sHFOe5OmMH275VUS9IqDf1J
+         bCXX7ak4LPzco1PlGiT1nUj035lOwBftGdVVlWiR2TiUMAzQVvks8f4Q37d5lEAGtbOn
+         MH8eGJk0o9MP8ji3eUI0mttkRm1uILGSluNbTnTVXqZ1JJOypUVpxVvfkXHHrTOvdzRI
+         4peQ==
+X-Gm-Message-State: ACgBeo1KuZMvu3szCz2qcUZJ9islmBsX7Svoru1Tno8GlfpkL5mK0P7M
+        CIu4zY5DySWMbzr6zq6p7C0xDa7d8UdY69Oae3r7ybcNqu90EwWW
+X-Google-Smtp-Source: AA6agR6EQyA/TtFnUUL9Y3HVLcIWTXWS3OJ7y6+paUu/xnq251VjV3BwtIHPo4hCcXe200uGbKf2wdtcN8dOv0eEf+M=
+X-Received: by 2002:a05:6402:4303:b0:448:7014:ed8f with SMTP id
+ m3-20020a056402430300b004487014ed8fmr6625364edc.335.1661835372254; Mon, 29
+ Aug 2022 21:56:12 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220829222601.47241C433C1@smtp.kernel.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+References: <20220824080903.3696847-2-jagan@amarulasolutions.com> <20220829201752.518374-1-naoki@radxa.com>
+In-Reply-To: <20220829201752.518374-1-naoki@radxa.com>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Tue, 30 Aug 2022 10:26:01 +0530
+Message-ID: <CAMty3ZAEetiD4kTLeRVved2wb_uK-MqZ3h3TQByQa-0j9TQqRg@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: rk3399: Radxa ROCK 4C+
+To:     FUKAUMI Naoki <naoki@radxa.com>
+Cc:     abbaraju.manojsai@amarulasolutions.com, devicetree@vger.kernel.org,
+        heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
+        linux-amarula@amarulasolutions.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, robh+dt@kernel.org,
+        stephen@radxa.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -63,36 +66,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29-08-22, 15:25, Stephen Boyd wrote:
-> Quoting Dmitry Baryshkov (2022-06-18 08:29:58)
-> > On 01/05/2022 22:41, Dmitry Baryshkov wrote:
-> > > On 22/02/2022 19:53, Vinod Koul wrote:
-> > >> On 01-02-22, 19:11, Vinod Koul wrote:
-> > >>> Hello,
-> > >>>
-> > >>> The is version 3 of support for PMIC v7. I have added a new property
-> > >>> qcom,bus-id for supporting v7 and then add driver changes for v7
-> > >>>
-> > >>> This depends on yaml conversion patch:
-> > >>> https://lore.kernel.org/linux-arm-msm/20211227170151.73116-1-david@ixit.cz/ 
-> > >>>
-> > >>
-> > >> Any feedback on this...
-> > > 
-> > > Another gracious reminder about these patches. At this moment this is 
-> > > one of the important pieces lacking for the full SM8450 support in the 
-> > > upstream kernel.
-> > 
-> > Stephen, yet another ping. This is the blocking point for the further 
-> > SM8450 progress.
-> > 
-> 
-> Sorry I completely missed this one as it fell off the end of my inbox
-> into the abyss.
+On Tue, Aug 30, 2022 at 1:48 AM FUKAUMI Naoki <naoki@radxa.com> wrote:
+>
+> Hello,
+>
+> thank you very much for your work!
+>
+> > +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rock-4c-plus.dtb
+>
+> this is not an objection, just a note for me, currently our(Radxa)
+> u-boot try to load "rk3399-rock-pi-4c-plus.dtb".
+>
+> > +#include "rk3399-opp.dtsi"
+>
+> ROCK 4C+ has RK3399-T. it needs different opp table.
+>
+> > +     aliases {
+> > +             mmc0 = &sdmmc;
+>
+> please add
+>
+>                 mmc1 = &sdhci;
+>
+> as like as other ROCK (Pi) 4 series.
 
-Thanks for the reply. Is this applied now or you have some feedback for
-me to address..
+are you sure? other use the same.
 
-Thanks
--- 
-~Vinod
+mmc0 = &sdmmc;
+mmc1 = &sdhci;
