@@ -2,81 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 006675A695D
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 19:15:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD9A75A699A
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 19:21:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230038AbiH3RPA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 13:15:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54166 "EHLO
+        id S231299AbiH3RVR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 13:21:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229954AbiH3RO6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 13:14:58 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64FED15830
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 10:14:56 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id p5so13307174lfc.6
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 10:14:56 -0700 (PDT)
+        with ESMTP id S231233AbiH3RUk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 13:20:40 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3927618E13
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 10:19:51 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id bt10so16473228lfb.1
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 10:19:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=wqM8poQSBkP5+AJNOGOym7LP5PEFsyVQuT3qGSt/MeQ=;
-        b=t8SfeBC0CMrKUskuld6g6k95a+OrKLt1l4p4i4wYP5WfVoRA9m4tYKjPyeefFS2Sth
-         W1k3LmTakdmvBcyR4Of4koYIRweWQg1g2QJ4DIBUy63ug74x8XdiZhKyg5c8s9mnL3w2
-         OMf8+BGfeuk97J9Kb/7Bciy1t29Izl5eUd7Qfwrs+K2XPZlN3lCL1uoP3U+yPLarKhbI
-         j3hiitXgHkTlYj/jZcEyCynSBMBxjlotKnR9RFOh5Z8i37jEyurjLHMi7qvxxj4/VDl9
-         rN1+tbMgUjAexZWmGr9d34icgOVS3D99IvFNGEc29Q7A7JRku2sQ4VSnOgO7GnRMm0bX
-         UwqA==
+        bh=Jg6jD+CrZfA3+ErsJegtnFyWel1/wg6TBa1uQnpYkRk=;
+        b=WaIC5OO9eshVf6BBCqhHQeOCg7yAkPDaJ88dkCrizU24wDn+NJORKY5EZxxa4LAAB8
+         VOWto4Sl4pFLdVEHBmNE4+lbugz5Kd99gyFm8hsGWv7RioRLj4MxHLoP4JZ6BtDUS6pu
+         T6KdxyVxEOaZ2vtrW2hyUIgrv00n7knWGipMO6lPCBd5+dyrjecZBsIGrpBb6bsS2aV2
+         aEeE8xShfrZ24KEx/Zju1SgylZ8YViLbYULR4gsE+Xg/xkSJE3ntGluUNOmeroVkzFhU
+         xX/TNr2hZ7203joOlAVn67Ovn3qWnA/VBJ9jbLGsjmv4kAFBzR2asTosXhvgICO1vWp1
+         v/FQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=wqM8poQSBkP5+AJNOGOym7LP5PEFsyVQuT3qGSt/MeQ=;
-        b=dTm/RfzrtLg13PxcjV6txlIu7nFKOpFbgLm/f55jmVLjyDTwVf7QSc7baRbrKysOVg
-         jEMiFeF5691aiEFmAa4SEQ2/40xKNPbmkqFwB1isqjzL1CtfFKWlL2vfhhIVoVaYCkRW
-         uoJfsc7OqKwqIMnGc83wxtu3SqixtjwzO6zpqUlgWVDAIBL3MMfA6IBqbJI/hJrjG/o4
-         epcekzXnDmmdIDZ7uIJDB8IPZlSvSpXQepLUlcX4HeTeQwXWk9KCgqbJ2ur6A4jHOswB
-         bbYgkm/cGNET1yugD88vmkPIyvJexXkEhH4gMP/pGyfpb/vhJY7puKuVp1u033vwK28y
-         AHRQ==
-X-Gm-Message-State: ACgBeo15Eg/U3IRPE2y3zB70pEaBSx+pej83kin3xRmxMHXTPvLZd5jF
-        Bl8RpMn/qQPuiQr0YqpA5jaftQ==
-X-Google-Smtp-Source: AA6agR7f3qJImjMtLOVfjApYz2NAbNuJJj7Daybtc1K7dNVuZS10wfEilsUloLI82Iu8FA5wnfynyQ==
-X-Received: by 2002:a05:6512:159b:b0:492:c1c0:5aab with SMTP id bp27-20020a056512159b00b00492c1c05aabmr7875077lfb.523.1661879694642;
-        Tue, 30 Aug 2022 10:14:54 -0700 (PDT)
+        bh=Jg6jD+CrZfA3+ErsJegtnFyWel1/wg6TBa1uQnpYkRk=;
+        b=OURRqNLzwHJtqGdEd1bJSmYU/XMzwoMtjQ19lF+qaeaiYOi1ewUslMClO+PUvnZxSi
+         HouwPz82BP7zi0B99fu7dXmvhdSO5mPHWn9LDt2/GtxGXiVan8OuXrt/VHlqWc6J3lCp
+         GZL7ntxIdLRS4+X1l40jvXmQ1PR7RlYmsZhTTyZzqnRqmyda3PVKWfyOhEOC0BCVWFV8
+         3KKl9+3u2AVXxrzHRePsZOVfaJLcV8sgmvg35TOkGrB7kJoOuEksS6GVDIc80CDoj1i2
+         4x+2QC9Yzmy6F2A/v1Me8/NrX3EyfaW3IcZzo+f5d3hW5+iYsBzGDwgltOmkCGiHMEXu
+         mx5A==
+X-Gm-Message-State: ACgBeo0KoJg7k279vAVuxQWHU8fDE+bysK3/QG2IERqwr3edrRxNSDqW
+        hgRgVWMIbgELcIdMeRSFK9+iwQ==
+X-Google-Smtp-Source: AA6agR5jQT5br8ySZXEzSuLI6UszqeyyUvObvZcBRyykloe0v1NhNfv4SgXtPIKFHfDQo3EkpSorYQ==
+X-Received: by 2002:a05:6512:6cc:b0:48d:acaa:8a66 with SMTP id u12-20020a05651206cc00b0048dacaa8a66mr8786986lff.272.1661879988498;
+        Tue, 30 Aug 2022 10:19:48 -0700 (PDT)
 Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id c17-20020a05651200d100b00492ea54beeasm384652lfp.306.2022.08.30.10.14.52
+        by smtp.gmail.com with ESMTPSA id u14-20020a2eb80e000000b002647530f3b6sm1035235ljo.137.2022.08.30.10.19.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Aug 2022 10:14:53 -0700 (PDT)
-Message-ID: <c8236663-055c-d6da-64ed-ae3f7fb2e690@linaro.org>
-Date:   Tue, 30 Aug 2022 20:14:52 +0300
+        Tue, 30 Aug 2022 10:19:47 -0700 (PDT)
+Message-ID: <a3a93acc-434e-4a94-6ba6-6a71f2da8736@linaro.org>
+Date:   Tue, 30 Aug 2022 20:19:46 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH net-next v2 5/5] dt-bindings: net: altera: tse: add an
- optional pcs register range
+Subject: Re: [PATCH v14 2/3] dt-bindings: edac: nuvoton: Add document for NPCM
+ memory controller
 Content-Language: en-US
-To:     Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        davem@davemloft.net, Rob Herring <robh+dt@kernel.org>
-Cc:     netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        thomas.petazzoni@bootlin.com, Andrew Lunn <andrew@lunn.ch>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-References: <20220830095549.120625-1-maxime.chevallier@bootlin.com>
- <20220830095549.120625-6-maxime.chevallier@bootlin.com>
+To:     Marvin Lin <milkfafa@gmail.com>, linux-edac@vger.kernel.org,
+        rric@kernel.org, james.morse@arm.com, tony.luck@intel.com,
+        mchehab@kernel.org, bp@alien8.de, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, openbmc@lists.ozlabs.org,
+        benjaminfair@google.com, yuenn@google.com, venture@google.com,
+        KWLIU@nuvoton.com, YSCHU@nuvoton.com, JJLIU0@nuvoton.com,
+        KFTING@nuvoton.com, avifishman70@gmail.com, tmaimon77@gmail.com,
+        tali.perry1@gmail.com, ctcchien@nuvoton.com, kflin@nuvoton.com
+References: <20220830022238.28379-1-milkfafa@gmail.com>
+ <20220830022238.28379-3-milkfafa@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220830095549.120625-6-maxime.chevallier@bootlin.com>
+In-Reply-To: <20220830022238.28379-3-milkfafa@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,85 +82,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/08/2022 12:55, Maxime Chevallier wrote:
-> Some implementations of the TSE have their PCS as an external bloc,
-> exposed at its own register range. Document this, and add a new example
-> showing a case using the pcs and the new phylink conversion to connect
-> an sfp port to a TSE mac.
+On 30/08/2022 05:22, Marvin Lin wrote:
+> Add dt-bindings document for Nuvoton NPCM memory controller.
 > 
-> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+> Signed-off-by: Marvin Lin <milkfafa@gmail.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 > ---
-> V1->V2 :
->  - Fixed example
+>  .../edac/nuvoton,npcm-memory-controller.yaml  | 54 +++++++++++++++++++
+>  1 file changed, 54 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/edac/nuvoton,npcm-memory-controller.yaml
 > 
->  .../devicetree/bindings/net/altr,tse.yaml     | 29 ++++++++++++++++++-
->  1 file changed, 28 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/altr,tse.yaml b/Documentation/devicetree/bindings/net/altr,tse.yaml
-> index 1676e13b8c64..4b314861a831 100644
-> --- a/Documentation/devicetree/bindings/net/altr,tse.yaml
-> +++ b/Documentation/devicetree/bindings/net/altr,tse.yaml
-> @@ -39,6 +39,7 @@ allOf:
->        properties:
->          reg:
->            minItems: 6
-> +          maxItems: 7
->          reg-names:
->            minItems: 6
->            items:
-> @@ -48,6 +49,7 @@ allOf:
->              - const: rx_resp
->              - const: tx_csr
->              - const: tx_desc
-> +            - const: pcs
->  
->  properties:
->    compatible:
-> @@ -58,7 +60,7 @@ properties:
->  
->    reg:
->      minItems: 4
-> -    maxItems: 6
-> +    maxItems: 7
->  
->    reg-names:
->      minItems: 4
-> @@ -69,6 +71,7 @@ properties:
->        - const: rx_resp
->        - const: tx_csr
->        - const: tx_desc
-> +      - const: pcs
->        - const: s1
->  
+> diff --git a/Documentation/devicetree/bindings/edac/nuvoton,npcm-memory-controller.yaml b/Documentation/devicetree/bindings/edac/nuvoton,npcm-memory-controller.yaml
+> new file mode 100644
+> index 000000000000..d5ef7e7a65f9
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/edac/nuvoton,npcm-memory-controller.yaml
+> @@ -0,0 +1,54 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/edac/nuvoton,npcm-memory-controller.yaml#
 
-So now 8 items?
+This should be in memory-controllers directory.
 
->    interrupts:
-> @@ -122,6 +125,30 @@ required:
->  unevaluatedProperties: false
->  
->  examples:
-> +  - |
-> +    tse_sub_0: ethernet@c0100000 {
-> +        compatible = "altr,tse-msgdma-1.0";
-> +        reg = <0xc0100000 0x00000400>,
-> +              <0xc0101000 0x00000020>,
-> +              <0xc0102000 0x00000020>,
-> +              <0xc0103000 0x00000008>,
-> +              <0xc0104000 0x00000020>,
-> +              <0xc0105000 0x00000020>,
-> +              <0xc0106000 0x00000100>;
-> +        reg-names = "control_port", "rx_csr", "rx_desc", "rx_resp", "tx_csr", "tx_desc", "pcs";
-> +        interrupt-parent = <&intc>;
-> +        interrupts = <0 44 4>,<0 45 4>;
-> +        interrupt-names = "rx_irq","tx_irq";
-> +        rx-fifo-depth = <2048>;
-> +        tx-fifo-depth = <2048>;
-> +        max-frame-size = <1500>;
-> +        local-mac-address = [ 00 0C ED 00 00 02 ];
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Nuvoton NPCM Memory Controller Device Tree Bindings
 
-00 00 00 00 00 00
-(easier to spot that it is invalid)
+s/Device Tree Bindings//
 
 Best regards,
 Krzysztof
