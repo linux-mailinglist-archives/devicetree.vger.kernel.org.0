@@ -2,71 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A69E5A6652
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 16:31:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 542595A6656
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 16:32:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229734AbiH3Obh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 10:31:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55128 "EHLO
+        id S230096AbiH3OcV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 10:32:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229675AbiH3Obg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 10:31:36 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C38BFA896C
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 07:31:34 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id x10so11561963ljq.4
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 07:31:34 -0700 (PDT)
+        with ESMTP id S229607AbiH3OcU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 10:32:20 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A049CB2775
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 07:32:18 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id m2so12031000lfp.11
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 07:32:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=pX0OlpLEvb4RPyJl58cTxMGgmyUm6YDNZgU2qeJsFjQ=;
-        b=Q/3wwt+uZ9O53+zsHKzMYwQbmb2b6eJDG99iQjMan6Uw0hMFUZBcJZOlCSNG1k9aPP
-         31YCofyBkD+mmM5+XWrHkFb+4bWyyQ+yMFvxQnA9qCVqwXJgrkARuYOdu33TghB1Mr4S
-         GJ95bzHGLC3pWrnAQYiQ4bWUm6aqF50YYW8VpvMBZYfNYnbEN1r11LKJ0l5+KKNl+F4Y
-         8Z2ET1TwKS34xlHPTUWeuR6itx3OZYW3p3YnYizNtCVF+wLZKlxOsqSsH5cpmvXrGYnG
-         KEfyF94oLXSAwVd6TQ8oQrc3tZvKoenbqI/eveOy4k0lpgIHyzDkL1vEopnLhapwTZ4g
-         re4g==
+        bh=C9hMrmnRCeOxtJSBU+xDskBEasH7EBMzC7Z87lKYcrk=;
+        b=C3y1zxG+qaBopF3ylPypT8F90mDv06KIyA3ct8e05qPAV6oqFEh+T/cKlYXpjIC2v1
+         47pSwcytxVOu/yzUhlM6cipUVH19dgIxO2eIimscfr3Mxv3GvRMr5ywhx643sJ/SZ/n/
+         uHyaJ/ltJdqcpnaBrLdUl8+cJVKj788odF0hsZTvQiAP4Cu5tQmyjNl0bvteGdgnVUFj
+         MyYvD3t2ThHSSzJ9PSLxvXRy/g7dmAQTUMujn+LOHJ7k2D5vYT2SQDbQUlETvVWg6kPU
+         k8OLJlDQJ00GWKlJapuwerMSw/S72Q6IhPBghfCCot63BSjlFdzMgK0mFxbHy4TwpPsQ
+         DKWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=pX0OlpLEvb4RPyJl58cTxMGgmyUm6YDNZgU2qeJsFjQ=;
-        b=E2PtTu/CqjqtOEiCEdXgMprd6zEGdQY5nW6NYHutwCqeWVXEid1LPIYjtPEvv3ZGyD
-         W1bYtVIDRB78vQ4Sxe04NTYEaksf9x08PQjFzPt44EACeSSDwZPjqxyQmtj4r+I0tmnc
-         yg8fD3nO7rhbZOZi6EgUaBd3wvP457EvcY17oNbE6/rs8jeE1YJg+am4a7zl2kiwScq1
-         5+5T0NX5Dqgn5kdzMPSpbaSTHCoA0t/AFjPAxPybHVYhs8nL5XFOG4/y5RGCInGMiIFE
-         tsCm4N1LtVXA/wg85ZWbGNdp7fuThgoSaXpuERt8zeqBG3bLZzW1jxtnjqfA2j7G2neX
-         VM9Q==
-X-Gm-Message-State: ACgBeo2/wS8SuxDtUnF/OFTyaeBiDRt6eIKqqW1Wtm2Hb9+NCTzJeCRE
-        SC9i6b4ChYy+kxvOaT5+u49tWA==
-X-Google-Smtp-Source: AA6agR68vvQXFwNOUtVNjkp7Rvx2IDU0peYkOCAud31GCK6ryCiWT//uRQ7w48iVZUvB4ganFgT7xA==
-X-Received: by 2002:a2e:a5c2:0:b0:261:d23a:2009 with SMTP id n2-20020a2ea5c2000000b00261d23a2009mr6726085ljp.303.1661869893181;
-        Tue, 30 Aug 2022 07:31:33 -0700 (PDT)
+        bh=C9hMrmnRCeOxtJSBU+xDskBEasH7EBMzC7Z87lKYcrk=;
+        b=WKklVaBHQEvOmhZ9Tuayy3lE4/dwPxt86594NcSAxIqvTzwT616brdK4rwlLAsWw1N
+         8wIydZqS7tGbtDTjoG0ohD6VnG37b9HUhfVS12mhYtAYn2QxGUFKgwUHDEiW0YvlU6au
+         kX4Y3yxE9nHcgShB0wfSLTtgKWq7qAfggfFsExY07GMA33iHxrAZDj+gFOCqF54gGLTz
+         zYXpV5n6Z8/M6jKpkVMVchjpsuijFs2oKaOCXoTZzKNSa/OGscUtEOhOgz1YqcsexXqf
+         cmXR266VcXsbi0Pyr+eZ4yynj9ktesqUhYoDszhcehbqKjWsn2vt/sCI3L7uIoRjpSEr
+         Q+eQ==
+X-Gm-Message-State: ACgBeo37Mi1uApntoOl5qFE/wRzRIX9LNhBKJMwHfUzfZ0d7x/TOtUNo
+        qWBBA9n5FJKTbbs+0yrvkEbez4rxcbCS7LLM0ZE=
+X-Google-Smtp-Source: AA6agR6RrgJXyfpzXFNbCthcWbJ0OhEgloy1Szcy3cQyXNHecr2Pdwq6I15ti8Pop7FAZwJtlo6rHQ==
+X-Received: by 2002:a19:e04a:0:b0:492:f96f:85b7 with SMTP id g10-20020a19e04a000000b00492f96f85b7mr7387760lfj.141.1661869937015;
+        Tue, 30 Aug 2022 07:32:17 -0700 (PDT)
 Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id t22-20020a2e5356000000b00261eb44bd16sm1814155ljd.5.2022.08.30.07.31.31
+        by smtp.gmail.com with ESMTPSA id v3-20020a056512348300b0048af2fe78c4sm52684lfr.3.2022.08.30.07.32.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Aug 2022 07:31:32 -0700 (PDT)
-Message-ID: <2e55c955-1a16-307d-34de-6b598f6e31a2@linaro.org>
-Date:   Tue, 30 Aug 2022 17:31:31 +0300
+        Tue, 30 Aug 2022 07:32:16 -0700 (PDT)
+Message-ID: <7ed1a3db-e0de-fd2e-3206-0a95fed3052a@linaro.org>
+Date:   Tue, 30 Aug 2022 17:32:15 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v1 1/3] dt-bindings: iio: adc: ti,tsc2046: add vref-supply
- property
+Subject: Re: [PATCH 1/1] spi: spi-rockchip: Add rk3588-spi compatible
 Content-Language: en-US
-To:     Oleksij Rempel <o.rempel@pengutronix.de>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Heiko Stuebner <heiko@sntech.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     kernel@pengutronix.de, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220830110709.2037302-1-o.rempel@pengutronix.de>
+Cc:     Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@collabora.com
+References: <20220830124452.33561-1-sebastian.reichel@collabora.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220830110709.2037302-1-o.rempel@pengutronix.de>
+In-Reply-To: <20220830124452.33561-1-sebastian.reichel@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,10 +78,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/08/2022 14:07, Oleksij Rempel wrote:
-> Add property for the voltage reference supply.
+On 30/08/2022 15:44, Sebastian Reichel wrote:
+> This adds a compatible string for the SPI controller found in
+> the RK3588 and RK3588s SoCs.
 > 
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
