@@ -2,141 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7BE45A6B3C
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 19:51:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B57C5A6B40
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 19:51:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230165AbiH3Rv2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 13:51:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57250 "EHLO
+        id S231925AbiH3Rvp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 13:51:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230462AbiH3RvI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 13:51:08 -0400
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2121.outbound.protection.outlook.com [40.107.114.121])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC654B5E7C;
-        Tue, 30 Aug 2022 10:47:45 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Pe/QkxPkAAH7TQlBt1qf225vGIBxO96+aFo0lKbCn/bxS/EZzCDZmjp0KBzvo/r8euVgtLi4Ul0WC4d/Njjbo43EbrhK4OMP2vPcYYTlU1YK0voD+dH8zAvQYUCk/Ec/PHcJ/ULVyOGSgnlcwRRTGJ4sFfzr/uNU2Jdrbx5gPmX+fddqMm2wz2V/dks2Sn1AvU9wSM5lCV1PFKqwwRxhHfzLypgdHftg43VZEloNbPpNxz7s6PysXI8BrzdCCCmf9lXd29rVRt24xCefsT7Pi10VH481W1qcjAplQqpl0io/J59Rh1y3AkUiVtmxUsXVLZNw5Q4eZm9+oebgMmSsNQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=n8GC5PNIC+i/ye9ew/AC1jF2UZifIOvYji4y/p9KX9M=;
- b=LB/GM+nrZUnWrgzWovsUlRtyUSJlyeMcQODjAJYEkqisoow7yIYN2GcMqmec/SR0HsJi+kiykbwbQI7Tb4yUhLtAP3Tt0A1Emk14l8hGrSqP15UJY+/elpKH7IoQOwcvl5pgyu++6/EeYVzwwH48yxR7I3BerWtIiosx43ihQkls9sgio1g8ZUdSkvo2hSRMXnmV9fiywN/RiWDFG77uXGMV/sbdv05ViA1mwlTdlCG+ipPWVHVObjJwJP7edCKf0F6Q6Ull8LtfJueRcQypX22kvx7NquPa6sqDgYp8y5R4TBX2jtMOQ2XoAsDQJilj2Rh1naq9G/ZZRlVqNcK8WQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=n8GC5PNIC+i/ye9ew/AC1jF2UZifIOvYji4y/p9KX9M=;
- b=QfMre/lTdiGia4KV7ovobk6srXjBQuxfdq/pNFvV+mcsapeU8rpo2f9JkPLxaPmCEExJVzkm3B2Lpcx/3WI3drIuqbpAUlbucpKg7jnoymdQ6F2ad+5FdjbS+WJcQNYO6ToahuApYLeRx7rS+oWeppORVd6vQR4HaY80A0zXO5E=
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
- by TYCPR01MB6527.jpnprd01.prod.outlook.com (2603:1096:400:93::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5566.15; Tue, 30 Aug
- 2022 17:47:43 +0000
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::14d3:5079:9de1:ceaf]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::14d3:5079:9de1:ceaf%4]) with mapi id 15.20.5588.010; Tue, 30 Aug 2022
- 17:47:41 +0000
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     "linux-can@vger.kernel.org" <linux-can@vger.kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH v3 1/3] dt-bindings: can: nxp,sja1000: Document RZ/N1
- power-domains support
-Thread-Topic: [PATCH v3 1/3] dt-bindings: can: nxp,sja1000: Document RZ/N1
- power-domains support
-Thread-Index: AQHYvI/soc4ccXsQ/0GsHSqaKNc0sa3Hs5aAgAABa3A=
-Date:   Tue, 30 Aug 2022 17:47:41 +0000
-Message-ID: <OS0PR01MB592292E8BE619470F4C621A186799@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-References: <20220830164518.1381632-1-biju.das.jz@bp.renesas.com>
- <20220830164518.1381632-2-biju.das.jz@bp.renesas.com>
- <23539312-caaa-78f0-cd6c-899a826f9947@linaro.org>
-In-Reply-To: <23539312-caaa-78f0-cd6c-899a826f9947@linaro.org>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: b1472f8c-a2dd-43c0-9749-08da8aafbcbe
-x-ms-traffictypediagnostic: TYCPR01MB6527:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: L9K6weiSLGBn0gA16Ukdoyhp7ZtE+WLCbQeJV1oseMkwMbZYiRex6LdlBOBwRQnHWD7ZeukibVPMu7wN0yV4z8+Pn5/Mp/ZS3NfP6RIwEzn1nBoS1KPjB3BnBfgALZrsvB8JPyYBmHSb5IhTS4Umd1J8kPSDKdBung8gvsLnaymGsBxK5c+WltuE+esj3z5yhqBio527B/cCz0xTeCk481HHzKjEiOC5mezjKfcLvA+28Gtc7BMMCTv3DEBor5vBZxGl5agozVrxHfpTQJQH6N4L4RG+roGZsirkWONhanjyrOJPq4jZMKD9DcomVOgPrSeeKOFpebEF6cul9hA86PSHqUJZJSXy+rjBB7orP+LjQ6Ds/kEV5bZGrZAd2zWjvls3BfuANcjWGbZZWacx0JEhLBYmLFHo3miCkED/HnHAlaXxUOJitaDOmF3APXWqfA4G9GGnZ5OVcTNyM5oatk123hby/DVfMIOAjOhRqsf4fnXLhuOVymiicejnmpZmN7XDy/kz6cVXrwZTCoU45SNGi49Y18TpQwbVTuYY/AhO/1zn7vDhbmbhBTrN3SGy4oKtc1Q7Ea2pLt3VfxwvRSvixpznqRem+U/IQUqF2CRI5J5Wh8ftOycQBpax78e94IgK27jvRl2IP6w2ESrPuFUXt6Od9pcv+Dy63HtWIzXtcBdoCK2SYaTqa6v/NZ8njUMJl2qdDjS5BMnjtvsj5dJWsCan6R4bNBIuqAGLtlXeKQLTZpUQwDEgnpXH9hP9FGO6UIxU75TOq3HRkoF+DHjxIqZ0Z4ung6PTUPDi00Tduh33etRA+0WlBkXIy+n2nwIKEiyNj6GwXnMc24gWjw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(346002)(366004)(396003)(376002)(39860400002)(136003)(66946007)(7696005)(8676002)(66446008)(66556008)(66476007)(76116006)(4326008)(64756008)(53546011)(2906002)(83380400001)(9686003)(55016003)(966005)(8936002)(5660300002)(26005)(478600001)(7416002)(41300700001)(33656002)(6506007)(52536014)(71200400001)(316002)(110136005)(38070700005)(122000001)(86362001)(54906003)(186003)(38100700002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?cm54K1V6WHkzNFU4a2Nkb1FXV2Evb0U5dWYrOHVLRzFBY1I2bnBmemdxTVNq?=
- =?utf-8?B?cjhaSy81VnFaTlRHbzgwbTVaN1owOGJXMjRzS2JsZFdaVWMxV3M4ZlpTbnlk?=
- =?utf-8?B?MUxqWVo5a25uSXdHVEpRVkZlV3UxdENyV3Rnc1kyY0hyN1R3UXpzYmlOTnJx?=
- =?utf-8?B?SXJSbnlGYllnSlZubTFpYWtpTnpvWG4wQmlUL3NhdkxGMGR4dk9iM3VhWGtC?=
- =?utf-8?B?WlcwNVYzN3hLemUwQlkxd3JvNWhoZThrMUNFcGRLeGxnK3VSTURHMXFNSFVQ?=
- =?utf-8?B?TVp2V1NWQXZ6dXlJSUVmMW1ZUXNxcWF3R3IvUUJLOU1FZGtmbjRRTWowaDlN?=
- =?utf-8?B?dUZOWHFBa3VGdkdvbSszeUdwd3liZnVHOWkwcW04S2Fkcm5VV1JmSmVWYTVT?=
- =?utf-8?B?RHJsV2h0WXpORHpSeFlweTVxSXQvWmVHSlpWSjB2cGQwR2FESDZjTW0yQTJV?=
- =?utf-8?B?S2FLTXh3MlM3UHJ4QmFsTDlNSkRsOXQyZTJCam4vTThJUTZXcTE1RU8vODBm?=
- =?utf-8?B?R2g1Y0RlQlFRdGdKWlAxQWs0VUpESjNPWGU0UENWUjBPckZGeWNONkNyRCtE?=
- =?utf-8?B?VTlTeldkVVp4c1NveDJUWEVvRnZieWtRMkQ5UndUQ3BzdEV0T3EwbDdkM2c4?=
- =?utf-8?B?N0wyMUplc1FNMzY1bDhDYkNVallpb1Fza09pVUZRZ3JTbVR3dE5mNTBhRWFJ?=
- =?utf-8?B?c3ZhZ2lFZDdqWGdhQnY3ODVXRGp0Q3gva0w1eGNNVXo4Zm5lRGpjUFhqdFAv?=
- =?utf-8?B?ZkpCT3doNlhoUi9TMWtydkQzcFYrYW5OTTAzN0gyYVhDK1ZHUzJqbERHdzJ3?=
- =?utf-8?B?Q3JsQWdzVXFxYmliODNOK1FUSFhDRWViQmUwTTl2UEtiejU2UkVQaVBhWWRr?=
- =?utf-8?B?aytLRU9QOXRXTGZqbXdCYjl3UFNSTHpBTGl4cytmL1NUU3d3SzhnYXFpdzE5?=
- =?utf-8?B?YnRHSXVuUHV1MXR2allPYUxvTVpVSU85YXg1QnJTK2dZSHpiVG1zL2g1dFMv?=
- =?utf-8?B?WWlSVnNnWENMWEh2em1Pa2svdDZlSjNMOFRFN0pEWlBtNVNLOGl2TUdvMHht?=
- =?utf-8?B?enZNNVZVVHNvVnhsUWdDYlJFd21WczBnanVieWVySzQ5c052WWhqQkc4SW0r?=
- =?utf-8?B?L1hhSHZnR2pEbnRVKzRGT0VuN01DVW40QzIrb0xnWlVzK0QvZTFkNG56YWE1?=
- =?utf-8?B?L1liVUNVd3ZaVHQ0djF4UWZpaEVJdlFUbGIzVDVnQlFIdUF6S1Zjb1AxY2Jy?=
- =?utf-8?B?RXZiMzV3L3N0YzVLclNFbzRacEN3c1o2SG9pdWRDUzR3ZjR6Y3NHajlrcTdJ?=
- =?utf-8?B?MjFaRWV2Nm8wNjNaK3huSit6UE81Sjc2SFBEUzBSemtGRnlIeS9PanVEUGpz?=
- =?utf-8?B?Mlgyem81WUE4WW0zQ3BhY1RpelhzZWttV1M5N3hyQlcvQ0lieTd6ZFRGUGp1?=
- =?utf-8?B?bXZoMGVIbWE0a2o2UzgwMFc5Mjc0cEZxWFpsMUt5NjdSU0RkYkV2UVk0aUY5?=
- =?utf-8?B?SGIzMDRtclV3ODhOQzZSNVRramJqVEk3TEJlaFcrbnBwRnZ1M01Cd3FvZmhL?=
- =?utf-8?B?eU56WWNYV3ZJZGZVZjMyTzZaMGo3ejdyS3VMeG0ranNuekxSeCtlQm9BY1dV?=
- =?utf-8?B?MG04anFTeVpzSUFqeTBCTEpJZmZjZ2ZSL1ExSjFxM244WnJkbDBtTEk1S0lz?=
- =?utf-8?B?YVUwcUhsZjQvSm1ZWHFNL2FESnRMcktmdjU4dHR0RnhqaEhuaDZjeCtJQlds?=
- =?utf-8?B?SWZicEJHWGd4bGVSUndnWVo2cFkzYm1ZK0czU3dEdHBmZlR5bFVZd0NOZ0g5?=
- =?utf-8?B?K3cvcDIxSzBPcHI5M2Z4Z2VQQWhMdE1wVE9oemc2UkM0aTJjZGVxdURXK1g0?=
- =?utf-8?B?K3lyWXJ6MkpZRncwcW1UYUNNUFNPRHlmRUUzNWY4eFpFbnFuV1d3NXVHc29Q?=
- =?utf-8?B?SXI2RUVrOXl6cmxLNzlsZmdEWks3M3VUaU9jK09Ka25uWmZoSnIrS0ZyQW9a?=
- =?utf-8?B?aE5tdmllcjZXdFpBcHIxU2hMTmtKWEpDYnFzM3NoNFhCTERySlExc0llUHBr?=
- =?utf-8?B?VFpaU0NGRWc0dmJvd1BrK3ZObGZQMGRsclRaQmRIa1U0SkdNY1FBZVpOM2ZK?=
- =?utf-8?B?eUFQU3UrOHJreTZMNVB5Q1dtbW41enp0c0g3OURqUmhERHROUlVBMjJ0WGQy?=
- =?utf-8?B?SXc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S231707AbiH3RvX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 13:51:23 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2CB858509
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 10:47:58 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id p7so5423492lfu.3
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 10:47:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=VbbC1Bh6r1meQW/qFxqr5r4rBsOPTTmmpQK0Kk/mnoM=;
+        b=CLx2anEK5muMjHEy2z6C/ytE09XuuVbT66QitISohw8P5KeGxIDzu3b3thqQ0XbIPB
+         KxIstQ1nTlrbMbsyAniPt1O+OUDo6NXpNPd8eFeiEzf9DdnTn9v/tpl8hMEejPORxwPf
+         xevIa+Vg6ZZNZtopf1a8JGSJQ1pOFWlsvU4rEgwdKANRzQoyhnQk2oDaLTpJn6cvQdTN
+         lRXu5okbtYkUH/DYBOPjr9Wd0N0cqUgyS2hfG1l4yL+ssbqSWoJpdR1pXn/4bzNo9Sg+
+         5totB4e8qGoIOrGLeo5jhnDSU/YXMfTIk2SDmpq8luO+q/5AMtou5/vxxI1QkkL4sK9/
+         vr3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=VbbC1Bh6r1meQW/qFxqr5r4rBsOPTTmmpQK0Kk/mnoM=;
+        b=EH03V1yTXfzFnJDz8ag0myt8fvexuhGcFu1dW+tnZz85lDoGlPmtKLS+8FRimvZdHR
+         8mGC2aZYOmNpxpm7k3ZAlGZHI8YUx1E0+R7MrXVeJiwjhwWOemfShvNl7vLG2XW6Rloo
+         LVpGI574rH7cktKulVS1RX8pfTdvZimJu2F5vegxG/1pkrREQ0O5n5fH/kPNw3xc7Ckf
+         +ZbPlP6ObhZG/Lynaw97TBWNs1u5uK5CRbY0JBSZUgmuv1sUf+lepIZqtZ1MLjQ3Ja1r
+         CfuHehExkil12MLkrjGcOQ9HEYIl6gHouXwacOLHoLzp222ds15uBdBKv0KHG08YazSz
+         Yufg==
+X-Gm-Message-State: ACgBeo1SFb+0HGA9CBpY3JFHRaexGNKDntYY804nVRnd15v6+sbu/6NO
+        POjPcPkQKJBZXSJ0HyrnVnDbGg==
+X-Google-Smtp-Source: AA6agR4iL/IbKnyBOdWHHEfU9GGXJYgpKeaHWqUCTEAWeQ+yo7kn+yxnBWPHeQ6vQS/TgkpXkMzTiw==
+X-Received: by 2002:ac2:4144:0:b0:492:eb38:d8e9 with SMTP id c4-20020ac24144000000b00492eb38d8e9mr8904249lfi.215.1661881676256;
+        Tue, 30 Aug 2022 10:47:56 -0700 (PDT)
+Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
+        by smtp.gmail.com with ESMTPSA id q15-20020ac25fcf000000b0048b03ec561fsm1675010lfg.150.2022.08.30.10.47.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Aug 2022 10:47:55 -0700 (PDT)
+Message-ID: <a494ab3f-fc43-e1c7-e30f-09838d743ed5@linaro.org>
+Date:   Tue, 30 Aug 2022 20:47:54 +0300
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b1472f8c-a2dd-43c0-9749-08da8aafbcbe
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Aug 2022 17:47:41.6550
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Nm/Sk3HYxJn3lqdtBjbPxFS3YDCCnW1E4cvbZd4dLrK255OwfUUl1Eg+zWgrJXT5kKFqkIuPct2e+ncmn4XlWS+SVA3wiQl4sh70ICa/jGI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB6527
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v2 2/9] dt-bindings: riscv: microchip: document the aries
+ m100pfsevp
+Content-Language: en-US
+To:     Conor.Dooley@microchip.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, Daire.McNamara@microchip.com,
+        Shravan.Chippa@microchip.com
+Cc:     paul.walmsley@sifive.com, palmer@dabbelt.com,
+        aou@eecs.berkeley.edu, Cyril.Jean@microchip.com,
+        Lewis.Hanly@microchip.com, Praveen.Kumar@microchip.com,
+        wg@aries-embedded.de, Hugh.Breslin@microchip.com,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20220830101803.1456180-1-conor.dooley@microchip.com>
+ <20220830101803.1456180-3-conor.dooley@microchip.com>
+ <a3a8e2ba-a6bd-6e66-fd04-e3a46661a34d@linaro.org>
+ <27b8aa9e-9173-b40e-8f9c-a53fa5ba36c8@microchip.com>
+ <1065bc99-d73a-9d19-7f09-26cd862fe0c7@linaro.org>
+ <69027950-f18d-c9a7-9f0b-d73ef68197c7@microchip.com>
+ <dc3bd6c6-852d-30a5-2ec1-ab5f7fd1488c@linaro.org>
+ <8ae5c383-1c04-e16e-83a6-26861640deb1@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <8ae5c383-1c04-e16e-83a6-26861640deb1@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -144,23 +88,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgS3J6eXN6dG9mIEtvemxvd3NraSwNCg0KVGhhbmtzIGZvciB0aGUgZmVlZGJhY2suDQoNCj4g
-U3ViamVjdDogUmU6IFtQQVRDSCB2MyAxLzNdIGR0LWJpbmRpbmdzOiBjYW46IG54cCxzamExMDAw
-OiBEb2N1bWVudA0KPiBSWi9OMSBwb3dlci1kb21haW5zIHN1cHBvcnQNCj4gDQo+IE9uIDMwLzA4
-LzIwMjIgMTk6NDUsIEJpanUgRGFzIHdyb3RlOg0KPiA+IERvY3VtZW50IFJaL04xIHBvd2VyLWRv
-bWFpbnMgc3VwcG9ydC4gQWxzbyB1cGRhdGUgdGhlIGV4YW1wbGUgd2l0aA0KPiA+IHBvd2VyLWRv
-bWFpbnMgcHJvcGVydHkuDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBCaWp1IERhcyA8YmlqdS5k
-YXMuanpAYnAucmVuZXNhcy5jb20+DQo+ID4gLS0tDQo+ID4gdjM6DQo+ID4gICogRG9jdW1lbnRl
-ZCBwb3dlci1kb21haW5zIHN1cHBvcnQuDQo+IA0KPiBZb3UgbWFkZSB0aGVtIHJlcXVpcmVkLCBz
-byBpdCB3b3VsZCBiZSBuaWNlIHRvIHNlZSByZWFzb24gaW4gc3VjaA0KPiBjaGFuZ2UuIFRoZSBj
-b21taXQgbXNnIHNheXMgb25seSB3aGF0IHlvdSBkaWQsIGJ1dCBub3Qgd2h5IHlvdSBkaWQgaXQu
-DQoNCkl0IGlzIHNpbXBsZS4gQXMgeW91IHNlZSBmcm9tIFsxXSBhbmQgWzJdIHBvd2VyLWRvbWFp
-bnMgYXJlIGVuYWJsZWQgYnkgZGVmYXVsdCBpbiBSWi9OMSBTb0MuDQpTbyB0aGVyZSBpcyBub3Ro
-aW5nIHByZXZlbnQgdXMgdG8gZG9jdW1lbnQgdGhpcyBwcm9wZXJ0eSBmb3IgYWxsIElQJ3MgcHJl
-c2VudCBpbg0KUlovTjEgU29DLg0KDQpbMV1odHRwczovL2dpdC5rZXJuZWwub3JnL3B1Yi9zY20v
-bGludXgva2VybmVsL2dpdC90b3J2YWxkcy9saW51eC5naXQvY29tbWl0L2RyaXZlcnMvY2xrL3Jl
-bmVzYXMvcjlhMDZnMDMyLWNsb2Nrcy5jP2g9djYuMC1yYzMmaWQ9YWFkMDNhNjZmOTAyZTE4YmFi
-NjEyODcwMjYxYmRlNjQ3ZmRiZGEyYw0KDQpbMl0gaHR0cHM6Ly9naXQua2VybmVsLm9yZy9wdWIv
-c2NtL2xpbnV4L2tlcm5lbC9naXQvdG9ydmFsZHMvbGludXguZ2l0L2NvbW1pdC9kcml2ZXJzL3Nv
-Yy9yZW5lc2FzP2g9djYuMC1yYzMmaWQ9MTRmMTFkYTc3OGZmNjQyMTQyZTliZTE4ODE0ODE1NzU0
-YzgyZDZjNQ0KDQpDaGVlcnMsDQpCaWp1DQo=
+On 30/08/2022 20:35, Conor.Dooley@microchip.com wrote:
+> On 30/08/2022 18:30, Krzysztof Kozlowski wrote:
+>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+>>
+>> On 30/08/2022 19:59, Conor.Dooley@microchip.com wrote:
+>>>>> w dts were
+>>>>> needed so that the gpio-hog could be set correctly. Out of curiosity, I can
+>>>>> have the same compatible in multiple devicetrees right? In that case, it
+>>>>> would just be "aries,m100pfsevp" here and I could put that in both?
+>>>>> Would make things easier..
+>>>>
+>>>> Depends, but I would say for this case rather not. The compatible should
+>>>> identify the board. If the boards are different, one compatible should
+>>>> not identify both of them. Imagine U-Boot (or something else) trying to
+>>>> match the DTS.
+>>>
+>>> It is the same board though, the way the bootloader works is that if it
+>>> detects an SD-card it will use that to boot from, and if not will fall back
+>>> to the emmc.
+>>
+>> Wait, I might miss that part. So this is exactly the same hardware with
+>> the same SoM/SoC, same eMMC and SD card, except that one has plugged
+>> this SD card (as it is hot-pluggable)?
+
+Then two thoughts:
+1. It is indeed one compatible because it is exactly the same hardware
+(I don't consider plugged SD card as part of it, just like plugged USB).
+
+2. Then I don't think you should have two boards in the kernel. It's
+fine if bootloaders have two of them or to store an overlay in the
+kernel or somewhere. But two boards for the same board differing by
+hot-plug setup is not for Linux kernel.
+
+
+Best regards,
+Krzysztof
