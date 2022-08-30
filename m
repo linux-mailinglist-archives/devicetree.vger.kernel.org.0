@@ -2,272 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 823235A5E64
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 10:43:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4CAF5A5EA6
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 10:52:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231688AbiH3Inn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 04:43:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52054 "EHLO
+        id S231770AbiH3Iwe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 04:52:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231651AbiH3Inc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 04:43:32 -0400
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BAAEA5735;
-        Tue, 30 Aug 2022 01:43:31 -0700 (PDT)
-Received: by mail-wr1-x42c.google.com with SMTP id b16so5579692wru.7;
-        Tue, 30 Aug 2022 01:43:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date;
-        bh=8UZoFnb1F6rGUm5J3AoFq/8vqLtlUutVGAITwTyTP5w=;
-        b=LjdZ7UQZD9AXPP6mI330AGIIuUK6+dAXdB+7kY9swIp9aQW53SuFRWowoZ60K2Z3M4
-         3Ykc7CagOfcgILwL52RC/Dg7mDiP7DCcsNdMYj2dWW6seuoVqMQlQFjAJhhvASldjoVi
-         VAcD+3zEc6OFodnAfAnnU6ao9lqJ2n2vf0MSvssKOqJqg30n7d9yWX6PlFE3qjF1by+1
-         MfApxAU/t0pFL9+P1ilr261u7LGZzt2C91WY4ZaGynk+qUCpkX0A+dc6ojRjyYCgGLQu
-         fAh6hIrAo3FzmGKAvG8J6YUZKOP00kAp5+ataz/xXd1+AmT7I7oqNKF0mu6gux8ZR0fW
-         HmgQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=8UZoFnb1F6rGUm5J3AoFq/8vqLtlUutVGAITwTyTP5w=;
-        b=A6d9kEQ5lBp6Mb+h5aSmnQJLkmxJz7CzXciUij5+y3Pe9WHkTO34yE8e++o/RDNbRc
-         Vbyg7pRpnsqPdZbSYEtB96Ufw37GnltEie3b2pRRM4JOIuSFmpR5jFmFMSGoNJtrboHl
-         H6DWncA0GJQi5vACxJAkBI3QBoTW9fqy9NzGZZKmroONIOVwLuHEFXVhHpUvFLBde5fd
-         KPFZ9x2TnyGS1J5y1fYL6qiyYBZaBOuahHBQRDgcF30l04C1jy8yKiBGml+EQlbN7gDO
-         w3P7d2tzZG1DLlVNZhoKZzd/DZTnbrrDmzEhE+DygdJRZa0FWDKpM0ai5RovbX9NrzX4
-         PV4Q==
-X-Gm-Message-State: ACgBeo3FEdpmmrfZP/slsanKdXwI0b6uaA17Ki2kX6ui/0ZlMoEBwoI6
-        BV+nSohuLbXQrk6yQIEnRFs=
-X-Google-Smtp-Source: AA6agR73cGjwkfal9mmojf4C5Lb+GTMEaXNZyxRN6X0PxORHItiCuU3D+z60IgfOzn5cEUDEsMpZBQ==
-X-Received: by 2002:adf:e187:0:b0:220:6d97:b670 with SMTP id az7-20020adfe187000000b002206d97b670mr8098019wrb.63.1661849009752;
-        Tue, 30 Aug 2022 01:43:29 -0700 (PDT)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id k1-20020adfe8c1000000b0021badf3cb26sm10991266wrn.63.2022.08.30.01.43.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Aug 2022 01:43:28 -0700 (PDT)
-Message-ID: <b6524da2-34d6-cb7b-c8bf-19809e8932ed@gmail.com>
-Date:   Tue, 30 Aug 2022 10:43:26 +0200
+        with ESMTP id S231774AbiH3IwS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 04:52:18 -0400
+X-Greylist: delayed 394 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 30 Aug 2022 01:51:42 PDT
+Received: from 7of9.schinagl.nl (7of9.connected.by.freedominter.net [185.238.129.13])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB5C0D91C7;
+        Tue, 30 Aug 2022 01:51:41 -0700 (PDT)
+Received: from localhost (7of9.are-b.org [127.0.0.1])
+        by 7of9.schinagl.nl (Postfix) with ESMTP id 05AAA186AC2C;
+        Tue, 30 Aug 2022 10:45:04 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=schinagl.nl; s=7of9;
+        t=1661849104; bh=5JXnvhgFyI0BdbmtRUhWuO3f5PUY8QbkKVFG98ineaQ=;
+        h=From:To:Cc:Subject:Date;
+        b=bgWhWvFrTWXs1szsC1Zo1alSsJp0kh3J6g9gtvqsFDqeN907s9Uaakp92ZNBj20KZ
+         g/B/nBa7z7OzLog17/VqQuNSvcXRYR2WAtK2rkDpPLmSjVpmd5LpNi2aHLhuMZpa/o
+         mEcXuRk3tLo7DeJY27lwRKNu6b+z84mR732y3oUw=
+X-Virus-Scanned: amavisd-new at schinagl.nl
+Received: from 7of9.schinagl.nl ([127.0.0.1])
+        by localhost (7of9.schinagl.nl [127.0.0.1]) (amavisd-new, port 10024)
+        with LMTP id 7nG4-U_o2Jgl; Tue, 30 Aug 2022 10:45:02 +0200 (CEST)
+Received: from valexia.are-b.org (unknown [10.2.12.24])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by 7of9.schinagl.nl (Postfix) with ESMTPSA id C1029186AC27;
+        Tue, 30 Aug 2022 10:45:02 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=schinagl.nl; s=7of9;
+        t=1661849102; bh=5JXnvhgFyI0BdbmtRUhWuO3f5PUY8QbkKVFG98ineaQ=;
+        h=From:To:Cc:Subject:Date;
+        b=i1JuOQbKRWx30aPLbnNIdF7zELn7/etOafNwtiBU3fZsM9SZSJdrZSkV3JkV/36ZH
+         MMjXTzZiUEhAMRbRM3Fg7rH/wdnoMIlioulWgbF4vrd/RZKOwCseHKt7PLBlrurOvx
+         PRaPqBIIGVFmYjcYRTNxK3W5wX5OQ4yKC64BZoJU=
+From:   Olliver Schinagl <oliver@schinagl.nl>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Pavel Machek <pavel@ucw.cz>
+Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        linux-leds@vger.kernel.org, Daniel Mack <daniel@zonque.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Oleh Kravchenko <oleg@kaa.org.ua>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Olliver Schinagl <oliver+list@schinagl.nl>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Olliver Schinagl <oliver@schinagl.nl>
+Subject: [PATCH v3] dt-bindings: leds: Expand LED_COLOR_ID definitions
+Date:   Tue, 30 Aug 2022 10:44:54 +0200
+Message-Id: <20220830084454.1133369-1-oliver@schinagl.nl>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.1.2
-Content-Language: en-US
-To:     Peter Chiu <chui-hao.chiu@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     devicetree@vger.kernel.org, Ryder Lee <ryder.Lee@mediatek.com>,
-        Evelyn Tsai <evelyn.tsai@mediatek.com>,
-        Sam Shih <sam.shih@mediatek.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220630094909.8014-1-chui-hao.chiu@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Subject: Re: [PATCH v4] arm64: dts: mt7986: add built-in Wi-Fi device nodes
-In-Reply-To: <20220630094909.8014-1-chui-hao.chiu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+In commit 853a78a7d6c7 (dt-bindings: leds: Add LED_COLOR_ID definitions,
+Sun Jun 9 20:19:04 2019 +0200) the most basic color definitions where
+added. However, there's a little more very common LED colors.
 
+While the documentation states 'add what is missing', engineers tend to
+be lazy and will just use what currently exists. So this patch will take
+(a) list from online retailers [0], [1], [2] and use the common LED colors from
+there, this being reasonable as this is what is currently available to purchase.
 
-On 30/06/2022 11:49, Peter Chiu wrote:
-> This enables built-in 802.11ax Wi-Fi support.
-> 
-> Reviewed-by: Sam Shih <sam.shih@mediatek.com>
-> Reviewed-by: Ryder Lee <ryder.lee@mediatek.com>
-> Signed-off-by: Peter Chiu <chui-hao.chiu@mediatek.com>
-> ---
-> v2: add clocks and clock-names.
-> v3: rename wmac to wifi and change underscores to dash in node names.
-> v4: rebase to the latest codebase.
-> ---
->   arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts | 41 +++++++++++++++++++
->   arch/arm64/boot/dts/mediatek/mt7986a.dtsi    | 23 +++++++++++
->   arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts | 43 ++++++++++++++++++++
->   3 files changed, 107 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
-> index 882277a..28cd168 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
-> @@ -115,6 +115,13 @@ &uart2 {
->   	status = "okay";
->   };
->   
-> +&wifi {
-> +	status = "okay";
-> +	pinctrl-names = "default", "dbdc";
-> +	pinctrl-0 = <&wf_2g_5g_pins>;
-> +	pinctrl-1 = <&wf_dbdc_pins>;
-> +};
-> +
->   &pio {
->   	uart1_pins: uart1-pins {
->   		mux {
-> @@ -129,4 +136,38 @@ mux {
->   			groups = "uart2";
->   		};
->   	};
-> +
-> +	wf_2g_5g_pins: wf-2g-5g-pins {
-> +		mux {
-> +			function = "wifi";
-> +			groups = "wf_2g", "wf_5g";
+Note, that LIME seems to be the modern take to 'Yellow-green' or
+'Yellowish-green' from some older datasheets.
 
-yaml says:
-          - if:
-               properties:
-                 function:
-                   const: wifi
-             then:
-               properties:
-                 groups:
-                   enum: [wf_2g, wf_5g, wf_dbdc]
+[0]: https://www.digikey.com/en/products/filter/led-lighting-color/125
+[1]: https://eu.mouser.com/c/optoelectronics/led-lighting/led-emitters/standard-leds-smd
+[2]: https://nl.farnell.com/en-NL/c/optoelectronics-displays/led-products/standard-single-colour-leds-under-75ma
 
+Signed-off-by: Olliver Schinagl <oliver@schinagl.nl>
+---
+No chances since v2: Re-send with the proper e-mails.
+Changes since v1: Unbreak existing definitions.
 
-Did you run the binding checker against this DTS?
-Why can't we just merge wf_2g_5g_pins with wf_dbdc_pins?
+ include/dt-bindings/leds/common.h | 28 ++++++++++++++++------------
+ 1 file changed, 16 insertions(+), 12 deletions(-)
 
-Regards,
-Matthias
+diff --git a/include/dt-bindings/leds/common.h b/include/dt-bindings/leds/common.h
+index 3be89a7c20a9..04bf94523ea3 100644
+--- a/include/dt-bindings/leds/common.h
++++ b/include/dt-bindings/leds/common.h
+@@ -22,18 +22,22 @@
+ #define LEDS_BOOST_FIXED	2
+ 
+ /* Standard LED colors */
+-#define LED_COLOR_ID_WHITE	0
+-#define LED_COLOR_ID_RED	1
+-#define LED_COLOR_ID_GREEN	2
+-#define LED_COLOR_ID_BLUE	3
+-#define LED_COLOR_ID_AMBER	4
+-#define LED_COLOR_ID_VIOLET	5
+-#define LED_COLOR_ID_YELLOW	6
+-#define LED_COLOR_ID_IR		7
+-#define LED_COLOR_ID_MULTI	8	/* For multicolor LEDs */
+-#define LED_COLOR_ID_RGB	9	/* For multicolor LEDs that can do arbitrary color,
+-					   so this would include RGBW and similar */
+-#define LED_COLOR_ID_MAX	10
++#define LED_COLOR_ID_WHITE      0
++#define LED_COLOR_ID_RED        1
++#define LED_COLOR_ID_GREEN      2
++#define LED_COLOR_ID_BLUE       3
++#define LED_COLOR_ID_AMBER      4
++#define LED_COLOR_ID_VIOLET     5
++#define LED_COLOR_ID_YELLOW     6
++#define LED_COLOR_ID_IR         7
++#define LED_COLOR_ID_MULTI      8 /* For multicolor LEDs */
++#define LED_COLOR_ID_RGB        9 /* For multicolor LEDs that can do arbitrary color, including RGBW etc. */
++#define LED_COLOR_ID_PUPRPLE   10
++#define LED_COLOR_ID_ORANGE    11
++#define LED_COLOR_ID_PINK      12
++#define LED_COLOR_ID_CYAN      13
++#define LED_COLOR_ID_LIME      14
++#define LED_COLOR_ID_MAX       15
+ 
+ /* Standard LED functions */
+ /* Keyboard LEDs, usually it would be input4::capslock etc. */
+-- 
+2.37.2
 
-> +		};
-> +		conf {
-> +			pins = "WF0_HB1", "WF0_HB2", "WF0_HB3", "WF0_HB4",
-> +			       "WF0_HB0", "WF0_HB0_B", "WF0_HB5", "WF0_HB6",
-> +			       "WF0_HB7", "WF0_HB8", "WF0_HB9", "WF0_HB10",
-> +			       "WF0_TOP_CLK", "WF0_TOP_DATA", "WF1_HB1",
-> +			       "WF1_HB2", "WF1_HB3", "WF1_HB4", "WF1_HB0",
-> +			       "WF1_HB5", "WF1_HB6", "WF1_HB7", "WF1_HB8",
-> +			       "WF1_TOP_CLK", "WF1_TOP_DATA";
-> +			drive-strength = <4>;
-> +		};
-> +	};
-> +
-> +	wf_dbdc_pins: wf-dbdc-pins {
-> +		mux {
-> +			function = "wifi";
-> +			groups = "wf_dbdc";
-> +		};
-> +		conf {
-> +			pins = "WF0_HB1", "WF0_HB2", "WF0_HB3", "WF0_HB4",
-> +			       "WF0_HB0", "WF0_HB0_B", "WF0_HB5", "WF0_HB6",
-> +			       "WF0_HB7", "WF0_HB8", "WF0_HB9", "WF0_HB10",
-> +			       "WF0_TOP_CLK", "WF0_TOP_DATA", "WF1_HB1",
-> +			       "WF1_HB2", "WF1_HB3", "WF1_HB4", "WF1_HB0",
-> +			       "WF1_HB5", "WF1_HB6", "WF1_HB7", "WF1_HB8",
-> +			       "WF1_TOP_CLK", "WF1_TOP_DATA";
-> +			drive-strength = <4>;
-> +		};
-> +	};
->   };
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> index e3a407d..890ded0 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> @@ -7,6 +7,7 @@
->   #include <dt-bindings/interrupt-controller/irq.h>
->   #include <dt-bindings/interrupt-controller/arm-gic.h>
->   #include <dt-bindings/clock/mt7986-clk.h>
-> +#include <dt-bindings/reset/mt7986-resets.h>
->   
->   / {
->   	interrupt-parent = <&gic>;
-> @@ -70,6 +71,11 @@ secmon_reserved: secmon@43000000 {
->   			reg = <0 0x43000000 0 0x30000>;
->   			no-map;
->   		};
-> +
-> +		wmcpu_emi: wmcpu-reserved@4fc00000 {
-> +			no-map;
-> +			reg = <0 0x4fc00000 0 0x00100000>;
-> +		};
->   	};
->   
->   	timer {
-> @@ -261,6 +267,23 @@ eth: ethernet@15100000 {
->   			#size-cells = <0>;
->   			status = "disabled";
->   		};
-> +
-> +		wifi: wifi@18000000 {
-> +			compatible = "mediatek,mt7986-wmac";
-> +			resets = <&watchdog MT7986_TOPRGU_CONSYS_SW_RST>;
-> +			reset-names = "consys";
-> +			clocks = <&topckgen CLK_TOP_CONN_MCUSYS_SEL>,
-> +				 <&topckgen CLK_TOP_AP2CNN_HOST_SEL>;
-> +			clock-names = "mcu", "ap2conn";
-> +			reg = <0 0x18000000 0 0x1000000>,
-> +			      <0 0x10003000 0 0x1000>,
-> +			      <0 0x11d10000 0 0x1000>;
-> +			interrupts = <GIC_SPI 213 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 214 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 215 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 216 IRQ_TYPE_LEVEL_HIGH>;
-> +			memory-region = <&wmcpu_emi>;
-> +		};
->   	};
->   
->   };
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts b/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
-> index 0f49d57..7f21b10 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
-> @@ -98,3 +98,46 @@ fixed-link {
->   		};
->   	};
->   };
-> +
-> +&wifi {
-> +	status = "okay";
-> +	pinctrl-names = "default", "dbdc";
-> +	pinctrl-0 = <&wf_2g_5g_pins>;
-> +	pinctrl-1 = <&wf_dbdc_pins>;
-> +};
-> +
-> +&pio {
-> +	wf_2g_5g_pins: wf-2g-5g-pins {
-> +		mux {
-> +			function = "wifi";
-> +			groups = "wf_2g", "wf_5g";
-> +		};
-> +		conf {
-> +			pins = "WF0_HB1", "WF0_HB2", "WF0_HB3", "WF0_HB4",
-> +			       "WF0_HB0", "WF0_HB0_B", "WF0_HB5", "WF0_HB6",
-> +			       "WF0_HB7", "WF0_HB8", "WF0_HB9", "WF0_HB10",
-> +			       "WF0_TOP_CLK", "WF0_TOP_DATA", "WF1_HB1",
-> +			       "WF1_HB2", "WF1_HB3", "WF1_HB4", "WF1_HB0",
-> +			       "WF1_HB5", "WF1_HB6", "WF1_HB7", "WF1_HB8",
-> +			       "WF1_TOP_CLK", "WF1_TOP_DATA";
-> +			drive-strength = <4>;
-> +		};
-> +	};
-> +
-> +	wf_dbdc_pins: wf-dbdc-pins {
-> +		mux {
-> +			function = "wifi";
-> +			groups = "wf_dbdc";
-> +		};
-> +		conf {
-> +			pins = "WF0_HB1", "WF0_HB2", "WF0_HB3", "WF0_HB4",
-> +			       "WF0_HB0", "WF0_HB0_B", "WF0_HB5", "WF0_HB6",
-> +			       "WF0_HB7", "WF0_HB8", "WF0_HB9", "WF0_HB10",
-> +			       "WF0_TOP_CLK", "WF0_TOP_DATA", "WF1_HB1",
-> +			       "WF1_HB2", "WF1_HB3", "WF1_HB4", "WF1_HB0",
-> +			       "WF1_HB5", "WF1_HB6", "WF1_HB7", "WF1_HB8",
-> +			       "WF1_TOP_CLK", "WF1_TOP_DATA";
-> +			drive-strength = <4>;
-> +		};
-> +	};
-> +};
