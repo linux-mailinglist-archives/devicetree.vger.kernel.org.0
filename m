@@ -2,101 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 691FC5A5CCF
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 09:21:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E86705A5CD2
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 09:22:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230009AbiH3HVM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 03:21:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33876 "EHLO
+        id S230002AbiH3HWv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 03:22:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230133AbiH3HVJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 03:21:09 -0400
-Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36D856E2D5;
-        Tue, 30 Aug 2022 00:21:08 -0700 (PDT)
-Received: by mail-qv1-f42.google.com with SMTP id q8so8079611qvr.9;
-        Tue, 30 Aug 2022 00:21:08 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=QOMOADjxX3AxTQL00SsYd+7QYCr6eFHbzE6U4FiL748=;
-        b=JX17LTtjcGH9EgCC/Sn8YM4CeGOUrSCV5kVO7zWqccyJAY6lqXFRbL1gev2nE7Uu30
-         jBurRZVMktqo2MA7n9Noqurl4MsGLM5Y75yPpgB3hJ7Na26MDtKl+0yT1kJp2MNBvfyG
-         tLYOkLmvKezm5RHXJAcpepWXH2cESaDTxqpOjxn1DOP/Kj7ZDbBRmepO3ltQREQlam3E
-         Vz7NeZDMZDKBvVkJa/0aKdiZ7HvwClOCMbd6XM/XAMqZGD6dNH5/cFX+1aWw5Ec8fLvx
-         laronjlFTJ1hoar2y6Ju98TnRL/ap/lvS8II48UGjkw5epPH/N6Gwi7NIKps2D00MaFl
-         h65Q==
-X-Gm-Message-State: ACgBeo2IAMk2i2zMJTWsmnh/AgfMOOMarzwVETgUDpl4luUkCuvFq65R
-        huKg5CdmiTQjhRGHdrVrDIUXs93L76jrjQ==
-X-Google-Smtp-Source: AA6agR6OqWL/6cQbJlnEWRAcb6Aic2oWVvHdEpw3gHSLtxqHZYYxa3w6efU6y3Cb3P+9rasnXbsvxQ==
-X-Received: by 2002:a05:6214:4015:b0:496:be28:62f5 with SMTP id kd21-20020a056214401500b00496be2862f5mr13740056qvb.14.1661844067098;
-        Tue, 30 Aug 2022 00:21:07 -0700 (PDT)
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com. [209.85.128.173])
-        by smtp.gmail.com with ESMTPSA id u12-20020a05622a17cc00b003422c7ccbc5sm6488715qtk.59.2022.08.30.00.21.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Aug 2022 00:21:06 -0700 (PDT)
-Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-33da3a391d8so252091137b3.2;
-        Tue, 30 Aug 2022 00:21:06 -0700 (PDT)
-X-Received: by 2002:a0d:d691:0:b0:340:f6e7:5654 with SMTP id
- y139-20020a0dd691000000b00340f6e75654mr7738635ywd.502.1661844066437; Tue, 30
- Aug 2022 00:21:06 -0700 (PDT)
+        with ESMTP id S229814AbiH3HWt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 03:22:49 -0400
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3A801C7FA5
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 00:22:49 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 693A480BF;
+        Tue, 30 Aug 2022 07:15:27 +0000 (UTC)
+Date:   Tue, 30 Aug 2022 10:22:47 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     devicetree@vger.kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org, Keerthy <j-keerthy@ti.com>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH v2 0/2] Configure dmtimers for am65
+Message-ID: <Yw26x4AGfGC7xExu@atomide.com>
+References: <20220830070750.30640-1-tony@atomide.com>
 MIME-Version: 1.0
-References: <20220829220334.6379-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20220829220334.6379-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 30 Aug 2022 09:20:55 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVpYcV1p2rb-D=pcRut2y3o_SB1rkM+COuxbD5aCy-77w@mail.gmail.com>
-Message-ID: <CAMuHMdVpYcV1p2rb-D=pcRut2y3o_SB1rkM+COuxbD5aCy-77w@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: spi: renesas,sh-msiof: Fix
- 'unevaluatedProperties' warnings
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220830070750.30640-1-tony@atomide.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 30, 2022 at 12:03 AM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> With 'unevaluatedProperties' support implemented, there's a number of
-> warnings when running dtbs_check:
->
-> arch/arm64/boot/dts/renesas/r8a77951-ulcb-kf.dtb: spi@e6e90000: Unevaluated properties are not allowed ('power-domains', 'resets' were unexpected)
->         From schema: Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
->
-> The main problem is that SoC DTSI's include power-domains and resets
-> property, whereas the renesas,sh-msiof.yaml has 'unevaluatedProperties:
-> false'. So just add optional power-domains and resets properties.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> v1->v2
-> * Set maxItems to 1
+* Tony Lindgren <tony@atomide.com> [220830 07:08]:
+> Here's v2 series for adding the dmtimers for am65. The device tree binding
+> and related driver related changes have been already merged.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+FYI, something like the patch below can be used to configure the main
+timer0 for PWM. It uses TIMERIO0 for output, and muxes TIMERIO0 pad to
+a k3-am654-base-board header pin.
 
-Gr{oetje,eeting}s,
+Just for reference only, not for merging, as the k3-am654-base-board header
+usage may vary.
 
-                        Geert
+Regards,
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Tony
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+--- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
++++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+@@ -86,6 +86,14 @@ switch-6 {
+ 		};
+ 	};
+ 
++	main_pwm0: dmtimer-main-pwm-0 {
++		pinctrl-0 = <&main_timer0_outsel_pins_default>, <&main_timer0_pins_default>;
++		pinctrl-names = "default";
++		compatible = "ti,omap-dmtimer-pwm";
++		#pwm-cells = <3>;
++		ti,timers = <&main_timer0>;
++	};
++
+ 	evm_12v0: fixedregulator-evm12v0 {
+ 		/* main supply */
+ 		compatible = "regulator-fixed";
+@@ -119,6 +127,13 @@ vdd_mmc1_sd: fixedregulator-sd {
+ 	};
+ };
+ 
++&main_timerio_output {
++	main_timer0_outsel_pins_default: main-timer0-outsel-pins-default {
++		/* CTRLMMR_TIMERIO0_CTRL 0x00104280 OUT_SEL.TIMERIO0 */
++		pinctrl-single,pins = <0 0>;
++	};
++};
++
+ &wkup_pmx0 {
+ 	wkup_i2c0_pins_default: wkup-i2c0-pins-default {
+ 		pinctrl-single,pins = <
+@@ -264,6 +279,13 @@ ecap0_pins_default: ecap0-pins-default {
+ 			AM65X_IOPAD(0x0010, PIN_INPUT, 0) /* (D21) ECAP0_IN_APWM_OUT */
+ 		>;
+ 	};
++
++	main_timer0_pins_default: main-timer0-pins-default {
++		pinctrl-single,pins = <
++			/* CTRLMMR_PADCONFIG192 0x0011c300 TIMER_IO0 */
++			AM65X_IOPAD(0x0018, PIN_OUTPUT, 0)
++		>;
++	};
+ };
+ 
+ &wkup_uart0 {
+-- 
+2.37.1
