@@ -2,105 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EA695A5C9C
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 09:10:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D84455A5CB3
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 09:16:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230359AbiH3HKQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 03:10:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36896 "EHLO
+        id S229636AbiH3HQv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 03:16:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230378AbiH3HKF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 03:10:05 -0400
-Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 970BDFD02;
-        Tue, 30 Aug 2022 00:10:00 -0700 (PDT)
-Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.3ffe.de (Postfix) with ESMTPSA id F1BD522CF;
-        Tue, 30 Aug 2022 09:09:58 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
-        t=1661843399;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=hScyyeCa0BmstvGNDpCO3ZSKhM4Kp3uqyQiW++JqWEU=;
-        b=w2pNUXpOjZEfSq1m6zK74et7XtGnFGdMWB5OFvnQLv6Wo2MmPIaXkTxGNR3oLeoS6PDT/8
-        pFocCw6DeaxSnXFlHsAWDBfl4Z9IdQezWxlEMY9MJjd1kJMFPEwX4+Oe8LbyQ7SMplPkl2
-        MfSXwBfP/kUixWlEy85X97X/sjI0urygVSqRv+P7GDKxUPBWzbOezFlof21V6V6VvzE5yW
-        DmRlwExy3Z7NmAKImsCTCaI/64ZyBYpFITfo0OfgrHOaGDXpv36RaWz7W0tCSum8RjKIKj
-        Bun+pnXUlb5e9D/svynlYop+EQBH+N9xScWSckQlKHM6Q2MmrVuop79FTnmR+A==
+        with ESMTP id S229446AbiH3HQs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 03:16:48 -0400
+Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DC4A67442;
+        Tue, 30 Aug 2022 00:16:48 -0700 (PDT)
+Received: by mail-qt1-f172.google.com with SMTP id c20so7880697qtw.8;
+        Tue, 30 Aug 2022 00:16:48 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=hbfMWbJBfBTtap4GWkn344FiWXI5cQK869u8DvT8sKM=;
+        b=LQ5XP93PhZb7xmLEDoIwn058EjsUhDiTwW592EJa9pGlo4atdeCPPW/wIHvHdzP66J
+         QIdv+shWpTGDTdV4BtAES3/Lx9dQoK/F6lbSxRdgYpJmDwUkPhIbT3buyCOOYUgLOOTh
+         hVm9WMimMXVk73WT7NMFuS76J3ehfLPn5udL94HNaGyA2yw3cQ0HAwHRq6BiRVCv/goa
+         nQTR1lfQcGycZ4qNcSXmXfYyWD1Ih8gs8ixe3nPpdZMImQIqQl/ypiguBeIWvfv6ShXK
+         mIWd/+KXFfbXlvBWsfPGKouzCctHpdcWRsqA4kumW5W0Lz+fV7bKLkRiBDMa5xD8ULo/
+         hYtw==
+X-Gm-Message-State: ACgBeo3lviP2AB048vrubD2siEre/1o//S8zoYLVaudHRv1uu1uQZ24I
+        rT61zG5UGPvNyz45RNaqm2UgyT4k9BojgQ==
+X-Google-Smtp-Source: AA6agR5DsovEqpiUM/z35D73uGu6TTj5lZXXpDEIsP1D8F8q1m2WCZRkUEXgl/Xpy+H9/SCyhqidbg==
+X-Received: by 2002:ac8:5c52:0:b0:343:3dc7:db0d with SMTP id j18-20020ac85c52000000b003433dc7db0dmr13674240qtj.179.1661843806969;
+        Tue, 30 Aug 2022 00:16:46 -0700 (PDT)
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com. [209.85.128.182])
+        by smtp.gmail.com with ESMTPSA id u187-20020a3760c4000000b006bb9e4b96e6sm7449212qkb.24.2022.08.30.00.16.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Aug 2022 00:16:46 -0700 (PDT)
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-3413ad0640dso96155137b3.13;
+        Tue, 30 Aug 2022 00:16:46 -0700 (PDT)
+X-Received: by 2002:a81:83c8:0:b0:341:4b7b:3d9e with SMTP id
+ t191-20020a8183c8000000b003414b7b3d9emr4513475ywf.47.1661843806284; Tue, 30
+ Aug 2022 00:16:46 -0700 (PDT)
 MIME-Version: 1.0
-Date:   Tue, 30 Aug 2022 09:09:58 +0200
-From:   Michael Walle <michael@walle.cc>
-To:     "Potthuri, Sai Krishna" <sai.krishna.potthuri@amd.com>
-Cc:     Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Pratyush Yadav <pratyush@kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+References: <20220829215128.5983-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20220829215128.5983-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 30 Aug 2022 09:16:34 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVr8s3xYdRZOixm1CmYjQWPGqW5uG1DHSZAzrACm6tB+A@mail.gmail.com>
+Message-ID: <CAMuHMdVr8s3xYdRZOixm1CmYjQWPGqW5uG1DHSZAzrACm6tB+A@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: Drop clock-names property from RPC node
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-kernel@vger.kernel.org, saikrishna12468@gmail.com,
-        "git (AMD-Xilinx)" <git@amd.com>
-Subject: Re: [PATCH 2/2] mtd: spi-nor: Add support for flash reset
-In-Reply-To: <BY5PR12MB425817D90687D37ABDC638EADB799@BY5PR12MB4258.namprd12.prod.outlook.com>
-References: <20220829090528.21613-1-sai.krishna.potthuri@amd.com>
- <20220829090528.21613-3-sai.krishna.potthuri@amd.com>
- <be7f0b7bbb25d86ac079502babbf5f1b@walle.cc>
- <BY5PR12MB425817D90687D37ABDC638EADB799@BY5PR12MB4258.namprd12.prod.outlook.com>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <c7fd841b2244cbe60e174be3babb1607@walle.cc>
-X-Sender: michael@walle.cc
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Mon, Aug 29, 2022 at 11:51 PM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> With 'unevaluatedProperties' support implemented, there's a number of
+> warnings when running dtbs_check:
+>
+> arch/arm64/boot/dts/renesas/r8a774b1-hihope-rzg2n-rev2-ex-idk-1110wr.dtb: spi@ee200000: Unevaluated properties are not allowed ('clock-names' was unexpected)
+>         From schema: Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml
+>
+> The main problem is that SoC DTSI's are including clock-names, whereas the
+> renesas,rpc-if.yaml has 'unevaluatedProperties: false'. So just drop
+> clock-names property from the SoC DTSI's.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Am 2022-08-30 08:32, schrieb Potthuri, Sai Krishna:
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.1.
 
->> > +	if (ret)
->> > +		return ret;
->> > +
->> > +	/*
->> > +	 * Experimental Minimum Chip select high to Reset delay value
->> > +	 * based on the flash device spec.
->> > +	 */
->> 
->> Which flash device spec?
-> I referred some of the qspi, ospi flash vendors datasheets like Micron,
-> Macronix, ISSI, gigadevice, spansion.
+Gr{oetje,eeting}s,
 
-Please mention here that you've looked at datasheets of different 
-vendors.
-And maybe instead of doing three comments, just one and then the reset
-sequence.
+                        Geert
 
->> 
->> > +	usleep_range(1, 5);
->> > +	gpiod_set_value(reset, 0);
->> 
->> Mh, is your logic inverted here? If I read the code correctly,
->> you should use a value of 1 to take the device into reset. The
->> device tree should then have a flag "active low", which will
-> Reset Sequence which I implemented here is high(1)->low(0)->high(1).
-> By doing this sequence (active low), flash device is getting reset,
-> this sequence
-> is tested using Octal SPI flash device.
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-How does the device tree property for your look like?
-Has it the GPIO_ACTIVE_LOW flag set?
-
--michael
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
