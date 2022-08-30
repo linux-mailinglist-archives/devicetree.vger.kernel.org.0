@@ -2,104 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A4B85A6CBB
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 21:04:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 939915A6CF3
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 21:17:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229774AbiH3TEW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 15:04:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55538 "EHLO
+        id S231450AbiH3TRA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 15:17:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49486 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229959AbiH3TEV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 15:04:21 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF1E160531
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 12:04:19 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id q7so16811613lfu.5
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 12:04:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=1HAJgIAHEJqsajZozy9olYgVARt50tT0qURDFW8nTY8=;
-        b=RtLwh18UUnowDD0ksEDAXTTsjdpyz7Bv2R3AdBRP26eS9bcY6pwJj2Jcx+tBRBT0nW
-         f5wU20+h7Yd15bBkoWHIoLmQ7Cb4yfDjBv0InNxlIbk0+n5u+E3S6HQ4so/UWs35vNS6
-         z04qaQO7qifxa9JgXGSQ9fVhc3MX2L6uvh6jnSKD9e/+b+Czv8XUOV0qr/ESGYdEws7z
-         qo7inpPDO6W7Iau2x59gtGAuOF9/G87zpf4EYJ5/JKuAlrEQDcQbQJKDGToElgSA0Yyw
-         wIgTC8niiIfdI2TDPwIhD3pnt+grtE72n9t2O6aaDegfzDDZ6Qe0Do3KeP2F7hr6IsYO
-         H+0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=1HAJgIAHEJqsajZozy9olYgVARt50tT0qURDFW8nTY8=;
-        b=xQTyqNleJlI9E25KL2acozxlK3ZURT1mo7FzcNAHE+19M8FxLVxjxfeFZORoFG3rjd
-         Kz97+wyu6zxtqwb3v4DV76ZCJ9HNHHtXW+z6znR75ROPVlbrIlyPR6Z45ISVV4678I4h
-         /z/O50hUAs9h0RCDDLbrUnBKPNqcAdOSi2ooU8vQoCjLPtcEABid0uF/eYwztEsYPEkb
-         kqZbgIqgkv02+kYI88mp9pL6T6zu7AImijWsNkBuJ2MitssU4rLbBRkKLL8Kw3ZquMte
-         kKnDB68adyEq7drXHOFjo87RTJuCI1Ocad+teXY69AB8vhvqBStYuTEEEv0I2loFZMeE
-         uAiw==
-X-Gm-Message-State: ACgBeo0CRImF+3wkyGzeIu3AYDOCzujFnHhP7MQUpmlRy8nq13hErW1B
-        8q1MlORJHvlDtFiWz5Jf/QtlciHQQzbuCf3I
-X-Google-Smtp-Source: AA6agR7TK8PMmhNU/ANRQ6U0u7NBMwa95d2Kcc/oVQSq5FihD56HEiuJhHEM4vHNoPhzEi3tZ6fq6g==
-X-Received: by 2002:a05:6512:3b8e:b0:492:f799:76b9 with SMTP id g14-20020a0565123b8e00b00492f79976b9mr7687972lfv.207.1661886258245;
-        Tue, 30 Aug 2022 12:04:18 -0700 (PDT)
-Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id q18-20020a2eb4b2000000b00265757e0e66sm886322ljm.48.2022.08.30.12.04.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Aug 2022 12:04:17 -0700 (PDT)
-Message-ID: <7726d82f-d0fc-2a68-fef5-bb991b0d73ad@linaro.org>
-Date:   Tue, 30 Aug 2022 22:04:15 +0300
+        with ESMTP id S231428AbiH3TQq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 15:16:46 -0400
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 320767820A
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 12:16:41 -0700 (PDT)
+Received: (Authenticated sender: maxime.chevallier@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 8744A60002;
+        Tue, 30 Aug 2022 19:16:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1661886988;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=pEs/624W+YKYvj5zK7eZjM1JCt8Sw3adqq+ghpUn+WU=;
+        b=gAi2AYe+rzZDIMKdSyGAjdksSyWKke1CHDdI0PPJ1NnHrqIptMBcrgXs2kclPV9FvOh5uN
+        TDcgLl/CrP49/ZS85XzgEsckc4qx7Ff/uq7oXEirfngVZsA3ZtFsKG9YSQYHot6OCkXygF
+        jQji4IghD3zlXZeH+K6/fp8rftOMgcrhlLiJEjbvIRe6YHUcNKkx2jAo4aPkE6o8r/jYVI
+        iE/Le2UxGMlFERgKFceBwAWKsPaT4DowtCgLnM32Kx80YDX/RbvhF2oqXWrzB06kF0B5/7
+        UuoGCGt6fC+mJtVndhAfvDN2TTYBMZTyLy5Vm1fUUBNNTRQMLm8quq9+tDJjnw==
+Date:   Tue, 30 Aug 2022 21:16:17 +0200
+From:   Maxime Chevallier <maxime.chevallier@bootlin.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     davem@davemloft.net, Rob Herring <robh+dt@kernel.org>,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        thomas.petazzoni@bootlin.com, Andrew Lunn <andrew@lunn.ch>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v2 1/5] dt-bindings: net: Convert Altera TSE
+ bindings to yaml
+Message-ID: <20220830211617.54d2abc9@pc-10.home>
+In-Reply-To: <4a37d318-8c83-148b-89b3-9729bc7c9761@linaro.org>
+References: <20220830095549.120625-1-maxime.chevallier@bootlin.com>
+        <20220830095549.120625-2-maxime.chevallier@bootlin.com>
+        <4a37d318-8c83-148b-89b3-9729bc7c9761@linaro.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v9 1/3] dt-bindings: arm: qcom: document sc7280 and
- villager board
-Content-Language: en-US
-To:     Douglas Anderson <dianders@chromium.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Sibi Sankar <quic_sibis@quicinc.com>,
-        Jimmy Chen <jinghung.chen3@hotmail.com>,
-        Rob Herring <robh@kernel.org>, Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220830182923.3720287-1-dianders@chromium.org>
- <20220830112818.v9.1.I4fa927a776951095d55c41ddb64149c8c0eae57c@changeid>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220830112818.v9.1.I4fa927a776951095d55c41ddb64149c8c0eae57c@changeid>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/08/2022 21:29, Douglas Anderson wrote:
-> From: Jimmy Chen <jinghung.chen3@hotmail.com>
+On Tue, 30 Aug 2022 20:13:56 +0300
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+
+> On 30/08/2022 12:55, Maxime Chevallier wrote:
+> > This converts the bindings for the Altera Triple-Speed Ethernet to
+> > yaml.  
 > 
-> This adds a LTE skus for Chromebook Villager to the yaml.
+> Do not use "This commit/patch".
+> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+
+ack
+
+> > 
+> > Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>  
 > 
-> Signed-off-by: Jimmy Chen <jinghung.chen3@hotmail.com>
-> Acked-by: Rob Herring <robh@kernel.org>
-> [dianders: adjust LTE as SKU 512; remove two variants of -rev0]
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> ---
+> Rebase your changes on some decent kernel and use
+> get_maintainers.pl...
+
+I'm rebased against net-next, so I don't understand how I'm supposed to
+do for this series, should I sent binding patches separately and based
+on another tree ?
+
+I'll cc you next time, sorry about that.
+
+> > ---
+> > V1->V2:
+> >  - Removed unnedded maxItems
+> >  - Added missing minItems
+> >  - Fixed typos in some properties names
+> >  - Fixed the mdio subnode definition
+> > 
+> >  .../devicetree/bindings/net/altera_tse.txt    | 113 -------------
+> >  .../devicetree/bindings/net/altr,tse.yaml     | 156
+> > ++++++++++++++++++ 2 files changed, 156 insertions(+), 113
+> > deletions(-) delete mode 100644
+> > Documentation/devicetree/bindings/net/altera_tse.txt create mode
+> > 100644 Documentation/devicetree/bindings/net/altr,tse.yaml 
 > 
-> Changes in v9:
-> - Squash https://lore.kernel.org/r/20220829084732.1.I9ef7f8b909a7afbef9ff2251a98c67033f37b516@changeid
+> (...)
+> 
+> > diff --git a/Documentation/devicetree/bindings/net/altr,tse.yaml
+> > b/Documentation/devicetree/bindings/net/altr,tse.yaml new file mode
+> > 100644 index 000000000000..1676e13b8c64
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/net/altr,tse.yaml
+> > @@ -0,0 +1,156 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/net/altr,tse.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Altera Triple Speed Ethernet MAC driver (TSE)
+> > +
+> > +maintainers:
+> > +  - Maxime Chevallier <maxime.chevallier@bootlin.com>
+> > +
+> > +allOf:  
+> 
+> Put allOf below "required".
 
-FWIW:
+Ack
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > +  - $ref: "ethernet-controller.yaml#"
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - altr,tse-1.0
+> > +              - ALTR,tse-1.0
+> > +    then:
+> > +      properties:
+> > +        reg:
+> > +          minItems: 4
+> > +        reg-names:
+> > +          items:
+> > +            - const: control_port
+> > +            - const: rx_csr
+> > +            - const: tx_csr
+> > +            - const: s1
+> > +
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - altr,tse-msgdma-1.0
+> > +    then:
+> > +      properties:
+> > +        reg:
+> > +          minItems: 6
+> > +        reg-names:
+> > +          minItems: 6  
+> 
+> No need for minItems.
 
+Ok I'll remove it
 
-Best regards,
-Krzysztof
+> > +          items:
+> > +            - const: control_port
+> > +            - const: rx_csr
+> > +            - const: rx_desc
+> > +            - const: rx_resp
+> > +            - const: tx_csr
+> > +            - const: tx_desc
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - altr,tse-1.0
+> > +      - ALTR,tse-1.0  
+> 
+> This is deprecated compatible. You need oneOf and then deprecated:
+> true.
+
+Ok thanks for the tip
+
+> > +      - altr,tse-msgdma-1.0
+> > +
+> > +  reg:
+> > +    minItems: 4
+> > +    maxItems: 6
+> > +
+> > +  reg-names:
+> > +    minItems: 4
+> > +    items:
+> > +      - const: control_port
+> > +      - const: rx_csr
+> > +      - const: rx_desc
+> > +      - const: rx_resp
+> > +      - const: tx_csr
+> > +      - const: tx_desc
+> > +      - const: s1  
+> 
+> This is messed up. You allow only 6 items maximum, but list 7. It
+> contradicts your other variants in allOf:if:then.
+
+I'll remove that part then, apparently it's not needed at all if the
+allOf:if:then cover all cases.
+
+Thanks for the review,
+
+Maxime
+> 
+> Best regards,
+> Krzysztof
+
