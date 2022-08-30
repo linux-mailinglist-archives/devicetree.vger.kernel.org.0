@@ -2,70 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 304CA5A6BC8
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 20:09:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0546A5A6BD3
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 20:11:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232224AbiH3SJe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 14:09:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42762 "EHLO
+        id S229990AbiH3SLN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 14:11:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231160AbiH3SJd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 14:09:33 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AFF77C522
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 11:09:31 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id w19so9253853ljj.7
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 11:09:31 -0700 (PDT)
+        with ESMTP id S229716AbiH3SLJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 14:11:09 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26278786D6
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 11:11:08 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id q7so16626366lfu.5
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 11:11:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc;
-        bh=7KlMwSftGItCgKJxWHQ5GZjTJzLdgW+jcQpEYqciYc4=;
-        b=pK/oDQ7CoMZf/zNFpOshGLYYgcHCTaEQa7UscX45UN78z+c23pTNRCZZ71n1XED/vE
-         wy8gTaUDTFW2C1q3V5abCXi+V8F750wmQdsxui5vVojKq1WXHUu3vvWoHyO5BMhhIzuK
-         Z78RvG/BK5Z7mNhfTNtgez7bWX4qqCwH9++U+ewSI0BIsknD3f62v/pQYP6s1EhID3M/
-         o+Be2G8YX4JdlINjN+R/duOxPVeDlZgXFxfOuxp55N2H4sBWWWRfEuGeUCVPZ4Su6Tn9
-         XPH3Ot4cWip5doW0agH7+Iq6ydq7hE8dHgarOd28H3DxjFzWShlvvnElXcrgZ5wvEstQ
-         GPJQ==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=0jx9VNj/HcW0dooShctB6tlNBtRfv946EPoOPim3t0E=;
+        b=IdHkGy3kZluHn+s1pCS1fWDIsltwMDgJ5SLNDPu4jLO5nDxOv7HtdjosNkKuyV0DmG
+         eUVjPmcsRIc71d5lUiyCBv5yz5iwuKITxlkI2CCTrVITfLANq+620vJrpokgFTnjMf65
+         PPqxsSS+0cG9/10Su2NyJ/PoPuhyRXxyjcg+WLJwi+0JwWn4830Atw3YAVd9seGZ8bBd
+         pQb455HbnE8H9AyoNrefVsPmjpWDZYG8ji2B4reou+a4cddd1nX5+NK/Opneeh+VVpgv
+         0tybYtY7AnI1k1Wc5+hDcL2lPd/zK924fpvX3KRBLJpdU13SX0L3NR2Wv2HkylcGhsWw
+         6Kig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc;
-        bh=7KlMwSftGItCgKJxWHQ5GZjTJzLdgW+jcQpEYqciYc4=;
-        b=FmqsS2NCe8H4r++dPKeF2SL+tQqwmqS5R4haDxngMRMjdcELFFb7BUY+Rx7CSbk3Hw
-         nET+ZEHxDMik7XKE6cq40ooB0C1Zl9nuvcW/tQZyuGEUF4xqPbuZmq7lf6RtONJcB+mr
-         m0yjPoEi9u7aBe6H0OtFqmyoaFpUER2dZYxZoHmXV9Ipdpz+5aKVyCLZTkez70JouNw8
-         Z20frAHvdvrM3RtQW8oN2eIHK9E3Aa4xBo2QJISUT2iKE8eps0tJhX4vKI4wARlBD3Vr
-         wNRRMojDIfW9mOd8G+vLq8yV2aQDyoxSGhG7+7JCWLEkE0ieQoxlFCNZAY9lPptsaFzB
-         INrg==
-X-Gm-Message-State: ACgBeo15uYMlVcYcvdjY3+o+C6omszaILL+T/BOANChhNsFKOYZLtKZ1
-        UG8407bmTE/Gk4Q1QZYYXL6h4g==
-X-Google-Smtp-Source: AA6agR5VYOBi9QqZLUTVUp2RhaoIqdnw8GUDEh0Rv2km8tN8UY6OZJCfNgmVM/9CVhmi9OX73tmg3w==
-X-Received: by 2002:a2e:9956:0:b0:263:5bc8:c16a with SMTP id r22-20020a2e9956000000b002635bc8c16amr4813642ljj.436.1661882969852;
-        Tue, 30 Aug 2022 11:09:29 -0700 (PDT)
-Received: from krzk-bin.. (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id b20-20020a056512061400b0049478cc4eb9sm322078lfe.230.2022.08.30.11.09.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Aug 2022 11:09:29 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Inki Dae <inki.dae@samsung.com>,
-        Seung-Woo Kim <sw0312.kim@samsung.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Subject: [RESEND PATCH dt v2] dt-bindings: media: samsung,exynos5250-gsc: convert to dtschema
-Date:   Tue, 30 Aug 2022 21:09:27 +0300
-Message-Id: <20220830180927.16686-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=0jx9VNj/HcW0dooShctB6tlNBtRfv946EPoOPim3t0E=;
+        b=5I4DNpTmNDVjQpM00Zruay7K+mhcjaaIMtc5lSnIkz3aGJxYfkJ/Z8EXZV/GXec36d
+         OyI7Ef5eg1Sq+SFbfB+nkazeu/ZP+wFKYYQdzySgIjC3BUrD0boF+j5EnGWu7z+f9YSV
+         /240nWvElDKXiDIpxXPIQZVMQyru86uaxhLlWNA4iX2wGcuxQIKTyX1hKMVBfu/S1jvF
+         M7/7vUjuoA/kRixl+VZA/0z3oDVMsW8UWlNqeY6LUnWunkJnch4EmggexOFkdyC7KXen
+         id/+9XbLegmlSzd6zCyTaILc+zx33vyrIW64i1DtWco4TBL766MEwVHS/VqfhPi1hSXh
+         sfzg==
+X-Gm-Message-State: ACgBeo31xbMEnDDEq2XF5j3P1SZ8t9wpBJvOwku8G/4A7T2Bxg6eTy8e
+        fezNGpiJ1HiLKroyr2qY76Hi4w==
+X-Google-Smtp-Source: AA6agR4LS54/XWSxpR5JM4CrvVaGHIeYIc+KzFnzxBcHugfK4mmyTYOXAfXMhla6rcSZpaiqZFIh6g==
+X-Received: by 2002:a05:6512:3503:b0:481:4470:4128 with SMTP id h3-20020a056512350300b0048144704128mr7794471lfs.303.1661883066495;
+        Tue, 30 Aug 2022 11:11:06 -0700 (PDT)
+Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
+        by smtp.gmail.com with ESMTPSA id o17-20020ac24e91000000b00492ef074fc1sm1683629lfr.183.2022.08.30.11.11.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Aug 2022 11:11:05 -0700 (PDT)
+Message-ID: <ce096b36-b678-63e1-e98c-7549f3df357f@linaro.org>
+Date:   Tue, 30 Aug 2022 21:11:03 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v9 2/2] ASoC: sun50i-dmic: dt-bindings: add DT bindings
+ for DMIC controller
+Content-Language: en-US
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Ban Tao <fengzheng923@gmail.com>, lgirdwood@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        wens@csie.org, jernej.skrabec@gmail.com, samuel@sholland.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org
+References: <1661872039-40174-1-git-send-email-fengzheng923@gmail.com>
+ <25072fba-64e2-df11-c8f0-a274037141f0@linaro.org>
+ <Yw5Qd7ZNPIc/o7+6@sirena.org.uk>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Yw5Qd7ZNPIc/o7+6@sirena.org.uk>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,199 +81,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Samsung Exynos SoC G-Scaler bindings to DT schema.
+On 30/08/2022 21:01, Mark Brown wrote:
+> On Tue, Aug 30, 2022 at 08:35:09PM +0300, Krzysztof Kozlowski wrote:
+>> On 30/08/2022 18:07, Ban Tao wrote:
+>>> DT binding documentation for this new ASoC driver.
+> 
+>>> +properties:
+>>> +  "#sound-dai-cells":
+>>> +    const: 0
+>>> +
+>>> +  compatible:
+>>> +    const: allwinner,sun50i-h6-dmic
+> 
+>> Put compatible first in the list of properties (also in required:).
+> 
+> Can the tooling be taught about this?
 
-Changes done during conversion:
-1. A typical (already used) properties like clocks, iommus and
-   power-domains.
-2. Require clocks, because they are essential for the block to operate.
-3. Describe the differences in clocks between the Exynos5250/5420 and
-   the Exynos5433 G-Scalers.  This includes the fifth Exynos5433 clock
-   "gsd" (GSCL Smart Deck) which was added to the DTS, but not to the
-   bindings and Linux driver.  Similarly to Exynos5433 DECON change [1],
-   the clock should be used.
+Probably could save me some time in writing reviews... Let me look.
 
-[1] https://lore.kernel.org/all/6270db2d-667d-8d6f-9289-be92da486c25@samsung.com/
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
----
-
-Rob,
-You already reviewed the patch:
-https://lore.kernel.org/all/20220630231643.GA3513958-robh@kernel.org/
-however it was not picked up through media, so can you take it?
-
-In case media would pick it up, then:
-Reviewed-by: Rob Herring <robh@kernel.org>
-
-Changes since v1:
-1. Remove Joonyoung Shim from maintainers (emails bounce).
----
- .../devicetree/bindings/media/exynos5-gsc.txt |  38 ------
- .../media/samsung,exynos5250-gsc.yaml         | 109 ++++++++++++++++++
- 2 files changed, 109 insertions(+), 38 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/media/exynos5-gsc.txt
- create mode 100644 Documentation/devicetree/bindings/media/samsung,exynos5250-gsc.yaml
-
-diff --git a/Documentation/devicetree/bindings/media/exynos5-gsc.txt b/Documentation/devicetree/bindings/media/exynos5-gsc.txt
-deleted file mode 100644
-index 1872688fa408..000000000000
---- a/Documentation/devicetree/bindings/media/exynos5-gsc.txt
-+++ /dev/null
-@@ -1,38 +0,0 @@
--* Samsung Exynos5 G-Scaler device
--
--G-Scaler is used for scaling and color space conversion on Exynos5 SoCs.
--
--Required properties:
--- compatible: should be one of
--	      "samsung,exynos5250-gsc"
--	      "samsung,exynos5420-gsc"
--	      "samsung,exynos5433-gsc"
--	      "samsung,exynos5-gsc" (deprecated)
--- reg: should contain G-Scaler physical address location and length.
--- interrupts: should contain G-Scaler interrupt number
--
--Optional properties:
--- samsung,sysreg: handle to syscon used to control the system registers to
--  set writeback input and destination
--
--Example:
--
--gsc_0:  gsc@13e00000 {
--	compatible = "samsung,exynos5250-gsc";
--	reg = <0x13e00000 0x1000>;
--	interrupts = <0 85 0>;
--};
--
--Aliases:
--Each G-Scaler node should have a numbered alias in the aliases node,
--in the form of gscN, N = 0...3. G-Scaler driver uses these aliases
--to retrieve the device IDs using "of_alias_get_id()" call.
--
--Example:
--
--aliases {
--	gsc0 =&gsc_0;
--	gsc1 =&gsc_1;
--	gsc2 =&gsc_2;
--	gsc3 =&gsc_3;
--};
-diff --git a/Documentation/devicetree/bindings/media/samsung,exynos5250-gsc.yaml b/Documentation/devicetree/bindings/media/samsung,exynos5250-gsc.yaml
-new file mode 100644
-index 000000000000..878397830a4d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/samsung,exynos5250-gsc.yaml
-@@ -0,0 +1,109 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/samsung,exynos5250-gsc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Samsung Exynos SoC G-Scaler
-+
-+maintainers:
-+  - Inki Dae <inki.dae@samsung.com>
-+  - Krzysztof Kozlowski <krzk@kernel.org>
-+  - Seung-Woo Kim <sw0312.kim@samsung.com
-+
-+description:
-+  G-Scaler is used for scaling and color space conversion on Samsung Exynos
-+  SoCs.
-+
-+  Each G-Scaler node should have a numbered alias in the aliases node, in the
-+  form of gscN, N = 0...3.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - samsung,exynos5250-gsc
-+              - samsung,exynos5420-gsc
-+          - const: samsung,exynos5-gsc
-+      - enum:
-+          - samsung,exynos5433-gsc
-+      - const: samsung,exynos5-gsc
-+        deprecated: True
-+
-+  clocks:
-+    minItems: 1
-+    maxItems: 5
-+
-+  clock-names:
-+    minItems: 1
-+    maxItems: 5
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  iommus:
-+    maxItems: 1
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  reg:
-+    maxItems: 1
-+
-+  samsung,sysreg:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      Syscon used to control the system registers to set writeback input and destination.
-+
-+required:
-+  - compatible
-+  - clocks
-+  - clock-names
-+  - interrupts
-+  - reg
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - samsung,exynos5-gsc
-+              - samsung,exynos5250-gsc
-+              - samsung,exynos5420-gsc
-+    then:
-+      properties:
-+        clocks:
-+          maxItems: 1
-+        clock-names:
-+          items:
-+            - const: gscl
-+    else:
-+      properties:
-+        clocks:
-+          minItems: 5
-+        clock-names:
-+          items:
-+            - const: pclk
-+            - const: aclk
-+            - const: aclk_xiu
-+            - const: aclk_gsclbend
-+            - const: gsd
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/exynos5250.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    video-scaler@13e00000 {
-+        compatible = "samsung,exynos5250-gsc", "samsung,exynos5-gsc";
-+        reg = <0x13e00000 0x1000>;
-+        interrupts = <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>;
-+        power-domains = <&pd_gsc>;
-+        clocks = <&clock CLK_GSCL0>;
-+        clock-names = "gscl";
-+        iommus = <&sysmmu_gsc0>;
-+    };
--- 
-2.34.1
-
+Best regards,
+Krzysztof
