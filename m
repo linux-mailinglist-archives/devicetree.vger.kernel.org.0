@@ -2,98 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 60CC95A5E1D
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 10:31:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C8065A5E25
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 10:32:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231532AbiH3IbM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 04:31:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59426 "EHLO
+        id S231546AbiH3Ib7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 04:31:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231517AbiH3IbI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 04:31:08 -0400
-Received: from 7of9.schinagl.nl (7of9.connected.by.freedominter.net [185.238.129.13])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 843C87B2B6;
-        Tue, 30 Aug 2022 01:30:56 -0700 (PDT)
-Received: from [10.2.12.24] (unknown [10.2.12.24])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        with ESMTP id S231548AbiH3Ibv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 04:31:51 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37912A5985;
+        Tue, 30 Aug 2022 01:31:49 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by 7of9.schinagl.nl (Postfix) with ESMTPSA id E4FFE186AC12;
-        Tue, 30 Aug 2022 10:30:51 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=schinagl.nl; s=7of9;
-        t=1661848252; bh=oiFQlJQtobHEs9OmPUlyusY32kGmWaoxtESk1Cuu4ow=;
-        h=Date:Subject:To:References:From:In-Reply-To;
-        b=ID0cpzuLuFIU4XsfJtqGQHHrUVqItfYKy57lWb/zv6NvkqP+/Z/1YKqT7df8Qd06O
-         Eix8jzGHdGQJASRF82BTy/lA9Y8frOeX9107QF1cqhH21jsyW3S2LTEn/IlhyY7qUw
-         X6YkTr3WDmhfE1oc3ff4byIM469M2diGWIo9LADQ=
-Message-ID: <59a3b7d9-1886-f237-8a6a-374de17da1b5@schinagl.nl>
-Date:   Tue, 30 Aug 2022 10:30:51 +0200
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0181B61544;
+        Tue, 30 Aug 2022 08:31:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8525C433D6;
+        Tue, 30 Aug 2022 08:31:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1661848308;
+        bh=qvjvjxIMAdSikhigPbaLJR7QXVbF7fZM/vc2EUcvDNk=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=rQBkiMTaQU16mALr+TH+Sg05ehXQJTVoPB6yidy/nYB7xEBcngqFg1ixgLVrnISgO
+         kgThYmrsE7nSEI77eJpcDUjwRQyoSi90Qa5vqrPtAXpZPM1Vsyll6Qnr5Ui6JRzfQr
+         fpwag/rBk03Ez9taOM1pxOHgYpOInkulwE/cbeYIm5fmQWqPiBSj9lwos4GS/konhx
+         0tapGnxuJ0yZcU/3uaqrQFLONDJCETpwaonleWA/agQWTLpNFslIC7BnT3x+X4S3Fa
+         b5iJGxGc7GJ2qWDhB1ZPlfb/K/Gu08d2BdnrVTe5knj5xG8BNHbSM6maMaNgQj6WRY
+         O4ET0FFhendkw==
+Message-ID: <8a12d593-4f67-956c-352a-58d8f6c1bc43@kernel.org>
+Date:   Tue, 30 Aug 2022 11:31:44 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCHv2 resend] dt-bindings: leds: Expand LED_COLOR_ID
- definitions
-Content-Language: nl
-To:     Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Baolin Wang <baolin.wang@linaro.org>,
-        Daniel Mack <daniel@zonque.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Oleh Kravchenko <oleg@kaa.org.ua>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Simon Shields <simon@lineageos.org>,
-        Olliver Schinagl <oliver+list@schinagl.nl>,
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v4 0/2] arm64: dts: ti: k3-am64-main: Add GPMC & ELM nodes
+Content-Language: en-US
+To:     nm@ti.com, vigneshr@ti.com
+Cc:     kishon@ti.com, linux-arm-kernel@lists.infradead.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220819152904.433514-1-oliver@schinagl.nl>
- <YwzJMAaYT/frJLaT@ada.ifak-system.com>
- <20220829151334.GA1596856-robh@kernel.org>
-From:   Olliver Schinagl <oliver@schinagl.nl>
-In-Reply-To: <20220829151334.GA1596856-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+References: <20220802104456.11069-1-rogerq@kernel.org>
+From:   Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20220802104456.11069-1-rogerq@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey all,
+Hello Nishant/Vignesh,
 
-On 29-08-2022 17:13, Rob Herring wrote:
-> On Mon, Aug 29, 2022 at 04:12:00PM +0200, Alexander Dahl wrote:
->> Hei Olliver,
->>
->> Am Fri, Aug 19, 2022 at 05:29:04PM +0200 schrieb Olliver Schinagl:
->>> In commit 853a78a7d6c7 (dt-bindings: leds: Add LED_COLOR_ID definitions,
->>> Sun Jun 9 20:19:04 2019 +0200) the most basic color definitions where
->>> added. However, there's a little more very common LED colors.
->>>
->>> While the documentation states 'add what is missing', engineers tend to
->>> be lazy and will just use what currently exists. So this patch will take
->>> (a) list from online retailers [0], [1], [2] and use the common LED colors
->>> from there, this being reasonable as this is what is currently available to
->>> purchase.
->>>
->>> Note, that LIME seems to be the modern take to 'Yellow-green' or
->>> 'Yellowish-green' from some older datasheets.
->> Just noticed you did not send this to neither linux-leds mailing list
->> nor the LED subsystem maintainer. Maybe you want to do this in v3?
-> Yes, please do. If Pavel doesn't pick up v3 in a timely manor, then I
-> will.
->
-> Rob
+On 02/08/2022 13:44, Roger Quadros wrote:
+> Hi Nishanth,
+> 
+> This series adds GPMC and ELM controller device tree nodes to
+> AM64 SoC's dtsi file.
 
-Sorry to both, get_maintainers didn't pop those up!
+Gentle ping to pick this series. Thanks!
 
-As Krzyzstof Acked the v2, and no comments for a v3 have been proposed, 
-would that be a changeless v3 just to involve all parties?
+> 
+> Changelog:
+> v4
+> - Rebased to v5.19
+> - use 'ti,am64-elm' compatible for ELM node
+> 
+> v3
+> - Rebased to v5.17-rc1
+> 
+> v2
+> - Fix register sizes for GPMC node.
+> - Disable GPMC and ELM nodes in board files. They will be enabled in
+> NAND card device tree overlay.
+> 
+> Roger Quadros (2):
+>   arm64: dts: ti: k3-am64-main: Add GPMC memory controller node
+>   arm64: dts: ti: k3-am64-main: Add ELM (Error Location Module) node
+> 
+>  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 28 ++++++++++++++++++++++++
+>  arch/arm64/boot/dts/ti/k3-am642-evm.dts  |  8 +++++++
+>  arch/arm64/boot/dts/ti/k3-am642-sk.dts   |  8 +++++++
+>  3 files changed, 44 insertions(+)
+> 
 
-Thanks,
-
-
-Olliver
-
+cheers,
+-roger
