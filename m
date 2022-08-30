@@ -2,57 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECEB75A70C1
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 00:26:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7055B5A7114
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 00:47:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232345AbiH3W0V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 18:26:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40046 "EHLO
+        id S229730AbiH3WrQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 18:47:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232353AbiH3W0E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 18:26:04 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D8FE82840;
-        Tue, 30 Aug 2022 15:24:27 -0700 (PDT)
+        with ESMTP id S231531AbiH3Wq7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 18:46:59 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DBF01FCCA;
+        Tue, 30 Aug 2022 15:46:51 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 725766148F;
-        Tue, 30 Aug 2022 22:23:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4218C433D6;
-        Tue, 30 Aug 2022 22:23:05 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id EE58BB81CCF;
+        Tue, 30 Aug 2022 22:46:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4E09C433D6;
+        Tue, 30 Aug 2022 22:46:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661898185;
-        bh=nMbtkeQ9N+G/3qW+szRqP1EagN2/R5jQ5O9x2R0M2fc=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=kej1EbhpcpLSl+FuH5wkI3kbnlzJNBYm5J7uYzRLS/oZEx4VicJ7jiWm0HH1X0yof
-         I/u241YCYVin6na4Fvf2fEN/w8DnxMTXoobsvKfL9JTY3B6WLnkAGdWRZBJquNjEiq
-         1no/O5D0YpOtchVVFfJYb5UtI8VILDBin6zPHftEUkEC+g76kiFx0Nv07FXv+IA+Yo
-         VOr9mnzoMkeX8SINSTTdZPur63yXuQEFR7pjyARtgK3adeTkV8u9cvYbbHD9AdWe66
-         6mtLfvX6M/hw5hrW4WVm//JmkRWyzbqC5ZfjmUWT4h1GFCmZrULXwt0Tgb96uqMAXW
-         IcoRyXK5Ime2w==
-Content-Type: text/plain; charset="utf-8"
+        s=k20201202; t=1661899608;
+        bh=sRQfd3t8ikdf4xmAsLXvULVmyxq4y/iCGVeLXFOzMQo=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=FcmehepTjSzgzzBk4HX9bw+civ6uk+OQdYhQoVvQZor7BPsyEKMBRUSls216TGoTr
+         HKYiizmBd+c5NATDN1GEdAXTgiL2etmEWOzw2pMUAmlRpGkC3SGtIW/0UmuWgfS6dE
+         I29Q2zkujJ+qXaiyGkes8bQYm5h/KYdlIhb7YmEnjtWc6NdDAKp+s/zu4GH2piZTEn
+         RKvi7uSiBhcRqBiF/8uEerG27h3uuikWdk/+43ffT6SyE6rgWoXekDhq7+y897CY6E
+         NaG6BykHM3AzhzmAX42XOGa7CVu06ggMMqoXpHrjn1IaeAGDAt/fU5gae4BqhUVdFG
+         r6co0hltwQ+8w==
+Date:   Tue, 30 Aug 2022 15:46:46 -0700
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        kernel test robot <lkp@intel.com>, kernel@pengutronix.de,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+        David Jander <david@protonic.nl>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Robert Marko <robert.marko@sartura.hr>
+Subject: Re: [PATCH net-next v4 5/7] ethtool: add interface to interact with
+ Ethernet Power Equipment
+Message-ID: <20220830154646.00a6b25f@kernel.org>
+In-Reply-To: <20220828063021.3963761-6-o.rempel@pengutronix.de>
+References: <20220828063021.3963761-1-o.rempel@pengutronix.de>
+        <20220828063021.3963761-6-o.rempel@pengutronix.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20220817075517.49575-5-sergiu.moga@microchip.com>
-References: <20220817075517.49575-1-sergiu.moga@microchip.com> <20220817075517.49575-5-sergiu.moga@microchip.com>
-Subject: Re: [PATCH 4/5] clk: at91: sama5d2: Add Generic Clocks for UART/USART
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-serial@vger.kernel.org,
-        Sergiu Moga <sergiu.moga@microchip.com>
-To:     Sergiu Moga <sergiu.moga@microchip.com>, admin@hifiphile.com,
-        alexandre.belloni@bootlin.com, claudiu.beznea@microchip.com,
-        gregkh@linuxfoundation.org, jirislaby@kernel.org,
-        kavyasree.kotagiri@microchip.com,
-        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
-        mturquette@baylibre.com, nicolas.ferre@microchip.com,
-        radu_nicolae.pirea@upb.ro, richard.genoud@gmail.com,
-        robh+dt@kernel.org
-Date:   Tue, 30 Aug 2022 15:23:03 -0700
-User-Agent: alot/0.10
-Message-Id: <20220830222305.B4218C433D6@smtp.kernel.org>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -63,12 +68,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Sergiu Moga (2022-08-17 00:55:17)
-> Add the generic clocks for UART/USART in the sama5d2 driver to allow them
-> to be registered in the Common Clock Framework.
->=20
-> Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
-> ---
+On Sun, 28 Aug 2022 08:30:19 +0200 Oleksij Rempel wrote:
+> +  ``ETHTOOL_A_PODL_PSE_ADMIN_STATE``          u8  Operational state of the PoDL
+> +                                                  PSE functions
+> +  ``ETHTOOL_A_PODL_PSE_PW_D_STATUS``          u8  power detection status of the
+> +                                                  PoDL PSE.
 
-Should I pick this up to clk-next or did you want to take it via another
-tree?
+If you don't mind a nit pick - u32 on these, netlink rounds up
+attribute size to 4B, there's no difference in size for the two
+so no point limiting ourselves.
