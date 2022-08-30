@@ -2,73 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 176B75A68D0
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 18:52:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E5235A68DE
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 18:55:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230398AbiH3Qwk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 12:52:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36740 "EHLO
+        id S229550AbiH3Qzx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 12:55:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230502AbiH3QwS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 12:52:18 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34B6581B14
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 09:51:42 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id p7so5216504lfu.3
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 09:51:41 -0700 (PDT)
+        with ESMTP id S230163AbiH3Qzw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 12:55:52 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F5A08306A
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 09:55:50 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id bn9so12010865ljb.6
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 09:55:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=1sF5nJ7Q7XHUasvWbOvS1pvPx5Dhfb6J9h8JpcSJRUc=;
-        b=KaxalF3yRrdhxRMA4b5osurOYGklnWpN2vDzlaXLO1pww4FGE6sijGBRQPSCzOpB5N
-         ryQhYLGjhUeVh42UNxXItzKjAo676Ko/rOUNiVDLwDZz7MTSNrpc6PSY9zIb9VYe5/YG
-         pTDFHJKGIP+CAjBIjzx3KXw0A/uvfKvVvKaSSE4LSrz7n9A3lCznwNKeIyDqRrb1Zz8k
-         TzuU2+4G+AJnbduQm+e5EMNn/akm3IMHTebYVa6joxFFcWqpWZxLPJ/GzKVY/amgyOeR
-         6LbROrKXEl+a24tlCizB/N/2CP0/8XVfp3eVsjoHlajOA+kRoetzpblBeaYhvXyMj8ak
-         h7Jw==
+        bh=Wtbpa/TU/UVvG6l5cM7I57cwKv6TjGE2IRy/n2NlvH8=;
+        b=cMRjqV0y4Hw5Gevy9PhVk8bcNnSQ2heXx1mf3hGi/9WUfYrYbbUNC6+x2l0fFIF5bl
+         gjJF9k/4icTUHR/na8HOT3AcLhZcnszsdCAn9CDmzo4jV8mitV7k0SCrgFigcGCOfqnf
+         hxFG2UvZ8mtG5qerP9EYWBRi03Sj2BqEFfTBlLlyZ+xt6Dyut4HJTZwWoETV12ezZ21q
+         pTMWJ8vpPnf0C21NX98FPj+3YG/LVwNecX1OWFd7vjYmFKmRLTXAeaI2FCJXpNyL9VDQ
+         YM1+Q9hXiApWt/QSwLbkFuJMKVOHLBqV4Btnc+KIuPpxG0/a+uhpTfv4aHAaHOs78bSz
+         K28Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=1sF5nJ7Q7XHUasvWbOvS1pvPx5Dhfb6J9h8JpcSJRUc=;
-        b=CPtQtXybNxAojesNEevYfKIAsOohM7ZEnIbIAfr1PK8QUBuFH3AevYDFsPPgllwxpb
-         FLkEjhZ11GPOZTrH7sJixTc+6a+Hugn43FwvEup5vAG7OliS8uM1OEpm3xMK3snKhRlT
-         lOdjb8qRHasfDe7LNwDl8cbXeeTxzsws819EGihL3/1oxcbnutNPaIFozTjUPXhSQoVY
-         eU38wJSjYYDnb/3KRGZaJ0u57xR+W/ZPi3HxYPjKvX2wb4WS4hrKSu5pkwmjP0oATi4Y
-         fk/EOuX82jrZJB6QlvJ3N28gPykY23BZUZoLAPucp5vFzVCcVpuWNYiBsgqYmoLBeLhP
-         YqAA==
-X-Gm-Message-State: ACgBeo2nx6XGC38WxauibFBuZZVAFVgT+jmoDsfyBOQX0GcQN82lv61g
-        Ki/BtLefskVEYl7KvUsCD//c6w==
-X-Google-Smtp-Source: AA6agR5MDApTH7E8g6nPTJZs6HqrmqTIBYeQXRE5JLhYEU6vDcF5TVNjWcoW6N3LpKH+Mx2KDyRwbg==
-X-Received: by 2002:a05:6512:33c3:b0:48d:2703:7ba2 with SMTP id d3-20020a05651233c300b0048d27037ba2mr8710501lfg.510.1661878299342;
-        Tue, 30 Aug 2022 09:51:39 -0700 (PDT)
+        bh=Wtbpa/TU/UVvG6l5cM7I57cwKv6TjGE2IRy/n2NlvH8=;
+        b=J5CtWrJEgw/AHv1xfLDE5NLV+2ZmI2WafaMVSAmvHAQ2P9odzR4CnN1pyivTFm1qXn
+         1w60WTognDYPKj0KGwx8wBLV074g5RAy4TrZ/UNE5cTDqbyyO6ntZgMYGNl91E9j8l54
+         KGzcDQgaa1dEq8fi2+OWvhIOKFnfVDkM0gSWKaKJxxJzRkHUtlmAWYSTFcDiCsQ+fkfC
+         snoFiI7yXNSlPhwDyBCFdnxS9AdSZdPXcTjsmSVBGaYV3+wd+n9HtYtN8AcqRjd+dFf5
+         OilJ2TsQpZbj84OyxsZxogKfvdgWzMirnmaXLMVNfiFmJLE66pVs8TdlplmwMdDd9/Nv
+         nAsA==
+X-Gm-Message-State: ACgBeo0FE1trmOTKESF9PU3XPui7pdfRB3Pw7kbULC+TOEkP/a7pP7Jz
+        jivWNG4iH3G+sXeoDuFTCBJ4OQ==
+X-Google-Smtp-Source: AA6agR7yTClqQKYpNWFYkL+HxX6EKhzfUXFgL84ffTm/hRU1N31ME2ALvGOeJml2kv4XcFnI7BxQeQ==
+X-Received: by 2002:a2e:6e09:0:b0:261:be09:6339 with SMTP id j9-20020a2e6e09000000b00261be096339mr6847202ljc.15.1661878548935;
+        Tue, 30 Aug 2022 09:55:48 -0700 (PDT)
 Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id w12-20020a05651234cc00b00492eebe1f09sm282607lfr.74.2022.08.30.09.51.38
+        by smtp.gmail.com with ESMTPSA id u4-20020a2eb804000000b00265ec8ce420sm743371ljo.122.2022.08.30.09.55.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Aug 2022 09:51:38 -0700 (PDT)
-Message-ID: <416ea156-6f66-0d36-c32a-5e897816f6f5@linaro.org>
-Date:   Tue, 30 Aug 2022 19:51:37 +0300
+        Tue, 30 Aug 2022 09:55:48 -0700 (PDT)
+Message-ID: <1065bc99-d73a-9d19-7f09-26cd862fe0c7@linaro.org>
+Date:   Tue, 30 Aug 2022 19:55:47 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH 2/2] dt-bindings: arm: ti: k3: Sort the SoC definitions
- alphabetically
+Subject: Re: [PATCH v2 2/9] dt-bindings: riscv: microchip: document the aries
+ m100pfsevp
 Content-Language: en-US
-To:     Nishanth Menon <nm@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-Cc:     Tero Kristo <kristo@kernel.org>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20220830160507.7726-1-nm@ti.com>
- <20220830160507.7726-3-nm@ti.com>
+To:     Conor.Dooley@microchip.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, Daire.McNamara@microchip.com,
+        Shravan.Chippa@microchip.com
+Cc:     paul.walmsley@sifive.com, palmer@dabbelt.com,
+        aou@eecs.berkeley.edu, Cyril.Jean@microchip.com,
+        Lewis.Hanly@microchip.com, Praveen.Kumar@microchip.com,
+        wg@aries-embedded.de, Hugh.Breslin@microchip.com,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20220830101803.1456180-1-conor.dooley@microchip.com>
+ <20220830101803.1456180-3-conor.dooley@microchip.com>
+ <a3a8e2ba-a6bd-6e66-fd04-e3a46661a34d@linaro.org>
+ <27b8aa9e-9173-b40e-8f9c-a53fa5ba36c8@microchip.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220830160507.7726-3-nm@ti.com>
+In-Reply-To: <27b8aa9e-9173-b40e-8f9c-a53fa5ba36c8@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,18 +84,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/08/2022 19:05, Nishanth Menon wrote:
-> Use alphabetical sort to organize the SoCs
+On 30/08/2022 18:25, Conor.Dooley@microchip.com wrote:
+> On 30/08/2022 15:37, Krzysztof Kozlowski wrote:
+>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+>>
+>> On 30/08/2022 13:17, Conor Dooley wrote:
+>>> Add compatibles for both configurations of the Aries Embedded
+>>> M100PFSEVP SOM + EVK platform.
+>>>
+>>> Link: https://www.aries-embedded.com/polarfire-soc-fpga-microsemi-m100pfs-som-mpfs025t-pcie-serdes
+>>> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/riscv/microchip.yaml | 3 +++
+>>>  1 file changed, 3 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/riscv/microchip.yaml b/Documentation/devicetree/bindings/riscv/microchip.yaml
+>>> index 485981fbfb4b..04ebd48caaa7 100644
+>>> --- a/Documentation/devicetree/bindings/riscv/microchip.yaml
+>>> +++ b/Documentation/devicetree/bindings/riscv/microchip.yaml
+>>> @@ -27,9 +27,12 @@ properties:
+>>>
+>>>        - items:
+>>>            - enum:
+>>> +              - aries,m100pfsevp-emmc
+>>> +              - aries,m100pfsevp-sdcard
+>>
+>> Usually sd card is pluggable, so what is the actual difference here? For
+>> example this one:
+>> https://shop.aries-embedded.de/evaluation-kit/m/m100pfsevp/445/m100pfsevp-250baab
+>> has eMMC and SD card...
 > 
-> Reported-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Yeah, both are there but it is muxed by the bootloader using a GPIO. For
+> icicle this is done by a mux in the FPGA fabric instead. T
 
-Suggested-by
+Ah, this is still just one MMC controller - either as eMMC or as SD-card?
 
-> Signed-off-by: Nishanth Menon <nm@ti.com>
+> w dts were
+> needed so that the gpio-hog could be set correctly. Out of curiosity, I can
+> have the same compatible in multiple devicetrees right? In that case, it
+> would just be "aries,m100pfsevp" here and I could put that in both?
+> Would make things easier..
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+Depends, but I would say for this case rather not. The compatible should
+identify the board. If the boards are different, one compatible should
+not identify both of them. Imagine U-Boot (or something else) trying to
+match the DTS.
 
 Best regards,
 Krzysztof
