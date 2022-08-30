@@ -2,163 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7023E5A691C
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 19:00:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E09355A6928
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 19:03:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229850AbiH3RAl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 13:00:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53186 "EHLO
+        id S229744AbiH3RDQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 13:03:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231310AbiH3RAD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 13:00:03 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51A7CDF27;
-        Tue, 30 Aug 2022 09:59:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1661878786; x=1693414786;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=yVVvW6u9AHugt31LLrrDXKaxVVvG8OAY12FkqELMbbM=;
-  b=jzkaE2zy9UXHrrxWXpsAs3v7HSp9o+lUOUJKyHGzz64lRtFkS4bxpAyQ
-   c3spYhBwI3252O6oiDIQ+tBE95drroPY+eeWzbn7V4+SgAVLZojHDqBNI
-   QuCXVJVmZFYeG3ecqVDYcsYHKcVZzkCuSxp0VcuwaYhAGnOCdul7iKEzR
-   bnXMKnuqCBRFqk9zEJ0tRH18nmT+ShVUJISUT2pWUws11p2+g0Y5GTiP7
-   x7YGuZ9vuxEL+V+PRXK29LYEI5V7Q5u4ayF4UXi27XOtYoRypqy9CbhsG
-   dfFDbBPUQ0L+v4oAR23MaHYHh1SCB0GswygBNDfFNJ/KRpbD9S8eaBlBy
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.93,275,1654585200"; 
-   d="scan'208";a="178346728"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 30 Aug 2022 09:59:29 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Tue, 30 Aug 2022 09:59:25 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12 via Frontend
- Transport; Tue, 30 Aug 2022 09:59:25 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UC4IUw2SygGWVGayzW+Am2Qn21t2ZHAIRiGHe3YtttdM8Neb9NLjaCCl/Apmu1sldyCe0zt/X58kAkC/zxgQhRtWUjLI+Vo2VRC/+SMg06TbMHDtoOyip4maIicC8iKSaaHVcn50GwXAUhgcB6HnohFJXdAbGelUXPdbMTfoBsNVNp7kSjoBs9vEDAhBUPF9yGkLqTdE0P4F22SmoBcLuYyTg8cfIcmIxN0Rhwx4Zw9C7SfYiB+MWodEjMI0AfPysCJ2uShU+zku0kmaj8iB7AV9viaPp2HYYh0ku2llc84iW3t/kyAnfyV/Sxhz4OLmtASFhJymZ2INQ5q0acmjxQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=yVVvW6u9AHugt31LLrrDXKaxVVvG8OAY12FkqELMbbM=;
- b=Je0Unvli0i+w7w4k+u2Tx/ZqN1r9cOLu9f+9XLdiBtrn8JG7LmC5PBcMe6PpnqKDwGTTySWficpvFhcGR6F/XDJ0u2hpWxpBK9G3tNdsGcCVm/kLN9jg4OhIBdc5bRSLW1XOY6ZX3ktzlxL9Xg9KYvlchbn3pvTJ15982pTeOactMEonkGHrFwVoVkNQZNgP7MU3u1V1lzTJRjKC77cGYS5HhKQhSk5pPL9542+velXiXdvDhyZTWDvfCDSfRPUdcubPj9H40rjdKeOo30NdzeJw1x2vxjwppHm9tqlCrpI9305/q/19xZ2fwSBVCqjWttUkfbZGfKIQDwbzEwfVYw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+        with ESMTP id S229720AbiH3RCy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 13:02:54 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 383251DA60
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 10:02:41 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id bt10so16409436lfb.1
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 10:02:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yVVvW6u9AHugt31LLrrDXKaxVVvG8OAY12FkqELMbbM=;
- b=g4a0ePTLFNoBAmSumZTT6tDD0HvpM+RAW3+g3YaBhkaoBjBjafQsj4Nesn+qPwCu/MDmFQMM87GbqB6WNZtSUJqZ9Y1dK5hrhmh8OHs2OtZsGNgAgHu6L9wllHZDqgcGfuFObBBN+ZiUfLG3c0cRebJ4CfeCTaHbvpDu5lyINns=
-Received: from CO1PR11MB5154.namprd11.prod.outlook.com (2603:10b6:303:99::15)
- by BN8PR11MB3636.namprd11.prod.outlook.com (2603:10b6:408:8c::25) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5566.15; Tue, 30 Aug
- 2022 16:59:19 +0000
-Received: from CO1PR11MB5154.namprd11.prod.outlook.com
- ([fe80::ac89:75cd:26e0:51c3]) by CO1PR11MB5154.namprd11.prod.outlook.com
- ([fe80::ac89:75cd:26e0:51c3%9]) with mapi id 15.20.5566.021; Tue, 30 Aug 2022
- 16:59:19 +0000
-From:   <Conor.Dooley@microchip.com>
-To:     <krzysztof.kozlowski@linaro.org>, <Conor.Dooley@microchip.com>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <Daire.McNamara@microchip.com>, <Shravan.Chippa@microchip.com>
-CC:     <paul.walmsley@sifive.com>, <palmer@dabbelt.com>,
-        <aou@eecs.berkeley.edu>, <Cyril.Jean@microchip.com>,
-        <Lewis.Hanly@microchip.com>, <Praveen.Kumar@microchip.com>,
-        <wg@aries-embedded.de>, <Hugh.Breslin@microchip.com>,
-        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 2/9] dt-bindings: riscv: microchip: document the aries
- m100pfsevp
-Thread-Topic: [PATCH v2 2/9] dt-bindings: riscv: microchip: document the aries
- m100pfsevp
-Thread-Index: AQHYvFnwSpVLiReZPUWC5HM7xMt/UK3Hg2QAgAANgQCAABkagIAAAP2A
-Date:   Tue, 30 Aug 2022 16:59:19 +0000
-Message-ID: <69027950-f18d-c9a7-9f0b-d73ef68197c7@microchip.com>
-References: <20220830101803.1456180-1-conor.dooley@microchip.com>
- <20220830101803.1456180-3-conor.dooley@microchip.com>
- <a3a8e2ba-a6bd-6e66-fd04-e3a46661a34d@linaro.org>
- <27b8aa9e-9173-b40e-8f9c-a53fa5ba36c8@microchip.com>
- <1065bc99-d73a-9d19-7f09-26cd862fe0c7@linaro.org>
-In-Reply-To: <1065bc99-d73a-9d19-7f09-26cd862fe0c7@linaro.org>
-Accept-Language: en-IE, en-US
-Content-Language: en-IE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: a5994cc3-c752-4d53-4007-08da8aa8fae4
-x-ms-traffictypediagnostic: BN8PR11MB3636:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: qnIPXi5nZLZm+5kuq/HzK3Bxp1KtPzzO2vdagzgvDDnnH3hRB2tXFC8Yf9/zKYJJI4pcQK0cZfXgDRL/MfM6M3KCCEwVMuLHSvm2hC+bNZ1xRN4XoGmexDjWW9c/RyXaYu+f0EoFkxNCi3S+/fShcbExC4ur8j9m0UNtVdXz/M3qPt0HI5CurigUcrOHv5F73E/a417xSnRkHi3OK0k57SbQWvLe+I7nyXBr+NR1doAAWjuO0laRx8yzPpDq6UV7aGjNP+BSzNUWs50ehxSgjw9KZpwkUkwx9jsKdNQUKMImlSLCEOik+wzX00H/z7g7IeAVhLgq45q6fNPeqaUuEzeJjXc1kC7a0w5CyaFKO/iembRPjKfjIRO7UvtGw2lM1BtticpkVPF/qxnxEFvPgI3nLPbE3UR9DX7om8wEdy7082hsFUVNqjsId590ABy0gIaqugmgewuok6F+d+1MIWUadR/BjJRJOXx3lGycwcpANjPkQucJqMfme5jay0fVkuuTTL71CGKaeGMKR87p09nQs2nWFIHKFmS6vbcZoikmVu3K4M4dviW0zrzrfCuSPrp/A2jYEQw4o6CSrtPF+FRInlANJOnBvrEO4JZLWDVmFZVsp8I1i/MFXkm+DVCRz7m+ditU739s1km1xAAw4gFpkzXrYlLw58FB0zFYogd4Dy2ckN+rKawyocr+R20B6BFNteYXXDShfH/3Bc02WNfmitu1Mh0zVXLDghMmGC/Tlebd6+KzroHSudqmKXIvCXwFo42+DSgCXuM0ZsLPLQ14ildm0K4xbWqp4+6vV2vNxpipMXZQkqJFH0ZIyNXReiaH15ayJY/X7J3VxsbxWsYfoVm+sWW2c8P1fXAgRgo=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB5154.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(39860400002)(346002)(136003)(376002)(396003)(366004)(86362001)(31696002)(6512007)(7416002)(53546011)(26005)(38070700005)(71200400001)(478600001)(6486002)(6506007)(966005)(41300700001)(186003)(38100700002)(122000001)(83380400001)(2616005)(64756008)(66446008)(66476007)(110136005)(5660300002)(66556008)(6636002)(66946007)(8936002)(54906003)(4326008)(8676002)(31686004)(2906002)(316002)(36756003)(91956017)(76116006)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?OTJWQmI3bzhJTGc3OEFIbGYxOEJINGdQSG9FQ3ZHdEY2eVQ4TlphS29FRGF5?=
- =?utf-8?B?VGZublJiL2w2VHVsR1ZHMmkxYzAzdVFHOWpBTmI2dExvYUJYQ2FyREsyVkU5?=
- =?utf-8?B?MWdaM3FQQkRpWHJhUVBWV0tudGY5MG96a1d4em5RMzRORW9OTXd4VzVDRG1D?=
- =?utf-8?B?SlNCbEV0SjBmK2VneHNDTHdqVlhlOEptVjZlWC91ZzA0bnRNWlZ3aXg0Umdh?=
- =?utf-8?B?dUEraHA2dERzMjJ6VGE2SHBzSHZPMjR2d0IvbW5Db3hqcUJhVDJ6TVZXM2E3?=
- =?utf-8?B?QjAyaUMwOXgrRmZlVW9vZFhqZzRNVS96QnduWDZZeUdIMXg1UFFiRGl0QzF2?=
- =?utf-8?B?U2NRWUFudTRNTVFZODFadkNiVTZZbkRoOFQxZFF4TkIzSHJYNmlZK0dxUEpW?=
- =?utf-8?B?bzVBVmxGVTJoaWxxMEVJcGtERUhlUWNVMHRkMm9LSTBCc0c0YmUwU01NSDNG?=
- =?utf-8?B?cHVKMVBxRXFYdk4vTThmRjM0dWNUcndyc21zbzZJaHNtMFNwbGJJR1c1dGZq?=
- =?utf-8?B?b1pNV0UwazVFVWVyN1FEVFJJODJ4aUgwcEsrUnlPSlN0Zy81T3gzazBFQU9M?=
- =?utf-8?B?NVpPZU5ZVmJSZk1wL2hBeE1LMUlFUXJBSzJTZC9hN2VtSktzT05XVVVOZG5Q?=
- =?utf-8?B?L0o5TFlHY3NqcDF5QVY1aWNxME0ydkx0ZnVVOHhXalJFM0I3YTByZkFJT0E3?=
- =?utf-8?B?TkFHRVBGWkpxOS96MGFQcE1TN3RhL2ZPeGVaeFhkbUR4RzQ4MWlPbHFiRzdE?=
- =?utf-8?B?NFp5TkNBa3orSFdsNms2cFF4anp4UFlYdmpEVFIzZWJTeWZLZ2FIS3kwM09n?=
- =?utf-8?B?VVNZMys1MnV3WW9WVFpDbGhzOWYyNWVpeGV6ZzhHNG1wbTFEMTUybTFwVm1a?=
- =?utf-8?B?N1FYcXhnQjBwaVMzV2ZpZlBOZWh2WU9yMFduTWhydEFkMElpUVRHNnRER1NP?=
- =?utf-8?B?cUVtaGYza3dpS0VwZUlldFUxMityNlhSdEYybVpGMnVJRXNWTGxkeVlDbkl5?=
- =?utf-8?B?dmlHck84d3ZPYXVIWGRma0V4ZEswMkt3YVQvRkJMSDkxdWdKSlY1cnUyRk5J?=
- =?utf-8?B?aHZDQnU0VTM1Uk9hRGdXYVY2cjFlNzhHZHVzeVJLd3ZzQVJJOExmZ0VTK1FW?=
- =?utf-8?B?M1dxNTU1eUV2czFBUm5ZZFdpSVB1MzF2K0NjbGVkMmtQcUU5V0dzd08rMC9I?=
- =?utf-8?B?K2hESmJ3K1ZQSTB1QjNMYnljb2pMLzNiNmJId0JLNUxaV1ZRSzhOYkZsNWZu?=
- =?utf-8?B?VTM3RjNacmZEYmNud1lydzdtRkZaUkljWjRDMHBST3NBZ3dqMGJseDBmdjFO?=
- =?utf-8?B?MFllblhZNVBRekgwRWxzZUs3bkRrSGlQUi9OOXllcEVLMUgzb1gwd09oOW5M?=
- =?utf-8?B?RDdKV3VEV1dzYlA4dHM4dEdlVXFKQk0xQXJsaGJYOCs5clhJSmJkQ0hWWlIv?=
- =?utf-8?B?R1RsSXRZeEV3OE9pdE4yNHdwMXVFY1FaNzZXSWErOTlKeFl6cjVGRXFoaTUz?=
- =?utf-8?B?djdxWkVXRGgwb0hYZGRjRFdjaHR6T0hpbUphckRNSU1zeFA4UENNM1N0QWc4?=
- =?utf-8?B?czB0bUV0Rnp2NjBkaVY1UEEwa005UGphWUVkUXVpVEFrSGY2amRyRUtSYWFl?=
- =?utf-8?B?VFhZcVlOZ2RZcHgyeWd5RkRYdGRod2FHNXNrY2NuZkxQRWtmSVA2TmEvYm1h?=
- =?utf-8?B?YjQ2ak1PQ1NWZzk4eHBLa2cyTHBjUGlndlZySVpQVWx2MzJnczNucVppUHk2?=
- =?utf-8?B?RFgzUlZSNEZaeUp1OERqNTNXQmI2KzVTYkEzVG85Wk51c1pmOFVvRmxiZnBw?=
- =?utf-8?B?QXZaeVRGekZONWJwbGk2RG9DMmVmKy9sK2hEOG9RRVRxWFNnN0dIUGRSWmY0?=
- =?utf-8?B?cmlONWhkVnVjWTNwYWh3aFk1N3BuY2JlTkQvWlRabFc1V1k5Yk5zNFpJb0pl?=
- =?utf-8?B?Y1F2MG1SYWgvcUNzdVhJL2dLc2NDL29ubW9zMERlTzlFQXhneFhFdGFqQ2Zw?=
- =?utf-8?B?OWl1WEdmYWVxWDFiVDFETVM2eHpIc2NONGo3SjE5Y0lQcnJjVHQ1Wk5aa1d5?=
- =?utf-8?B?V3U1RHVwOEdSYU5QUE9HNCtEWmdjNWJpaEhnVEo5eGpCdkxzeXVvOUdkYkti?=
- =?utf-8?B?U1phajZxalk5VlFnTXhKTjl2SE5qSnErbzJ2VG1HSE5mRlhHR29wd1BiOVZT?=
- =?utf-8?B?NlE9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <019978C7F39FA74FA02F905FFB17E0E3@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=MRhddpJA+lgXt6Sory277eBUBdu2WrBidojgTD73Yuo=;
+        b=FldSeHKHZ1KDEukm8iKfWba8HUDHdk925SJkveqljZdC5w++3Y9TlaE/Y/kuEB/0zq
+         Oj2LXbo88y9CqkhDmgMp22Oy6ZVeF/qcn+bXwKY1RiWD4Z4jpX/CR1qLiUr5o5V4s3AE
+         YPfmnEIRGpipBzKnwaH7FZRFwAJEEewOuHVqByqTJ6ZcipxSFoOomiEHQuNisAxE5Zxz
+         R0bv4HLBPTfp8rRIGNEdNdnp7eE88fqZhRiDd1GbF4dMz3HWZDaE9jL2+ES5ZCjAU/rK
+         iR2+t902enedqvPvGXAx/HAUJY4N325tuLWVDjI3WcyfuPhDAtYXQXJbbhX9Fcs+YxrL
+         iq3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=MRhddpJA+lgXt6Sory277eBUBdu2WrBidojgTD73Yuo=;
+        b=cYmB0fT2UTMfzfiXxS9K3GpR3X8SE9AInaF1eQ9eR2Qt/OcsJbHqw5UyXYAu+aHaYk
+         Xcyqe0kIh1mgniiK2BCPaL7U54YvOLjkxVeKY8JzxU6qwFdLkDvbbhW4olT3KjC7sPiE
+         +OYgFbpJB7F9brQwtUT5uRCvSiWl0vikmpDPhg9iuQRRrkSaUELM3rcp3Gmfy/nYMkQY
+         NWLLz5OeFGOIrLI3Alri0MNtBQB94194dd7BEce8OS9VoqxbsAbVSjuK/ntOo8H+XBzA
+         41Zl8hVDVHIMjcBprMWWI0FZukbbFU4i9cSXpBfrJzUUKpSnO2AkyckfXR71Sx3v0B/G
+         OMrA==
+X-Gm-Message-State: ACgBeo0muU9OdoVPI8YRagkh8oI4wckkpJpS+ZB5bVIFpdD3SzpZw4iV
+        42VVLPLX1eE/OdhcvdP0JHdxZw==
+X-Google-Smtp-Source: AA6agR4YaR3zige40oqXHN14BkAjmJfCQwGjsKSNPK9sbXvmdLoS2CuaEYOPzLbVDDdMkgxSJMDd0w==
+X-Received: by 2002:a05:6512:2353:b0:492:db5e:775b with SMTP id p19-20020a056512235300b00492db5e775bmr7462751lfu.656.1661878959375;
+        Tue, 30 Aug 2022 10:02:39 -0700 (PDT)
+Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
+        by smtp.gmail.com with ESMTPSA id bk37-20020a05651c23a500b00261ca006158sm557973ljb.54.2022.08.30.10.02.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Aug 2022 10:02:38 -0700 (PDT)
+Message-ID: <92c213de-872c-bc0b-382c-c9940309f272@linaro.org>
+Date:   Tue, 30 Aug 2022 20:02:37 +0300
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5154.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a5994cc3-c752-4d53-4007-08da8aa8fae4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Aug 2022 16:59:19.4279
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 1qgXR2vjqvMogXQFJ6I1BOpmA0rAIZ3I+Rj1XoXGbmPkpHp1SOtw0YiriJjgwUx4uOnV1/yQdrVeHZmrIUUX+0WCHN6K3bI2Y8Y+THeu+58=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR11MB3636
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v5 2/2] dts: arm: at91: Add SAMA5D3-EDS board
+Content-Language: en-US
+To:     Jerry Ray <jerry.ray@microchip.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Ludovic Desroches <ludovic.desroches@microchip.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20220830152428.12625-1-jerry.ray@microchip.com>
+ <20220830152428.12625-2-jerry.ray@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220830152428.12625-2-jerry.ray@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -166,45 +79,409 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gMzAvMDgvMjAyMiAxNzo1NSwgS3J6eXN6dG9mIEtvemxvd3NraSB3cm90ZToNCj4gT24gMzAv
-MDgvMjAyMiAxODoyNSwgQ29ub3IuRG9vbGV5QG1pY3JvY2hpcC5jb20gd3JvdGU6DQo+PiBPbiAz
-MC8wOC8yMDIyIDE1OjM3LCBLcnp5c3p0b2YgS296bG93c2tpIHdyb3RlOg0KPj4+IEVYVEVSTkFM
-IEVNQUlMOiBEbyBub3QgY2xpY2sgbGlua3Mgb3Igb3BlbiBhdHRhY2htZW50cyB1bmxlc3MgeW91
-IGtub3cgdGhlIGNvbnRlbnQgaXMgc2FmZQ0KPj4+DQo+Pj4gT24gMzAvMDgvMjAyMiAxMzoxNywg
-Q29ub3IgRG9vbGV5IHdyb3RlOg0KPj4+PiBBZGQgY29tcGF0aWJsZXMgZm9yIGJvdGggY29uZmln
-dXJhdGlvbnMgb2YgdGhlIEFyaWVzIEVtYmVkZGVkDQo+Pj4+IE0xMDBQRlNFVlAgU09NICsgRVZL
-IHBsYXRmb3JtLg0KPj4+Pg0KPj4+PiBMaW5rOiBodHRwczovL3d3dy5hcmllcy1lbWJlZGRlZC5j
-b20vcG9sYXJmaXJlLXNvYy1mcGdhLW1pY3Jvc2VtaS1tMTAwcGZzLXNvbS1tcGZzMDI1dC1wY2ll
-LXNlcmRlcw0KPj4+PiBTaWduZWQtb2ZmLWJ5OiBDb25vciBEb29sZXkgPGNvbm9yLmRvb2xleUBt
-aWNyb2NoaXAuY29tPg0KPj4+PiAtLS0NCj4+Pj4gIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9i
-aW5kaW5ncy9yaXNjdi9taWNyb2NoaXAueWFtbCB8IDMgKysrDQo+Pj4+ICAxIGZpbGUgY2hhbmdl
-ZCwgMyBpbnNlcnRpb25zKCspDQo+Pj4+DQo+Pj4+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9u
-L2RldmljZXRyZWUvYmluZGluZ3MvcmlzY3YvbWljcm9jaGlwLnlhbWwgYi9Eb2N1bWVudGF0aW9u
-L2RldmljZXRyZWUvYmluZGluZ3MvcmlzY3YvbWljcm9jaGlwLnlhbWwNCj4+Pj4gaW5kZXggNDg1
-OTgxZmJmYjRiLi4wNGViZDQ4Y2FhYTcgMTAwNjQ0DQo+Pj4+IC0tLSBhL0RvY3VtZW50YXRpb24v
-ZGV2aWNldHJlZS9iaW5kaW5ncy9yaXNjdi9taWNyb2NoaXAueWFtbA0KPj4+PiArKysgYi9Eb2N1
-bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcmlzY3YvbWljcm9jaGlwLnlhbWwNCj4+Pj4g
-QEAgLTI3LDkgKzI3LDEyIEBAIHByb3BlcnRpZXM6DQo+Pj4+DQo+Pj4+ICAgICAgICAtIGl0ZW1z
-Og0KPj4+PiAgICAgICAgICAgIC0gZW51bToNCj4+Pj4gKyAgICAgICAgICAgICAgLSBhcmllcyxt
-MTAwcGZzZXZwLWVtbWMNCj4+Pj4gKyAgICAgICAgICAgICAgLSBhcmllcyxtMTAwcGZzZXZwLXNk
-Y2FyZA0KPj4+DQo+Pj4gVXN1YWxseSBzZCBjYXJkIGlzIHBsdWdnYWJsZSwgc28gd2hhdCBpcyB0
-aGUgYWN0dWFsIGRpZmZlcmVuY2UgaGVyZT8gRm9yDQo+Pj4gZXhhbXBsZSB0aGlzIG9uZToNCj4+
-PiBodHRwczovL3Nob3AuYXJpZXMtZW1iZWRkZWQuZGUvZXZhbHVhdGlvbi1raXQvbS9tMTAwcGZz
-ZXZwLzQ0NS9tMTAwcGZzZXZwLTI1MGJhYWINCj4+PiBoYXMgZU1NQyBhbmQgU0QgY2FyZC4uLg0K
-Pj4NCj4+IFllYWgsIGJvdGggYXJlIHRoZXJlIGJ1dCBpdCBpcyBtdXhlZCBieSB0aGUgYm9vdGxv
-YWRlciB1c2luZyBhIEdQSU8uIEZvcg0KPj4gaWNpY2xlIHRoaXMgaXMgZG9uZSBieSBhIG11eCBp
-biB0aGUgRlBHQSBmYWJyaWMgaW5zdGVhZC4gVA0KPiANCj4gQWgsIHRoaXMgaXMgc3RpbGwganVz
-dCBvbmUgTU1DIGNvbnRyb2xsZXIgLSBlaXRoZXIgYXMgZU1NQyBvciBhcyBTRC1jYXJkPw0KDQpZ
-ZXMuDQoNCj4gDQo+PiB3IGR0cyB3ZXJlDQo+PiBuZWVkZWQgc28gdGhhdCB0aGUgZ3Bpby1ob2cg
-Y291bGQgYmUgc2V0IGNvcnJlY3RseS4gT3V0IG9mIGN1cmlvc2l0eSwgSSBjYW4NCj4+IGhhdmUg
-dGhlIHNhbWUgY29tcGF0aWJsZSBpbiBtdWx0aXBsZSBkZXZpY2V0cmVlcyByaWdodD8gSW4gdGhh
-dCBjYXNlLCBpdA0KPj4gd291bGQganVzdCBiZSAiYXJpZXMsbTEwMHBmc2V2cCIgaGVyZSBhbmQg
-SSBjb3VsZCBwdXQgdGhhdCBpbiBib3RoPw0KPj4gV291bGQgbWFrZSB0aGluZ3MgZWFzaWVyLi4N
-Cj4gDQo+IERlcGVuZHMsIGJ1dCBJIHdvdWxkIHNheSBmb3IgdGhpcyBjYXNlIHJhdGhlciBub3Qu
-IFRoZSBjb21wYXRpYmxlIHNob3VsZA0KPiBpZGVudGlmeSB0aGUgYm9hcmQuIElmIHRoZSBib2Fy
-ZHMgYXJlIGRpZmZlcmVudCwgb25lIGNvbXBhdGlibGUgc2hvdWxkDQo+IG5vdCBpZGVudGlmeSBi
-b3RoIG9mIHRoZW0uIEltYWdpbmUgVS1Cb290IChvciBzb21ldGhpbmcgZWxzZSkgdHJ5aW5nIHRv
-DQo+IG1hdGNoIHRoZSBEVFMuDQoNCkl0IGlzIHRoZSBzYW1lIGJvYXJkIHRob3VnaCwgdGhlIHdh
-eSB0aGUgYm9vdGxvYWRlciB3b3JrcyBpcyB0aGF0IGlmIGl0DQpkZXRlY3RzIGFuIFNELWNhcmQg
-aXQgd2lsbCB1c2UgdGhhdCB0byBib290IGZyb20sIGFuZCBpZiBub3Qgd2lsbCBmYWxsIGJhY2sN
-CnRvIHRoZSBlbW1jLg0KDQo=
+On 30/08/2022 18:24, Jerry Ray wrote:
+> The SAMA5D3-EDS board is an Ethernet Development Platform allowing for
+> evaluating many Microchip ethernet switch and PHY products.  Various
+> daughter cards can connect up via an RGMII connector or an RMII connector.
+> 
+
+Use subject prefixes matching the subsystem (git log --oneline -- ...).
+
+> The EDS board is not intended for stand-alone use and has no ethernet
+> capabilities when no daughter board is connected.  As such, this device
+> tree is intended to be used with a DT overlay defining the add-on board.
+> To better ensure consistency, some items are defined here as a form of
+> documentation so that all add-on overlays will use the same terms.
+> 
+> Google search keywords: "Microchip SAMA5D3-EDS"
+> 
+> Signed-off-by: Jerry Ray <jerry.ray@microchip.com>
+> ---
+> v4->v5:
+>  - patch now applies to v6.0-rc2
+
+If this is rebased, why you did not CC me?
+
+> v3->v4:
+>  - Fixed regulators as necessary to get the board to boot from SD Card.
+> v2->v3:
+>  - Alphabetized pinctrl entries.
+>  - cleaned up a warning in the regulators section.
+>  - License tweaked to 'OR MIT'
+>  - Included Makefile change
+> v1->v2:
+>  - Modified the compatible field in the device tree to reflect Microchip
+>    Ethernet Development System Board.
+> ---
+>  arch/arm/boot/dts/Makefile             |   1 +
+>  arch/arm/boot/dts/at91-sama5d3_eds.dts | 309 +++++++++++++++++++++++++
+>  2 files changed, 310 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/at91-sama5d3_eds.dts
+> 
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 05d8aef6e5d2..e92e639a2dc3 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -61,6 +61,7 @@ dtb-$(CONFIG_SOC_SAM_V7) += \
+>  	at91-sama5d2_icp.dtb \
+>  	at91-sama5d2_ptc_ek.dtb \
+>  	at91-sama5d2_xplained.dtb \
+> +	at91-sama5d3_eds.dtb \
+>  	at91-sama5d3_ksz9477_evb.dtb \
+>  	at91-sama5d3_xplained.dtb \
+>  	at91-dvk_som60.dtb \
+> diff --git a/arch/arm/boot/dts/at91-sama5d3_eds.dts b/arch/arm/boot/dts/at91-sama5d3_eds.dts
+> new file mode 100644
+> index 000000000000..2e6d94b30916
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/at91-sama5d3_eds.dts
+> @@ -0,0 +1,309 @@
+> +// SPDX-License-Identifier: GPL-2.0+ OR MIT
+> +/*
+> + * at91-sama5d3_eds.dts - Device Tree file for the SAMA5D3 Ethernet
+> + *    Development System board.
+> + *
+> + *  Copyright (C) 2022 Microchip Technology Inc. and its subsidiaries
+> + *		  2022 Jerry Ray <jerry.ray@microchip.com>
+> + */
+> +/dts-v1/;
+> +#include "sama5d36.dtsi"
+> +
+> +/ {
+> +	model = "SAMA5D3 Ethernet Development System";
+> +	compatible = "microchip,sama5d3-eds", "atmel,sama5d3",
+> +		     "atmel,sama5";
+
+This does not match your bindings.
+
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	clocks {
+> +		slow_xtal {
+
+No underscores in node names. Generic node names, so at least add some
+generic prefix or suffix, e.g.: "slow-xtal-clock"
+
+> +			clock-frequency = <32768>;
+> +		};
+> +
+> +		main_xtal {
+
+Ditto, e.g. main-xtal-clock
+
+> +			clock-frequency = <12000000>;
+> +		};
+> +	};
+> +
+> +	gpio_keys {
+
+No underscores...
+
+> +		compatible = "gpio-keys";
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_key_gpio>;
+> +
+> +		button-3 {
+> +			label = "PB_USER";
+> +			gpios = <&pioE 29 GPIO_ACTIVE_LOW>;
+> +			linux,code = <0x104>;
+> +			wakeup-source;
+> +		};
+> +	};
+> +
+> +	memory@20000000 {
+> +		reg = <0x20000000 0x10000000>;
+> +	};
+> +
+> +	vcc_3v3_reg: BUCK_REG1 {
+
+No, this coding style is very poor. No capital letters, no underscores.
+Use generic node names, e.g. "regulator-0".
+
+
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VCC_3V3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	vcc_2v5_reg: LDO_REG2 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VCC_2V5";
+> +		regulator-min-microvolt = <2500000>;
+> +		regulator-max-microvolt = <2500000>;
+> +		regulator-always-on;
+> +		vin-supply = <&vcc_3v3_reg>;
+> +	};
+> +
+> +	vcc_1v8_reg: LDO_REG3 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VCC_1V8";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +		regulator-always-on;
+> +		vin-supply = <&vcc_3v3_reg>;
+> +	};
+> +
+> +	vcc_1v2_reg: BUCK_REG4 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VCC_1V2";
+> +		regulator-min-microvolt = <1200000>;
+> +		regulator-max-microvolt = <1200000>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	vcc_mmc0_reg: fixedregulator_mmc0 {
+
+Another different pattern of naming..
+
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "mmc0-card-supply";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-always-on;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_vcc_mmc0_reg_gpio>;
+> +		gpio = <&pioE 2 GPIO_ACTIVE_LOW>;
+> +	};
+> +};
+> +
+> +&can0 {
+> +	status = "okay";
+> +};
+> +
+> +&dbgu {
+> +	status = "okay";
+> +};
+> +
+> +&ebi {
+> +	pinctrl-0 = <&pinctrl_ebi_nand_addr>;
+> +	pinctrl-names = "default";
+> +	status = "okay";
+> +
+> +	nand_controller: nand-controller {
+> +		status = "okay";
+> +> +		nand@3 {
+> +			reg = <0x3 0x0 0x2>;
+> +			atmel,rb = <0>;
+> +			nand-bus-width = <8>;
+> +			nand-ecc-mode = "hw";
+> +			nand-ecc-strength = <4>;
+> +			nand-ecc-step-size = <512>;
+> +			nand-on-flash-bbt;
+> +			label = "atmel_nand";
+> +
+> +			partitions {
+> +				compatible = "fixed-partitions";
+> +				#address-cells = <1>;
+> +				#size-cells = <1>;
+> +
+> +				at91bootstrap@0 {
+> +					label = "at91bootstrap";
+> +					reg = <0x0 0x40000>;
+> +				};
+> +
+> +				bootloader@40000 {
+> +					label = "bootloader";
+> +					reg = <0x40000 0xc0000>;
+> +				};
+> +
+> +				bootloaderenvred@100000 {
+> +					label = "bootloader env redundant";
+> +					reg = <0x100000 0x40000>;
+> +				};
+> +
+> +				bootloaderenv@140000 {
+> +					label = "bootloader env";
+> +					reg = <0x140000 0x40000>;
+> +				};
+> +
+> +				dtb@180000 {
+> +					label = "device tree";
+> +					reg = <0x180000 0x80000>;
+> +				};
+> +
+> +				kernel@200000 {
+> +					label = "kernel";
+> +					reg = <0x200000 0x600000>;
+> +				};
+> +
+> +				rootfs@800000 {
+> +					label = "rootfs";
+> +					reg = <0x800000 0x0f800000>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&i2c0 {
+> +	pinctrl-0 = <&pinctrl_i2c0_pu>;
+> +	status = "okay";
+> +};
+> +
+> +&i2c1 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c2 {
+> +	dmas = <0>, <0>;	/* Do not use DMA for i2c2 */
+
+Instead you need to remove the property.
+
+> +	pinctrl-0 = <&pinctrl_i2c2_pu>;
+> +	status = "okay";
+> +};
+> +
+> +&mmc0 {
+> +	pinctrl-0 = <&pinctrl_mmc0_clk_cmd_dat0 &pinctrl_mmc0_dat1_3
+> +		     &pinctrl_mmc0_dat4_7 &pinctrl_mmc0_cd>;
+> +	vmmc-supply = <&vcc_mmc0_reg>;
+> +	vqmmc-supply = <&vcc_3v3_reg>;
+> +	status = "okay";
+> +	slot@0 {
+> +		reg = <0>;
+> +		bus-width = <8>;
+> +		cd-gpios = <&pioE 0 GPIO_ACTIVE_LOW>;
+> +	};
+> +};
+> +
+> +&pinctrl {
+> +	board {
+> +		pinctrl_i2c0_pu: i2c0_pu {
+
+No underscores in node names.
+
+> +			atmel,pins =
+> +				<AT91_PIOA 30 AT91_PERIPH_A AT91_PINCTRL_PULL_UP>,
+> +				<AT91_PIOA 31 AT91_PERIPH_A AT91_PINCTRL_PULL_UP>;
+> +		};
+> +
+> +		pinctrl_i2c2_pu: i2c2_pu {
+> +			atmel,pins =
+> +				<AT91_PIOA 18 AT91_PERIPH_B AT91_PINCTRL_PULL_UP>,
+> +				<AT91_PIOA 19 AT91_PERIPH_B AT91_PINCTRL_PULL_UP>;
+> +		};
+> +
+> +		pinctrl_key_gpio: key_gpio_0 {
+> +			atmel,pins =
+> +				<AT91_PIOE 29 AT91_PERIPH_GPIO AT91_PINCTRL_PULL_UP_DEGLITCH>;
+> +		};
+> +
+> +		pinctrl_mmc0_cd: mmc0_cd {
+> +			atmel,pins =
+> +				<AT91_PIOE 0 AT91_PERIPH_GPIO AT91_PINCTRL_PULL_UP_DEGLITCH>;
+> +		};
+> +
+> +		/* Reserved for reset signal to the RGMII connector. */
+> +		pinctrl_rgmii_rstn: rgmii_rstn {
+> +			atmel,pins =
+> +				<AT91_PIOD 18 AT91_PERIPH_GPIO AT91_PINCTRL_PULL_UP_DEGLITCH>;
+> +		};
+> +
+> +		/* Reserved for an interrupt line from the RMII and RGMII connectors. */
+> +		pinctrl_spi_irqn: spi_irqn {
+> +			atmel,pins =
+> +				<AT91_PIOB 28 AT91_PERIPH_GPIO AT91_PINCTRL_DEGLITCH>;
+> +		};
+> +
+> +		pinctrl_spi0_cs: spi0_cs_default {
+> +			atmel,pins =
+> +				<AT91_PIOD 13 AT91_PERIPH_GPIO AT91_PINCTRL_NONE
+> +				 AT91_PIOD 16 AT91_PERIPH_GPIO AT91_PINCTRL_NONE>;
+> +		};
+> +
+> +		pinctrl_spi1_cs: spi1_cs_default {
+> +			atmel,pins = <AT91_PIOC 25 AT91_PERIPH_GPIO AT91_PINCTRL_NONE
+> +				      AT91_PIOC 28 AT91_PERIPH_GPIO AT91_PINCTRL_NONE>;
+> +		};
+> +
+> +		pinctrl_usba_vbus: usba_vbus {
+> +			atmel,pins =
+> +				<AT91_PIOE 9 AT91_PERIPH_GPIO AT91_PINCTRL_DEGLITCH>;
+> +		};
+> +
+> +		pinctrl_usb_default: usb_default {
+> +			atmel,pins =
+> +				<AT91_PIOE 3 AT91_PERIPH_GPIO AT91_PINCTRL_NONE
+> +				 AT91_PIOE 4 AT91_PERIPH_GPIO AT91_PINCTRL_NONE>;
+> +		};
+> +
+> +		/* Reserved for VBUS fault interrupt. */
+> +		pinctrl_vbusfault_irqn: vbusfault_irqn {
+> +			atmel,pins =
+> +				<AT91_PIOE 5 AT91_PERIPH_GPIO AT91_PINCTRL_DEGLITCH>;
+> +		};
+> +
+> +		pinctrl_vcc_mmc0_reg_gpio: vcc_mmc0_reg_gpio_default {
+> +			atmel,pins = <AT91_PIOE 2 AT91_PERIPH_GPIO AT91_PINCTRL_PULL_UP>;
+> +		};
+> +	};
+> +};
+> +
+> +&spi0 {
+> +	pinctrl-names = "default", "cs";
+> +	pinctrl-1 = <&pinctrl_spi0_cs>;
+> +	cs-gpios = <&pioD 13 0>, <0>, <0>, <&pioD 16 0>;
+> +	status = "okay";
+> +};
+> +
+> +&spi1 {
+> +	pinctrl-names = "default", "cs";
+> +	pinctrl-1 = <&pinctrl_spi1_cs>;
+> +	cs-gpios = <&pioC 25 0>, <0>, <0>, <&pioC 28 0>;
+
+Use proper flags. What is <0>???
+
+
+> +	status = "okay";
+> +};
+> +
+> +&tcb0 {
+> +	timer0: timer@0 {
+> +		compatible = "atmel,tcb-timer";
+> +		reg = <0>;
+> +	};
+> +
+> +	timer1: timer@1 {
+> +		compatible = "atmel,tcb-timer";
+> +		reg = <1>;
+> +	};
+> +};
+> +
+> +&usb0 {
+> +	atmel,vbus-gpio = <&pioE 9 GPIO_ACTIVE_HIGH>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_usba_vbus>;
+> +	status = "okay";
+> +};
+> +
+> +&usb1 {
+> +	atmel,vbus-gpio = <0
+
+What is this 0?
+
+> +			   &pioE 3 GPIO_ACTIVE_HIGH
+> +			   &pioE 4 GPIO_ACTIVE_HIGH
+
+Why two GPIOs?
+
+> +			  >;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_usb_default>;
+> +	num-ports = <3>;
+> +	status = "okay";
+> +};
+> +
+> +&usb2 {
+> +	status = "okay";
+> +};
+
+
+Best regards,
+Krzysztof
