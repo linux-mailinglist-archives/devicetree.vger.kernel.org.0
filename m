@@ -2,68 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 45F025A6EC4
-	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 22:57:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC7B15A6EDE
+	for <lists+devicetree@lfdr.de>; Tue, 30 Aug 2022 23:08:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230438AbiH3U52 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 16:57:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38196 "EHLO
+        id S229740AbiH3VIz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 17:08:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230292AbiH3U51 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 16:57:27 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 234037C755;
-        Tue, 30 Aug 2022 13:57:26 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id BE145B81D9E;
-        Tue, 30 Aug 2022 20:57:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 581C7C43142;
-        Tue, 30 Aug 2022 20:57:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661893043;
-        bh=iftuHYqQXTY9T/Jpg0WAmZaO4NFtXezaRWCYZ6TK3ig=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=sN4VuKXwsfijKIrdwPjxw4NxzoBbgK7Lox0+jXU7CWFZd7NuNAH8YfB9YRrON1H2e
-         Ign2ztR7Z18cKcRwpntRAKciL/Im4Y1zybhsvCWZ2eCg0Nsl4C7ZuTyheh3jt01mLy
-         Mlau/BTkjCJzMXT/wYvTnibXh8G+67o0svHApuryc4XyV1dPxGs50jScXBItoxOOBs
-         MZ3rej3kOXPmbMBikQg5kcyZpUZ7c9tW9FB1aO85szVVn0bI9Vc0RQjMBKL1J6k0Zo
-         CDsU4caak9l+0z4fo9Fsp3f92DXvvQbqUIAS0ApPTxfEiimAH2N0Tt4q/WvbaETQCl
-         f/zRNkDfPTVlA==
-Received: by mail-ua1-f53.google.com with SMTP id a18so4535916uat.11;
-        Tue, 30 Aug 2022 13:57:23 -0700 (PDT)
-X-Gm-Message-State: ACgBeo0T+Qozbw5WsKtB7xUwv4dW24FltCftOLV6I1tXc4UQQyft7Yff
-        JeOHJdiAEbWbHy1l50DzOAL20U9kp3G+bg44tQ==
-X-Google-Smtp-Source: AA6agR6f85XnSpzHwZBKN0RRZyto5EZpAAgQSxtyliRBWdAaWrt2oixrLAfJCE0oQ44ghreW7ST5f7W6/kpWI4HA5iI=
-X-Received: by 2002:a9f:23ec:0:b0:39e:c54f:ffc7 with SMTP id
- 99-20020a9f23ec000000b0039ec54fffc7mr5975565uao.17.1661893042185; Tue, 30 Aug
- 2022 13:57:22 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220825180417.1259360-1-mail@conchuod.ie> <20220825180417.1259360-2-mail@conchuod.ie>
- <5f00ab85-d5ac-728d-2157-e70f2a46cc90@canonical.com>
-In-Reply-To: <5f00ab85-d5ac-728d-2157-e70f2a46cc90@canonical.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 30 Aug 2022 15:57:10 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLdYT5Bqn1aCd+vDxgOQAH_B2nMwsP9siATdK6DRte0QA@mail.gmail.com>
-Message-ID: <CAL_JsqLdYT5Bqn1aCd+vDxgOQAH_B2nMwsP9siATdK6DRte0QA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: riscv: sifive-l2: add a PolarFire SoC compatible
-To:     Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
-Cc:     Conor Dooley <conor.dooley@microchip.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Atish Patra <atishp@atishpatra.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
+        with ESMTP id S229720AbiH3VIz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 17:08:55 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EF847C1A3;
+        Tue, 30 Aug 2022 14:08:53 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 27UL8kfG130221;
+        Tue, 30 Aug 2022 16:08:46 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1661893726;
+        bh=NtKcwczTeR2CPHLoKmnqcAiFTJkPBNRBY1w2UEeVEY4=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=Ytan+20x+E6POnMychilOPBCWYZdKY4xPQXg53yvIKGSKxbdbm309bKG+dDX3U2b+
+         vlY+PAc19pc0yhBrwcMo9/rp/+UgcdeMBcBOrUkauiQLG1q7XHPND0ZDhpcWNJz7Nj
+         k+Yg51D1CzxTVtjx2bogG9ajBrE8bwlM7UiAvar4=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 27UL8kFB017745
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 30 Aug 2022 16:08:46 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 30
+ Aug 2022 16:08:46 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Tue, 30 Aug 2022 16:08:45 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 27UL8jt1085284;
+        Tue, 30 Aug 2022 16:08:45 -0500
+Date:   Tue, 30 Aug 2022 16:08:45 -0500
+From:   Bryan Brattlof <bb@ti.com>
+To:     Vignesh Raghavendra <vigneshr@ti.com>
+CC:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daire McNamara <daire.mcnamara@microchip.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Conor Dooley <mail@conchuod.ie>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3] arm64: dts: ti: k3-am642-sk: Add DT entry for onboard
+ LEDs
+Message-ID: <20220830210845.tohj2gm5po4bndtl@bryanbrattlof.com>
+References: <20220830123254.522222-1-vigneshr@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <20220830123254.522222-1-vigneshr@ti.com>
+X-PGP-Fingerprint: D3D1 77E4 0A38 DF4D 1853 FEEF 41B9 0D5D 71D5 6CE0
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -72,80 +68,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 25, 2022 at 1:36 PM Heinrich Schuchardt
-<heinrich.schuchardt@canonical.com> wrote:
->
-> On 8/25/22 20:04, Conor Dooley wrote:
-> > From: Conor Dooley <conor.dooley@microchip.com>
-> >
-> > The l2 cache on PolarFire SoC is cross between that of the fu540 and
-> > the fu740. It has the extra interrupt from the fu740 but the lower
-> > number of cache-sets. Add a specific compatible to avoid the likes
-> > of:
-> >
-> > mpfs-polarberry.dtb: cache-controller@2010000: interrupts: [[1], [3], [4], [2]] is too long
->
-> Where is such a message written? I couldn't find the string in
-> next-20220825 (git grep -n 'is too long"').
->
-> Why should a different number of cache sets require an extra compatible
-> string. cache-size is simply a parameter going with the existing
-> compatible strings.
->
-> I would assume that you only need an extra compatible string if there is
-> a functional difference that can not be expressed with the existing
-> parameters.
+Hi Aparna & Vignesh!
 
-Correct, but you have to account for unknown functional differences
-aka errata as well. Otherwise, we need firmware updates to enable the
-OS to handle errata.
+On August 30, 2022 thus sayeth Vignesh Raghavendra:
+> From: Aparna M <a-m1@ti.com>
+> 
+> AM642 SK has 8 leds connected to tpic2810 onboard. Add support for these
+> gpio leds.
+> 
+> Signed-off-by: Aparna M <a-m1@ti.com>
+> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
 
-> > Fixes: 34fc9cc3aebe ("riscv: dts: microchip: correct L2 cache interrupts")
-> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> > ---
-> >   .../bindings/riscv/sifive-l2-cache.yaml       | 79 ++++++++++++-------
-> >   1 file changed, 49 insertions(+), 30 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml b/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
-> > index 69cdab18d629..ca3b9be58058 100644
-> > --- a/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
-> > +++ b/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
-> > @@ -17,9 +17,6 @@ description:
-> >     acts as directory-based coherency manager.
-> >     All the properties in ePAPR/DeviceTree specification applies for this platform.
-> >
-> > -allOf:
-> > -  - $ref: /schemas/cache-controller.yaml#
-> > -
-> >   select:
-> >     properties:
-> >       compatible:
-> > @@ -33,11 +30,16 @@ select:
-> >
-> >   properties:
-> >     compatible:
-> > -    items:
-> > -      - enum:
-> > -          - sifive,fu540-c000-ccache
-> > -          - sifive,fu740-c000-ccache
->
-> Why can't you simply add microchip,mpfs-ccache here?
->
-> > -      - const: cache
-> > +    oneOf:
-> > +      - items:
-> > +          - enum:
-> > +              - sifive,fu540-c000-ccache
-> > +              - sifive,fu740-c000-ccache
-> > +          - const: cache
-> > +      - items:
-> > +          - const: microchip,mpfs-ccache
-> > +          - const: sifive,fu540-c000-ccache
->
-> Why do we need 'sifive,fu540-c000-ccache' twice?
+Reviewed-by: Bryan Brattlof <bb@ti.com>
 
-Because it is in 2 different positions. While we can express that the
-last N entries in a list are optional, there is no way in json-schema
-to express entries at the beginning or in the middle are optional.
+Looks great to me!
 
-Rob
+> ---
+> v3:
+> Fix compile error due to missing header
+> Fix whitespace issues
+> 
+> v2: https://lore.kernel.org/all/20220629075859.6939-1-a-m1@ti.com/
+> 
+>  arch/arm64/boot/dts/ti/k3-am642-sk.dts | 70 ++++++++++++++++++++++++++
+>  1 file changed, 70 insertions(+)
+> 
+
+Thanks for getting the leds working :)
+~Bryan
