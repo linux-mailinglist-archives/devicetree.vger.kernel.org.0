@@ -2,44 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A00095A7756
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 09:16:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89A5B5A7775
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 09:28:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230416AbiHaHQk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 03:16:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56818 "EHLO
+        id S229437AbiHaH2H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 03:28:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229896AbiHaHQE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 03:16:04 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C9F9220F9
-        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 00:12:43 -0700 (PDT)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=irc.pengutronix.de)
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <j.zink@pengutronix.de>)
-        id 1oTHtx-0002yb-Qu; Wed, 31 Aug 2022 09:12:41 +0200
-Message-ID: <94f0bdab9875ebf13b386135cd2d53b39f299d71.camel@pengutronix.de>
-Subject: Re: [PATCH 01/16] dt-bindings: fpga: convert Lattice MachXO2 Slave
- binding to YAML
-From:   Johannes Zink <j.zink@pengutronix.de>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-fpga@vger.kernel.org,
-        Moritz Fischer <mdf@kernel.org>, kernel@pengutronix.de,
-        Xu Yilun <yilun.xu@intel.com>, Wu Hao <hao.wu@intel.com>
-Date:   Wed, 31 Aug 2022 09:12:26 +0200
-In-Reply-To: <20220830203055.GA2003370-robh@kernel.org>
-References: <20220825141343.1375690-1-j.zink@pengutronix.de>
-         <20220825141343.1375690-2-j.zink@pengutronix.de>
-         <20220830203055.GA2003370-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.3-1 
+        with ESMTP id S229870AbiHaH2G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 03:28:06 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3648BC115
+        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 00:28:04 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id w19so10724054ljj.7
+        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 00:28:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=pYwEOgwaYMT98tn2nr33wP6bbdbqqCViXlWQh9NQEr0=;
+        b=zwU71mRNWXQnWAAoCjogZ06eKchpGl+s7YA5LSqELEprQiTZuLWlJnd8vs5+tCk/gR
+         OE2xwg8nkh5lA9DMHaGyaKnsxo1/uZEZ5GYgYave4d6hKKqRBzR7Y1FjW9VGPoalfBqs
+         okjo5ZJ5/7vQCqgFvv5zK7Sbn4QGKJxyv5oio6YLBO9AfDon8r2rBY+Mhwov+ZfkUpcF
+         KFSIDmhAMoAGO9r0C4lQGiFchFiaPcjuPAwqaU8IL7oJmc6vEX09Y1ybQIwne9SFw7bQ
+         j/OEV5uawBFi7o2Z3pAeOSlf98R7IUBk2WWHx7q48MUCplXqECjV4AViU2BuK7sAdoCD
+         5kcQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=pYwEOgwaYMT98tn2nr33wP6bbdbqqCViXlWQh9NQEr0=;
+        b=3R4eYDQI6oowIGZCafhUmyTlYbyMA6Snp3TTy4c34xGvAWnVD6/LmovSTIbW1BtLwL
+         7vBdY/U/vefMZCjDcTd+9OEyrX9W+Imu9Fgf9ipKJssYFrelOGNrOyk9I02D34xT7rtQ
+         EU3pncC8J8vP1YH4D0aunoqRnzavG3r257+q1wwms5tS8za4g7FT1ZZqM0aFQhjbOmXw
+         dAUYAe2ZYr+X2wImGssNeOzFVzV2oL3qk5H46gzXUIiUxhz/ouYps9oeEcR1XKAVPHNN
+         3JzSDEWptZajgAk/ccmJnSRY8mb9bFKgpF8ydGNPFE6X2I3SQSu3b3JUq7yOr/LrffdK
+         DI7g==
+X-Gm-Message-State: ACgBeo3Fkn8vn+/6pUE8doKm9St6PsYcwvuv95kWUp1YBuxYn4ls+uRO
+        TpzPqtNIwyqPiXaTNkAeZx3Y8A==
+X-Google-Smtp-Source: AA6agR7tIIro6e11nVm4WGeP5XJv3DEofe105hSZOR4Em6NcKkBcj61qi1fQxSM/AZIMib2v1R5QYg==
+X-Received: by 2002:a2e:9ec8:0:b0:265:ef3:b74b with SMTP id h8-20020a2e9ec8000000b002650ef3b74bmr4315545ljk.297.1661930883306;
+        Wed, 31 Aug 2022 00:28:03 -0700 (PDT)
+Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
+        by smtp.gmail.com with ESMTPSA id e15-20020a05651c038f00b00264bb2351e8sm593593ljp.7.2022.08.31.00.28.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 31 Aug 2022 00:28:02 -0700 (PDT)
+Message-ID: <393933f5-9a87-4d12-2527-5adfa4aeccca@linaro.org>
+Date:   Wed, 31 Aug 2022 10:28:01 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: j.zink@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v3 1/2] dt-bindings: lan9662-otpc: document Lan9662 OTPC
+Content-Language: en-US
+To:     Horatiu Vultur <horatiu.vultur@microchip.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, UNGLinuxDriver@microchip.com
+References: <20220831064238.102267-1-horatiu.vultur@microchip.com>
+ <20220831064238.102267-2-horatiu.vultur@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220831064238.102267-2-horatiu.vultur@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -48,152 +76,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-On Tue, 2022-08-30 at 15:30 -0500, Rob Herring wrote:
-> On Thu, Aug 25, 2022 at 04:13:28PM +0200, Johannes Zink wrote:
-> > This commit prepares adding additional properties to the machxo2-
-> > slave
-> > device. No functional changes.
+On 31/08/2022 09:42, Horatiu Vultur wrote:
+> Document Lan9662 OTP controller.
 > 
-> Please use get_maintainers.pl so *all* the maintainers/lists get
-> Cc'ed. 
+> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+> ---
+>  .../nvmem/microchip,lan9662-otpc.yaml         | 45 +++++++++++++++++++
+>  1 file changed, 45 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/nvmem/microchip,lan9662-otpc.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/nvmem/microchip,lan9662-otpc.yaml b/Documentation/devicetree/bindings/nvmem/microchip,lan9662-otpc.yaml
+> new file mode 100644
+> index 000000000000..def20733cf60
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/nvmem/microchip,lan9662-otpc.yaml
+> @@ -0,0 +1,45 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/nvmem/microchip,lan9662-otpc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Microchip LAN9662 OTP Controller (OTPC)
+> +
+> +maintainers:
+> +  - Horatiu Vultur <horatiu.vultur@microchip.com>
+> +
+> +description: |
+> +  OTP controller drives a NVMEM memory where system specific data
+> +  (e.g. hardware configuration settings, chip identifiers) or
+> +  user specific data could be stored.
+> +
+> +allOf:
+> +  - $ref: nvmem.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - const: microchip,lan9662-otpc
+> +          - const: microchip,lan9668-otpc
+> +      - enum:
+> +          - microchip,lan9662-otpc
 
-ok, will do that in the future.
+This is not what I wrote and this does not make sense. You now listed
+twice 9662 and 9668 does not have its entry.
 
-> > 
-> > Signed-off-by: Johannes Zink <j.zink@pengutronix.de>
-> > ---
-> >  .../bindings/fpga/lattice,machxo2-slave.yaml  | 46
-> > +++++++++++++++++++
-> >  .../bindings/fpga/lattice-machxo2-spi.txt     | 29 ------------
-> >  2 files changed, 46 insertions(+), 29 deletions(-)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/fpga/lattice,machxo2-slave.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/fpga/lattice-
-> > machxo2-spi.txt
-> > 
-> > diff --git
-> > a/Documentation/devicetree/bindings/fpga/lattice,machxo2-slave.yaml
-> > b/Documentation/devicetree/bindings/fpga/lattice,machxo2-slave.yaml
-> > new file mode 100644
-> > index 000000000000..d05acd6b0fc6
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/fpga/lattice,machxo2-
-> > slave.yaml
-> > @@ -0,0 +1,46 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id:  
-> > http://devicetree.org/schemas/fpga/lattice,machxo2-slave.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Lattice MachXO2 Slave FPGA Manager Device Tree Bindings
-> > +
-> > +maintainers:
-> > +  - Johannes Zink <j.zink@pengutronix.de>
-> > +
-> > +description: |
-> > +  Device used for loading the bitstream of Lattice MachXO2 FPGAs.
-> > The
-> > +  programming sequence is described in FPGA-TN-02155 on  
-> > www.latticesemi.com
-> > +
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: lattice,machxo2-slave-spi
-> > +    then:
-> > +      $ref: /schemas/spi/spi-peripheral-props.yaml#
-> 
-> You don't need the 'if' because the schema is only applied if the 
-> compatible matches.
-> 
-> Blank line needed here.
-
-ack, will fix it in v2
-
-Best regards
-Johannes
-
-> 
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - lattice,machxo2-slave-spi
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    spi0 {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        fpga@0 {
-> > +            compatible = "lattice,machxo2-slave-spi";
-> > +            spi-max-frequency = <8000000>;
-> > +            reg = <0>;
-> > +        };
-> > +    };
-> > diff --git a/Documentation/devicetree/bindings/fpga/lattice-
-> > machxo2-spi.txt b/Documentation/devicetree/bindings/fpga/lattice-
-> > machxo2-spi.txt
-> > deleted file mode 100644
-> > index a8c362eb160c..000000000000
-> > --- a/Documentation/devicetree/bindings/fpga/lattice-machxo2-
-> > spi.txt
-> > +++ /dev/null
-> > @@ -1,29 +0,0 @@
-> > -Lattice MachXO2 Slave SPI FPGA Manager
-> > -
-> > -Lattice MachXO2 FPGAs support a method of loading the bitstream
-> > over
-> > -'slave SPI' interface.
-> > -
-> > -See 'MachXO2ProgrammingandConfigurationUsageGuide.pdf' on  
-> > www.latticesemi.com
-> > -
-> > -Required properties:
-> > -- compatible: should contain "lattice,machxo2-slave-spi"
-> > -- reg: spi chip select of the FPGA
-> > -
-> > -Example for full FPGA configuration:
-> > -
-> > -       fpga-region0 {
-> > -               compatible = "fpga-region";
-> > -               fpga-mgr = <&fpga_mgr_spi>;
-> > -               #address-cells = <0x1>;
-> > -               #size-cells = <0x1>;
-> > -       };
-> > -
-> > -       spi1: spi@2000 {
-> > -        ...
-> > -
-> > -               fpga_mgr_spi: fpga-mgr@0 {
-> > -                       compatible = "lattice,machxo2-slave-spi";
-> > -                       spi-max-frequency = <8000000>;
-> > -                       reg = <0>;
-> > -               };
-> > -       };
-> > -- 
-> > 2.30.2
-> > 
-> > 
-> 
-> 
-
--- 
-Pengutronix e.K.                | Johannes Zink                  |
-Steuerwalder Str. 21            | https://www.pengutronix.de/    |
-31137 Hildesheim, Germany       | Phone: +49-5121-206917-0       |
-Amtsgericht Hildesheim, HRA 2686| Fax:   +49-5121-206917-5555    |
-
+Best regards,
+Krzysztof
