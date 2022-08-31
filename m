@@ -2,55 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A59B75A802E
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 16:28:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C3695A8038
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 16:30:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230215AbiHaO2V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 10:28:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35058 "EHLO
+        id S229547AbiHaOa4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 10:30:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231438AbiHaO2N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 10:28:13 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D92F013D0C;
-        Wed, 31 Aug 2022 07:28:12 -0700 (PDT)
+        with ESMTP id S230338AbiHaOaz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 10:30:55 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E95887548C;
+        Wed, 31 Aug 2022 07:30:53 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 75AA261B74;
-        Wed, 31 Aug 2022 14:28:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC4D0C433C1;
-        Wed, 31 Aug 2022 14:28:11 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 81BF561BBB;
+        Wed, 31 Aug 2022 14:30:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F252C433C1;
+        Wed, 31 Aug 2022 14:30:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661956091;
-        bh=1QA5Gwy5yM74XPHFPpRTyh0noC8OOgttdPqN/fIeYDQ=;
+        s=k20201202; t=1661956253;
+        bh=RZ1NKKaymq+6ZylhYUzYOUmsnd+VirvgHXMwybf81Gk=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=cNL1O9CENaxh2v8eefT7iJYEyjWCcuShXRxpfxS0qWn2PtGGK8mtGuwxSVRvBFtTl
-         E+IOUipjsmOzWL7lFlw+Gc+d8XlsU9Rn6gUE1p9URYzAQi3TwVYYTUIIE1FriRkjM1
-         z9yQtyg/nh7zBqE+IOgKmL9JSV6QnEyatA2KL1B5iPSdbuwsU+B8sJgMwc0ML/ZPjX
-         fXIUyJU5pBzH5Ebb6OP0Jdu2CedtgHHntigVNnUDvMK1ISlsmEdfOOhMBkb1InjtfG
-         ygL+cipmfwOy2shhkhBTTvKnzPgbZnFMt/AJxjejy1dL6Wgo2E1e3LVxqB6ziNuzj9
-         GPyEgGe5CemLg==
+        b=KzCHCyUlihhvc1ponolL2CKrfgyltgxE0XMCQYgm7hVLIC7RJj3YjsGI2U56jcAbk
+         NT37ydGKbDzkJQztXhN+PzEPGTLB0JJbsYn0FzTq/K513FT2WdLuuTZZJeWYJEv/iU
+         cnNzCXSGD2AMCaGq49nQUx2amtpdXdlsjWbA82nKTx+JJMo1ppxeRrrfJyyQfWVZ2S
+         7MU1RYKH6bCbUOSiGEF/VQkZvvHcRtEoGM0fHDpcP7G21yrgSSBcl5gTCp46qFEQ3g
+         jG1KXFgwy9hmNA2TaOUgOqCa8fbzCTvSXXs3/LNnsMFETBCHs/XJgs3b3Y11FkbbD9
+         OZ/sGQdHQFPxA==
 Received: by pali.im (Postfix)
-        id 1B45A855; Wed, 31 Aug 2022 16:28:09 +0200 (CEST)
-Date:   Wed, 31 Aug 2022 16:28:09 +0200
+        id 80DA1855; Wed, 31 Aug 2022 16:30:49 +0200 (CEST)
+Date:   Wed, 31 Aug 2022 16:30:49 +0200
 From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+To:     Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marek Behun <marek.behun@nic.cz>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: turris-omnia: Add mcu node
-Message-ID: <20220831142809.lcmnv3l4rnulo522@pali>
-References: <20220819131152.6513-1-pali@kernel.org>
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
+        linux-pwm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 3/4] ARM: dts: armada-38x: Fix compatible string for
+ gpios
+Message-ID: <20220831143049.gdh6dyrn5su2enox@pali>
+References: <20220714115515.5748-1-pali@kernel.org>
+ <20220714183328.4137-1-pali@kernel.org>
+ <20220714183328.4137-3-pali@kernel.org>
+ <20220716144028.rzwcn4wl5uyxepjd@pengutronix.de>
+ <20220716145019.nps3oh4a22fsuzup@pali>
+ <20220716150751.6yaknmo3qwusyy5h@pengutronix.de>
+ <20220716160916.jp37siznitgzw6qf@pali>
+ <20220725200417.nwthxzvdv2bzd5ej@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220819131152.6513-1-pali@kernel.org>
+In-Reply-To: <20220725200417.nwthxzvdv2bzd5ej@pengutronix.de>
 User-Agent: NeoMutt/20180716
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
@@ -62,45 +76,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PING?
+On Monday 25 July 2022 22:04:17 Uwe Kleine-König wrote:
+> Hello Pali,
+> 
+> On Sat, Jul 16, 2022 at 06:09:16PM +0200, Pali Rohár wrote:
+> > On Saturday 16 July 2022 17:07:51 Uwe Kleine-König wrote:
+> > > On Sat, Jul 16, 2022 at 04:50:19PM +0200, Pali Rohár wrote:
+> > > > On Saturday 16 July 2022 16:40:28 Uwe Kleine-König wrote:
+> > > > > On Thu, Jul 14, 2022 at 08:33:27PM +0200, Pali Rohár wrote:
+> > > > > > Armada 38x supports per CPU interrupts for gpios, like Armada XP. Pre-XP
+> > > > > > variants like Armada 370 do not support per CPU interrupts for gpios.
+> > > > > > 
+> > > > > > So change compatible string for Armada 38x from "marvell,armada-370-gpio"
+> > > > > > which indicates pre-XP variant to "marvell,armadaxp-gpio" which indicates
+> > > > > > XP variant or new.
+> > > > > > 
+> > > > > > Driver gpio-mvebu.c which handles both pre-XP and XP variants already
+> > > > > > provides support for per CPU interrupts on XP and newer variants.
+> > > > > > 
+> > > > > > Signed-off-by: Pali Rohár <pali@kernel.org>
+> > > > > > Fixes: 7cb2acb3fbae ("ARM: dts: mvebu: Add PWM properties for armada-38x")
+> > > > > > ---
+> > > > > >  arch/arm/boot/dts/armada-38x.dtsi | 4 ++--
+> > > > > >  1 file changed, 2 insertions(+), 2 deletions(-)
+> > > > > > 
+> > > > > > diff --git a/arch/arm/boot/dts/armada-38x.dtsi b/arch/arm/boot/dts/armada-38x.dtsi
+> > > > > > index df3c8d1d8f64..9343de6947b3 100644
+> > > > > > --- a/arch/arm/boot/dts/armada-38x.dtsi
+> > > > > > +++ b/arch/arm/boot/dts/armada-38x.dtsi
+> > > > > > @@ -292,7 +292,7 @@
+> > > > > >  			};
+> > > > > >  
+> > > > > >  			gpio0: gpio@18100 {
+> > > > > > -				compatible = "marvell,armada-370-gpio",
+> > > > > > +				compatible = "marvell,armadaxp-gpio",
+> > > > > >  					     "marvell,orion-gpio";
+> > > > > 
+> > > > > If you can treat the XP variant as 370 and everything that is supposed
+> > > > > to work on 370 works then, then maybe the right incarnation is:
+> > > > > 
+> > > > > 	compatible = "marvell,armadaxp-gpio", "marvell,armada-370-gpio", "marvell,orion-gpio";
+> > > > > 
+> > > > > ?
+> > > > 
+> > > > For pre-XP variants is "marvell,orion-gpio" enough and for XP + post-XP
+> > > > is needed "marvell,armadaxp-gpio" (with possible "marvell,orion-gpio"
+> > > > for backward compatibility).
+> > > > 
+> > > > So I do not see reason why to add "marvell,armada-370-gpio" nor what
+> > > > value it brings.
+> > > 
+> > > If you boot an older kernel (i.e. one that doesn't support
+> > > marvell,armadaxp-gpio, but does support marvell,armada-370-gpio), it
+> > 
+> > Is there such kernel version?
+> 
+> Ah, I thought you added "marvell,armadaxp-gpio" with this patch series.
+> 
+> > > will work better as there are relevant differences between
+> > > marvell,orion-gpio and marvell,armada-370-gpio.
+> > 
+> > And if yes, do we really need this in DTS files for new kernel
+> > versions? I can imagine that such change can be relevant for old LTS
+> > kernel version, but not for new versions.
+> > 
+> > > For example some
+> > > registers seem to have a different offset ...
+> > 
+> > armada-370-gpio is mapped to MVEBU_GPIO_SOC_VARIANT_ORION, so it will
+> > get same offsets as orion-gpio. So no change.
+> 
+> OK, you're right, my assumptions were wrong. I'm convinced your change
+> is fine now:
+> 
+> Acked-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+> 
+> Best regards
+> Uwe
 
-On Friday 19 August 2022 15:11:52 Pali Rohár wrote:
-> At i2c address 0x2a is MCU command interface which provides access to GPIOs
-> connected to Turris Omnia MCU. So define mcu node in Turris Omnia DTS file.
-> 
-> Signed-off-by: Pali Rohár <pali@kernel.org>
-> 
-> ---
-> Same change was already sent to U-Boot project together with driver. As
-> Turris Omnia DTS file is shared between Linux kernel U-Boot, I'm sending
-> this change also in Linux. There is a plan to write also Linux driver for
-> Turris Omnia MCU, like there is already in U-Boot.
-> 
-> https://source.denx.de/u-boot/u-boot/-/commit/832738974806e6264a3d0ac2aaa92d0f662fd128
-> https://source.denx.de/u-boot/u-boot/-/blob/master/drivers/gpio/turris_omnia_mcu.c
-> ---
->  arch/arm/boot/dts/armada-385-turris-omnia.dts | 8 +++++++-
->  1 file changed, 7 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/armada-385-turris-omnia.dts b/arch/arm/boot/dts/armada-385-turris-omnia.dts
-> index f4878df39753..f655e9229d68 100644
-> --- a/arch/arm/boot/dts/armada-385-turris-omnia.dts
-> +++ b/arch/arm/boot/dts/armada-385-turris-omnia.dts
-> @@ -184,7 +184,13 @@
->  			#size-cells = <0>;
->  			reg = <0>;
->  
-> -			/* STM32F0 command interface at address 0x2a */
-> +			/* MCU command i2c API */
-> +			mcu: mcu@2a {
-> +				compatible = "cznic,turris-omnia-mcu";
-> +				reg = <0x2a>;
-> +				gpio-controller;
-> +				#gpio-cells = <3>;
-> +			};
->  
->  			led-controller@2b {
->  				compatible = "cznic,turris-omnia-leds";
-> -- 
-> 2.20.1
-> 
+Ok, are there any other objections with this patch series?
