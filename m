@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6453E5A769E
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 08:30:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E47115A76B2
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 08:34:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230195AbiHaGay (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 02:30:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50592 "EHLO
+        id S229530AbiHaGeO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 02:34:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230272AbiHaGau (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 02:30:50 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80C299DB5A
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 23:30:33 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id q7so18541123lfu.5
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 23:30:32 -0700 (PDT)
+        with ESMTP id S229468AbiHaGeN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 02:34:13 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94248ABD43
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 23:34:09 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id z29so9985229lfb.13
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 23:34:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=WiaXfyuv+kgJFsOiubHH/NEcYq977WbeyAkqhNkB3Zg=;
-        b=AncO6HHbkCn20ckslrlufvxRnBrOE/deoPgwzhdWiequpJlmrGjtK2ZHzMIcuRqaCT
-         kyVggepsOBYl++4JHkkAovkE3fEngTbS8dVoyIDm+JGHINKhmDnFwTzw7kwBlE5qHJj2
-         WigKh9BdGXNouCn8ifoF+eL/R9xdvZeKDgPj9VdbuAG9LSlmy5S8VGt7vIJ4Lsw/tSrW
-         iTWUxbx90yPbObb7m009SLjnVnfdHd3uVm7zEZmckdgOTMA+1CHDDnbnqdkQ+JQ0mK0c
-         LeOu3NwwE/ecszU3taGSUYtGi4jCi/4tvsmWJN4fUJKzqSPMVCrzlDZ36/kc9dWFy39W
-         E3MQ==
+        bh=EfVD6vsRPLcHy1xJRg55OQq/u1sxBQsS9AWlrVtf3tc=;
+        b=Bs1uRBA+EvIU7ELdOh4+/qok9OgyeolpHAwagQcVTgcKyJ1QN/l6+Tk4isx/L35jsN
+         AklJ+0UT1wvSejSl+UCB1yDbaxuHQQxmZnGyIOkdd10rFk6GahXtXFJP1NF4GdLbBQBH
+         GznmxegpYDrGcghUTJm0Shqk22ElKV/58fKVU5u74suMWHWsNHRq6FI4y/0sexoQ2+jr
+         svDIKzpW6swbydVdJMYlKbIOmJOpFyHQZvXel6wgifLXUIXUn4iwC9V3Uo3ULzJKMsIZ
+         Kbnu0+ADVka69040EKuD7r3/F6d6Yn/lUXs/TveovPEwV57qihC9ubvAE1ZrK4wfHDg7
+         P8zg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=WiaXfyuv+kgJFsOiubHH/NEcYq977WbeyAkqhNkB3Zg=;
-        b=e4/Xny9i/2mji/GnP1LOr1570j76KZpoHnPCp8Q60DB1Ky29i0bDbf7PZskf6yia0b
-         LLVSIjJtsSKF15rDE0hT23SY2up8Ch23Xmq+yfVl6rLkIDE3cZR2gH5KEWLkVLHckMDl
-         cZYPxveUw6DF0/Ki1eYITegauJgi2dZuDEnQKpB6id1fC04fuKoUB52AkgXh9Mjz8gQx
-         WBp6Xuhug6yhaxYn7Ptye8lAMI8M4QwoIyiW9fmyUGlmI0SWnst609tgCeYoo7oJf0qs
-         HCL5V3B7rIxUGUxkEKVW4VVPTygdVVYr9BbfzRQ0nWG1zuENBrhh8pl4SXKzfeeBdttp
-         4IKg==
-X-Gm-Message-State: ACgBeo1yOhEKjSmcMNyIsA/E8J0z6+HbENWZ7Q5rjmiXtWxR7ia5Ezt1
-        4fuPJngs/uFfrfvJ983HvfZZsg==
-X-Google-Smtp-Source: AA6agR7Mfb50bktOxvDNqRirNcXkEGV/f9atPFgSSc9cjp1S+7dims1dW+OAwbO4KyMLocNw1BhPXQ==
-X-Received: by 2002:a05:6512:22c2:b0:494:80e0:3315 with SMTP id g2-20020a05651222c200b0049480e03315mr1519978lfu.369.1661927431008;
-        Tue, 30 Aug 2022 23:30:31 -0700 (PDT)
+        bh=EfVD6vsRPLcHy1xJRg55OQq/u1sxBQsS9AWlrVtf3tc=;
+        b=U+skkub1rGlqwcVHhkowgcaMN8Xo3UtjuMl8ptOGA3qGDbBaYIqMLGnub4x1ootJ/J
+         Uh5tavlT3AN0qHHuvQtUkinHx7qELG2/w/BNATw2idjV+02pSEW/64KtikOMCtrMupnD
+         LVCZnVloUUa4Hjo+pNvVy19Tpzf/Ok/I0TnAcrxmXiZu9IN9ruIWXfGvVBkQheusD60M
+         94BoUKImPtcJKXO+cVXU0aMfWuj6MxsoaoADkMlhQm60CgIrrPe/EpfPdq1GJ6KShtjQ
+         vRZ/pkCU8LRP+It9uXtdv4wHxyIyaBUwTslNc/4gyBLoXYxSkC9javb2sr56FLJr3YMa
+         648Q==
+X-Gm-Message-State: ACgBeo2D61V1sQxXrqk5wOHG+A89scQKjcHzYpzjadFxaKNJZRu+Vpna
+        vRL+CBhw9/p5sMX7zp3BLx7mtg==
+X-Google-Smtp-Source: AA6agR5ucdj71CKZHjXO1DiOPxggS5pBYARYG+4o1jOXLc8VfrkwFqUDl/6C7BaYMIUYvwKqSQvxpw==
+X-Received: by 2002:a05:6512:1320:b0:488:8fcc:e196 with SMTP id x32-20020a056512132000b004888fcce196mr8418177lfu.602.1661927648005;
+        Tue, 30 Aug 2022 23:34:08 -0700 (PDT)
 Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id m4-20020a056512114400b0048a9e899693sm1885198lfg.16.2022.08.30.23.30.30
+        by smtp.gmail.com with ESMTPSA id n6-20020a05651203e600b0049313f77755sm1176538lfq.213.2022.08.30.23.34.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Aug 2022 23:30:30 -0700 (PDT)
-Message-ID: <b601f692-8283-ca10-b62f-d040f03940b4@linaro.org>
-Date:   Wed, 31 Aug 2022 09:30:29 +0300
+        Tue, 30 Aug 2022 23:34:07 -0700 (PDT)
+Message-ID: <44af0610-63b1-20d2-2c8c-23e84edb519c@linaro.org>
+Date:   Wed, 31 Aug 2022 09:34:06 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH 1/4] dt-bindings: memory: Factor out common properties of
- LPDDR bindings
+Subject: Re: [PATCH 0/4] dt-bindings: memory: Describing LPDDR topology
 Content-Language: en-US
 To:     Julius Werner <jwerner@chromium.org>
 Cc:     Rob Herring <robh+dt@kernel.org>,
@@ -64,14 +63,13 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         Jian-Jia Su <jjsu@google.com>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20220831013359.1807905-1-jwerner@chromium.org>
- <20220831013359.1807905-2-jwerner@chromium.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220831013359.1807905-2-jwerner@chromium.org>
+In-Reply-To: <20220831013359.1807905-1-jwerner@chromium.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,22 +78,27 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 31/08/2022 04:33, Julius Werner wrote:
-> The bindings for different LPDDR versions mostly use the same kinds of
-> properties, so in order to reduce duplication when we're adding support
-> for more versions, this patch creates a new lpddr-props subschema that
-> can be referenced by the others to define these common parts. (This will
-> consider a few smaller I/O width and density numbers "legal" for LPDDR3
-> that are usually not used there, but this should be harmless.)
+> This patch series implements a proposal previously discussed on the
+> mailing list under the topic `[RFC] Correct memory layout reporting for
+> "jedec,lpddr2" and related bindings`. It adds a new jedec,lpddr-channel
+> binding which should be used to group nodes of the existing jedec,lpddr
+> bindings to describe their relative topology on the system and the
+> amount of chips wired in parallel on each channel, as well as their
+> different ranks. This also adds bindings for LPDDR4 and LPDDR5 memory
+> types and deduplicates some common schema elements between different
+> LPDDR types.
 > 
-> This also un-deprecates the manufacturer ID property for LPDDR3 (and
-> introduces it to LPDDR2), since it was found that having this
-> information available in a separate property can be useful in some
-> cases.
+> Julius Werner (4):
+>   dt-bindings: memory: Factor out common properties of LPDDR bindings
+>   dt-bindings: memory: Add numeric LPDDR compatible string variant
+>   dt-bindings: memory: Add jedec,lpddr4 and jedec,lpddr5 bindings
+>   dt-bindings: memory: Add jedec,lpddrX-channel binding
 
-Why do you need to un-deprecate them if you have this information in
-compatible? This was not exactly the previous consensus. My statement
-was ok for un-deprecating if you cannot derive them from compatible. Now
-you can. This should be the same as USB device schema.
+Thanks for the patches. Where are the users of these bindings? Although
+bindings do not have requirement of providing user (as kernel API has),
+but this is quite a rework so I want to see that it is applicable. That
+it matches real use case and need. I can do it only with real DTS in the
+kernel.
 
 Best regards,
 Krzysztof
