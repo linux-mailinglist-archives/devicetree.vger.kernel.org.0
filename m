@@ -2,69 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F09A5A841C
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 19:17:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3CAF5A842D
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 19:22:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231190AbiHaRRq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 13:17:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38188 "EHLO
+        id S229652AbiHaRWJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 13:22:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230331AbiHaRRp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 13:17:45 -0400
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE025CAC4B;
-        Wed, 31 Aug 2022 10:17:44 -0700 (PDT)
-Received: by mail-pl1-x62b.google.com with SMTP id c2so14740714plo.3;
-        Wed, 31 Aug 2022 10:17:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=id8ZvF9LfPH1Vxy7z5dNEHgiRdyi8KBwBy/JBc/Yqww=;
-        b=kYU6eqRMcIUGpPZAvvilV7pOhoIz2NZrgE363sDDW2Kr5jzl46JYK18VSp/kwvC3ph
-         oiZhlo1RlcBVVxeeOevK3VtFfBCvJJwS3EzvjcdKXAYdTd0lm46oAutzddhP27ysUzCq
-         w0uvwImhT5gk7op6+UmVcUzSvQNU4zoSc07AP8FTZSIQSeEWWTH0xtsgxkDOp1ig0eyO
-         D91gmtNB1sjYTXzI97GuQ7C046mi5aUB03r2vrnGRwrnEszcaHxUUhiQOU/AJtEH13xo
-         loZYMe9G1YlEWhgSMBVuIFdedq+E83BtyKQDBqgziD6rZCV4+Sdadog7zs7mIyBe18/K
-         7A2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=id8ZvF9LfPH1Vxy7z5dNEHgiRdyi8KBwBy/JBc/Yqww=;
-        b=ZMDKdBQ4/bD2GaKlEz7rSedHV2Iw41V25RuV9TIYTy7WBFx20Ry7tCefxR+lnEKK4R
-         XvLd8h5EC687/i7JqJa3g+fOQee7pg2nF/hpi+WfsLeHpFgYnDO50MRAtmvhsScDDRjh
-         Fht4JjAppbhcHVExxlooGnnLBRl5ZGA9XLBRYab9ebfK/IoiyrJw3rW6hslEWs9FryRb
-         iptmW+24F/jb72WhYJBryq6vhBnfwAuRtMCik3OzzjAUbBUv0WyE7i/NUUJ8gBcPWTpJ
-         EzMw4KcVeAnm8WY6ZCVoQsB8xKXRNM1HsehJGuaKfclE+bQNUIeZAsTGXeW1NXl1V8sP
-         k2PQ==
-X-Gm-Message-State: ACgBeo1HVxtpO5zY8pn/7VSso8LcYwmS6peuKe4Y8gDcVpXXVdjoVJZw
-        q85mby/nDyPnPUSFEpDNXq3xYmCaXKM=
-X-Google-Smtp-Source: AA6agR433WsM1zafWGUUh1tgZ3bzDc2DbEbBDXLZd4MNjEiU/mNjApppn3g0eXs4Wji0TRo8irtQHA==
-X-Received: by 2002:a17:90a:7185:b0:1fd:768f:232d with SMTP id i5-20020a17090a718500b001fd768f232dmr4366561pjk.149.1661966264220;
-        Wed, 31 Aug 2022 10:17:44 -0700 (PDT)
-Received: from google.com ([2620:15c:202:201:2488:79db:897a:5de7])
-        by smtp.gmail.com with ESMTPSA id e187-20020a621ec4000000b00537a38ec2c6sm8736539pfe.164.2022.08.31.10.17.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 31 Aug 2022 10:17:43 -0700 (PDT)
-Date:   Wed, 31 Aug 2022 10:17:40 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Francesco Dolcini <francesco@dolcini.it>
-Cc:     linux-input@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Francesco Dolcini <francesco.dolcini@toradex.com>
-Subject: Re: [PATCH v1 0/2] Input: touchscreen: Minor colibri-vf50-ts cleanups
-Message-ID: <Yw+XtAvlt9Fys3wK@google.com>
-References: <20220712101619.326120-1-francesco.dolcini@toradex.com>
- <Yw9rh7L3QecetL7m@gaggiata.pivistrello.it>
+        with ESMTP id S229481AbiHaRWI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 13:22:08 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38A41543D7;
+        Wed, 31 Aug 2022 10:22:00 -0700 (PDT)
+X-UUID: b1f2346a39f2423694b120268e9cf49c-20220901
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=tyL8cPvebaCtbUtbRJCGD1Ux/d2Hi5szlibwPANQZ1E=;
+        b=Zz77KI36j49AOdps07TRvLAao4aItIEb7BmMKh3x5MZs3/ksimttw/QyXTA+1Vk0SbUnPckPC1TALnonYxlKvcIRirD8n5m1wyb+w4r4G8oR06b4519AtguWzBEtHTbJzSsvh9F1aZsAZa7F0u9QfIOYNnkQJDnSbV9QSYZhjwg=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.10,REQID:9c06a793-f46c-4615-b9ca-5d42ca478572,OB:0,L
+        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Release
+        _Ham,ACTION:release,TS:95
+X-CID-INFO: VERSION:1.1.10,REQID:9c06a793-f46c-4615-b9ca-5d42ca478572,OB:0,LOB
+        :0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Spam_GS98
+        1B3D,ACTION:quarantine,TS:95
+X-CID-META: VersionHash:84eae18,CLOUDID:26562c56-e800-47dc-8adf-0c936acf4f1b,C
+        OID:655b26123161,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: b1f2346a39f2423694b120268e9cf49c-20220901
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        (envelope-from <allen-kh.cheng@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 669347512; Thu, 01 Sep 2022 01:21:55 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Thu, 1 Sep 2022 01:21:53 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.15 via Frontend Transport; Thu, 1 Sep 2022 01:21:53 +0800
+From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Subject: [PATCH v3 0/2] Add mt8186 mutex support for mdp3
+Date:   Thu, 1 Sep 2022 01:21:49 +0800
+Message-ID: <20220831172151.10215-1-allen-kh.cheng@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Yw9rh7L3QecetL7m@gaggiata.pivistrello.it>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_CSS
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,26 +69,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 31, 2022 at 04:09:11PM +0200, Francesco Dolcini wrote:
-> Hello all,
-> 
-> On Tue, Jul 12, 2022 at 12:16:17PM +0200, Francesco Dolcini wrote:
-> > Hi all,
-> > This series introduce some minor cleanups on colibri-vf50-ts, allow using it
-> > with any IIO ADC input and fix a couple of mistakes in the dt-bindings
-> > documentation.
-> > 
-> > Max Krummenacher (2):
-> >   Input: touchscreen: colibri-vf50-ts: don't depend on VF610_ADC
-> >   dt-bindings: input: colibri-vf50-ts: Improve documentation
-> > 
-> >  .../input/touchscreen/colibri-vf50-ts.txt        | 16 ++++++++--------
-> >  drivers/input/touchscreen/Kconfig                |  2 +-
-> >  2 files changed, 9 insertions(+), 9 deletions(-)
-> 
-> Just a gently ping on this series, anything I should do?
+This series are based on matthias.bgg/linux.git, for-next and provide
+mt8186 mutex support for Media Data Path 3 (MDP3).
 
-My apologies, applied the 2 patches, thank you.
+As discussed, we add data field (mt8186_mdp_mutex_driver_data) for 
+mt8186 mdp3 mutex support instead of adding mutex_table_mod into mt8186
+disp mutex data.
+
+changes since v2:
+ - rebase to matthias.bgg/linux.git
+ - add C-d-b, R-b and A-b tags
+
+changes since v1:
+ - add mt8186_mdp_mutex_table_mod
+ - add mt8186_mdp_mutex_driver_data for mt8186-mdp3-mutex
+
+Allen-KH Cheng (2):
+  dt-bindings: soc: mediatek: Add mdp3 mutex support for mt8186
+  soc: mediatek: mutex: Add mt8186 mutex mod settings for mdp3
+
+ .../bindings/soc/mediatek/mediatek,mutex.yaml |  1 +
+ drivers/soc/mediatek/mtk-mutex.c              | 28 +++++++++++++++++++
+ include/linux/soc/mediatek/mtk-mutex.h        |  2 ++
+ 3 files changed, 31 insertions(+)
 
 -- 
-Dmitry
+2.18.0
+
