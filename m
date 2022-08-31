@@ -2,242 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D23215A7363
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 03:34:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45EC25A73FB
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 04:39:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229806AbiHaBeU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 21:34:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58538 "EHLO
+        id S231942AbiHaCjI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 22:39:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231206AbiHaBeN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 21:34:13 -0400
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B6A8B0B3C
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 18:34:10 -0700 (PDT)
-Received: by mail-pj1-x102f.google.com with SMTP id i5-20020a17090a2a0500b001fd8708ffdfso10477281pjd.2
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 18:34:10 -0700 (PDT)
+        with ESMTP id S229456AbiHaCjH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 22:39:07 -0400
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 373569C8E0;
+        Tue, 30 Aug 2022 19:39:06 -0700 (PDT)
+Received: by mail-pl1-x62c.google.com with SMTP id f24so10145067plr.1;
+        Tue, 30 Aug 2022 19:39:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=VgOynVEB9/HARKXu49Pt4j7dTWgCIFiaZm3ap+KRJWg=;
-        b=c70eTEa27HMsGuutG1waBvqwXQVDKH7Hg3/FJbUjjzDxswerI78gq8Vj33qN2mQMp6
-         lSHjZ/6R6iAHHN8ymDYNCA9ZOW0LTIO6HtNK7Ihdjw43jzrzdsRDCf//2f0IluBpZR/U
-         GI/rqAVYOjrKByBkOu0TqAuns+PoCPb0gHSzQ=
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:sender
+         :from:to:cc;
+        bh=6I3GeMx+uqUZdiXdBJPpFrxttsFF0ltwfrX0yfx92NI=;
+        b=Vz+/yOjBgNxRcW4AcECQXhDA5IlCUp1rVQgNZVJBrJyxjMqmeLcDNSVdjxE+0FdUVy
+         dz1MAzEjlNyCls+cqmM/keBJoot9JQ8tV/oY2IXmSV0paIeQeGyGmQdcP9rAiDfIj9vy
+         qssA+ZTlwd+JDHTNJiuEhqQJdHdgYoe0errSOhaWKsJiVuXXlzugiVNPTnYb1KifcnF0
+         BNc4i0ndkgPyouYM4xqT7M69yWGxgHVM6fW0e87vgEJbuUA7014qlOhtnuMIRPIvLbB1
+         NF2weJ4LkqJCjCsCXeJfmswr2rKuj60SQsFY+gq2uXhG6nVl6OKIAyQwjr6pXnc94tqw
+         J9aA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=VgOynVEB9/HARKXu49Pt4j7dTWgCIFiaZm3ap+KRJWg=;
-        b=lzCfIE3JRRbM0GD8ExU1ov2U9eLwsb7R5NT7g01GVkEoXm9vUT/SDuuF3KZKX4LR2U
-         pUgPbVe3LjgArVqYYuqAsyO3Vw3gewhO4/iRV8tsTL+sclBGJJ6QTeY/zN34jQWlWBc9
-         ZKpG9JUDoGR3vnWqIp/RQRG0zrFFrYKLViNfLlSxZ9JvV8PUXe21Jf8KvVkxfMjgbuln
-         c40Yv7yfdoS5+VxQVi3Igkmzh0RCRZ1qWerXVkXRHsu8E53pdFD2qC6IUZ1QDsF09G2T
-         KBZvYOBydpz/9LNKsLiXDmEScW/mcPRAxEBX9f2EeGayJLO01bZaGaupQqtkojz7Z/2k
-         WMkg==
-X-Gm-Message-State: ACgBeo00DqGVUflVzxgBn3uCUUxV8cXU/lhQVVx7Eu36mG8oLnYNonQf
-        OCqHgloPjKjQPaECyYBUAJjgKk1utCywMg==
-X-Google-Smtp-Source: AA6agR4SdgAm5wO3PwP06W6bWbscrdXBG/UoiheinSk2SivjRbf3Z0nwLXCW2WF/QON++1PTx1/fgw==
-X-Received: by 2002:a17:902:d486:b0:16f:15a1:6da3 with SMTP id c6-20020a170902d48600b0016f15a16da3mr24043762plg.134.1661909649860;
-        Tue, 30 Aug 2022 18:34:09 -0700 (PDT)
-Received: from jwerner-p920.mtv.corp.google.com ([2620:15c:202:201:2e75:b9a4:fb1:b1b8])
-        by smtp.gmail.com with ESMTPSA id t10-20020a170902e84a00b00174f4316c24sm4261382plg.245.2022.08.30.18.34.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Aug 2022 18:34:09 -0700 (PDT)
-From:   Julius Werner <jwerner@chromium.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Doug Anderson <dianders@chromium.org>,
-        Jian-Jia Su <jjsu@google.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Julius Werner <jwerner@chromium.org>
-Subject: [PATCH 4/4] dt-bindings: memory: Add jedec,lpddrX-channel binding
-Date:   Tue, 30 Aug 2022 18:33:59 -0700
-Message-Id: <20220831013359.1807905-5-jwerner@chromium.org>
-X-Mailer: git-send-email 2.37.2.789.g6183377224-goog
-In-Reply-To: <20220831013359.1807905-1-jwerner@chromium.org>
-References: <20220831013359.1807905-1-jwerner@chromium.org>
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:sender
+         :x-gm-message-state:from:to:cc;
+        bh=6I3GeMx+uqUZdiXdBJPpFrxttsFF0ltwfrX0yfx92NI=;
+        b=HajuRhkTzMIxqj/DaXMlwUAh2BA6UhEaEerme9WwzSilHZUbywfnm61Fv53DzBpKci
+         bW2dgHZiC492mu0shsfHleIbxvmwYb3yfYLM9qTg3mnGBbPQniP0OFP0EQsNPh0SPt4R
+         j5YpVKL8cFEXUog/Y8B5fszxXgyudcu3cBv/4sOaSeE2GkTF6IEqQSb5rOb7J9UhfpYX
+         Xso0xolb/y50bm5IButrjP7l/F7u7STTi4pyuafaCFZV7KVmXJ47wqdgwZbMzeZr/a4k
+         ewasVIl68Yv002B1BOjewWzGA0v6+bzWxKQSa9T78fQDuMBga2z20kyO1Dq880pKBMi2
+         s1jQ==
+X-Gm-Message-State: ACgBeo1I83jCu5mQa6w/+CfGbtkMIRFOjQeHZWHajYDG9C3LdIk28pD9
+        gZf+YQ4APEOuwYUvq7KcxnzWyJAaIE8hFw==
+X-Google-Smtp-Source: AA6agR7oAnrknYawTKOErK7WVEqTplrYWxE/svDSxMh/43DD0IjkCv/5ep1bPjBzTsAiszeScSfCsw==
+X-Received: by 2002:a17:90a:9f96:b0:1fa:b4fb:6297 with SMTP id o22-20020a17090a9f9600b001fab4fb6297mr1050215pjp.80.1661913545641;
+        Tue, 30 Aug 2022 19:39:05 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id 5-20020a630605000000b0042988a04bfdsm2278466pgg.9.2022.08.30.19.39.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Aug 2022 19:39:04 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <bd510d56-b161-ff17-8a09-ed4a8a66ca57@roeck-us.net>
+Date:   Tue, 30 Aug 2022 19:39:01 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Content-Language: en-US
+To:     Eliav Farber <farbere@amazon.com>, jdelvare@suse.com,
+        robh+dt@kernel.org, p.zabel@pengutronix.de, rtanwar@maxlinear.com,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     talel@amazon.com, hhhawa@amazon.com, jonnyc@amazon.com,
+        hanochu@amazon.com, ronenk@amazon.com, itamark@amazon.com,
+        shellykz@amazon.com, shorer@amazon.com, amitlavi@amazon.com,
+        almogbs@amazon.com, dkl@amazon.com, rahul.tanwar@linux.intel.com,
+        andriy.shevchenko@intel.com
+References: <20220830192212.28570-1-farbere@amazon.com>
+ <20220830192212.28570-3-farbere@amazon.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH v3 02/19] hwmon: (mr75203) fix VM sensor allocation when
+ "intel,vm-map" not defined
+In-Reply-To: <20220830192212.28570-3-farbere@amazon.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds a new device tree binding for an LPDDR channel to serve
-as a top-level organizing node for LPDDR part nodes nested below it. An
-LPDDR channel needs to have an "io-width" property to describe its width
-(this is important because this width does not always match the io-width
-of the part number, indicating that multiple parts are wired in parallel
-on the same channel), as well as one or more nested "rank@X" nodes.
-Those represent information about the individual ranks of each LPDDR
-part connected on that channel and should match the existing
-"jedec,lpddrX" bindings for individual LPDDR parts.
+On 8/30/22 12:21, Eliav Farber wrote:
+> Bug fix - in case "intel,vm-map" is missing in device-tree ,'num' is set
+> to 0, and no voltage channel infos are allocated.
+> 
+> Signed-off-by: Eliav Farber <farbere@amazon.com>
+> ---
+>   drivers/hwmon/mr75203.c | 28 ++++++++++++----------------
+>   1 file changed, 12 insertions(+), 16 deletions(-)
+> 
+> diff --git a/drivers/hwmon/mr75203.c b/drivers/hwmon/mr75203.c
+> index 046523d47c29..0e29877a1a9c 100644
+> --- a/drivers/hwmon/mr75203.c
+> +++ b/drivers/hwmon/mr75203.c
+> @@ -580,8 +580,6 @@ static int mr75203_probe(struct platform_device *pdev)
+>   	}
+>   
+>   	if (vm_num) {
+> -		u32 num = vm_num;
+> -
+>   		ret = pvt_get_regmap(pdev, "vm", pvt);
+>   		if (ret)
+>   			return ret;
+> @@ -594,30 +592,28 @@ static int mr75203_probe(struct platform_device *pdev)
+>   		ret = device_property_read_u8_array(dev, "intel,vm-map",
+>   						    pvt->vm_idx, vm_num);
+>   		if (ret) {
+> -			num = 0;
+> +			/*
+> +			 * Incase intel,vm-map property is not defined, we
+> +			 * assume incremental channel numbers.
+> +			 */
+> +			for (i = 0; i < vm_num; i++)
+> +				pvt->vm_idx[i] = i;
+>   		} else {
+>   			for (i = 0; i < vm_num; i++)
+>   				if (pvt->vm_idx[i] >= vm_num ||
+> -				    pvt->vm_idx[i] == 0xff) {
+> -					num = i;
+> +				    pvt->vm_idx[i] == 0xff)
+>   					break;
+> -				}
+> -		}
+>   
+> -		/*
+> -		 * Incase intel,vm-map property is not defined, we assume
+> -		 * incremental channel numbers.
+> -		 */
+> -		for (i = num; i < vm_num; i++)
+> -			pvt->vm_idx[i] = i;
+> +			vm_num = i;
+> +		}
+>   
 
-New platforms should be using this node -- the existing practice of
-providing a raw, toplevel "jedec,lpddrX" node without indication of how
-many identical parts are in the system should be considered deprecated.
+So this is actually a functional change: In the old code, unspecified channel
+numbers (num ... vm_num) were filled with incremental channel numbers.
+This is no longer the case.
 
-Signed-off-by: Julius Werner <jwerner@chromium.org>
----
- .../ddr/jedec,lpddr-channel.yaml              | 116 ++++++++++++++++++
- .../ddr/jedec,lpddr-props.yaml                |  10 +-
- 2 files changed, 125 insertions(+), 1 deletion(-)
- create mode 100644 Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-channel.yaml
+> -		in_config = devm_kcalloc(dev, num + 1,
+> +		in_config = devm_kcalloc(dev, vm_num + 1,
+>   					 sizeof(*in_config), GFP_KERNEL);
 
-diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-channel.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-channel.yaml
-new file mode 100644
-index 00000000000000..517e770d8e7133
---- /dev/null
-+++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-channel.yaml
-@@ -0,0 +1,116 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/memory-controllers/ddr/jedec,lpddr-channel.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: LPDDR channel with chip/rank topology description
-+
-+description:
-+  An LPDDR channel is a completely independent set of LPDDR pins (DQ, CA, CS,
-+  CK, etc.) that connect one or more LPDDR chips to a host system. The main
-+  purpose of this node is to overall LPDDR topology of the system, including the
-+  amount of individual LPDDR chips and the ranks per chip.
-+
-+maintainers:
-+  - Julius Werner <jwerner@chromium.org>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - jedec,lpddr2-channel
-+      - jedec,lpddr3-channel
-+      - jedec,lpddr4-channel
-+      - jedec,lpddr5-channel
-+
-+  io-width:
-+    description:
-+      The number of DQ pins in the channel. If this number is different
-+      from (a multiple of) the io-width of the LPDDR chip, that means that
-+      multiple instances of that type of chip are wired in parallel on this
-+      channel (with the channel's DQ pins split up between the different
-+      chips, and the CA, CS, etc. pins of the different chips all shorted
-+      together).  This means that the total physical memory controlled by a
-+      channel is equal to the sum of the densities of each rank on the
-+      connected LPDDR chip, times the io-width of the channel divided by
-+      the io-width of the LPDDR chip.
-+    enum:
-+      - 8
-+      - 16
-+      - 32
-+      - 64
-+      - 128
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+patternProperties:
-+  "^rank@[0-9]+$":
-+    type: object
-+    description:
-+      Each physical LPDDR chip may have one or more ranks. Ranks are
-+      internal but fully independent sub-units of the chip. Each LPDDR bus
-+      transaction on the channel targets exactly one rank, based on the
-+      state of the CS pins. Different ranks may have different densities and
-+      timing requirements.
-+    oneOf:
-+      - $ref: /schemas/memory-controllers/ddr/jedec,lpddr2.yaml#
-+      - $ref: /schemas/memory-controllers/ddr/jedec,lpddr3.yaml#
-+      - $ref: /schemas/memory-controllers/ddr/jedec,lpddr4.yaml#
-+      - $ref: /schemas/memory-controllers/ddr/jedec,lpddr5.yaml#
-+    required:
-+      - reg
-+
-+required:
-+  - compatible
-+  - io-width
-+  - "#address-cells"
-+  - "#size-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    lpddr-channel0 {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      compatible = "jedec,lpddr4-channel";
-+      io-width = <32>;
-+
-+      rank@0 {
-+        compatible = "lpddr4-ff,0100", "jedec,lpddr4";
-+        reg = <0>;
-+        density = <8192>;
-+        io-width = <16>;
-+        manufacturer-id = <255>;
-+        revision-id = <1 0>;
-+      };
-+    };
-+
-+    lpddr-channel1 {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      compatible = "jedec,lpddr4-channel";
-+      io-width = <32>;
-+
-+      rank@0 {
-+        compatible = "lpddr4-05,0301", "jedec,lpddr4";
-+        reg = <0>;
-+        density = <4096>;
-+        io-width = <32>;
-+        manufacturer-id = <5>;
-+        revision-id = <3 1>;
-+      };
-+
-+      rank@1 {
-+        compatible = "lpddr4-05,0301", "jedec,lpddr4";
-+        reg = <1>;
-+        density = <2048>;
-+        io-width = <32>;
-+        manufacturer-id = <5>;
-+        revision-id = <3 1>;
-+      };
-+    };
-diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-props.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-props.yaml
-index e1182e75ca1a3f..53a4836028cd25 100644
---- a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-props.yaml
-+++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-props.yaml
-@@ -9,7 +9,8 @@ title: Common properties for LPDDR types
- description:
-   Different LPDDR types generally use the same properties and only differ in the
-   range of legal values for each. This file defines the common parts that can be
--  reused for each type.
-+  reused for each type. Nodes using this schema should generally be nested under
-+  an LPDDR channel node.
- 
- maintainers:
-   - Krzysztof Kozlowski <krzk@kernel.org>
-@@ -71,4 +72,11 @@ properties:
-       - 16
-       - 8
- 
-+  reg:
-+    description:
-+      The rank number of this LPDDR rank when used as a subnode to an LPDDR
-+      channel.
-+    minimum: 0
-+    maximum: 3
-+
- additionalProperties: true
--- 
-2.31.0
+The relevant difference (and maybe bug in the existing code ?) seems to be
+this change. Have you considered leaving everything else in place and only
+changing this code as well as the num -> vm_num changes below ?
+
+Thanks,
+Guenter
+
+>   		if (!in_config)
+>   			return -ENOMEM;
+>   
+> -		memset32(in_config, HWMON_I_INPUT, num);
+> -		in_config[num] = 0;
+> +		memset32(in_config, HWMON_I_INPUT, vm_num);
+> +		in_config[vm_num] = 0;
+>   		pvt_in.config = in_config;
+>   
+>   		pvt_info[index++] = &pvt_in;
 
