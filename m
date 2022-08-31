@@ -2,115 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39D4A5A7B4B
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 12:23:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B3F85A7B65
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 12:37:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230155AbiHaKXW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 06:23:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34394 "EHLO
+        id S229971AbiHaKhV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 06:37:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53268 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230296AbiHaKXV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 06:23:21 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E76F61CFE5;
-        Wed, 31 Aug 2022 03:23:20 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id e20so17594997wri.13;
-        Wed, 31 Aug 2022 03:23:20 -0700 (PDT)
+        with ESMTP id S229908AbiHaKhU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 06:37:20 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC965B6029
+        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 03:37:18 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id v16so14938869wrm.8
+        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 03:37:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:content-language
-         :references:cc:to:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date;
-        bh=QQOr949BNq6Tsz1/GWbY8mmvpE6EQflLuQEMgsG3Mmo=;
-        b=N6qelCPephiPlFW95dJC6m2EGeguD6GlubhFgn3yrrYceSIOUjnmv2FjS7kLO784wp
-         qrvliJMZE5Mo7cWGZCCBPEs9u7tIHTvUDcFyadVgRHjD8JMaVGl6e/WQ3w8FXN0Wzgl9
-         WSgndB2UFYpyZGiRsigro0C/cTmIT/GoYcDMpZjyfkfh7z8PY17W3yfjNYbhcW/x5HnL
-         BusJb87qgrJRvZ7VnFcHSX+IHmpOa5WN3l4XTUClj50rO4oltoGifwwy1DW4K4jJ3tUR
-         Q1euY5dxLPmNybYtZJZcKB/HlplhwpnEy8geNmxX8NrnzypUWDE+0/xRFdmaSs15Yeqy
-         U7VQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=qmSDVvWPmXjsEoLB/yy4dBeFNE6LDECdPTKFlVF1PoE=;
+        b=sjv1ud0NJToWCCz5mpoI1XXv7VRN42nSodi+vU6HqC3fe4/RDdH9q78MztUStUg3tz
+         Xc2VH//pGT74lRB34bGeve8JkG1qnn0+IqPnock9NFdhh6qZlnaCkIyowzKTRT7FJxji
+         z/GR4fNB9q+235VImiHhUj3qtbmxYAGPA6OWg32iyZY+RWa1WOllcMXAW5Ypa+UHJ8jW
+         8xs5JdrK3PiKkOFMlLV0DL+qhh48j42QQnv6mKDYipwbJKuU6YxKUw7q3wlwpZcq+q8X
+         TT/+nZgkSnsztlClPhtaZpJBrpVs5ezXDDOxx5Tro2hYIsNMiKVkIvoSrdqaMCZkKMyS
+         wVgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:content-language
-         :references:cc:to:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=QQOr949BNq6Tsz1/GWbY8mmvpE6EQflLuQEMgsG3Mmo=;
-        b=QF2jJNvQgR6cjUgbzcqyUDl+/II7tJsYRC7byn0f+eZL2VJsFTcWVaEhsZ4m2qghZW
-         AQdCLElg4VwAOBZ2vufg4HlV81MBVfN1Y/hGaNWb6lAMkmF+7ynpl7273RRIgsQYPrkR
-         yU3j2D9KQOlrBRz6+3Lr8SWFJj0GTIUrSbSeKhKggW43jv8yEd1fy7IiKeubWGr7OYSa
-         7KuT+p/I6Tp28NMABHiEA+0gfAdlCt/sivCGcSTgnPRutnFgzrlUIhCq+xjINV8WCxWo
-         Jb+c1eD2yxzEbJyE3UebQqMPmr0XpvsuLxC9zdkQs1k2dISEgvnIogw/0fPrWaGv9W/s
-         NxUw==
-X-Gm-Message-State: ACgBeo1ATTue8PHldfyHi6VEtk61qkU81ZZftZHUchlX+wJykBRVOeMF
-        W2VaqM5sxOWbnxpPVEiGCn0=
-X-Google-Smtp-Source: AA6agR45AiRbadhtI8VHMxdZMgSj4iWs74MjjZ+50gkYRpG4I1dQpNdnXALXXj7dSaAbUnVb7glEHA==
-X-Received: by 2002:a5d:47a1:0:b0:226:ebfc:f759 with SMTP id 1-20020a5d47a1000000b00226ebfcf759mr1265470wrb.636.1661941399465;
-        Wed, 31 Aug 2022 03:23:19 -0700 (PDT)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id p8-20020a1c5448000000b003a63a3b55c3sm1955370wmi.14.2022.08.31.03.23.17
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=qmSDVvWPmXjsEoLB/yy4dBeFNE6LDECdPTKFlVF1PoE=;
+        b=3GnAwzWJ+JDJ5JNFtehZwXNsIkXzGSul3QTyhbA3ve9yLa2+g9QaYQd8LvtuuFWU6g
+         KZRlvO5gew7cADStdLJHOUZyQMtbqvwkrx2jLdQWV9AR8MBJgI+vbkz0YDrsTP+YH6IC
+         brFWVfp8uDHAv9ez0lzVQlmShqPyMfML9beSiMBktQE18GMlPoT1W7aDn17sPkFJXXTW
+         PP50RYDM39tGghqotvRFMO7hQL+lyQeEQhQvboXMAMC4GqujFXnJ5EHC+d+fUUs8x2hO
+         5FlSCTicG22L3r/4wmwxt2jzmxtaHu7soQnEa8lWdbeBZXsE3Trkaa2jnDKOKvohoCrf
+         hMfQ==
+X-Gm-Message-State: ACgBeo0UOmZ6FZWSwRM4zHwfBzhGoiY/s3kcSc/P6gpPczW+b7jaKj8h
+        9XuolOmAyUjukoTbeM+oUfCLjQ==
+X-Google-Smtp-Source: AA6agR7zq/2i3kOzfh+ND3aVSosKcimESlsCtfJ9TPLHCMLrzMvYwqw/Dz65I9sh80Ti/NbGaa+m0w==
+X-Received: by 2002:a05:6000:144a:b0:220:7181:9283 with SMTP id v10-20020a056000144a00b0022071819283mr10935127wrx.158.1661942237422;
+        Wed, 31 Aug 2022 03:37:17 -0700 (PDT)
+Received: from [192.168.86.238] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
+        by smtp.googlemail.com with ESMTPSA id e3-20020adfe383000000b0021ef34124ebsm12377427wrm.11.2022.08.31.03.37.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 Aug 2022 03:23:18 -0700 (PDT)
-Message-ID: <995875c3-5b04-5981-b0e1-f66f73cdfafc@gmail.com>
-Date:   Wed, 31 Aug 2022 12:23:17 +0200
+        Wed, 31 Aug 2022 03:37:16 -0700 (PDT)
+Message-ID: <a4562481-780b-585f-01a5-d447040fbd0a@linaro.org>
+Date:   Wed, 31 Aug 2022 11:37:15 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.1.2
-To:     Tinghan Shen <tinghan.shen@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220831065100.27722-1-tinghan.shen@mediatek.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 2/6] ASoC: codecs: wsa-macro: add support for sm8450 and
+ sc8280xp
 Content-Language: en-US
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Subject: Re: [PATCH v1] arm64: dts: mediatek: Fix build warnings of mt8173
- vcodec nodes
-In-Reply-To: <20220831065100.27722-1-tinghan.shen@mediatek.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>
+Cc:     broonie@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        perex@perex.cz, tiwai@suse.com,
+        pierre-louis.bossart@linux.intel.com,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220818134619.3432-1-srinivas.kandagatla@linaro.org>
+ <20220818134619.3432-3-srinivas.kandagatla@linaro.org>
+ <20220818171222.GG1978870-robh@kernel.org>
+ <9c9226d9-8470-6672-d8ce-3fb1e4df3fda@linaro.org>
+ <5da6171a-4949-9cc7-2967-6cc39a7955c8@linaro.org>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <5da6171a-4949-9cc7-2967-6cc39a7955c8@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Applied, thanks!
 
-On 31/08/2022 08:51, Tinghan Shen wrote:
-> Correct the phandle of power domain node referenced by vcodec nodes.
+
+On 31/08/2022 10:19, Krzysztof Kozlowski wrote:
+> On 31/08/2022 12:17, Srinivas Kandagatla wrote:
+>>
+>>
+>> On 18/08/2022 18:12, Rob Herring wrote:
+>>> On Thu, Aug 18, 2022 at 02:46:15PM +0100, Srinivas Kandagatla wrote:
+>>>> Add compatible for sm8450 and sc8280xp.
+>>>>
+>>>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>>>> ---
+>>>>    sound/soc/codecs/lpass-wsa-macro.c | 2 ++
+>>>>    1 file changed, 2 insertions(+)
+>>>>
+>>>> diff --git a/sound/soc/codecs/lpass-wsa-macro.c b/sound/soc/codecs/lpass-wsa-macro.c
+>>>> index 27da6c6c3c5a..f82c297ea3ab 100644
+>>>> --- a/sound/soc/codecs/lpass-wsa-macro.c
+>>>> +++ b/sound/soc/codecs/lpass-wsa-macro.c
+>>>> @@ -2561,6 +2561,8 @@ static const struct dev_pm_ops wsa_macro_pm_ops = {
+>>>>    static const struct of_device_id wsa_macro_dt_match[] = {
+>>>>    	{.compatible = "qcom,sc7280-lpass-wsa-macro"},
+>>>>    	{.compatible = "qcom,sm8250-lpass-wsa-macro"},
+>>>> +	{.compatible = "qcom,sm8450-lpass-wsa-macro"},
+>>>> +	{.compatible = "qcom,sc8280xp-lpass-wsa-macro" },
+>>>
+>>> Looks like these are backwards compatible with the existing versions,
+>>> why not reflect that in the binding?
+>> Backward compatibility is not always true, some of the registers and
+>> there defaults tend to change across SoCs. Having SoC specific
+>> compatible could help us deal with this and also make code more inline
+>> with other codec macros in LPASS IP.
 > 
-> arch/arm64/boot/dts/mediatek/mt8173.dtsi:1450.35-1471.5: Warning (power_domains_property): /soc/vcodec@18002000: Missing property '#power-domain-cells' in node /soc/syscon@10006000 or bad phandle (referred from power-domains[0])
-> arch/arm64/boot/dts/mediatek/mt8173.dtsi:1502.35-1522.5: Warning (power_domains_property): /soc/vcodec@19002000: Missing property '#power-domain-cells' in node /soc/syscon@10006000 or bad phandle (referred from power-domains[0])
+> I am not saying that there should be no SoC specific compatible. This
+> one is a must, but the question why duplicating the entries and not
+> using fallback?
+
+You mean using fallback compatible "qcom,sc7280-lpass-wsa-macro" in 
+sc8280xp devicetree and not add new compatibles in the driver?
+
+The reason for adding this new compatible strings is that macros in this 
+lpass codec that differ form each SoC.
+ex: [PATCH 6/6] ASoC: codecs: tx-macro: add support for sm8450 and 
+sc8280xp and there is a pending patch on va-macro that has soundwire 
+controller frame sync and reset control which is moved from tx-macro to 
+va-macro.
+
+so DT might endup with mix of compatibles for same LPASS Codec like this:
+
+"qcom,sc7280-lpass-wsa-macro"
+"qcom,sc8280xp-lpass-va-macro"
+"qcom,sc8280xp-lpass-tx-macro"
+"qcom,sc8280xp-lpass-rx-macro"
+
+AFAIU, the fallback thing will work for things that are identical but in 
+this case they differ across SoCs, and having SoC specific compatibles 
+in now would help handle this.
+
+
+thanks,
+srini
+
 > 
-> Fixes: d3dfd4688574 ("arm64: dts: mediatek: Update mt81xx scpsys node to align with dt-bindings")
-> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-> ---
->   arch/arm64/boot/dts/mediatek/mt8173.dtsi | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-> index b4d48f8b7eeb..7640b5158ff9 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-> @@ -1467,7 +1467,7 @@
->   			clock-names = "venc_sel";
->   			assigned-clocks = <&topckgen CLK_TOP_VENC_SEL>;
->   			assigned-clock-parents = <&topckgen CLK_TOP_VCODECPLL>;
-> -			power-domains = <&scpsys MT8173_POWER_DOMAIN_VENC>;
-> +			power-domains = <&spm MT8173_POWER_DOMAIN_VENC>;
->   		};
->   
->   		jpegdec: jpegdec@18004000 {
-> @@ -1518,7 +1518,7 @@
->   			assigned-clocks = <&topckgen CLK_TOP_VENC_LT_SEL>;
->   			assigned-clock-parents =
->   				 <&topckgen CLK_TOP_VCODECPLL_370P5>;
-> -			power-domains = <&scpsys MT8173_POWER_DOMAIN_VENC_LT>;
-> +			power-domains = <&spm MT8173_POWER_DOMAIN_VENC_LT>;
->   		};
->   	};
->   };
+> Best regards,
+> Krzysztof
