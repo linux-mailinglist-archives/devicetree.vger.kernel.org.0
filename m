@@ -2,100 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 250F25A7C4A
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 13:39:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36CB95A7C64
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 13:46:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229643AbiHaLjY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 07:39:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57596 "EHLO
+        id S229761AbiHaLqr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 07:46:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229498AbiHaLjY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 07:39:24 -0400
-Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 623B0A7A8C;
-        Wed, 31 Aug 2022 04:39:23 -0700 (PDT)
-Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-11f0fa892aeso15143517fac.7;
-        Wed, 31 Aug 2022 04:39:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=message-id:date:subject:references:in-reply-to:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=Z1f87H1PJFe4akLNOjaLrcNqXkR7W1AVw321QPPsh6A=;
-        b=tQeX7rtCJW6cZ1wluNaEfOJRKQcW/eyLxA455LQ/XJzttkx3kVSnOV8aWzLpoOWdsT
-         Yoe4pzNd2Vi5jXt1XrY8s5FsArwSoqA0DhBbAmXvNTYbpqmspmx5if7NcsLf10NGj2JS
-         RtfPJor8TJ3Z+jVqLs1bYLXUdCbbhGWEv42eIiI/Zl9+6SSCvtqNYEzegy1iCCGQV/Y8
-         mawO5+LxTQUCkjzjbrLaX+pWryIsQCbZN66Ioq9fIRKBfBYMp2oHBk2VMArmSdPi+O0l
-         P96NWEXWRl38/nGhACZFF87B1pZRRWvywXg/2QUIJWepVWWRGdy/iPU9J+/gr0R6xrxo
-         u7Lw==
-X-Gm-Message-State: ACgBeo1siT7Mni2T76/PkzD3rduA0beH/B7n3X4YRZIB8qdQIBXk0B7a
-        HP1MpcykPErDkZzn68bPJH7nfuKi7g==
-X-Google-Smtp-Source: AA6agR7w54goHzQ8TCm0mSRb3zB+M43ANVNtzpbzFy5mh2e30F1Rhzycat7svTyJqT4E0HA7xPapVA==
-X-Received: by 2002:a54:4899:0:b0:343:3f7c:713d with SMTP id r25-20020a544899000000b003433f7c713dmr987350oic.116.1661945962690;
-        Wed, 31 Aug 2022 04:39:22 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id h7-20020a9d2f07000000b0063736db0ae9sm6463845otb.15.2022.08.31.04.39.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 31 Aug 2022 04:39:22 -0700 (PDT)
-Received: (nullmailer pid 3614526 invoked by uid 1000);
-        Wed, 31 Aug 2022 11:39:21 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     kw@linux.com, andersson@kernel.org, linux-kernel@vger.kernel.org,
-        lpieralisi@kernel.org, dmitry.baryshkov@linaro.org,
-        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        konrad.dybcio@somainline.org, linux-pci@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        bhelgaas@google.com
-In-Reply-To: <20220830165817.183571-10-manivannan.sadhasivam@linaro.org>
-References: <20220830165817.183571-1-manivannan.sadhasivam@linaro.org> <20220830165817.183571-10-manivannan.sadhasivam@linaro.org>
-Subject: Re: [PATCH v2 09/11] dt-bindings: PCI: qcom-ep: Define clocks per platform
-Date:   Wed, 31 Aug 2022 06:39:21 -0500
-Message-Id: <1661945961.468486.3614525.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S229556AbiHaLqq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 07:46:46 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C20AC04EF
+        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 04:46:45 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A954061902
+        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 11:46:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DADB8C433D6;
+        Wed, 31 Aug 2022 11:46:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1661946404;
+        bh=6ClxR3MT3Wu8HH+a4phv6a5gWY04aTPsTn7O/QRhoFo=;
+        h=Date:From:To:Subject:References:In-Reply-To:From;
+        b=bGEAm6QGQsSV2nHhwl21CjsTJC/9M6mE65PoJEziVDIgzdAmwcKH4XFZwcKzHjJIt
+         7vxCeUYgCq1GnGt7fLyAMHJSRP9wlk4k42hTd40JhEduil8h0o91xMW8/qDr7nzFiv
+         i1apy48hAYG1oaVWWceLGeUAb5mZGqFyuls8EnDWTTmagkvdlH9thnlDnYp3by24W4
+         K5cbPF5SEjvat+Jt4wSDSczcPp8Zs+RF7f0Z6xS7J7Ufh8Gg1tycvce2uOj0at3d3B
+         kXEeKvyjDpw5730AjjtD1800A0Gg+XLcqooCQAxwZfMeWJIwRuL4yKf1NPImYbzO/E
+         Nj+Rahf9T6TJQ==
+Received: by pali.im (Postfix)
+        id F22D7855; Wed, 31 Aug 2022 13:46:40 +0200 (CEST)
+Date:   Wed, 31 Aug 2022 13:46:40 +0200
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>
+Subject: Re: [PATCH] dt-bindings: bus: add device tree bindings for
+ fsl,p1021rdb-pc-cpld
+Message-ID: <20220831114640.qwfr7lea3lvcfl2v@pali>
+References: <20220705175450.11886-1-kabel@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220705175450.11886-1-kabel@kernel.org>
+User-Agent: NeoMutt/20180716
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 30 Aug 2022 22:28:15 +0530, Manivannan Sadhasivam wrote:
-> In preparation of adding the bindings for future SoCs, let's define the
-> clocks per platform.
+PING? Documentation binding patch is waiting there fore two months.
+Could we move forward?
+
+Note that meanwhile turris1x.dts which uses this was merged.
+
+On Tuesday 05 July 2022 19:54:50 Marek Behún wrote:
+> Add binding for CPLD bus interface of Freescale P1021RDB Combo Board
+> CPLD Design.
 > 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> Signed-off-by: Marek Behún <kabel@kernel.org>
 > ---
->  .../devicetree/bindings/pci/qcom,pcie-ep.yaml | 51 ++++++++++++-------
->  1 file changed, 32 insertions(+), 19 deletions(-)
+>  .../bindings/bus/fsl,p1021rdb-pc-cpld.yaml    | 73 +++++++++++++++++++
+>  1 file changed, 73 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/bus/fsl,p1021rdb-pc-cpld.yaml
 > 
-
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml: allOf:1:then:properties:clocks: {'maxItems': 7, 'items': [{'description': 'PCIe Auxiliary clock'}, {'description': 'PCIe CFG AHB clock'}, {'description': 'PCIe Master AXI clock'}, {'description': 'PCIe Slave AXI clock'}, {'description': 'PCIe Slave Q2A AXI clock'}, {'description': 'PCIe Sleep clock'}, {'description': 'PCIe Reference clock'}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml: ignoring, error in schema: allOf: 1: then: properties: clocks
-Documentation/devicetree/bindings/pci/qcom,pcie-ep.example.dtb:0:0: /example-0/pcie-ep@40000000: failed to match any schema with compatible: ['qcom,sdx55-pcie-ep']
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+> diff --git a/Documentation/devicetree/bindings/bus/fsl,p1021rdb-pc-cpld.yaml b/Documentation/devicetree/bindings/bus/fsl,p1021rdb-pc-cpld.yaml
+> new file mode 100644
+> index 000000000000..822dfb93dcd8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/bus/fsl,p1021rdb-pc-cpld.yaml
+> @@ -0,0 +1,73 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/bus/fsl,p1021rdb-pc-cpld.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: CPLD Bus Inteface for Freescale P1021RDB Combo Board CPLD Design
+> +
+> +maintainers:
+> +  - Pali Rohár <pali@kernel.org>
+> +
+> +description: |
+> +  A simple bus enabling access to peripherals on boards with use Freescale
+> +  P1021RDB Combo Board CPLD Design.
+> +
+> +  The "fsl,p1021rdb-pc-cpld" follows the "simple-bus" set of properties, as
+> +  specified in the Devicetree Specification. It is an extension of "simple-bus"
+> +  because some registers are CPLD specific and allows to identify if board has
+> +  wired CPLD according to Freescale P1021RDB Combo Board CPLD Design.
+> +
+> +select:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        const: fsl,p1021rdb-pc-cpld
+> +  required:
+> +    - compatible
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^cpld(@[0-9a-f]+(,[0-9a-f]+)?)?$"
+> +
+> +  compatible:
+> +    items:
+> +      - const: fsl,p1021rdb-pc-cpld
+> +      - const: simple-bus
+> +
+> +  '#address-cells':
+> +    enum: [ 1, 2 ]
+> +
+> +  '#size-cells':
+> +    enum: [ 1, 2 ]
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  ranges: true
+> +
+> +required:
+> +  - compatible
+> +  - '#address-cells'
+> +  - '#size-cells'
+> +  - reg
+> +  - ranges
+> +
+> +additionalProperties:
+> +  type: object
+> +
+> +examples:
+> +  - |
+> +
+> +    localbus {
+> +        #address-cells = <2>;
+> +        #size-cells = <1>;
+> +
+> +        cpld@3,0 {
+> +            #address-cells = <1>;
+> +            #size-cells = <1>;
+> +            compatible = "fsl,p1021rdb-pc-cpld", "simple-bus";
+> +            reg = <0x3 0x0 0x20000>;
+> +            ranges = <0x0 0x3 0x0 0x20000>;
+> +        };
+> +    };
+> -- 
+> 2.35.1
+> 
