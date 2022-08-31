@@ -2,169 +2,254 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EAFBC5A829A
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 18:01:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B37655A82AC
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 18:07:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231331AbiHaQBq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 12:01:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54218 "EHLO
+        id S230020AbiHaQHe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 12:07:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231290AbiHaQBn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 12:01:43 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80A38AE9CA;
-        Wed, 31 Aug 2022 09:01:36 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id a36so15187505edf.5;
-        Wed, 31 Aug 2022 09:01:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=EmNOHW8dOBfji1wkjcTQmmq1Mj0tjVV6eLhD3GgRB/g=;
-        b=iPzGBtmsyIlRowO01qTXhasG0NLWdlzZwl/O3IlBP3urBRqmLeHlHQUduHBqbN8eaz
-         IFCcNdL5ccd6/YBh5OykW9i1vXKvhwh2kSqjAzExcad5bYMzLp8Dq6apPeHQmj+WAAPg
-         uZc1knE24OFoP2zfsEiWGxdV4qKioFaCqC/UI2OXh3xhW3xyTtqbIfrMiFcdL05NI24n
-         x+oD4RwT5biLqIx8PQh/w+/Z9DwWZOh3Pm2gDg6dXcdOdt9oDruOcVBYvyYXQvsvIHMt
-         Z10YmakIfVehoTPiJBvbK97UwOFjbkEop6dTgWUx7kso/mwhsESEG+8PcWEWrVMlu+f6
-         p0VQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=EmNOHW8dOBfji1wkjcTQmmq1Mj0tjVV6eLhD3GgRB/g=;
-        b=CSHwQ50HvjlAXH3UqEOzSNel3aJstofxqZ4TFT2Kr9oYdTVijvX70d+qJGJVJOsn3U
-         KuwjW01fsM3Av9mXKE1mDVAdFbqljhQsQwyZHF/WgzYr2XBU15USY5h/pBlRczINr4wr
-         wjM8fS/Pc4TUKfO7F0FW9EN94wMVKcTPpcwTB4FWrDQc7A8Fx9mvmXsiPB70VNUNmgKG
-         T6FMnbmj7J80W1pbmuRuZrvQgpyb1ruYFBQ7HxrGudqGrGI+LE1qlvAz+4zKvrz25BK4
-         F/xNTbhIZyao5qp4ozJ6Pw+8cPruGMgMXD7A2Hii+mSKem2BNbYCSPfrkWJJvPczoJzG
-         slgg==
-X-Gm-Message-State: ACgBeo0rsRV+dEFyPHjjm0MIQRZ+oSRl5Jt3vfbWvAgkeCHnMr3P9tfC
-        AkcS95h3y8P+2wNoN2pR0VafOmpKTic=
-X-Google-Smtp-Source: AA6agR7/mG+nWnFFyl//A8+WrZ8yAr1i9FETVTqXy2AMVt9YUhAeyE8y0SOWAJQjm5QcsfsWpYrtlw==
-X-Received: by 2002:aa7:c3c2:0:b0:447:7d68:7187 with SMTP id l2-20020aa7c3c2000000b004477d687187mr24775177edr.400.1661961694515;
-        Wed, 31 Aug 2022 09:01:34 -0700 (PDT)
-Received: from localhost.localdomain ([188.27.184.197])
-        by smtp.gmail.com with ESMTPSA id b5-20020a17090630c500b0073dde7c1767sm7277537ejb.175.2022.08.31.09.01.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 31 Aug 2022 09:01:33 -0700 (PDT)
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     devicetree@vger.kernel.org
-Cc:     netdev@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>,
-        Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Michael Walle <michael@walle.cc>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>
-Subject: [PATCH v2 devicetree 3/3] arm64: dts: ls1028a: enable swp5 and eno3 for all boards
-Date:   Wed, 31 Aug 2022 19:01:24 +0300
-Message-Id: <20220831160124.914453-4-olteanv@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220831160124.914453-1-olteanv@gmail.com>
-References: <20220831160124.914453-1-olteanv@gmail.com>
+        with ESMTP id S229512AbiHaQHc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 12:07:32 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8EDA43E6A
+        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 09:07:30 -0700 (PDT)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=irc.pengutronix.de)
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <j.zink@pengutronix.de>)
+        id 1oTQFV-00054L-2N; Wed, 31 Aug 2022 18:07:29 +0200
+Message-ID: <37ca25e23d9f7678c14074546ed3ed5d7bf6104e.camel@pengutronix.de>
+Subject: Re: [PATCH 16/16] fpga: machxo2: add configuration over i2c
+From:   Johannes Zink <j.zink@pengutronix.de>
+To:     Xu Yilun <yilun.xu@intel.com>
+Cc:     devicetree@vger.kernel.org, linux-fpga@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Moritz Fischer <mdf@kernel.org>, kernel@pengutronix.de,
+        Wu Hao <hao.wu@intel.com>
+Date:   Wed, 31 Aug 2022 18:07:11 +0200
+In-Reply-To: <YwzRBmXMV4o8aGO4@yilunxu-OptiPlex-7050>
+References: <20220825141343.1375690-1-j.zink@pengutronix.de>
+         <20220825141343.1375690-17-j.zink@pengutronix.de>
+         <YwyLOSKy6kUFsFOB@yilunxu-OptiPlex-7050>
+         <2800bc77abb68c721feb5569608684414ae3f6be.camel@pengutronix.de>
+         <YwzRBmXMV4o8aGO4@yilunxu-OptiPlex-7050>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.3-1 
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: j.zink@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Vladimir Oltean <vladimir.oltean@nxp.com>
+Hi Yilun,
 
-In order for the LS1028A based boards to benefit from support for
-multiple CPU ports, the second DSA master and its associated CPU port
-must be enabled in the device trees. This does not change the default
-CPU port from the current port 4.
+On Mon, 2022-08-29 at 22:45 +0800, Xu Yilun wrote:
+> On 2022-08-29 at 15:21:19 +0200, Johannes Zink wrote:
+> > Hi Yilun, 
+> > 
+> > On Mon, 2022-08-29 at 17:47 +0800, Xu Yilun wrote:
+> > > On 2022-08-25 at 16:13:43 +0200, Johannes Zink wrote:
+> > > > From: Peter Jensen <pdj@bang-olufsen.dk>
+> > > > 
+> > > > The configuration flash of the machxo2 fpga can also be erased
+> > > > and
+> > > > written over i2c instead of spi. Add this functionality to the
+> > > > refactored common driver. Since some commands are shorter over
+> > > > I2C
+> > > > than
+> > > > they are over SPI some quirks are added to the common driver in
+> > > > order to
+> > > > account for that.
+> > > > 
+> > > > Signed-off-by: Peter Jensen <pdj@bang-olufsen.dk>
+> > > > Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+> > > > Signed-off-by: Johannes Zink <j.zink@pengutronix.de>
+> > > > ---
+[snip]
+> > > > 
+> > 
+> > > 
+> > > > +
+> > > > +static int machxo2_i2c_write(struct machxo2_common_priv
+> > > > *common,
+> > > > +                            struct machxo2_cmd *cmds, size_t
+> > > > cmd_count)
+> > > > +{
+> > > > +       struct machxo2_i2c_priv *i2c_priv =
+> > > > to_machxo2_i2c_priv(common);
+> > > > +       struct i2c_client *client = i2c_priv->client;
+> > > > +       size_t i;
+> > > > +       int ret;
+> > > > +
+> > > > +       for (i = 0; i < cmd_count; i++) {
+> > > > +               struct i2c_msg msg[] = {
+> > > > +                       {
+> > > > +                               .addr = client->addr,
+> > > > +                               .buf = cmds[i].cmd,
+> > > > +                               .len = cmds[i].cmd_len,
+> > > > +                       },
+> > > > +               };
+> > > > +
+> > > > +               ret = i2c_transfer(client->adapter, msg,
+> > > > ARRAY_SIZE(msg));
+> > > > +               if (ret < 0)
+> > > > +                       return ret;
+> > > > +               if (ret != ARRAY_SIZE(msg))
+> > > > +                       return -EIO;
+> > > > +               if (cmds[i].delay_us)
+> > > > +                       usleep_range(cmds[i].delay_us,
+> > > > cmds[i].delay_us +
+> > > > +                                    cmds[i].delay_us / 4);
+> > > > +               if (i < cmd_count - 1) /* on any iteration
+> > > > except
+> > > > for the last one... */
+> > > > +                       ret =
+> > > > machxo2_wait_until_not_busy(common);
+> > > 
+> > > Seems no need to implement the loop and wait in transportation
+> > > layer,
+> > > they are common. A callback like write(bus, txbuf, n_tx) is
+> > > better?
+> > > 
+> > > Thanks,
+> > > Yilun
+> > 
+> > I have chosen this implementation mostly due to the fact that I
+> > don't
+> > have a SPI machxo2 device to test against, so I am intentionally
+> > keeping changes to a minimum. 
+> > 
+> > Moving the wait between single commands into the transport layer is
+> > not
+> > functionally equivalent, e.g. the ISC_ENABLE - ISC_ERASE command
+> > sequence in the machxo2_write_init function would require two
+> > separate
+> > messages with a wait time between them, which would deassert the CS
+> > line between sending the messages via SPI if not sent as a sequence
+> > of
+> > SPI transfers. For some of the commands, the fpga requires a delay
+> > between the different commands, which was implemented by setting
+> > the
+> > delay property of the spi transfer objects in the original driver.
+> 
+> Not sure if it is really a problem, but I remember SPI has various
+> APIs
+> to deal with different requirements.
 
-Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
-Acked-by: Michael Walle <michael@walle.cc>
----
-v1->v2: none
+I assume this could probably be implemented by clearing the cs_change
+bit in the SPI transfer, though just sending multiple transfers in
+sequence with the appropriate timing appears a bit more elegant to me,
+since it doesn't reimplement the behaviour for spi, it simply extends
+the i2c part for what is not supported natively in the i2c api. Either
+way, some sort of waiting has to be implemented (please see my comment
+below).
 
- .../dts/freescale/fsl-ls1028a-kontron-kbox-a-230-ls.dts   | 8 ++++++++
- .../boot/dts/freescale/fsl-ls1028a-kontron-sl28-var2.dts  | 8 ++++++++
- arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts         | 8 ++++++++
- 3 files changed, 24 insertions(+)
+Also, please bear in mind that I do not have SPI connected on my board,
+which is why I opted to stay as close as possible to the original
+implementation and only refactor the spi transfers with functionally
+equivalent code in order to keep the risk of breaking things as low as
+possible.
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-kbox-a-230-ls.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-kbox-a-230-ls.dts
-index 52ef2e8e5492..73eb6061c73e 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-kbox-a-230-ls.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-kbox-a-230-ls.dts
-@@ -59,6 +59,10 @@ &enetc_port2 {
- 	status = "okay";
- };
- 
-+&enetc_port3 {
-+	status = "okay";
-+};
-+
- &i2c3 {
- 	eeprom@57 {
- 		compatible = "atmel,24c32";
-@@ -107,6 +111,10 @@ &mscc_felix_port4 {
- 	status = "okay";
- };
- 
-+&mscc_felix_port5 {
-+	status = "okay";
-+};
-+
- &sata {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var2.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var2.dts
-index 37c20cb6c152..113b1df74bf8 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var2.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var2.dts
-@@ -39,6 +39,10 @@ &enetc_port2 {
- 	status = "okay";
- };
- 
-+&enetc_port3 {
-+	status = "okay";
-+};
-+
- &mscc_felix {
- 	status = "okay";
- };
-@@ -62,3 +66,7 @@ &mscc_felix_port1 {
- &mscc_felix_port4 {
- 	status = "okay";
- };
-+
-+&mscc_felix_port5 {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
-index 7285bdcf2302..e33725c60169 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
-@@ -151,6 +151,10 @@ &enetc_port2 {
- 	status = "okay";
- };
- 
-+&enetc_port3 {
-+	status = "okay";
-+};
-+
- &esdhc {
- 	sd-uhs-sdr104;
- 	sd-uhs-sdr50;
-@@ -281,6 +285,10 @@ &mscc_felix_port4 {
- 	status = "okay";
- };
- 
-+&mscc_felix_port5 {
-+	status = "okay";
-+};
-+
- &optee {
- 	status = "okay";
- };
+> 
+> > 
+> > This implementation tries to mimic the timing behaviour of the SPI
+> > transfer delay property for the I2C implementation. 
+> 
+> Could you firstly try on that until we have real problem? Ideally
+> this
+> is a cleaner implementation, is it?
+
+The delays themselves are required by the device family datasheet and
+by the sysConfig protocol definition, as part of the command sequence
+timing. 
+
+Since I have no SPI connected on my hardware, I am only able to test
+the I2C implementation, which works well with the timings taken from
+the original spi driver (except for the erase timeout, which needs to
+be extended as seen in Patch 15 of this series). Extending the delay
+times such that usleep_range can be used has proven to be acceptable,
+at least for the i2c implementation. 
+
+Best regards
+Johannes
+
+> 
+> Thanks,
+> Yilun
+> 
+> > 
+> > Best regards
+> > Johannes
+> > 
+> > > 
+> > > > +       }
+> > > > +
+> > > > +       return 0;
+> > > > +}
+> > > > +
+> > > > +static int machxo2_i2c_probe(struct i2c_client *client,
+> > > > +                       const struct i2c_device_id *id)
+> > > > +{
+> > > > +       struct device *dev = &client->dev;
+> > > > +       struct machxo2_i2c_priv *priv;
+> > > > +
+> > > > +       priv = devm_kzalloc(dev, sizeof(struct
+> > > > machxo2_i2c_priv),
+> > > > GFP_KERNEL);
+> > > > +       if (!priv)
+> > > > +               return -ENOMEM;
+> > > > +
+> > > > +       priv->client = client;
+> > > > +       priv->common.get_status = machxo2_i2c_get_status;
+> > > > +       priv->common.write_commands = machxo2_i2c_write;
+> > > > +
+> > > > +       /* Commands are usually 4b, but these aren't for i2c */
+> > > > +       priv->common.enable_3b = true;
+> > > > +       priv->common.refresh_3b = true;
+> > > > +
+> > > > +       return machxo2_common_init(&priv->common, dev);
+> > > > +}
+> > > > +
+> > > > +static const struct of_device_id of_match[] = {
+> > > > +       { .compatible = "lattice,machxo2-slave-i2c", },
+> > > > +       { },
+> > > > +};
+> > > > +MODULE_DEVICE_TABLE(of, of_match);
+> > > > +
+> > > > +static const struct i2c_device_id lattice_ids[] = {
+> > > > +       { "machxo2-slave-i2c", 0 },
+> > > > +       { },
+> > > > +};
+> > > > +MODULE_DEVICE_TABLE(i2c, lattice_ids);
+> > > > +
+> > > > +static struct i2c_driver machxo2_i2c_driver = {
+> > > > +       .driver = {
+> > > > +               .name = "machxo2-slave-i2c",
+> > > > +               .of_match_table = of_match_ptr(of_match),
+> > > > +       },
+> > > > +       .probe = machxo2_i2c_probe,
+> > > > +       .id_table = lattice_ids,
+> > > > +};
+> > > > +
+> > > > +module_i2c_driver(machxo2_i2c_driver);
+> > > > +
+> > > > +MODULE_AUTHOR("Peter Jensen <pdj@bang-olufsen.dk>");
+> > > > +MODULE_DESCRIPTION("Load Lattice FPGA firmware over I2C");
+> > > > +MODULE_LICENSE("GPL");
+> > > > -- 
+> > > > 2.30.2
 -- 
-2.34.1
+Pengutronix e.K.                | Johannes Zink                  |
+Steuerwalder Str. 21            | https://www.pengutronix.de/    |
+31137 Hildesheim, Germany       | Phone: +49-5121-206917-0       |
+Amtsgericht Hildesheim, HRA 2686| Fax:   +49-5121-206917-5555    |
 
