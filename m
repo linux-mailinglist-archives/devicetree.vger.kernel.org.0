@@ -2,60 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59DDA5A86EF
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 21:45:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C32A25A8718
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 21:56:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232014AbiHaTpG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 15:45:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58126 "EHLO
+        id S232167AbiHaT4b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 15:56:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232059AbiHaTpA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 15:45:00 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 956AE186E9
-        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 12:44:59 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id B5700CE205A
-        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 19:44:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29832C433D7
-        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 19:44:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661975096;
-        bh=sz2T+ud5P9UX3tTIlm3sksy/sp19ufddjzuJpBeVDq4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=s6wBkNfiVaFUSgEdiMnns9DNbIo1uUxgHtxurD9r2G7MtFMp/K5HO8gAqwPjCv22G
-         NWHsGovSOL8iKP622W9dRhUBJzUrM9Ow0MPuiZrQ6gmVQzvIyylIhefA72ZsGUtdwJ
-         w3R3Q+kVFy8gA0GzgL9Hu/829/C273To5c14eK4QlFGuuvkKVrVxXxEsINx74/CSbS
-         r6D0AymZvPpw60M+VEBJXNpd7k8YRqDEGliV1fkZvd2+2DKDpz8wuUYsVEhF6ag4w7
-         EYJ8LTKILMMmh0m+5e2N4uazyFlt5NZtDQ7k/jxRRA0sPeUvVYKh13M1/54adRZ4U/
-         1WjLp0XS6odNQ==
-Received: by mail-vk1-f172.google.com with SMTP id j11so5290006vkl.12
-        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 12:44:56 -0700 (PDT)
-X-Gm-Message-State: ACgBeo0lkpBRXBhuOe90xlt8nATJsYYD5Bfhf0rmo8TBtd3iGlWYi5m6
-        Uu3/OksCaYeV0ciTWpox/WebIT4aS4D//bqUUw==
-X-Google-Smtp-Source: AA6agR4dfss08ZairIfTRzxmTqq3y9tDFGOmnpc3o+tjRr37foW1zfeS1bbqCpNOEz7/Q4GfxN4sj1Mh87l3mjpxDpU=
-X-Received: by 2002:a1f:2ec9:0:b0:394:717a:92e8 with SMTP id
- u192-20020a1f2ec9000000b00394717a92e8mr5323465vku.5.1661975095104; Wed, 31
- Aug 2022 12:44:55 -0700 (PDT)
+        with ESMTP id S232072AbiHaT41 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 15:56:27 -0400
+Received: from smtp-fw-9103.amazon.com (smtp-fw-9103.amazon.com [207.171.188.200])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10C0998A6E;
+        Wed, 31 Aug 2022 12:56:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1661975779; x=1693511779;
+  h=message-id:date:mime-version:to:cc:references:from:
+   in-reply-to:content-transfer-encoding:subject;
+  bh=o4Q3yaPOi4KlTaXD7fEK3bIr7nuLBW2iHpygHPrCyzE=;
+  b=tBlbLw8xsJ1Jqiv+fD6X9cSzOYg88XX1wlnbhckLZei0eX1rCrl04XBn
+   Idc6iy/StBRpbX+5DSgL9VquCrAG3cV7ZWUrRTMhsemLgl4tkUVo9uc0b
+   6zcpDNuYfdmowAhLqklRuenQ1MP0aBEDisUkpD4uZSPmxNvKwL6+pwINw
+   I=;
+X-IronPort-AV: E=Sophos;i="5.93,278,1654560000"; 
+   d="scan'208";a="1050061081"
+Subject: Re: [PATCH v3 08/19] dt-bindings: hwmon: (mr75203) add "moortec,
+ vm-active-channels" property
+Received: from pdx4-co-svc-p1-lb2-vlan3.amazon.com (HELO email-inbound-relay-pdx-2a-7d84505d.us-west-2.amazon.com) ([10.25.36.214])
+  by smtp-border-fw-9103.sea19.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Aug 2022 19:56:00 +0000
+Received: from EX13D27EUB002.ant.amazon.com (pdx1-ws-svc-p6-lb9-vlan2.pdx.amazon.com [10.236.137.194])
+        by email-inbound-relay-pdx-2a-7d84505d.us-west-2.amazon.com (Postfix) with ESMTPS id 5A26E81310;
+        Wed, 31 Aug 2022 19:55:58 +0000 (UTC)
+Received: from EX19D019EUB002.ant.amazon.com (10.252.51.33) by
+ EX13D27EUB002.ant.amazon.com (10.43.166.103) with Microsoft SMTP Server (TLS)
+ id 15.0.1497.38; Wed, 31 Aug 2022 19:55:57 +0000
+Received: from EX13MTAUEA001.ant.amazon.com (10.43.61.82) by
+ EX19D019EUB002.ant.amazon.com (10.252.51.33) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.1118.12; Wed, 31 Aug 2022 19:55:57 +0000
+Received: from [192.168.153.206] (10.85.143.179) by mail-relay.amazon.com
+ (10.43.61.243) with Microsoft SMTP Server id 15.0.1497.38 via Frontend
+ Transport; Wed, 31 Aug 2022 19:55:52 +0000
+Message-ID: <a6667978-3d26-945f-4bb7-e54f819211fc@amazon.com>
+Date:   Wed, 31 Aug 2022 22:55:52 +0300
 MIME-Version: 1.0
-References: <20220825013258.3459714-1-andrew@lunn.ch> <20220830184334.GA1825505-robh@kernel.org>
- <Yw5jaz/EqNS0hT/T@lunn.ch>
-In-Reply-To: <Yw5jaz/EqNS0hT/T@lunn.ch>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 31 Aug 2022 14:44:43 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+6SkguPyorEZWmh=WXG9ha8FQM7_Z4JGEwz6deym37EQ@mail.gmail.com>
-Message-ID: <CAL_Jsq+6SkguPyorEZWmh=WXG9ha8FQM7_Z4JGEwz6deym37EQ@mail.gmail.com>
-Subject: Re: [PATCH v2 00/12] Start converting MVEBU bindings to DT Schema
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Gregory Clement <gregory.clement@bootlin.com>,
-        arm-soc <arm@kernel.org>,
-        Device Tree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+CC:     <almogbs@amazon.com>, Rahul Tanwar <rtanwar@maxlinear.com>,
+        Talel Shenhar <talel@amazon.com>,
+        Linux HWMON List <linux-hwmon@vger.kernel.org>,
+        <itamark@amazon.com>, <amitlavi@amazon.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jonathan Chocron <jonnyc@amazon.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>, <shellykz@amazon.com>,
+        Jean Delvare <jdelvare@suse.com>, <shorer@amazon.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <dkl@amazon.com>,
+        "Hanoch, Uri" <hanochu@amazon.com>,
+        Andy Shevchenko <andriy.shevchenko@intel.com>,
+        "Hawa, Hanna" <hhhawa@amazon.com>,
+        "Krupnik, Ronen" <ronenk@amazon.com>,
+        "Farber, Eliav" <farbere@amazon.com>
+References: <20220830192212.28570-1-farbere@amazon.com>
+ <20220830192212.28570-9-farbere@amazon.com>
+ <1661945961.480039.3614528.nullmailer@robh.at.kernel.org>
+ <a8557b5a-6e27-2e66-161e-814fc0f69c1d@amazon.com>
+ <CAL_Jsq+c7DaJFCgeHDsXQT8oqHmPS57S-o_EALz=nHDREhqc7g@mail.gmail.com>
+ <2508ecda-cfd2-96ba-a802-47d25f225dd0@amazon.com>
+ <CAL_Jsq+G4afxQ3mDBZQf_d-=twwM9-qRh0Y6ROByo+ti4tk6Pg@mail.gmail.com>
+From:   "Farber, Eliav" <farbere@amazon.com>
+In-Reply-To: <CAL_Jsq+G4afxQ3mDBZQf_d-=twwM9-qRh0Y6ROByo+ti4tk6Pg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-11.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_SPF_WL autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,48 +87,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 30, 2022 at 2:22 PM Andrew Lunn <andrew@lunn.ch> wrote:
+On 8/31/2022 10:19 PM, Rob Herring wrote:
+> On Wed, Aug 31, 2022 at 12:48 PM Farber, Eliav <farbere@amazon.com> 
+> wrote:
+>>
+>> On 8/31/2022 3:17 PM, Rob Herring wrote:
+>> > On Wed, Aug 31, 2022 at 6:53 AM Farber, Eliav <farbere@amazon.com> 
+>> wrote:
+>> >>
+>> >> On 8/31/2022 2:39 PM, Rob Herring wrote:
+>> >>
+>> >> On Tue, 30 Aug 2022 19:22:01 +0000, Eliav Farber wrote:
+>> >>
+>> >> Add optional "moortec,vm-active-channels" property to define the 
+>> number
+>> >> of active channels per VM.
+>> >>
+>> >> This shall be useful to avoid exposing sysfs for reading inputs 
+>> that are
+>> >> not connected to any voltage source.
+>> >>
+>> >> Signed-off-by: Eliav Farber <farbere@amazon.com>
+>> >> ---
+>> >> V3 -> V2:
+>> >> - Add "moortec" prefix to property name.
+>> >> - Add explanation why this change is needed.
+>> >>
+>> >>  .../devicetree/bindings/hwmon/moortec,mr75203.yaml | 11 +++++++++++
+>> >>  1 file changed, 11 insertions(+)
+>> >>
+>> >>
+>> >> My bot found errors running 'make DT_CHECKER_FLAGS=-m 
+>> dt_binding_check'
+>> >> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>> >>
+>> >> I used dt_binding_check on my changes (I ported it to my kernel).
+>> >> The error is related to "intel-vm-map" which I did not add.
+>> >
+>> > The error is the vendor prefix is not defined in vendor-prefixes.yaml.
+>>
+>> I fixed the vendor prefix error (will be part of v4).
+>>
+>> >> I don't mind fixing it if you wish.
+>> >> It requires changing:
+>> >>   intel,vm-map = [03 01 04 ff ff];
+>> >> to:
+>> >>   intel,vm-map = /bits/8 <0x03 0x01 0x04 0xff 0xff>;
+>> >
+>> > That is not the issue. The issue is the type is unknown because your
+>> > schema fails and we can't get the type from it. Once your schema
+>> > passes, this should go away.
+>> Even after fixing the vendor prefix error I still see this:
+>> moortec,mr75203.yaml: ignoring, error in schema: properties: 
+>> intel,vm-map
 >
-> On Tue, Aug 30, 2022 at 01:43:34PM -0500, Rob Herring wrote:
-> > On Thu, Aug 25, 2022 at 03:32:46AM +0200, Andrew Lunn wrote:
-> > > This is the first batch of patches converting the Marvell MVEBU driver
-> > > bindings from .txt to .yaml. So far, kirkwood has been used for
-> > > testing, but these drivers apply to a range of Marvell SoCs.
-> > >
-> > > In order to reduce the number of warnings from the DT schema checking
-> > > tools, a few minor changes have been made to a few DT files. No actual
-> > > errors have been found, the changes just make the checker quiet.
-> > >
-> > > I propose these patches are merged via mvebu to arm-soc. No conflicts
-> > > are expected with these patches.
-> >
-> > Why? I strongly prefer the bindings go via subsystem trees. That is the
-> > documented way.
->
-> I have 50 patches to convert kirkwood from .txt to .yaml. probably
-> around 30 subsystems.
->
-> 1) Complete nightmare to keep track of so many different patchsets
->    going in 30 different directions.
+> You still have an error in the schema. You should see a more specific
+> reason before this message. 
 
-That's what everyone else does. Send them out and let the maintainers
-pick them up. Anything left can go via the DT tree or arm-soc. That is
-going to happen anyways once you Cc the correct maintainers unless you
-state in each patch not to apply.
-
-> 2) None of these patches change any driver code. This is pure
->    'Documentation'. The subsystem probably reviewed the .txt file 10
->    years ago when I and other mvebu maintainers submitted
->    them. Nothing is changing in the kernel code base, except now we
->    gain some degree of validation for this 'Documentation'.
->
-> 3) Pretty much all of these were merged via arm-soc 10 years ago. Why
->    do it different now? What is gained by not going via arm-soc?
-
-10 years ago it was hit or miss whether bindings even got reviewed.
-Shall we go back to that?
-
-Probably my biggest complaint is when anything breaks in next, fixes
-going into arm-soc are slow because there are 2 levels of maintainers.
-
-Rob
+Thanks, I found the problem.
+I'm using an old version, and I'm missing this commit you did:
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml?h=v6.0-rc3&id=d69c6ddd019f31081cc0232fa8ad8ea1cabdf22c
