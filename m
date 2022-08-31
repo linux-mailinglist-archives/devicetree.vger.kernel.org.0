@@ -2,97 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A90B95A8855
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 23:48:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10BA85A888D
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 23:55:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229575AbiHaVsN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 17:48:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53442 "EHLO
+        id S232420AbiHaVzF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 17:55:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229510AbiHaVsM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 17:48:12 -0400
-Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4C8BF61AD;
-        Wed, 31 Aug 2022 14:48:11 -0700 (PDT)
-Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-11f11d932a8so18958878fac.3;
-        Wed, 31 Aug 2022 14:48:11 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=JD82AHGx84kMfXbfehKRODVwT5PdMYhij9FNOZzBHYc=;
-        b=U7fymrrzN329Sf5bfjRw9duInxROWaO4+CJHSU+cSx+XyJY75RcmUVpTQ33/7BRZhb
-         H0q+ENPjZU0tRkuvFXr4afxNI+b/vzp0XqjRKOxCHRJpMDVLykPE68lhf+Kl9AACUGP8
-         4/P23eYzdJwM091bPGL+DuBV0qxw44g1fs9CoPVncaz2WrD4shqOjqwRp3MtQibRMTOM
-         X8WHVDrIk+/wqtM0TlxCvsPiyG8SMRFKYQDl8tYjTOiTwvfZ78mT+uqAd6rQhNxnRxjd
-         M3dHg8MGBYLmfZjpX2NROKt/W+i+pn0xaLs3OZOD9hZ1CdzA/dutRprY0nUEX5hk5Yyz
-         SARw==
-X-Gm-Message-State: ACgBeo1Z4ttzgq4zHqrIt99K4Fc8/byYFv0J6+BR/235SrS4HSlILFxZ
-        Hs6f4jEQlNxD93m2uXbMJA==
-X-Google-Smtp-Source: AA6agR42CMQBtttjZ/zkx4w8wd0niU7A9WHNAhfgLAJFh/npgcOzrKIbttMD5OzwceY42pFmKqe7lw==
-X-Received: by 2002:a05:6808:1491:b0:343:7543:1a37 with SMTP id e17-20020a056808149100b0034375431a37mr2191781oiw.106.1661982491138;
-        Wed, 31 Aug 2022 14:48:11 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id p81-20020acad854000000b00342ded07a75sm7875032oig.18.2022.08.31.14.48.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 31 Aug 2022 14:48:10 -0700 (PDT)
-Received: (nullmailer pid 310004 invoked by uid 1000);
-        Wed, 31 Aug 2022 21:48:09 -0000
-Date:   Wed, 31 Aug 2022 16:48:09 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Michael Walle <michael@walle.cc>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+        with ESMTP id S232339AbiHaVyy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 17:54:54 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AA70100D;
+        Wed, 31 Aug 2022 14:54:46 -0700 (PDT)
+Received: from jupiter.universe (dyndsl-091-096-057-024.ewe-ip-backbone.de [91.96.57.24])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 457BE6601DF3;
+        Wed, 31 Aug 2022 22:54:45 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1661982885;
+        bh=rnG6GZ4GkpM0T3h0AvOlwd/MDv92M08/myKuULiUtsA=;
+        h=From:To:Cc:Subject:Date:From;
+        b=euyOpVZEpIBG33CK/yC2jYG2yORzUekIfAEmNcDp/BAuHZeq6Nz6EXyf4F/dXk+lD
+         1I6mdxNHE+icEtN2lGU7GpYvkv5L9WZqLatG2OIarvQ28ag3s+lvKh4zj9KRgX11LF
+         bn950B8PoDGY+vTGRg/W+KJ0ctf++C8DjbCqwScDZkFXXTo/mTjUQ0LERcFyxWeItC
+         goiYZQoD1fQWF19ZFWT19vFjbuSTGzCzG9E8Uo/9a/GsGQvoztvUyhvOC8Dg0zHSSJ
+         6rG5m/HzQdoVKSlzi93QWRRAu+/i+QK2aRO1cx3aBimzMVUSwW4tw3sxYbcHVwMtlv
+         f2Zr8/8LTsEKA==
+Received: by jupiter.universe (Postfix, from userid 1000)
+        id 2D57048015C; Wed, 31 Aug 2022 23:54:43 +0200 (CEST)
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        netdev@vger.kernel.org, Ahmad Fatoum <a.fatoum@pengutronix.de>
-Subject: Re: [PATCH v1 08/14] dt-bindings: mtd: relax the nvmem compatible
- string
-Message-ID: <20220831214809.GA282739-robh@kernel.org>
-References: <20220825214423.903672-1-michael@walle.cc>
- <20220825214423.903672-9-michael@walle.cc>
+        Lee Jones <lee@kernel.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        kernel@collabora.com
+Subject: [PATCH 00/13] Introduce RK806 Support
+Date:   Wed, 31 Aug 2022 23:54:24 +0200
+Message-Id: <20220831215437.117880-1-sebastian.reichel@collabora.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220825214423.903672-9-michael@walle.cc>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 25, 2022 at 11:44:17PM +0200, Michael Walle wrote:
-> The "user-otp" and "factory-otp" compatible string just depicts a
-> generic NVMEM device. But an actual device tree node might as well
-> contain a more specific compatible string. Make it possible to add
-> more specific binding elsewere and just match part of the compatibles
-> here.
-> 
-> Signed-off-by: Michael Walle <michael@walle.cc>
-> ---
->  Documentation/devicetree/bindings/mtd/mtd.yaml | 7 ++++---
->  1 file changed, 4 insertions(+), 3 deletions(-)
+Hi,
 
-In hindsight it looks like we are mixing 2 different purposes of 'which 
-instance is this' and 'what is this'. 'compatible' is supposed to be the 
-latter.
+The Rockchip RK3588 Evaluation Boards use SPI connected RK806
+PMICs. Downstream this is handled by a new driver, but apart
+from being SPI connected this chip is quite similar to the
+ther Rockchip PMICs (also RK806 is promoted to also support
+I2C). Thus this series instead updates RK808.
 
-Maybe there's a better way to handle user/factory? There's a similar 
-need with partitions for A/B or factory/update.
+-- Sebastian
 
-Rob
+Sebastian Reichel (13):
+  mfd: rk808: convert to device managed resources
+  mfd: rk808: use dev_err_probe
+  clk: RK808: reduce 'struct rk808' usage
+  regulator: rk808: reduce 'struct rk808' usage
+  rtc: rk808: reduce 'struct rk808' usage
+  mfd: rk808: replace 'struct i2c_client' with 'struct device'
+  mfd: rk808: split into core and i2c
+  dt-bindings: mfd: add rk806 binding
+  mfd: rk8xx: add rk806 support
+  pinctrl: rk805: add rk806 pinctrl support
+  regulator: rk808: Use dev_err_probe
+  regulator: rk808: add rk806 support
+  ASoC: rk817: Remove 'select REGMAP_I2C'
+
+ .../bindings/mfd/rockchip,rk806.yaml          | 388 ++++++++++++++
+ drivers/clk/clk-rk808.c                       |  34 +-
+ drivers/mfd/Kconfig                           |  19 +
+ drivers/mfd/Makefile                          |   4 +-
+ drivers/mfd/{rk808.c => rk8xx-core.c}         | 343 +++++-------
+ drivers/mfd/rk8xx-i2c.c                       | 205 ++++++++
+ drivers/mfd/rk8xx-spi.c                       | 128 +++++
+ drivers/pinctrl/pinctrl-rk805.c               | 189 ++++++-
+ drivers/regulator/rk808-regulator.c           | 496 +++++++++++++++++-
+ drivers/rtc/rtc-rk808.c                       |  47 +-
+ include/linux/mfd/rk808.h                     | 417 ++++++++++++++-
+ sound/soc/codecs/Kconfig                      |   1 -
+ 12 files changed, 1964 insertions(+), 307 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk806.yaml
+ rename drivers/mfd/{rk808.c => rk8xx-core.c} (71%)
+ create mode 100644 drivers/mfd/rk8xx-i2c.c
+ create mode 100644 drivers/mfd/rk8xx-spi.c
+
+-- 
+2.35.1
+
