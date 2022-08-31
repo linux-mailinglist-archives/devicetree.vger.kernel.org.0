@@ -2,82 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4928D5A7623
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 08:03:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E5695A762B
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 08:04:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229908AbiHaGDv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 02:03:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34434 "EHLO
+        id S229998AbiHaGEZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 02:04:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229681AbiHaGDu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 02:03:50 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13914BB92C
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 23:03:49 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id z29so9910521lfb.13
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 23:03:48 -0700 (PDT)
+        with ESMTP id S230001AbiHaGEY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 02:04:24 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2E4BBBA69
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 23:04:21 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id q7so18478734lfu.5
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 23:04:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=v/DTnj+8yFQi9/Rn5TezlbUC9O7HSjU1iv93PbNHvKg=;
-        b=TZQkiAhdIvkrwUd5YRkCHq8M4z4KGbvFf8+pevd00ismwc4DxhN38eTt5lq93mAhhd
-         57HufA+90zQRmAeoJl/RZxGxtPLtbIa0P6ujbtx02NQbxqfOWMptFMo2bqqP2i3Kse3a
-         qb7t/vtk0QDvSon1p1RZiVjuCmVmoRyamMiXAca5AbiRvDXWuMqM4ceD4Peas+SCSzyv
-         ZgQg/SRJap5JJVrYH63ouAc9eSvLjI3txacZY5wXTIfhopN0PeCjLP5PXt/G9DDGzdfv
-         9fhUZDAe2HHNyMVt9w5JfTZ3f4VllC6FO3Kv8aueEwBDb7MS9Od+RdGzqFiOEvlXYhMD
-         Mujg==
+        bh=Dl8bj8J2OYumn/gfks6Y/TXqxWAUsjyKN5CBMLkq33M=;
+        b=s+ld3BSW73VpjKfO2WLJyo8QMXPvYevRcq4PsaT3k2Z77qKdk8xKWjJckUUaWfvzr4
+         YWyksAxTftPrsW0ppk7H7HitM7QBkNbDsEe2lUr+1cxY0DIUgs1AZjooirLpXWNVTIFe
+         Oy9N2ufiwiT31+pU/7i2ANgmlzvXMLwrfmDJQoiEn4KgNO/wFYvu0BozmqYQelW3kvN6
+         iMGYIV3a7efaPBH1DniQf9yKlOy7z72aD7wlQ/YWJ1LW9PR2JrdFT4QNQHCki8J/HXBb
+         StVeaV3xBeut8XNSL/uttxlhjAlNWyfMYZBMtKmZg2uLKvzTsrKOgTHO5CYB/GgCVYyq
+         ceNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=v/DTnj+8yFQi9/Rn5TezlbUC9O7HSjU1iv93PbNHvKg=;
-        b=NlML28nrYQ/9e/mHmbQIb0HJFzbiMR7664LMSzc4URqXPkbDXoniuXub/6ylgrS1rP
-         FoC7qkpthSkQuqkByk6IxqA6bmVoxXJfGFyrK65ZKj4HYZ5c3fK/HnhGQa1WmGf+xoTo
-         Cggr0QqRT5fXm6iVWTmMMimEHv0bB5IsRqToroaZbPnk7JqxGmGGTMzPurewWFphsv2G
-         9vjWORsYGeTd8aaP69qP2Z+tSHnkITmEkzlqq//nqkHmqtpuP0nwNl2rb6Nq2oPJM/Ul
-         SAfwkL2w6veJLuCgEnu47dlxFUMqBi+4BHNzl/stzHkSmjBK9Zw2OgvtxRiEhY0xgJQD
-         4TDQ==
-X-Gm-Message-State: ACgBeo3IopqcDTeiK66k7IgN0GWTToCW+TlAeaPdyBMb8YEOXNGj+367
-        MHw6kyLuzIrcpJMei+/RrEW+dA==
-X-Google-Smtp-Source: AA6agR7Hj/GIsaqWfAOZaw+hKtYPz6ByfyjvLmH/q4AN4TswN04OUf1ZllBb39yob+Hep525/u8/1w==
-X-Received: by 2002:a05:6512:e97:b0:492:c677:f867 with SMTP id bi23-20020a0565120e9700b00492c677f867mr9110673lfb.190.1661925827465;
-        Tue, 30 Aug 2022 23:03:47 -0700 (PDT)
+        bh=Dl8bj8J2OYumn/gfks6Y/TXqxWAUsjyKN5CBMLkq33M=;
+        b=QcnPBd+BaL376amcJKxlXIdJLvhHSLZsBoTVtnA2e9hhhsySkGaCJh+3r3gglG0uLF
+         XMCNw7gldCJhIg2R1RjVCbIM3GiOOdw3GMyCMSDhGnvkaqhgrK1c9mUtGtWJR4L/FQM9
+         lxz/NyAsosooO6Rrji8VxTpAxrt9IajLsYKdbTChsg3CCmxXwWD333SOHNp5FitUQfkW
+         pQPqoWxOh1Allo76Mm0PKA+Mflso5fJkihiQEI5qvPllz5QC5IQGd2pN7dptI6/FotPd
+         KL9W7MOrRft6ewymR5HD0b9PGlr4T81b/gA2jdTC2lElZWhY3wJ8KIoUFcLg83liUhy8
+         EDqA==
+X-Gm-Message-State: ACgBeo2IkqeTzpacacWR6H8/SX0ICjNr3/3LMyHM3sPlHv2PBguB9MI4
+        O/22N2s/zHs8YPqij7uuAVVI1g==
+X-Google-Smtp-Source: AA6agR4VDbEUmpQN/YYGQlYkrQzhU4Vr7ZnZNVwK+T0wj2HQ8et1E4vjPcFJasdVKjtvPACwyeVfzA==
+X-Received: by 2002:a05:6512:1395:b0:48d:81b:4955 with SMTP id p21-20020a056512139500b0048d081b4955mr8308222lfa.307.1661925860150;
+        Tue, 30 Aug 2022 23:04:20 -0700 (PDT)
 Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id y9-20020a196409000000b0048af749c060sm1863927lfb.157.2022.08.30.23.03.46
+        by smtp.gmail.com with ESMTPSA id k4-20020ac257c4000000b0049483572143sm300975lfo.283.2022.08.30.23.04.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Aug 2022 23:03:46 -0700 (PDT)
-Message-ID: <3c180570-ecf9-3db4-c698-39c1b4679c6e@linaro.org>
-Date:   Wed, 31 Aug 2022 09:03:45 +0300
+        Tue, 30 Aug 2022 23:04:19 -0700 (PDT)
+Message-ID: <22eb5611-84e2-23e9-f70b-48bef351133f@linaro.org>
+Date:   Wed, 31 Aug 2022 09:04:18 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH 2/7] dt-bindings: phy: mediatek,tphy: add property to set
- pre-emphasis
+Subject: Re: [PATCH v2 3/3] arm64: dts: Modify gamma compatible for mt8195
 Content-Language: en-US
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+To:     "zheng-yan.chen" <zheng-yan.chen@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Eddie Hung <eddie.hung@mediatek.com>
-References: <20220819091344.2274-1-chunfeng.yun@mediatek.com>
- <20220819091344.2274-2-chunfeng.yun@mediatek.com>
- <438da392-f419-ad76-7e91-aa4aab36e12c@linaro.org>
- <816ecf6287533137b750c8bde9de5830e4229c56.camel@mediatek.com>
- <bee8abe5-0299-d05e-643c-4810aa33f978@linaro.org>
- <1a16cce9fe164bafc06ae193310be71c6f645d75.camel@mediatek.com>
- <000babd8-5980-3d77-f156-324b3442cbe7@linaro.org>
- <114c357f8d7f049d21ede789a292a8e2d45f4c61.camel@mediatek.com>
- <0a82842d-283c-e266-84f4-6306f29b61da@linaro.org>
- <8dcb4de53a52ab44d40f490099b6ed13e5ef7fe0.camel@mediatek.com>
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        "Jason-JH . Lin" <jason-jh.lin@mediatek.com>,
+        Singo Chang <singo.chang@mediatek.com>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220830063929.13390-1-zheng-yan.chen@mediatek.com>
+ <20220830063929.13390-4-zheng-yan.chen@mediatek.com>
+ <a209aea3-bf23-4670-91d0-e7f41ac57833@collabora.com>
+ <bf2b277e-8b02-6a44-e463-6b7c4a697ce7@linaro.org>
+ <b61776761eb0ab9a0b1dcf29d908e4bfd789d2ac.camel@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <8dcb4de53a52ab44d40f490099b6ed13e5ef7fe0.camel@mediatek.com>
+In-Reply-To: <b61776761eb0ab9a0b1dcf29d908e4bfd789d2ac.camel@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -90,93 +88,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/08/2022 06:00, Chunfeng Yun wrote:
-> On Tue, 2022-08-30 at 13:08 +0300, Krzysztof Kozlowski wrote:
->> On 29/08/2022 05:37, Chunfeng Yun wrote:
->>> On Fri, 2022-08-26 at 09:36 +0300, Krzysztof Kozlowski wrote:
->>>> On 26/08/2022 08:36, Chunfeng Yun wrote:
->>>>> On Tue, 2022-08-23 at 13:24 +0300, Krzysztof Kozlowski wrote:
->>>>>> On 22/08/2022 10:07, Chunfeng Yun wrote:
->>>>>>> On Fri, 2022-08-19 at 15:15 +0300, Krzysztof Kozlowski
->>>>>>> wrote:
->>>>>>>> On 19/08/2022 12:13, Chunfeng Yun wrote:
->>>>>>>>> Add a property to set usb2 phy's pre-emphasis.
->>>>>>>>>
->>>>>>>>> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
->>>>>>>>> ---
->>>>>>>>>  Documentation/devicetree/bindings/phy/mediatek,tphy.ya
->>>>>>>>> ml |
->>>>>>>>> 7
->>>>>>>>> +++++++
->>>>>>>>>  1 file changed, 7 insertions(+)
->>>>>>>>>
->>>>>>>>> diff --git
->>>>>>>>> a/Documentation/devicetree/bindings/phy/mediatek,tphy.y
->>>>>>>>> aml
->>>>>>>>> b/Documentation/devicetree/bindings/phy/mediatek,tphy.y
->>>>>>>>> aml
->>>>>>>>> index 848edfb1f677..aee2f3027371 100644
->>>>>>>>> ---
->>>>>>>>> a/Documentation/devicetree/bindings/phy/mediatek,tphy.y
->>>>>>>>> aml
->>>>>>>>> +++
->>>>>>>>> b/Documentation/devicetree/bindings/phy/mediatek,tphy.y
->>>>>>>>> aml
->>>>>>>>> @@ -219,6 +219,13 @@ patternProperties:
->>>>>>>>>          minimum: 1
->>>>>>>>>          maximum: 15
->>>>>>>>>  
->>>>>>>>> +      mediatek,pre-emphasis:
->>>>>>>>> +        description:
->>>>>>>>> +          The selection of pre-emphasis (U2 phy)
->>>>>>>>> +        $ref: /schemas/types.yaml#/definitions/uint32
->>>>>>>>> +        minimum: 1
->>>>>>>>> +        maximum: 3
->>>>>>>>
->>>>>>>> Instead of hard-coding register values in bindings, you
->>>>>>>> should
->>>>>>>> rather
->>>>>>>> describe here feature/effect. If it is in units, use unit
->>>>>>>> suffixes.
->>>>>>>> If
->>>>>>>> it is some choice, usually string enum is appropriate.
->>>>>>>
->>>>>>> How about changing description as bellow:
->>>>>>>
->>>>>>> "The level of pre-emphasis, increases one level, boosts the
->>>>>>> relative
->>>>>>> amplitudes of signal's higher frequencies components about
->>>>>>> 4.16%
->>>>>>> (U2
->>>>>>> phy)"
->>>>>>>
->>>>>>
->>>>>> Still the question is what is the unit. 4.16%?
->>>>>
->>>>> No unit, it's a level value, like an index of array.
->>>>>
+On 31/08/2022 05:29, zheng-yan.chen wrote:
+> On Tue, 2022-08-30 at 12:14 +0300, Krzysztof Kozlowski wrote:
+>> On 30/08/2022 10:49, AngeloGioacchino Del Regno wrote:
+>>> Il 30/08/22 08:39, zheng-yan.chen ha scritto:
+>>>> Modify gamma compatible for mt8195.
 >>>>
->>>> So a value from register/device programming? 
+>>>> Fixes: 16590e634f1d ("arm64: dts: mt8195: Add display node for
+>>>> vdosys0")
+>>>> Signed-off-by: zheng-yan.chen <zheng-yan.chen@mediatek.com>
 >>>
->>> Yes
->>>> Rather a regular units
->>>> should be used if that's possible. If not, this should be clearly
->>>> described here, not some magical number which you encode into
->>>> DTS...
->>>
->>> Ok, I'll add more descriptions.
+>>> Reviewed-by: AngeloGioacchino Del Regno <
+>>> angelogioacchino.delregno@collabora.com>
 >>
->> Better use logical value, e.g.
+>> Please also perform review on the commit msg and backport status.
 >>
-> https://urldefense.com/v3/__https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml*L38__;Iw!!CTRNKA9wMg0ARbw!1e-h0R_uwcaHKfKC9qYfaRWYeuWRq1sLCGy3yupNmkFyuW5s1nmRotL7Y0vFG9ETLLTA$
->>  
-> Optional unit may be -percent or -bp, but the value 4.16% * X
-> (X=1,2,3...)is not an exact value, they are variable in a range and
-> dependent more factors.
-> So I think use level value is simple enough.
+>> Best regards,
+>> Krzysztof
+> Hello Krzysztof, 
+> Thanks for the review,
+> I will fix it at the next version.
 
-Then again explain exactly what are the levels. How you wrote it last
-time, -bp would do the trick.
+This was to AngeloGioacchino...
 
 Best regards,
 Krzysztof
