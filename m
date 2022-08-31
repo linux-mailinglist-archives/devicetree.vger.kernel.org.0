@@ -2,74 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D0B735A788D
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 10:08:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C33C75A789F
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 10:13:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231372AbiHaIIm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 04:08:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47978 "EHLO
+        id S231354AbiHaINn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 04:13:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231193AbiHaIIf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 04:08:35 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E71496BCE8
-        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 01:08:33 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id m7so9924235lfq.8
-        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 01:08:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=vmWS3ICQ2RM5oR5SXL4HEHG2SH0Ha+DMmwYwfuW5t3k=;
-        b=jihFvEFcSQl4e3CLivEhr7BRyksHlyC6vR0KffyQxa+P0SntzX9NmwAPFwpSw9lxM5
-         HxQQexiDOk+4XPag3Xk0iofS8BbQkVRPwu4MMw5cjLZp8/h7M5vgFJuTsZzIW58lI+vV
-         Cofa3JLWroLOtNooPif02GTFCYmGpoxYm5JWy6afkNCdhZwdsAnMZou3cPTmffOyBi1P
-         1SPWq68jMDgN4/muAEfyhT4TBmnwk3q4uYiF5WNCURgQyKY6mcryRAzabmTXQtc5pOS2
-         Pyf35CEvDE+zZs6hXweTY9RmBAqiHNyMyCth29UdT2WkVG+glAYJUfi2aWHiog1aySTZ
-         ySug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=vmWS3ICQ2RM5oR5SXL4HEHG2SH0Ha+DMmwYwfuW5t3k=;
-        b=bYcP4uh96GXsWMYkd9mAjJsS63kZe3RUkBK61NTkbvifQHzqCaEolu230J2kX1m+0G
-         Z+pXibA02dLSF9LNeeJUXtpwzTddpMbhoH2HnKM4SnoSv3CXdQq6Ml/PYWIEnPPPsbO/
-         BKiWbybxjtm09kip2OOLxl66PYI0A1jxIQOXLFLNu7PWIeRTStQ8L5zVowKLk+tmKJQq
-         ZuAqt5JIn4XJaVsLGA5h8lfwZE+hbbYqzHUMQUTgpk7iZ7JQ5zN6bcPK0Z/+12SjnrpM
-         h++5zNIuf/IDvjD19kYs6opVuPVBT4gtNOjVSh28hhwwfajuGXHUfhND/RUob37WPcgf
-         XXUg==
-X-Gm-Message-State: ACgBeo2HxOww6lte6csAfd4aJ4vqoPhPpeGLBij7Ujo919WEFZOtanOC
-        KBgrsGDOiDC2d0Hz8s071z5ZAA==
-X-Google-Smtp-Source: AA6agR6SuW5AwvCUsL5LauHW6Qc4LSk7bz0Kewp8m40rSFZ3lJRLnlje4nUT0nK5k6a0NRHWwRuPKw==
-X-Received: by 2002:a05:6512:10c8:b0:492:41f9:2adc with SMTP id k8-20020a05651210c800b0049241f92adcmr8383042lfg.388.1661933312287;
-        Wed, 31 Aug 2022 01:08:32 -0700 (PDT)
-Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id s16-20020a056512315000b0047fa941067fsm1914757lfi.29.2022.08.31.01.08.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 Aug 2022 01:08:31 -0700 (PDT)
-Message-ID: <6936b536-4b32-3f98-7393-2934eb80d952@linaro.org>
-Date:   Wed, 31 Aug 2022 11:08:30 +0300
+        with ESMTP id S231393AbiHaINl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 04:13:41 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDFDFBADBC
+        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 01:13:40 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1oTIqr-0004SU-BX; Wed, 31 Aug 2022 10:13:33 +0200
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1oTIqo-0002rH-IT; Wed, 31 Aug 2022 10:13:30 +0200
+Date:   Wed, 31 Aug 2022 10:13:30 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Robert Foss <robert.foss@linaro.org>
+Cc:     laurent.pinchart@ideasonboard.com, jernej.skrabec@gmail.com,
+        jonas@kwiboo.se, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, sam@ravnborg.org,
+        maxime@cerno.tech, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH 0/6] TI SN65DSI83 Features
+Message-ID: <20220831081330.mvy2ziuci3pklr7k@pengutronix.de>
+References: <20220530150548.1236307-1-m.felsch@pengutronix.de>
+ <20220726091228.nvvyzab7wyzrnfrr@pengutronix.de>
+ <CAG3jFyt6A2L0Feeibv_76tVhQ_PjRpowQ=CeJ9FaOOshrEWLuQ@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v1 2/5] arm64: dts: imx8mq-librem5: add RGB pwmleds
-Content-Language: en-US
-To:     Martin Kepplinger <martin.kepplinger@puri.sm>, festevam@gmail.com,
-        shawnguo@kernel.org
-Cc:     devicetree@vger.kernel.org, kernel@pengutronix.de, kernel@puri.sm,
-        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        robh@kernel.org, =?UTF-8?Q?Guido_G=c3=bcnther?= <agx@sigxcpu.org>
-References: <20220831080301.1092737-1-martin.kepplinger@puri.sm>
- <20220831080301.1092737-3-martin.kepplinger@puri.sm>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220831080301.1092737-3-martin.kepplinger@puri.sm>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAG3jFyt6A2L0Feeibv_76tVhQ_PjRpowQ=CeJ9FaOOshrEWLuQ@mail.gmail.com>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -78,47 +53,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/08/2022 11:02, Martin Kepplinger wrote:
-> From: Guido Günther <agx@sigxcpu.org>
+Hi Robert,
+
+On 22-08-29, Robert Foss wrote:
+> Hey Marco,
 > 
-> Describe the RGB notification leds on the Librem 5 phone.
-> Use the common defines so we're sure to adhere to the common patterns,
-> use predefined led colors and functions so we're being warned in case
-> of deprecations.
+> Sorry about the slow reply.
 > 
-> Signed-off-by: Guido Günther <agx@sigxcpu.org>
-> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
-> ---
->  .../boot/dts/freescale/imx8mq-librem5.dtsi    | 26 +++++++++++++++++++
->  1 file changed, 26 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-> index 0626e4194d958..bbf49e419b498 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-> @@ -7,6 +7,7 @@
->  
->  #include "dt-bindings/input/input.h"
->  #include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/leds/common.h>
->  #include "dt-bindings/pwm/pwm.h"
->  #include "dt-bindings/usb/pd.h"
->  #include "imx8mq.dtsi"
-> @@ -54,6 +55,31 @@ key-vol-up {
->  		};
->  	};
->  
-> +	pwmleds {
-> +		compatible = "pwm-leds";
-> +
-> +		blue {
+> This series no longer applies on drm-misc-next. Can you rebase this
+> series and send it out a v2?
 
-Test your DTS (`make dtbs_check`).
+I can but I would rather prefer to get some feedback first. Right now I
+just got a minor documentation issue feedback from Alexander.
 
-Node names should be generic.
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-
-
-Best regards,
-Krzysztof
+Regards,
+  Marco
