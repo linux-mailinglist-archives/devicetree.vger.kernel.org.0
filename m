@@ -2,58 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 137715A743F
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 05:04:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49A7B5A744B
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 05:14:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232127AbiHaDD7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 23:03:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35934 "EHLO
+        id S232093AbiHaDOe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 23:14:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232101AbiHaDDt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 23:03:49 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64161B0B17;
-        Tue, 30 Aug 2022 20:03:46 -0700 (PDT)
-X-UUID: 1098c322613046dfa9cbe8e796440dd2-20220831
+        with ESMTP id S231933AbiHaDOb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 23:14:31 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97AE5B248A;
+        Tue, 30 Aug 2022 20:14:28 -0700 (PDT)
+X-UUID: 8dbefa497c1644e0961e87f2053efd36-20220831
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=PEdXpcWRw+A+QutbjbtjgcTym0ecB1EdaaG/G32Mcxo=;
-        b=TH3sLwgr5c0CDrxgk3cXvX1HgaEUoB3T6eC5cq41TkDKvg+lmFvRodZ4JW/tkQdgUAvvZOuz2EqQrAY8UUgYd03LxUQPvVM6v21BIapLtpa7C42kmThRXzRNgYT3rBBkv79ttXF1sML0Zvhw66b6lNEyEQc1gQ/OL/YzoqVBo9I=;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=HdLX2cQSyS2w0LK3V/gap2eMhetpaT8GDl7EAbKntjU=;
+        b=rS4RLeDKr1jo3gRGYNWCy6XcijPp5+dHKWs1L3rgL1oPgblEnE0I5q2sqaMANJ/4KGqICj9ozWsXf06JiscyABHMPGtGcOlVNOVRY46g7uuDoOXdXQjiisqAPS4LGOe42EEYvaPUps26PFizFqSRLncJH5OUzEWzqyYEO6PqXBM=;
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.10,REQID:e780a1e9-85dc-4e71-929a-e2363f31ca26,OB:0,L
-        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_
-        Ham,ACTION:release,TS:0
-X-CID-META: VersionHash:84eae18,CLOUDID:d95d20d0-20bd-4e5e-ace8-00692b7ab380,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 1098c322613046dfa9cbe8e796440dd2-20220831
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
-        (envelope-from <kewei.xu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 774427402; Wed, 31 Aug 2022 11:03:41 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+X-CID-O-INFO: VERSION:1.1.10,REQID:5fa23807-a385-4bec-b502-5692ceb1f785,OB:90,
+        LOB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Releas
+        e_Ham,ACTION:release,TS:45
+X-CID-INFO: VERSION:1.1.10,REQID:5fa23807-a385-4bec-b502-5692ceb1f785,OB:90,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_
+        Ham,ACTION:release,TS:45
+X-CID-META: VersionHash:84eae18,CLOUDID:1dd620d0-20bd-4e5e-ace8-00692b7ab380,C
+        OID:5767c5659b6e,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:11|1,File:nil,Bulk:40,QS:nil,BEC:nil,COL:0
+X-UUID: 8dbefa497c1644e0961e87f2053efd36-20220831
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1557600996; Wed, 31 Aug 2022 11:14:23 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Wed, 31 Aug 2022 11:03:41 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
+ 15.2.792.15; Wed, 31 Aug 2022 11:14:22 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 31 Aug 2022 11:03:40 +0800
-Message-ID: <b77553ac2c9c934abcf3b5e5b5083ad695584c42.camel@mediatek.com>
-Subject: Re: [PATCH v2 1/1] dt-binding: serial: mediatek,uart: update
- bingding for MT8188
-From:   Kewei Xu <kewei.xu@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>
-CC:     <devicetree@vger.kernel.org>,
+ Transport; Wed, 31 Aug 2022 11:14:20 +0800
+Message-ID: <d30353e4dbb785c3ce31ef54b791bfe3d23df904.camel@mediatek.com>
+Subject: Re: [PATCH v2 2/7] dt-bindings: phy: mediatek,tphy: add property to
+ set pre-emphasis
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>
+CC:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
         <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <leilk.liu@mediatek.com>,
-        <qii.wang@mediatek.com>, <liguo.zhang@mediatek.com>,
-        <caiyu.chen@mediatek.com>, <david-yh.chiu@mediatek.com>
-Date:   Wed, 31 Aug 2022 11:03:37 +0800
-In-Reply-To: <f8a391de-dd47-1eb9-0e15-e6a651517a6f@gmail.com>
-References: <20220809084457.31381-1-kewei.xu@mediatek.com>
-         <f8a391de-dd47-1eb9-0e15-e6a651517a6f@gmail.com>
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski@canonical.com>,
+        Eddie Hung <eddie.hung@mediatek.com>
+Date:   Wed, 31 Aug 2022 11:14:19 +0800
+In-Reply-To: <d1f49935-b465-7495-d345-f35bf4dea9f9@linaro.org>
+References: <20220829080830.5378-1-chunfeng.yun@mediatek.com>
+         <20220829080830.5378-2-chunfeng.yun@mediatek.com>
+         <d1f49935-b465-7495-d345-f35bf4dea9f9@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
 X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
@@ -69,46 +75,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2022-08-24 at 15:59 +0200, Matthias Brugger wrote:
-> 
-> On 09/08/2022 10:44, kewei.xu@mediatek.com wrote:
-> > From: Kewei Xu <kewei.xu@mediatek.com>
+On Tue, 2022-08-30 at 20:38 +0300, Krzysztof Kozlowski wrote:
+> On 29/08/2022 11:08, Chunfeng Yun wrote:
+> > Add a property to set usb2 phy's pre-emphasis, which used to widen
+> > eye
+> > opening and boost eye swing.
 > > 
-> > Add a DT binding documentation for the MT8188 soc.
-> > 
-> > Signed-off-by: Kewei Xu <kewei.xu@mediatek.com>
-> 
-> Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-> 
+> > Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
 > > ---
-> > v2: Resumbit the patch based on the linux-next branch.
+> > v2: Add more description suggested by Krzysztof
 > > ---
-> >   Documentation/devicetree/bindings/serial/mediatek,uart.yaml | 1 +
-> >   1 file changed, 1 insertion(+)
+> >  .../devicetree/bindings/phy/mediatek,tphy.yaml         | 10
+> > ++++++++++
+> >  1 file changed, 10 insertions(+)
 > > 
 > > diff --git
-> > a/Documentation/devicetree/bindings/serial/mediatek,uart.yaml
-> > b/Documentation/devicetree/bindings/serial/mediatek,uart.yaml
-> > index 4ff27d6d4d5b..fe098d98af6e 100644
-> > --- a/Documentation/devicetree/bindings/serial/mediatek,uart.yaml
-> > +++ b/Documentation/devicetree/bindings/serial/mediatek,uart.yaml
-> > @@ -42,6 +42,7 @@ properties:
-> >                 - mediatek,mt8173-uart
-> >                 - mediatek,mt8183-uart
-> >                 - mediatek,mt8186-uart
-> > +              - mediatek,mt8188-uart
-> >                 - mediatek,mt8192-uart
-> >                 - mediatek,mt8195-uart
-> >                 - mediatek,mt8516-uart
+> > a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
+> > b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
+> > index 848edfb1f677..e0754fb44451 100644
+> > --- a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
+> > +++ b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
+> > @@ -219,6 +219,16 @@ patternProperties:
+> >          minimum: 1
+> >          maximum: 15
+> >  
+> > +      mediatek,pre-emphasis:
+> > +        description:
+> > +          The level of pre-emphasis which used to widen the eye
+> > opening and
+> > +          boost eye swing, the unit step is about 4.16% increment;
+> > e.g. the
+> > +          level 1 means amplitude increases about 4.16%, the level
+> > 2 is about
+> > +          8.3% etc. (U2 phy)
+> > +        $ref: /schemas/types.yaml#/definitions/uint32
+> 
+> As I proposed - use instead common units. 
+As explained before, no units for these value.
 
-Hi gregkh,
+> Since only three values are
+> allowed - make it an enum. 
+Ok,
 
-Just a gentle ping on this.
-Could you please give me some suggestion on this patch?
+> These bindings are expected to be
+> usable/applicable on several devices, so units, not register values
+> which can change between devices, are the proper and reliable way to
+> describe a feature.
+I prefer to use exact level values, but not the inexact values with
+units (e.g. -percent, -microvolt).
 
-Thank you very much~
+Thanks a lot
 
-BRs,
-Kewei Xu
-
+> 
+> 
+> Best regards,
+> Krzysztof
 
