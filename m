@@ -2,116 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BD795A75AA
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 07:20:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D64955A75B6
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 07:31:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232077AbiHaFUQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 01:20:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55826 "EHLO
+        id S229551AbiHaFby (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 01:31:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229659AbiHaFT4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 01:19:56 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C493D5E;
-        Tue, 30 Aug 2022 22:19:45 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 27V5D2AI017414;
-        Wed, 31 Aug 2022 05:19:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=3h1aiXrphk5T2rqN3UBCgmzr+FGo6Il6A5/GglCrd1c=;
- b=k1QMkybIbnx2WhWPTIF0ZE2RuuHNovTdD0wXsoTKtfBGwTHwOvTVxUB2tE0fHwO1yNc6
- pdyyUHWaLXLrejCatOBwYoonVPbcpsJ/vYP5GXH58Es386FkupRhdb2gBvS/7kUdJ2PY
- F5OJTUvdfNjV9R2XKD7JtynBwiU+WCxFdgqUp33LCHUeqxv5/OmR4pRslvIpmCuj7+9p
- iN5nMROOQpLCs5+WOf/X02DYKIBLgVrTGtcaXCq6BxTAGn3Hhn6hxwwy0PvR7arDN2+5
- bGvK0UCdXOFDV+LShmyP33Aif5l9LevqrpL5sEnt0+rlXBhylb6I0AFnFIJPgBUEdP05 sg== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3j9jm4jy6q-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 31 Aug 2022 05:19:36 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 27V5JZn6014135
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 31 Aug 2022 05:19:35 GMT
-Received: from hyd-lnxbld559.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.29; Tue, 30 Aug 2022 22:19:30 -0700
-From:   Akhil P Oommen <quic_akhilpo@quicinc.com>
-To:     freedreno <freedreno@lists.freedesktop.org>,
-        <dri-devel@lists.freedesktop.org>, <linux-arm-msm@vger.kernel.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        "Stephen Boyd" <swboyd@chromium.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC:     Douglas Anderson <dianders@chromium.org>,
-        <krzysztof.kozlowski@linaro.org>,
-        Akhil P Oommen <quic_akhilpo@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v6 6/6] arm64: dts: qcom: sc7280: Add Reset support for gpu
-Date:   Wed, 31 Aug 2022 10:48:27 +0530
-Message-ID: <20220831104741.v6.6.I6a1fca5d53c886c05ea3e24cd4282d31c9c0cd0b@changeid>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1661923108-789-1-git-send-email-quic_akhilpo@quicinc.com>
-References: <1661923108-789-1-git-send-email-quic_akhilpo@quicinc.com>
+        with ESMTP id S229437AbiHaFbx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 01:31:53 -0400
+Received: from mail-il1-x130.google.com (mail-il1-x130.google.com [IPv6:2607:f8b0:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4738CB8F2D;
+        Tue, 30 Aug 2022 22:31:52 -0700 (PDT)
+Received: by mail-il1-x130.google.com with SMTP id s3so145739ilv.0;
+        Tue, 30 Aug 2022 22:31:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc;
+        bh=fh0vOuRtsk5EMk5hSJ7o3ypJ/QfcxJywMLcP1lA6j2E=;
+        b=eMN4Bk/NFV6UIkU8Vp7ulrQFxDm0NyzDKKEStiPXLPlYvMOe1MZkTBlfS4JHtIgesh
+         b58cDxfEflTTGVOvUSm6eKSAdWlGTGYHMiXiaGbXbWqIPF456qqi/iiqO944sk+jlrHW
+         La5/anZQdtDe20tCZ4G4pfSHYlk4D32qq8X+bRc3X888YFvFX8ipTH48Paot6+BzfDJX
+         bYVX6NlT5X1CoB7CO9rg5u7vO/uEQWQ0f6MuEl+rlGguau083VmKl3ziIAqVfqyd/7sg
+         GscrQcqhTCrJOZqFy3fBpThwLrq3BCTOPtQaTiLjuOWFiFv8JwR3xYhN/OnderBk9pRk
+         Rlyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc;
+        bh=fh0vOuRtsk5EMk5hSJ7o3ypJ/QfcxJywMLcP1lA6j2E=;
+        b=ePXvg718+eSXiett6Y6UljaMsz1ZNcBEb28tOMfgyk3fW735n59z/cW4py3EIeUhcR
+         CBN9JF20AsugVN6DAu8ndLdouVY2meQP6BDYSs+lLxb6nnUV58ANMoUF0loeyxbhO2Fu
+         1EjdZtvVFgY6fnCq31JvWKgpLOq5Nc2NhE4gimEPY0rBuHSZ1sc9CWj3lT63mTG0V7TM
+         hq21V21czirQH3HB5Xvpn6M5wb3tbqR1Csk+4nHbFQFwu1bpzwv2zDqCg1XByys/kQT6
+         1JCQ7YdX83HNxnmB4aas0VQtxMJB6w1e4ttnrLb3jR+HMAa+O/PfLS5VZpuQTIbUF1/X
+         KFMA==
+X-Gm-Message-State: ACgBeo35AD0WakHasXm0vVoIOonLTuo76BZ26xK8bEEDp5tcuSFYyYYT
+        3GNuXjypJbMvndAEJP4fd6+/W3X8Nqs2Mc6kdKo=
+X-Google-Smtp-Source: AA6agR6R1oxHvjEIIPpIv3iBzP+g44uQhnpPL5EhVCjLcdaAjBGQFKT3UqMsZSA5Bw9WI56ED7K4Pnz/cjpTtWKulbk=
+X-Received: by 2002:a05:6e02:1886:b0:2eb:438a:c64c with SMTP id
+ o6-20020a056e02188600b002eb438ac64cmr4214347ilu.282.1661923911611; Tue, 30
+ Aug 2022 22:31:51 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: _rOgocCXem56kzbfs3X5mN2S0oNYw-57
-X-Proofpoint-GUID: _rOgocCXem56kzbfs3X5mN2S0oNYw-57
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.517,FMLib:17.11.122.1
- definitions=2022-08-31_03,2022-08-30_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 bulkscore=0
- adultscore=0 malwarescore=0 priorityscore=1501 lowpriorityscore=0
- phishscore=0 clxscore=1015 suspectscore=0 mlxscore=0 impostorscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2207270000 definitions=main-2208310025
+References: <20220829062202.3287-1-zong.li@sifive.com> <20220829062202.3287-3-zong.li@sifive.com>
+ <1a0da77e-8b26-a6aa-4af2-bf852470230a@microchip.com> <CANXhq0rHnsRP=Djin53Nc5n3aYY-=ALu7=F-1Y+-U3_L_ehG6g@mail.gmail.com>
+ <e155125d-6a8a-aa28-b331-9c36d21305a5@microchip.com>
+In-Reply-To: <e155125d-6a8a-aa28-b331-9c36d21305a5@microchip.com>
+From:   Zong Li <zongbox@gmail.com>
+Date:   Wed, 31 Aug 2022 13:31:39 +0800
+Message-ID: <CA+ZOyahru+kws29VAxt8NFaRRYJzFPegaEdDEFhYxLtwSEds3g@mail.gmail.com>
+Subject: Re: [PATCH 2/3] soc: sifive: l2 cache: Rename SiFive L2 cache to
+ composible cache.
+To:     Conor.Dooley@microchip.com
+Cc:     zong.li@sifive.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com,
+        paul.walmsley@sifive.com, aou@eecs.berkeley.edu,
+        greentime.hu@sifive.com, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for Reset using GPUCC driver for GPU. This helps to ensure
-that GPU state is reset by making sure that CX head switch is collapsed.
+<Conor.Dooley@microchip.com> =E6=96=BC 2022=E5=B9=B48=E6=9C=8830=E6=97=A5 =
+=E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=884:42=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> On 29/08/2022 09:40, Zong Li wrote:
+> > EXTERNAL EMAIL: Do not click links or open attachments unless you know =
+the content is safe
+> >
+> > On Mon, Aug 29, 2022 at 3:05 PM <Conor.Dooley@microchip.com> wrote:
+> >>
+> >> Hey Zong,
+> >>
+> >> On 29/08/2022 07:22, Zong Li wrote:
+> >>> EXTERNAL EMAIL: Do not click links or open attachments unless you kno=
+w the content is safe
+> >>>
+> >>> From: Greentime Hu <greentime.hu@sifive.com>
+> >>>
+> >>> Since composible cache may be L3 cache if pL2 cache exists, we should=
+ use
+> >>> its original name composible cache to prevent confusion.
+> >>>
+> >>> Signed-off-by: Greentime Hu <greentime.hu@sifive.com>
+> >>> Signed-off-by: Zong Li <zong.li@sifive.com>
+>
+> >>>
+> >>> diff --git a/drivers/soc/sifive/Kconfig b/drivers/soc/sifive/Kconfig
+> >>> index 58cf8c40d08d..3d65d2771f9a 100644
+> >>> --- a/drivers/soc/sifive/Kconfig
+> >>> +++ b/drivers/soc/sifive/Kconfig
+> >>> @@ -2,9 +2,10 @@
+> >>>
+> >>>    if SOC_SIFIVE
+> >>>
+> >>> -config SIFIVE_L2
+> >>> -       bool "Sifive L2 Cache controller"
+> >>> +config SIFIVE_CCACHE
+> >>> +       bool "Sifive composable Cache controller"
+> >>> +       default y
+> >>
+> >> Changing this to default on is not a rename of the file..
+> >> This should be in a different patch.
+> >
+> > Okay, let me separate it to another patch, but I guess we could remove
+> > it, and enable it by user. What is your perspective on it?
+>
+> Personally I would like to leave the default y out & leave it up
+> to the user - the driver is more informational than anything else
+> so I don't think making it default to on makes sense.
+>
 
-Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
----
+Agree, let me remove it in the next version. Thanks
 
-(no changes since v1)
-
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index e66fc67..f5257d6 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -2243,6 +2243,9 @@
- 			nvmem-cells = <&gpu_speed_bin>;
- 			nvmem-cell-names = "speed_bin";
- 
-+			resets = <&gpucc GPU_CX_COLLAPSE>;
-+			reset-names = "cx_collapse";
-+
- 			gpu_opp_table: opp-table {
- 				compatible = "operating-points-v2";
- 
--- 
-2.7.4
-
+>
+>
+> >>> +
+> >>> +#define SIFIVE_CCACHE_DIRECCFIX_LOW 0x100
+> >>> +#define SIFIVE_CCACHE_DIRECCFIX_HIGH 0x104
+> >>> +#define SIFIVE_CCACHE_DIRECCFIX_COUNT 0x108
+> >>> +
+> >>> +#define SIFIVE_CCACHE_DATECCFIX_LOW 0x140
+> >>> +#define SIFIVE_CCACHE_DATECCFIX_HIGH 0x144
+> >>> +#define SIFIVE_CCACHE_DATECCFIX_COUNT 0x148
+> >>> +
+> >>> +#define SIFIVE_CCACHE_DATECCFAIL_LOW 0x160
+> >>> +#define SIFIVE_CCACHE_DATECCFAIL_HIGH 0x164
+> >>> +#define SIFIVE_CCACHE_DATECCFAIL_COUNT 0x168
+> >>> +
+> >>> +#define SIFIVE_CCACHE_CONFIG 0x00
+> >>> +#define SIFIVE_CCACHE_WAYENABLE 0x08
+> >>> +#define SIFIVE_CCACHE_ECCINJECTERR 0x40
+> >>
+> >>   From what I can see, you've also changed these around too?
+> >> Please generate the patch's diff so that the rename is detected & the
+> >> diff shows only what changed in the file. The -M option is what you
+> >> are looking for.
+> >>
+> >> I have a couple other comments to make about what's changed here other=
+,
+> >> thatn the rename but I will do so against a v2 where the diff is usabl=
+e.
+> >>
+> >
+> > Let me sent the v2 patch, and separate the rename and diff part
+>
+> Great, thanks. I'll take another look at it then.
+>
+> Conor.
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
