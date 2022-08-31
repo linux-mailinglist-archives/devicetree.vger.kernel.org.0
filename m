@@ -2,120 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A50F5A7D97
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 14:40:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B34B5A7DA2
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 14:41:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229692AbiHaMkW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 08:40:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37922 "EHLO
+        id S231322AbiHaMlT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 08:41:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229437AbiHaMkT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 08:40:19 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41CAF4D4FA
-        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 05:40:16 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id u9so28118400ejy.5
-        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 05:40:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=a4juxeAAulsXmDrJb36ig59wvWAlzfmtIuDcR0ZWcMU=;
-        b=cVvQdejj1xh4k3nxjYSt5s0vZsxpXN2i7pF/rCWGkRd6NPibNRhJi/T4D2DkynEaYx
-         QcjG/cIxhl4/6qzg7X7eXjHD4RVNoVqSPvPSjDxijwnxr5mmiQJLl7UIAWf7ct/R4USZ
-         y6sVrnyqIeNZMPpfg22hsgcsonH5HBXg249mPi8ZJxmcLLW1tLQIpelOq4DwLHExAgrh
-         nj9nlyAUV/AfcOq2TXTeoshWdB/KJ269XkbCeLwKIRo79cEguCOenMVI1Y3U/tZfJwPU
-         UY0JdycIpFs47eT2tFz0Vzv23IcWLQQ5KjodRB2m2DLUCJmJY4rBCOAwSwaoMhFJGv5D
-         wmJw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=a4juxeAAulsXmDrJb36ig59wvWAlzfmtIuDcR0ZWcMU=;
-        b=IC7iOCAerE+NTHyatbaMgLvpnjeEU/Oi6jofHmN/YwWTRQSOlx7gPNd6/+mRqga/ep
-         u6FBbuEYVM245XIkCEM2hASuiJ7c4EE3p0HhOEusNuUJ82ELd8QgcHaNaUMtm8MhVwWW
-         RswEP0kz0BZugtHEKd4johFsHMvV25uklbT8aPsXFh2KbslxYVXCT9iwu8DLuEiT8lM4
-         rx6nvMwtJyiKBjlezuF4X+LnJtSGbGpD9s4olihTNKdwLBlz2eZ+dF9Q+JzUYsM0E3cc
-         S4BUcAITid2rxmRdSYKtMZoMUsKnAvvHrYLQvDzi1hCCPlj+PGXF5+9xCWznzPPH88PS
-         t8/g==
-X-Gm-Message-State: ACgBeo0UrjUZjM5+ce1xDL1Jtg8DqzY5K1OBMGpch4iCK1R8vlKOdzKd
-        pjqFa8KQr1kShsVKM3tpY6j+wYnGRFJKMqPVoYYp1w==
-X-Google-Smtp-Source: AA6agR4BiTjPadhITkWlY6Fuohq9FtVy0uscgtHalamLR2uaklr48naucP5D/EiAs2TmQsaDRBmuAdsp/q+qOhJljUI=
-X-Received: by 2002:a17:907:7394:b0:73a:d077:9ba1 with SMTP id
- er20-20020a170907739400b0073ad0779ba1mr19414625ejc.697.1661949615282; Wed, 31
- Aug 2022 05:40:15 -0700 (PDT)
+        with ESMTP id S231320AbiHaMlR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 08:41:17 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77CDA9C8FE;
+        Wed, 31 Aug 2022 05:41:13 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 4E422B82062;
+        Wed, 31 Aug 2022 12:41:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0365C433C1;
+        Wed, 31 Aug 2022 12:41:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1661949670;
+        bh=GlqPyBG/2QZHbPqaaWonjRMxL4niWdBcQJxyKEdjQSk=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=gNwuWskc/jXU/OrebX3y24EoJciyi62c5H6tEuPGRlLQ+alc5tVqmdzZDmAVXi3Ud
+         MTw042H61ryMiZrFzQqF28RjgkCVuMWzValPBezeBZSbkfjqhmRAS4fasfq35SMot3
+         xQtL9Q6Q+DQga6bzAe3ws6RbvHwAaaLmzlOYB0y9RDIdcyUAlxm6j/Zz7XiBaZVTF9
+         kKoUWS5XduYHs8kbhkKS2YrFa+G2TQxJt813jLoNQJg5Ene0jKdVJAiALr4OtpVuvf
+         v1Twttg65eM9lvEKG9AKDgvVhfC0WW7xBilKgwSUXNKynQq5bvBJRpmdV7d+p0q70f
+         XI0HOQftONieg==
+From:   Mark Brown <broonie@kernel.org>
+To:     linux-renesas-soc@vger.kernel.org,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20220824094327.33685-1-wsa+renesas@sang-engineering.com>
+References: <20220824094327.33685-1-wsa+renesas@sang-engineering.com>
+Subject: Re: [PATCH 0/3] spi: add generic R-Car Gen4 and specific r8a779f0 support
+Message-Id: <166194966864.85432.14716335347687736430.b4-ty@kernel.org>
+Date:   Wed, 31 Aug 2022 13:41:08 +0100
 MIME-Version: 1.0
-References: <20220825143522.3102546-1-conor.dooley@microchip.com>
-In-Reply-To: <20220825143522.3102546-1-conor.dooley@microchip.com>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Wed, 31 Aug 2022 14:40:04 +0200
-Message-ID: <CAMRc=MdQkP-Dd0MrJ5DvxKgvyC-1WO+f98t7-ASs3qrNJL+uAw@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: gpio: mpfs-gpio: allow parsing of hog
- child nodes.
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.10.0-dev-0c1df
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 25, 2022 at 4:36 PM Conor Dooley <conor.dooley@microchip.com> wrote:
->
-> The SD card and eMMC on PolarFire SoC are sometimes muxed using a GPIO
-> by the bootloader. Add a hog child property to facilitate this.
->
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
-> Changes since v1:
-> - move addtionalProperties up under type:
-> - drop the explicit match group syntax
-> ---
->  .../bindings/gpio/microchip,mpfs-gpio.yaml     | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml b/Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml
-> index 110651eafa70..fdc16822fd4b 100644
-> --- a/Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml
-> +++ b/Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml
-> @@ -44,6 +44,24 @@ properties:
->
->    gpio-controller: true
->
-> +patternProperties:
-> +  "^.+-hog(-[0-9]+)?$":
-> +    type: object
-> +
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      gpio-hog: true
-> +      gpios: true
-> +      input: true
-> +      output-high: true
-> +      output-low: true
-> +      line-name: true
-> +
-> +    required:
-> +      - gpio-hog
-> +      - gpios
-> +
->  required:
->    - compatible
->    - reg
-> --
-> 2.36.1
->
+On Wed, 24 Aug 2022 11:43:23 +0200, Wolfram Sang wrote:
+> Here are the patches to enable MSIOF on R-Car S4-8. They also introduce
+> generic Gen4 support and move V3U to Gen4 (which it really is).
+> 
+> Wolfram Sang (3):
+>   spi: renesas,sh-msiof: Add generic Gen4 and r8a779f0 support
+>   spi: sh-msiof: add generic Gen4 binding
+>   spi: renesas,sh-msiof: R-Car V3U is R-Car Gen4
+> 
+> [...]
 
-Applied, thanks!
+Applied to
 
-Bart
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+
+Thanks!
+
+[1/3] spi: renesas,sh-msiof: Add generic Gen4 and r8a779f0 support
+      commit: e1e62f05d5d9d7726349e00562299d829e478ce9
+[2/3] spi: sh-msiof: add generic Gen4 binding
+      commit: ea9d001550abaf2f4c75cf4fcd936ea19f932b84
+[3/3] spi: renesas,sh-msiof: R-Car V3U is R-Car Gen4
+      commit: b076fdd02133e6a31db167f8acc368edc2530cc0
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
