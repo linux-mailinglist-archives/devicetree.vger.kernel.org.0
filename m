@@ -2,113 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30CB85A7406
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 04:41:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 718665A7439
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 05:01:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230166AbiHaClp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Aug 2022 22:41:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38414 "EHLO
+        id S231941AbiHaDBL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Aug 2022 23:01:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229456AbiHaClo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 22:41:44 -0400
-Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 500168E0CC;
-        Tue, 30 Aug 2022 19:41:42 -0700 (PDT)
-Received: by mail-pf1-x42c.google.com with SMTP id l65so2790280pfl.8;
-        Tue, 30 Aug 2022 19:41:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc;
-        bh=AyUhgo/bWbZxoGOekJY4CZRgIM4gQ4dSwEtg53FDKBw=;
-        b=EwNOgWAGUOOrrvS5GJMcRXKJUMiNjNlYJUE14G31XF4XcKA7b7b0kWX7O2KNSn2TZE
-         doDVD+m5FqeVTtTTdpybW+BLoblIIn6ETB0Q8sH1EHtXJC7xvX+TxB17ugNPJdb0d5qR
-         6/f6yvrGz09PNwVyS1aHiBcq4EgkG3sg+rZJFP1MzwGWKCGH8DSsEQxFI+CKQhe64XUf
-         YnRFkx4ZxCDYT+CgaoPHDngoe7m8SmZgRBEAQdGBK/H5DTK2p5YFEQR4XlagLNzED/i+
-         nqIZgv3NwWARQM7AalCMdkvVinh4ve00D8VJcSTpiVT9wV6HqQAKbKpuVKmX95ULjZvC
-         w4pw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc;
-        bh=AyUhgo/bWbZxoGOekJY4CZRgIM4gQ4dSwEtg53FDKBw=;
-        b=BH2hb+AgJZKkLVgmr5UG5oR2mtiq7R3qPW0u6Mj6KoD7TAVWhyeGeWA9uQfsTCsf/3
-         uAAiZpfbZK9Hdv0+bzdFdc4qt+jhMTWoowGp008yMDgPw9dyX0wLSJHMcp+QZbphkpMj
-         B82gRZmJlsPKFRulk45r9DimsYgfhJax2jfsPYWUlSEP3rcL9PWWqykSdQrWTV5S7UV0
-         6EJeYgEe/KrMYRvHnYp/QZStYscCL0FAr1swG3L+ygxsE1AGzsOOSNK2rFE6YsHlv5Cv
-         6O7pwtwG08jF5PuSomJiZ4Z8Rk/FZefCVZv322Bid65IcqITlMQFDarS9joz9MtK0Ira
-         DTLg==
-X-Gm-Message-State: ACgBeo1F3gpdkfqYtlHz/K+eOVgD0/w0c1FSTVDCrJf4ncYYusk2+T5n
-        k7Rjqs1GyVA0e6ppUMEltYg=
-X-Google-Smtp-Source: AA6agR6ENIK2j6c4RTccCTDp7YfYP23sf0fEXuDKBOwzpXcGVXGsiwKfywaaEgfDj+gw2wDx16QB2w==
-X-Received: by 2002:a63:148:0:b0:42f:f103:4d18 with SMTP id 69-20020a630148000000b0042ff1034d18mr3570661pgb.521.1661913701848;
-        Tue, 30 Aug 2022 19:41:41 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id fu14-20020a17090ad18e00b001fdb16ab182sm258190pjb.46.2022.08.30.19.41.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Aug 2022 19:41:41 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <3a059f0d-708a-91b9-16a0-722c8227d311@roeck-us.net>
-Date:   Tue, 30 Aug 2022 19:41:38 -0700
+        with ESMTP id S229589AbiHaDBJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Aug 2022 23:01:09 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A1BBAD9B9;
+        Tue, 30 Aug 2022 20:01:05 -0700 (PDT)
+X-UUID: 8cd6c7c6880e441da4b3921136548305-20220831
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=gV2SyRTcZm810DhGZ3x0mIBFqGbS1GVUpw4cZ3uMVFw=;
+        b=hGqJ1hS7dOKFrcPQ19oy3iz47p9MPxpmS56VXqwzUM/wcWEgWTrQn352oQsbN5oxeXFUYkcRQZ2brKLHEqbYnHZFBbdICT+1l+7Ls0QTxs7x2+wn3Qep6zaqncSNE0T8qRaKgV0K0CsP/oh7M8eXAss6K5nCMqDnlFNvMs71Hno=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.10,REQID:14504397-b03c-4d95-b408-d597ef46da37,OB:0,L
+        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_
+        Ham,ACTION:release,TS:0
+X-CID-META: VersionHash:84eae18,CLOUDID:5d679f20-1c20-48a5-82a0-25f9c331906d,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:11|1,File:
+        nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 8cd6c7c6880e441da4b3921136548305-20220831
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 488940980; Wed, 31 Aug 2022 11:01:00 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Wed, 31 Aug 2022 11:00:59 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 31 Aug 2022 11:00:57 +0800
+Message-ID: <8dcb4de53a52ab44d40f490099b6ed13e5ef7fe0.camel@mediatek.com>
+Subject: Re: [PATCH 2/7] dt-bindings: phy: mediatek,tphy: add property to
+ set pre-emphasis
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>
+CC:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Eddie Hung <eddie.hung@mediatek.com>
+Date:   Wed, 31 Aug 2022 11:00:57 +0800
+In-Reply-To: <0a82842d-283c-e266-84f4-6306f29b61da@linaro.org>
+References: <20220819091344.2274-1-chunfeng.yun@mediatek.com>
+         <20220819091344.2274-2-chunfeng.yun@mediatek.com>
+         <438da392-f419-ad76-7e91-aa4aab36e12c@linaro.org>
+         <816ecf6287533137b750c8bde9de5830e4229c56.camel@mediatek.com>
+         <bee8abe5-0299-d05e-643c-4810aa33f978@linaro.org>
+         <1a16cce9fe164bafc06ae193310be71c6f645d75.camel@mediatek.com>
+         <000babd8-5980-3d77-f156-324b3442cbe7@linaro.org>
+         <114c357f8d7f049d21ede789a292a8e2d45f4c61.camel@mediatek.com>
+         <0a82842d-283c-e266-84f4-6306f29b61da@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v3 03/19] hwmon: (mr75203) update pvt->v_num to the actual
- number of used sensors
-Content-Language: en-US
-To:     Eliav Farber <farbere@amazon.com>, jdelvare@suse.com,
-        robh+dt@kernel.org, p.zabel@pengutronix.de, rtanwar@maxlinear.com,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     talel@amazon.com, hhhawa@amazon.com, jonnyc@amazon.com,
-        hanochu@amazon.com, ronenk@amazon.com, itamark@amazon.com,
-        shellykz@amazon.com, shorer@amazon.com, amitlavi@amazon.com,
-        almogbs@amazon.com, dkl@amazon.com, rahul.tanwar@linux.intel.com,
-        andriy.shevchenko@intel.com
-References: <20220830192212.28570-1-farbere@amazon.com>
- <20220830192212.28570-4-farbere@amazon.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-In-Reply-To: <20220830192212.28570-4-farbere@amazon.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_CSS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/30/22 12:21, Eliav Farber wrote:
-> This issue is relevant when "intel,vm-map" is set in device-tree, and
-> defines a lower number of VMs than actually supported.
+On Tue, 2022-08-30 at 13:08 +0300, Krzysztof Kozlowski wrote:
+> On 29/08/2022 05:37, Chunfeng Yun wrote:
+> > On Fri, 2022-08-26 at 09:36 +0300, Krzysztof Kozlowski wrote:
+> > > On 26/08/2022 08:36, Chunfeng Yun wrote:
+> > > > On Tue, 2022-08-23 at 13:24 +0300, Krzysztof Kozlowski wrote:
+> > > > > On 22/08/2022 10:07, Chunfeng Yun wrote:
+> > > > > > On Fri, 2022-08-19 at 15:15 +0300, Krzysztof Kozlowski
+> > > > > > wrote:
+> > > > > > > On 19/08/2022 12:13, Chunfeng Yun wrote:
+> > > > > > > > Add a property to set usb2 phy's pre-emphasis.
+> > > > > > > > 
+> > > > > > > > Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> > > > > > > > ---
+> > > > > > > >  Documentation/devicetree/bindings/phy/mediatek,tphy.ya
+> > > > > > > > ml |
+> > > > > > > > 7
+> > > > > > > > +++++++
+> > > > > > > >  1 file changed, 7 insertions(+)
+> > > > > > > > 
+> > > > > > > > diff --git
+> > > > > > > > a/Documentation/devicetree/bindings/phy/mediatek,tphy.y
+> > > > > > > > aml
+> > > > > > > > b/Documentation/devicetree/bindings/phy/mediatek,tphy.y
+> > > > > > > > aml
+> > > > > > > > index 848edfb1f677..aee2f3027371 100644
+> > > > > > > > ---
+> > > > > > > > a/Documentation/devicetree/bindings/phy/mediatek,tphy.y
+> > > > > > > > aml
+> > > > > > > > +++
+> > > > > > > > b/Documentation/devicetree/bindings/phy/mediatek,tphy.y
+> > > > > > > > aml
+> > > > > > > > @@ -219,6 +219,13 @@ patternProperties:
+> > > > > > > >          minimum: 1
+> > > > > > > >          maximum: 15
+> > > > > > > >  
+> > > > > > > > +      mediatek,pre-emphasis:
+> > > > > > > > +        description:
+> > > > > > > > +          The selection of pre-emphasis (U2 phy)
+> > > > > > > > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > > > > > > > +        minimum: 1
+> > > > > > > > +        maximum: 3
+> > > > > > > 
+> > > > > > > Instead of hard-coding register values in bindings, you
+> > > > > > > should
+> > > > > > > rather
+> > > > > > > describe here feature/effect. If it is in units, use unit
+> > > > > > > suffixes.
+> > > > > > > If
+> > > > > > > it is some choice, usually string enum is appropriate.
+> > > > > > 
+> > > > > > How about changing description as bellow:
+> > > > > > 
+> > > > > > "The level of pre-emphasis, increases one level, boosts the
+> > > > > > relative
+> > > > > > amplitudes of signal's higher frequencies components about
+> > > > > > 4.16%
+> > > > > > (U2
+> > > > > > phy)"
+> > > > > > 
+> > > > > 
+> > > > > Still the question is what is the unit. 4.16%?
+> > > > 
+> > > > No unit, it's a level value, like an index of array.
+> > > > 
+> > > 
+> > > So a value from register/device programming? 
+> > 
+> > Yes
+> > > Rather a regular units
+> > > should be used if that's possible. If not, this should be clearly
+> > > described here, not some magical number which you encode into
+> > > DTS...
+> > 
+> > Ok, I'll add more descriptions.
 > 
-> This change is needed for all places that use pvt->v_num later on in the
-> code.
+> Better use logical value, e.g.
 > 
-> Signed-off-by: Eliav Farber <farbere@amazon.com>
-> ---
->   drivers/hwmon/mr75203.c | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/hwmon/mr75203.c b/drivers/hwmon/mr75203.c
-> index 0e29877a1a9c..f89f7bb5d698 100644
-> --- a/drivers/hwmon/mr75203.c
-> +++ b/drivers/hwmon/mr75203.c
-> @@ -605,6 +605,7 @@ static int mr75203_probe(struct platform_device *pdev)
->   					break;
->   
->   			vm_num = i;
-> +			pvt->v_num = i;
+https://urldefense.com/v3/__https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml*L38__;Iw!!CTRNKA9wMg0ARbw!1e-h0R_uwcaHKfKC9qYfaRWYeuWRq1sLCGy3yupNmkFyuW5s1nmRotL7Y0vFG9ETLLTA$
+>  
+Optional unit may be -percent or -bp, but the value 4.16% * X
+(X=1,2,3...)is not an exact value, they are variable in a range and
+dependent more factors.
+So I think use level value is simple enough.
 
-How about the existing assignment in the probe function ?
-
->   		}
->   
->   		in_config = devm_kcalloc(dev, vm_num + 1,
+> 
+> Best regards,
+> Krzysztof
 
