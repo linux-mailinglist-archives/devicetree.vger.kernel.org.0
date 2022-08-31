@@ -2,73 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71B165A871E
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 21:57:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C7CF5A8772
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 22:19:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232141AbiHaT5Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 15:57:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47706 "EHLO
+        id S229970AbiHaUTB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 16:19:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230444AbiHaT5W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 15:57:22 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78BABD99EF
-        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 12:57:20 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id fy31so30125525ejc.6
-        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 12:57:20 -0700 (PDT)
+        with ESMTP id S229531AbiHaUS7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 16:18:59 -0400
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAD42F1B41
+        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 13:18:58 -0700 (PDT)
+Received: by mail-pj1-x102d.google.com with SMTP id m10-20020a17090a730a00b001fa986fd8eeso408806pjk.0
+        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 13:18:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=3/C402UrLcFdr+55UasuTaaa+TRTdcGT9j3EBVa3jV4=;
-        b=4U2aNm2Bzl6sWFxYmpkLatmR/VIT9M4TC1wx0Hz6KqTkVCAaqUdhJHrXDM2HUeISWU
-         1gj3skkD3jlLf9mYWNLSCbFU5iqJnZUEzJRPLeBqgrWLPfK3DdFHW4F+uXR7U2I+h6Iq
-         LitD5cgW2roRNHIEh8XLMWtQ/h8iXF+zWOuHcYLxTMTT1Sa9Sf0eLeD2czf+5ijLTb3S
-         swZ2PvazSBanHogOiTiupHKA5oTBim4W05sNNoz0PS5RRM0lh1QI6rDxkjo73fQfdjW3
-         tTaXih8CgMoJ5VZwTjcjfyo0FsfiKKIgv90cljRY1FlGuaavwP93wqgZ/FfBX3lJhfyL
-         rZig==
+        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date;
+        bh=PSp2/fCmK/hRUtlQD1BiQphhei94+qnRCH+0FidZ1zw=;
+        b=f8sz/I3hUQu4tiGhEbhXBwcKiu3wj+iZEtjROVtx8TWnrHqobITYy9Mn/qjL19/jdh
+         WnjalXzzcjYqICVXaChJ6vBcSNcug2hOx4d7fgIMUqJfRTBAWG96VhfiVy6I1Df4eWLl
+         zAkM/O4HdRLftXhkFuQYhqcCiIYj0Dmf2iyE8RumWhgbKgZVg6zVlndjOe9Ah6IeiEnX
+         6bMJZdtSSOIiUXcXleQ9M4chDfHthe5klJC0aUydwFfjv78uj9XLHt1BfEAi/vMxUY9O
+         dV3fvLEyPOBffLYElbzrpTdBVzyKLKDC+YpdvMnLzTurCowI9uAz48+oZY349kbA7qjX
+         gKwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=3/C402UrLcFdr+55UasuTaaa+TRTdcGT9j3EBVa3jV4=;
-        b=Z4zTw6HQSNqXZCM2uoMvlQEwoFwUL0GEHAGB+uW1tuIcjjksSyor63FMMAUxUyN6BY
-         xVTTiBxAF9clk8nQ6FJ6ds/l0sfe9wA8IxMZnSlx/VgohFk2aT/NORlNV6oMfefAW8E2
-         XOsRjDQwJ8NO2YBlQjIg8JW+zx0q1+leOHPbJnhA0hYYg8VmMDrJlTtr89vov556aLZj
-         swqUrz2H5T5hcJMEMYpuVv8bwu6wOqMNddeqAuPR2N/tFSQe3jJB/SdS0G+w9YOOxkEU
-         SHB2mdj70j2pgkMI9KEFy4sva/D9btSQieLZpWOkUe2nXNTB8alPkMY/FBMFLcVLWtLl
-         VmVA==
-X-Gm-Message-State: ACgBeo2y4iGMg2Jz4zCOargw6ALBhpNb0MClOpckmB/SkxvV6razdbfH
-        HWC+3hzvCV8oLBuFdXwVhayw0m501Zh6T66QmZ1dBA==
-X-Google-Smtp-Source: AA6agR4eCcEmRzF3NJLEVzxJ5LTDTqeQtu9d8ExuzstxWQae7oIVIV99F7ZjR94wAkhLZw8SM3jUdy/xwxuuxtIc+dk=
-X-Received: by 2002:a17:907:1c87:b0:741:8199:a59d with SMTP id
- nb7-20020a1709071c8700b007418199a59dmr11832796ejc.736.1661975839012; Wed, 31
- Aug 2022 12:57:19 -0700 (PDT)
+        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date;
+        bh=PSp2/fCmK/hRUtlQD1BiQphhei94+qnRCH+0FidZ1zw=;
+        b=SEbVR3SHlwOaRYYtJ4FdTQOCzmsmlqxr5ODuAbSCQ1+eZ1x0eU02bOxI3i0M7hmvWM
+         wVKiEwK5RgPO4l9701/QpBPSOG2WykEuBzOm5Y0pt4luDv+8obT1+wolnWp5qQ/85eg3
+         5g5n/0Gi/JuVOZCICnv6IMobB+XlgLVKwAo7rGVud/npe1y9N79AxtwmsfnXQd4jTKWD
+         se69yU7Pe6X4XLQhed8PN/SPemKV+NYVdxtCJEanpxoXcqSmjwNinAMdr4sIxH2qUV/k
+         PPlmClNi1ApD3Efm7P9cJz2dTcMBE4xnyJg7wS9lrYiIoIn5GCwPdgGn95nUKlxwzSdv
+         1K4A==
+X-Gm-Message-State: ACgBeo3GxrSWWBsdtC8WZK2e3vSn0EkUlIFtwAG9WFNzoe6vFWdrOnkc
+        FIQPAqZWpXImOIgwvy9FaM0BfBFWIXitU3xDEeSEDQ==
+X-Google-Smtp-Source: AA6agR6VnuCxmthA4BAwAtlPYstZif8e+PGgcnE5gw9L5XABrzBF+RLZdpDqBVTUtKfwyZGa6wyzdBoSM7nNF2+3df4=
+X-Received: by 2002:a17:90a:8689:b0:1fd:9ab8:bec2 with SMTP id
+ p9-20020a17090a868900b001fd9ab8bec2mr4998101pjn.155.1661977138318; Wed, 31
+ Aug 2022 13:18:58 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220712163345.445811-1-francesco.dolcini@toradex.com>
- <20220712163345.445811-4-francesco.dolcini@toradex.com> <20220809134836.GB44926@francesco-nb.int.toradex.com>
-In-Reply-To: <20220809134836.GB44926@francesco-nb.int.toradex.com>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Wed, 31 Aug 2022 21:57:08 +0200
-Message-ID: <CAMRc=McqfBSb+ZoD_WT-rWBqxqTCpogKUhO2uJr2R8dctTA1CA@mail.gmail.com>
-Subject: Re: [PATCH v2 3/5] dt-bindings: gpio: stmpe: Remove node name requirement
-To:     Francesco Dolcini <francesco.dolcini@toradex.com>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        Linux Input <linux-input@vger.kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Wed, 31 Aug 2022 13:18:46 -0700
+Message-ID: <CAJ+vNU1F3sYuSX9HEpVEPb-NzFEaKnuc_5mznTHOLFmCkCu_Lg@mail.gmail.com>
+Subject: cn9130-crb PCI support
+To:     kostap@marvell.com
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
+        vladimir.vid@sartura.hr, luka.kovacic@sartura.hr,
+        linux-phy@lists.infradead.org,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        mw@semihalf.com, jaz@semihalf.com, nadavh@marvell.com,
+        stefanc@marvell.com, bpeled@marvell.com
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,40 +72,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 9, 2022 at 3:48 PM Francesco Dolcini
-<francesco.dolcini@toradex.com> wrote:
->
-> Hello Bartosz, can you pick this? Patches 1 and 2 were applied to MFD
-> tree.
->
-> On Tue, Jul 12, 2022 at 06:33:43PM +0200, Francesco Dolcini wrote:
-> > STMPE driver does not require a specific node name anymore, only the
-> > compatible is checked, update binding according to this.
-> >
-> > Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
-> > ---
-> >  Documentation/devicetree/bindings/gpio/gpio-stmpe.txt | 3 +--
-> >  1 file changed, 1 insertion(+), 2 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/gpio/gpio-stmpe.txt b/Documentation/devicetree/bindings/gpio/gpio-stmpe.txt
-> > index a0e4cf885213..b33f8f02c0d7 100644
-> > --- a/Documentation/devicetree/bindings/gpio/gpio-stmpe.txt
-> > +++ b/Documentation/devicetree/bindings/gpio/gpio-stmpe.txt
-> > @@ -8,8 +8,7 @@ Optional properties:
-> >   - st,norequest-mask: bitmask specifying which GPIOs should _not_ be requestable
-> >     due to different usage (e.g. touch, keypad)
-> >
-> > -Node name must be stmpe_gpio and should be child node of stmpe node to which it
-> > -belongs.
-> > +Node should be child node of stmpe node to which it belongs.
-> >
-> >  Example:
-> >       stmpe_gpio {
-> > --
-> > 2.25.1
-> >
->
+Konstantin,
 
-Sorry, I was off most of August and missed this one. Now applied.
+In commit 5c0ee54723f3 ("arm64: dts: add support for Marvell
+cn9130-crb platform") which added support for the cn9130-crb where are
+the PCI RESET# and CLKREQ# pins configured and specified?
 
-Bart
+As PCIE_PERST# is connected to CP_MPP[52] on the board I expected to
+either see something like:
+cp0_pci_pins: cp0-pci-pins-0 {
+     marvell,pins = "mpp52";
+     marvell,function = "pci";
+};
+
+or:
+&cp0_pcie0 {
+    gpios-reset = <&cp0_gpio2 20 GPIO_ACTIVE_LOW>;
+};
+
+I don't see any support in the PCIe driver (marvell,armada8k-pcie,
+snps,dw-pcie) that support gpios-reset.
+
+I'm working on support for another cn9130 board and am unclear how to
+configure the pinctrl for PERST# as well as CLKREQ3. Any pointers
+would be greatly appreciated.
+
+Best Regards,
+
+Tim
