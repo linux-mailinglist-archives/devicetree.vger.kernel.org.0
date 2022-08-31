@@ -2,105 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE8C35A7A1C
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 11:24:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FAEA5A7A24
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 11:25:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231361AbiHaJYJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 05:24:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42846 "EHLO
+        id S231382AbiHaJZL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 05:25:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231302AbiHaJYF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 05:24:05 -0400
-Received: from smtp-fw-6001.amazon.com (smtp-fw-6001.amazon.com [52.95.48.154])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEB76B941B;
-        Wed, 31 Aug 2022 02:24:04 -0700 (PDT)
+        with ESMTP id S231915AbiHaJYt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 05:24:49 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC4E261B20
+        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 02:24:30 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id bn9so13962643ljb.6
+        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 02:24:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1661937845; x=1693473845;
-  h=message-id:date:mime-version:to:cc:references:from:
-   in-reply-to:content-transfer-encoding:subject;
-  bh=OxRHe00tIu+wEnbpDdPcwB/UKvS8htw1fOMgAij8ARk=;
-  b=tpwZEk2Bds5NbQUrZ/uiIoTnMesbKPuXqGBzA6y8xzyOW8wbkjxMRV+e
-   AWlapD/nWUIxcmbgghCDRA+zy7YLQRKJGw8g/qb3c6nzFpjQUo+1c4REX
-   K046vEpnuayCgqh62t9vrFBPmmT9kKVyY4d1rbkgfXdUN0b8K1FPvTNQR
-   w=;
-Subject: Re: [PATCH v3 14/19] dt-bindings: hwmon: (mr75203) add "moortec,
- ts-series" property
-Received: from iad12-co-svc-p1-lb1-vlan2.amazon.com (HELO email-inbound-relay-pdx-2b-d803d33a.us-west-2.amazon.com) ([10.43.8.2])
-  by smtp-border-fw-6001.iad6.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Aug 2022 09:23:52 +0000
-Received: from EX13D37EUA001.ant.amazon.com (pdx1-ws-svc-p6-lb9-vlan3.pdx.amazon.com [10.236.137.198])
-        by email-inbound-relay-pdx-2b-d803d33a.us-west-2.amazon.com (Postfix) with ESMTPS id B8C9B8550C;
-        Wed, 31 Aug 2022 09:23:51 +0000 (UTC)
-Received: from EX13MTAUEB002.ant.amazon.com (10.43.60.12) by
- EX13D37EUA001.ant.amazon.com (10.43.165.212) with Microsoft SMTP Server (TLS)
- id 15.0.1497.38; Wed, 31 Aug 2022 09:23:50 +0000
-Received: from [192.168.153.206] (10.85.143.179) by mail-relay.amazon.com
- (10.43.60.234) with Microsoft SMTP Server id 15.0.1497.38 via Frontend
- Transport; Wed, 31 Aug 2022 09:23:45 +0000
-Message-ID: <f49558fa-e987-145c-425e-0e8a7a9fba5f@amazon.com>
-Date:   Wed, 31 Aug 2022 12:23:44 +0300
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=VI4eDETT6Huw+TXcdbmKbmIcm3NDxGv5vFpEfsxIq2o=;
+        b=BzB+y2h79du3jsoSjssbNYv8xTbQTSRuFeiLqZlVVfHai6OszIUB9Z9vyLHiW6yVC0
+         mFhcQSdm34Q70qsG1M0wyhsJNo4/chInLydmy0chTTagCzpzi3ssLByjyxwzhbNJmd/8
+         ZijvyCeY2O+BgxO2HWF3wrEBJuMo4f/EUf6ZOXYor3ya+Tk0OYf8e9pmfjXWnQ1kaX2k
+         Ifak1XhbuK3l0enEpdUuv8W8/d3iTI2d1VbGfb/a3EEtRllZcz/6FwD7ueWqITyM2gG1
+         ixN4VLOXZr9LDYMP4/wDk3Bgnb4f9IuE6r2p5QCSoDJMD2sT0T/cg44zYUDju53PrfuL
+         yC+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=VI4eDETT6Huw+TXcdbmKbmIcm3NDxGv5vFpEfsxIq2o=;
+        b=qykElrkK56FRmUAy2T3ySukRZ9XEzitTtrMPReHWeMZBURA+LlKNC5alwifk527AO0
+         krOW4Ey5InrkU9+21unlvuW8chMFDDmlnvjLjml9NJH7PUXBrptjXbOCHY7VEJSn41Bt
+         eI9CXs8nQt+eH4rYoDmNPEqkukCoRcoC5yKv+d/i3hGQ3bygR7HLsAx86PmcT6Sofgl/
+         2kumGbWVTeHWMdsBkRD3kIsrWb4uDSXQZs3XZ2iisOI5qfH65UQZzyd+p7/5feraorQC
+         TymbwxzooOxzSkYH2cEFaIJRcMNhRBON5IKApiCKffUpZyXYzXYiHu5T2WCrakNXHEPx
+         d6Zw==
+X-Gm-Message-State: ACgBeo0cwIIRsGAmc4ghUQz0cKorlJTnGHlCOcRJO91M4rnlcCsfTp+S
+        d/JHM6AIJR/Jvh3zZHK7i9xGoQ==
+X-Google-Smtp-Source: AA6agR4P4GFoVNfQygaB/IJ2Yvm/5Y5Zaf2SFn3mFBsY32pgqCAUC3wvgOs2U5P/ncXj79cCDpTOlw==
+X-Received: by 2002:a05:651c:1cf:b0:266:ec0f:6d8e with SMTP id d15-20020a05651c01cf00b00266ec0f6d8emr2450900ljn.347.1661937869103;
+        Wed, 31 Aug 2022 02:24:29 -0700 (PDT)
+Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
+        by smtp.gmail.com with ESMTPSA id w23-20020a05651c119700b002666ab94a84sm822220ljo.84.2022.08.31.02.24.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 31 Aug 2022 02:24:28 -0700 (PDT)
+Message-ID: <4bf16e18-1591-8bc9-7c46-649391de3761@linaro.org>
+Date:   Wed, 31 Aug 2022 12:24:27 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.0
-To:     Philipp Zabel <p.zabel@pengutronix.de>, <jdelvare@suse.com>,
-        <linux@roeck-us.net>, <robh+dt@kernel.org>,
-        <rtanwar@maxlinear.com>, <linux-hwmon@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     <talel@amazon.com>, <hhhawa@amazon.com>, <jonnyc@amazon.com>,
-        <hanochu@amazon.com>, <ronenk@amazon.com>, <itamark@amazon.com>,
-        <shellykz@amazon.com>, <shorer@amazon.com>, <amitlavi@amazon.com>,
-        <almogbs@amazon.com>, <dkl@amazon.com>,
-        <andriy.shevchenko@intel.com>, "Farber, Eliav" <farbere@amazon.com>
-References: <20220830192212.28570-1-farbere@amazon.com>
- <20220830192212.28570-15-farbere@amazon.com>
- <89806ee9a80652d5877ef5c4a86574e82af48da4.camel@pengutronix.de>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v1 09/14] dt-bindings: nvmem: add YAML schema for the sl28
+ vpd layout
 Content-Language: en-US
-From:   "Farber, Eliav" <farbere@amazon.com>
-In-Reply-To: <89806ee9a80652d5877ef5c4a86574e82af48da4.camel@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Michael Walle <michael@walle.cc>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        netdev@vger.kernel.org, Ahmad Fatoum <a.fatoum@pengutronix.de>
+References: <20220825214423.903672-1-michael@walle.cc>
+ <20220825214423.903672-10-michael@walle.cc>
+ <b85276ee-3e19-3adb-8077-c1e564e02eb3@linaro.org>
+ <ddaf3328bc7d88c47517285a3773470f@walle.cc>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <ddaf3328bc7d88c47517285a3773470f@walle.cc>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-11.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        USER_IN_DEF_SPF_WL autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/31/2022 11:23 AM, Philipp Zabel wrote:
-> On Di, 2022-08-30 at 19:22 +0000, Eliav Farber wrote:
->> Add optional "moortec,ts-series" property to define the temperature
->> equation and coefficients that shall be used to convert the digital
->> output to value in milli-Celsius.
->> Supported series: 5 (default) and 6.
->
-> Is this the difference between mr75xxx and mr76xxx series?
-> If so, should be a compatible "moortec,mr76006" instead?
-> If the temperature equation could be derived from the compatible, this
-> property would not be necessary.
-The PVT (Process, Voltage, Temperature) monitoring logic can be
-constructed from many different sub-blocks:
-*) CONTROLLER (mr75203) - controlling TS, PD and VM.
-*) TS (mr74137) - for measuring temperature in ring.
-*) PD (mr74139) - for measuring IO based transistors.
-*) VM (mr74138) - for measuring voltage rails across the SoC.
-*) Ring oscillators (mr76007/mr76008)
-*) Pre-scalers (mr76006)
+On 31/08/2022 11:17, Michael Walle wrote:
+> Am 2022-08-31 09:45, schrieb Krzysztof Kozlowski:
+>> On 26/08/2022 00:44, Michael Walle wrote:
+>>> Add a schema for the NVMEM layout on Kontron's sl28 boards.
+>>>
+>>> Signed-off-by: Michael Walle <michael@walle.cc>
+>>> ---
+>>>  .../nvmem/layouts/kontron,sl28-vpd.yaml       | 52 
+>>> +++++++++++++++++++
+>>>  1 file changed, 52 insertions(+)
+>>>  create mode 100644 
+>>> Documentation/devicetree/bindings/nvmem/layouts/kontron,sl28-vpd.yaml
+>>>
+>>> diff --git 
+>>> a/Documentation/devicetree/bindings/nvmem/layouts/kontron,sl28-vpd.yaml 
+>>> b/Documentation/devicetree/bindings/nvmem/layouts/kontron,sl28-vpd.yaml
+>>> new file mode 100644
+>>> index 000000000000..e4bc2d9182db
+>>> --- /dev/null
+>>> +++ 
+>>> b/Documentation/devicetree/bindings/nvmem/layouts/kontron,sl28-vpd.yaml
+>>> @@ -0,0 +1,52 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: 
+>>> http://devicetree.org/schemas/nvmem/layouts/kontron,sl28-vpd.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: NVMEM layout of the Kontron SMARC-sAL28 vital product data
+>>> +
+>>> +maintainers:
+>>> +  - Michael Walle <michael@walle.cc>
+>>> +
+>>> +description:
+>>> +  The vital product data (VPD) of the sl28 boards contains a serial
+>>> +  number and a base MAC address. The actual MAC addresses for the
+>>> +  on-board ethernet devices are derived from this base MAC address by
+>>> +  adding an offset.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    items:
+>>> +      - const: kontron,sl28-vpd
+>>> +      - const: user-otp
+>>> +
+>>> +  serial-number:
+>>> +    type: object
+>>
+>> You should define the contents of this object. I would expect this to 
+>> be
+>> uint32 or string. I think you also need description, as this is not
+>> really standard field.
+> 
+> First thing, this binding isn't like the usual ones, so it might be
+> totally wrong.
+> 
+> What I'd like to achieve here is the following:
+> 
+> We have the nvmem-consumer dt binding where you can reference a
+> nvmem cell in a consumer node. Example:
+>    nvmem-cells = <&base_mac_address 5>;
+>    nvmem-cell-names = "mac-address";
+> 
+> On the other end of the link we have the nvmem-provider. The dt
+> bindings works well if that one has individual cell nodes, like
+> it is described in the nvmem.yaml binding. I.e. you can give the
+> cell a label and make a reference to it in the consumer just like
+> in the example above.
 
-Besides mr75203 which is digital all other IPs are analog.
-There is a single mr75203 and there can be several or none of the other
-units.
+You can also achieve it with phandle argument to the nvmwm controller,
+right? Just like most of providers are doing (clocks, resets). Having
+fake (empty) nodes just for that seems like overkill.
 
-The kernel driver is only for the controller (mr75203).
-The series 5 or 6 is relevant for the TS (mr74137) and not for the
-controller (mr75203).
-Each of the analog units can have a different series number (for example
-we use series 3 of the VM).
+> 
+> Now comes the catch: what if there is no actual description of the
+> cell in the device tree, but is is generated during runtime. How
+> can I get a label to it.
 
-That is why I didn't change the compatible of mr75203, and instead added
-a TS-series parameter.
+Same as clocks, resets, power-domains and everyone else.
 
---
-Regards, Eliav
+
+> Therefore, in this case, there is just
+> an empty node and the driver will associate it with the cell
+> created during runtime (see patch 10). It is not expected, that
+> is has any properties.
+
+It cannot be even referenced as it does not have #cells property...
+
+> 
+>>> +
+>>> +  base-mac-address:
+>>
+>> Fields should be rather described here, not in top-level description.
+>>
+>>> +    type: object
+>>
+>> On this level:
+>>     additionalProperties: false
+>>
+>>> +
+>>> +    properties:
+>>> +      "#nvmem-cell-cells":
+>>> +        const: 1
+>>> +
+>>
+>> I also wonder why you do not have unit addresses. What if you want to
+>> have two base MAC addresses?
+> 
+> That would describe an offset within the nvmem device. But the offset
+> might not be constant, depending on the content. My understanding
+> so far was that in that case, you use the "-N" suffix.
+> 
+> base-mac-address-1
+> base-mac-address-2
+> 
+> (or maybe completely different names).
+
+You do not allow "base-mac-address-1". Your binding explicitly accepts
+only "base-mac-address".
+
+Best regards,
+Krzysztof
