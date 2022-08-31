@@ -2,52 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B34B5A7DA2
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 14:41:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9F765A7DC3
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 14:45:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231322AbiHaMlT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 08:41:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40574 "EHLO
+        id S231137AbiHaMpO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 08:45:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231320AbiHaMlR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 08:41:17 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77CDA9C8FE;
-        Wed, 31 Aug 2022 05:41:13 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 4E422B82062;
-        Wed, 31 Aug 2022 12:41:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0365C433C1;
-        Wed, 31 Aug 2022 12:41:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661949670;
-        bh=GlqPyBG/2QZHbPqaaWonjRMxL4niWdBcQJxyKEdjQSk=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=gNwuWskc/jXU/OrebX3y24EoJciyi62c5H6tEuPGRlLQ+alc5tVqmdzZDmAVXi3Ud
-         MTw042H61ryMiZrFzQqF28RjgkCVuMWzValPBezeBZSbkfjqhmRAS4fasfq35SMot3
-         xQtL9Q6Q+DQga6bzAe3ws6RbvHwAaaLmzlOYB0y9RDIdcyUAlxm6j/Zz7XiBaZVTF9
-         kKoUWS5XduYHs8kbhkKS2YrFa+G2TQxJt813jLoNQJg5Ene0jKdVJAiALr4OtpVuvf
-         v1Twttg65eM9lvEKG9AKDgvVhfC0WW7xBilKgwSUXNKynQq5bvBJRpmdV7d+p0q70f
-         XI0HOQftONieg==
-From:   Mark Brown <broonie@kernel.org>
-To:     linux-renesas-soc@vger.kernel.org,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc:     linux-kernel@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20220824094327.33685-1-wsa+renesas@sang-engineering.com>
-References: <20220824094327.33685-1-wsa+renesas@sang-engineering.com>
-Subject: Re: [PATCH 0/3] spi: add generic R-Car Gen4 and specific r8a779f0 support
-Message-Id: <166194966864.85432.14716335347687736430.b4-ty@kernel.org>
-Date:   Wed, 31 Aug 2022 13:41:08 +0100
+        with ESMTP id S231329AbiHaMpN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 08:45:13 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7B1713D0D
+        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 05:45:11 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id m7so10870517lfq.8
+        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 05:45:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=ZlvVcArzagAr4I2vvJT7UKuCAyT0vmCDIdaA8AIizLU=;
+        b=O6Ejb+nYgHIBVYk0yGbYEipXFUHBDUyVoRw8f+b8olFDmd22Jc4GENZ7YaY23XdSJX
+         2cSjiJqJHuHoldUy51BEvIIPSZLc5uOurcn/cgpRC/IGfx2XMViQjcF9clWHlv83E/aM
+         HwVHvobQ4eTDwKZY/Pw5w85aOMNFPSTyMT3ipaskH6T4l9ri9GmrbSLglnmNvBRhwqiP
+         zwuuuGT98uBBwZ5QSn01V3GnvGPA5v69934ic9ral0PBx/fPKJDBELEs56r2GxWZjESt
+         +82lOvVDVgmFPigyAmk7cdhvnG3Df740QsrR7Inaf3EOhCcp6yWZD6qJT5fN01FZVuNZ
+         Mfgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=ZlvVcArzagAr4I2vvJT7UKuCAyT0vmCDIdaA8AIizLU=;
+        b=W9JlHYFhhWDTWAyDXf3otByX3ExuuT2Bw2eHVNIBz1e6BrvvOJDTckVwVGSoIn3JYl
+         /TG/sVGSBuqY9s93kLu+J0w9CSNsVBBjYEa8iyE+ah6Pw8Jq27cvk+jqlfuFLcYJQ23i
+         hhRBcv1Uo0rtpp/JrnX57g5oF42TrBb5/uIlaHXzXi9zp5CHcoWshvyrUBlYLraiYTs+
+         HIoKHhna2wZ0BCwZaf2yx3Pw7VfxAO1wzb5fxkblnema8f8MMvEfnsqePt4pi6GhMyFu
+         oTim/WO152QGYe/njoOwLwVUB5DMqEonKof0ISI41P3na7oe6aHsfj/3VJdklRmMWCkk
+         MP6A==
+X-Gm-Message-State: ACgBeo2S70Chd1cEKAu7t93KZ8Yv+N7WQiDypwBTwP7gxD6ADIFnbVZV
+        ifbfSxP2TnAtCb4q0no0py4CXiGEiJmxtdjV
+X-Google-Smtp-Source: AA6agR4lSit4c8jA6r7D2/gt2shb1ogNSron5gEDfosSiRi42/FneJjLCi9q5TGEEW7UxJJqWiszEg==
+X-Received: by 2002:a05:6512:2248:b0:48a:f8f9:3745 with SMTP id i8-20020a056512224800b0048af8f93745mr8537244lfu.256.1661949910192;
+        Wed, 31 Aug 2022 05:45:10 -0700 (PDT)
+Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
+        by smtp.gmail.com with ESMTPSA id c22-20020ac25f76000000b004949761d330sm57429lfc.128.2022.08.31.05.45.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 31 Aug 2022 05:45:09 -0700 (PDT)
+Message-ID: <651930f2-37a6-4628-e232-880d41c0997c@linaro.org>
+Date:   Wed, 31 Aug 2022 15:45:08 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.10.0-dev-0c1df
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v3 1/2] dt-bindings: lan9662-otpc: document Lan9662 OTPC
+Content-Language: en-US
+To:     Horatiu Vultur <horatiu.vultur@microchip.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, UNGLinuxDriver@microchip.com
+References: <20220831064238.102267-1-horatiu.vultur@microchip.com>
+ <20220831064238.102267-2-horatiu.vultur@microchip.com>
+ <393933f5-9a87-4d12-2527-5adfa4aeccca@linaro.org>
+ <20220831104455.2oc24fokicieyh37@soft-dev3-1.localhost>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220831104455.2oc24fokicieyh37@soft-dev3-1.localhost>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -56,45 +78,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 24 Aug 2022 11:43:23 +0200, Wolfram Sang wrote:
-> Here are the patches to enable MSIOF on R-Car S4-8. They also introduce
-> generic Gen4 support and move V3U to Gen4 (which it really is).
+On 31/08/2022 13:44, Horatiu Vultur wrote:
+> The 08/31/2022 10:28, Krzysztof Kozlowski wrote:
 > 
-> Wolfram Sang (3):
->   spi: renesas,sh-msiof: Add generic Gen4 and r8a779f0 support
->   spi: sh-msiof: add generic Gen4 binding
->   spi: renesas,sh-msiof: R-Car V3U is R-Car Gen4
+> Hi Krzysztof,
 > 
-> [...]
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    oneOf:
+>>> +      - items:
+>>> +          - const: microchip,lan9662-otpc
+>>> +          - const: microchip,lan9668-otpc
+>>> +      - enum:
+>>> +          - microchip,lan9662-otpc
+>>
+>> This is not what I wrote and this does not make sense. You now listed
+>> twice 9662 and 9668 does not have its entry.
+> 
+> As you figured it out, I am quite noob at these bindings.
+> The only difference between what you wrote and what I wrote is the order
+> under items. So the order matters?
 
-Applied to
+Yes, because it is not an enum but list. What you wrote is:
+compatible = "microchip,lan9662-otpc", "microchip,lan9668-otpc"
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+and you would see the problems if you tested it with lan9668.
 
-Thanks!
-
-[1/3] spi: renesas,sh-msiof: Add generic Gen4 and r8a779f0 support
-      commit: e1e62f05d5d9d7726349e00562299d829e478ce9
-[2/3] spi: sh-msiof: add generic Gen4 binding
-      commit: ea9d001550abaf2f4c75cf4fcd936ea19f932b84
-[3/3] spi: renesas,sh-msiof: R-Car V3U is R-Car Gen4
-      commit: b076fdd02133e6a31db167f8acc368edc2530cc0
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Best regards,
+Krzysztof
