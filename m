@@ -2,107 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1903F5A798F
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 10:56:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AE995A79D7
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 11:13:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231740AbiHaIz6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 04:55:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45984 "EHLO
+        id S231848AbiHaJNd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 05:13:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231695AbiHaIzi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 04:55:38 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 86A921F2C5;
-        Wed, 31 Aug 2022 01:54:55 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 013B1ED1;
-        Wed, 31 Aug 2022 01:54:30 -0700 (PDT)
-Received: from [10.57.15.237] (unknown [10.57.15.237])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0A32D3F71A;
-        Wed, 31 Aug 2022 01:54:20 -0700 (PDT)
-Message-ID: <98179709-1ece-61ab-d43a-fc38a4fd3f67@arm.com>
-Date:   Wed, 31 Aug 2022 09:54:14 +0100
+        with ESMTP id S231745AbiHaJNK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 05:13:10 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEDDEC2E85
+        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 02:13:06 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id k9so17421954wri.0
+        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 02:13:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=f2v5wnUzlFw+ZpCjocjtmhUbEHEChafEgOfgj/yM2oA=;
+        b=ROtwCweIXDZJ3VmlCBhJ4Iq+wLvqrZhbK+rPGKnuip2Lq5URIot/G52HWlVEOKksaj
+         fuA33npDQ1NYBIyWo3He+08zCl5ll3mDZJ77pFQwyPe1WEi4jNf0uBIUTCUpmKSbivvT
+         kHHADPpVy+N2SjXWQDzFuCU4XKCam4rpYCdC5hslLvF75OkOfO6+n0TQBp2QOJFoCkkz
+         z7J7QFA95J0rV1VxHsJe71UxWNMvSBjE6iF989kXMXrBQBcGaOFL0rz4eepf0y8hESdv
+         EhNJB/+kf3qdwLQszZz4wMiAZKT8eTeajacUPVgT5+qpN18UPy8Rt9rzqF8YLl20JeI3
+         xKQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=f2v5wnUzlFw+ZpCjocjtmhUbEHEChafEgOfgj/yM2oA=;
+        b=o+a1+/VJrsmsyCOgBmNMHjpsge44T51wiZz/QzjSP/EeYOR/Mfnz/ANtSutFNuKwUT
+         f0N6BitCDurFUPjF4cCdxXcWG8k+Uqp7l9y9qVZYkkamiDuZR8pf9LQ1CKWnJZ1Q8L+B
+         FDth0SN7XEePv/8isLHrSvelRP73j8NXdZX79rgvOkE/2ZhD1l0DzTX+1oisY+VQa8kB
+         Ji0XjvPU3mSnPblVjdi9aSvFC5mde6l65Ffwvzs+7WwoCN5aEuJXMwIsNoUh1Shr2CT/
+         Lda0J7iPPbmi9162jHlOF5UKHLmPNA+QW3XvC47LjMwqGtEbn2OcTMmgR04BA8B8H5O1
+         rcWw==
+X-Gm-Message-State: ACgBeo2Pd9nTTislDziBXDFOMSFjXJ9Rl/tyJdUaXcvjkkJfQ8Ywt7l1
+        23szfPN2DVNcSM5V5CeTB7aFHA==
+X-Google-Smtp-Source: AA6agR4ZTrmaB0FuE/OJ12vVcZ843QapxOfCMEEVKeMwgs176P7BPzEF02U7iQFlRcedt0l23og91g==
+X-Received: by 2002:a5d:6c6e:0:b0:225:5a20:1bd1 with SMTP id r14-20020a5d6c6e000000b002255a201bd1mr11217058wrz.717.1661937185312;
+        Wed, 31 Aug 2022 02:13:05 -0700 (PDT)
+Received: from [192.168.86.238] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
+        by smtp.googlemail.com with ESMTPSA id u14-20020adfdd4e000000b0021f131de6aesm11661830wrm.34.2022.08.31.02.13.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 31 Aug 2022 02:13:04 -0700 (PDT)
+Message-ID: <eeea8a27-eed9-6ebc-dfa5-73a10e711c04@linaro.org>
+Date:   Wed, 31 Aug 2022 10:13:03 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
- Thunderbird/102.2.0
-Subject: Re: [PATCH v5 20/20] PCI: dwc: Add Baikal-T1 PCIe controller support
-Content-Language: en-GB
-From:   Robin Murphy <robin.murphy@arm.com>
-To:     Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Frank Li <Frank.Li@nxp.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, willmcvicker@google.com
-References: <20220822184701.25246-1-Sergey.Semin@baikalelectronics.ru>
- <20220822184701.25246-21-Sergey.Semin@baikalelectronics.ru>
- <YwzbARMkb/69+l2d@lpieralisi> <63a54a1b-66ba-9739-8217-13f75e602cd5@arm.com>
-In-Reply-To: <63a54a1b-66ba-9739-8217-13f75e602cd5@arm.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 2/3] ASoC: qcom: sm8250: move some code to common
+Content-Language: en-US
+To:     Mark Brown <broonie@kernel.org>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        perex@perex.cz, tiwai@suse.com,
+        pierre-louis.bossart@linux.intel.com,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220818135817.10142-1-srinivas.kandagatla@linaro.org>
+ <20220818135817.10142-3-srinivas.kandagatla@linaro.org>
+ <Yv9rIGE+GNEzzizz@sirena.org.uk>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <Yv9rIGE+GNEzzizz@sirena.org.uk>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-08-31 09:36, Robin Murphy wrote:
-> On 2022-08-29 16:28, Lorenzo Pieralisi wrote:
-> [...]
->>> +static int bt1_pcie_add_port(struct bt1_pcie *btpci)
->>> +{
->>> +    struct device *dev = &btpci->pdev->dev;
->>> +    int ret;
->>> +
->>> +    /*
->>> +     * DW PCIe Root Port controller is equipped with eDMA capable of
->>> +     * working with the 64-bit memory addresses.
->>> +     */
->>> +    ret = dma_set_mask_and_coherent(dev, DMA_BIT_MASK(64));
->>> +    if (ret)
->>> +        return ret;
->>
->> Is this the right place to set the DMA mask for the host controller
->> embedded DMA controller (actually, the dev pointer is the _host_
->> controller device) ?
->>
->> How this is going to play when combined with:
->>
->> https://lore.kernel.org/linux-pci/1e63a581-14ae-b4b5-a5bf-ca8f09c33af6@arm.com
->>
->> It is getting a bit confusing. I believe the code in the link
->> above sets the mask so that through the DMA API we are capable
->> of getting an MSI doorbell virtual address whose physical address
->> can be addressed by the endpoint; this through the DMA API.
->>
->> This patch is setting the DMA mask for a different reason, namely
->> setting the host controller embedded DMA controller addressing
->> capabilities.
->>
->> AFAICS - both approaches set the mask for the same device - now
->> the question is about which one is legitimate and how to handle
->> the other.
+
+
+On 19/08/2022 11:51, Mark Brown wrote:
+> On Thu, Aug 18, 2022 at 02:58:16PM +0100, Srinivas Kandagatla wrote:
 > 
-> Assuming the dw-edma-pcie driver is the relevant one, that already sets 
-> its own masks on its own device, so I also don't see why this is here.
+>> +	}
+>> +	*stream_prepared  = true;
+>> +
+>> +	return ret;
+>> +}
+>> +EXPORT_SYMBOL(qcom_snd_sdw_prepare);
+> 
+> The ASoC framework is all EXPORT_SYMBOL_GPL(), things that depend
+> directly on it should be too.
+thanks, I agree, there are already 3 symbols that are exported without 
+_GPL, I will fix them too  in next spin.
 
-Ah, I just found the patch at [1], which further implies that this is 
-indeed completely bogus.
+thanks,
+srini
 
-Robin.
 
-[1] 
-https://lore.kernel.org/dmaengine/20220822185332.26149-23-Sergey.Semin@baikalelectronics.ru/
