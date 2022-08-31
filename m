@@ -2,79 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B3F85A7B65
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 12:37:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F07375A7B88
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 12:42:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229971AbiHaKhV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 06:37:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53268 "EHLO
+        id S229826AbiHaKmS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 06:42:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33604 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229908AbiHaKhU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 06:37:20 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC965B6029
-        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 03:37:18 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id v16so14938869wrm.8
-        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 03:37:18 -0700 (PDT)
+        with ESMTP id S229591AbiHaKmR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 06:42:17 -0400
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10EA1C8742
+        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 03:42:15 -0700 (PDT)
+Received: by mail-pj1-x1030.google.com with SMTP id j9-20020a17090a3e0900b001fd9568b117so10926012pjc.3
+        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 03:42:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=qmSDVvWPmXjsEoLB/yy4dBeFNE6LDECdPTKFlVF1PoE=;
-        b=sjv1ud0NJToWCCz5mpoI1XXv7VRN42nSodi+vU6HqC3fe4/RDdH9q78MztUStUg3tz
-         Xc2VH//pGT74lRB34bGeve8JkG1qnn0+IqPnock9NFdhh6qZlnaCkIyowzKTRT7FJxji
-         z/GR4fNB9q+235VImiHhUj3qtbmxYAGPA6OWg32iyZY+RWa1WOllcMXAW5Ypa+UHJ8jW
-         8xs5JdrK3PiKkOFMlLV0DL+qhh48j42QQnv6mKDYipwbJKuU6YxKUw7q3wlwpZcq+q8X
-         TT/+nZgkSnsztlClPhtaZpJBrpVs5ezXDDOxx5Tro2hYIsNMiKVkIvoSrdqaMCZkKMyS
-         wVgA==
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc;
+        bh=USnEq7i+EspKoRu1Km1ctJNVzyby3/Boh0en787tgT4=;
+        b=q6KB29F9s7ScEmfBLJsjH0tGFTm+Dpby3tqOLuvcJsY9Gd89u43bMs9rdLGTgfyhDq
+         owgGTWQ4MuUqs5W4XFripHtoulDfMyk+o8ENVwBaV0W2LnKXNuTKCwB4V9mDLFWoqf2t
+         XeWW7/FJUoOnvEVgmaBb08SpxviMjvYHOm6WKvxAkAJf4Mv5aj0BJHOlVmY2aVtRh7zn
+         S459OeLCwwBCSZ2H37gUD5Pug/j09ZSWsLJ0pS7zmaQ/CYt62ijJKH3aT9gPBUK3gxgn
+         swdfTO6Ojrc7mN0T1wAYorB/dtxpiGLaQPyxv+Ht8tqYomSjIyu4tMZZyH3GVkdrS130
+         PkwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc;
-        bh=qmSDVvWPmXjsEoLB/yy4dBeFNE6LDECdPTKFlVF1PoE=;
-        b=3GnAwzWJ+JDJ5JNFtehZwXNsIkXzGSul3QTyhbA3ve9yLa2+g9QaYQd8LvtuuFWU6g
-         KZRlvO5gew7cADStdLJHOUZyQMtbqvwkrx2jLdQWV9AR8MBJgI+vbkz0YDrsTP+YH6IC
-         brFWVfp8uDHAv9ez0lzVQlmShqPyMfML9beSiMBktQE18GMlPoT1W7aDn17sPkFJXXTW
-         PP50RYDM39tGghqotvRFMO7hQL+lyQeEQhQvboXMAMC4GqujFXnJ5EHC+d+fUUs8x2hO
-         5FlSCTicG22L3r/4wmwxt2jzmxtaHu7soQnEa8lWdbeBZXsE3Trkaa2jnDKOKvohoCrf
-         hMfQ==
-X-Gm-Message-State: ACgBeo0UOmZ6FZWSwRM4zHwfBzhGoiY/s3kcSc/P6gpPczW+b7jaKj8h
-        9XuolOmAyUjukoTbeM+oUfCLjQ==
-X-Google-Smtp-Source: AA6agR7zq/2i3kOzfh+ND3aVSosKcimESlsCtfJ9TPLHCMLrzMvYwqw/Dz65I9sh80Ti/NbGaa+m0w==
-X-Received: by 2002:a05:6000:144a:b0:220:7181:9283 with SMTP id v10-20020a056000144a00b0022071819283mr10935127wrx.158.1661942237422;
-        Wed, 31 Aug 2022 03:37:17 -0700 (PDT)
-Received: from [192.168.86.238] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
-        by smtp.googlemail.com with ESMTPSA id e3-20020adfe383000000b0021ef34124ebsm12377427wrm.11.2022.08.31.03.37.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 Aug 2022 03:37:16 -0700 (PDT)
-Message-ID: <a4562481-780b-585f-01a5-d447040fbd0a@linaro.org>
-Date:   Wed, 31 Aug 2022 11:37:15 +0100
+        bh=USnEq7i+EspKoRu1Km1ctJNVzyby3/Boh0en787tgT4=;
+        b=0t4IIuzntlB8S5DkzVMrXqkNPD9hzJU11OmvkvDNyjVXIs2SRY8i8D4dSHCVrgk0KO
+         tZVl46t4a6lIzeyiKLO18z1UzuYsMOPkg1d80xUubMtLFr52fsiCIBrKZkpFfYTbRcy8
+         4pPuagFovp/4PhsPwrT2rgbXMbcDHqj+EGClT4mhrqcOLsMcWMMk9RK7t11IrI2t0Xlh
+         nCcYOYZiRcdW9F2gtCXxEBBy6E7FjIphdfJhN8qAaWAyvo0wcItb0nYb9v8Ix3wrew4P
+         K9FHt9C+Z6BrkzRldjc7ObCgGDjn0Qs+4lnSV6wceziopnuIrnpM12RVhSfLXVZk0pTj
+         We9g==
+X-Gm-Message-State: ACgBeo2m+oxkdEn91Vz+OZs7XuTHW70Kf1/HXKc223Dlvl/dl9FnybME
+        DOX28vfYzMyJ/ncQ38NCP3h4
+X-Google-Smtp-Source: AA6agR5EnVJ32R2CBH2rd5xmGM0YH2cYKxeyeZZO6OMNvLb+3DwAaaDirtc7RwYZN+HAQy3Q9bl7Yg==
+X-Received: by 2002:a17:902:e54c:b0:171:4b29:d1e with SMTP id n12-20020a170902e54c00b001714b290d1emr25511345plf.39.1661942534422;
+        Wed, 31 Aug 2022 03:42:14 -0700 (PDT)
+Received: from thinkpad ([117.217.182.234])
+        by smtp.gmail.com with ESMTPSA id h188-20020a6253c5000000b0052d46b43006sm10939208pfb.156.2022.08.31.03.42.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 31 Aug 2022 03:42:13 -0700 (PDT)
+Date:   Wed, 31 Aug 2022 16:12:03 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Frank Li <Frank.Li@nxp.com>
+Cc:     maz@kernel.org, tglx@linutronix.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kw@linux.com, bhelgaas@google.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+        peng.fan@nxp.com, aisheng.dong@nxp.com, jdmason@kudzu.us,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        kishon@ti.com, lorenzo.pieralisi@arm.com, ntb@lists.linux.dev,
+        lznuaa@gmail.com
+Subject: Re: [PATCH v6 4/4] pcie: endpoint: pci-epf-vntb: add endpoint MSI
+ support
+Message-ID: <20220831104203.GD5076@thinkpad>
+References: <20220818151127.2449064-1-Frank.Li@nxp.com>
+ <20220818151127.2449064-5-Frank.Li@nxp.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 2/6] ASoC: codecs: wsa-macro: add support for sm8450 and
- sc8280xp
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Cc:     broonie@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        perex@perex.cz, tiwai@suse.com,
-        pierre-louis.bossart@linux.intel.com,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220818134619.3432-1-srinivas.kandagatla@linaro.org>
- <20220818134619.3432-3-srinivas.kandagatla@linaro.org>
- <20220818171222.GG1978870-robh@kernel.org>
- <9c9226d9-8470-6672-d8ce-3fb1e4df3fda@linaro.org>
- <5da6171a-4949-9cc7-2967-6cc39a7955c8@linaro.org>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <5da6171a-4949-9cc7-2967-6cc39a7955c8@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220818151127.2449064-5-Frank.Li@nxp.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -83,68 +81,307 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 31/08/2022 10:19, Krzysztof Kozlowski wrote:
-> On 31/08/2022 12:17, Srinivas Kandagatla wrote:
->>
->>
->> On 18/08/2022 18:12, Rob Herring wrote:
->>> On Thu, Aug 18, 2022 at 02:46:15PM +0100, Srinivas Kandagatla wrote:
->>>> Add compatible for sm8450 and sc8280xp.
->>>>
->>>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->>>> ---
->>>>    sound/soc/codecs/lpass-wsa-macro.c | 2 ++
->>>>    1 file changed, 2 insertions(+)
->>>>
->>>> diff --git a/sound/soc/codecs/lpass-wsa-macro.c b/sound/soc/codecs/lpass-wsa-macro.c
->>>> index 27da6c6c3c5a..f82c297ea3ab 100644
->>>> --- a/sound/soc/codecs/lpass-wsa-macro.c
->>>> +++ b/sound/soc/codecs/lpass-wsa-macro.c
->>>> @@ -2561,6 +2561,8 @@ static const struct dev_pm_ops wsa_macro_pm_ops = {
->>>>    static const struct of_device_id wsa_macro_dt_match[] = {
->>>>    	{.compatible = "qcom,sc7280-lpass-wsa-macro"},
->>>>    	{.compatible = "qcom,sm8250-lpass-wsa-macro"},
->>>> +	{.compatible = "qcom,sm8450-lpass-wsa-macro"},
->>>> +	{.compatible = "qcom,sc8280xp-lpass-wsa-macro" },
->>>
->>> Looks like these are backwards compatible with the existing versions,
->>> why not reflect that in the binding?
->> Backward compatibility is not always true, some of the registers and
->> there defaults tend to change across SoCs. Having SoC specific
->> compatible could help us deal with this and also make code more inline
->> with other codec macros in LPASS IP.
+On Thu, Aug 18, 2022 at 10:11:27AM -0500, Frank Li wrote:
+>                         ┌───────┐          ┌──────────┐
+>                         │       │          │          │
+>       ┌─────────────┐   │       │          │ PCI Host │
+>       │ MSI         │◄┐ │       │          │          │
+>       │ Controller  │ │ │       │          │          │
+>       └─────────────┘ └─┼───────┼──────────┼─BAR0     │
+>                         │ PCI   │          │ BAR1     │
+>                         │ Func  │          │ BAR2     │
+>                         │       │          │ BAR3     │
+>                         │       │          │ BAR4     │
+>                         │       ├─────────►│          │
+>                         └───────┘          └──────────┘
 > 
-> I am not saying that there should be no SoC specific compatible. This
-> one is a must, but the question why duplicating the entries and not
-> using fallback?
 
-You mean using fallback compatible "qcom,sc7280-lpass-wsa-macro" in 
-sc8280xp devicetree and not add new compatibles in the driver?
+This diagram doesn't say which side is host and which one is endpoint.
+And not conveying any useful information.
 
-The reason for adding this new compatible strings is that macros in this 
-lpass codec that differ form each SoC.
-ex: [PATCH 6/6] ASoC: codecs: tx-macro: add support for sm8450 and 
-sc8280xp and there is a pending patch on va-macro that has soundwire 
-controller frame sync and reset control which is moved from tx-macro to 
-va-macro.
-
-so DT might endup with mix of compatibles for same LPASS Codec like this:
-
-"qcom,sc7280-lpass-wsa-macro"
-"qcom,sc8280xp-lpass-va-macro"
-"qcom,sc8280xp-lpass-tx-macro"
-"qcom,sc8280xp-lpass-rx-macro"
-
-AFAIU, the fallback thing will work for things that are identical but in 
-this case they differ across SoCs, and having SoC specific compatibles 
-in now would help handle this.
-
-
-thanks,
-srini
-
+> Linux supports endpoint functions. PCI Host write BAR<n> space like write
+> to memory. The EP side can't know memory changed by the host driver.
 > 
-> Best regards,
-> Krzysztof
+
+I think you just say, that there is no defined way of raising IRQs by host
+to the endpoint.
+
+> PCI Spec has not defined a standard method to do that. Only define MSI(x)
+> to let EP notified RC status change.
+> 
+
+MSI is from EP, right? Throughout the driver you should call it as "doorbell"
+and not MSI.
+
+> The basic idea is to trigger an IRQ when PCI RC writes to a memory
+> address. That's what MSI controller provided. EP drivers just need to
+> request a platform MSI interrupt, struct msi_msg *msg will pass down a
+> memory address and data. EP driver will map such memory address to one of
+> PCI BAR<n>.  Host just writes such an address to trigger EP side irq.
+> 
+
+IIUC (by looking at other patches in the series), the memory assigned for BAR
+region by the PCI host is mapped to the platform interrupt controller in
+PCI Endpoint. Such that, whenever the PCI host writes to the BAR region, it
+will trigger an IRQ in the Endpoint.
+
+This kind of setup is available in other platforms like Qualcomm where the
+mapping of a register region available in BAR0 and interrupt controller is
+done in the hardware itself. So whenever the PCI host writes to that register
+in BAR0, an IRQ will be delivered to the endpoint.
+
+> Add MSI support for pci-epf-vntb. pci-epf-vntb driver query if system
+> have MSI controller. Setup doorbell address according to struct msi_msg.
+> 
+> So PCIe host can write this doorbell address to triger EP side's irq.
+> 
+> If no MSI controller exist, fall back to software polling.
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  drivers/pci/endpoint/functions/pci-epf-vntb.c | 134 +++++++++++++++---
+>  1 file changed, 112 insertions(+), 22 deletions(-)
+> 
+> diff --git a/drivers/pci/endpoint/functions/pci-epf-vntb.c b/drivers/pci/endpoint/functions/pci-epf-vntb.c
+> index 1466dd1904175..ad4f7ec8a39fc 100644
+> --- a/drivers/pci/endpoint/functions/pci-epf-vntb.c
+> +++ b/drivers/pci/endpoint/functions/pci-epf-vntb.c
+> @@ -44,6 +44,7 @@
+>  #include <linux/pci-epc.h>
+>  #include <linux/pci-epf.h>
+>  #include <linux/ntb.h>
+> +#include <linux/msi.h>
+>  
+>  static struct workqueue_struct *kpcintb_workqueue;
+>  
+> @@ -143,6 +144,8 @@ struct epf_ntb {
+>  	void __iomem *vpci_mw_addr[MAX_MW];
+>  
+>  	struct delayed_work cmd_handler;
+> +
+> +	int msi_virqbase;
+
+db_base?
+
+>  };
+>  
+>  #define to_epf_ntb(epf_group) container_of((epf_group), struct epf_ntb, group)
+> @@ -253,7 +256,7 @@ static void epf_ntb_cmd_handler(struct work_struct *work)
+>  
+>  	ntb = container_of(work, struct epf_ntb, cmd_handler.work);
+>  
+> -	for (i = 1; i < ntb->db_count; i++) {
+> +	for (i = 1; i < ntb->db_count && !ntb->epf_db_phy; i++) {
+
+epf_db_phy is a wierd name. "phy" usually means the PHY controller (Physical
+layer) in kernel. If you are referring to physicall address of the doorbell,
+then you could use "phys".
+
+>  		if (readl(ntb->epf_db + i * 4)) {
+>  			if (readl(ntb->epf_db + i * 4))
+>  				ntb->db |= 1 << (i - 1);
+> @@ -454,11 +457,9 @@ static int epf_ntb_config_spad_bar_alloc(struct epf_ntb *ntb)
+>  	ctrl->num_mws = ntb->num_mws;
+>  	ntb->spad_size = spad_size;
+>  
+> -	ctrl->db_entry_size = 4;
+> -
+>  	for (i = 0; i < ntb->db_count; i++) {
+>  		ntb->reg->db_data[i] = 1 + i;
+> -		ntb->reg->db_offset[i] = 0;
+> +		ntb->reg->db_offset[i] = 4 * i;
+>  	}
+>  
+>  	return 0;
+> @@ -509,6 +510,28 @@ static int epf_ntb_configure_interrupt(struct epf_ntb *ntb)
+>  	return 0;
+>  }
+>  
+> +static int epf_ntb_db_size(struct epf_ntb *ntb)
+> +{
+> +	const struct pci_epc_features *epc_features;
+> +	size_t size = 4 * ntb->db_count;
+> +	u32 align;
+> +
+> +	epc_features = pci_epc_get_features(ntb->epf->epc,
+> +					    ntb->epf->func_no,
+> +					    ntb->epf->vfunc_no);
+> +	align = epc_features->align;
+> +
+> +	if (size < 128)
+> +		size = 128;
+> +
+> +	if (align)
+> +		size = ALIGN(size, align);
+> +	else
+> +		size = roundup_pow_of_two(size);
+> +
+> +	return size;
+> +}
+> +
+>  /**
+>   * epf_ntb_db_bar_init() - Configure Doorbell window BARs
+>   * @ntb: NTB device that facilitates communication between HOST and vHOST
+> @@ -520,35 +543,33 @@ static int epf_ntb_db_bar_init(struct epf_ntb *ntb)
+>  	struct device *dev = &ntb->epf->dev;
+>  	int ret;
+>  	struct pci_epf_bar *epf_bar;
+> -	void __iomem *mw_addr;
+> +	void __iomem *mw_addr = NULL;
+>  	enum pci_barno barno;
+> -	size_t size = 4 * ntb->db_count;
+> +	size_t size;
+>  
+>  	epc_features = pci_epc_get_features(ntb->epf->epc,
+>  					    ntb->epf->func_no,
+>  					    ntb->epf->vfunc_no);
+>  	align = epc_features->align;
+> -
+> -	if (size < 128)
+> -		size = 128;
+> -
+> -	if (align)
+> -		size = ALIGN(size, align);
+> -	else
+> -		size = roundup_pow_of_two(size);
+> +	size = epf_ntb_db_size(ntb);
+>  
+>  	barno = ntb->epf_ntb_bar[BAR_DB];
+> +	epf_bar = &ntb->epf->bar[barno];
+>  
+> -	mw_addr = pci_epf_alloc_space(ntb->epf, size, barno, align, 0);
+> -	if (!mw_addr) {
+> -		dev_err(dev, "Failed to allocate OB address\n");
+> -		return -ENOMEM;
+> +	if (!ntb->epf_db_phy) {
+> +		mw_addr = pci_epf_alloc_space(ntb->epf, size, barno, align, 0);
+> +		if (!mw_addr) {
+> +			dev_err(dev, "Failed to allocate OB address\n");
+
+Expand OB.
+
+> +			return -ENOMEM;
+> +		}
+> +	} else {
+> +		epf_bar->phys_addr = ntb->epf_db_phy;
+> +		epf_bar->barno = barno;
+> +		epf_bar->size = size;
+>  	}
+>  
+>  	ntb->epf_db = mw_addr;
+>  
+> -	epf_bar = &ntb->epf->bar[barno];
+> -
+>  	ret = pci_epc_set_bar(ntb->epf->epc, ntb->epf->func_no, ntb->epf->vfunc_no, epf_bar);
+>  	if (ret) {
+>  		dev_err(dev, "Doorbell BAR set failed\n");
+> @@ -704,6 +725,74 @@ static int epf_ntb_init_epc_bar(struct epf_ntb *ntb)
+>  	return 0;
+>  }
+>  
+> +static void epf_ntb_write_msi_msg(struct msi_desc *desc, struct msi_msg *msg)
+> +{
+> +	struct epf_ntb *ntb = dev_get_drvdata(desc->dev);
+> +	struct epf_ntb_ctrl *reg = ntb->reg;
+> +	int size = epf_ntb_db_size(ntb);
+> +	u64 addr;
+> +
+> +	addr = msg->address_hi;
+> +	addr <<= 32;
+> +	addr |= msg->address_lo;
+> +
+> +	reg->db_data[desc->msi_index] = msg->data;
+> +
+> +	if (desc->msi_index == 0)
+> +		ntb->epf_db_phy = round_down(addr, size);
+> +
+> +	reg->db_offset[desc->msi_index] = addr - ntb->epf_db_phy;
+> +}
+> +
+> +static irqreturn_t epf_ntb_interrupt_handler(int irq, void *data)
+> +{
+> +	struct epf_ntb *ntb = data;
+> +	int index;
+> +
+> +	index = irq - ntb->msi_virqbase;
+> +	ntb->db |= 1 << (index - 1);
+> +	ntb_db_event(&ntb->ntb, index);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static void epf_ntb_epc_msi_init(struct epf_ntb *ntb)
+> +{
+> +	struct device *dev = &ntb->epf->dev;
+> +	struct irq_domain *domain;
+> +	int virq;
+> +	int ret;
+> +	int i;
+> +
+> +	domain = dev_get_msi_domain(ntb->epf->epc->dev.parent);
+> +	if (!domain)
+> +		return;
+> +
+> +	dev_set_msi_domain(dev, domain);
+> +
+> +	if (platform_msi_domain_alloc_irqs(&ntb->epf->dev,
+> +		ntb->db_count,
+> +		epf_ntb_write_msi_msg)) {
+> +		dev_info(dev, "Can't allocate MSI, fall back to poll mode\n");
+> +		return;
+> +	}
+> +
+> +	dev_info(dev, "vntb use MSI as doorbell\n");
+> +
+
+Why are you using the interrupt controller as the MSI controller? Why not just
+a plain interrupt controller?
+
+> +	for (i = 0; i < ntb->db_count; i++) {
+> +		virq = msi_get_virq(dev, i);
+> +		ret = devm_request_irq(dev, virq,
+> +			       epf_ntb_interrupt_handler, 0,
+> +			       "ntb", ntb);
+
+"ntb" as a IRQ name seems quite generic. You might want to prefix it with epf
+or vntb...
+
+Thanks,
+Mani
+
+> +
+> +		if (ret)
+> +			dev_err(dev, "devm_request_irq() failure\n");
+> +
+> +		if (!i)
+> +			ntb->msi_virqbase = virq;
+> +	}
+> +}
+> +
+>  /**
+>   * epf_ntb_epc_init() - Initialize NTB interface
+>   * @ntb: NTB device that facilitates communication between HOST and vHOST2
+> @@ -1299,14 +1388,15 @@ static int epf_ntb_bind(struct pci_epf *epf)
+>  		goto err_bar_alloc;
+>  	}
+>  
+> +	epf_set_drvdata(epf, ntb);
+> +	epf_ntb_epc_msi_init(ntb);
+> +
+>  	ret = epf_ntb_epc_init(ntb);
+>  	if (ret) {
+>  		dev_err(dev, "Failed to initialize EPC\n");
+>  		goto err_bar_alloc;
+>  	}
+>  
+> -	epf_set_drvdata(epf, ntb);
+> -
+>  	pci_space[0] = (ntb->vntb_pid << 16) | ntb->vntb_vid;
+>  	pci_vntb_table[0].vendor = ntb->vntb_vid;
+>  	pci_vntb_table[0].device = ntb->vntb_pid;
+> -- 
+> 2.35.1
+> 
+
+-- 
+மணிவண்ணன் சதாசிவம்
