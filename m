@@ -2,35 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 45D6C5A770C
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 09:07:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 924DE5A7750
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 09:13:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230416AbiHaHHl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 03:07:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48954 "EHLO
+        id S229942AbiHaHNN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 03:13:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230443AbiHaHHc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 03:07:32 -0400
+        with ESMTP id S229984AbiHaHL6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 03:11:58 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67650BB01E
-        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 00:07:30 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1D1D82D26
+        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 00:10:40 -0700 (PDT)
 Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=irc.pengutronix.de)
         by metis.ext.pengutronix.de with esmtp (Exim 4.92)
         (envelope-from <j.zink@pengutronix.de>)
-        id 1oTHot-0002Fy-Vm; Wed, 31 Aug 2022 09:07:28 +0200
-Message-ID: <116168b9e870353d7f607e11f91e4dcc3650ef40.camel@pengutronix.de>
-Subject: Re: [PATCH 02/16] dt-bindings: fpga: machxo2-slave: add erasure
- properties
+        id 1oTHrk-0002aZ-5A; Wed, 31 Aug 2022 09:10:24 +0200
+Message-ID: <916071152279b3f0f494d6dcb992d72ec337c77f.camel@pengutronix.de>
+Subject: Re: [PATCH 04/16] dt-bindings: fpga: machxo2-slave: add
+ lattice,machxo2-slave-i2c compatible
 From:   Johannes Zink <j.zink@pengutronix.de>
 To:     Rob Herring <robh@kernel.org>
 Cc:     devicetree@vger.kernel.org, linux-fpga@vger.kernel.org,
         Moritz Fischer <mdf@kernel.org>, kernel@pengutronix.de,
         Xu Yilun <yilun.xu@intel.com>, Wu Hao <hao.wu@intel.com>
-Date:   Wed, 31 Aug 2022 09:07:11 +0200
-In-Reply-To: <20220830203642.GA2011859-robh@kernel.org>
+Date:   Wed, 31 Aug 2022 09:10:08 +0200
+In-Reply-To: <20220830204047.GA2021641-robh@kernel.org>
 References: <20220825141343.1375690-1-j.zink@pengutronix.de>
-         <20220825141343.1375690-3-j.zink@pengutronix.de>
-         <20220830203642.GA2011859-robh@kernel.org>
+         <20220825141343.1375690-5-j.zink@pengutronix.de>
+         <20220830204047.GA2021641-robh@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 User-Agent: Evolution 3.38.3-1 
 MIME-Version: 1.0
@@ -48,72 +48,72 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob, 
+Hi Rob,
 
-On Tue, 2022-08-30 at 15:36 -0500, Rob Herring wrote:
-> On Thu, Aug 25, 2022 at 04:13:29PM +0200, Johannes Zink wrote:
-> > This patch introduces additional memory areas of the machxo2-slave
-> > fpga
-> > to be erased.
-> 
-> Why?
-> 
-
-Depending on the bitstream loaded to the FPGA, parts of the Flash
-Memory or SRAM can hold configuration data which is non-volatile over
-erase cycles. With this property, the board integrator, who knows about
-the fpga design, can decide whether these areas shall be erased on
-update or not. As an example, think of MAC addresses for a softcore
-network interface stored in UFM (user flash memory), the board
-integrator might want to decide to protect this memory area over
-reflashing the fpga.
-
+On Tue, 2022-08-30 at 15:40 -0500, Rob Herring wrote:
+> On Thu, Aug 25, 2022 at 04:13:31PM +0200, Johannes Zink wrote:
+> > Lattice MachXO2 FPGAs allow reconfiguration over I2C as well as
+> > over
+> > SPI. Add the I2C option to the binding as well.
 > > 
 > > Signed-off-by: Johannes Zink <j.zink@pengutronix.de>
 > > ---
-> >  .../bindings/fpga/lattice,machxo2-slave.yaml      | 15
-> > +++++++++++++++
-> >  1 file changed, 15 insertions(+)
+> >  .../bindings/fpga/lattice,machxo2-slave.yaml         | 12
+> > ++++++++++++
+> >  1 file changed, 12 insertions(+)
 > > 
 > > diff --git
 > > a/Documentation/devicetree/bindings/fpga/lattice,machxo2-slave.yaml
 > > b/Documentation/devicetree/bindings/fpga/lattice,machxo2-slave.yaml
-> > index d05acd6b0fc6..78f0da8f772f 100644
+> > index 03dc134ec7b8..d48d92f27c92 100644
 > > --- a/Documentation/devicetree/bindings/fpga/lattice,machxo2-
 > > slave.yaml
 > > +++ b/Documentation/devicetree/bindings/fpga/lattice,machxo2-
 > > slave.yaml
-> > @@ -26,6 +26,19 @@ properties:
-> >      enum:
-> >        - lattice,machxo2-slave-spi
-> >  
-> > +  lattice,erase-sram:
-> > +    type: boolean
-> > +    description: SRAM is to be erased during flash erase operation
-> > +
-> > +  lattice,erase-feature-row:
-> > +    type: boolean
-> > +    description: Feature row is to be erased during flash erase
-> > operation
-> > +
-> > +  lattice,erase-userflash:
-> > +    type: boolean
-> > +    description: |
-> > +      UFM (user flash memory) is to be erased during flash erase
-> > operation
+> > @@ -21,10 +21,22 @@ allOf:
+> >              const: lattice,machxo2-slave-spi
+> >      then:
+> >        $ref: /schemas/spi/spi-peripheral-props.yaml#
 > 
-> These seem like policy. It this something that's really static to a 
-> particular board rather than something the user would configure each 
-> time.
+> Okay, I guess you do need the if/then. Technically, you don't need it
+> til this patch, but that's fine.
+> 
+> The allOf/if part should go after 'required' section though.
 
-From the usecases I can think of, for a given board with a given FPGA
-design this is static. 
+ack.
+> 
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            const: lattice,machxo2-slave-i2c
+> > +    then:
+> > +      properties:
+> > +        reg:
+> > +          description: I2C address
+> > +          maxItems: 1
+> 
+> 'reg' is needed in either case. The only conditional part is the 
+> description which you don't need. So this can be dropped.
+
+ack. I will revisit both for v2.
 
 Best regards
 Johannes
-
 > 
-> Rob
+> > +
+> >  properties:
+> >    compatible:
+> >      enum:
+> >        - lattice,machxo2-slave-spi
+> > +      - lattice,machxo2-slave-i2c
+> >  
+> >    program-gpios:
+> >      maxItems: 1
+> > -- 
+> > 2.30.2
+> > 
+> > 
 > 
 > 
 
