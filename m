@@ -2,89 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F4A95A7837
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 09:56:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDD325A783F
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 09:57:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231246AbiHaH4U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 03:56:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51458 "EHLO
+        id S229922AbiHaH5M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 03:57:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229954AbiHaH4O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 03:56:14 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 676AE12D17
-        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 00:55:04 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id z23so10897266ljk.1
-        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 00:55:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=EjNp+7haJJSgy95sPk2VW8hRKYlROSxGZaohd5CN+EI=;
-        b=CwqpdxtS9UCgIfqRkt6+aIZ0njmYiIrSHVdD82RbExYkj+ULE08yVapfltsyJ9hvSW
-         Rb6AyDPrPUcT6w7doSdjava+dERXsqEeqkJ/OdD9iIWnhGyYr2pbtl8OVMc5f2KR9nKS
-         Qejeur1bzAP74t/mQ82tyWDbqmUDC9AhxRI4X9KatAxvosA3H+xbR59V13PI2JEk8yY4
-         qWl8JtRsZaoZqu2Oosv2IdDv4tHuE5U72Xa7zFNCUlFfBxSJzmT7ZvD/IY2EURuy74eP
-         vqquwYSd+wYFYdE4xfwCK7GOhmxagKAy3tb2bHzXyZ0n2wc2lCB65CjuZc7jHCba/tZX
-         bOqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=EjNp+7haJJSgy95sPk2VW8hRKYlROSxGZaohd5CN+EI=;
-        b=sZTd/FqzhaFW/SQ1DMRlyzHdmAQ946h8SIjFPohSaxt5pMylb0L0Ho/F0usFEPcac1
-         vlFYIJx+VROpeya6fli4cuCeciVOU1s82y4rv/xq9vvggGx6Kw5CM5J8YrjIg1kM6Y1e
-         6BvRAtA/z69l1ixlrH6pFiv844zgXYlNyOh1zXbMV+srCkLL3/pNcGxPvYh4imCNNV3z
-         uP6oXpd/r0uQd2HwT8337tud3HuwA/nvzubQSl2t0wGc6NvjxAJlqqUOxmhNCj4f/1us
-         jEHw3O9KLh2DS1wXXh072ajqzriAjBOMLmf1q7ZoGL9fsaFQUKc+yr8uRAHQuftvUKWP
-         W+eQ==
-X-Gm-Message-State: ACgBeo1z4gcVJ5OuH5gyHD84fA2CVjMCY78GJw04rvF+BbN/IUTTZC/o
-        zj05m4WA6tXZ9ElJDmZpiC/njQ==
-X-Google-Smtp-Source: AA6agR5TonQq2egwGvsmAbtSJj7KC2P5OqTK7X6niXiRLekmSFrg4NY6LC2zIVdsJmcKXe2E6Q9IwA==
-X-Received: by 2002:a2e:9d8b:0:b0:265:b87d:b43b with SMTP id c11-20020a2e9d8b000000b00265b87db43bmr3660954ljj.531.1661932501985;
-        Wed, 31 Aug 2022 00:55:01 -0700 (PDT)
-Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id bn38-20020a05651c17a600b0025e778f6f13sm2030296ljb.4.2022.08.31.00.55.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 Aug 2022 00:55:01 -0700 (PDT)
-Message-ID: <ffe0e6a8-96ba-e5ed-70c9-f7c6cd9c9ade@linaro.org>
-Date:   Wed, 31 Aug 2022 10:55:00 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v1 08/14] dt-bindings: mtd: relax the nvmem compatible
- string
-Content-Language: en-US
-To:     Michael Walle <michael@walle.cc>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+        with ESMTP id S231179AbiHaH47 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 03:56:59 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C743B9585
+        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 00:56:58 -0700 (PDT)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=irc.pengutronix.de)
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <j.zink@pengutronix.de>)
+        id 1oTIam-00011N-SC; Wed, 31 Aug 2022 09:56:56 +0200
+Message-ID: <6c1b1ed1b1f89a232ba2e6d0fa71636f28311f94.camel@pengutronix.de>
+Subject: Re: [PATCH 15/16] fpga: machxo2: extend erase timeout for machxo2
+ FPGA
+From:   Johannes Zink <j.zink@pengutronix.de>
+To:     Xu Yilun <yilun.xu@intel.com>
+Cc:     devicetree@vger.kernel.org, linux-fpga@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        netdev@vger.kernel.org, Ahmad Fatoum <a.fatoum@pengutronix.de>
-References: <20220825214423.903672-1-michael@walle.cc>
- <20220825214423.903672-9-michael@walle.cc>
- <e0afa0fc-4718-2aa1-2555-4ebb2274850b@linaro.org>
- <c8aea3ecb0fcf08c42852f99a4f265b6@walle.cc>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <c8aea3ecb0fcf08c42852f99a4f265b6@walle.cc>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        Moritz Fischer <mdf@kernel.org>, kernel@pengutronix.de,
+        Wu Hao <hao.wu@intel.com>
+Date:   Wed, 31 Aug 2022 09:56:39 +0200
+In-Reply-To: <YwzT5imor+I4Bf1q@yilunxu-OptiPlex-7050>
+References: <20220825141343.1375690-1-j.zink@pengutronix.de>
+         <20220825141343.1375690-16-j.zink@pengutronix.de>
+         <YwyGWELZ7WfCE3FS@yilunxu-OptiPlex-7050>
+         <c93207c6ec63c70918ae0989ec67f37771504123.camel@pengutronix.de>
+         <YwzT5imor+I4Bf1q@yilunxu-OptiPlex-7050>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.3-1 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: j.zink@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -92,59 +51,72 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/08/2022 10:48, Michael Walle wrote:
-> Am 2022-08-31 09:37, schrieb Krzysztof Kozlowski:
->> On 26/08/2022 00:44, Michael Walle wrote:
->>> The "user-otp" and "factory-otp" compatible string just depicts a
->>> generic NVMEM device. But an actual device tree node might as well
->>> contain a more specific compatible string. Make it possible to add
->>> more specific binding elsewere and just match part of the compatibles
->>
->> typo: elsewhere
->>
->>> here.
->>>
->>> Signed-off-by: Michael Walle <michael@walle.cc>
->>> ---
->>>  Documentation/devicetree/bindings/mtd/mtd.yaml | 7 ++++---
->>>  1 file changed, 4 insertions(+), 3 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/mtd/mtd.yaml 
->>> b/Documentation/devicetree/bindings/mtd/mtd.yaml
->>> index 376b679cfc70..0291e439b6a6 100644
->>> --- a/Documentation/devicetree/bindings/mtd/mtd.yaml
->>> +++ b/Documentation/devicetree/bindings/mtd/mtd.yaml
->>> @@ -33,9 +33,10 @@ patternProperties:
->>>
->>>      properties:
->>>        compatible:
->>> -        enum:
->>> -          - user-otp
->>> -          - factory-otp
->>> +        contains:
->>> +          enum:
->>> +            - user-otp
->>> +            - factory-otp
->>
->> This does not work in the "elsewhere" place. You need to use similar
->> approach as we do for syscon or primecell.
+Hi Yilun, 
+
+On Mon, 2022-08-29 at 22:57 +0800, Xu Yilun wrote:
+> On 2022-08-29 at 12:51:19 +0200, Johannes Zink wrote:
+> > Hi Yilun, 
+> > 
+> > On Mon, 2022-08-29 at 17:26 +0800, Xu Yilun wrote:
+> > > On 2022-08-25 at 16:13:42 +0200, Johannes Zink wrote:
+> > > > Measurements showed that some FPGAs take significantly longer
+> > > > than
+> > > > the
+> > > > default wait function supplied. The datasheet inidicates up to
+> > > > 30
+> > > > seconds erase times for some MachXO2 FPGAs, depending on the
+> > > > number
+> > > > of
+> > > > LUTs (and the corresponding configuration flash size).
+> > > > 
+> > > > Signed-off-by: Johannes Zink <j.zink@pengutronix.de>
+> > > > ---
+
+[snip]
+ 
+> > > > +static inline int machxo2_wait_until_not_busy_timeout(struct
+> > > > machxo2_common_priv *priv)
+> > > > +{
+> > > > +       int ret, pollret;
+> > > > +       u32 status = MACHXO2_BUSY;
+> > > > +
+> > > > +       pollret = read_poll_timeout(priv->get_status, ret,
+> > > > +                                   (ret && ret != -EAGAIN) ||
+> > > > !(status & MACHXO2_BUSY),
+> > > > +                                   MACHXO2_ERASE_USEC_SLEEP,
+> > > > MACHXO2_MAX_ERASE_USEC,
+> > > > +                                   true, priv, &status);
+> > > 
+> > > Why just taking care of erase timeout? I see the busy wait in
+> > > many
+> > > places.
+> > > 
+> > 
+> > Erasing the flash memory takes significantly longer than the other
+> > operations (up to 30s), which is why I decided to use this separate
+> > implementation. For other commands the fpga indicates no-more-busy
+> > much
+> > faster than for the erase_flash command.
 > 
-> I'm a bit confused. Looking at
->    Documentation/devicetree/bindings/arm/primecell.yaml
-> it is done in the same way as this binding.
-
-Yes. primecell is like your mtd here. And how are other places with
-primcell (like other places with user-otp) done?
-
+> It is almost always better to have a relatively measureable timeout,
+> unless it is really time critical. Apparently spi/i2c transfer is not
+> time critical itself. So since you have implemented a better
+> function,
+> why not use it?
 > 
-> Whereas, the syscon use a "select:" on top of it. I'm
-> pretty sure, I've tested it without the select and the
-> validator picked up the constraints.
-> 
-> Could you elaborate on what is wrong here? Select missing?
+> Thanks,
+> Yilun
 
-You got warning from Rob, so run tests. I think you will see the errors,
-just like bot reported them.
+That's a fair point. I will look in the datasheet how long the timeouts
+on the other operations should be set and will replace the former busy
+wait implementation in v2. I would not expect any breakage from that.
 
-Best regards,
-Krzysztof
+Best regards
+Johannes
+
+-- 
+Pengutronix e.K.                | Johannes Zink                  |
+Steuerwalder Str. 21            | https://www.pengutronix.de/    |
+31137 Hildesheim, Germany       | Phone: +49-5121-206917-0       |
+Amtsgericht Hildesheim, HRA 2686| Fax:   +49-5121-206917-5555    |
+
