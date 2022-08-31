@@ -2,97 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 917C75A78F1
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 10:23:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47EEF5A78F6
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 10:23:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231502AbiHaIXH convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 31 Aug 2022 04:23:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50818 "EHLO
+        id S230209AbiHaIXX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 04:23:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231551AbiHaIWu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 04:22:50 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D54B71A83E
-        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 01:21:56 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1oTIym-0005vX-BB; Wed, 31 Aug 2022 10:21:44 +0200
-Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1oTIyl-00320b-Cu; Wed, 31 Aug 2022 10:21:43 +0200
-Received: from pza by lupine with local (Exim 4.94.2)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1oTIyk-0002RW-2z; Wed, 31 Aug 2022 10:21:42 +0200
-Message-ID: <3bd5f46dff622e375c4f60140f479bf6ee483aec.camel@pengutronix.de>
-Subject: Re: [PATCH v3 04/19] dt-bindings: hwmon: (mr75203) change "reset"
- property to be optional
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Eliav Farber <farbere@amazon.com>, jdelvare@suse.com,
-        linux@roeck-us.net, robh+dt@kernel.org, rtanwar@maxlinear.com,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     talel@amazon.com, hhhawa@amazon.com, jonnyc@amazon.com,
-        hanochu@amazon.com, ronenk@amazon.com, itamark@amazon.com,
-        shellykz@amazon.com, shorer@amazon.com, amitlavi@amazon.com,
-        almogbs@amazon.com, dkl@amazon.com, rahul.tanwar@linux.intel.com,
-        andriy.shevchenko@intel.com
-Date:   Wed, 31 Aug 2022 10:21:42 +0200
-In-Reply-To: <20220830192212.28570-5-farbere@amazon.com>
-References: <20220830192212.28570-1-farbere@amazon.com>
-         <20220830192212.28570-5-farbere@amazon.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.38.3-1 
+        with ESMTP id S231459AbiHaIXC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 04:23:02 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD3BBC57BB;
+        Wed, 31 Aug 2022 01:22:25 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id BD1126601A13;
+        Wed, 31 Aug 2022 09:22:23 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1661934144;
+        bh=icm/XqsM9PV/fPpno6t23gERjpfmgfqXHBCT1ID9Gfc=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=lqdhmblp+a9HG/yl8wGkOvItUJSUOxTeTWLQ3ziPLN/7YSmANMWsXqNifudme6opp
+         FBV4wSuXMocnCZW55OEnyHjHyO4qCzJNgdZTn8FWrSkB+M5Ab0sJYiRPG0srQRGPvr
+         TZh6iCqOZU8YVoaaVR0vu83c/aClGaY4AW0Y8wkwSl1ILKAPSVQW6ygBmkeju3diYj
+         etw4+YyRnDRi2ggOAjTRUlwapUVc3dwbSj7Zc00vLkAj4TtyprYXKkAFwp0Rb3uYAC
+         4WM7c7kmCWEVtgz5IwdTKmakWhLCR1k/HU9b8hS7PLZ65AEkZ2HFZ2kJutbwXRd4nA
+         +2n5u1DltHBLg==
+Message-ID: <de5ea5b4-1fe3-0e83-7620-f039bcb75bd2@collabora.com>
+Date:   Wed, 31 Aug 2022 10:22:21 +0200
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+Subject: Re: [PATCH v2 4/7] phy: phy-mtk-tphy: disable hardware efuse when set
+ INTR
+Content-Language: en-US
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Eddie Hung <eddie.hung@mediatek.com>
+References: <20220829080830.5378-1-chunfeng.yun@mediatek.com>
+ <20220829080830.5378-4-chunfeng.yun@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220829080830.5378-4-chunfeng.yun@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Di, 2022-08-30 at 19:21 +0000, Eliav Farber wrote:
-> Change "reset" property to be optional instead of required, for SOCs that
-> don't support a reset controller.
+Il 29/08/22 10:08, Chunfeng Yun ha scritto:
+> INTR's value is able autoload from hardware efuse by default, when
+> software tries to update its value, should disable hardware efuse
+> firstly.
 > 
-> Signed-off-by: Eliav Farber <farbere@amazon.com>
-> ---
-> V3 -> v2:
-> - Change "reset" property to be optional instead of adding new
->   "reset-control-skip" property.
-> 
->  Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml | 1 -
->  1 file changed, 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml b/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
-> index 6abde48b746e..2ec4b9da4b92 100644
-> --- a/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
-> +++ b/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
-> @@ -49,7 +49,6 @@ required:
->    - reg
->    - reg-names
->    - clocks
-> -  - resets
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
 
-Is this just for mr76006? Or does mr75203 work without reset as well?
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-If it is the former, maybe a new compatible should be added and resets
-should be kept required
-
-if:
-  properties:
-    compatible:
-      contains:
-        const: moortec,mr75203
-
-regards
-Philipp
