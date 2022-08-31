@@ -2,155 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 36CB95A7C64
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 13:46:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 004615A7C6A
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 13:48:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229761AbiHaLqr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 07:46:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39890 "EHLO
+        id S229912AbiHaLsN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 07:48:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229556AbiHaLqq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 07:46:46 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C20AC04EF
-        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 04:46:45 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A954061902
-        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 11:46:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DADB8C433D6;
-        Wed, 31 Aug 2022 11:46:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661946404;
-        bh=6ClxR3MT3Wu8HH+a4phv6a5gWY04aTPsTn7O/QRhoFo=;
-        h=Date:From:To:Subject:References:In-Reply-To:From;
-        b=bGEAm6QGQsSV2nHhwl21CjsTJC/9M6mE65PoJEziVDIgzdAmwcKH4XFZwcKzHjJIt
-         7vxCeUYgCq1GnGt7fLyAMHJSRP9wlk4k42hTd40JhEduil8h0o91xMW8/qDr7nzFiv
-         i1apy48hAYG1oaVWWceLGeUAb5mZGqFyuls8EnDWTTmagkvdlH9thnlDnYp3by24W4
-         K5cbPF5SEjvat+Jt4wSDSczcPp8Zs+RF7f0Z6xS7J7Ufh8Gg1tycvce2uOj0at3d3B
-         kXEeKvyjDpw5730AjjtD1800A0Gg+XLcqooCQAxwZfMeWJIwRuL4yKf1NPImYbzO/E
-         Nj+Rahf9T6TJQ==
-Received: by pali.im (Postfix)
-        id F22D7855; Wed, 31 Aug 2022 13:46:40 +0200 (CEST)
-Date:   Wed, 31 Aug 2022 13:46:40 +0200
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>
-Subject: Re: [PATCH] dt-bindings: bus: add device tree bindings for
- fsl,p1021rdb-pc-cpld
-Message-ID: <20220831114640.qwfr7lea3lvcfl2v@pali>
-References: <20220705175450.11886-1-kabel@kernel.org>
+        with ESMTP id S229437AbiHaLsL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 07:48:11 -0400
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24CBCC12D4;
+        Wed, 31 Aug 2022 04:48:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1661946491; x=1693482491;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=dbY9Kt7YVbtqJr0JU9eSAN6j3JA7u7NZVv1zVrh2KbI=;
+  b=M0AGaDRTkRO12d+/cyZzBWfxKfAPWeDB6Sr7qBnlVXpSB9uo/VDtiAAG
+   mH/mL3WHXFQPg5twKKXlRnYWshkq9P4mJc9vddV9Zf9d8/ZCHGeLoOvRi
+   oKjlMLTF2Ob0VBB98ZgJ2rXS2pXVz/sbHoOg1x5xe9fYzezRlWq5uw1nn
+   VYprE4nnmJh09FZC0LXL4duCH0PX/dcHIdVlpCC+5RKdxJJAquW74yUPN
+   QQ2mLs8Lbiv5B4gPvTIK3jtdr65TYHDFCWxuuP/20PYIDuY95/89XFaop
+   RoDwsA55sv9SnG5YfCLVwR+LwNlVKwAHM3NpPs+/gQv5txInH7pPWwP7G
+   g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10455"; a="296213314"
+X-IronPort-AV: E=Sophos;i="5.93,277,1654585200"; 
+   d="scan'208";a="296213314"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Aug 2022 04:48:10 -0700
+X-IronPort-AV: E=Sophos;i="5.93,277,1654585200"; 
+   d="scan'208";a="645205782"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Aug 2022 04:48:05 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@intel.com>)
+        id 1oTMCQ-006MI7-1z;
+        Wed, 31 Aug 2022 14:48:02 +0300
+Date:   Wed, 31 Aug 2022 14:48:02 +0300
+From:   Andy Shevchenko <andriy.shevchenko@intel.com>
+To:     Eliav Farber <farbere@amazon.com>
+Cc:     jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org,
+        p.zabel@pengutronix.de, rtanwar@maxlinear.com,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, talel@amazon.com, hhhawa@amazon.com,
+        jonnyc@amazon.com, hanochu@amazon.com, ronenk@amazon.com,
+        itamark@amazon.com, shellykz@amazon.com, shorer@amazon.com,
+        amitlavi@amazon.com, almogbs@amazon.com, dkl@amazon.com,
+        rahul.tanwar@linux.intel.com
+Subject: Re: [PATCH v3 09/19] hwmon: (mr75203) add VM active channel support
+Message-ID: <Yw9KcvaFzCcPw7qw@smile.fi.intel.com>
+References: <20220830192212.28570-1-farbere@amazon.com>
+ <20220830192212.28570-10-farbere@amazon.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220705175450.11886-1-kabel@kernel.org>
-User-Agent: NeoMutt/20180716
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220830192212.28570-10-farbere@amazon.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PING? Documentation binding patch is waiting there fore two months.
-Could we move forward?
+On Tue, Aug 30, 2022 at 07:22:02PM +0000, Eliav Farber wrote:
+> Add active channel support per voltage monitor.
+> The number of active channels is read from the device-tree.
+> When absent in device-tree, all channels are assumed to be used.
+> 
+> This shall be useful to expose sysfs only for inputs that are connected
+> to a voltage source.
+> 
+> Setting number of active channels to 0, means that entire VM sensor is
+> not used.
 
-Note that meanwhile turris1x.dts which uses this was merged.
+...
 
-On Tuesday 05 July 2022 19:54:50 Marek Behún wrote:
-> Add binding for CPLD bus interface of Freescale P1021RDB Combo Board
-> CPLD Design.
-> 
-> Signed-off-by: Marek Behún <kabel@kernel.org>
-> ---
->  .../bindings/bus/fsl,p1021rdb-pc-cpld.yaml    | 73 +++++++++++++++++++
->  1 file changed, 73 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/bus/fsl,p1021rdb-pc-cpld.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/bus/fsl,p1021rdb-pc-cpld.yaml b/Documentation/devicetree/bindings/bus/fsl,p1021rdb-pc-cpld.yaml
-> new file mode 100644
-> index 000000000000..822dfb93dcd8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/bus/fsl,p1021rdb-pc-cpld.yaml
-> @@ -0,0 +1,73 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/bus/fsl,p1021rdb-pc-cpld.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +struct voltage_device {
+> +	u32 vm_map;	/* Map channel number to VM index */
+> +	u32 ch_map;	/* Map channel number to channel index */
+> +};
 > +
-> +title: CPLD Bus Inteface for Freescale P1021RDB Combo Board CPLD Design
+> +struct voltage_channels {
+> +	u32 total;	/* Total number of channels in all VMs */
+> +	u8 max;		/* Maximum number of channels among all VMs */
+> +};
+
+Why not convert them to kernel doc?
+
+...
+
+> +	ret = device_property_read_u8_array(dev, "moortec,vm-active-channels",
+> +					    vm_active_ch, vm_num);
+> +	if (ret) {
+> +		/*
+> +		 * Incase vm-active-channels property is not defined,
+> +		 * we assume each VM sensor has all of its channels
+> +		 * active.
+> +		 */
+> +		for (i = 0; i < vm_num; i++)
+> +			vm_active_ch[i] = ch_num;
+
+NIH memset().
+
+> +		pvt->vm_channels.max = ch_num;
+> +		pvt->vm_channels.total = ch_num * vm_num;
+> +	} else {
+> +		for (i = 0; i < vm_num; i++) {
+> +			if (vm_active_ch[i] > ch_num) {
+> +				dev_err(dev, "invalid active channels: %u\n",
+> +					vm_active_ch[i]);
+> +				return -EINVAL;
+> +			}
 > +
-> +maintainers:
-> +  - Pali Rohár <pali@kernel.org>
+> +			pvt->vm_channels.total += vm_active_ch[i];
 > +
-> +description: |
-> +  A simple bus enabling access to peripherals on boards with use Freescale
-> +  P1021RDB Combo Board CPLD Design.
-> +
-> +  The "fsl,p1021rdb-pc-cpld" follows the "simple-bus" set of properties, as
-> +  specified in the Devicetree Specification. It is an extension of "simple-bus"
-> +  because some registers are CPLD specific and allows to identify if board has
-> +  wired CPLD according to Freescale P1021RDB Combo Board CPLD Design.
-> +
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        const: fsl,p1021rdb-pc-cpld
-> +  required:
-> +    - compatible
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^cpld(@[0-9a-f]+(,[0-9a-f]+)?)?$"
-> +
-> +  compatible:
-> +    items:
-> +      - const: fsl,p1021rdb-pc-cpld
-> +      - const: simple-bus
-> +
-> +  '#address-cells':
-> +    enum: [ 1, 2 ]
-> +
-> +  '#size-cells':
-> +    enum: [ 1, 2 ]
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  ranges: true
-> +
-> +required:
-> +  - compatible
-> +  - '#address-cells'
-> +  - '#size-cells'
-> +  - reg
-> +  - ranges
-> +
-> +additionalProperties:
-> +  type: object
-> +
-> +examples:
-> +  - |
-> +
-> +    localbus {
-> +        #address-cells = <2>;
-> +        #size-cells = <1>;
-> +
-> +        cpld@3,0 {
-> +            #address-cells = <1>;
-> +            #size-cells = <1>;
-> +            compatible = "fsl,p1021rdb-pc-cpld", "simple-bus";
-> +            reg = <0x3 0x0 0x20000>;
-> +            ranges = <0x0 0x3 0x0 0x20000>;
-> +        };
-> +    };
-> -- 
-> 2.35.1
-> 
+> +			if (vm_active_ch[i] > pvt->vm_channels.max)
+> +				pvt->vm_channels.max = vm_active_ch[i];
+> +		}
+> +	}
+
+...
+
+> +	k = 0;
+> +	for (i = 0; i < vm_num; i++)
+> +		for (j = 0; j < vm_active_ch[i]; j++) {
+> +			pvt->vd[k].vm_map = vm_idx[i];
+> +			pvt->vd[k].ch_map = j;
+
+> +			k++;
+
+How is it different from moving this outside the inner loop as
+
+	k += vm_active_ch[i];
+
+?
+
+> +		}
+
+Missed outer {}.
+
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
