@@ -2,156 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C3695A8038
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 16:30:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0E725A8008
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 16:24:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229547AbiHaOa4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 10:30:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40680 "EHLO
+        id S232348AbiHaOYA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 10:24:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230338AbiHaOaz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 10:30:55 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E95887548C;
-        Wed, 31 Aug 2022 07:30:53 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 81BF561BBB;
-        Wed, 31 Aug 2022 14:30:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F252C433C1;
-        Wed, 31 Aug 2022 14:30:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661956253;
-        bh=RZ1NKKaymq+6ZylhYUzYOUmsnd+VirvgHXMwybf81Gk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=KzCHCyUlihhvc1ponolL2CKrfgyltgxE0XMCQYgm7hVLIC7RJj3YjsGI2U56jcAbk
-         NT37ydGKbDzkJQztXhN+PzEPGTLB0JJbsYn0FzTq/K513FT2WdLuuTZZJeWYJEv/iU
-         cnNzCXSGD2AMCaGq49nQUx2amtpdXdlsjWbA82nKTx+JJMo1ppxeRrrfJyyQfWVZ2S
-         7MU1RYKH6bCbUOSiGEF/VQkZvvHcRtEoGM0fHDpcP7G21yrgSSBcl5gTCp46qFEQ3g
-         jG1KXFgwy9hmNA2TaOUgOqCa8fbzCTvSXXs3/LNnsMFETBCHs/XJgs3b3Y11FkbbD9
-         OZ/sGQdHQFPxA==
-Received: by pali.im (Postfix)
-        id 80DA1855; Wed, 31 Aug 2022 16:30:49 +0200 (CEST)
-Date:   Wed, 31 Aug 2022 16:30:49 +0200
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
-        linux-pwm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 3/4] ARM: dts: armada-38x: Fix compatible string for
- gpios
-Message-ID: <20220831143049.gdh6dyrn5su2enox@pali>
-References: <20220714115515.5748-1-pali@kernel.org>
- <20220714183328.4137-1-pali@kernel.org>
- <20220714183328.4137-3-pali@kernel.org>
- <20220716144028.rzwcn4wl5uyxepjd@pengutronix.de>
- <20220716145019.nps3oh4a22fsuzup@pali>
- <20220716150751.6yaknmo3qwusyy5h@pengutronix.de>
- <20220716160916.jp37siznitgzw6qf@pali>
- <20220725200417.nwthxzvdv2bzd5ej@pengutronix.de>
+        with ESMTP id S232169AbiHaOXf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 10:23:35 -0400
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D320DABF30;
+        Wed, 31 Aug 2022 07:23:34 -0700 (PDT)
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 27VCXBgo023511;
+        Wed, 31 Aug 2022 10:23:31 -0400
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3j7d48m9m5-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 31 Aug 2022 10:23:31 -0400
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 27VENUpO026320
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 31 Aug 2022 10:23:30 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Wed, 31 Aug
+ 2022 10:23:29 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Wed, 31 Aug 2022 10:23:29 -0400
+Received: from localhost.localdomain ([10.48.65.12])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 27VENHMm022580;
+        Wed, 31 Aug 2022 10:23:19 -0400
+From:   George Mois <george.mois@analog.com>
+To:     <jic23@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     <lucas.p.stankus@gmail.com>, George Mois <george.mois@analog.com>
+Subject: [PATCH v3 1/2] bindings: iio: accel: extend adxl313 documentation file
+Date:   Wed, 31 Aug 2022 17:35:37 +0300
+Message-ID: <20220831143538.65816-1-george.mois@analog.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220725200417.nwthxzvdv2bzd5ej@pengutronix.de>
-User-Agent: NeoMutt/20180716
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: 6FdupHY1SRfZfOOMA7hr3pfRSdNh_LPQ
+X-Proofpoint-ORIG-GUID: 6FdupHY1SRfZfOOMA7hr3pfRSdNh_LPQ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.517,FMLib:17.11.122.1
+ definitions=2022-08-31_09,2022-08-31_03,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 spamscore=0
+ impostorscore=0 priorityscore=1501 bulkscore=0 clxscore=1015
+ malwarescore=0 lowpriorityscore=0 mlxlogscore=999 mlxscore=0 adultscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2207270000 definitions=main-2208310072
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Monday 25 July 2022 22:04:17 Uwe Kleine-König wrote:
-> Hello Pali,
-> 
-> On Sat, Jul 16, 2022 at 06:09:16PM +0200, Pali Rohár wrote:
-> > On Saturday 16 July 2022 17:07:51 Uwe Kleine-König wrote:
-> > > On Sat, Jul 16, 2022 at 04:50:19PM +0200, Pali Rohár wrote:
-> > > > On Saturday 16 July 2022 16:40:28 Uwe Kleine-König wrote:
-> > > > > On Thu, Jul 14, 2022 at 08:33:27PM +0200, Pali Rohár wrote:
-> > > > > > Armada 38x supports per CPU interrupts for gpios, like Armada XP. Pre-XP
-> > > > > > variants like Armada 370 do not support per CPU interrupts for gpios.
-> > > > > > 
-> > > > > > So change compatible string for Armada 38x from "marvell,armada-370-gpio"
-> > > > > > which indicates pre-XP variant to "marvell,armadaxp-gpio" which indicates
-> > > > > > XP variant or new.
-> > > > > > 
-> > > > > > Driver gpio-mvebu.c which handles both pre-XP and XP variants already
-> > > > > > provides support for per CPU interrupts on XP and newer variants.
-> > > > > > 
-> > > > > > Signed-off-by: Pali Rohár <pali@kernel.org>
-> > > > > > Fixes: 7cb2acb3fbae ("ARM: dts: mvebu: Add PWM properties for armada-38x")
-> > > > > > ---
-> > > > > >  arch/arm/boot/dts/armada-38x.dtsi | 4 ++--
-> > > > > >  1 file changed, 2 insertions(+), 2 deletions(-)
-> > > > > > 
-> > > > > > diff --git a/arch/arm/boot/dts/armada-38x.dtsi b/arch/arm/boot/dts/armada-38x.dtsi
-> > > > > > index df3c8d1d8f64..9343de6947b3 100644
-> > > > > > --- a/arch/arm/boot/dts/armada-38x.dtsi
-> > > > > > +++ b/arch/arm/boot/dts/armada-38x.dtsi
-> > > > > > @@ -292,7 +292,7 @@
-> > > > > >  			};
-> > > > > >  
-> > > > > >  			gpio0: gpio@18100 {
-> > > > > > -				compatible = "marvell,armada-370-gpio",
-> > > > > > +				compatible = "marvell,armadaxp-gpio",
-> > > > > >  					     "marvell,orion-gpio";
-> > > > > 
-> > > > > If you can treat the XP variant as 370 and everything that is supposed
-> > > > > to work on 370 works then, then maybe the right incarnation is:
-> > > > > 
-> > > > > 	compatible = "marvell,armadaxp-gpio", "marvell,armada-370-gpio", "marvell,orion-gpio";
-> > > > > 
-> > > > > ?
-> > > > 
-> > > > For pre-XP variants is "marvell,orion-gpio" enough and for XP + post-XP
-> > > > is needed "marvell,armadaxp-gpio" (with possible "marvell,orion-gpio"
-> > > > for backward compatibility).
-> > > > 
-> > > > So I do not see reason why to add "marvell,armada-370-gpio" nor what
-> > > > value it brings.
-> > > 
-> > > If you boot an older kernel (i.e. one that doesn't support
-> > > marvell,armadaxp-gpio, but does support marvell,armada-370-gpio), it
-> > 
-> > Is there such kernel version?
-> 
-> Ah, I thought you added "marvell,armadaxp-gpio" with this patch series.
-> 
-> > > will work better as there are relevant differences between
-> > > marvell,orion-gpio and marvell,armada-370-gpio.
-> > 
-> > And if yes, do we really need this in DTS files for new kernel
-> > versions? I can imagine that such change can be relevant for old LTS
-> > kernel version, but not for new versions.
-> > 
-> > > For example some
-> > > registers seem to have a different offset ...
-> > 
-> > armada-370-gpio is mapped to MVEBU_GPIO_SOC_VARIANT_ORION, so it will
-> > get same offsets as orion-gpio. So no change.
-> 
-> OK, you're right, my assumptions were wrong. I'm convinced your change
-> is fine now:
-> 
-> Acked-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
-> 
-> Best regards
-> Uwe
+Extend the adi,adxl313.yaml file with information regrding the
+ADXL312 and ADXL314 devices.
 
-Ok, are there any other objections with this patch series?
+Signed-off-by: George Mois <george.mois@analog.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+no changes in v3.
+ .../devicetree/bindings/iio/accel/adi,adxl313.yaml     | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adxl313.yaml b/Documentation/devicetree/bindings/iio/accel/adi,adxl313.yaml
+index d6afc1b8c272..59d48ff1a16c 100644
+--- a/Documentation/devicetree/bindings/iio/accel/adi,adxl313.yaml
++++ b/Documentation/devicetree/bindings/iio/accel/adi,adxl313.yaml
+@@ -4,20 +4,24 @@
+ $id: http://devicetree.org/schemas/iio/accel/adi,adxl313.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title: Analog Devices ADXL313 3-Axis Digital Accelerometer
++title: Analog Devices ADXL312, ADXL313, and ADXL314 3-Axis Digital Accelerometers
+ 
+ maintainers:
+   - Lucas Stankus <lucas.p.stankus@gmail.com>
+ 
+ description: |
+-  Analog Devices ADXL313 3-Axis Digital Accelerometer that supports
+-  both I2C & SPI interfaces.
++  Analog Devices ADXL312, ADXL313, and ADXL314 3-Axis Digital Accelerometer that
++  support both I2C & SPI interfaces.
++    https://www.analog.com/en/products/adxl312.html
+     https://www.analog.com/en/products/adxl313.html
++    https://www.analog.com/en/products/adxl314.html
+ 
+ properties:
+   compatible:
+     enum:
++      - adi,adxl312
+       - adi,adxl313
++      - adi,adxl314
+ 
+   reg:
+     maxItems: 1
+-- 
+2.30.2
+
