@@ -2,60 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1ECA5A7BA7
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 12:48:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72C735A7C01
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 13:12:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229751AbiHaKs0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 06:48:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42822 "EHLO
+        id S229752AbiHaLMU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 07:12:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229607AbiHaKsZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 06:48:25 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA10EC9E81;
-        Wed, 31 Aug 2022 03:48:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1661942902; x=1693478902;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=MUC2g2Ul/jEILmkvZfsyyrU9fgVCsWlJId9WqkZpeu4=;
-  b=CPH/FPMJOPK6oaSfq1LxV6vRZpZZq/KiDEyaSkkbyTUbVm24w5OeloHw
-   B5erSdIwpgukXgBSIVkjGlpoFn7uGGMcqxYnVY8DgEIIzfGwUgSrGlduE
-   3MyQnJDdxVrP8YAhRgRIt3GVH6k+4CwyFC9fWlrdIL/FPmOR8vyVO4jrO
-   ztDPGhZ7ndcypw07mlGuPO3jMz+Z3ZxwOyQrLLzBxDE2QcVoduAoH+gxA
-   hwUNFX0IpcrqgcRaMNFGQZ4x3qKVR3s+mph2MCS1CI18eRAyLXKH1amMA
-   6Gzx/Ims0Se/QXa++yJQTZtiKGFuzMc3Y1WTVelYf/FY5swbpY301cSUi
-   g==;
-X-IronPort-AV: E=Sophos;i="5.93,277,1654585200"; 
-   d="scan'208";a="171750964"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 31 Aug 2022 03:48:21 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Wed, 31 Aug 2022 03:48:20 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.12 via Frontend
- Transport; Wed, 31 Aug 2022 03:48:19 -0700
-Date:   Wed, 31 Aug 2022 12:52:37 +0200
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <srinivas.kandagatla@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <UNGLinuxDriver@microchip.com>
-Subject: Re: [PATCH v3 2/2] nvmem: lan9662-otp: add support.
-Message-ID: <20220831105237.ot5aaawnrwjqmjgj@soft-dev3-1.localhost>
-References: <20220831064238.102267-1-horatiu.vultur@microchip.com>
- <20220831064238.102267-3-horatiu.vultur@microchip.com>
- <1ddf261e-55fb-e30c-93b0-efb9bc0987b3@linaro.org>
+        with ESMTP id S229510AbiHaLMT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 07:12:19 -0400
+Received: from mail-oa1-x2d.google.com (mail-oa1-x2d.google.com [IPv6:2001:4860:4864:20::2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A687CEB2A
+        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 04:12:18 -0700 (PDT)
+Received: by mail-oa1-x2d.google.com with SMTP id 586e51a60fabf-11f11d932a8so14883945fac.3
+        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 04:12:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sartura.hr; s=sartura;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=sJH+8p5AtjeeuMnWmoPAbxDcXoEr/hihkiuokZEt+xs=;
+        b=KiHcHM7+/5UKpbapOwznFZR+Awj8ouNl6UC4vXytttIEdsVgifeBzD2mFOC0nysXjy
+         j+LfgrC0EMFd1d+rpQJlfSQv+v+iy8RUPqvtBJkMzH4K6zpq845PiL5bm+fsundOZtlg
+         7CH3Aq/njUBZHYZDr2Y9vlA6bX12QAX/wTU/NSGTCikvSk6j0+5Le//qA6sSuYZghXsU
+         yOqKhMJaSwLlMXZ9emDmLZE3yUB2VfZbLCRZdaEhngusL7vIIWe7Ougj247KuHxdnv04
+         +9ZrYV0aWbsuuifnhkg5PtIm35Sa7qp1UqLPEl2qVNKSlZ47KPgtFzp7Ghq+xj/8HVVx
+         MgcQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=sJH+8p5AtjeeuMnWmoPAbxDcXoEr/hihkiuokZEt+xs=;
+        b=1kfa1ukrX4kdrWrIqMZVyCLy32GviYrwJohAR10UcpTH+XKgS9ku8XmfSsuKea5mKp
+         DId6DFu0FuRWbgRXM6JaRSSCAqoz3QY88k9Z30ZImuuZtt4gJwAkSRdapC90ifROiz65
+         51TMWfTzxVwKNQbKnkfiSw7issy6BlFE/bEbLN3/Na5CZxV5fPZiZVnonQEshS6lGE4g
+         w2Jl5Y/WvqCVR8kEZ55+S1PHQOycn4uDaeFi0BalaqtgkDH1D/rDfxxtmyts5k0KCo7F
+         Cr6Pvh3O9PEN3dqvcu8GxheOnOp8SecGeu6FX9ayA6P1UVLcJV2cFr2CsnbDp21ETTJo
+         433w==
+X-Gm-Message-State: ACgBeo2YjsRbD/9u+zi5ckLJ7ffiotFAbSZnjjd4XZYmztr6LxO4Ne+5
+        lUCpDsDydU0j20RqCvBxcfLPHZ4JwS4tisr4LGC6SA==
+X-Google-Smtp-Source: AA6agR6Otmzk4Kk/s43tJZQHK9B9/4L56sa/82Eewo7SR4MuZgVfgMuFa/XtqxbidkOI8YYMGIiazDGLGbxY19x9ouk=
+X-Received: by 2002:a05:6870:783:b0:11c:7d1c:6ede with SMTP id
+ en3-20020a056870078300b0011c7d1c6edemr1091545oab.239.1661944337671; Wed, 31
+ Aug 2022 04:12:17 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <1ddf261e-55fb-e30c-93b0-efb9bc0987b3@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+References: <20220516124828.45144-1-robert.marko@sartura.hr>
+ <20220516124828.45144-10-robert.marko@sartura.hr> <CA+HBbNF2R--984SdB0v42GMQOwAx4pTEz_FHifTtebN05ELU-Q@mail.gmail.com>
+ <87mtbm5gaf.fsf@BL-laptop>
+In-Reply-To: <87mtbm5gaf.fsf@BL-laptop>
+From:   Robert Marko <robert.marko@sartura.hr>
+Date:   Wed, 31 Aug 2022 13:12:06 +0200
+Message-ID: <CA+HBbNG13dspUspWMrT=LWpCnMCZ-r-K8zR4RaoLf8HxhzStSQ@mail.gmail.com>
+Subject: Re: [PATCH v4 10/10] arm64: dts: marvell: add support for Methode eDPU
+To:     Gregory CLEMENT <gregory.clement@bootlin.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        andrew@lunn.ch, sebastian.hesselbarth@gmail.com,
+        kostap@marvell.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,40 +70,107 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 08/31/2022 10:29, Krzysztof Kozlowski wrote:
+On Tue, Aug 30, 2022 at 9:42 AM Gregory CLEMENT
+<gregory.clement@bootlin.com> wrote:
+>
+> Robert Marko <robert.marko@sartura.hr> writes:
+>
+> > On Mon, May 16, 2022 at 2:48 PM Robert Marko <robert.marko@sartura.hr> wrote:
+> >>
+> >> Methode eDPU is an Armada 3720 powered board based on the Methode uDPU.
+> >>
+> >> They feature the same CPU, RAM, and storage as well as the form factor.
+> >>
+> >> However, eDPU only has one SFP slot plus a copper G.hn port.
+> >>
+> >> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+> >> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >> ---
+> >> Changes in v2:
+> >> * Make the DTS split a separate commit
+> >> ---
+> >>  arch/arm64/boot/dts/marvell/Makefile             |  1 +
+> >>  arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts | 14 ++++++++++++++
+> >>  2 files changed, 15 insertions(+)
+> >>  create mode 100644 arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts
+> >>
+> >> diff --git a/arch/arm64/boot/dts/marvell/Makefile b/arch/arm64/boot/dts/marvell/Makefile
+> >> index 1c794cdcb8e6..104d7d7e8215 100644
+> >> --- a/arch/arm64/boot/dts/marvell/Makefile
+> >> +++ b/arch/arm64/boot/dts/marvell/Makefile
+> >> @@ -1,6 +1,7 @@
+> >>  # SPDX-License-Identifier: GPL-2.0
+> >>  # Mvebu SoC Family
+> >>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-db.dtb
+> >> +dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-eDPU.dtb
+> >>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin.dtb
+> >>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-emmc.dtb
+> >>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-ultra.dtb
+> >> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts b/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts
+> >> new file mode 100644
+> >> index 000000000000..57fc698e55d0
+> >> --- /dev/null
+> >> +++ b/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts
+> >> @@ -0,0 +1,14 @@
+> >> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> >> +
+> >> +/dts-v1/;
+> >> +
+> >> +#include "armada-3720-uDPU.dtsi"
+> >> +
+> >> +/ {
+> >> +       model = "Methode eDPU Board";
+> >> +       compatible = "methode,edpu", "marvell,armada3720", "marvell,armada3710";
+> >> +};
+> >> +
+> >> +&eth0 {
+> >> +       phy-mode = "2500base-x";
+> >> +};
+> >> --
+> >> 2.36.1
+> >>
+> >
+> > Hi Gregory,
+> Hello Roberto,
+>
+> > Is there something else that I can improve in the series?
+>
+> Sorry for having missed this series. At first view it seems OK, I am
+> going to have a closer look this week.
 
-Hi Krzysztof,
+Thanks, that sounds good.
 
-> 
-> On 31/08/2022 09:42, Horatiu Vultur wrote:
-> 
-> > +static const struct of_device_id lan9662_otp_match[] = {
-> > +     { .compatible = "microchip,lan9662-otp", },
-> > +     { .compatible = "microchip,lan9668-otp", },
-> 
-> This is still wrong, does not match your bindings at all and still
-> duplicates entries without driver data. One entry - 9662.
+Regards,
+Robert
+>
+> Gregory
+>
+>
+> >
+> > Regards,
+> > Robert
+> >
+> > --
+> > Robert Marko
+> > Staff Embedded Linux Engineer
+> > Sartura Ltd.
+> > Lendavska ulica 16a
+> > 10000 Zagreb, Croatia
+> > Email: robert.marko@sartura.hr
+> > Web: www.sartura.hr
+>
+> --
+> Gregory Clement, Bootlin
+> Embedded Linux and Kernel engineering
+> http://bootlin.com
 
-I have look at some other drivers, where I can see they don't have any
-driver data. For example [1] and the bindings are here [2].
 
-[1] https://elixir.bootlin.com/linux/latest/source/drivers/net/ethernet/ti/cpsw_new.c#L1832
-[2] https://elixir.bootlin.com/linux/latest/source/Documentation/devicetree/bindings/net/ti,cpsw-switch.yaml#L23
-
-Is this also wrong, or I still can't understand how the bindings are
-working?
-
-If I put only one entry:
----
-static const struct of_device_id lan9662_otp_match[] = {
-     { .compatible = "microchip,lan9662-otp", },
----
-
-Wouldn't be a problem that the binding mentions also lan9668?
-
-> 
-> Best regards,
-> Krzysztof
 
 -- 
-/Horatiu
+Robert Marko
+Staff Embedded Linux Engineer
+Sartura Ltd.
+Lendavska ulica 16a
+10000 Zagreb, Croatia
+Email: robert.marko@sartura.hr
+Web: www.sartura.hr
