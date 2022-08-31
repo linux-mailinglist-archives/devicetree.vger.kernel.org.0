@@ -2,56 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D5405A8479
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 19:36:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B42775A84B0
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 19:48:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229866AbiHaRgg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 13:36:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45212 "EHLO
+        id S229601AbiHaRsM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 13:48:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230431AbiHaRgf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 13:36:35 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55E4BA7A8C;
-        Wed, 31 Aug 2022 10:36:34 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 7B99DB82208;
-        Wed, 31 Aug 2022 17:36:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25C83C43470;
-        Wed, 31 Aug 2022 17:36:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661967391;
-        bh=yJab6UBBzoP5rTwF37tjjwA+4IJ1+TuOLBp6YmYoMMM=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=rNuVikaxps84sU1IM55mD06HmOXr7hFInyNzWXmrmQLDA0g3Q+phCmeOWCBK+3Gxl
-         Gjp6tqTOptOUUKsOB7aZA09F28tCwUC4bwaS8N3+HGl0mHNlRGpZ9tktZGF+ApB/2S
-         CjYd48kDu1xhMIPgdEFDn9PIif8YTfdKJumS8VSiUBHzHtj++1xm62apEZGNyGwPEM
-         VZ/S18tiCKB/5P8rl+ho+eeb2MROWXyBVaUj7xytk9tYhZudRc8/MCMvAFGAF0dpgw
-         Uz7hRINOerE/E4gu+ukB4TG5RgIvHnqx87HQ7qWfjooR0thnwwrWdTgZBNRyxUAdEV
-         0688vxKWqw5EA==
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S230355AbiHaRsL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 13:48:11 -0400
+Received: from smtp-fw-80007.amazon.com (smtp-fw-80007.amazon.com [99.78.197.218])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EBBBBB914;
+        Wed, 31 Aug 2022 10:48:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1661968091; x=1693504091;
+  h=message-id:date:mime-version:to:cc:references:from:
+   in-reply-to:content-transfer-encoding:subject;
+  bh=p/GOqKIZDQTxNG42y21N79YylwcTQ9NvOofSnfIbNdc=;
+  b=pEoTtJy1TPIdjMvt/fRNLbg709wHOEaURvXJGxgH+RVvsqQXFA7KWdar
+   ldqohTAC3A1kAisfNBLMhTlxSe8F89F6ZCUKweC7Z7WtNL4CQgYJbWSjd
+   /AWtyqrhLUe6bkiTGqxt+oOCYTYaELidbR2XqkojrjYByBkseQbH1S7jX
+   A=;
+X-IronPort-AV: E=Sophos;i="5.93,278,1654560000"; 
+   d="scan'208";a="125450026"
+Subject: Re: [PATCH v3 08/19] dt-bindings: hwmon: (mr75203) add "moortec,
+ vm-active-channels" property
+Received: from pdx4-co-svc-p1-lb2-vlan3.amazon.com (HELO email-inbound-relay-iad-1a-828bd003.us-east-1.amazon.com) ([10.25.36.214])
+  by smtp-border-fw-80007.pdx80.corp.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Aug 2022 17:47:54 +0000
+Received: from EX13D33EUA002.ant.amazon.com (iad12-ws-svc-p26-lb9-vlan2.iad.amazon.com [10.40.163.34])
+        by email-inbound-relay-iad-1a-828bd003.us-east-1.amazon.com (Postfix) with ESMTPS id 488AD80FD4;
+        Wed, 31 Aug 2022 17:47:51 +0000 (UTC)
+Received: from EX19D019EUA002.ant.amazon.com (10.252.50.84) by
+ EX13D33EUA002.ant.amazon.com (10.43.165.38) with Microsoft SMTP Server (TLS)
+ id 15.0.1497.38; Wed, 31 Aug 2022 17:47:50 +0000
+Received: from EX13MTAUEA001.ant.amazon.com (10.43.61.82) by
+ EX19D019EUA002.ant.amazon.com (10.252.50.84) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.1118.12; Wed, 31 Aug 2022 17:47:49 +0000
+Received: from [192.168.153.206] (10.85.143.179) by mail-relay.amazon.com
+ (10.43.61.243) with Microsoft SMTP Server id 15.0.1497.38 via Frontend
+ Transport; Wed, 31 Aug 2022 17:47:45 +0000
+Message-ID: <2508ecda-cfd2-96ba-a802-47d25f225dd0@amazon.com>
+Date:   Wed, 31 Aug 2022 20:47:44 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <1655004286-11493-9-git-send-email-quic_fenglinw@quicinc.com>
-References: <1655004286-11493-1-git-send-email-quic_fenglinw@quicinc.com> <1655004286-11493-9-git-send-email-quic_fenglinw@quicinc.com>
-Subject: Re: [RESEND PATCH v6 08/10] dt-bindings: spmi: spmi-pmic-arb: make interrupt properties as optional
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     quic_collinsd@quicinc.com, quic_subbaram@quicinc.com,
-        quic_fenglinw@quicinc.com, tglx@linutronix.de, maz@kernel.org,
-        David Collins <collinsd@codeaurora.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Fenglin Wu <quic_fenglinw@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Date:   Wed, 31 Aug 2022 10:36:29 -0700
-User-Agent: alot/0.10
-Message-Id: <20220831173631.25C83C43470@smtp.kernel.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+To:     Rob Herring <robh@kernel.org>
+CC:     <almogbs@amazon.com>, Rahul Tanwar <rtanwar@maxlinear.com>,
+        Talel Shenhar <talel@amazon.com>,
+        Linux HWMON List <linux-hwmon@vger.kernel.org>,
+        <itamark@amazon.com>, <amitlavi@amazon.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jonathan Chocron <jonnyc@amazon.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>, <shellykz@amazon.com>,
+        Jean Delvare <jdelvare@suse.com>, <shorer@amazon.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <dkl@amazon.com>,
+        "Hanoch, Uri" <hanochu@amazon.com>,
+        Andy Shevchenko <andriy.shevchenko@intel.com>,
+        "Hawa, Hanna" <hhhawa@amazon.com>,
+        "Krupnik, Ronen" <ronenk@amazon.com>,
+        "Farber, Eliav" <farbere@amazon.com>
+References: <20220830192212.28570-1-farbere@amazon.com>
+ <20220830192212.28570-9-farbere@amazon.com>
+ <1661945961.480039.3614528.nullmailer@robh.at.kernel.org>
+ <a8557b5a-6e27-2e66-161e-814fc0f69c1d@amazon.com>
+ <CAL_Jsq+c7DaJFCgeHDsXQT8oqHmPS57S-o_EALz=nHDREhqc7g@mail.gmail.com>
+Content-Language: en-US
+From:   "Farber, Eliav" <farbere@amazon.com>
+In-Reply-To: <CAL_Jsq+c7DaJFCgeHDsXQT8oqHmPS57S-o_EALz=nHDREhqc7g@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-11.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_SPF_WL autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,44 +85,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Fenglin Wu (2022-06-11 20:24:44)
-> From: David Collins <collinsd@codeaurora.org>
->=20
-> Make all interrupt related properties as optional instead of
-> required.  Some boards do not required PMIC IRQ support and it
-> isn't needed to handle SPMI bus transactions, so specify it as
-> optional.
->=20
-> Signed-off-by: David Collins <collinsd@codeaurora.org>
-> Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
-> Acked-by: Rob Herring <robh@kernel.org>
-> ---
->  Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml | 3 ---
->  1 file changed, 3 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.ya=
-ml b/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml
-> index 55d379c..fee4f0e 100644
-> --- a/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml
-> +++ b/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml
-> @@ -88,9 +88,6 @@ properties:
->  required:
->    - compatible
->    - reg-names
-> -  - interrupts
-> -  - interrupt-names
-> -  - '#interrupt-cells'
+On 8/31/2022 3:17 PM, Rob Herring wrote:
+> On Wed, Aug 31, 2022 at 6:53 AM Farber, Eliav <farbere@amazon.com> wrote:
+>>
+>> On 8/31/2022 2:39 PM, Rob Herring wrote:
+>>
+>> On Tue, 30 Aug 2022 19:22:01 +0000, Eliav Farber wrote:
+>>
+>> Add optional "moortec,vm-active-channels" property to define the number
+>> of active channels per VM.
+>>
+>> This shall be useful to avoid exposing sysfs for reading inputs that are
+>> not connected to any voltage source.
+>>
+>> Signed-off-by: Eliav Farber <farbere@amazon.com>
+>> ---
+>> V3 -> V2:
+>> - Add "moortec" prefix to property name.
+>> - Add explanation why this change is needed.
+>>
+>>  .../devicetree/bindings/hwmon/moortec,mr75203.yaml    | 11 +++++++++++
+>>  1 file changed, 11 insertions(+)
+>>
+>>
+>> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+>> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>>
+>> I used dt_binding_check on my changes (I ported it to my kernel).
+>> The error is related to "intel-vm-map" which I did not add.
+>
+> The error is the vendor prefix is not defined in vendor-prefixes.yaml.
 
-Let me clarify my comment on the next driver patch here. It looks like
-we're making the properties optional here so that the driver can choose
-to create or not create the irqchip based on the presence of the
-property. Are there PMIC arbiters that don't have irq support? Or is it
-only that some board designs don't use interrupt support of the PMIC,
-because all the devices that use interrupts on the PMIC aren't enabled
-(status =3D "okay")?
+I fixed the vendor prefix error (will be part of v4).
 
-We shouldn't get into a situation where we're removing the interrupt
-properties because we want the driver to skip creating the irqchip. That
-makes the binding too loose, where we can't validate existing DT files.
-It also makes it confusing to include the DTS files when the device
-always supports interrupt capabilities, just we don't want to use it.
+>> I don't mind fixing it if you wish.
+>> It requires changing:
+>>   intel,vm-map = [03 01 04 ff ff];
+>> to:
+>>   intel,vm-map = /bits/8 <0x03 0x01 0x04 0xff 0xff>;
+>
+> That is not the issue. The issue is the type is unknown because your
+> schema fails and we can't get the type from it. Once your schema
+> passes, this should go away.
+Even after fixing the vendor prefix error I still see this:
+moortec,mr75203.yaml: ignoring, error in schema: properties: intel,vm-map
+moortec,mr75203.example.dtb: pvt@e0680000: intel,vm-map: 
+b'\x03\x01\x04\xff\xff' is not of type 'object', 'array', 'boolean', 'null'
+
+--
+Regards, Eliav
