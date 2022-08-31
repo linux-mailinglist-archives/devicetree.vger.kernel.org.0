@@ -2,68 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61BC55A7AA0
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 11:53:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62C465A7AAC
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 11:56:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230215AbiHaJwz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 05:52:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38430 "EHLO
+        id S230301AbiHaJ4V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 05:56:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45344 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230169AbiHaJwy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 05:52:54 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3083CEB32
-        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 02:52:51 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id z25so19186318lfr.2
-        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 02:52:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc;
-        bh=Uyk5oGC1fzPDhWnjscWkczot63x0+zUlXapFW5zcja8=;
-        b=csgYcxIvJ+qr28PXMvoZCwdCVpwnzCPd4XBF4kjsYuwJ49TEt19uoexiIF1NUl7il3
-         CwZqVrCabuy66hsmIRTZ30UdVhFednwAiUPSmEF8dbvXI+lS5zXjeaSZsMcEaPhE3b3Q
-         nX7NeOFVZymVAFugXvF/I0aBUMOUn+DF5sVh+8rA4gAZ/pSVbjfma4Gtzx9499Qd2JIL
-         mlgcjiz+A+GhmlxWSok7AEJZN+WhuLIyExX9R5SEVVjFpY5bOdrXdNQliQMUGnq2XD9Y
-         j2fNcu3tQ7jEgjv+q/C/2fD8IHtxvH91NrRmYWRfpmVAh+pluw8pbFgHEee0tSMNSkeM
-         ehrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc;
-        bh=Uyk5oGC1fzPDhWnjscWkczot63x0+zUlXapFW5zcja8=;
-        b=oXHtY3z/mfMim4Jco4gETA6Yt9qjeGzMzoTFyK+55YZGerBWowREI4wuSLqwnfWxzX
-         uxhKJaeMozqzfpHT6icSEuVMDpXh0m5wWVGgUX4zV6CLGZROaQF1KcMRT2g3H5Q6kpnH
-         CnBmyQHDXYeOB2R9dPNNx1FGy5xtHnlAOYYkIkqoHz0akWcO4kq14L06M/z3q+kOOu3u
-         4TW65Mbggn3nz+Ki2BLOz9bibvuUEaDH0IFVgIphCHHBe61fLZGLMj9lt2wPTvnMk33j
-         1xbzUFt+454w+kcAAPuyRDSqtUSeoGLa2hhFhd36vJ0i1fEtKp+jmWiBZpGeKsoCRECw
-         kn1g==
-X-Gm-Message-State: ACgBeo35+8Lcds2+kOB69YhbdCVHBagaJTKQ0bzPA5Gvnh1wipb5bPaf
-        LoPsQQvD5A5br7filxET6uIwMQ==
-X-Google-Smtp-Source: AA6agR5gWoEHcabqGDQbMH2C5BomNnBn//+phAmXVAAS32g7LKCBzy1zq9/HWP7WbpVJADKBdkCvEg==
-X-Received: by 2002:a19:d611:0:b0:492:8e15:ba18 with SMTP id n17-20020a19d611000000b004928e15ba18mr8735305lfg.524.1661939570041;
-        Wed, 31 Aug 2022 02:52:50 -0700 (PDT)
-Received: from krzk-bin.. (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id n2-20020a05651203e200b0048a757d1303sm1247596lfq.217.2022.08.31.02.52.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 31 Aug 2022 02:52:49 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S230240AbiHaJ4U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 05:56:20 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C72A3C58E6
+        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 02:56:19 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1oTKS9-0000tg-GI; Wed, 31 Aug 2022 11:56:09 +0200
+Received: from [2a0a:edc0:0:1101:1d::ac] (helo=dude04.red.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ore@pengutronix.de>)
+        id 1oTKS8-0032Z0-Hg; Wed, 31 Aug 2022 11:56:08 +0200
+Received: from ore by dude04.red.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ore@pengutronix.de>)
+        id 1oTKS7-00HRUS-Sg; Wed, 31 Aug 2022 11:56:07 +0200
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] media: dt-bindings: dongwoon,dw9714: convert to dtschema
-Date:   Wed, 31 Aug 2022 12:51:56 +0300
-Message-Id: <20220831095156.347715-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        kernel@pengutronix.de, linux-kernel@vger.kernel.org,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v2 1/3] dt-bindings: iio: adc: ti,tsc2046: add vref-supply property
+Date:   Wed, 31 Aug 2022 11:55:59 +0200
+Message-Id: <20220831095601.4157195-1-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -72,86 +54,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert Dongwoon Anatech DW9714 camera voice coil lens driver to DT
-schema and extend the bindings with vcc-supply (already used by driver)
-and powerdown-gpios (based on datasheet, not used by the driver).
+Add property for the voltage reference supply.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../bindings/media/i2c/dongwoon,dw9714.txt    |  9 ----
- .../bindings/media/i2c/dongwoon,dw9714.yaml   | 47 +++++++++++++++++++
- 2 files changed, 47 insertions(+), 9 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/media/i2c/dongwoon,dw9714.txt
- create mode 100644 Documentation/devicetree/bindings/media/i2c/dongwoon,dw9714.yaml
+changes v2
+- add Acked-by: Krzysztof Kozlowski
+---
+ Documentation/devicetree/bindings/iio/adc/ti,tsc2046.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9714.txt b/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9714.txt
-deleted file mode 100644
-index b88dcdd41def..000000000000
---- a/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9714.txt
-+++ /dev/null
-@@ -1,9 +0,0 @@
--Dongwoon Anatech DW9714 camera voice coil lens driver
--
--DW9174 is a 10-bit DAC with current sink capability. It is intended
--for driving voice coil lenses in camera modules.
--
--Mandatory properties:
--
--- compatible: "dongwoon,dw9714"
--- reg: I²C slave address
-diff --git a/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9714.yaml b/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9714.yaml
-new file mode 100644
-index 000000000000..66229a3dc05d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9714.yaml
-@@ -0,0 +1,47 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/i2c/dongwoon,dw9714.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/Documentation/devicetree/bindings/iio/adc/ti,tsc2046.yaml b/Documentation/devicetree/bindings/iio/adc/ti,tsc2046.yaml
+index 601d69971d84a..7faf12b1598b9 100644
+--- a/Documentation/devicetree/bindings/iio/adc/ti,tsc2046.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/ti,tsc2046.yaml
+@@ -25,6 +25,9 @@ properties:
+ 
+   spi-max-frequency: true
+ 
++  vref-supply:
++    description: Optional supply of the reference voltage
 +
-+title: Dongwoon Anatech DW9714 camera voice coil lens driver
-+
-+maintainers:
-+  - Krzysztof Kozlowski <krzk@kernel.org>
-+
-+description:
-+  DW9174 is a 10-bit DAC with current sink capability. It is intended for
-+  driving voice coil lenses in camera modules.
-+
-+properties:
-+  compatible:
-+    const: dongwoon,dw9714
-+
-+  reg:
-+    maxItems: 1
-+
-+  powerdown-gpios:
-+    description:
-+      XSD pin for shutdown (active low)
-+
-+  vcc-supply:
-+    description: VDD power supply
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        camera-lens@c {
-+            compatible = "dongwoon,dw9714";
-+            reg = <0x0c>;
-+            vcc-supply = <&reg_csi_1v8>;
-+        };
-+    };
+   "#io-channel-cells":
+     const: 1
+ 
 -- 
-2.34.1
+2.30.2
 
