@@ -2,46 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B37655A82AC
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 18:07:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 554C25A82CD
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 18:14:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230020AbiHaQHe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 12:07:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37778 "EHLO
+        id S231630AbiHaQOL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 12:14:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229512AbiHaQHc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 12:07:32 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8EDA43E6A
-        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 09:07:30 -0700 (PDT)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=irc.pengutronix.de)
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <j.zink@pengutronix.de>)
-        id 1oTQFV-00054L-2N; Wed, 31 Aug 2022 18:07:29 +0200
-Message-ID: <37ca25e23d9f7678c14074546ed3ed5d7bf6104e.camel@pengutronix.de>
-Subject: Re: [PATCH 16/16] fpga: machxo2: add configuration over i2c
-From:   Johannes Zink <j.zink@pengutronix.de>
-To:     Xu Yilun <yilun.xu@intel.com>
-Cc:     devicetree@vger.kernel.org, linux-fpga@vger.kernel.org,
+        with ESMTP id S231269AbiHaQOK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 12:14:10 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A864CD788
+        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 09:14:09 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id s7so4024944wro.2
+        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 09:14:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=conchuod.ie; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
+        bh=aMmSguWI98NKmktPvtYnC/l2iKpxumwtwsBe8RwBjGg=;
+        b=DH7PvLko7d49IjzAVmtLgrBV49mlxf+9XDXVBbxietelZy/OIaolUAkMFDTBAztNRT
+         EMoEQOU27VhuyBJxtL8PFS0vvXB4uSZSv6BZYEtWGxAsrEbvablRpMlaAvFhbZR1UJVs
+         EBK0Kjs7TUroqw5S+w092+J24ZCbpfTWwTgi6lQmrCS+UxuHUC3tzTjc/7OjiNjaKzmc
+         b4Wu6bVbWaFSFbwV7IV2Zt0M0MZ+C4xrctNpx1T1NFDF57Cv9qIoUu+5kAzmY1a7HfF2
+         2dFDdAtZtF3BBHVGpByqhwsHG48GUwgLgN/O2Ybx1zCylPvKfQVYU571NNsWJFZEXaAJ
+         14yg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=aMmSguWI98NKmktPvtYnC/l2iKpxumwtwsBe8RwBjGg=;
+        b=3yX6w+6GctRGwomVDNNQP7KHOZgGmIWtRZdMAWV6ujclYBPooBr4S3HIEMFX3DFaUL
+         oYYmpT9BobRvFwytTlLwCcubZXIq3ihOXD7RkEpduOnnj1cuwEtcAhJoyyauUTwu0rm8
+         39t1P9BjDAuENZ7R/W2IFeJd4vYR89EmUKfaAtagCnDwIHledP0MYeOM5rW0j2d3flLM
+         sXOk8YuBIJQkDv/6ZaozAlPu6qgSxdGl5YsI8jyXkJtuCWJ1i841v//0vG6VW1jZMoFk
+         CPx77IocZjhSxeRoUMrPwTKCc4d6FjMyLEC0ZpQpqGr+o2GIY49Sqrpz0MsqdedNsIev
+         ThJQ==
+X-Gm-Message-State: ACgBeo2HieFAGzU0XTcjBigkqXQIChJw5WAL4K2w9emQ/xLDJjI0xYbm
+        XgBAT8nUIuWpioohSGI0Lu16ug==
+X-Google-Smtp-Source: AA6agR5Xgtc4NAD3H8V0qmz4NCezn9CoeHu2vc837ligmAydGEGNkQmcnKuj/N0KmvE310P3PNcRVw==
+X-Received: by 2002:adf:ce08:0:b0:226:d1ba:3e23 with SMTP id p8-20020adfce08000000b00226d1ba3e23mr11773409wrn.374.1661962447665;
+        Wed, 31 Aug 2022 09:14:07 -0700 (PDT)
+Received: from henark71.. ([51.37.149.245])
+        by smtp.gmail.com with ESMTPSA id w5-20020a5d4b45000000b00226db764fb5sm8269091wrs.47.2022.08.31.09.14.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 31 Aug 2022 09:14:06 -0700 (PDT)
+From:   Conor Dooley <mail@conchuod.ie>
+To:     Paul Walmsley <paul.walmsley@sifive.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Moritz Fischer <mdf@kernel.org>, kernel@pengutronix.de,
-        Wu Hao <hao.wu@intel.com>
-Date:   Wed, 31 Aug 2022 18:07:11 +0200
-In-Reply-To: <YwzRBmXMV4o8aGO4@yilunxu-OptiPlex-7050>
-References: <20220825141343.1375690-1-j.zink@pengutronix.de>
-         <20220825141343.1375690-17-j.zink@pengutronix.de>
-         <YwyLOSKy6kUFsFOB@yilunxu-OptiPlex-7050>
-         <2800bc77abb68c721feb5569608684414ae3f6be.camel@pengutronix.de>
-         <YwzRBmXMV4o8aGO4@yilunxu-OptiPlex-7050>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.3-1 
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        Conor Dooley <mail@conchuod.ie>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+        Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Atish Patra <atishp@atishpatra.org>,
+        devicetree@vger.kernel.org, ben.dooks@sifive.com,
+        zong.li@sifive.com
+Subject: Re: [PATCH 0/2] Add a PolarFire SoC l2 compatible
+Date:   Wed, 31 Aug 2022 17:13:50 +0100
+Message-Id: <166196217701.591052.12924322910945691679.b4-ty@microchip.com>
+X-Mailer: git-send-email 2.37.1
+In-Reply-To: <20220825180417.1259360-1-mail@conchuod.ie>
+References: <20220825180417.1259360-1-mail@conchuod.ie>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: j.zink@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -50,206 +82,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yilun,
+From: Conor Dooley <conor.dooley@microchip.com>
 
-On Mon, 2022-08-29 at 22:45 +0800, Xu Yilun wrote:
-> On 2022-08-29 at 15:21:19 +0200, Johannes Zink wrote:
-> > Hi Yilun, 
-> > 
-> > On Mon, 2022-08-29 at 17:47 +0800, Xu Yilun wrote:
-> > > On 2022-08-25 at 16:13:43 +0200, Johannes Zink wrote:
-> > > > From: Peter Jensen <pdj@bang-olufsen.dk>
-> > > > 
-> > > > The configuration flash of the machxo2 fpga can also be erased
-> > > > and
-> > > > written over i2c instead of spi. Add this functionality to the
-> > > > refactored common driver. Since some commands are shorter over
-> > > > I2C
-> > > > than
-> > > > they are over SPI some quirks are added to the common driver in
-> > > > order to
-> > > > account for that.
-> > > > 
-> > > > Signed-off-by: Peter Jensen <pdj@bang-olufsen.dk>
-> > > > Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
-> > > > Signed-off-by: Johannes Zink <j.zink@pengutronix.de>
-> > > > ---
-[snip]
-> > > > 
-> > 
-> > > 
-> > > > +
-> > > > +static int machxo2_i2c_write(struct machxo2_common_priv
-> > > > *common,
-> > > > +                            struct machxo2_cmd *cmds, size_t
-> > > > cmd_count)
-> > > > +{
-> > > > +       struct machxo2_i2c_priv *i2c_priv =
-> > > > to_machxo2_i2c_priv(common);
-> > > > +       struct i2c_client *client = i2c_priv->client;
-> > > > +       size_t i;
-> > > > +       int ret;
-> > > > +
-> > > > +       for (i = 0; i < cmd_count; i++) {
-> > > > +               struct i2c_msg msg[] = {
-> > > > +                       {
-> > > > +                               .addr = client->addr,
-> > > > +                               .buf = cmds[i].cmd,
-> > > > +                               .len = cmds[i].cmd_len,
-> > > > +                       },
-> > > > +               };
-> > > > +
-> > > > +               ret = i2c_transfer(client->adapter, msg,
-> > > > ARRAY_SIZE(msg));
-> > > > +               if (ret < 0)
-> > > > +                       return ret;
-> > > > +               if (ret != ARRAY_SIZE(msg))
-> > > > +                       return -EIO;
-> > > > +               if (cmds[i].delay_us)
-> > > > +                       usleep_range(cmds[i].delay_us,
-> > > > cmds[i].delay_us +
-> > > > +                                    cmds[i].delay_us / 4);
-> > > > +               if (i < cmd_count - 1) /* on any iteration
-> > > > except
-> > > > for the last one... */
-> > > > +                       ret =
-> > > > machxo2_wait_until_not_busy(common);
-> > > 
-> > > Seems no need to implement the loop and wait in transportation
-> > > layer,
-> > > they are common. A callback like write(bus, txbuf, n_tx) is
-> > > better?
-> > > 
-> > > Thanks,
-> > > Yilun
-> > 
-> > I have chosen this implementation mostly due to the fact that I
-> > don't
-> > have a SPI machxo2 device to test against, so I am intentionally
-> > keeping changes to a minimum. 
-> > 
-> > Moving the wait between single commands into the transport layer is
-> > not
-> > functionally equivalent, e.g. the ISC_ENABLE - ISC_ERASE command
-> > sequence in the machxo2_write_init function would require two
-> > separate
-> > messages with a wait time between them, which would deassert the CS
-> > line between sending the messages via SPI if not sent as a sequence
-> > of
-> > SPI transfers. For some of the commands, the fpga requires a delay
-> > between the different commands, which was implemented by setting
-> > the
-> > delay property of the spi transfer objects in the original driver.
+On Thu, 25 Aug 2022 19:04:16 +0100, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
 > 
-> Not sure if it is really a problem, but I remember SPI has various
-> APIs
-> to deal with different requirements.
-
-I assume this could probably be implemented by clearing the cs_change
-bit in the SPI transfer, though just sending multiple transfers in
-sequence with the appropriate timing appears a bit more elegant to me,
-since it doesn't reimplement the behaviour for spi, it simply extends
-the i2c part for what is not supported natively in the i2c api. Either
-way, some sort of waiting has to be implemented (please see my comment
-below).
-
-Also, please bear in mind that I do not have SPI connected on my board,
-which is why I opted to stay as close as possible to the original
-implementation and only refactor the spi transfers with functionally
-equivalent code in order to keep the risk of breaking things as low as
-possible.
-
+> Whilst re-running checks before sending my dt-fixes PR today I noticed
+> that I had introduced another dtbs_check warning by applying one of the
+> patches in it.
 > 
-> > 
-> > This implementation tries to mimic the timing behaviour of the SPI
-> > transfer delay property for the I2C implementation. 
+> PolarFire SoC has 4 cache interrupts, unlike the fu540 (which the dts
+> re-uses the compatible of currently) which only has 3. Add a new string
+> to the binding like should've been done in the first place...
 > 
-> Could you firstly try on that until we have real problem? Ideally
-> this
-> is a cleaner implementation, is it?
+> [...]
 
-The delays themselves are required by the device family datasheet and
-by the sysConfig protocol definition, as part of the command sequence
-timing. 
+@Palmer, I have applied these to my dt-fixes, branch as the commit they
+fix is there too. As I mentioned on IRC, patches for this dt-binding are
+usually merged via the riscv tree so I have taken the liberty of bundling
+it with the dts change. You may get this in a PR friday morning, but more
+likely early next week.
 
-Since I have no SPI connected on my hardware, I am only able to test
-the I2C implementation, which works well with the timings taken from
-the original spi driver (except for the erase timeout, which needs to
-be extended as seen in Patch 15 of this series). Extending the delay
-times such that usleep_range can be used has proven to be acceptable,
-at least for the i2c implementation. 
+Conor.
 
-Best regards
-Johannes
 
-> 
-> Thanks,
-> Yilun
-> 
-> > 
-> > Best regards
-> > Johannes
-> > 
-> > > 
-> > > > +       }
-> > > > +
-> > > > +       return 0;
-> > > > +}
-> > > > +
-> > > > +static int machxo2_i2c_probe(struct i2c_client *client,
-> > > > +                       const struct i2c_device_id *id)
-> > > > +{
-> > > > +       struct device *dev = &client->dev;
-> > > > +       struct machxo2_i2c_priv *priv;
-> > > > +
-> > > > +       priv = devm_kzalloc(dev, sizeof(struct
-> > > > machxo2_i2c_priv),
-> > > > GFP_KERNEL);
-> > > > +       if (!priv)
-> > > > +               return -ENOMEM;
-> > > > +
-> > > > +       priv->client = client;
-> > > > +       priv->common.get_status = machxo2_i2c_get_status;
-> > > > +       priv->common.write_commands = machxo2_i2c_write;
-> > > > +
-> > > > +       /* Commands are usually 4b, but these aren't for i2c */
-> > > > +       priv->common.enable_3b = true;
-> > > > +       priv->common.refresh_3b = true;
-> > > > +
-> > > > +       return machxo2_common_init(&priv->common, dev);
-> > > > +}
-> > > > +
-> > > > +static const struct of_device_id of_match[] = {
-> > > > +       { .compatible = "lattice,machxo2-slave-i2c", },
-> > > > +       { },
-> > > > +};
-> > > > +MODULE_DEVICE_TABLE(of, of_match);
-> > > > +
-> > > > +static const struct i2c_device_id lattice_ids[] = {
-> > > > +       { "machxo2-slave-i2c", 0 },
-> > > > +       { },
-> > > > +};
-> > > > +MODULE_DEVICE_TABLE(i2c, lattice_ids);
-> > > > +
-> > > > +static struct i2c_driver machxo2_i2c_driver = {
-> > > > +       .driver = {
-> > > > +               .name = "machxo2-slave-i2c",
-> > > > +               .of_match_table = of_match_ptr(of_match),
-> > > > +       },
-> > > > +       .probe = machxo2_i2c_probe,
-> > > > +       .id_table = lattice_ids,
-> > > > +};
-> > > > +
-> > > > +module_i2c_driver(machxo2_i2c_driver);
-> > > > +
-> > > > +MODULE_AUTHOR("Peter Jensen <pdj@bang-olufsen.dk>");
-> > > > +MODULE_DESCRIPTION("Load Lattice FPGA firmware over I2C");
-> > > > +MODULE_LICENSE("GPL");
-> > > > -- 
-> > > > 2.30.2
--- 
-Pengutronix e.K.                | Johannes Zink                  |
-Steuerwalder Str. 21            | https://www.pengutronix.de/    |
-31137 Hildesheim, Germany       | Phone: +49-5121-206917-0       |
-Amtsgericht Hildesheim, HRA 2686| Fax:   +49-5121-206917-5555    |
+[1/2] dt-bindings: riscv: sifive-l2: add a PolarFire SoC compatible
+      https://git.kernel.org/conor/c/17e4732d1d8a
+[2/2] riscv: dts: microchip: use an mpfs specific l2 compatible
+      https://git.kernel.org/conor/c/0dec364ffeb6
 
+Thanks,
+Conor.
