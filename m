@@ -2,83 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC6955A8849
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 23:43:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A90B95A8855
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 23:48:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232371AbiHaVns (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 17:43:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46834 "EHLO
+        id S229575AbiHaVsN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 17:48:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229619AbiHaVnr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 17:43:47 -0400
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9928AF4C89;
-        Wed, 31 Aug 2022 14:43:45 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.93,279,1654527600"; 
-   d="scan'208";a="133267663"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 01 Sep 2022 06:43:44 +0900
-Received: from localhost.localdomain (unknown [10.226.36.204])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 23A96400A656;
-        Thu,  1 Sep 2022 06:43:40 +0900 (JST)
-From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229510AbiHaVsM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 17:48:12 -0400
+Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4C8BF61AD;
+        Wed, 31 Aug 2022 14:48:11 -0700 (PDT)
+Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-11f11d932a8so18958878fac.3;
+        Wed, 31 Aug 2022 14:48:11 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=JD82AHGx84kMfXbfehKRODVwT5PdMYhij9FNOZzBHYc=;
+        b=U7fymrrzN329Sf5bfjRw9duInxROWaO4+CJHSU+cSx+XyJY75RcmUVpTQ33/7BRZhb
+         H0q+ENPjZU0tRkuvFXr4afxNI+b/vzp0XqjRKOxCHRJpMDVLykPE68lhf+Kl9AACUGP8
+         4/P23eYzdJwM091bPGL+DuBV0qxw44g1fs9CoPVncaz2WrD4shqOjqwRp3MtQibRMTOM
+         X8WHVDrIk+/wqtM0TlxCvsPiyG8SMRFKYQDl8tYjTOiTwvfZ78mT+uqAd6rQhNxnRxjd
+         M3dHg8MGBYLmfZjpX2NROKt/W+i+pn0xaLs3OZOD9hZ1CdzA/dutRprY0nUEX5hk5Yyz
+         SARw==
+X-Gm-Message-State: ACgBeo1Z4ttzgq4zHqrIt99K4Fc8/byYFv0J6+BR/235SrS4HSlILFxZ
+        Hs6f4jEQlNxD93m2uXbMJA==
+X-Google-Smtp-Source: AA6agR42CMQBtttjZ/zkx4w8wd0niU7A9WHNAhfgLAJFh/npgcOzrKIbttMD5OzwceY42pFmKqe7lw==
+X-Received: by 2002:a05:6808:1491:b0:343:7543:1a37 with SMTP id e17-20020a056808149100b0034375431a37mr2191781oiw.106.1661982491138;
+        Wed, 31 Aug 2022 14:48:11 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id p81-20020acad854000000b00342ded07a75sm7875032oig.18.2022.08.31.14.48.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 31 Aug 2022 14:48:10 -0700 (PDT)
+Received: (nullmailer pid 310004 invoked by uid 1000);
+        Wed, 31 Aug 2022 21:48:09 -0000
+Date:   Wed, 31 Aug 2022 16:48:09 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Michael Walle <michael@walle.cc>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-mmc@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v2] dt-bindings: mmc: renesas,sdhi: Add iommus property
-Date:   Wed, 31 Aug 2022 22:43:14 +0100
-Message-Id: <20220831214314.7794-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        netdev@vger.kernel.org, Ahmad Fatoum <a.fatoum@pengutronix.de>
+Subject: Re: [PATCH v1 08/14] dt-bindings: mtd: relax the nvmem compatible
+ string
+Message-ID: <20220831214809.GA282739-robh@kernel.org>
+References: <20220825214423.903672-1-michael@walle.cc>
+ <20220825214423.903672-9-michael@walle.cc>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220825214423.903672-9-michael@walle.cc>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The SDHI blocks on Renesas R-Car and RZ/G2 SoCs make use of IOMMU.
+On Thu, Aug 25, 2022 at 11:44:17PM +0200, Michael Walle wrote:
+> The "user-otp" and "factory-otp" compatible string just depicts a
+> generic NVMEM device. But an actual device tree node might as well
+> contain a more specific compatible string. Make it possible to add
+> more specific binding elsewere and just match part of the compatibles
+> here.
+> 
+> Signed-off-by: Michael Walle <michael@walle.cc>
+> ---
+>  Documentation/devicetree/bindings/mtd/mtd.yaml | 7 ++++---
+>  1 file changed, 4 insertions(+), 3 deletions(-)
 
-This patch fixes the below dtbs_check warnings:
-arch/arm64/boot/dts/renesas/r8a774e1-hihope-rzg2h-ex-idk-1110wr.dtb: mmc@ee100000: Unevaluated properties are not allowed ('iommus' was unexpected)
-	From schema: Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+In hindsight it looks like we are mixing 2 different purposes of 'which 
+instance is this' and 'what is this'. 'compatible' is supposed to be the 
+latter.
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-v1->v2
-* Moved the iommus property after dma-names
-* Updated commit message
-* Included RB tag from Geert
+Maybe there's a better way to handle user/factory? There's a similar 
+need with partitions for A/B or factory/update.
 
-v1: https://lore.kernel.org/lkml/20220829214256.5583-1-prabhakar.mahadev-lad.rj@bp.renesas.com/T/
----
- Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-index 3ea94d842c33..79dcd5f16a42 100644
---- a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-+++ b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-@@ -89,6 +89,9 @@ properties:
-         - tx
-         - rx
- 
-+  iommus:
-+    maxItems: 1
-+
-   power-domains:
-     maxItems: 1
- 
--- 
-2.25.1
-
+Rob
