@@ -2,74 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E47115A76B2
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 08:34:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FFED5A76C4
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 08:39:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229530AbiHaGeO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 02:34:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56608 "EHLO
+        id S230298AbiHaGjE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 02:39:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229468AbiHaGeN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 02:34:13 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94248ABD43
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 23:34:09 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id z29so9985229lfb.13
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 23:34:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=EfVD6vsRPLcHy1xJRg55OQq/u1sxBQsS9AWlrVtf3tc=;
-        b=Bs1uRBA+EvIU7ELdOh4+/qok9OgyeolpHAwagQcVTgcKyJ1QN/l6+Tk4isx/L35jsN
-         AklJ+0UT1wvSejSl+UCB1yDbaxuHQQxmZnGyIOkdd10rFk6GahXtXFJP1NF4GdLbBQBH
-         GznmxegpYDrGcghUTJm0Shqk22ElKV/58fKVU5u74suMWHWsNHRq6FI4y/0sexoQ2+jr
-         svDIKzpW6swbydVdJMYlKbIOmJOpFyHQZvXel6wgifLXUIXUn4iwC9V3Uo3ULzJKMsIZ
-         Kbnu0+ADVka69040EKuD7r3/F6d6Yn/lUXs/TveovPEwV57qihC9ubvAE1ZrK4wfHDg7
-         P8zg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=EfVD6vsRPLcHy1xJRg55OQq/u1sxBQsS9AWlrVtf3tc=;
-        b=U+skkub1rGlqwcVHhkowgcaMN8Xo3UtjuMl8ptOGA3qGDbBaYIqMLGnub4x1ootJ/J
-         Uh5tavlT3AN0qHHuvQtUkinHx7qELG2/w/BNATw2idjV+02pSEW/64KtikOMCtrMupnD
-         LVCZnVloUUa4Hjo+pNvVy19Tpzf/Ok/I0TnAcrxmXiZu9IN9ruIWXfGvVBkQheusD60M
-         94BoUKImPtcJKXO+cVXU0aMfWuj6MxsoaoADkMlhQm60CgIrrPe/EpfPdq1GJ6KShtjQ
-         vRZ/pkCU8LRP+It9uXtdv4wHxyIyaBUwTslNc/4gyBLoXYxSkC9javb2sr56FLJr3YMa
-         648Q==
-X-Gm-Message-State: ACgBeo2D61V1sQxXrqk5wOHG+A89scQKjcHzYpzjadFxaKNJZRu+Vpna
-        vRL+CBhw9/p5sMX7zp3BLx7mtg==
-X-Google-Smtp-Source: AA6agR5ucdj71CKZHjXO1DiOPxggS5pBYARYG+4o1jOXLc8VfrkwFqUDl/6C7BaYMIUYvwKqSQvxpw==
-X-Received: by 2002:a05:6512:1320:b0:488:8fcc:e196 with SMTP id x32-20020a056512132000b004888fcce196mr8418177lfu.602.1661927648005;
-        Tue, 30 Aug 2022 23:34:08 -0700 (PDT)
-Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id n6-20020a05651203e600b0049313f77755sm1176538lfq.213.2022.08.30.23.34.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Aug 2022 23:34:07 -0700 (PDT)
-Message-ID: <44af0610-63b1-20d2-2c8c-23e84edb519c@linaro.org>
-Date:   Wed, 31 Aug 2022 09:34:06 +0300
+        with ESMTP id S230335AbiHaGjB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 02:39:01 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90792BD77D;
+        Tue, 30 Aug 2022 23:38:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1661927939; x=1693463939;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=3h6fHhHRDNQcqkMpD+T/7yDsiWITob0fje7mD5mrhvw=;
+  b=uRibIK28PaDk+k+CCHmwmWLQ3Sz2KSUCXid5mvE6P85noSXpog9cxZs1
+   f//toMjPOOoZk12ssewIT11htpACXp/30ua6YX+ae9mLK9ZsVCVOagFSk
+   02olafo364y4sNg2PW45UonT6Cha7nJrzHy0DbFsRSmB7+5Btb/caas3O
+   lOuWsm9e1ktV+2GiQmpApU/IrwI47+9NIPbrNvyY7S4/EKDVCKOB5XtUM
+   88xa9kcOEswXW/jha+DqV2A7o+hwPKnVWyyEibevSHjJd47cKapy77cZ5
+   hTdCmRU+xlV3mIkB7Zp+XH80hxhOhBDH+1r9/ETaTe13SR7rI2pzezQk9
+   A==;
+X-IronPort-AV: E=Sophos;i="5.93,277,1654585200"; 
+   d="scan'208";a="188777660"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 30 Aug 2022 23:38:59 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Tue, 30 Aug 2022 23:38:59 -0700
+Received: from soft-dev3-1.microsemi.net (10.10.115.15) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2507.12 via Frontend Transport; Tue, 30 Aug 2022 23:38:57 -0700
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+To:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     <srinivas.kandagatla@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <UNGLinuxDriver@microchip.com>,
+        "Horatiu Vultur" <horatiu.vultur@microchip.com>
+Subject: [PATCH v3 0/2] nvmem: lan9662-otpc: add support
+Date:   Wed, 31 Aug 2022 08:42:36 +0200
+Message-ID: <20220831064238.102267-1-horatiu.vultur@microchip.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH 0/4] dt-bindings: memory: Describing LPDDR topology
-Content-Language: en-US
-To:     Julius Werner <jwerner@chromium.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Doug Anderson <dianders@chromium.org>,
-        Jian-Jia Su <jjsu@google.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220831013359.1807905-1-jwerner@chromium.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220831013359.1807905-1-jwerner@chromium.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,28 +61,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/08/2022 04:33, Julius Werner wrote:
-> This patch series implements a proposal previously discussed on the
-> mailing list under the topic `[RFC] Correct memory layout reporting for
-> "jedec,lpddr2" and related bindings`. It adds a new jedec,lpddr-channel
-> binding which should be used to group nodes of the existing jedec,lpddr
-> bindings to describe their relative topology on the system and the
-> amount of chips wired in parallel on each channel, as well as their
-> different ranks. This also adds bindings for LPDDR4 and LPDDR5 memory
-> types and deduplicates some common schema elements between different
-> LPDDR types.
-> 
-> Julius Werner (4):
->   dt-bindings: memory: Factor out common properties of LPDDR bindings
->   dt-bindings: memory: Add numeric LPDDR compatible string variant
->   dt-bindings: memory: Add jedec,lpddr4 and jedec,lpddr5 bindings
->   dt-bindings: memory: Add jedec,lpddrX-channel binding
+Add support for lan9662 OTP controller that is available on lan9662.
+The driver gives access to non-volatile memory. It allows both write
+and read access to it.
 
-Thanks for the patches. Where are the users of these bindings? Although
-bindings do not have requirement of providing user (as kernel API has),
-but this is quite a rework so I want to see that it is applicable. That
-it matches real use case and need. I can do it only with real DTS in the
-kernel.
+v2->v3:
+- fix dt-bindings, make sure that make dt_binding_check passes
+- remove lan9662_writel/readl/clrbits/setbits and use writel/readl
+- remove WARN_ON(offset >= OTP_MEM_SIZE) as it can't happen
 
-Best regards,
-Krzysztof
+v1->v2:
+- remove unneed quotes for $ref: nvmem.yaml#
+- rename lan966x to lan9662 as not to have any wildcards
+- remove compatible string syscon
+
+Horatiu Vultur (2):
+  dt-bindings: lan9662-otpc: document Lan9662 OTPC
+  nvmem: lan9662-otp: add support.
+
+ .../nvmem/microchip,lan9662-otpc.yaml         |  45 ++++
+ drivers/nvmem/Kconfig                         |   8 +
+ drivers/nvmem/Makefile                        |   2 +
+ drivers/nvmem/lan9662-otpc.c                  | 223 ++++++++++++++++++
+ 4 files changed, 278 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/nvmem/microchip,lan9662-otpc.yaml
+ create mode 100644 drivers/nvmem/lan9662-otpc.c
+
+-- 
+2.33.0
+
