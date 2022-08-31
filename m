@@ -2,69 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C5BD5A788F
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 10:08:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0B735A788D
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 10:08:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230228AbiHaIIn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 04:08:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48024 "EHLO
+        id S231372AbiHaIIm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 04:08:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231331AbiHaIIh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 04:08:37 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FA1CBD767
-        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 01:08:36 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id k6-20020a05600c1c8600b003a54ecc62f6so7467417wms.5
-        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 01:08:36 -0700 (PDT)
+        with ESMTP id S231193AbiHaIIf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 04:08:35 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E71496BCE8
+        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 01:08:33 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id m7so9924235lfq.8
+        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 01:08:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc;
-        bh=dgZ5OlqxSJ9OrGvG83WjC1EfyHitqCW6YeiAJ6MJi5M=;
-        b=dCi8+tthhmPPjM66AZMoyj5XX/gkd1kqgewRKrO3rM449iB/vPYkU5R3LAFwj5C85D
-         CgS2D2SEAyJm1ZeoYJYGFuECUKXXgCUWMrKGvjDziAiDRQB+4DroDINaZKUx7CSSKQPp
-         XpuoIpWzd7on2H2gq3Hy/mPvlGiFdCytkUqDZKMuOJdi8bFV/zMdgyf7/pftfl0M/1j0
-         ULrh0cRxNbAPDtUJiyJmfF2rpACMpACZxPokGzh7UpxDtGemTS4/GZFrHY5EtX7kZsme
-         mxJjxenSAw6yK/0RCW6VGVCz0yX/oNXRLLTCzoa353i8st2fv5Mzn4GRbkuC3Xu29n28
-         lKHA==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=vmWS3ICQ2RM5oR5SXL4HEHG2SH0Ha+DMmwYwfuW5t3k=;
+        b=jihFvEFcSQl4e3CLivEhr7BRyksHlyC6vR0KffyQxa+P0SntzX9NmwAPFwpSw9lxM5
+         HxQQexiDOk+4XPag3Xk0iofS8BbQkVRPwu4MMw5cjLZp8/h7M5vgFJuTsZzIW58lI+vV
+         Cofa3JLWroLOtNooPif02GTFCYmGpoxYm5JWy6afkNCdhZwdsAnMZou3cPTmffOyBi1P
+         1SPWq68jMDgN4/muAEfyhT4TBmnwk3q4uYiF5WNCURgQyKY6mcryRAzabmTXQtc5pOS2
+         Pyf35CEvDE+zZs6hXweTY9RmBAqiHNyMyCth29UdT2WkVG+glAYJUfi2aWHiog1aySTZ
+         ySug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc;
-        bh=dgZ5OlqxSJ9OrGvG83WjC1EfyHitqCW6YeiAJ6MJi5M=;
-        b=iXvRUHQx+475MJi4/um0AxG8QI4u06HDrYVhxZtwuskB9xxSDuFFq9UxLoAIafHOCa
-         1IwAsUTnldRV/GVfLyDrh/k0nrJwwMngkZfoAe8lTJS7Yt3l3DCFPnKvXcAJq7ZDBUSQ
-         nsSRb/M1s/NY7eaGX+wy+ww3CgocB7M9uns8QbvNE8DbEoKoveivN0ZTPlTMn+pXSm1g
-         Df9689DWnlM+Q3gTZeEnhjRDvbhMN016Rkr6hJF74vbpeQpdt4zNaWSsfQFXDhbBhUgO
-         rALakyW6GXQB6FPhBikzpRpMEf9YqnHJvHJh9/HDq8GC8pukQZbVhtzYIX1d6TGEa9Ws
-         fuSw==
-X-Gm-Message-State: ACgBeo1qy4ipdS4lenaKIdUu6X+zUujIpE+T2RSwaOPrmY9lA1LxGCRR
-        wNgWxv4uVH1VUaLm7TLtJXSx9Q==
-X-Google-Smtp-Source: AA6agR6zuzDfMk9fxKwk1F//fcR8VdIgb+NJQ/7GTu1ecWFQDKEMuYgfGOFD2p9Y12U78xhqicqkWA==
-X-Received: by 2002:a05:600c:2e47:b0:3a6:75fe:82a9 with SMTP id q7-20020a05600c2e4700b003a675fe82a9mr1159075wmf.189.1661933314602;
-        Wed, 31 Aug 2022 01:08:34 -0700 (PDT)
-Received: from localhost.localdomain (cpc92880-cmbg19-2-0-cust679.5-4.cable.virginm.net. [82.27.106.168])
-        by smtp.gmail.com with ESMTPSA id f16-20020a5d58f0000000b0021e42e7c7dbsm11418278wrd.83.2022.08.31.01.08.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 31 Aug 2022 01:08:34 -0700 (PDT)
-From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
-To:     broonie@kernel.org, lgirdwood@gmail.com
-Cc:     bjorn.andersson@linaro.org, konrad.dybcio@somainline.org,
-        agross@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        robimarko@gmail.com,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v2] dt-bindings: regulator: Fix qcom,spmi-regulator schema
-Date:   Wed, 31 Aug 2022 09:05:04 +0100
-Message-Id: <20220831080503.17600-1-jean-philippe@linaro.org>
-X-Mailer: git-send-email 2.37.2
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=vmWS3ICQ2RM5oR5SXL4HEHG2SH0Ha+DMmwYwfuW5t3k=;
+        b=bYcP4uh96GXsWMYkd9mAjJsS63kZe3RUkBK61NTkbvifQHzqCaEolu230J2kX1m+0G
+         Z+pXibA02dLSF9LNeeJUXtpwzTddpMbhoH2HnKM4SnoSv3CXdQq6Ml/PYWIEnPPPsbO/
+         BKiWbybxjtm09kip2OOLxl66PYI0A1jxIQOXLFLNu7PWIeRTStQ8L5zVowKLk+tmKJQq
+         ZuAqt5JIn4XJaVsLGA5h8lfwZE+hbbYqzHUMQUTgpk7iZ7JQ5zN6bcPK0Z/+12SjnrpM
+         h++5zNIuf/IDvjD19kYs6opVuPVBT4gtNOjVSh28hhwwfajuGXHUfhND/RUob37WPcgf
+         XXUg==
+X-Gm-Message-State: ACgBeo2HxOww6lte6csAfd4aJ4vqoPhPpeGLBij7Ujo919WEFZOtanOC
+        KBgrsGDOiDC2d0Hz8s071z5ZAA==
+X-Google-Smtp-Source: AA6agR6SuW5AwvCUsL5LauHW6Qc4LSk7bz0Kewp8m40rSFZ3lJRLnlje4nUT0nK5k6a0NRHWwRuPKw==
+X-Received: by 2002:a05:6512:10c8:b0:492:41f9:2adc with SMTP id k8-20020a05651210c800b0049241f92adcmr8383042lfg.388.1661933312287;
+        Wed, 31 Aug 2022 01:08:32 -0700 (PDT)
+Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
+        by smtp.gmail.com with ESMTPSA id s16-20020a056512315000b0047fa941067fsm1914757lfi.29.2022.08.31.01.08.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 31 Aug 2022 01:08:31 -0700 (PDT)
+Message-ID: <6936b536-4b32-3f98-7393-2934eb80d952@linaro.org>
+Date:   Wed, 31 Aug 2022 11:08:30 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v1 2/5] arm64: dts: imx8mq-librem5: add RGB pwmleds
+Content-Language: en-US
+To:     Martin Kepplinger <martin.kepplinger@puri.sm>, festevam@gmail.com,
+        shawnguo@kernel.org
+Cc:     devicetree@vger.kernel.org, kernel@pengutronix.de, kernel@puri.sm,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        robh@kernel.org, =?UTF-8?Q?Guido_G=c3=bcnther?= <agx@sigxcpu.org>
+References: <20220831080301.1092737-1-martin.kepplinger@puri.sm>
+ <20220831080301.1092737-3-martin.kepplinger@puri.sm>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220831080301.1092737-3-martin.kepplinger@puri.sm>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,44 +78,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The DT validator reports an error in the schema:
+On 31/08/2022 11:02, Martin Kepplinger wrote:
+> From: Guido Günther <agx@sigxcpu.org>
+> 
+> Describe the RGB notification leds on the Librem 5 phone.
+> Use the common defines so we're sure to adhere to the common patterns,
+> use predefined led colors and functions so we're being warned in case
+> of deprecations.
+> 
+> Signed-off-by: Guido Günther <agx@sigxcpu.org>
+> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+> ---
+>  .../boot/dts/freescale/imx8mq-librem5.dtsi    | 26 +++++++++++++++++++
+>  1 file changed, 26 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
+> index 0626e4194d958..bbf49e419b498 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
+> @@ -7,6 +7,7 @@
+>  
+>  #include "dt-bindings/input/input.h"
+>  #include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/leds/common.h>
+>  #include "dt-bindings/pwm/pwm.h"
+>  #include "dt-bindings/usb/pd.h"
+>  #include "imx8mq.dtsi"
+> @@ -54,6 +55,31 @@ key-vol-up {
+>  		};
+>  	};
+>  
+> +	pwmleds {
+> +		compatible = "pwm-leds";
+> +
+> +		blue {
 
-Documentation/devicetree/bindings/regulator/qcom,spmi-regulator.yaml: ignoring, error in schema: patternProperties: ^(5vs[1-2]|(l|s)[1-9][0-9]?|lvs[1-3])$: properties
+Test your DTS (`make dtbs_check`).
 
-Move the unevaluatedProperties statement out of the properties section
-to fix it.
+Node names should be generic.
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
 
-Fixes: 0b3bbd7646b0 ("regulator: qcom,spmi-regulator: Convert to dtschema")
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
----
-v2: Added Rob's reviewed-by, adding some Ccs
-v1: https://lore.kernel.org/all/20220822152224.507497-2-jean-philippe@linaro.org/
----
- .../devicetree/bindings/regulator/qcom,spmi-regulator.yaml     | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/regulator/qcom,spmi-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom,spmi-regulator.yaml
-index 8b7c4af4b551..faa4af9fd035 100644
---- a/Documentation/devicetree/bindings/regulator/qcom,spmi-regulator.yaml
-+++ b/Documentation/devicetree/bindings/regulator/qcom,spmi-regulator.yaml
-@@ -35,6 +35,7 @@ patternProperties:
-     description: List of regulators and its properties
-     type: object
-     $ref: regulator.yaml#
-+    unevaluatedProperties: false
- 
-     properties:
-       qcom,ocp-max-retries:
-@@ -100,8 +101,6 @@ patternProperties:
-           SAW controlled gang leader. Will be configured as SAW regulator.
-         type: boolean
- 
--      unevaluatedProperties: false
--
- required:
-   - compatible
- 
--- 
-2.37.2
 
+Best regards,
+Krzysztof
