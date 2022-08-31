@@ -2,53 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B019C5A7615
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 07:59:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1B025A7621
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 08:02:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229681AbiHaF70 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 01:59:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55096 "EHLO
+        id S229962AbiHaGCW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 02:02:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229593AbiHaF7Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 01:59:25 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22F36BB91C;
-        Tue, 30 Aug 2022 22:59:24 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id B914DB81DB8;
-        Wed, 31 Aug 2022 05:59:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CED23C433D6;
-        Wed, 31 Aug 2022 05:59:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1661925561;
-        bh=Sv3zrf8KpU3BGK4FJ/+tlCbwePgRoRrP5taWOD3/2+Q=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=P2rhMHT910chZUzsj3qTfbIH9GrGHu+shU1QikKSgpzDqxio25Bqv8B8iiic25z4I
-         FJvLkINmr2jNuUon6kXF6ezUAQA9CNTzY6Y+aEUIyR4/GVGJq8DRTbivrqLMbPNOyN
-         AlgISojOPSJAl17j+nYDHi5gFP+P7IaTMVl7QPiM=
-Date:   Wed, 31 Aug 2022 07:59:36 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Kewei Xu <kewei.xu@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        srv_heupstream@mediatek.com, leilk.liu@mediatek.com,
-        qii.wang@mediatek.com, liguo.zhang@mediatek.com,
-        caiyu.chen@mediatek.com, david-yh.chiu@mediatek.com
-Subject: Re: [PATCH v2 1/1] dt-binding: serial: mediatek,uart: update
- bingding for MT8188
-Message-ID: <Yw74yHdI8lDLG4+u@kroah.com>
-References: <20220809084457.31381-1-kewei.xu@mediatek.com>
- <f8a391de-dd47-1eb9-0e15-e6a651517a6f@gmail.com>
- <b77553ac2c9c934abcf3b5e5b5083ad695584c42.camel@mediatek.com>
+        with ESMTP id S229457AbiHaGCV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 02:02:21 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF9EABB92C
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 23:02:20 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id y10so10390369ljq.0
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 23:02:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=nbGcB33f3vtSsFvUomQd2O7+yHjb/bY+6jPg//hkM20=;
+        b=JQDQPAfJ9E9k/gZ9UxWAz78BzOxgUSk9SJBPO9GcGvxkl7m/q5jucRtpr2Xj7J52iv
+         COILzG1zqi7xot1XoMLVfXcsJ+nezIUJtiB6JU8C2DH7zbJC2fqkbq1NS2lXbBeMnNWm
+         HZR1fMg89rEPz19W1mXqYUe2iAwnFvEIa64Ej0npJ8nTQPyz4x8dlOAwqaZmeAOI0jWh
+         eRWr+2zUaTSk3M5LLmPkahWkNYt/7/kDO452Fl3Z7Oh5MN9WNNBTDn/sI1vZB30qOxJp
+         YyWauDaNk52I4pi63pkNJSQtBbUwMN0VRZdmi/G/O13lmZb5E+lx7KAiFcnL2YMQGSDR
+         NDaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=nbGcB33f3vtSsFvUomQd2O7+yHjb/bY+6jPg//hkM20=;
+        b=Z9mXflaEBDxab/cspkZ/z5fXc0qUUJzxf8kKYsWgAieSgWbEa8GRsCAXxpDPjAX56F
+         6rXloJ4QJwRpYmw5fa7d+YR8LDWgRdmTdgUiQoZF9srWvI9XNqhYfYIcNji3n8FLy/U7
+         a2pYeD371iCHBsuV2Bdav8PdytovoVPHUxvgQFgFxFYKFni5BfzDzZmztg6a0m7bckmI
+         FyjOM06y+xCiEf7luLV67PIzDyu4NGV2ILNS59vow2EUm0hnVEMiJ3gevTNWTv0+sbhw
+         aa0WVAeEreb6x2tVsUIpCf+GcW/raVUP0fZwexUNHuh97Xwog1OYyMMarIhmlTS7tLVl
+         XTPQ==
+X-Gm-Message-State: ACgBeo13hECc592MqLLyUMUTpbiEaqEEwl7tNwVZKHeIdUp9tF7K1yTH
+        MiBRxmiaVsxO/72Nb8k5Y8wV8B2OhTxvX4sk
+X-Google-Smtp-Source: AA6agR6WkZsu4SBuQtp7SwPb2bib2k7rEr3JJpVbNcdOjhqQLSDhhBa0hL9scYuMfjpcRFIk6H8mEw==
+X-Received: by 2002:a2e:3112:0:b0:24f:132a:fd71 with SMTP id x18-20020a2e3112000000b0024f132afd71mr7670629ljx.522.1661925738915;
+        Tue, 30 Aug 2022 23:02:18 -0700 (PDT)
+Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
+        by smtp.gmail.com with ESMTPSA id q14-20020ac25fce000000b00492f1b2ac0bsm1867976lfg.101.2022.08.30.23.02.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Aug 2022 23:02:18 -0700 (PDT)
+Message-ID: <82576790-9fb0-ee1b-2308-fbe292068bd9@linaro.org>
+Date:   Wed, 31 Aug 2022 09:02:17 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b77553ac2c9c934abcf3b5e5b5083ad695584c42.camel@mediatek.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v2 2/7] dt-bindings: phy: mediatek,tphy: add property to
+ set pre-emphasis
+Content-Language: en-US
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Eddie Hung <eddie.hung@mediatek.com>
+References: <20220829080830.5378-1-chunfeng.yun@mediatek.com>
+ <20220829080830.5378-2-chunfeng.yun@mediatek.com>
+ <d1f49935-b465-7495-d345-f35bf4dea9f9@linaro.org>
+ <d30353e4dbb785c3ce31ef54b791bfe3d23df904.camel@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <d30353e4dbb785c3ce31ef54b791bfe3d23df904.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -57,48 +85,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 31, 2022 at 11:03:37AM +0800, Kewei Xu wrote:
-> On Wed, 2022-08-24 at 15:59 +0200, Matthias Brugger wrote:
-> > 
-> > On 09/08/2022 10:44, kewei.xu@mediatek.com wrote:
-> > > From: Kewei Xu <kewei.xu@mediatek.com>
-> > > 
-> > > Add a DT binding documentation for the MT8188 soc.
-> > > 
-> > > Signed-off-by: Kewei Xu <kewei.xu@mediatek.com>
-> > 
-> > Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-> > 
-> > > ---
-> > > v2: Resumbit the patch based on the linux-next branch.
-> > > ---
-> > >   Documentation/devicetree/bindings/serial/mediatek,uart.yaml | 1 +
-> > >   1 file changed, 1 insertion(+)
-> > > 
-> > > diff --git
-> > > a/Documentation/devicetree/bindings/serial/mediatek,uart.yaml
-> > > b/Documentation/devicetree/bindings/serial/mediatek,uart.yaml
-> > > index 4ff27d6d4d5b..fe098d98af6e 100644
-> > > --- a/Documentation/devicetree/bindings/serial/mediatek,uart.yaml
-> > > +++ b/Documentation/devicetree/bindings/serial/mediatek,uart.yaml
-> > > @@ -42,6 +42,7 @@ properties:
-> > >                 - mediatek,mt8173-uart
-> > >                 - mediatek,mt8183-uart
-> > >                 - mediatek,mt8186-uart
-> > > +              - mediatek,mt8188-uart
-> > >                 - mediatek,mt8192-uart
-> > >                 - mediatek,mt8195-uart
-> > >                 - mediatek,mt8516-uart
-> 
-> Hi gregkh,
-> 
-> Just a gentle ping on this.
-> Could you please give me some suggestion on this patch?
+On 31/08/2022 06:14, Chunfeng Yun wrote:
+>> These bindings are expected to be
+>> usable/applicable on several devices, so units, not register values
+>> which can change between devices, are the proper and reliable way to
+>> describe a feature.
+> I prefer to use exact level values, but not the inexact values with
+> units (e.g. -percent, -microvolt).
 
-It's still in my "todo" queue.  It's going slower as you didn't cc: the
-serial mailing list so when I processed all of those pending patches, I
-did not catch it.  Give it some time, it will get there eventually...
+What stops you from using exact values - bp?
 
-thanks,
-
-greg k-h
+Best regards,
+Krzysztof
