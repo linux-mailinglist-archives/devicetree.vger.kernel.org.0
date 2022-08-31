@@ -2,110 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EDC45A7DCE
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 14:47:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1060A5A7DD8
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 14:49:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231377AbiHaMrZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 08:47:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51486 "EHLO
+        id S231357AbiHaMtE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 08:49:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231308AbiHaMrY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 08:47:24 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6507F8FD66
-        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 05:47:23 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id q16so14487831ljp.8
-        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 05:47:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=L6I8ndlnuixafhz7H277xHo8gwEAzdGsvhdVjWQGwXw=;
-        b=WwJlalbqTiUtKcbX5odu1XhHB1a7Wk9hFBlJ5XimVIeH2FFBHKtWuFT2GrwrEaBJa4
-         UxldkwnUEb9ovqJtHoSKxiYne4sDdypXeIj5eNtRdBMgzeWj5j9Jsc0zvwsl019JVv1P
-         X4YAd2ZRgogwurJdMrZbq9HOijzBn/Dcj7LjCOdsKj3VG6O0mMeZQjUpQ7CAiZdjaEww
-         m+FzHM3CEBCPt4+OgQ0CBqniVlAMFUnjaTzI5rC4lMJFmmaPBc+v3EdTsSwjhEDVPh6v
-         jWimAe0C1CpcANHN8ehhy94EiLE/njxOMyfdfyxqbvD4j+JXAHBf4HDlR1pmPBa6X/hj
-         quwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=L6I8ndlnuixafhz7H277xHo8gwEAzdGsvhdVjWQGwXw=;
-        b=cZi8163rUoc2MUG46qmbxSDQA4k/4hIeQGvWIBvSCsXVzSfh91eh7253b3sN8MXzQm
-         qnwf4RhNBV88hqjXYC6NhvcXoMS4BOgHUx66vatR+PsEeZxqx7SH05t8aOuKN1qyTPhL
-         q9UPcoueabESWcExhh7Bm3AdUY+NtS5e+kLyvmisnqw4I3HrsnoKI4wqK5ZFyDf3Q9Uc
-         UuZNnplI67kkOEg29tqGCSuZsD5xQ2HNJqlzfM0ZyIvj3/lhSptYcGdAc1J8Dl3e3R+p
-         A7ZZFU1tThz+3WXCMZ0DZ/oiANErie9YXxtIw0WBhn+2u2j24KCl3qt7+eiApvcNxjfk
-         +w3Q==
-X-Gm-Message-State: ACgBeo07mWckV40/5QnZ6qDkRjFVGVhKMttpbHZacpOPETtiABLB7aBt
-        g/i01biZTW8qlwBQ1UBTaHluh7zLf1WLvHc7
-X-Google-Smtp-Source: AA6agR7HhMplXv+sgl7vaiXra12D78kc1aVHHONytHdf3QzQMXn/pAbiN/4Jwrx7P45zrzkSRHZsDg==
-X-Received: by 2002:a05:651c:1508:b0:268:a367:ebd8 with SMTP id e8-20020a05651c150800b00268a367ebd8mr227364ljf.516.1661950041793;
-        Wed, 31 Aug 2022 05:47:21 -0700 (PDT)
-Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id f12-20020a2eb5ac000000b002689bb23a93sm131196ljn.94.2022.08.31.05.47.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 Aug 2022 05:47:21 -0700 (PDT)
-Message-ID: <9f5b5d88-c941-0fe7-d79c-3e1043bc97c2@linaro.org>
-Date:   Wed, 31 Aug 2022 15:47:20 +0300
+        with ESMTP id S231322AbiHaMtE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 08:49:04 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA4BA8E0DD;
+        Wed, 31 Aug 2022 05:48:58 -0700 (PDT)
+X-UUID: a9fb2e160df345f9928f9dd6b11c2435-20220831
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=QHetHRfxF8Jq9zo5zXOQv02C9vAsgfmub91Rvhqsok0=;
+        b=Drpit1r3f27Bat0TEnketX90HMZR3YjfOc0vkSNcAHnkVf1fNZE1zyhqC6OQM66MSBQPTATTfxf2vVbm/7Sucs9WduhUY80yrGDEv4GbBx2xsIzwSQza5WqX2seZsjERP732YmWEYdJpLJVNwSWJm82wwCQ/bXgt1SQaMvbbCRk=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.10,REQID:038ebf24-4d2b-4747-a480-ba2b4f1d21f4,OB:0,L
+        OB:0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Releas
+        e_Ham,ACTION:release,TS:90
+X-CID-INFO: VERSION:1.1.10,REQID:038ebf24-4d2b-4747-a480-ba2b4f1d21f4,OB:0,LOB
+        :0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Spam_GS9
+        81B3D,ACTION:quarantine,TS:90
+X-CID-META: VersionHash:84eae18,CLOUDID:d76832d0-20bd-4e5e-ace8-00692b7ab380,C
+        OID:b9bf449cdf21,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: a9fb2e160df345f9928f9dd6b11c2435-20220831
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        (envelope-from <johnson.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 545670136; Wed, 31 Aug 2022 20:48:53 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Wed, 31 Aug 2022 20:48:51 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.15 via Frontend Transport; Wed, 31 Aug 2022 20:48:51 +0800
+From:   Johnson Wang <johnson.wang@mediatek.com>
+To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <angelogioacchino.delregno@collabora.com>, <sboyd@kernel.org>
+CC:     <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Johnson Wang <johnson.wang@mediatek.com>
+Subject: [PATCH 0/4] Introduce MediaTek frequency hopping driver
+Date:   Wed, 31 Aug 2022 20:48:46 +0800
+Message-ID: <20220831124850.7748-1-johnson.wang@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v3 1/3] media: dt-bindings: media: renesas,fcp: Update
- maxItems for the clock property
-Content-Language: en-US
-To:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-media@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20220831100913.1731285-1-biju.das.jz@bp.renesas.com>
- <20220831100913.1731285-2-biju.das.jz@bp.renesas.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220831100913.1731285-2-biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_CSS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/08/2022 13:09, Biju Das wrote:
-> RZ/G2L has 3 shared clocks between du, vspd and fcpvd. Update the
-> bindings to reflect this.
-> 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
->  Documentation/devicetree/bindings/media/renesas,fcp.yaml | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/renesas,fcp.yaml b/Documentation/devicetree/bindings/media/renesas,fcp.yaml
-> index 43f2fed8cd33..419b110e34fe 100644
-> --- a/Documentation/devicetree/bindings/media/renesas,fcp.yaml
-> +++ b/Documentation/devicetree/bindings/media/renesas,fcp.yaml
-> @@ -29,7 +29,8 @@ properties:
->      maxItems: 1
->  
->    clocks:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 3
+Introduce MediaTek frequency hopping and spread spectrum clocking control
+for MT8186.
 
-The clocks should be strictly defined/described.
+Johnson Wang (4):
+  clk: mediatek: Export PLL operations symbols
+  dt-bindings: arm: mediatek: Add new bindings of MediaTek frequency
+    hopping
+  clk: mediatek: Add new clock driver to handle FHCTL hardware
+  clk: mediatek: Change PLL register API for MT8186
 
-Best regards,
-Krzysztof
+ .../bindings/arm/mediatek/mediatek,fhctl.yaml |  49 ++++
+ drivers/clk/mediatek/Makefile                 |   2 +-
+ drivers/clk/mediatek/clk-fhctl.c              | 258 +++++++++++++++++
+ drivers/clk/mediatek/clk-fhctl.h              |  27 ++
+ drivers/clk/mediatek/clk-mt8186-apmixedsys.c  |  65 ++++-
+ drivers/clk/mediatek/clk-pll.c                |  84 +++---
+ drivers/clk/mediatek/clk-pll.h                |  56 ++++
+ drivers/clk/mediatek/clk-pllfh.c              | 271 ++++++++++++++++++
+ drivers/clk/mediatek/clk-pllfh.h              |  81 ++++++
+ 9 files changed, 839 insertions(+), 54 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,fhctl.yaml
+ create mode 100644 drivers/clk/mediatek/clk-fhctl.c
+ create mode 100644 drivers/clk/mediatek/clk-fhctl.h
+ create mode 100644 drivers/clk/mediatek/clk-pllfh.c
+ create mode 100644 drivers/clk/mediatek/clk-pllfh.h
+
+-- 
+2.18.0
+
