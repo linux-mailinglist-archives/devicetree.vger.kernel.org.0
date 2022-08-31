@@ -2,74 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 139405A78FC
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 10:24:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C9A25A7911
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 10:31:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230175AbiHaIYQ convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 31 Aug 2022 04:24:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51026 "EHLO
+        id S229987AbiHaIbc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 04:31:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231793AbiHaIYK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 04:24:10 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06C9EE023
-        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 01:24:10 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1oTJ0w-0006GE-E4; Wed, 31 Aug 2022 10:23:58 +0200
-Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1oTJ0v-00320m-Fz; Wed, 31 Aug 2022 10:23:57 +0200
-Received: from pza by lupine with local (Exim 4.94.2)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1oTJ0u-0002UM-JL; Wed, 31 Aug 2022 10:23:56 +0200
-Message-ID: <89806ee9a80652d5877ef5c4a86574e82af48da4.camel@pengutronix.de>
-Subject: Re: [PATCH v3 14/19] dt-bindings: hwmon: (mr75203) add
- "moortec,ts-series" property
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Eliav Farber <farbere@amazon.com>, jdelvare@suse.com,
-        linux@roeck-us.net, robh+dt@kernel.org, rtanwar@maxlinear.com,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     talel@amazon.com, hhhawa@amazon.com, jonnyc@amazon.com,
-        hanochu@amazon.com, ronenk@amazon.com, itamark@amazon.com,
-        shellykz@amazon.com, shorer@amazon.com, amitlavi@amazon.com,
-        almogbs@amazon.com, dkl@amazon.com, rahul.tanwar@linux.intel.com,
-        andriy.shevchenko@intel.com
-Date:   Wed, 31 Aug 2022 10:23:56 +0200
-In-Reply-To: <20220830192212.28570-15-farbere@amazon.com>
-References: <20220830192212.28570-1-farbere@amazon.com>
-         <20220830192212.28570-15-farbere@amazon.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.38.3-1 
+        with ESMTP id S229601AbiHaIbb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 04:31:31 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 302CA8A1E3;
+        Wed, 31 Aug 2022 01:31:30 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 4BACD6601A13;
+        Wed, 31 Aug 2022 09:31:28 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1661934688;
+        bh=7tmwsymc7qJDSQUSPLXblO4+6Q5hPnTwu9RWsnUwg6M=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=S249Wi/5YyEj1EMvxVnzWOqNZyVMGPy+TSmY8b4L4QP79qmM7PTodfEYCBOX16X32
+         xyVZ/2sSXTejvWtMlkBezKXPnE2ZmMLMaquISgk96/86g1j39uod9uGbLaexE+2uoh
+         CJ+GVWHmaPDu6fP4OUpPnATB0PWIT0h54Z/5yKxAhzFLTH22GBsUmSROQjSXA4UtFb
+         wtyqED6k7Jvaj+X25fEBY/hisXotCet+zqF0OvWIVcfBoKqUxLi0OXbttEEjBj3R3x
+         HLYnAzzIs/2vxicvFuNjVM5s9jF2HRgSeiDTRDG+TqgX5nJ5B+3q3WwNBI6QVVW5DK
+         4pf1c7OYtmFyw==
+Message-ID: <9a7abae0-e31e-6beb-74ce-96462d847a88@collabora.com>
+Date:   Wed, 31 Aug 2022 10:31:25 +0200
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+Subject: Re: [PATCH v2 7/7] phy: phy-mtk-tphy: fix the phy type setting issue
+Content-Language: en-US
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Eddie Hung <eddie.hung@mediatek.com>
+References: <20220829080830.5378-1-chunfeng.yun@mediatek.com>
+ <20220829080830.5378-7-chunfeng.yun@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220829080830.5378-7-chunfeng.yun@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Di, 2022-08-30 at 19:22 +0000, Eliav Farber wrote:
-> Add optional "moortec,ts-series" property to define the temperature
-> equation and coefficients that shall be used to convert the digital
-> output to value in milli-Celsius.
-> Supported series: 5 (default) and 6.
+Il 29/08/22 10:08, Chunfeng Yun ha scritto:
+> The PHY type is not set if the index is non zero, prepare type
+> value according to the index, like as mask value.
+> 
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
 
-Is this the difference between mr75xxx and mr76xxx series?
-If so, should be a compatible "moortec,mr76006" instead?
-If the temperature equation could be derived from the compatible, this
-property would not be necessary.
+I agree with this change and I'd be happy to give you my R-b tag, but this
+commit clearly needs to be backported, so you need a Fixes tag, or a Cc to stable.
 
-regards
-Philipp
+Thanks,
+Angelo
+
+> ---
+> v2: no changes
+> ---
+>   drivers/phy/mediatek/phy-mtk-tphy.c | 7 ++++---
+>   1 file changed, 4 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/phy/mediatek/phy-mtk-tphy.c b/drivers/phy/mediatek/phy-mtk-tphy.c
+> index e0f227a0d3cc..cc10298bc70d 100644
+> --- a/drivers/phy/mediatek/phy-mtk-tphy.c
+> +++ b/drivers/phy/mediatek/phy-mtk-tphy.c
+> @@ -915,7 +915,7 @@ static int phy_type_syscon_get(struct mtk_phy_instance *instance,
+>   static int phy_type_set(struct mtk_phy_instance *instance)
+>   {
+>   	int type;
+> -	u32 mask;
+> +	u32 offset;
+>   
+>   	if (!instance->type_sw)
+>   		return 0;
+> @@ -938,8 +938,9 @@ static int phy_type_set(struct mtk_phy_instance *instance)
+>   		return 0;
+>   	}
+>   
+> -	mask = RG_PHY_SW_TYPE << (instance->type_sw_index * BITS_PER_BYTE);
+> -	regmap_update_bits(instance->type_sw, instance->type_sw_reg, mask, type);
+> +	offset = instance->type_sw_index * BITS_PER_BYTE;
+> +	regmap_update_bits(instance->type_sw, instance->type_sw_reg,
+> +			   RG_PHY_SW_TYPE << offset, type << offset);
+>   
+>   	return 0;
+>   }
+> 
+
