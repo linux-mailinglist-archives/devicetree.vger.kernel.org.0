@@ -2,80 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E5695A762B
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 08:04:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1673E5A7632
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 08:06:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229998AbiHaGEZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 02:04:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35300 "EHLO
+        id S229827AbiHaGG2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 02:06:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230001AbiHaGEY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 02:04:24 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2E4BBBA69
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 23:04:21 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id q7so18478734lfu.5
-        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 23:04:21 -0700 (PDT)
+        with ESMTP id S229653AbiHaGG0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 02:06:26 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B936BBA7B
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 23:06:24 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id k18so7136236lji.13
+        for <devicetree@vger.kernel.org>; Tue, 30 Aug 2022 23:06:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=Dl8bj8J2OYumn/gfks6Y/TXqxWAUsjyKN5CBMLkq33M=;
-        b=s+ld3BSW73VpjKfO2WLJyo8QMXPvYevRcq4PsaT3k2Z77qKdk8xKWjJckUUaWfvzr4
-         YWyksAxTftPrsW0ppk7H7HitM7QBkNbDsEe2lUr+1cxY0DIUgs1AZjooirLpXWNVTIFe
-         Oy9N2ufiwiT31+pU/7i2ANgmlzvXMLwrfmDJQoiEn4KgNO/wFYvu0BozmqYQelW3kvN6
-         iMGYIV3a7efaPBH1DniQf9yKlOy7z72aD7wlQ/YWJ1LW9PR2JrdFT4QNQHCki8J/HXBb
-         StVeaV3xBeut8XNSL/uttxlhjAlNWyfMYZBMtKmZg2uLKvzTsrKOgTHO5CYB/GgCVYyq
-         ceNQ==
+        bh=ANWBqxWkat4oQFVKGRhdNPZ9ZiKYZ296HDF9WbmQQ+8=;
+        b=TbZpycTA3AqHS1/7eFvv9gYFRLluNX0H7KoZ9Yoy3jmt09xOepWw774eJiYL7WS7uw
+         7LVC5U8tnfxTbUNXoVCdBLSf3Ao4ByC6cEs+tbmBSq9MJuBUV7rrvZJtrUGjYwKjwQxC
+         G2a/4fk+EwasMBZU8VBFamTdQ9qcK0GvR9ZxK5uVMvEW4vVFixcS6tzpRI2dyvX2Xad0
+         MCNDp8I797KzzZP0DAPZvCA7PdWJb/7o+Dj/G9lKMWi6jxk0+++iBNGVsp+JYzHn6r4x
+         YEok1Pkf0QRmH8VgbIaulRZT+V05dFyjB4nTVLuDVSzwCmxRVEivjFs2G3feZVANrufc
+         F8Dg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=Dl8bj8J2OYumn/gfks6Y/TXqxWAUsjyKN5CBMLkq33M=;
-        b=QcnPBd+BaL376amcJKxlXIdJLvhHSLZsBoTVtnA2e9hhhsySkGaCJh+3r3gglG0uLF
-         XMCNw7gldCJhIg2R1RjVCbIM3GiOOdw3GMyCMSDhGnvkaqhgrK1c9mUtGtWJR4L/FQM9
-         lxz/NyAsosooO6Rrji8VxTpAxrt9IajLsYKdbTChsg3CCmxXwWD333SOHNp5FitUQfkW
-         pQPqoWxOh1Allo76Mm0PKA+Mflso5fJkihiQEI5qvPllz5QC5IQGd2pN7dptI6/FotPd
-         KL9W7MOrRft6ewymR5HD0b9PGlr4T81b/gA2jdTC2lElZWhY3wJ8KIoUFcLg83liUhy8
-         EDqA==
-X-Gm-Message-State: ACgBeo2IkqeTzpacacWR6H8/SX0ICjNr3/3LMyHM3sPlHv2PBguB9MI4
-        O/22N2s/zHs8YPqij7uuAVVI1g==
-X-Google-Smtp-Source: AA6agR4VDbEUmpQN/YYGQlYkrQzhU4Vr7ZnZNVwK+T0wj2HQ8et1E4vjPcFJasdVKjtvPACwyeVfzA==
-X-Received: by 2002:a05:6512:1395:b0:48d:81b:4955 with SMTP id p21-20020a056512139500b0048d081b4955mr8308222lfa.307.1661925860150;
-        Tue, 30 Aug 2022 23:04:20 -0700 (PDT)
+        bh=ANWBqxWkat4oQFVKGRhdNPZ9ZiKYZ296HDF9WbmQQ+8=;
+        b=X/8RympY8taej/YrHWXTu/0qACODHRYw9ccCXWOgyKqkohQtnRLBjg6f0SeB7Xm/5Q
+         3zuo3IMSRXa0naoJ0OstfJTrlUBX7rJX0vSZ4xL2MFW2572PHK2vkgvpNZVrDHyHJOYd
+         RpeJb2Q0elfw6+9GWzachbliZr6reeWwHj45VFZPzgRuj/bYhzyFytjazXme0Jv8bQEQ
+         k1NPmxXSfw/Vwmy2tJ6Q8WOQPGem0jtjadBifAevwkNWNVlJ87gJxG0T2DwikD36eS5+
+         7rSfPJj2jEQ3fa+QHQaO5D/lbQ6ejjwqAAQCswRmVLu4RQDu6wfAvGOY+0kRK5TE0Xdw
+         +s+g==
+X-Gm-Message-State: ACgBeo0dB86M3/aDhvV2ltE1lIaLVPq6XWaqm7leOM0vgsEvSEXb07w0
+        GaRf5RpI6b1D0aM4pp9YFGtREg==
+X-Google-Smtp-Source: AA6agR4QWoZyhAAEzosHUW29HjdzdM6WXVR3nCVWVK7p9w1Z5PugZ8sseAxrpNPkz7l7u4HkxqZT7g==
+X-Received: by 2002:a2e:b987:0:b0:268:4772:8e41 with SMTP id p7-20020a2eb987000000b0026847728e41mr1034144ljp.458.1661925982704;
+        Tue, 30 Aug 2022 23:06:22 -0700 (PDT)
 Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id k4-20020ac257c4000000b0049483572143sm300975lfo.283.2022.08.30.23.04.18
+        by smtp.gmail.com with ESMTPSA id e15-20020a05651c038f00b00264bb2351e8sm569511ljp.7.2022.08.30.23.06.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Aug 2022 23:04:19 -0700 (PDT)
-Message-ID: <22eb5611-84e2-23e9-f70b-48bef351133f@linaro.org>
-Date:   Wed, 31 Aug 2022 09:04:18 +0300
+        Tue, 30 Aug 2022 23:06:22 -0700 (PDT)
+Message-ID: <daf497c5-4422-b8ce-1bbe-f2722962715c@linaro.org>
+Date:   Wed, 31 Aug 2022 09:06:21 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v2 3/3] arm64: dts: Modify gamma compatible for mt8195
+Subject: Re: [PATCH v5 2/2] dts: arm: at91: Add SAMA5D3-EDS board
 Content-Language: en-US
-To:     "zheng-yan.chen" <zheng-yan.chen@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        "Jason-JH . Lin" <jason-jh.lin@mediatek.com>,
-        Singo Chang <singo.chang@mediatek.com>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220830063929.13390-1-zheng-yan.chen@mediatek.com>
- <20220830063929.13390-4-zheng-yan.chen@mediatek.com>
- <a209aea3-bf23-4670-91d0-e7f41ac57833@collabora.com>
- <bf2b277e-8b02-6a44-e463-6b7c4a697ce7@linaro.org>
- <b61776761eb0ab9a0b1dcf29d908e4bfd789d2ac.camel@mediatek.com>
+To:     Jerry.Ray@microchip.com, robh+dt@kernel.org,
+        Nicolas.Ferre@microchip.com, alexandre.belloni@bootlin.com,
+        Ludovic.Desroches@microchip.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220830152428.12625-1-jerry.ray@microchip.com>
+ <20220830152428.12625-2-jerry.ray@microchip.com>
+ <92c213de-872c-bc0b-382c-c9940309f272@linaro.org>
+ <MWHPR11MB169397E1C572642536803951EF799@MWHPR11MB1693.namprd11.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <b61776761eb0ab9a0b1dcf29d908e4bfd789d2ac.camel@mediatek.com>
+In-Reply-To: <MWHPR11MB169397E1C572642536803951EF799@MWHPR11MB1693.namprd11.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -88,28 +78,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/08/2022 05:29, zheng-yan.chen wrote:
-> On Tue, 2022-08-30 at 12:14 +0300, Krzysztof Kozlowski wrote:
->> On 30/08/2022 10:49, AngeloGioacchino Del Regno wrote:
->>> Il 30/08/22 08:39, zheng-yan.chen ha scritto:
->>>> Modify gamma compatible for mt8195.
->>>>
->>>> Fixes: 16590e634f1d ("arm64: dts: mt8195: Add display node for
->>>> vdosys0")
->>>> Signed-off-by: zheng-yan.chen <zheng-yan.chen@mediatek.com>
->>>
->>> Reviewed-by: AngeloGioacchino Del Regno <
->>> angelogioacchino.delregno@collabora.com>
+On 30/08/2022 23:16, Jerry.Ray@microchip.com wrote:
 >>
->> Please also perform review on the commit msg and backport status.
+>>> +
+>>> +     chosen {
+>>> +             stdout-path = "serial0:115200n8";
+>>> +     };
+>>> +
+>>> +     clocks {
+>>> +             slow_xtal {
 >>
->> Best regards,
->> Krzysztof
-> Hello Krzysztof, 
-> Thanks for the review,
-> I will fix it at the next version.
+>> No underscores in node names. Generic node names, so at least add some generic prefix or suffix, e.g.: "slow-xtal-clock"
+>>
+> 
+> I'm not at liberty to change these names.  Pre-existing drivers are counting on them.
+> The hardware leverages the SAMA5D3-xplained board.
+> I'm leveraging the at91-sama5d3_xplained.dts.
+> The board will not boot up if I modify the names.
 
-This was to AngeloGioacchino...
+For custom names you have clock-output-names... But anyway it seems you
+override existing nodes, so this should be override by label, not by
+entire path.
 
 Best regards,
 Krzysztof
