@@ -2,148 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B34875A8164
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 17:38:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DACBD5A8295
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 18:01:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231872AbiHaPiJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 11:38:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33174 "EHLO
+        id S231226AbiHaQBh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 12:01:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54132 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231721AbiHaPiI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 11:38:08 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C7FED8B3E
-        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 08:38:07 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id s15so9901771ljp.5
-        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 08:38:07 -0700 (PDT)
+        with ESMTP id S230451AbiHaQBf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 12:01:35 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC32DA8965;
+        Wed, 31 Aug 2022 09:01:30 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id t5so18974926edc.11;
+        Wed, 31 Aug 2022 09:01:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=Z3ZI4XvX+f6Y7cApAgLVkRdYETFbOath1sGNU9vupZ4=;
-        b=b1POBbSM7lSo25v8dwP/s4rQgN8da2aHfdWJn4/7tA5zV+NX2j6t90LqAqGdIAobhZ
-         KBKs3BA72gEuVdgH2XeXiM/bHSbU9ka3o9ebQYyEeotDSimoNq85eQ1+A/T+ih2bI0+T
-         Btjb7dr/NMENhTYIEKPgorXhk6m9Y94ZMl0iv8tZiA871/uJpK7pkaxUyXsr7OU8e/zQ
-         49jIlJTLFlasPHVQ35sXP6+brdo2LbuFt6rWoruC3UGxcndWYkNeIEKMvXkVAfY33TWe
-         ll9ptzpEyIy70Ton+SaM5XyCKnTjVlvbft9hRQ4SJzC16AY7/3a+xBljrCimMLLBKh8q
-         pRnw==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=S1sQqh7aVGxhRu+Xon140SackMTmmwu0lxm8zTTRpgI=;
+        b=CDLTcAAyrWQVBsqaZ5liQIJj98AoAttQ0XYjdaJBnPejldTJRrOU6LUmARex4lHgFQ
+         WtD7ILUHb/YWFhTR+2cY35yLkTo5inc2K+XNO77RHnhZWjjSnHR/0qXOgF/YhPf7xlz0
+         i20msxUzAphWJREiDKEDk64iQ+a11NHfMtw1oKz3QldDiQ/TSIDkdK0CXuA14pQPhjrz
+         gfvxyFcORnrikow4dlENinicNQfBU/i7I1g83a+oeJh/yxF/H00KfVAz1yKR5a6WzU67
+         N6gwbYPPBqAmAoEii168si7RmXefE8IrILo/zK383TotI1VGEtL+HMrU7aboQucZ2cFT
+         fOpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=Z3ZI4XvX+f6Y7cApAgLVkRdYETFbOath1sGNU9vupZ4=;
-        b=WjjsjU2/iEdycSsr4LzXPYvXZ2S+/FPBc/21TuNtuOcjTkMJphwrOeXttZqJBd1P9z
-         R1vYBwSpXF6B+Wg3pIM/pgRwFTnCH7Bhz9CxJL07Qd9El1oGN6ix1h6kXSLRrsztg/gs
-         yluskReR/oki7+BH/Kp6Fh9RLVlTpnTWO9I2dRDkxAvqnNnOcuJeFVjfrz6wb9Ri0q3P
-         WyzVerT7vgA9gZpXgemUiYuCy+MX1JuQORTUhMGPCcXlDwHTH9H5bqVMU6G9osHv4IoH
-         VFTXtBUP37gqHsor8ZJDA9BXT+Q6OrxZrFuHTHuFSwQChQ1fDG4CiST4Af3zh1/Fb3LP
-         7lXQ==
-X-Gm-Message-State: ACgBeo00P8Y6jxYl4xV6JbeFucr7T2p8j3gLkpR9pdZMDKemz8jfizfx
-        rfVSVWHJEFHpceycLKvh8Ke8eg==
-X-Google-Smtp-Source: AA6agR7kqv/zHnly8NtxvS/C0gaan2dRtMD0fcbLdjkGIwJppHTSaRBuicOkowl2LkL1zlTcDp7Ckg==
-X-Received: by 2002:a2e:9e81:0:b0:268:894f:8118 with SMTP id f1-20020a2e9e81000000b00268894f8118mr1233938ljk.371.1661960285601;
-        Wed, 31 Aug 2022 08:38:05 -0700 (PDT)
-Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id p15-20020ac24ecf000000b0049484d936ccsm402329lfr.24.2022.08.31.08.38.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 Aug 2022 08:38:04 -0700 (PDT)
-Message-ID: <22006cfb-d0d6-8364-dc93-23a430ecbb37@linaro.org>
-Date:   Wed, 31 Aug 2022 18:38:03 +0300
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=S1sQqh7aVGxhRu+Xon140SackMTmmwu0lxm8zTTRpgI=;
+        b=sAhRO0a8Wke5Qu9HJl+DYSL/ST+tZHNE0ZoNXzcD25KxENWeF9vuvg3QHbSAtrl5+u
+         PTe5FSG3WEFLs0Ih873JSHVsLeVWkijOPBnIsKDG7LMWwBwWl+Q2zRmVIh8myTXgX1np
+         8ijF1SZpSYP42OQkJAuyTfqZrWv8YKWBAXy5UyEnvggWQYCdmWuEM3zCafevbDxT5gTN
+         LnXwaJhlN2CVe/0H86S0r+X3NFDg2RHMW48PI+9Vy6QQfp473y3mqLowOLwl9qxAqIwo
+         YmzTiZpkcFqun3Ihx/CXCoVDctWkLdQGmzY37ZEOGtmZbMU2OXPJOieOoDy99rk0Hgfy
+         KHAA==
+X-Gm-Message-State: ACgBeo1QyGC+etu/9Gl19MsrvB7HthDpsdZRtd5Lc0X8Qa2lO4ckkg93
+        geET75Zxo49P/sHi/zCNUDYbkQo569Q=
+X-Google-Smtp-Source: AA6agR5uivc3gBlTpjogcVNIm/eBU0c15flYBV2OCs+D4FrNIFa5rcR+W7N0f1vmJFc3HCBqYt4u7A==
+X-Received: by 2002:a05:6402:270b:b0:448:76f0:4f55 with SMTP id y11-20020a056402270b00b0044876f04f55mr12381355edd.215.1661961688118;
+        Wed, 31 Aug 2022 09:01:28 -0700 (PDT)
+Received: from localhost.localdomain ([188.27.184.197])
+        by smtp.gmail.com with ESMTPSA id b5-20020a17090630c500b0073dde7c1767sm7277537ejb.175.2022.08.31.09.01.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 31 Aug 2022 09:01:27 -0700 (PDT)
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     devicetree@vger.kernel.org
+Cc:     netdev@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>,
+        Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Michael Walle <michael@walle.cc>
+Subject: [PATCH v2 devicetree 0/3] NXP LS1028A DT changes for multiple switch CPU ports
+Date:   Wed, 31 Aug 2022 19:01:21 +0300
+Message-Id: <20220831160124.914453-1-olteanv@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v2 1/3] media: dt-bindings: media: renesas,fcp: Document
- RZ/{G2,V2}L FCPVD bindings
-Content-Language: en-US
-To:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20220831143722.2067457-1-biju.das.jz@bp.renesas.com>
- <20220831143722.2067457-2-biju.das.jz@bp.renesas.com>
- <ac6ed365-a44c-6e48-899a-3d692c61b70f@linaro.org>
- <OS0PR01MB5922C8F9B25D2F54716CD73086789@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <OS0PR01MB5922C8F9B25D2F54716CD73086789@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/08/2022 18:32, Biju Das wrote:
->>>  properties:
->>>    compatible:
->>> -    enum:
->>> -      - renesas,fcpv # FCP for VSP
->>> -      - renesas,fcpf # FCP for FDP
->>> +    oneOf:
->>> +      - items:
->>
->> No items here. You have just one item, so it is not a list.
-> 
-> So you mean, it should be like below.
-> Can you please confirm my understanding is correct?
-> 
-> oneOf:
->    - enum:
->        - renesas,fcpv # FCP for VSP
->        - renesas,fcpf # FCP for FDP
->     - items:
->         - enum:
->             - renesas,r9a07g044-fcpvd # RZ/G2{L,LC}
->             - renesas,r9a07g054-fcpvd # RZ/V2L
->             - const: renesas,fcpv   # generic FCP for VSP fallback
+The Ethernet switch embedded within the NXP LS1028A has 2 Ethernet ports
+towards the host, for local packet termination. In current device trees,
+only the first port is enabled. Enabling the second port allows having a
+higher termination throughput.
 
-Yes
+Care has been taken that this change does not produce regressions when
+using updated device trees with old kernels that do not support multiple
+DSA CPU ports. The only difference for old kernels will be the
+appearance of a new net device (for &enetc_port3) which will not be very
+useful for much of anything.
 
-> 
-> 
->>> +              - renesas,fcpv # FCP for VSP
->>> +              - renesas,fcpf # FCP for FDP
->>
->>> +          - enum:
->>> +              - renesas,fcpv # FCP for VSP
->>> +              - renesas,fcpf # FCP for FDP
->>> +
->>> +      - items:
->>> +          - enum:
->>> +              - renesas,r9a07g044-fcpvd # RZ/G2{L,LC}
->>> +              - renesas,r9a07g054-fcpvd # RZ/V2L
->>> +          - const: renesas,fcpv   # generic FCP for VSP fallback
->>>
->>>    reg:
->>>      maxItems: 1
->>>
->>> -  clocks:
->>> -    maxItems: 1
->>> +  clocks: true
->>> +  clock-names: true
->>
->> Both should have here the widest constraints: minItems:1 and maxItems:3.
-> 
-> It is taken care in conditional schema right?
-> 
-> It is same as [1], where wider people including you added Rb tag. 
+Vladimir Oltean (3):
+  arm64: dts: ls1028a: move DSA CPU port property to the common SoC dtsi
+  arm64: dts: ls1028a: mark enetc port 3 as a DSA master too
+  arm64: dts: ls1028a: enable swp5 and eno3 for all boards
 
-Yeah, it's fine.
+ .../dts/freescale/fsl-ls1028a-kontron-kbox-a-230-ls.dts  | 9 ++++++++-
+ .../boot/dts/freescale/fsl-ls1028a-kontron-sl28-var2.dts | 9 ++++++++-
+ arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts        | 9 ++++++++-
+ arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi           | 2 ++
+ 4 files changed, 26 insertions(+), 3 deletions(-)
 
-Best regards,
-Krzysztof
+-- 
+2.34.1
+
