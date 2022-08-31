@@ -2,169 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 469015A7A95
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 11:51:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61BC55A7AA0
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 11:53:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230002AbiHaJvS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 05:51:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36322 "EHLO
+        id S230215AbiHaJwz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 05:52:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229453AbiHaJvR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 05:51:17 -0400
-Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D85BCA0311;
-        Wed, 31 Aug 2022 02:51:15 -0700 (PDT)
-Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.3ffe.de (Postfix) with ESMTPSA id 95E94380;
-        Wed, 31 Aug 2022 11:51:13 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
-        t=1661939473;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=WLs6Onq3yh9Op5LQpak2LFOaNZmEuURyI/Mr9UssDGM=;
-        b=pzSJm8uj7k/uDv24llR5/V99GkQF/kfK5TdL8JcOrWl/AhMpxLuc76fCbi45d1NgJJu97Q
-        Xrf49LxwmSS+VNXizVhFJeZBc5zzihSfK67AIXTJc3qzjeKLs9z19rRDgwUkkFTjE2HWV8
-        qsb/xVGgAfBbvUNFV8hXJfpzzNOXKUePz5DedALi9WVd0nheojAEhcaCfqHLmrti9Vk4ia
-        ocLIfVA6aM7+lRfJV/Mk6IoJSbelvbrsGIgannZQgPpaEv4dExdFjnJTrGl2VW6D3Qhfxy
-        H0L2oXQavQCwT+xAqzCrZcIA7DNyY22IAO4twrvDUqGZbcIJPfO64hMMC3glLA==
-MIME-Version: 1.0
-Date:   Wed, 31 Aug 2022 11:51:13 +0200
-From:   Michael Walle <michael@walle.cc>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+        with ESMTP id S230169AbiHaJwy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 05:52:54 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3083CEB32
+        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 02:52:51 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id z25so19186318lfr.2
+        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 02:52:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=Uyk5oGC1fzPDhWnjscWkczot63x0+zUlXapFW5zcja8=;
+        b=csgYcxIvJ+qr28PXMvoZCwdCVpwnzCPd4XBF4kjsYuwJ49TEt19uoexiIF1NUl7il3
+         CwZqVrCabuy66hsmIRTZ30UdVhFednwAiUPSmEF8dbvXI+lS5zXjeaSZsMcEaPhE3b3Q
+         nX7NeOFVZymVAFugXvF/I0aBUMOUn+DF5sVh+8rA4gAZ/pSVbjfma4Gtzx9499Qd2JIL
+         mlgcjiz+A+GhmlxWSok7AEJZN+WhuLIyExX9R5SEVVjFpY5bOdrXdNQliQMUGnq2XD9Y
+         j2fNcu3tQ7jEgjv+q/C/2fD8IHtxvH91NrRmYWRfpmVAh+pluw8pbFgHEee0tSMNSkeM
+         ehrg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=Uyk5oGC1fzPDhWnjscWkczot63x0+zUlXapFW5zcja8=;
+        b=oXHtY3z/mfMim4Jco4gETA6Yt9qjeGzMzoTFyK+55YZGerBWowREI4wuSLqwnfWxzX
+         uxhKJaeMozqzfpHT6icSEuVMDpXh0m5wWVGgUX4zV6CLGZROaQF1KcMRT2g3H5Q6kpnH
+         CnBmyQHDXYeOB2R9dPNNx1FGy5xtHnlAOYYkIkqoHz0akWcO4kq14L06M/z3q+kOOu3u
+         4TW65Mbggn3nz+Ki2BLOz9bibvuUEaDH0IFVgIphCHHBe61fLZGLMj9lt2wPTvnMk33j
+         1xbzUFt+454w+kcAAPuyRDSqtUSeoGLa2hhFhd36vJ0i1fEtKp+jmWiBZpGeKsoCRECw
+         kn1g==
+X-Gm-Message-State: ACgBeo35+8Lcds2+kOB69YhbdCVHBagaJTKQ0bzPA5Gvnh1wipb5bPaf
+        LoPsQQvD5A5br7filxET6uIwMQ==
+X-Google-Smtp-Source: AA6agR5gWoEHcabqGDQbMH2C5BomNnBn//+phAmXVAAS32g7LKCBzy1zq9/HWP7WbpVJADKBdkCvEg==
+X-Received: by 2002:a19:d611:0:b0:492:8e15:ba18 with SMTP id n17-20020a19d611000000b004928e15ba18mr8735305lfg.524.1661939570041;
+        Wed, 31 Aug 2022 02:52:50 -0700 (PDT)
+Received: from krzk-bin.. (balticom-73-99-134.balticom.lv. [109.73.99.134])
+        by smtp.gmail.com with ESMTPSA id n2-20020a05651203e200b0048a757d1303sm1247596lfq.217.2022.08.31.02.52.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 31 Aug 2022 02:52:49 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        netdev@vger.kernel.org, Ahmad Fatoum <a.fatoum@pengutronix.de>
-Subject: Re: [PATCH v1 09/14] dt-bindings: nvmem: add YAML schema for the sl28
- vpd layout
-In-Reply-To: <4bf16e18-1591-8bc9-7c46-649391de3761@linaro.org>
-References: <20220825214423.903672-1-michael@walle.cc>
- <20220825214423.903672-10-michael@walle.cc>
- <b85276ee-3e19-3adb-8077-c1e564e02eb3@linaro.org>
- <ddaf3328bc7d88c47517285a3773470f@walle.cc>
- <4bf16e18-1591-8bc9-7c46-649391de3761@linaro.org>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <1b06716690b0070c0c2b0985577763e3@walle.cc>
-X-Sender: michael@walle.cc
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] media: dt-bindings: dongwoon,dw9714: convert to dtschema
+Date:   Wed, 31 Aug 2022 12:51:56 +0300
+Message-Id: <20220831095156.347715-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2022-08-31 11:24, schrieb Krzysztof Kozlowski:
-> On 31/08/2022 11:17, Michael Walle wrote:
+Convert Dongwoon Anatech DW9714 camera voice coil lens driver to DT
+schema and extend the bindings with vcc-supply (already used by driver)
+and powerdown-gpios (based on datasheet, not used by the driver).
 
->> First thing, this binding isn't like the usual ones, so it might be
->> totally wrong.
->> 
->> What I'd like to achieve here is the following:
->> 
->> We have the nvmem-consumer dt binding where you can reference a
->> nvmem cell in a consumer node. Example:
->>    nvmem-cells = <&base_mac_address 5>;
->>    nvmem-cell-names = "mac-address";
->> 
->> On the other end of the link we have the nvmem-provider. The dt
->> bindings works well if that one has individual cell nodes, like
->> it is described in the nvmem.yaml binding. I.e. you can give the
->> cell a label and make a reference to it in the consumer just like
->> in the example above.
-> 
-> You can also achieve it with phandle argument to the nvmwm controller,
-> right? Just like most of providers are doing (clocks, resets). Having
-> fake (empty) nodes just for that seems like overkill.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../bindings/media/i2c/dongwoon,dw9714.txt    |  9 ----
+ .../bindings/media/i2c/dongwoon,dw9714.yaml   | 47 +++++++++++++++++++
+ 2 files changed, 47 insertions(+), 9 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/media/i2c/dongwoon,dw9714.txt
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/dongwoon,dw9714.yaml
 
-You mean like
-  nvmem-cells = <&nvmem_device SERIAL_NUMBER>;
+diff --git a/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9714.txt b/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9714.txt
+deleted file mode 100644
+index b88dcdd41def..000000000000
+--- a/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9714.txt
++++ /dev/null
+@@ -1,9 +0,0 @@
+-Dongwoon Anatech DW9714 camera voice coil lens driver
+-
+-DW9174 is a 10-bit DAC with current sink capability. It is intended
+-for driving voice coil lenses in camera modules.
+-
+-Mandatory properties:
+-
+-- compatible: "dongwoon,dw9714"
+-- reg: I²C slave address
+diff --git a/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9714.yaml b/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9714.yaml
+new file mode 100644
+index 000000000000..66229a3dc05d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9714.yaml
+@@ -0,0 +1,47 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/dongwoon,dw9714.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Dongwoon Anatech DW9714 camera voice coil lens driver
++
++maintainers:
++  - Krzysztof Kozlowski <krzk@kernel.org>
++
++description:
++  DW9174 is a 10-bit DAC with current sink capability. It is intended for
++  driving voice coil lenses in camera modules.
++
++properties:
++  compatible:
++    const: dongwoon,dw9714
++
++  reg:
++    maxItems: 1
++
++  powerdown-gpios:
++    description:
++      XSD pin for shutdown (active low)
++
++  vcc-supply:
++    description: VDD power supply
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        camera-lens@c {
++            compatible = "dongwoon,dw9714";
++            reg = <0x0c>;
++            vcc-supply = <&reg_csi_1v8>;
++        };
++    };
+-- 
+2.34.1
 
-I'm not sure about the implications for now, because one is
-referencing the device and not individal cells. Putting that
-aside for now, there seems to be a problem with the index for
-the base mac address: You will have different number of arguments
-for the phandle. That doesn't work, right?
-
-nvmem-cells = <&nvmem_device SERIAL_NUMBER>;
-nvmem-cells = <&nvmem_device BASE_MAC_ADDRESS 1>;
-
->> Now comes the catch: what if there is no actual description of the
->> cell in the device tree, but is is generated during runtime. How
->> can I get a label to it.
-> 
-> Same as clocks, resets, power-domains and everyone else.
-
-See
-https://git.kernel.org/torvalds/c/084973e944bec21804f8afb0515b25434438699a
-
-And I guess this discussion is relevant here:
-https://lore.kernel.org/linux-devicetree/20220124160300.25131-1-zajec5@gmail.com/
-
->> Therefore, in this case, there is just
->> an empty node and the driver will associate it with the cell
->> created during runtime (see patch 10). It is not expected, that
->> is has any properties.
-> 
-> It cannot be even referenced as it does not have #cells property...
-
-You mean "#nvmem-cell-cells"? See patch #2. None of the nvmem
-cells had such a property for now.
-
->>>> +
->>>> +  base-mac-address:
->>> 
->>> Fields should be rather described here, not in top-level description.
->>> 
->>>> +    type: object
->>> 
->>> On this level:
->>>     additionalProperties: false
->>> 
->>>> +
->>>> +    properties:
->>>> +      "#nvmem-cell-cells":
->>>> +        const: 1
->>>> +
->>> 
->>> I also wonder why you do not have unit addresses. What if you want to
->>> have two base MAC addresses?
->> 
->> That would describe an offset within the nvmem device. But the offset
->> might not be constant, depending on the content. My understanding
->> so far was that in that case, you use the "-N" suffix.
->> 
->> base-mac-address-1
->> base-mac-address-2
->> 
->> (or maybe completely different names).
-> 
-> You do not allow "base-mac-address-1". Your binding explicitly accepts
-> only "base-mac-address".
-
-Because the binding matches the driver, which matches the driver
-which matches the VPD data and there is only one base mac address.
-Thus, no need for different ones.
-
--michael
