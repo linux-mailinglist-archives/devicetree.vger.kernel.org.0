@@ -2,41 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E960B5A7EB0
-	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 15:26:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDB065A7EB1
+	for <lists+devicetree@lfdr.de>; Wed, 31 Aug 2022 15:26:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231794AbiHaN0e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 09:26:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35222 "EHLO
+        id S231838AbiHaN0i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 09:26:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231821AbiHaN0c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 09:26:32 -0400
-Received: from mail.bugwerft.de (mail.bugwerft.de [46.23.86.59])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E1BE7CCE19;
-        Wed, 31 Aug 2022 06:26:30 -0700 (PDT)
-Received: from [10.10.0.102] (unknown [62.214.9.170])
-        by mail.bugwerft.de (Postfix) with ESMTPSA id 9125E505D66;
-        Wed, 31 Aug 2022 13:25:59 +0000 (UTC)
-Message-ID: <25d25188-268c-0856-b4c4-3de4db5a84fd@zonque.org>
-Date:   Wed, 31 Aug 2022 15:25:54 +0200
+        with ESMTP id S230264AbiHaN0h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 09:26:37 -0400
+Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64B8BCCE2C
+        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 06:26:36 -0700 (PDT)
+Received: by mail-yb1-xb29.google.com with SMTP id y197so4137969yby.13
+        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 06:26:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=FQi2F3OOiF0121qUr5Q7RuzQmHvpSimdNedNb895628=;
+        b=sqHB4qB4Fc4j91sGEkoQr/5USwtH2tfn5YFDYhQHv+nQWjW/fE9BV4BhTI3TlLOHXe
+         xfzLb/ZhCEUqXWjsoQUfCgj8qWQWfM1ktHeTnC7PzNGB6bgJ/8GThuUicezaTpCzBlNW
+         jQNAEBPq0syv/aFuFTcktZXjy4sfzUsIcnuw7jPZ9BzQK7wJ3j11CEV23/gGjMwlAJ04
+         PwKrsnrsBqv491uGzcufobOKhTDPOCOmnCZIBy7ChtKW7O+Ct6Epo7AdF5fAdMjuip4D
+         fEHNsiA+Zhox14GuI4+MpoW1HRjBgWq7M8qM4mYu9u12cku8deQg+jwWNbR0R86Mco90
+         vf9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=FQi2F3OOiF0121qUr5Q7RuzQmHvpSimdNedNb895628=;
+        b=DXHhr8WGhGBQXl3GWn44lAzmfYvbj+fG25sI1UPxZVOpt0szDqPXHYx6RqC57xt/HT
+         3wJPDcRBMupRVVpMHoadiOYIgw73tEWhwWxY6kAyl3W9RTr2W+bTuNpdGA2Dc7QBmswL
+         l+fKz6ADZ7wLF4Su/bYOkM2klfIbcIBdQsB6Cc/mGqHkE4eiPPo7dx3Ghw5QsSo+g+68
+         bOBxwSkduuwGG/ILivlkFxbnNOX5RK3FhyUL2jgXqaVabaArlmUqQxAz3jwPv4x2SJZt
+         NRu6by+wtfkUeb5EY80EAGk8f6WYnRF4Bvz1+Boj60cgZSff3kUNqBb1ItRusg/orj3W
+         VYnw==
+X-Gm-Message-State: ACgBeo2r+bImKT5vIlSfzhIqWMEjXA1f2koKoXN3KJR0E5SvvHj2pfhn
+        y07Mgd12QGXuZODBbo/aqU/gTKcC9TlAE51L/DUcqA==
+X-Google-Smtp-Source: AA6agR5piGHKZmJpBam+qnTNcGww+dtgaY3JgguMnUZV8nShHSFeB4oqzrWBTKDMXO8ZnnoFnfFkRJbS/wNz5rnnBYY=
+X-Received: by 2002:a05:6902:124e:b0:668:222c:e8da with SMTP id
+ t14-20020a056902124e00b00668222ce8damr15312979ybu.383.1661952395631; Wed, 31
+ Aug 2022 06:26:35 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v2 2/2] clk: cs2000-cp: make PLL lock timeout configurable
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>
-Cc:     mturquette@baylibre.com, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, kuninori.morimoto.gx@renesas.com
-References: <20220826091122.2344503-1-daniel@zonque.org>
- <20220826091122.2344503-2-daniel@zonque.org>
- <20220830014909.64D78C433D6@smtp.kernel.org>
- <20220830202523.GA1996382-robh@kernel.org>
-From:   Daniel Mack <daniel@zonque.org>
-In-Reply-To: <20220830202523.GA1996382-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+References: <20220829133923.1114555-1-martyn.welch@collabora.com>
+ <20220829133923.1114555-2-martyn.welch@collabora.com> <9db9dcf8-6299-acec-c09e-603afde9a239@linaro.org>
+In-Reply-To: <9db9dcf8-6299-acec-c09e-603afde9a239@linaro.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 31 Aug 2022 15:26:24 +0200
+Message-ID: <CACRpkdb1-LXwLdV3qLMc+i_VaLoJ-mTs=+0QtuJtNaQR_xVpxQ@mail.gmail.com>
+Subject: Re: [PATCH 2/5] dt-bindings: gpio: pca95xx: add entry for pcal6534
+ and PI4IOE5V6534Q
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Martyn Welch <martyn.welch@collabora.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        kernel@collabora.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -44,35 +71,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/30/22 22:25, Rob Herring wrote:
-> On Mon, Aug 29, 2022 at 06:49:06PM -0700, Stephen Boyd wrote:
->> Quoting Daniel Mack (2022-08-26 02:11:22)
->>> The driver currently does 256 iterations of reads from the DEVICE_CTRL
->>> register to wait for the PLL_LOCK bit to clear, and sleeps one
->>> microsecond after each attempt.
->>>
->>> This isn't ideal because
->>>
->>>  a) the total time this allows for the device to settle depends on the I2C
->>>     bus speed, and
->>>  b) the device might need more time, depending on the application.
->>>
->>> This patch allows users to configure this timeout through a new device-tree
->>> property "cirrus,pll-lock-timeout-ms".
->>
->> It's a timeout, so why not just increase the timeout regardless of
->> everything else? Or can we parse the bus speed (100kHz or 400kHz)
->> instead of adding a new property?
-> 
-> My thought too. Usually PLLs have a spec for max/typ lock times. Given 
-> it's a should never happen type of thing, it doesn't seem like we need a 
-> super precise time.
+On Tue, Aug 30, 2022 at 9:50 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> On 29/08/2022 16:39, Martyn Welch wrote:
+> > The NXP PCAL6534 is a 34-bit I2C I/O expander similar to the PCAL6524. The
+> > Diodes PI4IOE5V6534Q is a functionally identical chip provided by Diodes
+> > Inc.
+> >
+> > Signed-off-by: Martyn Welch <martyn.welch@collabora.com>
+>
+> Then diodes should be followed by fallback (and use only one compatible
+> to bind).
 
-Alright. I guess the real problem here is with the generation of the
-input clock signals, so I need to address that side of the design instead.
+Ugh I don't think we have done a very good job at providing fallbacks
+(several compatibles) for this hardware. Just looking at the list makes
+me suspicious.
 
+The fallback scheme is pretty hard to maintain when vendors are a bit
+unclear on whether things are really compatible or not, and sometimes
+they are compatible but rather not say :(
 
-Thanks for the feedback!
-
-Daniel
-
+Yours,
+Linus Walleij
