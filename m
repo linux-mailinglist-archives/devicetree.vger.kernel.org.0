@@ -2,112 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5A215A8F50
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 09:07:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01B975A8F8A
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 09:15:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233548AbiIAHHf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 03:07:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34066 "EHLO
+        id S233445AbiIAHPQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 03:15:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233559AbiIAHHK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 03:07:10 -0400
-Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 866618E0D7
-        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 00:06:43 -0700 (PDT)
-Received: by mail-yb1-xb31.google.com with SMTP id e71so7367767ybh.9
-        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 00:06:43 -0700 (PDT)
+        with ESMTP id S233612AbiIAHOy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 03:14:54 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCED6125EB5
+        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 00:14:43 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id by6so16919701ljb.11
+        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 00:14:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=OkrB7u5zO7yhs7suwu7hn8qSqPX9t4VFobbA5eBLtMA=;
-        b=F257pApWGKrYCUXD6jfvvpcz01RxcYotLK3hhuKEAwBLQWaXdlYkytdlDHaMhZ0vdp
-         fKSwIhYkMkSbSw/rSKe/kuOUHDoZfDS9HaOiR5Zlmf2L9q+6OtGAaoT98B8ubwA3FkMt
-         AFbthgCqoCfWcFRQRS11Er3xaYgrTAcJFHhVchvthH3mKqYc9GNxxJArWtH8vz5FVKZD
-         murNAJt4g2NSzpFQ88dJEVB57RldbFiXnMQUfcytK4QDFnI3sdKgXc8kMJMgsGOmOY0G
-         XPLMXp9knlitf0IzP9NXehUe5Mt2mIyU0Kg8YLJGVM6s8iJ7ld/PS1ZBI3nhqpVPHyzI
-         Z3AA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=km6NXmC+Flc6gi2HFcUWUmGr8CF+d6lMjhuuuaPJIfU=;
+        b=fDN9jO8cTU7aN1SfkFkwyyPttQDO5E+4SyCP3K2eQ1GgBT1DpRR0syK5hKNVB2/BK+
+         nvA+iaAmpn5yUBsFbTCyOgOjsi1CVRHo0QPMfJdKgC6dJIlK7Xa6McnIQcPl4N54a5eF
+         YUw2/iMb0sZ6QcLLhXL7bjR7Sj3WWlgyNosoc+L0+9po6MSV88ntL8eLUHe9Y9KPZCLh
+         yfbLCNGnSZKsJiFFMuCacZRz+yKkxAXeWt31v6H8CKhsyy7ZVqqmGeUjudQsIxbKq0ch
+         u5q83gwlXotABbaP9tW2zYlbcSQbZsYVmvBZuZREWHxmOAf9ry/XRD1PhW79nhy1h2i1
+         Wx+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=OkrB7u5zO7yhs7suwu7hn8qSqPX9t4VFobbA5eBLtMA=;
-        b=JFg43iw9j8W1KS4ncvIGFw1strZUEAcCSjxphdjM2CW3Ue4JsJ8D4AxFZuX2y+C6/u
-         QbzNYL3VNu3uZRXT6kZ9svWbF9gpEfNs/kZJ+3Y1hmQCwDzxufzXScr7wi6v0f3I1AcR
-         bes5zscJDj0SZZnbSPjD7ElnMvHEf6K3aES6qnoBsN0TFuBhGI68fYpHbhXQP7v3rOFY
-         oA2MeGrlVFHCMxuGchzRs2QTrUMG2IzsrV3Jl8dPsC9l+2W0h46T60rMOFqHZIISCH49
-         rNKncZcg5GkRit2irfp0+z3jiDvaFHF2SNMzWV2sXiC/GcdJHco6b7t/AVlXE6WNVKoT
-         67Zw==
-X-Gm-Message-State: ACgBeo2CEhGX6A4oT6Zw/CpXHOhLiwgwUvM7NBZyNTRN6m/DhgD0oyQu
-        g47pnE+ZMe2r1OkD+T981Uz473idJ5AAiPMcSJ5umA==
-X-Google-Smtp-Source: AA6agR6B1joMY2QehQj/lQc1Wp2scBlnM8pWTOh1nJljf40TrREeO+mjpMy/OatZLnIGjI8y3nxT5YnLNmLsDn2ag4M=
-X-Received: by 2002:a25:8a83:0:b0:671:786a:e2cc with SMTP id
- h3-20020a258a83000000b00671786ae2ccmr17400206ybl.145.1662016002769; Thu, 01
- Sep 2022 00:06:42 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220829065044.1736-1-anand@edgeble.ai> <e4d6eba8-497f-adb2-6f34-35883b8ec50d@linaro.org>
-In-Reply-To: <e4d6eba8-497f-adb2-6f34-35883b8ec50d@linaro.org>
-From:   Anand Moon <anand@edgeble.ai>
-Date:   Thu, 1 Sep 2022 12:36:32 +0530
-Message-ID: <CACF1qneLHv1egFE0r0Rw+cJLh1hESJ95_VTjnT4WxzmBX21sGg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: net: rockchip-dwmac: add rv1126
- compatible string
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=km6NXmC+Flc6gi2HFcUWUmGr8CF+d6lMjhuuuaPJIfU=;
+        b=l3PVFdHdKWBR4HLHDNWpy+PHj6snA7tTEobhebzQ5kp96kTkVA/vPCtLaIbK0oPDJh
+         a7nJOWQBgPTiarfDfe8MsDsP08aXhw+uiOYRRePXME16zXNOBVH5N7a3NG8In8iwzZVV
+         ihBxgHEjLeOjbACPl7HSibRAXq3vuC0Ul3AUDM1z5u8KAGnFVz10xkL0TFLBa86yLLC6
+         rXlwnhzS3D9VoFdk3bpyVsb5EXpD2RvgH/YMbjxQwG57Wv8dX2tSv9Q7LLxrFg2y5r8M
+         9ETNoKDjV0PduWgaZNZx2fPS2bXh0Gjpp/crGJTHDvJ3qbIhcAzqCOXJSKbTGASo2HxI
+         5xSw==
+X-Gm-Message-State: ACgBeo0roSvZrZi2UmXsX5GG2iTVibie70PE+0NET3Gi8Wrgrk48Wuni
+        83/oH+XQ5erGEMblxmXUWR9TeA==
+X-Google-Smtp-Source: AA6agR7nfUvJaMyZAykfOJ1hwec2TsfAl7ZRolDYILrbpPNf7QefeokqkbM+QKYcZ2eZmBCiUwjwzQ==
+X-Received: by 2002:a2e:9e11:0:b0:268:c7d0:9662 with SMTP id e17-20020a2e9e11000000b00268c7d09662mr137209ljk.309.1662016481664;
+        Thu, 01 Sep 2022 00:14:41 -0700 (PDT)
+Received: from krzk-bin.. (balticom-73-99-134.balticom.lv. [109.73.99.134])
+        by smtp.gmail.com with ESMTPSA id 11-20020ac2482b000000b00492e2918a5asm1229403lft.269.2022.09.01.00.14.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Sep 2022 00:14:40 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        David Wu <david.wu@rock-chips.com>,
-        Jagan Teki <jagan@edgeble.ai>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2] media: dt-bindings: dongwoon,dw9714: convert to dtschema
+Date:   Thu,  1 Sep 2022 10:14:37 +0300
+Message-Id: <20220901071437.17637-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+Convert Dongwoon Anatech DW9714 camera voice coil lens driver to DT
+schema and extend the bindings with vcc-supply (already used by driver)
+and powerdown-gpios (based on datasheet, not used by the driver).
 
-On Tue, 30 Aug 2022 at 15:21, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 29/08/2022 09:50, Anand Moon wrote:
-> > Add compatible string for RV1126 gmac, and constrain it to
-> > be compatible with Synopsys dwmac 4.20a.
-> >
-> > Signed-off-by: Jagan Teki <jagan@edgeble.ai>
-> > Signed-off-by: Anand Moon <anand@edgeble.ai>
-> > ---
-> >  Documentation/devicetree/bindings/net/rockchip-dwmac.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
-> > index 083623c8d718..346e248a6ba5 100644
-> > --- a/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
-> > +++ b/Documentation/devicetree/bindings/net/rockchip-dwmac.yaml
-> > @@ -26,6 +26,7 @@ select:
-> >            - rockchip,rk3399-gmac
-> >            - rockchip,rk3568-gmac
-> >            - rockchip,rv1108-gmac
-> > +          - rockchip,rv1126-gmac
->
-> That's not a complete change. What about the other place listing
-> compatibles? Did you test the bindings on your DTS?
->
-Yes, I missed the properties menu, will update it in the next version.
->
-> Best regards,
-> Krzysztof
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Thanks
+---
 
+Changes since v1:
+1. Update path in Maintainers
+---
+ .../bindings/media/i2c/dongwoon,dw9714.txt    |  9 ----
+ .../bindings/media/i2c/dongwoon,dw9714.yaml   | 47 +++++++++++++++++++
+ MAINTAINERS                                   |  2 +-
+ 3 files changed, 48 insertions(+), 10 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/media/i2c/dongwoon,dw9714.txt
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/dongwoon,dw9714.yaml
 
--Anand
+diff --git a/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9714.txt b/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9714.txt
+deleted file mode 100644
+index b88dcdd41def..000000000000
+--- a/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9714.txt
++++ /dev/null
+@@ -1,9 +0,0 @@
+-Dongwoon Anatech DW9714 camera voice coil lens driver
+-
+-DW9174 is a 10-bit DAC with current sink capability. It is intended
+-for driving voice coil lenses in camera modules.
+-
+-Mandatory properties:
+-
+-- compatible: "dongwoon,dw9714"
+-- reg: I²C slave address
+diff --git a/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9714.yaml b/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9714.yaml
+new file mode 100644
+index 000000000000..66229a3dc05d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9714.yaml
+@@ -0,0 +1,47 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/dongwoon,dw9714.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Dongwoon Anatech DW9714 camera voice coil lens driver
++
++maintainers:
++  - Krzysztof Kozlowski <krzk@kernel.org>
++
++description:
++  DW9174 is a 10-bit DAC with current sink capability. It is intended for
++  driving voice coil lenses in camera modules.
++
++properties:
++  compatible:
++    const: dongwoon,dw9714
++
++  reg:
++    maxItems: 1
++
++  powerdown-gpios:
++    description:
++      XSD pin for shutdown (active low)
++
++  vcc-supply:
++    description: VDD power supply
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        camera-lens@c {
++            compatible = "dongwoon,dw9714";
++            reg = <0x0c>;
++            vcc-supply = <&reg_csi_1v8>;
++        };
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index ebc140e71b49..8573e3810688 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -6233,7 +6233,7 @@ M:	Sakari Ailus <sakari.ailus@linux.intel.com>
+ L:	linux-media@vger.kernel.org
+ S:	Maintained
+ T:	git git://linuxtv.org/media_tree.git
+-F:	Documentation/devicetree/bindings/media/i2c/dongwoon,dw9714.txt
++F:	Documentation/devicetree/bindings/media/i2c/dongwoon,dw9714.yaml
+ F:	drivers/media/i2c/dw9714.c
+ 
+ DONGWOON DW9768 LENS VOICE COIL DRIVER
+-- 
+2.34.1
+
