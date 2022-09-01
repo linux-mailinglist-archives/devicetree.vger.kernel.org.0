@@ -2,100 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42F125A93C4
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 12:01:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 403205A93CE
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 12:02:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232152AbiIAKBQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 06:01:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39378 "EHLO
+        id S233572AbiIAKC1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 06:02:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232394AbiIAKBP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 06:01:15 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88A3D134899
-        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 03:01:12 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id q7so23630711lfu.5
-        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 03:01:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=UqgiLV0VjUKBJcxnLyNLTyV9eN+dAh8A/iqAACf8+dA=;
-        b=qPDLCIYOwEP0VD55mNFupQq6wIzbcFHFLZrCcDkTOwZfolZtzzlbTrHWZw0t5twFX5
-         n9c09BxM7QSkWWhf/UiZWT487FfYr3P3XwJmwA85RkmDNZtjyzzQ8AiuutpZPQ6jAylS
-         zunBK3n56GFzJqUxmPK1Jfcrr/edXsq7xeuynlO0EBCoC96oVfwIEOE+NaB+xJkG9dbI
-         Dh5Lcf3ZSKgtuUINz57lr69alOiT14+7aLnSRn76hD5IQbDyAZZgPRCrL1lDPnkL0nRT
-         wkxUZjmCkcFtOYpT1ivhU0nD5yGrMGaJd/hL5gY5WhUgfSzDdraY7mhrIoHFQOIjwgER
-         wluA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=UqgiLV0VjUKBJcxnLyNLTyV9eN+dAh8A/iqAACf8+dA=;
-        b=auyd0pW7KxB2YchxJbD5KIqg7xYG0aCW62AUmERfANBE2DOr7VYaMt44N5Plv4DmUS
-         Yf8Z+EgRCjYFePE8CeIvPnSX2AmuVvWujetQ/kB2a17yeXzRq/tyhow7OgkwTG81jIL8
-         b1/0OWc4YEWl7SXBUT852IWyWqWfwrEqvvqxqNPglLwrsWXpQAZu9Kygh8WYr/TWV2Ul
-         dH/c74fzQygYLAsz+dwAKK1PduQy6NqwXi/0BsklS7RBGoCBHWuv4eUWcyZ12aXAKc2I
-         Z4NQevGDY99U3P9cKDSsFDD2IoomcMc+6+eyWRvJMlacXVtEfefIMhj8qQTlgBmLwx/J
-         leqA==
-X-Gm-Message-State: ACgBeo0n3+FnLLvFDyXno98O5JBBqoOikOTcQBY2cUqAnq+lswhiXn4e
-        ye+tM/X3U0+DpNmUOLe/udg4qA==
-X-Google-Smtp-Source: AA6agR6g+J6hbZWE8D79tqnXYT/J1Z+BYuCIbp6i4arwcPiX+TtniNK3fPjXn3edpb61J1WeKy8VoQ==
-X-Received: by 2002:a19:5e01:0:b0:492:c03a:aa8e with SMTP id s1-20020a195e01000000b00492c03aaa8emr11392646lfb.139.1662026470851;
-        Thu, 01 Sep 2022 03:01:10 -0700 (PDT)
-Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id f24-20020a2eb5b8000000b0025e5cd1620fsm1627599ljn.57.2022.09.01.03.01.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Sep 2022 03:01:10 -0700 (PDT)
-Message-ID: <cae05f4d-57af-7923-58e5-c4bf06a8a3c8@linaro.org>
-Date:   Thu, 1 Sep 2022 13:01:09 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: sc7280: Add device tree for
- herobrine evoker
-Content-Language: en-US
-To:     Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>,
-        LKML <linux-kernel@vger.kernel.org>
-Cc:     mka@chromium.org, dianders@chromium.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        with ESMTP id S233516AbiIAKC0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 06:02:26 -0400
+Received: from mout.perfora.net (mout.perfora.net [74.208.4.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C80291377BE;
+        Thu,  1 Sep 2022 03:02:24 -0700 (PDT)
+Received: from toolbox.toradex.int ([31.10.206.125]) by mrelay.perfora.net
+ (mreueus003 [74.208.5.2]) with ESMTPSA (Nemesis) id 0LmrtK-1p1gSH3vqu-00h7wG;
+ Thu, 01 Sep 2022 12:01:58 +0200
+From:   Marcel Ziswiler <marcel@ziswiler.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Francesco Dolcini <francesco.dolcini@toradex.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-References: <20220901091253.93333-1-sheng-liang.pan@quanta.corp-partner.google.com>
- <20220901170958.1.I7dd7a79c4cc5fe91c3feb004473feb3b34b7b2d8@changeid>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220901170958.1.I7dd7a79c4cc5fe91c3feb004473feb3b34b7b2d8@changeid>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Philippe Schenker <philippe.schenker@toradex.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/4] arm64: dts: verdin-imx8mm: display and pmic related additions and fixes
+Date:   Thu,  1 Sep 2022 12:01:47 +0200
+Message-Id: <20220901100151.1378709-1-marcel@ziswiler.com>
+X-Mailer: git-send-email 2.36.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:YxNIY3vGfTSY8XgjfEnFUaDQB0wWO6H+sLC9tyF3slwt5BVmXUa
+ Tr5OHDrc4j9xjgjRz8iPphqxBQxLCy93ma4nHSOgWwDrBafi+80viRO9ZeFULQ7z488B03M
+ 6KzhZIoVpsYwGv/Yvzrcw2xg9MB5Dqgyj7whzhII6RtRA2soN/bM0cnm51xG6LgLi0kUZPx
+ HPh8WD0F5svfZYna9w4zg==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:nnjS14ueBVc=:WfBLSX+NPTxYwCQxjgBmrA
+ JZPTu0q83Osnzca8q7RpCBH0ZxxmBlSqbOO3IfdDti1h24zF4hFnJibpcGzAqVvqxkqO52QeC
+ TT+WYYTlnNKlR7Y1vx3UER/YMuyfWUsnKQiIxilOdYyq0oS69qXUJdZdqgfssiteKiCKRYOzM
+ nSgO6JfOj/Rrwm+Mnx/FOM+6yvAUyNArsfWhppq44C6YyPaeEthKGqdgQRblfhJG/HjtHgu+j
+ VtgP/dK4pTrVmDKrMqi4Q2rGYF/SLez3Dv1K9eContpr+YKL+c5QiN3vmmuDnZ+DvK1jEeGMD
+ hx7NVpkbtxmUEoYX24fsKqrW42LHt4dd3FY2AQFlbXShI3gDIC3y1MeivtYT1B+R38DT3yDL1
+ Pzz1PU5BDQZayt4mNs263nT2++E7+Sj4V/L8JZ4Vjvoc6bLI7d3WLSQ0F81jBPLnbhytWmhlF
+ YJZblZDIELAqWkVVERu/FTkp0PthRCr/tRMO9WOg98IzHxnZkkat0dr2h/zOHarRZXnrLxnxn
+ kCqWKkPXNtU0Huwmi7GRo6H395mzSlnwNw7RdPP/glZXLz9+B/7Xe57WesrxOCjgSpydw26wG
+ RRHcJlB20rPYYJcGhSN3D9QMIkx4fZcWhXmFccveoSn6LgV5WAKzFsvclu/z37u/YVHYLjWlq
+ qkgVxyp6K8GcyyG4sdND1k9FjSeIqoSbm3cMDJpB+xY3NYHX7bSwT12vCdmRx1f0+Lr542l+K
+ MVd0x+Yfp2E84tnYDGHwu5wkDr4lZHcS/OQj26DuInGZaYLukSqy+3uEadISTD6r+u0ykUpFS
+ meOzSrI
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/09/2022 12:12, Sheng-Liang Pan wrote:
-> Add a basic device tree for the herobrine evoker board.
-> 
-> Signed-off-by: Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
-> ---
+From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 
-And this is third v1? At least this is what your subject is suggesting.
-Patches should be properly versioned. Git format-patch helps in that,
-but you can use any other tools if you wish.
 
-I pointed you to documentation you must read before posting. You can
-keep ignoring it, so we keep ignoring your patch.
+This series contains a few display and PMIC related additions and fixes.
 
-That's a NAK :(
 
-Best regards,
-Krzysztof
+Marcel Ziswiler (2):
+  arm64: dts: verdin-imx8mm: rename sn65dsi83 to sn65dsi84
+  arm64: dts: verdin-imx8mm: add lvds panel node
+
+Philippe Schenker (2):
+  arm64: dts: verdin-imx8mm: introduce hdmi-connector
+  arm64: dts: imx8mm-verdin: extend pmic voltages
+
+ .../boot/dts/freescale/imx8mm-verdin.dtsi     | 29 ++++++++++++++-----
+ 1 file changed, 22 insertions(+), 7 deletions(-)
+
+-- 
+2.36.1
+
