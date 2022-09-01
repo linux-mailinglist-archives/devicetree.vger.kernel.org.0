@@ -2,77 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E3B85A8C55
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 06:19:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC04D5A8C90
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 06:29:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232804AbiIAETe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 00:19:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53650 "EHLO
+        id S232649AbiIAE3v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 00:29:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38440 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232736AbiIAETB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 00:19:01 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6111F161DDD;
-        Wed, 31 Aug 2022 21:18:16 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 2812p16T018795;
-        Thu, 1 Sep 2022 04:18:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=l5sh6dCCCaxLLDrYIUfTAqSUWYh7jzgEf6hxbmIfF50=;
- b=eHkB3SGDNE0YPkbahuTOmeO7WyPtLsfWEmvQS7vwPR+pWLjqY749jUTkEpmSuXEsPJ7k
- X4ksdCQZeH+mzIb9E4q3pQ+STPFCOu/W4Na/onbglzTUSS8onQfuZC3gtxj4kwQuQ6jW
- IOGxnOdo4+0Mc9Ywh4f/rv8Ag/G3xObT6ByQOjrsV3CzWZowHifdxwGV5pw4yVI5ZTuC
- CLYUbt65qbYAGNlwZEzkNGSqfXvIGrHGfnlUl6EhLMKd17IvJL3PlIjuvfPZkY79oAQ9
- QKD6DVdEz2YntxZzJoPtioQELG9CTtcGDNFPNmPUeW/8q50slc/kj1LyaASFWYAh5bNe Xg== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jadtcs705-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 01 Sep 2022 04:18:06 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2814I5WV032122
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 1 Sep 2022 04:18:05 GMT
-Received: from c-skakit-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.29; Wed, 31 Aug 2022 21:18:02 -0700
-From:   Satya Priya <quic_c_skakit@quicinc.com>
-To:     Rob Herring <robh@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-CC:     Douglas Anderson <dianders@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Andy Gross <agross@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_tdas@quicinc.com>, <quic_c_skakit@quicinc.com>,
-        <linux-clk@vger.kernel.org>
-Subject: [PATCH V9 5/5] clk: qcom: lpass: Add support for resets & external mclk for SC7280
-Date:   Thu, 1 Sep 2022 09:47:26 +0530
-Message-ID: <1662005846-4838-6-git-send-email-quic_c_skakit@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1662005846-4838-1-git-send-email-quic_c_skakit@quicinc.com>
-References: <1662005846-4838-1-git-send-email-quic_c_skakit@quicinc.com>
+        with ESMTP id S232458AbiIAE3q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 00:29:46 -0400
+Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69FBC52468
+        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 21:20:13 -0700 (PDT)
+Received: from secure.fukaumi.org ([10.0.0.2])
+        by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 2814IjmW009948;
+        Thu, 1 Sep 2022 13:18:45 +0900
+From:   FUKAUMI Naoki <naoki@radxa.com>
+To:     jagan@amarulasolutions.com
+Cc:     abbaraju.manojsai@amarulasolutions.com, devicetree@vger.kernel.org,
+        heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
+        linux-amarula@amarulasolutions.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, naoki@radxa.com,
+        robh+dt@kernel.org, stephen@radxa.com
+Subject: [PATCH v3 3/3] arm64: dts: rockchip: rk3399: Radxa ROCK 4C+
+Date:   Thu,  1 Sep 2022 04:18:10 +0000
+Message-Id: <20220901041810.20909-1-naoki@radxa.com>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20220830065119.120844-3-jagan@amarulasolutions.com>
+References: <20220830065119.120844-3-jagan@amarulasolutions.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 9tQatwmq3a67TPjvYkJRMn8RemNqBdL8
-X-Proofpoint-GUID: 9tQatwmq3a67TPjvYkJRMn8RemNqBdL8
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.517,FMLib:17.11.122.1
- definitions=2022-09-01_02,2022-08-31_03,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- impostorscore=0 suspectscore=0 mlxscore=0 spamscore=0 lowpriorityscore=0
- bulkscore=0 mlxlogscore=974 malwarescore=0 clxscore=1015 adultscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2207270000 definitions=main-2209010019
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00,KHOP_HELO_FCRDNS,
+        SPF_HELO_NONE,SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,144 +43,707 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Taniya Das <quic_tdas@quicinc.com>
+> Add support for Radxa ROCK 4C+ SBC.
+> 
+> Key differences of 4C+ compared to previous ROCK Pi 4.
+> - Rockchip RK3399-T SoC
+> - DP from 4C replaced with micro HDMI 2K@60fps
+> - 4-lane MIPI DSI with 1920*1080
+> - RK817 Audio codec
+> 
+> Also, an official naming convention from Radxa mention to remove
+> Pi from board name, so this 4C+ is named as Radxa ROCK 4C+ not
+> Radxa ROCK Pi 4C+.
+> 
+> Signed-off-by: Stephen Chen <stephen@radxa.com>
+> Signed-off-by: Manoj Sai <abbaraju.manojsai@amarulasolutions.com>
+> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> ---
+> Changes for v3:
+> - updated commit message
+> - include sdhci in aliases
+> - add i2s2
+> - add sdmmc cd-gpios
+> - use rk3399-t-opp.dtsi
+> Changes for v2:
+> - s/vcc-sys/vcc5v0-sys-regulator
+> - used proper node name 'regulator' for syr828 regulator nodes.
+> - fix line wrapping.
+> 
+>  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+>  .../boot/dts/rockchip/rk3399-rock-4c-plus.dts | 647 ++++++++++++++++++
+>  2 files changed, 648 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+> index ef79a672804a..f92637eb6f90 100644
+> --- a/arch/arm64/boot/dts/rockchip/Makefile
+> +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> @@ -46,6 +46,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-puma-haikou.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-roc-pc.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-roc-pc-mezzanine.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-roc-pc-plus.dtb
+> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rock-4c-plus.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rock-pi-4a.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rock-pi-4a-plus.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rock-pi-4b.dtb
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts b/arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts
+> new file mode 100644
+> index 000000000000..33c5976d158e
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts
+> @@ -0,0 +1,647 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2019 Fuzhou Rockchip Electronics Co., Ltd
+> + * Copyright (c) 2019 Radxa Limited
+> + * Copyright (c) 2022 Amarula Solutions(India)
+> + */
+> +
+> +/dts-v1/;
+> +#include "rk3399.dtsi"
+> +#include "rk3399-t-opp.dtsi"
+> +
+> +/ {
+> +	model = "Radxa ROCK 4C+";
+> +	compatible = "radxa,rock-4c-plus", "rockchip,rk3399";
+> +
+> +	aliases {
+> +		mmc0 = &sdmmc;
+> +		mmc1 = &sdhci;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial2:1500000n8";
+> +	};
+> +
+> +	sdio_pwrseq: sdio-pwrseq {
+> +		compatible = "mmc-pwrseq-simple";
+> +		clocks = <&rk809 1>;
+> +		clock-names = "ext_clock";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&wifi_enable_h>;
+> +		reset-gpios = <&gpio0 RK_PB2 GPIO_ACTIVE_LOW>;
+> +	};
+> +
+> +	clkin_gmac: external-gmac-clock {
+> +		compatible = "fixed-clock";
+> +		clock-frequency = <125000000>;
+> +		clock-output-names = "clkin_gmac";
+> +		#clock-cells = <0>;
+> +	};
+> +
+> +	vcc5v0_sys: vcc5v0-sys-regulator {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc5v0_sys";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +	};
+> +
+> +	vcc5v0_host1: vcc5v0-host-regulator {
+> +		compatible = "regulator-fixed";
+> +		enable-active-high;
+> +		gpio = <&gpio3 RK_PD6 GPIO_ACTIVE_HIGH>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&vcc5v0_host_en>;
+> +		regulator-name = "vcc5v0_host1";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		vin-supply = <&vcc5v0_host0_s0>;
+> +	};
+> +
+> +	vcc5v0_typec: vcc5v0-typec-regulator {
+> +		compatible = "regulator-fixed";
+> +		enable-active-high;
+> +		gpio = <&gpio1 RK_PA3 GPIO_ACTIVE_HIGH>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&vcc5v0_typec0_en>;
+> +		regulator-name = "vcc5v0_typec";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		vin-supply = <&vcc5v0_sys>;
+> +	};
+> +
+> +	vcc_lan: vcc3v3-phy-regulator {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc_lan";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +	};
+> +};
+> +
+> +&cpu_l0 {
+> +	cpu-supply = <&vdd_cpu_l>;
+> +};
+> +
+> +&cpu_l1 {
+> +	cpu-supply = <&vdd_cpu_l>;
+> +};
+> +
+> +&cpu_l2 {
+> +	cpu-supply = <&vdd_cpu_l>;
+> +};
+> +
+> +&cpu_l3 {
+> +	cpu-supply = <&vdd_cpu_l>;
+> +};
+> +
+> +&cpu_b0 {
+> +	cpu-supply = <&vdd_cpu_b>;
+> +};
+> +
+> +&cpu_b1 {
+> +	cpu-supply = <&vdd_cpu_b>;
+> +};
+> +
+> +&emmc_phy {
+> +	status = "okay";
+> +};
+> +
+> +&gmac {
+> +	assigned-clocks = <&cru SCLK_RMII_SRC>;
+> +	assigned-clock-parents = <&clkin_gmac>;
+> +	clock_in_out = "input";
+> +	phy-supply = <&vcc_lan>;
+> +	phy-mode = "rgmii";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&rgmii_pins>;
+> +	snps,reset-gpio = <&gpio3 RK_PB7 GPIO_ACTIVE_LOW>;
+> +	snps,reset-active-low;
+> +	snps,reset-delays-us = <0 10000 50000>;
+> +	tx_delay = <0x2a>;
+> +	rx_delay = <0x21>;
+> +	status = "okay";
+> +};
+> +
+> +&gpu {
+> +	mali-supply = <&vdd_gpu>;
+> +	status = "okay";
+> +};
+> +
+> +&hdmi {
+> +	ddc-i2c-bus = <&i2c3>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&hdmi_cec>;
+> +	status = "okay";
+> +};
+> +
+> +&hdmi_sound {
+> +	status = "okay";
+> +};
+> +
+> +&i2c0 {
+> +	status = "okay";
+> +	i2c-scl-falling-time-ns = <30>;
+> +	i2c-scl-rising-time-ns = <180>;
+> +	clock-frequency = <400000>;
+> +
+> +	rk809: pmic@20 {
+> +		compatible = "rockchip,rk809";
+> +		reg = <0x20>;
+> +		interrupt-parent = <&gpio1>;
+> +		interrupts = <RK_PC5 IRQ_TYPE_LEVEL_LOW>;
+> +		#clock-cells = <1>;
+> +		clock-output-names = "rk808-clkout1", "rk808-clkout2";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pmic_int_l>;
+> +		rockchip,system-power-controller;
+> +		wakeup-source;
+> +
+> +		vcc1-supply = <&vcc5v0_sys>;
+> +		vcc2-supply = <&vcc5v0_sys>;
+> +		vcc3-supply = <&vcc5v0_sys>;
+> +		vcc4-supply = <&vcc5v0_sys>;
+> +		vcc5-supply = <&vcc_buck5>;
+> +		vcc6-supply = <&vcc_buck5>;
+> +		vcc7-supply = <&vcc5v0_sys>;
+> +		vcc8-supply = <&vcc3v3_sys>;
+> +		vcc9-supply = <&vcc5v0_sys>;
+> +
+> +		regulators {
+> +			vdd_log: DCDC_REG1 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-min-microvolt = <750000>;
+> +				regulator-max-microvolt = <1350000>;
+> +				regulator-initial-mode = <0x2>;
+> +				regulator-name = "vdd_log";
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +					regulator-suspend-microvolt = <900000>;
+> +				};
+> +			};
+> +
+> +			vdd_cpu_l: DCDC_REG2 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-min-microvolt = <750000>;
+> +				regulator-max-microvolt = <1350000>;
+> +				regulator-ramp-delay = <6001>;
+> +				regulator-initial-mode = <0x2>;
+> +				regulator-name = "vdd_cpu_l";
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +
+> +			vcc_ddr: DCDC_REG3 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-name = "vcc_ddr";
+> +				regulator-initial-mode = <0x2>;
+> +				regulator-state-mem {
+> +					regulator-on-in-suspend;
+> +				};
+> +			};
+> +
+> +			vcc3v3_sys: DCDC_REG4 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-min-microvolt = <3300000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-initial-mode = <0x2>;
+> +				regulator-name = "vcc3v3_sys";
+> +				regulator-state-mem {
+> +					regulator-on-in-suspend;
+> +					regulator-suspend-microvolt = <3300000>;
+> +				};
+> +			};
+> +
+> +			vcc_buck5: DCDC_REG5 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-min-microvolt = <3300000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-name = "vcc_buck5";
+> +				regulator-state-mem {
+> +					regulator-on-in-suspend;
+> +					regulator-suspend-microvolt = <3300000>;
+> +				};
+> +			};
+> +
+> +			vcca_0v9: LDO_REG1 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-min-microvolt = <900000>;
+> +				regulator-max-microvolt = <900000>;
+> +				regulator-name = "vcca_0v9";
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +
+> +			vcc_1v8: LDO_REG2 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-name = "vcc_1v8";
+> +				regulator-state-mem {
+> +					regulator-on-in-suspend;
+> +					regulator-suspend-microvolt = <1800000>;
+> +				};
+> +			};
+> +
+> +			vcc0v9_soc: LDO_REG3 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-min-microvolt = <900000>;
+> +				regulator-max-microvolt = <900000>;
+> +				regulator-name = "vcc0v9_soc";
+> +				regulator-state-mem {
+> +					regulator-on-in-suspend;
+> +					regulator-suspend-microvolt = <900000>;
+> +				};
+> +			};
+> +
+> +			vcca_1v8: LDO_REG4 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-name = "vcca_1v8";
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +
+> +			vcc_mipi: LDO_REG5 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-min-microvolt = <3000000>;
+> +				regulator-max-microvolt = <3000000>;
+> +				regulator-name = "vcc_mipi";
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +
+> +			vcc_1v5: LDO_REG6 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-min-microvolt = <1500000>;
+> +				regulator-max-microvolt = <1500000>;
+> +				regulator-name = "vcc_1v5";
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +
+> +			vcc_3v0: LDO_REG7 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-min-microvolt = <3000000>;
+> +				regulator-max-microvolt = <3000000>;
+> +				regulator-name = "vcc_3v0";
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +
+> +			vccio_sd: LDO_REG8 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-name = "vccio_sd";
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +
+> +			vcc_cam: LDO_REG9 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-min-microvolt = <3300000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-name = "vcc_cam";
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +
+> +			vcc5v0_host0_s0: SWITCH_REG1 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-name = "vcc5v0_host0_s0";
+> +				regulator-state-mem {
+> +					regulator-on-in-suspend;
+> +				};
+> +			};
+> +
+> +			lcd_3v3: SWITCH_REG2 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-name = "lcd_3v3";
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	vdd_cpu_b: regulator@40 {
+> +		compatible = "silergy,syr827";
+> +		reg = <0x40>;
+> +		fcs,suspend-voltage-selector = <1>;
+> +		regulator-compatible = "fan53555-reg";
+> +		pinctrl-0 = <&vsel1_gpio>;
+> +		vsel-gpios = <&gpio1 RK_PC1 GPIO_ACTIVE_HIGH>;
+> +		regulator-name = "vdd_cpu_b";
+> +		regulator-min-microvolt = <712500>;
+> +		regulator-max-microvolt = <1500000>;
+> +		regulator-ramp-delay = <1000>;
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		vin-supply = <&vcc5v0_sys>;
+> +		regulator-state-mem {
+> +			regulator-off-in-suspend;
+> +		};
+> +	};
+> +
+> +	vdd_gpu: regulator@41 {
+> +		compatible = "silergy,syr828";
+> +		reg = <0x41>;
+> +		fcs,suspend-voltage-selector = <1>;
+> +		regulator-compatible = "fan53555-reg";
+> +		pinctrl-0 = <&vsel2_gpio>;
+> +		vsel-gpios = <&gpio1 RK_PB6 GPIO_ACTIVE_HIGH>;
+> +		regulator-name = "vdd_gpu";
+> +		regulator-min-microvolt = <712500>;
+> +		regulator-max-microvolt = <1500000>;
+> +		regulator-ramp-delay = <1000>;
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		vin-supply = <&vcc5v0_sys>;
+> +		regulator-initial-mode = <1>; /* 1:force PWM 2:auto */
+> +		regulator-state-mem {
+> +			regulator-off-in-suspend;
+> +		};
+> +	};
+> +};
+> +
+> +&i2c3 {
+> +	i2c-scl-rising-time-ns = <450>;
+> +	i2c-scl-falling-time-ns = <15>;
+> +	status = "okay";
+> +};
+> +
+> +&i2s2 {
+> +	status = "okay";
+> +};
+> +
+> +&io_domains {
+> +	bt656-supply = <&vcc_3v0>;
+> +	gpio1830-supply = <&vcc_3v0>;
+> +	sdmmc-supply = <&vccio_sd>;
+> +	status = "okay";
+> +};
+> +
+> +&pinctrl {
+> +	bt {
+> +		bt_enable_h: bt-enable-h {
+> +			rockchip,pins = <0 RK_PB1 RK_FUNC_GPIO &pcfg_pull_none>;
+> +		};
+> +
+> +		bt_host_wake_l: bt-host-wake-l {
+> +			rockchip,pins = <0 RK_PA4 RK_FUNC_GPIO &pcfg_pull_none>;
+> +		};
+> +
+> +		bt_wake_l: bt-wake-l {
+> +			rockchip,pins = <2 RK_PD3 RK_FUNC_GPIO &pcfg_pull_none>;
+> +		};
+> +	};
+> +
+> +	pmic {
+> +		pmic_int_l: pmic-int-l {
+> +			rockchip,pins = <1 RK_PC5 RK_FUNC_GPIO &pcfg_pull_up>;
+> +		};
+> +
+> +		vsel1_gpio: vsel1-gpio {
+> +			rockchip,pins = <1 RK_PC1 RK_FUNC_GPIO &pcfg_pull_down>;
+> +		};
+> +
+> +		vsel2_gpio: vsel2-gpio {
+> +			rockchip,pins = <1 RK_PB6 RK_FUNC_GPIO &pcfg_pull_down>;
+> +		};
+> +	};
+> +
+> +	sdmmc {
+> +		sdmmc_bus4: sdmmc-bus4 {
+> +			rockchip,pins = <4 8 1 &pcfg_pull_up_8ma>,
+> +					<4 9 1 &pcfg_pull_up_8ma>,
+> +					<4 10 1 &pcfg_pull_up_8ma>,
+> +					<4 11 1 &pcfg_pull_up_8ma>;
+> +		};
+> +
+> +		sdmmc_clk: sdmmc-clk {
+> +			rockchip,pins = <4 12 1 &pcfg_pull_none_18ma>;
+> +		};
+> +
+> +		sdmmc_cmd: sdmmc-cmd {
+> +			rockchip,pins = <4 13 1 &pcfg_pull_up_8ma>;
+> +		};
+> +	};
+> +
+> +	usb-typec {
+> +		vcc5v0_typec0_en: vcc5v0-typec-en {
+> +			rockchip,pins = <1 RK_PA3 RK_FUNC_GPIO &pcfg_pull_up>;
+> +		};
+> +	};
+> +
+> +	usb2 {
+> +		vcc5v0_host_en: vcc5v0-host-en {
+> +			rockchip,pins = <3 RK_PD6 RK_FUNC_GPIO &pcfg_pull_up>;
+> +		};
+> +	};
+> +
+> +	wifi {
+> +		wifi_enable_h: wifi-enable-h {
+> +			rockchip,pins = <0 RK_PB2 RK_FUNC_GPIO &pcfg_pull_none>;
+> +		};
+> +
+> +		wifi_host_wake_l: wifi-host-wake-l {
+> +			rockchip,pins = <0 RK_PA3 RK_FUNC_GPIO &pcfg_pull_none>;
+> +		};
+> +	};
+> +};
+> +
+> +&pmu_io_domains {
+> +	pmu1830-supply = <&vcc_3v0>;
+> +	status = "okay";
+> +};
+> +
+> +&saradc {
+> +	status = "okay";
+> +	vref-supply = <&vcc_1v8>;
+> +};
+> +
+> +&sdhci {
+> +	max-frequency = <150000000>;
+> +	bus-width = <8>;
+> +	mmc-hs400-1_8v;
+> +	supports-emmc;
 
-The clock gating control for TX/RX/WSA core bus clocks would be required
-to be reset(moved from hardware control) from audio core driver. Thus
-add the support for the reset clocks.
+this property should be only for vendor kernel.
 
-Update the lpass_aon_cc_main_rcg_clk_src ops to park the RCG at XO after
-disable as this clock signal is used by hardware to turn ON memories in
-LPASS. Also add the external mclk to interface external MI2S.
+FUKAUMI Naoki
 
-Fixes: a9dd26639d05 ("clk: qcom: lpass: Add support for LPASS clock controller for SC7280")
-Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
----
- drivers/clk/qcom/lpassaudiocc-sc7280.c | 24 ++++++++++++++++++++++--
- drivers/clk/qcom/lpasscorecc-sc7280.c  | 33 +++++++++++++++++++++++++++++++++
- 2 files changed, 55 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/clk/qcom/lpassaudiocc-sc7280.c b/drivers/clk/qcom/lpassaudiocc-sc7280.c
-index 6067328..5d4bc56 100644
---- a/drivers/clk/qcom/lpassaudiocc-sc7280.c
-+++ b/drivers/clk/qcom/lpassaudiocc-sc7280.c
-@@ -23,6 +23,7 @@
- #include "clk-regmap-mux.h"
- #include "common.h"
- #include "gdsc.h"
-+#include "reset.h"
- 
- enum {
- 	P_BI_TCXO,
-@@ -248,7 +249,7 @@ static struct clk_rcg2 lpass_aon_cc_main_rcg_clk_src = {
- 		.parent_data = lpass_aon_cc_parent_data_0,
- 		.num_parents = ARRAY_SIZE(lpass_aon_cc_parent_data_0),
- 		.flags = CLK_OPS_PARENT_ENABLE,
--		.ops = &clk_rcg2_ops,
-+		.ops = &clk_rcg2_shared_ops,
- 	},
- };
- 
-@@ -703,6 +704,18 @@ static const struct qcom_cc_desc lpass_audio_cc_sc7280_desc = {
- 	.num_clks = ARRAY_SIZE(lpass_audio_cc_sc7280_clocks),
- };
- 
-+static const struct qcom_reset_map lpass_audio_cc_sc7280_resets[] = {
-+	[LPASS_AUDIO_SWR_RX_CGCR] =  { 0xa0, 1 },
-+	[LPASS_AUDIO_SWR_TX_CGCR] =  { 0xa8, 1 },
-+	[LPASS_AUDIO_SWR_WSA_CGCR] = { 0xb0, 1 },
-+};
-+
-+static const struct qcom_cc_desc lpass_audio_cc_reset_sc7280_desc = {
-+	.config = &lpass_audio_cc_sc7280_regmap_config,
-+	.resets = lpass_audio_cc_sc7280_resets,
-+	.num_resets = ARRAY_SIZE(lpass_audio_cc_sc7280_resets),
-+};
-+
- static const struct of_device_id lpass_audio_cc_sc7280_match_table[] = {
- 	{ .compatible = "qcom,sc7280-lpassaudiocc" },
- 	{ }
-@@ -772,13 +785,20 @@ static int lpass_audio_cc_sc7280_probe(struct platform_device *pdev)
- 	regmap_write(regmap, 0x4, 0x3b);
- 	regmap_write(regmap, 0x8, 0xff05);
- 
--	ret = qcom_cc_really_probe(pdev, &lpass_audio_cc_sc7280_desc, regmap);
-+	ret = qcom_cc_probe_by_index(pdev, 0, &lpass_audio_cc_sc7280_desc);
- 	if (ret) {
- 		dev_err(&pdev->dev, "Failed to register LPASS AUDIO CC clocks\n");
- 		pm_runtime_disable(&pdev->dev);
- 		return ret;
- 	}
- 
-+	ret = qcom_cc_probe_by_index(pdev, 1, &lpass_audio_cc_reset_sc7280_desc);
-+	if (ret) {
-+		dev_err(&pdev->dev, "Failed to register LPASS AUDIO CC Resets\n");
-+		pm_runtime_disable(&pdev->dev);
-+		return ret;
-+	}
-+
- 	pm_runtime_mark_last_busy(&pdev->dev);
- 	pm_runtime_put_autosuspend(&pdev->dev);
- 	pm_runtime_put_sync(&pdev->dev);
-diff --git a/drivers/clk/qcom/lpasscorecc-sc7280.c b/drivers/clk/qcom/lpasscorecc-sc7280.c
-index 1f1f1bd..6ad19b0 100644
---- a/drivers/clk/qcom/lpasscorecc-sc7280.c
-+++ b/drivers/clk/qcom/lpasscorecc-sc7280.c
-@@ -190,6 +190,19 @@ static struct clk_rcg2 lpass_core_cc_ext_if1_clk_src = {
- 	},
- };
- 
-+static struct clk_rcg2 lpass_core_cc_ext_mclk0_clk_src = {
-+	.cmd_rcgr = 0x20000,
-+	.mnd_width = 8,
-+	.hid_width = 5,
-+	.parent_map = lpass_core_cc_parent_map_0,
-+	.freq_tbl = ftbl_lpass_core_cc_ext_if0_clk_src,
-+	.clkr.hw.init = &(const struct clk_init_data){
-+		.name = "lpass_core_cc_ext_mclk0_clk_src",
-+		.parent_data = lpass_core_cc_parent_data_0,
-+		.num_parents = ARRAY_SIZE(lpass_core_cc_parent_data_0),
-+		.ops = &clk_rcg2_ops,
-+	},
-+};
- 
- static struct clk_branch lpass_core_cc_core_clk = {
- 	.halt_reg = 0x1f000,
-@@ -283,6 +296,24 @@ static struct clk_branch lpass_core_cc_lpm_mem0_core_clk = {
- 	},
- };
- 
-+static struct clk_branch lpass_core_cc_ext_mclk0_clk = {
-+	.halt_reg = 0x20014,
-+	.halt_check = BRANCH_HALT,
-+	.clkr = {
-+		.enable_reg = 0x20014,
-+		.enable_mask = BIT(0),
-+		.hw.init = &(const struct clk_init_data){
-+			.name = "lpass_core_cc_ext_mclk0_clk",
-+			.parent_hws = (const struct clk_hw*[]){
-+				&lpass_core_cc_ext_mclk0_clk_src.clkr.hw,
-+			},
-+			.num_parents = 1,
-+			.flags = CLK_SET_RATE_PARENT,
-+			.ops = &clk_branch2_ops,
-+		},
-+	},
-+};
-+
- static struct clk_branch lpass_core_cc_sysnoc_mport_core_clk = {
- 	.halt_reg = 0x23000,
- 	.halt_check = BRANCH_HALT_VOTED,
-@@ -326,6 +357,8 @@ static struct clk_regmap *lpass_core_cc_sc7280_clocks[] = {
- 	[LPASS_CORE_CC_LPM_CORE_CLK] = &lpass_core_cc_lpm_core_clk.clkr,
- 	[LPASS_CORE_CC_LPM_MEM0_CORE_CLK] = &lpass_core_cc_lpm_mem0_core_clk.clkr,
- 	[LPASS_CORE_CC_SYSNOC_MPORT_CORE_CLK] = &lpass_core_cc_sysnoc_mport_core_clk.clkr,
-+	[LPASS_CORE_CC_EXT_MCLK0_CLK] = &lpass_core_cc_ext_mclk0_clk.clkr,
-+	[LPASS_CORE_CC_EXT_MCLK0_CLK_SRC] = &lpass_core_cc_ext_mclk0_clk_src.clkr,
- };
- 
- static struct regmap_config lpass_core_cc_sc7280_regmap_config = {
--- 
-2.7.4
-
+> +	non-removable;
+> +	mmc-hs400-enhanced-strobe;
+> +	status = "okay";
+> +};
+> +
+> +&sdio0 {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	bus-width = <4>;
+> +	clock-frequency = <50000000>;
+> +	cap-sdio-irq;
+> +	cap-sd-highspeed;
+> +	keep-power-in-suspend;
+> +	mmc-pwrseq = <&sdio_pwrseq>;
+> +	non-removable;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&sdio0_bus4 &sdio0_cmd &sdio0_clk>;
+> +	sd-uhs-sdr104;
+> +	status = "okay";
+> +
+> +	brcmf: wifi@1 {
+> +		compatible = "brcm,bcm4329-fmac";
+> +		reg = <1>;
+> +		interrupt-parent = <&gpio0>;
+> +		interrupts = <RK_PA3 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-names = "host-wake";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&wifi_host_wake_l>;
+> +	};
+> +};
+> +
+> +&sdmmc {
+> +	bus-width = <4>;
+> +	cap-mmc-highspeed;
+> +	cap-sd-highspeed;
+> +	card-detect-delay = <800>;
+> +	disable-wp;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&sdmmc_clk &sdmmc_cmd &sdmmc_bus4>;
+> +	cd-gpios = <&gpio0 RK_PA7 GPIO_ACTIVE_LOW>;
+> +	vqmmc-supply = <&vccio_sd>;
+> +	status = "okay";
+> +};
+> +
+> +&tcphy0 {
+> +	status = "okay";
+> +};
+> +
+> +&tcphy1 {
+> +	status = "okay";
+> +};
+> +
+> +&u2phy0 {
+> +	status = "okay";
+> +
+> +	u2phy0_otg: otg-port {
+> +		status = "okay";
+> +	};
+> +
+> +	u2phy0_host: host-port {
+> +		phy-supply = <&vcc5v0_host1>;
+> +		status = "okay";
+> +	};
+> +};
+> +
+> +&u2phy1 {
+> +	status = "okay";
+> +
+> +	u2phy1_otg: otg-port {
+> +		status = "okay";
+> +	};
+> +
+> +	u2phy1_host: host-port {
+> +		phy-supply = <&vcc5v0_host1>;
+> +		status = "okay";
+> +	};
+> +};
+> +
+> +&uart0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&uart0_xfer &uart0_cts &uart0_rts>;
+> +	status = "okay";
+> +
+> +	bluetooth {
+> +		compatible = "brcm,bcm4345c5";
+> +		clocks = <&rk809 1>;
+> +		clock-names = "lpo";
+> +		device-wakeup-gpios = <&gpio2 RK_PD3 GPIO_ACTIVE_HIGH>;
+> +		host-wakeup-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_HIGH>;
+> +		shutdown-gpios = <&gpio0 RK_PB1 GPIO_ACTIVE_HIGH>;
+> +		max-speed = <1500000>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&bt_host_wake_l &bt_wake_l &bt_enable_h>;
+> +		vbat-supply = <&vcc3v3_sys>;
+> +		vddio-supply = <&vcc_1v8>;
+> +	};
+> +};
+> +
+> +&uart2 {
+> +	status = "okay";
+> +};
+> +
+> +&usb_host0_ehci {
+> +	status = "okay";
+> +};
+> +
+> +&usb_host0_ohci {
+> +	status = "okay";
+> +};
+> +
+> +&usb_host1_ehci {
+> +	status = "okay";
+> +};
+> +
+> +&usb_host1_ohci {
+> +	status = "okay";
+> +};
+> +
+> +&usbdrd3_0 {
+> +	extcon = <&u2phy0>;
+> +	status = "okay";
+> +};
+> +
+> +&usbdrd_dwc3_0 {
+> +	status = "okay";
+> +	dr_mode = "host";
+> +};
+> +
+> +&usbdrd3_1 {
+> +	status = "okay";
+> +};
+> +
+> +&usbdrd_dwc3_1 {
+> +	status = "okay";
+> +	dr_mode = "host";
+> +};
+> +
+> +&vopb {
+> +	status = "okay";
+> +};
+> +
+> +&vopb_mmu {
+> +	status = "okay";
+> +};
+> +
+> +&vopl {
+> +	status = "okay";
+> +};
+> +
+> +&vopl_mmu {
+> +	status = "okay";
+> +};
+> -- 
+> 2.25.1
