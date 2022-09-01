@@ -2,69 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A17A85A8CD0
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 06:42:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E8EF5A8D35
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 07:16:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231898AbiIAEmI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 00:42:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58474 "EHLO
+        id S232351AbiIAFP6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 01:15:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53976 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232156AbiIAEmE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 00:42:04 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF300E3407;
-        Wed, 31 Aug 2022 21:42:00 -0700 (PDT)
-X-UUID: f321b2dec3b34e16974cc00da7162e9c-20220901
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=wUiZHJMPP2vSpfxe/mbTbSnmztzLDmwWnQP1odHMthU=;
-        b=d/hf7lGrWr+gX2xFedMVmE2g+lmPn8ScY4yEGoiLJg+xmPOMc1FqOp6n4Y5ToVdR4vq8zTlqif8zWm4K/PgKXEzsj1zfwegl2SZBTCbN7LVdkpawTO7aWiGhJomos54gT7qStM6pm+gn9u61p83Zko9PvJ3F9uEPhopwXpE3i4k=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.10,REQID:c9542f8f-370d-46b7-aeb9-e34d374ebcb0,OB:0,L
-        OB:0,IP:0,URL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Releas
-        e_Ham,ACTION:release,TS:-25
-X-CID-META: VersionHash:84eae18,CLOUDID:cb18c520-1c20-48a5-82a0-25f9c331906d,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:11|1,File:
-        nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: f321b2dec3b34e16974cc00da7162e9c-20220901
-Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw02.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1235069391; Thu, 01 Sep 2022 12:41:54 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Thu, 1 Sep 2022 12:41:53 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.15 via Frontend Transport; Thu, 1 Sep 2022 12:41:53 +0800
-From:   Bo-Chen Chen <rex-bc.chen@mediatek.com>
-To:     <chunkuang.hu@kernel.org>, <p.zabel@pengutronix.de>,
-        <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mripard@kernel.org>,
-        <tzimmermann@suse.de>, <matthias.bgg@gmail.com>, <deller@gmx.de>,
-        <airlied@linux.ie>
-CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
-        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
-        <angelogioacchino.delregno@collabora.com>, <ck.hu@mediatek.com>,
-        <liangxu.xu@mediatek.com>, <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-fbdev@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Bo-Chen Chen <rex-bc.chen@mediatek.com>
-Subject: [PATCH v17 10/10] drm/mediatek: dp: Audio support for MT8195
-Date:   Thu, 1 Sep 2022 12:41:49 +0800
-Message-ID: <20220901044149.16782-11-rex-bc.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220901044149.16782-1-rex-bc.chen@mediatek.com>
-References: <20220901044149.16782-1-rex-bc.chen@mediatek.com>
+        with ESMTP id S231898AbiIAFP4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 01:15:56 -0400
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (mail-sn1anam02on2073.outbound.protection.outlook.com [40.107.96.73])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A354880507;
+        Wed, 31 Aug 2022 22:15:54 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XiNgQolJWU9ILe6JJdAkHNLXNw0xRB8R+wheUxwUS23EQ6/3IIL+17L4nC0W8OVT3TMu6FvZNJBXzFfhi4RgSsJrKjhKUxNtJrZE7Rp53HwsI5xvbZacflWj4z6q0OWIg3C9HBX9Ibf4IwJCqBMhhhVnqTZGbHdwsKhubnPSOUbOtJhMetZCXJLERw7FdZx4++Hqv2qq8A06v3Z7x3xThI7anHjw+GGO90/AD3/MrS2n1GtC//ZkNZCme5WPZNZZHVf0CBIlAssOnzy2nrhTTd+9L2xXNqa66qsGmIVYVTVDgrP61/7i7PWWhfYW8ZMlb6b5cnoqCjYROlLLEcK0Fg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=wFgSYsXyXxP3L3YmvUumR30JnOvPSIT7Sfj/jo1GG5c=;
+ b=PY/fAIZEWGT8lkjgScBc8466Ova4ytymPgdX7W35Ziqj337a6cMSJYAAsqPNQR17GVILPLy38Vgc64Ka82D9gE86yx7h/cwXWeJy5h+BSjKRDWZaFnmWSNG7J7u05IJmglGdMefR+ucMmjpxwZqFGwev6UIkZI/ETEPaKRI6yRINRFDShZjjOPA1alBM34zzJZhmPvPsxyBJRcQT5IGNjLAArkSpapa0XKA35bA0/uGkYt53SlANrtuUbJCPfHPl1U1REDAbJ4sdAjFJmW2tngOpdW8a1Tg0fNYiRgF4Z541IbdfNxx+kmM/ZIArJ3E2hKClhOcYOHGhsd0t3unriw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=wFgSYsXyXxP3L3YmvUumR30JnOvPSIT7Sfj/jo1GG5c=;
+ b=2kbG8j8TMy1TF3BtuzKzXvoy2hJfPhhaSUrOeCo2qQWMuFZl91jHwFETIrU9aCsgNng/Q1elACrpqJp/UDL5OOLL7v9XIMbTwumREO6jenI6tO1OWp3GV7SIYflvLpy7BgX4DOfuZGEKECwYiiYeMcwC5TR7jukf4gzuzD429c0=
+Received: from BY5PR12MB4258.namprd12.prod.outlook.com (2603:10b6:a03:20d::10)
+ by MW3PR12MB4345.namprd12.prod.outlook.com (2603:10b6:303:59::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5566.15; Thu, 1 Sep
+ 2022 05:15:51 +0000
+Received: from BY5PR12MB4258.namprd12.prod.outlook.com
+ ([fe80::f5a1:c4e7:9c3e:3231]) by BY5PR12MB4258.namprd12.prod.outlook.com
+ ([fe80::f5a1:c4e7:9c3e:3231%4]) with mapi id 15.20.5588.010; Thu, 1 Sep 2022
+ 05:15:51 +0000
+From:   "Potthuri, Sai Krishna" <sai.krishna.potthuri@amd.com>
+To:     Takahiro Kuwano <tkuw584924@gmail.com>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Pratyush Yadav <pratyush@kernel.org>,
+        Michael Walle <michael@walle.cc>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "saikrishna12468@gmail.com" <saikrishna12468@gmail.com>,
+        "git (AMD-Xilinx)" <git@amd.com>,
+        takahiro Kuwano <Takahiro.Kuwano@infineon.com>
+Subject: RE: [PATCH 2/2] mtd: spi-nor: Add support for flash reset
+Thread-Topic: [PATCH 2/2] mtd: spi-nor: Add support for flash reset
+Thread-Index: AQHYu4bSUGIrY8nYfU66nbvPu6SLyK3J1VwAgAA0oCA=
+Date:   Thu, 1 Sep 2022 05:15:51 +0000
+Message-ID: <BY5PR12MB425897185209EFB1CDFCBD3ADB7B9@BY5PR12MB4258.namprd12.prod.outlook.com>
+References: <20220829090528.21613-1-sai.krishna.potthuri@amd.com>
+ <20220829090528.21613-3-sai.krishna.potthuri@amd.com>
+ <11077b0e-0a79-401e-5232-1dc1d1a04d83@gmail.com>
+In-Reply-To: <11077b0e-0a79-401e-5232-1dc1d1a04d83@gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 56a288f8-235f-4415-b4a6-08da8bd909d3
+x-ms-traffictypediagnostic: MW3PR12MB4345:EE_
+x-ld-processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 5Fkn36R9v+PCfmwnzJv1YoFlz2rf4n8dg2OnLvoJ0VHAGCubChM9HMb7at00xr3NK4PlsRB9CVtsz4bIYkMV8BlBON+9uZLyzb0LouEHa2g0EMgagYVjWOG2FJSJI5ctzzm32EJju2b9ibXSnbAAu2SegTTbxFQu4LPAst1DI23uABUf7W45rEhGqHUuE1gL0sPqXqf5uIw62nSleHGm8IDkEm9AUK1G7Vn2T5RB2YYWxGVzXHNZmCL8ZQD2cMUtfSWAoah3HYwkO3HAEArxlog3N+4nW0YI6oiyNCDPFIgeX6BbSuisA44CNtZtBnMgHmrRW5mdrimYlb5kdsdg/QEwma8ud4QVb9AaQiziFjVF8Mu0jPCMyz9jambAL04zeMrZ5YXrMLdAVkE8ypkahqU96uCwAwP0a7tK2Q86M5sQB0d7WNgyoldLjvJyV/E2gUF2dX4ZqgTqbGWpsmTKtDMj7pZwhKY9rZCVOQjhEwgPhhy4U177uXt+0JFDxT8Bvv6u66IekymoMXMaQqTpDKWD4VTOQoSlSx0fCrQh3KN4pp/RiBGFrrLfrtgr7aMTr/ZrNo5Wb09NoIxzLOt+pfjcrOdyzYAmkZfy+P2O3l6momPg9otG3alA8G5XZppHfPVdQ1NiIarJdxruZwa8BH5A/jxlfbnyFvPNOuJngNUBo8P+s+MCZytpT8mGXVuD0avWGKRtxSJi/rdbe2ctGecf3DHiNuO2ntR9KR0qmL1IHShX+dvZfH8UqQ6I5JhVwnXgmds7DisMjZHThnfQuWKTIZgqCK+e8WhQ5I2DIGs=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR12MB4258.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(396003)(376002)(366004)(346002)(39860400002)(136003)(966005)(54906003)(316002)(186003)(66946007)(8676002)(71200400001)(110136005)(66556008)(4326008)(66476007)(76116006)(66446008)(64756008)(478600001)(5660300002)(8936002)(52536014)(7416002)(41300700001)(38070700005)(86362001)(122000001)(6506007)(26005)(2906002)(38100700002)(7696005)(53546011)(83380400001)(33656002)(55016003)(9686003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?UEJGQzVpRlF4KzhLYWVjTlVWUW05SE1qNG5pdFBzNVhHWFRqb3JtR3FEVFNB?=
+ =?utf-8?B?WWJhRzI1MUNmUE1XV1FxeGlMOFBsQzJkMDBDbmFzWkkyZDlOTllBR2x4WWtJ?=
+ =?utf-8?B?MlNSWWFKWGV5WnJTSU1LMDdlQThEQnlseE9SeUtvaHd0OFNHd3d0NGxCVEVX?=
+ =?utf-8?B?cDRpOVB0dUhoRTlwSUZORGxtNzlDdzVObDRMVVVXcTFLbG9QQU1JbnpRTVJE?=
+ =?utf-8?B?cXcwWUtDMVpueEptbnJZcnNaSkhDRGFIK1BBeTZJV3c4SHREeHFVVFlYK202?=
+ =?utf-8?B?TndGeFZaOFp1SWNINDhPMHVWUFVOZDhRekJuS0VBeWVwK0RLYmo0cS8xT1FI?=
+ =?utf-8?B?dzI5TVUvMVRwakd5b0hTWWJUOWtJUUUwM3MrQ2IxNlJabzJ0aXF0TnpRSERK?=
+ =?utf-8?B?VGFGU1UyWVVLbExWMEtPQkFzUjR6ZjF6T054OWRjVUdTTlZlTWZoSnNCSUwz?=
+ =?utf-8?B?eW9aZkhCTkh6T2d6UHE4S2pzNVRERWp2V1JNVldVZi91MW1MK05ZZlpDR1RG?=
+ =?utf-8?B?QmE0WFVIMnFmbXJnRWhZU1RRMlNjNk90aWxpeE1uaHpiS2s4c1RZOFovTkpw?=
+ =?utf-8?B?YUZmSWZHcWwxNlVNazl1SFc4dEVzYjM4M2t0YkJpc21TSmZCRlJlZUVVaE1P?=
+ =?utf-8?B?TXpMR29xY3ZoRnNRUkp5clNUTjI2d3NpcTkzWnU1L004aHl1YnpQQWQvTmZw?=
+ =?utf-8?B?NzlRdXFYZWMxYTFrb1BGRmFxcHoxdzE3M0FwS0JkeWpGS0xuczJmaXQ5dkUx?=
+ =?utf-8?B?M0Q2aTZ4a3RLb25hMGZQL01JOHlKbi96eUFsUzVMNFlMYlBzMVJJdXM0Umh4?=
+ =?utf-8?B?VURpQThiRjNYSWI1OXNBalJ2NmNWTlJKQ0dPTlBQVmlycFpBa3FwcHhjRUU5?=
+ =?utf-8?B?bUg2ZFVTYkpaMW9zQ1dwTFA3eStJbS94TWhEQmRvRDhRRFlLRG9pM01XVmtS?=
+ =?utf-8?B?cVNiL2txNEhIMCtONWxtYXQ5OEIrT0U4eGRxTG1BSFRRY0o1QW5qZ3N1WHJz?=
+ =?utf-8?B?Q2lJamp6bTU1WVcwak00ZVB6THBTeEZuQ0RKbHRxNVJJMGdCelN0NVg5NEdC?=
+ =?utf-8?B?THd4L3lQNUNlWDJvV0UxWGZMMWRxTHVmQjBRRnVkUkpHdEMyMm1Od2czbVU3?=
+ =?utf-8?B?Q3Q4SGgyVzA2YUgzeE9jRXJPbHhnKzlBR1FJOU1vQm9CL0xscEh0RjRCTVpR?=
+ =?utf-8?B?cDl4UWdGMGcyckIvZjhMcnBjQllTY1laSzdQSTRreFJDNEVaQ3dXODBGY1Rq?=
+ =?utf-8?B?bThZem93MkdXNW9wc01qNkVWMUc4OHZOMWZ3NzVxcVovL2xKaDJDRklWSDRT?=
+ =?utf-8?B?RnR5dFBzVW1yY3Q0VzFya1JaMHZZanhBcmgrdmRaQ0J0c2dyc1dmcDl4UGNk?=
+ =?utf-8?B?Q3lLa2xpVmtKWFNIbnlIVzRQK0t4Ri9Zbm0rMXh3Z3dNZ1VuSndMRUhTYzJh?=
+ =?utf-8?B?V1BaMVJ6M0xUUm5hcnp4ODBvZXJMT09CTWI5MWQ0cytlV3V1RzNSUmMzT0dF?=
+ =?utf-8?B?VytGZ3p1OE1RMEQ1NFRrWGkxRU1qRDg4VFdFTUFQU01INXcySkNJVGgyR1g5?=
+ =?utf-8?B?M3FGdmZBNGt6YXpHOG1wQkhkcUFTWlpmRzlGamVuVjVkTDJlc0xqN0lBWlNT?=
+ =?utf-8?B?L1FMSFVnUUhxUDlUR09hUklIR1ZaQ2oxNHJFSGQ2c1d0OXJqUkd4RHpGcFVj?=
+ =?utf-8?B?NSswaUgrNTFwL1R1S1oyUkFUc25NZGFrQitSc25acW40Z3Z5Q20ydW04M2pX?=
+ =?utf-8?B?MEozeW1leUZ5OUtXL0ZFK1BkZ2ZUYjlENmZobHAvRTlBbElRNmk3RGhDOEdT?=
+ =?utf-8?B?TWNZYVNnRzRXQWxPbjFsS29ZVElKS2hlcTJnSEFmamlFcWh1NlpmV3VFODJO?=
+ =?utf-8?B?dExBdFlqOU1LcVYvQTZYYmJWNWUrenR2OUpxTXZma1hhVTZ5YjM3U0gzajNn?=
+ =?utf-8?B?a1JhVjBpM3JEYTRyUnVMTnZ1K0t1cTVPYWd4b1lXTnFLdGtWbXlZM0ViMlNu?=
+ =?utf-8?B?WTR5N2p5d1Iva0VscTZXemNEcDV4b09SMDh4aG9pdVkrK084ZzB6NFhZa29B?=
+ =?utf-8?B?OTJZT2Vqd0hGREd5SDNNUndmS3BWOUpWS2xySFpmcjVyVzZxS3BHZUgrKzFq?=
+ =?utf-8?Q?3C8w=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_CSS
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR12MB4258.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 56a288f8-235f-4415-b4a6-08da8bd909d3
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Sep 2022 05:15:51.4911
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: +GHcmjSyX0OuIk7pz2Y3RydUi1hPB+G0jWU4zBsrr/UOxxL3X1b5XGhdw10JZ1UUatulUEteVMN2i9GUXM5sAg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4345
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,756 +138,75 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Guillaume Ranquet <granquet@baylibre.com>
-
-This patch adds audio support to the DP driver for MT8195 with up to 8
-channels.
-
-Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
----
- drivers/gpu/drm/mediatek/mtk_dp.c     | 482 +++++++++++++++++++++++++-
- drivers/gpu/drm/mediatek/mtk_dp_reg.h |  51 +++
- 2 files changed, 532 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/mediatek/mtk_dp.c b/drivers/gpu/drm/mediatek/mtk_dp.c
-index dd34dae417e5..dfa942ca62da 100644
---- a/drivers/gpu/drm/mediatek/mtk_dp.c
-+++ b/drivers/gpu/drm/mediatek/mtk_dp.c
-@@ -29,6 +29,7 @@
- #include <linux/pm_runtime.h>
- #include <linux/regmap.h>
- #include <linux/soc/mediatek/mtk_sip_svc.h>
-+#include <sound/hdmi-codec.h>
- #include <video/videomode.h>
- 
- #include "mtk_dp_reg.h"
-@@ -47,6 +48,8 @@
- #define MTK_DP_TBC_BUF_READ_START_ADDR 0x8
- #define MTK_DP_TRAIN_VOLTAGE_LEVEL_RETRY 5
- #define MTK_DP_TRAIN_DOWNSCALE_RETRY 10
-+#define MTK_DP_VERSION 0x11
-+#define MTK_DP_SDP_AUI 0x4
- 
- enum {
- 	MTK_DP_CAL_GLB_BIAS_TRIM = 0,
-@@ -71,9 +74,18 @@ struct mtk_dp_train_info {
- 	unsigned int channel_eq_pattern;
- };
- 
-+struct mtk_dp_audio_cfg {
-+	bool detect_monitor;
-+	int sad_count;
-+	int sample_rate;
-+	int word_length_bits;
-+	int channels;
-+};
-+
- struct mtk_dp_info {
- 	enum dp_pixelformat format;
- 	struct videomode vm;
-+	struct mtk_dp_audio_cfg audio_cur_cfg;
- };
- 
- struct mtk_dp_efuse_fmt {
-@@ -111,12 +123,22 @@ struct mtk_dp {
- 	struct phy *phy;
- 	struct regmap *regs;
- 	struct timer_list debounce_timer;
-+
-+	/* For audio */
-+	bool audio_enable;
-+	hdmi_codec_plugged_cb plugged_cb;
-+	struct platform_device *audio_pdev;
-+
-+	struct device *codec_dev;
-+	/* protect the plugged_cb as it's used in both bridge ops and audio */
-+	struct mutex update_plugged_status_lock;
- };
- 
- struct mtk_dp_data {
- 	int bridge_type;
- 	unsigned int smc_cmd;
- 	const struct mtk_dp_efuse_fmt *efuse_fmt;
-+	bool audio_supported;
- };
- 
- static const struct mtk_dp_efuse_fmt mt8195_edp_efuse_fmt[MTK_DP_CAL_MAX] = {
-@@ -512,6 +534,169 @@ static void mtk_dp_pg_enable(struct mtk_dp *mtk_dp, bool enable)
- 			   PGEN_PATTERN_SEL_VAL << 4, PGEN_PATTERN_SEL_MASK);
- }
- 
-+static void mtk_dp_audio_setup_channels(struct mtk_dp *mtk_dp,
-+					struct mtk_dp_audio_cfg *cfg)
-+{
-+	u32 channel_enable_bits;
-+
-+	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC1_P0_3324,
-+			   AUDIO_SOURCE_MUX_DP_ENC1_P0_DPRX,
-+			   AUDIO_SOURCE_MUX_DP_ENC1_P0_MASK);
-+
-+	/* audio channel count change reset */
-+	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC1_P0_33F4,
-+			   DP_ENC_DUMMY_RW_1, DP_ENC_DUMMY_RW_1);
-+	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC1_P0_3304,
-+			   AU_PRTY_REGEN_DP_ENC1_P0_MASK |
-+			   AU_CH_STS_REGEN_DP_ENC1_P0_MASK |
-+			   AUDIO_SAMPLE_PRSENT_REGEN_DP_ENC1_P0_MASK,
-+			   AU_PRTY_REGEN_DP_ENC1_P0_MASK |
-+			   AU_CH_STS_REGEN_DP_ENC1_P0_MASK |
-+			   AUDIO_SAMPLE_PRSENT_REGEN_DP_ENC1_P0_MASK);
-+
-+	switch (cfg->channels) {
-+	case 2:
-+		channel_enable_bits = AUDIO_2CH_SEL_DP_ENC0_P0_MASK |
-+				      AUDIO_2CH_EN_DP_ENC0_P0_MASK;
-+		break;
-+	case 8:
-+	default:
-+		channel_enable_bits = AUDIO_8CH_SEL_DP_ENC0_P0_MASK |
-+				      AUDIO_8CH_EN_DP_ENC0_P0_MASK;
-+		break;
-+	}
-+	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3088,
-+			   channel_enable_bits | AU_EN_DP_ENC0_P0,
-+			   AUDIO_2CH_SEL_DP_ENC0_P0_MASK |
-+			   AUDIO_2CH_EN_DP_ENC0_P0_MASK |
-+			   AUDIO_8CH_SEL_DP_ENC0_P0_MASK |
-+			   AUDIO_8CH_EN_DP_ENC0_P0_MASK |
-+			   AU_EN_DP_ENC0_P0);
-+
-+	/* audio channel count change reset */
-+	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC1_P0_33F4, 0, DP_ENC_DUMMY_RW_1);
-+
-+	/* enable audio reset */
-+	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC1_P0_33F4,
-+			   DP_ENC_DUMMY_RW_1_AUDIO_RST_EN,
-+			   DP_ENC_DUMMY_RW_1_AUDIO_RST_EN);
-+}
-+
-+static void mtk_dp_audio_channel_status_set(struct mtk_dp *mtk_dp,
-+					    struct mtk_dp_audio_cfg *cfg)
-+{
-+	struct snd_aes_iec958 iec = { 0 };
-+
-+	switch (cfg->sample_rate) {
-+	case 32000:
-+		iec.status[3] = IEC958_AES3_CON_FS_32000;
-+		break;
-+	case 44100:
-+		iec.status[3] = IEC958_AES3_CON_FS_44100;
-+		break;
-+	case 48000:
-+		iec.status[3] = IEC958_AES3_CON_FS_48000;
-+		break;
-+	case 88200:
-+		iec.status[3] = IEC958_AES3_CON_FS_88200;
-+		break;
-+	case 96000:
-+		iec.status[3] = IEC958_AES3_CON_FS_96000;
-+		break;
-+	case 192000:
-+		iec.status[3] = IEC958_AES3_CON_FS_192000;
-+		break;
-+	default:
-+		iec.status[3] = IEC958_AES3_CON_FS_NOTID;
-+		break;
-+	}
-+
-+	switch (cfg->word_length_bits) {
-+	case 16:
-+		iec.status[4] = IEC958_AES4_CON_WORDLEN_20_16;
-+		break;
-+	case 20:
-+		iec.status[4] = IEC958_AES4_CON_WORDLEN_20_16 |
-+				IEC958_AES4_CON_MAX_WORDLEN_24;
-+		break;
-+	case 24:
-+		iec.status[4] = IEC958_AES4_CON_WORDLEN_24_20 |
-+				IEC958_AES4_CON_MAX_WORDLEN_24;
-+		break;
-+	default:
-+		iec.status[4] = IEC958_AES4_CON_WORDLEN_NOTID;
-+	}
-+
-+	/* IEC 60958 consumer channel status bits */
-+	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_308C,
-+			   0, CH_STATUS_0_DP_ENC0_P0_MASK);
-+	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3090,
-+			   iec.status[3] << 8, CH_STATUS_1_DP_ENC0_P0_MASK);
-+	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3094,
-+			   iec.status[4], CH_STATUS_2_DP_ENC0_P0_MASK);
-+}
-+
-+static void mtk_dp_audio_sdp_asp_set_channels(struct mtk_dp *mtk_dp,
-+					      int channels)
-+{
-+	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_312C,
-+			   (min(8, channels) - 1) << 8,
-+			   ASP_HB2_DP_ENC0_P0_MASK | ASP_HB3_DP_ENC0_P0_MASK);
-+}
-+
-+static void mtk_dp_audio_set_divider(struct mtk_dp *mtk_dp)
-+{
-+	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_30BC,
-+			   AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2,
-+			   AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MASK);
-+}
-+
-+static void mtk_dp_sdp_trigger_aui(struct mtk_dp *mtk_dp)
-+{
-+	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC1_P0_3280,
-+			   MTK_DP_SDP_AUI, SDP_PACKET_TYPE_DP_ENC1_P0_MASK);
-+	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC1_P0_3280,
-+			   SDP_PACKET_W_DP_ENC1_P0, SDP_PACKET_W_DP_ENC1_P0);
-+}
-+
-+static void mtk_dp_sdp_set_data(struct mtk_dp *mtk_dp, u8 *data_bytes)
-+{
-+	mtk_dp_bulk_16bit_write(mtk_dp, MTK_DP_ENC1_P0_3200,
-+				data_bytes, 0x10);
-+}
-+
-+static void mtk_dp_sdp_set_header_aui(struct mtk_dp *mtk_dp,
-+				      struct dp_sdp_header *header)
-+{
-+	u32 db_addr = MTK_DP_ENC0_P0_30D8 + (MTK_DP_SDP_AUI - 1) * 8;
-+
-+	mtk_dp_bulk_16bit_write(mtk_dp, db_addr, (u8 *)header, 4);
-+}
-+
-+static void mtk_dp_disable_sdp_aui(struct mtk_dp *mtk_dp)
-+{
-+	/* Disable periodic send */
-+	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_30A8 & 0xfffc, 0,
-+			   0xff << ((MTK_DP_ENC0_P0_30A8 & 3) * 8));
-+}
-+
-+static void mtk_dp_setup_sdp_aui(struct mtk_dp *mtk_dp,
-+				 struct dp_sdp *sdp)
-+{
-+	u32 shift;
-+
-+	mtk_dp_sdp_set_data(mtk_dp, sdp->db);
-+	mtk_dp_sdp_set_header_aui(mtk_dp, &sdp->sdp_header);
-+	mtk_dp_disable_sdp_aui(mtk_dp);
-+
-+	shift = (MTK_DP_ENC0_P0_30A8 & 3) * 8;
-+
-+	mtk_dp_sdp_trigger_aui(mtk_dp);
-+	/* Enable periodic sending */
-+	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_30A8 & 0xfffc,
-+			   0x05 << shift, 0xff << shift);
-+}
-+
- static void mtk_dp_aux_irq_clear(struct mtk_dp *mtk_dp)
- {
- 	mtk_dp_write(mtk_dp, MTK_DP_AUX_P0_3640, DP_AUX_P0_3640_VAL);
-@@ -1041,6 +1226,32 @@ static void mtk_dp_video_mute(struct mtk_dp *mtk_dp, bool enable)
- 		mtk_dp->data->smc_cmd, enable, res.a0, res.a1);
- }
- 
-+static void mtk_dp_audio_mute(struct mtk_dp *mtk_dp, bool mute)
-+{
-+	u32 val[3];
-+
-+	if (mute) {
-+		val[0] = VBID_AUDIO_MUTE_FLAG_SW_DP_ENC0_P0 |
-+			 VBID_AUDIO_MUTE_FLAG_SEL_DP_ENC0_P0;
-+		val[1] = 0;
-+		val[2] = 0;
-+	} else {
-+		val[0] = 0;
-+		val[1] = AU_EN_DP_ENC0_P0;
-+		/* Send one every two frames */
-+		val[2] = 0x0F;
-+	}
-+
-+	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3030,
-+			   val[0],
-+			   VBID_AUDIO_MUTE_FLAG_SW_DP_ENC0_P0 |
-+			   VBID_AUDIO_MUTE_FLAG_SEL_DP_ENC0_P0);
-+	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3088,
-+			   val[1], AU_EN_DP_ENC0_P0);
-+	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_30A4,
-+			   val[2], AU_TS_CFG_DP_ENC0_P0_MASK);
-+}
-+
- static void mtk_dp_power_enable(struct mtk_dp *mtk_dp)
- {
- 	mtk_dp_update_bits(mtk_dp, MTK_DP_TOP_RESET_AND_PROBE,
-@@ -1080,6 +1291,76 @@ static void mtk_dp_initialize_priv_data(struct mtk_dp *mtk_dp)
- 
- 	mtk_dp->info.format = DP_PIXELFORMAT_RGB;
- 	memset(&mtk_dp->info.vm, 0, sizeof(struct videomode));
-+	mtk_dp->audio_enable = false;
-+}
-+
-+static void mtk_dp_sdp_set_down_cnt_init(struct mtk_dp *mtk_dp,
-+					 u32 sram_read_start)
-+{
-+	u32 sdp_down_cnt_init = 0;
-+	struct drm_display_mode mode;
-+	struct videomode *vm = &mtk_dp->info.vm;
-+
-+	drm_display_mode_from_videomode(vm, &mode);
-+
-+	if (mode.clock > 0)
-+		sdp_down_cnt_init = sram_read_start *
-+				    mtk_dp->train_info.link_rate * 2700 * 8 /
-+				    (mode.clock * 4);
-+
-+	switch (mtk_dp->train_info.lane_count) {
-+	case 1:
-+		sdp_down_cnt_init = max_t(u32, sdp_down_cnt_init, 0x1A);
-+		break;
-+	case 2:
-+		/* case for LowResolution && High Audio Sample Rate */
-+		sdp_down_cnt_init = max_t(u32, sdp_down_cnt_init, 0x10);
-+		sdp_down_cnt_init += mode.vtotal <= 525 ? 4 : 0;
-+		break;
-+	case 4:
-+	default:
-+		sdp_down_cnt_init = max_t(u32, sdp_down_cnt_init, 6);
-+		break;
-+	}
-+
-+	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3040,
-+			   sdp_down_cnt_init,
-+			   SDP_DOWN_CNT_INIT_DP_ENC0_P0_MASK);
-+}
-+
-+static void mtk_dp_sdp_set_down_cnt_init_in_hblank(struct mtk_dp *mtk_dp)
-+{
-+	int pix_clk_mhz;
-+	u32 dc_offset;
-+	u32 spd_down_cnt_init = 0;
-+	struct drm_display_mode mode;
-+	struct videomode *vm = &mtk_dp->info.vm;
-+
-+	drm_display_mode_from_videomode(vm, &mode);
-+
-+	pix_clk_mhz = mtk_dp->info.format == DP_PIXELFORMAT_YUV420 ?
-+		      mode.clock / 2000 : mode.clock / 1000;
-+
-+	switch (mtk_dp->train_info.lane_count) {
-+	case 1:
-+		spd_down_cnt_init = 0x20;
-+		break;
-+	case 2:
-+		dc_offset = (mode.vtotal <= 525) ? 0x14 : 0x00;
-+		spd_down_cnt_init = 0x18 + dc_offset;
-+		break;
-+	case 4:
-+	default:
-+		dc_offset = (mode.vtotal <= 525) ? 0x08 : 0x00;
-+		if (pix_clk_mhz > mtk_dp->train_info.link_rate * 27)
-+			spd_down_cnt_init = 0x8;
-+		else
-+			spd_down_cnt_init = 0x10 + dc_offset;
-+		break;
-+	}
-+
-+	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC1_P0_3364, spd_down_cnt_init,
-+			   SDP_DOWN_CNT_INIT_IN_HBLANK_DP_ENC1_P0_MASK);
- }
- 
- static void mtk_dp_setup_tu(struct mtk_dp *mtk_dp)
-@@ -1091,6 +1372,8 @@ static void mtk_dp_setup_tu(struct mtk_dp *mtk_dp)
- 				    MTK_DP_PIX_PER_ADDR);
- 	mtk_dp_set_sram_read_start(mtk_dp, sram_read_start);
- 	mtk_dp_setup_encoder(mtk_dp);
-+	mtk_dp_sdp_set_down_cnt_init_in_hblank(mtk_dp);
-+	mtk_dp_sdp_set_down_cnt_init(mtk_dp, sram_read_start);
- }
- 
- static void mtk_dp_set_tx_out(struct mtk_dp *mtk_dp)
-@@ -1342,6 +1625,20 @@ static int mtk_dp_parse_capabilities(struct mtk_dp *mtk_dp)
- 	return 0;
- }
- 
-+static bool mtk_dp_edid_parse_audio_capabilities(struct mtk_dp *mtk_dp,
-+						 struct mtk_dp_audio_cfg *cfg)
-+{
-+	if (!mtk_dp->data->audio_supported)
-+		return false;
-+
-+	if (mtk_dp->info.audio_cur_cfg.sad_count <= 0) {
-+		drm_info(mtk_dp->drm_dev, "The SADs is NULL\n");
-+		return false;
-+	}
-+
-+	return true;
-+}
-+
- static void mtk_dp_train_change_mode(struct mtk_dp *mtk_dp)
- {
- 	phy_reset(mtk_dp->phy);
-@@ -1446,6 +1743,46 @@ static void mtk_dp_video_enable(struct mtk_dp *mtk_dp, bool enable)
- 	}
- }
- 
-+static void mtk_dp_audio_sdp_setup(struct mtk_dp *mtk_dp,
-+				   struct mtk_dp_audio_cfg *cfg)
-+{
-+	struct dp_sdp sdp;
-+	struct hdmi_audio_infoframe frame;
-+
-+	hdmi_audio_infoframe_init(&frame);
-+	frame.coding_type = HDMI_AUDIO_CODING_TYPE_PCM;
-+	frame.channels = cfg->channels;
-+	frame.sample_frequency = cfg->sample_rate;
-+
-+	switch (cfg->word_length_bits) {
-+	case 16:
-+		frame.sample_size = HDMI_AUDIO_SAMPLE_SIZE_16;
-+		break;
-+	case 20:
-+		frame.sample_size = HDMI_AUDIO_SAMPLE_SIZE_20;
-+		break;
-+	case 24:
-+	default:
-+		frame.sample_size = HDMI_AUDIO_SAMPLE_SIZE_24;
-+		break;
-+	}
-+
-+	hdmi_audio_infoframe_pack_for_dp(&frame, &sdp, MTK_DP_VERSION);
-+
-+	mtk_dp_audio_sdp_asp_set_channels(mtk_dp, cfg->channels);
-+	mtk_dp_setup_sdp_aui(mtk_dp, &sdp);
-+}
-+
-+static void mtk_dp_audio_setup(struct mtk_dp *mtk_dp,
-+			       struct mtk_dp_audio_cfg *cfg)
-+{
-+	mtk_dp_audio_sdp_setup(mtk_dp, cfg);
-+	mtk_dp_audio_channel_status_set(mtk_dp, cfg);
-+
-+	mtk_dp_audio_setup_channels(mtk_dp, cfg);
-+	mtk_dp_audio_set_divider(mtk_dp);
-+}
-+
- static int mtk_dp_video_config(struct mtk_dp *mtk_dp)
- {
- 	mtk_dp_config_mn_mode(mtk_dp);
-@@ -1489,6 +1826,10 @@ static irqreturn_t mtk_dp_hpd_event_thread(int hpd, void *dev)
- 		drm_helper_hpd_irq_event(mtk_dp->bridge.dev);
- 
- 		if (!mtk_dp->train_info.cable_plugged_in) {
-+			mtk_dp_disable_sdp_aui(mtk_dp);
-+			memset(&mtk_dp->info.audio_cur_cfg, 0,
-+			       sizeof(mtk_dp->info.audio_cur_cfg));
-+
- 			mtk_dp->need_debounce = false;
- 			mod_timer(&mtk_dp->debounce_timer,
- 				  jiffies + msecs_to_jiffies(100) - 1);
-@@ -1575,6 +1916,16 @@ static int mtk_dp_dt_parse(struct mtk_dp *mtk_dp,
- 	return 0;
- }
- 
-+static void mtk_dp_update_plugged_status(struct mtk_dp *mtk_dp)
-+{
-+	mutex_lock(&mtk_dp->update_plugged_status_lock);
-+	if (mtk_dp->plugged_cb && mtk_dp->codec_dev)
-+		mtk_dp->plugged_cb(mtk_dp->codec_dev,
-+				   mtk_dp->enabled &
-+				   mtk_dp->info.audio_cur_cfg.detect_monitor);
-+	mutex_unlock(&mtk_dp->update_plugged_status_lock);
-+}
-+
- static enum drm_connector_status mtk_dp_bdg_detect(struct drm_bridge *bridge)
- {
- 	struct mtk_dp *mtk_dp = mtk_dp_from_bridge(bridge);
-@@ -1615,7 +1966,6 @@ static enum drm_connector_status mtk_dp_bdg_detect(struct drm_bridge *bridge)
- 					   DP_PWR_STATE_MASK);
- 		}
- 	}
--
- 	return ret;
- }
- 
-@@ -1625,6 +1975,8 @@ static struct edid *mtk_dp_get_edid(struct drm_bridge *bridge,
- 	struct mtk_dp *mtk_dp = mtk_dp_from_bridge(bridge);
- 	bool enabled = mtk_dp->enabled;
- 	struct edid *new_edid = NULL;
-+	struct mtk_dp_audio_cfg *audio_caps = &mtk_dp->info.audio_cur_cfg;
-+	struct cea_sad *sads;
- 
- 	if (!enabled) {
- 		drm_bridge_chain_pre_enable(bridge);
-@@ -1650,6 +2002,11 @@ static struct edid *mtk_dp_get_edid(struct drm_bridge *bridge,
- 		new_edid = NULL;
- 	}
- 
-+	if (new_edid) {
-+		audio_caps->sad_count = drm_edid_to_sad(new_edid, &sads);
-+		audio_caps->detect_monitor = drm_detect_monitor_audio(new_edid);
-+	}
-+
- 	if (!enabled) {
- 		/* power off panel */
- 		drm_dp_dpcd_writeb(&mtk_dp->aux, DP_SET_POWER, DP_SET_POWER_D3);
-@@ -1843,7 +2200,19 @@ static void mtk_dp_bridge_atomic_enable(struct drm_bridge *bridge,
- 
- 	mtk_dp_video_enable(mtk_dp, true);
- 
-+	mtk_dp->audio_enable =
-+		mtk_dp_edid_parse_audio_capabilities(mtk_dp,
-+						     &mtk_dp->info.audio_cur_cfg);
-+	if (mtk_dp->audio_enable) {
-+		mtk_dp_audio_setup(mtk_dp, &mtk_dp->info.audio_cur_cfg);
-+		mtk_dp_audio_mute(mtk_dp, false);
-+	} else {
-+		memset(&mtk_dp->info.audio_cur_cfg, 0,
-+		       sizeof(mtk_dp->info.audio_cur_cfg));
-+	}
-+
- 	mtk_dp->enabled = true;
-+	mtk_dp_update_plugged_status(mtk_dp);
- 
- 	return;
- power_off_aux:
-@@ -1858,7 +2227,9 @@ static void mtk_dp_bridge_atomic_disable(struct drm_bridge *bridge,
- 	struct mtk_dp *mtk_dp = mtk_dp_from_bridge(bridge);
- 
- 	mtk_dp->enabled = false;
-+	mtk_dp_update_plugged_status(mtk_dp);
- 	mtk_dp_video_enable(mtk_dp, false);
-+	mtk_dp_audio_mute(mtk_dp, true);
- 
- 	if (mtk_dp->train_info.cable_plugged_in) {
- 		drm_dp_dpcd_writeb(&mtk_dp->aux, DP_SET_POWER, DP_SET_POWER_D3);
-@@ -2015,6 +2386,100 @@ static void mtk_dp_debounce_timer(struct timer_list *t)
- 	mtk_dp->need_debounce = true;
- }
- 
-+/*
-+ * HDMI audio codec callbacks
-+ */
-+static int mtk_dp_audio_hw_params(struct device *dev, void *data,
-+				  struct hdmi_codec_daifmt *daifmt,
-+				  struct hdmi_codec_params *params)
-+{
-+	struct mtk_dp *mtk_dp = dev_get_drvdata(dev);
-+
-+	if (!mtk_dp->enabled) {
-+		dev_err(mtk_dp->dev, "%s, DP is not ready!\n", __func__);
-+		return -ENODEV;
-+	}
-+
-+	mtk_dp->info.audio_cur_cfg.channels = params->cea.channels;
-+	mtk_dp->info.audio_cur_cfg.sample_rate = params->sample_rate;
-+
-+	mtk_dp_audio_setup(mtk_dp, &mtk_dp->info.audio_cur_cfg);
-+
-+	return 0;
-+}
-+
-+static int mtk_dp_audio_startup(struct device *dev, void *data)
-+{
-+	struct mtk_dp *mtk_dp = dev_get_drvdata(dev);
-+
-+	mtk_dp_audio_mute(mtk_dp, false);
-+
-+	return 0;
-+}
-+
-+static void mtk_dp_audio_shutdown(struct device *dev, void *data)
-+{
-+	struct mtk_dp *mtk_dp = dev_get_drvdata(dev);
-+
-+	mtk_dp_audio_mute(mtk_dp, true);
-+}
-+
-+static int mtk_dp_audio_get_eld(struct device *dev, void *data, uint8_t *buf,
-+				size_t len)
-+{
-+	struct mtk_dp *mtk_dp = dev_get_drvdata(dev);
-+
-+	if (mtk_dp->enabled)
-+		memcpy(buf, mtk_dp->conn->eld, len);
-+	else
-+		memset(buf, 0, len);
-+
-+	return 0;
-+}
-+
-+static int mtk_dp_audio_hook_plugged_cb(struct device *dev, void *data,
-+					hdmi_codec_plugged_cb fn,
-+					struct device *codec_dev)
-+{
-+	struct mtk_dp *mtk_dp = data;
-+
-+	mutex_lock(&mtk_dp->update_plugged_status_lock);
-+	mtk_dp->plugged_cb = fn;
-+	mtk_dp->codec_dev = codec_dev;
-+	mutex_unlock(&mtk_dp->update_plugged_status_lock);
-+
-+	mtk_dp_update_plugged_status(mtk_dp);
-+
-+	return 0;
-+}
-+
-+static const struct hdmi_codec_ops mtk_dp_audio_codec_ops = {
-+	.hw_params = mtk_dp_audio_hw_params,
-+	.audio_startup = mtk_dp_audio_startup,
-+	.audio_shutdown = mtk_dp_audio_shutdown,
-+	.get_eld = mtk_dp_audio_get_eld,
-+	.hook_plugged_cb = mtk_dp_audio_hook_plugged_cb,
-+	.no_capture_mute = 1,
-+};
-+
-+static int mtk_dp_register_audio_driver(struct device *dev)
-+{
-+	struct mtk_dp *mtk_dp = dev_get_drvdata(dev);
-+	struct hdmi_codec_pdata codec_data = {
-+		.ops = &mtk_dp_audio_codec_ops,
-+		.max_i2s_channels = 8,
-+		.i2s = 1,
-+		.data = mtk_dp,
-+	};
-+
-+	mtk_dp->audio_pdev = platform_device_register_data(dev,
-+							   HDMI_CODEC_DRV_NAME,
-+							   PLATFORM_DEVID_AUTO,
-+							   &codec_data,
-+							   sizeof(codec_data));
-+	return PTR_ERR_OR_ZERO(mtk_dp->audio_pdev);
-+}
-+
- static int mtk_dp_probe(struct platform_device *pdev)
- {
- 	struct mtk_dp *mtk_dp;
-@@ -2059,8 +2524,19 @@ static int mtk_dp_probe(struct platform_device *pdev)
- 		return dev_err_probe(dev, ret,
- 				     "failed to request mediatek dptx irq\n");
- 
-+	mutex_init(&mtk_dp->update_plugged_status_lock);
-+
- 	platform_set_drvdata(pdev, mtk_dp);
- 
-+	if (mtk_dp->data->audio_supported) {
-+		ret = mtk_dp_register_audio_driver(dev);
-+		if (ret) {
-+			dev_err(dev, "Failed to register audio driver: %d\n",
-+				ret);
-+			return ret;
-+		}
-+	}
-+
- 	mtk_dp->phy_dev = platform_device_register_data(dev, "mediatek-dp-phy",
- 							PLATFORM_DEVID_AUTO,
- 							&mtk_dp->regs,
-@@ -2106,6 +2582,8 @@ static int mtk_dp_remove(struct platform_device *pdev)
- 	del_timer_sync(&mtk_dp->debounce_timer);
- 	drm_bridge_remove(&mtk_dp->bridge);
- 	platform_device_unregister(mtk_dp->phy_dev);
-+	if (mtk_dp->audio_pdev)
-+		platform_device_unregister(mtk_dp->audio_pdev);
- 
- 	return 0;
- }
-@@ -2141,12 +2619,14 @@ static const struct mtk_dp_data mt8195_edp_data = {
- 	.bridge_type = DRM_MODE_CONNECTOR_eDP,
- 	.smc_cmd = MTK_DP_SIP_ATF_EDP_VIDEO_UNMUTE,
- 	.efuse_fmt = mt8195_edp_efuse_fmt,
-+	.audio_supported = false,
- };
- 
- static const struct mtk_dp_data mt8195_dp_data = {
- 	.bridge_type = DRM_MODE_CONNECTOR_DisplayPort,
- 	.smc_cmd = MTK_DP_SIP_ATF_VIDEO_UNMUTE,
- 	.efuse_fmt = mt8195_dp_efuse_fmt,
-+	.audio_supported = true,
- };
- 
- static const struct of_device_id mtk_dp_of_match[] = {
-diff --git a/drivers/gpu/drm/mediatek/mtk_dp_reg.h b/drivers/gpu/drm/mediatek/mtk_dp_reg.h
-index 3f01ba44871f..096ad6572a5e 100644
---- a/drivers/gpu/drm/mediatek/mtk_dp_reg.h
-+++ b/drivers/gpu/drm/mediatek/mtk_dp_reg.h
-@@ -115,6 +115,8 @@
- #define HSW_SEL_DP_ENC0_P0				BIT(7)
- #define VSP_SEL_DP_ENC0_P0				BIT(8)
- #define VSW_SEL_DP_ENC0_P0				BIT(9)
-+#define VBID_AUDIO_MUTE_FLAG_SW_DP_ENC0_P0		BIT(11)
-+#define VBID_AUDIO_MUTE_FLAG_SEL_DP_ENC0_P0		BIT(12)
- #define MTK_DP_ENC0_P0_3034			0x3034
- #define MTK_DP_ENC0_P0_3038			0x3038
- #define VIDEO_SOURCE_SEL_DP_ENC0_P0_MASK		BIT(11)
-@@ -139,6 +141,38 @@
- #define SDP_VSYNC_RISING_MASK_DP_ENC0_P0_MASK		BIT(8)
- #define MTK_DP_ENC0_P0_3064			0x3064
- #define HDE_NUM_LAST_DP_ENC0_P0_MASK			GENMASK(15, 0)
-+#define MTK_DP_ENC0_P0_3088			0x3088
-+#define AU_EN_DP_ENC0_P0				BIT(6)
-+#define AUDIO_8CH_EN_DP_ENC0_P0_MASK			BIT(7)
-+#define AUDIO_8CH_SEL_DP_ENC0_P0_MASK			BIT(8)
-+#define AUDIO_2CH_EN_DP_ENC0_P0_MASK			BIT(14)
-+#define AUDIO_2CH_SEL_DP_ENC0_P0_MASK			BIT(15)
-+#define MTK_DP_ENC0_P0_308C			0x308c
-+#define CH_STATUS_0_DP_ENC0_P0_MASK			GENMASK(15, 0)
-+#define MTK_DP_ENC0_P0_3090			0x3090
-+#define CH_STATUS_1_DP_ENC0_P0_MASK			GENMASK(15, 0)
-+#define MTK_DP_ENC0_P0_3094			0x3094
-+#define CH_STATUS_2_DP_ENC0_P0_MASK			GENMASK(7, 0)
-+#define MTK_DP_ENC0_P0_30A0			0x30a0
-+#define DP_ENC0_30A0_MASK				(BIT(7) | BIT(8) | BIT(12))
-+#define MTK_DP_ENC0_P0_30A4			0x30a4
-+#define AU_TS_CFG_DP_ENC0_P0_MASK			GENMASK(7, 0)
-+#define MTK_DP_ENC0_P0_30A8			0x30a8
-+#define MTK_DP_ENC0_P0_30BC			0x30bc
-+#define ISRC_CONT_DP_ENC0_P0				BIT(0)
-+#define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MASK	GENMASK(10, 8)
-+#define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MUL_2	(1 << 8)
-+#define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MUL_4	(2 << 8)
-+#define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MUL_8	(3 << 8)
-+#define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2	(5 << 8)
-+#define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_4	(6 << 8)
-+#define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_8	(7 << 8)
-+#define MTK_DP_ENC0_P0_30D8			0x30d8
-+#define MTK_DP_ENC0_P0_312C			0x312c
-+#define ASP_HB2_DP_ENC0_P0_MASK				GENMASK(7, 0)
-+#define ASP_HB3_DP_ENC0_P0_MASK				GENMASK(15, 8)
-+#define MTK_DP_ENC0_P0_3130			0x3130
-+#define MTK_DP_ENC0_P0_3138			0x3138
- #define MTK_DP_ENC0_P0_3154			0x3154
- #define PGEN_HTOTAL_DP_ENC0_P0_MASK			GENMASK(13, 0)
- #define MTK_DP_ENC0_P0_3158			0x3158
-@@ -167,9 +201,23 @@
- #define ISRC1_HB3_DP_ENC0_P0_MASK			GENMASK(15, 8)
- 
- /* offset: ENC1_OFFSET (0x3200) */
-+#define MTK_DP_ENC1_P0_3200			0x3200
-+#define MTK_DP_ENC1_P0_3280			0x3280
-+#define SDP_PACKET_TYPE_DP_ENC1_P0_MASK			GENMASK(4, 0)
-+#define SDP_PACKET_W_DP_ENC1_P0				BIT(5)
-+#define SDP_PACKET_W_DP_ENC1_P0_MASK			BIT(5)
-+#define MTK_DP_ENC1_P0_328C			0x328c
-+#define VSC_DATA_RDY_VESA_DP_ENC1_P0_MASK		BIT(7)
- #define MTK_DP_ENC1_P0_3300			0x3300
- #define VIDEO_AFIFO_RDY_SEL_DP_ENC1_P0_VAL		2
- #define VIDEO_AFIFO_RDY_SEL_DP_ENC1_P0_MASK		GENMASK(9, 8)
-+#define MTK_DP_ENC1_P0_3304			0x3304
-+#define AU_PRTY_REGEN_DP_ENC1_P0_MASK			BIT(8)
-+#define AU_CH_STS_REGEN_DP_ENC1_P0_MASK			BIT(9)
-+#define AUDIO_SAMPLE_PRSENT_REGEN_DP_ENC1_P0_MASK	BIT(12)
-+#define MTK_DP_ENC1_P0_3324			0x3324
-+#define AUDIO_SOURCE_MUX_DP_ENC1_P0_MASK		GENMASK(9, 8)
-+#define AUDIO_SOURCE_MUX_DP_ENC1_P0_DPRX		0
- #define MTK_DP_ENC1_P0_3364			0x3364
- #define SDP_DOWN_CNT_IN_HBLANK_DP_ENC1_P0_VAL		0x20
- #define SDP_DOWN_CNT_INIT_IN_HBLANK_DP_ENC1_P0_MASK	GENMASK(11, 0)
-@@ -186,6 +234,9 @@
- 							 VIDEO_STABLE_CNT_THRD_DP_ENC1_P0 | \
- 							 SDP_DP13_EN_DP_ENC1_P0 | \
- 							 BS2BS_MODE_DP_ENC1_P0)
-+#define MTK_DP_ENC1_P0_33F4			0x33f4
-+#define DP_ENC_DUMMY_RW_1_AUDIO_RST_EN			BIT(0)
-+#define DP_ENC_DUMMY_RW_1				BIT(9)
- 
- /* offset: TRANS_OFFSET (0x3400) */
- #define MTK_DP_TRANS_P0_3400				0x3400
--- 
-2.18.0
-
+SGkgVGFrYWhpcm8gS3V3YW5vLA0KDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZy
+b206IFRha2FoaXJvIEt1d2FubyA8dGt1dzU4NDkyNEBnbWFpbC5jb20+DQo+IFNlbnQ6IFRodXJz
+ZGF5LCBTZXB0ZW1iZXIgMSwgMjAyMiA3OjI4IEFNDQo+IFRvOiBQb3R0aHVyaSwgU2FpIEtyaXNo
+bmEgPHNhaS5rcmlzaG5hLnBvdHRodXJpQGFtZC5jb20+OyBUdWRvciBBbWJhcnVzDQo+IDx0dWRv
+ci5hbWJhcnVzQG1pY3JvY2hpcC5jb20+OyBQcmF0eXVzaCBZYWRhdiA8cHJhdHl1c2hAa2VybmVs
+Lm9yZz47DQo+IE1pY2hhZWwgV2FsbGUgPG1pY2hhZWxAd2FsbGUuY2M+OyBNaXF1ZWwgUmF5bmFs
+DQo+IDxtaXF1ZWwucmF5bmFsQGJvb3RsaW4uY29tPjsgUmljaGFyZCBXZWluYmVyZ2VyIDxyaWNo
+YXJkQG5vZC5hdD47DQo+IFZpZ25lc2ggUmFnaGF2ZW5kcmEgPHZpZ25lc2hyQHRpLmNvbT47IFJv
+YiBIZXJyaW5nDQo+IDxyb2JoK2R0QGtlcm5lbC5vcmc+OyBLcnp5c3p0b2YgS296bG93c2tpDQo+
+IDxrcnp5c3p0b2Yua296bG93c2tpK2R0QGxpbmFyby5vcmc+DQo+IENjOiBkZXZpY2V0cmVlQHZn
+ZXIua2VybmVsLm9yZzsgbGludXgtbXRkQGxpc3RzLmluZnJhZGVhZC5vcmc7IGxpbnV4LQ0KPiBr
+ZXJuZWxAdmdlci5rZXJuZWwub3JnOyBzYWlrcmlzaG5hMTI0NjhAZ21haWwuY29tOyBnaXQgKEFN
+RC1YaWxpbngpDQo+IDxnaXRAYW1kLmNvbT47IHRha2FoaXJvIEt1d2FubyA8VGFrYWhpcm8uS3V3
+YW5vQGluZmluZW9uLmNvbT4NCj4gU3ViamVjdDogUmU6IFtQQVRDSCAyLzJdIG10ZDogc3BpLW5v
+cjogQWRkIHN1cHBvcnQgZm9yIGZsYXNoIHJlc2V0DQo+IA0KPiBIZWxsbywNCj4gDQo+IE9uIDgv
+MjkvMjAyMiA2OjA1IFBNLCBTYWkgS3Jpc2huYSBQb3R0aHVyaSB3cm90ZToNCj4gPiBBZGQgc3Vw
+cG9ydCBmb3Igc3BpLW5vciBmbGFzaCByZXNldCB2aWEgR1BJTyBjb250cm9sbGVyIGJ5IHJlYWRp
+bmcgdGhlDQo+ID4gcmVzZXQtZ3BpbyBwcm9wZXJ0eS4gSWYgdGhlcmUgaXMgYSB2YWxpZCBHUElP
+IHNwZWNpZmllciB0aGVuIHJlc2V0DQo+ID4gd2lsbCBiZSBwZXJmb3JtZWQgYnkgYXNzZXJ0aW5n
+IGFuZCBkZWFzc2VydGluZyB0aGUgR1BJTyB1c2luZyBncGlvZA0KPiA+IEFQSXMgb3RoZXJ3aXNl
+IGl0IHdpbGwgbm90IHBlcmZvcm0gYW55IG9wZXJhdGlvbi4NCj4gPg0KPiA+IFNpZ25lZC1vZmYt
+Ynk6IFNhaSBLcmlzaG5hIFBvdHRodXJpIDxzYWkua3Jpc2huYS5wb3R0aHVyaUBhbWQuY29tPg0K
+PiA+IC0tLQ0KPiA+ICBkcml2ZXJzL210ZC9zcGktbm9yL2NvcmUuYyB8IDUwDQo+ID4gKysrKysr
+KysrKysrKysrKysrKysrKysrKysrKysrKysrKystLS0NCj4gPiAgMSBmaWxlIGNoYW5nZWQsIDQ2
+IGluc2VydGlvbnMoKyksIDQgZGVsZXRpb25zKC0pDQo+ID4NCj4gPiBkaWZmIC0tZ2l0IGEvZHJp
+dmVycy9tdGQvc3BpLW5vci9jb3JlLmMgYi9kcml2ZXJzL210ZC9zcGktbm9yL2NvcmUuYw0KPiA+
+IGluZGV4IGYyYzY0MDA2ZjhkNy4uZDQ3MDNmZjY5YWQwIDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZl
+cnMvbXRkL3NwaS1ub3IvY29yZS5jDQo+ID4gKysrIGIvZHJpdmVycy9tdGQvc3BpLW5vci9jb3Jl
+LmMNCj4gPiBAQCAtMjQwMSwxMiArMjQwMSw4IEBAIHN0YXRpYyB2b2lkIHNwaV9ub3Jfbm9fc2Zk
+cF9pbml0X3BhcmFtcyhzdHJ1Y3QNCj4gc3BpX25vciAqbm9yKQ0KPiA+ICAgKi8NCj4gPiAgc3Rh
+dGljIHZvaWQgc3BpX25vcl9pbml0X2ZsYWdzKHN0cnVjdCBzcGlfbm9yICpub3IpICB7DQo+ID4g
+LQlzdHJ1Y3QgZGV2aWNlX25vZGUgKm5wID0gc3BpX25vcl9nZXRfZmxhc2hfbm9kZShub3IpOw0K
+PiA+ICAJY29uc3QgdTE2IGZsYWdzID0gbm9yLT5pbmZvLT5mbGFnczsNCj4gPg0KPiA+IC0JaWYg
+KG9mX3Byb3BlcnR5X3JlYWRfYm9vbChucCwgImJyb2tlbi1mbGFzaC1yZXNldCIpKQ0KPiA+IC0J
+CW5vci0+ZmxhZ3MgfD0gU05PUl9GX0JST0tFTl9SRVNFVDsNCj4gPiAtDQo+ID4gIAlpZiAoZmxh
+Z3MgJiBTUElfTk9SX1NXUF9JU19WT0xBVElMRSkNCj4gPiAgCQlub3ItPmZsYWdzIHw9IFNOT1Jf
+Rl9TV1BfSVNfVk9MQVRJTEU7DQo+ID4NCj4gPiBAQCAtMjkzMyw5ICsyOTI5LDQ3IEBAIHN0YXRp
+YyB2b2lkIHNwaV9ub3Jfc2V0X210ZF9pbmZvKHN0cnVjdCBzcGlfbm9yDQo+ICpub3IpDQo+ID4g
+IAltdGQtPl9wdXRfZGV2aWNlID0gc3BpX25vcl9wdXRfZGV2aWNlOyAgfQ0KPiA+DQo+ID4gK3N0
+YXRpYyBpbnQgc3BpX25vcl9od19yZXNldChzdHJ1Y3Qgc3BpX25vciAqbm9yKSB7DQo+ID4gKwlz
+dHJ1Y3QgZ3Bpb19kZXNjICpyZXNldDsNCj4gPiArCWludCByZXQ7DQo+ID4gKw0KPiA+ICsJcmVz
+ZXQgPSBkZXZtX2dwaW9kX2dldF9vcHRpb25hbChub3ItPmRldiwgInJlc2V0IiwgR1BJT0RfQVNJ
+Uyk7DQo+ID4gKwlpZiAoSVNfRVJSX09SX05VTEwocmVzZXQpKQ0KPiA+ICsJCXJldHVybiBQVFJf
+RVJSX09SX1pFUk8ocmVzZXQpOw0KPiA+ICsNCj4gPiArCS8qIFNldCB0aGUgZGlyZWN0aW9uIGFz
+IG91dHB1dCBhbmQgZW5hYmxlIHRoZSBvdXRwdXQgKi8NCj4gPiArCXJldCA9IGdwaW9kX2RpcmVj
+dGlvbl9vdXRwdXQocmVzZXQsIDEpOw0KPiA+ICsJaWYgKHJldCkNCj4gPiArCQlyZXR1cm4gcmV0
+Ow0KPiA+ICsNCj4gPiArCS8qDQo+ID4gKwkgKiBFeHBlcmltZW50YWwgTWluaW11bSBDaGlwIHNl
+bGVjdCBoaWdoIHRvIFJlc2V0IGRlbGF5IHZhbHVlDQo+ID4gKwkgKiBiYXNlZCBvbiB0aGUgZmxh
+c2ggZGV2aWNlIHNwZWMuDQo+ID4gKwkgKi8NCj4gPiArCXVzbGVlcF9yYW5nZSgxLCA1KTsNCj4g
+PiArCWdwaW9kX3NldF92YWx1ZShyZXNldCwgMCk7DQo+ID4gKw0KPiA+ICsJLyoNCj4gPiArCSAq
+IEV4cGVyaW1lbnRhbCBNaW5pbXVtIFJlc2V0IHB1bHNlIHdpZHRoIHZhbHVlIGJhc2VkIG9uIHRo
+ZQ0KPiA+ICsJICogZmxhc2ggZGV2aWNlIHNwZWMuDQo+ID4gKwkgKi8NCj4gPiArCXVzbGVlcF9y
+YW5nZSgxMCwgMTUpOw0KPiA+ICsJZ3Bpb2Rfc2V0X3ZhbHVlKHJlc2V0LCAxKTsNCj4gPiArDQo+
+ID4gKwkvKg0KPiA+ICsJICogRXhwZXJpbWVudGFsIE1pbmltdW0gUmVzZXQgcmVjb3ZlcnkgZGVs
+YXkgdmFsdWUgYmFzZWQgb24gdGhlDQo+ID4gKwkgKiBmbGFzaCBkZXZpY2Ugc3BlYy4NCj4gPiAr
+CSAqLw0KPiA+ICsJdXNsZWVwX3JhbmdlKDM1LCA0MCk7DQo+IEluZmluZW9uIChTcGFuc2lvbi9D
+eXByZXNzKSBTRU1QRVIgZmxhc2ggKFMyNUhML0hTLCBTMjhITC9IUykgZmFtaWx5DQo+IHNwZWNp
+ZmllcyBtaW5pbXVtIHRSSCAoUmVzZXQgUHVsc2UgSG9sZCAtIFJFU0VUIyBMb3cgdG8gQ1MjIExv
+dykgYXMNCj4gNDUwfjYwMHVzLiBQbGVhc2UgdGFrZSBjYXJlIGZvciB0aGlzLg0KPiANCj4gUGxl
+YXNlIGZpbmQgZGF0YXNoZWV0cyBhdCB0aGUgZm9sbG93aW5nIGxpbmtzLg0KPiANCj4gaHR0cHM6
+Ly93d3cuaW5maW5lb24uY29tL2RnZGwvSW5maW5lb24tDQo+IFMyNUhTMjU2VF9TMjVIUzUxMlRf
+UzI1SFMwMUdUX1MyNUhMMjU2VF9TMjVITDUxMlRfUzI1SEwwMUdUXzI1Ng0KPiAtTWJfKDMyLU1C
+KV81MTItTWJfKDY0LU1CKV8xLUdiXygxMjgtTUIpX0hTLVRfKDEuOC1WKV9ITC1UXygzLjAtDQo+
+IFYpX1NlbXBlcl9GbGFzaF93aXRoX1F1YWRfU1BJLURhdGFTaGVldC12MDJfMDAtDQo+IEVOLnBk
+Zj9maWxlSWQ9OGFjNzhjOGM3ZDBkOGRhNDAxN2QwZWU2NzRiODZlZTMmZGE9dA0KPiANCj4gaHR0
+cHM6Ly93d3cuaW5maW5lb24uY29tL2RnZGwvSW5maW5lb24tDQo+IFMyOEhTMjU2VF9TMjhIUzUx
+MlRfUzI4SFMwMUdUX1MyOEhMMjU2VF9TMjhITDUxMlRfUzI4SEwwMUdUXzI1Ng0KPiAtTWJfKDMy
+LU1CKV81MTItTWJfKDY0LU1CKV8xLUdiXygxMjgtTUIpX0hTLVRfKDEuOC1WKV9ITC1UXygzLjAt
+DQo+IFYpX1NlbXBlcl9GbGFzaF93aXRoX09jdGFsX0ludGVyZmFjZS1EYXRhU2hlZXQtdjAzXzAw
+LQ0KPiBFTi5wZGY/ZmlsZUlkPThhYzc4YzhjN2QwZDhkYTQwMTdkMGVlNmJjYTk2Zjk3JmRhPXQN
+ClRoYW5rcyBmb3Igc2hhcmluZyB0aGlzIGluZm9ybWF0aW9uLg0KSSB3aWxsIHRha2UgY2FyZSBv
+ZiB0aGlzIGluIHYyLg0KDQpSZWdhcmRzDQpTYWkgS3Jpc2huYQ0K
