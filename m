@@ -2,61 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03A535A8B40
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 04:11:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CC175A8B46
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 04:14:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232717AbiIACJ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 22:09:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55538 "EHLO
+        id S232797AbiIACMY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 22:12:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232800AbiIACJx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 22:09:53 -0400
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C98CE02;
-        Wed, 31 Aug 2022 19:09:49 -0700 (PDT)
-Received: by mail-pj1-x1030.google.com with SMTP id j9-20020a17090a3e0900b001fd9568b117so1109099pjc.3;
-        Wed, 31 Aug 2022 19:09:49 -0700 (PDT)
+        with ESMTP id S232773AbiIACMX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 22:12:23 -0400
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83C3FE990D;
+        Wed, 31 Aug 2022 19:12:22 -0700 (PDT)
+Received: by mail-pl1-x62b.google.com with SMTP id y1so13930269plb.2;
+        Wed, 31 Aug 2022 19:12:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=uqwVZZsUckaDfIoCaxGsINNSIuzIYhX356j0EWnYVmg=;
-        b=Og0Hqbql80oiHkEMZQky7WfTUakS+eJ2Mw25BR9rns0S97A41C0bB+jUrJErx+O8qS
-         pRqe8wRYi7S2kaqD7rMA09VN55BqMiQpsA10p/IFhwvm4cquWKzTRQaoTGrjCMXsZfSS
-         yrzlHJJ5cBZYhEcYnDvmtOz0tk6Sx/X4+cxZcMPgKGHyCvw31Bw5td28Y+n+uTsAoXdw
-         pWfLCIhsDX/YSJLmeY4GaWVbNVoan/ladoBoxew2zgt+lN75unRXw2nuH4ttLVACAGGC
-         Si1lGDaXdvg10SCODLqfnY6k7kFeSGgHa6p1CB1N5aJHMs+WPOyQoT9I3/Nkc5RFAJvL
-         6qSQ==
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date;
+        bh=tiutLiA7GBbtplCbgudlUQfYaNKZDMZqwpjkfiSj9sI=;
+        b=CKQN4i+DIZNhh7GvxOK+Edpy84OmR9FFbnxrMxy2jf52OA3nAW1TDhFzXJWGuXhpZb
+         ADfYO56I1hc48HWGXjtLYBKSLN/sLEPNWVeMMdZH+KnU8SqlLX9RODeE19r3B3UttG9X
+         NLj63aSbjwQNsqQ0LODmZ2AkZJ0aJ8hRlItprXw/aYIlNbgSzHeuKVb6a/kKlOhj/Owi
+         GregrO+2V92XdQIId0eEt/Hq2PW1mCrq+FPlnzo1K/x40RdJtp/PeoVOH75469qOhrNr
+         MdZ+K5sD3W3De8z1moq15oZA9HRBHBN3yQVCpXvq/G6hkl5HcORrElkz1tjFp+LnMrTj
+         rqLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=uqwVZZsUckaDfIoCaxGsINNSIuzIYhX356j0EWnYVmg=;
-        b=hUahMb1lSIBqnmtN2RVr9m9908sMcD4LwXjbFvLRU6dQVq3XdUx/mE1TcWatpuLm8g
-         wwGEa/2KGLAZ31fdJ7bxe6ZpEgvT7urJCMuwnSvGibkWdhRTfJF3uh5uXtz7cpmLtZl9
-         Ho6bQ8EVyOK4oQMJzuERhd3louQZ/zAY6l8HEMTeyQOy58vkLGn7m7NHxOdKyO1nHKUG
-         +JKfLX+FS50RKuKBCUoKlG2/HV0HQpK5cKuh4Orjy5z0TQG/Bkik+U6mKcrB1Td9mhnD
-         9GS+eBf6ucm1ZNcdY7qEtwmFVH/dM9YqhDqYkrGwCdPIFtcRk+jiGbjS7pHIVTGzMsJ6
-         OWgw==
-X-Gm-Message-State: ACgBeo15Szl0bkzOKq2P5saC+QA+vtkz3in7AJY1pdQQJ48i2O/CaA5t
-        cTkmGZtRIWe0wnjl8UnmKZ8QrhB8xIRueM2zYg4=
-X-Google-Smtp-Source: AA6agR7XKvEZ07SfBY6KdR6T/6YVR8JwWIQS0x5y9aOzw1J1TfIxwCvBIFuipc1nC5c+3b/Z8epvK7EC9M2hacfrNdg=
-X-Received: by 2002:a17:90b:17ce:b0:1fb:3b43:f6f8 with SMTP id
- me14-20020a17090b17ce00b001fb3b43f6f8mr6389698pjb.76.1661998188976; Wed, 31
- Aug 2022 19:09:48 -0700 (PDT)
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=tiutLiA7GBbtplCbgudlUQfYaNKZDMZqwpjkfiSj9sI=;
+        b=Xq+OaIr7dfclbuE0lxM4KQROGI9ARw+DpjyYhSwBmwOruxrlpoJhYHVUtsLEhQsUW0
+         9KDQmMzOgOiNWYDAJHqc9331YtwSWKiLP+i/qy3jSnTqKBqq3tJk5tSIVjySxbPUNNjQ
+         2w/uh2T8F1ePedhl8mTvS7L1SBrhJoeqmDxsUjk6BZDSmzhU1sbo17eUc0h9lVQBYGl5
+         m3RH0LY/lfX83HUQ+HHH43QOVNPlgnzYija1xl9kLbASXWInN7noJitIaak/aiFuBEBz
+         gqbryK82MVyMwHfeuQVwr45UtM+SgWVQqWkrPvDnVdZZ4hxb8GSazZe+q8NXVPZD26r5
+         QfyQ==
+X-Gm-Message-State: ACgBeo3CgnjUhPced7yxILfgx6xlZ+iYX9A3QZ+j4TvTbiCD31RfQUbi
+        Vg5Dw2N2S0BDDjqdkL3Df9c=
+X-Google-Smtp-Source: AA6agR4wO1Y4TlpAN2rt/Rz4EaMyzi1tTFsP+zifx/pdp4rZW5opnC7kZKeQTCIW2sIL/fxzerA2lA==
+X-Received: by 2002:a17:90b:4f44:b0:1fa:f63c:ea1b with SMTP id pj4-20020a17090b4f4400b001faf63cea1bmr6472718pjb.30.1661998341847;
+        Wed, 31 Aug 2022 19:12:21 -0700 (PDT)
+Received: from google.com ([2620:15c:202:201:45ee:d53e:4a22:630d])
+        by smtp.gmail.com with ESMTPSA id d35-20020a631d23000000b0042c2def703asm4031509pgd.22.2022.08.31.19.12.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 31 Aug 2022 19:12:21 -0700 (PDT)
+Date:   Wed, 31 Aug 2022 19:12:18 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     ChiYuan Huang <u0084500@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lee Jones <lee@kernel.org>, cy_huang <cy_huang@richtek.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>,
+        linux-input@vger.kernel.org
+Subject: Re: [PATCH v4 3/3] input: misc: rt5120: Add power key support
+Message-ID: <YxAVAt2eWB3NFlrk@google.com>
+References: <1660100142-32493-1-git-send-email-u0084500@gmail.com>
+ <1660100142-32493-4-git-send-email-u0084500@gmail.com>
+ <Yw/lC9rjnbFW3ORC@google.com>
+ <CADiBU38AuVW9yeFisKvK=_080tQzn-1PUxsDXH4p0QrA2AUSww@mail.gmail.com>
 MIME-Version: 1.0
-References: <20220901020402.50206-1-joy.zou@nxp.com>
-In-Reply-To: <20220901020402.50206-1-joy.zou@nxp.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Wed, 31 Aug 2022 23:09:37 -0300
-Message-ID: <CAOMZO5BEwrmBTqtWoaNRQiG9dxx=T=TAf11f2ce=hBb1_mAjSw@mail.gmail.com>
-Subject: Re: [PATCH V4 3/4] ARM: dts: imx: update sdma node name format
-To:     Joy Zou <joy.zou@nxp.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        linux-imx@nxp.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CADiBU38AuVW9yeFisKvK=_080tQzn-1PUxsDXH4p0QrA2AUSww@mail.gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -67,17 +79,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Joy.
+On Thu, Sep 01, 2022 at 08:39:05AM +0800, ChiYuan Huang wrote:
+> Dmitry Torokhov <dmitry.torokhov@gmail.com> 於 2022年9月1日 週四 清晨6:47寫道：
+> >
+> > Hi ChiYuan,
+> >
+> > On Wed, Aug 10, 2022 at 10:55:42AM +0800, cy_huang wrote:
+> > > +MODULE_AUTHOR("ChiYuan Huang <cy_huang@richtek.com>");
+> > > +MODULE_DESCRIPTION("Richtek RT5120 power key driver");
+> > > +MODULE_LICENSE("GPL v2");
+> >
+> > I changed this to be simply "GPL" (per checkpatch.pl, see commit
+> > 'bf7fbeeae6db module: Cure the MODULE_LICENSE "GPL" vs. "GPL v2"
+> > bogosity' for details) + did a couple of minor edits, and applied, thank
+> > you.
+> >
+> Ok, got it.
+> Old "GPL" text as GPL v2 or "later", and  the "later" keyword is the problem.
+> This patch is to fix it.
+> 
+> How about the SPDX license string? The same definition?
 
-On Wed, Aug 31, 2022 at 11:02 PM Joy Zou <joy.zou@nxp.com> wrote:
->
-> change the sdma node name format 'sdma' into 'dma-controller'.
+No, MODULE_LICENSE() is sorely for symbol resolution during module
+loading, so GPL vs GPLv2 or later, etc is all the same. SPDX denotes
+the actual license for the source code that governs derivative works,
+etc. and I did not change it - it is left exactly as you sent it:
 
-The changes looks good, but the commit log needs to be improved.
+// SPDX-License-Identifier: GPL-2.0-only
 
-Please explain the rationale for changing the name. Something like this:
+Thanks.
 
-Node names should be generic, so change the node name from
-'sdma' to 'dma-controller'.
-
-Thanks
+-- 
+Dmitry
