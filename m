@@ -2,250 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7C9B5A9AA0
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 16:42:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D79B45A9ABA
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 16:44:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234907AbiIAOlA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 10:41:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38076 "EHLO
+        id S233822AbiIAOoi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 10:44:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234982AbiIAOkk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 10:40:40 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D40E1286F9;
-        Thu,  1 Sep 2022 07:40:25 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id bj12so35118782ejb.13;
-        Thu, 01 Sep 2022 07:40:25 -0700 (PDT)
+        with ESMTP id S233750AbiIAOoi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 10:44:38 -0400
+Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FD0E7C511;
+        Thu,  1 Sep 2022 07:44:37 -0700 (PDT)
+Received: by mail-pg1-x531.google.com with SMTP id q9so16581297pgq.6;
+        Thu, 01 Sep 2022 07:44:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=oGpl7pItr3EHWOEnJY9fD38ZGuHllIQRNMyk8Qf83dw=;
-        b=N1FwxgN9415RIK+wBsTxPPtNnGwIPbgqlexuoTp0gTyyukByY5D4/sBDFaGeTlPYxR
-         lOOhvFtuA+XrSCqIdLuIy948cFPddOMSkwMeeySAYhUbhZOYMWnbYCwysHXk0JsuG2oe
-         bjiJho+SAZ15MgrYG5g3xdxtjaCgG/2UGqF6XNbKrQD4GvPoKKyNEYrLLaWypSs0tE2c
-         6ydDKOelKqv/oB1+eC29Wr1gXl+d06QkhCbIv4bPGwda2G7FaME+L7l7Genx+GWwSw3h
-         l3GEL4XWP0aCHEeKT/IBP3Qa5ke3lC+4Te207qzJd7aFeuQLm3AZOZSHKDdOl8DN3yIV
-         DSvw==
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:sender
+         :from:to:cc:subject:date;
+        bh=mxj23L74neh2ZoK33yuGSkXVo+X4WjBndDgd5UgSvOQ=;
+        b=cuiLV7qs88qM3S0urFlzvZ+WPiJnpMalRIQmDgMt8Qy9DOsB/1GQ6vo5uY2ZL0hRZw
+         K1WuWexF4e2TZJN2doUad1qt31Hi4owH9tFKcOor7Z9od1iE3sAddpWBOiRNBd4XNl21
+         +V//QCV3KEgtghl4Gekw7/MIWj5gf5jLYQiWdyDX+7dTo4yS8EeQhzmus9kLJRcuJYIu
+         AHRJr4RxSCoLTnmVasHndtdisyBrN4u5/9ajKEOo41G5dToAmyySNl7vkklBGCA9+m2y
+         AK4TDIBgliBPtraO8R2t8EdspM+wC5nk1ZIXO51l0r12SNVaXuGIOtKCJ3fr9n3Hgjj8
+         724A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=oGpl7pItr3EHWOEnJY9fD38ZGuHllIQRNMyk8Qf83dw=;
-        b=bRzLrkGeILM7oQ3pAPiChf6QXT+BUm0Iwa5u0bEVBdi/OUa7lnYQ34YisCg2c+jRyM
-         BCSDjZreGFTAu/SuKyEdo21hr8MsER8YWW7GzsVhXzcH03chpNGIOT5QHqH4p+IjuZ7K
-         7nIHbXUfYig8RVOgNduMdeo4xhQuzl5PoL3XcRUhLGoE3OMInNAh9iDJx+0E13Qa2VWO
-         kPqRuLa9XHJcizqVzfrJz3jGEb0aBZvqkKoUAHwFZ1qPCvuBZCCCP7bZUxRGMVEsHHtt
-         mSLLwqGvrUkfHrHZRpupsAl9bGeiqNQEEDaNWB9D/F66pWF+Vt9q5qg0C06Fh1blU17s
-         C1eA==
-X-Gm-Message-State: ACgBeo0YiVuBVXSEpw+mXueC0AGteJvsf/njzXuj8mA5c+sApWAQsV4b
-        b+I4KNdN77enzaO2tZ7nOAo=
-X-Google-Smtp-Source: AA6agR6vUjQ/0PGeVFFQqXilMO5abv4F+H//fFBMRDUOkeFHP0ANy2GnhjFcuD7PPmwTjhM6SNM+6w==
-X-Received: by 2002:a17:907:2cea:b0:741:6251:3a22 with SMTP id hz10-20020a1709072cea00b0074162513a22mr15534680ejc.6.1662043223741;
-        Thu, 01 Sep 2022 07:40:23 -0700 (PDT)
-Received: from orome (p200300e41f12c800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f12:c800:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id kx3-20020a170907774300b0073d9630cbafsm8045006ejc.126.2022.09.01.07.40.22
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:sender
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=mxj23L74neh2ZoK33yuGSkXVo+X4WjBndDgd5UgSvOQ=;
+        b=hilHOf+Dn1B3ycLI5yeBoVoS9xeRWqXGqUj9EcuWPy3t+9OaQFvyisqcLg95A7yJ60
+         7Tya16zhW5tSSddChdZGRFkeSPGqtAaDNcYj0lZKKB7Rd+tZ2lr4rtC2KOQZtdbntmsx
+         bZXnA8Hvu/wKjR6bBQ2dgus4FC1lVAvqfMokEK/dDMMhnrzBPRv6cqabSp7ag6enMnu8
+         aaUC/VP6WLAOvfhd93RnREMHbIVWHlIjBfQivv2ut08FtIflilykNSy4umaov6+K+qii
+         +SSEuUuZ7qVx2bmbxlPFgYStqQyzn6CcE5jpivBWUKAGhkAFz9hPY8ODIzP7LUVf+w/p
+         wLNw==
+X-Gm-Message-State: ACgBeo3aVHQ1DvYaGs5j5FPnP1S705wx/VOaMK6FqRRLvNzuXBTFAy85
+        Ry8mhq5AKRKe4ApSgMRIE7I=
+X-Google-Smtp-Source: AA6agR7Anq4PpHhGnCmO6tFS96G+tFBY779l+Uk+DZRDbyXXRQJJy4/wOj4qoiDDVcPz9uXEAd2NsQ==
+X-Received: by 2002:a63:eb54:0:b0:42a:20f7:7d9f with SMTP id b20-20020a63eb54000000b0042a20f77d9fmr26522534pgk.444.1662043476636;
+        Thu, 01 Sep 2022 07:44:36 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id j6-20020a170903024600b0016bffc59718sm14125119plh.58.2022.09.01.07.44.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Sep 2022 07:40:22 -0700 (PDT)
-Date:   Thu, 1 Sep 2022 16:40:21 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Dmitry Osipenko <dmitry.osipenko@collabora.com>
-Cc:     Akhil R <akhilrajeev@nvidia.com>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Laxman Dewangan <ldewangan@nvidia.com>,
-        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
-        "wsa@kernel.org" <wsa@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "christian.koenig@amd.com" <christian.koenig@amd.com>,
-        "sumit.semwal@linaro.org" <sumit.semwal@linaro.org>,
-        "Kartik ." <kkartik@nvidia.com>
-Subject: Re: [PATCH RESEND 1/2] i2c: tegra: Add GPCDMA support
-Message-ID: <YxDEVUq3jbjnOmnI@orome>
-References: <SJ1PR12MB6339FC1F82EB1BB7417E533BC0719@SJ1PR12MB6339.namprd12.prod.outlook.com>
- <ebb0764f-db92-d69d-49ac-151f4e3e0b8a@collabora.com>
- <SJ1PR12MB63396DC508F63807F1CE9901C0719@SJ1PR12MB6339.namprd12.prod.outlook.com>
- <fac10841-1682-845f-3e4a-5668f59caed0@gmail.com>
- <cd0374f1-2c05-7e61-7187-cfc9c42edf63@gmail.com>
- <SJ1PR12MB63397BBD4EF314A742680F2CC0709@SJ1PR12MB6339.namprd12.prod.outlook.com>
- <a7ba27c4-992b-28d1-f6c2-3937b4f275ce@collabora.com>
- <c9ba2629-fc81-cefd-0d6d-991084781ec3@collabora.com>
- <SJ1PR12MB63393F51E29BA1F85AD249DBC0709@SJ1PR12MB6339.namprd12.prod.outlook.com>
- <4f791065-e0dd-6ed5-f152-86d7be683490@collabora.com>
+        Thu, 01 Sep 2022 07:44:35 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Thu, 1 Sep 2022 07:44:34 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     "Farber, Eliav" <farbere@amazon.com>
+Cc:     jdelvare@suse.com, robh+dt@kernel.org, p.zabel@pengutronix.de,
+        rtanwar@maxlinear.com, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        talel@amazon.com, hhhawa@amazon.com, jonnyc@amazon.com,
+        hanochu@amazon.com, ronenk@amazon.com, itamark@amazon.com,
+        shellykz@amazon.com, shorer@amazon.com, amitlavi@amazon.com,
+        almogbs@amazon.com, dkl@amazon.com, andriy.shevchenko@intel.com
+Subject: Re: [PATCH v3 02/19] hwmon: (mr75203) fix VM sensor allocation when
+ "intel, vm-map" not defined
+Message-ID: <20220901144434.GB3477025@roeck-us.net>
+References: <20220830192212.28570-1-farbere@amazon.com>
+ <20220830192212.28570-3-farbere@amazon.com>
+ <cddebb5a-3b83-e89d-db00-9a59ddbd6741@roeck-us.net>
+ <84a68eff-be64-71ce-1533-1e228d3da2a4@amazon.com>
+ <71d6d57c-2165-5fe3-515d-9395022921e2@roeck-us.net>
+ <2f5c5828-87b9-f3d2-e3d3-0200adbe830c@amazon.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="6EXBlDW1rh4vcfOw"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <4f791065-e0dd-6ed5-f152-86d7be683490@collabora.com>
-User-Agent: Mutt/2.2.7 (2022-08-07)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <2f5c5828-87b9-f3d2-e3d3-0200adbe830c@amazon.com>
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Sep 01, 2022 at 11:39:58AM +0300, Farber, Eliav wrote:
+> On 8/31/2022 2:48 PM, Guenter Roeck wrote:
+> > On 8/30/22 22:49, Farber, Eliav wrote:
+> > > On 8/31/2022 8:36 AM, Guenter Roeck wrote:
+> > > > On 8/30/22 12:21, Eliav Farber wrote:
+> > > > > Bug fix - in case "intel,vm-map" is missing in device-tree
+> > > > > ,'num' is set
+> > > > > to 0, and no voltage channel infos are allocated.
+> > > > > 
+> > > > > Signed-off-by: Eliav Farber <farbere@amazon.com>
+> > > > > ---
+> > > > >   drivers/hwmon/mr75203.c | 28 ++++++++++++----------------
+> > > > >   1 file changed, 12 insertions(+), 16 deletions(-)
+> > > > > 
+> > > > > diff --git a/drivers/hwmon/mr75203.c b/drivers/hwmon/mr75203.c
+> > > > > index 046523d47c29..0e29877a1a9c 100644
+> > > > > --- a/drivers/hwmon/mr75203.c
+> > > > > +++ b/drivers/hwmon/mr75203.c
+> > > > > @@ -580,8 +580,6 @@ static int mr75203_probe(struct
+> > > > > platform_device *pdev)
+> > > > >       }
+> > > > > 
+> > > > >       if (vm_num) {
+> > > > > -             u32 num = vm_num;
+> > > > > -
+> > > > >               ret = pvt_get_regmap(pdev, "vm", pvt);
+> > > > >               if (ret)
+> > > > >                       return ret;
+> > > > > @@ -594,30 +592,28 @@ static int mr75203_probe(struct
+> > > > > platform_device *pdev)
+> > > > >               ret = device_property_read_u8_array(dev, "intel,vm-map",
+> > > > > pvt->vm_idx, vm_num);
+> > > > >               if (ret) {
+> > > > > -                     num = 0;
+> > > > > +                     /*
+> > > > > +                      * Incase intel,vm-map property is not
+> > > > > defined, we
+> > > > > +                      * assume incremental channel numbers.
+> > > > > +                      */
+> > > > > +                     for (i = 0; i < vm_num; i++)
+> > > > > +                             pvt->vm_idx[i] = i;
+> > > > >               } else {
+> > > > >                       for (i = 0; i < vm_num; i++)
+> > > > >                               if (pvt->vm_idx[i] >= vm_num ||
+> > > > > -                                 pvt->vm_idx[i] == 0xff) {
+> > > > > -                                     num = i;
+> > > > > +                                 pvt->vm_idx[i] == 0xff)
+> > > > >                                       break;
+> > > > 
+> > > > So all vm_idx values from 0x00 to 0xfe would be acceptable ?
+> > > > Does the chip really have that many registers (0x200 + 0x40 +
+> > > > 0x200 * 0xfe) ?
+> > > > Is that documented somewhere ?
+> > > According to the code vm_num is limited to 32 because the mask is
+> > > only 5 bits:
+> > > 
+> > > #define VM_NUM_MSK    GENMASK(20, 16)
+> > > #define VM_NUM_SFT    16
+> > > vm_num = (val & VM_NUM_MSK) >> VM_NUM_SFT;
+> > > 
+> > > In practice according to the data sheet I have:
+> > > 0 <= VM instances <= 8
+> > > 
+> > Sorry, my bad. I misread the patch and thought the first part of
+> > the if statement was removed.
+> > 
+> > Anyway, what is the difference between specifying an vm_idx value of
+> > 0xff and not specifying anything ? Or, in other words, taking the dt
+> > example, the difference between
+> >        intel,vm-map = [03 01 04 ff ff];
+> > and
+> >        intel,vm-map = [03 01 04];
+> 
+> The actual number of VMs is read from a HW register:
+>     ret = regmap_read(pvt->c_map, PVT_IP_CONFIG, &val);
+>     ...
+>     vm_num = (val & VM_NUM_MSK) >> VM_NUM_SFT;
+> 
+> Also, using:
+>     ret = device_property_read_u8_array(dev, "intel,vm-map", vm_idx,
+>                         vm_num);
+> in the driver will fail if vm_num > sizeof array in device-tree.
+> 
+> So, if for example vm_num = 5, but you will want to map only 3 of them
+> you most set property to be:
+>     intel,vm-map = [03 01 04 ff ff];
+> otherwise if you set:
+>     intel,vm-map = [03 01 04];
+> it will assume the property doesn't, and will continue the flow in code
+> as if it doesn’t exist (which is not what the user wanted, and before my
+> fix also has a bug).
 
---6EXBlDW1rh4vcfOw
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+There should be some error handling to catch this case (ie if the number
+of entries does not match the expected count), or if a value in the array
+is larger or equal to vm_num. Today the latter is silently handled as end
+of entries (similar to 0xff), but that should result in an error.
+This would avoid situations like
+	intel,vm-map = [01 02 03 04 05];
+ie where the person writing the devicetree file accidentally entered
+index values starting with 1 instead of 0. A mismatch between vm_num
+and the number of entries in the array is silently handled as if there
+was no property at all, which is at the very least misleading and
+most definitely unexpected and should also result in an error.
 
-On Tue, Aug 23, 2022 at 04:32:11PM +0300, Dmitry Osipenko wrote:
-> On 8/23/22 15:55, Akhil R wrote:
-> ...
-> >>>> What I am trying for is to have a mechanism that doesn't halt the i2c
-> >> transfers
-> >>>> till DMA is available. Also, I do not want to drop DMA because it was
-> >> unavailable
-> >>>> during probe().
-> >>>
-> >>> Why is it unavailable? Sounds like you're not packaging kernel proper=
-ly.
-> > Unavailable until initramfs or systemd is started since the module has =
-to be
-> > loaded from either of it.
-> >=20
-> >>>
-> >>>> This situation is sure to hit if we have I2C driver as built in and =
-DMA driver as a
-> >>>> module. In such cases, I2C will never be able to use the DMA.
-> >>>
-> >>> For Tegra I2C built-in + DMA driver module you should add the dma.ko =
-to
-> >>> initramfs and then it will work. This is a common practice for many
-> >>> kernel drivers.
-> >>>
-> >>> It's also similar to a problem with firmware files that must be
-> >>> available to drivers during boot,
-> >=20
-> > Isn't the initramfs loaded after the driver initcalls? Wasn't very much=
- clear for me
-> > from the code and docs. We did try adding the module in initramfs initi=
-ally, but
-> > couldn't find much of a difference from when it is loaded by systemd in=
- rootfs.
-> > Will explore more on this if this really helps.
->=20
-> It doesn't matter when initramfs is loaded. Tegra I2C should be
-> re-probed once DMA driver is ready, that's the point of deferred
-> probing. I'd assume that your DMA driver module isn't loading.
+Also, what happens if the devicetree content is something like the
+following ? Would that be valid ?
+	intel,vm-map = [00 01 01 01 01 01];
 
-One problem we have with this, and it's another part of the reason why
-we have the TEGRA20_APB_DMA conditional in there, is that if no DMA
-driver is enabled, then the I2C driver will essentially defer probe
-indefinitely.
-
-The same would happen if for whatever reason someone was to disable the
-DMA engine via status =3D "disabled" in device tree. And that's not
-something we can easily discover, as far as I can tell. Although perhaps
-code could be added to discover these kinds of situations.
-
-Both of the above scenarios could also be considered as bugs, I suppose,
-and in that case the fix would be to update the configuration and/or the
-device tree.
-
-> >>>> Another option I thought about was to request and free DMA channel f=
-or
-> >> each
-> >>>> transfer, which many serial drivers already do. But I am a bit anxio=
-us if that
-> >> will
-> >>>> increase the latency of transfer.
-> >>>
-> >>> Perhaps all you need to do is to add MODULE_SOFTDEP to Tegra I2C driv=
-er
-> >>> like we did it for the EMC driver [1].
-> >>>
-> >>> [1]
-> >>> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-
-> >> next.git/commit/?id=3D14b43c20c283de36131da0cb44f3170b9ffa7630
-> >>>
-> >>
-> >> Although, probably MODULE_SOFTDEP won't work for a built-in driver. In
-> >> that case, change Tegra I2C kconfig to depend on the DMA driver.
-> >=20
-> > Since I2C can work without DMA, wouldn't it limit the flexibility of I2=
-C driver.
->=20
-> There are kernel configurations that are not worthwhile to support
-> because nobody use them in practice. I think this is exactly the case
-> here. The TEGRA20_APB_DMA driver dependency created troubles for a long
-> time.
->=20
-> If DMA driver is enabled in kernel config, then you should provide the
-> driver module to kernel and it will work.
->=20
-> If DMA driver is disabled in kernel config, then Tegra I2C driver should
-> take that into account. I'm now recalling that this was the reason of
-> "!IS_ENABLED(CONFIG_TEGRA20_APB_DMA)" in the code.
->=20
-> Since all h/w gens now provide DMA support for Tegra I2C, then should be
-> better and easier to make DMA a dependency for Tegra I2C and don't
-> maintain kernel build configurations that nobody cares about.
-
-This is a suboptimal solution because we have APB DMA for Tegra20
-through Tegra210 and GPC DMA for Tegra186 and later. So we'd need to
-depend on two drivers and that would then pull in GPC DMA basically on
-all generations.
-
-One potential workaround would be to have a fairly elaborate check in
-the driver to make sure that for SoC generations that support APB DMA
-that that driver is enabled, and for SoC generations that have GPC DMA
-that the corresponding driver is enabled. That's quite ugly and it
-doesn't solve the status =3D "disabled" problem, so we'd need that as
-well.
-
-Another thing that I've been thinking about is to use the deferred probe
-timeout to remedy this. driver_deferred_probe_check_state() can be used
-by subsystems to help figure out these kinds of situations. Basically if
-we integrated that into dma_request_channel(), this would at some point
-(fairly) late into boot return -ETIMEDOUT (or -ENODEV if modules are
-disabled). So this would help with status =3D "disabled" and allow us to
-avoid Kconfig dependencies/conditionals. Unfortunately it seems like
-that is in the process of being removed, so not sure if that's a long-
-term option.
-
-What that doesn't help with is the potentially long delay that probe
-deferral can cause, so it means that all I2C devices may not get a
-chance to probe until very late into the boot process. We may need to
-survey what exactly that means to better judge what to do about it. I
-do agree that probe deferral is the right tool for the job, but it may
-be prohibitively slow to get I2C working with that.
-
-Another mitigation would be for the driver to keep probing for the DMA
-channels in the background. Sort of like an asynchronous probe deferral
-of that subset. Similar things were discussed at some point when the
-whole fw_devlink and such were hashed out, though at the time I think
-the preferred proposal was a notification mechanism.
-
-Thierry
-
---6EXBlDW1rh4vcfOw
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmMQxFIACgkQ3SOs138+
-s6FH5xAAqTlqEFg0v+RseYBA6ke9pT/l555czmR5Tgl7x8KBcPhZEzL/SXIW8JLL
-45No62nZBKM6Wk5WmXhbaq3xrH4xj339PKYg2gN2ZJ+E/eMDsF/ruFZK5LGpQ7vs
-DQI2vK1ER1ms2vVTdRjIceW0X9IfkLsgP8Xk97yPY2s7sABMYoaxjjD98GFXyInn
-6ZjiPKJlDLH2PZI7WQmGMGpd5ct1m29xyO2G7unVeHONavngBtA3nzTx4RadK/CK
-sKaH3Ixy8MpnFvncSrSF+Wp4B7u+TDdVybB3GdLhn6P85IfuVPYw1UJp0XdgnkNH
-viJ9Mbond5VOOy+5zv/wrA29i8xQZt/4Fym/pmyDjgbSNw3qhN2XV3nn//W+0c26
-Vgyti6rZDW6O6W1SXKHjAL2CG2cnJorv3nYPnF4eiPzPikWdq2m6YD3hxb2eHl8G
-DaPsDpd+1eagoYgewipROyIcaY4w+OygphDUXYQkz76pTOOh90RruQ5wvgUSOUyX
-ENxJpku0xO/MQv+Nt6LlxzcW8WiY4nltpDljFXzqDCXIiShfAXYrlKO3nIajMvyi
-7Rtul601MsvO+h6jCXFo2GayPHWntY4kLXt2NnAnUDgEZbqadO/72vphKJ0RsST+
-fHH8Y1KC62G+O0Et4GAbUX4gGJ4PTQGAkEl4VeHyyoqUTR8pqp0=
-=hUEH
------END PGP SIGNATURE-----
-
---6EXBlDW1rh4vcfOw--
+Thanks,
+Guenter
