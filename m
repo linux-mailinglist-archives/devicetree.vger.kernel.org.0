@@ -2,144 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 996025A9D6F
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 18:48:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57ACA5A9DB5
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 19:06:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232973AbiIAQrR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 12:47:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57100 "EHLO
+        id S230370AbiIARGj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 13:06:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33230 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233576AbiIAQrQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 12:47:16 -0400
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85AB27B1D5;
-        Thu,  1 Sep 2022 09:47:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=W3O+xqsQoDS/3T7c0b2c2tsv+0Mvz/bo8Rn3y7uzjGI=; b=C/NeG9Wwc+f4CQtNRwJHx9O/5r
-        9rR6E+eKH9pnWdiSk1+xcF/h1mfmzlX+VOajEfaIfLLpxH3AggR08fcZ4t0qV3dm9CUA0JE7c1H3m
-        djKAQjTCzxmHxu2nohfLG6LtiGG+DfHf4Lt8osN0RVfCG68n3QZTRyeaxLk/bXeiToyJQ7+05jUZp
-        Gs+SAIaZnDqyi3+jpMw40Km2TSRSMtfuGLNmLEI0fv4XJSflI8aoP81xPadMEJ7hmpKoVEuru3NC8
-        y71Ulz5JkRZZ2q/r0vKORvpOQL7zX4k815j6eOIZf++l1HO4DQ+vA/eKsyC11Zg4Em9Kdge0zGgTA
-        HVWLu05Q==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:34050)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1oTnLL-0006EO-IG; Thu, 01 Sep 2022 17:47:03 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1oTnLI-0003cg-GY; Thu, 01 Sep 2022 17:47:00 +0100
-Date:   Thu, 1 Sep 2022 17:47:00 +0100
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Lee Jones <lee@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        asahi@lists.linux.dev, Bartosz Golaszewski <brgl@bgdev.pl>,
-        Hector Martin <marcan@marcan.st>,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        Sven Peter <sven@svenpeter.dev>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/6] dt-bindings: mfd: add binding for Apple Mac System
- Management Controller
-Message-ID: <YxDiBFIn6artUOZm@shell.armlinux.org.uk>
-References: <YxC5eZjGgd8xguDr@shell.armlinux.org.uk>
- <E1oTkeH-003t9A-3K@rmk-PC.armlinux.org.uk>
- <426469c1-13cc-178b-4904-09439d7788e8@linaro.org>
- <YxDL+cAx9kkZRL8K@shell.armlinux.org.uk>
- <928ddeff-efac-920c-7bbf-dda35a942b93@linaro.org>
- <YxDOpCq0vIlt4VNa@shell.armlinux.org.uk>
- <2fedff34-6a20-f1ce-a756-2bd8671fcd52@linaro.org>
- <YxDWG5dmzErhKIXw@shell.armlinux.org.uk>
- <ef6c7248-1efa-5366-6bcd-900c5f10ccb2@linaro.org>
+        with ESMTP id S234824AbiIARGj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 13:06:39 -0400
+Received: from mail-qv1-f52.google.com (mail-qv1-f52.google.com [209.85.219.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F72180E88;
+        Thu,  1 Sep 2022 10:06:37 -0700 (PDT)
+Received: by mail-qv1-f52.google.com with SMTP id jy14so8143687qvb.12;
+        Thu, 01 Sep 2022 10:06:37 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=R4/0vIDlliRF8NwToyf2AArqsOnJ5k9bWN6l0TOjYSk=;
+        b=SPbN70XfXPtsC6AjtuL8yBLGijRO/T+TnPcSnSoy+IKJq3MIRf0om+m9KKGsYg3v/o
+         UUf2S0fen+74CUThQQ+eEjQ9Cm2bpKsPVAInOBp+iSMWj3aIGUGuXgt9P4600NwsIHgM
+         V9EeTc+TiFa1iVrj11mAcsWNXZlg7rWmjm7CMbwsmBLXhChNJx7FuKTZmyqhxxJXfHko
+         0pqZSbG0WLGygxb78k6eWLRa+71MeAn0R7kxuXKgEbnjF9NJ1Mh98ENDfCsdkssuZ/W3
+         /Hy8Y9rJUXBUkDMi0IBLFLi9JyIVVupLOo41ixK8PXvFplsP0Ph2kV8erO9Si6KKKEkg
+         rGGA==
+X-Gm-Message-State: ACgBeo3mxxW2o/AP+i57TK2+hvmdtJkqZUGLyNBrHiF0lOOjS3wrwaoG
+        rnBPv9caMpXsSzznMgbr2dWw3Ds71bLv1w==
+X-Google-Smtp-Source: AA6agR7EBtJRmOstt+6fVvVYbKzQ37vhYoiRuOK99oD2jmia67ZgLj6kUwfGDOLscVHrWA9HeMBb6g==
+X-Received: by 2002:a0c:e449:0:b0:497:48d8:e4c with SMTP id d9-20020a0ce449000000b0049748d80e4cmr25571450qvm.75.1662051996340;
+        Thu, 01 Sep 2022 10:06:36 -0700 (PDT)
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com. [209.85.128.170])
+        by smtp.gmail.com with ESMTPSA id i7-20020a05620a404700b006a6ebde4799sm12180330qko.90.2022.09.01.10.06.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 01 Sep 2022 10:06:36 -0700 (PDT)
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-3378303138bso343293587b3.9;
+        Thu, 01 Sep 2022 10:06:35 -0700 (PDT)
+X-Received: by 2002:a81:750b:0:b0:341:10ef:2c37 with SMTP id
+ q11-20020a81750b000000b0034110ef2c37mr18011444ywc.316.1662051995588; Thu, 01
+ Sep 2022 10:06:35 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ef6c7248-1efa-5366-6bcd-900c5f10ccb2@linaro.org>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <20220830164518.1381632-1-biju.das.jz@bp.renesas.com>
+ <20220830164518.1381632-4-biju.das.jz@bp.renesas.com> <CAMuHMdW_+VSbTj1qidjiHZX+0ryCSFj3AQskM3oX4PKjHD-9ow@mail.gmail.com>
+ <OS0PR01MB5922F1B7FC6D7C6249EF22B9867B9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+In-Reply-To: <OS0PR01MB5922F1B7FC6D7C6249EF22B9867B9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 1 Sep 2022 19:06:24 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVVUN6zzRKxqf4cwkWHF=88Fkq=tYW5PSohB_bMJ-k8Kw@mail.gmail.com>
+Message-ID: <CAMuHMdVVUN6zzRKxqf4cwkWHF=88Fkq=tYW5PSohB_bMJ-k8Kw@mail.gmail.com>
+Subject: Re: [PATCH v3 3/3] ARM: dts: r9a06g032-rzn1d400-db: Enable CAN{0,1}
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 01, 2022 at 07:25:03PM +0300, Krzysztof Kozlowski wrote:
-> On 01/09/2022 18:56, Russell King (Oracle) wrote:
-> > 
-> > 8<===
-> > From: "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
-> > Subject: [PATCH] dt-bindings: mfd: add binding for Apple Mac System Management
-> >  Controller
-> > 
-> > Add a DT binding for the Apple Mac System Management Controller.
-> > 
-> > Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
-> 
-> Yes, looks good.
-> 
-> I won't add Reviewed-by tag, because I think it would confuse Patchwork,
-> so please send a v2 at some point.
+Hi Biju,
 
-Thanks. Do you have any suggestions for patch 2? Should I merge the
-description in patch 2 into this file?
+On Thu, Sep 1, 2022 at 3:15 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> > Subject: Re: [PATCH v3 3/3] ARM: dts: r9a06g032-rzn1d400-db: Enable
+> > CAN{0,1}
+>
+> > On Tue, Aug 30, 2022 at 6:45 PM Biju Das <biju.das.jz@bp.renesas.com>
+> > wrote:
+> > > Enable CAN{0,1} on RZ/N1D-DB board.
+>
+> My bad, it is RZ/N1D-DB CPU board fitted to RZ/N1-EB carrier board.
+> Actually it enables CAN{0,1} on the carrier board.
+>
+> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-The full dts for this series looks like this:
+> > > --- a/arch/arm/boot/dts/r9a06g032-rzn1d400-db.dts
+> > > +++ b/arch/arm/boot/dts/r9a06g032-rzn1d400-db.dts
+> > > @@ -26,6 +26,20 @@ aliases {
+> > >         };
+> > >  };
+> > >
+> > > +&can0 {
+> > > +       pinctrl-0 = <&pins_can0>;
+> > > +       pinctrl-names = "default";
+> > > +
+> > > +       status = "okay";
+> > > +};
+> > > +
+> > > +&can1 {
+> > > +       pinctrl-0 = <&pins_can1>;
+> > > +       pinctrl-names = "default";
+> > > +
+> > > +       status = "okay";
+> > > +};
+> >
+> > According to the schematics and board documentation, only a single CAN
+>
+> See above, RZ/N1-EB schematics has both connectors??
 
-                smc: smc@23e400000 {
-                        compatible = "apple,t8103-smc", "apple,smc";
-                        reg = <0x2 0x3e400000 0x0 0x4000>,
-                                <0x2 0x3fe00000 0x0 0x100000>;
-                        reg-names = "smc", "sram";
-                        mboxes = <&smc_mbox>;
+AFAIU, CN10 and CN11 are not the real CAN connectors, they are headers
+to add jumpers to select which CAN interface to route to the real CAN
+connector J16.
 
-                        smc_gpio: gpio {
-                                gpio-controller;
-                                #gpio-cells = <2>;
-                        };
-                };
+> > connector is present, and the CAN interface to use must be selected
+> > using the CN10/CN11 jumpers.  Hence I think we need a #define and an
+> > #ifdef to configure this, or at least keep one interface disabled, and
+> > add a comment explaining why.
+>
+> Our BSP release, by default enables both the CAN interfaces(CN10/CN11) jumpers.
+> I have a RZ/N1-EB carrier board and tested CAN loopback on these interfaces.
 
-but the fuller version in the asahi linux tree looks like:
+Yeah, you can enable loopback by wiring CN10 and CN11 appropriately ;-)
+But that's not intended for normal use.
 
-		smc: smc@23e400000 {
-			compatible = "apple,t8103-smc", "apple,smc";
-			reg = <0x2 0x3e400000 0x0 0x4000>,
-				<0x2 0x3fe00000 0x0 0x100000>;
-			reg-names = "smc", "sram";
-			mboxes = <&smc_mbox>;
+Gr{oetje,eeting}s,
 
-			smc_gpio: gpio {
-				gpio-controller;
-				#gpio-cells = <2>;
-			};
+                        Geert
 
-			smc_rtc: rtc {
-				nvmem-cells = <&rtc_offset>;
-				nvmem-cell-names = "rtc_offset";
-			};
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-			smc_reboot: reboot {
-				nvmem-cells = <&shutdown_flag>, <&boot_stage>,
-					<&boot_error_count>, <&panic_count>, <&pm_setting>;
-				nvmem-cell-names = "shutdown_flag", "boot_stage",
-					"boot_error_count", "panic_count", "pm_setting";
-			};
-		};
-
-So whatever is decided for the gpio node would eventually also apply
-to the other nodes too.
-
-Thanks.
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
