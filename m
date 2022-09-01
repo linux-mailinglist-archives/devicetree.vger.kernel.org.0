@@ -1,61 +1,60 @@
 Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A2155A9C97
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 18:09:09 +0200 (CEST)
+Received: from out1.vger.email (unknown [IPv6:2620:137:e000::1:20])
+	by mail.lfdr.de (Postfix) with ESMTP id F2C175A9CBC
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 18:12:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234856AbiIAQIc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 12:08:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36062 "EHLO
+        id S234947AbiIAQLv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 12:11:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234840AbiIAQIZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 12:08:25 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DF8B91092
-        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 09:08:23 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id z23so15529874ljk.1
-        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 09:08:23 -0700 (PDT)
+        with ESMTP id S234923AbiIAQLs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 12:11:48 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1ABAC74CC8
+        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 09:11:44 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id bq23so25151886lfb.7
+        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 09:11:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=KYvFkyrPz2x0IYdeTE0W89ngYIK6SP7fOgbckJJ8zd4=;
-        b=AhvHAeuH6sqLp7A9IVsiRIbH1K2UWoVW2sqI4+XMgxdsE89ppFuHFya8dPZJx0ZnSk
-         qNElNT+9M/ETdG3XfV4IfmzNm6gUvYyIFrc7fXjTF8Up32R63T9MEJu/DMcxu/5Y+rFQ
-         h01k/Onijh6Hz2JyYaTRJWPsGoyMq5Rz7GlCjmmJDXPgMjMpU13cL43WUPoKf1bukSkw
-         t9csYFdmo24eP4Okhi1hDS+glV1xOVgj6clFVe/TTGEH5f4NpzfoofsClv4gZtegjYPi
-         cmXqpE61ISgmkY74sKBMfiKiPSMb/eiIuE+okehYnAucUW5szHn9wafaydst48Ru5ZRw
-         q4og==
+        bh=ZT0UUgL98furUMTTllJ+IvKDmlJK1HsHd+roqciqR7g=;
+        b=XmjqaXzcNHK1fQAUkelNc1TLbofd+c3HoDH/xwjX0atcCtDwNCfThcM2oD1jrv6mD0
+         HUr4r+fomvVC7Ul6Iac4NE1Tr5yPTwFWGkETeoZJsaETaH2SHh+T9dXPx5r5F1mEl4Qz
+         4a822TemsMhKG3+p8mYh/6k9vvg2YWdYsQkK5lUCaxqW/hJbZqQlf8JoshSr6abUlpOj
+         fXvbFN1zzHUDVcnXxe++nT7/B9Z0y+8TLmQ1BpseEqZFjpc5X34gfHjEgS5hIZskNuGH
+         jPV9bFxm6+IRHr98dw8dDx6zTFwZNQSVpfy6Mp+miAStK1ZDk9PADZQHX4/mdIUkGDYz
+         T6Tw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=KYvFkyrPz2x0IYdeTE0W89ngYIK6SP7fOgbckJJ8zd4=;
-        b=beKR2k5zXnLPeu037boyeaJCeD6OK6TFsWCIMF1AVPfEP0Txx3UavaJesS4x/0Jd3t
-         X42Dim1Pp69hAwUUVMQNjX98Cr8lej6yBSg2oZL0v6oC/cyGqy46tQntBdiedWoH9518
-         E91SdGN0KGrj/spLcX2w8XPRfC1DCtTroyo1xmnag5/MBSSaTj6Ra+o7hQq7Op9znPHl
-         oUVvNO43Wd6UfudJ+NjBnNU+iRUC25Ya4EtktBNuVMGGeqL8PhGkNZXWIfl8jRJe63yN
-         ysPwP4z3EhhRi1fBA8igYHXWCnxJIq8Gqt2T/lwUlMiY+BEMSeZmox0Bc8vxCMnQgNQI
-         xRdw==
-X-Gm-Message-State: ACgBeo0AoKWruSmJrnVh/yUbz98iNKXR7NknPDXjGqMLDpDkLbrnAF2v
-        LjVrnm2lgUQWbdPyAYIxho4rbA==
-X-Google-Smtp-Source: AA6agR5utYpXb3hJTQVHi9X8ggWxlHrM7ptKBoh5n5p8CD6vKZiy0YksAgNVhPDZQN/SPhoMb/pfyw==
-X-Received: by 2002:a05:651c:1591:b0:261:c388:aa58 with SMTP id h17-20020a05651c159100b00261c388aa58mr10247625ljq.277.1662048501903;
-        Thu, 01 Sep 2022 09:08:21 -0700 (PDT)
+        bh=ZT0UUgL98furUMTTllJ+IvKDmlJK1HsHd+roqciqR7g=;
+        b=pkYkfAvccfg5OkrZBs66osYpDgG/SrWzX7rTZbBRKxaW6EBb542n5tJUJET3qLCkeB
+         oXlS2kIZqV9UlRVmrG2oHkY1Q8pdi3OnZvD0tsA52ZabgHjOE/Ytd8AYsSQw6RBmeq0P
+         lH49NsA6zYBs6XeaEtcWY20/yhjP8jLYG8w6nyD/j9NJ5Td5wyfbvLf1wig0zMEG/F4V
+         FZSYYNgLtkj8o2ln7rIJyxEfe5DT0ehCMzSM3zHP17UzbUpbXyGBiMewy7cImTxfaLT1
+         3B7v4EMhtWTLpsAXfwZzTXXwoHgdvAK8XMnnfMY0dohTOIQeVG1ZDyViGfbW4ochB/zf
+         WFJQ==
+X-Gm-Message-State: ACgBeo0SHNvj95xbn4poXUs1dFK8r/tRYE3GqTEt+4zVT8YJh2fzBz0N
+        vQEF7Zggzty75ZUDFoZDm1lPPg==
+X-Google-Smtp-Source: AA6agR7fa2cffMYhl6EVvGJvlvaohMBq/6GEuVCGGl4FC8t88eKtvkuzfo4WFJl3V4F8xXTCVl/DRA==
+X-Received: by 2002:a05:6512:260d:b0:492:df5a:e4f9 with SMTP id bt13-20020a056512260d00b00492df5ae4f9mr10306759lfb.90.1662048702494;
+        Thu, 01 Sep 2022 09:11:42 -0700 (PDT)
 Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id o17-20020a05651205d100b0048b045a5c3asm1067234lfo.201.2022.09.01.09.08.20
+        by smtp.gmail.com with ESMTPSA id bd8-20020a05651c168800b002687e283bf1sm754869ljb.134.2022.09.01.09.11.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Sep 2022 09:08:21 -0700 (PDT)
-Message-ID: <339df7b9-bc7d-039d-99d8-ecdd480419d8@linaro.org>
-Date:   Thu, 1 Sep 2022 19:08:20 +0300
+        Thu, 01 Sep 2022 09:11:41 -0700 (PDT)
+Message-ID: <7804ffbe-4e27-d8bd-dbe2-75d1323da064@linaro.org>
+Date:   Thu, 1 Sep 2022 19:11:40 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH 07/14] arm64: dts: qcom: sm6115: Add sdhci nodes and
- related pinctrl
+Subject: Re: [PATCH 08/14] dt-bindings: ufs: qcom: Add sm6115 binding
 Content-Language: en-US
 To:     Iskren Chernev <iskren.chernev@gmail.com>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -64,12 +63,15 @@ Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         Andy Gross <agross@kernel.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org
+        linux-scsi@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20220901072414.1923075-1-iskren.chernev@gmail.com>
- <20220901072414.1923075-8-iskren.chernev@gmail.com>
+ <20220901072414.1923075-9-iskren.chernev@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220901072414.1923075-8-iskren.chernev@gmail.com>
+In-Reply-To: <20220901072414.1923075-9-iskren.chernev@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,37 +85,51 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 01/09/2022 10:24, Iskren Chernev wrote:
-> Add support for the two sdhci's present on the SM6115 and the related
-> pinctrl.
+> Add SM6115 UFS to DT schema.
 > 
-
-
+> Signed-off-by: Iskren Chernev <iskren.chernev@gmail.com>
+> ---
+>  .../devicetree/bindings/ufs/qcom,ufs.yaml     | 26 +++++++++++++++++++
+>  1 file changed, 26 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+> index f2d6298d926c..7c5f6e2e6d4c 100644
+> --- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+> +++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+> @@ -28,6 +28,7 @@ properties:
+>            - qcom,msm8998-ufshc
+>            - qcom,sc8280xp-ufshc
+>            - qcom,sdm845-ufshc
+> +          - qcom,sm6115-ufshc
+>            - qcom,sm6350-ufshc
+>            - qcom,sm8150-ufshc
+>            - qcom,sm8250-ufshc
+> @@ -178,6 +179,31 @@ allOf:
+>            minItems: 1
+>            maxItems: 1
 >  
->  		gcc: clock-controller@1400000 {
-> @@ -449,6 +553,73 @@ rpm_msg_ram: memory@45f0000 {
->  			reg = <0x45f0000 0x7000>;
->  		};
->  
-> +		sdhc_1: sdhci@4744000 {
-> +			compatible = "qcom,sm6115-sdhci", "qcom,sdhci-msm-v5";
-> +			reg = <0x4744000 0x1000>, <0x4745000 0x1000>, <0x4748000 0x8000>;
-> +			reg-names = "hc", "cqhci", "ice";
-> +
-> +			interrupts = <GIC_SPI 348 IRQ_TYPE_LEVEL_HIGH>,
-> +				<GIC_SPI 352 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "hc_irq", "pwr_irq";
-> +
-> +			clocks = <&gcc GCC_SDCC1_AHB_CLK>,
-> +				 <&gcc GCC_SDCC1_APPS_CLK>,
-> +				 <&xo_board>,
-> +				 <&gcc GCC_SDCC1_ICE_CORE_CLK>;
-> +			clock-names = "iface", "core", "xo", "ice_core_clk";
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,sm6115-ufshc
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 8
+> +          maxItems: 8
+> +        clock-names:
+> +          items:
+> +            - const: core_clk
+> +            - const: bus_aggr_clk
+> +            - const: iface_clk
+> +            - const: core_clk_unipro
+> +            - const: core_clk_ice
 
-Does not look like you tested the DTS against bindings. Please run `make
-dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
-for instructions).
+Use existing name and put it in the same place as existing variant - sdm845:
+ice_core_clk
 
-> +
 
 Best regards,
 Krzysztof
