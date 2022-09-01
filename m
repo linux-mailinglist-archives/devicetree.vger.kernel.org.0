@@ -2,97 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D8FA5A89DF
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 02:39:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E26BF5A8A3D
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 03:06:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229737AbiIAAjW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 20:39:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58828 "EHLO
+        id S232124AbiIABGB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 21:06:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229459AbiIAAjV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 20:39:21 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9ADFFFE819;
-        Wed, 31 Aug 2022 17:39:18 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id b16so12663693wru.7;
-        Wed, 31 Aug 2022 17:39:18 -0700 (PDT)
+        with ESMTP id S229510AbiIABGA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 21:06:00 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C57F02558D
+        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 18:05:58 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id s7so5427974wro.2
+        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 18:05:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc;
-        bh=CVfG3OZHSQeL/ZXooertYMXI000OU/UMRXwtJHlA8e8=;
-        b=oZhKlUlP7bcmm1JTX638nCKlWyaX01Vhtppq9VGZfVhTV0BXY0vgLoYhgnLNptZ9bb
-         RQPtHSN97ojezdYz3/TQa3uS53e0hBv1BaqEdE6DC6XuCIwez4oBg1d4tK8XVoiJT46f
-         KIPP9XHq3zhWjMhHcbdUxwwdbDctIOCqnFEK3fpiJQAHTItlksUJZfwg08pL6ULDb2zF
-         MdaJnOmuegcoOmCaWNgSah7HUSysZqawTd7ZK0l14EjZM/7HqB067ESK1wuM37ccC1V8
-         oiQ0xa3wz9G4hR9I7gdTLyWPJdnrb4VMaiffmOWzN1aU65q2EOkDv1tLX3ZvB+VXpDCT
-         lwIQ==
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=YvNEBJBfMvQ5w8FZGjePs4EEEPMMHypbVW886g1wLRk=;
+        b=jsOlqoaxWIs1N1xHjn5INlifctP/ZDLlLd5Cg1+J2fVRKaMqoY004XOLkkGFk1OM90
+         aGsi5Xfhx/dEBi5TXvDjIKog0VsCTmWmbZkveQKfMqKhoLCe2dT5B/CjC6t8QvaRN2sm
+         hkECuuqxORICl6YfidHo9NGrBcB99kc92lmi4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc;
-        bh=CVfG3OZHSQeL/ZXooertYMXI000OU/UMRXwtJHlA8e8=;
-        b=b+CypC85AolfHY7OIB0ljek68cCi6xkXro0T/Uti9THQhLq2kaCMnoXNPSSQbPEsSI
-         UzXtvubmG/+tc0LPyEIbGo9EI5Dp8Ev6rHbCjhegC52N9RvljKYhpUheINIG36DneukI
-         ql9lbiI84H9E3gv1NxpUTWTY7DG2p+xKb8uQHv2cz5VNkgV23FwRyMyBfpafx7XmMsUH
-         ivswSM9LNFuePCDS39C1YLbvXSqLrEHVqfVIQBqjdNZye/zrbJGaZO4uQtJcjJMECmea
-         /LyPaodVh7bbRZq4f12pqEN/F9ks5R5USWHbQsXTRqIOZGKuiylqQWi2d/OtRZG49k4R
-         gakw==
-X-Gm-Message-State: ACgBeo34NZPp50HXAajZqnmIosJGDPtE7TTwLKq7O6ywrgBoFKxLZnso
-        NBNO+R1Ci/E/71q9C0adzzx5qeMNa6qXg1IQY8WJBwjP
-X-Google-Smtp-Source: AA6agR6zpz1DhRQx7BF1x+tzBCkVPbBe8kZrT6e+1BYPVKk6LnNiqKwtUD2qV5mqxx4Y22230tIm/WdSBSnCIgGJ3YA=
-X-Received: by 2002:adf:f647:0:b0:226:1c05:933a with SMTP id
- x7-20020adff647000000b002261c05933amr12540470wrp.121.1661992757012; Wed, 31
- Aug 2022 17:39:17 -0700 (PDT)
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=YvNEBJBfMvQ5w8FZGjePs4EEEPMMHypbVW886g1wLRk=;
+        b=WCzb2hVXTZsjCWYsgLu9rUANJBaF4GzENsTbzrPqtaHullArpO9qAg8I+qRkMi0BIH
+         oXnwXfN2IwuSgWxuk92nvaeAODRrjSH9PNr/8BQ+cKkx120gmSk0+SvCHFmuGCMEOpLI
+         nAnTTKxE873vReBQJatZME8xWfk2oJkiz9E5nTZTRfx2ddIrJsPowBaYzBG6u7QRXdb+
+         ZkK/o0H7WZM0RySpNxicCIN0f+lEQPC9kf69QGvsQhpfFFsZ2M7Kxec2dmiIGaganBbt
+         3RjsQfjXJJkpL61b3MrKsptKM1UmpqpPyKRYlEH23aONhnHCh6zEg7D1Vj6nVGOOFIDO
+         Khxw==
+X-Gm-Message-State: ACgBeo152eITl96IJ4yFbMo110eu6JplaYNv+Em/ou1AMU+qbBzuY2RG
+        jLWVAt5o/Hmu9deR67PlbeUI6oGLd3p1Zm+QSUHnQQ==
+X-Google-Smtp-Source: AA6agR4ZPUGYiLmxDP5x9LAEuxkPssREQeeQeicXAJM72ieYMkWhUf4WOFIWMc1757aSUsgbPcQHGA2Hg2Zff37EqQ4=
+X-Received: by 2002:a5d:47a8:0:b0:226:f124:ad74 with SMTP id
+ 8-20020a5d47a8000000b00226f124ad74mr1545270wrb.18.1661994357245; Wed, 31 Aug
+ 2022 18:05:57 -0700 (PDT)
 MIME-Version: 1.0
-References: <1660100142-32493-1-git-send-email-u0084500@gmail.com>
- <1660100142-32493-4-git-send-email-u0084500@gmail.com> <Yw/lC9rjnbFW3ORC@google.com>
-In-Reply-To: <Yw/lC9rjnbFW3ORC@google.com>
-From:   ChiYuan Huang <u0084500@gmail.com>
-Date:   Thu, 1 Sep 2022 08:39:05 +0800
-Message-ID: <CADiBU38AuVW9yeFisKvK=_080tQzn-1PUxsDXH4p0QrA2AUSww@mail.gmail.com>
-Subject: Re: [PATCH v4 3/3] input: misc: rt5120: Add power key support
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lee Jones <lee@kernel.org>, cy_huang <cy_huang@richtek.com>,
+References: <20220831013359.1807905-1-jwerner@chromium.org> <44af0610-63b1-20d2-2c8c-23e84edb519c@linaro.org>
+In-Reply-To: <44af0610-63b1-20d2-2c8c-23e84edb519c@linaro.org>
+From:   Julius Werner <jwerner@chromium.org>
+Date:   Wed, 31 Aug 2022 18:05:45 -0700
+Message-ID: <CAODwPW9djbQszxqmMF4N8E5fg58A_N5=TNw0SXZf4UYTvp6R3A@mail.gmail.com>
+Subject: Re: [PATCH 0/4] dt-bindings: memory: Describing LPDDR topology
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Julius Werner <jwerner@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Doug Anderson <dianders@chromium.org>,
+        Jian-Jia Su <jjsu@google.com>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>,
-        linux-input@vger.kernel.org
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-9.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        USER_IN_DEF_SPF_WL autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dmitry Torokhov <dmitry.torokhov@gmail.com> =E6=96=BC 2022=E5=B9=B49=E6=9C=
-=881=E6=97=A5 =E9=80=B1=E5=9B=9B =E6=B8=85=E6=99=A86:47=E5=AF=AB=E9=81=93=
-=EF=BC=9A
->
-> Hi ChiYuan,
->
-> On Wed, Aug 10, 2022 at 10:55:42AM +0800, cy_huang wrote:
-> > +MODULE_AUTHOR("ChiYuan Huang <cy_huang@richtek.com>");
-> > +MODULE_DESCRIPTION("Richtek RT5120 power key driver");
-> > +MODULE_LICENSE("GPL v2");
->
-> I changed this to be simply "GPL" (per checkpatch.pl, see commit
-> 'bf7fbeeae6db module: Cure the MODULE_LICENSE "GPL" vs. "GPL v2"
-> bogosity' for details) + did a couple of minor edits, and applied, thank
-> you.
->
-Ok, got it.
-Old "GPL" text as GPL v2 or "later", and  the "later" keyword is the proble=
-m.
-This patch is to fix it.
+> Thanks for the patches. Where are the users of these bindings? Although
+> bindings do not have requirement of providing user (as kernel API has),
+> but this is quite a rework so I want to see that it is applicable. That
+> it matches real use case and need. I can do it only with real DTS in the
+> kernel.
 
-How about the SPDX license string? The same definition?
-
-> --
-> Dmitry
+Well, the whole point of the new compatible string format is that it
+can be generated by boot firmware at runtime, so I don't have a static
+DTS with this that I can check into the kernel tree. The first user of
+these bindings will be the
+arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dts board that's
+already in the tree, but since these nodes get generated you won't see
+them in that file. It's kinda like /chosen/kaslr-seed, that's also a
+valid binding with a schema description that's actively being used but
+doesn't show up in any DTS file checked into the tree.
