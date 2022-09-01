@@ -2,147 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 473545A99F3
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 16:19:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF3095A9A18
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 16:24:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230370AbiIAOTX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 10:19:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41680 "EHLO
+        id S232008AbiIAOV7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 10:21:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233968AbiIAOTU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 10:19:20 -0400
-Received: from smtp-fw-9103.amazon.com (smtp-fw-9103.amazon.com [207.171.188.200])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F2B03A4A8;
-        Thu,  1 Sep 2022 07:19:15 -0700 (PDT)
+        with ESMTP id S234577AbiIAOVp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 10:21:45 -0400
+Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4DA07170D;
+        Thu,  1 Sep 2022 07:21:26 -0700 (PDT)
+Received: by mail-qt1-x82a.google.com with SMTP id e28so13499212qts.1;
+        Thu, 01 Sep 2022 07:21:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1662041955; x=1693577955;
-  h=message-id:date:mime-version:to:cc:references:from:
-   in-reply-to:content-transfer-encoding:subject;
-  bh=N31b7BupwGEoU9ErDwflGUAKB637elD1wNkAbd+oWQw=;
-  b=Ws9OTQvKf6VRjprTZWvoUSHxgil6O8yp0PuBKch/4Y41pM82uHUuvkn/
-   gQcKjaJJ3ULZg3BFhJC5ft/o6+9+uHUxy7EcilsiHU++ZRL7Jk+PsMS4Y
-   6qtwHzliaMI8QPw1vmNRFMb0XXlzfDxOAGnWCdlLz5XIDqLNrrUuXnasm
-   c=;
-X-IronPort-AV: E=Sophos;i="5.93,281,1654560000"; 
-   d="scan'208";a="1050337274"
-Subject: Re: [PATCH v3 11/19] hwmon: (mr75203) add VM pre-scaler support
-Received: from pdx4-co-svc-p1-lb2-vlan3.amazon.com (HELO email-inbound-relay-iad-1a-a31e1d63.us-east-1.amazon.com) ([10.25.36.214])
-  by smtp-border-fw-9103.sea19.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Sep 2022 14:17:59 +0000
-Received: from EX13MTAUWA001.ant.amazon.com (iad12-ws-svc-p26-lb9-vlan3.iad.amazon.com [10.40.163.38])
-        by email-inbound-relay-iad-1a-a31e1d63.us-east-1.amazon.com (Postfix) with ESMTPS id 80800829E3;
-        Thu,  1 Sep 2022 14:17:56 +0000 (UTC)
-Received: from EX19D013UWA003.ant.amazon.com (10.13.138.202) by
- EX13MTAUWA001.ant.amazon.com (10.43.160.58) with Microsoft SMTP Server (TLS)
- id 15.0.1497.38; Thu, 1 Sep 2022 14:17:47 +0000
-Received: from EX13MTAUWB001.ant.amazon.com (10.43.161.207) by
- EX19D013UWA003.ant.amazon.com (10.13.138.202) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1118.12;
- Thu, 1 Sep 2022 14:17:47 +0000
-Received: from [192.168.93.228] (10.85.143.172) by mail-relay.amazon.com
- (10.43.161.249) with Microsoft SMTP Server id 15.0.1497.38 via Frontend
- Transport; Thu, 1 Sep 2022 14:17:41 +0000
-Message-ID: <917126b6-3acc-48df-77d2-0a725e7475d6@amazon.com>
-Date:   Thu, 1 Sep 2022 17:17:40 +0300
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=2guHmUXUEgWXxY+gDQPqQNXNAZmLdx374eGlGLm8JNw=;
+        b=a8+nJXBWvMhetvStRLQPqahJmbFu7Dao9kOOfWM86IQXi8DH3BFzjepBnqbbEA653i
+         9oU5l1U2WPuFJ0V15f4G6OZklMqGb8r3YWIBOdNYxKYqhUi4//ATYWy/sXa04Sv9sASg
+         FIlujEr1uXU+SsAzDwufG5Pw0F5lekxMciTGb1/a25LxOkawDHkUcpoZDxMZFz1HCWfm
+         K9JlSzEpPuN2ulZvEkthvMp7ZYf80tzZQPua69Unb8XWUdsL7PZCS2H60IFIauE0cnRs
+         AGOWzsdBm/h/BOCm9sySjCfi8evVGHOEO7p6nYfQMI++yXnKj22f8Wqdry2pV2HMKwpW
+         Fj5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=2guHmUXUEgWXxY+gDQPqQNXNAZmLdx374eGlGLm8JNw=;
+        b=LsPkwHI7XUA7FekJ5GMfuqJPWcppc5hZl0QVR+pk/5TuxJWWRJW70dVhUyUmZIAiKT
+         1EQwvkbUHZkkvy4hlEzzM0WaklH1xSniXmGeFHWwT5zkkyNduvmbgWXKoLEUfE4Lp/Dm
+         ylE8n16PufRHdSl0No1mdVBoMDAureTadW4mOCRgsq2xTyI+t9LjIDxT0McTxeIB8MNI
+         ZA8Nd0+Yoso+U15rlfnDWuW0RIPI0VRKRWWXVJJ3tCOfDl8gjDjMUqxRFPOhU4FQ0hKt
+         huNtBD9gA7OR8P1QEVPtHVq9Hd0bmz6g1eGhy6Cu5rPwYHcQGOO23qnw2mDTypEk+m7p
+         zevw==
+X-Gm-Message-State: ACgBeo0VZPdTvUREaqUZEUyyAtxEJ078zVQr+UplrZUyOS00566Z6uzm
+        vLzoenL2HD0AzWtBp6joV5fLh8WQkcpY8yo4fGs=
+X-Google-Smtp-Source: AA6agR7tDKBNZvk98n4eDs3dYrIf0a4H7sAbgfySK+duWCSFYdeYrDXJ7C5A15IlzUcI1brpxEFUWkcd9arrf4p/w+o=
+X-Received: by 2002:a05:622a:40a:b0:343:77ba:727f with SMTP id
+ n10-20020a05622a040a00b0034377ba727fmr24092510qtx.481.1662042085616; Thu, 01
+ Sep 2022 07:21:25 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.1
-Content-Language: en-US
-To:     Andy Shevchenko <andriy.shevchenko@intel.com>
-CC:     <jdelvare@suse.com>, <linux@roeck-us.net>, <robh+dt@kernel.org>,
-        <p.zabel@pengutronix.de>, <rtanwar@maxlinear.com>,
-        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <talel@amazon.com>,
-        <hhhawa@amazon.com>, <jonnyc@amazon.com>, <hanochu@amazon.com>,
-        <ronenk@amazon.com>, <itamark@amazon.com>, <shellykz@amazon.com>,
-        <shorer@amazon.com>, <amitlavi@amazon.com>, <almogbs@amazon.com>,
-        <dkl@amazon.com>, "Farber, Eliav" <farbere@amazon.com>
-References: <20220830192212.28570-1-farbere@amazon.com>
- <20220830192212.28570-12-farbere@amazon.com>
- <Yw9N6sr+k/4lcmT7@smile.fi.intel.com>
-From:   "Farber, Eliav" <farbere@amazon.com>
-In-Reply-To: <Yw9N6sr+k/4lcmT7@smile.fi.intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-11.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_SPF_WL autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220901041146.3652287-1-o.rempel@pengutronix.de> <20220901041146.3652287-3-o.rempel@pengutronix.de>
+In-Reply-To: <20220901041146.3652287-3-o.rempel@pengutronix.de>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Thu, 1 Sep 2022 17:20:49 +0300
+Message-ID: <CAHp75VcXS0inektGRKPCgqHv81c8gL29iiJSQKOL-c4u9kcz6A@mail.gmail.com>
+Subject: Re: [PATCH v3 3/3] iio: adc: tsc2046: silent spi_device_id warning
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/31/2022 3:02 PM, Andy Shevchenko wrote:
-> On Tue, Aug 30, 2022 at 07:22:04PM +0000, Eliav Farber wrote:
->> +static int pvt_get_pre_scaler(struct device *dev, struct pvt_device 
->> *pvt)
->> +{
->> +     const struct device_node *np = dev->of_node;
->> +     u32 total_channels = pvt->vm_channels.total;
->> +     u32 channel;
->> +     u8 *pre_scaler_ch_list;
->> +     int i, ret, num_ch;
->> +
->> +     /* Set default pre-scaler value to be 1. */
->> +     for (i = 0; i < total_channels; i++)
->> +             pvt->vd[i].pre_scaler = PRE_SCALER_X1;
->> +
->> +     /* Get number of channels configured in 
->> "moortec,vm-pre-scaler". */
->> +     num_ch = of_property_count_u8_elems(np, "moortec,vm-pre-scaler");
+On Thu, Sep 1, 2022 at 7:12 AM Oleksij Rempel <o.rempel@pengutronix.de> wrote:
 >
-> of_ ?!
->
-Replaced of_property_count_u8_elems() with
-device_property_count_u8().
+> Add spi_device_id to silent following kernel runtime warning:
+> "SPI driver tsc2046 has no spi_device_id for ti,tsc2046e-adc".
 
->> +     if (num_ch <= 0)
->> +             return 0;
->> +
->> +     pre_scaler_ch_list = kcalloc(total_channels,
->> +                                  sizeof(*pre_scaler_ch_list), 
->> GFP_KERNEL);
->> +     if (!pre_scaler_ch_list)
->> +             return -ENOMEM;
->> +
->> +     /* Get list of all channels that have pre-scaler of 2. */
->> +     ret = device_property_read_u8_array(dev, "moortec,vm-pre-scaler",
->> +                                         pre_scaler_ch_list, num_ch);
->> +     if (ret)
->> +             goto out;
->> +
->> +     for (i = 0; i < num_ch; i++) {
->> +             channel = pre_scaler_ch_list[i];
->
->> +
->
-> Unnecessary blank line.
+Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
 
-Blank line removed.
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> ---
+> changes v3:
+> - add missing point
+> - remove unneeded blank line
+> - assignment id at the definition line
+> changes v2:
+> - attach actual driver_data
+> - use spi_get_device_id fallback
+> ---
+>  drivers/iio/adc/ti-tsc2046.c | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+>
+> diff --git a/drivers/iio/adc/ti-tsc2046.c b/drivers/iio/adc/ti-tsc2046.c
+> index bbc8b4137b0b1..d5d799972fefd 100644
+> --- a/drivers/iio/adc/ti-tsc2046.c
+> +++ b/drivers/iio/adc/ti-tsc2046.c
+> @@ -762,6 +762,11 @@ static int tsc2046_adc_probe(struct spi_device *spi)
+>         }
+>
+>         dcfg = device_get_match_data(dev);
+> +       if (!dcfg) {
+> +               const struct spi_device_id *id = spi_get_device_id(spi);
+> +
+> +               dcfg = (const struct tsc2046_adc_dcfg *)id->driver_data;
+> +       }
+>         if (!dcfg)
+>                 return -EINVAL;
+>
+> @@ -878,11 +883,18 @@ static const struct of_device_id ads7950_of_table[] = {
+>  };
+>  MODULE_DEVICE_TABLE(of, ads7950_of_table);
+>
+> +static const struct spi_device_id tsc2046_adc_spi_ids[] = {
+> +       { "tsc2046e-adc", (unsigned long)&tsc2046_adc_dcfg_tsc2046e },
+> +       { }
+> +};
+> +MODULE_DEVICE_TABLE(spi, tsc2046_adc_spi_ids);
+> +
+>  static struct spi_driver tsc2046_adc_driver = {
+>         .driver = {
+>                 .name = "tsc2046",
+>                 .of_match_table = ads7950_of_table,
+>         },
+> +       .id_table = tsc2046_adc_spi_ids,
+>         .probe = tsc2046_adc_probe,
+>         .remove = tsc2046_adc_remove,
+>  };
+> --
+> 2.30.2
+>
 
 
->> +             if (channel >= total_channels) {
->> +                     dev_err(dev,
->> +                             "invalid channel (%u) in pre-scaler 
->> list\n",
->> +                             channel);
->> +                     ret = -EINVAL;
->
->> +                     goto out;
->
-> Wouldn't
->
->                        break;
->
-> suffice? (I understand the point, up to you)
-I prefer to exit the moment I detect a problem.
-For now I can use a break but in the future someone else can add new code
-in between that will set ret to 0 and instead of failing driver flow will
-continue with incomplete pre-scaler value.
-So I prefer keeping it as it.
-
---
-Best regards, Eliav
+-- 
+With Best Regards,
+Andy Shevchenko
