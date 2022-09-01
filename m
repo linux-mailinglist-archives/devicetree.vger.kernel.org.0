@@ -2,52 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E26BF5A8A3D
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 03:06:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70FD35A8A4A
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 03:10:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232124AbiIABGB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 21:06:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36930 "EHLO
+        id S229638AbiIABKH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 21:10:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229510AbiIABGA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 21:06:00 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C57F02558D
-        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 18:05:58 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id s7so5427974wro.2
-        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 18:05:58 -0700 (PDT)
+        with ESMTP id S229572AbiIABKG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 21:10:06 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8306F3F317
+        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 18:10:04 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id az24-20020a05600c601800b003a842e4983cso553127wmb.0
+        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 18:10:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date;
-        bh=YvNEBJBfMvQ5w8FZGjePs4EEEPMMHypbVW886g1wLRk=;
-        b=jsOlqoaxWIs1N1xHjn5INlifctP/ZDLlLd5Cg1+J2fVRKaMqoY004XOLkkGFk1OM90
-         aGsi5Xfhx/dEBi5TXvDjIKog0VsCTmWmbZkveQKfMqKhoLCe2dT5B/CjC6t8QvaRN2sm
-         hkECuuqxORICl6YfidHo9NGrBcB99kc92lmi4=
+        bh=CjZECOzLeXHOxYfgj/cZbdNFcui6wlKXTUVA8M7mEZw=;
+        b=OfXRkpizalNa11ty/ObB0YE8gaF/KsLNqBZsvIPYzGvXkuJ7AH67EL6Y4tKg2Dkh+W
+         v9LBxpJnSj1Q+sXGtF5fY2HpYJokJ5KVVV0SsvvAsTbvZNGqimFVp8h0IW8RoZi1AT+1
+         bG6KqczJSSvK943d27EgjSUQonp5ruT9GB6xU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=YvNEBJBfMvQ5w8FZGjePs4EEEPMMHypbVW886g1wLRk=;
-        b=WCzb2hVXTZsjCWYsgLu9rUANJBaF4GzENsTbzrPqtaHullArpO9qAg8I+qRkMi0BIH
-         oXnwXfN2IwuSgWxuk92nvaeAODRrjSH9PNr/8BQ+cKkx120gmSk0+SvCHFmuGCMEOpLI
-         nAnTTKxE873vReBQJatZME8xWfk2oJkiz9E5nTZTRfx2ddIrJsPowBaYzBG6u7QRXdb+
-         ZkK/o0H7WZM0RySpNxicCIN0f+lEQPC9kf69QGvsQhpfFFsZ2M7Kxec2dmiIGaganBbt
-         3RjsQfjXJJkpL61b3MrKsptKM1UmpqpPyKRYlEH23aONhnHCh6zEg7D1Vj6nVGOOFIDO
-         Khxw==
-X-Gm-Message-State: ACgBeo152eITl96IJ4yFbMo110eu6JplaYNv+Em/ou1AMU+qbBzuY2RG
-        jLWVAt5o/Hmu9deR67PlbeUI6oGLd3p1Zm+QSUHnQQ==
-X-Google-Smtp-Source: AA6agR4ZPUGYiLmxDP5x9LAEuxkPssREQeeQeicXAJM72ieYMkWhUf4WOFIWMc1757aSUsgbPcQHGA2Hg2Zff37EqQ4=
-X-Received: by 2002:a5d:47a8:0:b0:226:f124:ad74 with SMTP id
- 8-20020a5d47a8000000b00226f124ad74mr1545270wrb.18.1661994357245; Wed, 31 Aug
- 2022 18:05:57 -0700 (PDT)
+        bh=CjZECOzLeXHOxYfgj/cZbdNFcui6wlKXTUVA8M7mEZw=;
+        b=7A1iGsNn13ag/GA7I0qLjZFpHzKVVL2XyiWDh0jiKhpaxqyYD/u13CWQ23FoLQunCC
+         l5+SXSnnyNNeMsozo+IqEEq2W7IlwORQWw9B+l//KfetU3jIfCXlDJYpB3yOB2G2cErO
+         scE7teUHbaUHt5URUEWSyKh3kfGVuV7gmJXgJITsPAPiTG/pujxmN/mik3cSIfChfFR+
+         2PSO0a1dgqk1pyfzoTWudbKnVYX3p/f3f6OKvyfGJ/wFVbBqJUJl6sdZEafeEO57XHH7
+         9d7btQ/LcfSm+H882o2gCcO7vpN85h60FV4ViJKExID44v5Ha0aaONlbM73mKRIk5rNc
+         B4ag==
+X-Gm-Message-State: ACgBeo0GKvbQYaEH+ET316uNWAzG4T5kOdA7CVFrN6h7rfV2jL/dBsYc
+        IOY3DbcQv32av9LxZHTbgp5//MH6lr0EENUoLxsF+A==
+X-Google-Smtp-Source: AA6agR6N/6ryjaE5oHG+JJHSEIkNANGb9HZ8fnEHslgyH9XeO5lh7HnK+/u10e87OwJ2YTLwPGJLovU1KnKa7mkOS9c=
+X-Received: by 2002:a7b:ce89:0:b0:3a5:cefe:80f6 with SMTP id
+ q9-20020a7bce89000000b003a5cefe80f6mr3659147wmj.113.1661994602969; Wed, 31
+ Aug 2022 18:10:02 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220831013359.1807905-1-jwerner@chromium.org> <44af0610-63b1-20d2-2c8c-23e84edb519c@linaro.org>
-In-Reply-To: <44af0610-63b1-20d2-2c8c-23e84edb519c@linaro.org>
+References: <20220831013359.1807905-1-jwerner@chromium.org>
+ <20220831013359.1807905-2-jwerner@chromium.org> <08d8807e-18cf-032e-90e9-e08023e7a6e0@linaro.org>
+In-Reply-To: <08d8807e-18cf-032e-90e9-e08023e7a6e0@linaro.org>
 From:   Julius Werner <jwerner@chromium.org>
-Date:   Wed, 31 Aug 2022 18:05:45 -0700
-Message-ID: <CAODwPW9djbQszxqmMF4N8E5fg58A_N5=TNw0SXZf4UYTvp6R3A@mail.gmail.com>
-Subject: Re: [PATCH 0/4] dt-bindings: memory: Describing LPDDR topology
+Date:   Wed, 31 Aug 2022 18:09:50 -0700
+Message-ID: <CAODwPW-UfvgbGaZtyu_g-8dv_rmz8Zk6Xb6M5DTtRah_1W2KVA@mail.gmail.com>
+Subject: Re: [PATCH 1/4] dt-bindings: memory: Factor out common properties of
+ LPDDR bindings
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Cc:     Julius Werner <jwerner@chromium.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -67,18 +69,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Thanks for the patches. Where are the users of these bindings? Although
-> bindings do not have requirement of providing user (as kernel API has),
-> but this is quite a rework so I want to see that it is applicable. That
-> it matches real use case and need. I can do it only with real DTS in the
-> kernel.
+> > +properties:
+> > +  manufacturer-id:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description:
+> > +      Manufacturer ID read from Mode Register 5.
+>
+> Are you sure that register numbers (here 5, 6-7-8 later) are the same
+> between LPDDR 2-5? The description should match the broadest case and
+> specific schema can narrow or correct it.
 
-Well, the whole point of the new compatible string format is that it
-can be generated by boot firmware at runtime, so I don't have a static
-DTS with this that I can check into the kernel tree. The first user of
-these bindings will be the
-arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dts board that's
-already in the tree, but since these nodes get generated you won't see
-them in that file. It's kinda like /chosen/kaslr-seed, that's also a
-valid binding with a schema description that's actively being used but
-doesn't show up in any DTS file checked into the tree.
+Yes, the new LPDDR versions only ever seem to add new mode registers,
+but the meaning of 5, 6 and 7 have always stayed the same. (For 8, the
+bit fields have remained the same but the mapping of bit patterns to
+values has changed.)
+
+> > This also un-deprecates the manufacturer ID property for LPDDR3 (and
+> > introduces it to LPDDR2), since it was found that having this
+> > information available in a separate property can be useful in some
+> > cases.
+>
+> Why do you need to un-deprecate them if you have this information in
+> compatible? This was not exactly the previous consensus. My statement
+> was ok for un-deprecating if you cannot derive them from compatible. Now
+> you can. This should be the same as USB device schema.
+
+Okay. I think there is value in having these as separate properties,
+because it makes them much easier to read and use. If we don't have
+them we always need to do all this string parsing first, and if
+systems allow both kinds of compatible strings (auto-generated and
+static) they'll need to be able to distinguish and handle both of
+those when parsing... I think it would be much less friction if each
+datum of interest could directly be read out of a property. I think
+having a bit of redundancy is fine and common in device tree bindings
+(e.g. most properties for most devices are really implied by the
+compatible string because that same type of device is always built in
+the same way, but that doesn't mean it's not useful to list them
+separately for ease-of-access). But I can remove them if you disagree.
