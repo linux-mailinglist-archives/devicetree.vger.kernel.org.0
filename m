@@ -2,302 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 175555A8C03
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 05:47:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA1725A8CA2
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 06:30:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231211AbiIADrS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 23:47:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44982 "EHLO
+        id S232820AbiIAEaW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 00:30:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230101AbiIADrR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 23:47:17 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02F77161682;
-        Wed, 31 Aug 2022 20:47:08 -0700 (PDT)
-X-UUID: e79253e932c3434abe699431a21d3435-20220901
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=xl5ebXbjbzQPJXHpd3wRratKYkzXi1VpgO2J7nGAbjs=;
-        b=LXODQWm3pspRo+zpOOD4Rgrd9IYaB2to+cXoJdH6l2jyEHi0oYpro8hVSINxJn3ijb+t14y/ZvFjd1oSr2tgA2HKPuRIOjRvaTEZwA28aU36fOTBa6pp/12CoABTs7bMe08XvpdHlR/ZYTIst/33/M8Ux47pMGqSDZ0hgGZW6EE=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.10,REQID:329dd0b9-7265-4c8a-ba7a-7d7bc5505560,OB:0,L
-        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_
-        Ham,ACTION:release,TS:0
-X-CID-META: VersionHash:84eae18,CLOUDID:cd1044d0-20bd-4e5e-ace8-00692b7ab380,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: e79253e932c3434abe699431a21d3435-20220901
-Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
-        (envelope-from <chui-hao.chiu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1167694257; Thu, 01 Sep 2022 11:47:02 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Thu, 1 Sep 2022 11:47:01 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Thu, 1 Sep 2022 11:47:01 +0800
-Message-ID: <deb84c968ba615201619e5c4ef0445f09de6fc7e.camel@mediatek.com>
-Subject: Re: [PATCH v4] arm64: dts: mt7986: add built-in Wi-Fi device nodes
-From:   Peter Chiu <chui-hao.chiu@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     <devicetree@vger.kernel.org>, Ryder Lee <ryder.Lee@mediatek.com>,
-        "Evelyn Tsai" <evelyn.tsai@mediatek.com>,
-        Sam Shih <sam.shih@mediatek.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Date:   Thu, 1 Sep 2022 11:47:01 +0800
-In-Reply-To: <b6524da2-34d6-cb7b-c8bf-19809e8932ed@gmail.com>
-References: <20220630094909.8014-1-chui-hao.chiu@mediatek.com>
-         <b6524da2-34d6-cb7b-c8bf-19809e8932ed@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR,T_SPF_TEMPERROR,
-        UNPARSEABLE_RELAY,URIBL_CSS autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S232651AbiIAE3v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 00:29:51 -0400
+Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB4298E0E7;
+        Wed, 31 Aug 2022 21:20:25 -0700 (PDT)
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id A69631A4389;
+        Thu,  1 Sep 2022 06:20:23 +0200 (CEST)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 702281A4371;
+        Thu,  1 Sep 2022 06:20:23 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 9165E181D0CA;
+        Thu,  1 Sep 2022 12:20:21 +0800 (+08)
+From:   Richard Zhu <hongxing.zhu@nxp.com>
+To:     p.zabel@pengutronix.de, l.stach@pengutronix.de,
+        bhelgaas@google.com, lorenzo.pieralisi@arm.com, robh@kernel.org,
+        shawnguo@kernel.org, vkoul@kernel.org,
+        alexander.stein@ew.tq-group.com, marex@denx.de,
+        richard.leitner@linux.dev
+Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
+        linux-imx@nxp.com
+Subject: [PATCH v6 0/7] Add the iMX8MP PCIe support
+Date:   Thu,  1 Sep 2022 12:02:33 +0800
+Message-Id: <1662004960-14071-1-git-send-email-hongxing.zhu@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2022-08-30 at 10:43 +0200, Matthias Brugger wrote:
-> 
-> On 30/06/2022 11:49, Peter Chiu wrote:
-> > This enables built-in 802.11ax Wi-Fi support.
-> > 
-> > Reviewed-by: Sam Shih <sam.shih@mediatek.com>
-> > Reviewed-by: Ryder Lee <ryder.lee@mediatek.com>
-> > Signed-off-by: Peter Chiu <chui-hao.chiu@mediatek.com>
-> > ---
-> > v2: add clocks and clock-names.
-> > v3: rename wmac to wifi and change underscores to dash in node
-> > names.
-> > v4: rebase to the latest codebase.
-> > ---
-> >   arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts | 41
-> > +++++++++++++++++++
-> >   arch/arm64/boot/dts/mediatek/mt7986a.dtsi    | 23 +++++++++++
-> >   arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts | 43
-> > ++++++++++++++++++++
-> >   3 files changed, 107 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
-> > b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
-> > index 882277a..28cd168 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
-> > +++ b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
-> > @@ -115,6 +115,13 @@ &uart2 {
-> >   	status = "okay";
-> >   };
-> >   
-> > +&wifi {
-> > +	status = "okay";
-> > +	pinctrl-names = "default", "dbdc";
-> > +	pinctrl-0 = <&wf_2g_5g_pins>;
-> > +	pinctrl-1 = <&wf_dbdc_pins>;
-> > +};
-> > +
-> >   &pio {
-> >   	uart1_pins: uart1-pins {
-> >   		mux {
-> > @@ -129,4 +136,38 @@ mux {
-> >   			groups = "uart2";
-> >   		};
-> >   	};
-> > +
-> > +	wf_2g_5g_pins: wf-2g-5g-pins {
-> > +		mux {
-> > +			function = "wifi";
-> > +			groups = "wf_2g", "wf_5g";
-> 
-> yaml says:
->           - if:
->                properties:
->                  function:
->                    const: wifi
->              then:
->                properties:
->                  groups:
->                    enum: [wf_2g, wf_5g, wf_dbdc]
-> 
-> 
-> Did you run the binding checker against this DTS?
-The binding checker showed the groups setting is too long. We will send
-a patch to fix yaml by setting groups as string-array.
+Based on the 6.0-rc1 of the pci/next branch. 
+This series adds the i.MX8MP PCIe support and tested on i.MX8MP
+EVK board when one PCIe NVME device is used.
 
-> Why can't we just merge wf_2g_5g_pins with wf_dbdc_pins?
-Since they use different pinmux settings on the same pin, we need to
-distinguish them.
+- i.MX8MP PCIe has reversed initial PERST bit value refer to i.MX8MQ/i.MX8MM.
+  Add the PHY PERST explicitly for i.MX8MP PCIe PHY.
+- Add the i.MX8MP PCIe PHY support in the i.MX8M PCIe PHY driver.
+  And share as much as possible codes with i.MX8MM PCIe PHY.
+- Add the i.MX8MP PCIe support in binding document, DTS files, and PCIe
+  driver.
 
-Best Regards,
-Peter Chiu
-> 
-> Regards,
-> Matthias
-> 
-> > +		};
-> > +		conf {
-> > +			pins = "WF0_HB1", "WF0_HB2", "WF0_HB3",
-> > "WF0_HB4",
-> > +			       "WF0_HB0", "WF0_HB0_B", "WF0_HB5",
-> > "WF0_HB6",
-> > +			       "WF0_HB7", "WF0_HB8", "WF0_HB9",
-> > "WF0_HB10",
-> > +			       "WF0_TOP_CLK", "WF0_TOP_DATA",
-> > "WF1_HB1",
-> > +			       "WF1_HB2", "WF1_HB3", "WF1_HB4",
-> > "WF1_HB0",
-> > +			       "WF1_HB5", "WF1_HB6", "WF1_HB7",
-> > "WF1_HB8",
-> > +			       "WF1_TOP_CLK", "WF1_TOP_DATA";
-> > +			drive-strength = <4>;
-> > +		};
-> > +	};
-> > +
-> > +	wf_dbdc_pins: wf-dbdc-pins {
-> > +		mux {
-> > +			function = "wifi";
-> > +			groups = "wf_dbdc";
-> > +		};
-> > +		conf {
-> > +			pins = "WF0_HB1", "WF0_HB2", "WF0_HB3",
-> > "WF0_HB4",
-> > +			       "WF0_HB0", "WF0_HB0_B", "WF0_HB5",
-> > "WF0_HB6",
-> > +			       "WF0_HB7", "WF0_HB8", "WF0_HB9",
-> > "WF0_HB10",
-> > +			       "WF0_TOP_CLK", "WF0_TOP_DATA",
-> > "WF1_HB1",
-> > +			       "WF1_HB2", "WF1_HB3", "WF1_HB4",
-> > "WF1_HB0",
-> > +			       "WF1_HB5", "WF1_HB6", "WF1_HB7",
-> > "WF1_HB8",
-> > +			       "WF1_TOP_CLK", "WF1_TOP_DATA";
-> > +			drive-strength = <4>;
-> > +		};
-> > +	};
-> >   };
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> > b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> > index e3a407d..890ded0 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> > +++ b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> > @@ -7,6 +7,7 @@
-> >   #include <dt-bindings/interrupt-controller/irq.h>
-> >   #include <dt-bindings/interrupt-controller/arm-gic.h>
-> >   #include <dt-bindings/clock/mt7986-clk.h>
-> > +#include <dt-bindings/reset/mt7986-resets.h>
-> >   
-> >   / {
-> >   	interrupt-parent = <&gic>;
-> > @@ -70,6 +71,11 @@ secmon_reserved: secmon@43000000 {
-> >   			reg = <0 0x43000000 0 0x30000>;
-> >   			no-map;
-> >   		};
-> > +
-> > +		wmcpu_emi: wmcpu-reserved@4fc00000 {
-> > +			no-map;
-> > +			reg = <0 0x4fc00000 0 0x00100000>;
-> > +		};
-> >   	};
-> >   
-> >   	timer {
-> > @@ -261,6 +267,23 @@ eth: ethernet@15100000 {
-> >   			#size-cells = <0>;
-> >   			status = "disabled";
-> >   		};
-> > +
-> > +		wifi: wifi@18000000 {
-> > +			compatible = "mediatek,mt7986-wmac";
-> > +			resets = <&watchdog
-> > MT7986_TOPRGU_CONSYS_SW_RST>;
-> > +			reset-names = "consys";
-> > +			clocks = <&topckgen CLK_TOP_CONN_MCUSYS_SEL>,
-> > +				 <&topckgen CLK_TOP_AP2CNN_HOST_SEL>;
-> > +			clock-names = "mcu", "ap2conn";
-> > +			reg = <0 0x18000000 0 0x1000000>,
-> > +			      <0 0x10003000 0 0x1000>,
-> > +			      <0 0x11d10000 0 0x1000>;
-> > +			interrupts = <GIC_SPI 213 IRQ_TYPE_LEVEL_HIGH>,
-> > +				     <GIC_SPI 214 IRQ_TYPE_LEVEL_HIGH>,
-> > +				     <GIC_SPI 215 IRQ_TYPE_LEVEL_HIGH>,
-> > +				     <GIC_SPI 216 IRQ_TYPE_LEVEL_HIGH>;
-> > +			memory-region = <&wmcpu_emi>;
-> > +		};
-> >   	};
-> >   
-> >   };
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
-> > b/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
-> > index 0f49d57..7f21b10 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
-> > +++ b/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
-> > @@ -98,3 +98,46 @@ fixed-link {
-> >   		};
-> >   	};
-> >   };
-> > +
-> > +&wifi {
-> > +	status = "okay";
-> > +	pinctrl-names = "default", "dbdc";
-> > +	pinctrl-0 = <&wf_2g_5g_pins>;
-> > +	pinctrl-1 = <&wf_dbdc_pins>;
-> > +};
-> > +
-> > +&pio {
-> > +	wf_2g_5g_pins: wf-2g-5g-pins {
-> > +		mux {
-> > +			function = "wifi";
-> > +			groups = "wf_2g", "wf_5g";
-> > +		};
-> > +		conf {
-> > +			pins = "WF0_HB1", "WF0_HB2", "WF0_HB3",
-> > "WF0_HB4",
-> > +			       "WF0_HB0", "WF0_HB0_B", "WF0_HB5",
-> > "WF0_HB6",
-> > +			       "WF0_HB7", "WF0_HB8", "WF0_HB9",
-> > "WF0_HB10",
-> > +			       "WF0_TOP_CLK", "WF0_TOP_DATA",
-> > "WF1_HB1",
-> > +			       "WF1_HB2", "WF1_HB3", "WF1_HB4",
-> > "WF1_HB0",
-> > +			       "WF1_HB5", "WF1_HB6", "WF1_HB7",
-> > "WF1_HB8",
-> > +			       "WF1_TOP_CLK", "WF1_TOP_DATA";
-> > +			drive-strength = <4>;
-> > +		};
-> > +	};
-> > +
-> > +	wf_dbdc_pins: wf-dbdc-pins {
-> > +		mux {
-> > +			function = "wifi";
-> > +			groups = "wf_dbdc";
-> > +		};
-> > +		conf {
-> > +			pins = "WF0_HB1", "WF0_HB2", "WF0_HB3",
-> > "WF0_HB4",
-> > +			       "WF0_HB0", "WF0_HB0_B", "WF0_HB5",
-> > "WF0_HB6",
-> > +			       "WF0_HB7", "WF0_HB8", "WF0_HB9",
-> > "WF0_HB10",
-> > +			       "WF0_TOP_CLK", "WF0_TOP_DATA",
-> > "WF1_HB1",
-> > +			       "WF1_HB2", "WF1_HB3", "WF1_HB4",
-> > "WF1_HB0",
-> > +			       "WF1_HB5", "WF1_HB6", "WF1_HB7",
-> > "WF1_HB8",
-> > +			       "WF1_TOP_CLK", "WF1_TOP_DATA";
-> > +			drive-strength = <4>;
-> > +		};
-> > +	};
-> > +};
+Main changes v5-->v6:
+- To avoid code duplication when find the gpr syscon regmap, add the
+  gpr compatible into the drvdata.
+- Add one missing space before one curly brace in 3/7 of v5 series.
+- 4/7 of v5 had been applied by Phillipp, thanks. For ease of tests, still
+  keep it in v6.
 
+Main changes v4-->v5:
+- Use Lucas' approach, let blk-ctrl driver do the hsio-mix resets.
+- Fetch the iomuxc-gpr regmap by the different phandles.
+
+Main changes v3-->v4:
+- Regarding Phillipp's suggestions, add fix tag into the first commit.
+- Add Reviewed and Tested tags.
+
+Main changes v2-->v3:
+- Fix the schema checking error in the PHY dt-binding patch.
+- Inspired by Lucas, the PLL configurations might not required when
+  external OSC is used as PCIe referrence clock. It's true. Remove all
+  the HSIO PLL bit manipulations, and PCIe works fine on i.MX8MP EVK board
+  with one NVME device is used.
+- Drop the #4 patch of v2, since it had been applied by Rob.
+
+Main changes v1-->v2:
+- It's my fault forget including Vinod, re-send v2 after include Vinod
+  and linux-phy@lists.infradead.org.
+- List the basements of this patch-set. The branch, codes changes and so on.
+- Clean up some useless register and bit definitions in #3 patch.
+
+Documentation/devicetree/bindings/phy/fsl,imx8-pcie-phy.yaml |  16 ++++++++--
+arch/arm64/boot/dts/freescale/imx8mp-evk.dts                 |  53 +++++++++++++++++++++++++++++++
+arch/arm64/boot/dts/freescale/imx8mp.dtsi                    |  43 +++++++++++++++++++++++++
+drivers/pci/controller/dwc/pci-imx6.c                        |  27 ++++++++++++++--
+drivers/phy/freescale/phy-fsl-imx8m-pcie.c                   | 143 +++++++++++++++++++++++++++++++++++++++++++++++++++++++---------------------------
+drivers/reset/reset-imx7.c                                   |   1 +
+drivers/soc/imx/imx8mp-blk-ctrl.c                            |  10 ++++++
+7 files changed, 241 insertions(+), 52 deletions(-)
+
+
+ [PATCH v6 1/7] dt-binding: phy: Add iMX8MP PCIe PHY binding
+ [PATCH v6 2/7] arm64: dts: imx8mp: Add iMX8MP PCIe support
+ [PATCH v6 3/7] arm64: dts: imx8mp-evk: Add PCIe support
+ [PATCH v6 4/7] reset: imx7: Fix the iMX8MP PCIe PHY PERST support
+ [PATCH v6 5/7] soc: imx: imx8mp-blk-ctrl: handle PCIe PHY resets
+ [PATCH v6 6/7] phy: freescale: imx8m-pcie: Add i.MX8MP PCIe PHY
+ [PATCH v6 7/7] PCI: imx6: Add i.MX8MP PCIe support
