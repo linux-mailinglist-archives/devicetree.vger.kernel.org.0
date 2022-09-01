@@ -2,257 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 91BAC5A9A5A
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 16:31:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01FC65A9A74
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 16:36:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234595AbiIAObM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 10:31:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44488 "EHLO
+        id S234835AbiIAOf4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 10:35:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234779AbiIAObK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 10:31:10 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97A476C11E;
-        Thu,  1 Sep 2022 07:31:08 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id b5so22608592wrr.5;
-        Thu, 01 Sep 2022 07:31:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=T/lFULYC7Ke1BXi647CM88bU431QP21ewJEyzWrvSnM=;
-        b=pA6sBzZZzHEeFvlcNG2Ev480dc0grCRm4fpEKUDjzJBJR3yioXatFWOp0k2t+hsrOj
-         XSLbaevCk5Txr3pfKnlAUMTgqqizV3+IrA6jNLKyB6uOhJZGdBKkORmJlLQPvq65rBBa
-         hvNkcCTyu/7sVmNGh9lkgTn1i1p4uJMsZ2KN4T9cf9NYj12veqSJCkLesgYkBg8mASes
-         m/Dc/Qk0/KdXA+VK60qDwSdpOYRkEamqJh+ffOtRBG+d0HNl6dfhqgSL/lOco32OaeuY
-         xsIBYjVPut6HLP0TUnSY34RJbnCOul2LORID2WdjkuPcZ2iYTqM8ESw2BfFR8ubyGkNL
-         zCdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=T/lFULYC7Ke1BXi647CM88bU431QP21ewJEyzWrvSnM=;
-        b=KsIOJnbNPBicp2VT1RgOX4pAEM/DdjaeQ1EaUs/jVNB7KEwMGeL3MbX2ADb3YadqV8
-         3E8diZk3aLdOmjKNNi1cNCxr95gmsnwpQ4RqivTKMjCkRbta5ImcMKQynaqdRyItyNTi
-         tj5Jtaqo1LDeeGEPs2tL+FC7bxGbAD4dkk68kpDAspt1JORsiLQfuXPS5TnNGt51bJy9
-         8XGCepy217tbp5FgIjsq41jiwvonN2uSLNNnzxWyBR/ymJGV3ZUqK0C2VaOU/H274ra9
-         zToqqZSU0DAQs8Jg6QxFpO/SoCcwdkadtEQ9cQvC80qnHwmKMW7xlO8heUX4JdZBPr6+
-         Rm1Q==
-X-Gm-Message-State: ACgBeo18VqHkQFIIsKiiXG6J8i2KaaFb5MZlHdJnJfRjN38TCI+qDvLe
-        w4N/fsP+Ba05hHHeve5NZ2I=
-X-Google-Smtp-Source: AA6agR7f+KK2jItph90PXKwihYdt6FOBY3qQdM3Me1JOJcTgSGVJ1rQ0W2v00+QaPvjHdXZWIpFxoA==
-X-Received: by 2002:a5d:5274:0:b0:226:d134:80aa with SMTP id l20-20020a5d5274000000b00226d13480aamr14529277wrc.59.1662042666771;
-        Thu, 01 Sep 2022 07:31:06 -0700 (PDT)
-Received: from [192.168.0.30] ([47.62.125.55])
-        by smtp.gmail.com with ESMTPSA id b8-20020a5d4d88000000b002253d865715sm11813494wru.87.2022.09.01.07.31.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Sep 2022 07:31:05 -0700 (PDT)
-Message-ID: <aac98d72-863d-eb7b-caab-73bb0fddeb83@gmail.com>
-Date:   Thu, 1 Sep 2022 16:31:04 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.1.2
-Subject: Re: [PATCH v5] arm64: dts: mt7986: add built-in Wi-Fi device nodes
-Content-Language: en-US
-To:     Peter Chiu <chui-hao.chiu@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     devicetree@vger.kernel.org, Ryder Lee <ryder.Lee@mediatek.com>,
-        Evelyn Tsai <evelyn.tsai@mediatek.com>,
-        Sam Shih <sam.shih@mediatek.com>,
+        with ESMTP id S233832AbiIAOfw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 10:35:52 -0400
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CCE44D258;
+        Thu,  1 Sep 2022 07:35:49 -0700 (PDT)
+Received: (Authenticated sender: maxime.chevallier@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 49C2060009;
+        Thu,  1 Sep 2022 14:35:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1662042948;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=T6oq9PYdvH0QnbXA7ASoiT5jN7LpcS9phWmLeYfxYX0=;
+        b=kMFTV8zGoWXSfmnCTkQKpvXP9zV1IxSjtLUu17NOAmpn6n0YXloXXPibpNmOrqjSc4KSBj
+        MtSqLWVAkLIJTxb6qMNuxKruzTKasbmyaG7le+N0QjtbfNQep+PDa+38CWoJw2Rhc0pdGa
+        y1R02wJIBdVbg1ySvEYKzAd6fqJll4CX3blpu/S2SjUx7hO7gq6256OzLaTlWEfgPTSYzd
+        G6mrGqEh0l/0xkLULo7DftLXSSVMpm9whmDW+uBlHSQPZ1/xGtBrLPwGulim/0/tqqF44I
+        IdJS6SsVPdJd6DmqsDWJjLiIPpGS2mBlifqqt3h6ywiiBvAI0LoxpZOHqXUr1g==
+From:   Maxime Chevallier <maxime.chevallier@bootlin.com>
+To:     davem@davemloft.net, Rob Herring <robh+dt@kernel.org>
+Cc:     Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        thomas.petazzoni@bootlin.com, Andrew Lunn <andrew@lunn.ch>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
         linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220901130552.26234-1-chui-hao.chiu@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220901130552.26234-1-chui-hao.chiu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH net-next v3 0/5] net: altera: tse: phylink conversion
+Date:   Thu,  1 Sep 2022 16:35:38 +0200
+Message-Id: <20220901143543.416977-1-maxime.chevallier@bootlin.com>
+X-Mailer: git-send-email 2.37.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This is V3 of a series converting the Altera TSE driver to phylink,
+introducing a new PCS driver along the way.
 
+The Altera TSE can be built with a SGMII/1000BaseX PCS, allowing to use
+SFP ports with this MAC, which is the end goal of adding phylink support
+and a proper PCS driver.
 
-On 01/09/2022 15:05, Peter Chiu wrote:
-> This enables built-in 802.11ax Wi-Fi support.
-> 
-> Reviewed-by: Sam Shih <sam.shih@mediatek.com>
-> Reviewed-by: Ryder Lee <ryder.lee@mediatek.com>
-> Signed-off-by: Peter Chiu <chui-hao.chiu@mediatek.com>
-> 
+The PCS itself can either be mapped in the MAC's register space, in that
+case, it's accessed through 32 bits registers, with the higher 16 bits
+always 0. Alternatively, it can sit on its own register space, exposing
+16 bits registers, some of which ressemble the standard PHY registers.
 
-That won't work without the pinctrl yaml file updated. Please send both together 
-so that we can review them.
+To tackle that rework, several things needs updating, starting by the DT
+binding, since we add support for a new register range for the PCS.
 
-Regards,
-Matthias
+Hence, the first patch of the series is a conversion to YAML of the
+existing binding.
 
-> ---
-> v2: add clocks and clock-names.
-> v3: rename wmac to wifi and change underscores to dash in node names.
-> v4: rebase to the latest codebase.
-> v5: remove useless pins in wf_dbdc_pins node.
-> ---
->   arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts | 38 +++++++++++++++++++
->   arch/arm64/boot/dts/mediatek/mt7986a.dtsi    | 23 +++++++++++
->   arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts | 40 ++++++++++++++++++++
->   3 files changed, 101 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
-> index 882277a52b69..afe37b702eef 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
-> @@ -115,6 +115,13 @@
->   	status = "okay";
->   };
->   
-> +&wifi {
-> +	status = "okay";
-> +	pinctrl-names = "default", "dbdc";
-> +	pinctrl-0 = <&wf_2g_5g_pins>;
-> +	pinctrl-1 = <&wf_dbdc_pins>;
-> +};
-> +
->   &pio {
->   	uart1_pins: uart1-pins {
->   		mux {
-> @@ -129,4 +136,35 @@
->   			groups = "uart2";
->   		};
->   	};
-> +
-> +	wf_2g_5g_pins: wf-2g-5g-pins {
-> +		mux {
-> +			function = "wifi";
-> +			groups = "wf_2g", "wf_5g";
-> +		};
-> +		conf {
-> +			pins = "WF0_HB1", "WF0_HB2", "WF0_HB3", "WF0_HB4",
-> +			       "WF0_HB0", "WF0_HB0_B", "WF0_HB5", "WF0_HB6",
-> +			       "WF0_HB7", "WF0_HB8", "WF0_HB9", "WF0_HB10",
-> +			       "WF0_TOP_CLK", "WF0_TOP_DATA", "WF1_HB1",
-> +			       "WF1_HB2", "WF1_HB3", "WF1_HB4", "WF1_HB0",
-> +			       "WF1_HB5", "WF1_HB6", "WF1_HB7", "WF1_HB8",
-> +			       "WF1_TOP_CLK", "WF1_TOP_DATA";
-> +			drive-strength = <4>;
-> +		};
-> +	};
-> +
-> +	wf_dbdc_pins: wf-dbdc-pins {
-> +		mux {
-> +			function = "wifi";
-> +			groups = "wf_dbdc";
-> +		};
-> +		conf {
-> +			pins = "WF0_HB1", "WF0_HB2", "WF0_HB3", "WF0_HB4",
-> +			       "WF0_HB0", "WF0_HB0_B", "WF0_HB5", "WF0_HB6",
-> +			       "WF0_HB7", "WF0_HB8", "WF0_HB9", "WF0_HB10",
-> +			       "WF0_TOP_CLK", "WF0_TOP_DATA";
-> +			drive-strength = <4>;
-> +		};
-> +	};
->   };
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> index e3a407d03551..890ded0efc51 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> @@ -7,6 +7,7 @@
->   #include <dt-bindings/interrupt-controller/irq.h>
->   #include <dt-bindings/interrupt-controller/arm-gic.h>
->   #include <dt-bindings/clock/mt7986-clk.h>
-> +#include <dt-bindings/reset/mt7986-resets.h>
->   
->   / {
->   	interrupt-parent = <&gic>;
-> @@ -70,6 +71,11 @@
->   			reg = <0 0x43000000 0 0x30000>;
->   			no-map;
->   		};
-> +
-> +		wmcpu_emi: wmcpu-reserved@4fc00000 {
-> +			no-map;
-> +			reg = <0 0x4fc00000 0 0x00100000>;
-> +		};
->   	};
->   
->   	timer {
-> @@ -261,6 +267,23 @@
->   			#size-cells = <0>;
->   			status = "disabled";
->   		};
-> +
-> +		wifi: wifi@18000000 {
-> +			compatible = "mediatek,mt7986-wmac";
-> +			resets = <&watchdog MT7986_TOPRGU_CONSYS_SW_RST>;
-> +			reset-names = "consys";
-> +			clocks = <&topckgen CLK_TOP_CONN_MCUSYS_SEL>,
-> +				 <&topckgen CLK_TOP_AP2CNN_HOST_SEL>;
-> +			clock-names = "mcu", "ap2conn";
-> +			reg = <0 0x18000000 0 0x1000000>,
-> +			      <0 0x10003000 0 0x1000>,
-> +			      <0 0x11d10000 0 0x1000>;
-> +			interrupts = <GIC_SPI 213 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 214 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 215 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 216 IRQ_TYPE_LEVEL_HIGH>;
-> +			memory-region = <&wmcpu_emi>;
-> +		};
->   	};
->   
->   };
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts b/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
-> index 0f49d5764ff3..3443013b5971 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
-> @@ -98,3 +98,43 @@
->   		};
->   	};
->   };
-> +
-> +&wifi {
-> +	status = "okay";
-> +	pinctrl-names = "default", "dbdc";
-> +	pinctrl-0 = <&wf_2g_5g_pins>;
-> +	pinctrl-1 = <&wf_dbdc_pins>;
-> +};
-> +
-> +&pio {
-> +	wf_2g_5g_pins: wf-2g-5g-pins {
-> +		mux {
-> +			function = "wifi";
-> +			groups = "wf_2g", "wf_5g";
-> +		};
-> +		conf {
-> +			pins = "WF0_HB1", "WF0_HB2", "WF0_HB3", "WF0_HB4",
-> +			       "WF0_HB0", "WF0_HB0_B", "WF0_HB5", "WF0_HB6",
-> +			       "WF0_HB7", "WF0_HB8", "WF0_HB9", "WF0_HB10",
-> +			       "WF0_TOP_CLK", "WF0_TOP_DATA", "WF1_HB1",
-> +			       "WF1_HB2", "WF1_HB3", "WF1_HB4", "WF1_HB0",
-> +			       "WF1_HB5", "WF1_HB6", "WF1_HB7", "WF1_HB8",
-> +			       "WF1_TOP_CLK", "WF1_TOP_DATA";
-> +			drive-strength = <4>;
-> +		};
-> +	};
-> +
-> +	wf_dbdc_pins: wf-dbdc-pins {
-> +		mux {
-> +			function = "wifi";
-> +			groups = "wf_dbdc";
-> +		};
-> +		conf {
-> +			pins = "WF0_HB1", "WF0_HB2", "WF0_HB3", "WF0_HB4",
-> +			       "WF0_HB0", "WF0_HB0_B", "WF0_HB5", "WF0_HB6",
-> +			       "WF0_HB7", "WF0_HB8", "WF0_HB9", "WF0_HB10",
-> +			       "WF0_TOP_CLK", "WF0_TOP_DATA";
-> +			drive-strength = <4>;
-> +		};
-> +	};
-> +};
+Then, patch 2 does a bit of simple cleanup to the TSE driver, using nice
+reverse xmas tree definitions.
+
+Patch 3 adds the actual PCS driver, as a standalone driver. Some future
+series will then reuse that PCS driver from the dwmac-socfpga driver,
+which implements support for this exact PCS too, allowing to share the
+code nicely.
+
+Patch 4 is then a phylink conversion of the altera_tse driver, to use
+this new PCS driver.
+
+Finally, patch 5 updates the newly converted DT binding to support the
+pcs register range.
+
+This series contains bits and pieces for this conversion, please tell me if
+you want me to send it as individual patches.
+
+Thanks,
+
+Maxime
+
+V3 Changes:
+ - YAML binding conversion changes and PCS addition changes thanks to
+   Krzysztof's reviews
+
+V2 Changes :
+ - Fixed the binding after the YAML conversion
+ - Added a pcs_validate() callback
+ - Introduced a comment to justify a soft reset for the PCS
+
+Maxime Chevallier (5):
+  dt-bindings: net: Convert Altera TSE bindings to yaml
+  net: altera: tse: cosmetic change to use reverse xmas tree ordering
+  net: pcs: add new PCS driver for altera TSE PCS
+  net: altera: tse: convert to phylink
+  dt-bindings: net: altera: tse: add an optional pcs register range
+
+ .../devicetree/bindings/net/altera_tse.txt    | 113 -----
+ .../devicetree/bindings/net/altr,tse.yaml     | 168 +++++++
+ MAINTAINERS                                   |   7 +
+ drivers/net/ethernet/altera/Kconfig           |   2 +
+ drivers/net/ethernet/altera/altera_tse.h      |  19 +-
+ .../net/ethernet/altera/altera_tse_ethtool.c  |  22 +-
+ drivers/net/ethernet/altera/altera_tse_main.c | 453 +++++-------------
+ drivers/net/pcs/Kconfig                       |   6 +
+ drivers/net/pcs/Makefile                      |   1 +
+ drivers/net/pcs/pcs-altera-tse.c              | 171 +++++++
+ include/linux/pcs-altera-tse.h                |  17 +
+ 11 files changed, 532 insertions(+), 447 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/net/altera_tse.txt
+ create mode 100644 Documentation/devicetree/bindings/net/altr,tse.yaml
+ create mode 100644 drivers/net/pcs/pcs-altera-tse.c
+ create mode 100644 include/linux/pcs-altera-tse.h
+
+-- 
+2.37.2
+
