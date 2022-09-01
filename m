@@ -2,139 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AD945A93D3
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 12:02:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03E965A93DA
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 12:03:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233693AbiIAKC3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 06:02:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41252 "EHLO
+        id S229631AbiIAKDY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 06:03:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233588AbiIAKC1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 06:02:27 -0400
-Received: from mout.perfora.net (mout.perfora.net [74.208.4.194])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA44F138588;
-        Thu,  1 Sep 2022 03:02:26 -0700 (PDT)
-Received: from toolbox.toradex.int ([31.10.206.125]) by mrelay.perfora.net
- (mreueus003 [74.208.5.2]) with ESMTPSA (Nemesis) id 0M2bMR-1pLne83i0j-00sKCn;
- Thu, 01 Sep 2022 12:02:10 +0200
-From:   Marcel Ziswiler <marcel@ziswiler.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Philippe Schenker <philippe.schenker@toradex.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v1 4/4] arm64: dts: imx8mm-verdin: extend pmic voltages
-Date:   Thu,  1 Sep 2022 12:01:51 +0200
-Message-Id: <20220901100151.1378709-5-marcel@ziswiler.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220901100151.1378709-1-marcel@ziswiler.com>
-References: <20220901100151.1378709-1-marcel@ziswiler.com>
+        with ESMTP id S233800AbiIAKDL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 06:03:11 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC99F138598
+        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 03:03:09 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id z29so15074482lfb.13
+        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 03:03:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=ElinajmGRyEA/7kUWvvAoQ8g+JBnrs3JkypTY6iFF7s=;
+        b=X+MrATdZh1UZTGynb/Dzub7qI1QesrWB98FpfrUmUotYAmDc0kTK+ROJ7yRiaSGXSx
+         Fu8O2NmZDnXC2AFOuUI2j8YDI0qSp3tfo8R0HI0m20AvddsKT3C/xlc0m1l1WE/TACuX
+         WboqfeS+lyUvK9V2oIjCk7X9KXpZRTNQtelBbWpfade51PMI7wA4Pmnc+8AD/bgmXJ60
+         UyNf+JnKKnxTkNbnkvmUHFbyKEc+t4JmHBbkleN4Trz574b0r99EV0WOb8afByI2JEr7
+         /Cqx4HIOL52YNrqtN9W3jYNtT7vRJTIysfN+8to6OhOPLqvqs+Y1e0+ASN68kTdHs58r
+         ig6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=ElinajmGRyEA/7kUWvvAoQ8g+JBnrs3JkypTY6iFF7s=;
+        b=GQE82u/e/smCVjsG83700XzPrI7ob5e1tum+tbsAVrggTMTMtHwOMtJH95qhn+/jXW
+         2suxeTF6nE7az3WZDagm/SbW4YJ3DAgDvFvDkdoLvEmp2XYWpFjDbEPcGSYl4dwT8hZn
+         CDf2nM3DXXpoGiyAhsJxSl7guqfkQg4DXytl/fT94DvKILjLnvH19YqV/VVkwApHhiyQ
+         hgdJ8Pp3o9hD525kw7tX/vJHyt6yQXqVSQTZzYmNdZA19ruWGMEoOtmTxeaf/4GEjj3Q
+         GK5ZjataB6dVQjtjehrAlBXME2qve1OWjhcYW0aMwuk7ETpmIS0ftCrnjMPWEAlUFot4
+         aemw==
+X-Gm-Message-State: ACgBeo00Z1NIk6o/trdECN0e35jEn45NpgYAP9uMKj9VLOn0dR1mDtrk
+        4K+2xL9Et5Xv915ziX+IYGrobQ==
+X-Google-Smtp-Source: AA6agR7v7Yr/FZGtRyKXTpU39sJw49/csUMZA+FHNBFmhgxc3vFvH6+GMuDWVs/Q3lZ2iYg7xuBfJA==
+X-Received: by 2002:a05:6512:23a5:b0:492:f76b:dfea with SMTP id c37-20020a05651223a500b00492f76bdfeamr10198420lfv.5.1662026588296;
+        Thu, 01 Sep 2022 03:03:08 -0700 (PDT)
+Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
+        by smtp.gmail.com with ESMTPSA id by12-20020a05651c1a0c00b002688bf9d4b3sm550576ljb.77.2022.09.01.03.03.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 01 Sep 2022 03:03:07 -0700 (PDT)
+Message-ID: <9b099e34-f35d-856d-f472-9d87fb7ddc1f@linaro.org>
+Date:   Thu, 1 Sep 2022 13:03:06 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:ck71v7fRyPLBiFThJtJididV1+76UsfTyHqUsC/9z2lYVhLX1Ps
- naMbE+vSKyKWmYdh3BC/17/qzX2JbzmITGQX9EBQWOkrf2/MNTAt/EuTLt4pnDdK5uvZ5s6
- Pj5gkFp7OroJfVSp8QuwwTAI/GScvh6xzDVvP5cDNUvf+9Rhmdq6a5wWWDBjVM2mANhpiMJ
- qWqccT3TwpFZn2TWfmbtg==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:VFyxj7Xo8xA=:6EPKEFePkeGBB6/DSPJ3e8
- hNpXOMZh7Vcj0hO3QjJZTwmKBbpzh7UE0bBXyC/duR2IG9xameSAO67inzOSS5zea4YDyLfCM
- 9zete9kgi6XOryLtEzsvwHMREQOtYI7nWMz503SMDaVPIOnEVk61lSVcmJi2ogIqJ8DhJvFBn
- dEvGiMr4vtEEu82KKEAu95ncwgV+JMp3Wrx7gEgYqK31jDlvAvMR2aZUulXlBAZgGM8IHQvKm
- foN8ftiiOhcvCL91SfEF5yru5MuA5Az//0Ja36+Uj90aQ8yem5LMSgdfuuKOr9T6HJyR+FjXQ
- 6psVfj1aceLJ2zKqMAvp42DNKkVdtDOYZia+5mVIJfvteXRV8KJFaobWjgXD+FJzsVMInJUOS
- 7+IyZMibBjzQSM7vPiF7TgOEpn0+tDsyJ/O1r0vQ5PYyOnxLbacTLb/Oq4MvimnAEVX+yeFi0
- MBXSHH4FTvawRYoOi9qhEkb5EkJSNZHhNfSIuxjd1Gd/NHPsnwbFsPzFShcpQ7sxGozEhtjz6
- 4nCqmx8VIl78ndlflFxWIgwZ3WCJn23mpesEHzm4ztoEXgdldMszv8TZ987VKFeRCG7FUfDqc
- PQ7uNxJqwCMxOdOmZcZufFGzw6p2MOXSqIR1+62baFnS5dhAzp9qnHx9fsu7PZDfF0dyXJ4LV
- //89vExYQLOO4jC1RsK/quJr8AadAEZPAlpuPOqrf+stc3wmkATvkyX+Sx7zvBYcZ4q1Dvaii
- ZRuIybdeudqOaTinioZszismRLajDe0vAklKxGRwcsUBgQo1frOCa/thaKxIazUtD2ZiPUJCi
- h2m3t8H
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH 2/2] dt-bindings: arm: qcom: document sc7280 and evoker
+ board
+Content-Language: en-US
+To:     Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>,
+        LKML <linux-kernel@vger.kernel.org>
+Cc:     mka@chromium.org, dianders@chromium.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+References: <20220901091253.93333-1-sheng-liang.pan@quanta.corp-partner.google.com>
+ <20220901170958.2.Ief93544cd0cbfa412092f5de92de10d59a2a5b3a@changeid>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220901170958.2.Ief93544cd0cbfa412092f5de92de10d59a2a5b3a@changeid>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Philippe Schenker <philippe.schenker@toradex.com>
+On 01/09/2022 12:12, Sheng-Liang Pan wrote:
+> This adds Chromebook Evoker to the yaml.
+> 
+> Signed-off-by: Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
 
-Currently, we limited the voltages from the PMIC very strictly. This
-causes an issue with one Toradex SKU that uses a consumer-grade chip
-that is capable of going up to 1.8GHz at 1.00V.
+Read the docs I already sent you. Do not use "This commit/patch".
+https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
 
-Extend the ranges to min/max values of the SoC operating ranges (table
-10) in the datasheet. Detailed explanation as follows:
-
-BUCK2:
-  - As already described above, the SKU with the consumer-grade chip
-    needs a voltage of at least 1.00V. 1.05V is chosen now as this is
-    listed as the maximum. Both industrial and consumer-grade chips have
-    an absolute maximum rating of 1.15V which makes it still safe to put
-    1.05V
-  - Lower the regulator-min value to the smallest value allowed from the
-    Quad-A53, 1.2GHz version of the SoC
-
-BUCK3:
-  - This regulator is used for SoC input voltages VDD_GPU, VDD_VPU and
-    VDD_DRAM.
-  - Use the smallest value of these three inputs as the regulator-min
-  - Use the largest value of these three inputs as the regulator-max
-
-LDO2:
-  - This LDO is used for VDD_SNVS_0P8 SoC input voltage. As this has a
-    single nominal input voltage just put this in the middle of 0.8V.
-
-Fixes: commit 6a57f224f734 ("arm64: dts: freescale: add initial support for verdin imx8m mini")
-Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
-Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
----
-
- arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-index ef105c0745eb..2eb72a607139 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-@@ -382,8 +382,8 @@ reg_vdd_arm: BUCK2 {
- 				nxp,dvs-standby-voltage = <850000>;
- 				regulator-always-on;
- 				regulator-boot-on;
--				regulator-max-microvolt = <950000>;
--				regulator-min-microvolt = <850000>;
-+				regulator-max-microvolt = <1050000>;
-+				regulator-min-microvolt = <805000>;
- 				regulator-name = "On-module +VDD_ARM (BUCK2)";
- 				regulator-ramp-delay = <3125>;
- 			};
-@@ -391,8 +391,8 @@ reg_vdd_arm: BUCK2 {
- 			reg_vdd_dram: BUCK3 {
- 				regulator-always-on;
- 				regulator-boot-on;
--				regulator-max-microvolt = <950000>;
--				regulator-min-microvolt = <850000>;
-+				regulator-max-microvolt = <1000000>;
-+				regulator-min-microvolt = <805000>;
- 				regulator-name = "On-module +VDD_GPU_VPU_DDR (BUCK3)";
- 			};
- 
-@@ -431,7 +431,7 @@ reg_nvcc_snvs: LDO1 {
- 			reg_vdd_snvs: LDO2 {
- 				regulator-always-on;
- 				regulator-boot-on;
--				regulator-max-microvolt = <900000>;
-+				regulator-max-microvolt = <800000>;
- 				regulator-min-microvolt = <800000>;
- 				regulator-name = "On-module +V0.8_SNVS (LDO2)";
- 			};
--- 
-2.36.1
-
+Best regards,
+Krzysztof
