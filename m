@@ -2,79 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 288D85A977B
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 14:56:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4851D5A977E
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 14:57:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233368AbiIAM40 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 08:56:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49842 "EHLO
+        id S233420AbiIAM5X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 08:57:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233374AbiIAM4Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 08:56:25 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46387844ED;
-        Thu,  1 Sep 2022 05:56:24 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D52BD61EB5;
-        Thu,  1 Sep 2022 12:56:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2C65C433D6;
-        Thu,  1 Sep 2022 12:56:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1662036983;
-        bh=rtmOTDFsRY/njnUGoX8E3adpbd4MAljbFKCwNEpru0w=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=XhOY55ZCnokxHrwNJFuSZ6yG2FA8bt4ZyY6O6VFgSJuKmOaZpVDv7rEOhHP1B9o6f
-         FY96TEqTOzMWvnhXAzRyWpQgZOU26OpYogr9EVEGk/x4CIyS5SP1c0sH7z48Pvr5Wj
-         nXh/+F5xDIvloUWsIV/UZa4+RlEmy6DEoc936wOqCuz7uu3Nl94BTS4F2DauAqDcis
-         09GpmLwYbPbY6CPFY0FOWO+IvZNfjU3Oxy7UDLZnGz9nov6gW0gJzcViubeftEn5og
-         AMM2Y08g8f/c6wgOOx6YUY2IfpFD4L8rtWUZDBFZT4/gJykS7aMBdCNeLCzch8Uo+n
-         O/3OejnOSf2qQ==
-Message-ID: <8b166d0d-2b09-55f6-8078-c791653f3349@kernel.org>
-Date:   Thu, 1 Sep 2022 15:56:19 +0300
+        with ESMTP id S233374AbiIAM5U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 08:57:20 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6711019017
+        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 05:57:18 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id c131-20020a1c3589000000b003a84b160addso613970wma.2
+        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 05:57:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=7ZlMqpIh3IyUq1dD/WzYgapnFJuX5D8gbR5mj33rR84=;
+        b=L9kP09nqRH+Z+bWAt0KuRPx2ICiZGYDf0QG4pqMW9mJHKChmL6+bIqrMDYTGkui8FF
+         b4n+l/zK7COuOfIqfV/9DHa/vWYUauG4RmYB/OlGdIJeFQfpkammZDjynZxYZ6SC/anh
+         +eDr7oKp9T4ayau0RAbt6/arHAXVBvaYwb6SKaoArrAq0C5Dx2W1YSLWWXyvaaon3ubA
+         BmnMXTKkuXJ1NxAo35VsPdSl1EGQ3P+sAc/Xt2uA1aYWKkGiDlupiFLCqrIjYeswWyrh
+         LBJz9cTpcU1FrM8UUzEDqqE/o6DsKMKsQ+LetpL0LNkhLmXMaPpTFN+i7omadyWAQjtt
+         aG+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=7ZlMqpIh3IyUq1dD/WzYgapnFJuX5D8gbR5mj33rR84=;
+        b=JBv2tENeASk43bQfLYuxSt+dZb3aIOrMohLM20ZayAxIlt+KGXMlYZZ/ugM70ibVet
+         cxfdJvPAIAe7GAvGEGKMl1VLUunJ+aYlsCsCASoiBCj0fawRlKr368AE6AXdWBCudEur
+         K+N41n+JpcYO0ikHUH9xUbzqeQNXfJo/UJC0Pky/mtx7d3IRKUp6oYxgr8I381MRRWT2
+         0cTimOsSdQ+Vmy6qrbe+qEgGvjup4/1Fy108K8pVnUqh87AJN8DH/0FXuAQ8VglOBST7
+         Bg6BPJSqSzJNugCw71+HWcirnDGYtnFj8y5MzY+G3N063MOiIMaevloHALerximvY+JB
+         TF2Q==
+X-Gm-Message-State: ACgBeo0bWqdJiRG6TEH7cNCNt0SqJPMuGJnIyngExEaIXg/QfBm2fZze
+        +zmrXWvLZKPXCJZbI0bh+DfHSQ==
+X-Google-Smtp-Source: AA6agR4WxFW8MYMrAHnjtjYeK13E0krxBtcRYabXQEB9F9fEoJ3KLT3ciBgiYJKbXPpTmciIet5qbg==
+X-Received: by 2002:a05:600c:3541:b0:3a6:28e4:c458 with SMTP id i1-20020a05600c354100b003a628e4c458mr5162262wmq.188.1662037036916;
+        Thu, 01 Sep 2022 05:57:16 -0700 (PDT)
+Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id v5-20020a5d59c5000000b002257fd37877sm15556709wry.6.2022.09.01.05.57.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Sep 2022 05:57:16 -0700 (PDT)
+From:   Corentin Labbe <clabbe@baylibre.com>
+To:     heiko@sntech.de, herbert@gondor.apana.org.au, ardb@kernel.org,
+        davem@davemloft.net, krzysztof.kozlowski+dt@linaro.org,
+        mturquette@baylibre.com, robh+dt@kernel.org, sboyd@kernel.org
+Cc:     linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        Corentin Labbe <clabbe@baylibre.com>
+Subject: [PATCH v9 00/33] crypto: rockchip: permit to pass self-tests
+Date:   Thu,  1 Sep 2022 12:56:37 +0000
+Message-Id: <20220901125710.3733083-1-clabbe@baylibre.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH 0/3] omap-gpmc wait pin additions
-Content-Language: en-US
-To:     "B. Niedermayr" <benedikt.niedermayr@siemens.com>,
-        linux-omap@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     rogerq@kernel.org, tony@atomide.com, robh+dt@kernel.org
-References: <20220901124144.1006238-1-benedikt.niedermayr@siemens.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20220901124144.1006238-1-benedikt.niedermayr@siemens.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/09/2022 15:41, B. Niedermayr wrote:
-> From: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
-> 
-> There is currently no possibility for the gpmc to set either the
-> waitp-pin polarity or use the same wait-pin for different cs-regions.
-> 
-> While the current implementation may fullfill most usecases, it may not
-> be sufficient for more complex setups (e.g. FPGA/ASIC interfaces), where 
-> more complex interfacing options where possible.
-> 
-> For example interfacing an ASIC which offers multiple cs-regions but
-> only one waitpin the current driver and dt-bindings are not sufficient.
-> 
-> While using the same waitpin for different cs-regions worked for older
-> kernels (4.14) the omap-gpmc.c driver refused to probe (-EBUSY) with
-> newer kernels (>5.10). 
+Hello
 
-Please base your patches on a recent Linux kernel (judging by CC list
-this is something old) - either current RC or linux-next.
+The rockchip crypto driver is broken and do not pass self-tests.
+This serie's goal is to permit to become usable and pass self-tests.
 
-Best regards,
-Krzysztof
+This whole serie is tested on a rk3328-rock64, rk3288-miqi and
+rk3399-khadas-edge-v with selftests (with CONFIG_CRYPTO_MANAGER_EXTRA_TESTS=y)
+
+Regards
+
+Changes since v1:
+- select CRYPTO_ENGINE
+- forgot to free fallbacks TFMs
+- fixed kernel test robots warning
+- add the PM patch
+
+Changes since v2:
+- Added DMA clock back to 3288 since it dont work without it
+- fallback needed to select CBC and ECB configs
+- Added support for rk3399
+- Added more patch (style, read_poll_timeout)
+
+Changes since v3:
+- full rewrite of support for RK3399
+- splited dt-binding patch in two
+
+Changes since v4:
+- Another full rewrite of support for RK3399
+- Fixed dt-binding from Krzysztof Kozlowski's comments
+- Use readl_poll_timeout() instead of read_poll_timeout()
+- Rewrite the fallback SG tests
+
+Changes since v5:
+- fixed errors in DT binding patch
+
+Change since v6:
+- remove quotes around const values in dt-bindings
+
+Changes since v7:
+- added lot of reviewed/tested by
+- In patch 14: keep initial reset pulse.
+
+Changes since v8:
+- Removed some useless min/maxitems from dt-binding as reported by dt_binding_check
+
+Corentin Labbe (33):
+  crypto: rockchip: use dev_err for error message about interrupt
+  crypto: rockchip: do not use uninitialized variable
+  crypto: rockchip: do not do custom power management
+  crypto: rockchip: fix privete/private typo
+  crypto: rockchip: do not store mode globally
+  crypto: rockchip: add fallback for cipher
+  crypto: rockchip: add fallback for ahash
+  crypto: rockchip: better handle cipher key
+  crypto: rockchip: remove non-aligned handling
+  crypto: rockchip: rework by using crypto_engine
+  crypto: rockchip: rewrite type
+  crypto: rockchip: add debugfs
+  crypto: rockchip: introduce PM
+  crypto: rockchip: handle reset also in PM
+  crypto: rockchip: use clk_bulk to simplify clock management
+  crypto: rockchip: add myself as maintainer
+  crypto: rockchip: use read_poll_timeout
+  crypto: rockchip: fix style issue
+  crypto: rockchip: add support for rk3328
+  crypto: rockchip: rename ablk functions to cipher
+  crypto: rockchip: rework rk_handle_req function
+  crypto: rockchip: use a rk_crypto_info variable instead of lot of
+    indirection
+  crypto: rockchip: use the rk_crypto_info given as parameter
+  dt-bindings: crypto: convert rockchip-crypto to YAML
+  dt-bindings: crypto: rockchip: convert to new driver bindings
+  clk: rk3399: use proper crypto0 name
+  arm64: dts: rockchip: add rk3328 crypto node
+  arm64: dts: rockchip: rk3399: add crypto node
+  crypto: rockchip: store crypto_info in request context
+  crypto: rockchip: Check for clocks numbers and their frequencies
+  crypto: rockchip: rk_ahash_reg_init use crypto_info from parameter
+  crypto: rockchip: permit to have more than one reset
+  crypto: rockchip: Add support for RK3399
+
+ .../crypto/rockchip,rk3288-crypto.yaml        | 127 ++++
+ .../bindings/crypto/rockchip-crypto.txt       |  28 -
+ MAINTAINERS                                   |   7 +
+ arch/arm64/boot/dts/rockchip/rk3328.dtsi      |  11 +
+ arch/arm64/boot/dts/rockchip/rk3399.dtsi      |  20 +
+ drivers/crypto/Kconfig                        |  15 +
+ drivers/crypto/rockchip/rk3288_crypto.c       | 506 ++++++++--------
+ drivers/crypto/rockchip/rk3288_crypto.h       | 107 ++--
+ drivers/crypto/rockchip/rk3288_crypto_ahash.c | 267 +++++----
+ .../crypto/rockchip/rk3288_crypto_skcipher.c  | 543 ++++++++++--------
+ include/dt-bindings/clock/rk3399-cru.h        |   6 +-
+ 11 files changed, 949 insertions(+), 688 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/crypto/rockchip,rk3288-crypto.yaml
+ delete mode 100644 Documentation/devicetree/bindings/crypto/rockchip-crypto.txt
+
+-- 
+2.35.1
+
