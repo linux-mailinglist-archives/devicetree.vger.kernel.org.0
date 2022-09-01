@@ -2,145 +2,237 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB2275A9B2D
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 17:06:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9A045A9B50
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 17:11:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233216AbiIAPGh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 11:06:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60558 "EHLO
+        id S233671AbiIAPLI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 11:11:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232448AbiIAPGg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 11:06:36 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B96AE74343
-        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 08:06:34 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id kk26so35286714ejc.11
-        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 08:06:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=IlxL6IIaFuuRNDQjytli2ml/vYALP5M5BTyWKS8IYmo=;
-        b=fluYmR7isgbi0UhdGPH/rCcV8CVSTZzQ30EzUf2S4tWpVa3KRnRW8EGTlC2qUoG5FQ
-         agPIsAeoq0IlNJWDEreDvHhRiyr1/OZyStPUBDfXY6sp4T6SMQigQU4J5t1KNJOHTNip
-         boANLPHMu02BcLK1PKFeQa0VvnUhAVO6DyaOo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=IlxL6IIaFuuRNDQjytli2ml/vYALP5M5BTyWKS8IYmo=;
-        b=yNNZsQpQDzZfJaaiAwjSZ1Av8ttJkWVHiRo/27hvgWgQPBAdge+Nc/SPEoPpneCB31
-         tHACBGKUOGZX63vywJDOUbktFWM7IUiRgvqVdVAcxs8Hdm1XjIWuDS7z7NAUlciRdE3k
-         gdD40kZRwZjnzNMBmZ+kgBq3ihTaQphbmWUVww9NjRtu7mf4olOQavXJ2HsUnajinA/f
-         hWxmr2MOh/CoRiOmumeTprjn2hLQzP+Z88io8bbRH3YnZIMaar07Wkhy6zGunLJ5U1BH
-         P/diiBb09wrOcoaqud1LYHs6Z8ypmDthUGKgeAdCnbPhOBM26VUAJonf//Rn8WD3d2F9
-         NuHA==
-X-Gm-Message-State: ACgBeo2R4KQGo0o0+lFEOan0zGfQ2mHWO5Kl3YLA4evAAS8dTAgbEn68
-        88uG+8B1Jllmc68jlYkGuhvTA2eReQS9V4je
-X-Google-Smtp-Source: AA6agR4NIPUSkUmzpaVQEfl/YRVzbwhH5bSKSjUc2ablwdvZ/UihVaQLLqxHPMAWtlTUCCs61wALkw==
-X-Received: by 2002:a17:907:2c48:b0:741:8ae4:f79c with SMTP id hf8-20020a1709072c4800b007418ae4f79cmr13923949ejc.102.1662044792998;
-        Thu, 01 Sep 2022 08:06:32 -0700 (PDT)
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com. [209.85.221.45])
-        by smtp.gmail.com with ESMTPSA id b2-20020a1709063ca200b0074a8293424esm506350ejh.53.2022.09.01.08.06.30
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Sep 2022 08:06:31 -0700 (PDT)
-Received: by mail-wr1-f45.google.com with SMTP id k9so22802218wri.0
-        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 08:06:30 -0700 (PDT)
-X-Received: by 2002:adf:f90d:0:b0:20c:de32:4d35 with SMTP id
- b13-20020adff90d000000b0020cde324d35mr15009507wrr.583.1662044789962; Thu, 01
- Sep 2022 08:06:29 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220901091253.93333-1-sheng-liang.pan@quanta.corp-partner.google.com>
- <20220901170958.1.I7dd7a79c4cc5fe91c3feb004473feb3b34b7b2d8@changeid> <cae05f4d-57af-7923-58e5-c4bf06a8a3c8@linaro.org>
-In-Reply-To: <cae05f4d-57af-7923-58e5-c4bf06a8a3c8@linaro.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 1 Sep 2022 08:06:25 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=VUCQSOe0Wr4UJ6TZkPA3xD_jsDp-gQTYMrh1QOM5b4QQ@mail.gmail.com>
-Message-ID: <CAD=FV=VUCQSOe0Wr4UJ6TZkPA3xD_jsDp-gQTYMrh1QOM5b4QQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: sc7280: Add device tree for
- herobrine evoker
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S229813AbiIAPLG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 11:11:06 -0400
+Received: from relay12.mail.gandi.net (relay12.mail.gandi.net [217.70.178.232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E28E52457;
+        Thu,  1 Sep 2022 08:11:05 -0700 (PDT)
+Received: (Authenticated sender: paul.kocialkowski@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 75DDA200010;
+        Thu,  1 Sep 2022 15:11:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1662045064;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=hPAZFTv0OR8dOw9wKgqi4Kvh5eCGaJ3DTwQLR0c7o2o=;
+        b=c5981UEzRxWDuafkKOPkAwjINHBGfzuF9vrUkJxwdwrtDvfGJbXFtJoir/1EsYtNGHmC+o
+        ohg2NlW6Q668Z+BNI8lCHe4B+NqcByWvofNwtwBJ9xd3vh4PsEAzZ06+of+HyuNZks4yZz
+        WDK5UhQUMHmJdadf0j+9dfcPntXTRG/MS1fTKigh8bga93OQh4mAj0WBiEzy/HQwm3sV3w
+        ag1LGnVqu1VMRqvDje+Y8c+tWL+EL8UZKll1UpOakhga5Vpu8PHSZurQpkOPNvRBzSyxJI
+        wI6oaruZD3wYTNKLKfRuuDUpd9OKNsMk3ey/8L4vRcML2JQYPnNPmOOgJlOp3g==
+Date:   Thu, 1 Sep 2022 17:11:00 +0200
+From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v6 5/6] media: sun6i-csi: Detect the availability of the
+ ISP
+Message-ID: <YxDLhPMibhXO1oU/@aptenodytes>
+References: <20220826184144.605605-1-paul.kocialkowski@bootlin.com>
+ <20220826184144.605605-6-paul.kocialkowski@bootlin.com>
+ <YwlLsKaEOoXdqRK0@pendragon.ideasonboard.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="wChqMM/2eeW8sfq3"
+Content-Disposition: inline
+In-Reply-To: <YwlLsKaEOoXdqRK0@pendragon.ideasonboard.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-On Thu, Sep 1, 2022 at 3:01 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 01/09/2022 12:12, Sheng-Liang Pan wrote:
-> > Add a basic device tree for the herobrine evoker board.
-> >
-> > Signed-off-by: Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
+--wChqMM/2eeW8sfq3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi Laurent,
+
+On Sat 27 Aug 22, 01:39, Laurent Pinchart wrote:
+> Hi Paul,
+>=20
+> Thank you for the patch.
+
+Thanks for the review!
+
+> On Fri, Aug 26, 2022 at 08:41:43PM +0200, Paul Kocialkowski wrote:
+> > Add a helper to detect whether the ISP is available and connected
+> > and store the indication in a driver-wide variable.
+>=20
+> This sounds like it would be a global variable, while it's stored in the
+> driver-specific device structure.
+
+Okay I can clarify the commit message here.
+
+> >=20
+> > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
 > > ---
->
-> And this is third v1? At least this is what your subject is suggesting.
-> Patches should be properly versioned. Git format-patch helps in that,
-> but you can use any other tools if you wish.
+> >  .../platform/sunxi/sun6i-csi/sun6i_csi.c      | 33 +++++++++++++++++++
+> >  .../platform/sunxi/sun6i-csi/sun6i_csi.h      |  3 ++
+> >  2 files changed, 36 insertions(+)
+> >=20
+> > diff --git a/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi.c b/drive=
+rs/media/platform/sunxi/sun6i-csi/sun6i_csi.c
+> > index 00521f966cee..b16166cba2ef 100644
+> > --- a/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi.c
+> > +++ b/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi.c
+> > @@ -24,6 +24,35 @@
+> >  #include "sun6i_csi_capture.h"
+> >  #include "sun6i_csi_reg.h"
+> > =20
+> > +/* ISP */
+> > +
+> > +static bool sun6i_csi_isp_detect(struct sun6i_csi_device *csi_dev)
+> > +{
+> > +	struct device *dev =3D csi_dev->dev;
+> > +	struct fwnode_handle *handle =3D NULL;
+>=20
+> No need to initialize this to NULL.
 
-Just to make it clear, what Krzysztof is pointing at is the subject
-line of your email. Based on your email headers it looks like you're
-using "patman" to send out your emails. That means you can get what
-Krzysztof wants by putting a "Series-version" in one of your patches.
-Given that you had three v1 posts, maybe call the next version "v4"?
-That means that one of the patches should have:
+Indeed.
 
-Series-version: 4
+> > +
+> > +	/* ISP is not available if disabled in kernel config. */
+> > +	if (!IS_ENABLED(CONFIG_VIDEO_SUN6I_ISP))
+> > +		return 0;
+>=20
+> Hmmm... The ISP driver may be disabled when compiling the sun6i-csi
+> driver, but later enabled and deployed. Disabling ISP support silently
+> like this could be confusing. Could it be better to move this check
+> after the graph check, and print a warning message in this case ?
 
-Then in each patch you'll have details about what changed in each
-version. I guess we could sorta call the one where you added the
-bindings "v2". So in the bindings patch you could add:
+Yeah I'm not too surprised corner cases like this can exist.
+Agreed that printing a warning message would be good, but I don't follow the
+point of moving the check later on. Do you have something in mind there?
 
-Series-changes: 2
-- Bindings patch added
+> > +
+> > +	/*
+> > +	 * ISP is not available if not connected via fwnode graph.
+> > +	 * This weill also check that the remote parent node is available.
+>=20
+> s/weill/will/
 
-...and in both patches you could add:
+Good catch, thanks!
 
-Series-changes: 4
-- Got the version number correct
+> 	 * ISP is not available if not connected via fwnode graph. This will
+> 	 * also check that the remote parent node is available.
+>=20
+> > +	 */
+> > +	handle =3D fwnode_graph_get_endpoint_by_id(dev_fwnode(dev),
+> > +						 SUN6I_CSI_PORT_ISP, 0,
+> > +						 FWNODE_GRAPH_ENDPOINT_NEXT);
+> > +	if (!handle)
+> > +		return 0;
+> > +
+> > +	fwnode_handle_put(handle);
+> > +
+> > +	dev_info(dev, "ISP link is available\n");
+>=20
+> You could make that a debug message, it's not crucial information that
+> needs to be printed when the driver is loaded. If you prefer keeping an
+> info message, then I'd move it to the probe function and print that the
+> CSI has been probed, and indicate in that message if the ISP is
+> available.
 
+You're right, let's make this debug. It's more the opposite case that is wo=
+rth
+a warning message.
 
-You've already got a cover letter setup, so in that you should attempt
-to explain some of this mess, like saying:
+Thanks,
 
-Sorry about getting mixed up with version numbers. Here are links to
-previous postings and what I'll assume the version number is:
+Paul
 
-v1: https://lore.kernel.org/r/20220830053307.3997495-1-sheng-liang.pan@quanta.corp-partner.google.com/
-v2: https://lore.kernel.org/r/20220901061336.61386-1-sheng-liang.pan@quanta.corp-partner.google.com/
-v3: https://lore.kernel.org/r/20220901091253.93333-1-sheng-liang.pan@quanta.corp-partner.google.com/
+> > +	csi_dev->isp_available =3D true;
+> > +
+> > +	return 0;
+> > +}
+> > +
+> >  /* Media */
+> > =20
+> >  static const struct media_device_ops sun6i_csi_media_ops =3D {
+> > @@ -290,6 +319,10 @@ static int sun6i_csi_probe(struct platform_device =
+*platform_dev)
+> >  	if (ret)
+> >  		return ret;
+> > =20
+> > +	ret =3D sun6i_csi_isp_detect(csi_dev);
+> > +	if (ret)
+> > +		goto error_resources;
+> > +
+> >  	ret =3D sun6i_csi_v4l2_setup(csi_dev);
+> >  	if (ret)
+> >  		goto error_resources;
+> > diff --git a/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi.h b/drive=
+rs/media/platform/sunxi/sun6i-csi/sun6i_csi.h
+> > index e611bdd6e9b2..8e232cd91ebe 100644
+> > --- a/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi.h
+> > +++ b/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi.h
+> > @@ -21,6 +21,7 @@
+> >  enum sun6i_csi_port {
+> >  	SUN6I_CSI_PORT_PARALLEL		=3D 0,
+> >  	SUN6I_CSI_PORT_MIPI_CSI2	=3D 1,
+> > +	SUN6I_CSI_PORT_ISP		=3D 2,
+> >  };
+> > =20
+> >  struct sun6i_csi_buffer {
+> > @@ -44,6 +45,8 @@ struct sun6i_csi_device {
+> >  	struct clk			*clock_mod;
+> >  	struct clk			*clock_ram;
+> >  	struct reset_control		*reset;
+> > +
+> > +	bool				isp_available;
+> >  };
+> > =20
+> >  struct sun6i_csi_variant {
+>=20
+> --=20
+> Regards,
+>=20
+> Laurent Pinchart
 
+--=20
+Paul Kocialkowski, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
-As an extra note: the bindings patch should be patch #1 and the device
-tree should be patch #2. That means you should reorder your patches.
+--wChqMM/2eeW8sfq3
+Content-Type: application/pgp-signature; name="signature.asc"
 
--Doug
+-----BEGIN PGP SIGNATURE-----
 
->
-> I pointed you to documentation you must read before posting. You can
-> keep ignoring it, so we keep ignoring your patch.
->
-> That's a NAK :(
->
-> Best regards,
-> Krzysztof
+iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmMQy4QACgkQ3cLmz3+f
+v9GtJQf/XNoL23Tf/tABOubjKLDGCcpO8JAwFSVCLTLp0SrTV//p7vHq/QKayRXP
+5mBJNOaAe797XnyFs9k6oaYGhbFP8/K3pOPs43RqZbta/w0/aOjaJP+e6aHWIZGA
+gH2lN2nOfZRfw/3S58z8lDuqhtTDvdIfSIcqtQkW8+/l+Oi9tZIXwqEcY768YjzA
+f6nhiDZQoY+5V75ebH5DmXftNUSv5el9ip1SssvhKljVlK7NLSnVAkE6ouMhI0gi
+TVClcmFbaT1qNqEG5m9RZJsLCk59olG/otZIcu14laypVPHVyOI3fH55ZqA1i5tE
+XfF4NGbHS8bQJkoB2RciCHuBglQrmg==
+=tFCj
+-----END PGP SIGNATURE-----
+
+--wChqMM/2eeW8sfq3--
