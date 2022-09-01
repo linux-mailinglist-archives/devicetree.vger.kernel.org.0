@@ -2,115 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CD825A9D11
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 18:29:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4AC45A9D26
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 18:32:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234806AbiIAQ3a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 12:29:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48682 "EHLO
+        id S232994AbiIAQbk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 12:31:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231455AbiIAQ33 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 12:29:29 -0400
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 912577B7BA;
-        Thu,  1 Sep 2022 09:29:26 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.93,281,1654527600"; 
-   d="scan'208";a="131364655"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 02 Sep 2022 01:29:25 +0900
-Received: from localhost.localdomain (unknown [10.226.92.28])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 20A4A400A8B9;
-        Fri,  2 Sep 2022 01:29:22 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>
-Subject: [PATCH v4] ARM: dts: r9a06g032-rzn1d400-db: Enable CAN2
-Date:   Thu,  1 Sep 2022 17:29:19 +0100
-Message-Id: <20220901162919.47090-1-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S232665AbiIAQbj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 12:31:39 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 920BB62AB8;
+        Thu,  1 Sep 2022 09:31:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=LS2Woa4LuC44oMA7jdjUMP7C74QvndhsN+0OPg570ho=; b=hiDoRMTUYB2AzZo6c4oNEWXuTY
+        H7xyflAdZh1PxBlnzsU6luqs5zaHiwun4Het1j+FTqNVe3STnTtW2I+8NBIkIWVNyDf+AA9NQVOnW
+        Q5ht1B6aulg/+vV8j/BnyDSfGFT/v6HjUzgNHcLewBJdXk5CgRVqw3Yk4tEYSgygx+80=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1oTn5v-00FJtV-HL; Thu, 01 Sep 2022 18:31:07 +0200
+Date:   Thu, 1 Sep 2022 18:31:07 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Michael Walle <michael@walle.cc>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        netdev@vger.kernel.org, Ahmad Fatoum <a.fatoum@pengutronix.de>
+Subject: Re: [PATCH v1 01/14] net: add helper eth_addr_add()
+Message-ID: <YxDeS2hAgP5C/Bla@lunn.ch>
+References: <20220825214423.903672-1-michael@walle.cc>
+ <20220825214423.903672-2-michael@walle.cc>
+ <1682967feab905d06402d0f8402799a8@walle.cc>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
-X-Spam-Level: *
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1682967feab905d06402d0f8402799a8@walle.cc>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable CAN2 on RZ/N1-EB board by default.
-Also add a macro to enable CAN1, if the board
-support it.
+On Thu, Sep 01, 2022 at 06:26:39PM +0200, Michael Walle wrote:
+> Hi netdev maintainers,
+> 
+> Am 2022-08-25 23:44, schrieb Michael Walle:
+> > Add a helper to add an offset to a ethernet address. This comes in handy
+> > if you have a base ethernet address for multiple interfaces.
+> > 
+> > Signed-off-by: Michael Walle <michael@walle.cc>
+> 
+> Would it be possible to get an Ack for this patch, so I don't have
+> to repost this large (and still growing) series to netdev every time?
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v3->v4:
- * Updated commit descriptiom
- * Enabled CAN2 by default
- * Added a macro BOARD_HAS_CAN1_ENABLED to configure CAN1,
-   if the board supports it.
-v2->v3:
- * No change
-v1->v2:
- * No change
----
- arch/arm/boot/dts/r9a06g032-rzn1d400-db.dts | 28 +++++++++++++++++++++
- 1 file changed, 28 insertions(+)
+Looks O.K. to me
 
-diff --git a/arch/arm/boot/dts/r9a06g032-rzn1d400-db.dts b/arch/arm/boot/dts/r9a06g032-rzn1d400-db.dts
-index 4bf813335e21..c073ca360866 100644
---- a/arch/arm/boot/dts/r9a06g032-rzn1d400-db.dts
-+++ b/arch/arm/boot/dts/r9a06g032-rzn1d400-db.dts
-@@ -26,6 +26,22 @@ aliases {
- 	};
- };
- 
-+#if BOARD_HAS_CAN1_ENABLED /* CN10 on RZ/N1-EB board */
-+&can0 {
-+	pinctrl-0 = <&pins_can0>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
-+#endif
-+
-+&can1 {
-+	pinctrl-0 = <&pins_can1>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
-+
- &eth_miic {
- 	status = "okay";
- 	renesas,miic-switch-portin = <MIIC_GMAC2_PORT>;
-@@ -52,6 +68,18 @@ &mii_conv5 {
- };
- 
- &pinctrl{
-+	pins_can0: pins_can0 {
-+		pinmux = <RZN1_PINMUX(162, RZN1_FUNC_CAN)>,	/* CAN0_TXD */
-+			 <RZN1_PINMUX(163, RZN1_FUNC_CAN)>;	/* CAN0_RXD */
-+		drive-strength = <6>;
-+	};
-+
-+	pins_can1: pins_can1 {
-+		pinmux = <RZN1_PINMUX(109, RZN1_FUNC_CAN)>,	/* CAN1_TXD */
-+			 <RZN1_PINMUX(110, RZN1_FUNC_CAN)>;	/* CAN1_RXD */
-+		drive-strength = <6>;
-+	};
-+
- 	pins_eth3: pins_eth3 {
- 		pinmux = <RZN1_PINMUX(36, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
- 			 <RZN1_PINMUX(37, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
--- 
-2.25.1
-
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
