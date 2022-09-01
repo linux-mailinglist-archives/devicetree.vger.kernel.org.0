@@ -2,78 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EB2A5A928D
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 10:59:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EF215A92A2
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 11:02:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234342AbiIAI7Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 04:59:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38006 "EHLO
+        id S234424AbiIAJCi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 05:02:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234283AbiIAI65 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 04:58:57 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E4A912DA11
-        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 01:58:46 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id y10so14031751ljq.0
-        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 01:58:46 -0700 (PDT)
+        with ESMTP id S234422AbiIAJCF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 05:02:05 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 606C413251B
+        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 02:01:08 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id by6so17166680ljb.11
+        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 02:01:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=mwYkPkbDpVvKnBCUeAO6SqNihrRVFRauQ3ciXakJntA=;
-        b=cKwqNiIrCuxruPskUUyXVi0JY9nUNWB8yP5ZQhyNNBSUopD4SsK0P8gePIAcydCr7z
-         r4crGQCX9xEDitfqH9Z6UxWKwsc02KM9E3EXGBjDxhJ/U9YJi0znHlHwoseHOaHNqiui
-         z5FuuckuAUnshfoG1UFLG0MIPBJq6sEzM/cPdZDPL7TESLplsAH2ky6hEpuJkNgWPfyp
-         nhGOokE0WMs01y19cc3exxaVmloPYyb//W6rFybNcFd/Y7AWbYNPBJ3OoozvSHzQjoJc
-         RbuI9L+mP6sPKtqx+3EBJKqzFSXH8joq7o6XRrmeh2rpGwQETP24AyyrVOF93bnLkTa9
-         8Drg==
+        bh=lvApeUv6jUwfacMiPMy6drXUvkSgbjHAmu5eomvQtUg=;
+        b=Ri9ESbHOWXgociYV0UbAWbMD69F5qYu2GTFUaK7N7RkMdXhRPHQWeVyizYTgKgzUSa
+         T7WKkbtwyvX6FUU3flFndk0cDcHz9u2BAJGQzcvqW4YP6/vPdwL+tAsAeVNd2sdwwUC8
+         QKisN6hUzmoNaqrzX0kLmRzhsWrqr6RK50GPezjS3QDx6r07y8DShuISj4hBwpsVD1tQ
+         j7EyQdxMGcyw9awrD7xUnTGqZl0bDCze3fgSSZ3r1bLGaJjFZab33S0dglD1B8WJaFoC
+         Ni5tHoAW6UC4/fDC7P5UfneFXY9+oUiAoAHygt3YVAvZ2d88jlLdSIpvE37uaK2NpkTM
+         5AMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=mwYkPkbDpVvKnBCUeAO6SqNihrRVFRauQ3ciXakJntA=;
-        b=z6qfXVckn79uKj05c3v2dSClk++LC0XQn0Hbe20dx9SG3sTjpQe7d09h675XetuD2k
-         O232T8IpgzFUmzvGuT6mH603ZkgEGBN8lsf+iypfxN3XnkY0yFMLHIlCy6h4oA4mXzec
-         mM1bi3h0YCfmuw9T3vJtSEpIoMiG/2V8yBXLhicCYM9l75kKcesvJpIuhG67lu4kIzUL
-         0STIVwkKv7ZDCgG6ilLND+szeVRbNyxLgPy/eBQkInro/YX/zQuYHPdKUtQS9/frqijh
-         CcioXYK2yTUTU+m9AgiNPRBxR3YIgUMVBwJUNppkpfTIi1avSfu2pepzrI/8eH1XJLog
-         jNcw==
-X-Gm-Message-State: ACgBeo0agw0xYcTaOuq/CwFKwSCLVFHY2oscfXcYE8Lpd105rug0SSqH
-        82+HlR7dHWDpc5orF03Xgpy4bQ==
-X-Google-Smtp-Source: AA6agR4A/NKeMsV4Ak8gwgmbbPOMBHhorkS3+tj93KcLuvLF0EZl4lxNAvCjmnsb+w611pd+BKfYHg==
-X-Received: by 2002:a05:651c:4c9:b0:25e:7979:573a with SMTP id e9-20020a05651c04c900b0025e7979573amr9289821lji.445.1662022724895;
-        Thu, 01 Sep 2022 01:58:44 -0700 (PDT)
+        bh=lvApeUv6jUwfacMiPMy6drXUvkSgbjHAmu5eomvQtUg=;
+        b=1OMHcLkNO0SFbGEbl9zrNIMe/yghIMQmm5HtLjtx2jWyJQWo8Tc0FUmqYbf622Y2+W
+         DemdAPK1T8Oc6bGnz/Oaot1m+FQLSl2JU20j22In73RWns09lUkIS2z+X4NemZerCzxN
+         SvXrCDRlbEe5nVfM3hXHNbATL8kKVE16zIrdg5uCDgicaNulOsP22V937nJXyK7sYfxt
+         Z0Hnx66ojftb4Q4lZasvtiU3GA/xjHS2pY+rP5pu6qiAF6pL+o5SclPNtf5jinc/VkF7
+         3Icm0xuVm2wVdndn9T5kZy2L/e96wzqHqdHRi7ZvGFLnDXS3uakkc5tIBPo1Utxvrt2v
+         cDZA==
+X-Gm-Message-State: ACgBeo31msloxDWY9wZKoVz6Z5Cdsyc/W50Q9AvmsCIskRim9Kl1aNVD
+        +nD+O/2GqpKKbv2oEdDYWLJULA==
+X-Google-Smtp-Source: AA6agR61DBH568I0mLDo+jVDSq+L7cQdeSjOlgxiVpcdO0IVNeNmDu19EOP4GTt8D7im5iqsL/bqPQ==
+X-Received: by 2002:a2e:301a:0:b0:264:12f6:ead6 with SMTP id w26-20020a2e301a000000b0026412f6ead6mr6119875ljw.520.1662022866710;
+        Thu, 01 Sep 2022 02:01:06 -0700 (PDT)
 Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id f8-20020a05651c03c800b002663afd079fsm1263777ljp.115.2022.09.01.01.58.43
+        by smtp.gmail.com with ESMTPSA id f16-20020a05651c161000b00261b175f9c4sm577257ljq.37.2022.09.01.02.01.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Sep 2022 01:58:44 -0700 (PDT)
-Message-ID: <a9f4de46-e1ce-f8cd-2b0d-cd4bf36b1f84@linaro.org>
-Date:   Thu, 1 Sep 2022 11:58:43 +0300
+        Thu, 01 Sep 2022 02:01:06 -0700 (PDT)
+Message-ID: <1e19ae05-3cc2-d913-dd2c-a1c4be222508@linaro.org>
+Date:   Thu, 1 Sep 2022 12:01:05 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v4 3/3] ARM: dts: qcom: Add support for Samsung Galaxy Tab
- 4 10.1 (SM-T530)
+Subject: Re: [PATCH RFT 2/3] arm64: dts: qcom: align RPM regulators node name
+ with bindings
 Content-Language: en-US
-To:     =?UTF-8?Q?Matti_Lehtim=c3=a4ki?= <matti.lehtimaki@gmail.com>,
-        linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
+To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20220831173207.238080-1-matti.lehtimaki@gmail.com>
- <20220831173207.238080-4-matti.lehtimaki@gmail.com>
+References: <20220901085609.95624-1-krzysztof.kozlowski@linaro.org>
+ <20220901085609.95624-2-krzysztof.kozlowski@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220831173207.238080-4-matti.lehtimaki@gmail.com>
+In-Reply-To: <20220901085609.95624-2-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
@@ -84,39 +80,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/08/2022 20:32, Matti Lehtimäki wrote:
-> Add a device tree for the Samsung Galaxy Tab 4 10.1 (SM-T530) wifi tablet
-> based on the apq8026 platform.
+On 01/09/2022 11:56, Krzysztof Kozlowski wrote:
+> Node names should be generic and new DT schema expects RPM regulators
+> node to be just "regulators".  Rename them while keeping similar naming
+> style within PMIC families on different boards, e.g.
+> 	pm660l-regulators -> regulators-0
+> 	pm660-regulators -> regulators-1
+> which creates in few places big diff.
 > 
-> Currently supported are accelerometer sensor, hall sensor,
-> internal storage, physical buttons (power & volume), screen
-> (based on simple-framebuffer set up by the bootloader), sdcard,
-> touchscreen and USB.
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> Signed-off-by: Matti Lehtimäki <matti.lehtimaki@gmail.com>
 > ---
-> Changes in v4:
->   - Move delete-node to memory-region
->   - Move usb-switch node to blsp_i2c4
 > 
+> Not tested on hardware, but I do not expect functional impact.
+> ---
 
-(...)
+Eh, crap, I found few more of nodes to fix. There will be a v2.
 
-> +};
-> +
-> +&rpm_requests {
-> +	pm8226-regulators {
-
-I don't think this passes bindings. Run `make dtbs_check`. I don't want
-to keep accepting DTS which does not validate and none of submiters want
-to fix this...
-
-Rebase on top of:
-https://lore.kernel.org/linux-devicetree/20220901085609.95624-1-krzysztof.kozlowski@linaro.org/T/#t
-
-Node name should be "regulators".
-
-Be sure your DTS has 0 warning.
 
 Best regards,
 Krzysztof
