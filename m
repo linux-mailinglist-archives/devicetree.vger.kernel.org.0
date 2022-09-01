@@ -2,51 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6154B5A9EAD
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 20:12:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C427D5A9EB5
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 20:13:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233068AbiIASLY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 14:11:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57412 "EHLO
+        id S232490AbiIASNQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 14:13:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233101AbiIASLD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 14:11:03 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A018D23BEC;
-        Thu,  1 Sep 2022 11:10:38 -0700 (PDT)
+        with ESMTP id S229781AbiIASNP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 14:13:15 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A23E2474D8;
+        Thu,  1 Sep 2022 11:13:12 -0700 (PDT)
 Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id BF7E06CD;
-        Thu,  1 Sep 2022 20:10:36 +0200 (CEST)
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 476A56CD;
+        Thu,  1 Sep 2022 20:13:10 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1662055837;
-        bh=yisMqaoWBDsbWebXqcpHBHBjvKY6q+kjKiEmjB4kfeo=;
+        s=mail; t=1662055990;
+        bh=w3cnA7QpTZH9H6rGUREb2H83enbsbvl5uMVJxERt/tg=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=LzKug78Jh6jAwH5sL52x6kMBrm941Z72a6IYapStVAuwe5lJ92fR5S4wTK6jAZWKc
-         1ziH80WGYihPVFmtuqImuWOKECc6zGrlG23uVu9B46N0MuL3zuh0Ls5W6W0U4eH8xM
-         cua6gl/RILJerjkUSreHo/7jOnJ1tM7++0dn0qf4=
-Date:   Thu, 1 Sep 2022 21:10:25 +0300
+        b=rhnRqGz9TFyiYKIK2CaTWyN0MB8FLWTcnXcmfyvXrsZD0YnkrGc5EGUKCUnENitbn
+         0Q1Z/815H54UeYyOvzJu2p6uq8X72wHo+nqgpahotmtHu7OcAqVBhXVR6Ceorq7nRH
+         az8Kw0vX0PQjO85K3rRbbE5B4O0v8rDUbfHMKO1s=
+Date:   Thu, 1 Sep 2022 21:12:58 +0300
 From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Max Krummenacher <max.oss.09@gmail.com>
-Cc:     Max Krummenacher <max.krummenacher@toradex.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Philippe Schenker <philippe.schenker@toradex.com>,
+To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: imx8mp-verdin: add dsi to lvds
- functionality
-Message-ID: <YxD1kecBOaqG+GNh@pendragon.ideasonboard.com>
-References: <20220901154051.1885509-1-max.oss.09@gmail.com>
- <20220901154051.1885509-2-max.oss.09@gmail.com>
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v6 1/6] dt-bindings: media: Add Allwinner A31 ISP
+ bindings documentation
+Message-ID: <YxD2Kvrs+RjnPOnn@pendragon.ideasonboard.com>
+References: <20220826184144.605605-1-paul.kocialkowski@bootlin.com>
+ <20220826184144.605605-2-paul.kocialkowski@bootlin.com>
+ <Ywk3W6pTOOlzLYVn@pendragon.ideasonboard.com>
+ <YxDJtYgW/NYLw77u@aptenodytes>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20220901154051.1885509-2-max.oss.09@gmail.com>
+In-Reply-To: <YxDJtYgW/NYLw77u@aptenodytes>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
@@ -56,57 +61,147 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Max,
+Hi Paul,
 
-Thank you for the patch.
-
-On Thu, Sep 01, 2022 at 05:40:51PM +0200, Max Krummenacher wrote:
-> From: Max Krummenacher <max.krummenacher@toradex.com>
+On Thu, Sep 01, 2022 at 05:03:17PM +0200, Paul Kocialkowski wrote:
+> On Sat 27 Aug 22, 00:12, Laurent Pinchart wrote:
+> > On Fri, Aug 26, 2022 at 08:41:39PM +0200, Paul Kocialkowski wrote:
+> > > This introduces YAML bindings documentation for the Allwinner A31 Image
+> > > Signal Processor (ISP).
+> > > 
+> > > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> > > Reviewed-by: Rob Herring <robh@kernel.org>
+> > > ---
+> > >  .../media/allwinner,sun6i-a31-isp.yaml        | 97 +++++++++++++++++++
+> > >  1 file changed, 97 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/media/allwinner,sun6i-a31-isp.yaml
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-isp.yaml b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-isp.yaml
+> > > new file mode 100644
+> > > index 000000000000..2fda6e05e16c
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-isp.yaml
+> > > @@ -0,0 +1,97 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/media/allwinner,sun6i-a31-isp.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Allwinner A31 Image Signal Processor Driver (ISP) Device Tree Bindings
+> > > +
+> > > +maintainers:
+> > > +  - Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - allwinner,sun6i-a31-isp
+> > > +      - allwinner,sun8i-v3s-isp
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  interrupts:
+> > > +    maxItems: 1
+> > > +
+> > > +  clocks:
+> > > +    items:
+> > > +      - description: Bus Clock
+> > > +      - description: Module Clock
+> > > +      - description: DRAM Clock
+> > > +
+> > > +  clock-names:
+> > > +    items:
+> > > +      - const: bus
+> > > +      - const: mod
+> > > +      - const: ram
+> > > +
+> > > +  resets:
+> > > +    maxItems: 1
+> > > +
+> > > +  ports:
+> > > +    $ref: /schemas/graph.yaml#/properties/ports
+> > > +
+> > > +    properties:
+> > > +      port@0:
+> > > +        $ref: /schemas/graph.yaml#/properties/port
+> > > +        description: CSI0 input port
+> > > +
+> > > +      port@1:
+> > > +        $ref: /schemas/graph.yaml#/properties/port
+> > > +        description: CSI1 input port
+> > > +
+> > > +    anyOf:
+> > > +      - required:
+> > > +          - port@0
+> > > +      - required:
+> > > +          - port@1
+> > 
+> > I'd still like to see all ports that exist in the hardware being
+> > mandatory. I assume at least one of the A31 and V3s has two connected
+> > ports in the SoC or you wouldn't declare them both here :-)
 > 
-> Add a panel-lvds node and use the correct dsi to lvds chip name.
-> Both to be later extended in a dt overlay according to the exact
-> board HW configuration.
-
-Same as with patch 1/2, this doesn't look right. The panel isn't part of
-the Verdin SoM, it's not even part of the base board. It should be moved
-to an overlay, and the SN65DSI83, which I understand isn't on the SoM
-either, should be moved somewhere else too..
-
-> Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
-> ---
+> Some SoCs (e.g. A83T) only have one CSI controller so we can't require both.
+> This could be a decision based on the compatible but my personal opinion is
+> that it's not really worth making this binding so complex.
 > 
->  arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi | 11 +++++++++--
->  1 file changed, 9 insertions(+), 2 deletions(-)
+> We can always informally enforce that all possible links should be present
+> when merging changes to the soc dts.
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
-> index bd84a0d135dc..a3e20c7add3e 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
-> @@ -67,6 +67,13 @@ hdmi_connector: hdmi-connector {
->  		status = "disabled";
->  	};
->  
-> +	panel_lvds: panel-lvds {
-> +		compatible = "panel-lvds";
-> +		backlight = <&backlight>;
-> +		data-mapping = "vesa-24";
-> +		status = "disabled";
-> +	};
-> +
->  	/* Carrier Board Supplies */
->  	reg_1p8v: regulator-1p8v {
->  		compatible = "regulator-fixed";
-> @@ -690,8 +697,8 @@ gpio_expander_21: gpio-expander@21 {
->  		status = "disabled";
->  	};
->  
-> -	lvds_ti_sn65dsi83: bridge@2c {
-> -		compatible = "ti,sn65dsi83";
-> +	lvds_ti_sn65dsi84: bridge@2c {
-> +		compatible = "ti,sn65dsi84";
->  		/* Verdin GPIO_9_DSI (SN65DSI84 IRQ, SODIMM 17, unused) */
->  		/* Verdin GPIO_10_DSI (SODIMM 21) */
->  		enable-gpios = <&gpio4 28 GPIO_ACTIVE_HIGH>;
+> What do you think?
+
+It makes the binding more complex, but it allows catching issues in an
+automated way instead of relying on reviews. Lowering the review burden
+is something I usually welcome :-) It's probably less of an issue here
+as this is all about the SoC integration, not about board files, so I
+won't insist too strongly even if I prefer bindings that are more
+descriptive.
+
+> > Apart from that, this looks good.
+> > 
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - interrupts
+> > > +  - clocks
+> > > +  - clock-names
+> > > +  - resets
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > > +    #include <dt-bindings/clock/sun8i-v3s-ccu.h>
+> > > +    #include <dt-bindings/reset/sun8i-v3s-ccu.h>
+> > > +
+> > > +    isp: isp@1cb8000 {
+> > > +        compatible = "allwinner,sun8i-v3s-isp";
+> > > +        reg = <0x01cb8000 0x1000>;
+> > > +        interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
+> > > +        clocks = <&ccu CLK_BUS_CSI>,
+> > > +             <&ccu CLK_CSI1_SCLK>,
+> > > +             <&ccu CLK_DRAM_CSI>;
+> > > +        clock-names = "bus", "mod", "ram";
+> > > +        resets = <&ccu RST_BUS_CSI>;
+> > > +
+> > > +        ports {
+> > > +            #address-cells = <1>;
+> > > +            #size-cells = <0>;
+> > > +
+> > > +            port@0 {
+> > > +                reg = <0>;
+> > > +
+> > > +                isp_in_csi0: endpoint {
+> > > +                    remote-endpoint = <&csi0_out_isp>;
+> > > +                };
+> > > +            };
+> > > +        };
+> > > +    };
+> > > +
+> > > +...
 
 -- 
 Regards,
