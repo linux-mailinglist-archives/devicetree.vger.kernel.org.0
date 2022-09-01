@@ -2,55 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 846BB5AA03D
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 21:39:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C9EDE5AA058
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 21:47:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234630AbiIATjV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 15:39:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43050 "EHLO
+        id S234177AbiIATrB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 15:47:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234595AbiIATjT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 15:39:19 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.13])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 559779A99F;
-        Thu,  1 Sep 2022 12:39:17 -0700 (PDT)
-Received: from fabians-envy.localnet ([217.234.194.43]) by
- mrelayeu.kundenserver.de (mreue108 [212.227.15.183]) with ESMTPSA (Nemesis)
- id 1Mw9Hm-1pLwgW1FR6-00s9J9; Thu, 01 Sep 2022 21:39:04 +0200
-From:   Fabian Vogt <fabian@ritter-vogt.de>
-To:     Andrew Davis <afd@ti.com>, Daniel Tang <dt.tangr@gmail.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/2] TI-Nspire cleanups
-Date:   Thu, 01 Sep 2022 21:38:40 +0200
-Message-ID: <5597784.DvuYhMxLoT@fabians-envy>
-In-Reply-To: <CAPnH9d=HhPRVNkveEPBe01g-JK0K5bR7suiTZzmCwm80Vpo0sw@mail.gmail.com>
-References: <20220822232046.1230-1-afd@ti.com> <CAPnH9d=HhPRVNkveEPBe01g-JK0K5bR7suiTZzmCwm80Vpo0sw@mail.gmail.com>
+        with ESMTP id S233919AbiIATrA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 15:47:00 -0400
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4F6286C05;
+        Thu,  1 Sep 2022 12:46:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1662061619; x=1693597619;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=K+qjlCNhhEYa6vAoO0LiHSR2znEMey6RlkEGVK0g59g=;
+  b=je4i8lzInp2R93rbU5Qr55QCWvPZMnwqeICAdfwYiNoU0Q9syi3dCa8a
+   0aVT4zhIThO/2zo/0Otu1br3v/rpt69KwgTf6NJnTNdtTF/L1VdFA/+2B
+   Z6RN0PW9UIY/M0NYDNVD1wscWIA0xV0hoZhwBV06CQKvkZI4pLOrhWzYC
+   0EHdtJc9A4w96aqACCzMbg5nI0wjukZZcadfHx2D6VUa/F8oUHW/5X919
+   ynOlzb0BwjQofEB5aP4ti5U0zO73+KnCoBo9hsQYuTaefCWQ59byzrjJ/
+   9Tx414T8hRxNW2npsxRPyNZpEt4K6hAw2A7MgGJJq9dlpRke9wnreoX/w
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10457"; a="293390887"
+X-IronPort-AV: E=Sophos;i="5.93,281,1654585200"; 
+   d="scan'208";a="293390887"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Sep 2022 12:46:49 -0700
+X-IronPort-AV: E=Sophos;i="5.93,281,1654585200"; 
+   d="scan'208";a="645796668"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Sep 2022 12:46:44 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@intel.com>)
+        id 1oTq9B-0071NR-1w;
+        Thu, 01 Sep 2022 22:46:41 +0300
+Date:   Thu, 1 Sep 2022 22:46:41 +0300
+From:   Andy Shevchenko <andriy.shevchenko@intel.com>
+To:     "Farber, Eliav" <farbere@amazon.com>
+Cc:     jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org,
+        p.zabel@pengutronix.de, rtanwar@maxlinear.com,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, talel@amazon.com, hhhawa@amazon.com,
+        jonnyc@amazon.com, hanochu@amazon.com, ronenk@amazon.com,
+        itamark@amazon.com, shellykz@amazon.com, shorer@amazon.com,
+        amitlavi@amazon.com, almogbs@amazon.com, dkl@amazon.com
+Subject: Re: [PATCH v3 18/19] hwmon: (mr75203) add debugfs to read and write
+ temperature coefficients
+Message-ID: <YxEMIdBMOeDBsu5D@smile.fi.intel.com>
+References: <20220830192212.28570-1-farbere@amazon.com>
+ <20220830192212.28570-19-farbere@amazon.com>
+ <Yw9Qq+PIfxgXRIK2@smile.fi.intel.com>
+ <646af681-38b0-1268-3798-c5434ca30bee@amazon.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:q0MZYE1ez3SPDiKjT+yBGh94jYNaudKtIEAT0KUibGe61OaCJor
- 0GV+r+WOERPPKC3hP58O32lTqSRZZBKRKvYid/fYmgkAAfilcMZhvjdgwSZ41deFb6aMx3f
- W3QkHfC3CgqrqCjrXI1No07BV65A7tvHzthQ4hCjAVKIMAbLtmBQNo+cIFSHf4UV51O/t7O
- sz5t2mwoel4rQQ2GtdBhw==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:hfYIt94BQFE=:XxIMDUc2X/3OKPnipmQf5m
- w4uglJFMPLRH6wcsSv1/ObM7nJzCSOQclMAMgJWvZWM9Pti4hzI4eEYizNZOwuXpKtgqgEZjm
- stKs0A60WD54+h8dHIV/ZCzFLY0n9qAzxv/QT+o9u3qsRx8zw3epxMG38Efexo4x+dXHDrrHm
- 2OreDYwWx7bOJMwUqqDr1RIpAV/cF5C5slqem6CvZKTSUIM/mkSJEXYGHzMjcMy0gAwkYjHBq
- OR/FANcG4L2dMreQAUUkscvwqXvdYafDuv1NfO87KzlI7OS9eisbgqM7EzQ8V49xcuv99tkWn
- jTqFm4FW7emwmF5mJindn5gW/n+iNLuDOrWl8g6vVqgMBIeNoPXsSNHhknpZXxAph47OH/dd3
- 8aDW8siKCId24lN5PSd2/p/OGlc4eHOPd6xRwIn3uNCdnb4ExA2cASB/FhUTHS6lc5AAC3ACh
- BKBWE5QrNxGiSOJfaiZ4ePrAtWxOEpe2tkbTMEZAmhvQxNNcdG8a1BVL9NUnsIKMDR20TfJED
- pDABIe7PRSGN/yu3UUr4XzC1ihiTr6mb/ImxaaQS8AjCF477GUPjUgqfJxJMoQU+w2dP/FU6d
- AD0hGvK/oZPH3aOs9K0t+/WsFjmPYr67nY0xJd+Mcyd0n7mMB/U0MI/1YSKm05THLbfOOaLgO
- p1vNSVH0jYHaMq2zi7odboiaSjdqXxaW+qiEK/YmSELA4dXwQP2nzWx2vgPRf9h/16bmzD5GU
- 8alLODAN9V3zMkXCd6PGfsSjbxPFcEYlCbfiIUfhYErx72iJ8OA+cVP2D+H+8+yrsIXFyNIw2
- Hkp32RcDvio3PFrThnHVfUaMHScnw==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <646af681-38b0-1268-3798-c5434ca30bee@amazon.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,51 +73,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Thu, Sep 01, 2022 at 09:54:21AM +0300, Farber, Eliav wrote:
+> On 8/31/2022 3:14 PM, Andy Shevchenko wrote:
+> > On Tue, Aug 30, 2022 at 07:22:11PM +0000, Eliav Farber wrote:
 
-Am Dienstag, 23. August 2022, 11:16:17 CEST schrieb Daniel Tang:
-> I've CC'd in Fabian, who has previously been able to assist testing
-> kernel patches for this platform.
-> 
-> 
-> On Tue, 23 Aug 2022 at 09:20, Andrew Davis <afd@ti.com> wrote:
-> >
-> > Hello all,
-> >
-> > I don't have the hardware to test this (yes I know who my current
-> > employer is), but it does look right and this lets us remove the rest
-> > of mach-nspire/ without losing any functionality.
-> > Does anyone have one of these to test with?
-> >
-> > The second patch removes a couple defines that do not seem to have ever
-> > been used, but if one want to implement it, then it should be a simple
-> > generic syscon DT node.
+...
 
-I applied both patches on current master (c5e4d5e99162) and they work fine in
-the emulator (including rebooting). On real HW the kernel does unfortunately
-not boot, so I'll have to do some further testing and debugging. The changes
-look good to me, so it's probably some other change which broke it though.
+> > > +     pvt->dbgfs_dir = debugfs_create_dir(dev_name(dev), NULL);
+> > 
+> > > +     if (!pvt->dbgfs_dir) {
+> > > +             dev_err(dev, "Failed to create dbgfs_dir\n");
+> > > +             return -EINVAL;
+> > > +     }
+> > 
+> > No, just don't check the return value of debugfs API calls.
+> > 
+> Do you mean that I should just do:
+> debugfs_create_dir(dev_name(dev), NULL);
+> Can you please explain why it's OK to ignore the return value?
 
-Cheers,
-Fabian
+Author of the debugfs is speaking:
+https://patchwork.kernel.org/project/linux-wireless/patch/20190122152151.16139-38-gregkh@linuxfoundation.org/
 
-> > Thanks,
-> > Andrew
-> >
-> > Andrew Davis (2):
-> >   ARM: nspire: Use syscon-reboot to handle restart
-> >   ARM: nspire: Remove unused header file mmio.h
-> >
-> >  arch/arm/boot/dts/nspire.dtsi |  7 ++++
-> >  arch/arm/mach-nspire/Kconfig  |  2 ++
-> >  arch/arm/mach-nspire/mmio.h   | 16 ----------
-> >  arch/arm/mach-nspire/nspire.c | 60 +++++++++++------------------------
-> >  4 files changed, 27 insertions(+), 58 deletions(-)
-> >  delete mode 100644 arch/arm/mach-nspire/mmio.h
-> >  rewrite arch/arm/mach-nspire/nspire.c (61%)
-> >
-> > --
-> > 2.36.1
-> >
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
