@@ -2,517 +2,260 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FA0F5A918D
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 10:05:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B41CE5A91AF
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 10:10:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233699AbiIAIFc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 04:05:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55370 "EHLO
+        id S233999AbiIAIKZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 04:10:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233619AbiIAIFU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 04:05:20 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CC6EBF69;
-        Thu,  1 Sep 2022 01:05:05 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id A08F56601DF7;
-        Thu,  1 Sep 2022 09:05:03 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1662019504;
-        bh=Rviw2cwlCbnMamvge2w+lu9CT7JwpJ7O/j9ctvOZMbk=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=MebE3h/P7pQAnr5WvHNga++kDzZcT8mNZQIIXOzdJrWyf5crf0xDgnVWRkN9ZBmpl
-         OZsuar8vvA6mvzgIEFWWcopqOmUyrWl/JIvoOrHLoimY7p55KFV14r38ljYQt/H/f9
-         oQOuTT0nzffmGfsxXA6kdRoq9DI4v1Zg2ARx0jtX15solBN4Mxd46W36wsPBmNGtEm
-         AvFWv4HDz9wD/qkZlTsqFaAU2sV0AnaXDH29DVXrvagmfQc5rDIH1AMqDmZ41xjK5t
-         wezGUz7+YGzgqnLoxiEiCyGnYNhVSJytlWuGTgzuEflyGqM9AEzVPPiPD9/NAYvkF1
-         yyw6SrpafHnQQ==
-Message-ID: <d2abe2d3-f17c-6c22-ccae-514fe196441e@collabora.com>
-Date:   Thu, 1 Sep 2022 10:05:00 +0200
+        with ESMTP id S234005AbiIAIJ6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 04:09:58 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5EA612BF59
+        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 01:09:24 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id br21so17506080lfb.0
+        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 01:09:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=jdaImCAMzvEFX9TwXI3b3A22fnyD7RAu4eGJcB2v2L4=;
+        b=T5we5fmyC8p8+kk27wkfq0GL1b/ybd4BIXqIjTjUIFJ6yL1szPCGv1FMsWQfITTimy
+         b9wW54HB7bBhJ3R6Yi8GoSKrHTlmfit/WD2xt20MeDIlO65jXQWDrt3iiFe7TTZNvN5d
+         Ra4ZbPxt5dA3R6uyWNA3VfypbwwSIxU1E3a3sxZU148FCpnGDTjRyDPQuPgFrQegaIwE
+         kefgZy2n3Bau7KRgMimrpkuOOuXEJc8jyRjnrIY5ci5LX1di17H9e5FB3cBbKUwc2Wrx
+         UYx5KlrOd0A+s0177ERo9VBKNxJpgDJVpCQQHgKEsjB4e3J75d8ylBzrNt352aJyaouR
+         wHmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=jdaImCAMzvEFX9TwXI3b3A22fnyD7RAu4eGJcB2v2L4=;
+        b=J2RKxdFwKKIGXPDbtJrUx06G2PdFVkMjWvQ91wIiA3vScGgtIeSELcaJlpOFl9IUCC
+         VVYIc9vhAQ6oUIdVQz/mh5a2zazivn424I1knGfWLV6FP5rrK+u7qmEi9ibriLKhLcg4
+         7tejVlGfsqIkO7nHMI2+rS4uhJaqnVrxVKK8xrtR4eMEGaQww1zd/jDw0s1EP/xUVDpq
+         CXwkwjW7n5LGWB/yiPQZMuj1B9IbNvaVDVJaTlNxidJRPKD7NpLRCzfMMrfGKd38XT6b
+         eq3DD3+7LHnzXStDlO2qtyrsKdKVp0r7M8fxxwv01quR0rj2NWmC+oAXQsX9oDBA3dDa
+         Fn3Q==
+X-Gm-Message-State: ACgBeo1ejCXbpjxA4mURwFByp2c1/Fl6O1j9TDSb7TnV+j7aOrE8BJnW
+        RqL5bu8XmQXTLatorHMfKXy+zg==
+X-Google-Smtp-Source: AA6agR6ozcS7BNEED6T7ONfuYK1PEO81TnBZdK0SOVWrXBnqMgkXc+sQbCOLwiQhHF/PUp4UDU719w==
+X-Received: by 2002:a05:6512:32c6:b0:494:99fe:49b9 with SMTP id f6-20020a05651232c600b0049499fe49b9mr751880lfg.410.1662019762610;
+        Thu, 01 Sep 2022 01:09:22 -0700 (PDT)
+Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
+        by smtp.gmail.com with ESMTPSA id bj38-20020a2eaaa6000000b002682754293fsm726958ljb.1.2022.09.01.01.09.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 01 Sep 2022 01:09:21 -0700 (PDT)
+Message-ID: <bee118ef-0e38-2049-ffe3-a9893a49b8c3@linaro.org>
+Date:   Thu, 1 Sep 2022 11:09:20 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.0
-Subject: Re: [PATCH 3/4] clk: mediatek: Add new clock driver to handle FHCTL
- hardware
-To:     Johnson Wang <johnson.wang@mediatek.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, sboyd@kernel.org
-Cc:     linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Edward-JW Yang <edward-jw.yang@mediatek.com>
-References: <20220831124850.7748-1-johnson.wang@mediatek.com>
- <20220831124850.7748-4-johnson.wang@mediatek.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH 08/13] dt-bindings: mfd: add rk806 binding
 Content-Language: en-US
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220831124850.7748-4-johnson.wang@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lee Jones <lee@kernel.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com
+References: <20220831215437.117880-1-sebastian.reichel@collabora.com>
+ <20220831215437.117880-9-sebastian.reichel@collabora.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220831215437.117880-9-sebastian.reichel@collabora.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 31/08/22 14:48, Johnson Wang ha scritto:
-> To implement frequency hopping and spread spectrum clocking
-> function, we introduce new clock type and APIs to handle
-> FHCTL hardware.
+On 01/09/2022 00:54, Sebastian Reichel wrote:
+> Add DT binding document for Rockchip's RK806 PMIC.
 > 
-> Co-developed-by: Edward-JW Yang <edward-jw.yang@mediatek.com>
-> Signed-off-by: Edward-JW Yang <edward-jw.yang@mediatek.com>
-> Signed-off-by: Johnson Wang <johnson.wang@mediatek.com>
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 > ---
->   drivers/clk/mediatek/Makefile    |   2 +-
->   drivers/clk/mediatek/clk-fhctl.c | 258 +++++++++++++++++++++++++++++
->   drivers/clk/mediatek/clk-fhctl.h |  27 +++
->   drivers/clk/mediatek/clk-pllfh.c | 271 +++++++++++++++++++++++++++++++
->   drivers/clk/mediatek/clk-pllfh.h |  81 +++++++++
->   5 files changed, 638 insertions(+), 1 deletion(-)
->   create mode 100644 drivers/clk/mediatek/clk-fhctl.c
->   create mode 100644 drivers/clk/mediatek/clk-fhctl.h
->   create mode 100644 drivers/clk/mediatek/clk-pllfh.c
->   create mode 100644 drivers/clk/mediatek/clk-pllfh.h
+>  .../bindings/mfd/rockchip,rk806.yaml          | 388 ++++++++++++++++++
+>  1 file changed, 388 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk806.yaml
 > 
-> diff --git a/drivers/clk/mediatek/Makefile b/drivers/clk/mediatek/Makefile
-> index caf2ce93d666..0e674a55e51e 100644
-> --- a/drivers/clk/mediatek/Makefile
-> +++ b/drivers/clk/mediatek/Makefile
-> @@ -1,5 +1,5 @@
->   # SPDX-License-Identifier: GPL-2.0
-> -obj-$(CONFIG_COMMON_CLK_MEDIATEK) += clk-mtk.o clk-pll.o clk-gate.o clk-apmixed.o clk-cpumux.o reset.o clk-mux.o
-> +obj-$(CONFIG_COMMON_CLK_MEDIATEK) += clk-mtk.o clk-pll.o clk-gate.o clk-apmixed.o clk-cpumux.o reset.o clk-mux.o clk-fhctl.o clk-pllfh.o
->   
->   obj-$(CONFIG_COMMON_CLK_MT6765) += clk-mt6765.o
->   obj-$(CONFIG_COMMON_CLK_MT6765_AUDIOSYS) += clk-mt6765-audio.o
-> diff --git a/drivers/clk/mediatek/clk-fhctl.c b/drivers/clk/mediatek/clk-fhctl.c
+> diff --git a/Documentation/devicetree/bindings/mfd/rockchip,rk806.yaml b/Documentation/devicetree/bindings/mfd/rockchip,rk806.yaml
 > new file mode 100644
-> index 000000000000..69bd4ce2bc72
+> index 000000000000..c775ef60db8b
 > --- /dev/null
-> +++ b/drivers/clk/mediatek/clk-fhctl.c
-> @@ -0,0 +1,258 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2022 MediaTek Inc.
-> + * Author: Edward-JW Yang <edward-jw.yang@mediatek.com>
-> + */
+> +++ b/Documentation/devicetree/bindings/mfd/rockchip,rk806.yaml
+> @@ -0,0 +1,388 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/rockchip,rk806.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
+> +title: RK806 Power Management Integrated Circuit
+> +
+> +maintainers:
+> +  - Sebastian Reichel <sebastian.reichel@collabora.com>
+> +
+> +description: |
+> +  Rockchip RK806 series PMIC. This device consists of an spi or
+> +  i2c controlled MFD that includes multiple switchable regulators.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - rockchip,rk806
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  gpio-controller: true
+> +
+> +  '#gpio-cells':
+> +    const: 2
+> +
+> +  vcc1-supply:
+> +    description:
+> +      The input supply for DCDC_REG1.
+> +
+> +  vcc2-supply:
+> +    description:
+> +      The input supply for DCDC_REG2.
+> +
+> +  vcc3-supply:
+> +    description:
+> +      The input supply for DCDC_REG3.
+> +
+> +  vcc4-supply:
+> +    description:
+> +      The input supply for DCDC_REG4.
+> +
+> +  vcc5-supply:
+> +    description:
+> +      The input supply for DCDC_REG5.
+> +
+> +  vcc6-supply:
+> +    description:
+> +      The input supply for DCDC_REG6.
+> +
+> +  vcc7-supply:
+> +    description:
+> +      The input supply for DCDC_REG7.
+> +
+> +  vcc8-supply:
+> +    description:
+> +      The input supply for DCDC_REG8.
+> +
+> +  vcc9-supply:
+> +    description:
+> +      The input supply for DCDC_REG9.
+> +
+> +  vcc10-supply:
+> +    description:
+> +      The input supply for DCDC_REG10.
+> +
+> +  vcc11-supply:
+> +    description:
+> +      The input supply for PLDO_REG1, PLDO_REG2 and PLDO_REG3.
+> +
+> +  vcc12-supply:
+> +    description:
+> +      The input supply for PLDO_REG4 and PLDO_REG5.
+> +
+> +  vcc13-supply:
+> +    description:
+> +      The input supply for NLDO_REG1, NLDO_REG2 and NLDO_REG3.
+> +
+> +  vcc14-supply:
+> +    description:
+> +      The input supply for NLDO_REG4 and NLDO_REG5.
+> +
+> +  vcca-supply:
+> +    description:
+> +      The input supply for PLDO_REG6.
+> +
+> +  regulators:
+> +    type: object
+> +    patternProperties:
+> +      "^(DCDC_REG[1-9]0?|[PN]LDO_REG[1-6])$":
 
-#include <linux/io.h>
+1. Your pattern is a bit wide. Seems to accept DCDC_REG90. That piece
+should be ([1-9]|10)
 
-Please don't rely on implicit header inclusion.
-
-> +#include <linux/iopoll.h>
-> +
-> +#include "clk-mtk.h"
-> +#include "clk-pllfh.h"
-> +#include "clk-fhctl.h"
-> +
-> +#define PERCENT_TO_DDSLMT(dds, percent_m10) \
-> +	((((dds) * (percent_m10)) >> 5) / 100)
-> +
-> +static const struct fhctl_offset fhctl_offset = {
-> +	.offset_hp_en = 0x0,
-> +	.offset_clk_con = 0x8,
-> +	.offset_rst_con = 0xc,
-> +	.offset_slope0 = 0x10,
-> +	.offset_slope1 = 0x14,
-> +	.offset_cfg = 0x0,
-> +	.offset_updnlmt = 0x4,
-> +	.offset_dds = 0x8,
-> +	.offset_dvfs = 0xc,
-> +	.offset_mon = 0x10,
-> +};
-> +
-> +const struct fhctl_offset *fhctl_get_offset_table(void)
-> +{
-> +	return &fhctl_offset;
-> +}
-> +
-> +static void dump_hw(struct mtk_clk_pll *pll, struct fh_pll_regs *regs,
-> +		    const struct fh_pll_data *data)
-> +{
-> +	pr_info("hp_en<%x>,clk_con<%x>,slope0<%x>,slope1<%x>\n",
-> +		readl(regs->reg_hp_en), readl(regs->reg_clk_con),
-> +		readl(regs->reg_slope0), readl(regs->reg_slope1));
-> +	pr_info("cfg<%x>,lmt<%x>,dds<%x>,dvfs<%x>,mon<%x>\n",
-> +		readl(regs->reg_cfg), readl(regs->reg_updnlmt),
-> +		readl(regs->reg_dds), readl(regs->reg_dvfs),
-> +		readl(regs->reg_mon));
-> +	pr_info("pcw<%x>\n", readl(pll->pcw_addr));
-> +}
-> +
-> +static int fhctl_set_ssc_regs(struct mtk_clk_pll *pll, struct fh_pll_regs *regs,
-> +			      const struct fh_pll_data *data, u32 rate)
-> +{
-> +	u32 updnlmt_val, r;
-> +
-> +	writel((readl(regs->reg_cfg) & ~(data->frddsx_en)), regs->reg_cfg);
-> +	writel((readl(regs->reg_cfg) & ~(data->sfstrx_en)), regs->reg_cfg);
-> +	writel((readl(regs->reg_cfg) & ~(data->fhctlx_en)), regs->reg_cfg);
-> +
-> +	if (rate > 0) {
-> +		/* Set the relative parameter registers (dt/df/upbnd/downbnd) */
-> +		r = readl(regs->reg_cfg);
-> +		r &= ~(data->msk_frddsx_dys);
-> +		r |= (data->df_val << (ffs(data->msk_frddsx_dys) - 1));
-> +		writel(r, regs->reg_cfg);
-> +
-> +		r = readl(regs->reg_cfg);
-> +		r &= ~(data->msk_frddsx_dts);
-> +		r |= (data->dt_val << (ffs(data->msk_frddsx_dts) - 1));
-> +		writel(r, regs->reg_cfg);
-> +
-> +		writel((readl(pll->pcw_addr) & data->dds_mask) | data->tgl_org,
-> +			regs->reg_dds);
-> +
-> +		/* Calculate UPDNLMT */
-> +		updnlmt_val = PERCENT_TO_DDSLMT((readl(regs->reg_dds) &
-> +						 data->dds_mask), rate) <<
-> +						 data->updnlmt_shft;
-> +
-> +		writel(updnlmt_val, regs->reg_updnlmt);
-> +		writel(readl(regs->reg_hp_en) | BIT(data->fh_id),
-> +		       regs->reg_hp_en);
-> +		/* Enable SSC */
-> +		writel(readl(regs->reg_cfg) | data->frddsx_en, regs->reg_cfg);
-> +		/* Enable Hopping control */
-> +		writel(readl(regs->reg_cfg) | data->fhctlx_en, regs->reg_cfg);
-> +
-> +	} else {
-> +		/* Switch to APMIXEDSYS control */
-> +		writel(readl(regs->reg_hp_en) & ~BIT(data->fh_id),
-> +		       regs->reg_hp_en);
-> +		/* Wait for DDS to be stable */
-> +		udelay(30);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int hopping_hw_flow(struct mtk_clk_pll *pll, struct fh_pll_regs *regs,
-> +			   const struct fh_pll_data *data,
-> +			   struct fh_pll_state *state, unsigned int new_dds)
-> +{
-> +	u32 dds_mask = data->dds_mask;
-> +	u32 mon_dds = 0;
-> +	u32 con_pcw_tmp;
-> +	int ret;
-> +
-> +	if (state->ssc_rate)
-> +		fhctl_set_ssc_regs(pll, regs, data, 0);
-> +
-> +	writel((readl(pll->pcw_addr) & dds_mask) | data->tgl_org,
-> +		regs->reg_dds);
-> +
-> +	writel(readl(regs->reg_cfg) | data->sfstrx_en, regs->reg_cfg);
-> +	writel(readl(regs->reg_cfg) | data->fhctlx_en, regs->reg_cfg);
-> +	writel(data->slope0_value, regs->reg_slope0);
-> +	writel(data->slope1_value, regs->reg_slope1);
-> +
-> +	writel(readl(regs->reg_hp_en) | BIT(data->fh_id), regs->reg_hp_en);
-> +	writel((new_dds) | (data->dvfs_tri), regs->reg_dvfs);
-> +
-> +	/* Wait 1000 us until DDS stable */
-> +	ret = readl_poll_timeout_atomic(regs->reg_mon, mon_dds,
-> +				       (mon_dds & dds_mask) == new_dds,
-> +					10, 1000);
-> +	if (ret) {
-> +		pr_warn("%s: FHCTL hopping timeout\n", pll->data->name);
-> +		dump_hw(pll, regs, data);
-> +	}
-> +
-> +	con_pcw_tmp = readl(pll->pcw_addr) & (~dds_mask);
-> +	con_pcw_tmp = (con_pcw_tmp | (readl(regs->reg_mon) & dds_mask) |
-> +		       data->pcwchg);
-> +
-> +	writel(con_pcw_tmp, pll->pcw_addr);
-> +	writel(readl(regs->reg_hp_en) & ~BIT(data->fh_id), regs->reg_hp_en);
-> +
-> +	if (state->ssc_rate)
-> +		fhctl_set_ssc_regs(pll, regs, data, state->ssc_rate);
-
-Does it really make sense to set the SSC registers if the FH operation times out?
-
-> +
-> +	return ret;
-> +}
-> +
-> +static unsigned int __get_postdiv(struct mtk_clk_pll *pll,
-> +				  struct fh_pll_regs *regs,
-> +				  const struct fh_pll_data *fh_data)
-
-You don't need regs, nor fh_data, so this can be as simple as
-
-static unsigned int __get_postdiv(struct mtk_clk_pll *pll)
-
-> +{
-> +	unsigned int regval;
-> +
-> +	regval = readl(pll->pd_addr) >> pll->data->pd_shift;
-> +	regval &= POSTDIV_MASK;
-> +
-
-	return BIT(regval);
-
-> +	return (1 << regval);
-> +}
-> +
-> +static void __set_postdiv(struct mtk_clk_pll *pll, struct fh_pll_regs *regs,
-> +			  const struct fh_pll_data *data, int postdiv)
-
-static void __set_postdiv(struct mtk_clk_pll *pll, unsigned int val)
-
-> +{
-> +	unsigned int regval;
-> +
-> +	regval = readl(pll->pd_addr);
-> +	regval &= ~(POSTDIV_MASK << pll->data->pd_shift);
-> +	regval |= (ffs(postdiv) - 1) << pll->data->pd_shift;
-> +	writel(regval, pll->pd_addr);
-> +}
-> +
-> +static int fhctl_hopping(struct mtk_fh *fh, unsigned int new_dds, int postdiv)
-
-The postdiv cannot ever be negative, so you can change it to an unsigned type...
-
-static int fhctl_hopping(struct mtk_fh *fh, unsigned int new_dds,
-			 unsigned int postdiv)
-
-> +{
-> +	const struct fh_pll_data *data = &fh->pllfh_data->data;
-> +	struct fh_pll_state *state = &fh->pllfh_data->state;
-> +	struct fh_pll_regs *regs = &fh->regs;
-> +	struct mtk_clk_pll *pll = &fh->clk_pll;
-> +	spinlock_t *lock = fh->lock;
-> +	unsigned int pll_postdiv;
-> +	unsigned long flags = 0;
-> +	int ret;
-> +
-
-...so since postdiv is unsigned, we can write this conditional as
-
-	if (postdiv)
-
-> +	if (postdiv > 0) {
-> +		pll_postdiv = __get_postdiv(pll, regs, data);
-> +
-> +		if (postdiv > pll_postdiv)
-> +			__set_postdiv(pll, regs, data, postdiv);
-> +	}
-> +
-> +	spin_lock_irqsave(lock, flags);
-> +
-> +	ret = hopping_hw_flow(pll, regs, data, state, new_dds);
-> +
-> +	spin_unlock_irqrestore(lock, flags);
-> +
-> +	if (postdiv > 0) {
-> +		if (postdiv < pll_postdiv)
-
-...and this one as
-
-if (postdiv && postdiv < pll_postdiv)
-
-> +			__set_postdiv(pll, regs, data, postdiv);
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static int __fhctl_ssc_enable(struct mtk_fh *fh, u32 rate)
-> +{
-> +	const struct fh_pll_data *data = &fh->pllfh_data->data;
-> +	struct fh_pll_state *state = &fh->pllfh_data->state;
-> +	struct fh_pll_regs *regs = &fh->regs;
-> +	struct mtk_clk_pll *pll = &fh->clk_pll;
-> +	spinlock_t *lock = fh->lock;
-> +	unsigned long flags = 0;
-> +
-> +	spin_lock_irqsave(lock, flags);
-> +
-> +	fhctl_set_ssc_regs(pll, regs, data, rate);
-> +	state->ssc_rate = rate;
-> +
-> +	spin_unlock_irqrestore(lock, flags);
-> +
-> +	return 0;
-> +}
-> +
-> +static int fhctl_ssc_enable(struct mtk_fh *fh, u32 rate)
-> +{
-> +	return __fhctl_ssc_enable(fh, rate);
-> +}
-> +
-> +static int fhctl_ssc_disable(struct mtk_fh *fh)
-> +{
-> +	return __fhctl_ssc_enable(fh, 0);
-> +}
-> +
-> +static const struct fh_operation fhctl_ops = {
-> +	.hopping = fhctl_hopping,
-> +	.ssc_enable = fhctl_ssc_enable,
-
-Just one callback for ssc_enable is enough, it's fine to keep the logic as
-ssc_enable(fh, >0) to enable and ssc_enable(fh <=0) to disable.
-
-> +	.ssc_disable = fhctl_ssc_disable,
-> +};
-> +
-> +const struct fh_operation *fhctl_get_ops(void)
-> +{
-> +	return &fhctl_ops;
-> +}
-> +
-> +void fhctl_hw_init(struct mtk_fh *fh)
-> +{
-> +	const struct fh_pll_data data = fh->pllfh_data->data;
-> +	struct fh_pll_state state = fh->pllfh_data->state;
-> +	struct fh_pll_regs regs = fh->regs;
-> +	u32 val;
-> +
-> +	/* initial hw register */
-> +	val = readl(regs.reg_clk_con) | BIT(data.fh_id);
-> +	writel(val, regs.reg_clk_con);
-> +
-> +	val = readl(regs.reg_rst_con) & ~BIT(data.fh_id);
-> +	writel(val, regs.reg_rst_con);
-> +	val = readl(regs.reg_rst_con) | BIT(data.fh_id);
-> +	writel(val, regs.reg_rst_con);
-> +
-> +	writel(0x0, regs.reg_cfg);
-> +	writel(0x0, regs.reg_updnlmt);
-> +	writel(0x0, regs.reg_dds);
-> +
-> +	/* enable ssc if needed */
-> +	if (state.ssc_rate)
-> +		fh->ops->ssc_enable(fh, state.ssc_rate);
-> +}
-> diff --git a/drivers/clk/mediatek/clk-fhctl.h b/drivers/clk/mediatek/clk-fhctl.h
-> new file mode 100644
-> index 000000000000..3cd4921c39e9
-> --- /dev/null
-> +++ b/drivers/clk/mediatek/clk-fhctl.h
-> @@ -0,0 +1,27 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Copyright (c) 2022 MediaTek Inc.
-> + * Author: Edward-JW Yang <edward-jw.yang@mediatek.com>
-> + */
-> +
-> +#ifndef __CLK_FHCTL_H
-> +#define __CLK_FHCTL_H
-> +
-
-One blank line is enough.
-
-> +
-> +struct fhctl_offset {
-> +	u32 offset_hp_en;
-> +	u32 offset_clk_con;
-> +	u32 offset_rst_con;
-> +	u32 offset_slope0;
-> +	u32 offset_slope1;
-> +	u32 offset_cfg;
-> +	u32 offset_updnlmt;
-> +	u32 offset_dds;
-> +	u32 offset_dvfs;
-> +	u32 offset_mon;
-> +};
-> +const struct fhctl_offset *fhctl_get_offset_table(void);
-> +const struct fh_operation *fhctl_get_ops(void);
-> +void fhctl_hw_init(struct mtk_fh *fh);
-> +
-> +#endif
-> diff --git a/drivers/clk/mediatek/clk-pllfh.c b/drivers/clk/mediatek/clk-pllfh.c
-> new file mode 100644
-> index 000000000000..71b35323b526
-> --- /dev/null
-> +++ b/drivers/clk/mediatek/clk-pllfh.c
-> @@ -0,0 +1,271 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2022 MediaTek Inc.
-> + * Author: Edward-JW Yang <edward-jw.yang@mediatek.com>
-> + */
-> +
-> +#include <linux/of.h>
-> +#include <linux/of_address.h>
-> +#include <linux/io.h>
-> +#include <linux/slab.h>
-> +#include <linux/clkdev.h>
-> +#include <linux/delay.h>
-> +
-> +#include "clk-mtk.h"
-> +#include "clk-pllfh.h"
-> +#include "clk-fhctl.h"
-> +
-> +static DEFINE_SPINLOCK(pllfh_lock);
-> +
-> +inline struct mtk_fh *to_mtk_fh(struct clk_hw *hw)
-> +{
-> +	struct mtk_clk_pll *pll = to_mtk_clk_pll(hw);
-> +
-> +	return container_of(pll, struct mtk_fh, clk_pll);
-> +}
-> +
-> +static int mtk_fhctl_set_rate(struct clk_hw *hw, unsigned long rate,
-> +			      unsigned long parent_rate)
-> +{
-> +	struct mtk_clk_pll *pll = to_mtk_clk_pll(hw);
-> +	struct mtk_fh *fh = to_mtk_fh(hw);
-> +	u32 pcw = 0;
-> +	u32 postdiv;
-> +
-> +	mtk_pll_calc_values(pll, &pcw, &postdiv, rate, parent_rate);
-> +	fh->ops->hopping(fh, pcw, postdiv);
-
-return fh->ops->hopping(....);
-
-> +
-> +	return 0;
-> +}
-> +
-
-..snip..
-
-> diff --git a/drivers/clk/mediatek/clk-pllfh.h b/drivers/clk/mediatek/clk-pllfh.h
-> new file mode 100644
-> index 000000000000..d9f7c8527548
-> --- /dev/null
-> +++ b/drivers/clk/mediatek/clk-pllfh.h
-> @@ -0,0 +1,81 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Copyright (c) 2022 MediaTek Inc.
-> + * Author: Edward-JW Yang <edward-jw.yang@mediatek.com>
-> + */
-> +
-> +#ifndef __DRV_CLKFH_H
-> +#define __DRV_CLKFH_H
-> +
-> +#include "clk-pll.h"
-> +
-> +struct fh_pll_state {
-
-Please, base as first member.
-
-> +	u32 fh_enable;
-> +	u32 ssc_rate;
-> +	void __iomem *base;
-> +};
-> +
-
-Regards,
-Angelo
+2. Only lowercase and no underscores in node names.
 
 
+> +        type: object
+> +        $ref: ../regulator/regulator.yaml#
+
+Full path, so /schemas/regulator/......
+
+> +    unevaluatedProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/pinctrl/rockchip.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        pmic@0 {
+> +            compatible = "rockchip,rk806";
+> +            reg = <0x0>;
+> +
+> +            interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
+> +
+> +            vcc1-supply = <&vcc5v0_sys>;
+> +            vcc2-supply = <&vcc5v0_sys>;
+> +            vcc3-supply = <&vcc5v0_sys>;
+> +            vcc4-supply = <&vcc5v0_sys>;
+> +            vcc5-supply = <&vcc5v0_sys>;
+> +            vcc6-supply = <&vcc5v0_sys>;
+> +            vcc7-supply = <&vcc5v0_sys>;
+> +            vcc8-supply = <&vcc5v0_sys>;
+> +            vcc9-supply = <&vcc5v0_sys>;
+> +            vcc10-supply = <&vcc5v0_sys>;
+> +            vcc11-supply = <&vcc_2v0_pldo_s3>;
+> +            vcc12-supply = <&vcc5v0_sys>;
+> +            vcc13-supply = <&vcc5v0_sys>;
+> +            vcc14-supply = <&vcc_1v1_nldo_s3>;
+> +            vcca-supply = <&vcc5v0_sys>;
+> +
+> +            regulators {
+> +                vdd_gpu_s0: DCDC_REG1 {
+
+Only lowercase and no underscores in node names.
+
+> +                        regulator-always-on;
+
+Messed up indentation. 4 spaces for DTS.
+
+Best regards,
+Krzysztof
