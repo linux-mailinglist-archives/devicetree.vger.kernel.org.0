@@ -2,73 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81AE35A9934
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 15:41:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9351E5A9959
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 15:46:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234149AbiIANlv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 09:41:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45836 "EHLO
+        id S233233AbiIANqp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 09:46:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233399AbiIANlZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 09:41:25 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F3B531EE0
-        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 06:40:09 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id d5so9036357wms.5
-        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 06:40:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=PXZk2g+XOqGMjXGT66nViEOp7155I8tzUe2hmezbk9c=;
-        b=17fsFK3ztgm/SVq5u0ayzndJktrteVKsCKcEqAK3Qn//5L3IkRaOUCawLwShBDJFtl
-         euAItBnkxj6Kr+gObW2PdMQJyW+JNckoeeEdJcOyJ8odVyjv9qwSo+Aa+Agrw1D7uadm
-         NjFL4ytCQsfAsiYRX2ZCnWbkqyjhSvU2ArcGakqT0/pe/tzKAGY5ANhWjbKSskm01+SV
-         e08NiN7JfQwTyq8kqygPzg04A3j1sVIHbYcg2+MQmLJ0G2Z5+pbYD3vww9tiFNQdTwNx
-         Wb/b6iHsoxdWnVPAvK6uJ58Bt5C5ENxo+MtunbH7ABwWaEcZ0kMUtDms8wCLcCUx5Vlk
-         EiCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=PXZk2g+XOqGMjXGT66nViEOp7155I8tzUe2hmezbk9c=;
-        b=IB3uYLBKT/skcXM7UR5dGvNeQznJWLUtOGhoxvgUyLdKLhc/FfmTNcrYvrl0TIP08w
-         o+Y/RQtQtWErVao0JbUO1w2fSndJ0IA2M8yGyUtf/rA53DjMRhrY6e0B9r456FcDKnDc
-         Bz8Bv461Z/zYmEyk6GS2A3s59CFlN2yZQdByOgz9bfiN71rOZIn6Pmz2wwaU0lgUf8WN
-         TezD8Xz0/OYMcqYQQnIC5ioo09/IIDT1c98QEvduV6m/nU8SMN9wSs8gzJdYo+03AKhx
-         wn7qGHsA8rb7Ol0ieiQG17oAJemaGz9eycPFVfn/FXIDxnjHStMw6nbjHNN/7Aq20Bq5
-         meFw==
-X-Gm-Message-State: ACgBeo2qoPwB/foqxsdigC+rnyUSkRtbIZ/63QKffjWlzWWdXMQfelbN
-        luqotue0Caq75nOsNyUhSiiNpg==
-X-Google-Smtp-Source: AA6agR42cS6iV9udNENWfEp+1c99N36znNphQvHct12z9G9cTwZBqzId0Md8KfkxH6g9DJOJUI8Dcw==
-X-Received: by 2002:a05:600c:4148:b0:3a5:4f94:577b with SMTP id h8-20020a05600c414800b003a54f94577bmr5357868wmm.167.1662039606770;
-        Thu, 01 Sep 2022 06:40:06 -0700 (PDT)
-Received: from localhost.localdomain (210.145.15.109.rev.sfr.net. [109.15.145.210])
-        by smtp.googlemail.com with ESMTPSA id e3-20020adfe383000000b0021ef34124ebsm15399016wrm.11.2022.09.01.06.40.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Sep 2022 06:40:06 -0700 (PDT)
-From:   Amjad Ouled-Ameur <aouledameur@baylibre.com>
-To:     matthias.bgg@gmail.com
-Cc:     Amjad Ouled-Ameur <aouledameur@baylibre.com>, rafael@kernel.org,
-        fparent@baylibre.com, amitk@kernel.org, daniel.lezcano@linaro.org,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org,
-        robh+dt@kernel.org, rui.zhang@intel.com,
-        Michael Kao <michael.kao@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>
-Subject: [PATCH v3 4/4] thermal: mediatek: add another get_temp ops for thermal sensors
-Date:   Thu,  1 Sep 2022 15:39:50 +0200
-Message-Id: <20220901133950.115122-5-aouledameur@baylibre.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20220901133950.115122-1-aouledameur@baylibre.com>
-References: <20220901133950.115122-1-aouledameur@baylibre.com>
+        with ESMTP id S231838AbiIANqo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 09:46:44 -0400
+Received: from relay12.mail.gandi.net (relay12.mail.gandi.net [IPv6:2001:4b98:dc4:8::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECBC0A1B4;
+        Thu,  1 Sep 2022 06:46:41 -0700 (PDT)
+Received: (Authenticated sender: paul.kocialkowski@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id F10ED200009;
+        Thu,  1 Sep 2022 13:46:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1662040000;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=Z+IoeLIttfGVq/Jw3XCWgYvSa9STOAuApvqnqOTVmwk=;
+        b=cLBzQiDULiEGUYluSucZ4RvChnII5m1GSP4VcbA3QUKeau+mlH/ISqDnp8WFbvVYLBHD4K
+        XdKPYXxfrZ2FCQzLG0zJvDmexcWmFYB24Gu7VXfl0Fpr/3SDamagdhlXaXNS/3KbcQfdXu
+        z3VRb525hGSnJ39gbCL9BXeqwCXRWzL2VKZQzuqwNZCPSE0wpLmMe7de+JiIEQ1gRVeNBj
+        vQ7+WvYRgz36o5zEyaCc0To2qxAvEtTd84BpeKPmSSIgxTTvkiJ7m5HqCFrc32DrFX69cb
+        qksZQc+vKWjU8ya1h4dOJ42fBwFBqSiwpCxmIV5KGupCn72mVXCkr32KEfmXrg==
+Date:   Thu, 1 Sep 2022 15:46:37 +0200
+From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+To:     Dave Stevenson <dave.stevenson@raspberrypi.com>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        =?utf-8?B?S8OpdmluIEwnaMO0cGl0YWw=?= <kevin.lhopital@bootlin.com>
+Subject: Re: [PATCH NOT FOR MERGE v5 6/6] ARM: dts: sun8i: a83t: bananapi-m3:
+ Enable MIPI CSI-2 with OV8865
+Message-ID: <YxC3vQsQ0nurKtfG@aptenodytes>
+References: <20220826182803.604563-1-paul.kocialkowski@bootlin.com>
+ <20220826182803.604563-7-paul.kocialkowski@bootlin.com>
+ <YwkaFC2tm96X5qon@pendragon.ideasonboard.com>
+ <YxCqZ8GhiTJlZ8MC@aptenodytes>
+ <YxCs4fhx+Qx7uCAF@pendragon.ideasonboard.com>
+ <YxCyGgfNVHGIJlMz@aptenodytes>
+ <CAPY8ntD4EScbUC1kQCOqdPO_jF8gHKH6cjXpBkRW=AYsZSf=yQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="0ZAfyiXF723ioNHR"
+Content-Disposition: inline
+In-Reply-To: <CAPY8ntD4EScbUC1kQCOqdPO_jF8gHKH6cjXpBkRW=AYsZSf=yQ@mail.gmail.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,186 +69,396 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Provide thermal zone to read thermal sensor in the SoC. We can read all the
-thermal sensors value in the SoC by the node /sys/class/thermal/
 
-In mtk_thermal_bank_temperature, return -EAGAIN instead of -EACCESS
-on the first read of sensor that often are bogus values.
-This can avoid following warning on boot:
+--0ZAfyiXF723ioNHR
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-  thermal thermal_zone6: failed to read out thermal zone (-13)
+Hi Dave,
 
-Signed-off-by: Michael Kao <michael.kao@mediatek.com>
-Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
----
-Changes in V3:
-- Use proper types.
-- Use devm_kmalloc() instead of kmalloc().
-- Fix tabs and spaces.
+On Thu 01 Sep 22, 14:34, Dave Stevenson wrote:
+> Hi Laurent and Paul
+>=20
+> On Thu, 1 Sept 2022 at 14:23, Paul Kocialkowski
+> <paul.kocialkowski@bootlin.com> wrote:
+> >
+> > Hi Laurent,
+> >
+> > On Thu 01 Sep 22, 16:00, Laurent Pinchart wrote:
+> > > On Thu, Sep 01, 2022 at 02:49:43PM +0200, Paul Kocialkowski wrote:
+> > > > On Fri 26 Aug 22, 22:08, Laurent Pinchart wrote:
+> > > > > On Fri, Aug 26, 2022 at 08:28:03PM +0200, Paul Kocialkowski wrote:
+> > > > > > From: K=C3=A9vin L'h=C3=B4pital <kevin.lhopital@bootlin.com>
+> > > > > >
+> > > > > > The Bananapi M3 supports a camera module which includes an OV88=
+65 sensor
+> > > > > > connected via the parallel CSI interface and an OV8865 sensor c=
+onnected
+> > > > > > via MIPI CSI-2.
+> > > > > >
+> > > > > > The I2C2 bus is shared by the two sensors as well as the (activ=
+e-low)
+> > > > > > reset signal, but each sensor has it own shutdown line.
+> > > > >
+> > > > > I see a single sensor in this file, am I missing something ?
+> > > >
+> > > > Indeed this patch only adds the OV8865, not the OV5640 which is als=
+o present
+> > > > on the same camera board extension.
+> > > >
+> > > > A patch was submitted some time ago adding support for (only) the O=
+V5640:
+> > > > https://lore.kernel.org/lkml/20190408165744.11672-7-wens@kernel.org/
+> > >
+> > > OK. That's fine, let's just reword the commit message.
+> >
+> > Sure.
+> >
+> > > > > Sounds like a perfect candidate for an overlay, it could then be =
+merged
+> > > > > upstream.
+> > > >
+> > > > Do we have an upstream place to merge device-tree overlays now?
+> > >
+> > > They're accepted in the upstream kernel as far as I know, a git grep =
+for
+> > > /plugin/ in .dts files produces 18 matches.
+> >
+> > Oh okay, definitely good to know thanks!
+> >
+> > > > I'll check if it's possible to describe both sensors together and a=
+ctually
+> > > > be able to select one or the other properly from userspace. Last ti=
+me I tried
+> > > > this wasn't possible: there's at least the shared reset GPIO used b=
+y both
+> > > > sensors, which cannot be requested by the two drivers in parallel.
+> > > >
+> > > > To be honest this is very poor hardware design and it was almost ce=
+rtainly
+> > > > designed with the idea that only one sensor will be configured per =
+boot.
+> > > > See https://wiki.banana-pi.org/Camera and
+> > > > https://drive.google.com/file/d/0B4PAo2nW2KfnOEFTMjZ2aEVGUVU/view?u=
+sp=3Dsharing
+> > > > for the schematics pdf
+> > >
+> > > It's not great indeed, but not that uncommon either (unfortunately). I
+> > > wonder if we need some kind of reset GPIO API, but that would be a ha=
+ck
+> > > at most I think.
+> >
+> > Yeah I don't see any obvious clean solution here.
+> > But that could still be two separate dt overlays for now.
+>=20
+> Just to throw the idea out there, (ab)use the regulator API so that
+> they share a regulator-gpio device that claims that GPIO.
+> When either sensor requests the regulator, the reset line will get
+> pulled to the appropriate state.
 
- drivers/thermal/mtk_thermal.c | 100 ++++++++++++++++++++++++++--------
- 1 file changed, 76 insertions(+), 24 deletions(-)
+Yeah I guess that would solve the single-gpio/multiple-users issue.
+But besides abusing one of the regulators for the job, that would also make
+it hard to respect the power sequence of the sensor.
 
-diff --git a/drivers/thermal/mtk_thermal.c b/drivers/thermal/mtk_thermal.c
-index 088c388da241..5901787c57f5 100644
---- a/drivers/thermal/mtk_thermal.c
-+++ b/drivers/thermal/mtk_thermal.c
-@@ -259,6 +259,11 @@ enum mtk_thermal_version {
- 
- struct mtk_thermal;
- 
-+struct mtk_thermal_zone {
-+	struct mtk_thermal *mt;
-+	int id;
-+};
-+
- struct thermal_bank_cfg {
- 	unsigned int num_sensors;
- 	const int *sensors;
-@@ -709,6 +714,32 @@ static void mtk_thermal_put_bank(struct mtk_thermal_bank *bank)
- 		mutex_unlock(&mt->lock);
- }
- 
-+static int _get_sensor_temp(struct mtk_thermal *mt, int id)
-+{
-+	u32 raw;
-+	int temp;
-+
-+	const struct mtk_thermal_data *conf = mt->conf;
-+
-+	raw = readl(mt->thermal_base + conf->msr[id]);
-+
-+	if (mt->conf->version == MTK_THERMAL_V1)
-+		temp = raw_to_mcelsius_v1(mt, id, raw);
-+	else
-+		temp = raw_to_mcelsius_v2(mt, id, raw);
-+
-+	/*
-+	 * The first read of a sensor often contains very high bogus
-+	 * temperature value. Filter these out so that the system does
-+	 * not immediately shut down.
-+	 */
-+
-+	if (temp > 200000)
-+		return -EAGAIN;
-+	else
-+		return temp;
-+}
-+
- /**
-  * mtk_thermal_bank_temperature - get the temperature of a bank
-  * @bank:	The bank
-@@ -721,26 +752,9 @@ static int mtk_thermal_bank_temperature(struct mtk_thermal_bank *bank)
- 	struct mtk_thermal *mt = bank->mt;
- 	const struct mtk_thermal_data *conf = mt->conf;
- 	int i, temp = INT_MIN, max = INT_MIN;
--	u32 raw;
- 
- 	for (i = 0; i < conf->bank_data[bank->id].num_sensors; i++) {
--		raw = readl(mt->thermal_base + conf->msr[i]);
--
--		if (mt->conf->version == MTK_THERMAL_V1) {
--			temp = raw_to_mcelsius_v1(
--				mt, conf->bank_data[bank->id].sensors[i], raw);
--		} else {
--			temp = raw_to_mcelsius_v2(
--				mt, conf->bank_data[bank->id].sensors[i], raw);
--		}
--
--		/*
--		 * The first read of a sensor often contains very high bogus
--		 * temperature value. Filter these out so that the system does
--		 * not immediately shut down.
--		 */
--		if (temp > 200000)
--			temp = 0;
-+		temp = _get_sensor_temp(mt, i);
- 
- 		if (temp > max)
- 			max = temp;
-@@ -751,7 +765,8 @@ static int mtk_thermal_bank_temperature(struct mtk_thermal_bank *bank)
- 
- static int mtk_read_temp(void *data, int *temperature)
- {
--	struct mtk_thermal *mt = data;
-+	struct mtk_thermal_zone *tz = data;
-+	struct mtk_thermal *mt = tz->mt;
- 	int i;
- 	int tempmax = INT_MIN;
- 
-@@ -770,10 +785,28 @@ static int mtk_read_temp(void *data, int *temperature)
- 	return 0;
- }
- 
-+static int mtk_read_sensor_temp(void *data, int *temperature)
-+{
-+	struct mtk_thermal_zone *tz = data;
-+	struct mtk_thermal *mt = tz->mt;
-+	int id = tz->id - 1;
-+
-+	if (id < 0)
-+		return -EACCES;
-+
-+	*temperature = _get_sensor_temp(mt, id);
-+
-+	return 0;
-+}
-+
- static const struct thermal_zone_of_device_ops mtk_thermal_ops = {
- 	.get_temp = mtk_read_temp,
- };
- 
-+static const struct thermal_zone_of_device_ops mtk_thermal_sensor_ops = {
-+	.get_temp = mtk_read_sensor_temp,
-+};
-+
- static void mtk_thermal_init_bank(struct mtk_thermal *mt, int num,
- 				  u32 apmixed_phys_base, u32 auxadc_phys_base,
- 				  int ctrl_id)
-@@ -1072,6 +1105,7 @@ static int mtk_thermal_probe(struct platform_device *pdev)
- 	u64 auxadc_phys_base, apmixed_phys_base;
- 	struct thermal_zone_device *tzdev;
- 	void __iomem *apmixed_base, *auxadc_base;
-+	struct mtk_thermal_zone *tz;
- 
- 	mt = devm_kzalloc(&pdev->dev, sizeof(*mt), GFP_KERNEL);
- 	if (!mt)
-@@ -1161,11 +1195,29 @@ static int mtk_thermal_probe(struct platform_device *pdev)
- 
- 	platform_set_drvdata(pdev, mt);
- 
--	tzdev = devm_thermal_zone_of_sensor_register(&pdev->dev, 0, mt,
--						     &mtk_thermal_ops);
--	if (IS_ERR(tzdev)) {
--		ret = PTR_ERR(tzdev);
--		goto err_disable_clk_peri_therm;
-+	for (i = 0; i < mt->conf->num_sensors + 1; i++) {
-+		tz = devm_kmalloc(&pdev->dev, sizeof(*tz), GFP_KERNEL);
-+		if (!tz)
-+			return -ENOMEM;
-+
-+		tz->mt = mt;
-+		tz->id = i;
-+
-+		tzdev = devm_thermal_zone_of_sensor_register(&pdev->dev, i, tz, (i == 0) ?
-+							     &mtk_thermal_ops :
-+							     &mtk_thermal_sensor_ops);
-+
-+		if (IS_ERR(tzdev)) {
-+			if (PTR_ERR(tzdev) == -ENODEV) {
-+				dev_warn(&pdev->dev,
-+					 "sensor %d not registered in thermal zone in dt\n", i);
-+				continue;
-+			}
-+			if (PTR_ERR(tzdev) == -EACCES) {
-+				ret = PTR_ERR(tzdev);
-+				goto err_disable_clk_peri_therm;
-+			}
-+		}
- 	}
- 
- 	ret = devm_thermal_add_hwmon_sysfs(tzdev);
--- 
-2.37.3
+I think I would be happier with a dedicated GPIO reset driver that consumes=
+ a
+single GPIO and provides as many GPIOs as needed with a behavior similar to
+a reset controller: go out of reset as soon as one of the provided GPIOs
+requests it and get back to reset as soon as all the provided GPIOs need
+reset.
 
+It's a bit weird but maybe that's legit enough to make its way upstream.
+
+Paul
+
+>   Dave
+>=20
+> > > > > > Signed-off-by: K=C3=A9vin L'h=C3=B4pital <kevin.lhopital@bootli=
+n.com>
+> > > > > > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> > > > > > ---
+> > > > > >  arch/arm/boot/dts/sun8i-a83t-bananapi-m3.dts | 102 +++++++++++=
+++++++++
+> > > > > >  1 file changed, 102 insertions(+)
+> > > > > >
+> > > > > > diff --git a/arch/arm/boot/dts/sun8i-a83t-bananapi-m3.dts b/arc=
+h/arm/boot/dts/sun8i-a83t-bananapi-m3.dts
+> > > > > > index 5a7e1bd5f825..80fd99cf24b2 100644
+> > > > > > --- a/arch/arm/boot/dts/sun8i-a83t-bananapi-m3.dts
+> > > > > > +++ b/arch/arm/boot/dts/sun8i-a83t-bananapi-m3.dts
+> > > > > > @@ -85,6 +85,30 @@ led-1 {
+> > > > > >                 };
+> > > > > >         };
+> > > > > >
+> > > > > > +       reg_ov8865_avdd: ov8865-avdd {
+> > > > > > +               compatible =3D "regulator-fixed";
+> > > > > > +               regulator-name =3D "ov8865-avdd";
+> > > > > > +               regulator-min-microvolt =3D <2800000>;
+> > > > > > +               regulator-max-microvolt =3D <2800000>;
+> > > > > > +               vin-supply =3D <&reg_dldo4>;
+> > > > > > +       };
+> > > > > > +
+> > > > > > +       reg_ov8865_dovdd: ov8865-dovdd {
+> > > > > > +               compatible =3D "regulator-fixed";
+> > > > > > +               regulator-name =3D "ov8865-dovdd";
+> > > > > > +               regulator-min-microvolt =3D <2800000>;
+> > > > > > +               regulator-max-microvolt =3D <2800000>;
+> > > > > > +               vin-supply =3D <&reg_dldo4>;
+> > > > > > +       };
+> > > > > > +
+> > > > > > +       reg_ov8865_dvdd: ov8865-dvdd {
+> > > > > > +               compatible =3D "regulator-fixed";
+> > > > > > +               regulator-name =3D "ov8865-dvdd";
+> > > > > > +               regulator-min-microvolt =3D <1200000>;
+> > > > > > +               regulator-max-microvolt =3D <1200000>;
+> > > > > > +               vin-supply =3D <&reg_eldo1>;
+> > > > > > +       };
+> > > > >
+> > > > > Are those three regulators on the Banana Pi, or on the camera mod=
+ule ?
+> > > >
+> > > > That's on the camera module.
+> > > >
+> > > > > > +
+> > > > > >         reg_usb1_vbus: reg-usb1-vbus {
+> > > > > >                 compatible =3D "regulator-fixed";
+> > > > > >                 regulator-name =3D "usb1-vbus";
+> > > > > > @@ -115,6 +139,23 @@ &cpu100 {
+> > > > > >         cpu-supply =3D <&reg_dcdc3>;
+> > > > > >  };
+> > > > > >
+> > > > > > +&csi {
+> > > > > > +       status =3D "okay";
+> > > > > > +
+> > > > > > +       ports {
+> > > > > > +               #address-cells =3D <1>;
+> > > > > > +               #size-cells =3D <0>;
+> > > > > > +
+> > > > > > +               port@1 {
+> > > > > > +                       reg =3D <1>;
+> > > > >
+> > > > > All of this (except the status =3D "okay") should go to sun8i-a83=
+t.dtsi.
+> > > > >
+> > > > > > +
+> > > > > > +                       csi_in_mipi_csi2: endpoint {
+> > > > > > +                               remote-endpoint =3D <&mipi_csi2=
+_out_csi>;
+> > > > > > +                       };
+> > > > >
+> > > > > This too actually, once the issue mentioned in patch 5/6 gets fix=
+ed.
+> > > > >
+> > > > > > +               };
+> > > > > > +       };
+> > > > > > +};
+> > > > > > +
+> > > > > >  &de {
+> > > > > >         status =3D "okay";
+> > > > > >  };
+> > > > > > @@ -147,6 +188,36 @@ hdmi_out_con: endpoint {
+> > > > > >         };
+> > > > > >  };
+> > > > > >
+> > > > > > +&i2c2 {
+> > > > > > +       pinctrl-names =3D "default";
+> > > > > > +       pinctrl-0 =3D <&i2c2_pe_pins>;
+> > > > >
+> > > > > This looks like a candidate for upstreaming in
+> > > > > sun8i-a83t-bananapi-m3.dts, it shouldn't be in the overlay.
+> > > >
+> > > > I2C2 is actually also exported in the PH pins, which is available o=
+n the board
+> > > > header, so it's not obvious that using the PE pins should be the de=
+fault.
+> > > >
+> > > > The context is that Allwinner SoCs usually have a dedicated I2C con=
+troller for
+> > > > cameras, but also route a "generic" I2C controller on the same pins.
+> > >
+> > > Out of curiosity, what features do those dedicated camera I2C
+> > > controllers provide, compared to "normal" I2C controllers ?
+> >
+> > IIRC there's some feature to send i2c messages synced with the camera i=
+nterface
+> > vsync signal, to have some kind of hardware atomic mechanism for reconf=
+iguring
+> > a sensor.
+> >
+> > Not sure that's very relevant for us and an implementation for it would=
+ probably
+> > just support regular I2C. We can probably achieve simialr results with =
+the
+> > request API.
+> >
+> > > > Here that's on the PE14/15 pins. Since we don't have mainline suppo=
+rt for this
+> > > > camera-dedicated I2C controller, we end up routing the generic one =
+to the PE
+> > > > pins, which are routed to the camera connector.
+> > >
+> > > OK.
+> > >
+> > > > In the future we could add support for this camera-dedicated contro=
+ller, which
+> > > > would then allow routing i2c2 to the PH pins independently. This is=
+ what the
+> > > > downstream Allwinner BSP kernel does.
+> > > >
+> > > > > > +       status =3D "okay";
+> > > > > > +
+> > > > > > +       ov8865: camera@36 {
+> > > > > > +               compatible =3D "ovti,ov8865";
+> > > > > > +               reg =3D <0x36>;
+> > > > > > +               pinctrl-names =3D "default";
+> > > > > > +               pinctrl-0 =3D <&csi_mclk_pin>;
+> > > > > > +               clocks =3D <&ccu CLK_CSI_MCLK>;
+> > > > > > +               assigned-clocks =3D <&ccu CLK_CSI_MCLK>;
+> > > > > > +               assigned-clock-rates =3D <24000000>;
+> > > > > > +               avdd-supply =3D <&reg_ov8865_avdd>;
+> > > > > > +               dovdd-supply =3D <&reg_ov8865_dovdd>;
+> > > > > > +               dvdd-supply =3D <&reg_ov8865_dvdd>;
+> > > > > > +               powerdown-gpios =3D <&pio 4 17 GPIO_ACTIVE_LOW>=
+; /* PE17 */
+> > > > > > +               reset-gpios =3D <&pio 4 16 GPIO_ACTIVE_LOW>; /*=
+ PE16 */
+> > > > > > +
+> > > > > > +               port {
+> > > > > > +                       ov8865_out_mipi_csi2: endpoint {
+> > > > > > +                               data-lanes =3D <1 2 3 4>;
+> > > > > > +                               link-frequencies =3D /bits/ 64 =
+<360000000>;
+> > > > > > +
+> > > > > > +                               remote-endpoint =3D <&mipi_csi2=
+_in_ov8865>;
+> > > > > > +                       };
+> > > > > > +               };
+> > > > > > +       };
+> > > > > > +};
+> > > > > > +
+> > > > > >  &mdio {
+> > > > > >         rgmii_phy: ethernet-phy@1 {
+> > > > > >                 compatible =3D "ethernet-phy-ieee802.3-c22";
+> > > > > > @@ -154,6 +225,24 @@ rgmii_phy: ethernet-phy@1 {
+> > > > > >         };
+> > > > > >  };
+> > > > > >
+> > > > > > +&mipi_csi2 {
+> > > > > > +       status =3D "okay";
+> > > > > > +};
+> > > > > > +
+> > > > > > +&mipi_csi2_in {
+> > > > > > +       mipi_csi2_in_ov8865: endpoint {
+> > > > > > +               data-lanes =3D <1 2 3 4>;
+> > > > > > +
+> > > > > > +               remote-endpoint =3D <&ov8865_out_mipi_csi2>;
+> > > > > > +       };
+> > > > > > +};
+> > > > > > +
+> > > > > > +&mipi_csi2_out {
+> > > > > > +       mipi_csi2_out_csi: endpoint {
+> > > > > > +               remote-endpoint =3D <&csi_in_mipi_csi2>;
+> > > > > > +       };
+> > > > > > +};
+> > > > > > +
+> > > > > >  &mmc0 {
+> > > > > >         pinctrl-names =3D "default";
+> > > > > >         pinctrl-0 =3D <&mmc0_pins>;
+> > > > > > @@ -327,11 +416,24 @@ &reg_dldo3 {
+> > > > > >         regulator-name =3D "vcc-pd";
+> > > > > >  };
+> > > > > >
+> > > > > > +&reg_dldo4 {
+> > > > > > +       regulator-always-on;
+> > > > >
+> > > > > Does it have to be always on ?
+> > > >
+> > > > Mhh so I realize the regulators handling here is quite messy.
+> > > > I guess I didn't do such a good review of this patch internally.
+> > > >
+> > > > The situation is that the regulators on the camera board all have t=
+heir
+> > > > enable pin tied to the DLDO4 output, but that would be best describ=
+ed as
+> > > > a vin-supply of the ov8865 regulators above. Their real vin supply =
+is an
+> > > > always-on board-wide power source but I don't think we can represen=
+t another
+> > > > regulator acting as enable signal in a better way.
+> > >
+> > > That's right. I've modeled that as a parent regulator in the past, ev=
+en
+> > > if it doesn't reflect the exact hardware topology, it's functionally
+> > > equivalent.
+> >
+> > Sounds good, I'll change it that way.
+> >
+> > Cheers,
+> >
+> > Paul
+> >
+> > > > Now beware that the camera board schematics are confusing as they s=
+how resistors
+> > > > (R17, R18, R19, R20, R23) connecting some power lines together, but=
+ they are not
+> > > > populated on the board (I guess the point is to make a variant of t=
+he design
+> > > > without regulators on the camera board and to use ones from the PMU=
+ instead).
+> > > > This probably confused Kevin and I back when this patch was made.
+> > > >
+> > > > > > +       regulator-min-microvolt =3D <2800000>;
+> > > > > > +       regulator-max-microvolt =3D <2800000>;
+> > > > > > +       regulator-name =3D "avdd-csi";
+> > > > >
+> > > > > Doesn't this belong to the base board .dts ? Same below.
+> > > > >
+> > > > > > +};
+> > > > > > +
+> > > > > >  &reg_drivevbus {
+> > > > > >         regulator-name =3D "usb0-vbus";AVDD-CSI
+> > > > > >         status =3D "okay";
+> > > > > >  };
+> > > > > >
+> > > > > > +&reg_eldo1 {
+> > > > > > +       regulator-min-microvolt =3D <1200000>;
+> > > > > > +       regulator-max-microvolt =3D <1200000>;
+> > > > > > +       regulator-name =3D "dvdd-csi-r";
+> > > > > > +};
+> > > > > > +
+> > > > > >  &reg_fldo1 {
+> > > > > >         regulator-min-microvolt =3D <1080000>;
+> > > > > >         regulator-max-microvolt =3D <1320000>;
+> > >
+> > > --
+> > > Regards,
+> > >
+> > > Laurent Pinchart
+> >
+> > --
+> > Paul Kocialkowski, Bootlin
+> > Embedded Linux and kernel engineering
+> > https://bootlin.com
+
+--=20
+Paul Kocialkowski, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
+
+--0ZAfyiXF723ioNHR
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmMQt70ACgkQ3cLmz3+f
+v9GFGQf9FQD7iR4VyS2u/b8CFia00cS4tJ7UuNM5Yiw247b42HxusZ6zPfC4PyDt
+vpF86nrIYSJWQOFRay0c7wriqyqrSfdqC7Su40PQFyJoiDJ63R/aQxjG7mNUc2UI
+Gf9P6iIFc9Bar1uH2utpzDTO3wHuXsA13kkDI2yfyk3PJpuBs3fLvnt5Uj7n58N9
+JkfdvY2MOUoDfrJ7pDnb63uIV8WcLNxjFAaPaHeB4VF18OotCvU18KYzkG+EUQ8b
+dCf44uTn9qlB8ufcu04UV6m8A1Kk+mN/ZImMbdHv3pCXpisxbdMi9ETJ3+fqu5KK
+bJ9GJMIWyqW1QhBdrsnVoJ/vrosMBg==
+=X0ZG
+-----END PGP SIGNATURE-----
+
+--0ZAfyiXF723ioNHR--
