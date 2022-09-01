@@ -2,82 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 000945A94A1
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 12:30:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 551DF5A94AF
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 12:32:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234044AbiIAKai (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 06:30:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35116 "EHLO
+        id S234227AbiIAKcs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 06:32:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234022AbiIAKag (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 06:30:36 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D13D79BB51
-        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 03:30:34 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id b26so10487360ljk.12
-        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 03:30:33 -0700 (PDT)
+        with ESMTP id S234183AbiIAKcq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 06:32:46 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36BBE122BE0
+        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 03:32:44 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id bx38so17385563ljb.10
+        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 03:32:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=Hq/wXphQ4CQCWqFQUckeg7mpeUY2opCgFidU5GlYS/M=;
-        b=wMrHD5kd1sjRAGwDOMxCLd5TmCSprc0l8Nf3sWx1dXuMRw6mfEP63hWBtvHNhJ801W
-         QEkV7vymXEa/aXbYqGX4R5yiFQnl8uzfQEIiMjxXJxpx8itKZweitlkO/FPuZmia0adE
-         M6WddBo1NBOeeg5/1y/DaNd3wmc3E/n8vDRwKSngkHvNCgF5wx2WcPhrlyIoBIJtnDOC
-         DWPdhzxfLoAUMhVxP5tYYJk6X9aNydarTKdgb5IBaD2c6MQAxCPQWDlMkv2YMw6j0jj3
-         N/UvpNU9lhbiLUy9Hr6JHYnM5DzYIpAwh8rG0p8VNvFxLcn+dEak3SolRfU50q23CH6t
-         W37g==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=ZXVAap/RQrEllx7GHmHFEmTUCY+2JbnwMtDeiKRHfQ8=;
+        b=Dhp+UYVqpfFeh+jDqzEIVKnoKF7JxN/03AsLCTOUMgF8GcAn6Ch3lv7LeqCPXQKl+w
+         mnc7afdTf2olu/Dsh7tqSXvjEofGX/mfpNqZlPHUtutvzz+oOQQEHqxXi8KaEHRdTios
+         D2olRqF2FvB2dZtP2+ZAuWQIKpYYqv3RWn2ILqHvhQoJK+SiOLyVC8LpGt2zi+GN4cgD
+         BuJRqt794voF/gu2V68Qq88X7FxsK+u0VUAnJfOfrI2JjbX2gSTzBpNBqQq5Q8d5nuaA
+         5WKRSjE9z1bBCVukE+iSE/s5V+duh/l7eW03rRDCG1+dEZ2QlkM6WzSw85o48R4/8o+M
+         Y5vw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=Hq/wXphQ4CQCWqFQUckeg7mpeUY2opCgFidU5GlYS/M=;
-        b=mbDWfy57zdzSIbIl/GarPmbOONbh9Td/D7GzZFXxnUEPYQDs/vbVlbBdB6vNuMGUq7
-         enR/6Ew/r6oC2SRUXkG1IsAROOOla7XpAU/G2fvXjlbhjLhvbgE28tX9yFGcXTCBEbuC
-         DA2pi/j3udBk8Z2HC5QsTRWyECgBBnCdGj7FdgnF5uxEnrpOOlUGVtYiXMJ/PwAvcsGt
-         DFzR+N0nWQJDjR2M3aK8p4a86QM/5E0/oUdFmJ/lLPe/tPr7LncqsrvmBKxEIyhwvP3+
-         hBfKathv0bTtifne9bLvlIsoz0GWIbwS0V9QIO9MQkDhJFHPuN75+beoXBrqTulFtX2S
-         fwcQ==
-X-Gm-Message-State: ACgBeo32bq8WcobCTfYLrHfLS7YXm5yZSQDYQEdh17xxEBKebpYSOOSg
-        SIxzPAB+DQVUDBtOOOZv+ySKwg==
-X-Google-Smtp-Source: AA6agR6rVg//wgHti5p5gLXR9YIZj3y2n/9kU9errMO9J/QeGYwVMsfd2wxCYlqzONqcnaXPvhV2VA==
-X-Received: by 2002:a2e:9018:0:b0:266:6871:cdc1 with SMTP id h24-20020a2e9018000000b002666871cdc1mr4524850ljg.244.1662028232455;
-        Thu, 01 Sep 2022 03:30:32 -0700 (PDT)
-Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id 8-20020ac25f48000000b00492f84befffsm1567689lfz.192.2022.09.01.03.30.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Sep 2022 03:30:31 -0700 (PDT)
-Message-ID: <93d5de8e-31b2-4412-3348-7ba1903cde84@linaro.org>
-Date:   Thu, 1 Sep 2022 13:30:30 +0300
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=ZXVAap/RQrEllx7GHmHFEmTUCY+2JbnwMtDeiKRHfQ8=;
+        b=tryfhUANccIW4RCu0fSRi+ZMKEro5av40XwNxNLwytTIePtCRK84VBLdPNlMj8OVPc
+         L23nkZJOi7p4Fb5IRBI7N/CWv+BRIFAZ580JjOPpi0419Io8mdvbob51PBAm6M7w2QLp
+         4qsiwxKjfGfO+GWLC0hjS920KN6iG19zBCqr4CZOg+BESVeItC13eUD23jlF7F8Mh/nF
+         ALjXxhwcuP6Ac1BPdr0aMlP58QI4iDz/vPGuf5apB4pClB1boqGZwpYzBa/5RxYT/Via
+         Pc2TW33QdaZAafGKVGy1bL9ZkvHzEvPDGnn9+/Xpk0SGH6P+nErz5kT2uYTC6osnGLI0
+         ItnA==
+X-Gm-Message-State: ACgBeo062cdNvrMpb/vu/fygg8LdmVkcpFiS7+dIZ4BV0iOq+ygg07rL
+        +f0P1Wro8RcEO5QLIaeE65q209BDL8fSYjbr55vhqg==
+X-Google-Smtp-Source: AA6agR7mNmum3u12wn3ZgEHjcazZ/nYXQByxwmYoXxhjxe9BEdBb/1ct3OBV5/pl3brFfdAY/MsAgwYyy+RX0B+CEP8=
+X-Received: by 2002:a2e:9799:0:b0:261:e51d:8576 with SMTP id
+ y25-20020a2e9799000000b00261e51d8576mr10441111lji.367.1662028362375; Thu, 01
+ Sep 2022 03:32:42 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH 2/4] dt-bindings: arm: mediatek: Add new bindings of
- MediaTek frequency hopping
-Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Johnson Wang <johnson.wang@mediatek.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, sboyd@kernel.org
-Cc:     linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Edward-JW Yang <edward-jw.yang@mediatek.com>
-References: <20220831124850.7748-1-johnson.wang@mediatek.com>
- <20220831124850.7748-3-johnson.wang@mediatek.com>
- <b1296c37-5283-81f7-1939-7ea20e1f4d0d@linaro.org>
- <1fae0c47-fff9-89e9-c849-536d167d741d@collabora.com>
- <38910de5-89ad-e7a1-261f-18b51c8e7877@linaro.org>
- <955f7200-9d08-0d21-2d1a-5ccbd0f3a8af@collabora.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <955f7200-9d08-0d21-2d1a-5ccbd0f3a8af@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20220831214314.7794-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20220831214314.7794-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Thu, 1 Sep 2022 12:32:05 +0200
+Message-ID: <CAPDyKFpsQwB97qqR6otk6VuyWF3fk+o9qh3tbxrme8B_oENnuQ@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: mmc: renesas,sdhi: Add iommus property
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -86,25 +71,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/09/2022 13:22, AngeloGioacchino Del Regno wrote:
->> That's simply not a proper
->> hardware description, so again:
->>
->> 1. If this is separate device (as you indicated), then it needs
->> expressing the dependencies and uses of other device resources.
-> 
-> Agreed. In this case, what about...
-> 
-> mediatek,hopping-ssc-percents = <&provider CLK_SOMEPLL 3>;
-> 
-> or would it be better to specify the clocks in a separated property?
-> 
-> clocks = <&provider CLK_SOMEPLL>, <&provider CLK_SOME_OTHER_PLL>;
-> mediatek,hopping-ssc-percents = <3>, <5>;
-> 
+On Wed, 31 Aug 2022 at 23:43, Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+>
+> The SDHI blocks on Renesas R-Car and RZ/G2 SoCs make use of IOMMU.
+>
+> This patch fixes the below dtbs_check warnings:
+> arch/arm64/boot/dts/renesas/r8a774e1-hihope-rzg2h-ex-idk-1110wr.dtb: mmc@ee100000: Unevaluated properties are not allowed ('iommus' was unexpected)
+>         From schema: Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-I propose the last one - using standard clocks property and a matching
-table.
+Applied for next, thanks!
 
-Best regards,
-Krzysztof
+Kind regards
+Uffe
+
+
+> ---
+> v1->v2
+> * Moved the iommus property after dma-names
+> * Updated commit message
+> * Included RB tag from Geert
+>
+> v1: https://lore.kernel.org/lkml/20220829214256.5583-1-prabhakar.mahadev-lad.rj@bp.renesas.com/T/
+> ---
+>  Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+> index 3ea94d842c33..79dcd5f16a42 100644
+> --- a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+> @@ -89,6 +89,9 @@ properties:
+>          - tx
+>          - rx
+>
+> +  iommus:
+> +    maxItems: 1
+> +
+>    power-domains:
+>      maxItems: 1
+>
+> --
+> 2.25.1
+>
