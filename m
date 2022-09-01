@@ -2,111 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CEDD25A8C2E
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 06:12:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 464FE5A8C3E
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 06:17:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232374AbiIAEMC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 00:12:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45486 "EHLO
+        id S231211AbiIAERz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 00:17:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232194AbiIAEMC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 00:12:02 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E35415C7B6
-        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 21:12:01 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1oTbYT-0003Jz-SL; Thu, 01 Sep 2022 06:11:49 +0200
-Received: from [2a0a:edc0:0:1101:1d::ac] (helo=dude04.red.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ore@pengutronix.de>)
-        id 1oTbYQ-003E5p-Oz; Thu, 01 Sep 2022 06:11:48 +0200
-Received: from ore by dude04.red.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ore@pengutronix.de>)
-        id 1oTbYR-00FK95-Me; Thu, 01 Sep 2022 06:11:47 +0200
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Oleksij Rempel <o.rempel@pengutronix.de>, kernel@pengutronix.de,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Andy Shevchenko <andy.shevchenko@gmail.com>
-Subject: [PATCH v3 3/3] iio: adc: tsc2046: silent spi_device_id warning
-Date:   Thu,  1 Sep 2022 06:11:46 +0200
-Message-Id: <20220901041146.3652287-3-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220901041146.3652287-1-o.rempel@pengutronix.de>
-References: <20220901041146.3652287-1-o.rempel@pengutronix.de>
+        with ESMTP id S229746AbiIAERy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 00:17:54 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 785846610A;
+        Wed, 31 Aug 2022 21:17:51 -0700 (PDT)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 2813URWQ001037;
+        Thu, 1 Sep 2022 04:17:47 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=3MJVROO+LBj4KjA+N+tsV1mjxSslj/W7eQfnflkxjC0=;
+ b=k2/PxIeJrIUiOsX5ta7LMOZ+qA6I/SvB6/gUBUQOsWeAhTTeiFc1k3MKB6ex4nnHLYX3
+ q8rE3CRgJc8Yn0oH5dDJyJ95aoSEBmYg9dm23DNjcz9CTvXK/VXk9KdO6iienSd2/c9z
+ 2KlAaV/lnG/TXp6/CrkcyTbNyoNBZbWNi1Gst+I+BuFq3gJNsDK9NiUxr+nPzyTm9YYd
+ FCMbiiRHl2aH+9EaklrJJxn3/sX8UvmhRxhDizvDK6fMDzkAuMpfKruVFN/R6jEpR22x
+ SLQe3XoHVhTNcQI9kVMLIxMSfPpNv2Mz2hURhs5/8Ap+FyWgR+UKhWE73K95KwyPu9v8 OQ== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jab5gj4cq-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 01 Sep 2022 04:17:47 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2814HkT8013711
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 1 Sep 2022 04:17:46 GMT
+Received: from c-skakit-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.29; Wed, 31 Aug 2022 21:17:42 -0700
+From:   Satya Priya <quic_c_skakit@quicinc.com>
+To:     Rob Herring <robh@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+CC:     Douglas Anderson <dianders@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Andy Gross <agross@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_tdas@quicinc.com>, <quic_c_skakit@quicinc.com>,
+        <linux-clk@vger.kernel.org>
+Subject: [PATCH V9 0/5] Add support for audio clock gating resets for SC7280
+Date:   Thu, 1 Sep 2022 09:47:21 +0530
+Message-ID: <1662005846-4838-1-git-send-email-quic_c_skakit@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: pJ6cV8XpmOBzPWeNhgoUirPsPLoQ07Wj
+X-Proofpoint-GUID: pJ6cV8XpmOBzPWeNhgoUirPsPLoQ07Wj
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.517,FMLib:17.11.122.1
+ definitions=2022-09-01_02,2022-08-31_03,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ lowpriorityscore=0 mlxlogscore=763 bulkscore=0 spamscore=0 mlxscore=0
+ suspectscore=0 priorityscore=1501 clxscore=1015 adultscore=0 phishscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2207270000 definitions=main-2209010019
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add spi_device_id to silent following kernel runtime warning:
-"SPI driver tsc2046 has no spi_device_id for ti,tsc2046e-adc".
+[v9]
+  * Fix the order of SoB for [/5] and [2/5]
 
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
----
-changes v3:
-- add missing point
-- remove unneeded blank line
-- assignment id at the definition line
-changes v2:
-- attach actual driver_data
-- use spi_get_device_id fallback
----
- drivers/iio/adc/ti-tsc2046.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+[v8]
+  * Squash [1] into [5/5]
+  [1] https://patchwork.kernel.org/project/linux-arm-msm/patch/1661245527-5596-1-git-send-email-quic_c_skakit@quicinc.com/
 
-diff --git a/drivers/iio/adc/ti-tsc2046.c b/drivers/iio/adc/ti-tsc2046.c
-index bbc8b4137b0b1..d5d799972fefd 100644
---- a/drivers/iio/adc/ti-tsc2046.c
-+++ b/drivers/iio/adc/ti-tsc2046.c
-@@ -762,6 +762,11 @@ static int tsc2046_adc_probe(struct spi_device *spi)
- 	}
- 
- 	dcfg = device_get_match_data(dev);
-+	if (!dcfg) {
-+		const struct spi_device_id *id = spi_get_device_id(spi);
-+
-+		dcfg = (const struct tsc2046_adc_dcfg *)id->driver_data;
-+	}
- 	if (!dcfg)
- 		return -EINVAL;
- 
-@@ -878,11 +883,18 @@ static const struct of_device_id ads7950_of_table[] = {
- };
- MODULE_DEVICE_TABLE(of, ads7950_of_table);
- 
-+static const struct spi_device_id tsc2046_adc_spi_ids[] = {
-+	{ "tsc2046e-adc", (unsigned long)&tsc2046_adc_dcfg_tsc2046e },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(spi, tsc2046_adc_spi_ids);
-+
- static struct spi_driver tsc2046_adc_driver = {
- 	.driver = {
- 		.name = "tsc2046",
- 		.of_match_table = ads7950_of_table,
- 	},
-+	.id_table = tsc2046_adc_spi_ids,
- 	.probe = tsc2046_adc_probe,
- 	.remove = tsc2046_adc_remove,
- };
+[v7]
+  * Fix commit text of [5/5]. Remove '.' from Fixes tag.
+
+[v6]
+  * Add [1], [2] to handle the regmap overlap of lpasscc and lpass_aon 
+
+[v5]
+  * Fix the fail path and add pm_runtime_disable().
+
+[v4]
+  * Fix the "fixes" tag.
+
+[v3]
+  * Remove the maxItems from reg property.
+
+[v2]
+  * Update/fix the YAML for reg property against each compatible.
+
+[v1]
+  * Add support for clock gating resets for lpass audio clock
+    controller & MCLKs.
+
+Taniya Das (5):
+  dt-bindings: clock: Add "qcom,adsp-pil-mode" property
+  clk: qcom: lpass: Handle the regmap overlap of lpasscc and lpass_aon
+  dt-bindings: clock: Add resets for LPASS audio clock controller for
+    SC7280
+  dt-bindings: clock: Add support for external MCLKs for LPASS on SC7280
+  clk: qcom: lpass: Add support for resets & external mclk for SC7280
+
+ .../bindings/clock/qcom,sc7280-lpasscc.yaml        |  6 +-
+ .../bindings/clock/qcom,sc7280-lpasscorecc.yaml    | 26 ++++++++-
+ drivers/clk/qcom/lpassaudiocc-sc7280.c             | 68 +++++++++++++++++++++-
+ drivers/clk/qcom/lpasscc-sc7280.c                  | 44 --------------
+ drivers/clk/qcom/lpasscorecc-sc7280.c              | 33 +++++++++++
+ .../dt-bindings/clock/qcom,lpassaudiocc-sc7280.h   |  5 ++
+ .../dt-bindings/clock/qcom,lpasscorecc-sc7280.h    |  2 +
+ 7 files changed, 131 insertions(+), 53 deletions(-)
+
 -- 
-2.30.2
+2.7.4
 
