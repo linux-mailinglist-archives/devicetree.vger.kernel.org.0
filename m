@@ -2,273 +2,384 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 575AD5A9FDA
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 21:26:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 753DB5A9FFA
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 21:29:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234107AbiIAT0R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 15:26:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45914 "EHLO
+        id S232840AbiIAT3w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 15:29:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232874AbiIAT0P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 15:26:15 -0400
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 544EA4E61C;
-        Thu,  1 Sep 2022 12:25:21 -0700 (PDT)
-Received: by mail-pl1-x636.google.com with SMTP id f24so15225826plr.1;
-        Thu, 01 Sep 2022 12:25:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date;
-        bh=C6sKHTsSE/X9c2+J9QgkAtiQ7L50Tlqyc0fm3w0aWMI=;
-        b=UXoaUTKr0dnbx5dRk4uYqsLaXtX1VUkPS7MAikC1UpGIJ9/S21utmpR2yAEIfv0Mkh
-         5dhw3yp0ZQWk6DrilvAzqqpTrL7DYq5oJ5/bdZjoElSMnfLKN1MIaQkOwaImTlGpZZ2E
-         1lJC1nE21+c+T3KQyVIQyisSPYbpstmFG5uDz4NKalQxYUtZ5vdcc2jteWGoRqyeNq/A
-         ob/m/QL2upUdnwNf17dqLfX6Sp/qYkL2g91CtykNG/x0L59b47TBVprgkMbCswimomkB
-         RAA1vcBqJIPSVzY5yRQppNtOcJEVanrbgrHrSkxxmD043moILv55j8g9hl1Ou5my22tU
-         ykBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date;
-        bh=C6sKHTsSE/X9c2+J9QgkAtiQ7L50Tlqyc0fm3w0aWMI=;
-        b=Stl4SLB/NvLyGoj+7PoP0Ke2v8Bt2nP8Ng8u4R3aTgMrH0SK6Ryi0oH9SesgcCXvop
-         u/URhQsdALcp95he7T+dOqugfns8TTgEOhCEihDjpT44Et8AEECm60McnFXgzUkg7PDX
-         mTZ41QiiwOnMBQElgwVZ/3mtb4QvTuvR7Rr3MWBonEf9fHTQs0hv7Si1jm8/HE+pcwEl
-         e0pIdtkqCvIzCOWOPlqaWNMInm2Rm34eNC8ARghidfDp+cDAnVE70+svnS7KQWXeo+W5
-         pxe/8Y2f/wRnVqQr3PHFDtSqNVkOOjqs8AnOuGBsFTTgzQgLs0YxlkugVxMpq11B294L
-         voCA==
-X-Gm-Message-State: ACgBeo1l9iw6pxtSy0Hy0R9dlbsKo2LxD50u1NG5v3WrWdXIE1M14Thq
-        QJ0/vib3+V8szL4b+nrT5VLB04vNhbDukw==
-X-Google-Smtp-Source: AA6agR40dbVSsTjS/+gDWWX+qOQDH8/azaHs9ltdhGtOQ7MpyhUH1OUjwcJajgb490PeQ0lhFq36XA==
-X-Received: by 2002:a17:90a:8b82:b0:1fa:973c:1d34 with SMTP id z2-20020a17090a8b8200b001fa973c1d34mr693556pjn.31.1662060320464;
-        Thu, 01 Sep 2022 12:25:20 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id s66-20020a625e45000000b005350ea966c7sm13822199pfb.154.2022.09.01.12.25.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Sep 2022 12:25:19 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <fa3e91f0-fae5-cfed-4656-c7be74e37a74@roeck-us.net>
-Date:   Thu, 1 Sep 2022 12:25:16 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v3 02/19] hwmon: (mr75203) fix VM sensor allocation when
- "intel, vm-map" not defined
+        with ESMTP id S233598AbiIAT3u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 15:29:50 -0400
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2042.outbound.protection.outlook.com [40.107.243.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27220DEC;
+        Thu,  1 Sep 2022 12:29:45 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=M1PjO600cUheQF3QC4hG5nBfoPZyRm34eHAQwvTYa36ycRJWoQOpGWyMuF0zfn7Ze192hRRqsu3pkUiOizLwDyUybTkaizFpd4rtqCLIy1eoKtPID2uWnqxnp70Kq/+Lmp+LgZd/VPIXkPCqDAdnUFxtct9hGBUGAZAmGYjew+FidkmRe+wfny/T/ikllf/67HNOHqApgD760LJtb5g7NBNamxYr0MF99BXHpor/pZEvQh5JF6tVu9UCMwiF5iPh2GfmjEL/gBqEJw1vJ8sl+b9lFYNo+xoeQYGo+DaggkpDtod8lDbXnKM0ntTlcnOHMZFPmF3KoxAoto4TQYZj0A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=m3mIIOWZO/1WVAzPCJOoTHWtERZC6AAw9efWhDrNJZc=;
+ b=Ai2QttdcjbMOI8E70TuJY0aQIaVugxBWNl1yNmTFAtQ6TGfgqdwOKtBj5xcA016oSTIdD33mOF53jarlgWSJUzAjmyLktkayoLVqRY6ebe0GKfTuO9ml80+94KJeHVpnVNzaF2Vr5xWPhs9p+Sv5Wm7IIr3jSUT8WMbRosBBncVdqwpTX7KtvgDM6PjwIS96TsWuvJ2DwkBp2XH0t3ltczZ82dOgLhPezh7C8swKtK19a6G+8kIpixrb0h9d+B/LHTQIUQXFZtx/N12SFLKSUjAWOjN0hb+fpmFu20EkA/+K+LOw0oED8BjVWchnjhRf+/iEdIMt5vZd+Mayh+ZoPw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=m3mIIOWZO/1WVAzPCJOoTHWtERZC6AAw9efWhDrNJZc=;
+ b=a9nzfSFULTFmUM2vsU9kXjd9/uOsb0JW42I7VNli3WTYNVGq9eBgXmzt/h2Ea/i4n/wZn4KUMpVhkf06leDmlkHT+LZAYH+F7HglZ+6a1Ppbxo/Igw6j3jhF3q241wfpQfusEcqfKlDo1ZIMuJnsgeV3kDfOGxm49xSJdqQXMsc=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BY5PR12MB3683.namprd12.prod.outlook.com (2603:10b6:a03:1a5::16)
+ by BL1PR12MB5269.namprd12.prod.outlook.com (2603:10b6:208:30b::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.10; Thu, 1 Sep
+ 2022 19:29:41 +0000
+Received: from BY5PR12MB3683.namprd12.prod.outlook.com
+ ([fe80::3441:5a68:b4b7:e988]) by BY5PR12MB3683.namprd12.prod.outlook.com
+ ([fe80::3441:5a68:b4b7:e988%6]) with mapi id 15.20.5566.021; Thu, 1 Sep 2022
+ 19:29:41 +0000
+Message-ID: <c2846d44-bc15-f77e-f57f-3ff5b92fd65b@amd.com>
+Date:   Thu, 1 Sep 2022 12:29:37 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
+ Gecko/20100101 Thunderbird/91.13.0
+Subject: Re: [PATCH v9 1/6] dt-bindings: remoteproc: Add Xilinx RPU subsystem
+ bindings
 Content-Language: en-US
-To:     "Farber, Eliav" <farbere@amazon.com>
-Cc:     jdelvare@suse.com, robh+dt@kernel.org, p.zabel@pengutronix.de,
-        rtanwar@maxlinear.com, linux-hwmon@vger.kernel.org,
+To:     Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Tanmay Shah <tanmay.shah@amd.com>
+Cc:     bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, michal.simek@xilinx.com,
+        ben.levinsky@xilinx.com, tanmay.shah@xilinx.com,
+        michal.simek@amd.com, linux-remoteproc@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        talel@amazon.com, hhhawa@amazon.com, jonnyc@amazon.com,
-        hanochu@amazon.com, ronenk@amazon.com, itamark@amazon.com,
-        shellykz@amazon.com, shorer@amazon.com, amitlavi@amazon.com,
-        almogbs@amazon.com, dkl@amazon.com, andriy.shevchenko@intel.com
-References: <20220830192212.28570-1-farbere@amazon.com>
- <20220830192212.28570-3-farbere@amazon.com>
- <cddebb5a-3b83-e89d-db00-9a59ddbd6741@roeck-us.net>
- <84a68eff-be64-71ce-1533-1e228d3da2a4@amazon.com>
- <71d6d57c-2165-5fe3-515d-9395022921e2@roeck-us.net>
- <2f5c5828-87b9-f3d2-e3d3-0200adbe830c@amazon.com>
- <20220901144434.GB3477025@roeck-us.net>
- <ceef1c33-1af5-53d1-5e5b-5aeb5d2679ca@amazon.com>
- <a48f6c26-232a-f3ae-01d1-277e5c9800ee@roeck-us.net>
- <3364aecd-c1d0-3929-9f51-4d90549d8731@amazon.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-In-Reply-To: <3364aecd-c1d0-3929-9f51-4d90549d8731@amazon.com>
+        linux-arm-kernel@lists.infradead.org
+References: <20220708013955.2340449-1-tanmay.shah@amd.com>
+ <20220708013955.2340449-2-tanmay.shah@amd.com> <20220901173817.GA626605@p14s>
+From:   Tanmay Shah <tanmays@amd.com>
+In-Reply-To: <20220901173817.GA626605@p14s>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: BY5PR17CA0046.namprd17.prod.outlook.com
+ (2603:10b6:a03:167::23) To BY5PR12MB3683.namprd12.prod.outlook.com
+ (2603:10b6:a03:1a5::16)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: fedd93a4-f497-4ca7-366b-08da8c5050c6
+X-MS-TrafficTypeDiagnostic: BL1PR12MB5269:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 5H1gthgALCbBxRwqPmSk9bZJ6DEYF5jiy6f8UK1fWMQ069E1c2qYvuhtmoaXiQkrRX7V2FxvHnUn49IgaGb5P6RSn5HT9I70Bzr4HauEnq+e6GVrojGUSEcZENCTFwe6hNS21isW4xnWJtkFb1xu5pu8KrWjJA0YURoMeZZHBrbHnVFygmjYJB1Ab/B3EOuXrjKzbj4OFOzCltWAIYTCB2HB/j07AZQVlrt3jgAptYqla/nCSQ9dOE2RU0VHSQV6TmkHl9fg06jXwVgnPGMAm2sXwIX/nTCqLQq3cC2nPkdmOV+BBM6fa8ahlZDwCfhSHQHWf2B8BUTonuq5HhPZtUKqaOCfQeJVZhSaZxhLyMJZwg3IZ73eCCSPgTVef/R2MW71CSrCEa4AqjX8UBZxJhJdQHFMRDqr7gpwM5GJzqMQ9NdSYa1zH4LbjK42Hk/AT6KlS/AShLPJw4YKQLA4J7+lCvF7sd37yIkzwD9WkWAgzRK7m8QawstAIWxIkbPCeOiFkf9BlUisDdwQjRCwD9iHxlQRcbhEAqlDdaPFMwxPFQ9UZx6tu1vcYVeNj6KrP1GLumd7Gs2avBggZAQadsBOaXzU5bbZ9vqlLyu8WB+GVgghP2tZUofcOhf7leLirZ2iT9FfaSueGt7tjwYm60+rxfKYOmZVZ+Pcq+UbZpsY3COdu7y9G7uJLMcAhR7rqSjd4gWvn7WYzGfYkCNTKG8ARtosWD0c26rSbeFN71zcRmLJOGmh9bmr6E3TGF0nmiWfm35sAE1oJd4sDr7YOnqtNjMiMHUd+gMXULSIu/C2R0eJk9PwrNwLjQ70E08k0O37GR5GhbAzuTLtgLItn7AjP2g/p8S7mZv95CkT3phGfIHQK3uGerkIkM7Zmm8d
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR12MB3683.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(366004)(39860400002)(396003)(376002)(346002)(136003)(8936002)(41300700001)(66946007)(8676002)(66476007)(4326008)(66556008)(478600001)(53546011)(26005)(6512007)(2906002)(31696002)(5660300002)(6666004)(6506007)(38100700002)(186003)(2616005)(83380400001)(36756003)(966005)(110136005)(6486002)(316002)(6636002)(31686004)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aTQ5VXJVVmRiSHVNV2ptY1UwUW00djZIWHlBK1BleVpBa09jeENiazQ1N3Yw?=
+ =?utf-8?B?ZnR5ZE9jbjlETlV6SFRDbGVBZ3lva2pLczJNVHNCOVp6QzkwdXFlMndvZ3Rz?=
+ =?utf-8?B?bk95dUVzVkhQVWc1ekZuTHVQdm94ZmNKVHNBSWJENGlXMGdRUWZmeWUzbnBz?=
+ =?utf-8?B?NFpLZXhKa1ZmbkExdjNqSGRMQ3JKRS9PNE9meEJlUXVCVkZtR0RzRGthQkdj?=
+ =?utf-8?B?eG9IZmNRNlZlQW9Va2U0Sk5IR0xjcWVRQk50aHAzYzVZc0wyaXJqQ1NJT29N?=
+ =?utf-8?B?YVRFcU1kbEI1MnVQYlFsR1pYNmZkYnVWMFpjWXV4eFMxSytxUDBzNEg5dERV?=
+ =?utf-8?B?N3E3dWFSQ2k3NHczenJ3YytoVVl2dWJIOEdvZGFoN0VpTm1jYjVIVjQ5dFpC?=
+ =?utf-8?B?M3EvTE5EaHFpN29sREdLZnJPWWQyVmJGcXBwb2prVWVlT1B2MFNGeVJKZ21F?=
+ =?utf-8?B?LyswOU5TS3ZJUVZyNUdSN1IyREZjeHNHZnNFOVBiZW02TGVvcWJ6Q21TbmFr?=
+ =?utf-8?B?NElUMzFqdEExTlY5a3ZoYnJMbTJ0VXZ0NU1sQmlUQUlhSE1nMEJpWFg1UjlO?=
+ =?utf-8?B?Uml3bmJRamJESUQwT09XZ1plVjFpSGRPNTUySFFkNjBuRWlwaTVKL0dNREZS?=
+ =?utf-8?B?OWoyRnZQckovczBiZVpKTHovSEpncUVJb2FackRucm9QSGRIUk1jcUg0UUkw?=
+ =?utf-8?B?M0dHN21Na3JvVk4yZlR0N1RscmVyOWROOEdrVFZnZUVCWEEyZXNCTEhhQ1Zs?=
+ =?utf-8?B?TzRBRXFSWjkvWUZFSEd6WWZBaFEwaGRobnI3VzNQTi8zandJZnhoM3V6R0Nj?=
+ =?utf-8?B?VGFGbTJGNnFCMDM3NkVkOUdKSGFSR0ZjZDNWekFOMFNndFpmTUVIWkdkVnRu?=
+ =?utf-8?B?cS90QXVzS2Uva1d6Mk1KdDg3alZURUo2NWxoZnJ0cU1Fd3o4cU1WUkFwejRy?=
+ =?utf-8?B?c2JYU2E2Zy9rWkJuZTZsZkwvSnpXbkZNVXpiM2s0MlJkb2RWUlNUdXVkR3Fq?=
+ =?utf-8?B?dDNpN01IYTg0UURETjloU1hWcURNVkk2R3ZMRmtGeHVpTVlkcU82NFJ3U284?=
+ =?utf-8?B?bmIvZHFtU0x5R2FnT1kyakZ5RXZiV0IybGNoL3JRTjRIczJtV2ZjcFRxRXBQ?=
+ =?utf-8?B?NmgzalAwSXJxNjQyNXQ0Y2NvNG9GVWQ0MzZBK3ViajdsRDFIWFpMRXNDVmZR?=
+ =?utf-8?B?SFRRbExqdGUrMnVJbkhqcUllQStRQ1IyYTdZZEI5Q2xpd21NUUFsWW84RU1q?=
+ =?utf-8?B?dFE1YXE3SVcrbjl4VWN5WHo1MHA3LzN3VEQ2UC9xN2xjQTcycTBQTU9temM0?=
+ =?utf-8?B?YkpYN3VTbHY1WDBqbVBWTmJwamJZcHlsNlVPSjBrMzY3VUhWWkVIQm1zYTJQ?=
+ =?utf-8?B?SWNwcWJIL3c3bVVTakJRNVNXS1p2ejlTdDlsYnNybGJzU1M1YmIzT0hiMFhT?=
+ =?utf-8?B?M0dMSFNUbzdGTWsvV2ljdmgzNTA3N3Z5bmNBNWNKSmN5c0VwQkp0ajl3QmpB?=
+ =?utf-8?B?eGhEaldxWEpya3lQR2xnMkU2MG0ybmo5K2hGTkNGNlA0NFZrQUtISWZrbW5C?=
+ =?utf-8?B?SlNXVWs3d3VKSFZhbW5zaW1RM2lBcGRiL2FaSW5sbWh0ZDlyb0VZN3Q3MmlH?=
+ =?utf-8?B?VUFEQmw4TTJ3MVE1YTc3dFFid20ybHVtUmZGaitvV2k1dGhOZFNDVGxacVFa?=
+ =?utf-8?B?OEdscWFxSU1CSS80MG5Ya1hxNUVsdFNUc2F5L2NDSDV0RVN1aGI2NWpyRklw?=
+ =?utf-8?B?QlV0a28yaFFpeVpYeENHNDVPbFQweHZ0Y1V0WEtsRzNaT0hCOW9BOGRCK0dD?=
+ =?utf-8?B?d21tL21MUFdEYnUvYkxpSGpBNlNteUhVanhnYU9RejJVSi9za083TXZCcnlz?=
+ =?utf-8?B?aHlYc0l0SW5NK3ppL3BtM0V4eGNMUHBFWjdSNExKVXZuOTl5SWlPcmo1R25t?=
+ =?utf-8?B?Zno1K05FK0JLRjhTRndVVHhUU3p4TUNwYWV5TVNmSysrSGp1ZUd6aHYzNHNs?=
+ =?utf-8?B?UkZ5alpZZVczbDlJOGd4MmZIbHBTU3BVVXoyUUhXcHBmV0w4VlQ0T3RTZ3ZM?=
+ =?utf-8?B?bmdKWCt2eXUwbDVZNE5rdWJoeER5MzdOMktqd1RtcTJ2NFhmRWFiUlpJY3pu?=
+ =?utf-8?Q?jtS0Cd87cO/rNbJdDRwFp2UYM?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fedd93a4-f497-4ca7-366b-08da8c5050c6
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR12MB3683.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Sep 2022 19:29:40.9129
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 3yOIO3WqDjgigcc6k40c74fg1s6Iv2QuIfCh4168oDKz7jH2LX0xahs+pE2Dzv/Z
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5269
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/1/22 11:36, Farber, Eliav wrote:
-> On 9/1/2022 8:11 PM, Guenter Roeck wrote:
->> CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you can confirm the sender and know the content is safe.
->>
->>
->>
->> On 9/1/22 08:24, Farber, Eliav wrote:
->>> On 9/1/2022 5:44 PM, Guenter Roeck wrote:
->>>> On Thu, Sep 01, 2022 at 11:39:58AM +0300, Farber, Eliav wrote:
->>>>> On 8/31/2022 2:48 PM, Guenter Roeck wrote:
->>>>> > On 8/30/22 22:49, Farber, Eliav wrote:
->>>>> > > On 8/31/2022 8:36 AM, Guenter Roeck wrote:
->>>>> > > > On 8/30/22 12:21, Eliav Farber wrote:
->>>>> > > > > Bug fix - in case "intel,vm-map" is missing in device-tree
->>>>> > > > > ,'num' is set
->>>>> > > > > to 0, and no voltage channel infos are allocated.
->>>>> > > > >
->>>>> > > > > Signed-off-by: Eliav Farber <farbere@amazon.com>
->>>>> > > > > ---
->>>>> > > > >   drivers/hwmon/mr75203.c | 28 ++++++++++++----------------
->>>>> > > > >   1 file changed, 12 insertions(+), 16 deletions(-)
->>>>> > > > >
->>>>> > > > > diff --git a/drivers/hwmon/mr75203.c b/drivers/hwmon/mr75203.c
->>>>> > > > > index 046523d47c29..0e29877a1a9c 100644
->>>>> > > > > --- a/drivers/hwmon/mr75203.c
->>>>> > > > > +++ b/drivers/hwmon/mr75203.c
->>>>> > > > > @@ -580,8 +580,6 @@ static int mr75203_probe(struct
->>>>> > > > > platform_device *pdev)
->>>>> > > > >       }
->>>>> > > > >
->>>>> > > > >       if (vm_num) {
->>>>> > > > > -             u32 num = vm_num;
->>>>> > > > > -
->>>>> > > > >               ret = pvt_get_regmap(pdev, "vm", pvt);
->>>>> > > > >               if (ret)
->>>>> > > > >                       return ret;
->>>>> > > > > @@ -594,30 +592,28 @@ static int mr75203_probe(struct
->>>>> > > > > platform_device *pdev)
->>>>> > > > >               ret = device_property_read_u8_array(dev, "intel,vm-map",
->>>>> > > > > pvt->vm_idx, vm_num);
->>>>> > > > >               if (ret) {
->>>>> > > > > -                     num = 0;
->>>>> > > > > +                     /*
->>>>> > > > > +                      * Incase intel,vm-map property is not
->>>>> > > > > defined, we
->>>>> > > > > +                      * assume incremental channel numbers.
->>>>> > > > > +                      */
->>>>> > > > > +                     for (i = 0; i < vm_num; i++)
->>>>> > > > > + pvt->vm_idx[i] = i;
->>>>> > > > >               } else {
->>>>> > > > >                       for (i = 0; i < vm_num; i++)
->>>>> > > > >                               if (pvt->vm_idx[i] >= vm_num ||
->>>>> > > > > - pvt->vm_idx[i] == 0xff) {
->>>>> > > > > - num = i;
->>>>> > > > > + pvt->vm_idx[i] == 0xff)
->>>>> > > > > break;
->>>>> > > >
->>>>> > > > So all vm_idx values from 0x00 to 0xfe would be acceptable ?
->>>>> > > > Does the chip really have that many registers (0x200 + 0x40 +
->>>>> > > > 0x200 * 0xfe) ?
->>>>> > > > Is that documented somewhere ?
->>>>> > > According to the code vm_num is limited to 32 because the mask is
->>>>> > > only 5 bits:
->>>>> > >
->>>>> > > #define VM_NUM_MSK    GENMASK(20, 16)
->>>>> > > #define VM_NUM_SFT    16
->>>>> > > vm_num = (val & VM_NUM_MSK) >> VM_NUM_SFT;
->>>>> > >
->>>>> > > In practice according to the data sheet I have:
->>>>> > > 0 <= VM instances <= 8
->>>>> > >
->>>>> > Sorry, my bad. I misread the patch and thought the first part of
->>>>> > the if statement was removed.
->>>>> >
->>>>> > Anyway, what is the difference between specifying an vm_idx value of
->>>>> > 0xff and not specifying anything ? Or, in other words, taking the dt
->>>>> > example, the difference between
->>>>> >        intel,vm-map = [03 01 04 ff ff];
->>>>> > and
->>>>> >        intel,vm-map = [03 01 04];
->>>>>
->>>>> The actual number of VMs is read from a HW register:
->>>>>     ret = regmap_read(pvt->c_map, PVT_IP_CONFIG, &val);
->>>>>     ...
->>>>>     vm_num = (val & VM_NUM_MSK) >> VM_NUM_SFT;
->>>>>
->>>>> Also, using:
->>>>>     ret = device_property_read_u8_array(dev, "intel,vm-map", vm_idx,
->>>>>                         vm_num);
->>>>> in the driver will fail if vm_num > sizeof array in device-tree.
->>>>>
->>>>> So, if for example vm_num = 5, but you will want to map only 3 of them
->>>>> you most set property to be:
->>>>>     intel,vm-map = [03 01 04 ff ff];
->>>>> otherwise if you set:
->>>>>     intel,vm-map = [03 01 04];
->>>>> it will assume the property doesn't, and will continue the flow in code
->>>>> as if it doesn’t exist (which is not what the user wanted, and before my
->>>>> fix also has a bug).
->>>>
->>>> There should be some error handling to catch this case (ie if the number
->>>> of entries does not match the expected count), or if a value in the array
->>>> is larger or equal to vm_num. Today the latter is silently handled as end
->>>> of entries (similar to 0xff), but that should result in an error.
->>>> This would avoid situations like
->>>>        intel,vm-map = [01 02 03 04 05];
->>>> ie where the person writing the devicetree file accidentally entered
->>>> index values starting with 1 instead of 0. A mismatch between vm_num
->>>> and the number of entries in the array is silently handled as if there
->>>> was no property at all, which is at the very least misleading and
->>>> most definitely unexpected and should also result in an error.
->>>
->>>
->>> I assume it is possible to tell according to the return value, if property
->>> doesn’t exist at all, or if it does exists and size of array in
->>> device-tree is smaller than vm_num.
->>> In [PATCH v3 17/19] Andy wrote that “code shouldn't be a YAML validator.
->>> Drop this and make sure you have correct DT schema” so I’m a bit confused
->>> if code should validate “intel,bm-map” or if it is the user responsibility.
->>> As this property was not added by me, I prefer not to fix it as part of
->>> this series of patches.
->>>
->>
->> You are changing the driver all over the place with 19 patches, including
->> this code, but you don't want to add code that validates the devicetree
->> data ? That seems odd.
->>
-> OK. I have added patch #20 to validate that same VM index doesn't appear
-> more than once in intel,vm-map.
-> 
-> u32 vm_mask = 0;
-> 
-> for (i = 0; i < vm_num; i++) {
->      if (vm_idx[i] >= vm_num || vm_idx[i] == 0xff)
 
-I think "vm_idx[i] >= vm_num && vm_idx[i] != 0xff)
-should also be invalid, ie.
+On 9/1/22 10:38 AM, Mathieu Poirier wrote:
+> Hi Tanmay,
+>
+> I have started reviewing this set.  As usual I will notify you when I am done.
 
-	if (vm_idx[i] == 0xff)
-		break;
-	if (vm_idx[i] >= vm_num)
-		return -EINVAL;
+Sure Mathieu !! Thanks.
 
-Thanks,
-Guenter
-
->          break;
-> 
->      if (vm_mask & BIT(vm_idx[i])) {
->          dev_err(dev, "Same VM appears more than once in intel,vm-map\n",
->              vm_idx[i]);
->          return EINVAL;
->      }
-> 
->      vm_mask |= BIT(vm_idx[i]);
-> }
-> 
-> 
->>>
->>>> Also, what happens if the devicetree content is something like the
->>>> following ? Would that be valid ?
->>>>        intel,vm-map = [00 01 01 01 01 01];
->>>
->>> If device-tree content would be:
->>>      intel,vm-map = [00 01 01 01 01 01];
->>> and assuming 16 channels for each VM, the hwmon sub-system will expose 90
->>> sysfs to read voltage values.
->>> In practice 16 – 31, 32 – 47, 48 – 63, 64 – 89 will all report the same
->>> input signals for VM1.
->>>
+>
+> On Thu, Jul 07, 2022 at 06:39:50PM -0700, Tanmay Shah wrote:
+>> From: Tanmay Shah <tanmay.shah@xilinx.com>
 >>
->> Does that make any sense, and is there a valid reason to have a mapping
->> table like the one in this example ?
-> 
-> I can't find any sense in having such a mapping.
-> Anyway the new patch will not allow it to happen.
-> 
-> -- 
-> Regards, Eliav
-> 
+>> Xilinx ZynqMP platform has dual-core ARM Cortex R5 Realtime Processing
+>> Unit(RPU) subsystem. This patch adds dt-bindings for RPU subsystem
+>> (cluster).
+>>
+>> Signed-off-by: Tanmay Shah <tanmay.shah@xilinx.com>
+>> Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
+> Any reason for keeping the your Xilinx address in the "From" field?  When
+> applying your patch I get:
 
+Originally authored using Xilinx email ID, and switched to AMD email ID 
+in between.
+
+I will fix with AMD email ID only in next revision.
+
+>
+> Author: Tanmay Shah <tanmay.shah@xilinx.com>
+> Date:   Thu Jul 7 18:39:50 2022 -0700
+>
+>      dt-bindings: remoteproc: Add Xilinx RPU subsystem bindings
+>
+>      Xilinx ZynqMP platform has dual-core ARM Cortex R5 Realtime Processing
+>      Unit(RPU) subsystem. This patch adds dt-bindings for RPU subsystem
+>      (cluster).
+>
+>      Signed-off-by: Tanmay Shah <tanmay.shah@xilinx.com>
+>      Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
+>
+> Which is cumbersome.  It would be much easier if it was:
+Ack
+>
+> Author: Tanmay Shah <tanmay.shah@amd.com>
+> Date:   Thu Jul 7 18:39:50 2022 -0700
+>
+>      dt-bindings: remoteproc: Add Xilinx RPU subsystem bindings
+>
+>      Xilinx ZynqMP platform has dual-core ARM Cortex R5 Realtime Processing
+>      Unit(RPU) subsystem. This patch adds dt-bindings for RPU subsystem
+>      (cluster).
+>
+>      Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
+>
+>> ---
+>>
+>> Changes in v9:
+>>    - remove power-domains property description
+>>    - fix nitpicks in description of other properties
+>>
+>> Changes in v8:
+>>    - Add 'items:' for sram property
+>>
+>> Changes in v7:
+>>    - Add minItems in sram property
+>>
+>> Changes in v6:
+>>    - Add maxItems to sram and memory-region property
+>>
+>> Changes in v5:
+>> - Add constraints of the possible values of xlnx,cluster-mode property
+>> - fix description of power-domains property for r5 core
+>> - Remove reg, address-cells and size-cells properties as it is not required
+>> - Fix description of mboxes property
+>> - Add description of each memory-region and remove old .txt binding link
+>>    reference in the description
+>>
+>> Changes in v4:
+>>    - Add memory-region, mboxes and mbox-names properties in example
+>>
+>> Changes in v3:
+>>    - None
+>>
+>>   .../bindings/remoteproc/xlnx,r5f-rproc.yaml   | 135 ++++++++++++++++++
+>>   include/dt-bindings/power/xlnx-zynqmp-power.h |   6 +
+>>   2 files changed, 141 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml
+>> new file mode 100644
+>> index 000000000000..56b4dd1d5088
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml
+>> @@ -0,0 +1,135 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/remoteproc/xlnx,r5f-rproc.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Xilinx R5F processor subsystem
+>> +
+>> +maintainers:
+>> +  - Ben Levinsky <ben.levinsky@xilinx.com>
+>> +  - Tanmay Shah <tanmay.shah@xilinx.com>
+> Here too...  If you are switching to amd.com, please do so everywhere.
+>
+> More comments to come.
+Ack
+>
+>> +
+>> +description: |
+>> +  The Xilinx platforms include a pair of Cortex-R5F processors (RPU) for
+>> +  real-time processing based on the Cortex-R5F processor core from ARM.
+>> +  The Cortex-R5F processor implements the Arm v7-R architecture and includes a
+>> +  floating-point unit that implements the Arm VFPv3 instruction set.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: xlnx,zynqmp-r5fss
+>> +
+>> +  xlnx,cluster-mode:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    enum: [0, 1, 2]
+>> +    description: |
+>> +      The RPU MPCore can operate in split mode (Dual-processor performance), Safety
+>> +      lock-step mode(Both RPU cores execute the same code in lock-step,
+>> +      clock-for-clock) or Single CPU mode (RPU core 0 is held in reset while
+>> +      core 1 runs normally). The processor does not support dynamic configuration.
+>> +      Switching between modes is only permitted immediately after a processor reset.
+>> +      If set to  1 then lockstep mode and if 0 then split mode.
+>> +      If set to  2 then single CPU mode. When not defined, default will be lockstep mode.
+>> +      In summary,
+>> +      0: split mode
+>> +      1: lockstep mode (default)
+>> +      2: single cpu mode
+>> +
+>> +patternProperties:
+>> +  "^r5f-[a-f0-9]+$":
+>> +    type: object
+>> +    description: |
+>> +      The RPU is located in the Low Power Domain of the Processor Subsystem.
+>> +      Each processor includes separate L1 instruction and data caches and
+>> +      tightly coupled memories (TCM). System memory is cacheable, but the TCM
+>> +      memory space is non-cacheable.
+>> +
+>> +      Each RPU contains one 64KB memory and two 32KB memories that
+>> +      are accessed via the TCM A and B port interfaces, for a total of 128KB
+>> +      per processor. In lock-step mode, the processor has access to 256KB of
+>> +      TCM memory.
+>> +
+>> +    properties:
+>> +      compatible:
+>> +        const: xlnx,zynqmp-r5f
+>> +
+>> +      power-domains:
+>> +        maxItems: 1
+>> +
+>> +      mboxes:
+>> +        minItems: 1
+>> +        items:
+>> +          - description: mailbox channel to send data to RPU
+>> +          - description: mailbox channel to receive data from RPU
+>> +
+>> +      mbox-names:
+>> +        minItems: 1
+>> +        items:
+>> +          - const: tx
+>> +          - const: rx
+>> +
+>> +      sram:
+>> +        $ref: /schemas/types.yaml#/definitions/phandle-array
+>> +        minItems: 1
+>> +        maxItems: 8
+>> +        items:
+>> +          maxItems: 1
+>> +        description: |
+>> +          phandles to one or more reserved on-chip SRAM regions. Other than TCM,
+>> +          the RPU can execute instructions and access data from the OCM memory,
+>> +          the main DDR memory, and other system memories.
+>> +
+>> +          The regions should be defined as child nodes of the respective SRAM
+>> +          node, and should be defined as per the generic bindings in
+>> +          Documentation/devicetree/bindings/sram/sram.yaml
+>> +
+>> +      memory-region:
+>> +        description: |
+>> +          List of phandles to the reserved memory regions associated with the
+>> +          remoteproc device. This is variable and describes the memories shared with
+>> +          the remote processor (e.g. remoteproc firmware and carveouts, rpmsg
+>> +          vrings, ...). This reserved memory region will be allocated in DDR memory.
+>> +        minItems: 1
+>> +        maxItems: 8
+>> +        items:
+>> +          - description: region used for RPU firmware image section
+>> +          - description: vdev buffer
+>> +          - description: vring0
+>> +          - description: vring1
+>> +        additionalItems: true
+>> +
+>> +    required:
+>> +      - compatible
+>> +      - power-domains
+>> +
+>> +    unevaluatedProperties: false
+>> +
+>> +required:
+>> +  - compatible
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    r5fss: r5fss {
+>> +        compatible = "xlnx,zynqmp-r5fss";
+>> +        xlnx,cluster-mode = <1>;
+>> +
+>> +        r5f-0 {
+>> +            compatible = "xlnx,zynqmp-r5f";
+>> +            power-domains = <&zynqmp_firmware 0x7>;
+>> +            memory-region = <&rproc_0_fw_image>, <&rpu0vdev0buffer>, <&rpu0vdev0vring0>, <&rpu0vdev0vring1>;
+>> +            mboxes = <&ipi_mailbox_rpu0 0>, <&ipi_mailbox_rpu0 1>;
+>> +            mbox-names = "tx", "rx";
+>> +        };
+>> +
+>> +        r5f-1 {
+>> +            compatible = "xlnx,zynqmp-r5f";
+>> +            power-domains = <&zynqmp_firmware 0x8>;
+>> +            memory-region = <&rproc_1_fw_image>, <&rpu1vdev0buffer>, <&rpu1vdev0vring0>, <&rpu1vdev0vring1>;
+>> +            mboxes = <&ipi_mailbox_rpu1 0>, <&ipi_mailbox_rpu1 1>;
+>> +            mbox-names = "tx", "rx";
+>> +        };
+>> +    };
+>> +...
+>> diff --git a/include/dt-bindings/power/xlnx-zynqmp-power.h b/include/dt-bindings/power/xlnx-zynqmp-power.h
+>> index 0d9a412fd5e0..618024cbb20d 100644
+>> --- a/include/dt-bindings/power/xlnx-zynqmp-power.h
+>> +++ b/include/dt-bindings/power/xlnx-zynqmp-power.h
+>> @@ -6,6 +6,12 @@
+>>   #ifndef _DT_BINDINGS_ZYNQMP_POWER_H
+>>   #define _DT_BINDINGS_ZYNQMP_POWER_H
+>>   
+>> +#define		PD_RPU_0	7
+>> +#define		PD_RPU_1	8
+>> +#define		PD_R5_0_ATCM	15
+>> +#define		PD_R5_0_BTCM	16
+>> +#define		PD_R5_1_ATCM	17
+>> +#define		PD_R5_1_BTCM	18
+>>   #define		PD_USB_0	22
+>>   #define		PD_USB_1	23
+>>   #define		PD_TTC_0	24
+>> -- 
+>> 2.25.1
+>>
