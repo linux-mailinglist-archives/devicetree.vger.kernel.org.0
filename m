@@ -2,102 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF5E05A9178
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 10:02:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61F185A917F
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 10:03:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233486AbiIAICC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 04:02:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50776 "EHLO
+        id S233634AbiIAIDW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 04:03:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233088AbiIAICB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 04:02:01 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BAD7121422
-        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 01:01:59 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id g7so6302915lfe.11
-        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 01:01:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=JE5EdXExU9KB2vgJJhQ6V2iSs8d1y3Mi7fJ+Qjt9Auc=;
-        b=aB2V/BErUKMHkn2ek+qBlKawiRb+bkfxMbWiz40Nt14zziORYJF95FPu6AP71lX8e9
-         Dq+xkIoWRMeRwuCQ8sRA0XAnX/tNVCIEHAHmbBph4/o0bT5/AIy1KXewrl85KZf+i1KH
-         2AC7ylvXvi3i611Q/YagrkP2nGljcjbRuIgE8RboPsabxMUUg+xBA/IWYfNruvRijGIa
-         H96paO6sca481TlKtsgLNNR4bk0LF5MYZJPtztf/D9KOfX0wy/T1JTSRf7GFSntFIRrj
-         xUmfOFScRCWDls5Df7UlbH96vkkEkJxequIlOIqRi+256pFmoDr7stoBXjvLiBt5Y08P
-         Go4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=JE5EdXExU9KB2vgJJhQ6V2iSs8d1y3Mi7fJ+Qjt9Auc=;
-        b=6huzZtT5UQJVmoIyf4iC3A5D5rEob647ou0UL6ku1t595v1WIeEzAK9Ibuyn2Lu1bl
-         y96AEJN/tPWxQ3sW1ARm88h+MsIXil4MI4at6mAb6jMeqeJiesRdR7Y6/zZiDJ7lyvHb
-         yQcjC9D66X70v0xLyQctYs9wPOozYh2VK5oGnGPOVRGZZaQWy/qeXxUQ7B1p9Ay4lznp
-         sBMZSeBbgEcB5tzhDm0b9fCevFiOqNn87kpWLh6HHl6R231f/OT1d/H9JmuoEcaZgo/1
-         0HCqpBXUYS6PsTG99It1UFVD2+Amht2LkKhMbkrmKjgaO/VfDG1ew6vDb5iLI01UiAOF
-         GEqg==
-X-Gm-Message-State: ACgBeo0gGoeD7jK8udfIXVZdEfXJ5EccKdMjVJVspJG43PaUG6bOSH0X
-        DIDAstoytdK4mL0oH6GBxwJzV//+PQGqA+3Y
-X-Google-Smtp-Source: AA6agR6Gt8vZPLOFDKLLdZvIJqwp7OXLZ31OJ5pouoSLNqUfk7zi/LbFjh2q00ET/ZGzDHMbeKn86Q==
-X-Received: by 2002:a05:6512:3dac:b0:494:903a:1f9b with SMTP id k44-20020a0565123dac00b00494903a1f9bmr1877630lfv.498.1662019317892;
-        Thu, 01 Sep 2022 01:01:57 -0700 (PDT)
-Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id l19-20020a2e9093000000b0025d5eb5dde7sm2344768ljg.104.2022.09.01.01.01.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Sep 2022 01:01:57 -0700 (PDT)
-Message-ID: <9863bdfc-1de2-62fb-19da-44a68bea3607@linaro.org>
-Date:   Thu, 1 Sep 2022 11:01:56 +0300
+        with ESMTP id S233637AbiIAIDV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 04:03:21 -0400
+Received: from mail.coredeal.pl (mail.coredeal.pl [51.75.73.133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3326A12143B
+        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 01:03:21 -0700 (PDT)
+Received: by mail.coredeal.pl (Postfix, from userid 1002)
+        id 178C8AABB1; Thu,  1 Sep 2022 08:01:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=coredeal.pl; s=mail;
+        t=1662019318; bh=9KGuIG62LgzC9aYmjKxzocuYLRCVghXg6v9Q1q2LHec=;
+        h=Date:From:To:Subject:From;
+        b=laU/pxTTtQvDZtjxRYWeyuu2lbOG52pcWNZJAB3vmIik6opkWIRcDieQPaU+69Iiz
+         63+TCklAvS3ZzA9QIlJFnNDw6+VPouWxuXD8J2kXm53YAykjk/RONApbfk8EXhSjTk
+         8DdioBp5IaJtpxDXKo0o0JTrE9njD2lg/nHge3OAzOoUbsi0q3kNRvXkXdliUOtj+3
+         Y8iLL4FkHumxyP9HCQMKIYHvnblVZ3gifiDKEE5wii9c0tRp5GRTvDDAKHpQQhbDr7
+         wlaS1CbszmO4LkAHaw+8Kvj7o08kJeF87adnMnB5BvFNm8FCrrcP/M0u/i8k9M/eaQ
+         QkjQzmqbByH0A==
+Received: by mail.coredeal.pl for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 08:00:38 GMT
+Message-ID: <20220901064501-0.1.58.1ikml.0.0zonr2ng23@coredeal.pl>
+Date:   Thu,  1 Sep 2022 08:00:38 GMT
+From:   "Krzysztof Maj" <krzysztof.maj@coredeal.pl>
+To:     <devicetree@vger.kernel.org>
+Subject: Biznesowy angielski
+X-Mailer: mail.coredeal.pl
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH 7/7] spi: spi-zynqmp-gqspi: Add tap delay support for
- GQSPI controller on Versal platform
-Content-Language: en-US
-To:     Amit Kumar Mahapatra <amit.kumar-mahapatra@xilinx.com>,
-        broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     git@amd.com, michal.simek@amd.com, linux-spi@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, akumarma@amd.com,
-        Naga Sureshkumar Relli <nagasure@xilinx.com>
-References: <20220901054731.7705-1-amit.kumar-mahapatra@xilinx.com>
- <20220901054731.7705-8-amit.kumar-mahapatra@xilinx.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220901054731.7705-8-amit.kumar-mahapatra@xilinx.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/09/2022 08:47, Amit Kumar Mahapatra wrote:
-> @@ -1165,6 +1214,7 @@ static int zynqmp_qspi_probe(struct platform_device *pdev)
->  	struct spi_controller *ctlr;
->  	struct zynqmp_qspi *xqspi;
->  	struct device *dev = &pdev->dev;
-> +	const struct of_device_id *match;
->  	struct device_node *np = dev->of_node;
->  
->  	ctlr = spi_alloc_master(&pdev->dev, sizeof(*xqspi));
-> @@ -1176,6 +1226,13 @@ static int zynqmp_qspi_probe(struct platform_device *pdev)
->  	xqspi->ctlr = ctlr;
->  	platform_set_drvdata(pdev, xqspi);
->  
-> +	match = of_match_node(zynqmp_qspi_of_match, pdev->dev.of_node);
-> +	if (match) {
-> +		const struct qspi_platform_data *p_data = match->data;
+Dzie=C5=84 dobry,=20
 
-There is a helper for that. Use it.
+czy rozwa=C5=BCali Pa=C5=84stwo rozw=C3=B3j kwalifikacji j=C4=99zykowych =
+swoich pracownik=C3=B3w?
 
-Best regards,
-Krzysztof
+Opracowali=C5=9Bmy kursy j=C4=99zykowe dla r=C3=B3=C5=BCnych bran=C5=BC, =
+w kt=C3=B3rych koncentrujemy si=C4=99 na podniesieniu poziomu s=C5=82owni=
+ctwa i jako=C5=9Bci komunikacji wykorzystuj=C4=85c autorsk=C4=85 metod=C4=
+=99, stworzon=C4=85 specjalnie dla wymagaj=C4=85cego biznesu.=20
+
+Niestandardowy kurs on-line, dopasowany do profilu firmy i obszar=C3=B3w =
+=C5=9Bwiadczonych us=C5=82ug, w szybkim czasie przyniesie efekty, kt=C3=B3=
+re zwi=C4=99ksz=C4=85 komfort i jako=C5=9B=C4=87 pracy, rozwijaj=C4=85c m=
+o=C5=BCliwo=C5=9Bci biznesowe.=20
+
+Zdalne szkolenie j=C4=99zykowe to m.in. zaj=C4=99cia z native speakerami,=
+ kt=C3=B3re w szybkim czasie naucz=C4=85 pracownik=C3=B3w rozmawia=C4=87 =
+za pomoc=C4=85 jasnego i zwi=C4=99z=C5=82ego j=C4=99zyka Business English=
+=2E
+
+Czy m=C3=B3g=C5=82bym przedstawi=C4=87 wi=C4=99cej szczeg=C3=B3=C5=82=C3=B3=
+w i opowiedzie=C4=87 jak dzia=C5=82amy?=20
+
+
+Pozdrawiam
+Krzysztof Maj
