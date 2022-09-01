@@ -2,197 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 461585A9B74
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 17:21:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 266BF5A9B81
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 17:24:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234069AbiIAPVj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 11:21:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56286 "EHLO
+        id S232804AbiIAPYa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 11:24:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233986AbiIAPVi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 11:21:38 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66F8E62A93
-        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 08:21:36 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id z29so16341135lfb.13
-        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 08:21:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=ufzezn2FS2/AnewWg9FUJ5Ryg8+cSOWbtjRpSOhaf5g=;
-        b=s/wlxrWDeyaHEMxeJ2xCWJeBhtex8WtxZTV6TMp6zyCWC5aK0I3ZDothFncgFcEaBF
-         npYgCx9MlVGoKhvrEgslds/F/qtcQ3PuWoSfs4M2N6RcznYwdt/X8QJVddbCYumLqJsp
-         MzqJPNGTgnc5oZjOg6B0EpC5xo3d4rBRKpnZFZFhNRTjgwo/Rc5E/N7PV60TuWhvUmX1
-         kxMqKibUgJPO8cHA93b8X23g/mLJ+fI12exrehrX631jobVcgLhXb7GLTU1VnnssH9lD
-         AA3glhPxiABBPYjy8hntsz6WZhkblwGD9FQe6BwJWdmoCeEA5Sfv02f/xfpzCp+MbMOs
-         msoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=ufzezn2FS2/AnewWg9FUJ5Ryg8+cSOWbtjRpSOhaf5g=;
-        b=6IFkGHxSyBZ5JF0oU5oyJ9sjsJHnpkUUmCx6jwuxP71R0okLpelfZwktecnO1tdNZp
-         Pc6U8W8N9YseRJse1xqxMBlPnJEcTpWeqOiXjFRiNPQFvDbjeg1hiSB1ppcWo0VvPVg2
-         zxgae3+09d0x9orU54BsYU7ccGz2hLnZXZF7aF5QiyVssPmJW2dXnjEgrMbjxiPQKLNu
-         wXfctFJZqk8vIGQgZVGb6iZqbUigdPjs8UoDH823cjK0k2w1vrIZRtqmOZCNQQXfKJj7
-         5qC+b88hiOvGpFHOew7ggaO4mZcQLMZobs1dKcsXlqGY31DT0EEnb7Rlr3d2cHA8YA2P
-         YdWQ==
-X-Gm-Message-State: ACgBeo2BOsFkZ2N/M8Zf9PsvsBOMqTEord+yv5f98gwvsmBt/5wh2oPp
-        eApLD5CYFEcGZYQAzT0IGCc4/JOOmZ8Fy2f/
-X-Google-Smtp-Source: AA6agR48dxWMskFdDWOlPNEkMp4j8Y0fJXT9BaTWhHIlGEOetE8aJiu5Jbr5fiiB3zchqSmkQEF+Nw==
-X-Received: by 2002:a05:6512:146:b0:494:6704:885a with SMTP id m6-20020a056512014600b004946704885amr6551636lfo.447.1662045694718;
-        Thu, 01 Sep 2022 08:21:34 -0700 (PDT)
-Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id x5-20020ac259c5000000b0048af3154456sm1305906lfn.146.2022.09.01.08.21.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Sep 2022 08:21:34 -0700 (PDT)
-Message-ID: <4b681c03-7f5a-0234-2276-316e0bad1de5@linaro.org>
-Date:   Thu, 1 Sep 2022 18:21:33 +0300
+        with ESMTP id S231290AbiIAPY3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 11:24:29 -0400
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83C24861CE;
+        Thu,  1 Sep 2022 08:24:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=EM9unvrkq5KRXP4o9UGZIuXzbMhXAHieicgtIajlFio=; b=NVfxU3cQBDLMSI4eTEe+8zr9Xg
+        o3IdDia1gfpLSkNnfZRD3V5wNNifg9d+qVmtK+9T867ltBDd0lF+GRB6IUqVKCOoaTyxVdraED8DA
+        oCuT1pnvWBZlznrGb0McrrMigJJKVZQRy5IDzpGLAcWshX14Bw8uA+8u1mAls64KRsp8t+m6E8g1i
+        p3tUlqAPVN2TMQF5Gf5AVCsRlwjqWxRR+bkPAmlxTouHm0g/Y8N2VObbrb8w7dyAN/eS61S430U3I
+        x5JqsMJWzhGGASp9VlDe9a+zQQPubEizbaACCsTZ9bevCLvjrCHyqm8hEHkK1DnUjYkhP7niYp/Vq
+        1mi6wcxw==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:34044)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1oTm3J-00069M-9M; Thu, 01 Sep 2022 16:24:21 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1oTm3I-0003Z9-2M; Thu, 01 Sep 2022 16:24:20 +0100
+Date:   Thu, 1 Sep 2022 16:24:20 +0100
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Arnd Bergmann <arnd@arndb.de>, Lee Jones <lee@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        asahi@lists.linux.dev, Bartosz Golaszewski <brgl@bgdev.pl>,
+        Hector Martin <marcan@marcan.st>,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+        Sven Peter <sven@svenpeter.dev>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/6] dt-bindings: mfd: add binding for Apple Mac System
+ Management Controller
+Message-ID: <YxDOpCq0vIlt4VNa@shell.armlinux.org.uk>
+References: <YxC5eZjGgd8xguDr@shell.armlinux.org.uk>
+ <E1oTkeH-003t9A-3K@rmk-PC.armlinux.org.uk>
+ <426469c1-13cc-178b-4904-09439d7788e8@linaro.org>
+ <YxDL+cAx9kkZRL8K@shell.armlinux.org.uk>
+ <928ddeff-efac-920c-7bbf-dda35a942b93@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v4 1/2] dt-bindings: phy: ti: phy-gmii-sel: Add bindings
- for J7200
-Content-Language: en-US
-To:     Siddharth Vadapalli <s-vadapalli@ti.com>, robh+dt@kernel.org,
-        lee.jones@linaro.org, krzysztof.kozlowski+dt@linaro.org,
-        kishon@ti.com, vkoul@kernel.org, dan.carpenter@oracle.com,
-        grygorii.strashko@ti.com, rogerq@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org
-References: <20220901085506.138633-1-s-vadapalli@ti.com>
- <20220901085506.138633-2-s-vadapalli@ti.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220901085506.138633-2-s-vadapalli@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <928ddeff-efac-920c-7bbf-dda35a942b93@linaro.org>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/09/2022 11:55, Siddharth Vadapalli wrote:
-> TI's J7200 SoC supports additional PHY modes like QSGMII and SGMII
-> that are not supported on earlier SoCs. Add a compatible for it.
+On Thu, Sep 01, 2022 at 06:15:46PM +0300, Krzysztof Kozlowski wrote:
+> On 01/09/2022 18:12, Russell King (Oracle) wrote:
+> >>> +  compatible:
+> >>> +    items:
+> >>> +      - enum:
+> >>> +        - apple,t8103-smc
+> >>
+> >> You miss two spaces of indentation on this level.
+> > 
+> > Should that be picked up by the dt checker?
 > 
-> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-> ---
->  .../mfd/ti,j721e-system-controller.yaml       |  6 ++++
->  .../bindings/phy/ti,phy-gmii-sel.yaml         | 30 ++++++++++++++++++-
->  2 files changed, 35 insertions(+), 1 deletion(-)
+> I think yamllint complains about it. It is not a hard-dependency, so
+> maybe you don't have it installed.
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml b/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
-> index 1aeac43cad92..802374e7645f 100644
-> --- a/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
-> @@ -54,6 +54,12 @@ patternProperties:
->      description:
->        Clock provider for TI EHRPWM nodes.
->  
-> +  "phy@[0-9a-f]+$":
-> +    type: object
-> +    $ref: /schemas/phy/phy-provider.yaml
+> > 
+> >>> +        - apple,t8112-smc
+> >>> +        - apple,t6000-smc
+> >>
+> >> Bring some order here - either alphabetical or by date of release (as in
+> >> other Apple schemas). I think t6000 was before t8112, so it's none of
+> >> that orders.
+> > 
+> > Ok.
+> > 
+> >>> +      - const: apple,smc
+> >>> +
+> >>> +  reg:
+> >>> +    description: Two regions, one for the SMC area and one for the SRAM area.
+> >>
+> >> You need constraints for size/order, so in this context list with
+> >> described items.
+> > 
+> > How do I do that? I tried maxItems/minItems set to 2, but the dt checker
+> > objected to it.
+> 
+> One way:
+> reg:
+>   items:
+>     - description: SMC area
+>     - description: SRAM area
+> 
+> but actually this is very similar what you wrote for reg-names - kind of
+> obvious, so easier way:
+> 
+> reg:
+>   maxItems: 2
 
-You need instead ref to specific device bindings/schema. Probably to
-/schemas/phy/ti,phy-gmii-sel.yaml#
+Doesn't work. With maxItems: 2, the example fails, yet it correctly lists
+two regs which are 64-bit address and 64-bit size - so in total 8 32-bit
+ints.
 
-This was entirely different in v3, so your change is very confusing.
+Documentation/devicetree/bindings/mfd/apple,smc.example.dtb: smc@23e400000: reg: [[2, 1044381696], [0, 16384], [2, 1071644672], [0, 1048576]] is too long
+        From schema: /home/rmk/git/linux-rmk/Documentation/devicetree/bindings/mfd/apple,smc.yaml
 
-> +    description:
-> +      This is the register to set phy mode through phy-gmii-sel driver.
+Hence, I originally had maxItems: 2, and ended up deleting it because of
+the dt checker.
 
-I don't understand the description. Please focus on the hardware not
-some drivers - what is here? Phy for something?
+With the two descriptions, it's the same failure.
 
-> +
->  required:
->    - compatible
->    - reg
-> diff --git a/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml b/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml
-> index ff8a6d9eb153..0ffb97f1a77c 100644
-> --- a/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml
-> +++ b/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml
-> @@ -53,12 +53,24 @@ properties:
->        - ti,am43xx-phy-gmii-sel
->        - ti,dm814-phy-gmii-sel
->        - ti,am654-phy-gmii-sel
-> +      - ti,j7200-cpsw5g-phy-gmii-sel
->  
->    reg:
->      maxItems: 1
->  
->    '#phy-cells': true
->  
-> +  ti,qsgmii-main-ports:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    description: |
-> +      Required only for QSGMII mode. Array to select the port for
-> +      QSGMII main mode. Rest of the ports are selected as QSGMII_SUB
-> +      ports automatically. Any one of the 4 CPSW5G ports can act as the
-> +      main port with the rest of them being the QSGMII_SUB ports.
-> +    items:
-> +      minimum: 1
-> +      maximum: 4
-> +
->  allOf:
->    - if:
->        properties:
-> @@ -73,6 +85,22 @@ allOf:
->          '#phy-cells':
->            const: 1
->            description: CPSW port number (starting from 1)
+I think the problem is that the checker has no knowledge in the example
+of how big each address and size element of the reg property is. So,
+it's interpreting it as four entries of 32-bit address,size pairs
+instead of two entries of 64-bit address,size pairs. Yep, that's it,
+if I increase the number of "- description" entries to four then it's
+happy.
 
-Blank line
+So, what's the solution?
 
-
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - ti,j7200-cpsw5g-phy-gmii-sel
-> +    then:
-> +      properties:
-> +        '#phy-cells':
-> +          const: 1
-> +          description: CPSW port number (starting from 1)
-> +        ti,qsgmii-main-ports:
-> +          maxItems: 1
-
-It does not really make sense to limit items here, in the context of
-this patch. You got a comment for it already. Your patch should make
-sense on its own.
-
-> +    else:
-> +      properties:
-> +        ti,qsgmii-main-ports: false
-
-Blank line
-
->    - if:
->        properties:
->          compatible:
-> @@ -97,7 +125,7 @@ additionalProperties: false
->  
->  examples:
->    - |
-> -    phy_gmii_sel: phy-gmii-sel@650 {
-> +    phy_gmii_sel: phy@650 {
-
-Split cleanup into separate patch.
-
->          compatible = "ti,am3352-phy-gmii-sel";
->          reg = <0x650 0x4>;
->          #phy-cells = <2>;
-
-
-Best regards,
-Krzysztof
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
