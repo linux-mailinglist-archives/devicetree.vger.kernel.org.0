@@ -2,144 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E07CF5A9A12
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 16:24:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 490035A9A1F
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 16:24:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234641AbiIAOWA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 10:22:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49862 "EHLO
+        id S234724AbiIAOWl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 10:22:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234652AbiIAOVt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 10:21:49 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 918CC72ECA;
-        Thu,  1 Sep 2022 07:21:30 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 2B4846CD;
-        Thu,  1 Sep 2022 16:21:28 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1662042088;
-        bh=A5gkBR9bPfI62fiXWS9MBQdkIPuX3rhZB6oxYtEU7sc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=UpYA6BFhSUdU8txv9sZ2xFyWokhbwkCjKKCPikq1hPctQaIdop/y9Nj3Jl5fR5sVJ
-         kzTb1dap0tPiMNh+RDtJUVq8vTpicd2AvWEzo0dXqKbNhE6Iwc7TzOVnRdR4auWExG
-         ty4J+5/QDmMW8XyiY1cCWC9TbkvdSB4NFvSN6dxg=
-Date:   Thu, 1 Sep 2022 17:21:16 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v5 5/6] ARM: dts: sun8i: a83t: Add MIPI CSI-2 controller
- node
-Message-ID: <YxC/3KLfJHpld+jx@pendragon.ideasonboard.com>
-References: <20220826182803.604563-1-paul.kocialkowski@bootlin.com>
- <20220826182803.604563-6-paul.kocialkowski@bootlin.com>
- <YwkYKcffdRGnq+pK@pendragon.ideasonboard.com>
- <YxC7+Pi4v3Bc1oXc@aptenodytes>
+        with ESMTP id S234254AbiIAOWN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 10:22:13 -0400
+Received: from smtp-fw-33001.amazon.com (smtp-fw-33001.amazon.com [207.171.190.10])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B101872FDE;
+        Thu,  1 Sep 2022 07:22:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1662042130; x=1693578130;
+  h=message-id:date:mime-version:to:cc:references:from:
+   in-reply-to:content-transfer-encoding:subject;
+  bh=j54X/ITS6tgzqC3T+IugH3QtlmM6KAu5Ywq09+fA7VY=;
+  b=io9KztNusIB3QiqRLURWBnH4fonj0tBAvK5ZsdKPBP11mWmhEe/XKxRC
+   HrE4vvMc0K5XrNQt1gU8g056UVXVVcFOHiEYejH/49zeCFbPjUGFRTDXu
+   cVEF/Ue28fVl266HBII0J5lKdiLY4NB+RdkS/xGnaN4uCCIdJX8EfekBA
+   M=;
+X-IronPort-AV: E=Sophos;i="5.93,281,1654560000"; 
+   d="scan'208";a="222658418"
+Subject: Re: [PATCH v3 19/19] hwmon: (mr75203) fix coding style space errors
+Received: from iad12-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-iad-1e-fc41acad.us-east-1.amazon.com) ([10.43.8.6])
+  by smtp-border-fw-33001.sea14.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Sep 2022 14:21:52 +0000
+Received: from EX13MTAUWB001.ant.amazon.com (iad12-ws-svc-p26-lb9-vlan3.iad.amazon.com [10.40.163.38])
+        by email-inbound-relay-iad-1e-fc41acad.us-east-1.amazon.com (Postfix) with ESMTPS id CB081C09A1;
+        Thu,  1 Sep 2022 14:21:49 +0000 (UTC)
+Received: from EX19D013UWB003.ant.amazon.com (10.13.138.111) by
+ EX13MTAUWB001.ant.amazon.com (10.43.161.207) with Microsoft SMTP Server (TLS)
+ id 15.0.1497.38; Thu, 1 Sep 2022 14:21:48 +0000
+Received: from EX13MTAUWB001.ant.amazon.com (10.43.161.207) by
+ EX19D013UWB003.ant.amazon.com (10.13.138.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1118.12;
+ Thu, 1 Sep 2022 14:21:49 +0000
+Received: from [192.168.93.228] (10.85.143.172) by mail-relay.amazon.com
+ (10.43.161.249) with Microsoft SMTP Server id 15.0.1497.38 via Frontend
+ Transport; Thu, 1 Sep 2022 14:21:43 +0000
+Message-ID: <0074475d-04bc-153a-2df8-dd5f7d014c97@amazon.com>
+Date:   Thu, 1 Sep 2022 17:21:43 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <YxC7+Pi4v3Bc1oXc@aptenodytes>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.1
+Content-Language: en-US
+To:     Andy Shevchenko <andriy.shevchenko@intel.com>
+CC:     <jdelvare@suse.com>, <linux@roeck-us.net>, <robh+dt@kernel.org>,
+        <p.zabel@pengutronix.de>, <rtanwar@maxlinear.com>,
+        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <talel@amazon.com>,
+        <hhhawa@amazon.com>, <jonnyc@amazon.com>, <hanochu@amazon.com>,
+        <ronenk@amazon.com>, <itamark@amazon.com>, <shellykz@amazon.com>,
+        <shorer@amazon.com>, <amitlavi@amazon.com>, <almogbs@amazon.com>,
+        <dkl@amazon.com>, "Farber, Eliav" <farbere@amazon.com>
+References: <20220830192212.28570-1-farbere@amazon.com>
+ <20220830192212.28570-20-farbere@amazon.com>
+ <Yw9Q5krebHnb73vC@smile.fi.intel.com>
+From:   "Farber, Eliav" <farbere@amazon.com>
+In-Reply-To: <Yw9Q5krebHnb73vC@smile.fi.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-11.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_SPF_WL autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 01, 2022 at 04:04:40PM +0200, Paul Kocialkowski wrote:
-> Hi Laurent,
-> 
-> On Fri 26 Aug 22, 21:59, Laurent Pinchart wrote:
-> > Hi Paul,
-> > 
-> > Thank you for the patch.
-> > 
-> > On Fri, Aug 26, 2022 at 08:28:02PM +0200, Paul Kocialkowski wrote:
-> > > MIPI CSI-2 is supported on the A83T with a dedicated controller that
-> > > covers both the protocol and D-PHY. It can be connected to the CSI
-> > > interface as a V4L2 subdev through the fwnode graph.
-> > > 
-> > > This is not done by default since connecting the bridge without a
-> > > subdev attached to it will cause a failure on the CSI driver.
-> > 
-> > No urgency, but would it be possible to fix this so that the CSI-2
-> > receiver can be connected to the CSI unconditionally in DT ? The
-> > connection exists at the hardware level in the SoC, and should thus
-> > exist here too, regardless of whether or not a sensor is connected.
-> 
-> Yes it's true that having the link always would be legitimate.
-> 
-> For the context, this CSI controller can be switched between the MIPI CSI-2
-> controller and a parallel sensor input (i.e. it's not dedicated to one or the
-> other like on the V3).
-> 
-> Last time I tried, having the connection between the two always there resulted
-> in the unability to use a parallel sensor when no sensor is attached to the
-> mipi csi-2 receiver. Probably because the async notifier never completes since
-> the mipi csi-2's subdev is never registered without a sensor subdev attached.
-> 
-> Do you see a way to handle this case properly?
+On 8/31/2022 3:15 PM, Andy Shevchenko wrote:
+> On Tue, Aug 30, 2022 at 07:22:12PM +0000, Eliav Farber wrote:
+>> Fix: "ERROR: space required before the open parenthesis '('"
+>
+> This patch may have other fixes like adding new blank lines (noted in one
+> of the patches in the series), etc.
+This patch fixed a specific space error which existed before my changes
+and repeated many time.
+I fixed the blank line I added a previous patch (but is it isn’t an error
+reported by checkpatch).
 
-It sounds like an issue in the CSI-2 receiver driver. If there's no
-input device attached to it, it should register its subdev directly,
-without its own async notifier.
-
-> > > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > > ---
-> > >  arch/arm/boot/dts/sun8i-a83t.dtsi | 26 ++++++++++++++++++++++++++
-> > >  1 file changed, 26 insertions(+)
-> > > 
-> > > diff --git a/arch/arm/boot/dts/sun8i-a83t.dtsi b/arch/arm/boot/dts/sun8i-a83t.dtsi
-> > > index 82fdb04122ca..ecf9f3b2c0c0 100644
-> > > --- a/arch/arm/boot/dts/sun8i-a83t.dtsi
-> > > +++ b/arch/arm/boot/dts/sun8i-a83t.dtsi
-> > > @@ -1064,6 +1064,32 @@ csi: camera@1cb0000 {
-> > >  			status = "disabled";
-> > >  		};
-> > >  
-> > > +		mipi_csi2: csi@1cb1000 {
-> > > +			compatible = "allwinner,sun8i-a83t-mipi-csi2";
-> > > +			reg = <0x01cb1000 0x1000>;
-> > > +			interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
-> > > +			clocks = <&ccu CLK_BUS_CSI>,
-> > > +				 <&ccu CLK_CSI_SCLK>,
-> > > +				 <&ccu CLK_MIPI_CSI>,
-> > > +				 <&ccu CLK_CSI_MISC>;
-> > > +			clock-names = "bus", "mod", "mipi", "misc";
-> > > +			resets = <&ccu RST_BUS_CSI>;
-> > > +			status = "disabled";
-> > > +
-> > > +			ports {
-> > > +				#address-cells = <1>;
-> > > +				#size-cells = <0>;
-> > > +
-> > > +				mipi_csi2_in: port@0 {
-> > > +					reg = <0>;
-> > > +				};
-> > > +
-> > > +				mipi_csi2_out: port@1 {
-> > > +					reg = <1>;
-> > > +				};
-> > > +			};
-> > > +		};
-> > > +
-> > >  		hdmi: hdmi@1ee0000 {
-> > >  			compatible = "allwinner,sun8i-a83t-dw-hdmi";
-> > >  			reg = <0x01ee0000 0x10000>;
-
--- 
-Regards,
-
-Laurent Pinchart
+--
+Regards, Eliav
