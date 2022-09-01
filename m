@@ -2,117 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39ADF5A9DC8
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 19:09:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B11D85A9DCB
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 19:10:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233284AbiIARJb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 13:09:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37540 "EHLO
+        id S234059AbiIARKe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 13:10:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231211AbiIARJa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 13:09:30 -0400
-Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1FE399B75;
-        Thu,  1 Sep 2022 10:09:29 -0700 (PDT)
-Received: by mail-pl1-x62d.google.com with SMTP id f24so14908598plr.1;
-        Thu, 01 Sep 2022 10:09:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date;
-        bh=XgF6M+PesVCHLnmf4Eb7PhlD2u/USZTKAxq3q69SaJU=;
-        b=bUs4FdCTWSx5vGjXpm6LgmxaZOlRC/tQydw2BeeYM+xctCYyL+czt6AtjIpG53REJy
-         nyewjQo8axtQXv9ri4O1QBvpwbrxzVMJQVRdSpL4n+gkWOu2tbV4YpUsyJCZJfEhrCoa
-         /R9K9jyAN/gwOcR+0umcoo8IQHdh9T8/nJxYfb/5wTF+eUdkj7tS0jCGB9GWibfUhS62
-         2oguby9g4snfiHGUC3kS+Q1UA+1m4YoRcZrN+2vyjKFCMWUl8C6ebEHeu3RvgvmPBOFi
-         YUOgnt4ulbW3oFSc9ZxW86PoTVIvacKoyaHDGc5/9RWQ/Hl0DNrtQKFwV4G7zHIo8N/D
-         Tz6w==
+        with ESMTP id S233560AbiIARKd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 13:10:33 -0400
+Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D992D558E1;
+        Thu,  1 Sep 2022 10:10:31 -0700 (PDT)
+Received: by mail-qt1-f174.google.com with SMTP id l5so13954179qtv.4;
+        Thu, 01 Sep 2022 10:10:31 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date;
-        bh=XgF6M+PesVCHLnmf4Eb7PhlD2u/USZTKAxq3q69SaJU=;
-        b=CwTV1W44eU5k42cdEXq2rLU5JwHjS2q63HGDJaS4XPfLezVXaX7HsfDOyfFbVDBLiZ
-         VvRIw/egfhN5p7fZTDfnGLzgZhRxtpS7wHlqQ9lIxVKx2JstWZp4cH2enYHVV+H+BQj4
-         8uSGzmba0E/I7DTyuzbqCsZPiFNi1sZ6EJJLzbhJaSKcqL1ikdY7JebD533hZgpk+DVf
-         1lS0jB/kqI7+9jtnx9wbwNChKiQEgk0OoaU6k957etjQobXNQpjgIhfNyh6OsKm/8Ri+
-         5/3PUp78CijPYJSN2+B+4WSsrjW1gYWtvRuQbmGvp/LX3ICWfUhUn6Stq2M/ELgjX28O
-         3rOw==
-X-Gm-Message-State: ACgBeo2HuSfovfYQfCq6FgDib93QW3KQJOHABIeqy43YGTk192gJmOMg
-        PsZZAKM1Q4LbMB48piXaBds=
-X-Google-Smtp-Source: AA6agR4e6SNoTLmIBA9axTSFeTDJ7og8kmTIYzM4AhFbrB9ucFhLLgA/Jt5KVFl8sfZpx7Or349LfA==
-X-Received: by 2002:a17:90b:4a8e:b0:1fe:1df3:bb11 with SMTP id lp14-20020a17090b4a8e00b001fe1df3bb11mr162994pjb.22.1662052169238;
-        Thu, 01 Sep 2022 10:09:29 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id y187-20020a6232c4000000b00537daf64e8esm12244277pfy.188.2022.09.01.10.09.26
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=4KmeqDd8PfnUzUpXpZxbTzeeJqhW5o6jQQAlhmqw40s=;
+        b=YwhK/rC1bmCRYdnQz3MT1xhkvT2SIG8CJn3v/08jeThFvFQtUCUEAlgyqI9L1uftE9
+         ZLq8vRWHmTf4+hli/CjCGpmQu03CTEp07L51v7Hm/Spr4I/BcmPHkj8grLfthmui+lyu
+         GAP0r3Exp6ug/wUYX+5hVMNWKYdZX7Y+n0akgTFaNvzWof76jm3JeGmRmqvgK/ksytUO
+         dJtwRzNuuoChfiMPLQEDvBY9K1OSC7MvLJkmOzpRrw2J1JO+HnjXi956URTsw6kEi1Cy
+         NArk/fP5sUA3U/3+AkEhShPxOo00JRrhnlaVBqzWTpIh0nZYfYY/qhJuLMihKCKxw1vK
+         VGOg==
+X-Gm-Message-State: ACgBeo3Oe58llEwgdpxA7cPuYplZEzY1KReXkh3C/QrYCAE3lH4GDww8
+        68DG6oFGFnknPoxzas7DuAGnztVEtIfp2Q==
+X-Google-Smtp-Source: AA6agR6UX68c74d8sFwJsN8ygjrgR5xJMnmZGKdEoWJe0W/JqPrRRjMpg+rKy4ANvcp1XqtsQ+mM5Q==
+X-Received: by 2002:ac8:57d6:0:b0:344:997f:557 with SMTP id w22-20020ac857d6000000b00344997f0557mr24619520qta.345.1662052230801;
+        Thu, 01 Sep 2022 10:10:30 -0700 (PDT)
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com. [209.85.219.180])
+        by smtp.gmail.com with ESMTPSA id m27-20020a05620a13bb00b006bbf85cad0fsm11643418qki.20.2022.09.01.10.10.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Sep 2022 10:09:27 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <4337076c-9585-9650-5646-ee3f90bd5787@roeck-us.net>
-Date:   Thu, 1 Sep 2022 10:09:25 -0700
+        Thu, 01 Sep 2022 10:10:30 -0700 (PDT)
+Received: by mail-yb1-f180.google.com with SMTP id y197so9514772yby.13;
+        Thu, 01 Sep 2022 10:10:30 -0700 (PDT)
+X-Received: by 2002:a25:415:0:b0:696:814:7c77 with SMTP id 21-20020a250415000000b0069608147c77mr20049456ybe.36.1662052230126;
+ Thu, 01 Sep 2022 10:10:30 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v3 19/19] hwmon: (mr75203) fix coding style space errors
-Content-Language: en-US
-To:     "Farber, Eliav" <farbere@amazon.com>
-Cc:     Andy Shevchenko <andriy.shevchenko@intel.com>, jdelvare@suse.com,
-        robh+dt@kernel.org, p.zabel@pengutronix.de, rtanwar@maxlinear.com,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, talel@amazon.com, hhhawa@amazon.com,
-        jonnyc@amazon.com, hanochu@amazon.com, ronenk@amazon.com,
-        itamark@amazon.com, shellykz@amazon.com, shorer@amazon.com,
-        amitlavi@amazon.com, almogbs@amazon.com, dkl@amazon.com
-References: <20220830192212.28570-1-farbere@amazon.com>
- <20220830192212.28570-20-farbere@amazon.com>
- <Yw9Q5krebHnb73vC@smile.fi.intel.com>
- <0074475d-04bc-153a-2df8-dd5f7d014c97@amazon.com>
- <20220901144633.GC3477025@roeck-us.net>
- <2d907196-02c5-ea25-4438-04de77282e75@amazon.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-In-Reply-To: <2d907196-02c5-ea25-4438-04de77282e75@amazon.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+References: <20220901162919.47090-1-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20220901162919.47090-1-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 1 Sep 2022 19:10:19 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdW0ZG3ENobSP-0wS9WhpmPqLt91Omauj5wMOthfBLsoOA@mail.gmail.com>
+Message-ID: <CAMuHMdW0ZG3ENobSP-0wS9WhpmPqLt91Omauj5wMOthfBLsoOA@mail.gmail.com>
+Subject: Re: [PATCH v4] ARM: dts: r9a06g032-rzn1d400-db: Enable CAN2
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/1/22 08:31, Farber, Eliav wrote:
-> On 9/1/2022 5:46 PM, Guenter Roeck wrote:
->> On Thu, Sep 01, 2022 at 05:21:43PM +0300, Farber, Eliav wrote:
->>> On 8/31/2022 3:15 PM, Andy Shevchenko wrote:
->>> > On Tue, Aug 30, 2022 at 07:22:12PM +0000, Eliav Farber wrote:
->>> > > Fix: "ERROR: space required before the open parenthesis '('"
->>> >
->>> > This patch may have other fixes like adding new blank lines (noted in one
->>> > of the patches in the series), etc.
->>> This patch fixed a specific space error which existed before my changes
->>> and repeated many time.
->>> I fixed the blank line I added a previous patch (but is it isn’t an error
->>> reported by checkpatch).
->>
->> That should really be fixed where it was introduced, not be introduced
->> and fixed here.
-> 
-> 
-> So what do you suggest?
-> I can drop the patch from this series and ignore it or move it to be the
-> first patch in the series, or publish it separately later on.
-> I had it because it was annoying seeing existing checkpatch errors when
-> I came to check my change.
-> 
+Hi Biju,
 
-Sorry, you lost me. I referred to "I fixed the blank line I added
-a previous patch". That should not be fixed in this patch but be dropped
-from the patch where you introduced it. Did I misunderstand your comment ?
+On Thu, Sep 1, 2022 at 6:29 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> Enable CAN2 on RZ/N1-EB board by default.
+> Also add a macro to enable CAN1, if the board
+> support it.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+> v3->v4:
+>  * Updated commit descriptiom
+>  * Enabled CAN2 by default
+>  * Added a macro BOARD_HAS_CAN1_ENABLED to configure CAN1,
+>    if the board supports it.
 
-Guenter
+Thanks for the update!
+
+> --- a/arch/arm/boot/dts/r9a06g032-rzn1d400-db.dts
+> +++ b/arch/arm/boot/dts/r9a06g032-rzn1d400-db.dts
+> @@ -26,6 +26,22 @@ aliases {
+>         };
+>  };
+>
+> +#if BOARD_HAS_CAN1_ENABLED /* CN10 on RZ/N1-EB board */
+> +&can0 {
+> +       pinctrl-0 = <&pins_can0>;
+> +       pinctrl-names = "default";
+> +
+> +       status = "okay";
+> +};
+> +#endif
+> +
+> +&can1 {
+> +       pinctrl-0 = <&pins_can1>;
+> +       pinctrl-names = "default";
+> +
+> +       status = "okay";
+> +};
+
+AFAIU, CN10 and CN11 are not the real CAN connectors, they are headers
+to add jumpers to select which CAN interface to route to the real CAN
+connector J16.
+
+Hence I was thinking of something along the line:
+
+    #ifdef BOARD_HAS_CAN1_ENABLED
+    &can0 {
+           pinctrl-0 = <&pins_can0>;
+           pinctrl-names = "default";
+
+           status = "okay";
+    };
+    #else
+    &can1 {
+           pinctrl-0 = <&pins_can1>;
+           pinctrl-names = "default";
+
+           status = "okay";
+    };
+    #endif
+
+or:
+
+   &can0 {
+           pinctrl-0 = <&pins_can0>;
+           pinctrl-names = "default";
+
+           /* Assuming CN10/CN11 are wired for CAN1 */
+           status = "okay";
+    };
+
+    &can1 {
+           pinctrl-0 = <&pins_can1>;
+           pinctrl-names = "default";
+
+           /* Please only enable can0 or can1, depending on CN10/CN11 */
+           /* status = "okay"; */
+    };
+
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
