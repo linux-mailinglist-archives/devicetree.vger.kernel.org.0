@@ -2,322 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 004805A9817
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 15:07:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 528BB5A981B
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 15:10:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234019AbiIANHo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 09:07:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49614 "EHLO
+        id S233617AbiIANKF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 09:10:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233831AbiIANHV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 09:07:21 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89B50BA9F9;
-        Thu,  1 Sep 2022 06:01:46 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id A3C356D1;
-        Thu,  1 Sep 2022 15:00:28 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1662037228;
-        bh=Ek9xvHUgwJfU0sGMBKk7EZKPxBzprp7PA6EP8DsGhOM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=P0jnZzLba+sh/JxiGcynNr6Vl2uXafSKWfXEH/m69Ns2VWCAdnEAh5n81ie2KJRsl
-         xS4pJtVkL0kjnKyvUl0lXMou8TR3kVUrq6dchX6x7N3TPgLaWqnhjCy2u2muFaTBG8
-         iBYagt0uTj2QOdJ9rvFqQcps3RsA+K4Xk/DGvwv0=
-Date:   Thu, 1 Sep 2022 16:00:17 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        =?utf-8?B?S8OpdmluIEwnaMO0cGl0YWw=?= <kevin.lhopital@bootlin.com>
-Subject: Re: [PATCH NOT FOR MERGE v5 6/6] ARM: dts: sun8i: a83t: bananapi-m3:
- Enable MIPI CSI-2 with OV8865
-Message-ID: <YxCs4fhx+Qx7uCAF@pendragon.ideasonboard.com>
-References: <20220826182803.604563-1-paul.kocialkowski@bootlin.com>
- <20220826182803.604563-7-paul.kocialkowski@bootlin.com>
- <YwkaFC2tm96X5qon@pendragon.ideasonboard.com>
- <YxCqZ8GhiTJlZ8MC@aptenodytes>
+        with ESMTP id S233674AbiIANJp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 09:09:45 -0400
+Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2067.outbound.protection.outlook.com [40.107.105.67])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDFE197D67;
+        Thu,  1 Sep 2022 06:03:50 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XKsM3IPM3FO0w4T4YdqFzWyVgEfdAFJjISbqNqTCqrEGQGxQibrGJDiM1oQ6J1j5r2zAXJ7rkWrJ4RCCE8wNh6jiPWf64z3ulFVmp+T7Q7xePhcxUBhJeoA+ejOv/SX903oFXamCwwsR5qOZ17l4qAS+Zw42a+M938g/+MjFbAV/mPH9NvETBbwItG1IokzhGvdgp5bcpG9Kk1AVfGt1a/E1zsKi9E6dlD903kO0hti3J+pmt4LYlI4HvO3KdQnE3g8L3mdpRHf0cds2uQthx/Ma8JMv/4GEiLCM1s0uDMYjM5wA8RbDL9t6y7JWtXv79+IeK98Nfa1IbJl/oIW5kg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ri77GmvxCqd4U9CEeUqn4zwAkAbj7kWzPkrcbwlmo4g=;
+ b=C2naZk12laRjPGKaGFeELokwkgAGkA/IT5HGb8szhzBCw1/VBL33cPWULHheSSYqnf2lyBPOCkJ6ujH0TRvfmRy5fezvjlfxFPgRH57s/6WnK/1WGRHzanLWAyNIxH7rKMGVVwStTeBQduzVLsHA6TXPfnyi6Q61ewjUBrU03VSriLWScv+CBubEIFljUggoOgS1WFe8AZPuDnX+87lWCMUQq4tNnEUKV3HiA0vJbaMhnyXh/8Wged+QXsv39juMmh7eEkANAWjOCS0Qn/xWxHbOOpLKeK9DvbO40iyu8ISl4EdH2HquZfKvd0n27vUJVCegN8WdX/hJWznjUNqrIw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=siemens.com; dmarc=pass action=none header.from=siemens.com;
+ dkim=pass header.d=siemens.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ri77GmvxCqd4U9CEeUqn4zwAkAbj7kWzPkrcbwlmo4g=;
+ b=n0J4lmyy2rHjwwubx69wvuBNA9qr36Gca45xNPNNEUpTSCABXrN8KktBYTFxvZI0nngbuaF+08rKYEf6+PUDKkUEUduayFtqPGbkxIPStWKoZU77iwOCtAiD6uB55NJmYKyHX6GstzjgQGe1ypRrHH5vO7ikYzIznQUuRQ5Uvjt5orb9H80UvQNK/ihgqYJC9VbciM2xVe8NzLwHVdW9qNrhv82jN6/2/eAFUXFXS1JxfJBHlHsBp54giS378T1VLusnC+n0ik3jS5YsWQXxh16BkFbWXujJN0/LkmdLUsF1Yv3A6yCxlWn/zhV2zpQK11xVxzqjhZIJofdBtN/NHA==
+Received: from PAXPR10MB5520.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:23e::20)
+ by PAVPR10MB6909.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:328::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5566.15; Thu, 1 Sep
+ 2022 13:02:33 +0000
+Received: from PAXPR10MB5520.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::695d:d7f:8ddc:a2d9]) by PAXPR10MB5520.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::695d:d7f:8ddc:a2d9%6]) with mapi id 15.20.5588.011; Thu, 1 Sep 2022
+ 13:02:33 +0000
+From:   "Niedermayr, BENEDIKT" <benedikt.niedermayr@siemens.com>
+To:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "krzk@kernel.org" <krzk@kernel.org>,
+        "linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>
+CC:     "rogerq@kernel.org" <rogerq@kernel.org>,
+        "tony@atomide.com" <tony@atomide.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Subject: Re: [PATCH 0/3] omap-gpmc wait pin additions
+Thread-Topic: [PATCH 0/3] omap-gpmc wait pin additions
+Thread-Index: AQHYvgI/hpjh72GEa0+lb+9os+SZYK3Kii6A
+Date:   Thu, 1 Sep 2022 13:02:33 +0000
+Message-ID: <3ff40d3634db34e0e58762029e5e6bc950a29f43.camel@siemens.com>
+References: <20220901124144.1006238-1-benedikt.niedermayr@siemens.com>
+         <8b166d0d-2b09-55f6-8078-c791653f3349@kernel.org>
+In-Reply-To: <8b166d0d-2b09-55f6-8078-c791653f3349@kernel.org>
+Reply-To: "Niedermayr, BENEDIKT" <benedikt.niedermayr@siemens.com>
+Accept-Language: de-DE, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=siemens.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 07218e23-890a-4fa1-6f38-08da8c1a3c6b
+x-ms-traffictypediagnostic: PAVPR10MB6909:EE_
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: evGke5CdTq3ySljLWx67sSBzNUjivaC8vSC/G1lUsb/qwomWYHGJj7ozW7/iR31WhnS9Mry8Gf5BwAUbk3LnaREpTV2r0TVJs42tdMUYJ7K3nTaueCWsQgNbGYA3iRrllC3Vd/ltfid0nnqwkTlEbPxOw8fC+iIeZgf/zfK+O6vxDuWasvcjWsnYwb3ST/G0U4RB+Q37VUayJJ+gZ15mVJ4HR7K3IGlHGeWIs5GS+XRcQWXJe/sG4/O9R/uPA9XnxU08KxVOxio88buxKJbOL3Jju014H8slryZoPLWYDjs0UOWXoD70Bj2+v9ucPXYe5JpcRwXTc0oKqEz8d/vliTLmh4ylXVWFvIFCYXVIMK8lVLr14cfUD03Jp/ILkdUC/+7PJsFSruEZpwYHsOzdqDHGsBFmd5iYlo4T9c8qL7URNU9i0c0rGTwLIFuLeuhdM9P4cC2yeRMeqfKmSCCZoqiOUbvzaoj2F770C/DlARFPs6CIZOFHlr8Uk9LT4KZbSa6JcEqK+wt5H7kB1dBuAdovZ7V76OjQHLM6zEugfDSrVIIt4GGYBYURW11gClABRs/6XRqvvMkdn3Xzkfoiu4OlGVDCJqHBDyGiC5/PQ4BIOYXFBAZwOWjDLfxNSnWPnXzKPSww08g+gEzAj+YfQKbi/aiV5twHhZ+/A8MMRgtHGs8IG4yY822SIncL99iBVUeatMPgopT4Zy1aybTTiI46QoryHss+wPPer8LyoXVwYuQtt8d5q8cJTFw9fB+V
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR10MB5520.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230016)(4636009)(366004)(396003)(346002)(39860400002)(136003)(376002)(478600001)(91956017)(26005)(316002)(54906003)(8676002)(4326008)(86362001)(110136005)(76116006)(66476007)(66556008)(6486002)(64756008)(66446008)(66946007)(71200400001)(38070700005)(82960400001)(41300700001)(8936002)(5660300002)(36756003)(2616005)(38100700002)(6506007)(3450700001)(53546011)(2906002)(122000001)(186003)(6512007);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?QVdMMFRRYzN1ZjhPUmVnenZkQm92blFHZTZTMHIrUXlLb1htTFdremw2SnFR?=
+ =?utf-8?B?UFBmK0ZFWXIyVFpOTHFYOEh0ZTBoWkJUdTg0Y3dzYWVsZmtwaHRMbGhSZWdH?=
+ =?utf-8?B?SmNHUUFPNFZ4SjMrWTgwZTRpUldJWkw1UW1DdkRNSFJXMjNaOGxOR1hJN2M0?=
+ =?utf-8?B?Ry9NNmFGS0piNS9zbTc0TEhTM1NXUVF0N1JSSmRiZTJXbVlUMWZGRFJET24r?=
+ =?utf-8?B?cGZ3dlY1N0tsWTJDb21iZkxiR3didDRreVAwWkZvcHM0Y1NRNEc5OUt4QlYx?=
+ =?utf-8?B?bTk0N2xRbnJUcUYyeTBDR2RRZDVzL2pveVBQY1VYQWxQYkJ0U0FZSDlwVkdw?=
+ =?utf-8?B?QlFveElVQ0xpS2xXRnZKRTBKQjJodFpnZUZRc094cjJmb1RSNitBYzJVVU1h?=
+ =?utf-8?B?SDR4UGJCQzd0cW9Ra08zS251Z1ZWb1Fab2lKVmtGUkZ6cjEraWxaT1pQejZn?=
+ =?utf-8?B?TGU5cWVzYVBBQm1QdE1MdDJEV2crOUN4Zzg2UEZhSHg3VmYzcXpPa3ZMY1R5?=
+ =?utf-8?B?a3JoWGRJWSs2ZWhmVVpLeTY1dDNZN0h0azkrc3FOQjBNL1NoQkovdlZhbWpX?=
+ =?utf-8?B?UWNmMWlWYndzSXZFaC9wSElHL2xEUDY4cGFYczBpdis1Vmw5NVRXM2FHRDEr?=
+ =?utf-8?B?TnplSFo2TjJJeVQySTM3d3JUTWg1aStCejFVK3puV3JQOTBSdGVnYmh5MThO?=
+ =?utf-8?B?VVc0UEMwYW1yTDQ2Mm5pWENoNWhzeEU1SURaR1lzS0I2M1lQaHBHWVBSc1hG?=
+ =?utf-8?B?eUJqb0kya3gxYk9Kd1BhTjVXcFZiMEY0UjRGaGExR0hVVHlYSUduL1RmUnRh?=
+ =?utf-8?B?NmNPTjRLMnFnYUtsSWtxVGV1RytnZVZRb1JHQUhQY0I2d3ZVcHZPbFIxQUtC?=
+ =?utf-8?B?d3hEMGFzSjhEVjhRemd5dUVMOEh3UHR5MFdRSWpQdDgrK0xVb01NL0d4dXhM?=
+ =?utf-8?B?Z2hTZnRoNFFaV2FEOTRFYkJYczBodUxwWE5QbVdZK2I3Y0psSUdVMmlCRFhC?=
+ =?utf-8?B?YlZ3T055dXFORWErRFVCbUZTYUlIdTBZNjR5clRiRUpYRlEyVlBOVnJDM3h5?=
+ =?utf-8?B?RytDaExyU0h0VlVUQkV0OXNyQTFuYkd3dkJzNnF5REV5dm56dkhEM3RZdnBR?=
+ =?utf-8?B?ZjBmVnBVSEd5MXNKWncvZGdxT3M1QmFhb3M3ejlidzNPZWF5RkFFQ2lMUjcx?=
+ =?utf-8?B?MGliYjloT2wxSXJLaWhTQTdHaXdYMEtVK3NDdFpzcEJoS0p5ejNvZkFKMjJi?=
+ =?utf-8?B?TzhOSERaVUFaZWRxZW9yMmtQS1FsTlRqaXVwQkhlYlJ3NkJlVTJ2R2JVYTVV?=
+ =?utf-8?B?MXJpTnRxdDczMnNWV3NCVzBYcG5OUnJrZkpGK2NXYkxmRnBBUlpCZkFIcmJB?=
+ =?utf-8?B?OG1jcFFkWVl3OSsxUlljMTNqT0NSNTVBU2xDWGsrTldMdWNPbWxtVmxKckVm?=
+ =?utf-8?B?bXk0SERJYmpEOEN3dmxqVnk4djJiRW5IQjl3Ulc1NkJJOGt6eWVSdEFWc1ZF?=
+ =?utf-8?B?WHhBU3Urc1R0RTZlekEwcll3RUl6b3dlSHF1NHZuT2h4bGt1c3YzMlA2VVNw?=
+ =?utf-8?B?K21xbllGTFpnd2pJQndYMTVOTVJRYXd2bEp0b1RuMkYzMS9DRDdqaFNkTlNW?=
+ =?utf-8?B?eDhrMGxMMVV5S1JUZjRJSW1kY3ozZ0piOHl6Y3NvRFdrUDdJandxYkFRcVJY?=
+ =?utf-8?B?SllUVmRYbkpYbGE5NWJEbGx6d1c5WU5GT2pyTHpnbU9nVFlPbVg2Mmllend1?=
+ =?utf-8?B?ZmV4QU5Xais5Ulg0aWFlSUhIUCtTcHVPOGJQRUlSdmxxbmhHdm5FTHowNllk?=
+ =?utf-8?B?MUtWRnBNRTk4OWUrOFZTTUZ1aTI4eENoWkZONUxRbitsTmNUVlQrL2JLZVV0?=
+ =?utf-8?B?NE01NkZ6REZ2WWZBNmh3cUVPNGl6QTFySnBSMS9CM1M4MmFsRExZQ0pCTmdO?=
+ =?utf-8?B?K2dpa0FaQVcvOHNGQ0NKZW8xc3lXb28vUGlsakEzWGllKzhGb0l5a1BKc081?=
+ =?utf-8?B?alVaTHo1dEFEWkxobXorMHhKbERpWG5WSVdvYzJqejF5Q0dRY3IwaGplT3VT?=
+ =?utf-8?B?UllrZ2RRTzIwck1Mdi82a01YUm9WQlN3RlNlb2pQYU1wQTlWUGRlSGdneXg1?=
+ =?utf-8?B?TTdDWVlJa3QzU1FrTXM3QlRaQWdVZ0Q4dFlBTjVMOC9WcTFzWklUbzh5cStO?=
+ =?utf-8?Q?m6blIitr+e/G5eYUKtbzGoE=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <DD5D5A9BFACAEC4BB29FEF251BA8358C@EURPRD10.PROD.OUTLOOK.COM>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <YxCqZ8GhiTJlZ8MC@aptenodytes>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-OriginatorOrg: siemens.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR10MB5520.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 07218e23-890a-4fa1-6f38-08da8c1a3c6b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Sep 2022 13:02:33.6746
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Y7Dzkogd2tvU50yij6eE5ZKtHzh93SCZduMHwZ9phBR5dIhXcyivnaVfqk1EiOXs9LoVjRj82x2vGFWAyA1MzVQ2cyJzwyEZYC2b8kBqKDE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAVPR10MB6909
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 01, 2022 at 02:49:43PM +0200, Paul Kocialkowski wrote:
-> On Fri 26 Aug 22, 22:08, Laurent Pinchart wrote:
-> > On Fri, Aug 26, 2022 at 08:28:03PM +0200, Paul Kocialkowski wrote:
-> > > From: Kévin L'hôpital <kevin.lhopital@bootlin.com>
-> > > 
-> > > The Bananapi M3 supports a camera module which includes an OV8865 sensor
-> > > connected via the parallel CSI interface and an OV8865 sensor connected
-> > > via MIPI CSI-2.
-> > > 
-> > > The I2C2 bus is shared by the two sensors as well as the (active-low)
-> > > reset signal, but each sensor has it own shutdown line.
-> > 
-> > I see a single sensor in this file, am I missing something ?
-> 
-> Indeed this patch only adds the OV8865, not the OV5640 which is also present
-> on the same camera board extension.
-> 
-> A patch was submitted some time ago adding support for (only) the OV5640:
-> https://lore.kernel.org/lkml/20190408165744.11672-7-wens@kernel.org/
-
-OK. That's fine, let's just reword the commit message.
-
-> > Sounds like a perfect candidate for an overlay, it could then be merged
-> > upstream.
-> 
-> Do we have an upstream place to merge device-tree overlays now?
-
-They're accepted in the upstream kernel as far as I know, a git grep for
-/plugin/ in .dts files produces 18 matches.
-
-> I'll check if it's possible to describe both sensors together and actually
-> be able to select one or the other properly from userspace. Last time I tried
-> this wasn't possible: there's at least the shared reset GPIO used by both
-> sensors, which cannot be requested by the two drivers in parallel.
-> 
-> To be honest this is very poor hardware design and it was almost certainly
-> designed with the idea that only one sensor will be configured per boot.
-> See https://wiki.banana-pi.org/Camera and
-> https://drive.google.com/file/d/0B4PAo2nW2KfnOEFTMjZ2aEVGUVU/view?usp=sharing
-> for the schematics pdf
-
-It's not great indeed, but not that uncommon either (unfortunately). I
-wonder if we need some kind of reset GPIO API, but that would be a hack
-at most I think.
-
-> > > Signed-off-by: Kévin L'hôpital <kevin.lhopital@bootlin.com>
-> > > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > > ---
-> > >  arch/arm/boot/dts/sun8i-a83t-bananapi-m3.dts | 102 +++++++++++++++++++
-> > >  1 file changed, 102 insertions(+)
-> > > 
-> > > diff --git a/arch/arm/boot/dts/sun8i-a83t-bananapi-m3.dts b/arch/arm/boot/dts/sun8i-a83t-bananapi-m3.dts
-> > > index 5a7e1bd5f825..80fd99cf24b2 100644
-> > > --- a/arch/arm/boot/dts/sun8i-a83t-bananapi-m3.dts
-> > > +++ b/arch/arm/boot/dts/sun8i-a83t-bananapi-m3.dts
-> > > @@ -85,6 +85,30 @@ led-1 {
-> > >  		};
-> > >  	};
-> > >  
-> > > +	reg_ov8865_avdd: ov8865-avdd {
-> > > +		compatible = "regulator-fixed";
-> > > +		regulator-name = "ov8865-avdd";
-> > > +		regulator-min-microvolt = <2800000>;
-> > > +		regulator-max-microvolt = <2800000>;
-> > > +		vin-supply = <&reg_dldo4>;
-> > > +	};
-> > > +
-> > > +	reg_ov8865_dovdd: ov8865-dovdd {
-> > > +		compatible = "regulator-fixed";
-> > > +		regulator-name = "ov8865-dovdd";
-> > > +		regulator-min-microvolt = <2800000>;
-> > > +		regulator-max-microvolt = <2800000>;
-> > > +		vin-supply = <&reg_dldo4>;
-> > > +	};
-> > > +
-> > > +	reg_ov8865_dvdd: ov8865-dvdd {
-> > > +		compatible = "regulator-fixed";
-> > > +		regulator-name = "ov8865-dvdd";
-> > > +		regulator-min-microvolt = <1200000>;
-> > > +		regulator-max-microvolt = <1200000>;
-> > > +		vin-supply = <&reg_eldo1>;
-> > > +	};
-> > 
-> > Are those three regulators on the Banana Pi, or on the camera module ?
-> 
-> That's on the camera module.
-> 
-> > > +
-> > >  	reg_usb1_vbus: reg-usb1-vbus {
-> > >  		compatible = "regulator-fixed";
-> > >  		regulator-name = "usb1-vbus";
-> > > @@ -115,6 +139,23 @@ &cpu100 {
-> > >  	cpu-supply = <&reg_dcdc3>;
-> > >  };
-> > >  
-> > > +&csi {
-> > > +	status = "okay";
-> > > +
-> > > +	ports {
-> > > +		#address-cells = <1>;
-> > > +		#size-cells = <0>;
-> > > +
-> > > +		port@1 {
-> > > +			reg = <1>;
-> > 
-> > All of this (except the status = "okay") should go to sun8i-a83t.dtsi.
-> > 
-> > > +
-> > > +			csi_in_mipi_csi2: endpoint {
-> > > +				remote-endpoint = <&mipi_csi2_out_csi>;
-> > > +			};
-> > 
-> > This too actually, once the issue mentioned in patch 5/6 gets fixed.
-> > 
-> > > +		};
-> > > +	};
-> > > +};
-> > > +
-> > >  &de {
-> > >  	status = "okay";
-> > >  };
-> > > @@ -147,6 +188,36 @@ hdmi_out_con: endpoint {
-> > >  	};
-> > >  };
-> > >  
-> > > +&i2c2 {
-> > > +	pinctrl-names = "default";
-> > > +	pinctrl-0 = <&i2c2_pe_pins>;
-> > 
-> > This looks like a candidate for upstreaming in
-> > sun8i-a83t-bananapi-m3.dts, it shouldn't be in the overlay.
-> 
-> I2C2 is actually also exported in the PH pins, which is available on the board
-> header, so it's not obvious that using the PE pins should be the default.
-> 
-> The context is that Allwinner SoCs usually have a dedicated I2C controller for
-> cameras, but also route a "generic" I2C controller on the same pins.
-
-Out of curiosity, what features do those dedicated camera I2C
-controllers provide, compared to "normal" I2C controllers ?
-
-> Here that's on the PE14/15 pins. Since we don't have mainline support for this
-> camera-dedicated I2C controller, we end up routing the generic one to the PE
-> pins, which are routed to the camera connector.
-
-OK.
-
-> In the future we could add support for this camera-dedicated controller, which
-> would then allow routing i2c2 to the PH pins independently. This is what the
-> downstream Allwinner BSP kernel does.
-> 
-> > > +	status = "okay";
-> > > +
-> > > +	ov8865: camera@36 {
-> > > +		compatible = "ovti,ov8865";
-> > > +		reg = <0x36>;
-> > > +		pinctrl-names = "default";
-> > > +		pinctrl-0 = <&csi_mclk_pin>;
-> > > +		clocks = <&ccu CLK_CSI_MCLK>;
-> > > +		assigned-clocks = <&ccu CLK_CSI_MCLK>;
-> > > +		assigned-clock-rates = <24000000>;
-> > > +		avdd-supply = <&reg_ov8865_avdd>;
-> > > +		dovdd-supply = <&reg_ov8865_dovdd>;
-> > > +		dvdd-supply = <&reg_ov8865_dvdd>;
-> > > +		powerdown-gpios = <&pio 4 17 GPIO_ACTIVE_LOW>; /* PE17 */
-> > > +		reset-gpios = <&pio 4 16 GPIO_ACTIVE_LOW>; /* PE16 */
-> > > +
-> > > +		port {
-> > > +			ov8865_out_mipi_csi2: endpoint {
-> > > +				data-lanes = <1 2 3 4>;
-> > > +				link-frequencies = /bits/ 64 <360000000>;
-> > > +
-> > > +				remote-endpoint = <&mipi_csi2_in_ov8865>;
-> > > +			};
-> > > +		};
-> > > +	};
-> > > +};
-> > > +
-> > >  &mdio {
-> > >  	rgmii_phy: ethernet-phy@1 {
-> > >  		compatible = "ethernet-phy-ieee802.3-c22";
-> > > @@ -154,6 +225,24 @@ rgmii_phy: ethernet-phy@1 {
-> > >  	};
-> > >  };
-> > >  
-> > > +&mipi_csi2 {
-> > > +	status = "okay";
-> > > +};
-> > > +
-> > > +&mipi_csi2_in {
-> > > +	mipi_csi2_in_ov8865: endpoint {
-> > > +		data-lanes = <1 2 3 4>;
-> > > +
-> > > +		remote-endpoint = <&ov8865_out_mipi_csi2>;
-> > > +	};
-> > > +};
-> > > +
-> > > +&mipi_csi2_out {
-> > > +	mipi_csi2_out_csi: endpoint {
-> > > +		remote-endpoint = <&csi_in_mipi_csi2>;
-> > > +	};
-> > > +};
-> > > +
-> > >  &mmc0 {
-> > >  	pinctrl-names = "default";
-> > >  	pinctrl-0 = <&mmc0_pins>;
-> > > @@ -327,11 +416,24 @@ &reg_dldo3 {
-> > >  	regulator-name = "vcc-pd";
-> > >  };
-> > >  
-> > > +&reg_dldo4 {
-> > > +	regulator-always-on;
-> > 
-> > Does it have to be always on ?
-> 
-> Mhh so I realize the regulators handling here is quite messy.
-> I guess I didn't do such a good review of this patch internally.
-> 
-> The situation is that the regulators on the camera board all have their
-> enable pin tied to the DLDO4 output, but that would be best described as
-> a vin-supply of the ov8865 regulators above. Their real vin supply is an
-> always-on board-wide power source but I don't think we can represent another
-> regulator acting as enable signal in a better way.
-
-That's right. I've modeled that as a parent regulator in the past, even
-if it doesn't reflect the exact hardware topology, it's functionally
-equivalent.
-
-> Now beware that the camera board schematics are confusing as they show resistors
-> (R17, R18, R19, R20, R23) connecting some power lines together, but they are not
-> populated on the board (I guess the point is to make a variant of the design
-> without regulators on the camera board and to use ones from the PMU instead).
-> This probably confused Kevin and I back when this patch was made.
-> 
-> > > +	regulator-min-microvolt = <2800000>;
-> > > +	regulator-max-microvolt = <2800000>;
-> > > +	regulator-name = "avdd-csi";
-> > 
-> > Doesn't this belong to the base board .dts ? Same below.
-> > 
-> > > +};
-> > > +
-> > >  &reg_drivevbus {
-> > >  	regulator-name = "usb0-vbus";AVDD-CSI
-> > >  	status = "okay";
-> > >  };
-> > >  
-> > > +&reg_eldo1 {
-> > > +	regulator-min-microvolt = <1200000>;
-> > > +	regulator-max-microvolt = <1200000>;
-> > > +	regulator-name = "dvdd-csi-r";
-> > > +};
-> > > +
-> > >  &reg_fldo1 {
-> > >  	regulator-min-microvolt = <1080000>;
-> > >  	regulator-max-microvolt = <1320000>;
-
--- 
-Regards,
-
-Laurent Pinchart
+T24gVGh1LCAyMDIyLTA5LTAxIGF0IDE1OjU2ICswMzAwLCBLcnp5c3p0b2YgS296bG93c2tpIHdy
+b3RlOg0KPiBPbiAwMS8wOS8yMDIyIDE1OjQxLCBCLiBOaWVkZXJtYXlyIHdyb3RlOg0KPiA+IEZy
+b206IEJlbmVkaWt0IE5pZWRlcm1heXIgPGJlbmVkaWt0Lm5pZWRlcm1heXJAc2llbWVucy5jb20+
+DQo+ID4gDQo+ID4gVGhlcmUgaXMgY3VycmVudGx5IG5vIHBvc3NpYmlsaXR5IGZvciB0aGUgZ3Bt
+YyB0byBzZXQgZWl0aGVyIHRoZQ0KPiA+IHdhaXRwLXBpbiBwb2xhcml0eSBvciB1c2UgdGhlIHNh
+bWUgd2FpdC1waW4gZm9yIGRpZmZlcmVudCBjcy0NCj4gPiByZWdpb25zLg0KPiA+IA0KPiA+IFdo
+aWxlIHRoZSBjdXJyZW50IGltcGxlbWVudGF0aW9uIG1heSBmdWxsZmlsbCBtb3N0IHVzZWNhc2Vz
+LCBpdCBtYXkNCj4gPiBub3QNCj4gPiBiZSBzdWZmaWNpZW50IGZvciBtb3JlIGNvbXBsZXggc2V0
+dXBzIChlLmcuIEZQR0EvQVNJQyBpbnRlcmZhY2VzKSwNCj4gPiB3aGVyZSANCj4gPiBtb3JlIGNv
+bXBsZXggaW50ZXJmYWNpbmcgb3B0aW9ucyB3aGVyZSBwb3NzaWJsZS4NCj4gPiANCj4gPiBGb3Ig
+ZXhhbXBsZSBpbnRlcmZhY2luZyBhbiBBU0lDIHdoaWNoIG9mZmVycyBtdWx0aXBsZSBjcy1yZWdp
+b25zDQo+ID4gYnV0DQo+ID4gb25seSBvbmUgd2FpdHBpbiB0aGUgY3VycmVudCBkcml2ZXIgYW5k
+IGR0LWJpbmRpbmdzIGFyZSBub3QNCj4gPiBzdWZmaWNpZW50Lg0KPiA+IA0KPiA+IFdoaWxlIHVz
+aW5nIHRoZSBzYW1lIHdhaXRwaW4gZm9yIGRpZmZlcmVudCBjcy1yZWdpb25zIHdvcmtlZCBmb3IN
+Cj4gPiBvbGRlcg0KPiA+IGtlcm5lbHMgKDQuMTQpIHRoZSBvbWFwLWdwbWMuYyBkcml2ZXIgcmVm
+dXNlZCB0byBwcm9iZSAoLUVCVVNZKQ0KPiA+IHdpdGgNCj4gPiBuZXdlciBrZXJuZWxzICg+NS4x
+MCkuIA0KPiANCj4gUGxlYXNlIGJhc2UgeW91ciBwYXRjaGVzIG9uIGEgcmVjZW50IExpbnV4IGtl
+cm5lbCAoanVkZ2luZyBieSBDQyBsaXN0DQo+IHRoaXMgaXMgc29tZXRoaW5nIG9sZCkgLSBlaXRo
+ZXIgY3VycmVudCBSQyBvciBsaW51eC1uZXh0Lg0KPiANCj4gQmVzdCByZWdhcmRzLA0KPiBLcnp5
+c3p0b2YNCg0KDQouLi4gYW5kIGNyZWF0ZSBhIHYyIHBhdGNoIHNlcmllcyB0aGVuPw0KDQpCZXN0
+IHJlZ2FyZHMsDQoNCkJlbmVkaWt0DQoNCg==
