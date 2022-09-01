@@ -2,74 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B8715A9B8B
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 17:27:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7ECC55A9B9B
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 17:28:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234194AbiIAP0V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 11:26:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35602 "EHLO
+        id S234367AbiIAP2G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 11:28:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234216AbiIAP0O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 11:26:14 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA5786DAD7
-        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 08:26:03 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id k22so18253605ljg.2
-        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 08:26:03 -0700 (PDT)
+        with ESMTP id S234284AbiIAP1n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 11:27:43 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF14686B4B
+        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 08:27:15 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id z29so16366344lfb.13
+        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 08:27:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=uPrRBH+Jv2f8LkD1iC1unBDVUPhUrBZ4GLh1QznK7ko=;
-        b=bHFj7fh1Ln7mzIsawBUr7TggUod/drEWW+s/svH5nWu6XexvVN3IynW0Cdnu1ARv+z
-         pWagWD+W5UxRYkb29MZ4HLAp2QOX9McwC72YBF4Kz53xUUEiYLRCZdbPbv73hBdOiz2K
-         e5W2WtEeE0dwy3O1XhXyMLJ9WGexMRo+BN7E7CQQX3Pbx1ZfwZyhldgqg4QN2j7lwmc1
-         Mc3+pIcB5z9lNtyQ1W3WJ0XcOsnMUmMl7QMUN/rX4iSSM3aI08uzLn3HjTU0NBrgo/gx
-         eFj5WBZiuAHb66If8TpXEeKJdAf5e0n+NZL39RAmky5Rg7H8TwIelhTpjkTyJCCz+hXy
-         ASvQ==
+        bh=X9KQ23b6CvSbegXXQiEOeHHhGVk1r4ic1U1zcBzHBjQ=;
+        b=x7muZOPkg4SgHhIWNKhSTA8hJ5qf6JsZ1FtLBCLQNPmIprnxeVezHos4XOOrwXlG2q
+         1JgFHTKsEzZaWhZSsxxdhCPeFl0BVLtNAiJ+eIii/j6SH8ri017pnM/ZMYL5AgQ5mVqa
+         aOAgAEJ2PaawpMFlQyz2lB9ZlscdDjYsnJcmBfJQzD/rJgnzAJZjSyIV+1U6fgnOvtPN
+         39SzIXq2fNdLrUL78tc5oGrZLDsYMwOYj61SOjckeBIXhcC5+QtQ952vS0nWFCwlJ6N2
+         RNWkpfVh9ZkW0cLoob9eWON+UiXwhhaR4Glc+zxlvTxHgIE6U5dpwV+tAzvQ2dsgdEy+
+         9vPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=uPrRBH+Jv2f8LkD1iC1unBDVUPhUrBZ4GLh1QznK7ko=;
-        b=zWKivxC6NUGBkmvj401rE2erwuOdpPtrrNxRluZx2Xab9HBF/Q8TnA34agBdr+C5//
-         6rmkKmT/Z8E5fVEix2h0hxnrLgpfq6kvMzaKcs5SH3bYs4GW2cnzDLoUpSt/eqtaMqCb
-         IhIZVDbuYIQVBv+2PGimGD5e83loxE4fXLc0ha25iXx+GcbGZEr+GwdinUzIIO3I5Vr+
-         6v/6ET1hJUld+YEFrn77h9DlE2kvj9xGTQxlnQBhcirxknZ/iP1SPuxrgyJ1A63XaMyS
-         nS09ov6qneVkLY8G24FvH3Gc3Zme+qWDaL9W35cOt+bwg4ubuZeJ+bpSt0IyPYwcDybl
-         NlxQ==
-X-Gm-Message-State: ACgBeo1feKlfqdIM9du7v2E9rLLMSFqQj6o+2iupTOvl6pZFPe8ul+37
-        m2/2gMg3e4/4q3Bx6oxIa+XLdw==
-X-Google-Smtp-Source: AA6agR6JA6GBnBGknYQQv1bEljRj1wwgVKxesuxvpYL4LbpUp40krC6FUxmQJ8UzEq5aQKzSeHa+pw==
-X-Received: by 2002:a2e:8544:0:b0:267:7e5:a623 with SMTP id u4-20020a2e8544000000b0026707e5a623mr3972553ljj.5.1662045962069;
-        Thu, 01 Sep 2022 08:26:02 -0700 (PDT)
+        bh=X9KQ23b6CvSbegXXQiEOeHHhGVk1r4ic1U1zcBzHBjQ=;
+        b=dnBsMIOl/ys4JY3a9Uu05N7mqMjCFJdPC5zMILBnn9GtH8EH6Wmu5GvQdN5HWbG7BL
+         C90It711mN/3M4vpMwfdO4cyc/MnxbSPMn25y75tats7oBn0CeiZgA61VqeVtwx5nziE
+         MB6u1DTEdvh8MTcyKCKgWhxhWM+9f45/8jbwsCDC+nO0CCjOrgWwhyBqcTLlNSVs7hgy
+         YcD7pLyftoq1OOm2SG2Kf5NvnNWZusN4tWUXyXUMONlokVfKsc3GejrYxaj+2qLT3mqJ
+         PhzpUfuvzTX3tMsKg0zBsofeOGfamyIBLck7B/xDTnZyCjO9Ulv9/4nbYSkNKQ6VjV2H
+         xYYg==
+X-Gm-Message-State: ACgBeo1FkFV7s5yi6xkzVdaEwQY15SQyrevaUsr1zN+uX02ghLvfNqEb
+        L6ETZkaXpljnFQH6QNs4sYrqIQ==
+X-Google-Smtp-Source: AA6agR5yDs47h1XiyylqH70T9giJrRSzSDTycq9pkfnz/O9YBvml92ksajeOGkGt8Agra79qHKLMcw==
+X-Received: by 2002:a19:5f03:0:b0:494:66fc:c24a with SMTP id t3-20020a195f03000000b0049466fcc24amr6707097lfb.54.1662046033918;
+        Thu, 01 Sep 2022 08:27:13 -0700 (PDT)
 Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id p27-20020a056512139b00b00492dbf809e8sm1891758lfa.118.2022.09.01.08.25.59
+        by smtp.gmail.com with ESMTPSA id v10-20020a2ea60a000000b0025e4ab170e0sm2565191ljp.3.2022.09.01.08.27.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Sep 2022 08:26:00 -0700 (PDT)
-Message-ID: <7d28d450-c90a-398a-3074-5d8237fcd051@linaro.org>
-Date:   Thu, 1 Sep 2022 18:25:59 +0300
+        Thu, 01 Sep 2022 08:27:13 -0700 (PDT)
+Message-ID: <4ca517a4-c4a1-2359-7b60-86ac529ed741@linaro.org>
+Date:   Thu, 1 Sep 2022 18:27:12 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH 1/4] dt-bindings: interconnect: qcom,msm8998-bwmon: Add
- support for sc7280 BWMONs
+Subject: Re: [PATCH 2/4] soc: qcom: icc-bwmon: add support for sc7280 LLCC
+ BWMON
 Content-Language: en-US
 To:     Rajendra Nayak <quic_rjendra@quicinc.com>, agross@kernel.org,
         andersson@kernel.org, konrad.dybcio@somainline.org,
         robh+dt@kernel.org
 Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Nicolas Dechesne <nicolas.dechesne@linaro.org>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>
+        devicetree@vger.kernel.org
 References: <20220901124730.19460-1-quic_rjendra@quicinc.com>
- <20220901124730.19460-2-quic_rjendra@quicinc.com>
+ <20220901124730.19460-3-quic_rjendra@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220901124730.19460-2-quic_rjendra@quicinc.com>
+In-Reply-To: <20220901124730.19460-3-quic_rjendra@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,34 +79,27 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 01/09/2022 15:47, Rajendra Nayak wrote:
-> Add a compatible for the cpu BWMON (version 4) instance and one
-> for the llcc BWMON (version 5) found in sc7280 SoC.
-
-+Cc of few Linaro folks.
-
-Awesome! I see bwmon is being used! Rajendra, do you have any particular
-needs/todos for bwmon or other related pieces?
-
-
+> Add support for sc7280 BWMON instance measuring traffic between LLCC and
+> memory with the v5 register layout.
 > 
 > Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
 > ---
->  .../devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml    | 2 ++
->  1 file changed, 2 insertions(+)
+>  drivers/soc/qcom/icc-bwmon.c | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml b/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml
-> index 32e2892d736b..cac915c5c2aa 100644
-> --- a/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml
-> +++ b/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml
-> @@ -25,8 +25,10 @@ properties:
->        - items:
->            - enum:
->                - qcom,sdm845-bwmon
-> +              - qcom,sc7280-bwmon
+> diff --git a/drivers/soc/qcom/icc-bwmon.c b/drivers/soc/qcom/icc-bwmon.c
+> index 47c2c3e7bb3f..44a10009b45e 100644
+> --- a/drivers/soc/qcom/icc-bwmon.c
+> +++ b/drivers/soc/qcom/icc-bwmon.c
+> @@ -656,6 +656,18 @@ static const struct icc_bwmon_data sdm845_llcc_bwmon_data = {
+>  	.regmap_cfg = &sdm845_llcc_bwmon_regmap_cfg,
+>  };
+>  
+> +static const struct icc_bwmon_data sc7280_llcc_bwmon_data = {
+> +	.sample_ms = 4,
+> +	.count_unit_kb = 64,
 
-Could you put it in alphabetical order, so before sdm845?
-
-With above:
+This makes me wonder if I put correct count unit for SDM845 LLCC...
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
