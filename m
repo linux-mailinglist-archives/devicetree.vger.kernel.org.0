@@ -2,74 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3521C5A9169
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 09:59:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D7F35A9172
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 10:00:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232977AbiIAH7M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 03:59:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42968 "EHLO
+        id S231838AbiIAIA0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 04:00:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233106AbiIAH7L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 03:59:11 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25496EC4D0
-        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 00:59:09 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id bq23so23260714lfb.7
-        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 00:59:09 -0700 (PDT)
+        with ESMTP id S233233AbiIAIAZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 04:00:25 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3ECCE2EF31
+        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 01:00:23 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id z25so23268426lfr.2
+        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 01:00:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=L7sqAAOJxP1WjfnCK0LsqLsdwtS88VRISDffZ5pF7Vc=;
-        b=qyiljK+5+Ugo1ic7bm6XGoRAvpgCg6VzdBUCH3zDWGGy8oSFlNV0cpJJu3garEviPH
-         nBnRyVxkXMYhcESTLSIgtG6oOwfCwmmJMVyYlKHlSytuamx0KIBzagpT4Ce7OUeb9r0g
-         /CACAzse50Ulxj9QFVwEDDsqKCg1Kp02MXPi/z503yQMvosWqnxdql9vb0EWccl8t2tI
-         RtX5DhlEqSyo+245LB/NzsxGDPKoXWnx+Xr1jPiSjVeQvBiA2blm1WSn2NnRkXbgpUOw
-         dl7d00Q065h7Z6dSoqNl2pQr9xARko9mgkYUaPASeJ0707SDwy3e+Q3LWyDuv16GLB+X
-         Tp0w==
+        bh=TynraYZmwvnsyP0c6khsKu+S/6tBJIR8e5bMKJ6KpQI=;
+        b=oKVyHkYfy/f5Lcd+nOZsgltMvSyQfK5wgnQxF5IPy9427BkVcPGdX0QF1PNeaheT8Q
+         NxO+wERj0tuhG3azt88PDrCol16RwmrUyVUm8Tehd0lHorjXfRhIzmWf8IYTStBpxMhI
+         bqRJW0DYEUsZB2A8uyqkVKKmEuO3uaYTNpwoTlfnqGse+th9WPwMB+6wbNj7yCpCxyHC
+         z4KGo7VDS3Zw9zP9Zs04KQbYSAqPl80AwOP+odz95CUmqm/ds2/72SmGDMilKSpkNQpN
+         D2I1/b47jOJbxbOIRhmpD2wc41J/Iniwb24SLZSkrkoVc0mJtMyHdxT2A7aSq355vOfk
+         hIrA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=L7sqAAOJxP1WjfnCK0LsqLsdwtS88VRISDffZ5pF7Vc=;
-        b=DhZxos4UAJfLfShVc8q6MYZeQkhudGwudG/9yKsQAz90XR6YTZjHo32fZ/f2I3akas
-         s4N7x6OMygF9dfuto4MTD2zhEG2vhPcE8hH4EXGulVtZAM1jnpoMBS14Y6GqgtnsN2EB
-         A1REXgBaFlfwSHqzsOmHuuh8VjulJQKAmuGUssqLe12mw5mdJJppJBdiPKF9C3gB5Xwh
-         Mzw6ixdPtl10BbF5VldA3hSdGK3do0wQRAObVLNdKQL3oK1i43TGfy1f2m1g6wHOcsDB
-         YtwvCbO2onIkzU5S71h+W0Tu/0P14yEFzWnqASoMxaIscPa8nMTsbSiGFqSlXAFq3BOb
-         lqRA==
-X-Gm-Message-State: ACgBeo29IQvL8OwtCpVh5w7NDQO5O35jxKYPHuB6dB+KVP/b710P0sRM
-        tf7H5TYMRQJ7XiZeJTuluXSBOPSQBWpZl+nl
-X-Google-Smtp-Source: AA6agR6aKlAjE+pylywOkNx2nHTLBx1wa4FG0pdWR4G8EqFhg2XhxS3KWlzOF5iAl3qAp2XwDIhQDQ==
-X-Received: by 2002:a05:6512:3f0e:b0:48a:5edd:99b2 with SMTP id y14-20020a0565123f0e00b0048a5edd99b2mr9789917lfa.124.1662019147552;
-        Thu, 01 Sep 2022 00:59:07 -0700 (PDT)
+        bh=TynraYZmwvnsyP0c6khsKu+S/6tBJIR8e5bMKJ6KpQI=;
+        b=nIWSTPygeO2Cs+8LIWosWKt2sQhnQPm+tocqBVLqiV7x+hyycj3STmoSIM7B1+eivh
+         k4dfLvJvpsdvlElOWof4zXEHgE8q+HNqVGxbaGMA5t9RR83VZM9uPL39D5FQ/ufdnxm8
+         CIYvH9qW7Xc4n+UFM2LvShs5XI5jl2Fbqkf0Dn+Rg34ntsRw6HpQGfm0lvoHjL4B20hs
+         UYkSIIjnoleQ5iEQmTCpLoDNFOCnjhqu3Eq/DGaiu2I4pVasMVsf5yrgWe82R10bM/xQ
+         BjiD/9g2rgBrzfuAQ1EUW6YEo8VOzuZ/PZv27Yo9MsSHalNZWfjVXOxLUScU7wMfmqo+
+         ZKmA==
+X-Gm-Message-State: ACgBeo22ncYi5bwT6zfDjoxO98DD+VXghFXiFq9dYVHY88IQ17lBkPg4
+        z6hbFJxlL5XicJu1z5g9OaHIFg==
+X-Google-Smtp-Source: AA6agR7VAAayYfcPKyaCg7MjMFPpUP5L/6MhupsHausfoFm+pP4AMIV8Lu0e9pqjqsjz5Ad30138dA==
+X-Received: by 2002:a05:6512:1043:b0:48b:2d4b:a13e with SMTP id c3-20020a056512104300b0048b2d4ba13emr9855805lfb.19.1662019221504;
+        Thu, 01 Sep 2022 01:00:21 -0700 (PDT)
 Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id p8-20020ac24ec8000000b004948ddb4e4dsm517109lfr.301.2022.09.01.00.59.06
+        by smtp.gmail.com with ESMTPSA id t7-20020a056512208700b0048b13d0b896sm1413866lfr.141.2022.09.01.01.00.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Sep 2022 00:59:07 -0700 (PDT)
-Message-ID: <6295abda-e1d3-42fc-36af-8c59deaaf5e1@linaro.org>
-Date:   Thu, 1 Sep 2022 10:59:06 +0300
+        Thu, 01 Sep 2022 01:00:20 -0700 (PDT)
+Message-ID: <2f77e732-eb67-5b26-e695-610072c48976@linaro.org>
+Date:   Thu, 1 Sep 2022 11:00:19 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: sc7280: Add device tree for
- herobrine evoker
+Subject: Re: [PATCH 6/7] dt-bindings: spi: spi-zynqmp-qspi: Add support for
+ Xilinx Versal QSPI
 Content-Language: en-US
-To:     Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>,
-        LKML <linux-kernel@vger.kernel.org>
-Cc:     mka@chromium.org, dianders@chromium.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-References: <20220901061336.61386-1-sheng-liang.pan@quanta.corp-partner.google.com>
- <20220901141304.1.I7dd7a79c4cc5fe91c3feb004473feb3b34b7b2d8@changeid>
+To:     Amit Kumar Mahapatra <amit.kumar-mahapatra@xilinx.com>,
+        broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     git@amd.com, michal.simek@amd.com, linux-spi@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, akumarma@amd.com
+References: <20220901054731.7705-1-amit.kumar-mahapatra@xilinx.com>
+ <20220901054731.7705-7-amit.kumar-mahapatra@xilinx.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220901141304.1.I7dd7a79c4cc5fe91c3feb004473feb3b34b7b2d8@changeid>
+In-Reply-To: <20220901054731.7705-7-amit.kumar-mahapatra@xilinx.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,12 +79,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/09/2022 09:13, Sheng-Liang Pan wrote:
-> Add a basic device tree for the herobrine evoker board.
+On 01/09/2022 08:47, Amit Kumar Mahapatra wrote:
+> Add new compatible to support QSPI controller on Xilinx Versal SoCs.
 > 
-> Signed-off-by: Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
+> Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@xilinx.com>
+> ---
+>  Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml b/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
+> index ea72c8001256..b28a8c8f5e11 100644
+> --- a/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
+> +++ b/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
+> @@ -14,7 +14,11 @@ allOf:
+>  
+>  properties:
+>    compatible:
+> -    const: xlnx,zynqmp-qspi-1.0
+> +    oneOf:
+> +      - items:
 
-I am pretty sure I saw it... Where is the changelog and versioning?
+This does not make any sense... oneOf consisting of one item, list
+consisting of one item as well. I think you wanted here only enum.
 
 Best regards,
 Krzysztof
