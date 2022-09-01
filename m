@@ -2,54 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 385D95A9EEF
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 20:30:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EFF465A9F03
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 20:34:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232418AbiIAS31 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 14:29:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59350 "EHLO
+        id S233944AbiIASdu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 14:33:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39458 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231589AbiIAS31 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 14:29:27 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F7A87CB62;
-        Thu,  1 Sep 2022 11:29:26 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9319B6CD;
-        Thu,  1 Sep 2022 20:29:24 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1662056964;
-        bh=Z2PmbE+q+oRXUcaxQb4yleqabhSi7+sIU+fRtX1f08s=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=EC9PRlW04t2B9cCt+4wz2+8sQ2yp8ZM7K4V7wFcAu18ic4AGLGU00x4HynEEWPN2Q
-         Qz2NoygeN3lB+O3uKqaXMdjNbid1+cX2wo60JSgsJWl4n9pr++mwna1ahvOcnmbBYQ
-         uTEIOzPWZL7Zo/XQrQStWN6+c4w7jIunb8wj3B2s=
-Date:   Thu, 1 Sep 2022 21:29:13 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Max Krummenacher <max.oss.09@gmail.com>
-Cc:     Max Krummenacher <max.krummenacher@toradex.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Philippe Schenker <philippe.schenker@toradex.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>
-Subject: Re: [PATCH] arm64: dts: imx8mp-verdin: board regulators: add
- always-on
-Message-ID: <YxD5+RCYtzcxEdjj@pendragon.ideasonboard.com>
-References: <20220901110422.1859621-1-max.oss.09@gmail.com>
+        with ESMTP id S233907AbiIASds (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 14:33:48 -0400
+Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9E347E03E;
+        Thu,  1 Sep 2022 11:33:47 -0700 (PDT)
+Received: by mail-qt1-x82a.google.com with SMTP id c20so14123231qtw.8;
+        Thu, 01 Sep 2022 11:33:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=t4MOz4hyFM7udJrYf7fDh0BfCZhkVhHzgWpksUtpi5s=;
+        b=erTAgaZdSIzj2sCqSc9m32MKjOfn5KYlQQfGZKlS0tOKgOvXNpOYRvItMFB7gJoTxm
+         Et7RPS1etxX4HgAQpTeqJHU2ZEZOG0g9BC38gUsFbh553sbiDjqLCmJ4enAKjOc12lVx
+         O3xviAmhEHWAifpiUlj8tuZQogj2CgvT7AId/mFpcnJxM7v5fx8jmzKOHKuX6eterJtB
+         XCKdzzIu1gF5GKCdEm+X0ZNbCaRYYdCZzCg56R8PM7Dg4ME1mPEMLcZJXDQUSGFc0Q4k
+         B4T5w+e/biuFf+IRDH4nNDPHp5Vxgi7FeUvnFbTQyc/H3hH+E3KyHenEdJmYEjPHEZNg
+         VUcQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=t4MOz4hyFM7udJrYf7fDh0BfCZhkVhHzgWpksUtpi5s=;
+        b=sFJURSUE/atp9RZbJHN0ZeE3QTUJOTy98qbARGpCwW0WEkxxV5dpRKPyFZbgFmIEJU
+         cknfjeHIu/kles46e1b4gF9kWSHE8k7q+VxalV/H6jUBdFjWCxkoTE8bCZvtJ4DQaiMm
+         iL1WG5k42jScn3EPj0zY5b1JQM/AQNAyVE2hYmuLlW0na4U7vgP9IWOZ5p+UWSjWDtsq
+         2LWlYsYdQWa1bUN+5nWAmt7D/3naCYvUGCke/CE2HZI+79AFuieTIdRV8DAjOncA/75E
+         n6qBgKjk+qYsoYZPeUCNYgsHyzDN/p8uMsMOLk2KTa2fmhF6/HysduOVxWQ0q7+TT0R1
+         pz5Q==
+X-Gm-Message-State: ACgBeo1wcKOMPrFnf7IymdNcIUJyD6bMRIjEMVECXVkKHzVk+1e8Zo6i
+        6hySNL/NxIV4DgfQ2mogwwg=
+X-Google-Smtp-Source: AA6agR6xpDwOMPSvTKBAaMMhdvQUxT30aSC5TWYUPsxs76GlD60pP91bDsz2MOK3LAfdx0ZLpGnBMA==
+X-Received: by 2002:ac8:5b91:0:b0:344:55f7:da72 with SMTP id a17-20020ac85b91000000b0034455f7da72mr25122323qta.542.1662057226843;
+        Thu, 01 Sep 2022 11:33:46 -0700 (PDT)
+Received: from jesse-desktop.jtp-bos.lab (146-115-144-188.s4282.c3-0.nwt-cbr1.sbo-nwt.ma.cable.rcncustomer.com. [146.115.144.188])
+        by smtp.gmail.com with ESMTPSA id u20-20020ac87514000000b00342e86b3bdasm10563343qtq.12.2022.09.01.11.33.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Sep 2022 11:33:45 -0700 (PDT)
+From:   Jesse Taube <mr.bossman075@gmail.com>
+X-Google-Original-From: Jesse Taube <Mr.Bossman075@gmail.com>
+To:     linux-imx@nxp.com
+Cc:     robh+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, aisheng.dong@nxp.com, stefan@agner.ch,
+        linus.walleij@linaro.org, daniel.lezcano@linaro.org,
+        tglx@linutronix.de, arnd@arndb.de, olof@lixom.net, soc@kernel.org,
+        linux@armlinux.org.uk, abel.vesa@nxp.com, dev@lynxeye.de,
+        marcel.ziswiler@toradex.com, tharvey@gateworks.com,
+        leoyang.li@nxp.com, sebastian.reichel@collabora.com,
+        cniedermaier@dh-electronics.com, Mr.Bossman075@gmail.com,
+        clin@suse.com, giulio.benetti@benettiengineering.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-gpio@vger.kernel.org
+Subject: [PATCH v6 00/10]  Add support for i.MXRT1170-evk
+Date:   Thu,  1 Sep 2022 14:33:33 -0400
+Message-Id: <20220901183343.3188903-1-Mr.Bossman075@gmail.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220901110422.1859621-1-max.oss.09@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,61 +79,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Max,
+This patch continues support for the imxrt series now adding the imxrt1170
 
-(CC'ing Mark and Liam)
+This patch contains:
+- Update to imxrt_defconfig
+- Devicetree
+- Clock driver
+- Pinctrl driver
+- New pll
 
-Thank you for the patch.
+This patch also updates some documentation for both imxrt1170 an 1050.
 
-On Thu, Sep 01, 2022 at 01:04:22PM +0200, Max Krummenacher wrote:
-> From: Max Krummenacher <max.krummenacher@toradex.com>
-> 
-> These regulators are switched on by HW during power up and can not
-> be influenced by SW.
-> Set the always-on property.
+The i.MXRT1170 has a vast array of features including two cores,
+2 Ethernet, 2 USB phy, and a 2d gpu.
 
-Is this needed ? When a fixed regulator has no control GPIO or clock, as
-is the case here, I would expect the driver and/or regulator core to
-understand that it's always on, as the alternative is always-off, which
-is pointless :-) Mark, Liam, what do you think ?
+It also is featured in a new google coral board
+https://coral.ai/products/dev-board-micro
+Not affiliated unfortunately.
 
-> Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
-> 
-> ---
-> 
->  arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
-> index 557cfef8f049..76cc89296150 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
-> @@ -62,6 +62,7 @@ button-wakeup {
->  	/* Carrier Board Supplies */
->  	reg_1p8v: regulator-1p8v {
->  		compatible = "regulator-fixed";
-> +		regulator-always-on;
->  		regulator-max-microvolt = <1800000>;
->  		regulator-min-microvolt = <1800000>;
->  		regulator-name = "+V1.8_SW";
-> @@ -69,6 +70,7 @@ reg_1p8v: regulator-1p8v {
->  
->  	reg_3p3v: regulator-3p3v {
->  		compatible = "regulator-fixed";
-> +		regulator-always-on;
->  		regulator-max-microvolt = <3300000>;
->  		regulator-min-microvolt = <3300000>;
->  		regulator-name = "+V3.3_SW";
-> @@ -76,6 +78,7 @@ reg_3p3v: regulator-3p3v {
->  
->  	reg_5p0v: regulator-5p0v {
->  		compatible = "regulator-fixed";
-> +		regulator-always-on;
->  		regulator-max-microvolt = <5000000>;
->  		regulator-min-microvolt = <5000000>;
->  		regulator-name = "+V5_SW";
+---
+V1 -> V2:
+ - Add 3 new commits in documentation
+ - Fix spelling
+---
+
+Jesse Taube (10):
+  dt-bindings: arm: imx: Add i.MXRT compatible Documentation
+  dt-bindings: timer: gpt: Add i.MXRT compatible Documentation
+  dt-bindings: mmc: fsl-imx-esdhc: add i.MXRT1170 compatible
+  dt-bindings: serial: fsl-lpuart: add i.MXRT1170 compatible
+  ARM: mach-imx: Add support for i.MXRT1170
+  clk: imx: Update pllv3 to support i.MXRT1170
+  dt-bindings: imx: Add clock binding for i.MXRT1170
+  clk: imx: Add initial support for i.MXRT1170 clock driver
+  ARM: dts: imx: Add i.MXRT1170-EVK support
+  ARM: imxrt_defconfig: Add i.MXRT1170
+
+ .../devicetree/bindings/arm/fsl.yaml          |  12 +
+ .../bindings/mmc/fsl-imx-esdhc.yaml           |   4 +
+ .../bindings/serial/fsl-lpuart.yaml           |   3 +
+ .../devicetree/bindings/timer/fsl,imxgpt.yaml |   2 +
+ arch/arm/boot/dts/Makefile                    |   3 +-
+ arch/arm/boot/dts/imxrt1170-evk.dts           | 110 +++
+ arch/arm/boot/dts/imxrt1170.dtsi              | 276 +++++++
+ arch/arm/configs/imxrt_defconfig              |  17 +
+ arch/arm/mach-imx/mach-imxrt.c                |   1 +
+ drivers/clk/imx/Kconfig                       |   7 +
+ drivers/clk/imx/Makefile                      |   1 +
+ drivers/clk/imx/clk-imxrt1170.c               | 749 ++++++++++++++++++
+ drivers/clk/imx/clk-pllv3.c                   |  57 +-
+ drivers/clk/imx/clk.h                         |  11 +-
+ include/dt-bindings/clock/imxrt1170-clock.h   | 282 +++++++
+ 15 files changed, 1526 insertions(+), 9 deletions(-)
+ create mode 100644 arch/arm/boot/dts/imxrt1170-evk.dts
+ create mode 100644 arch/arm/boot/dts/imxrt1170.dtsi
+ create mode 100644 drivers/clk/imx/clk-imxrt1170.c
+ create mode 100644 include/dt-bindings/clock/imxrt1170-clock.h
 
 -- 
-Regards,
+2.36.1
 
-Laurent Pinchart
