@@ -2,78 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C4AC45A9D26
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 18:32:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC8BF5A9D3B
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 18:37:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232994AbiIAQbk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 12:31:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55062 "EHLO
+        id S234196AbiIAQhB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 12:37:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232665AbiIAQbj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 12:31:39 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 920BB62AB8;
-        Thu,  1 Sep 2022 09:31:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=LS2Woa4LuC44oMA7jdjUMP7C74QvndhsN+0OPg570ho=; b=hiDoRMTUYB2AzZo6c4oNEWXuTY
-        H7xyflAdZh1PxBlnzsU6luqs5zaHiwun4Het1j+FTqNVe3STnTtW2I+8NBIkIWVNyDf+AA9NQVOnW
-        Q5ht1B6aulg/+vV8j/BnyDSfGFT/v6HjUzgNHcLewBJdXk5CgRVqw3Yk4tEYSgygx+80=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1oTn5v-00FJtV-HL; Thu, 01 Sep 2022 18:31:07 +0200
-Date:   Thu, 1 Sep 2022 18:31:07 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Michael Walle <michael@walle.cc>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+        with ESMTP id S235070AbiIAQgs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 12:36:48 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D87267451
+        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 09:36:46 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id d5so9324236wms.5
+        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 09:36:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=UX8+/drfB0LYjWl3ZMYBdvnqKRofZz48IvTklCuKdy4=;
+        b=lT8+AtXKFyLlnH8w8rkpgnaXUj8cMRnMUQWCQq2I8u+As93kk81vSn1PF/Yqsm0V2j
+         R2DQqRNmiYIRLFT4F+3flE9TntJuWirnVfo/cHF/xGB6R4o7rfGjBUoqIo1MigzTKAEw
+         QnrZt/N6vKn+a69/1kAvnFU4SUp4pHHVT/m5brM4cNnsitqtO9LkUONEdmarZQB6U9Zu
+         WY2KXckflasp0rIQfzm9E5B03vRfJ4VxVH7sVUD0b8ZKw0CPfgfxGj0Ge1WttJ3vyRx9
+         sJ02PV7khg/C5VIVSsg1/GnFSudi4ocqPhT5URxq+13F9tTG8u+NMdzhYKtJ5ihvTsrD
+         Ko2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=UX8+/drfB0LYjWl3ZMYBdvnqKRofZz48IvTklCuKdy4=;
+        b=h6Eq/M8Bml/8LRobF8U6gVXoms+xXqsdSUnI0tqybep7tZUDgUy1O2UZkLn/W2XsDX
+         GypaCAG2pJASJST+WcLmJLbKv0gHvRLpqmEN8XnyEnxXmznHOAWESNkdrStAqLs8RxjP
+         aQg9Dt4b8BD3BVVb15YeBoL+tHamRKacCiqwe9vllF1LOl6fmHPDMDlr/kU3vq2tkCTo
+         udsYIes/8E+rL4MW2X1cV29FiO2JeN1jfYbpGKoAnjKUllnRTFtkXYYxYdmFn86+wAdp
+         qZU1sEGkL6t+IFzZ4TF6DW+Mx6GcGcrkIzpum1Qt0S79xI94XywwF8f7oKdCNC5Py62G
+         8V+A==
+X-Gm-Message-State: ACgBeo2XvMaHF37ciwjd17qlWToRIKuxREkS45eOdaLCWqOciyVdag/g
+        SuexIRjxYM2ap0qUt8aeMjDRWQ==
+X-Google-Smtp-Source: AA6agR5PtLEruNhaSErUwdXG85T497H72DcWeRB604VuwD/PaSChk2TaFxCLlfdV5v8XWYwXelmwuA==
+X-Received: by 2002:a05:600c:1e8d:b0:3a5:e37f:6fd2 with SMTP id be13-20020a05600c1e8d00b003a5e37f6fd2mr5805041wmb.33.1662050204396;
+        Thu, 01 Sep 2022 09:36:44 -0700 (PDT)
+Received: from lmecxl1178.lme.st.com ([2a04:cec0:113c:1b95:dcc0:68a1:a4ac:9dac])
+        by smtp.gmail.com with ESMTPSA id 12-20020a05600c028c00b003a317ee3036sm5767115wmk.2.2022.09.01.09.36.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Sep 2022 09:36:43 -0700 (PDT)
+From:   Etienne Carriere <etienne.carriere@linaro.org>
+To:     linux-kernel@vger.kernel.org
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        Etienne Carriere <etienne.carriere@linaro.org>,
+        Stephen Warren <swarren@nvidia.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Laxman Dewangan <ldewangan@nvidia.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        netdev@vger.kernel.org, Ahmad Fatoum <a.fatoum@pengutronix.de>
-Subject: Re: [PATCH v1 01/14] net: add helper eth_addr_add()
-Message-ID: <YxDeS2hAgP5C/Bla@lunn.ch>
-References: <20220825214423.903672-1-michael@walle.cc>
- <20220825214423.903672-2-michael@walle.cc>
- <1682967feab905d06402d0f8402799a8@walle.cc>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: [PATCH v2] dt-binding: gpio: publish binding IDs under dual license
+Date:   Thu,  1 Sep 2022 18:36:36 +0200
+Message-Id: <20220901163636.3930634-1-etienne.carriere@linaro.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1682967feab905d06402d0f8402799a8@walle.cc>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 01, 2022 at 06:26:39PM +0200, Michael Walle wrote:
-> Hi netdev maintainers,
-> 
-> Am 2022-08-25 23:44, schrieb Michael Walle:
-> > Add a helper to add an offset to a ethernet address. This comes in handy
-> > if you have a base ethernet address for multiple interfaces.
-> > 
-> > Signed-off-by: Michael Walle <michael@walle.cc>
-> 
-> Would it be possible to get an Ack for this patch, so I don't have
-> to repost this large (and still growing) series to netdev every time?
+Changes gpio.h DT binding header file to be published under GPLv2 or
+BSD-3-Clause license terms. This change allows these GPIO generic
+bindings header file to be used in software components as bootloaders
+and OSes that are not published under GPLv2 terms.
 
-Looks O.K. to me
+All contributors to gpio.h file in copy.
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Cc: Stephen Warren <swarren@nvidia.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>
+Cc: Laxman Dewangan <ldewangan@nvidia.com>
+Cc: Andrew Jeffery <andrew@aj.id.au>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Cc: Nuno Sá <nuno.sa@analog.com>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+
+Signed-off-by: Etienne Carriere <etienne.carriere@linaro.org>
+---
+Changes since v1:
+- Publish under BSD-2-Clause instead of BSD-3-Clause.
+- Remove Charles Keepax from CC list.
+
+---
+ include/dt-bindings/gpio/gpio.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/include/dt-bindings/gpio/gpio.h b/include/dt-bindings/gpio/gpio.h
+index 5566e58196a2..b5d531237448 100644
+--- a/include/dt-bindings/gpio/gpio.h
++++ b/include/dt-bindings/gpio/gpio.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: GPL-2.0 */
++/* SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause) */
+ /*
+  * This header provides constants for most GPIO bindings.
+  *
+-- 
+2.25.1
+
