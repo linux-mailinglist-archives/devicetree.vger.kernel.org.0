@@ -2,142 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FBA45A9A9F
+	by mail.lfdr.de (Postfix) with ESMTP id C7C9B5A9AA0
 	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 16:42:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232641AbiIAOjx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 10:39:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34066 "EHLO
+        id S234907AbiIAOlA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 10:41:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233808AbiIAOjt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 10:39:49 -0400
-Received: from EUR01-DB5-obe.outbound.protection.outlook.com (mail-eopbgr150080.outbound.protection.outlook.com [40.107.15.80])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C00ED84;
-        Thu,  1 Sep 2022 07:39:47 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OP4GgsFhHiHHugMerZC5ciIYKgEGIIbb6fqHAoTSDyQJb8KjGSO2+6oe5FZz2upx1Zg4GZW0eKlZgppGtsv0fLVw7gWTbJwiEgKe9PAjwjIpPoCTfWS1psTW2eh8RkZAlgz46sii9rVIpCuglo+351rlI1QgpWLuzRcEAfHI/w06D6FngQY9H+9cmr+ATL/Gk3oRbM4xgnC6QZXd1sve9GxhO+SvUzBbYLXtfm6OPmxfXm3pEYsOkO7lOcAgYoAAB6qr7gNzYk//0AnEepOnI086kvOxde9mvk1tuSv9aJDjuLBMr4c9lHsmiPt/8O4XsmpYP+e94nSuZ989AaSVTQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NCOoG7eglnuBplExhdJGpizQADODEGHd7XmYe93Uvy0=;
- b=CL50eGB9cgpxeJmIdpFoTAMOZOGhFoydHLazB1SxFCzoqcO5twFTSLMkoMxYXOeT30SO15uLCY4T6TogK0euVQQO7FIw/2YguPdCz5vv9ZCYHNhbzw7wimANeK0PrEtYVb68Z5lXm0jhMZ8ba3W9ehVske7anUs9qFxyxVUUGK//yHeLlHScJsyst3dICKjG133Re2hvjt0ay6dvbRcyYGdZJUaIJyg1KKKb3No3sl/+TQ0Nmq76lN8u7qFUb9X+Tfdr7IDgixT5EOQW2cAv2cTXmDjL1xzlLJ1eiGfpNxdNis8ZhTBKzM2XQ1n90uRB1iEUvsCbXxt3phFB7EBfiw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NCOoG7eglnuBplExhdJGpizQADODEGHd7XmYe93Uvy0=;
- b=Zof8oYIQLmoD3Jg61EaRF/GYscZ8k7e11JHN4WBSzgizz0E8WdME3Etk9RsFRBB/hCRT2PZMIk+ZNiyb4VlE/VYYNRCRcGrPNKeCBYb6lm+yh9uOo7qjd9Wm/CZpB+/2BzUSX5Izfxgp9+xK5skWDEbAalUv992G8nMhY/ee7Vg=
-Received: from AM9PR04MB8793.eurprd04.prod.outlook.com (2603:10a6:20b:408::22)
- by DBBPR04MB7834.eurprd04.prod.outlook.com (2603:10a6:10:1ee::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.11; Thu, 1 Sep
- 2022 14:39:44 +0000
-Received: from AM9PR04MB8793.eurprd04.prod.outlook.com
- ([fe80::1c3e:36a0:1adc:beb]) by AM9PR04MB8793.eurprd04.prod.outlook.com
- ([fe80::1c3e:36a0:1adc:beb%8]) with mapi id 15.20.5588.014; Thu, 1 Sep 2022
- 14:39:44 +0000
-From:   Frank Li <frank.li@nxp.com>
-To:     Frank Li <frank.li@nxp.com>, Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh@kernel.org>
-CC:     "tglx@linutronix.de" <tglx@linutronix.de>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kw@linux.com" <kw@linux.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
+        with ESMTP id S234982AbiIAOkk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 10:40:40 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D40E1286F9;
+        Thu,  1 Sep 2022 07:40:25 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id bj12so35118782ejb.13;
+        Thu, 01 Sep 2022 07:40:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=oGpl7pItr3EHWOEnJY9fD38ZGuHllIQRNMyk8Qf83dw=;
+        b=N1FwxgN9415RIK+wBsTxPPtNnGwIPbgqlexuoTp0gTyyukByY5D4/sBDFaGeTlPYxR
+         lOOhvFtuA+XrSCqIdLuIy948cFPddOMSkwMeeySAYhUbhZOYMWnbYCwysHXk0JsuG2oe
+         bjiJho+SAZ15MgrYG5g3xdxtjaCgG/2UGqF6XNbKrQD4GvPoKKyNEYrLLaWypSs0tE2c
+         6ydDKOelKqv/oB1+eC29Wr1gXl+d06QkhCbIv4bPGwda2G7FaME+L7l7Genx+GWwSw3h
+         l3GEL4XWP0aCHEeKT/IBP3Qa5ke3lC+4Te207qzJd7aFeuQLm3AZOZSHKDdOl8DN3yIV
+         DSvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=oGpl7pItr3EHWOEnJY9fD38ZGuHllIQRNMyk8Qf83dw=;
+        b=bRzLrkGeILM7oQ3pAPiChf6QXT+BUm0Iwa5u0bEVBdi/OUa7lnYQ34YisCg2c+jRyM
+         BCSDjZreGFTAu/SuKyEdo21hr8MsER8YWW7GzsVhXzcH03chpNGIOT5QHqH4p+IjuZ7K
+         7nIHbXUfYig8RVOgNduMdeo4xhQuzl5PoL3XcRUhLGoE3OMInNAh9iDJx+0E13Qa2VWO
+         kPqRuLa9XHJcizqVzfrJz3jGEb0aBZvqkKoUAHwFZ1qPCvuBZCCCP7bZUxRGMVEsHHtt
+         mSLLwqGvrUkfHrHZRpupsAl9bGeiqNQEEDaNWB9D/F66pWF+Vt9q5qg0C06Fh1blU17s
+         C1eA==
+X-Gm-Message-State: ACgBeo0YiVuBVXSEpw+mXueC0AGteJvsf/njzXuj8mA5c+sApWAQsV4b
+        b+I4KNdN77enzaO2tZ7nOAo=
+X-Google-Smtp-Source: AA6agR6vUjQ/0PGeVFFQqXilMO5abv4F+H//fFBMRDUOkeFHP0ANy2GnhjFcuD7PPmwTjhM6SNM+6w==
+X-Received: by 2002:a17:907:2cea:b0:741:6251:3a22 with SMTP id hz10-20020a1709072cea00b0074162513a22mr15534680ejc.6.1662043223741;
+        Thu, 01 Sep 2022 07:40:23 -0700 (PDT)
+Received: from orome (p200300e41f12c800f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f12:c800:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id kx3-20020a170907774300b0073d9630cbafsm8045006ejc.126.2022.09.01.07.40.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Sep 2022 07:40:22 -0700 (PDT)
+Date:   Thu, 1 Sep 2022 16:40:21 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Dmitry Osipenko <dmitry.osipenko@collabora.com>
+Cc:     Akhil R <akhilrajeev@nvidia.com>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Laxman Dewangan <ldewangan@nvidia.com>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
+        "wsa@kernel.org" <wsa@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        Peng Fan <peng.fan@nxp.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        "jdmason@kudzu.us" <jdmason@kudzu.us>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "kishon@ti.com" <kishon@ti.com>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "ntb@lists.linux.dev" <ntb@lists.linux.dev>,
-        "lznuaa@gmail.com" <lznuaa@gmail.com>
-Subject: RE: [EXT] Re: [PATCH v7 3/4] dt-bindings: irqchip: imx mu work as msi
- controller
-Thread-Topic: [EXT] Re: [PATCH v7 3/4] dt-bindings: irqchip: imx mu work as
- msi controller
-Thread-Index: AQHYtj8hCDDK+8gqVE2zOgMsKNOQwK3AJMoAgAAECGCAAV/WAIAAANrAgAA0JACABEI8MIAEtGHw
-Date:   Thu, 1 Sep 2022 14:39:44 +0000
-Message-ID: <AM9PR04MB87931AC89983976AE1CBBDA4887B9@AM9PR04MB8793.eurprd04.prod.outlook.com>
-References: <20220822155130.2491006-1-Frank.Li@nxp.com>
-        <20220822155130.2491006-4-Frank.Li@nxp.com>
-        <20220825212130.GA1705214-robh@kernel.org>
-        <PAXPR04MB9186201A03037BA7DC74D52B88729@PAXPR04MB9186.eurprd04.prod.outlook.com>
-        <871qt2x38f.wl-maz@kernel.org>
-        <PAXPR04MB918607281F6389092924EE6488759@PAXPR04MB9186.eurprd04.prod.outlook.com>
- <87zgfqvfvv.wl-maz@kernel.org>
- <PAXPR04MB918622BAC0F686AB51BC505788769@PAXPR04MB9186.eurprd04.prod.outlook.com>
-In-Reply-To: <PAXPR04MB918622BAC0F686AB51BC505788769@PAXPR04MB9186.eurprd04.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-Mentions: robh@kernel.org
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: f59bfbe9-a1d9-44e4-4ae5-08da8c27cfae
-x-ms-traffictypediagnostic: DBBPR04MB7834:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: c2GfmxXuZgz1BMUNGMgkwDuwh0q0yqiJ3Jenew7Lu2L1Tyj8eEDSEOaIY5Cxq6vnmJGwFsBE9UjWwEv0DVUivlmpL9ory8Dv83mNN6eS80A2jToygL6S2xTHdYOALluKuPvkGX2+xTfojpSpHG6lm+q23Y2vMAcaI3i5yvE8C9dksAt6ofBdve1y5hrrsCK1USy/lwzqICyFwNRaOTY/xflCOlZORUs8iObwfxlwBRLRyfKXa7E0eHuHfBKGHDZ3Ua7oz+YaqxKoPN01mEOjpKkuAwSIvjvRav7P0NUAM41oDA4yX4D64H6BEe0Csbzx//i5VCSYHg3SwJJJ+aeGdqOdqspv1kEVbd40q2jCTrMLZbImXWL3L+x1QB+GcYYLLIsbu/YyjyZHZ0gTzqeXC5dJXcxpeqIWGZAcEg/kw89i5VWmaAz2en8Ijw4UoERM6WYeDkKOf5X8Ovq5n7Tv2xc1CYVS4sfRpzYhQhh0NNyoatLaNxWfKQDjVHYzUxUDxqJsepksRHwwzqeOTFbNmQG/9NLTPqEIapkay1db4b8hOC42dWmMHPtPRE6jo2TvYD7UtRasePyQlWtmt+Giyr/LJgAqpIkAQ6kW/m/uzhMZ2UM27K7s3oAydNvf9rYl2/ULDW1h7lNI6HIDbLGyTrKQg3rHQMBDxQ5vZKdGWfKbF8Kn4IHk4DOn8iLQyMLkKy3HIJEkCZRNj5+hNjibNzuNUVBWUTMCom6UsyvN1d56Z8q82MtefUUdmR40HIyPzoeSJp0Wag8B6jinfGW+Cg==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8793.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(396003)(376002)(136003)(366004)(346002)(39860400002)(38070700005)(41300700001)(8936002)(52536014)(71200400001)(54906003)(86362001)(33656002)(110136005)(316002)(66446008)(478600001)(66476007)(66556008)(8676002)(4326008)(64756008)(66946007)(76116006)(9686003)(186003)(26005)(7696005)(53546011)(55236004)(7416002)(83380400001)(2906002)(6506007)(122000001)(5660300002)(38100700002)(55016003)(44832011);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?U3oagh10TduSHgcshpHb07edlljYqHBK/9lWl+Zj0zKBhqkR/TO7Nzo/2mm/?=
- =?us-ascii?Q?+M5IFXzo4FKOA47WdXU7muGaNNeiAU+loNTXSug//bZxKK9So5TlDuTlKDQZ?=
- =?us-ascii?Q?AIEnQp7wtUrGrb7QGuqfzCARhAsQYrARLz0p+jod9xj6wN/C4B1Yd+kOnRHh?=
- =?us-ascii?Q?B7wl1R9NL+JqqNVolHWr3ofpgx54cQcVkXQPDGaAO26gGfayD4zOZVin/8nd?=
- =?us-ascii?Q?7hD0FGuMtg7i2q3E7FlLKQG8MfaPHJNITd7Njm3LrpEvcp0y6w1Y3+730qXy?=
- =?us-ascii?Q?QJd6IlXh4SnDAsH8+ufTBb5eNJyhJAI/OHLZ0M3XLrfmSzotDcSVdqDeOgi2?=
- =?us-ascii?Q?3dxPFxI9q4E95SZVGy+0HzcnQO8aeE7zM4rhtMjbfPwOW8dXopKeSz3UZ5ot?=
- =?us-ascii?Q?iOinOlbkaQz3Ui5XdJe/Y3I5PtS0ZjFxEeLpxdy3ZssCswzYqLCFU7Cw+Hlh?=
- =?us-ascii?Q?NGxayc07V7rNBFIblDWU3siwQ8ml3LNqnmQNJ1/VqXwbVWFoVPL4Jjacbj0G?=
- =?us-ascii?Q?l33xnXwdx2IZd9865NS2ki+E/pWIDyhMtRKJ4Jtx3ORhHSRKpTbvfBdscA3F?=
- =?us-ascii?Q?f5Syp6bDk6Ve848hxbBloYG18cb8F7GcuGXtnXnf+6SzJZX/CWJLqj4UdEow?=
- =?us-ascii?Q?boSuh3O2Q4n8bfuw2AtVnOhiysOP1SuSgA675sT+rFRG6mxRb/4U4uOIVhvI?=
- =?us-ascii?Q?5lKsTcIwVTzHupz6M5ZZRYHuXLzqXWygcYE7ZRSs4coF3vXvjYtJ0e8cTrMj?=
- =?us-ascii?Q?OVMB7LoWfS0PV7AcVEQQUoDHuVwh9xX2xZWsxYdXTF+INyZZDgtxvPWLpuer?=
- =?us-ascii?Q?vxZHpjFJ5jdkBkQKXYPPBVQu9lnWpWZ9LKEUlanmlfCwwn1GHTEI8DFVCPZ7?=
- =?us-ascii?Q?NpP6PARtnClrHtMTbmiTZHHPmrDkn9fXLmcRAOIWcteL4DY2wtRFK/PKy0GV?=
- =?us-ascii?Q?SoBbwInDHCsoReDQ9MX9CV4xVb/zeIvRpbkSRPC10VwP8LcwHipjzBRgfK7W?=
- =?us-ascii?Q?GHF6Wyg4vuRQJrXTT8+ne7D4IGXew+FoOHiLgUFHMKDr6HhJL0LoszDakG80?=
- =?us-ascii?Q?WpVRPOo+tdpkHbRpWMpswKj9oRMeyxQ7Gp61hTZupm62f4+bWcXTXJ1nNlEW?=
- =?us-ascii?Q?N2Dhs3xvgDb9kFJ6cDdg2Tqemd7s1u1oOZrZk55zBX02IPgCF7nVOGx9BRb5?=
- =?us-ascii?Q?9pvKRmSim5e7MDRt09kY1c4gi+jtYYpWXdZSjf8SKFbZd+tuqg9Tm2z7vQxP?=
- =?us-ascii?Q?MrWmf+XgLsaantm4Co5Ho9nJMl7zqb4OEUXRBliJ+bpcZQ897t8L9CY7i0+O?=
- =?us-ascii?Q?ouzg08M+Go8/8M5n4jc4VnTBsBpMjmGZSGd+U8fqmidozMyiolpUpbgbAniq?=
- =?us-ascii?Q?q8SIKplrKf5qJs8kN3frqiyOj1s0weps/2vP1BcYmWNi+sSkvI+v+xPOmfys?=
- =?us-ascii?Q?79+6V/6USiZiIwu3YVr4ClCXCI2BWIE/p46OzgJO2ZznkyYKKF067Yt1VaXQ?=
- =?us-ascii?Q?DoKAo0eHSMxAXrAf4HG+6d8lRwV7TlpoHm4+Fxn7OHSkYTFLanogM/ZKPrg0?=
- =?us-ascii?Q?BgjlHyuqy4Sdk1j1N0g=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        "christian.koenig@amd.com" <christian.koenig@amd.com>,
+        "sumit.semwal@linaro.org" <sumit.semwal@linaro.org>,
+        "Kartik ." <kkartik@nvidia.com>
+Subject: Re: [PATCH RESEND 1/2] i2c: tegra: Add GPCDMA support
+Message-ID: <YxDEVUq3jbjnOmnI@orome>
+References: <SJ1PR12MB6339FC1F82EB1BB7417E533BC0719@SJ1PR12MB6339.namprd12.prod.outlook.com>
+ <ebb0764f-db92-d69d-49ac-151f4e3e0b8a@collabora.com>
+ <SJ1PR12MB63396DC508F63807F1CE9901C0719@SJ1PR12MB6339.namprd12.prod.outlook.com>
+ <fac10841-1682-845f-3e4a-5668f59caed0@gmail.com>
+ <cd0374f1-2c05-7e61-7187-cfc9c42edf63@gmail.com>
+ <SJ1PR12MB63397BBD4EF314A742680F2CC0709@SJ1PR12MB6339.namprd12.prod.outlook.com>
+ <a7ba27c4-992b-28d1-f6c2-3937b4f275ce@collabora.com>
+ <c9ba2629-fc81-cefd-0d6d-991084781ec3@collabora.com>
+ <SJ1PR12MB63393F51E29BA1F85AD249DBC0709@SJ1PR12MB6339.namprd12.prod.outlook.com>
+ <4f791065-e0dd-6ed5-f152-86d7be683490@collabora.com>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8793.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f59bfbe9-a1d9-44e4-4ae5-08da8c27cfae
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Sep 2022 14:39:44.1640
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: r/WgZzUmgok2bk2OQzs3Ua811cYYXuY7g63BB3owjwu8zxqwyNWG3SrJgzvHwMcSWNCyHazKgm3FEjFP2naCBA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7834
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="6EXBlDW1rh4vcfOw"
+Content-Disposition: inline
+In-Reply-To: <4f791065-e0dd-6ed5-f152-86d7be683490@collabora.com>
+User-Agent: Mutt/2.2.7 (2022-08-07)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -146,89 +93,159 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--6EXBlDW1rh4vcfOw
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> -----Original Message-----
-> From: Frank Li <frank.li@nxp.com>
-> Sent: Monday, August 29, 2022 9:48 AM
-> To: Marc Zyngier <maz@kernel.org>; Rob Herring <robh@kernel.org>
-> Cc: tglx@linutronix.de; krzysztof.kozlowski+dt@linaro.org;
-> shawnguo@kernel.org; s.hauer@pengutronix.de; kw@linux.com;
-> bhelgaas@google.com; linux-kernel@vger.kernel.org;
-> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
-> pci@vger.kernel.org; Peng Fan <peng.fan@nxp.com>; Aisheng Dong
-> <aisheng.dong@nxp.com>; jdmason@kudzu.us; kernel@pengutronix.de;
-> festevam@gmail.com; dl-linux-imx <linux-imx@nxp.com>; kishon@ti.com;
-> lorenzo.pieralisi@arm.com; ntb@lists.linux.dev; lznuaa@gmail.com
-> Subject: RE: [EXT] Re: [PATCH v7 3/4] dt-bindings: irqchip: imx mu work a=
-s
-> msi controller
+On Tue, Aug 23, 2022 at 04:32:11PM +0300, Dmitry Osipenko wrote:
+> On 8/23/22 15:55, Akhil R wrote:
+> ...
+> >>>> What I am trying for is to have a mechanism that doesn't halt the i2c
+> >> transfers
+> >>>> till DMA is available. Also, I do not want to drop DMA because it was
+> >> unavailable
+> >>>> during probe().
+> >>>
+> >>> Why is it unavailable? Sounds like you're not packaging kernel proper=
+ly.
+> > Unavailable until initramfs or systemd is started since the module has =
+to be
+> > loaded from either of it.
+> >=20
+> >>>
+> >>>> This situation is sure to hit if we have I2C driver as built in and =
+DMA driver as a
+> >>>> module. In such cases, I2C will never be able to use the DMA.
+> >>>
+> >>> For Tegra I2C built-in + DMA driver module you should add the dma.ko =
+to
+> >>> initramfs and then it will work. This is a common practice for many
+> >>> kernel drivers.
+> >>>
+> >>> It's also similar to a problem with firmware files that must be
+> >>> available to drivers during boot,
+> >=20
+> > Isn't the initramfs loaded after the driver initcalls? Wasn't very much=
+ clear for me
+> > from the code and docs. We did try adding the module in initramfs initi=
+ally, but
+> > couldn't find much of a difference from when it is loaded by systemd in=
+ rootfs.
+> > Will explore more on this if this really helps.
 >=20
-> Caution: EXT Email
->=20
-> > -----Original Message-----
-> > From: Marc Zyngier <maz@kernel.org>
-> > Sent: Friday, August 26, 2022 4:45 PM
-> > To: Frank Li <frank.li@nxp.com>
-> > Cc: Rob Herring <robh@kernel.org>; tglx@linutronix.de;
-> > krzysztof.kozlowski+dt@linaro.org; shawnguo@kernel.org;
-> > s.hauer@pengutronix.de; kw@linux.com; bhelgaas@google.com; linux-
-> > kernel@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-
-> > kernel@lists.infradead.org; linux-pci@vger.kernel.org; Peng Fan
-> > <peng.fan@nxp.com>; Aisheng Dong <aisheng.dong@nxp.com>;
-> > jdmason@kudzu.us; kernel@pengutronix.de; festevam@gmail.com; dl-
-> linux-
-> > imx <linux-imx@nxp.com>; kishon@ti.com; lorenzo.pieralisi@arm.com;
-> > ntb@lists.linux.dev; lznuaa@gmail.com
-> > Subject: Re: [EXT] Re: [PATCH v7 3/4] dt-bindings: irqchip: imx mu work=
- as
-> > msi controller
-> >
-> > Caution: EXT Email
-> >
-> > On Fri, 26 Aug 2022 19:59:44 +0100,
-> > Frank Li <frank.li@nxp.com> wrote:
-> > >
-> > > > And I stand by my initial request. "a" doesn't convey any sort of
-> > > > useful information. Why not "I" and "II", while we're at it? Or
-> > > > something even funkier?
-> > >
-> > > MU spec use term "a" and "b",  user have to map "I" an "II" to
-> > > "a" and "b" when read MU spec and code. it is not straightforward.
-> > >
-> > > I quote a part of spec.
-> > > " The MU is connected as a peripheral under the Peripheral bus on bot=
-h
-> > sides-on
-> > > the Processor A-side, the Processor A Peripheral Bus, and on the
-> Processor
-> > B side,
-> > > the Processor B Peripheral Bus."
-> > >
-> > > Rob Herring and Marc Zynginer:
-> > > I can change to any name, which you agree both.
-> > >
-> > > Some options:
-> > > 1. "a", "b"
-> > > 2. "a-side", "b-side"
-> > > 3. "a-facing", "b-facing"
-> > > 4. "I", "II"
-> >
-> > Use the wording indicated in the spec: "processor-a-side", and
-> > "processor-b-side". This is what I asked the first place.
->=20
-> @Rob Herring:  Do you agree this name?
+> It doesn't matter when initramfs is loaded. Tegra I2C should be
+> re-probed once DMA driver is ready, that's the point of deferred
+> probing. I'd assume that your DMA driver module isn't loading.
 
-@Rob Herring:  How about "process-a-side"?=20
-If you agree,  I will resin these patches soon.
+One problem we have with this, and it's another part of the reason why
+we have the TEGRA20_APB_DMA conditional in there, is that if no DMA
+driver is enabled, then the I2C driver will essentially defer probe
+indefinitely.
 
-Best regards
-Frank Li
+The same would happen if for whatever reason someone was to disable the
+DMA engine via status =3D "disabled" in device tree. And that's not
+something we can easily discover, as far as I can tell. Although perhaps
+code could be added to discover these kinds of situations.
 
+Both of the above scenarios could also be considered as bugs, I suppose,
+and in that case the fix would be to update the configuration and/or the
+device tree.
+
+> >>>> Another option I thought about was to request and free DMA channel f=
+or
+> >> each
+> >>>> transfer, which many serial drivers already do. But I am a bit anxio=
+us if that
+> >> will
+> >>>> increase the latency of transfer.
+> >>>
+> >>> Perhaps all you need to do is to add MODULE_SOFTDEP to Tegra I2C driv=
+er
+> >>> like we did it for the EMC driver [1].
+> >>>
+> >>> [1]
+> >>> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-
+> >> next.git/commit/?id=3D14b43c20c283de36131da0cb44f3170b9ffa7630
+> >>>
+> >>
+> >> Although, probably MODULE_SOFTDEP won't work for a built-in driver. In
+> >> that case, change Tegra I2C kconfig to depend on the DMA driver.
+> >=20
+> > Since I2C can work without DMA, wouldn't it limit the flexibility of I2=
+C driver.
 >=20
-> [Frank Li]
+> There are kernel configurations that are not worthwhile to support
+> because nobody use them in practice. I think this is exactly the case
+> here. The TEGRA20_APB_DMA driver dependency created troubles for a long
+> time.
 >=20
-> >
-> >         M.
-> >
-> > --
-> > Without deviation from the norm, progress is not possible.
+> If DMA driver is enabled in kernel config, then you should provide the
+> driver module to kernel and it will work.
+>=20
+> If DMA driver is disabled in kernel config, then Tegra I2C driver should
+> take that into account. I'm now recalling that this was the reason of
+> "!IS_ENABLED(CONFIG_TEGRA20_APB_DMA)" in the code.
+>=20
+> Since all h/w gens now provide DMA support for Tegra I2C, then should be
+> better and easier to make DMA a dependency for Tegra I2C and don't
+> maintain kernel build configurations that nobody cares about.
+
+This is a suboptimal solution because we have APB DMA for Tegra20
+through Tegra210 and GPC DMA for Tegra186 and later. So we'd need to
+depend on two drivers and that would then pull in GPC DMA basically on
+all generations.
+
+One potential workaround would be to have a fairly elaborate check in
+the driver to make sure that for SoC generations that support APB DMA
+that that driver is enabled, and for SoC generations that have GPC DMA
+that the corresponding driver is enabled. That's quite ugly and it
+doesn't solve the status =3D "disabled" problem, so we'd need that as
+well.
+
+Another thing that I've been thinking about is to use the deferred probe
+timeout to remedy this. driver_deferred_probe_check_state() can be used
+by subsystems to help figure out these kinds of situations. Basically if
+we integrated that into dma_request_channel(), this would at some point
+(fairly) late into boot return -ETIMEDOUT (or -ENODEV if modules are
+disabled). So this would help with status =3D "disabled" and allow us to
+avoid Kconfig dependencies/conditionals. Unfortunately it seems like
+that is in the process of being removed, so not sure if that's a long-
+term option.
+
+What that doesn't help with is the potentially long delay that probe
+deferral can cause, so it means that all I2C devices may not get a
+chance to probe until very late into the boot process. We may need to
+survey what exactly that means to better judge what to do about it. I
+do agree that probe deferral is the right tool for the job, but it may
+be prohibitively slow to get I2C working with that.
+
+Another mitigation would be for the driver to keep probing for the DMA
+channels in the background. Sort of like an asynchronous probe deferral
+of that subset. Similar things were discussed at some point when the
+whole fw_devlink and such were hashed out, though at the time I think
+the preferred proposal was a notification mechanism.
+
+Thierry
+
+--6EXBlDW1rh4vcfOw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmMQxFIACgkQ3SOs138+
+s6FH5xAAqTlqEFg0v+RseYBA6ke9pT/l555czmR5Tgl7x8KBcPhZEzL/SXIW8JLL
+45No62nZBKM6Wk5WmXhbaq3xrH4xj339PKYg2gN2ZJ+E/eMDsF/ruFZK5LGpQ7vs
+DQI2vK1ER1ms2vVTdRjIceW0X9IfkLsgP8Xk97yPY2s7sABMYoaxjjD98GFXyInn
+6ZjiPKJlDLH2PZI7WQmGMGpd5ct1m29xyO2G7unVeHONavngBtA3nzTx4RadK/CK
+sKaH3Ixy8MpnFvncSrSF+Wp4B7u+TDdVybB3GdLhn6P85IfuVPYw1UJp0XdgnkNH
+viJ9Mbond5VOOy+5zv/wrA29i8xQZt/4Fym/pmyDjgbSNw3qhN2XV3nn//W+0c26
+Vgyti6rZDW6O6W1SXKHjAL2CG2cnJorv3nYPnF4eiPzPikWdq2m6YD3hxb2eHl8G
+DaPsDpd+1eagoYgewipROyIcaY4w+OygphDUXYQkz76pTOOh90RruQ5wvgUSOUyX
+ENxJpku0xO/MQv+Nt6LlxzcW8WiY4nltpDljFXzqDCXIiShfAXYrlKO3nIajMvyi
+7Rtul601MsvO+h6jCXFo2GayPHWntY4kLXt2NnAnUDgEZbqadO/72vphKJ0RsST+
+fHH8Y1KC62G+O0Et4GAbUX4gGJ4PTQGAkEl4VeHyyoqUTR8pqp0=
+=hUEH
+-----END PGP SIGNATURE-----
+
+--6EXBlDW1rh4vcfOw--
