@@ -2,134 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D5EA5A9080
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 09:39:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A59D15A90A5
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 09:42:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232730AbiIAHjY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 03:39:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53598 "EHLO
+        id S233704AbiIAHm3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 03:42:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233661AbiIAHjX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 03:39:23 -0400
-Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E36E61223A8;
-        Thu,  1 Sep 2022 00:39:19 -0700 (PDT)
-Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.3ffe.de (Postfix) with ESMTPSA id 88D582164;
-        Thu,  1 Sep 2022 09:39:17 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
-        t=1662017957;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=wMEtvcM6R7qWErDv+zpeNYOr9cq3oBFA1JIMh558M60=;
-        b=q/4wttpnf+Y01ithL9dlOUO6BYasi28m48j1xCoNp07VlkSa97v73f10YMFoHq7xzFswcr
-        qkm+MbJzo2pDtQggEl3g5Z9LH1vpDMs6WJjB2RR+B0ZY/Xn/mzw64tR+2xsuuCDAS30k0n
-        FOuyS/+YJmLPPaQv/ABYPJhBZzH6mcwp95F3bNiZzZKIKjHZdN1K/SdsJPQ6Uk9MAbNoGx
-        qk0jPJvGtv8ZwBUuaxy8cIyZa5RBhfv8Vxo8W0d+Tir5G+YrB49sULfv7bJQ79fV45CVR6
-        06ePGrJKsXZIrl8LUQhfflZc5Vvo3ux7tlDbYgdJ4tWOYY2TvquD8tIkXkUdUg==
-MIME-Version: 1.0
-Date:   Thu, 01 Sep 2022 09:39:17 +0200
-From:   Michael Walle <michael@walle.cc>
-To:     Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
-Cc:     Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Pratyush Yadav <pratyush@kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+        with ESMTP id S233178AbiIAHm2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 03:42:28 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D63311E820
+        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 00:42:26 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id p18so13664729ljc.9
+        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 00:42:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=cSbZMlghmZTJCz/NzUNbAO/3CZuwbgB1TQgsZKvyg6M=;
+        b=kKOB1Ro/ejRalllRIdJwEKe81afPB8P+svSN1ww1UjcrYzkH7Rbfn1IQz/r86YRkl6
+         klmXRIX17gl2jouz4DrcQizXzteIFY9J7c8Q+VPg74INdbkc3Sztn4s3BEblfbG/HC29
+         m0lyhgG71M1LXa1wvRKansWorANLE0R4Yalc6FLx/2MUyX8p6ZRfCuW9AhndvanoYYFM
+         6JFhU2F5MhJvbOnFIhFPJd19dePPGwkmujJ5mZljyvJYAABE+O4UrYabZZuxNj2z4Vv1
+         Ds1XxiMZc7MF+tFr9+EJVkzBxoDXChOefMZXFs3WeT6hFy7/ircI/ZFh/B6QKXxWz9Ou
+         jdXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=cSbZMlghmZTJCz/NzUNbAO/3CZuwbgB1TQgsZKvyg6M=;
+        b=rX7FapbXgxjdOtBGujALcBcIOG4kJYrr4+VP2Diz40Df9xqP1aN9uIoyTkVK/bV5ou
+         6sd5isMcf24e6brWH3eVX68dvSV85MOMtyG7U9gvleH9C5NO7Cu8aQisOdklqyOwwEDp
+         gQDYOUMdpoYdBjCx9SOaWRFhVR0np7PMDMyyCuVrw0azJnA32v2XrNulQAyVQdvq8Qgw
+         9FnHcNieJMgb29gorBen9GG+4jwhzUBTixSbafx6O6m/lDVpAHVA2hFlBgLINZQNeerd
+         /9PBQMp1GWBPxh+r1toaGJcXQsvikYCO0ENaYo5ikoucaPHrweUoKqbJYsIq4ujXybLZ
+         BdHA==
+X-Gm-Message-State: ACgBeo3ED6cRnHLJLr4XJKTT1AQIOtGoynaJkr7cJ3si1YQoU1gAY3w9
+        FXRmuTbIlRQx1ZPhqoB5+3GU2Q==
+X-Google-Smtp-Source: AA6agR7IP+6m6NN8YIfX3c6qFByfvqwUyb5rMomNaP+FrpGxQtOQVXuP3cEQzAYRkUZJbWvoDv6VTg==
+X-Received: by 2002:a2e:8856:0:b0:268:1810:63b4 with SMTP id z22-20020a2e8856000000b00268181063b4mr2995375ljj.453.1662018144714;
+        Thu, 01 Sep 2022 00:42:24 -0700 (PDT)
+Received: from krzk-bin.. (balticom-73-99-134.balticom.lv. [109.73.99.134])
+        by smtp.gmail.com with ESMTPSA id a30-20020a195f5e000000b00492efa461aasm407752lfj.204.2022.09.01.00.42.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Sep 2022 00:42:24 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-kernel@vger.kernel.org, saikrishna12468@gmail.com,
-        git@amd.com
-Subject: Re: [PATCH v2 2/2] mtd: spi-nor: Add support for flash reset
-In-Reply-To: <20220901072914.30205-3-sai.krishna.potthuri@amd.com>
-References: <20220901072914.30205-1-sai.krishna.potthuri@amd.com>
- <20220901072914.30205-3-sai.krishna.potthuri@amd.com>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <f4c6e60a22a4252bcecdfb3a2c957b2a@walle.cc>
-X-Sender: michael@walle.cc
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+        linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: i2c: qcom,i2c-cci: specify SM8450 CCI clocks
+Date:   Thu,  1 Sep 2022 10:42:18 +0300
+Message-Id: <20220901074218.21108-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2022-09-01 09:29, schrieb Sai Krishna Potthuri:
-> Add support for spi-nor flash reset via GPIO controller by reading the
-> reset-gpio property. If there is a valid GPIO specifier then reset will
-> be performed by asserting and deasserting the GPIO using gpiod APIs
-> otherwise it will not perform any operation.
-> 
-> Signed-off-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+Document clocks for SM8450 Camera Control Interface I2C controller.
 
-Reviewed-by: Michael Walle <michael@walle.cc>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Just one comment, see below
+---
 
-> ---
->  drivers/mtd/spi-nor/core.c | 25 +++++++++++++++++++++++++
->  1 file changed, 25 insertions(+)
-> 
-> diff --git a/drivers/mtd/spi-nor/core.c b/drivers/mtd/spi-nor/core.c
-> index f2c64006f8d7..a78ab9bae2be 100644
-> --- a/drivers/mtd/spi-nor/core.c
-> +++ b/drivers/mtd/spi-nor/core.c
-> @@ -2933,6 +2933,27 @@ static void spi_nor_set_mtd_info(struct spi_nor 
-> *nor)
->  	mtd->_put_device = spi_nor_put_device;
->  }
-> 
-> +static int spi_nor_hw_reset(struct spi_nor *nor)
-> +{
-> +	struct gpio_desc *reset;
-> +
-> +	reset = devm_gpiod_get_optional(nor->dev, "reset", GPIOD_OUT_LOW);
-> +	if (IS_ERR_OR_NULL(reset))
-> +		return PTR_ERR_OR_ZERO(reset);
-> +
-> +	/*
-> +	 * Experimental delay values by looking at different flash device
-> +	 * vendors datasheets.
-> +	 */
-> +	usleep_range(1, 5);
+Based on:
+1. https://lore.kernel.org/all/20220901073504.3077363-1-vladimir.zapolskiy@linaro.org/
+---
+ Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-I think this is superfluous, because parts of the kernel
-will boot which should take longer than 1us. But I'm
-fine with leaving it here.
+diff --git a/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml b/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
+index 90c9e401229e..e51a85848d6e 100644
+--- a/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
++++ b/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
+@@ -126,6 +126,7 @@ allOf:
+           contains:
+             enum:
+               - qcom,sm8250-cci
++              - qcom,sm8450-cci
+     then:
+       properties:
+         clocks:
+-- 
+2.34.1
 
--michael
-
-> +	gpiod_set_value_cansleep(reset, 1);
-> +	usleep_range(100, 150);
-> +	gpiod_set_value_cansleep(reset, 0);
-> +	usleep_range(1000, 1200);
-> +
-> +	return 0;
-> +}
-> +
->  int spi_nor_scan(struct spi_nor *nor, const char *name,
->  		 const struct spi_nor_hwcaps *hwcaps)
->  {
-> @@ -2965,6 +2986,10 @@ int spi_nor_scan(struct spi_nor *nor, const char 
-> *name,
->  	if (!nor->bouncebuf)
->  		return -ENOMEM;
-> 
-> +	ret = spi_nor_hw_reset(nor);
-> +	if (ret)
-> +		return ret;
-> +
->  	info = spi_nor_get_flash_info(nor, name);
->  	if (IS_ERR(info))
->  		return PTR_ERR(info);
