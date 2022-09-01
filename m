@@ -2,60 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7928A5A8E66
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 08:41:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C33115A8ED5
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 08:54:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232495AbiIAGlT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 02:41:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44082 "EHLO
+        id S232840AbiIAGyw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 02:54:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233019AbiIAGlO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 02:41:14 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4B0C286FC;
-        Wed, 31 Aug 2022 23:40:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1662014403; x=1693550403;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=NX1eyNaQr4+ALgShy2RcwVdH16jqwIgGKyV7rd+hiNk=;
-  b=rG/rfvdblFDzymQVjB1oykCAJEsdayRI/XLP8n/9hddtSKvOaI3umMbE
-   +ufL1p9IH9tvvgyD/02XInijuPvniiWEdLMArMLjfZe0MNhJGst1fOqjI
-   RdvDBYsxaLbaifYLa+9YRJUnYz9TXAZ+8kLDB3JtmYLH+BA50sJ2J3Sah
-   WWD8b+MM+FD4qii1PiJvzcF6tdVpdZMKCbrFEa+8QtCxtGVgwfXnff8BG
-   4ZyymrHoaSD0YlMCZvEodmaqUmrW/BI3A/AQVlcqf3XVPH3+407V3RZGs
-   enXKszopJOuxLUBGxqZBK3gryO9wm8KkJ60pSUI7f6/KI3Dn3Dfr1ELM/
-   w==;
-X-IronPort-AV: E=Sophos;i="5.93,280,1654585200"; 
-   d="scan'208";a="188943927"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 31 Aug 2022 23:40:02 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Wed, 31 Aug 2022 23:40:01 -0700
-Received: from soft-dev3-1.microsemi.net (10.10.115.15) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2507.12 via Frontend Transport; Wed, 31 Aug 2022 23:40:00 -0700
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     <srinivas.kandagatla@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <UNGLinuxDriver@microchip.com>,
-        "Horatiu Vultur" <horatiu.vultur@microchip.com>
-Subject: [PATCH v4 2/2] nvmem: lan9662-otp: add support.
-Date:   Thu, 1 Sep 2022 08:44:05 +0200
-Message-ID: <20220901064405.149611-3-horatiu.vultur@microchip.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20220901064405.149611-1-horatiu.vultur@microchip.com>
-References: <20220901064405.149611-1-horatiu.vultur@microchip.com>
+        with ESMTP id S233003AbiIAGyv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 02:54:51 -0400
+Received: from smtp-fw-33001.amazon.com (smtp-fw-33001.amazon.com [207.171.190.10])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF514FDB;
+        Wed, 31 Aug 2022 23:54:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1662015288; x=1693551288;
+  h=message-id:date:mime-version:to:cc:references:from:
+   in-reply-to:content-transfer-encoding:subject;
+  bh=1SVd+phahoUIGBOGlWxPC1ufcvnAsdeeOKE5nHDZHUE=;
+  b=WRCVwYpybIuTmwNE6Lpa4cV3qpzRNKGAVc94zTDIg+KxDvleXxlZ6GUl
+   rAPUfVt9M5CW5aV/NB8OsMGOrX1/Y0wNY/UUUVBDltUnJsWVswpRzVjV8
+   ehqhMHZIFhUe/PbgFFb4VFtyvoojTwAJP/ju/Fogs/vw6Ozq554iQIXo7
+   4=;
+X-IronPort-AV: E=Sophos;i="5.93,280,1654560000"; 
+   d="scan'208";a="222563956"
+Subject: Re: [PATCH v3 18/19] hwmon: (mr75203) add debugfs to read and write
+ temperature coefficients
+Received: from iad12-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-iad-1a-828bd003.us-east-1.amazon.com) ([10.43.8.6])
+  by smtp-border-fw-33001.sea14.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Sep 2022 06:54:32 +0000
+Received: from EX13D40EUB003.ant.amazon.com (iad12-ws-svc-p26-lb9-vlan2.iad.amazon.com [10.40.163.34])
+        by email-inbound-relay-iad-1a-828bd003.us-east-1.amazon.com (Postfix) with ESMTPS id 9F02E80BA7;
+        Thu,  1 Sep 2022 06:54:28 +0000 (UTC)
+Received: from EX13MTAUEE002.ant.amazon.com (10.43.62.24) by
+ EX13D40EUB003.ant.amazon.com (10.43.166.128) with Microsoft SMTP Server (TLS)
+ id 15.0.1497.38; Thu, 1 Sep 2022 06:54:27 +0000
+Received: from [192.168.93.228] (10.85.143.172) by mail-relay.amazon.com
+ (10.43.62.224) with Microsoft SMTP Server id 15.0.1497.38 via Frontend
+ Transport; Thu, 1 Sep 2022 06:54:22 +0000
+Message-ID: <646af681-38b0-1268-3798-c5434ca30bee@amazon.com>
+Date:   Thu, 1 Sep 2022 09:54:21 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+To:     Andy Shevchenko <andriy.shevchenko@intel.com>
+CC:     <jdelvare@suse.com>, <linux@roeck-us.net>, <robh+dt@kernel.org>,
+        <p.zabel@pengutronix.de>, <rtanwar@maxlinear.com>,
+        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <talel@amazon.com>,
+        <hhhawa@amazon.com>, <jonnyc@amazon.com>, <hanochu@amazon.com>,
+        <ronenk@amazon.com>, <itamark@amazon.com>, <shellykz@amazon.com>,
+        <shorer@amazon.com>, <amitlavi@amazon.com>, <almogbs@amazon.com>,
+        <dkl@amazon.com>, "Farber, Eliav" <farbere@amazon.com>
+References: <20220830192212.28570-1-farbere@amazon.com>
+ <20220830192212.28570-19-farbere@amazon.com>
+ <Yw9Qq+PIfxgXRIK2@smile.fi.intel.com>
+Content-Language: en-US
+From:   "Farber, Eliav" <farbere@amazon.com>
+In-Reply-To: <Yw9Qq+PIfxgXRIK2@smile.fi.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-11.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_SPF_WL autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,279 +72,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for OTP controller available on LAN9662. The OTPC controls
-the access to a non-volatile memory. The size of the memory is 8KB.
-The OTPC can access the memory based on an offset.
-Implement both the read and the write functionality.
+On 8/31/2022 3:14 PM, Andy Shevchenko wrote:
+> On Tue, Aug 30, 2022 at 07:22:11PM +0000, Eliav Farber wrote:
+>> This change adds debugfs to read and write temperature sensor 
+>> coefficients
+>> - g, h, j and cal5.
+>>
+>> The coefficients can vary between product and product, so it can be very
+>> useful to be able to modify them on the fly during the calibration
+>> process.
+>>
+>> e.g.:
+>>
+>> cat /sys/kernel/debug/940f23d0000.pvt/ts_coeff_cal5
+>> 4096
+>>
+>> echo 83000 > sys/kernel/debug/940f23d0000.pvt/ts_coeff_g
+>
+> ...
+>
+>> +     pvt->dbgfs_dir = debugfs_create_dir(dev_name(dev), NULL);
+>
+>> +     if (!pvt->dbgfs_dir) {
+>> +             dev_err(dev, "Failed to create dbgfs_dir\n");
+>> +             return -EINVAL;
+>> +     }
+>
+> No, just don't check the return value of debugfs API calls.
+>
+Do you mean that I should just do:
+debugfs_create_dir(dev_name(dev), NULL);
+Can you please explain why it's OK to ignore the return value?
 
-Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
----
- drivers/nvmem/Kconfig        |   8 ++
- drivers/nvmem/Makefile       |   2 +
- drivers/nvmem/lan9662-otpc.c | 222 +++++++++++++++++++++++++++++++++++
- 3 files changed, 232 insertions(+)
- create mode 100644 drivers/nvmem/lan9662-otpc.c
+>> +     debugfs_create_file("ts_coeff_h", 0644, pvt->dbgfs_dir, pvt,
+>> +                         &pvt_ts_coeff_h_fops);
+>> +     debugfs_create_file("ts_coeff_g", 0644, pvt->dbgfs_dir, pvt,
+>> +                         &pvt_ts_coeff_g_fops);
+>> +     debugfs_create_file("ts_coeff_j", 0644, pvt->dbgfs_dir, pvt,
+>> +                         &pvt_ts_coeff_j_fops);
+>> +     debugfs_create_file("ts_coeff_cal5", 0644, pvt->dbgfs_dir,  pvt,
+>> +                         &pvt_ts_coeff_cal5_fops);
+>
+> debugfs has helpers for POD types, use them and shrink your code by ~80%.
+>
+Fixed for v4.
+I used debugfs_create_u32() for ts_coeff_h, ts_coeff_g and ts_coeff_j.
+For ts_coeff_cal5 I still use debugfs_create_file() because I must make
+sure it is not set to 0.
 
-diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
-index 967d0084800e..9399445a2f4c 100644
---- a/drivers/nvmem/Kconfig
-+++ b/drivers/nvmem/Kconfig
-@@ -84,6 +84,14 @@ config NVMEM_LPC18XX_OTP
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called nvmem_lpc18xx_otp.
- 
-+config NVMEM_LAN9662_OTPC
-+	tristate "Microchip LAN9662 OTP controller support"
-+	depends on SOC_LAN966 || COMPILE_TEST
-+	depends on HAS_IOMEM
-+	help
-+	  This driver enables the OTP controller available on Microchip LAN9662
-+	  SoCs. It controls the access to the OTP memory connected to it.
-+
- config NVMEM_MXS_OCOTP
- 	tristate "Freescale MXS On-Chip OTP Memory Support"
- 	depends on ARCH_MXS || COMPILE_TEST
-diff --git a/drivers/nvmem/Makefile b/drivers/nvmem/Makefile
-index 00e136a0a123..e1baface2c53 100644
---- a/drivers/nvmem/Makefile
-+++ b/drivers/nvmem/Makefile
-@@ -21,6 +21,8 @@ obj-$(CONFIG_NVMEM_LPC18XX_EEPROM)	+= nvmem_lpc18xx_eeprom.o
- nvmem_lpc18xx_eeprom-y	:= lpc18xx_eeprom.o
- obj-$(CONFIG_NVMEM_LPC18XX_OTP)	+= nvmem_lpc18xx_otp.o
- nvmem_lpc18xx_otp-y		:= lpc18xx_otp.o
-+obj-$(CONFIG_NVMEM_LAN9662_OTPC)	+= nvmem-lan9662-otpc.o
-+nvmem-lan9662-otpc-y		:= lan9662-otpc.o
- obj-$(CONFIG_NVMEM_MXS_OCOTP)	+= nvmem-mxs-ocotp.o
- nvmem-mxs-ocotp-y		:= mxs-ocotp.o
- obj-$(CONFIG_NVMEM_NINTENDO_OTP)	+= nvmem-nintendo-otp.o
-diff --git a/drivers/nvmem/lan9662-otpc.c b/drivers/nvmem/lan9662-otpc.c
-new file mode 100644
-index 000000000000..f6732fd216d8
---- /dev/null
-+++ b/drivers/nvmem/lan9662-otpc.c
-@@ -0,0 +1,222 @@
-+// SPDX-License-Identifier: GPL-2.0
-+
-+#include <linux/iopoll.h>
-+#include <linux/module.h>
-+#include <linux/nvmem-provider.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+
-+#define OTP_OTP_PWR_DN(t)			(t + 0x00)
-+#define OTP_OTP_PWR_DN_OTP_PWRDN_N		BIT(0)
-+#define OTP_OTP_ADDR_HI(t)			(t + 0x04)
-+#define OTP_OTP_ADDR_LO(t)			(t + 0x08)
-+#define OTP_OTP_PRGM_DATA(t)			(t + 0x10)
-+#define OTP_OTP_PRGM_MODE(t)			(t + 0x14)
-+#define OTP_OTP_PRGM_MODE_OTP_PGM_MODE_BYTE	BIT(0)
-+#define OTP_OTP_RD_DATA(t)			(t + 0x18)
-+#define OTP_OTP_FUNC_CMD(t)			(t + 0x20)
-+#define OTP_OTP_FUNC_CMD_OTP_PROGRAM		BIT(1)
-+#define OTP_OTP_FUNC_CMD_OTP_READ		BIT(0)
-+#define OTP_OTP_CMD_GO(t)			(t + 0x28)
-+#define OTP_OTP_CMD_GO_OTP_GO			BIT(0)
-+#define OTP_OTP_PASS_FAIL(t)			(t + 0x2c)
-+#define OTP_OTP_PASS_FAIL_OTP_READ_PROHIBITED	BIT(3)
-+#define OTP_OTP_PASS_FAIL_OTP_WRITE_PROHIBITED	BIT(2)
-+#define OTP_OTP_PASS_FAIL_OTP_FAIL		BIT(0)
-+#define OTP_OTP_STATUS(t)			(t + 0x30)
-+#define OTP_OTP_STATUS_OTP_CPUMPEN		BIT(1)
-+#define OTP_OTP_STATUS_OTP_BUSY			BIT(0)
-+
-+#define OTP_MEM_SIZE 8192
-+#define OTP_SLEEP_US 10
-+#define OTP_TIMEOUT_US 500000
-+
-+struct lan9662_otp {
-+	struct device *dev;
-+	void __iomem *base;
-+};
-+
-+static bool lan9662_otp_wait_flag_clear(void __iomem *reg, u32 flag)
-+{
-+	u32 val;
-+
-+	return readl_poll_timeout(reg, val, !(val & flag),
-+				  OTP_SLEEP_US, OTP_TIMEOUT_US);
-+}
-+
-+static int lan9662_otp_power(struct lan9662_otp *otp, bool up)
-+{
-+	void __iomem *pwrdn = OTP_OTP_PWR_DN(otp->base);
-+
-+	if (up) {
-+		writel(readl(pwrdn) & ~OTP_OTP_PWR_DN_OTP_PWRDN_N, pwrdn);
-+		if (lan9662_otp_wait_flag_clear(OTP_OTP_STATUS(otp->base),
-+						OTP_OTP_STATUS_OTP_CPUMPEN))
-+			return -ETIMEDOUT;
-+	} else {
-+		writel(readl(pwrdn) | OTP_OTP_PWR_DN_OTP_PWRDN_N, pwrdn);
-+	}
-+
-+	return 0;
-+}
-+
-+static int lan9662_otp_execute(struct lan9662_otp *otp)
-+{
-+	if (lan9662_otp_wait_flag_clear(OTP_OTP_CMD_GO(otp->base),
-+					OTP_OTP_CMD_GO_OTP_GO))
-+		return -ETIMEDOUT;
-+
-+	if (lan9662_otp_wait_flag_clear(OTP_OTP_STATUS(otp->base),
-+					OTP_OTP_STATUS_OTP_BUSY))
-+		return -ETIMEDOUT;
-+
-+	return 0;
-+}
-+
-+static void lan9662_otp_set_address(struct lan9662_otp *otp, u32 offset)
-+{
-+	writel(0xff & (offset >> 8), OTP_OTP_ADDR_HI(otp->base));
-+	writel(0xff & offset, OTP_OTP_ADDR_LO(otp->base));
-+}
-+
-+static int lan9662_otp_read_byte(struct lan9662_otp *otp, u32 offset, u8 *dst)
-+{
-+	u32 pass;
-+	int rc;
-+
-+	lan9662_otp_set_address(otp, offset);
-+	writel(OTP_OTP_FUNC_CMD_OTP_READ, OTP_OTP_FUNC_CMD(otp->base));
-+	writel(OTP_OTP_CMD_GO_OTP_GO, OTP_OTP_CMD_GO(otp->base));
-+	rc = lan9662_otp_execute(otp);
-+	if (!rc) {
-+		pass = readl(OTP_OTP_PASS_FAIL(otp->base));
-+		if (pass & OTP_OTP_PASS_FAIL_OTP_READ_PROHIBITED)
-+			return -EACCES;
-+		*dst = (u8) readl(OTP_OTP_RD_DATA(otp->base));
-+	}
-+	return rc;
-+}
-+
-+static int lan9662_otp_write_byte(struct lan9662_otp *otp, u32 offset, u8 data)
-+{
-+	u32 pass;
-+	int rc;
-+
-+	lan9662_otp_set_address(otp, offset);
-+	writel(OTP_OTP_PRGM_MODE_OTP_PGM_MODE_BYTE, OTP_OTP_PRGM_MODE(otp->base));
-+	writel(data, OTP_OTP_PRGM_DATA(otp->base));
-+	writel(OTP_OTP_FUNC_CMD_OTP_PROGRAM, OTP_OTP_FUNC_CMD(otp->base));
-+	writel(OTP_OTP_CMD_GO_OTP_GO, OTP_OTP_CMD_GO(otp->base));
-+
-+	rc = lan9662_otp_execute(otp);
-+	if (!rc) {
-+		pass = readl(OTP_OTP_PASS_FAIL(otp->base));
-+		if (pass & OTP_OTP_PASS_FAIL_OTP_WRITE_PROHIBITED)
-+			return -EACCES;
-+		if (pass & OTP_OTP_PASS_FAIL_OTP_FAIL)
-+			return -EIO;
-+	}
-+	return rc;
-+}
-+
-+static int lan9662_otp_read(void *context, unsigned int offset,
-+			    void *_val, size_t bytes)
-+{
-+	struct lan9662_otp *otp = context;
-+	u8 *val = _val;
-+	uint8_t data;
-+	int i, rc = 0;
-+
-+	lan9662_otp_power(otp, true);
-+	for (i = 0; i < bytes; i++) {
-+		rc = lan9662_otp_read_byte(otp, offset + i, &data);
-+		if (rc < 0)
-+			break;
-+		*val++ = data;
-+	}
-+	lan9662_otp_power(otp, false);
-+
-+	return rc;
-+}
-+
-+static int lan9662_otp_write(void *context, unsigned int offset,
-+			     void *_val, size_t bytes)
-+{
-+	struct lan9662_otp *otp = context;
-+	u8 *val = _val;
-+	u8 data, newdata;
-+	int i, rc = 0;
-+
-+	lan9662_otp_power(otp, true);
-+	for (i = 0; i < bytes; i++) {
-+		/* Skip zero bytes */
-+		if (val[i]) {
-+			rc = lan9662_otp_read_byte(otp, offset + i, &data);
-+			if (rc < 0)
-+				break;
-+
-+			newdata = data | val[i];
-+			if (newdata == data)
-+				continue;
-+
-+			rc = lan9662_otp_write_byte(otp, offset + i,
-+						      newdata);
-+			if (rc < 0)
-+				break;
-+		}
-+	}
-+	lan9662_otp_power(otp, false);
-+
-+	return rc;
-+}
-+
-+static struct nvmem_config otp_config = {
-+	.name = "lan9662-otp",
-+	.stride = 1,
-+	.word_size = 1,
-+	.reg_read = lan9662_otp_read,
-+	.reg_write = lan9662_otp_write,
-+	.size = OTP_MEM_SIZE,
-+};
-+
-+static int lan9662_otp_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct nvmem_device *nvmem;
-+	struct lan9662_otp *otp;
-+
-+	otp = devm_kzalloc(&pdev->dev, sizeof(*otp), GFP_KERNEL);
-+	if (!otp)
-+		return -ENOMEM;
-+
-+	otp->dev = dev;
-+	otp->base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(otp->base))
-+		return PTR_ERR(otp->base);
-+
-+	otp_config.priv = otp;
-+	otp_config.dev = dev;
-+
-+	nvmem = devm_nvmem_register(dev, &otp_config);
-+
-+	return PTR_ERR_OR_ZERO(nvmem);
-+}
-+
-+static const struct of_device_id lan9662_otp_match[] = {
-+	{ .compatible = "microchip,lan9662-otp", },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, lan9662_otp_match);
-+
-+static struct platform_driver lan9662_otp_driver = {
-+	.probe = lan9662_otp_probe,
-+	.driver = {
-+		.name = "lan9662-otp",
-+		.of_match_table = lan9662_otp_match,
-+	},
-+};
-+module_platform_driver(lan9662_otp_driver);
-+
-+MODULE_AUTHOR("Horatiu Vultur <horatiu.vultur@microchip.com>");
-+MODULE_DESCRIPTION("lan9662 OTP driver");
-+MODULE_LICENSE("GPL");
--- 
-2.33.0
+>> +     ret = devm_add_action_or_reset(dev, devm_pvt_ts_dbgfs_remove, 
+>> pvt);
+>> +     if (ret) {
+>> +             dev_err(dev, "failed to add action to remove pvt dbgfs 
+>> (%d)\n",
+>> +                     ret);
+>> +             return ret;
+>> +     }
+>> +
+>> +     return 0;
+>
+> return devm_add_...
+Fixed for v4.
 
+--
+Thanks, Eliav
