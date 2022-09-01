@@ -2,80 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F4075A9B2E
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 17:06:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB2275A9B2D
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 17:06:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230340AbiIAPGY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 11:06:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60276 "EHLO
+        id S233216AbiIAPGh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 11:06:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229781AbiIAPGX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 11:06:23 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE9ED83F13
-        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 08:06:20 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id y10so15063061ljq.0
-        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 08:06:20 -0700 (PDT)
+        with ESMTP id S232448AbiIAPGg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 11:06:36 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B96AE74343
+        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 08:06:34 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id kk26so35286714ejc.11
+        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 08:06:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=KCbUSop3WQVL4RTWvtr+n/jabxyBXZUokjzZKHnU5M0=;
-        b=b2G44R7KnF5fTX88ReDvkLzm45zanEpaB49cNMjgDVVrz4TNOidDzAoCL2r4Cdeosl
-         AK20h571HggQWfg3sVDA65zRKZ6JIHxvZtXwviB4RzcyI0BPaUiA/XCT21nio9EzQvVr
-         iLbM/DmRnb1g5z3BGcKjJ4nXHAndFu0hlun63GghH3Elgkr8a5o24Iok+VtHo4htWedC
-         PNXwucC8haXd3P/32QCTWhQ4DQd06S5FhJVBmEfIakUHcAmtz5oSn4f6bAZLqmLALH3/
-         bKMmFKGLbGuflHGj3tV139uLu7gbH8pJr28PMOSitOChu39i7ikkJE9jdZ77dPjqGOKI
-         aJUg==
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=IlxL6IIaFuuRNDQjytli2ml/vYALP5M5BTyWKS8IYmo=;
+        b=fluYmR7isgbi0UhdGPH/rCcV8CVSTZzQ30EzUf2S4tWpVa3KRnRW8EGTlC2qUoG5FQ
+         agPIsAeoq0IlNJWDEreDvHhRiyr1/OZyStPUBDfXY6sp4T6SMQigQU4J5t1KNJOHTNip
+         boANLPHMu02BcLK1PKFeQa0VvnUhAVO6DyaOo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=KCbUSop3WQVL4RTWvtr+n/jabxyBXZUokjzZKHnU5M0=;
-        b=2IbR2h7lw243s04jdsbNSe9GtAhpH1KzeQhiFFzekZJIc0A0E/E4WEA+pFD14NPslP
-         FMX+d6kcW1bDpru6+WoIQIK054exQwfyJK7Uc/dPNpPoXF4GR54BDB4XXTg3h4ievgYG
-         rvlixprhDu32LWqMh1y602eOGy8rx6j2xFKI7JmppXith4Qmm/Xw/tTCO8EQu5mXFpZ8
-         FoijSs2QfhugAAaEMgl5La71CmL4/etBtSGfAqEv6JmTCuqvSzA0zT1OeHY0vv1nEfBp
-         cX5EEwE9/7iJT1um5QrIh7LDVmz0KqPDEQYdykCsu0GMVvnHlTsEsCSuRvJZIiD/rIwY
-         vWCQ==
-X-Gm-Message-State: ACgBeo3iChfKDmY9jJH5hDPP6Do8ESpZhT2m3vRxcn1Tf7jzRpt1fYyz
-        ttF1x2WVUZlftTFPQfJl9LDEng==
-X-Google-Smtp-Source: AA6agR4v82tzjRxzkl50GAILGvdU/4Z8/oNIC6ddy1jLimYFNB37TxV7X+A0H1YFvTJk0OU7i+85SQ==
-X-Received: by 2002:a05:651c:1993:b0:263:a41d:3d7b with SMTP id bx19-20020a05651c199300b00263a41d3d7bmr6374222ljb.63.1662044779237;
-        Thu, 01 Sep 2022 08:06:19 -0700 (PDT)
-Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id 11-20020ac2482b000000b00492e2918a5asm1352324lft.269.2022.09.01.08.06.18
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=IlxL6IIaFuuRNDQjytli2ml/vYALP5M5BTyWKS8IYmo=;
+        b=yNNZsQpQDzZfJaaiAwjSZ1Av8ttJkWVHiRo/27hvgWgQPBAdge+Nc/SPEoPpneCB31
+         tHACBGKUOGZX63vywJDOUbktFWM7IUiRgvqVdVAcxs8Hdm1XjIWuDS7z7NAUlciRdE3k
+         gdD40kZRwZjnzNMBmZ+kgBq3ihTaQphbmWUVww9NjRtu7mf4olOQavXJ2HsUnajinA/f
+         hWxmr2MOh/CoRiOmumeTprjn2hLQzP+Z88io8bbRH3YnZIMaar07Wkhy6zGunLJ5U1BH
+         P/diiBb09wrOcoaqud1LYHs6Z8ypmDthUGKgeAdCnbPhOBM26VUAJonf//Rn8WD3d2F9
+         NuHA==
+X-Gm-Message-State: ACgBeo2R4KQGo0o0+lFEOan0zGfQ2mHWO5Kl3YLA4evAAS8dTAgbEn68
+        88uG+8B1Jllmc68jlYkGuhvTA2eReQS9V4je
+X-Google-Smtp-Source: AA6agR4NIPUSkUmzpaVQEfl/YRVzbwhH5bSKSjUc2ablwdvZ/UihVaQLLqxHPMAWtlTUCCs61wALkw==
+X-Received: by 2002:a17:907:2c48:b0:741:8ae4:f79c with SMTP id hf8-20020a1709072c4800b007418ae4f79cmr13923949ejc.102.1662044792998;
+        Thu, 01 Sep 2022 08:06:32 -0700 (PDT)
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com. [209.85.221.45])
+        by smtp.gmail.com with ESMTPSA id b2-20020a1709063ca200b0074a8293424esm506350ejh.53.2022.09.01.08.06.30
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Sep 2022 08:06:18 -0700 (PDT)
-Message-ID: <426469c1-13cc-178b-4904-09439d7788e8@linaro.org>
-Date:   Thu, 1 Sep 2022 18:06:17 +0300
+        Thu, 01 Sep 2022 08:06:31 -0700 (PDT)
+Received: by mail-wr1-f45.google.com with SMTP id k9so22802218wri.0
+        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 08:06:30 -0700 (PDT)
+X-Received: by 2002:adf:f90d:0:b0:20c:de32:4d35 with SMTP id
+ b13-20020adff90d000000b0020cde324d35mr15009507wrr.583.1662044789962; Thu, 01
+ Sep 2022 08:06:29 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH 1/6] dt-bindings: mfd: add binding for Apple Mac System
- Management Controller
-Content-Language: en-US
-To:     "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-        Arnd Bergmann <arnd@arndb.de>, Lee Jones <lee@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     Alyssa Rosenzweig <alyssa@rosenzweig.io>, asahi@lists.linux.dev,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Hector Martin <marcan@marcan.st>,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        Sven Peter <sven@svenpeter.dev>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20220901091253.93333-1-sheng-liang.pan@quanta.corp-partner.google.com>
+ <20220901170958.1.I7dd7a79c4cc5fe91c3feb004473feb3b34b7b2d8@changeid> <cae05f4d-57af-7923-58e5-c4bf06a8a3c8@linaro.org>
+In-Reply-To: <cae05f4d-57af-7923-58e5-c4bf06a8a3c8@linaro.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Thu, 1 Sep 2022 08:06:25 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=VUCQSOe0Wr4UJ6TZkPA3xD_jsDp-gQTYMrh1QOM5b4QQ@mail.gmail.com>
+Message-ID: <CAD=FV=VUCQSOe0Wr4UJ6TZkPA3xD_jsDp-gQTYMrh1QOM5b4QQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: sc7280: Add device tree for
+ herobrine evoker
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-References: <YxC5eZjGgd8xguDr@shell.armlinux.org.uk>
- <E1oTkeH-003t9A-3K@rmk-PC.armlinux.org.uk>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <E1oTkeH-003t9A-3K@rmk-PC.armlinux.org.uk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -84,58 +83,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/09/2022 16:54, Russell King (Oracle) wrote:
-> Add a DT binding for the Apple Mac System Management Controller.
-> 
-> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+Hi,
 
-Thank you for your patch. There is something to discuss/improve.
+On Thu, Sep 1, 2022 at 3:01 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 01/09/2022 12:12, Sheng-Liang Pan wrote:
+> > Add a basic device tree for the herobrine evoker board.
+> >
+> > Signed-off-by: Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
+> > ---
+>
+> And this is third v1? At least this is what your subject is suggesting.
+> Patches should be properly versioned. Git format-patch helps in that,
+> but you can use any other tools if you wish.
 
-> +
-> +maintainers:
-> +  - Hector Martin <marcan@marcan.st>
-> +
-> +description:
-> +  Apple Mac System Management Controller implements various functions
-> +  such as GPIO, RTC, power, reboot.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +        - apple,t8103-smc
+Just to make it clear, what Krzysztof is pointing at is the subject
+line of your email. Based on your email headers it looks like you're
+using "patman" to send out your emails. That means you can get what
+Krzysztof wants by putting a "Series-version" in one of your patches.
+Given that you had three v1 posts, maybe call the next version "v4"?
+That means that one of the patches should have:
 
-You miss two spaces of indentation on this level.
+Series-version: 4
 
-> +        - apple,t8112-smc
-> +        - apple,t6000-smc
+Then in each patch you'll have details about what changed in each
+version. I guess we could sorta call the one where you added the
+bindings "v2". So in the bindings patch you could add:
 
-Bring some order here - either alphabetical or by date of release (as in
-other Apple schemas). I think t6000 was before t8112, so it's none of
-that orders.
+Series-changes: 2
+- Bindings patch added
 
-> +      - const: apple,smc
-> +
-> +  reg:
-> +    description: Two regions, one for the SMC area and one for the SRAM area.
+...and in both patches you could add:
 
-You need constraints for size/order, so in this context list with
-described items.
+Series-changes: 4
+- Got the version number correct
 
-> +
-> +  reg-names:
-> +    items:
-> +      - const: smc
-> +      - const: sram
-> +
-> +  mboxes:
-> +    description:
-> +      A phandle to the mailbox channel
 
-Missing maxItems
+You've already got a cover letter setup, so in that you should attempt
+to explain some of this mess, like saying:
 
-> +
-> +additionalProperties: false
-> +
-Best regards,
-Krzysztof
+Sorry about getting mixed up with version numbers. Here are links to
+previous postings and what I'll assume the version number is:
+
+v1: https://lore.kernel.org/r/20220830053307.3997495-1-sheng-liang.pan@quanta.corp-partner.google.com/
+v2: https://lore.kernel.org/r/20220901061336.61386-1-sheng-liang.pan@quanta.corp-partner.google.com/
+v3: https://lore.kernel.org/r/20220901091253.93333-1-sheng-liang.pan@quanta.corp-partner.google.com/
+
+
+As an extra note: the bindings patch should be patch #1 and the device
+tree should be patch #2. That means you should reorder your patches.
+
+-Doug
+
+>
+> I pointed you to documentation you must read before posting. You can
+> keep ignoring it, so we keep ignoring your patch.
+>
+> That's a NAK :(
+>
+> Best regards,
+> Krzysztof
