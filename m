@@ -2,149 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFD0B5A968F
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 14:19:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 975D65A969C
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 14:21:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232430AbiIAMT2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 08:19:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55322 "EHLO
+        id S232874AbiIAMVE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 08:21:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233056AbiIAMT1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 08:19:27 -0400
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77B5A1195CF;
-        Thu,  1 Sep 2022 05:19:26 -0700 (PDT)
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 2819FvCQ017167;
-        Thu, 1 Sep 2022 08:19:23 -0400
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3japt62478-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 01 Sep 2022 08:19:23 -0400
-Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 281CJMIF031421
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 1 Sep 2022 08:19:22 -0400
-Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
- ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Thu, 1 Sep 2022 08:19:21 -0400
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
- ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Thu, 1 Sep 2022 08:19:21 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Thu, 1 Sep 2022 08:19:21 -0400
-Received: from debian.ad.analog.com ([10.48.65.119])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 281CJ1FS010547;
-        Thu, 1 Sep 2022 08:19:14 -0400
-From:   Ciprian Regus <ciprian.regus@analog.com>
-To:     <jic23@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     Ciprian Regus <ciprian.regus@analog.com>
-Subject: [PATCH v2 5/5] drivers: iio: adc: Rename the LTC2499 iio device
-Date:   Thu, 1 Sep 2022 15:17:00 +0300
-Message-ID: <20220901121700.1325733-5-ciprian.regus@analog.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220901121700.1325733-1-ciprian.regus@analog.com>
-References: <20220901121700.1325733-1-ciprian.regus@analog.com>
+        with ESMTP id S233470AbiIAMUk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 08:20:40 -0400
+Received: from smtp1.axis.com (smtp1.axis.com [195.60.68.17])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D668B7E6;
+        Thu,  1 Sep 2022 05:20:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; q=dns/txt; s=axis-central1; t=1662034824;
+  x=1693570824;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=5o5T+cNPjW0KviUEr8asDCjXy32h/49HXr3yNLpVmZ4=;
+  b=QIccnKipNbrTytGmuIOZUf7ywmR/gUpOvxBEpGtjjoit+A/bWo77uy13
+   twcwT0sh8LGlB+v0MfpMdbK/RBZUG1TBZTotwTZvKx2bjRvczapn/EVkQ
+   mErrB61kOdMdUyxwa/Z+LSev4chlROG5uYaObCDQsXcItZVK6++To3FoN
+   /77QF+or4T4h4wheKPxvvx9BkjYgOBLVr8SURdq02DSrAbmvHSKx4eFHi
+   18C7iDFmH4GzWOCNzi13liQeDi+MYcRiV4qkJmiDPNd3ArIZd+FYt99Qv
+   ezCW2f7lRQ5an8oIGWdEFbdcXpqMkRE0bcLzTPtjHNi2ynWaui9Z/STHM
+   w==;
+Date:   Thu, 1 Sep 2022 14:20:13 +0200
+From:   Jesper Nilsson <Jesper.Nilsson@axis.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     "dj76.yang@samsung.com" <dj76.yang@samsung.com>,
+        Jesper Nilsson <Jesper.Nilsson@axis.com>,
+        Lars Persson <Lars.Persson@axis.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "javierm@redhat.com" <javierm@redhat.com>,
+        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
+        linux-arm-kernel <linux-arm-kernel@axis.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Moon-Ki Jun <moonki.jun@samsung.com>,
+        Sang Min Kim <hypmean.kim@samsung.com>,
+        Wangseok Lee <wangseok.lee@samsung.com>
+Subject: Re: [PATCH 4/4] mfd: Samsung: Add Samsung sysmgr driver
+Message-ID: <20220901122013.GU22198@axis.com>
+References: <CGME20220713045746epcms1p302c6643d12ed505d24298e1edb5889ec@epcms1p3>
+ <20220713045746epcms1p302c6643d12ed505d24298e1edb5889ec@epcms1p3>
+ <f0ab0036-54eb-f0e4-3169-740e7fca9c65@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: OFMe9ibgmWtAAUMxAOuDoCqnPdt2BhZO
-X-Proofpoint-ORIG-GUID: OFMe9ibgmWtAAUMxAOuDoCqnPdt2BhZO
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.517,FMLib:17.11.122.1
- definitions=2022-09-01_08,2022-08-31_03,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 suspectscore=0
- mlxlogscore=999 malwarescore=0 priorityscore=1501 adultscore=0 spamscore=0
- lowpriorityscore=0 mlxscore=0 phishscore=0 impostorscore=0 clxscore=1015
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2207270000
- definitions=main-2209010056
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <f0ab0036-54eb-f0e4-3169-740e7fca9c65@linaro.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Set the iio device's name based on the chip used for the
-LTC2499 only. The most common way for IIO clients to interact
-with a device is to address it based on it's name. By using
-the dev_name() function, the name will be set based on a
-i2c_client's kobj name, which has the format i2c_instance-i2c_address
-(1-0076 for example). This is not ideal, since it makes a
-requirement for userspace to have knowledge about the hardware
-connections of the device.
+Hi,
 
-The name field is set to NULL for the LTC2497 and LTC2496, so
-that the old name can kept as it is, since changing it will
-result in an ABI breakage.
 
-Signed-off-by: Ciprian Regus <ciprian.regus@analog.com>
----
-changes in v2:
- - updated the patch title (LTC249x -> LTC2499), since the name change only
-   affects the LTC2499.
- - updated the commit description to better explain what is being done.
- - only changed the iio_dev's name for the LTC2499.
- - added a comment to explain difference in naming.
- - added the const qualifier to the name field.
- drivers/iio/adc/ltc2496.c      |  1 +
- drivers/iio/adc/ltc2497-core.c | 10 +++++++++-
- drivers/iio/adc/ltc2497.h      |  1 +
- 3 files changed, 11 insertions(+), 1 deletion(-)
+Thanks for your comments Krzysztof and sorry for being late in replying, I'll
+try to fill in the blanks for some of the issues below.
 
-diff --git a/drivers/iio/adc/ltc2496.c b/drivers/iio/adc/ltc2496.c
-index bf89d5ae19af..2593fa4322eb 100644
---- a/drivers/iio/adc/ltc2496.c
-+++ b/drivers/iio/adc/ltc2496.c
-@@ -89,6 +89,7 @@ static void ltc2496_remove(struct spi_device *spi)
- 
- static const struct ltc2497_chip_info ltc2496_info = {
- 	.resolution = 16,
-+	.name = NULL,
- };
- 
- static const struct of_device_id ltc2496_of_match[] = {
-diff --git a/drivers/iio/adc/ltc2497-core.c b/drivers/iio/adc/ltc2497-core.c
-index b2752399402c..f52d37af4d1f 100644
---- a/drivers/iio/adc/ltc2497-core.c
-+++ b/drivers/iio/adc/ltc2497-core.c
-@@ -169,7 +169,15 @@ int ltc2497core_probe(struct device *dev, struct iio_dev *indio_dev)
- 	struct ltc2497core_driverdata *ddata = iio_priv(indio_dev);
- 	int ret;
- 
--	indio_dev->name = dev_name(dev);
-+	/*
-+	 * Keep using dev_name() for the iio_dev's name on some of the parts,
-+	 * since updating it would result in a ABI breakage.
-+	 */
-+	if (ddata->chip_info->name)
-+		indio_dev->name = ddata->chip_info->name;
-+	else
-+		indio_dev->name = dev_name(dev);
-+
- 	indio_dev->info = &ltc2497core_info;
- 	indio_dev->modes = INDIO_DIRECT_MODE;
- 	indio_dev->channels = ltc2497core_channel;
-diff --git a/drivers/iio/adc/ltc2497.h b/drivers/iio/adc/ltc2497.h
-index 95f6a5f4d4a6..fd3dfd491060 100644
---- a/drivers/iio/adc/ltc2497.h
-+++ b/drivers/iio/adc/ltc2497.h
-@@ -12,6 +12,7 @@ enum ltc2497_chip_type {
- 
- struct ltc2497_chip_info {
- 	u32 resolution;
-+	const char *name;
- };
- 
- struct ltc2497core_driverdata {
+
+The ARTPEC-8 is derived from a Samsung design, but built to order for Axis, so
+long term responsibility will fall to Axis (me and Lars primarily).
+
+The ARTPEC-6 and ARTPEC-7 were built by an other vendor and are quite different
+not to mention that they are 32-bit ARMs, compared to ARM 64-bit for the ARTPEC-8.
+
+
+The driver in this patchset is derived from the drivers/mfd/altera-sysmgr.c and
+solves the same problem, in where the SoC system controller IP is a collection
+of registers that controls quite a lot of different peripheral functions (from
+PCIe and Ethernet to PWM) and is reachable only through SMC calls. I think the
+naming of the software was set as samsung-sysmgr since it is not Axis design at
+all, but (to my knowledge) only existing in ARTPEC-8 as yet. I can't recall why
+the mfd driver route was selected, but it could be that the earlier
+implementation was more complex and used both smc and direct mmio writes.
+
+The users of this system manager would initially be the ARTPEC-8 DWC EQoS and
+ARTPEC-8 DWC PCIe drivers sent in other patch-sets.
+
+
+I believe a possible alternative to solve the system manager problem is to open
+code the SMC calls directly from the drivers in question, quite a lot of
+drivers seem to do this, notably a specific altera driver
+(drivers/edac/altera_edac.c) even though it also has a reference to the above
+mentioned altera-sysmgr regmap... :-)
+
+Does that seem reasonable?
+
+Thanks for your patience and excuses for the top-posting.
+
+/Jesper
+
+On Wed, Jul 13, 2022 at 09:27:52AM +0200, Krzysztof Kozlowski wrote:
+> On 13/07/2022 06:57, Dongjin Yang wrote:
+[...]
+
+> Best regards,
+> Krzysztof
+
+/^JN - Jesper Nilsson
 -- 
-2.30.2
-
+               Jesper Nilsson -- jesper.nilsson@axis.com
