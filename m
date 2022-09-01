@@ -2,59 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02DEB5A996A
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 15:52:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19CB35A9976
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 15:55:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232644AbiIANw1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 09:52:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45410 "EHLO
+        id S234459AbiIANyT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 09:54:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231351AbiIANw0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 09:52:26 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C17B2B1;
-        Thu,  1 Sep 2022 06:52:24 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5841B6CD;
-        Thu,  1 Sep 2022 15:52:21 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1662040341;
-        bh=QVzoAzaz3GTAjNVTOX5jOaSXOuRfzLUAuyiuEq31tlo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Hlo9wOT8LVJydnzj0RbPsLTWbas4Hoc6uW/T1QVIPkGmmH0D7kfVl1Ta7BmvmBl8j
-         /ajGLnUeEBFE3VL7Yt1CCjunUcj8pci79NsuS5IBHIxMknzpTMyfX75lFsHkucSuP3
-         7i/yEEReI+l8A7rIYg6h28qc2QTA8tJHjRfw5+uM=
-Date:   Thu, 1 Sep 2022 16:52:09 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        =?utf-8?B?S8OpdmluIEwnaMO0cGl0YWw=?= <kevin.lhopital@bootlin.com>
-Subject: Re: [PATCH NOT FOR MERGE v5 6/6] ARM: dts: sun8i: a83t: bananapi-m3:
- Enable MIPI CSI-2 with OV8865
-Message-ID: <YxC5CWCdGFHTgKbD@pendragon.ideasonboard.com>
-References: <20220826182803.604563-1-paul.kocialkowski@bootlin.com>
- <20220826182803.604563-7-paul.kocialkowski@bootlin.com>
- <YwkaFC2tm96X5qon@pendragon.ideasonboard.com>
- <YxCqZ8GhiTJlZ8MC@aptenodytes>
- <YxCs4fhx+Qx7uCAF@pendragon.ideasonboard.com>
- <YxCyGgfNVHGIJlMz@aptenodytes>
+        with ESMTP id S233421AbiIANyS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 09:54:18 -0400
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5776A205EA;
+        Thu,  1 Sep 2022 06:54:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:Content-Type:MIME-Version:
+        Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=OIuuWZHIE79RchMzxo9rcKTVtQlB+aNlI5Cl+pfkoGQ=; b=G1eBjNaG1b4RpXR2bE4d7P2XwL
+        NJi248a9rKrf89X3PkR4RzYu0kirMsJsrNYYyibj0m1eu8cAecuqrjTmM4ZwRPi6v98OII0/b/IVU
+        Mus0CF9MaDTbP4mxUBS4GUJN/Jfcd3Cl8kmsiQaBkwcItL+QnoLXaDPsTaCMk+ByNaeIjBoXUSIqK
+        wlDUm77bhGcuWewBKj7gEP105Mu7/4eR0MBvWM9yV12MdDOicHRN79pizFkKt42qJ/rmPEYCicVrg
+        FREe4ait+/J96hZgfpBNIkRuiv2C2HMtxI2sQ/1P47hWOC8dgtR2zntTgjwVo2CwThPE6APsK0Mm6
+        fV3x/zug==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:34038)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1oTkdw-0005vl-CF; Thu, 01 Sep 2022 14:54:04 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1oTkdt-0003Vs-Us; Thu, 01 Sep 2022 14:54:01 +0100
+Date:   Thu, 1 Sep 2022 14:54:01 +0100
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Arnd Bergmann <arnd@arndb.de>, Lee Jones <lee@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     Alyssa Rosenzweig <alyssa@rosenzweig.io>, asahi@lists.linux.dev,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        devicetree@vger.kernel.org, Hector Martin <marcan@marcan.st>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Sven Peter <sven@svenpeter.dev>
+Subject: [PATCH 0/6] Add Apple Mac System Management Controller GPIOs
+Message-ID: <YxC5eZjGgd8xguDr@shell.armlinux.org.uk>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <YxCyGgfNVHGIJlMz@aptenodytes>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,290 +60,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
+Hi,
 
-On Thu, Sep 01, 2022 at 03:22:34PM +0200, Paul Kocialkowski wrote:
-> On Thu 01 Sep 22, 16:00, Laurent Pinchart wrote:
-> > On Thu, Sep 01, 2022 at 02:49:43PM +0200, Paul Kocialkowski wrote:
-> > > On Fri 26 Aug 22, 22:08, Laurent Pinchart wrote:
-> > > > On Fri, Aug 26, 2022 at 08:28:03PM +0200, Paul Kocialkowski wrote:
-> > > > > From: Kévin L'hôpital <kevin.lhopital@bootlin.com>
-> > > > > 
-> > > > > The Bananapi M3 supports a camera module which includes an OV8865 sensor
-> > > > > connected via the parallel CSI interface and an OV8865 sensor connected
-> > > > > via MIPI CSI-2.
-> > > > > 
-> > > > > The I2C2 bus is shared by the two sensors as well as the (active-low)
-> > > > > reset signal, but each sensor has it own shutdown line.
-> > > > 
-> > > > I see a single sensor in this file, am I missing something ?
-> > > 
-> > > Indeed this patch only adds the OV8865, not the OV5640 which is also present
-> > > on the same camera board extension.
-> > > 
-> > > A patch was submitted some time ago adding support for (only) the OV5640:
-> > > https://lore.kernel.org/lkml/20190408165744.11672-7-wens@kernel.org/
-> > 
-> > OK. That's fine, let's just reword the commit message.
-> 
-> Sure.
-> 
-> > > > Sounds like a perfect candidate for an overlay, it could then be merged
-> > > > upstream.
-> > > 
-> > > Do we have an upstream place to merge device-tree overlays now?
-> > 
-> > They're accepted in the upstream kernel as far as I know, a git grep for
-> > /plugin/ in .dts files produces 18 matches.
-> 
-> Oh okay, definitely good to know thanks!
-> 
-> > > I'll check if it's possible to describe both sensors together and actually
-> > > be able to select one or the other properly from userspace. Last time I tried
-> > > this wasn't possible: there's at least the shared reset GPIO used by both
-> > > sensors, which cannot be requested by the two drivers in parallel.
-> > > 
-> > > To be honest this is very poor hardware design and it was almost certainly
-> > > designed with the idea that only one sensor will be configured per boot.
-> > > See https://wiki.banana-pi.org/Camera and
-> > > https://drive.google.com/file/d/0B4PAo2nW2KfnOEFTMjZ2aEVGUVU/view?usp=sharing
-> > > for the schematics pdf
-> > 
-> > It's not great indeed, but not that uncommon either (unfortunately). I
-> > wonder if we need some kind of reset GPIO API, but that would be a hack
-> > at most I think.
-> 
-> Yeah I don't see any obvious clean solution here.
-> But that could still be two separate dt overlays for now.
-> 
-> > > > > Signed-off-by: Kévin L'hôpital <kevin.lhopital@bootlin.com>
-> > > > > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > > > > ---
-> > > > >  arch/arm/boot/dts/sun8i-a83t-bananapi-m3.dts | 102 +++++++++++++++++++
-> > > > >  1 file changed, 102 insertions(+)
-> > > > > 
-> > > > > diff --git a/arch/arm/boot/dts/sun8i-a83t-bananapi-m3.dts b/arch/arm/boot/dts/sun8i-a83t-bananapi-m3.dts
-> > > > > index 5a7e1bd5f825..80fd99cf24b2 100644
-> > > > > --- a/arch/arm/boot/dts/sun8i-a83t-bananapi-m3.dts
-> > > > > +++ b/arch/arm/boot/dts/sun8i-a83t-bananapi-m3.dts
-> > > > > @@ -85,6 +85,30 @@ led-1 {
-> > > > >  		};
-> > > > >  	};
-> > > > >  
-> > > > > +	reg_ov8865_avdd: ov8865-avdd {
-> > > > > +		compatible = "regulator-fixed";
-> > > > > +		regulator-name = "ov8865-avdd";
-> > > > > +		regulator-min-microvolt = <2800000>;
-> > > > > +		regulator-max-microvolt = <2800000>;
-> > > > > +		vin-supply = <&reg_dldo4>;
-> > > > > +	};
-> > > > > +
-> > > > > +	reg_ov8865_dovdd: ov8865-dovdd {
-> > > > > +		compatible = "regulator-fixed";
-> > > > > +		regulator-name = "ov8865-dovdd";
-> > > > > +		regulator-min-microvolt = <2800000>;
-> > > > > +		regulator-max-microvolt = <2800000>;
-> > > > > +		vin-supply = <&reg_dldo4>;
-> > > > > +	};
-> > > > > +
-> > > > > +	reg_ov8865_dvdd: ov8865-dvdd {
-> > > > > +		compatible = "regulator-fixed";
-> > > > > +		regulator-name = "ov8865-dvdd";
-> > > > > +		regulator-min-microvolt = <1200000>;
-> > > > > +		regulator-max-microvolt = <1200000>;
-> > > > > +		vin-supply = <&reg_eldo1>;
-> > > > > +	};
-> > > > 
-> > > > Are those three regulators on the Banana Pi, or on the camera module ?
-> > > 
-> > > That's on the camera module.
-> > > 
-> > > > > +
-> > > > >  	reg_usb1_vbus: reg-usb1-vbus {
-> > > > >  		compatible = "regulator-fixed";
-> > > > >  		regulator-name = "usb1-vbus";
-> > > > > @@ -115,6 +139,23 @@ &cpu100 {
-> > > > >  	cpu-supply = <&reg_dcdc3>;
-> > > > >  };
-> > > > >  
-> > > > > +&csi {
-> > > > > +	status = "okay";
-> > > > > +
-> > > > > +	ports {
-> > > > > +		#address-cells = <1>;
-> > > > > +		#size-cells = <0>;
-> > > > > +
-> > > > > +		port@1 {
-> > > > > +			reg = <1>;
-> > > > 
-> > > > All of this (except the status = "okay") should go to sun8i-a83t.dtsi.
-> > > > 
-> > > > > +
-> > > > > +			csi_in_mipi_csi2: endpoint {
-> > > > > +				remote-endpoint = <&mipi_csi2_out_csi>;
-> > > > > +			};
-> > > > 
-> > > > This too actually, once the issue mentioned in patch 5/6 gets fixed.
-> > > > 
-> > > > > +		};
-> > > > > +	};
-> > > > > +};
-> > > > > +
-> > > > >  &de {
-> > > > >  	status = "okay";
-> > > > >  };
-> > > > > @@ -147,6 +188,36 @@ hdmi_out_con: endpoint {
-> > > > >  	};
-> > > > >  };
-> > > > >  
-> > > > > +&i2c2 {
-> > > > > +	pinctrl-names = "default";
-> > > > > +	pinctrl-0 = <&i2c2_pe_pins>;
-> > > > 
-> > > > This looks like a candidate for upstreaming in
-> > > > sun8i-a83t-bananapi-m3.dts, it shouldn't be in the overlay.
-> > > 
-> > > I2C2 is actually also exported in the PH pins, which is available on the board
-> > > header, so it's not obvious that using the PE pins should be the default.
-> > > 
-> > > The context is that Allwinner SoCs usually have a dedicated I2C controller for
-> > > cameras, but also route a "generic" I2C controller on the same pins.
-> > 
-> > Out of curiosity, what features do those dedicated camera I2C
-> > controllers provide, compared to "normal" I2C controllers ?
-> 
-> IIRC there's some feature to send i2c messages synced with the camera interface
-> vsync signal, to have some kind of hardware atomic mechanism for reconfiguring
-> a sensor.
-> 
-> Not sure that's very relevant for us and an implementation for it would probably
-> just support regular I2C. We can probably achieve simialr results with the
-> request API.
+This series adds support for the Apple Mac GPIO driver. These GPIOs
+are hadled via the System Management Controller.
 
-This hardware feature would be very useful to improve compliance with
-the real-time requirements of the camera sensor. It's something that I
-would really like to be supported in Linux, but we'll need to design a
-new API for it.
+The first two patches add the DT binding documentation for the new
+drivers.
 
-> > > Here that's on the PE14/15 pins. Since we don't have mainline support for this
-> > > camera-dedicated I2C controller, we end up routing the generic one to the PE
-> > > pins, which are routed to the camera connector.
-> > 
-> > OK.
-> > 
-> > > In the future we could add support for this camera-dedicated controller, which
-> > > would then allow routing i2c2 to the PH pins independently. This is what the
-> > > downstream Allwinner BSP kernel does.
-> > > 
-> > > > > +	status = "okay";
-> > > > > +
-> > > > > +	ov8865: camera@36 {
-> > > > > +		compatible = "ovti,ov8865";
-> > > > > +		reg = <0x36>;
-> > > > > +		pinctrl-names = "default";
-> > > > > +		pinctrl-0 = <&csi_mclk_pin>;
-> > > > > +		clocks = <&ccu CLK_CSI_MCLK>;
-> > > > > +		assigned-clocks = <&ccu CLK_CSI_MCLK>;
-> > > > > +		assigned-clock-rates = <24000000>;
-> > > > > +		avdd-supply = <&reg_ov8865_avdd>;
-> > > > > +		dovdd-supply = <&reg_ov8865_dovdd>;
-> > > > > +		dvdd-supply = <&reg_ov8865_dvdd>;
-> > > > > +		powerdown-gpios = <&pio 4 17 GPIO_ACTIVE_LOW>; /* PE17 */
-> > > > > +		reset-gpios = <&pio 4 16 GPIO_ACTIVE_LOW>; /* PE16 */
-> > > > > +
-> > > > > +		port {
-> > > > > +			ov8865_out_mipi_csi2: endpoint {
-> > > > > +				data-lanes = <1 2 3 4>;
-> > > > > +				link-frequencies = /bits/ 64 <360000000>;
-> > > > > +
-> > > > > +				remote-endpoint = <&mipi_csi2_in_ov8865>;
-> > > > > +			};
-> > > > > +		};
-> > > > > +	};
-> > > > > +};
-> > > > > +
-> > > > >  &mdio {
-> > > > >  	rgmii_phy: ethernet-phy@1 {
-> > > > >  		compatible = "ethernet-phy-ieee802.3-c22";
-> > > > > @@ -154,6 +225,24 @@ rgmii_phy: ethernet-phy@1 {
-> > > > >  	};
-> > > > >  };
-> > > > >  
-> > > > > +&mipi_csi2 {
-> > > > > +	status = "okay";
-> > > > > +};
-> > > > > +
-> > > > > +&mipi_csi2_in {
-> > > > > +	mipi_csi2_in_ov8865: endpoint {
-> > > > > +		data-lanes = <1 2 3 4>;
-> > > > > +
-> > > > > +		remote-endpoint = <&ov8865_out_mipi_csi2>;
-> > > > > +	};
-> > > > > +};
-> > > > > +
-> > > > > +&mipi_csi2_out {
-> > > > > +	mipi_csi2_out_csi: endpoint {
-> > > > > +		remote-endpoint = <&csi_in_mipi_csi2>;
-> > > > > +	};
-> > > > > +};
-> > > > > +
-> > > > >  &mmc0 {
-> > > > >  	pinctrl-names = "default";
-> > > > >  	pinctrl-0 = <&mmc0_pins>;
-> > > > > @@ -327,11 +416,24 @@ &reg_dldo3 {
-> > > > >  	regulator-name = "vcc-pd";
-> > > > >  };
-> > > > >  
-> > > > > +&reg_dldo4 {
-> > > > > +	regulator-always-on;
-> > > > 
-> > > > Does it have to be always on ?
-> > > 
-> > > Mhh so I realize the regulators handling here is quite messy.
-> > > I guess I didn't do such a good review of this patch internally.
-> > > 
-> > > The situation is that the regulators on the camera board all have their
-> > > enable pin tied to the DLDO4 output, but that would be best described as
-> > > a vin-supply of the ov8865 regulators above. Their real vin supply is an
-> > > always-on board-wide power source but I don't think we can represent another
-> > > regulator acting as enable signal in a better way.
-> > 
-> > That's right. I've modeled that as a parent regulator in the past, even
-> > if it doesn't reflect the exact hardware topology, it's functionally
-> > equivalent.
-> 
-> Sounds good, I'll change it that way.
-> 
-> > > Now beware that the camera board schematics are confusing as they show resistors
-> > > (R17, R18, R19, R20, R23) connecting some power lines together, but they are not
-> > > populated on the board (I guess the point is to make a variant of the design
-> > > without regulators on the camera board and to use ones from the PMU instead).
-> > > This probably confused Kevin and I back when this patch was made.
-> > > 
-> > > > > +	regulator-min-microvolt = <2800000>;
-> > > > > +	regulator-max-microvolt = <2800000>;
-> > > > > +	regulator-name = "avdd-csi";
-> > > > 
-> > > > Doesn't this belong to the base board .dts ? Same below.
-> > > > 
-> > > > > +};
-> > > > > +
-> > > > >  &reg_drivevbus {
-> > > > >  	regulator-name = "usb0-vbus";AVDD-CSI
-> > > > >  	status = "okay";
-> > > > >  };
-> > > > >  
-> > > > > +&reg_eldo1 {
-> > > > > +	regulator-min-microvolt = <1200000>;
-> > > > > +	regulator-max-microvolt = <1200000>;
-> > > > > +	regulator-name = "dvdd-csi-r";
-> > > > > +};
-> > > > > +
-> > > > >  &reg_fldo1 {
-> > > > >  	regulator-min-microvolt = <1080000>;
-> > > > >  	regulator-max-microvolt = <1320000>;
+The second two patches add the core System Management Controller
+support.
+
+The last two patches add the GPIO support.
+
+DT updates will follow once the bindings have been reviewed.
+
+Patches taken from the Asahi project.
+
+ .../devicetree/bindings/gpio/gpio-macsmc.yaml      |  28 ++
+ .../devicetree/bindings/mfd/apple,smc.yaml         |  57 +++
+ drivers/gpio/Kconfig                               |  11 +
+ drivers/gpio/Makefile                              |   1 +
+ drivers/gpio/gpio-macsmc.c                         | 394 ++++++++++++++++++
+ drivers/platform/Kconfig                           |   2 +
+ drivers/platform/Makefile                          |   1 +
+ drivers/platform/apple/Kconfig                     |  49 +++
+ drivers/platform/apple/Makefile                    |  11 +
+ drivers/platform/apple/smc.h                       |  28 ++
+ drivers/platform/apple/smc_core.c                  | 249 ++++++++++++
+ drivers/platform/apple/smc_rtkit.c                 | 451 +++++++++++++++++++++
+ drivers/soc/apple/rtkit.c                          |   6 +
+ include/linux/mfd/macsmc.h                         |  86 ++++
+ include/linux/soc/apple/rtkit.h                    |  12 +
+ 15 files changed, 1386 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/gpio/gpio-macsmc.yaml
+ create mode 100644 Documentation/devicetree/bindings/mfd/apple,smc.yaml
+ create mode 100644 drivers/gpio/gpio-macsmc.c
+ create mode 100644 drivers/platform/apple/Kconfig
+ create mode 100644 drivers/platform/apple/Makefile
+ create mode 100644 drivers/platform/apple/smc.h
+ create mode 100644 drivers/platform/apple/smc_core.c
+ create mode 100644 drivers/platform/apple/smc_rtkit.c
+ create mode 100644 include/linux/mfd/macsmc.h
 
 -- 
-Regards,
-
-Laurent Pinchart
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
