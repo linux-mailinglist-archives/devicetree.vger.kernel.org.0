@@ -2,213 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75CA05A8D6F
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 07:40:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5858F5A8D83
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 07:47:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233106AbiIAFkE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 01:40:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54302 "EHLO
+        id S229813AbiIAFrn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 01:47:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233090AbiIAFkB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 01:40:01 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D83B12AAF;
-        Wed, 31 Aug 2022 22:39:57 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2815dfXP039408;
-        Thu, 1 Sep 2022 00:39:41 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1662010781;
-        bh=CLucAmRdzDQNvBoahPBI20arD+x2VD/6P7PmYblwV0w=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=PtqD6COknhqeDRNxeq7zKOLAKIJ520MiOV7zYVHpHL/wP/0NWXSM3sYK/pJhT8XGz
-         w2SOohw4tDw+/+1jy2CDvrajXYvUQqagVMIjQimgiQHtD0plXV4mG29vggaAqRqbQg
-         f1ykGIwKo2Bfew8PM9XH/cLXaBUZ5m/S7W35X39U=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2815dfLt017466
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 1 Sep 2022 00:39:41 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Thu, 1 Sep
- 2022 00:39:41 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Thu, 1 Sep 2022 00:39:41 -0500
-Received: from [172.24.145.182] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2815dbxu031523;
-        Thu, 1 Sep 2022 00:39:38 -0500
-Message-ID: <f4b54ddb-3364-e765-f683-9af19076db13@ti.com>
-Date:   Thu, 1 Sep 2022 11:09:36 +0530
+        with ESMTP id S233038AbiIAFrn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 01:47:43 -0400
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2079.outbound.protection.outlook.com [40.107.94.79])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9044F1166D8;
+        Wed, 31 Aug 2022 22:47:41 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=AHD81yRLhFEO1M2HeX4qmRmlWRHdBam2I9XmybqWQiwqVyz4NEjLcueWIfSlTGb54Kw2S4sIOEus0Ja0rSDfgnz3hLttVSNEtRy+70MneGaTtI1IYTSJpwLbfO0L8FgQpm8BA7LE6xrR6ZoJGJqMAYtFxXg4+TULOMILKwRSnjfdpSHWd+jrJSnIkI1gx5J8A0R05RpOJ8LaMdapmH2Fg4Dv7uwBtWB+Loo9+NG63eQIRUMTCNpiODRBVep5j0pgVSVdOMUmnlDQTcMwhgLhJATdL7IeuXf1eZ5wtpycVhJj2/l9EYRzzf6SJuA5S7/lmQKYjL62hoKsInlUr5Rsuw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=rlf+q62Tu3DzaaDyHQDmvQijGnenPLWxUFobuI0mhKg=;
+ b=CtWCEoSTBuiIOyeklIu25/4hQcwBzgh9m/mlPZoIXc1gHbYbHWgirRMLwAGH7utLT7Z+vAy5HfYeGo0a5LeQqeL7pfyE7I36kCNLMQW/kFE+MYw67c1r5NPZCCW8k2ylLwuvTtyjBxmeXf8nDRCXlUfRnUyqjn2Y36wou8E9/P/2eDJuq1BUje8eSEuJI2+CH/eflXze+Xyk2T+YqzaDwXD4Z0gtutyQCnXHVHbQ5YbkrnZEDtJFZXhcmmlB4e+b/A5mGGbstjfD4yVgjl1xDqX/ZbloXI0r0OfYjEPkmyPbGeiyEk0ihCAmEpzeZcv/9+USycf+BqzP0IwIFfy55w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=kernel.org smtp.mailfrom=xilinx.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rlf+q62Tu3DzaaDyHQDmvQijGnenPLWxUFobuI0mhKg=;
+ b=Sy4PMwRHBXpIFV0NE9UxS/OlKEICPZsmoTNMhzltt+TFLlHriYibpRwnVCYxPn7Ehhqcq26DrwaL5VliFkaF7+ma1ReC+7lCvtFI8yHKQW0NvUqqkniYyrXKLp/JY8KK/oGZNhE8PIwTkFKEAMT79BNhutCPZxD5z34OB23KiIc=
+Received: from SA1P222CA0064.NAMP222.PROD.OUTLOOK.COM (2603:10b6:806:2c1::15)
+ by SN4PR0201MB3454.namprd02.prod.outlook.com (2603:10b6:803:4f::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.10; Thu, 1 Sep
+ 2022 05:47:38 +0000
+Received: from SN1NAM02FT0034.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:806:2c1:cafe::e) by SA1P222CA0064.outlook.office365.com
+ (2603:10b6:806:2c1::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.10 via Frontend
+ Transport; Thu, 1 Sep 2022 05:47:38 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com; pr=C
+Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
+ SN1NAM02FT0034.mail.protection.outlook.com (10.97.5.90) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5588.10 via Frontend Transport; Thu, 1 Sep 2022 05:47:38 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.6; Wed, 31 Aug 2022 22:47:36 -0700
+Received: from smtp.xilinx.com (172.19.127.96) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.2507.6 via Frontend Transport; Wed, 31 Aug 2022 22:47:36 -0700
+Envelope-to: broonie@kernel.org,
+ robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org,
+ git@amd.com,
+ michal.simek@amd.com,
+ linux-spi@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org,
+ akumarma@amd.com
+Received: from [10.140.6.18] (port=60724 helo=xhdlakshmis40.xilinx.com)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <amit.kumar-mahapatra@xilinx.com>)
+        id 1oTd3A-000Eqz-98; Wed, 31 Aug 2022 22:47:36 -0700
+From:   Amit Kumar Mahapatra <amit.kumar-mahapatra@xilinx.com>
+To:     <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <git@amd.com>, <michal.simek@amd.com>, <linux-spi@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <akumarma@amd.com>,
+        Amit Kumar Mahapatra <amit.kumar-mahapatra@xilinx.com>
+Subject: [PATCH 0/7] spi: spi-zyqnmp-gqspi: Add tap delay and Versal platform support
+Date:   Thu, 1 Sep 2022 11:17:24 +0530
+Message-ID: <20220901054731.7705-1-amit.kumar-mahapatra@xilinx.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH 3/4] arm64: dts: ti: Introduce AM62A7 family of SoCs
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, Bryan Brattlof <bb@ti.com>
-References: <20220829082200.241653-1-vigneshr@ti.com>
- <20220829082200.241653-4-vigneshr@ti.com>
- <dc971b60-c2be-aabb-20d6-181ea34d55c4@linaro.org>
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-In-Reply-To: <dc971b60-c2be-aabb-20d6-181ea34d55c4@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 88436e2b-3532-47fd-1995-08da8bdd7a6a
+X-MS-TrafficTypeDiagnostic: SN4PR0201MB3454:EE_
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: zQLl5V34EnB8O7iipAHPFAO3gL1M+lo1zVfCcuCkgnZN3RUuFM8KqJ451IQbYlNppYN30ITnlC0YCont4Y+dkQdlSlYzuu4gU0Uf8W5CBrx4inW31n+pPurer715etG+mzJ3eF/ZL/IP7/KwKbT0zRM07Fo4Z9kIiubKBh7eev4rEulcv5bYXA3siBgYakGJYMoi0qOLhJ91kPQntaIyugS1RasugsX0nIXtQ6//ZQbjeaTBowGYQcN7e6zotvvfTsm5WAfYTRGAvFw/ZSXlQwCcIliRrmskwyS+uOXxsiA+csaJnGNvxhoXrzNF1drMl4xhjIS6JskTOyrxoOhQiB+J3u8AvT2ufOwjSuU5ENlO8IBsLK6AvDURSxs1bZ4RhKs/4TWf12sNpVYN6iJ7D+m7+SlLNQhQnHFn4U0mxQSuh6pH1JKQykjwF0OkCHuBJlSpTs3dFjyhrxQ++liNu2PhsO+3578EINzvXMzAos0E44z10bsY7mwtnPLfdyMkh4QFfM2DzV21mDUkvefSOo4HM0lrpd0hEMxK4JUoTlO4mnXzUTnqvgoWGV5HIW7nBFp0vE22UzzGa4HSlUhXomnt88/YbpMWU5raIIILzWQB7CI+rMRfchocWgBAQt/ZZS2gx4B1mbSdvSVXL2Q4C+AO4hwqB4sRrPpPuWqgQMovxTNocN+kPv78BiNgkW/2wXFub9k4UcQDchwEJOdNmu4YrM3hoT4W4s8tVBzWlUwn4C8G5i3grpvkAn2ltCJIvX/09yEl0AZuMFZMRNVUQA5bfM0jgPycuI4GD94M9Uw=
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(13230016)(4636009)(396003)(136003)(376002)(346002)(39860400002)(40470700004)(46966006)(36840700001)(7416002)(107886003)(6666004)(2906002)(82740400003)(40480700001)(336012)(54906003)(110136005)(41300700001)(47076005)(426003)(7696005)(316002)(83380400001)(40460700003)(7636003)(82310400005)(1076003)(2616005)(356005)(4326008)(186003)(36860700001)(36756003)(8936002)(9786002)(5660300002)(70206006)(26005)(478600001)(8676002)(70586007)(102446001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Sep 2022 05:47:38.3059
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 88436e2b-3532-47fd-1995-08da8bdd7a6a
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT0034.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN4PR0201MB3454
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch series:
+- Fixes kernel-doc warnings in GQSPI driver.
+- Avoids setting CPOL, CPHA & baud rate multiple times.
+- Adds Versal platform support in GQSPI driver.
+- Adds tap delay support in GQSPI driver.
+---
+BRANCH: mtd/next
+---
+Amit Kumar Mahapatra (5):
+  spi: spi-zynqmp-gqspi: Fix kernel-doc warnings
+  spi: spi-zynqmp-gqspi: Set CPOL and CPHA during hardware init
+  spi: spi-zynqmp-gqspi: Avoid setting baud rate multiple times for same
+    SPI frequency
+  dt-bindings: spi: spi-zynqmp-qspi: Add support for Xilinx Versal QSPI
+  spi: spi-zynqmp-gqspi: Add tap delay support for GQSPI controller on
+    Versal platform
 
+Naga Sureshkumar Relli (1):
+  spi: spi-zynqmp-gqspi: Add tap delay support for ZynqMP GQSPI
+    Controller
 
-On 30/08/22 15:26, Krzysztof Kozlowski wrote:
-> On 29/08/2022 11:21, Vignesh Raghavendra wrote:
-> 
-> (...)
-> 
->> +		/*
->> +		 * vcpumntirq:
->> +		 * virtual CPU interface maintenance interrupt
->> +		 */
->> +		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
->> +
->> +		gic_its: msi-controller@1820000 {
->> +			compatible = "arm,gic-v3-its";
->> +			reg = <0x00 0x01820000 0x00 0x10000>;
->> +			socionext,synquacer-pre-its = <0x1000000 0x400000>;
->> +			msi-controller;
->> +			#msi-cells = <1>;
->> +		};
->> +	};
->> +
->> +	main_conf: syscon@100000 {
->> +		compatible = "syscon", "simple-mfd";
-> 
-> No, these are not allowed alone.
+Rajan Vaja (1):
+  firmware: xilinx: Add qspi firmware interface
 
-Will add device specific compatible
+ .../bindings/spi/spi-zynqmp-qspi.yaml         |   6 +-
+ drivers/firmware/xilinx/zynqmp.c              |   7 +
+ drivers/spi/spi-zynqmp-gqspi.c                | 193 ++++++++++++++----
+ include/linux/firmware/xlnx-zynqmp.h          |  19 ++
+ 4 files changed, 188 insertions(+), 37 deletions(-)
 
-compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
-
-> 
->> +		reg = <0x00 0x00100000 0x00 0x20000>;
->> +		#address-cells = <1>;
->> +		#size-cells = <1>;
->> +		ranges = <0x00 0x00 0x00100000 0x20000>;
->> +	};
->> +
->> +	dmss: bus@48000000 {
->> +		compatible = "simple-mfd";
-> 
-> No. Not allowed alone.
-
-This can be "simple-bus". Will change accordingly
-
-> 
->> +		#address-cells = <2>;
->> +		#size-cells = <2>;
->> +		dma-ranges;
->> +		ranges = <0x00 0x48000000 0x00 0x48000000 0x00 0x06000000>;
->> +
->> +		ti,sci-dev-id = <25>;
->> +
->> +		secure_proxy_main: mailbox@4d000000 {
->> +			compatible = "ti,am654-secure-proxy";
->> +			#mbox-cells = <1>;
->> +			reg-names = "target_data", "rt", "scfg";
->> +			reg = <0x00 0x4d000000 0x00 0x80000>,
->> +			      <0x00 0x4a600000 0x00 0x80000>,
->> +			      <0x00 0x4a400000 0x00 0x80000>;
->> +			interrupt-names = "rx_012";
->> +			interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
->> +		};
->> +	};
->> +
->> +	dmsc: system-controller@44043000 {
->> +		compatible = "ti,k2g-sci";
->> +		ti,host-id = <12>;
->> +		mbox-names = "rx", "tx";
->> +		mboxes= <&secure_proxy_main 12>,
->> +			<&secure_proxy_main 13>;
->> +		reg-names = "debug_messages";
->> +		reg = <0x00 0x44043000 0x00 0xfe0>;
-> 
-> First compatible, then reg, then the reset of properties.  This applies
-> everywhere.
-
-Will fix
-
-> 
->> +
->> +		k3_pds: power-controller {
->> +			compatible = "ti,sci-pm-domain";
->> +			#power-domain-cells = <2>;
->> +		};
->> +
->> +		k3_clks: clock-controller {
->> +			compatible = "ti,k2g-sci-clk";
->> +			#clock-cells = <2>;
->> +		};
->> +
->> +		k3_reset: reset-controller {
->> +			compatible = "ti,sci-reset";
->> +			#reset-cells = <2>;
->> +		};
->> +	};
->> +
-[...]
->> diff --git a/arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi
->> new file mode 100644
->> index 000000000000..fe6d682a0f33
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi
->> @@ -0,0 +1,54 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Device Tree Source for AM62A SoC Family Wakeup Domain peripherals
->> + *
->> + * Copyright (C) 2022 Texas Instruments Incorporated - https://www.ti.com/
->> + */
->> +
->> +&cbass_wakeup {
->> +	wkup_conf: syscon@43000000 {
->> +		compatible = "syscon", "simple-mfd";
-> 
-> No. Not allowed alone.
-
-Will change to
-
-compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
-
-> 
->> +		reg = <0x00 0x43000000 0x00 0x20000>;
->> +		#address-cells = <1>;
->> +		#size-cells = <1>;
->> +		ranges = <0x00 0x00 0x43000000 0x20000>;
->> +
->> +		chipid: chipid@14 {
->> +			compatible = "ti,am654-chipid";
->> +			reg = <0x14 0x4>;
->> +		};
->> +	};
->> +
-> 
-> 
-
-Thanks for the review!
 -- 
-Regards
-Vignesh
+2.17.1
+
