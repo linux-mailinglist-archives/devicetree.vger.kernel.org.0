@@ -2,56 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 689395AA33D
-	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 00:43:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 34C835AA347
+	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 00:46:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234405AbiIAWnq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 18:43:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47188 "EHLO
+        id S231455AbiIAWqO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 18:46:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235202AbiIAWnl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 18:43:41 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F254D6B655;
-        Thu,  1 Sep 2022 15:43:40 -0700 (PDT)
-Received: from localhost (unknown [188.27.54.142])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: cristicc)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id A66776601EBD;
-        Thu,  1 Sep 2022 23:43:39 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1662072219;
-        bh=qSEp5SybsWViAzv/VCOFJkSqNKS5KKyfvzLsd6XpWQ0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=YGTkAEqx1Ndy6V+y1dADJlyc6v+uWY0JXsIUthW+1otCWlyGinNnuKJ5D/3gJ2p85
-         UCmBqEZjbt2SLFVvCwuVJ85VZnGtG1blrWmhiB6lopH0CxWnU0nvXEyGzbXrWsl5aD
-         oEN9RihYRularyWLORY6LYkpFhXn/upsB3PjeCMnToyBLqzzjD/uKyopuhrz18rQq8
-         RmQ3r6FA7EWan0KzxOn68M+7ujxYq/gVimEHEwSEQyJIZwHGXIrySbJ9EljqYuZI/+
-         p/kMH9Xgt4+hnCCTguDKLh2DJNsNyapYmzkX7i3515wtvZJaKvfdzVyy6icFyZKXZw
-         hRW4n584VNwng==
-From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229584AbiIAWqM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 18:46:12 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65C136E2E3;
+        Thu,  1 Sep 2022 15:46:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+        In-Reply-To:References; bh=x+DgUFgLazTEoxlPi4eum/VL9xjskp/JstZFrST/B9g=; b=gK
+        9s9hu0hoHMStg5UiyZLEtEPOId0/wrYSDd6UCfZSQ7fTllz/ewwbA/ENucjHAtpvBxTWGbXlHUky2
+        8TwJ7vmEuBRvOLI+iLMDySES1qYFU4osEo6ngGn1LLpzl6NCGtZ+5I2u+3O43bmhW7t52ysyLInTg
+        A70CEKK6iu25zN4=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1oTswg-00FLOQ-Uj; Fri, 02 Sep 2022 00:45:58 +0200
+Date:   Fri, 2 Sep 2022 00:45:58 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
+Cc:     Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Michael Zhu <michael.zhu@starfivetech.com>,
-        Drew Fustini <drew@beagleboard.org>,
-        Emil Renner Berthing <kernel@esmil.dk>
-Cc:     devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-Subject: [PATCH 3/3] riscv: dts: starfive: Add StarFive VisionFive V1 device tree
-Date:   Fri,  2 Sep 2022 01:42:53 +0300
-Message-Id: <20220901224253.2353071-4-cristian.ciocaltea@collabora.com>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20220901224253.2353071-1-cristian.ciocaltea@collabora.com>
-References: <20220901224253.2353071-1-cristian.ciocaltea@collabora.com>
+        Marek Behun <marek.behun@nic.cz>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: turris-omnia: Add mcu node
+Message-ID: <YxE2JqJutZ0ilghH@lunn.ch>
+References: <20220819131152.6513-1-pali@kernel.org>
+ <20220831142809.lcmnv3l4rnulo522@pali>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220831142809.lcmnv3l4rnulo522@pali>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,53 +54,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add initial device tree for the StarFive VisionFive V1 SBC [1], which
-is similar with the already supported BeagleV Starlight Beta board,
-both being based on the StarFive JH7100 SoC.
+On Wed, Aug 31, 2022 at 04:28:09PM +0200, Pali Rohár wrote:
+> PING?
+> 
+> On Friday 19 August 2022 15:11:52 Pali Rohár wrote:
+> > At i2c address 0x2a is MCU command interface which provides access to GPIOs
+> > connected to Turris Omnia MCU. So define mcu node in Turris Omnia DTS file.
+> > 
+> > Signed-off-by: Pali Rohár <pali@kernel.org>
+> > 
+> > ---
+> > Same change was already sent to U-Boot project together with driver. As
+> > Turris Omnia DTS file is shared between Linux kernel U-Boot, I'm sending
+> > this change also in Linux. There is a plan to write also Linux driver for
+> > Turris Omnia MCU, like there is already in U-Boot.
+> > 
+> > https://source.denx.de/u-boot/u-boot/-/commit/832738974806e6264a3d0ac2aaa92d0f662fd128
+> > https://source.denx.de/u-boot/u-boot/-/blob/master/drivers/gpio/turris_omnia_mcu.c
+> > ---
+> >  arch/arm/boot/dts/armada-385-turris-omnia.dts | 8 +++++++-
+> >  1 file changed, 7 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/arch/arm/boot/dts/armada-385-turris-omnia.dts b/arch/arm/boot/dts/armada-385-turris-omnia.dts
+> > index f4878df39753..f655e9229d68 100644
+> > --- a/arch/arm/boot/dts/armada-385-turris-omnia.dts
+> > +++ b/arch/arm/boot/dts/armada-385-turris-omnia.dts
+> > @@ -184,7 +184,13 @@
+> >  			#size-cells = <0>;
+> >  			reg = <0>;
+> >  
+> > -			/* STM32F0 command interface at address 0x2a */
+> > +			/* MCU command i2c API */
+> > +			mcu: mcu@2a {
+> > +				compatible = "cznic,turris-omnia-mcu";
+> > +				reg = <0x2a>;
+> > +				gpio-controller;
+> > +				#gpio-cells = <3>;
+> > +			};
 
-[1] https://github.com/starfive-tech/VisionFive
+Please document the binding, preferably in yaml.
 
-Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
----
- arch/riscv/boot/dts/starfive/Makefile         |  2 +-
- .../jh7100-starfive-visionfive-v1.dts         | 20 +++++++++++++++++++
- 2 files changed, 21 insertions(+), 1 deletion(-)
- create mode 100644 arch/riscv/boot/dts/starfive/jh7100-starfive-visionfive-v1.dts
+I'm also not sure what the DT people will say about the node name mcu.
+I don't see any examples of that in the binding documentation. They
+might request you rename it to gpio-controller, unless it does more
+than GPIO? And if it does do more than GPIO we are then into mfd
+territory, and the binding then becomes much more interesting. Then we
+start the questions, are you defining a ABI now, before there is even
+a driver for it?
 
-diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/dts/starfive/Makefile
-index 0ea1bc15ab30..039c143cba33 100644
---- a/arch/riscv/boot/dts/starfive/Makefile
-+++ b/arch/riscv/boot/dts/starfive/Makefile
-@@ -1,2 +1,2 @@
- # SPDX-License-Identifier: GPL-2.0
--dtb-$(CONFIG_SOC_STARFIVE) += jh7100-beaglev-starlight.dtb
-+dtb-$(CONFIG_SOC_STARFIVE) += jh7100-beaglev-starlight.dtb jh7100-starfive-visionfive-v1.dtb
-diff --git a/arch/riscv/boot/dts/starfive/jh7100-starfive-visionfive-v1.dts b/arch/riscv/boot/dts/starfive/jh7100-starfive-visionfive-v1.dts
-new file mode 100644
-index 000000000000..e82af72f1aaf
---- /dev/null
-+++ b/arch/riscv/boot/dts/starfive/jh7100-starfive-visionfive-v1.dts
-@@ -0,0 +1,20 @@
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
-+/*
-+ * Copyright (C) 2021 StarFive Technology Co., Ltd.
-+ * Copyright (C) 2021 Emil Renner Berthing <kernel@esmil.dk>
-+ */
-+
-+/dts-v1/;
-+#include "jh7100-common.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
-+
-+/ {
-+	model = "StarFive VisionFive V1";
-+	compatible = "starfive,visionfive-v1", "starfive,jh7100";
-+
-+	gpio-restart {
-+		compatible = "gpio-restart";
-+		gpios = <&gpio 63 GPIO_ACTIVE_HIGH>;
-+		priority = <224>;
-+	};
-+};
--- 
-2.37.2
-
+       Andrew
