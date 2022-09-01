@@ -2,330 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AE065A945A
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 12:23:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC8015A948A
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 12:26:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233915AbiIAKXa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 06:23:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47092 "EHLO
+        id S234201AbiIAK0G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 06:26:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233944AbiIAKX2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 06:23:28 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFC091360A0
-        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 03:23:26 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id z25so23745819lfr.2
-        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 03:23:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=bv3T8WPYFThl+f9nEQNBZ4CF4xXVMlb0Mv8v7lUGZ9g=;
-        b=xmPRWKjiz0waRhbK6pLq57Z6PA0VgBUw8r8Os5JD4kUxPDsFYkFi8FdunEzpp9w0uZ
-         9tn6NSstbWsjm95KjpWDhHpn4YD9RNKxfDGm2jSK8ibqAxacH0cYwPvXcuKiBsBjw0pk
-         bP1FiphBCN2DBqhV9ioMZmGwpIdFSOt3Cg1WCtMQtzZOBR2wFxs7fBn2KPH/kx50NG4M
-         LUCEv8NtuzNMw2fKP9PLn8NH9nphDI++WBYslUfaUSCpJm6SpNcOVWebvxSDUe63UJgL
-         QZQ5jiYIsiVfsBs3iU3y0IEcf0HWemtJTmtTvHiLIHG86uALZTMVX3EjK5ebpZNC927T
-         jBCQ==
+        with ESMTP id S233865AbiIAKZs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 06:25:48 -0400
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 791459F75A;
+        Thu,  1 Sep 2022 03:25:42 -0700 (PDT)
+Received: by mail-qt1-f178.google.com with SMTP id w28so12998529qtc.7;
+        Thu, 01 Sep 2022 03:25:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=bv3T8WPYFThl+f9nEQNBZ4CF4xXVMlb0Mv8v7lUGZ9g=;
-        b=ui+E1VzP8YVNdufWoEXZABzI+/jQ6xGXcnKBMj9kHKRT9JMm/LOD++ts4Lb2dAjAM7
-         1Pk6kQug+TvRc58IMea/AlYpMG9D0i6JTqx/dLKAx2tcyXbfnPS3Qbf6SRODcBnShmoB
-         QZbO6SmSJolE5AitaZiJYoMXrJZniYH2933C5XWdi1ewj4UYSM94LFhIb16hRMmNOZxC
-         /l232v9WkySYhXCMODho5XSffm3mAoONHn3jvQH8Es3stg0b4sodKTkFPw13t+GzxJmy
-         WzyR+ug3wI9NMnudcZ164SEgowt45z3XsC38rFJ4t7QSNMohnGGcYQCvwNW2gBe2P3iD
-         o1Eg==
-X-Gm-Message-State: ACgBeo2IGloOxg45nOf5wEWJHZq2J8ve3AxpqSe/dIhh5Ps6R5mYKIKC
-        C5K2Yl2PnRbtR4UsMQETReQPbg==
-X-Google-Smtp-Source: AA6agR5nxdf5EcsmpllSAXsT4JRuD8m4TR9S7TEUZxY7KzbF0fjuT1NQDEgmBv7mYuI8rcSOi2cJqg==
-X-Received: by 2002:a05:6512:1585:b0:494:9fd0:2ca with SMTP id bp5-20020a056512158500b004949fd002camr400670lfb.439.1662027806314;
-        Thu, 01 Sep 2022 03:23:26 -0700 (PDT)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id z19-20020a056512371300b004949ea5480fsm123453lfr.97.2022.09.01.03.23.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Sep 2022 03:23:25 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Loic Poulain <loic.poulain@linaro.org>
-Subject: [PATCH v6 12/12] dt-bindings: display/msm: add support for the display on SM8250
-Date:   Thu,  1 Sep 2022 13:23:12 +0300
-Message-Id: <20220901102312.2005553-13-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220901102312.2005553-1-dmitry.baryshkov@linaro.org>
-References: <20220901102312.2005553-1-dmitry.baryshkov@linaro.org>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=jQiwC2wtAwOaQD0hPRp2nlHKTvtSxYoVlYqx7E4G0+s=;
+        b=sVJbv02cHu/phK05kLcIKg4I8etuzfFSG4AM+LaNh6NwpZs5ggmdCKvyEn3F2ftlEe
+         S486K92bt8PGjO4YMiSZKv5w33xioDt9fB8B6U+NYRJI3h50tcm7ezUT9cJtT7R02Tjf
+         qk/ALhacDEm04OtaEyl7ItZ2zT3fZSE7lXiuSV5wZ6p60OSvwWbOdgjxxH5dQLfzUr2h
+         AegwkGDlFNMA3j9mBZ57l4Payoz2cDQ0DcgCvTDaia1r4rbBTtue+eixJUy3NWTnCGCp
+         dA2hSGPIol2Ff3ujyByVuZEPl7mBl66PeMIKROEqQ1evw1A2C1n/S+psa0RVVi+yfePN
+         2T6Q==
+X-Gm-Message-State: ACgBeo0EYBOswqeTTPmrrEd/Tm6S8PhQHxgYdQ0qllgfd6H57hXklJ/b
+        abq8vgNMb0WL22fop6pr7KlWJMcwtv/AyA==
+X-Google-Smtp-Source: AA6agR61boqv9R5GwxiSEbbbDiM7VdzQSGWRU8MnGks8DhasC46hZJmDN75uK7FdsIMuw+IzSjdDRA==
+X-Received: by 2002:a05:622a:2c4:b0:343:7f18:c2ab with SMTP id a4-20020a05622a02c400b003437f18c2abmr22347052qtx.641.1662027941508;
+        Thu, 01 Sep 2022 03:25:41 -0700 (PDT)
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com. [209.85.219.180])
+        by smtp.gmail.com with ESMTPSA id az20-20020a05620a171400b006bb41ac3b6bsm11672157qkb.113.2022.09.01.03.25.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 01 Sep 2022 03:25:41 -0700 (PDT)
+Received: by mail-yb1-f180.google.com with SMTP id 21so7949618ybl.6;
+        Thu, 01 Sep 2022 03:25:40 -0700 (PDT)
+X-Received: by 2002:a25:778d:0:b0:696:4bb6:9aaa with SMTP id
+ s135-20020a25778d000000b006964bb69aaamr18315096ybc.380.1662027940511; Thu, 01
+ Sep 2022 03:25:40 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220830164518.1381632-1-biju.das.jz@bp.renesas.com>
+ <20220830164518.1381632-2-biju.das.jz@bp.renesas.com> <23539312-caaa-78f0-cd6c-899a826f9947@linaro.org>
+ <OS0PR01MB592292E8BE619470F4C621A186799@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <1ef5dbd4-806f-ac1d-0ad5-0f8359a560de@linaro.org>
+In-Reply-To: <1ef5dbd4-806f-ac1d-0ad5-0f8359a560de@linaro.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 1 Sep 2022 12:25:29 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWWUQvsHV4TCLd+4reMpc4nTc8Hjor5gQa2DopOrRaEjw@mail.gmail.com>
+Message-ID: <CAMuHMdWWUQvsHV4TCLd+4reMpc4nTc8Hjor5gQa2DopOrRaEjw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: can: nxp,sja1000: Document RZ/N1
+ power-domains support
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "linux-can@vger.kernel.org" <linux-can@vger.kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DPU and MDSS schemas to describe MDSS and DPU blocks on the Qualcomm
-SM8250 platform.
+Hi Krzysztof,
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- .../bindings/display/msm/dpu-sm8250.yaml      |  96 ++++++++++++++++
- .../bindings/display/msm/mdss-common.yaml     |   4 +-
- .../bindings/display/msm/mdss-sm8250.yaml     | 106 ++++++++++++++++++
- 3 files changed, 204 insertions(+), 2 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/display/msm/dpu-sm8250.yaml
- create mode 100644 Documentation/devicetree/bindings/display/msm/mdss-sm8250.yaml
+On Tue, Aug 30, 2022 at 9:03 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> On 30/08/2022 20:47, Biju Das wrote:
+> >> Subject: Re: [PATCH v3 1/3] dt-bindings: can: nxp,sja1000: Document
+> >> RZ/N1 power-domains support
+> >>
+> >> On 30/08/2022 19:45, Biju Das wrote:
+> >>> Document RZ/N1 power-domains support. Also update the example with
+> >>> power-domains property.
+> >>>
+> >>> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> >>> ---
+> >>> v3:
+> >>>  * Documented power-domains support.
+> >>
+> >> You made them required, so it would be nice to see reason in such
+> >> change. The commit msg says only what you did, but not why you did it.
+> >
+> > It is simple. As you see from [1] and [2] power-domains are enabled by default in RZ/N1 SoC.
+> > So there is nothing prevent us to document this property for all IP's present in
+> > RZ/N1 SoC.
+>
+> Any explanation I expect to see in commit msg.
+>
+> Anyway you referred to Linux drivers, which is not actually a reason.
+> What if some device is not in a power domain?
 
-diff --git a/Documentation/devicetree/bindings/display/msm/dpu-sm8250.yaml b/Documentation/devicetree/bindings/display/msm/dpu-sm8250.yaml
-new file mode 100644
-index 000000000000..9bc2ee4a6589
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/msm/dpu-sm8250.yaml
-@@ -0,0 +1,96 @@
-+# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/msm/dpu-sm8250.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm Display DPU dt properties for SM8250
-+
-+maintainers:
-+  - Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-+
-+description: |
-+  Device tree bindings for the DPU display controller for SM8250 target.
-+
-+allOf:
-+  - $ref: /schemas/display/msm/dpu-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: qcom,sm8250-dpu
-+
-+  reg:
-+    items:
-+      - description: Address offset and size for mdp register set
-+      - description: Address offset and size for vbif register set
-+
-+  reg-names:
-+    items:
-+      - const: mdp
-+      - const: vbif
-+
-+  clocks:
-+    items:
-+      - description: Display ahb clock
-+      - description: Display hf axi clock
-+      - description: Display core clock
-+      - description: Display vsync clock
-+
-+  clock-names:
-+    items:
-+      - const: iface
-+      - const: bus
-+      - const: core
-+      - const: vsync
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/qcom,dispcc-sm8250.h>
-+    #include <dt-bindings/clock/qcom,gcc-sm8250.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interconnect/qcom,sm8250.h>
-+    #include <dt-bindings/power/qcom-rpmpd.h>
-+
-+    display-controller@ae01000 {
-+      compatible = "qcom,sm8250-dpu";
-+      reg = <0x0ae01000 0x8f000>,
-+            <0x0aeb0000 0x2008>;
-+      reg-names = "mdp", "vbif";
-+
-+      clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
-+               <&gcc GCC_DISP_HF_AXI_CLK>,
-+               <&dispcc DISP_CC_MDSS_MDP_CLK>,
-+               <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
-+      clock-names = "iface", "bus", "core", "vsync";
-+
-+      assigned-clocks = <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
-+      assigned-clock-rates = <19200000>;
-+
-+      operating-points-v2 = <&mdp_opp_table>;
-+      power-domains = <&rpmhpd SM8250_MMCX>;
-+
-+      interrupt-parent = <&mdss>;
-+      interrupts = <0>;
-+
-+      ports {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        port@0 {
-+          reg = <0>;
-+          endpoint {
-+            remote-endpoint = <&dsi0_in>;
-+          };
-+        };
-+
-+        port@1 {
-+          reg = <1>;
-+          endpoint {
-+            remote-endpoint = <&dsi1_in>;
-+          };
-+        };
-+      };
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/display/msm/mdss-common.yaml b/Documentation/devicetree/bindings/display/msm/mdss-common.yaml
-index 053c1e889552..a0a54cd63100 100644
---- a/Documentation/devicetree/bindings/display/msm/mdss-common.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/mdss-common.yaml
-@@ -27,11 +27,11 @@ properties:
- 
-   clocks:
-     minItems: 2
--    maxItems: 3
-+    maxItems: 4
- 
-   clock-names:
-     minItems: 2
--    maxItems: 3
-+    maxItems: 4
- 
-   interrupts:
-     maxItems: 1
-diff --git a/Documentation/devicetree/bindings/display/msm/mdss-sm8250.yaml b/Documentation/devicetree/bindings/display/msm/mdss-sm8250.yaml
-new file mode 100644
-index 000000000000..d581d10fea2d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/msm/mdss-sm8250.yaml
-@@ -0,0 +1,106 @@
-+# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/msm/mdss-sm8250.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm Display MDSS dt properties for SM8250 target
-+
-+maintainers:
-+  - Krishna Manikandan <quic_mkrishn@quicinc.com>
-+
-+description: |
-+  Device tree bindings for MSM Mobile Display Subsystem(MDSS) that encapsulates
-+  sub-blocks like DPU display controller, DSI and DP interfaces etc. Device tree
-+  bindings of MDSS are mentioned for SM8250 target.
-+
-+allOf:
-+  - $ref: /schemas/display/msm/mdss-common.yaml#
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: qcom,sm8250-mdss
-+
-+  clocks:
-+    items:
-+      - description: Display AHB clock from gcc
-+      - description: Display hf axi clock
-+      - description: Display sf axi clock
-+      - description: Display core clock
-+
-+  clock-names:
-+    items:
-+      - const: iface
-+      - const: bus
-+      - const: nrt_bus
-+      - const: core
-+
-+  iommus:
-+    maxItems: 1
-+
-+  interconnects:
-+    maxItems: 2
-+
-+  interconnect-names:
-+    maxItems: 2
-+
-+patternProperties:
-+  "^display-controller@[0-9a-f]+$":
-+    type: object
-+    properties:
-+      compatible:
-+        const: qcom,sm8250-dpu
-+
-+  "^dsi@[0-9a-f]+$":
-+    type: object
-+    properties:
-+      compatible:
-+        const: qcom,mdss-dsi-ctrl
-+
-+  "^dsi-phy@[0-9a-f]+$":
-+    type: object
-+    properties:
-+      compatible:
-+        const: qcom,dsi-phy-7nm
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/qcom,dispcc-sm8250.h>
-+    #include <dt-bindings/clock/qcom,gcc-sm8250.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interconnect/qcom,sm8250.h>
-+    #include <dt-bindings/power/qcom-rpmpd.h>
-+
-+    display-subsystem@ae00000 {
-+      compatible = "qcom,sm8250-mdss";
-+      reg = <0x0ae00000 0x1000>;
-+      reg-names = "mdss";
-+
-+      interconnects = <&mmss_noc MASTER_MDP_PORT0 &mc_virt SLAVE_EBI_CH0>,
-+                      <&mmss_noc MASTER_MDP_PORT1 &mc_virt SLAVE_EBI_CH0>;
-+      interconnect-names = "mdp0-mem", "mdp1-mem";
-+
-+      power-domains = <&dispcc MDSS_GDSC>;
-+
-+      clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
-+               <&gcc GCC_DISP_HF_AXI_CLK>,
-+               <&gcc GCC_DISP_SF_AXI_CLK>,
-+               <&dispcc DISP_CC_MDSS_MDP_CLK>;
-+      clock-names = "iface", "bus", "nrt_bus", "core";
-+
-+      interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
-+      interrupt-controller;
-+      #interrupt-cells = <1>;
-+
-+      iommus = <&apps_smmu 0x820 0x402>;
-+
-+      status = "disabled";
-+
-+      #address-cells = <1>;
-+      #size-cells = <1>;
-+      ranges;
-+    };
-+...
--- 
-2.35.1
+DT describes hardware, not software policy.
 
+"power domains" are a property of the hardware.
+I.e. this device (like most other devices on the SoC) is power-managed
+through the system-controller.
+
+Whether software does that by explicitly managing the clocks, or by
+having a PM Domains driver is a software detail.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
