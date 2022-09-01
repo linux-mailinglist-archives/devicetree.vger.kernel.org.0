@@ -2,237 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D9A045A9B50
+	by mail.lfdr.de (Postfix) with ESMTP id 6182E5A9B4F
 	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 17:11:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233671AbiIAPLI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 11:11:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40838 "EHLO
+        id S234200AbiIAPLh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 11:11:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229813AbiIAPLG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 11:11:06 -0400
-Received: from relay12.mail.gandi.net (relay12.mail.gandi.net [217.70.178.232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E28E52457;
-        Thu,  1 Sep 2022 08:11:05 -0700 (PDT)
-Received: (Authenticated sender: paul.kocialkowski@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 75DDA200010;
-        Thu,  1 Sep 2022 15:11:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1662045064;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=hPAZFTv0OR8dOw9wKgqi4Kvh5eCGaJ3DTwQLR0c7o2o=;
-        b=c5981UEzRxWDuafkKOPkAwjINHBGfzuF9vrUkJxwdwrtDvfGJbXFtJoir/1EsYtNGHmC+o
-        ohg2NlW6Q668Z+BNI8lCHe4B+NqcByWvofNwtwBJ9xd3vh4PsEAzZ06+of+HyuNZks4yZz
-        WDK5UhQUMHmJdadf0j+9dfcPntXTRG/MS1fTKigh8bga93OQh4mAj0WBiEzy/HQwm3sV3w
-        ag1LGnVqu1VMRqvDje+Y8c+tWL+EL8UZKll1UpOakhga5Vpu8PHSZurQpkOPNvRBzSyxJI
-        wI6oaruZD3wYTNKLKfRuuDUpd9OKNsMk3ey/8L4vRcML2JQYPnNPmOOgJlOp3g==
-Date:   Thu, 1 Sep 2022 17:11:00 +0200
-From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v6 5/6] media: sun6i-csi: Detect the availability of the
- ISP
-Message-ID: <YxDLhPMibhXO1oU/@aptenodytes>
-References: <20220826184144.605605-1-paul.kocialkowski@bootlin.com>
- <20220826184144.605605-6-paul.kocialkowski@bootlin.com>
- <YwlLsKaEOoXdqRK0@pendragon.ideasonboard.com>
+        with ESMTP id S229813AbiIAPLf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 11:11:35 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A07C885A81
+        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 08:11:33 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id z6so24871779lfu.9
+        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 08:11:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=Ns5DU1nOfngp2+7giOu7t5+idfy4C3d8IqsGOFXmUks=;
+        b=qs4Pv/jPOG27EPrTtcvWNOKNnbfrLo6Aw9McLhC5oHtI4egYvTBcREOdjcSplah8jh
+         lzXxie+rxnziunZanrrAAkdjYVCAz2aAmVR+wlsAWplfgdlpwyFT7Y377hZRl4fLrtZz
+         L/K4IrA7jAj3NuY1jOkCEoZ+NBJL9+46pOHdUjS02J8zkXuAsFZeNqG8nJ4inAwywNPH
+         LnMTqZyfCxbqooKkNHGxIPI5MTb/koENgLx5XmTGw4R18RKo7LteRkrLBfJ7tu5Qv9VP
+         iV8Hcj97sEWTAKOMO1hsjnAbjNhcknguZFI7GPn3L6Oz+tOy6ZrWRL7YZy/2DH82hwJD
+         WwNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=Ns5DU1nOfngp2+7giOu7t5+idfy4C3d8IqsGOFXmUks=;
+        b=fGQrGzhYjKRpuwm0rHe6vHOCIiYxhGaRcOd0YV+QEz0O+aNh9JesnFs5DL1W2BnXlB
+         2k32fGbLll9EvUTEWJ99A2PjfoeOPYMbWN7BtzztVlHT0mng3ig1JQYeLyVjsBaCTcb9
+         U107ZKmmYFgrLMTnuqULlh97A+EQGECAmmoSWAo9t75SJnvBUyM9lOPEyLA5eFz34ih6
+         3RSRDjuYN5V6+clBcanz2OF47tXtvdOFzEZgAhOICJii3UqVdB4kcHCwfs6daW9i1XsE
+         70aRwd1KczqnD4Fs35F6X+VG16J8v4Zky8J0bO2qQzOH2aydLQk/jzmHnWFWtbCX2E/3
+         2v/g==
+X-Gm-Message-State: ACgBeo1sveSRTcwm/SLXkekDCuLo1fCwuVQRh42MsZVNcE4b+bgYZ323
+        ABwwSBHR5Plcx63eenhbE4QG0w==
+X-Google-Smtp-Source: AA6agR6IuPNoybT1QM6ZvPT+EzZ7MbGZbMoz+EYsaE+0RKePK2D7gBiB5KtdC+0rly55i7aUrgmDeg==
+X-Received: by 2002:a05:6512:402a:b0:494:9bb5:820 with SMTP id br42-20020a056512402a00b004949bb50820mr1018259lfb.175.1662045091971;
+        Thu, 01 Sep 2022 08:11:31 -0700 (PDT)
+Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
+        by smtp.gmail.com with ESMTPSA id i3-20020a2ea223000000b00262fa7bae79sm2102476ljm.81.2022.09.01.08.11.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 01 Sep 2022 08:11:31 -0700 (PDT)
+Message-ID: <5ad90366-e7ac-1cae-77ee-cc084e5a69d3@linaro.org>
+Date:   Thu, 1 Sep 2022 18:11:30 +0300
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="wChqMM/2eeW8sfq3"
-Content-Disposition: inline
-In-Reply-To: <YwlLsKaEOoXdqRK0@pendragon.ideasonboard.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH 2/6] dt-bindings: gpio: add binding for the GPIO block for
+ Apple Mac SMC
+Content-Language: en-US
+To:     "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+        Arnd Bergmann <arnd@arndb.de>, Lee Jones <lee@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     Alyssa Rosenzweig <alyssa@rosenzweig.io>, asahi@lists.linux.dev,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Hector Martin <marcan@marcan.st>,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+        Sven Peter <sven@svenpeter.dev>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org
+References: <YxC5eZjGgd8xguDr@shell.armlinux.org.uk>
+ <E1oTkeM-003t9G-7S@rmk-PC.armlinux.org.uk>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <E1oTkeM-003t9G-7S@rmk-PC.armlinux.org.uk>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 01/09/2022 16:54, Russell King (Oracle) wrote:
+> Add the DT binding for the Apple Mac System Management Controller GPIOs.
+> 
+> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+> ---
+>  .../devicetree/bindings/gpio/gpio-macsmc.yaml | 28 +++++++++++++++++++
+>  .../devicetree/bindings/mfd/apple,smc.yaml    |  4 +++
+>  2 files changed, 32 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-macsmc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/gpio/gpio-macsmc.yaml b/Documentation/devicetree/bindings/gpio/gpio-macsmc.yaml
+> new file mode 100644
+> index 000000000000..ee620fe50ca8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpio/gpio-macsmc.yaml
+> @@ -0,0 +1,28 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/gpio/gpio-macsmc.yaml#
 
---wChqMM/2eeW8sfq3
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+filename based on the compatible... which is missing here, so this leads
+to the question - why this is separate device/child node? It won't bind
+to anything, won't be populated, right?
 
-Hi Laurent,
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Apple Mac System Management Controller GPIO
+> +
+> +maintainers:
+> +  - Hector Martin <marcan@marcan.st>
+> +
+> +description:
+> +  This describes the binding for the Apple Mac System Management Controller
+> +  GPIO block.
+> +
+> +properties:
+> +  gpio-controller: true
+> +  '#gpio-cells':
+> +    const: 2
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    smc_gpio: gpio {
+> +      gpio-controller;
+> +      #gpio-cells = <2>;
+> +    };
+> diff --git a/Documentation/devicetree/bindings/mfd/apple,smc.yaml b/Documentation/devicetree/bindings/mfd/apple,smc.yaml
+> index 794d3a6eb04a..bb799a27638d 100644
+> --- a/Documentation/devicetree/bindings/mfd/apple,smc.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/apple,smc.yaml
+> @@ -34,6 +34,10 @@ title: Apple Mac System Management Controller
+>      description:
+>        A phandle to the mailbox channel
+>  
+> +patternProperties:
 
-On Sat 27 Aug 22, 01:39, Laurent Pinchart wrote:
-> Hi Paul,
->=20
-> Thank you for the patch.
+This is not a pattern, so "gpio" goes to "properties:".
 
-Thanks for the review!
+> +  gpio:
+> +    $ref: /schemas/gpio/gpio-macsmc.yaml
+> +
+>  additionalProperties: false
+>  
+>  required:
 
-> On Fri, Aug 26, 2022 at 08:41:43PM +0200, Paul Kocialkowski wrote:
-> > Add a helper to detect whether the ISP is available and connected
-> > and store the indication in a driver-wide variable.
->=20
-> This sounds like it would be a global variable, while it's stored in the
-> driver-specific device structure.
 
-Okay I can clarify the commit message here.
-
-> >=20
-> > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > ---
-> >  .../platform/sunxi/sun6i-csi/sun6i_csi.c      | 33 +++++++++++++++++++
-> >  .../platform/sunxi/sun6i-csi/sun6i_csi.h      |  3 ++
-> >  2 files changed, 36 insertions(+)
-> >=20
-> > diff --git a/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi.c b/drive=
-rs/media/platform/sunxi/sun6i-csi/sun6i_csi.c
-> > index 00521f966cee..b16166cba2ef 100644
-> > --- a/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi.c
-> > +++ b/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi.c
-> > @@ -24,6 +24,35 @@
-> >  #include "sun6i_csi_capture.h"
-> >  #include "sun6i_csi_reg.h"
-> > =20
-> > +/* ISP */
-> > +
-> > +static bool sun6i_csi_isp_detect(struct sun6i_csi_device *csi_dev)
-> > +{
-> > +	struct device *dev =3D csi_dev->dev;
-> > +	struct fwnode_handle *handle =3D NULL;
->=20
-> No need to initialize this to NULL.
-
-Indeed.
-
-> > +
-> > +	/* ISP is not available if disabled in kernel config. */
-> > +	if (!IS_ENABLED(CONFIG_VIDEO_SUN6I_ISP))
-> > +		return 0;
->=20
-> Hmmm... The ISP driver may be disabled when compiling the sun6i-csi
-> driver, but later enabled and deployed. Disabling ISP support silently
-> like this could be confusing. Could it be better to move this check
-> after the graph check, and print a warning message in this case ?
-
-Yeah I'm not too surprised corner cases like this can exist.
-Agreed that printing a warning message would be good, but I don't follow the
-point of moving the check later on. Do you have something in mind there?
-
-> > +
-> > +	/*
-> > +	 * ISP is not available if not connected via fwnode graph.
-> > +	 * This weill also check that the remote parent node is available.
->=20
-> s/weill/will/
-
-Good catch, thanks!
-
-> 	 * ISP is not available if not connected via fwnode graph. This will
-> 	 * also check that the remote parent node is available.
->=20
-> > +	 */
-> > +	handle =3D fwnode_graph_get_endpoint_by_id(dev_fwnode(dev),
-> > +						 SUN6I_CSI_PORT_ISP, 0,
-> > +						 FWNODE_GRAPH_ENDPOINT_NEXT);
-> > +	if (!handle)
-> > +		return 0;
-> > +
-> > +	fwnode_handle_put(handle);
-> > +
-> > +	dev_info(dev, "ISP link is available\n");
->=20
-> You could make that a debug message, it's not crucial information that
-> needs to be printed when the driver is loaded. If you prefer keeping an
-> info message, then I'd move it to the probe function and print that the
-> CSI has been probed, and indicate in that message if the ISP is
-> available.
-
-You're right, let's make this debug. It's more the opposite case that is wo=
-rth
-a warning message.
-
-Thanks,
-
-Paul
-
-> > +	csi_dev->isp_available =3D true;
-> > +
-> > +	return 0;
-> > +}
-> > +
-> >  /* Media */
-> > =20
-> >  static const struct media_device_ops sun6i_csi_media_ops =3D {
-> > @@ -290,6 +319,10 @@ static int sun6i_csi_probe(struct platform_device =
-*platform_dev)
-> >  	if (ret)
-> >  		return ret;
-> > =20
-> > +	ret =3D sun6i_csi_isp_detect(csi_dev);
-> > +	if (ret)
-> > +		goto error_resources;
-> > +
-> >  	ret =3D sun6i_csi_v4l2_setup(csi_dev);
-> >  	if (ret)
-> >  		goto error_resources;
-> > diff --git a/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi.h b/drive=
-rs/media/platform/sunxi/sun6i-csi/sun6i_csi.h
-> > index e611bdd6e9b2..8e232cd91ebe 100644
-> > --- a/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi.h
-> > +++ b/drivers/media/platform/sunxi/sun6i-csi/sun6i_csi.h
-> > @@ -21,6 +21,7 @@
-> >  enum sun6i_csi_port {
-> >  	SUN6I_CSI_PORT_PARALLEL		=3D 0,
-> >  	SUN6I_CSI_PORT_MIPI_CSI2	=3D 1,
-> > +	SUN6I_CSI_PORT_ISP		=3D 2,
-> >  };
-> > =20
-> >  struct sun6i_csi_buffer {
-> > @@ -44,6 +45,8 @@ struct sun6i_csi_device {
-> >  	struct clk			*clock_mod;
-> >  	struct clk			*clock_ram;
-> >  	struct reset_control		*reset;
-> > +
-> > +	bool				isp_available;
-> >  };
-> > =20
-> >  struct sun6i_csi_variant {
->=20
-> --=20
-> Regards,
->=20
-> Laurent Pinchart
-
---=20
-Paul Kocialkowski, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
-
---wChqMM/2eeW8sfq3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmMQy4QACgkQ3cLmz3+f
-v9GtJQf/XNoL23Tf/tABOubjKLDGCcpO8JAwFSVCLTLp0SrTV//p7vHq/QKayRXP
-5mBJNOaAe797XnyFs9k6oaYGhbFP8/K3pOPs43RqZbta/w0/aOjaJP+e6aHWIZGA
-gH2lN2nOfZRfw/3S58z8lDuqhtTDvdIfSIcqtQkW8+/l+Oi9tZIXwqEcY768YjzA
-f6nhiDZQoY+5V75ebH5DmXftNUSv5el9ip1SssvhKljVlK7NLSnVAkE6ouMhI0gi
-TVClcmFbaT1qNqEG5m9RZJsLCk59olG/otZIcu14laypVPHVyOI3fH55ZqA1i5tE
-XfF4NGbHS8bQJkoB2RciCHuBglQrmg==
-=tFCj
------END PGP SIGNATURE-----
-
---wChqMM/2eeW8sfq3--
+Best regards,
+Krzysztof
