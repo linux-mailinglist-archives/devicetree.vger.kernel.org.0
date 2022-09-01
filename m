@@ -2,101 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EF215A92A2
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 11:02:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B08915A92D8
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 11:14:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234424AbiIAJCi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 05:02:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41580 "EHLO
+        id S232065AbiIAJOv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 05:14:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234422AbiIAJCF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 05:02:05 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 606C413251B
-        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 02:01:08 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id by6so17166680ljb.11
-        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 02:01:08 -0700 (PDT)
+        with ESMTP id S232008AbiIAJOu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 05:14:50 -0400
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC398F61
+        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 02:14:46 -0700 (PDT)
+Received: by mail-pf1-x434.google.com with SMTP id y141so16931606pfb.7
+        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 02:14:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=lvApeUv6jUwfacMiPMy6drXUvkSgbjHAmu5eomvQtUg=;
-        b=Ri9ESbHOWXgociYV0UbAWbMD69F5qYu2GTFUaK7N7RkMdXhRPHQWeVyizYTgKgzUSa
-         T7WKkbtwyvX6FUU3flFndk0cDcHz9u2BAJGQzcvqW4YP6/vPdwL+tAsAeVNd2sdwwUC8
-         QKisN6hUzmoNaqrzX0kLmRzhsWrqr6RK50GPezjS3QDx6r07y8DShuISj4hBwpsVD1tQ
-         j7EyQdxMGcyw9awrD7xUnTGqZl0bDCze3fgSSZ3r1bLGaJjFZab33S0dglD1B8WJaFoC
-         Ni5tHoAW6UC4/fDC7P5UfneFXY9+oUiAoAHygt3YVAvZ2d88jlLdSIpvE37uaK2NpkTM
-         5AMA==
+        d=quanta-corp-partner-google-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=8IfSzmiZsdcI+yTlyegdVCWD8HBiubsP99qV9h/WaOE=;
+        b=oKUXlv1k93rL8Wdi6dst3eAny2sPjwk2pbkMsPp6JFi82eEJ13427I4sOlDxfHnwcd
+         Yot6mfKnMfPPU3xQ7c9mXU4rmLwK88f+llZd+GzS416l8SRvayXtl8hVgSLyfK6GPPj8
+         IBYxiLcdPCn5lGADFotgAtnjTbZ9l+vYlb1mJb/Vwohwc5dzlS2H8F83WLMzTh6qwIby
+         SaSQEeRQPN454NA6s55CpLfDC0JOaxWAaw/9Rf3NLFpJ6hBAor+w3uFUiA1P/SQDhhSN
+         vf3lcSYF2Q3k68+LNWyR4VMV0DHJazMNS+JTnM98FqD87z7gBLF9G3HwJvihAKvbaohn
+         mVnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=lvApeUv6jUwfacMiPMy6drXUvkSgbjHAmu5eomvQtUg=;
-        b=1OMHcLkNO0SFbGEbl9zrNIMe/yghIMQmm5HtLjtx2jWyJQWo8Tc0FUmqYbf622Y2+W
-         DemdAPK1T8Oc6bGnz/Oaot1m+FQLSl2JU20j22In73RWns09lUkIS2z+X4NemZerCzxN
-         SvXrCDRlbEe5nVfM3hXHNbATL8kKVE16zIrdg5uCDgicaNulOsP22V937nJXyK7sYfxt
-         Z0Hnx66ojftb4Q4lZasvtiU3GA/xjHS2pY+rP5pu6qiAF6pL+o5SclPNtf5jinc/VkF7
-         3Icm0xuVm2wVdndn9T5kZy2L/e96wzqHqdHRi7ZvGFLnDXS3uakkc5tIBPo1Utxvrt2v
-         cDZA==
-X-Gm-Message-State: ACgBeo31msloxDWY9wZKoVz6Z5Cdsyc/W50Q9AvmsCIskRim9Kl1aNVD
-        +nD+O/2GqpKKbv2oEdDYWLJULA==
-X-Google-Smtp-Source: AA6agR61DBH568I0mLDo+jVDSq+L7cQdeSjOlgxiVpcdO0IVNeNmDu19EOP4GTt8D7im5iqsL/bqPQ==
-X-Received: by 2002:a2e:301a:0:b0:264:12f6:ead6 with SMTP id w26-20020a2e301a000000b0026412f6ead6mr6119875ljw.520.1662022866710;
-        Thu, 01 Sep 2022 02:01:06 -0700 (PDT)
-Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id f16-20020a05651c161000b00261b175f9c4sm577257ljq.37.2022.09.01.02.01.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Sep 2022 02:01:06 -0700 (PDT)
-Message-ID: <1e19ae05-3cc2-d913-dd2c-a1c4be222508@linaro.org>
-Date:   Thu, 1 Sep 2022 12:01:05 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH RFT 2/3] arm64: dts: qcom: align RPM regulators node name
- with bindings
-Content-Language: en-US
-To:     Andy Gross <agross@kernel.org>,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=8IfSzmiZsdcI+yTlyegdVCWD8HBiubsP99qV9h/WaOE=;
+        b=EiIRTuuw1WGJuXY54O3Yhg1Hf/N9AKEr/vt50eNCu5fsOxkJIXxxRODVo4ijliXesz
+         vReqRgincE1CrPEupu57kze42JuiAiTszvYqcrolzWC8ZvN0MVVsP4zkRYQi0S5Av7+D
+         vWFhglH0GbsduyQ5N8FPZ0sBGxW9vhfxW0PvQBZT5BYiMjakG4XsiSIoRj252YFYnsN6
+         V1JFNhwefbvBjRMNEWVQlibozVm9UMUGodP3nXb41tMyvM4UolYS1N829bGk1a7UuSMk
+         yVVfPYFQOyyPjlxPOhz06CrhSbeh7AWTkhVzsGfjRbtkkoyHBBiC9Z1ylimDekyZzE1m
+         0dIA==
+X-Gm-Message-State: ACgBeo1k7kc0xE+dXjq9WoeX8hl3kaRuzM63/l3nA3dfNbuIP9kFOA+p
+        qrwqu7eMW1xDLDSh2bPU+Z/wrA==
+X-Google-Smtp-Source: AA6agR5JdtulPYC5gnKEs0/xqMCuO8UrTGslnk605DAPI/be289eKpXZEgsbGneRj343/4hOBWNj5w==
+X-Received: by 2002:a62:5ac6:0:b0:537:f0fa:4ae1 with SMTP id o189-20020a625ac6000000b00537f0fa4ae1mr24499964pfb.70.1662023686133;
+        Thu, 01 Sep 2022 02:14:46 -0700 (PDT)
+Received: from liang-Predator-PH517-52.. (60-250-232-247.hinet-ip.hinet.net. [60.250.232.247])
+        by smtp.gmail.com with ESMTPSA id n12-20020a170902e54c00b0016efad0a63csm13553284plf.100.2022.09.01.02.14.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Sep 2022 02:14:45 -0700 (PDT)
+From:   Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
+To:     LKML <linux-kernel@vger.kernel.org>
+Cc:     mka@chromium.org, dianders@chromium.org,
+        Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220901085609.95624-1-krzysztof.kozlowski@linaro.org>
- <20220901085609.95624-2-krzysztof.kozlowski@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220901085609.95624-2-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: [PATCH 0/2] Add a new board device tree named 'evoker' for herobrine variant.
+Date:   Thu,  1 Sep 2022 17:12:51 +0800
+Message-Id: <20220901091253.93333-1-sheng-liang.pan@quanta.corp-partner.google.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/09/2022 11:56, Krzysztof Kozlowski wrote:
-> Node names should be generic and new DT schema expects RPM regulators
-> node to be just "regulators".  Rename them while keeping similar naming
-> style within PMIC families on different boards, e.g.
-> 	pm660l-regulators -> regulators-0
-> 	pm660-regulators -> regulators-1
-> which creates in few places big diff.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> ---
-> 
-> Not tested on hardware, but I do not expect functional impact.
-> ---
+This patch add the initial dts file for new board 'evoker'.
 
-Eh, crap, I found few more of nodes to fix. There will be a v2.
+Changes in v2:
+- document sc7280 and evoker board
 
 
-Best regards,
-Krzysztof
+Sheng-Liang Pan (2):
+  arm64: dts: qcom: sc7280: Add device tree for herobrine evoker
+  dt-bindings: arm: qcom: document sc7280 and evoker board
+
+ .../devicetree/bindings/arm/qcom.yaml         |   5 +
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ .../dts/qcom/sc7280-herobrine-evoker-r0.dts   | 333 ++++++++++++++++++
+ 3 files changed, 339 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker-r0.dts
+
+-- 
+2.34.1
+
