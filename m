@@ -2,60 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 015EE5A9BB2
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 17:30:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87D515A9BD1
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 17:38:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234590AbiIAPaR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 11:30:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40572 "EHLO
+        id S233640AbiIAPh6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 11:37:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234576AbiIAPaA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 11:30:00 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A56752A3;
-        Thu,  1 Sep 2022 08:29:45 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id D3C40B827F0;
-        Thu,  1 Sep 2022 15:29:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 127C8C433D7;
-        Thu,  1 Sep 2022 15:29:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1662046181;
-        bh=d5ZaiJJZmZijzR8TBsyEbX8fYa3CVJ1eKnFJnVSpO6k=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Od20IUqztwDI02Q+39X4ol8oIB8R1bbqyYf+XcA34qxCu3+eas1X9AAl50I3CFUyT
-         mNTlUZ98p9Sod8HpZgBwJyNk4L3rLh2kPfY/260RCL9JbnMPvXbzIq/ZTDyRieFSGp
-         lOuSR81oIuRSHHkHMjMD8dLMeJAThPD2HbhlzZ7gLbHjHfimdogB1a04RxcL2Tvk2H
-         Ry97Io8o+1JHZny/YvDAvvo2m01szH6tbVlNSrO5gT0Am/juLUsEwoVSt7sGpQBG1E
-         pYnEb+vVQDRBbwbbMLwTH+MC0wTh1bkygajmsDYDpG5SYtjJX0k60l3KDhC4Pz+LGC
-         akk1wYOep3G8w==
-Date:   Thu, 1 Sep 2022 20:59:37 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Iskren Chernev <iskren.chernev@gmail.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
-        Luca Weiss <luca@z3ntu.xyz>, Maxime Ripard <maxime@cerno.tech>,
-        Bartosz Dudziak <bartosz.dudziak@snejp.pl>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 11/14] dt-bindings: arm: cpus: Add kryo240 compatible
-Message-ID: <YxDP4Q7ExOjzNSqS@matsya>
-References: <20220901072414.1923075-1-iskren.chernev@gmail.com>
- <20220901072414.1923075-12-iskren.chernev@gmail.com>
+        with ESMTP id S233639AbiIAPh5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 11:37:57 -0400
+Received: from smtp-fw-80006.amazon.com (smtp-fw-80006.amazon.com [99.78.197.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2AEB7B1F2;
+        Thu,  1 Sep 2022 08:37:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1662046678; x=1693582678;
+  h=message-id:date:mime-version:to:cc:references:from:
+   in-reply-to:content-transfer-encoding:subject;
+  bh=PyurQaqCq9eoCeTsYctAKTgwQl7ucsbfOPj1kVaxsIU=;
+  b=oGo4iiHggPSXorbnmKDj0OlnkboBHQRPfvJr662V1DtB/L2Bvof8OQQk
+   5rw/amNyC6B2n8ItnFc/aCxKybye1XooFkGaqPgaXi56UcZDc4uEN/91j
+   5ZkX+GL8LYYX4w9rMVgQlLFOEA71RAxecdpLbdZz3UQSuROCFoFrC1HFo
+   A=;
+X-IronPort-AV: E=Sophos;i="5.93,281,1654560000"; 
+   d="scan'208";a="125723485"
+Subject: Re: [PATCH v3 19/19] hwmon: (mr75203) fix coding style space errors
+Received: from pdx4-co-svc-p1-lb2-vlan2.amazon.com (HELO email-inbound-relay-iad-1a-828bd003.us-east-1.amazon.com) ([10.25.36.210])
+  by smtp-border-fw-80006.pdx80.corp.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Sep 2022 15:31:48 +0000
+Received: from EX13D28EUC003.ant.amazon.com (iad12-ws-svc-p26-lb9-vlan2.iad.amazon.com [10.40.163.34])
+        by email-inbound-relay-iad-1a-828bd003.us-east-1.amazon.com (Postfix) with ESMTPS id 397B4803F9;
+        Thu,  1 Sep 2022 15:31:44 +0000 (UTC)
+Received: from EX13MTAUEB002.ant.amazon.com (10.43.60.12) by
+ EX13D28EUC003.ant.amazon.com (10.43.164.43) with Microsoft SMTP Server (TLS)
+ id 15.0.1497.38; Thu, 1 Sep 2022 15:31:43 +0000
+Received: from [192.168.93.228] (10.85.143.172) by mail-relay.amazon.com
+ (10.43.60.234) with Microsoft SMTP Server id 15.0.1497.38 via Frontend
+ Transport; Thu, 1 Sep 2022 15:31:39 +0000
+Message-ID: <2d907196-02c5-ea25-4438-04de77282e75@amazon.com>
+Date:   Thu, 1 Sep 2022 18:31:38 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220901072414.1923075-12-iskren.chernev@gmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.1
+Content-Language: en-US
+To:     Guenter Roeck <linux@roeck-us.net>
+CC:     Andy Shevchenko <andriy.shevchenko@intel.com>, <jdelvare@suse.com>,
+        <robh+dt@kernel.org>, <p.zabel@pengutronix.de>,
+        <rtanwar@maxlinear.com>, <linux-hwmon@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <talel@amazon.com>, <hhhawa@amazon.com>, <jonnyc@amazon.com>,
+        <hanochu@amazon.com>, <ronenk@amazon.com>, <itamark@amazon.com>,
+        <shellykz@amazon.com>, <shorer@amazon.com>, <amitlavi@amazon.com>,
+        <almogbs@amazon.com>, <dkl@amazon.com>,
+        "Farber, Eliav" <farbere@amazon.com>
+References: <20220830192212.28570-1-farbere@amazon.com>
+ <20220830192212.28570-20-farbere@amazon.com>
+ <Yw9Q5krebHnb73vC@smile.fi.intel.com>
+ <0074475d-04bc-153a-2df8-dd5f7d014c97@amazon.com>
+ <20220901144633.GC3477025@roeck-us.net>
+From:   "Farber, Eliav" <farbere@amazon.com>
+In-Reply-To: <20220901144633.GC3477025@roeck-us.net>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-11.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_SPF_WL autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,10 +74,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01-09-22, 10:24, Iskren Chernev wrote:
-> Kryo240 is found in SM4250, the slower sibling of the SM6115.
+On 9/1/2022 5:46 PM, Guenter Roeck wrote:
+> On Thu, Sep 01, 2022 at 05:21:43PM +0300, Farber, Eliav wrote:
+>> On 8/31/2022 3:15 PM, Andy Shevchenko wrote:
+>> > On Tue, Aug 30, 2022 at 07:22:12PM +0000, Eliav Farber wrote:
+>> > > Fix: "ERROR: space required before the open parenthesis '('"
+>> >
+>> > This patch may have other fixes like adding new blank lines (noted 
+>> in one
+>> > of the patches in the series), etc.
+>> This patch fixed a specific space error which existed before my changes
+>> and repeated many time.
+>> I fixed the blank line I added a previous patch (but is it isn’t an 
+>> error
+>> reported by checkpatch).
+>
+> That should really be fixed where it was introduced, not be introduced
+> and fixed here.
 
-Reviewed-by: Vinod Koul <vkoul@kernel.org>
 
--- 
-~Vinod
+So what do you suggest?
+I can drop the patch from this series and ignore it or move it to be the
+first patch in the series, or publish it separately later on.
+I had it because it was annoying seeing existing checkpatch errors when
+I came to check my change.
+
+--
+Thanks, Eliav
+
