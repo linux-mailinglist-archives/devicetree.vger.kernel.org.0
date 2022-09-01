@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8612C5A936D
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 11:43:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4BBD5A9373
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 11:43:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234153AbiIAJnB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 05:43:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33682 "EHLO
+        id S232244AbiIAJn5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 05:43:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234161AbiIAJmn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 05:42:43 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8864F1385A6
-        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 02:42:19 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id w19so14308590ljj.7
-        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 02:42:19 -0700 (PDT)
+        with ESMTP id S232762AbiIAJng (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 05:43:36 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88E3727DD6
+        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 02:43:35 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id p16so5571256lfd.6
+        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 02:43:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=cyGoLGFYlRzNkjYzyQzXdAYg9tduOqgaIixq4gRNrZI=;
-        b=TJM+qgmP78WPN0RndE/VLYhAoBjYJOv6Rag8VK3jR+6uYbzVVFP7H4fE8lYtddG60v
-         +FuxG9+2oHabfVV2pV0BUo4GYP1hjrkAHTazM9MblE1gyYGCP3WbXNxkucKTjecG5Xh/
-         t8ppcXv6JkrVF8PdMAw6yp8BfQW9+eyYqh/SyuoVqGNNmvXDyEDdAXmceliP3aOs0Bbj
-         Xom2MXL96es2KYOZLpX590vsc1P2VsZyuO1WYTu8YRIeqyaargB4vTtwu3rk0u9fQpub
-         f484fVUj4Hj3x5AMjyEp89YJpKWY5H9Kxt5y+tOU4G9zgjdrlnUVOQ+ZsEFtN0enJL4x
-         83ew==
+        bh=XEXQPbFYUmyLFpItRto0dJ/tByAUIKacMuPLqwHCo+s=;
+        b=Gfpfg8Sf0jfSEIFCwMWjk3s/aMXgKh97v8gftg2tIeA0hFhfcr9sF82fGNdBg60CS8
+         6QOTX1cQ0bOzLBNDeN0xpUCY/VfhGfKzFpUEC/anMa9dbPhSiKlNvCnaFCxks7sdT5v8
+         mu+7BgT8JYpHUGRxUGpPMI/IpPmcrFmdGbmvEdNPySVhZEmZq3M1o65Xm+/1Q8KhJGPq
+         gSpai+QkPC6f8g6yyRsfgH3oBouVnCSfHT3IBO/K1+1H2ytY7teisWFsxQH/6V6BC3Ns
+         KeIyllpNim/cEtVMwepqRgJmRRGfFaOta1JxIPQp3zn1QG/05V5mBT1hQRJOQqnQCov6
+         pkhw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=cyGoLGFYlRzNkjYzyQzXdAYg9tduOqgaIixq4gRNrZI=;
-        b=PyOgMpbqABZEbLhyguDDw1oOrX54yg+4SNtkwfXH/Zi8cuHtkjOipQtj8d4xCJyhRD
-         QpQgHZDJOASJvK0PF3M12912YyDjX6Alv9N0iRL674Yq7tSA6mnTEwvY26yhfIhmd064
-         4HI0TpaHGN3zygallUA59QMoOmLPDL/rU1MSymJoUCJ3V3p7D1y7FsUclhikUd3rx0Lv
-         C9y29RHQphLXOVJPxeSWKo3+/9kb5BlcVH1w4M3ezE4pq6rlI5NH5Ea2bUPtElnNuR9O
-         9u+4ZJSD/W59K7L4Zztg1bRlSfSl831PI0LWxlBb9RySF/y0yH9soOLdB+PquQPb+scZ
-         LJVw==
-X-Gm-Message-State: ACgBeo0hrfHlROoTHHBH+CzPKFxYyc8Penxw01mK2xH1zMGdhGo3W9S3
-        lEVkVNwHRY0TW0ogF1nlbcUD8w==
-X-Google-Smtp-Source: AA6agR41jeZpevY4b5EMQDTYDrqO8wPCUCqUani6cv6z6SYnfuyTde+XLqs0U9nLZQgJVkuXdjSAVA==
-X-Received: by 2002:a2e:3317:0:b0:264:6516:93ce with SMTP id d23-20020a2e3317000000b00264651693cemr5716037ljc.212.1662025337680;
-        Thu, 01 Sep 2022 02:42:17 -0700 (PDT)
+        bh=XEXQPbFYUmyLFpItRto0dJ/tByAUIKacMuPLqwHCo+s=;
+        b=G8hReoaHfBewd/ixF07/vjC7Dk5WRMK3NrxmJZpx2YgCnByk/GJ/5VyoE6Abp9wRnJ
+         v7m2w2un9G//odvjWOP11Ck450S1QVOjnAMboy2RYK/2kMuJtHbXgN/IqOGIEGSModYE
+         soy09GGP7S6CcVQ6wBq6TpTKBMsFN2znC0Hm4INEf6v4MNHcOF8m+j1hC5AYNrCu6q3W
+         2AbYSpntHMsDUpB5dfnnw776D5VX2i/U18Gosks3lLmceODMVvGcQcwCxzxN9OOeugFB
+         8R8RsGQNF5cc4UcFfbTNvtloFmjS00CkZeCe3KVVZ+U97aarjerftBRhVsHdy5hOwsCM
+         zrJA==
+X-Gm-Message-State: ACgBeo0570tHOEdWIpvFNwh7ML/FwWRvXI1ljchzuxZwzUVV/xCO3wi9
+        GhsGAXqp02pITSvtCCYYWZTNyA==
+X-Google-Smtp-Source: AA6agR4UzJqQQVStYvJ8JDhqeBGqAZuikeg2f1LAfkytqNgMWk4O3K4J51+OxtTxriFWxC20JQQqcg==
+X-Received: by 2002:a19:505b:0:b0:494:6549:ade7 with SMTP id z27-20020a19505b000000b004946549ade7mr6436821lfj.62.1662025413899;
+        Thu, 01 Sep 2022 02:43:33 -0700 (PDT)
 Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id h18-20020a056512221200b00492f294f06bsm993545lfu.110.2022.09.01.02.42.16
+        by smtp.gmail.com with ESMTPSA id u1-20020a05651220c100b0048b4690c78esm1180497lfr.288.2022.09.01.02.43.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Sep 2022 02:42:16 -0700 (PDT)
-Message-ID: <38910de5-89ad-e7a1-261f-18b51c8e7877@linaro.org>
-Date:   Thu, 1 Sep 2022 12:42:15 +0300
+        Thu, 01 Sep 2022 02:43:32 -0700 (PDT)
+Message-ID: <91ed22e5-41c3-8a09-101f-7d3b7555cd7b@linaro.org>
+Date:   Thu, 1 Sep 2022 12:43:31 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
@@ -76,7 +76,7 @@ Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,92 +85,16 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 01/09/2022 11:04, AngeloGioacchino Del Regno wrote:
-> Il 31/08/22 15:19, Krzysztof Kozlowski ha scritto:
->> On 31/08/2022 15:48, Johnson Wang wrote:
->>> Add the new binding documentation for MediaTek frequency hopping
->>> and spread spectrum clocking control.
->>>
->>> Co-developed-by: Edward-JW Yang <edward-jw.yang@mediatek.com>
->>> Signed-off-by: Edward-JW Yang <edward-jw.yang@mediatek.com>
->>> Signed-off-by: Johnson Wang <johnson.wang@mediatek.com>
->>> ---
->>>   .../bindings/arm/mediatek/mediatek,fhctl.yaml | 49 +++++++++++++++++++
->>>   1 file changed, 49 insertions(+)
->>>   create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,fhctl.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,fhctl.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,fhctl.yaml
->>> new file mode 100644
->>> index 000000000000..c5d76410538b
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,fhctl.yaml
->>> @@ -0,0 +1,49 @@
->>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/arm/mediatek/mediatek,fhctl.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: MediaTek frequency hopping and spread spectrum clocking control
->>> +
->>> +maintainers:
->>> +  - Edward-JW Yang <edward-jw.yang@mediatek.com>
->>> +
->>> +description: |
->>> +  Frequency hopping control (FHCTL) is a piece of hardware that control
->>> +  some PLLs to adopt "hopping" mechanism to adjust their frequency.
->>> +  Spread spectrum clocking (SSC) is another function provided by this hardware.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: mediatek,fhctl
->>
->> You need SoC/device specific compatibles. Preferably only SoC specific,
->> without generic fallback, unless you can guarantee (while representing
->> MediaTek), that generic fallback will cover all of their SoCs?
->>
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  mediatek,hopping-ssc-percents:
->>> +    description: |
->>> +      Determine the enablement of frequency hopping feature and the percentage
->>> +      of spread spectrum clocking for PLLs.
->>> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
->>> +    items:
->>> +      items:
->>> +        - description: PLL id that is expected to enable frequency hopping.
->>
->> So the clocks are indices from some specific, yet unnamed
->> clock-controller? This feels hacky. You should rather take here clock
->> phandles (1) or integrate it into specific clock controller (2). The
->> reason is that either your device does something on top of existing
->> clocks (option 1, thus it takes clock as inputs) or it modifies existing
->> clocks (option 2, thus it is integral part of clock-controller).
->>
-> 
-> FHCTL is a MCU that handles (some, or all, depending on what's supported on the
-> SoC and what's needed by the board) PLL frequency setting, doing it in steps and
-> avoiding overshooting and other issues.
-> 
-> We had a pretty big conversation about this a while ago and the indices instead
-> of phandles is actually my fault, that happened because I initially proposed your
-> option 2 but then for a number of reasons we went with this kind of solution.
-> 
 > I know it's going to be a long read, but the entire conversation is on the list [1]
 > 
+> Cheers,
+> Angelo
+> 
+> [1]: 
+> https://patchwork.kernel.org/project/linux-mediatek/patch/20220612135414.3003-3-johnson.wang@mediatek.com/
 
-Sorry, but it's a hacky architecture where one device (which is a clock
-provider) and second device have no relationship in hardware description
-but both play with each other resources. That's simply not a proper
-hardware description, so again:
-
-1. If this is separate device (as you indicated), then it needs
-expressing the dependencies and uses of other device resources.
-
-2. If this is not a separate device, but integral part of clock
-controller, then it would be fine but then probably should be child of
-that device.
+I see there hundreds of lines of quoted text without trimming to actual
+parts, so no, no one is going to read it.
 
 Best regards,
 Krzysztof
