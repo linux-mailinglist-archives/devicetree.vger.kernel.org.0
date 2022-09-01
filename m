@@ -2,121 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B73895A9559
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 13:05:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC7665A9593
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 13:20:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234098AbiIALEu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 07:04:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43800 "EHLO
+        id S233706AbiIALUt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 07:20:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234456AbiIALEs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 07:04:48 -0400
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B69871321F2;
-        Thu,  1 Sep 2022 04:04:41 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id d12-20020a05600c34cc00b003a83d20812fso1214811wmq.1;
-        Thu, 01 Sep 2022 04:04:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date;
-        bh=hYO6m08D1m77fS4bLwKWIIJPEfZsg+AkhNMU05CQppg=;
-        b=p0BWuO8iIXuIn25OJFE7kgCWFMDzefwMBnzQ/IuGJm7vW05X7pmTXi/OfpZaK2UjTR
-         wGJchy3V5lczXEbUb6fhgnjlA+OcCSVEy59H/cZXNOI1SFHRZxYtL7WYLozgNDSkKKS5
-         4JDnB1R1xGufOrJJjw0q91s8oD+5rHvip85JEcnkms/WASs3/P0brAZNIJ2gYlcvIzm0
-         0UqawjA7xEaweohkcwewcUDhAXPxbllYs8JwvSDVfIu/lc3xObYi0wsurj3jPOMFxvFR
-         ZAFyXuqe9apoxJmMyBEJ26UO9NhfJfjMGkum1lDrvv4JFQt6e+ScDJlzmT91DZ71Tjsq
-         9x/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=hYO6m08D1m77fS4bLwKWIIJPEfZsg+AkhNMU05CQppg=;
-        b=TMeZO53Hybdwva2JPNn/D1qQaJNfeZDyJX/YKqhZy0VIKxel71fVIo0lRJ+Rrl/SCQ
-         yeT0cg/8vVA7WbUdZtsp5CGbXsEuIFfJ5qO8Tzn9yTIsNcjrUc7KA7ocvcgAieXKnoXT
-         Fy9Df2zEUVgMoAVsENfGewdhM1TypoPZoxeUoEj4z8X8JPtsIfsbt9soVis0k/NY2wlK
-         al9q4rfLzhNAxCrktxEfM9IElRYfX2udjmBKJpRKtS0oFD17r6WCTBso/gByAg2moeoi
-         L6ustOF7qy1J7cGhTl4GDach3P+CLytBNMDwKwX6ttNc0CZQvXIIHC8rC95V+gjIemQe
-         ZrMA==
-X-Gm-Message-State: ACgBeo11eAW7i72pC3uTZlJ8Jwr55QgNj6c+tMnCmyU+sJtY9/cx9gL+
-        kpYGMwOa5ZT5ztVSsmM0i24=
-X-Google-Smtp-Source: AA6agR7t5nnSC6OuTNZedRbMPFLa6/MLr9nye3O9jkrmqUr5CvdkflXoRFV0WntgD6tZqOZjICrrzA==
-X-Received: by 2002:a05:600c:22d2:b0:3a8:3e8c:d914 with SMTP id 18-20020a05600c22d200b003a83e8cd914mr4769300wmg.128.1662030280200;
-        Thu, 01 Sep 2022 04:04:40 -0700 (PDT)
-Received: from linuxdev2.toradex.int (31-10-206-125.static.upc.ch. [31.10.206.125])
-        by smtp.gmail.com with ESMTPSA id j38-20020a05600c1c2600b003a5c75bd36fsm5315636wms.10.2022.09.01.04.04.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Sep 2022 04:04:39 -0700 (PDT)
-From:   Max Krummenacher <max.oss.09@gmail.com>
-To:     Max Krummenacher <max.krummenacher@toradex.com>
-Cc:     Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Philippe Schenker <philippe.schenker@toradex.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: imx8mp-verdin: board regulators: add always-on
-Date:   Thu,  1 Sep 2022 13:04:22 +0200
-Message-Id: <20220901110422.1859621-1-max.oss.09@gmail.com>
-X-Mailer: git-send-email 2.35.3
+        with ESMTP id S233114AbiIALUs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 07:20:48 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5ECE1037E0
+        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 04:20:45 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1oTiFY-0006Ty-0j; Thu, 01 Sep 2022 13:20:44 +0200
+Received: from [2a0a:edc0:0:1101:1d::28] (helo=dude02.red.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <sha@pengutronix.de>)
+        id 1oTiFV-003HxO-BR; Thu, 01 Sep 2022 13:20:43 +0200
+Received: from sha by dude02.red.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <sha@pengutronix.de>)
+        id 1oTiFW-007dXV-GB; Thu, 01 Sep 2022 13:20:42 +0200
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     devicetree@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Subject: [PATCH 0/3] arm64: dts: Add Innocom WB15-EVK support
+Date:   Thu,  1 Sep 2022 13:20:37 +0200
+Message-Id: <20220901112040.1471879-1-s.hauer@pengutronix.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Max Krummenacher <max.krummenacher@toradex.com>
+The Innocom WB15-EVK [1] board is a Eval base board for the WB15 SoM [2] which
+is based on the NXP i.MX8MM. This series adds Innocom as a vendor prefix
+and the necessary dts/dtsi files.
 
-These regulators are switched on by HW during power up and can not
-be influenced by SW.
-Set the always-on property.
+Sascha
 
-Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
+[1] https://www.innocomm.com/product_inner.aspx?num=2233
+[2] https://www.innocomm.com/product_inner.aspx?num=2232
 
----
+Sascha Hauer (3):
+  dt-bindings: vendor-prefixes: Add prefix for Innocom
+  dt-bindings: arm: fsl: Add Innocom WB15 EVK
+  arm64: dts: freescale: Add Innocom i.MX8MM based WB15 SoM and EVK
 
- arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi | 3 +++
- 1 file changed, 3 insertions(+)
+ .../devicetree/bindings/arm/fsl.yaml          |   1 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../dts/freescale/imx8mm-innocom-wb15-evk.dts | 147 ++++++
+ .../dts/freescale/imx8mm-innocom-wb15.dtsi    | 480 ++++++++++++++++++
+ 5 files changed, 631 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-innocom-wb15-evk.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-innocom-wb15.dtsi
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
-index 557cfef8f049..76cc89296150 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
-@@ -62,6 +62,7 @@ button-wakeup {
- 	/* Carrier Board Supplies */
- 	reg_1p8v: regulator-1p8v {
- 		compatible = "regulator-fixed";
-+		regulator-always-on;
- 		regulator-max-microvolt = <1800000>;
- 		regulator-min-microvolt = <1800000>;
- 		regulator-name = "+V1.8_SW";
-@@ -69,6 +70,7 @@ reg_1p8v: regulator-1p8v {
- 
- 	reg_3p3v: regulator-3p3v {
- 		compatible = "regulator-fixed";
-+		regulator-always-on;
- 		regulator-max-microvolt = <3300000>;
- 		regulator-min-microvolt = <3300000>;
- 		regulator-name = "+V3.3_SW";
-@@ -76,6 +78,7 @@ reg_3p3v: regulator-3p3v {
- 
- 	reg_5p0v: regulator-5p0v {
- 		compatible = "regulator-fixed";
-+		regulator-always-on;
- 		regulator-max-microvolt = <5000000>;
- 		regulator-min-microvolt = <5000000>;
- 		regulator-name = "+V5_SW";
 -- 
-2.35.3
+2.30.2
 
