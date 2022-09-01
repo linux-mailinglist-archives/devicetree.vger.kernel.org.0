@@ -2,103 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2498C5A94C4
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 12:37:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBD345A9537
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 12:59:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232830AbiIAKhk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 06:37:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47782 "EHLO
+        id S234259AbiIAK6t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 06:58:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232418AbiIAKhj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 06:37:39 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5547E1169
-        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 03:37:38 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 281AbS22065539;
-        Thu, 1 Sep 2022 05:37:28 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1662028648;
-        bh=XL496xjeqwW/7AhljoSMVF26hUmJHTRpA70q680D6Hw=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=kWXawfdoRoDQvRT3d5B9pIs1neRXfQJNovaKPZchGNkqE+f8OqyqXtzsARisD6d9C
-         GTwi5zP+0Hva/I7qa+NeNJIDxDumFa6ODJWMfdPTeNvcGjCSjfw2CADazGoQgxwGxA
-         xIsmHjdKMnACBAwJRSJhFO/hOGkwH4su4owSlNhU=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 281AbSjH070830
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 1 Sep 2022 05:37:28 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Thu, 1 Sep
- 2022 05:37:28 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Thu, 1 Sep 2022 05:37:28 -0500
-Received: from [172.24.145.182] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 281AbQsO036102;
-        Thu, 1 Sep 2022 05:37:27 -0500
-Message-ID: <0526f49c-0905-d455-5800-2dc9fd959c61@ti.com>
-Date:   Thu, 1 Sep 2022 16:07:25 +0530
+        with ESMTP id S234261AbiIAK6f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 06:58:35 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FFD961725;
+        Thu,  1 Sep 2022 03:58:34 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 7DBDD6601DF7;
+        Thu,  1 Sep 2022 11:58:31 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1662029912;
+        bh=J0a7JIYzSfLJ+NmiuKc1E8YXYw0cLkKnM9rQliRatI8=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=Vb4UzK09kZ2A61z7ufCdC23usamdiAglog33FnJ+oLYi3dkxmwmTiRvJlzII0IPS7
+         2LH5JHyAmZE9ywWFhlGNnG5wNUZlRcAS2lEEL5xI7xiQ1Fi8IHDoqHhoBAs9qX9Hx7
+         WmoGU9oPqgb1BR6+8fQQ1vKbqK44R317SHn3VUscV6y2NHCLmwpqQoCuuW0qShEHuB
+         HcwocUN3tEsi9OY15U5kTscZYh7jR/DJMH2GuprZLRnAnnDgnzgcYLMSQ6/kINQ/Ai
+         ucD97vXat0x9ga4eq5wv03AKtE0kj/oW6lSAFMy5pZc+nkZunGShzgl31OZW4rFdYn
+         WHKCxAjQW5dEg==
+Message-ID: <3ceeb700-4424-6182-6d14-60c569f7c59d@collabora.com>
+Date:   Thu, 1 Sep 2022 12:58:28 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v2 2/2] arm64: dts: ti: k3-am65: Add general purpose
- timers for am65
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+Subject: Re: [PATCH v17 00/10] Add MT8195 DisplayPort driver
 Content-Language: en-US
-To:     Tony Lindgren <tony@atomide.com>, <devicetree@vger.kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>, Keerthy <j-keerthy@ti.com>,
-        Nishanth Menon <nm@ti.com>
-References: <20220830070750.30640-1-tony@atomide.com>
- <20220830070750.30640-3-tony@atomide.com> <Yw7sI81Nzo5koM6c@atomide.com>
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-In-Reply-To: <Yw7sI81Nzo5koM6c@atomide.com>
-Content-Type: text/plain; charset="UTF-8"
+To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, chunkuang.hu@kernel.org,
+        p.zabel@pengutronix.de, daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, mripard@kernel.org,
+        tzimmermann@suse.de, matthias.bgg@gmail.com, deller@gmx.de,
+        airlied@linux.ie
+Cc:     msp@baylibre.com, granquet@baylibre.com, jitao.shi@mediatek.com,
+        wenst@chromium.org, ck.hu@mediatek.com, liangxu.xu@mediatek.com,
+        dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-fbdev@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220901044149.16782-1-rex-bc.chen@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220901044149.16782-1-rex-bc.chen@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Il 01/09/22 06:41, Bo-Chen Chen ha scritto:
+> This patch is separated from v10 which is including dp driver, phy driver
+> and dpintf driver. This series is only contained the DisplayPort driver.
 
+For the entire series:
 
-On 31/08/22 10:35, Tony Lindgren wrote:
-> * Tony Lindgren <tony@atomide.com> [220830 07:09]:
->> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
->> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
->> @@ -271,6 +271,138 @@ main_spi4: spi@2140000 {
->>  		#size-cells = <0>;
->>  	};
->>  
->> +	main_timer0: timer@2400000 {
->> +		compatible = "ti,am654-timer";
->> +		reg = <0x00 0x2400000 0x00 0x400>;
->> +		interrupts = <GIC_SPI 224 IRQ_TYPE_LEVEL_HIGH>;
->> +		clocks = <&k3_clks 23 0>;
->> +		clock-names = "fck";
->> +		assigned-clocks = <&k3_clks 23 0>;
->> +		assigned-clock-parents = <&k3_clks 23 1>;
->> +		ti,timer-pwm;
->> +	};
+Tested-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
+Thanks!
+Angelo
+
 > 
-> Oops the power-domains are missing for the timers. This should
-> have power-domains = <&k3_pds 23 TI_SCI_PD_EXCLUSIVE>.
+> Bo-Chen Chen (4):
+>    drm/mediatek: dp: Add multiple bridge types support
+>    drm/mediatek: dp: Add multiple smc commands support
+>    drm/mediatek: dp: Add multiple calibration data formats support
+>    drm/mediatek: dp: Determine device of next_bridge
 > 
-> Can we tag all the timers with TI_SCI_PD_EXCLUSIVE, or do some
-> always need to be TI_SCI_PD_SHARED?
+> Guillaume Ranquet (2):
+>    drm/mediatek: dp: Add MT8195 External DisplayPort support
+>    drm/mediatek: dp: Audio support for MT8195
+> 
+> Jitao Shi (1):
+>    drm/mediatek: dp: Add hpd debounce
+> 
+> Markus Schneider-Pargmann (3):
+>    dt-bindings: mediatek,dp: Add Display Port binding
+>    video/hdmi: Add audio_infoframe packing for DP
+>    drm/mediatek: Add MT8195 Embedded DisplayPort driver
+> 
+>   .../display/mediatek/mediatek,dp.yaml         |  116 +
+>   drivers/gpu/drm/mediatek/Kconfig              |    9 +
+>   drivers/gpu/drm/mediatek/Makefile             |    2 +
+>   drivers/gpu/drm/mediatek/mtk_dp.c             | 2661 +++++++++++++++++
+>   drivers/gpu/drm/mediatek/mtk_dp_reg.h         |  356 +++
+>   drivers/video/hdmi.c                          |   82 +-
+>   include/drm/display/drm_dp.h                  |    2 +
+>   include/linux/hdmi.h                          |    7 +-
+>   8 files changed, 3215 insertions(+), 20 deletions(-)
+>   create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml
+>   create mode 100644 drivers/gpu/drm/mediatek/mtk_dp.c
+>   create mode 100644 drivers/gpu/drm/mediatek/mtk_dp_reg.h
 > 
 
-Please tag TI_SCI_PD_EXCLUSIVE for main domain timers. Individual boards
-can override based on need basis
 
--- 
-Regards
-Vignesh
+
