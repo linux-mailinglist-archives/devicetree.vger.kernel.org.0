@@ -2,104 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34C835AA347
-	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 00:46:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 338155AA3AB
+	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 01:23:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231455AbiIAWqO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 18:46:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53060 "EHLO
+        id S234555AbiIAXXF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 19:23:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51458 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229584AbiIAWqM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 18:46:12 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65C136E2E3;
-        Thu,  1 Sep 2022 15:46:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-        In-Reply-To:References; bh=x+DgUFgLazTEoxlPi4eum/VL9xjskp/JstZFrST/B9g=; b=gK
-        9s9hu0hoHMStg5UiyZLEtEPOId0/wrYSDd6UCfZSQ7fTllz/ewwbA/ENucjHAtpvBxTWGbXlHUky2
-        8TwJ7vmEuBRvOLI+iLMDySES1qYFU4osEo6ngGn1LLpzl6NCGtZ+5I2u+3O43bmhW7t52ysyLInTg
-        A70CEKK6iu25zN4=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1oTswg-00FLOQ-Uj; Fri, 02 Sep 2022 00:45:58 +0200
-Date:   Fri, 2 Sep 2022 00:45:58 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
-Cc:     Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        with ESMTP id S231447AbiIAXXF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 19:23:05 -0400
+Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:3::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9151F9F8E9;
+        Thu,  1 Sep 2022 16:23:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+        Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+        Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+        bh=hgMGVZdMKhyqLshIUrsmX7Hqg1+VgGsYk2UgsOp9efM=; b=Wn52tRpu39wZbFJINIaQN8A17x
+        ASTWsfCR2CZ0+v+79nboPKwgYFtQDYeXAdHUdsYlDb/ovDam88ggKtmn5w+Nw9rn7zrEmRmrnjSTd
+        zSX3IqszBE8EBLQs/yks6l9rm66no4L0sLPXfyxaarHOwptwHpffvdmapDpb7FxuW2nFpxI9LBUzd
+        CBCBy9PuUlT0bTmXaULu/3oJzpuzUOtQnkD4I+IkL2TnNZXVVuVM/f9HCkRXJqXJtHRx4tYU2PbiH
+        7Z/IS+3yPzVpuDMCCElJcjf4yLzFZKNIX0aBdnIQauV5fB1qDhgFTbVapoFLySF1dKuYdeEs7Ay29
+        HW/+uCKA==;
+Received: from [2601:1c0:6280:3f0::a6b3]
+        by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1oTtWL-00FlIA-4F; Thu, 01 Sep 2022 23:22:49 +0000
+Message-ID: <3b86cb68-2b30-76dd-baf5-90af0b0a60a4@infradead.org>
+Date:   Thu, 1 Sep 2022 16:22:47 -0700
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+Subject: Re: [PATCH v2 01/20] net: add helper eth_addr_add()
+Content-Language: en-US
+To:     Michael Walle <michael@walle.cc>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marek Behun <marek.behun@nic.cz>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: turris-omnia: Add mcu node
-Message-ID: <YxE2JqJutZ0ilghH@lunn.ch>
-References: <20220819131152.6513-1-pali@kernel.org>
- <20220831142809.lcmnv3l4rnulo522@pali>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220831142809.lcmnv3l4rnulo522@pali>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Andrew Lunn <andrew@lunn.ch>, Jakub Kicinski <kuba@kernel.org>
+References: <20220901221857.2600340-1-michael@walle.cc>
+ <20220901221857.2600340-2-michael@walle.cc>
+From:   Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <20220901221857.2600340-2-michael@walle.cc>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 31, 2022 at 04:28:09PM +0200, Pali Rohár wrote:
-> PING?
+
+
+On 9/1/22 15:18, Michael Walle wrote:
+> Add a helper to add an offset to a ethernet address. This comes in handy
+> if you have a base ethernet address for multiple interfaces.
 > 
-> On Friday 19 August 2022 15:11:52 Pali Rohár wrote:
-> > At i2c address 0x2a is MCU command interface which provides access to GPIOs
-> > connected to Turris Omnia MCU. So define mcu node in Turris Omnia DTS file.
-> > 
-> > Signed-off-by: Pali Rohár <pali@kernel.org>
-> > 
-> > ---
-> > Same change was already sent to U-Boot project together with driver. As
-> > Turris Omnia DTS file is shared between Linux kernel U-Boot, I'm sending
-> > this change also in Linux. There is a plan to write also Linux driver for
-> > Turris Omnia MCU, like there is already in U-Boot.
-> > 
-> > https://source.denx.de/u-boot/u-boot/-/commit/832738974806e6264a3d0ac2aaa92d0f662fd128
-> > https://source.denx.de/u-boot/u-boot/-/blob/master/drivers/gpio/turris_omnia_mcu.c
-> > ---
-> >  arch/arm/boot/dts/armada-385-turris-omnia.dts | 8 +++++++-
-> >  1 file changed, 7 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/arch/arm/boot/dts/armada-385-turris-omnia.dts b/arch/arm/boot/dts/armada-385-turris-omnia.dts
-> > index f4878df39753..f655e9229d68 100644
-> > --- a/arch/arm/boot/dts/armada-385-turris-omnia.dts
-> > +++ b/arch/arm/boot/dts/armada-385-turris-omnia.dts
-> > @@ -184,7 +184,13 @@
-> >  			#size-cells = <0>;
-> >  			reg = <0>;
-> >  
-> > -			/* STM32F0 command interface at address 0x2a */
-> > +			/* MCU command i2c API */
-> > +			mcu: mcu@2a {
-> > +				compatible = "cznic,turris-omnia-mcu";
-> > +				reg = <0x2a>;
-> > +				gpio-controller;
-> > +				#gpio-cells = <3>;
-> > +			};
+> Signed-off-by: Michael Walle <michael@walle.cc>
+> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+> Acked-by: Jakub Kicinski <kuba@kernel.org>
+> ---
+> changes since v1:
+>  - none
+> 
+>  include/linux/etherdevice.h | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
+> diff --git a/include/linux/etherdevice.h b/include/linux/etherdevice.h
+> index a541f0c4f146..f144cadbe99d 100644
+> --- a/include/linux/etherdevice.h
+> +++ b/include/linux/etherdevice.h
+> @@ -507,6 +507,20 @@ static inline void eth_addr_inc(u8 *addr)
+>  	u64_to_ether_addr(u, addr);
+>  }
+>  
+> +/**
+> + * eth_addr_add() - Add (or subtract) and offset to/from the given MAC address.
 
-Please document the binding, preferably in yaml.
+                                         an offset
+?
 
-I'm also not sure what the DT people will say about the node name mcu.
-I don't see any examples of that in the binding documentation. They
-might request you rename it to gpio-controller, unless it does more
-than GPIO? And if it does do more than GPIO we are then into mfd
-territory, and the binding then becomes much more interesting. Then we
-start the questions, are you defining a ABI now, before there is even
-a driver for it?
+> + *
+> + * @offset: Offset to add.
+> + * @addr: Pointer to a six-byte array containing Ethernet address to increment.
+> + */
+> +static inline void eth_addr_add(u8 *addr, long offset)
+> +{
+> +	u64 u = ether_addr_to_u64(addr);
+> +
+> +	u += offset;
+> +	u64_to_ether_addr(u, addr);
+> +}
+> +
+>  /**
+>   * is_etherdev_addr - Tell if given Ethernet address belongs to the device.
+>   * @dev: Pointer to a device structure
 
-       Andrew
+-- 
+~Randy
