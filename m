@@ -2,748 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC04D5A8C90
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 06:29:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AAFF5A8CA6
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 06:33:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232649AbiIAE3v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 00:29:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38440 "EHLO
+        id S229534AbiIAEd0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 00:33:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232458AbiIAE3q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 00:29:46 -0400
-Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69FBC52468
-        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 21:20:13 -0700 (PDT)
-Received: from secure.fukaumi.org ([10.0.0.2])
-        by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 2814IjmW009948;
-        Thu, 1 Sep 2022 13:18:45 +0900
-From:   FUKAUMI Naoki <naoki@radxa.com>
-To:     jagan@amarulasolutions.com
-Cc:     abbaraju.manojsai@amarulasolutions.com, devicetree@vger.kernel.org,
-        heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
-        linux-amarula@amarulasolutions.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, naoki@radxa.com,
-        robh+dt@kernel.org, stephen@radxa.com
-Subject: [PATCH v3 3/3] arm64: dts: rockchip: rk3399: Radxa ROCK 4C+
-Date:   Thu,  1 Sep 2022 04:18:10 +0000
-Message-Id: <20220901041810.20909-1-naoki@radxa.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220830065119.120844-3-jagan@amarulasolutions.com>
-References: <20220830065119.120844-3-jagan@amarulasolutions.com>
+        with ESMTP id S229473AbiIAEd0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 00:33:26 -0400
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2061.outbound.protection.outlook.com [40.107.93.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE4581FCF7;
+        Wed, 31 Aug 2022 21:33:21 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=PYTs90w3Z7TyIeUFygSohDCW8xhepBM9vNPm9sSEWmeswZtfTVnUlVOtZpzIe999vftiAimwsTuAKi7iXzt1lW6KDM4Tt6zJN6GSj7DLL+rpjtKdyImpGAGEA64PB+J3GYzq679EQGlTDMo2xSjz+VPyQDdHpaNbfP08lrMKD+HIUfWXIeot70nhe2ZgPgoNfwHMK0rd+vO3wasHqflh4YAmGm5orcSb/jCPRfkEAsb5VKTiivrpNx/Ysj+fv9JsyAJNeo3USPO4l2KTArO1GcksKChU7BnQXzy+v6KQIap7zcTDbUsqNyDGoXO+cQzGyhHxca7xzsfl7GPoXDRGig==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SNKnhY/VwpdyZTW3oPFSIcsvsNnZr3+jCgc0G+4tk9Y=;
+ b=OvHSF+oDCPSx30yh8Zbg6bzi/DOhVhRlqqNuhE7OpRdfMV+51qeRYsljEjlvDSqLypCQYjF0f3bXHL/Ir7f38IdwXiHUmqTehNdwfIB3C3Gg53QdV8fVyWK7wbjzt06BFBWQu9jKUoBQpmiuF0uI/EXv75rJhDpmQTNJJ6VDRpkYVRmfesDmlk9+CYsnZuenbmroSN4yLHJ+o//mwbGQacvDCzLxM+6DMmymd5vNdtWejqR0cNnMnt3oqqqxOlU8coosXEQSp1wPV3vqlrZ/ymnf4YzlzKXs3VSVGnhFsC9O3/kdFBOqNByi7b7PwoQsR4CeWMcTLuLM/9N1MmY1qQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 12.22.5.234) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SNKnhY/VwpdyZTW3oPFSIcsvsNnZr3+jCgc0G+4tk9Y=;
+ b=MnkX1FMUzKK5jlV+f6CPoigMhsuKuMRl3FtQQ0+J7NlQ0WbzSGsf947UUtsHXxWUreR83LXObCUWW2BVCQB04alpZsAez+Uh8lq2AcogCLeD//nhxTi+7BOzca2ANZ0mdRFBwTuFm0ifADQf7dw8nZ7DCd+4aeTOTsL6/lbCHfjkjdmA276F/c2wJym3PRzHLHMigL9TFU+pDDS3ulN+M/8bcegMS5zHOLtEnsmQrCx/jSFGQ38XN4lSfmroCo8XnIVkwPiNmvadTiiMSzNVzXJuOIhmz6wc3oo3ay2e63vHFRmdNwBUmQGExFhwLaDK2vHXoRyiNH8p0BO33Lp29w==
+Received: from MW4PR04CA0145.namprd04.prod.outlook.com (2603:10b6:303:84::30)
+ by MN2PR12MB4159.namprd12.prod.outlook.com (2603:10b6:208:1da::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.10; Thu, 1 Sep
+ 2022 04:33:20 +0000
+Received: from CO1NAM11FT112.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:84:cafe::80) by MW4PR04CA0145.outlook.office365.com
+ (2603:10b6:303:84::30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.10 via Frontend
+ Transport; Thu, 1 Sep 2022 04:33:19 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 12.22.5.234)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 12.22.5.234 as permitted sender) receiver=protection.outlook.com;
+ client-ip=12.22.5.234; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (12.22.5.234) by
+ CO1NAM11FT112.mail.protection.outlook.com (10.13.174.213) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.5588.10 via Frontend Transport; Thu, 1 Sep 2022 04:33:19 +0000
+Received: from rnnvmail202.nvidia.com (10.129.68.7) by DRHQMAIL101.nvidia.com
+ (10.27.9.10) with Microsoft SMTP Server (TLS) id 15.0.1497.38; Thu, 1 Sep
+ 2022 04:33:19 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by rnnvmail202.nvidia.com
+ (10.129.68.7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Wed, 31 Aug
+ 2022 21:33:18 -0700
+Received: from mkumard.nvidia.com (10.127.8.13) by mail.nvidia.com
+ (10.129.68.8) with Microsoft SMTP Server id 15.2.986.29 via Frontend
+ Transport; Wed, 31 Aug 2022 21:33:15 -0700
+From:   Mohan Kumar <mkumard@nvidia.com>
+To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <treding@nvidia.com>, <jonathanh@nvidia.com>, <spujar@nvidia.com>
+CC:     <mkumard@nvidia.com>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH] arm64: tegra: Enable HDA node for AGX Orin
+Date:   Thu, 1 Sep 2022 10:03:05 +0530
+Message-ID: <20220901043305.26634-1-mkumard@nvidia.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00,KHOP_HELO_FCRDNS,
-        SPF_HELO_NONE,SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 02c4e894-2198-4d2b-8a95-08da8bd318b5
+X-MS-TrafficTypeDiagnostic: MN2PR12MB4159:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: CgyIazbEDJBLZ6b/c4YS2o5pcXNeZFajoClwoK86qz0e78Ufjt7Dicrt3fTHu9wMRVmacKOA7x1/KPJW2tWasvfLOUskxO2MDltmO9qZxct1YRjydBi5f/l8761YNhf8AdrXq2aIMY0/vEh7qQSu9j2JYru2RpeYA+mZIwEAS1GanPUt6DNgiZPkfVqSyLtz9Cc1BU9qhhAEiyvseghR2uu/wR2/jG/b9PBziUDl/PNm6toYvD9UTUwwQFK9kPdwDsq0yBOABRMiyXHwbKjRQ3qqByUOauiYYKReOQyheOYydkjWCaAUSKX/dFJFQaIKLYmYIb0fYPB/UDdTviSuVoM6q/rf/2/OXoIRMVXC3iuzq6p2KJo+3egW/GNoT8WWAwkQs+xxTDupQERR/QwS4206qEeQHv+EvYMeo95XnSZl18Ad8i+UvadYeCJMXlzwayQx50icR2WC/z8shuozKgLEYDoPDtdTBc8wI3PSwGXVQou8bCnoM4OjeWP8VQiq+ldUitjscHYZoxRsLPmfXnOh+Z3lRYg5ukTtL6oT8nLizuyhcuMBhR/eYxpuJl2dFn1TbsYjhx/bpngKLt59tOaSw+gQ5HPySwVbX6ZXMOKDTUIrktXMUnWnEhu4bMKYjtfVQvR9hudLLAaf+hacBX8PF6F/BRRL4OgbMtMSKzKIu6cNWC/LVatIfwp81jWatgDHM77BbSTR25Qt9cBqj4klpME6lvGkq9fVGAtHFonuWoGh60SNWjdizVaObg3d/tks4yo7oyojJTTMNxMVikAz/W3XRV+Zv4thCzNOM3U=
+X-Forefront-Antispam-Report: CIP:12.22.5.234;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:InfoNoRecords;CAT:NONE;SFS:(13230016)(4636009)(376002)(396003)(39860400002)(136003)(346002)(36840700001)(40470700004)(46966006)(26005)(7696005)(426003)(47076005)(2616005)(1076003)(186003)(81166007)(86362001)(336012)(36860700001)(356005)(82740400003)(40480700001)(40460700003)(36756003)(5660300002)(8936002)(4744005)(8676002)(4326008)(70206006)(70586007)(6666004)(2906002)(478600001)(110136005)(54906003)(6636002)(82310400005)(316002)(41300700001)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Sep 2022 04:33:19.4163
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 02c4e894-2198-4d2b-8a95-08da8bd318b5
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[12.22.5.234];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT112.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4159
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Add support for Radxa ROCK 4C+ SBC.
-> 
-> Key differences of 4C+ compared to previous ROCK Pi 4.
-> - Rockchip RK3399-T SoC
-> - DP from 4C replaced with micro HDMI 2K@60fps
-> - 4-lane MIPI DSI with 1920*1080
-> - RK817 Audio codec
-> 
-> Also, an official naming convention from Radxa mention to remove
-> Pi from board name, so this 4C+ is named as Radxa ROCK 4C+ not
-> Radxa ROCK Pi 4C+.
-> 
-> Signed-off-by: Stephen Chen <stephen@radxa.com>
-> Signed-off-by: Manoj Sai <abbaraju.manojsai@amarulasolutions.com>
-> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> ---
-> Changes for v3:
-> - updated commit message
-> - include sdhci in aliases
-> - add i2s2
-> - add sdmmc cd-gpios
-> - use rk3399-t-opp.dtsi
-> Changes for v2:
-> - s/vcc-sys/vcc5v0-sys-regulator
-> - used proper node name 'regulator' for syr828 regulator nodes.
-> - fix line wrapping.
-> 
->  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
->  .../boot/dts/rockchip/rk3399-rock-4c-plus.dts | 647 ++++++++++++++++++
->  2 files changed, 648 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-> index ef79a672804a..f92637eb6f90 100644
-> --- a/arch/arm64/boot/dts/rockchip/Makefile
-> +++ b/arch/arm64/boot/dts/rockchip/Makefile
-> @@ -46,6 +46,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-puma-haikou.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-roc-pc.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-roc-pc-mezzanine.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-roc-pc-plus.dtb
-> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rock-4c-plus.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rock-pi-4a.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rock-pi-4a-plus.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rock-pi-4b.dtb
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts b/arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts
-> new file mode 100644
-> index 000000000000..33c5976d158e
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts
-> @@ -0,0 +1,647 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2019 Fuzhou Rockchip Electronics Co., Ltd
-> + * Copyright (c) 2019 Radxa Limited
-> + * Copyright (c) 2022 Amarula Solutions(India)
-> + */
-> +
-> +/dts-v1/;
-> +#include "rk3399.dtsi"
-> +#include "rk3399-t-opp.dtsi"
-> +
-> +/ {
-> +	model = "Radxa ROCK 4C+";
-> +	compatible = "radxa,rock-4c-plus", "rockchip,rk3399";
-> +
-> +	aliases {
-> +		mmc0 = &sdmmc;
-> +		mmc1 = &sdhci;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial2:1500000n8";
-> +	};
-> +
-> +	sdio_pwrseq: sdio-pwrseq {
-> +		compatible = "mmc-pwrseq-simple";
-> +		clocks = <&rk809 1>;
-> +		clock-names = "ext_clock";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&wifi_enable_h>;
-> +		reset-gpios = <&gpio0 RK_PB2 GPIO_ACTIVE_LOW>;
-> +	};
-> +
-> +	clkin_gmac: external-gmac-clock {
-> +		compatible = "fixed-clock";
-> +		clock-frequency = <125000000>;
-> +		clock-output-names = "clkin_gmac";
-> +		#clock-cells = <0>;
-> +	};
-> +
-> +	vcc5v0_sys: vcc5v0-sys-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc5v0_sys";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +	};
-> +
-> +	vcc5v0_host1: vcc5v0-host-regulator {
-> +		compatible = "regulator-fixed";
-> +		enable-active-high;
-> +		gpio = <&gpio3 RK_PD6 GPIO_ACTIVE_HIGH>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&vcc5v0_host_en>;
-> +		regulator-name = "vcc5v0_host1";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		vin-supply = <&vcc5v0_host0_s0>;
-> +	};
-> +
-> +	vcc5v0_typec: vcc5v0-typec-regulator {
-> +		compatible = "regulator-fixed";
-> +		enable-active-high;
-> +		gpio = <&gpio1 RK_PA3 GPIO_ACTIVE_HIGH>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&vcc5v0_typec0_en>;
-> +		regulator-name = "vcc5v0_typec";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		vin-supply = <&vcc5v0_sys>;
-> +	};
-> +
-> +	vcc_lan: vcc3v3-phy-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc_lan";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +	};
-> +};
-> +
-> +&cpu_l0 {
-> +	cpu-supply = <&vdd_cpu_l>;
-> +};
-> +
-> +&cpu_l1 {
-> +	cpu-supply = <&vdd_cpu_l>;
-> +};
-> +
-> +&cpu_l2 {
-> +	cpu-supply = <&vdd_cpu_l>;
-> +};
-> +
-> +&cpu_l3 {
-> +	cpu-supply = <&vdd_cpu_l>;
-> +};
-> +
-> +&cpu_b0 {
-> +	cpu-supply = <&vdd_cpu_b>;
-> +};
-> +
-> +&cpu_b1 {
-> +	cpu-supply = <&vdd_cpu_b>;
-> +};
-> +
-> +&emmc_phy {
-> +	status = "okay";
-> +};
-> +
-> +&gmac {
-> +	assigned-clocks = <&cru SCLK_RMII_SRC>;
-> +	assigned-clock-parents = <&clkin_gmac>;
-> +	clock_in_out = "input";
-> +	phy-supply = <&vcc_lan>;
-> +	phy-mode = "rgmii";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&rgmii_pins>;
-> +	snps,reset-gpio = <&gpio3 RK_PB7 GPIO_ACTIVE_LOW>;
-> +	snps,reset-active-low;
-> +	snps,reset-delays-us = <0 10000 50000>;
-> +	tx_delay = <0x2a>;
-> +	rx_delay = <0x21>;
-> +	status = "okay";
-> +};
-> +
-> +&gpu {
-> +	mali-supply = <&vdd_gpu>;
-> +	status = "okay";
-> +};
-> +
-> +&hdmi {
-> +	ddc-i2c-bus = <&i2c3>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&hdmi_cec>;
-> +	status = "okay";
-> +};
-> +
-> +&hdmi_sound {
-> +	status = "okay";
-> +};
-> +
-> +&i2c0 {
-> +	status = "okay";
-> +	i2c-scl-falling-time-ns = <30>;
-> +	i2c-scl-rising-time-ns = <180>;
-> +	clock-frequency = <400000>;
-> +
-> +	rk809: pmic@20 {
-> +		compatible = "rockchip,rk809";
-> +		reg = <0x20>;
-> +		interrupt-parent = <&gpio1>;
-> +		interrupts = <RK_PC5 IRQ_TYPE_LEVEL_LOW>;
-> +		#clock-cells = <1>;
-> +		clock-output-names = "rk808-clkout1", "rk808-clkout2";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pmic_int_l>;
-> +		rockchip,system-power-controller;
-> +		wakeup-source;
-> +
-> +		vcc1-supply = <&vcc5v0_sys>;
-> +		vcc2-supply = <&vcc5v0_sys>;
-> +		vcc3-supply = <&vcc5v0_sys>;
-> +		vcc4-supply = <&vcc5v0_sys>;
-> +		vcc5-supply = <&vcc_buck5>;
-> +		vcc6-supply = <&vcc_buck5>;
-> +		vcc7-supply = <&vcc5v0_sys>;
-> +		vcc8-supply = <&vcc3v3_sys>;
-> +		vcc9-supply = <&vcc5v0_sys>;
-> +
-> +		regulators {
-> +			vdd_log: DCDC_REG1 {
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <750000>;
-> +				regulator-max-microvolt = <1350000>;
-> +				regulator-initial-mode = <0x2>;
-> +				regulator-name = "vdd_log";
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +					regulator-suspend-microvolt = <900000>;
-> +				};
-> +			};
-> +
-> +			vdd_cpu_l: DCDC_REG2 {
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <750000>;
-> +				regulator-max-microvolt = <1350000>;
-> +				regulator-ramp-delay = <6001>;
-> +				regulator-initial-mode = <0x2>;
-> +				regulator-name = "vdd_cpu_l";
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +
-> +			vcc_ddr: DCDC_REG3 {
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-name = "vcc_ddr";
-> +				regulator-initial-mode = <0x2>;
-> +				regulator-state-mem {
-> +					regulator-on-in-suspend;
-> +				};
-> +			};
-> +
-> +			vcc3v3_sys: DCDC_REG4 {
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <3300000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-initial-mode = <0x2>;
-> +				regulator-name = "vcc3v3_sys";
-> +				regulator-state-mem {
-> +					regulator-on-in-suspend;
-> +					regulator-suspend-microvolt = <3300000>;
-> +				};
-> +			};
-> +
-> +			vcc_buck5: DCDC_REG5 {
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <3300000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-name = "vcc_buck5";
-> +				regulator-state-mem {
-> +					regulator-on-in-suspend;
-> +					regulator-suspend-microvolt = <3300000>;
-> +				};
-> +			};
-> +
-> +			vcca_0v9: LDO_REG1 {
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <900000>;
-> +				regulator-max-microvolt = <900000>;
-> +				regulator-name = "vcca_0v9";
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +
-> +			vcc_1v8: LDO_REG2 {
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-name = "vcc_1v8";
-> +				regulator-state-mem {
-> +					regulator-on-in-suspend;
-> +					regulator-suspend-microvolt = <1800000>;
-> +				};
-> +			};
-> +
-> +			vcc0v9_soc: LDO_REG3 {
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <900000>;
-> +				regulator-max-microvolt = <900000>;
-> +				regulator-name = "vcc0v9_soc";
-> +				regulator-state-mem {
-> +					regulator-on-in-suspend;
-> +					regulator-suspend-microvolt = <900000>;
-> +				};
-> +			};
-> +
-> +			vcca_1v8: LDO_REG4 {
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-name = "vcca_1v8";
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +
-> +			vcc_mipi: LDO_REG5 {
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <3000000>;
-> +				regulator-max-microvolt = <3000000>;
-> +				regulator-name = "vcc_mipi";
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +
-> +			vcc_1v5: LDO_REG6 {
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <1500000>;
-> +				regulator-max-microvolt = <1500000>;
-> +				regulator-name = "vcc_1v5";
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +
-> +			vcc_3v0: LDO_REG7 {
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <3000000>;
-> +				regulator-max-microvolt = <3000000>;
-> +				regulator-name = "vcc_3v0";
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +
-> +			vccio_sd: LDO_REG8 {
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-name = "vccio_sd";
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +
-> +			vcc_cam: LDO_REG9 {
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <3300000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-name = "vcc_cam";
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +
-> +			vcc5v0_host0_s0: SWITCH_REG1 {
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-name = "vcc5v0_host0_s0";
-> +				regulator-state-mem {
-> +					regulator-on-in-suspend;
-> +				};
-> +			};
-> +
-> +			lcd_3v3: SWITCH_REG2 {
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-name = "lcd_3v3";
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +		};
-> +	};
-> +
-> +	vdd_cpu_b: regulator@40 {
-> +		compatible = "silergy,syr827";
-> +		reg = <0x40>;
-> +		fcs,suspend-voltage-selector = <1>;
-> +		regulator-compatible = "fan53555-reg";
-> +		pinctrl-0 = <&vsel1_gpio>;
-> +		vsel-gpios = <&gpio1 RK_PC1 GPIO_ACTIVE_HIGH>;
-> +		regulator-name = "vdd_cpu_b";
-> +		regulator-min-microvolt = <712500>;
-> +		regulator-max-microvolt = <1500000>;
-> +		regulator-ramp-delay = <1000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		vin-supply = <&vcc5v0_sys>;
-> +		regulator-state-mem {
-> +			regulator-off-in-suspend;
-> +		};
-> +	};
-> +
-> +	vdd_gpu: regulator@41 {
-> +		compatible = "silergy,syr828";
-> +		reg = <0x41>;
-> +		fcs,suspend-voltage-selector = <1>;
-> +		regulator-compatible = "fan53555-reg";
-> +		pinctrl-0 = <&vsel2_gpio>;
-> +		vsel-gpios = <&gpio1 RK_PB6 GPIO_ACTIVE_HIGH>;
-> +		regulator-name = "vdd_gpu";
-> +		regulator-min-microvolt = <712500>;
-> +		regulator-max-microvolt = <1500000>;
-> +		regulator-ramp-delay = <1000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		vin-supply = <&vcc5v0_sys>;
-> +		regulator-initial-mode = <1>; /* 1:force PWM 2:auto */
-> +		regulator-state-mem {
-> +			regulator-off-in-suspend;
-> +		};
-> +	};
-> +};
-> +
-> +&i2c3 {
-> +	i2c-scl-rising-time-ns = <450>;
-> +	i2c-scl-falling-time-ns = <15>;
-> +	status = "okay";
-> +};
-> +
-> +&i2s2 {
-> +	status = "okay";
-> +};
-> +
-> +&io_domains {
-> +	bt656-supply = <&vcc_3v0>;
-> +	gpio1830-supply = <&vcc_3v0>;
-> +	sdmmc-supply = <&vccio_sd>;
-> +	status = "okay";
-> +};
-> +
-> +&pinctrl {
-> +	bt {
-> +		bt_enable_h: bt-enable-h {
-> +			rockchip,pins = <0 RK_PB1 RK_FUNC_GPIO &pcfg_pull_none>;
-> +		};
-> +
-> +		bt_host_wake_l: bt-host-wake-l {
-> +			rockchip,pins = <0 RK_PA4 RK_FUNC_GPIO &pcfg_pull_none>;
-> +		};
-> +
-> +		bt_wake_l: bt-wake-l {
-> +			rockchip,pins = <2 RK_PD3 RK_FUNC_GPIO &pcfg_pull_none>;
-> +		};
-> +	};
-> +
-> +	pmic {
-> +		pmic_int_l: pmic-int-l {
-> +			rockchip,pins = <1 RK_PC5 RK_FUNC_GPIO &pcfg_pull_up>;
-> +		};
-> +
-> +		vsel1_gpio: vsel1-gpio {
-> +			rockchip,pins = <1 RK_PC1 RK_FUNC_GPIO &pcfg_pull_down>;
-> +		};
-> +
-> +		vsel2_gpio: vsel2-gpio {
-> +			rockchip,pins = <1 RK_PB6 RK_FUNC_GPIO &pcfg_pull_down>;
-> +		};
-> +	};
-> +
-> +	sdmmc {
-> +		sdmmc_bus4: sdmmc-bus4 {
-> +			rockchip,pins = <4 8 1 &pcfg_pull_up_8ma>,
-> +					<4 9 1 &pcfg_pull_up_8ma>,
-> +					<4 10 1 &pcfg_pull_up_8ma>,
-> +					<4 11 1 &pcfg_pull_up_8ma>;
-> +		};
-> +
-> +		sdmmc_clk: sdmmc-clk {
-> +			rockchip,pins = <4 12 1 &pcfg_pull_none_18ma>;
-> +		};
-> +
-> +		sdmmc_cmd: sdmmc-cmd {
-> +			rockchip,pins = <4 13 1 &pcfg_pull_up_8ma>;
-> +		};
-> +	};
-> +
-> +	usb-typec {
-> +		vcc5v0_typec0_en: vcc5v0-typec-en {
-> +			rockchip,pins = <1 RK_PA3 RK_FUNC_GPIO &pcfg_pull_up>;
-> +		};
-> +	};
-> +
-> +	usb2 {
-> +		vcc5v0_host_en: vcc5v0-host-en {
-> +			rockchip,pins = <3 RK_PD6 RK_FUNC_GPIO &pcfg_pull_up>;
-> +		};
-> +	};
-> +
-> +	wifi {
-> +		wifi_enable_h: wifi-enable-h {
-> +			rockchip,pins = <0 RK_PB2 RK_FUNC_GPIO &pcfg_pull_none>;
-> +		};
-> +
-> +		wifi_host_wake_l: wifi-host-wake-l {
-> +			rockchip,pins = <0 RK_PA3 RK_FUNC_GPIO &pcfg_pull_none>;
-> +		};
-> +	};
-> +};
-> +
-> +&pmu_io_domains {
-> +	pmu1830-supply = <&vcc_3v0>;
-> +	status = "okay";
-> +};
-> +
-> +&saradc {
-> +	status = "okay";
-> +	vref-supply = <&vcc_1v8>;
-> +};
-> +
-> +&sdhci {
-> +	max-frequency = <150000000>;
-> +	bus-width = <8>;
-> +	mmc-hs400-1_8v;
-> +	supports-emmc;
+Enable HDA node for AGX Orin platform.
 
-this property should be only for vendor kernel.
+Signed-off-by: Mohan Kumar <mkumard@nvidia.com>
+---
+ arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts | 1 +
+ 1 file changed, 1 insertion(+)
 
-FUKAUMI Naoki
+diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
+index 02a10bb38562..ee5776816494 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
++++ b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
+@@ -2009,6 +2009,7 @@
+ 
+ 		hda@3510000 {
+ 			nvidia,model = "NVIDIA Jetson AGX Orin HDA";
++			status = "okay";
+ 		};
+ 	};
+ 
+-- 
+2.17.1
 
-> +	non-removable;
-> +	mmc-hs400-enhanced-strobe;
-> +	status = "okay";
-> +};
-> +
-> +&sdio0 {
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +	bus-width = <4>;
-> +	clock-frequency = <50000000>;
-> +	cap-sdio-irq;
-> +	cap-sd-highspeed;
-> +	keep-power-in-suspend;
-> +	mmc-pwrseq = <&sdio_pwrseq>;
-> +	non-removable;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&sdio0_bus4 &sdio0_cmd &sdio0_clk>;
-> +	sd-uhs-sdr104;
-> +	status = "okay";
-> +
-> +	brcmf: wifi@1 {
-> +		compatible = "brcm,bcm4329-fmac";
-> +		reg = <1>;
-> +		interrupt-parent = <&gpio0>;
-> +		interrupts = <RK_PA3 IRQ_TYPE_LEVEL_HIGH>;
-> +		interrupt-names = "host-wake";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&wifi_host_wake_l>;
-> +	};
-> +};
-> +
-> +&sdmmc {
-> +	bus-width = <4>;
-> +	cap-mmc-highspeed;
-> +	cap-sd-highspeed;
-> +	card-detect-delay = <800>;
-> +	disable-wp;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&sdmmc_clk &sdmmc_cmd &sdmmc_bus4>;
-> +	cd-gpios = <&gpio0 RK_PA7 GPIO_ACTIVE_LOW>;
-> +	vqmmc-supply = <&vccio_sd>;
-> +	status = "okay";
-> +};
-> +
-> +&tcphy0 {
-> +	status = "okay";
-> +};
-> +
-> +&tcphy1 {
-> +	status = "okay";
-> +};
-> +
-> +&u2phy0 {
-> +	status = "okay";
-> +
-> +	u2phy0_otg: otg-port {
-> +		status = "okay";
-> +	};
-> +
-> +	u2phy0_host: host-port {
-> +		phy-supply = <&vcc5v0_host1>;
-> +		status = "okay";
-> +	};
-> +};
-> +
-> +&u2phy1 {
-> +	status = "okay";
-> +
-> +	u2phy1_otg: otg-port {
-> +		status = "okay";
-> +	};
-> +
-> +	u2phy1_host: host-port {
-> +		phy-supply = <&vcc5v0_host1>;
-> +		status = "okay";
-> +	};
-> +};
-> +
-> +&uart0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&uart0_xfer &uart0_cts &uart0_rts>;
-> +	status = "okay";
-> +
-> +	bluetooth {
-> +		compatible = "brcm,bcm4345c5";
-> +		clocks = <&rk809 1>;
-> +		clock-names = "lpo";
-> +		device-wakeup-gpios = <&gpio2 RK_PD3 GPIO_ACTIVE_HIGH>;
-> +		host-wakeup-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_HIGH>;
-> +		shutdown-gpios = <&gpio0 RK_PB1 GPIO_ACTIVE_HIGH>;
-> +		max-speed = <1500000>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&bt_host_wake_l &bt_wake_l &bt_enable_h>;
-> +		vbat-supply = <&vcc3v3_sys>;
-> +		vddio-supply = <&vcc_1v8>;
-> +	};
-> +};
-> +
-> +&uart2 {
-> +	status = "okay";
-> +};
-> +
-> +&usb_host0_ehci {
-> +	status = "okay";
-> +};
-> +
-> +&usb_host0_ohci {
-> +	status = "okay";
-> +};
-> +
-> +&usb_host1_ehci {
-> +	status = "okay";
-> +};
-> +
-> +&usb_host1_ohci {
-> +	status = "okay";
-> +};
-> +
-> +&usbdrd3_0 {
-> +	extcon = <&u2phy0>;
-> +	status = "okay";
-> +};
-> +
-> +&usbdrd_dwc3_0 {
-> +	status = "okay";
-> +	dr_mode = "host";
-> +};
-> +
-> +&usbdrd3_1 {
-> +	status = "okay";
-> +};
-> +
-> +&usbdrd_dwc3_1 {
-> +	status = "okay";
-> +	dr_mode = "host";
-> +};
-> +
-> +&vopb {
-> +	status = "okay";
-> +};
-> +
-> +&vopb_mmu {
-> +	status = "okay";
-> +};
-> +
-> +&vopl {
-> +	status = "okay";
-> +};
-> +
-> +&vopl_mmu {
-> +	status = "okay";
-> +};
-> -- 
-> 2.25.1
