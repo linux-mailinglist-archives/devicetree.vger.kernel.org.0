@@ -2,72 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89F415A8A78
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 03:17:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A1F45A8AC1
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 03:32:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231873AbiIABR2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 21:17:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54966 "EHLO
+        id S231530AbiIABc5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 21:32:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232425AbiIABR1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 21:17:27 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC7A113287E;
-        Wed, 31 Aug 2022 18:17:26 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 77581B823CC;
-        Thu,  1 Sep 2022 01:17:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25FFBC433C1;
-        Thu,  1 Sep 2022 01:17:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1661995044;
-        bh=NsH2hqW4YPpI8hSkaK5p+Ch+1t7odfDqKLN91tPnkJs=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=AhQiNkXZ9tQemIV7ziUfsIVAGdIlbnF7cNJ1TwUgoJi4SXJ9SkqNgrElYdf9/bP1X
-         BCjoeHZT5hWNAxAhohMLIVfSqKvOjrxduv4bW266/eo7LYPuIxM4CmySqhxiA8lqQG
-         IRObvh5dT3lpbPNOwfhFsSkH4F6roqxPxkA+toG0lsCEl1Gh6ZYfIyT3L8siidOqgc
-         qxsGXSikfVXzlndD1dIr0GFQvqldfOW6dylsiaQJ2I5lzKA9hh9E+ztAuATswMTBRI
-         ycJCUY6iMWndlkUqARVbQ4jaJLAJI844t2W2lsAELumEHwoymIXiXFAjGQUcjZxpcV
-         BAAGElHq0BRmQ==
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S231290AbiIABc4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 21:32:56 -0400
+Received: from soltyk.jannau.net (soltyk.jannau.net [144.76.91.90])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EEAC155A65;
+        Wed, 31 Aug 2022 18:32:53 -0700 (PDT)
+Received: from coburn.home.jannau.net (p54acc2ba.dip0.t-ipconnect.de [84.172.194.186])
+        by soltyk.jannau.net (Postfix) with ESMTPSA id 4A6BC26EF47;
+        Thu,  1 Sep 2022 03:25:20 +0200 (CEST)
+From:   Janne Grunau <j@jannau.net>
+To:     iommu@lists.linux.dev
+Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        asahi@lists.linux.dev, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Hector Martin <marcan@marcan.st>,
+        Joerg Roedel <joro@8bytes.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Sven Peter <sven@svenpeter.dev>, Will Deacon <will@kernel.org>,
+        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/5] iommu: M1 Pro/Max DART support
+Date:   Thu,  1 Sep 2022 03:25:14 +0200
+Message-Id: <20220901012519.7167-1-j@jannau.net>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20220720102817.237483-3-angelogioacchino.delregno@collabora.com>
-References: <20220720102817.237483-1-angelogioacchino.delregno@collabora.com> <20220720102817.237483-3-angelogioacchino.delregno@collabora.com>
-Subject: Re: [PATCH 2/2] clk: mediatek: mt8195: Add reset idx for USB/PCIe T-PHY
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     matthias.bgg@gmail.com, p.zabel@pengutronix.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        angelogioacchino.delregno@collabora.com,
-        chun-jie.chen@mediatek.com, wenst@chromium.org,
-        nfraprado@collabora.com, rex-bc.chen@mediatek.com,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, mturquette@baylibre.com
-Date:   Wed, 31 Aug 2022 18:17:22 -0700
-User-Agent: alot/0.10
-Message-Id: <20220901011724.25FFBC433C1@smtp.kernel.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting AngeloGioacchino Del Regno (2022-07-20 03:28:17)
-> Add the reset idx for the t-phy port 1, used as either USB or
-> PCI-Express (secondary controller) PHY, depending on board-specific
-> configuration/layout.
->=20
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
-> ---
+Hej,
 
-Applied to clk-next
+this is the next attempt adding support for the DART found in Apple's
+M1 Pro/Max/Ultra. This adds a separate io-pgtable implementation for
+DART. As already mentioned in v2 the pte format is not fully compatible
+with io-pgtable-arm. Especially the 2nd least significant bit is used
+and is not available to tag tables/pages.
+io-pgtable-dart.c is copied from io-pgtable-arm.c and support for
+unused features is removed. Support for 4k IO pages is left for A7 to
+A11 SoCs as there's work underway to run Linux on them.
+
+The incompatibilities between both Apple DART pte seems manageable in
+their own io-pgtable implementation. A short list of the known
+differences:
+
+ - the physical addresses are shifted left by 4 bits and and have 2 more
+   bits inside the PTE entries
+ - the read/write protection flags are at a different position
+ - the subpage protection feature is now mandatory. For Linux we can
+   just configure it to always allow access to the entire page.
+ - BIT(1) tags "uncached" mappings (used for the display controller)
+
+There is second type of DART (t8110) present on M1 Pro/Max SoCs which
+uses the same PTE format as t6000.
+
+Changes in v4:
+- split dart and io-pgtable-dart build to allow building dart as module
+- add missing "SELECT IOMMU_IO_PGTABLE"
+- made map/unmap_pages/iova_to_phys inon-recursive
+- replace pgd concatenation with multiple table handling
+- simplified config and page size checks
+- collected Robin's Ack
+
+Changes in v3:
+- move APPLE_DART to its own io-pgtable implementation, copied from
+  io-pgtable-arm and simplified
+
+Changes in v2:
+- added Rob's Acked-by:
+- add APPLE_DART2 io-pgtable format
+
+Janne Grunau (1):
+  iommu/io-pgtable: Move Apple DART support to its own file
+
+Sven Peter (4):
+  dt-bindings: iommu: dart: add t6000 compatible
+  iommu/io-pgtable: Add DART subpage protection support
+  iommu/io-pgtable-dart: Add DART PTE support for t6000
+  iommu: dart: Support t6000 variant
+
+ .../devicetree/bindings/iommu/apple,dart.yaml |   4 +-
+ MAINTAINERS                                   |   1 +
+ drivers/iommu/Kconfig                         |  13 +-
+ drivers/iommu/Makefile                        |   1 +
+ drivers/iommu/apple-dart.c                    |  24 +-
+ drivers/iommu/io-pgtable-arm.c                |  63 ---
+ drivers/iommu/io-pgtable-dart.c               | 471 ++++++++++++++++++
+ drivers/iommu/io-pgtable.c                    |   3 +
+ include/linux/io-pgtable.h                    |   1 +
+ 9 files changed, 513 insertions(+), 68 deletions(-)
+ create mode 100644 drivers/iommu/io-pgtable-dart.c
+
+-- 
+2.35.1
+
