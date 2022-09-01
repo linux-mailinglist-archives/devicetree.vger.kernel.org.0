@@ -2,84 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CA205A9C06
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 17:46:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5CD45A9C3D
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 17:52:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234574AbiIAPqP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 11:46:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45516 "EHLO
+        id S232744AbiIAPwX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 11:52:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234634AbiIAPp5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 11:45:57 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A12878238
-        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 08:45:55 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id bq23so25042482lfb.7
-        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 08:45:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=pwTnU1NRYqCTcCUVTKD8Na05COqOczxBt/998o6XYy4=;
-        b=Q1Te17xgrcpyNuRzijNHlA+g+n1O1MNUqLEL/vTX0m1A0HewPL1WFOQVAPZ7KxPvu0
-         VI1WDz6IZXgDc11TKe3lV95r8U7UOh1WayI+oWovAa8zJIMr1Q5oTO8vry6qdMBpY97z
-         WvLAFtYLvWEUhWMzxh003OIghREZ09oA/bKjg+spidGjdDkKnuQHBm6wx1ZJ6JDkVGhD
-         0nddj4YGs81ydICVPQwsMfUGI/Mbdw0Pp7v8t3d4cs4PHZPZXx8OVBQDY6kAw0qeWhqg
-         ymGQ7VNYSfFYadAMeBd+d1KY9CytW5Yf3UeNXGxfpGY93CUiX/qIV/TgMA9QjiibvRuD
-         dPrw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=pwTnU1NRYqCTcCUVTKD8Na05COqOczxBt/998o6XYy4=;
-        b=eLLeRbRfPLzOmdetwdJCJHOJc/j6IyltdeNjEcYLTPoW7eEoTZdXz+8WnvVx8ceht9
-         1poBdyD0Ea0VRgySq7jxnEI/RBgURgw62T3ghWiHCge0jeoE2RVJvSvU2eBxpxkQRaJC
-         9UBcRpurvAV+V+ythzOZv4afPH5GletoGCJCHJcb1uTyiH0ZxJiAZEDO0JYuZT4gjJQC
-         yc5yWfFekOW9aKQtXEEzB5BfRov4/lee44zoMYn3Hz9m3g1xhxaWLi7V6SvQ8Yv6Ncy7
-         NBNiKqhRp+nIur1eNgLFz87mcVdvJOzl35ni4ha910X4fWCmWjPVVbWE/QJK7GvO1FRc
-         EZeg==
-X-Gm-Message-State: ACgBeo2zc1lMbwDKKJwhVauTf4mm7OSLflSR9P1CeVWNbfrzLA9rkjvG
-        AcaKyk/XPIM9SC/e+GDSAWcRvw==
-X-Google-Smtp-Source: AA6agR4SF8JzyLedOeOJ13W6f/aUole8ekwKb8ZCgGMPhRfJWyZZpsmdH22j41No67YEX3YkvOnzUw==
-X-Received: by 2002:a05:6512:260d:b0:492:df5a:e4f9 with SMTP id bt13-20020a056512260d00b00492df5ae4f9mr10276035lfb.90.1662047153618;
-        Thu, 01 Sep 2022 08:45:53 -0700 (PDT)
-Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id b1-20020a056512070100b004947fcf0c0bsm920400lfs.281.2022.09.01.08.45.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Sep 2022 08:45:53 -0700 (PDT)
-Message-ID: <2fedff34-6a20-f1ce-a756-2bd8671fcd52@linaro.org>
-Date:   Thu, 1 Sep 2022 18:45:52 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH 1/6] dt-bindings: mfd: add binding for Apple Mac System
- Management Controller
-Content-Language: en-US
-To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Lee Jones <lee@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        asahi@lists.linux.dev, Bartosz Golaszewski <brgl@bgdev.pl>,
-        Hector Martin <marcan@marcan.st>,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        Sven Peter <sven@svenpeter.dev>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S234143AbiIAPwW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 11:52:22 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 252AF402D9;
+        Thu,  1 Sep 2022 08:52:21 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B829561F19;
+        Thu,  1 Sep 2022 15:52:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FDFCC433D6;
+        Thu,  1 Sep 2022 15:52:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1662047540;
+        bh=34vESrVVRe/Gvd1WwwkrRcgjvAK0J4ZY6Nipqtoutgs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Aj2arhAoWe07La6XVtPnCUxijvLpgwYBi1YBn9wVtXodcREyNJh44XP192jPrZWEY
+         4cQx29s2fH5WooVsi9YwAiyC03/TPXXxUlshA+Z4cLsIFrUHe9SrF7Nw+sgVYiqhmS
+         gdnOF9Hboc5uwVEH66H4v17LfcFYE3WF01iw5EI2GyL9uJyhNl1s+a4lEGiaDbnhEr
+         vOia4IOspZ+D51srFikbpPekK46b+ZlrQ8VEIklPGuqvunfPsk4uv6YGKVHsaB8XXN
+         N8iwFi0MlGcWf7B+Eb3jT2tqt0A/+VR+NqyyqadY+xkkkJrF9OPyK3rJidFPin5cg0
+         IslzDQgPs6OIQ==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1oTmUP-0004Qm-Fa; Thu, 01 Sep 2022 17:52:21 +0200
+Date:   Thu, 1 Sep 2022 17:52:21 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andrew Halaney <ahalaney@redhat.com>,
+        Mark Brown <broonie@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-References: <YxC5eZjGgd8xguDr@shell.armlinux.org.uk>
- <E1oTkeH-003t9A-3K@rmk-PC.armlinux.org.uk>
- <426469c1-13cc-178b-4904-09439d7788e8@linaro.org>
- <YxDL+cAx9kkZRL8K@shell.armlinux.org.uk>
- <928ddeff-efac-920c-7bbf-dda35a942b93@linaro.org>
- <YxDOpCq0vIlt4VNa@shell.armlinux.org.uk>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <YxDOpCq0vIlt4VNa@shell.armlinux.org.uk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Rob Herring <robh+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 0/6] arm64: dts: qcom: Fix broken regulator spec on
+ RPMH boards
+Message-ID: <YxDVNW+EQbHRw16s@hovoldconsulting.com>
+References: <20220829164952.2672848-1-dianders@chromium.org>
+ <Yw8EE/ESDUnIRf8P@hovoldconsulting.com>
+ <CAD=FV=VJz2hjvsUhsjBPt9nmm3X62oTdAqMeSFABYJietPPzWw@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAD=FV=VJz2hjvsUhsjBPt9nmm3X62oTdAqMeSFABYJietPPzWw@mail.gmail.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -88,83 +73,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/09/2022 18:24, Russell King (Oracle) wrote:
-> On Thu, Sep 01, 2022 at 06:15:46PM +0300, Krzysztof Kozlowski wrote:
->> On 01/09/2022 18:12, Russell King (Oracle) wrote:
->>>>> +  compatible:
->>>>> +    items:
->>>>> +      - enum:
->>>>> +        - apple,t8103-smc
->>>>
->>>> You miss two spaces of indentation on this level.
->>>
->>> Should that be picked up by the dt checker?
->>
->> I think yamllint complains about it. It is not a hard-dependency, so
->> maybe you don't have it installed.
->>
->>>
->>>>> +        - apple,t8112-smc
->>>>> +        - apple,t6000-smc
->>>>
->>>> Bring some order here - either alphabetical or by date of release (as in
->>>> other Apple schemas). I think t6000 was before t8112, so it's none of
->>>> that orders.
->>>
->>> Ok.
->>>
->>>>> +      - const: apple,smc
->>>>> +
->>>>> +  reg:
->>>>> +    description: Two regions, one for the SMC area and one for the SRAM area.
->>>>
->>>> You need constraints for size/order, so in this context list with
->>>> described items.
->>>
->>> How do I do that? I tried maxItems/minItems set to 2, but the dt checker
->>> objected to it.
->>
->> One way:
->> reg:
->>   items:
->>     - description: SMC area
->>     - description: SRAM area
->>
->> but actually this is very similar what you wrote for reg-names - kind of
->> obvious, so easier way:
->>
->> reg:
->>   maxItems: 2
+On Wed, Aug 31, 2022 at 07:52:52AM -0700, Doug Anderson wrote:
+> Hi,
 > 
-> Doesn't work. With maxItems: 2, the example fails, yet it correctly lists
-> two regs which are 64-bit address and 64-bit size - so in total 8 32-bit
-> ints.
+> On Tue, Aug 30, 2022 at 11:47 PM Johan Hovold <johan@kernel.org> wrote:
+> >
+> > On Mon, Aug 29, 2022 at 09:49:46AM -0700, Douglas Anderson wrote:
+> > > Prior to commit efb0cb50c427 ("regulator: qcom-rpmh: Implement
+> > > get_optimum_mode(), not set_load()") several boards were able to
+> > > change their regulator mode even though they had nothing listed in
+> > > "regulator-allowed-modes". After that commit (and fixes [1]) we'll be
+> > > stuck at the initial mode. Discussion of this (again, see [1]) has
+> > > resulted in the decision that the old dts files were wrong and should
+> > > be fixed to fully restore old functionality.
+> > >
+> > > This series attempts to fix everyone. I've kept each board in a
+> > > separate patch to make stable / backports work easier.
+> >
+> > Should you also update the bindings so that this can be caught during
+> > devicetree validation? That is, to always require
+> > "regulator-allowed-modes" when "regulator-allow-set-load" is specified.
 > 
-> Documentation/devicetree/bindings/mfd/apple,smc.example.dtb: smc@23e400000: reg: [[2, 1044381696], [0, 16384], [2, 1071644672], [0, 1048576]] is too long
->         From schema: /home/rmk/git/linux-rmk/Documentation/devicetree/bindings/mfd/apple,smc.yaml
-> 
-> Hence, I originally had maxItems: 2, and ended up deleting it because of
-> the dt checker.
-> 
-> With the two descriptions, it's the same failure.
+> Yeah, it's probably a good idea. I'm happy to review a patch that does
+> that. I'm already quite a few patches deep of submitting random
+> cleanups because someone mentioned it in a code review. ;-) That's
+> actually how I got in this mess to begin with. The RPMH change was in
+> response to a request in a different code review. ...and that came
+> about in a code review that was posted in response to a comment about
+> how awkward setting regulator loads was... Need to get back to my day
+> job.
 
-Yeah, they should create same result.
+Heh.
 
-> 
-> I think the problem is that the checker has no knowledge in the example
-> of how big each address and size element of the reg property is. So,
-> it's interpreting it as four entries of 32-bit address,size pairs
-> instead of two entries of 64-bit address,size pairs. Yep, that's it,
-> if I increase the number of "- description" entries to four then it's
-> happy.
-> 
-> So, what's the solution?
-> 
+> In any case, I think these dts patches are ready to land now.
 
-If you open generated DTS examples (in your
-kbuild-output/Documentation/devicetree/bindings/mfd/) you will see which
-address/size cells are expected. By default it is I think address/size
-cells=1, so you need a bus node setting it to 2.
+Yeah, as the old dtbs are now broken with newer kernels these are indeed
+needed.
 
-Best regards,
-Krzysztof
+But regardless of the question of backwards compatibility, it seems that
+the bindings should at least reflect that the old DTs are now considered
+malformed.
+
+> > Perhaps at least for RPMh as it seemed you found some cases were this
+> > wasn't currently needed (even if that sounded like an Linux-specific
+> > implementation detail).
+> 
+> I think you're talking about the RPM vs. RPMH difference? It's
+> actually not Linux specific. In RPM the API to the "hardware"
+> (actually a remote processor) is to pass the load. In RPMH the API to
+> the hardware is to pass a mode. This is why RPMH has
+> "regulator-allowed-modes" and "regulator-initial-mode". Both RPM and
+> RPMH have "regulator-allow-set-load" though...
+
+Ah, ok. And this was only an issue for Qualcomm DTs, which are the only
+users of "regulator-allow-set-load" in mainline.
+
+Johan
