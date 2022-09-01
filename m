@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70FD35A8A4A
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 03:10:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20F465A8A50
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 03:11:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229638AbiIABKH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Aug 2022 21:10:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40638 "EHLO
+        id S230064AbiIABLI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Aug 2022 21:11:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43630 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229572AbiIABKG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 21:10:06 -0400
+        with ESMTP id S229601AbiIABLH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Aug 2022 21:11:07 -0400
 Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8306F3F317
-        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 18:10:04 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id az24-20020a05600c601800b003a842e4983cso553127wmb.0
-        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 18:10:04 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EADA8DB7D8
+        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 18:11:04 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id ay39-20020a05600c1e2700b003a5503a80cfso535576wmb.2
+        for <devicetree@vger.kernel.org>; Wed, 31 Aug 2022 18:11:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date;
-        bh=CjZECOzLeXHOxYfgj/cZbdNFcui6wlKXTUVA8M7mEZw=;
-        b=OfXRkpizalNa11ty/ObB0YE8gaF/KsLNqBZsvIPYzGvXkuJ7AH67EL6Y4tKg2Dkh+W
-         v9LBxpJnSj1Q+sXGtF5fY2HpYJokJ5KVVV0SsvvAsTbvZNGqimFVp8h0IW8RoZi1AT+1
-         bG6KqczJSSvK943d27EgjSUQonp5ruT9GB6xU=
+        bh=U5H4yHvZ8EpKf3hoE+C92drJbmtSiBYMR1LeKV8jCr4=;
+        b=UUtjR+LJwDgtIwyb/GuaN+b+/DHKUPy1eYWlkTCQkI60M7xlDKrz9W08J7CSvqbxYW
+         3gRc2ZKdsY6xvAojbs6sRCnFK86TfIynkU8OAz2k6YQPGOFhfZdybwYw5viQLsoZdbv8
+         MVWr5ap0wbGfg2eaQHqInIetntLqy6oc9asMQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=CjZECOzLeXHOxYfgj/cZbdNFcui6wlKXTUVA8M7mEZw=;
-        b=7A1iGsNn13ag/GA7I0qLjZFpHzKVVL2XyiWDh0jiKhpaxqyYD/u13CWQ23FoLQunCC
-         l5+SXSnnyNNeMsozo+IqEEq2W7IlwORQWw9B+l//KfetU3jIfCXlDJYpB3yOB2G2cErO
-         scE7teUHbaUHt5URUEWSyKh3kfGVuV7gmJXgJITsPAPiTG/pujxmN/mik3cSIfChfFR+
-         2PSO0a1dgqk1pyfzoTWudbKnVYX3p/f3f6OKvyfGJ/wFVbBqJUJl6sdZEafeEO57XHH7
-         9d7btQ/LcfSm+H882o2gCcO7vpN85h60FV4ViJKExID44v5Ha0aaONlbM73mKRIk5rNc
-         B4ag==
-X-Gm-Message-State: ACgBeo0GKvbQYaEH+ET316uNWAzG4T5kOdA7CVFrN6h7rfV2jL/dBsYc
-        IOY3DbcQv32av9LxZHTbgp5//MH6lr0EENUoLxsF+A==
-X-Google-Smtp-Source: AA6agR6N/6ryjaE5oHG+JJHSEIkNANGb9HZ8fnEHslgyH9XeO5lh7HnK+/u10e87OwJ2YTLwPGJLovU1KnKa7mkOS9c=
-X-Received: by 2002:a7b:ce89:0:b0:3a5:cefe:80f6 with SMTP id
- q9-20020a7bce89000000b003a5cefe80f6mr3659147wmj.113.1661994602969; Wed, 31
- Aug 2022 18:10:02 -0700 (PDT)
+        bh=U5H4yHvZ8EpKf3hoE+C92drJbmtSiBYMR1LeKV8jCr4=;
+        b=J0jdCqYUzHshjO//W+Bxvn/a693lby8kESfw/OEECv+I3R/9Sei+787C5tvhiTHJrx
+         RdTt8BrtTtS+/ulPwvwKbhUyNvMM3F7YATzPQYA9DzSeYqj01h4l9Y1jwTGuZCel7Dgm
+         Ej1WF7AfJw/XwwPulmOr+ERKBbv3pejLCU7uU6H283mCzYZ8VMBtxzkDUK1ksXo/xI+e
+         91UC6gQWu4dgvuOhKOi3RvTvK5HV4qhhLm/aYbXSRir8i9JUm0XwSPsJYd2qCMVjqiJQ
+         D3j27yb6ucAVacqH+UBwEG7p20fpoVVr+8j3icqPf/aOPt3BkzhlC60uyPSJsuj6v6kI
+         6EJQ==
+X-Gm-Message-State: ACgBeo3uBImTPAaKiUkYnSZxZrQTB+pLVBG6wa/gjOq3b5usaWeKxb+k
+        jP5LXRXxI/2fdDgsi93DdLRgjrx8OOMpQiD0J/G3Tw==
+X-Google-Smtp-Source: AA6agR6xZ6HG8INPrFI8X7DCRIiq/fwfey7iZ6P5uMwQSLiO37iSm+fuF9trN+iEkGT9Pj6XUeeRG5dHSVwKF9Qni84=
+X-Received: by 2002:a7b:ce09:0:b0:3a6:6561:d9d5 with SMTP id
+ m9-20020a7bce09000000b003a66561d9d5mr3464083wmc.62.1661994663135; Wed, 31 Aug
+ 2022 18:11:03 -0700 (PDT)
 MIME-Version: 1.0
 References: <20220831013359.1807905-1-jwerner@chromium.org>
- <20220831013359.1807905-2-jwerner@chromium.org> <08d8807e-18cf-032e-90e9-e08023e7a6e0@linaro.org>
-In-Reply-To: <08d8807e-18cf-032e-90e9-e08023e7a6e0@linaro.org>
+ <20220831013359.1807905-4-jwerner@chromium.org> <983c1224-8174-3534-a276-d1ab1f9968a4@linaro.org>
+In-Reply-To: <983c1224-8174-3534-a276-d1ab1f9968a4@linaro.org>
 From:   Julius Werner <jwerner@chromium.org>
-Date:   Wed, 31 Aug 2022 18:09:50 -0700
-Message-ID: <CAODwPW-UfvgbGaZtyu_g-8dv_rmz8Zk6Xb6M5DTtRah_1W2KVA@mail.gmail.com>
-Subject: Re: [PATCH 1/4] dt-bindings: memory: Factor out common properties of
- LPDDR bindings
+Date:   Wed, 31 Aug 2022 18:10:51 -0700
+Message-ID: <CAODwPW_70kdn4XTCs_vhbWwjEXS8E8zC9MTa6-szb5SayvcSag@mail.gmail.com>
+Subject: Re: [PATCH 3/4] dt-bindings: memory: Add jedec,lpddr4 and
+ jedec,lpddr5 bindings
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Cc:     Julius Werner <jwerner@chromium.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -69,40 +69,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > +properties:
-> > +  manufacturer-id:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-props.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-props.yaml
+> > index 0c7d2feafd77c8..e1182e75ca1a3f 100644
+> > --- a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-props.yaml
+> > +++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-props.yaml
+> > @@ -53,9 +53,13 @@ properties:
+> >        - 512
+> >        - 1024
+> >        - 2048
+> > +      - 3072
+> >        - 4096
+> > +      - 6144
+> >        - 8192
+> > +      - 12288
+> >        - 16384
+> > +      - 24576
+> >        - 32768
+>
+> Either you limit now LPDDR2 and LPDDR3 to old values or instead add this
+> bigger list to LPDDR4 and LPDDR5 (if it works that way).
+
+The problem is that each spec has its own set of valid values, e.g.
+LPDDR3 only defines 4GB, 8GB, 16GB and 32GB, and then LPDDR4 inserted
+the 6GB, 12GB and 24GB options in between there. I don't think there's
+a way to exactly describe the valid values for each version without
+having a whole separate enum list for each. Do you think checking for
+that is important enough to be worth having all that extra duplication
+between the schemas? I don't think it adds that much (e.g. a value for
+an individual memory part can still be wrong even if it is one of the
+valid values for that type, so how much use is this validation
+anyway?), but I can split it out if you want to.
+
+> > +  serial-id:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
 > > +    description:
-> > +      Manufacturer ID read from Mode Register 5.
+> > +      Serial IDs read from Mode Registers 47 through 54. One byte per uint32
+> > +      cell (i.e. <MR47 MR48 MR49 MR50 MR51 MR52 MR53 MR54>).
+> > +    minItems: 8
 >
-> Are you sure that register numbers (here 5, 6-7-8 later) are the same
-> between LPDDR 2-5? The description should match the broadest case and
-> specific schema can narrow or correct it.
+> No need for minItems.
 
-Yes, the new LPDDR versions only ever seem to add new mode registers,
-but the meaning of 5, 6 and 7 have always stayed the same. (For 8, the
-bit fields have remained the same but the mapping of bit patterns to
-values has changed.)
-
-> > This also un-deprecates the manufacturer ID property for LPDDR3 (and
-> > introduces it to LPDDR2), since it was found that having this
-> > information available in a separate property can be useful in some
-> > cases.
->
-> Why do you need to un-deprecate them if you have this information in
-> compatible? This was not exactly the previous consensus. My statement
-> was ok for un-deprecating if you cannot derive them from compatible. Now
-> you can. This should be the same as USB device schema.
-
-Okay. I think there is value in having these as separate properties,
-because it makes them much easier to read and use. If we don't have
-them we always need to do all this string parsing first, and if
-systems allow both kinds of compatible strings (auto-generated and
-static) they'll need to be able to distinguish and handle both of
-those when parsing... I think it would be much less friction if each
-datum of interest could directly be read out of a property. I think
-having a bit of redundancy is fine and common in device tree bindings
-(e.g. most properties for most devices are really implied by the
-compatible string because that same type of device is always built in
-the same way, but that doesn't mean it's not useful to list them
-separately for ease-of-access). But I can remove them if you disagree.
+Can you explain why? I'm okay with taking these out, but it is a real
+constraint so I'm not sure why we shouldn't be describing it here?
+(The serial ID always has exactly 8 bytes, an ID with less than 8
+would not be valid and probably a typo.)
