@@ -2,70 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E87D35A9343
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 11:34:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8612C5A936D
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 11:43:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233417AbiIAJea (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 05:34:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44140 "EHLO
+        id S234153AbiIAJnB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 05:43:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33682 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234174AbiIAJeP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 05:34:15 -0400
+        with ESMTP id S234161AbiIAJmn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 05:42:43 -0400
 Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4BDA133F36
-        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 02:34:08 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id k22so17247147ljg.2
-        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 02:34:08 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8864F1385A6
+        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 02:42:19 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id w19so14308590ljj.7
+        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 02:42:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=pCsNP9MbZ025gHs9OjCXOsmaJmHix0BqZR8j/xHE3Mo=;
-        b=x2ByYfRaEeVq05W02vKtaLFmP6XetOzHQF0mYm7moturGUufU7dPL40XdMLX9Ufoig
-         6Y3Q/gmSLSEgQe5Dckiwy+YVgtRdO+Zb1oSQjgrtJ+3P+H7+jzvUoei8BTavGbmecvRe
-         lRsIat19pUFTP91ZPcg032Elh7dvoO4WRTWyZdQNRe32wxUjR5yPt3Pij55rcNd8+j6V
-         sQa7L22OmT+2h5WV8RrdSbtU8Z9iAKUUQJINVEy0fc3mbeW1/K4eOjlJag3wrdZS7/nf
-         FKzZykMSI44ebu6oscvn1ACW1BK/DRrSd+sgEusnpLL4lbXAPvLIRJV0ub3d24TbUjD2
-         Kg3A==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=cyGoLGFYlRzNkjYzyQzXdAYg9tduOqgaIixq4gRNrZI=;
+        b=TJM+qgmP78WPN0RndE/VLYhAoBjYJOv6Rag8VK3jR+6uYbzVVFP7H4fE8lYtddG60v
+         +FuxG9+2oHabfVV2pV0BUo4GYP1hjrkAHTazM9MblE1gyYGCP3WbXNxkucKTjecG5Xh/
+         t8ppcXv6JkrVF8PdMAw6yp8BfQW9+eyYqh/SyuoVqGNNmvXDyEDdAXmceliP3aOs0Bbj
+         Xom2MXL96es2KYOZLpX590vsc1P2VsZyuO1WYTu8YRIeqyaargB4vTtwu3rk0u9fQpub
+         f484fVUj4Hj3x5AMjyEp89YJpKWY5H9Kxt5y+tOU4G9zgjdrlnUVOQ+ZsEFtN0enJL4x
+         83ew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=pCsNP9MbZ025gHs9OjCXOsmaJmHix0BqZR8j/xHE3Mo=;
-        b=8DwXF2QHRilugil81drp+FpYCYbmfyXbvdsxlU2M4GtvZF4fdfh+sz8UW5fGX74zKb
-         dET0hJZL2DDI/qytnNMLFoBd6u+6iJBUIzzQ++61Xi7ehTnipYBYoRwsAQf60H6gTwGP
-         v3QBCmET6ArFyEHs4hrx6jPTvItXYwSZ3fN4LQvHyM1PlSe8/oAZOXs0Hh575U5c7A2x
-         LzHqSCllwRLv4SeRdk6KS60eYeP+GPswVw9t5MD/WC+FjdgVaYfjMRr1TrPjl0Sj2xtM
-         XyNXIUdLEhTsu5bYa8KPli+wkSHs5vTpdedGaOsanJWnq+DlCvUzXcd/OzVn2jgNm45a
-         PVHA==
-X-Gm-Message-State: ACgBeo3X3bGHhFyMwHhPxPTW2/851cwFfzQDSc/C57BhxRPFlkUNqH+e
-        6aDO82pRYCmVwzF+x9UuksE2Hg==
-X-Google-Smtp-Source: AA6agR78A1kG72lKgOLZtqfNXpnCKHHJpWE3Jgr2dgcCxfNDljAAt/nhzhWtP+TEOSYZWKQzkzkfLQ==
-X-Received: by 2002:a2e:b8d6:0:b0:268:9b1d:5084 with SMTP id s22-20020a2eb8d6000000b002689b1d5084mr1627916ljp.37.1662024847203;
-        Thu, 01 Sep 2022 02:34:07 -0700 (PDT)
-Received: from krzk-bin.. (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id w15-20020a05651234cf00b0049486c66140sm638830lfr.119.2022.09.01.02.34.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Sep 2022 02:34:06 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH RFT v2 4/4] ARM: dts: qcom: align RPM regulators node name with bindings
-Date:   Thu,  1 Sep 2022 12:34:01 +0300
-Message-Id: <20220901093401.134473-3-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220901093303.134346-1-krzysztof.kozlowski@linaro.org>
-References: <20220901093303.134346-1-krzysztof.kozlowski@linaro.org>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=cyGoLGFYlRzNkjYzyQzXdAYg9tduOqgaIixq4gRNrZI=;
+        b=PyOgMpbqABZEbLhyguDDw1oOrX54yg+4SNtkwfXH/Zi8cuHtkjOipQtj8d4xCJyhRD
+         QpQgHZDJOASJvK0PF3M12912YyDjX6Alv9N0iRL674Yq7tSA6mnTEwvY26yhfIhmd064
+         4HI0TpaHGN3zygallUA59QMoOmLPDL/rU1MSymJoUCJ3V3p7D1y7FsUclhikUd3rx0Lv
+         C9y29RHQphLXOVJPxeSWKo3+/9kb5BlcVH1w4M3ezE4pq6rlI5NH5Ea2bUPtElnNuR9O
+         9u+4ZJSD/W59K7L4Zztg1bRlSfSl831PI0LWxlBb9RySF/y0yH9soOLdB+PquQPb+scZ
+         LJVw==
+X-Gm-Message-State: ACgBeo0hrfHlROoTHHBH+CzPKFxYyc8Penxw01mK2xH1zMGdhGo3W9S3
+        lEVkVNwHRY0TW0ogF1nlbcUD8w==
+X-Google-Smtp-Source: AA6agR41jeZpevY4b5EMQDTYDrqO8wPCUCqUani6cv6z6SYnfuyTde+XLqs0U9nLZQgJVkuXdjSAVA==
+X-Received: by 2002:a2e:3317:0:b0:264:6516:93ce with SMTP id d23-20020a2e3317000000b00264651693cemr5716037ljc.212.1662025337680;
+        Thu, 01 Sep 2022 02:42:17 -0700 (PDT)
+Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
+        by smtp.gmail.com with ESMTPSA id h18-20020a056512221200b00492f294f06bsm993545lfu.110.2022.09.01.02.42.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 01 Sep 2022 02:42:16 -0700 (PDT)
+Message-ID: <38910de5-89ad-e7a1-261f-18b51c8e7877@linaro.org>
+Date:   Thu, 1 Sep 2022 12:42:15 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH 2/4] dt-bindings: arm: mediatek: Add new bindings of
+ MediaTek frequency hopping
+Content-Language: en-US
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Johnson Wang <johnson.wang@mediatek.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, sboyd@kernel.org
+Cc:     linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Edward-JW Yang <edward-jw.yang@mediatek.com>
+References: <20220831124850.7748-1-johnson.wang@mediatek.com>
+ <20220831124850.7748-3-johnson.wang@mediatek.com>
+ <b1296c37-5283-81f7-1939-7ea20e1f4d0d@linaro.org>
+ <1fae0c47-fff9-89e9-c849-536d167d741d@collabora.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1fae0c47-fff9-89e9-c849-536d167d741d@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -74,184 +84,93 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Node names should be generic and new DT schema expects RPM regulators
-node to be just "regulators".
+On 01/09/2022 11:04, AngeloGioacchino Del Regno wrote:
+> Il 31/08/22 15:19, Krzysztof Kozlowski ha scritto:
+>> On 31/08/2022 15:48, Johnson Wang wrote:
+>>> Add the new binding documentation for MediaTek frequency hopping
+>>> and spread spectrum clocking control.
+>>>
+>>> Co-developed-by: Edward-JW Yang <edward-jw.yang@mediatek.com>
+>>> Signed-off-by: Edward-JW Yang <edward-jw.yang@mediatek.com>
+>>> Signed-off-by: Johnson Wang <johnson.wang@mediatek.com>
+>>> ---
+>>>   .../bindings/arm/mediatek/mediatek,fhctl.yaml | 49 +++++++++++++++++++
+>>>   1 file changed, 49 insertions(+)
+>>>   create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,fhctl.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,fhctl.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,fhctl.yaml
+>>> new file mode 100644
+>>> index 000000000000..c5d76410538b
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,fhctl.yaml
+>>> @@ -0,0 +1,49 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/arm/mediatek/mediatek,fhctl.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: MediaTek frequency hopping and spread spectrum clocking control
+>>> +
+>>> +maintainers:
+>>> +  - Edward-JW Yang <edward-jw.yang@mediatek.com>
+>>> +
+>>> +description: |
+>>> +  Frequency hopping control (FHCTL) is a piece of hardware that control
+>>> +  some PLLs to adopt "hopping" mechanism to adjust their frequency.
+>>> +  Spread spectrum clocking (SSC) is another function provided by this hardware.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: mediatek,fhctl
+>>
+>> You need SoC/device specific compatibles. Preferably only SoC specific,
+>> without generic fallback, unless you can guarantee (while representing
+>> MediaTek), that generic fallback will cover all of their SoCs?
+>>
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  mediatek,hopping-ssc-percents:
+>>> +    description: |
+>>> +      Determine the enablement of frequency hopping feature and the percentage
+>>> +      of spread spectrum clocking for PLLs.
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+>>> +    items:
+>>> +      items:
+>>> +        - description: PLL id that is expected to enable frequency hopping.
+>>
+>> So the clocks are indices from some specific, yet unnamed
+>> clock-controller? This feels hacky. You should rather take here clock
+>> phandles (1) or integrate it into specific clock controller (2). The
+>> reason is that either your device does something on top of existing
+>> clocks (option 1, thus it takes clock as inputs) or it modifies existing
+>> clocks (option 2, thus it is integral part of clock-controller).
+>>
+> 
+> FHCTL is a MCU that handles (some, or all, depending on what's supported on the
+> SoC and what's needed by the board) PLL frequency setting, doing it in steps and
+> avoiding overshooting and other issues.
+> 
+> We had a pretty big conversation about this a while ago and the indices instead
+> of phandles is actually my fault, that happened because I initially proposed your
+> option 2 but then for a number of reasons we went with this kind of solution.
+> 
+> I know it's going to be a long read, but the entire conversation is on the list [1]
+> 
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Sorry, but it's a hacky architecture where one device (which is a clock
+provider) and second device have no relationship in hardware description
+but both play with each other resources. That's simply not a proper
+hardware description, so again:
 
----
+1. If this is separate device (as you indicated), then it needs
+expressing the dependencies and uses of other device resources.
 
-Not tested on hardware, but I do not expect functional impact. Tested
-with comparing DTB.
+2. If this is not a separate device, but integral part of clock
+controller, then it would be fine but then probably should be child of
+that device.
 
-Changes since v1:
-1. Fix more nodes.
-2. Do not shuffle regulators around as it might impact probe order.
----
- arch/arm/boot/dts/qcom-apq8026-asus-sparrow.dts               | 2 +-
- arch/arm/boot/dts/qcom-apq8026-lg-lenok.dts                   | 2 +-
- arch/arm/boot/dts/qcom-apq8074-dragonboard.dts                | 4 ++--
- arch/arm/boot/dts/qcom-apq8084.dtsi                           | 2 +-
- arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts      | 4 ++--
- arch/arm/boot/dts/qcom-msm8974-sony-xperia-rhine.dtsi         | 4 ++--
- arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dts           | 4 ++--
- arch/arm/boot/dts/qcom-msm8974pro-samsung-klte.dts            | 2 +-
- .../boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dts   | 2 +-
- 9 files changed, 13 insertions(+), 13 deletions(-)
-
-diff --git a/arch/arm/boot/dts/qcom-apq8026-asus-sparrow.dts b/arch/arm/boot/dts/qcom-apq8026-asus-sparrow.dts
-index ace8cea27949..2908a8a8a3d0 100644
---- a/arch/arm/boot/dts/qcom-apq8026-asus-sparrow.dts
-+++ b/arch/arm/boot/dts/qcom-apq8026-asus-sparrow.dts
-@@ -81,7 +81,7 @@ &pm8226_vib {
- };
- 
- &rpm_requests {
--	pm8226-regulators {
-+	regulators {
- 		compatible = "qcom,rpm-pm8226-regulators";
- 
- 		pm8226_s3: s3 {
-diff --git a/arch/arm/boot/dts/qcom-apq8026-lg-lenok.dts b/arch/arm/boot/dts/qcom-apq8026-lg-lenok.dts
-index 2b7e52fda6a7..e5bdc12123ce 100644
---- a/arch/arm/boot/dts/qcom-apq8026-lg-lenok.dts
-+++ b/arch/arm/boot/dts/qcom-apq8026-lg-lenok.dts
-@@ -102,7 +102,7 @@ bluetooth {
- };
- 
- &rpm_requests {
--	pm8226-regulators {
-+	regulators {
- 		compatible = "qcom,rpm-pm8226-regulators";
- 
- 		pm8226_s3: s3 {
-diff --git a/arch/arm/boot/dts/qcom-apq8074-dragonboard.dts b/arch/arm/boot/dts/qcom-apq8074-dragonboard.dts
-index 3051a861ff0c..86ba9165c2b3 100644
---- a/arch/arm/boot/dts/qcom-apq8074-dragonboard.dts
-+++ b/arch/arm/boot/dts/qcom-apq8074-dragonboard.dts
-@@ -57,7 +57,7 @@ phy@b {
- };
- 
- &rpm_requests {
--	pm8841-regulators {
-+	regulators-0 {
- 		compatible = "qcom,rpm-pm8841-regulators";
- 
- 		pm8841_s1: s1 {
-@@ -81,7 +81,7 @@ pm8841_s4: s4 {
- 		};
- 	};
- 
--	pm8941-regulators {
-+	regulators-1 {
- 		compatible = "qcom,rpm-pm8941-regulators";
- 
- 		vdd_l1_l3-supply = <&pm8941_s1>;
-diff --git a/arch/arm/boot/dts/qcom-apq8084.dtsi b/arch/arm/boot/dts/qcom-apq8084.dtsi
-index c2e22bf3260d..2f4e4ac686a5 100644
---- a/arch/arm/boot/dts/qcom-apq8084.dtsi
-+++ b/arch/arm/boot/dts/qcom-apq8084.dtsi
-@@ -479,7 +479,7 @@ rpm-requests {
- 				compatible = "qcom,rpm-apq8084";
- 				qcom,smd-channels = "rpm_requests";
- 
--				pma8084-regulators {
-+				regulators-0 {
- 					compatible = "qcom,rpm-pma8084-regulators";
- 
- 					pma8084_s1: s1 {};
-diff --git a/arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts b/arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts
-index ec5d340562b6..8a3761ed9655 100644
---- a/arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts
-+++ b/arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts
-@@ -344,7 +344,7 @@ led@5 {
- };
- 
- &rpm_requests {
--	pm8841-regulators {
-+	regulators-0 {
- 		compatible = "qcom,rpm-pm8841-regulators";
- 
- 		pm8841_s1: s1 {
-@@ -368,7 +368,7 @@ pm8841_s4: s4 {
- 		};
- 	};
- 
--	pm8941-regulators {
-+	regulators-1 {
- 		compatible = "qcom,rpm-pm8941-regulators";
- 
- 		vdd_l1_l3-supply = <&pm8941_s1>;
-diff --git a/arch/arm/boot/dts/qcom-msm8974-sony-xperia-rhine.dtsi b/arch/arm/boot/dts/qcom-msm8974-sony-xperia-rhine.dtsi
-index 5a70683d9103..320c9bf397f8 100644
---- a/arch/arm/boot/dts/qcom-msm8974-sony-xperia-rhine.dtsi
-+++ b/arch/arm/boot/dts/qcom-msm8974-sony-xperia-rhine.dtsi
-@@ -214,7 +214,7 @@ &pm8941_wled {
- };
- 
- &rpm_requests {
--	pm8841-regulators {
-+	regulators-0 {
- 		compatible = "qcom,rpm-pm8841-regulators";
- 
- 		pm8841_s1: s1 {
-@@ -238,7 +238,7 @@ pm8841_s4: s4 {
- 		};
- 	};
- 
--	pm8941-regulators {
-+	regulators-1 {
- 		compatible = "qcom,rpm-pm8941-regulators";
- 
- 		vdd_l1_l3-supply = <&pm8941_s1>;
-diff --git a/arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dts b/arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dts
-index ff6e0066768b..9107bc6f24db 100644
---- a/arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dts
-+++ b/arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dts
-@@ -190,7 +190,7 @@ &remoteproc_mss {
- };
- 
- &rpm_requests {
--	pm8841-regulators {
-+	regulators-0 {
- 		compatible = "qcom,rpm-pm8841-regulators";
- 
- 		pm8841_s1: s1 {
-@@ -209,7 +209,7 @@ pm8841_s3: s3 {
- 		};
- 	};
- 
--	pm8941-regulators {
-+	regulators-1 {
- 		compatible = "qcom,rpm-pm8941-regulators";
- 
- 		vdd_l1_l3-supply = <&pm8941_s1>;
-diff --git a/arch/arm/boot/dts/qcom-msm8974pro-samsung-klte.dts b/arch/arm/boot/dts/qcom-msm8974pro-samsung-klte.dts
-index 983e10c3d863..156023204c1e 100644
---- a/arch/arm/boot/dts/qcom-msm8974pro-samsung-klte.dts
-+++ b/arch/arm/boot/dts/qcom-msm8974pro-samsung-klte.dts
-@@ -470,7 +470,7 @@ &remoteproc_mss {
- };
- 
- &rpm_requests {
--	pma8084-regulators {
-+	regulators-0 {
- 		compatible = "qcom,rpm-pma8084-regulators";
- 
- 		pma8084_s1: s1 {
-diff --git a/arch/arm/boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dts b/arch/arm/boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dts
-index 3f45f5c5d37b..e4580ed996e6 100644
---- a/arch/arm/boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dts
-+++ b/arch/arm/boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dts
-@@ -319,7 +319,7 @@ led@7 {
- };
- 
- &rpm_requests {
--	pm8941-regulators {
-+	regulators-0 {
- 		compatible = "qcom,rpm-pm8941-regulators";
- 
- 		vdd_l1_l3-supply = <&pm8941_s1>;
--- 
-2.34.1
-
+Best regards,
+Krzysztof
