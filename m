@@ -2,93 +2,246 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0199E5A9B17
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 17:03:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AC6D5A9B22
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 17:04:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233983AbiIAPCr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 11:02:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51922 "EHLO
+        id S233765AbiIAPD1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 11:03:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233846AbiIAPCq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 11:02:46 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D2DD832E5
-        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 08:02:44 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id s15so13052751ljp.5
-        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 08:02:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=bnyyJOLQMDavRkWLRZipZELRn6w/ZbL+BYoEZkO8mHY=;
-        b=WpGYICj5Pt+Uin8WRC4W2vhxDlI4cvPygQYSssZqzyXZ34212z8zUnIX48xKDJqMHE
-         v8a6NLx/FeMuWBsNAOkPeW0q0zLgN+dbKzgP4Z3x6nH93Iv5Rpv/vlbLBIKmK1pYUBjZ
-         aMlsU40WukCTd0JgefTxqbB/Q7fLcjbzWzHRqO9s6ONp2bt1B7WRNFoBvKsGLw8xdLZo
-         GGw7xBl//zf9V5EzYnQzlNWm8/MGAihvPs6RnKuphS1ocQ9cjDMQcEvvSRsyV7luBiWW
-         Y512mT9AA7AcZ1aLbDKf+XGzR87fqqTslSWMfzweuEGDstrx4rNEGtnbJLcy2DSWFHAe
-         JCmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=bnyyJOLQMDavRkWLRZipZELRn6w/ZbL+BYoEZkO8mHY=;
-        b=CrJ+7LLYsu+kVJqBViJKQBky3wI1apwWhtX2yEO7wJ3zhkd/YR5DKBsh70KXS8Bcq9
-         i2K+veulCkFpUi9iQA8XBYPY9w9nIejxDDkBN97+bqcyTJEd4MyBVx1ESE8K1jKcP76o
-         cJfljb+ekM38tBsEjH124RiUmsjqkITAGuji4kKfgL800gWxm5i15PJ78vuOxj5yVzbc
-         +WeD7LFfbm82WrAcn5rezkD4IW97sUFiIgTJ/Qcm3VMZIYQ84eQYVXA8PvSi8HIyXk/M
-         WYJFAhuxLFh884bihQOgkNDyQ/xUp8KVUelqITbOeSAekNCrib3lBmHAfPGmdocFRAPz
-         KNCg==
-X-Gm-Message-State: ACgBeo0wywSXeiEaFUClkZXD25OE0ST1aRAopGZadXV0HjFUYxWi8zwj
-        B36yAsn7JG2QcBLNaf3Kxcta6w==
-X-Google-Smtp-Source: AA6agR6gT8R6Q+X3W/6U7AKKGJTV4+E5AaniYtSdiEHafWUuuCSs8O2SVPBq6jkgGrazxSQszi3E7g==
-X-Received: by 2002:a2e:b5d3:0:b0:267:4da0:ce3b with SMTP id g19-20020a2eb5d3000000b002674da0ce3bmr3645047ljn.420.1662044562919;
-        Thu, 01 Sep 2022 08:02:42 -0700 (PDT)
-Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id z14-20020a056512370e00b0048960b581e3sm1396263lfr.8.2022.09.01.08.02.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Sep 2022 08:02:42 -0700 (PDT)
-Message-ID: <745a351d-4418-1233-8b6d-c65cc6aee239@linaro.org>
-Date:   Thu, 1 Sep 2022 18:02:41 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH 1/1] dt-bindings: pwm: rockchip: Add description for
- rk3588
-Content-Language: en-US
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
+        with ESMTP id S229781AbiIAPD0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 11:03:26 -0400
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36579832E8;
+        Thu,  1 Sep 2022 08:03:23 -0700 (PDT)
+Received: (Authenticated sender: paul.kocialkowski@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 569522000F;
+        Thu,  1 Sep 2022 15:03:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1662044601;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=scHOxPLJc2mIdZy+ocLkyQPw2mekrtVBOig7nZ4p7Tc=;
+        b=V/VzarijTnZgS3sRdroUnUGr05FAQdZ45PShfkrfxGnnT9zI61ZvoQ6MDf2grtEZ8I0lUn
+        g/YBV3l7UflQx+aSKhe19v+mTSzBAr5pFhd/ogFbao/EutQaCBMPLDKMqyqOwv2j3zD7Nd
+        APgAzjI/ecDbYmEs31PEo31BCFH2ZNiMmtfOHL0lj9ge0b4vg20t/T+xBo8LtPwVft0FN/
+        FY+ImlQJDrxbVaLvYt+DGYjEiMJ7kHYnpYCSIfFEa9E/VhetuZrEUbeGYZ0+ECPE4ftU/e
+        PRjOmeBsDKNQ6vNHy3ngLxly8n509kLTvOhHWeq6kxvoFZW5Z8ayfyN4sjxp4Q==
+Date:   Thu, 1 Sep 2022 17:03:17 +0200
+From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Heiko Stuebner <heiko@sntech.de>, linux-pwm@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@collabora.com
-References: <20220901135523.52151-1-sebastian.reichel@collabora.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220901135523.52151-1-sebastian.reichel@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v6 1/6] dt-bindings: media: Add Allwinner A31 ISP
+ bindings documentation
+Message-ID: <YxDJtYgW/NYLw77u@aptenodytes>
+References: <20220826184144.605605-1-paul.kocialkowski@bootlin.com>
+ <20220826184144.605605-2-paul.kocialkowski@bootlin.com>
+ <Ywk3W6pTOOlzLYVn@pendragon.ideasonboard.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="G/X/1fL20N7fVp/v"
+Content-Disposition: inline
+In-Reply-To: <Ywk3W6pTOOlzLYVn@pendragon.ideasonboard.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/09/2022 16:55, Sebastian Reichel wrote:
-> Add "rockchip,rk3588-pwm" compatible string for PWM nodes found
-> on a rk3588 platform.
-> 
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 
+--G/X/1fL20N7fVp/v
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Hi Laurent,
 
+On Sat 27 Aug 22, 00:12, Laurent Pinchart wrote:
+> Hi Paul,
+>=20
+> Thank you for the patch.
 
-Best regards,
-Krzysztof
+Thanks for the review!
+
+> On Fri, Aug 26, 2022 at 08:41:39PM +0200, Paul Kocialkowski wrote:
+> > This introduces YAML bindings documentation for the Allwinner A31 Image
+> > Signal Processor (ISP).
+> >=20
+> > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+> > ---
+> >  .../media/allwinner,sun6i-a31-isp.yaml        | 97 +++++++++++++++++++
+> >  1 file changed, 97 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/allwinner,s=
+un6i-a31-isp.yaml
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/media/allwinner,sun6i-a3=
+1-isp.yaml b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-is=
+p.yaml
+> > new file mode 100644
+> > index 000000000000..2fda6e05e16c
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-isp.y=
+aml
+> > @@ -0,0 +1,97 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/media/allwinner,sun6i-a31-isp.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Allwinner A31 Image Signal Processor Driver (ISP) Device Tree B=
+indings
+> > +
+> > +maintainers:
+> > +  - Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - allwinner,sun6i-a31-isp
+> > +      - allwinner,sun8i-v3s-isp
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    items:
+> > +      - description: Bus Clock
+> > +      - description: Module Clock
+> > +      - description: DRAM Clock
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: bus
+> > +      - const: mod
+> > +      - const: ram
+> > +
+> > +  resets:
+> > +    maxItems: 1
+> > +
+> > +  ports:
+> > +    $ref: /schemas/graph.yaml#/properties/ports
+> > +
+> > +    properties:
+> > +      port@0:
+> > +        $ref: /schemas/graph.yaml#/properties/port
+> > +        description: CSI0 input port
+> > +
+> > +      port@1:
+> > +        $ref: /schemas/graph.yaml#/properties/port
+> > +        description: CSI1 input port
+> > +
+> > +    anyOf:
+> > +      - required:
+> > +          - port@0
+> > +      - required:
+> > +          - port@1
+>=20
+> I'd still like to see all ports that exist in the hardware being
+> mandatory. I assume at least one of the A31 and V3s has two connected
+> ports in the SoC or you wouldn't declare them both here :-)
+
+Some SoCs (e.g. A83T) only have one CSI controller so we can't require both.
+This could be a decision based on the compatible but my personal opinion is
+that it's not really worth making this binding so complex.
+
+We can always informally enforce that all possible links should be present
+when merging changes to the soc dts.
+
+What do you think?
+
+Paul
+
+> Apart from that, this looks good.
+>=20
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +  - clocks
+> > +  - clock-names
+> > +  - resets
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +    #include <dt-bindings/clock/sun8i-v3s-ccu.h>
+> > +    #include <dt-bindings/reset/sun8i-v3s-ccu.h>
+> > +
+> > +    isp: isp@1cb8000 {
+> > +        compatible =3D "allwinner,sun8i-v3s-isp";
+> > +        reg =3D <0x01cb8000 0x1000>;
+> > +        interrupts =3D <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
+> > +        clocks =3D <&ccu CLK_BUS_CSI>,
+> > +             <&ccu CLK_CSI1_SCLK>,
+> > +             <&ccu CLK_DRAM_CSI>;
+> > +        clock-names =3D "bus", "mod", "ram";
+> > +        resets =3D <&ccu RST_BUS_CSI>;
+> > +
+> > +        ports {
+> > +            #address-cells =3D <1>;
+> > +            #size-cells =3D <0>;
+> > +
+> > +            port@0 {
+> > +                reg =3D <0>;
+> > +
+> > +                isp_in_csi0: endpoint {
+> > +                    remote-endpoint =3D <&csi0_out_isp>;
+> > +                };
+> > +            };
+> > +        };
+> > +    };
+> > +
+> > +...
+>=20
+> --=20
+> Regards,
+>=20
+> Laurent Pinchart
+
+--=20
+Paul Kocialkowski, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
+
+--G/X/1fL20N7fVp/v
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmMQybUACgkQ3cLmz3+f
+v9FY1Qf+MjlIt9ACVEy5fR7m2aNXvgztFaDP7rND1ypJ61HVqYq5bNCR35e0/rKW
+AgN9KbDyvtNRjocFEb9kB/ueg/GF1trZ5hPPoE26sRl/ZeSveWYWAFw1JKONZPxa
+j/+CMQbp1JKd6VTvY+T42hp/4TIQ55q9Km4xGsH3uFeQFXWVDTBRJ/KIpmq1bumJ
+3CohtIp1XziiuKvW+GwF//VTvbqLP4OnPi2/AOpsKTtgmZu3heW5ykMRPsxkQf2D
+Vf3TA/wnv9ehWz98Uxl/d5Sv1YZCJEXWMUeqjOV1ao7vKVcfQ+zJnF4CnJL+3cdy
+rk4gNANwhYFpIY8Aip6d8rwnEwkVuQ==
+=YcBa
+-----END PGP SIGNATURE-----
+
+--G/X/1fL20N7fVp/v--
