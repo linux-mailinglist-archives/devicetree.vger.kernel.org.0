@@ -2,71 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A6DC5A91E3
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 10:16:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D20B05A91EB
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 10:18:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233737AbiIAIQs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 04:16:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50842 "EHLO
+        id S234055AbiIAISV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 04:18:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233786AbiIAIQn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 04:16:43 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F45F1706D;
-        Thu,  1 Sep 2022 01:16:35 -0700 (PDT)
-X-UUID: 44d7660e4c97499b865c3f4473251e96-20220901
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=mSKU3/XNrzgDEXyKoQN+SoaiHQESlxP9Gq2Nquvsogg=;
-        b=Cqnaie7DGwMn5apetXJgAJtILSyK7TxAv8CLnpsaCuZVZSPQcnJAThFbSDt0X9a2P8gKLgv69Cz5IMZKgxfOadEDs3nFM9MgXU/lcelseBWq4D4Iluy5TB2NYVY8sYASNKkVaKbHT27+xD+482hGs5sj+c2i+AF6tRUbGBL/azc=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.10,REQID:cf580489-ebd6-44a9-bec1-cbcacb796034,OB:0,L
-        OB:0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release
-        _Ham,ACTION:release,TS:-5
-X-CID-META: VersionHash:84eae18,CLOUDID:53624dd0-20bd-4e5e-ace8-00692b7ab380,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 44d7660e4c97499b865c3f4473251e96-20220901
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-        (envelope-from <liju-clr.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1255327469; Thu, 01 Sep 2022 16:16:29 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Thu, 1 Sep 2022 16:16:28 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Thu, 1 Sep 2022 16:16:28 +0800
-Message-ID: <092345db980b30c577350edc46d88dc3888736d4.camel@mediatek.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: watchdog: Add compatible for
- MediaTek MT8188
-From:   Liju-clr Chen <liju-clr.chen@mediatek.com>
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Runyang Chen <Runyang.Chen@mediatek.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, <nfraprado@collabora.com>
-CC:     <angelogioacchino.delregno@collabora.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>
-Date:   Thu, 1 Sep 2022 16:16:28 +0800
-In-Reply-To: <0b17f336-5c04-e375-ef4a-3804f9702bf8@kernel.org>
-References: <20220816065330.27570-1-Runyang.Chen@mediatek.com>
-         <20220816065330.27570-2-Runyang.Chen@mediatek.com>
-         <0b17f336-5c04-e375-ef4a-3804f9702bf8@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S234039AbiIAISU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 04:18:20 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6293FC9E8D;
+        Thu,  1 Sep 2022 01:18:17 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2818I04b073751;
+        Thu, 1 Sep 2022 03:18:00 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1662020280;
+        bh=ysI+qXYgNHaOypjIaJodnjkluCm25cP/mCBis/PHovY=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=sXMHnAxiHdZBgt8cgmeK+TGOfap0brgt3d1JmG4clAT0DTZLTxRDxDfVABCWnkgqe
+         zpic49rt9S3hUJekr8xOt2R/pPLgbSWNkNo+8U9wEnI2k/9mE9kNCIrgXP26lLgIMw
+         qyonyrtUAtESI5MgS5KmOAxsI9u5YrLzgGTIh9cQ=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2818I0jn015773
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 1 Sep 2022 03:18:00 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Thu, 1 Sep
+ 2022 03:17:59 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Thu, 1 Sep 2022 03:18:00 -0500
+Received: from [172.24.145.182] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2818Huuk003776;
+        Thu, 1 Sep 2022 03:17:57 -0500
+Message-ID: <de7f9166-dea2-fed9-889f-1c171510d42f@ti.com>
+Date:   Thu, 1 Sep 2022 13:47:56 +0530
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v2 2/2] arm64: dts: ti: add k3-j721e-beagleboneai64
+Content-Language: en-US
+To:     Robert Nelson <robertcnelson@gmail.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Jason Kridner <jkridner@beagleboard.org>,
+        Drew Fustini <drew@beagleboard.org>
+References: <20220822230304.2284952-1-robertcnelson@gmail.com>
+ <20220822230304.2284952-2-robertcnelson@gmail.com>
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+In-Reply-To: <20220822230304.2284952-2-robertcnelson@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY,URIBL_CSS
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,25 +69,147 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Maintainers,
+Hi Robert,
 
-Gentle ping for this patch.
-It would be appreciated if you could give some suggestions.
+On 23/08/22 04:33, Robert Nelson wrote:
+> BeagleBoard.org BeagleBone AI-64 is an open source hardware single
+> board computer based on the Texas Instruments TDA4VM SoC featuring
+> dual-core 2.0GHz Arm Cortex-A72 processor, C7x+MMA and 2 C66x
+> floating-point VLIW DSPs, 3x dual Arm Cortex-R5 co-processors,
+> 2x 6-core Programmable Real-Time Unit and Industrial Communication
+> SubSystem, PowerVR Rogue 8XE GE8430 3D GPU. The board features 4GB
+> DDR4, USB3.0 Type-C, USB HS Type-A, miniDisplayPort, 2x 4-lane CSI,
+> DSI, 16GB eMMC flash, 1G Ethernet, M.2 E-key for WiFi/BT, and
+> BeagleBone expansion headers.
 
-Best Regards,
-Liju Chen
+Thanks for the patch, few comments
 
-On Tue, 2022-08-16 at 12:49 +0300, Krzysztof Kozlowski wrote:
-> On 16/08/2022 09:53, Runyang Chen wrote:
-> > From: Runyang Chen <runyang.chen@mediatek.com>
-> > 
-> > Add dt-binding documentation of watchdog for MediaTek MT8188 Soc
-> > 
 > 
-> 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> 
-> Best regards,
-> Krzysztof
+> This board family can be indentified by the BBONEAI-64-B0 in the at24 eeprom:
 
+s/indentified/identified
+
+> 
+> [aa 55 33 ee 01 37 00 10  2e 00 42 42 4f 4e 45 41 |.U3..7....BBONEA|]
+> [49 2d 36 34 2d 42 30 2d  00 00 42 30 30 30 37 38 |I-64-B0-..B00078|]
+> 
+> https://beagleboard.org/ai-64
+> https://git.beagleboard.org/beagleboard/beaglebone-ai-64
+> 
+> Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
+> CC: Nishanth Menon <nm@ti.com>
+> CC: Vignesh Raghavendra <vigneshr@ti.com>
+> CC: Tero Kristo <kristo@kernel.org>
+> CC: Jason Kridner <jkridner@beagleboard.org>
+> CC: Drew Fustini <drew@beagleboard.org>
+> ---
+
+[...]
+
+> +	chosen {
+> +		stdout-path = "serial2:115200n8";
+> +		bootargs = "console=ttyS2,115200n8 earlycon=ns16550a,mmio32,0x02800000";
+
+bootargs are no longer to be part of DT file and to be supplied by
+bootloader as needed [1]
+
+[1]
+https://lore.kernel.org/all/81134eb9-2b7d-05bc-3035-a47f020861a8@linaro.org/
+
+[...]
+
+> +	evm_12v0: fixedregulator-evm12v0 {
+
+please use generic node name:
+		regulator-X  X=1,2,3...
+
+
+> +		/* main supply */
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "evm_12v0";
+> +		regulator-min-microvolt = <12000000>;
+> +		regulator-max-microvolt = <12000000>;
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +	};
+> +
+> +	vsys_3v3: fixedregulator-vsys3v3 {
+> +		/* Output of LMS140 */
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vsys_3v3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		vin-supply = <&evm_12v0>;
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +	};
+> +
+> +	vsys_5v0: fixedregulator-vsys5v0 {
+> +		/* Output of LM5140 */
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vsys_5v0";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		vin-supply = <&evm_12v0>;
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +	};
+> +
+> +	vdd_mmc1: fixedregulator-sd {
+> +		compatible = "regulator-fixed";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&sd_pwr_en_pins_default>;
+> +		regulator-name = "vdd_mmc1";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-boot-on;
+> +		enable-active-high;
+> +		vin-supply = <&vsys_3v3>;
+> +		gpios = <&main_gpio0 82 GPIO_ACTIVE_HIGH>;
+> +	};
+> +
+> +	vdd_sd_dv_alt: gpio-regulator-TLV71033 {
+> +		compatible = "regulator-gpio";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&vdd_sd_dv_alt_pins_default>;
+> +		regulator-name = "tlv71033";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-boot-on;
+> +		vin-supply = <&vsys_5v0>;
+> +		gpios = <&main_gpio0 117 GPIO_ACTIVE_HIGH>;
+> +		states = <1800000 0x0>,
+> +			 <3300000 0x1>;
+> +	};
+> +
+> +	dp_pwr_3v3: fixedregulator-dp-prw {
+> +		compatible = "regulator-fixed";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&dp0_3v3_en_pins_default>;
+> +		regulator-name = "dp-pwr";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		gpios = <&main_gpio0 49 GPIO_ACTIVE_HIGH>; /* DP0_PWR_SW_EN */
+> +		enable-active-high;
+> +	};
+> +
+> +	dp0: connector {
+> +		compatible = "dp-connector";
+> +		label = "DP0";
+> +		type = "full-size";
+> +		dp-pwr-supply = <&dp_pwr_3v3>;
+> +
+> +		port {
+> +			dp_connector_in: endpoint {
+> +				remote-endpoint = <&dp0_out>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+
+[...]
+
+-- 
+Regards
+Vignesh
