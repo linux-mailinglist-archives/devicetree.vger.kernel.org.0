@@ -2,77 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECA6D5A9CF5
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 18:20:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00C4D5A9D05
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 18:25:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234324AbiIAQUg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 12:20:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34552 "EHLO
+        id S234507AbiIAQZN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 12:25:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231281AbiIAQUZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 12:20:25 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85C702F67A
-        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 09:20:23 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id v26so14935059lfd.10
-        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 09:20:23 -0700 (PDT)
+        with ESMTP id S234902AbiIAQZL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 12:25:11 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 720A11E3D6
+        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 09:25:07 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id k22so18432936ljg.2
+        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 09:25:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=m+FhuVC9zsmBuPqczl82iep7EQ0hRYQKXXieJt5VGZg=;
-        b=dcWnJRXDU4JrUZbK/QiyBi/v6boEp5WzmqeDKimaZ8Dm4sQC/tY9/GHF6Dawf1FLuw
-         LvJO3UXXbRBGsdxkWdMUmFtTdLKgALBmHeF7uYdTPmrSj9dBdMo84GWuW/wC2MRdmBKH
-         Iq+9zKsJht1IK15bGi7xc0px+D+WIDXOT+O5F8NgUIFSKarDyfKGRyyf7JH2jrxMYXtT
-         qj5WzBq8f7Z2mFVIHSQM4ILDmKDKbhCTfG5MpCza5Em5vbQ0bBS4xYQ6jDR2Gfvw6TzA
-         Y/a7EElMMLP14jP9wVCn1tW8OkTJr+8leMQkyVwcPlGAjoiqqDKN+XocCw8asbT8CJMb
-         YDBA==
+        bh=Z2p2qpeENY/bfLp1CRaMnL2NjhMX1TdPvMFYupAAiu4=;
+        b=aRiHGqAVishB//yXk4AeOM7oaXDHuVe5bJ3jfBaYaM2rAZ9httqN5u9zGgSHZLrW44
+         TXYosKhUZWsqT70C1o8PKlJB+LEkcV7w2BAgr902JUe6QROqauReVvGwyG1kcd0gNpBa
+         n2VKUGikEcwBLMVfzOEPQVt+0jEiEjtsBWlkvygz2gxxRfrbWUYan3pt3wkj5s4JouG+
+         lg92jn0SadFM05Qnvb7gygBHFpEEBltx4dpUnQoQoZUy+0uKRwdst0oox3+QI9voI50F
+         kJywC2TChygY/oOr2Hdj5XKiE+YMW4aH6MSpecFLZ3dia3IDKlcmAavWH2HORoTIsgWp
+         7dPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=m+FhuVC9zsmBuPqczl82iep7EQ0hRYQKXXieJt5VGZg=;
-        b=5NfBcDcvb6Td9lgIEfo7GA471/gXvUUmJsKsowKszbLeye79UpN3gSLdZ+q4rJDrtz
-         R3bhkboHDN46SkfbNS1brSHKck2d3oL1nRsHnOz/IEfC8QGVRJL/Ubn4IqtE8Eph2FaA
-         eJdUmQ6ZJnj0yCJuopEIrKb3PpaJRSK8sXlHV6dJUvq6/w++ooA8eIPrQcBcbUDR/xXh
-         54zEEHAmDT1aOkoxcxa2k/QdCMB7CyR8yuuRiVHiKltrC/vI0+EH4oyWHBSeiqg0VdCd
-         hNek2Lm1SEy87P62a3X/DjOqg28+mXXhJpVci98IOahD2iyDep1Q2/fsXtHZsCvjuoXX
-         YSYQ==
-X-Gm-Message-State: ACgBeo28qxYKMnTwhoV2RlzPEHkfrNboPpF8YJ1++00Yy7qkHHdAOtN+
-        au7rjdlAoBbqTi/xeCgFFVVLKA==
-X-Google-Smtp-Source: AA6agR7qj8UkAxIk7Zimk3Lo5Lwb7oBdWKWEyGYjaKKWTeBaWKdcQuL65WY5fr/iOVNtxuivNVxKow==
-X-Received: by 2002:a05:6512:3b87:b0:494:9a8d:f74f with SMTP id g7-20020a0565123b8700b004949a8df74fmr1292105lfv.8.1662049221843;
-        Thu, 01 Sep 2022 09:20:21 -0700 (PDT)
+        bh=Z2p2qpeENY/bfLp1CRaMnL2NjhMX1TdPvMFYupAAiu4=;
+        b=LIM0/m1p4mSkiBhTGncMgVGeP5cgN0URocSVNUajyetkCcKY1BZ2wEU7ya9dutoOQ9
+         6XeVdfflXiajwHKteyZWUVmbfUzsi2sZoBx/nUcenTrcce46LL32gHnUx7x/xoWKuXmq
+         gy0/PB5a2QZq8Ol5lddWuOFf88aRtmPG2kH1XwZGeObvk2RcmfUnYYs/vFCUA5g69ger
+         n+mOnn+l8Mll1gGyawzuZF+CO1u3KcFBKIoz3Ce4eAjd0rDN8KXrpIajgy1MYhsCzZEy
+         JGeLHzoTYsIvLIewonbFNFG72ez/sQDKUED5225uMdlsI3sBHsdU7hSkdeZzNy02bHXf
+         NpLg==
+X-Gm-Message-State: ACgBeo20lExMM6IAFyjm4/Zw4AAm0eY9YfFynOxPvHcDhVkVFgKIOZ12
+        B+CkXZdSNX/lpbXH1pFWfoy0cQ==
+X-Google-Smtp-Source: AA6agR6weCHVEDSehESWY6ZEw5fnjk/M+7jfqaVj7HH4Qunmhzek/56LXlLukCpUJlJl6fQWSyn32g==
+X-Received: by 2002:a05:651c:a12:b0:268:c715:910f with SMTP id k18-20020a05651c0a1200b00268c715910fmr857174ljq.484.1662049505589;
+        Thu, 01 Sep 2022 09:25:05 -0700 (PDT)
 Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
-        by smtp.gmail.com with ESMTPSA id y20-20020a05651c107400b00261cd70e41asm1850937ljm.32.2022.09.01.09.20.20
+        by smtp.gmail.com with ESMTPSA id u7-20020a05651220c700b00494978b0caesm460174lfr.276.2022.09.01.09.25.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Sep 2022 09:20:20 -0700 (PDT)
-Message-ID: <ccd72f2b-911e-c4fd-7bbc-ce21e5a34c68@linaro.org>
-Date:   Thu, 1 Sep 2022 19:20:19 +0300
+        Thu, 01 Sep 2022 09:25:04 -0700 (PDT)
+Message-ID: <ef6c7248-1efa-5366-6bcd-900c5f10ccb2@linaro.org>
+Date:   Thu, 1 Sep 2022 19:25:03 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH 14/14] arm64: dts: qcom: sm4250: Add support for
- oneplus-billie2
+Subject: Re: [PATCH 1/6] dt-bindings: mfd: add binding for Apple Mac System
+ Management Controller
 Content-Language: en-US
-To:     Iskren Chernev <iskren.chernev@gmail.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc:     Arnd Bergmann <arnd@arndb.de>, Lee Jones <lee@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        asahi@lists.linux.dev, Bartosz Golaszewski <brgl@bgdev.pl>,
+        Hector Martin <marcan@marcan.st>,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+        Sven Peter <sven@svenpeter.dev>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kees Cook <keescook@chromium.org>,
-        Anton Vorontsov <anton@enomsg.org>,
-        Colin Cross <ccross@android.com>,
-        Tony Luck <tony.luck@intel.com>, linux-kernel@vger.kernel.org
-References: <20220901072414.1923075-1-iskren.chernev@gmail.com>
- <20220901072414.1923075-15-iskren.chernev@gmail.com>
+        devicetree@vger.kernel.org
+References: <YxC5eZjGgd8xguDr@shell.armlinux.org.uk>
+ <E1oTkeH-003t9A-3K@rmk-PC.armlinux.org.uk>
+ <426469c1-13cc-178b-4904-09439d7788e8@linaro.org>
+ <YxDL+cAx9kkZRL8K@shell.armlinux.org.uk>
+ <928ddeff-efac-920c-7bbf-dda35a942b93@linaro.org>
+ <YxDOpCq0vIlt4VNa@shell.armlinux.org.uk>
+ <2fedff34-6a20-f1ce-a756-2bd8671fcd52@linaro.org>
+ <YxDWG5dmzErhKIXw@shell.armlinux.org.uk>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220901072414.1923075-15-iskren.chernev@gmail.com>
+In-Reply-To: <YxDWG5dmzErhKIXw@shell.armlinux.org.uk>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,153 +90,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/09/2022 10:24, Iskren Chernev wrote:
-> Add initial support for OnePlus Nord N100, based on SM4250. Currently
-> working:
-> - boots
-> - usb
-> - buildin flash storage (UFS)
-> - SD card reader
+On 01/09/2022 18:56, Russell King (Oracle) wrote:
 > 
-> Signed-off-by: Iskren Chernev <iskren.chernev@gmail.com>
-> ---
->  .../boot/dts/qcom/sm4250-oneplus-billie2.dts  | 240 ++++++++++++++++++
->  1 file changed, 240 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
+> 8<===
+> From: "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
+> Subject: [PATCH] dt-bindings: mfd: add binding for Apple Mac System Management
+>  Controller
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts b/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
-> new file mode 100644
-> index 000000000000..c1cf0288aa5f
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts
-> @@ -0,0 +1,240 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2021, Iskren Chernev <iskren.chernev@gmail.com>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "sm4250.dtsi"
-> +
-> +/ {
-> +	model = "OnePlus Nord N100";
-> +	compatible = "oneplus,billie2", "qcom,sm4250";
-> +
-> +	/* required for bootloader to select correct board */
-> +	qcom,msm-id = <0x1a1 0x10000 0x1bc 0x10000>;
-> +	qcom,board-id = <0x1000b 0x00>;
-> +
-> +	aliases {
-> +	};
-> +
-> +	chosen {
-> +		bootargs = "earlycon=tty0 console=tty0 clk_ignore_unused pd_ignore_unused";
+> Add a DT binding for the Apple Mac System Management Controller.
+> 
+> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
 
-No bootargs. They are not suitable for wide-use.
+Yes, looks good.
 
-> +
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		stdout-path = "framebuffer0";
-> +
-> +		framebuffer0: framebuffer@9d400000 {
-> +			compatible = "simple-framebuffer";
-> +			reg = <0 0x5c000000 0 (1600 * 720 * 4)>;
-> +			width = <720>;
-> +			height = <1600>;
-> +			stride = <(720 * 4)>;
-> +			format = "a8r8g8b8";
-> +			status= "okay";
-
-No need for status in new nodes.
-
-> +		};
-> +	};
-> +
-> +	reserved-memory {
-> +		mtp_mem: memory@cc300000 {
-> +			reg = <0x00 0xcc300000 0x00 0xb00000>;
-> +			no-map;
-> +		};
-> +
-> +		param_mem: memory@cc200000 {
-> +			reg = <0x00 0xcc200000 0x00 0x100000>;
-> +			no-map;
-> +		};
-> +
-> +		bootloader_log_mem: memory@5fff7000 {
-> +			reg = <0x00 0x5fff7000 0x00 0x8000>;
-> +			no-map;
-> +		};
-> +
-> +		ramoops@cbe00000 {
-> +			compatible = "ramoops";
-> +			reg = <0x0 0xcbe00000 0x0 0x400000>;
-> +			record-size = <0x40000>;
-> +			pmsg-size = <0x200000>;
-> +			console-size = <0x40000>;
-> +			ftrace-size = <0x40000>;
-> +		};
-> +	};
-> +};
-> +
-> +&usb3 {
-> +	status = "okay";
-> +};
-> +
-> +&hsusb_phy {
-> +	status = "okay";
-
-Status is the last property. Also in other places.
-
-> +	vdd-supply = <&vreg_l4a>;
-> +	vdda-pll-supply = <&vreg_l12a>;
-> +	vdda-phy-dpdm-supply = <&vreg_l15a>;
-> +
-> +};
-> +
-> +&tlmm {
-> +	gpio-reserved-ranges = <14 4>;
-> +};
-> +
-> +&sdhc_2 {
-> +	status = "okay";
-> +	vmmc-supply = <&vreg_l22a>;
-> +	vqmmc-supply = <&vreg_l5a>;
-> +
-> +	cd-gpios = <&tlmm 88 GPIO_ACTIVE_HIGH>;
-> +
-> +	pinctrl-names = "default", "sleep";
-> +	pinctrl-0 = <&sdc2_state_on>;
-> +	pinctrl-1 = <&sdc2_state_off>;
-> +};
-> +
-> +&ufs_mem_hc {
-> +	status = "okay";
-> +	vcc-supply = <&vreg_l24a>;
-> +	vcc-max-microamp = <600000>;
-> +	vccq2-supply = <&vreg_l11a>;
-> +	vccq2-max-microamp = <600000>;
-> +};
-> +
-> +&ufs_mem_phy {
-> +	status = "okay";
-> +	vdda-phy-supply = <&vreg_l4a>;
-> +	vdda-pll-supply = <&vreg_l12a>;
-> +	vddp-ref-clk-supply = <&vreg_l18a>;
-> +};
-> +
-> +&rpm_requests {
-> +	pm6125-regulators {
-
-regulators
-
-> +		compatible = "qcom,rpm-pm6125-regulators";
-> +
-
+I won't add Reviewed-by tag, because I think it would confuse Patchwork,
+so please send a v2 at some point.
 
 Best regards,
 Krzysztof
