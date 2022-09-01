@@ -2,54 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 335BE5A9A2C
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 16:27:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2FC65A9A39
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 16:27:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234584AbiIAOZh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 10:25:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50110 "EHLO
+        id S234783AbiIAOY3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 10:24:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234684AbiIAOXR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 10:23:17 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BD7C5302B;
-        Thu,  1 Sep 2022 07:22:57 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 281EMpOP016749;
-        Thu, 1 Sep 2022 09:22:51 -0500
+        with ESMTP id S234133AbiIAOX5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 10:23:57 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 573914B4A2;
+        Thu,  1 Sep 2022 07:23:33 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 281ENLO6027586;
+        Thu, 1 Sep 2022 09:23:21 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1662042172;
-        bh=DufLtdvu5GcQ5C94WiV6e3wj5DPCbSMzA1B1Ef6yJQQ=;
+        s=ti-com-17Q1; t=1662042201;
+        bh=2qQvQY0l9GhxyKyiVwjjsDqTN4a9J3mLbQGw/fpEoWg=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=eS9uLpEIvir6gF6wxDDNeA3MtsU89lzE5VdXbxQA0sNPDA7pMemyg95djvkwbJDO9
-         DSjn0Vx2YjFmGwTCfEPsosH3cFxr+D8Ur75XRJzdFtxsfgObxEayzN9dbIWoaO1u8P
-         GMff57XhiZEpFdmX2v+yn8UoLItKXRT8TpiSZ6CE=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 281EMpNi053344
+        b=tLgAtvN0ot0d3bZ/1kRH5GWGSrDcAXiqf5OLl344bxlPx8pXgLd1ddMCUA1PERzoX
+         O1WminmxRuzgVFbLM8QI4rF08+lOsucfFyopGnCysoda0Zp2ES59Nel9m4WNZE4VkU
+         4KvCPGgoKF6eL4T5rM/UOR8EQirCebdmBWswiCe4=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 281ENLo1026732
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 1 Sep 2022 09:22:51 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+        Thu, 1 Sep 2022 09:23:21 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Thu, 1 Sep
- 2022 09:22:51 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ 2022 09:23:21 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Thu, 1 Sep 2022 09:22:51 -0500
+ Frontend Transport; Thu, 1 Sep 2022 09:23:21 -0500
 Received: from uda0132425.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 281EMmdq029774;
-        Thu, 1 Sep 2022 09:22:49 -0500
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 281ENIxp108287;
+        Thu, 1 Sep 2022 09:23:19 -0500
 From:   Vignesh Raghavendra <vigneshr@ti.com>
-To:     <nm@ti.com>, Roger Quadros <rogerq@kernel.org>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>, <kishon@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 0/2] arm64: dts: ti: k3-am64-main: Add GPMC & ELM nodes
-Date:   Thu, 1 Sep 2022 19:52:36 +0530
-Message-ID: <166204207692.900930.14532847277832309029.b4-ty@ti.com>
+To:     <nm@ti.com>, Jayesh Choudhary <j-choudhary@ti.com>,
+        <devicetree@vger.kernel.org>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>, <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <kristo@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH v2 0/2] Enable SA2UL support on AM64X
+Date:   Thu, 1 Sep 2022 19:53:14 +0530
+Message-ID: <166204207692.900930.17592300086074188441.b4-ty@ti.com>
 X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20220802104456.11069-1-rogerq@kernel.org>
-References: <20220802104456.11069-1-rogerq@kernel.org>
+In-Reply-To: <20220711085743.10128-1-j-choudhary@ti.com>
+References: <20220711085743.10128-1-j-choudhary@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -64,26 +65,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Roger Quadros,
+Hi Jayesh Choudhary,
 
-On Tue, 2 Aug 2022 13:44:54 +0300, Roger Quadros wrote:
-> This series adds GPMC and ELM controller device tree nodes to
-> AM64 SoC's dtsi file.
+On Mon, 11 Jul 2022 14:27:41 +0530, Jayesh Choudhary wrote:
+> This series enables sa2ul support for TI SoC AM64X.
+> It is based on another series posted by Suman Anna:
+> <https://lore.kernel.org/linux-arm-kernel/20210514210725.32720-1-s-anna@ti.com/>
 > 
-> Changelog:
-> v4
-> - Rebased to v5.19
-> - use 'ti,am64-elm' compatible for ELM node
+> rng node has been disabled due to its indirect access from OP-TEE.
+> 
+> Since the sa2ul hardware is being used by OP-TEE as well,
+> it should be requested using shared TI-SCI flag. So the flag
+> has been changed from TI-SCI-EXCLUSIVE to TI-SCI-SHARED.
 > 
 > [...]
 
 I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-[1/2] arm64: dts: ti: k3-am64-main: Add GPMC memory controller node
-      commit: 5ec06904310da6441097c8f2d6e3fb196f42bca1
-[2/2] arm64: dts: ti: k3-am64-main: Add ELM (Error Location Module) node
-      commit: c920a6caba68196f48f8ee57cc193e396f941011
+[1/2] arm64: dts: ti: k3-am64: Add SA2UL address space to Main CBASS ranges
+      commit: e66e5b2d7f43d92fffb940988ed2822a1b28143b
+[2/2] arm64: dts: ti: k3-am64-main: Enable crypto accelerator
+      commit: e170ae6dd67a00f750996820d55b144c5189be66
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
