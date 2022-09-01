@@ -2,241 +2,483 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D6F745A9C4D
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 17:56:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6B505A9C6E
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 18:03:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234403AbiIAP4X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 11:56:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39362 "EHLO
+        id S234745AbiIAQDr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 12:03:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233055AbiIAP4W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 11:56:22 -0400
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BF5E79A40;
-        Thu,  1 Sep 2022 08:56:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=S9iP4fTRtB1X7zN4oLDTGujtcRJ/XufA0LaTZFsQlEA=; b=BuV0D5jqJCX0I+shzsbIkcxkeM
-        f7dEZ7VLNSm7LxeCtxx6gtyeyVPSaRt9v5sDUzoNMk3Q5SD7W91LK8XhQtUET8kBK60rKPzKhhfzu
-        aAVZ3euKSwxCx4hnRkLFc3JbH7e9hOnlH6IdjDvCKTwiP7mTj0n251RM8PqekeEX6FMdmyBzV7WAi
-        RsKx8eSO2k0ZjCNTjDmpLjpJv/L1pUZ+PJ8jjWuMi/VqhirfDjMxPacYDZgEWnsZi2acxkVlX0n37
-        jACH1oaJ8RyaJIvEJI5MwyeM0pVPJ28TFUwDCwcc/hq+eWk+vL9I9HmwX48/7my8VFw/7n56Gv1ID
-        4XlhV5+w==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:34046)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1oTmY9-0006Bp-5d; Thu, 01 Sep 2022 16:56:13 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1oTmY7-0003aV-J6; Thu, 01 Sep 2022 16:56:11 +0100
-Date:   Thu, 1 Sep 2022 16:56:11 +0100
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Lee Jones <lee@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        asahi@lists.linux.dev, Bartosz Golaszewski <brgl@bgdev.pl>,
-        Hector Martin <marcan@marcan.st>,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        Sven Peter <sven@svenpeter.dev>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/6] dt-bindings: mfd: add binding for Apple Mac System
- Management Controller
-Message-ID: <YxDWG5dmzErhKIXw@shell.armlinux.org.uk>
-References: <YxC5eZjGgd8xguDr@shell.armlinux.org.uk>
- <E1oTkeH-003t9A-3K@rmk-PC.armlinux.org.uk>
- <426469c1-13cc-178b-4904-09439d7788e8@linaro.org>
- <YxDL+cAx9kkZRL8K@shell.armlinux.org.uk>
- <928ddeff-efac-920c-7bbf-dda35a942b93@linaro.org>
- <YxDOpCq0vIlt4VNa@shell.armlinux.org.uk>
- <2fedff34-6a20-f1ce-a756-2bd8671fcd52@linaro.org>
+        with ESMTP id S234720AbiIAQDp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 12:03:45 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5508F90192
+        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 09:03:43 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id bx38so18351211ljb.10
+        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 09:03:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=6Ie3NhdzsnzkHobegq8CeuHpaJaVXRWlLeKNtTsv8O0=;
+        b=z4FtSVp2RHNxkbSZcAk8wUVKJFa6CO3ms2ApM3jOiaOWYwgOdi/+YooyMaC6LwueLG
+         fJ4AEW/PXNW3LxUrKi39aO1q+52mdsIxgriNAPT60FxmAyfPI75JrVbRXGft+kUY81jC
+         pWEGy5SQl+9lUn0n+4lCWkUMf1wvk7+drPqB+nJuLockJ/iHNSDfiV6lhgL/LV5uotpn
+         N119J43Cr2eN5juxkfICF1PuZz/S5jCq/sjGHgwimxszkJl1Snc22nSBSveQV795YokU
+         d859bI/wSimQ1XX2xyJLHptDVc54hyigmDgPtobzidIMSyohqKQxEzmdPTLuHIaWKJyl
+         jkEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=6Ie3NhdzsnzkHobegq8CeuHpaJaVXRWlLeKNtTsv8O0=;
+        b=bTxeCqHoWj6yOY+wyIY3aatVV3dEhfUZyYeYhAX3qycnt+pt8Yf7qe14tDTJXOGmVl
+         mIMq3VPnhmYgWB0u3FZ5fwB1Psf79/W7lnYJAmAIgM51MzJl+Pejig+wla9kahP18bjo
+         qb3gFR6mhscdulRqnd9f6v27qAXN0U+XAg09ld5PCHrRyFJ0I0OWXxlTG8Sou5yUSYFZ
+         PmHdL0idvC7eiBU9a3lAG4mKsNaRnky9GLqPuKQrFqGdAnHFvip1oruETiIlW7lLHh4Q
+         QZxdxmJjuy+xyyg9kdYZ1zx+OkeKMWvh7Z2TV0jIjP7Z5tJHhuJeiN3efEqtFZFCcmCS
+         xKpw==
+X-Gm-Message-State: ACgBeo3YF/W328oYHt8Lp6iCc+g/eUM42G3BtVmvrrkPDvRFq78ZDIZt
+        ZACS8NVVCuQPlyP76B6GWORtyg==
+X-Google-Smtp-Source: AA6agR7t4fuNzNHKo8c7mOSlUC6TCJARyrf/+ArSuud6w7jHV6UEkfv9fGz+W6HJh/yLfKlF0Z/ihw==
+X-Received: by 2002:a2e:9555:0:b0:260:3dc:12fb with SMTP id t21-20020a2e9555000000b0026003dc12fbmr10284096ljh.125.1662048221600;
+        Thu, 01 Sep 2022 09:03:41 -0700 (PDT)
+Received: from [192.168.28.124] (balticom-73-99-134.balticom.lv. [109.73.99.134])
+        by smtp.gmail.com with ESMTPSA id bi37-20020a05651c232500b00261e7e7b698sm179427ljb.123.2022.09.01.09.03.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 01 Sep 2022 09:03:41 -0700 (PDT)
+Message-ID: <6be03c44-ec58-c041-5882-57bd2491e4b9@linaro.org>
+Date:   Thu, 1 Sep 2022 19:03:40 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2fedff34-6a20-f1ce-a756-2bd8671fcd52@linaro.org>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH 01/14] arm64: dts: qcom: sm6115: Add basic soc dtsi
+Content-Language: en-US
+To:     Iskren Chernev <iskren.chernev@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org
+References: <20220901072414.1923075-1-iskren.chernev@gmail.com>
+ <20220901072414.1923075-2-iskren.chernev@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220901072414.1923075-2-iskren.chernev@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 01, 2022 at 06:45:52PM +0300, Krzysztof Kozlowski wrote:
-> On 01/09/2022 18:24, Russell King (Oracle) wrote:
-> > On Thu, Sep 01, 2022 at 06:15:46PM +0300, Krzysztof Kozlowski wrote:
-> >> On 01/09/2022 18:12, Russell King (Oracle) wrote:
-> >>>>> +  compatible:
-> >>>>> +    items:
-> >>>>> +      - enum:
-> >>>>> +        - apple,t8103-smc
-> >>>>
-> >>>> You miss two spaces of indentation on this level.
-> >>>
-> >>> Should that be picked up by the dt checker?
-> >>
-> >> I think yamllint complains about it. It is not a hard-dependency, so
-> >> maybe you don't have it installed.
-> >>
-> >>>
-> >>>>> +        - apple,t8112-smc
-> >>>>> +        - apple,t6000-smc
-> >>>>
-> >>>> Bring some order here - either alphabetical or by date of release (as in
-> >>>> other Apple schemas). I think t6000 was before t8112, so it's none of
-> >>>> that orders.
-> >>>
-> >>> Ok.
-> >>>
-> >>>>> +      - const: apple,smc
-> >>>>> +
-> >>>>> +  reg:
-> >>>>> +    description: Two regions, one for the SMC area and one for the SRAM area.
-> >>>>
-> >>>> You need constraints for size/order, so in this context list with
-> >>>> described items.
-> >>>
-> >>> How do I do that? I tried maxItems/minItems set to 2, but the dt checker
-> >>> objected to it.
-> >>
-> >> One way:
-> >> reg:
-> >>   items:
-> >>     - description: SMC area
-> >>     - description: SRAM area
-> >>
-> >> but actually this is very similar what you wrote for reg-names - kind of
-> >> obvious, so easier way:
-> >>
-> >> reg:
-> >>   maxItems: 2
-> > 
-> > Doesn't work. With maxItems: 2, the example fails, yet it correctly lists
-> > two regs which are 64-bit address and 64-bit size - so in total 8 32-bit
-> > ints.
-> > 
-> > Documentation/devicetree/bindings/mfd/apple,smc.example.dtb: smc@23e400000: reg: [[2, 1044381696], [0, 16384], [2, 1071644672], [0, 1048576]] is too long
-> >         From schema: /home/rmk/git/linux-rmk/Documentation/devicetree/bindings/mfd/apple,smc.yaml
-> > 
-> > Hence, I originally had maxItems: 2, and ended up deleting it because of
-> > the dt checker.
-> > 
-> > With the two descriptions, it's the same failure.
+On 01/09/2022 10:24, Iskren Chernev wrote:
+> Add support for Qualcomm SM6115 SoC. This includes bare minimum:
+> - CPUs
+> - intc
+> - timer
+> - reserved memory
 > 
-> Yeah, they should create same result.
+> Signed-off-by: Iskren Chernev <iskren.chernev@gmail.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sm6115.dtsi | 433 +++++++++++++++++++++++++++
+>  1 file changed, 433 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/sm6115.dtsi
 > 
-> > 
-> > I think the problem is that the checker has no knowledge in the example
-> > of how big each address and size element of the reg property is. So,
-> > it's interpreting it as four entries of 32-bit address,size pairs
-> > instead of two entries of 64-bit address,size pairs. Yep, that's it,
-> > if I increase the number of "- description" entries to four then it's
-> > happy.
-> > 
-> > So, what's the solution?
-> > 
-> 
-> If you open generated DTS examples (in your
-> kbuild-output/Documentation/devicetree/bindings/mfd/) you will see which
-> address/size cells are expected. By default it is I think address/size
-> cells=1, so you need a bus node setting it to 2.
+> diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> new file mode 100644
+> index 000000000000..69d9de540478
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> @@ -0,0 +1,433 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2021, Iskren Chernev <iskren.chernev@gmail.com>
+> + */
+> +
+> +#include <dt-bindings/clock/qcom,gcc-sm6115.h>
+> +#include <dt-bindings/clock/qcom,rpmcc.h>
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/power/qcom-rpmpd.h>
+> +
+> +/ {
+> +	interrupt-parent = <&intc>;
+> +
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+> +	chosen { };
+> +
+> +	clocks {
+> +		xo_board: xo-board {
+> +			compatible = "fixed-clock";
+> +			clock-frequency = <19200000>;
 
-Thanks, that works. The patch with all those points addressed now looks
-like:
+The clocks are outside of the SoC, so usually to denote it the clock
+frequencies are at least defined in the board DTS. Move it there.
 
-8<===
-From: "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
-Subject: [PATCH] dt-bindings: mfd: add binding for Apple Mac System Management
- Controller
+> +			#clock-cells = <0>;
+> +			clock-output-names = "xo_board";
+> +		};
+> +
+> +		sleep_clk: sleep-clk {
+> +			compatible = "fixed-clock";
+> +			clock-frequency = <32764>;
+> +			#clock-cells = <0>;
+> +			clock-output-names = "sleep_clk";
+> +		};
+> +	};
+> +
+> +	cpus {
+> +		#address-cells = <2>;
+> +		#size-cells = <0>;
+> +
+> +		CPU0: cpu@0 {
+> +			device_type = "cpu";
+> +			compatible = "qcom,kryo260";
+> +			reg = <0x0 0x0>;
+> +			capacity-dmips-mhz = <1024>;
+> +			dynamic-power-coefficient = <100>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&L2_0>;
+> +			L2_0: l2-cache {
+> +				compatible = "cache";
+> +				cache-level = <2>;
+> +			};
+> +		};
+> +
+> +		CPU1: cpu@1 {
+> +			device_type = "cpu";
+> +			compatible = "qcom,kryo260";
+> +			reg = <0x0 0x1>;
+> +			capacity-dmips-mhz = <1024>;
+> +			dynamic-power-coefficient = <100>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&L2_0>;
+> +		};
+> +
+> +		CPU2: cpu@2 {
+> +			device_type = "cpu";
+> +			compatible = "qcom,kryo260";
+> +			reg = <0x0 0x2>;
+> +			capacity-dmips-mhz = <1024>;
+> +			dynamic-power-coefficient = <100>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&L2_0>;
+> +		};
+> +
+> +		CPU3: cpu@3 {
+> +			device_type = "cpu";
+> +			compatible = "qcom,kryo260";
+> +			reg = <0x0 0x3>;
+> +			capacity-dmips-mhz = <1024>;
+> +			dynamic-power-coefficient = <100>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&L2_0>;
+> +		};
+> +
+> +		CPU4: cpu@100 {
+> +			device_type = "cpu";
+> +			compatible = "qcom,kryo260";
+> +			reg = <0x0 0x100>;
+> +			enable-method = "psci";
+> +			capacity-dmips-mhz = <1638>;
+> +			dynamic-power-coefficient = <282>;
+> +			next-level-cache = <&L2_1>;
+> +			L2_1: l2-cache {
+> +				compatible = "cache";
+> +				cache-level = <2>;
+> +			};
+> +		};
+> +
+> +		CPU5: cpu@101 {
+> +			device_type = "cpu";
+> +			compatible = "qcom,kryo260";
+> +			reg = <0x0 0x101>;
+> +			capacity-dmips-mhz = <1638>;
+> +			dynamic-power-coefficient = <282>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&L2_1>;
+> +		};
+> +
+> +		CPU6: cpu@102 {
+> +			device_type = "cpu";
+> +			compatible = "qcom,kryo260";
+> +			reg = <0x0 0x102>;
+> +			capacity-dmips-mhz = <1638>;
+> +			dynamic-power-coefficient = <282>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&L2_1>;
+> +		};
+> +
+> +		CPU7: cpu@103 {
+> +			device_type = "cpu";
+> +			compatible = "qcom,kryo260";
+> +			reg = <0x0 0x103>;
+> +			capacity-dmips-mhz = <1638>;
+> +			dynamic-power-coefficient = <282>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&L2_1>;
+> +		};
+> +
+> +		cpu-map {
+> +			cluster0 {
+> +				core0 {
+> +					cpu = <&CPU0>;
+> +				};
+> +
+> +				core1 {
+> +					cpu = <&CPU1>;
+> +				};
+> +
+> +				core2 {
+> +					cpu = <&CPU2>;
+> +				};
+> +
+> +				core3 {
+> +					cpu = <&CPU3>;
+> +				};
+> +			};
+> +
+> +			cluster1 {
+> +				core0 {
+> +					cpu = <&CPU4>;
+> +				};
+> +
+> +				core1 {
+> +					cpu = <&CPU5>;
+> +				};
+> +
+> +				core2 {
+> +					cpu = <&CPU6>;
+> +				};
+> +
+> +				core3 {
+> +					cpu = <&CPU7>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	firmware {
+> +		scm: scm {
+> +			compatible = "qcom,scm-sm6115", "qcom,scm";
+> +			#reset-cells = <1>;
+> +		};
+> +	};
+> +
+> +	tcsr_mutex: hwlock {
+> +		compatible = "qcom,tcsr-mutex";
+> +		syscon = <&tcsr_mutex_regs 0 0x1000>;
+> +		#hwlock-cells = <1>;
+> +	};
 
-Add a DT binding for the Apple Mac System Management Controller.
+This should be rather MMIO based TCSR mutex.
+See:
+https://lore.kernel.org/all/20220819083209.50844-1-krzysztof.kozlowski@linaro.org/
 
-Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
----
- .../devicetree/bindings/mfd/apple,smc.yaml    | 61 +++++++++++++++++++
- 1 file changed, 61 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mfd/apple,smc.yaml
+> +
+> +	memory {
+> +		device_type = "memory";
+> +		/* We expect the bootloader to fill in the reg */
+> +		reg = <0 0 0 0>;
+> +	};
+> +
+> +	pmu {
+> +		compatible = "arm,armv8-pmuv3";
+> +		interrupts = <GIC_PPI 6 IRQ_TYPE_LEVEL_HIGH>;
+> +	};
+> +
+> +	psci {
+> +		compatible = "arm,psci-1.0";
+> +		method = "smc";
+> +	};
+> +
+> +	reserved-memory {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		hyp_mem: memory@45700000 {
+> +			reg = <0x0 0x45700000 0x0 0x600000>;
+> +			no-map;
+> +		};
+> +
+> +		xbl_aop_mem: memory@45e00000 {
+> +			reg = <0x0 0x45e00000 0x0 0x140000>;
+> +			no-map;
+> +		};
+> +
+> +		sec_apps_mem: memory@45fff000 {
+> +			reg = <0x0 0x45fff000 0x0 0x1000>;
+> +			no-map;
+> +		};
+> +
+> +		smem_mem: memory@46000000 {
+> +			reg = <0x0 0x46000000 0x0 0x200000>;
+> +			no-map;
+> +		};
+> +
+> +		cdsp_sec_mem: memory@46200000 {
+> +			reg = <0x0 0x46200000 0x0 0x1e00000>;
+> +			no-map;
+> +		};
+> +
+> +		pil_modem_mem: memory@4ab00000 {
+> +			reg = <0x0 0x4ab00000 0x0 0x6900000>;
+> +			no-map;
+> +		};
+> +
+> +		pil_video_mem: memory@51400000 {
+> +			reg = <0x0 0x51400000 0x0 0x500000>;
+> +			no-map;
+> +		};
+> +
+> +		wlan_msa_mem: memory@51900000 {
+> +			reg = <0x0 0x51900000 0x0 0x100000>;
+> +			no-map;
+> +		};
+> +
+> +		pil_cdsp_mem: memory@51a00000 {
+> +			reg = <0x0 0x51a00000 0x0 0x1e00000>;
+> +			no-map;
+> +		};
+> +
+> +		pil_adsp_mem: memory@53800000 {
+> +			reg = <0x0 0x53800000 0x0 0x2800000>;
+> +			no-map;
+> +		};
+> +
+> +		pil_ipa_fw_mem: memory@56100000 {
+> +			reg = <0x0 0x56100000 0x0 0x10000>;
+> +			no-map;
+> +		};
+> +
+> +		pil_ipa_gsi_mem: memory@56110000 {
+> +			reg = <0x0 0x56110000 0x0 0x5000>;
+> +			no-map;
+> +		};
+> +
+> +		pil_gpu_mem: memory@56115000 {
+> +			reg = <0x0 0x56115000 0x0 0x2000>;
+> +			no-map;
+> +		};
+> +
+> +		cont_splash_memory: memory@5c000000 {
+> +			reg = <0x0 0x5c000000 0x0 0x00f00000>;
+> +			no-map;
+> +		};
+> +
+> +		dfps_data_memory: memory@5cf00000 {
+> +			reg = <0x0 0x5cf00000 0x0 0x0100000>;
+> +			no-map;
+> +		};
+> +
+> +		removed_mem: memory@60000000 {
+> +			reg = <0x0 0x60000000 0x0 0x3900000>;
+> +			no-map;
+> +		};
+> +
+> +		secure_display_memory: memory@f3c00000 {
+> +			reg = <0x0 0xf3c00000 0x0 0x5c00000>;
+> +			no-map;
+> +		};
+> +
+> +		dump_mem: memory@f9800000 {
+> +			reg = <0x0 0xf9800000 0x0 0x800000>;
+> +			no-map;
+> +		};
+> +
+> +		adsp_mem: memory@fa000000 {
+> +			reg = <0x0 0xfa000000 0x0 0x800000>;
+> +			no-map;
+> +		};
+> +
+> +		qseecom_mem: memory@fa800000 {
+> +			reg = <0x0 0xfa800000 0x0 0x1400000>;
+> +			no-map;
+> +		};
+> +
+> +		user_contig_mem: memory@fbc00000 {
+> +			reg = <0x0 0xfbc00000 0x0 0x1000000>;
+> +			no-map;
+> +		};
+> +
+> +		qseecom_ta_mem: memory@fcc00000 {
+> +			reg = <0x0 0xfcc00000 0x0 0x1000000>;
+> +			no-map;
+> +		};
+> +
+> +		linux_cma_mem: memory@fdc00000 {
+> +			reg = <0x0 0xfdc00000 0x0 0x2000000>;
+> +			no-map;
+> +		};
+> +
+> +	};
+> +
+> +	smem {
+> +		compatible = "qcom,smem";
+> +		memory-region = <&smem_mem>;
+> +		qcom,rpm-msg-ram = <&rpm_msg_ram>;
+> +		hwlocks = <&tcsr_mutex 3>;
+> +	};
+> +
+> +	soc: soc {
+> +		compatible = "simple-bus";
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges = <0 0 0 0xffffffff>;
+> +
+> +		qfprom@1b40000 {
+> +			compatible = "qcom,qfprom";
 
-diff --git a/Documentation/devicetree/bindings/mfd/apple,smc.yaml b/Documentation/devicetree/bindings/mfd/apple,smc.yaml
-new file mode 100644
-index 000000000000..168f237c2962
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mfd/apple,smc.yaml
-@@ -0,0 +1,61 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mfd/apple,smc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Apple Mac System Management Controller
-+
-+maintainers:
-+  - Hector Martin <marcan@marcan.st>
-+
-+description:
-+  Apple Mac System Management Controller implements various functions
-+  such as GPIO, RTC, power, reboot.
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - apple,t6000-smc
-+          - apple,t8103-smc
-+          - apple,t8112-smc
-+      - const: apple,smc
-+
-+  reg:
-+    items:
-+      - description: SMC area
-+      - description: SRAM area
-+
-+  reg-names:
-+    items:
-+      - const: smc
-+      - const: sram
-+
-+  mboxes:
-+    maxItems: 1
-+    description:
-+      A phandle to the mailbox channel
-+
-+additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - mboxes
-+
-+examples:
-+  - |
-+    soc {
-+      #address-cells = <2>;
-+      #size-cells = <2>;
-+
-+      smc@23e400000 {
-+        compatible = "apple,t8103-smc", "apple,smc";
-+        reg = <0x2 0x3e400000 0x0 0x4000>,
-+               <0x2 0x3fe00000 0x0 0x100000>;
-+        reg-names = "smc", "sram";
-+        mboxes = <&smc_mbox>;
-+      };
-+    };
--- 
-2.30.2
+Does not look like you tested the DTS against bindings. Please run `make
+dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
+for instructions).
+
+> +			reg = <0x1b40000 0x7000>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +
+> +			qusb2_hstx_trim: hstx_trim@25b {
+
+No underscores in node names.
+
+> +				reg = <0x25b 0x1>;
+> +				bits = <1 4>;
+> +			};
+> +		};
+> +
+> +		tcsr_mutex_regs: syscon@1f40000 {
+> +			compatible = "syscon";
+
+syscon is not allowed on its own. Use MMIO method (see my other patchset
+I linked above)
+
+> +			reg = <0x340000 0x20000>;
+> +		};
+> +
+> +		rpm_msg_ram: memory@45f0000 {
+
+Does not look like you tested the DTS against bindings. Please run `make
+dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
+for instructions).
+
+> +			compatible = "qcom,rpm-msg-ram";
+> +			reg = <0x45f0000 0x7000>;
+> +		};
+> +
 
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+Best regards,
+Krzysztof
