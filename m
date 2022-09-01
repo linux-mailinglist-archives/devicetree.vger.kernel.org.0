@@ -2,161 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B11D85A9DCB
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 19:10:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C31A25A9DCE
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 19:10:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234059AbiIARKe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 13:10:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39908 "EHLO
+        id S234867AbiIARKx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 13:10:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233560AbiIARKd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 13:10:33 -0400
-Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D992D558E1;
-        Thu,  1 Sep 2022 10:10:31 -0700 (PDT)
-Received: by mail-qt1-f174.google.com with SMTP id l5so13954179qtv.4;
-        Thu, 01 Sep 2022 10:10:31 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=4KmeqDd8PfnUzUpXpZxbTzeeJqhW5o6jQQAlhmqw40s=;
-        b=YwhK/rC1bmCRYdnQz3MT1xhkvT2SIG8CJn3v/08jeThFvFQtUCUEAlgyqI9L1uftE9
-         ZLq8vRWHmTf4+hli/CjCGpmQu03CTEp07L51v7Hm/Spr4I/BcmPHkj8grLfthmui+lyu
-         GAP0r3Exp6ug/wUYX+5hVMNWKYdZX7Y+n0akgTFaNvzWof76jm3JeGmRmqvgK/ksytUO
-         dJtwRzNuuoChfiMPLQEDvBY9K1OSC7MvLJkmOzpRrw2J1JO+HnjXi956URTsw6kEi1Cy
-         NArk/fP5sUA3U/3+AkEhShPxOo00JRrhnlaVBqzWTpIh0nZYfYY/qhJuLMihKCKxw1vK
-         VGOg==
-X-Gm-Message-State: ACgBeo3Oe58llEwgdpxA7cPuYplZEzY1KReXkh3C/QrYCAE3lH4GDww8
-        68DG6oFGFnknPoxzas7DuAGnztVEtIfp2Q==
-X-Google-Smtp-Source: AA6agR6UX68c74d8sFwJsN8ygjrgR5xJMnmZGKdEoWJe0W/JqPrRRjMpg+rKy4ANvcp1XqtsQ+mM5Q==
-X-Received: by 2002:ac8:57d6:0:b0:344:997f:557 with SMTP id w22-20020ac857d6000000b00344997f0557mr24619520qta.345.1662052230801;
-        Thu, 01 Sep 2022 10:10:30 -0700 (PDT)
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com. [209.85.219.180])
-        by smtp.gmail.com with ESMTPSA id m27-20020a05620a13bb00b006bbf85cad0fsm11643418qki.20.2022.09.01.10.10.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Sep 2022 10:10:30 -0700 (PDT)
-Received: by mail-yb1-f180.google.com with SMTP id y197so9514772yby.13;
-        Thu, 01 Sep 2022 10:10:30 -0700 (PDT)
-X-Received: by 2002:a25:415:0:b0:696:814:7c77 with SMTP id 21-20020a250415000000b0069608147c77mr20049456ybe.36.1662052230126;
- Thu, 01 Sep 2022 10:10:30 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220901162919.47090-1-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20220901162919.47090-1-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 1 Sep 2022 19:10:19 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdW0ZG3ENobSP-0wS9WhpmPqLt91Omauj5wMOthfBLsoOA@mail.gmail.com>
-Message-ID: <CAMuHMdW0ZG3ENobSP-0wS9WhpmPqLt91Omauj5wMOthfBLsoOA@mail.gmail.com>
-Subject: Re: [PATCH v4] ARM: dts: r9a06g032-rzn1d400-db: Enable CAN2
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231589AbiIARKt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 13:10:49 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1F4318E18;
+        Thu,  1 Sep 2022 10:10:47 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 281HAg0A065676;
+        Thu, 1 Sep 2022 12:10:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1662052242;
+        bh=FC+lvapJIAl+8Wydco90vIDMxGEVlLFkAmgj19g62c0=;
+        h=From:To:CC:Subject:Date;
+        b=ast8CZpPPkKFREMBPN1q7sYcIAuXtdIc7BD0KN+6TkgXbiNbvj84JtoB1Onet1QCu
+         +CMeOV6HTgRz5VAEunJ4PZyRvuBOAhV7waxq8xyfR6woZBkxvBFfEQUxAWneI9RDmx
+         m86yJ333ePBr4AmmniVo6GSUWo3rKY/DLTks/l0g=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 281HAgx6110235
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 1 Sep 2022 12:10:42 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Thu, 1 Sep
+ 2022 12:10:42 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Thu, 1 Sep 2022 12:10:41 -0500
+Received: from ula0226330.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 281HAfLJ118311;
+        Thu, 1 Sep 2022 12:10:41 -0500
+From:   Andrew Davis <afd@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Jayesh Choudhary <j-choudhary@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+        <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     Andrew Davis <afd@ti.com>
+Subject: [PATCH] dt-bindings: rng: omap_rng: Drop requirement for clocks
+Date:   Thu, 1 Sep 2022 12:10:41 -0500
+Message-ID: <20220901171041.32056-1-afd@ti.com>
+X-Mailer: git-send-email 2.36.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+For K3 devices the clock fed into the RNG module is shared with the rest
+of the Crypto module, it is not dedicated to the RNG module and cannot be
+controlled by the RNG driver. The driver does not require this clock to
+always be defined and the DT binding should not force it either.
 
-On Thu, Sep 1, 2022 at 6:29 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Enable CAN2 on RZ/N1-EB board by default.
-> Also add a macro to enable CAN1, if the board
-> support it.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> v3->v4:
->  * Updated commit descriptiom
->  * Enabled CAN2 by default
->  * Added a macro BOARD_HAS_CAN1_ENABLED to configure CAN1,
->    if the board supports it.
+Remove this so we can start dropping out the clock properties as needed.
 
-Thanks for the update!
+Signed-off-by: Andrew Davis <afd@ti.com>
+---
+ Documentation/devicetree/bindings/rng/omap_rng.yaml | 11 -----------
+ 1 file changed, 11 deletions(-)
 
-> --- a/arch/arm/boot/dts/r9a06g032-rzn1d400-db.dts
-> +++ b/arch/arm/boot/dts/r9a06g032-rzn1d400-db.dts
-> @@ -26,6 +26,22 @@ aliases {
->         };
->  };
->
-> +#if BOARD_HAS_CAN1_ENABLED /* CN10 on RZ/N1-EB board */
-> +&can0 {
-> +       pinctrl-0 = <&pins_can0>;
-> +       pinctrl-names = "default";
-> +
-> +       status = "okay";
-> +};
-> +#endif
-> +
-> +&can1 {
-> +       pinctrl-0 = <&pins_can1>;
-> +       pinctrl-names = "default";
-> +
-> +       status = "okay";
-> +};
+diff --git a/Documentation/devicetree/bindings/rng/omap_rng.yaml b/Documentation/devicetree/bindings/rng/omap_rng.yaml
+index 010188cdbec86..ccf54fae83028 100644
+--- a/Documentation/devicetree/bindings/rng/omap_rng.yaml
++++ b/Documentation/devicetree/bindings/rng/omap_rng.yaml
+@@ -53,17 +53,6 @@ allOf:
+       required:
+         - interrupts
+ 
+-  - if:
+-      properties:
+-        compatible:
+-          contains:
+-            enum:
+-              - inside-secure,safexcel-eip76
+-
+-    then:
+-      required:
+-        - clocks
+-
+ 
+ required:
+   - compatible
+-- 
+2.36.1
 
-AFAIU, CN10 and CN11 are not the real CAN connectors, they are headers
-to add jumpers to select which CAN interface to route to the real CAN
-connector J16.
-
-Hence I was thinking of something along the line:
-
-    #ifdef BOARD_HAS_CAN1_ENABLED
-    &can0 {
-           pinctrl-0 = <&pins_can0>;
-           pinctrl-names = "default";
-
-           status = "okay";
-    };
-    #else
-    &can1 {
-           pinctrl-0 = <&pins_can1>;
-           pinctrl-names = "default";
-
-           status = "okay";
-    };
-    #endif
-
-or:
-
-   &can0 {
-           pinctrl-0 = <&pins_can0>;
-           pinctrl-names = "default";
-
-           /* Assuming CN10/CN11 are wired for CAN1 */
-           status = "okay";
-    };
-
-    &can1 {
-           pinctrl-0 = <&pins_can1>;
-           pinctrl-names = "default";
-
-           /* Please only enable can0 or can1, depending on CN10/CN11 */
-           /* status = "okay"; */
-    };
-
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
