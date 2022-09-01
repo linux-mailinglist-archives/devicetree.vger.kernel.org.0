@@ -2,110 +2,236 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E1345A95D4
-	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 13:36:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AF925A95E3
+	for <lists+devicetree@lfdr.de>; Thu,  1 Sep 2022 13:45:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231530AbiIALg5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 07:36:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44488 "EHLO
+        id S231429AbiIALpz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 07:45:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232644AbiIALg4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 07:36:56 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0957139D5F;
-        Thu,  1 Sep 2022 04:36:55 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5074A61DF9;
-        Thu,  1 Sep 2022 11:36:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68177C433D6;
-        Thu,  1 Sep 2022 11:36:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1662032214;
-        bh=ewEocTavTH3WLePXZx0WQKi1iSVGpePM071lhwzenwE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=kSK4p/lXj05Q+pMU3J2fEreCJ3o+u3JqJj1NnO5KQgfiQWsRLQgzgS0Vl9g7snOqm
-         XK3XzY2Lcu8oxeia2I8g2AwxrFl5/F7WHWYCanDC5OUqiTTqZ4WX+oEid2L4q9uCd+
-         owyQtj+gx4VuYUOQlK1PuPRIn/O6dXghOPdDayCTQlUI5FtpMNDHpH0duO5gSnJP2s
-         JLVIo2U41WbZFkMC2amje8hFjb8A24UC1y8YBEXO6KAIxq6p8iXkn5v1lEcEUbl+w+
-         mTJxbYwc4iFIDnQ8mapI24FiM5FyjR++TIrOCY2CObdcm0XDQGztwJebQ4eaFjEc3u
-         xL/mZdzJ2fqSw==
-Date:   Thu, 1 Sep 2022 12:36:48 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231668AbiIALpy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 07:45:54 -0400
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E8583E740;
+        Thu,  1 Sep 2022 04:45:53 -0700 (PDT)
+Received: from fraeml744-chm.china.huawei.com (unknown [172.18.147.206])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4MJK3T3xmfz67Zm0;
+        Thu,  1 Sep 2022 19:45:09 +0800 (CST)
+Received: from lhrpeml500005.china.huawei.com (7.191.163.240) by
+ fraeml744-chm.china.huawei.com (10.206.15.225) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Thu, 1 Sep 2022 13:45:50 +0200
+Received: from localhost (10.202.226.42) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Thu, 1 Sep
+ 2022 12:45:50 +0100
+Date:   Thu, 1 Sep 2022 12:45:49 +0100
+From:   Jonathan Cameron <Jonathan.Cameron@huawei.com>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+CC:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lee Jones <lee@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com,
-        shengfei Xu <xsf@rock-chips.com>
-Subject: Re: [PATCH 12/13] regulator: rk808: add rk806 support
-Message-ID: <YxCZUGPVQwrefLJi@sirena.org.uk>
-References: <20220831215437.117880-1-sebastian.reichel@collabora.com>
- <20220831215437.117880-13-sebastian.reichel@collabora.com>
+        <kernel@pengutronix.de>, <linux-kernel@vger.kernel.org>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>
+Subject: Re: [PATCH v3 2/3] iio: adc: tsc2046: add vref support
+Message-ID: <20220901124549.00002287@huawei.com>
+In-Reply-To: <20220901041146.3652287-2-o.rempel@pengutronix.de>
+References: <20220901041146.3652287-1-o.rempel@pengutronix.de>
+        <20220901041146.3652287-2-o.rempel@pengutronix.de>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; i686-w64-mingw32)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="1rNgShYEpulPv2NW"
-Content-Disposition: inline
-In-Reply-To: <20220831215437.117880-13-sebastian.reichel@collabora.com>
-X-Cookie: This bag is recyclable.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.202.226.42]
+X-ClientProxiedBy: lhrpeml100001.china.huawei.com (7.191.160.183) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 1 Sep 2022 06:11:45 +0200
+Oleksij Rempel <o.rempel@pengutronix.de> wrote:
 
---1rNgShYEpulPv2NW
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+> If VREF pin is attached, we should use external VREF source instead of
+> the internal. Otherwise we will get wrong measurements on some of channel
+> types.
+> 
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+Hi Oleksij,
 
-On Wed, Aug 31, 2022 at 11:54:36PM +0200, Sebastian Reichel wrote:
+I'm not sure why I didn't review this patch in v1...
 
-> +static int rk806_get_reg_offset(int id)
-> +{
-> +	int reg_offset = 0;
+Anyhow, some comments below.
+
+Jonathan
+
+> ---
+>  drivers/iio/adc/ti-tsc2046.c | 64 +++++++++++++++++++++++++++++++-----
+>  1 file changed, 55 insertions(+), 9 deletions(-)
+> 
+> diff --git a/drivers/iio/adc/ti-tsc2046.c b/drivers/iio/adc/ti-tsc2046.c
+> index 0d9436a69cbfb..bbc8b4137b0b1 100644
+> --- a/drivers/iio/adc/ti-tsc2046.c
+> +++ b/drivers/iio/adc/ti-tsc2046.c
+> @@ -8,6 +8,7 @@
+>  #include <linux/bitfield.h>
+>  #include <linux/delay.h>
+>  #include <linux/module.h>
+> +#include <linux/regulator/consumer.h>
+>  #include <linux/spi/spi.h>
+>  
+>  #include <asm/unaligned.h>
+> @@ -175,6 +176,9 @@ struct tsc2046_adc_priv {
+>  	u32 time_per_bit_ns;
+>  
+>  	struct tsc2046_adc_ch_cfg ch_cfg[TI_TSC2046_MAX_CHAN];
+> +	bool use_internal_vref;
+> +	unsigned int vref_mv;
+> +	struct regulator *vref_reg;
+>  };
+>  
+>  #define TI_TSC2046_V_CHAN(index, bits, name)			\
+> @@ -252,7 +256,9 @@ static u8 tsc2046_adc_get_cmd(struct tsc2046_adc_priv *priv, int ch_idx,
+>  	case TI_TSC2046_ADDR_AUX:
+>  	case TI_TSC2046_ADDR_VBAT:
+>  	case TI_TSC2046_ADDR_TEMP0:
+> -		pd |= TI_TSC2046_SER | TI_TSC2046_PD1_VREF_ON;
+> +		pd |= TI_TSC2046_SER;
+> +		if (priv->use_internal_vref)
+> +			pd |= TI_TSC2046_PD1_VREF_ON;
+>  	}
+>  
+>  	return TI_TSC2046_START | FIELD_PREP(TI_TSC2046_ADDR, ch_idx) | pd;
+> @@ -468,7 +474,7 @@ static int tsc2046_adc_read_raw(struct iio_dev *indio_dev,
+>  		 * So, it is better to use external voltage-divider driver
+>  		 * instead, which is calculating complete chain.
+>  		 */
+> -		*val = TI_TSC2046_INT_VREF;
+> +		*val = priv->vref_mv;
+>  		*val2 = chan->scan_type.realbits;
+>  		return IIO_VAL_FRACTIONAL_LOG2;
+>  	}
+> @@ -781,22 +787,42 @@ static int tsc2046_adc_probe(struct spi_device *spi)
+>  	indio_dev->num_channels = dcfg->num_channels;
+>  	indio_dev->info = &tsc2046_adc_info;
+>  
+> +	priv->vref_reg = devm_regulator_get_optional(&spi->dev, "vref");
+> +	if (!IS_ERR(priv->vref_reg)) {
+> +		ret = regulator_enable(priv->vref_reg);
+> +		if (ret)
+> +			return ret;
 > +
-> +	if (id >= RK806_ID_DCDC1 && id <= RK806_ID_DCDC10)
-> +		reg_offset = RK806_DCDC_SLP_REG_OFFSET;
-> +	else if ((id >= RK806_ID_NLDO1 && id <= RK806_ID_NLDO4) ||
-> +		 (id == RK806_ID_NLDO5))
-> +		reg_offset = RK806_NLDO_SLP_REG_OFFSET;
-> +	else if (id >= RK806_ID_PLDO1 && id <= RK806_ID_PLDO6)
-> +		reg_offset = RK806_PLDO_SLP_REG_OFFSET;
+> +		ret = regulator_get_voltage(priv->vref_reg);
+> +		if (ret < 0)
+> +			goto err_regulator_disable;
+
+Whilst regulators voltages of references rarely change at runtime
+they are allowed to, so it is logically better to query the
+voltage at the point of use. Requests for scale should be
+rare (unless there is a consumer that keeps querying this?)
+so the slightly overhead there
+shouldn't matter.
+
 > +
-> +	return reg_offset;
+> +		priv->vref_mv = ret / 1000;
+> +		priv->use_internal_vref = false;
+> +	} else {
+> +		/* Use internal reference */
+> +		priv->vref_mv = TI_TSC2046_INT_VREF;
+> +		priv->use_internal_vref = true;
+> +	}
+> +
+>  	tsc2046_adc_parse_fwnode(priv);
+>  
+>  	ret = tsc2046_adc_setup_spi_msg(priv);
+>  	if (ret)
+> -		return ret;
+> +		goto err_regulator_disable;
+>  
+>  	mutex_init(&priv->slock);
+>  
+>  	ret = devm_request_irq(dev, spi->irq, &tsc2046_adc_irq,
+>  			       IRQF_NO_AUTOEN, indio_dev->name, indio_dev);
+>  	if (ret)
+> -		return ret;
+> +		goto err_regulator_disable;
+>  
+>  	trig = devm_iio_trigger_alloc(dev, "touchscreen-%s", indio_dev->name);
+> -	if (!trig)
+> -		return -ENOMEM;
+> +	if (!trig) {
+> +		ret = -ENOMEM;
+> +		goto err_regulator_disable;
+> +	}
+>  
+>  	priv->trig = trig;
+>  	iio_trigger_set_drvdata(trig, indio_dev);
+> @@ -811,20 +837,39 @@ static int tsc2046_adc_probe(struct spi_device *spi)
+>  	ret = devm_iio_trigger_register(dev, trig);
+>  	if (ret) {
+>  		dev_err(dev, "failed to register trigger\n");
+> -		return ret;
+> +		goto err_regulator_disable;
+
+Please don't mix devm and non devm calls. It makes it much harder to reason about
+the correctness of ordering.
+Use devm_add_action_or_reset() to register a callback to disable the
+vref regulator.
+
+Alternative is back out the devm_ based registration of everything after
+the regulator enable.
+>  	}
+>  
+>  	ret = devm_iio_triggered_buffer_setup(dev, indio_dev, NULL,
+>  					      &tsc2046_adc_trigger_handler, NULL);
+>  	if (ret) {
+>  		dev_err(dev, "Failed to setup triggered buffer\n");
+> -		return ret;
+> +		goto err_regulator_disable;
+>  	}
+>  
+>  	/* set default trigger */
+>  	indio_dev->trig = iio_trigger_get(priv->trig);
+>  
+> -	return devm_iio_device_register(dev, indio_dev);
+> +	ret = devm_iio_device_register(dev, indio_dev);
+> +	if (ret)
+> +		goto err_regulator_disable;
+> +
+> +	return 0;
+> +
+> +err_regulator_disable:
+> +	if (!IS_ERR(priv->vref_reg))
+> +		regulator_disable(priv->vref_reg);
+> +
+> +	return ret;
 > +}
+> +
+> +static void tsc2046_adc_remove(struct spi_device *spi)
+> +{
+> +	struct iio_dev *indio_dev = spi_get_drvdata(spi);
+> +	struct tsc2046_adc_priv *priv = iio_priv(indio_dev);
+> +
+> +	if (!IS_ERR(priv->vref_reg))
+> +		regulator_disable(priv->vref_reg);
 
-Use separate operations and/or separate data and decide at probe time
-which data to use for which regulator, don't have a switch statement at
-runtime like this.  This reduces the amount of open coding in the driver
-and opens up more opportinuties for improving things in the framework.
+>  }
+>  
+>  static const struct of_device_id ads7950_of_table[] = {
+> @@ -839,6 +884,7 @@ static struct spi_driver tsc2046_adc_driver = {
+>  		.of_match_table = ads7950_of_table,
+>  	},
+>  	.probe = tsc2046_adc_probe,
+> +	.remove = tsc2046_adc_remove,
+>  };
+>  module_spi_driver(tsc2046_adc_driver);
+>  
 
---1rNgShYEpulPv2NW
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmMQmU8ACgkQJNaLcl1U
-h9CRugf+IFSbYZyNpZZAJ0NCoJUOq60Qb6DA8UROFSEA3TkVEQoul5Ham4Yrq7it
-FHsju/eJgQi3CQ4N2qArbobHqmpOb71XeSqzDO1k88n8cO8PZnf2RF0abTLWSrt/
-OHzjVdsoX2RACLl1yO60Q2qSLXK2/J/txmXjnA2Qpbrhso/dys/WP7dQ5JazLp/P
-tWJwTdGN0KU/gnQOHJ5zArfIn0lOAtj6pvm0r+m8/IGt9zqOth7sWnTpv2MEhMIO
-ur6TaG6fJeFbL93iSH0aGw2OpDTixVR3OXOtt6zjPbWGCJfepDEQRVQXLzyMCyNd
-ASmRWm8owazfYIqvvbLo1NGLW2giug==
-=xni7
------END PGP SIGNATURE-----
-
---1rNgShYEpulPv2NW--
