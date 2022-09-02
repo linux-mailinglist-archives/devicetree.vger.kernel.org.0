@@ -2,186 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D15945AB4AA
-	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 17:07:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA9375AB4CB
+	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 17:15:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236416AbiIBPHH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Sep 2022 11:07:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46392 "EHLO
+        id S236288AbiIBPO7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Sep 2022 11:14:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57310 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237160AbiIBPGs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 11:06:48 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7793814D46D;
-        Fri,  2 Sep 2022 07:36:22 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 282EZ0ZO038880;
-        Fri, 2 Sep 2022 09:35:00 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1662129300;
-        bh=oSDGQv0Ql4lDvw323MfY82wndn83ffKDgFCZsmZsf/I=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=pTQ7Bx9/v/k4xwV555XoEfws1N+ogVlgGWWlXnWVYKehrVptAixD+4lPhZp8ekj2V
-         0TDlJmcW6rLh+mt3zeuNPOmHDFoWCkgUQ6ylr+Aqvr3RZRHb+0KsHGSKLQiQfrS5wO
-         Z9yIkcXO5f7ZDwqKfCMDNU13B8+wlJ1XVb3Szprc=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 282EZ091000914
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 2 Sep 2022 09:35:00 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Fri, 2 Sep
- 2022 09:35:00 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Fri, 2 Sep 2022 09:35:00 -0500
-Received: from [172.24.145.182] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 282EYwGj044829;
-        Fri, 2 Sep 2022 09:34:59 -0500
-Message-ID: <652841a9-a97e-0c87-8742-701be6633b82@ti.com>
-Date:   Fri, 2 Sep 2022 20:04:57 +0530
+        with ESMTP id S236433AbiIBPOc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 11:14:32 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4086012DA05;
+        Fri,  2 Sep 2022 07:46:32 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id AAB43B82C4E;
+        Fri,  2 Sep 2022 14:46:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 540AEC433D6;
+        Fri,  2 Sep 2022 14:46:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1662129989;
+        bh=twCq4L5d3vlzAeCsNCl4PJSXLjKOaJZ0A4O4iMXSBpo=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=dMg4a4KMo+iHy1mOVMxe1pxd4INzedd3EJHWfWCuLtDIi7OQczgSBWgspdACa0dqL
+         uuCwCNkaEzR4O6aUADzYVuISOlWz1TGhGbKTfauoJ5pX87mqUgfNqlBP6+AOlbwjzP
+         9lSxWVv7uc8uh4MWBU3HkU2Q4/dY41MpUVTTdUWICpwY+wxNunuf5JL8era8+OyBDe
+         D0A9krV8ySP+8c4aU75Y53eX7wwR74P+53s42L7riUFIcs93K89FVAKWZweV6YoEkM
+         TyLzeGJJRLMgqNDj+GJ8iq8doXQgC4fnWqrKKmgOU8Jp3yI+kmQCL6FuY6WQTLBeJn
+         DC6aKQ0Zcp/CA==
+Received: by mail-ua1-f53.google.com with SMTP id q21so865286uam.13;
+        Fri, 02 Sep 2022 07:46:29 -0700 (PDT)
+X-Gm-Message-State: ACgBeo2KS+LbfHTrdkkVBJte952PvzWb0ME+pfIBbBIAIlC2D88FEhP/
+        uFYy9UiKKrGvwQm9/+0XKG8JLRRWHsMh6Ecmmw==
+X-Google-Smtp-Source: AA6agR52Kh0Dbhi3VztuJbeK42EbCe4sUJNFg+rKAUbLSf4r+sTjrEN5l2h5PdQUIkLNHkfWz735OBuroaDYeDSvV2k=
+X-Received: by 2002:ab0:32d1:0:b0:3ab:7f86:2121 with SMTP id
+ f17-20020ab032d1000000b003ab7f862121mr267135uao.86.1662129988100; Fri, 02 Sep
+ 2022 07:46:28 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH RESEND 2/6] arm64: dts: ti: k3-j721s2-main: Add SERDES and
- WIZ device tree node
-Content-Language: en-US
-To:     Matt Ranostay <mranostay@ti.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Nishanth Menon <nm@ti.com>
-References: <20220810094000.248487-1-mranostay@ti.com>
- <20220810094000.248487-2-mranostay@ti.com>
- <8c130e92-9970-54d3-d263-37ae2f722b34@ti.com> <YxFEk5zU4l9Yraek@ubuntu>
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-In-Reply-To: <YxFEk5zU4l9Yraek@ubuntu>
+References: <20220825214423.903672-1-michael@walle.cc> <20220825214423.903672-9-michael@walle.cc>
+ <20220831214809.GA282739-robh@kernel.org> <60308ba420cdd072ea19e11e2e5e7d4b@walle.cc>
+In-Reply-To: <60308ba420cdd072ea19e11e2e5e7d4b@walle.cc>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 2 Sep 2022 09:46:16 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKFf4Op-4X0_4CF9xKSCLwrWBEYQ6oe3MgAKs6rRRUDng@mail.gmail.com>
+Message-ID: <CAL_JsqKFf4Op-4X0_4CF9xKSCLwrWBEYQ6oe3MgAKs6rRRUDng@mail.gmail.com>
+Subject: Re: [PATCH v1 08/14] dt-bindings: mtd: relax the nvmem compatible string
+To:     Michael Walle <michael@walle.cc>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        MTD Maling List <linux-mtd@lists.infradead.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        netdev <netdev@vger.kernel.org>,
+        Ahmad Fatoum <a.fatoum@pengutronix.de>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Aug 31, 2022 at 5:30 PM Michael Walle <michael@walle.cc> wrote:
+>
+> Am 2022-08-31 23:48, schrieb Rob Herring:
+> > On Thu, Aug 25, 2022 at 11:44:17PM +0200, Michael Walle wrote:
+> >> The "user-otp" and "factory-otp" compatible string just depicts a
+> >> generic NVMEM device. But an actual device tree node might as well
+> >> contain a more specific compatible string. Make it possible to add
+> >> more specific binding elsewere and just match part of the compatibles
+> >> here.
+> >>
+> >> Signed-off-by: Michael Walle <michael@walle.cc>
+> >> ---
+> >>  Documentation/devicetree/bindings/mtd/mtd.yaml | 7 ++++---
+> >>  1 file changed, 4 insertions(+), 3 deletions(-)
+> >
+> > In hindsight it looks like we are mixing 2 different purposes of 'which
+> > instance is this' and 'what is this'. 'compatible' is supposed to be
+> > the
+> > latter.
+> >
+> > Maybe there's a better way to handle user/factory? There's a similar
+> > need with partitions for A/B or factory/update.
+>
+> I'm not sure I understand what you mean. It has nothing to with
+> user and factory provisionings.
+>
+> SPI flashes have a user programmable and a factory programmable
+> area, some have just one of them. Whereas with A/B you (as in the
+> user or the board manufacturer) defines an area within a memory device
+> to be either slot A or slot B. But here the flash dictates what's
+> factory and what's user storage. It's in the datasheet.
 
+Ah, right. Nevermind...
 
-On 02/09/22 05:17, Matt Ranostay wrote:
-> On Thu, Sep 01, 2022 at 02:15:28PM +0530, Vignesh Raghavendra wrote:
->>
->>
->> On 10/08/22 15:09, Matt Ranostay wrote:
->>> From: Aswath Govindraju <a-govindraju@ti.com>
->>>
->>> Add dt node for the single instance of WIZ (SERDES wrapper) and
->>> SERDES module shared by PCIe, eDP and USB.
->>>
->>> Cc: Vignesh Raghavendra <vigneshr@ti.com>
->>> Cc: Nishanth Menon <nm@ti.com>
->>> Acked-by: Matt Ranostay <mranostay@ti.com>
->>> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
->>> ---
->>>  arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 70 ++++++++++++++++++++++
->>>  1 file changed, 70 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
->>> index f7e359da8690..f1e02d896168 100644
->>> --- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
->>> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
->>> @@ -5,6 +5,13 @@
->>>   * Copyright (C) 2021 Texas Instruments Incorporated - https://www.ti.com/
->>>   */
->>>  
->>> +/ {
->>> +	serdes_refclk: serdes-refclk {
->>
->> clk-X
->>
-> 
-
-Sorry for the confusion, I meant clock-<abc>. DT specification says all
-clock nodes should follow above naming convention
-
-> So something like 'serdes_refclk: clock-cmnrefclk' would seem to match the current
-> naming style of other K3 platforms (albeit except j7200).
-> 
-
-Make sense...
-
->>> +		#clock-cells = <0>;
->>> +		compatible = "fixed-clock";
->>> +	};
->>> +};
->>> +
->>>  &cbass_main {
->>>  	msmc_ram: sram@70000000 {
->>>  		compatible = "mmio-sram";
->>> @@ -33,6 +40,13 @@ scm_conf: scm-conf@104000 {
->>>  		#size-cells = <1>;
->>>  		ranges = <0x00 0x00 0x00104000 0x18000>;
->>>  
->>> +		serdes_ln_ctrl: mux-controller@80 {
->>
->> mux-controller-X
->>
-> 
-> 80 is the index into the mmio region. So should it still have @ for the node
-> name?
-> 
-
-@addr can only be used with nodes that have reg property. And since
-there is no reg here -> would follow mux-controller-<abc> convention.
-
-> Also this is how the rest of the K3 platforms reference the mux controller.
-
-
-We need to fix other dtsi files to drop @addr part as they are now
-falling make dtbs_check
-
-> 
->>> +			compatible = "mmio-mux";
->>> +			#mux-control-cells = <1>;
->>> +			mux-reg-masks = <0x80 0x3>, <0x84 0x3>, /* SERDES0 lane0/1 select */
->>> +					<0x88 0x3>, <0x8c 0x3>; /* SERDES0 lane2/3 select */
->>> +		};
->>> +
->>>  		usb_serdes_mux: mux-controller@0 {
->>>  			compatible = "mmio-mux";
->>>  			#mux-control-cells = <1>;
->>> @@ -728,6 +742,62 @@ usb0: usb@6000000 {
->>>  		};
->>>  	};
->>>  
->>> +	serdes_wiz0: wiz@5060000 {
->>> +		compatible = "ti,j721e-wiz-10g";
->>> +		#address-cells = <1>;
->>> +		#size-cells = <1>;
->>> +		power-domains = <&k3_pds 365 TI_SCI_PD_EXCLUSIVE>;
->>> +		clocks = <&k3_clks 365 0>, <&k3_clks 365 3>, <&serdes_refclk>;
->>> +		clock-names = "fck", "core_ref_clk", "ext_ref_clk";
->>> +		num-lanes = <4>;
->>> +		#reset-cells = <1>;
->>> +		ranges = <0x5060000 0x0 0x5060000 0x10000>;
->>> +
->>> +		assigned-clocks = <&k3_clks 365 3>;
->>> +		assigned-clock-parents = <&k3_clks 365 7>;
->>> +
->>> +		wiz0_pll0_refclk: pll0-refclk {
->>
->> please use generic node name clk-X here and elsewhere in the patch
-> 
-> So something like 'wiz0_pll0_refclk: clk-refpll0'?
-
-
-Sorry, clock-refpll0  perhaps
-
-[...]
-
--- 
-Regards
-Vignesh
+Rob
