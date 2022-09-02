@@ -2,49 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 461475AAA64
-	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 10:43:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C13B45AAA5A
+	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 10:43:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235907AbiIBInw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Sep 2022 04:43:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58040 "EHLO
+        id S235963AbiIBIn0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Sep 2022 04:43:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235922AbiIBInS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 04:43:18 -0400
-Received: from comms.puri.sm (comms.puri.sm [159.203.221.185])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D35F0AFAC2;
-        Fri,  2 Sep 2022 01:43:16 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-        by comms.puri.sm (Postfix) with ESMTP id 0F406DFECD;
-        Fri,  2 Sep 2022 01:42:46 -0700 (PDT)
-Received: from comms.puri.sm ([127.0.0.1])
-        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id obPoZtoo9hhS; Fri,  2 Sep 2022 01:42:45 -0700 (PDT)
-From:   Martin Kepplinger <martin.kepplinger@puri.sm>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=puri.sm; s=comms;
-        t=1662108165; bh=dLxGZ2rBkhtKIFimeky7PZ5dqQic1x5ZAGAEZHNaB4c=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=KMrKLYnae4TV1G8nsJKolHN1cTyAeDBWI1JtzSrjglkZfB/BkS8RJ6Y40Ng6/ojdO
-         kttmwFDfFUJ1MBe3I50HWENlKVlyYB3NY4l7vnuoVpV8qYNH8elYfl/R+FWQq2N70Q
-         HwR9ReiAN/feAbHP2TmZ2DGDRipg+uN4+7mnHjsEHSTmLgmxxqsC3ZEkqMky0cbewF
-         5FSkXA8xGhF7E3bhLLjHuqEVhiYu/KSnm4oqjsliIfGciT/6LWR9KWoQ1i1JGX0heg
-         le+2ausqTbyoHhMAwiCoyHMJ/VeX5HRfyjltSmmmI/BsHOvVSOXUkz1qtjL3OPkveK
-         SdXoyDpV9ewAg==
-To:     festevam@gmail.com, shawnguo@kernel.org
-Cc:     martin.kepplinger@puri.sm, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, kernel@puri.sm, krzk@kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        robh@kernel.org
-Subject: [PATCH v2 6/6] arm64: dts: imx8mq-librem5: fix mipi_csi description
-Date:   Fri,  2 Sep 2022 10:42:16 +0200
-Message-Id: <20220902084216.1259202-7-martin.kepplinger@puri.sm>
-In-Reply-To: <20220902084216.1259202-1-martin.kepplinger@puri.sm>
-References: <20220902084216.1259202-1-martin.kepplinger@puri.sm>
+        with ESMTP id S235874AbiIBInF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 04:43:05 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1FA4C12C3
+        for <devicetree@vger.kernel.org>; Fri,  2 Sep 2022 01:43:03 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1oU2GJ-0003Cp-31; Fri, 02 Sep 2022 10:42:51 +0200
+Message-ID: <eee03d6198f460a2a0ac4d48319e8920d5f21d21.camel@pengutronix.de>
+Subject: Re: [PATCH v6 2/7] arm64: dts: imx8mp: Add iMX8MP PCIe support
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Richard Zhu <hongxing.zhu@nxp.com>, p.zabel@pengutronix.de,
+        bhelgaas@google.com, lorenzo.pieralisi@arm.com, robh@kernel.org,
+        shawnguo@kernel.org, vkoul@kernel.org,
+        alexander.stein@ew.tq-group.com, marex@denx.de,
+        richard.leitner@linux.dev
+Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
+        linux-imx@nxp.com
+Date:   Fri, 02 Sep 2022 10:42:49 +0200
+In-Reply-To: <1662004960-14071-3-git-send-email-hongxing.zhu@nxp.com>
+References: <1662004960-14071-1-git-send-email-hongxing.zhu@nxp.com>
+         <1662004960-14071-3-git-send-email-hongxing.zhu@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -52,29 +52,87 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Properties are not documented so lead to the following error:
-'#address-cells', '#size-cells', 'interrupts' do not match any of the regexes: 'pinctrl-[0-9]+'
+Am Donnerstag, dem 01.09.2022 um 12:02 +0800 schrieb Richard Zhu:
+> Add i.MX8MP PCIe support.
+> 
+> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> Tested-by: Marek Vasut <marex@denx.de>
+> Tested-by: Richard Leitner <richard.leitner@skidata.com>
+> Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-Fix this by removing unneeded properties.
+Reviewed-by: Lucas Stach <l.stach@pengutronix.de>
 
-Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
----
- arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi | 2 --
- 1 file changed, 2 deletions(-)
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 43 +++++++++++++++++++++++
+>  1 file changed, 43 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> index fe178b7d063c..21a4cc417c81 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> @@ -5,6 +5,7 @@
+>  
+>  #include <dt-bindings/clock/imx8mp-clock.h>
+>  #include <dt-bindings/power/imx8mp-power.h>
+> +#include <dt-bindings/reset/imx8mp-reset.h>
+>  #include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/input/input.h>
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+> @@ -1084,6 +1085,17 @@ media_blk_ctrl: blk-ctrl@32ec0000 {
+>  				#power-domain-cells = <1>;
+>  			};
+>  
+> +			pcie_phy: pcie-phy@32f00000 {
+> +				compatible = "fsl,imx8mp-pcie-phy";
+> +				reg = <0x32f00000 0x10000>;
+> +				resets = <&src IMX8MP_RESET_PCIEPHY>,
+> +					 <&src IMX8MP_RESET_PCIEPHY_PERST>;
+> +				reset-names = "pciephy", "perst";
+> +				power-domains = <&hsio_blk_ctrl IMX8MP_HSIOBLK_PD_PCIE_PHY>;
+> +				#phy-cells = <0>;
+> +				status = "disabled";
+> +			};
+> +
+>  			hsio_blk_ctrl: blk-ctrl@32f10000 {
+>  				compatible = "fsl,imx8mp-hsio-blk-ctrl", "syscon";
+>  				reg = <0x32f10000 0x24>;
+> @@ -1099,6 +1111,37 @@ hsio_blk_ctrl: blk-ctrl@32f10000 {
+>  			};
+>  		};
+>  
+> +		pcie: pcie@33800000 {
+> +			compatible = "fsl,imx8mp-pcie";
+> +			reg = <0x33800000 0x400000>, <0x1ff00000 0x80000>;
+> +			reg-names = "dbi", "config";
+> +			#address-cells = <3>;
+> +			#size-cells = <2>;
+> +			device_type = "pci";
+> +			bus-range = <0x00 0xff>;
+> +			ranges =  <0x81000000 0 0x00000000 0x1ff80000 0 0x00010000>, /* downstream I/O 64KB */
+> +				  <0x82000000 0 0x18000000 0x18000000 0 0x07f00000>; /* non-prefetchable memory */
+> +			num-lanes = <1>;
+> +			num-viewport = <4>;
+> +			interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "msi";
+> +			#interrupt-cells = <1>;
+> +			interrupt-map-mask = <0 0 0 0x7>;
+> +			interrupt-map = <0 0 0 1 &gic GIC_SPI 126 IRQ_TYPE_LEVEL_HIGH>,
+> +					<0 0 0 2 &gic GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>,
+> +					<0 0 0 3 &gic GIC_SPI 124 IRQ_TYPE_LEVEL_HIGH>,
+> +					<0 0 0 4 &gic GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>;
+> +			fsl,max-link-speed = <3>;
+> +			linux,pci-domain = <0>;
+> +			power-domains = <&hsio_blk_ctrl IMX8MP_HSIOBLK_PD_PCIE>;
+> +			resets = <&src IMX8MP_RESET_PCIE_CTRL_APPS_EN>,
+> +				 <&src IMX8MP_RESET_PCIE_CTRL_APPS_TURNOFF>;
+> +			reset-names = "apps", "turnoff";
+> +			phys = <&pcie_phy>;
+> +			phy-names = "pcie-phy";
+> +			status = "disabled";
+> +		};
+> +
+>  		gpu3d: gpu@38000000 {
+>  			compatible = "vivante,gc";
+>  			reg = <0x38000000 0x8000>;
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-index 058d6ecf109b2..ae08556b2ef2f 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-@@ -1143,8 +1143,6 @@ &lcdif {
- };
- 
- &mipi_csi1 {
--	#address-cells = <1>;
--	#size-cells = <0>;
- 	status = "okay";
- 
- 	ports {
--- 
-2.30.2
 
