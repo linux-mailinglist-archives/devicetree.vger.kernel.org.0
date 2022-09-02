@@ -2,157 +2,390 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C567C5AB9DC
-	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 23:10:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F6DB5AB9FF
+	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 23:25:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230383AbiIBVKo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Sep 2022 17:10:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52530 "EHLO
+        id S229574AbiIBVY7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Sep 2022 17:24:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45402 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229507AbiIBVKn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 17:10:43 -0400
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2084.outbound.protection.outlook.com [40.107.21.84])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A82AE17598;
-        Fri,  2 Sep 2022 14:10:38 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OEnsO7cax1GNg7tKOT3em+kae2ZsL4vTN6ByIubAVsFcoCJhnBH+OoBK2KOSuCqPqt18Gd7SHaBkcNQW2xuDnRmdcDuZPtaF0lAaLzARHVnqsQohFzmvkGAAfG9QQirNvxYj+ajfoExN7s/aFZHD1I8k6oLUSanz9sUw+IeaQawXIZb88EjNtWMP2kfSNahi8PAhJ1ev5o6wdBKjWS28VBf8lMcZpDEn03xTH+qJNppJVl8v+6NV2qGC5m5635vU5lSbkau/bry8N+Zo2eEifa2cQWwG3xEo7MbPtdFbPqJRZ7eLGFW00R4gftaZ8S9KQb7++XXp1uFGRGVan+uS7w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+8WHVNRIr0UswDVKSJoYH47c3nH5pleGc0jcHb3nRPE=;
- b=KvC/KPqHkM7TXwptMIYl+Wjzoq9kMzOdK87CeMmbhRyrA2DTu2XGgmXxOgs+lzDyBsPQjBWEYwtKnHOSRAEey6GFIVCHi6T4aJpLy4LZLR4IZOl7gBcND9ChxM9oqsb5FgYnfit5lhvEl+uxGd1kedBz0plX2zvi2v8l0tnGsUxCXDtdpRa4s3K0z3SOJ2+4wJ27VttuD0x/rmKS4KgS6RP3LU5I+y6eTX1Y+Q7JVpTGRHzx4VVIx8a8CXvcd6zXbWFgH6jT9ctv0JZ5E3fL1C1IDxtW5PuAmfEc/uFdGNr8xjrxusEx47J7rp+3RWwxx7mPm53OMHcQvNItXiaDGg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
- dkim=pass header.d=seco.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+8WHVNRIr0UswDVKSJoYH47c3nH5pleGc0jcHb3nRPE=;
- b=x9XqzsRnlJl5qP8lMT1Gom5Rm7yRz9xx+oIGMHpl1ZIAfPiRHb44ZQzy45jWItg4Enmzh0uF66gAcz42AzUOKweitg2DdTqrZmKUHwxhDIJZbw462AI48GT6QatlS8QDiu9DkZe9fXncIioYBBz9XjhpJSQebzlBKMbYn+/WKno7kdClNhia/kzGPc4GVVwjPpovkPC61qKsXzGcFGnmgVUS/YYSF34tOY90tttpSruLTh5pQk9O2YQKSZLyum1SfHqjk86Jxm03lAnD5+cYGdeU/7w4o962yE7Uh/142ok3fMHjwPvcSz/C3NiprsQxMsCDed6eCB9xRfZpkO0sVg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=seco.com;
-Received: from DB7PR03MB4972.eurprd03.prod.outlook.com (2603:10a6:10:7d::22)
- by AM6PR03MB5078.eurprd03.prod.outlook.com (2603:10a6:20b:8d::27) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.14; Fri, 2 Sep
- 2022 21:10:36 +0000
-Received: from DB7PR03MB4972.eurprd03.prod.outlook.com
- ([fe80::ecaa:a5a9:f0d5:27a2]) by DB7PR03MB4972.eurprd03.prod.outlook.com
- ([fe80::ecaa:a5a9:f0d5:27a2%4]) with mapi id 15.20.5566.019; Fri, 2 Sep 2022
- 21:10:36 +0000
-Subject: Re: [PATCH v4 0/8] phy: Add support for Lynx 10G SerDes
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        Camelia Alexandra Groza <camelia.groza@nxp.com>,
-        linuxppc-dev@lists.ozlabs.org, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>, Li Yang <leoyang.li@nxp.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-        linux-doc@vger.kernel.org
-References: <20220804220602.477589-1-sean.anderson@seco.com>
- <6d312336-4bfc-a8d4-783c-116a21284edf@seco.com> <YxJAPbfBpUpHeiqX@matsya>
-From:   Sean Anderson <sean.anderson@seco.com>
-Message-ID: <4aba6730-dae8-f11f-8ad8-18dc1f1d6e45@seco.com>
-Date:   Fri, 2 Sep 2022 17:10:30 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-In-Reply-To: <YxJAPbfBpUpHeiqX@matsya>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: CH0PR03CA0079.namprd03.prod.outlook.com
- (2603:10b6:610:cc::24) To DB7PR03MB4972.eurprd03.prod.outlook.com
- (2603:10a6:10:7d::22)
+        with ESMTP id S229566AbiIBVY6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 17:24:58 -0400
+Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E36F2CDEF;
+        Fri,  2 Sep 2022 14:24:54 -0700 (PDT)
+Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-11f4e634072so7765215fac.13;
+        Fri, 02 Sep 2022 14:24:54 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=nWfePJvke98pyDOeR3hu3O0BXoprWVwc51YjG9//cHs=;
+        b=zkMpc3HheAMNww9d/wSpu9slyjPy/ets05F1kATk3i24ygQuvYRDvESivXdH3Fy8fr
+         BG06pD3WbQYxjf2U+UPPXq5ZUBKIf8Qkjim9eknVCJOZwoJtYBmXw1cp0GV3xbkHHQob
+         QNjLkYLLE4QZ0GD+E8P4l4ltWH1OxmwoFvTdkIL/hDlpwNw3VhOmDc0uu4kxay104KHP
+         pYXZRZH9SrWNN5mzgdK39BqdCw+Z3ogO6lxFdbhsYRdDSFZagoXxSmT0+3wy+7B9IZJL
+         9wVOSlLGxMz8bEVjz/bxUVeesicaJFY4GVNffE47w98MCVZk9yZ7NjLq6woNdZdH1yO1
+         LhoA==
+X-Gm-Message-State: ACgBeo3L/G27h/+O8rAEdygX/vwztJe4l5EQiPNYPjWbGJOynSXzE/uu
+        dKD0qMS2euMLl9Hf4daGsQ==
+X-Google-Smtp-Source: AA6agR6B1rjNr3cQUwoF3dgojbI+towcP+9EwdL045VRc7rJZ2wd6bdRwfHCrr2x+XvmBO51inRMvg==
+X-Received: by 2002:a05:6870:4283:b0:122:5a99:f28a with SMTP id y3-20020a056870428300b001225a99f28amr3172579oah.55.1662153893278;
+        Fri, 02 Sep 2022 14:24:53 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id 101-20020a9d086e000000b0063696cbb6bdsm1524214oty.62.2022.09.02.14.24.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 02 Sep 2022 14:24:52 -0700 (PDT)
+Received: (nullmailer pid 440221 invoked by uid 1000);
+        Fri, 02 Sep 2022 21:24:52 -0000
+Date:   Fri, 2 Sep 2022 16:24:52 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Joy Zou <joy.zou@nxp.com>
+Cc:     krzysztof.kozlowski@linaro.org, shengjiu.wang@nxp.com,
+        vkoul@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V4 1/4] dt-bindings: fsl-imx-sdma: Convert imx sdma to DT
+ schema
+Message-ID: <20220902212452.GA419590-robh@kernel.org>
+References: <20220901015926.50082-1-joy.zou@nxp.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 49a96e6d-0a82-4b15-3c1d-08da8d279448
-X-MS-TrafficTypeDiagnostic: AM6PR03MB5078:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: k4a8P/uAJAPI/C6cc/s90t1F+Lh0YLk8BT3PvzrEHhAAuQ2qZEBeKnIrVGpkiFQ3GIoaXMe882irLE4pjJhZPcpcRcvC+PcboPT7j5YFMVxgEVIqVU6KParikxMKJ9jHTfpSps8DwX2JpOhaOwNkCqbFsrwcMZNqNbiz5zCA2i8i1lXPDBsPYYZpK8t8xU2xGkMPjR8MwRV8/Eh/8lvX/LwyNtFttB5aWabGiyBFrOFLIjybNv87QsLQBcOkGZFVUjOKf70OlD7aVh8xXhCZePUXBlD+sLKI2CUWNEUpAyzIelUk86ZWMigYaY+Ud6XdL17OnBl++9z+2EXZc/l7TXL/Qr7zIJXjM1MIf2uS8SeUDkU8mUa1TfoPjKTNTTJVCL3m2WeJt7bESQWuzSPkdYA/lg68st7mxUk9JBj/a3+rit7OcglTpgmpikGCKi29cx37qBjgabWNaa2HAgLLwT/SnIwPyLmIBdslTVG1aHcsnuUOb0XaRWqWp///dkj+vk8ca9Z6KaL8Gq2xyBoGMdGFo9NtzlHnAF/ep6gB1kgYyYLFMH/E3QuGAbs5TyJyNBj84qeh1YoSw93N02CmUSwyQsWmI0G6jl7u87boLS80I+Z8VtbJeibRwE5Rt/G70B9zkN2/W0tWKn8d/Pmf/w8rktQ9Dx8vLkFJD0PJv1VYEp4GaoAFqCISYXDf9poa7I+q5p59zpUk2MNQBbhHh36HgYNZ++n6tugt9NEKrWmmM75fU+hNuEHFN2EdeIhHB12SvoI7zFHA/Ir+18NQzT4nArdhy/5CvFHmE80iSqPBmd0S4TUHfMSOsHXeuKlquCIIAvDe4Ej6o1CGWc/o9a/QcYqX3khkxxumKv0z+H4=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR03MB4972.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(366004)(396003)(376002)(136003)(346002)(39850400004)(4326008)(86362001)(83380400001)(31696002)(38100700002)(38350700002)(31686004)(66476007)(478600001)(66556008)(66946007)(5660300002)(6666004)(7416002)(8936002)(41300700001)(6916009)(54906003)(6486002)(966005)(316002)(2906002)(6512007)(26005)(2616005)(186003)(36756003)(8676002)(4744005)(53546011)(52116002)(44832011)(6506007)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?d215andnWnk4R2xXU3J0WmFvZEc4eWZBU3FkZUZKTUtpZ0JIRWg0ankxVDdP?=
- =?utf-8?B?SmpROFJGejZBc3QwWi94NHIvVVc0NTZmdUZtY2htSFVZeXJCVVZJTGhYanVD?=
- =?utf-8?B?cld3ci9hTW9pZ3RnTE1LdUxqSk52TDhkZU5uUGw0YTYxckxqUGhyL0QxRG9h?=
- =?utf-8?B?dUtYazEwNFhhVjVOL0Zaek5rTzdObjk3bVZFVnVUcFhYRUFNd21ReFRmbHRu?=
- =?utf-8?B?VmFLUlJLbWhLdGpxbjM5bVU1S0xzZnNQWnRncStGTHBtOFJoUXhFUzF3RW42?=
- =?utf-8?B?ZkorSHo0L2pLR3N2bEFxR09XM1RXWnNTczJjeGdNL0llUDlNUWVudG1Xem1u?=
- =?utf-8?B?V0J1UFNnTmNteTRzOWNEWnV3RWNEWHpNQWcvb0JwR1pmSlVPczViNkk0ejFt?=
- =?utf-8?B?YkNCdGRmVTJlZmJxZFM3cSsyK05HRDJSTUd6RXR5bzJmdDdOWWpEVDhYZVdM?=
- =?utf-8?B?Wmw3bkhkWEVleVFCVFpPdjFueXdQVFp4d1k2M3VEOWFoTXNkSUlDbDV2N3Vh?=
- =?utf-8?B?SVhwbGFMaDJENWwrbUM4dGx1aDFVWWxZdlE1V0haOFo3TUEwUGF0ZVM0VTYx?=
- =?utf-8?B?Tjgrb0E4VlJrRGV3d1dYQTFLeitPaFBzWEtXcWtIR3F1VTkwWG9NbEgyOGo5?=
- =?utf-8?B?a3VkelJ0aDJxaEt2OTRoNk11WGN4aWJiblh2MDJPbU5pSVlWVFJuUDg1MFpl?=
- =?utf-8?B?YWtsNDhmd0I2alBkVHFQSDUwUlgzT1p4MmhpMURCRmxYUmtwakVhZHVYOE1u?=
- =?utf-8?B?THhIcWtPUlU5dm8vcmkxV2pYUjhqQnlRQUNualYvaTlUam9FUWF2VkVHcTNM?=
- =?utf-8?B?ZnN5dGwwV1FUdEw5cW9BUjhaekxmbW4yZDdVOGNuNUhUQ2lsN3owdmdzejdW?=
- =?utf-8?B?a2NCcXMybzQvK1hXS3piblU2QjNlbENIOW1EOTMwT2FZcEFyVkdWYXVnOHQy?=
- =?utf-8?B?UGlmTWZIUEJGUWdKcVcrTjJMdXpTcjJWaXRURjFxRU5nd0FMRTRiUktOM3d1?=
- =?utf-8?B?a0RKNHR2UHNkbWVBa2VaQlNsWVVEQzBxZjM4VlV2R1V3L3lFZTBYMzNXN0Jx?=
- =?utf-8?B?L2M5dEI5bkV3aTBreW1RZ25tS3pKK003eU1lQ3gzOTJsL3BBVWtIUUVJcFVR?=
- =?utf-8?B?RjZFQjN6YUdSYVkvWCt1bnNUSmNEYVlnTWJIajhldGZOUksvN1ZCeFl6WVFy?=
- =?utf-8?B?dEVwTVNwTDE3d0ZpU1MyK1JoSmh4TVhpVVNBM0djOVlCN3VhUTZsb0V5S3lz?=
- =?utf-8?B?R2Q0dDZrUW9GTFV5MUZjVXdhMHdueFpaVUMrQnlKdXVId2FzZFdoUzRiS0dF?=
- =?utf-8?B?Yk9zaTBGYkNVVW1BS0xGZUV2QkdRUDVydUtMeXF1aHRSSENva0hxa1BwQnZh?=
- =?utf-8?B?cjYwSEtlZ0w2VXpuWm1oOWhmZWJuQTlKdjNvRzhMNFFvZ0N6TG56S0R0dHh0?=
- =?utf-8?B?UlBKa3hFVG90VWt6VE1YQ2R0dmxZVDZ3NXdrd3dOVDBvM0JqMkhCV2JFaUVi?=
- =?utf-8?B?NVFnRkR6NnNmdXQzcS9DTWh4RDhYQ3gwZ0YvaUNTQkR5VWN2a0VHUHpVN0pr?=
- =?utf-8?B?amFzaU1rdzJDbzZiNERxbTRjdTZGbjhnTXA3Tk5Wai9ya1A3RHQxUTlQTDUz?=
- =?utf-8?B?WE92QkdIOGsyNjBLRVJhMndkZnpDQTZWUEVvbHZQdGF4UHVzY3ovd1BNSzZp?=
- =?utf-8?B?QUJNQ2FGK2ljYXJJQWx2MTVyV2dTemxjYzF2TUJhLzIrY2tDNll6K1pRZU9F?=
- =?utf-8?B?bTNkWGRGS011REIyTDhGazA2ZEFhTHdHMGR0TzJQOEtUengxZ3o3bjhjOFRy?=
- =?utf-8?B?UWw3RXRlZ1JnVXZCZVF0aEVMTnZKVXBESWRnWFNSb0luVGRldFRRYlgyT0tz?=
- =?utf-8?B?RzlEOWQzMzFZL1djbE5Ecm5ZTUdUNmtiekxCUWxCdGo3eGdGSkpocFhqaE1Z?=
- =?utf-8?B?eHJUT2RhNHB3NnVrZ1hPbzZBYVBrOVRtRjcwdndkYmtiS3Q3eW1lUkJWZjJ2?=
- =?utf-8?B?UFNQdVlGL3dORWpWeTMyZDhLbVBZQWc1ZWloZFgyTWovQ1IrZHc0MklOQzdp?=
- =?utf-8?B?SjVRYXN2ZTZ3NlVHMmQzU0hvSCt5a3ZiaDNTZGRacTJsUVpYOHh2WnRoQWp0?=
- =?utf-8?B?eWxOdTdUNmpLaUZYQjNML3Y0Q1BrbmxQTXZkS1d6aFBlN04ybkhuZGtlWDlQ?=
- =?utf-8?B?V0E9PQ==?=
-X-OriginatorOrg: seco.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 49a96e6d-0a82-4b15-3c1d-08da8d279448
-X-MS-Exchange-CrossTenant-AuthSource: DB7PR03MB4972.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Sep 2022 21:10:35.9536
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: c6KUjpG7hZ3DsSA9KDpjaiK+Uw7NhMttAlsk3ybuFxbAPSqBxedyB0YNo+aR5HszL6Aho11Vl3mG8G7xWw8QEQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR03MB5078
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220901015926.50082-1-joy.zou@nxp.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vinod,
-
-On 9/2/22 1:41 PM, Vinod Koul wrote:
-> On 30-08-22, 17:44, Sean Anderson wrote:
+On Thu, Sep 01, 2022 at 09:59:26AM +0800, Joy Zou wrote:
+> Convert the i.MX SDMA binding to DT schema format usingjson-schema.
 > 
->> 
->> ping?
->> 
->> Vinod/Kishon: any comments on the driver itself?
+> The compatibles fsl,imx31-to1-sdma, fsl,imx31-to2-sdma, fsl,imx35-to1-sdma
+> and fsl,imx35-to2-sdma are not used. So need to delete it. The compatibles
+> fsl,imx50-sdma,fsl,imx6sll-sdma and fsl,imx6sl-sdma are added. The original
+
+space            ^
+
+> binding don't list all compatible used.
 > 
-> Not sure why this is not in my queue or pw, can you please rebase and
-> resend
+> In addition, add new peripheral types HDMI Audio.
+> 
+> Signed-off-by: Joy Zou <joy.zou@nxp.com>
+> ---
+> Changes since (implicit) v3:
+> modify the commit message in patch v4.
+> delete the quotes in patch v4.
+> modify the compatible in patch v4.
+> delete maxitems and add items for clock-names property in patch v4.
+> add iram property in patch v4.
+> ---
+>  .../devicetree/bindings/dma/fsl,imx-sdma.yaml | 143 ++++++++++++++++++
+>  .../devicetree/bindings/dma/fsl-imx-sdma.txt  | 118 ---------------
+>  2 files changed, 143 insertions(+), 118 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/dma/fsl,imx-sdma.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/dma/fsl-imx-sdma.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/dma/fsl,imx-sdma.yaml b/Documentation/devicetree/bindings/dma/fsl,imx-sdma.yaml
+> new file mode 100644
+> index 000000000000..18b31758cc67
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/dma/fsl,imx-sdma.yaml
+> @@ -0,0 +1,143 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/dma/fsl,imx-sdma.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale Smart Direct Memory Access (SDMA) Controller for i.MX
+> +
+> +maintainers:
+> +  - Joy Zou <joy.zou@nxp.com>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - fsl,imx50-sdma
+> +              - fsl,imx51-sdma
+> +              - fsl,imx53-sdma
+> +              - fsl,imx6q-sdma
+> +              - fsl,imx7d-sdma
+> +          - const: fsl,imx35-sdma
+> +      - items:
+> +          - enum:
+> +              - fsl,imx6sx-sdma
+> +              - fsl,imx6sl-sdma
+> +          - const: fsl,imx6q-sdma
+> +      - items:
+> +          - const: fsl,imx6ul-sdma
+> +          - const: fsl,imx6q-sdma
+> +          - const: fsl,imx35-sdma
+> +      - items:
+> +          - const: fsl,imx6sll-sdma
+> +          - const: fsl,imx6ul-sdma
+> +      - items:
+> +          - const: fsl,imx8mq-sdma
+> +          - const: fsl,imx7d-sdma
+> +      - items:
+> +          - enum:
+> +              - fsl,imx8mp-sdma
+> +              - fsl,imx8mn-sdma
+> +              - fsl,imx8mm-sdma
+> +          - const: fsl,imx8mq-sdma
+> +      - items:
+> +          - enum:
+> +              - fsl,imx25-sdma
+> +              - fsl,imx31-sdma
+> +              - fsl,imx35-sdma
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  fsl,sdma-ram-script-name:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description: Should contain the full path of SDMA RAM scripts firmware.
+> +
+> +  "#dma-cells":
+> +    const: 3
+> +    description: |
+> +      The first cell: request/event ID
+> +
+> +      The second cell: peripheral types ID
+> +        enum:
+> +          - MCU domain SSI: 0
+> +          - Shared SSI: 1
+> +          - MMC: 2
+> +          - SDHC: 3
+> +          - MCU domain UART: 4
+> +          - Shared UART: 5
+> +          - FIRI: 6
+> +          - MCU domain CSPI: 7
+> +          - Shared CSPI: 8
+> +          - SIM: 9
+> +          - ATA: 10
+> +          - CCM: 11
+> +          - External peripheral: 12
+> +          - Memory Stick Host Controller: 13
+> +          - Shared Memory Stick Host Controller: 14
+> +          - DSP: 15
+> +          - Memory: 16
+> +          - FIFO type Memory: 17
+> +          - SPDIF: 18
+> +          - IPU Memory: 19
+> +          - ASRC: 20
+> +          - ESAI: 21
+> +          - SSI Dual FIFO: 22
+> +              description: needs firmware more than ver 2
+> +          - Shared ASRC: 23
+> +          - SAI: 24
+> +          - HDMI Audio: 25
+> +
+> +       The third cell: transfer priority ID
+> +         enum:
+> +           - High: 0
+> +           - Medium: 1
+> +           - Low: 2
+> +
+> +  gpr:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: The phandle to the General Purpose Register (GPR) node
+> +
+> +  fsl,sdma-event-remap:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> +    items:
+> +      - description: The GPR register offset, shift and value for RX
+> +      - description: The GPR register offset, shift and value for TX
 
-It's marked as "changes requested" [1]. However, I am not aware of any
-requested changes other than Krzysztof's request to dual license the id
-header. Nevertheless, I will resend as you requested.
+This doesn't fully define the matrix. You need something like this:
 
---Sean
+maxItems: 2
+items:
+  items:
+    - description: GPR register offset
+    - description: GPR register shift
+    - description: GPR register value
 
-[1] https://patchwork.kernel.org/project/linux-phy/list/?series=665484
+> +    description: |
+> +      Register bits of sdma event remap, the format is <reg shift val>.
+
+And add the order is RX then TX.
+
+> +
+> +  clocks:
+> +    maxItems: 2
+> +
+> +  clock-names:
+> +    items:
+> +      - const: ipg
+> +      - const: ahb
+> +
+> +  iram:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: The phandle to the On-chip RAM (OCRAM) node.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - fsl,sdma-ram-script-name
+> +  - "#dma-cells"
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    sdma: dma-controller@83fb0000 {
+> +      compatible = "fsl,imx51-sdma", "fsl,imx35-sdma";
+> +      reg = <0x83fb0000 0x4000>;
+> +      interrupts = <6>;
+> +      #dma-cells = <3>;
+> +      fsl,sdma-ram-script-name = "sdma-imx51.bin";
+> +    };
+> +
+> +...
+> diff --git a/Documentation/devicetree/bindings/dma/fsl-imx-sdma.txt b/Documentation/devicetree/bindings/dma/fsl-imx-sdma.txt
+> deleted file mode 100644
+> index 12c316ff4834..000000000000
+> --- a/Documentation/devicetree/bindings/dma/fsl-imx-sdma.txt
+> +++ /dev/null
+> @@ -1,118 +0,0 @@
+> -* Freescale Smart Direct Memory Access (SDMA) Controller for i.MX
+> -
+> -Required properties:
+> -- compatible : Should be one of
+> -      "fsl,imx25-sdma"
+> -      "fsl,imx31-sdma", "fsl,imx31-to1-sdma", "fsl,imx31-to2-sdma"
+> -      "fsl,imx35-sdma", "fsl,imx35-to1-sdma", "fsl,imx35-to2-sdma"
+> -      "fsl,imx51-sdma"
+> -      "fsl,imx53-sdma"
+> -      "fsl,imx6q-sdma"
+> -      "fsl,imx7d-sdma"
+> -      "fsl,imx6ul-sdma"
+> -      "fsl,imx8mq-sdma"
+> -      "fsl,imx8mm-sdma"
+> -      "fsl,imx8mn-sdma"
+> -      "fsl,imx8mp-sdma"
+> -  The -to variants should be preferred since they allow to determine the
+> -  correct ROM script addresses needed for the driver to work without additional
+> -  firmware.
+> -- reg : Should contain SDMA registers location and length
+> -- interrupts : Should contain SDMA interrupt
+> -- #dma-cells : Must be <3>.
+> -  The first cell specifies the DMA request/event ID.  See details below
+> -  about the second and third cell.
+> -- fsl,sdma-ram-script-name : Should contain the full path of SDMA RAM
+> -  scripts firmware
+> -
+> -The second cell of dma phandle specifies the peripheral type of DMA transfer.
+> -The full ID of peripheral types can be found below.
+> -
+> -	ID	transfer type
+> -	---------------------
+> -	0	MCU domain SSI
+> -	1	Shared SSI
+> -	2	MMC
+> -	3	SDHC
+> -	4	MCU domain UART
+> -	5	Shared UART
+> -	6	FIRI
+> -	7	MCU domain CSPI
+> -	8	Shared CSPI
+> -	9	SIM
+> -	10	ATA
+> -	11	CCM
+> -	12	External peripheral
+> -	13	Memory Stick Host Controller
+> -	14	Shared Memory Stick Host Controller
+> -	15	DSP
+> -	16	Memory
+> -	17	FIFO type Memory
+> -	18	SPDIF
+> -	19	IPU Memory
+> -	20	ASRC
+> -	21	ESAI
+> -	22	SSI Dual FIFO	(needs firmware ver >= 2)
+> -	23	Shared ASRC
+> -	24	SAI
+> -
+> -The third cell specifies the transfer priority as below.
+> -
+> -	ID	transfer priority
+> -	-------------------------
+> -	0	High
+> -	1	Medium
+> -	2	Low
+> -
+> -Optional properties:
+> -
+> -- gpr : The phandle to the General Purpose Register (GPR) node.
+> -- fsl,sdma-event-remap : Register bits of sdma event remap, the format is
+> -  <reg shift val>.
+> -    reg is the GPR register offset.
+> -    shift is the bit position inside the GPR register.
+> -    val is the value of the bit (0 or 1).
+> -
+> -Examples:
+> -
+> -sdma@83fb0000 {
+> -	compatible = "fsl,imx51-sdma", "fsl,imx35-sdma";
+> -	reg = <0x83fb0000 0x4000>;
+> -	interrupts = <6>;
+> -	#dma-cells = <3>;
+> -	fsl,sdma-ram-script-name = "sdma-imx51.bin";
+> -};
+> -
+> -DMA clients connected to the i.MX SDMA controller must use the format
+> -described in the dma.txt file.
+> -
+> -Examples:
+> -
+> -ssi2: ssi@70014000 {
+> -	compatible = "fsl,imx51-ssi", "fsl,imx21-ssi";
+> -	reg = <0x70014000 0x4000>;
+> -	interrupts = <30>;
+> -	clocks = <&clks 49>;
+> -	dmas = <&sdma 24 1 0>,
+> -	       <&sdma 25 1 0>;
+> -	dma-names = "rx", "tx";
+> -	fsl,fifo-depth = <15>;
+> -};
+> -
+> -Using the fsl,sdma-event-remap property:
+> -
+> -If we want to use SDMA on the SAI1 port on a MX6SX:
+> -
+> -&sdma {
+> -	gpr = <&gpr>;
+> -	/* SDMA events remap for SAI1_RX and SAI1_TX */
+> -	fsl,sdma-event-remap = <0 15 1>, <0 16 1>;
+> -};
+> -
+> -The fsl,sdma-event-remap property in this case has two values:
+> -- <0 15 1> means that the offset is 0, so GPR0 is the register of the
+> -SDMA remap. Bit 15 of GPR0 selects between UART4_RX and SAI1_RX.
+> -Setting bit 15 to 1 selects SAI1_RX.
+> -- <0 16 1> means that the offset is 0, so GPR0 is the register of the
+> -SDMA remap. Bit 16 of GPR0 selects between UART4_TX and SAI1_TX.
+> -Setting bit 16 to 1 selects SAI1_TX.
+> -- 
+> 2.37.1
+> 
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> 
