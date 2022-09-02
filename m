@@ -2,104 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F14775AA7D8
-	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 08:11:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DFB65AA7D5
+	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 08:10:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235431AbiIBGLM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Sep 2022 02:11:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51244 "EHLO
+        id S235436AbiIBGKV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Sep 2022 02:10:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235439AbiIBGLK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 02:11:10 -0400
-Received: from mail-m11873.qiye.163.com (mail-m11873.qiye.163.com [115.236.118.73])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D441A2621
-        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 23:11:09 -0700 (PDT)
-Received: from localhost.localdomain (unknown [58.22.7.114])
-        by mail-m11873.qiye.163.com (Hmail) with ESMTPA id 8678890021A;
-        Fri,  2 Sep 2022 14:04:29 +0800 (CST)
-From:   Jianqun Xu <jay.xu@rock-chips.com>
-To:     linus.walleij@linaro.org, heiko@sntech.de
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-gpio@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        Jianqun Xu <jay.xu@rock-chips.com>
-Subject: [PATCH 2/2] arm64: dts: rockchip: rk356x add 'clock-names' for gpio nodes
-Date:   Fri,  2 Sep 2022 14:04:26 +0800
-Message-Id: <20220902060426.2980951-3-jay.xu@rock-chips.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220902060426.2980951-1-jay.xu@rock-chips.com>
-References: <20220902060426.2980951-1-jay.xu@rock-chips.com>
+        with ESMTP id S235431AbiIBGKU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 02:10:20 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E04A62A26D;
+        Thu,  1 Sep 2022 23:10:16 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2826A5oH060506;
+        Fri, 2 Sep 2022 01:10:05 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1662099005;
+        bh=XR/v9b81w6mGpmeExLWnDP23ZJpTbi18SAxNcyRl+6I=;
+        h=Date:CC:Subject:To:References:From:In-Reply-To;
+        b=bEknN9lpwqeAXAroFh2gwLRhEHmmzRschD9x+Z854aF6vIi9eIt0v1bHy9Oiah/UT
+         Bay04ydBBiY2fz4AkBhl5/0CUgAjpf5AWAzN+0+ZvSu3yotQFDkPEy1/+Zvl8Gv/E2
+         o/VTunFre9/86ABF6QFOvslbPZarUSuACMGbfoeU=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2826A4B1102711
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 2 Sep 2022 01:10:05 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Fri, 2 Sep
+ 2022 01:10:04 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Fri, 2 Sep 2022 01:10:04 -0500
+Received: from [10.24.69.241] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2826A0CA047096;
+        Fri, 2 Sep 2022 01:10:01 -0500
+Message-ID: <44339382-c4e2-26db-de5d-263ae5a585b8@ti.com>
+Date:   Fri, 2 Sep 2022 11:39:59 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-        tZV1koWUFJSktLSjdXWS1ZQUlXWQ8JGhUIEh9ZQVlDGkNNVhhOGEkYSUMfTU1PQlUTARMWGhIXJB
-        QOD1lXWRgSC1lBWU5DVUlJVUxVSkpPWVdZFhoPEhUdFFlBWU9LSFVKSUtDTk1VSktLWQY+
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MBQ6KAw4KD05K0IcPCE*GU8V
-        OjYwFBdVSlVKTU1JS0JDTUxLSktNVTMWGhIXVREaAlUDDjsJFBgQVhgTEgsIVRgUFkVZV1kSC1lB
-        WU5DVUlJVUxVSkpPWVdZCAFZQUhPS0s3Bg++
-X-HM-Tid: 0a82fccd00bf2eafkusn8678890021a
-X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+CC:     <robh+dt@kernel.org>, <lee.jones@linaro.org>, <kishon@ti.com>,
+        <vkoul@kernel.org>, <dan.carpenter@oracle.com>,
+        <grygorii.strashko@ti.com>, <rogerq@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <s-vadapalli@ti.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: phy: ti: phy-gmii-sel: Add bindings
+ for J7200
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+References: <20220901085506.138633-1-s-vadapalli@ti.com>
+ <20220901085506.138633-2-s-vadapalli@ti.com>
+ <4b681c03-7f5a-0234-2276-316e0bad1de5@linaro.org>
+From:   Siddharth Vadapalli <s-vadapalli@ti.com>
+In-Reply-To: <4b681c03-7f5a-0234-2276-316e0bad1de5@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add 'clock-names' for gpio nodes on rk356x SoCs, after this patch, the
-gpio driver can get the clocks by a const char id, 'bus' for apb clock
-and 'db' for the debounce clock.
+Hello Krzysztof,
 
-Signed-off-by: Jianqun Xu <jay.xu@rock-chips.com>
----
- arch/arm64/boot/dts/rockchip/rk356x.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+On 01/09/22 20:51, Krzysztof Kozlowski wrote:
+> On 01/09/2022 11:55, Siddharth Vadapalli wrote:
+>> TI's J7200 SoC supports additional PHY modes like QSGMII and SGMII
+>> that are not supported on earlier SoCs. Add a compatible for it.
+>>
+>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+>> ---
+>>  .../mfd/ti,j721e-system-controller.yaml       |  6 ++++
+>>  .../bindings/phy/ti,phy-gmii-sel.yaml         | 30 ++++++++++++++++++-
+>>  2 files changed, 35 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml b/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
+>> index 1aeac43cad92..802374e7645f 100644
+>> --- a/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
+>> +++ b/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
+>> @@ -54,6 +54,12 @@ patternProperties:
+>>      description:
+>>        Clock provider for TI EHRPWM nodes.
+>>  
+>> +  "phy@[0-9a-f]+$":
+>> +    type: object
+>> +    $ref: /schemas/phy/phy-provider.yaml
+> 
+> You need instead ref to specific device bindings/schema. Probably to
+> /schemas/phy/ti,phy-gmii-sel.yaml#
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-index 319981c3e9f7..66d038720e65 100644
---- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-@@ -1650,6 +1650,7 @@ gpio0: gpio@fdd60000 {
- 			compatible = "rockchip,gpio-bank";
- 			reg = <0x0 0xfdd60000 0x0 0x100>;
- 			interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
-+			clock-names = "bus", "db";
- 			clocks = <&pmucru PCLK_GPIO0>, <&pmucru DBCLK_GPIO0>;
- 			gpio-controller;
- 			#gpio-cells = <2>;
-@@ -1661,6 +1662,7 @@ gpio1: gpio@fe740000 {
- 			compatible = "rockchip,gpio-bank";
- 			reg = <0x0 0xfe740000 0x0 0x100>;
- 			interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
-+			clock-names = "bus", "db";
- 			clocks = <&cru PCLK_GPIO1>, <&cru DBCLK_GPIO1>;
- 			gpio-controller;
- 			#gpio-cells = <2>;
-@@ -1672,6 +1674,7 @@ gpio2: gpio@fe750000 {
- 			compatible = "rockchip,gpio-bank";
- 			reg = <0x0 0xfe750000 0x0 0x100>;
- 			interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
-+			clock-names = "bus", "db";
- 			clocks = <&cru PCLK_GPIO2>, <&cru DBCLK_GPIO2>;
- 			gpio-controller;
- 			#gpio-cells = <2>;
-@@ -1683,6 +1686,7 @@ gpio3: gpio@fe760000 {
- 			compatible = "rockchip,gpio-bank";
- 			reg = <0x0 0xfe760000 0x0 0x100>;
- 			interrupts = <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>;
-+			clock-names = "bus", "db";
- 			clocks = <&cru PCLK_GPIO3>, <&cru DBCLK_GPIO3>;
- 			gpio-controller;
- 			#gpio-cells = <2>;
-@@ -1694,6 +1698,7 @@ gpio4: gpio@fe770000 {
- 			compatible = "rockchip,gpio-bank";
- 			reg = <0x0 0xfe770000 0x0 0x100>;
- 			interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
-+			clock-names = "bus", "db";
- 			clocks = <&cru PCLK_GPIO4>, <&cru DBCLK_GPIO4>;
- 			gpio-controller;
- 			#gpio-cells = <2>;
--- 
-2.25.1
+Thank you for the clarification. I will update $ref to
+"/schemas/phy/ti,phy-gmii-sel.yaml#" in the v5 series.
 
+> 
+> This was entirely different in v3, so your change is very confusing.
+
+I had misunderstood Rob's comment in the v3 patch. I had initially
+provided the relative path to the bindings file ti,phy-gmii-sel.yaml in
+the v3 patch. When Rob commented "/schemas/phy/..", I misunderstood and
+thought that I had to point $ref to a generic phy-provider schema
+present in the dt-schema repo and thus, in this v4 patch, I had updated
+$ref accordingly.
+
+> 
+>> +    description:
+>> +      This is the register to set phy mode through phy-gmii-sel driver.
+> 
+> I don't understand the description. Please focus on the hardware not
+> some drivers - what is here? Phy for something?
+
+I will fix the description, updating it to the following:
+"Address of the CTRLMMR_ENETx_CTRL registers which are used to configure
+the phy-mode of the CPSW MAC ports."
+
+Please let me know if the above description is fine.
+
+> 
+>> +
+>>  required:
+>>    - compatible
+>>    - reg
+>> diff --git a/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml b/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml
+>> index ff8a6d9eb153..0ffb97f1a77c 100644
+>> --- a/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml
+>> +++ b/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml
+>> @@ -53,12 +53,24 @@ properties:
+>>        - ti,am43xx-phy-gmii-sel
+>>        - ti,dm814-phy-gmii-sel
+>>        - ti,am654-phy-gmii-sel
+>> +      - ti,j7200-cpsw5g-phy-gmii-sel
+>>  
+>>    reg:
+>>      maxItems: 1
+>>  
+>>    '#phy-cells': true
+>>  
+>> +  ti,qsgmii-main-ports:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>> +    description: |
+>> +      Required only for QSGMII mode. Array to select the port for
+>> +      QSGMII main mode. Rest of the ports are selected as QSGMII_SUB
+>> +      ports automatically. Any one of the 4 CPSW5G ports can act as the
+>> +      main port with the rest of them being the QSGMII_SUB ports.
+>> +    items:
+>> +      minimum: 1
+>> +      maximum: 4
+>> +
+>>  allOf:
+>>    - if:
+>>        properties:
+>> @@ -73,6 +85,22 @@ allOf:
+>>          '#phy-cells':
+>>            const: 1
+>>            description: CPSW port number (starting from 1)
+> 
+> Blank line
+
+I will fix this in the v5 series.
+
+> 
+> 
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - ti,j7200-cpsw5g-phy-gmii-sel
+>> +    then:
+>> +      properties:
+>> +        '#phy-cells':
+>> +          const: 1
+>> +          description: CPSW port number (starting from 1)
+>> +        ti,qsgmii-main-ports:
+>> +          maxItems: 1
+> 
+> It does not really make sense to limit items here, in the context of
+> this patch. You got a comment for it already. Your patch should make
+> sense on its own.
+
+I had defined the property as an array because there are more than one
+QSGMII main ports for other devices for which I will be posting the
+patches. I had planned to reuse this property, with "maxItems: 2" in the
+future patches for other compatibles. However, as suggested by you, I
+will change the property to a uint32 instead of uint32-array in this
+series. Later, in my future patches for other devices, I will change it
+back to a uint32-array when I reuse the property.
+
+> 
+>> +    else:
+>> +      properties:
+>> +        ti,qsgmii-main-ports: false
+> 
+> Blank line
+
+I will fix this in the v5 series.
+
+> 
+>>    - if:
+>>        properties:
+>>          compatible:
+>> @@ -97,7 +125,7 @@ additionalProperties: false
+>>  
+>>  examples:
+>>    - |
+>> -    phy_gmii_sel: phy-gmii-sel@650 {
+>> +    phy_gmii_sel: phy@650 {
+> 
+> Split cleanup into separate patch.
+
+I will do so. Thank you for reviewing the patch.
+
+Regards,
+Siddharth.
