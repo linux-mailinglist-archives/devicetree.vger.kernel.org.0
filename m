@@ -2,75 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D8CB5AB623
-	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 18:01:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40F295AB61F
+	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 18:00:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237799AbiIBQBn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Sep 2022 12:01:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58032 "EHLO
+        id S237730AbiIBQAw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Sep 2022 12:00:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237476AbiIBQBN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 12:01:13 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EACF55D0CF
-        for <devicetree@vger.kernel.org>; Fri,  2 Sep 2022 08:06:04 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id e13so2711160wrm.1
-        for <devicetree@vger.kernel.org>; Fri, 02 Sep 2022 08:06:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=ULSBxBsOqdpwFzaPZ22j0kNiyro44UCp/qPP6WG4pUQ=;
-        b=VfSVdt0GWEa9o6bZAvYBDsj3WBCtig9qxGkAwfoVlHzZojsv2xWY57x7Fh7YfwPhE5
-         GB0mK5i92H0+TW0EVBbl4Z2ws0tfCzGUVdApCIWbO3mVbudJt3Vt8UTezgsV38hLHe5j
-         92AH2RP3TK2aaPAhUk4f4omkqYcFFZqgeVl04MFaOPNDxOb2rCUNNYCyoageu1+lZ4Mn
-         pJpG2bS5815LzWe4SguSR5uGvlkSxfLleQ/ee1phN6JzcpbzmL3BQZ18dW6dh1jloSyM
-         2qgTtYilqnpQzMq5tREW31OuWzVUYfkERyo8Dqps25WZNLkv6wCTXW9BqDOR0yCb8jv1
-         KA1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=ULSBxBsOqdpwFzaPZ22j0kNiyro44UCp/qPP6WG4pUQ=;
-        b=zgOXm74dZIcKKiPaz6XNwDrYNbVE1zRKhDdUxKD3aZcAcZj0KgLedrQ6Xw6pKeHCys
-         HgeTYTEp0ZDtDho57pQ8rybmsJ9TBsWR2yg2Pgk2LdoouK6Lnc2aKYC+j6NpE8A+pHHx
-         jIePs/RTWndoP1jS3J9y2PwyVBOc/Wx3oaVkTDPkpNFUE+DM0Dw5itWgtdvqD2ZAkJQe
-         gHTB3SEXOawAFINbkGbvhpQhBkbn9XIilLEDlF2SXM8fVw4ZTrNHZN+ckWU3xlEQmCtF
-         94l81hv124/MVlcbzEUoguOuIjYI4fz30wYEsDgQEeG8AJ1Z9GlDjTxpq+mqJ5dvRwiN
-         ZBGQ==
-X-Gm-Message-State: ACgBeo3yIM6+t1zKU2g/ZKgGyEEWhi6rgZ5g3S7BrDhir7rhtqR343eL
-        m3GyN4m7bxQljM4dBcFq5jftmmbRjOhxUxX2
-X-Google-Smtp-Source: AA6agR68fv7LGJO4Aad4P2WItH/nXXhbfO9USrV2UE6cE8X9hGnpoyx8viAUcqabzuBelYoqTdUsHQ==
-X-Received: by 2002:a5d:5b08:0:b0:226:f421:79ba with SMTP id bx8-20020a5d5b08000000b00226f42179bamr5194084wrb.44.1662131163314;
-        Fri, 02 Sep 2022 08:06:03 -0700 (PDT)
-Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id o12-20020a05600c378c00b003a5f4fccd4asm8241871wmr.35.2022.09.02.08.06.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Sep 2022 08:06:02 -0700 (PDT)
-Date:   Fri, 2 Sep 2022 18:06:00 +0300
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorande@qti.qualcomm.com>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Amol Maheshwari <amahesh@qti.qualcomm.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Ekansh Gupta <ekangupt@qti.qualcomm.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 00/14] misc: fastrpc: Add audiopd support and some fixes
-Message-ID: <YxIb2N5BLFyXlm0u@linaro.org>
-References: <20220902131344.3029826-1-abel.vesa@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220902131344.3029826-1-abel.vesa@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        with ESMTP id S237754AbiIBQA0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 12:00:26 -0400
+Received: from sibelius.xs4all.nl (80-61-163-207.fixed.kpn.net [80.61.163.207])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 544CA7E81C;
+        Fri,  2 Sep 2022 08:06:45 -0700 (PDT)
+Received: from localhost (bloch.sibelius.xs4all.nl [local])
+        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id 1932c934;
+        Fri, 2 Sep 2022 17:06:43 +0200 (CEST)
+Date:   Fri, 2 Sep 2022 17:06:43 +0200 (CEST)
+From:   Mark Kettenis <mark.kettenis@xs4all.nl>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     linux@armlinux.org.uk, krzysztof.kozlowski@linaro.org,
+        arnd@arndb.de, lee@kernel.org, linus.walleij@linaro.org,
+        alyssa@rosenzweig.io, asahi@lists.linux.dev, brgl@bgdev.pl,
+        marcan@marcan.st, linux-arm-kernel@lists.infradead.org,
+        linux-gpio@vger.kernel.org, sven@svenpeter.dev,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
+In-Reply-To: <CAL_Jsq+GCKisAVA0AfE=yWJYy18mAGQ7rY1sKGYraXv-berNSg@mail.gmail.com>
+        (message from Rob Herring on Thu, 1 Sep 2022 17:33:31 -0500)
+Subject: Re: [PATCH 1/6] dt-bindings: mfd: add binding for Apple Mac System
+ Management Controller
+References: <YxC5eZjGgd8xguDr@shell.armlinux.org.uk> <E1oTkeH-003t9A-3K@rmk-PC.armlinux.org.uk>
+ <426469c1-13cc-178b-4904-09439d7788e8@linaro.org> <YxDL+cAx9kkZRL8K@shell.armlinux.org.uk>
+ <928ddeff-efac-920c-7bbf-dda35a942b93@linaro.org> <YxDOpCq0vIlt4VNa@shell.armlinux.org.uk>
+ <2fedff34-6a20-f1ce-a756-2bd8671fcd52@linaro.org> <YxDWG5dmzErhKIXw@shell.armlinux.org.uk>
+ <ef6c7248-1efa-5366-6bcd-900c5f10ccb2@linaro.org> <YxDiBFIn6artUOZm@shell.armlinux.org.uk> <CAL_Jsq+GCKisAVA0AfE=yWJYy18mAGQ7rY1sKGYraXv-berNSg@mail.gmail.com>
+Message-ID: <d3cec3d22e464fa8@bloch.sibelius.xs4all.nl>
+X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00,KHOP_HELO_FCRDNS,
+        SPF_HELO_NONE,SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,36 +45,99 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-09-02 16:13:30, Abel Vesa wrote:
-> This patchset's main goal is adding the audiopd support to fastrpc.
-> There are also some fixes and reworks.
+> From: Rob Herring <robh+dt@kernel.org>
+> Date: Thu, 1 Sep 2022 17:33:31 -0500
 > 
+> On Thu, Sep 1, 2022 at 11:47 AM Russell King (Oracle)
+> <linux@armlinux.org.uk> wrote:
+> >
+> > On Thu, Sep 01, 2022 at 07:25:03PM +0300, Krzysztof Kozlowski wrote:
+> > > On 01/09/2022 18:56, Russell King (Oracle) wrote:
+> > > >
+> > > > 8<===
+> > > > From: "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
+> > > > Subject: [PATCH] dt-bindings: mfd: add binding for Apple Mac System Management
+> > > >  Controller
+> > > >
+> > > > Add a DT binding for the Apple Mac System Management Controller.
+> > > >
+> > > > Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+> > >
+> > > Yes, looks good.
+> > >
+> > > I won't add Reviewed-by tag, because I think it would confuse Patchwork,
+> > > so please send a v2 at some point.
+> >
+> > Thanks. Do you have any suggestions for patch 2? Should I merge the
+> > description in patch 2 into this file?
+> >
+> > The full dts for this series looks like this:
+> >
+> >                 smc: smc@23e400000 {
+> >                         compatible = "apple,t8103-smc", "apple,smc";
+> >                         reg = <0x2 0x3e400000 0x0 0x4000>,
+> >                                 <0x2 0x3fe00000 0x0 0x100000>;
+> >                         reg-names = "smc", "sram";
+> >                         mboxes = <&smc_mbox>;
+> >
+> >                         smc_gpio: gpio {
+> >                                 gpio-controller;
+> >                                 #gpio-cells = <2>;
+> >                         };
+> >                 };
+> >
+> > but the fuller version in the asahi linux tree looks like:
+> >
+> >                 smc: smc@23e400000 {
+> >                         compatible = "apple,t8103-smc", "apple,smc";
+> >                         reg = <0x2 0x3e400000 0x0 0x4000>,
+> >                                 <0x2 0x3fe00000 0x0 0x100000>;
+> >                         reg-names = "smc", "sram";
+> >                         mboxes = <&smc_mbox>;
+> >
+> >                         smc_gpio: gpio {
+> >                                 gpio-controller;
+> >                                 #gpio-cells = <2>;
+> 
+> Only 2 properties doesn't really need its own schema doc. However, I
+> would just move these to the parent node.
 
-Please ignore this entire patchset. Will resend.
+When we designed the bindings, it was our understanding that having
+separate nodes better matches Linux's MFD driver model.
 
-> Abel Vesa (13):
->   misc: fastrpc: Fix use-after-free and race in fastrpc_map_find
->   misc: fastrpc: Don't remove map on creater_process and device_release
->   misc: fastrpc: Rename audio protection domain to root
->   misc: fastrpc: Add reserved mem support
->   dt-bindings: misc: fastrpc: Document memory-region property
->   misc: fastrpc: Add fastrpc_remote_heap_alloc
->   misc: fastrpc: Use fastrpc_map_put in fastrpc_map_create on fail
->   misc: fastrpc: Rework fastrpc_req_munmap
->   misc: fastrpc: Add support for audiopd
->   misc: fastrpc: Safekeep mmaps on interrupted invoke
->   misc: fastrpc: Add mmap request assigning for static PD pool
->   misc: fastrpc: Remove unnecessary if braces in fastrpc_internal_invoke
->   misc: fastrpc: Add dma_mask to fastrpc_channel_ctx
+Please be aware that OpenBSD is already using these bindings.  If
+there are good reasons for moving things, we can probably deal with
+that.  But this sounds a bit like a toss up.
+
 > 
-> Ola Jeppsson (1):
->   misc: fastrpc: Fix use-after-free race condition for maps
+> >                         };
+> >
+> >                         smc_rtc: rtc {
+> >                                 nvmem-cells = <&rtc_offset>;
+> >                                 nvmem-cell-names = "rtc_offset";
+> >                         };
+> >
+> >                         smc_reboot: reboot {
+> >                                 nvmem-cells = <&shutdown_flag>, <&boot_stage>,
+> >                                         <&boot_error_count>, <&panic_count>, <&pm_setting>;
+> >                                 nvmem-cell-names = "shutdown_flag", "boot_stage",
+> >                                         "boot_error_count", "panic_count", "pm_setting";
 > 
->  .../devicetree/bindings/misc/qcom,fastrpc.txt |   5 +
->  drivers/misc/fastrpc.c                        | 337 ++++++++++++++----
->  include/uapi/misc/fastrpc.h                   |   7 +
->  3 files changed, 284 insertions(+), 65 deletions(-)
-> 
-> -- 
-> 2.34.1
-> 
+> Not really much reason to split these up either because you can just
+> fetch the entry you want by name.
+
+Again the separate nodes are there because the RTC and the reboot
+functionality are logically separate and handled by different MFD
+sub-drivers in Linux.
+
+> How confident are the asahi folks that this is a complete binding?
+
+There is a lot of functionality in the SMC that is still largely
+unexplored.  The idea of the design of the binding is that additional
+functionality may be added by adding more subnodes to the smc node.
+But we expect that the main SMC node itself should be complete with
+the "smc" and "sram" regions and the reference to the mailbox.
+
+Cheers,
+
+Mark
