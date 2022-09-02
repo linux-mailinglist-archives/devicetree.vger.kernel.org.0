@@ -2,82 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA6865AADD3
-	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 13:43:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA1575AAE13
+	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 14:07:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232557AbiIBLnU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Sep 2022 07:43:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41328 "EHLO
+        id S235648AbiIBMFi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Sep 2022 08:05:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229621AbiIBLnT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 07:43:19 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D2BCABD5F;
-        Fri,  2 Sep 2022 04:43:17 -0700 (PDT)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 282Ar56Q032761;
-        Fri, 2 Sep 2022 11:42:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=aLp+BZ1PXvD5mxih1jnhCtGBuPLETtrHyHpzi8hNqg0=;
- b=MnAPLl4lomiGoWK013zzlavMpV6ZVIvS3C6QG0e40Cb7Bxyv5pIpzy/DFNHweOmlcaXB
- 3rCl+Zno8oBfqH1jPp5QDwkP+Gm0V1qySy7PWaii9VLrAdQzHfhsTFATrWcTgbzIqn4h
- Q8S+/4aHYHTpAx+LMEyS5D7CePMx7rKLyEY3962k/C1nsBh3B8Qngzh13q57cidKxxRZ
- Wm7iFO3eSjMYfyYrlsFgPHM7PVG1svEDf4A33AcZu5Tqay6AFEAHPm2LMH5tFAXXnJpF
- c8wtm6X3WTFq3TJzx4mJOzwa1iOOk9lPbhjrnDwtyBnoJAkkBjqSfzcJeD3KHZma8r9r SQ== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jbdqqgq1f-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 02 Sep 2022 11:42:38 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 282Bgb6S005488
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 2 Sep 2022 11:42:37 GMT
-Received: from [10.253.35.201] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Fri, 2 Sep 2022
- 04:42:34 -0700
-Message-ID: <88ce066b-632a-d76f-c3d8-d100a96e1f11@quicinc.com>
-Date:   Fri, 2 Sep 2022 19:41:43 +0800
+        with ESMTP id S235829AbiIBMFh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 08:05:37 -0400
+Received: from smtp-fw-80007.amazon.com (smtp-fw-80007.amazon.com [99.78.197.218])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED79080378;
+        Fri,  2 Sep 2022 05:05:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1662120331; x=1693656331;
+  h=message-id:date:mime-version:to:cc:references:from:
+   in-reply-to:content-transfer-encoding:subject;
+  bh=Kp+LcxvVb62XzWaO7NWZJLTNmVEgDZQ/vduYeweJ8hc=;
+  b=ZCONu4vV5L0+hE+Cm9lAvLtttKpDOqPskOmQ2srAEEMG9k3TZZuDag1a
+   /+Jh3dFFn5coishgTdgllKSXOFo9p2hc26ok0M5253CBudlF03GjDgrUw
+   BvwEBHjdA5hU+rWK/lSe/tgiek8sU8WM6NZJYie6luJg/kX0LYW5oQtSE
+   M=;
+X-IronPort-AV: E=Sophos;i="5.93,283,1654560000"; 
+   d="scan'208";a="126163125"
+Subject: Re: [PATCH v3 09/19] hwmon: (mr75203) add VM active channel support
+Received: from pdx4-co-svc-p1-lb2-vlan3.amazon.com (HELO email-inbound-relay-iad-1a-2d7489a4.us-east-1.amazon.com) ([10.25.36.214])
+  by smtp-border-fw-80007.pdx80.corp.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Sep 2022 12:05:06 +0000
+Received: from EX13D34EUB003.ant.amazon.com (iad12-ws-svc-p26-lb9-vlan2.iad.amazon.com [10.40.163.34])
+        by email-inbound-relay-iad-1a-2d7489a4.us-east-1.amazon.com (Postfix) with ESMTPS id 21A274800F1;
+        Fri,  2 Sep 2022 12:05:02 +0000 (UTC)
+Received: from EX13MTAUEB002.ant.amazon.com (10.43.60.12) by
+ EX13D34EUB003.ant.amazon.com (10.43.166.189) with Microsoft SMTP Server (TLS)
+ id 15.0.1497.38; Fri, 2 Sep 2022 12:05:01 +0000
+Received: from [192.168.149.164] (10.85.143.177) by mail-relay.amazon.com
+ (10.43.60.234) with Microsoft SMTP Server id 15.0.1497.38 via Frontend
+ Transport; Fri, 2 Sep 2022 12:04:56 +0000
+Message-ID: <83567278-45dd-faf9-f19f-9167026a8e42@amazon.com>
+Date:   Fri, 2 Sep 2022 15:04:55 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [RESEND PATCH v6 08/10] dt-bindings: spmi: spmi-pmic-arb: make
- interrupt properties as optional
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.1
+To:     Andy Shevchenko <andriy.shevchenko@intel.com>
+CC:     <jdelvare@suse.com>, <linux@roeck-us.net>, <robh+dt@kernel.org>,
+        <p.zabel@pengutronix.de>, <rtanwar@maxlinear.com>,
+        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <talel@amazon.com>,
+        <hhhawa@amazon.com>, <jonnyc@amazon.com>, <hanochu@amazon.com>,
+        <ronenk@amazon.com>, <itamark@amazon.com>, <shellykz@amazon.com>,
+        <shorer@amazon.com>, <amitlavi@amazon.com>, <almogbs@amazon.com>,
+        <dkl@amazon.com>, "Farber, Eliav" <farbere@amazon.com>
+References: <20220830192212.28570-1-farbere@amazon.com>
+ <20220830192212.28570-10-farbere@amazon.com>
+ <Yw9KcvaFzCcPw7qw@smile.fi.intel.com>
 Content-Language: en-US
-To:     Stephen Boyd <sboyd@kernel.org>, Andy Gross <agross@kernel.org>,
-        "Bjorn Andersson" <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     <quic_collinsd@quicinc.com>, <quic_subbaram@quicinc.com>,
-        <tglx@linutronix.de>, <maz@kernel.org>,
-        David Collins <collinsd@codeaurora.org>
-References: <1655004286-11493-1-git-send-email-quic_fenglinw@quicinc.com>
- <1655004286-11493-9-git-send-email-quic_fenglinw@quicinc.com>
- <20220831173631.25C83C43470@smtp.kernel.org>
-From:   Fenglin Wu <quic_fenglinw@quicinc.com>
-In-Reply-To: <20220831173631.25C83C43470@smtp.kernel.org>
+From:   "Farber, Eliav" <farbere@amazon.com>
+In-Reply-To: <Yw9KcvaFzCcPw7qw@smile.fi.intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: n5mP76U4vLJyzed3CGThR1P8QNy6nisC
-X-Proofpoint-GUID: n5mP76U4vLJyzed3CGThR1P8QNy6nisC
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.517,FMLib:17.11.122.1
- definitions=2022-09-02_02,2022-08-31_03,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
- clxscore=1011 impostorscore=0 adultscore=0 malwarescore=0 mlxlogscore=999
- lowpriorityscore=0 spamscore=0 priorityscore=1501 bulkscore=0 mlxscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2207270000
- definitions=main-2209020056
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-11.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_SPF_WL autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,68 +71,96 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 2022/9/1 1:36, Stephen Boyd wrote:
-> Quoting Fenglin Wu (2022-06-11 20:24:44)
->> From: David Collins <collinsd@codeaurora.org>
+On 8/31/2022 2:48 PM, Andy Shevchenko wrote:
+> On Tue, Aug 30, 2022 at 07:22:02PM +0000, Eliav Farber wrote:
+>> Add active channel support per voltage monitor.
+>> The number of active channels is read from the device-tree.
+>> When absent in device-tree, all channels are assumed to be used.
 >>
->> Make all interrupt related properties as optional instead of
->> required.  Some boards do not required PMIC IRQ support and it
->> isn't needed to handle SPMI bus transactions, so specify it as
->> optional.
+>> This shall be useful to expose sysfs only for inputs that are connected
+>> to a voltage source.
 >>
->> Signed-off-by: David Collins <collinsd@codeaurora.org>
->> Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
->> Acked-by: Rob Herring <robh@kernel.org>
->> ---
->>   Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml | 3 ---
->>   1 file changed, 3 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml b/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml
->> index 55d379c..fee4f0e 100644
->> --- a/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml
->> +++ b/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml
->> @@ -88,9 +88,6 @@ properties:
->>   required:
->>     - compatible
->>     - reg-names
->> -  - interrupts
->> -  - interrupt-names
->> -  - '#interrupt-cells'
-> 
-> Let me clarify my comment on the next driver patch here. It looks like
-> we're making the properties optional here so that the driver can choose
-> to create or not create the irqchip based on the presence of the
-> property. Are there PMIC arbiters that don't have irq support? Or is it
-> only that some board designs don't use interrupt support of the PMIC,
-> because all the devices that use interrupts on the PMIC aren't enabled
-> (status = "okay")?
-> 
-> We shouldn't get into a situation where we're removing the interrupt
-> properties because we want the driver to skip creating the irqchip. That
-> makes the binding too loose, where we can't validate existing DT files.
-> It also makes it confusing to include the DTS files when the device
-> always supports interrupt capabilities, just we don't want to use it.
+>> Setting number of active channels to 0, means that entire VM sensor is
+>> not used.
+>
+> ...
+>
+>> +struct voltage_device {
+>> +     u32 vm_map;     /* Map channel number to VM index */
+>> +     u32 ch_map;     /* Map channel number to channel index */
+>> +};
+>> +
+>> +struct voltage_channels {
+>> +     u32 total;      /* Total number of channels in all VMs */
+>> +     u8 max;         /* Maximum number of channels among all VMs */
+>> +};
+>
+> Why not convert them to kernel doc?
+>
+Fixed in v4.
 
-Thanks for reviewing the changes Stephen.
 
-I discussed with the change author David, he mentioned that these two 
-changes were made for supporting trust VM features. In the design, there 
-are two SPMI arbiter device instances, one is in non-secure world (with 
-Linux Android) and the other is in secure world (with LE), both 
-instances use the same SPMI arbiter driver but only the LA system 
-handles the interrupt, and the irqchip will not be created for LE system 
-to prevent any interrupt being fired and routed to the LA system.
+>> +     ret = device_property_read_u8_array(dev, 
+>> "moortec,vm-active-channels",
+>> +                                         vm_active_ch, vm_num);
+>> +     if (ret) {
+>> +             /*
+>> +              * Incase vm-active-channels property is not defined,
+>> +              * we assume each VM sensor has all of its channels
+>> +              * active.
+>> +              */
+>> +             for (i = 0; i < vm_num; i++)
+>> +                     vm_active_ch[i] = ch_num;
+>
+> NIH memset().
 
-There are actually two other changes in SPMI driver made for the same 
-secure VM feature. The driver exports a new API which would translate 
-the SPMI address (SID+PID+OFFSET) into the SoC physical register address 
-range that handles the SPMI write to the corresponding SPMI registers, 
-and the secure system would do some protection on these registers to 
-block any SPMI write from non-secure world when the secure feature is 
-enabled.
+Fixed in v4.
 
-There will be 4 changes related in total, I will send them together with 
-a new topic next time and you can help to review them after that.
-Thank you!
+
+>> +             pvt->vm_channels.max = ch_num;
+>> +             pvt->vm_channels.total = ch_num * vm_num;
+>> +     } else {
+>> +             for (i = 0; i < vm_num; i++) {
+>> +                     if (vm_active_ch[i] > ch_num) {
+>> +                             dev_err(dev, "invalid active channels: 
+>> %u\n",
+>> +                                     vm_active_ch[i]);
+>> +                             return -EINVAL;
+>> +                     }
+>> +
+>> +                     pvt->vm_channels.total += vm_active_ch[i];
+>> +
+>> +                     if (vm_active_ch[i] > pvt->vm_channels.max)
+>> +                             pvt->vm_channels.max = vm_active_ch[i];
+>> +             }
+>> +     }
+>
+> ...
+>
+>> +     k = 0;
+>> +     for (i = 0; i < vm_num; i++)
+>> +             for (j = 0; j < vm_active_ch[i]; j++) {
+>> +                     pvt->vd[k].vm_map = vm_idx[i];
+>> +                     pvt->vd[k].ch_map = j;
+>
+>> +                     k++;
+>
+> How is it different from moving this outside the inner loop as
+>
+>        k += vm_active_ch[i];
+>
+> ?
+
+k is used inside the inner loop, so increasing it outside the inner loop
+will result in a different incorrect setting of vm_map and ch_map.
+
+>> +             }
+>
+> Missed outer {}.
+
+Fixed in v4.
+
+
+--
+Regards, Eliav
+
