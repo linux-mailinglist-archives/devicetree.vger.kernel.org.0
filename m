@@ -2,150 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 78F2E5AAB4A
-	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 11:25:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A005E5AAB50
+	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 11:27:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236068AbiIBJZd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Sep 2022 05:25:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59872 "EHLO
+        id S235469AbiIBJ1e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Sep 2022 05:27:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36382 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235957AbiIBJZb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 05:25:31 -0400
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EACBD41991
-        for <devicetree@vger.kernel.org>; Fri,  2 Sep 2022 02:25:26 -0700 (PDT)
-Received: by mail-pj1-x1033.google.com with SMTP id u1-20020a17090a410100b001fff314d14fso1562730pjf.5
-        for <devicetree@vger.kernel.org>; Fri, 02 Sep 2022 02:25:26 -0700 (PDT)
+        with ESMTP id S232705AbiIBJ1d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 05:27:33 -0400
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8ABCDBFA97;
+        Fri,  2 Sep 2022 02:27:32 -0700 (PDT)
+Received: by mail-pj1-x1036.google.com with SMTP id x1-20020a17090ab00100b001fda21bbc90so4938014pjq.3;
+        Fri, 02 Sep 2022 02:27:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=1bTDW9HnOkiIYV5uJ57r2XB6ZhefyzNRvfE7YurBQEo=;
-        b=AxLhRfI9R75qPsG2gU38kDjJE6+gQI1IxuS5UvbEKVwR+RpHAuLOPy2k25fSJN/2zl
-         c0kZopziRkgXAFT1PmJagrGzop2dWOJJlE8lMM4O44fFYQBtRoJwEe4DkBK5N9xWNga0
-         jCVHtUcWGs6Z+BsXFc6+qSDpwE+mfyte1Ab4NU4XKdFIrOZV/KUu+EYsb/Jji7RnBZLD
-         iFCwq3+Txw/mM+Q9HXabRCEeodOo6PCF91749PkivG+Gv+KTELhJm1zm5XMRe3N65o8A
-         T8RCNI0s1JP4mm8MvfsdFRtFQq09f+TTiI49Zd0eB+ZXLprw5jvqyv8wHPwJs9odb4c3
-         jaig==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=pWy2kwNqBvwcyw3fBPdY/JfajG8Vs72kY13dOodD5tQ=;
+        b=hG+sHGkjpI8EnZ0YS8lhCTS0vbXfiYfns2SbT+EcMHIJ2o1c8YBE6A3snWTGoljJ3V
+         zSh+tpSxLWOKnxnXAtFtzdH2g3GGOkXKXMadTiTN1vHTCWKdSVDcRLvCL0tdFyPmrxt7
+         jPs9q6Hsn/+TLWlHjsY4uKZptNsy462NFhU18Mm2fco4j2CRwbAp2QO5GM3DzvNIdmPO
+         EsNst7yz5Vm0iL6aQo8PR+zAggIOSTU21O4LlLua4lq+kIcOZ5PEQnmtmDszPLWihx7K
+         XqDpv/dLRGGtoKQJLqeTbAQHMoro8PgZ8wbJOL8XzqmRdi4qLGj68iYolMNqIDPvCoRy
+         5JTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=1bTDW9HnOkiIYV5uJ57r2XB6ZhefyzNRvfE7YurBQEo=;
-        b=LBulN03vFFncp6UB1h9flqL4lQA17fQ73U3nge/3wK4+fr+fxr7GoqjFwyq4ZvTlOz
-         Nz4UpZg5TppRaMnoz4XyWD959LH4ze6wCQP+qTCjJ80ZTJ8bpTcol0UMLOlDXqDRrOzc
-         /JXV1aUJ0sBKpGZQExi1dvrivbs4ya+Dg3cmWa6IUpOmT6HY4VpWqj2mIcC+jzBzyGyk
-         Bj5uqIgnI1wAkzjhWVfrLVvCHwJtXmiqce1W61R4mLkiMYG8xsf6fI7egp1dmFa+gjvS
-         fvXDngLqxYNg19rogpQyGbZNOqJkeU0WLp5WrCGuQayab4KzS3y+WUGNPJXXv8wA1eur
-         fq4Q==
-X-Gm-Message-State: ACgBeo3lK+2VA5304bKGBCRH+NHhX29tO/HVI4cf2LfLz1oRVz56liWv
-        s4DaDMgWzNZDn+SkvaIfdpllhw==
-X-Google-Smtp-Source: AA6agR703vVUNiUJs+wEbCRE7Q3PqGL/0ksxZ5aMw4iWUxLstSZPLNkWHqA8WmHx+gBlSutsukvN4A==
-X-Received: by 2002:a17:902:e751:b0:174:89f8:cef2 with SMTP id p17-20020a170902e75100b0017489f8cef2mr26838879plf.156.1662110725762;
-        Fri, 02 Sep 2022 02:25:25 -0700 (PDT)
-Received: from ?IPV6:2401:4900:1c60:5362:9d7f:2354:1d0a:78e3? ([2401:4900:1c60:5362:9d7f:2354:1d0a:78e3])
-        by smtp.gmail.com with ESMTPSA id h15-20020a170902f54f00b001728ac8af94sm1110860plf.248.2022.09.02.02.25.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Sep 2022 02:25:25 -0700 (PDT)
-Message-ID: <58ab7d34-71af-f69c-1961-fd484cb477ac@linaro.org>
-Date:   Fri, 2 Sep 2022 14:55:20 +0530
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=pWy2kwNqBvwcyw3fBPdY/JfajG8Vs72kY13dOodD5tQ=;
+        b=y9BfduC4P6AAXigdpfz10nwbvZJH3VrwEH4C7dMxxPJ9kaReRbgFoOk7AJ8z3LtOQ1
+         kRbduiescIReBcpKUQVAOIScH13IFXOHsQH81M5dJSp4df66GxsMXLJTNJkIqwcTK7Oi
+         fiDJYRR0RKWFap2IOC4qGjECtuRRcXGaxTfnfZWXCc3G2/rVjxx28mJaTM/oW5tmGyge
+         vnFU3xywhPPdOdYUBPlcDgTn4cA+aiPcHK3L55XldxPQzGLkUusyzcQPZ2muoehVGSVu
+         340s2muZ9Hgw5Wg/td/ZZZ65vIIEZwCBmotTQWDYjck3uCDbN4a8I6FaW4zIQKEQUtxp
+         n4gg==
+X-Gm-Message-State: ACgBeo3p+13yZF+JWAAtnxJlwBZloomiRnqQx4iIc/MXP8wa4sVO48rS
+        XUEoQjl5c+S3oHd55m0Muj/ViHuTudhigw==
+X-Google-Smtp-Source: AA6agR6vw56oJH0NMXCoOMzY/8aFlYkyziOZAMyASf3qy0cwfesRkYKFXmP+o0W6dit5vKyUYi3YKw==
+X-Received: by 2002:a17:90a:d150:b0:1fd:9336:5db3 with SMTP id t16-20020a17090ad15000b001fd93365db3mr3851008pjw.242.1662110851662;
+        Fri, 02 Sep 2022 02:27:31 -0700 (PDT)
+Received: from hcdev-d520mt2.. (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id s62-20020a625e41000000b005350ea966c7sm1169315pfb.154.2022.09.02.02.27.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 02 Sep 2022 02:27:30 -0700 (PDT)
+From:   Marvin Lin <milkfafa@gmail.com>
+To:     linux-edac@vger.kernel.org, rric@kernel.org, james.morse@arm.com,
+        tony.luck@intel.com, mchehab@kernel.org, bp@alien8.de,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, openbmc@lists.ozlabs.org,
+        benjaminfair@google.com, yuenn@google.com, venture@google.com,
+        KWLIU@nuvoton.com, YSCHU@nuvoton.com, JJLIU0@nuvoton.com,
+        KFTING@nuvoton.com, avifishman70@gmail.com, tmaimon77@gmail.com,
+        tali.perry1@gmail.com, ctcchien@nuvoton.com, kflin@nuvoton.com,
+        Marvin Lin <milkfafa@gmail.com>
+Subject: [PATCH v15 0/3] EDAC/nuvoton: Add NPCM memory controller driver
+Date:   Fri,  2 Sep 2022 17:27:11 +0800
+Message-Id: <20220902092714.3683980-1-milkfafa@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH] dt-bindings: leds: Describe optional 'reg' property used
- for Qualcomm LPG nodes
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        bhupesh.linux@gmail.com, linux-kernel@vger.kernel.org,
-        robh@kernel.org, pavel@ucw.cz, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-References: <20220721195502.1525214-1-bhupesh.sharma@linaro.org>
- <CAA8EJppGS38aP7gyd1c3kNgraAVJDoqUef2cDfZpu2aL_iwW0g@mail.gmail.com>
- <YvFZgr1RRq6tYaVC@ripper> <a35dc076-e33f-1b31-2a01-27bb37301039@linaro.org>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-In-Reply-To: <a35dc076-e33f-1b31-2a01-27bb37301039@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch series add DTS node, dt-bindings document and driver for memory
+controller present on Nuvoton NPCM SoCs.
 
+The memory controller supports single bit error correction and double bit
+error detection (in-line ECC in which a section 1/8th of the memory device
+used to store data is used for ECC storage).
 
-On 8/9/22 12:21 PM, Krzysztof Kozlowski wrote:
-> On 08/08/2022 21:44, Bjorn Andersson wrote:
->> On Thu 21 Jul 13:19 PDT 2022, Dmitry Baryshkov wrote:
->>
->>> On Thu, 21 Jul 2022 at 22:55, Bhupesh Sharma <bhupesh.sharma@linaro.org> wrote:
->>>>
->>>> As Bjorn noted in [1], it is useful to describe the optional
->>>> 'reg' property for Qualcomm LPG nodes as it is used in
->>>> some Qualcomm dts files.
->>>
->>> I don't think this is correct. LPG block maps to several regions, so
->>> using just one of them in reg doesn't look correct.
->>>
->>
->> I agree, but I also like the uniformity of having unit addresses for the
->> devices on the spmi buses.
-> 
-> regulators also do not have reg, so I guess consistency is already gone.
-> 
-> I vote here to reflect the real hardware/device which means:
-> 1. IIUC, the design of entire SPMI bindings and its implementation is
-> around parent device sitting on SPMI bus and children using its
-> regmap/io space.
-> 2. The children are not really re-usable for different cases/devices
-> (e.g. standalone WLED or LPG, outside of PMIC).
-> 3. This means entire design is tightly coupled and LPG (or wled,
-> regulators) bindings describe the piece of PMIC, thus I find appropriate
-> skipping "reg".
-> 4. If we want to keep the "reg", then it should rather reflect reality,
-> so if Dmitry said - multiple items for separate IO address ranges.
+v15:
+  - Move dt-bindings document to memory-controllers directory and remove
+    superfluous string in content title
 
-Ok, so I think the majority opinion is to skip 'reg' from the 
-devicetree-binding. Lets stick to that.
+v14:
+  - Fix compile warnings
 
->>
->>>> This fixes the following 'make dtbs_check' error reported for
->>>> pm8350c & sc8280xp pwm nodes:
->>>>
->>>> arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dtb:
->>>>   pwm@e800: 'reg' does not match any of the regexes:
->>>>   '^led@[0-9a-f]$', 'pinctrl-[0-9]+'
->>>
->>> I'd prefer to follow the existing schema and to drop the region from
->>> those files.
->>>
->>
->> I'm fine either way, but we have more of these nodes, so I would like to
->> hear from the DT maintainers on the direction to take. All nodes on the
->> spmi bus has an (at least one) address, so it would be accurate to state
->> this in the node.
->>
->> It does however not seem like devicetree@, nor Krzysztof is Cc'ed on
->> this patch, so I've added them...
->>
-> 
-> Anyway this patch has to be resent to properly reach DT patchwork.
-> 
-> Bhupesh,
-> 
-> Please use scripts/get_maintainer.pl to Cc relevant folks and mailing
-> lists. While resending, add appropriate device prefix to subject, so:
-> dt-bindings: leds: qcom-lpg:
+v13:
+  - Support error injection via debugfs
+  - Fix coding style issues
 
-Sure, will send v2 accordingly.
+Marvin Lin (3):
+  arm: dts: nuvoton: Add node for NPCM memory controller
+  dt-bindings: edac: nuvoton: Add document for NPCM memory controller
+  EDAC/nuvoton: Add NPCM memory controller driver
 
-Thanks.
+ .../memory-controllers/nuvoton,npcm-mc.yaml   |  54 ++
+ MAINTAINERS                                   |   7 +
+ arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi |   7 +
+ drivers/edac/Kconfig                          |  11 +
+ drivers/edac/Makefile                         |   1 +
+ drivers/edac/npcm_edac.c                      | 516 ++++++++++++++++++
+ 6 files changed, 596 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/nuvoton,npcm-mc.yaml
+ create mode 100644 drivers/edac/npcm_edac.c
+
+-- 
+2.34.1
+
