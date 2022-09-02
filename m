@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D1AB65AB891
+	by mail.lfdr.de (Postfix) with ESMTP id 88E295AB890
 	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 20:52:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230118AbiIBSwo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Sep 2022 14:52:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41102 "EHLO
+        id S229658AbiIBSwl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Sep 2022 14:52:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41140 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230130AbiIBSwi (ORCPT
+        with ESMTP id S230129AbiIBSwi (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 14:52:38 -0400
 Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EE00110DB3
-        for <devicetree@vger.kernel.org>; Fri,  2 Sep 2022 11:52:36 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B348CE2C74
+        for <devicetree@vger.kernel.org>; Fri,  2 Sep 2022 11:52:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1662144755;
+        s=mimecast20190719; t=1662144751;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=mMXlQl3McI8LljLOfD/beUo4yXAI3eoC9II432XUfis=;
-        b=Y1q/QIDa8RiUa4fmi5yxNfrZA/3mri44TOG/fCdPXHsWZS601gAyQSm6sbT4LH9SXTXFTR
-        fFs8qhAhpGY6dge6PnfW6BIrkLJ7BTOs7SFEtWe425NeKIkeqJd06os/X6Ts+gTSt+roZe
-        KeeaU4t6AwC2yGJjka2RZbZ8lfeaC3Y=
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
- [209.85.160.197]) by relay.mimecast.com with ESMTP with STARTTLS
+        bh=uLJN7/BLiss15VoCQRispsUH3s6wfzk4G5XVQwrvZI0=;
+        b=DEgrurzHMf4AYc0NzQwbCJGPeZc5KAwhBxcAowHu8UvP6w/8X/1XqRyLkXfrUJ7hkrdpjm
+        oRs8ImaPAFXEoh+aV8zStoq/+r1UMT0hGoTaEbThXHf2MUI5z6yQ6vzRhQyLbhXJUpIQUm
+        eVZKFv+Yimbw+/KllSQdXJ1wOLtI1oA=
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com
+ [209.85.222.198]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-648-AA03WsxQMcSfJTpDNxw56A-1; Fri, 02 Sep 2022 14:52:25 -0400
-X-MC-Unique: AA03WsxQMcSfJTpDNxw56A-1
-Received: by mail-qt1-f197.google.com with SMTP id z10-20020a05622a124a00b003445680ff47so2163845qtx.8
-        for <devicetree@vger.kernel.org>; Fri, 02 Sep 2022 11:52:25 -0700 (PDT)
+ us-mta-442-dnJgBkL2NqCaFBpIl7UM1Q-1; Fri, 02 Sep 2022 14:52:30 -0400
+X-MC-Unique: dnJgBkL2NqCaFBpIl7UM1Q-1
+Received: by mail-qk1-f198.google.com with SMTP id j13-20020a05620a288d00b006be7b2a758fso2623072qkp.1
+        for <devicetree@vger.kernel.org>; Fri, 02 Sep 2022 11:52:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=mMXlQl3McI8LljLOfD/beUo4yXAI3eoC9II432XUfis=;
-        b=y5fkghPkwQ6Qs8JdQgqxJPmk3s4b+l8wtUba/RkASu9nwG2wYvl/vrjla08SaE2b3v
-         VksPGCnlRybhG7tACs3vphwJ7FCt7bCJMBadH6DDprytIy2yPCXKb63Bml/s8ly/WIcQ
-         bwnF1QUHGdyyjcqDNg2O56a7mtTQ7L6YKpQS9Ri4NYgDsQe/RUkqMRYuKZ65KRRQ7iD4
-         OSf/WxODmVlhZtM+h5T1aJnZrer/xYYwhZoPi1vdQK/fACJOZ4F0+58B8JTkHmZCLyXt
-         b+XqZq+ws5/neVcyJ+1qDox5DJjzXdgqpvYUIMqpXNqrspgI9xxm2o7dFhdnNVSzWWfY
-         DsmA==
-X-Gm-Message-State: ACgBeo3UuP+8wgCpWwGcmgjMM15BhXlrKe0oJ9P+XJepK+us3wsEJucJ
-        ZsmS6f0ejOLD9KSSGZ9aJL4DqUeDyePDMScl7TSIWlXmdUMBxyuq5PD5cBewbr322+/AVRLVWKl
-        ZWVh5YgSe1EA5k51vm9qjHQ==
-X-Received: by 2002:ac8:5a4a:0:b0:344:56b3:7eac with SMTP id o10-20020ac85a4a000000b0034456b37eacmr30002983qta.656.1662144745537;
-        Fri, 02 Sep 2022 11:52:25 -0700 (PDT)
-X-Google-Smtp-Source: AA6agR4ogEKHDJ2+aO2zqFgKOn0rePP35V50OUqeadZCgV7OcOEFgnmwuKzmiq0+0YezCsI8iP5uqA==
-X-Received: by 2002:ac8:5a4a:0:b0:344:56b3:7eac with SMTP id o10-20020ac85a4a000000b0034456b37eacmr30002963qta.656.1662144745324;
-        Fri, 02 Sep 2022 11:52:25 -0700 (PDT)
+        bh=uLJN7/BLiss15VoCQRispsUH3s6wfzk4G5XVQwrvZI0=;
+        b=X+evJUot7HajLoRu+rWkYecIxpU0a7No3TsIdeguPv+3dcl0HmOyrsLTlutCAtMn87
+         qML5ZmtDBy31Nm4gve6zz9VHbG3nTBR+5LpKzzUULEFLKWJzkdWPR1IAF+Z1OOaYCApi
+         5c43D+9bYafrDV3EnobRlCNG94qXE5fRSff7aKPhI6ZDlDvfKloryCCPj53Je0ZJARJG
+         S+OqSdfjsi1WJ6iPxeljUy52RCu/Gk5B6I9IYF7iIaEqCMSvEwwG2mWhY1bhgkbZXt8K
+         XF3ojKoxixfKqbtkE1ayymKfVtq1uhBwssxUfSL/t3oea7KRW567qj6CYbkOYaJPyD59
+         mdrA==
+X-Gm-Message-State: ACgBeo0zoy+S7/chmLWC4h2gAfVVcd51RxTRv12twrqmmOaev1MOOhdT
+        PWIBkFM8/hrgEvq07zAqYhPXAXbgCDrQk6IqzVbHGsZHymD14xYMy+AGeuGgip4DJWvs25bn19j
+        dep7k4ZT2HVqNZqnKvu0iww==
+X-Received: by 2002:a0c:9d46:0:b0:476:ff07:3fe7 with SMTP id n6-20020a0c9d46000000b00476ff073fe7mr30933295qvf.15.1662144750213;
+        Fri, 02 Sep 2022 11:52:30 -0700 (PDT)
+X-Google-Smtp-Source: AA6agR7aZwLqxASsgLyT6pr2oLxtShydapkDDS6erqpAYgTyjpgPuDnQlYnCVVNVGOO0dY0TwHgdKg==
+X-Received: by 2002:a0c:9d46:0:b0:476:ff07:3fe7 with SMTP id n6-20020a0c9d46000000b00476ff073fe7mr30933279qvf.15.1662144749987;
+        Fri, 02 Sep 2022 11:52:29 -0700 (PDT)
 Received: from halaneylaptop.redhat.com ([2600:1700:1ff0:d0e0::48])
-        by smtp.gmail.com with ESMTPSA id j4-20020ac874c4000000b0031ef0081d77sm1403168qtr.79.2022.09.02.11.52.24
+        by smtp.gmail.com with ESMTPSA id j4-20020ac874c4000000b0031ef0081d77sm1403168qtr.79.2022.09.02.11.52.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Sep 2022 11:52:25 -0700 (PDT)
+        Fri, 02 Sep 2022 11:52:29 -0700 (PDT)
 From:   Andrew Halaney <ahalaney@redhat.com>
 To:     agross@kernel.org, andersson@kernel.org,
         konrad.dybcio@somainline.org, lgirdwood@gmail.com,
@@ -63,9 +63,9 @@ To:     agross@kernel.org, andersson@kernel.org,
 Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, dianders@chromium.org,
         johan@kernel.org, Andrew Halaney <ahalaney@redhat.com>
-Subject: [PATCH 1/3] regulator: dt-bindings: qcom,rpmh: Use additionalProperties
-Date:   Fri,  2 Sep 2022 13:51:46 -0500
-Message-Id: <20220902185148.635292-2-ahalaney@redhat.com>
+Subject: [PATCH 2/3] regulator: dt-bindings: qcom,rpmh: Specify supply property
+Date:   Fri,  2 Sep 2022 13:51:47 -0500
+Message-Id: <20220902185148.635292-3-ahalaney@redhat.com>
 X-Mailer: git-send-email 2.37.2
 In-Reply-To: <20220902185148.635292-1-ahalaney@redhat.com>
 References: <20220902185148.635292-1-ahalaney@redhat.com>
@@ -74,7 +74,7 @@ Content-type: text/plain
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,46 +82,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Right now, running make dt_binding_check results in this snippet:
+The top level RPMh nodes have a supply property, make sure to specify it
+so the patternProperties later that are keyed off of the PMIC version
+are properly honored. Without this, and the dt-binding containing
+additionalProperties: false, you will see the following when running
+make dt_binding_check:
 
-    /mnt/extrassd/git/linux-next/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml: 'additionalProperties' is a required property
-            hint: A schema without a "$ref" to another schema must define all properties and use "additionalProperties"
-            from schema $id: http://devicetree.org/meta-schemas/base.yaml#
-      SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-    <snip..>
-    /mnt/extrassd/git/linux-next/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml: ignoring, error in schema:
+      DTEX    Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.example.dts
+      DTC     Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.example.dtb
+      CHECK   Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.example.dtb
+    /mnt/extrassd/git/linux-next/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.example.dtb: pm8998-rpmh-regulators: 'vdd-l7-l12-l14-l15-supply' does not match any of the regexes: '^(smps|ldo|lvs)[0-9]+$', 'pinctrl-[0-9]+'
+            From schema: /mnt/extrassd/git/linux-next/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
 
-Which results in the schema not being properly evaluated. Swap out
-unevaluatedProperties which doesn't seem to be doing anything for
-additionalProperties.
+That supply pattern is intended to be considered correct for the
+qcom,pm8998-rpmh-regulators compatible, and is no longer complained
+about with the supply property described.
+
+Unfortunately this pattern is wide enough that it no longer complains
+when you bork the expected supply for a compatible. I.e. for
+qcom,pm8998-rpmh-regulators, if I change the example usage in the
+binding to:
+
+        vdd-l0-l12-l14-l15-supply = <&pm8998_s5>;
+
+I get no warning, when really it should be of the pattern:
+
+        vdd-l7-l12-l14-l15-supply = <&pm8998_s5>;
 
 Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
 ---
- .../devicetree/bindings/regulator/qcom,rpmh-regulator.yaml    | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../devicetree/bindings/regulator/qcom,rpmh-regulator.yaml     | 3 +++
+ 1 file changed, 3 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
-index 9a36bee750af..b3fd60b21610 100644
+index b3fd60b21610..86265b513de3 100644
 --- a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
 +++ b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
-@@ -106,6 +106,8 @@ patternProperties:
+@@ -106,6 +106,9 @@ patternProperties:
      $ref: "regulator.yaml#"
      description: smps/ldo regulator nodes(s).
  
-+additionalProperties: false
++  ".*-supply$":
++    description: Input supply phandle(s) for this node
 +
- required:
-   - compatible
-   - qcom,pmic-id
-@@ -351,8 +353,6 @@ allOf:
-         "^vdd-l2[01]-supply$": true
-         "^vdd-s[1-8]-supply$": true
+ additionalProperties: false
  
--unevaluatedProperties: false
--
- examples:
-   - |
-     #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+ required:
 -- 
 2.37.2
 
