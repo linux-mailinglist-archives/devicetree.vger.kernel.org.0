@@ -2,59 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ABC875AB7AC
-	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 19:41:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 172A45AB7B8
+	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 19:45:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237141AbiIBRl0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Sep 2022 13:41:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48246 "EHLO
+        id S236669AbiIBRpu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Sep 2022 13:45:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237080AbiIBRlZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 13:41:25 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D36A2DF4CD;
-        Fri,  2 Sep 2022 10:41:23 -0700 (PDT)
+        with ESMTP id S235631AbiIBRps (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 13:45:48 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6463E97EC4;
+        Fri,  2 Sep 2022 10:45:47 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4E70362211;
-        Fri,  2 Sep 2022 17:41:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA429C433D6;
-        Fri,  2 Sep 2022 17:41:21 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 197F7B82CD1;
+        Fri,  2 Sep 2022 17:45:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08C9BC433D6;
+        Fri,  2 Sep 2022 17:45:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1662140482;
-        bh=Fhpz1/e1H4HMa8Jtwgh0t8VzDicCBOWzSpuCa2Lmwbo=;
+        s=k20201202; t=1662140744;
+        bh=IAX/zbZD+Vj6cEmd6Mj31B+0iUEHFKmq5HZH2ntSm9k=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=gFBRhA2BOL7MvGuouJRoyb3fUbvKNAtmooGPN+NY6lYQwKCWYUiVKqhmMGr1JJ7BC
-         KqMafQu/Vw8/9bCWvPOnB9H1oN/sJflozPajNK7ujhSWPHfyp8CwbZ8QisTz/3qJGT
-         tL6tdsfQZhbV0pEF05vlIQi8kFS93RdBj+GFQDTS9Q3hQgN4RocJelo1+EIuXH0wpj
-         6dKpnCSnz8P+osDbw3jxnHdFHLjnYLcWLDIdIaMXa7yjhOhP+QGev9O6YZVMi0VSHy
-         3MivnCmDTGiqZh2ZazTkJseGCB8J1Hqi4qpKpWr5PWZtqki0NGeaTXYsiBUnd7fPDE
-         YYguD0oecoW9Q==
-Date:   Fri, 2 Sep 2022 23:11:17 +0530
+        b=BFpYYFpS7E6zXL2r+ybhCdFPf+ESX9GfBgobUjrFUW6TdCQCvIs+wEW00xIRUOAxW
+         /LXZABLpGh5p5rredDWN/3h9FYjoyKpiAwb3YcaAricxURN67CcIPJKmcU6M1Wwqn3
+         6j4iTOB1csYzMve5Dvm2qyG0AlGtjMgokJC8Dd8hTFQWx3jow5DRMu+Q2v86AMMFJY
+         DZNIye6lNJz+iy9Ef9A71cNMSJ5HAfNfS0ZUJJCfUoRNrzGRttrTJAn8jo2/OwTTMB
+         jf6+vMZ9SD47eZ6v7PIK9469L5P3azPRKV+vkahq7nKOuN8NfX/PB/yf7mq/5phVxR
+         5KfzeSQd0IQ2Q==
+Date:   Fri, 2 Sep 2022 23:15:40 +0530
 From:   Vinod Koul <vkoul@kernel.org>
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        Camelia Alexandra Groza <camelia.groza@nxp.com>,
-        linuxppc-dev@lists.ozlabs.org, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>, Li Yang <leoyang.li@nxp.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-        linux-doc@vger.kernel.org
-Subject: Re: [PATCH v4 0/8] phy: Add support for Lynx 10G SerDes
-Message-ID: <YxJAPbfBpUpHeiqX@matsya>
-References: <20220804220602.477589-1-sean.anderson@seco.com>
- <6d312336-4bfc-a8d4-783c-116a21284edf@seco.com>
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, kishon@ti.com,
+        sakari.ailus@linux.intel.com, hverkuil@xs4all.nl,
+        jacopo@jmondi.org, laurent.pinchart+renesas@ideasonboard.com,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+        kernel@pengutronix.de
+Subject: Re: [PATCH 1/4] phy: dphy: refactor get_default_config
+Message-ID: <YxJBRNk8bqs6QmQ3@matsya>
+References: <20220818143307.967150-1-m.felsch@pengutronix.de>
+ <20220818143307.967150-2-m.felsch@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <6d312336-4bfc-a8d4-783c-116a21284edf@seco.com>
+In-Reply-To: <20220818143307.967150-2-m.felsch@pengutronix.de>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -65,17 +59,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30-08-22, 17:44, Sean Anderson wrote:
+On 18-08-22, 16:33, Marco Felsch wrote:
+> Factor out the calculation into phy_mipi_dphy_calc_config(). This is
+> needed for the follow up patch which adds the support to calculate the
+> timings based on a given hs clock. No functional changes are done.
 
-> 
-> ping?
-> 
-> Vinod/Kishon: any comments on the driver itself?
-
-Not sure why this is not in my queue or pw, can you please rebase and
-resend
-
-Thanks
+Acked-By: Vinod Koul <vkoul@kernel.org>
 
 -- 
 ~Vinod
