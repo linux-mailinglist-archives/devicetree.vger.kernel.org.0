@@ -2,68 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0384B5AA701
-	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 06:32:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54C545AA713
+	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 06:41:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231757AbiIBEce (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Sep 2022 00:32:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48084 "EHLO
+        id S231231AbiIBElH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Sep 2022 00:41:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229602AbiIBEcd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 00:32:33 -0400
-Received: from mail-oa1-x29.google.com (mail-oa1-x29.google.com [IPv6:2001:4860:4864:20::29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73553A9C08
-        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 21:32:32 -0700 (PDT)
-Received: by mail-oa1-x29.google.com with SMTP id 586e51a60fabf-11ee4649dfcso2204800fac.1
-        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 21:32:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=to:subject:message-id:date:from:sender:mime-version:from:to:cc
-         :subject:date;
-        bh=mud/A7o+XnMJWXVDwX9SMwmrF8mM8lY9Pgq0TzB72jE=;
-        b=QMZ4cLZdhPeBirXa4bttSlWcXKejHmE16xozbab4YvbfUawALPAwBKGbeAeCPfd6Yf
-         jcJZkf2gc2GsOzq2evmyaXEYsBzEbVvGqyQ9ehqp+OZ+TU7xKnqUudBEVWhAcDXmf9PA
-         XdJ2Pb+fletfxJeHnbEMrDc/hIio3tikqndMAoCHlw7kDrMxAOYiuoxduYvYjOBefrCv
-         nuD3arwjvHVY0B7Lrx0BNDqf3kOpGK2BNBz0mhD9IVMahXk9n5ee4zY0tUUdg0he/Iqg
-         wtjVxliTo/uUjFrRTHWezR1pt449MFqlYyKRP4cqfKm1aiXH0FydCKTBFi+3YW4H3JYH
-         Mirg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=to:subject:message-id:date:from:sender:mime-version
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=mud/A7o+XnMJWXVDwX9SMwmrF8mM8lY9Pgq0TzB72jE=;
-        b=LvldDbSAw/khSnC0VfuQiC9IcquIeyWIa8fSp1dAvdOp/2VPz7SNLqOxCsL6ZJNNeE
-         Yg3vIPlEZHz05JmSlmpAUfdLOkcZFWf3diTIH1vz6yQcqmL4/bHR4gYb8My+baDwYQYF
-         nSWUdRYcoRAtS/6Jrn51OQuiKDSRkDp8abnTrOvhpZVfM3PP3WcJ7ejg+oKOMiJlNEUL
-         MHpXyI1UVAVmJWYkJCjdip3bW8yK/3Zh0a0GMq2YodXuPaPam38YAXWsvvKG1gEyzhyM
-         MzQGLqrhoDCrpXxx1smnmM9hipy7z/R8hGT6/9QMLXDzFAREiZRdyEoJbcfqJdhQUCdV
-         uVjQ==
-X-Gm-Message-State: ACgBeo2qdsBphkgzfeO1vdUkj9TA1sk1B0XlyK3sPCVJJnZqMbcr3Cd8
-        pLBIG78EcRN0jgK4CmKNJ0aiMZO4s3Zk6IJxzzM=
-X-Google-Smtp-Source: AA6agR7X9c6g4lJ9F4R+6MnEoJm+KkV0NESz9pIFK7SF+ZMP9hzg6cg+roVpuCByF80pq1IF7lFnp2e7yUo3Y5qk7ig=
-X-Received: by 2002:a05:6871:722:b0:11f:36ab:2551 with SMTP id
- f34-20020a056871072200b0011f36ab2551mr1290712oap.237.1662093151894; Thu, 01
- Sep 2022 21:32:31 -0700 (PDT)
+        with ESMTP id S229554AbiIBElG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 00:41:06 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 390A5AE22B;
+        Thu,  1 Sep 2022 21:41:05 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 2824QimO029163;
+        Fri, 2 Sep 2022 04:41:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=MfoTqYR14hSfoM2+FEog2Mx+KbQ5o5dZRdkS7s9Vd68=;
+ b=ffSPX1TQIkpm5xGPvPRYHqBq4Rgevqzber5+MImW4xxBFBVFC1W+vPz2AJLAWAD3p+1X
+ nYkpQxYyUBRb2QnwxPiThkHbDek936ur+NTypM8kP5jDMXCIvdktkKHwd/Z99jJdhyK3
+ sSHltmxn5Z8cpvSPewBSp3tBLZscL0ESznncvv3Hi8YCgpI8uFKRzjW/xuW+Njemm2a2
+ OTs7dbcLwcmSMjM7IV8B5CG7ZOXUj2CktCYbNW1bzIypUx3Lv40VN/2dQx3CaqrHWyij
+ ddkp987ZeiYB6Na8BHj+jaHCZBaTN+tBTrs+m8Kn4TLWqgIGeginSKhUHbQNY7eJI4EV iQ== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jafkx4v3e-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 02 Sep 2022 04:41:00 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2824ZxpJ001416
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 2 Sep 2022 04:35:59 GMT
+Received: from blr-ubuntu-173.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.29; Thu, 1 Sep 2022 21:35:56 -0700
+From:   Rajendra Nayak <quic_rjendra@quicinc.com>
+To:     <krzysztof.kozlowski@linaro.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@somainline.org>,
+        <robh+dt@kernel.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>
+Subject: [PATCH v2 0/4] soc: qcom: icc-bwmon: Add support for llcc and cpu bwmon on sc7280
+Date:   Fri, 2 Sep 2022 10:05:07 +0530
+Message-ID: <20220902043511.17130-1-quic_rjendra@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Sender: romeoadja288@gmail.com
-Received: by 2002:a05:6820:1607:0:0:0:0 with HTTP; Thu, 1 Sep 2022 21:32:31
- -0700 (PDT)
-From:   Kayla Manthey <sgtkaylamanthey612@gmail.com>
-Date:   Fri, 2 Sep 2022 04:32:31 +0000
-X-Google-Sender-Auth: StTAB8XEjiBTvBJvsyuTEdwa17s
-Message-ID: <CALPkDDjRNqmJypCodJGf+qYW1aggzjD0ttY_qMogYWE=A+m_Bw@mail.gmail.com>
-Subject: 
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=0.8 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 3-P9iYNBXn6B6G_JBbqYoFhCsNECt1ZG
+X-Proofpoint-GUID: 3-P9iYNBXn6B6G_JBbqYoFhCsNECt1ZG
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.517,FMLib:17.11.122.1
+ definitions=2022-09-01_12,2022-08-31_03,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
+ clxscore=1015 spamscore=0 mlxlogscore=793 malwarescore=0 impostorscore=0
+ priorityscore=1501 adultscore=0 lowpriorityscore=0 mlxscore=0 bulkscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2207270000
+ definitions=main-2209020020
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Pozdrav, verujem da si dobro. provjerite i odgovorite na moje
-prethodne e-poruke.
+Changes in v2:
+Patch 1/1: rearranged compatibles in alphabetical order, no changes in rest of the patches
+
+This patchset adds support for cpu bwmon (bwmon4) and llcc bwmon (bwmon5) found
+on sc7280 SoC.
+
+Patchset is based on top of series [1] that adds support for llcc bwmon on sdm845
+
+[1]
+https://patchwork.kernel.org/project/linux-arm-msm/list/?series=663695&state=*
+
+Rajendra Nayak (4):
+  dt-bindings: interconnect: qcom,msm8998-bwmon: Add support for sc7280
+    BWMONs
+  soc: qcom: icc-bwmon: add support for sc7280 LLCC BWMON
+  soc: qcom: icc-bwmon: force clear counter/irq registers
+  arm64: dts: qcom: sc7280: Add cpu and llcc BWMON
+
+ .../interconnect/qcom,msm8998-bwmon.yaml      |  2 +
+ arch/arm64/boot/dts/qcom/sc7280.dtsi          | 76 +++++++++++++++++++
+ drivers/soc/qcom/icc-bwmon.c                  | 21 +++++
+ 3 files changed, 99 insertions(+)
+
+-- 
+2.17.1
+
