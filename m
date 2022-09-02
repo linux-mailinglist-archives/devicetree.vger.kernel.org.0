@@ -2,78 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84E995AA734
-	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 07:26:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E6355AA751
+	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 07:40:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234406AbiIBF0Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Sep 2022 01:26:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36658 "EHLO
+        id S235099AbiIBFkd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Sep 2022 01:40:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234495AbiIBF0W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 01:26:22 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7274A65816;
-        Thu,  1 Sep 2022 22:26:15 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 2823Oqna023061;
-        Fri, 2 Sep 2022 05:26:02 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=7jAlRj3PYriaEU9vEl69b11OtzITxYbCjvSmlmGJzFA=;
- b=SodWcd7F/mnQpsTjPPrV8pktah2RrD5SMv0vd6aY9EyZIxVx+ULgv6pOtMkHVemrU2KE
- 3j5aHEYs/TYfOzwKHZIKZfZHHy26XLDm6NKHKRR6t4spbtwx2j2sCwea5z1d0T9zwBrq
- qaEVKB/9jfBg533GyOrCbDPl7B+qVHRZazi0YY20mjrHx/wkRWm5oe2gFkhVFVUNpJG1
- +ZXvUInQoHPXZUPikHuQfq/Lzxz33WTsP2fxtWem+8MH6la39W7X0UKqTAF65Hj0D0jr
- B9S8eKLAyRUzTNG7AappOKUsO2TOZXucfG7lG/3KeYPdhKR3CLrCOeXOpGWwLIHEqRKM Tw== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jarc83kr7-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 02 Sep 2022 05:26:02 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2825Q1l6010111
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 2 Sep 2022 05:26:01 GMT
-Received: from [10.216.33.176] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Thu, 1 Sep 2022
- 22:25:59 -0700
-Message-ID: <e76d9de6-e1a2-148f-15c3-0883622c5e46@quicinc.com>
-Date:   Fri, 2 Sep 2022 10:55:57 +0530
+        with ESMTP id S235060AbiIBFkc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 01:40:32 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0D172E6BB;
+        Thu,  1 Sep 2022 22:40:30 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id AC045B829E0;
+        Fri,  2 Sep 2022 05:40:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 528C7C433C1;
+        Fri,  2 Sep 2022 05:40:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1662097228;
+        bh=5515oJEpY7e2I8udEF7OHHU204KydB1v52PApM443tg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=sJet8hBnFqqyrC9W0n0b3eThX9T6n4CsDdtz5NdFRHR0HOlUtqamI3yVFGjyN+MWf
+         C7hNT1BRP8mgqAe8rE7pVkFxtOAiBv95sRqdzCrXptrE3Es90TAToceIc+OKteMW6L
+         gRedBukWWda2YsAjalC9hceCIqp2vJlTsKZrT4knd+1aqyr5teHlUVD18uzNVyVpAQ
+         gpX7ABDmgWzEtwApq2mxjuYqTuJC2pHLOCSHZU09d2LqGEa0vfkfeTp051Syn/FH1y
+         lgbS447yof5RAiFPFbnC7sFkCUotyevshni8FAfmez3pvcwPnw60V1y4gMfGgk7sSL
+         uu6ZTRw6QurRw==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1oTzPq-0007lS-PV; Fri, 02 Sep 2022 07:40:30 +0200
+Date:   Fri, 2 Sep 2022 07:40:30 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andrew Halaney <ahalaney@redhat.com>,
+        Mark Brown <broonie@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 0/6] arm64: dts: qcom: Fix broken regulator spec on
+ RPMH boards
+Message-ID: <YxGXTs0MO6Sg7nit@hovoldconsulting.com>
+References: <20220829164952.2672848-1-dianders@chromium.org>
+ <Yw8EE/ESDUnIRf8P@hovoldconsulting.com>
+ <CAD=FV=VJz2hjvsUhsjBPt9nmm3X62oTdAqMeSFABYJietPPzWw@mail.gmail.com>
+ <YxDVNW+EQbHRw16s@hovoldconsulting.com>
+ <CAD=FV=VaDNLLjtKswWvhD0JmLpOoVHR05yU8kZESH3yQ0xescA@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v2 1/2] dt: bindings: net: add bindings to add WoW support
- for WCN6750
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <ath11k@lists.infradead.org>
-CC:     <linux-wireless@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <robh@kernel.org>
-References: <20220829124323.26874-1-quic_mpubbise@quicinc.com>
- <20220829124323.26874-2-quic_mpubbise@quicinc.com>
- <3b169ca3-2962-339f-c8cb-c48ac41c9aa5@linaro.org>
-From:   Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-In-Reply-To: <3b169ca3-2962-339f-c8cb-c48ac41c9aa5@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: pCnEztbE5GP_FkWlpWFV7GK8dxmsuMDS
-X-Proofpoint-GUID: pCnEztbE5GP_FkWlpWFV7GK8dxmsuMDS
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.517,FMLib:17.11.122.1
- definitions=2022-09-01_12,2022-08-31_03,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 suspectscore=0
- adultscore=0 mlxlogscore=999 lowpriorityscore=0 malwarescore=0
- clxscore=1011 priorityscore=1501 spamscore=0 mlxscore=0 impostorscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2207270000 definitions=main-2209020023
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAD=FV=VaDNLLjtKswWvhD0JmLpOoVHR05yU8kZESH3yQ0xescA@mail.gmail.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -82,67 +75,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/30/2022 10:55 PM, Krzysztof Kozlowski wrote:
-> On 29/08/2022 15:43, Manikanta Pubbisetty wrote:
->> Add required bindings to support WoW (Wake on Wireless) for
->> WCN6750 which is based on ath11k driver.
->>
->> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+On Thu, Sep 01, 2022 at 05:44:03PM -0700, Doug Anderson wrote:
+> Hi,
 > 
-> Use scripts/get_maintainers.pl to CC all maintainers and relevant
-> mailing lists.
+> On Thu, Sep 1, 2022 at 8:52 AM Johan Hovold <johan@kernel.org> wrote:
+> >
+> > On Wed, Aug 31, 2022 at 07:52:52AM -0700, Doug Anderson wrote:
+> > > Hi,
+> > >
+> > > On Tue, Aug 30, 2022 at 11:47 PM Johan Hovold <johan@kernel.org> wrote:
+> > > >
+> > > > On Mon, Aug 29, 2022 at 09:49:46AM -0700, Douglas Anderson wrote:
+> > > > > Prior to commit efb0cb50c427 ("regulator: qcom-rpmh: Implement
+> > > > > get_optimum_mode(), not set_load()") several boards were able to
+> > > > > change their regulator mode even though they had nothing listed in
+> > > > > "regulator-allowed-modes". After that commit (and fixes [1]) we'll be
+> > > > > stuck at the initial mode. Discussion of this (again, see [1]) has
+> > > > > resulted in the decision that the old dts files were wrong and should
+> > > > > be fixed to fully restore old functionality.
+> > > > >
+> > > > > This series attempts to fix everyone. I've kept each board in a
+> > > > > separate patch to make stable / backports work easier.
+> > > >
+> > > > Should you also update the bindings so that this can be caught during
+> > > > devicetree validation? That is, to always require
+> > > > "regulator-allowed-modes" when "regulator-allow-set-load" is specified.
+> > >
+> > > Yeah, it's probably a good idea. I'm happy to review a patch that does
+> > > that. I'm already quite a few patches deep of submitting random
+> > > cleanups because someone mentioned it in a code review. ;-) That's
+> > > actually how I got in this mess to begin with. The RPMH change was in
+> > > response to a request in a different code review. ...and that came
+> > > about in a code review that was posted in response to a comment about
+> > > how awkward setting regulator loads was... Need to get back to my day
+> > > job.
+> >
+> > Heh.
+> >
+> > > In any case, I think these dts patches are ready to land now.
+> >
+> > Yeah, as the old dtbs are now broken with newer kernels these are indeed
+> > needed.
 > 
+> With the latest patches in the regulator tree things shouldn't be
+> _too_ broken even without the dts files. Essentially things will get
+> stuck at their initial mode (HPM). So without these patches things
+> should all still boot but could possibly end up at a higher power
+> state.
 
-Sure, I'll take care of this going forward.
+Ok, and there's also a warning during boot when that happens so that
+it's not a silent regression?
 
->> ---
->>   .../bindings/net/wireless/qcom,ath11k.yaml      | 17 +++++++++++++++++
->>   1 file changed, 17 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
->> index a677b056f112..307a5b9d1588 100644
->> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
->> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
->> @@ -66,6 +66,14 @@ properties:
->>       required:
->>         - iommus
->>   
->> +  qcom,smem-states:
->> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->> +    description: State bits used in WCN6750 to signal the firmware
->> +                 to exit from WoW.
-> 
-> You need to describe the item (s).
-> 
-
-Okay
-
->> +
->> +  qcom,smem-state-names:
->> +    description: The names of the state bits used for SMP2P output
-> 
-> You need to describe the item (s).
-> 
-
-Okay
-
->> +
->>   required:
->>     - compatible
->>     - reg
->> @@ -410,6 +418,13 @@ examples:
->>           };
->>       };
->>   
->> +    smp2p-wpss {
->> +        wlan_smp2p_out: wlan_smp2p_out {
-> 
-> No underscores in node names. This example is incomplete and I am not
-> sure what is the benefit of adding provider example to the consumer
-> binding... Just skip it.
-> 
-
-Understood, I'll make the changes.
-
-Thanks,
-Manikanta
+Johan
