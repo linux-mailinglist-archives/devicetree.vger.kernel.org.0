@@ -2,92 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CC055AADAE
-	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 13:32:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D666E5AADC7
+	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 13:37:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236166AbiIBLcT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Sep 2022 07:32:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44292 "EHLO
+        id S229496AbiIBLhn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Sep 2022 07:37:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236124AbiIBLbw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 07:31:52 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 314A22A277;
-        Fri,  2 Sep 2022 04:30:18 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 613D26209A;
-        Fri,  2 Sep 2022 11:30:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id C66C9C433D6;
-        Fri,  2 Sep 2022 11:30:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1662118217;
-        bh=p56tPFujkhk9sqPkTP10zznYngxLR5f7HLsH03HaYzY=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=LiPG8H05Iu8lIKQL9SS/RdWdlipBUgpBuDQ0GPxiV+0kOXTdf7/eiEzGU/xdZMEd3
-         LVGc+g4kTK/4TcrT27/21BsHaWfJU17NywrM1jEh2B4fiMv8gpGUn3nlZBV+OM6S3D
-         TyhjaZt0X0FqRAj+V9pRXL26hoWbsyPtadH3JJwSVhzLXT4+nG36jdCtrdriDfB17A
-         uhwMHjbNKEWUBfRffoF4aeS+eW4zJc6CoMSv2u+SuYnkcycKbRhPFZuVCSpVgRTPbh
-         vI/LB8Yug8LlaIJGHjBtCLLDNmO9qjxtlBfBv6gJA+4uWPT7tjAMz1mOiXZM5x2nnu
-         3xb97sLYxfTqg==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id B0FA0E924D5;
-        Fri,  2 Sep 2022 11:30:17 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S232815AbiIBLhl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 07:37:41 -0400
+Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45C286DAEB;
+        Fri,  2 Sep 2022 04:37:40 -0700 (PDT)
+Received: by mail-qk1-x734.google.com with SMTP id s22so1462748qkj.3;
+        Fri, 02 Sep 2022 04:37:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=X8xtrUCKqZajvHu5+7HuoJE7xw33jPFSJSluYQKlujk=;
+        b=GItxyUUGsjQiIQCULMB992VpRkYQdUdHKsA+OXykiNHBcpCXrBfwLBmFBLzJrCcUev
+         EljzItxO3wXmb3TI4bO+QZseuIQGwczf76XEJId5ZhXvsNDA1l5d6E9CGj90rFQSOXfl
+         ztmAWhmZbz+1Uy7sPh2V5cQNu+QvQGIOiW3XtJYZEk/nYIl5BjNZkwfBuqbsu7XoAFny
+         vmhVZyPr/0RbqtU4Ho6qsUKAYMlklj9frfEy+JnMjAiEnQIIFEqknr9XuR6Pd5LETAwu
+         P9h9Z/I/MwT7JOPj0EzvxAraenVBMO+2EhVG1g2mhhTvjHjoq5yNPWooIEtHSg8DvR6w
+         HGcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=X8xtrUCKqZajvHu5+7HuoJE7xw33jPFSJSluYQKlujk=;
+        b=CES8IqDLvC76uMEtOAUP3p+ImLq7LxTeAm9dsN9hiFY6SoBYp02V08pjxirHbYELRm
+         qvtmAugBJAWjogWO6huwFNaSL7YHdw9lbEXzPMHNT6xMfNavATnVonA6S67mrbVpiDy+
+         DtVv5f3kjm2Wt8C5Vd1xllrVS1wq95OYbcgFujEGvX4bRh2T4tPVCE6e8Fmshx7Xqt6Z
+         fXFd2oIceeRKgfbObVke7Pnq0D6j7BMQpJkIHe+DOQRylLNmcAq1PW1Zhj1z8BZc+3nd
+         +iQMH9grNrFgsNdQQNslgzGIi2OKpeNCRDp7dsNLPwfg64v9+bLTKFwY1idjGO5KQakc
+         0Zuw==
+X-Gm-Message-State: ACgBeo132yJuJ1onGw+TJ+Hv5cmoB+Olmqk7D0sTjGS6qVKcDwHrHs5A
+        MqMPpKYhiL7nx92J/gBlHQvp+4JgqDPGOeEkB19TKVfLe2k=
+X-Google-Smtp-Source: AA6agR7+U6uwe1PA7UjZ+XB9y3+G1dNuM7weiJvpRUp/HWEglNmD2Cz3AnHFcBk7ysDWr8oERmuizarE9B8SMnlbw8I=
+X-Received: by 2002:a05:620a:410e:b0:6bc:5cdc:88ec with SMTP id
+ j14-20020a05620a410e00b006bc5cdc88ecmr23202158qko.734.1662118659415; Fri, 02
+ Sep 2022 04:37:39 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next 0/2] net: lan966x: make reset optional
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <166211821772.29115.1067348886284578708.git-patchwork-notify@kernel.org>
-Date:   Fri, 02 Sep 2022 11:30:17 +0000
-References: <20220831111855.1749646-1-michael@walle.cc>
-In-Reply-To: <20220831111855.1749646-1-michael@walle.cc>
-To:     Michael Walle <michael@walle.cc>
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, lars.povlsen@microchip.com,
-        Steen.Hegelund@microchip.com, horatiu.vultur@microchip.com,
-        UNGLinuxDriver@microchip.com, p.zabel@pengutronix.de,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220901121700.1325733-1-ciprian.regus@analog.com>
+ <20220901121700.1325733-4-ciprian.regus@analog.com> <4067432b-b5a6-f3eb-a707-5fa298ba846b@linaro.org>
+ <20220902120611.000007a0@huawei.com>
+In-Reply-To: <20220902120611.000007a0@huawei.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Fri, 2 Sep 2022 14:37:03 +0300
+Message-ID: <CAHp75Vfn_84-xww5w_oHf0zqm4dZxycSU1cDKw7-KQzDyoCHXw@mail.gmail.com>
+Subject: Re: [PATCH v2 4/5] drivers: iio: adc: LTC2499 support
+To:     Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Ciprian Regus <ciprian.regus@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+On Fri, Sep 2, 2022 at 2:06 PM Jonathan Cameron
+<Jonathan.Cameron@huawei.com> wrote:
+> On Thu, 1 Sep 2022 16:23:09 +0300
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> > On 01/09/2022 15:16, Ciprian Regus wrote:
 
-This series was applied to netdev/net-next.git (master)
-by David S. Miller <davem@davemloft.net>:
+...
 
-On Wed, 31 Aug 2022 13:18:53 +0200 you wrote:
-> This is the remaining part of the reset rework on the LAN966x targetting
-> the netdev tree.
-> 
-> The former series can be found at:
-> https://lore.kernel.org/lkml/20220826115607.1148489-1-michael@walle.cc/
-> 
-> Michael Walle (2):
->   dt-bindings: net: sparx5: don't require a reset line
->   net: lan966x: make reset optional
-> 
-> [...]
+> > > Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/2499fe.pdf
+> >
+> > Missing blank line. Use standard Git tools for handling your patches or
+> > be sure you produce the same result when using some custom process.
+>
+> My understanding is Datasheet is a standard tag as part of the main tag block.
+> There should not be a blank line between that and the Sign off.
+>
+> +CC Andy who can probably point to a reference for that...
 
-Here is the summary with links:
-  - [net-next,1/2] dt-bindings: net: sparx5: don't require a reset line
-    https://git.kernel.org/netdev/net-next/c/baa6a9b59070
-  - [net-next,2/2] net: lan966x: make reset optional
-    https://git.kernel.org/netdev/net-next/c/f4c1f51cea4e
+Yes, the idea to have a Datasheet as a formal tag. Which is, by the
+way, somehow established practice (since ca.2020).
 
-You are awesome, thank you!
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+With Best Regards,
+Andy Shevchenko
