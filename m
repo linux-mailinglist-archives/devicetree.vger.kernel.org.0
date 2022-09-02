@@ -2,123 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AFF75AA807
-	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 08:28:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A417E5AA824
+	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 08:40:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235374AbiIBG2I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Sep 2022 02:28:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48774 "EHLO
+        id S232221AbiIBGjm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Sep 2022 02:39:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235469AbiIBG2A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 02:28:00 -0400
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 495C4B4E98;
-        Thu,  1 Sep 2022 23:27:59 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.93,283,1654527600"; 
-   d="scan'208";a="131435234"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 02 Sep 2022 15:27:57 +0900
-Received: from localhost.localdomain (unknown [10.226.92.155])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id CF7164005622;
-        Fri,  2 Sep 2022 15:27:54 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>
-Subject: [PATCH v5] ARM: dts: r9a06g032-rzn1d400-db: Enable CAN1
-Date:   Fri,  2 Sep 2022 07:27:52 +0100
-Message-Id: <20220902062752.56841-1-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S235357AbiIBGjk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 02:39:40 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44ED6BB690;
+        Thu,  1 Sep 2022 23:39:36 -0700 (PDT)
+X-UUID: 6af7e1f3cd024e96badef242daa60277-20220902
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=m70ifUKfsROMC77D6MINT4jBGjUL1IGdM1yLkcaO2/4=;
+        b=QI6KSHGgVcpa/szzu3UPw3t3rXqjk8Xvn4pzSW+gfja2rAzJnzE+I6UPe30IabX+kTcucV/tCMnajIOWsYchJujDwZ9/da3OF9qR30Qm2AyzdNLpiuKlPFXAs7SCAJoO+dBgyludUuCd5AK8eaQBs4Y3erNcKzEbwL6NllO+Bws=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.10,REQID:38e55a4e-dbd2-4477-8c24-0bbfc925ba99,OB:0,L
+        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_
+        Ham,ACTION:release,TS:0
+X-CID-META: VersionHash:84eae18,CLOUDID:c224eb20-1c20-48a5-82a0-25f9c331906d,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
+        ,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 6af7e1f3cd024e96badef242daa60277-20220902
+Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw02.mediatek.com
+        (envelope-from <johnson.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1070473871; Fri, 02 Sep 2022 14:39:28 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Fri, 2 Sep 2022 14:39:27 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 2 Sep 2022 14:39:27 +0800
+Message-ID: <1773eadbc41a6e4e1dd8a3ace213e51974e2fcbd.camel@mediatek.com>
+Subject: Re: [PATCH 0/4] Introduce MediaTek frequency hopping driver
+From:   Johnson Wang <johnson.wang@mediatek.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <angelogioacchino.delregno@collabora.com>, <sboyd@kernel.org>
+CC:     <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Fri, 2 Sep 2022 14:39:27 +0800
+In-Reply-To: <330d1f46-0e3c-f58e-b916-9e8644e7b4a1@linaro.org>
+References: <20220831124850.7748-1-johnson.wang@mediatek.com>
+         <330d1f46-0e3c-f58e-b916-9e8644e7b4a1@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
-X-Spam-Level: *
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_CSS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The CN10/CN11 on RZ/N1-EB board are headers to add jumpers to select which
-CAN interface to route to the real CAN connector J16.
+On Wed, 2022-08-31 at 16:20 +0300, Krzysztof Kozlowski wrote:
+> On 31/08/2022 15:48, Johnson Wang wrote:
+> > Introduce MediaTek frequency hopping and spread spectrum clocking
+> > control
+> > for MT8186.
+> 
+> With one line introduction, you do not help us to understand this. :(
+> 
+> Best regards,
+> Krzysztof
 
-For a normal use case either we need to wire CAN1 or CAN2, but not both.
+Hi Krzysztof,
 
-This patch enables CAN1 and disables CAN2 by default assuming CN10/CN11
-is wired for CAN1.
+Ok, I will describe more in the next version.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v4->v5:
- * Updated commit description
- * Enabled CAN1 and disabled CAN2 by default,assuming CN10/CN11
-   is wired for CAN1.
-v3->v4:
- * Updated commit description
- * Enabled CAN2 by default
- * Added a macro BOARD_HAS_CAN1_ENABLED to configure CAN1,
-   if the board supports it.
-v2->v3:
- * No change
-v1->v2:
- * No change
----
- arch/arm/boot/dts/r9a06g032-rzn1d400-db.dts | 28 +++++++++++++++++++++
- 1 file changed, 28 insertions(+)
-
-diff --git a/arch/arm/boot/dts/r9a06g032-rzn1d400-db.dts b/arch/arm/boot/dts/r9a06g032-rzn1d400-db.dts
-index 4bf813335e21..c18bbd7141c4 100644
---- a/arch/arm/boot/dts/r9a06g032-rzn1d400-db.dts
-+++ b/arch/arm/boot/dts/r9a06g032-rzn1d400-db.dts
-@@ -26,6 +26,22 @@ aliases {
- 	};
- };
- 
-+&can0 {
-+	pinctrl-0 = <&pins_can0>;
-+	pinctrl-names = "default";
-+
-+	/* Assuming CN10/CN11 are wired for CAN1 */
-+	status = "okay";
-+};
-+
-+&can1 {
-+	pinctrl-0 = <&pins_can1>;
-+	pinctrl-names = "default";
-+
-+	/* Please only enable can0 or can1, depending on CN10/CN11 */
-+	/* status = "okay"; */
-+};
-+
- &eth_miic {
- 	status = "okay";
- 	renesas,miic-switch-portin = <MIIC_GMAC2_PORT>;
-@@ -52,6 +68,18 @@ &mii_conv5 {
- };
- 
- &pinctrl{
-+	pins_can0: pins_can0 {
-+		pinmux = <RZN1_PINMUX(162, RZN1_FUNC_CAN)>,	/* CAN0_TXD */
-+			 <RZN1_PINMUX(163, RZN1_FUNC_CAN)>;	/* CAN0_RXD */
-+		drive-strength = <6>;
-+	};
-+
-+	pins_can1: pins_can1 {
-+		pinmux = <RZN1_PINMUX(109, RZN1_FUNC_CAN)>,	/* CAN1_TXD */
-+			 <RZN1_PINMUX(110, RZN1_FUNC_CAN)>;	/* CAN1_RXD */
-+		drive-strength = <6>;
-+	};
-+
- 	pins_eth3: pins_eth3 {
- 		pinmux = <RZN1_PINMUX(36, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
- 			 <RZN1_PINMUX(37, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
--- 
-2.25.1
+BRs,
+Johnson Wang
 
