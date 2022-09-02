@@ -2,226 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84F5C5AB776
-	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 19:26:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4626D5AB780
+	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 19:28:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235862AbiIBR0h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Sep 2022 13:26:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46158 "EHLO
+        id S236654AbiIBR2N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Sep 2022 13:28:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236923AbiIBR0f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 13:26:35 -0400
-Received: from mail-oo1-xc2a.google.com (mail-oo1-xc2a.google.com [IPv6:2607:f8b0:4864:20::c2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A67BE67CB6
-        for <devicetree@vger.kernel.org>; Fri,  2 Sep 2022 10:26:31 -0700 (PDT)
-Received: by mail-oo1-xc2a.google.com with SMTP id d63-20020a4a5242000000b0044880019622so469849oob.13
-        for <devicetree@vger.kernel.org>; Fri, 02 Sep 2022 10:26:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura.hr; s=sartura;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=5YEXvqR+vx/Umcehqyrubxd7/QR3N0wzSkpi6lMpvlM=;
-        b=O+yG3V/tDsWo9zDQBgva45Mv6BiwFMSlpOrEqSXo5i1B/b3z3qe0Q5nXPqQZz26vX1
-         RAY9f1NcJMgBI1g/ZAEsylLBpq0nZscyHFwagSSjEObaZco2AFTof9XDjiI9nY9zwJx5
-         QJbN5Kdc4uH/9br/Cl+BTjXWFnXhunRzDsyw1JmHTZbEjTghVdQ1n7+zk9+9Ay4JpJJP
-         vkch1ajLO2QXpwNHsbYUCcIVRBgm1aQfqd7LW98WkANMuDUoQHcIoP9wlHORQHs+MbXQ
-         KSzQj95C04bzjFrdA7COuCyMR6zIWM/EDdbHtUl2DxUeLiZdmDLmZyvyT+HI4+l8i33Y
-         wyfg==
+        with ESMTP id S237053AbiIBR2L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 13:28:11 -0400
+Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DD7B6DAF1;
+        Fri,  2 Sep 2022 10:28:10 -0700 (PDT)
+Received: by mail-ot1-f43.google.com with SMTP id t11-20020a05683014cb00b0063734a2a786so1875978otq.11;
+        Fri, 02 Sep 2022 10:28:10 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=5YEXvqR+vx/Umcehqyrubxd7/QR3N0wzSkpi6lMpvlM=;
-        b=fDZCH+yqxBu5pU+BxH+M76wfHegTvAApntnb1bAqup7Nqoss3xMbJFmlVOJcJZZe/x
-         qf/pTM8LKN1HPCVzw+X49Yz55uUJEslUM14aNt6Rpo8jILTB82lxB0Q2133fC8+Rs3ie
-         PodshsA024OEp2r8foecTu9qCcv4if4F9LJlsi1LooMebkNqNgJPODexzwB3V0YbnKmK
-         EBkSygpyHmaMrLpB5LoFuLS10RVzRebu8t+qa5Xs10+j5LpkE4WMwZHzdMKHxBv1a/LB
-         bsTA4DP1Hf4sE5g1LMvkbYalee5A7y4WIuHhmPQNh4DDocyv/ZXizlUwilF+wyKFAOln
-         /BQA==
-X-Gm-Message-State: ACgBeo0Txp50n9FMDvmho+KhtWd5nPHtSnZblaoTEW+J9XZfBcMyH07r
-        0FWAG8OEKK+7rk/uQr8uOssa8gtyAXSRXpb77Iep3w==
-X-Google-Smtp-Source: AA6agR7si9Ke79mR4M0LW2O+RbrCfYe42jelsn8TPWXCR4mhJKEFZA2yRB9prUJpTuJ+VSgtMlX/d3Hhhn1KvbiYtC8=
-X-Received: by 2002:a05:6820:609:b0:44a:8ba7:a9ab with SMTP id
- e9-20020a056820060900b0044a8ba7a9abmr12768974oow.95.1662139590112; Fri, 02
- Sep 2022 10:26:30 -0700 (PDT)
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=OcvzQvUSS5BtKmCuAUECPvo/XLnVbi/A8dYrn8VmGY8=;
+        b=RHjmbFCQAM43ykT7EzWwuzUy4dd5i0vkSPHq2d7i1T7WrCh/DIE3lpnCw+K1JMy6iP
+         8iec8uZh5BnxXYGvJwEBSogrLEjHrxk7ewHZaHvHPhbrPqDVSOYWYGlQ91m5RbA+R0OM
+         fwb7+/inqGFSG9yzN+D6qtROAr3n9oAZ1fjaY4UXVtGy7YhNRi6eE+ZMKESARl6+xdiQ
+         PKL7yX50cIWQW516hjaOyoMfvdKEe+l/Yw8M8mI4f2n7zU6JgMQdjzBfxim5bQCYyM+D
+         rV1M6OL+oEOTNHGmDrg9kDJE6sCGqEdYsMvN9rAxkjGXdNf9+3V77yG6oOKFPLtHVaXO
+         ooWw==
+X-Gm-Message-State: ACgBeo0DI4A8alSYbIqrz8Jo/DineBJyebJc8HUCkfrWVzjiQf9kJ5iV
+        wjqp6z2+FFA2rjTGeBLXWiL8stp1Gg==
+X-Google-Smtp-Source: AA6agR6ne64hi/duoCub5KI+hVE1YPF+X4QCb+HaiW6b/UpaTprnQRbugYjsvv1s/+lraQv3IukWkA==
+X-Received: by 2002:a05:6830:929:b0:63b:25ba:dfe4 with SMTP id v41-20020a056830092900b0063b25badfe4mr12145905ott.311.1662139689454;
+        Fri, 02 Sep 2022 10:28:09 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id b10-20020a05687051ca00b0011e73536301sm1389723oaj.52.2022.09.02.10.28.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 02 Sep 2022 10:28:09 -0700 (PDT)
+Received: (nullmailer pid 90543 invoked by uid 1000);
+        Fri, 02 Sep 2022 17:28:08 -0000
+Date:   Fri, 2 Sep 2022 12:28:08 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Mark Kettenis <mark.kettenis@xs4all.nl>
+Cc:     linux@armlinux.org.uk, krzysztof.kozlowski@linaro.org,
+        arnd@arndb.de, lee@kernel.org, linus.walleij@linaro.org,
+        alyssa@rosenzweig.io, asahi@lists.linux.dev, brgl@bgdev.pl,
+        marcan@marcan.st, linux-arm-kernel@lists.infradead.org,
+        linux-gpio@vger.kernel.org, sven@svenpeter.dev,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/6] dt-bindings: mfd: add binding for Apple Mac System
+ Management Controller
+Message-ID: <20220902172808.GB52527-robh@kernel.org>
+References: <426469c1-13cc-178b-4904-09439d7788e8@linaro.org>
+ <YxDL+cAx9kkZRL8K@shell.armlinux.org.uk>
+ <928ddeff-efac-920c-7bbf-dda35a942b93@linaro.org>
+ <YxDOpCq0vIlt4VNa@shell.armlinux.org.uk>
+ <2fedff34-6a20-f1ce-a756-2bd8671fcd52@linaro.org>
+ <YxDWG5dmzErhKIXw@shell.armlinux.org.uk>
+ <ef6c7248-1efa-5366-6bcd-900c5f10ccb2@linaro.org>
+ <YxDiBFIn6artUOZm@shell.armlinux.org.uk>
+ <CAL_Jsq+GCKisAVA0AfE=yWJYy18mAGQ7rY1sKGYraXv-berNSg@mail.gmail.com>
+ <d3cec3d22e464fa8@bloch.sibelius.xs4all.nl>
 MIME-Version: 1.0
-References: <20220516124828.45144-1-robert.marko@sartura.hr>
- <20220516124828.45144-10-robert.marko@sartura.hr> <CA+HBbNF2R--984SdB0v42GMQOwAx4pTEz_FHifTtebN05ELU-Q@mail.gmail.com>
- <87mtbm5gaf.fsf@BL-laptop> <CA+HBbNG13dspUspWMrT=LWpCnMCZ-r-K8zR4RaoLf8HxhzStSQ@mail.gmail.com>
- <87ler1er7z.fsf@BL-laptop> <87czcdeovj.fsf@BL-laptop>
-In-Reply-To: <87czcdeovj.fsf@BL-laptop>
-From:   Robert Marko <robert.marko@sartura.hr>
-Date:   Fri, 2 Sep 2022 19:26:18 +0200
-Message-ID: <CA+HBbNEQ7dJEU7ug4X1F5+houpk=J==4O3sSE34cDyyw-8BTvw@mail.gmail.com>
-Subject: Re: [PATCH v4 10/10] arm64: dts: marvell: add support for Methode eDPU
-To:     Gregory CLEMENT <gregory.clement@bootlin.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        andrew@lunn.ch, sebastian.hesselbarth@gmail.com,
-        kostap@marvell.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d3cec3d22e464fa8@bloch.sibelius.xs4all.nl>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 2, 2022 at 6:13 PM Gregory CLEMENT
-<gregory.clement@bootlin.com> wrote:
->
-> Gregory CLEMENT <gregory.clement@bootlin.com> writes:
->
-> > Robert Marko <robert.marko@sartura.hr> writes:
-> >
-> >> On Tue, Aug 30, 2022 at 9:42 AM Gregory CLEMENT
-> >> <gregory.clement@bootlin.com> wrote:
-> >>>
-> >>> Robert Marko <robert.marko@sartura.hr> writes:
-> >>>
-> >>> > On Mon, May 16, 2022 at 2:48 PM Robert Marko <robert.marko@sartura.hr> wrote:
-> >>> >>
-> >>> >> Methode eDPU is an Armada 3720 powered board based on the Methode uDPU.
-> >>> >>
-> >>> >> They feature the same CPU, RAM, and storage as well as the form factor.
-> >>> >>
-> >>> >> However, eDPU only has one SFP slot plus a copper G.hn port.
-> >>> >>
-> >>> >> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> >>> >> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >>> >> ---
-> >>> >> Changes in v2:
-> >>> >> * Make the DTS split a separate commit
-> >>> >> ---
-> >>> >>  arch/arm64/boot/dts/marvell/Makefile             |  1 +
-> >>> >>  arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts | 14 ++++++++++++++
-> >>> >>  2 files changed, 15 insertions(+)
-> >>> >>  create mode 100644 arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts
-> >>> >>
-> >>> >> diff --git a/arch/arm64/boot/dts/marvell/Makefile b/arch/arm64/boot/dts/marvell/Makefile
-> >>> >> index 1c794cdcb8e6..104d7d7e8215 100644
-> >>> >> --- a/arch/arm64/boot/dts/marvell/Makefile
-> >>> >> +++ b/arch/arm64/boot/dts/marvell/Makefile
-> >>> >> @@ -1,6 +1,7 @@
-> >>> >>  # SPDX-License-Identifier: GPL-2.0
-> >>> >>  # Mvebu SoC Family
-> >>> >>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-db.dtb
-> >>> >> +dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-eDPU.dtb
-> >>> >>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin.dtb
-> >>> >>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-emmc.dtb
-> >>> >>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-ultra.dtb
-> >>> >> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts b/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts
-> >>> >> new file mode 100644
-> >>> >> index 000000000000..57fc698e55d0
-> >>> >> --- /dev/null
-> >>> >> +++ b/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts
-> >>> >> @@ -0,0 +1,14 @@
-> >>> >> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> >>> >> +
-> >>> >> +/dts-v1/;
-> >>> >> +
-> >>> >> +#include "armada-3720-uDPU.dtsi"
-> >>> >> +
-> >>> >> +/ {
-> >>> >> +       model = "Methode eDPU Board";
-> >>> >> +       compatible = "methode,edpu", "marvell,armada3720", "marvell,armada3710";
-> >>> >> +};
-> >>> >> +
-> >>> >> +&eth0 {
-> >>> >> +       phy-mode = "2500base-x";
-> >>> >> +};
-> >>> >> --
-> >>> >> 2.36.1
-> >>> >>
-> >>> >
-> >>> > Hi Gregory,
-> >>> Hello Roberto,
-> >>>
-> >>> > Is there something else that I can improve in the series?
-> >>>
-> >>> Sorry for having missed this series. At first view it seems OK, I am
-> >>> going to have a closer look this week.
-> >>
-> >> Thanks, that sounds good.
-> >
-> > Hello,
-> >
-> > could you send again patch 8, I managed to apply all the other ones
-> > excepting this one.
->
-> Finally I managed to sort it out, all the series is applied on mvebu/dt64
+On Fri, Sep 02, 2022 at 05:06:43PM +0200, Mark Kettenis wrote:
+> > From: Rob Herring <robh+dt@kernel.org>
+> > Date: Thu, 1 Sep 2022 17:33:31 -0500
+> > 
+> > On Thu, Sep 1, 2022 at 11:47 AM Russell King (Oracle)
+> > <linux@armlinux.org.uk> wrote:
+> > >
+> > > On Thu, Sep 01, 2022 at 07:25:03PM +0300, Krzysztof Kozlowski wrote:
+> > > > On 01/09/2022 18:56, Russell King (Oracle) wrote:
+> > > > >
+> > > > > 8<===
+> > > > > From: "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
+> > > > > Subject: [PATCH] dt-bindings: mfd: add binding for Apple Mac System Management
+> > > > >  Controller
+> > > > >
+> > > > > Add a DT binding for the Apple Mac System Management Controller.
+> > > > >
+> > > > > Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+> > > >
+> > > > Yes, looks good.
+> > > >
+> > > > I won't add Reviewed-by tag, because I think it would confuse Patchwork,
+> > > > so please send a v2 at some point.
+> > >
+> > > Thanks. Do you have any suggestions for patch 2? Should I merge the
+> > > description in patch 2 into this file?
+> > >
+> > > The full dts for this series looks like this:
+> > >
+> > >                 smc: smc@23e400000 {
+> > >                         compatible = "apple,t8103-smc", "apple,smc";
+> > >                         reg = <0x2 0x3e400000 0x0 0x4000>,
+> > >                                 <0x2 0x3fe00000 0x0 0x100000>;
+> > >                         reg-names = "smc", "sram";
+> > >                         mboxes = <&smc_mbox>;
+> > >
+> > >                         smc_gpio: gpio {
+> > >                                 gpio-controller;
+> > >                                 #gpio-cells = <2>;
+> > >                         };
+> > >                 };
+> > >
+> > > but the fuller version in the asahi linux tree looks like:
+> > >
+> > >                 smc: smc@23e400000 {
+> > >                         compatible = "apple,t8103-smc", "apple,smc";
+> > >                         reg = <0x2 0x3e400000 0x0 0x4000>,
+> > >                                 <0x2 0x3fe00000 0x0 0x100000>;
+> > >                         reg-names = "smc", "sram";
+> > >                         mboxes = <&smc_mbox>;
+> > >
+> > >                         smc_gpio: gpio {
+> > >                                 gpio-controller;
+> > >                                 #gpio-cells = <2>;
+> > 
+> > Only 2 properties doesn't really need its own schema doc. However, I
+> > would just move these to the parent node.
+> 
+> When we designed the bindings, it was our understanding that having
+> separate nodes better matches Linux's MFD driver model.
 
-Thanks,
-Regards
-Robert
->
-> Thanks,
->
-> Gregory
-> >
-> >
-> >>
-> >> Regards,
-> >> Robert
-> >>>
-> >>> Gregory
-> >>>
-> >>>
-> >>> >
-> >>> > Regards,
-> >>> > Robert
-> >>> >
-> >>> > --
-> >>> > Robert Marko
-> >>> > Staff Embedded Linux Engineer
-> >>> > Sartura Ltd.
-> >>> > Lendavska ulica 16a
-> >>> > 10000 Zagreb, Croatia
-> >>> > Email: robert.marko@sartura.hr
-> >>> > Web: www.sartura.hr
-> >>>
-> >>> --
-> >>> Gregory Clement, Bootlin
-> >>> Embedded Linux and Kernel engineering
-> >>> http://bootlin.com
-> >>
-> >>
-> >>
-> >> --
-> >> Robert Marko
-> >> Staff Embedded Linux Engineer
-> >> Sartura Ltd.
-> >> Lendavska ulica 16a
-> >> 10000 Zagreb, Croatia
-> >> Email: robert.marko@sartura.hr
-> >> Web: www.sartura.hr
-> >
-> > --
-> > Gregory Clement, Bootlin
-> > Embedded Linux and Kernel engineering
-> > http://bootlin.com
-> >
-> > _______________________________________________
-> > linux-arm-kernel mailing list
-> > linux-arm-kernel@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
->
-> --
-> Gregory Clement, Bootlin
-> Embedded Linux and Kernel engineering
-> http://bootlin.com
+Well, it is convenient to have subnodes with compatibles so that your 
+drivers automagically probe. So yes, a 1:1 relationship of nodes to 
+drivers is nice and tidy. But h/w is not always packaged up neatly and 
+it's not DT's job to try to abstract it such that it is. Also, we 
+shouldn't design bindings around the *current* driver partitioning of 
+some OS.
 
+This one is actually pretty odd in that the child nodes don't have a 
+compatible string which breaks the automagical probing.
 
+> Please be aware that OpenBSD is already using these bindings.  If
+> there are good reasons for moving things, we can probably deal with
+> that.  But this sounds a bit like a toss up.
 
--- 
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura Ltd.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
+Sigh. If there are other bindings in use, please submit them even if the 
+Linux driver isn't ready. If a Linux subsystem maintainer doesn't want 
+to take it, then I will. 
+
+It is a toss up though...
+
+> > >                         };
+> > >
+> > >                         smc_rtc: rtc {
+> > >                                 nvmem-cells = <&rtc_offset>;
+> > >                                 nvmem-cell-names = "rtc_offset";
+> > >                         };
+> > >
+> > >                         smc_reboot: reboot {
+> > >                                 nvmem-cells = <&shutdown_flag>, <&boot_stage>,
+> > >                                         <&boot_error_count>, <&panic_count>, <&pm_setting>;
+> > >                                 nvmem-cell-names = "shutdown_flag", "boot_stage",
+> > >                                         "boot_error_count", "panic_count", "pm_setting";
+> > 
+> > Not really much reason to split these up either because you can just
+> > fetch the entry you want by name.
+> 
+> Again the separate nodes are there because the RTC and the reboot
+> functionality are logically separate and handled by different MFD
+> sub-drivers in Linux.
+
+It's really a question of whether the subset of functionality is going 
+to get reused on its own or has its own resources in DT. MFD bindings 
+are done both ways.
+
+Rob
