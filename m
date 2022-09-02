@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 64A1B5AB5E1
-	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 17:56:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A067C5AB5E5
+	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 17:56:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237628AbiIBP4L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Sep 2022 11:56:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40294 "EHLO
+        id S237631AbiIBP4M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Sep 2022 11:56:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237530AbiIBPzD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 11:55:03 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 856E42A266
-        for <devicetree@vger.kernel.org>; Fri,  2 Sep 2022 08:49:23 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id e20so2805536wri.13
-        for <devicetree@vger.kernel.org>; Fri, 02 Sep 2022 08:49:23 -0700 (PDT)
+        with ESMTP id S237531AbiIBPzE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 11:55:04 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92A002B1B5
+        for <devicetree@vger.kernel.org>; Fri,  2 Sep 2022 08:49:24 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id e13so2864201wrm.1
+        for <devicetree@vger.kernel.org>; Fri, 02 Sep 2022 08:49:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=NdB5Eag8SJU/73u2oaBSVfu1iUfNn2HCQO16zSHjpzg=;
-        b=eXC39A+yiomTisTXC9s7xJThOie1Rft8B27qPaJIvhls1vFK5hOAMgCTp6PU3Qu74N
-         KA9zU7b2/Wobt9Kjot5Y9FHUZkNL0rmtPniMGzXfnauNfXOYQObc4E+IOr8WO80o/mMq
-         NbXc6QBzAeUZcGFzxNOSbKTKemEFGUuhftPaui01HiSKz4PqYNBdLKHWpwU9fI9/NocA
-         T+2x4w2vLQRadmKUh1xg3yoQukVK5xYWwc5aaHXuFMG8Sar3ASMK2EWrrzBRcVM7Q5nM
-         2MeNFIztD7m8ELBS6+Ecs2I5e23pOxQ+3dkN2G+Y4209E/jt24WRvOUkVctOdjfQFB7F
-         EoBQ==
+        bh=Fd4lSn+qZVzeO4qkwAmVHFeGiK8e6ML8+dOEILHHB/4=;
+        b=XiV//UgpdOLwA5FX375zPaEh5uHJ95nETjCvXbD5RHNoziJSjUVMvjX/7MheUFKdWv
+         4XgQiHLoK4mKo3DGKbgTviuYGki+Ffli7yUjOCk/N49S8VmaYIR0xjrNLxzInk2JWXak
+         Zy8Qg8jHarHXavYlIz322H9E5ylJpOxb58uypOxaJq6H8cX0V6PlIb5vY6OsqxSRbK5n
+         Bp4bOztqwMZJo5Xv2fJlJ1JLRwaKsuIWPnqo7UIDgiX87KVFSHRxBdKPbD4lLxLXhY3E
+         FXFGhq3shhVEEpKrTQS4SgbT5mRbThwkJULLBeD4i0UTaeUAmySXaoJZExEDvmuFW9UG
+         MVtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=NdB5Eag8SJU/73u2oaBSVfu1iUfNn2HCQO16zSHjpzg=;
-        b=g23vsTWiTU/DwFgmnw9Lj0lOp5MEZYj4/R4JFeoeN5jWMbC4x+dwQq16TNSpTgAs7J
-         FRJgmxZ2wnpg3gHcaz7i5QoRUuzpDvq3tTj27sk3Ee5jqbh6K6lfMgZ4m8mmDnz/HxS9
-         5Tb6pYhsLcdRJc7l89f2EEW2/7iaIAEFcMwDfSuaHEmkkhZCQjLinHL85qNeAq64YiaH
-         XwQS22qpiu2w4ahfcj9vkPwpa6FlhSDh4IfDSqoN+4qXOt6+YMntejWkBsIXZF87XJF6
-         baIEilf6Wpn/4IpXTInTfen/XFDqszVbSnfTiU+rjmKgl2MCn/m3Zk6Zc9OxrAjpZWFB
-         WKAg==
-X-Gm-Message-State: ACgBeo1EoS20nQyJ10JRNXi24gPOWLpjiCBjp4lMzIVEX+Zgp7bctNs+
-        o1sngCH/pL34ECRWujMSFOG02g==
-X-Google-Smtp-Source: AA6agR4skcEyurrXWHxYzdpRjPzwxE5s2Huk6n1q5S6bzfvsnDzROMvnA2Mc+qKg123h13IkISOxhQ==
-X-Received: by 2002:a5d:588a:0:b0:228:462f:a49 with SMTP id n10-20020a5d588a000000b00228462f0a49mr1970077wrf.616.1662133762010;
-        Fri, 02 Sep 2022 08:49:22 -0700 (PDT)
+        bh=Fd4lSn+qZVzeO4qkwAmVHFeGiK8e6ML8+dOEILHHB/4=;
+        b=GuEKSM0/qj9s9uR3kMU/yaP/5s7J9SitlfnFikN9KIWnJmdESCTXXpJVlgA18Z8m55
+         JlirolKYFgUn/dTN9dGNcgjWbAHY5GfKaKq97PA37GD0Ns2fAkjnGAk1Aeh3uNtuef0X
+         bF4Obb/msWtgeb4a8MqxB6h/BT/6GJz4+q0v8FsyIN/6lZ29dyqstmcdPNeMyRGjetNk
+         EnueRyo2NyxRCmY4/p71f0OqcW6UHVxyuTfBGi24jdlYYev2LytrrrAt9aAhgZmUi0Fp
+         vydS9v1gH+Wre56zwRhzhX2Rgw4vifKV5vCpvWlkdXQtKTMHRfKLLQAHVUUfzCAUxjVl
+         PVGQ==
+X-Gm-Message-State: ACgBeo30x+URc8EGxck8orgXwjsNTOTufdfzZxnDNPHGNQp3Ci466luM
+        t+Gt5SH8xt8VHIK/aFHjD6FVUw==
+X-Google-Smtp-Source: AA6agR5G+03+f8b9dEBvjINXiGpiy8LUXZ+MRQyPsER25T7sdZv7lh1PrW+WhiXD62s+5ONKcoJMJw==
+X-Received: by 2002:adf:d1c2:0:b0:226:fa44:bab7 with SMTP id b2-20020adfd1c2000000b00226fa44bab7mr4552046wrd.195.1662133764174;
+        Fri, 02 Sep 2022 08:49:24 -0700 (PDT)
 Received: from hackbox.lan ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id b1-20020a05600010c100b002250f9abdefsm2046741wrx.117.2022.09.02.08.49.20
+        by smtp.gmail.com with ESMTPSA id b1-20020a05600010c100b002250f9abdefsm2046741wrx.117.2022.09.02.08.49.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Sep 2022 08:49:21 -0700 (PDT)
+        Fri, 02 Sep 2022 08:49:23 -0700 (PDT)
 From:   Abel Vesa <abel.vesa@linaro.org>
 To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         Amol Maheshwari <amahesh@qti.qualcomm.com>,
@@ -62,9 +62,9 @@ Cc:     Rob Herring <robh@kernel.org>,
         linux-arm-msm@vger.kernel.org,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         devicetree@vger.kernel.org
-Subject: [PATCH v2 01/10] misc: fastrpc: Rename audio protection domain to root
-Date:   Fri,  2 Sep 2022 18:48:51 +0300
-Message-Id: <20220902154900.3404524-2-abel.vesa@linaro.org>
+Subject: [PATCH v2 02/10] misc: fastrpc: Add reserved mem support
+Date:   Fri,  2 Sep 2022 18:48:52 +0300
+Message-Id: <20220902154900.3404524-3-abel.vesa@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220902154900.3404524-1-abel.vesa@linaro.org>
 References: <20220902154900.3404524-1-abel.vesa@linaro.org>
@@ -72,7 +72,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,38 +80,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The AUDIO_PD will be done via static pd, so the proper name here is
-actually ROOT_PD.
+The reserved mem support is needed for CMA heap support, which will be
+used by AUDIOPD.
 
 Co-developed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 ---
- drivers/misc/fastrpc.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/misc/fastrpc.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
 diff --git a/drivers/misc/fastrpc.c b/drivers/misc/fastrpc.c
-index 58654d394d17..8d803ee33904 100644
+index 8d803ee33904..52271f51800d 100644
 --- a/drivers/misc/fastrpc.c
 +++ b/drivers/misc/fastrpc.c
-@@ -83,7 +83,7 @@
- #define FASTRPC_RMID_INIT_MEM_UNMAP    11
+@@ -19,6 +19,7 @@
+ #include <linux/slab.h>
+ #include <linux/qcom_scm.h>
+ #include <uapi/misc/fastrpc.h>
++#include <linux/of_reserved_mem.h>
  
- /* Protection Domain(PD) ids */
--#define AUDIO_PD	(0) /* also GUEST_OS PD? */
-+#define ROOT_PD		(0) /* also GUEST_OS PD? */
- #define USER_PD		(1)
- #define SENSORS_PD	(2)
+ #define ADSP_DOMAIN_ID (0)
+ #define MDSP_DOMAIN_ID (1)
+@@ -2064,6 +2065,9 @@ static int fastrpc_rpmsg_probe(struct rpmsg_device *rpdev)
+ 		return -EINVAL;
+ 	}
  
-@@ -1889,7 +1889,7 @@ static long fastrpc_device_ioctl(struct file *file, unsigned int cmd,
- 		err = fastrpc_invoke(fl, argp);
- 		break;
- 	case FASTRPC_IOCTL_INIT_ATTACH:
--		err = fastrpc_init_attach(fl, AUDIO_PD);
-+		err = fastrpc_init_attach(fl, ROOT_PD);
- 		break;
- 	case FASTRPC_IOCTL_INIT_ATTACH_SNS:
- 		err = fastrpc_init_attach(fl, SENSORS_PD);
++	if (of_reserved_mem_device_init_by_idx(rdev, rdev->of_node, 0))
++		dev_info(rdev, "no reserved DMA memory for FASTRPC\n");
++
+ 	vmcount = of_property_read_variable_u32_array(rdev->of_node,
+ 				"qcom,vmids", &vmids[0], 0, FASTRPC_MAX_VMIDS);
+ 	if (vmcount < 0)
 -- 
 2.34.1
 
