@@ -2,112 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB63A5AAC11
-	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 12:08:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C514F5AAC22
+	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 12:13:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235922AbiIBKIc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Sep 2022 06:08:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34382 "EHLO
+        id S230436AbiIBKN0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Sep 2022 06:13:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235177AbiIBKI2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 06:08:28 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B81E09F1B4;
-        Fri,  2 Sep 2022 03:08:20 -0700 (PDT)
-Received: from localhost (unknown [188.27.54.142])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        with ESMTP id S231266AbiIBKND (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 06:13:03 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60F8E101A;
+        Fri,  2 Sep 2022 03:12:57 -0700 (PDT)
+Received: from [192.168.1.90] (unknown [188.27.54.142])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
         (Authenticated sender: cristicc)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 76DEF6601F05;
-        Fri,  2 Sep 2022 11:08:19 +0100 (BST)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id BEFE26601F03;
+        Fri,  2 Sep 2022 11:12:54 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1662113299;
-        bh=bhtmsc4SAXx6vdsUdGvUZEFyQ91C4jgP6uCREcCIkrs=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=AbSY8obnO7ZuJ9omzcHHKEm3LoqQQR4j/uFHbltr9l78I9s9n+vQ81Hg1VIeyhgVC
-         +KALrGfdopp4X9uQQEzH5WqEaPnpLj+jiRL1tzQ8jw1w5rYzHquajaa6KNH4K0DFwx
-         SDpCcwCJNTT3mgPLWAmpDzCEbNf80fVVq10IEy7Jg4rp/GE8t7d5jpp7Ge1IXWts9z
-         vWGbxSYp1XdLf94ubqJsDHvblCYs4hYPfmLApN5BgQyQsLg5gcJ161T6pscTqpVUhp
-         WgvrfxS3TdZcDoVLIdlwFZuNPJHBAiq2O5nsYoqdgla/XzwW3MBuE42LUJHAJU90Sc
-         wKEE0wwoGGhug==
-From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Michael Zhu <michael.zhu@starfivetech.com>,
-        Drew Fustini <drew@beagleboard.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor.dooley@microchip.com>
+        s=mail; t=1662113575;
+        bh=uPwA05/mzppSgHqnQObaTSbjueljkx5JGjGCVIFaX/M=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=kPZgY93OKHOGvRZLDJeVcLlegA/q+BYNmivqJPMl9tMwfq9YLFz2qOH+o20c2DOS2
+         4NonJ4WJPIP5t4/AHYTQjZY+uI3CNxoUCfT9tpB5bdnXaD6aBTLigNlV6kV6r2vMYA
+         c6G7rh66/ZN1N+6E59YhzyEeAARtSivDETcsTmE0T98vaHRgh9mbHCkxbZxqCL5Dxg
+         r59DPFah2gscMSGZbPOykzM9xfyOaPy4vHYLRveYWt7XNmwbVYexDh4ZIef0WxWuAP
+         p30bjgATWCyhMgg/ODF0W0Yc9YkftjR7F87nc18lduiyNzNcCYVV80yketeeX4uhBa
+         2PhCLMGBsoK+g==
+Message-ID: <092ed898-dee9-e27f-1f18-3a17b259563e@collabora.com>
+Date:   Fri, 2 Sep 2022 13:12:52 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH 0/3] Enable initial support for StarFive VisionFive V1 SBC
+Content-Language: en-US
+To:     Conor.Dooley@microchip.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, paul.walmsley@sifive.com,
+        palmer@dabbelt.com, aou@eecs.berkeley.edu,
+        michael.zhu@starfivetech.com, drew@beagleboard.org, kernel@esmil.dk
 Cc:     devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
         linux-kernel@vger.kernel.org, kernel@collabora.com
-Subject: [PATCH v2 3/3] riscv: dts: starfive: Add StarFive VisionFive V1 device tree
-Date:   Fri,  2 Sep 2022 13:08:06 +0300
-Message-Id: <20220902100806.2378543-4-cristian.ciocaltea@collabora.com>
-X-Mailer: git-send-email 2.37.2
-In-Reply-To: <20220902100806.2378543-1-cristian.ciocaltea@collabora.com>
-References: <20220902100806.2378543-1-cristian.ciocaltea@collabora.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20220901224253.2353071-1-cristian.ciocaltea@collabora.com>
+ <04151f8b-5722-b5a0-a4ab-4958f55b8dec@microchip.com>
+From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <04151f8b-5722-b5a0-a4ab-4958f55b8dec@microchip.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add initial device tree for the StarFive VisionFive V1 SBC [1], which
-is similar with the already supported BeagleV Starlight Beta board,
-both being based on the StarFive JH7100 SoC.
 
-[1] https://github.com/starfive-tech/VisionFive
+On 9/2/22 09:27, Conor.Dooley@microchip.com wrote:
+> On 01/09/2022 23:42, Cristian Ciocaltea wrote:
+>> [You don't often get email from cristian.ciocaltea@collabora.com. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
+>>
+>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+>>
+>> The StarFive VisionFive V1 SBC [1] is similar with the already supported
+>> BeagleV Starlight Beta board, both being based on the StarFive JH7100 SoC.
+>>
+>> In addition to documenting the necessary compatibles, this patch series
+>> moves most of the content from jh7100-beaglev-starlight.dts to a new file
+>> jh7100-common.dtsi, to be shared between the two boards.
+>>
+>> No other changes are required in order to successfully boot the board.
+> 
+> Gave it a go this morning, dts stuff itself looks good to me. No new
+> warnings, although that's to be expected, & boots fine.
+> 
+> I know that most jn7100 stuff is not really wanted upstream, but I'd
+> say that the minimal vision5 dts is an exception to that, so with the
+> one comment on patch 1 resolved:
+> 
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
----
- arch/riscv/boot/dts/starfive/Makefile         |  2 +-
- .../jh7100-starfive-visionfive-v1.dts         | 20 +++++++++++++++++++
- 2 files changed, 21 insertions(+), 1 deletion(-)
- create mode 100644 arch/riscv/boot/dts/starfive/jh7100-starfive-visionfive-v1.dts
+Thanks for the quick review, I have submitted v2:
 
-diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/dts/starfive/Makefile
-index 0ea1bc15ab30..039c143cba33 100644
---- a/arch/riscv/boot/dts/starfive/Makefile
-+++ b/arch/riscv/boot/dts/starfive/Makefile
-@@ -1,2 +1,2 @@
- # SPDX-License-Identifier: GPL-2.0
--dtb-$(CONFIG_SOC_STARFIVE) += jh7100-beaglev-starlight.dtb
-+dtb-$(CONFIG_SOC_STARFIVE) += jh7100-beaglev-starlight.dtb jh7100-starfive-visionfive-v1.dtb
-diff --git a/arch/riscv/boot/dts/starfive/jh7100-starfive-visionfive-v1.dts b/arch/riscv/boot/dts/starfive/jh7100-starfive-visionfive-v1.dts
-new file mode 100644
-index 000000000000..e82af72f1aaf
---- /dev/null
-+++ b/arch/riscv/boot/dts/starfive/jh7100-starfive-visionfive-v1.dts
-@@ -0,0 +1,20 @@
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
-+/*
-+ * Copyright (C) 2021 StarFive Technology Co., Ltd.
-+ * Copyright (C) 2021 Emil Renner Berthing <kernel@esmil.dk>
-+ */
-+
-+/dts-v1/;
-+#include "jh7100-common.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
-+
-+/ {
-+	model = "StarFive VisionFive V1";
-+	compatible = "starfive,visionfive-v1", "starfive,jh7100";
-+
-+	gpio-restart {
-+		compatible = "gpio-restart";
-+		gpios = <&gpio 63 GPIO_ACTIVE_HIGH>;
-+		priority = <224>;
-+	};
-+};
--- 
-2.37.2
+https://lore.kernel.org/all/20220902100806.2378543-1-cristian.ciocaltea@collabora.com/
 
+Regards,
+Cristian
+
+> Thanks,
+> Conor.
+> 
+>>
+>> [1] https://github.com/starfive-tech/VisionFive
+>>
+>> Cristian Ciocaltea (3):
+>>     dt-bindings: riscv: starfive: Add StarFive VisionFive V1 board
+>>     riscv: dts: starfive: Add common DT for JH7100 based boards
+>>     riscv: dts: starfive: Add StarFive VisionFive V1 device tree
+>>
+>>    .../devicetree/bindings/riscv/starfive.yaml   |   3 +
+>>    arch/riscv/boot/dts/starfive/Makefile         |   2 +-
+>>    .../dts/starfive/jh7100-beaglev-starlight.dts | 153 +----------------
+>>    .../boot/dts/starfive/jh7100-common.dtsi      | 161 ++++++++++++++++++
+>>    .../jh7100-starfive-visionfive-v1.dts         |  20 +++
+>>    5 files changed, 186 insertions(+), 153 deletions(-)
+>>    create mode 100644 arch/riscv/boot/dts/starfive/jh7100-common.dtsi
+>>    create mode 100644 arch/riscv/boot/dts/starfive/jh7100-starfive-visionfive-v1.dts
+>>
+>> --
+>> 2.37.2
+>>
+>>
+>> _______________________________________________
+>> linux-riscv mailing list
+>> linux-riscv@lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-riscv
+> 
