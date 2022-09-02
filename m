@@ -2,90 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 502765AB8A7
-	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 21:00:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1ED705AB8D3
+	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 21:23:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230210AbiIBTAx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Sep 2022 15:00:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57386 "EHLO
+        id S230268AbiIBTXB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Sep 2022 15:23:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230199AbiIBTAt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 15:00:49 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8669524F3D
-        for <devicetree@vger.kernel.org>; Fri,  2 Sep 2022 11:59:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1662145173;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=H80XyH2N7aCchJ9N825/YoSYVLsh+URbySgK/RUDEoA=;
-        b=ITuD0jBsoT/3a3aUcIL+CIXTfXnJ4MnMwN5teK3Rtraw2ZKr84EgOY1E+51IXW+HW7bjak
-        lOgDPuOmGxVAYMFdeeMTEnklUxeDiR77olix2nfICPNGtz8DLBT6YPVj6zeG00LYMlQs3I
-        PnHArMxJad0qavqccahEjY5sw/2HPLg=
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com
- [209.85.222.200]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-226-YIFY9jUDNkW6eTz41G3sFA-1; Fri, 02 Sep 2022 14:59:32 -0400
-X-MC-Unique: YIFY9jUDNkW6eTz41G3sFA-1
-Received: by mail-qk1-f200.google.com with SMTP id bj2-20020a05620a190200b006bba055ab6eso2622900qkb.12
-        for <devicetree@vger.kernel.org>; Fri, 02 Sep 2022 11:59:32 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=H80XyH2N7aCchJ9N825/YoSYVLsh+URbySgK/RUDEoA=;
-        b=CiHeREzEuSjlA6yM7Ay3hTaTTCAIatBcB0Xy3oYBGLXxfXPGxbR85qZuzDppMXqrNk
-         VIvIP4Y3/BflLAfa3zdAeo2scQbOwYGIFlEhbLwEaak8zs0qL6W3fOUXYgDGeik3Z7Fx
-         v/E3BD1xNb72JlzE2KcxLJPjoRxG8kHobhB55UfWm+fpRt66b6bPS2xmiRGoT9NMMdzd
-         IJHAUrgh3XXvks57gQn3yBS4MKkRr+WXNWuAxB5nx5x/ohUAOahlD6BI/GMa5sRsPvk+
-         opWiKMYWsXHEvPipoYur6hryGjb3bZMCbffTGHYkV3cee4K7+nwU8ohnvjqXN3T1JfhV
-         WeqA==
-X-Gm-Message-State: ACgBeo1k3KfskK/6576iG38xY5/pZTsLihH12632blmS5u/er8HKQ7HM
-        Ou+I6Hj68V0uKAR7Ajempg8jdIqfHS+inq+g6VijK5cp4BHJO9p0zZA6UxfvOoY8DSLBLwAR/3O
-        nCO3C+lFrSb7GA2E5AItJyA==
-X-Received: by 2002:ac8:5f4e:0:b0:345:45d:3701 with SMTP id y14-20020ac85f4e000000b00345045d3701mr26282875qta.139.1662145172313;
-        Fri, 02 Sep 2022 11:59:32 -0700 (PDT)
-X-Google-Smtp-Source: AA6agR41hWF9IJZjwNXKlnh3T9+X9HUpRDCKbeZtCv0S7Oyvg6g28jlT1XsqH8jQWmRStgRETdOKLA==
-X-Received: by 2002:ac8:5f4e:0:b0:345:45d:3701 with SMTP id y14-20020ac85f4e000000b00345045d3701mr26282859qta.139.1662145171991;
-        Fri, 02 Sep 2022 11:59:31 -0700 (PDT)
-Received: from halaneylaptop ([2600:1700:1ff0:d0e0::48])
-        by smtp.gmail.com with ESMTPSA id d3-20020a05620a166300b006b5c061844fsm1805812qko.49.2022.09.02.11.59.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Sep 2022 11:59:31 -0700 (PDT)
-Date:   Fri, 2 Sep 2022 13:59:29 -0500
-From:   Andrew Halaney <ahalaney@redhat.com>
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Johan Hovold <johan@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S229775AbiIBTXA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 15:23:00 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1623FC317;
+        Fri,  2 Sep 2022 12:22:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1662146579; x=1693682579;
+  h=from:to:subject:date:message-id:mime-version;
+  bh=OlL16i5b1kNL0TnK8DyRJZcYY0XJwfD9vewL7IITYp8=;
+  b=1PUnq4Z6iNNyBRNtQXfZpJtW9zxogD34YD6PQ07XJZHiiQqNa0dsjF56
+   aiXqisDd2B4rHMPELZyIJKfjecy1xrChzhW+mFu1kzlmvCy9Gv3I950+e
+   cIVRkV2wYEG/YRM1t3tlXCNflxjggu7hz0wLJUnRifqX3/SMlzINDEt4S
+   aGy+tEgDQjPKC2Lt4E9F5pEuKU7eemV/Boz49VZoX3W2dxvc5REFY/1TN
+   w1lzab1SFNhz0AYBZnMV3AGxIl0sCIYo1TkRuXMFmLS9ZC/Z9jDOjKDXj
+   +80YMlL83ScPE6rXgwvcNPYxYqnjpnOeNRsmXm0zZKQgP4/JdAA1MXW2N
+   w==;
+X-IronPort-AV: E=Sophos;i="5.93,285,1654585200"; 
+   d="scan'208";a="172196137"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 02 Sep 2022 12:22:39 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Fri, 2 Sep 2022 12:22:38 -0700
+Received: from AUS-LT-C33025.microchip.com (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2507.12 via Frontend Transport; Fri, 2 Sep 2022 12:22:36 -0700
+From:   Jerry Ray <jerry.ray@microchip.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        "Alexandre Belloni" <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
         <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 0/6] arm64: dts: qcom: Fix broken regulator spec on
- RPMH boards
-Message-ID: <20220902185929.neoizjcrmxuxgqaw@halaneylaptop>
-References: <20220829164952.2672848-1-dianders@chromium.org>
- <Yw8EE/ESDUnIRf8P@hovoldconsulting.com>
- <CAD=FV=VJz2hjvsUhsjBPt9nmm3X62oTdAqMeSFABYJietPPzWw@mail.gmail.com>
- <20220831190018.3dexkam3efdcfysf@halaneylaptop>
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        "Jerry Ray" <jerry.ray@microchip.com>
+Subject: [PATCH v6 1/2] ARM: dts: at91: Adding documentation for SAMA5D3-EDS
+Date:   Fri, 2 Sep 2022 14:22:35 -0500
+Message-ID: <20220902192236.14862-1-jerry.ray@microchip.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220831190018.3dexkam3efdcfysf@halaneylaptop>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -93,46 +63,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 31, 2022 at 02:00:18PM -0500, Andrew Halaney wrote:
-> On Wed, Aug 31, 2022 at 07:52:52AM -0700, Doug Anderson wrote:
-> > Hi,
-> >
-> > On Tue, Aug 30, 2022 at 11:47 PM Johan Hovold <johan@kernel.org> wrote:
-> > >
-> > > On Mon, Aug 29, 2022 at 09:49:46AM -0700, Douglas Anderson wrote:
-> > > > Prior to commit efb0cb50c427 ("regulator: qcom-rpmh: Implement
-> > > > get_optimum_mode(), not set_load()") several boards were able to
-> > > > change their regulator mode even though they had nothing listed in
-> > > > "regulator-allowed-modes". After that commit (and fixes [1]) we'll be
-> > > > stuck at the initial mode. Discussion of this (again, see [1]) has
-> > > > resulted in the decision that the old dts files were wrong and should
-> > > > be fixed to fully restore old functionality.
-> > > >
-> > > > This series attempts to fix everyone. I've kept each board in a
-> > > > separate patch to make stable / backports work easier.
-> > >
-> > > Should you also update the bindings so that this can be caught during
-> > > devicetree validation? That is, to always require
-> > > "regulator-allowed-modes" when "regulator-allow-set-load" is specified.
-> >
-> > Yeah, it's probably a good idea. I'm happy to review a patch that does
-> > that. I'm already quite a few patches deep of submitting random
-> > cleanups because someone mentioned it in a code review. ;-) That's
-> > actually how I got in this mess to begin with. The RPMH change was in
-> > response to a request in a different code review. ...and that came
-> > about in a code review that was posted in response to a comment about
-> > how awkward setting regulator loads was... Need to get back to my day
-> > job.
-> 
-> I can take a stab at this during the week here I hope.. I owe Doug for
-> the slew of patches and have wanted to peek at how all the dt-binding
-> validation stuff works anyways.
-> 
+Adding the SAMA5D3-EDS board from Microchip into the atmel AT91 board
+description yaml file.
 
-Here's my attempt after a couple hours of banging the head on the wall:
+Signed-off-by: Jerry Ray <jerry.ray@microchip.com>
+---
+v5->v6:
+ - No code change - patch prefix naming modified to match with others.
+v4->v5:
+ - No change
+v3->v4:
+ - No change
+v2->v3:
+ - No change
+v1->v2:
+ - Added Device Tree documentation for Microchip SAMA5D3-EDS board
+---
+ Documentation/devicetree/bindings/arm/atmel-at91.yaml | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-    https://lore.kernel.org/all/20220902185148.635292-1-ahalaney@redhat.com/
-
-Thanks,
-Andrew
+diff --git a/Documentation/devicetree/bindings/arm/atmel-at91.yaml b/Documentation/devicetree/bindings/arm/atmel-at91.yaml
+index 2b7848bb7769..c7f067e13d20 100644
+--- a/Documentation/devicetree/bindings/arm/atmel-at91.yaml
++++ b/Documentation/devicetree/bindings/arm/atmel-at91.yaml
+@@ -139,6 +139,13 @@ properties:
+           - const: atmel,at91sam9g20
+           - const: atmel,at91sam9
+ 
++      - description: Microchip SAMA5D3 Ethernet Development System Board
++        items:
++          - const: microchip,sama5d3-eds
++          - const: atmel,sama5d36
++          - const: atmel,sama5d3
++          - const: atmel,sama5
++
+       - items:
+           - enum:
+               - atmel,sama5d31
+-- 
+2.17.1
 
