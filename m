@@ -2,193 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 661525AB65A
-	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 18:16:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 608D65AB682
+	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 18:29:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236621AbiIBQQq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Sep 2022 12:16:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49338 "EHLO
+        id S236360AbiIBQ2c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Sep 2022 12:28:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236686AbiIBQQZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 12:16:25 -0400
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C0C6DEA79;
-        Fri,  2 Sep 2022 09:13:07 -0700 (PDT)
-Received: (Authenticated sender: gregory.clement@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 6C9D7FF803;
-        Fri,  2 Sep 2022 16:13:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1662135185;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=Vg0Ow2Wlxy45PIHiHnVEioKxms+Qp0llN/7M0XoKma4=;
-        b=i/F5clX8UD2+J57eHw7iWb0WYy6CA3pXxKlAfipwJYwDFBh3vM8/0WT2jbYS+WZgTePEq1
-        EXPrbe/wbT1sMVqAxilaRNK0vh2Mu6I8gNn3nyV6Xev07BP/mAtLZLkP+mCHM0gnDHTAyG
-        fER59lTWN+bHLjeYV25/5tc1/1wNegZqXzIeO8A1xdKJ0vqi8AQgUa9fxWOJbXMTi/ktYV
-        ecfKG64wrsfjIbZkjBzx5R197yDc0PirSu3ejh0Rp8pqOMKNj5r8t4cR+7jYFyTQXvK7z2
-        qXOI4m/9Kvv+mlP36E1QNVv/YIBfKRqvn7T1mgRKRO8meczb+CusIIVmsBJEuw==
-From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     Robert Marko <robert.marko@sartura.hr>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        andrew@lunn.ch, sebastian.hesselbarth@gmail.com,
-        kostap@marvell.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v4 10/10] arm64: dts: marvell: add support for Methode eDPU
-In-Reply-To: <87ler1er7z.fsf@BL-laptop>
-References: <20220516124828.45144-1-robert.marko@sartura.hr>
- <20220516124828.45144-10-robert.marko@sartura.hr>
- <CA+HBbNF2R--984SdB0v42GMQOwAx4pTEz_FHifTtebN05ELU-Q@mail.gmail.com>
- <87mtbm5gaf.fsf@BL-laptop>
- <CA+HBbNG13dspUspWMrT=LWpCnMCZ-r-K8zR4RaoLf8HxhzStSQ@mail.gmail.com>
- <87ler1er7z.fsf@BL-laptop>
-Date:   Fri, 02 Sep 2022 18:13:04 +0200
-Message-ID: <87czcdeovj.fsf@BL-laptop>
+        with ESMTP id S236404AbiIBQ23 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 12:28:29 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D311FD9D61;
+        Fri,  2 Sep 2022 09:28:24 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 167D3CE3028;
+        Fri,  2 Sep 2022 16:28:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 607B9C43141;
+        Fri,  2 Sep 2022 16:28:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1662136101;
+        bh=lmz9qUwSGEzB4ayujza0yZCNsmt2rSFG/r0YnQbiSF8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=d7db/1FB5w6kroVR+N201UB/iOfTCnu2ZFqhOie85o0BvlKIxcTT60uUIDuOTPF5S
+         biVkw84ims6vbaz5/epF29qXntoih77M2L6/itpP+PLLrQlXadRuG5w/owbgUo0MjQ
+         cBFoh1Vu5E9oRaEw9x5ld7C7rNWY9qrFiiIWosEpOSUnn4MO98s4amAfJgcMf+ZbvV
+         VGgUkqh/Xh11Gaa3wFEovlvfxslMNbsYfaFu67QhN2mYKhD7rY8sN3id/ys6DUeae9
+         PU77N3QYCzz0rk/tJWuWnNRpei85JCuKVokk5jutwOuLjQpZO8M2dI7wFM9F5ijIQ0
+         +hfyceBNq1JYA==
+Received: by mail-vs1-f54.google.com with SMTP id 190so2546826vsz.7;
+        Fri, 02 Sep 2022 09:28:21 -0700 (PDT)
+X-Gm-Message-State: ACgBeo1ZBO9ipWgfu9xOSOXpxZichsPYMk8e7IWqRbhVSGanZzr2WULK
+        o6cHS1n9vP85VILZYHQBDs5204vzZpkz1R6aNQ==
+X-Google-Smtp-Source: AA6agR5HK7mEDO5WrpaKzY6AFFNuyzJ/3Ez2tbot0FncUvHNy3yDHPPnEw7bWkcYJ8cgoN+ZG2vTo6LN7lNh8RGMFAQ=
+X-Received: by 2002:a67:d183:0:b0:388:82dc:7a9 with SMTP id
+ w3-20020a67d183000000b0038882dc07a9mr11041016vsi.0.1662136100302; Fri, 02 Sep
+ 2022 09:28:20 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <20220902142202.2437658-1-daire.mcnamara@microchip.com> <20220902142202.2437658-2-daire.mcnamara@microchip.com>
+In-Reply-To: <20220902142202.2437658-2-daire.mcnamara@microchip.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 2 Sep 2022 11:28:09 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+5pKyOL8eu5YhQy9pLATd_gG_D71sR8bUp1GA6kif=nA@mail.gmail.com>
+Message-ID: <CAL_Jsq+5pKyOL8eu5YhQy9pLATd_gG_D71sR8bUp1GA6kif=nA@mail.gmail.com>
+Subject: Re: [PATCH v1 1/4] dt-bindings: PCI: microchip: add fabric address
+ translation properties
+To:     Daire McNamara <daire.mcnamara@microchip.com>
+Cc:     Albert Ou <aou@eecs.berkeley.edu>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Krzysztof Wilczynski <kw@linux.com>,
+        PCI <linux-pci@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Cyril Jean <cyril.jean@microchip.com>,
+        Padmarao Begari <padmarao.begari@microchip.com>,
+        Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
+        david.abdurachmanov@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Gregory CLEMENT <gregory.clement@bootlin.com> writes:
+On Fri, Sep 2, 2022 at 9:22 AM <daire.mcnamara@microchip.com> wrote:
+>
+> From: Conor Dooley <conor.dooley@microchip.com>
+>
+> On PolarFire SoC both in- & out-bound address translations occur in two
+> stages. The specific translations are tightly coupled to the FPGA
+> designs and supplement the {dma-,}ranges properties. The first stage of
+> the translation is done by the FPGA fabric & the second by the root
+> port.
+> Add two properties so that the translation tables in the root port's
+> bridge layer can be configured to account for the translation done by
+> the FPGA fabric.
 
-> Robert Marko <robert.marko@sartura.hr> writes:
->
->> On Tue, Aug 30, 2022 at 9:42 AM Gregory CLEMENT
->> <gregory.clement@bootlin.com> wrote:
->>>
->>> Robert Marko <robert.marko@sartura.hr> writes:
->>>
->>> > On Mon, May 16, 2022 at 2:48 PM Robert Marko <robert.marko@sartura.hr> wrote:
->>> >>
->>> >> Methode eDPU is an Armada 3720 powered board based on the Methode uDPU.
->>> >>
->>> >> They feature the same CPU, RAM, and storage as well as the form factor.
->>> >>
->>> >> However, eDPU only has one SFP slot plus a copper G.hn port.
->>> >>
->>> >> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
->>> >> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> >> ---
->>> >> Changes in v2:
->>> >> * Make the DTS split a separate commit
->>> >> ---
->>> >>  arch/arm64/boot/dts/marvell/Makefile             |  1 +
->>> >>  arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts | 14 ++++++++++++++
->>> >>  2 files changed, 15 insertions(+)
->>> >>  create mode 100644 arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts
->>> >>
->>> >> diff --git a/arch/arm64/boot/dts/marvell/Makefile b/arch/arm64/boot/dts/marvell/Makefile
->>> >> index 1c794cdcb8e6..104d7d7e8215 100644
->>> >> --- a/arch/arm64/boot/dts/marvell/Makefile
->>> >> +++ b/arch/arm64/boot/dts/marvell/Makefile
->>> >> @@ -1,6 +1,7 @@
->>> >>  # SPDX-License-Identifier: GPL-2.0
->>> >>  # Mvebu SoC Family
->>> >>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-db.dtb
->>> >> +dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-eDPU.dtb
->>> >>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin.dtb
->>> >>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-emmc.dtb
->>> >>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-ultra.dtb
->>> >> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts b/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts
->>> >> new file mode 100644
->>> >> index 000000000000..57fc698e55d0
->>> >> --- /dev/null
->>> >> +++ b/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts
->>> >> @@ -0,0 +1,14 @@
->>> >> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->>> >> +
->>> >> +/dts-v1/;
->>> >> +
->>> >> +#include "armada-3720-uDPU.dtsi"
->>> >> +
->>> >> +/ {
->>> >> +       model = "Methode eDPU Board";
->>> >> +       compatible = "methode,edpu", "marvell,armada3720", "marvell,armada3710";
->>> >> +};
->>> >> +
->>> >> +&eth0 {
->>> >> +       phy-mode = "2500base-x";
->>> >> +};
->>> >> --
->>> >> 2.36.1
->>> >>
->>> >
->>> > Hi Gregory,
->>> Hello Roberto,
->>>
->>> > Is there something else that I can improve in the series?
->>>
->>> Sorry for having missed this series. At first view it seems OK, I am
->>> going to have a closer look this week.
->>
->> Thanks, that sounds good.
->
-> Hello,
->
-> could you send again patch 8, I managed to apply all the other ones
-> excepting this one.
+I'm skeptical that ranges/dma-ranges can't handle what you need.
+Anything in this area is going to need justification 'ranges doesn't
+work because x, y, z...'.
 
-Finally I managed to sort it out, all the series is applied on mvebu/dt64
+>
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
+> ---
+>  .../bindings/pci/microchip,pcie-host.yaml     | 107 ++++++++++++++++++
+>  1 file changed, 107 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml b/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
+> index 23d95c65acff..29bb1fe99a2e 100644
+> --- a/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
+> +++ b/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
+> @@ -71,6 +71,113 @@ properties:
+>      minItems: 1
+>      maxItems: 6
+>
+> +  microchip,outbound-fabric-translation-ranges:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> +    minItems: 1
+> +    maxItems: 32
+> +    description: |
+> +      The CPU-to-PCIe (outbound) address translation takes place in two stages.
+> +      Depending on the FPGA bitstream, the outbound address translation tables
+> +      in the PCIe root port's bridge layer will need to be configured to account
+> +      for only its part of the overall outbound address translation.
+> +
+> +      The first stage of outbound address translation occurs between the CPU address
+> +      and an intermediate "FPGA address". The second stage of outbound address
+> +      translation occurs between this FPGA address and the PCIe address. Use this
+> +      property, in conjunction with the ranges property, to divide the overall
+> +      address translation into these two stages so that the PCIe address
+> +      translation tables can be correctly configured.
 
-Thanks,
+Sounds like you need 2 levels of ranges/dma-ranges.
 
-Gregory
->
->
->>
->> Regards,
->> Robert
->>>
->>> Gregory
->>>
->>>
->>> >
->>> > Regards,
->>> > Robert
->>> >
->>> > --
->>> > Robert Marko
->>> > Staff Embedded Linux Engineer
->>> > Sartura Ltd.
->>> > Lendavska ulica 16a
->>> > 10000 Zagreb, Croatia
->>> > Email: robert.marko@sartura.hr
->>> > Web: www.sartura.hr
->>>
->>> --
->>> Gregory Clement, Bootlin
->>> Embedded Linux and Kernel engineering
->>> http://bootlin.com
->>
->>
->>
->> -- 
->> Robert Marko
->> Staff Embedded Linux Engineer
->> Sartura Ltd.
->> Lendavska ulica 16a
->> 10000 Zagreb, Croatia
->> Email: robert.marko@sartura.hr
->> Web: www.sartura.hr
->
-> -- 
-> Gregory Clement, Bootlin
-> Embedded Linux and Kernel engineering
-> http://bootlin.com
->
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+/ {
+    fpga-bus {
+        ranges = ...
+        dma-ranges = ...
+        pcie@... {
+            ranges = ...
+            dma-ranges = ...
+        };
+    };
+};
 
--- 
-Gregory Clement, Bootlin
-Embedded Linux and Kernel engineering
-http://bootlin.com
+> +
+> +      If this property is present, one entry is required per range. This is so
+> +      FPGA designers can choose to route different address ranges through different
+> +      Fabric Interface Controllers and other logic as they see fit.
+> +
+> +      If this property is not present, the entire address translation
+> +      in any ranges property is attempted by the root port driver via its outbound
+> +      address translation tables.
+> +
+> +      Each element in this property has three components. The first is a
+> +      PCIe address, the second is an FPGA address, and the third is a size.
+> +      These properties may be 32 or 64 bit values.
+> +
+> +      In operation, the driver will expect a one-to-one correspondance between
+> +      range properties and this property.  For each pair of range and
+> +      outbound-fabric-translation-range properties, the root port driver will
+> +      subtract the FPGA address in this property from the CPU address in the
+> +      corresponding range property and use the remainder to program its
+> +      outbound address translation tables.
+> +
+> +      For each range, take its PCIe address and size - these are the PCIe
+> +      address & size for the element. The FPGA address is derived from a given
+> +      FPGA fabric design and is the address delivered by that FPGA fabric
+> +      design to the Core Complex. For a trivial configuration, it is likely to be the
+> +      lower 32 bits of the PCIe address in the range property and the upper
+> +      bits of the base address of the Fabric Interface Controller the design uses.
+> +      Otherwise, it is tightly coupled with the data path configured in the
+> +      FPGA fabric between the root port and the Core Complex.
+> +
+> +      For more information on the tables, see Section 1.3.3,
+> +      "PCIe/AXI4 Address Translation" of the PolarFire SoC PCIe User Guide:
+> +      https://www.microsemi.com/document-portal/doc_download/1245812-polarfire-fpga-and-polarfire-soc-fpga-pci-express-user-guide
+> +
+> +    items:
+> +      minItems: 3
+> +      maxItems: 6
+> +
+> +  microchip,inbound-fabric-translation-ranges:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> +    minItems: 1
+> +    maxItems: 32
+> +    description: |
+> +      The PCIe-to-CPU (inbound) address translation takes place in two stages.
+> +      Depending on the FPGA bitstream, the inbound address translation tables
+> +      in the PCIe root port's bridge layer will need to be configured to account
+> +      for only its part of the overall inbound address translation.
+> +
+> +      The first stage of address translation occurs between the PCIe address and
+> +      an intermediate FPGA address. The second stage of address translation
+> +      occurs between the FPGA address and the CPU address. Use this property
+> +      in conjunction with the dma-ranges property to divide the address
+> +      translation into these two stages.
+> +
+> +      If this property is present, one entry is required per dma-range. This is so
+> +      FPGA designers can choose to route different address ranges through different
+> +      Fabric Interface Controllers and other logic as they see fit.
+> +
+> +      If this property is not present, the entire address translation
+> +      in any dma-ranges property is attempted by the root port driver via its
+> +      inbound address translation tables.
+> +
+> +      Each element in this property has three components. The first is a
+> +      PCIe address, the second is an FPGA address, and the third is a size.
+> +      These properties may be 32 or 64 bit values.
+> +
+> +      In operation, the driver will expect a one-to-one correspondance between
+> +      dma-range properties and this property.  For each pair of dma-range and
+> +      inbound-fabric-translation-range properties, the root port driver will
+> +      subtract the FPGA address in this property from the CPU address in the
+> +      corresponding dma-range property and use the remainder to program its
+> +      inbound address translation tables.
+> +
+> +      From each dma-range, take its PCIe address and size - these are the PCIe
+> +      address & size for the element. The FPGA address is derived from a given
+> +      FPGA fabric design and is the address delivered by that FPGA fabric
+> +      design to the Core Complex. For a trivial configuration, this property
+> +      is unlikely to be required (i.e. no fabric translation on the inbound
+> +      interface).  Otherwise, it is tightly coupled with the inbound data path
+> +      configured in the FPGA fabric between the root port and the Core Complex.
+> +      It is expected that more than one translation range may be added to
+> +      an FPGA fabric design, e.g. to deliver data to cached or non-cached
+> +      DDR.
+> +
+> +      For more information on the tables, see Section 1.3.3,
+> +      "PCIe/AXI4 Address Translation" of the PolarFire SoC PCIe User Guide:
+> +      https://www.microsemi.com/document-portal/doc_download/1245812-polarfire-fpga-and-polarfire-soc-fpga-pci-express-user-guide
+> +
+> +    items:
+> +      minItems: 4
+> +      maxItems: 7
+> +
+>    msi-controller:
+>      description: Identifies the node as an MSI controller.
+>
+> --
+> 2.25.1
+>
