@@ -2,86 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D9EE5AA48E
-	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 02:44:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB93B5AA531
+	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 03:39:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231668AbiIBAoW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Sep 2022 20:44:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57660 "EHLO
+        id S231764AbiIBBjF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Sep 2022 21:39:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231357AbiIBAoU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 20:44:20 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2428FA1D04
-        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 17:44:19 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id gb36so786306ejc.10
-        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 17:44:19 -0700 (PDT)
+        with ESMTP id S232835AbiIBBjD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Sep 2022 21:39:03 -0400
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66458A831D
+        for <devicetree@vger.kernel.org>; Thu,  1 Sep 2022 18:39:00 -0700 (PDT)
+Received: by mail-pf1-x42b.google.com with SMTP id y127so506119pfy.5
+        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 18:39:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=IMQ+BZIR6+h0WYe8X2EFFlmyoPK1mtPErfGaqmTntwQ=;
-        b=F0+vYb25Gviz6CRRQK7SorbY/ckL8SrufqNyoh61zl77MW0dtPZOvV6ihZ4IiUHwXp
-         lwqPvyJRh2BwWNBPXxi/uN26X4GJfCELYZT+37Qav6trKj+XD4z+m/97EU1zDXqPTdUb
-         uxEfoe+gtUc0gXW3gaGFCcZFu2tHbgCPt8AHc=
+        d=linaro.org; s=google;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date;
+        bh=xtrTkJ4Uu3ohhJxNrzty1GMo4mCUZ5As2LZg/P4tK50=;
+        b=YYQS3U2an0NHsaT3kRyB/CjX2F6iSDaaaXdAkWZvO6gonxfA9qhHlPPJIy66EZe3ZR
+         wxIjWeCJzO7jdFWWO88kKC3qSXJ1mLTTNBSOcVvGsmLmcdYAQSBwKNehifBdxOZDugqV
+         isbdfKU8zmXU8m/Rm4CMHQofJVobu0qt2c+DjTYFJ5nX6ZsHTBHOxLlM51mZyvNLpmVQ
+         Q+YgCC0+Y8zFHJRTaKTF2NKyWdE/a8DEmMRHAUZ8A1vOp/Kq1MqYaKQzBTyto1CV5NQP
+         3+lPV55ABJaNHPEdbwbeUfQ4cHlupDfFN0jhMHJfQ5143PjQWyb5UgPyMSfsKXs/t6TM
+         bxOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=IMQ+BZIR6+h0WYe8X2EFFlmyoPK1mtPErfGaqmTntwQ=;
-        b=FWpfLiLEs0GgeTYa8CDfQehH2KCV8seoSirhTCfL8Myrr/RQ9H8Xr53rhLNuehP1UI
-         C8a1SG2GD5fwrK///wdbQVtOob6W3yygbtaBrRFL05ANzNu/ekxLjA5CaPlvYXmnQwPm
-         bRWRq9eH1zpZ4RTUW7ua/q7ZL1aM6H5sDPLuaZPTkdIJtAprP3ozZxOIJ+LZ7P3LggGd
-         8I/REclKDekAic6ATsAAZflRzovyoiSX7y6y+bcuytH9ktP6rS9LKeIrtl8GLLLQlVCz
-         fOPb+z9hzYV03INFduHFhKmPsgCO5UePdHDqKwQMNtVQBX2bSF4j1j4XMwymjXmkoEd8
-         DYVA==
-X-Gm-Message-State: ACgBeo0uUtw/zyMAktqBK2X0HzPqT1dp/tNFk7CWsBoSJkAF2UyMWUbN
-        Uo9HpxdHyOewS/MDNHRi/iMFWHXuwVepK8HB
-X-Google-Smtp-Source: AA6agR52DzhJCblPqcwffHLxc+uMoHLIPtR7hXF7ThA3pvXEXSBr6mEEoPqom6wwDcEAX68+Mych0g==
-X-Received: by 2002:a17:906:8a68:b0:741:56b2:af42 with SMTP id hy8-20020a1709068a6800b0074156b2af42mr18124160ejc.488.1662079457537;
-        Thu, 01 Sep 2022 17:44:17 -0700 (PDT)
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com. [209.85.221.50])
-        by smtp.gmail.com with ESMTPSA id q37-20020a05640224a500b00448176872f7sm373104eda.81.2022.09.01.17.44.15
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Sep 2022 17:44:15 -0700 (PDT)
-Received: by mail-wr1-f50.google.com with SMTP id b16so406072wru.7
-        for <devicetree@vger.kernel.org>; Thu, 01 Sep 2022 17:44:15 -0700 (PDT)
-X-Received: by 2002:a05:6000:15c6:b0:226:f246:6e70 with SMTP id
- y6-20020a05600015c600b00226f2466e70mr4192694wry.617.1662079455437; Thu, 01
- Sep 2022 17:44:15 -0700 (PDT)
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=xtrTkJ4Uu3ohhJxNrzty1GMo4mCUZ5As2LZg/P4tK50=;
+        b=dMKRMfanrM1TArINNATyJTJwQeD/0SsKYfQ+Cf7miu+HICB1aMFK8TZv6Q/D12zEo5
+         UgNfD2eLEfp4Q0kRbyOewDbpwjpThaNU7Ab6WHFA+/kjb7BbdoJnXooH6kgBxLB/UuC3
+         yIIhNGOgUTvtLQA0e0zDKrwxtDpBHWZa0O1/kbTdDMpQFLtrQgQuFnXF4avq6ulyuszo
+         o4jQ3wahoPJMEVAV1Edc2/LRfakCXLmG1Cs60Wuw7PLSLEv9Qc/upIDp38pQfzYueBHx
+         aa4QIOju1Ciuy/DCBJREUfQuXzazYO2E4y+w/d/IujKJe1I4FS4qlamVU7m0obVyIMt4
+         jANw==
+X-Gm-Message-State: ACgBeo2rW0z5T5PiIOsmQ8xsvf1qk8xJBNHx32FUJstk2sMLH/KHf6PF
+        8H6I1YQviPH/DSDRPCh1zqdqfA1UrQCA
+X-Google-Smtp-Source: AA6agR7DjBAE56OPQD2pNaMD6zNmrRU9jU2sr6gi8usaSIIxK9Wdjn2+Sdz7pqPgMja4jY2efNlR5A==
+X-Received: by 2002:a63:4b5e:0:b0:41d:e04b:4515 with SMTP id k30-20020a634b5e000000b0041de04b4515mr28031011pgl.100.1662082739808;
+        Thu, 01 Sep 2022 18:38:59 -0700 (PDT)
+Received: from thinkpad ([117.217.177.124])
+        by smtp.gmail.com with ESMTPSA id y1-20020a17090a474100b001fdbb2e38acsm4058764pjg.5.2022.09.01.18.38.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Sep 2022 18:38:58 -0700 (PDT)
+Date:   Fri, 2 Sep 2022 07:08:48 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Frank Li <frank.li@nxp.com>
+Cc:     "maz@kernel.org" <maz@kernel.org>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kw@linux.com" <kw@linux.com>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        Peng Fan <peng.fan@nxp.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        "jdmason@kudzu.us" <jdmason@kudzu.us>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "kishon@ti.com" <kishon@ti.com>,
+        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
+        "ntb@lists.linux.dev" <ntb@lists.linux.dev>,
+        "lznuaa@gmail.com" <lznuaa@gmail.com>
+Subject: Re: [EXT] Re: [PATCH v6 4/4] pcie: endpoint: pci-epf-vntb: add
+ endpoint MSI support
+Message-ID: <20220902013848.GA4935@thinkpad>
+References: <20220818151127.2449064-1-Frank.Li@nxp.com>
+ <20220818151127.2449064-5-Frank.Li@nxp.com>
+ <20220831104203.GD5076@thinkpad>
+ <AM9PR04MB8793BEEC8B2F1713C252B4CA88789@AM9PR04MB8793.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-References: <20220829164952.2672848-1-dianders@chromium.org>
- <Yw8EE/ESDUnIRf8P@hovoldconsulting.com> <CAD=FV=VJz2hjvsUhsjBPt9nmm3X62oTdAqMeSFABYJietPPzWw@mail.gmail.com>
- <YxDVNW+EQbHRw16s@hovoldconsulting.com>
-In-Reply-To: <YxDVNW+EQbHRw16s@hovoldconsulting.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 1 Sep 2022 17:44:03 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=VaDNLLjtKswWvhD0JmLpOoVHR05yU8kZESH3yQ0xescA@mail.gmail.com>
-Message-ID: <CAD=FV=VaDNLLjtKswWvhD0JmLpOoVHR05yU8kZESH3yQ0xescA@mail.gmail.com>
-Subject: Re: [PATCH v2 0/6] arm64: dts: qcom: Fix broken regulator spec on
- RPMH boards
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andrew Halaney <ahalaney@redhat.com>,
-        Mark Brown <broonie@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <AM9PR04MB8793BEEC8B2F1713C252B4CA88789@AM9PR04MB8793.eurprd04.prod.outlook.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,51 +98,166 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Thu, Sep 1, 2022 at 8:52 AM Johan Hovold <johan@kernel.org> wrote:
->
-> On Wed, Aug 31, 2022 at 07:52:52AM -0700, Doug Anderson wrote:
-> > Hi,
-> >
-> > On Tue, Aug 30, 2022 at 11:47 PM Johan Hovold <johan@kernel.org> wrote:
+On Wed, Aug 31, 2022 at 04:19:17PM +0000, Frank Li wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > Sent: Wednesday, August 31, 2022 5:42 AM
+> > To: Frank Li <frank.li@nxp.com>
+> > Cc: maz@kernel.org; tglx@linutronix.de; robh+dt@kernel.org;
+> > krzysztof.kozlowski+dt@linaro.org; shawnguo@kernel.org;
+> > s.hauer@pengutronix.de; kw@linux.com; bhelgaas@google.com; linux-
+> > kernel@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-
+> > kernel@lists.infradead.org; linux-pci@vger.kernel.org; Peng Fan
+> > <peng.fan@nxp.com>; Aisheng Dong <aisheng.dong@nxp.com>;
+> > jdmason@kudzu.us; kernel@pengutronix.de; festevam@gmail.com; dl-linux-
+> > imx <linux-imx@nxp.com>; kishon@ti.com; lorenzo.pieralisi@arm.com;
+> > ntb@lists.linux.dev; lznuaa@gmail.com
+> > Subject: [EXT] Re: [PATCH v6 4/4] pcie: endpoint: pci-epf-vntb: add endpoint
+> > MSI support
+> > 
+> > Caution: EXT Email
+> > 
+> > On Thu, Aug 18, 2022 at 10:11:27AM -0500, Frank Li wrote:
+> > >                         ┌───────┐          ┌──────────┐
+> > >                         │       │          │          │
+> > >       ┌─────────────┐   │       │          │ PCI Host │
+> > >       │ MSI         │◄┐ │       │          │          │
+> > >       │ Controller  │ │ │       │          │          │
+> > >       └─────────────┘ └─┼───────┼───
+> > ───────┼─BAR0     │
+> > >                         │ PCI   │          │ BAR1     │
+> > >                         │ Func  │          │ BAR2     │
+> > >                         │       │          │ BAR3     │
+> > >                         │       │          │ BAR4     │
+> > >                         │       ├─────────►│          │
+> > >                         └───────┘          └──────────┘
 > > >
-> > > On Mon, Aug 29, 2022 at 09:49:46AM -0700, Douglas Anderson wrote:
-> > > > Prior to commit efb0cb50c427 ("regulator: qcom-rpmh: Implement
-> > > > get_optimum_mode(), not set_load()") several boards were able to
-> > > > change their regulator mode even though they had nothing listed in
-> > > > "regulator-allowed-modes". After that commit (and fixes [1]) we'll be
-> > > > stuck at the initial mode. Discussion of this (again, see [1]) has
-> > > > resulted in the decision that the old dts files were wrong and should
-> > > > be fixed to fully restore old functionality.
-> > > >
-> > > > This series attempts to fix everyone. I've kept each board in a
-> > > > separate patch to make stable / backports work easier.
+> > 
+> > This diagram doesn't say which side is host and which one is endpoint.
+> > And not conveying any useful information.
+> 
+> [Frank Li] At V2 version, this diagram is in cover letter.  Bjorn suggest move to here.
+> I think you have good background knowledge.  But it should be helpful for new
+> People,  who just touch this area. 
+> 
+
+Having the block diagram always helps but my point is that this diagram doesn't
+convey the immediate knowledge that it is supposed to do so. Like there is no
+partition between host and endpoint and you did not add any explanation about
+it in the below text. So in v2, please incorporate those.
+
+> I already mark "PCI Func" and "PCI Host".  
+> 
+
+Sorry, that's not helpful and you need to improve it.
+
+> > 
+> > > Linux supports endpoint functions. PCI Host write BAR<n> space like write
+> > > to memory. The EP side can't know memory changed by the host driver.
 > > >
-> > > Should you also update the bindings so that this can be caught during
-> > > devicetree validation? That is, to always require
-> > > "regulator-allowed-modes" when "regulator-allow-set-load" is specified.
-> >
-> > Yeah, it's probably a good idea. I'm happy to review a patch that does
-> > that. I'm already quite a few patches deep of submitting random
-> > cleanups because someone mentioned it in a code review. ;-) That's
-> > actually how I got in this mess to begin with. The RPMH change was in
-> > response to a request in a different code review. ...and that came
-> > about in a code review that was posted in response to a comment about
-> > how awkward setting regulator loads was... Need to get back to my day
-> > job.
->
-> Heh.
->
-> > In any case, I think these dts patches are ready to land now.
->
-> Yeah, as the old dtbs are now broken with newer kernels these are indeed
-> needed.
+> > 
+> > I think you just say, that there is no defined way of raising IRQs by host
+> > to the endpoint.
+> > 
+> > > PCI Spec has not defined a standard method to do that. Only define MSI(x)
+> > > to let EP notified RC status change.
+> > >
+> > 
+> > MSI is from EP, right? Throughout the driver you should call it as "doorbell"
+> > and not MSI.
+> 
+> [Frank Li] What's I want said is that PCI standard define MSI(x) to let EP notify RC. 
+> But there are not standard way for reverse direction.  MSI should be correct here.
+> 
 
-With the latest patches in the regulator tree things shouldn't be
-_too_ broken even without the dts files. Essentially things will get
-stuck at their initial mode (HPM). So without these patches things
-should all still boot but could possibly end up at a higher power
-state.
+Right. But also use "MSI/MSI-X" instead of "MSI(x)"
 
--Doug
+> > 
+> > > The basic idea is to trigger an IRQ when PCI RC writes to a memory
+> > > address. That's what MSI controller provided. EP drivers just need to
+> > > request a platform MSI interrupt, struct msi_msg *msg will pass down a
+> > > memory address and data. EP driver will map such memory address to one
+> > of
+> > > PCI BAR<n>.  Host just writes such an address to trigger EP side irq.
+> > >
+> > 
+> > IIUC (by looking at other patches in the series), the memory assigned for BAR
+> > region by the PCI host is mapped to the platform interrupt controller in
+> > PCI Endpoint. Such that, whenever the PCI host writes to the BAR region, it
+> > will trigger an IRQ in the Endpoint.
+> > 
+> > This kind of setup is available in other platforms like Qualcomm where the
+> > mapping of a register region available in BAR0 and interrupt controller is
+> > done in the hardware itself. So whenever the PCI host writes to that register
+> > in BAR0, an IRQ will be delivered to the endpoint.
+> 
+> [Frank Li] Yes,  not all platform have it. And EP driver have not provide a API
+> to get register region.  I think platform msi API is pretty good API. 
+> Many system have GIC ITS,  so EP function driver can use it.  Our test platform
+> have not ITS yet,  so we added a simple MU-MSI driver to do it. I think qualcomm
+> platform can use similar method.  So all EP function driver can use common method
+> to get notification from PCI host.
+> 
+
+What is the common method here? If you want to make this doorbell feature
+common across all EPF drivers, then you need to provide EPF APIs.
+
+> > 
+> > > Add MSI support for pci-epf-vntb. pci-epf-vntb driver query if system
+> > > have MSI controller. Setup doorbell address according to struct msi_msg.
+> > >
+> > > So PCIe host can write this doorbell address to triger EP side's irq.
+> > >
+> > > If no MSI controller exist, fall back to software polling.
+> > >
+> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > ---
+> > >  drivers/pci/endpoint/functions/pci-epf-vntb.c | 134 +++++++++++++++---
+> > >  1 file changed, 112 insertions(+), 22 deletions(-)
+> > >
+> > > diff --git a/drivers/pci/endpoint/functions/pci-epf-vntb.c
+> > b/drivers/pci/endpoint/functions/pci-epf-vntb.c
+
+[...]
+
+> > > +static void epf_ntb_epc_msi_init(struct epf_ntb *ntb)
+> > > +{
+> > > +     struct device *dev = &ntb->epf->dev;
+> > > +     struct irq_domain *domain;
+> > > +     int virq;
+> > > +     int ret;
+> > > +     int i;
+> > > +
+> > > +     domain = dev_get_msi_domain(ntb->epf->epc->dev.parent);
+> > > +     if (!domain)
+> > > +             return;
+> > > +
+> > > +     dev_set_msi_domain(dev, domain);
+> > > +
+> > > +     if (platform_msi_domain_alloc_irqs(&ntb->epf->dev,
+> > > +             ntb->db_count,
+> > > +             epf_ntb_write_msi_msg)) {
+> > > +             dev_info(dev, "Can't allocate MSI, fall back to poll mode\n");
+> > > +             return;
+> > > +     }
+> > > +
+> > > +     dev_info(dev, "vntb use MSI as doorbell\n");
+> > > +
+> > 
+> > Why are you using the interrupt controller as the MSI controller? Why not
+> > just
+> > a plain interrupt controller?
+> 
+> [Frank Li] what's your means?   I think only MSI controller support write memory to trigger irq.
+> 
+
+From EPF driver perspective, only the IRQs need to be requested, right? So why
+cannot you expose MU as a generic irqchip driver, instead of a MSI controller? 
+
+Thanks,
+Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
