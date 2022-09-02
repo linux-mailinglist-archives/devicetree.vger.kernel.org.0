@@ -2,70 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FE135AA9A7
-	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 10:14:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E9545AA9BB
+	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 10:17:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235831AbiIBIOT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Sep 2022 04:14:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58464 "EHLO
+        id S235509AbiIBIQ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Sep 2022 04:16:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235972AbiIBIOB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 04:14:01 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2B38C12EA;
-        Fri,  2 Sep 2022 01:13:12 -0700 (PDT)
-X-UUID: 37504edb850e4dd3b22b64b5035469d2-20220902
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=pmqfNQ1rpSeqmCSW/up+Y4xTBOUZWeAGJ2HY4TQtBp0=;
-        b=e13T1U9lGIdmAkrOiO4XQDMmBRxykHPpm9sdzfEz+Jf+pxwYKCZkEnciIbPSd8ka34sPW5Pm9gOcYq4LS0zIjvXfZGrmvAxCPCtjZ1JGJpovhtidP3IlS670Zf1r4o5GfGXVfvVLWnw9Lew4sZI9j11CQDu3udnPV/+MTzaZocI=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.10,REQID:8f06a197-a854-47fc-9b6c-94c5aaa9d327,OB:0,L
-        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_
-        Ham,ACTION:release,TS:0
-X-CID-META: VersionHash:84eae18,CLOUDID:88556fd0-20bd-4e5e-ace8-00692b7ab380,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:11|1,File:
-        nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 37504edb850e4dd3b22b64b5035469d2-20220902
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1358333265; Fri, 02 Sep 2022 16:13:00 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Fri, 2 Sep 2022 16:12:59 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Fri, 2 Sep 2022 16:12:59 +0800
-Message-ID: <fa57b7e392ce8dac005dd572963a8844a7070007.camel@mediatek.com>
-Subject: Re: [PATCH v17 09/10] drm/mediatek: dp: Add hpd debounce
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, <chunkuang.hu@kernel.org>,
-        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mripard@kernel.org>,
-        <tzimmermann@suse.de>, <matthias.bgg@gmail.com>, <deller@gmx.de>,
-        <airlied@linux.ie>
-CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
-        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
-        <angelogioacchino.delregno@collabora.com>,
-        <liangxu.xu@mediatek.com>, <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-fbdev@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Fri, 2 Sep 2022 16:12:58 +0800
-In-Reply-To: <20220901044149.16782-10-rex-bc.chen@mediatek.com>
-References: <20220901044149.16782-1-rex-bc.chen@mediatek.com>
-         <20220901044149.16782-10-rex-bc.chen@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S233481AbiIBIQ6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 04:16:58 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D18FBCC3B;
+        Fri,  2 Sep 2022 01:16:57 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1AF41620F9;
+        Fri,  2 Sep 2022 08:16:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A3FBC433B5;
+        Fri,  2 Sep 2022 08:16:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1662106616;
+        bh=yTgawAW56lCntF7v9ECkXPcih/9P0T01LFVRxmmbYyQ=;
+        h=From:To:Cc:Subject:Date:From;
+        b=mWncWnoKf1DDggP6tvED/YdnsXXs4O2YISewwSI0Dx0kdjc3cEvWygLE2exxdW1SC
+         Nd1NIlIz10is57sfJS4Bv30VTkwp1P3DdxkLZ1dZbf6BN9IoLWrJcrQqyrq+15gXFm
+         fZiY80SnLWnYNpmUn2ZKkifKe2pCLg0kN9HFXQY2T2dhRBPXkFuB67J9TuCG/S5UZL
+         h9CLHqA+Vh1eF57/rOMthAXzc2Bd6+ChZ+kGjB6JX9l9kUhq/yFbXcNJdCYijGk21P
+         BCcpb2Bls6NXQIHKASGajiU3JytN6m3RzxMG5LoydOkojRtd9vX6cRBqNsdnQDUYSc
+         ajWU6Ba65AqqQ==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan+linaro@kernel.org>)
+        id 1oU1rH-0003Hu-7j; Fri, 02 Sep 2022 10:16:59 +0200
+From:   Johan Hovold <johan+linaro@kernel.org>
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Johan Hovold <johan+linaro@kernel.org>
+Subject: [PATCH] arm64: dts: qcom: sc8280xp: mark USB controllers as wakeup-sources
+Date:   Fri,  2 Sep 2022 10:16:52 +0200
+Message-Id: <20220902081652.12631-1-johan+linaro@kernel.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,151 +59,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Bo-Chen:
+The primary and secondary USB controllers can be used to wake the system
+from suspend so mark them accordingly.
 
-On Thu, 2022-09-01 at 12:41 +0800, Bo-Chen Chen wrote:
-> From: Jitao Shi <jitao.shi@mediatek.com>
-> 
-> From the DP spec 1.4a chapter 3.3, upstream devices should implement
-> HPD signal de-bouncing on an external connection.
-> A period of 100ms should be used to detect an HPD connect event.
-> To cover these cases, HPD de-bounce should be implemented only after
-> HPD low has been detected for at least 100ms.
-> 
-> Therefore,
-> 1. If HPD is low (which means plugging out) for longer than 100ms:
->    we need to do de-bouncing (which means we need to wait for 100ms).
-> 2. If HPD low is for less than 100ms:
->    we don't need to care about the de-bouncing.
-> 
-> In this patch, we start a 100ms timer and use a need_debounce boolean
-> to implement the feature.
-> 
-> Two cases when HPD is high:
-> 1. If the timer is expired (>100ms):
->    - need_debounce is true.
->    - When HPD high (plugging event comes), need_debounce will be true
->      and then we need to do de-bouncing (wait for 100ms).
-> 2. If the timer is not expired (<100ms):
->    - need_debounce is false.
->    - When HPD high (plugging event comes), need_debounce will be
-> false
->      and no need to do de-bouncing.
-> 
-> HPD_______             __________________
->           |            |<-  100ms   ->
->           |____________|
->           <-  100ms   ->
-> 
-> Without HPD de-bouncing, USB-C to HDMI Adapaters will not be
-> detected.
-> 
-> The change has been successfully tested with the following devices:
-> - Dell Adapter - USB-C to HDMI
-> - Acer 1in1 HDMI dongle
-> - Ugreen 1in1 HDMI dongle
-> - innowatt HDMI + USB3 hub
-> - Acer 2in1 HDMI dongle
-> - Apple 3in1 HDMI dongle (A2119)
-> - J5Create 3in1 HDMI dongle (JAC379)
+Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+---
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-Reviewed-by: CK Hu <ck.hu@mediatek.com>
-
-> 
-> Tested-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
-> Reviewed-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
-> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> Reviewed-by: AngeloGioacchino Del Regno <
-> angelogioacchino.delregno@collabora.com>
-> ---
->  drivers/gpu/drm/mediatek/mtk_dp.c | 25 ++++++++++++++++++++++++-
->  1 file changed, 24 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dp.c
-> b/drivers/gpu/drm/mediatek/mtk_dp.c
-> index 11a94927c0d0..dd34dae417e5 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dp.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dp.c
-> @@ -87,6 +87,7 @@ struct mtk_dp_efuse_fmt {
->  
->  struct mtk_dp {
->  	bool enabled;
-> +	bool need_debounce;
->  	u8 max_lanes;
->  	u8 max_linkrate;
->  	u8 rx_cap[DP_RECEIVER_CAP_SIZE];
-> @@ -109,6 +110,7 @@ struct mtk_dp {
->  	struct platform_device *phy_dev;
->  	struct phy *phy;
->  	struct regmap *regs;
-> +	struct timer_list debounce_timer;
->  };
->  
->  struct mtk_dp_data {
-> @@ -1475,14 +1477,24 @@ static irqreturn_t
-> mtk_dp_hpd_event_thread(int hpd, void *dev)
->  	unsigned long flags;
->  	u32 status;
->  
-> +	if (mtk_dp->need_debounce && mtk_dp-
-> >train_info.cable_plugged_in)
-> +		msleep(100);
-> +
->  	spin_lock_irqsave(&mtk_dp->irq_thread_lock, flags);
->  	status = mtk_dp->irq_thread_handle;
->  	mtk_dp->irq_thread_handle = 0;
->  	spin_unlock_irqrestore(&mtk_dp->irq_thread_lock, flags);
->  
-> -	if (status & MTK_DP_THREAD_CABLE_STATE_CHG)
-> +	if (status & MTK_DP_THREAD_CABLE_STATE_CHG) {
->  		drm_helper_hpd_irq_event(mtk_dp->bridge.dev);
->  
-> +		if (!mtk_dp->train_info.cable_plugged_in) {
-> +			mtk_dp->need_debounce = false;
-> +			mod_timer(&mtk_dp->debounce_timer,
-> +				  jiffies + msecs_to_jiffies(100) - 1);
-> +		}
-> +	}
-> +
->  	if (status & MTK_DP_THREAD_HPD_EVENT)
->  		dev_dbg(mtk_dp->dev, "Receive IRQ from sink
-> devices\n");
->  
-> @@ -1996,6 +2008,13 @@ static const struct drm_bridge_funcs
-> mtk_dp_bridge_funcs = {
->  	.detect = mtk_dp_bdg_detect,
->  };
->  
-> +static void mtk_dp_debounce_timer(struct timer_list *t)
-> +{
-> +	struct mtk_dp *mtk_dp = from_timer(mtk_dp, t, debounce_timer);
-> +
-> +	mtk_dp->need_debounce = true;
-> +}
-> +
->  static int mtk_dp_probe(struct platform_device *pdev)
->  {
->  	struct mtk_dp *mtk_dp;
-> @@ -2069,6 +2088,9 @@ static int mtk_dp_probe(struct platform_device
-> *pdev)
->  
->  	drm_bridge_add(&mtk_dp->bridge);
->  
-> +	mtk_dp->need_debounce = true;
-> +	timer_setup(&mtk_dp->debounce_timer, mtk_dp_debounce_timer, 0);
-> +
->  	pm_runtime_enable(dev);
->  	pm_runtime_get_sync(dev);
->  
-> @@ -2081,6 +2103,7 @@ static int mtk_dp_remove(struct platform_device
-> *pdev)
->  
->  	pm_runtime_put(&pdev->dev);
->  	pm_runtime_disable(&pdev->dev);
-> +	del_timer_sync(&mtk_dp->debounce_timer);
->  	drm_bridge_remove(&mtk_dp->bridge);
->  	platform_device_unregister(mtk_dp->phy_dev);
->  
+diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+index 3bbaec97aee9..e441d632c3e8 100644
+--- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+@@ -1872,6 +1872,8 @@ usb_0: usb@a6f8800 {
+ 					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_USB3_0 0>;
+ 			interconnect-names = "usb-ddr", "apps-usb";
+ 
++			wakeup-source;
++
+ 			status = "disabled";
+ 
+ 			usb_0_dwc3: usb@a600000 {
+@@ -1924,6 +1926,8 @@ usb_1: usb@a8f8800 {
+ 					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_USB3_1 0>;
+ 			interconnect-names = "usb-ddr", "apps-usb";
+ 
++			wakeup-source;
++
+ 			status = "disabled";
+ 
+ 			usb_1_dwc3: usb@a800000 {
+-- 
+2.35.1
 
