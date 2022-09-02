@@ -2,101 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 808FD5AB64A
-	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 18:12:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 661525AB65A
+	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 18:16:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236957AbiIBQMV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Sep 2022 12:12:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33838 "EHLO
+        id S236621AbiIBQQq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Sep 2022 12:16:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236978AbiIBQLz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 12:11:55 -0400
-Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 201AC1BEA5;
-        Fri,  2 Sep 2022 09:06:58 -0700 (PDT)
-Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-11f11d932a8so5828034fac.3;
-        Fri, 02 Sep 2022 09:06:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=Yww8nSqo/YWqOlhFjUuAmIA0GxHSNv2JljX3oLJvbjc=;
-        b=PlUlLwLJKZlQ7T16gwjGrJCBZXDNDqNaFIjQzzRO9HjsIpaHK8w4gT87hJ5a/oaoft
-         1JawZVawi211GENhnq8leeGhoAVLpFSg6KhJH+REUaqAjkITaOtTeTc5hEZMyPehfJ4M
-         0o2n9i4OIbN0XjSq0oyCVVDP9PjcyqcW0rUo5/5aPe2nNlY7/BKF+fY7wOYDM4xL+5kt
-         ocUeSyRuRRg6XMJtoDRZRz85Z1+GJy4FD2eyEu943vfMFomo8yQ88Lox0kLsD7YE1jiF
-         lqgMH7ncLFz5hAyeHG1daR41zXUJFH+gQsHLxUN8ixGN/m6Jjg8fairpp+O0DpZO2D1c
-         4fAg==
-X-Gm-Message-State: ACgBeo1hbhYxLxx+YZZNMHNHVXOdvQMhPyaiSCCRWDxgtLSdNFKs3+Ga
-        WY93xi0d335PMhhWAxK5ZZI0F56zSQ==
-X-Google-Smtp-Source: AA6agR5IWlwQcgO3ctzkIvS04VMiB9a7SRTGcxI9I4Ik/vbqf2xUQToOBCJItnmp8Wid4YGkWvDx5Q==
-X-Received: by 2002:aca:3056:0:b0:345:64e9:7435 with SMTP id w83-20020aca3056000000b0034564e97435mr2166616oiw.19.1662134817390;
-        Fri, 02 Sep 2022 09:06:57 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id a7-20020a9d5c87000000b0063736db0ae9sm1203733oti.15.2022.09.02.09.06.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Sep 2022 09:06:56 -0700 (PDT)
-Received: (nullmailer pid 4168981 invoked by uid 1000);
-        Fri, 02 Sep 2022 16:06:56 -0000
-Date:   Fri, 2 Sep 2022 11:06:56 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Vinod Koul <vkoul@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: dma: arm,pl330: Add missing 'iommus'
- property
-Message-ID: <20220902160656.GA4168277-robh@kernel.org>
-References: <20220801210237.1501488-1-robh@kernel.org>
+        with ESMTP id S236686AbiIBQQZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 12:16:25 -0400
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C0C6DEA79;
+        Fri,  2 Sep 2022 09:13:07 -0700 (PDT)
+Received: (Authenticated sender: gregory.clement@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 6C9D7FF803;
+        Fri,  2 Sep 2022 16:13:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1662135185;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=Vg0Ow2Wlxy45PIHiHnVEioKxms+Qp0llN/7M0XoKma4=;
+        b=i/F5clX8UD2+J57eHw7iWb0WYy6CA3pXxKlAfipwJYwDFBh3vM8/0WT2jbYS+WZgTePEq1
+        EXPrbe/wbT1sMVqAxilaRNK0vh2Mu6I8gNn3nyV6Xev07BP/mAtLZLkP+mCHM0gnDHTAyG
+        fER59lTWN+bHLjeYV25/5tc1/1wNegZqXzIeO8A1xdKJ0vqi8AQgUa9fxWOJbXMTi/ktYV
+        ecfKG64wrsfjIbZkjBzx5R197yDc0PirSu3ejh0Rp8pqOMKNj5r8t4cR+7jYFyTQXvK7z2
+        qXOI4m/9Kvv+mlP36E1QNVv/YIBfKRqvn7T1mgRKRO8meczb+CusIIVmsBJEuw==
+From:   Gregory CLEMENT <gregory.clement@bootlin.com>
+To:     Robert Marko <robert.marko@sartura.hr>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        andrew@lunn.ch, sebastian.hesselbarth@gmail.com,
+        kostap@marvell.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v4 10/10] arm64: dts: marvell: add support for Methode eDPU
+In-Reply-To: <87ler1er7z.fsf@BL-laptop>
+References: <20220516124828.45144-1-robert.marko@sartura.hr>
+ <20220516124828.45144-10-robert.marko@sartura.hr>
+ <CA+HBbNF2R--984SdB0v42GMQOwAx4pTEz_FHifTtebN05ELU-Q@mail.gmail.com>
+ <87mtbm5gaf.fsf@BL-laptop>
+ <CA+HBbNG13dspUspWMrT=LWpCnMCZ-r-K8zR4RaoLf8HxhzStSQ@mail.gmail.com>
+ <87ler1er7z.fsf@BL-laptop>
+Date:   Fri, 02 Sep 2022 18:13:04 +0200
+Message-ID: <87czcdeovj.fsf@BL-laptop>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220801210237.1501488-1-robh@kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 01, 2022 at 03:02:37PM -0600, Rob Herring wrote:
-> The pl330 can be behind an IOMMU which is the case for Arm Juno board.
-> Add the 'iommus' property allowing for 1 IOMMU entry per channel for
-> writes and 1 IOMMU entry for reads.
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
-> v2:
->  - Include IOMMU entry for read channel
-> ---
->  Documentation/devicetree/bindings/dma/arm,pl330.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+Gregory CLEMENT <gregory.clement@bootlin.com> writes:
 
-Ping!
+> Robert Marko <robert.marko@sartura.hr> writes:
+>
+>> On Tue, Aug 30, 2022 at 9:42 AM Gregory CLEMENT
+>> <gregory.clement@bootlin.com> wrote:
+>>>
+>>> Robert Marko <robert.marko@sartura.hr> writes:
+>>>
+>>> > On Mon, May 16, 2022 at 2:48 PM Robert Marko <robert.marko@sartura.hr> wrote:
+>>> >>
+>>> >> Methode eDPU is an Armada 3720 powered board based on the Methode uDPU.
+>>> >>
+>>> >> They feature the same CPU, RAM, and storage as well as the form factor.
+>>> >>
+>>> >> However, eDPU only has one SFP slot plus a copper G.hn port.
+>>> >>
+>>> >> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+>>> >> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> >> ---
+>>> >> Changes in v2:
+>>> >> * Make the DTS split a separate commit
+>>> >> ---
+>>> >>  arch/arm64/boot/dts/marvell/Makefile             |  1 +
+>>> >>  arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts | 14 ++++++++++++++
+>>> >>  2 files changed, 15 insertions(+)
+>>> >>  create mode 100644 arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts
+>>> >>
+>>> >> diff --git a/arch/arm64/boot/dts/marvell/Makefile b/arch/arm64/boot/dts/marvell/Makefile
+>>> >> index 1c794cdcb8e6..104d7d7e8215 100644
+>>> >> --- a/arch/arm64/boot/dts/marvell/Makefile
+>>> >> +++ b/arch/arm64/boot/dts/marvell/Makefile
+>>> >> @@ -1,6 +1,7 @@
+>>> >>  # SPDX-License-Identifier: GPL-2.0
+>>> >>  # Mvebu SoC Family
+>>> >>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-db.dtb
+>>> >> +dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-eDPU.dtb
+>>> >>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin.dtb
+>>> >>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-emmc.dtb
+>>> >>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-ultra.dtb
+>>> >> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts b/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts
+>>> >> new file mode 100644
+>>> >> index 000000000000..57fc698e55d0
+>>> >> --- /dev/null
+>>> >> +++ b/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts
+>>> >> @@ -0,0 +1,14 @@
+>>> >> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>>> >> +
+>>> >> +/dts-v1/;
+>>> >> +
+>>> >> +#include "armada-3720-uDPU.dtsi"
+>>> >> +
+>>> >> +/ {
+>>> >> +       model = "Methode eDPU Board";
+>>> >> +       compatible = "methode,edpu", "marvell,armada3720", "marvell,armada3710";
+>>> >> +};
+>>> >> +
+>>> >> +&eth0 {
+>>> >> +       phy-mode = "2500base-x";
+>>> >> +};
+>>> >> --
+>>> >> 2.36.1
+>>> >>
+>>> >
+>>> > Hi Gregory,
+>>> Hello Roberto,
+>>>
+>>> > Is there something else that I can improve in the series?
+>>>
+>>> Sorry for having missed this series. At first view it seems OK, I am
+>>> going to have a closer look this week.
+>>
+>> Thanks, that sounds good.
+>
+> Hello,
+>
+> could you send again patch 8, I managed to apply all the other ones
+> excepting this one.
 
-> 
-> diff --git a/Documentation/devicetree/bindings/dma/arm,pl330.yaml b/Documentation/devicetree/bindings/dma/arm,pl330.yaml
-> index 2bec69b308f8..4a3dd6f5309b 100644
-> --- a/Documentation/devicetree/bindings/dma/arm,pl330.yaml
-> +++ b/Documentation/devicetree/bindings/dma/arm,pl330.yaml
-> @@ -55,6 +55,12 @@ properties:
->  
->    dma-coherent: true
->  
-> +  iommus:
-> +    minItems: 1
-> +    maxItems: 9
-> +    description: Up to 1 IOMMU entry per DMA channel for writes and 1
-> +      IOMMU entry for reads.
-> +
->    power-domains:
->      maxItems: 1
->  
+Finally I managed to sort it out, all the series is applied on mvebu/dt64
+
+Thanks,
+
+Gregory
+>
+>
+>>
+>> Regards,
+>> Robert
+>>>
+>>> Gregory
+>>>
+>>>
+>>> >
+>>> > Regards,
+>>> > Robert
+>>> >
+>>> > --
+>>> > Robert Marko
+>>> > Staff Embedded Linux Engineer
+>>> > Sartura Ltd.
+>>> > Lendavska ulica 16a
+>>> > 10000 Zagreb, Croatia
+>>> > Email: robert.marko@sartura.hr
+>>> > Web: www.sartura.hr
+>>>
+>>> --
+>>> Gregory Clement, Bootlin
+>>> Embedded Linux and Kernel engineering
+>>> http://bootlin.com
+>>
+>>
+>>
+>> -- 
+>> Robert Marko
+>> Staff Embedded Linux Engineer
+>> Sartura Ltd.
+>> Lendavska ulica 16a
+>> 10000 Zagreb, Croatia
+>> Email: robert.marko@sartura.hr
+>> Web: www.sartura.hr
+>
 > -- 
-> 2.34.1
-> 
-> 
+> Gregory Clement, Bootlin
+> Embedded Linux and Kernel engineering
+> http://bootlin.com
+>
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+
+-- 
+Gregory Clement, Bootlin
+Embedded Linux and Kernel engineering
+http://bootlin.com
