@@ -2,106 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 635695AB598
-	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 17:47:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B38FD5AB5E2
+	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 17:56:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236845AbiIBPrv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Sep 2022 11:47:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55842 "EHLO
+        id S237618AbiIBPz7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Sep 2022 11:55:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237343AbiIBPra (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 11:47:30 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0E49E7244
-        for <devicetree@vger.kernel.org>; Fri,  2 Sep 2022 08:36:59 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id bx38so2619046ljb.10
-        for <devicetree@vger.kernel.org>; Fri, 02 Sep 2022 08:36:59 -0700 (PDT)
+        with ESMTP id S237439AbiIBPzB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 11:55:01 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B32924097
+        for <devicetree@vger.kernel.org>; Fri,  2 Sep 2022 08:49:21 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id k9so2891249wri.0
+        for <devicetree@vger.kernel.org>; Fri, 02 Sep 2022 08:49:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date;
-        bh=hYq4cv4cNUo/9VVzRmU4eVk/nrbDfe3lb0f5HSAbg0c=;
-        b=fXAJ+/P3fhtMN1q8A3rt66vZdRafbtT3fcpkG6YbzOLJGXgMenZOZnNNgfXKlGyB5r
-         /neSeMRbtxKr4RaUWpB2ly4PnRRPe3twwNXT5Zp04HSiIrWrtbPfxQPl4d/DCSv7Jw6P
-         v6OpRAIcUKGWzfQf/L+mK3HkoWkVWdXaqxmdGC+Oz21BBA6qkJR+PgSYOi4lpfJwFBEk
-         c4m+9c6wiXw6W0fyG49lUa9QfrMJ+Lu2JQOHxBNqW5Upsci/xG1gPacMteCbU+aw8w2R
-         Wa40oIUi6Z2lVi0NDIyqyuz6OUkgO1Yegq0OH/PklUbwM23JcCeCErq8rCn2j2KUs7+z
-         AwIg==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=A8QQlHJvfCbaBzS2PU/2MLWW0321DP7okLoPDVol5xw=;
+        b=L1XAi25oPDm1oqbBc0NuoKX6xUAiKUJPv/QUBAj3BkAK6+stxtIFbCLBLDdIuWO1dO
+         Nn0pRB4aPwhsg8Oy8hWyF0m8BzX5dkv7w5R/m0X6jxLh94EakrU74/tmhjAgpGP1Ma4U
+         J44U1OC32lBeC26XYKILdz4k5P24ml1aNIrO6k0uv82UA7Gh0xu43C9UyhrAc6U26G3d
+         jhTxQvCt2RbBjSgMK3toWoLYYGOrohjNzaneN2FQTv5RjXQN87dHWGYQkgGHnFSV7mf0
+         JIvpTHf73ZVN+X4dq5XuQP6nJ6SGUR5YHLq/wV47eWYj0OwNfJgqzByOiLtLvLnTbkd4
+         BGmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date;
-        bh=hYq4cv4cNUo/9VVzRmU4eVk/nrbDfe3lb0f5HSAbg0c=;
-        b=z1ldMhUarQhg6XeTPv4+ZIiHjG8ZZc2/kIQGNuPPnPtyzvDL5jlpL/G5qlUpk+Zlt0
-         +SG2hLs36hK1dT9I8ow6yZwdaS5dgez+4fddpmE6xfSqBSyXqH+qypplz8kesAZaMZ3n
-         vFijU4LMjxK6ky1N89KLIfjbROeNebAgu88MFT79gIaysOu+zq84fbhIcO/N0JdDB9bO
-         OiT0M5K0wB9sdqC1WOzKZFIHHklUANEHBWLQSD8uwzEHippinnKpsThQ74aoPOzNMmgI
-         x7Vr/KboAiMbq1EUXZBcTR5L5Wbd6QZlIGYwM2wp70xR9yc/XrK4QRfcc+lA1PrRM/Vh
-         1XLA==
-X-Gm-Message-State: ACgBeo2TapQ2CYXjH65PWzy/IIv2SFQAsp0Ossa5nCsCnkI3H/nkPSdx
-        7mjm3Qqj8YOFOUYnxq7H4v7iXI4ITz/DtbLmlcyvkg==
-X-Google-Smtp-Source: AA6agR5BgJy2rk6wsD1gHEWSl466MvJsMQgEJ7ryOhxaVIAxSSxBf5O7ox+glstyi65Tkgtdj9RtOlUAM7wEftZQWJQ=
-X-Received: by 2002:a05:651c:1953:b0:268:983a:c6de with SMTP id
- bs19-20020a05651c195300b00268983ac6demr3626799ljb.218.1662133017439; Fri, 02
- Sep 2022 08:36:57 -0700 (PDT)
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=A8QQlHJvfCbaBzS2PU/2MLWW0321DP7okLoPDVol5xw=;
+        b=rGvjwell7jovyiAMjKr3D2PorvFMSws114W998PlxzUupRvP3vTsMEeQqdGGhSe5KJ
+         zYJGG9gC4kLmpgjY9s8wbfprGf+t7qlR8XnILoNQaZvIfx0oji0gnJyS4/VLXiKnXEMu
+         XouREsm6BklGQ+wnFySuM/F1YvB7CB/gU2m1F3MaUM0w3ghGJTXBmWDORz0xq3NSk+h8
+         0Ql54lGgzV97QywPuGgYD+76Mn8O8EZtWyQN3U5l+4aVn937YbmeogZIfnu75aGS1INF
+         D3ctf/cFjAHbNW+A/mnZfTtmPOwurBKGx99y+FnU7FSsbgNiIDxhguNcmpSDzXrWqTdS
+         gTzA==
+X-Gm-Message-State: ACgBeo03rudomrGAchOrW5waGGk/93bSqD2xQZ88zEbAdmRIu10AReXk
+        tXQ/csIE1h1jiyucx/14+el/7A==
+X-Google-Smtp-Source: AA6agR4VhQ06SJnCyHhZEG+L586fFuHuQTr0G87F4kmmMfOUykSVSJAybuueleO+BSeFErj5j4IXvw==
+X-Received: by 2002:a05:6000:1a86:b0:226:fd9b:7357 with SMTP id f6-20020a0560001a8600b00226fd9b7357mr3863759wry.458.1662133759948;
+        Fri, 02 Sep 2022 08:49:19 -0700 (PDT)
+Received: from hackbox.lan ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id b1-20020a05600010c100b002250f9abdefsm2046741wrx.117.2022.09.02.08.49.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 02 Sep 2022 08:49:19 -0700 (PDT)
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Amol Maheshwari <amahesh@qti.qualcomm.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Ekansh Gupta <quic_ekagupt@quicinc.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-arm-msm@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH v2 00/10] misc: fastrpc: Add audiopd support
+Date:   Fri,  2 Sep 2022 18:48:50 +0300
+Message-Id: <20220902154900.3404524-1-abel.vesa@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-From:   Balsam CHIHI <bchihi@baylibre.com>
-Date:   Fri, 2 Sep 2022 17:36:19 +0200
-Message-ID: <CAGuA+oo5HvBo6aVvpXmk+ZEgvAM_zBHW2JZLD376+s7uHpdJuA@mail.gmail.com>
-Subject: Thermal Framework, Thermal Driver, Thermal Aggregation
-To:     rafael@kernel.org, rui.zhang@intel.com,
-        Daniel Lezcano <daniel.lezcano@linaro.org>, amitk@kernel.org,
-        Rob Herring <robh@kernel.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Alexandre Bailon <abailon@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello everybody,
+This patchset adds audiopd support to fastrpc.
 
-I'm currently waiting for reviews of the LVTS Driver v9 series that I
-recently submitted
-"https://patchwork.kernel.org/project/linux-mediatek/cover/20220817080757.352021-1-bchihi@baylibre.com/",
-then I will send the v10 with additional mt8195 specific code.
-The upcoming v10 of the LVTS series will support Daniel's new Thermal
-Framework implementation
-"https://patchwork.kernel.org/project/linux-pm/cover/20220804224349.1926752-1-daniel.lezcano@linexp.org/",
-plus new changes that may be requested from reviews of the v9.
+The first version is here:
+https://lore.kernel.org/all/20220902131344.3029826-1-abel.vesa@linaro.org/
 
-After that, I will submit another series about Thermal Aggregation.
-Basically, I need to create an additional thermal_zone with all
-sensors registered to it, this will allow us to return MAX, AVG, or
-MIN temperature based on all sensor values within this new
-thermal_zone (could we call it Virtual?).
-A series for the same purpose are sent by Alexandre Bailon
-"https://patchwork.kernel.org/project/linux-pm/cover/20220218084604.1669091-1-abailon@baylibre.com/",
-the implementation is done in "thermal_of.c" (I'm continuing on
-Alexander's work). According to comments, other platforms not based on
-Device Tree should benefit from this feature. So, according to Daniel
-Lezcano, it should be implemented in "thermal_core.c" instead.
+Changes since v1:
+ * dropped the patch 13:
+   "misc: fastrpc: Remove unnecessary if braces in fastrpc_internal_invoke"
+ * sent patches 1, 2 and 3 as a separate patchset
 
-So, I would like to discuss it with you, and ask for recommendations
-and help on how to implement this feature, because it is not easy for
-me alone to figure out how to do it.
-Should we update the thermal zone to support aggregation? or add a way
-to register a thermal zone that aggregates other thermal zones?
-what about applying some configuration to a multiple sensor thermal
-zone? does it override the trip already defined in mono sensor thermal
-zones?
-And many other questions that should be asked to implement this new feature...
-In my honest opinion, we should clarify together how it must be done.
+Abel Vesa (10):
+  misc: fastrpc: Rename audio protection domain to root
+  misc: fastrpc: Add reserved mem support
+  dt-bindings: misc: fastrpc: Document memory-region property
+  misc: fastrpc: Add fastrpc_remote_heap_alloc
+  misc: fastrpc: Use fastrpc_map_put in fastrpc_map_create on fail
+  misc: fastrpc: Rework fastrpc_req_munmap
+  misc: fastrpc: Add support for audiopd
+  misc: fastrpc: Safekeep mmaps on interrupted invoke
+  misc: fastrpc: Add mmap request assigning for static PD pool
+  misc: fastrpc: Add dma_mask to fastrpc_channel_ctx
 
-Thank you in advance.
+ .../devicetree/bindings/misc/qcom,fastrpc.txt |   5 +
+ drivers/misc/fastrpc.c                        | 267 +++++++++++++++---
+ include/uapi/misc/fastrpc.h                   |   7 +
+ 3 files changed, 247 insertions(+), 32 deletions(-)
 
-Best regards,
-Balsam CHIHI
+-- 
+2.34.1
+
