@@ -2,460 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BDCB95AA8DE
-	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 09:41:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64B2C5AA8FB
+	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 09:42:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235388AbiIBHlO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Sep 2022 03:41:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48990 "EHLO
+        id S235351AbiIBHmw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Sep 2022 03:42:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235377AbiIBHlM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 03:41:12 -0400
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B326285AB1
-        for <devicetree@vger.kernel.org>; Fri,  2 Sep 2022 00:41:09 -0700 (PDT)
-Received: by mail-pj1-x102f.google.com with SMTP id j9-20020a17090a3e0900b001fd9568b117so1365266pjc.3
-        for <devicetree@vger.kernel.org>; Fri, 02 Sep 2022 00:41:09 -0700 (PDT)
+        with ESMTP id S233341AbiIBHmv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 03:42:51 -0400
+Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B68EA6C5A
+        for <devicetree@vger.kernel.org>; Fri,  2 Sep 2022 00:42:50 -0700 (PDT)
+Received: by mail-pg1-x52d.google.com with SMTP id v4so1251285pgi.10
+        for <devicetree@vger.kernel.org>; Fri, 02 Sep 2022 00:42:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date;
-        bh=IIHLILzbGuXqgslQN1WBmkWnSeVpr2v3v0TFiIJe0xw=;
-        b=SggwfFnkk4WnKTCkjRo8wxOLOkLkjR+w0QUOyDgmUCKwOHE7zVcit3qmwyPQbJP9ag
-         A5b0yOKHNkRXT298ezzCuqR1ujEqkP3G9H1GlZl3qBZZYYcf4xPu7G/mePeVycsuVySX
-         U0bcxCMH+Af01i4glp4VIIYyWntuJ334VokLU=
+        d=quanta-corp-partner-google-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=Lfyy8dLQgoFKZtBDJ6fyaqkz/t8A+UW1YcDjEL4rq5Q=;
+        b=iFCVe+5bwiCRkvsOMncfGz0ouL3Sg+txM/UTmSOJsDhP6m+4sE6FiCwQev6a1GMm8E
+         1I+WGAsAdo34wOlK2mcakCqXFJ0tiX/lnzzLKUsEkqaH9kxf0JpZVR7acL+nzbFSlFe9
+         B2Zzj699h1TlhVKgVb3SMLlavAnJmfL37EyJQDqrks5hi2Nh43Ye7qGlvX0gCgAs5EUY
+         ii9LNmt0/EGYeiHauhhQXRwHeAt5U06pKd4dtDhq8DsKHhV2FWG8qe+RrZuIAG37Vjme
+         3iAhsUu+V+M7k9saZXAA21Uaqb0bVEONgv1dzT9Hrg1MYU/as01I7hQngih3M0KLc0cZ
+         2wmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=IIHLILzbGuXqgslQN1WBmkWnSeVpr2v3v0TFiIJe0xw=;
-        b=ZGVf4grqtTC7xm5o/4FBN5UN08x9z4CzWWLRtyuQ3Dchy5Mz46LWtx05p25uG73TTA
-         QMGu9zs3UVTIWwb/uNOLc4jdHhKMu9/zUtrchvVstvCWP+w0f0nFzJGRIBV3dh4yHs0N
-         9rtFvr+QbhOspOYgZ5oU+jvCbrNa/bEgA7VCf8NKl29nSmCcjd2IhHsyMWUAVO96nnYy
-         WulijlN6ARqJ2Tke88mgtUPzzODrjM1THRZEi9ZWQw6++v6tvOzeOsFRXPAeqaXtDUZh
-         1TMUXaVP5vxQQwoS0U+++5VpuAGHHm5FioVBtyrB1V3f2oEYfgPEyxzu+DbjmXIJdVz3
-         KG8g==
-X-Gm-Message-State: ACgBeo3wGqIw0gNCovNh2C3KcMAS0nWNcsShco8unqigl0kCUZp6cl2h
-        yrVaAiQENkboYDM3QQCSIED8ug==
-X-Google-Smtp-Source: AA6agR7xgggrWl+4LoWGbztJNZ3O0koP9zDkQXdW2ZwFvljRxdX+IX5VNWo17R4v2gv+Yq5BMIEQcA==
-X-Received: by 2002:a17:90a:ce12:b0:1fb:b6d5:8c4e with SMTP id f18-20020a17090ace1200b001fbb6d58c4emr3514712pju.244.1662104469118;
-        Fri, 02 Sep 2022 00:41:09 -0700 (PDT)
-Received: from chromium.org (137.22.168.34.bc.googleusercontent.com. [34.168.22.137])
-        by smtp.gmail.com with ESMTPSA id w19-20020a170902ca1300b0016efbccf2c0sm869573pld.56.2022.09.02.00.41.08
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=Lfyy8dLQgoFKZtBDJ6fyaqkz/t8A+UW1YcDjEL4rq5Q=;
+        b=LSAz8mOAQQ6V2rhlkMbAGsY3yJu6Tn+kTLywZPZQk0eGKadz9DVsoFrqyiRut6mIQg
+         Wc79FDy1PzTAL/E+mL2VmcA15IQSKgSZ9uKN1gZmEvhC52n3ItkLQVEqNPn1quVHgXKr
+         KL+OXDKN+4azJhzG7sBTyNXg01WHhR7hLgT1I90V71kX5cyGtcKXX8K7gZ7wHpaPJM36
+         u0oM32ONpvV9gsa6AEpLttB2ZSlw6UahglCYLzG4VNknd51L2Srdw40wcrML35zhacXe
+         UW3JuZKlUcMc/QTmEFkDeoEFjNsbeXQAE/Lx305PqWvBIMYz8sgDHggSvhuQ1z1HgzeL
+         5xtA==
+X-Gm-Message-State: ACgBeo3eDayK+W4FU+9jVTEjXEN/cB/eVbIPclD7PMMVquVnmlWdj0vj
+        KsqDwy4y/cml02Apwwpm8plIQQ==
+X-Google-Smtp-Source: AA6agR4mlLPaXxDGgRj5JSsMKDcIm0FTPCzwJ+oR1NS/dtcTcO5nu8/rehrHCyhQAEampHMjUbeGVg==
+X-Received: by 2002:aa7:8a0b:0:b0:537:f5f1:fd91 with SMTP id m11-20020aa78a0b000000b00537f5f1fd91mr29589113pfa.41.1662104569939;
+        Fri, 02 Sep 2022 00:42:49 -0700 (PDT)
+Received: from liang-Predator-PH517-52.. (60-250-232-247.hinet-ip.hinet.net. [60.250.232.247])
+        by smtp.gmail.com with ESMTPSA id f21-20020aa79695000000b005363abb6d0bsm975099pfk.15.2022.09.02.00.42.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Sep 2022 00:41:08 -0700 (PDT)
-Date:   Fri, 2 Sep 2022 07:41:07 +0000
-From:   Prashant Malani <pmalani@chromium.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        Pin-yen Lin <treapking@chromium.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        Benson Leung <bleung@chromium.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        =?iso-8859-1?Q?N=EDcolas_F_=2E_R_=2E_A_=2E?= Prado 
-        <nfraprado@collabora.com>, Allen Chen <allen.chen@ite.com.tw>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        =?iso-8859-1?Q?Jos=E9_Exp=F3sito?= <jose.exposito89@gmail.com>,
+        Fri, 02 Sep 2022 00:42:49 -0700 (PDT)
+From:   Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
+To:     LKML <linux-kernel@vger.kernel.org>
+Cc:     dianders@chromium.org, mka@chromium.org,
+        Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Xin Ji <xji@analogixsemi.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Subject: Re: [PATCH v5 1/9] dt-bindings: usb: Add Type-C switch binding
-Message-ID: <YxGzk6DNAt0aCvIY@chromium.org>
-References: <CACeCKackdbDZrk5fk7qyMwSdTdzyTS=m1vHPFnQOj672W=2nOA@mail.gmail.com>
- <20220628182336.GA711518-robh@kernel.org>
- <CAEXTbpex9nxP-nyPWvSBchAW4j3C4MZfVHTb=5X0iSLY1bSAKg@mail.gmail.com>
- <CAEXTbpf_jxK-R5aA81FCbpAH4bChA2B9+8qExZUbA7Y+Ort=Gg@mail.gmail.com>
- <CAL_Jsq+C04RXLtm6Ac85Ru3EGwJbqV_UD3_dDWVrKvFSvdm7Ng@mail.gmail.com>
- <CAE-0n53ers881LOTCEmKDDxJQt+5vvXJSURs=o6TcOiR5m_EAw@mail.gmail.com>
- <CACeCKacJnnk4_dXEX7XiboOWrYpfAcE=ukP63agVAYUxWR9Vbg@mail.gmail.com>
- <CAE-0n50jm1ovUcBC0GCQJszk-4u+0vDQtAxHxsu9SLyn_CkQuQ@mail.gmail.com>
- <CACeCKadtmGZ5iuTHdMms6ZHGn-Uv=MbcdtqmUzqCb=5WHuPj2Q@mail.gmail.com>
- <20220712174551.GG1823936-robh@kernel.org>
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: [PATCH 0/2] Add a new board device tree named 'evoker' for herobrine variant.
+Date:   Fri,  2 Sep 2022 15:42:38 +0800
+Message-Id: <20220902074240.117075-1-sheng-liang.pan@quanta.corp-partner.google.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220712174551.GG1823936-robh@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+This patch add the initial dts file for new board 'evoker'.
 
-On Jul 12 11:45, Rob Herring wrote:
-> 
-> That's not the right interpretation. There should not be some Type-C 
-> specific child mux/switch node because the device has no such h/w within 
-> it. Assuming all the possibilities Stephen outlined are valid, it's 
-> clear this lane selection has nothing to do with Type-C. It does have an 
-> output port for its DP output already and using that to describe the 
-> connection to DP connector(s) and/or Type-C connector(s) should be 
-> handled.
-> Rob
+Sorry about getting mixed up with version numbers. Here are links to
+previous postings and what I'll assume the version number is:
 
-Below I've listed the proposal binding (for the Type-C connector) along
-with 2 sample hardware diagrams and corresponding DT.
+v1: https://lore.kernel.org/r/20220830053307.3997495-1-sheng-liang.pan@quanta.corp-partner.google.com/
+v2: https://lore.kernel.org/r/20220901061336.61386-1-sheng-liang.pan@quanta.corp-partner.google.com/
+v3: https://lore.kernel.org/r/20220901091253.93333-1-sheng-liang.pan@quanta.corp-partner.google.com/
 
-The updated binding in usb-c-connector would be as follows:
+Changes in v4:
+- Got the version number correct
+- Got the version number correct
 
-diff --git a/Documentation/devicetree/bindings/connector/usb-connector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
-index ae515651fc6b..a043b09cb8ec 100644
---- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
-+++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
-@@ -183,6 +183,30 @@ properties:
-       port@1:
-         $ref: /schemas/graph.yaml#/properties/port
-         description: Super Speed (SS), present in SS capable connectors.
-+        properties:
-+          '#address-cells':
-+            const: 1
-+
-+          '#size-cells':
-+            const: 0
-+
-+        patternProperties:
-+          "^endpoint@[0-1]$":
-+            $ref: /schemas/graph.yaml#/$defs/endpoint-base
-+            description:
-+              Endpoints for the two SS lanes. endpoint@0 refers to SSTRX1 (A2,A3,B10,B11)
-+              and endpoint@1 refers to SSTRX2 (B2,B3,A10,A11).
-+            additionalProperties: false
-+
-+              properties:
-+                reg:
-+                  maxItems: 1
-+
-+                remote-endpoint: true
-+
-+              required:
-+                - reg
-+                - remote-endpoint
+Changes in v2:
+- Bindings patch added
 
-       port@2:
-         $ref: /schemas/graph.yaml#/properties/port
+Sheng-Liang Pan (2):
+  dt-bindings: arm: qcom: document sc7280 and evoker board
+  arm64: dts: qcom: sc7280: Add device tree for herobrine evoker
 
-Here are 2 examples of how that would look on some existing hardware:
+ .../devicetree/bindings/arm/qcom.yaml         |   5 +
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ .../dts/qcom/sc7280-herobrine-evoker-r0.dts   | 333 ++++++++++++++++++
+ 3 files changed, 339 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker-r0.dts
 
-Example 1. 2 usb-c-connectors connecting to 1 drm bridge / DP switch:
+-- 
+2.34.1
 
-Here is the diagram we are using on the MTK platform:
-
-                 SOC
-        +---------------------+                                              C0
-        |                     |            +----------+       2 lane      +--------+
-        |                     |            |          +---------/---------+ SSTRX1 |
-        |                     |            |          |                   |        |
-        |    MIPI DPI         |            |          |  2 lane           |        |
-        |                     +------------+ ANX 7625 +---/-----+    +----+ SSTRX2 |
-        |                     |            |          |         |    |    +--------+
-        |                     |            +----------+         |    |
-        +---------------------+                                 |    |
-        |                     |            +----------+ 2 lane  |    |       C1
-        |                     |            |          +----/----C----+    +--------+
-        |    USB3 HC          |   2 lane   |          |         |         | SSTRX1 |
-        |                     +-----/------+ USB3 HUB |         +---------+        |
-        |  (host controller)  |            |          |       2 lane      |        |
-        |                     |            |          +---------/---------+ SSTRX2 |
-        +---------------------+            |          |                   |        |
-                                           +----------+                   +--------+
-
-Some platforms use it6505, so that can be swapped in for anx7625
-without any change to the rest of the hardware diagram.
-
-From the above, we can see that it is helpful to describe the
-Type-C SS lines as 2 endpoints:
-- 1 for SSTX1+SSRX1 (A2,A3 + B10,B11)
-- 1 for SSTX2+SSRX2 (B2,B3 + A10, A11)
-
-A device tree for this would look as follows:
-
-// Type-C port driver
-ec {
-    ...
-    cros_ec_typec {
-        ...
-        usb-c0 {
-            compatible = "usb-c-connector";
-            ports {
-                hs : port@0 {
-                    ...
-                };
-                ss: port@1 {
-                    reg = <1>;
-                    c0_sstrx1: endpoint@0 {
-                        reg = <0>;
-                        remote-endpoint = <&anx7625_out0>;
-                    };
-                    c0_sstrx2: endpoint@0 {
-                        reg = <0>;
-                        remote-endpoint = <&usb3hub_out0>;
-                    };
-                };
-                sbu : port@2 {
-                    ...
-                };
-            };
-        };
-        usb-c1 {
-            compatible = "usb-c-connector";
-            ports {
-                hs : port@0 {
-                    ...
-                };
-                ss: port@1 {
-                    reg = <1>;
-                    c1_sstrx1: endpoint@0 {
-                        reg = <0>;
-                        remote-endpoint = <&anx7625_out1>;
-                    };
-                    c1_sstrx2: endpoint@0 {
-                        reg = <0>;
-                        remote-endpoint = <&usb3hub_out1>;
-                    };
-                };
-                sbu : port@2 {
-                    ...
-                };
-            };
-        };
-    };
-};
-
-// DRM bridge / Type-C mode switch
-anx_bridge: anx7625@58 {
-    compatible = "analogix,anx7625";
-    reg = <0x58>;
-    ...
-    // Input from DP controller
-    port@0 {
-        reg = <0>;
-        ...
-    };
-
-    // Output to Type-C connector / DP panel
-    port@1 {
-        reg = <1>;
-
-        anx7625_out0: endpoint@0 {
-            reg = <0>;
-            mode-switch;
-            remote-endpoint = <&c0_sstrx1>;
-        };
-        anx7625_out1: endpoint@1 {
-            reg = <1>;
-            mode-switch;
-            remote-endpoint = <&c1_sstrx1>;
-        };
-    };
-};
-
-// USB3 hub
-usb3hub: foo_hub {
-    ...
-    ports@0 {
-         // End point connected to USB3 host controller on SOC.
-    };
-    port@1 {
-        reg = <1>;
-
-        foo_hub_out0: endpoint@0 {
-            reg = <0>;
-            mode-switch; ---> See c.) later
-            remote-endpoint = <&c0_sstrx2>;
-        };
-        foo_hub_out1: endpoint@1 {
-            reg = <1>;
-            mode-switch;
-            remote-endpoint = <&c1_sstrx2>;
-        };
-    };
-};
-
-Notes:
-- On the Chrome OS platform, the USB3 Hub is controlled by
-the EC, so we don't really need to describe that connection,
-but I've added a minimal one here just to show how the graph
-connection would work if the HUB was controlled by the SoC.
-- The above assumes that other hardware is controlling orientation.
-We can add "orientation-switch" drivers along the graph path
-if there is other hardware which controls orientation.
-
-Example 2: 1 USB-C connector connected to 1 drm-bridge/ mode-switch
-
-I've tried to use Bjorn's example [1], but I might have made
-some mistakes since I don't have access to the schematic.
-
-
-                  SoC
-  +------------------------------------------+
-  |                                          |
-  |  +---------------+                       |
-  |  |               |                       |
-  |  |  DP ctrllr    |       +---------+     |                 C0
-  |  |               +-------+         |     |   2 lane     +----------+
-  |  +---------------+       |  QMP    +-----+-----/--------+ SSTRX1   |
-  |                          |  PHY    |     |              |          |
-  |  +-------------+  2 lane |         |     |   2 lane     |          |
-  |  |             +----/----+         +-----+-----/--------+ SSTRX2   |
-  |  |    dwc3     |         +---------+     |              |          |
-  |  |             |                         |              |          |
-  |  |             |         +---------+     |              |          |
-  |  |             +---------+ HS PHY  |     |   HS lanes   |          |
-  |  +-------------+         |         +-----+----/---------+ D +/-    |
-  |                          |         |     |              +----------+
-  |                          +---------+     |
-  |                                          |
-  +------------------------------------------+
-
-The DT would look something like this (borrowing from Stephen's example [2]):
-
-qmp {
-    mode-switch; ----> See b.) later.
-    orientation-switch;
-    ports {
-        qmp_usb_in: port@0 {
-            reg = <0>;
-            remote-endpoint = <&usb3_phy_out>;
-        };
-        qmp_dp_in: port@1 {
-            reg = <1>;
-            remote-endpoint = <&dp_phy_out>;
-        };
-        port@2 {
-            reg = <2>;
-            qmp_usb_dp_out0: endpoint@0 {
-                reg = <0>;
-                remote-endpoint = <&c0_sstrx1>;
-            };
-            qmp_usb_dp_out1: endpoint@1 {
-                reg = <1>;
-                remote-endpoint = <&c0_sstrx2>;
-            };
-        };
-};
-
-dp-phy {
-    ports {
-        dp_phy_out: port {
-            remote-endpoint = <&qmp_dp_in>;
-        };
-    };
-};
-
-dwc3: usb-phy {
-    ports {
-        usb3_phy_out: port@0 {
-            reg = <0>;
-            remote-endpoint = <&qmp_usb_in>;
-        };
-    };
-};
-
-glink {
-    c0: usb-c-connector {
-        compatible = "usb-c-connector";
-        ports {
-            hs: port@0 {
-                reg = <0>;
-                endpoint@0 {
-                    reg = <0>;
-                    remote-endpoint = <&hs_phy_out>;
-                };
-            };
-
-            ss: port@1 {
-                reg = <1>;
-                c0_sstrx1: endpoint@0 {
-                    reg = <0>;
-                    remote-endpoint = <&qmp_usb_dp_out0>;
-                };
-                c0_sstrx2: endpoint@1 {
-                    reg = <1>;
-                    remote-endpoint = <&qmp_usb_dp_out1>;
-                };
-            };
-        };
-    };
-};
-
-Notes:
-a. This proposal doesn't deal with the DRM bridge HPD forwarding; I
-believe that is covered by Stephen's example/proposal in [2], and
-can be addressed separately. That said, this binding is compatible
-with the proposal in [2], that is, make the "mode-switch" driver a
-drm-bridge and forward the HPD info to the upstream DRM-bridge (DP controller).
-The driver implementing "mode-switch" will be able to do that, since
-it gets DP status/attention VDOS with HPD info from the Type-C port driver.
-b. If both SSTRX pairs from a connector are routed to the same
-hardware block (example 2) then the device would keep "mode-switch"
-as a top level property (and the fwnode associated with "mode-switch"
-is the drm-bridge device).
-c. If SSTRX pairs from 2 connectors are routed to the same
-hardware block (example 1), then each end-point which is connected to
-the USB-C connector will have a "mode-switch" property in its end-point.
-There will be 2 mode switches registered here, and the fwnode for each
-"mode-switch" is the end-point node.
-
-b.) and c.) can be handled by Type C mux registration and matching
-code. We already have 3 mux devs for each mux [3].
-
-For the single mode-switch case, mux_dev[1] will just refer to the top-level
-mode-switch registered by the DRM bridge / switch driver (example 1).
-For the 2 mode-switch case, typec_mux_dev[1] will have 2 child
-typec_mux_dev's, each of which represents the mode-switches
-registered by the DRM bridge / switch driver. Introducing this
-indirection means the port driver / alternate mode driver don't
-need to care about how the connectors are routed; the framework
-will just call the mux_set() function on the mux_dev() or its
-children if it has any.
-
-The benefit of this approach is existing bindings (which just
-assume 1 endpoint from usb-c-connector/port@1) should continue to
-work without any changes.
-
-Why don't we use data lanes for the usb-c-connector
-endpoints? I guess we could, but I am not a fan of adding the
-extra data-lane parsing logic to the Type-C framework (I
-don't think drivers need that level of detail from the connector
-binding). And even then, we will still need an extra end-point
-if the lanes of the USB-C connector are routed to different hardware blocks.
-
-The Type-C connector spec doesn't specify any alternate modes
-with < 1 SSTRX pair, so the most we can ever have (short of a
-major change to the spec) is 2 SSTRX end points for a
-connector each being routed to different hardware blocks.
-Codifying these as endpoint@0 and endpoint@1 in the usb-c-connector
-binding seems to line up nicely with this detail of the spec.
-
-Thanks,
-
--Prashant
-
-[1] https://lore.kernel.org/linux-usb/Yv1y9Wjp16CstJvK@baldur/
-[2] https://lore.kernel.org/linux-usb/CAE-0n52-QVeUVCB1qZzPbYyrb1drrbJf6H2DEEW9bOE6mh7egw@mail.gmail.com/
-[3] https://elixir.bootlin.com/linux/v6.0-rc3/source/drivers/usb/typec/mux.c#L259
