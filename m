@@ -2,102 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 101905AAA7C
-	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 10:47:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85CCF5AAA91
+	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 10:49:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235980AbiIBIrI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Sep 2022 04:47:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35030 "EHLO
+        id S235494AbiIBIsr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Sep 2022 04:48:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235971AbiIBIqe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 04:46:34 -0400
-Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EDAD1E0;
-        Fri,  2 Sep 2022 01:46:19 -0700 (PDT)
-Received: by mail-qt1-f175.google.com with SMTP id x5so946831qtv.9;
-        Fri, 02 Sep 2022 01:46:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=+efSmKPMaUF86xAxusmh16dSBB12tESjJF0BtlEmxmw=;
-        b=jPzqRRuor7SJ7HMvNwdj3I+k1mi2CwIxHu+GyMnLqU2SUopDKdMdeR3eZukJfkvlP/
-         ibwxGeX2ZuaQAGhxiFaMVW5sGllSbsmy+0fRz9DcdcCevizh/QNoqmZfvtzDfP6srvV+
-         6E2qNnWIzwPKs5TCfSzMmA1uh25AqsJu20IYO1+t05DcGuPFmATud0fWUOGbgVxccxzA
-         0ygeWfYjwzy1VjadbpB9nDTjC+a2SHXGP1GtelFzVFuwL1iQfGl06VZX5XDZf0vGgktA
-         8b6dU5htMtqgK7LIIeElE+3V5+5Ez7ksj1lRzMdJJ+EurFz/lPaTUozsXVBh3ZD270yw
-         AKow==
-X-Gm-Message-State: ACgBeo2k7FAWXwHusG3zJlOSNHtjtOTj8ruzRb6e2i+TDUPAnmhVUdFF
-        1L4ge6HQDiC6ALzusvIqpDOqG46JYM3x7g==
-X-Google-Smtp-Source: AA6agR7Qvn/DQB3kq2qlQU2CbMq3/chM20GUAOdh/1wLHBdLYyHsm0xTcDcbLWGdA8HRsVasKS3Z3Q==
-X-Received: by 2002:a05:622a:1ba9:b0:343:786c:3bb1 with SMTP id bp41-20020a05622a1ba900b00343786c3bb1mr26766823qtb.125.1662108378489;
-        Fri, 02 Sep 2022 01:46:18 -0700 (PDT)
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
-        by smtp.gmail.com with ESMTPSA id u4-20020a05620a0c4400b006bc1512986esm994628qki.97.2022.09.02.01.46.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Sep 2022 01:46:18 -0700 (PDT)
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-33dc345ad78so10211467b3.3;
-        Fri, 02 Sep 2022 01:46:17 -0700 (PDT)
-X-Received: by 2002:a81:83c8:0:b0:341:4b7b:3d9e with SMTP id
- t191-20020a8183c8000000b003414b7b3d9emr18102137ywf.47.1662108377701; Fri, 02
- Sep 2022 01:46:17 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220829215128.5983-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <963693d9-6016-f279-a543-22e9be802d87@linaro.org>
-In-Reply-To: <963693d9-6016-f279-a543-22e9be802d87@linaro.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 2 Sep 2022 10:46:06 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdX2a3uR-Hq9S3DkfrTir_9nPmw56QovxLN1fMgJ+1yxEg@mail.gmail.com>
-Message-ID: <CAMuHMdX2a3uR-Hq9S3DkfrTir_9nPmw56QovxLN1fMgJ+1yxEg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: Drop clock-names property from RPC node
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
+        with ESMTP id S235986AbiIBIsH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 04:48:07 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6ECA7C6CE7
+        for <devicetree@vger.kernel.org>; Fri,  2 Sep 2022 01:47:57 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1oU2L4-0004Hg-KQ; Fri, 02 Sep 2022 10:47:46 +0200
+Message-ID: <807ee579d5567d09deeaa9cc994cf10fda08a49a.camel@pengutronix.de>
+Subject: Re: [PATCH v6 3/7] arm64: dts: imx8mp-evk: Add PCIe support
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Richard Zhu <hongxing.zhu@nxp.com>, p.zabel@pengutronix.de,
+        bhelgaas@google.com, lorenzo.pieralisi@arm.com, robh@kernel.org,
+        shawnguo@kernel.org, vkoul@kernel.org,
+        alexander.stein@ew.tq-group.com, marex@denx.de,
+        richard.leitner@linux.dev
+Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
+        linux-imx@nxp.com
+Date:   Fri, 02 Sep 2022 10:47:45 +0200
+In-Reply-To: <1662004960-14071-4-git-send-email-hongxing.zhu@nxp.com>
+References: <1662004960-14071-1-git-send-email-hongxing.zhu@nxp.com>
+         <1662004960-14071-4-git-send-email-hongxing.zhu@nxp.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+Am Donnerstag, dem 01.09.2022 um 12:02 +0800 schrieb Richard Zhu:
+> Add PCIe support on i.MX8MP EVK board.
+> 
+> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> Tested-by: Marek Vasut <marex@denx.de>
+> Tested-by: Richard Leitner <richard.leitner@skidata.com>
+> Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-On Tue, Aug 30, 2022 at 11:19 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
-> On 30/08/2022 00:51, Lad Prabhakar wrote:
-> > With 'unevaluatedProperties' support implemented, there's a number of
-> > warnings when running dtbs_check:
-> >
-> > arch/arm64/boot/dts/renesas/r8a774b1-hihope-rzg2n-rev2-ex-idk-1110wr.dtb: spi@ee200000: Unevaluated properties are not allowed ('clock-names' was unexpected)
-> >       From schema: Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml
-> >
-> > The main problem is that SoC DTSI's are including clock-names, whereas the
-> > renesas,rpc-if.yaml has 'unevaluatedProperties: false'. So just drop
-> > clock-names property from the SoC DTSI's.
->
-> This is not the main problem. The main problem is that bindings do not
-> allow clock-names. Commit msg should reflect that.
+Reviewed-by: Lucas Stach <l.stach@pengutronix.de>
 
-Thank you, I'm amending the commit message.
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mp-evk.dts | 53 ++++++++++++++++++++
+>  1 file changed, 53 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+> index f6b017ab5f53..9f1469db554d 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+> @@ -5,6 +5,7 @@
+>  
+>  /dts-v1/;
+>  
+> +#include <dt-bindings/phy/phy-imx8-pcie.h>
+>  #include "imx8mp.dtsi"
+>  
+>  / {
+> @@ -33,6 +34,12 @@ memory@40000000 {
+>  		      <0x1 0x00000000 0 0xc0000000>;
+>  	};
+>  
+> +	pcie0_refclk: pcie0-refclk {
+> +		compatible = "fixed-clock";
+> +			#clock-cells = <0>;
+> +			clock-frequency = <100000000>;
+> +	};
+> +
+>  	reg_can1_stby: regulator-can1-stby {
+>  		compatible = "regulator-fixed";
+>  		regulator-name = "can1-stby";
+> @@ -55,6 +62,17 @@ reg_can2_stby: regulator-can2-stby {
+>  		enable-active-high;
+>  	};
+>  
+> +	reg_pcie0: regulator-pcie {
+> +		compatible = "regulator-fixed";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_pcie0_reg>;
+> +		regulator-name = "MPCIE_3V3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		gpio = <&gpio2 6 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +	};
+> +
+>  	reg_usdhc2_vmmc: regulator-usdhc2 {
+>  		compatible = "regulator-fixed";
+>  		pinctrl-names = "default";
+> @@ -350,6 +368,28 @@ &i2c5 {
+>  	 */
+>  };
+>  
+> +&pcie_phy {
+> +	fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_INPUT>;
+> +	clocks = <&pcie0_refclk>;
+> +	clock-names = "ref";
+> +	status = "okay";
+> +};
+> +
+> +&pcie {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_pcie0>;
+> +	reset-gpio = <&gpio2 7 GPIO_ACTIVE_LOW>;
+> +	clocks = <&clk IMX8MP_CLK_HSIO_ROOT>,
+> +		 <&clk IMX8MP_CLK_PCIE_ROOT>,
+> +		 <&clk IMX8MP_CLK_HSIO_AXI>;
+> +	clock-names = "pcie", "pcie_aux", "pcie_bus";
+> +	assigned-clocks = <&clk IMX8MP_CLK_PCIE_AUX>;
+> +	assigned-clock-rates = <10000000>;
+> +	assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_50M>;
+> +	vpcie-supply = <&reg_pcie0>;
+> +	status = "okay";
+> +};
+> +
+>  &snvs_pwrkey {
+>  	status = "okay";
+>  };
+> @@ -502,6 +542,19 @@ MX8MP_IOMUXC_SPDIF_TX__I2C5_SCL         0x400001c2
+>  		>;
+>  	};
+>  
+> +	pinctrl_pcie0: pcie0grp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_I2C4_SCL__PCIE_CLKREQ_B	0x61 /* open drain, pull up */
+> +			MX8MP_IOMUXC_SD1_DATA5__GPIO2_IO07	0x41
+> +		>;
+> +	};
+> +
+> +	pinctrl_pcie0_reg: pcie0reggrp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_SD1_DATA4__GPIO2_IO06	0x41
+> +		>;
+> +	};
+> +
+>  	pinctrl_pmic: pmicgrp {
+>  		fsl,pins = <
+>  			MX8MP_IOMUXC_GPIO1_IO03__GPIO1_IO03	0x000001c0
 
-Gr{oetje,eeting}s,
 
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
