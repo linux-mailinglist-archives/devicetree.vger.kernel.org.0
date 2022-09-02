@@ -2,122 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C514F5AAC22
-	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 12:13:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BC895AAD15
+	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 13:06:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230436AbiIBKN0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Sep 2022 06:13:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36242 "EHLO
+        id S235543AbiIBLGS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Sep 2022 07:06:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231266AbiIBKND (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 06:13:03 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60F8E101A;
-        Fri,  2 Sep 2022 03:12:57 -0700 (PDT)
-Received: from [192.168.1.90] (unknown [188.27.54.142])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: cristicc)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id BEFE26601F03;
-        Fri,  2 Sep 2022 11:12:54 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1662113575;
-        bh=uPwA05/mzppSgHqnQObaTSbjueljkx5JGjGCVIFaX/M=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=kPZgY93OKHOGvRZLDJeVcLlegA/q+BYNmivqJPMl9tMwfq9YLFz2qOH+o20c2DOS2
-         4NonJ4WJPIP5t4/AHYTQjZY+uI3CNxoUCfT9tpB5bdnXaD6aBTLigNlV6kV6r2vMYA
-         c6G7rh66/ZN1N+6E59YhzyEeAARtSivDETcsTmE0T98vaHRgh9mbHCkxbZxqCL5Dxg
-         r59DPFah2gscMSGZbPOykzM9xfyOaPy4vHYLRveYWt7XNmwbVYexDh4ZIef0WxWuAP
-         p30bjgATWCyhMgg/ODF0W0Yc9YkftjR7F87nc18lduiyNzNcCYVV80yketeeX4uhBa
-         2PhCLMGBsoK+g==
-Message-ID: <092ed898-dee9-e27f-1f18-3a17b259563e@collabora.com>
-Date:   Fri, 2 Sep 2022 13:12:52 +0300
+        with ESMTP id S234970AbiIBLGR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 07:06:17 -0400
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4F74ABF25;
+        Fri,  2 Sep 2022 04:06:15 -0700 (PDT)
+Received: from fraeml715-chm.china.huawei.com (unknown [172.18.147.200])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4MJw3g361Cz6HJ4j;
+        Fri,  2 Sep 2022 19:02:23 +0800 (CST)
+Received: from lhrpeml500005.china.huawei.com (7.191.163.240) by
+ fraeml715-chm.china.huawei.com (10.206.15.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Fri, 2 Sep 2022 13:06:13 +0200
+Received: from localhost (10.202.226.42) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Fri, 2 Sep
+ 2022 12:06:12 +0100
+Date:   Fri, 2 Sep 2022 12:06:11 +0100
+From:   Jonathan Cameron <Jonathan.Cameron@huawei.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     Ciprian Regus <ciprian.regus@analog.com>, <jic23@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>
+Subject: Re: [PATCH v2 4/5] drivers: iio: adc: LTC2499 support
+Message-ID: <20220902120611.000007a0@huawei.com>
+In-Reply-To: <4067432b-b5a6-f3eb-a707-5fa298ba846b@linaro.org>
+References: <20220901121700.1325733-1-ciprian.regus@analog.com>
+        <20220901121700.1325733-4-ciprian.regus@analog.com>
+        <4067432b-b5a6-f3eb-a707-5fa298ba846b@linaro.org>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; i686-w64-mingw32)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH 0/3] Enable initial support for StarFive VisionFive V1 SBC
-Content-Language: en-US
-To:     Conor.Dooley@microchip.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, paul.walmsley@sifive.com,
-        palmer@dabbelt.com, aou@eecs.berkeley.edu,
-        michael.zhu@starfivetech.com, drew@beagleboard.org, kernel@esmil.dk
-Cc:     devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-References: <20220901224253.2353071-1-cristian.ciocaltea@collabora.com>
- <04151f8b-5722-b5a0-a4ab-4958f55b8dec@microchip.com>
-From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <04151f8b-5722-b5a0-a4ab-4958f55b8dec@microchip.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="US-ASCII"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Originating-IP: [10.202.226.42]
+X-ClientProxiedBy: lhrpeml100001.china.huawei.com (7.191.160.183) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 1 Sep 2022 16:23:09 +0300
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-On 9/2/22 09:27, Conor.Dooley@microchip.com wrote:
-> On 01/09/2022 23:42, Cristian Ciocaltea wrote:
->> [You don't often get email from cristian.ciocaltea@collabora.com. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
->>
->> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
->>
->> The StarFive VisionFive V1 SBC [1] is similar with the already supported
->> BeagleV Starlight Beta board, both being based on the StarFive JH7100 SoC.
->>
->> In addition to documenting the necessary compatibles, this patch series
->> moves most of the content from jh7100-beaglev-starlight.dts to a new file
->> jh7100-common.dtsi, to be shared between the two boards.
->>
->> No other changes are required in order to successfully boot the board.
+> On 01/09/2022 15:16, Ciprian Regus wrote:
+> > The LTC2499 is a 16-channel (eight differential), 24-bit,
+> > ADC with Easy Drive technology and a 2-wire, I2C interface.
+> > 
+> > Implement support for the LTC2499 ADC by extending the LTC2497
+> > driver. A new chip_info struct is added to differentiate between
+> > chip types and resolutions when reading data from the device.
+> > 
+> > Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/2499fe.pdf  
 > 
-> Gave it a go this morning, dts stuff itself looks good to me. No new
-> warnings, although that's to be expected, & boots fine.
-> 
-> I know that most jn7100 stuff is not really wanted upstream, but I'd
-> say that the minimal vision5 dts is an exception to that, so with the
-> one comment on patch 1 resolved:
-> 
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> Missing blank line. Use standard Git tools for handling your patches or
+> be sure you produce the same result when using some custom process.
 
-Thanks for the quick review, I have submitted v2:
+My understanding is Datasheet is a standard tag as part of the main tag block.
+There should not be a blank line between that and the Sign off.
 
-https://lore.kernel.org/all/20220902100806.2378543-1-cristian.ciocaltea@collabora.com/
++CC Andy who can probably point to a reference for that...
 
-Regards,
-Cristian
-
-> Thanks,
-> Conor.
 > 
->>
->> [1] https://github.com/starfive-tech/VisionFive
->>
->> Cristian Ciocaltea (3):
->>     dt-bindings: riscv: starfive: Add StarFive VisionFive V1 board
->>     riscv: dts: starfive: Add common DT for JH7100 based boards
->>     riscv: dts: starfive: Add StarFive VisionFive V1 device tree
->>
->>    .../devicetree/bindings/riscv/starfive.yaml   |   3 +
->>    arch/riscv/boot/dts/starfive/Makefile         |   2 +-
->>    .../dts/starfive/jh7100-beaglev-starlight.dts | 153 +----------------
->>    .../boot/dts/starfive/jh7100-common.dtsi      | 161 ++++++++++++++++++
->>    .../jh7100-starfive-visionfive-v1.dts         |  20 +++
->>    5 files changed, 186 insertions(+), 153 deletions(-)
->>    create mode 100644 arch/riscv/boot/dts/starfive/jh7100-common.dtsi
->>    create mode 100644 arch/riscv/boot/dts/starfive/jh7100-starfive-visionfive-v1.dts
->>
->> --
->> 2.37.2
->>
->>
->> _______________________________________________
->> linux-riscv mailing list
->> linux-riscv@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-riscv
+> > Signed-off-by: Ciprian Regus <ciprian.regus@analog.com>  
 > 
+> (...)
+> 
+> > +};
+> > +
+> >  static const struct i2c_device_id ltc2497_id[] = {
+> > -	{ "ltc2497", 0 },
+> > +	{ "ltc2497", (kernel_ulong_t)&ltc2497_info[TYPE_LTC2497] },
+> > +	{ "ltc2499", (kernel_ulong_t)&ltc2497_info[TYPE_LTC2497] },  
+> 
+> So they are the same, aren't they?
+> 
+> >  	{ }
+> >  };
+> >  MODULE_DEVICE_TABLE(i2c, ltc2497_id);
+> >  
+> >  static const struct of_device_id ltc2497_of_match[] = {
+> > -	{ .compatible = "lltc,ltc2497", },
+> > +	{ .compatible = "lltc,ltc2497", .data = &ltc2497_info[TYPE_LTC2497] },
+> > +	{ .compatible = "lltc,ltc2499", .data = &ltc2497_info[TYPE_LTC2499] },  
+> 
+> I think this should be split into two patches for easier review - one
+> working on driver data for existing variant and second for adding new
+> variant 2499.
+> 
+> >  	{},
+> >  };
+> >  MODULE_DEVICE_TABLE(of, ltc2497_of_match);
+> > diff --git a/drivers/iio/adc/ltc2497.h b/drivers/iio/adc/ltc2497.h
+> > index d0b42dd6b8ad..95f6a5f4d4a6 100644
+> > --- a/drivers/iio/adc/ltc2497.h
+> > +++ b/drivers/iio/adc/ltc2497.h
+> > @@ -4,9 +4,20 @@
+> >  #define LTC2497_CONFIG_DEFAULT		LTC2497_ENABLE
+> >  #define LTC2497_CONVERSION_TIME_MS	150ULL
+> >  
+> > +enum ltc2497_chip_type {
+> > +	TYPE_LTC2496,  
+> 
+> Why having here 2496 and not using it?
+> 
+> > +	TYPE_LTC2497,
+> > +	TYPE_LTC2499,
+> > +};
+> > +  
+> Krzysztof
+
