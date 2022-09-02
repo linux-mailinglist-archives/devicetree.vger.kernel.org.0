@@ -2,51 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 64B2C5AA8FB
-	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 09:42:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF7245AA902
+	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 09:43:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235351AbiIBHmw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Sep 2022 03:42:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51598 "EHLO
+        id S235430AbiIBHnD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Sep 2022 03:43:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233341AbiIBHmv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 03:42:51 -0400
-Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B68EA6C5A
-        for <devicetree@vger.kernel.org>; Fri,  2 Sep 2022 00:42:50 -0700 (PDT)
-Received: by mail-pg1-x52d.google.com with SMTP id v4so1251285pgi.10
-        for <devicetree@vger.kernel.org>; Fri, 02 Sep 2022 00:42:50 -0700 (PDT)
+        with ESMTP id S235437AbiIBHnA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 03:43:00 -0400
+Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BB2EA833B
+        for <devicetree@vger.kernel.org>; Fri,  2 Sep 2022 00:42:58 -0700 (PDT)
+Received: by mail-pg1-x52b.google.com with SMTP id x80so1325788pgx.0
+        for <devicetree@vger.kernel.org>; Fri, 02 Sep 2022 00:42:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=quanta-corp-partner-google-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date;
-        bh=Lfyy8dLQgoFKZtBDJ6fyaqkz/t8A+UW1YcDjEL4rq5Q=;
-        b=iFCVe+5bwiCRkvsOMncfGz0ouL3Sg+txM/UTmSOJsDhP6m+4sE6FiCwQev6a1GMm8E
-         1I+WGAsAdo34wOlK2mcakCqXFJ0tiX/lnzzLKUsEkqaH9kxf0JpZVR7acL+nzbFSlFe9
-         B2Zzj699h1TlhVKgVb3SMLlavAnJmfL37EyJQDqrks5hi2Nh43Ye7qGlvX0gCgAs5EUY
-         ii9LNmt0/EGYeiHauhhQXRwHeAt5U06pKd4dtDhq8DsKHhV2FWG8qe+RrZuIAG37Vjme
-         3iAhsUu+V+M7k9saZXAA21Uaqb0bVEONgv1dzT9Hrg1MYU/as01I7hQngih3M0KLc0cZ
-         2wmQ==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
+        bh=5sF7F1cYmydcaLvnoRnoDfV+9V05QJMlsu+o2biJ3Ik=;
+        b=7+dx4KKhOBQoVBh+v8ezLG0jR7SZxOqPY2gkn0us8sEySuVhHCIk0jH1D5Smdv9rW0
+         oVkatCp51Di8T/KE2SpRG0ag8RNT4Zoi3gZyyLvTeM1edCc5nBgWnaZpUgjNa4cx7Qwf
+         mPJwO8BZ8jXe6faD55PbE505Z87dw40FdAUqClC90PlfB7O67U5Hzp5u5vEXcXvcsKDb
+         p4/GG+FgNrqmtfVk8jBobvcmUoVsp3HFAVNlm8qbMAjED5pGbWjZQQf7XNJPHgeY8Ytf
+         j3WEbzfTP5K3oYhrBWg1VHsRUiTg5+5eRYViX8ip+/L1APNJq8b0lzbVCDQPIzJAcVs5
+         x0AQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=Lfyy8dLQgoFKZtBDJ6fyaqkz/t8A+UW1YcDjEL4rq5Q=;
-        b=LSAz8mOAQQ6V2rhlkMbAGsY3yJu6Tn+kTLywZPZQk0eGKadz9DVsoFrqyiRut6mIQg
-         Wc79FDy1PzTAL/E+mL2VmcA15IQSKgSZ9uKN1gZmEvhC52n3ItkLQVEqNPn1quVHgXKr
-         KL+OXDKN+4azJhzG7sBTyNXg01WHhR7hLgT1I90V71kX5cyGtcKXX8K7gZ7wHpaPJM36
-         u0oM32ONpvV9gsa6AEpLttB2ZSlw6UahglCYLzG4VNknd51L2Srdw40wcrML35zhacXe
-         UW3JuZKlUcMc/QTmEFkDeoEFjNsbeXQAE/Lx305PqWvBIMYz8sgDHggSvhuQ1z1HgzeL
-         5xtA==
-X-Gm-Message-State: ACgBeo3eDayK+W4FU+9jVTEjXEN/cB/eVbIPclD7PMMVquVnmlWdj0vj
-        KsqDwy4y/cml02Apwwpm8plIQQ==
-X-Google-Smtp-Source: AA6agR4mlLPaXxDGgRj5JSsMKDcIm0FTPCzwJ+oR1NS/dtcTcO5nu8/rehrHCyhQAEampHMjUbeGVg==
-X-Received: by 2002:aa7:8a0b:0:b0:537:f5f1:fd91 with SMTP id m11-20020aa78a0b000000b00537f5f1fd91mr29589113pfa.41.1662104569939;
-        Fri, 02 Sep 2022 00:42:49 -0700 (PDT)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=5sF7F1cYmydcaLvnoRnoDfV+9V05QJMlsu+o2biJ3Ik=;
+        b=rLSUk4qquIHsPzKfuHtVJEGRZTOwCYAEIPJafwRcEPB9UkPBP/i0iknaf2IRRHzpJm
+         O94qaEok4zFTuMv+poMMinsWWx4tonaOCPMD7b3vNEMDkA2NC85NSuJFzLsEc6TWcVwv
+         RQXruJN7Uy2jCIONt7+J/4u5LVt2iOTcxxIoO6SX2yz8unBzSwsAfEBGcUPFr05/JFos
+         HSJViccACgAkuAhBXHn7g+4HnthGl17hsldOk0OeOf2cSJn8bo0FUM0cu/WoBb3GJXcj
+         3+hwjLww6qOhcA6LIeeQtG90/D1Wla+DobfDxfCnEaBuUA73WoiSJv+JhQgbaI3+lW2+
+         uOtw==
+X-Gm-Message-State: ACgBeo2E7chW5t2M45Y+xv7N0maQXhXMeraOB8Sv1ZRATP5Edi3HPF7T
+        M2U9stKin08hlpHI/pkQi+3i4g==
+X-Google-Smtp-Source: AA6agR4uCjBk9ALADnx7LRBCPpfM6s+szcF5fuTQY1bAwaw56gD71EyFnnq2y/chFCDG7ofRvdr1uQ==
+X-Received: by 2002:a65:5941:0:b0:41d:a203:c043 with SMTP id g1-20020a655941000000b0041da203c043mr28974719pgu.483.1662104577677;
+        Fri, 02 Sep 2022 00:42:57 -0700 (PDT)
 Received: from liang-Predator-PH517-52.. (60-250-232-247.hinet-ip.hinet.net. [60.250.232.247])
-        by smtp.gmail.com with ESMTPSA id f21-20020aa79695000000b005363abb6d0bsm975099pfk.15.2022.09.02.00.42.47
+        by smtp.gmail.com with ESMTPSA id f21-20020aa79695000000b005363abb6d0bsm975099pfk.15.2022.09.02.00.42.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Sep 2022 00:42:49 -0700 (PDT)
+        Fri, 02 Sep 2022 00:42:57 -0700 (PDT)
 From:   Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
 To:     LKML <linux-kernel@vger.kernel.org>
 Cc:     dianders@chromium.org, mka@chromium.org,
@@ -57,47 +58,54 @@ Cc:     dianders@chromium.org, mka@chromium.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-msm@vger.kernel.org
-Subject: [PATCH 0/2] Add a new board device tree named 'evoker' for herobrine variant.
-Date:   Fri,  2 Sep 2022 15:42:38 +0800
-Message-Id: <20220902074240.117075-1-sheng-liang.pan@quanta.corp-partner.google.com>
+Subject: [PATCH 1/2] dt-bindings: arm: qcom: document sc7280 and evoker board
+Date:   Fri,  2 Sep 2022 15:42:39 +0800
+Message-Id: <20220902153441.1.Ief93544cd0cbfa412092f5de92de10d59a2a5b3a@changeid>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220902074240.117075-1-sheng-liang.pan@quanta.corp-partner.google.com>
+References: <20220902074240.117075-1-sheng-liang.pan@quanta.corp-partner.google.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch add the initial dts file for new board 'evoker'.
+This adds Chromebook Evoker to the yaml.
 
-Sorry about getting mixed up with version numbers. Here are links to
-previous postings and what I'll assume the version number is:
-
-v1: https://lore.kernel.org/r/20220830053307.3997495-1-sheng-liang.pan@quanta.corp-partner.google.com/
-v2: https://lore.kernel.org/r/20220901061336.61386-1-sheng-liang.pan@quanta.corp-partner.google.com/
-v3: https://lore.kernel.org/r/20220901091253.93333-1-sheng-liang.pan@quanta.corp-partner.google.com/
+Signed-off-by: Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
+---
 
 Changes in v4:
-- Got the version number correct
 - Got the version number correct
 
 Changes in v2:
 - Bindings patch added
 
-Sheng-Liang Pan (2):
-  dt-bindings: arm: qcom: document sc7280 and evoker board
-  arm64: dts: qcom: sc7280: Add device tree for herobrine evoker
+ Documentation/devicetree/bindings/arm/qcom.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
- .../devicetree/bindings/arm/qcom.yaml         |   5 +
- arch/arm64/boot/dts/qcom/Makefile             |   1 +
- .../dts/qcom/sc7280-herobrine-evoker-r0.dts   | 333 ++++++++++++++++++
- 3 files changed, 339 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker-r0.dts
-
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index fb1d00bcc847c..d4b2d947859d4 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -565,6 +565,11 @@ properties:
+           - const: google,piglin
+           - const: qcom,sc7280
+ 
++      - description: Google Evoker (newest rev)
++        items:
++          - const: google,evoker
++          - const: qcom,sc7280
++
+       - description: Google Herobrine (newest rev)
+         items:
+           - const: google,herobrine
 -- 
 2.34.1
 
