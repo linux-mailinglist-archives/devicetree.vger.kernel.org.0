@@ -2,302 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50B365AA970
-	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 10:07:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49F6C5AA987
+	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 10:09:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233931AbiIBIHd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Sep 2022 04:07:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45258 "EHLO
+        id S235712AbiIBIJo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Sep 2022 04:09:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235614AbiIBIHc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 04:07:32 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29996B5E5F;
-        Fri,  2 Sep 2022 01:07:27 -0700 (PDT)
-X-UUID: d33433cb6a944d5989485c3a0b51fc68-20220902
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=NfPL8FRzEeQalz99XK5cO58JgBO8rLvewmBL1xkEOIk=;
-        b=ePOAOEHKr3rfEEWHy4yEDj3GNFTvwBpAgOTSqxQtdbjscanww/XES0VlliEDQQmMJrpM9Hy7QW+8hdDKC5VvpoZi19ScQYaz7DtQYBDJ9/1mfPR5TmPgn1Ev58qo3NqCA4Uemp5wkhgUkzJtGNuf8j03Ycm530BRxbcdAxfBVzI=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.10,REQID:c641d57a-7105-48c5-9dee-770bea50defa,OB:0,L
-        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release
-        _Ham,ACTION:release,TS:45
-X-CID-INFO: VERSION:1.1.10,REQID:c641d57a-7105-48c5-9dee-770bea50defa,OB:0,LOB
-        :0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_H
-        am,ACTION:release,TS:45
-X-CID-META: VersionHash:84eae18,CLOUDID:98316556-e800-47dc-8adf-0c936acf4f1b,C
-        OID:8133249e187a,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:11|1,File:nil,Bulk:41,QS:nil,BEC:nil,COL:0
-X-UUID: d33433cb6a944d5989485c3a0b51fc68-20220902
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1135810871; Fri, 02 Sep 2022 16:07:21 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Fri, 2 Sep 2022 16:07:19 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Fri, 2 Sep 2022 16:07:19 +0800
-Message-ID: <22523275b9ef44ab13e28ae544afcfbc7b8217ad.camel@mediatek.com>
-Subject: Re: [PATCH v17 08/10] drm/mediatek: dp: Add MT8195 External
- DisplayPort support
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, <chunkuang.hu@kernel.org>,
-        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mripard@kernel.org>,
-        <tzimmermann@suse.de>, <matthias.bgg@gmail.com>, <deller@gmx.de>,
-        <airlied@linux.ie>
-CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
-        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
-        <angelogioacchino.delregno@collabora.com>,
-        <liangxu.xu@mediatek.com>, <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-fbdev@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Fri, 2 Sep 2022 16:07:18 +0800
-In-Reply-To: <20220901044149.16782-9-rex-bc.chen@mediatek.com>
-References: <20220901044149.16782-1-rex-bc.chen@mediatek.com>
-         <20220901044149.16782-9-rex-bc.chen@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S235723AbiIBIJd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 04:09:33 -0400
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67706BD1E9
+        for <devicetree@vger.kernel.org>; Fri,  2 Sep 2022 01:09:19 -0700 (PDT)
+Received: by mail-pj1-x102d.google.com with SMTP id z9-20020a17090a468900b001ffff693b27so37883pjf.2
+        for <devicetree@vger.kernel.org>; Fri, 02 Sep 2022 01:09:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=quanta-corp-partner-google-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=4nZB4b1a4Bx+TKwI4YjuhAo8rNEmX7coE+hbb7TOT8s=;
+        b=3IJ4Uk4ySwi8qF9Ok7x8/WiBhnhTuE0AM7l2n6pHmJ0K9epfVQo8TVSKN5UMXGh6Ie
+         TjLGnsQcHq25o44oTFo4IJvMr/OQTCAhlss3hLiVvgRztK61OeeL8SnzThU6WYIuDYBD
+         eR4JqS/J8xIUwWSHrz51GWgssU5ow6nT9VLZ5pIR6B47hBq6jYMlv9wJo6f4rarp0hsk
+         kOz25E0LEvPSfxbr8YNOsITjQ7nsIcANtC+Upj4MInnQXdqtL8d8BgBh3gAmEX0cjSIV
+         sHhHCKoLI7HZpv4FrZoTVSjFCbsc2KXNXcAxHT6Oso0viXZdPdYsRYsggkyQTbH2lJUT
+         rgAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=4nZB4b1a4Bx+TKwI4YjuhAo8rNEmX7coE+hbb7TOT8s=;
+        b=cZoJ8C2WoI5JTXlwoI7PgcXtpISRnpzR/PkkBKfFkZAF+Lumw3hI+23Dl+LiWNh2Gu
+         eWHXPxGduCBRLQSXrbVTXylJOAGpem+hBxr8thMLXiZ8RZmSDtEEpTpCyynDNxMjM8Q8
+         HVrVe9WUql/pGmto9xwSJLnUCMab6n3tIgmM87Qs6RmldhQ0o5wjWSTIPxBAvWR9XHdD
+         z19/yoBmYUKV7plMgI5NNWaH0M6myZreHaf/PYn2V9OHIHkXuwZ6fARGxhUGZBQgi1Nv
+         haaunaG0gZOAp7DFBUAQxK8G8DreEEe2OqXJKlvyWhaCPrKJ7/KPeHNd4SXiIVmqgkAR
+         EumQ==
+X-Gm-Message-State: ACgBeo0fGIB2hbTp8JXYDX1xnxFg5NugVlv5UTc3FlL8RIJ1JAxPdDQx
+        5T+BB30/wKGBFhiblzvPKyFj0Q==
+X-Google-Smtp-Source: AA6agR6y5gg45KYkW2gKaPrAvDHBFjEpHwtN/RDCpAxB49YT833zaza9iheooye2UctlzDRIUsR8Lw==
+X-Received: by 2002:a17:902:cf43:b0:172:86f3:586a with SMTP id e3-20020a170902cf4300b0017286f3586amr34300117plg.71.1662106158217;
+        Fri, 02 Sep 2022 01:09:18 -0700 (PDT)
+Received: from liang-Predator-PH517-52.. (60-250-232-247.hinet-ip.hinet.net. [60.250.232.247])
+        by smtp.gmail.com with ESMTPSA id d14-20020a170903230e00b00174849e6914sm943447plh.191.2022.09.02.01.09.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 02 Sep 2022 01:09:17 -0700 (PDT)
+From:   Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
+To:     LKML <linux-kernel@vger.kernel.org>
+Cc:     mka@chromium.org, dianders@chromium.org,
+        Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: [PATCH v5 0/2] Add a new board device tree named 'evoker' for herobrine variant.
+Date:   Fri,  2 Sep 2022 16:09:09 +0800
+Message-Id: <20220902080912.118592-1-sheng-liang.pan@quanta.corp-partner.google.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Bo-Chen:
+This patch add the initial dts file for new board 'evoker'.
 
-On Thu, 2022-09-01 at 12:41 +0800, Bo-Chen Chen wrote:
-> From: Guillaume Ranquet <granquet@baylibre.com>
-> 
-> Add External DisplayPort support to the MT8195 eDP driver.
-> 
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> ---
->  drivers/gpu/drm/mediatek/mtk_dp.c | 139
-> ++++++++++++++++++++++++++++++
->  1 file changed, 139 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dp.c
-> b/drivers/gpu/drm/mediatek/mtk_dp.c
-> index e37c9185e4ec..11a94927c0d0 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dp.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dp.c
-> @@ -35,6 +35,7 @@
->  
->  #define MTK_DP_SIP_CONTROL_AARCH32	MTK_SIP_SMC_CMD(0x523)
->  #define MTK_DP_SIP_ATF_EDP_VIDEO_UNMUTE	(BIT(0) | BIT(5))
-> +#define MTK_DP_SIP_ATF_VIDEO_UNMUTE	BIT(5)
->  
->  #define MTK_DP_THREAD_CABLE_STATE_CHG	BIT(0)
->  #define MTK_DP_THREAD_HPD_EVENT		BIT(1)
-> @@ -199,6 +200,89 @@ static const struct mtk_dp_efuse_fmt
-> mt8195_edp_efuse_fmt[MTK_DP_CAL_MAX] = {
->  	},
->  };
->  
-> +static const struct mtk_dp_efuse_fmt
-> mt8195_dp_efuse_fmt[MTK_DP_CAL_MAX] = {
-> +	[MTK_DP_CAL_GLB_BIAS_TRIM] = {
-> +		.idx = 0,
-> +		.shift = 27,
-> +		.mask = 0x1f,
-> +		.min_val = 1,
-> +		.max_val = 0x1e,
-> +		.default_val = 0xf,
-> +	},
-> +	[MTK_DP_CAL_CLKTX_IMPSE] = {
-> +		.idx = 0,
-> +		.shift = 13,
-> +		.mask = 0xf,
-> +		.min_val = 1,
-> +		.max_val = 0xe,
-> +		.default_val = 0x8,
-> +	},
-> +	[MTK_DP_CAL_LN_TX_IMPSEL_PMOS_0] = {
-> +		.idx = 1,
-> +		.shift = 28,
-> +		.mask = 0xf,
-> +		.min_val = 1,
-> +		.max_val = 0xe,
-> +		.default_val = 0x8,
-> +	},
-> +	[MTK_DP_CAL_LN_TX_IMPSEL_PMOS_1] = {
-> +		.idx = 1,
-> +		.shift = 20,
-> +		.mask = 0xf,
-> +		.min_val = 1,
-> +		.max_val = 0xe,
-> +		.default_val = 0x8,
-> +	},
-> +	[MTK_DP_CAL_LN_TX_IMPSEL_PMOS_2] = {
-> +		.idx = 1,
-> +		.shift = 12,
-> +		.mask = 0xf,
-> +		.min_val = 1,
-> +		.max_val = 0xe,
-> +		.default_val = 0x8,
-> +	},
-> +	[MTK_DP_CAL_LN_TX_IMPSEL_PMOS_3] = {
-> +		.idx = 1,
-> +		.shift = 4,
-> +		.mask = 0xf,
-> +		.min_val = 1,
-> +		.max_val = 0xe,
-> +		.default_val = 0x8,
-> +	},
-> +	[MTK_DP_CAL_LN_TX_IMPSEL_NMOS_0] = {
-> +		.idx = 1,
-> +		.shift = 24,
-> +		.mask = 0xf,
-> +		.min_val = 1,
-> +		.max_val = 0xe,
-> +		.default_val = 0x8,
-> +	},
-> +	[MTK_DP_CAL_LN_TX_IMPSEL_NMOS_1] = {
-> +		.idx = 1,
-> +		.shift = 16,
-> +		.mask = 0xf,
-> +		.min_val = 1,
-> +		.max_val = 0xe,
-> +		.default_val = 0x8,
-> +	},
-> +	[MTK_DP_CAL_LN_TX_IMPSEL_NMOS_2] = {
-> +		.idx = 1,
-> +		.shift = 8,
-> +		.mask = 0xf,
-> +		.min_val = 1,
-> +		.max_val = 0xe,
-> +		.default_val = 0x8,
-> +	},
-> +	[MTK_DP_CAL_LN_TX_IMPSEL_NMOS_3] = {
-> +		.idx = 1,
-> +		.shift = 0,
-> +		.mask = 0xf,
-> +		.min_val = 1,
-> +		.max_val = 0xe,
-> +		.default_val = 0x8,
-> +	},
-> +};
-> +
->  static struct regmap_config mtk_dp_regmap_config = {
->  	.reg_bits = 32,
->  	.val_bits = 32,
-> @@ -1479,6 +1563,50 @@ static int mtk_dp_dt_parse(struct mtk_dp
-> *mtk_dp,
->  	return 0;
->  }
->  
-> +static enum drm_connector_status mtk_dp_bdg_detect(struct drm_bridge
-> *bridge)
-> +{
-> +	struct mtk_dp *mtk_dp = mtk_dp_from_bridge(bridge);
-> +	enum drm_connector_status ret = connector_status_disconnected;
-> +	bool enabled = mtk_dp->enabled;
-> +	u8 sink_count = 0;
-> +
-> +	if (mtk_dp->train_info.cable_plugged_in) {
+Sorry about getting mixed up with version numbers. Here are links to
+previous postings and what I'll assume the version number is:
 
-I would modify this as below when I apply this patch into my tree:
+v1: https://lore.kernel.org/r/20220830053307.3997495-1-sheng-liang.pan@quanta.corp-partner.google.com/
+v2: https://lore.kernel.org/r/20220901061336.61386-1-sheng-liang.pan@quanta.corp-partner.google.com/
+v3: https://lore.kernel.org/r/20220901091253.93333-1-sheng-liang.pan@quanta.corp-partner.google.com/
+v4: https://lore.kernel.org/r/20220902074240.117075-1-sheng-liang.pan@quanta.corp-partner.google.com/
 
-if (!mtk_dp->train_info.cable_plugged_in)
-	return ret;
+Changes in v5:
+- Got the version number correct
+- Got the version number correct
 
-Reviewed-by: CK Hu <ck.hu@mediatek.com>
+Changes in v2:
+- Bindings patch added
 
+Sheng-Liang Pan (2):
+  dt-bindings: arm: qcom: document sc7280 and evoker board
+  arm64: dts: qcom: sc7280: Add device tree for herobrine evoker
 
-> +		if (!enabled) {
-> +			/* power on aux */
-> +			mtk_dp_update_bits(mtk_dp,
-> MTK_DP_TOP_PWR_STATE,
-> +					   DP_PWR_STATE_BANDGAP_TPLL_LA
-> NE,
-> +					   DP_PWR_STATE_MASK);
-> +
-> +			/* power on panel */
-> +			drm_dp_dpcd_writeb(&mtk_dp->aux, DP_SET_POWER,
-> DP_SET_POWER_D0);
-> +			usleep_range(2000, 5000);
-> +		}
-> +		/*
-> +		 * Some dongles still source HPD when they do not
-> connect to any
-> +		 * sink device. To avoid this, we need to read the sink
-> count
-> +		 * to make sure we do connect to sink devices. After
-> this detect
-> +		 * function, we just need to check the HPD connection
-> to check
-> +		 * whether we connect to a sink device.
-> +		 */
-> +		drm_dp_dpcd_readb(&mtk_dp->aux, DP_SINK_COUNT,
-> &sink_count);
-> +		if (DP_GET_SINK_COUNT(sink_count))
-> +			ret = connector_status_connected;
-> +
-> +		if (!enabled) {
-> +			/* power off panel */
-> +			drm_dp_dpcd_writeb(&mtk_dp->aux, DP_SET_POWER,
-> DP_SET_POWER_D3);
-> +			usleep_range(2000, 3000);
-> +
-> +			/* power off aux */
-> +			mtk_dp_update_bits(mtk_dp,
-> MTK_DP_TOP_PWR_STATE,
-> +					   DP_PWR_STATE_BANDGAP_TPLL,
-> +					   DP_PWR_STATE_MASK);
-> +		}
-> +	}
-> +
-> +	return ret;
-> +}
-> +
->  static struct edid *mtk_dp_get_edid(struct drm_bridge *bridge,
->  				    struct drm_connector *connector)
->  {
-> @@ -1865,6 +1993,7 @@ static const struct drm_bridge_funcs
-> mtk_dp_bridge_funcs = {
->  	.atomic_disable = mtk_dp_bridge_atomic_disable,
->  	.mode_valid = mtk_dp_bridge_mode_valid,
->  	.get_edid = mtk_dp_get_edid,
-> +	.detect = mtk_dp_bdg_detect,
->  };
->  
->  static int mtk_dp_probe(struct platform_device *pdev)
-> @@ -1991,11 +2120,21 @@ static const struct mtk_dp_data
-> mt8195_edp_data = {
->  	.efuse_fmt = mt8195_edp_efuse_fmt,
->  };
->  
-> +static const struct mtk_dp_data mt8195_dp_data = {
-> +	.bridge_type = DRM_MODE_CONNECTOR_DisplayPort,
-> +	.smc_cmd = MTK_DP_SIP_ATF_VIDEO_UNMUTE,
-> +	.efuse_fmt = mt8195_dp_efuse_fmt,
-> +};
-> +
->  static const struct of_device_id mtk_dp_of_match[] = {
->  	{
->  		.compatible = "mediatek,mt8195-edp-tx",
->  		.data = &mt8195_edp_data,
->  	},
-> +	{
-> +		.compatible = "mediatek,mt8195-dp-tx",
-> +		.data = &mt8195_dp_data,
-> +	},
->  	{},
->  };
->  MODULE_DEVICE_TABLE(of, mtk_dp_of_match);
+ .../devicetree/bindings/arm/qcom.yaml         |   5 +
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ .../dts/qcom/sc7280-herobrine-evoker-r0.dts   | 333 ++++++++++++++++++
+ 3 files changed, 339 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker-r0.dts
+
+-- 
+2.34.1
 
