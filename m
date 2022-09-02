@@ -2,68 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 124505AB58B
-	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 17:44:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 635695AB598
+	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 17:47:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236261AbiIBPou (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Sep 2022 11:44:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45842 "EHLO
+        id S236845AbiIBPrv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Sep 2022 11:47:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236362AbiIBPo0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 11:44:26 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 634D6B1D8;
-        Fri,  2 Sep 2022 08:32:37 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id A8938B82C7A;
-        Fri,  2 Sep 2022 15:32:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F9A7C433C1;
-        Fri,  2 Sep 2022 15:32:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1662132754;
-        bh=TMf3BdVjVegUTft/oEa9DfSLI5AQyabpvORb5mYeuGs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=eiM20zqheXI9sFvq5bgtdWwDfp4rt6e0mQSxFwywe8XpgD7Y3g9HtJWbfPksR2CzN
-         mDZyJtOPhHhcZyTSat9lGgf1gHm0fVPMR2GJJwXuEXSn8UXMu7UZAzmGtDegHD7NB1
-         QiOQajBMDlB4RhnU5MIxTKdddgZIkNLoBsgXnBrpPXrQHSr3g72p1O2vjEmAP1ZwOz
-         DuWGDaLwnI4YeYcYXz06N495w84STz6dGowwLhiU8Sr85AZ0Eqy3AiLvkiJMJOYbLr
-         I/AVQcjE4WSRfZ3lom/1jChAzLHcXTSgdOXCAbieMPxxBerMeTpirUGz2JQv3CFouK
-         QMACQUMkcUHYw==
-Date:   Fri, 2 Sep 2022 21:02:29 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Vincent Shih <vincent.sunplus@gmail.com>
-Cc:     kishon@ti.com, p.zabel@pengutronix.de,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-usb@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        wells.lu@sunplus.com
-Subject: Re: [PATCH v5 0/2] Add USB2.0 phy driver for Sunplus SP7021
-Message-ID: <YxIiDfNWnT7vfKb6@matsya>
-References: <1658717052-26142-1-git-send-email-vincent.sunplus@gmail.com>
+        with ESMTP id S237343AbiIBPra (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 11:47:30 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0E49E7244
+        for <devicetree@vger.kernel.org>; Fri,  2 Sep 2022 08:36:59 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id bx38so2619046ljb.10
+        for <devicetree@vger.kernel.org>; Fri, 02 Sep 2022 08:36:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date;
+        bh=hYq4cv4cNUo/9VVzRmU4eVk/nrbDfe3lb0f5HSAbg0c=;
+        b=fXAJ+/P3fhtMN1q8A3rt66vZdRafbtT3fcpkG6YbzOLJGXgMenZOZnNNgfXKlGyB5r
+         /neSeMRbtxKr4RaUWpB2ly4PnRRPe3twwNXT5Zp04HSiIrWrtbPfxQPl4d/DCSv7Jw6P
+         v6OpRAIcUKGWzfQf/L+mK3HkoWkVWdXaqxmdGC+Oz21BBA6qkJR+PgSYOi4lpfJwFBEk
+         c4m+9c6wiXw6W0fyG49lUa9QfrMJ+Lu2JQOHxBNqW5Upsci/xG1gPacMteCbU+aw8w2R
+         Wa40oIUi6Z2lVi0NDIyqyuz6OUkgO1Yegq0OH/PklUbwM23JcCeCErq8rCn2j2KUs7+z
+         AwIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date;
+        bh=hYq4cv4cNUo/9VVzRmU4eVk/nrbDfe3lb0f5HSAbg0c=;
+        b=z1ldMhUarQhg6XeTPv4+ZIiHjG8ZZc2/kIQGNuPPnPtyzvDL5jlpL/G5qlUpk+Zlt0
+         +SG2hLs36hK1dT9I8ow6yZwdaS5dgez+4fddpmE6xfSqBSyXqH+qypplz8kesAZaMZ3n
+         vFijU4LMjxK6ky1N89KLIfjbROeNebAgu88MFT79gIaysOu+zq84fbhIcO/N0JdDB9bO
+         OiT0M5K0wB9sdqC1WOzKZFIHHklUANEHBWLQSD8uwzEHippinnKpsThQ74aoPOzNMmgI
+         x7Vr/KboAiMbq1EUXZBcTR5L5Wbd6QZlIGYwM2wp70xR9yc/XrK4QRfcc+lA1PrRM/Vh
+         1XLA==
+X-Gm-Message-State: ACgBeo2TapQ2CYXjH65PWzy/IIv2SFQAsp0Ossa5nCsCnkI3H/nkPSdx
+        7mjm3Qqj8YOFOUYnxq7H4v7iXI4ITz/DtbLmlcyvkg==
+X-Google-Smtp-Source: AA6agR5BgJy2rk6wsD1gHEWSl466MvJsMQgEJ7ryOhxaVIAxSSxBf5O7ox+glstyi65Tkgtdj9RtOlUAM7wEftZQWJQ=
+X-Received: by 2002:a05:651c:1953:b0:268:983a:c6de with SMTP id
+ bs19-20020a05651c195300b00268983ac6demr3626799ljb.218.1662133017439; Fri, 02
+ Sep 2022 08:36:57 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1658717052-26142-1-git-send-email-vincent.sunplus@gmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+From:   Balsam CHIHI <bchihi@baylibre.com>
+Date:   Fri, 2 Sep 2022 17:36:19 +0200
+Message-ID: <CAGuA+oo5HvBo6aVvpXmk+ZEgvAM_zBHW2JZLD376+s7uHpdJuA@mail.gmail.com>
+Subject: Thermal Framework, Thermal Driver, Thermal Aggregation
+To:     rafael@kernel.org, rui.zhang@intel.com,
+        Daniel Lezcano <daniel.lezcano@linaro.org>, amitk@kernel.org,
+        Rob Herring <robh@kernel.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Alexandre Bailon <abailon@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25-07-22, 10:44, Vincent Shih wrote:
-> This is a patch series for USB2.0 phy driver for Sunplus SP7021 SoC.
-> 
-> Sunplus SP7021 is an ARM Coretex A7 (4 cores) based SoC. It integrates
-> many peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD Card and
-> etc.) into a single chip. It is designed for industrial control.
+Hello everybody,
 
-Applied, thanks
+I'm currently waiting for reviews of the LVTS Driver v9 series that I
+recently submitted
+"https://patchwork.kernel.org/project/linux-mediatek/cover/20220817080757.352021-1-bchihi@baylibre.com/",
+then I will send the v10 with additional mt8195 specific code.
+The upcoming v10 of the LVTS series will support Daniel's new Thermal
+Framework implementation
+"https://patchwork.kernel.org/project/linux-pm/cover/20220804224349.1926752-1-daniel.lezcano@linexp.org/",
+plus new changes that may be requested from reviews of the v9.
 
--- 
-~Vinod
+After that, I will submit another series about Thermal Aggregation.
+Basically, I need to create an additional thermal_zone with all
+sensors registered to it, this will allow us to return MAX, AVG, or
+MIN temperature based on all sensor values within this new
+thermal_zone (could we call it Virtual?).
+A series for the same purpose are sent by Alexandre Bailon
+"https://patchwork.kernel.org/project/linux-pm/cover/20220218084604.1669091-1-abailon@baylibre.com/",
+the implementation is done in "thermal_of.c" (I'm continuing on
+Alexander's work). According to comments, other platforms not based on
+Device Tree should benefit from this feature. So, according to Daniel
+Lezcano, it should be implemented in "thermal_core.c" instead.
+
+So, I would like to discuss it with you, and ask for recommendations
+and help on how to implement this feature, because it is not easy for
+me alone to figure out how to do it.
+Should we update the thermal zone to support aggregation? or add a way
+to register a thermal zone that aggregates other thermal zones?
+what about applying some configuration to a multiple sensor thermal
+zone? does it override the trip already defined in mono sensor thermal
+zones?
+And many other questions that should be asked to implement this new feature...
+In my honest opinion, we should clarify together how it must be done.
+
+Thank you in advance.
+
+Best regards,
+Balsam CHIHI
