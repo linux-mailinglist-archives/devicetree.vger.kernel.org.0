@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A9095AB5EB
-	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 17:56:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 510155AB5F5
+	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 17:56:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237547AbiIBP4e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Sep 2022 11:56:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37214 "EHLO
+        id S237671AbiIBP4g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Sep 2022 11:56:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237480AbiIBPzS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 11:55:18 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32C6FA1D5E
-        for <devicetree@vger.kernel.org>; Fri,  2 Sep 2022 08:49:31 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id v16so2836265wrm.8
-        for <devicetree@vger.kernel.org>; Fri, 02 Sep 2022 08:49:31 -0700 (PDT)
+        with ESMTP id S237196AbiIBPzd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 11:55:33 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D34E6C992C
+        for <devicetree@vger.kernel.org>; Fri,  2 Sep 2022 08:49:32 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id e13so2864589wrm.1
+        for <devicetree@vger.kernel.org>; Fri, 02 Sep 2022 08:49:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=f3juMO/QwGZ+BjBeOfHfdqcLNOZRF7cyhCYwluCkxeQ=;
-        b=l6ZMiuaH2GBS48BynCtAjlqvYjt+j0meLlxoqtvlQIy2VFUyzHDqSj7S0QuCQG9bYf
-         +eNClJ+N3e/bqFwgs5VFwMpE5BKjK+k1GNj69Vth/U+SUC0IP2w2QsdZYlPp9yVuft/L
-         iosNY3HcYryovoH1KnjgnrO0uc3x/K3kjq74Ej4QTvzz/fzMszyyswCX5HRIpB/3TbaG
-         cDFE0sa0RbmCOjybqV02ZRezr2vXaHJFEvZJlrS20ErLKDXmGdElFWS6f9+04pgIr9CO
-         hzhv+QhL9ksiKW5G4Mok2vxDfVR4K/XYO+Uh2XifS+55yw9RfkoC2EDXyE7VhfpYq1Mz
-         FdPA==
+        bh=gH4aJXKyf/IuSJWto9jZ1pfTJBkJztgjhsXCgC7qiLI=;
+        b=YWUCF/R79HSCrrHnS4gnKeNpAvrTcplY00MBLGUZr8K2p59x9jLuarG0+i0lsuQSmR
+         oHdtjNgnj+vjX5HXSAcBJxf8x1GVk/F58ZOgF+R9FCkDZEKJcysekxxiWBy1i75h0Rv+
+         W5/KV7zy05rTj69s5clAtrKw3Kb+w447vIAs1V/U9GKvOueoBjNmbuC2WTWxPBfxBZIN
+         Y/r/Bay1yYH5uGy3b5bz1v9bHwHdOLChNB8Y7xDZ0fU60PkNIIAyv/44VsaLbGGl7drB
+         Cbfu2h16lC5sCnhDfKOzZ1KVWAIfnBSWSYbR0D+hGptfwlSnVEBcMh+oGIokaYfefwm+
+         viMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=f3juMO/QwGZ+BjBeOfHfdqcLNOZRF7cyhCYwluCkxeQ=;
-        b=CxVroCbpMX92nfoycv7QgAAkGP6XIqOzgqwswsvs8/bzMxnT3Elx9bzaOVwYyDKQwf
-         71OmJ8kvx6Fe/Ebk4pDo5DNddVWHWw10kNKfieWb9t+pNVlDjg6biky9Thl414OvbprC
-         urzxf0l7B047C5bAyAYy2XynWvcJWCjrkg7TwBbxettVC+dciydT5pCsxpEOmErjP5z+
-         YaQXG2MYKUqvTZjuY/q8wfyjJ40LTMTdgfDKABrHe6bIRBg0fqzPZALzcDQU8YV3D0F2
-         ocJN4U2bOsT75FR5ezsCULsdr1kZtttu0/en/8/Cztr7vtaBI7l20pAxlZFTP2fjKVEd
-         zupg==
-X-Gm-Message-State: ACgBeo19zsjBeZCPFuVa71EKhSAFrxD2jT5wDHnG+iqtxjHv9Rdp5USb
-        iKuwJdHh/OVnLUG0dKPEe5OL1g==
-X-Google-Smtp-Source: AA6agR67PrNtPxy6XyYWdGT3MvB/MdDSK3BWUvCd3mqVMFpV0l+bZKI/hbR5S2TOWliiUndMK9aNPg==
-X-Received: by 2002:a5d:64e1:0:b0:226:db58:868b with SMTP id g1-20020a5d64e1000000b00226db58868bmr14746743wri.79.1662133769552;
-        Fri, 02 Sep 2022 08:49:29 -0700 (PDT)
+        bh=gH4aJXKyf/IuSJWto9jZ1pfTJBkJztgjhsXCgC7qiLI=;
+        b=Srkod00HuLt0Lbyiixy/nxDPNerkmJtwqn2/rYl9MbUdHtFR7uMN3naLbue5O5Jt28
+         n3C10pWV7ybMPHf47WP6s7Bt3VNhUX0oApptFQpuwaiY/QvA49thWDvkvHGjjFhEgjc2
+         +rh+oWJyUZOOQjLseOpmQfASV+BT3bMbVwhDo0d8T4ZDUtwjtgGGdDNJsslMjn7wVQtH
+         sOoMH4SrLa1L1ScH9yvFXVLFQeKmiAQg+ZjTz7bNFwcEupLMLtzzYSoiQADYfLzept2i
+         3teG7Tr9CRo1b/E8rehZUiJrtUVbreaep/QFYW9j0OK+bqli+uBaJsOIudGwopyT2c7t
+         GGNg==
+X-Gm-Message-State: ACgBeo2aSda+Sc3qK4D2Gl9E/BrUM5SFKl9D1yBEhBhjJR3fk4urxthP
+        9kCx2cRCKtCvTB1Bg8Grm+uANg==
+X-Google-Smtp-Source: AA6agR7/b7cwzp9t0Xq6n/L3MnGKEQSdsFL5B2BwqfraG1Mc8/0Rz7lHMk07oIm12KI0AFMnuBd0wA==
+X-Received: by 2002:a05:6000:1e18:b0:226:e095:a98c with SMTP id bj24-20020a0560001e1800b00226e095a98cmr11464157wrb.235.1662133771251;
+        Fri, 02 Sep 2022 08:49:31 -0700 (PDT)
 Received: from hackbox.lan ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id b1-20020a05600010c100b002250f9abdefsm2046741wrx.117.2022.09.02.08.49.28
+        by smtp.gmail.com with ESMTPSA id b1-20020a05600010c100b002250f9abdefsm2046741wrx.117.2022.09.02.08.49.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Sep 2022 08:49:29 -0700 (PDT)
+        Fri, 02 Sep 2022 08:49:30 -0700 (PDT)
 From:   Abel Vesa <abel.vesa@linaro.org>
 To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         Amol Maheshwari <amahesh@qti.qualcomm.com>,
@@ -62,9 +62,9 @@ Cc:     Rob Herring <robh@kernel.org>,
         linux-arm-msm@vger.kernel.org,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         devicetree@vger.kernel.org
-Subject: [PATCH v2 05/10] misc: fastrpc: Use fastrpc_map_put in fastrpc_map_create on fail
-Date:   Fri,  2 Sep 2022 18:48:55 +0300
-Message-Id: <20220902154900.3404524-6-abel.vesa@linaro.org>
+Subject: [PATCH v2 06/10] misc: fastrpc: Rework fastrpc_req_munmap
+Date:   Fri,  2 Sep 2022 18:48:56 +0300
+Message-Id: <20220902154900.3404524-7-abel.vesa@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220902154900.3404524-1-abel.vesa@linaro.org>
 References: <20220902154900.3404524-1-abel.vesa@linaro.org>
@@ -80,44 +80,117 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Move the kref_init right after the allocation so that we can use
-fastrpc_map_put on any following error case.
+Move the lookup of the munmap request to the fastrpc_req_munmap and pass
+on only the buf to the lower level fastrpc_req_munmap_impl. That way
+we can use the lower level fastrpc_req_munmap_impl on error path in
+fastrpc_req_mmap to free the buf without searching for the munmap
+request it belongs to.
 
+Co-developed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 ---
- drivers/misc/fastrpc.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ drivers/misc/fastrpc.c | 47 +++++++++++++++++++++---------------------
+ 1 file changed, 23 insertions(+), 24 deletions(-)
 
 diff --git a/drivers/misc/fastrpc.c b/drivers/misc/fastrpc.c
-index 6730aa324e10..5eececd9b6bd 100644
+index 5eececd9b6bd..7c364c58e379 100644
 --- a/drivers/misc/fastrpc.c
 +++ b/drivers/misc/fastrpc.c
-@@ -745,6 +745,8 @@ static int fastrpc_map_create(struct fastrpc_user *fl, int fd,
- 		return -ENOMEM;
- 
- 	INIT_LIST_HEAD(&map->node);
-+	kref_init(&map->refcount);
-+
- 	map->fl = fl;
- 	map->fd = fd;
- 	map->buf = dma_buf_get(fd);
-@@ -771,7 +773,6 @@ static int fastrpc_map_create(struct fastrpc_user *fl, int fd,
- 	map->size = len;
- 	map->va = sg_virt(map->table->sgl);
- 	map->len = len;
--	kref_init(&map->refcount);
- 
- 	if (attr & FASTRPC_ATTR_SECUREMAP) {
- 		/*
-@@ -801,7 +802,7 @@ static int fastrpc_map_create(struct fastrpc_user *fl, int fd,
- attach_err:
- 	dma_buf_put(map->buf);
- get_err:
--	kfree(map);
-+	fastrpc_map_put(map);
- 
- 	return err;
+@@ -1630,30 +1630,14 @@ static int fastrpc_get_dsp_info(struct fastrpc_user *fl, char __user *argp)
+ 	return 0;
  }
+ 
+-static int fastrpc_req_munmap_impl(struct fastrpc_user *fl,
+-				   struct fastrpc_req_munmap *req)
++static int fastrpc_req_munmap_impl(struct fastrpc_user *fl, struct fastrpc_buf *buf)
+ {
+ 	struct fastrpc_invoke_args args[1] = { [0] = { 0 } };
+-	struct fastrpc_buf *buf = NULL, *iter, *b;
+ 	struct fastrpc_munmap_req_msg req_msg;
+ 	struct device *dev = fl->sctx->dev;
+ 	int err;
+ 	u32 sc;
+ 
+-	spin_lock(&fl->lock);
+-	list_for_each_entry_safe(iter, b, &fl->mmaps, node) {
+-		if ((iter->raddr == req->vaddrout) && (iter->size == req->size)) {
+-			buf = iter;
+-			break;
+-		}
+-	}
+-	spin_unlock(&fl->lock);
+-
+-	if (!buf) {
+-		dev_err(dev, "mmap not in list\n");
+-		return -EINVAL;
+-	}
+-
+ 	req_msg.pgid = fl->tgid;
+ 	req_msg.size = buf->size;
+ 	req_msg.vaddr = buf->raddr;
+@@ -1679,12 +1663,29 @@ static int fastrpc_req_munmap_impl(struct fastrpc_user *fl,
+ 
+ static int fastrpc_req_munmap(struct fastrpc_user *fl, char __user *argp)
+ {
++	struct fastrpc_buf *buf = NULL, *iter, *b;
+ 	struct fastrpc_req_munmap req;
++	struct device *dev = fl->sctx->dev;
+ 
+ 	if (copy_from_user(&req, argp, sizeof(req)))
+ 		return -EFAULT;
+ 
+-	return fastrpc_req_munmap_impl(fl, &req);
++	spin_lock(&fl->lock);
++	list_for_each_entry_safe(iter, b, &fl->mmaps, node) {
++		if ((iter->raddr == req.vaddrout) && (iter->size == req.size)) {
++			buf = iter;
++			break;
++		}
++	}
++	spin_unlock(&fl->lock);
++
++	if (!buf) {
++		dev_err(dev, "mmap\t\tpt 0x%09llx [len 0x%08llx] not in list\n",
++			req.vaddrout, req.size);
++		return -EINVAL;
++	}
++
++	return fastrpc_req_munmap_impl(fl, buf);
+ }
+ 
+ static int fastrpc_req_mmap(struct fastrpc_user *fl, char __user *argp)
+@@ -1693,7 +1694,6 @@ static int fastrpc_req_mmap(struct fastrpc_user *fl, char __user *argp)
+ 	struct fastrpc_buf *buf = NULL;
+ 	struct fastrpc_mmap_req_msg req_msg;
+ 	struct fastrpc_mmap_rsp_msg rsp_msg;
+-	struct fastrpc_req_munmap req_unmap;
+ 	struct fastrpc_phy_page pages;
+ 	struct fastrpc_req_mmap req;
+ 	struct device *dev = fl->sctx->dev;
+@@ -1755,11 +1755,8 @@ static int fastrpc_req_mmap(struct fastrpc_user *fl, char __user *argp)
+ 	spin_unlock(&fl->lock);
+ 
+ 	if (copy_to_user((void __user *)argp, &req, sizeof(req))) {
+-		/* unmap the memory and release the buffer */
+-		req_unmap.vaddrout = buf->raddr;
+-		req_unmap.size = buf->size;
+-		fastrpc_req_munmap_impl(fl, &req_unmap);
+-		return -EFAULT;
++		err = -EFAULT;
++		goto err_assign;
+ 	}
+ 
+ 	dev_dbg(dev, "mmap\t\tpt 0x%09lx OK [len 0x%08llx]\n",
+@@ -1767,6 +1764,8 @@ static int fastrpc_req_mmap(struct fastrpc_user *fl, char __user *argp)
+ 
+ 	return 0;
+ 
++err_assign:
++	fastrpc_req_munmap_impl(fl, buf);
+ err_invoke:
+ 	fastrpc_buf_free(buf);
+ 
 -- 
 2.34.1
 
