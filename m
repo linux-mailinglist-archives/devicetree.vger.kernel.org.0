@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C37D95AB9B4
-	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 22:57:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 186DD5AB9B7
+	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 22:59:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230413AbiIBU50 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Sep 2022 16:57:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55510 "EHLO
+        id S229909AbiIBU6H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Sep 2022 16:58:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230403AbiIBU5Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 16:57:25 -0400
-Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E4A7FE056;
-        Fri,  2 Sep 2022 13:57:23 -0700 (PDT)
-Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-11f0fa892aeso7698172fac.7;
-        Fri, 02 Sep 2022 13:57:23 -0700 (PDT)
+        with ESMTP id S230403AbiIBU6F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 16:58:05 -0400
+Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FF1D105B69
+        for <devicetree@vger.kernel.org>; Fri,  2 Sep 2022 13:58:01 -0700 (PDT)
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-11f34610d4aso7670185fac.9
+        for <devicetree@vger.kernel.org>; Fri, 02 Sep 2022 13:58:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=I+lC4NQ49td+wOEGEF4piSWmC1XVXG5X9v8OoGEXnEc=;
-        b=SfZgvWmHViK2Ah27phxEjpTcP03JL/PREPua+4pT7kuMnZpdwgvsnCQhr11SHO4iCr
-         GdhJ+BZv8iRLh1pE+FEa6zoAGHLGK3Obuw4vCs5QRCcTYc0xPW8SKr8zdzBZAm4XgVDy
-         1CG/V+cdlbrpCwQ/wu5MA2/fol7OCWreCHB+LvCeXeWGC1YyAt/uGdEkF309jlGpbJSh
-         DxRW8kshSVR8Pd10CChTtaxOcg6Q0E35NwX2wYaA7cos6wvJfT+/V+94vqokf4C1hWnS
-         spLSrqh6uscDN3OxsNKkb6KE18L3M+JayzyEEHuMXCixjUENRT9QPivc/KgxCh+fJn4o
-         C+iQ==
-X-Gm-Message-State: ACgBeo0R7md5QwBryiWFInWfFhs/xSGbAkEluibE2LeAN04d4z56qugO
-        auQu1qxZmxZEf5/XR/6ESw==
-X-Google-Smtp-Source: AA6agR5d5j0pkbv0nxtD/hPNiE/gPngtHQGC+s7pMW3tCkdsuyrQn7YSNLZa/7xnsqCPbtwfrW4dNQ==
-X-Received: by 2002:a05:6808:1482:b0:343:6755:a7df with SMTP id e2-20020a056808148200b003436755a7dfmr2789386oiw.288.1662152242608;
-        Fri, 02 Sep 2022 13:57:22 -0700 (PDT)
+        bh=NMFkilh6xzQlpE/21KWS17CHLjbAGy9AZDPzdQ6r4NA=;
+        b=6W4BE7YqdVicShHHDMGvFerkMCZ7KVcqLpiHmo3YulMZoGP2Kv2Shndk+a4GOYD4Hn
+         1P+/kXFbNghxFn9gnmb7lqIUozcPRJo0QRQkfkM9Bi/YLiepcnyBg+7XtMyNOAvSAG/8
+         YZBdO9MFGRByZGChuKPB6kZEHJoIGECMBHOsqqD6Ff4gswheh0rzNUJXcrg83jhfMjkL
+         u5D+5Z0bUuj/juoEhoopDFUgnc1JycxxOxNVAiQm5eKMgmInntAQoqjMoRH4jcgRxSj/
+         A2BfP85jEksPsXYrP8mXMIAT9+yQO7G5Le6gI437DS8mpcdrq+2eOHuAkFGj8D2lookN
+         Qg7w==
+X-Gm-Message-State: ACgBeo0E1H3i5VirPBxUmVhlgkBcKOsiqwFwddL0eUywzUSkc5Twd/4i
+        O80By1097ik1ZfPszufTnjVgKlZa8Q==
+X-Google-Smtp-Source: AA6agR4RmyPOO9I+ALVKX9Yvshkht0l1mRDatfpNK0sQjNpXRyD4k3p2t/G6sGqOtPeXPIOZwrIARg==
+X-Received: by 2002:a05:6808:23ca:b0:344:be60:144d with SMTP id bq10-20020a05680823ca00b00344be60144dmr2697674oib.38.1662152280593;
+        Fri, 02 Sep 2022 13:58:00 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id k13-20020a54468d000000b00344f28a7a4csm1400698oic.22.2022.09.02.13.57.21
+        by smtp.gmail.com with ESMTPSA id o2-20020a544782000000b0034290c4ed01sm1363455oic.41.2022.09.02.13.58.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Sep 2022 13:57:22 -0700 (PDT)
-Received: (nullmailer pid 401958 invoked by uid 1000);
-        Fri, 02 Sep 2022 20:57:21 -0000
-Date:   Fri, 2 Sep 2022 15:57:21 -0500
+        Fri, 02 Sep 2022 13:58:00 -0700 (PDT)
+Received: (nullmailer pid 403129 invoked by uid 1000);
+        Fri, 02 Sep 2022 20:57:59 -0000
+Date:   Fri, 2 Sep 2022 15:57:59 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, aisheng.dong@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH V3 1/8] dt-bindings: soc: imx: add binding for i.MX93
- syscon
-Message-ID: <20220902205721.GA399775-robh@kernel.org>
-References: <20220831141418.38532-1-peng.fan@oss.nxp.com>
- <20220831141418.38532-2-peng.fan@oss.nxp.com>
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, kernel@collabora.com,
+        Heiko Stuebner <heiko@sntech.de>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH 1/6] dt-bindings: arm: rockchip: add rk5388 compatible
+ string to pmu.yaml
+Message-ID: <20220902205759.GA403061-robh@kernel.org>
+References: <20220831182629.79255-1-sebastian.reichel@collabora.com>
+ <20220831182629.79255-2-sebastian.reichel@collabora.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220831141418.38532-2-peng.fan@oss.nxp.com>
+In-Reply-To: <20220831182629.79255-2-sebastian.reichel@collabora.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -66,12 +66,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 31, 2022 at 10:14:11PM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+On Wed, 31 Aug 2022 20:26:24 +0200, Sebastian Reichel wrote:
+> Add the compatible for the pmu mfd on rk3588.
 > 
-> Add binding doc for i.MX93 blk_ctrl_ns_aonmix and blk_ctrl_wakeupmix
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> ---
+>  Documentation/devicetree/bindings/arm/rockchip/pmu.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
-Is this complete or you expect to add to it? If complete, just add the 
-compatible strings to syscon.yaml. If not complete, why not?
-
-Rob
+Acked-by: Rob Herring <robh@kernel.org>
