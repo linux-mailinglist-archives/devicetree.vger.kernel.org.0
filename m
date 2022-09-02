@@ -2,71 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13B895AB81B
-	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 20:20:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE6E55AB82C
+	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 20:29:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229721AbiIBSTz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Sep 2022 14:19:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56230 "EHLO
+        id S229784AbiIBS3Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Sep 2022 14:29:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229729AbiIBSTx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 14:19:53 -0400
-Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB3B558B64;
-        Fri,  2 Sep 2022 11:19:51 -0700 (PDT)
-Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-11eb44f520dso6658121fac.10;
-        Fri, 02 Sep 2022 11:19:51 -0700 (PDT)
+        with ESMTP id S229719AbiIBS3U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 14:29:20 -0400
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DB6810DE57
+        for <devicetree@vger.kernel.org>; Fri,  2 Sep 2022 11:22:14 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id ay39-20020a05600c1e2700b003a5503a80cfso1898245wmb.2
+        for <devicetree@vger.kernel.org>; Fri, 02 Sep 2022 11:22:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=Ojk6sR1enpNZ4A6UZuJ0vO1AZQgVqYffnIr1R5iYzjs=;
+        b=hSgAt7QMHun6u+JdezesHvolMKXWzxe+bCTJE9Q5nVxNU2NTcqsw1Xm0NE7ImFH64X
+         GTD0bfyzJHGXEAFMoAa62yt0Ek+XP+3uTlpZPZ8rwnqM1Y46rLXyqRT3XWOJxFktwJxT
+         JHGZnltvkyLsOsuAcS2YWOBAG9AzYZfzrDeXiptT6ei99+CYUubhGDIxBZ2CgYol6l0/
+         OGz+NrPXMr8rRHFpQHReyhX+E27bqhcjhZXqqL05FN+r1/4RdIvRCBuNvlE8LYqJ/qy6
+         O7tVs7ODtzCSrg3C3h642tluAW+nWIhrd2cQscJGLuY3hGpk7CBX/fOaebHsrm/IgXdH
+         a0EQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=DFYj3SzmCSDPlkEMmdzkWyN5W3U24WerlpydHPBUtDY=;
-        b=bNU3fVUaRreSii84DwM62FmQok25C8MdFA1cxTAzsmEjyFXMzK6DBhFahDx1ijMhja
-         0tnSoN7gMKnCkhXxcz42fNZNReHjfRBP7WHzcVoFS6DAJ8E17iREXRGvT6tGO3KcopPS
-         9SdxJAGS35kaM7wXCQCTL7Rv8KNo4EqeLso8TfFwum7Khn9za9pVJTLN9nl7i9O/9992
-         jF+q3ikXF8upjJ0YMRnODbPHdf6E/WoO4BZ+Hr1mu+ULN+w0vD6DYhUuHjU6qP9Zmu9P
-         4Bib8hf2Kru0D3xh32KhhZafRla9NaLklundn0kofP9iOfQMql5tK3Tlg5pauOAPE19m
-         ZBcQ==
-X-Gm-Message-State: ACgBeo0/TMRM1bCixrb9ysTERfrAcNBXcjgDcWnUWwZ9JE8sGwtyWELq
-        0UHiBWgnyZoPaexCl+1guw==
-X-Google-Smtp-Source: AA6agR7NieM49Immp0yg7zhLlvCYsYHzsJ8oBKkIeFWd8pV9cIX90lhfljoXMzPYm2bpuDTyyvOK3A==
-X-Received: by 2002:a05:6870:8090:b0:122:7289:bd59 with SMTP id q16-20020a056870809000b001227289bd59mr2954932oab.284.1662142790802;
-        Fri, 02 Sep 2022 11:19:50 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 22-20020aca0916000000b00344adbc3492sm1238492oij.24.2022.09.02.11.19.49
+        bh=Ojk6sR1enpNZ4A6UZuJ0vO1AZQgVqYffnIr1R5iYzjs=;
+        b=UocS46sPL1L89zH6CZDmuqfAiEvwy1hAn/jDnQRaAfJEOZmmzygZeTnNjl89G2Lqym
+         NbndmVT45lSjkP9dDqcinkrQdT4Y9Wn+qG01tbw3w8EjG2dw0sJZPh4JCvh63JFGUiH1
+         A0Kg8thSQuqb11iWFXIoUyRGh69FWroCClNkUechzV2NnlKyPt/2pgyx+4ic/VR+vMEg
+         H7GMwGKNU7IQyRlLtWsqmTpMBRVjCOCaL1E7VEGAXz0wUsSQfCqJGMXL0V2UavEt0+2I
+         66fiZqueiic+JbrWgexL+0SqyC3hxXGUYYL2Ipq/+GJsIhCzEuE515upjqc2HV0dhbfG
+         FnHg==
+X-Gm-Message-State: ACgBeo24RerTdvSVmXvjxOSZFyMVG+RZo73zGGYGKuWqwM/E7CEVr+i3
+        CGk4rBYJgiuFjVuXCAYbvvqa4Q==
+X-Google-Smtp-Source: AA6agR4bECAgBJdNC4rnIclnJIrhx1jPSkwqM//T2yRdLncrat9vR3gP5/Myy3t1VemeWXXVUKPiKQ==
+X-Received: by 2002:a05:600c:1c8d:b0:3a6:9d60:faf0 with SMTP id k13-20020a05600c1c8d00b003a69d60faf0mr3848787wms.82.1662142932774;
+        Fri, 02 Sep 2022 11:22:12 -0700 (PDT)
+Received: from linaro.org ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id v10-20020a05600c15ca00b003a5dadcf1a8sm2701188wmf.19.2022.09.02.11.22.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Sep 2022 11:19:50 -0700 (PDT)
-Received: (nullmailer pid 173081 invoked by uid 1000);
-        Fri, 02 Sep 2022 18:19:49 -0000
-Date:   Fri, 2 Sep 2022 13:19:49 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Irui Wang <irui.wang@mediatek.com>
-Cc:     linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, maoguang.meng@mediatek.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        nicolas.dufresne@collabora.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        kyrie wu <kyrie.wu@mediatek.com>,
-        angelogioacchino.delregno@collabora.com,
-        Tomasz Figa <tfiga@chromium.org>, linux-kernel@vger.kernel.org,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>, wenst@chromium.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, xia.jiang@mediatek.com
-Subject: Re: [V13,1/7] dt-bindings: mediatek: Add mediatek, mt8195-jpgenc
- compatible
-Message-ID: <20220902181949.GA173040-robh@kernel.org>
-References: <20220826092956.10340-1-irui.wang@mediatek.com>
- <20220826092956.10340-2-irui.wang@mediatek.com>
+        Fri, 02 Sep 2022 11:22:12 -0700 (PDT)
+Date:   Fri, 2 Sep 2022 21:22:08 +0300
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Li Jun <jun.li@nxp.com>
+Cc:     abelvesa@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: clocks: imx8mp: Add ID for usb suspend
+ clock
+Message-ID: <YxJJ0IQ1Gu1lp02p@linaro.org>
+References: <1661328262-3867-1-git-send-email-jun.li@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220826092956.10340-2-irui.wang@mediatek.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+In-Reply-To: <1661328262-3867-1-git-send-email-jun.li@nxp.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,17 +73,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 26 Aug 2022 17:29:50 +0800, Irui Wang wrote:
-> From: kyrie wu <kyrie.wu@mediatek.com>
+On 22-08-24 16:04:21, Li Jun wrote:
+> usb suspend clock has a gate shared with usb_root_clk.
 > 
-> Add mediatek,mt8195-jpgenc compatible to binding document.
-> 
-> Signed-off-by: kyrie wu <kyrie.wu@mediatek.com>
-> Signed-off-by: irui wang <irui.wang@mediatek.com>
-> ---
->  .../media/mediatek,mt8195-jpegenc.yaml        | 147 ++++++++++++++++++
->  1 file changed, 147 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt8195-jpegenc.yaml
-> 
+> Signed-off-by: Li Jun <jun.li@nxp.com>
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Applied both, thanks!
+
+> 
+> diff --git a/include/dt-bindings/clock/imx8mp-clock.h b/include/dt-bindings/clock/imx8mp-clock.h
+> index 9d5cc2ddde89..1417b7b1b7df 100644
+> --- a/include/dt-bindings/clock/imx8mp-clock.h
+> +++ b/include/dt-bindings/clock/imx8mp-clock.h
+> @@ -324,8 +324,9 @@
+>  #define IMX8MP_CLK_CLKOUT2_SEL			317
+>  #define IMX8MP_CLK_CLKOUT2_DIV			318
+>  #define IMX8MP_CLK_CLKOUT2			319
+> +#define IMX8MP_CLK_USB_SUSP			320
+>  
+> -#define IMX8MP_CLK_END				320
+> +#define IMX8MP_CLK_END				321
+>  
+>  #define IMX8MP_CLK_AUDIOMIX_SAI1_IPG		0
+>  #define IMX8MP_CLK_AUDIOMIX_SAI1_MCLK1		1
+> -- 
+> 2.34.1
+> 
