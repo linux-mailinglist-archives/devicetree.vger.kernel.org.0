@@ -2,89 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 989F35ABAD2
-	for <lists+devicetree@lfdr.de>; Sat,  3 Sep 2022 00:31:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF6265ABAFD
+	for <lists+devicetree@lfdr.de>; Sat,  3 Sep 2022 01:04:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229796AbiIBWbR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Sep 2022 18:31:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54144 "EHLO
+        id S230475AbiIBXED (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Sep 2022 19:04:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229490AbiIBWbQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 18:31:16 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C06AAD8E2B;
-        Fri,  2 Sep 2022 15:31:15 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 75342B82DE6;
-        Fri,  2 Sep 2022 22:31:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9F56C433D6;
-        Fri,  2 Sep 2022 22:31:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1662157873;
-        bh=+3hHBaBf93dmnzMp8U1VFk3F2ls4JhL4RSGcv7sUVGw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=tYXlgRDnQllT2fOGTGtM/BV/Vz53aozxerzZIeKqYr8WW/OT4AiHtms623q1X93Z5
-         2xy32m4/IulQ6OJwLRjKQCQzTHDKr0acN2k5cK/e4lBtiAaPom+ggXtV46LATD7xOb
-         BrlNlR3R7GiR1ydbHT5EmKQZui2HlVU7TMrtHM0VMPl7bkNcOFZh9GxqU9BI1lFUXN
-         7KgEhASLK9KsdqQxmZZ53EUDEjOZHQd2Gtd1hSonQMsFEvoS1iKbZqD7k8gtWojxZB
-         uXALHPKQdQziy54plvBPmtXVrsNL4+SdXlXsyA7StvtJmIhqBaeHLOSz0zrNe0Cj50
-         N5Kbwqd2W8soA==
-Received: by pali.im (Postfix)
-        id 2557E7EA; Sat,  3 Sep 2022 00:31:10 +0200 (CEST)
-Date:   Sat, 3 Sep 2022 00:31:10 +0200
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        with ESMTP id S229504AbiIBXED (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 19:04:03 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12D60E8316;
+        Fri,  2 Sep 2022 16:03:59 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id bq23so5272168lfb.7;
+        Fri, 02 Sep 2022 16:03:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=JwcThZfvgGkXvH/oN7CgEbjQX6xMEv9IlnB4AnwDp1w=;
+        b=XEhCtacuL7sz7x1zd9T562MxiUsvaaPJftDtplKq/7UYHrsmUE1ydgFEdQ2h/ClfW6
+         6ccSu7C0ZTLcWvtQo/nBHx5c2YTxVdDWQOypehP/JKixamj5xUQl8ETbVLcSsg5Xa337
+         aiW/EN4V5J8MBXoMbBG/MJDdWDOJT3Q/wimWcbt0LbUHL8FE+ubtkGUNust0RCPVRVup
+         ZQoCRu+A3EzS/CdQdgTCwt7pJcSYUTAzzISsQUKCmiyPuDtf2fbTR9asU3kolCxp7yMi
+         lCx2ZnBC71Vlyj25Q1NzMdznlfj4dR4C14lsY1Qt0kH471GIzTbhUUEYXaTjjjNBgfmQ
+         lfRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=JwcThZfvgGkXvH/oN7CgEbjQX6xMEv9IlnB4AnwDp1w=;
+        b=mtjzUjzUV+hZqCwx9n9v7hJtKs9NruSmezhg8fctErfS7wis6Vreg20VSI5xOheM1l
+         0iY3dAeo5irdGgDjreKg5bQy/LglCeEijK04tZeGfHFv+MceJqpLePYX1m6wVCIwNnJ7
+         Yrqq449lkRUCpu2xh95XSP0qx3Eyk4SYwcnZt6ZTVbzaA3bgyXGeRoVe0Wzw1eNZXzLE
+         IXuMh8QWEv28QMZ6nKit2Z/lzVUlJLYKsT42pet9lQlfr4cChQvlLGphcp5e5pLNwE8V
+         FTbHCL/FIEEjZvZVq425vQKMR5P9i/TYDh/Ava5RHTG1Xr/vUbA1cewQCVwz6uChNCb3
+         r4dw==
+X-Gm-Message-State: ACgBeo1fI5Os7BNyZbLJlWEzNeT6dVHT+lWja0Lem7LeGkdCm//9CL1N
+        qj3AxJV91nZo1JYl8EzUHiY=
+X-Google-Smtp-Source: AA6agR7Z2FehWmCHWUOj9dB/4A7HYfLxZaSgOsEhd90WFW8vXX1ICBOJkci0w7dn5wDyrL+c7mqpkA==
+X-Received: by 2002:a05:6512:32a9:b0:494:a994:6fac with SMTP id q9-20020a05651232a900b00494a9946facmr1444344lfe.5.1662159837478;
+        Fri, 02 Sep 2022 16:03:57 -0700 (PDT)
+Received: from mobilestation ([83.220.236.124])
+        by smtp.gmail.com with ESMTPSA id q22-20020a056512211600b004947303691dsm384418lfr.95.2022.09.02.16.03.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 02 Sep 2022 16:03:56 -0700 (PDT)
+Date:   Sat, 3 Sep 2022 02:03:53 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Sudip Mukherjee <sudip.mukherjee@sifive.com>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: marvell: Fix compatible strings for Armada
- 3720 boards
-Message-ID: <20220902223110.ob2uepbjzubdf4d3@pali>
-References: <20220713125644.3117-1-pali@kernel.org>
- <20220808202456.lpwvhq22edb56ptf@pali>
- <YvFzGhBRPTXgdCd8@lunn.ch>
+        Greentime Hu <greentime.hu@sifive.com>,
+        Jude Onyenegecha <jude.onyenegecha@sifive.com>,
+        William Salmon <william.salmon@sifive.com>,
+        Adnan Chowdhury <adnan.chowdhury@sifive.com>,
+        Ben Dooks <ben.dooks@sifive.com>, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jeegar Lakhani <jeegar.lakhani@sifive.com>
+Subject: Re: [PATCH 00/11] Add support for enhanced SPI for Designware SPI
+ controllers
+Message-ID: <20220902230353.mscyeklhamzpg5s7@mobilestation>
+References: <20220802175755.6530-1-sudip.mukherjee@sifive.com>
+ <20220826180327.yazfoydjiyygd7qf@mobilestation>
+ <CAHyZL-cmyRprNmr_DtUQaZFXJtcV-6r-UOksFJeMz=XgDhnMNw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <YvFzGhBRPTXgdCd8@lunn.ch>
-User-Agent: NeoMutt/20180716
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <CAHyZL-cmyRprNmr_DtUQaZFXJtcV-6r-UOksFJeMz=XgDhnMNw@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Monday 08 August 2022 22:33:30 Andrew Lunn wrote:
-> On Mon, Aug 08, 2022 at 10:24:56PM +0200, Pali Rohár wrote:
-> > PING?
+On Tue, Aug 30, 2022 at 09:48:35AM +0100, Sudip Mukherjee wrote:
+> On Fri, Aug 26, 2022 at 7:03 PM Serge Semin <fancer.lancer@gmail.com> wrote:
+> >
+> > Hello Sudip
+> >
+> > On Tue, Aug 02, 2022 at 06:57:44PM +0100, Sudip Mukherjee wrote:
+> > > Some Synopsys SSI controllers support enhanced SPI which includes
+> > > Dual mode, Quad mode and Octal mode. DWC_ssi includes clock stretching
+> > > feature in enhanced SPI modes which can be used to prevent FIFO underflow
+> > > and overflow conditions while transmitting or receiving the data respectively.
+> > > This is only tested on controller version 1.03a.
+> >
 > 
-> It is too late for the merge window.
+> <snip>
+> 
+> >
+> > I've deliberately collected all the generic comments here so you'd be
+> > aware of the required changes in total, because I very much doubt all
+> > of them could be fixed at once via a single patchset iteration. But as
+> > soon as all of them are fixed we'll get a very nice and neat solution
+> > for the eSPI feature.
+> >
+> 
 
-So, now for the next?
+> Thanks a lot for the summary here Sergey. I am sure I will have a few
+> questions for you after I start with the changes.
 
-> > > diff --git a/arch/arm64/boot/dts/marvell/armada-372x.dtsi b/arch/arm64/boot/dts/marvell/armada-372x.dtsi
-> > > index 5ce55bdbb995..02ae1e153288 100644
-> > > --- a/arch/arm64/boot/dts/marvell/armada-372x.dtsi
-> > > +++ b/arch/arm64/boot/dts/marvell/armada-372x.dtsi
-> > > @@ -13,7 +13,7 @@
-> > >  
-> > >  / {
-> > >  	model = "Marvell Armada 3720 SoC";
-> > > -	compatible = "marvell,armada3720", "marvell,armada3710";
-> > > +	compatible = "marvell,armada3720", "marvell,armada3700";
+Ok. Don't hesitate to ask.
+
+-Sergey
+
 > 
-> Does it make sense to have a compatible here? The board .dts should
-> provide it. And if the board does not provide it, we probably want the
-> board to not boot because it does not have a compatible.
-> 
->    Andrew
+> -- 
+> Regards
+> Sudip
