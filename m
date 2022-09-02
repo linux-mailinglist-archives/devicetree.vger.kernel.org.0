@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61A9F5AB247
-	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 15:54:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C3BB5AB212
+	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 15:51:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236317AbiIBNyz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Sep 2022 09:54:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46598 "EHLO
+        id S237855AbiIBNvL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Sep 2022 09:51:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236281AbiIBNyP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 09:54:15 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8BF0145C6F
-        for <devicetree@vger.kernel.org>; Fri,  2 Sep 2022 06:28:42 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id x10so2276040ljq.4
-        for <devicetree@vger.kernel.org>; Fri, 02 Sep 2022 06:28:42 -0700 (PDT)
+        with ESMTP id S238156AbiIBNuv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 09:50:51 -0400
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E6F14DB64
+        for <devicetree@vger.kernel.org>; Fri,  2 Sep 2022 06:25:26 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id k9so2369769wri.0
+        for <devicetree@vger.kernel.org>; Fri, 02 Sep 2022 06:25:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=Fd4lSn+qZVzeO4qkwAmVHFeGiK8e6ML8+dOEILHHB/4=;
-        b=Y5fmg2CCmqTFkCJWckDRDOx1uahyv+g1TtzQ24yVBQvoNDz8BBceaGKn5TrsCXlPdm
-         0R16R3/D9RGVwmB6R5ug35KmOUiGMEFGvrJj5dMUioFSSuhhFZZOLv1BqqF/Z6uj6up4
-         JCnYyy5E3wbxtkwIxYTtDVz6EWnPYmXNWqf8kY1YBn4Q7qx9La8n00BnyLznQy6r4hRj
-         3UDtKOSNAODdD0uowmneP3z7FZkz6fUfyYYRw9QRsFJMDaDifMI6/4AqXf+xb8DFKoEe
-         iHqfbok1nAtAPsFz3Zuqi/Mm2DSEDzSxmvAYkOPslwgXR4p3s+m3EKgFZzOfwSxG5T/t
-         UWnw==
+        bh=drLF7rfbGFyvXeY1M1WJL6CSV1JIiJp9EbWQRGL1rFU=;
+        b=dg3A8/XIlRqPp1CPoTasxNUHNieEKqRPUkIQRJSP30IIxvMZ3nilnRE7HylejN9mbV
+         cXTjHFLpstcLyIKQXdYUqOHE9NxReukOLmasdZTY5TCbcpLkshUh101kBZ4RDr29op1W
+         eVcar4IsoHkNcma0VlMXNgRgJ50BGWTSJ5TX5oZizKbSwox1qSPV+E6IFWvhC5Wv1yUZ
+         1KrLEQTwXjfcptO9UO7w20FQE9s8UFJ8PyfhS6BQyAtZA7SQ0hQcOAbCspGoA4Dpc4ae
+         o2xTfjqqZlH2PkJQzU2/t89OH6z81wjZjk1U6dj6yYEw8JABZ9lklsZZrkJlO34Pt32R
+         uWLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=Fd4lSn+qZVzeO4qkwAmVHFeGiK8e6ML8+dOEILHHB/4=;
-        b=JKet9dw8uJ1N2q/EsmU9R0Bms3gkSeVYaowQvWOZBR+h9ZP9Ph9c32PUOUBrYe6dAN
-         IIu0y4IMeNPxl4KQFhvpfj4s5LfHdvFcj2c02KNlIbS8faUD4IXH7rE9HNCQXwrOwYxb
-         RsOkHvihmw+46H1mUT2kgUQpE459LQlSVIEokNYwvdAxWilPI78Nxl5uuBngTg9IX7fv
-         t94a0WLRpgq+jajtkaNtVJY+32wzGIsnZBmE/WgBEAjykB4aJTxXbgKJlq2sALM1xrT6
-         3X1dG4TjHBxvt9nQSGbDLFqYxNj7HPGKM0ITjIMOPSySWtkkPpvoBBgGU6h40fE6ZX8o
-         Rbmw==
-X-Gm-Message-State: ACgBeo2A+INqQcOAi128WCE5AagGR2BkbS0DJiw9f+1e/fMeGxSC+eJh
-        gS93dOGzpwM7l3dNhkibgUkCvqZ85jOjvMvM
-X-Google-Smtp-Source: AA6agR5hvVENxFSh2gnwP8eA5w9X+QtN5NSpi56rnmJnWFXn5xD87WZ1MnKXYCOvXJ2XQH43RdlQFA==
-X-Received: by 2002:adf:fbc7:0:b0:220:6004:18ca with SMTP id d7-20020adffbc7000000b00220600418camr16867924wrs.632.1662124467681;
-        Fri, 02 Sep 2022 06:14:27 -0700 (PDT)
+        bh=drLF7rfbGFyvXeY1M1WJL6CSV1JIiJp9EbWQRGL1rFU=;
+        b=v6wOHPuMmlEbwMEV6wwLDBg7sa4TkOcjb4m8MTvRGrXlvCA839QteNMcSeJAKnQWOc
+         oMgwt4EcKg770GjgmbjsF/ikewsZPHpHUHZ/sZPS+6X/j/vCzXOKLwl7x82iowxDwsQa
+         QfjEVFsFSn40/MXVa/hL2DV7IXUmnbfeYuWdg+rPXmxfBisLoUb3XBtL10NQ39cj+SUO
+         8lHSqerkx4R/WUmqq7BhmzAxNZKzM0eMxPkgjo0p5noqSTuNDGJ675/QPsaFlVRqAPCV
+         2hH/j1m01Jp3cvyp87T+0PYn7qCt8cxurDqZDk3+Xut3nCzz1bvwXUN7UIEmTZn2/rtU
+         YLDg==
+X-Gm-Message-State: ACgBeo0k2tyxatrleIcgsxPmJc5E0YCry0huUlE64vNkwa4w/ftRXxyr
+        AfR5YQexPIzOSOy8BjLmra3+igfOqi3SbQvh
+X-Google-Smtp-Source: AA6agR5R9G7qEf/kpeyJBujQrfYmCftSy6m0SLRKczMsXmGCtHr7J2rnQDY43bEkD0QHw1NBbh+9Ug==
+X-Received: by 2002:a5d:59ab:0:b0:227:8f1e:f4ab with SMTP id p11-20020a5d59ab000000b002278f1ef4abmr2069723wrr.321.1662124469173;
+        Fri, 02 Sep 2022 06:14:29 -0700 (PDT)
 Received: from hackbox.lan ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id v14-20020a5d43ce000000b002253fd19a6asm1766253wrr.18.2022.09.02.06.14.26
+        by smtp.gmail.com with ESMTPSA id v14-20020a5d43ce000000b002253fd19a6asm1766253wrr.18.2022.09.02.06.14.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Sep 2022 06:14:27 -0700 (PDT)
+        Fri, 02 Sep 2022 06:14:28 -0700 (PDT)
 From:   Abel Vesa <abel.vesa@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorande@qti.qualcomm.com>,
@@ -61,9 +61,9 @@ Cc:     Arnd Bergmann <arnd@arndb.de>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: [PATCH 05/14] misc: fastrpc: Add reserved mem support
-Date:   Fri,  2 Sep 2022 16:13:35 +0300
-Message-Id: <20220902131344.3029826-6-abel.vesa@linaro.org>
+Subject: [PATCH 06/14] dt-bindings: misc: fastrpc: Document memory-region property
+Date:   Fri,  2 Sep 2022 16:13:36 +0300
+Message-Id: <20220902131344.3029826-7-abel.vesa@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220902131344.3029826-1-abel.vesa@linaro.org>
 References: <20220902131344.3029826-1-abel.vesa@linaro.org>
@@ -79,38 +79,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The reserved mem support is needed for CMA heap support, which will be
-used by AUDIOPD.
+Add memory-region property to the list of optional properties, specify
+the value type and a definition
 
-Co-developed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 ---
- drivers/misc/fastrpc.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ Documentation/devicetree/bindings/misc/qcom,fastrpc.txt | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/misc/fastrpc.c b/drivers/misc/fastrpc.c
-index 8d803ee33904..52271f51800d 100644
---- a/drivers/misc/fastrpc.c
-+++ b/drivers/misc/fastrpc.c
-@@ -19,6 +19,7 @@
- #include <linux/slab.h>
- #include <linux/qcom_scm.h>
- #include <uapi/misc/fastrpc.h>
-+#include <linux/of_reserved_mem.h>
+diff --git a/Documentation/devicetree/bindings/misc/qcom,fastrpc.txt b/Documentation/devicetree/bindings/misc/qcom,fastrpc.txt
+index 5ec124b138a6..3dd02aaa7ba7 100644
+--- a/Documentation/devicetree/bindings/misc/qcom,fastrpc.txt
++++ b/Documentation/devicetree/bindings/misc/qcom,fastrpc.txt
+@@ -17,6 +17,11 @@ other tasks.
+ 	Definition: should specify the dsp domain name this fastrpc
+ 	corresponds to. must be one of this: "adsp", "mdsp", "sdsp", "cdsp"
  
- #define ADSP_DOMAIN_ID (0)
- #define MDSP_DOMAIN_ID (1)
-@@ -2064,6 +2065,9 @@ static int fastrpc_rpmsg_probe(struct rpmsg_device *rpdev)
- 		return -EINVAL;
- 	}
- 
-+	if (of_reserved_mem_device_init_by_idx(rdev, rdev->of_node, 0))
-+		dev_info(rdev, "no reserved DMA memory for FASTRPC\n");
++- memory-region:
++	Usage: optional
++	Value type: <phandle>
++	Definition: reference to the reserved-memory for the region
 +
- 	vmcount = of_property_read_variable_u32_array(rdev->of_node,
- 				"qcom,vmids", &vmids[0], 0, FASTRPC_MAX_VMIDS);
- 	if (vmcount < 0)
+ - qcom,non-secure-domain:
+ 	Usage: required
+ 	Value type: <boolean>
 -- 
 2.34.1
 
