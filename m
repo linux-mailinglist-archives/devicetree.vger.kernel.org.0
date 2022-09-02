@@ -2,115 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B2E25AAADC
-	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 11:05:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0725E5AAAF5
+	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 11:11:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236045AbiIBJEx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Sep 2022 05:04:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43558 "EHLO
+        id S234776AbiIBJLB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Sep 2022 05:11:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236071AbiIBJEw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 05:04:52 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E693B38A7;
-        Fri,  2 Sep 2022 02:04:48 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 3A8486601F04;
-        Fri,  2 Sep 2022 10:04:46 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1662109486;
-        bh=yvwwoBkByqJ5cx4uVKskzHBO8ILIZF3f4Da7QWytnDE=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=jR/695CKTH7D1U/VSzyMePn4k8uuuO9xvO0kF9h1XqacwzhDi8kU+Pdi/UWb0+ioJ
-         WTXnrV968hQT4Gez+SlfnYYaiXFs1nF5BJHTNRUqgIHxax9HQuJEyu/wMfpERM/sCY
-         v6EjEdz3cbjpgWM+hH0gCwi9qj/B2kTC71pEaQK8WggY7bQdvIaPFAF/P+ySg5Daqt
-         BSmvjRUnTeZe1IeJfhFRsmp1eqGlSPBiNhAn1iWsGAeMP9rkVBcqmqbqEundF91Zft
-         wt35NUet0b656hL6r2rqQdf1fBObKsNwCYLB7HNRdi/PE/AhH7NDNJtXj442upFOrd
-         MjxKi4AFPAdPA==
-Message-ID: <c6853021-e7ef-3078-9c9e-f0c6b56e566d@collabora.com>
-Date:   Fri, 2 Sep 2022 11:04:43 +0200
+        with ESMTP id S235491AbiIBJK7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 05:10:59 -0400
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2062.outbound.protection.outlook.com [40.107.22.62])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA59C88DDB;
+        Fri,  2 Sep 2022 02:10:58 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Eo3RIxylwa8RP4T3bMdGckdipr8CJpcy8egLsI2RQlP2mOGrTQKep28v2xaNUQt2RB+Nz5CElub66L8H+w7i6SKxq9gcTnH7J06Mmmo6BkZ6LfwX9qowKjDix3FNSrA63c+43/KXD2kfbU2DewM90sh0WRzubNL4fto3zdfVrVhvRhtH3i3BVowtmLJ6hQsDfDR3fWtVKChfiIYAhaKoWGtBIhgFCeMMvK7NCCBQe52u0HUDOapF40EojlwXcrv2vbVSUCq4kJle/zEiX48ie9/V7jvl1T4YcjAniSgh8xEaAGc8sQq0XRUUdUmSXP6Es4AhM2+a1bfWKHhclID2Aw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=bJ5tAbJLZk+ZyqZCNksiBK4p+m/7edpy4RSvixl0PZ4=;
+ b=a3mfyRn5m02wCHAdYo9Qe4znfLdZUAV7Nwhb67xdrNnV7kIggFSl8ajPHS3gVtalyfsB3to/jRIQXTYYv2BMRnIzJW7YdDRpKCGjmaRt4wyFbL9qhV5WYMqtmfQEmAtZ1+6mRq6zAaI7CC2NQVvfDU1uhtzqIwitqiSWR6b5SW3o0zgRIRjyrxp0rYVRAeZaLVGDI/r4sTjQ/Gbh4qiA/kEdKTpaCtJGXguQzHaDs3syMwzSq9GGvrfwAJEDSra7y/DgzzcYS8DcrSpsr43wHgizfCAM5j4gl2FeI4jE+ef6KD7fMdWKtj2fBae+VZqxXKfPbF/ZeDAZdUQxVVIwlA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 194.138.21.75) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=siemens.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=siemens.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=bJ5tAbJLZk+ZyqZCNksiBK4p+m/7edpy4RSvixl0PZ4=;
+ b=H3d+VgcgrNd8w/u/R/GNKjh8JxEfTnhZoK7CiiNEMsHJ+JRtPq6kHaoIEQItDWVcNuGUDA8S6luLLaX7dO4+hOHj3cMQ4ikpRvbokiDxTtBMc3hOYiztQLy5L8IUfYjmOLIeg2F2BWvz8cHWYxzgZFen/NrTDRTqoZh9D2IXHNI1Q5UqS/Uw4o/duLGAPkT/ubbekQcvNk5dz5Nrq2kezpjl80TchsIfPyMA6Q2Wcze64P6muoMJxxdgHwWytNu3xO5uNonlFViMPMc0xn3/khdLUOa208W2XolXJtyoIHfNGxz0IWMwvqeqK+NlkWwZzRcNSkRM5QFIfbAZmyED6g==
+Received: from AS9PR06CA0150.eurprd06.prod.outlook.com (2603:10a6:20b:467::16)
+ by VI1PR10MB3341.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:803:13b::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.10; Fri, 2 Sep
+ 2022 09:10:56 +0000
+Received: from VE1EUR01FT033.eop-EUR01.prod.protection.outlook.com
+ (2603:10a6:20b:467:cafe::db) by AS9PR06CA0150.outlook.office365.com
+ (2603:10a6:20b:467::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.10 via Frontend
+ Transport; Fri, 2 Sep 2022 09:10:56 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 194.138.21.75)
+ smtp.mailfrom=siemens.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=siemens.com;
+Received-SPF: Pass (protection.outlook.com: domain of siemens.com designates
+ 194.138.21.75 as permitted sender) receiver=protection.outlook.com;
+ client-ip=194.138.21.75; helo=hybrid.siemens.com; pr=C
+Received: from hybrid.siemens.com (194.138.21.75) by
+ VE1EUR01FT033.mail.protection.outlook.com (10.152.2.230) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5588.10 via Frontend Transport; Fri, 2 Sep 2022 09:10:56 +0000
+Received: from DEMCHDC8WAA.ad011.siemens.net (139.25.226.104) by
+ DEMCHDC8VRA.ad011.siemens.net (194.138.21.75) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.12; Fri, 2 Sep 2022 11:10:55 +0200
+Received: from bennie-lenovo.fritz.box (139.21.146.191) by
+ DEMCHDC8WAA.ad011.siemens.net (139.25.226.104) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.7; Fri, 2 Sep 2022 11:10:39 +0200
+From:   "B. Niedermayr" <benedikt.niedermayr@siemens.com>
+To:     <linux-omap@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     <rogerq@kernel.org>, <tony@atomide.com>, <krzk@kernel.org>,
+        <robh+dt@kernel.org>
+Subject: [PATCH v2 0/3] omap-gpmc wait pin additions
+Date:   Fri, 2 Sep 2022 11:10:25 +0200
+Message-ID: <20220902091028.1346952-1-benedikt.niedermayr@siemens.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.0
-Subject: Re: [PATCH v2 3/3] iommu/mediatek: Add MT8188 IOMMU Support
-Content-Language: en-US
-To:     "Chengci.Xu" <chengci.xu@mediatek.com>,
-        Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     iommu@lists.linux.dev, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220831125502.7818-1-chengci.xu@mediatek.com>
- <20220831125502.7818-4-chengci.xu@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220831125502.7818-4-chengci.xu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [139.21.146.191]
+X-ClientProxiedBy: DEMCHDC8A0A.ad011.siemens.net (139.25.226.106) To
+ DEMCHDC8WAA.ad011.siemens.net (139.25.226.104)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 2c220124-acf9-42ff-ddbb-08da8cc30b30
+X-MS-TrafficTypeDiagnostic: VI1PR10MB3341:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: /EvneLEmN6zlwx7bw/GFi8kqoV8rqgdVgQTBiC39+uGIEtG5wwe2s4n4RPttvgjMR5wEgSkcSbegLQGPSJxxAVhi10mxN+ncv5vR8er7BaHfnXoQfF0pT+TR1lzmdQym4VbRcnHJuHJO7VTuGeZCd6M2PVXfjYc+cpBf3bcHdtkX5/sMWvUMYuH/i9AHWj6UVo3SvTnfZy7/c1NmBmHj/afr2rKFZrJ5Xme0cnS0zFBzHjCl+nPbN5rGlzrJwEY5fYhvhMHWB/p++FB4IRNvbamcCI8EoCVpy1ywZ760sBQiPNZ71UhUbjhQzLwrzbFSyb0Hz5Lj1wvcepfhkCa4RBLfZaukeMQyDVQyXcSaseRyfLg5kN5vsBdkVbYJbmCY5sdGdI+xn6Dc1U0sd9/TBdGIma4b0kZ3BQ6Zl88i9J/wOK/hmnyjTq02bfTRIYduYujOGM6kJWQzdLNKNdJktpljV8nmUUgG0hZla6/4QKc+wrrgR+5JxM67eqUaD4iE1R0ccpl8LivI29V6kG5oZIZqwImRG5pqdtYmWCmq5okeLPfY0EuM/UlSZAE1DLm9TdPC1Zpp4hyqknFqGQYY9ce+d8p2jt1lw92sMHc7rK98WA+GKR+V5blmcIUMvOsEyomP/zvBH+LKCi3nbThWVMehuDbWMk7/ebwvb2ztgQyxWzXq3Xu60hwrbS40x4y1JcdQ2BwtO6xCS+OFeGPhTuBYbB/MiFLtydx3/1wp9i62+wc+xyYVvurtP5EUTCFBrH7DeP4Gm0U5wA79znhFHjFK/VHyT8njCgfM2zV0U6c=
+X-Forefront-Antispam-Report: CIP:194.138.21.75;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:hybrid.siemens.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230016)(4636009)(396003)(376002)(39860400002)(346002)(136003)(40470700004)(46966006)(36840700001)(41300700001)(6666004)(478600001)(40480700001)(316002)(36756003)(26005)(82310400005)(110136005)(54906003)(356005)(16526019)(86362001)(81166007)(82960400001)(2906002)(336012)(2616005)(47076005)(956004)(1076003)(83380400001)(186003)(4326008)(5660300002)(8936002)(8676002)(70586007)(70206006)(36860700001)(40460700003)(82740400003)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: siemens.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Sep 2022 09:10:56.0141
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2c220124-acf9-42ff-ddbb-08da8cc30b30
+X-MS-Exchange-CrossTenant-Id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=38ae3bcd-9579-4fd4-adda-b42e1495d55a;Ip=[194.138.21.75];Helo=[hybrid.siemens.com]
+X-MS-Exchange-CrossTenant-AuthSource: VE1EUR01FT033.eop-EUR01.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR10MB3341
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 31/08/22 14:55, Chengci.Xu ha scritto:
-> MT8188 has 3 IOMMU, containing 2 MM IOMMUs, one is for vdo, the other
-> is for vpp. and 1 INFRA IOMMU.
-> 
-> Signed-off-by: Chengci.Xu <chengci.xu@mediatek.com>
-> ---
->   drivers/iommu/mtk_iommu.c | 48 +++++++++++++++++++++++++++++++++++++++
->   1 file changed, 48 insertions(+)
-> 
-> diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
-> index 6fe780783ec8..98c2eae5229e 100644
-> --- a/drivers/iommu/mtk_iommu.c
-> +++ b/drivers/iommu/mtk_iommu.c
-> @@ -164,6 +164,7 @@ enum mtk_iommu_plat {
->   	M4U_MT8173,
->   	M4U_MT8183,
->   	M4U_MT8186,
-> +	M4U_MT8188,
->   	M4U_MT8192,
->   	M4U_MT8195,
->   };
-> @@ -1479,6 +1480,50 @@ static const struct mtk_iommu_plat_data mt8186_data_mm = {
->   	.iova_region_nr = ARRAY_SIZE(mt8192_multi_dom),
->   };
->   
-> +static const struct mtk_iommu_plat_data mt8188_data_infra = {
-> +	.m4u_plat	  = M4U_MT8188,
-> +	.flags            = WR_THROT_EN | DCM_DISABLE | STD_AXI_MODE | PM_CLK_AO |
-> +			    MTK_IOMMU_TYPE_INFRA | IFA_IOMMU_PCIE_SUPPORT |
-> +			    CFG_IFA_MASTER_IN_ATF,
-> +	.pericfg_comp_str = "mediatek,mt8188-pericfg_ao",
+From: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
 
-pericfg_comp_str is used only for IOMMU enable from Linux, but MT8188 enables it
-with a SMC command, so this is unused.
+There is currently no possibility for the gpmc to set either the
+waitp-pin polarity or use the same wait-pin for different cs-regions.
 
-Please drop it.
+While the current implementation may fullfill most usecases, it may not
+be sufficient for more complex setups (e.g. FPGA/ASIC interfaces), where
+more complex interfacing options where possible.
 
-> +	.inv_sel_reg      = REG_MMU_INV_SEL_GEN2,
-> +	.banks_num	  = 1,
-> +	.banks_enable     = {true},
-> +	.iova_region      = single_domain,
-> +	.iova_region_nr   = ARRAY_SIZE(single_domain),
-> +};
-> +
+For example interfacing an ASIC which offers multiple cs-regions but
+only one waitpin the current driver and dt-bindings are not sufficient.
 
-Regards,
-Angelo
+While using the same waitpin for different cs-regions worked for older
+kernels (4.14) the omap-gpmc.c driver refused to probe (-EBUSY) with
+newer kernels (>5.10).
+
+Changes since v1: 
+  * Rebase against recent 6.0.0-rc3 kernel, but the maintainers list
+    stays the same!
+
+  ./scripts/get_maintainer.pl drivers/memory/omap-gpmc.c
+  Roger Quadros <rogerq@kernel.org> (maintainer:OMAP GENERAL PURPOSE MEMORY CONTROLLER SUPPORT)
+  Tony Lindgren <tony@atomide.com> (maintainer:OMAP GENERAL PURPOSE MEMORY CONTROLLER SUPPORT)
+  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> (maintainer:MEMORY CONTROLLER DRIVERS)
+  linux-omap@vger.kernel.org (open list:OMAP GENERAL PURPOSE MEMORY CONTROLLER SUPPORT)
+  linux-kernel@vger.kernel.org (open list:MEMORY CONTROLLER DRIVERS)
+  
+  ./scripts/get_maintainer.pl Documentation/devicetree/bindings/memory-controllers/ti,gpmc-child.yaml 
+  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> (maintainer:MEMORY CONTROLLER DRIVERS)
+  Rob Herring <robh+dt@kernel.org> (maintainer:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
+  Tony Lindgren <tony@atomide.com> (in file)
+  Roger Quadros <rogerq@kernel.org> (in file)
+  linux-kernel@vger.kernel.org (open list:MEMORY CONTROLLER DRIVERS)
+  devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
+
+
+
+Benedikt Niedermayr (3):
+  memory: omap-gpmc: allow shared wait pins
+  memory: omap-gpmc: add support for wait pin polarity
+  dt-bindings: memory-controllers: gpmc-child: Add binding for
+    wait-pin-polarity
+
+ .../memory-controllers/ti,gpmc-child.yaml     |  7 ++++
+ drivers/memory/omap-gpmc.c                    | 38 +++++++++++++++----
+ include/linux/platform_data/gpmc-omap.h       |  1 +
+ 3 files changed, 39 insertions(+), 7 deletions(-)
+
+-- 
+2.25.1
 
