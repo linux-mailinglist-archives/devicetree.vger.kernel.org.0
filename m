@@ -2,53 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA2435AB1D9
-	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 15:43:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6A5B5AB1F1
+	for <lists+devicetree@lfdr.de>; Fri,  2 Sep 2022 15:45:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237648AbiIBNnT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Sep 2022 09:43:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60916 "EHLO
+        id S235640AbiIBNpx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Sep 2022 09:45:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50458 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237835AbiIBNml (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 09:42:41 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97213C927C
-        for <devicetree@vger.kernel.org>; Fri,  2 Sep 2022 06:19:31 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1oU6Ue-0007Va-Hm; Fri, 02 Sep 2022 15:13:56 +0200
-Received: from [2a0a:edc0:0:1101:1d::ac] (helo=dude04.red.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ore@pengutronix.de>)
-        id 1oU6Ub-003VMs-EQ; Fri, 02 Sep 2022 15:13:55 +0200
-Received: from ore by dude04.red.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ore@pengutronix.de>)
-        id 1oU6Uc-006elN-E7; Fri, 02 Sep 2022 15:13:54 +0200
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Oleksij Rempel <o.rempel@pengutronix.de>, kernel@pengutronix.de,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Andy Shevchenko <andy.shevchenko@gmail.com>
-Subject: [PATCH v4 2/3] iio: adc: tsc2046: add vref support
-Date:   Fri,  2 Sep 2022 15:13:51 +0200
-Message-Id: <20220902131352.1586599-2-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220902131352.1586599-1-o.rempel@pengutronix.de>
-References: <20220902131352.1586599-1-o.rempel@pengutronix.de>
+        with ESMTP id S237330AbiIBNpS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 09:45:18 -0400
+Received: from smtp-fw-9102.amazon.com (smtp-fw-9102.amazon.com [207.171.184.29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D862912EC60;
+        Fri,  2 Sep 2022 06:21:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1662124883; x=1693660883;
+  h=message-id:date:mime-version:to:cc:references:from:
+   in-reply-to:content-transfer-encoding:subject;
+  bh=nzPUc9EDrOhRtDNeKPMRzpudxcLrf0JAPFl0JHh3d9o=;
+  b=DZ2Sxio5il+oQReWjRJLz0mEL7NTc3FEzLKuoGfHG+NNTHSmzgEOS7DZ
+   xcKu9A6lXnc5joQlxm4W3hy8meJCNbRoBzYWkDgjWJkG20XucwkYeOlFS
+   S20HOBJfv/Ndg+MqjWPoSrx1u3YchQD5IkWjXdKn9L67gV/9Ww8J2EKaK
+   c=;
+X-IronPort-AV: E=Sophos;i="5.93,283,1654560000"; 
+   d="scan'208";a="255577710"
+Subject: Re: [PATCH v3 14/19] dt-bindings: hwmon: (mr75203) add "moortec,
+ ts-series" property
+Received: from pdx4-co-svc-p1-lb2-vlan2.amazon.com (HELO email-inbound-relay-pdx-2c-388992e0.us-west-2.amazon.com) ([10.25.36.210])
+  by smtp-border-fw-9102.sea19.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Sep 2022 13:18:10 +0000
+Received: from EX13MTAUWB001.ant.amazon.com (pdx1-ws-svc-p6-lb9-vlan3.pdx.amazon.com [10.236.137.198])
+        by email-inbound-relay-pdx-2c-388992e0.us-west-2.amazon.com (Postfix) with ESMTPS id C2D51E48AB;
+        Fri,  2 Sep 2022 13:18:09 +0000 (UTC)
+Received: from EX19D013UWB004.ant.amazon.com (10.13.138.62) by
+ EX13MTAUWB001.ant.amazon.com (10.43.161.207) with Microsoft SMTP Server (TLS)
+ id 15.0.1497.38; Fri, 2 Sep 2022 13:18:09 +0000
+Received: from EX13MTAUWB001.ant.amazon.com (10.43.161.207) by
+ EX19D013UWB004.ant.amazon.com (10.13.138.62) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.1118.12; Fri, 2 Sep 2022 13:18:09 +0000
+Received: from [192.168.149.164] (10.85.143.177) by mail-relay.amazon.com
+ (10.43.161.249) with Microsoft SMTP Server id 15.0.1497.38 via Frontend
+ Transport; Fri, 2 Sep 2022 13:18:03 +0000
+Message-ID: <52e48e0a-1369-2c8f-b3e8-c854365384d4@amazon.com>
+Date:   Fri, 2 Sep 2022 16:18:02 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.1
+To:     Philipp Zabel <p.zabel@pengutronix.de>, <jdelvare@suse.com>,
+        <linux@roeck-us.net>, <robh+dt@kernel.org>,
+        <rtanwar@maxlinear.com>, <linux-hwmon@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     <talel@amazon.com>, <hhhawa@amazon.com>, <jonnyc@amazon.com>,
+        <hanochu@amazon.com>, <ronenk@amazon.com>, <itamark@amazon.com>,
+        <shellykz@amazon.com>, <shorer@amazon.com>, <amitlavi@amazon.com>,
+        <almogbs@amazon.com>, <dkl@amazon.com>,
+        <andriy.shevchenko@intel.com>, "Farber, Eliav" <farbere@amazon.com>
+References: <20220830192212.28570-1-farbere@amazon.com>
+ <20220830192212.28570-15-farbere@amazon.com>
+ <89806ee9a80652d5877ef5c4a86574e82af48da4.camel@pengutronix.de>
+ <f49558fa-e987-145c-425e-0e8a7a9fba5f@amazon.com>
+ <4ab6f79f54ad975d7c21c86c57fa2defbb8c98c0.camel@pengutronix.de>
+Content-Language: en-US
+From:   "Farber, Eliav" <farbere@amazon.com>
+In-Reply-To: <4ab6f79f54ad975d7c21c86c57fa2defbb8c98c0.camel@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-14.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_SPF_WL autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -56,121 +78,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If VREF pin is attached, we should use external VREF source instead of
-the internal. Otherwise we will get wrong measurements on some of channel
-types.
+On 8/31/2022 12:42 PM, Philipp Zabel wrote:
+> On Mi, 2022-08-31 at 12:23 +0300, Farber, Eliav wrote:
+>> On 8/31/2022 11:23 AM, Philipp Zabel wrote:
+>> > On Di, 2022-08-30 at 19:22 +0000, Eliav Farber wrote:
+>> > > Add optional "moortec,ts-series" property to define the temperature
+>> > > equation and coefficients that shall be used to convert the digital
+>> > > output to value in milli-Celsius.
+>> > > Supported series: 5 (default) and 6.
+>> >
+>> > Is this the difference between mr75xxx and mr76xxx series?
+>> > If so, should be a compatible "moortec,mr76006" instead?
+>> > If the temperature equation could be derived from the compatible, this
+>> > property would not be necessary.
+>> The PVT (Process, Voltage, Temperature) monitoring logic can be
+>> constructed from many different sub-blocks:
+>> *) CONTROLLER (mr75203) - controlling TS, PD and VM.
+>> *) TS (mr74137) - for measuring temperature in ring.
+>> *) PD (mr74139) - for measuring IO based transistors.
+>> *) VM (mr74138) - for measuring voltage rails across the SoC.
+>> *) Ring oscillators (mr76007/mr76008)
+>> *) Pre-scalers (mr76006)
+>>
+>> Besides mr75203 which is digital all other IPs are analog.
+>> There is a single mr75203 and there can be several or none of the other
+>> units.
+>
+> Thank you for the explanation, I think this information would be nice
+> to have in a description in moortec,mr75203.yaml. 
 
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
----
-changes v4:
-- use vref_reg pointer instead of bool use_internal_vref
-- move regulator registration to a separate function
-- rework error handling
-- add devm_add_action_or_reset
----
- drivers/iio/adc/ti-tsc2046.c | 54 ++++++++++++++++++++++++++++++++++--
- 1 file changed, 52 insertions(+), 2 deletions(-)
+For v4 I added a new patch which adds this description in
+moortec,mr75203.yaml:
 
-diff --git a/drivers/iio/adc/ti-tsc2046.c b/drivers/iio/adc/ti-tsc2046.c
-index 0d9436a69cbfb..5f92754e066be 100644
---- a/drivers/iio/adc/ti-tsc2046.c
-+++ b/drivers/iio/adc/ti-tsc2046.c
-@@ -8,6 +8,7 @@
- #include <linux/bitfield.h>
- #include <linux/delay.h>
- #include <linux/module.h>
-+#include <linux/regulator/consumer.h>
- #include <linux/spi/spi.h>
- 
- #include <asm/unaligned.h>
-@@ -175,6 +176,8 @@ struct tsc2046_adc_priv {
- 	u32 time_per_bit_ns;
- 
- 	struct tsc2046_adc_ch_cfg ch_cfg[TI_TSC2046_MAX_CHAN];
-+	unsigned int vref_mv;
-+	struct regulator *vref_reg;
- };
- 
- #define TI_TSC2046_V_CHAN(index, bits, name)			\
-@@ -252,7 +255,9 @@ static u8 tsc2046_adc_get_cmd(struct tsc2046_adc_priv *priv, int ch_idx,
- 	case TI_TSC2046_ADDR_AUX:
- 	case TI_TSC2046_ADDR_VBAT:
- 	case TI_TSC2046_ADDR_TEMP0:
--		pd |= TI_TSC2046_SER | TI_TSC2046_PD1_VREF_ON;
-+		pd |= TI_TSC2046_SER;
-+		if (!priv->vref_reg)
-+			pd |= TI_TSC2046_PD1_VREF_ON;
- 	}
- 
- 	return TI_TSC2046_START | FIELD_PREP(TI_TSC2046_ADDR, ch_idx) | pd;
-@@ -468,7 +473,7 @@ static int tsc2046_adc_read_raw(struct iio_dev *indio_dev,
- 		 * So, it is better to use external voltage-divider driver
- 		 * instead, which is calculating complete chain.
- 		 */
--		*val = TI_TSC2046_INT_VREF;
-+		*val = priv->vref_mv;
- 		*val2 = chan->scan_type.realbits;
- 		return IIO_VAL_FRACTIONAL_LOG2;
- 	}
-@@ -740,6 +745,47 @@ static void tsc2046_adc_parse_fwnode(struct tsc2046_adc_priv *priv)
- 	}
- }
- 
-+static void tsc2046_adc_regulator_disable(void *data)
-+{
-+	struct tsc2046_adc_priv *priv = data;
-+
-+	regulator_disable(priv->vref_reg);
-+}
-+
-+static int tsc2046_adc_configure_regulator(struct tsc2046_adc_priv *priv)
-+{
-+	struct device *dev = &priv->spi->dev;
-+	int ret;
-+
-+	priv->vref_reg = devm_regulator_get_optional(dev, "vref");
-+	if (IS_ERR(priv->vref_reg) && PTR_ERR(priv->vref_reg) != -ENODEV)
-+		return PTR_ERR(priv->vref_reg);
-+
-+	if (IS_ERR_OR_NULL(priv->vref_reg)) {
-+		priv->vref_reg = NULL;
-+		/* Use internal reference */
-+		priv->vref_mv = TI_TSC2046_INT_VREF;
-+		return 0;
-+	}
-+
-+	ret = regulator_enable(priv->vref_reg);
-+	if (ret)
-+		return ret;
-+
-+	ret = devm_add_action_or_reset(dev, tsc2046_adc_regulator_disable,
-+				       priv);
-+	if (ret)
-+		return ret;
-+
-+	ret = regulator_get_voltage(priv->vref_reg);
-+	if (ret < 0)
-+		return ret;
-+
-+	priv->vref_mv = ret / 1000;
-+
-+	return 0;
-+}
-+
- static int tsc2046_adc_probe(struct spi_device *spi)
- {
- 	const struct tsc2046_adc_dcfg *dcfg;
-@@ -781,6 +827,10 @@ static int tsc2046_adc_probe(struct spi_device *spi)
- 	indio_dev->num_channels = dcfg->num_channels;
- 	indio_dev->info = &tsc2046_adc_info;
- 
-+	ret = tsc2046_adc_configure_regulator(priv);
-+	if (ret)
-+		return ret;
-+
- 	tsc2046_adc_parse_fwnode(priv);
- 
- 	ret = tsc2046_adc_setup_spi_msg(priv);
--- 
-2.30.2
+description: |
+   A Moortec PVT (Process, Voltage, Temperature) monitoring logic design can
+   include many different units.
+   Such a design will usually consists of several Moortec's embedded 
+analog IPs,
+   and a single Moortec controller to configure and control the IPs.
 
+   Some of the Moortec's analog hard IPs that can be used in a design:
+   *) Temperature Sensor (TS) - used to monitor core temperature (e.g. 
+mr74137).
+   *) Voltage Monitor (VM) - used to monitor voltage levels (e.g. mr74138).
+   *) Process Detector (PD) - used to assess silicon speed (e.g. mr74139).
+   *) Delay Chain - ring oscillator connected to the PD, used to measure IO
+      based transistors (e.g. mr76008 ring oscillator at 1.1V, mr76007 ring
+      oscillator at 1.8V).
+   *) Pre Scaler - provides divide-by-X scaling of input voltage, which 
+can then
+      be presented for VM for measurement within its range (e.g. mr76006 -
+      divide by 2 pre-scaler).
+
+   TS, VM & PD also include a digital interface, which consists of 
+configuration
+   inputs and measurement outputs.
+   The mr75203 binding describes configuration for the controller unit, 
+but also
+   for some of the analog IPs.
+
+--
+Regards, Eliav
