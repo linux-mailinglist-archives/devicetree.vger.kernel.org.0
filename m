@@ -2,984 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB6645ABB03
-	for <lists+devicetree@lfdr.de>; Sat,  3 Sep 2022 01:06:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 620DC5ABBC9
+	for <lists+devicetree@lfdr.de>; Sat,  3 Sep 2022 02:33:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231206AbiIBXFR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Sep 2022 19:05:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49320 "EHLO
+        id S233514AbiICA3N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Sep 2022 20:29:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54382 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229511AbiIBXFO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 19:05:14 -0400
-Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 531544BD23;
-        Fri,  2 Sep 2022 16:05:09 -0700 (PDT)
-Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
-        by finn.localdomain with esmtp (Exim 4.93)
-        (envelope-from <tharvey@gateworks.com>)
-        id 1oUFii-00GNIk-5I; Fri, 02 Sep 2022 23:05:04 +0000
-From:   Tim Harvey <tharvey@gateworks.com>
-To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Tim Harvey <tharvey@gateworks.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        with ESMTP id S232026AbiICA2g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 20:28:36 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AECD11EB5F;
+        Fri,  2 Sep 2022 17:26:30 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8EDEB6DD;
+        Sat,  3 Sep 2022 02:25:04 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1662164704;
+        bh=H2oIKKpl7vDJ+UZWMIb/3wmlWoyGMna5rxAUCLWh4mk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Me420Y6rkhnnjE3cmtE1eQhJLjVnyqoxTJulX2e9n1z/YSEpUTbVY03AFsoZdS+6m
+         QKRU+jSdrp1Ll1vBPqQLs379abGsgkxlNG3mF0N7IMZIBP0C4pkdkKFdHiI2kyFKwV
+         i6x72SSeG9MqHcxYqURlKq09XYaRXpnWRgnw/gww=
+Date:   Sat, 3 Sep 2022 03:24:51 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Francesco Dolcini <francesco.dolcini@toradex.com>
+Cc:     Max Krummenacher <max.oss.09@gmail.com>,
+        Max Krummenacher <max.krummenacher@toradex.com>,
         Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>
-Subject: [PATCH 2/2] arm64: dts: imx: Add i.mx8mm Gateworks gw7904 dts support
-Date:   Fri,  2 Sep 2022 16:05:00 -0700
-Message-Id: <20220902230500.2624739-2-tharvey@gateworks.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220902230500.2624739-1-tharvey@gateworks.com>
-References: <20220902230500.2624739-1-tharvey@gateworks.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Philippe Schenker <philippe.schenker@toradex.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] arm64: dts: imx8mp-verdin: add dsi to hdmi
+ functionality
+Message-ID: <YxKe00H2S9AzF0Yi@pendragon.ideasonboard.com>
+References: <20220901154051.1885509-1-max.oss.09@gmail.com>
+ <YxD09SqpcbB3dt8I@pendragon.ideasonboard.com>
+ <20220902155720.GB5699@francesco-nb.int.toradex.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220902155720.GB5699@francesco-nb.int.toradex.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The GW7904 is based on the i.MX 8M Mini SoC featuring:
- - LPDDR4 DRAM
- - eMMC FLASH
- - microSD connector with UHS support
- - LIS2DE12 3-axis accelerometer
- - Gateworks System Controller
- - IMX8M FEC
- - 2x RS232 off-board connectors
- - PMIC
- - 10x bi-color LED's
- - 1x miniPCIe socket with PCIe and USB2.0
- - 802.3at Class 4 PoE
- - 10-30VDC input via barrel-jack
+Hi Francesco,
 
-Signed-off-by: Tim Harvey <tharvey@gateworks.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: NXP Linux Team <linux-imx@nxp.com>
----
- arch/arm64/boot/dts/freescale/Makefile        |   1 +
- .../dts/freescale/imx8mm-venice-gw7904.dts    | 888 ++++++++++++++++++
- 2 files changed, 889 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-venice-gw7904.dts
+On Fri, Sep 02, 2022 at 05:57:20PM +0200, Francesco Dolcini wrote:
+> Hello Laurent,
+> answering here for both patches (1/2 and 2/2).
+> 
+> On Thu, Sep 01, 2022 at 09:07:49PM +0300, Laurent Pinchart wrote:
+> > On Thu, Sep 01, 2022 at 05:40:50PM +0200, Max Krummenacher wrote:
+> > > From: Max Krummenacher <max.krummenacher@toradex.com>
+> > > 
+> > > Add the hdmi connector present on the dsi to hdmi adapter now
+> > > required by the upstream lontium bridge driver.
+> > > The dsi to hdmi adapter is enabled in an device tree overlay.
+> > 
+> > Shouldn't the connector also be in the overlay ? There's certainly no
+> > physical HDMI connector on the i.MX8MP Verdin SoM :-)
+> 
+> Toradex DTS include and overlay files structure so far has been a little
+> bit different and not following the expectation you just stated here,
+> you can just check the current *toradex*dts* files and you'll see that there
+> is other stuff that is not strictly part of the module.
+> 
+> Copying from a previous email thread on a very similar discussion [0]
+> some of the reasons:
+> 
+>  - The SoM dtsi representing not only the functionality implemented into
+>    the SoM, but the whole connector pinout to the carrier makes very easy
+>    to just include a different som.dtsi in the carrier board dts and just
+>    switch SoM, for example from a colibri-imx6 to a colibri-imx7.
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 8bf7f7ecebaa..d7ae965d2b36 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -67,6 +67,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7901.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7902.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7903.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7904.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-nonwifi-dahlia.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-nonwifi-dev.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-wifi-dahlia.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7904.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7904.dts
-new file mode 100644
-index 000000000000..02ba85a0842a
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7904.dts
-@@ -0,0 +1,888 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2022 Gateworks Corporation
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/linux-event-codes.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/phy/phy-imx8-pcie.h>
-+
-+#include "imx8mm.dtsi"
-+
-+/ {
-+	model = "Gateworks Venice GW7904 i.MX8MM board";
-+	compatible = "gateworks,imx8mm-gw7904", "fsl,imx8mm";
-+
-+	chosen {
-+		stdout-path = &uart2;
-+	};
-+
-+	memory@40000000 {
-+		device_type = "memory";
-+		reg = <0x0 0x40000000 0 0x80000000>;
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		key-0 {
-+			label = "user_pb";
-+			gpios = <&gpio 2 GPIO_ACTIVE_LOW>;
-+			linux,code = <BTN_0>;
-+		};
-+
-+		key-1 {
-+			label = "user_pb1x";
-+			linux,code = <BTN_1>;
-+			interrupt-parent = <&gsc>;
-+			interrupts = <0>;
-+		};
-+
-+		key-2 {
-+			label = "key_erased";
-+			linux,code = <BTN_2>;
-+			interrupt-parent = <&gsc>;
-+			interrupts = <1>;
-+		};
-+
-+		key-3 {
-+			label = "eeprom_wp";
-+			linux,code = <BTN_3>;
-+			interrupt-parent = <&gsc>;
-+			interrupts = <2>;
-+		};
-+
-+		key-4 {
-+			label = "switch_hold";
-+			linux,code = <BTN_5>;
-+			interrupt-parent = <&gsc>;
-+			interrupts = <7>;
-+		};
-+	};
-+
-+	led-controller {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_gpio_leds>;
-+
-+		led-0 {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_GREEN>;
-+			label = "led01_grn";
-+			gpios = <&gpioled 0 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+
-+		led-1 {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_YELLOW>;
-+			label = "led01_yel";
-+			gpios = <&gpioled 1 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+
-+		led-2 {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_GREEN>;
-+			label = "led02_grn";
-+			gpios = <&gpioled 2 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+
-+		led-3 {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_YELLOW>;
-+			label = "led02_yel";
-+			gpios = <&gpioled 3 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+
-+		led-4 {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_GREEN>;
-+			label = "led03_grn";
-+			gpios = <&gpioled 4 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+
-+		led-5 {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_YELLOW>;
-+			label = "led03_yel";
-+			gpios = <&gpioled 5 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+
-+		led-6 {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_GREEN>;
-+			label = "led04_grn";
-+			gpios = <&gpioled 6 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+
-+		led-7 {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_YELLOW>;
-+			label = "led04_yel";
-+			gpios = <&gpioled 7 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+
-+		led-8 {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_GREEN>;
-+			label = "led05_grn";
-+			gpios = <&gpioled 8 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+
-+		led-9 {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_YELLOW>;
-+			label = "led05_yel";
-+			gpios = <&gpioled 9 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+
-+		led-a {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_GREEN>;
-+			label = "led06_grn";
-+			gpios = <&gpio1 8 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+
-+		led-b {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_RED>;
-+			label = "led06_red";
-+			gpios = <&gpio1 9 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+
-+		led-c {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_GREEN>;
-+			label = "led07_grn";
-+			gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+
-+		led-d {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_RED>;
-+			label = "led07_red";
-+			gpios = <&gpio1 11 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+
-+		led-e {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_GREEN>;
-+			label = "led08_grn";
-+			gpios = <&gpioled 10 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+
-+		led-f {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_YELLOW>;
-+			label = "led08_yel";
-+			gpios = <&gpioled 11 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+
-+		led-10 {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_GREEN>;
-+			label = "led09_grn";
-+			gpios = <&gpioled 12 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+
-+		led-11 {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_YELLOW>;
-+			label = "led09_yel";
-+			gpios = <&gpioled 13 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+
-+		led-12 {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_GREEN>;
-+			label = "led10_grn";
-+			gpios = <&gpioled 14 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+
-+		led-13 {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_YELLOW>;
-+			label = "led10_yel";
-+			gpios = <&gpioled 15 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+	};
-+
-+	pcie0_refclk: pcie0-refclk {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <100000000>;
-+	};
-+
-+	reg_3p3v: regulator-3p3v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "3P3V";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+	};
-+};
-+
-+&A53_0 {
-+	cpu-supply = <&buck2>;
-+};
-+
-+&A53_1 {
-+	cpu-supply = <&buck2>;
-+};
-+
-+&A53_2 {
-+	cpu-supply = <&buck2>;
-+};
-+
-+&A53_3 {
-+	cpu-supply = <&buck2>;
-+};
-+
-+&ddrc {
-+	operating-points-v2 = <&ddrc_opp_table>;
-+
-+	ddrc_opp_table: opp-table {
-+		compatible = "operating-points-v2";
-+
-+		opp-25M {
-+			opp-hz = /bits/ 64 <25000000>;
-+		};
-+
-+		opp-100M {
-+			opp-hz = /bits/ 64 <100000000>;
-+		};
-+
-+		opp-750M {
-+			opp-hz = /bits/ 64 <750000000>;
-+		};
-+	};
-+};
-+
-+&fec1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_fec1>;
-+	phy-mode = "rgmii-id";
-+	phy-handle = <&ethphy0>;
-+	local-mac-address = [00 00 00 00 00 00];
-+	status = "okay";
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		ethphy0: ethernet-phy@0 {
-+			compatible = "ethernet-phy-ieee802.3-c22";
-+			reg = <0>;
-+		};
-+	};
-+};
-+
-+&gpio1 {
-+	gpio-line-names = "", "", "", "", "", "", "", "",
-+		"", "", "", "", "rs232_en#", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&gpio5 {
-+	gpio-line-names = "", "", "", "", "", "", "", "",
-+		"", "", "", "", "pci_wdis#", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&i2c1 {
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c1>;
-+	status = "okay";
-+
-+	gsc: gsc@20 {
-+		compatible = "gw,gsc";
-+		reg = <0x20>;
-+		pinctrl-0 = <&pinctrl_gsc>;
-+		interrupt-parent = <&gpio4>;
-+		interrupts = <26 IRQ_TYPE_EDGE_FALLING>;
-+		interrupt-controller;
-+		#interrupt-cells = <1>;
-+
-+		adc {
-+			compatible = "gw,gsc-adc";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			channel@6 {
-+				gw,mode = <0>;
-+				reg = <0x06>;
-+				label = "temp";
-+			};
-+
-+			channel@82 {
-+				gw,mode = <2>;
-+				reg = <0x82>;
-+				label = "vin";
-+				gw,voltage-divider-ohms = <22100 1000>;
-+				gw,voltage-offset-microvolt = <700000>;
-+			};
-+
-+			channel@84 {
-+				gw,mode = <2>;
-+				reg = <0x84>;
-+				label = "vdd_5p0";
-+				gw,voltage-divider-ohms = <10000 10000>;
-+			};
-+
-+			channel@86 {
-+				gw,mode = <2>;
-+				reg = <0x86>;
-+				label = "vdd_3p3";
-+				gw,voltage-divider-ohms = <10000 10000>;
-+			};
-+
-+			channel@88 {
-+				gw,mode = <2>;
-+				reg = <0x88>;
-+				label = "vdd_0p9";
-+			};
-+
-+			channel@8c {
-+				gw,mode = <2>;
-+				reg = <0x8c>;
-+				label = "vdd_soc";
-+			};
-+
-+			channel@8e {
-+				gw,mode = <2>;
-+				reg = <0x8e>;
-+				label = "vdd_arm";
-+			};
-+
-+			channel@90 {
-+				gw,mode = <2>;
-+				reg = <0x90>;
-+				label = "vdd_1p8";
-+			};
-+
-+			channel@92 {
-+				gw,mode = <2>;
-+				reg = <0x92>;
-+				label = "vdd_dram";
-+			};
-+
-+			channel@a2 {
-+				gw,mode = <2>;
-+				reg = <0xa2>;
-+				label = "vdd_gsc";
-+				gw,voltage-divider-ohms = <10000 10000>;
-+			};
-+		};
-+	};
-+
-+	gpio: gpio@23 {
-+		compatible = "nxp,pca9555";
-+		reg = <0x23>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		interrupt-parent = <&gsc>;
-+		interrupts = <4>;
-+	};
-+
-+	eeprom@50 {
-+		compatible = "atmel,24c02";
-+		reg = <0x50>;
-+		pagesize = <16>;
-+	};
-+
-+	eeprom@51 {
-+		compatible = "atmel,24c02";
-+		reg = <0x51>;
-+		pagesize = <16>;
-+	};
-+
-+	eeprom@52 {
-+		compatible = "atmel,24c02";
-+		reg = <0x52>;
-+		pagesize = <16>;
-+	};
-+
-+	eeprom@53 {
-+		compatible = "atmel,24c02";
-+		reg = <0x53>;
-+		pagesize = <16>;
-+	};
-+
-+	rtc@68 {
-+		compatible = "dallas,ds1672";
-+		reg = <0x68>;
-+	};
-+};
-+
-+&i2c2 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c2>;
-+	status = "okay";
-+
-+	pmic@4b {
-+		compatible = "rohm,bd71847";
-+		reg = <0x4b>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_pmic>;
-+		interrupt-parent = <&gpio3>;
-+		interrupts = <8 IRQ_TYPE_LEVEL_LOW>;
-+		rohm,reset-snvs-powered;
-+		#clock-cells = <0>;
-+		clocks = <&osc_32k 0>;
-+		clock-output-names = "clk-32k-out";
-+
-+		regulators {
-+			/* vdd_soc: 0.805-0.900V (typ=0.8V) */
-+			BUCK1 {
-+				regulator-name = "buck1";
-+				regulator-min-microvolt = <700000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+				regulator-ramp-delay = <1250>;
-+			};
-+
-+			/* vdd_arm: 0.805-1.0V (typ=0.9V) */
-+			buck2: BUCK2 {
-+				regulator-name = "buck2";
-+				regulator-min-microvolt = <700000>;
-+				regulator-max-microvolt = <1300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+				regulator-ramp-delay = <1250>;
-+				rohm,dvs-run-voltage = <1000000>;
-+				rohm,dvs-idle-voltage = <900000>;
-+			};
-+
-+			/* vdd_0p9: 0.805-1.0V (typ=0.9V) */
-+			BUCK3 {
-+				regulator-name = "buck3";
-+				regulator-min-microvolt = <700000>;
-+				regulator-max-microvolt = <1350000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			/* vdd_3p3 */
-+			BUCK4 {
-+				regulator-name = "buck4";
-+				regulator-min-microvolt = <3000000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			/* vdd_1p8 */
-+			BUCK5 {
-+				regulator-name = "buck5";
-+				regulator-min-microvolt = <1605000>;
-+				regulator-max-microvolt = <1995000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			/* vdd_dram */
-+			BUCK6 {
-+				regulator-name = "buck6";
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <1400000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			/* nvcc_snvs_1p8 */
-+			LDO1 {
-+				regulator-name = "ldo1";
-+				regulator-min-microvolt = <1600000>;
-+				regulator-max-microvolt = <1900000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			/* vdd_snvs_0p8 */
-+			LDO2 {
-+				regulator-name = "ldo2";
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <900000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			/* vdda_1p8 */
-+			LDO3 {
-+				regulator-name = "ldo3";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			LDO4 {
-+				regulator-name = "ldo4";
-+				regulator-min-microvolt = <900000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			LDO6 {
-+				regulator-name = "ldo6";
-+				regulator-min-microvolt = <900000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+		};
-+	};
-+};
-+
-+&i2c3 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c3>;
-+	status = "okay";
-+
-+	accelerometer@19 {
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_accel>;
-+		compatible = "st,lis2de12";
-+		reg = <0x19>;
-+		st,drdy-int-pin = <1>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <15 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-names = "INT1";
-+	};
-+};
-+
-+&i2c4 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c4>;
-+	status = "okay";
-+
-+	gpioled: gpio@27 {
-+		compatible = "nxp,pca9555";
-+		reg = <0x27>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+	};
-+};
-+
-+&pcie_phy {
-+	fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_INPUT>;
-+	fsl,clkreq-unsupported;
-+	clocks = <&pcie0_refclk>;
-+	clock-names = "ref";
-+	status = "okay";
-+};
-+
-+&pcie0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pcie0>;
-+	reset-gpio = <&gpio5 11 GPIO_ACTIVE_LOW>;
-+	clocks = <&clk IMX8MM_CLK_PCIE1_ROOT>, <&clk IMX8MM_CLK_PCIE1_AUX>,
-+		 <&pcie0_refclk>;
-+	clock-names = "pcie", "pcie_aux", "pcie_bus";
-+	assigned-clocks = <&clk IMX8MM_CLK_PCIE1_AUX>,
-+			  <&clk IMX8MM_CLK_PCIE1_CTRL>;
-+	assigned-clock-rates = <10000000>, <250000000>;
-+	assigned-clock-parents = <&clk IMX8MM_SYS_PLL2_50M>,
-+				 <&clk IMX8MM_SYS_PLL2_250M>;
-+	status = "okay";
-+};
-+
-+&pgc_mipi {
-+	status = "disabled";
-+};
-+
-+/* off-board RS232 */
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart1>;
-+	status = "okay";
-+};
-+
-+/* console */
-+&uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart2>;
-+	status = "okay";
-+};
-+
-+/* off-board RS232 */
-+&uart3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart3>;
-+	status = "okay";
-+};
-+
-+&usbotg1 {
-+	dr_mode = "host";
-+	disable-over-current;
-+	status = "okay";
-+};
-+
-+/* microSD */
-+&usdhc2 {
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-+	pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_gpio>;
-+	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;
-+	cd-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
-+	bus-width = <4>;
-+	vmmc-supply = <&reg_3p3v>;
-+	status = "okay";
-+};
-+
-+/* eMMC */
-+&usdhc3 {
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 = <&pinctrl_usdhc3>;
-+	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
-+	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
-+	bus-width = <8>;
-+	non-removable;
-+	status = "okay";
-+};
-+
-+&wdog1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_wdog>;
-+	fsl,ext-reset-output;
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_hog>;
-+
-+	pinctrl_hog: hoggrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_GPIO1_IO12_GPIO1_IO12	0x40000041 /* RS232# */
-+			MX8MM_IOMUXC_ECSPI2_MISO_GPIO5_IO12	0x40000041 /* PCI_WDIS# */
-+		>;
-+	};
-+
-+	pinctrl_accel: accelgrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_GPIO1_IO15_GPIO1_IO15	0x159
-+		>;
-+	};
-+
-+	pinctrl_fec1: fec1grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_ENET_MDC_ENET1_MDC			0x3
-+			MX8MM_IOMUXC_ENET_MDIO_ENET1_MDIO		0x3
-+			MX8MM_IOMUXC_ENET_TD3_ENET1_RGMII_TD3		0x1f
-+			MX8MM_IOMUXC_ENET_TD2_ENET1_RGMII_TD2		0x1f
-+			MX8MM_IOMUXC_ENET_TD1_ENET1_RGMII_TD1		0x1f
-+			MX8MM_IOMUXC_ENET_TD0_ENET1_RGMII_TD0		0x1f
-+			MX8MM_IOMUXC_ENET_RD3_ENET1_RGMII_RD3		0x91
-+			MX8MM_IOMUXC_ENET_RD2_ENET1_RGMII_RD2		0x91
-+			MX8MM_IOMUXC_ENET_RD1_ENET1_RGMII_RD1		0x91
-+			MX8MM_IOMUXC_ENET_RD0_ENET1_RGMII_RD0		0x91
-+			MX8MM_IOMUXC_ENET_TXC_ENET1_RGMII_TXC		0x1f
-+			MX8MM_IOMUXC_ENET_RXC_ENET1_RGMII_RXC		0x91
-+			MX8MM_IOMUXC_ENET_RX_CTL_ENET1_RGMII_RX_CTL	0x91
-+			MX8MM_IOMUXC_ENET_TX_CTL_ENET1_RGMII_TX_CTL	0x1f
-+			MX8MM_IOMUXC_SAI2_TXFS_GPIO4_IO24		0x19 /* IRQ# */
-+			MX8MM_IOMUXC_SAI2_TXC_GPIO4_IO25		0x19 /* RST# */
-+		>;
-+	};
-+
-+	pinctrl_gpio_leds: gpioledsgrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_GPIO1_IO08_GPIO1_IO8	0x40000019
-+			MX8MM_IOMUXC_GPIO1_IO09_GPIO1_IO9	0x40000019
-+			MX8MM_IOMUXC_GPIO1_IO10_GPIO1_IO10	0x40000019
-+			MX8MM_IOMUXC_GPIO1_IO11_GPIO1_IO11	0x40000019
-+		>;
-+	};
-+
-+	pinctrl_gsc: gscgrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SAI2_TXD0_GPIO4_IO26	0x159
-+		>;
-+	};
-+
-+	pinctrl_i2c1: i2c1grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_I2C1_SCL_I2C1_SCL		0x400001c3
-+			MX8MM_IOMUXC_I2C1_SDA_I2C1_SDA		0x400001c3
-+		>;
-+	};
-+
-+	pinctrl_i2c2: i2c2grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_I2C2_SCL_I2C2_SCL		0x400001c3
-+			MX8MM_IOMUXC_I2C2_SDA_I2C2_SDA		0x400001c3
-+		>;
-+	};
-+
-+	pinctrl_i2c3: i2c3grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_I2C3_SCL_I2C3_SCL		0x400001c3
-+			MX8MM_IOMUXC_I2C3_SDA_I2C3_SDA		0x400001c3
-+		>;
-+	};
-+
-+	pinctrl_i2c4: i2c4grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_I2C4_SCL_I2C4_SCL		0x400001c3
-+			MX8MM_IOMUXC_I2C4_SDA_I2C4_SDA		0x400001c3
-+		>;
-+	};
-+
-+	pinctrl_pcie0: pciegrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_ECSPI2_MOSI_GPIO5_IO11	0x41
-+		>;
-+	};
-+
-+	pinctrl_pmic: pmicgrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_NAND_DATA02_GPIO3_IO8	0x41
-+		>;
-+	};
-+
-+	pinctrl_uart1: uart1grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_UART1_RXD_UART1_DCE_RX	0x140
-+			MX8MM_IOMUXC_UART1_TXD_UART1_DCE_TX	0x140
-+		>;
-+	};
-+
-+	pinctrl_uart2: uart2grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_UART2_RXD_UART2_DCE_RX	0x140
-+			MX8MM_IOMUXC_UART2_TXD_UART2_DCE_TX	0x140
-+		>;
-+	};
-+
-+	pinctrl_uart3: uart3grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_UART3_RXD_UART3_DCE_RX	0x140
-+			MX8MM_IOMUXC_UART3_TXD_UART3_DCE_TX	0x140
-+		>;
-+	};
-+
-+	pinctrl_usdhc2: usdhc2grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK		0x190
-+			MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD		0x1d0
-+			MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0	0x1d0
-+			MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1	0x1d0
-+			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2	0x1d0
-+			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3	0x1d0
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK		0x194
-+			MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD		0x1d4
-+			MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0	0x1d4
-+			MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1	0x1d4
-+			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2	0x1d4
-+			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3	0x1d4
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK		0x196
-+			MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD		0x1d6
-+			MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0	0x1d6
-+			MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1	0x1d6
-+			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2	0x1d6
-+			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3	0x1d6
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_gpio: usdhc2-gpiogrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SD2_CD_B_GPIO2_IO12	0x1c4
-+			MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT  0x1d0
-+		>;
-+	};
-+
-+	pinctrl_usdhc3: usdhc3grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK	0x190
-+			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD	0x1d0
-+			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0	0x1d0
-+			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1	0x1d0
-+			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2	0x1d0
-+			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3	0x1d0
-+			MX8MM_IOMUXC_NAND_RE_B_USDHC3_DATA4	0x1d0
-+			MX8MM_IOMUXC_NAND_CE2_B_USDHC3_DATA5	0x1d0
-+			MX8MM_IOMUXC_NAND_CE3_B_USDHC3_DATA6	0x1d0
-+			MX8MM_IOMUXC_NAND_CLE_USDHC3_DATA7	0x1d0
-+			MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE	0x190
-+		>;
-+	};
-+
-+	pinctrl_usdhc3_100mhz: usdhc3-100mhzgrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK	0x194
-+			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD	0x1d4
-+			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0	0x1d4
-+			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1	0x1d4
-+			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2	0x1d4
-+			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3	0x1d4
-+			MX8MM_IOMUXC_NAND_RE_B_USDHC3_DATA4	0x1d4
-+			MX8MM_IOMUXC_NAND_CE2_B_USDHC3_DATA5	0x1d4
-+			MX8MM_IOMUXC_NAND_CE3_B_USDHC3_DATA6	0x1d4
-+			MX8MM_IOMUXC_NAND_CLE_USDHC3_DATA7	0x1d4
-+			MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE	0x194
-+		>;
-+	};
-+
-+	pinctrl_usdhc3_200mhz: usdhc3-200mhzgrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK	0x196
-+			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD	0x1d6
-+			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0	0x1d6
-+			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1	0x1d6
-+			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2	0x1d6
-+			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3	0x1d6
-+			MX8MM_IOMUXC_NAND_RE_B_USDHC3_DATA4	0x1d6
-+			MX8MM_IOMUXC_NAND_CE2_B_USDHC3_DATA5	0x1d6
-+			MX8MM_IOMUXC_NAND_CE3_B_USDHC3_DATA6	0x1d6
-+			MX8MM_IOMUXC_NAND_CLE_USDHC3_DATA7	0x1d6
-+			MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE	0x196
-+		>;
-+	};
-+
-+	pinctrl_wdog: wdoggrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_GPIO1_IO02_WDOG1_WDOG_B	0xc6
-+		>;
-+	};
-+};
+That's fine, but I don't see how that's related to the issue at hand.
+The DSI to HDMI bridge wouldn't be present on either SoM, would it ?
+
+>  - We avoid code duplication
+> 
+> This is working for us pretty well so far and the majority of the users
+> of ours modules rely on this structure, we would prefer not to change that.
+
+It may work for your current use cases, but it doesn't make it right :-)
+Someone can integrate a Verdin SoM with a carrier board that has no DSI
+to HDMI (or LVDS) bridge, there should thus be no such device in the
+device tree. The SoM has DSI signals present on its connector, that's
+what the SoM .dtsi should expose.
+
+> [0] https://lore.kernel.org/all/20220413094449.GB118560@francesco-nb.int.toradex.com/
+
 -- 
-2.25.1
+Regards,
 
+Laurent Pinchart
