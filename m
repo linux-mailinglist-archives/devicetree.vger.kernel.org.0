@@ -2,59 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EBB3C5ABE30
-	for <lists+devicetree@lfdr.de>; Sat,  3 Sep 2022 11:38:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 892495ABE7A
+	for <lists+devicetree@lfdr.de>; Sat,  3 Sep 2022 12:31:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229750AbiICJh7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Sep 2022 05:37:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40522 "EHLO
+        id S229935AbiICKb3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Sep 2022 06:31:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229585AbiICJh7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Sep 2022 05:37:59 -0400
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9820AB4EA6;
-        Sat,  3 Sep 2022 02:37:54 -0700 (PDT)
-Received: from localhost.localdomain (unknown [112.20.110.237])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8BxXWsgIBNjfGgQAA--.8093S3;
-        Sat, 03 Sep 2022 17:36:33 +0800 (CST)
-From:   Binbin Zhou <zhoubinbin@loongson.cn>
-To:     Alessandro Zummo <a.zummo@towertech.it>, linux-rtc@vger.kernel.org
-Cc:     linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        loongarch@lists.linux.dev, linux-acpi@vger.kernel.org,
-        WANG Xuerui <git@xen0n.name>,
-        Binbin Zhou <zhoubinbin@loongson.cn>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        Tiezhu Yang <yangtiezhu@loongson.cn>,
-        Qing Zhang <zhangqing@loongson.cn>
-Subject: [PATCH 7/7] MIPS: Loongson: Enable LS2X RTC in loongson2k_defconfig
-Date:   Sat,  3 Sep 2022 17:35:57 +0800
-Message-Id: <f9c9a777efe4766297a5b460fb9221624b879c6f.1662190009.git.zhoubinbin@loongson.cn>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <cover.1662190009.git.zhoubinbin@loongson.cn>
-References: <cover.1662190009.git.zhoubinbin@loongson.cn>
+        with ESMTP id S229464AbiICKb2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Sep 2022 06:31:28 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BA6D57E2B;
+        Sat,  3 Sep 2022 03:31:27 -0700 (PDT)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 283ALLLZ001758;
+        Sat, 3 Sep 2022 10:31:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=aEc794XOU78IjaB4Anobb658Fmb1e6ScIqNaoytW334=;
+ b=RUQ9NRkbPVkSkrGXne8na09hAMj1Lej+YB2aUeGIjmKI98zlaKGVjog7UtnPSR1Ma4pL
+ NTgqLDb8hvTfRJf9WiGwR6Kx3m8cwcy5FnnhtM8zWQD9YefP3UfsGeaJssJgd0CB1U5c
+ uer4+x97YRl4t2ZDVysmFs7Oa7mvf9+es/IRsxhzlsvYYccmz9aGzCScrMQnkBdUOlWY
+ x33TLiKGyMD9RESDgZrwl1/Mf8vhBkV/o/XY6o/CNthd5QzsZKsB2XAIbUqrk5mVhhOg
+ N8IBW/UXLsXAwGbF4qchGDQSfhZ3uPkFF9he6ffpzifzT2k/fbX/YmpXZMZs/qzqGQwq KQ== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jbypmgjah-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Sat, 03 Sep 2022 10:31:00 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 283AUxvX019182
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Sat, 3 Sep 2022 10:30:59 GMT
+Received: from hu-kriskura-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.29; Sat, 3 Sep 2022 03:30:53 -0700
+From:   Krishna Kurapati <quic_kriskura@quicinc.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>
+CC:     <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <quic_pkondeti@quicinc.com>,
+        <quic_ppratap@quicinc.com>, <quic_vpulyala@quicinc.com>,
+        Krishna Kurapati <quic_kriskura@quicinc.com>
+Subject: [PATCH v12 0/3] Add QCOM SNPS PHY overriding params support
+Date:   Sat, 3 Sep 2022 16:00:45 +0530
+Message-ID: <1662201048-26049-1-git-send-email-quic_kriskura@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8BxXWsgIBNjfGgQAA--.8093S3
-X-Coremail-Antispam: 1UD129KBjvdXoWrur4fZFykZr43Gry5ArWkZwb_yoWDArg_GF
-        y7Kw1kGr4rArWrCa4xXw1rWw1Uu34UWa1kCr17tw15X3y3Kr13Xa9rAr15GFn8u39rKr4Y
-        va95JFyxur17WjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-        9fnUUIcSsGvfJTRUUUbyAFF20E14v26rWj6s0DM7CY07I20VC2zVCF04k26cxKx2IYs7xG
-        6rWj6s0DM7CIcVAFz4kK6r1j6r18M28IrcIa0xkI8VA2jI8067AKxVWUGwA2048vs2IY02
-        0Ec7CjxVAFwI0_Gr0_Xr1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2x7M28EF7xv
-        wVC0I7IYx2IY67AKxVW8JVW5JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVWxJVW8Jr1l84
-        ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AKxVWxJr0_GcWl
-        e2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI
-        8IcVAFwI0_JrI_JrylYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8JwAC
-        jcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2Y2ka0x
-        kIwI1lc2xSY4AK67AK6r4fMxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4U
-        MI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67
-        AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1I6r4UMIIF0xvE2Ix0
-        cI8IcVCY1x0267AKxVWxJVW8Jr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4
-        A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU
-        0xZFpf9x0JUza0QUUUUU=
-X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: EVsXVSRJYCKl0L82I8Jqab4e5rrsva7J
+X-Proofpoint-GUID: EVsXVSRJYCKl0L82I8Jqab4e5rrsva7J
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.517,FMLib:17.11.122.1
+ definitions=2022-09-03_03,2022-08-31_03,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 clxscore=1011
+ phishscore=0 spamscore=0 mlxscore=0 bulkscore=0 adultscore=0
+ suspectscore=0 lowpriorityscore=0 malwarescore=0 mlxlogscore=659
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2207270000 definitions=main-2209030053
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -63,34 +86,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: WANG Xuerui <git@xen0n.name>
+Added support for overriding tuning parameters in QCOM SNPS PHY
+from device tree. This parameter tuning is required to tune the
+hs signal on dp/dm lines for electrical compliance to be successful.
 
-This is now supported, enable for Loongson-2K systems.
-Other systems are unaffected.
+Changes in v12:
+Fixed nitpicks in driver code.
 
-Signed-off-by: WANG Xuerui <git@xen0n.name>
-Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: Jiaxun Yang <jiaxun.yang@flygoat.com>
-Cc: Huacai Chen <chenhuacai@kernel.org>
-Cc: Tiezhu Yang <yangtiezhu@loongson.cn>
-Cc: Qing Zhang <zhangqing@loongson.cn>
-Cc: linux-mips@vger.kernel.org
----
- arch/mips/configs/loongson2k_defconfig | 1 +
- 1 file changed, 1 insertion(+)
+Changes in v11:
+Made changes to logs added in phy driver.
+Fixed nitpicks in code.
 
-diff --git a/arch/mips/configs/loongson2k_defconfig b/arch/mips/configs/loongson2k_defconfig
-index e948ca487e2d..e15f34857956 100644
---- a/arch/mips/configs/loongson2k_defconfig
-+++ b/arch/mips/configs/loongson2k_defconfig
-@@ -280,6 +280,7 @@ CONFIG_USB_SERIAL=m
- CONFIG_USB_SERIAL_OPTION=m
- CONFIG_RTC_CLASS=y
- CONFIG_RTC_DRV_CMOS=y
-+CONFIG_RTC_DRV_LS2X=y
- CONFIG_DMADEVICES=y
- # CONFIG_CPU_HWMON is not set
- CONFIG_PM_DEVFREQ=y
+Changes in v10:
+Fixed patch headers.
+
+changes in v9:
+Fixed nitpick in driver code.
+
+changes in v8:
+Fixed nitpick in driver code.
+
+changes in v7:
+Fixed nitpick in driver code and dtsi file.
+
+changes in v6:
+Fixed errors in dt-bindings.
+Fixed nitpick in driver code.
+
+changes in v5:
+Fixed nitpicks in code.
+Added minimum and maximum for each parameter added in dt-bindings.
+Added proper suffixes to each parameter as per dtschema.
+
+changes in v4:
+Fixed nitpicks in code.
+Initial compliance test results showed overshoot in the middle of eye
+diagram. The current dt values were put in place to correct it and fix
+overshoot issue.
+
+changes in v3:
+Added support for phy tuning parameters to be represented in bps and
+corresponding register values to be written are obtained by traversing
+through data map declared in the driver.
+
+changes in v2:
+Reading the individual fields in each overriding register from
+device tree.
+
+Krishna Kurapati (2):
+  phy: qcom-snps: Add support for overriding phy tuning parameters
+  arm64: dts: qcom: sc7280: Update SNPS Phy params for SC7280 IDP device
+
+Sandeep Maheswaram (1):
+  dt-bindings: phy: qcom,usb-snps-femto-v2: Add phy override params
+    bindings
+
+ .../bindings/phy/qcom,usb-snps-femto-v2.yaml       |  88 +++++++
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi           |   6 +
+ drivers/phy/qualcomm/phy-qcom-snps-femto-v2.c      | 252 ++++++++++++++++++++-
+ 3 files changed, 344 insertions(+), 2 deletions(-)
+
 -- 
-2.31.1
+2.7.4
 
