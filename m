@@ -2,56 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F3C5C5ABC48
-	for <lists+devicetree@lfdr.de>; Sat,  3 Sep 2022 04:17:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 387475ABC5B
+	for <lists+devicetree@lfdr.de>; Sat,  3 Sep 2022 04:37:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231205AbiICCR0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Sep 2022 22:17:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37206 "EHLO
+        id S231258AbiICChp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Sep 2022 22:37:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229803AbiICCRZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 22:17:25 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F166E01F5;
-        Fri,  2 Sep 2022 19:17:24 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id EB1D3B82D0E;
-        Sat,  3 Sep 2022 02:17:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3071C433D6;
-        Sat,  3 Sep 2022 02:17:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1662171441;
-        bh=eioRvOtIHJKvIPDEtWmHeI3UQjUk/+sTTkBT+LYyiFE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=kSJAbsR9gPX6GlfA+hpa7+Eo8ghjuUjJU/RoNjAUt5zjW/NTFJzFAHIzvHH+TQv+V
-         ErPSN/Tx4xYcum2g4HxsMC3/KF4bn/y40gMevIM6k29fGfFqiH6XHdQ8oVIOU2O4Y/
-         Dru/wF/Go1dIXBzURbTjqL0I9dl5sdwmfzjq9WN2WE9f02j1hul0wVYTwXbHXKRYwC
-         FQWiwxmHdOtjzcJzEy3tRqeyt9AZXwXhszoxj+47XUgcjWJUQ0uLrpxfROPuXDPip5
-         OPcJWvjk/r3o0z3AYCivJAI+H3HpI8GUQwNEcjXO2+6y5FgXNTusaOCuEMrvAjGzxr
-         HhJ7IvC6oEeNA==
-Date:   Sat, 3 Sep 2022 10:17:14 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, l.stach@pengutronix.de,
-        laurent.pinchart@ideasonboard.com, marex@denx.de,
-        m.felsch@pengutronix.de, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH V5 0/8] imx: add i.MX8MP hdmi blk ctrl hdcp/hrv and vpu
- blk ctrl
-Message-ID: <20220903021714.GC1728671@dragon>
-References: <20220822064536.3947512-1-peng.fan@oss.nxp.com>
+        with ESMTP id S231127AbiICCho (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 22:37:44 -0400
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67768E9900;
+        Fri,  2 Sep 2022 19:37:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1662172663; x=1693708663;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=DBINxE2RmRTTnJion59Lq21Ezb2oZIYPD4zBMbfH++g=;
+  b=ffpxRBevovi4KGrRpnofAPgzop3T4uVqmU6r7b30s1PnhYXuv2v0HUtP
+   aw2IXlqnA2/9y30hY4zZJRAjj8KkQqek0FVEege5zEv+BCO7h21RsinEh
+   VM4XDxVujM2pP6v4Cok84qzTMBbujT6c/w7TxFNI78qKHy/lWlM1ctOW3
+   oYS5J3CzelRsVUAfyHIEbbGaMTrOPAsab9UdxVcYnbfNvUQFcONefJnhm
+   tTGHEcqEDeTV5wqUJWXAOpU8uPZECXbqmuVf9gjy8S9rfbKQALwI8//U9
+   TruUFDIon/9SVFeqWoC41G4OUh9QH1uzr/D2vhp8ecvWi3Ts+BfgscLVs
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10458"; a="360080007"
+X-IronPort-AV: E=Sophos;i="5.93,286,1654585200"; 
+   d="scan'208";a="360080007"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Sep 2022 19:37:43 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,286,1654585200"; 
+   d="scan'208";a="646316339"
+Received: from lkp-server02.sh.intel.com (HELO 95dfd251caa2) ([10.239.97.151])
+  by orsmga001.jf.intel.com with ESMTP; 02 Sep 2022 19:37:39 -0700
+Received: from kbuild by 95dfd251caa2 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1oUJ2R-0000uM-0o;
+        Sat, 03 Sep 2022 02:37:39 +0000
+Date:   Sat, 3 Sep 2022 10:36:53 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        lpieralisi@kernel.org, robh@kernel.org, andersson@kernel.org
+Cc:     kbuild-all@lists.01.org, kw@linux.com, bhelgaas@google.com,
+        linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, konrad.dybcio@somainline.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, dmitry.baryshkov@linaro.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: Re: [PATCH v2 04/11] PCI: qcom-ep: Add eDMA support
+Message-ID: <202209031046.rOZKOVqT-lkp@intel.com>
+References: <20220830165817.183571-5-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220822064536.3947512-1-peng.fan@oss.nxp.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <20220830165817.183571-5-manivannan.sadhasivam@linaro.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,44 +68,91 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 22, 2022 at 02:45:28PM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> V5:
->  Add R-b for dt-bindings
->  Tune order of vpu blk ctrl node per unit address
->  Update commit log of patch 5.
->    - Per HRV, this should be detailed explained in HDMI HRV driver, so here
->    I only say HRV_MWR(HDMI RX Video Memory Write Master for RX validation).
-> 
-> V4:
->  Add R-b for patch 2
->  Add a new patch 3 to introduce interconnect property for i.MX8MM VPU blk ctrl,
->  same to other properties, i.MX8MM/P could use their own names in patch 4
-> 
-> V3:
->  Per DT maitainer, add a new patch to clean up minItems, see patch 2
-> 
-> V2:
->  - Add A-b from DT maintainer for patch 1
->  - Per DT maintainer, I added description for items. To
->  make it consistent, I also added description to i.MX8MM.
->  - Per Adam, change VPU H1/h1 to VC8000E/vc8000e in the patchset.
-> 
-> This patchset is to add more blk ctrl support for i.MX8MP
->  - Add HDMI HDCP/HRV BLK CTRL support
->  - Add VPU BLK CTRL support
->  - Add PGC VPU node which supplies power domain for VPU BLK
-> 
-> Peng Fan (8):
->   dt-bindings: power: imx8mp-power: add HDMI HDCP/HRV
->   dt-bindings: soc: imx: drop minItems for i.MX8MM vpu blk ctrl
->   dt-bindings: soc: imx: add interconnect property for i.MX8MM vpu blk
->     ctrl
->   dt-bindings: soc: imx: add i.MX8MP vpu blk ctrl
->   soc: imx: add i.MX8MP HDMI blk ctrl HDCP/HRV_MWR
->   soc: imx: imx8m-blk-ctrl: add i.MX8MP VPU blk ctrl
->   arm64: dts: imx8mp: add vpu pgc nodes
->   arm64: dts: imx8mp: add VPU blk ctrl node
+Hi Manivannan,
 
-Applied all, thanks!
+I love your patch! Yet something to improve:
+
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v6.0-rc3 next-20220901]
+[cannot apply to helgaas-pci/next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Manivannan-Sadhasivam/Improvements-to-the-Qcom-PCIe-Endpoint-driver/20220831-010315
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+config: arm-allyesconfig (https://download.01.org/0day-ci/archive/20220903/202209031046.rOZKOVqT-lkp@intel.com/config)
+compiler: arm-linux-gnueabi-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/dec4c93b2077408cecddd53950905bf2411019b0
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Manivannan-Sadhasivam/Improvements-to-the-Qcom-PCIe-Endpoint-driver/20220831-010315
+        git checkout dec4c93b2077408cecddd53950905bf2411019b0
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash
+
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+   drivers/pci/controller/dwc/pcie-qcom-ep.c: In function 'qcom_pcie_ep_probe':
+>> drivers/pci/controller/dwc/pcie-qcom-ep.c:672:21: error: 'struct dw_pcie' has no member named 'edma'
+     672 |         pcie_ep->pci.edma.nr_irqs = 1;
+         |                     ^
+
+
+vim +672 drivers/pci/controller/dwc/pcie-qcom-ep.c
+
+   658	
+   659	static int qcom_pcie_ep_probe(struct platform_device *pdev)
+   660	{
+   661		struct device *dev = &pdev->dev;
+   662		struct qcom_pcie_ep *pcie_ep;
+   663		int ret;
+   664	
+   665		pcie_ep = devm_kzalloc(dev, sizeof(*pcie_ep), GFP_KERNEL);
+   666		if (!pcie_ep)
+   667			return -ENOMEM;
+   668	
+   669		pcie_ep->pci.dev = dev;
+   670		pcie_ep->pci.ops = &pci_ops;
+   671		pcie_ep->pci.ep.ops = &pci_ep_ops;
+ > 672		pcie_ep->pci.edma.nr_irqs = 1;
+   673		platform_set_drvdata(pdev, pcie_ep);
+   674	
+   675		ret = qcom_pcie_ep_get_resources(pdev, pcie_ep);
+   676		if (ret)
+   677			return ret;
+   678	
+   679		ret = qcom_pcie_enable_resources(pcie_ep);
+   680		if (ret) {
+   681			dev_err(dev, "Failed to enable resources: %d\n", ret);
+   682			return ret;
+   683		}
+   684	
+   685		ret = dw_pcie_ep_init(&pcie_ep->pci.ep);
+   686		if (ret) {
+   687			dev_err(dev, "Failed to initialize endpoint: %d\n", ret);
+   688			goto err_disable_resources;
+   689		}
+   690	
+   691		ret = qcom_pcie_ep_enable_irq_resources(pdev, pcie_ep);
+   692		if (ret)
+   693			goto err_disable_resources;
+   694	
+   695		return 0;
+   696	
+   697	err_disable_resources:
+   698		qcom_pcie_disable_resources(pcie_ep);
+   699	
+   700		return ret;
+   701	}
+   702	
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
