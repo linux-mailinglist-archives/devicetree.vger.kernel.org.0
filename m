@@ -2,425 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EAAF95AC062
-	for <lists+devicetree@lfdr.de>; Sat,  3 Sep 2022 19:45:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B30A15AC00B
+	for <lists+devicetree@lfdr.de>; Sat,  3 Sep 2022 19:36:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231183AbiICRoG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Sep 2022 13:44:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33238 "EHLO
+        id S229727AbiICRgC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Sep 2022 13:36:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233056AbiICRnV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Sep 2022 13:43:21 -0400
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55DA958B65;
-        Sat,  3 Sep 2022 10:43:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1662226983; x=1693762983;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=dmMI3hgnJrDyySmSfUKCyzdmMyWHvL+eCHVnZB0KYmU=;
-  b=m6EnxAQlxdD/1CCTgbyZpCOJW37+n7/cXRSEtOzuBLo8JghEQ+Cxa0/r
-   wb8NmzYQ2xUnuWdIBdjWddziT0LtE4R8Ev0HEILGHMprlKnc3JX6BUNhj
-   I9wdTAhvfMFGo2jg4XSihZTS5qbjlCaJM5Nkg1DW8JP/hBdJTV6yMJCqa
-   /Hz0nHoUN2dKEblGur3xzjtdPi+lWQKC89Naw5pEPn9ted/RaDrx8PSiW
-   OPqjC9zIpCrDGI21PMX49dNdX1VIScFHKnUBv3gutF8Azr/pFVn9nfo+J
-   TnN3KsuxsgxyOHqLYeV3Z6IhpUBhTo/lN8psFPaHAiPKoNS0sdmBRIsML
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10459"; a="279190630"
-X-IronPort-AV: E=Sophos;i="5.93,287,1654585200"; 
-   d="scan'208";a="279190630"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Sep 2022 10:42:44 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,287,1654585200"; 
-   d="scan'208";a="674751116"
-Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
-  by fmsmga008.fm.intel.com with ESMTP; 03 Sep 2022 10:42:39 -0700
-Date:   Sun, 4 Sep 2022 01:33:15 +0800
-From:   Xu Yilun <yilun.xu@intel.com>
-To:     "Manne, Nava kishore" <nava.kishore.manne@amd.com>
-Cc:     "git (AMD-Xilinx)" <git@amd.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "michal.simek@xilinx.com" <michal.simek@xilinx.com>,
-        "mdf@kernel.org" <mdf@kernel.org>,
-        "hao.wu@intel.com" <hao.wu@intel.com>,
-        "trix@redhat.com" <trix@redhat.com>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "ronak.jain@xilinx.com" <ronak.jain@xilinx.com>,
-        "rajan.vaja@xilinx.com" <rajan.vaja@xilinx.com>,
-        "abhyuday.godhasara@xilinx.com" <abhyuday.godhasara@xilinx.com>,
-        "piyush.mehta@xilinx.com" <piyush.mehta@xilinx.com>,
-        "lakshmi.sai.krishna.potthuri@xilinx.com" 
-        <lakshmi.sai.krishna.potthuri@xilinx.com>,
-        "harsha.harsha@xilinx.com" <harsha.harsha@xilinx.com>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "nava.manne@xilinx.com" <nava.manne@xilinx.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-fpga@vger.kernel.org" <linux-fpga@vger.kernel.org>
-Subject: Re: [PATCH 4/4] fpga: zynqmp: Add afi config driver
-Message-ID: <YxOP2wIixSDYuS1v@yilunxu-OptiPlex-7050>
-References: <20220824035542.706433-1-nava.kishore.manne@amd.com>
- <20220824035542.706433-5-nava.kishore.manne@amd.com>
- <YwoNdUPoSKKHhzxx@yilunxu-OptiPlex-7050>
- <DM6PR12MB39932285FD0EC72F1F04D8E8CD799@DM6PR12MB3993.namprd12.prod.outlook.com>
+        with ESMTP id S229525AbiICRgB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Sep 2022 13:36:01 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D86CF43E64;
+        Sat,  3 Sep 2022 10:36:00 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id z23so5266744ljk.1;
+        Sat, 03 Sep 2022 10:36:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=ZEpzXYWkDiqZ5PfolVXwS9YgE7NUrPs9icXqPHy6se8=;
+        b=fPsiLMyqMj1EayQP9y9vHrrZeT1nqRSULD85UGJThaQg1N6XlvCB5citWgk6f6OQFx
+         EF2PzdEZsOQytQFTEJmxH1r0sKmHubF64ivaCFuhuPQGGWBAIpEg4cv/F8RQBnA/9KoX
+         yaZ2/Zjk3FgQXgS/SeSE4VoBR/LNpLYjBFN6MiNo+nJNybHd1Ga2t+CZrmPZPsH67/Mh
+         ISUBEAJpnhNVje3TDn5KoSWY0B/EoZS6cDBy6qfq09YIsCWUC2fBxprOyvXf+chkVzWU
+         eCw/T0Vq/jQqJkec9v7An7H0ZndE5oZ9RfJugAa5H6DHZA/FEFgHXr9DjZT4yVvxnaRL
+         ywMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=ZEpzXYWkDiqZ5PfolVXwS9YgE7NUrPs9icXqPHy6se8=;
+        b=kRxrnwtosya697mQsbsY82sHzy/0mKNmjO9rRELdWIAj2UmSq40Oo+TYFyWBtzBBUp
+         gIBGZppPS3VzNSh9yRsg8DNSGnFnBmZXXRKGRG2h7gHU6ZcVGN8HxCQsaDejrkZun23t
+         3LeG38nEaLc6uEJuAr+PXUq0y1DTNPlopXmmha/HMUIaW6VSCum8vaCmI6VT5/jKDcLq
+         RnoVIpqgJNXFP272MD/f/PSP3UFKzE0tOhLSw3S8jZ/WD+EwUp+Eb4CKtEQFTUVox93A
+         ZLILir+cHll7yNmf89GWA87EqMkS+vTQFBWrmZog3pbUpT8tQmaBlT6y49dGpkGmIqkn
+         4rSg==
+X-Gm-Message-State: ACgBeo0G6eEV44m6sT12sAu6HUaFqPYkfVjsThNxJKPOw2ITSmOvlBC6
+        w2fHls6IiL74+N2R4J5NQdd4Qe2T+JXvDCakXVE=
+X-Google-Smtp-Source: AA6agR4/NNQ8qk0+nNJFEnT1dHs8jfBJypCIaOuCTOWm5NjCgp90if/KArL1upvTg+DXcXvp+oGFaiYzfFv8FLCqINQ=
+X-Received: by 2002:a2e:b541:0:b0:265:9da1:24c9 with SMTP id
+ a1-20020a2eb541000000b002659da124c9mr8411921ljn.396.1662226558758; Sat, 03
+ Sep 2022 10:35:58 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DM6PR12MB39932285FD0EC72F1F04D8E8CD799@DM6PR12MB3993.namprd12.prod.outlook.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20220901024526.2833232-1-jiucheng.xu@amlogic.com> <20220901024526.2833232-2-jiucheng.xu@amlogic.com>
+In-Reply-To: <20220901024526.2833232-2-jiucheng.xu@amlogic.com>
+From:   Chris Healy <cphealy@gmail.com>
+Date:   Sat, 3 Sep 2022 10:35:47 -0700
+Message-ID: <CAFXsbZoFYp_SNEjH0QE=A09JQe8qt1APwnNb9u6KsO5UAL50-A@mail.gmail.com>
+Subject: Re: [PATCH v6 2/4] docs/perf: Add documentation for the Amlogic G12
+ DDR PMU
+To:     Jiucheng Xu <jiucheng.xu@amlogic.com>
+Cc:     linux-kernel <linux-kernel@vger.kernel.org>,
+        linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-amlogic@lists.infradead.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Will Deacon <will@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        kernel test robot <lkp@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-08-30 at 09:19:52 +0000, Manne, Nava kishore wrote:
-> Hi Yilun,
-> 
-> 	Please find my response inline.
-> 
-> > -----Original Message-----
-> > From: Xu Yilun <yilun.xu@intel.com>
-> > Sent: Saturday, August 27, 2022 5:56 PM
-> > To: Manne, Nava kishore <nava.kishore.manne@amd.com>
-> > Cc: git (AMD-Xilinx) <git@amd.com>; robh+dt@kernel.org;
-> > krzysztof.kozlowski+dt@linaro.org; michal.simek@xilinx.com;
-> > mdf@kernel.org; hao.wu@intel.com; trix@redhat.com;
-> > p.zabel@pengutronix.de; gregkh@linuxfoundation.org;
-> > ronak.jain@xilinx.com; rajan.vaja@xilinx.com;
-> > abhyuday.godhasara@xilinx.com; piyush.mehta@xilinx.com;
-> > lakshmi.sai.krishna.potthuri@xilinx.com; harsha.harsha@xilinx.com;
-> > linus.walleij@linaro.org; nava.manne@xilinx.com;
-> > devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
-> > kernel@vger.kernel.org; linux-fpga@vger.kernel.org
-> > Subject: Re: [PATCH 4/4] fpga: zynqmp: Add afi config driver
-> > 
-> > CAUTION: This message has originated from an External Source. Please use
-> > proper judgment and caution when opening attachments, clicking links, or
-> > responding to this email.
-> > 
-> > 
-> > On 2022-08-24 at 09:25:42 +0530, Nava kishore Manne wrote:
-> > > Add zynqmp AXI FIFO interface(AFI) config driver. This is useful for
-> > > the configuration of the PS-PL interface on Zynq US+ MPSoC platform.
-> > 
-> > Please help illustrate how to use the device for FPGA reprogramming, why it
-> > should be implemented as an FPGA bridge.
-> > 
-> > From the code I actually didn't see any operation that gates the fpga-region
-> > from other part of the machine.
-> > 
-> 
-> The Zynq UltraScale MPSoC family consists of a system-on-chip (SoC) style integrated processing system (PS)
-> and a Programmable Logic (PL) unit, providing an extensible and flexible SoC solution on a single die. 
-> Xilinx Zynq US+ MPSoC connect the PS to the programmable logic (PL) through the AXI port. 
-> This AXI port helps to establish the data path between the PS and PL (Here AXI Interface act as a Gating between PS and PL)
-> and this AXI port configuration vary from design to design.  In-order to establish the proper communication path between
-> PS and PL (Full region),  the AXI port data path should be configured with proper values priories to load the full region.
-> 
-> Will update the description in v2.
-> 
-> > >
-> > > Signed-off-by: Nava kishore Manne <nava.kishore.manne@amd.com>
-> > > ---
-> > >  MAINTAINERS               |   6 ++
-> > >  drivers/fpga/Kconfig      |  13 +++
-> > >  drivers/fpga/Makefile     |   1 +
-> > >  drivers/fpga/zynqmp-afi.c | 211
-> > > ++++++++++++++++++++++++++++++++++++++
-> > >  4 files changed, 231 insertions(+)
-> > >  create mode 100644 drivers/fpga/zynqmp-afi.c
-> > >
-> > > diff --git a/MAINTAINERS b/MAINTAINERS index
-> > > 20ffac651214..957e753e6406 100644
-> > > --- a/MAINTAINERS
-> > > +++ b/MAINTAINERS
-> > > @@ -8032,6 +8032,12 @@ F:     Documentation/fpga/
-> > >  F:   drivers/fpga/
-> > >  F:   include/linux/fpga/
-> > >
-> > > +FPGA ZYNQMP PS-PL BRIDGE DRIVER
-> > > +M:   Nava kishore Manne <nava.kishore.manne@amd.com>
-> > > +S:   Supported
-> > > +F:   Documentation/devicetree/bindings/fpga/xlnx,zynqmp-afi-fpga.yaml
-> > > +F:   drivers/fpga/zynqmp-afi.c
-> > > +
-> > >  INTEL MAX10 BMC SECURE UPDATES
-> > >  M:   Russ Weight <russell.h.weight@intel.com>
-> > >  L:   linux-fpga@vger.kernel.org
-> > > diff --git a/drivers/fpga/Kconfig b/drivers/fpga/Kconfig index
-> > > 6c416955da53..c08794d30fb5 100644
-> > > --- a/drivers/fpga/Kconfig
-> > > +++ b/drivers/fpga/Kconfig
-> > > @@ -130,6 +130,19 @@ config XILINX_PR_DECOUPLER
-> > >         reconfiguration, preventing the system deadlock that can
-> > >         occur if AXI transactions are interrupted by DFX.
-> > >
-> > > +config ZYNQMP_AFI
-> > > +     tristate "Xilinx ZYNQMP AFI support"
-> > > +     depends on FPGA_BRIDGE
-> > > +     help
-> > > +       Say Y to enable drivers to handle the PS-PL clocks configurations
-> > > +       and PS-PL Bus-width. Xilinx Zynq US+ MPSoC connect the PS to the
-> > > +       programmable logic (PL) through the AXI port. This AXI port helps
-> > > +       to establish the data path between the PS and PL.
-> > > +       In-order to establish the proper communication path between PS and
-> > PL,
-> > > +       the AXI port data path should be configured with the proper Bus-
-> > width
-> > > +       values and it will also handles the PS-PL reset signals to reset the
-> > > +       PL domain.
-> > 
-> > Same concern, please describe its relationship to FPGA reprogramming.
-> > 
-> 
-> Same as above.
-> Will update the description in v2.
-> 
-> > > +
-> > >  config FPGA_REGION
-> > >       tristate "FPGA Region"
-> > >       depends on FPGA_BRIDGE
-> > > diff --git a/drivers/fpga/Makefile b/drivers/fpga/Makefile index
-> > > 42ae8b58abce..94cfe60972db 100644
-> > > --- a/drivers/fpga/Makefile
-> > > +++ b/drivers/fpga/Makefile
-> > > @@ -31,6 +31,7 @@ obj-$(CONFIG_FPGA_BRIDGE)           += fpga-bridge.o
-> > >  obj-$(CONFIG_SOCFPGA_FPGA_BRIDGE)    += altera-hps2fpga.o altera-
-> > fpga2sdram.o
-> > >  obj-$(CONFIG_ALTERA_FREEZE_BRIDGE)   += altera-freeze-bridge.o
-> > >  obj-$(CONFIG_XILINX_PR_DECOUPLER)    += xilinx-pr-decoupler.o
-> > > +obj-$(CONFIG_ZYNQMP_AFI)             += zynqmp-afi.o
-> > >
-> > >  # High Level Interfaces
-> > >  obj-$(CONFIG_FPGA_REGION)            += fpga-region.o
-> > > diff --git a/drivers/fpga/zynqmp-afi.c b/drivers/fpga/zynqmp-afi.c new
-> > > file mode 100644 index 000000000000..bc975d304039
-> > > --- /dev/null
-> > > +++ b/drivers/fpga/zynqmp-afi.c
-> > > @@ -0,0 +1,211 @@
-> > > +// SPDX-License-Identifier: GPL-2.0
-> > > +/*
-> > > + * Copyright (C) 2022 Xilinx, Inc.
-> > > + */
-> > > +
-> > > +#include <linux/err.h>
-> > > +#include <linux/firmware/xlnx-zynqmp.h> #include
-> > > +<linux/fpga/fpga-bridge.h> #include <linux/io.h> #include
-> > > +<linux/module.h> #include <linux/of.h> #include
-> > > +<linux/platform_device.h> #include <linux/reset.h> #include
-> > > +<linux/slab.h>
-> > > +
-> > > +/* Registers and special values for doing register-based operations */
-> > > +#define AFI_RDCHAN_CTRL_OFFSET       0x00
-> > > +#define AFI_WRCHAN_CTRL_OFFSET       0x14
-> > > +#define AFI_BUSWIDTH_MASK    BIT(0)
-> > > +
-> > > +/**
-> > > + * struct zynqmp_afi - AFI register description.
-> > > + * @dev: device that owns this.
-> > > + * @of_node: Device Tree overlay.
-> > > + * @resets: Pointer to the reset control for ps-pl resets.
-> > > + */
-> > > +struct zynqmp_afi {
-> > > +     struct device *dev;
-> > > +     struct device_node *of_node;
-> > > +     struct reset_control *resets;
-> > > +};
-> > > +
-> > > +/**
-> > > + * struct zynqmp_afi_configreg - AFI configuration registers info.
-> > > + * @reg:     Name of the AFI configuration register.
-> > > + * @id:              Register index value.
-> > > + */
-> > > +struct zynqmp_afi_configreg {
-> > > +     char *reg;
-> > > +     u32 id;
-> > > +};
-> > > +
-> > > +static struct zynqmp_afi_configreg afi_cfgreg[] = {
-> > > +     {.reg = "xlnx,afi-fm0-rd-bus-width",    .id = AFIFM0_RDCTRL},
-> > > +     {.reg = "xlnx,afi-fm1-rd-bus-width",    .id = AFIFM1_RDCTRL},
-> > > +     {.reg = "xlnx,afi-fm2-rd-bus-width",    .id = AFIFM2_RDCTRL},
-> > > +     {.reg = "xlnx,afi-fm3-rd-bus-width",    .id = AFIFM3_RDCTRL},
-> > > +     {.reg = "xlnx,afi-fm4-rd-bus-width",    .id = AFIFM4_RDCTRL},
-> > > +     {.reg = "xlnx,afi-fm5-rd-bus-width",    .id = AFIFM5_RDCTRL},
-> > > +     {.reg = "xlnx,afi-fm6-rd-bus-width",    .id = AFIFM6_RDCTRL},
-> > > +     {.reg = "xlnx,afi-fm0-wr-bus-width",    .id = AFIFM0_WRCTRL},
-> > > +     {.reg = "xlnx,afi-fm1-wr-bus-width",    .id = AFIFM1_WRCTRL},
-> > > +     {.reg = "xlnx,afi-fm2-wr-bus-width",    .id = AFIFM2_WRCTRL},
-> > > +     {.reg = "xlnx,afi-fm3-wr-bus-width",    .id = AFIFM3_WRCTRL},
-> > > +     {.reg = "xlnx,afi-fm4-wr-bus-width",    .id = AFIFM4_WRCTRL},
-> > > +     {.reg = "xlnx,afi-fm5-wr-bus-width",    .id = AFIFM5_WRCTRL},
-> > > +     {.reg = "xlnx,afi-fm6-wr-bus-width",    .id = AFIFM6_WRCTRL},
-> > > +     {.reg = "xlnx,afi-fs-ss0-bus-width",    .id = AFIFS},
-> > > +     {.reg = "xlnx,afi-fs-ss2-bus-width",    .id = AFIFS_SS2},
-> > > +     {}
-> > > +};
-> > > +
-> > > +static int zynqmp_afi_config(struct zynqmp_afi *afi_data) {
-> > > +     struct zynqmp_afi_configreg *cfgptr = afi_cfgreg;
-> > > +     struct device_node *np = afi_data->of_node;
-> > > +     u32 afi_ss0_val, afi_ss1_val, bus_width;
-> > > +     int ret;
-> > > +
-> > > +     while (cfgptr->reg) {
-> > > +             ret = of_property_read_u32(np, cfgptr->reg, &bus_width);
-> > > +             if (!ret) {
-> > > +                     if (cfgptr->id == AFIFS_SS2) {
-> > > +                             if (bus_width == 32)
-> > > +                                     ret = zynqmp_pm_afi(AFIFS_SS2,
-> > > +                                                         AFIFS_SS_BUS_WIDTH_32_CONFIG_VAL);
-> > > +                             else if (bus_width == 64)
-> > > +                                     ret = zynqmp_pm_afi(AFIFS_SS2,
-> > > +
-> > AFIFS_SS0_SS2_BUS_WIDTH_64_CONFIG_VAL);
-> > > +                             else if (bus_width == 128)
-> > > +                                     ret = zynqmp_pm_afi(AFIFS_SS2,
-> > > +
-> > AFIFS_SS0_SS2_BUS_WIDTH_128_CONFIG_VAL);
-> > > +                             else
-> > > +                                     return -EINVAL;
-> > > +                     } else if (cfgptr->id == AFIFS) {
-> > > +                             if (bus_width == 32)
-> > > +                                     afi_ss0_val = AFIFS_SS_BUS_WIDTH_32_CONFIG_VAL;
-> > > +                             else if (bus_width == 64)
-> > > +                                     afi_ss0_val =
-> > AFIFS_SS0_SS2_BUS_WIDTH_64_CONFIG_VAL;
-> > > +                             else if (bus_width == 128)
-> > > +                                     afi_ss0_val =
-> > AFIFS_SS0_SS2_BUS_WIDTH_128_CONFIG_VAL;
-> > > +                             else
-> > > +                                     return -EINVAL;
-> > > +
-> > > +                             ret = of_property_read_u32(np, "xlnx,afi-fs-ss1-bus-
-> > width",
-> > > +                                                        &bus_width);
-> > > +                             if (!ret) {
-> > > +                                     if (bus_width == 32)
-> > > +                                             afi_ss1_val =
-> > AFIFS_SS_BUS_WIDTH_32_CONFIG_VAL;
-> > > +                                     else if (bus_width == 64)
-> > > +                                             afi_ss1_val =
-> > AFIFS_SS1_BUS_WIDTH_64_CONFIG_VAL;
-> > > +                                     else if (bus_width == 128)
-> > > +                                             afi_ss1_val =
-> > AFIFS_SS1_BUS_WIDTH_128_CONFIG_VAL;
-> > > +                                     else
-> > > +                                             return -EINVAL;
-> > > +
-> > > +                                     ret = zynqmp_pm_afi(AFIFS, afi_ss1_val |
-> > afi_ss0_val);
-> > > +                             }
-> > > +                     } else {
-> > > +                             if (bus_width == 32)
-> > > +                                     ret = zynqmp_pm_afi(cfgptr->id,
-> > > +                                                         AFIFM_BUS_WIDTH_32_CONFIG_VAL);
-> > > +                             else if (bus_width == 64)
-> > > +                                     ret = zynqmp_pm_afi(cfgptr->id,
-> > > +                                                         AFIFM_BUS_WIDTH_64_CONFIG_VAL);
-> > > +                             else if (bus_width == 128)
-> > > +                                     ret = zynqmp_pm_afi(cfgptr->id,
-> > > +                                                         AFIFM_BUS_WIDTH_128_CONFIG_VAL);
-> > > +                             else
-> > > +                                     return -EINVAL;
-> > > +                     }
-> > > +             }
-> > > +             cfgptr++;
-> > > +     }
-> > > +
-> > > +     return 0;
-> > > +}
-> > > +
-> > > +static int zynqmp_afi_enable_set(struct fpga_bridge *bridge, bool
-> > > +enable) {
-> > > +     struct device_node *overlay = bridge->info->overlay;
-> > > +     struct zynqmp_afi *priv = bridge->priv;
-> > > +     int ret = 0;
-> > > +
-> > > +     if (enable) {
-> > > +             reset_control_reset(priv->resets);
-> > > +             return 0;
-> > > +     }
-> > > +
-> > > +     of_node_get(overlay);
-> > > +     priv->of_node =
-> > > +     of_find_node_with_property(overlay,
-> > > +                                "xlnx,afi-fm0-rd-bus-width");
-> > 
-> > I'm a little confused here. The fpga_image_info.overlay is for fpga-region, but
-> > from your binding doc this property is for this afi device. You want to add
-> > another overlay targeting afi dev node during reprograming?
-> > 
-> 
-> Yes, it uses Overlay's(overlay targeting afi dev node). As I said above for design-to-design AFI configs
+On Wed, Aug 31, 2022 at 7:45 PM Jiucheng Xu <jiucheng.xu@amlogic.com> wrote:
+>
+> Add a user guide to show how to use DDR PMU to
+> monitor DDR bandwidth on Amlogic G12 SoC
+>
+> Signed-off-by: Jiucheng Xu <jiucheng.xu@amlogic.com>
+> Reported-by: kernel test robot <lkp@intel.com>
+> ---
+> Changes v6 -> v5:
+>   - No change
+>
+> Changes v5 -> v4:
+>   - Fix building warning
+>
+> Changes v3 -> v4:
+>   - No change
+>
+> Changes v2 -> v3:
+>   - Rename doc name from aml-ddr-pmu.rst to meson-ddr-pmu.rst
+>
+> Changes v1 -> v2:
+>   - Nothing was changed
+> ---
+>  Documentation/admin-guide/perf/index.rst      |  1 +
+>  .../admin-guide/perf/meson-ddr-pmu.rst        | 70 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  3 files changed, 72 insertions(+)
+>  create mode 100644 Documentation/admin-guide/perf/meson-ddr-pmu.rst
+>
+> diff --git a/Documentation/admin-guide/perf/index.rst b/Documentation/admin-guide/perf/index.rst
+> index 69b23f087c05..997a28e156c1 100644
+> --- a/Documentation/admin-guide/perf/index.rst
+> +++ b/Documentation/admin-guide/perf/index.rst
+> @@ -17,3 +17,4 @@ Performance monitor support
+>     xgene-pmu
+>     arm_dsu_pmu
+>     thunderx2-pmu
+> +   meson-ddr-pmu
+> diff --git a/Documentation/admin-guide/perf/meson-ddr-pmu.rst b/Documentation/admin-guide/perf/meson-ddr-pmu.rst
+> new file mode 100644
+> index 000000000000..28e9910940d0
+> --- /dev/null
+> +++ b/Documentation/admin-guide/perf/meson-ddr-pmu.rst
+> @@ -0,0 +1,70 @@
+> +.. SPDX-License-Identifier: GPL-2.0
+> +
+> +===========================================================
+> +Amlogic SoC DDR Bandwidth Performance Monitoring Unit (PMU)
+> +===========================================================
+> +
+> +There is a bandwidth monitor inside the DRAM contorller. The monitor include
 
-I have concern on it. We should limit the overlay usage only on
-fpga_region, this is because we are changing the hardware in this
-region during reprograming. Adding overlays for other nodes could be
-easily abused, any changes could be made even not related to the fpga
-region. So if any cross device configurations should be made during
-reprograming, it should be initiated by fpga region driver through
-normal kernel APIs.
+Fix spelling of word "controller" and add an s to the end of include
 
-Thanks,
-Yilun
-
-> relevant to the full region may change and these configs must be set prior to program the full region
-> once this overlay integrated to the live tree the existing afi config values will be replace with the new one's
-> 
-> > > +     if (priv->of_node)
-> > > +             ret = zynqmp_afi_config(priv);
-> > > +     of_node_put(priv->of_node);
-> > > +
-> > > +     return ret;
-> > > +}
-> > > +
-> > > +static const struct fpga_bridge_ops zynqmp_afi_br_ops = {
-> > > +     .enable_set = zynqmp_afi_enable_set, };
-> > > +
-> > > +static const struct of_device_id zynqmp_afi_of_match[] = {
-> > > +     { .compatible =  "xlnx,zynqmp-afi-fpga" },
-> > > +     { },
-> > > +};
-> > > +MODULE_DEVICE_TABLE(of, zynqmp_afi_of_match);
-> > > +
-> > > +static int zynqmp_afi_probe(struct platform_device *pdev) {
-> > > +     struct device *dev = &pdev->dev;
-> > > +     struct zynqmp_afi *priv;
-> > > +     struct fpga_bridge *br;
-> > > +
-> > > +     priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
-> > > +     if (!priv)
-> > > +             return -ENOMEM;
-> > > +
-> > > +     priv->dev = dev;
-> > > +
-> > > +     priv->resets =
-> > devm_reset_control_array_get_optional_exclusive(&pdev->dev);
-> > > +     if (IS_ERR(priv->resets))
-> > > +             return PTR_ERR(priv->resets);
-> > > +
-> > > +     br = fpga_bridge_register(dev, "Xilinx ZynqMP AFI",
-> > > +                               &zynqmp_afi_br_ops, priv);
-> > > +     if (IS_ERR(br)) {
-> > > +             dev_err(dev, "unable to register Xilinx ZynqMP AFI");
-> > 
-> > Need a "\n" at the end?
-> > 
-> 
-> Will fix.
-> 
-> Regards,
-> Navakishore.
-> 
+> +4 channels which can count the read/write request of accessing DRAM individually.
+> +It can be helpful to show if the performance bottleneck is on DDR bandwidth.
+> +
+> +Currently, this driver supports the following 5 Perf events:
+> +
+> ++ meson_ddr_bw/total_rw_bytes/
+> ++ meson_ddr_bw/chan_1_rw_bytes/
+> ++ meson_ddr_bw/chan_2_rw_bytes/
+> ++ meson_ddr_bw/chan_3_rw_bytes/
+> ++ meson_ddr_bw/chan_4_rw_bytes/
+> +
+> +meson_ddr_bw/chan_{1,2,3,4}_rw_bytes/ events are the channel related events.
+> +Each channel support using keywords as filter, which can let the channel
+> +to monitor the individual IP module in SoC.
+> +
+> +The following keywords are the filter:
+> +
+> ++ arm             - DDR access request from CPU
+> ++ vpu_read1       - DDR access request from OSD + VPP read
+> ++ gpu             - DDR access request from 3D GPU
+> ++ pcie            - DDR access request from PCIe controller
+> ++ hdcp            - DDR access request from HDCP controller
+> ++ hevc_front      - DDR access request from HEVC codec front end
+> ++ usb3_0          - DDR access request from USB3.0 controller
+> ++ hevc_back       - DDR access request from HEVC codec back end
+> ++ h265enc         - DDR access request from HEVC encoder
+> ++ vpu_read2       - DDR access request from DI read
+> ++ vpu_write1      - DDR access request from VDIN write
+> ++ vpu_write2      - DDR access request from di write
+> ++ vdec            - DDR access request from legacy codec video decoder
+> ++ hcodec          - DDR access request from H264 encoder
+> ++ ge2d            - DDR access request from ge2d
+> ++ spicc1          - DDR access request from SPI controller 1
+> ++ usb0            - DDR access request from USB2.0 controller 0
+> ++ dma             - DDR access request from system DMA controller 1
+> ++ arb0            - DDR access request from arb0
+> ++ sd_emmc_b       - DDR access request from SD eMMC b controller
+> ++ usb1            - DDR access request from USB2.0 controller 1
+> ++ audio           - DDR access request from Audio module
+> ++ sd_emmc_c       - DDR access request from SD eMMC c controller
+> ++ spicc2          - DDR access request from SPI controller 2
+> ++ ethernet        - DDR access request from Ethernet controller
+> +
+> +
+> +The following command is to show the total DDR bandwidth:
+> +
+> +  .. code-block:: bash
+> +
+> +      perf stat -a -e meson_ddr_bw/total_rw_bytes/ -I 1000 sleep 10
+> +
+> +This command will print the total DDR bandwidth per second.
+> +
+> +The following commands are to show how to use filter parameters:
+> +
+> +  .. code-block:: bash
+> +
+> +      perf stat -a -e meson_ddr_bw/chan_1_rw_bytes,arm=1/ -I 1000 sleep 10
+> +      perf stat -a -e meson_ddr_bw/chan_2_rw_bytes,gpu=1/ -I 1000 sleep 10
+> +      perf stat -a -e meson_ddr_bw/chan_3_rw_bytes,arm=1,gpu=1/ -I 1000 sleep 10
+> +
+> +The 1st command show how to use channel 1 to monitor the DDR bandwidth from ARM.
+> +The 2nd command show using channel 2 to get the DDR bandwidth of GPU.
+> +The 3rd command show using channel 3 to monitor the sum of ARM and GPU.
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index ac8a98dfbacc..8ee68e699e6d 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -1054,6 +1054,7 @@ AMLOGIC DDR PMU DRIVER
+>  M:     Jiucheng Xu <jiucheng.xu@amlogic.com>
+>  S:     Supported
+>  W:     http://www.amlogic.com
+> +F:     Documentation/admin-guide/perf/meson-ddr-pmu.rst
+>  F:     drivers/perf/amlogic/
+>  F:     include/soc/amlogic/
+>
+> --
+> 2.25.1
+>
