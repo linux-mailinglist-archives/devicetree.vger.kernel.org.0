@@ -2,110 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3335F5ABF4B
-	for <lists+devicetree@lfdr.de>; Sat,  3 Sep 2022 16:20:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 956385ABF79
+	for <lists+devicetree@lfdr.de>; Sat,  3 Sep 2022 17:13:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229463AbiICOUP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Sep 2022 10:20:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60090 "EHLO
+        id S229826AbiICPNO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Sep 2022 11:13:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229741AbiICOUO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Sep 2022 10:20:14 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63EAA52FD9;
-        Sat,  3 Sep 2022 07:20:13 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id F2A17B80966;
-        Sat,  3 Sep 2022 14:20:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97E69C43470;
-        Sat,  3 Sep 2022 14:20:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1662214810;
-        bh=0aD+VSuyqXxSIVEFulDlAaMzWs8mG1JCiPYrFvQbHqk=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=nXtwWlB287xOlDtpAHhVfl9tPu1xM3cR2NWG5pr9+m3HgOkV32Ou69hgAeGG7anmP
-         9vgQpEnwRDQdGij523rA5e3A6+g6VWHQfONrCeiZBbg8sCWW719hUzFtWf/E7+ICPh
-         YbGrLEsasbuQNEZc2LTc1tjCKOoyVSsGh10qw0qvvZk65xVoGL6WQofHN9cV3PXKXf
-         h9R2KOJKUHBiCOfc9twQPCvhHq5RWxVCGQ/rSJrJ9Xvrv667EDXCdteNQRwhnHqmDq
-         rXPZk0LklN7vT1GjywGscy8ifC+1ThJlqEGxLoum+VF06pyrsf84aszxg5mAly9Y/J
-         q/QWXeq+oz3og==
-Received: by mail-vk1-f172.google.com with SMTP id c2so2240942vkm.9;
-        Sat, 03 Sep 2022 07:20:10 -0700 (PDT)
-X-Gm-Message-State: ACgBeo3SXKi3/Qvvt1kXEmBWO1MaL+GKh//Fx/4BZ8q73eSGNe2OdQRw
-        GUa3Gl9eDtwnmtjD87c+ArY4v7gAyGkHkiPPs0w=
-X-Google-Smtp-Source: AA6agR4DjVYs1Z7O7YPPXaanoHXU3FRdvt+fv4WSmMa7CoMVispaaGhUAL5QcuLgVa9t520FJ2ydXbrkcTwKD8AFeaQ=
-X-Received: by 2002:ac5:cd82:0:b0:397:7f8d:95f7 with SMTP id
- i2-20020ac5cd82000000b003977f8d95f7mr2019923vka.18.1662214809526; Sat, 03 Sep
- 2022 07:20:09 -0700 (PDT)
+        with ESMTP id S229525AbiICPNO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Sep 2022 11:13:14 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 247DC41D34;
+        Sat,  3 Sep 2022 08:13:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=BiitqeKalMPshyno6OYFxIT0YzySsq7ePYD/GgFK/wU=; b=TkoZpy3K7Y7WD4HUl5W90O86ph
+        lcawWuy6T88t1KjgVa6YCokVy7lQzN2zZnVan2F77Y8svLmvFwqClP5s3Huq2HVfZFaujLAPjqvXL
+        m9LNA2yCPu6n2r4vrIjW3PUa8GvjdzhAYIlWUkhsAs094KEuFeBihH6cxR7JAx/df/Dg=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1oUUpK-00FVsj-G9; Sat, 03 Sep 2022 17:12:54 +0200
+Date:   Sat, 3 Sep 2022 17:12:54 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
+Cc:     Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: turris-omnia: Add mcu node
+Message-ID: <YxNu9sXY5UhVCZ+w@lunn.ch>
+References: <20220819131152.6513-1-pali@kernel.org>
+ <20220831142809.lcmnv3l4rnulo522@pali>
+ <YxE2JqJutZ0ilghH@lunn.ch>
+ <20220903043828.6afd3ab4@thinkpad>
 MIME-Version: 1.0
-References: <cover.1662190009.git.zhoubinbin@loongson.cn> <6d01148014a62d8d412790dc8442af40368c6f8f.1662190009.git.zhoubinbin@loongson.cn>
- <bf3e7516c351f793de08d5311aff10c379720798.camel@xry111.site>
-In-Reply-To: <bf3e7516c351f793de08d5311aff10c379720798.camel@xry111.site>
-From:   Huacai Chen <chenhuacai@kernel.org>
-Date:   Sat, 3 Sep 2022 22:19:57 +0800
-X-Gmail-Original-Message-ID: <CAAhV-H4QXyaK+H-vMsDgXY+9J1FONKzEi-fm37J9NOr0n+tqOg@mail.gmail.com>
-Message-ID: <CAAhV-H4QXyaK+H-vMsDgXY+9J1FONKzEi-fm37J9NOr0n+tqOg@mail.gmail.com>
-Subject: Re: [PATCH 2/7] LoongArch: Enable LS2X RTC in loongson3_defconfig
-To:     Xi Ruoyao <xry111@xry111.site>
-Cc:     Binbin Zhou <zhoubinbin@loongson.cn>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        linux-rtc@vger.kernel.org,
-        "open list:MIPS" <linux-mips@vger.kernel.org>,
-        devicetree@vger.kernel.org, loongarch@lists.linux.dev,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        WANG Xuerui <git@xen0n.name>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220903043828.6afd3ab4@thinkpad>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Ruoyao,
+> > > > diff --git a/arch/arm/boot/dts/armada-385-turris-omnia.dts b/arch/arm/boot/dts/armada-385-turris-omnia.dts
+> > > > index f4878df39753..f655e9229d68 100644
+> > > > --- a/arch/arm/boot/dts/armada-385-turris-omnia.dts
+> > > > +++ b/arch/arm/boot/dts/armada-385-turris-omnia.dts
+> > > > @@ -184,7 +184,13 @@
+> > > >  			#size-cells = <0>;
+> > > >  			reg = <0>;
+> > > >  
+> > > > -			/* STM32F0 command interface at address 0x2a */
+> > > > +			/* MCU command i2c API */
+> > > > +			mcu: mcu@2a {
+> > > > +				compatible = "cznic,turris-omnia-mcu";
+> > > > +				reg = <0x2a>;
+> > > > +				gpio-controller;
+> > > > +				#gpio-cells = <3>;
+> > > > +			};  
+> > 
+> > Please document the binding, preferably in yaml.
+> > 
+> > I'm also not sure what the DT people will say about the node name mcu.
+> > I don't see any examples of that in the binding documentation. They
+> > might request you rename it to gpio-controller, unless it does more
+> > than GPIO? And if it does do more than GPIO we are then into mfd
+> > territory, and the binding then becomes much more interesting. Then we
+> > start the questions, are you defining a ABI now, before there is even
+> > a driver for it?
+> 
+> Most probably mfd territory. It is at least a gpio-controller,
+> reset-controller and watchdog.
 
-On Sat, Sep 3, 2022 at 6:45 PM Xi Ruoyao <xry111@xry111.site> wrote:
->
-> On Sat, 2022-09-03 at 17:34 +0800, Binbin Zhou wrote:
-> > This is now supported, enable for Loongson-3 systems.
-> > Other systems are unaffected.
-> >
-> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> > Cc: Huacai Chen <chenhuacai@kernel.org>
-> > Cc: WANG Xuerui <git@xen0n.name>
-> > Cc: loongarch@lists.linux.dev
-> > ---
-> >  arch/loongarch/configs/loongson3_defconfig | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/arch/loongarch/configs/loongson3_defconfig
-> > b/arch/loongarch/configs/loongson3_defconfig
-> > index 4083d3051109..b240bc4e2021 100644
-> > --- a/arch/loongarch/configs/loongson3_defconfig
-> > +++ b/arch/loongarch/configs/loongson3_defconfig
-> > @@ -660,6 +660,7 @@ CONFIG_USB_GADGET=y
-> >  CONFIG_INFINIBAND=m
-> >  CONFIG_RTC_CLASS=y
-> >  CONFIG_RTC_DRV_EFI=y
-> > +CONFIG_RTC_DRV_LS2X=y
->
-> We already have RTC_DRV_EFI=y, IIUC this means we leave LS7A RTC for the
-> firmware to drive and operate it through EFI service.  So is this really
-> needed for LoongArch systems?  And if we enable both RTC_DRV_EFI and
-> RTC_DRV_LS2X, will some bad thing (a conflict) happen?
-Don't worry, please. EFI RTC depends on EFI runtime, so we need an
-available RTC if EFI runtime is disabled (by command line or any other
-reasons). On the other hand, multi RTCs can perfectly co-exist, they
-will be rtc0 and rtc1 under sysfs and rtc0 is the default one.
+O.K.
 
-Huacai
->
-> --
-> Xi Ruoyao <xry111@xry111.site>
-> School of Aerospace Science and Technology, Xidian University
->
+Then i suggest we wait for the actual drivers before committing any
+DT. The binding will need revier, and could change.
+
+    Andrew
