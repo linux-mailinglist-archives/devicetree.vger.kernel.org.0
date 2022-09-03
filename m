@@ -2,121 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 32C985ABD75
-	for <lists+devicetree@lfdr.de>; Sat,  3 Sep 2022 08:34:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28C4B5ABDE1
+	for <lists+devicetree@lfdr.de>; Sat,  3 Sep 2022 10:45:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229829AbiICGdq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Sep 2022 02:33:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35060 "EHLO
+        id S231278AbiICIo7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Sep 2022 04:44:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232359AbiICGdp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Sep 2022 02:33:45 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 123FCB8A6B;
-        Fri,  2 Sep 2022 23:33:42 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2836XNKd121916;
-        Sat, 3 Sep 2022 01:33:23 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1662186803;
-        bh=iy9m2WEQapJ1s07ZhqWqH9Zf7PEYO2GbJZN7f+sclms=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=PS08YBgLTlFTQBJQvo+SeRDyHQbEzKUHIjdhqt273DcF+wUovlvrpdpWIBjSyzwu+
-         TfqnUVD1J79pf+4Stu/KX99OHa5PuGS0bHl30KgwhAeJjrf6S862a0NevSD3JXrPQx
-         ORuK6P+7Emwedju5wc120cGiPTuxNYufjFXdrrys=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2836XNkw008154
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sat, 3 Sep 2022 01:33:23 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Sat, 3 Sep
- 2022 01:33:23 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Sat, 3 Sep 2022 01:33:23 -0500
-Received: from [10.250.234.106] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2836XJMf029034;
-        Sat, 3 Sep 2022 01:33:20 -0500
-Message-ID: <8c6a9a5f-b3a9-8e63-a6d8-ed6d70cf09c7@ti.com>
-Date:   Sat, 3 Sep 2022 12:03:13 +0530
+        with ESMTP id S232303AbiICIo5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Sep 2022 04:44:57 -0400
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF5101FCD0
+        for <devicetree@vger.kernel.org>; Sat,  3 Sep 2022 01:44:55 -0700 (PDT)
+Received: by mail-pj1-x102c.google.com with SMTP id m10-20020a17090a730a00b001fa986fd8eeso7664109pjk.0
+        for <devicetree@vger.kernel.org>; Sat, 03 Sep 2022 01:44:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=SqBWJMi80DJWLQXPnlKcmrIcjb7xa2nf0K9N0p5fp6o=;
+        b=DvrsLWEMlhjHH/5WVBfj8Y5DO9stEG/FvSbPWBRhc9QTWUx35WY9XbpVZxfp/1Y+yE
+         4ZcaHwpKk8wfWhO5f7nmYblFk91e1lEn/Jwxe+UFOQZL8HjaScdFtlqBo8t5hjwuJh3C
+         htSouEhj02sYU3NoYMYMyctkGsh2iUFZEmEUQtOW2vmF+hYhGxGvTHw6iVo1l60Acv7c
+         KKm30r0FN0egi85rCg/r4/GTQuBXa0YwDucTVNrLIdBzjP1nTsyPticABpfW/Nq00b4n
+         K7ZFS+FPFkb31FuQR2nAKBn39Fsrcos5ztJJf9ObODW51kJFZQRoWa5IDUOJFbyOhmnv
+         t6+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=SqBWJMi80DJWLQXPnlKcmrIcjb7xa2nf0K9N0p5fp6o=;
+        b=Zp3y5knewG00TZrb21IHXkGbMIgf3P2o5VyPmEVGuOirRacW/vt1Xps/x5AbbhLikI
+         x5DDMaVF6nqW6ipsGHmgEruGYXGxEKUJp5j8PZbhE3aqqNeqEG5PzNDqTANWxG+T0GVF
+         4oQ2VvEyH5gR1g/gNSpCQBRcvIgb+Pr1bsmeEkz9cn+63iMU8zjv8IqLZDDzw63Nmdu3
+         ZjPllv3cIjONaGj+YVA10cXEIUo8o5G+bt7xU3zo8z/VZKFajmkIOywna1IgT/p6CfUz
+         tT8/IoIwN9lHRtESi1LBLgb5lV7TkGQ8kzCM+dQzZ69vrlSL/S6YNRVTQaefj8C2pz+7
+         hlgg==
+X-Gm-Message-State: ACgBeo3YqLOjW0+9UBI9qsIOD0tdEmSWyn1uiJQP7THUP0jFJGCxsk92
+        x9v5oKWBeeBRUTYaNaZ1ElpWOQ==
+X-Google-Smtp-Source: AA6agR553+63YCOpEHkjQVUXYkeZkjdY8vc36nto1zMSug5I3wsmEei7vRDlKN1S7NZA0jZgp7pzrg==
+X-Received: by 2002:a17:90b:1c8e:b0:1f7:5250:7b44 with SMTP id oo14-20020a17090b1c8e00b001f752507b44mr9107957pjb.212.1662194695348;
+        Sat, 03 Sep 2022 01:44:55 -0700 (PDT)
+Received: from localhost.localdomain ([2401:4900:1c60:5362:9d7f:2354:1d0a:78e3])
+        by smtp.gmail.com with ESMTPSA id 5-20020a17090a190500b001fe444b2245sm2827696pjg.25.2022.09.03.01.44.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 03 Sep 2022 01:44:55 -0700 (PDT)
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, agross@kernel.org,
+        bhupesh.sharma@linaro.org, bhupesh.linux@gmail.com,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Subject: [PATCH] arm64: dts: qcom: sc8280xp-pmics: Remove reg entry for pmc8280c_lpg node
+Date:   Sat,  3 Sep 2022 14:14:40 +0530
+Message-Id: <20220903084440.1509562-1-bhupesh.sharma@linaro.org>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v2 2/2] arm64: dts: ti: add k3-j721e-beagleboneai64
-Content-Language: en-US
-To:     Robert Nelson <robertcnelson@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Jason Kridner <jkridner@beagleboard.org>,
-        Drew Fustini <drew@beagleboard.org>
-References: <20220822230304.2284952-1-robertcnelson@gmail.com>
- <20220822230304.2284952-2-robertcnelson@gmail.com>
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-In-Reply-To: <20220822230304.2284952-2-robertcnelson@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Commit eeca7d46217c ("arm64: dts: qcom: pm8350c: Drop PWM reg declaration")
+dropped PWM reg declaration for pm8350c pwm(s), but there is a leftover
+'reg' entry inside the lpg/pwm node in sc8280xp dts file. Remove the same.
 
-On 23/08/22 4:33 am, Robert Nelson wrote:
-> +	main_i2c2_pins_default: main_i2c2_pins_default {
-> +		pinctrl-single,pins = <
-> +			J721E_IOPAD(0x208, PIN_INPUT_PULLUP, 4) /* (W5) MCAN0_RX.I2C2_SCL */
-> +			J721E_IOPAD(0x20c, PIN_INPUT_PULLUP, 4) /* (W6) MCAN0_TX.I2C2_SDA */
-> +			J721E_IOPAD(0x138, PIN_INPUT, 7) /* (AE25) PRG0_PRU1_GPO14.GPIO0_77 */
-> +			J721E_IOPAD(0x13c, PIN_INPUT, 7) /* (AF29) PRG0_PRU1_GPO15.GPIO0_78 */
-> +		>;
-> +	};
-> +
-> +	main_i2c3_pins_default: main-i2c3-pins-default {
-> +		pinctrl-single,pins = <
-> +			J721E_IOPAD(0x270, PIN_INPUT_PULLUP, 4) /* (T26) MMC2_CLK.I2C3_SCL */
-> +			J721E_IOPAD(0x274, PIN_INPUT_PULLUP, 4) /* (T25) MMC2_CMD.I2C3_SDA */
-> +		>;
-> +	};
-> +
-> +	main_i2c4_pins_default: main_i2c4_pins_default {
-> +		pinctrl-single,pins = <
-> +			J721E_IOPAD(0x1e0, PIN_INPUT_PULLUP, 2) /* (Y5) SPI1_D0.I2C4_SCL */
-> +			J721E_IOPAD(0x1dc, PIN_INPUT_PULLUP, 2) /* (Y1) SPI1_CLK.I2C4_SDA */
-> +			J721E_IOPAD(0x30, PIN_INPUT, 7) /* (AF24) PRG1_PRU0_GPO11.GPIO0_12 */
-> +			J721E_IOPAD(0x34, PIN_INPUT, 7) /* (AJ24) PRG1_PRU0_GPO12.GPIO0_13 */
-> +		>;
-> +	};
-> +
-> +	main_i2c5_pins_default: main-i2c5-pins-default {
-> +		pinctrl-single,pins = <
-> +			J721E_IOPAD(0x150, PIN_INPUT_PULLUP, 2) /* (Y26) PRG0_MDIO0_MDIO.I2C5_SCL */
-> +			J721E_IOPAD(0x154, PIN_INPUT_PULLUP, 2) /* (AA27) PRG0_MDIO0_MDC.I2C5_SDA */
-> +		>;
-> +	};
-> +
-> +	main_i2c6_pins_default: main_i2c6_pins_default {
-> +		pinctrl-single,pins = <
-> +			J721E_IOPAD(0x1d0, PIN_INPUT_PULLUP, 2) /* (AA3) SPI0_D1.I2C6_SCL */
-> +			J721E_IOPAD(0x1e4, PIN_INPUT_PULLUP, 2) /* (Y2) SPI1_D1.I2C6_SDA */
-> +			J721E_IOPAD(0x74, PIN_INPUT, 7) /* (AC21) PRG1_PRU1_GPO7.GPIO0_28 */
-> +			J721E_IOPAD(0xa4, PIN_INPUT, 7) /* (AH22) PRG1_PRU1_GPO19.GPIO0_40 */
-> +		>;
-> +	};
-> +
+While at it, also remove the unused unit address in the node
+label.
 
-Please address following warnings with make dtbs W=12
+Fixes: eeca7d46217c ("arm64: dts: qcom: pm8350c: Drop PWM reg declaration")
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>
+Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-+arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts: /bus@100000/pinctrl@11c000/main_i2c2_pins_default: Character '_' not recommended in node name
-+arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts: /bus@100000/pinctrl@11c000/main_i2c4_pins_default: Character '_' not recommended in node name
-+arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts: /bus@100000/pinctrl@11c000/main_i2c6_pins_default: Character '_' not recommended in node name
+diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
+index ae90b97aecb8..2e5cf55afdd5 100644
+--- a/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
+@@ -60,9 +60,8 @@ pmc8280c_gpios: gpio@8800 {
+ 			#interrupt-cells = <2>;
+ 		};
+ 
+-		pmc8280c_lpg: lpg@e800 {
++		pmc8280c_lpg: lpg {
+ 			compatible = "qcom,pm8350c-pwm";
+-			reg = <0xe800>;
+ 
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+-- 
+2.37.1
 
