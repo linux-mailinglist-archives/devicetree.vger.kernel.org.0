@@ -2,121 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 91D605ABC51
-	for <lists+devicetree@lfdr.de>; Sat,  3 Sep 2022 04:23:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3C5C5ABC48
+	for <lists+devicetree@lfdr.de>; Sat,  3 Sep 2022 04:17:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231625AbiICCXH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Sep 2022 22:23:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44606 "EHLO
+        id S231205AbiICCR0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Sep 2022 22:17:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231603AbiICCXG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 22:23:06 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF9A9EC4D2;
-        Fri,  2 Sep 2022 19:23:04 -0700 (PDT)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 2832MIVE030959;
-        Sat, 3 Sep 2022 02:23:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references; s=qcppdkim1;
- bh=O9lj/N/qqNbvwNOl9hroFdwpvipwn9ZurhicgSTeK4Y=;
- b=TUanHnngCdM3F4i5d5tGDpHBlE33ZYDmeTBXrI4qvKXI4KOh+c7AZ1NiFXZ8AXf+kVkC
- k/wXe7a759a7Q/nLIJHHzidE8Dm27gjjrUBmnLb/mwg15CDzp6PuOJ26J1Xe8FBUIWtO
- MXBSBObMA1Ux2CkQLXK1G/JLSR55T9guVmXS+jMqr1cTZeNujXI+16SvGILjIFVtIiVH
- IaCPfhgJ58TBBpAp2TK0X/Rj8KS5TNrHed8GrObnFqpKgbJDpaGx/eaPUHQBFL/GfHVq
- jWi2y69H7XTN7qhg4LdAneNQlzPZokKuw4imApLY5aYb2UnoikkCBPXCLWp1EzeSQNzl vw== 
-Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jbww000cq-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Sat, 03 Sep 2022 02:23:00 +0000
-Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-        by APBLRPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 2832MumO016083;
-        Sat, 3 Sep 2022 02:22:56 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 3j7cbktj0v-1;
-        Sat, 03 Sep 2022 02:22:56 +0000
-Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 2832Mufp016058;
-        Sat, 3 Sep 2022 02:22:56 GMT
-Received: from hu-sgudaval-hyd.qualcomm.com (hu-krichai-hyd.qualcomm.com [10.213.110.37])
-        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 2832Mtu6016055;
-        Sat, 03 Sep 2022 02:22:56 +0000
-Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 4058933)
-        id 212F44480; Sat,  3 Sep 2022 07:43:07 +0530 (+0530)
-From:   Krishna chaitanya chundru <quic_krichai@quicinc.com>
-To:     helgaas@kernel.org
-Cc:     linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, mka@chromium.org,
-        quic_vbadigan@quicinc.com, quic_hemantk@quicinc.com,
-        quic_nitegupt@quicinc.com, quic_skananth@quicinc.com,
-        quic_ramkri@quicinc.com, manivannan.sadhasivam@linaro.org,
-        swboyd@chromium.org, dmitry.baryshkov@linaro.org,
-        Krishna chaitanya chundru <quic_krichai@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS)
-Subject: [PATCH v3 3/3] arm64: dts: qcom: sc7280: Add missing aggre0, aggre1 clocks
-Date:   Sat,  3 Sep 2022 07:43:04 +0530
-Message-Id: <1662171184-25211-4-git-send-email-quic_krichai@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1662171184-25211-1-git-send-email-quic_krichai@quicinc.com>
-References: <1662171184-25211-1-git-send-email-quic_krichai@quicinc.com>
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: SZjW5eg8P7w7YrfxOqGmrAZp5WX91SXk
-X-Proofpoint-ORIG-GUID: SZjW5eg8P7w7YrfxOqGmrAZp5WX91SXk
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.517,FMLib:17.11.122.1
- definitions=2022-09-02_08,2022-08-31_03,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 mlxscore=0
- adultscore=0 spamscore=0 mlxlogscore=872 suspectscore=0 malwarescore=0
- bulkscore=0 phishscore=0 clxscore=1015 lowpriorityscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2207270000 definitions=main-2209030010
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229803AbiICCRZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 22:17:25 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F166E01F5;
+        Fri,  2 Sep 2022 19:17:24 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id EB1D3B82D0E;
+        Sat,  3 Sep 2022 02:17:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3071C433D6;
+        Sat,  3 Sep 2022 02:17:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1662171441;
+        bh=eioRvOtIHJKvIPDEtWmHeI3UQjUk/+sTTkBT+LYyiFE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=kSJAbsR9gPX6GlfA+hpa7+Eo8ghjuUjJU/RoNjAUt5zjW/NTFJzFAHIzvHH+TQv+V
+         ErPSN/Tx4xYcum2g4HxsMC3/KF4bn/y40gMevIM6k29fGfFqiH6XHdQ8oVIOU2O4Y/
+         Dru/wF/Go1dIXBzURbTjqL0I9dl5sdwmfzjq9WN2WE9f02j1hul0wVYTwXbHXKRYwC
+         FQWiwxmHdOtjzcJzEy3tRqeyt9AZXwXhszoxj+47XUgcjWJUQ0uLrpxfROPuXDPip5
+         OPcJWvjk/r3o0z3AYCivJAI+H3HpI8GUQwNEcjXO2+6y5FgXNTusaOCuEMrvAjGzxr
+         HhJ7IvC6oEeNA==
+Date:   Sat, 3 Sep 2022 10:17:14 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, l.stach@pengutronix.de,
+        laurent.pinchart@ideasonboard.com, marex@denx.de,
+        m.felsch@pengutronix.de, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH V5 0/8] imx: add i.MX8MP hdmi blk ctrl hdcp/hrv and vpu
+ blk ctrl
+Message-ID: <20220903021714.GC1728671@dragon>
+References: <20220822064536.3947512-1-peng.fan@oss.nxp.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220822064536.3947512-1-peng.fan@oss.nxp.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add missing aggre0, aggre1 clocks.
+On Mon, Aug 22, 2022 at 02:45:28PM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> V5:
+>  Add R-b for dt-bindings
+>  Tune order of vpu blk ctrl node per unit address
+>  Update commit log of patch 5.
+>    - Per HRV, this should be detailed explained in HDMI HRV driver, so here
+>    I only say HRV_MWR(HDMI RX Video Memory Write Master for RX validation).
+> 
+> V4:
+>  Add R-b for patch 2
+>  Add a new patch 3 to introduce interconnect property for i.MX8MM VPU blk ctrl,
+>  same to other properties, i.MX8MM/P could use their own names in patch 4
+> 
+> V3:
+>  Per DT maitainer, add a new patch to clean up minItems, see patch 2
+> 
+> V2:
+>  - Add A-b from DT maintainer for patch 1
+>  - Per DT maintainer, I added description for items. To
+>  make it consistent, I also added description to i.MX8MM.
+>  - Per Adam, change VPU H1/h1 to VC8000E/vc8000e in the patchset.
+> 
+> This patchset is to add more blk ctrl support for i.MX8MP
+>  - Add HDMI HDCP/HRV BLK CTRL support
+>  - Add VPU BLK CTRL support
+>  - Add PGC VPU node which supplies power domain for VPU BLK
+> 
+> Peng Fan (8):
+>   dt-bindings: power: imx8mp-power: add HDMI HDCP/HRV
+>   dt-bindings: soc: imx: drop minItems for i.MX8MM vpu blk ctrl
+>   dt-bindings: soc: imx: add interconnect property for i.MX8MM vpu blk
+>     ctrl
+>   dt-bindings: soc: imx: add i.MX8MP vpu blk ctrl
+>   soc: imx: add i.MX8MP HDMI blk ctrl HDCP/HRV_MWR
+>   soc: imx: imx8m-blk-ctrl: add i.MX8MP VPU blk ctrl
+>   arm64: dts: imx8mp: add vpu pgc nodes
+>   arm64: dts: imx8mp: add VPU blk ctrl node
 
-Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index e66fc67..a5ce095 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -2043,6 +2043,8 @@
- 				 <&gcc GCC_PCIE_1_SLV_AXI_CLK>,
- 				 <&gcc GCC_PCIE_1_SLV_Q2A_AXI_CLK>,
- 				 <&gcc GCC_AGGRE_NOC_PCIE_TBU_CLK>,
-+				 <&gcc GCC_AGGRE_NOC_PCIE_CENTER_SF_AXI_CLK>,
-+				 <&gcc GCC_AGGRE_NOC_PCIE_1_AXI_CLK>,
- 				 <&gcc GCC_DDRSS_PCIE_SF_CLK>;
- 
- 			clock-names = "pipe",
-@@ -2055,6 +2057,8 @@
- 				      "bus_slave",
- 				      "slave_q2a",
- 				      "tbu",
-+				      "aggre0",
-+				      "aggre1",
- 				      "ddrss_sf_tbu";
- 
- 			assigned-clocks = <&gcc GCC_PCIE_1_AUX_CLK>;
--- 
-2.7.4
-
+Applied all, thanks!
