@@ -2,109 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 620DC5ABBC9
-	for <lists+devicetree@lfdr.de>; Sat,  3 Sep 2022 02:33:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88A205ABC24
+	for <lists+devicetree@lfdr.de>; Sat,  3 Sep 2022 03:43:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233514AbiICA3N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Sep 2022 20:29:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54382 "EHLO
+        id S230515AbiICBnu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Sep 2022 21:43:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232026AbiICA2g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 20:28:36 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AECD11EB5F;
-        Fri,  2 Sep 2022 17:26:30 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8EDEB6DD;
-        Sat,  3 Sep 2022 02:25:04 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1662164704;
-        bh=H2oIKKpl7vDJ+UZWMIb/3wmlWoyGMna5rxAUCLWh4mk=;
+        with ESMTP id S229609AbiICBnt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Sep 2022 21:43:49 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38EBFC7B8C;
+        Fri,  2 Sep 2022 18:43:45 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C8A2A620BB;
+        Sat,  3 Sep 2022 01:43:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67A7AC433D7;
+        Sat,  3 Sep 2022 01:43:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1662169424;
+        bh=RdY2xNw4FHylU52vZUbfGHm2Drclj0oukmd/CsaYtTo=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Me420Y6rkhnnjE3cmtE1eQhJLjVnyqoxTJulX2e9n1z/YSEpUTbVY03AFsoZdS+6m
-         QKRU+jSdrp1Ll1vBPqQLs379abGsgkxlNG3mF0N7IMZIBP0C4pkdkKFdHiI2kyFKwV
-         i6x72SSeG9MqHcxYqURlKq09XYaRXpnWRgnw/gww=
-Date:   Sat, 3 Sep 2022 03:24:51 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Francesco Dolcini <francesco.dolcini@toradex.com>
-Cc:     Max Krummenacher <max.oss.09@gmail.com>,
-        Max Krummenacher <max.krummenacher@toradex.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        b=aN1DYFPa75M0Reybx1id+pdo7rJvF3MAD07ARvM1NJ9PdFoj2Lt7ymYFJymrj7ITG
+         sKlWhpwJAgI9MPy87lrRr0/I3I318VqtUeOi+Cr49miZ7yfwAqleMVNpGpv/GuN/q1
+         wOVcp5lG3TVNIqZEjN5cxnpnwuZBNZqZ1HRAQkYD/sT/XhbveV7dg5AMVOdJDkrNGL
+         DCxJTbHGsqtfiaDwdt6/qu1SGQmbLhJ9fKs1Ui65wIienwyPSDpnQBID7EiyKK7mRa
+         izuXs91Rn8wJzBnDvmBZSVYU6cf2i+XtKgLOfHtO+Pj3aBLICcR2+4GdDsB4iWcqas
+         ept1x+LnfGu3Q==
+Date:   Sat, 3 Sep 2022 09:43:37 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Marcel Ziswiler <marcel@ziswiler.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
         Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Philippe Schenker <philippe.schenker@toradex.com>,
         Rob Herring <robh+dt@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] arm64: dts: imx8mp-verdin: add dsi to hdmi
- functionality
-Message-ID: <YxKe00H2S9AzF0Yi@pendragon.ideasonboard.com>
-References: <20220901154051.1885509-1-max.oss.09@gmail.com>
- <YxD09SqpcbB3dt8I@pendragon.ideasonboard.com>
- <20220902155720.GB5699@francesco-nb.int.toradex.com>
+        Stefan Agner <stefan@agner.ch>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] ARM: dts: vf610: ddr pinmux
+Message-ID: <20220903014337.GA1728671@dragon>
+References: <20220819094354.247273-1-marcel@ziswiler.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220902155720.GB5699@francesco-nb.int.toradex.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220819094354.247273-1-marcel@ziswiler.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Francesco,
-
-On Fri, Sep 02, 2022 at 05:57:20PM +0200, Francesco Dolcini wrote:
-> Hello Laurent,
-> answering here for both patches (1/2 and 2/2).
+On Fri, Aug 19, 2022 at 11:43:54AM +0200, Marcel Ziswiler wrote:
+> From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 > 
-> On Thu, Sep 01, 2022 at 09:07:49PM +0300, Laurent Pinchart wrote:
-> > On Thu, Sep 01, 2022 at 05:40:50PM +0200, Max Krummenacher wrote:
-> > > From: Max Krummenacher <max.krummenacher@toradex.com>
-> > > 
-> > > Add the hdmi connector present on the dsi to hdmi adapter now
-> > > required by the upstream lontium bridge driver.
-> > > The dsi to hdmi adapter is enabled in an device tree overlay.
-> > 
-> > Shouldn't the connector also be in the overlay ? There's certainly no
-> > physical HDMI connector on the i.MX8MP Verdin SoM :-)
+> Add DDR pinmux which may be used in U-Boot after synchronising all
+> them device trees (and includes) from Linux.
 > 
-> Toradex DTS include and overlay files structure so far has been a little
-> bit different and not following the expectation you just stated here,
-> you can just check the current *toradex*dts* files and you'll see that there
-> is other stuff that is not strictly part of the module.
+> Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 > 
-> Copying from a previous email thread on a very similar discussion [0]
-> some of the reasons:
+> ---
 > 
->  - The SoM dtsi representing not only the functionality implemented into
->    the SoM, but the whole connector pinout to the carrier makes very easy
->    to just include a different som.dtsi in the carrier board dts and just
->    switch SoM, for example from a colibri-imx6 to a colibri-imx7.
-
-That's fine, but I don't see how that's related to the issue at hand.
-The DSI to HDMI bridge wouldn't be present on either SoM, would it ?
-
->  - We avoid code duplication
+>  arch/arm/boot/dts/vf610-pinfunc.h | 52 ++++++++++++++++++++++++++++++-
+>  1 file changed, 51 insertions(+), 1 deletion(-)
 > 
-> This is working for us pretty well so far and the majority of the users
-> of ours modules rely on this structure, we would prefer not to change that.
+> diff --git a/arch/arm/boot/dts/vf610-pinfunc.h b/arch/arm/boot/dts/vf610-pinfunc.h
+> index f1e5a7cf58a9..b7b7322a2d1b 100644
+> --- a/arch/arm/boot/dts/vf610-pinfunc.h
+> +++ b/arch/arm/boot/dts/vf610-pinfunc.h
+> @@ -420,7 +420,7 @@
+>  #define VF610_PAD_PTD29__FTM3_CH2		0x104 0x000 ALT4 0x0
+>  #define VF610_PAD_PTD29__DSPI2_SIN		0x104 0x000 ALT5 0x0
+>  #define VF610_PAD_PTD29__DEBUG_OUT11		0x104 0x000 ALT7 0x0
+> -#define VF610_PAD_PTD28__GPIO_66	 	0x108 0x000 ALT0 0x0
+> +#define VF610_PAD_PTD28__GPIO_66		0x108 0x000 ALT0 0x0
 
-It may work for your current use cases, but it doesn't make it right :-)
-Someone can integrate a Verdin SoM with a carrier board that has no DSI
-to HDMI (or LVDS) bridge, there should thus be no such device in the
-device tree. The SoM has DSI signals present on its connector, that's
-what the SoM .dtsi should expose.
+I mentioned this white-space fix in the commit log.
 
-> [0] https://lore.kernel.org/all/20220413094449.GB118560@francesco-nb.int.toradex.com/
+Applied, thanks!
 
--- 
-Regards,
+Shawn
 
-Laurent Pinchart
+>  #define VF610_PAD_PTD28__FB_AD28		0x108 0x000 ALT1 0x0
+>  #define VF610_PAD_PTD28__NF_IO12		0x108 0x000 ALT2 0x0
+>  #define VF610_PAD_PTD28__I2C2_SCL		0x108 0x34C ALT3 0x1
+> @@ -802,5 +802,55 @@
+>  #define VF610_PAD_PTE28__EWM_OUT		0x214 0x000 ALT7 0x0
+>  #define VF610_PAD_PTA7__GPIO_134		0x218 0x000 ALT0 0x0
+>  #define VF610_PAD_PTA7__VIU_PIX_CLK		0x218 0x3AC ALT1 0x1
+> +#define VF610_PAD_DDR_RESETB			0x21c 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_A15__DDR_A_15		0x220 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_A14__DDR_A_14		0x224 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_A13__DDR_A_13		0x228 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_A12__DDR_A_12		0x22c 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_A11__DDR_A_11		0x230 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_A10__DDR_A_10		0x234 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_A9__DDR_A_9		0x238 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_A8__DDR_A_8		0x23c 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_A7__DDR_A_7		0x240 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_A6__DDR_A_6		0x244 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_A5__DDR_A_5		0x248 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_A4__DDR_A_4		0x24c 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_A3__DDR_A_3		0x250 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_A2__DDR_A_2		0x254 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_A1__DDR_A_1		0x258 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_A0__DDR_A_0		0x25c 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_BA2__DDR_BA_2		0x260 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_BA1__DDR_BA_1		0x264 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_BA0__DDR_BA_0		0x268 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_CAS__DDR_CAS_B		0x26c 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_CKE__DDR_CKE_0		0x270 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_CLK__DDR_CLK_0		0x274 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_CS__DDR_CS_B_0		0x278 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_D15__DDR_D_15		0x27c 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_D14__DDR_D_14		0x280 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_D13__DDR_D_13		0x284 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_D12__DDR_D_12		0x288 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_D11__DDR_D_11		0x28c 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_D10__DDR_D_10		0x290 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_D9__DDR_D_9		0x294 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_D8__DDR_D_8		0x298 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_D7__DDR_D_7		0x29c 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_D6__DDR_D_6		0x2a0 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_D5__DDR_D_5		0x2a4 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_D4__DDR_D_4		0x2a8 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_D3__DDR_D_3		0x2ac 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_D2__DDR_D_2		0x2b0 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_D1__DDR_D_1		0x2b4 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_D0__DDR_D_0		0x2b8 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_DQM1__DDR_DQM_1		0x2bc 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_DQM0__DDR_DQM_0		0x2c0 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_DQS1__DDR_DQS_1		0x2c4 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_DQS0__DDR_DQS_0		0x2c8 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_RAS__DDR_RAS_B		0x2cc 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_WE__DDR_WE_B		0x2d0 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_ODT1__DDR_ODT_0		0x2d4 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_ODT0__DDR_ODT_1		0x2d8 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_DDRBYTE1__DDR_DDRBYTE1	0x2dc 0x000 ALT0 0x0
+> +#define VF610_PAD_DDR_DDRBYTE2__DDR_DDRBYTE2	0x2e0 0x000 ALT0 0x0
+>  
+>  #endif
+> -- 
+> 2.36.1
+> 
