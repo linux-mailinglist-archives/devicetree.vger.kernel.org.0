@@ -2,140 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A67765ABF07
-	for <lists+devicetree@lfdr.de>; Sat,  3 Sep 2022 14:56:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 766645ABF42
+	for <lists+devicetree@lfdr.de>; Sat,  3 Sep 2022 16:15:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229626AbiICM4i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Sep 2022 08:56:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32816 "EHLO
+        id S231303AbiICOPx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Sep 2022 10:15:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229594AbiICM4i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Sep 2022 08:56:38 -0400
-X-Greylist: delayed 528 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 03 Sep 2022 05:56:35 PDT
-Received: from smtp-out-12.comm2000.it (smtp-out-12.comm2000.it [212.97.32.82])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EBBD5A2F8;
-        Sat,  3 Sep 2022 05:56:35 -0700 (PDT)
-Received: from gaggiata.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+        with ESMTP id S231179AbiICOPv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Sep 2022 10:15:51 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EB0546DAB;
+        Sat,  3 Sep 2022 07:15:49 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: francesco@dolcini.it)
-        by smtp-out-12.comm2000.it (Postfix) with ESMTPSA id 01C3CBA25E1;
-        Sat,  3 Sep 2022 14:47:43 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailserver.it;
-        s=mailsrv; t=1662209265;
-        bh=APUy4pD+abROss/4Re7mQqViE2HTRzQPVmnnE6kjZ7w=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To;
-        b=qAyKS4uTdZHH0KoCYpGDdd4ujyrOc0PXH4vyAhtAvk5fMvPB6kAYMT/kZlDGr/WPW
-         +9q0bRUC4xnlNoYtewDJImT89MPIoKEGqHVV89EE2oEMKzPIoxpkTF2PXe3PDH3owh
-         kgKWD/80rqF8uzbC4ssFD/jyog86hmjiDzZygs9l71Ts4psDXwOOhac9s1dfrOhYIw
-         2q88JSk297b5MspQQ5LW3zgxMTJRPksRDyT3qe71c4Ons8F4ewjk6XjmIa7rbbRW5B
-         5OVteA2sqpcKb8zhBkvIqK16dhvhI3aYeG3HKjWHMpkESK9t2YwWz2LkBEBVS7Bs75
-         mTWEnQu1JeKag==
-Received: from livingston (unknown [192.168.42.11])
-        by gaggiata.pivistrello.it (Postfix) with ESMTP id B7C277F910;
-        Sat,  3 Sep 2022 14:47:43 +0200 (CEST)
-Received: from pivi by livingston with local (Exim 4.94.2)
-        (envelope-from <francesco@dolcini.it>)
-        id 1oUSYp-0001Tn-6F; Sat, 03 Sep 2022 14:47:43 +0200
-Date:   Sat, 3 Sep 2022 14:47:43 +0200
-From:   Francesco Dolcini <francesco@dolcini.it>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Max Krummenacher <max.oss.09@gmail.com>,
-        Max Krummenacher <max.krummenacher@toradex.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Philippe Schenker <philippe.schenker@toradex.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] arm64: dts: imx8mp-verdin: add dsi to hdmi
- functionality
-Message-ID: <YxNM75ZtHVKDjTa/@livingston.pivistrello.it>
-References: <20220901154051.1885509-1-max.oss.09@gmail.com>
- <YxD09SqpcbB3dt8I@pendragon.ideasonboard.com>
- <20220902155720.GB5699@francesco-nb.int.toradex.com>
- <YxKe00H2S9AzF0Yi@pendragon.ideasonboard.com>
+        by ams.source.kernel.org (Postfix) with ESMTPS id C90BDB801BF;
+        Sat,  3 Sep 2022 14:15:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 810F9C433C1;
+        Sat,  3 Sep 2022 14:15:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1662214546;
+        bh=/jP8MIyDHUYJ8U6z6dijSBnbvT/6bOxlL9l4q7SCjIE=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Vmg6+/RGxAjjT8tBBM2A/0QujfJq9FLMt6fdyGlWDkUWHYVkpG7LwVZ8QHehi6LoP
+         aTS/O3tzmjDp3TbqSfODHJWhpjrdAncizb/LVOB5DMHp52EfecJ+jNX8URczcjdw9L
+         uzHjoVdR5AV0IJMyRmOlrVPDSw+YgdEqSdFUs3FI2Y4FK+nCyK3Sb7DGRGF5GVdK3M
+         pRS+tGuCo0ai6ht/ZmNIQ2lkmayyG4DLFHN4zw8G0+ghGUp7ffxLPYF/wc+hZh/ocf
+         qLQ7iK+Kb6hP6hG5BKI5d7LOZ6g+UN8iAsmATZkhyzcO0sAmHIr+MClg6pIo6fb2uQ
+         b1cryDuUhoM+Q==
+Received: by mail-vs1-f54.google.com with SMTP id d126so4725720vsd.13;
+        Sat, 03 Sep 2022 07:15:46 -0700 (PDT)
+X-Gm-Message-State: ACgBeo3ikny5BXX32+9BCbT6Aer112TJRrPqlNotxilqVNbVlyC8g1e+
+        vrrGcEDSgBvkq1w9VNvEj5fmNuTdGH8XpNWiNcc=
+X-Google-Smtp-Source: AA6agR4Mm5CDbSVzGUuU9Le1jrraNppoFx9hZxmyR0Mx07jBrk3YAqwYjgTaCXwombY3RjovNF6IxEXvdbwQRT1wnl0=
+X-Received: by 2002:a05:6102:390d:b0:387:78b9:bf9c with SMTP id
+ e13-20020a056102390d00b0038778b9bf9cmr12500187vsu.43.1662214545467; Sat, 03
+ Sep 2022 07:15:45 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YxKe00H2S9AzF0Yi@pendragon.ideasonboard.com>
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <cover.1662190009.git.zhoubinbin@loongson.cn>
+In-Reply-To: <cover.1662190009.git.zhoubinbin@loongson.cn>
+From:   Huacai Chen <chenhuacai@kernel.org>
+Date:   Sat, 3 Sep 2022 22:15:33 +0800
+X-Gmail-Original-Message-ID: <CAAhV-H5+7_o1znvnOdbASwxL09NxSr6vAFpiZZC16DHGtt5f9w@mail.gmail.com>
+Message-ID: <CAAhV-H5+7_o1znvnOdbASwxL09NxSr6vAFpiZZC16DHGtt5f9w@mail.gmail.com>
+Subject: Re: [PATCH 0/7] rtc: ls2x: Add support for the Loongson-2K/LS7A RTC
+To:     Binbin Zhou <zhoubinbin@loongson.cn>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>, linux-rtc@vger.kernel.org,
+        "open list:MIPS" <linux-mips@vger.kernel.org>,
+        devicetree@vger.kernel.org, loongarch@lists.linux.dev,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        Qing Zhang <zhangqing@loongson.cn>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Sep 03, 2022 at 03:24:51AM +0300, Laurent Pinchart wrote:
-> Hi Francesco,
-> 
-> On Fri, Sep 02, 2022 at 05:57:20PM +0200, Francesco Dolcini wrote:
-> > Hello Laurent,
-> > answering here for both patches (1/2 and 2/2).
-> > 
-> > On Thu, Sep 01, 2022 at 09:07:49PM +0300, Laurent Pinchart wrote:
-> > > On Thu, Sep 01, 2022 at 05:40:50PM +0200, Max Krummenacher wrote:
-> > > > From: Max Krummenacher <max.krummenacher@toradex.com>
-> > > > 
-> > > > Add the hdmi connector present on the dsi to hdmi adapter now
-> > > > required by the upstream lontium bridge driver.
-> > > > The dsi to hdmi adapter is enabled in an device tree overlay.
-> > > 
-> > > Shouldn't the connector also be in the overlay ? There's certainly no
-> > > physical HDMI connector on the i.MX8MP Verdin SoM :-)
-> > 
-> > Toradex DTS include and overlay files structure so far has been a little
-> > bit different and not following the expectation you just stated here,
-> > you can just check the current *toradex*dts* files and you'll see that there
-> > is other stuff that is not strictly part of the module.
-> > 
-> > Copying from a previous email thread on a very similar discussion [0]
-> > some of the reasons:
-> > 
-> >  - The SoM dtsi representing not only the functionality implemented into
-> >    the SoM, but the whole connector pinout to the carrier makes very easy
-> >    to just include a different som.dtsi in the carrier board dts and just
-> >    switch SoM, for example from a colibri-imx6 to a colibri-imx7.
-> 
-> That's fine, but I don't see how that's related to the issue at hand.
-> The DSI to HDMI bridge wouldn't be present on either SoM, would it ?
-> 
-> >  - We avoid code duplication
-> > 
-> > This is working for us pretty well so far and the majority of the users
-> > of ours modules rely on this structure, we would prefer not to change that.
-> 
-> It may work for your current use cases, but it doesn't make it right :-)
+Hi, Binbin,
 
-Most of engineering is about compromise, being consistent with what we
-did so far and the end-user experience need to be taken into account.
+On Sat, Sep 3, 2022 at 5:35 PM Binbin Zhou <zhoubinbin@loongson.cn> wrote:
+>
+> Hi all:
+>
+> The initial DT-base ls2x rtc driver was written by Wang Xuerui, he has
+> released five versions of patchset before, and all related mail records
+> are shown below if you are interested:
+>
+> https://lore.kernel.org/all/?q=ls2x-rtc
+>
+> In this series of patches, based on the code above, I have added the
+> following support:
+>
+> 1. Add ACPI-related support, as Loongson-3 + LS7A is now ACPI-base
+>    by default on LoonArch;
+> 2. Add rtc alarm/walarm related functions.
+>
+> Unfortunately, I have only tested the Loongson-3A4000+LS7A1000/LS7A2000
+> under LoongArch architecture.
+I think Loongson-3A4000 should be Loongson-3A5000 here. And I think
+Qing Zhang can help us to test on Loongson-2K platform.
 
-> Someone can integrate a Verdin SoM with a carrier board that has no DSI
-> to HDMI (or LVDS) bridge, there should thus be no such device in the
-> device tree. The SoM has DSI signals present on its connector, that's
-> what the SoM .dtsi should expose.
-
-Just for the record Verdin i.MX8M Plus do have both HDMI and LVDS on the
-connector (in addition to DSI) [1], of course we do have also the option to
-have LVDS or HDMI using an external add-on DSI bridge as this patches are
-about.
-
-Said that it's true that sometime we describe peripherals that are part of the
-SOM family into the SOM dtsi, this avoid quite a lot of duplications given the
-amount of carrier board that are available on the market that use just the same
-building blocks (and this was one of the 2 points I mentioned as a reasoning
-for our current DTS files structure).
-
-Of course, we keep these stuff disabled by default, so apart for some small size
-increase I do not see a real issue.
-
-Francesco
-
-[1] https://docs.toradex.com/110977-verdin_imx8m_plus_v1.1_datasheet.pdf
+Huacai
+>
+> NOTE:
+> The related functions of rtc alarm/walarm depend on ACPI registers, so rtc
+> alarm may not be available on the DT-base environment. Such as Loongson-2k/3
+> under MIPS.
+>
+> Thanks.
+>
+> Binbin Zhou (2):
+>   rtc: ls2x: Add support for the Loongson-2K/LS7A RTC
+>   LoongArch: Enable LS2X RTC in loongson3_defconfig
+>
+> WANG Xuerui (5):
+>   dt-bindings: rtc: Add bindings for LS2X RTC
+>   MIPS: Loongson64: DTS: Add RTC support to LS7A
+>   MIPS: Loongson: Enable LS2X RTC in loongson3_defconfig
+>   MIPS: Loongson64: DTS: Add RTC support to Loongson-2K
+>   MIPS: Loongson: Enable LS2X RTC in loongson2k_defconfig
+>
+>  .../devicetree/bindings/rtc/trivial-rtc.yaml  |   2 +
+>  arch/loongarch/configs/loongson3_defconfig    |   1 +
+>  .../boot/dts/loongson/loongson64-2k1000.dtsi  |   5 +
+>  arch/mips/boot/dts/loongson/ls7a-pch.dtsi     |   5 +
+>  arch/mips/configs/loongson2k_defconfig        |   1 +
+>  arch/mips/configs/loongson3_defconfig         |   1 +
+>  drivers/rtc/Kconfig                           |  11 +
+>  drivers/rtc/Makefile                          |   1 +
+>  drivers/rtc/rtc-ls2x.c                        | 366 ++++++++++++++++++
+>  9 files changed, 393 insertions(+)
+>  create mode 100644 drivers/rtc/rtc-ls2x.c
+>
+> --
+> 2.31.1
+>
+>
