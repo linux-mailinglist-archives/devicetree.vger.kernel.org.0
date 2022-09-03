@@ -2,106 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 832495AC10C
-	for <lists+devicetree@lfdr.de>; Sat,  3 Sep 2022 21:08:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9773A5AC113
+	for <lists+devicetree@lfdr.de>; Sat,  3 Sep 2022 21:12:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233017AbiICTIg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Sep 2022 15:08:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44438 "EHLO
+        id S231757AbiICTMl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Sep 2022 15:12:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231753AbiICTIe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Sep 2022 15:08:34 -0400
-X-Greylist: delayed 557 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 03 Sep 2022 12:08:33 PDT
-Received: from mail-4018.proton.ch (mail-4018.proton.ch [185.70.40.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67BBF57E3B;
-        Sat,  3 Sep 2022 12:08:33 -0700 (PDT)
-Date:   Sat, 03 Sep 2022 19:08:20 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
-        s=protonmail; t=1662232111; x=1662491311;
-        bh=iURgxyu9ob4++N5UHicPVjw94qeA3C2soRlfY+K5wPk=;
-        h=Date:To:From:Cc:Reply-To:Subject:Message-ID:In-Reply-To:
-         References:Feedback-ID:From:To:Cc:Date:Subject:Reply-To:
-         Feedback-ID:Message-ID;
-        b=Pb53YiaSOfwtRJGfhelyHt4rQRkpIUiz7lx95feravHcOKKH/bEGOwGzxy7W1M3vM
-         yXMBaRnECFnSHhvr4BKFur1qgkEriYm/k5Dc1DYumrETedoU6HoszP2N9e5SjN+NIU
-         Kcl7WG+XexCMMHllIcNkvccN9m48rlHwdzrCgbd0=
-To:     Iskren Chernev <iskren.chernev@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-From:   Caleb Connolly <caleb@connolly.tech>
-Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org
-Reply-To: Caleb Connolly <caleb@connolly.tech>
-Subject: Re: [PATCH v2 6/9] dt-bindings: arm: qcom: Add compatible for oneplus,billie2 phone
-Message-ID: <180096cd-9205-96b8-b6c4-a2a900166ceb@connolly.tech>
-In-Reply-To: <20220903174150.3566935-7-iskren.chernev@gmail.com>
-References: <20220903174150.3566935-1-iskren.chernev@gmail.com> <20220903174150.3566935-7-iskren.chernev@gmail.com>
-Feedback-ID: 10753939:user:proton
+        with ESMTP id S229698AbiICTMj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Sep 2022 15:12:39 -0400
+Received: from smtp-fw-33001.amazon.com (smtp-fw-33001.amazon.com [207.171.190.10])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B34B15A15B;
+        Sat,  3 Sep 2022 12:12:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1662232359; x=1693768359;
+  h=message-id:date:mime-version:to:cc:references:from:
+   in-reply-to:content-transfer-encoding:subject;
+  bh=uOyTre85yQlaDYxtAo4E2Bj7GJMoTnZvSMixbf7TAhM=;
+  b=sKWsztVU0DymbqizyfALc/6uAVAExuBe06zjMPlLw2ixNwmhcjav/HDL
+   pYhMM2DVEBfrbgpeQUaRpWCAmRXeb1x2lS815reFE9Sl7tyM4jYg5Tcqo
+   i1kk7KMdnWkC1U18Hv/FhYlH/D9CLzjSmr2G9wfPYjVsPkrNvRr8oseGK
+   A=;
+X-IronPort-AV: E=Sophos;i="5.93,287,1654560000"; 
+   d="scan'208";a="223181348"
+Subject: Re: [PATCH v3 14/19] dt-bindings: hwmon: (mr75203) add "moortec,
+ ts-series" property
+Received: from iad12-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-pdx-2a-7d84505d.us-west-2.amazon.com) ([10.43.8.6])
+  by smtp-border-fw-33001.sea14.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Sep 2022 19:12:22 +0000
+Received: from EX13MTAUWB001.ant.amazon.com (pdx1-ws-svc-p6-lb9-vlan2.pdx.amazon.com [10.236.137.194])
+        by email-inbound-relay-pdx-2a-7d84505d.us-west-2.amazon.com (Postfix) with ESMTPS id C6998100361;
+        Sat,  3 Sep 2022 19:12:20 +0000 (UTC)
+Received: from EX19D013UWB003.ant.amazon.com (10.13.138.111) by
+ EX13MTAUWB001.ant.amazon.com (10.43.161.249) with Microsoft SMTP Server (TLS)
+ id 15.0.1497.38; Sat, 3 Sep 2022 19:12:20 +0000
+Received: from EX13MTAUWA001.ant.amazon.com (10.43.160.58) by
+ EX19D013UWB003.ant.amazon.com (10.13.138.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1118.12;
+ Sat, 3 Sep 2022 19:12:20 +0000
+Received: from [192.168.97.127] (10.85.143.175) by mail-relay.amazon.com
+ (10.43.160.118) with Microsoft SMTP Server id 15.0.1497.38 via Frontend
+ Transport; Sat, 3 Sep 2022 19:12:14 +0000
+Message-ID: <58d05274-b460-638e-d363-930de897283a@amazon.com>
+Date:   Sat, 3 Sep 2022 22:12:13 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.1
+To:     Rob Herring <robh@kernel.org>
+CC:     <jdelvare@suse.com>, <linux@roeck-us.net>,
+        <p.zabel@pengutronix.de>, <rtanwar@maxlinear.com>,
+        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <talel@amazon.com>,
+        <hhhawa@amazon.com>, <jonnyc@amazon.com>, <hanochu@amazon.com>,
+        <ronenk@amazon.com>, <itamark@amazon.com>, <shellykz@amazon.com>,
+        <shorer@amazon.com>, <amitlavi@amazon.com>, <almogbs@amazon.com>,
+        <dkl@amazon.com>, <andriy.shevchenko@intel.com>,
+        "Farber, Eliav" <farbere@amazon.com>
+References: <20220830192212.28570-1-farbere@amazon.com>
+ <20220830192212.28570-15-farbere@amazon.com>
+ <20220902195935.GA316069-robh@kernel.org>
+Content-Language: en-US
+From:   "Farber, Eliav" <farbere@amazon.com>
+In-Reply-To: <20220902195935.GA316069-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-11.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_SPF_WL autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 9/2/2022 10:59 PM, Rob Herring wrote:
+> On Tue, Aug 30, 2022 at 07:22:07PM +0000, Eliav Farber wrote:
+>> Add optional "moortec,ts-series" property to define the temperature
+>> equation and coefficients that shall be used to convert the digital
+>> output to value in milli-Celsius.
+>> Supported series: 5 (default) and 6.
+>>
+>> Series 5:
+>>   T = G + H * (n / cal5 - 0.5) + J * F
+>> Where: G = 60, H = 200, cal5 = 4094, J = -0.1, F = frequency clock in 
+>> MHz
+>>
+>> Series 6:
+>>    T = G + H * (n / cal5 - 0.5)
+>> Where: G = 57.4, H = 249.4, cal5 = 4096
+>>
+>> Signed-off-by: Eliav Farber <farbere@amazon.com>
+>> ---
+>> V3 -> V2:
+>> - New patch to introduce "moortec,ts-series" property.
+>>
+>>  .../devicetree/bindings/hwmon/moortec,mr75203.yaml     | 10 ++++++++++
+>>  1 file changed, 10 insertions(+)
+>>
+>> diff --git 
+>> a/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml 
+>> b/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
+>> index 4c983d8f8fe7..ec2dbe7da9c2 100644
+>> --- a/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
+>> +++ b/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
+>> @@ -64,6 +64,16 @@ properties:
+>>      default: 1
+>>      $ref: /schemas/types.yaml#definitions/uint8-array
+>>
+>> +  moortec,ts-series:
+>> +    description:
+>> +      moortec,ts-series defines the temperature equation and 
+>> coefficients that
+>> +      shall be used to convert the digital output to value in 
+>> milli-Celsius.
+>> +      Supported series are 5 and 6.
+>
+> No need to state constraints in free-form text descriptions.
 
+Fixed in v4.
 
-On 03/09/2022 18:41, Iskren Chernev wrote:
-> oneplus,billie2 (OnePlus Nord N100) is based on QualComm Snapdragon
-> SM4250 SoC.
->
-> Add support for the same in dt-bindings.
->
-> Signed-off-by: Iskren Chernev <iskren.chernev@gmail.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Reviewed-by: Caleb Connolly <caleb@connolly.tech>
-> ---
->   Documentation/devicetree/bindings/arm/qcom.yaml | 7 +++++++
->   1 file changed, 7 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentat=
-ion/devicetree/bindings/arm/qcom.yaml
-> index 19c2f4314741..63cc41cd0119 100644
-> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
-> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-> @@ -54,6 +54,8 @@ description: |
->           sdm845
->           sdx55
->           sdx65
-> +        sm4250
-> +        sm6115
->           sm6125
->           sm6350
->           sm7225
-> @@ -670,6 +672,11 @@ properties:
->                 - xiaomi,polaris
->             - const: qcom,sdm845
->
-> +      - items:
-> +          - enum:
-> +              - oneplus,billie2
-> +          - const: qcom,sm4250
-> +
->         - items:
->             - enum:
->                 - sony,pdx201
-> --
-> 2.37.2
->
-
---
-Kind Regards,
-Caleb
 
