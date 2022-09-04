@@ -2,219 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4BE75AC567
-	for <lists+devicetree@lfdr.de>; Sun,  4 Sep 2022 18:26:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A59A5AC535
+	for <lists+devicetree@lfdr.de>; Sun,  4 Sep 2022 18:02:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234494AbiIDQZ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Sep 2022 12:25:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57502 "EHLO
+        id S234070AbiIDQCU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Sep 2022 12:02:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229596AbiIDQZ7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Sep 2022 12:25:59 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C795832B9E;
-        Sun,  4 Sep 2022 09:25:54 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6524A60FC6;
-        Sun,  4 Sep 2022 16:25:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 351CAC433C1;
-        Sun,  4 Sep 2022 16:25:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1662308753;
-        bh=/ywGo6+O9qSkIDxMvanfumzxcybk0P0hGmwfPWknuqE=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=L9/wZuZ4w4cgcjs0v/cTLvPe7X7RiL0ypfwdIqWIgEgJ1vS0/8HbUv6gwHTTOSpTO
-         WlU0QBv+JgrBYaFBdanMFiTPw2NHR0DXCBYKPmL6cGjM0w8Ktcv7mBBgoLbcVhkG2T
-         kTXkwGXirJ0sZTc+6+XYUy6CiZ6H5IDdoErVh7E9qNiWQEQaLf4kgJPbOUdPYG93zM
-         E19nm4bz7zh0JSf5sRxbXkJDP7t96NXMvKV+2F6F4J7WC6/VZzoQlcv30mZQplCbMh
-         qIuEa5WBNaSq0/8Gkrq83nX/bIM2m4EYMuS8SVMtWwnHz/uv5CW3ViZf/ymYa9Jjnr
-         Xcw7ax6blj1Sg==
-Date:   Sun, 4 Sep 2022 16:51:45 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Ramona Bolboaca <ramona.bolboaca@analog.com>
-Cc:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 2/2] iio: adc: add max11205 adc driver
-Message-ID: <20220904165145.39cb4f75@jic23-huawei>
-In-Reply-To: <20220904165003.192d5030@jic23-huawei>
-References: <20220831133021.215625-1-ramona.bolboaca@analog.com>
-        <20220831133021.215625-2-ramona.bolboaca@analog.com>
-        <20220904165003.192d5030@jic23-huawei>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S234299AbiIDQCT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Sep 2022 12:02:19 -0400
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C51A32DAE;
+        Sun,  4 Sep 2022 09:02:17 -0700 (PDT)
+Received: by mail-pf1-x433.google.com with SMTP id b144so1716193pfb.7;
+        Sun, 04 Sep 2022 09:02:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=references:in-reply-to:references:in-reply-to:message-id:date
+         :subject:cc:to:from:from:to:cc:subject:date;
+        bh=L2H/oj4SnOjK2VDh3ZkTvmpNlDpNqu22JOvA8inQcug=;
+        b=VV3bZrfvBEX7UoPBolh+3vNrIQnDKyTUqL/n4foHFmKH9VYZHfCYzw0w7snUwt8xEY
+         OJxYAIPox2hOzRXHhNcO9J0e9qyEMrSzR21/7EEpiGM6olNbgCNlk5igGGyYtFhXG/vP
+         t7VDMmea29EbZZATo29EhbIeP8iW9FIA9F14kngi4jS7TOxdIUH8Kq1hXTIwdFHohcVL
+         F7L+aTF7K+5Ln+8QyEd5uTUYTIYoEeRgucHZbj3nTdLI6DCozp8LmNIqvZLipXYU8Woi
+         FTWjHAQqSSs46REDRFCUDqiTU2LCSkX372Heh0J3/oVcbgNzfbEDZAUUDrK04zs0lith
+         tbOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=references:in-reply-to:references:in-reply-to:message-id:date
+         :subject:cc:to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=L2H/oj4SnOjK2VDh3ZkTvmpNlDpNqu22JOvA8inQcug=;
+        b=wlpX3psn2Xq6uitAVH8hIHEULKo4BVPY4Dv0Vp3laaAV91RELt3NBM5xhWHlVTXA1s
+         dVkmD1Rv7I7egteMA4cKkXAXIWHDv5tvXLzbj2KFnGTMaWWPbZohNo2apLdNdxbTIDSd
+         M7X6p1+v/beGNe0GancSIq4dVXgWW6MIHITbRAdAyDNVMmw8RDstK5loXUO152e7gQm+
+         r7OkqbXanU5G4cwT6kwVrToBPiL9rzGkMwsET1Lm7Y93dkwrKx14PhQ00floD+RItsdS
+         bgrV9ta6901h0krC5W03Q1qpvKMP0WYSp3XyDdZJRrE+B5wzeeokZ0igOMDJ3S5ABtPA
+         7KlQ==
+X-Gm-Message-State: ACgBeo1WospMTyof2gTqHxQawlnYSMwf+xJkI7/zLR2kVbYRaNp/htIo
+        gLJA1P7xKTX/X/uHxyyW8Go=
+X-Google-Smtp-Source: AA6agR50fpmfSHt5deyHU15EAqv/KS8TOC8iB23bx7LsSmqyOc+NpR+MEwT+osOgHlkD77ZFcaU5dg==
+X-Received: by 2002:a65:6d0f:0:b0:42b:42f8:efe0 with SMTP id bf15-20020a656d0f000000b0042b42f8efe0mr39601067pgb.197.1662307336728;
+        Sun, 04 Sep 2022 09:02:16 -0700 (PDT)
+Received: from scdiu3.sunplus.com ([113.196.136.192])
+        by smtp.googlemail.com with ESMTPSA id 205-20020a6217d6000000b0053818255880sm5739390pfx.193.2022.09.04.09.02.14
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 04 Sep 2022 09:02:16 -0700 (PDT)
+From:   Tony Huang <tonyhuang.sunplus@gmail.com>
+To:     ulf.hansson@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, tony.huang@sunplus.com,
+        wells.lu@sunplus.com
+Cc:     Tony Huang <tonyhuang.sunplus@gmail.com>
+Subject: [PATCH v9 1/2] dt-binding: mmc: Add mmc yaml file for Sunplus SP7021
+Date:   Mon,  5 Sep 2022 00:02:01 +0800
+Message-Id: <859a2c70816765f67fc058346806866551c39f7c.1662302950.git.tonyhuang.sunplus@gmail.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <cover.1662302950.git.tonyhuang.sunplus@gmail.com>
+References: <cover.1662302950.git.tonyhuang.sunplus@gmail.com>
+In-Reply-To: <cover.1662302950.git.tonyhuang.sunplus@gmail.com>
+References: <cover.1662302950.git.tonyhuang.sunplus@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 4 Sep 2022 16:50:03 +0100
-Jonathan Cameron <jic23@kernel.org> wrote:
+Add MMC YAML file for Sunplus SP7021.
 
-> On Wed, 31 Aug 2022 16:30:21 +0300
-> Ramona Bolboaca <ramona.bolboaca@analog.com> wrote:
-> 
-> > Adding support for max11205 16-bit single-channel ultra-low power
-> > delta-sigma adc.
-> > The MAX11205 is compatible with the 2-wire interface and uses
-> > SCLK and RDY/DOUT for serial communications. In this mode, all
-> > controls are implemented by timing the high or low phase of the SCLK.
-> > The 2-wire serial interface only allows for data to be read out through
-> > the RDY/DOUT output.
-> > 
-> > Datasheet: https://datasheets.maximintegrated.com/en/ds/MAX11205.pdf
-> > Signed-off-by: Ramona Bolboaca <ramona.bolboaca@analog.com>  
-> 
-> Given the requested changes below and those from Andy and Kryzstof are minor, I'll just
-> tweak them whilst applying.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Tony Huang <tonyhuang.sunplus@gmail.com>
+---
+Changes in v5:
+ - Addressed comments from Krzysztof.
 
-On that note, applied to the togreg branch of iio.git (with changes as noted)
-and pushed out as testing for 0-day to see if it can find anything we missed.
+Changes in v6:
+ - Addressed comments from Krzysztof.
+ - To substitute MMC for mmc. To substitute YMAL for ymal.
+ - Remove max-frequency.
+ - Fixed wrong file name.
 
-Thanks,
+Changes in v7:
+ -No change.
 
-Jonathan
+Changes in v8:
+ -No change.
 
-> 
-> Diff for this patch was below.  The long line for chip_info is a bit ugly but
-> not too bad...
-> 
-> diff --git a/drivers/iio/adc/max11205.c b/drivers/iio/adc/max11205.c
-> index 68e6082e70e5..fc90fed81eb6 100644
-> --- a/drivers/iio/adc/max11205.c
-> +++ b/drivers/iio/adc/max11205.c
-> @@ -1,6 +1,6 @@
->  // SPDX-License-Identifier: GPL-2.0
->  /*
-> - * max11205 16-Bit Delta-Sigma ADC
-> + * Maxim MAX11205 16-Bit Delta-Sigma ADC
->   *
->   * Datasheet: https://datasheets.maximintegrated.com/en/ds/MAX1240-max11205.pdf
->   * Copyright (C) 2022 Analog Devices, Inc.
-> @@ -19,20 +19,20 @@
->  #define MAX11205A_OUT_DATA_RATE        116
->  #define MAX11205B_OUT_DATA_RATE        13
->  
-> -enum chip_type {
-> +enum max11205_chip_type {
->         TYPE_MAX11205A,
->         TYPE_MAX11205B,
->  };
->  
-> -struct chip_info {
-> +struct max11205_chip_info {
->         unsigned int    out_data_rate;
->         const char      *name;
->  };
->  
->  struct max11205_state {
-> -       const struct chip_info  *chip_info;
-> -       struct regulator        *vref;
-> -       struct ad_sigma_delta   sd;
-> +       const struct max11205_chip_info *chip_info;
-> +       struct regulator                *vref;
-> +       struct ad_sigma_delta           sd;
->  };
->  
->  static const struct ad_sigma_delta_info max11205_sigma_delta_info = {
-> @@ -81,12 +81,12 @@ static const struct iio_chan_spec max11205_channels[] = {
->                         .endianness = IIO_BE
->                 },
->                 .info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-> -               BIT(IIO_CHAN_INFO_SAMP_FREQ) |
-> -               BIT(IIO_CHAN_INFO_SCALE),
-> +                                     BIT(IIO_CHAN_INFO_SAMP_FREQ) |
-> +                                     BIT(IIO_CHAN_INFO_SCALE),
->         },
->  };
->  
-> -static const struct chip_info max11205_chip_info[] = {
-> +static const struct max11205_chip_info max11205_chip_info[] = {
->         [TYPE_MAX11205A] = {
->                 .out_data_rate = MAX11205A_OUT_DATA_RATE,
->                 .name = "max11205a",
-> @@ -117,9 +117,9 @@ static int max11205_probe(struct spi_device *spi)
->         ad_sd_init(&st->sd, indio_dev, spi, &max11205_sigma_delta_info);
->  
->         st->chip_info = device_get_match_data(&spi->dev);
-> -
->         if (!st->chip_info)
-> -               st->chip_info = (const struct chip_info *)spi_get_device_id(spi)->driver_data;
-> +               st->chip_info =
-> +                       (const struct max11205_chip_info *)spi_get_device_id(spi)->driver_data;
->  
->         indio_dev->name = st->chip_info->name;
->         indio_dev->modes = INDIO_DIRECT_MODE;
-> 
-> > ---
-> > changes in v2:
-> >  - add chip_info null pointer check
-> >  - add support for probing with ACPI table
-> >  - remove function for module removal
-> >  - remove irq flag from max11205_sigma_delta_info
-> >  - add missing commas and missing spaces
-> >  - remove redundant blank line
-> >  - wrap text to 75-80 chars
-> >  - removed typos in commit message
-> >  drivers/iio/adc/Kconfig    |  14 +++
-> >  drivers/iio/adc/Makefile   |   1 +
-> >  drivers/iio/adc/max11205.c | 183 +++++++++++++++++++++++++++++++++++++
-> >  3 files changed, 198 insertions(+)
-> >  create mode 100644 drivers/iio/adc/max11205.c
-> >   
-> 
-> > +enum chip_type {
-> > +	TYPE_MAX11205A,
-> > +	TYPE_MAX11205B,
-> > +};
-> > +
-> > +struct chip_info {
-> > +	unsigned int	out_data_rate;
-> > +	const char	*name;
-> > +};  
-> Prefix these enums and structures with max11205.
-> 
-> They have very generic names, so it's definitely possible that
-> something with the same name might be added to a header included
-> by this driver
-> > +
-> > +struct max11205_state {
-> > +	const struct chip_info	*chip_info;
-> > +	struct regulator	*vref;
-> > +	struct ad_sigma_delta	sd;
-> > +};
-> > +  
-> 
-> 
-> > +static const struct iio_chan_spec max11205_channels[] = {
-> > +	{
-> > +		.type = IIO_VOLTAGE,
-> > +		.indexed = 1,
-> > +		.scan_type = {
-> > +			.sign = 's',
-> > +			.realbits = 16,
-> > +			.storagebits = 16,
-> > +			.endianness = IIO_BE
-> > +		},
-> > +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-> > +		BIT(IIO_CHAN_INFO_SAMP_FREQ) |  
-> 
-> Code editors always get confused on these, but please add an
-> indent to this line and the next one. Either align it with the BIT()
-> above, or just push it in one tab.
-> 
-> > +		BIT(IIO_CHAN_INFO_SCALE),
-> > +	},
-> > +};  
-> 
-> 
+Changes in v9:
+ -No change.
+
+ .../devicetree/bindings/mmc/sunplus,mmc.yaml       | 62 ++++++++++++++++++++++
+ MAINTAINERS                                        |  6 +++
+ 2 files changed, 68 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mmc/sunplus,mmc.yaml
+
+diff --git a/Documentation/devicetree/bindings/mmc/sunplus,mmc.yaml b/Documentation/devicetree/bindings/mmc/sunplus,mmc.yaml
+new file mode 100644
+index 0000000..50f2119
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mmc/sunplus,mmc.yaml
+@@ -0,0 +1,62 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) Sunplus Ltd. Co. 2021
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mmc/sunplus,mmc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Sunplus MMC Controller
++
++maintainers:
++  - Tony Huang <tonyhuang.sunplus@gmail.com>
++  - Li-hao Kuo <lhjeff911@gmail.com>
++
++allOf:
++  - $ref: "mmc-controller.yaml"
++
++properties:
++  compatible:
++    enum:
++      - sunplus,sp7021-mmc
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  resets:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - resets
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    mmc0: mmc@9c003b00 {
++        compatible = "sunplus,sp7021-mmc";
++        reg = <0x9c003b00 0x180>;
++        interrupts = <20 IRQ_TYPE_LEVEL_HIGH>;
++        clocks = <&clkc 0x4e>;
++        resets = <&rstc 0x3e>;
++        bus-width = <8>;
++        max-frequency = <52000000>;
++        non-removable;
++        disable-wp;
++        cap-mmc-highspeed;
++        mmc-ddr-3_3v;
++        no-sdio;
++        no-sd;
++    };
++
+diff --git a/MAINTAINERS b/MAINTAINERS
+index fd768d4..cdd809a 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -18869,6 +18869,12 @@ L:	netdev@vger.kernel.org
+ S:	Maintained
+ F:	drivers/net/ethernet/dlink/sundance.c
+ 
++SUNPLUS MMC DRIVER
++M:	Tony Huang <tonyhuang.sunplus@gmail.com>
++M:	Li-hao Kuo <lhjeff911@gmail.com>
++S:	Maintained
++F:	Documentation/devicetree/bindings/mmc/sunplus,mmc.yaml
++
+ SUNPLUS OCOTP DRIVER
+ M:	Vincent Shih <vincent.sunplus@gmail.com>
+ S:	Maintained
+-- 
+2.7.4
 
