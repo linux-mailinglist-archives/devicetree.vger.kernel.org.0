@@ -2,53 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84EAA5AC560
-	for <lists+devicetree@lfdr.de>; Sun,  4 Sep 2022 18:23:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A36585AC5B7
+	for <lists+devicetree@lfdr.de>; Sun,  4 Sep 2022 19:23:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232793AbiIDQXe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Sep 2022 12:23:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52958 "EHLO
+        id S235302AbiIDRWo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Sep 2022 13:22:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229596AbiIDQXd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Sep 2022 12:23:33 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01A822B24A;
-        Sun,  4 Sep 2022 09:23:31 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 8AF55B80DB0;
-        Sun,  4 Sep 2022 16:23:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6E62C433D6;
-        Sun,  4 Sep 2022 16:23:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1662308609;
-        bh=EGjh7mS5zJnu1xp3jsOWXePLs1ZonDTFOjM6Yw4z0sk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=E4YB9JMuAOXI9y1z4Z55HvKxWVmKoRXckM/SnJILzF0v2X2OVMyE0UwdoXdOquFkn
-         e6DZ8zFJDOjQkUJJwKH1qEnpOtNOEFmJ80QRG5lyoOcP/K5HyzX+an82zVepWizoun
-         r1BXNl9zmT/E4vOJVJ6lnfMDXo3EAd+sv1vmG2VvgoB+/hY9yLz38q/RkYtmH9t5jG
-         iwRdhqAE/kjtOWOlbpQ2jo06yHgbYYfW5cVETBGSMFF2TxZ+Meyz6FnqT9h/cONpk2
-         zzb6WYESAKi2jis1rd6V9D5IuZnN7yW86nfffHjrYYnwLAmZ6SXfdGjcTi6KqRcV+x
-         osUQoWho/LAmQ==
-Date:   Sun, 4 Sep 2022 21:53:24 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Luca Weiss <luca.weiss@fairphone.com>
-Cc:     linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/3] Add GPI DMA support for SM6350
-Message-ID: <YxTQ/A8i0HpAO9om@matsya>
-References: <20220812082721.1125759-1-luca.weiss@fairphone.com>
+        with ESMTP id S235207AbiIDRWg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Sep 2022 13:22:36 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B220356EE;
+        Sun,  4 Sep 2022 10:22:33 -0700 (PDT)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=phil.lan)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1oUtKB-0000tW-61; Sun, 04 Sep 2022 19:22:23 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Andy Yan <andyshrk@163.com>, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     Heiko Stuebner <heiko@sntech.de>
+Subject: Re: [PATCH v2 0/3] Add support for rk3399 based eaidk-610
+Date:   Sun,  4 Sep 2022 19:22:16 +0200
+Message-Id: <166231195329.2423948.3022216609132415714.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220709102902.2753851-1-andyshrk@163.com>
+References: <20220709102902.2753851-1-andyshrk@163.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220812082721.1125759-1-luca.weiss@fairphone.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -56,14 +42,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12-08-22, 10:27, Luca Weiss wrote:
-> This series hooks up GPI DMA support for the SM6350 I2C.
+On Sat, 9 Jul 2022 18:29:02 +0800, Andy Yan wrote:
+> EAIDK-610 is from OPEN AI LAB and popularly used by university
+> students.
 > 
-> It has been tested using himax,hxcommon driver that I forward-ported
-> from the original vendor kernel on fairphone-fp4 - previously I have
-> used i2c-gpio bitbang in my tree.
+> Specification:
+> - Rockchip RK3399
+> - LPDDR3 4GB
+> - TF sd scard slot
+> - eMMC
+> - AP6255 for WiFi + BT
+> - Gigabit ethernet
+> - HDMI out
+> - 40 pin header
+> - USB 2.0 x 2
+> - USB 3.0 x 1
+> - USB 3.0 Type-C x 1
+> - 12V DC Power supply
+> 
+> [...]
 
-Applied 1-2, thanks
+Applied, thanks!
 
+[1/3] dt-bindings: vendor-prefixes: Add OPEN AI LAB
+      commit: 467dcf345613a779efc3af1dce88a576079666e6
+[2/3] dt-bindings: arm: rockchip: Add EAIDK-610
+      commit: a15ca48b6451b7af27323749f35d0f9929f83f73
+[3/3] arm64: dts: rockchip: Add dts for a rk3399 based board EAIDK-610
+      commit: 904f983256fdd24bde974bf2f38fbacd3edbcd80
+
+Best regards,
 -- 
-~Vinod
+Heiko Stuebner <heiko@sntech.de>
