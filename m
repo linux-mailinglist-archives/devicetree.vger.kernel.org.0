@@ -2,101 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03DEC5AC61B
-	for <lists+devicetree@lfdr.de>; Sun,  4 Sep 2022 21:29:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 605A15AC63A
+	for <lists+devicetree@lfdr.de>; Sun,  4 Sep 2022 21:50:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234526AbiIDT3P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Sep 2022 15:29:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36390 "EHLO
+        id S233492AbiIDTuM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Sep 2022 15:50:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231374AbiIDT3P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Sep 2022 15:29:15 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2F202E6B0
-        for <devicetree@vger.kernel.org>; Sun,  4 Sep 2022 12:29:13 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id w19so7287832ljj.7
-        for <devicetree@vger.kernel.org>; Sun, 04 Sep 2022 12:29:13 -0700 (PDT)
+        with ESMTP id S229596AbiIDTuM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Sep 2022 15:50:12 -0400
+Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B04823167;
+        Sun,  4 Sep 2022 12:50:10 -0700 (PDT)
+Received: by mail-qt1-x836.google.com with SMTP id c20so4976149qtw.8;
+        Sun, 04 Sep 2022 12:50:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=zHeAXo2eVvuHVI2CtRdbixiwjmytc3y6afJUtYoJYpk=;
-        b=ThWlvfZfdpLZC6rr/TLTj3uI1wa6gss0BeXEu/MR0bu6mh5ROH84GuWWi0yMygSsk8
-         GQMd6eUlDaYvmd9VAzJKYHpIlk81VNLE1B6WbCvBWQ8cmCfHV7IdZaxRlu62hKuwI68T
-         aWoUSaic1aeLY7G3xVPOc5+D8P1P28prp2Dw4wLC0UFzleMPnWcdC4RW5nEsCHvjA26N
-         h9e8wEp0ulmb1DhqIsw/uU3xo076Qrz6al7h0tKy2PDYbFViyg0vm2JCX+EWUjovIO7h
-         jAAdt5zqurVEgQ1Glytm30i06NVu1K1E4kCgWhcmFsrts1U7FFwRj3FVvrhLU4Lqecxm
-         hgCw==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=PPfkQm8NNB1xxEVgujz8sY2zHs93/Mg3JVXZu2/nhoE=;
+        b=fLW5rs1cND7l8wMp30gWpEONB1/oIBWF1Wg4hZcr88lQdtKeW48E6Y6mLqEmZvV0ia
+         tupES7bDnhezg7s2S6XDddcHfdTTC/ex7jrZCPxmtOGS2/E1+iMJgE36DrH8M11vTmtL
+         0t7mT150I0QO5XOxQkd++h7Z/b5/0TANjC+RZVxmjQerzDKo85+49y5vPovQtbisrbPq
+         i0fEjq3mTnx431o72RGg0u3mO6lAAtiM7LGQAD7HfbGG5w572ardCj3oC89obc2sP3a6
+         zAtsbFTtrzEw8Y8VmKOtP7sujzuXRTJ9FplSP42eQbV9LPjQLclFf3GH9IZ0NJ8WX5Hl
+         R6Pw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=zHeAXo2eVvuHVI2CtRdbixiwjmytc3y6afJUtYoJYpk=;
-        b=XEiohxeuH8hzYJ8/psC0v9Bpoww1eAZYftLXpyebjbS9bz2c7pTUwELxSP8GBrjRkP
-         +p9VT8h5UVYW73aNMVrFKo6j9UnOFrIYGwbxLcrG+x4mCebITTh10L6sK4j95kOOh5eZ
-         KmwW+cSs4kQBAEFWhsXu0H/28w4Qrs0GJAM/rg+Jvbq9VnlzEIaDBH54AqVyYU34DvJn
-         167MaW60U3JeLb0uC702ncr5yqw+eo6UtyETLuMtgSqPAEhme7L0SEUZqddHY9MG7nyl
-         flkOzcdlfhckWTFqyC/Qr8Osp/gTxxTmETZh3YntBxqiGwWB+K3nlXTjO/XoYQ0GcV4S
-         c60A==
-X-Gm-Message-State: ACgBeo2QC6PVCmOscdIOcUAEekdLIvoMcbTpq7mYm7K8CXm3w8v910sk
-        jM5pCU54PoGaaJNFajcBIPsLRA==
-X-Google-Smtp-Source: AA6agR65K/IgRHnj6QpYI1nFz586TFGQ5PPBnlzIci/aK9vvxN7Khb0SzyqI1idYiXM726MSBrsDTA==
-X-Received: by 2002:a2e:bc26:0:b0:266:9e0f:ee86 with SMTP id b38-20020a2ebc26000000b002669e0fee86mr8871593ljf.1.1662319752110;
-        Sun, 04 Sep 2022 12:29:12 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id e19-20020a05651c111300b00261aecd1c53sm1087776ljo.71.2022.09.04.12.29.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 04 Sep 2022 12:29:11 -0700 (PDT)
-Message-ID: <58608d9f-bc79-4e97-2027-e68863213aea@linaro.org>
-Date:   Sun, 4 Sep 2022 22:29:04 +0300
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=PPfkQm8NNB1xxEVgujz8sY2zHs93/Mg3JVXZu2/nhoE=;
+        b=dz2CT3aK+gDJ8ktVm6ucRm193ghDGwOa4CZ0zVoWT0Mi7fc5roDqVaursaa26mnb6O
+         1NLX2d1LjgQHkFM6Y36BWv9en0E3oeuCXu46Uf0gW0Hx/i8N9jZaTH8oSdBFE9GMKcr2
+         82Y3JIC0jmNnHoNGWSTrQ68mMCS2gZwn+12+WlHaxleNB/PXfzAo1nUkvFhWCIgD9EAK
+         ihQadsFZ5Rd0NPqc2WyaZKw1+MU3DpvgHGYiWzbSTB2yov9SV8Xixy5yz68TTPFssQu9
+         33Xk5l/reOXFnmZghOe4Xe4T1F+LbOM8tuEusWzaHjAVBjrn5DRV3Y165GqzYOvVx9HW
+         Fkcw==
+X-Gm-Message-State: ACgBeo1BLbv3QTsPh/NjCorTFrE6tZnAc9nYVxlTZDDNj/Sj8VgqFOGX
+        CcsqyWFCQiAwg/iY12Qj+j5pVrdoKmRx1atzmgc=
+X-Google-Smtp-Source: AA6agR4hc/rPnQNNG62T1S7K2jmYKFLKYzreXh9EChGqDaIJOmq1fH1rfD8sM5NjynE8Y26XXgbgy/kmTrdB6Y5diLY=
+X-Received: by 2002:a05:622a:491:b0:344:95bf:8f05 with SMTP id
+ p17-20020a05622a049100b0034495bf8f05mr37068281qtx.61.1662321009265; Sun, 04
+ Sep 2022 12:50:09 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v2 03/10] dt-bindings: misc: fastrpc: Document
- memory-region property
-Content-Language: en-US
-To:     Abel Vesa <abel.vesa@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Amol Maheshwari <amahesh@qti.qualcomm.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Ekansh Gupta <quic_ekagupt@quicinc.com>
-Cc:     Rob Herring <robh@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-arm-msm@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org
-References: <20220902154900.3404524-1-abel.vesa@linaro.org>
- <20220902154900.3404524-4-abel.vesa@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220902154900.3404524-4-abel.vesa@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220831133021.215625-1-ramona.bolboaca@analog.com>
+ <20220831133021.215625-2-ramona.bolboaca@analog.com> <20220904165003.192d5030@jic23-huawei>
+ <20220904165145.39cb4f75@jic23-huawei>
+In-Reply-To: <20220904165145.39cb4f75@jic23-huawei>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Sun, 4 Sep 2022 22:49:33 +0300
+Message-ID: <CAHp75VcszDjWXhjX+E7Xe0a=1_2tVpLNk8UWaAP7p=dKGMCUdw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] iio: adc: add max11205 adc driver
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Ramona Bolboaca <ramona.bolboaca@analog.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/09/2022 18:48, Abel Vesa wrote:
-> Add memory-region property to the list of optional properties, specify
-> the value type and a definition
+On Sun, Sep 4, 2022 at 7:31 PM Jonathan Cameron <jic23@kernel.org> wrote:
+> On Sun, 4 Sep 2022 16:50:03 +0100
+> Jonathan Cameron <jic23@kernel.org> wrote:
+> > On Wed, 31 Aug 2022 16:30:21 +0300
+> > Ramona Bolboaca <ramona.bolboaca@analog.com> wrote:
 
-You should write why adding this property. Is it already used?
+...
 
-New properties can go only to DT schema, so first the conversion [1]
-should be finished or started from zero (9 months it's quite a time for
-a resend...).
+> > Given the requested changes below and those from Andy and Kryzstof are minor, I'll just
+> > tweak them whilst applying.
+>
+> On that note, applied to the togreg branch of iio.git (with changes as noted)
+> and pushed out as testing for 0-day to see if it can find anything we missed.
 
-https://lore.kernel.org/all/20211208101508.24582-1-david@ixit.cz/
+If you are not too lazy and have time to tweak one completely minor
+thingy, see below.
+
+...
+
+> > @@ -81,12 +81,12 @@ static const struct iio_chan_spec max11205_channels[] = {
+> >                         .endianness = IIO_BE
+
++ A comma here :-)
 
 
-Best regards,
-Krzysztof
+> >                 },
+> >                 .info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
+> > -               BIT(IIO_CHAN_INFO_SAMP_FREQ) |
+> > -               BIT(IIO_CHAN_INFO_SCALE),
+> > +                                     BIT(IIO_CHAN_INFO_SAMP_FREQ) |
+> > +                                     BIT(IIO_CHAN_INFO_SCALE),
+> >         },
+
+-- 
+With Best Regards,
+Andy Shevchenko
