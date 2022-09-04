@@ -2,91 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BEF1A5AC5E0
-	for <lists+devicetree@lfdr.de>; Sun,  4 Sep 2022 20:16:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 408BD5AC5F8
+	for <lists+devicetree@lfdr.de>; Sun,  4 Sep 2022 21:08:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231986AbiIDSQm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Sep 2022 14:16:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54920 "EHLO
+        id S231628AbiIDTI2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Sep 2022 15:08:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231181AbiIDSQl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Sep 2022 14:16:41 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8ADA62AC7B;
-        Sun,  4 Sep 2022 11:16:40 -0700 (PDT)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 284HsKIH018843;
-        Sun, 4 Sep 2022 18:16:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=ubnAS8VgAnez/UAxDq8AwKFPMgv5RWi6uPoVQePbBlE=;
- b=WbMVm5gv0azn6Wu7ZjnkNCLfY+2vxCCFyRGvsXx7Bv0hh33UZaR+EohJEyNseHlB4oBQ
- cN6cdEZdPr20Q13sVn1N/AG1OcoGl4dmeZqleuRCWY5wCethSO5uWmyyNKPRDmkwrdoO
- zZGHsncyEy7Fb0WwEc5aoB2V5E9xyskCXDyM/mqmCgvh3rXatM/0x6fuQMpNBDQ+xY/6
- 22LgvNAVk9LAlJ8ZXTZgYAB/TElNTclOed9jHys/6tKjcFt91f71MS0l+fXzA2mr6jo/
- 6urbBsavP/KzyFoASY4qIFZev4OegD5WIhCa6YfqAx8OymZwusTpbOLdth8oHdn5jKYu yg== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jc07dabvg-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Sun, 04 Sep 2022 18:16:22 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 284IGLM0027586
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Sun, 4 Sep 2022 18:16:21 GMT
-Received: from [10.216.14.47] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Sun, 4 Sep 2022
- 11:16:15 -0700
-Message-ID: <7ec9f707-f554-4f50-e7fb-f66a6989daac@quicinc.com>
-Date:   Sun, 4 Sep 2022 23:46:11 +0530
+        with ESMTP id S230015AbiIDTI0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Sep 2022 15:08:26 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67C762BB17
+        for <devicetree@vger.kernel.org>; Sun,  4 Sep 2022 12:08:22 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id g7so10344946lfe.11
+        for <devicetree@vger.kernel.org>; Sun, 04 Sep 2022 12:08:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=YlkqaOEVfnAcJNdhPnwwyOFkWGniyUwZfTkbWM3JHJU=;
+        b=QPTVeGwGHyB4PL/sHpYy7p22E6WFaqGiRYwoqgTJz+HosSqH4kTIcJrx+WvKKcTaif
+         X5+5jekS2yhUfmoL43nWc7zFasmiZYcm2Tb5Bk5ERZESMdDXCCe2w1LdA2M961efLlu6
+         r5cIuXiOMzfYjYLhFa0qv/5d97ItAlmwnPaqRKqix9TxnrCMbjjaGvL19fTgzlTnNZHT
+         +3RqmCDdYOtKu8dlDqIyjCC0nIccSoTH3BNtP6uyGfWpQTnsdb6oYNspTDzu5DnOZo65
+         JSZ0cqbwxijrCcbMOkLmdbjvWF450RP2MWtnZYXYus8jYTv7ySiOIMOYQPwb+v6+eBW7
+         +nXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=YlkqaOEVfnAcJNdhPnwwyOFkWGniyUwZfTkbWM3JHJU=;
+        b=QypTtemhQ6Fk7VR52f30KJbb/G6n4lzMjRtXTUaqYT1Ddh0nLKAbDugVsxCKtKT1sG
+         +dcnf8LmzXut25QcGXV99QkgAXHvdxEVAsCnw5kOM+q7dH7zcsFxp0J3KjUf+GE8XgBc
+         XtFK/DP9ZsLabKWYifXUUtBipzTY6w2ssRSXQLwKVaW02k7LtbRzv9hb6PYNyB3afdsa
+         S4xLntFXo7+vI6hsMwHCekRv1J1apCm1MkhxLguV/igV4uZ+Y2q5HtvutqmU48sx6E07
+         vXtqdHa/yyikJeAJnusGVGIKn3QN6DxO7znDr8FEa8TbSshuHnG2uqPqg2T6akr2ZR4t
+         86Gw==
+X-Gm-Message-State: ACgBeo0hUc3O74QjAxsWnH9mgDxVopYsXbdVFzA4c2cc1nea0z1gRPbz
+        rT+nkJA315gOCRg6F3d6YyCUCw==
+X-Google-Smtp-Source: AA6agR7p5IsnW2ri1U1OVp+ptkLLArOLKqo0mv2HoCsVhvLQZUTZmSmhIRi0jPVkHoGttS5sY9kypQ==
+X-Received: by 2002:ac2:4e15:0:b0:48b:7a5f:923c with SMTP id e21-20020ac24e15000000b0048b7a5f923cmr16415296lfr.134.1662318500695;
+        Sun, 04 Sep 2022 12:08:20 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id a24-20020ac25218000000b0048a7ef09b22sm985464lfl.274.2022.09.04.12.08.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 04 Sep 2022 12:08:20 -0700 (PDT)
+Message-ID: <167a7200-264f-3214-d4b1-e1daaafb6985@linaro.org>
+Date:   Sun, 4 Sep 2022 22:08:18 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v11 2/3] phy: qcom-snps: Add support for overriding phy
- tuning parameters
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v2 2/4] dt-bindings: display: Add ClockworkPi CWD686 panel
 Content-Language: en-US
-To:     Vinod Koul <vkoul@kernel.org>
-CC:     Bjorn Andersson <andersson@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Andy Gross" <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        "Matthias Kaehlcke" <mka@chromium.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <quic_pkondeti@quicinc.com>,
-        <quic_ppratap@quicinc.com>, <quic_vpulyala@quicinc.com>
-References: <1658384954-9506-1-git-send-email-quic_kriskura@quicinc.com>
- <1658384954-9506-3-git-send-email-quic_kriskura@quicinc.com>
- <20220830203518.pty67fyefho4ewgw@builder.lan>
- <31d459e4-57c0-85d1-2d88-e5bf0bed6604@quicinc.com> <YxTBewhBecSgXvPq@matsya>
-From:   Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <YxTBewhBecSgXvPq@matsya>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Max Fierke <max@maxfierke.com>, thierry.reding@gmail.com,
+        sam@ravnborg.org, airlied@linux.ie, daniel@ffwll.ch,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220903183753.25736-1-max@maxfierke.com>
+ <20220903183753.25736-3-max@maxfierke.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220903183753.25736-3-max@maxfierke.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: wGhgHhrOrBDHo0fwH3Q3gDi2rhOx0CEz
-X-Proofpoint-ORIG-GUID: wGhgHhrOrBDHo0fwH3Q3gDi2rhOx0CEz
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.517,FMLib:17.11.122.1
- definitions=2022-09-04_03,2022-08-31_03,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 phishscore=0
- spamscore=0 suspectscore=0 malwarescore=0 mlxlogscore=999 impostorscore=0
- priorityscore=1501 clxscore=1015 adultscore=0 bulkscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2207270000 definitions=main-2209040093
-X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -94,48 +77,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 03/09/2022 21:37, Max Fierke wrote:
+> The CWD686 is a 6.86" IPS LCD panel used as the primary
+> display in the ClockworkPi DevTerm portable (all cores)
+> 
+> Signed-off-by: Max Fierke <max@maxfierke.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+> Changes in v2 (Krzysztof Kozlowski and Rob Herring's Suggestions)
+>  - remove redundant backlight example
+>  - add missing regulators
+> 
+>  .../display/panel/clockworkpi,cwd686.yaml     | 63 +++++++++++++++++++
+>  1 file changed, 63 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/clockworkpi,cwd686.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/clockworkpi,cwd686.yaml b/Documentation/devicetree/bindings/display/panel/clockworkpi,cwd686.yaml
+> new file mode 100644
+> index 000000000000..eaf55d629266
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/panel/clockworkpi,cwd686.yaml
+> @@ -0,0 +1,63 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/panel/clockworkpi,cwd686.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ClockworkPi CWD686 6.86" IPS LCD panel
+> +
+> +maintainers:
+> +  - Max Fierke <max@maxfierke.com>
+> +
+> +description: |
+> +  The ClockworkPi CWD686 is a 6.86" ICNL9707-based IPS LCD panel used within the
+> +  ClockworkPi DevTerm series of portable devices. The panel has a 480x1280
+> +  resolution and uses 24 bit RGB per pixel.
+> +
+> +allOf:
+> +  - $ref: panel-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: clockworkpi,cwd686
+> +
+> +  reg:
+> +    description: DSI virtual channel used by that screen
+> +    maxItems: 1
+
+You still need blank line here.
+
+> +  iovcc-supply:
+> +    description: regulator that supplies the iovcc voltage
+
+And here...
+
+> +  vci-supply:
+> +    description: regulator that supplies the vci voltage
+> +
 
 
-On 9/4/2022 8:47 PM, Vinod Koul wrote:
-> On 31-08-22, 18:41, Krishna Kurapati PSSNV wrote:
->   
->>> The ordering of this list needs to match the order of
->>> override_param_map[] and there's nothing indicating this in the code.
->>>
->>> I was considering suggesting that you add a enum/define and do
->>> 	[SQUELCH_DETECTOR_BP] = "qcom,squelch-detector-bp",
->>> 	...
->>> and then do the same in the override_param_map array.
->>>>
->>> But I think it will be cleaner if you add a const char const pointer to
->>> override_param_map and just specify these strings in the
->>> override_param_map array.
->>>
->>> Each entry will grow by a pointer, but multiple copies of the same
->>> strings (when added in the future) should be combined by the compiler.
->>>
->> IIUC, you want me to remove this array of const char*'s and embed them in
->> the override_param_map and iterate through it without using this const
->> phy_seq_props as a reference.
-> 
-> I think that would make it simpler..
-> 
->>>> +static const struct override_param_map sc7280[] = {
->>>
->>> There's nothing ensuring that the loop below doesn't run off the end of
->>> this array. So when the next platform is added, there's no way to
->>> handle the fact that they might have a different set of properties.
->>>
->>> If you add the property name to these elements, that will no longer be a
->>> problem (and you can add a {} entry at the end of the list and check for
->>> this when looping over the elements.
-> 
-> Would be great if this is addressed as well
-Hi Vinod. Thanks for the review. I have posted v12 addressing these 
-comments.
-
-https://lore.kernel.org/linux-usb/1662201048-26049-1-git-send-email-quic_kriskura@quicinc.com/
-
-Regards,
-Krishna,
-> 
+Best regards,
+Krzysztof
