@@ -2,50 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 41BFC5AC51A
-	for <lists+devicetree@lfdr.de>; Sun,  4 Sep 2022 17:47:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 844315AC4E6
+	for <lists+devicetree@lfdr.de>; Sun,  4 Sep 2022 17:17:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233112AbiIDPrn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Sep 2022 11:47:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40952 "EHLO
+        id S234453AbiIDPRY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Sep 2022 11:17:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229627AbiIDPrm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Sep 2022 11:47:42 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C16C13719C;
-        Sun,  4 Sep 2022 08:47:41 -0700 (PDT)
+        with ESMTP id S229477AbiIDPRX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Sep 2022 11:17:23 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2D7533427;
+        Sun,  4 Sep 2022 08:17:22 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5E3B960FB2;
-        Sun,  4 Sep 2022 15:47:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB50BC433C1;
-        Sun,  4 Sep 2022 15:47:38 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 5502AB80D70;
+        Sun,  4 Sep 2022 15:17:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21440C433D6;
+        Sun,  4 Sep 2022 15:17:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1662306460;
-        bh=QxAvxhmC6ir/QFdZzQ1oKmEPPSLatuOJhN2AJgQ0x4U=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=S6rJRymE9G9c6QLkozoVaXnGITy9BEaXDPZJ+/EdMUwxbB5No9Kbpj9gr+2aal/aA
-         ZIRjUsUTZu45pFqNR6NjCGkqFls0qe3MswaKRv4KOXGSAiaNDP2TdVCnNM3TPPf+CH
-         RbzmEZelRzn7ZGn4hQi4HOZpxrpUo5irk8Am4Vm8QcS6aSwwx07hOSxRSfw0gB7vc7
-         72lhW5ZcuknbgeRzZru4crQauUK6fnGTL4++/2CaCufH6vcd3bJbwaQHcA97x5JM82
-         svjjXFd36EoWqwoHEMG2xRkznpkoa5l7kgqutxdcJgMzL9HNxNnrCL9B9om/WDKTr2
-         8ropNsPHnPhNQ==
-Date:   Sun, 4 Sep 2022 16:13:32 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     George Mois <george.mois@analog.com>
-Cc:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <lucas.p.stankus@gmail.com>
-Subject: Re: [PATCH v3 1/2] bindings: iio: accel: extend adxl313
- documentation file
-Message-ID: <20220904161332.587e3a6f@jic23-huawei>
-In-Reply-To: <20220831143538.65816-1-george.mois@analog.com>
-References: <20220831143538.65816-1-george.mois@analog.com>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
+        s=k20201202; t=1662304640;
+        bh=xjdPYgdB9h50iN/sMAXgx3TlezzJ2hEsjMGUNuESwQw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=bSZ4dTKtfMNrRfeMjIh0uwpaywenCjzYh7YAtyAapy/xSEsV2B/DjrmrWFNfaoIxZ
+         fRLCTgyJhn0nU3HHUKigGDtRWjfxtQfKkiBmg4Vx2ur7rtVDKDpxBAFTMbsJ57ckn0
+         K0zPIG3VCYowbB3wCwadpgFSVG+fLaqif+4d2OmQPZm2pSQaSdYPsgr87J2XIsGgY0
+         Q8qcamBf9Wd2s0h/3AwC0MKS3OFLay2XyAnJTm6sIJSaZt0qTzAqjKri9VZ/yLm+ub
+         J82ButxZ6R+CFLc8PS+QSfsRwyKehuqD4AoIBiq7IuTkw4KDCipnGxROIAEzUS+mAu
+         DzYxz/mLbtQ3A==
+Date:   Sun, 4 Sep 2022 20:47:15 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, quic_pkondeti@quicinc.com,
+        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com
+Subject: Re: [PATCH v11 2/3] phy: qcom-snps: Add support for overriding phy
+ tuning parameters
+Message-ID: <YxTBewhBecSgXvPq@matsya>
+References: <1658384954-9506-1-git-send-email-quic_kriskura@quicinc.com>
+ <1658384954-9506-3-git-send-email-quic_kriskura@quicinc.com>
+ <20220830203518.pty67fyefho4ewgw@builder.lan>
+ <31d459e4-57c0-85d1-2d88-e5bf0bed6604@quicinc.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <31d459e4-57c0-85d1-2d88-e5bf0bed6604@quicinc.com>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -56,54 +69,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 31 Aug 2022 17:35:37 +0300
-George Mois <george.mois@analog.com> wrote:
+On 31-08-22, 18:41, Krishna Kurapati PSSNV wrote:
+ 
+> > The ordering of this list needs to match the order of
+> > override_param_map[] and there's nothing indicating this in the code.
+> > 
+> > I was considering suggesting that you add a enum/define and do
+> > 	[SQUELCH_DETECTOR_BP] = "qcom,squelch-detector-bp",
+> > 	...
+> > and then do the same in the override_param_map array.
+> > >
+> > But I think it will be cleaner if you add a const char const pointer to
+> > override_param_map and just specify these strings in the
+> > override_param_map array.
+> > 
+> > Each entry will grow by a pointer, but multiple copies of the same
+> > strings (when added in the future) should be combined by the compiler.
+> > 
+> IIUC, you want me to remove this array of const char*'s and embed them in
+> the override_param_map and iterate through it without using this const
+> phy_seq_props as a reference.
 
-> Extend the adi,adxl313.yaml file with information regrding the
-> ADXL312 and ADXL314 devices.
-> 
-> Signed-off-by: George Mois <george.mois@analog.com>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content is fine, but dt-bindings patches have a particular patch
-title format. Something like:
+I think that would make it simpler.. 
 
-dt-bindings: iio: accel: adxl313: Add compatibles for adxl312 and adxl314
+> > > +static const struct override_param_map sc7280[] = {
+> > 
+> > There's nothing ensuring that the loop below doesn't run off the end of
+> > this array. So when the next platform is added, there's no way to
+> > handle the fact that they might have a different set of properties.
+> > 
+> > If you add the property name to these elements, that will no longer be a
+> > problem (and you can add a {} entry at the end of the list and check for
+> > this when looping over the elements.
 
-> ---
-> no changes in v3.
->  .../devicetree/bindings/iio/accel/adi,adxl313.yaml     | 10 +++++++---
->  1 file changed, 7 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adxl313.yaml b/Documentation/devicetree/bindings/iio/accel/adi,adxl313.yaml
-> index d6afc1b8c272..59d48ff1a16c 100644
-> --- a/Documentation/devicetree/bindings/iio/accel/adi,adxl313.yaml
-> +++ b/Documentation/devicetree/bindings/iio/accel/adi,adxl313.yaml
-> @@ -4,20 +4,24 @@
->  $id: http://devicetree.org/schemas/iio/accel/adi,adxl313.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
->  
-> -title: Analog Devices ADXL313 3-Axis Digital Accelerometer
-> +title: Analog Devices ADXL312, ADXL313, and ADXL314 3-Axis Digital Accelerometers
->  
->  maintainers:
->    - Lucas Stankus <lucas.p.stankus@gmail.com>
->  
->  description: |
-> -  Analog Devices ADXL313 3-Axis Digital Accelerometer that supports
-> -  both I2C & SPI interfaces.
-> +  Analog Devices ADXL312, ADXL313, and ADXL314 3-Axis Digital Accelerometer that
-> +  support both I2C & SPI interfaces.
-> +    https://www.analog.com/en/products/adxl312.html
->      https://www.analog.com/en/products/adxl313.html
-> +    https://www.analog.com/en/products/adxl314.html
->  
->  properties:
->    compatible:
->      enum:
-> +      - adi,adxl312
->        - adi,adxl313
-> +      - adi,adxl314
->  
->    reg:
->      maxItems: 1
+Would be great if this is addressed as well
 
+-- 
+~Vinod
