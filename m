@@ -2,46 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 074215AC539
-	for <lists+devicetree@lfdr.de>; Sun,  4 Sep 2022 18:04:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F0FD5AC551
+	for <lists+devicetree@lfdr.de>; Sun,  4 Sep 2022 18:11:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234530AbiIDQDO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Sep 2022 12:03:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57456 "EHLO
+        id S230287AbiIDQLt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Sep 2022 12:11:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234749AbiIDQDI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Sep 2022 12:03:08 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6759D37FA1;
-        Sun,  4 Sep 2022 09:02:48 -0700 (PDT)
+        with ESMTP id S229938AbiIDQLs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Sep 2022 12:11:48 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3665727CFB;
+        Sun,  4 Sep 2022 09:11:47 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 03400B80D70;
-        Sun,  4 Sep 2022 16:02:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDF69C433C1;
-        Sun,  4 Sep 2022 16:02:40 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C70F460F97;
+        Sun,  4 Sep 2022 16:11:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C511C433C1;
+        Sun,  4 Sep 2022 16:11:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1662307362;
-        bh=Ua2OB2wG3UNxi13cb4yxy+mBYBkMyMH3UocD//rWYJs=;
+        s=k20201202; t=1662307906;
+        bh=jEC7BDHEzbus1QSyICot3fVdFcnRPpNPPhhmw+RRi6A=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=Uc56CCQU2Vyi/RgB8d5HoulMVIkhNw8u6R6dXEnVy+XtpzJxurbnOOMUb/qIrFiZL
-         s1IBtP8IpHZMuZTEwnmGtbXl+PBua1HCuBOCMfcN7qPdhQeZpYdDgcQMSYCvE6Vx32
-         xKUXO5jVgYr/2LezGczHC0xMi4oMXKTHrgQk8toj2JEYKKu9qH6HL0hdvncKWkEdkn
-         V3+S69Y4D+FmHqB1rUBjWa9XivFdXngj6Pp0RDzfrK7MY8kx7w/I2YPhO+lku+uuzA
-         a4iTL+fZSKduJUE3rrWC/nQvinIAtcW+aNwConciQ+iH5fC8I0Z0HgqpcH4CJk68Bq
-         96EkRE7vp1jyg==
-Date:   Sun, 4 Sep 2022 16:28:34 +0100
+        b=J84kGNaQ40uemrQsVotTmGyqGCtvwPT2F1d6xSxr42ONecG7o2KKE6E5QMl5RXs81
+         Q3M65yqa79MIHiBHGWJ8OcgstOwt5H2yaLanvFeMGNVQhQwmLLs3Zqv5mcqo3y7U53
+         K2g27CbgCCln9z8kL8ICf17OuhrdnvkiMC+5tAQgi3emwUDOP5tmJuY4gj8FSnMm63
+         HqjlxgY+UMRUxCxAtZKJTvpNdJEMs0j3QJ+R1BB1ewiMRHMbI8BS+IasyXSBef+Vyr
+         1uSW0oTu/Fh/mf/+DPAyfsjNzfacqlTt0tV28Paj82nVrnlGrX0WTCjCCyP8OLlm52
+         zwi2KOeW27zsQ==
+Date:   Sun, 4 Sep 2022 16:37:38 +0100
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     George Mois <george.mois@analog.com>
-Cc:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <lucas.p.stankus@gmail.com>
-Subject: Re: [PATCH v3 2/2] drivers: iio: accel: adxl312 and adxl314 support
-Message-ID: <20220904162834.564a021c@jic23-huawei>
-In-Reply-To: <20220831143538.65816-2-george.mois@analog.com>
-References: <20220831143538.65816-1-george.mois@analog.com>
-        <20220831143538.65816-2-george.mois@analog.com>
+To:     "Bolboaca, Ramona" <Ramona.Bolboaca@analog.com>
+Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 2/2] iio: adc: add max11205 adc driver
+Message-ID: <20220904163738.2bebf51f@jic23-huawei>
+In-Reply-To: <BL1PR03MB59923C7F3907FA7A71CBA623807B9@BL1PR03MB5992.namprd03.prod.outlook.com>
+References: <20220831133021.215625-1-ramona.bolboaca@analog.com>
+        <20220831133021.215625-2-ramona.bolboaca@analog.com>
+        <CAHp75Vco8ftAkjVEmKGKKYHS-1mnZzLuPA+N98giqi17mqQnRw@mail.gmail.com>
+        <BL1PR03MB59923C7F3907FA7A71CBA623807B9@BL1PR03MB5992.namprd03.prod.outlook.com>
 X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -56,263 +61,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 31 Aug 2022 17:35:38 +0300
-George Mois <george.mois@analog.com> wrote:
 
-> ADXL312 and ADXL314 are small, thin, low power, 3-axis accelerometers
-> with high resolution (13-bit) measurement up to +/-12 g and +/- 200 g
-> respectively.
-> 
-> Implement support for ADXL312 and ADXL314 by extending the ADXL313
-> driver.
-> 
-> Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/ADXL312.pdf
-> Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/ADXL314.pdf
+> >   
+> > > +       if (!st->chip_info)
+> > > +               st->chip_info = (const struct chip_info *)spi_get_device_id(spi)->driver_data;
+> > > +
+> > > +       indio_dev->name = st->chip_info->name;
+> > > +       indio_dev->modes = INDIO_DIRECT_MODE;
+> > > +       indio_dev->channels = max11205_channels;
+> > > +       indio_dev->num_channels = 1;
+> > > +       indio_dev->info = &max11205_iio_info;
+> > > +
+> > > +       st->vref = devm_regulator_get(&spi->dev, "vref");  
+> > 
 
-Whilst there is some discussion of this going on in a different thread
-my opinion is that Datasheet is a formal tag so there should be no blank line
-here.
+> > devm_regulator_get_enable() ?  
 
-A few other minor comments inline.
+> I found the patches which implement devm_regulator_get_enable.
+> However, I need to get the voltage of the regulator using
+> regulator_get_voltage(struct regulator *regulator) and if I use
+> devm_regulator_get_enable I do not have access to the regulator
+> pointer. What should I do in this case? Is there an API which works
+> like devm_regulator_get_enable but also gives access to the
+> regulator's pointer? Thank you for you review!
 
-> 
-> Signed-off-by: George Mois <george.mois@analog.com>
-> ---
+Ah.  You've run into a fun long running 'discussion'.  There was
+great resistance to adding devm_regulator_get_enable() because it
+was felt that it was too easy to get the handling wrong and end up
+with underflowing reference counters etc.  So the 'solution' was
+to make it less useful than it would otherwise have been by making
+sure it could not be combined with other accesses to the regulator.
 
+Upshot is you are correct that it cannot be applied in this case.
 
-> diff --git a/drivers/iio/accel/adxl313_core.c b/drivers/iio/accel/adxl313_core.c
-> index afeef779e1d0..9c93e71c94f1 100644
-> --- a/drivers/iio/accel/adxl313_core.c
-> +++ b/drivers/iio/accel/adxl313_core.c
- 
-...
-> -static int adxl313_setup(struct device *dev, struct adxl313_data *data,
-> -			 int (*setup)(struct device *, struct regmap *))
-> +static int adxl312_adxl314_check_id(struct device *dev,
+Also relevant is that the patch in question is going through the
+regulator tree so won't be generally available to the rest of the
+kernel until next cycle.  As such we'd have had to make such a
+change as a follow up patch if it were possible.
 
-Naming a function after multiple supported parts has a history of
-going wrong over the longer term as that list of parts keeps getting longer.
+Jonathan
 
-Just name it after the first one supported.
+p.s. Wrap your replies at 80 chars as well as the code.
+Kernel developers have an annoying habit of reading their email in
+one small window even when they have very large monitors :)
+Also, where sensible crop unnecessary parts of the email to only
+include the bit you are responding to. Saves on lots of scrolling..
 
-> +				    struct adxl313_data *data)
->  {
->  	unsigned int regval;
->  	int ret;
->  
-
-> +
-> +static int adxl313_setup(struct device *dev, struct adxl313_data *data,
-> +			 int (*setup)(struct device *, struct regmap *))
-> +{
-> +	int ret;
->  
-> -	if (regval != ADXL313_PARTID) {
-> -		dev_err(dev, "Invalid device ID: 0x%02x\n", regval);
-> -		return -ENODEV;
-> +	/*
-> +	 * If sw reset available, ensures the device is in a consistent
-> +	 * state after start up
-> +	 */
-> +	if (data->chip_info->soft_reset) {
-> +		ret = regmap_write(data->regmap, ADXL313_REG_SOFT_RESET,
-> +				   ADXL313_SOFT_RESET);
-> +		if (ret)
-> +			return ret;
->  	}
->  
-> -	/* Sets the range to +/- 4g */
-> -	ret = regmap_update_bits(data->regmap, ADXL313_REG_DATA_FORMAT,
-> -				 ADXL313_RANGE_MSK,
-> -				 FIELD_PREP(ADXL313_RANGE_MSK, ADXL313_RANGE_4G));
-> -	if (ret)
-> -		return ret;
-> +	if (setup) {
-> +		ret = setup(dev, data->regmap);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	if (data->chip_info->type == ADXL313)
-> +		/* ADXL313 */
-> +		ret = adxl313_check_id(dev, data);
-
-I'd prefer these handled via a callback rather than checking on type.
-That leads to the driver being easier to extend for future supported parts
-as changes are focused in one place (the chip_info structures).
-
-Otherwise this new approach seems much cleaner.
-
-
-> +	else
-> +		/* ADXL312 or ADXL314 */
-> +		ret = adxl312_adxl314_check_id(dev, data);
->  
-
-
-
-> diff --git a/drivers/iio/accel/adxl313_i2c.c b/drivers/iio/accel/adxl313_i2c.c
-> index c329765dbf60..0665f2945a27 100644
-> --- a/drivers/iio/accel/adxl313_i2c.c
-> +++ b/drivers/iio/accel/adxl313_i2c.c
-> @@ -14,42 +14,80 @@
-
->  
->  static const struct i2c_device_id adxl313_i2c_id[] = {
-> -	{ "adxl313" },
-> +	{ "adxl312", ADXL312 },
-
-As for SPI case, it would be cleaner to put a pointer
-in here as then the two paths will be more similar.
-
-> +	{ "adxl313", ADXL313 },
-> +	{ "adxl314", ADXL314 },
->  	{ }
->  };
->  
->  MODULE_DEVICE_TABLE(i2c, adxl313_i2c_id);
->  
->  static const struct of_device_id adxl313_of_match[] = {
-> -	{ .compatible = "adi,adxl313" },
-> +	{
-> +		.compatible = "adi,adxl312",
-> +		.data = &adxl31x_chip_info[ADXL312],
-> +	},
-> +	{
-> +		.compatible = "adi,adxl313",
-> +		.data = &adxl31x_chip_info[ADXL313],
-> +	},
-> +	{
-> +		.compatible = "adi,adxl314",
-> +		.data = &adxl31x_chip_info[ADXL314],
-> +	},
->  	{ }
->  };
->  
->  MODULE_DEVICE_TABLE(of, adxl313_of_match);
->  
-> +static int adxl313_i2c_probe(struct i2c_client *client)
-> +{
-> +	const struct adxl313_chip_info *chip_data;
-> +	enum adxl313_device_type chip_type;
-> +	struct regmap *regmap;
-> +
-> +	chip_data = device_get_match_data(&client->dev);
-> +	if (chip_data)
-> +		chip_type = chip_data->type;
-> +	else
-> +		chip_type = i2c_match_id(adxl313_i2c_id, client)->driver_data;
-
-> +
-> +	regmap = devm_regmap_init_i2c(client,
-> +				      &adxl31x_i2c_regmap_config[chip_type]);
-
-As below: I think it is cleaner to get chip_data for either registration
-path and extract chip_type from that. Aim being to avoid going backwards
-and forwards between the structure and the enum.
-
-> +	if (IS_ERR(regmap)) {
-> +		dev_err(&client->dev, "Error initializing i2c regmap: %ld\n",
-> +			PTR_ERR(regmap));
-> +		return PTR_ERR(regmap);
-> +	}
-> +
-> +	return adxl313_core_probe(&client->dev, regmap, &adxl31x_chip_info[chip_type], NULL);
-> +}
-> +
->  static struct i2c_driver adxl313_i2c_driver = {
->  	.driver = {
->  		.name	= "adxl313_i2c",
-> diff --git a/drivers/iio/accel/adxl313_spi.c b/drivers/iio/accel/adxl313_spi.c
-> index a3c6d553462d..2c3b094ef465 100644
-> --- a/drivers/iio/accel/adxl313_spi.c
-> +++ b/drivers/iio/accel/adxl313_spi.c
-> @@ -11,17 +11,38 @@
-
->  
->  static int adxl313_spi_setup(struct device *dev, struct regmap *regmap)
-> @@ -42,7 +63,8 @@ static int adxl313_spi_setup(struct device *dev, struct regmap *regmap)
->  
->  static int adxl313_spi_probe(struct spi_device *spi)
->  {
-> -	const struct spi_device_id *id = spi_get_device_id(spi);
-> +	const struct adxl313_chip_info *chip_data;
-> +	enum adxl313_device_type chip_type;
->  	struct regmap *regmap;
->  	int ret;
->  
-> @@ -51,26 +73,47 @@ static int adxl313_spi_probe(struct spi_device *spi)
->  	if (ret)
->  		return ret;
->  
-> -	regmap = devm_regmap_init_spi(spi, &adxl313_spi_regmap_config);
-> +	chip_data = device_get_match_data(&spi->dev);
-> +	if (chip_data)
-> +		chip_type = chip_data->type;
-> +	else
-> +		chip_type = spi_get_device_id(spi)->driver_data;
-
-I'd rather see you set chip_data here for either path then use that
-directly in the core_probe() call below.  Note comment on storing
-a pointer in spi_device_id->driver_data (it is carefully sized to allow
-that to be done)
-
-You will need to pull chip_type out for the regmap config, but at least
-we are only going one way rather than
-chip_data->chip_type->chip_data.
-
-
-> +
-> +	regmap = devm_regmap_init_spi(spi,
-> +				      &adxl31x_spi_regmap_config[chip_type]);
-> +
->  	if (IS_ERR(regmap)) {
->  		dev_err(&spi->dev, "Error initializing spi regmap: %ld\n",
->  			PTR_ERR(regmap));
->  		return PTR_ERR(regmap);
->  	}
->  
-> -	return adxl313_core_probe(&spi->dev, regmap, id->name,
-> -				  &adxl313_spi_setup);
-> +	return adxl313_core_probe(&spi->dev, regmap,
-> +				  &adxl31x_chip_info[chip_type], &adxl313_spi_setup);
->  }
->  
->  static const struct spi_device_id adxl313_spi_id[] = {
-> -	{ "adxl313" },
-> +	{ "adxl312", ADXL312 },
-
-It's fine to store a pointer in the data field of this (will need casting appropriately)
-and that will simplify handling in probe() as both sources will be of the same type.
-
-> +	{ "adxl313", ADXL313 },
-> +	{ "adxl314", ADXL314 },
->  	{ }
->  };
->  
->  MODULE_DEVICE_TABLE(spi, adxl313_spi_id);
->  
->  static const struct of_device_id adxl313_of_match[] = {
-> -	{ .compatible = "adi,adxl313" },
-> +	{
-> +		.compatible = "adi,adxl312",
-> +		.data = &adxl31x_chip_info[ADXL312],
-
-Not particularly important but it's fairly common practice to have these
-on one line.
-
-	{ .compatible = "adi,adxl312", .data = &adxl31x_chip_info[ADXL312] },
-
-> +	},
-> +	{
-> +		.compatible = "adi,adxl313",
-> +		.data = &adxl31x_chip_info[ADXL313],
-> +	},
-> +	{
-> +		.compatible = "adi,adxl314",
-> +		.data = &adxl31x_chip_info[ADXL314],
-> +	},
->  	{ }
->  };
->  
-
+> Kind Regards, Ramona
+> Bolboaca
