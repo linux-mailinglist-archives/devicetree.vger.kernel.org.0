@@ -2,135 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D17EA5AC4FE
-	for <lists+devicetree@lfdr.de>; Sun,  4 Sep 2022 17:28:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E07B35AC52F
+	for <lists+devicetree@lfdr.de>; Sun,  4 Sep 2022 18:02:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234209AbiIDP2f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Sep 2022 11:28:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46640 "EHLO
+        id S234348AbiIDQCR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Sep 2022 12:02:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234311AbiIDP2e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Sep 2022 11:28:34 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19D112DABA;
-        Sun,  4 Sep 2022 08:28:32 -0700 (PDT)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1oUrXm-0000U5-3l; Sun, 04 Sep 2022 17:28:18 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Frank Wunderlich <frank-w@public-files.de>
-Cc:     Frank Wunderlich <linux@fw-web.de>,
-        linux-rockchip@lists.infradead.org,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Yifeng Zhao <yifeng.zhao@rock-chips.com>,
-        Johan Jonker <jbx6244@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Simon Xue <xxm@rock-chips.com>, Liang Chen <cl@rock-chips.com>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: Aw: Re:  Re: [PATCH v5 5/5] arm64: dts: rockchip: Add PCIe v3 nodes to BPI-R2-Pro
-Date:   Sun, 04 Sep 2022 17:28:14 +0200
-Message-ID: <3349380.9Mp67QZiUf@diego>
-In-Reply-To: <trinity-9006aaf2-5bc2-467c-a86e-ba43efc692e6-1661591668494@3c-app-gmx-bs16>
-References: <20220825193836.54262-1-linux@fw-web.de> <ee6dc940-8b90-1f57-28b7-6de8e3483027@linaro.org> <trinity-9006aaf2-5bc2-467c-a86e-ba43efc692e6-1661591668494@3c-app-gmx-bs16>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S229967AbiIDQCR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Sep 2022 12:02:17 -0400
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E08A12F396;
+        Sun,  4 Sep 2022 09:02:14 -0700 (PDT)
+Received: by mail-pl1-x634.google.com with SMTP id v5so6369928plo.9;
+        Sun, 04 Sep 2022 09:02:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date;
+        bh=eM8F7ERjbTNSfUMDIdi+wOzbv0OiZ6MXdcVdXb0RGlU=;
+        b=JUyekAdqWL6BWjdTQxHZxBT4ve7+krMeTGWsxyjRF9xcYactu5WeJl1kDssU87WgiG
+         pPOUzcz7QyGL5l9pCQ/JMiN6DYWEwp72sW9xsXey8I1bQEAl8kTDD1cWntYY/h6bSVc/
+         GwOAv+I0o5xRPY1+KYFQhJ5fcLhCFyp/aMzITvVdEtMd66xHcjLkg4c7M53xBnQ5Qct5
+         A7UNg+uWyynjDdEukzT44NH5jjdxglrtbyE06Ddj8REcZeH0HHAy70aS/FBWf5m/33oH
+         XSsyZAkgaNvq2C9xsUV3YXNdaDIf6DhunDZVTdef2P1MYVVh9j2klYShPT97bbNj3nsS
+         h0Eg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=eM8F7ERjbTNSfUMDIdi+wOzbv0OiZ6MXdcVdXb0RGlU=;
+        b=f+1oJLsWULwNtq1vwA0vy3D+1F8y4mOyzzD+qMey2DmAtgDiqth/eslsNP9nXNMRF1
+         I6GY6X67lE1c4bFX9sJOzdCwfI1cieOscTwox/QyRbFiRqOunyUVIqnkLnhdsCTIdpIw
+         9rxuqeE7kYJu5HJE+QFQq97d4zwhaBXr93f18qqazbzeS906GzFt91R6GhmEPEYFakoy
+         DjWIpUa7+Ihrm1gIJpx0SugtofeT7uEfdoyBTN9uBtumZmXu2EcPtj6+oyYlVw7GyttY
+         7MM+TTWYijcJAQgyUhekJGj42qDs64yoCYreWiBpNHmC22HfN1S8DHcBFWFmfTq1adzr
+         ITpw==
+X-Gm-Message-State: ACgBeo1k4jxdY7jdnjqu2bcTkX03GPw2XOERLtdAzyu/sl4xPyJUrfA0
+        b9th6y+5SMhrdNP5KDcSVgQ=
+X-Google-Smtp-Source: AA6agR49M0ufTUH463CqIcH75mpCvMORKqPWbjYfmlQINO1kvnUsjgfuhj9JQJ+qWF9VHHNolZfQpA==
+X-Received: by 2002:a17:90a:8d03:b0:1fd:7012:9096 with SMTP id c3-20020a17090a8d0300b001fd70129096mr15275129pjo.225.1662307334465;
+        Sun, 04 Sep 2022 09:02:14 -0700 (PDT)
+Received: from scdiu3.sunplus.com ([113.196.136.192])
+        by smtp.googlemail.com with ESMTPSA id 205-20020a6217d6000000b0053818255880sm5739390pfx.193.2022.09.04.09.02.12
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 04 Sep 2022 09:02:13 -0700 (PDT)
+From:   Tony Huang <tonyhuang.sunplus@gmail.com>
+To:     ulf.hansson@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, tony.huang@sunplus.com,
+        wells.lu@sunplus.com
+Cc:     Tony Huang <tonyhuang.sunplus@gmail.com>
+Subject: [PATCH v9 0/2] Add mmc driver for Sunplus SP7021 SOC
+Date:   Mon,  5 Sep 2022 00:02:00 +0800
+Message-Id: <cover.1662302950.git.tonyhuang.sunplus@gmail.com>
+X-Mailer: git-send-email 2.7.4
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This is a patch series for mmc driver for Sunplus SP7021 SOC.
 
-Am Samstag, 27. August 2022, 11:14:28 CEST schrieb Frank Wunderlich:
-> > Gesendet: Samstag, 27. August 2022 um 10:56 Uhr
-> > Von: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
-> 
-> > On 27/08/2022 11:50, Frank Wunderlich wrote:
-> > > Hi
-> > >
-> > >> Gesendet: Freitag, 26. August 2022 um 08:50 Uhr
-> > >> Von: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
-> > >> On 25/08/2022 22:38, Frank Wunderlich wrote:
-> > >>> From: Frank Wunderlich <frank-w@public-files.de>
-> > >
-> > >>> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts b/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
-> > >>> index 93d383b8be87..40b90c052634 100644
-> > >>> --- a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
-> > >>> +++ b/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
-> > >>> @@ -86,6 +86,66 @@ vcc5v0_sys: vcc5v0-sys {
-> > >>>  		vin-supply = <&dc_12v>;
-> > >>>  	};
-> > >>>
-> > >>> +	pcie30_avdd0v9: pcie30-avdd0v9 {
-> > >>
-> > >> Use consistent naming, so if other nodes have "regulator" suffix, use it
-> > >> here as well.
-> > >
-> > > only these 3 new have the suffix:
-> > >
-> > > vcc3v3_pi6c_05: vcc3v3-pi6c-05-regulator
-> > > vcc3v3_minipcie: vcc3v3-minipcie-regulator
-> > > vcc3v3_ngff: vcc3v3-ngff-regulator
-> > >
-> > > so i would drop it there...
-> > >
-> > > so i end up with (including existing ones to compare):
-> > >
-> > > vcc3v3_sys: vcc3v3-sys
-> > > vcc5v0_sys: vcc5v0-sys
-> > > pcie30_avdd0v9: pcie30-avdd0v9
-> > > pcie30_avdd1v8: pcie30-avdd1v8
-> > > vcc3v3_pi6c_05: vcc3v3-pi6c-05
-> > > vcc3v3_minipcie: vcc3v3-minipcie
-> > > vcc3v3_ngff: vcc3v3-ngff
-> > > vcc5v0_usb: vcc5v0_usb
-> > > vcc5v0_usb_host: vcc5v0-usb-host
-> > > vcc5v0_usb_otg: vcc5v0-usb-otg
-> > >
-> > > is this ok?
-> > >
-> > > maybe swap avdd* and pcie30 part to have voltage in front of function.
-> > >
-> >
-> > I prefer all of them have regulator suffix. I think reasonable is also
-> > to rename the old ones and then add new ones with suffix.
-> 
-> ok, will change these to add -regulator in name (not label). and then rename the others in separate Patch outside of the series.
-> 
-> so basicly here
-> -       pcie30_avdd0v9: pcie30-avdd0v9 {
-> +       pcie30_avdd0v9: pcie30-avdd0v9-regulator {
-> -       pcie30_avdd1v8: pcie30-avdd1v8 {
-> +       pcie30_avdd1v8: pcie30-avdd1v8-regulator {
-> 
-> how about the swapping of pcie30 and the avddXvY? In Schematic they are named PCIE30_AVDD_0V9 / PCIE30_AVDD_1V8, so better leave this?
-> 
-> avdd0v9-pcie30 will be more similar to the other regulators, but inconsistent with Schematic.
+Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
+many peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD card and
+etc.) into a single chip. It is designed for industrial control.
 
-now that the phy-driver changes got applied I'll just pick up the remaining
-patches and do the node-name conversion while applying, so no need
-to send another revision for it.
+Refer to:
+https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
+https://tibbo.com/store/plus1.html
 
-But of course feel free so send patches for converting the other regulator
-names.
+Tony Huang (2):
+  dt-binding: mmc: Add mmc yaml file for Sunplus SP7021
+  mmc: Add mmc driver for Sunplus SP7021
 
-And I'm definitly preferring keeping close to schematic names :-)
+ .../devicetree/bindings/mmc/sunplus,mmc.yaml       |  62 ++
+ MAINTAINERS                                        |   7 +
+ drivers/mmc/host/Kconfig                           |   9 +
+ drivers/mmc/host/Makefile                          |   1 +
+ drivers/mmc/host/sunplus-mmc.c                     | 964 +++++++++++++++++++++
+ 5 files changed, 1043 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mmc/sunplus,mmc.yaml
+ create mode 100644 drivers/mmc/host/sunplus-mmc.c
 
-
-Heiko
-
+-- 
+2.7.4
 
