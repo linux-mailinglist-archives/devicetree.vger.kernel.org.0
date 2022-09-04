@@ -2,48 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 881C45AC801
-	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 00:36:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74F375AC81F
+	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 01:37:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232064AbiIDWgO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Sep 2022 18:36:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60854 "EHLO
+        id S231335AbiIDXh2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Sep 2022 19:37:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231989AbiIDWgO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Sep 2022 18:36:14 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A00B326138;
-        Sun,  4 Sep 2022 15:36:09 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3F62B6BC;
-        Mon,  5 Sep 2022 00:36:07 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1662330967;
-        bh=tC8edg18APeJ5A7lmZCWV3tJ5z6EbUjWKD+4WsZ5GL8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=EHdxmti4uhTPNLDCnSuFAi7XGEcm3J67H/1vEhrc5NjL5PpH2sHossX3IYYy7Sw58
-         8vlwv07r8lhQ+KmKfwrSbireAIG8A0hDB2NqLjlYXArjiKGuyfovUY/QPy+9VNI8TF
-         g+2ecumJwvT5qChsEFV5YJtUSE7SilGqGGQkjG6w=
-Date:   Mon, 5 Sep 2022 01:35:53 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     mchehab@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org, kishon@ti.com,
-        sakari.ailus@linux.intel.com, hverkuil@xs4all.nl,
-        jacopo@jmondi.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-media@vger.kernel.org, kernel@pengutronix.de
-Subject: Re: [PATCH 3/4] media: dt-bindings: add bindings for Toshiba TC358746
-Message-ID: <YxUoSfbrPPPT5nz6@pendragon.ideasonboard.com>
-References: <20220818143307.967150-1-m.felsch@pengutronix.de>
- <20220818143307.967150-4-m.felsch@pengutronix.de>
+        with ESMTP id S229596AbiIDXh1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Sep 2022 19:37:27 -0400
+Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E844B2409F;
+        Sun,  4 Sep 2022 16:37:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
+        t=1662334641; bh=jLRdilnMCYu/2LORSkSSfxq/7hawIRimyy0TcaBVSdg=;
+        h=From:To:Cc:Subject:Date:From;
+        b=S0ySmocwO3hM9JxO7DVtM3BcsMOuVQiuSuyiUqAblDsNs3nMBXZz0MtnYh/iRZZlw
+         7GBbCtHMg2YpaYHkUaAxJxRa2FNET3QbSWn8CuzwBBgHVbqtoCEwKakqKj1/4ZY1Nh
+         GibpZNZcbt55iHvGPsOnwgTEhQC6T/UsbLlQO8f8=
+From:   Ondrej Jirman <megi@xff.cz>
+To:     linux-rockchip@lists.infradead.org
+Cc:     Ondrej Jirman <megi@xff.cz>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Martijn Braam <martijn@brixit.nl>,
+        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
+        Caleb Connolly <kc@postmarketos.org>,
+        Arnaud Ferraris <arnaud.ferraris@gmail.com>,
+        =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
+        <n@nfraprado.net>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Rockchip SoC
+        support), linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH] arm64: dts: rockchip: Fix SD card controller probe on Pinephone Pro
+Date:   Mon,  5 Sep 2022 01:36:47 +0200
+Message-Id: <20220904233652.3197885-1-megi@xff.cz>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220818143307.967150-4-m.felsch@pengutronix.de>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -51,203 +49,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marco,
+Voltage constraints on vccio_sd are invalid. They don't match the voltages
+that LDO9 can generate, and this causes rk808-regulator driver to fail
+to probe with -EINVAL when it tries to apply the constraints during boot.
 
-Thank you for the patch.
+Fix the constraints to something that LDO9 can be actually configured for.
 
-On Thu, Aug 18, 2022 at 04:33:06PM +0200, Marco Felsch wrote:
-> Add the bindings for the Toshiba TC358746 Parallel <-> MIPI-CSI bridge
-> driver.
-> 
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> ---
->  .../bindings/media/i2c/toshiba,tc358746.yaml  | 157 ++++++++++++++++++
->  1 file changed, 157 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/toshiba,tc358746.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/toshiba,tc358746.yaml b/Documentation/devicetree/bindings/media/i2c/toshiba,tc358746.yaml
-> new file mode 100644
-> index 000000000000..9783cca363c6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/toshiba,tc358746.yaml
-> @@ -0,0 +1,157 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/toshiba,tc358746.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Toshiba TC358746 Parallel to MIPI CSI2 Bridge
-> +
-> +maintainers:
-> +  - Marco Felsch <kernel@pengutronix.de>
-> +
-> +description: |-
-> +  The Toshiba TC358746 converts a parallel video stream into a MIPI CSI-2
-> +  stream. The direction can be either parallel-in -> csi-out or csi-in ->
-> +  parallel-out The chip is programmable trough I2C and SPI but the SPI
-> +  interface is only supported in parallel-in -> csi-out mode.
-> +
-> +  Note that the current device tree bindings only support the
-> +  parallel-in -> csi-out path.
-> +
-> +properties:
-> +  compatible:
-> +    const: toshiba,tc358746
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    description:
-> +      The phandle to the reference clock source. This corresponds to the
-> +      hardware pin REFCLK.
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    const: refclk
+Fixes: 78a21c7d5952 ("arm64: dts: rockchip: Add initial support for Pine64 PinePhone Pro")
+Signed-off-by: Ondrej Jirman <megi@xff.cz>
+---
+ arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-As there's a single clock, should we omit the clock name ?
-
-> +
-> +# The bridge can act as clock provider for the sensor. To enable this support
-> +# #clock-cells must be specified. Attention if this feature is used than the
-
-s/than/then/
-
-> +# mclk rate must be at least: (2 * link-frequency) / 8
-> +#                             `------------------´   ^
-> +#                             internal PLL rate   smallest possible mclk-div
-
-Could this be captured in the description of the property instead of a
-comment ?
-
-> +  "#clock-cells":
-> +    const: 0
-> +
-> +  clock-output-names:
-> +    description:
-> +      The clock name of the MCLK output, the default name is tc358746-mclk.
-> +    maxItems: 1
-> +
-> +  vddc-supply:
-> +    description: Digital core voltage supply, 1.2 volts
-> +
-> +  vddio-supply:
-> +    description: Digital I/O voltage supply, 1.8 volts
-> +
-> +  vddmipi-supply:
-> +    description: MIPI CSI phy voltage supply, 1.2 volts
-> +
-> +  reset-gpios:
-> +    description:
-> +      The phandle and specifier for the GPIO that controls the chip reset.
-> +      This corresponds to the hardware pin RESX which is physically active low.
-> +    maxItems: 1
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Input port
-
-Are the H/V sync signal polarities fixed, or should they be specified
-here ? Does the chip support external sync only, or also BT.656 ? In the
-latter case this needs a bus-type.
-
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        description: Output port
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: /schemas/media/video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              data-lanes:
-> +                minItems: 1
-> +                maxItems: 4
-> +
-> +              clock-noncontinuous: true
-> +              link-frequencies: true
-> +
-> +            required:
-> +              - data-lanes
-> +              - link-frequencies
-> +
-> +    required:
-> +      - port@0
-> +      - port@1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - vddc-supply
-> +  - vddio-supply
-> +  - vddmipi-supply
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      csi-bridge@e {
-> +        compatible = "toshiba,tc358746";
-> +        reg = <0xe>;
-> +
-> +        clocks = <&refclk>;
-> +        clock-names = "refclk";
-> +
-> +        reset-gpios = <&gpio 2 GPIO_ACTIVE_LOW>;
-> +
-> +        vddc-supply = <&v1_2d>;
-> +        vddio-supply = <&v1_8d>;
-> +        vddmipi-supply = <&v1_2d>;
-> +
-> +        /* sensor mclk provider */
-> +        #clock-cells = <0>;
-> +
-> +        ports {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +
-> +          /* Input */
-> +          port@0 {
-> +            reg = <0>;
-> +            tc358746_in: endpoint {
-> +              remote-endpoint = <&sensor_out>;
-> +              };
-
-Wrong indentation here.
-
-> +          };
-> +
-> +          /* Output */
-> +          port@1 {
-> +            reg = <1>;
-> +            tc358746_out: endpoint {
-> +              remote-endpoint = <&mipi_csi2_in>;
-> +              data-lanes = <1 2>;
-> +              clock-noncontinuous;
-> +              link-frequencies = /bits/ 64 <216000000>;
-> +            };
-> +          };
-> +        };
-> +      };
-> +    };
-
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+index f00c80361377a..2e058c3150256 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+@@ -253,8 +253,8 @@ regulator-state-mem {
+ 
+ 			vccio_sd: LDO_REG9 {
+ 				regulator-name = "vccio_sd";
+-				regulator-min-microvolt = <1710000>;
+-				regulator-max-microvolt = <3150000>;
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <3300000>;
+ 			};
+ 
+ 			vcc3v3_s0: SWITCH_REG {
 -- 
-Regards,
+2.37.3
 
-Laurent Pinchart
