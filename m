@@ -2,41 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 113A05AC5B5
-	for <lists+devicetree@lfdr.de>; Sun,  4 Sep 2022 19:23:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BAF55AC5BD
+	for <lists+devicetree@lfdr.de>; Sun,  4 Sep 2022 19:26:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235146AbiIDRWh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Sep 2022 13:22:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60042 "EHLO
+        id S234968AbiIDR0T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Sep 2022 13:26:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235160AbiIDRWd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Sep 2022 13:22:33 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D7F732DA9;
-        Sun,  4 Sep 2022 10:22:31 -0700 (PDT)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=phil.lan)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1oUtKD-0000tW-Cv; Sun, 04 Sep 2022 19:22:25 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>
-Cc:     Heiko Stuebner <heiko@sntech.de>, phone-devel@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v5 0/1] Add support for the Pine64 PinePhone Pro phone
-Date:   Sun,  4 Sep 2022 19:22:21 +0200
-Message-Id: <166231195330.2423948.5394487959576836993.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220829050040.17330-1-tom@tom-fitzhenry.me.uk>
-References: <20220829050040.17330-1-tom@tom-fitzhenry.me.uk>
+        with ESMTP id S230015AbiIDR0S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Sep 2022 13:26:18 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8D4C33367;
+        Sun,  4 Sep 2022 10:26:17 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4DECE60F9E;
+        Sun,  4 Sep 2022 17:26:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC08CC433C1;
+        Sun,  4 Sep 2022 17:26:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1662312376;
+        bh=R5gWxWKYx8VItI88Agd++HUcExaO5prF6Vu0sO1trTk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=DNTKxqSPyZkp/kuGSF6u/gx89TsnNB8ulCRyZcbdl0n279YMp1YgrwKR/Y1F8qTUX
+         5lr166D6Ss07JJaGg+NqWAm1ARI3fOlUHOM7Mixreix7k/5vhSMo2T2q+D7P1h6Mib
+         hELOuEVSNHXUUxIc6CwlXaAqIptUJqMjdbL/JeHl5NB6Gz5C0SheJwg8DU2LzUGec7
+         Ag3VCe+zHcQziNAefNRBAEP6irr2yQ1Z32U/7NWh9b8REE1fBN+FG2/YaWatex1swQ
+         ozIMBwivWEwr/mCJXmyhwN8z82jJY90/H9uO2KFZbI1Tz/MDAOGl0lyAtb67UGDArr
+         yB5grrR70VaVg==
+Date:   Sun, 4 Sep 2022 22:56:12 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        chaotian.jing@mediatek.com, ulf.hansson@linaro.org,
+        matthias.bgg@gmail.com, hsinyi@chromium.org,
+        nfraprado@collabora.com, allen-kh.cheng@mediatek.com,
+        fparent@baylibre.com, sam.shih@mediatek.com,
+        sean.wang@mediatek.com, long.cheng@mediatek.com,
+        wenbin.mei@mediatek.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH 1/8] dt-bindings: dma: mediatek,uart-dma: Add binding for
+ MT6795 SoC
+Message-ID: <YxTftFYUAAujw90V@matsya>
+References: <20220729104441.39177-1-angelogioacchino.delregno@collabora.com>
+ <20220729104441.39177-2-angelogioacchino.delregno@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220729104441.39177-2-angelogioacchino.delregno@collabora.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -44,30 +65,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 29 Aug 2022 15:00:39 +1000, Tom Fitzhenry wrote:
-> PinePhone Pro is a RK3399 based phone produced by Pine64.
-> 
-> Add a basic DTS for it. This is a working base that will allow myself and
-> others to add more nodes.
-> 
-> Relies on "dt-bindings: arm: rockchip: Add PinePhone Pro bindings"[0].
-> 
-> [...]
+On 29-07-22, 12:44, AngeloGioacchino Del Regno wrote:
+> Add mediatek,mt6795-uart-dma to the compatibles list to support
+> the MT6795 Helio X10 SoC's UART APDMA.
 
-Applied, thanks!
+Applied, thanks
 
-[1/1] arm64: dts: rockchip: Add initial support for Pine64 PinePhone Pro
-      commit: 78a21c7d59520e72ebea667fe8745a4371d9fe86
-
-
-Why was the dt-binding addition missing?
-I've pulled the binding from v3 now.
-
-While it is true that you should not resend patches just to add Acks,
-when re-sending a whole series that includes other changes it's still
-necessary to keep all patches together ;-)
-
-
-Best regards,
 -- 
-Heiko Stuebner <heiko@sntech.de>
+~Vinod
