@@ -2,225 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 96BFA5ACD1F
-	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 09:52:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 970215ACD3E
+	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 09:57:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236528AbiIEHvL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 03:51:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49572 "EHLO
+        id S236366AbiIEHxr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 03:53:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236497AbiIEHuy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 03:50:54 -0400
-Received: from mail-sz.amlogic.com (mail-sz.amlogic.com [211.162.65.117])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10EF721277;
-        Mon,  5 Sep 2022 00:50:53 -0700 (PDT)
-Received: from droid11-sz.amlogic.com (10.28.8.21) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server id 15.1.2507.6; Mon, 5 Sep 2022
- 15:50:51 +0800
-From:   Liang Yang <liang.yang@amlogic.com>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        <linux-mtd@lists.infradead.org>
-CC:     Liang Yang <liang.yang@amlogic.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        XianWei Zhao <xianwei.zhao@amlogic.com>,
-        Kelvin Zhang <kelvin.zhang@amlogic.com>,
-        BiChao Zheng <bichao.zheng@amlogic.com>,
-        YongHui Yu <yonghui.yu@amlogic.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH RESEND v8 4/5] dt-bindings: nand: meson: convert txt to yaml
-Date:   Mon, 5 Sep 2022 15:50:27 +0800
-Message-ID: <20220905075027.19114-2-liang.yang@amlogic.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220905075027.19114-1-liang.yang@amlogic.com>
-References: <20220905075027.19114-1-liang.yang@amlogic.com>
+        with ESMTP id S236903AbiIEHxm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 03:53:42 -0400
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8D2D43319
+        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 00:53:40 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id k17so4800244wmr.2
+        for <devicetree@vger.kernel.org>; Mon, 05 Sep 2022 00:53:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=DVlJH3vkd4vFkUWUNZjJwBOoVQFrCQAuk6RHYkEuX5Q=;
+        b=Ce+5HRRvF+xrwjFtboNJwIk1JTS8aSL0DPO6VLzwNafRywarmv1gCVeNLGZfIRNqUo
+         cosqmJTs62vycqubngSVUcFkLCUynXj2aFQi7iz773I9sDMlHJnxQK8R+s48rHytgyIK
+         Tjiwp6MjZbJfUty07GIKsW9iixLeLZVjWcsw8vQ9TJK0cJG88zLyPnbMWGvHBxNemXf6
+         3Tc4EOfi8pNOY1Id2fI4Ok9w10w2grsdS4TC4XG1qpm3jkLheqs2zautHc9DxWP0+vvk
+         3e6d6cZEUpl5gvE1uf8UWIj6UpejZ/9iOitBK0srSd4EwUU/gzAaDp0/nK7PQmD8q+Vz
+         OgRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=DVlJH3vkd4vFkUWUNZjJwBOoVQFrCQAuk6RHYkEuX5Q=;
+        b=eqvRu45YQSCoNdwAbCTiFluVMX7zQA3eTvMXBmI67xvfKeT2xfc7CKpEqWhHJGAuIS
+         RC/FGk8PagBRAhW8830aD8i9GcibR0lyz29ZnPjPKo4PqBLxWCn1GzOGGbphB9aq6brc
+         LQ312yqizEyZbkQfGSSDYyQwmEAF7LZh1NU6fVVMPeexhN3/y871AhIbKzNB9d64fi2a
+         9p5yl2f/kWPJ8LaaZL7NzMe7sg9b0CR+X2xHvcSfuFQeH6BPqjX4v4lv94O36qQBaDJk
+         xrwDxYDAy+zo1f82QRWYrI4g2z9zGJGi/hhZPz8hN7xSnNHZfxcb21sxSoLb55ePm9ev
+         iYZA==
+X-Gm-Message-State: ACgBeo2hNhiy+a4cJxkGZmErLNKnsEU97nASqR3HmLvk89a9NPMg1sxd
+        dXNtcNFpGwZVq/trJXxXJdm1pw==
+X-Google-Smtp-Source: AA6agR7mWGEfbBcfol/wEL76UF46z6uwNeyxj39EySyk4u+dn0btrKqGspDcLuDV8CYbhZePHr6LyQ==
+X-Received: by 2002:a05:600c:4e15:b0:3a6:152a:9143 with SMTP id b21-20020a05600c4e1500b003a6152a9143mr9840010wmq.20.1662364418686;
+        Mon, 05 Sep 2022 00:53:38 -0700 (PDT)
+Received: from linaro.org ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id v5-20020adf8b45000000b0021e6c52c921sm9932752wra.54.2022.09.05.00.53.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 Sep 2022 00:53:37 -0700 (PDT)
+Date:   Mon, 5 Sep 2022 10:53:36 +0300
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Amol Maheshwari <amahesh@qti.qualcomm.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Ekansh Gupta <quic_ekagupt@quicinc.com>,
+        Rob Herring <robh@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-arm-msm@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 03/10] dt-bindings: misc: fastrpc: Document
+ memory-region property
+Message-ID: <YxWrAGblpbyp7pPu@linaro.org>
+References: <20220902154900.3404524-1-abel.vesa@linaro.org>
+ <20220902154900.3404524-4-abel.vesa@linaro.org>
+ <58608d9f-bc79-4e97-2027-e68863213aea@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.28.8.21]
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <58608d9f-bc79-4e97-2027-e68863213aea@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-convert the amlogic,meson-name.txt to amlogic,meson-nand.yaml
+On 22-09-04 22:29:04, Krzysztof Kozlowski wrote:
+> On 02/09/2022 18:48, Abel Vesa wrote:
+> > Add memory-region property to the list of optional properties, specify
+> > the value type and a definition
+> 
+> You should write why adding this property. Is it already used?
 
-Signed-off-by: Liang Yang <liang.yang@amlogic.com>
----
- .../bindings/mtd/amlogic,meson-nand.txt       | 55 ------------
- .../bindings/mtd/amlogic,meson-nand.yaml      | 88 +++++++++++++++++++
- 2 files changed, 88 insertions(+), 55 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
- create mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+It is not already used, will be used for cma remote heap. Will add it in
+the next version.
 
-diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
-deleted file mode 100644
-index 5d5cdfef417f..000000000000
---- a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
-+++ /dev/null
-@@ -1,55 +0,0 @@
--Amlogic NAND Flash Controller (NFC) for GXBB/GXL/AXG family SoCs
--
--This file documents the properties in addition to those available in
--the MTD NAND bindings.
--
--Required properties:
--- compatible : contains one of:
--  - "amlogic,meson-gxl-nfc"
--  - "amlogic,meson-axg-nfc"
--
--- reg        : Offset and length of the register set
--
--- reg-names  : "nfc" is the register set for NFC controller and "emmc"
--		is the register set for MCI controller.
--
--- clocks     :
--	A list of phandle + clock-specifier pairs for the clocks listed
--	in clock-names.
--
--- clock-names: Should contain the following:
--	"core" - NFC module gate clock
--	"device" - parent clock for internal NFC
--
--Optional children nodes:
--Children nodes represent the available nand chips.
--
--Other properties:
--see Documentation/devicetree/bindings/mtd/nand-controller.yaml for generic bindings.
--
--Example demonstrate on AXG SoC:
--
--	nand-controller@7800 {
--		compatible = "amlogic,meson-axg-nfc";
--		reg = <0x0 0x7800 0x0 0x100>,
--		      <0x0 0x7000 0x0 0x800>;
--		reg-names = "nfc", "emmc";
--		#address-cells = <1>;
--		#size-cells = <0>;
--		interrupts = <GIC_SPI 34 IRQ_TYPE_EDGE_RISING>;
--
--		clocks = <&clkc CLKID_SD_EMMC_C>,
--			 <&clkc CLKID_FCLK_DIV2>;
--		clock-names = "core", "device";
--
--		pinctrl-names = "default";
--		pinctrl-0 = <&nand_pins>;
--
--		nand@0 {
--			reg = <0>;
--			#address-cells = <1>;
--			#size-cells = <1>;
--
--			nand-on-flash-bbt;
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
-new file mode 100644
-index 000000000000..42634e9c0d3c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
-@@ -0,0 +1,88 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mtd/amlogic,meson-nand.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Amlogic NAND Flash Controller (NFC) for GXBB/GXL/AXG family SoCs
-+
-+allOf:
-+  - $ref: "nand-controller.yaml"
-+
-+maintainers:
-+  - liang.yang@amlogic.com
-+
-+properties:
-+  compatible:
-+    enum:
-+      - "amlogic,meson-gxl-nfc"
-+      - "amlogic,meson-axg-nfc"
-+
-+  reg:
-+    maxItems: 2
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 2
-+
-+  clock-names:
-+    items:
-+      - const: core
-+      - const: device
-+
-+patternProperties:
-+  "^nand@[0-7]$":
-+    type: object
-+    properties:
-+      reg:
-+        minimum: 0
-+        maximum: 1
-+
-+      nand-ecc-mode:
-+        const: hw
-+
-+      nand-ecc-step-size:
-+        const: 1024
-+
-+      nand-ecc-strength:
-+        enum: [8, 16, 24, 30, 40, 50, 60]
-+        description: |
-+          The ECC configurations that can be supported are as follows.
-+            meson-gxl-nfc 8, 16, 24, 30, 40, 50, 60
-+            meson-axg-nfc 8
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/axg-clkc.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    nand-controller@ffe07800 {
-+      compatible = "amlogic,meson-axg-nfc";
-+      reg = <0xffe07800 0x100>, <0xffe07000 0x800>;
-+      reg-names = "nfc", "emmc";
-+      interrupts = <GIC_SPI 34 IRQ_TYPE_EDGE_RISING>;
-+      clocks = <&clkc CLKID_SD_EMMC_C>,  <&clkc CLKID_FCLK_DIV2>;
-+      clock-names = "core", "device";
-+
-+      pinctrl-0 = <&nand_pins>;
-+      pinctrl-names = "default";
-+
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      nand@0 {
-+        reg = <0>;
-+      };
-+    };
-+
-+...
--- 
-2.34.1
+> 
+> New properties can go only to DT schema, so first the conversion [1]
+> should be finished or started from zero (9 months it's quite a time for
+> a resend...).
+> 
+> https://lore.kernel.org/all/20211208101508.24582-1-david@ixit.cz/
 
+Right, will try to resend David's patch after addressing all the
+remaining comments on that thread. Will be a separate patch.
+
+> 
+> 
+> Best regards,
+> Krzysztof
