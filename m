@@ -2,190 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AED0A5AD02A
-	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 12:33:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1EA35AD030
+	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 12:33:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236790AbiIEKZC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 06:25:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46422 "EHLO
+        id S236636AbiIEKZ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 06:25:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236567AbiIEKZB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 06:25:01 -0400
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB54814D2F;
-        Mon,  5 Sep 2022 03:24:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=Fx28UOsSvH4MjK0P6e/lkru9jES4iAyQYx/abCtTww0=; b=TgExdecxMkIapzTP3KS526IqbL
-        9/tTNyvAYE8mdw/94pFs5NdiUw+GmIaoAA3IzVIa1/ApB/wJPOrzy6Ye/44uPjUPgla5HUKMhY7Ia
-        CRsJ7MdcKKegAdqjSb8bLRkCG+sQKJerQKpqBTt38mW0zUyUNaOnxP85Sqy0oMpN99B6yl1g8d0Ag
-        gM/yghzFwL+S/Psku9onJEwnlPz/iLeSVduKWrIW+r4OOXCjqslhqDkkqhj0E4zzKm99p4UjfNqYu
-        XV94Mo1Mud52zRXEYbv1QTkr+96jtQKrA4dZEWzAnnkGIiH6ZwrdpsxHb9ySo70vezjIryMS5MM4o
-        bW/3WHGg==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:34100)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1oV9He-0002Bw-A1; Mon, 05 Sep 2022 11:24:50 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1oV9Hd-0007Cc-Eb; Mon, 05 Sep 2022 11:24:49 +0100
-Date:   Mon, 5 Sep 2022 11:24:49 +0100
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Mark Kettenis <mark.kettenis@xs4all.nl>,
-        krzysztof.kozlowski@linaro.org, arnd@arndb.de, lee@kernel.org,
-        linus.walleij@linaro.org, alyssa@rosenzweig.io,
-        asahi@lists.linux.dev, brgl@bgdev.pl, marcan@marcan.st,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        sven@svenpeter.dev, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/6] dt-bindings: mfd: add binding for Apple Mac System
- Management Controller
-Message-ID: <YxXOcYwH6PT1T9V5@shell.armlinux.org.uk>
-References: <YxDL+cAx9kkZRL8K@shell.armlinux.org.uk>
- <928ddeff-efac-920c-7bbf-dda35a942b93@linaro.org>
- <YxDOpCq0vIlt4VNa@shell.armlinux.org.uk>
- <2fedff34-6a20-f1ce-a756-2bd8671fcd52@linaro.org>
- <YxDWG5dmzErhKIXw@shell.armlinux.org.uk>
- <ef6c7248-1efa-5366-6bcd-900c5f10ccb2@linaro.org>
- <YxDiBFIn6artUOZm@shell.armlinux.org.uk>
- <CAL_Jsq+GCKisAVA0AfE=yWJYy18mAGQ7rY1sKGYraXv-berNSg@mail.gmail.com>
- <d3cec3d22e464fa8@bloch.sibelius.xs4all.nl>
- <20220902172808.GB52527-robh@kernel.org>
+        with ESMTP id S236540AbiIEKZ0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 06:25:26 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADB921DA61
+        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 03:25:24 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id y3so16190640ejc.1
+        for <devicetree@vger.kernel.org>; Mon, 05 Sep 2022 03:25:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=tjdYvR8E0+l6GeD8FDNuLO2kjFcNArxBvfUsfzvYnYs=;
+        b=ThskbItrDltJOw8UaJnG/e0zsBPZ3pMF3oa1A4HicHWldUutTQYktKhjlp6FN40sfV
+         RTDfM5WhgFxVCrHAfjYZ8vWxMdUNCLy79lHI2/EZqNPxANkdw/EWHg1cYTjwq8YG7dNG
+         vL+8UpWsh1Vm73wZ+eDL1i9ge91Qc+NSmDMSOH3haCsOqc2JuCdy+CYuutCjDrnzQDr5
+         +YcVD02+aY4lvTQhL86uwIcW6enczWvRQqjOiiRs3LPpvT9GEFR7+6wbAfoF5WocHS3w
+         Le2zZQVx+m6gzE+nLl98F2jL/fnIWaBDM1NaG8NacQvq5x2WzHGm7p5QYGmvFLRS/hFy
+         Dqkw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=tjdYvR8E0+l6GeD8FDNuLO2kjFcNArxBvfUsfzvYnYs=;
+        b=s74L4uu3NOAb2ddu2Ls0kuy9VjGVCZoiY+LQVB5vgZvbKwNgjcLt2A6K30G8cjKV2m
+         JWYH8fT/tKOGkPRuPkRqnyENe08ahNyGy/t7Ds/Qs3SE9flB81EYlOrWi29HmMOKpkQz
+         4McRnQhygOG0uTxV9c/t/L9pqsjaJ0FT8n2nDDRm4NbJHiuyOE/G71IAXKfkVgOVTjrW
+         7iy8hgJaXYwKRf2lChJsJMrRUIycsOVCH7vMFQ9gASSKI6zvHtySvtm7Wxw+il97JLxS
+         zLYyemAstJtmMZLBMdDCaNgMiXaWP+ZBNlXqDs9z/NqxOTfQfpe2qiGvt7wqF1Rd6cba
+         3mRQ==
+X-Gm-Message-State: ACgBeo2IJ67/SEZw/MRz3pv//WqViDakJ8DtjU8SLm6uoHKM+my2vOod
+        CoVB6R2fFHrtSueCWLiGY6CCGq3bguixkDbRv73xpR188pI=
+X-Google-Smtp-Source: AA6agR6hfZQ/uvkWavri/AyJyzuTNgfUoo3sMwrkJOJhFgiuZ+BqVOBOzgqyEIaF7YGc8n5iiBtNNiHvvfvw3qVQBaA=
+X-Received: by 2002:a17:907:a420:b0:765:70a4:c101 with SMTP id
+ sg32-20020a170907a42000b0076570a4c101mr4945891ejc.526.1662373523139; Mon, 05
+ Sep 2022 03:25:23 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220902172808.GB52527-robh@kernel.org>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+References: <20220904214935.31032-1-jahau.ref@rocketmail.com> <20220904214935.31032-1-jahau@rocketmail.com>
+In-Reply-To: <20220904214935.31032-1-jahau@rocketmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 5 Sep 2022 12:25:11 +0200
+Message-ID: <CACRpkdZDS=goO+-oG+PQ7SvTndiyUyW0YFxCfE3T=QYnQAmSqQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: msm8916-samsung-serranove: Add magnetometer
+To:     Jakob Hauser <jahau@rocketmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 02, 2022 at 12:28:08PM -0500, Rob Herring wrote:
-> On Fri, Sep 02, 2022 at 05:06:43PM +0200, Mark Kettenis wrote:
-> > > From: Rob Herring <robh+dt@kernel.org>
-> > > Date: Thu, 1 Sep 2022 17:33:31 -0500
-> > > 
-> > > On Thu, Sep 1, 2022 at 11:47 AM Russell King (Oracle)
-> > > <linux@armlinux.org.uk> wrote:
-> > > >
-> > > > On Thu, Sep 01, 2022 at 07:25:03PM +0300, Krzysztof Kozlowski wrote:
-> > > > > On 01/09/2022 18:56, Russell King (Oracle) wrote:
-> > > > > >
-> > > > > > 8<===
-> > > > > > From: "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
-> > > > > > Subject: [PATCH] dt-bindings: mfd: add binding for Apple Mac System Management
-> > > > > >  Controller
-> > > > > >
-> > > > > > Add a DT binding for the Apple Mac System Management Controller.
-> > > > > >
-> > > > > > Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
-> > > > >
-> > > > > Yes, looks good.
-> > > > >
-> > > > > I won't add Reviewed-by tag, because I think it would confuse Patchwork,
-> > > > > so please send a v2 at some point.
-> > > >
-> > > > Thanks. Do you have any suggestions for patch 2? Should I merge the
-> > > > description in patch 2 into this file?
-> > > >
-> > > > The full dts for this series looks like this:
-> > > >
-> > > >                 smc: smc@23e400000 {
-> > > >                         compatible = "apple,t8103-smc", "apple,smc";
-> > > >                         reg = <0x2 0x3e400000 0x0 0x4000>,
-> > > >                                 <0x2 0x3fe00000 0x0 0x100000>;
-> > > >                         reg-names = "smc", "sram";
-> > > >                         mboxes = <&smc_mbox>;
-> > > >
-> > > >                         smc_gpio: gpio {
-> > > >                                 gpio-controller;
-> > > >                                 #gpio-cells = <2>;
-> > > >                         };
-> > > >                 };
-> > > >
-> > > > but the fuller version in the asahi linux tree looks like:
-> > > >
-> > > >                 smc: smc@23e400000 {
-> > > >                         compatible = "apple,t8103-smc", "apple,smc";
-> > > >                         reg = <0x2 0x3e400000 0x0 0x4000>,
-> > > >                                 <0x2 0x3fe00000 0x0 0x100000>;
-> > > >                         reg-names = "smc", "sram";
-> > > >                         mboxes = <&smc_mbox>;
-> > > >
-> > > >                         smc_gpio: gpio {
-> > > >                                 gpio-controller;
-> > > >                                 #gpio-cells = <2>;
-> > > 
-> > > Only 2 properties doesn't really need its own schema doc. However, I
-> > > would just move these to the parent node.
-> > 
-> > When we designed the bindings, it was our understanding that having
-> > separate nodes better matches Linux's MFD driver model.
-> 
-> Well, it is convenient to have subnodes with compatibles so that your 
-> drivers automagically probe. So yes, a 1:1 relationship of nodes to 
-> drivers is nice and tidy. But h/w is not always packaged up neatly and 
-> it's not DT's job to try to abstract it such that it is. Also, we 
-> shouldn't design bindings around the *current* driver partitioning of 
-> some OS.
-> 
-> This one is actually pretty odd in that the child nodes don't have a 
-> compatible string which breaks the automagical probing.
-> 
-> > Please be aware that OpenBSD is already using these bindings.  If
-> > there are good reasons for moving things, we can probably deal with
-> > that.  But this sounds a bit like a toss up.
-> 
-> Sigh. If there are other bindings in use, please submit them even if the 
-> Linux driver isn't ready. If a Linux subsystem maintainer doesn't want 
-> to take it, then I will. 
-> 
-> It is a toss up though...
-> 
-> > > >                         };
-> > > >
-> > > >                         smc_rtc: rtc {
-> > > >                                 nvmem-cells = <&rtc_offset>;
-> > > >                                 nvmem-cell-names = "rtc_offset";
-> > > >                         };
-> > > >
-> > > >                         smc_reboot: reboot {
-> > > >                                 nvmem-cells = <&shutdown_flag>, <&boot_stage>,
-> > > >                                         <&boot_error_count>, <&panic_count>, <&pm_setting>;
-> > > >                                 nvmem-cell-names = "shutdown_flag", "boot_stage",
-> > > >                                         "boot_error_count", "panic_count", "pm_setting";
-> > > 
-> > > Not really much reason to split these up either because you can just
-> > > fetch the entry you want by name.
-> > 
-> > Again the separate nodes are there because the RTC and the reboot
-> > functionality are logically separate and handled by different MFD
-> > sub-drivers in Linux.
-> 
-> It's really a question of whether the subset of functionality is going 
-> to get reused on its own or has its own resources in DT. MFD bindings 
-> are done both ways.
+On Sun, Sep 4, 2022 at 11:51 PM Jakob Hauser <jahau@rocketmail.com> wrote:
 
-I'm guessing this series is blocked until a resolution is found for the
-DT binding description.
+> Add magnetometer Yamaha YAS537 to the DeviceTree of samsung-serranove.
+>
+> The YAS537 variant was recently added to the Yamaha YAS magnetometers
+> driver [1].
+>
+> In the DeviceTree of samsung-serranove for the Android kernel, there is
+> unfortunately no information on interrupts or pinctrl [2].
+>
+> In the Android kernel driver for magnetometer Yamaha YAS537, there is a
+> device-specific matrix to correct an ellipsoid shape of the measure values
+> into a sphere shape [3]. This could be converted and applied to a mount-matrix.
+> However, the current state of the mainline Yamaha YAS537 driver needs
+> post-process calibration in userspace anyway, as it lacks a formula to center
+> the measure values around zero. The correction of the ellipsoid into a sphere
+> can be done in the post-process calibration as well.
+>
+> A mount-matrix is needed nonetheless. When putting samsung-serranove flat on
+> a table in portrait orientation heading north, the Yamaha YAS537 magnetometer
+> axes natively point X+ to north, Y+ to east and Z+ into the ground, which
+> corresponds to a common way to define the Earth's magnetic field coordinate
+> system [4]. According to the IIO definition, it should be Y+ to north, X+ to
+> east and Z+ upwards [5], which corresponds to a common device coordinate system
+> and eases sensor fusing.
+>
+> [1] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/drivers/iio/magnetometer/yamaha-yas530.c?id=65f79b501030678393eae0ae03d60a8151fbef55
+> [2] https://github.com/msm8916-mainline/android_kernel_qcom_msm8916/blob/GT-I9195I/arch/arm/boot/dts/samsung/msm8916/msm8916-sec-serranovelte-eur-r03.dtsi#L318-L321
+> [3] https://github.com/msm8916-mainline/android_kernel_qcom_msm8916/blob/GT-I9195I/drivers/iio/magnetometer/yas_mag_drv-yas537.c#L105-L106
+> [4] https://en.wikipedia.org/wiki/Earth%27s_magnetic_field#Characteristics
+> [5] https://github.com/torvalds/linux/blob/v5.19/Documentation/devicetree/bindings/iio/mount-matrix.txt#L93-L126
+>
+> Cc: Stephan Gerhold <stephan@gerhold.net>
+> Signed-off-by: Jakob Hauser <jahau@rocketmail.com>
 
-Please can the Asahi folk and the DT maintainers sort this out and let
-me know when I can proceed with this patch set. I'm just the man in
-the middle here.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-Thanks.
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+Yours,
+Linus Walleij
