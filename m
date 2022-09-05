@@ -2,161 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 122D55ACC45
-	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 09:28:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92A185ACCBD
+	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 09:29:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236380AbiIEHVB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 03:21:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44644 "EHLO
+        id S236622AbiIEHVC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 03:21:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235092AbiIEHUb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 03:20:31 -0400
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-eopbgr70042.outbound.protection.outlook.com [40.107.7.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2BCC33A3D;
-        Mon,  5 Sep 2022 00:15:50 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IxuvPHOFYL1OK1fb9l/GOgvuAj5brUQiv3MDdA/KuWHvVC5oiLhjZQOIROzX6NIyZCdUerVOOqtJKW8zS2TDKaR0vqfVlFgnNgA3JmjRppKaQ2uq3Tg0moHtT6LE5rbm8vurPWEnSt3rKbNi9I65aeJHRpDkfbwkoZIoYk6zxDo9sPkRg5BINWjkEngylP5x+8xZM8qDZLDGTJoIZDNHEf//Wxk+sGFEg1ZnQMmJk1ZtaIhfNZmeQzzz410BxHLv5ebJB2bDVj9P/NeyKO6xnMAaPvIkTT7vLhXKk6I7h4rGdT3ZW2e3dbPUO1nlEBdgx0yLxmDgPZKW6pj/8NWwuQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dBy4yQlDJ5ep3flacB5DDs4HJ2ZLuB4kYyvAIzLk8VY=;
- b=Ap3QuVi06gepbxJiRVRrPlP7UYoysN7Tdl186Nh+aTzmsQioayRoiuAav2XYua17ATl64D8TcJInvo5zka7Qq4eV3xSZqmRrj6YeSMvlYC+umSrlqm7072T9giNJ4dHJJ1sKmg17gar5jRJMoRDKQXk8AnUTuZeknXio2OPZ/0nUCQDuQRsADKMz5ZOWQ1ymnOGRZf+IQaziAx4CMjmi2td/IhTgeqG6FnZ+XX1asTkrpxvTbHmJWgS16rHy/j972Nqr8NoXOWXAMG0497X3jJpjtj4hYgsTk3XnfRpQhGLxZ85p1EjwyppB6uDPvoF89YIvbFdVEHlF14ttoNxylA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=siemens.com; dmarc=pass action=none header.from=siemens.com;
- dkim=pass header.d=siemens.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dBy4yQlDJ5ep3flacB5DDs4HJ2ZLuB4kYyvAIzLk8VY=;
- b=h/9ML6rHCiZIlP2DccLNVIk4nsEALkCkTRYN3s8cZfU6WTq3TEejYaM8pVakdWNQHy+bT8bxXDT7HYBoEPnt1nuWGElYiuKtlPq8BPnOFVlHbwHRZWzRaMi+0aXoPiggu9PrX0uXr+db7+oqUKboFltMX3hWEWCqrUt4tl1NLU8SEiq94s0h+jqC2cNNirBtYXGEd9wLkMrPJ/va0AkFM45n+0EWDYu5ZttBRZuq4r5nixkP4ifoqe9es1UpDJsLhct9MicHkQWlZkA/La9bocbIGtVkC6YszU/ZIJThEhqxkIFuxXAhkWpFaYp+/P4GumsTVg+uCOjFwnPM7rD6PA==
-Received: from PAXPR10MB5520.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:23e::20)
- by GVXPR10MB6006.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:150::15) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5566.19; Mon, 5 Sep 2022 07:15:47 +0000
-Received: from PAXPR10MB5520.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::5401:c86f:c182:8bbf]) by PAXPR10MB5520.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::5401:c86f:c182:8bbf%7]) with mapi id 15.20.5588.015; Mon, 5 Sep 2022
- 07:15:47 +0000
-From:   "Niedermayr, BENEDIKT" <benedikt.niedermayr@siemens.com>
-To:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "krzk@kernel.org" <krzk@kernel.org>,
-        "linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>
-CC:     "rogerq@kernel.org" <rogerq@kernel.org>,
-        "tony@atomide.com" <tony@atomide.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-Subject: Re: [PATCH v2 0/3] omap-gpmc wait pin additions
-Thread-Topic: [PATCH v2 0/3] omap-gpmc wait pin additions
-Thread-Index: AQHYwPLo0sZnpbq91EmL0+67xP7jtq3QbL2A
-Date:   Mon, 5 Sep 2022 07:15:47 +0000
-Message-ID: <39fafd913f529248e9d9c6170a7102154da0ecf7.camel@siemens.com>
-References: <20220902091028.1346952-1-benedikt.niedermayr@siemens.com>
-         <9d5182cc-2c2f-287d-b1d4-a4f5fb19788b@kernel.org>
-In-Reply-To: <9d5182cc-2c2f-287d-b1d4-a4f5fb19788b@kernel.org>
-Reply-To: "Niedermayr, BENEDIKT" <benedikt.niedermayr@siemens.com>
-Accept-Language: de-DE, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=siemens.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: bce930ab-05b1-49cc-6b1c-08da8f0e74a2
-x-ms-traffictypediagnostic: GVXPR10MB6006:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: H8Vcw8SZFP39vGUd4dFN0PMfJ/PVsU3Bqk19/tcTGpZs8sdTZ81DwAbej2YNudU1y+O9HsIMbWZqlA0xtCd5S4nWyRH/btml8XfF7lSyA+QTUgEPggvC8fqJm3d1z/st9hZgZrJYLtJGiJMuB92dmkDw6cBKdw3CYqIJuyJc2hmH5jAN9yAaQdmqpbF7O3DXrHX1Y7jPlO+GGX25Qce0u/S4m7WXx0tItBfzOcF634Shri/WAZBUIt/JfB6bUmwMNcee5bjZ3o44qZF9+JvUU301MOjhMj7a/IizuqSeXHV5pjNyM7ojcymjAGFmREOuPh15QI7Gb9BpjCJ2YPTOsnfW5Jy+3eZ9sPQD9y2tSmPZCQJ+e54YdYF6L+0OkXsY60daXkKUN3BOVUQJRRZICYuPTVLt3cvuf84VJF+qVu1jRUb2qg9euEbMX3BVUN+7GbZuvMKgcgFc3pFoiOwoC7otq5D2ObkXnBNWL15IhjsZ7SgnXKjBAk2IjOinPgZN3yJCSUTT0OuksA0htWLed/PzAzlrL81vEAziEAm9EIHJqOyVq1Xja2N6N17MjNpfspxovMApD8DpgB3xgbs/JW+Kh01qtU9vzt7JL7o1pB5yAbdHeeE+TltNyJrUM/ysCShz7/0SrxiQ+uMjNUy8uF5kjEN6dnC+y2NcwCv1X+ivVghaT9vPPPywasVsYFeB+e690srS0HHy/UfzUgjvdu2IXT90z10ZIc9jAIHOsDO3gipikZSCdOXEDYB6Xd9f40JdBFLORpKx3O11JGXUcQ==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR10MB5520.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230016)(4636009)(396003)(136003)(376002)(346002)(366004)(39860400002)(8936002)(478600001)(3450700001)(6486002)(86362001)(186003)(2616005)(6506007)(6512007)(41300700001)(26005)(2906002)(5660300002)(82960400001)(53546011)(38100700002)(91956017)(66946007)(110136005)(76116006)(316002)(122000001)(8676002)(4326008)(66476007)(36756003)(66446008)(54906003)(66556008)(71200400001)(38070700005)(64756008);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?TDJlQzhrVXVmN29ZSStxOEtwQzYzNzUwd2g3cmkyT1FGb3Rya3lEckJTdnBY?=
- =?utf-8?B?L0tjL3hlRXRLQkVUakRBRklrREVrRTdETVB4UWt6WFNRUmRlVVBNYVJ6eE41?=
- =?utf-8?B?VmtNdEp2VW9aLzFMYU1zU1REZ05tNEZnZXJyc1pJaGtDdmh3ZStSZHUxOERU?=
- =?utf-8?B?MHlQd1dZSEhNZFc0dCswN1U5S20xbEMwYlBUYTR1UlhyU045RU5sYjFQZWt3?=
- =?utf-8?B?K1FLUWhTRkI3d3NLYUhmTlpBbjFtam5NTDdrdmtYNk5sK2hlMjlWT1NXL0NZ?=
- =?utf-8?B?VkRSV29UKytUbEhpM05nWkx4MkMybjA1MFBENThYS2UxTjZUS0YxLzFESHgr?=
- =?utf-8?B?akthZkpVa2N6U1FqYkJkYVhjWCtzdmlQM1RFV3UzSnBHK2wwQTJNU2NjdFNz?=
- =?utf-8?B?WGUwbENiMHp3cDFlYU5zQVF4dyt0b1dJcmo4NUUrNk14bEoxSTJ4UGd2bTZ5?=
- =?utf-8?B?ZXVmNUtsc2hlVWRweUxSc3kxTEZENDc3eHlWMHdodVU1T3RySHV2UjNuamVj?=
- =?utf-8?B?ZXEwdW5xR2V2djB0bUZObTRYeEtUaWdkSFNiWGlLcEcvNEhPNzRNdVQ0TndD?=
- =?utf-8?B?ZVFsV2E0elIyTGxCaGxlWjcza1N2V05RRlcvRlhaTlZHZTN6VjEwcFRMY1Vv?=
- =?utf-8?B?TERRdnZncDFSNG8yQ1hJeFdOM05jMTY0RStPZklqN2tUcXJEYnlvZy9vWWZ6?=
- =?utf-8?B?UFNUQlRvYUYwNWRoeXI2MndzNXBCa0JYOEtzV2lMdXo0eU1vV3pUYUdvNWZB?=
- =?utf-8?B?dE1IcVRUeXhtN0FTbndRbHZ3clJHTHJMUlc2NUVZcTI3aUFaR09VUDU4WDdh?=
- =?utf-8?B?K1lpVURTVXJ3Y2E3VTZQSXliVkQxU0RzTitETGd1L3R4eE50TzBmd2RHZ0xT?=
- =?utf-8?B?RGtxcWF3ZngyTHhzYWVhS05LanVOTnpadG1QbVl4K0hFRnJNdlQxVDFub21H?=
- =?utf-8?B?T3dzSzdnRmVxSVpmajU3RFdJYXd5bE16TExhelRvS1Z1ZFJ1d3p2NEVlSDVJ?=
- =?utf-8?B?K2E1azRmUDY1R3B3VFJPdjloRk02LytFR0E5clU2S2ZkaGhiVUh4aHVRTGhi?=
- =?utf-8?B?UlI0YUVVRXhLZUVNcDI0UVVLdTFhNVVWcC81VzBZb1U3UmV3WllVM0l5ZnVF?=
- =?utf-8?B?Y0hHcE9qQWtOblVHckFZdTNObjJJYVZhTTJaTDQ1TzZ4anFXUFNPWXRiRWI5?=
- =?utf-8?B?eVJqK1EydGRCUFpTNWF0R21TSGVXeXBSNm04SVVPenY0ajd4aWExUU4xcGRy?=
- =?utf-8?B?c0lZY2VVZDNYR0UzTUtEZmFOU1VnN0poYmpJR2JWNVdVMFkvN04rL05HRnZr?=
- =?utf-8?B?d2lURkpxc0xNR0pyVkt4MzRtOVd6Yy96MnkvZVlROUxXbldJdTNpYW5YUjNW?=
- =?utf-8?B?dFRjam5KMDAvckliL1NQT1ZVSTJ0NE5mS24va081M04zVktHaTVrL3RMMnpW?=
- =?utf-8?B?b3FhYVREbEFHMUhDejZxVDMyWUt6K0x1dnBhcGl4TERTbHd5K2ExVFp3d0Mw?=
- =?utf-8?B?U3ZJdUp4YWNvQUdDYUNac3hvTFdwaHpQZFd6YmRuVTQ2R0xRNEJYTzRPVEha?=
- =?utf-8?B?MGxwSDVOc3Jud1N4Z2xQZEFMNFBlNnl6Z0s4bzN6RzdtckNZYVo3QSs0a1Mw?=
- =?utf-8?B?dlh1MzhXUDdDeTRyM0NEWExMNG5ra2FJU04wUSs5VkVNOUpKYmVmemFCM0NK?=
- =?utf-8?B?L1VFLzFrbS8xRDNaWGdkeDlubHBYWFdaMHlqcnFrYUVhU1hiSHBWNUhkTE1N?=
- =?utf-8?B?eUI5cEdHQ3VzZzl0dlJtTUwwRlBidWtTUVIxVVV3VXB5Y1ZsMXJUY3hveWY0?=
- =?utf-8?B?SnBwVmpGVzZRVGtseHNXQ2hwYlNPZ1RyaVFRbTVRY3k3anVZZkFQb1J6c2R4?=
- =?utf-8?B?bWJtMUpYR2Rvc1FGN2I1R2JEVHd6eVA3c3RtaHl0K09FK1B0a0pHTDFCeC9o?=
- =?utf-8?B?VEFTVUxNcUpQbW9hYmp2V3hJckw5ZUVpUllRbHBjODRXTy9EZkNFRlJxTVhZ?=
- =?utf-8?B?QlkvSThEZU9DVVQ5ZkQrbU5jMW5qbUdzZm9yV0dpWVBPNHIwL1NqSXZCMkVO?=
- =?utf-8?B?djBNSWR5L1d6Sm5OdVF5aStFUEt2UDJKOFhtUDVSSkNDdjZJS3BLd05XdjQy?=
- =?utf-8?B?QXhrbldGR3F5aWRRQm1HelBENkFrczNSVkhwOVV1ODhYeG5PcVZmMVErMnpK?=
- =?utf-8?Q?GZCd/qdm9rjmDqeaU3DQuSo=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <56F0BA44A017764695A3054427E34846@EURPRD10.PROD.OUTLOOK.COM>
-Content-Transfer-Encoding: base64
+        with ESMTP id S236366AbiIEHUm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 03:20:42 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 962A92A24E
+        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 00:15:54 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id bp20so9571113wrb.9
+        for <devicetree@vger.kernel.org>; Mon, 05 Sep 2022 00:15:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:organization:from:references
+         :cc:to:content-language:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date;
+        bh=LvkdhQt9U7FwpSw5oGil04BEBWuHJyg4UYV++2Rwli0=;
+        b=0rnrmyUF1wHBQmVpuhphEhKxh0LoUI2nl5vCDnWvCwY8z+jvSk6GjAGJlceNGVNf7j
+         KESM/LTHGGBTsQagPG9L6DfD3UWDUqa8knHG8sMMc4aSmvxkdtBr5lMZLnUNQUzJSEcb
+         Qpc4IAAjTfwqtPmXWNn4i5IfSpV7AkGFmozBFGomRblmY5BvQapUgiYzoel/+voB2XJD
+         DPdiJoPi7xq+knz1B4t8SUL3ZmJTtD2TiBHBzL9Gb2MWSCy8CQb6tqRrQR9tTJXZ21vR
+         COnCIEGaX1OY19a0oLDGCaZKgo5CrgWVrY0k+4HdWreRDozkTpzWgIcQPeYEtly0OVoe
+         2b7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:organization:from:references
+         :cc:to:content-language:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date;
+        bh=LvkdhQt9U7FwpSw5oGil04BEBWuHJyg4UYV++2Rwli0=;
+        b=6LYJSgoScfHKqCPZnfatt9+vmkAQxLsY3PyAQ0NlP6xHRgGo9y5+N0Ule9GQMVIRH5
+         m5WH0rr5JQpxU0F7qoFetFJaNhzEZKFqhSOGUelUUINJ6eExK2M7IzXKy7wkRkja02hz
+         jka1FsdxPCtyIKsSzPN+tiUDEWFzMizWgIiUnKD4iDiU4dkst3mEDjL606YkE0Ye9w4l
+         29BYFh3e02gsLxO9ANRSwQDa/9wARstRnjT/PP0BlLYCE/JNHqGSxgBqrQIKubegwnK6
+         c0L6VMfsFIBowgN6xICDMRkqL9ZNl0R1bp5mg6hl1iZBzY4xje40Kjd+NESbFshWQr7X
+         OBgQ==
+X-Gm-Message-State: ACgBeo2QeEXWXF5HUO1IlL6IW1vPE7TrR5pZ9PVRF6IEFxLdfk9ZgSuY
+        xrDciQrIltNnPLIP8Xxh0q4dmg==
+X-Google-Smtp-Source: AA6agR6Ckyoz4nVDwR7KXJbk3cH/sMw9PaPACpNIr4KZIUYOGs3sFnKp77JorSOPsdAX6n5U4ek0nA==
+X-Received: by 2002:a05:6000:1a86:b0:226:fd9b:7357 with SMTP id f6-20020a0560001a8600b00226fd9b7357mr9534983wry.458.1662362152193;
+        Mon, 05 Sep 2022 00:15:52 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:f365:27e9:453c:4c15? ([2a01:e0a:982:cbb0:f365:27e9:453c:4c15])
+        by smtp.gmail.com with ESMTPSA id e2-20020a5d5942000000b00226f39d1a3esm8050055wri.73.2022.09.05.00.15.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 Sep 2022 00:15:51 -0700 (PDT)
+Message-ID: <6ceffaed-00c1-3b62-9c0e-95349bfb2957@baylibre.com>
+Date:   Mon, 5 Sep 2022 09:15:50 +0200
 MIME-Version: 1.0
-X-OriginatorOrg: siemens.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR10MB5520.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: bce930ab-05b1-49cc-6b1c-08da8f0e74a2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Sep 2022 07:15:47.4837
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: h2lFgUsbVgbioSXo9Q2jLuH/se2+NcCaa9x57skM48trJzLOESOfEsY6PfyBzXyflJaWeyUW6ddunMMac1VTS/Nc5bDl2/tb4Y7uGhKPiEY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR10MB6006
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v6 2/4] docs/perf: Add documentation for the Amlogic G12
+ DDR PMU
+Content-Language: en-US
+To:     Jiucheng Xu <jiucheng.xu@amlogic.com>,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Will Deacon <will@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Chris Healy <cphealy@gmail.com>,
+        kernel test robot <lkp@intel.com>
+References: <20220901024526.2833232-1-jiucheng.xu@amlogic.com>
+ <20220901024526.2833232-2-jiucheng.xu@amlogic.com>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+In-Reply-To: <20220901024526.2833232-2-jiucheng.xu@amlogic.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gTW9uLCAyMDIyLTA5LTA1IGF0IDA5OjQ0ICswMzAwLCBLcnp5c3p0b2YgS296bG93c2tpIHdy
-b3RlOg0KPiBPbiAwMi8wOS8yMDIyIDEyOjEwLCBCLiBOaWVkZXJtYXlyIHdyb3RlOg0KPiA+IEZy
-b206IEJlbmVkaWt0IE5pZWRlcm1heXIgPGJlbmVkaWt0Lm5pZWRlcm1heXJAc2llbWVucy5jb20+
-DQo+ID4gDQo+ID4gVGhlcmUgaXMgY3VycmVudGx5IG5vIHBvc3NpYmlsaXR5IGZvciB0aGUgZ3Bt
-YyB0byBzZXQgZWl0aGVyIHRoZQ0KPiA+IHdhaXRwLXBpbiBwb2xhcml0eSBvciB1c2UgdGhlIHNh
-bWUgd2FpdC1waW4gZm9yIGRpZmZlcmVudCBjcy0NCj4gPiByZWdpb25zLg0KPiA+IA0KPiA+IFdo
-aWxlIHRoZSBjdXJyZW50IGltcGxlbWVudGF0aW9uIG1heSBmdWxsZmlsbCBtb3N0IHVzZWNhc2Vz
-LCBpdCBtYXkNCj4gPiBub3QNCj4gPiBiZSBzdWZmaWNpZW50IGZvciBtb3JlIGNvbXBsZXggc2V0
-dXBzIChlLmcuIEZQR0EvQVNJQyBpbnRlcmZhY2VzKSwNCj4gPiB3aGVyZQ0KPiA+IG1vcmUgY29t
-cGxleCBpbnRlcmZhY2luZyBvcHRpb25zIHdoZXJlIHBvc3NpYmxlLg0KPiA+IA0KPiA+IEZvciBl
-eGFtcGxlIGludGVyZmFjaW5nIGFuIEFTSUMgd2hpY2ggb2ZmZXJzIG11bHRpcGxlIGNzLXJlZ2lv
-bnMNCj4gPiBidXQNCj4gPiBvbmx5IG9uZSB3YWl0cGluIHRoZSBjdXJyZW50IGRyaXZlciBhbmQg
-ZHQtYmluZGluZ3MgYXJlIG5vdA0KPiA+IHN1ZmZpY2llbnQuDQo+ID4gDQo+ID4gV2hpbGUgdXNp
-bmcgdGhlIHNhbWUgd2FpdHBpbiBmb3IgZGlmZmVyZW50IGNzLXJlZ2lvbnMgd29ya2VkIGZvcg0K
-PiA+IG9sZGVyDQo+ID4ga2VybmVscyAoNC4xNCkgdGhlIG9tYXAtZ3BtYy5jIGRyaXZlciByZWZ1
-c2VkIHRvIHByb2JlICgtRUJVU1kpDQo+ID4gd2l0aA0KPiA+IG5ld2VyIGtlcm5lbHMgKD41LjEw
-KS4NCj4gPiANCj4gPiBDaGFuZ2VzIHNpbmNlIHYxOiANCj4gPiAgICogUmViYXNlIGFnYWluc3Qg
-cmVjZW50IDYuMC4wLXJjMyBrZXJuZWwsIGJ1dCB0aGUgbWFpbnRhaW5lcnMNCj4gPiBsaXN0DQo+
-ID4gICAgIHN0YXlzIHRoZSBzYW1lIQ0KPiANCj4gTm8uLi4gdGhhbmtzIGZvciByZWJhc2luZyB5
-ZXQgc3RpbGwgeW91IHVzZSB3cm9uZyBhZGRyZXNzIGVtYWlsLg0KPiANCj4gPiAgIC4vc2NyaXB0
-cy9nZXRfbWFpbnRhaW5lci5wbCBkcml2ZXJzL21lbW9yeS9vbWFwLWdwbWMuYw0KPiA+ICAgUm9n
-ZXIgUXVhZHJvcyA8cm9nZXJxQGtlcm5lbC5vcmc+IChtYWludGFpbmVyOk9NQVAgR0VORVJBTA0K
-PiA+IFBVUlBPU0UgTUVNT1JZIENPTlRST0xMRVIgU1VQUE9SVCkNCj4gPiAgIFRvbnkgTGluZGdy
-ZW4gPHRvbnlAYXRvbWlkZS5jb20+IChtYWludGFpbmVyOk9NQVAgR0VORVJBTCBQVVJQT1NFDQo+
-ID4gTUVNT1JZIENPTlRST0xMRVIgU1VQUE9SVCkNCj4gPiAgIEtyenlzenRvZiBLb3psb3dza2kg
-PGtyenlzenRvZi5rb3psb3dza2lAbGluYXJvLm9yZz4NCj4gPiAobWFpbnRhaW5lcjpNRU1PUlkg
-Q09OVFJPTExFUiBEUklWRVJTKQ0KPiANCj4gRGlmZmVyZW50IGFkZHJlc3MgZW1haWwuDQo+IA0K
-PiANCj4gQmVzdCByZWdhcmRzLA0KPiBLcnp5c3p0b2YNCk9rIG5vdyBJIHNlZTogDQogIGtyemtA
-a2VybmVsLm9yZyAgaGFzIGNoYW5nZWQgdG8ga3J6eXN6dG9mLmtvemxvd3NraUBsaW5hcm8ub3Jn
-DQoNCg0KDQo=
+On 01/09/2022 04:45, Jiucheng Xu wrote:
+> Add a user guide to show how to use DDR PMU to
+> monitor DDR bandwidth on Amlogic G12 SoC
+> 
+> Signed-off-by: Jiucheng Xu <jiucheng.xu@amlogic.com>
+> Reported-by: kernel test robot <lkp@intel.com>
+
+Same as patch 1, please drop this Reported-by tags.
+
+> ---
+> Changes v6 -> v5:
+>    - No change
+> 
+> Changes v5 -> v4:
+>    - Fix building warning
+> 
+> Changes v3 -> v4:
+>    - No change
+> 
+> Changes v2 -> v3:
+>    - Rename doc name from aml-ddr-pmu.rst to meson-ddr-pmu.rst
+> 
+> Changes v1 -> v2:
+>    - Nothing was changed
+> ---
+>   Documentation/admin-guide/perf/index.rst      |  1 +
+>   .../admin-guide/perf/meson-ddr-pmu.rst        | 70 +++++++++++++++++++
+>   MAINTAINERS                                   |  1 +
+>   3 files changed, 72 insertions(+)
+>   create mode 100644 Documentation/admin-guide/perf/meson-ddr-pmu.rst
+> 
+> diff --git a/Documentation/admin-guide/perf/index.rst b/Documentation/admin-guide/perf/index.rst
+> index 69b23f087c05..997a28e156c1 100644
+> --- a/Documentation/admin-guide/perf/index.rst
+> +++ b/Documentation/admin-guide/perf/index.rst
+> @@ -17,3 +17,4 @@ Performance monitor support
+>      xgene-pmu
+>      arm_dsu_pmu
+>      thunderx2-pmu
+> +   meson-ddr-pmu
+> diff --git a/Documentation/admin-guide/perf/meson-ddr-pmu.rst b/Documentation/admin-guide/perf/meson-ddr-pmu.rst
+> new file mode 100644
+> index 000000000000..28e9910940d0
+> --- /dev/null
+> +++ b/Documentation/admin-guide/perf/meson-ddr-pmu.rst
+> @@ -0,0 +1,70 @@
+> +.. SPDX-License-Identifier: GPL-2.0
+> +
+> +===========================================================
+> +Amlogic SoC DDR Bandwidth Performance Monitoring Unit (PMU)
+> +===========================================================
+> +
+> +There is a bandwidth monitor inside the DRAM contorller. The monitor include
+> +4 channels which can count the read/write request of accessing DRAM individually.
+> +It can be helpful to show if the performance bottleneck is on DDR bandwidth.
+> +
+> +Currently, this driver supports the following 5 Perf events:
+> +
+> ++ meson_ddr_bw/total_rw_bytes/
+> ++ meson_ddr_bw/chan_1_rw_bytes/
+> ++ meson_ddr_bw/chan_2_rw_bytes/
+> ++ meson_ddr_bw/chan_3_rw_bytes/
+> ++ meson_ddr_bw/chan_4_rw_bytes/
+> +
+> +meson_ddr_bw/chan_{1,2,3,4}_rw_bytes/ events are the channel related events.
+> +Each channel support using keywords as filter, which can let the channel
+> +to monitor the individual IP module in SoC.
+> +
+> +The following keywords are the filter:
+> +
+> ++ arm             - DDR access request from CPU
+> ++ vpu_read1       - DDR access request from OSD + VPP read
+> ++ gpu             - DDR access request from 3D GPU
+> ++ pcie            - DDR access request from PCIe controller
+> ++ hdcp            - DDR access request from HDCP controller
+> ++ hevc_front      - DDR access request from HEVC codec front end
+> ++ usb3_0          - DDR access request from USB3.0 controller
+> ++ hevc_back       - DDR access request from HEVC codec back end
+> ++ h265enc         - DDR access request from HEVC encoder
+> ++ vpu_read2       - DDR access request from DI read
+> ++ vpu_write1      - DDR access request from VDIN write
+> ++ vpu_write2      - DDR access request from di write
+> ++ vdec            - DDR access request from legacy codec video decoder
+> ++ hcodec          - DDR access request from H264 encoder
+> ++ ge2d            - DDR access request from ge2d
+> ++ spicc1          - DDR access request from SPI controller 1
+> ++ usb0            - DDR access request from USB2.0 controller 0
+> ++ dma             - DDR access request from system DMA controller 1
+> ++ arb0            - DDR access request from arb0
+> ++ sd_emmc_b       - DDR access request from SD eMMC b controller
+> ++ usb1            - DDR access request from USB2.0 controller 1
+> ++ audio           - DDR access request from Audio module
+> ++ sd_emmc_c       - DDR access request from SD eMMC c controller
+> ++ spicc2          - DDR access request from SPI controller 2
+> ++ ethernet        - DDR access request from Ethernet controller
+> +
+> +
+> +The following command is to show the total DDR bandwidth:
+> +
+> +  .. code-block:: bash
+> +
+> +      perf stat -a -e meson_ddr_bw/total_rw_bytes/ -I 1000 sleep 10
+> +
+> +This command will print the total DDR bandwidth per second.
+> +
+> +The following commands are to show how to use filter parameters:
+> +
+> +  .. code-block:: bash
+> +
+> +      perf stat -a -e meson_ddr_bw/chan_1_rw_bytes,arm=1/ -I 1000 sleep 10
+> +      perf stat -a -e meson_ddr_bw/chan_2_rw_bytes,gpu=1/ -I 1000 sleep 10
+> +      perf stat -a -e meson_ddr_bw/chan_3_rw_bytes,arm=1,gpu=1/ -I 1000 sleep 10
+> +
+> +The 1st command show how to use channel 1 to monitor the DDR bandwidth from ARM.
+> +The 2nd command show using channel 2 to get the DDR bandwidth of GPU.
+> +The 3rd command show using channel 3 to monitor the sum of ARM and GPU.
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index ac8a98dfbacc..8ee68e699e6d 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -1054,6 +1054,7 @@ AMLOGIC DDR PMU DRIVER
+>   M:	Jiucheng Xu <jiucheng.xu@amlogic.com>
+>   S:	Supported
+>   W:	http://www.amlogic.com
+> +F:	Documentation/admin-guide/perf/meson-ddr-pmu.rst
+>   F:	drivers/perf/amlogic/
+>   F:	include/soc/amlogic/
+>   
+
+Thanks,
+Neil
