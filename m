@@ -2,69 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 32A3E5ADB5B
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 00:20:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EADB15ADB80
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 00:49:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231392AbiIEWUX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 18:20:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42418 "EHLO
+        id S232454AbiIEWtD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 18:49:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229577AbiIEWUW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 18:20:22 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CB1723BEB;
-        Mon,  5 Sep 2022 15:20:20 -0700 (PDT)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=phil.lan)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1oVKRw-000253-Q6; Tue, 06 Sep 2022 00:20:12 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Ondrej Jirman <megi@xff.cz>, linux-rockchip@lists.infradead.org
-Cc:     Heiko Stuebner <heiko@sntech.de>,
-        Caleb Connolly <kc@postmarketos.org>,
-        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
-        =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
-        <n@nfraprado.net>,
+        with ESMTP id S232471AbiIEWsc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 18:48:32 -0400
+X-Greylist: delayed 536 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 05 Sep 2022 15:48:25 PDT
+Received: from soltyk.jannau.net (soltyk.jannau.net [144.76.91.90])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9576C3C8D4
+        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 15:48:25 -0700 (PDT)
+Received: by soltyk.jannau.net (Postfix, from userid 1000)
+        id 5B67726EF9A; Tue,  6 Sep 2022 00:39:27 +0200 (CEST)
+Date:   Tue, 6 Sep 2022 00:39:27 +0200
+From:   Janne Grunau <janne@jannau.net>
+To:     Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Arnaud Ferraris <arnaud.ferraris@gmail.com>,
-        open list <linux-kernel@vger.kernel.org>,
-        Martijn Braam <martijn@brixit.nl>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Rockchip SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH] arm64: dts: rockchip: Fix SD card controller probe on Pinephone Pro
-Date:   Tue,  6 Sep 2022 00:20:11 +0200
-Message-Id: <166241640239.2484108.8849945710156570054.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220904233652.3197885-1-megi@xff.cz>
-References: <20220904233652.3197885-1-megi@xff.cz>
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        asahi@lists.linux.dev, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/4] arm64: dts: apple: t8103: Add MCA and its support
+Message-ID: <20220905223927.GE10102@jannau.net>
+References: <20220824160715.95779-1-povik+lin@cutebit.org>
+ <20220824160715.95779-3-povik+lin@cutebit.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220824160715.95779-3-povik+lin@cutebit.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 5 Sep 2022 01:36:47 +0200, Ondrej Jirman wrote:
-> Voltage constraints on vccio_sd are invalid. They don't match the voltages
-> that LDO9 can generate, and this causes rk808-regulator driver to fail
-> to probe with -EINVAL when it tries to apply the constraints during boot.
+On 2022-08-24 18:07:13 +0200, Martin Povišer wrote:
+> Add the MCA I2S transceiver node and its supporting NCO, ADMAC nodes.
 > 
-> Fix the constraints to something that LDO9 can be actually configured for.
+> Signed-off-by: Martin Povišer <povik+lin@cutebit.org>
+> ---
+>  arch/arm64/boot/dts/apple/t8103-jxxx.dtsi |  4 ++
+>  arch/arm64/boot/dts/apple/t8103.dtsi      | 73 +++++++++++++++++++++++
+>  2 files changed, 77 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi b/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi
+> index fe2ae40fa9dd..503a1b243efa 100644
+> --- a/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi
+> +++ b/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi
+> @@ -76,3 +76,7 @@ wifi0: network@0,0 {
+>  		local-mac-address = [00 00 00 00 00 00];
+>  	};
+>  };
+> +
+> +&nco_clkref {
+> +	clock-frequency = <900000000>;
+> +};
+> diff --git a/arch/arm64/boot/dts/apple/t8103.dtsi b/arch/arm64/boot/dts/apple/t8103.dtsi
+> index 51a63b29d404..5c01d5318386 100644
+> --- a/arch/arm64/boot/dts/apple/t8103.dtsi
+> +++ b/arch/arm64/boot/dts/apple/t8103.dtsi
+> @@ -532,6 +532,79 @@ port02: pci@2,0 {
+>  						<0 0 0 4 &port02 0 0 0 3>;
+>  			};
+>  		};
+> +
+> +		dart_sio: iommu@235004000 {
 
-Applied, thanks!
+this and all other nodes are not sorted by address wrt to the existing 
+nodes.
 
-[1/1] arm64: dts: rockchip: Fix SD card controller probe on Pinephone Pro
-      commit: 024744964ef6c0a65e348afafd4e1feae08eba5e
+> +			compatible = "apple,t8103-dart", "apple,dart";
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+The generic compatible "apple,dart" is not part of the DART bindings
+
+> +			reg = <0x2 0x35004000 0x0 0x4000>;
+> +			interrupt-parent = <&aic>;
+> +			interrupts = <AIC_IRQ 635 IRQ_TYPE_LEVEL_HIGH>;
+> +			#iommu-cells = <1>;
+> +			power-domains = <&ps_sio_cpu>;
+> +		};
+> +
+> +		/*
+> +		 * This is a fabulated representation of the input clock
+> +		 * to NCO since we don't know the true clock tree.
+> +		 */
+> +		nco_clkref: clock-ref {
+
+clocks are not valid inside "simple-bus", the node name "clock-ref" 
+conflicts in "/", maybe use "clock-nco"?
+
+> +			compatible = "fixed-clock";
+> +			#clock-cells = <0>;
+> +			clock-output-names = "nco_ref";
+> +		};
+> +
+> +		nco: clock-controller@23b044000 {
+> +			compatible = "apple,t8103-nco", "apple,nco";
+> +			reg = <0x2 0x3b044000 0x0 0x14000>;
+> +			clocks = <&nco_clkref>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		admac: dma-controller@238200000 {
+> +			compatible = "apple,t8103-admac", "apple,admac";
+> +			reg = <0x2 0x38200000 0x0 0x34000>;
+> +			dma-channels = <24>;
+> +			interrupts-extended = <0>,
+> +					      <&aic AIC_IRQ 626 IRQ_TYPE_LEVEL_HIGH>,
+> +					      <0>,
+> +					      <0>;
+> +			#dma-cells = <1>;
+> +			iommus = <&dart_sio 2>;
+> +			power-domains = <&ps_sio_adma>;
+
+The admac bindinds don't have "iommus" or "power-domains". Fix in 
+https://github.com/jannau/linux/commit/c9a0ff4581197064c560b05e2a6861d723a8909d 
+as preparation for Apple t600x (M1 Pro/Max/Ultra) devicetree patches.
+
+> +		};
+> +
+> +		mca: i2s@38400000 {
+
+missing range offset in the node name
+
+> +			compatible = "apple,t8103-mca", "apple,mca";
+> +			reg = <0x2 0x38400000 0x0 0x18000>,
+> +			      <0x2 0x38300000 0x0 0x30000>;
+> +
+> +			interrupt-parent = <&aic>;
+> +			interrupts = <AIC_IRQ 619 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <AIC_IRQ 620 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <AIC_IRQ 621 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <AIC_IRQ 622 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <AIC_IRQ 623 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <AIC_IRQ 624 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +			resets = <&ps_audio_p>;
+> +			clocks = <&nco 0>, <&nco 1>, <&nco 2>,
+> +				 <&nco 3>, <&nco 4>, <&nco 4>;
+> +			power-domains = <&ps_audio_p>, <&ps_mca0>, <&ps_mca1>,
+> +					<&ps_mca2>, <&ps_mca3>, <&ps_mca4>, <&ps_mca5>;
+> +			dmas = <&admac 0>, <&admac 1>, <&admac 2>, <&admac 3>,
+> +			       <&admac 4>, <&admac 5>, <&admac 6>, <&admac 7>,
+> +			       <&admac 8>, <&admac 9>, <&admac 10>, <&admac 11>,
+> +			       <&admac 12>, <&admac 13>, <&admac 14>, <&admac 15>,
+> +			       <&admac 16>, <&admac 17>, <&admac 18>, <&admac 19>,
+> +			       <&admac 20>, <&admac 21>, <&admac 22>, <&admac 23>;
+> +			dma-names = "tx0a", "rx0a", "tx0b", "rx0b",
+> +				"tx1a", "rx1a", "tx1b", "rx1b",
+> +				"tx2a", "rx2a", "tx2b", "rx2b",
+> +				"tx3a", "rx3a", "tx3b", "rx3b",
+> +				"tx4a", "rx4a", "tx4b", "rx4b",
+> +				"tx5a", "rx5a", "tx5b", "rx5b";
+> +
+> +			#sound-dai-cells = <1>;
+> +		};
+>  	};
+>  };
+
+I've have a fixed version of this patch in 
+https://github.com/jannau/linux/commit/6ff76db8221d0f71cbacd9f6add58354350fcf56
+
+I was preparing the same change for t600x so it made sense to apply 
+changes to this patch as well. Except for order and the wrong address 
+all issue were discovered by `make dtbs_check`.
+
+I plan to send 
+https://github.com/jannau/linux/tree/apple-t600x-dts-for-v6.1 tomorrow.
+
+ciao
+
+Janne
