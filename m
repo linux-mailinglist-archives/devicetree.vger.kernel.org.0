@@ -2,51 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C5E75AC925
-	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 05:35:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10BDA5AC92B
+	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 05:39:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231135AbiIEDfc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Sep 2022 23:35:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58634 "EHLO
+        id S235995AbiIEDjq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Sep 2022 23:39:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230013AbiIEDf3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Sep 2022 23:35:29 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08B0627DCE;
-        Sun,  4 Sep 2022 20:35:28 -0700 (PDT)
+        with ESMTP id S230013AbiIEDjn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Sep 2022 23:39:43 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13097D112;
+        Sun,  4 Sep 2022 20:39:42 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 97AC26105C;
-        Mon,  5 Sep 2022 03:35:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F25FCC433C1;
-        Mon,  5 Sep 2022 03:35:24 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B35A861088;
+        Mon,  5 Sep 2022 03:39:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4BE7C433C1;
+        Mon,  5 Sep 2022 03:39:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1662348927;
-        bh=fmefzqVbxhqHdi7vNQ24OE/BPCKIRozuajtVqOFLM/c=;
+        s=k20201202; t=1662349181;
+        bh=B7ikVDUbWjcsfehJT3oE4acWaQQawgQ2xaEcNCkq18k=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bBM4zrfGxTjTV0hXTsHXbVfilcbeNQBEazPuaEpy4TfOM6Gh+2/KCA/T0g/sT5144
-         0szcnO/8ERmhVzjfnlwlwBPp6DJqsLB9olHxT2lYnwZ0uopEN6DVPQYJjEJlInlze5
-         NbsFV2fcJ1ggULORZnKoSPZhDYaEIN2Ul27SoWzfmp63KSdNorpzZa6rgJSdfOnzSx
-         tSerO9lZEcytynq3ZON2jahS5glTuNCmo/4DP3xX/jmuHTJEmgoI1fliKBVM/RoInr
-         6+W0Tv+NOAPiFxE4ime10vZE0JG4rE/bcImjzOJx+fH6T2IQo2QxfGCHukdpbK1xDz
-         i4j5pTkr1EkOg==
-Date:   Mon, 5 Sep 2022 11:35:20 +0800
+        b=KZ8GtqFUUjs8gzD5aSZM81b8HkI4qjYoPPCCy6TjJMhFnuRtwQ/twFXv1EDz/yRp4
+         V2iGZfcjq6ij6gaGTB4bx8O77Qb9zqQZYi9kZMxxEVH+x50pMR5kejz0FeBGJI4/0y
+         mkm/6+Sj5rO5awK8vL4v4S0UIQGhSEovTzBhfZpNvUDG9FCqtk3WMyVziyVqByBcJV
+         QW1LvYHA/4oSaUaB5eNWuI2aqV4ty59N621B1O8kejDJJvfupors+8HYyOqHDjZyKm
+         AjPNu83pXaKNXZhQlKiT4hd1Ug828R3KpOK4ceDmOUjDSNJM+bfj70zt1SSchHDuod
+         yzYU2x0D6nPmg==
+Date:   Mon, 5 Sep 2022 11:39:34 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Martin Kepplinger <martin.kepplinger@puri.sm>
-Cc:     festevam@gmail.com, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, kernel@puri.sm, krzk@kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        robh@kernel.org
-Subject: Re: [PATCH v2 0/6] arm64: dts: imx8mq-librem5: phone DT updates
-Message-ID: <20220905033520.GJ1728671@dragon>
-References: <20220902084216.1259202-1-martin.kepplinger@puri.sm>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, aisheng.dong@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH V2 0/6] arm64: dts: imx8ulp: several updates
+Message-ID: <20220905033934.GK1728671@dragon>
+References: <20220831142552.43393-1-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220902084216.1259202-1-martin.kepplinger@puri.sm>
+In-Reply-To: <20220831142552.43393-1-peng.fan@oss.nxp.com>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -57,41 +56,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 02, 2022 at 10:42:10AM +0200, Martin Kepplinger wrote:
-> hi Shawn and all interested,
+On Wed, Aug 31, 2022 at 10:25:46PM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> This is another small number of patches that enables more devices
-> or features found on the Librem 5 phone.
+> V2:
+>  Drop 'status = "okay"' and blank line in patch 5
 > 
-> thank you,
+> Update cgc/sram/pcc node to match binding doc
+> Add pmu/mailbox node
+> Increase lpspi clock
 > 
->                                martin
+> Clark Wang (1):
+>   arm64: dts: imx8ulp: increase the clock speed of LPSPI
 > 
-> revision history
-> ----------------
-> v2: (thank you Krzysztof)
-> * make led node names generic
-> * add a mipi-csi syntax fix
-> 
-> v1:
-> https://lore.kernel.org/phone-devel/20220831080301.1092737-1-martin.kepplinger@puri.sm/
-> 
-> 
-> 
-> Angus Ainslie (2):
->   arm64: dts: imx8mq-librem5: add USB type-c properties for role
->     switching
->   arm64: dts: imx8mq-librem5: add usb-role-switch property to dwc3
-> 
-> Guido Günther (1):
->   arm64: dts: imx8mq-librem5: add RGB pwm notification leds
-> 
-> Martin Kepplinger (2):
->   arm64: dts: imx8mq-librem5: describe the voice coil motor for focus
->     control
->   arm64: dts: imx8mq-librem5: fix mipi_csi description
-> 
-> Sebastian Krzyszkowiak (1):
->   arm64: dts: imx8mq-librem5: Add bq25895 as max17055's power supply
+> Peng Fan (5):
+>   arm64: dts: imx8ulp: drop undocumented property in cgc
+>   arm64: dts: imx8ulp: correct the scmi sram node name
+>   arm64: dts: imx8ulp: add #reset-cells for pcc
+>   arm64: dts: imx8ulp: add pmu node
+>   arm64: dts: imx8ulp: add mailbox node
 
 Applied all, thanks!
