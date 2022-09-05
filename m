@@ -2,174 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A92E75ACEAA
-	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 11:18:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1EE85ACEB2
+	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 11:23:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236392AbiIEJQX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 05:16:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55204 "EHLO
+        id S236849AbiIEJTs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 05:19:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234831AbiIEJQW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 05:16:22 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A7D93C175;
-        Mon,  5 Sep 2022 02:16:21 -0700 (PDT)
+        with ESMTP id S237150AbiIEJTj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 05:19:39 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E459D2702;
+        Mon,  5 Sep 2022 02:19:30 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2654461192;
-        Mon,  5 Sep 2022 09:16:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 864D6C433D6;
-        Mon,  5 Sep 2022 09:16:20 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id BFDEDB80FA0;
+        Mon,  5 Sep 2022 09:19:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1AE40C433D6;
+        Mon,  5 Sep 2022 09:19:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1662369380;
-        bh=mSrbaGciGB3lq5EQyxvPqDDGd2vT1uxuRQ5lFDDPziY=;
-        h=From:To:Cc:Subject:Date:From;
-        b=IlW+VpylxcCrYsMgQ7z8b7B3isKSc1+l2SGurlQTfiNPkZJodDbxGLHtKTY1KzxcQ
-         vbjOUstqxG8Z6YXwmFBWgmpCahRnjIVtpDuYCB+Ahys0uzCIk5Sn3lJOgG1qEb4xxC
-         dP1J+gCxpZ51g4JkvAPunaW6/BiIJGn8Cg0pV1qObEwXRux+GL4gVQY3gRfEqk10p2
-         GSZF/6q99JgC9VQ2uW6F6AzgottZftTfH8fRdQ7JV1p/z5SYPhLxoBc5RUMImO/HjP
-         JsVGOzJ/Kc90LttoUYpIeCFy2jSbtN4JUaTfowOgbb3FhxEwyJJHLHOaESCxTaiAOp
-         ZUBIpNGOs0/kg==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan+linaro@kernel.org>)
-        id 1oV8DO-0005Iw-CR; Mon, 05 Sep 2022 11:16:22 +0200
-From:   Johan Hovold <johan+linaro@kernel.org>
-To:     Bjorn Andersson <andersson@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Johan Hovold <johan+linaro@kernel.org>
-Subject: [PATCH] arm64: dts: qcom: fix syscon node names
-Date:   Mon,  5 Sep 2022 11:16:02 +0200
-Message-Id: <20220905091602.20364-1-johan+linaro@kernel.org>
-X-Mailer: git-send-email 2.35.1
+        s=k20201202; t=1662369567;
+        bh=E2wWXAkhZs9yHiw6A0Tb9wwkZZ0/9bR9oJCumXavvvs=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=WS/4gEJm+Old39QghugI/LRoRNgeFM8VAGq+BrHnpfKP5uXoRuh445vnVyT/+sZer
+         NGZm3LorJoqV2jutfJKrs26ShmlrVWYkyuJ8llvpboDlEuEJE4bqneQ5dVeGe9EJ7u
+         cKx2AaIqdKaBHxkc9EMzephXRWlW/XxZj2pJJ/xTWBDm/L/+BTw1WIVXrOgLaavmpy
+         k2r4JL2F36Qzia9VdKuJY/VIbsVjSDWjGLO4XZQohS49lYNsKv5Tdziqnp7MMsPWHe
+         uJ7kIvTN4acGSl/2i1YkR3C8gndoGNF1CXKQKYqi9eETGo8G2+8QCh8JHOe6X6N78+
+         NGnrpppzQyw4w==
+Message-ID: <3e55572d-2e5e-71bd-79db-835f3c913ab4@kernel.org>
+Date:   Mon, 5 Sep 2022 12:19:23 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v2 2/3] memory: omap-gpmc: add support for wait pin
+ polarity
+Content-Language: en-US
+To:     "B. Niedermayr" <benedikt.niedermayr@siemens.com>,
+        linux-omap@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     tony@atomide.com, krzysztof.kozlowski@linaro.org,
+        robh+dt@kernel.org
+References: <20220905071717.1500568-1-benedikt.niedermayr@siemens.com>
+ <20220905071717.1500568-3-benedikt.niedermayr@siemens.com>
+From:   Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20220905071717.1500568-3-benedikt.niedermayr@siemens.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-8.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some recent changes that added new syscon nodes used misspelled node names.
+Hi,
 
-Fixes: 86d7c9460e2c arm64: dts: qcom: sm8150: split TCSR halt regs out of mutex
-Fixes: 0da603387225 arm64: dts: qcom: sdm630: split TCSR halt regs out of mutex
-Fixes: 8a8531e69b2d arm64: dts: qcom: sdm845: split TCSR halt regs out of mutex
-Fixes: d9a2214d6ba5 arm64: dts: qcom: sc7280: split TCSR halt regs out of mutex
-Fixes: ce1ac53c7faa arm64: dts: qcom: sc7180: split TCSR halt regs out of mutex
-Fixes: fc10cfa38580 arm64: dts: qcom: msm8998: split TCSR halt regs out of mutex
-Fixes: 100ce2205924 arm64: dts: qcom: msm8996: split TCSR halt regs out of mutex
-Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
----
- arch/arm64/boot/dts/qcom/msm8996.dtsi | 2 +-
- arch/arm64/boot/dts/qcom/msm8998.dtsi | 2 +-
- arch/arm64/boot/dts/qcom/sc7180.dtsi  | 2 +-
- arch/arm64/boot/dts/qcom/sc7280.dtsi  | 2 +-
- arch/arm64/boot/dts/qcom/sdm630.dtsi  | 2 +-
- arch/arm64/boot/dts/qcom/sdm845.dtsi  | 2 +-
- arch/arm64/boot/dts/qcom/sm8150.dtsi  | 2 +-
- 7 files changed, 7 insertions(+), 7 deletions(-)
+On 05/09/2022 10:17, B. Niedermayr wrote:
+> From: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
+> 
+> Setting the wait pin polarity from the device tree is currently not
+> possible. The device tree property "gpmc,wait-pin-polarity" can be used
+> for that. If this property is missing the previous default value
+> is used instead, which preserves backwards compatibility.
+> 
+> The wait pin polarity is then set via the gpiochip
+> direction_input callback function.
+> 
+> Signed-off-by: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
+> ---
+>  drivers/memory/omap-gpmc.c              | 30 ++++++++++++++++++++-----
+>  include/linux/platform_data/gpmc-omap.h |  1 +
+>  2 files changed, 26 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/memory/omap-gpmc.c b/drivers/memory/omap-gpmc.c
+> index 579903457415..be3c35ae9619 100644
+> --- a/drivers/memory/omap-gpmc.c
+> +++ b/drivers/memory/omap-gpmc.c
+> @@ -35,6 +35,8 @@
+>  
+>  #include <linux/platform_data/mtd-nand-omap2.h>
+>  
+> +#include "../gpio/gpiolib.h"
+> +
+>  #define	DEVICE_NAME		"omap-gpmc"
+>  
+>  /* GPMC register offsets */
+> @@ -1980,6 +1982,11 @@ void gpmc_read_settings_dt(struct device_node *np, struct gpmc_settings *p)
+>  							"gpmc,wait-on-read");
+>  		p->wait_on_write = of_property_read_bool(np,
+>  							 "gpmc,wait-on-write");
+> +		p->wait_pin_polarity = of_property_read_u32(np,
+> +								 "gpmc,wait-pin-polarity",
+> +								 &p->wait_pin_polarity);
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-index 9fa524079c1b..a67b181a6135 100644
---- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-@@ -833,7 +833,7 @@ tcsr_mutex: hwlock@740000 {
- 			#hwlock-cells = <1>;
- 		};
- 
--		tcsr_1: sycon@760000 {
-+		tcsr_1: syscon@760000 {
- 			compatible = "qcom,tcsr-msm8996", "syscon";
- 			reg = <0x00760000 0x20000>;
- 		};
-diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-index d463a66715ea..1118134ff01e 100644
---- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-@@ -1047,7 +1047,7 @@ tcsr_mutex: hwlock@1f40000 {
- 			#hwlock-cells = <1>;
- 		};
- 
--		tcsr_regs_1: sycon@1f60000 {
-+		tcsr_regs_1: syscon@1f60000 {
- 			compatible = "qcom,msm8998-tcsr", "syscon";
- 			reg = <0x01f60000 0x20000>;
- 		};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index e8debb0da411..58976a1ba06b 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -1462,7 +1462,7 @@ tcsr_mutex: hwlock@1f40000 {
- 			#hwlock-cells = <1>;
- 		};
- 
--		tcsr_regs_1: sycon@1f60000 {
-+		tcsr_regs_1: syscon@1f60000 {
- 			compatible = "qcom,sc7180-tcsr", "syscon";
- 			reg = <0 0x01f60000 0 0x20000>;
- 		};
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 50c3d79abcc3..50bbc069c218 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -2160,7 +2160,7 @@ tcsr_mutex: hwlock@1f40000 {
- 			#hwlock-cells = <1>;
- 		};
- 
--		tcsr_1: sycon@1f60000 {
-+		tcsr_1: syscon@1f60000 {
- 			compatible = "qcom,sc7280-tcsr", "syscon";
- 			reg = <0 0x01f60000 0 0x20000>;
- 		};
-diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-index 9ae6610af93a..b51b85f583e5 100644
---- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-@@ -703,7 +703,7 @@ tcsr_mutex: hwlock@1f40000 {
- 			#hwlock-cells = <1>;
- 		};
- 
--		tcsr_regs_1: sycon@1f60000 {
-+		tcsr_regs_1: syscon@1f60000 {
- 			compatible = "qcom,sdm630-tcsr", "syscon";
- 			reg = <0x01f60000 0x20000>;
- 		};
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index 347c3abc117b..d761da47220d 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -2625,7 +2625,7 @@ tcsr_mutex: hwlock@1f40000 {
- 			#hwlock-cells = <1>;
- 		};
- 
--		tcsr_regs_1: sycon@1f60000 {
-+		tcsr_regs_1: syscon@1f60000 {
- 			compatible = "qcom,sdm845-tcsr", "syscon";
- 			reg = <0 0x01f60000 0 0x20000>;
- 		};
-diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-index 008f2e8c171c..cef8c4f4f0ff 100644
---- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-@@ -2054,7 +2054,7 @@ tcsr_mutex: hwlock@1f40000 {
- 			#hwlock-cells = <1>;
- 		};
- 
--		tcsr_regs_1: sycon@1f60000 {
-+		tcsr_regs_1: syscon@1f60000 {
- 			compatible = "qcom,sm8150-tcsr", "syscon";
- 			reg = <0x0 0x01f60000 0x0 0x20000>;
- 		};
--- 
-2.35.1
+This is wrong. of_property_read_u32() returns 0 or error value. It does not return the properties value.
+The properties value is already stored in the pointer passed in the 3rd argument.
 
+> +		if (p->wait_pin_polarity < 0)
+> +			p->wait_pin_polarity = GPIO_ACTIVE_HIGH;
+>  		if (!p->wait_on_read && !p->wait_on_write)
+>  			pr_debug("%s: rd/wr wait monitoring not enabled!\n",
+>  				 __func__);
+> @@ -2210,10 +2217,11 @@ static int gpmc_probe_generic_child(struct platform_device *pdev,
+>  	if (gpmc_s.wait_on_read || gpmc_s.wait_on_write) {
+>  		unsigned int wait_pin = gpmc_s.wait_pin;
+>  
+> -		waitpin_desc = gpiochip_request_own_desc(&gpmc->gpio_chip,
+> -							 wait_pin, "WAITPIN",
+> -							 GPIO_ACTIVE_HIGH,
+> -							 GPIOD_IN);
+> +		waitpin_desc =
+> +			gpiochip_request_own_desc(&gpmc->gpio_chip,
+> +				wait_pin, "WAITPIN",
+> +				gpmc_s.wait_pin_polarity ? GPIO_ACTIVE_HIGH : GPIO_ACTIVE_LOW,
+
+#define GPIO_ACTIVE_HIGH 0
+#define GPIO_ACTIVE_LOW 1
+
+Why not just retain the same logic for gpmc_s.wait_pin_polarity and the DT property?
+
+> +				GPIOD_IN);
+
+This change to gpiochip_request_own_desc() is not really required as we are merely reserving the GPIO so other users cannot use it. The wait_pin's polarity is actually set in GPMC_CONFIG register. GPMC wait_pin polarity logic is hard-wired and doesn't depend on GPIO subsystem for its polarity.
+
+>  		if (IS_ERR(waitpin_desc)) {
+>  			ret = PTR_ERR(waitpin_desc);
+>  			if (ret == -EBUSY) {
+> @@ -2342,7 +2350,19 @@ static int gpmc_gpio_get_direction(struct gpio_chip *chip, unsigned int offset)
+>  static int gpmc_gpio_direction_input(struct gpio_chip *chip,
+>  				     unsigned int offset)
+>  {
+> -	return 0;	/* we're input only */
+> +	u32 reg;
+> +	struct gpio_desc *desc = gpiochip_get_desc(chip, offset);
+> +
+> +	offset += 8;
+> +	reg = gpmc_read_reg(GPMC_CONFIG);
+> +
+> +	if (BIT(FLAG_ACTIVE_LOW) & desc->flags)
+> +		reg &= ~BIT(offset);
+> +	else
+> +		reg |= BIT(offset);
+> +
+> +	gpmc_write_reg(GPMC_CONFIG, reg);
+> +	return 0;
+
+This is the wrong place to put this code.
+Wait pin plarity logic has nothing to do with GPIO subsystem.
+
+The GPMC_CONFIG wait_pin polarity setting needs to be set in gpmc_cs_program_settings().
+You need to check gpmc_settings->wait_pin_polarity there and set the polarity flag in GPMC_CONFIG register accordingly.
+
+>  }
+>  
+>  static int gpmc_gpio_direction_output(struct gpio_chip *chip,
+> diff --git a/include/linux/platform_data/gpmc-omap.h b/include/linux/platform_data/gpmc-omap.h
+> index c9cc4e32435d..bf4f2246f31d 100644
+> --- a/include/linux/platform_data/gpmc-omap.h
+> +++ b/include/linux/platform_data/gpmc-omap.h
+> @@ -149,6 +149,7 @@ struct gpmc_settings {
+>  	u32 device_width;	/* device bus width (8 or 16 bit) */
+>  	u32 mux_add_data;	/* multiplex address & data */
+>  	u32 wait_pin;		/* wait-pin to be used */
+> +	u32 wait_pin_polarity;	/* wait-pin polarity */
+>  };
+>  
+>  /* Data for each chip select */
+
+cheers,
+-roger
