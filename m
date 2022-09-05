@@ -2,234 +2,420 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A01B05ACD31
-	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 09:57:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CF7D5ACDDD
+	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 10:34:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236618AbiIEHyC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 03:54:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54560 "EHLO
+        id S237742AbiIEIcG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 04:32:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236902AbiIEHyB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 03:54:01 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B01933CBEC;
-        Mon,  5 Sep 2022 00:53:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1662364441; x=1693900441;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=mmXLJcWG86mkbApM7Hdk0uCjrr3ajgZUy/4Qwf8ksEE=;
-  b=W+mrOdhiGgGsInc2PBO+ztaueBdBNLjdQ5byMaekYywjJLZfNnqCbU6/
-   6AQTa2PvlWFo0SPHV17G7+Mw5hr+/GqM2gUcg+eFRc4Ou1RV+/nGSe0V7
-   hkR25+7KaOFwWXuXF4HirqgtT2TCz8/MI3KOQhTYCS6GVJuqQxoacbVUA
-   3qFvywi6Gfup9ggMzu1+txlRfAfKIPHziWKn4VVd3WHk9bC5cY96L5GHw
-   s92AJFgLXlGRQOGIzr4xCNjPq/3ohy0Mdvy6a0LCfdZw3BVWBmQGpmsly
-   NAeK0Us6SKV2/qVc+RauTh955+3VVBczLuHzvXjpSLOJUFq5coCwFMQn5
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.93,290,1654585200"; 
-   d="scan'208";a="172385608"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 05 Sep 2022 00:54:00 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Mon, 5 Sep 2022 00:53:58 -0700
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12 via Frontend Transport; Mon, 5 Sep 2022 00:53:58 -0700
+        with ESMTP id S237815AbiIEIb2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 04:31:28 -0400
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2046.outbound.protection.outlook.com [40.107.20.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1ECFA28E0F;
+        Mon,  5 Sep 2022 01:29:57 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Gl2jpYLPh/HxV29BrhJPqTXfM4bA+VMAzk7njqp7puK17iYpvVU4KfoA8n/ogL1o+OpBekWxpMvNfNJs6G1uYCV7+zSdAOB7qkWaqg0mUQstjSsytOPVKryBBi8yn1U/IOcTDQ1ur4/GQxNZMqqI/u+3Exzxn20MO3Q8UmsYuoL7ZlQMt7qlNxoI59eGbfGdTZa89qZVuhYpevvOpYSjlNcSsrNr4bed3F9xeVrdMmOpJD6v0TnJ5xoEnmrcVyjRO929MVnli95tOtS8uNzigILqfNABSd5btJjtwwbpnU4sImtKWweEzGiS0e+O8HKmv7nflua44P8ShJJICzG3Ew==
+ b=FpBDyEdl+LRaIeFE0nEK1RfT2wvk9/zmPcW4xRacPJs7NSsaanbxZb/6wf5ElXIZVTROcGt/cpWkID6aGVLFW3t36WLshpjAdWCuUOPrscRfdMI8DPmxno+edMFn3C5O4GXxu+BKCPMn8K/GPcN2zKvIRS09KiXsA7rhZD+eVl2nTUx9z1vFKyfX4FgPkihd0mX0hEFYTc3/35GLgVufZER6KjelgOjnYj5fD4Qm1dpM3Q5uLQaqSEDLfxcAUxKhmj1YYNQsKzZ00xiwJ6D65MMkqUvV+c0R6QeEEACjFt53h7RNNUxUUFked+p0tuNMybw63vqVmPHu9kThlIHw3w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pM+zd6qF7BBg6ct+sNmTp93Nfvr6jpmmpMItym18AsY=;
- b=RwsFn0SlQzFaC5L+EaOuSuFdkR3yjc4Sr1ddfdH9OCewBYSbDoHzdardlIzB+ygfyXSR9kdnwF0E/PQPqClMp27zRjzVtqd5G7fefbzH2qurLYp+sGlheKhp6Djl9iIxCbJk5LoiFNrZL39r5pkx8iWiJ0UGPHlQwMrjzmVdwNxcruzxSd4bJfOcNraol9oKEtbXKa4nQJ2hfZW+9RlxK5gJCIiDBePkTOZOU4BtycFi3KJtN8Rpj31+gbXZ1MRzqL0JuEJ6/a4k1jQWzK1IV7QXHj+o4XGhUdYzFaNTJEDnbmr+WKq3+wjFcl8ttWtsGrp7y1sAXw9YKPjegZjEpA==
+ bh=wxW0aCeDRRSA+8HA8BdgcVLhELoxMNu7+roSElwiXuc=;
+ b=P5C1LW7cs64i57GJl/hKYt9MBZ8fQRBjN+KCFAPPLTcn19Fw3FYUf2ig15VhhjrivfwGr63O7G9HCH06OFR+SHyqUjubwMb9F86OVKDk+okwVy3h9803c02zg8tglZj+176gyg65CHcSrZLTuPHZrW8MVq69Uh+yqV6qIQ8lcScj3YWj9sO9+/1a+VfvMib72D5/HXNcZfpwz9Y0xebwTtQtlm9s8YEhF34oDMuRnlbokvX4nPtDewuamF5mZ0/dcLcSltx5O1ZF/NWQx7+ImYycsao9q/o7nYl7saMnh8Qg3n/+mSQp8rPn6zmbl2Ud5CSRWtqxd+tGnK7A4z/OnA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pM+zd6qF7BBg6ct+sNmTp93Nfvr6jpmmpMItym18AsY=;
- b=mEpoBF2uwkB5GVw2jsXcsTZOpElnJQmJs72QrxjokAiYNYTuraIEIe/3Eh7O6WjeDSPHLdYyMyJMhSZPgi/3T9MeLuApXfJUAuvC+MRGx9T9PR3QjWxnP+FGxlxwXo3AXaotc7yiBo5gx+jTIUAr+5rqdnYsISwqplPcR+FKukE=
-Received: from SA2PR11MB4874.namprd11.prod.outlook.com (2603:10b6:806:f9::23)
- by DS7PR11MB6294.namprd11.prod.outlook.com (2603:10b6:8:96::18) with
+ bh=wxW0aCeDRRSA+8HA8BdgcVLhELoxMNu7+roSElwiXuc=;
+ b=Pk318fmTSjKPita+m4La9Sdrp/9Zw2b4Ms1zHFwMcrls/loTa/4gtpnclPzuthsLa1ZgtJ1+DYXHPS35YnP0wbwRdVeLeEbP6h1vvyEj5ic83T2C5FW8RWWaS95EfkJl5ujH4tz3buJX+Kf/dcCS2xMryNgnYNdk4MxTk3KYoQo=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM6PR04MB5925.eurprd04.prod.outlook.com (2603:10a6:20b:ab::19)
+ by PAXPR04MB8591.eurprd04.prod.outlook.com (2603:10a6:102:21a::13) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.11; Mon, 5 Sep
- 2022 07:53:56 +0000
-Received: from SA2PR11MB4874.namprd11.prod.outlook.com
- ([fe80::6982:4db0:989c:c097]) by SA2PR11MB4874.namprd11.prod.outlook.com
- ([fe80::6982:4db0:989c:c097%8]) with mapi id 15.20.5588.012; Mon, 5 Sep 2022
- 07:53:56 +0000
-From:   <Kavyasree.Kotagiri@microchip.com>
-To:     <lee.jones@linaro.org>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <Kavyasree.Kotagiri@microchip.com>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <Nicolas.Ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-        <UNGLinuxDriver@microchip.com>
-Subject: RE: [PATCH v8 0/3] Add support for lan966x flexcom chip-select
- configuration
-Thread-Topic: [PATCH v8 0/3] Add support for lan966x flexcom chip-select
- configuration
-Thread-Index: AQHYksHtcVb2nMUrrUee0+iQGAJuu63Q0lng
-Date:   Mon, 5 Sep 2022 07:53:56 +0000
-Message-ID: <SA2PR11MB4874435AC1CAEE6DAFC3F239927F9@SA2PR11MB4874.namprd11.prod.outlook.com>
-References: <20220708115619.254073-1-kavyasree.kotagiri@microchip.com>
-In-Reply-To: <20220708115619.254073-1-kavyasree.kotagiri@microchip.com>
-Accept-Language: en-IN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: d0e77b46-27b5-4d76-6b2f-08da8f13c90d
-x-ms-traffictypediagnostic: DS7PR11MB6294:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: aUDTH/uG5KU/1e5HpX6YCuRssQfOh3dZjg+VTl2va2HQjfceQ12ou3Z26qS9aiwiZtfJayi1G+bksPQ960CkVeZbfHmmntfqApoTWxhkPPcosv4mHW5tT5NtRh55VRJ1AItpFTbod+K/u4LO6XpBPq5Oo14zZSj/a7NmrdQ0DGQ92URe7gMSXJpp57cH9qCbb3bLefCOK6X+B57zJtyYtNhh3TZuBFBqzXRIKTJ9VllkCKh8q6P7B5n4MLZg+wfCduiDD5Rf0G5kiX50RAMJMBWUXfd/2QJhHj3Ulw+ajsbHeuOrHHAwWJFJWnOFbVvzKG7Gd/gV0cmH5UUD+CDtdxLzU6nu+2LaoKtqCXOhse4zOgejoCrO7e/0d5aLFnIyJ4lfnqwHtko5sLuIfIgRqB2PyKoYT40dbKTcoaA879m6vWbJ2wfBzR+pmPOt7Cc+KAqNpwc1N9NVI3bxiDdxP21Y3hl/TkpyEhPGaJJGmwFbH3rcNKFxo7lAQFIZP5TlrnqVnAD+dB0r0AY+FxCv/UxhYkoDnQSKYG2blBd+dDU88jagmOny5aziq/amcSfJeV8uQ/ED0zmdKxuiDu5SleMkZt5pdj+SNHCjnnBJTCsDzGi1481ygesyGAmmkvBQ4DfC0pnCsobOQt3Jjr/22zYirlc7W7lEmkT9DfMYhCpnmdKDeRDbfWk3G1D2te4kjKcIFdJywhxUMwfH7c6rWwKpISWFVNTttjzNaH9Ym12AMiLFPfH98k6ESchF4r9HV8VBs3sADC15n7XZ6gSXo52hxv0vCT/WYoX91+8i4Gw=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA2PR11MB4874.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(39860400002)(366004)(346002)(136003)(396003)(376002)(66476007)(64756008)(66446008)(8936002)(33656002)(2906002)(53546011)(86362001)(66556008)(4326008)(41300700001)(6506007)(9686003)(107886003)(5660300002)(7696005)(478600001)(66946007)(55016003)(8676002)(38100700002)(122000001)(26005)(52536014)(38070700005)(316002)(186003)(83380400001)(966005)(6916009)(71200400001)(54906003)(76116006);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?1DVofFdPK9rR42FVe/slb1Zm8I865krmDwMs/GDvBBP0j03fgeItUprc1+Ca?=
- =?us-ascii?Q?MNpvjpymnpVjrTjqCWhrTtE1B8EAnS4N9SqIe0zmcdyZGcb9FW1AEPoYv7M2?=
- =?us-ascii?Q?E/Nt4kZlpudhzI3EQaSz2nDqDq1WjT1R4y3qo3gRbL5YOxwalGlcRQb+lraq?=
- =?us-ascii?Q?0VPwZ9FUG2sw2Bl4LVh8i9pjZ5Sz7NmP/xHRVd9kcIxSehtW80kwsdpKRCWg?=
- =?us-ascii?Q?5ohpJXGFgXUfea2jQwWOCGMpbpADSQZZ8ODT04R+P8wKVX8peOeeuqsWq4J2?=
- =?us-ascii?Q?Vx4X8lpvHbfhbY21DVHxSGITrDrmBZIJfWL7/nrWXEAHv1+SDQnNn4klhxwe?=
- =?us-ascii?Q?GdMh1h8zNdDXOVSPfw8yjOdhySuptGf44EtSJisSPNFsvkjb78BaC2LL01J6?=
- =?us-ascii?Q?l69iQGXgLc3YIaRtSHE/1ziWUwwGoXK0dzjI9Z4RS28I1EPAHgi6QhCDDRjI?=
- =?us-ascii?Q?NqsxuZIHDDjYB1XL3oOYW81HOAwBxjoBuMUjaVSDXi6iJdupcjuldSlXIw1g?=
- =?us-ascii?Q?y6eGH8zU8q3uUthpRnysgndkOtA3RaPZE+wJ6NuA6M5ezPagnp08PvaFOMcH?=
- =?us-ascii?Q?1B7JB4g0+dEXMyaFJua4vL7alqm4ieb5wO0kI3jaWdOn1nzceb9rT1kVQH34?=
- =?us-ascii?Q?kPBpJgcfB4fi7vY06E5KmMdnQi76UIOZX3AJ9BbSGIF6sbFItPSocH3/Aapw?=
- =?us-ascii?Q?4nTq3V4XzO+Fz/Rk5+eQ/am4Xrsi7wZJmewiu5B+Zoqy/BZYAOYM5jgMdEqj?=
- =?us-ascii?Q?v+JFZj8cpuBceKGJjUaEemNc07uW1DMcZuzBZBlPxD5eM2dbWz6T7JpcFNEE?=
- =?us-ascii?Q?ahhwOw5p0bCJ6bjawTaSMg7tATZNZH4u06oLZk9pd6Rs1suq0qTsTjiObqfa?=
- =?us-ascii?Q?ZIQtEEzAq2rb8nkW3M3bPs1peVcb55U9x915SrxKzcSz6qE9DysF6+Oy2m/e?=
- =?us-ascii?Q?5typeoNv8yzPGszdcBmEocIQY8is57eXqrCkMxQZeE9+qcaC94m4OIjpF4Ym?=
- =?us-ascii?Q?8IV+wVcSWVbqSY7zvhF0NXIOA57joWU/xn6SoW4u9xdN9FflhMA/6LfMEMcR?=
- =?us-ascii?Q?Gt0dTT7bk7dQ2b1wSxjFjdHMXkye70X4YcLGI73btUQ5spP9Okc7JjHb7y97?=
- =?us-ascii?Q?x60+UW2uoO14bZzU2FkblqnsySQoq2mjyOLtIB5pq+vuHhyI0uNX4aQZYXz3?=
- =?us-ascii?Q?Yk8t5eGY3u1lTOrQEElHJjruPq+tmoav/rTTRZn1AA/EXmoNEsUj046nyw2F?=
- =?us-ascii?Q?l9nXm/B9Xa+ZBsmA6GiYJ0PRFHc+uSwufQEQ6hMIwNCejd3htMlsDyMlkGK/?=
- =?us-ascii?Q?paGFBCwaCEcDvjVSbiBDr5VOOwmCuPY1QtyKr4DAow9sxEnh6TgtGej0oVL/?=
- =?us-ascii?Q?mlXBi3GTPhsLM5q7uP8Q7Koo3WRI7bmHNdrU5Mpy/EGGmH1ZsIYkLvVeZFqZ?=
- =?us-ascii?Q?p4thXHmcWc1uhqpQIAn7dy2sIjZJv8ZpDJtlDlWj8x5Yry4rir2FrQIVNMc4?=
- =?us-ascii?Q?NUpbQ1s5509StEZ35ssQlDK7TWmgK+XRu2W0XZ4eykfrG8ImW+lTguCK0oAC?=
- =?us-ascii?Q?KP5VEWhjYi/CwbUfGvFOzz3vjPcT4Obp/vxMUn9buADDqeG5y2bWDVwF+GQ1?=
- =?us-ascii?Q?Gw=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.18; Mon, 5 Sep
+ 2022 08:29:54 +0000
+Received: from AM6PR04MB5925.eurprd04.prod.outlook.com
+ ([fe80::704a:fa82:a28e:d198]) by AM6PR04MB5925.eurprd04.prod.outlook.com
+ ([fe80::704a:fa82:a28e:d198%6]) with mapi id 15.20.5588.017; Mon, 5 Sep 2022
+ 08:29:54 +0000
+From:   Joy Zou <joy.zou@nxp.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        vkoul@kernel.org
+Cc:     shengjiu.wang@nxp.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH V5 1/4] dt-bindings: fsl-imx-sdma: Convert imx sdma to DT schema
+Date:   Mon,  5 Sep 2022 16:31:02 +0800
+Message-Id: <20220905083102.89531-1-joy.zou@nxp.com>
+X-Mailer: git-send-email 2.37.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR04CA0181.apcprd04.prod.outlook.com
+ (2603:1096:4:14::19) To AM6PR04MB5925.eurprd04.prod.outlook.com
+ (2603:10a6:20b:ab::19)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 24e8afff-542a-48eb-5542-08da8f18cf06
+X-MS-TrafficTypeDiagnostic: PAXPR04MB8591:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: YrbNNJySsibl+uKbbYkl9m9SgNJhGNUoURJjVsIM3iU0v+IIrFC5qE04SU9W7AkHdzAGblC/vjPEnSk1Tt+z4fdmYDF7tF+Lqhkg5YdnFGJ7TwGShKSEYAreflJlbDCYr7DK1k/EZbqngImZdlUJPX1kEjKYJXv2m18VU3XtHzpz8eiX89LnGHo+XBQiS51K12Bs163QQaBF6WrYr+VDNDbAg5QINIlevptgAWG+aLbnmdz02ICsHAOSp/ZXozeF/zzmNNTsFald1N4gAwD7lsZ81Xw8rh29c++TDTnHyIJqkX5kPeH/SjdupgKY0k4bpdXUCDDp1fRdgRjG2iwPQ3jQD0Hwi1kwg86TxfSVVsZw6bhkm1XWuU+9GWmL25P/r6DgdD7oiAC7TX6aaMjltTpowG3ZsHBfGkVk9UxpoCWVqGDUwoGVpIMKq+BKW/wMXln80lof29mIf0gHrL+oWoiLT0K+0SumCrxK6H8Qy40AJBSsUPb4E76M08jh/K9PF+rf3ie3FOJk1olY/QMig1xzxy/b05B2TgIgsylC36964GbnwsG73xj92itJaGvXEEIYfbxvx4Ax0XSRTRcT1/u7foR1yDmNGrY+ga0rugUb9Umwx9nAhlQAtBTpjAYYjgdPOGK7EgsZxIDbukMSBIawO/JhbLeGB7O+//5gx12yYMnPtglmbno3YDFpP+Gex5/bz/mFFP/6d4WJmn38UgZg2R2NbSnwkN0EXeC20352Rwt3lKLVWFiGunqs8D2lp0K/eCMjQWocYuMW5lFbKsysBC8bGSf5Tni9BKsuWPQCsk8TL/S/RjiH2xGi0UHaJGA3MVGTfKVku/jH6J4AyA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB5925.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(346002)(396003)(376002)(366004)(136003)(39860400002)(6512007)(36756003)(316002)(86362001)(7416002)(38100700002)(44832011)(38350700002)(2906002)(8936002)(5660300002)(66556008)(83380400001)(4326008)(8676002)(66476007)(66946007)(6486002)(6666004)(966005)(41300700001)(2616005)(186003)(1076003)(6506007)(26005)(478600001)(52116002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?i++OLY62hpETgxUqnFa2ywNMXNiGvQSEcLbypPnXSGATxc4mXEcs8NhmiXlN?=
+ =?us-ascii?Q?0ahjzSLZVLserm0zDUE1QQj6PC5mEac47MncSQl75ndNSoXk9qwpERdBfBU8?=
+ =?us-ascii?Q?rekn0ZnoEkt7yNa5ljzuhnoQYJBtTn6wvsapcGyjqFK/Lo7XFOJkhOPd9O3v?=
+ =?us-ascii?Q?pYA2/ErYAfzfNSl6cHioxiaGgioWddQar/NvixGmbrFshH8layzei3aejhNw?=
+ =?us-ascii?Q?y8yxt72QkFDVSI70w1zqYJPePD0D0IMlX2jG4hlixIQUeyTy13VkkCNJ5q6q?=
+ =?us-ascii?Q?d2seKVRL9XFscUrp+vtlpd/fFq5Ioxi+TW7MUIFoJ8X6X0yCIm6wZZ1BJR5P?=
+ =?us-ascii?Q?D0CKFZRS0fhThBV3QY6DZLmVBODdVh2xXGHaJpXWdF8ItUe01FucfLdeoQdF?=
+ =?us-ascii?Q?8g4McF036AB5Uz64mfRz//Qvyzy6upHKxa00FV3dQBqD+1p3PO5pv3T9raDF?=
+ =?us-ascii?Q?OCXp2wexFCbxnI34FTnedJTzXkuxc25styd3g2vE+7jmv15XTzIMAZ8/kVjy?=
+ =?us-ascii?Q?gECHekmUfEFwt/AVtVbtw4s14LhaknC6PFV3L2JjTdcj1zmLzsNk64a8+gIi?=
+ =?us-ascii?Q?BWNjLi4vJUF16+grg4gfdRFlx2zGkxo/bBo0fyCMvIOpZyRcna1KFYjT1hbc?=
+ =?us-ascii?Q?6RFRqbgQE7Y/HDI4zu9frFog5JpPAuPlpkS/L+j/LMLoz8MJI9p6dskLzZgW?=
+ =?us-ascii?Q?Jz2sdHH2lti2mlIMn+E4DPuzBHHgzuhvQcaNCt5yjPRw2Wp6kiwCJADFfOod?=
+ =?us-ascii?Q?B6MVXjvf7QpkN6j6QAizuyWoL6+plaa9qKiBVKsNbNRCuD4lTgUD55Uxvnuj?=
+ =?us-ascii?Q?0dXfN6LDLB55+caByYQcFHdRPcrR3VIukDzhjBKby2pFEQJKLa92xUCD0MZh?=
+ =?us-ascii?Q?quJ8g/76BKZATJJuHmSsu33QELYKMXTDgmj677qGNwJatwpVLL53C1BmllQ5?=
+ =?us-ascii?Q?0k6Aa4YreH/0tZBiof5x7PNs3MFl1sQVDZAJGP3gr+tA/mm8z3S+7h+Tot5g?=
+ =?us-ascii?Q?FMscsx2y1EUtSIR6WktfHTAyKynwPQWXMYPiVgvUGqbp54pFSY5f6TIBJRC/?=
+ =?us-ascii?Q?gLrE89kj5yuqYgrit6IknAvuDtTfygfAeGG1y+f0AjJWxpllMz7y6y4Z4JmV?=
+ =?us-ascii?Q?91ClG6Xud4qygdxveU+ldpDAA8F30Z8UV3IYHXmpOj2X1uNTQn8lpEjctBhF?=
+ =?us-ascii?Q?c2WeV17higFoAzcCkHHcbKLQ8NzGRJremj2j8XSlxdDRwWCPK4UMoQnxBDX1?=
+ =?us-ascii?Q?5npJ/0bufEvn7E2kJMxNiNf18xMOmSCY1YEIUehaEMFBkCm6qlw9OUSHrO+b?=
+ =?us-ascii?Q?TYH0AmveEYxuGH0lbGUVRIWDQsB+PBTNTnDPdlq8ZPve1t9UKh838IjxOson?=
+ =?us-ascii?Q?bBPsYRRLk8pI+BH2RiFNCcNrEdnRTvBGWxeG7rkfBCMjUrv5cUrmyGIDX7Lz?=
+ =?us-ascii?Q?sB8IOpIcLDHTbA4khK8B21DA6TP59BMS0ZtjRrgX3j2RrrbqBtyardXTw/w8?=
+ =?us-ascii?Q?lPPslULifPvo44zhkEmDatcs7nzNjFaVUfEgZ4CEGUUjJF6WrXMhxbY6S9rN?=
+ =?us-ascii?Q?tWJ6Iskk543QWI7OYxlQfCRNunuZvUBBKdu+8RnW?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 24e8afff-542a-48eb-5542-08da8f18cf06
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB5925.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SA2PR11MB4874.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d0e77b46-27b5-4d76-6b2f-08da8f13c90d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Sep 2022 07:53:56.6284
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Sep 2022 08:29:54.5382
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: /32srjhcpjmjkz10mtxCQJtlo4EZY94xQEwVSN8mA23Gien6tAshhebY6qt0cKgCI2XprVMUSUUAMQpfiyAc3HfRMI+FY2Qcwe2e+0qJtQEP0R0PEf8M0/n7hUaRKNNs
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB6294
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: QG8xDmVfInNvGJLtpmGlwyz+I7WoHUYUPvzGT4SwxuwG7lySioOFIbarQNH1BeqA
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8591
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lee,
+Convert the i.MX SDMA binding to DT schema format using json-schema.
 
-Are you planning to take this patch series for 6.1 or Can we include them t=
-hrough arm-soc pull-request?
+The compatibles fsl,imx31-to1-sdma, fsl,imx31-to2-sdma, fsl,imx35-to1-sdma
+and fsl,imx35-to2-sdma are not used. So need to delete it. The compatibles
+fsl,imx50-sdma, fsl,imx6sll-sdma and fsl,imx6sl-sdma are added. The original
+binding don't list all compatible used.
 
-Thanks,
-Kavya
+In addition, add new peripheral types HDMI Audio.
 
-> -----Original Message-----
-> From: Kavyasree Kotagiri [mailto:kavyasree.kotagiri@microchip.com]
-> Sent: Friday, July 8, 2022 5:26 PM
-> To: robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org; Nicolas Ferre =
+Acked-by: Rob Herring <robh+dt@kernel.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Vinod Koul <vkoul@kernel.org>
+Signed-off-by: Joy Zou <joy.zou@nxp.com>
+---
+Changes since (implicit) v4:
+modify the commit message fromat in patch v5.
+add additionalProperties in patch v5, because delete the quotes in patch v4.
+delete unevaluatedProperties due to similar to additionalProperties in patch v5.
+modification fsl,sdma-event-remap items and description in patch v5.
+---
+ .../devicetree/bindings/dma/fsl,imx-sdma.yaml | 147 ++++++++++++++++++
+ .../devicetree/bindings/dma/fsl-imx-sdma.txt  | 118 --------------
+ 2 files changed, 147 insertions(+), 118 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/dma/fsl,imx-sdma.yaml
+ delete mode 100644 Documentation/devicetree/bindings/dma/fsl-imx-sdma.txt
+
+diff --git a/Documentation/devicetree/bindings/dma/fsl,imx-sdma.yaml b/Documentation/devicetree/bindings/dma/fsl,imx-sdma.yaml
+new file mode 100644
+index 000000000000..3da65d3ea4af
+--- /dev/null
++++ b/Documentation/devicetree/bindings/dma/fsl,imx-sdma.yaml
+@@ -0,0 +1,147 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/dma/fsl,imx-sdma.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Freescale Smart Direct Memory Access (SDMA) Controller for i.MX
++
++maintainers:
++  - Joy Zou <joy.zou@nxp.com>
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - fsl,imx50-sdma
++              - fsl,imx51-sdma
++              - fsl,imx53-sdma
++              - fsl,imx6q-sdma
++              - fsl,imx7d-sdma
++          - const: fsl,imx35-sdma
++      - items:
++          - enum:
++              - fsl,imx6sx-sdma
++              - fsl,imx6sl-sdma
++          - const: fsl,imx6q-sdma
++      - items:
++          - const: fsl,imx6ul-sdma
++          - const: fsl,imx6q-sdma
++          - const: fsl,imx35-sdma
++      - items:
++          - const: fsl,imx6sll-sdma
++          - const: fsl,imx6ul-sdma
++      - items:
++          - const: fsl,imx8mq-sdma
++          - const: fsl,imx7d-sdma
++      - items:
++          - enum:
++              - fsl,imx8mp-sdma
++              - fsl,imx8mn-sdma
++              - fsl,imx8mm-sdma
++          - const: fsl,imx8mq-sdma
++      - items:
++          - enum:
++              - fsl,imx25-sdma
++              - fsl,imx31-sdma
++              - fsl,imx35-sdma
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  fsl,sdma-ram-script-name:
++    $ref: /schemas/types.yaml#/definitions/string
++    description: Should contain the full path of SDMA RAM scripts firmware.
++
++  "#dma-cells":
++    const: 3
++    description: |
++      The first cell: request/event ID
++
++      The second cell: peripheral types ID
++        enum:
++          - MCU domain SSI: 0
++          - Shared SSI: 1
++          - MMC: 2
++          - SDHC: 3
++          - MCU domain UART: 4
++          - Shared UART: 5
++          - FIRI: 6
++          - MCU domain CSPI: 7
++          - Shared CSPI: 8
++          - SIM: 9
++          - ATA: 10
++          - CCM: 11
++          - External peripheral: 12
++          - Memory Stick Host Controller: 13
++          - Shared Memory Stick Host Controller: 14
++          - DSP: 15
++          - Memory: 16
++          - FIFO type Memory: 17
++          - SPDIF: 18
++          - IPU Memory: 19
++          - ASRC: 20
++          - ESAI: 21
++          - SSI Dual FIFO: 22
++              description: needs firmware more than ver 2
++          - Shared ASRC: 23
++          - SAI: 24
++          - HDMI Audio: 25
++
++       The third cell: transfer priority ID
++         enum:
++           - High: 0
++           - Medium: 1
++           - Low: 2
++
++  gpr:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: The phandle to the General Purpose Register (GPR) node
++
++  fsl,sdma-event-remap:
++    $ref: /schemas/types.yaml#/definitions/uint32-matrix
++    maxItems: 2
++    items:
++      items:
++        - description: GPR register offset
++        - description: GPR register shift
++        - description: GPR register value
++    description: |
++      Register bits of sdma event remap, the format is <reg shift val>.
++      The order is <RX>, <TX>.
++
++  clocks:
++    maxItems: 2
++
++  clock-names:
++    items:
++      - const: ipg
++      - const: ahb
++
++  iram:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: The phandle to the On-chip RAM (OCRAM) node.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - fsl,sdma-ram-script-name
++  - "#dma-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    sdma: dma-controller@83fb0000 {
++      compatible = "fsl,imx51-sdma", "fsl,imx35-sdma";
++      reg = <0x83fb0000 0x4000>;
++      interrupts = <6>;
++      #dma-cells = <3>;
++      fsl,sdma-ram-script-name = "sdma-imx51.bin";
++    };
++
++...
+diff --git a/Documentation/devicetree/bindings/dma/fsl-imx-sdma.txt b/Documentation/devicetree/bindings/dma/fsl-imx-sdma.txt
+deleted file mode 100644
+index 12c316ff4834..000000000000
+--- a/Documentation/devicetree/bindings/dma/fsl-imx-sdma.txt
++++ /dev/null
+@@ -1,118 +0,0 @@
+-* Freescale Smart Direct Memory Access (SDMA) Controller for i.MX
 -
-> M43238 <Nicolas.Ferre@microchip.com>; alexandre.belloni@bootlin.com;
-> Claudiu Beznea - M18063 <Claudiu.Beznea@microchip.com>;
-> UNGLinuxDriver <UNGLinuxDriver@microchip.com>
-> Cc: devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; lin=
-ux-
-> kernel@vger.kernel.org; Kavyasree Kotagiri - I30978
-> <Kavyasree.Kotagiri@microchip.com>
-> Subject: [PATCH v8 0/3] Add support for lan966x flexcom chip-select
-> configuration
->=20
-> This patch series converts atmel-flexcom bindings into json-schema format=
-.
-> Adds support for lan966x flexcom chip-select configurations and its
-> DT bindings.
->=20
-> v7 -> v8:
->  - Added back patternProperties for child nodes.
->  - Changed compatible string to microchip,lan9668-flexcom.
->=20
-> v6 -> v7:
->  - Change filename to atmel,sama5d2-flexcom.yaml
->  - Add #address-cells, #size-cells to flexcom node - Fixed warnings.
->=20
-> v5 -> v6:
->  - Removed spi node from example as suggested by Rob and
->    also pattern properties(spi dt-bindings conversion to yaml patch is un=
-der
-> review).
->    https://patchwork.kernel.org/project/linux-arm-
-> kernel/patch/20220629125804.137099-1-sergiu.moga@microchip.com/
->    Once this is accepted, I will add back spi example through new patch.
->=20
-> v4 -> v5:
->  - Fix indentations of DT example.
->  - Fix dt-schema errors - removed minItems, maxItems for allOf:if:then
->    "reg" property as it is not required.
->=20
-> v3 -> v4:
->  - Fix dtschema errors.
->  - Add a condition to flexcom chip-selects configuration as chip-select
->    lines are optional.
->=20
-> v2 -> v3:
->  - changed IRQ flag in dt-bindings example.
->  - added reg property specific to lan66x which is missed in v2.
->  - used goto label for clk_disable in error cases.
->=20
-> v1 -> v2:
->  - minor fix in title of dt-bindings.
->  - Modified new dt properties usage in atmel,flexcom.yaml.
->  - Used GENMASK and macros for maximum allowed values.
->  - Use u32 values for flexcom chipselects instead of strings.
->  - disable clock in case of errors.
->=20
-> Kavyasree Kotagiri (3):
->   dt-bindings: mfd: Convert atmel-flexcom to json-schema
->   dt-bindings: mfd: atmel,sama5d2-flexcom: Add new compatible string for
->     lan966x
->   mfd: atmel-flexcom: Add support for lan966x flexcom chip-select
->     configuration
->=20
->  .../bindings/mfd/atmel,sama5d2-flexcom.yaml   | 155 ++++++++++++++++++
->  .../devicetree/bindings/mfd/atmel-flexcom.txt |  63 -------
->  drivers/mfd/atmel-flexcom.c                   |  94 ++++++++++-
->  3 files changed, 248 insertions(+), 64 deletions(-)
->  create mode 100644
-> Documentation/devicetree/bindings/mfd/atmel,sama5d2-flexcom.yaml
->  delete mode 100644 Documentation/devicetree/bindings/mfd/atmel-
-> flexcom.txt
->=20
-> --
-> 2.25.1
+-Required properties:
+-- compatible : Should be one of
+-      "fsl,imx25-sdma"
+-      "fsl,imx31-sdma", "fsl,imx31-to1-sdma", "fsl,imx31-to2-sdma"
+-      "fsl,imx35-sdma", "fsl,imx35-to1-sdma", "fsl,imx35-to2-sdma"
+-      "fsl,imx51-sdma"
+-      "fsl,imx53-sdma"
+-      "fsl,imx6q-sdma"
+-      "fsl,imx7d-sdma"
+-      "fsl,imx6ul-sdma"
+-      "fsl,imx8mq-sdma"
+-      "fsl,imx8mm-sdma"
+-      "fsl,imx8mn-sdma"
+-      "fsl,imx8mp-sdma"
+-  The -to variants should be preferred since they allow to determine the
+-  correct ROM script addresses needed for the driver to work without additional
+-  firmware.
+-- reg : Should contain SDMA registers location and length
+-- interrupts : Should contain SDMA interrupt
+-- #dma-cells : Must be <3>.
+-  The first cell specifies the DMA request/event ID.  See details below
+-  about the second and third cell.
+-- fsl,sdma-ram-script-name : Should contain the full path of SDMA RAM
+-  scripts firmware
+-
+-The second cell of dma phandle specifies the peripheral type of DMA transfer.
+-The full ID of peripheral types can be found below.
+-
+-	ID	transfer type
+-	---------------------
+-	0	MCU domain SSI
+-	1	Shared SSI
+-	2	MMC
+-	3	SDHC
+-	4	MCU domain UART
+-	5	Shared UART
+-	6	FIRI
+-	7	MCU domain CSPI
+-	8	Shared CSPI
+-	9	SIM
+-	10	ATA
+-	11	CCM
+-	12	External peripheral
+-	13	Memory Stick Host Controller
+-	14	Shared Memory Stick Host Controller
+-	15	DSP
+-	16	Memory
+-	17	FIFO type Memory
+-	18	SPDIF
+-	19	IPU Memory
+-	20	ASRC
+-	21	ESAI
+-	22	SSI Dual FIFO	(needs firmware ver >= 2)
+-	23	Shared ASRC
+-	24	SAI
+-
+-The third cell specifies the transfer priority as below.
+-
+-	ID	transfer priority
+-	-------------------------
+-	0	High
+-	1	Medium
+-	2	Low
+-
+-Optional properties:
+-
+-- gpr : The phandle to the General Purpose Register (GPR) node.
+-- fsl,sdma-event-remap : Register bits of sdma event remap, the format is
+-  <reg shift val>.
+-    reg is the GPR register offset.
+-    shift is the bit position inside the GPR register.
+-    val is the value of the bit (0 or 1).
+-
+-Examples:
+-
+-sdma@83fb0000 {
+-	compatible = "fsl,imx51-sdma", "fsl,imx35-sdma";
+-	reg = <0x83fb0000 0x4000>;
+-	interrupts = <6>;
+-	#dma-cells = <3>;
+-	fsl,sdma-ram-script-name = "sdma-imx51.bin";
+-};
+-
+-DMA clients connected to the i.MX SDMA controller must use the format
+-described in the dma.txt file.
+-
+-Examples:
+-
+-ssi2: ssi@70014000 {
+-	compatible = "fsl,imx51-ssi", "fsl,imx21-ssi";
+-	reg = <0x70014000 0x4000>;
+-	interrupts = <30>;
+-	clocks = <&clks 49>;
+-	dmas = <&sdma 24 1 0>,
+-	       <&sdma 25 1 0>;
+-	dma-names = "rx", "tx";
+-	fsl,fifo-depth = <15>;
+-};
+-
+-Using the fsl,sdma-event-remap property:
+-
+-If we want to use SDMA on the SAI1 port on a MX6SX:
+-
+-&sdma {
+-	gpr = <&gpr>;
+-	/* SDMA events remap for SAI1_RX and SAI1_TX */
+-	fsl,sdma-event-remap = <0 15 1>, <0 16 1>;
+-};
+-
+-The fsl,sdma-event-remap property in this case has two values:
+-- <0 15 1> means that the offset is 0, so GPR0 is the register of the
+-SDMA remap. Bit 15 of GPR0 selects between UART4_RX and SAI1_RX.
+-Setting bit 15 to 1 selects SAI1_RX.
+-- <0 16 1> means that the offset is 0, so GPR0 is the register of the
+-SDMA remap. Bit 16 of GPR0 selects between UART4_TX and SAI1_TX.
+-Setting bit 16 to 1 selects SAI1_TX.
+-- 
+2.37.1
 
