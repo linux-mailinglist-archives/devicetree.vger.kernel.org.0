@@ -2,77 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B71155ACF89
-	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 12:10:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9A1C5ACFAF
+	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 12:10:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229686AbiIEKIq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 06:08:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41820 "EHLO
+        id S236982AbiIEKK0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 06:10:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236831AbiIEKIn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 06:08:43 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AFFF193FC
-        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 03:08:41 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id b26so8670131ljk.12
-        for <devicetree@vger.kernel.org>; Mon, 05 Sep 2022 03:08:41 -0700 (PDT)
+        with ESMTP id S237034AbiIEKKZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 06:10:25 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13AEB2C655
+        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 03:10:22 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id p7so12448324lfu.3
+        for <devicetree@vger.kernel.org>; Mon, 05 Sep 2022 03:10:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=d1gGchAveHzt86CvqEfieWHGXIsGqTrznknP67kJy30=;
-        b=TAMRlnEHDcqBwK30yFwx0lTrk/OO6aRfuvGt//UFzJrFVUjgmO88y58cwBnsnfyx9v
-         qYepZnxihho6F0SQXPJTdtCuXykn0j8WuS9xh56cHq0eYnbwezAphx/QakEvTkS4j9I6
-         kdeRSziU6OUlYvlfQHgGH6sQApDTfvrMkpmKf2GpxWzt0R6KowqVXKe6cdyxfvVlDKtm
-         +lXav0JGJmk1tnuLe04kHhtkF3MekmBIb7wcTF6GXU4jCF/7qx6E2c+pCJivDcaOunwI
-         y/YDFH4jSFR72PHcZ+fN8BfcsqwbDDQbVdwv/5gnftR0wJh5dyBlJfurbPy6j+74mh3A
-         UH2Q==
+        bh=9iZUJ2C+XzNkKLqBt28HLIylkiN68ZpTZ2fgZQtMBpU=;
+        b=g075S5okKrDHmJNtm8Ec66J8SgI+LW/7dkJPUaLVxLUIdCMZ7mkZ0uP6vLvlWxfGY3
+         GSUj7p9ZQsjq1Liw8ZLR0G3LGJDB8hgK1ItCJL4z40Ai0Z3RlFfsi2nTw9XDVAPSFQBO
+         nx3xh9rJN0Vr1VyajPjDDIfxmKvg4tUSm36bdVQy1dMe9JG4yFh2T87fbnpVKflQ/ROp
+         N4auuALgoy4s2xWcRD4eVsqjGRHiYcUlFtKZUcH3XH1fVvFHbHbim2J9xrgn/nAAOCeR
+         maPHym/1hVHv/AS1eEu/ipimDkb/yAg/mc8e0vAXc4bRxyQLkbSPnqMlPSijxb0mMPjP
+         UfoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=d1gGchAveHzt86CvqEfieWHGXIsGqTrznknP67kJy30=;
-        b=ypwVwVEiqdEWvKTfB1YkoQdBQdTQdMdKJWV7tEKc8oUvV3omeJyo5DkX+wL+R1ofdD
-         QWq5iLaPBmWNB0Qe74/VwjyAauM9Bud6Kd8K2qdpXgLNJDiA0ob+bDlTWVbX5if5wGtY
-         brxXuBcZAUrjkyFbSxgty0QvkxNspZhT6m0NuKIaP8RpRxQFAEMChinBKjcN4v5lKHZe
-         uuY4m7XAyMdqF/FQzTUqADTnBY3oG1lOOmw4uxAwD/q+R/nwe0XObuwAIvb/gS5+LYt5
-         /S6vXgWDI+QPjmLcp6KCfby9tZgzucmsls8wHfC1G+oo+KfP/Z0PyT2SH4bHE9+afmi0
-         USFQ==
-X-Gm-Message-State: ACgBeo1h91B8AwBduHuKSWC+Tf8Gf/dMHv5Hmd/4Z3q8t2hL0bG9zYMP
-        28s30BjUnr2b/UCBZLAgPTDaJA==
-X-Google-Smtp-Source: AA6agR7MhZ1+wSDLkfeIWuVF5HSfdbylV+gyRRbfXVc6DYgaS9hOJx7hDoxEcuLv9xg7i6lGc7aBIg==
-X-Received: by 2002:a2e:934f:0:b0:24f:ea1:6232 with SMTP id m15-20020a2e934f000000b0024f0ea16232mr14853380ljh.135.1662372519831;
-        Mon, 05 Sep 2022 03:08:39 -0700 (PDT)
+        bh=9iZUJ2C+XzNkKLqBt28HLIylkiN68ZpTZ2fgZQtMBpU=;
+        b=ajPM5PfOQ0G55ByaCioaxwby1by+2Dgk4SV0ydx0/eV3BSeAZGwMS/37Tl6gqmv6RU
+         RhsQm/P0ns4s6ZVviUb322kLP+lZ5+ixBIZWYJSMRVceySX+w8T7OLeAQQcW0nYumnAp
+         Zf4+ejXrgbG12BsM0StRySp7dPtV5x66hplCMOCd5erMc88NqcrpV9EQKgbpOEF+hzAe
+         dNZn2uaG5WdmO1RdDS7KaSbXpLzk0bpI/ie8ZuOb6ij1e/pWvpC3RChK0N5Kp0YeYOFw
+         7GvXBZbF2kbElFXq3q1kUw88YA33jfMclts2jEqgoyikAEA9NmSOE43HQ3r/41+KuVV0
+         TlMQ==
+X-Gm-Message-State: ACgBeo01xS/6AkLYfU/fP/ahTPp5QCO6TQEP7X++eGOwXjwqYut6BD30
+        jXEhpwauU/nnQs4e8JoSt7c/Vw==
+X-Google-Smtp-Source: AA6agR54xygcg8U5xob0simsg/0TJd3c+/Trm5Wr5mH6lOfqkDvRVfkz6Tv/7SEAHfrH+2elmOMrXw==
+X-Received: by 2002:a05:6512:12c4:b0:494:8373:5678 with SMTP id p4-20020a05651212c400b0049483735678mr8899913lfg.577.1662372620382;
+        Mon, 05 Sep 2022 03:10:20 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id s6-20020a056512214600b00492e5d31201sm1148641lfr.7.2022.09.05.03.08.38
+        by smtp.gmail.com with ESMTPSA id 9-20020ac25f09000000b0048b365176d9sm1135613lfq.286.2022.09.05.03.10.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Sep 2022 03:08:39 -0700 (PDT)
-Message-ID: <64bb3a7b-9c34-50f9-0243-36de805e62ad@linaro.org>
-Date:   Mon, 5 Sep 2022 12:08:38 +0200
+        Mon, 05 Sep 2022 03:10:19 -0700 (PDT)
+Message-ID: <baa9c80a-bc81-03a9-680f-883a54cb4e63@linaro.org>
+Date:   Mon, 5 Sep 2022 12:10:18 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v4 1/4] dt-bindings: arm: qcom: update beryllium
- compatible property
+Subject: Re: [PATCH 2/5] dt-bindings: mfd: atmel,at91-usart: convert to
+ json-schema
 Content-Language: en-US
-To:     Joel Selvaraj <joelselvaraj.oss@gmail.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-References: <20220828205723.20834-1-joelselvaraj.oss@gmail.com>
- <20220828205723.20834-2-joelselvaraj.oss@gmail.com>
- <d9b5e312-4999-4410-03be-299e95bbe8b2@linaro.org>
- <CAF+P-ZoAooPFEK8dueEnQg5d5+K4QRmj-W0WsjyUV-btgBfYnw@mail.gmail.com>
+To:     Eugen.Hristev@microchip.com, Sergiu.Moga@microchip.com,
+        lee@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, Nicolas.Ferre@microchip.com,
+        alexandre.belloni@bootlin.com, Claudiu.Beznea@microchip.com,
+        radu_nicolae.pirea@upb.ro, richard.genoud@gmail.com,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        gregkh@linuxfoundation.org, jirislaby@kernel.org,
+        admin@hifiphile.com, Kavyasree.Kotagiri@microchip.com
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-serial@vger.kernel.org
+References: <20220817075517.49575-1-sergiu.moga@microchip.com>
+ <20220817075517.49575-3-sergiu.moga@microchip.com>
+ <942accc5-70aa-3bb2-63dd-306a39ee5ea4@linaro.org>
+ <d1aad8ea-3852-f36b-366b-7aa67d2dd9d5@microchip.com>
+ <ec86420c-a210-facd-ab3a-5baf84a736f3@linaro.org>
+ <0aba8906-ed30-786e-cff4-6cb70d6e73c5@linaro.org>
+ <f2fdaf34-ad66-9e6d-2f11-34171fb7aaa9@microchip.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAF+P-ZoAooPFEK8dueEnQg5d5+K4QRmj-W0WsjyUV-btgBfYnw@mail.gmail.com>
+In-Reply-To: <f2fdaf34-ad66-9e6d-2f11-34171fb7aaa9@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,24 +89,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/09/2022 07:20, Joel Selvaraj wrote:
-> Hi Krzysztof Kozlowski,
+On 01/09/2022 13:31, Eugen.Hristev@microchip.com wrote:
+>>>>>> diff --git a/Documentation/devicetree/bindings/mfd/atmel,at91-usart.yaml b/Documentation/devicetree/bindings/mfd/atmel,at91-usart.yaml
+>>>>>> new file mode 100644
+>>>>>> index 000000000000..cf15d73fa1e8
+>>>>>> --- /dev/null
+>>>>>> +++ b/Documentation/devicetree/bindings/mfd/atmel,at91-usart.yaml
+>>>>> One more thing - I think this should be in serial directory, not mfd,
+>>>>> even though it includes SPI. MFD is just a Linux naming/wrapper device.
+>>>>>
+>>>>> Best regards,
+>>>>> Krzysztof
+>>>>
+>>>> I would rather keep it in this directory, since its corresponding driver
+>>>> is also in the mfd directory.
+>>>
+>>> Sorry, but that's poor argument. Driver subsystems match Linux
+>>> convention, not necessarily hardware type/naming. Bindings directories
+>>> match hardware. MFD bindings are only for MFD wrapper drivers and this
+>>> is a serial interface. Not a MFD. You even do not add MFD devices in the
+>>> driver but add *always one* device depending on serial feature you want.
+>>> This is not even MFD device but regular platform device with children.
+>>>
+>>> You put it in SoC, though, because all other SoCs store it there...
+>>
+>> The last one should be:
+>>
+>> You could put it in SoC, though, because all other SoCs store it there...
 > 
->> The board compatibles are not that important for ABI yet this creates
->> precedence, so I am against it. Simple renaming should not be a reason
->> to change compatibles.
+> Hi,
 > 
-> So what should I do now?
-> 1. Retain "xiaomi,beryllium" for tianma and "xiaomi,beryllium-ebbg" for ebbg?
-> 2. If adding new compatible is not an issue, can I do
-> "xiaomi,beryllium-tianma", "xiaomi,beryllium", "qcom,sdm845" - for tianma
-> "xiaomi,beryllium-ebbg", "xiaomi,beryllium", "qcom,sdm845" - for ebbg
->
+> If it this is only a conversion to yaml, why do you want it moved to 
+> another dir ?
+> Perhaps if you consider SoC or serial as a better place, it should be 
+> done through a different patch.
+> 
+> Also, disputing whether this is really a MFD or not, is not in the scope 
+> of this patch.
+> 
 
-Both options work for me. I understand that boards are quite compatible
-and only the panel is different but the safest option (from any 3rd
-party users) is (1) above. If anyone has other preference, I am also ok.
-If not, then go with (1) above.
+Because you are converting - thus renaming - the bindings, so this is
+the place to put them in proper place. The conversion to DT Schema comes
+pretty often with small fixups, so proper location is one of them.
+That's quite common case.
 
 Best regards,
 Krzysztof
