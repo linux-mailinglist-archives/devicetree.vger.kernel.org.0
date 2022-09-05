@@ -2,196 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 00BE15AC972
-	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 06:25:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD8415AC9C8
+	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 07:29:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234424AbiIEEZr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 00:25:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47822 "EHLO
+        id S235113AbiIEF2C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 01:28:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232094AbiIEEZq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 00:25:46 -0400
-Received: from mail-sz.amlogic.com (mail-sz.amlogic.com [211.162.65.117])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0C60255BF;
-        Sun,  4 Sep 2022 21:25:44 -0700 (PDT)
-Received: from [10.88.37.128] (10.88.37.128) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server id 15.1.2507.6; Mon, 5 Sep 2022
- 12:25:40 +0800
-Message-ID: <4a96523d-6f11-00be-0c37-4716d1289989@amlogic.com>
-Date:   Mon, 5 Sep 2022 12:25:36 +0800
+        with ESMTP id S234932AbiIEF2C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 01:28:02 -0400
+Received: from mail-il1-x135.google.com (mail-il1-x135.google.com [IPv6:2607:f8b0:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 279FD2F01E
+        for <devicetree@vger.kernel.org>; Sun,  4 Sep 2022 22:27:59 -0700 (PDT)
+Received: by mail-il1-x135.google.com with SMTP id k9so1008550ils.12
+        for <devicetree@vger.kernel.org>; Sun, 04 Sep 2022 22:27:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date;
+        bh=21G78lD0hHSSYC2z9AFKvwJo0kB+AyLNQVaxiGapq64=;
+        b=fbmRqEPBRuXaqA5lND0c1JZlumuabjU8GplfW5xyR282W5LWwzVCNC5TiN31n3rPsY
+         BgRz1TvELOkZeQqS8dDvpd9W//nPQQFQHfon+q05ZcC5lh+RQGS2eXWODtL2uOujTq1u
+         5nx5nipKTqHa8AtGH/GTkWUhPmKdrfmpHO4AujzzZIcOi/1KEdNCpMFQKtSlDvOg0KSR
+         mZqrHBSfgiF7X6jJMg4mgEeoCD81iiwyCyng8uuk91697QK45PilG6Q03YARPzUgdsUA
+         ohQMJ9+Z8vSZjSBqM6FxrJaR84ishQ1E0UYr4D/44Lg0GEcZrdR4zhG41Zh7YpXNHmiH
+         aAww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=21G78lD0hHSSYC2z9AFKvwJo0kB+AyLNQVaxiGapq64=;
+        b=asyZ1tsGougjB/lAOnGsYDoDFgpBiUUROnxc5lNS7gvFtb78b1T4DjoSFZEiaHCebK
+         E6wwEZ7jacqSjrpGdAVeviRJMqnJZDaavkNCpTaAVZn/f8v+7iVLgTc/eF4MBAa5tEyA
+         31zTpuJporXxX6pvUNduzMSnwXrn325mApcEnM9PyeNQ661aevN7YFmPsEreZKc+Al1F
+         4i8beAqBURQh9yYDuVEELGQyAJeBS/KHt4nkhir2aS0jm3hdow1mtI6SsG82hNZPl68M
+         KcXdUofwJQEGGbuLXciAUINLO/2UX5xPKHT1E2PiHDg9ihgBZRNsF/abu2GMGGywoYAe
+         w3Xg==
+X-Gm-Message-State: ACgBeo0YH346BgI0jbfkLZsL78lyPm5115/Xp0EHSWWfyrvnpWGveF0e
+        D5upMcFrkHeect87En0KM8iFLS8NML6KFAr7nI0nulhgxwdzPXDf
+X-Google-Smtp-Source: AA6agR4E0MTP4UUKlwvdura/p6XljyuapEDBV12FXaemr30UbaTnDyB51Q5WS4iUO+XGgiyPfF/CX5D5ZyIdtvjxKlM=
+X-Received: by 2002:a05:6e02:2181:b0:2eb:3770:e3f8 with SMTP id
+ j1-20020a056e02218100b002eb3770e3f8mr16347696ila.79.1662355678485; Sun, 04
+ Sep 2022 22:27:58 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.1
-Subject: Re: [PATCH v6 2/4] docs/perf: Add documentation for the Amlogic G12
- DDR PMU
-To:     Chris Healy <cphealy@gmail.com>
-CC:     linux-kernel <linux-kernel@vger.kernel.org>,
-        linux ARM <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+References: <20220818124132.125304-1-jagan@edgeble.ai> <20220822181009.GA80526-robh@kernel.org>
+ <CA+VMnFwE8jBxXwQPVEzEUosxjuEVMNGB9NnBuHYDw_360qJztQ@mail.gmail.com> <3175969.jE0xQCEvom@diego>
+In-Reply-To: <3175969.jE0xQCEvom@diego>
+From:   Jagan Teki <jagan@edgeble.ai>
+Date:   Mon, 5 Sep 2022 10:57:47 +0530
+Message-ID: <CA+VMnFw2FSr4OfaZfxGcDcMxQHM1_=sPPRyJq+qd6mduwBY8yg@mail.gmail.com>
+Subject: Re: [PATCH v3 09/19] clk: rockchip: Add dt-binding header for RV1126
+To:     Kever Yang <kever.yang@rock-chips.com>
+Cc:     Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        kernel test robot <lkp@intel.com>
-References: <20220901024526.2833232-1-jiucheng.xu@amlogic.com>
- <20220901024526.2833232-2-jiucheng.xu@amlogic.com>
- <CAFXsbZoFYp_SNEjH0QE=A09JQe8qt1APwnNb9u6KsO5UAL50-A@mail.gmail.com>
-Content-Language: en-US
-From:   Jiucheng Xu <jiucheng.xu@amlogic.com>
-In-Reply-To: <CAFXsbZoFYp_SNEjH0QE=A09JQe8qt1APwnNb9u6KsO5UAL50-A@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.88.37.128]
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        Finley Xiao <finley.xiao@rock-chips.com>,
+        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Kever,
 
-On 2022/9/4 1:35, Chris Healy wrote:
-> [ EXTERNAL EMAIL ]
+On Tue, 23 Aug 2022 at 23:26, Heiko St=C3=BCbner <heiko@sntech.de> wrote:
 >
-> On Wed, Aug 31, 2022 at 7:45 PM Jiucheng Xu <jiucheng.xu@amlogic.com> wrote:
->> Add a user guide to show how to use DDR PMU to
->> monitor DDR bandwidth on Amlogic G12 SoC
->>
->> Signed-off-by: Jiucheng Xu <jiucheng.xu@amlogic.com>
->> Reported-by: kernel test robot <lkp@intel.com>
->> ---
->> Changes v6 -> v5:
->>    - No change
->>
->> Changes v5 -> v4:
->>    - Fix building warning
->>
->> Changes v3 -> v4:
->>    - No change
->>
->> Changes v2 -> v3:
->>    - Rename doc name from aml-ddr-pmu.rst to meson-ddr-pmu.rst
->>
->> Changes v1 -> v2:
->>    - Nothing was changed
->> ---
->>   Documentation/admin-guide/perf/index.rst      |  1 +
->>   .../admin-guide/perf/meson-ddr-pmu.rst        | 70 +++++++++++++++++++
->>   MAINTAINERS                                   |  1 +
->>   3 files changed, 72 insertions(+)
->>   create mode 100644 Documentation/admin-guide/perf/meson-ddr-pmu.rst
->>
->> diff --git a/Documentation/admin-guide/perf/index.rst b/Documentation/admin-guide/perf/index.rst
->> index 69b23f087c05..997a28e156c1 100644
->> --- a/Documentation/admin-guide/perf/index.rst
->> +++ b/Documentation/admin-guide/perf/index.rst
->> @@ -17,3 +17,4 @@ Performance monitor support
->>      xgene-pmu
->>      arm_dsu_pmu
->>      thunderx2-pmu
->> +   meson-ddr-pmu
->> diff --git a/Documentation/admin-guide/perf/meson-ddr-pmu.rst b/Documentation/admin-guide/perf/meson-ddr-pmu.rst
->> new file mode 100644
->> index 000000000000..28e9910940d0
->> --- /dev/null
->> +++ b/Documentation/admin-guide/perf/meson-ddr-pmu.rst
->> @@ -0,0 +1,70 @@
->> +.. SPDX-License-Identifier: GPL-2.0
->> +
->> +===========================================================
->> +Amlogic SoC DDR Bandwidth Performance Monitoring Unit (PMU)
->> +===========================================================
->> +
->> +There is a bandwidth monitor inside the DRAM contorller. The monitor include
-> Fix spelling of word "controller" and add an s to the end of include
-Oh, I will update it in next version.
+> Am Dienstag, 23. August 2022, 14:57:20 CEST schrieb Jagan Teki:
+> > On Mon, 22 Aug 2022 at 23:40, Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > On Thu, Aug 18, 2022 at 06:11:22PM +0530, Jagan Teki wrote:
+> > > > Add the dt-bindings header for the Rockchip RV1126, that gets share=
+d
+> > > > between the clock controller and the clock references in the dts.
+> > > >
+> > > > Signed-off-by: Finley Xiao <finley.xiao@rock-chips.com>
+> > > > Signed-off-by: Jagan Teki <jagan@edgeble.ai>
+> > > > ---
+> > > > Changes for v3:
+> > > > - update the file name
+> > > > Changes for v2:
+> > > > - exclude from clk patch
+> > > >
+> > > >  .../dt-bindings/clock/rockchip,rv1126-cru.h   | 632 ++++++++++++++=
+++++
+> > > >  1 file changed, 632 insertions(+)
+> > > >  create mode 100644 include/dt-bindings/clock/rockchip,rv1126-cru.h
+> > > >
+> > > > diff --git a/include/dt-bindings/clock/rockchip,rv1126-cru.h b/incl=
+ude/dt-bindings/clock/rockchip,rv1126-cru.h
+> > > > new file mode 100644
+> > > > index 000000000000..cfba8226ded2
+> > > > --- /dev/null
+> > > > +++ b/include/dt-bindings/clock/rockchip,rv1126-cru.h
+> > > > @@ -0,0 +1,632 @@
+> > > > +/* SPDX-License-Identifier: GPL-2.0 */
+> > >
+> > > Dual license please. Need an ack from Rockchip for that (and not just
+> > > on this one).
+> >
+> > Heiko or Kever.
+> >
+> > Can you comment on this?
 >
->> +4 channels which can count the read/write request of accessing DRAM individually.
->> +It can be helpful to show if the performance bottleneck is on DDR bandwidth.
->> +
->> +Currently, this driver supports the following 5 Perf events:
->> +
->> ++ meson_ddr_bw/total_rw_bytes/
->> ++ meson_ddr_bw/chan_1_rw_bytes/
->> ++ meson_ddr_bw/chan_2_rw_bytes/
->> ++ meson_ddr_bw/chan_3_rw_bytes/
->> ++ meson_ddr_bw/chan_4_rw_bytes/
->> +
->> +meson_ddr_bw/chan_{1,2,3,4}_rw_bytes/ events are the channel related events.
->> +Each channel support using keywords as filter, which can let the channel
->> +to monitor the individual IP module in SoC.
->> +
->> +The following keywords are the filter:
->> +
->> ++ arm             - DDR access request from CPU
->> ++ vpu_read1       - DDR access request from OSD + VPP read
->> ++ gpu             - DDR access request from 3D GPU
->> ++ pcie            - DDR access request from PCIe controller
->> ++ hdcp            - DDR access request from HDCP controller
->> ++ hevc_front      - DDR access request from HEVC codec front end
->> ++ usb3_0          - DDR access request from USB3.0 controller
->> ++ hevc_back       - DDR access request from HEVC codec back end
->> ++ h265enc         - DDR access request from HEVC encoder
->> ++ vpu_read2       - DDR access request from DI read
->> ++ vpu_write1      - DDR access request from VDIN write
->> ++ vpu_write2      - DDR access request from di write
->> ++ vdec            - DDR access request from legacy codec video decoder
->> ++ hcodec          - DDR access request from H264 encoder
->> ++ ge2d            - DDR access request from ge2d
->> ++ spicc1          - DDR access request from SPI controller 1
->> ++ usb0            - DDR access request from USB2.0 controller 0
->> ++ dma             - DDR access request from system DMA controller 1
->> ++ arb0            - DDR access request from arb0
->> ++ sd_emmc_b       - DDR access request from SD eMMC b controller
->> ++ usb1            - DDR access request from USB2.0 controller 1
->> ++ audio           - DDR access request from Audio module
->> ++ sd_emmc_c       - DDR access request from SD eMMC c controller
->> ++ spicc2          - DDR access request from SPI controller 2
->> ++ ethernet        - DDR access request from Ethernet controller
->> +
->> +
->> +The following command is to show the total DDR bandwidth:
->> +
->> +  .. code-block:: bash
->> +
->> +      perf stat -a -e meson_ddr_bw/total_rw_bytes/ -I 1000 sleep 10
->> +
->> +This command will print the total DDR bandwidth per second.
->> +
->> +The following commands are to show how to use filter parameters:
->> +
->> +  .. code-block:: bash
->> +
->> +      perf stat -a -e meson_ddr_bw/chan_1_rw_bytes,arm=1/ -I 1000 sleep 10
->> +      perf stat -a -e meson_ddr_bw/chan_2_rw_bytes,gpu=1/ -I 1000 sleep 10
->> +      perf stat -a -e meson_ddr_bw/chan_3_rw_bytes,arm=1,gpu=1/ -I 1000 sleep 10
->> +
->> +The 1st command show how to use channel 1 to monitor the DDR bandwidth from ARM.
->> +The 2nd command show using channel 2 to get the DDR bandwidth of GPU.
->> +The 3rd command show using channel 3 to monitor the sum of ARM and GPU.
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index ac8a98dfbacc..8ee68e699e6d 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -1054,6 +1054,7 @@ AMLOGIC DDR PMU DRIVER
->>   M:     Jiucheng Xu <jiucheng.xu@amlogic.com>
->>   S:     Supported
->>   W:     http://www.amlogic.com
->> +F:     Documentation/admin-guide/perf/meson-ddr-pmu.rst
->>   F:     drivers/perf/amlogic/
->>   F:     include/soc/amlogic/
->>
->> --
->> 2.25.1
->>
--- 
-Thanks,
-Jiucheng
+> I guess this is more a question for Kever,
+>
+> @Kever can Rockchip allow that dual licensing for the dt-binding header
+> (MIT as second license I think - at least like all the other binding head=
+ers)
+> both in this patch and also in the other header-patches of this series?
 
+Any comments on this?
+
+Jagan.
