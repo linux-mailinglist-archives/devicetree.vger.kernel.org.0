@@ -2,91 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B5D2A5ACFF4
-	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 12:24:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E03C65ACFD5
+	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 12:24:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237304AbiIEKQX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 06:16:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49878 "EHLO
+        id S237494AbiIEKVk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 06:21:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237714AbiIEKQF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 06:16:05 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 114E12633
-        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 03:14:27 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id b19so8716004ljf.8
-        for <devicetree@vger.kernel.org>; Mon, 05 Sep 2022 03:14:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=krr00gq+2rnnQjH2jiDEWmx4uGy3f7Je/Uzv5Nqwo9w=;
-        b=mwaIK5ucn4NK+Emo4I4RNSP1OMgJjPAaZkgPI3hgHJCCTZ57pDEdIghsHLA4ob2pVz
-         fFG4DNOJAG50HsaiGoG2bEZEj36GRNNjqjxs36+pJfqMbomer3i83S6HPkhFzrQnRXWj
-         x9Tu425Of/dPX4NXWV/3M6zftLrzDebI2zELrjMDuLF+N/a3WV7sLsV5eedFhSwCQQLS
-         kNkMc58C4a+iKeXiSnvVKjknTcVAnD5NBM9AdbqGEGAKeyOXVVa1iQ5R/Dffz5Ch8YNY
-         Um2ZwaojYKOQM/oG/gEObStXDB5F8zS4m2E3JdCExsMLf5MpQt5uyahpe3mLfySt80L1
-         MrXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=krr00gq+2rnnQjH2jiDEWmx4uGy3f7Je/Uzv5Nqwo9w=;
-        b=VMaXoYEmtYKalBJHkGu1hazkPuxfczSxCinnNvohyBJRWwW8yj0mHLA0sHwqTMKVY2
-         c9Lwn9vpbfIbq9vE92oeIFmM/fKtQKgsJezZeDo1IsDnr+krJuzntTY3elSqUgvoVHUn
-         msew0TenlAcDxgG4hEAPaWZtfUeus5yyVrqNaxazECT/2NPx/jyUg2oOsn7fmmyk8wmr
-         qPeWPDhCm+qfM6PXq4abPCfeDoTyWv9TIxd0vvI9z10NU9LqyvQ1puDzoa2H4img22ap
-         BUasD9nRutpKbw17bpzLB7taG0flNrtAd1B7UbGriNoGLzA4mWHjNyqLRW9zzqil9jMT
-         RpzQ==
-X-Gm-Message-State: ACgBeo2zl3RyLfcyZA4cjskiuhxggIuF+P976WbXs6hzwtOmpIKd9MGS
-        fum1bcnYLygXmEZkcm6gjPcYfA==
-X-Google-Smtp-Source: AA6agR5Tinz3xo5jyO3I/Zhphm/crNPOKhfBViyw+9BkJpLbm7ZmZ00WF7qaieTcY+4S8GnLTFbEqg==
-X-Received: by 2002:a2e:a9a0:0:b0:268:5e62:acfb with SMTP id x32-20020a2ea9a0000000b002685e62acfbmr7929456ljq.326.1662372863427;
-        Mon, 05 Sep 2022 03:14:23 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id y10-20020a05651c106a00b0025e42f8e771sm1353110ljm.34.2022.09.05.03.14.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Sep 2022 03:14:22 -0700 (PDT)
-Message-ID: <36b2b6d9-9ab4-a4bc-6476-bd5b5d3ef77e@linaro.org>
-Date:   Mon, 5 Sep 2022 12:14:21 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH 02/13] dt-bindings: memory: snps: Add Baikal-T1 DDRC
- support
-Content-Language: en-US
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Borislav Petkov <bp@alien8.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Tony Luck <tony.luck@intel.com>,
+        with ESMTP id S237630AbiIEKVU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 06:21:20 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2D601659C
+        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 03:20:05 -0700 (PDT)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=phil.lan)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1oV9Cz-0005Nu-5q; Mon, 05 Sep 2022 12:20:01 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Jagan Teki <jagan@amarulasolutions.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Manish Narani <manish.narani@xilinx.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Michail Ivanov <Michail.Ivanov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Punnaiah Choudary Kalluri 
-        <punnaiah.choudary.kalluri@xilinx.com>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        James Morse <james.morse@arm.com>,
-        Robert Richter <rric@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-edac@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220822191957.28546-1-Sergey.Semin@baikalelectronics.ru>
- <20220822191957.28546-3-Sergey.Semin@baikalelectronics.ru>
- <0bda4ff9-fc08-77f2-0e06-7469dcaec6d8@linaro.org>
- <20220826095447.qxfvty6xq4tufe75@mobilestation>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220826095447.qxfvty6xq4tufe75@mobilestation>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org,
+        linux-amarula@amarulasolutions.com, FUKAUMI Naoki <naoki@radxa.com>
+Subject: Re: [PATCH v4 1/3] dt-bindings: arm: rockchip: Document Radxa ROCK 4C+
+Date:   Mon,  5 Sep 2022 12:19:59 +0200
+Message-Id: <166237318680.2461447.14682764803345384227.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220902065057.97425-1-jagan@amarulasolutions.com>
+References: <20220902065057.97425-1-jagan@amarulasolutions.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -94,93 +46,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/08/2022 11:54, Serge Semin wrote:
-> On Tue, Aug 23, 2022 at 11:12:28AM +0300, Krzysztof Kozlowski wrote:
->> On 22/08/2022 22:19, Serge Semin wrote:
->>> Baikal-T1 DDR controller is based on the DW uMCTL2 DDRC IP-core v2.51a
->>> with up to DDR3 protocol capability and 32-bit data bus + 8-bit ECC. There
->>> are individual IRQs for each ECC and DFI events.The dedicated scrubber
->>
+On Fri, 2 Sep 2022 12:20:55 +0530, Jagan Teki wrote:
+> Document the dt-bindings for Radxa ROCK 4C+ SBC.
 > 
->> Missing space before "The".
+> Key differences of 4C+ compared to previous ROCK Pi 4.
+> - Rockchip RK3399-T SoC
+> - DP from 4C replaced with micro HDMI 2K@60fps
+> - 4-lane MIPI DSI with 1920*1080
+> - RK817 Audio codec
 > 
-> Ok. Thanks.
-> 
->>
->>> clock source is absent since it's fully synchronous to the core clock.
->>
-> 
->> You need allOf:if-then restricting this per variant.
-> 
-> I really don't like the allOf-if-if-etc pattern because it gets to be
-> very bulky if all the vendor-specific and generic platform
-> peculiarities are placed in there. I am more keen of having a
-> generic DT-schema which would be then allOf-ed by the vendor-specific
-> device bindings. What do you think I'd provide such design in this
-> case too?
+> [...]
 
-Sure, it would work.
+Applied, thanks!
 
-> 
-> But I'll need to move the compatible property definition to the
-> "select" property. Like this:
-> 
-> Documentation/devicetree/bindings/memory-controllers/snps,dw-umctl2-ddrc.yaml:
-> +[...]
-> +# Please create a separate DT-schema for your DW uMCTL2 DDR controller
-> +# and make sure it's assigned with the vendor-specific compatible string.
-> +select:
-> +  properties:
-> +    compatible:
-> +      oneOf:
-> +        - deprecated: true
-> +          description: Synopsys DW uMCTL2 DDR controller v3.80a
-> +          const: snps,ddrc-3.80a
-> +        - description: Synopsys DW uMCTL2 DDR controller
-> +          const: snps,dw-umctl2-ddrc
-> +        - description: Xilinx ZynqMP DDR controller v2.40a
-> +          const: xlnx,zynqmp-ddrc-2.40a
-> +  required:
-> +    - compatible
-
-Not entirely. If you need select, then add it with compatibles, but all
-descriptions and deprecated are staying in properties.
-
-
-> +
-> +properties:
-> +  compatible: true
-> +[...]
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: true
-> 
-> After that the "snps,dw-umctl2-ddrc.yaml" schema can be referenced in the
-> allOf composition. Like this:
-> 
-> Documentation/devicetree/bindings/memory-controllers/baikal,bt1-ddrc.yaml:
-> +[...]
-> +allOf:
-> +  - $ref: /schemas/memory-controllers/snps,dw-umctl2-ddrc.yaml#
-> +[...]
-> 
-> At the same time the generic DT-schema will be used to evaluate the
-> "snps,ddrc-3.80a", "snps,dw-umctl2-ddrc" and "xlnx,zynqmp-ddrc-2.40a"
-> device nodes as before. What do you think about that?
-> 
-> One big positive side of this that even though the generic schema
-> can't define the IRQ/resets/clocks phandlers order because various
-> platforms may have different external signals setup, the
-> vendor-specific schema can and should. So I'll be able to describe the
-> Baikal-T1 DDRC specific properties (clocks, clock-names, interrupts,
-> interrupt-names, etc) in much more details including the reference
-> signals order what you asked in the previous patch review.
-
-It's ok. You need then second schema for your device, because something
-must end with additional/unevaluatedProperties false.
+[1/3] dt-bindings: arm: rockchip: Document Radxa ROCK 4C+
+      commit: 638b8eb43b2a143f151045e66e695ba91b4a1a7c
+[2/3] arm64: dts: rockchip: Add RK3399-T OPP table
+      commit: 9176ba910ba0309dd025b55381601da5f414b36e
+[3/3] arm64: dts: rockchip: rk3399: Radxa ROCK 4C+
+      commit: 246450344dad087a121befbed1aba776dba3d377
 
 Best regards,
-Krzysztof
+-- 
+Heiko Stuebner <heiko@sntech.de>
