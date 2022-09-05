@@ -2,81 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 32B305AD218
-	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 14:09:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 548B85AD248
+	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 14:23:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237562AbiIEMIj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 08:08:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34882 "EHLO
+        id S231261AbiIEMUv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 08:20:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237402AbiIEMIc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 08:08:32 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DD0E5E317
-        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 05:08:30 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id q7so12857474lfu.5
-        for <devicetree@vger.kernel.org>; Mon, 05 Sep 2022 05:08:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=38rWvU6XopMTJ4oQa39R5yAPQ792THWQHQIufgs8jRo=;
-        b=kCk+jT/Y6OC1X/CVspb0W+QXvG2jgIH7/muQLto4RGerui/rJ2sS3YAvnsjuHtJcT8
-         OmE4btSaJ1+2bTlMektObpxKKHitgcdNtx65yoTL8JI+G4sTFCkB4ycieagl5o2ay8ca
-         w9XhRWWMurWN6gKO/KtVnihL1vLy9QpknACsvbubYjn5rfgJJr82QF367ePcEsG8CJNC
-         qyv5hsQjBWBYdCjk+fI1sRcjQbAdy5BQQLg3Xos6l37Z/HbAeY2X2WgAZNW0edulhezL
-         kw+UtBeLnYjl2yBTEgXpI7t20VWYiv76apUvqmVURq5Ze4wF4YXUH23uZBb7TeE4NwLI
-         /p8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=38rWvU6XopMTJ4oQa39R5yAPQ792THWQHQIufgs8jRo=;
-        b=otksAwsnII0l1gs/uUb4MYxGWllD/xixMYfhRIxQJ9/3ku34IRyPrm43NVflnUwVbj
-         BQ3TCku34cj+Gds5vaOX9SQSQwTurv9dlSEK8PIQFIhwAZ7ChvqesKkj8KSIZbQQ8brM
-         W3QYDt+GloBRjajtRpUVwYGqjaDJoVozwnPyjU2STBAeDVflewE007noKTyk6crfXqbh
-         51wIHipDUohyxGhhkdOUGj4T9bsadLJtHaruC/i02b1Kan6MngIVpW4hA9CvELqHtqOJ
-         6QzwI1b1NEdrAHRJ6hLsFcHdUx5LGemO2jYxZewUPqrWt6QaiOEofgVhBeltdU1kbbfL
-         3CAw==
-X-Gm-Message-State: ACgBeo3cDwxHK4uzzHZ+Tx3La0tHmLcatxyQ3qAE09W5jpAlZwMk+s52
-        WffyXZsYewsiCg0SfCo5ozlluuzjRYrULWba
-X-Google-Smtp-Source: AA6agR6T96FMTEqyhUMCuuODNE3bvXqVmZlyI8nzecjVB5FBZ/ztlBJni6Sc0Mq88uAPWNP0tG4dEg==
-X-Received: by 2002:a05:6512:139c:b0:48f:da64:d050 with SMTP id p28-20020a056512139c00b0048fda64d050mr14911091lfa.268.1662379708699;
-        Mon, 05 Sep 2022 05:08:28 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id u28-20020ac2519c000000b00492ea54beeasm1164828lfi.306.2022.09.05.05.08.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Sep 2022 05:08:28 -0700 (PDT)
-Message-ID: <7e7a1cf6-8a11-2179-8fe6-c40e7cd8be62@linaro.org>
-Date:   Mon, 5 Sep 2022 14:08:26 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v2 3/3] dt-bindings: memory-controllers: gpmc-child: Add
- binding for wait-pin-polarity
-Content-Language: en-US
-To:     "Niedermayr, BENEDIKT" <benedikt.niedermayr@siemens.com>,
-        "rogerq@kernel.org" <rogerq@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>
-Cc:     "tony@atomide.com" <tony@atomide.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-References: <20220905071717.1500568-1-benedikt.niedermayr@siemens.com>
- <20220905071717.1500568-4-benedikt.niedermayr@siemens.com>
- <d75ff1cf-64a6-e794-87a2-204e93c852cf@kernel.org>
- <e284855271a3fdf6bb2cd304629c2aa3bb8401f3.camel@siemens.com>
- <eedebc54-7817-d61b-f854-09eb11be4ada@kernel.org>
- <0ee691a3-d22e-b685-9d5c-f974ac3afe19@linaro.org>
- <6397b5d11c786ee6194776e096380103976049dd.camel@siemens.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <6397b5d11c786ee6194776e096380103976049dd.camel@siemens.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        with ESMTP id S230054AbiIEMUt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 08:20:49 -0400
+X-Greylist: delayed 440 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 05 Sep 2022 05:20:48 PDT
+Received: from new4-smtp.messagingengine.com (new4-smtp.messagingengine.com [66.111.4.230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86C0F3ECE6
+        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 05:20:48 -0700 (PDT)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 26EA258025B;
+        Mon,  5 Sep 2022 08:13:25 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute3.internal (MEProxy); Mon, 05 Sep 2022 08:13:25 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm1; t=1662380005; x=1662383605; bh=Iojl2M7WlD
+        ZTBsnFT3a1WtL8toeh60+Zr0qEUF1Qhlg=; b=IzFmrWkbgnf/vjnrBvgqEOENr/
+        jWlYxObkxiLA4HNRh4k4LRmGVwUwtAe1t8J2fmciHMYUoB1QWwwPKDrTu2+BD5Pk
+        tg75HDCDCc+7EkIUhIeCxT3EoLaa4eSTZmBEddGebJAvsOutz9zxs7x2p8mFNo7Q
+        aSvcvDbziQZIPl4DdnY4SRHjGN7dRVbfV7us9nENxcc8NcBYM8Cb04v2eofhvOBa
+        MB+jI5YBP283wM4W3r3H9RUsvKJa1D/625+JCEBJrMLPmCtvn+Lvt3HuXbt82g0C
+        fXHBJkje8o2Vx8OU0Y2Par93bkPyLjbbjRV1Lh4YWB+SbA9BzdbHzZttA0Uw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm1; t=1662380005; x=1662383605; bh=Iojl2M7WlDZTBsnFT3a1WtL8toeh
+        60+Zr0qEUF1Qhlg=; b=IOhfl4x8YH+Y5qHgZSKyM5dNU0De95rJLqdWAem18vDH
+        BvAqqBpeowTMlCwba2GMdQr+8HOMXhw34arL6jUNlACClK0P4wqQqwSuAUM8PcaS
+        Q6iXteDO4F9PSMRlbSrhlng1HngPVMHI8VQk/E/Y5dWm0bC7d8IzLWY2h7zdhnSz
+        ckDL7yxx0dBlDQKr/491H9q4Kj0xvkETFyj+98FP/mG7m8MKwxxcEjHpHqkhOZGm
+        pYJcLwysBf58vhnKPUYxkXBrIoU9mf9sJ5TsWKwHklndSUNgNhkDYBKbJjkz8mbN
+        POxvqGasKrSLhjbDVZ2/khpu7HE6Qe/4N4kTkKTLVQ==
+X-ME-Sender: <xms:5OcVYwv0RqSqTDj0Aw1AwA5StaCYNm7tw6pWYF6VX7ReFbxgPDlC0A>
+    <xme:5OcVY9fmkX2auJzRX6Fo4sC2r2CQujkqOBNXAr5MOa7kf0OKzlQbYUTA_PeWHhcGK
+    bJrqBiyCXKQxqz0jvU>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdeliedghedtucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
+    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
+    htvghrnhepveevhfejheffvdfhteefgfeukeevuddttdfgkeekudetgfekuedvgfekgfei
+    hfetnecuffhomhgrihhnpegsihhtsghutghkvghtrdhorhhgnecuvehluhhsthgvrhfuih
+    iivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:5OcVY7zLGMR9Y3ttx7DsjLGOL8ckOPvESuMDGDtXJfBF9nnS3rmCyA>
+    <xmx:5OcVYzMTzeOlkj1XL6d2xnDwblu3pUPOM6mONbtTVU0dJoGF0tByUg>
+    <xmx:5OcVYw_D2GYB-m8oNBbfWQHYAK6V03sW6yK5RH9JTLyP6OcCmOiPzw>
+    <xmx:5ecVYyKDDSJPmsS8eiMN365ofEYIsfTxo7Sw2R0Z5hniVE0qjP5-yA>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 9ED35B60083; Mon,  5 Sep 2022 08:13:24 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-927-gf4c98c8499-fm-20220826.002-gf4c98c84
+Mime-Version: 1.0
+Message-Id: <ca470feb-8030-400f-8201-e3d17dbd52ac@www.fastmail.com>
+In-Reply-To: <CABikg9w9k0UUtEBbO=QB4_YVT7BFtzs0id6-g+Xo3HGv8qTvrQ@mail.gmail.com>
+References: <20220905104317.2740661-1-saproj@gmail.com>
+ <4a0efff9-49a2-4b6c-90c3-b9f5e104450a@www.fastmail.com>
+ <CABikg9w9k0UUtEBbO=QB4_YVT7BFtzs0id6-g+Xo3HGv8qTvrQ@mail.gmail.com>
+Date:   Mon, 05 Sep 2022 14:13:04 +0200
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Sergei Antonov" <saproj@gmail.com>
+Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        "Jonas Jensen" <jonas.jensen@gmail.com>
+Subject: Re: [PATCH] ARM: dts: sync Moxa SDIO 'compatible' name with moxart-mmc.c
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_SBL_A autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,120 +86,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/09/2022 13:48, Niedermayr, BENEDIKT wrote:
-> On Mon, 2022-09-05 at 11:54 +0200, Krzysztof Kozlowski wrote:
->> On 05/09/2022 11:21, Roger Quadros wrote:
->>>
->>> On 05/09/2022 12:14, Niedermayr, BENEDIKT wrote:
->>>> On Mon, 2022-09-05 at 11:56 +0300, Roger Quadros wrote:
->>>>> Hi Benedikt,
->>>>>
->>>>> On 05/09/2022 10:17, B. Niedermayr wrote:
->>>>>> From: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
->>>>>>
->>>>>> Add a new dt-binding for the wait-pin-polarity property
->>>>>>
->>>>>> Signed-off-by: Benedikt Niedermayr <
->>>>>> benedikt.niedermayr@siemens.com
->>>>>> ---
->>>>>>  .../bindings/memory-controllers/ti,gpmc-child.yaml         | 
->>>>>> 7
->>>>>> +++++++
->>>>>>  1 file changed, 7 insertions(+)
->>>>>>
->>>>>> diff --git a/Documentation/devicetree/bindings/memory-
->>>>>> controllers/ti,gpmc-child.yaml
->>>>>> b/Documentation/devicetree/bindings/memory-
->>>>>> controllers/ti,gpmc-
->>>>>> child.yaml
->>>>>> index 6e3995bb1630..7c721206f10b 100644
->>>>>> --- a/Documentation/devicetree/bindings/memory-
->>>>>> controllers/ti,gpmc-
->>>>>> child.yaml
->>>>>> +++ b/Documentation/devicetree/bindings/memory-
->>>>>> controllers/ti,gpmc-
->>>>>> child.yaml
->>>>>> @@ -230,6 +230,13 @@ properties:
->>>>>>        Wait-pin used by client. Must be less than "gpmc,num-
->>>>>> waitpins".
->>>>>>      $ref: /schemas/types.yaml#/definitions/uint32
->>>>>>  
->>>>>> +  gpmc,wait-pin-polarity:
->>>>>> +    description: |
->>>>>> +      Wait-pin polarity used by the clien. It relates to the
->>>>>> pin
->>>>>> defined
->>>>>
->>>>> did you mean "client?"
->>>>> Can you please specify what value is for Active Low vs Active
->>>>> High?
->>>>
->>>> Yes, that makes sense. And yes I meant "client". My typo.....
->>>>>> +      with "gpmc,wait-pin".
->>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>>>
->>>>> Why can't type be boolean?
->>>>
->>>> Of course we can use the boolean there. In that case I should
->>>> give the
->>>> property a more meaningful name e.g. wait-pin-active-high or
->>>> wait-pin-
->>>> active-low. 
->>>> Since the default behavour of this pin is Active High,
->>>> a bool property "gpmc,wait-pin-active-low" would make more sense
->>>> for
->>>> backwards compatibility. 
->>>> If the property is missing, than the polarity stays on Active
->>>> High like
->>>> before.
->>>>
->>>
->>> OK, in that case you don't have to clarify the polarity in
->>> description.
+On Mon, Sep 5, 2022, at 1:24 PM, Sergei Antonov wrote:
+> On Mon, 5 Sept 2022 at 14:13, Arnd Bergmann <arnd@arndb.de> wrote:
+>> On Mon, Sep 5, 2022, at 12:43 PM, Sergei Antonov wrote:
+> I am sure. Witnessing right now that it works with SDHC cards with
+> capacity 16 GB and 8 GB.
+> Datasheet quote:
+> "supports both MMC and SD interface protocol."
+> See 
+> https://bitbucket.org/Kasreyn/mkrom-uc7112lx/src/master/documents/FIC8120_DS_v1.2.pdf
+> , page 367.
+
+Ok, that does make it pretty clear that there is only one
+controller.
+
+>> > diff --git a/arch/arm/boot/dts/moxart.dtsi b/arch/arm/boot/dts/moxart.dtsi
+>> > index f5f070a87482..d69d73930ebe 100644
+>> > --- a/arch/arm/boot/dts/moxart.dtsi
+>> > +++ b/arch/arm/boot/dts/moxart.dtsi
+>> > @@ -94,7 +94,7 @@ watchdog: watchdog@98500000 {
+>> >               };
+>> >
+>> >               sdhci: sdhci@98e00000 {
+>> > -                     compatible = "moxa,moxart-sdhci";
+>> > +                     compatible = "moxa,moxart-mmc";
+>> >                       reg = <0x98e00000 0x5C>;
+>> >                       interrupts = <5 IRQ_TYPE_LEVEL_HIGH>;
+>> >                       clocks = <&clk_apb>;
 >>
->> I don't understand (and it is not explained in commit msg), why do
->> you
->> need such property instead of using standard GPIO flags.
->>
->> The driver should use standard GPIO descriptor and standard bindings.
->> If
->> it cannot, this has to be explained.
->>
->> Best regards,
->> Krzysztof
-> 
-> I think this is beacause the GPMC controller itself is not respecting
-> the GPIO flags. Instead the GPMC is reading the Line Level directly
-> (high,low) and then evaluates the logic depending how
-> the WAIT<x>PINPOLARITY bit is set in the GPMPC_CONFIG register.
-> 
-> Until now gpiochip_request_own_desc() was hardcorded
-> to GPIO_ACTIVE_HIGH. An the GPMC_CONFIG register configuration has no
-> relation to the GPIO setting (in the current implementation).
-> My first approach was to make this part configurable via a new device
-> tree property (wait-pin-polarity).
-> 
-> IMHO (correct me if I'm wrong) the current implementation also does not
-> make ues of standart GPIO bindings and defines the wait pin via a
-> separate "gpmc,waitpin" binding.
-> 
-> E.g. gpmc,watipin = <0> or gpmc,waitpin=<1>
-> 
-> The best solution would should be when setting the binding this way for
-> example: gpmc,wait-pin = <&gpiox y ACTIVE_X>
+>> Both the label and the device name still point to "sdhci",
+>> so it would be possible that the SoC actually has both
+>> an SDHCI compatible device and ftsdc010. In this case the
+>> correct fix would be to add a second node for the
+>> moxa,moxart-mmc with the correct reg and interrupts
+>> properties but to leave this one alone.
+>
+> SoC contains ftsdc010 which supports SDHC cards. Should be compatible
+> with MMC cards too. I will test it to be sure.
 
-Yes and I am afraid this will grow instead of adding proper GPIO usage.
-Any reason why it cannot be a standard GPIO pin desc?
+Don't worry about MMC cards, that is not the point. Both sdhci
+and ftsdc010 can support SD, SDHC, MMC and eMMC devices, probably
+other related standards as well.
 
-> 
-> But I think the current omap-gpmc.c implementation does not offer such
-> a usecase and as roger already mentioned: 
-> "GPMC wait_pin polarity logic is hard-wired and doesn't depend on GPIO
-> subsystem for its polarity"
+The only question was whether the ftsdc010 was incorrectly labeled
+as an sdhci type controller rather than ftsdc010, or whether the
+chip has both sdhci and ftsdc010 controllers that can be used
+simultaneously as is common on some other chips.
 
-This part I don't get. You mean hard-wired in the driver or hard-wired
-in the hardware? If the first, please un-wire it. If the latter, your
-property makes no sense, right?
+Please respin the patch though and change the node name to mmc@,
+and the change the label to something other than sdhci (e.g.
+"mmc", or "ftsdc010", doesn't matter) to make this less
+confusing.
 
-Best regards,
-Krzysztof
+      Arnd
