@@ -2,219 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 505CF5AD371
-	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 15:09:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59A755AD380
+	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 15:13:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236756AbiIENJR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 09:09:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51116 "EHLO
+        id S236921AbiIENNs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 09:13:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236195AbiIENJO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 09:09:14 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DE222F65B
-        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 06:09:10 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id z25so13108909lfr.2
-        for <devicetree@vger.kernel.org>; Mon, 05 Sep 2022 06:09:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=kccIl+JPL/b+6R9JLjjCNsOw0ulUkeXWsiCf5YUWos4=;
-        b=ZnqLiqI6MLW3lnI05Mf4Eao18FSsDUGp6Da1I+QRkZJcEY0C0QG8K81z9X8m+s4Jyi
-         cpGnP5oCG58t28aOFLJdpswJWiLr2fi+irONy0XZ5ND6pSJfVZw77UVCAxvMRU1Om/Cl
-         bBWrb7MsAlHlyFRmd1ox3v5xV+d0V2AAzSxywWv7oyTfoWk4Cl/hcSWvZyF9rUbKsaij
-         AS6WhBrc9/rOLPnWANRU3f3GcpN7UeM6EzBBoSe8yBMg4alUP83qrsYoqlQoFoVFTsxK
-         vinOQUiZ7328zL4xC4r1oM7Cx3UBiruNl1KPZs8v5ftSlrmz7sNJIJjG6ljAkBHyXdlL
-         LZtQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=kccIl+JPL/b+6R9JLjjCNsOw0ulUkeXWsiCf5YUWos4=;
-        b=rrl6ENWK6KJKB0+FoJNCTaz2UPqWdbt6rEscDEC4MVV2f8QnQeD0aPBTXQm1sWOLG5
-         2ScV7V+SWrUY3mwE140zgh8jJt3bzTP2ORZPR1GKV0T7ClhicMDTLGM/9lQM3PYHegQu
-         7n0sBMe7SoVFLc7YeFSHk0G4mZkELiV1UJWeIQqXDj3SHwrFxKiHzyq0ec1oW8P3PIlP
-         ptSAupSCznLTfrAuA2zI8T+LC2itVjBf1PNTRV9z23JgAaDCfIE2E7pQxxmDbhoUboaz
-         /i2zR3tyfMY4KznuYrsRhGWxvrwPk8k9dXEzgr9iMhpxvWg7YMKNnJkzvSUMV3nQP6kL
-         0Vvg==
-X-Gm-Message-State: ACgBeo1XZ1l+3IrG4l2rPYpMGH9QmL2O1CaVYYtT5c+f3EBSNLYWZEFW
-        EjVv5fYigyE+RX+CQ+qw2CPvcQ==
-X-Google-Smtp-Source: AA6agR550FBvF0os40VYLctvNfTKpL2koC3lcJaQTEgPs3sTLgLJC3pSTQya4BN7wV0VNO+pufSWFw==
-X-Received: by 2002:a05:6512:b0a:b0:492:dacb:33da with SMTP id w10-20020a0565120b0a00b00492dacb33damr15355633lfu.668.1662383348735;
-        Mon, 05 Sep 2022 06:09:08 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id x18-20020a056512079200b0048a7c86f4e7sm1181995lfr.291.2022.09.05.06.09.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Sep 2022 06:09:08 -0700 (PDT)
-Message-ID: <4e61b63b-74ac-1682-968f-17e5d8db7ce6@linaro.org>
-Date:   Mon, 5 Sep 2022 15:09:07 +0200
+        with ESMTP id S236751AbiIENNq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 09:13:46 -0400
+Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2099.outbound.protection.outlook.com [40.107.113.99])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45BA63C16A;
+        Mon,  5 Sep 2022 06:13:45 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gAHyz2/fgYFiD79+YY569hZ8CyKAYDnBDy8EVaPPmhNLvgryszo5OnsbFSmh9NmPo1jSnODKvk9nsothD1R8TmUagX4aYPdBReAxxwS4u7FdnG4yj8zITVmI10eArB1UkMaOt6RHcIxZijNVQm9ic3XCII0Cm0N7ZS54nlzyYAE15Fryf3F0wDoUpBAQs9YS+kKcpdW88kgBQZc1nwku8nhpKtNbdlKzMmzAOJiRG9r3WSwBhuLvFW/gZjMyxM9JjIO2JjO13HYVXlBJ0meR3Bt/d/t5IaoR4iUO8XndVY03wzidUg1HhABC3a7aP1LGUezi8zbRsexIcMqhCLengQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ILBuemEbWNTarQVUtx8FjjwLF4Yi1gskG0cFft1RJH4=;
+ b=LiZo9B5+0F4Nu52eu2/kCYvC+k7vwDUjD7SaDYjimmQmpxN4ZJrKJq15GlgGyyV85UN8xAwaC0k2cfmYbbUBJ0Xo52CFTk0sue+P17KQWmtfuhyQAcNYTBt9G52dPbIcZtOwo36Ap0qY5xF9jY4t6lBY+6Brvd4tmOtDbI7/fq+HC+dzx/r+xwjNIU3iQJTlku56hnJN6ol+ll8DFCCiCQSMARQhT7rmD66CVXJNPtXvpS53Jiw+MqAlGVdViN9mCffYKIVF8cZ+Azlu25JDrVpVAxx4MWjP+SwIFvnZ3DGjjVAEKQsxGT0W8+M7l4+5sx7BNNkP8hgv4tyWPWulFA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ILBuemEbWNTarQVUtx8FjjwLF4Yi1gskG0cFft1RJH4=;
+ b=ACDDL0i7Utp5uIycplBLk1x7CPdRq7WGcSbh5xKtoIMOEDz1d520hZZfwoBtppk6eFm/RNrH6Ma5tfQnpbVO8BXFPQ1rJtU2psXP1J0rVxZ58384fCIVTa5C71H0O81m+Bphf6TMytKA8cDuPz/nJrLuRSDHN2rqQJsgadQ5PFs=
+Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
+ (2603:1096:404:8028::13) by OS3PR01MB5638.jpnprd01.prod.outlook.com
+ (2603:1096:604:c4::8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.10; Mon, 5 Sep
+ 2022 13:13:43 +0000
+Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
+ ([fe80::307d:7cc:2021:f45f]) by TYBPR01MB5341.jpnprd01.prod.outlook.com
+ ([fe80::307d:7cc:2021:f45f%8]) with mapi id 15.20.5588.018; Mon, 5 Sep 2022
+ 13:13:43 +0000
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     Sergei Shtylyov <sergei.shtylyov@gmail.com>
+CC:     "marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "kw@linux.com" <kw@linux.com>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+        "geert+renesas@glider.be" <geert+renesas@glider.be>,
+        "magnus.damm@gmail.com" <magnus.damm@gmail.com>
+Subject: RE: [PATCH v5 07/12] PCI: dwc: Avoid reading a register to detect
+ whether eDMA exists
+Thread-Topic: [PATCH v5 07/12] PCI: dwc: Avoid reading a register to detect
+ whether eDMA exists
+Thread-Index: AQHYwPb3wW5eALtDvkizyp7ZfFF2+q3QhCUAgABMVJA=
+Date:   Mon, 5 Sep 2022 13:13:43 +0000
+Message-ID: <TYBPR01MB534189CCA490F4A2BF9395D9D87F9@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+References: <20220905071257.1059436-1-yoshihiro.shimoda.uh@renesas.com>
+ <20220905071257.1059436-8-yoshihiro.shimoda.uh@renesas.com>
+ <e615a35a-c052-aeff-8cfd-3efae677d48a@gmail.com>
+In-Reply-To: <e615a35a-c052-aeff-8cfd-3efae677d48a@gmail.com>
+Accept-Language: ja-JP, en-US
+Content-Language: ja-JP
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 28bdd0d0-da81-4da1-9447-08da8f407529
+x-ms-traffictypediagnostic: OS3PR01MB5638:EE_
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: YAr96tPaw6RPBzudAZPn5Y60mwptHPQcR8qhBbLNTYl7OH+c+B1gAO5JvO45Vih2G8fvNHZNLdtonmzwgrostBJ36ZFr1HSGZMjG/uq+hElThHTkK8K/0phAUohU/ZsCuH/f1iSFDsiVp0EmxZPjRVFTiU09G5dN1p0t9dosEo8zgTPXjjMpswKbcP9uGxyFJKKA3B1LNE/3OSzwdbP9jOBI1fbdQ6fRXzl4bId47F93deiOVl1KkxbbjUTjSrU9A2K0A6yNBPVtthMkMZs2Y5BqgitBp4ePXOG97CmFgd5WgLdXCnqXSC0owqWqFMgw52BOdYgmpPKk70kuXoNQbyhjDrXvcO4YVQ0KM00d8/V7sQQUZtpdrkYe5Z301Z4qj5MJ8/jn8GP1rsz81qpIsXO10FYLjz7Jkdh6HIgoCCDPuNQ5E25xaAM+5CnyZBSajzKY/nPQtx7vQNY2ardp4pfbGwj7ReNipfFYth1u0Mby3LnhPanrhMMxz2HpDYq9R1S+cx73FPue+tb576uB0+b99GLy6jFdmFLZvkX2RHfOS5R0sYwdo97YhO4n3K6QqYmSMpdHDkn+V4izp9dHpmTra68Dx8jcIzOlKsMvKH5GsH0p2Hf3yIEbct+WueFiyZHUpA3tsoA1n7xZAWeCVaNj+vmHPq29fmyN4p8GgHEjOV41GQGtiq1cX3oIeVaRJg6HH2+AwEz81SPFUboXpBHIXRoCKso6sJKjvqk5J+7mWNb51V+pgufYOoDErls+Ypg4krcjhkSzdJ/xK9j7Eg==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYBPR01MB5341.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(136003)(396003)(376002)(346002)(39860400002)(366004)(55016003)(6916009)(54906003)(316002)(9686003)(86362001)(38070700005)(2906002)(122000001)(38100700002)(8936002)(5660300002)(7416002)(66446008)(64756008)(8676002)(33656002)(4326008)(83380400001)(66476007)(66946007)(76116006)(71200400001)(41300700001)(186003)(6506007)(478600001)(52536014)(66556008)(53546011)(7696005);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?eEFIQ01aOTRON1J5Wm9xTjZ0QUFYVE44cjZtVVF2Q1lJcExuOWwzc3Z3bTRS?=
+ =?utf-8?B?QmowcHdPcHgzTEJWR1FEaE1tUXlnQVFqTmwrOVRudVJjVlRwNU05SlkvNlBC?=
+ =?utf-8?B?bW5BQUtHWXJROWRNdEFiUVJKSU56bHRHTFY0eEFLWElYdTc2eHdWZlVudFJv?=
+ =?utf-8?B?dnYyOTY5QWtZR1hybXhobTVaZmpsNnFUSksrZjl6TXQrRGZHZWNrWHozZEJm?=
+ =?utf-8?B?SFhvNThPbTlsZUVteUhyd0orWERUVCt0VytlNGxybXNWaEhHQVJ1dm4zdGYr?=
+ =?utf-8?B?OHE5Vk5QcGxJNHdJaXJhNTR6QVNrMXVnT2hXSzNzNnhsSE1hbXd4d1BQdmQw?=
+ =?utf-8?B?dkxGZzI2U1RYUDNERHIrZTNMRDd4ZEpuL01oMW1TSjI2N2pqWFRqOTdMOVpN?=
+ =?utf-8?B?RHVjbXpYcXByYnJldEV0Z2lPRWM0RWZvczVKSzc3aTR0MmxmdFFGekpETVlQ?=
+ =?utf-8?B?TFhnbnZRQnFETmRFbkNQOGhPS3VWU011OTBEUVllUkYwbVRkQzQ5VmttTUtV?=
+ =?utf-8?B?L3ZSNGltUEw4R0NrL3Jacm9NcWx3bi9BVEJhQXVESFhQRkptOUNKMkMxNXow?=
+ =?utf-8?B?SjUrNVdJQXkrc3RtSU5SN0xCTVVDTVZwT2k1ZFhqeWRMcG1MTGwrSTcxTzZk?=
+ =?utf-8?B?bU9zMEpFNXJTUXdiTHVjeE13VlU3UlFqWUlYM3dwNmRuM3lPYk9zTWdVVkx1?=
+ =?utf-8?B?OHBNN2oyWlJxR21WOUpyT3JMNTRyOVVZVTJhanB4a3E3WG9XQ2sxSTZzcGd4?=
+ =?utf-8?B?d2ZEM3NDeEVGT0RNSEpBUzlTZ2xRbEpEUXV3SUQzTExISVJ3aEJFUVlaY1pk?=
+ =?utf-8?B?cjQ2UVRadXFjbEh6Y3FSRnhIbHhhZTR2TDdtZHFHS20vQmJyeE5GVEJ1cis0?=
+ =?utf-8?B?QlZvZVJTeEpXdVpPeW1XSzY2YllGWDVhY1ErSm5VNUU4c0pWY2RWVmtDcitK?=
+ =?utf-8?B?Uy82VkVSQXphcjA4QTk5K1A1VDBnWmpwalZLRnUrMnBqNTVYUjNNaThDNWpG?=
+ =?utf-8?B?Tm9hSWlyZVhVT0VvSDQzazdwdXRDNkFSL3RFeWZKU1pGdVdUazNYSW84MExU?=
+ =?utf-8?B?N2RlLzhLV0tIczNHVGtHWElySVBCY0lTbFJ3SjFLNHlrQjhYNFljM0V3NENI?=
+ =?utf-8?B?QXBZLzI0U2xZSlIzQVBEZ2h0Q0RNdVB2NXhFOVJuaU9iK1hzTDRuNm1RQWs2?=
+ =?utf-8?B?VTJPTFlDK2ZobTVIQk01endKaCtVbnNPcFh0aGlFdUFMWHc4MnlRdWpENERC?=
+ =?utf-8?B?dTk0ZXE2dUdRbkxFb2JpeTk2RTdkQThpaTU3T05tMkNIZ1p0aDZ3UkFEWW5K?=
+ =?utf-8?B?ZGd0djA0VjdiOTg4NVVRUDB5RjVtdGd2SFpoYlhDbkprOUI0R0cwL29lakRP?=
+ =?utf-8?B?cldXTkJOOHZEV3VBUGc5dDFrejJDM3pRTGhpa09odHFMYmhibEFIekwrMzUr?=
+ =?utf-8?B?eTE1bUlGVVkxNlBnaU5IT3FoakIwK2VENk5vSjFmZC9BMytrck5vazVOWG0y?=
+ =?utf-8?B?cjVTeDIwRlZPaWlMaXJiNk5vWXgrT1cySzVvK0FlRm0xNFRnWlZOMHFIUnZq?=
+ =?utf-8?B?RVhSaTZDRHRFTDl6ckZPdmJ4S2lNZ252cTdPZkJ0SjUycWd3cEVzWWpIUEp6?=
+ =?utf-8?B?VHpMVS8ySVFGcm5RSHh3OFZqbnZ0WVRiWWpGNEFuY1pWMmR2YTAvajhJeVN2?=
+ =?utf-8?B?RmpGd3RoTU9rL1I1Z3R2Zkp0V0tYMFBCenBLT0tRUXhGWHNMSmsrZ2hGK0R5?=
+ =?utf-8?B?ZUlxVUFHeDU2ckZYZFNTTjNpeGg1VGpBTGxTR1RKUkFLM0pyU1dtWHRDQjBx?=
+ =?utf-8?B?dUsrWDRFcGZKV3ZHUDZlbnlwc3lYeVRwWVBxR29BajFJWHZYdjh4MEFWNFFp?=
+ =?utf-8?B?VldXNThpVmpZeis5Z2h4Rkl1MjFyRnJFa09nSDJjRDhSK3Z2YjNoQ2RsU2Fj?=
+ =?utf-8?B?dUhObnNHejVCVEpMbWxSakV0Q05YUjJaaGVIeDdQZ1ZhSFNNeXJvQnEvdFRL?=
+ =?utf-8?B?L0Q5Zkp5S0hOaHgxSndZdVBFblRTQ0c2ZmtucFdZSVVKdjlySEJ2YWVoOHNo?=
+ =?utf-8?B?M2dSYTVqY2VQekIvWjVEamxCUkxuUjRiWlBudlY2eUNkbGkvL1FlR2JicGdy?=
+ =?utf-8?B?ZzVtOE9QcXJsVmtYbUsrVUVVT1YzRkk5V3J6SkM0bTRDQStxZ1hoSnlqS0di?=
+ =?utf-8?B?bWZjbXhEQnNacmhEY2QrY0g3ZXM2S0kwSnZDY215c0ZrSldGeENOazdkQ0pt?=
+ =?utf-8?B?Y3p1d0IwNzJVVVQySnVoYlN4ZFN3PT0=?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v4 1/2] dt-bindings: phy: ti: phy-gmii-sel: Add bindings
- for J7200
-Content-Language: en-US
-To:     Siddharth Vadapalli <s-vadapalli@ti.com>,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     robh+dt@kernel.org, lee.jones@linaro.org, kishon@ti.com,
-        vkoul@kernel.org, dan.carpenter@oracle.com,
-        grygorii.strashko@ti.com, rogerq@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org
-References: <20220901085506.138633-1-s-vadapalli@ti.com>
- <20220901085506.138633-2-s-vadapalli@ti.com>
- <4b681c03-7f5a-0234-2276-316e0bad1de5@linaro.org>
- <44339382-c4e2-26db-de5d-263ae5a585b8@ti.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <44339382-c4e2-26db-de5d-263ae5a585b8@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYBPR01MB5341.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 28bdd0d0-da81-4da1-9447-08da8f407529
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Sep 2022 13:13:43.2528
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: OQayb7xAlFom2OI+djNeLYBxmaONGu0856ZRLIII7s7yQNbm3ngtw5OPmTvqwOvoonUKCOnnGZExkVf3YW+geyC9q6JhVWPA4m8tWDjLRDq9Av0dwuEUkb0sFMpU/WpM
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB5638
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/09/2022 08:09, Siddharth Vadapalli wrote:
-> Hello Krzysztof,
-> 
-> On 01/09/22 20:51, Krzysztof Kozlowski wrote:
->> On 01/09/2022 11:55, Siddharth Vadapalli wrote:
->>> TI's J7200 SoC supports additional PHY modes like QSGMII and SGMII
->>> that are not supported on earlier SoCs. Add a compatible for it.
->>>
->>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
->>> ---
->>>  .../mfd/ti,j721e-system-controller.yaml       |  6 ++++
->>>  .../bindings/phy/ti,phy-gmii-sel.yaml         | 30 ++++++++++++++++++-
->>>  2 files changed, 35 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml b/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
->>> index 1aeac43cad92..802374e7645f 100644
->>> --- a/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
->>> +++ b/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
->>> @@ -54,6 +54,12 @@ patternProperties:
->>>      description:
->>>        Clock provider for TI EHRPWM nodes.
->>>  
->>> +  "phy@[0-9a-f]+$":
->>> +    type: object
->>> +    $ref: /schemas/phy/phy-provider.yaml
->>
->> You need instead ref to specific device bindings/schema. Probably to
->> /schemas/phy/ti,phy-gmii-sel.yaml#
-> 
-> Thank you for the clarification. I will update $ref to
-> "/schemas/phy/ti,phy-gmii-sel.yaml#" in the v5 series.
-> 
->>
->> This was entirely different in v3, so your change is very confusing.
-> 
-> I had misunderstood Rob's comment in the v3 patch. I had initially
-> provided the relative path to the bindings file ti,phy-gmii-sel.yaml in
-> the v3 patch. When Rob commented "/schemas/phy/..", I misunderstood and
-> thought that I had to point $ref to a generic phy-provider schema
-> present in the dt-schema repo and thus, in this v4 patch, I had updated
-> $ref accordingly.
-> 
->>
->>> +    description:
->>> +      This is the register to set phy mode through phy-gmii-sel driver.
->>
->> I don't understand the description. Please focus on the hardware not
->> some drivers - what is here? Phy for something?
-> 
-> I will fix the description, updating it to the following:
-> "Address of the CTRLMMR_ENETx_CTRL registers which are used to configure
-> the phy-mode of the CPSW MAC ports."
-> 
-> Please let me know if the above description is fine.
-
-Hm, but that's a phy node, not address of register... Isn't this a phy
-node representing the phy of the CPSW MAC ports?
-
-> 
->>
->>> +
->>>  required:
->>>    - compatible
->>>    - reg
->>> diff --git a/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml b/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml
->>> index ff8a6d9eb153..0ffb97f1a77c 100644
->>> --- a/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml
->>> +++ b/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml
->>> @@ -53,12 +53,24 @@ properties:
->>>        - ti,am43xx-phy-gmii-sel
->>>        - ti,dm814-phy-gmii-sel
->>>        - ti,am654-phy-gmii-sel
->>> +      - ti,j7200-cpsw5g-phy-gmii-sel
->>>  
->>>    reg:
->>>      maxItems: 1
->>>  
->>>    '#phy-cells': true
->>>  
->>> +  ti,qsgmii-main-ports:
->>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->>> +    description: |
->>> +      Required only for QSGMII mode. Array to select the port for
->>> +      QSGMII main mode. Rest of the ports are selected as QSGMII_SUB
->>> +      ports automatically. Any one of the 4 CPSW5G ports can act as the
->>> +      main port with the rest of them being the QSGMII_SUB ports.
->>> +    items:
->>> +      minimum: 1
->>> +      maximum: 4
->>> +
->>>  allOf:
->>>    - if:
->>>        properties:
->>> @@ -73,6 +85,22 @@ allOf:
->>>          '#phy-cells':
->>>            const: 1
->>>            description: CPSW port number (starting from 1)
->>
->> Blank line
-> 
-> I will fix this in the v5 series.
-> 
->>
->>
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            enum:
->>> +              - ti,j7200-cpsw5g-phy-gmii-sel
->>> +    then:
->>> +      properties:
->>> +        '#phy-cells':
->>> +          const: 1
->>> +          description: CPSW port number (starting from 1)
->>> +        ti,qsgmii-main-ports:
->>> +          maxItems: 1
->>
->> It does not really make sense to limit items here, in the context of
->> this patch. You got a comment for it already. Your patch should make
->> sense on its own.
-> 
-> I had defined the property as an array because there are more than one
-> QSGMII main ports for other devices for which I will be posting the
-> patches. I had planned to reuse this property, with "maxItems: 2" in the
-> future patches for other compatibles. However, as suggested by you, I
-> will change the property to a uint32 instead of uint32-array in this
-> series. Later, in my future patches for other devices, I will change it
-> back to a uint32-array when I reuse the property.
-
-Wait, no. You should not change the property. This should be
-uint32-array, because you will extend it soon, just maxItems must be
-defined in top-level place.
-
-Best regards,
-Krzysztof
+SGVsbG8gU2VyZ2VpLXNhbiwNCg0KPiBGcm9tOiBTZXJnZWkgU2h0eWx5b3YsIFNlbnQ6IE1vbmRh
+eSwgU2VwdGVtYmVyIDUsIDIwMjIgNTo0MCBQTQ0KPiANCj4gSGVsbG8hDQo+IA0KPiBPbiA5LzUv
+MjIgMTA6MTIgQU0sIFlvc2hpaGlybyBTaGltb2RhIHdyb3RlOg0KPiANCj4gPiBTaW5jZSByZWFk
+aW5nIHZhbHVlIG9mIFBDSUVfRE1BX1ZJRVdQT1JUX0JBU0UgKyBQQ0lFX0RNQV9DVFJMIHdhcw0K
+PiA+IDB4MDAwMDAwMDAgb24gb25lIG9mIFNvQ3MgKFItQ2FyIFM0LTgpLCBpdCBjYW5ub3QgZmlu
+ZCB0aGUgZURNQS4NCj4gPiBTbywgZGlyZWN0bHkgcmVhZCB0aGUgZURNQSByZWdpc3RlciBpZiBl
+ZG1hLnJlZF9iYXNlIGlzIG5vdCB6ZXJvLg0KPiANCj4gICAgcy9yZWQvcmVnLz8NCg0KVGhhbmsg
+eW91IGZvciB5b3VyIHJldmlldyEgSSdsbCBmaXggaXQuDQoNCkJlc3QgcmVnYXJkcywNCllvc2hp
+aGlybyBTaGltb2RhDQoNCj4gPiBTaWduZWQtb2ZmLWJ5OiBZb3NoaWhpcm8gU2hpbW9kYSA8eW9z
+aGloaXJvLnNoaW1vZGEudWhAcmVuZXNhcy5jb20+DQo+ID4gLS0tDQo+ID4gIGRyaXZlcnMvcGNp
+L2NvbnRyb2xsZXIvZHdjL3BjaWUtZGVzaWdud2FyZS5jIHwgNCArKy0tDQo+ID4gIDEgZmlsZSBj
+aGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pDQo+ID4NCj4gPiBkaWZmIC0t
+Z2l0IGEvZHJpdmVycy9wY2kvY29udHJvbGxlci9kd2MvcGNpZS1kZXNpZ253YXJlLmMgYi9kcml2
+ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9wY2llLWRlc2lnbndhcmUuYw0KPiA+IGluZGV4IDcyZjk2
+MjBhMzc0ZC4uMDhmOTFhNmJiZTRiIDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvcGNpL2NvbnRy
+b2xsZXIvZHdjL3BjaWUtZGVzaWdud2FyZS5jDQo+ID4gKysrIGIvZHJpdmVycy9wY2kvY29udHJv
+bGxlci9kd2MvcGNpZS1kZXNpZ253YXJlLmMNCj4gPiBAQCAtODQ0LDggKzg0NCw3IEBAIHN0YXRp
+YyBpbnQgZHdfcGNpZV9lZG1hX2ZpbmRfY2hpcChzdHJ1Y3QgZHdfcGNpZSAqcGNpKQ0KPiA+ICB7
+DQo+ID4gIAl1MzIgdmFsOw0KPiA+DQo+ID4gLQl2YWwgPSBkd19wY2llX3JlYWRsX2RiaShwY2ks
+IFBDSUVfRE1BX1ZJRVdQT1JUX0JBU0UgKyBQQ0lFX0RNQV9DVFJMKTsNCj4gPiAtCWlmICh2YWwg
+PT0gMHhGRkZGRkZGRiAmJiBwY2ktPmVkbWEucmVnX2Jhc2UpIHsNCj4gPiArCWlmIChwY2ktPmVk
+bWEucmVnX2Jhc2UpIHsNCj4gPiAgCQlwY2ktPmVkbWEubWYgPSBFRE1BX01GX0VETUFfVU5ST0xM
+Ow0KPiA+DQo+ID4gIAkJdmFsID0gZHdfcGNpZV9yZWFkbF9kbWEocGNpLCBQQ0lFX0RNQV9DVFJM
+KTsNCj4gWy4uLl0NCj4gDQo+IE1CUiwgU2VyZ2V5DQo=
