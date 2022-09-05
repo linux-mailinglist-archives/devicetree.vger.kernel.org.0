@@ -2,41 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A83815AD95A
-	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 21:04:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B0805AD96D
+	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 21:12:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229591AbiIETEC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 15:04:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49988 "EHLO
+        id S231895AbiIETMS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 15:12:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229518AbiIETEC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 15:04:02 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D270857570
-        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 12:03:59 -0700 (PDT)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1oVHNy-0001Ct-As; Mon, 05 Sep 2022 21:03:54 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>, lee@kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        kernel@collabora.com
-Subject: Re: [PATCH 4/6] dt-bindings: mfd: syscon: Add rk3588 QoS register compatible
-Date:   Mon, 05 Sep 2022 21:03:53 +0200
-Message-ID: <4707456.3daJWjYHZt@diego>
-In-Reply-To: <20220831182629.79255-5-sebastian.reichel@collabora.com>
-References: <20220831182629.79255-1-sebastian.reichel@collabora.com> <20220831182629.79255-5-sebastian.reichel@collabora.com>
+        with ESMTP id S229866AbiIETMR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 15:12:17 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49AD338473
+        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 12:12:12 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id y3so18825778ejc.1
+        for <devicetree@vger.kernel.org>; Mon, 05 Sep 2022 12:12:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date;
+        bh=HRjuZtuMgKp7NhrWfk1BUsEhuHPCRNHn+t7EnNCzXzc=;
+        b=o1GvstCYhBwaqTnwarfmJZWzq7E0OrdSPD/yTcpWd6KDjdNulAbJ4iOt3u7+nYDYWS
+         83btvf6MX7y6CVPO7M6oK0OhbUYZNjwkkLzLgk6LRwv/JrT5bgxrpPGk+NFlnmISaONL
+         03evkj+eKJuQekvXI8ya+u9g2emJwuFpJNv4Wg7emg5eYPOSmX9iZUGQvp1Fb0Zg7C68
+         AoXyzt+0kVvMjCzCFAmXonoo+A9LK7CC9PPWeHAgOSigkXD6fNXGDYNS5DxeoXgP8YmG
+         s+Usw3gma2dEgtbpC5PU+MBILVsE1Xv4hjy/Vh9FCjmE1tD2kzqVonIn8h+rWi9txBbs
+         pppw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=HRjuZtuMgKp7NhrWfk1BUsEhuHPCRNHn+t7EnNCzXzc=;
+        b=jtWxTIs/HmWZx0aysCaJCp6/XnPRI8uFuA3KEwUGyqofjHY7Z7SxzUNpfXneT0Un8b
+         gRG6YOzMCb+sRxIeh6OOWs5OOiqRv+YmTXxNCe+hPryz+Hex98o9Q8oHNl1t++cpN0IJ
+         9J6dQDaV5hmXb1ndb42ujWnsysdpklZ2KH4Z38xHcU/goWh6vED60vxa/cObxxGXHsIs
+         Wcotmv/Rwt6MRFBQzMJ5tU1dksXQ9easzKVaJfOC8FusK1XeAYjFTbL5kkXlDcchNXWS
+         l5ZtM77TWf9J8pQYMC4hW4FPByqtZKYgko/HV9LYEit6my/HjHyyKrW+7F/JxJdp9ted
+         4Kyw==
+X-Gm-Message-State: ACgBeo2hCon4ZdrZnmDC6bJSJXD4EeT3fu2Jw85GnIS8Ei0EhoUCL8d8
+        yVH6zFgXiVpxVwN+jfrk1I/tyb/7UFjGMkZGweEcSw==
+X-Google-Smtp-Source: AA6agR6eAAORIyGUxq3s3Gl6wgrXo9i1iMAgrBbKU/MEyUUIoIjNyxNX/ShkqeOs6H0OyV+0rkatY+P9u6YwamzLEfo=
+X-Received: by 2002:a17:906:cc5a:b0:741:5240:d91a with SMTP id
+ mm26-20020a170906cc5a00b007415240d91amr30475075ejb.500.1662405130857; Mon, 05
+ Sep 2022 12:12:10 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+References: <20220905145555.674800-1-etienne.carriere@linaro.org>
+In-Reply-To: <20220905145555.674800-1-etienne.carriere@linaro.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 5 Sep 2022 21:11:59 +0200
+Message-ID: <CACRpkdYMc2BAHgGa-uPL8za=UO_Buz04TNPbmhUvXen8H13Gkg@mail.gmail.com>
+Subject: Re: [PATCH v3] dt-binding: gpio: publish binding IDs under dual license
+To:     Etienne Carriere <etienne.carriere@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, Stephen Warren <swarren@nvidia.com>,
+        Laxman Dewangan <ldewangan@nvidia.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -44,39 +74,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sebastian,
+On Mon, Sep 5, 2022 at 4:57 PM Etienne Carriere
+<etienne.carriere@linaro.org> wrote:
 
-Am Mittwoch, 31. August 2022, 20:26:27 CEST schrieb Sebastian Reichel:
-> Document rk3588 compatible for QoS registers.
-> 
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> Changes gpio.h DT binding header file to be published under GPLv2 or
+> BSD-2-Clause license terms. This change allows this GPIO generic
+> bindings header file to be used in software components as bootloaders
+> and OSes that are not published under GPLv2 terms.
+>
+> All contributors to gpio.h file in copy.
+>
+> Cc: Stephen Warren <swarren@nvidia.com>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Laxman Dewangan <ldewangan@nvidia.com>
+> Cc: Andrew Jeffery <andrew@aj.id.au>
+> Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+> Cc: Nuno S=C3=A1 <nuno.sa@analog.com>
+> Cc: Bartosz Golaszewski <brgl@bgdev.pl>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+>
+> Signed-off-by: Etienne Carriere <etienne.carriere@linaro.org>
 
-change looks good, but this is a mfd-binding. So while the rest is for me
-to apply, for the mfd syscon we need either Lee to apply it, or an Ack
-from him for me to pick it up.
+Fine by me.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-
-Heiko
-
-
-> ---
->  Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
-> index c10f0b577268..5369a56b8be1 100644
-> --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
-> @@ -59,6 +59,7 @@ properties:
->                - rockchip,rk3368-qos
->                - rockchip,rk3399-qos
->                - rockchip,rk3568-qos
-> +              - rockchip,rk3588-qos
->                - samsung,exynos3-sysreg
->                - samsung,exynos4-sysreg
->                - samsung,exynos5-sysreg
-> 
-
-
-
-
+Yours,
+Linus Walleij
