@@ -2,79 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AAE55ACF4E
-	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 11:56:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFA775ACF5B
+	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 12:00:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236320AbiIEJyS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 05:54:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44272 "EHLO
+        id S236828AbiIEJ67 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 05:58:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236193AbiIEJyS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 05:54:18 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BAF640BD4
-        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 02:54:16 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id bx38so8640786ljb.10
-        for <devicetree@vger.kernel.org>; Mon, 05 Sep 2022 02:54:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=r+dy657YMkCJ/gfS/fhRH4XzHfRep4eVxD4DnOZEHT8=;
-        b=lWot3i8SLnSrIlJAp4JCB91xVjCTgfMa4zcCUiu2aEHGY94lSVKDwAjQYQVz9biqB7
-         elRS4sIPdxnSy7dNQlmHc9J17++uC0tq4051lArAvOtX7dspfO9rY//k0MRb3wC+J37b
-         pTuH2zZP6eyvIIklmXCozIFMEXPWfli6036TbijXSF4x3OPgixy7LuiX+RugbqGokh+0
-         oq3lHOML5Gbc2Gjedkdz7NslxP/SQJjY4yNRAOxe9+a+nIMe8wxvUJnlrlDg7NFx+N0T
-         Cm5eLitJVM7ee2S/KBNn5sMz2oEm5xUf9NXaHauwB5squpnnPddXOaBT9WDwo5GfRfoa
-         2zRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=r+dy657YMkCJ/gfS/fhRH4XzHfRep4eVxD4DnOZEHT8=;
-        b=HbjUN7ZfxIzDh5G/jLXar0an684zLLbSNb+MG+qgnlqzCw1pUOEcP+QIytH7a1NAwN
-         RzpkxAgR1w7UOIB7z5vVmkPoBd7WUAj3QHaLJmA8eK8itIie+cNIPZGvn4GJ4ijPVjAX
-         L7vFBtTcqDyR9nCb1osPj326/rr5ItgQ1hBWM0/+O4vStL74UoXzqnuRnm6OOl4TARlU
-         fSodLq5Pslvvn8jJE/zYZlx4yyatERRdG8HuW5EpBUQxNXthLHgovj5hWA/5ixIJmVAU
-         Aidinbl3bmF9r+PH6KGPiQCt44+ZoDMz/uBb+EwoenUjItDU1OWfk+uNKR8sVGb01Cy9
-         dUQA==
-X-Gm-Message-State: ACgBeo205/9iicg1gLtqzZY8OIr6hNMk8YQotnIxqYxagTzoeg9llXwF
-        mcrS5hkaNDBzYcaXP+nf346T4A==
-X-Google-Smtp-Source: AA6agR7/HEG/A+ngmRd9nq7AHcU1Im92QOkITw927mfLYdhJ2XKYIjA7ht3DAUJ0Iw6mHd+PD5UHDg==
-X-Received: by 2002:a2e:9084:0:b0:268:f7cd:f753 with SMTP id l4-20020a2e9084000000b00268f7cdf753mr4184365ljg.297.1662371654891;
-        Mon, 05 Sep 2022 02:54:14 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id f4-20020a05651c02c400b00261d66b22a3sm1347863ljo.29.2022.09.05.02.54.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Sep 2022 02:54:14 -0700 (PDT)
-Message-ID: <0ee691a3-d22e-b685-9d5c-f974ac3afe19@linaro.org>
-Date:   Mon, 5 Sep 2022 11:54:13 +0200
+        with ESMTP id S236332AbiIEJ6y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 05:58:54 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BEDA13E1D
+        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 02:58:52 -0700 (PDT)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=phil.lan)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1oV8sN-0005Ed-G0; Mon, 05 Sep 2022 11:58:43 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Kever Yang <kever.yang@rock-chips.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jagan Teki <jagan@edgeble.ai>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: (subset) [PATCH v3 00/19] ARM: Add Rockchip RV1126 support
+Date:   Mon,  5 Sep 2022 11:58:42 +0200
+Message-Id: <166237191879.2457466.6826593836554060446.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220818124132.125304-1-jagan@edgeble.ai>
+References: <20220818124132.125304-1-jagan@edgeble.ai>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v2 3/3] dt-bindings: memory-controllers: gpmc-child: Add
- binding for wait-pin-polarity
-Content-Language: en-US
-To:     Roger Quadros <rogerq@kernel.org>,
-        "Niedermayr, BENEDIKT" <benedikt.niedermayr@siemens.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>
-Cc:     "tony@atomide.com" <tony@atomide.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-References: <20220905071717.1500568-1-benedikt.niedermayr@siemens.com>
- <20220905071717.1500568-4-benedikt.niedermayr@siemens.com>
- <d75ff1cf-64a6-e794-87a2-204e93c852cf@kernel.org>
- <e284855271a3fdf6bb2cd304629c2aa3bb8401f3.camel@siemens.com>
- <eedebc54-7817-d61b-f854-09eb11be4ada@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <eedebc54-7817-d61b-f854-09eb11be4ada@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,71 +45,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/09/2022 11:21, Roger Quadros wrote:
+On Thu, 18 Aug 2022 18:11:13 +0530, Jagan Teki wrote:
+> RV1126 is a high-performance vision processor SoC for IPC/CVR,
+> especially for AI related application.
 > 
+> It is based on quad-core ARM Cortex-A7 32-bit core which integrates
+> NEON and FPU. There is a 32KB I-cache and 32KB D-cache for each core
+> and 512KB unified L2 cache. It has build-in NPU supports INT8/INT16
+> hybrid operation and computing power is up to 2.0TOPs.
 > 
-> On 05/09/2022 12:14, Niedermayr, BENEDIKT wrote:
->> On Mon, 2022-09-05 at 11:56 +0300, Roger Quadros wrote:
->>> Hi Benedikt,
->>>
->>> On 05/09/2022 10:17, B. Niedermayr wrote:
->>>> From: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
->>>>
->>>> Add a new dt-binding for the wait-pin-polarity property
->>>>
->>>> Signed-off-by: Benedikt Niedermayr <benedikt.niedermayr@siemens.com
->>>>>
->>>> ---
->>>>  .../bindings/memory-controllers/ti,gpmc-child.yaml         | 7
->>>> +++++++
->>>>  1 file changed, 7 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/memory-
->>>> controllers/ti,gpmc-child.yaml
->>>> b/Documentation/devicetree/bindings/memory-controllers/ti,gpmc-
->>>> child.yaml
->>>> index 6e3995bb1630..7c721206f10b 100644
->>>> --- a/Documentation/devicetree/bindings/memory-controllers/ti,gpmc-
->>>> child.yaml
->>>> +++ b/Documentation/devicetree/bindings/memory-controllers/ti,gpmc-
->>>> child.yaml
->>>> @@ -230,6 +230,13 @@ properties:
->>>>        Wait-pin used by client. Must be less than "gpmc,num-
->>>> waitpins".
->>>>      $ref: /schemas/types.yaml#/definitions/uint32
->>>>  
->>>> +  gpmc,wait-pin-polarity:
->>>> +    description: |
->>>> +      Wait-pin polarity used by the clien. It relates to the pin
->>>> defined
->>>
->>> did you mean "client?"
->>> Can you please specify what value is for Active Low vs Active High?
->>
->> Yes, that makes sense. And yes I meant "client". My typo.....
->>>
->>>> +      with "gpmc,wait-pin".
->>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>
->>> Why can't type be boolean?
->>
->> Of course we can use the boolean there. In that case I should give the
->> property a more meaningful name e.g. wait-pin-active-high or wait-pin-
->> active-low. 
->> Since the default behavour of this pin is Active High,
->> a bool property "gpmc,wait-pin-active-low" would make more sense for
->> backwards compatibility. 
->> If the property is missing, than the polarity stays on Active High like
->> before.
->>
-> 
-> OK, in that case you don't have to clarify the polarity in description.
+> [...]
 
-I don't understand (and it is not explained in commit msg), why do you
-need such property instead of using standard GPIO flags.
+Applied, thanks!
 
-The driver should use standard GPIO descriptor and standard bindings. If
-it cannot, this has to be explained.
+[01/19] dt-bindings: power: Add power-domain header for RV1126
+        commit: daf7dc86513ffc9d9b2eef0378d97361609490ca
+[02/19] dt-bindings: power: rockchip: Document RV1126 power-controller
+        commit: 2f3484b27598427ae582a37520b67c011597d706
+[03/19] soc: rockchip: power-domain: Add RV1126 power domains
+        commit: 66296e0a318e12ef1ca04013e1e893539e715c5a
+[04/19] dt-bindings: power: rockchip: Document RV1126 PMU IO domains
+        commit: 593e860fdff9add7f7eba504cf111b59a728fda5
+[05/19] soc: rockchip: io-domain: Add RV1126 IO domains
+        commit: 570ed4e5b0d9e784f51a52bede2326391afa8c3f
 
 Best regards,
-Krzysztof
+-- 
+Heiko Stuebner <heiko@sntech.de>
