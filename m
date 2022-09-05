@@ -2,76 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D9F85AD2A5
-	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 14:39:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D12E55AD2EC
+	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 14:40:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238375AbiIEMe4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 08:34:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36612 "EHLO
+        id S238219AbiIEMi2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 08:38:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237909AbiIEMeI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 08:34:08 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4850A550A0
-        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 05:27:52 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id x10so9097049ljq.4
-        for <devicetree@vger.kernel.org>; Mon, 05 Sep 2022 05:27:52 -0700 (PDT)
+        with ESMTP id S237808AbiIEMiJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 08:38:09 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 526BB67450
+        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 05:32:14 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id w8so12887105lft.12
+        for <devicetree@vger.kernel.org>; Mon, 05 Sep 2022 05:32:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=VjT77Y8+HEIuNnjusk1YftNIVA1QWJZI3Mf5HLrrrls=;
-        b=i3oFSwWW81UGXG0vxzOX1hV6+X74ouF8oVIDzczn3fjuwfzDMtGdzsTwCry4yHZ9Uf
-         cQWfJyt1YUcXiVJJDT6c7Dv6waLUiJN/6Gf9BSkUJ9NSqsXBNh9//u4rpCViELfa1F2e
-         pxn02clW9d+O/XCwTj5dvCViS67Rzyt+lAbz72kKenXKc043PamA+BmPfHnui2uFe+n0
-         JS9CLPofidCxHzuhFmCjoeFVCLRHUgLs7OUG8Q5l1zZXIKkkOKz/l1Gex4swGpAgksJW
-         Kv9d4DtQUPWSv1lXK6vn1c86I87eIhaJO/ITd1h227fbsHSu+qkS/ULetod9qi0jz6ze
-         BHJQ==
+        bh=luMotQSnu9DwzICqr56kY4I1QccgfPEIbfc2jLVutUA=;
+        b=daY6NPc/H4d2Q79SfxBY81+FsBpckwl52NXQXn7EqI3KV1Qm0FeAyBwF6sQLTPf4QZ
+         GA0X8yYhnRnvEZ98kiS5qG0UYyblK6YGLovfqV2mpHm0+u4lmSz4wr4OX8/jqH0EF83Q
+         KqeQiXSWvkclevXgXon2I+vK9tDsKxX/3iTKubcs3MTQxD/yEoAnpjYm4l/ex8hXdoSL
+         3SEJf+t+3aeLlDjimuiRccvIARPZ+CgS5R39jG9CD4qJ0Md/j8HLlqcCW9ZLWw/ECqLX
+         jbUP3UwsXwx+VvKjVZP0PIRUqNw4XRVrWW+a/EnCGOHgQ8GL/q4HZGZQao6b9fCS33Wm
+         O0TQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=VjT77Y8+HEIuNnjusk1YftNIVA1QWJZI3Mf5HLrrrls=;
-        b=GQj1kd/vUI/tDCP/OMKF5VNN5cYtRimsYV1+BqWrppbzOLVNQY7VD+vTca3JRCIW9N
-         2198v+7MEDEjS0j0+FszHlmW/fb98CmSJR3WC0GzIiz3Sn8REms+uZ4weEJ2I45zOA0P
-         numZa0zqBkLL3raXqvDBKQLEBEO/lrVgknvesWMYYqWAHjnXXa0B7G7DvdBABPMNWoIi
-         3YYGM1OitbFR6PPYCFiITlZwqAGShMLoIIS9RsMSmjxgqqOhu052tmnswrCHcNHNP0+9
-         GF84V0oOSsL6YU+RpgWBn/jb60gNBia7olN39aSc4RADo0kTOmQifIxdZDy2/liWjG7C
-         EJ8A==
-X-Gm-Message-State: ACgBeo3kbmYMZktTaeiRF9SZY3+P9Kb0LkMEBB+BINVySHQTokRjemI6
-        xWDYDq0vjgdTMNJphooHMCFlkw==
-X-Google-Smtp-Source: AA6agR7veY/y2QHPF3TywjCqgZpMb5Y9lO1EP2k3n/xbHw+CDZpSB1UqQoWqHbDb+EAofuD7w1fyGA==
-X-Received: by 2002:a05:651c:178d:b0:261:bd23:a5f8 with SMTP id bn13-20020a05651c178d00b00261bd23a5f8mr13588955ljb.411.1662380871019;
-        Mon, 05 Sep 2022 05:27:51 -0700 (PDT)
+        bh=luMotQSnu9DwzICqr56kY4I1QccgfPEIbfc2jLVutUA=;
+        b=qPscgh9M5yGO6RFqYNYiimQM43Ivrq0ykCOhL0V7Q+3OfzTQ6mX64Lnly1ZqrL2VWJ
+         JZaOAdFJqX7oYLGIZ2/H2aYaYDRIhCBOZsxJ841wqzXXXHXcAbJdCWCETGMH2cGAkQcC
+         Q56/Ovtdh2L0NzWXbA77mi68hLKC+mF9tM1hWz9Vm6CUdMg+zJnnKrINm1IJXT4wWP8j
+         F+dGnDJEzwIMOyu632ncyWGom4YsUxpeY/7sEtBv044Ej43WHCstyRK4p+gSQqW1rTZD
+         Wy9wwRVCPZ4UzSiLieqgntKAR3jTHm4UvG6W109dhCL8dc3Y0cVTSmfW+DYvqj04uYlt
+         yCWA==
+X-Gm-Message-State: ACgBeo3/UZz+vgyImg+YLhFJdhywLRnGXszrwKkRcEfpIqcsbQN08zgY
+        R1kNEgQ/FuwXV9iLKBqwti3Teg==
+X-Google-Smtp-Source: AA6agR6FD9/InwzG/uA0Mw1j0ew/Cccp+ehBOLRW+h/s+XVgdEkcqqQofCLMTDVrpsQTxvmwftH5KA==
+X-Received: by 2002:a05:6512:1293:b0:494:96ee:80c1 with SMTP id u19-20020a056512129300b0049496ee80c1mr7082313lfs.417.1662381129687;
+        Mon, 05 Sep 2022 05:32:09 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id be11-20020a05651c170b00b00261800f0e02sm1397822ljb.26.2022.09.05.05.27.49
+        by smtp.gmail.com with ESMTPSA id c4-20020a056512074400b00494961d8efbsm1177336lfs.189.2022.09.05.05.32.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Sep 2022 05:27:50 -0700 (PDT)
-Message-ID: <1c69c2b7-dc9c-f3e2-796c-0310b94b1ff7@linaro.org>
-Date:   Mon, 5 Sep 2022 14:27:49 +0200
+        Mon, 05 Sep 2022 05:32:09 -0700 (PDT)
+Message-ID: <67ca6131-c2c8-058a-ec6d-34412de2921c@linaro.org>
+Date:   Mon, 5 Sep 2022 14:32:08 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH net-next v4 1/5] dt-bindings: net: Convert Altera TSE
- bindings to yaml
+Subject: Re: [PATCH 1/4] dt-bindings: memory: Factor out common properties of
+ LPDDR bindings
 Content-Language: en-US
-To:     Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        davem@davemloft.net, Rob Herring <robh+dt@kernel.org>
-Cc:     netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        thomas.petazzoni@bootlin.com, Andrew Lunn <andrew@lunn.ch>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-References: <20220902083205.483438-1-maxime.chevallier@bootlin.com>
- <20220902083205.483438-2-maxime.chevallier@bootlin.com>
+To:     Julius Werner <jwerner@chromium.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Doug Anderson <dianders@chromium.org>,
+        Jian-Jia Su <jjsu@google.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
+References: <20220831013359.1807905-1-jwerner@chromium.org>
+ <20220831013359.1807905-2-jwerner@chromium.org>
+ <08d8807e-18cf-032e-90e9-e08023e7a6e0@linaro.org>
+ <CAODwPW-UfvgbGaZtyu_g-8dv_rmz8Zk6Xb6M5DTtRah_1W2KVA@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220902083205.483438-2-maxime.chevallier@bootlin.com>
+In-Reply-To: <CAODwPW-UfvgbGaZtyu_g-8dv_rmz8Zk6Xb6M5DTtRah_1W2KVA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,31 +82,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/09/2022 10:32, Maxime Chevallier wrote:
-> Convert the bindings for the Altera Triple-Speed Ethernet to yaml.
+On 01/09/2022 03:09, Julius Werner wrote:
+>>> +properties:
+>>> +  manufacturer-id:
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +    description:
+>>> +      Manufacturer ID read from Mode Register 5.
+>>
+>> Are you sure that register numbers (here 5, 6-7-8 later) are the same
+>> between LPDDR 2-5? The description should match the broadest case and
+>> specific schema can narrow or correct it.
 > 
-> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
-
-Your messages ended up in spam:
-DMARC:	'FAIL'
-dmarc=fail (p=REJECT sp=REJECT dis=QUARANTINE) header.from=bootlin.com
-
-> ---
-> V3->V4 : No changes
-> V2->V3:
->  - Moved allOf below required
->  - Removed unnedded reg/reg-names in the properties section
->  - Removed stray minItems
+> Yes, the new LPDDR versions only ever seem to add new mode registers,
+> but the meaning of 5, 6 and 7 have always stayed the same. (For 8, the
+> bit fields have remained the same but the mapping of bit patterns to
+> values has changed.)
 > 
-> V1->V2:
->  - Removed unnedded maxItems
->  - Added missing minItems
->  - Fixed typos in some properties names
->  - Fixed the mdio subnode definition
+>>> This also un-deprecates the manufacturer ID property for LPDDR3 (and
+>>> introduces it to LPDDR2), since it was found that having this
+>>> information available in a separate property can be useful in some
+>>> cases.
+>>
+>> Why do you need to un-deprecate them if you have this information in
+>> compatible? This was not exactly the previous consensus. My statement
+>> was ok for un-deprecating if you cannot derive them from compatible. Now
+>> you can. This should be the same as USB device schema.
+> 
+> Okay. I think there is value in having these as separate properties,
+> because it makes them much easier to read and use. 
 
-The patchset was applied without waiting for DT maintainers review, so
-not much to do here for me...
+Storing same value in multiple places is duplication and maintenance
+effort. Does not make anything easier.
 
+
+> If we don't have
+> them we always need to do all this string parsing first, and if
+> systems allow both kinds of compatible strings (auto-generated and
+> static) they'll need to be able to distinguish and handle both of
+> those when parsing... I think it would be much less friction if each
+> datum of interest could directly be read out of a property. I think
+> having a bit of redundancy is fine and common in device tree bindings
+
+No, it's not common.
+
+> (e.g. most properties for most devices are really implied by the
+> compatible string because that same type of device is always built in
+> the same way, but that doesn't mean it's not useful to list them
+> separately for ease-of-access). But I can remove them if you disagree.
+
+Just like we do not have them for USB, I don't really see the reason to
+have them for memory.
 
 Best regards,
 Krzysztof
