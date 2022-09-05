@@ -2,63 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58F1F5AD548
-	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 16:42:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AD105AD53A
+	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 16:42:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238479AbiIEOku (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 10:40:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45894 "EHLO
+        id S238638AbiIEOlZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 10:41:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238608AbiIEOkS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 10:40:18 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32EE013E29;
-        Mon,  5 Sep 2022 07:37:58 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B274661156;
-        Mon,  5 Sep 2022 14:37:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FB7DC433C1;
-        Mon,  5 Sep 2022 14:37:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1662388677;
-        bh=6Q7HGVentmMLXaWL6fgIUTQqVOYenukFu1wRiem/7c0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=nzGBB0kSd3hjZ2BLzPKk37c5MFBDOf/nMPBlb7HtAY1VQjVzURA82sNB4MgIn/Ki9
-         wAYrVrWI/6dKa1ltDrB554HAzB495oveTWmLG+AEV+ZWzykZ76FX/OQWSokX8Bnxn4
-         3PQ+EJwbpY0/G5DN/kTLBH6wiKMQ1/G7xcyUXG/FoBsJinqPvjYekpd/E2FqgdX1QF
-         lPE/qF3IH12XheVji2m6wMlg3TSG5ewZflr3lyFonsAfenAU3DM7COsthRW+IjTlME
-         wivAsQ1pE6pwrG9QaaRZlyuUzhoSTqnoDXZeHPauYRAfevVJX3uK0Q+MscvJ91KYYs
-         zXIQ23P6tOeUA==
-Date:   Mon, 5 Sep 2022 15:37:37 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Sergiu.Moga@microchip.com
-Cc:     krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, Nicolas.Ferre@microchip.com,
-        alexandre.belloni@bootlin.com, Claudiu.Beznea@microchip.com,
-        radu_nicolae.pirea@upb.ro, richard.genoud@gmail.com,
-        mturquette@baylibre.com, sboyd@kernel.org,
-        gregkh@linuxfoundation.org, jirislaby@kernel.org,
-        admin@hifiphile.com, Kavyasree.Kotagiri@microchip.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-serial@vger.kernel.org
-Subject: Re: [PATCH 2/5] dt-bindings: mfd: atmel,at91-usart: convert to
- json-schema
-Message-ID: <YxYI8/bprIV2wd1c@google.com>
-References: <20220817075517.49575-1-sergiu.moga@microchip.com>
- <20220817075517.49575-3-sergiu.moga@microchip.com>
- <942accc5-70aa-3bb2-63dd-306a39ee5ea4@linaro.org>
- <d1aad8ea-3852-f36b-366b-7aa67d2dd9d5@microchip.com>
+        with ESMTP id S238568AbiIEOlH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 10:41:07 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F0E55B05F
+        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 07:38:39 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id b19so9448157ljf.8
+        for <devicetree@vger.kernel.org>; Mon, 05 Sep 2022 07:38:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=zYdarGuR3Vi4UPBIiISQR9FP8846+ysRJOD4h/7T+v4=;
+        b=lhIDTDDbzB02mXV6lHMpUjQwsj+4x2lCMVYvg8N6lxaB4aBvvFY/MwBH0c8rRa7ytT
+         LKButDVMjTVuni2hJFRCW4G4Bc+TJrl8Sx9RGN5NpOtDUUnYtMVo9sEfbBkeX1wrZy7v
+         vkUFJRwcFy2ClJ2ydcBcJvh4NSTmHYaKajmIE6HeGwgt3eUI5sScIaWbmZNVW7kXNM9q
+         fFwaUNQhecXJ+ufEzGcFSO8IUDuyZwJxLx/6HPseYZ/ap8/jiLanU5NkRIQgdVrH+Fbb
+         L8FkmnDd+uUxNGzAWmfaRNnZnaGePTPWcTyEtggMHJD+hl1off8X7VSqXRwlzloZXOBX
+         2aTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=zYdarGuR3Vi4UPBIiISQR9FP8846+ysRJOD4h/7T+v4=;
+        b=L/VkF23azaKBcHt68ABWOmXpQchICU5kwrGWuB00dJf8nSW/bO7kyjIJhkjK+z5Fq4
+         A8lw8hxjBBuEgEAEzutYyG/bPY4z6xhnE7A/qLzecgf0ng3Eg80mEkElDZsVLduPkQgb
+         9leqHq/Sdmw/Vr9ocF+ezn6YIsgk8ns0YYtd29C8TTwloxqOCf8eJRpJnIMZnWctQi4E
+         qIKM1S9pm/16e1ncnytAhOkTLGB0Io1gP6/BquIO2CF8jouYyp0scOTK90vvvV5tmB6W
+         5NCqJdrvyGezNyqC+JoV+2mtsIdiYCIYI7/tnweqQrNZV+0QcE6W56VCk7JbDEH8+f5j
+         GHGg==
+X-Gm-Message-State: ACgBeo3HGN3cnFqBEpLuqKgMTQEO4Qp9/dTREVsJ6bF2OknDJ+jL3za/
+        QHBg/zOYv3RY8vgUCQrNhROaxA==
+X-Google-Smtp-Source: AA6agR6UICNLfBRPyyhtwC+ItJKmfK8eQbm6NUTy0WoCmuRudCJsM8/NeJT9Eyk5B8ICrbOr3aXgGQ==
+X-Received: by 2002:a05:651c:549:b0:268:e0b3:4795 with SMTP id q9-20020a05651c054900b00268e0b34795mr5067940ljp.313.1662388717608;
+        Mon, 05 Sep 2022 07:38:37 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id k4-20020a05651c10a400b0026872a014b0sm1435564ljn.116.2022.09.05.07.38.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 Sep 2022 07:38:36 -0700 (PDT)
+Message-ID: <ff3a2d2a-d0da-260c-2974-b7430dafef68@linaro.org>
+Date:   Mon, 5 Sep 2022 16:38:35 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <d1aad8ea-3852-f36b-366b-7aa67d2dd9d5@microchip.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v6 1/2] dt-bindings: misc: fastrpc convert bindings to
+ yaml
+Content-Language: en-US
+To:     Abel Vesa <abel.vesa@linaro.org>, Rob Herring <robh@kernel.org>
+Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        David Heidelberg <david@ixit.cz>,
+        Amol Maheshwari <amahesh@qti.qualcomm.com>,
+        devicetree@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        linux-arm-msm@vger.kernel.org
+References: <20220905103715.955786-1-abel.vesa@linaro.org>
+ <1662381657.354400.1957044.nullmailer@robh.at.kernel.org>
+ <YxYH+3hGZ2fyUZpW@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <YxYH+3hGZ2fyUZpW@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,40 +84,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 19 Aug 2022, Sergiu.Moga@microchip.com wrote:
-
-> On 18.08.2022 11:39, Krzysztof Kozlowski wrote:
-> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
-> >
-> > On 17/08/2022 10:55, Sergiu Moga wrote:
-> >> Convert at91 USART DT Binding for Atmel/Microchip SoCs to
-> >> json-schema format.
-> >>
-> >> Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
-> >> ---
-> >>   .../bindings/mfd/atmel,at91-usart.yaml        | 190 ++++++++++++++++++
-> >>   .../devicetree/bindings/mfd/atmel-usart.txt   |  98 ---------
-> >>   2 files changed, 190 insertions(+), 98 deletions(-)
-> >>   create mode 100644 Documentation/devicetree/bindings/mfd/atmel,at91-usart.yaml
-> >>   delete mode 100644 Documentation/devicetree/bindings/mfd/atmel-usart.txt
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/mfd/atmel,at91-usart.yaml b/Documentation/devicetree/bindings/mfd/atmel,at91-usart.yaml
-> >> new file mode 100644
-> >> index 000000000000..cf15d73fa1e8
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/mfd/atmel,at91-usart.yaml
-> > One more thing - I think this should be in serial directory, not mfd,
-> > even though it includes SPI. MFD is just a Linux naming/wrapper device.
-> >
-> > Best regards,
-> > Krzysztof
+On 05/09/2022 16:30, Abel Vesa wrote:
+> On 22-09-05 07:40:57, Rob Herring wrote:
+>> On Mon, 05 Sep 2022 13:37:14 +0300, Abel Vesa wrote:
+>>> Convert Qualcomm FastRPC bindings to yaml format, so that we could validate
+>>> dt-entries correctly and any future additions can go into yaml format.
+>>>
+>>> Use compute-cb@ subnodes instead of just cb@.
+>>>
+>>> Also add qcom,non-secure-domain, qcom,glink-channels and
+>>> qcom,smd-channels missing properties to make sure dtbs_check doesn't
+>>> fail right off the bat.
+>>>
+>>> Co-developed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>>> Co-developed-by: David Heidelberg <david@ixit.cz>
+>>> Signed-off-by: David Heidelberg <david@ixit.cz>
+>>> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+>>> ---
+>>>
+>>> Changes since v5:
+>>>  * Removed the txt file
+>>>
+>>>  .../devicetree/bindings/misc/qcom,fastrpc.txt |  88 --------------
+>>>  .../bindings/misc/qcom,fastrpc.yaml           | 108 ++++++++++++++++++
+>>>  2 files changed, 108 insertions(+), 88 deletions(-)
+>>>  delete mode 100644 Documentation/devicetree/bindings/misc/qcom,fastrpc.txt
+>>>  create mode 100644 Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
+>>>
+>>
+>> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+>> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>>
+>> yamllint warnings/errors:
+>>
+>> dtschema/dtc warnings/errors:
+>> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/misc/qcom,fastrpc.example.dtb: smd-edge: 'qcom,smd-edge' is a required property
+>> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/remoteproc/qcom,smd-edge.yaml
+>> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/misc/qcom,fastrpc.example.dtb: smd-edge: 'oneOf' conditional failed, one must be fixed:
+>> 	'mboxes' is a required property
+>> 	'qcom,ipc' is a required property
+>> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/remoteproc/qcom,smd-edge.yaml
+>> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/misc/qcom,fastrpc.example.dtb: smd-edge: 'oneOf' conditional failed, one must be fixed:
+>> 	'interrupts' is a required property
+>> 	'interrupts-extended' is a required property
+>> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/remoteproc/qcom,smd-edge.yaml
 > 
-> I would rather keep it in this directory, since its corresponding driver 
-> is also in the mfd directory.
+> Right.
+> 
+> So actually, the parent node is glink-edge, not smd-edge.
+> 
+> And there are some other required properties missing when switching to
+> glink-edge.
+> 
+> Will resend with glink-edge instead and add all the related missing
+> properties.
 
-Looks like a UART driver to me.
+Maybe related to:
+https://lore.kernel.org/all/20220901093401.134473-1-krzysztof.kozlowski@linaro.org/
+?
 
-Which MFD driver does this pertain to?
 
--- 
-Lee Jones [李琼斯]
+Best regards,
+Krzysztof
