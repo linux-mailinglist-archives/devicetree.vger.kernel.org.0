@@ -2,136 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D12E55AD2EC
-	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 14:40:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43BC05AD33A
+	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 14:52:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238219AbiIEMi2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 08:38:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46232 "EHLO
+        id S238102AbiIEMmo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 08:42:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237808AbiIEMiJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 08:38:09 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 526BB67450
-        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 05:32:14 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id w8so12887105lft.12
-        for <devicetree@vger.kernel.org>; Mon, 05 Sep 2022 05:32:14 -0700 (PDT)
+        with ESMTP id S237911AbiIEMm3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 08:42:29 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 205395F9A8
+        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 05:37:09 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id b16so11187892wru.7
+        for <devicetree@vger.kernel.org>; Mon, 05 Sep 2022 05:37:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=luMotQSnu9DwzICqr56kY4I1QccgfPEIbfc2jLVutUA=;
-        b=daY6NPc/H4d2Q79SfxBY81+FsBpckwl52NXQXn7EqI3KV1Qm0FeAyBwF6sQLTPf4QZ
-         GA0X8yYhnRnvEZ98kiS5qG0UYyblK6YGLovfqV2mpHm0+u4lmSz4wr4OX8/jqH0EF83Q
-         KqeQiXSWvkclevXgXon2I+vK9tDsKxX/3iTKubcs3MTQxD/yEoAnpjYm4l/ex8hXdoSL
-         3SEJf+t+3aeLlDjimuiRccvIARPZ+CgS5R39jG9CD4qJ0Md/j8HLlqcCW9ZLWw/ECqLX
-         jbUP3UwsXwx+VvKjVZP0PIRUqNw4XRVrWW+a/EnCGOHgQ8GL/q4HZGZQao6b9fCS33Wm
-         O0TQ==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:organization:from:references
+         :cc:to:content-language:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date;
+        bh=QwM9pjS8vOQW1a1STYq71WLO8dxfYAsXiAlllIOYMN8=;
+        b=q8nEcRgVsOrOU1VFDfPIB27R/2mM02Druvaoqf8Su3GfKhPcPrkLSfHnsjcdDg2AEw
+         uCRXvSP6hg0J2YFbFY1DY0nTlWo3ITvCkb7TB8zuOH+n90RKd+sYCl0D4mbSl1LP8ikZ
+         jFyFUQceu2hJK1saRg/ZufPdyRlFSCxMqO2HMOi0dGPQlyT/JUkKllKPc3AvwllhQLDs
+         jlPBfv5j4i1vkUOBdBE/6hIh1ZYAw2Uky3j86WKysmjH9XA76/gP5+LHecuVlHzzPwGJ
+         XPtgD5qKUEOX/atbh+5mmvgKuwfk0iQcfA6PHM5rf06SJgTV8VVFo3JM9qe+pt8Twi0e
+         O8/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=luMotQSnu9DwzICqr56kY4I1QccgfPEIbfc2jLVutUA=;
-        b=qPscgh9M5yGO6RFqYNYiimQM43Ivrq0ykCOhL0V7Q+3OfzTQ6mX64Lnly1ZqrL2VWJ
-         JZaOAdFJqX7oYLGIZ2/H2aYaYDRIhCBOZsxJ841wqzXXXHXcAbJdCWCETGMH2cGAkQcC
-         Q56/Ovtdh2L0NzWXbA77mi68hLKC+mF9tM1hWz9Vm6CUdMg+zJnnKrINm1IJXT4wWP8j
-         F+dGnDJEzwIMOyu632ncyWGom4YsUxpeY/7sEtBv044Ej43WHCstyRK4p+gSQqW1rTZD
-         Wy9wwRVCPZ4UzSiLieqgntKAR3jTHm4UvG6W109dhCL8dc3Y0cVTSmfW+DYvqj04uYlt
-         yCWA==
-X-Gm-Message-State: ACgBeo3/UZz+vgyImg+YLhFJdhywLRnGXszrwKkRcEfpIqcsbQN08zgY
-        R1kNEgQ/FuwXV9iLKBqwti3Teg==
-X-Google-Smtp-Source: AA6agR6FD9/InwzG/uA0Mw1j0ew/Cccp+ehBOLRW+h/s+XVgdEkcqqQofCLMTDVrpsQTxvmwftH5KA==
-X-Received: by 2002:a05:6512:1293:b0:494:96ee:80c1 with SMTP id u19-20020a056512129300b0049496ee80c1mr7082313lfs.417.1662381129687;
-        Mon, 05 Sep 2022 05:32:09 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id c4-20020a056512074400b00494961d8efbsm1177336lfs.189.2022.09.05.05.32.08
+        h=content-transfer-encoding:in-reply-to:organization:from:references
+         :cc:to:content-language:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date;
+        bh=QwM9pjS8vOQW1a1STYq71WLO8dxfYAsXiAlllIOYMN8=;
+        b=S+eEUaxkXATq0sBfGpdUXK/LwG2Ru4LYcQ8udJuNJpPTuCo+XGBueGIbAuaOnBjbEw
+         z66xft6a/2hX+3+87effxmCpU4X0JZJtsHrHOpC3h2QZiY2ChLMCSWoiI4mIM3ofrpeF
+         lG5TsF96Bwb7nDZvFqmzcZgUTu1yzW5WfYExAjimBSlC2KMwGD+aHdVqPT40OTfn+Z0Q
+         k5hra5zJ7f/Tte7s9imv4WFs+0JvFdJhMoiq2llk/a9chq3Ax+d6GWk680ahjxaCCfF8
+         ooWSfTYu4zkIlmTJ5r4JSu8flzezCF5NtI86+NZ2qmtH+R9C5p/6e3gRPMnV62Dxapk8
+         NduA==
+X-Gm-Message-State: ACgBeo0ssA0AUH6UPv0uxPbY38UFICEAxTSCHTBwNoyVp2ciOuMLngck
+        qyC3IOkpyDnHH4pXY4QAKYX8Mw==
+X-Google-Smtp-Source: AA6agR7Fv8c2V+OgVGbhYzvF0iVD7ZtJgvDsUEj0Oadue3v7WJjZRCNM6ua7SGOrhlkYox4vxWdvrA==
+X-Received: by 2002:a5d:64cf:0:b0:220:6d8e:1db0 with SMTP id f15-20020a5d64cf000000b002206d8e1db0mr23297118wri.564.1662381427668;
+        Mon, 05 Sep 2022 05:37:07 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:f365:27e9:453c:4c15? ([2a01:e0a:982:cbb0:f365:27e9:453c:4c15])
+        by smtp.gmail.com with ESMTPSA id g26-20020a7bc4da000000b003a54f49c1c8sm10534879wmk.12.2022.09.05.05.37.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Sep 2022 05:32:09 -0700 (PDT)
-Message-ID: <67ca6131-c2c8-058a-ec6d-34412de2921c@linaro.org>
-Date:   Mon, 5 Sep 2022 14:32:08 +0200
+        Mon, 05 Sep 2022 05:37:06 -0700 (PDT)
+Message-ID: <b9886af8-8580-e553-13b4-d730d1113456@baylibre.com>
+Date:   Mon, 5 Sep 2022 14:37:05 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH 1/4] dt-bindings: memory: Factor out common properties of
- LPDDR bindings
+ Thunderbird/91.11.0
+Subject: Re: [PATCH RESEND v8 0/5] fix the meson NFC clock
 Content-Language: en-US
-To:     Julius Werner <jwerner@chromium.org>
+To:     Liang Yang <liang.yang@amlogic.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        linux-mtd@lists.infradead.org
 Cc:     Rob Herring <robh+dt@kernel.org>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Doug Anderson <dianders@chromium.org>,
-        Jian-Jia Su <jjsu@google.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-References: <20220831013359.1807905-1-jwerner@chromium.org>
- <20220831013359.1807905-2-jwerner@chromium.org>
- <08d8807e-18cf-032e-90e9-e08023e7a6e0@linaro.org>
- <CAODwPW-UfvgbGaZtyu_g-8dv_rmz8Zk6Xb6M5DTtRah_1W2KVA@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAODwPW-UfvgbGaZtyu_g-8dv_rmz8Zk6Xb6M5DTtRah_1W2KVA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jianxin Pan <jianxin.pan@amlogic.com>,
+        Victor Wan <victor.wan@amlogic.com>,
+        XianWei Zhao <xianwei.zhao@amlogic.com>,
+        Kelvin Zhang <kelvin.zhang@amlogic.com>,
+        BiChao Zheng <bichao.zheng@amlogic.com>,
+        YongHui Yu <yonghui.yu@amlogic.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20220905075027.19114-1-liang.yang@amlogic.com>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+In-Reply-To: <20220905075027.19114-1-liang.yang@amlogic.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/09/2022 03:09, Julius Werner wrote:
->>> +properties:
->>> +  manufacturer-id:
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> +    description:
->>> +      Manufacturer ID read from Mode Register 5.
->>
->> Are you sure that register numbers (here 5, 6-7-8 later) are the same
->> between LPDDR 2-5? The description should match the broadest case and
->> specific schema can narrow or correct it.
-> 
-> Yes, the new LPDDR versions only ever seem to add new mode registers,
-> but the meaning of 5, 6 and 7 have always stayed the same. (For 8, the
-> bit fields have remained the same but the mapping of bit patterns to
-> values has changed.)
-> 
->>> This also un-deprecates the manufacturer ID property for LPDDR3 (and
->>> introduces it to LPDDR2), since it was found that having this
->>> information available in a separate property can be useful in some
->>> cases.
->>
->> Why do you need to un-deprecate them if you have this information in
->> compatible? This was not exactly the previous consensus. My statement
->> was ok for un-deprecating if you cannot derive them from compatible. Now
->> you can. This should be the same as USB device schema.
-> 
-> Okay. I think there is value in having these as separate properties,
-> because it makes them much easier to read and use. 
+Hi,
 
-Storing same value in multiple places is duplication and maintenance
-effort. Does not make anything easier.
+On 05/09/2022 09:50, Liang Yang wrote:
+> EMMC and NAND have the same clock control register named 'SD_EMMC_CLOCK'
+> which is defined in EMMC port internally. bit0~5 of 'SD_EMMC_CLOCK' is
+> the divider and bit6~7 is the mux for fix pll and xtal. At the beginning,
+> a common MMC and NAND sub-clock was discussed and planed to be implemented
+> as NFC clock provider, but now this series of patches of a common MMC and
+> NAND sub-clock are never being accepted and the current binding was never
+> valid. the reasons are:
+> 1. EMMC and NAND, which are mutually exclusive anyway
+> 2. coupling the EMMC and NAND.
+> 3. it seems that a common MMC and NAND sub-clock is over engineered.
+> and let us see the link for more information:
+> https://lore.kernel.org/all/20220121074508.42168-5-liang.yang@amlogic.com
+> so The meson nfc can't work now, let us rework the clock.
+>
+> Changes since v7 [8]
+>   - use COMMON_CLK && (ARCH_MESON || COMPILE_TEST) instead of
+>     ARCH_MESON || COMPILE_TEST || COMMON_CLK.
+>   - collect the review and ack
+>
+> Changes since v6 [7]
+>   - use COMMON_CLK instead of !HAVE_LEGACY_CLK
+>
+> Changes since v5 [6]
+>   - add change log for patch 3/5
+>   - add patch 5/5 to fix the reporting error of test robot
+>
+> Changes since v4 [5]
+>   - split the dt binding patch into two patches, one for fixing,
+>     clock, the other for coverting to yaml
+>   - split the nfc driver patch into two patches, one for fixing
+>     clock, the other for refining the get nfc resource.
+>
+> Changes since v3 [4]
+>   - use devm_platform_ioremap_resource_byname
+>   - dt_binding_check for mtd/amlogic,meson-nand.yaml
+>
+> Changes since v2 [3]
+>   - use fw_name from dts, instead the wrong way using __clk_get_name
+>   - reg resource size change to 0x800
+>   - use reg-names
+>
+> Changes since v1 [2]
+>   - use clk_parent_data instead of parent_names
+>   - define a reg resource instead of sd_emmc_c_clkc
+>
+> [1] https://lore.kernel.org/r/20220106033130.37623-1-liang.yang@amlogic.com
+>      https://lore.kernel.org/r/20220106032504.23310-1-liang.yang@amlogic.com
+> [2] https://lore.kernel.org/all/20220217063346.21691-1-liang.yang@amlogic.com
+> [3] https://lore.kernel.org/all/20220318124121.26117-1-liang.yang@amlogic.com
+> [4] https://lore.kernel.org/all/20220402074921.13316-1-liang.yang@amlogic.com/
+> [5] https://lore.kernel.org/all/20220513123404.48513-1-liang.yang@amlogic.com/
+> [6] https://lore.kernel.org/all/20220607064731.13367-1-liang.yang@amlogic.com/
+> [7] https://lore.kernel.org/all/20220624131257.29906-1-liang.yang@amlogic.com/
+>
+> Liang Yang (5):
+>    dt-bindings: nand: meson: fix meson nfc clock
+>    mtd: rawnand: meson: fix the clock
+>    mtd: rawnand: meson: refine resource getting in probe
+>    dt-bindings: nand: meson: convert txt to yaml
+>    mtd: rawnand: meson: not support legacy clock
+>
+>   .../bindings/mtd/amlogic,meson-nand.txt       | 60 -------------
+>   .../bindings/mtd/amlogic,meson-nand.yaml      | 88 +++++++++++++++++++
+>   drivers/mtd/nand/raw/Kconfig                  |  2 +-
+>   drivers/mtd/nand/raw/meson_nand.c             | 86 +++++++++---------
+>   4 files changed, 131 insertions(+), 105 deletions(-)
+>   delete mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
+>   create mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+>
+It seems you sent only patch 4
 
+Neil
 
-> If we don't have
-> them we always need to do all this string parsing first, and if
-> systems allow both kinds of compatible strings (auto-generated and
-> static) they'll need to be able to distinguish and handle both of
-> those when parsing... I think it would be much less friction if each
-> datum of interest could directly be read out of a property. I think
-> having a bit of redundancy is fine and common in device tree bindings
-
-No, it's not common.
-
-> (e.g. most properties for most devices are really implied by the
-> compatible string because that same type of device is always built in
-> the same way, but that doesn't mean it's not useful to list them
-> separately for ease-of-access). But I can remove them if you disagree.
-
-Just like we do not have them for USB, I don't really see the reason to
-have them for memory.
-
-Best regards,
-Krzysztof
