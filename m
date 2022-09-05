@@ -2,205 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86F265ACA8D
-	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 08:28:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E8B55ACB20
+	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 08:42:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229560AbiIEG2m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 02:28:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36978 "EHLO
+        id S236610AbiIEGhi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 02:37:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236580AbiIEG2h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 02:28:37 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3290C21E03
-        for <devicetree@vger.kernel.org>; Sun,  4 Sep 2022 23:28:33 -0700 (PDT)
+        with ESMTP id S236511AbiIEGhU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 02:37:20 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9BDA33E1A
+        for <devicetree@vger.kernel.org>; Sun,  4 Sep 2022 23:37:18 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id k18so8155282lji.13
+        for <devicetree@vger.kernel.org>; Sun, 04 Sep 2022 23:37:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1662359314; x=1693895314;
-  h=subject:from:to:cc:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=WfWbjVdUvWTz4RKxs2T5vp9uD5XLNpzOq3CTK7XEBs4=;
-  b=XFP1A3OrKIzKvQ2Su9ReBVvcq2Pnh+cfGiP8TB+/tGlAtnu56aLc7sLw
-   B0P6Y6O9Yo1M6fQTJ6F5RG/5QY/vgHmhFLTuMorKBfFwJ0oLvBzkcg8ot
-   gUKk+YqoAvr++FQ/Kw0dw4BhJ5tjyauxcJ3DEk99WLSl3CpRa5/QT2pJn
-   zCoKHanjOB+bNgsopoCxMj2TnphAV2yDlYg/iSfdIlu/2eHjNCX19CXCd
-   cH8EM3mwVVyMiVVhu5gqIA0mKFeFqYsK8cZ5oipO70XMICG18lFfJSpvL
-   lPhb3nA1C1sP0UtDB90KYCPldjzdtmfbqt3ljjxcZDJ70OKFZRPsqF0R0
-   g==;
-X-IronPort-AV: E=Sophos;i="5.93,290,1654552800"; 
-   d="scan'208";a="25976558"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 05 Sep 2022 08:28:31 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Mon, 05 Sep 2022 08:28:31 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Mon, 05 Sep 2022 08:28:31 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1662359311; x=1693895311;
-  h=from:to:cc:date:message-id:in-reply-to:references:
-   mime-version:content-transfer-encoding:subject;
-  bh=WfWbjVdUvWTz4RKxs2T5vp9uD5XLNpzOq3CTK7XEBs4=;
-  b=JrhblJuAWuDq3sUlDItXcxuQ12THu0tTxyeYKfkICLLbFsDjfMZ9wJWb
-   EpOLOB4qN1vfdJgUdoxnL2QBfYJKzENXjMwNNI/iOYOPqfzRKMw0zwIEm
-   IGlIkabaTYSiosDAD751y6+AVXASSNCLeL/XxVO8PKDIbWjwCUshxlnZJ
-   Eph8Tgz8cTeG3lTHGi/q6nnmguPuEv+OsiDt/0FDtPOmxbwGn08vZo80v
-   yXESG7widoqWJMoUtyAeX5Cm+PSgJtL3s8teBb+5jm2sFtMEh2z4FGQV8
-   h/kVMHd1XD4OZiDjtTp/71SFDzniIpE1KhozPDrk1nHgmXxYbZJKmoQq4
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.93,290,1654552800"; 
-   d="scan'208";a="25976557"
-Subject: Re: Re: [PATCH v2 1/1] arm64: dts: tqma8mpql: add USB DR support
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 05 Sep 2022 08:28:31 +0200
-Received: from steina-w.localnet (unknown [10.123.49.11])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 82F93280056;
-        Mon,  5 Sep 2022 08:28:31 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Tim Harvey <tharvey@gateworks.com>, Jun Li <jun.li@nxp.com>
-Date:   Mon, 05 Sep 2022 08:28:29 +0200
-Message-ID: <5604780.DvuYhMxLoT@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20220905022228.GB1728671@dragon>
-References: <20220831074606.1677052-1-alexander.stein@ew.tq-group.com> <20220905022228.GB1728671@dragon>
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=Ir8Z6kAAaLgKpCIrzlxEoBl8v4o6tER9nDDTLM9h4WE=;
+        b=s4PlrHu2wpYMFdgK0tnI0xEfHNt5I69y/rSVVx9CxWUig7AmvzCEUAnqRX0gEZd+sQ
+         dqaepUZ/hMjYpzZPV14KGA9GNs4e7eSHOt3S5iSCmk3FkiZptPJJFY/bbZgjD+XmG2y1
+         WDl25CK4lLXMd6u+REaWVEdpf2HDr6Uqo0vvKXlVaPh6w2dsp4wYSKkHKacFHamr5Aux
+         tzpyVRMdVsKCPMQXQ0ZM1uHDLgG43D8FsOcrtI7XALidRs2vnCHK7i4G/grcCsoXeLtR
+         GMYDY/Ll/oyskq0kzTII5Exc8sVER5jX0QifGOn9VamaCv2e69Wuymp3qFRqLpNw2eiC
+         ITKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=Ir8Z6kAAaLgKpCIrzlxEoBl8v4o6tER9nDDTLM9h4WE=;
+        b=TsjtpVj3VvU7CxT25mtAIo9KorEPAypg5xReHuqJV9hliiP0mhzOWHDVaiXrqCHTjY
+         SjyOjurhbDSFpOLMx4PbqCwnLn2kX26UA2U274OXddcPRjl7lvCwWN3q9KZJZ8Hrwzz0
+         NMFOJ8WIV+6IHL8AQGlR1aG42EQrT6MzTz2sJRMZFPQ4ssRGg/Geda11jtfG3WjJEE/m
+         CbRNMoXoIA+Azs9hyrwM0ZUF2CDgVwlX3RZV6BKByEl+DbYu5jJOGjqVeGRDf73p4WUu
+         QsJEBIvZHQjark6hWO9r2PZ3oQevmQVeg8nevRVzkv9X4DZ0OzaFkChNkElhIiT/1RAv
+         SfAQ==
+X-Gm-Message-State: ACgBeo1W24SrwV6Xy/y1eOx8ck1wmL7fCO/bL6STeKZUM4MfsOYVGONv
+        g+aApxU363/+0f8Oo/LC78Fo8A==
+X-Google-Smtp-Source: AA6agR6hcMcLOGAIpC04JGT3pJKk+nI4ByvMf31zJYpldBYrSVFGjiP+hP/aKEwqnPz5++VPhG1+JA==
+X-Received: by 2002:a2e:940f:0:b0:261:b9ca:6207 with SMTP id i15-20020a2e940f000000b00261b9ca6207mr14547769ljh.192.1662359836600;
+        Sun, 04 Sep 2022 23:37:16 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id o13-20020ac24e8d000000b0048a921664e8sm1094364lfr.37.2022.09.04.23.37.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 04 Sep 2022 23:37:15 -0700 (PDT)
+Message-ID: <0bafbdb6-7a38-57bb-1e84-30cc7a521867@linaro.org>
+Date:   Mon, 5 Sep 2022 09:37:14 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v2] dt-binding: gpio: publish binding IDs under dual
+ license
+Content-Language: en-US
+To:     Etienne Carriere <etienne.carriere@linaro.org>,
+        linux-kernel@vger.kernel.org
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        Stephen Warren <swarren@nvidia.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Laxman Dewangan <ldewangan@nvidia.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        =?UTF-8?Q?Nuno_S=c3=a1?= <nuno.sa@analog.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+References: <20220901163636.3930634-1-etienne.carriere@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220901163636.3930634-1-etienne.carriere@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Shawn,
-
-thanks for your feedback.
-
-Am Montag, 5. September 2022, 04:22:28 CEST schrieb Shawn Guo:
-> On Wed, Aug 31, 2022 at 09:46:06AM +0200, Alexander Stein wrote:
-> > Add support for USB DR on USB1 interface. Host/Device detection is done
-> > using the usb-role-switch connector.
-> > 
-> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > ---
-> > Changes in v2:
-> > * Split from previous series
-> > * For now enable USB OTG only
-> > 
-> >  .../freescale/imx8mp-tqma8mpql-mba8mpxl.dts   | 40 +++++++++++++++++++
-> >  1 file changed, 40 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
-> > b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts index
-> > d8ca52976170..b30d75b1fa47 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
-> > @@ -459,6 +459,37 @@ &usdhc2 {
-> > 
-> >  	status = "okay";
-> >  
-> >  };
-> > 
-> > +&usb3_phy0 {
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&pinctrl_usb0>;
+On 01/09/2022 19:36, Etienne Carriere wrote:
+> Changes gpio.h DT binding header file to be published under GPLv2 or
+> BSD-3-Clause license terms. This change allows these GPIO generic
+> bindings header file to be used in software components as bootloaders
+> and OSes that are not published under GPLv2 terms.
 > 
-> Should the pinctrl be in USB controller instead of PHY node?
-
-That seems reasonable. I'll move this to the USB glue layer node, where also 
-the OC and PWR polarity can be changed.
-
-> > +	status = "okay";
-> > +};
-> > +
-> > +&usb3_0 {
-> > +	fsl,over-current-active-low;
-> > +	status = "okay";
-> > +};
-> > +
-> > +&usb_dwc3_0 {
+> All contributors to gpio.h file in copy.
 > 
-> These nodes are not in alphabetic order.
-
-Sure, this looks wrong, I'll fix that.
-
-> > +	/* dual role is implemented, but not a full featured OTG */
-> > +	hnp-disable;
-> > +	srp-disable;
-> > +	adp-disable;
-> > +	dr_mode = "otg";
-> > +	usb-role-switch;
-> > +	role-switch-default-mode = "peripheral";
-> > +	status = "okay";
-> > +
-> > +	connector {
-> > +		compatible = "gpio-usb-b-connector", "usb-b-connector";
-> > +		type = "micro";
-> > +		label = "X29";
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&pinctrl_usbcon0>;
-> > +		id-gpios = <&gpio1 10 GPIO_ACTIVE_HIGH>;
-> > +	};
-> > +};
-> > +
-> > 
-> >  &iomuxc {
-> >  
-> >  	pinctrl_backlight: backlightgrp {
-> >  	
-> >  		fsl,pins = <MX8MP_IOMUXC_SAI5_RXFS__GPIO3_IO19		
-0x14>;
-> > 
-> > @@ -666,6 +697,15 @@ pinctrl_uart4: uart4grp {
-> > 
-> >  			   <MX8MP_IOMUXC_UART4_TXD__UART4_DCE_TX	
-0x140>;
-> >  	
-> >  	};
-> > 
-> > +	pinctrl_usbcon0: usb0congrp {
-> > +		fsl,pins = <MX8MP_IOMUXC_GPIO1_IO10__GPIO1_IO10		
-0x1c0>;
-> > +	};
-> > +
-> > +	pinctrl_usb0: usb0grp {
+> Cc: Stephen Warren <swarren@nvidia.com>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Laxman Dewangan <ldewangan@nvidia.com>
+> Cc: Andrew Jeffery <andrew@aj.id.au>
+> Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+> Cc: Nuno Sá <nuno.sa@analog.com>
+> Cc: Bartosz Golaszewski <brgl@bgdev.pl>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 > 
-> pinctrl_usb0 should go before pinctrl_usbcon0?
-
-Yes, I'll fix that.
-
-Thanks and best regards,
-Alexander
-
-> Shawn
+> Signed-off-by: Etienne Carriere <etienne.carriere@linaro.org>
+> ---
+> Changes since v1:
+> - Publish under BSD-2-Clause instead of BSD-3-Clause.
+> - Remove Charles Keepax from CC list.
 > 
-> > +		fsl,pins = <MX8MP_IOMUXC_GPIO1_IO13__USB1_OTG_OC	
-0x1c0>,
-> > +			   <MX8MP_IOMUXC_GPIO1_IO12__USB1_OTG_PWR	
-0x1c0>;
-> > +	};
-> > +
-> > 
-> >  	pinctrl_usdhc2: usdhc2grp {
-> >  	
-> >  		fsl,pins = <MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK		
-0x192>,
-> >  		
-> >  			   <MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD		
-0x1d2>,
 
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-
-
+Best regards,
+Krzysztof
