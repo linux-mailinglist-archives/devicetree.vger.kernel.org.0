@@ -2,170 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AA115AD212
-	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 14:06:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32B305AD218
+	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 14:09:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236197AbiIEMGq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 08:06:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34414 "EHLO
+        id S237562AbiIEMIj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 08:08:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235420AbiIEMGq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 08:06:46 -0400
-X-Greylist: delayed 588 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 05 Sep 2022 05:06:43 PDT
-Received: from mail-m11879.qiye.163.com (mail-m11879.qiye.163.com [115.236.118.79])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7659E5E301
-        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 05:06:43 -0700 (PDT)
-Received: from [172.16.12.78] (unknown [58.22.7.114])
-        by mail-m11879.qiye.163.com (Hmail) with ESMTPA id 0C709680224;
-        Mon,  5 Sep 2022 19:56:52 +0800 (CST)
-Message-ID: <510d1180-bc8e-7820-c772-ed7f35447087@rock-chips.com>
-Date:   Mon, 5 Sep 2022 19:56:51 +0800
+        with ESMTP id S237402AbiIEMIc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 08:08:32 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DD0E5E317
+        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 05:08:30 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id q7so12857474lfu.5
+        for <devicetree@vger.kernel.org>; Mon, 05 Sep 2022 05:08:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=38rWvU6XopMTJ4oQa39R5yAPQ792THWQHQIufgs8jRo=;
+        b=kCk+jT/Y6OC1X/CVspb0W+QXvG2jgIH7/muQLto4RGerui/rJ2sS3YAvnsjuHtJcT8
+         OmE4btSaJ1+2bTlMektObpxKKHitgcdNtx65yoTL8JI+G4sTFCkB4ycieagl5o2ay8ca
+         w9XhRWWMurWN6gKO/KtVnihL1vLy9QpknACsvbubYjn5rfgJJr82QF367ePcEsG8CJNC
+         qyv5hsQjBWBYdCjk+fI1sRcjQbAdy5BQQLg3Xos6l37Z/HbAeY2X2WgAZNW0edulhezL
+         kw+UtBeLnYjl2yBTEgXpI7t20VWYiv76apUvqmVURq5Ze4wF4YXUH23uZBb7TeE4NwLI
+         /p8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=38rWvU6XopMTJ4oQa39R5yAPQ792THWQHQIufgs8jRo=;
+        b=otksAwsnII0l1gs/uUb4MYxGWllD/xixMYfhRIxQJ9/3ku34IRyPrm43NVflnUwVbj
+         BQ3TCku34cj+Gds5vaOX9SQSQwTurv9dlSEK8PIQFIhwAZ7ChvqesKkj8KSIZbQQ8brM
+         W3QYDt+GloBRjajtRpUVwYGqjaDJoVozwnPyjU2STBAeDVflewE007noKTyk6crfXqbh
+         51wIHipDUohyxGhhkdOUGj4T9bsadLJtHaruC/i02b1Kan6MngIVpW4hA9CvELqHtqOJ
+         6QzwI1b1NEdrAHRJ6hLsFcHdUx5LGemO2jYxZewUPqrWt6QaiOEofgVhBeltdU1kbbfL
+         3CAw==
+X-Gm-Message-State: ACgBeo3cDwxHK4uzzHZ+Tx3La0tHmLcatxyQ3qAE09W5jpAlZwMk+s52
+        WffyXZsYewsiCg0SfCo5ozlluuzjRYrULWba
+X-Google-Smtp-Source: AA6agR6T96FMTEqyhUMCuuODNE3bvXqVmZlyI8nzecjVB5FBZ/ztlBJni6Sc0Mq88uAPWNP0tG4dEg==
+X-Received: by 2002:a05:6512:139c:b0:48f:da64:d050 with SMTP id p28-20020a056512139c00b0048fda64d050mr14911091lfa.268.1662379708699;
+        Mon, 05 Sep 2022 05:08:28 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id u28-20020ac2519c000000b00492ea54beeasm1164828lfi.306.2022.09.05.05.08.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 Sep 2022 05:08:28 -0700 (PDT)
+Message-ID: <7e7a1cf6-8a11-2179-8fe6-c40e7cd8be62@linaro.org>
+Date:   Mon, 5 Sep 2022 14:08:26 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 2/6] dt-bindings: add power-domain header for rk3588
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v2 3/3] dt-bindings: memory-controllers: gpmc-child: Add
+ binding for wait-pin-polarity
 Content-Language: en-US
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@collabora.com
-References: <20220831182629.79255-1-sebastian.reichel@collabora.com>
- <20220831182629.79255-3-sebastian.reichel@collabora.com>
-From:   Finley Xiao <finley.xiao@rock-chips.com>
-In-Reply-To: <20220831182629.79255-3-sebastian.reichel@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-        tZV1koWUFJSktLSjdXWS1ZQUlXWQ8JGhUIEh9ZQVlDGR5CVkhMGE9OSUxCGR9KHVUTARMWGhIXJB
-        QOD1lXWRgSC1lBWU5DVUlJVUxVSkpPWVdZFhoPEhUdFFlBWU9LSFVKSktITkhVSktLWQY+
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Kww6LDo5Mj0sOj5JI0pCDQ9I
-        LC8aCzZVSlVKTU1JSExCS0pJTUpMVTMWGhIXVR0SFRceAlUDEhoUOwkUGBBWGBMSCwhVGBQWRVlX
-        WRILWUFZTkNVSUlVTFVKSk9ZV1kIAVlBTkJPQzcG
-X-HM-Tid: 0a830d82b09d2eb5kusn0c709680224
-X-Spam-Status: No, score=-0.7 required=5.0 tests=BAYES_05,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+To:     "Niedermayr, BENEDIKT" <benedikt.niedermayr@siemens.com>,
+        "rogerq@kernel.org" <rogerq@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>
+Cc:     "tony@atomide.com" <tony@atomide.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+References: <20220905071717.1500568-1-benedikt.niedermayr@siemens.com>
+ <20220905071717.1500568-4-benedikt.niedermayr@siemens.com>
+ <d75ff1cf-64a6-e794-87a2-204e93c852cf@kernel.org>
+ <e284855271a3fdf6bb2cd304629c2aa3bb8401f3.camel@siemens.com>
+ <eedebc54-7817-d61b-f854-09eb11be4ada@kernel.org>
+ <0ee691a3-d22e-b685-9d5c-f974ac3afe19@linaro.org>
+ <6397b5d11c786ee6194776e096380103976049dd.camel@siemens.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <6397b5d11c786ee6194776e096380103976049dd.camel@siemens.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 05/09/2022 13:48, Niedermayr, BENEDIKT wrote:
+> On Mon, 2022-09-05 at 11:54 +0200, Krzysztof Kozlowski wrote:
+>> On 05/09/2022 11:21, Roger Quadros wrote:
+>>>
+>>> On 05/09/2022 12:14, Niedermayr, BENEDIKT wrote:
+>>>> On Mon, 2022-09-05 at 11:56 +0300, Roger Quadros wrote:
+>>>>> Hi Benedikt,
+>>>>>
+>>>>> On 05/09/2022 10:17, B. Niedermayr wrote:
+>>>>>> From: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
+>>>>>>
+>>>>>> Add a new dt-binding for the wait-pin-polarity property
+>>>>>>
+>>>>>> Signed-off-by: Benedikt Niedermayr <
+>>>>>> benedikt.niedermayr@siemens.com
+>>>>>> ---
+>>>>>>  .../bindings/memory-controllers/ti,gpmc-child.yaml         | 
+>>>>>> 7
+>>>>>> +++++++
+>>>>>>  1 file changed, 7 insertions(+)
+>>>>>>
+>>>>>> diff --git a/Documentation/devicetree/bindings/memory-
+>>>>>> controllers/ti,gpmc-child.yaml
+>>>>>> b/Documentation/devicetree/bindings/memory-
+>>>>>> controllers/ti,gpmc-
+>>>>>> child.yaml
+>>>>>> index 6e3995bb1630..7c721206f10b 100644
+>>>>>> --- a/Documentation/devicetree/bindings/memory-
+>>>>>> controllers/ti,gpmc-
+>>>>>> child.yaml
+>>>>>> +++ b/Documentation/devicetree/bindings/memory-
+>>>>>> controllers/ti,gpmc-
+>>>>>> child.yaml
+>>>>>> @@ -230,6 +230,13 @@ properties:
+>>>>>>        Wait-pin used by client. Must be less than "gpmc,num-
+>>>>>> waitpins".
+>>>>>>      $ref: /schemas/types.yaml#/definitions/uint32
+>>>>>>  
+>>>>>> +  gpmc,wait-pin-polarity:
+>>>>>> +    description: |
+>>>>>> +      Wait-pin polarity used by the clien. It relates to the
+>>>>>> pin
+>>>>>> defined
+>>>>>
+>>>>> did you mean "client?"
+>>>>> Can you please specify what value is for Active Low vs Active
+>>>>> High?
+>>>>
+>>>> Yes, that makes sense. And yes I meant "client". My typo.....
+>>>>>> +      with "gpmc,wait-pin".
+>>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>>>
+>>>>> Why can't type be boolean?
+>>>>
+>>>> Of course we can use the boolean there. In that case I should
+>>>> give the
+>>>> property a more meaningful name e.g. wait-pin-active-high or
+>>>> wait-pin-
+>>>> active-low. 
+>>>> Since the default behavour of this pin is Active High,
+>>>> a bool property "gpmc,wait-pin-active-low" would make more sense
+>>>> for
+>>>> backwards compatibility. 
+>>>> If the property is missing, than the polarity stays on Active
+>>>> High like
+>>>> before.
+>>>>
+>>>
+>>> OK, in that case you don't have to clarify the polarity in
+>>> description.
+>>
+>> I don't understand (and it is not explained in commit msg), why do
+>> you
+>> need such property instead of using standard GPIO flags.
+>>
+>> The driver should use standard GPIO descriptor and standard bindings.
+>> If
+>> it cannot, this has to be explained.
+>>
+>> Best regards,
+>> Krzysztof
+> 
+> I think this is beacause the GPMC controller itself is not respecting
+> the GPIO flags. Instead the GPMC is reading the Line Level directly
+> (high,low) and then evaluates the logic depending how
+> the WAIT<x>PINPOLARITY bit is set in the GPMPC_CONFIG register.
+> 
+> Until now gpiochip_request_own_desc() was hardcorded
+> to GPIO_ACTIVE_HIGH. An the GPMC_CONFIG register configuration has no
+> relation to the GPIO setting (in the current implementation).
+> My first approach was to make this part configurable via a new device
+> tree property (wait-pin-polarity).
+> 
+> IMHO (correct me if I'm wrong) the current implementation also does not
+> make ues of standart GPIO bindings and defines the wait pin via a
+> separate "gpmc,waitpin" binding.
+> 
+> E.g. gpmc,watipin = <0> or gpmc,waitpin=<1>
+> 
+> The best solution would should be when setting the binding this way for
+> example: gpmc,wait-pin = <&gpiox y ACTIVE_X>
 
-The devicetree binidng-headers should be dual-licensed, please change 
-the license to GPL-2.0+ OR MIT.
+Yes and I am afraid this will grow instead of adding proper GPIO usage.
+Any reason why it cannot be a standard GPIO pin desc?
 
+> 
+> But I think the current omap-gpmc.c implementation does not offer such
+> a usecase and as roger already mentioned: 
+> "GPMC wait_pin polarity logic is hard-wired and doesn't depend on GPIO
+> subsystem for its polarity"
 
-在 2022/9/1 02:26, Sebastian Reichel 写道:
-> From: Finley Xiao <finley.xiao@rock-chips.com>
->
-> Add all the power domains listed in the RK3588 TRM.
->
-> Signed-off-by: Finley Xiao <finley.xiao@rock-chips.com>
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> ---
-> As mentioned in the cover letter I did not update this into dual
-> license, since there was no feedback from Rockchip :(
-> ---
->   include/dt-bindings/power/rk3588-power.h | 69 ++++++++++++++++++++++++
->   1 file changed, 69 insertions(+)
->   create mode 100644 include/dt-bindings/power/rk3588-power.h
->
-> diff --git a/include/dt-bindings/power/rk3588-power.h b/include/dt-bindings/power/rk3588-power.h
-> new file mode 100644
-> index 000000000000..69f7e9060250
-> --- /dev/null
-> +++ b/include/dt-bindings/power/rk3588-power.h
-> @@ -0,0 +1,69 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +#ifndef __DT_BINDINGS_POWER_RK3588_POWER_H__
-> +#define __DT_BINDINGS_POWER_RK3588_POWER_H__
-> +
-> +/* VD_LITDSU */
-> +#define RK3588_PD_CPU_0		0
-> +#define RK3588_PD_CPU_1		1
-> +#define RK3588_PD_CPU_2		2
-> +#define RK3588_PD_CPU_3		3
-> +
-> +/* VD_BIGCORE0 */
-> +#define RK3588_PD_CPU_4		4
-> +#define RK3588_PD_CPU_5		5
-> +
-> +/* VD_BIGCORE1 */
-> +#define RK3588_PD_CPU_6		6
-> +#define RK3588_PD_CPU_7		7
-> +
-> +/* VD_NPU */
-> +#define RK3588_PD_NPU		8
-> +#define RK3588_PD_NPUTOP	9
-> +#define RK3588_PD_NPU1		10
-> +#define RK3588_PD_NPU2		11
-> +
-> +/* VD_GPU */
-> +#define RK3588_PD_GPU		12
-> +
-> +/* VD_VCODEC */
-> +#define RK3588_PD_VCODEC	13
-> +#define RK3588_PD_RKVDEC0	14
-> +#define RK3588_PD_RKVDEC1	15
-> +#define RK3588_PD_VENC0		16
-> +#define RK3588_PD_VENC1		17
-> +
-> +/* VD_DD01 */
-> +#define RK3588_PD_DDR01		18
-> +
-> +/* VD_DD23 */
-> +#define RK3588_PD_DDR23		19
-> +
-> +/* VD_LOGIC */
-> +#define RK3588_PD_CENTER	20
-> +#define RK3588_PD_VDPU		21
-> +#define RK3588_PD_RGA30		22
-> +#define RK3588_PD_AV1		23
-> +#define RK3588_PD_VOP		24
-> +#define RK3588_PD_VO0		25
-> +#define RK3588_PD_VO1		26
-> +#define RK3588_PD_VI		27
-> +#define RK3588_PD_ISP1		28
-> +#define RK3588_PD_FEC		29
-> +#define RK3588_PD_RGA31		30
-> +#define RK3588_PD_USB		31
-> +#define RK3588_PD_PHP		32
-> +#define RK3588_PD_GMAC		33
-> +#define RK3588_PD_PCIE		34
-> +#define RK3588_PD_NVM		35
-> +#define RK3588_PD_NVM0		36
-> +#define RK3588_PD_SDIO		37
-> +#define RK3588_PD_AUDIO		38
-> +#define RK3588_PD_SECURE	39
-> +#define RK3588_PD_SDMMC		40
-> +#define RK3588_PD_CRYPTO	41
-> +#define RK3588_PD_BUS		42
-> +
-> +/* VD_PMU */
-> +#define RK3588_PD_PMU1		43
-> +
-> +#endif
+This part I don't get. You mean hard-wired in the driver or hard-wired
+in the hardware? If the first, please un-wire it. If the latter, your
+property makes no sense, right?
 
--- 
-肖锋 Finley Xiao
-**********************************************************
-瑞芯微电子股份有限公司
-Rockchip Electronics Co., Ltd
-福建省福州市铜盘路软件大道89号软件园A区21号楼 350003
-No.21 Building, A District, Fuzhou Software Park, Fuzhou, Fujian 350003, P.R. China
-Tel: 0591-83991906-8602 Mobile: 18506057603
-E-mail: finley.xiao@rock-chips.com
-***************************************************************************************************************************
-重要提示：本邮件及其附件含有仅供特定个人或目的使用的保密信息。若您并非该特定收件人或误收本邮件，请从系统中永久性删除本邮件及所有附件。
-瑞芯微电子股份有限公司拥有本邮件及附件的著作权及解释权，禁止任何未经授权或许可的披露、储存或复制本邮件及附件的行为。谢谢您的配合。
-IMPORTANT NOTICE: The contents of this email and any attachments may contain information that is privileged, confidential.
-If you are not the intended recipient or receive it by mistaken, please delete the email in its entirety.
-Rockchip Electronics Co., Ltd. copyright and reserve all rights.
-It is strictly prohibited to disclose, copy or store the email without any further authorization or license. Thank you.
-***************************************************************************************************************************
-
+Best regards,
+Krzysztof
