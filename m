@@ -2,114 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 573685AD0BE
-	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 12:57:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F19E5AD15D
+	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 13:18:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237889AbiIEKzE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 06:55:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38326 "EHLO
+        id S236300AbiIELNS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 07:13:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237898AbiIEKys (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 06:54:48 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73BCC20BC5
-        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 03:54:43 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id z6so12547454lfu.9
-        for <devicetree@vger.kernel.org>; Mon, 05 Sep 2022 03:54:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=3EON71xpMwuE31HszjcxT0gv8fFt5vL8HY5cDtEoyUE=;
-        b=U1rmQSpkYInIJ/w1y8qPLW9s27eUufq+xhfDRiiOgutlRZ8eSnIVG0cyxQc6PX7PZq
-         V/B/5YEQNA1Xa1SLFx3AbD1wUDkbR11eIGe5mIE2HphZxL5FwvlluUgRoscbGHUiL37I
-         90zmwQ0nZFyBBWp+VIkCARI20ma06uBcRk0nVB2kMBjRC1YgN8TXwv/73t0WQSlNKM3V
-         6v6SunHROv1+f93O7tIPgkfNKneq6bpx0SHa2I+uA8PpugEhFt2QC451keADaOsUSXDt
-         NL2E9ykTKxGL4JyXKMBdGaQqgTvkf2LJ4dVQDTmL982JmKtFoF3qZkQjiCI9aq5M683Y
-         UJzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=3EON71xpMwuE31HszjcxT0gv8fFt5vL8HY5cDtEoyUE=;
-        b=n4eerdD5is1CvggBHRK0LAyMvHvZclpHp7IZFbmY3GUAhjAnEDaQ8CdbSrlExA0hSD
-         Ui5BOuuxXbvHsH7Qgcnw7oBDOfGUdOHbpk1q60I6d9sKuudYpBwOY/eWZ9RY88cbAjFw
-         Abe8rDFh/cJlCJe2cRmdGrRjZIGmcEXg5Ollv3mjDMCGzynmmGm2sRXI8KhGilOmKkzL
-         2k65hY3CchBtSQK+b/R7naZjs6+cVtQxBFcDsmKhuOH0GSH/tb8tRUto3E2f6JCoz7P0
-         R9POcRsVSEwrQ121VyuyTz9NwnfoB8w99eIAXcG+CqEoOKmMmc41luASGPEvwJ9VCyk8
-         7hmg==
-X-Gm-Message-State: ACgBeo3TCoTnqq6HQ7Blkbzwx6gjXpZtxorVbN4/0GxIM5uwuwgzUNAe
-        FuoCUAWJkc0DbYqMuFW2K2OgYg==
-X-Google-Smtp-Source: AA6agR4HAtf2siphc2MwmgM2lBhxpekezqteaTDXFaXJ9HVvuX+dtGDD8Bie5+TFY2HMGRqAUk6zxw==
-X-Received: by 2002:a05:6512:39c6:b0:48b:9d1d:fd9c with SMTP id k6-20020a05651239c600b0048b9d1dfd9cmr17826526lfu.633.1662375281813;
-        Mon, 05 Sep 2022 03:54:41 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id c5-20020ac25f65000000b0048a9603399csm1158685lfc.116.2022.09.05.03.54.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Sep 2022 03:54:41 -0700 (PDT)
-Message-ID: <3933cc0c-a99c-7bda-bbb2-c7b2e9f84cf5@linaro.org>
-Date:   Mon, 5 Sep 2022 12:54:39 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH 09/14] arm64: dts: qcom: sm6115: Add UFS nodes
-Content-Language: en-US
-To:     Iskren Chernev <iskren.chernev@gmail.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org
-References: <20220901072414.1923075-1-iskren.chernev@gmail.com>
- <20220901072414.1923075-10-iskren.chernev@gmail.com>
- <a0204dc3-af13-6b0b-d779-0f207d1aff7e@linaro.org>
- <488be3d3-d4c4-6200-be99-b85e6ac72c34@gmail.com>
- <180f706d-3304-3a5a-82b7-f37948e5d100@linaro.org>
- <b6424212-75c1-4f42-da01-ae4ce5dc1b68@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <b6424212-75c1-4f42-da01-ae4ce5dc1b68@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        with ESMTP id S236826AbiIELNR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 07:13:17 -0400
+Received: from new2-smtp.messagingengine.com (new2-smtp.messagingengine.com [66.111.4.224])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4354B5A897
+        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 04:13:16 -0700 (PDT)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 3CDA35802A4;
+        Mon,  5 Sep 2022 07:13:12 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute3.internal (MEProxy); Mon, 05 Sep 2022 07:13:12 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm1; t=1662376392; x=1662379992; bh=LKWfpXNbcy
+        cGRixTg7QCxPRbVdJ9Nya4Av0pRPrY2RM=; b=VLJxyNyCDPBzfA+OasdcxCZhRT
+        04Mu3KEee4bt7vN7o3J2A6brCDYIhU5yI5hPqZBb+ZzfckhI6JjmVkIqPv5LQ/eF
+        tffgy8s13vXRiQ56FEnphs5lyABYyGh43Q2es/zswb/oyJoO3HzIIZMOa/QlojjN
+        7SXzoMsNy4PmFrh8Hb/ZuVMIFrOEVDTQKs2jsfgu2Codr3ReSRnl+8SM3j4qGE9d
+        X/HUz/tFvVr0yOH58UwlQte4qWKrD+gd140f6htAeWmZ/JHnzFq15MqVFB1sPdIK
+        xR06eAlZvb8nig4ApsAzbcT01OTGaIiN9uYiJFcqz+w55TeIAwZOAfVjuETQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm1; t=1662376392; x=1662379992; bh=LKWfpXNbcycGRixTg7QCxPRbVdJ9
+        Nya4Av0pRPrY2RM=; b=miRIx+ymRdEfoN/KbhPWMu317M4xlIC9O24jO97PAw8y
+        8ELjXJSUMPoWPOV6J/dLJOm4/InRLhuBboKvd48KUrGRm4KR0rBMLfdNWrzGBvJy
+        UVJCLSdjWjQz4tgUzEX+FKg5RYP/r/MJfgwGvs+VKjhH+zGTszCEHDWodKcpOmz5
+        tNvxzqj5l/8DotYaZQmRn3MLgLxmQgGmfmPIH/lo04V0TSjwLZN4UKCT1XyKPFTd
+        gpe6L2rHs3Zhv3lFEYmgjyI27FCetRCU/24FZBiecs4vYYFuQHF6zK2YtnhLWNwd
+        jHZPa6reWFFh+hneuQLw93wvf7c18a3GuSJlLwUASw==
+X-ME-Sender: <xms:x9kVYwQvQcCxCRgrnTVqi2t_xbyr29ufztU0_r48mMpdsA-qi9dCvA>
+    <xme:x9kVY9y4pINGLGkr1NuZJXHWKOBnaxBeMG5wIPjHWPmtF6Xb7aUkBCiPexISCbc8v
+    eV3U9dXYxFWHmin8aY>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdeliedgfeekucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
+    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
+    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
+    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
+    hrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:yNkVY921aDUt3n6IkLAWFqSpnQ0JnDdadf7mlWLFTRdfOrnMdoNx-A>
+    <xmx:yNkVY0BpmWNxU9JbofeRcZfYRUXSfAuA6cVYiOPa-6o9mGOnSf98TQ>
+    <xmx:yNkVY5gUJQAR-HEC4YxeHmoGVyG4Eu7vuu4jmrVovTxtP7PH1MPmEw>
+    <xmx:yNkVY8scVSsP9cqInUhzVEkQRBpLibUxxF2jFI1GxA3sMZM2sVa3aA>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id E54AFB60083; Mon,  5 Sep 2022 07:13:11 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-927-gf4c98c8499-fm-20220826.002-gf4c98c84
+Mime-Version: 1.0
+Message-Id: <4a0efff9-49a2-4b6c-90c3-b9f5e104450a@www.fastmail.com>
+In-Reply-To: <20220905104317.2740661-1-saproj@gmail.com>
+References: <20220905104317.2740661-1-saproj@gmail.com>
+Date:   Mon, 05 Sep 2022 13:12:51 +0200
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Sergei Antonov" <saproj@gmail.com>, devicetree@vger.kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        "Jonas Jensen" <jonas.jensen@gmail.com>
+Subject: Re: [PATCH] ARM: dts: sync Moxa SDIO 'compatible' name with moxart-mmc.c
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/09/2022 12:45, Iskren Chernev wrote:
+On Mon, Sep 5, 2022, at 12:43 PM, Sergei Antonov wrote:
+> Driver moxart-mmc.c has .compatible = "moxa,moxart-mmc".
+>
+> But moxart.dtsi and the documentation file moxa,moxart-dma.txt
+> contain another name: compatible = "moxa,moxart-sdhci".
+>
+> Change name in moxart.dtsi and moxa,moxart-dma.txt to that from the driver.
+>
+> Signed-off-by: Sergei Antonov <saproj@gmail.com>
+> Cc: Jonas Jensen <jonas.jensen@gmail.com>
+
+Something is clearly wrong here, as the moxart-mmc device is not
+an sdhci at all, but are you sure that this is actually the
+correct device?
+
+> diff --git a/arch/arm/boot/dts/moxart.dtsi b/arch/arm/boot/dts/moxart.dtsi
+> index f5f070a87482..d69d73930ebe 100644
+> --- a/arch/arm/boot/dts/moxart.dtsi
+> +++ b/arch/arm/boot/dts/moxart.dtsi
+> @@ -94,7 +94,7 @@ watchdog: watchdog@98500000 {
+>  		};
 > 
->>>
->>> I'll list all remaining issues with description/explanation in v2. The fact
->>> that some bindings break on all DTBs present doesn't help either.
->>
->> We're working on this... It's quite a lot of effort, especially when new
->> warnings are being added. :)
-> 
-> I understand. Is there an up-for-grabs list, or any schema fixes are welcome?
+>  		sdhci: sdhci@98e00000 {
+> -			compatible = "moxa,moxart-sdhci";
+> +			compatible = "moxa,moxart-mmc";
+>  			reg = <0x98e00000 0x5C>;
+>  			interrupts = <5 IRQ_TYPE_LEVEL_HIGH>;
+>  			clocks = <&clk_apb>;
 
-Any fixes are welcomed, but check if someone did not post it. For
-bindings conversion, the easiest is with "dfn:old-schema.txt" on
-https://lore.kernel.org/all/.
+Both the label and the device name still point to "sdhci",
+so it would be possible that the SoC actually has both
+an SDHCI compatible device and ftsdc010. In this case the
+correct fix would be to add a second node for the
+moxa,moxart-mmc with the correct reg and interrupts
+properties but to leave this one alone.
 
-We have some Linaro internal tracking, but maybe it would be useful to
-expose it to avoid duplication of work and to track better what is still
-to do/fix.
-
-+Cc Nicolas,
-Are we interested in some public tracking not only upstream status but
-also actual things to do (like DTS fixes, DT schema conversions)? It
-might be quite a lot of effort for us, but if community is engaged, they
-would offload us in task tracking system.
-
-Best regards,
-Krzysztof
+      Arnd
