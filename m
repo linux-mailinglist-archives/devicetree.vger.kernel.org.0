@@ -2,80 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 74F375AC81F
-	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 01:37:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C2115AC84E
+	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 02:46:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231335AbiIDXh2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Sep 2022 19:37:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54278 "EHLO
+        id S230090AbiIEAqu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Sep 2022 20:46:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229596AbiIDXh1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Sep 2022 19:37:27 -0400
-Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E844B2409F;
-        Sun,  4 Sep 2022 16:37:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
-        t=1662334641; bh=jLRdilnMCYu/2LORSkSSfxq/7hawIRimyy0TcaBVSdg=;
-        h=From:To:Cc:Subject:Date:From;
-        b=S0ySmocwO3hM9JxO7DVtM3BcsMOuVQiuSuyiUqAblDsNs3nMBXZz0MtnYh/iRZZlw
-         7GBbCtHMg2YpaYHkUaAxJxRa2FNET3QbSWn8CuzwBBgHVbqtoCEwKakqKj1/4ZY1Nh
-         GibpZNZcbt55iHvGPsOnwgTEhQC6T/UsbLlQO8f8=
-From:   Ondrej Jirman <megi@xff.cz>
-To:     linux-rockchip@lists.infradead.org
-Cc:     Ondrej Jirman <megi@xff.cz>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Martijn Braam <martijn@brixit.nl>,
-        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
-        Caleb Connolly <kc@postmarketos.org>,
-        Arnaud Ferraris <arnaud.ferraris@gmail.com>,
-        =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
-        <n@nfraprado.net>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Rockchip SoC
-        support), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH] arm64: dts: rockchip: Fix SD card controller probe on Pinephone Pro
-Date:   Mon,  5 Sep 2022 01:36:47 +0200
-Message-Id: <20220904233652.3197885-1-megi@xff.cz>
+        with ESMTP id S229480AbiIEAqt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Sep 2022 20:46:49 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 947DA23146;
+        Sun,  4 Sep 2022 17:46:48 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 0000AB80E4F;
+        Mon,  5 Sep 2022 00:46:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05496C433C1;
+        Mon,  5 Sep 2022 00:46:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1662338805;
+        bh=rXxAoMUzT6IN6nIfQahWEPXVjuD9Sn5HHE6RbrhylFo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=H7YMqL2L7rtMnRb+u6BLY1rL9MUiOwc+7Xlb2jLdavHwXEvgbP0MqFItmwyJygh9G
+         H2RfS51i3javKfbjc/IZBX7SHvFevPT4D/YjJcm6HXlWz5tgq+Nm2zNrB6uwAtRWE+
+         3Ym/gL9gMwmIvaZKJ2YKOqFmaRwNVQOev6cqN2L6E/zvPJtqO0uwzh8iMP4MaW1ZMa
+         Xsq/Wxt0N6Bru1MLhG97JKSgySKhQX9gbJJq0+CBDtgNcRuAI7LxiSnYkRNsBXbqTr
+         neRf9ne/Nhynyk0GAFlkp20wng2VeZ7zEUkHayJC0ubQqnlNK4y8I1+fu5H07N8kGa
+         2UGN71IfYENMA==
+Date:   Mon, 5 Sep 2022 08:46:39 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Li Yang <leoyang.li@nxp.com>
+Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Pankaj Bansal <pankaj.bansal@nxp.com>,
+        Sandeep Malik <sandeep.malik@nxp.com>,
+        Priyanka Jain <priyanka.jain@nxp.com>
+Subject: Re: [PATCH v3 5/5] arm64: dts: ls208x: remove NXP Erratum A008585
+ from LS2088A.
+Message-ID: <20220905004639.GM1728671@dragon>
+References: <20220823234913.30325-1-leoyang.li@nxp.com>
+ <20220823234913.30325-6-leoyang.li@nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220823234913.30325-6-leoyang.li@nxp.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Voltage constraints on vccio_sd are invalid. They don't match the voltages
-that LDO9 can generate, and this causes rk808-regulator driver to fail
-to probe with -EINVAL when it tries to apply the constraints during boot.
+On Tue, Aug 23, 2022 at 06:49:13PM -0500, Li Yang wrote:
+> From: Pankaj Bansal <pankaj.bansal@nxp.com>
+> 
+> NXP Erratum A008585 affects A57 core cluster used in LS2085 rev1.
+> However this problem has been fixed in A72 core cluster used in LS2088.
+> Therefore remove the erratum from LS2088A. Keeping it only in LS2085.
+> 
+> Signed-off-by: Pankaj Bansal <pankaj.bansal@nxp.com>
+> Reviewed-by: Sandeep Malik <sandeep.malik@nxp.com>
+> Acked-by: Priyanka Jain <priyanka.jain@nxp.com>
 
-Fix the constraints to something that LDO9 can be actually configured for.
+Missing your SoB.
 
-Fixes: 78a21c7d5952 ("arm64: dts: rockchip: Add initial support for Pine64 PinePhone Pro")
-Signed-off-by: Ondrej Jirman <megi@xff.cz>
----
- arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Shawn
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-index f00c80361377a..2e058c3150256 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-@@ -253,8 +253,8 @@ regulator-state-mem {
- 
- 			vccio_sd: LDO_REG9 {
- 				regulator-name = "vccio_sd";
--				regulator-min-microvolt = <1710000>;
--				regulator-max-microvolt = <3150000>;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
- 			};
- 
- 			vcc3v3_s0: SWITCH_REG {
--- 
-2.37.3
-
+> ---
+>  arch/arm64/boot/dts/freescale/fsl-ls2080a.dtsi | 4 ++++
+>  arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi | 3 +--
+>  2 files changed, 5 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls2080a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls2080a.dtsi
+> index 6f6667b70028..a2cadf757148 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls2080a.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls2080a.dtsi
+> @@ -150,3 +150,7 @@ &pcie4 {
+>  	ranges = <0x81000000 0x0 0x00000000 0x16 0x00010000 0x0 0x00010000   /* downstream I/O */
+>  		  0x82000000 0x0 0x40000000 0x16 0x40000000 0x0 0x40000000>; /* non-prefetchable memory */
+>  };
+> +
+> +&timer {
+> +	fsl,erratum-a008585;
+> +};
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
+> index d76f1c42f3fa..f1b9cc8714dc 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
+> @@ -239,13 +239,12 @@ map0 {
+>  		};
+>  	};
+>  
+> -	timer {
+> +	timer: timer {
+>  		compatible = "arm,armv8-timer";
+>  		interrupts = <1 13 4>, /* Physical Secure PPI, active-low */
+>  			     <1 14 4>, /* Physical Non-Secure PPI, active-low */
+>  			     <1 11 4>, /* Virtual PPI, active-low */
+>  			     <1 10 4>; /* Hypervisor PPI, active-low */
+> -		fsl,erratum-a008585;
+>  	};
+>  
+>  	pmu {
+> -- 
+> 2.37.1
+> 
