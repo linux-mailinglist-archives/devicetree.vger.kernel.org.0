@@ -2,99 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4954B5AD953
-	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 20:57:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A83815AD95A
+	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 21:04:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230496AbiIES50 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 14:57:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44116 "EHLO
+        id S229591AbiIETEC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 15:04:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229818AbiIES50 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 14:57:26 -0400
-Received: from proxmox1.postmarketos.org (proxmox1.postmarketos.org [IPv6:2a01:4f8:a0:821d::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9CC102A42A;
-        Mon,  5 Sep 2022 11:57:24 -0700 (PDT)
-Received: from [192.168.0.10] (cpc76482-cwma10-2-0-cust629.7-3.cable.virginm.net [86.14.22.118])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by proxmox1.postmarketos.org (Postfix) with ESMTPSA id 97379140219;
-        Mon,  5 Sep 2022 18:57:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-        s=donut; t=1662404241;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=LBvAqqQOyOWJbCs1+9iccQj8h42oT69uG8pHawssG8k=;
-        b=bWEvj25cxDUevqNgHjeHPNntNLa7FVW97+Kuh41iluYM8+bU9GZAKGAInlZtOJ1LkyBWwt
-        AsKM0+qTDfhFep3xqAYvz8tf9fTMli5hifsgZ+fG2AMfInWvLgFTHvlqjN93bpf06iDnma
-        0EfoiidKVs2YT5N8wY04X8EF1a/uT1g=
-Message-ID: <23985fdd-c517-6883-6da4-2582655cc4d6@postmarketos.org>
-Date:   Mon, 5 Sep 2022 19:57:20 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH] arm64: dts: rockchip: Fix SD card controller probe on
- Pinephone Pro
-Content-Language: en-US
-To:     Ondrej Jirman <megi@xff.cz>, linux-rockchip@lists.infradead.org
+        with ESMTP id S229518AbiIETEC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 15:04:02 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D270857570
+        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 12:03:59 -0700 (PDT)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1oVHNy-0001Ct-As; Mon, 05 Sep 2022 21:03:54 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>, lee@kernel.org
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Martijn Braam <martijn@brixit.nl>,
-        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
-        Arnaud Ferraris <arnaud.ferraris@gmail.com>,
-        =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <n@nfraprado.net>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Rockchip SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20220904233652.3197885-1-megi@xff.cz>
-From:   Caleb Connolly <kc@postmarketos.org>
-In-Reply-To: <20220904233652.3197885-1-megi@xff.cz>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        kernel@collabora.com
+Subject: Re: [PATCH 4/6] dt-bindings: mfd: syscon: Add rk3588 QoS register compatible
+Date:   Mon, 05 Sep 2022 21:03:53 +0200
+Message-ID: <4707456.3daJWjYHZt@diego>
+In-Reply-To: <20220831182629.79255-5-sebastian.reichel@collabora.com>
+References: <20220831182629.79255-1-sebastian.reichel@collabora.com> <20220831182629.79255-5-sebastian.reichel@collabora.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Sebastian,
 
-
-On 05/09/2022 00:36, Ondrej Jirman wrote:
-> Voltage constraints on vccio_sd are invalid. They don't match the voltages
-> that LDO9 can generate, and this causes rk808-regulator driver to fail
-> to probe with -EINVAL when it tries to apply the constraints during boot.
+Am Mittwoch, 31. August 2022, 20:26:27 CEST schrieb Sebastian Reichel:
+> Document rk3588 compatible for QoS registers.
 > 
-> Fix the constraints to something that LDO9 can be actually configured for.
-> 
-> Fixes: 78a21c7d5952 ("arm64: dts: rockchip: Add initial support for Pine64 PinePhone Pro")
-> Signed-off-by: Ondrej Jirman <megi@xff.cz>
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 
-Reviewed-by: Caleb Connolly <kc@postmarketos.org>
+change looks good, but this is a mfd-binding. So while the rest is for me
+to apply, for the mfd syscon we need either Lee to apply it, or an Ack
+from him for me to pick it up.
+
+
+Heiko
+
+
 > ---
->   arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
+>  Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-> index f00c80361377a..2e058c3150256 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-> @@ -253,8 +253,8 @@ regulator-state-mem {
->   
->   			vccio_sd: LDO_REG9 {
->   				regulator-name = "vccio_sd";
-> -				regulator-min-microvolt = <1710000>;
-> -				regulator-max-microvolt = <3150000>;
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <3300000>;
->   			};
->   
->   			vcc3v3_s0: SWITCH_REG {
+> diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
+> index c10f0b577268..5369a56b8be1 100644
+> --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
+> @@ -59,6 +59,7 @@ properties:
+>                - rockchip,rk3368-qos
+>                - rockchip,rk3399-qos
+>                - rockchip,rk3568-qos
+> +              - rockchip,rk3588-qos
+>                - samsung,exynos3-sysreg
+>                - samsung,exynos4-sysreg
+>                - samsung,exynos5-sysreg
+> 
+
+
+
+
