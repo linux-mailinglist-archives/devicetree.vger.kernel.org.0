@@ -2,54 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC26E5AD71A
-	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 18:08:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75DA45AD729
+	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 18:13:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231159AbiIEQIQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 12:08:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36138 "EHLO
+        id S231691AbiIEQM2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 12:12:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231313AbiIEQIN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 12:08:13 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05E0252DC8
-        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 09:08:13 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1oVEdn-0006Zz-5X; Mon, 05 Sep 2022 18:08:03 +0200
-Received: from pengutronix.de (unknown [IPv6:2a0a:edc0:0:701:b4c0:a600:5e68:1e31])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 7D5E1DAE49;
-        Mon,  5 Sep 2022 16:07:59 +0000 (UTC)
-Date:   Mon, 5 Sep 2022 18:07:58 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>, linux-can@vger.kernel.org
-Subject: Re: [PATCH v3 0/3] Add RZ/N1 CAN support
-Message-ID: <20220905160758.ieo673gvaejjjfuk@pengutronix.de>
-References: <20220830164518.1381632-1-biju.das.jz@bp.renesas.com>
+        with ESMTP id S230420AbiIEQMW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 12:12:22 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CD6B54CAF
+        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 09:12:20 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id u18so1429308lfo.8
+        for <devicetree@vger.kernel.org>; Mon, 05 Sep 2022 09:12:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=rrWMFV+N+f8aARUW0ZNrAlxPcv8JN7PD06T7jx57Q7s=;
+        b=SS3wEpx17GrNgX9Fc+X/k3B/9tRMakRxRbH8xMVvVDq2ZdruXjZG7LTGx+p+6x1mMu
+         jepfNNJGN6O3or1m/v60nbMJcuavuaBqS1W9ZbCI7/Ya5z3pgt0zpvsfZ+Vf0Gm/heYu
+         eczsXHy88W6Mg1JHIpbb0P7YNYSyzRYzGs+l0DVwXxSOlLg2rcR5CeqOo6OzBjLvGMqL
+         DrJTFyVARk/EwFRMAPsXNAFdKReDopalSto5lm+nfMqaF87QF8hAYfYpMcjonMW2EaP1
+         wK9l1oULRf5bFySVuoLUYG40Bgn4zumjoEnRwUzL7guqlm2k3GdQGr1Y8UYGB929y+Qm
+         M9dg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=rrWMFV+N+f8aARUW0ZNrAlxPcv8JN7PD06T7jx57Q7s=;
+        b=OzeJhqWz75yNYpCoiInOQnp1NgK5PtysRJSEvQkYO4uBfxVtaO6Ej9xALXfU5ckYrH
+         0yEBHfw3SmzTAatsHVjfkV0TNvzb96vXtTABynAioBVbLQywqn4JKtEiFvr1E53P4C1j
+         GxmAxu6dU6ZoGKPuyS6aH9+v4ywf22w80Lx4jZmhJ0zV0x9kLWnTmfjmp0mLauQ0tt4x
+         UUt094jLuO+4VNdTJUE2yENIKwPsbay+z3W9xSxHryYOILOnSY4ZHLPebYL5Rw98esx1
+         E6nJB+b6+1vXjziLHpCuhdG8v3uEAgIBAFavLEcNcbKIhaBP/khctqd+a7q+vJ7OYrSO
+         RoPQ==
+X-Gm-Message-State: ACgBeo22ZdUoETR1oGy0fBidXNsOxkfxOUG/B1bvIkAJu3A9GSB2oNlI
+        o6SDo8FS/LAr1XzNbcuWnZj/9A==
+X-Google-Smtp-Source: AA6agR5YbCPHG0VF+WgTYH8U/Qyjr4JX1+miUiqvPBNw4ceg3bXl8ITHJX7z4VES5+HrNXJDFKZYSw==
+X-Received: by 2002:ac2:5ccd:0:b0:495:79c7:f2f7 with SMTP id f13-20020ac25ccd000000b0049579c7f2f7mr3651296lfq.647.1662394338923;
+        Mon, 05 Sep 2022 09:12:18 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id f19-20020ac25333000000b0048a9a756763sm1235025lfh.19.2022.09.05.09.12.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 Sep 2022 09:12:18 -0700 (PDT)
+Message-ID: <80abf192-0313-aade-7780-604f4c9c6810@linaro.org>
+Date:   Mon, 5 Sep 2022 18:12:15 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="nsjn2kvc26marjpe"
-Content-Disposition: inline
-In-Reply-To: <20220830164518.1381632-1-biju.das.jz@bp.renesas.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH 2/5] dt-bindings: mfd: atmel,at91-usart: convert to
+ json-schema
+Content-Language: en-US
+To:     Sergiu.Moga@microchip.com, lee@kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        Nicolas.Ferre@microchip.com, alexandre.belloni@bootlin.com,
+        Claudiu.Beznea@microchip.com, radu_nicolae.pirea@upb.ro,
+        richard.genoud@gmail.com, mturquette@baylibre.com,
+        sboyd@kernel.org, gregkh@linuxfoundation.org, jirislaby@kernel.org,
+        admin@hifiphile.com, Kavyasree.Kotagiri@microchip.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-serial@vger.kernel.org
+References: <20220817075517.49575-1-sergiu.moga@microchip.com>
+ <20220817075517.49575-3-sergiu.moga@microchip.com>
+ <942accc5-70aa-3bb2-63dd-306a39ee5ea4@linaro.org>
+ <d1aad8ea-3852-f36b-366b-7aa67d2dd9d5@microchip.com>
+ <YxYI8/bprIV2wd1c@google.com>
+ <d6a498e7-838b-addf-bc7f-81e6805806d3@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <d6a498e7-838b-addf-bc7f-81e6805806d3@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,56 +87,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 05/09/2022 17:22, Sergiu.Moga@microchip.com wrote:
+> On 05.09.2022 17:37, Lee Jones wrote:
+>>
+>> On Fri, 19 Aug 2022, Sergiu.Moga@microchip.com wrote:
+>>
+>>> On 18.08.2022 11:39, Krzysztof Kozlowski wrote:
+>>>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+>>>>
+>>>> On 17/08/2022 10:55, Sergiu Moga wrote:
+>>>>> Convert at91 USART DT Binding for Atmel/Microchip SoCs to
+>>>>> json-schema format.
+>>>>>
+>>>>> Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
+>>>>> ---
+>>>>>    .../bindings/mfd/atmel,at91-usart.yaml        | 190 ++++++++++++++++++
+>>>>>    .../devicetree/bindings/mfd/atmel-usart.txt   |  98 ---------
+>>>>>    2 files changed, 190 insertions(+), 98 deletions(-)
+>>>>>    create mode 100644 Documentation/devicetree/bindings/mfd/atmel,at91-usart.yaml
+>>>>>    delete mode 100644 Documentation/devicetree/bindings/mfd/atmel-usart.txt
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/mfd/atmel,at91-usart.yaml b/Documentation/devicetree/bindings/mfd/atmel,at91-usart.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000000..cf15d73fa1e8
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/mfd/atmel,at91-usart.yaml
+>>>> One more thing - I think this should be in serial directory, not mfd,
+>>>> even though it includes SPI. MFD is just a Linux naming/wrapper device.
+>>>>
+>>>> Best regards,
+>>>> Krzysztof
+>>>
+>>> I would rather keep it in this directory, since its corresponding driver
+>>> is also in the mfd directory.
+>>
+>> Looks like a UART driver to me.
+>>
+>> Which MFD driver does this pertain to?
+>>
+>> --
+>> Lee Jones [李琼斯]
+> 
+> Hi,
+> 
+> It's this one: drivers/mfd/at91-usart.c[1]
+> 
+> 
+> [1] 
+> https://elixir.bootlin.com/linux/v6.0-rc4/source/drivers/mfd/at91-usart.c
 
---nsjn2kvc26marjpe
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Which is not a "real MFD driver" because it probes exactly one child
+(depending on the chosen serial protocol). Aren't MFD supposed to have
+more then one child?
 
-On 30.08.2022 17:45:15, Biju Das wrote:
-> This patch series supports CAN{0,1} populated on RZ/N1D-DB board.
->=20
-> v2->v3:
->  * Documented power-domains support.
->  * Dropped clock-names property from CAN nodes.
->  * Added power-domains property to the CAN nodes.
-> v1->v2:
->  * Added RZ/N1 specific compatible string.
->  * Added clock-names property.
->=20
-> This patch series depend upon [1]
-> [1] https://lore.kernel.org/linux-renesas-soc/20220819084532.ywtziogd7ycu=
-ozxx@pengutronix.de/
->=20
-> Biju Das (3):
->   dt-bindings: can: nxp,sja1000: Document RZ/N1 power-domains support
->   ARM: dts: r9a06g032: Add CAN{0,1} nodes
->   ARM: dts: r9a06g032-rzn1d400-db: Enable CAN{0,1}
 
-Who will take this series (once it's ready)?
-
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
-
---nsjn2kvc26marjpe
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEBsvAIBsPu6mG7thcrX5LkNig010FAmMWHtsACgkQrX5LkNig
-010tEQf/c6wxsAtkk9juo78qnWJ/Zz4LeBRai7FsC1dZ9fBkI4rjUgi0LRkw6Ntj
-TTKkaqnGWa9kGuenTGlNl/QJyfusNbVtjPWksSQTEhBp2hi1qtvSASC4PMTDxdDS
-IzKttNWms2+xRbGuk5QGIQKAvmSfmKgZ2DcSGyHD9bPGx60BoGSDZj7jSd2qIkZN
-fIVyU9WNcgpUfDBJxlE26XcvLCt6CbfMtd/dWawUEZrB9AHYdguLLquAwY71z8N+
-6SIpkzsiQlTWV/PIKl8h8aVGjSVYVY8ydD4diYDOdIIm6P94Mv3WjU6CGzXTOF/s
-ln5j/uFTn78JRHD9gDKZ7PqUOt30bw==
-=iypP
------END PGP SIGNATURE-----
-
---nsjn2kvc26marjpe--
+Best regards,
+Krzysztof
