@@ -2,81 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E9A1C5ACFAF
-	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 12:10:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5D2A5ACFF4
+	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 12:24:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236982AbiIEKK0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 06:10:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46288 "EHLO
+        id S237304AbiIEKQX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 06:16:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237034AbiIEKKZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 06:10:25 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13AEB2C655
-        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 03:10:22 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id p7so12448324lfu.3
-        for <devicetree@vger.kernel.org>; Mon, 05 Sep 2022 03:10:21 -0700 (PDT)
+        with ESMTP id S237714AbiIEKQF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 06:16:05 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 114E12633
+        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 03:14:27 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id b19so8716004ljf.8
+        for <devicetree@vger.kernel.org>; Mon, 05 Sep 2022 03:14:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=9iZUJ2C+XzNkKLqBt28HLIylkiN68ZpTZ2fgZQtMBpU=;
-        b=g075S5okKrDHmJNtm8Ec66J8SgI+LW/7dkJPUaLVxLUIdCMZ7mkZ0uP6vLvlWxfGY3
-         GSUj7p9ZQsjq1Liw8ZLR0G3LGJDB8hgK1ItCJL4z40Ai0Z3RlFfsi2nTw9XDVAPSFQBO
-         nx3xh9rJN0Vr1VyajPjDDIfxmKvg4tUSm36bdVQy1dMe9JG4yFh2T87fbnpVKflQ/ROp
-         N4auuALgoy4s2xWcRD4eVsqjGRHiYcUlFtKZUcH3XH1fVvFHbHbim2J9xrgn/nAAOCeR
-         maPHym/1hVHv/AS1eEu/ipimDkb/yAg/mc8e0vAXc4bRxyQLkbSPnqMlPSijxb0mMPjP
-         UfoQ==
+        bh=krr00gq+2rnnQjH2jiDEWmx4uGy3f7Je/Uzv5Nqwo9w=;
+        b=mwaIK5ucn4NK+Emo4I4RNSP1OMgJjPAaZkgPI3hgHJCCTZ57pDEdIghsHLA4ob2pVz
+         fFG4DNOJAG50HsaiGoG2bEZEj36GRNNjqjxs36+pJfqMbomer3i83S6HPkhFzrQnRXWj
+         x9Tu425Of/dPX4NXWV/3M6zftLrzDebI2zELrjMDuLF+N/a3WV7sLsV5eedFhSwCQQLS
+         kNkMc58C4a+iKeXiSnvVKjknTcVAnD5NBM9AdbqGEGAKeyOXVVa1iQ5R/Dffz5Ch8YNY
+         Um2ZwaojYKOQM/oG/gEObStXDB5F8zS4m2E3JdCExsMLf5MpQt5uyahpe3mLfySt80L1
+         MrXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=9iZUJ2C+XzNkKLqBt28HLIylkiN68ZpTZ2fgZQtMBpU=;
-        b=ajPM5PfOQ0G55ByaCioaxwby1by+2Dgk4SV0ydx0/eV3BSeAZGwMS/37Tl6gqmv6RU
-         RhsQm/P0ns4s6ZVviUb322kLP+lZ5+ixBIZWYJSMRVceySX+w8T7OLeAQQcW0nYumnAp
-         Zf4+ejXrgbG12BsM0StRySp7dPtV5x66hplCMOCd5erMc88NqcrpV9EQKgbpOEF+hzAe
-         dNZn2uaG5WdmO1RdDS7KaSbXpLzk0bpI/ie8ZuOb6ij1e/pWvpC3RChK0N5Kp0YeYOFw
-         7GvXBZbF2kbElFXq3q1kUw88YA33jfMclts2jEqgoyikAEA9NmSOE43HQ3r/41+KuVV0
-         TlMQ==
-X-Gm-Message-State: ACgBeo01xS/6AkLYfU/fP/ahTPp5QCO6TQEP7X++eGOwXjwqYut6BD30
-        jXEhpwauU/nnQs4e8JoSt7c/Vw==
-X-Google-Smtp-Source: AA6agR54xygcg8U5xob0simsg/0TJd3c+/Trm5Wr5mH6lOfqkDvRVfkz6Tv/7SEAHfrH+2elmOMrXw==
-X-Received: by 2002:a05:6512:12c4:b0:494:8373:5678 with SMTP id p4-20020a05651212c400b0049483735678mr8899913lfg.577.1662372620382;
-        Mon, 05 Sep 2022 03:10:20 -0700 (PDT)
+        bh=krr00gq+2rnnQjH2jiDEWmx4uGy3f7Je/Uzv5Nqwo9w=;
+        b=VMaXoYEmtYKalBJHkGu1hazkPuxfczSxCinnNvohyBJRWwW8yj0mHLA0sHwqTMKVY2
+         c9Lwn9vpbfIbq9vE92oeIFmM/fKtQKgsJezZeDo1IsDnr+krJuzntTY3elSqUgvoVHUn
+         msew0TenlAcDxgG4hEAPaWZtfUeus5yyVrqNaxazECT/2NPx/jyUg2oOsn7fmmyk8wmr
+         qPeWPDhCm+qfM6PXq4abPCfeDoTyWv9TIxd0vvI9z10NU9LqyvQ1puDzoa2H4img22ap
+         BUasD9nRutpKbw17bpzLB7taG0flNrtAd1B7UbGriNoGLzA4mWHjNyqLRW9zzqil9jMT
+         RpzQ==
+X-Gm-Message-State: ACgBeo2zl3RyLfcyZA4cjskiuhxggIuF+P976WbXs6hzwtOmpIKd9MGS
+        fum1bcnYLygXmEZkcm6gjPcYfA==
+X-Google-Smtp-Source: AA6agR5Tinz3xo5jyO3I/Zhphm/crNPOKhfBViyw+9BkJpLbm7ZmZ00WF7qaieTcY+4S8GnLTFbEqg==
+X-Received: by 2002:a2e:a9a0:0:b0:268:5e62:acfb with SMTP id x32-20020a2ea9a0000000b002685e62acfbmr7929456ljq.326.1662372863427;
+        Mon, 05 Sep 2022 03:14:23 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id 9-20020ac25f09000000b0048b365176d9sm1135613lfq.286.2022.09.05.03.10.18
+        by smtp.gmail.com with ESMTPSA id y10-20020a05651c106a00b0025e42f8e771sm1353110ljm.34.2022.09.05.03.14.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Sep 2022 03:10:19 -0700 (PDT)
-Message-ID: <baa9c80a-bc81-03a9-680f-883a54cb4e63@linaro.org>
-Date:   Mon, 5 Sep 2022 12:10:18 +0200
+        Mon, 05 Sep 2022 03:14:22 -0700 (PDT)
+Message-ID: <36b2b6d9-9ab4-a4bc-6476-bd5b5d3ef77e@linaro.org>
+Date:   Mon, 5 Sep 2022 12:14:21 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH 2/5] dt-bindings: mfd: atmel,at91-usart: convert to
- json-schema
+Subject: Re: [PATCH 02/13] dt-bindings: memory: snps: Add Baikal-T1 DDRC
+ support
 Content-Language: en-US
-To:     Eugen.Hristev@microchip.com, Sergiu.Moga@microchip.com,
-        lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, Nicolas.Ferre@microchip.com,
-        alexandre.belloni@bootlin.com, Claudiu.Beznea@microchip.com,
-        radu_nicolae.pirea@upb.ro, richard.genoud@gmail.com,
-        mturquette@baylibre.com, sboyd@kernel.org,
-        gregkh@linuxfoundation.org, jirislaby@kernel.org,
-        admin@hifiphile.com, Kavyasree.Kotagiri@microchip.com
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-serial@vger.kernel.org
-References: <20220817075517.49575-1-sergiu.moga@microchip.com>
- <20220817075517.49575-3-sergiu.moga@microchip.com>
- <942accc5-70aa-3bb2-63dd-306a39ee5ea4@linaro.org>
- <d1aad8ea-3852-f36b-366b-7aa67d2dd9d5@microchip.com>
- <ec86420c-a210-facd-ab3a-5baf84a736f3@linaro.org>
- <0aba8906-ed30-786e-cff4-6cb70d6e73c5@linaro.org>
- <f2fdaf34-ad66-9e6d-2f11-34171fb7aaa9@microchip.com>
+To:     Serge Semin <fancer.lancer@gmail.com>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Borislav Petkov <bp@alien8.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Tony Luck <tony.luck@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Manish Narani <manish.narani@xilinx.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Michail Ivanov <Michail.Ivanov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Punnaiah Choudary Kalluri 
+        <punnaiah.choudary.kalluri@xilinx.com>,
+        Dinh Nguyen <dinguyen@kernel.org>,
+        James Morse <james.morse@arm.com>,
+        Robert Richter <rric@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-edac@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220822191957.28546-1-Sergey.Semin@baikalelectronics.ru>
+ <20220822191957.28546-3-Sergey.Semin@baikalelectronics.ru>
+ <0bda4ff9-fc08-77f2-0e06-7469dcaec6d8@linaro.org>
+ <20220826095447.qxfvty6xq4tufe75@mobilestation>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <f2fdaf34-ad66-9e6d-2f11-34171fb7aaa9@microchip.com>
+In-Reply-To: <20220826095447.qxfvty6xq4tufe75@mobilestation>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -89,49 +94,93 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/09/2022 13:31, Eugen.Hristev@microchip.com wrote:
->>>>>> diff --git a/Documentation/devicetree/bindings/mfd/atmel,at91-usart.yaml b/Documentation/devicetree/bindings/mfd/atmel,at91-usart.yaml
->>>>>> new file mode 100644
->>>>>> index 000000000000..cf15d73fa1e8
->>>>>> --- /dev/null
->>>>>> +++ b/Documentation/devicetree/bindings/mfd/atmel,at91-usart.yaml
->>>>> One more thing - I think this should be in serial directory, not mfd,
->>>>> even though it includes SPI. MFD is just a Linux naming/wrapper device.
->>>>>
->>>>> Best regards,
->>>>> Krzysztof
->>>>
->>>> I would rather keep it in this directory, since its corresponding driver
->>>> is also in the mfd directory.
->>>
->>> Sorry, but that's poor argument. Driver subsystems match Linux
->>> convention, not necessarily hardware type/naming. Bindings directories
->>> match hardware. MFD bindings are only for MFD wrapper drivers and this
->>> is a serial interface. Not a MFD. You even do not add MFD devices in the
->>> driver but add *always one* device depending on serial feature you want.
->>> This is not even MFD device but regular platform device with children.
->>>
->>> You put it in SoC, though, because all other SoCs store it there...
+On 26/08/2022 11:54, Serge Semin wrote:
+> On Tue, Aug 23, 2022 at 11:12:28AM +0300, Krzysztof Kozlowski wrote:
+>> On 22/08/2022 22:19, Serge Semin wrote:
+>>> Baikal-T1 DDR controller is based on the DW uMCTL2 DDRC IP-core v2.51a
+>>> with up to DDR3 protocol capability and 32-bit data bus + 8-bit ECC. There
+>>> are individual IRQs for each ECC and DFI events.The dedicated scrubber
 >>
->> The last one should be:
+> 
+>> Missing space before "The".
+> 
+> Ok. Thanks.
+> 
 >>
->> You could put it in SoC, though, because all other SoCs store it there...
+>>> clock source is absent since it's fully synchronous to the core clock.
+>>
 > 
-> Hi,
+>> You need allOf:if-then restricting this per variant.
 > 
-> If it this is only a conversion to yaml, why do you want it moved to 
-> another dir ?
-> Perhaps if you consider SoC or serial as a better place, it should be 
-> done through a different patch.
-> 
-> Also, disputing whether this is really a MFD or not, is not in the scope 
-> of this patch.
-> 
+> I really don't like the allOf-if-if-etc pattern because it gets to be
+> very bulky if all the vendor-specific and generic platform
+> peculiarities are placed in there. I am more keen of having a
+> generic DT-schema which would be then allOf-ed by the vendor-specific
+> device bindings. What do you think I'd provide such design in this
+> case too?
 
-Because you are converting - thus renaming - the bindings, so this is
-the place to put them in proper place. The conversion to DT Schema comes
-pretty often with small fixups, so proper location is one of them.
-That's quite common case.
+Sure, it would work.
+
+> 
+> But I'll need to move the compatible property definition to the
+> "select" property. Like this:
+> 
+> Documentation/devicetree/bindings/memory-controllers/snps,dw-umctl2-ddrc.yaml:
+> +[...]
+> +# Please create a separate DT-schema for your DW uMCTL2 DDR controller
+> +# and make sure it's assigned with the vendor-specific compatible string.
+> +select:
+> +  properties:
+> +    compatible:
+> +      oneOf:
+> +        - deprecated: true
+> +          description: Synopsys DW uMCTL2 DDR controller v3.80a
+> +          const: snps,ddrc-3.80a
+> +        - description: Synopsys DW uMCTL2 DDR controller
+> +          const: snps,dw-umctl2-ddrc
+> +        - description: Xilinx ZynqMP DDR controller v2.40a
+> +          const: xlnx,zynqmp-ddrc-2.40a
+> +  required:
+> +    - compatible
+
+Not entirely. If you need select, then add it with compatibles, but all
+descriptions and deprecated are staying in properties.
+
+
+> +
+> +properties:
+> +  compatible: true
+> +[...]
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: true
+> 
+> After that the "snps,dw-umctl2-ddrc.yaml" schema can be referenced in the
+> allOf composition. Like this:
+> 
+> Documentation/devicetree/bindings/memory-controllers/baikal,bt1-ddrc.yaml:
+> +[...]
+> +allOf:
+> +  - $ref: /schemas/memory-controllers/snps,dw-umctl2-ddrc.yaml#
+> +[...]
+> 
+> At the same time the generic DT-schema will be used to evaluate the
+> "snps,ddrc-3.80a", "snps,dw-umctl2-ddrc" and "xlnx,zynqmp-ddrc-2.40a"
+> device nodes as before. What do you think about that?
+> 
+> One big positive side of this that even though the generic schema
+> can't define the IRQ/resets/clocks phandlers order because various
+> platforms may have different external signals setup, the
+> vendor-specific schema can and should. So I'll be able to describe the
+> Baikal-T1 DDRC specific properties (clocks, clock-names, interrupts,
+> interrupt-names, etc) in much more details including the reference
+> signals order what you asked in the previous patch review.
+
+It's ok. You need then second schema for your device, because something
+must end with additional/unevaluatedProperties false.
 
 Best regards,
 Krzysztof
