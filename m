@@ -2,109 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 841AF5AD369
-	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 15:06:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 505CF5AD371
+	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 15:09:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235747AbiIENG1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 09:06:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49210 "EHLO
+        id S236756AbiIENJR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 09:09:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232053AbiIENG0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 09:06:26 -0400
-Received: from new4-smtp.messagingengine.com (new4-smtp.messagingengine.com [66.111.4.230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBF5B2CCBA
-        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 06:06:25 -0700 (PDT)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 3F23C5801E2;
-        Mon,  5 Sep 2022 09:06:25 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute3.internal (MEProxy); Mon, 05 Sep 2022 09:06:25 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm1; t=1662383185; x=1662386785; bh=Kp/wVnN2IW
-        ryY8ZAuk5Pt4ftsmI3JjqARbKxa9RNpTU=; b=i10vyX6ZbUoxOHJXqKMHBo8Shq
-        3li3jW90wMUCdI2LF9jYL1zm4GXyDN+zeOc/GgQd3nMNQkUG+bGZvPZD2lTT8wlx
-        TLrzIGNCIpiS9DElYiOoh2gk+pYy6lw3gIrqpe/Ml0SVD7jbAYuM0Yis+BPJ1yqD
-        UgTRXw31kkg6gAwmTdfs2VZc/CbDNGO9e50ShcHgSjFxm+dk5CZThv5cXwrPXqCg
-        /9q5NfJC0/DQjsrO4JR8cBaDzcCLiJ8XrtkRrsCcIkJdgDHy1D9SbhhA0zRgg459
-        4VQ7o5Iq15axHmjuURhmFR/unOqxIoqQvrgBt/hhCa7zwo3hQNeA+34xEqJw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; t=1662383185; x=1662386785; bh=Kp/wVnN2IWryY8ZAuk5Pt4ftsmI3
-        JjqARbKxa9RNpTU=; b=amB/+fUt2xuOMbLmCpcw52oFfg/UGA3I5jcveDEddjIz
-        szF+8XGJvcaJqFyhObiJvFCaXIrAIgdtgotwuIA51O0FCPuSkBE+QrVESCCCJ1A1
-        03Oyptl8kNLSbztTdqzyUCpRf7im84rIiokLxKrt3f1oqG2Y+RpAzHsitLXaP8/0
-        BbSaE2RCNE5gujccF+fXFwDItx39SbDbceuFYzJButjVPRCB5ny4IjKAhoXPNttN
-        iFwCp8vCUZzVy/TH2udvurHIdVkPlZxTUEnO8Nznlq37/VuziBLF2hWyNRmz5WDH
-        sPuZgdSUEP6KzOgyhnsTrBwognVS0S9FJVHeL1vT4A==
-X-ME-Sender: <xms:UfQVY3Nhw6he0JejgWKlSkmldPgFiropl6IJ8mWLnhdtf_0Ficse5A>
-    <xme:UfQVYx_stzxs8FyOqWwe7S0bWA6AUO_9v97i6ASvsw-75J85PXoevK-qRTfb9JpTC
-    PYL04ajBSZjus-QE1g>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdeliedgiedvucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
-    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
-    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
-    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
-    hrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:UfQVY2S7Z57W-Cife8RERGVwZ8x_O4kHAJPjHUAqQ9Bp5kLwq4GYIg>
-    <xmx:UfQVY7sNmmFzI3KYs-KziO_sJfDcLavPeGEdebDGGUH5ZfpgZbxLXw>
-    <xmx:UfQVY_eelQWhz5nerzz5d5QzG-vT-pvNC45fOvmukis0qCWOpM8tsg>
-    <xmx:UfQVYwr0gsVIu1zAmKcjxiJvByRoC_iklIXC42Hx4C-mFWlFsvRmMQ>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id F2F52B60083; Mon,  5 Sep 2022 09:06:24 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.7.0-alpha0-927-gf4c98c8499-fm-20220826.002-gf4c98c84
-Mime-Version: 1.0
-Message-Id: <c587279a-8444-4ffc-b30f-af17d92604d2@www.fastmail.com>
-In-Reply-To: <20220905125343.2769117-1-saproj@gmail.com>
-References: <20220905125343.2769117-1-saproj@gmail.com>
-Date:   Mon, 05 Sep 2022 15:06:04 +0200
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Sergei Antonov" <saproj@gmail.com>, devicetree@vger.kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        "Jonas Jensen" <jonas.jensen@gmail.com>
-Subject: Re: [PATCH v2] ARM: dts: fix Moxa SDIO 'compatible', remove 'sdhci' misnomer
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S236195AbiIENJO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 09:09:14 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DE222F65B
+        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 06:09:10 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id z25so13108909lfr.2
+        for <devicetree@vger.kernel.org>; Mon, 05 Sep 2022 06:09:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=kccIl+JPL/b+6R9JLjjCNsOw0ulUkeXWsiCf5YUWos4=;
+        b=ZnqLiqI6MLW3lnI05Mf4Eao18FSsDUGp6Da1I+QRkZJcEY0C0QG8K81z9X8m+s4Jyi
+         cpGnP5oCG58t28aOFLJdpswJWiLr2fi+irONy0XZ5ND6pSJfVZw77UVCAxvMRU1Om/Cl
+         bBWrb7MsAlHlyFRmd1ox3v5xV+d0V2AAzSxywWv7oyTfoWk4Cl/hcSWvZyF9rUbKsaij
+         AS6WhBrc9/rOLPnWANRU3f3GcpN7UeM6EzBBoSe8yBMg4alUP83qrsYoqlQoFoVFTsxK
+         vinOQUiZ7328zL4xC4r1oM7Cx3UBiruNl1KPZs8v5ftSlrmz7sNJIJjG6ljAkBHyXdlL
+         LZtQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=kccIl+JPL/b+6R9JLjjCNsOw0ulUkeXWsiCf5YUWos4=;
+        b=rrl6ENWK6KJKB0+FoJNCTaz2UPqWdbt6rEscDEC4MVV2f8QnQeD0aPBTXQm1sWOLG5
+         2ScV7V+SWrUY3mwE140zgh8jJt3bzTP2ORZPR1GKV0T7ClhicMDTLGM/9lQM3PYHegQu
+         7n0sBMe7SoVFLc7YeFSHk0G4mZkELiV1UJWeIQqXDj3SHwrFxKiHzyq0ec1oW8P3PIlP
+         ptSAupSCznLTfrAuA2zI8T+LC2itVjBf1PNTRV9z23JgAaDCfIE2E7pQxxmDbhoUboaz
+         /i2zR3tyfMY4KznuYrsRhGWxvrwPk8k9dXEzgr9iMhpxvWg7YMKNnJkzvSUMV3nQP6kL
+         0Vvg==
+X-Gm-Message-State: ACgBeo1XZ1l+3IrG4l2rPYpMGH9QmL2O1CaVYYtT5c+f3EBSNLYWZEFW
+        EjVv5fYigyE+RX+CQ+qw2CPvcQ==
+X-Google-Smtp-Source: AA6agR550FBvF0os40VYLctvNfTKpL2koC3lcJaQTEgPs3sTLgLJC3pSTQya4BN7wV0VNO+pufSWFw==
+X-Received: by 2002:a05:6512:b0a:b0:492:dacb:33da with SMTP id w10-20020a0565120b0a00b00492dacb33damr15355633lfu.668.1662383348735;
+        Mon, 05 Sep 2022 06:09:08 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id x18-20020a056512079200b0048a7c86f4e7sm1181995lfr.291.2022.09.05.06.09.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 Sep 2022 06:09:08 -0700 (PDT)
+Message-ID: <4e61b63b-74ac-1682-968f-17e5d8db7ce6@linaro.org>
+Date:   Mon, 5 Sep 2022 15:09:07 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v4 1/2] dt-bindings: phy: ti: phy-gmii-sel: Add bindings
+ for J7200
+Content-Language: en-US
+To:     Siddharth Vadapalli <s-vadapalli@ti.com>,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     robh+dt@kernel.org, lee.jones@linaro.org, kishon@ti.com,
+        vkoul@kernel.org, dan.carpenter@oracle.com,
+        grygorii.strashko@ti.com, rogerq@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org
+References: <20220901085506.138633-1-s-vadapalli@ti.com>
+ <20220901085506.138633-2-s-vadapalli@ti.com>
+ <4b681c03-7f5a-0234-2276-316e0bad1de5@linaro.org>
+ <44339382-c4e2-26db-de5d-263ae5a585b8@ti.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <44339382-c4e2-26db-de5d-263ae5a585b8@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 5, 2022, at 2:53 PM, Sergei Antonov wrote:
-> Driver moxart-mmc.c has .compatible = "moxa,moxart-mmc".
->
-> But moxart .dts/.dtsi and the documentation file moxa,moxart-dma.txt
-> contain compatible = "moxa,moxart-sdhci".
->
-> Change moxart .dts/.dtsi files and moxa,moxart-dma.txt to match the driver.
->
-> Replace 'sdhci' with 'mmc' in names too, since SDHCI is a different
-> controller from FTSDC010.
->
-> Signed-off-by: Sergei Antonov <saproj@gmail.com>
-> Suggested-by: Arnd Bergmann <arnd@arndb.de>
-> Cc: Jonas Jensen <jonas.jensen@gmail.com>
+On 02/09/2022 08:09, Siddharth Vadapalli wrote:
+> Hello Krzysztof,
+> 
+> On 01/09/22 20:51, Krzysztof Kozlowski wrote:
+>> On 01/09/2022 11:55, Siddharth Vadapalli wrote:
+>>> TI's J7200 SoC supports additional PHY modes like QSGMII and SGMII
+>>> that are not supported on earlier SoCs. Add a compatible for it.
+>>>
+>>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+>>> ---
+>>>  .../mfd/ti,j721e-system-controller.yaml       |  6 ++++
+>>>  .../bindings/phy/ti,phy-gmii-sel.yaml         | 30 ++++++++++++++++++-
+>>>  2 files changed, 35 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml b/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
+>>> index 1aeac43cad92..802374e7645f 100644
+>>> --- a/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
+>>> +++ b/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
+>>> @@ -54,6 +54,12 @@ patternProperties:
+>>>      description:
+>>>        Clock provider for TI EHRPWM nodes.
+>>>  
+>>> +  "phy@[0-9a-f]+$":
+>>> +    type: object
+>>> +    $ref: /schemas/phy/phy-provider.yaml
+>>
+>> You need instead ref to specific device bindings/schema. Probably to
+>> /schemas/phy/ti,phy-gmii-sel.yaml#
+> 
+> Thank you for the clarification. I will update $ref to
+> "/schemas/phy/ti,phy-gmii-sel.yaml#" in the v5 series.
+> 
+>>
+>> This was entirely different in v3, so your change is very confusing.
+> 
+> I had misunderstood Rob's comment in the v3 patch. I had initially
+> provided the relative path to the bindings file ti,phy-gmii-sel.yaml in
+> the v3 patch. When Rob commented "/schemas/phy/..", I misunderstood and
+> thought that I had to point $ref to a generic phy-provider schema
+> present in the dt-schema repo and thus, in this v4 patch, I had updated
+> $ref accordingly.
+> 
+>>
+>>> +    description:
+>>> +      This is the register to set phy mode through phy-gmii-sel driver.
+>>
+>> I don't understand the description. Please focus on the hardware not
+>> some drivers - what is here? Phy for something?
+> 
+> I will fix the description, updating it to the following:
+> "Address of the CTRLMMR_ENETx_CTRL registers which are used to configure
+> the phy-mode of the CPSW MAC ports."
+> 
+> Please let me know if the above description is fine.
 
-Reviewed-by: Arnd Bergmann <arnd@arndb.de>
+Hm, but that's a phy node, not address of register... Isn't this a phy
+node representing the phy of the CPSW MAC ports?
 
-> v1 -> v2:
-> Per Arnd Bergmann's suggestion, replaced sdhci with mmc in names too.
+> 
+>>
+>>> +
+>>>  required:
+>>>    - compatible
+>>>    - reg
+>>> diff --git a/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml b/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml
+>>> index ff8a6d9eb153..0ffb97f1a77c 100644
+>>> --- a/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml
+>>> +++ b/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml
+>>> @@ -53,12 +53,24 @@ properties:
+>>>        - ti,am43xx-phy-gmii-sel
+>>>        - ti,dm814-phy-gmii-sel
+>>>        - ti,am654-phy-gmii-sel
+>>> +      - ti,j7200-cpsw5g-phy-gmii-sel
+>>>  
+>>>    reg:
+>>>      maxItems: 1
+>>>  
+>>>    '#phy-cells': true
+>>>  
+>>> +  ti,qsgmii-main-ports:
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>>> +    description: |
+>>> +      Required only for QSGMII mode. Array to select the port for
+>>> +      QSGMII main mode. Rest of the ports are selected as QSGMII_SUB
+>>> +      ports automatically. Any one of the 4 CPSW5G ports can act as the
+>>> +      main port with the rest of them being the QSGMII_SUB ports.
+>>> +    items:
+>>> +      minimum: 1
+>>> +      maximum: 4
+>>> +
+>>>  allOf:
+>>>    - if:
+>>>        properties:
+>>> @@ -73,6 +85,22 @@ allOf:
+>>>          '#phy-cells':
+>>>            const: 1
+>>>            description: CPSW port number (starting from 1)
+>>
+>> Blank line
+> 
+> I will fix this in the v5 series.
+> 
+>>
+>>
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            enum:
+>>> +              - ti,j7200-cpsw5g-phy-gmii-sel
+>>> +    then:
+>>> +      properties:
+>>> +        '#phy-cells':
+>>> +          const: 1
+>>> +          description: CPSW port number (starting from 1)
+>>> +        ti,qsgmii-main-ports:
+>>> +          maxItems: 1
+>>
+>> It does not really make sense to limit items here, in the context of
+>> this patch. You got a comment for it already. Your patch should make
+>> sense on its own.
+> 
+> I had defined the property as an array because there are more than one
+> QSGMII main ports for other devices for which I will be posting the
+> patches. I had planned to reuse this property, with "maxItems: 2" in the
+> future patches for other compatibles. However, as suggested by you, I
+> will change the property to a uint32 instead of uint32-array in this
+> series. Later, in my future patches for other devices, I will change it
+> back to a uint32-array when I reuse the property.
 
-Looks good to me now. Let's wait for more comments, or possibly
-for Jonas to pick it up into his tree. If everyone is fine with this
-version, can you send it to soc@kernel.org so I can pick it
-up into the soc tree?
+Wait, no. You should not change the property. This should be
+uint32-array, because you will extend it soon, just maxItems must be
+defined in top-level place.
 
-     Arnd
+Best regards,
+Krzysztof
