@@ -2,124 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34C315AC9DD
-	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 07:48:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5942A5ACA2A
+	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 08:00:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235651AbiIEFsF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 01:48:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34854 "EHLO
+        id S236367AbiIEF6u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 01:58:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235313AbiIEFsE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 01:48:04 -0400
-Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67DB72D1E6
-        for <devicetree@vger.kernel.org>; Sun,  4 Sep 2022 22:48:02 -0700 (PDT)
-Received: by mail-pf1-x430.google.com with SMTP id l65so7645248pfl.8
-        for <devicetree@vger.kernel.org>; Sun, 04 Sep 2022 22:48:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=/MSOkfzcFDVOwb+RS/ivu6q81kMf5WeXuE6nXo0vYzw=;
-        b=z3ENzGxwfrHKOJ5hIrRFfQWdK9HQXJE5wEl8yca9odjvcVDKEcwYNuUQ3saqPr7miW
-         mF1QpmiMkHGRlte9vIKhtmyw2Sy/HYPnEB5l0DmukbwwXSe65i0rP4myTJdEuHIc8eew
-         eg4Pp3shVhpYya+HcE4TMqeHHN2YkxsnnQyE1vCdRqRHKk/IZPAgjYQk89zKrYpsOgPr
-         T5f+vNtYlsyArA59WQpUBxxxduffw2jFMe5SJht4yBkvdRTU6ERnGc4kb1cY7ltXE7ez
-         FcxSkF4tbvV3aOJoPepuFApEU/5nyYdY6p1jX6nPvao9IYNwByFu4lTIFjDyxueR/5mp
-         p67Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=/MSOkfzcFDVOwb+RS/ivu6q81kMf5WeXuE6nXo0vYzw=;
-        b=Lgu7SyBvnBx1QbrJswgDoV9NVxHEmgfZwA5qcCo8No8niR4srgM9kUueG9TIpkqY2l
-         uhKczBt/LQMVpBbWBMC6N/5iLl+dSa5O34EutKY1KeVHnnIRd+d4hiGhYln9f/pcgFyP
-         Ysj7s20Tt4rV9hVIpWbzlPyGBC9T8r5h/qzfaYo1GS+h4asVHzSV3ocIu0xJewfM9Htd
-         keHIDa4dH4HRKt9uHj9KIOPws/S1h7lWkBuOLx3dnYO4cmoXjFIcpxS+XQD19aVxpzQa
-         4LQWJrhkJgbb+0PJ3I3OmxH30E9wK1QTku/w4CzZJKR/nVmj0kODirEfLKTO3uhCpvk7
-         h7Lw==
-X-Gm-Message-State: ACgBeo1Z89r5gWTSpd9zNhIHUPuQQM6zuSkNqa5KN+P5NDbr5XRNDajV
-        HycqN66nVd4Ewu3kpec+2J7iYw==
-X-Google-Smtp-Source: AA6agR5F/Rwe8lQfPR84iEIKaj/8EdP4mhMjo5k43tg2ef1dm6TqvKoSPlvY/+MuNlwrFUeNHpymPg==
-X-Received: by 2002:a05:6a00:1c90:b0:537:e144:4481 with SMTP id y16-20020a056a001c9000b00537e1444481mr43747206pfw.24.1662356881806;
-        Sun, 04 Sep 2022 22:48:01 -0700 (PDT)
-Received: from ?IPV6:2401:4900:1c60:5362:9d7f:2354:1d0a:78e3? ([2401:4900:1c60:5362:9d7f:2354:1d0a:78e3])
-        by smtp.gmail.com with ESMTPSA id a6-20020a1709027d8600b00176b63535ccsm636924plm.193.2022.09.04.22.47.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 04 Sep 2022 22:48:01 -0700 (PDT)
-Message-ID: <66eaf16e-cb7c-a0b4-9ce5-02611308b0e6@linaro.org>
-Date:   Mon, 5 Sep 2022 11:17:55 +0530
+        with ESMTP id S236206AbiIEF6X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 01:58:23 -0400
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2066.outbound.protection.outlook.com [40.107.20.66])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B32E93336B;
+        Sun,  4 Sep 2022 22:57:44 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=APTgDZ5ekg4qtcFIjSy27CN6O9wOxJiRh2TMnF6004RMsAI8TmRI08Yd/ajZfgKVVOqnqg64OaKEL2YG1xqSB7fqWPm0ZNYnyvc2MqFa+eRB4gxk007jysZjWKXR9DWOWHcGBLFwbR5FedJuMlz+UuDpzY820NBGo9di0RFrmxhvq8oTYaY/wWQkqKQITrsbczG0uMTHfWRD4oGH5BF2XVHBz3gSNp8lraOOePvOz0kAhksY+ZgRSAvRAHN6j3+3BPUobD/EO0XQfjzK7fUQXaJVoaxuIFuWL3KjQfIxInWSxJkdNXB3Z7972ESv5Nrh8rhpj3LzGKmg14uW4ucACg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PGSebiQwmPPdWBcKmzKbBv1NzSuMoKMA+wf+NeLGXYU=;
+ b=ezsnAoacL6zdCFw7PEJ4Z52JlmdcxQD+trGBKnLotoyoUkRVxukEqvHR5hku0J4BOxC81DULFxHuRjJsAdU9a3se3eFUheFs3onmx+Tu9INWwwgk7P2QmXA+yFYZIOGCQqi8MaNw9Pu3J4R7rxxew57icSvOT8Ff6TkFxln0UM0MNJKov5Bm3n6+wXeR61vQe37OqOZW2YAGKPZlY8PMP0TVRzd23kuTHHrzVD+A3mUc/oHn0Ryec8BOsw1ggWu/wgqKi4hW/RXvsnNByYGl/KGY79Rrsnp5lzQEGa4mOof/h65Q468o5IZpgsa1uCwgxEaGkkLkUXsf+3XfbmqP5A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PGSebiQwmPPdWBcKmzKbBv1NzSuMoKMA+wf+NeLGXYU=;
+ b=VC8FwlcfBrdZxqs8dcckb52sxS0+tezhLJNFaT5ND+vZfyZXOLcwATDh1q+XHRJXlu9jfyeCPaTmWKI6L0Qd6M3ZIJ/ugtscZjSzQxX5crMrkA0TFnPlwsQtqAROIXeQQGFQxvtHdS3hkSg2ss+As1KIdZf+si3L030y7h6y6L4=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by AM9PR04MB8276.eurprd04.prod.outlook.com (2603:10a6:20b:3e7::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.18; Mon, 5 Sep
+ 2022 05:57:41 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::2d22:3315:6f9b:82c7]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::2d22:3315:6f9b:82c7%5]) with mapi id 15.20.5588.017; Mon, 5 Sep 2022
+ 05:57:41 +0000
+From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de
+Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        aisheng.dong@nxp.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH V4 0/8] arm64: dts: imx93: add several nodes
+Date:   Mon,  5 Sep 2022 13:59:07 +0800
+Message-Id: <20220905055915.3878000-1-peng.fan@oss.nxp.com>
+X-Mailer: git-send-email 2.37.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG2P153CA0004.APCP153.PROD.OUTLOOK.COM (2603:1096::14) To
+ DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp-pmics: Remove reg entry for
- pmc8280c_lpg node
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-arm-msm@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, agross@kernel.org,
-        bhupesh.linux@gmail.com, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>
-References: <20220903084440.1509562-1-bhupesh.sharma@linaro.org>
- <42790a40-458a-55ff-7e4b-796e72f474ac@kernel.org>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-In-Reply-To: <42790a40-458a-55ff-7e4b-796e72f474ac@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: da0d0aee-4001-4f25-3a76-08da8f038b09
+X-MS-TrafficTypeDiagnostic: AM9PR04MB8276:EE_
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: i3zQcJkMSsoOvA4gpIYtPC5OfiFzg2T+s/7YIs3oHdSZwY1jLKellU1rzGECKljElKro2crUrsR/w6du58G7wh7axEwvZ5O9aVxCPLsMje4ENs5I+WJjUspnB6lL7H7gJBli1zdB9uCCafVYIBmyGlFt8D0PMv/CjzThxJIkBfXd52odEzFi1o1UC8C8j/xw4alYdVhAv+YcdrN07+QFBe+Sd656f7sKe0fdx3IfgtTGE0GANjDuBETsZedmowWA4HoxlJ8m0a1EOBh5MClx/YBVSGIaNo/7BExL0X4VyPxT3au6YS7Wk1tg4ZFXBLJMOQEvl85lOvdt0sff861gHdQoUDmtP3EtYxbts1twPAC6/ldUaOK5xf7fczb9A6A4HOeEEwfPH66A9QsGOp9/u+r4EJOFYsFR3WcJouh7yEN+e+OzCJnQVbit/2J+W8ST9jZZ94RQSpGO/DdTJLSk928aFy60S/PiBcfetw2LUTYFyecGivr7KTmT+5xewekxq93fz/qNyBHvrClPfroEwiU9K1nosN1+ZzSAxs4ow1Pzx7zSWykaQfNqUKBOdltMk9GID00hrwKl5+OwhlZHilsGc8DUByWZGnj09bmS4xSOvv6DVtLk7tZdzivcq3T/5N6Edw2nrPgcirLWqzaZGFoNklG1SCAPF8tYVbFrXIScV+uyTg8vl7TXAEY1As+wZzpmT3jfE6eb+NwSjFlrJ1DsgQEqkFCfh60wOMwtelo3ACA/rHF6yUTbrSdBySXOyA9t1foW47nw7vmSJrXoGkK2sSCikWIgj8FvagFhugnhTe1XrCLFAmv41RQmWoPkpAByWNz6Xa+dlu4v8Pg8aQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(39860400002)(366004)(136003)(346002)(396003)(376002)(38100700002)(38350700002)(478600001)(966005)(6486002)(316002)(86362001)(41300700001)(52116002)(6666004)(6506007)(26005)(1076003)(2616005)(2906002)(4326008)(66946007)(66556008)(66476007)(8676002)(186003)(8936002)(5660300002)(6512007)(83380400001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?BqzoJ6yMP4A3zV3qff8ji4nWW5YBL+87aR4XhHqWL7h5YnKq3of56Yai36lJ?=
+ =?us-ascii?Q?T2WRZQducEvDBAGkEiYCFYg1myHYaw7HkEVv7nOU1awf8CxchPT4LaZiIdLf?=
+ =?us-ascii?Q?GouaaDUgJ84YLLSPAi6Jo/jtcHdza1KKsttog4Epyr9H//LRirdwLpKWtB7m?=
+ =?us-ascii?Q?Wsw53ObUFV4znxAGRWR848fR2f9rpX37UdeucIQgH0x3SCR4mpiTGupDNtbd?=
+ =?us-ascii?Q?CsqhSGGlJmLw9y+TPsI56p6HxX/96k/2jAwx8sRFjtClfg/wCVQfNcYDeV/R?=
+ =?us-ascii?Q?wt8hWDyiaEeZ5MCZ7QTUlQtwJktaYwhSunJmi6N1/BBsepHPruTm0xv0dSrE?=
+ =?us-ascii?Q?F7tHP6HFZsKv9LJ5KiuX9zUYUdwIQoBvpVOuvm27TR5ec47E7FouBrxOVeuX?=
+ =?us-ascii?Q?vbcCtaSZQAFWNt/i1UohyzCtTzfflTmHPLCv/8IQ/nsXrnXTk+c21HG7IIoP?=
+ =?us-ascii?Q?8J7VYVs0KuzEh98AhS3Y2AemkR6RzvAt0Qvk7LnA19FysO1x/X36TwJgFrz0?=
+ =?us-ascii?Q?W6pD0UccV6lHx41P0OEXr0SeQabpchlmLDdb3DmjYV5axKpnQnkMSm8OPPkp?=
+ =?us-ascii?Q?PiCppHynmDy0Ak/bsR4OwTBEl99UkrHRdJxtRIZ1IpyO8j7m0n7MA2mt0VRV?=
+ =?us-ascii?Q?pgyYk4I9wLaIuMzwlWXZVR57tsH2JHmOg/D1OGYo5BDbqKSyGASVLyeh1O/Z?=
+ =?us-ascii?Q?Lojs7NCD9BIXqwpCHMnMWMv5teHb8i5e2ZcRHAZE90logHff230QucaeU/Hw?=
+ =?us-ascii?Q?1k8SMYmiWvvES4N6wwdB0k3FGn9CavRkDEyEfkytxmqOwfsFxeR+B6CkNJnJ?=
+ =?us-ascii?Q?oDXBHIB+Tl3PRyYHFTqIHTCmB6pj/ZLpC65Lz4x7DVCFG4D3D5O5KLqowuOx?=
+ =?us-ascii?Q?2KpYH4uhWOjllFDh9A6GMbGIi9Q5f7OZUXzdZr04/cGmkxTH4ewcPiKYdEZA?=
+ =?us-ascii?Q?WcBluVI6eLEZh5mde17IAnQskI+yjx5xNeoY5g3CrzSLgKKzMFZ3M2bCPGoj?=
+ =?us-ascii?Q?8LSUqB8/buBCqBa8MQZ4eHRcYhyxMxY0NVBC5Gy/PL3FEET/wUp1PZltr2P2?=
+ =?us-ascii?Q?MR+/9Kw8gD9OVcnPpTqDq49z7XhxgvnwBSH4Jg5Ofc8OXFx/xy6VP0SeYpRg?=
+ =?us-ascii?Q?k97FU0WAOVo18upHmrJka1tvRDOs2+430cULxv247fiBK7zvIGiHqwiADEkW?=
+ =?us-ascii?Q?g9aslkAJ0pS0FvQHQUh6+1HC/ptrFOlp/sTmn7agIsWJ0D+hBkliTX+X1EWr?=
+ =?us-ascii?Q?qEAJLHaEdRBLXg78EBgHqRokzQRuLRbuu9Bno6uBFGOzk9dF7nNBUKFRC83Z?=
+ =?us-ascii?Q?dhIyV5QKKzBLXEB2Ob0oKWRAVqJO7IVOAui/9o62wTVlrVq+rGNk6AaaidpQ?=
+ =?us-ascii?Q?JofyNeIM+sw7HSGSPvgBPpx48LtMTwG2WD8ZKgeluAcny1gP2IPE55auLtxk?=
+ =?us-ascii?Q?/2ncdLhOnaBMqbJY2mQELJtapCWrPrW1qqpu7S+NwZPTWzJLYUG9lBQEHrPZ?=
+ =?us-ascii?Q?ifgTc0P6Dq1wm7pi0Bm4cor/WOdiMFODJlipFmnXrloNLBxql5XMyR2hLSUC?=
+ =?us-ascii?Q?RXYAqWq2i7oqq5POGUPTjOS5KlCCU/tMkpQNewhF?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: da0d0aee-4001-4f25-3a76-08da8f038b09
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Sep 2022 05:57:41.1657
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: zcwjJ7eD16t1PrhYlyUayAZumIBIRKRzEAO3pR/P2ZRn7ECexTwcBV6hfLQ0MxwMDPxhP1IYjiC0Lgz2UGkKYw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8276
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+From: Peng Fan <peng.fan@nxp.com>
 
-On 9/5/22 12:52 AM, Krzysztof Kozlowski wrote:
-> On 03/09/2022 11:44, Bhupesh Sharma wrote:
->> Commit eeca7d46217c ("arm64: dts: qcom: pm8350c: Drop PWM reg declaration")
->> dropped PWM reg declaration for pm8350c pwm(s), but there is a leftover
->> 'reg' entry inside the lpg/pwm node in sc8280xp dts file. Remove the same.
->>
->> While at it, also remove the unused unit address in the node
->> label.
->>
->> Fixes: eeca7d46217c ("arm64: dts: qcom: pm8350c: Drop PWM reg declaration")
->> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
->> Cc: Bjorn Andersson <andersson@kernel.org>
->> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
->> ---
->>   arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi | 3 +--
->>   1 file changed, 1 insertion(+), 2 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
->> index ae90b97aecb8..2e5cf55afdd5 100644
->> --- a/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
->> @@ -60,9 +60,8 @@ pmc8280c_gpios: gpio@8800 {
->>   			#interrupt-cells = <2>;
->>   		};
->>   
->> -		pmc8280c_lpg: lpg@e800 {
->> +		pmc8280c_lpg: lpg {
-> 
-> I wonder why I did not see the errors when testing all DTSes for
-> https://lore.kernel.org/all/20220828084341.112146-9-krzysztof.kozlowski@linaro.org/
+V4:
+  Per Rob's comment, use syscon.yaml for i.MX93 aonmix/wakeupmix blk ctrl.
+  Drop status okay in s4mu node in patch 4 per Shawn's comment.
 
-I did not see the error while running the 'make dtbs_check' locally, so 
-may be something to improve in 'make dtbs_check' infrastructure there.
+V3:
+ Address DT maintainer's comments in patch 1
 
-> Anyway, it cannot be lpg - binding requires "pwm".
+V2:
+ Add binding doc for aonmix/wakeupmix blk ctrl
+ Update compatible in patch 5 according to binding doc
+ The lpi2c binding doc has been accepted:
+   https://lore.kernel.org/all/Yw3hfcQ2JV248GIo@shikoro/
 
-I think that should be a separate patch. It does not seem related to 
-this change anyways - which fixes eeca7d46217c . I will send a v2 soon.
+V1:
+Add S4MU, BLK CTRL, PMU, LPI2C, LPSPI nodes.
+Add GPIO clk entry.
+Correct SDHC clk entry
+https://patchwork.kernel.org/project/linux-arm-kernel/cover/20220812074609.53131-1-peng.fan@oss.nxp.com/
 
-Thanks,
-Bhupesh
+Peng Fan (8):
+  dt-bindings: mfd: syscon: Add i.MX93 blk ctrl system registers
+  arm64: dts: imx93: correct SDHC clk entry
+  arm64: dts: imx93: add gpio clk
+  arm64: dts: imx93: add s4 mu node
+  arm64: dts: imx93: add blk ctrl node
+  arm64: dts: imx93: add a55 pmu
+  arm64: dts: imx93: add lpi2c nodes
+  arm64: dts: imx93: add lpspi nodes
+
+ .../devicetree/bindings/mfd/syscon.yaml       |   2 +
+ arch/arm64/boot/dts/freescale/imx93.dtsi      | 161 +++++++++++++++++-
+ 2 files changed, 157 insertions(+), 6 deletions(-)
+
+-- 
+2.37.1
+
