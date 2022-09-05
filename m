@@ -2,169 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 772CB5AD34A
-	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 14:59:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 841AF5AD369
+	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 15:06:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236779AbiIEM4d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 08:56:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34532 "EHLO
+        id S235747AbiIENG1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 09:06:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236989AbiIEM4c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 08:56:32 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03A3C20BDF;
-        Mon,  5 Sep 2022 05:56:30 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id z21so1217881edi.1;
-        Mon, 05 Sep 2022 05:56:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=0gAThCdrASz4i29I8aFP1pjqTtXlCGbHPk559uSsFRM=;
-        b=CiK72N0wBCG658QIKiEwIGfl85vMH9/yIlnXeWYA+FAdOycP2NbxES2Ukgh1m/NEZ/
-         Y3yAIyYvuD8CmBREErPwXBCXjUSvaYx+TY/6n0yYb4LmSS0UkCS/y1LgMqmkTbfg/AK6
-         eR9AClrdsu+GX/u65+a7h8Ibd/V3WM327RKa5jSXWkNj9axn7JIe9Yop6PdQPlrafmif
-         nD9zZOJb1K9j1xVEC9FQ6/CLop4m7KP+Q4ITj3Cap93f2M6rvpl2pnp+RIsKGU8PqI52
-         ewPuvC++pY5V01Py870ABd/oQhyHCgWP53WUkdh22XcZn4X1Uaoh3JrHiRp9MRXAzSdD
-         pjnQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=0gAThCdrASz4i29I8aFP1pjqTtXlCGbHPk559uSsFRM=;
-        b=MpmX5BVtyiC1yaD4NX7kkaUhRcSukgkpDrS35zps2QvwjiVWJWkS1r0cbzgCRr4DTK
-         RTfnRyw/VaFZ5HIwn5QHXATWlZd0axaTQSCCRpAXLc8JCQdmQR1yj/7BvqiVwm6MT39S
-         IusTleeH4mWwfCvmrCpLmnp9UGE5PChECkw614leUkDMBd1RKOTanlmjYPAqZXHskCk3
-         GhxQt0RNzZp7kszqeLX9q+yGDH3G8MCCrmaeZFaBSQV+ArNWvK3qCGYrnOZMxbpW8u1K
-         35tmAdRgWzp4xHQdlwnA3yeTABuNBUTfStKVvT+IkQ2xhy252Y1PU6gtjeuDYQl/nrMw
-         +JBQ==
-X-Gm-Message-State: ACgBeo1gU7vNY0vrHk/O+Q7WeDKn53kpU5FpDOWVol6+GiYy/OSCh7dS
-        nQ0NtqVSHdg9Qd3tOoDOoMCVEX2l7Iw=
-X-Google-Smtp-Source: AA6agR7tHQz8yCPykbig7EMDbh8yZ3Z9bpq/JAYy6xdettSljo2LZv2RuRhZyy77J133ZIugYLeqZQ==
-X-Received: by 2002:aa7:c74c:0:b0:44e:a7b9:d5c9 with SMTP id c12-20020aa7c74c000000b0044ea7b9d5c9mr1764250eds.19.1662382588386;
-        Mon, 05 Sep 2022 05:56:28 -0700 (PDT)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id s5-20020aa7cb05000000b0044e9e5ce396sm1109481edt.95.2022.09.05.05.56.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Sep 2022 05:56:27 -0700 (PDT)
-Message-ID: <d314d734-eb9e-1767-6186-b12460eea604@gmail.com>
-Date:   Mon, 5 Sep 2022 14:56:26 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.1.2
-Subject: Re: [PATCH] dt-bindings: pinctrl: update bindings for MT7986 SoC
-Content-Language: en-US
-To:     Peter Chiu <chui-hao.chiu@mediatek.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sean Wang <sean.wang@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Ryder Lee <ryder.Lee@mediatek.com>,
-        Evelyn Tsai <evelyn.tsai@mediatek.com>,
-        Sam Shih <sam.shih@mediatek.com>
-References: <20220902024719.31943-1-chui-hao.chiu@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220902024719.31943-1-chui-hao.chiu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S232053AbiIENG0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 09:06:26 -0400
+Received: from new4-smtp.messagingengine.com (new4-smtp.messagingengine.com [66.111.4.230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBF5B2CCBA
+        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 06:06:25 -0700 (PDT)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 3F23C5801E2;
+        Mon,  5 Sep 2022 09:06:25 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute3.internal (MEProxy); Mon, 05 Sep 2022 09:06:25 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm1; t=1662383185; x=1662386785; bh=Kp/wVnN2IW
+        ryY8ZAuk5Pt4ftsmI3JjqARbKxa9RNpTU=; b=i10vyX6ZbUoxOHJXqKMHBo8Shq
+        3li3jW90wMUCdI2LF9jYL1zm4GXyDN+zeOc/GgQd3nMNQkUG+bGZvPZD2lTT8wlx
+        TLrzIGNCIpiS9DElYiOoh2gk+pYy6lw3gIrqpe/Ml0SVD7jbAYuM0Yis+BPJ1yqD
+        UgTRXw31kkg6gAwmTdfs2VZc/CbDNGO9e50ShcHgSjFxm+dk5CZThv5cXwrPXqCg
+        /9q5NfJC0/DQjsrO4JR8cBaDzcCLiJ8XrtkRrsCcIkJdgDHy1D9SbhhA0zRgg459
+        4VQ7o5Iq15axHmjuURhmFR/unOqxIoqQvrgBt/hhCa7zwo3hQNeA+34xEqJw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm1; t=1662383185; x=1662386785; bh=Kp/wVnN2IWryY8ZAuk5Pt4ftsmI3
+        JjqARbKxa9RNpTU=; b=amB/+fUt2xuOMbLmCpcw52oFfg/UGA3I5jcveDEddjIz
+        szF+8XGJvcaJqFyhObiJvFCaXIrAIgdtgotwuIA51O0FCPuSkBE+QrVESCCCJ1A1
+        03Oyptl8kNLSbztTdqzyUCpRf7im84rIiokLxKrt3f1oqG2Y+RpAzHsitLXaP8/0
+        BbSaE2RCNE5gujccF+fXFwDItx39SbDbceuFYzJButjVPRCB5ny4IjKAhoXPNttN
+        iFwCp8vCUZzVy/TH2udvurHIdVkPlZxTUEnO8Nznlq37/VuziBLF2hWyNRmz5WDH
+        sPuZgdSUEP6KzOgyhnsTrBwognVS0S9FJVHeL1vT4A==
+X-ME-Sender: <xms:UfQVY3Nhw6he0JejgWKlSkmldPgFiropl6IJ8mWLnhdtf_0Ficse5A>
+    <xme:UfQVYx_stzxs8FyOqWwe7S0bWA6AUO_9v97i6ASvsw-75J85PXoevK-qRTfb9JpTC
+    PYL04ajBSZjus-QE1g>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdeliedgiedvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
+    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
+    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
+    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
+    hrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:UfQVY2S7Z57W-Cife8RERGVwZ8x_O4kHAJPjHUAqQ9Bp5kLwq4GYIg>
+    <xmx:UfQVY7sNmmFzI3KYs-KziO_sJfDcLavPeGEdebDGGUH5ZfpgZbxLXw>
+    <xmx:UfQVY_eelQWhz5nerzz5d5QzG-vT-pvNC45fOvmukis0qCWOpM8tsg>
+    <xmx:UfQVYwr0gsVIu1zAmKcjxiJvByRoC_iklIXC42Hx4C-mFWlFsvRmMQ>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id F2F52B60083; Mon,  5 Sep 2022 09:06:24 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-927-gf4c98c8499-fm-20220826.002-gf4c98c84
+Mime-Version: 1.0
+Message-Id: <c587279a-8444-4ffc-b30f-af17d92604d2@www.fastmail.com>
+In-Reply-To: <20220905125343.2769117-1-saproj@gmail.com>
+References: <20220905125343.2769117-1-saproj@gmail.com>
+Date:   Mon, 05 Sep 2022 15:06:04 +0200
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Sergei Antonov" <saproj@gmail.com>, devicetree@vger.kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        "Jonas Jensen" <jonas.jensen@gmail.com>
+Subject: Re: [PATCH v2] ARM: dts: fix Moxa SDIO 'compatible', remove 'sdhci' misnomer
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Sep 5, 2022, at 2:53 PM, Sergei Antonov wrote:
+> Driver moxart-mmc.c has .compatible = "moxa,moxart-mmc".
+>
+> But moxart .dts/.dtsi and the documentation file moxa,moxart-dma.txt
+> contain compatible = "moxa,moxart-sdhci".
+>
+> Change moxart .dts/.dtsi files and moxa,moxart-dma.txt to match the driver.
+>
+> Replace 'sdhci' with 'mmc' in names too, since SDHCI is a different
+> controller from FTSDC010.
+>
+> Signed-off-by: Sergei Antonov <saproj@gmail.com>
+> Suggested-by: Arnd Bergmann <arnd@arndb.de>
+> Cc: Jonas Jensen <jonas.jensen@gmail.com>
 
+Reviewed-by: Arnd Bergmann <arnd@arndb.de>
 
-On 02/09/2022 04:47, Peter Chiu wrote:
-> Add wifi pins in the description and set groups to string-array to support
-> multiple groups in a node.
-> 
-> Reviewed-by: Sam Shih <sam.shih@mediatek.com>
-> Signed-off-by: Peter Chiu <chui-hao.chiu@mediatek.com>
+> v1 -> v2:
+> Per Arnd Bergmann's suggestion, replaced sdhci with mmc in names too.
 
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+Looks good to me now. Let's wait for more comments, or possibly
+for Jonas to pick it up into his tree. If everyone is fine with this
+version, can you send it to soc@kernel.org so I can pick it
+up into the soc tree?
 
-> ---
->   .../pinctrl/mediatek,mt7986-pinctrl.yaml      | 48 +++++++++++--------
->   1 file changed, 28 insertions(+), 20 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml
-> index 4eadea55df10..b08a0a8076e0 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml
-> @@ -117,6 +117,10 @@ patternProperties:
->             "i2s"             "audio"     62, 63, 64, 65
->             "switch_int"      "eth"       66
->             "mdc_mdio"        "eth"       67
-> +          "wf_2g"           "wifi"      74, 75, 76, 77, 78, 79, 80, 81, 82, 83
-> +          "wf_5g"           "wifi"      91, 92, 93, 94, 95, 96, 97, 98, 99, 100
-> +          "wf_dbdc"         "wifi"      74, 75, 76, 77, 78, 79, 80, 81, 82, 83,
-> +                                        84, 85
->   
->           $ref: "/schemas/pinctrl/pinmux-node.yaml"
->           properties:
-> @@ -234,7 +238,9 @@ patternProperties:
->               then:
->                 properties:
->                   groups:
-> -                  enum: [wf_2g, wf_5g, wf_dbdc]
-> +                  $ref: /schemas/types.yaml#/definitions/string-array
-> +                  items:
-> +                    enum: [wf_2g, wf_5g, wf_dbdc]
->         '.*conf.*':
->           type: object
->           additionalProperties: false
-> @@ -248,25 +254,27 @@ patternProperties:
->                 An array of strings. Each string contains the name of a pin.
->                 There is no PIN 41 to PIN 65 above on mt7686b, you can only use
->                 those pins on mt7986a.
-> -            enum: [SYS_WATCHDOG, WF2G_LED, WF5G_LED, I2C_SCL, I2C_SDA, GPIO_0,
-> -                   GPIO_1, GPIO_2, GPIO_3, GPIO_4, GPIO_5, GPIO_6, GPIO_7,
-> -                   GPIO_8, GPIO_9, GPIO_10, GPIO_11, GPIO_12, GPIO_13, GPIO_14,
-> -                   GPIO_15, PWM0, PWM1, SPI0_CLK, SPI0_MOSI, SPI0_MISO, SPI0_CS,
-> -                   SPI0_HOLD, SPI0_WP, SPI1_CLK, SPI1_MOSI, SPI1_MISO, SPI1_CS,
-> -                   SPI2_CLK, SPI2_MOSI, SPI2_MISO, SPI2_CS, SPI2_HOLD, SPI2_WP,
-> -                   UART0_RXD, UART0_TXD, PCIE_PERESET_N, UART1_RXD, UART1_TXD,
-> -                   UART1_CTS, UART1_RTS, UART2_RXD, UART2_TXD, UART2_CTS,
-> -                   UART2_RTS, EMMC_DATA_0, EMMC_DATA_1, EMMC_DATA_2,
-> -                   EMMC_DATA_3, EMMC_DATA_4, EMMC_DATA_5, EMMC_DATA_6,
-> -                   EMMC_DATA_7, EMMC_CMD, EMMC_CK, EMMC_DSL, EMMC_RSTB, PCM_DTX,
-> -                   PCM_DRX, PCM_CLK, PCM_FS, MT7531_INT, SMI_MDC, SMI_MDIO,
-> -                   WF0_DIG_RESETB, WF0_CBA_RESETB, WF0_XO_REQ, WF0_TOP_CLK,
-> -                   WF0_TOP_DATA, WF0_HB1, WF0_HB2, WF0_HB3, WF0_HB4, WF0_HB0,
-> -                   WF0_HB0_B, WF0_HB5, WF0_HB6, WF0_HB7, WF0_HB8, WF0_HB9,
-> -                   WF0_HB10, WF1_DIG_RESETB, WF1_CBA_RESETB, WF1_XO_REQ,
-> -                   WF1_TOP_CLK, WF1_TOP_DATA, WF1_HB1, WF1_HB2, WF1_HB3,
-> -                   WF1_HB4, WF1_HB0, WF1_HB0_B, WF1_HB5, WF1_HB6, WF1_HB7,
-> -                   WF1_HB8]
-> +            $ref: /schemas/types.yaml#/definitions/string-array
-> +            items:
-> +              enum: [SYS_WATCHDOG, WF2G_LED, WF5G_LED, I2C_SCL, I2C_SDA, GPIO_0,
-> +                     GPIO_1, GPIO_2, GPIO_3, GPIO_4, GPIO_5, GPIO_6, GPIO_7,
-> +                     GPIO_8, GPIO_9, GPIO_10, GPIO_11, GPIO_12, GPIO_13, GPIO_14,
-> +                     GPIO_15, PWM0, PWM1, SPI0_CLK, SPI0_MOSI, SPI0_MISO, SPI0_CS,
-> +                     SPI0_HOLD, SPI0_WP, SPI1_CLK, SPI1_MOSI, SPI1_MISO, SPI1_CS,
-> +                     SPI2_CLK, SPI2_MOSI, SPI2_MISO, SPI2_CS, SPI2_HOLD, SPI2_WP,
-> +                     UART0_RXD, UART0_TXD, PCIE_PERESET_N, UART1_RXD, UART1_TXD,
-> +                     UART1_CTS, UART1_RTS, UART2_RXD, UART2_TXD, UART2_CTS,
-> +                     UART2_RTS, EMMC_DATA_0, EMMC_DATA_1, EMMC_DATA_2,
-> +                     EMMC_DATA_3, EMMC_DATA_4, EMMC_DATA_5, EMMC_DATA_6,
-> +                     EMMC_DATA_7, EMMC_CMD, EMMC_CK, EMMC_DSL, EMMC_RSTB, PCM_DTX,
-> +                     PCM_DRX, PCM_CLK, PCM_FS, MT7531_INT, SMI_MDC, SMI_MDIO,
-> +                     WF0_DIG_RESETB, WF0_CBA_RESETB, WF0_XO_REQ, WF0_TOP_CLK,
-> +                     WF0_TOP_DATA, WF0_HB1, WF0_HB2, WF0_HB3, WF0_HB4, WF0_HB0,
-> +                     WF0_HB0_B, WF0_HB5, WF0_HB6, WF0_HB7, WF0_HB8, WF0_HB9,
-> +                     WF0_HB10, WF1_DIG_RESETB, WF1_CBA_RESETB, WF1_XO_REQ,
-> +                     WF1_TOP_CLK, WF1_TOP_DATA, WF1_HB1, WF1_HB2, WF1_HB3,
-> +                     WF1_HB4, WF1_HB0, WF1_HB0_B, WF1_HB5, WF1_HB6, WF1_HB7,
-> +                     WF1_HB8]
->   
->             bias-disable: true
->   
+     Arnd
