@@ -2,59 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDD105AC92D
-	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 05:41:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00BE15AC972
+	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 06:25:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236013AbiIEDl2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Sep 2022 23:41:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36044 "EHLO
+        id S234424AbiIEEZr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 00:25:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230013AbiIEDl0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Sep 2022 23:41:26 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EA382A94D;
-        Sun,  4 Sep 2022 20:41:26 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 902FECE0FAA;
-        Mon,  5 Sep 2022 03:41:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9530C433D6;
-        Mon,  5 Sep 2022 03:41:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1662349282;
-        bh=HfIID0O+0aFGHzgZtHfS/CQNHIMr9Do6LgHjvPSu/sc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=YBT0YIs19+XLwmftEL5uXV3FkxVUChpW7MsRiaMi2SE7i5LUllM646pSv/gB5Wv3O
-         aaCuA4HAlDIl5VoH7T9F9jslKZzbEvJhT1Mvj7+EaYSgl2hEwYJjclVfQQjCC3M/jP
-         sBHKkmste/7Ux3POr2stwhghYH6k+YDmofhAzuuiF7b8tGmuv78xMuaAVD0Kdagruk
-         DOgF8ttta88IEPj8/TaDYzhbuRy9rs2QSlXBCGE54KQnZZxczAQf8ElhEVJ4vfmxFL
-         r5ixMLLSSQEqfWNbRgiOSyYf+iVgYgSrEzjQi/kvY7c24qcfMd4chRQsqDCHzgq+GO
-         zu1AmbMlmAwww==
-Date:   Mon, 5 Sep 2022 11:41:15 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Marcel Ziswiler <marcel@ziswiler.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Philippe Schenker <philippe.schenker@toradex.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 0/4] arm64: dts: verdin-imx8mm: display and pmic
- related additions and fixes
-Message-ID: <20220905034115.GL1728671@dragon>
-References: <20220901100151.1378709-1-marcel@ziswiler.com>
+        with ESMTP id S232094AbiIEEZq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 00:25:46 -0400
+Received: from mail-sz.amlogic.com (mail-sz.amlogic.com [211.162.65.117])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0C60255BF;
+        Sun,  4 Sep 2022 21:25:44 -0700 (PDT)
+Received: from [10.88.37.128] (10.88.37.128) by mail-sz.amlogic.com
+ (10.28.11.5) with Microsoft SMTP Server id 15.1.2507.6; Mon, 5 Sep 2022
+ 12:25:40 +0800
+Message-ID: <4a96523d-6f11-00be-0c37-4716d1289989@amlogic.com>
+Date:   Mon, 5 Sep 2022 12:25:36 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220901100151.1378709-1-marcel@ziswiler.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.1
+Subject: Re: [PATCH v6 2/4] docs/perf: Add documentation for the Amlogic G12
+ DDR PMU
+To:     Chris Healy <cphealy@gmail.com>
+CC:     linux-kernel <linux-kernel@vger.kernel.org>,
+        linux ARM <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Will Deacon <will@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        kernel test robot <lkp@intel.com>
+References: <20220901024526.2833232-1-jiucheng.xu@amlogic.com>
+ <20220901024526.2833232-2-jiucheng.xu@amlogic.com>
+ <CAFXsbZoFYp_SNEjH0QE=A09JQe8qt1APwnNb9u6KsO5UAL50-A@mail.gmail.com>
+Content-Language: en-US
+From:   Jiucheng Xu <jiucheng.xu@amlogic.com>
+In-Reply-To: <CAFXsbZoFYp_SNEjH0QE=A09JQe8qt1APwnNb9u6KsO5UAL50-A@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.88.37.128]
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -63,19 +56,142 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 01, 2022 at 12:01:47PM +0200, Marcel Ziswiler wrote:
-> From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-> 
-> 
-> This series contains a few display and PMIC related additions and fixes.
-> 
-> 
-> Marcel Ziswiler (2):
->   arm64: dts: verdin-imx8mm: rename sn65dsi83 to sn65dsi84
->   arm64: dts: verdin-imx8mm: add lvds panel node
-> 
-> Philippe Schenker (2):
->   arm64: dts: verdin-imx8mm: introduce hdmi-connector
->   arm64: dts: imx8mm-verdin: extend pmic voltages
 
-Applied all, thanks!
+On 2022/9/4 1:35, Chris Healy wrote:
+> [ EXTERNAL EMAIL ]
+>
+> On Wed, Aug 31, 2022 at 7:45 PM Jiucheng Xu <jiucheng.xu@amlogic.com> wrote:
+>> Add a user guide to show how to use DDR PMU to
+>> monitor DDR bandwidth on Amlogic G12 SoC
+>>
+>> Signed-off-by: Jiucheng Xu <jiucheng.xu@amlogic.com>
+>> Reported-by: kernel test robot <lkp@intel.com>
+>> ---
+>> Changes v6 -> v5:
+>>    - No change
+>>
+>> Changes v5 -> v4:
+>>    - Fix building warning
+>>
+>> Changes v3 -> v4:
+>>    - No change
+>>
+>> Changes v2 -> v3:
+>>    - Rename doc name from aml-ddr-pmu.rst to meson-ddr-pmu.rst
+>>
+>> Changes v1 -> v2:
+>>    - Nothing was changed
+>> ---
+>>   Documentation/admin-guide/perf/index.rst      |  1 +
+>>   .../admin-guide/perf/meson-ddr-pmu.rst        | 70 +++++++++++++++++++
+>>   MAINTAINERS                                   |  1 +
+>>   3 files changed, 72 insertions(+)
+>>   create mode 100644 Documentation/admin-guide/perf/meson-ddr-pmu.rst
+>>
+>> diff --git a/Documentation/admin-guide/perf/index.rst b/Documentation/admin-guide/perf/index.rst
+>> index 69b23f087c05..997a28e156c1 100644
+>> --- a/Documentation/admin-guide/perf/index.rst
+>> +++ b/Documentation/admin-guide/perf/index.rst
+>> @@ -17,3 +17,4 @@ Performance monitor support
+>>      xgene-pmu
+>>      arm_dsu_pmu
+>>      thunderx2-pmu
+>> +   meson-ddr-pmu
+>> diff --git a/Documentation/admin-guide/perf/meson-ddr-pmu.rst b/Documentation/admin-guide/perf/meson-ddr-pmu.rst
+>> new file mode 100644
+>> index 000000000000..28e9910940d0
+>> --- /dev/null
+>> +++ b/Documentation/admin-guide/perf/meson-ddr-pmu.rst
+>> @@ -0,0 +1,70 @@
+>> +.. SPDX-License-Identifier: GPL-2.0
+>> +
+>> +===========================================================
+>> +Amlogic SoC DDR Bandwidth Performance Monitoring Unit (PMU)
+>> +===========================================================
+>> +
+>> +There is a bandwidth monitor inside the DRAM contorller. The monitor include
+> Fix spelling of word "controller" and add an s to the end of include
+Oh, I will update it in next version.
+>
+>> +4 channels which can count the read/write request of accessing DRAM individually.
+>> +It can be helpful to show if the performance bottleneck is on DDR bandwidth.
+>> +
+>> +Currently, this driver supports the following 5 Perf events:
+>> +
+>> ++ meson_ddr_bw/total_rw_bytes/
+>> ++ meson_ddr_bw/chan_1_rw_bytes/
+>> ++ meson_ddr_bw/chan_2_rw_bytes/
+>> ++ meson_ddr_bw/chan_3_rw_bytes/
+>> ++ meson_ddr_bw/chan_4_rw_bytes/
+>> +
+>> +meson_ddr_bw/chan_{1,2,3,4}_rw_bytes/ events are the channel related events.
+>> +Each channel support using keywords as filter, which can let the channel
+>> +to monitor the individual IP module in SoC.
+>> +
+>> +The following keywords are the filter:
+>> +
+>> ++ arm             - DDR access request from CPU
+>> ++ vpu_read1       - DDR access request from OSD + VPP read
+>> ++ gpu             - DDR access request from 3D GPU
+>> ++ pcie            - DDR access request from PCIe controller
+>> ++ hdcp            - DDR access request from HDCP controller
+>> ++ hevc_front      - DDR access request from HEVC codec front end
+>> ++ usb3_0          - DDR access request from USB3.0 controller
+>> ++ hevc_back       - DDR access request from HEVC codec back end
+>> ++ h265enc         - DDR access request from HEVC encoder
+>> ++ vpu_read2       - DDR access request from DI read
+>> ++ vpu_write1      - DDR access request from VDIN write
+>> ++ vpu_write2      - DDR access request from di write
+>> ++ vdec            - DDR access request from legacy codec video decoder
+>> ++ hcodec          - DDR access request from H264 encoder
+>> ++ ge2d            - DDR access request from ge2d
+>> ++ spicc1          - DDR access request from SPI controller 1
+>> ++ usb0            - DDR access request from USB2.0 controller 0
+>> ++ dma             - DDR access request from system DMA controller 1
+>> ++ arb0            - DDR access request from arb0
+>> ++ sd_emmc_b       - DDR access request from SD eMMC b controller
+>> ++ usb1            - DDR access request from USB2.0 controller 1
+>> ++ audio           - DDR access request from Audio module
+>> ++ sd_emmc_c       - DDR access request from SD eMMC c controller
+>> ++ spicc2          - DDR access request from SPI controller 2
+>> ++ ethernet        - DDR access request from Ethernet controller
+>> +
+>> +
+>> +The following command is to show the total DDR bandwidth:
+>> +
+>> +  .. code-block:: bash
+>> +
+>> +      perf stat -a -e meson_ddr_bw/total_rw_bytes/ -I 1000 sleep 10
+>> +
+>> +This command will print the total DDR bandwidth per second.
+>> +
+>> +The following commands are to show how to use filter parameters:
+>> +
+>> +  .. code-block:: bash
+>> +
+>> +      perf stat -a -e meson_ddr_bw/chan_1_rw_bytes,arm=1/ -I 1000 sleep 10
+>> +      perf stat -a -e meson_ddr_bw/chan_2_rw_bytes,gpu=1/ -I 1000 sleep 10
+>> +      perf stat -a -e meson_ddr_bw/chan_3_rw_bytes,arm=1,gpu=1/ -I 1000 sleep 10
+>> +
+>> +The 1st command show how to use channel 1 to monitor the DDR bandwidth from ARM.
+>> +The 2nd command show using channel 2 to get the DDR bandwidth of GPU.
+>> +The 3rd command show using channel 3 to monitor the sum of ARM and GPU.
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index ac8a98dfbacc..8ee68e699e6d 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -1054,6 +1054,7 @@ AMLOGIC DDR PMU DRIVER
+>>   M:     Jiucheng Xu <jiucheng.xu@amlogic.com>
+>>   S:     Supported
+>>   W:     http://www.amlogic.com
+>> +F:     Documentation/admin-guide/perf/meson-ddr-pmu.rst
+>>   F:     drivers/perf/amlogic/
+>>   F:     include/soc/amlogic/
+>>
+>> --
+>> 2.25.1
+>>
+-- 
+Thanks,
+Jiucheng
+
