@@ -2,64 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A31E5AD610
-	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 17:19:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24ECD5AD615
+	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 17:19:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236903AbiIEPTD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 11:19:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46508 "EHLO
+        id S237949AbiIEPTE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 11:19:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238684AbiIEPSm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 11:18:42 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37AFF2496A;
-        Mon,  5 Sep 2022 08:18:38 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id E7C3DB811E0;
-        Mon,  5 Sep 2022 15:18:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD902C433C1;
-        Mon,  5 Sep 2022 15:18:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1662391115;
-        bh=OYPiTnXo7bb7hJwVSPWes/+Nq+zYOTrTHyss+h6VYo4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SDxfRg7k2JMjGFkMn8+/LTZSQNlWWnzMBv8TiM+aZG8WfpCklOb/zYAqZM4XE+fpY
-         rs2rNTcqypi/Ymx66IECFIq8P0LnEAeumaycw1PLF94hacP8yD68/JeeoptW5Lx5Vl
-         57nufRRk4GhwDzlKg7oQMkrAgFpjFa1ZtYo0fvLh0XnVE5uTfTSh5+kjy7DoDp/wOY
-         xqntjmtzikCy2OmKXCYmmlAohAO13PluvsZ8YxrWTYJey/1rAIgZG58iRjY3eGIGLB
-         1Fwo6+Ls6SieLxlyJ4ygC8DlLJX7pxvZm78wBH1qEClQCJdIiEF/JnguTag1WzkZLm
-         04sga6uQd9+uA==
-Date:   Mon, 5 Sep 2022 16:18:12 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     ChiaEn Wu <peterwu.pub@gmail.com>
-Cc:     daniel.thompson@linaro.org, jingoohan1@gmail.com, pavel@ucw.cz,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, sre@kernel.org, jic23@kernel.org,
-        lars@metafoo.de, deller@gmx.de, broonie@kernel.org,
-        mazziesaccount@gmail.com, andriy.shevchenko@linux.intel.com,
-        chiaen_wu@richtek.com, alice_chen@richtek.com,
-        cy_huang@richtek.com, dri-devel@lists.freedesktop.org,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-iio@vger.kernel.org,
-        linux-fbdev@vger.kernel.org, szunichen@gmail.com,
-        andy.shevchenko@gmail.com, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v9 04/10] dt-bindings: backlight: Add MediaTek MT6370
- backlight
-Message-ID: <YxYSDSlnOELL2mPF@google.com>
-References: <20220830034042.9354-2-peterwu.pub@gmail.com>
- <20220830034042.9354-5-peterwu.pub@gmail.com>
+        with ESMTP id S238711AbiIEPSn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 11:18:43 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 134FD23BF8
+        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 08:18:38 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id j14so13568414lfu.4
+        for <devicetree@vger.kernel.org>; Mon, 05 Sep 2022 08:18:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=swhM6AzvTh3Wgq6o5hGnrDmFgtPvuciwbkOwaBUpKl8=;
+        b=lZL+fyzvTbG/mJAiV0+TOoVnQmmtjGh33kdIIjy6EAVXpkN4HD92LFEdAMVsXkILh6
+         +w8eTWAAFfxmcdfyug2z2rEZEZXj35YNl9RT+GBeZs2fvwoQlJcou9IkRu2SmtwlFsG7
+         w1BBxLIzJP6sI51V5FyswGq0rx6uIjl56O8BBmv1Q5Ua71A4vSfmcSPj6fckd3G0C2Wa
+         RyoUPooOcsS47q0XgLerOKI7+q/0YAMexR3gtMC7dmhGJW+DXfto4/hc2mCbKsZLQVSO
+         UMG0REQ3NsKMNfqb6GblPYmybJ/3VSveN5lROdV0hE88nkBf63LLWJujT9b5hdCgPluY
+         OVJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=swhM6AzvTh3Wgq6o5hGnrDmFgtPvuciwbkOwaBUpKl8=;
+        b=ugY8OKkZJeNiQQRLMDgXusr5Rknie7mt2EVcLldFGx+1ng462IbK2q1pVVOjgSp5V1
+         KMOZILj5pRYFTFdeI8dVcKd69HheyqSgWwbKWsDPV4tOPRIGQIWveYfqOSHO7O2NpXAW
+         y0qDPvyDF4KKnphUq9PgFWweF6dv90h1FLfJ9ChWwJEj1R0ttkQNdzx9y2mGa6RukBJu
+         v4jHEh2TpLA0Xi435KhxFMtzi0MuBHujW5u9sAJ6xQNY+oCbAR70KT8OMLxu5V88pVlk
+         eKzJi2K2GBOXkkiCgjTdHU6CATJjKbZTX6+MFEHl4nY5FPKQ5O4yoFHBHWFxtTuUkllo
+         B/Kw==
+X-Gm-Message-State: ACgBeo0ebohXAxQqkveq1In3Wll18HLawEfjkHkWrheVJ6APvNy9QC3B
+        2oYbGYvGyov1XixtsnyvIy/Bfw==
+X-Google-Smtp-Source: AA6agR6Waph4vINF+QqSLLaSgRA4/o6x+7YeW9rnIpKNWQUC3Tbn91ovY2H91LjdYBcOeLc0sWwb2Q==
+X-Received: by 2002:a05:6512:110d:b0:494:7626:57a0 with SMTP id l13-20020a056512110d00b00494762657a0mr9821197lfg.302.1662391116342;
+        Mon, 05 Sep 2022 08:18:36 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id s3-20020a056512202300b0048b064707ebsm26105lfs.103.2022.09.05.08.18.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 Sep 2022 08:18:35 -0700 (PDT)
+Message-ID: <0abb9a84-f9cc-8263-8842-74b9bbe86748@linaro.org>
+Date:   Mon, 5 Sep 2022 17:18:34 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220830034042.9354-5-peterwu.pub@gmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v1 1/2] dt-bindings: rtc: add Maxim max31329 rtc device
+ tree bindings
+Content-Language: en-US
+To:     Jagath Jog J <jagathjog1996@gmail.com>,
+        alexandre.belloni@bootlin.com, a.zummo@towertech.it,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-rtc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20220904044708.7062-1-jagathjog1996@gmail.com>
+ <20220904044708.7062-2-jagathjog1996@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220904044708.7062-2-jagathjog1996@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,22 +78,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 30 Aug 2022, ChiaEn Wu wrote:
-
-> From: ChiYuan Huang <cy_huang@richtek.com>
+On 04/09/2022 06:47, Jagath Jog J wrote:
+> Document devicetree bindings for the Maxim max31329 Real Time Clock.
 > 
-> Add MT6370 backlight binding documentation.
-> 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Daniel Thompson <daniel.thompson@linaro.org>
-> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> Signed-off-by: ChiaEn Wu <chiaen_wu@richtek.com>
+> Signed-off-by: Jagath Jog J <jagathjog1996@gmail.com>
 > ---
->  .../leds/backlight/mediatek,mt6370-backlight.yaml  | 121 +++++++++++++++++++++
->  1 file changed, 121 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/leds/backlight/mediatek,mt6370-backlight.yaml
+>  .../bindings/rtc/maxim,max31329.yaml          | 59 +++++++++++++++++++
+>  1 file changed, 59 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/rtc/maxim,max31329.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/rtc/maxim,max31329.yaml b/Documentation/devicetree/bindings/rtc/maxim,max31329.yaml
+> new file mode 100644
+> index 000000000000..757f1ac4fdc2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/rtc/maxim,max31329.yaml
+> @@ -0,0 +1,59 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/rtc/maxim,max31329.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Maxim MAX31329 Real Time Clock
+> +
+> +allOf:
+> +  - $ref: rtc.yaml#
 
-Applied, thanks.
+If there is going to be resend, put the allOf after maintainers. In any
+case:
 
--- 
-Lee Jones [李琼斯]
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
+
+Best regards,
+Krzysztof
