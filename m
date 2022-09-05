@@ -2,417 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B7FE45AD47E
-	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 16:07:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31ACA5AD484
+	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 16:10:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237724AbiIEOFl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 10:05:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52712 "EHLO
+        id S236700AbiIEOKI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 10:10:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237682AbiIEOFk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 10:05:40 -0400
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2050.outbound.protection.outlook.com [40.107.243.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F33161F2D9;
-        Mon,  5 Sep 2022 07:05:38 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YeBPqteXi8GidNhg/MvsT6eNeIwhLcYsX/BXyXybhozWDaBAW3J1jjQOncAPHdRk2SfH9d/9zi1aaXII4q52D20sNscDHEJ0vMXISF134ZbWdP/46zHqpO8dMi7Lx/G6ZmP1XOGKvLfy7F4Ar5IdlX7o8igqsWq8Q1WVuT7IDohF1YD7gN4mSxqV+D26TR3XmE6PK4GuY6BtbH5RnOqkqEDoIZAxu8EdIUeaLvZx+6XnMBaaZWD1R3ocpOJV7NZw/f6OR3e9tJKxaKNh9xU43r073PMHsnPZiuTSvSKpmOvkej5yjo+w7bbiJJde/61sRtzdFUUJ1XJi9mKFc0vRqA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=c59fmMfYgG73wfQUjMJNsEyCAoi2DfmvP3urzdWwrZ4=;
- b=TZjwKmWIAeBzRIELyscFSUBS1bQf/dr6vFImkJDtYKxJigB1X0kljxOUVNSEZnSK9epYF/v4LB7l/FzwZSYmR5m3yu/iPMYTbsbhm6jmNgLsYpseQMXyMcrceF2ezBOEDQUgGhinT3kuuX3u9wU5kPG0qvTcYBzB01z5jIcDmDnM2S2nn2bLBhg5Ldy3XpyjFd6mj4XEVlsdeOZY8kWzWfbpif+2tcWYYhUChw9q8lUtIXrU3PbpGoKDyUkiautH0LEc2emgK+V9w4u3Vp21mrMHeuYs9Wg2qHWz2O1PL51ry2BbtPtHL4TPNNP33j02TlxnwCSOyaG9lbhBbxe8pA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=c59fmMfYgG73wfQUjMJNsEyCAoi2DfmvP3urzdWwrZ4=;
- b=LbngVA/esBC5ABuc/gI7n2ecf23yewG8HrqisYIEkU9bEuedwBGfrafqgEaYAnzuvG3Y/cL5WTLd9fvdHawAm2UlH4imtyrm6xK6Fi7ar5aT3NGHk0qSfB5EnEJP+wGAa/XbbAArr6TuaXlewx3deppyQeeceq+NbObPE80ftfw=
-Received: from DM6PR12MB3082.namprd12.prod.outlook.com (2603:10b6:5:11b::12)
- by DM4PR12MB6592.namprd12.prod.outlook.com (2603:10b6:8:8a::9) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5588.18; Mon, 5 Sep 2022 14:05:36 +0000
-Received: from DM6PR12MB3082.namprd12.prod.outlook.com
- ([fe80::4c82:abe6:13a6:ac74]) by DM6PR12MB3082.namprd12.prod.outlook.com
- ([fe80::4c82:abe6:13a6:ac74%3]) with mapi id 15.20.5588.014; Mon, 5 Sep 2022
- 14:05:36 +0000
-From:   "Gupta, Nipun" <Nipun.Gupta@amd.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "rafael@kernel.org" <rafael@kernel.org>,
-        "eric.auger@redhat.com" <eric.auger@redhat.com>,
-        "alex.williamson@redhat.com" <alex.williamson@redhat.com>,
-        "cohuck@redhat.com" <cohuck@redhat.com>,
-        "Gupta, Puneet (DCG-ENG)" <puneet.gupta@amd.com>,
-        "song.bao.hua@hisilicon.com" <song.bao.hua@hisilicon.com>,
-        "mchehab+huawei@kernel.org" <mchehab+huawei@kernel.org>,
-        "maz@kernel.org" <maz@kernel.org>,
-        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
-        "jeffrey.l.hugo@gmail.com" <jeffrey.l.hugo@gmail.com>,
-        "saravanak@google.com" <saravanak@google.com>,
-        "Michael.Srba@seznam.cz" <Michael.Srba@seznam.cz>,
-        "mani@kernel.org" <mani@kernel.org>,
-        "yishaih@nvidia.com" <yishaih@nvidia.com>,
-        "jgg@ziepe.ca" <jgg@ziepe.ca>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "kvm@vger.kernel.org" <kvm@vger.kernel.org>
-CC:     "okaya@kernel.org" <okaya@kernel.org>,
-        "Anand, Harpreet" <harpreet.anand@amd.com>,
-        "Agarwal, Nikhil" <nikhil.agarwal@amd.com>,
-        "Simek, Michal" <michal.simek@amd.com>,
-        "git (AMD-Xilinx)" <git@amd.com>
-Subject: RE: [RFC PATCH v2 1/6] Documentation: DT: Add entry for CDX
- controller
-Thread-Topic: [RFC PATCH v2 1/6] Documentation: DT: Add entry for CDX
- controller
-Thread-Index: AQHYskrtUUKhcm3XXUSWCYusxie1ua20bGaAgByNxZA=
-Date:   Mon, 5 Sep 2022 14:05:35 +0000
-Message-ID: <DM6PR12MB308211F26296F3B816F3F005E87F9@DM6PR12MB3082.namprd12.prod.outlook.com>
-References: <20220803122655.100254-1-nipun.gupta@amd.com>
- <20220817150542.483291-1-nipun.gupta@amd.com>
- <20220817150542.483291-2-nipun.gupta@amd.com>
- <93f080cd-e586-112f-bac8-fa2a7f69efb3@linaro.org>
-In-Reply-To: <93f080cd-e586-112f-bac8-fa2a7f69efb3@linaro.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Enabled=true;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SetDate=2022-09-05T14:07:37Z;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Method=Standard;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_Name=General;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ActionId=c064c1d3-c8fd-47f4-84dc-27208cf1c6c7;
- MSIP_Label_4342314e-0df4-4b58-84bf-38bed6170a0f_ContentBits=1
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: a0223f08-7f25-4b18-1dc3-08da8f47b47b
-x-ms-traffictypediagnostic: DM4PR12MB6592:EE_
-x-ld-processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: fF1w2sH6qhwRHcAWeKe46jf9bidUWP+l8cYcY4ShekToPZyzdIEwAHDiKTdHNcORFryuHaRnCUN2GEsnG4pueJ/09ia95G78panrxWOHfzQDtIh4mOX8fsE5tcqRpe3/YZkeEZX3JDsRJfmBm4bZuGlLUcfIBl8qZaJqVZAJyhREcu6ok1KoV55MXU4gIQKhmdXY15AE2EY4HW4LWOWFe/D3kcML3qSERrxp1NljIU9JyjUnmbvxYhNqxo8GVHuBbpRRx+Ug0kEVaH1jiIkysiw/7zgnwEh9G4gLcqmxgjCiBGAl8Z1KpYmUd7U7GAl0KV5PLWu2RSrSlT55zoXCnyzQAM2tFK2KJn51Amiic3g2ntTenXrORf8OuNR4SGwjKP4TDOTIjnWpY8CM+Htpx3WPTIh39bzedqiHo4J6vCy/Vqqx6uHF//m4JLsCw2Hjc653Igbw5jEtehfK4/tVXymkBFgoDpxKDwFhravpbF/oKH7tGfYpmE0W+vMZS3XOgbV1iu2OUX+/c9wtQgNFICH2EI/BhWyeFpYC1XvdafOMTJU+Y0/qPGXcO8T6oj/qDq9wg5uJy63qPB9W1MADdfHePY+J7t9FpA94W/0Lz3bB89FPLBfZIERgFqDGDS7Z5kw3SMSnJtFNw87ywV/amehfj8ENb01j62aGDimuGjKhCOnHsgFQmxkCN4T3IShl16uGhLHSHAxV1re57rdOdTkTi/pDS/V4UcCHESapd/b3v2clEfkQA88c31d6Jd6mY4qma4oBG/rihxg3tI/UNsvebuzWLJYZlmY2m2OhRluzBxaRWNx0dyN7mPsgSpEiYeV9e/rQZ7EGYV8e/FqX0SswrOrzJUULi7n0/RDGkkU=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR12MB3082.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(396003)(39860400002)(376002)(366004)(136003)(346002)(33656002)(83380400001)(8676002)(76116006)(66446008)(66556008)(66946007)(66476007)(4326008)(316002)(110136005)(41300700001)(64756008)(45080400002)(54906003)(26005)(86362001)(9686003)(186003)(8936002)(52536014)(7416002)(55016003)(2906002)(5660300002)(921005)(38070700005)(53546011)(38100700002)(6506007)(55236004)(71200400001)(7696005)(478600001)(966005)(122000001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?M7lkAz/fg6fiEI32FDwdbEzY7u6u4Z6ApEYfG3QT9ZT4ZAFQPHzFspadn2km?=
- =?us-ascii?Q?0OzKJjMITwK+nUauuRTOXqRZprCB+RnA0HuD0Z9+ja9VmUJMhJceOi24G0Q9?=
- =?us-ascii?Q?JYFXpXnBA+D2GuGU+hpi0yiFQnB8z6cSuWU6yIoUXX47LdFhggvIYrDDLWg3?=
- =?us-ascii?Q?mDq4DEEGTuSFO286PSw7nkZly8NIaEw6L7vd8vWf4wBEGE8uXoWBrQGCKwP8?=
- =?us-ascii?Q?SEDui4Llibp++P48tcpN9Yxhl2mKgzDeCyEKkSfIwuVtsdSRf8tXn81znzHc?=
- =?us-ascii?Q?C+mxLhwfTW/Aw/zwEXIkmtmxkfhnj+dvvfcFwd6DDHpoX7N5uAdyorW46lga?=
- =?us-ascii?Q?o15hto9aAT6WiUT90GDM3WGisX4QHkcgB3AFA8mIBLvlz0YhErq+kNKmQP67?=
- =?us-ascii?Q?Soh2UgxbKAjrxJ5O3Z5Sk7LuhmloO1BRqonU0R8QEUeXmqJ865iHVOAdAJr8?=
- =?us-ascii?Q?eTl7xYlWmh1EEJKzw8G2KfZR19Ev3oXgsDqaVw8F36XQw9V3RD/G75ZEyeZc?=
- =?us-ascii?Q?vNAYAOHYveW9S35wPjPno6ESKSG3FlF5MAfqgTmTLQY7DA0lwzfKFVQ44/gC?=
- =?us-ascii?Q?EDaBSaL8/7iGhiga2x3VrrcYVXGE6pzmPf4Py9f/yEKKzxOVm3xj0GgRMiMX?=
- =?us-ascii?Q?lSBFQ5jG1GGJlH6MvHk7MeOSzx7rtoDbOKct9gX1UXapNjSjtnda87vox34Q?=
- =?us-ascii?Q?vH2ZtZmE8X06jPVblSBuTAW/vKUWy4C3Hvcpd998NuNY8JFzqK7gAnSDsZrA?=
- =?us-ascii?Q?ZkdmTYXuofIlGuzOE2f4GMbdyAc1zwX3AREWXpoI8TpCshWtjEP80RCVSLSe?=
- =?us-ascii?Q?B4LWn3IpMMCFzbfzzHAXBqWjSx/hyU0TITX6JtehkZr0vURYbmFRsRzAGknT?=
- =?us-ascii?Q?kEUUAce3vX1zbbW5LkK9ldxEz9lOJATFP7cq6FxbG3kJ3Cw5M2uGURs1LhjP?=
- =?us-ascii?Q?kY4WbZxuetKHR9szqkv0Djk3z3bw+NJa8fnoJm8UtHLEc/gC80HkAFNwGczv?=
- =?us-ascii?Q?o0VD3fR1IgnemBoP9RhAk9XxMZFziQJDb15mT1IcgTAiZ7KB77+nq6XM7TyE?=
- =?us-ascii?Q?AbA/g7pKLZy0UhL2vtQJX6Rb3JpoHSo+GSBLUx14HN4SG7I16dbZBL6r4KU7?=
- =?us-ascii?Q?k3qr3bZi6stGmSF9LCX17xGwTApa13lT5z2kqoTG6yPNaLh3Y8YiC7BKIX+a?=
- =?us-ascii?Q?sGAADFniv9o/wDmWaphr1FoVODjYE7yEvovdSNcWfsSxxmukQ8qcx11jGID1?=
- =?us-ascii?Q?niU24QQXRBSvUz8W4Q0jR1XpazWnpVkRlpZ3jcCBsOzpVT6gPr3mjBhhr6zX?=
- =?us-ascii?Q?N1ogFE+s4Y39b3RVAnfknauaVPA4xsfP/bBR7APNtNdF+BqqQikPf6NsHQWi?=
- =?us-ascii?Q?bcxW2Dw/FB9QpBwc36Q8HVGg44ykK2J65Sng9wts3Cr7lhqGuLaPhp6fukHZ?=
- =?us-ascii?Q?UMf+0v9jKyNZF+VM38s2wpLfwfFP/ztEMGbOGyS06UhzkzpDCDInh4SMGtI3?=
- =?us-ascii?Q?9A1L7h+HMJlCvpRQ4DsFPVa3U8GgwuCE3ywUyvf089KD6rxWgONNItPGxRBi?=
- =?us-ascii?Q?PBpWzMB6icB8Hk/rhFQ=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S236239AbiIEOKG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 10:10:06 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9336A24BE7
+        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 07:10:04 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id k22so9390520ljg.2
+        for <devicetree@vger.kernel.org>; Mon, 05 Sep 2022 07:10:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=FKN1JOpDZtlbeNH8OIC4d4elRGYKKYcfRFewHUVoXLQ=;
+        b=nhCfu42JMTUoCYmeHuznAOkwdGoFHHmYtyOQsi0ncymt29bL0tZXsWJUKM6d96wpre
+         VgluOotao0toEOAe1h3R7rChL5HrvPKvMtHLTznzsBbbLvZ0gQY6jKVLtXt1FDquRtHV
+         kaSi4FGa2RH9Mz9rbtg4T02rAsO8vjxfMN4rQBAUSSLMMX3ki5DqgvO9BTnfeCv4zoOB
+         ai2E5pPSDB2wvgPGRV7W6pPcqb9JchZ6vHz3MwEtJomobJ3GL++ImY+OpWL1eByTLnns
+         0CNMzvPPK5JZiCwo+tpOpUNpiIohfNjeMAo7OtjbzZEEiAVlPdONjEjMAQ74qaaW2WGg
+         3hmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=FKN1JOpDZtlbeNH8OIC4d4elRGYKKYcfRFewHUVoXLQ=;
+        b=ienkQCMAUMkwSgnKFnr+2JnC3Q+ghR35gB7bcVfbTxOMCmYwRcOcsnFbhQVHvEfexK
+         v1mJOc6mSqHow4VJlKfbrd2woq9qWZ7D209Ml2j+rpariCoz/Z6XP3bY2erusi7BKNLS
+         4cO4qOwBp2ijoAQNQa1yvk2cA6GgrL9yv6NR+lUPXEVktuRGwZXoMb7jwUw7PPFMrQ8U
+         fd0daZXf9AUzeb+LrCFxn0dE5/dQ1jRaIrnijALXn0rzGuDttcBayHDvmZU82+558ywG
+         jrEKaEMunY9xV6up+7Nbi2sJIod4hgvkbvRlQmkU42SK1VlspeV23Y94XGcAk+RCOybS
+         S03Q==
+X-Gm-Message-State: ACgBeo3oHMvT7yLTJ9eLRBsXbKEOzdP7lOtYvX3nelnc0d8/sGCgTOzX
+        2A1066GidAlmhmoyFUn4CI2DMA==
+X-Google-Smtp-Source: AA6agR4El7y4IT4lAlgQXtAOsrOIz7IkrRHCkD/A2S4p+/9tQvKZXU0lvZ2Q4JJsjuVfDdd/htYFGg==
+X-Received: by 2002:a2e:b5d3:0:b0:267:4da0:ce3b with SMTP id g19-20020a2eb5d3000000b002674da0ce3bmr8215983ljn.420.1662387002553;
+        Mon, 05 Sep 2022 07:10:02 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id e27-20020a05651c039b00b00264bb2351e8sm1436823ljp.7.2022.09.05.07.10.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 Sep 2022 07:10:02 -0700 (PDT)
+Message-ID: <1ea02712-eb1e-ca68-b954-c7d59a74926d@linaro.org>
+Date:   Mon, 5 Sep 2022 16:10:00 +0200
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3082.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a0223f08-7f25-4b18-1dc3-08da8f47b47b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Sep 2022 14:05:35.9295
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: CgII4dHaCpIg2sDhlZZPO0T38t0gPV7CKrE9jhw0CwZu0PTYECEc2kzXOrIg7FAu
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6592
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH RESEND] dt-bindings: leds: qcom-wled: fix number of
+ addresses
+Content-Language: en-US
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Daniel Thompson <daniel.thompson@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Kiran Gunda <kgunda@codeaurora.org>,
+        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh@kernel.org>, Lee Jones <lee@kernel.org>
+References: <20220720163720.7099-1-krzysztof.kozlowski@linaro.org>
+ <5db5da26-3689-928b-433e-72c690014b64@linaro.org>
+ <YxYACwJmo/FlbVgk@google.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <YxYACwJmo/FlbVgk@google.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-[AMD Official Use Only - General]
+On 05/09/2022 15:56, Lee Jones wrote:
+> On Thu, 25 Aug 2022, Krzysztof Kozlowski wrote:
+> 
+>> On 20/07/2022 19:37, Krzysztof Kozlowski wrote:
+>>> On PM660L, PMI8994 and PMI8998, the WLED has two address spaces.  This
+>>> also fixes dtbs_check warnings like:
+>>>
+>>>   arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dtb: leds@d800: reg: [[55296], [55552]] is too long
+>>>
+>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> Reviewed-by: Rob Herring <robh@kernel.org>
+>>> ---
+>>>  .../devicetree/bindings/leds/backlight/qcom-wled.yaml    | 9 ++++++++-
+>>>  1 file changed, 8 insertions(+), 1 deletion(-)
+>>
+>>
+>> The resent was a month ago. I assume this won't go via LEDs tree, so I
+>> will resend (again) without Rob's review, so it could go via Rob's tree.
+> 
+> If you have not already done so, please resend this and Cc my
+> kernel.org address, as per MAINTAINERS.  Thanks Krzysztof.
+> 
 
+Thanks, I resent and Rob already took it.
 
-
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Sent: Thursday, August 18, 2022 3:24 PM
-> To: Gupta, Nipun <Nipun.Gupta@amd.com>; robh+dt@kernel.org;
-> krzysztof.kozlowski+dt@linaro.org; gregkh@linuxfoundation.org;
-> rafael@kernel.org; eric.auger@redhat.com; alex.williamson@redhat.com;
-> cohuck@redhat.com; Gupta, Puneet (DCG-ENG) <puneet.gupta@amd.com>;
-> song.bao.hua@hisilicon.com; mchehab+huawei@kernel.org; maz@kernel.org;
-> f.fainelli@gmail.com; jeffrey.l.hugo@gmail.com; saravanak@google.com;
-> Michael.Srba@seznam.cz; mani@kernel.org; yishaih@nvidia.com;
-> jgg@ziepe.ca; linux-kernel@vger.kernel.org; devicetree@vger.kernel.org;
-> kvm@vger.kernel.org
-> Cc: okaya@kernel.org; Anand, Harpreet <harpreet.anand@amd.com>; Agarwal,
-> Nikhil <nikhil.agarwal@amd.com>; Simek, Michal <michal.simek@amd.com>;
-> git (AMD-Xilinx) <git@amd.com>
-> Subject: Re: [RFC PATCH v2 1/6] Documentation: DT: Add entry for CDX
-> controller
->=20
-> [CAUTION: External Email]
->=20
-> On 17/08/2022 18:05, Nipun Gupta wrote:
-> > This patch adds a devicetree binding documentation for CDX
-> > controller.
-> >
-> Does not look like you tested the bindings. Please run `make
-> dt_binding_check` (see
-> Documentation/devicetree/bindings/writing-schema.rst for instructions).
->=20
-
-Thanks for the detailed review. Will fix the issues observed in v3.
-
-> > CDX bus controller dynamically detects CDX bus and the
-> > devices on these bus using CDX firmware.
-> >
-> > Signed-off-by: Nipun Gupta <mailto:nipun.gupta@amd.com>
->=20
-> Use subject perfixes matching the subsystem (git log --oneline -- ...).
-
-Agree, will update.
-
->=20
-> > ---
-> >  .../devicetree/bindings/bus/xlnx,cdx.yaml     | 108 ++++++++++++++++++
-> >  MAINTAINERS                                   |   6 +
-> >  2 files changed, 114 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/bus/xlnx,cdx.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/bus/xlnx,cdx.yaml
-> b/Documentation/devicetree/bindings/bus/xlnx,cdx.yaml
-> > new file mode 100644
-> > index 000000000000..4247a1cff3c1
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/bus/xlnx,cdx.yaml
-> > @@ -0,0 +1,108 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id:
-> https://nam11.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fdevice=
-tree.org%2Fschemas%2Fmisc%2Fxlnx%2Ccdx.yaml%23&amp;data=3D05%7C01%7Cnipun.g=
-upta%40amd.com%7C36ea349b1b464c0de27208da80ffa39e%7C3dd8961fe4884e608e11a82=
-d994e183d%7C0%7C0%7C637964132708706641%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4w=
-LjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;=
-sdata=3D2cB6xGI3%2Brd%2BKXvvoZ7bDQvIAjIc7djKatDrJcuLJIg%3D&amp;reserved=3D0
-> > +$schema:
-> https://nam11.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fdevice=
-tree.org%2Fmeta-schemas%2Fcore.yaml%23&amp;data=3D05%7C01%7Cnipun.gupta%40a=
-md.com%7C36ea349b1b464c0de27208da80ffa39e%7C3dd8961fe4884e608e11a82d994e183=
-d%7C0%7C0%7C637964132708706641%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAi=
-LCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=3D=
-DfEspCt84z77me2ShufHrL%2FK1X87p65XnbmVVr2xDrM%3D&amp;reserved=3D0
-> > +
-> > +title: Xilinx CDX bus controller
-> > +
-> > +description: |
-> > +  CDX bus controller for Xilinx devices is implemented to
->=20
-> You need to describe what is this CDX bus. Google says nothing...
-
-We will be adding more Arch related details in the cover letter patch to
-describe the CDX bus.
-
->=20
-> > +  dynamically detect CDX bus and devices on these bus using the
-> > +  firmware. The CDX bus manages multiple FPGA based hardware
-> > +  devices, which can support network, crypto or any other specialized
-> > +  type of device. These FPGA based devices can be added/modified
-> > +  dynamically on run-time.
-> > +
-> > +  All devices on the CDX bus will have a unique streamid (for IOMMU)
-> > +  and a unique device ID (for MSI) corresponding to a requestor ID
-> > +  (one to one associated with the device). The streamid and deviceid
-> > +  are used to configure SMMU and GIC-ITS respectively.
-> > +
-> > +  iommu-map property is used to define the set of stream ids
-> > +  corresponding to each device and the associated IOMMU.
-> > +
-> > +  For generic IOMMU bindings, see:
-> > +  Documentation/devicetree/bindings/iommu/iommu.txt.
->=20
-> Drop sentence.
-
-Agree
-
->=20
-> > +
-> > +  For arm-smmu binding, see:
-> > +  Documentation/devicetree/bindings/iommu/arm,smmu.yaml.
->=20
-> Drop sentence.
-
-Agree
-
->=20
-> > +
-> > +  The MSI writes are accompanied by sideband data (Device ID).
-> > +  The msi-map property is used to associate the devices with the
-> > +  device ID as well as the associated ITS controller.
-> > +
-> > +  For generic MSI bindings, see:
-> > +  Documentation/devicetree/bindings/interrupt-controller/msi.txt.
->=20
-> Drop sentence.
-
-Agree
-
->=20
-> > +
-> > +  For GICv3 and GIC ITS bindings, see:
-> > +  Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.ya=
-ml.
->=20
-> Drop sentence.
-
-Agree
-
->=20
-> > +
-> > +maintainers:
-> > +  - Nipun Gupta <mailto:nipun.gupta@amd.com>
-> > +  - Nikhil Agarwal <mailto:nikhil.agarwal@amd.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: "xlnx,cdxbus-controller-1.0"
->=20
-> No quotes.
-
-Agree. Will update in v3
-
->=20
-> > +
-> > +  reg:
-> > +    description: |
-> > +      specifies the CDX firmware region shared memory accessible by th=
-e
-> > +      ARM cores.
->=20
-> You need to describe the items instead (e.g. maxItems:1).
-
-Will be updating in v3
-
->=20
-> > +
-> > +  iommu-map:
-> > +    description: |
-> > +      Maps device Requestor ID to a stream ID and associated IOMMU. Th=
-e
-> > +      property is an arbitrary number of tuples of
-> > +      (rid-base,iommu,streamid-base,length).
-> > +
-> > +      Any Requestor ID i in the interval [rid-base, rid-base + length)=
- is
-> > +      associated with the listed IOMMU, with the iommu-specifier
-> > +      (i - streamid-base + streamid-base).
->=20
-> You need type and constraints.
-
-Agree.
-
->=20
-> > +
-> > +  msi-map:
-> > +    description:
-> > +      Maps an Requestor ID to a GIC ITS and associated msi-specifier
-> > +      data (device ID). The property is an arbitrary number of tuples =
-of
-> > +      (rid-base,gic-its,deviceid-base,length).
-> > +
-> > +      Any Requestor ID in the interval [rid-base, rid-base + length) i=
-s
-> > +      associated with the listed GIC ITS, with the msi-specifier
-> > +      (i - rid-base + deviceid-base).
->=20
-> You need type and constraints.
->=20
->=20
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - iommu-map
-> > +  - msi-map
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    smmu@ec000000 {
-> > +        compatible =3D "arm,smmu-v3";
-> > +        #iommu-cells =3D <1>;
-> > +        ...
->=20
-> ???
-
-Will be fixed in v3
-
->=20
-> > +
-> > +    gic@e2000000 {
-> > +        compatible =3D "arm,gic-v3";
-> > +        interrupt-controller;
-> > +        ...
-> > +        its: gic-its@e2040000 {
-> > +            compatible =3D "arm,gic-v3-its";
-> > +            msi-controller;
-> > +            ...
-> > +        }
-> > +    };
-> > +
-> > +    cdxbus: cdxbus@@4000000 {
->=20
-> Node names should be generic, so "cdx"
-
-Would be using bus: cdxbus@4000000.
-Kindly correct me if this does not seem to be correct.
-
-Thanks,
-Nipun
-
->=20
-> https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fdevic=
-etree-specification.readthedocs.io%2Fen%2Flatest%2Fchapter2-devicetree-basi=
-cs.html%23generic-names-recommendation&amp;data=3D05%7C01%7Cnipun.gupta%40a=
-md.com%7C36ea349b1b464c0de27208da80ffa39e%7C3dd8961fe4884e608e11a82d994e183=
-d%7C0%7C0%7C637964132708706641%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAi=
-LCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=3D=
-QN8hk1CEOSmNSV5f0Z2uL4hatFrc1xYC5JBbptcCISA%3D&amp;reserved=3D0
->=20
-> Drop the label.
->=20
->=20
-> > +        compatible =3D "xlnx,cdxbus-controller-1.0";
-> > +        reg =3D <0x00000000 0x04000000 0 0x1000>;
-> > +        /* define map for RIDs 250-259 */
-> > +        iommu-map =3D <250 &smmu 250 10>;
-> > +        /* define msi map for RIDs 250-259 */
-> > +        msi-map =3D <250 &its 250 10>;
-> > +    };
-> Best regards,
-> Krzysztof
+Best regards,
+Krzysztof
