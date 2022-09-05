@@ -2,175 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 255CC5ACCEE
-	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 09:45:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B8EC5ACD16
+	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 09:52:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236281AbiIEHh4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 03:37:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56528 "EHLO
+        id S236643AbiIEHvJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 03:51:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236154AbiIEHhz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 03:37:55 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 146211A3B3
-        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 00:37:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1662363474; x=1693899474;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=njF9NKCaEaIKOiLI5wzuJzZxw4r2LlZSIkq096aUrHc=;
-  b=d3ctaFHOPnn1AWRd4WcTvrWgbfyKnOrYXHAn2OvaABU64dkkVi5bjFBR
-   Jc44ZMq8bht4ohsEXDQe0xvfG5xDoJilpEYm4HMnGnHetmvViZHv4jyjD
-   OO2N/ENPG/cgDJKwDmIKJRfaWRUnmYnCTaqMvcEFf7o/utMI7iWOuOkgQ
-   oLSISQa7c5jj4NIQR4X6O27k2N5N2RzNtJqI0OELw0YL/5ghAb+531TdR
-   dtO8ECLTwiHNmyzxFB68tVO5RTcNNAULNP2PZxnd4yo1scyjCLyv2JUu1
-   2hMOPcAWmp1HW5TCdbRJf00TxuWgV+atpRoGsb+ZZhEzpvu3sLVWJI6VZ
-   A==;
-X-IronPort-AV: E=Sophos;i="5.93,290,1654552800"; 
-   d="scan'208";a="25980402"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 05 Sep 2022 09:37:52 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Mon, 05 Sep 2022 09:37:52 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Mon, 05 Sep 2022 09:37:52 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1662363472; x=1693899472;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=njF9NKCaEaIKOiLI5wzuJzZxw4r2LlZSIkq096aUrHc=;
-  b=AyEK2sLXwXWFWwyGWIcl6oHBjOTD7TXA+ShrF5zxPveIEc54ezSLMVPK
-   0oitMBgqLXFeSf4kvVm97Lpm40B/3wROjslBJUXcrDCOvUcjXb2qW3cKj
-   iu+6atyKaNjgaN+U2rAwuV7cPrIcyu/XjSVzV0tvWCECEyX8EUAnTGxTa
-   1ZZQNxtAk5M7e4UGJpMg9oKQYUAhbru+A229U0fTv7chICKlRW4bxF0a2
-   PLV8LLKb6Xwj2xHmdwEl+p3bKz4/J8PKfsRs5O9xEt7+oe+JJoH3YyqnG
-   VCzBu2+s0SAdzfaUEp2ootNKWBWobnrWUhFIki0vWOllszxYnLwCcGOqJ
-   A==;
-X-IronPort-AV: E=Sophos;i="5.93,290,1654552800"; 
-   d="scan'208";a="25980401"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 05 Sep 2022 09:37:52 +0200
-Received: from steina-w.tq-net.de (unknown [10.123.49.11])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id DB6F0280056;
-        Mon,  5 Sep 2022 09:37:51 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Tim Harvey <tharvey@gateworks.com>, Jun Li <jun.li@nxp.com>
-Subject: [PATCH v3 1/1] arm64: dts: tqma8mpql: add USB DR support
-Date:   Mon,  5 Sep 2022 09:37:30 +0200
-Message-Id: <20220905073730.199462-1-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S236513AbiIEHuw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 03:50:52 -0400
+Received: from mail-sz.amlogic.com (mail-sz.amlogic.com [211.162.65.117])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8325A13CDC;
+        Mon,  5 Sep 2022 00:50:51 -0700 (PDT)
+Received: from droid11-sz.amlogic.com (10.28.8.21) by mail-sz.amlogic.com
+ (10.28.11.5) with Microsoft SMTP Server id 15.1.2507.6; Mon, 5 Sep 2022
+ 15:50:48 +0800
+From:   Liang Yang <liang.yang@amlogic.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        <linux-mtd@lists.infradead.org>
+CC:     Liang Yang <liang.yang@amlogic.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jianxin Pan <jianxin.pan@amlogic.com>,
+        Victor Wan <victor.wan@amlogic.com>,
+        XianWei Zhao <xianwei.zhao@amlogic.com>,
+        Kelvin Zhang <kelvin.zhang@amlogic.com>,
+        BiChao Zheng <bichao.zheng@amlogic.com>,
+        YongHui Yu <yonghui.yu@amlogic.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: [PATCH RESEND v8 0/5] fix the meson NFC clock
+Date:   Mon, 5 Sep 2022 15:50:26 +0800
+Message-ID: <20220905075027.19114-1-liang.yang@amlogic.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.28.8.21]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for USB DR on USB1 interface. Host/Device detection is done
-using the usb-role-switch connector.
+EMMC and NAND have the same clock control register named 'SD_EMMC_CLOCK'
+which is defined in EMMC port internally. bit0~5 of 'SD_EMMC_CLOCK' is
+the divider and bit6~7 is the mux for fix pll and xtal. At the beginning,
+a common MMC and NAND sub-clock was discussed and planed to be implemented
+as NFC clock provider, but now this series of patches of a common MMC and
+NAND sub-clock are never being accepted and the current binding was never
+valid. the reasons are:
+1. EMMC and NAND, which are mutually exclusive anyway
+2. coupling the EMMC and NAND.
+3. it seems that a common MMC and NAND sub-clock is over engineered.
+and let us see the link for more information:
+https://lore.kernel.org/all/20220121074508.42168-5-liang.yang@amlogic.com
+so The meson nfc can't work now, let us rework the clock.
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
-Changes in v3:
-* Moved pinctrl to USB glue layer node
-* Ordered nodes alphabetically
+Changes since v7 [8]
+ - use COMMON_CLK && (ARCH_MESON || COMPILE_TEST) instead of
+   ARCH_MESON || COMPILE_TEST || COMMON_CLK.
+ - collect the review and ack
 
-Changes in v2:
-* Split from previous series
-* For now enable USB OTG only
+Changes since v6 [7]
+ - use COMMON_CLK instead of !HAVE_LEGACY_CLK
 
- .../freescale/imx8mp-tqma8mpql-mba8mpxl.dts   | 48 +++++++++++++++++++
- 1 file changed, 48 insertions(+)
+Changes since v5 [6]
+ - add change log for patch 3/5
+ - add patch 5/5 to fix the reporting error of test robot
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
-index d8ca52976170..88579e8ac93b 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
-@@ -139,6 +139,13 @@ reg_vcc_3v3: regulator-3v3 {
- 		regulator-max-microvolt = <3300000>;
- 	};
- 
-+	reg_vcc_5v0: regulator-5v0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_5V0";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+	};
-+
- 	reserved-memory {
- 		#address-cells = <2>;
- 		#size-cells = <2>;
-@@ -445,6 +452,38 @@ &uart4 {
- 	status = "okay";
- };
- 
-+&usb3_0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usb0>;
-+	fsl,over-current-active-low;
-+	status = "okay";
-+};
-+
-+&usb3_phy0 {
-+	vbus-supply = <&reg_vcc_5v0>;
-+	status = "okay";
-+};
-+
-+&usb_dwc3_0 {
-+	/* dual role is implemented, but not a full featured OTG */
-+	hnp-disable;
-+	srp-disable;
-+	adp-disable;
-+	dr_mode = "otg";
-+	usb-role-switch;
-+	role-switch-default-mode = "peripheral";
-+	status = "okay";
-+
-+	connector {
-+		compatible = "gpio-usb-b-connector", "usb-b-connector";
-+		type = "micro";
-+		label = "X29";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_usbcon0>;
-+		id-gpios = <&gpio1 10 GPIO_ACTIVE_HIGH>;
-+	};
-+};
-+
- &usdhc2 {
- 	pinctrl-names = "default", "state_100mhz", "state_200mhz";
- 	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-@@ -666,6 +705,15 @@ pinctrl_uart4: uart4grp {
- 			   <MX8MP_IOMUXC_UART4_TXD__UART4_DCE_TX	0x140>;
- 	};
- 
-+	pinctrl_usb0: usb0grp {
-+		fsl,pins = <MX8MP_IOMUXC_GPIO1_IO13__USB1_OTG_OC	0x1c0>,
-+			   <MX8MP_IOMUXC_GPIO1_IO12__USB1_OTG_PWR	0x1c0>;
-+	};
-+
-+	pinctrl_usbcon0: usb0congrp {
-+		fsl,pins = <MX8MP_IOMUXC_GPIO1_IO10__GPIO1_IO10		0x1c0>;
-+	};
-+
- 	pinctrl_usdhc2: usdhc2grp {
- 		fsl,pins = <MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK		0x192>,
- 			   <MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD		0x1d2>,
+Changes since v4 [5]
+ - split the dt binding patch into two patches, one for fixing, 
+   clock, the other for coverting to yaml
+ - split the nfc driver patch into two patches, one for fixing 
+   clock, the other for refining the get nfc resource.
+
+Changes since v3 [4]
+ - use devm_platform_ioremap_resource_byname
+ - dt_binding_check for mtd/amlogic,meson-nand.yaml
+
+Changes since v2 [3]
+ - use fw_name from dts, instead the wrong way using __clk_get_name
+ - reg resource size change to 0x800
+ - use reg-names
+
+Changes since v1 [2]
+ - use clk_parent_data instead of parent_names
+ - define a reg resource instead of sd_emmc_c_clkc 
+
+[1] https://lore.kernel.org/r/20220106033130.37623-1-liang.yang@amlogic.com
+    https://lore.kernel.org/r/20220106032504.23310-1-liang.yang@amlogic.com
+[2] https://lore.kernel.org/all/20220217063346.21691-1-liang.yang@amlogic.com
+[3] https://lore.kernel.org/all/20220318124121.26117-1-liang.yang@amlogic.com
+[4] https://lore.kernel.org/all/20220402074921.13316-1-liang.yang@amlogic.com/
+[5] https://lore.kernel.org/all/20220513123404.48513-1-liang.yang@amlogic.com/
+[6] https://lore.kernel.org/all/20220607064731.13367-1-liang.yang@amlogic.com/
+[7] https://lore.kernel.org/all/20220624131257.29906-1-liang.yang@amlogic.com/
+
+Liang Yang (5):
+  dt-bindings: nand: meson: fix meson nfc clock
+  mtd: rawnand: meson: fix the clock
+  mtd: rawnand: meson: refine resource getting in probe
+  dt-bindings: nand: meson: convert txt to yaml
+  mtd: rawnand: meson: not support legacy clock
+
+ .../bindings/mtd/amlogic,meson-nand.txt       | 60 -------------
+ .../bindings/mtd/amlogic,meson-nand.yaml      | 88 +++++++++++++++++++
+ drivers/mtd/nand/raw/Kconfig                  |  2 +-
+ drivers/mtd/nand/raw/meson_nand.c             | 86 +++++++++---------
+ 4 files changed, 131 insertions(+), 105 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
+ create mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+
 -- 
-2.25.1
+2.34.1
 
