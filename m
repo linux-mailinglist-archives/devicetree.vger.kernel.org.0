@@ -2,46 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EADB15ADB80
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 00:49:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F274F5ADB9F
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 01:04:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232454AbiIEWtD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 18:49:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40654 "EHLO
+        id S232288AbiIEXE4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 19:04:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232471AbiIEWsc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 18:48:32 -0400
-X-Greylist: delayed 536 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 05 Sep 2022 15:48:25 PDT
-Received: from soltyk.jannau.net (soltyk.jannau.net [144.76.91.90])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9576C3C8D4
-        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 15:48:25 -0700 (PDT)
-Received: by soltyk.jannau.net (Postfix, from userid 1000)
-        id 5B67726EF9A; Tue,  6 Sep 2022 00:39:27 +0200 (CEST)
-Date:   Tue, 6 Sep 2022 00:39:27 +0200
-From:   Janne Grunau <janne@jannau.net>
-To:     Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S232002AbiIEXEz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 19:04:55 -0400
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9885013DC8;
+        Mon,  5 Sep 2022 16:04:49 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.93,292,1654527600"; 
+   d="scan'208";a="133796439"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 06 Sep 2022 08:04:48 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id D3D40410101B;
+        Tue,  6 Sep 2022 08:04:43 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>,
         Philipp Zabel <p.zabel@pengutronix.de>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        asahi@lists.linux.dev, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/4] arm64: dts: apple: t8103: Add MCA and its support
-Message-ID: <20220905223927.GE10102@jannau.net>
-References: <20220824160715.95779-1-povik+lin@cutebit.org>
- <20220824160715.95779-3-povik+lin@cutebit.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220824160715.95779-3-povik+lin@cutebit.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        Jacopo Mondi <jacopo@jmondi.org>,
+        =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v2 0/4] Add driver for CSI2 and CRU modules found on Renesas RZ/G2L SoC
+Date:   Tue,  6 Sep 2022 00:04:02 +0100
+Message-Id: <20220905230406.30801-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -49,140 +50,91 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-08-24 18:07:13 +0200, Martin Povišer wrote:
-> Add the MCA I2S transceiver node and its supporting NCO, ADMAC nodes.
-> 
-> Signed-off-by: Martin Povišer <povik+lin@cutebit.org>
-> ---
->  arch/arm64/boot/dts/apple/t8103-jxxx.dtsi |  4 ++
->  arch/arm64/boot/dts/apple/t8103.dtsi      | 73 +++++++++++++++++++++++
->  2 files changed, 77 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi b/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi
-> index fe2ae40fa9dd..503a1b243efa 100644
-> --- a/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi
-> +++ b/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi
-> @@ -76,3 +76,7 @@ wifi0: network@0,0 {
->  		local-mac-address = [00 00 00 00 00 00];
->  	};
->  };
-> +
-> +&nco_clkref {
-> +	clock-frequency = <900000000>;
-> +};
-> diff --git a/arch/arm64/boot/dts/apple/t8103.dtsi b/arch/arm64/boot/dts/apple/t8103.dtsi
-> index 51a63b29d404..5c01d5318386 100644
-> --- a/arch/arm64/boot/dts/apple/t8103.dtsi
-> +++ b/arch/arm64/boot/dts/apple/t8103.dtsi
-> @@ -532,6 +532,79 @@ port02: pci@2,0 {
->  						<0 0 0 4 &port02 0 0 0 3>;
->  			};
->  		};
-> +
-> +		dart_sio: iommu@235004000 {
+Hi All,
 
-this and all other nodes are not sorted by address wrt to the existing 
-nodes.
+This patch series aims to add driver support to CRU module found
+on Renesas RZ/G2L SoC.
 
-> +			compatible = "apple,t8103-dart", "apple,dart";
+The Camera Data Receiving Unit (CRU) consists of a MIPI CSI-2
+block and an Image Processing block. The Image Processing block
+can receive video data received from the external Digital Parallel
+Interface or MIPI CSI-2 block, and perform appropriate image
+processing for each.
 
-The generic compatible "apple,dart" is not part of the DART bindings
+More details:
+* https://renesas.info/wiki/File:CRU.png
+* https://www.renesas.com/document/mah/rzg2l-group-rzg2lc-group-users-manual-hardware-0?language=en&r=1467981
 
-> +			reg = <0x2 0x35004000 0x0 0x4000>;
-> +			interrupt-parent = <&aic>;
-> +			interrupts = <AIC_IRQ 635 IRQ_TYPE_LEVEL_HIGH>;
-> +			#iommu-cells = <1>;
-> +			power-domains = <&ps_sio_cpu>;
-> +		};
-> +
-> +		/*
-> +		 * This is a fabulated representation of the input clock
-> +		 * to NCO since we don't know the true clock tree.
-> +		 */
-> +		nco_clkref: clock-ref {
+Currently the driver has been tested using yavta and Gstreamer
+on RZ/G2L SMARC EVK using the ov5645 sensor on CSI2 interface
+only.
 
-clocks are not valid inside "simple-bus", the node name "clock-ref" 
-conflicts in "/", maybe use "clock-nco"?
+v1 -> v2:
+* Dropped media prefix from subject
+* Renamed node name csi20 -> csi
+* Used 4 spaces for indentation in example node
+* Dropped reset-names and interrupt-names properties
+* Dropped oneOf from compatible
+* Included RB tags from Laurent
+* Marked port0/1 as required for cru node
+* Sorted Kconfig select
+* Prefixed generic names for struct/variables with rzg2_csi2
+* Dropped unnecessary checks for remote source
+* Dropped exporting functions
+* Moved lane validation to probe
+* Split up rzg2l_csi2_dphy_setting() and rzg2l_csi2_mipi_link_setting()
+* Used rzg2l_csi2_write() wherever possible
+* Dropped stream_count/lock members from csi2 struct
+* Used active subdev state instead of manually storing format in driver
+* Implemented init_cfg/enum_frame_size/enum_mbus_code callbacks
+* Dropped check for bus_type of remote source
+* Switched to manually turning ON/OFF the clocks instead of pm_runtime so that
+  the mipi/dhpy initialization happens as per the HW manual
+* Hardcoded VC0 usage for now as streams API is under development
 
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +			clock-output-names = "nco_ref";
-> +		};
-> +
-> +		nco: clock-controller@23b044000 {
-> +			compatible = "apple,t8103-nco", "apple,nco";
-> +			reg = <0x2 0x3b044000 0x0 0x14000>;
-> +			clocks = <&nco_clkref>;
-> +			#clock-cells = <1>;
-> +		};
-> +
-> +		admac: dma-controller@238200000 {
-> +			compatible = "apple,t8103-admac", "apple,admac";
-> +			reg = <0x2 0x38200000 0x0 0x34000>;
-> +			dma-channels = <24>;
-> +			interrupts-extended = <0>,
-> +					      <&aic AIC_IRQ 626 IRQ_TYPE_LEVEL_HIGH>,
-> +					      <0>,
-> +					      <0>;
-> +			#dma-cells = <1>;
-> +			iommus = <&dart_sio 2>;
-> +			power-domains = <&ps_sio_adma>;
+v1:
+- https://patchwork.kernel.org/project/linux-renesas-soc/cover/20220801214718.16943-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
 
-The admac bindinds don't have "iommus" or "power-domains". Fix in 
-https://github.com/jannau/linux/commit/c9a0ff4581197064c560b05e2a6861d723a8909d 
-as preparation for Apple t600x (M1 Pro/Max/Ultra) devicetree patches.
+RFC v2:
+- https://patchwork.kernel.org/project/linux-renesas-soc/cover/20220121010543.31385-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
 
-> +		};
-> +
-> +		mca: i2s@38400000 {
+RFC v1:
+- https://patchwork.kernel.org/project/linux-renesas-soc/cover/20211207012351.15754-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
 
-missing range offset in the node name
+Cheers,
+Prabhakar
 
-> +			compatible = "apple,t8103-mca", "apple,mca";
-> +			reg = <0x2 0x38400000 0x0 0x18000>,
-> +			      <0x2 0x38300000 0x0 0x30000>;
-> +
-> +			interrupt-parent = <&aic>;
-> +			interrupts = <AIC_IRQ 619 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <AIC_IRQ 620 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <AIC_IRQ 621 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <AIC_IRQ 622 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <AIC_IRQ 623 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <AIC_IRQ 624 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +			resets = <&ps_audio_p>;
-> +			clocks = <&nco 0>, <&nco 1>, <&nco 2>,
-> +				 <&nco 3>, <&nco 4>, <&nco 4>;
-> +			power-domains = <&ps_audio_p>, <&ps_mca0>, <&ps_mca1>,
-> +					<&ps_mca2>, <&ps_mca3>, <&ps_mca4>, <&ps_mca5>;
-> +			dmas = <&admac 0>, <&admac 1>, <&admac 2>, <&admac 3>,
-> +			       <&admac 4>, <&admac 5>, <&admac 6>, <&admac 7>,
-> +			       <&admac 8>, <&admac 9>, <&admac 10>, <&admac 11>,
-> +			       <&admac 12>, <&admac 13>, <&admac 14>, <&admac 15>,
-> +			       <&admac 16>, <&admac 17>, <&admac 18>, <&admac 19>,
-> +			       <&admac 20>, <&admac 21>, <&admac 22>, <&admac 23>;
-> +			dma-names = "tx0a", "rx0a", "tx0b", "rx0b",
-> +				"tx1a", "rx1a", "tx1b", "rx1b",
-> +				"tx2a", "rx2a", "tx2b", "rx2b",
-> +				"tx3a", "rx3a", "tx3b", "rx3b",
-> +				"tx4a", "rx4a", "tx4b", "rx4b",
-> +				"tx5a", "rx5a", "tx5b", "rx5b";
-> +
-> +			#sound-dai-cells = <1>;
-> +		};
->  	};
->  };
 
-I've have a fixed version of this patch in 
-https://github.com/jannau/linux/commit/6ff76db8221d0f71cbacd9f6add58354350fcf56
+Lad Prabhakar (4):
+  media: dt-bindings: Document Renesas RZ/G2L CSI-2 block
+  media: dt-bindings: Document Renesas RZ/G2L CRU block
+  media: platform: Add Renesas RZ/G2L MIPI CSI-2 receiver driver
+  media: platform: Add Renesas RZ/G2L CRU driver
 
-I was preparing the same change for t600x so it made sense to apply 
-changes to this patch as well. Except for order and the wrong address 
-all issue were discovered by `make dtbs_check`.
+ .../bindings/media/renesas,rzg2l-cru.yaml     | 157 ++++
+ .../bindings/media/renesas,rzg2l-csi2.yaml    | 140 ++++
+ drivers/media/platform/renesas/Kconfig        |   1 +
+ drivers/media/platform/renesas/Makefile       |   1 +
+ .../media/platform/renesas/rzg2l-cru/Kconfig  |  34 +
+ .../media/platform/renesas/rzg2l-cru/Makefile |   6 +
+ .../platform/renesas/rzg2l-cru/rzg2l-core.c   | 395 +++++++++
+ .../platform/renesas/rzg2l-cru/rzg2l-cru.h    | 152 ++++
+ .../platform/renesas/rzg2l-cru/rzg2l-csi2.c   | 761 ++++++++++++++++++
+ .../platform/renesas/rzg2l-cru/rzg2l-csi2.h   |  46 ++
+ .../platform/renesas/rzg2l-cru/rzg2l-dma.c    | 734 +++++++++++++++++
+ .../platform/renesas/rzg2l-cru/rzg2l-v4l2.c   | 368 +++++++++
+ 12 files changed, 2795 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/renesas,rzg2l-csi2.yaml
+ create mode 100644 drivers/media/platform/renesas/rzg2l-cru/Kconfig
+ create mode 100644 drivers/media/platform/renesas/rzg2l-cru/Makefile
+ create mode 100644 drivers/media/platform/renesas/rzg2l-cru/rzg2l-core.c
+ create mode 100644 drivers/media/platform/renesas/rzg2l-cru/rzg2l-cru.h
+ create mode 100644 drivers/media/platform/renesas/rzg2l-cru/rzg2l-csi2.c
+ create mode 100644 drivers/media/platform/renesas/rzg2l-cru/rzg2l-csi2.h
+ create mode 100644 drivers/media/platform/renesas/rzg2l-cru/rzg2l-dma.c
+ create mode 100644 drivers/media/platform/renesas/rzg2l-cru/rzg2l-v4l2.c
 
-I plan to send 
-https://github.com/jannau/linux/tree/apple-t600x-dts-for-v6.1 tomorrow.
+-- 
+2.25.1
 
-ciao
-
-Janne
