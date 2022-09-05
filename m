@@ -2,101 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5969F5AD041
-	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 12:39:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C6E95AD069
+	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 12:44:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235590AbiIEKhc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 06:37:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36884 "EHLO
+        id S237017AbiIEKni (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 06:43:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230203AbiIEKh3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 06:37:29 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FF082F64D
-        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 03:37:26 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id t14so3477079wrx.8
-        for <devicetree@vger.kernel.org>; Mon, 05 Sep 2022 03:37:26 -0700 (PDT)
+        with ESMTP id S237596AbiIEKne (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 06:43:34 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE6EB5244F
+        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 03:43:31 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id k22so8814824ljg.2
+        for <devicetree@vger.kernel.org>; Mon, 05 Sep 2022 03:43:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=VI4B7mmcq6Q3smkTsTKpCOJlZRwUBcOPUAzD1sYZxCE=;
-        b=JyqPehizxeveGl2aXEy+CBjBaabYIvxdl31puYBqc3gtlJCLq3qFt0hdijKxbuFGVK
-         AMg5HtDfCsuUTWS4wHQm/klZP81V+KM8GKjqV5VGk/Xn3DSUgPu7p9UD+tqFsM4FzLf7
-         Vg8dg3w6UgEcxXX2xeXw/TSGwA1nQ1S7oP6BDS/WQQOy7+nVseYUt0coYiMQSfHoZWzu
-         r9OMa/vaQyWkOf3nAExqae6zI9/qJKSgo1klouFcIjirvhC9yDcXZo0BaHf8PdBkhrWW
-         U75zI0dOTYPWYNLrWy+ZKMnNwWzInw2g603YP9a0GhTUI0Lzua+VcGv+tYAJIBAhOOQX
-         ujiA==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=Uu1nHIg7+HLTwkcMDXoVH92xOgBLJoR9KxDtzyrNN3I=;
+        b=Oiqu5w1Jboa75JrJ45HBZTMrKw4qTEmTch8h/huyPD1AN4J/lUkubmiX26kr2fBlxq
+         3KhzFnAv8mujBMi8LCfI6BCWIwnqR4rvlMIv6A+6r0/nezs8JRbWPy6i4JmVB1or7fm0
+         gGrikWKv6biKJYg77jZfzmpXjCDC1sjW1ykMOYc3EFU2NLkbfcsEBpT5l62g+lujF9eH
+         lJaCtwG5PHc4nnZA8cNpiOWHwKIgQyb2Rh66FstfT8PoXMF6ZZrTOHPHtDQKm5gtDyxp
+         chZDyDEI/K5IGN1dSKxEjZA2KHvUhkj/z/Ty31vkiaDDJvQYvKcu+9r3H91AlkRcx5pe
+         xOyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=VI4B7mmcq6Q3smkTsTKpCOJlZRwUBcOPUAzD1sYZxCE=;
-        b=WUNA+cSXzqKzoqNYiMkWa6m9ffNqBzUeWPp6tpMkItsSCVMtGWy2UvacfS9/VEhW4Z
-         k2Lh6xqPDmV4zG9FqaIZHYJg0wJlRdplJb8AabrI3fT56biBcfOUgZsjQHMomaRS7a7u
-         yapP9MhQ5VVW7TYCWI7UKV8aIr7P5M9zSg6ieZXbFsfHWzwpLmspaHvN3cLQqIV4/tQd
-         /SClUgeh/l19re/cZBFNaDUmjszNZLVzsX8jcNbrpq3Au7GmLHdVX0hE19qgaApgNDBV
-         /azSffJLky3JIomfMWK8oyZwxvHGDMESQfHwMcC4d1G61ho/lAbAX0JYGor1UWpwE78U
-         iQsg==
-X-Gm-Message-State: ACgBeo2cgBS2R9T78N9lNkzTCNc6AmPNLIXcFtg7/pEtDjjfWWr+twHc
-        /3lx42yPbvekI4/JL5rqD/KpmQ==
-X-Google-Smtp-Source: AA6agR5WyesUmbHHOtfIoJeaQwdtaZXuydLC4N1/liflEKJoqBCEs/yCceP9AfG4VX8BxR/VnCTUZg==
-X-Received: by 2002:adf:eb02:0:b0:227:1c:e760 with SMTP id s2-20020adfeb02000000b00227001ce760mr9098694wrn.635.1662374244612;
-        Mon, 05 Sep 2022 03:37:24 -0700 (PDT)
-Received: from hackbox.lan ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id z7-20020a05600c0a0700b003a5c1e916c8sm31765894wmp.1.2022.09.05.03.37.23
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=Uu1nHIg7+HLTwkcMDXoVH92xOgBLJoR9KxDtzyrNN3I=;
+        b=VtzRBxTXC96rCdtvRaOg7vcTY4JFoJbyau6+MErOqaf8kTUg64sVm+6TIl/4CjkoEb
+         S+g2yY0ehYdy/act9GJ2TqQbQ9WzVxJV4EUIa9UqNM/Nng8CCmzldSAQPqF9FBSOHyZ1
+         GN2g+x4v4BPeanPBkJTXcYy8xRHr1Se3X/qZyf0Gaba77tCEKMiaSCtXQShl7vznpSkt
+         kRk5f1BE02emuI+qsxjR4LoZD6/wxTaUm/n4EM8hly7diZF55n0ZZjF3xoJ+AA1YXaBq
+         cgrTH4MU8B4wktlTm0mlPYOFdz5/KXGVbIkgsB7EPwl0jzVX7oJUKdQzJbks4066s3xH
+         EvPQ==
+X-Gm-Message-State: ACgBeo0fxbiuwrUqZFyJvqF+/BcEUQ+GJUGj76U5LHs/LyYKAX81mf3h
+        1jjk/urTBcJtHWE3aSIkJplhIUsAF4qobjTx
+X-Google-Smtp-Source: AA6agR6KByJ0uqc1vjwMF+LXUvvVm/EvvzR1xvHdSMmWU68PHZkI6s1e8GFhVTWTF/NzVVnrhpfxzg==
+X-Received: by 2002:a05:651c:4cf:b0:265:3ba8:92f7 with SMTP id e15-20020a05651c04cf00b002653ba892f7mr9634762lji.105.1662374609981;
+        Mon, 05 Sep 2022 03:43:29 -0700 (PDT)
+Received: from saproj-Latitude-5501.yandex.net ([2a02:6b8:0:40c:f551:88af:a09e:6f21])
+        by smtp.gmail.com with ESMTPSA id t16-20020a056512209000b0048aef1abb08sm1144830lfr.297.2022.09.05.03.43.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Sep 2022 03:37:23 -0700 (PDT)
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Amol Maheshwari <amahesh@qti.qualcomm.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: [PATCH v6 2/2] MAINTAINERS: Update fastrpc documentation file from txt to yaml
-Date:   Mon,  5 Sep 2022 13:37:15 +0300
-Message-Id: <20220905103715.955786-2-abel.vesa@linaro.org>
+        Mon, 05 Sep 2022 03:43:29 -0700 (PDT)
+From:   Sergei Antonov <saproj@gmail.com>
+To:     devicetree@vger.kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        Sergei Antonov <saproj@gmail.com>,
+        Jonas Jensen <jonas.jensen@gmail.com>
+Subject: [PATCH] ARM: dts: sync Moxa SDIO 'compatible' name with moxart-mmc.c
+Date:   Mon,  5 Sep 2022 13:43:17 +0300
+Message-Id: <20220905104317.2740661-1-saproj@gmail.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220905103715.955786-1-abel.vesa@linaro.org>
-References: <20220905103715.955786-1-abel.vesa@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The documentation for fastrpc bingings is now YAML. So update the
-MAINTAINERS file.
+Driver moxart-mmc.c has .compatible = "moxa,moxart-mmc".
 
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+But moxart.dtsi and the documentation file moxa,moxart-dma.txt
+contain another name: compatible = "moxa,moxart-sdhci".
+
+Change name in moxart.dtsi and moxa,moxart-dma.txt to that from the driver.
+
+Signed-off-by: Sergei Antonov <saproj@gmail.com>
+Cc: Jonas Jensen <jonas.jensen@gmail.com>
 ---
- MAINTAINERS | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ Documentation/devicetree/bindings/dma/moxa,moxart-dma.txt | 2 +-
+ arch/arm/boot/dts/moxart.dtsi                             | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 96f47a7865d6..ad697195fc59 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -16863,7 +16863,7 @@ M:	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
- M:	Amol Maheshwari <amahesh@qti.qualcomm.com>
- L:	linux-arm-msm@vger.kernel.org
- S:	Maintained
--F:	Documentation/devicetree/bindings/misc/qcom,fastrpc.txt
-+F:	Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
- F:	drivers/misc/fastrpc.c
- F:	include/uapi/misc/fastrpc.h
+diff --git a/Documentation/devicetree/bindings/dma/moxa,moxart-dma.txt b/Documentation/devicetree/bindings/dma/moxa,moxart-dma.txt
+index 8a9f3559335b..20247827f35a 100644
+--- a/Documentation/devicetree/bindings/dma/moxa,moxart-dma.txt
++++ b/Documentation/devicetree/bindings/dma/moxa,moxart-dma.txt
+@@ -35,7 +35,7 @@ Use specific request line passing from dma
+ For example, MMC request line is 5
  
+ 	sdhci: sdhci@98e00000 {
+-		compatible = "moxa,moxart-sdhci";
++		compatible = "moxa,moxart-mmc";
+ 		reg = <0x98e00000 0x5C>;
+ 		interrupts = <5 0>;
+ 		clocks = <&clk_apb>;
+diff --git a/arch/arm/boot/dts/moxart.dtsi b/arch/arm/boot/dts/moxart.dtsi
+index f5f070a87482..d69d73930ebe 100644
+--- a/arch/arm/boot/dts/moxart.dtsi
++++ b/arch/arm/boot/dts/moxart.dtsi
+@@ -94,7 +94,7 @@ watchdog: watchdog@98500000 {
+ 		};
+ 
+ 		sdhci: sdhci@98e00000 {
+-			compatible = "moxa,moxart-sdhci";
++			compatible = "moxa,moxart-mmc";
+ 			reg = <0x98e00000 0x5C>;
+ 			interrupts = <5 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&clk_apb>;
 -- 
 2.34.1
 
