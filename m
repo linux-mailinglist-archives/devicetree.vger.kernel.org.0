@@ -2,72 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6CFF5AD7AC
-	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 18:37:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E57EF5AD7A2
+	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 18:37:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231855AbiIEQgG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 12:36:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46014 "EHLO
+        id S229984AbiIEQhP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 12:37:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236379AbiIEQgD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 12:36:03 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80BBD2ED42
-        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 09:36:00 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id z25so13842900lfr.2
-        for <devicetree@vger.kernel.org>; Mon, 05 Sep 2022 09:36:00 -0700 (PDT)
+        with ESMTP id S229875AbiIEQhO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 12:37:14 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 278582E9E8
+        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 09:37:13 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id j14so13827386lfu.4
+        for <devicetree@vger.kernel.org>; Mon, 05 Sep 2022 09:37:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=TPo9G+SnanyNcgpNjrB5OO4mwJTTV7C5eyU8y1QEoJg=;
-        b=P6igY7tbzHdrAJ38BP6uwRFIpo2Ie5y0/NP8tv/wHqmgOM9fe6BvkaA4siuihSqdYX
-         cykfgDSZlhlFY4c1wxsWuuMhY3ZwG+0slnNZL9YkixtNnomkMBuMQOUt4121SGEY55k/
-         3k3+0Aqa7eEVyKHtdga0kac1LS7JGcZO7d/0QMDj6PC2CpkWPJn781A0Ik0yTMmvNoUf
-         KPXxAcA/EvWfbrkpoQIp5KtTfqTEEBLxAciTMJDh4J5jYJPaFiMUcUCavNQsuqgQS61h
-         7hLYTvVRahRj9iiq5tqHVqklWOiRj22jeYW3CiE8W3PSmH34uJtbjd3HGUP+NSqPVv/H
-         tYSw==
+        bh=vHhwCsZCW1W87izzKoQXEtZDJidSbg39faSi++Jz1EA=;
+        b=Hs76dSqDWe4kvl6c/fDGzDD8lGCDDYfDRfroTV+KRedKvrHF8xcixnkpJZO0m+tbVG
+         BD0/RDf4H3CKQqYg4ClY/wD3YsrS/YaY4GrkykGkg6zCEkAj746s1rLOlHyMCbRroD3T
+         E0ZcwcY8qV1rHkc8hqApjyZyYOvYcUgWGTflcD0Jq1RQItH/op/+f89wf9YpWJ+fTnw1
+         lqeu2yFF6q/1PolM+sSJRQlGHTdA7JZ7o+AtTFyvF6j+Hc+DGo89ZXDgFgjJBsj53H5Y
+         rnzuk/MLK/iliwBXG9yvSCMdoLDGN0OTJpay8kfrj4e/UGbxwVh175RS8DhNa6J9BuJO
+         9s4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=TPo9G+SnanyNcgpNjrB5OO4mwJTTV7C5eyU8y1QEoJg=;
-        b=fhPXY44YVNdlZWb8Axrgj2qKkQkKFxgHJqFcb9Z3GzbwCz/mVVO3gcMvgWFDrFwxp9
-         Hk4+VwgHUspjQehV6F3hnBKHMRWom7AN2TFHT10QOD+l+Du2OG3Fl/jYzYsRmJC7xPz1
-         ywvDj+VhRVAH/tIQSbGAOUGYLYP6N1G5oIoXe/3f0jWpIp9/nJHELApt7Qi8RRE+H7z8
-         WP7OGp3+2GLItWpTYAInGzVoCd0+hLU3XFhuzkns3TaV4MLD4Y2XgHL3VoZlOHEz9aIb
-         wuQE+cB5MfQ7BZ5ZiMFb+Ic2wEuaVwzNJX0L+sLTw+5EzpE5Tx3pNllMI+94PAkigSvk
-         E7mw==
-X-Gm-Message-State: ACgBeo0YCw7Y/4dSdltGK2y+Gb55r0dvE94OQjD3M1YEvD+Yntgdx6e2
-        e41lVe+NR4GUiDK8EmZRxLZN0g==
-X-Google-Smtp-Source: AA6agR4lT/iK3r8v8hV8OmgJEN7PH81JHyvfe08ukmPJhW4VIosK4fvPU1zd3mhmxQnDNum/t/CKqQ==
-X-Received: by 2002:a19:4f55:0:b0:494:6f40:5694 with SMTP id a21-20020a194f55000000b004946f405694mr12350320lfk.326.1662395758899;
-        Mon, 05 Sep 2022 09:35:58 -0700 (PDT)
+        bh=vHhwCsZCW1W87izzKoQXEtZDJidSbg39faSi++Jz1EA=;
+        b=f6NM9cqXmDqDGqyPy72/u504Sl9ikJN9hCOPqw0VN/snnhaz5mZZhmv4wn97zfEfgM
+         36ALOP5HZWgRoCHEmoD0aZsy+WAUJIb9N/E4bzAWxC8MR6d/P+ZYTbgxiTG47HPCaNDs
+         nJe+i1WUV582gld81z4reA1P/e+Bj3rujz4RjJ/eYVd6RXiveMRY0taSYwCY/34zrLRV
+         XNGnm4TrBdMKHG4ALj9C/sJXO9BvJ0wJJkZybzmo2FaeOi9CuXUaOxQpuSI1k790WsQ9
+         JesviJm1ZKns19L0Rt5ytwJRftk4Soq15bFcGZVnx3saLikz7KN5H6mbOrfj0lxdb0Q/
+         lncw==
+X-Gm-Message-State: ACgBeo3bREIHj4o/YLBFG5Fyhb3aGpqdQD0fsvILUy098FSdzL27OcLN
+        AVekpXjsrqqUfV4SmmXsNAFyvA==
+X-Google-Smtp-Source: AA6agR5lJ+DfGwA5ugZIl+OLFvF4PHHsMPJLqsjuYjra9J+uDYhTHC7mRvCPUhR2Xqgbkgw5bH3eEg==
+X-Received: by 2002:ac2:5a09:0:b0:495:79c7:f2f9 with SMTP id q9-20020ac25a09000000b0049579c7f2f9mr3203290lfn.422.1662395831506;
+        Mon, 05 Sep 2022 09:37:11 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id q6-20020a056512210600b0048b0696d0b1sm1239659lfr.90.2022.09.05.09.35.57
+        by smtp.gmail.com with ESMTPSA id bg34-20020a05651c0ba200b002618fbebbbcsm1474151ljb.47.2022.09.05.09.37.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Sep 2022 09:35:58 -0700 (PDT)
-Message-ID: <c0894d21-922e-9251-64af-f519d2ed970a@linaro.org>
-Date:   Mon, 5 Sep 2022 18:35:57 +0200
+        Mon, 05 Sep 2022 09:37:10 -0700 (PDT)
+Message-ID: <bbfc49ab-bc55-c6d0-fb0e-1938ea13abb0@linaro.org>
+Date:   Mon, 5 Sep 2022 18:37:09 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH 4/6] dt-bindings: mfd: syscon: Add rk3588 QoS register
- compatible
+Subject: Re: [PATCH v3 09/19] clk: rockchip: Add dt-binding header for RV1126
 Content-Language: en-US
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+To:     Jagan Teki <jagan@edgeble.ai>,
+        Kever Yang <kever.yang@rock-chips.com>
+Cc:     Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@collabora.com
-References: <20220831182629.79255-1-sebastian.reichel@collabora.com>
- <20220831182629.79255-5-sebastian.reichel@collabora.com>
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        Finley Xiao <finley.xiao@rock-chips.com>,
+        =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>
+References: <20220818124132.125304-1-jagan@edgeble.ai>
+ <20220822181009.GA80526-robh@kernel.org>
+ <CA+VMnFwE8jBxXwQPVEzEUosxjuEVMNGB9NnBuHYDw_360qJztQ@mail.gmail.com>
+ <3175969.jE0xQCEvom@diego>
+ <CA+VMnFw2FSr4OfaZfxGcDcMxQHM1_=sPPRyJq+qd6mduwBY8yg@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220831182629.79255-5-sebastian.reichel@collabora.com>
+In-Reply-To: <CA+VMnFw2FSr4OfaZfxGcDcMxQHM1_=sPPRyJq+qd6mduwBY8yg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,14 +83,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/08/2022 20:26, Sebastian Reichel wrote:
-> Document rk3588 compatible for QoS registers.
+On 05/09/2022 07:27, Jagan Teki wrote:
+>>>> Dual license please. Need an ack from Rockchip for that (and not just
+>>>> on this one).
+>>>
+>>> Heiko or Kever.
+>>>
+>>> Can you comment on this?
+>>
+>> I guess this is more a question for Kever,
+>>
+>> @Kever can Rockchip allow that dual licensing for the dt-binding header
+>> (MIT as second license I think - at least like all the other binding headers)
+>> both in this patch and also in the other header-patches of this series?
 > 
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> Any comments on this?
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+https://lore.kernel.org/all/510d1180-bc8e-7820-c772-ed7f35447087@rock-chips.com/
 
 Best regards,
 Krzysztof
