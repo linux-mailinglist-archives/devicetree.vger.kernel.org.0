@@ -2,75 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F0405AD4D0
-	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 16:30:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C8F05AD51C
+	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 16:39:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237081AbiIEOa0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 10:30:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54204 "EHLO
+        id S238559AbiIEOiL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 10:38:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237631AbiIEOaY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 10:30:24 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACA1C1B7BC
-        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 07:30:22 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id f15so6857643wrw.3
-        for <devicetree@vger.kernel.org>; Mon, 05 Sep 2022 07:30:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=ae8ML73FokTDdM56La2MyV/2p8hGMBN9srggFyjW8tQ=;
-        b=XwdlRG/EEWXKuCFQ376WfjDqS4YP5pf8yls07a1APgOhXHi1ywdPpHTzfl5TB3AS/K
-         9aMh7Zp2XBsnR/5kqXPQFDc5WZPibnZ2D4yTFrRnqykCtPzumY7DkD6JgRCUvd8TEp7+
-         eHs8+0AMNteH0KE4zVOBmyVjHqbIFM3lEveierW+stQOu3KT+8IECceY/KuDnLIjc9u1
-         GDMt1UXwwIp0Zt2s/N2EHS1sx+qWYhHWXZp7zbr44pJ4JsIYeliBaVxtMLC4z0fL34ys
-         ZfOTdrEA6ZHQh9irlVwGxvU/R+ZHXe0wGHpYgws+2PZLRlmte4YKDEFjiFEKooCyfYJU
-         +Dhg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=ae8ML73FokTDdM56La2MyV/2p8hGMBN9srggFyjW8tQ=;
-        b=JbSsZgKpzhWfxfqVcqyIf2tXSel/gvtc1C7WZVgwTBWvuYh/3pmxQu+XetlMUx3x8N
-         +F3wkQfoDqTDjEB+YO/AVBdD78B7dNciqwrsgi39BcDzWVcntFJHkiSS10nSNm6U+tPD
-         HZMTFTSTO6o4QgbQ/OJOS70k2JpnEUY/vVA+rgp90p2Q/oQl006kiBsC52F1QEQ061Ec
-         VSRcncyrT7TqyH2fom8rTsSJhbip2xS1n3tHN85xrsBZWJcQrVXMR4HDndXqCfIl5NQz
-         CPBlsoeDy2epf3lyKaLj5RBei3y0pMIOiEUsCahVTmBwWKvrR1zmBSvmyeQDdZFc1puJ
-         F4DA==
-X-Gm-Message-State: ACgBeo0rDNIFIIB5k2rHKfvkyDtM4RxbrxNNgRK07wKlf4UInzNPY8Ja
-        zE74FL2EDa8yMkR1QHIyoN+1jw==
-X-Google-Smtp-Source: AA6agR5II3gm4fhl+EhygViYnzygeCdom5mIuMOv9w3YZhJLJ9MuBe86Eb0qlYM+mpe5LOTceolmbg==
-X-Received: by 2002:a5d:574a:0:b0:228:b90c:e5ee with SMTP id q10-20020a5d574a000000b00228b90ce5eemr1682911wrw.328.1662388221254;
-        Mon, 05 Sep 2022 07:30:21 -0700 (PDT)
-Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id h21-20020a05600c351500b003a502c23f2asm18526327wmq.16.2022.09.05.07.30.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Sep 2022 07:30:20 -0700 (PDT)
-Date:   Mon, 5 Sep 2022 17:30:19 +0300
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        David Heidelberg <david@ixit.cz>,
-        Amol Maheshwari <amahesh@qti.qualcomm.com>,
-        devicetree@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v6 1/2] dt-bindings: misc: fastrpc convert bindings to
- yaml
-Message-ID: <YxYH+3hGZ2fyUZpW@linaro.org>
-References: <20220905103715.955786-1-abel.vesa@linaro.org>
- <1662381657.354400.1957044.nullmailer@robh.at.kernel.org>
+        with ESMTP id S238424AbiIEOhY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 10:37:24 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 845B941D13;
+        Mon,  5 Sep 2022 07:36:10 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id CDC84B811DD;
+        Mon,  5 Sep 2022 14:36:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56768C433D6;
+        Mon,  5 Sep 2022 14:36:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1662388567;
+        bh=An4UJcU7szR3Q74XA+9r8uY9luGHA9rcsWpB4IpI8xo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=M0BH/8LicdfIdp6CNfq5JxKfhrZCzZPlwMXOjY9KnIl9DXY08fo84r+yWZKq3nm/K
+         3MWlzzFKr/S/f1xdenqOsmAulXU5+THYWcSi0bkYbxOHqZpT3pNl6IQ+WXpLSZp/PU
+         gN/a+hUOZzK0Rl47xVyfINqFv8fkRW+MnlnhjEQaY8G2/0BEs3EwXR9xNKS7XN3vwS
+         WotvOQPqXnMEY+BNgwRsAe6h0w9x2Z994kdT4fZL8h2CKzjkQC7IcTB0jePWsyW00e
+         Hpm/Z3KcPtGD306hsAZ3StMz4+eaYCfaTpLJ8LuJ3OcmBjnh12n95AEqwOTnlXgzO/
+         YFeyoXk8AGJ8w==
+Date:   Mon, 5 Sep 2022 15:35:57 +0100
+From:   Lee Jones <lee@kernel.org>
+To:     Matt Ranostay <mranostay@ti.com>
+Cc:     nm@ti.com, j-keerthy@ti.com, linux-kernel@vger.kernel.org,
+        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 2/6] MFD: TPS6594x: Add new PMIC device driver for
+ TPS6594x chips
+Message-ID: <YxYJTU55VgoVYoLO@google.com>
+References: <20220812032242.564026-1-mranostay@ti.com>
+ <20220812032242.564026-3-mranostay@ti.com>
+ <YvX6sBMItZoAhLKe@google.com>
+ <Yw5t4G6hbn+mSD8y@ubuntu>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <1662381657.354400.1957044.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Yw5t4G6hbn+mSD8y@ubuntu>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -79,76 +59,110 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-09-05 07:40:57, Rob Herring wrote:
-> On Mon, 05 Sep 2022 13:37:14 +0300, Abel Vesa wrote:
-> > Convert Qualcomm FastRPC bindings to yaml format, so that we could validate
-> > dt-entries correctly and any future additions can go into yaml format.
-> > 
-> > Use compute-cb@ subnodes instead of just cb@.
-> > 
-> > Also add qcom,non-secure-domain, qcom,glink-channels and
-> > qcom,smd-channels missing properties to make sure dtbs_check doesn't
-> > fail right off the bat.
-> > 
-> > Co-developed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> > Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> > Co-developed-by: David Heidelberg <david@ixit.cz>
-> > Signed-off-by: David Heidelberg <david@ixit.cz>
-> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > ---
-> > 
-> > Changes since v5:
-> >  * Removed the txt file
-> > 
-> >  .../devicetree/bindings/misc/qcom,fastrpc.txt |  88 --------------
-> >  .../bindings/misc/qcom,fastrpc.yaml           | 108 ++++++++++++++++++
-> >  2 files changed, 108 insertions(+), 88 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/misc/qcom,fastrpc.txt
-> >  create mode 100644 Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
-> > 
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/misc/qcom,fastrpc.example.dtb: smd-edge: 'qcom,smd-edge' is a required property
-> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/remoteproc/qcom,smd-edge.yaml
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/misc/qcom,fastrpc.example.dtb: smd-edge: 'oneOf' conditional failed, one must be fixed:
-> 	'mboxes' is a required property
-> 	'qcom,ipc' is a required property
-> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/remoteproc/qcom,smd-edge.yaml
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/misc/qcom,fastrpc.example.dtb: smd-edge: 'oneOf' conditional failed, one must be fixed:
-> 	'interrupts' is a required property
-> 	'interrupts-extended' is a required property
-> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/remoteproc/qcom,smd-edge.yaml
+On Tue, 30 Aug 2022, Matt Ranostay wrote:
 
-Right.
+> On Fri, Aug 12, 2022 at 08:01:04AM +0100, Lee Jones wrote:
+> > On Thu, 11 Aug 2022, Matt Ranostay wrote:
+> > 
+> > > From: Keerthy <j-keerthy@ti.com>
+> > > 
+> > > The TPS6594x chip is a PMIC, and contains the following components:
+> > > 
+> > > - Regulators
+> > > - GPIO controller
+> > > - RTC
+> > > 
+> > > However initially only RTC is supported.
+> > > 
+> > > Signed-off-by: Keerthy <j-keerthy@ti.com>
+> > > Signed-off-by: Matt Ranostay <mranostay@ti.com>
+> > > ---
+> > >  drivers/mfd/Kconfig          |  14 ++++
+> > >  drivers/mfd/Makefile         |   1 +
+> > >  drivers/mfd/tps6594x.c       | 121 +++++++++++++++++++++++++++++++++++
+> > >  include/linux/mfd/tps6594x.h |  84 ++++++++++++++++++++++++
+> > >  4 files changed, 220 insertions(+)
+> > >  create mode 100644 drivers/mfd/tps6594x.c
+> > >  create mode 100644 include/linux/mfd/tps6594x.h
+> > > 
+> > > diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+> > > index abb58ab1a1a4..4845683ae1d0 100644
+> > > --- a/drivers/mfd/Kconfig
+> > > +++ b/drivers/mfd/Kconfig
+> > > @@ -1547,6 +1547,20 @@ config MFD_TI_LP873X
+> > >  	  This driver can also be built as a module. If so, the module
+> > >  	  will be called lp873x.
+> > >  
+> > > +config MFD_TPS6594X
+> > > +	tristate "TI TPS6594X Power Management IC"
+> > > +	depends on I2C && OF
+> > > +	select MFD_CORE
+> > > +	select REGMAP_I2C
+> > > +	help
+> > > +	  If you say yes here then you get support for the TPS6594X series of
+> > > +	  Power Management Integrated Circuits (PMIC).
+> > > +	  These include voltage regulators, RTS, configurable
+> > > +	  General Purpose Outputs (GPO) that are used in portable devices.
+> > > +
+> > > +	  This driver can also be built as a module. If so, the module
+> > > +	  will be called tps6594x.
+> > > +
+> > >  config MFD_TI_LP87565
+> > >  	tristate "TI LP87565 Power Management IC"
+> > >  	depends on I2C && OF
+> > > diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+> > > index 858cacf659d6..7ff6a8a57d55 100644
+> > > --- a/drivers/mfd/Makefile
+> > > +++ b/drivers/mfd/Makefile
+> > > @@ -105,6 +105,7 @@ obj-$(CONFIG_MFD_TPS65910)	+= tps65910.o
+> > >  obj-$(CONFIG_MFD_TPS65912)	+= tps65912-core.o
+> > >  obj-$(CONFIG_MFD_TPS65912_I2C)	+= tps65912-i2c.o
+> > >  obj-$(CONFIG_MFD_TPS65912_SPI)  += tps65912-spi.o
+> > > +obj-$(CONFIG_MFD_TPS6594X)	+= tps6594x.o
+> > >  obj-$(CONFIG_MENELAUS)		+= menelaus.o
+> > >  
+> > >  obj-$(CONFIG_TWL4030_CORE)	+= twl-core.o twl4030-irq.o twl6030-irq.o
+> > > diff --git a/drivers/mfd/tps6594x.c b/drivers/mfd/tps6594x.c
+> > > new file mode 100644
+> > > index 000000000000..ff265b91db3e
+> > > --- /dev/null
+> > > +++ b/drivers/mfd/tps6594x.c
+> > > @@ -0,0 +1,121 @@
+> > > +// SPDX-License-Identifier: GPL-2.0-or-later
+> > > +/*
+> > > + * Driver for tps6594x PMIC chips
+> > > + *
+> > > + * Copyright (C) 2022 Texas Instruments Incorporated - https://www.ti.com/
+> > > + * Author: Keerthy <j-keerthy@ti.com>
+> > > + */
+> > > +
+> > > +#include <linux/of.h>
+> > > +#include <linux/of_device.h>
+> > > +#include <linux/mfd/core.h>
+> > > +#include <linux/mfd/tps6594x.h>
+> > > +#include <linux/module.h>
+> > > +#include <linux/i2c.h>
+> > > +#include <linux/regmap.h>
+> > > +
+> > > +static const struct regmap_config tps6594x_regmap_config = {
+> > > +	.reg_bits = 8,
+> > > +	.val_bits = 8,
+> > > +	.max_register = TPS6594X_REG_MAX,
+> > > +};
+> > > +
+> > > +static const struct mfd_cell tps6594x_cells[] = {
+> > > +	{ .name = "tps6594x-gpio" },
+> > > +	{ .name = "tps6594x-regulator" },
+> > > +	{ .name = "tps6594x-rtc" },
+> > > +};
+> > 
+> > Where are the device drivers for these?
+> >
+> 
+> They currently don't exist. Would these need to be merged/developed
+> before the acceptance of the mfd driver?
 
-So actually, the parent node is glink-edge, not smd-edge.
+Yes, they would.
 
-And there are some other required properties missing when switching to
-glink-edge.
-
-Will resend with glink-edge instead and add all the related missing
-properties.
-
-> 
-> doc reference errors (make refcheckdocs):
-> Documentation/devicetree/bindings/remoteproc/qcom,glink-edge.yaml: Documentation/devicetree/bindings/misc/qcom,fastrpc.txt
-> MAINTAINERS: Documentation/devicetree/bindings/misc/qcom,fastrpc.txt
-> 
-> See https://patchwork.ozlabs.org/patch/
-> 
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit.
-> 
+-- 
+Lee Jones [李琼斯]
