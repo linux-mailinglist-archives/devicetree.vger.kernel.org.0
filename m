@@ -2,115 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6ADED5ACA74
-	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 08:22:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86F265ACA8D
+	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 08:28:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236407AbiIEGVR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 02:21:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56824 "EHLO
+        id S229560AbiIEG2m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 02:28:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236270AbiIEGVP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 02:21:15 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43A122B62D;
-        Sun,  4 Sep 2022 23:21:15 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S236580AbiIEG2h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 02:28:37 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3290C21E03
+        for <devicetree@vger.kernel.org>; Sun,  4 Sep 2022 23:28:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1662359314; x=1693895314;
+  h=subject:from:to:cc:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=WfWbjVdUvWTz4RKxs2T5vp9uD5XLNpzOq3CTK7XEBs4=;
+  b=XFP1A3OrKIzKvQ2Su9ReBVvcq2Pnh+cfGiP8TB+/tGlAtnu56aLc7sLw
+   B0P6Y6O9Yo1M6fQTJ6F5RG/5QY/vgHmhFLTuMorKBfFwJ0oLvBzkcg8ot
+   gUKk+YqoAvr++FQ/Kw0dw4BhJ5tjyauxcJ3DEk99WLSl3CpRa5/QT2pJn
+   zCoKHanjOB+bNgsopoCxMj2TnphAV2yDlYg/iSfdIlu/2eHjNCX19CXCd
+   cH8EM3mwVVyMiVVhu5gqIA0mKFeFqYsK8cZ5oipO70XMICG18lFfJSpvL
+   lPhb3nA1C1sP0UtDB90KYCPldjzdtmfbqt3ljjxcZDJ70OKFZRPsqF0R0
+   g==;
+X-IronPort-AV: E=Sophos;i="5.93,290,1654552800"; 
+   d="scan'208";a="25976558"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 05 Sep 2022 08:28:31 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Mon, 05 Sep 2022 08:28:31 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Mon, 05 Sep 2022 08:28:31 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1662359311; x=1693895311;
+  h=from:to:cc:date:message-id:in-reply-to:references:
+   mime-version:content-transfer-encoding:subject;
+  bh=WfWbjVdUvWTz4RKxs2T5vp9uD5XLNpzOq3CTK7XEBs4=;
+  b=JrhblJuAWuDq3sUlDItXcxuQ12THu0tTxyeYKfkICLLbFsDjfMZ9wJWb
+   EpOLOB4qN1vfdJgUdoxnL2QBfYJKzENXjMwNNI/iOYOPqfzRKMw0zwIEm
+   IGlIkabaTYSiosDAD751y6+AVXASSNCLeL/XxVO8PKDIbWjwCUshxlnZJ
+   Eph8Tgz8cTeG3lTHGi/q6nnmguPuEv+OsiDt/0FDtPOmxbwGn08vZo80v
+   yXESG7widoqWJMoUtyAeX5Cm+PSgJtL3s8teBb+5jm2sFtMEh2z4FGQV8
+   h/kVMHd1XD4OZiDjtTp/71SFDzniIpE1KhozPDrk1nHgmXxYbZJKmoQq4
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.93,290,1654552800"; 
+   d="scan'208";a="25976557"
+Subject: Re: Re: [PATCH v2 1/1] arm64: dts: tqma8mpql: add USB DR support
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 05 Sep 2022 08:28:31 +0200
+Received: from steina-w.localnet (unknown [10.123.49.11])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D2838610E7;
-        Mon,  5 Sep 2022 06:21:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 756C6C433D6;
-        Mon,  5 Sep 2022 06:21:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1662358874;
-        bh=056KAePOeWgzIG5LJsb+xoS5aEhxNBcn6X0QjCynVOo=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=XdNTeqviAxPaYfXQBCXsrQG2mq7ZAVcobfT6XXI3oDsn8ifBtUUUQoOTNH2cYqoYT
-         EWG8N1mc3OZpX/xqdkK0LuZRruyFowz03dVrdlBKt9HdNN/mrZPr7KS9DfjoVC7D7b
-         NYZVa2h/Dt2BEpcpyxaFlefQYMukqh5zORWfD6tKJhpnd/UeZz08/MwTYg3vtvJY19
-         uNU879voF7VWVRV0eUWXW+2r5xYJO0kQ1sTyPXK0Moz08bghCLBzDqvHPInfITVLYS
-         aWr1aKkB/TndgBDUIAFWxtw8KLd9rfBNtxV7MOx2AyyhPKUU9quSf+k42LL/WtWksO
-         PRW5G/3Oai0/g==
-Date:   Mon, 5 Sep 2022 08:21:07 +0200
-From:   Mauro Carvalho Chehab <mchehab@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Yu Chen <chenyu56@huawei.com>,
-        Binghui Wang <wangbinghui@hisilicon.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Carvalho Chehab <mchehab+huawei@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org
-Subject: Re: [PATCH 1/4] dt-bindings: phy: hisilicon,hi3660-usb3: simplify
- example
-Message-ID: <20220905082107.7ff83539@coco.lan>
-In-Reply-To: <20220817142246.828762-2-krzysztof.kozlowski@linaro.org>
-References: <20220817142246.828762-1-krzysztof.kozlowski@linaro.org>
-        <20220817142246.828762-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-redhat-linux-gnu)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 82F93280056;
+        Mon,  5 Sep 2022 08:28:31 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Tim Harvey <tharvey@gateworks.com>, Jun Li <jun.li@nxp.com>
+Date:   Mon, 05 Sep 2022 08:28:29 +0200
+Message-ID: <5604780.DvuYhMxLoT@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20220905022228.GB1728671@dragon>
+References: <20220831074606.1677052-1-alexander.stein@ew.tq-group.com> <20220905022228.GB1728671@dragon>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Em Wed, 17 Aug 2022 17:22:43 +0300
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> escreveu:
+Hello Shawn,
 
-> syscon and simple-mfd cannot be used without device specific compatible,
-> so simplify the example to fix this.
+thanks for your feedback.
+
+Am Montag, 5. September 2022, 04:22:28 CEST schrieb Shawn Guo:
+> On Wed, Aug 31, 2022 at 09:46:06AM +0200, Alexander Stein wrote:
+> > Add support for USB DR on USB1 interface. Host/Device detection is done
+> > using the usb-role-switch connector.
+> > 
+> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > ---
+> > Changes in v2:
+> > * Split from previous series
+> > * For now enable USB OTG only
+> > 
+> >  .../freescale/imx8mp-tqma8mpql-mba8mpxl.dts   | 40 +++++++++++++++++++
+> >  1 file changed, 40 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
+> > b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts index
+> > d8ca52976170..b30d75b1fa47 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
+> > @@ -459,6 +459,37 @@ &usdhc2 {
+> > 
+> >  	status = "okay";
+> >  
+> >  };
+> > 
+> > +&usb3_phy0 {
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&pinctrl_usb0>;
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../bindings/phy/hisilicon,hi3660-usb3.yaml   | 22 +++++--------------
->  1 file changed, 6 insertions(+), 16 deletions(-)
+> Should the pinctrl be in USB controller instead of PHY node?
+
+That seems reasonable. I'll move this to the USB glue layer node, where also 
+the OC and PWR polarity can be changed.
+
+> > +	status = "okay";
+> > +};
+> > +
+> > +&usb3_0 {
+> > +	fsl,over-current-active-low;
+> > +	status = "okay";
+> > +};
+> > +
+> > +&usb_dwc3_0 {
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/hisilicon,hi3660-usb3.yaml b/Documentation/devicetree/bindings/phy/hisilicon,hi3660-usb3.yaml
-> index c2e073e26190..20b79e2e8b82 100644
-> --- a/Documentation/devicetree/bindings/phy/hisilicon,hi3660-usb3.yaml
-> +++ b/Documentation/devicetree/bindings/phy/hisilicon,hi3660-usb3.yaml
-> @@ -41,20 +41,10 @@ additionalProperties: false
->  
->  examples:
->    - |
-> -    bus {
-> -      #address-cells = <2>;
-> -      #size-cells = <2>;
-> -
-> -      usb3_otg_bc: usb3_otg_bc@ff200000 {
-> -        compatible = "syscon", "simple-mfd";
-> -        reg = <0x0 0xff200000 0x0 0x1000>;
-> -
-> -        usb-phy {
-> -          compatible = "hisilicon,hi3660-usb-phy";
-> -          #phy-cells = <0>;
-> -          hisilicon,pericrg-syscon = <&crg_ctrl>;
-> -          hisilicon,pctrl-syscon = <&pctrl>;
-> -          hisilicon,eye-diagram-param = <0x22466e4>;
-> -        };
-> -      };
-> +    usb-phy {
-> +        compatible = "hisilicon,hi3660-usb-phy";
-> +        #phy-cells = <0>;
-> +        hisilicon,pericrg-syscon = <&crg_ctrl>;
-> +        hisilicon,pctrl-syscon = <&pctrl>;
-> +        hisilicon,eye-diagram-param = <0x22466e4>;
->      };
+> These nodes are not in alphabetic order.
 
-Acked-by: Mauro Carvalho Chehab <mchehab@kernel.org>
+Sure, this looks wrong, I'll fix that.
 
-Thanks,
-Mauro
+> > +	/* dual role is implemented, but not a full featured OTG */
+> > +	hnp-disable;
+> > +	srp-disable;
+> > +	adp-disable;
+> > +	dr_mode = "otg";
+> > +	usb-role-switch;
+> > +	role-switch-default-mode = "peripheral";
+> > +	status = "okay";
+> > +
+> > +	connector {
+> > +		compatible = "gpio-usb-b-connector", "usb-b-connector";
+> > +		type = "micro";
+> > +		label = "X29";
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&pinctrl_usbcon0>;
+> > +		id-gpios = <&gpio1 10 GPIO_ACTIVE_HIGH>;
+> > +	};
+> > +};
+> > +
+> > 
+> >  &iomuxc {
+> >  
+> >  	pinctrl_backlight: backlightgrp {
+> >  	
+> >  		fsl,pins = <MX8MP_IOMUXC_SAI5_RXFS__GPIO3_IO19		
+0x14>;
+> > 
+> > @@ -666,6 +697,15 @@ pinctrl_uart4: uart4grp {
+> > 
+> >  			   <MX8MP_IOMUXC_UART4_TXD__UART4_DCE_TX	
+0x140>;
+> >  	
+> >  	};
+> > 
+> > +	pinctrl_usbcon0: usb0congrp {
+> > +		fsl,pins = <MX8MP_IOMUXC_GPIO1_IO10__GPIO1_IO10		
+0x1c0>;
+> > +	};
+> > +
+> > +	pinctrl_usb0: usb0grp {
+> 
+> pinctrl_usb0 should go before pinctrl_usbcon0?
+
+Yes, I'll fix that.
+
+Thanks and best regards,
+Alexander
+
+> Shawn
+> 
+> > +		fsl,pins = <MX8MP_IOMUXC_GPIO1_IO13__USB1_OTG_OC	
+0x1c0>,
+> > +			   <MX8MP_IOMUXC_GPIO1_IO12__USB1_OTG_PWR	
+0x1c0>;
+> > +	};
+> > +
+> > 
+> >  	pinctrl_usdhc2: usdhc2grp {
+> >  	
+> >  		fsl,pins = <MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK		
+0x192>,
+> >  		
+> >  			   <MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD		
+0x1d2>,
+
+
+
+
