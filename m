@@ -2,122 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 76EC05AD3A4
-	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 15:19:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 922515AD3B6
+	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 15:23:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236540AbiIENRp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 09:17:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36042 "EHLO
+        id S237694AbiIENVP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 09:21:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236379AbiIENRo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 09:17:44 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28A7A42ACF
-        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 06:17:41 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id w8so13056398lft.12
-        for <devicetree@vger.kernel.org>; Mon, 05 Sep 2022 06:17:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=ZhkcBof0q3zrbpmM2uA5kMWYiJUFwZ5O5fdP6QIJab0=;
-        b=MrIIeFeWBtMBaW4j5GZ02ZWe4kO4wuXw2VJUSKnqEEy9TD/u1gJJxpCvKuuziSuyQM
-         OXnfvt6rR2K3LPvyzm4rwyzOjG62v41kO0j8bWyML/yFaw98qHLB5cqe5O65iV3IygDD
-         FM/HZhpyzax+RouXm4jTHjQytDMvDtu57H7WaIO9ct5gAgnMQbHAhVeyjKeYPApMa6/y
-         ThZJtr08HYiB+aBezp5SKHgo4ooIFWdYnW+odXsph/QdaR3A1UEr9icfGmaSc5SyYM1+
-         P9UaC2uPodO2rBzxOHd0+6JWzV/F12MOEErwU/pB0wigMannqV2ixxIBxF4Hyh5HkGGx
-         b2iQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=ZhkcBof0q3zrbpmM2uA5kMWYiJUFwZ5O5fdP6QIJab0=;
-        b=EAZNH9rUL+unWMu7+/+UDXe/M4B9ToW/SnvnIEbV6xr8wK9jfhBj8dekW/o6z3gEIV
-         cYKvDpNUlAyIzN8BCH/Ya0v9KB/vGOsz9ucolx8jtRxU94L3HRErsp+yEuhOoQsZOM19
-         2KJN0kQYTbN4PIPuFKrcfUVgEd8AX6tX3VccPiRjPN/aLs4kfejKQ1zfYW7sBdb1Ol1E
-         GHaBTHl55X/ox29K0iCGFwa44+9XmtSrrPj0AZS+7olwPckr+qfLVihaxCs0rFqRDo7U
-         zblSXBEDUa/iUd8pQagrLHF+PBRdGDdmt05SMX5+Q5Inrk3mKn96hlmRsqUhZifcoKgp
-         Uh+A==
-X-Gm-Message-State: ACgBeo05LP2jl4/WifPfXi4WZ77kuC9YUNWyKdv+7Cqcd6K8Hlm4Y68B
-        DunT/w8a5uuyIhWRKi+Vq2/6pg==
-X-Google-Smtp-Source: AA6agR6sI2WOTTy4WGrN9OaHTlr18hO5P/5+l2AMjC7HicL3dypxglHg3OIg5MZDK8H2bfXIQK6Uyw==
-X-Received: by 2002:a05:6512:2399:b0:494:7422:4904 with SMTP id c25-20020a056512239900b0049474224904mr11560263lfv.191.1662383859520;
-        Mon, 05 Sep 2022 06:17:39 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id u14-20020a05651220ce00b004947fcf0c0bsm1183145lfr.281.2022.09.05.06.17.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Sep 2022 06:17:39 -0700 (PDT)
-Message-ID: <598bd971-0b60-31dd-c23a-89ce74213c3d@linaro.org>
-Date:   Mon, 5 Sep 2022 15:17:37 +0200
+        with ESMTP id S237621AbiIENVL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 09:21:11 -0400
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C041547BBF;
+        Mon,  5 Sep 2022 06:20:57 -0700 (PDT)
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 285CXuOL022519;
+        Mon, 5 Sep 2022 09:20:53 -0400
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3jc3u5vt6t-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 05 Sep 2022 09:20:53 -0400
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 285DKpTk029090
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 5 Sep 2022 09:20:51 -0400
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Mon, 5 Sep 2022 09:20:50 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Mon, 5 Sep 2022 09:20:50 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Mon, 5 Sep 2022 09:20:50 -0400
+Received: from george-precision5560.ad.analog.com ([10.48.65.141])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 285DKaY8000352;
+        Mon, 5 Sep 2022 09:20:39 -0400
+From:   George Mois <george.mois@analog.com>
+To:     <jic23@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     <lucas.p.stankus@gmail.com>, George Mois <george.mois@analog.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v4 1/2] dt-bindings: iio: accel: adxl313: Add compatibles for adxl312 and adxl314
+Date:   Mon, 5 Sep 2022 16:20:17 +0300
+Message-ID: <20220905132018.364900-1-george.mois@analog.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH 2/4] soc: qcom: icc-bwmon: add support for sc7280 LLCC
- BWMON
-Content-Language: en-US
-To:     Rajendra Nayak <quic_rjendra@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@somainline.org,
-        robh+dt@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220901124730.19460-1-quic_rjendra@quicinc.com>
- <20220901124730.19460-3-quic_rjendra@quicinc.com>
- <4ca517a4-c4a1-2359-7b60-86ac529ed741@linaro.org>
- <33c61f23-6442-6d9b-492f-dd6e9c64a8c1@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <33c61f23-6442-6d9b-492f-dd6e9c64a8c1@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: Rp_oEBMQY74BU084GlBYQo_k-cW6Gr3V
+X-Proofpoint-ORIG-GUID: Rp_oEBMQY74BU084GlBYQo_k-cW6Gr3V
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.517,FMLib:17.11.122.1
+ definitions=2022-09-05_09,2022-09-05_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 clxscore=1015
+ phishscore=0 adultscore=0 lowpriorityscore=0 spamscore=0 bulkscore=0
+ mlxscore=0 priorityscore=1501 impostorscore=0 mlxlogscore=999
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2207270000 definitions=main-2209050063
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/09/2022 06:04, Rajendra Nayak wrote:
-> 
-> 
-> On 9/1/2022 8:57 PM, Krzysztof Kozlowski wrote:
->> On 01/09/2022 15:47, Rajendra Nayak wrote:
->>> Add support for sc7280 BWMON instance measuring traffic between LLCC and
->>> memory with the v5 register layout.
->>>
->>> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
->>> ---
->>>   drivers/soc/qcom/icc-bwmon.c | 15 +++++++++++++++
->>>   1 file changed, 15 insertions(+)
->>>
->>> diff --git a/drivers/soc/qcom/icc-bwmon.c b/drivers/soc/qcom/icc-bwmon.c
->>> index 47c2c3e7bb3f..44a10009b45e 100644
->>> --- a/drivers/soc/qcom/icc-bwmon.c
->>> +++ b/drivers/soc/qcom/icc-bwmon.c
->>> @@ -656,6 +656,18 @@ static const struct icc_bwmon_data sdm845_llcc_bwmon_data = {
->>>   	.regmap_cfg = &sdm845_llcc_bwmon_regmap_cfg,
->>>   };
->>>   
->>> +static const struct icc_bwmon_data sc7280_llcc_bwmon_data = {
->>> +	.sample_ms = 4,
->>> +	.count_unit_kb = 64,
->>
->> This makes me wonder if I put correct count unit for SDM845 LLCC...
-> 
-> These numbers seem to vary from SoC to SoC, 
+Extend the adi,adxl313.yaml file with information regrding the
+ADXL312 and ADXL314 devices.
 
-Hm, then it is probably ok.
+Signed-off-by: George Mois <george.mois@analog.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+changes in v4:
+ - rename patch title to comply with dt-bindings patches title format
+ .../devicetree/bindings/iio/accel/adi,adxl313.yaml     | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
 
-> I looked up the sdm845.dtsi from
-> the CAF kernels [1] and it seems like it should be 4096 instead of 1024?
+diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adxl313.yaml b/Documentation/devicetree/bindings/iio/accel/adi,adxl313.yaml
+index d6afc1b8c272..59d48ff1a16c 100644
+--- a/Documentation/devicetree/bindings/iio/accel/adi,adxl313.yaml
++++ b/Documentation/devicetree/bindings/iio/accel/adi,adxl313.yaml
+@@ -4,20 +4,24 @@
+ $id: http://devicetree.org/schemas/iio/accel/adi,adxl313.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title: Analog Devices ADXL313 3-Axis Digital Accelerometer
++title: Analog Devices ADXL312, ADXL313, and ADXL314 3-Axis Digital Accelerometers
+ 
+ maintainers:
+   - Lucas Stankus <lucas.p.stankus@gmail.com>
+ 
+ description: |
+-  Analog Devices ADXL313 3-Axis Digital Accelerometer that supports
+-  both I2C & SPI interfaces.
++  Analog Devices ADXL312, ADXL313, and ADXL314 3-Axis Digital Accelerometer that
++  support both I2C & SPI interfaces.
++    https://www.analog.com/en/products/adxl312.html
+     https://www.analog.com/en/products/adxl313.html
++    https://www.analog.com/en/products/adxl314.html
+ 
+ properties:
+   compatible:
+     enum:
++      - adi,adxl312
+       - adi,adxl313
++      - adi,adxl314
+ 
+   reg:
+     maxItems: 1
+-- 
+2.30.2
 
-The SDM845 v2 DTSI was saying 64 kB for CPU bwmon and indeed 4 MB for
-LLCC. I think I took 1 MB from default value from the msm-4.9 driver and
-it matched my measurements. I need to test it again and maybe fix it to
-4 MB.
-
-Best regards,
-Krzysztof
