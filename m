@@ -2,219 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B01E5AD837
-	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 19:14:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2851F5AD843
+	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 19:17:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232414AbiIERNn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 13:13:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40432 "EHLO
+        id S231932AbiIERQJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 13:16:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232019AbiIERNl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 13:13:41 -0400
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 753BF47B98;
-        Mon,  5 Sep 2022 10:13:40 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.93,291,1654527600"; 
-   d="scan'208";a="131732022"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 06 Sep 2022 02:13:39 +0900
-Received: from localhost.localdomain (unknown [10.226.92.189])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id BD2EA40328CB;
-        Tue,  6 Sep 2022 02:13:35 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org,
+        with ESMTP id S231697AbiIERQJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 13:16:09 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B47851430;
+        Mon,  5 Sep 2022 10:16:07 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id bz13so8743708wrb.2;
+        Mon, 05 Sep 2022 10:16:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=6jua7XnB+S6QXNBg/xY2SX2MwZ+5JccffQnTKsOaqDk=;
+        b=kgxn/iA5M9NOE/FH/QgrgFrxAlMWYsOVL1vev7aZqaKj6cSVe5RQu6Ww9/m9lFCwCB
+         2/A6a3MiFL0manWBuKAT8ClQIPJLDfkHBpFiTk287Fn8TzFFF6FNvR072trcXHX+zgKu
+         RyU+XqriqsXa48+mrZcgbsgthA1+F1Szi1KR6ugjKpyh6qLZi9wtieC3w+AUZz8HP9M5
+         0kXlUxhdIq7kWBWo8duWoPoSBZ/pmp7gtQbhmFp12lb2UWVSr1om04J9Z42dWiDAyi1w
+         9trYU69D2oS0BcjCjIm4yRP1QWaMN+NCZ0Xmwj68pdOQzFbnIP7bNa54oEz1MF3Zcmjd
+         p4Tg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=6jua7XnB+S6QXNBg/xY2SX2MwZ+5JccffQnTKsOaqDk=;
+        b=5QGW6O405KS4fhSLV0eTXd+9vn69g8oYpZI3KHYl5UUQgmnK1U9Xp5owk4PAoImETj
+         7xszPs7pDfBmMZ1THFZDwxnOAUBaRbcWH7w2fMrsVN5zjT6e3gVvggGo88D48bit1Ckg
+         pq5ND/ChGpb4no8fYvrI80WzPNsDdn1SWaY7uWyKu2Gx563UyYaP9bGyWXyEOwGlYCzv
+         C6H0Y8Zl1L00MHQ6vhWwf1BLtfNvBL3iHTJEU+WCSf0j84V9FZqHJX5R3+YuYAkt2UW7
+         quKoHUYGIGkwCovWqA0uksbq051ehpzeAn/62I+YQ7XHJ+18EXrRdYSPrA63pGY5Aj4x
+         Z4yw==
+X-Gm-Message-State: ACgBeo2H4rwbSN+OXxpjtdeRnw6bnw7t+mblsicSL2VSqSjP8YTe9YIi
+        81Z8FujCaV3/pFYtLuFQjoA=
+X-Google-Smtp-Source: AA6agR5ygwYGBm+rLrHkshGbCtPvib5qsaV24F9hXwanS5vZYK/GZL3sk0pdeyAzqgdef3O42Uiq5w==
+X-Received: by 2002:a5d:684e:0:b0:228:74d5:54e8 with SMTP id o14-20020a5d684e000000b0022874d554e8mr3860063wrw.101.1662398165821;
+        Mon, 05 Sep 2022 10:16:05 -0700 (PDT)
+Received: from Clement-Blade14.home (2a01cb000c0d3d00995730c36491d21b.ipv6.abo.wanadoo.fr. [2a01:cb00:c0d:3d00:9957:30c3:6491:d21b])
+        by smtp.gmail.com with ESMTPSA id v22-20020a7bcb56000000b003a5ad7f6de2sm11437072wmj.15.2022.09.05.10.16.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 Sep 2022 10:16:05 -0700 (PDT)
+From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+        Steven Price <steven.price@arm.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
         Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: [PATCH v6 1/2] dt-bindings: pwm: Add RZ/G2L GPT binding
-Date:   Mon,  5 Sep 2022 18:13:27 +0100
-Message-Id: <20220905171328.991367-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220905171328.991367-1-biju.das.jz@bp.renesas.com>
-References: <20220905171328.991367-1-biju.das.jz@bp.renesas.com>
+        Arnd Bergmann <arnd@arndb.de>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+Subject: [PATCH v3 0/5] Allwinner H6 GPU devfreq
+Date:   Mon,  5 Sep 2022 19:15:56 +0200
+Message-Id: <20220905171601.79284-1-peron.clem@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree bindings for the General PWM Timer (GPT).
+Hi,
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-v5->v6:
- * No change.
-v4->v5:
- * No change.
-v3->v4:
- * No change.
-v2->v3:
- * Added Rb tag from Rob.
-v1->v2:
- * Added '|' after 'description:' to preserve formatting.
- * Removed description for pwm_cells as it is common property.
- * Changed the reg size in example from 0xa4->0x100
- * Added Rb tag from Geert.
-RFC->v1:
- * Added Description
- * Removed comments from reg and clock
----
- .../bindings/pwm/renesas,rzg2l-gpt.yaml       | 129 ++++++++++++++++++
- 1 file changed, 129 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
+This is a refresh of previous patches sent to enable GPU Devfreq on H6
+Beelink GS1 but that wasn't stable at that time[0].
 
-diff --git a/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml b/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-new file mode 100644
-index 000000000000..e8f7b9947eaa
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-@@ -0,0 +1,129 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pwm/renesas,rzg2l-gpt.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas RZ/G2L General PWM Timer (GPT)
-+
-+maintainers:
-+  - Biju Das <biju.das.jz@bp.renesas.com>
-+
-+description: |
-+  RZ/G2L General PWM Timer (GPT) composed of 8 channels with 32-bit timer
-+  (GPT32E). It supports the following functions
-+  * 32 bits × 8 channels.
-+  * Up-counting or down-counting (saw waves) or up/down-counting
-+    (triangle waves) for each counter.
-+  * Clock sources independently selectable for each channel.
-+  * Two I/O pins per channel.
-+  * Two output compare/input capture registers per channel.
-+  * For the two output compare/input capture registers of each channel,
-+    four registers are provided as buffer registers and are capable of
-+    operating as comparison registers when buffering is not in use.
-+  * In output compare operation, buffer switching can be at crests or
-+    troughs, enabling the generation of laterally asymmetric PWM waveforms.
-+  * Registers for setting up frame cycles in each channel (with capability
-+    for generating interrupts at overflow or underflow)
-+  * Generation of dead times in PWM operation.
-+  * Synchronous starting, stopping and clearing counters for arbitrary
-+    channels.
-+  * Starting, stopping, clearing and up/down counters in response to input
-+    level comparison.
-+  * Starting, clearing, stopping and up/down counters in response to a
-+    maximum of four external triggers.
-+  * Output pin disable function by dead time error and detected
-+    short-circuits between output pins.
-+  * A/D converter start triggers can be generated (GPT32E0 to GPT32E3)
-+  * Enables the noise filter for input capture and external trigger
-+    operation.
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - renesas,r9a07g044-gpt  # RZ/G2{L,LC}
-+          - renesas,r9a07g054-gpt  # RZ/V2L
-+      - const: renesas,rzg2l-gpt
-+
-+  reg:
-+    maxItems: 1
-+
-+  '#pwm-cells':
-+    const: 2
-+
-+  interrupts:
-+    items:
-+      - description: GTCCRA input capture/compare match
-+      - description: GTCCRB input capture/compare
-+      - description: GTCCRC compare match
-+      - description: GTCCRD compare match
-+      - description: GTCCRE compare match
-+      - description: GTCCRF compare match
-+      - description: GTADTRA compare match
-+      - description: GTADTRB compare match
-+      - description: GTCNT overflow/GTPR compare match
-+      - description: GTCNT underflow
-+
-+  interrupt-names:
-+    items:
-+      - const: ccmpa
-+      - const: ccmpb
-+      - const: cmpc
-+      - const: cmpd
-+      - const: cmpe
-+      - const: cmpf
-+      - const: adtrga
-+      - const: adtrgb
-+      - const: ovf
-+      - const: unf
-+
-+  clocks:
-+    maxItems: 1
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+  - clocks
-+  - power-domains
-+  - resets
-+
-+allOf:
-+  - $ref: pwm.yaml#
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/r9a07g044-cpg.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    gpt4: pwm@10048400 {
-+        compatible = "renesas,r9a07g044-gpt", "renesas,rzg2l-gpt";
-+        reg = <0x10048400 0x100>;
-+        interrupts = <GIC_SPI 270 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 271 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 272 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 273 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 274 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 275 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 276 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 277 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 278 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 279 IRQ_TYPE_EDGE_RISING>;
-+        interrupt-names = "ccmpa", "ccmpb", "cmpc", "cmpd",
-+                          "cmpe", "cmpf", "adtrga", "adtrgb",
-+                          "ovf", "unf";
-+        clocks = <&cpg CPG_MOD R9A07G044_GPT_PCLK>;
-+        power-domains = <&cpg>;
-+        resets = <&cpg R9A07G044_GPT_RST_C>;
-+        #pwm-cells = <2>;
-+    };
+With the recent fix on GPU PLL from Roman Stratiienko I have retested
+and everything seems stable and works as expected[1].
+
+Regards,
+Clement
+
+0: https://lore.kernel.org/lkml/CAJiuCce58Gaxf_Qg2cnMwvOgUqYU__eKb3MDX1Fe_+47htg2bA@mail.gmail.com/
+1: https://lore.kernel.org/linux-arm-kernel/2562485.k3LOHGUjKi@kista/T/
+
+Changes since v2:
+ - Fixes device-tree warnings
+ - Add panfrost fix to enable regulator
+ - Remove always-on regulator from device-tree
+ - Update cooling map from vendor kernel
+
+Clément Péron (5):
+  arm64: defconfig: Enable devfreq cooling device
+  arm64: dts: allwinner: h6: Add cooling map for GPU
+  arm64: dts: allwinner: h6: Add GPU OPP table
+  drm/panfrost: devfreq: set opp to the recommended one to configure and
+    enable regulator
+  arm64: dts: allwinner: beelink-gs1: Enable GPU OPP
+
+ .../dts/allwinner/sun50i-h6-beelink-gs1.dts   |  1 +
+ .../boot/dts/allwinner/sun50i-h6-gpu-opp.dtsi | 87 +++++++++++++++++++
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  | 51 ++++++++++-
+ arch/arm64/configs/defconfig                  |  1 +
+ drivers/gpu/drm/panfrost/panfrost_devfreq.c   |  8 ++
+ 5 files changed, 146 insertions(+), 2 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h6-gpu-opp.dtsi
+
 -- 
-2.25.1
+2.34.1
 
