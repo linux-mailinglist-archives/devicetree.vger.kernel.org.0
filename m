@@ -2,172 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C399B5AD828
-	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 19:12:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 157B45AD82F
+	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 19:13:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231171AbiIERMb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 13:12:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38904 "EHLO
+        id S232349AbiIERNi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 13:13:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229635AbiIERMb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 13:12:31 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 474D063FE;
-        Mon,  5 Sep 2022 10:12:30 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E21C16137C;
-        Mon,  5 Sep 2022 17:12:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E53DAC433D6;
-        Mon,  5 Sep 2022 17:12:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1662397949;
-        bh=KcPI409Ft3Jh7G9xbcUik0k3NRnS/45mIgbEUSHSoFU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=YUzX/1Ac28vblnx36NayQ+RVQtMdeg/Mw09DG6Mr+MquKSBVlBcvpQHsvCSth4dOS
-         Dq95iPyPOSBhDrrZBy53/1hy5HvLnp29Tcpe8PSdQxTup1qLGMHHJEsJSXvr5bAc89
-         VdbyzNhE6jxmOK3x+/dbP18jDJ8nToWiUR+AfIxdM0kxCptr5mkG28iNK411238hf1
-         +a+IeL2dCeArV/7NB/UMK1kP2K6ykx0H9oibpbiPRPPKt+otP9lS6xA0vAP4LKHGoG
-         Lxacgo4u1MqmY8NHx6p8MY2TIhSjS94JgoPX7vCiiPoCzRWX4VgdwlNOAOJJipKYDg
-         tsY6GCOQ5G0QQ==
-Received: by pali.im (Postfix)
-        id 34E277D7; Mon,  5 Sep 2022 19:12:26 +0200 (CEST)
-Date:   Mon, 5 Sep 2022 19:12:26 +0200
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        with ESMTP id S231230AbiIERNh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 13:13:37 -0400
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B5BCE2C655;
+        Mon,  5 Sep 2022 10:13:35 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.93,291,1654527600"; 
+   d="scan'208";a="131732018"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 06 Sep 2022 02:13:35 +0900
+Received: from localhost.localdomain (unknown [10.226.92.189])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 118C140328CB;
+        Tue,  6 Sep 2022 02:13:30 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marek Behun <marek.behun@nic.cz>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: turris-omnia: Add mcu node
-Message-ID: <20220905171226.fla6i5cgrx2lbq3u@pali>
-References: <20220819131152.6513-1-pali@kernel.org>
- <20220831142809.lcmnv3l4rnulo522@pali>
- <YxE2JqJutZ0ilghH@lunn.ch>
- <20220903152735.2ga3iwrivh6zhibf@pali>
- <30d3f753-187f-4a3f-c14a-f3b003f23773@gmail.com>
- <7a43aa79-9c40-867c-c585-3bb448a54647@linaro.org>
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v6 0/2] Add support for RZ/G2L GPT
+Date:   Mon,  5 Sep 2022 18:13:26 +0100
+Message-Id: <20220905171328.991367-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <7a43aa79-9c40-867c-c585-3bb448a54647@linaro.org>
-User-Agent: NeoMutt/20180716
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Monday 05 September 2022 18:34:48 Krzysztof Kozlowski wrote:
-> On 05/09/2022 18:19, Florian Fainelli wrote:
-> > 
-> > 
-> > On 9/3/2022 8:27 AM, Pali Rohár wrote:
-> >> On Friday 02 September 2022 00:45:58 Andrew Lunn wrote:
-> >>> On Wed, Aug 31, 2022 at 04:28:09PM +0200, Pali Rohár wrote:
-> >>>> PING?
-> >>>>
-> >>>> On Friday 19 August 2022 15:11:52 Pali Rohár wrote:
-> >>>>> At i2c address 0x2a is MCU command interface which provides access to GPIOs
-> >>>>> connected to Turris Omnia MCU. So define mcu node in Turris Omnia DTS file.
-> >>>>>
-> >>>>> Signed-off-by: Pali Rohár <pali@kernel.org>
-> >>>>>
-> >>>>> ---
-> >>>>> Same change was already sent to U-Boot project together with driver. As
-> >>>>> Turris Omnia DTS file is shared between Linux kernel U-Boot, I'm sending
-> >>>>> this change also in Linux. There is a plan to write also Linux driver for
-> >>>>> Turris Omnia MCU, like there is already in U-Boot.
-> >>>>>
-> >>>>> https://source.denx.de/u-boot/u-boot/-/commit/832738974806e6264a3d0ac2aaa92d0f662fd128
-> >>>>> https://source.denx.de/u-boot/u-boot/-/blob/master/drivers/gpio/turris_omnia_mcu.c
-> >>>>> ---
-> >>>>>   arch/arm/boot/dts/armada-385-turris-omnia.dts | 8 +++++++-
-> >>>>>   1 file changed, 7 insertions(+), 1 deletion(-)
-> >>>>>
-> >>>>> diff --git a/arch/arm/boot/dts/armada-385-turris-omnia.dts b/arch/arm/boot/dts/armada-385-turris-omnia.dts
-> >>>>> index f4878df39753..f655e9229d68 100644
-> >>>>> --- a/arch/arm/boot/dts/armada-385-turris-omnia.dts
-> >>>>> +++ b/arch/arm/boot/dts/armada-385-turris-omnia.dts
-> >>>>> @@ -184,7 +184,13 @@
-> >>>>>   			#size-cells = <0>;
-> >>>>>   			reg = <0>;
-> >>>>>   
-> >>>>> -			/* STM32F0 command interface at address 0x2a */
-> >>>>> +			/* MCU command i2c API */
-> >>>>> +			mcu: mcu@2a {
-> >>>>> +				compatible = "cznic,turris-omnia-mcu";
-> >>>>> +				reg = <0x2a>;
-> >>>>> +				gpio-controller;
-> >>>>> +				#gpio-cells = <3>;
-> >>>>> +			};
-> >>>
-> >>> Please document the binding, preferably in yaml.
-> >>
-> >> I'm not going to send any new yaml dt binding document as I see that
-> >> dt bindings is clearly deprecated project. Either patches for dt
-> >> bindings are waiting without any answer for months (maybe year?) or
-> >> patches are ignored/not accepted by beyond reasons or there are request
-> >> for changes which cannot work on the real hardware or that new yaml
-> >> cannot be parsed/validated due to ton of bugs in other schemas.
-> > 
-> > These are some pretty hard statements that are not nearly true, maybe 
-> > they are based upon your past experience, but Rob and Krysztof provide 
-> > feedback within a few days at most on DT bindings and DTS files.
-> 
-> Pali, you wrote in the past that you cannot run one command to install
-> dtschema ("pip") thus for you this automated testing is
-> difficult/broken/non working. If running one "pip" command is not
-> possible, what I can say more? Shall I login to your machine and set it
-> up? Or did you configure your machine that way, that it is not possible
-> to run one pip command?
+RZ/G2L General PWM Timer (GPT) composed of 8 channels with 32-bit timer
+(GPT32E). It supports the following functions
+ * 32 bits × 8 channels
+ * Up-counting or down-counting (saw waves) or up/down-counting
+   (triangle waves) for each counter.
+ * Clock sources independently selectable for each channel
+ * Two I/O pins per channel
+ * Two output compare/input capture registers per channel
+ * For the two output compare/input capture registers of each channel,
+   four registers are provided as buffer registers and are capable of
+   operating as comparison registers when buffering is not in use.
+ * In output compare operation, buffer switching can be at crests or
+   troughs, enabling the generation of laterally asymmetric PWM waveforms.
+ * Registers for setting up frame cycles in each channel (with capability
+   for generating interrupts at overflow or underflow)
+ * Generation of dead times in PWM operation
+ * Synchronous starting, stopping and clearing counters for arbitrary
+   channels
+ * Starting, stopping, clearing and up/down counters in response to input
+   level comparison
+ * Starting, clearing, stopping and up/down counters in response to a
+   maximum of four external triggers
+ * Output pin disable function by dead time error and detected
+   short-circuits between output pins
+ * A/D converter start triggers can be generated (GPT32E0 to GPT32E3)
+ * Enables the noise filter for input capture and external trigger
+   operation
 
-Sorry no, it is too late. I have already lost interested in it. For me
-it is like a ride on the dead horse.
+This patch series aims to add basic pwm support for RZ/G2L GPT driver
+by creating separate logical channels for each IOs.
 
-> Whether the patches are waiting for months and years is difficult to
-> address to, without actual links. Because for sure you will be able to
-> find one patch which was missed in our inboxes and you did not get an
-> answer...  With Rob we both work much more than reasonable/healthy 8h
-> per day... Yet I recall you always received feedback, just not always
-> what you expected or wanted.
+v5->v6:
+ * Updated macros RZG2L_GTIOR_GTIOB_OUT_HI_END_TOGGLE_CMP_MATCH and
+   RZG2L_GTIOR_GTIOB_OUT_LO_END_TOGGLE_CMP_MATCH with computation
+   involving FIELD_PREP macro.
+ * Removed struct rzg2l_gpt_phase and started using RZG2L_GTCCR macro
+   for duty_offset.
+ * replaced misnomer real_period->state_period.
+ * Added handling for values >= (1024 << 32) for both period
+   and duty cycle.
+ * Added comments for pwm {en,dis}abled by bootloader during probe.
+v4->v5:
+ * Added Hardware manual details
+ * Replaced the comment GTCNT->Counter
+ * Removed the macros RZG2L_GPT_IO_PER_CHANNEL and chip.npwm directly
+   used in probe.
+ * Removed the unsed macro RZG2L_GTPR_MAX_VALUE
+ * Added driver prefix for the type name and the variable.
+ * Initialization of per_channel data moved from request->probe.
+ * Updated clr parameter for rzg2l_gpt_modify for Start count.
+ * Started using mutex and usage_count for handling shared
+   period and prescalar for the 2 channels.
+ * Updated the comment cycle->period.
+ * Removed clk_disable from rzg2l_gpt_reset_assert_pm_disable()
+ * Replaced pc->rzg2l_gpt.
+ * Updated prescale calculation.
+ * Moved pm_runtime_{get_sync,put} from {request,free}->{enable,disable}
+ * Removed platform_set_drvdata as it is unused
+ * Removed the variable pwm_enabled_by_bootloader 
+ * Added dev_err_probe in various probe error path.
+ * Added an error message, if devm_pwmchip_add fails.
+v3->v4:
+ * Changed the local variable type i from u16->u8 and prescaled_period_
+   cycles from u64->u32 in calculate_prescale().
+ * Replaced mul_u64_u64_div_u64()->mul_u64_u32_div()
+ * Dropped the comma after the sentinel.
+ * Add a variable to track pwm enabled by bootloader and added comments
+   in probe().
+ * Removed unnecessary rzg2l_gpt_reset_assert_pm_disable() from probe.
+ * Replaced devm_clk_get()->devm_clk_get_prepared()
+ * Removed devm_clk_get_optional_enabled()
+v2->v3:
+ * Added Rb tag from Rob for the bindings.
+ * Updated limitation section
+ * Added prefix "RZG2L_" for all macros
+ * Modified prescale calculation
+ * Removed pwm_set_chip_data
+ * Updated comment related to modifying Mode and Prescaler
+ * Updated setting of prescale value in rzg2l_gpt_config()
+ * Removed else branch from rzg2l_gpt_get_state()
+ * removed the err label from rzg2l_gpt_apply()
+ * Added devm_clk_get_optional_enabled() to retain clk on status,
+   in case bootloader turns on the clk of pwm.
+ * Replaced devm_reset_control_get_exclusive->devm_reset_control_get_shared
+   as single reset shared between 8 channels.
+V1->v2:
+ * Added '|' after 'description:' to preserve formatting.
+ * Removed description for pwm_cells as it is common property.
+ * Changed the reg size in example from 0xa4->0x100
+ * Added Rb tag from Geert for bindings.
+ * Added Limitations section
+ * dropped "_MASK" from the define names.
+ * used named initializer for struct phase
+ * Added gpt_pwm_device into a flexible array member in rzg2l_gpt_chip
+ * Revised the logic for prescale
+ * Added .get_state callback
+ * Improved error handling in rzg2l_gpt_apply
+ * Removed .remove callback
+ * Tested the driver with PWM_DEBUG enabled.
 
-Now I have replied to one example email without a reaction. Another
-example is this https://github.com/devicetree-org/dt-schema/pull/64
-which completely blocked any improvements which I proposed in PCIe core
-code for fixing PCIe state machine. After half of year of waiting I
-decided to stop any work on this as I see it is dead those schemas.
-Other examples are that received feedback suggest to do change which
-does not work on the real hardware. So yes, I cannot accept, expect or
-want something like that. Schema which works in that ultra-supper-duper
-software but DTS written according to it does not work on the real
-hardware is for me useless...
+RFC->v1:
+ * Added Description in binding patch
+ * Removed comments from reg and clock
+ * replaced rzg2l_gpt_write_mask()->rzg2l_gpt_modify()
+ * Added rzg2l_gpt_read() and updated macros
+ * Removed dtsi patches, will send it separately
 
-> This binding here was never sent to mailing list:
-> https://lore.kernel.org/all/?q=cznic%2Cturris-omnia-mcu
-> 
-> >> Sorry, this is just a waste of time and energy to write new those yamls
-> >> as it does not bring any value.
-> 
-> It brings quite nice value - allows to check whether your bindings and
-> your DTS are correct. Any difficulty to install and run dtschema is not
-> equal to "does not bring any value"...
+RFC:
+ * https://lore.kernel.org/linux-renesas-soc/20220430075915.5036-1-biju.das.jz@bp.renesas.com/T/#t
 
-It just took lot of my time and did nothing useful. Hence for it it has
-zero value.
+Biju Das (2):
+  dt-bindings: pwm: Add RZ/G2L GPT binding
+  pwm: Add support for RZ/G2L GPT
 
-> Anyway devices cannot go without bindings, thus it's a NAK.
-> 
-> Best regards,
-> Krzysztof
+ .../bindings/pwm/renesas,rzg2l-gpt.yaml       | 129 ++++++
+ drivers/pwm/Kconfig                           |  11 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-rzg2l-gpt.c                   | 409 ++++++++++++++++++
+ 4 files changed, 550 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
+ create mode 100644 drivers/pwm/pwm-rzg2l-gpt.c
+
+-- 
+2.25.1
+
