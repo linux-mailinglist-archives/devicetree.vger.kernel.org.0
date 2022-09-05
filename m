@@ -2,51 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EDA0E5ACF3D
-	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 11:56:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B6BDF5ACF4D
+	for <lists+devicetree@lfdr.de>; Mon,  5 Sep 2022 11:56:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235804AbiIEJzB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 05:55:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46968 "EHLO
+        id S236852AbiIEJzE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 05:55:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236364AbiIEJzA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 05:55:00 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CE1913E3E
-        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 02:54:57 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id b16so10599063wru.7
-        for <devicetree@vger.kernel.org>; Mon, 05 Sep 2022 02:54:57 -0700 (PDT)
+        with ESMTP id S237324AbiIEJzC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 05:55:02 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4103014D14
+        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 02:54:59 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id k9so10642061wri.0
+        for <devicetree@vger.kernel.org>; Mon, 05 Sep 2022 02:54:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date;
-        bh=bZF5w9xzj7lZChgIF/6nwP7MFLkNSnuZx9RimSg71+g=;
-        b=AQFLNfl32NJkoDdTUY88Aj4+OfBskPvgs6DBhZpYwtbZzxtGps5VBHRFE0aqlvWGpC
-         ULBALyuiRMYvHqckLayRvg3YHOY93nUwmgKodEVOYiqHWin5y2MtXMHwJ4W9AQavKkRe
-         S0L7dQTtoKdfeuxQ/KLUGH6gWvoayCSPC95gMfiemr3ngYR6rpNMafyY8udIjUjOw7GL
-         BRWJuE9P2wglcyTiUEpVWMo1xx2PzBADyb1PpGey+Fi4S62wFzOAoarngqQ9I4vVMjyr
-         8lLrqeU8dLnx9YhKUhfJiyUosJpqL53B93ji1n5X8xZh7GGI2ySPyXb1hPmsPHolAiZv
-         XA+Q==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
+        bh=VI4B7mmcq6Q3smkTsTKpCOJlZRwUBcOPUAzD1sYZxCE=;
+        b=uUemCtDvHDLKP1I6EGmgT1uPan+SKTXyynQZVdmfBSsNPUcJFalRuDdgOVWVqwyQfK
+         KbG0nX6UV80C2aJK991PEfSjVKG0+dPiN2wPs3/3snBCKTXUvyvCNPxZHh58rmDBkg8u
+         cMHFirOuqPYDSHVHFO2N+YPvl0zWjpQLml0OGAvFzUHK9wg+sYvoEKmQowF53jKyN5H5
+         tLSAetRs0eY11XNOLFRVn4VT6D30keVVp7um+JTEbbnAly5aIK9d6rDeqFnZSExCVxGI
+         OhYgeekwxA0M0bUvVWRrCEglDMvInS5dXhPiyzUDtIkSRykA/Beve6utQ4DX8T6jj+Zi
+         JjMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=bZF5w9xzj7lZChgIF/6nwP7MFLkNSnuZx9RimSg71+g=;
-        b=GJCuV4ZE5+yHqchG1ld3l+K+ejgRD0eTtwHbfyD49fbJbx4q05iwjbP0yomdaVrPwE
-         InvPPCcieWby9aygfKEmPAYmy7gYZSZsAZ5Zi1HXVv5zWolCg58nuC7Hzy5tIqKSsOjY
-         5R7lSJUdL3WG0hv9yinnejyGvGipGW6dR+zVeL2yNxSWuAtNPj0+dOTBqCvXEZjBadSm
-         4ad8+t2Izx7iV3vi4WIkJ/kR+PZeqbCmctD/EH8bT8KvKzBGYSEppDG+fiy1b0+s/u2z
-         uf0P37EZngU6/LrHP2rMxqkxPOybalrUnNhCEdQEBg9fNo0dOPYNOGRCitvc3d/94cmQ
-         SxIw==
-X-Gm-Message-State: ACgBeo02xTGW5yBueWVX/uYa1++yYW1bTzwoSxlEgAxysy4ZZ7oWnjrp
-        zy0tWO4/aH+pdoFjAHrJTf8d2G9dnp2finqy
-X-Google-Smtp-Source: AA6agR7WFBghrrcaK4xA5ytl2V7YKojFB7RtZCmYECOr5Na51jVyTsGvzpxHXQk2aO0NtOi7BfuQnQ==
-X-Received: by 2002:a05:6000:178d:b0:226:ffe8:72df with SMTP id e13-20020a056000178d00b00226ffe872dfmr8890594wrg.496.1662371696141;
-        Mon, 05 Sep 2022 02:54:56 -0700 (PDT)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=VI4B7mmcq6Q3smkTsTKpCOJlZRwUBcOPUAzD1sYZxCE=;
+        b=vBCgMVU0p3UEYPOOOQcs1XDM438euOEpooxgUlogoHv3+ee7RlvowGR+s6hHZ3Bc1r
+         qhuLV2F9PayJqvlF742JLl2SNJWNmjeU6zuQNt3uDdE/+aFr9Ws+PhGp/1hXGGg4UCxA
+         AYgKQew+8+VahRCctMi/IXUst2utKoDAu5U8L11MSMIqh2fTRb+gLzB1S+ozdR41lZVv
+         cZjoDW15dOIB6NQQfzHPytxpWRd5EdUAoQUgz3GIjTVWpbzxTZDM/SLDCZvbghEVymMn
+         xu4a/kTG7QYPzZF8BtXit4U8EwOT/8cyghZei0nDrmyQegS2GDFyNlPwV4CsXmw3xgQC
+         gUrg==
+X-Gm-Message-State: ACgBeo2IWJZIA4gMVr/OFXXmsFN0oDeE4edivKtYv45NJdeYZIKqn//4
+        8WrsZuijAEeBNqSxrqviEiKAEw==
+X-Google-Smtp-Source: AA6agR6HqTWXO53iwYpqL64/OYpBnZOzYboOmwgNm8q4udBD9wVoGKZqqV7OA1+w+54XTjnUgfd7JA==
+X-Received: by 2002:a5d:4a4f:0:b0:228:c256:3db6 with SMTP id v15-20020a5d4a4f000000b00228c2563db6mr780537wrs.576.1662371697574;
+        Mon, 05 Sep 2022 02:54:57 -0700 (PDT)
 Received: from hackbox.lan ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id t8-20020adfe108000000b00225213fd4a9sm8497264wrz.33.2022.09.05.02.54.54
+        by smtp.gmail.com with ESMTPSA id t8-20020adfe108000000b00225213fd4a9sm8497264wrz.33.2022.09.05.02.54.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Sep 2022 02:54:55 -0700 (PDT)
+        Mon, 05 Sep 2022 02:54:56 -0700 (PDT)
 From:   Abel Vesa <abel.vesa@linaro.org>
 To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         Amol Maheshwari <amahesh@qti.qualcomm.com>,
@@ -56,17 +57,18 @@ To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        David Heidelberg <david@ixit.cz>
-Subject: [PATCH v5 1/2] dt-bindings: misc: fastrpc convert bindings to yaml
-Date:   Mon,  5 Sep 2022 12:53:39 +0300
-Message-Id: <20220905095340.902390-1-abel.vesa@linaro.org>
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: [PATCH v5 2/2] MAINTAINERS: Update fastrpc documentation file from txt to yaml
+Date:   Mon,  5 Sep 2022 12:53:40 +0300
+Message-Id: <20220905095340.902390-2-abel.vesa@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220905095340.902390-1-abel.vesa@linaro.org>
+References: <20220905095340.902390-1-abel.vesa@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,147 +76,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert Qualcomm FastRPC bindings to yaml format, so that we could validate
-dt-entries correctly and any future additions can go into yaml format.
+The documentation for fastrpc bingings is now YAML. So update the
+MAINTAINERS file.
 
-Use compute-cb@ subnodes instead of just cb@.
-
-Also add qcom,non-secure-domain, qcom,glink-channels and
-qcom,smd-channels missing properties to make sure dtbs_check doesn't
-fail right off the bat.
-
-Co-developed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Co-developed-by: David Heidelberg <david@ixit.cz>
-Signed-off-by: David Heidelberg <david@ixit.cz>
 Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 ---
+ MAINTAINERS | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Changes since v4:
- * set global additionalProperties to false and removed the one for
- patternProperties
- * fixed compute-cb property to allow more than 9 nodes.
- * added missing qcom,glink-channels, qcom,non-secure-domain and
- qcom,smd-channels, without which the dtbs_check would fail
-
- .../bindings/misc/qcom,fastrpc.yaml           | 108 ++++++++++++++++++
- 1 file changed, 108 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
-
-diff --git a/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml b/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
-new file mode 100644
-index 000000000000..3c11a3741994
---- /dev/null
-+++ b/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
-@@ -0,0 +1,108 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/misc/qcom,fastrpc.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Qualcomm FastRPC Driver
-+
-+maintainers:
-+  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-+
-+description: |
-+  The FastRPC implements an IPC (Inter-Processor Communication)
-+  mechanism that allows for clients to transparently make remote method
-+  invocations across DSP and APPS boundaries. This enables developers
-+  to offload tasks to the DSP and free up the application processor for
-+  other tasks.
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: qcom,fastrpc
-+
-+  label:
-+    items:
-+      enum:
-+        - adsp
-+        - mdsp
-+        - sdsp
-+        - cdsp
-+
-+  qcom,glink-channels:
-+    description:
-+      A list of channels tied to this function, used for matching
-+      the function to a set of virtual channels.
-+    $ref: "/schemas/types.yaml#/definitions/string-array"
-+
-+  qcom,non-secure-domain:
-+    description:
-+      Used to mark the current domain as non-secure.
-+    type: boolean
-+
-+  qcom,smd-channels:
-+    description:
-+      Channel name used for the RPM communication
-+    $ref: "/schemas/types.yaml#/definitions/string-array"
-+
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 0
-+
-+patternProperties:
-+  "(compute-)?cb@[0-9]*$":
-+    type: object
-+
-+    description: >
-+      Each subnode of the Fastrpc represents compute context banks available on the dsp.
-+
-+    properties:
-+      compatible:
-+        items:
-+          - const: qcom,fastrpc-compute-cb
-+
-+      reg:
-+        maxItems: 1
-+
-+      qcom,nsession:
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        default: 1
-+        description: >
-+          A value indicating how many sessions can share this context bank.
-+
-+    required:
-+      - compatible
-+      - reg
-+
-+required:
-+  - compatible
-+  - label
-+  - '#address-cells'
-+  - '#size-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    smd-edge {
-+        label = "lpass";
-+        fastrpc {
-+            compatible = "qcom,fastrpc";
-+            label = "adsp";
-+            qcom,smd-channels = "fastrpcsmd-apps-dsp";
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            compute-cb@1 {
-+                compatible = "qcom,fastrpc-compute-cb";
-+                reg = <1>;
-+            };
-+
-+            compute-cb@2 {
-+                compatible = "qcom,fastrpc-compute-cb";
-+                reg = <2>;
-+            };
-+        };
-+    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 96f47a7865d6..ad697195fc59 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -16863,7 +16863,7 @@ M:	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+ M:	Amol Maheshwari <amahesh@qti.qualcomm.com>
+ L:	linux-arm-msm@vger.kernel.org
+ S:	Maintained
+-F:	Documentation/devicetree/bindings/misc/qcom,fastrpc.txt
++F:	Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
+ F:	drivers/misc/fastrpc.c
+ F:	include/uapi/misc/fastrpc.h
+ 
 -- 
 2.34.1
 
