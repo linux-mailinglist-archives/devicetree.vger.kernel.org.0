@@ -2,69 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 398485AEE56
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 17:07:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B19AC5AEE9C
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 17:24:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237574AbiIFPHH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 11:07:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46838 "EHLO
+        id S231737AbiIFPYB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 11:24:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233532AbiIFPGr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 11:06:47 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C936F31EC6;
-        Tue,  6 Sep 2022 07:21:03 -0700 (PDT)
+        with ESMTP id S239240AbiIFPX1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 11:23:27 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67CF126EE;
+        Tue,  6 Sep 2022 07:35:18 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3FD3C6153A;
-        Tue,  6 Sep 2022 14:20:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A209C433B5;
-        Tue,  6 Sep 2022 14:20:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1662474005;
-        bh=j6JrfRaniZkG8XDwvLbMp+eQR1Ik9H5eUd1vOPVqvsQ=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=n62GbgH/vS+CBFhlOCS1m9FvfeO3rcbHG+xSZbe2i/ez3g7jnZx3gsAzFO+CT2DbX
-         OGML5PJckxnz526tRsZ8RNEjIW/+3wYN9AqkFFFPWXDytK9KtUGKQQxqR4O2ljp5K8
-         /pR7u0cU+QU+1TZumjEmNeUthOXC4rypl+NZgbVYHhjzYK2RKDnDG5GhgxJFgm6bEc
-         US0EK6k3Htlfywyu9jMiueyz4JZ9VUcpc4lVhuU1tHWVzKKERHPShey5mL76qhKHS2
-         g3+T862C0Oe/k0a1yrSPVfLYnLa4siAFy32Za6KDM/IDkjBQJcaNIOcQQXhA9vlxSW
-         Ay8Iu4Kw57+mw==
-Received: by mail-vs1-f43.google.com with SMTP id 67so11837625vsv.2;
-        Tue, 06 Sep 2022 07:20:05 -0700 (PDT)
-X-Gm-Message-State: ACgBeo0NEnNdQF2eey6xYwYCdzF/yJTp3zvX29BYM2/mUcmMoAidrM+e
-        YV3FmOb9Vd1B+bgbLD2PCRvGnsMrLR5U7uZ/7g==
-X-Google-Smtp-Source: AA6agR5m1ZEcDopFt39ntHgsvsjFoHVh5uUiID70c/HLxGHEvCBETjaPqeniS+moT1V69c8cUOhuGWhzf1sRJrxX2RA=
-X-Received: by 2002:a05:6102:3123:b0:390:d9f3:2a9f with SMTP id
- f3-20020a056102312300b00390d9f32a9fmr13533513vsh.6.1662474004545; Tue, 06 Sep
- 2022 07:20:04 -0700 (PDT)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 980C7B81637;
+        Tue,  6 Sep 2022 14:22:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC3BFC433C1;
+        Tue,  6 Sep 2022 14:22:49 +0000 (UTC)
+Message-ID: <471a1c42-0054-e0be-be18-9723c35f418a@xs4all.nl>
+Date:   Tue, 6 Sep 2022 16:22:48 +0200
 MIME-Version: 1.0
-References: <20220906082820.4030401-1-martyn.welch@collabora.co.uk>
- <20220906082820.4030401-2-martyn.welch@collabora.co.uk> <Yxc6zptiJEf2TzP5@smile.fi.intel.com>
- <CACRpkdZHKEW+WJAdCCf2DN7gN+ZM7pFpeSXfccB508N4=-LkoQ@mail.gmail.com>
- <YxdI/TLBrzJP3RKi@smile.fi.intel.com> <CACRpkdaQ+0wbreyCEaoBnjKT0rtgPEnotZQw_Eh=y4xktwrwHQ@mail.gmail.com>
-In-Reply-To: <CACRpkdaQ+0wbreyCEaoBnjKT0rtgPEnotZQw_Eh=y4xktwrwHQ@mail.gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 6 Sep 2022 09:19:52 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJru+ajo4zqsAHeXUsvGDE_S0k3H7q4d3PvCYV4Qexa_w@mail.gmail.com>
-Message-ID: <CAL_JsqJru+ajo4zqsAHeXUsvGDE_S0k3H7q4d3PvCYV4Qexa_w@mail.gmail.com>
-Subject: Re: [PATCH v2 2/5] dt-bindings: gpio: pca95xx: add entry for pcal6534
- and PI4IOE5V6534Q
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Andy Shevchenko <andriy.shevchenko@intel.com>,
-        Martyn Welch <martyn.welch@collabora.co.uk>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martyn Welch <martyn.welch@collabora.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [V7,0/8] Support multi-hardware jpeg decoder for MT8195
+Content-Language: en-US
+To:     Irui Wang <irui.wang@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        angelogioacchino.delregno@collabora.com,
+        nicolas.dufresne@collabora.com, wenst@chromium.org,
+        kyrie wu <kyrie.wu@mediatek.com>
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Tomasz Figa <tfiga@chromium.org>, xia.jiang@mediatek.com,
+        maoguang.meng@mediatek.com
+References: <20220826092904.10283-1-irui.wang@mediatek.com>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <20220826092904.10283-1-irui.wang@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-8.4 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -73,74 +57,121 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 6, 2022 at 8:33 AM Linus Walleij <linus.walleij@linaro.org> wro=
-te:
->
-> On Tue, Sep 6, 2022 at 3:20 PM Andy Shevchenko
-> <andriy.shevchenko@intel.com> wrote:
-> > On Tue, Sep 06, 2022 at 03:08:00PM +0200, Linus Walleij wrote:
-> > > On Tue, Sep 6, 2022 at 2:19 PM Andy Shevchenko
-> > > <andriy.shevchenko@intel.com> wrote:
-> > > > On Tue, Sep 06, 2022 at 09:28:16AM +0100, Martyn Welch wrote:
-> > > > > From: Martyn Welch <martyn.welch@collabora.com>
-> > > > >
-> > > > > The NXP PCAL6534 is a 34-bit I2C I/O expander similar to the PCAL=
-6524. The
-> > > > > Diodes PI4IOE5V6534Q is a functionally identical chip provided by=
- Diodes
-> > > > > Inc.
-> > > >
-> > > > ...
-> > > >
-> > > > > +    oneOf:
-> > > > > +      - items:
-> > > > > +        - const: diodes,pi4ioe5v6534q
-> > > > > +        - const: nxp,pcal6534
-> > > >
-> > > > ^^^
-> > > >
-> > > > > +      - items:
-> > > > > +        - enum:
-> > > >
-> > > > > +          - nxp,pcal6534
-> > > >
-> > > > ^^^
-> > > >
-> > > > Not sure why is this dup?
-> > >
-> > > No that is how DT compatibles work. One version of the component,
-> > > bought from NXP will look like this:
-> > >
-> > > compatible =3D "nxp,pcal6534";
-> > >
-> > > Another version bought from diodes will look like this:
-> > >
-> > > compatible =3D "diodes,pi4ioe5v6534q", "nxp,pcal6534";
-> > >
-> > > Then the drivers are probed matching from left to right,
-> > > with the "most compatible" matching first.
-> > >
-> > > This also answers your question on the implementation.
-> >
-> > Then I don't understand why the const list above is only for new chips
-> > and not for the old one where the same can be applied.
->
-> That's YAML. It's because the const list is the most compact way
-> to express two precise items following after each other, and the enum
-> list is an implicit list of single-item const:s, as you cannot enum
-> tuples.
->
-> > Mysterious ways of DT...
->
-> It's not DT, it's YAML that is mysterious. DT itself is a pretty
-> straight-forward
-> grammar, while YAML is a meta-grammar describing the DT grammar
+Hi Irui,
 
-Not YAML, but json-schema is the grammar. YAML is just the file format
-and it's a JSON compatible subset of YAML (no anchors, refs, tags).
+On 26/08/2022 11:28, Irui Wang wrote:
+> From: kyrie wu <kyrie.wu@mediatek.com>
+> 
+> This series adds support for multi hardware jpeg decoding,
+> by first adding use of_platform_populate to manage each hardware
+> information: interrupt, clock, register bases and power.
+> Secondly add decoding work queue to deal with the decoding requests
+> of multi-hardware at the same time. Lastly, add output picture
+> reorder function interface to eliminate the out of order images.
+> 
+> This series has been tested with both MT8195.
+> Decoding worked for this chip.
 
-> (ML stands for Meta Language).
+When building this I get the following sparse warning and several kerneldoc
+warnings:
 
-Huh? yaml.org says: YAML Ain't Markup Language=E2=84=A2
+SPARSE:drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c:661:24: warning: symbol 'mtk_jpegdec_hw_driver' was not declared. Should it be static?
 
-Rob
+kerneldoc: WARNINGS
+drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h:127: warning: Function parameter or member 'clks' not described in 'mtk_jpegdec_clk'
+drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h:127: warning: Function parameter or member 'clk_num' not described in 'mtk_jpegdec_clk'
+drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h:178: warning: Function parameter or member 'job_timeout_work' not described in 'mtk_jpegdec_comp_dev'
+drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h:178: warning: Function parameter or member 'hw_param' not described in 'mtk_jpegdec_comp_dev'
+drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h:178: warning: Function parameter or member 'hw_state' not described in 'mtk_jpegdec_comp_dev'
+drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h:178: warning: Function parameter or member 'hw_lock' not described in 'mtk_jpegdec_comp_dev'
+drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h:219: warning: Function parameter or member 'reg_decbase' not described in 'mtk_jpeg_dev'
+drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h:219: warning: Function parameter or member 'dec_hw_dev' not described in 'mtk_jpeg_dev'
+drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h:219: warning: Function parameter or member 'is_jpgdec_multihw' not described in 'mtk_jpeg_dev'
+drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h:219: warning: Function parameter or member 'dec_hw_wq' not described in 'mtk_jpeg_dev'
+drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h:219: warning: Function parameter or member 'dec_workqueue' not described in 'mtk_jpeg_dev'
+drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h:219: warning: Function parameter or member 'dechw_rdy' not described in 'mtk_jpeg_dev'
+
+Can you fix this in a v8?
+
+BTW, you can also choose to combine the jpeg encoder series with this series into one single series.
+I'll be merging them together anyway. That's up to you, though.
+
+Regards,
+
+	Hans
+
+> 
+> Patch 1 Adds jpeg decoder dt-bindings for mt8195
+> 
+> Patches 2 jpeg decoder builds three module for using Multi-HW,
+> export some functions to make them visible by other modules.
+> 
+> Patch 3 use of_platform_populate to manage multi-hardware.
+> 
+> Patch 4 add jpeg decoding timeout function to judge hardware timeout.
+> 
+> Patch 5 add decoding work queue to deal with multi-hardware decoding
+> at the same time.
+> 
+> Patch 6 add output picture reorder function to order images.
+> 
+> Patch 7 refactor jpegdec func interface for HW working.
+> 
+> Patch 8 add stop cmd function to deal with EOS operation.
+> 
+> ---
+> This series patches dependent on:
+> media_stage tree:
+> [1]
+> https://git.linuxtv.org/media_stage.git/commit/?id=b3627647f9ea7473d10fb08a95fd7c4133a17ca4
+> 
+> patch1 new jpegdec dt-bindings included files
+> [2] MM IOMMU binding:
+> https://patchwork.kernel.org/project/linux-mediatek/patch/20220217113453.13658-2-yong.wu@mediatek.com/
+> 
+> [3] MT8195 power domain:
+> https://patchwork.kernel.org/project/linux-mediatek/list/?series=580579
+> 
+> Changes compared with v6:
+> - some modifications for patch v6's review comments.
+> 
+> Changes compared with v5:
+> - some modifications for patch v5's review comments.
+> - fix yaml file check errors.
+> 
+> Changes compared with v4:
+> - some modifications for patch v4's review comments.
+> - fix Gstreamer test errors.
+> 
+> Changes compared with v3:
+> - some modifications for patch v3's review comments.
+> 
+> Changes compared with v2:
+> - add stop cmd function.
+> - some modifications for patch v1's review comments.
+> 
+> Changes compared with v1:
+> - new yaml file for mt8195 jpeg decoder.
+> - some modifications for patch v1's review comments.
+> 
+> kyrie wu (8):
+>   dt-bindings: mediatek: Add mediatek,mt8195-jpgdec compatible
+>   media: mtk-jpegdec: export jpeg decoder functions
+>   media: mtk-jpegdec: support jpegdec multi-hardware
+>   media: mtk-jpegdec: add jpegdec timeout func interface
+>   media: mtk-jpegdec: add jpeg decode worker interface
+>   media: mtk-jpegdec: add output pic reorder interface
+>   media: mtk-jpegdec: refactor jpegdec func interface
+>   mtk-jpegdec: add stop cmd interface for jpgdec
+> 
+>  .../media/mediatek,mt8195-jpegdec.yaml        | 169 ++++++++++
+>  drivers/media/platform/mediatek/jpeg/Makefile |   5 +-
+>  .../platform/mediatek/jpeg/mtk_jpeg_core.c    | 233 ++++++++++++-
+>  .../platform/mediatek/jpeg/mtk_jpeg_core.h    |  46 +++
+>  .../platform/mediatek/jpeg/mtk_jpeg_dec_hw.c  | 314 ++++++++++++++++--
+>  .../platform/mediatek/jpeg/mtk_jpeg_dec_hw.h  |   3 +-
+>  .../platform/mediatek/jpeg/mtk_jpeg_dec_reg.h |   1 +
+>  7 files changed, 739 insertions(+), 32 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt8195-jpegdec.yaml
+> 
+
