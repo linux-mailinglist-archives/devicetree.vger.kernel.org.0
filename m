@@ -2,63 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B29255AEE71
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 17:16:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F27695AEE8E
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 17:21:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233887AbiIFPQQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 11:16:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33176 "EHLO
+        id S232215AbiIFPVn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 11:21:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233914AbiIFPPt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 11:15:49 -0400
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E71B74DB6C;
-        Tue,  6 Sep 2022 07:29:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1662474546; x=1694010546;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ybgSo2BkoIeNrG9pnEwHuQd0zdtCaKmVHLLWorPRU10=;
-  b=fWWJtozf+jgh+pAEhkuFZw0bj1pHoIa70kXfVAOpA4fstDTl+7TVGPXB
-   0jqRZrP91dwqaKikkAan1wDsoPZx2O9TFH7d5yHHd85PXc3d1Q7WL+KVc
-   ihKELM9zLhwjYVjrXS/R7hqvRPIp456ZzamocEm5M0kaB4yt4e6bE0jHN
-   pJAHfPEIxkCrZ3cLMHDbalwTu18EljJaLQNll1y+vzYhqp3GzceimE/P4
-   svSjhva5LsN59nN5fbcc6Ts13PHjoV/aJlYyjOXbls/IUmHik0VNf/fUV
-   x4b5uX8r1rFOqK7/QCDN5LBYRSPH2jgPzaSA/dCVHrfTunGxs+/G6aKpj
-   A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10462"; a="276344870"
-X-IronPort-AV: E=Sophos;i="5.93,294,1654585200"; 
-   d="scan'208";a="276344870"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Sep 2022 07:26:27 -0700
-X-IronPort-AV: E=Sophos;i="5.93,294,1654585200"; 
-   d="scan'208";a="756383261"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Sep 2022 07:26:24 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1oVZWv-0099cw-3D;
-        Tue, 06 Sep 2022 17:26:22 +0300
-Date:   Tue, 6 Sep 2022 17:26:21 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Eliav Farber <farbere@amazon.com>
-Cc:     jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org,
-        p.zabel@pengutronix.de, rtanwar@maxlinear.com,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, hhhawa@amazon.com, jonnyc@amazon.com
-Subject: Re: [PATCH v4 00/21] Variety of fixes and new features for mr75203
- driver
-Message-ID: <YxdYjWYCR7YCodTX@smile.fi.intel.com>
-References: <20220906083356.21067-1-farbere@amazon.com>
+        with ESMTP id S232795AbiIFPVY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 11:21:24 -0400
+Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com [IPv6:2607:f8b0:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AEFF82756;
+        Tue,  6 Sep 2022 07:33:05 -0700 (PDT)
+Received: by mail-ot1-x32d.google.com with SMTP id t11-20020a05683014cb00b0063734a2a786so8149104otq.11;
+        Tue, 06 Sep 2022 07:33:05 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=0oc/efpNyK02TA049vRdVuq+a16ZNo/nBU3UNBlbLlA=;
+        b=Ond+kA/gLnCbMNvdgqRN8z9f1UGtgr1P5+UPOam+19NuXgbZKJD2X268HcEllLuukc
+         biMA7zpfNIOO8QKiof4wib0OLzrUDMZeug4s4jbLdnazxXqvZg1IbDPhAuP6yw0YX5PH
+         IfjpMq3fW8uX3y4bxHms+1rSKaN91n/O/jGpIB9gT4u4jkEL6/BmyJr11X2/rAWogrcL
+         j8bMCw76/pzsmcXma+fRx3KmeG/d1dFb2rPDLhM2R5vKbBdbAgc5QCofWGQsoKWJKKKp
+         Ui1hftWk7FiA/m2s9+6t2BnjxA+mRqGGkCoGfvv04FbuBT8rCBE3BPJ5hrDa1hrw9yRm
+         l1Hw==
+X-Gm-Message-State: ACgBeo0LDlo8jL22F3w4LRKIseeMrZCMA0hle4UIOrKyfULra2kToFrE
+        uTeqSUVnnlgu+ERGxvKaBw2RYnGM/g==
+X-Google-Smtp-Source: AA6agR5MNLEe98jQgQIHK50PgdC2yea2wXhfxxelbBN17o+lzcVRNee4Gc6KiaqLgekEcrc451ilLw==
+X-Received: by 2002:a05:6830:1281:b0:636:d7e9:1906 with SMTP id z1-20020a056830128100b00636d7e91906mr21706186otp.116.1662474443952;
+        Tue, 06 Sep 2022 07:27:23 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id k5-20020a056830168500b0063922f00ee2sm5961637otr.39.2022.09.06.07.27.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Sep 2022 07:27:22 -0700 (PDT)
+Received: (nullmailer pid 439485 invoked by uid 1000);
+        Tue, 06 Sep 2022 14:27:21 -0000
+Date:   Tue, 6 Sep 2022 09:27:21 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, Jon Hunter <jonathanh@nvidia.com>
+Subject: Re: [PATCH 2/6] dt-bindings: reserved-memory: Support framebuffer
+ reserved memory
+Message-ID: <20220906142721.GA427176-robh@kernel.org>
+References: <20220905163300.391692-1-thierry.reding@gmail.com>
+ <20220905163300.391692-3-thierry.reding@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220906083356.21067-1-farbere@amazon.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+In-Reply-To: <20220905163300.391692-3-thierry.reding@gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,102 +65,85 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 06, 2022 at 08:33:35AM +0000, Eliav Farber wrote:
-> List of fixes:
->  - Fix "intel,vm-map" property to be optional.
->  - Fix VM sensor allocation when "intel,vm-map" not defined.
->  - Fix multi-channel voltage reading.
->  - Fix voltage equation for negative source input.
->  - Modify the temperature equation according to series 5 datasheet.
->  - Fix coding style issue.
+On Mon, Sep 05, 2022 at 06:32:56PM +0200, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
 > 
-> List of new features:
->  - Modify "reset" property to be optional.
->  - Add optional "moortec,vm-active-channels" property to define the number
->    of active channels per VM.
->  - Add support for mr76006 pre-scaler to multiply the voltage result by 2.
->  - Add support for series 6 temperature equation.
->  - Add coefficient properties to fine tune the temperature equation.
->  - Add debugfs to read and write temperature coefficients
+> Document the "framebuffer" compatible string for reserved memory nodes
+> to annotate reserved memory regions used for framebuffer carveouts.
+> 
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> ---
+>  .../bindings/reserved-memory/framebuffer.yaml | 46 +++++++++++++++++++
+>  1 file changed, 46 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/reserved-memory/framebuffer.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/reserved-memory/framebuffer.yaml b/Documentation/devicetree/bindings/reserved-memory/framebuffer.yaml
+> new file mode 100644
+> index 000000000000..80574854025d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/reserved-memory/framebuffer.yaml
+> @@ -0,0 +1,46 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/reserved-memory/framebuffer.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: /reserved-memory framebuffer node bindings
+> +
+> +maintainers:
+> +  - devicetree-spec@vger.kernel.org
+> +
+> +allOf:
+> +  - $ref: "reserved-memory.yaml"
 
-For all code patches (means no DT ones)
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Don't need quotes.
 
-> ---------
-> 
-> Changes between v3 and v4:
-> *) Provide a Fixes tag for all fixes in the series.
-> *) Start series with fixes.
-> *) New patch to add description in moortec,mr75203.yaml.
-> *) New patch to add moortec to vendor-prefixes.
-> *) Fix moortec,mr75203.yaml checker errors.
-> *) Remove validation of device-tree parameters.
-> *) Fix per patch specific comments (detailed in each patch).
-> 
-> Changes between v2 and v3:
-> *) Add "moortec" prefix to all new device-tree properties.
-> *) Change order of patches.
-> *) Add explanations to better understand the changes.
-> *) Change "reset" property to be optional and remove the
->   "reset-control-skip" property.
-> *) Split the patch for "fix multi-channel voltage reading" to two
->    patches.
-> *) Change pre-scaler property format and fix typo (scalar --> scaler).
-> *) Fix voltage equation to support negative values instead of limiting
->    value to zero.
-> *) Temperature equation - protect from overflow and add clamping.
-> *) Add new "moortec,ts-series" property to select between temperature
->    equation of series 5 or series 6.
-> 
-> Changes between v1 and v2:
->  *) Fix compilation error for patch 08/16:
->     "warning: ISO C90 forbids variable length array"
-> 
-> ---------
-> 
-> Eliav Farber (21):
->   hwmon: (mr75203) fix coding style space errors
->   dt-bindings: hwmon: (mr75203) fix "intel,vm-map" property to be
->     optional
->   hwmon: (mr75203) fix VM sensor allocation when "intel,vm-map" not
->     defined
->   hwmon: (mr75203) update pvt->v_num and vm_num to the actual number of
->     used sensors
->   hwmon: (mr75203) fix voltage equation for negative source input
->   hwmon: (mr75203) fix multi-channel voltage reading
->   hwmon: (mr75203) enable polling for all VM channels
->   dt-bindings: hwmon: (mr75203) add description for Moortec's PVT
->     controller
->   dt-bindings: hwmon: (mr75203) change "resets" property to be optional
->   hwmon: (mr75203) skip reset-control deassert for SOCs that don't
->     support it
->   dt-bindings: vendor-prefixes: add vendor prefix for Moortec
->   dt-bindings: hwmon: (mr75203) add "moortec,vm-active-channels"
->     property
->   hwmon: (mr75203) add VM active channel support
->   dt-bindings: hwmon: (mr75203) add "moortec,vm-pre-scaler-x2" property
->   hwmon: (mr75203) add VM pre-scaler x2 support
->   hwmon: (mr75203) modify the temperature equation according to series 5
->     datasheet
->   dt-bindings: hwmon: (mr75203) add "moortec,ts-series" property
->   hwmon: (mr75203) add support for series 6 temperature equation
->   dt-bindings: hwmon: (mr75203) add coefficient properties for the
->     thermal equation
->   hwmon: (mr75203) parse temperature coefficients from device-tree
->   hwmon: (mr75203) add debugfs to read and write temperature
->     coefficients
-> 
->  .../bindings/hwmon/moortec,mr75203.yaml       |  97 ++++-
->  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
->  drivers/hwmon/mr75203.c                       | 387 +++++++++++++++---
->  3 files changed, 421 insertions(+), 65 deletions(-)
-> 
+> +
+> +properties:
+> +  compatible:
+> +    const: framebuffer
+> +    description: >
+> +      This indicates a region of memory meant to be used as a framebuffer for
+> +      a set of display devices. It can be used by an operating system to keep
+> +      the framebuffer from being overwritten and use it as the backing memory
+> +      for a display device (such as simple-framebuffer).
+
+I'm on the fence whether we need this. It doesn't really add anything 
+because 'simple-framebuffer' will reference this node and you can find 
+it that way. I guess a bootloader may not setup 'simple-framebuffer', 
+but then it should probably not have this node either.
+
+On the flip side, better to have compatibles than not to identify nodes.
+
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+
+Use '/ {' to skip the boilerplate causing the error.
+
+> +      chosen {
+> +        framebuffer {
+> +          compatible = "simple-framebuffer";
+> +          memory-region = <&fb>;
+> +        };
+> +      };
+> +
+> +      reserved-memory {
+> +          #address-cells = <1>;
+> +          #size-cells = <1>;
+> +          ranges;
+> +
+> +          fb: framebuffer@80000000 {
+> +              compatible = "framebuffer";
+> +              reg = <0x80000000 0x007e9000>;
+> +          };
+> +      };
+> +
+> +...
 > -- 
-> 2.37.1
+> 2.37.2
 > 
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+> 
