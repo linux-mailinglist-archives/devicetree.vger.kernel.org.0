@@ -2,134 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24B055AF302
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 19:47:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D384C5AF30B
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 19:48:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229608AbiIFRrA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 13:47:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36698 "EHLO
+        id S229515AbiIFRsz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 13:48:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229437AbiIFRqz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 13:46:55 -0400
-Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com [209.85.161.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83C506E2DC;
-        Tue,  6 Sep 2022 10:46:47 -0700 (PDT)
-Received: by mail-oo1-f43.google.com with SMTP id n11-20020a4aa7cb000000b0044b3583d373so2054317oom.2;
-        Tue, 06 Sep 2022 10:46:47 -0700 (PDT)
+        with ESMTP id S229580AbiIFRse (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 13:48:34 -0400
+Received: from mail-oa1-x2b.google.com (mail-oa1-x2b.google.com [IPv6:2001:4860:4864:20::2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E00F7844F2
+        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 10:48:29 -0700 (PDT)
+Received: by mail-oa1-x2b.google.com with SMTP id 586e51a60fabf-127a3a39131so9214825fac.13
+        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 10:48:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=V+Mmbr5yPt+hzlxY76gjjX8n/7WZsL2sfwWOuEEeXvE=;
+        b=QqhEVMt8kblJwysbyUcRBMnek45NF0eS6ZcED+xizTm/mIQ4SMEdit2M7Wm9C6ek0q
+         LM1rMLUak2/pOfeVfHYsEGe68lV++x9DJL6IUQLKoVflrokh+91pnBXt5s1Gbi8sjdvJ
+         +NCwvh+mfWPIOiR4XlhhTRxduBER5LYDLsoYzqfj+FPTQt2T4o9M6DAqyDCKPOaZe8z3
+         E41w2F+iySUatH36XEBYA004nEmRUumvQqRvaMQyWdytpcO4iHxNeCqQohWZN8JT9YqR
+         qgo30y8D0nvNd0YkezKUmHLDjkD10TcMjNp1Rjw1IvZleYn7cShcN5dTOqL+jPi8kvOI
+         QGOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=message-id:date:subject:references:in-reply-to:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=uiew6NbFXf44Z/IbImQfdvjEizUYy8izei1Fpy5Vg/0=;
-        b=f/12ZMIwCsEBCbNRwz1Fakq+guxaXrntYNpzGu3FRDTBoIyqGbwNC7+FYBfmwnZgB+
-         20vpS7Fis2pV5N6kfbliarW/fZTDyUPgagRIAUZW1HbTVyS/k78kmfwlvxNXYG9h0Y0d
-         gwEqNEMTJdmS2QWmlP8StQHS99yJuXC7oc6J3MlJkIuVWH6wwFtYqA+laCt74Xi37LqS
-         MJsgVz/vKbb/Ys6Pzbije0CjIUaMlFuJelehYivGUI1ML7p+MeHdvmvcowF7toyeXKxS
-         qw9oPd2pWx0kdKvYjOuAsvJd2a+OABFvp4j6P9IBvFK+HpZfG1GWXX8cg6t1s0hDprXh
-         kurg==
-X-Gm-Message-State: ACgBeo33n0oODw677HDSyTzyeVaXJcXZguGpYWeGt1vBKeNVG9Y6NpeQ
-        xiA9rYj5pXgqc4PZokR0mg==
-X-Google-Smtp-Source: AA6agR5bj+5NJ3XNxjU5HfDtqr6HRIQ7mmileSv2rYw50aB+2a5kFqg1A4SznszpVYY8bgrNu8YWNw==
-X-Received: by 2002:a4a:e1ad:0:b0:448:b28c:5fe3 with SMTP id 13-20020a4ae1ad000000b00448b28c5fe3mr18839646ooy.21.1662486405944;
-        Tue, 06 Sep 2022 10:46:45 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id p4-20020a0568301d4400b006339b36127dsm6158688oth.3.2022.09.06.10.46.44
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=V+Mmbr5yPt+hzlxY76gjjX8n/7WZsL2sfwWOuEEeXvE=;
+        b=YZYIhhRUZi/BRJaX8UyCzxv2BoR+45FqW504+31+uvltOWe1JrxFX8f0fVTTrssBbA
+         KhjhCP3NqEo1bg536P0A3eEXtTcpCUURrdmNVfvkd7GOEmbGpWd2U7zqTXZLzL9Yx6X9
+         p5uIujY3c4+y7qKTPfb3+zruLViake9wXX2ZxvMgNgc0TQoxiz8lD5k33D1YJMDgpAAW
+         26pdBgxTHd0kUu4lcAyfbBiJKhOaOZcz6aMbr3fulArHTLIEgsWA3dEyFJHapsEBnXQd
+         gNI4G3pLfjrTYkZJe5VeykUyNbdp0ur7Wv3kwRm34aezNus3D5MV30Ve4NddvWvCflvH
+         T9Dg==
+X-Gm-Message-State: ACgBeo103cKjyCjgxGTUXjBCPrfVqvYWOjSazu2tr62xc72dfgc7Jo9l
+        jGCa0HJSQlFNhcZP2KYEX3k=
+X-Google-Smtp-Source: AA6agR6HtjFhOOV4l9cuIu//XrbRVuTn//iCK4t2CYBvn25ACKq2aILTOYUKNNymd0pNMDltxtxwnw==
+X-Received: by 2002:a05:6870:89a1:b0:10e:4357:45b3 with SMTP id f33-20020a05687089a100b0010e435745b3mr12123039oaq.127.1662486508233;
+        Tue, 06 Sep 2022 10:48:28 -0700 (PDT)
+Received: from wintermute.localdomain (cpe-76-183-134-35.tx.res.rr.com. [76.183.134.35])
+        by smtp.gmail.com with ESMTPSA id o186-20020aca41c3000000b00344afa2b08bsm5568065oia.26.2022.09.06.10.48.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Sep 2022 10:46:45 -0700 (PDT)
-Received: (nullmailer pid 780026 invoked by uid 1000);
-        Tue, 06 Sep 2022 17:46:42 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Nipun Gupta <nipun.gupta@amd.com>
-Cc:     gregkh@linuxfoundation.org, eric.auger@redhat.com,
-        devicetree@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        jeffrey.l.hugo@gmail.com, maz@kernel.org, puneet.gupta@amd.com,
-        Michael.Srba@seznam.cz, cohuck@redhat.com, will@kernel.org,
-        masahiroy@kernel.org, mchehab+huawei@kernel.org, joro@8bytes.org,
-        okaya@kernel.org, alex.williamson@redhat.com,
-        song.bao.hua@hisilicon.com, jgg@nvidia.com, mani@kernel.org,
-        linux-kernel@vger.kernel.org, robin.murphy@arm.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        rafael@kernel.org, f.fainelli@gmail.com, jgg@ziepe.ca,
-        kvm@vger.kernel.org, nikhil.agarwal@amd.com,
-        harpreet.anand@amd.com, yishaih@nvidia.com,
-        linux-arm-kernel@lists.infradead.org, git@amd.com,
-        saravanak@google.com, aleksandar.radovanovic@amd.com,
-        michal.simek@amd.com, ndesaulniers@google.com
-In-Reply-To: <20220906134801.4079497-2-nipun.gupta@amd.com>
-References: <20220803122655.100254-1-nipun.gupta@amd.com> <20220906134801.4079497-1-nipun.gupta@amd.com> <20220906134801.4079497-2-nipun.gupta@amd.com>
-Subject: Re: [RFC PATCH v3 1/7] dt-bindings: bus: add CDX bus device tree bindings
-Date:   Tue, 06 Sep 2022 12:46:42 -0500
-Message-Id: <1662486402.681939.780022.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        Tue, 06 Sep 2022 10:48:27 -0700 (PDT)
+From:   Chris Morgan <macroalpha82@gmail.com>
+To:     linux-rockchip@lists.infradead.org
+Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, cl@rock-chips.com,
+        s.hauer@pengutronix.de, pgwipeout@gmail.com, vkoul@kernel.org,
+        kishon@ti.com, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, daniel@ffwll.ch, airlied@linux.ie,
+        heiko@sntech.de, hjc@rock-chips.com,
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH v2 0/5] rockchip-dsi for rk3568
+Date:   Tue,  6 Sep 2022 12:48:18 -0500
+Message-Id: <20220906174823.28561-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 06 Sep 2022 19:17:55 +0530, Nipun Gupta wrote:
-> This patch adds a devicetree binding documentation for CDX
-> bus.
-> 
-> CDX bus controller dynamically detects CDX bus and the
-> devices on these bus using CDX firmware.
-> 
-> Signed-off-by: Nipun Gupta <nipun.gupta@amd.com>
-> ---
->  .../devicetree/bindings/bus/xlnx,cdx.yaml     | 75 +++++++++++++++++++
->  MAINTAINERS                                   |  6 ++
->  2 files changed, 81 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/bus/xlnx,cdx.yaml
-> 
+From: Chris Morgan <macromorgan@hotmail.com>
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+This series adds support for the dsi and dphy controllers on the
+Rockchip RK3568. I can confirm that for the Rockchip RK3568 this
+current series DOES WORK now, but it requires rolling back clk changes
+made for the HDMI driver. If the clock changes are not rolled back, the
+image on the screen is shifted about 100 pixels to the right.
 
-yamllint warnings/errors:
+Clk changes in question:
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/drivers/clk/rockchip/clk-rk3568.c?id=ff3187eabb5ce478d15b6ed62eb286756adefac3
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/drivers/clk/rockchip/clk-rk3568.c?id=6e69052f01d9131388cfcfaee929120118a267f4
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/bus/xlnx,cdx.example.dts:18.23-21.11: Warning (unit_address_vs_reg): /example-0/smmu@ec000000: node has a unit name, but no reg or ranges property
-Documentation/devicetree/bindings/bus/xlnx,cdx.example.dts:23.22-30.11: Warning (unit_address_vs_reg): /example-0/gic@e2000000: node has a unit name, but no reg or ranges property
-Documentation/devicetree/bindings/bus/xlnx,cdx.example.dts:26.35-29.15: Warning (unit_address_vs_reg): /example-0/gic@e2000000/gic-its@e2040000: node has a unit name, but no reg or ranges property
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/bus/xlnx,cdx.example.dtb: smmu@ec000000: $nodename:0: 'smmu@ec000000' does not match '^iommu@[0-9a-f]*'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/bus/xlnx,cdx.example.dtb: smmu@ec000000: 'reg' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/bus/xlnx,cdx.example.dtb: gic@e2000000: $nodename:0: 'gic@e2000000' does not match '^interrupt-controller(@[0-9a-f,]+)*$'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/bus/xlnx,cdx.example.dtb: gic@e2000000: '#interrupt-cells' is a dependency of 'interrupt-controller'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/bus/xlnx,cdx.example.dtb: gic@e2000000: 'reg' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/bus/xlnx,cdx.example.dtb: gic@e2000000: gic-its@e2040000: False schema does not allow {'compatible': ['arm,gic-v3-its'], 'msi-controller': True, 'phandle': [[1]]}
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/bus/xlnx,cdx.example.dtb: gic@e2000000: gic-its@e2040000: '#msi-cells' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/bus/xlnx,cdx.example.dtb: gic@e2000000: gic-its@e2040000: 'reg' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/bus/xlnx,cdx.example.dtb: gic@e2000000: 'oneOf' conditional failed, one must be fixed:
-	'interrupts' is a required property
-	'interrupts-extended' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/bus/xlnx,cdx.example.dtb: cdx@4000000: reg: [[0, 67108864], [0, 4096]] is too long
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/bus/xlnx,cdx.yaml
+Tested on an Anbernic RG503 and RG353P with clock changes rolled back,
+the hardware works correctly on both devices.
 
-doc reference errors (make refcheckdocs):
+Changes since RFCv1:
+ - Identified cause of image shift (clock changes).
+ - Noted that driver works now.
+ - Added devicetree nodes for rk356x.dtsi.
 
-See https://patchwork.ozlabs.org/patch/
+Chris Morgan (5):
+  dt-bindings: display: rockchip-dsi: add rk3568 compatible
+  dt-bindings: phy-rockchip-inno-dsidphy: add compatible for rk3568
+  drm/rockchip: dsi: add rk3568 support
+  phy/rockchip: inno-dsidphy: Add support for rk3568
+  arm64: dts: rockchip: Add DSI and DSI-DPHY nodes to rk356x
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+ .../display/rockchip/dw_mipi_dsi_rockchip.txt |   1 +
+ .../bindings/phy/rockchip,px30-dsi-dphy.yaml  |   1 +
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi      |  72 +++++++
+ .../gpu/drm/rockchip/dw-mipi-dsi-rockchip.c   |  51 ++++-
+ .../phy/rockchip/phy-rockchip-inno-dsidphy.c  | 204 ++++++++++++++----
+ 5 files changed, 281 insertions(+), 48 deletions(-)
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+-- 
+2.25.1
 
