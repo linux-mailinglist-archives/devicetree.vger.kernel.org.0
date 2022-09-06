@@ -2,132 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B0875AEF00
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 17:39:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C0C55AEF2F
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 17:45:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232377AbiIFPjQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 11:39:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45564 "EHLO
+        id S232690AbiIFPpD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 11:45:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233545AbiIFPia (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 11:38:30 -0400
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2058.outbound.protection.outlook.com [40.107.220.58])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C60D39F0F0;
-        Tue,  6 Sep 2022 07:48:03 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Yy3HkFbapgh5PCUM0i9i3aaWTMevPcOFaiZZt8G504YHJ8HLc/8kDoIfDW/Z0Wgd7KBzmyoJnaOyo7oeccTv1RMNuApJnBevWbdrFRI38Rrp1rucL7ZrEL2H/Pk3Iy3sYBdRj0KgDKYi/hmrPfQBnRgBYxQWvcVOHzFmJDZSCf9qH18sKQODOlEnRdzErKFazx92IsfXSuRq9963JrMZ8EqwkGDdrukBal1RoLCNJhmQDxijlTQaAZfVbzDAolwi8odIEIuonSce2/iwtKhQoiWGWsYx3x3gqR3A1VzgvrBCL8NLaG0T9sNyjxtrOxJxRo1Qbgl3YTsZRl8oVZlPWQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KfEO4/kFE0F0M6sCTXtMgwtjswlBRIgzmCZ/2LwrnHc=;
- b=Hn795eVKwPNLhTWrJwTRSGSnK1IeMQ1D+m3jUkunm39sAbOIMYeQ9EDbxnalU+AY+zZdTb+98CI4Pg+CFDZFeTEa8RqlNLklhjaGlUqXZcnkWK1pLw5xi4DZDX/V+haq+Z90ZDjh5jeJq8wyV9I8JXequqiWgjMRKh2L0tAv8xD66Xt3LcjgXdygKjh45vRKQ2I19cM6cRYW2ihTYLC8VeI0t0e02XIxVBsqIvSwiOxJfivJO4b0lkF6OjgpZWbocpaaEdrqn4YUHqpmfOn+YeOn2rtCkgmkDpdCb4+Sq1UwK9Nu11/U5fg+ByCkScsd5lWhKdk9E0a3+Z0xgsVv1g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 12.22.5.234) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KfEO4/kFE0F0M6sCTXtMgwtjswlBRIgzmCZ/2LwrnHc=;
- b=lr9SmEL30+jyzBZepGrNUXpRSan1WxB+yEhC9eg9cZ+KQyFFpxdP3B9BnaL6CEknFs4B00az/dPMKDnv1oGWrwYbacQiLw68a/pyc+WO3Qd/SRcyHg1hbPaLyZVFFrgZa+A6FPTLf1EwdylooV7aDtdebMJBdRfkMaS6enlacUUF/mCsmHiGJoP9jL73vtM9nHQcf/3FvReaRH7XpEFFsn6bI4Y4UUOLrHT0FqOsqKPSdyK6OuYtED4MCQBdMGt4ncytTWztu6lw2I+O894gaUP3ueTkos72WuQV+N/kpAMw6RkGzx6sDEv/7gTURXbfVUPep87+2B55AUfNHsEEpg==
-Received: from CY5PR20CA0003.namprd20.prod.outlook.com (2603:10b6:930:3::27)
- by IA0PR12MB7676.namprd12.prod.outlook.com (2603:10b6:208:432::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.12; Tue, 6 Sep
- 2022 14:48:01 +0000
-Received: from CY4PEPF0000B8E9.namprd05.prod.outlook.com
- (2603:10b6:930:3:cafe::34) by CY5PR20CA0003.outlook.office365.com
- (2603:10b6:930:3::27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.12 via Frontend
- Transport; Tue, 6 Sep 2022 14:48:01 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 12.22.5.234)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 12.22.5.234 as permitted sender) receiver=protection.outlook.com;
- client-ip=12.22.5.234; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (12.22.5.234) by
- CY4PEPF0000B8E9.mail.protection.outlook.com (10.167.241.5) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.5612.10 via Frontend Transport; Tue, 6 Sep 2022 14:48:00 +0000
-Received: from rnnvmail204.nvidia.com (10.129.68.6) by DRHQMAIL101.nvidia.com
- (10.27.9.10) with Microsoft SMTP Server (TLS) id 15.0.1497.38; Tue, 6 Sep
- 2022 14:47:59 +0000
-Received: from rnnvmail205.nvidia.com (10.129.68.10) by rnnvmail204.nvidia.com
- (10.129.68.6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Tue, 6 Sep 2022
- 07:47:59 -0700
-Received: from BUILDSERVER-IO-L4T.nvidia.com (10.127.8.14) by mail.nvidia.com
- (10.129.68.10) with Microsoft SMTP Server id 15.2.986.29 via Frontend
- Transport; Tue, 6 Sep 2022 07:47:55 -0700
-From:   Akhil R <akhilrajeev@nvidia.com>
-To:     <christian.koenig@amd.com>, <devicetree@vger.kernel.org>,
-        <digetx@gmail.com>, <jonathanh@nvidia.com>, <ldewangan@nvidia.com>,
-        <linux-i2c@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <robh+dt@kernel.org>,
-        <sumit.semwal@linaro.org>, <thierry.reding@gmail.com>,
-        <wsa@kernel.org>
-CC:     <akhilrajeev@nvidia.com>
-Subject: [PATCH v2 3/3] arm64: defconfig: Make TEGRA186_GPC_DMA built-in
-Date:   Tue, 6 Sep 2022 20:17:16 +0530
-Message-ID: <20220906144716.16274-4-akhilrajeev@nvidia.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220906144716.16274-1-akhilrajeev@nvidia.com>
-References: <20220906144716.16274-1-akhilrajeev@nvidia.com>
-X-NVConfidentiality: public
+        with ESMTP id S232757AbiIFPop (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 11:44:45 -0400
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9527C7C18F;
+        Tue,  6 Sep 2022 07:55:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=IxHPfBCP2CpLZRT9ntq72Ese30Gg1dkwTLZfDlMlcIw=; b=bAmile2FOqrXZWl7fHvXhgVaHs
+        C8U1pA4+5gO+0yuIioGju5Ac4kbxX8+Quj1lq/PnkiwI55Vz82xk7NOzk2NnS3OX0p95gPLBgJBM5
+        KlgGZCyK74cUtREq06P4PNdcyRM9O3UmY3fXm28A8yr5ekMYLWCaQPzX4XluRaQtbIqV56kFGhshR
+        FRJrO6DqWjCWctO+hU5jM6T/fTZ547B92OVD4y958QPbG/ykzXJsfkTm2ESiqbJFw2i+QRDfk/kre
+        7hrJF1AeNufpFscy5pQDPwh4sfvZE0h9K09FuAn1kg3RIryx692gV0efECX1MwzjvVzaA7Pwo6CAP
+        tz36xgJw==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:34150)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1oVZyX-00043I-MF; Tue, 06 Sep 2022 15:54:53 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1oVZyU-0008LZ-M4; Tue, 06 Sep 2022 15:54:50 +0100
+Date:   Tue, 6 Sep 2022 15:54:50 +0100
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Mark Kettenis <mark.kettenis@xs4all.nl>
+Cc:     Hector Martin <marcan@marcan.st>, linus.walleij@linaro.org,
+        robh@kernel.org, krzysztof.kozlowski@linaro.org, arnd@arndb.de,
+        lee@kernel.org, alyssa@rosenzweig.io, asahi@lists.linux.dev,
+        brgl@bgdev.pl, linux-arm-kernel@lists.infradead.org,
+        linux-gpio@vger.kernel.org, sven@svenpeter.dev,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/6] dt-bindings: mfd: add binding for Apple Mac System
+ Management Controller
+Message-ID: <YxdfOr6WCZiR3W1c@shell.armlinux.org.uk>
+References: <20220902172808.GB52527-robh@kernel.org>
+ <YxcNLU+KGEolrdfT@shell.armlinux.org.uk>
+ <d3cecee5edd24f67@bloch.sibelius.xs4all.nl>
+ <CACRpkdaSRcczEF8QZ4aO+-HDVS+n-8MXvn6ysnjJfUEabwUJ=w@mail.gmail.com>
+ <909bb4e7-5bd2-2903-5bba-87ae37f3448a@marcan.st>
+ <CACRpkdajhjpMzjMooDduu0jxrp0uDNJ90VfBPpHx+P14cFfskA@mail.gmail.com>
+ <5b75dc7e-5337-73eb-450f-b72f479793c4@marcan.st>
+ <YxdOafCWnDUNourH@shell.armlinux.org.uk>
+ <f5bef359-3abe-311c-3521-136eb5b54c4b@marcan.st>
+ <d3ced0ffaec45e3c@bloch.sibelius.xs4all.nl>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000B8E9:EE_|IA0PR12MB7676:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8fc3d427-3a60-4f1b-4a7e-08da9016cb92
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 7Ii07FCIp9L8NLEPpJeoN2ICHYHUV3VtELXFQqFZaQciCxXPF2r3NtOp6Ss1Txltsfe08y0QeERrtaJ/bm4k/ypLH4OhvOtkBKEz09YfaOQAEknguGzf59Q1i54wqxnZuqxqkHurM/WK0V069TYEICiY8+OZtNknp+qg3Ux0MpbOwt22pFpvicVuU6bye9L4IoSA5G/YhOKMtRlC/qUBUecKabymSuV0+M4tNGAH8VtKuUDfuFZqd3fooy7XWC32p5z97qiKZ3jXyJ1hWJpMkE6MHBdyk9CTX58oNZtzopFXUIqicIHNBcf7oXtSP+AUxNx/TgkiQn33tpJSI0iweUqU9okFh5q+Zp1rwk8OPVi0R5u4EP4xTwVwE6skc14p4htr16Y0zAUdPgjcVwkC7QX80Rz/ImUDefqwU/9TZVsYu+bE8N3G0oQYYTs0WZCD8SvvS84ur2BbyBuvkqP/9J4sdUBgkCz31oso6NnRitRmHHqLCdXmGcKVTfYU4O5XWx6U+KP5gUVyOwtUrgb9dHQVdmrur3kNtvpy14wOs3cm96FvOqBdIgERVEPmabr+AW0WSJYhzWszYnHimJ3VP6QZmYgyvvAM7deK6PjmGZSu1NND8Y/2qr7zjAcoWon70g3bJZO+1z5orvAPt7YX907BrDk+SsElIwWtKtuN7cw+HPJp/CxBqgOlwbREzUz80lGv/NhvnKBn6iO1ygl3yp/ecy8ZYXXvsgoIJ67D+EXRmPHgp8RN5cSbEa/rZSSB95BufBrmBqk5B3YA2jjfYuZHCxUyPaoZN8k4fOEwJFyeqil0b3Ho/KX14JSD6uFds0px/dC7sPEulyUpW5pWIXv3agwjTF/vLwyOqLZvPpSh54SqzvDuC2EmdNdA8Gdc
-X-Forefront-Antispam-Report: CIP:12.22.5.234;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:InfoNoRecords;CAT:NONE;SFS:(13230016)(4636009)(396003)(376002)(39860400002)(136003)(346002)(46966006)(40470700004)(36840700001)(4744005)(8676002)(83380400001)(70586007)(70206006)(4326008)(478600001)(7696005)(6666004)(107886003)(2906002)(5660300002)(40460700003)(26005)(336012)(8936002)(426003)(186003)(1076003)(47076005)(86362001)(7416002)(2616005)(41300700001)(82310400005)(36756003)(81166007)(316002)(82740400003)(40480700001)(36860700001)(110136005)(356005)(921005)(2101003)(83996005)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Sep 2022 14:48:00.4138
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8fc3d427-3a60-4f1b-4a7e-08da9016cb92
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[12.22.5.234];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000B8E9.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB7676
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d3ced0ffaec45e3c@bloch.sibelius.xs4all.nl>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Make TEGRA186_GPC_DMA driver as built-in since the clients using the
-DMA (like I2C_TEGRA etc) are built-in. This would avoid the potential
-long delay probe deferral can cause.
+On Tue, Sep 06, 2022 at 04:25:49PM +0200, Mark Kettenis wrote:
+> > Date: Tue, 6 Sep 2022 22:53:47 +0900
+> > From: Hector Martin <marcan@marcan.st>
+> > 
+> > I agree that this is something to think about (I was about to reply on
+> > the subject).
+> > 
+> > I can think of two ways: using `reg` for the key name, but that feels
+> > icky since it's ASCII and not *really* a register number/address, or
+> > something like this:
+> > 
+> > gpio@0 {
+> > 	apple,smc-key-base = "gP00";
+> > 	...
+> > }
+> > 
+> > gpio@1 {
+> > 	apple,smc-key-base = "gp00";
+> > 	...
+> > }
+> 
+> This would still require us to add a (one-cell) "reg" property and
+> would require adding the appropriate "#address-cells" and
+> "#size-cells" properties to the SMC node.
 
-Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
----
- arch/arm64/configs/defconfig | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Yes, and at that point, as I suggested, it probably would be better
+to use:
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index d5b2d2dd4904..9e8c532126aa 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -995,7 +995,7 @@ CONFIG_MV_XOR=y
- CONFIG_MV_XOR_V2=y
- CONFIG_OWL_DMA=y
- CONFIG_PL330_DMA=y
--CONFIG_TEGRA186_GPC_DMA=m
-+CONFIG_TEGRA186_GPC_DMA=y
- CONFIG_TEGRA20_APB_DMA=y
- CONFIG_TEGRA210_ADMA=m
- CONFIG_QCOM_BAM_DMA=y
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	gpio@67503030 {
+		reg = <0x67503030>;
+	};
+
+	gpio@67703030 {
+		reg = <0x67703030>;
+	};
+
+Then the "reg" has a meaning that is directly related to the SMC.
+
+> > But this ties back to the device enumeration too, since right now the DT
+> > does not drive that (we'd have to add the subdevice to the mfd subdevice
+> > list somehow anyway, if we don't switch to compatibles).
+> > 
+> > I'd love to hear Rob's opinion on this one, and also whether the
+> > existing Linux and OpenBSD code would currently find gpio@0 {} instead
+> > of gpio {} for backwards compat.
+> 
+> The OpenBSD driver does a lookup by name and the "@0" is part of that
+> name.  So that would break backwards compat.
+
+Oh, that's annoying - and is a different behaviour to Linux.
+
+On Linux, we only look at the node name up to the @ when matching (see
+of_node_name_eq() in drivers/of/base.c, so it doesn't matter to Linux
+what follows the @ when you try to look up a node named "gpio" - you'll
+find gpio@anythingyoulike.
+
+> Maybe just name the slave GPIO controller "gpio-slave"?  If we add
+> compatibles, the compatibles for the nodes should propbably be
+> different such that we can switch to do a lookup by compatible?
+
+I don't think the DT folk would be happy with "gpio-slave" because
+node names are supposed to be generic. Also, "slave" probably isn't
+a good choice of name in this modern era given past history.
+
+Rather than the above, we could use "reg" to indicate which GPIO
+controller we're talking about, and lookup the reg value in a table
+to give the key. So gpio@0, reg=<0> => gP00, gpio@1, reg=<1> => gp00.
+gpio@2, reg=<2> => whatever next.
+
+That sounds like it won't break the existing OpenBSD.
+
 -- 
-2.17.1
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
