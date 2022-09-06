@@ -2,131 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B4F25AF413
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 21:04:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BFE05AF436
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 21:09:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229659AbiIFTEU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 15:04:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50478 "EHLO
+        id S229512AbiIFTJL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 15:09:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229549AbiIFTET (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 15:04:19 -0400
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E153E8D3CB
-        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 12:04:17 -0700 (PDT)
-Received: by mail-pj1-x1029.google.com with SMTP id s14-20020a17090a6e4e00b0020057c70943so6713712pjm.1
-        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 12:04:17 -0700 (PDT)
+        with ESMTP id S229543AbiIFTJI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 15:09:08 -0400
+Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 978FE9A69C
+        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 12:09:07 -0700 (PDT)
+Received: by mail-pg1-x534.google.com with SMTP id h188so11435498pgc.12
+        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 12:09:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=u5M6QxdAPtDOUZYM968YPfYQgKBWh+diykgOvWRU0/o=;
-        b=d+qIdUiwBS4vrHLafCK0ZewwWsNsAresJB4Ha48hicYnkPEiiLzJJ9HIYP5gpQp9Q6
-         MLY24WiB+HBZQDlXE+zB3hVXOuJsZup37ch73XmdcCyJEaqM6DmnXc7twtV1wW4aJiwZ
-         yYPBJ9HdxQ6Kh4A5xJuZHjD7u0cBwmHsZUr/o=
+        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=USGKt12KI6hqIl32nlA4hDouQZ/htGzTNTb50q1jr6M=;
+        b=eu0Nbwk3cgdedK/+pik19CrYVr6eMYXGo3vPoqCXA49aHcfIcgJhNowT7n3hwr/KJF
+         QGeCM/JeP3cIAg8s92XiDj/KFSDgqlmze5D6leEA0dRDFreh4MqjV+bxh0Oqkx8wzeFa
+         Ym0/NeVFiB/CXxdhyfFUxmywfOvBhuwlOqwypcKyhpPJ5u4Tm9yHPVxkVQl/s8pEFVz9
+         F3cI0bFnmIAl4oSbLlHIbw8P9l9RCYd2Jwmy27umsNcl2KajJxu0ne4T5e3FB6Z3ezRk
+         XEUbVr/zNAWu7Ar5HtylPc4uwow6OxZipf+XwO5g3hlRcKKi/h1M+P607Sn67jRyVviG
+         LDVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=u5M6QxdAPtDOUZYM968YPfYQgKBWh+diykgOvWRU0/o=;
-        b=j98iaMUiP5GgnmbHcXEbtB0YFY1JjqZMlmogvJvwLGRwbOyUYNRaJ2h1Mi2hNbkHgA
-         57plBcDHx5CzrgixHQjOHw76g+erSRoTFE5kjBz4QTFxDl8SF1av/zdx88jOWpPA7WKE
-         zuZ+ZYHPhq4A152J8254gDMNMNDoQHmj7melFFfsfGfLfSLu0CIOW17+NdS70zhLVfhG
-         vmJ5170GRdeNjjxE+K/XawXwbSTlJ6TvIjIrahlClBMWmKe7C+Tdn1hvkCd4NMFkLi/0
-         i/HjSKYYhopiqYOLXvVZBWZ+SPU+rBVYh8QdTWXjKwoUFzbmvl7Kc7/ALPyL95y4MrAT
-         2BLg==
-X-Gm-Message-State: ACgBeo1Un62Nf8TAFyrhk0hp6ef/XPAlAvzb6rCeab8MAAqD65Hm/ZkM
-        NV/VLdxiZ4EzcSG/kHI8Wm2Jpeheq3/B2g==
-X-Google-Smtp-Source: AA6agR7U2bm4Qk9QDupReQP6foEFsmxKNcPMJZV3bm3IXBlg6jD5XNYwq9ld8GkXR0taSv15gfL9/A==
-X-Received: by 2002:a17:902:be01:b0:176:8bc3:b379 with SMTP id r1-20020a170902be0100b001768bc3b379mr51706pls.109.1662491057388;
-        Tue, 06 Sep 2022 12:04:17 -0700 (PDT)
-Received: from localhost ([2620:15c:11a:202:acea:5f9a:4de:10c7])
-        by smtp.gmail.com with UTF8SMTPSA id q13-20020a170902dacd00b001743be790b4sm10337536plx.215.2022.09.06.12.04.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Sep 2022 12:04:16 -0700 (PDT)
-Date:   Tue, 6 Sep 2022 12:04:14 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Krishna Kurapati <quic_kriskura@quicinc.com>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2] arm64: dts: qcom: sc7180: Configure USB as wakeup
- source
-Message-ID: <YxeZrvKvRB/ct3Ss@google.com>
-References: <20220901102946.v2.1.I347ea409ee3134bd32a29e33fecd1a6ef32085a0@changeid>
- <CAD=FV=WBzVTaz1dtMswNMWhBzBBUQZTxqXff_DgiuP6WJgG8Qg@mail.gmail.com>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=USGKt12KI6hqIl32nlA4hDouQZ/htGzTNTb50q1jr6M=;
+        b=aC1SPuH7w+J81NTVCYTRsG5+4XFzGRKPj7Ctp1I3ELsT5I+J9bKLjhLSWvYcWyKgcS
+         l/rBDGnY1mgom7h69qQZTjN5BHIAtYAjjk+LQEPdWz4uIuf69gkQa6TYxXJY2zOkNSHo
+         zwYC0HjjCG2HlVQyHJYREyChZkrI9pnlG7kjSNqmmqsKeiA45ESqSwFB4I3JR1kJKk+5
+         QurOigUcga9I1TwKt11wBDZqtXRWfo5ABIgcJkMdRM5mpm3aUgVA7y0SMd2HDbdhZYPl
+         sntRHPOJw37z+VzCj/r1Hfj1Fau73g65Xgui/mB2MkPYcBQ1vDVAZTS81r4bekv9ejmI
+         7OAg==
+X-Gm-Message-State: ACgBeo08vC+Q0DrkR05H6LAmwKLXbFp+iDGhxNQ7NMY42lhS6psasHs4
+        qtH3VEY6Ppq/wVVCCIUSoGrOXLfrWoTFWeik0xl6tQ==
+X-Google-Smtp-Source: AA6agR7RQfdgHlY4n4EkRR8HvndWT1gKDUsFCJrGt96RxjGT9OckJRtkjMg+3n7uk2ZMHpMO7kBgt2DeMpfxa9m5Txk=
+X-Received: by 2002:a05:6a00:e8f:b0:536:c98e:8307 with SMTP id
+ bo15-20020a056a000e8f00b00536c98e8307mr56516788pfb.73.1662491347060; Tue, 06
+ Sep 2022 12:09:07 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAD=FV=WBzVTaz1dtMswNMWhBzBBUQZTxqXff_DgiuP6WJgG8Qg@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220902230500.2624739-1-tharvey@gateworks.com> <cbb82e89-7035-1c01-8f22-319c1752156f@linaro.org>
+In-Reply-To: <cbb82e89-7035-1c01-8f22-319c1752156f@linaro.org>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Tue, 6 Sep 2022 12:08:54 -0700
+Message-ID: <CAJ+vNU0gqqY0Z=aeVBsPa_j_-ONVtJypJUUe-WxEgNzncsT0qA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: arm: Add i.MX8M Mini Gateworks GW7904 board
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Doug,
-
-On Tue, Sep 06, 2022 at 11:33:56AM -0700, Doug Anderson wrote:
-> Hi,
-> 
-> On Thu, Sep 1, 2022 at 10:29 AM Matthias Kaehlcke <mka@chromium.org> wrote:
+On Sun, Sep 4, 2022 at 11:41 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 03/09/2022 02:04, Tim Harvey wrote:
+> > Add DT compatible string for i.MX8M Mini based Gateworks GW7904 board.
 > >
-> > The dwc3 USB controller of the sc7180 supports USB remote
-> > wakeup, configure it as a wakeup source.
-> >
-> > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> > Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> > Cc: Shawn Guo <shawnguo@kernel.org>
+> > Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> > Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> > Cc: Fabio Estevam <festevam@gmail.com>
+> > Cc: NXP Linux Team <linux-imx@nxp.com>
 > > ---
+> >  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
 > >
-> > Changes in v2:
-> > - use qcom/arm64-for-6.1 as base, v1 was unintendedly based on a
-> >   downstream branch that was used for testing
-> >
-> >  arch/arm64/boot/dts/qcom/sc7180.dtsi | 2 ++
-> >  1 file changed, 2 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> > index e8debb0da411..af5bab27eaf3 100644
-> > --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> > @@ -2782,6 +2782,8 @@ usb_1: usb@a6f8800 {
-> >                                         <&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_USB3 0>;
-> >                         interconnect-names = "usb-ddr", "apps-usb";
-> >
-> > +                       wakeup-source;
-> > +
-> 
-> The patch documenting this property has landed in commit 416b61893860
-> ("dt-bindings: usb: qcom,dwc3: add wakeup-source property"). I guess
-> the only question is whether this should be in the general sc7180
-> device tree file or just for trogdor.
+> > diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+> > index 7431579ab0e8..ce89fac1898e 100644
+> > --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> > @@ -831,6 +831,7 @@ properties:
+> >                - gw,imx8mm-gw7901          # i.MX8MM Gateworks Board
+> >                - gw,imx8mm-gw7902          # i.MX8MM Gateworks Board
+> >                - gw,imx8mm-gw7903          # i.MX8MM Gateworks Board
+> > +              - gateworks,imx8mm-gw7904   # i.MX8MM Gateworks Board
+>
+> Please put it ordered alphabetically, so before "gw".
+>
 
-I had a similar comment on the patch for sc7280 [1], there the rationale
-for putting the property into the .dtsi of the SoC was that the wakeup
-capability is provided by the SoC.
+Krzysztof,
 
-For sc8280xp.dtsi the property is also in the .dtsi of the SoC:
+Ok - will send a v2 after waiting for feedback on the dts patch.
 
-https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git/tree/arch/arm64/boot/dts/qcom/sc8280xp.dtsi?h=arm64-for-6.1#n1315
+Best Regards,
 
-> Any chance it could cause problems for devices that aren't designed like
-> trogdor?
-
-Probably not in a functional sense, however power consumption during system
-suspend is slightly higher (2-3 mW) when USB wakeup is enabled. Boards can
-disable wakeup by deleting the property in their .dtsi file, though it
-is not necessarily evident that this is an option to reduce power
-consumption.
-
-[1] https://patchwork.kernel.org/project/linux-arm-msm/patch/1649321104-31322-7-git-send-email-quic_c_sanm@quicinc.com/
+Tim
