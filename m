@@ -2,203 +2,278 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 241005AF472
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 21:30:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D0015AF48B
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 21:41:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229947AbiIFTaB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 15:30:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32852 "EHLO
+        id S229897AbiIFTlX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 15:41:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229937AbiIFT34 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 15:29:56 -0400
-Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D7DA357D6
-        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 12:29:53 -0700 (PDT)
-Received: by mail-pg1-x530.google.com with SMTP id q9so11502157pgq.6
-        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 12:29:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date;
-        bh=/oPGljTY8cn1DwlMVFwHGkojoJ6whUVQ87d7cci0cnM=;
-        b=rKp1yJaKC/8ggpz0NVKHlcoF9S5cCAPrrAfxhQlZjUXVmx+6AroPw3sNgq+2yeOFAZ
-         wse+WA1WO6kNhXgfQMU4atfiwE0UD6OoOH3CkQeUBHbpKk3hocOiw2/u0r+mXXxwTbC+
-         ldNOiAR9o/yXLRaP7juT3+fv49rMhCqn2ABCfK/0fuO9ta3tsRvE13/GJfkOwCIvEBMP
-         TETTzJYPNF0tmCtdS//O3MfOp3A84GQYS5hMCDKkxH6m6hkrprDZNVunHhe6IAa/MwiW
-         hBts+UIhi4A7R9KjG2i+9BSsstOSDA9pFQ1L/gbAu/euoRD46SN87lLR7ibQQ2Ozb2uy
-         d2Qw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=/oPGljTY8cn1DwlMVFwHGkojoJ6whUVQ87d7cci0cnM=;
-        b=n7WiUMyetooaYDB0WNwwWi7lLb3qqDpI5PVU2hrqDjyV5x2sIaLWaBCfGhKvZeHO81
-         2izojCQ3E52d4nXhyYJZ+WIU7IsxVgYJKCPu3vKWgsEVAY4CD6xWYO/HApAwRmxSvM+Z
-         gdZvDyiEEjpHuhTyKjkLXX+4dI+Kk2PCyTxqtI4b8pgB8Qkfq8OfbOfDvLtKFUODFLZ/
-         b6IjWC2X1Mw4hMc2xm7dgc7rlsJmsljUBvG2bqV9jkioUCpNFDTpvew7435K8u661MCn
-         sIYLVMHgGRnt8ukLW+r6Z83fg86TJiAXeulduRQDnXnQf+T8D1jIc3Vu8KhkHbrcM/Bb
-         NyTg==
-X-Gm-Message-State: ACgBeo3GsbNeIFveHPeKiqAkzZAe69vAr586jfontD66bTU60z2uaf5a
-        vdpu4Vez75scDt1WdWR2Da+DhA==
-X-Google-Smtp-Source: AA6agR5Pb1JdyBBMCPT+TOTyP/Rw3IFwcadkFQ6R2oRFG4/SydRWCfvuMqQVV61fvD6sgTU4xqTrPQ==
-X-Received: by 2002:a63:f116:0:b0:434:8607:a54 with SMTP id f22-20020a63f116000000b0043486070a54mr125033pgi.597.1662492592729;
-        Tue, 06 Sep 2022 12:29:52 -0700 (PDT)
-Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id n16-20020a63a510000000b0042fe1914e26sm2230568pgf.37.2022.09.06.12.29.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Sep 2022 12:29:51 -0700 (PDT)
-Date:   Tue, 6 Sep 2022 13:29:49 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Md Danish Anwar <a0501179@ti.com>
-Cc:     linux-kernel@vger.kernel.org, bjorn.andersson@linaro.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        nm@ti.com, ssantosh@kernel.org, s-anna@ti.com,
-        linux-arm-kernel@lists.infradead.org, rogerq@kernel.org,
-        grygorii.strashko@ti.com, vigneshr@ti.com, kishon@ti.com,
-        robh@kernel.org
-Subject: Re: [PATCH v5 6/6] remoteproc: pru: add support for configuring
- GPMUX based on client setup
-Message-ID: <20220906192949.GA64477@p14s>
-References: <20220607045650.4999-1-p-mohan@ti.com>
- <20220607045650.4999-7-p-mohan@ti.com>
- <20220719161625.GB3393732@p14s>
- <49d1959e-88ae-c605-aafc-ca9819c4f85c@ti.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+        with ESMTP id S229644AbiIFTlW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 15:41:22 -0400
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-eopbgr80043.outbound.protection.outlook.com [40.107.8.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77A6F80B58;
+        Tue,  6 Sep 2022 12:41:18 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=PdyEp9WvbtF/F1AzQEFeEmRgg2VUqbxGp2b6pU1ba2oYdcX45QxNRiYzaGTZ6bcTKTseyHknkwazOzhJGb6x9KSp+oqbe40cGwoMqTGcfS1iZAegwJKbDnFStGL++gho3XVe4l5rLUYAm/f/dDsarjMXjOtnDGmUmpSqA+j8q/PZ/10YD28GLnln0vFDJUT4UzYiGtYDku1pz1WKEjS8+68LOLqsRte1akmR+QwvUh56ennB5cQZnmXg1XOxMD+Gdr6Jnm3UopO0H3wT19Rx+fCSl9KcoDit5ETOiASkw5WjMQwMN/3S5GNxBQc1dzjM/r3lVIATkImWjq+4KLnVCg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=bFGTE/3jBtDDKCXB4iueaGQ5wt1Pd1x1vRvU6A6hoKE=;
+ b=gZ0BFCFlcJkHtJ9anHHor0MRKVaevxqb8ppanf86y+e5jJbkJcQAS4a6DfZ7EuVlGJFVjF13KHmbOM5kj72sO/ecAFgy+j9kV/aEeKUtr9VhmHzt7d7K5l0Wd2oNoWiJbKSBiKzA/pU+V8Rf8RKMKE3HY3LwJr4K/eLdHMnAAqN+tzOr2afE6EpBexOQVQX+1+Fnam2Rk5fT95xOUK88bUaDOMhh+z9OFWLrPxuA0tJ6U0MUVnv4II++c/BHoB3zfV6ddFyEbb2MY1YG3DklhxnQ4Ob7aa7ZBysjMa9Z7Picijyv/bMRUF/dlOUmYCQbpv5B95Da5gWU1OwCD/mvZw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=bFGTE/3jBtDDKCXB4iueaGQ5wt1Pd1x1vRvU6A6hoKE=;
+ b=T4oO8SK5xiJUTd+EAbv+sR8sepsWt8Y3vJ5+sCOwVGopBu5F2egX7Vgy0iy9GyLXEPnyY2ta+wYESLmjVCltkchfYb/Xg6YNbU3mxlhlkFkNEkWYT7N5V9xSDWaQ7BcljXQipxNJ8Hc1cny26IBEUr1CObr2WF0q/LzRIUr/JkY=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM9PR04MB8793.eurprd04.prod.outlook.com (2603:10a6:20b:408::22)
+ by DB6PR0401MB2358.eurprd04.prod.outlook.com (2603:10a6:4:51::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.12; Tue, 6 Sep
+ 2022 19:41:14 +0000
+Received: from AM9PR04MB8793.eurprd04.prod.outlook.com
+ ([fe80::1c3e:36a0:1adc:beb]) by AM9PR04MB8793.eurprd04.prod.outlook.com
+ ([fe80::1c3e:36a0:1adc:beb%9]) with mapi id 15.20.5612.012; Tue, 6 Sep 2022
+ 19:41:14 +0000
+From:   Frank Li <Frank.Li@nxp.com>
+To:     maz@kernel.org, tglx@linutronix.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kw@linux.com, bhelgaas@google.com
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+        peng.fan@nxp.com, aisheng.dong@nxp.com, jdmason@kudzu.us,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        kishon@ti.com, lorenzo.pieralisi@arm.com, ntb@lists.linux.dev,
+        lznuaa@gmail.com, imx@lists.linux.dev
+Subject: [PATCH v8 0/4] PCI EP driver support MSI doorbell from host
+Date:   Tue,  6 Sep 2022 14:40:48 -0500
+Message-Id: <20220906194052.3079599-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.35.1
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <49d1959e-88ae-c605-aafc-ca9819c4f85c@ti.com>
+X-ClientProxiedBy: BYAPR11CA0042.namprd11.prod.outlook.com
+ (2603:10b6:a03:80::19) To AM9PR04MB8793.eurprd04.prod.outlook.com
+ (2603:10a6:20b:408::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM9PR04MB8793:EE_|DB6PR0401MB2358:EE_
+X-MS-Office365-Filtering-Correlation-Id: b0c6a782-818e-4316-9fa8-08da903fc209
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: f8o/Vy/RGbH/GVamUXrXYYJM6YG1emUao+m2cTS8FGQ02DiNIvJt0rONM38yo6LvOg6rph1SGK8rIjhkv5/gAZnE0C1MgCcSMoYTA+YjHOSVjxlNikbPwFBREbbrBkf5H6R1PsPW+lENewDkjxPZpmlkzM7jAvIDBxXSXAT7KHvFMLzMts9GkRWcifAkzaTUhmEw8oALATaCbr8IUSqHS0diW955n61EIQNv6AGEEBThQY0FGgEOaSThIaAAiohORc4uyoXrCAnw4MgQtio7j0LSOWDxbpZSqrjECuri2IUgC1v1Kxq7zeilisTnVL+1VyLye3G3PxzbCOPqHPu2xJCAy4rOfdyqiLSpQ8271edb7Sj2G+bwg+0DF7M8P0/I92PpdtdtVgWdtN3eeRzyJmUKAlxRYgNFw/orK6gL2Jlm0nL0TNr9CqTlH83W886V0e75EZYUHwPEYFOcmqScOrYpTsYVCVAv3Y9T2+XKuKca4PHv0o5olfXxFJmp4O7myYqdImpLdBmQiJsco3UjXjE44ryfksorH9NcXXquOIn8bEVvqoGCpgG3RCZ5zjy6DSBk1bUkrOLwmLEqdut/+7aBvlr/vavHHnJS9JfoxhvSJYdWQe4+wkFiX2qzWlgyexudNLsmY7geL7lba0tVC/7L2rvcFIOQ32YH03l0v+wvDX7tV9vYwxiktqKnHNQURKfhcnba2BWHT3h9A0tkYpqzf4mCQhpwmYMvBEbH7/o7LphvPcJUlYBeS9v8k3dgC8Khhr64TTVUNKiWRy96qa2e10ngiy9a3YY7Quk1tAY=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8793.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(396003)(39860400002)(366004)(136003)(376002)(346002)(41300700001)(52116002)(26005)(6512007)(6506007)(6666004)(966005)(6486002)(478600001)(83380400001)(2616005)(186003)(1076003)(2906002)(7416002)(8936002)(5660300002)(66476007)(66946007)(4326008)(8676002)(66556008)(38350700002)(316002)(38100700002)(36756003)(86362001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?K3lpeUJqVTdITTFmdUQ5d2RocHVzSFF6Mk1tNXk2d0tUYTVGSE5SSUhYWG8y?=
+ =?utf-8?B?TW9MWlE1R2VqeEJ3RFYrdnJCeW4vM1VPaTFpeGxaSzZXZEJpNEV2MnhQYS9r?=
+ =?utf-8?B?M3NSOGRYaVFFdnBMdEtDdlh5cjZ4MXpLcUNqd1MxQ2l4bmIwbkQ1cjVnMjVB?=
+ =?utf-8?B?NVg0VVV0dlk2Ym8xeWFVUTFnOHB0WUF3NTZmRVJ5WFR5c2pMalBrcExNMitL?=
+ =?utf-8?B?am1JcWcvb1ZOUXVLSTBhdlNrK1VQUEJRMjE3dUZDTXJWTkFzTFNZOUFzSWlO?=
+ =?utf-8?B?RGg5dWNCcFh4QU9wYjZMMDlqYVh2ZjlyMkZkQnlUME1MbWxuTDQvZm9UT01t?=
+ =?utf-8?B?YnpwcWNQc3d5Z0JBekl2a25xOElTWGREQUVhOGNnRHVTM0hWMEhWUGtXd1k1?=
+ =?utf-8?B?a2VjMGR4aUs1ZkkvdGx3T214VlVNVTM1enJ2R3ZEa0ZPV2xvVk9SVVFzRmVZ?=
+ =?utf-8?B?Y1h4QWxzdFo4b2F0QXEveFV6U0dLd051dFhNYkpLUG4ra2h0NzZsRXBCMHp6?=
+ =?utf-8?B?NE9KUCtVeVF6Rnp3VUdLdVFkVmd6WWhPejRqUWpvZ3VYYzJRMDF5c3VVVFN0?=
+ =?utf-8?B?SGVVUXVYcGdsTjRzbDBPRC9QWHlGUGFPeHNXMEh1WSs5MmNlVXhEcXAzaUdT?=
+ =?utf-8?B?QWxkREtzcUVST0hBd1EyakFoakl3a0VoV01GamVmUUY2dTg3SWVVS29QMTlC?=
+ =?utf-8?B?YjZaRVJIeml6WFM1ekViM1VnSnh4d0JBdDhLQ2U3NFpsdzJRSmQ2NlZZZ01q?=
+ =?utf-8?B?SlRxc01LZlp1TWRFZ3E4NWRwdEg3UlVqOU5RMGZCSWt1Y0NuV2ErWUFJMEZq?=
+ =?utf-8?B?bC90R3lWRXBHMjY0NnNxc3d2M3JLaUFzUndUTUcrYmJkSGcrV24vM2ZnOTJP?=
+ =?utf-8?B?SDc5Z3I3SGtGZ0NFTEJMcUFoMlYrQjFHL0RsWStBMjUwMmg4aURFaWRiREQ4?=
+ =?utf-8?B?TEgwN0toM3h4bjhQWFlPZkFsWUVzSjc1bjJQbm41VWFXdXgxdDlPL3RkaTZD?=
+ =?utf-8?B?ZVBUemIvTEtXa2VWckEzbTFBY2F6WDNEMjA0Q0l2ZEhVRFIvU0Rrb3Q3czIw?=
+ =?utf-8?B?RVE1bVlGRnF3YzE5Z0NLaFE5NzRJZDd1V3V3OVBTT1g2SFl0QTFrMSs0cjFt?=
+ =?utf-8?B?KzhnWHRUaTRXVFRuMWpvVTcrdGF3aDFTTDJMTGVISGJnY240dlFzUTUxUytV?=
+ =?utf-8?B?K2V3TVc2VW1sbHAvMFNWVXR1QUFiSTFhQkorVWVtQVZIT3Q2eWlWZE9MT1d1?=
+ =?utf-8?B?eHNyU3ZFMitSSW5ZWk1RTGI5ZHk2bVV3ZnZ2VmNiNWZzTUV4ZFJMVytoeC9Z?=
+ =?utf-8?B?ZklYc0pKZVY2YmxxRGhYSDZDWTk0RUZjRGhvN3dMV2I4S1FqcXVUbWxnang5?=
+ =?utf-8?B?TGR3cytMNE94TWtLeDNweGRUcGNyUmEwUWhPRlVZUk9HeE5Qcy8zZFVBNktu?=
+ =?utf-8?B?TFhUVVh6WUliNTNqYVY2MHMrWGdpUnRPUDF2Mm90VEZLdmZDeWN3eVM2dHpw?=
+ =?utf-8?B?eTErYTBRMy80VzNjSC8rcmIyeG4rQzRWb1dGb0J0NHU3MWRkVldxTGt6MU0r?=
+ =?utf-8?B?czl4dEQ4UVJxZnJoaG1wWDFkeU5FR2M3SmZGallOeG1ic1VvT3BTOVBVU3Zi?=
+ =?utf-8?B?K3dudGh3TlpkT1c1UWVUYk04UEprcjRqK1ZEdWoxV28wM1ZoWUMyR3UwQjRs?=
+ =?utf-8?B?c2Z1MU5Qb1BpQkFadmNaZmJFSFM5emFlWnIvQmxqM3JwNzk1LythMnp2TGxK?=
+ =?utf-8?B?ZUFLMGl6eHZhUExKSHIwSkxsbWVTOWVXTExHWkgzWExQSUl1ZlBrQk1EekUr?=
+ =?utf-8?B?K2xCbVR0VTVZdnh4MVNBUHZGSUxYeGVxZEpOVmlTOG9jRkswcEhuWlk4ckJY?=
+ =?utf-8?B?MkRxNFN4TXVzbDNreHlGanBLaWhCUFc5bzNPTkFpYzA4dGYzMWEzVlFJYm9l?=
+ =?utf-8?B?d1lJNGdpdS9XVHZ5WVhXc09CV3VqY2xnczlCdFVxSWVYWEM4bnFqbFdtbzZO?=
+ =?utf-8?B?QTJzUUkySnIrcVRaUVYxNEljNktJYzZVR3NnZUk4WDErVXBPVWo3dG1KTnh0?=
+ =?utf-8?B?Q1JzL1FrUjVYekJFMktKQ0pwNEI1U01pb3ZWVEZvZUhFWldPWjlyQzdmWVo5?=
+ =?utf-8?Q?cyXdnefMzlcypwwzHIZf368Zp?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b0c6a782-818e-4316-9fa8-08da903fc209
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8793.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Sep 2022 19:41:14.1439
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 6CSD5deo8LxQIE5EuByhHfcLCgSbWJmHJyCHqfqj3DvmlC3cJzAV35oduqQUxzRfnqPwg71/E/jhBf8kX/6LcA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR0401MB2358
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Good day,
 
-On Mon, Sep 05, 2022 at 02:41:27PM +0530, Md Danish Anwar wrote:
-> Hi Mathieu,
-> 
-> On 19/07/22 21:46, Mathieu Poirier wrote:
-> > On Tue, Jun 07, 2022 at 10:26:50AM +0530, Puranjay Mohan wrote:
-> >> From: Tero Kristo <t-kristo@ti.com>
-> >>
-> >> Client device node property ti,pruss-gp-mux-sel can now be used to
-> >> configure the GPMUX config value for PRU.
-> >>
-> >> Signed-off-by: Tero Kristo <t-kristo@ti.com>
-> >> [s-anna@ti.com: simplify the pru id usage]
-> >> Signed-off-by: Suman Anna <s-anna@ti.com>
-> >> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
-> >> ---
-> >> V4->v5
-> >> * This patch was included in v4 and had some checkpatch errors that have
-> >>   been resolved in v5
-> >> ---
-> >>  drivers/remoteproc/pru_rproc.c | 20 ++++++++++++++++++++
-> >>  1 file changed, 20 insertions(+)
-> >>
-> >> diff --git a/drivers/remoteproc/pru_rproc.c b/drivers/remoteproc/pru_rproc.c
-> >> index 2977eb50631b..f2c6c55f0f20 100644
-> >> --- a/drivers/remoteproc/pru_rproc.c
-> >> +++ b/drivers/remoteproc/pru_rproc.c
-> >> @@ -123,6 +123,7 @@ struct pru_private_data {
-> >>   * @dbg_single_step: debug state variable to set PRU into single step mode
-> >>   * @dbg_continuous: debug state variable to restore PRU execution mode
-> >>   * @evt_count: number of mapped events
-> >> + * @gpmux_save: saved value for gpmux config
-> >>   */
-> >>  struct pru_rproc {
-> >>  	int id;
-> >> @@ -141,6 +142,7 @@ struct pru_rproc {
-> >>  	u32 dbg_single_step;
-> >>  	u32 dbg_continuous;
-> >>  	u8 evt_count;
-> >> +	u8 gpmux_save;
-> >>  };
-> >>  
-> >>  static inline u32 pru_control_read_reg(struct pru_rproc *pru, unsigned int reg)
-> >> @@ -250,6 +252,7 @@ struct rproc *pru_rproc_get(struct device_node *np, int index,
-> >>  	struct device *dev;
-> >>  	const char *fw_name;
-> >>  	int ret;
-> >> +	u32 mux;
-> >>  
-> >>  	try_module_get(THIS_MODULE);
-> >>  
-> >> @@ -273,6 +276,22 @@ struct rproc *pru_rproc_get(struct device_node *np, int index,
-> >>  
-> >>  	mutex_unlock(&pru->lock);
-> >>  
-> >> +	ret = pruss_cfg_get_gpmux(pru->pruss, pru->id, &pru->gpmux_save);
-> >> +	if (ret) {
-> >> +		dev_err(dev, "failed to get cfg gpmux: %d\n", ret);
-> >> +		goto err;
-> >> +	}
-> >> +
-> >> +	ret = of_property_read_u32_index(np, "ti,pruss-gp-mux-sel", index,
-> >> +					 &mux);
-> >> +	if (!ret) {
-> >> +		ret = pruss_cfg_set_gpmux(pru->pruss, pru->id, mux);
-> >> +		if (ret) {
-> >> +			dev_err(dev, "failed to set cfg gpmux: %d\n", ret);
-> >> +			goto err;
-> >> +		}
-> >> +	}
-> >> +
-> >>  	if (pru_id)
-> >>  		*pru_id = pru->id;
-> >>  
-> >> @@ -310,6 +329,7 @@ void pru_rproc_put(struct rproc *rproc)
-> >>  
-> >>  	pru = rproc->priv;
-> >>  
-> >> +	pruss_cfg_set_gpmux(pru->pruss, pru->id, pru->gpmux_save);
-> >>  	pru_rproc_set_firmware(rproc, NULL);
-> >>
-> > 
-> >   CC      drivers/remoteproc/pru_rproc.o
-> > /home/mpoirier/work/remoteproc/kernel-review/drivers/remoteproc/pru_rproc.c: In function ‘pru_rproc_get’:
-> > /home/mpoirier/work/remoteproc/kernel-review/drivers/remoteproc/pru_rproc.c:279:8: error: implicit declaration of function ‘pruss_cfg_get_gpmux’ [-Werror=implicit-function-declaration]
-> >   279 |  ret = pruss_cfg_get_gpmux(pru->pruss, pru->id, &pru->gpmux_save);
-> >       |        ^~~~~~~~~~~~~~~~~~~
-> > /home/mpoirier/work/remoteproc/kernel-review/drivers/remoteproc/pru_rproc.c:288:9: error: implicit declaration of function ‘pruss_cfg_set_gpmux’ [-Werror=implicit-function-declaration]
-> >   288 |   ret = pruss_cfg_set_gpmux(pru->pruss, pru->id, mux);
-> >       |         ^~~~~~~~~~~~~~~~~~~
-> > 
-> > I get this on both rproc-next and today's linux next.  
-> 
-> This patch is dependent on the series [2] Introduce PRU platform consumer API
-> https://patchwork.kernel.org/project/linux-remoteproc/cover/20220406094358.7895-1-p-mohan@ti.com/
-> as the api pruss_cfg_get_gpmux calls the api pruss_cfg_read and the api
-> pruss_cfg_set_gpmux calls the api pruss_cfg_update which are implemented by the
-> patch "soc: ti: pruss: Add pruss_cfg_read()/update() API" in the above series.
->
+                  ┌───────┐          ┌──────────┐
+                  │       │          │          │
+┌─────────────┐   │       │          │ PCI Host │
+│ MSI         │◄┐ │       │          │          │
+│ Controller  │ │ │       │          │          │
+└─────────────┘ └─┼───────┼──────────┼─Bar0     │
+                  │ PCI   │          │ Bar1     │
+                  │ Func  │          │ Bar2     │
+                  │       │          │ Bar3     │
+                  │       │          │ Bar4     │
+                  │       ├─────────►│          │
+                  └───────┘          └──────────┘
 
-What I read from the cover letter is that the series you are referring to was an
-RFC that predated this series.  Also from the cover letter, the second paragraph
-clearly indicate that two other series _depend_ on this series.  As such there
-was no way for me to identify the dependency.  
+Many PCI controllers provided Endpoint functions.
+Generally PCI endpoint is hardware, which is not running a rich OS,
+like linux.
 
-> This error is coming as the dependent patch needs the patch "soc: ti: pruss:
-> Add pruss_cfg_read()/update() API" to be applied for compilation.
+But Linux also supports endpoint functions.  PCI Host write BAR<n> space
+like write to memory. The EP side can't know memory changed by the Host
+driver. 
 
-Please provide a link when referencing patchsets.  That way we know exactly
-which one we are talking about.
+PCI Spec has not defined a standard method to do that.  Only define
+MSI(x) to let EP notified RC status change. 
 
-> 
-> Thanks,
-> Danish.
-> 
-> > 
-> >>  	mutex_lock(&pru->lock);
-> >> -- 
-> >> 2.17.1
-> >>
+The basic idea is to trigger an IRQ when PCI RC writes to a memory
+address. That's what MSI controller provided.  EP drivers just need to
+request a platform MSI interrupt, struct MSI_msg *msg will pass down a
+memory address and data.  EP driver will map such memory address to
+one of PCI BAR<n>.  Host just writes such an address to trigger EP side
+IRQ.
+
+If system have gic-its, only need update PCI EP side driver. But i.MX
+have not chip support gic-its yet. So we have to use MU to simulate a
+MSI controller. Although only 4 MSI IRQs are simulated, it matched
+vntb(pci-epf-vntb) network requirement.
+
+After enable MSI, ping delay reduce < 1ms from ~8ms
+
+IRQchip: imx mu worked as MSI controller: 
+     let imx mu worked as MSI controllers. Although IP is not design
+as MSI controller, we still can use it if limited IRQ number to 4.
+
+pcie: endpoint: pci-epf-vntb: add endpoint MSI support
+	 Based on ntb-next branch. https://github.com/jonmason/ntb/commits/ntb-next
+	 Using MSI as door bell registers
+	 This patch is totally independent on previous on. It can be
+applied to ntb-next seperately.
+
+i.MX EP function driver is upstreaming by Richard Zhu.
+Some dts change missed at this patches. below is reference dts change
+
+--- a/arch/arm64/boot/dts/freescale/imx8-ss-hsio.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8-ss-hsio.dtsi
+@@ -160,5 +160,6 @@ pcieb_ep: pcie_ep@5f010000 {
+                num-ib-windows = <6>;
+                num-ob-windows = <6>;
+                status = "disabled";
++               MSI-parent = <&lsio_mu12>;
+        };
+
+--- a/arch/arm64/boot/dts/freescale/imx8-ss-lsio.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8-ss-lsio.dtsi
+@@ -172,6 +172,19 @@ lsio_mu6: mailbox@5d210000 {
+                status = "disabled";
+        };
+
++       lsio_mu12: mailbox@5d270000 {
++               compatible = "fsl,imx6sx-mu-MSI";
++               msi-controller;
++               interrupt-controller;
++               reg = <0x5d270000 0x10000>,     /* A side */
++                     <0x5d300000 0x10000>;     /* B side */
++               reg-names = "a", "b";
++               interrupts = <GIC_SPI 191 IRQ_TYPE_LEVEL_HIGH>;
++               power-domains = <&pd IMX_SC_R_MU_12A>,
++                               <&pd IMX_SC_R_MU_12B>;
++               power-domain-names = "a", "b";
++       };
++
+
+Change Log
+- Change from v7 to v8
+  irqchip: using name process-a-side as resource bind name
+  pcie: endpoint:
+     - fix build error reported by kernel test robot <lkp@intel.com>
+     - rename epf_db_phy to epf_db_phys
+     - rework error message
+     - rework commit message
+     - change ntb to vtb at apply irq.
+     - kept name msi_virqbase because it is msi irq base number,
+	not base address. 
+		
+- Change from v6 to v7
+  pcie: endpoint: add endpoint MSI support
+  Fine tuning commit message
+  Fixed issues, reviewed by Bjorn Helgaas
+
+- Change from v5 to v6
+  Fixed build error found by kernel test robot
+
+- Change from v4 to v5
+  Fixed dt-binding document
+        add msi-cell
+        add interrupt max number
+	update naming reg-names and power-domain-names.
+  Fixed irqchip-Add-IMX-MU-MSI-controller-driver.patch
+        rework commit message
+        remove some field in struct imx_mu_dcfg
+	error handle when link power domain failure.
+	add irq_domain_update_bus_token
+
+- Change from v3 to v4
+  Fixed dt-binding document according to Krzysztof Kozlowski's feedback
+  Fixed irqchip-imx-mu-worked-as-msi-controller according to Marc Zyngier's
+        comments.
+
+	There are still two important points, which I am not sure.
+	1. clean irq_set_affinity after platform_msi_create_irq_domain.
+	   Some function, like platform_msi_write_msg() is static.
+	   so I have to set MSI_FLAG_USE_DEF_CHIP_OPS flags, which will
+	   set irq_set_affinity to default one.
+	2. about comments
+
+	> +	msi_data->msi_domain = platform_msi_create_irq_domain(
+	> +				of_node_to_fwnode(msi_data->pdev->dev.of_node),
+	> +				&imx_mu_msi_domain_info,
+	> +				msi_data->parent);
+
+	"And you don't get an error due to the fact that you use the same
+	fwnode for both domains without overriding the domain bus token?"
+
+ 	I did not understand yet. 
+
+  Fixed static check warning, reported by Dan Carpenter
+	pcie: endpoint: pci-epf-vntb: add endpoint MSI support
+
+- Change from v2 to v3
+  Fixed dt-binding docment check failure
+  Fixed typo a cover letter.
+  Change according Bjorn's comments at patch 
+	pcie: endpoint: pci-epf-vntb: add endpoint MSI support
+	 
+
+- from V1 to V2
+  Fixed fsl,mu-msi.yaml's problem
+  Fixed irq-imx-mu-msi.c problem according Marc Zyngier's feeback 
+  Added a new patch to allow pass down .pm by IRQCHIP_PLATFORM_DRIVER_END
+
+-- 
+2.35.1
+
