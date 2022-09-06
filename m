@@ -2,58 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FA715AF2CD
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 19:39:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39EF35AF2DD
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 19:41:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229456AbiIFRjL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 13:39:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37146 "EHLO
+        id S230087AbiIFRlJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 13:41:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236224AbiIFRiz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 13:38:55 -0400
-X-Greylist: delayed 81679 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 06 Sep 2022 10:38:42 PDT
-Received: from proxmox1.postmarketos.org (proxmox1.postmarketos.org [213.239.216.189])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1473426EB;
-        Tue,  6 Sep 2022 10:38:41 -0700 (PDT)
-Received: from [192.168.0.10] (cpc76482-cwma10-2-0-cust629.7-3.cable.virginm.net [86.14.22.118])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by proxmox1.postmarketos.org (Postfix) with ESMTPSA id 9B401140290;
-        Tue,  6 Sep 2022 17:38:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-        s=donut; t=1662485919;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=PjIGV+X0CntldVOFb9jTWJQTomTec7OgnlQDriVdhO0=;
-        b=Zpx6+ZD+n5X+0Gli+wptGeFBPOSG7f9yi8QoIJUHf36rxg/qd8MVrbcOjoPabQRXUJ9VO1
-        tC3ZpQIEOHrgn2G+WAwEOpsVKhqMO/1zonuw9a/TzzRrfH9OmSs4m6o+PKDxBgE7HSMkF5
-        Wtrhvmf+LMojWU1oHlLjoYTsYfFPvGg=
-Message-ID: <57395b20-6352-8414-3078-cdad6bbbe999@postmarketos.org>
-Date:   Tue, 6 Sep 2022 18:38:38 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH] arm64: dts: rockchip: add BT/wifi nodes to Pinephone Pro
-Content-Language: en-US
-To:     Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org
-References: <Rk3c--Dksit7gaQSddtVEaF5_7FlNYE4KZKQKaLsRu2GXMXoBgp5C2DSPNublHMr6E135nPS2B9JkQyf6aSZjw==@protonmail.internalid>
- <20220906124713.1683587-1-tom@tom-fitzhenry.me.uk>
-From:   Caleb Connolly <kc@postmarketos.org>
-In-Reply-To: <20220906124713.1683587-1-tom@tom-fitzhenry.me.uk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        with ESMTP id S230173AbiIFRkv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 13:40:51 -0400
+Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com [66.111.4.29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09D2EDF7;
+        Tue,  6 Sep 2022 10:40:49 -0700 (PDT)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+        by mailout.nyi.internal (Postfix) with ESMTP id A39CA5C0112;
+        Tue,  6 Sep 2022 13:40:46 -0400 (EDT)
+Received: from imap47 ([10.202.2.97])
+  by compute2.internal (MEProxy); Tue, 06 Sep 2022 13:40:46 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+         h=cc:cc:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm2; t=1662486046; x=1662572446; bh=Il
+        uLvD7LxFvPGQxaEMXS0bap3YchZZokW0Mbe2PU1WI=; b=zSGj2qrA1ca9iUo7QK
+        rUcC38XExyPDBiK9wdOsl14C+tCugUGTdvjb/bzdLcF0ApKMCIjgLUDZ/Cs3ubHt
+        X0MIIVkybjyy8ncJawu9NTI22hTnFHK7kqf406d92PT5GstyZMOlWjQXt8CdC46p
+        +X19DLlbFBQk8IbvGa+7tbxEAAkEwOCWMsaeycgj4SWXVRtFdLegTIOKOX/NiM3j
+        v6a5R8r2uUCn0R1v2kHa0lUNCxBvc1h5EgRf/uypfSjYgaFoqCPKwpETGgFHluSb
+        /WGT5bqtIWWxcJXE1SqdYCHtST4Dfk8I/WkpNjARkg3oIVj8Uc1f/z2aepyjf1Zq
+        9XWg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm2; t=1662486046; x=1662572446; bh=IluLvD7LxFvPGQxaEMXS0bap3Ych
+        ZZokW0Mbe2PU1WI=; b=GYzhCe6gD/BzcKwcws2jmcdWHw4mpu+7dWTqvsT+5pk4
+        T91m7mWbE/8yrPDOXpKOgT3bYRBE7fGsU184w80f2TDoLHpvZTnKxKdzgpyuPrt4
+        svLWEuJxVm8mu66Q5FN2cVOHkVqD2OQNIQFVIHxqJbZBnjdhtVMYjGZY9k2HE734
+        xAHKWYBTSNd21I6mdJHKPXW58QitpKEpNDC7moDFY/QLrrAnBa32f6so6HzIqAMA
+        tTFTSHqItrYzSNB9MPl22snipdrnJXNO13U+vCkKblL6h/yqvxVSZESTa+WBqogs
+        iMhYE+FH0SunwwwL7UMjN2cCuw83FHiY48mR3nQsUg==
+X-ME-Sender: <xms:HYYXY0jmzE48SLF_3yFwgm9WFjADMWOuNGY9eaDNWcWrfnwVtFLlyg>
+    <xme:HYYXY9DYeKZjU2FwSVWf1e6toRYW34VV5qOvnTVPZNUpt6SEwHdFBZO4dyhVadFro
+    TfibojbhA3ybopOO1g>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdelkedgudduiecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdfu
+    vhgvnhcurfgvthgvrhdfuceoshhvvghnsehsvhgvnhhpvghtvghrrdguvghvqeenucggtf
+    frrghtthgvrhhnpeelvefggeffheevtdeivefhkeehfeettdejteduveeiheevveeilefg
+    hfeiveeiueenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
+    hmpehsvhgvnhesshhvvghnphgvthgvrhdruggvvh
+X-ME-Proxy: <xmx:HYYXY8GIX6ucUtGv4QEo8zO4K8lsBmohLVRwXsOA_kcd8ceEulS4IA>
+    <xmx:HYYXY1QMWoHoudZaFxEAEEi--FDtqB8fY8II8pWUyRLLQm_6Rg2Raw>
+    <xmx:HYYXYxx8HmxBb63dT1DyyY6V6KF61q6uDdac962O4V8F97wmkacrjw>
+    <xmx:HoYXY0qfWJ45vjObOGk6xTFD3F1ePnvXJqynNnMMTCiiBJ8G57jLnw>
+Feedback-ID: i51094778:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id A76CEA6007C; Tue,  6 Sep 2022 13:40:45 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-927-gf4c98c8499-fm-20220826.002-gf4c98c84
+Mime-Version: 1.0
+Message-Id: <0cbfd45e-4749-424e-8c28-362d9b4f435e@www.fastmail.com>
+In-Reply-To: <20220906173535.GA734389-robh@kernel.org>
+References: <2fedff34-6a20-f1ce-a756-2bd8671fcd52@linaro.org>
+ <YxDWG5dmzErhKIXw@shell.armlinux.org.uk>
+ <ef6c7248-1efa-5366-6bcd-900c5f10ccb2@linaro.org>
+ <YxDiBFIn6artUOZm@shell.armlinux.org.uk>
+ <CAL_Jsq+GCKisAVA0AfE=yWJYy18mAGQ7rY1sKGYraXv-berNSg@mail.gmail.com>
+ <d3cec3d22e464fa8@bloch.sibelius.xs4all.nl>
+ <20220902172808.GB52527-robh@kernel.org>
+ <YxcNLU+KGEolrdfT@shell.armlinux.org.uk>
+ <20220906161049.GC534217-robh@kernel.org>
+ <91466e41-d3f7-0993-9082-80f94e53f375@marcan.st>
+ <20220906173535.GA734389-robh@kernel.org>
+Date:   Tue, 06 Sep 2022 19:40:18 +0200
+From:   "Sven Peter" <sven@svenpeter.dev>
+To:     "Rob Herring" <robh@kernel.org>, "Hector Martin" <marcan@marcan.st>
+Cc:     "Russell King (Oracle)" <linux@armlinux.org.uk>,
+        "Mark Kettenis" <mark.kettenis@xs4all.nl>,
+        krzysztof.kozlowski@linaro.org, "Arnd Bergmann" <arnd@arndb.de>,
+        "Lee Jones" <lee@kernel.org>,
+        "Linus Walleij" <linus.walleij@linaro.org>,
+        "Alyssa Rosenzweig" <alyssa@rosenzweig.io>, asahi@lists.linux.dev,
+        "Bartosz Golaszewski" <brgl@bgdev.pl>,
+        linux-arm-kernel@lists.infradead.org,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/6] dt-bindings: mfd: add binding for Apple Mac System Management
+ Controller
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,126 +105,49 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 06/09/2022 13:47, Tom Fitzhenry wrote:
-> Pinephone Pro includes a AzureWave AW-CM256SM wifi (sdio0) and
-> bt (uart0) combo module, which is based on Cypress
-> CYP43455 (BCM43455).
-> 
-> Signed-off-by: Tom Fitzhenry <tom@tom-fitzhenry.me.uk>
-> ---
->   .../dts/rockchip/rk3399-pinephone-pro.dts     | 69 +++++++++++++++++++
->   1 file changed, 69 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-> index 2e058c3150256..096238126e4c1 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-> @@ -43,6 +43,20 @@ key-power {
->   		};
->   	};
-> 
-> +	/* Power sequence for SDIO WiFi module */
+On Tue, Sep 6, 2022, at 19:35, Rob Herring wrote:
+> On Wed, Sep 07, 2022 at 02:00:53AM +0900, Hector Martin wrote:
+>> On 07/09/2022 01.10, Rob Herring wrote:
+>> >> So at this point, I think it would make sense if I post a v2 with all
+>> >> the updates so far (sorry, given the long drawn out discussions on
+>> >> this, I've lost track of what changes have been made to the code, so
+>> >> I won't include a detailed change log.)
+>> > 
+>> > As I said elsewhere, sub-nodes is probably the right choice here. I 
+>> > think they need compatible strings in the child nodes, and addressing 
+>> > has to be sorted out which it seems may also break OpenBSD.
+>> 
+>> So addressing only makes sense for GPIO, out of the nodes we have so far
+>> - that's the only thing with two discrete instances whose access can be
+>> entirely described by a single base key name, and which are otherwise
+>> compatible.
+>> 
+>> Everything else is pretty much single-instance, and talks to multiple
+>> keys, so there isn't one single "address" key that would make semantic
+>> sense to use as the node address. 
+>
+> Unit-addresses are just the first address in 'reg'. So multiple 
+> addresses or not doesn't really matter.
+>
+>> There are some indexed keys, but at a
+>> deeper level (e.g. multiple battery cells part of the charge control
+>> subsystem, multiple Type C ports as part of the AC/power input
+>> subsystem, etc.). And in those cases, these subdevices are mostly
+>> homogeneous and we would never need multiple nodes for them at the DT
+>> level, they'd just be implicitly handled by those drivers.
+>
+> Type-C will be fun depending on how much of the muxing/altmode 
+> details have to get exposed. 
 
-This comment isn't needed, instead give the node a better name/label
-> +	sdio_pwrseq: sdio-pwrseq {
+Type-C is going to be a lot of "fun", but the SMC is not directly involved.
 
-	wifi_pwrseq: sdio-pwrseq-wifi {
-> +		compatible = "mmc-pwrseq-simple";
-> +		clocks = <&rk818 1>;
-> +		clock-names = "ext_clock";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&wifi_enable_h_pin>;
-> +		post-power-on-delay-ms = <100>;
-> +		power-off-delay-us = <500000>;
-> +
-> +		/* WL_REG_ON on module */
-> +		reset-gpios = <&gpio0 RK_PB2 GPIO_ACTIVE_LOW>;
-> +	};
-> +
->   	vcc_sys: vcc-sys-regulator {
->   		compatible = "regulator-fixed";
->   		regulator-name = "vcc_sys";
-> @@ -360,11 +374,31 @@ vsel2_pin: vsel2-pin {
->   		};
->   	};
-> 
-> +	sdio-pwrseq {
-> +		wifi_enable_h_pin: wifi-enable-h-pin {
-> +			rockchip,pins = <0 RK_PB2 RK_FUNC_GPIO &pcfg_pull_none>;
-> +		};
-> +	};
-> +
->   	sound {
->   		vcc1v8_codec_en: vcc1v8-codec-en {
->   			rockchip,pins = <3 RK_PA4 RK_FUNC_GPIO &pcfg_pull_down>;
->   		};
->   	};
-> +
-> +	wireless-bluetooth {
-> +		bt_wake_pin: bt-wake-pin {
-> +			rockchip,pins = <2 RK_PD2 RK_FUNC_GPIO &pcfg_pull_none>;
-> +		};
-> +
-> +		bt_host_wake_pin: bt-host-wake-pin {
-> +			rockchip,pins = <0 RK_PA4 RK_FUNC_GPIO &pcfg_pull_none>;
-> +		};
-> +
-> +		bt_reset_pin: bt-reset-pin {
-> +			rockchip,pins = <0 RK_PB1 RK_FUNC_GPIO &pcfg_pull_none>;
-> +		};
-> +	};
->   };
-> 
->   &sdmmc {
-> @@ -380,6 +414,20 @@ &sdmmc {
->   	status = "okay";
->   };
-> 
-> +&sdio0 {
-> +	bus-width = <4>;
-> +	cap-sd-highspeed;
-> +	cap-sdio-irq;
-> +	disable-wp;
-> +	keep-power-in-suspend;
-> +	mmc-pwrseq = <&sdio_pwrseq>;
-> +	non-removable;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&sdio0_bus4 &sdio0_cmd &sdio0_clk>;
-> +	sd-uhs-sdr104;
-> +	status = "okay";
-> +};
-> +
->   &sdhci {
->   	bus-width = <8>;
->   	mmc-hs200-1_8v;
-> @@ -393,6 +441,27 @@ &tsadc {
->   	status = "okay";
->   };
-> 
-> +&uart0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&uart0_xfer &uart0_cts &uart0_rts>;
-> +	uart-has-rtscts;
-> +	status = "okay";
-> +
-> +	bluetooth {
-> +		compatible = "brcm,bcm4345c5";
-> +		clocks = <&rk818 1>;
-> +		clock-names = "lpo";
-> +		device-wakeup-gpios = <&gpio2 RK_PD2 GPIO_ACTIVE_HIGH>;
-> +		host-wakeup-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_HIGH>;
-> +		max-speed = <1500000>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&bt_host_wake_pin &bt_wake_pin &bt_reset_pin>;
-> +		shutdown-gpios = <&gpio0 RK_PB1 GPIO_ACTIVE_HIGH>;
-> +		vbat-supply = <&vcc3v3_sys>;
-> +		vddio-supply = <&vcc_1v8>;
-> +	};
-> +};
-> +
->   &uart2 {
->   	status = "okay";
->   };
-> --
-> 2.37.1
-> 
+I still don't have a full picture but these boards have TPS6598x chips
+which trigger the entire mess whenever a new mode was negotiated and the
+"Apple Type-C PHY" contains the actual mux.
+
+The SMC has a side channel to these TPS6598x chips as well but it seems
+to only handle charging without having to communicate with whatever kernel
+is running on the main processor.
+
+
+Sven
