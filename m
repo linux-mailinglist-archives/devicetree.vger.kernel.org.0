@@ -2,100 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C29115AEFF1
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 18:09:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 104C55AEFFA
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 18:10:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232825AbiIFQHr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 12:07:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45484 "EHLO
+        id S238575AbiIFQK3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 12:10:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234950AbiIFQHc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 12:07:32 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 035286436;
-        Tue,  6 Sep 2022 08:30:46 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id bq9so3120950wrb.4;
-        Tue, 06 Sep 2022 08:30:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=18ALGCD6WSmdQYtbgKgYJ3c/Y319JyrAAYBhTvLvvok=;
-        b=D+lIKJTJ5gmuLshP9pZR7/p9Uq3yXYg4c6fW1hSumSgSCwDmr/fcsKGBJJYtzoWVcF
-         TN92NA+w2VWWby8boBIRrC14bsNy6GYJyUPzlPtxWzS4vdR7pAtld7jVe9UKiyn/T3n0
-         mnFsqq4rRCunuO52qB/6Rs/YrSV+UibGc8pmWPOntrv5gMbhCfkfgWHX4dCR8zLDaqL9
-         kCfQSPl/94cmjytUnDrr4Dls+czbEXkNWUC73gjbfe1dWCc98c4xtUZIa7MxCZu8jtdz
-         teAm6/fXX6x/DcjovAjmyj/7jszu1EpgLa2cmsO0eHBSZ2RJFDtT1FFVcEwih0SifB3g
-         3E2w==
+        with ESMTP id S231812AbiIFQKO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 12:10:14 -0400
+Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76D6683F38;
+        Tue,  6 Sep 2022 08:34:47 -0700 (PDT)
+Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-127ba06d03fso5507546fac.3;
+        Tue, 06 Sep 2022 08:34:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=18ALGCD6WSmdQYtbgKgYJ3c/Y319JyrAAYBhTvLvvok=;
-        b=Wpre2dZZiI1lMAhVnFWULUm7dxTsm3KESna25e+eryg3PzslGYEQTq6o/6lD9gZTU5
-         q7FwkcEj9HupF4N+aDn9G/axxsaw5tt2WkThoKtbtlHXhheltKNXbGBsewqiLqJvW31s
-         kIJmZ8HvnlpIiOz6AhF8wZFp6BaO3ohh+0aByAN304VNj7yfnD68viAIF1RRhvadUUQT
-         9HOARKamsiuVctS9GQ/hNTs3y58G02xUN6pJigJWPCnZ8McYLkfJ2CyiF5QDEyVAzdll
-         DQRNCqsEbwP8tk1mFOX/opS2LOn6O1IWQEygRcnekcSNgxffUrwK710bVoGzmxKsQydC
-         lrHw==
-X-Gm-Message-State: ACgBeo2qFu3Dy7oktOgF8eevRLODNbSd6+ybMqShz6NUHKcZSE11Spg7
-        yJVUgJpy6FUmoFFNzNse/5k+GNO06nHk0A==
-X-Google-Smtp-Source: AA6agR6P/RoJFPCp99aXsrvNKO/CW4Xn7PpfrGRr103Jx3gdD14r4PVNgrMIKUUt26sNFdyw2C87+w==
-X-Received: by 2002:a5d:608d:0:b0:228:d095:4a15 with SMTP id w13-20020a5d608d000000b00228d0954a15mr3792578wrt.499.1662478244524;
-        Tue, 06 Sep 2022 08:30:44 -0700 (PDT)
-Received: from Clement-Blade14.outsight.local (lputeaux-656-1-11-33.w82-127.abo.wanadoo.fr. [82.127.142.33])
-        by smtp.gmail.com with ESMTPSA id 24-20020a05600c22d800b003a6125562e1sm14922731wmg.46.2022.09.06.08.30.43
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=l7uSke96ZhFxge6iy3UtQtr/iInY2wiHvxBC9B8pAes=;
+        b=6y2L6q2T8FkjmKLxKnnD6gTba34VVQ24yU/jRZhtdfLN5WZ2AiKAtxs6UnK7Pa8cTw
+         TPkZFAvp6rwkcJPg9UF4Z0GuNsjiEWm41EqxiSudiHrqUtQ6a6jGPfvE4lVmjsrXMcal
+         gp3Vc/ccLd50+IU7SNJgChTVFU6ADzNJJfPCWer73R0FKUuPG41zKU6cMfDckozxgiFn
+         xRp9NAK/zjy7XLzJCP3z4LNmY7vdA2lTLqCohTvXtHbOMK9OiHfqvyksIzIrBAzzh/bo
+         jciJRwqs+k7klhkD7ZXQiJpnQYdKWqhFQ+xg3E0xFf0i+Iz+bJKVMAC+vawAvSljzhPA
+         PbmA==
+X-Gm-Message-State: ACgBeo1Afywu2SlyJ075QY6ISeUBpyfwfOwc8Y/nxViHDJK003FN5u6g
+        yhge4T7FqHM3LzKHcIrWDw==
+X-Google-Smtp-Source: AA6agR4bRLs6qUCZD96wFxze0xCdaCbw+EDzXwyV0jACkyYccl7rlpXBjFm9cJoGrQ3oFJxa7v/7LA==
+X-Received: by 2002:a05:6808:21a5:b0:345:81a8:ab6 with SMTP id be37-20020a05680821a500b0034581a80ab6mr9587695oib.91.1662478486008;
+        Tue, 06 Sep 2022 08:34:46 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id g12-20020a056870c14c00b0012644cc4feasm4520251oad.55.2022.09.06.08.34.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Sep 2022 08:30:43 -0700 (PDT)
-From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
-To:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
-Subject: [PATCH v4 5/5] arm64: dts: allwinner: beelink-gs1: Enable GPU OPP
-Date:   Tue,  6 Sep 2022 17:30:34 +0200
-Message-Id: <20220906153034.153321-6-peron.clem@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220906153034.153321-1-peron.clem@gmail.com>
-References: <20220906153034.153321-1-peron.clem@gmail.com>
+        Tue, 06 Sep 2022 08:34:43 -0700 (PDT)
+Received: (nullmailer pid 558222 invoked by uid 1000);
+        Tue, 06 Sep 2022 15:34:42 -0000
+Date:   Tue, 6 Sep 2022 10:34:42 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Hector Martin <marcan@marcan.st>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        "Russell King (Oracle)" <linux@armlinux.org.uk>,
+        krzysztof.kozlowski@linaro.org, arnd@arndb.de, lee@kernel.org,
+        alyssa@rosenzweig.io, asahi@lists.linux.dev, brgl@bgdev.pl,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+        sven@svenpeter.dev, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/6] dt-bindings: mfd: add binding for Apple Mac System
+ Management Controller
+Message-ID: <20220906153442.GA534217-robh@kernel.org>
+References: <YxDWG5dmzErhKIXw@shell.armlinux.org.uk>
+ <ef6c7248-1efa-5366-6bcd-900c5f10ccb2@linaro.org>
+ <YxDiBFIn6artUOZm@shell.armlinux.org.uk>
+ <CAL_Jsq+GCKisAVA0AfE=yWJYy18mAGQ7rY1sKGYraXv-berNSg@mail.gmail.com>
+ <d3cec3d22e464fa8@bloch.sibelius.xs4all.nl>
+ <20220902172808.GB52527-robh@kernel.org>
+ <YxcNLU+KGEolrdfT@shell.armlinux.org.uk>
+ <d3cecee5edd24f67@bloch.sibelius.xs4all.nl>
+ <CACRpkdaSRcczEF8QZ4aO+-HDVS+n-8MXvn6ysnjJfUEabwUJ=w@mail.gmail.com>
+ <909bb4e7-5bd2-2903-5bba-87ae37f3448a@marcan.st>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <909bb4e7-5bd2-2903-5bba-87ae37f3448a@marcan.st>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable GPU OPP table for Beelink GS1.
+On Tue, Sep 06, 2022 at 08:36:25PM +0900, Hector Martin wrote:
+> On 06/09/2022 20.22, Linus Walleij wrote:
+> > On Tue, Sep 6, 2022 at 11:31 AM Mark Kettenis <mark.kettenis@xs4all.nl> wrote:
+> > 
+> >> Another argument for having sub-nodes is that the firmware actually
+> >> exposes *two* GPIO controllers.  For now we only support the "master"
+> >> PMU GPIOs, but there also is a "slave" PMU GPIO controller that uses a
+> >> separate set of SMC "keys".  We currently don't need any of the pins
+> >> on the "slave", so we don't expose it in the DT yet.
+> > 
+> > That sounds backward, like we don't expose device X as DT node
+> > because $OS doesn't use it yet. DT should just expose (by nodes or
+> > other ways) all hardware that exist or at least all hardware we know
+> > about no matter what $OS is using.
+> 
+> How so? The are piles and piles of unused hardware not exposed in the
+> DT, and piles and piles of hardware that will be used but we haven't
+> figured out how to do it yet, so it's not exposed. For example, we know
+> there are like 8 or so UARTs, but we don't define them in the DT because
+> they are not connected to anything on any existing device and we don't
+> need them. Apple does the same thing in their DTs (only used hardware is
+> defined).
+> 
+> I don't really see the point of exposing a GPIO controller when we don't
+> actually do anything with the pins yet, and might never do so. Having
+> drivers bind and stay unused just increases the amount of code running
+> without any ultimate purpose, so why do it? It's not like any other OS
+> would use the hardware either - GPIOs are only useful if they are
+> referenced in the DT for something, and we don't have anything that
+> would reference these.
+> 
+> For SMC in particular, there's a huge amount of functionality we don't
+> have drivers for yet, and I don't see the point of trying to conjure up
+> DT bindings for it until someone writes a driver (and has a reason to do
+> so) :)
 
-Signed-off-by: Clément Péron <peron.clem@gmail.com>
----
- arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts | 1 +
- 1 file changed, 1 insertion(+)
+Exposing in a DT is one thing. Defining in the binding is another. Even 
+if it's not complete bindings, but just a fuller description of what 
+functionality the MFD contains is. For example, just knowing there 
+are 2 instances of GPIO, I'm much more inclined to agree GPIO should be 
+a subnode.
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-index 6249e9e02928..9ec49ac2f6fd 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-@@ -5,6 +5,7 @@
- 
- #include "sun50i-h6.dtsi"
- #include "sun50i-h6-cpu-opp.dtsi"
-+#include "sun50i-h6-gpu-opp.dtsi"
- 
- #include <dt-bindings/gpio/gpio.h>
- 
--- 
-2.34.1
-
+Rob
