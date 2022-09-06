@@ -2,78 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 263AC5AE014
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 08:45:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60E7B5AE044
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 08:52:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238605AbiIFGpa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 02:45:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45840 "EHLO
+        id S238719AbiIFGwQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 02:52:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229755AbiIFGp2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 02:45:28 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59D192183C
-        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 23:45:26 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id bt10so15933809lfb.1
-        for <devicetree@vger.kernel.org>; Mon, 05 Sep 2022 23:45:26 -0700 (PDT)
+        with ESMTP id S238711AbiIFGwO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 02:52:14 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A96F172EF4
+        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 23:52:10 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id r27so10810009ljn.0
+        for <devicetree@vger.kernel.org>; Mon, 05 Sep 2022 23:52:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=ZBvc14dw1aVjJGwRcNxp9/bKqOeZSOpSOdkaETJzKoo=;
-        b=UOGjVcRMaOqvf6IdAdT/eVbiWpywhHfbWqzJa9n9DKRMf6qnFLfAzVim09JtXEVWwn
-         g0mfjUu0+HhnqT5i/YgSSMhp+nmxexEbYNKBE07wvZCN9NFm9pw9+EexZIj/pdozSs3p
-         twczIBZo6QI592NP5U+HBIx9TXfi9nOBdCCrOhfEiF5gNrnvUprWFcb+BF0m9V62e24X
-         QBKc45m25S0GFlFZWh1kdFecsMqQ6MR2VNNZmevfq0wajDLKhoruM0KgYbPIQfN1dH2d
-         nIhnwrWMMcs36qz+Wg+DchuxFtHyIHnMWa4FoOkAqB9BwzhwkVZwyXOZECVJJHBIHJtQ
-         87ug==
+        d=sifive.com; s=google;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date;
+        bh=pg/k2BKeuoUb9BSQqMtaRqCPumr70GT5UhAxF2oEgQM=;
+        b=HktmtzseBu9APk/Y/0Enxh3WilmA1qFkbnVK6HrsFvBI/HALpUtAkYwHtx1e7KFdPQ
+         CiTKoCDCTqznqfPoHCO8+XHDjN1Ls11iNAR+BgyxUwha3cDk+lhoYnnsFKqxI6IdDdkg
+         ZkLfVNZoG+ej2R9DEI3nVjBEkVZoN1FyOOYpuThHUFlBbGpvXxmTaNNzf6f+ONeIrLwO
+         yQN0miPVnzPMZvNpEveAgbZMHtZnXxAaATZDMXI3PtJEljUS71gnCywFBYB0u7r7xlYP
+         VbWMSFEAgJdONFa/du8UGDM1XUT+WYICUb0DeGauyMd/lcoeS8bHzT/Cvm4o3/ZqbUhc
+         4frQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=ZBvc14dw1aVjJGwRcNxp9/bKqOeZSOpSOdkaETJzKoo=;
-        b=trENPSbKVw2KwL5OLqyayVjN8cfKA9S0B4XihDRG9RzECUmlDffRb6Ri6O9KernpuZ
-         iqqYS3nAfEPcmfbd4hoD8o/15XArp+yVcNRxBxgt2kiYFLwJthANsj+pLTN9y1dWjuwv
-         e3covc50eEGIjyyeYmtl6NvECqxRnPakFzrRWfD6GcupA3zgxrhkPBgmqZhCdMmr6nO7
-         2eImOaPq3OuAZ1BfjSzdSwUzK1pS3x9CcGdo7CFuZjJqQPjsXqFMDKM+pnUG7kxGbPEe
-         mj+MUQJP4RIwEnlnzSLGcN8Rm+6SMkQazrW8wfkcXHGD6CN4/+UGivNO/B6MWJNXhLTt
-         up4g==
-X-Gm-Message-State: ACgBeo1CYQJNclOoPLo+E5sK77ZJve49BYp8Ta7OZjTHB+Uam0ctE3si
-        CcHqYfDc9rzzyWfcv8e/S5t4GLRDs3GWIw==
-X-Google-Smtp-Source: AA6agR68RCDkvcQYd4i357fiq8OQ6A3BDAvEAXsz8NzphwPiJOHiCBWDhKaGjd6UJ0R0Fkj8wTfHDg==
-X-Received: by 2002:a05:6512:1284:b0:496:91bc:39cc with SMTP id u4-20020a056512128400b0049691bc39ccmr1480001lfs.531.1662446724694;
-        Mon, 05 Sep 2022 23:45:24 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id 9-20020ac25f09000000b0048b365176d9sm1525832lfq.286.2022.09.05.23.45.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Sep 2022 23:45:24 -0700 (PDT)
-Message-ID: <3649a134-0ea7-b67c-8b5a-2971f090446c@linaro.org>
-Date:   Tue, 6 Sep 2022 08:45:22 +0200
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=pg/k2BKeuoUb9BSQqMtaRqCPumr70GT5UhAxF2oEgQM=;
+        b=djFziplQHZvQNzwPZH/STRSpYhuXjxUxiZRfXeD8ddTKKtp4SVjjINvNpRMf2pbryF
+         GKT4m11BtMxKUxRz6eVEbwsQpd4mG+xtfaMWsM7TBqldq1Illnj4vj2IuCAXtvF4kmjy
+         ajAARrQv35zEmRuofhcYTCxjBUg0kqTNrhAqU7J+IhuaIy1Va2RKvpnz3X9olYpiDZ79
+         A0RVXPtEmO43okggXx11Fr9zr8LtHg7ZhGqHX0tV1MViZvIDMjb3mb5b5ZlY+2Idxvq5
+         t7g3Z95uKcv8jR/OoZNh2LouhbnvSW9MqGcESOD32mR3xctdqOv1rk8G9/ynauV0WgEY
+         47Pw==
+X-Gm-Message-State: ACgBeo1/K2GLBJyXUtJ2o+x6+vTiFBgAY/x1LR/m701QZyBLPykLOMAg
+        /c8j6dW2xhGWhrnCPvp5oPuY7dUVZZAOfcoURwKCjw==
+X-Google-Smtp-Source: AA6agR6AVqVzW2ydtHH70ol33I0L7Cv0YvSK+JMvHBhL0OMazBsLyNbNZkfG0NYuQjNFPFGxqBsRHGebHlq4QT18KF4=
+X-Received: by 2002:a05:651c:1047:b0:264:f7bb:7b6 with SMTP id
+ x7-20020a05651c104700b00264f7bb07b6mr12695077ljm.275.1662447129027; Mon, 05
+ Sep 2022 23:52:09 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v7 1/2] dt-bindings: misc: fastrpc convert bindings to
- yaml
-Content-Language: en-US
-To:     Abel Vesa <abel.vesa@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Amol Maheshwari <amahesh@qti.qualcomm.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        David Heidelberg <david@ixit.cz>
-References: <20220905144554.1772073-1-abel.vesa@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220905144554.1772073-1-abel.vesa@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+References: <20220905083125.29426-1-zong.li@sifive.com> <20220905083125.29426-3-zong.li@sifive.com>
+ <2a22c6ac-dc0e-7066-8f5f-04c428c77ee2@microchip.com> <CA+ZOyah199Vsa9haepO=uizymy947aLv3tMoO=5ye=FHqhkYCA@mail.gmail.com>
+ <048bb217-e91e-b727-fcd1-e55755a87d0d@microchip.com>
+In-Reply-To: <048bb217-e91e-b727-fcd1-e55755a87d0d@microchip.com>
+From:   Zong Li <zong.li@sifive.com>
+Date:   Tue, 6 Sep 2022 14:51:57 +0800
+Message-ID: <CANXhq0prxrXYOson4pQBq6_cWSTcZ5CZs7JyOfsFuQE8oc2pwA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/6] soc: sifive: ccache: Rename SiFive L2 cache to
+ Composable cache.
+To:     Conor Dooley <Conor.Dooley@microchip.com>
+Cc:     Zong Li <zongbox@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Greentime Hu <greentime.hu@sifive.com>,
+        Ben Dooks <ben.dooks@sifive.com>, bp@alien8.de,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        linux-edac@vger.kernel.org,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -82,248 +80,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/09/2022 16:45, Abel Vesa wrote:
-> Convert Qualcomm FastRPC bindings to yaml format, so that we could validate
-> dt-entries correctly and any future additions can go into yaml format.
-> 
-> Use compute-cb@ subnodes instead of just cb@.
-> 
-> Also add qcom,non-secure-domain, qcom,glink-channels and
-> qcom,smd-channels missing properties to make sure dtbs_check doesn't
-> fail right off the bat.
+On Tue, Sep 6, 2022 at 2:23 PM <Conor.Dooley@microchip.com> wrote:
+>
+> On 06/09/2022 02:44, Zong Li wrote:
+> > EXTERNAL EMAIL: Do not click links or open attachments unless you know =
+the content is safe
+> >
+> > <Conor.Dooley@microchip.com> =E6=96=BC 2022=E5=B9=B49=E6=9C=886=E6=97=
+=A5 =E9=80=B1=E4=BA=8C =E5=87=8C=E6=99=A82:48=E5=AF=AB=E9=81=93=EF=BC=9A
+> >>
+> >> Noticed a another thing, sorry..
+> >>
+> >> On 05/09/2022 09:31, Zong Li wrote:
+> >>> EXTERNAL EMAIL: Do not click links or open attachments unless you kno=
+w the content is safe
+> >>>
+> >>> From: Greentime Hu <greentime.hu@sifive.com>
+> >>>
+> >>> Since composable cache may be L3 cache if pL2 cache exists, we should=
+ use
+> >>> its original name composable cache to prevent confusion.
+> >>>
+> >>> Apart from renaming, we also add the compatible "sifive,ccache0" into=
+ ID
+> >>> table.
+> >>>
+> >>> Signed-off-by: Greentime Hu <greentime.hu@sifive.com>
+> >>> Signed-off-by: Zong Li <zong.li@sifive.com>
+> >>> ---
+> >>>   drivers/soc/sifive/Kconfig                    |   6 +-
+> >>>   drivers/soc/sifive/Makefile                   |   2 +-
+> >>>   .../{sifive_l2_cache.c =3D> sifive_ccache.c}    | 163 +++++++++----=
+-----
+> >>>   .../{sifive_l2_cache.h =3D> sifive_ccache.h}    |  16 +-
+> >>>   4 files changed, 94 insertions(+), 93 deletions(-)
+> >>>   rename drivers/soc/sifive/{sifive_l2_cache.c =3D> sifive_ccache.c} =
+(35%)
+> >>>   rename include/soc/sifive/{sifive_l2_cache.h =3D> sifive_ccache.h} =
+(12%)
+> >>>
+> >>
+> >>> -static ssize_t l2_write(struct file *file, const char __user *data,
+> >>> +static ssize_t ccache_write(struct file *file, const char __user *da=
+ta,
+> >>>                          size_t count, loff_t *ppos)
+> >>
+> >> You need to fix the alignment here as per checkpatch:
+> >> CHECK: Alignment should match open parenthesis
+> >> #112: FILE: drivers/soc/sifive/sifive_ccache.c:53:
+> >> +static ssize_t ccache_write(struct file *file, const char __user *dat=
+a,
+> >> +                       size_t count, loff_t *ppos)
+> >>
+> >
+> > I'm not sure why I don't see that by checkpatch, but it looks that it
+> > is actually misalignment there, I would re-check all indents in
+> > source. Thanks.
+>
+> You need to pass --strict to checkpatch to see it.
 
-qcom,non-secure-domain is in original binding, so I don't understand why
-it is being "added".
+Many thanks for the tip, I can see the message after applying the option.
 
-> 
-> Co-developed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> Co-developed-by: David Heidelberg <david@ixit.cz>
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
-> 
-> Changes since v6:
->  * renamed the parent node name in the example from smd-edge to glink-edge
-> 
->  .../devicetree/bindings/misc/qcom,fastrpc.txt |  88 -------------
->  .../bindings/misc/qcom,fastrpc.yaml           | 118 ++++++++++++++++++
-
-As you can see in Rob's bot report - the patchset introduces errors and
-is not bisectable.
-
-You also need to fix qcom,glink-edge.yaml
-
->  2 files changed, 118 insertions(+), 88 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/misc/qcom,fastrpc.txt
->  create mode 100644 Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/misc/qcom,fastrpc.txt b/Documentation/devicetree/bindings/misc/qcom,fastrpc.txt
-> deleted file mode 100644
-> index 5ec124b138a6..000000000000
-> --- a/Documentation/devicetree/bindings/misc/qcom,fastrpc.txt
-> +++ /dev/null
-> @@ -1,88 +0,0 @@
-> -Qualcomm Technologies, Inc. FastRPC Driver
-> -
-> -The FastRPC implements an IPC (Inter-Processor Communication)
-> -mechanism that allows for clients to transparently make remote method
-> -invocations across DSP and APPS boundaries. This enables developers
-> -to offload tasks to the DSP and free up the application processor for
-> -other tasks.
-> -
-> -- compatible:
-> -	Usage: required
-> -	Value type: <stringlist>
-> -	Definition: must be "qcom,fastrpc"
-> -
-> -- label
-> -	Usage: required
-> -	Value type: <string>
-> -	Definition: should specify the dsp domain name this fastrpc
-> -	corresponds to. must be one of this: "adsp", "mdsp", "sdsp", "cdsp"
-> -
-> -- qcom,non-secure-domain:
-> -	Usage: required
-> -	Value type: <boolean>
-> -	Definition: Property to specify that dsp domain is non-secure.
-> -
-> -- qcom,vmids:
-> -	Usage: optional
-> -	Value type: <u32 array>
-> -	Definition: Virtual machine IDs for remote processor.
-
-You miss qcom,vmids in the conversion.
-
-> -
-> -- #address-cells
-> -	Usage: required
-> -	Value type: <u32>
-> -	Definition: Must be 1
-> -
-> -- #size-cells
-> -	Usage: required
-> -	Value type: <u32>
-> -	Definition: Must be 0
-> -
-> -= COMPUTE BANKS
-> -Each subnode of the Fastrpc represents compute context banks available
-> -on the dsp.
-> -- All Compute context banks MUST contain the following properties:
-> -
-> -- compatible:
-> -	Usage: required
-> -	Value type: <stringlist>
-> -	Definition: must be "qcom,fastrpc-compute-cb"
-> -
-> -- reg
-> -	Usage: required
-> -	Value type: <u32>
-> -	Definition: Context Bank ID.
-> -
-> -- qcom,nsessions:
-> -	Usage: Optional
-> -	Value type: <u32>
-> -	Defination: A value indicating how many sessions can share this
-> -		    context bank. Defaults to 1 when this property
-> -		    is not specified.
-> -
-> -Example:
-> -
-> -adsp-pil {
-> -	compatible = "qcom,msm8996-adsp-pil";
-> -	...
-> -	smd-edge {
-> -		label = "lpass";
-> -		fastrpc {
-> -			compatible = "qcom,fastrpc";
-> -			qcom,smd-channels = "fastrpcsmd-apps-dsp";
-> -			label = "adsp";
-> -			#address-cells = <1>;
-> -			#size-cells = <0>;
-> -
-> -			cb@1 {
-> -				compatible = "qcom,fastrpc-compute-cb";
-> -				reg = <1>;
-> -			};
-> -
-> -			cb@2 {
-> -				compatible = "qcom,fastrpc-compute-cb";
-> -				reg = <2>;
-> -			};
-> -			...
-> -		};
-> -	};
-> -};
-> diff --git a/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml b/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
-> new file mode 100644
-> index 000000000000..2b446272cc14
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
-> @@ -0,0 +1,118 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/misc/qcom,fastrpc.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Qualcomm FastRPC Driver
-> +
-> +maintainers:
-> +  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> +
-> +description: |
-> +  The FastRPC implements an IPC (Inter-Processor Communication)
-> +  mechanism that allows for clients to transparently make remote method
-> +  invocations across DSP and APPS boundaries. This enables developers
-> +  to offload tasks to the DSP and free up the application processor for
-> +  other tasks.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-
-no "items", as it is not a list.
-
-> +      - const: qcom,fastrpc
-> +
-> +  label:
-> +    items:
-
-ditto (plus this actually does not define even how many items)
-
-> +      enum:
-> +        - adsp
-> +        - mdsp
-> +        - sdsp
-> +        - cdsp
-> +
-> +  qcom,glink-channels:
-> +    description:
-> +      A list of channels tied to this function, used for matching
-> +      the function to a set of virtual channels.
-> +    $ref: "/schemas/types.yaml#/definitions/string-array"
-
-maxItems: 1
-
-> +
-> +  qcom,non-secure-domain:
-> +    description:
-> +      Used to mark the current domain as non-secure.
-> +    type: boolean
-> +
-> +  qcom,smd-channels:
-> +    description:
-> +      Channel name used for the RPM communication
-> +    $ref: "/schemas/types.yaml#/definitions/string-array"
-
-maxItems: 1
-
-
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +patternProperties:
-> +  "(compute-)?cb@[0-9]*$":
-> +    type: object
-> +
-> +    description: >
-> +      Each subnode of the Fastrpc represents compute context banks available on the dsp.
-> +
-> +    properties:
-> +      compatible:
-> +        items:
-
-Drop items
-
-> +          - const: qcom,fastrpc-compute-cb
-> +
-> +      reg:
-> +        maxItems: 1
-> +
-> +      qcom,nsession:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        default: 1
-> +        description: >
-> +          A value indicating how many sessions can share this context bank.
-> +
-> +    required:
-> +      - compatible
-> +      - reg
-> +
-> +required:
-> +  - compatible
-> +  - label
-> +  - '#address-cells'
-> +  - '#size-cells'
-
-Use consistent quotes, either ' or "
-
-
-
-Best regards,
-Krzysztof
+>
+> >
+> >>>   {
+> >>>          unsigned int val;
+> >>> @@ -57,75 +57,76 @@ static ssize_t l2_write(struct file *file, const =
+char __user *data,
+> >>>          if (kstrtouint_from_user(data, count, 0, &val))
+> >>>                  return -EINVAL;
+> >>>          if ((val < 0xFF) || (val >=3D 0x10000 && val < 0x100FF))
+> >>> -               writel(val, l2_base + SIFIVE_L2_ECCINJECTERR);
+> >>> +               writel(val, ccache_base + SIFIVE_CCACHE_ECCINJECTERR)=
+;
+> >>>          else
+> >>>                  return -EINVAL;
+> >>>          return count;
+> >>>   }
+> >>>
+>
