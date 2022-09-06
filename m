@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AAF615AF310
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 19:49:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 278015AF30C
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 19:48:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229547AbiIFRs4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S229526AbiIFRs4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 6 Sep 2022 13:48:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40484 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229680AbiIFRsf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 13:48:35 -0400
-Received: from mail-oo1-xc2b.google.com (mail-oo1-xc2b.google.com [IPv6:2607:f8b0:4864:20::c2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DEF6832E6
-        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 10:48:30 -0700 (PDT)
-Received: by mail-oo1-xc2b.google.com with SMTP id u5-20020a4a5705000000b0044b34c2c89cso2045060ooa.9
-        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 10:48:30 -0700 (PDT)
+        with ESMTP id S229685AbiIFRsh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 13:48:37 -0400
+Received: from mail-oo1-xc2a.google.com (mail-oo1-xc2a.google.com [IPv6:2607:f8b0:4864:20::c2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB7BB84ECA
+        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 10:48:31 -0700 (PDT)
+Received: by mail-oo1-xc2a.google.com with SMTP id c9-20020a4a4f09000000b0044e1294a737so2050680oob.3
+        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 10:48:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=ORAgmiG57p/S9ocR1iRk76VvyBsd1+DxcS7O0rlHDs0=;
-        b=U5Y4i5jx+40Cx/xgDGq5I8pG9GGoT/wBANnOxRC1QYjQtco82MIEp0iLpmvWiEueFf
-         nPthrGMsA/B5nPavWnddRw33xlMDuUwM5QayNrilaND8+mDCU6gasVa0o7X4mAKo8ksy
-         rfDrZXD6+EnNdMyZWmv6OcIj5zu0ZKEhMBw/FPiLWw2G6ERAfZg33d+jNrr2nyi/Cajp
-         K+4tLN1xPP8VQEPv1yQKSPYWAODfml+LplHFIYMPEyGterhytbVd0p7OWvoGqhZtblzy
-         wQWRBVbLhLIejlcJVHgF+DeikMwWZN81V5RGuFJATEl1BmOpqX+EIV0qGoXCvS4pospT
-         u5yg==
+        bh=qnSptJt7AFNWmzxMCkqf7MrpKQxtkc2Z0kVrcaCyyfQ=;
+        b=Wer2x+YDFov3Deacn/WiARefcJWmuHOcvu2uP8uH8+YdERSLxscCoKSkGDvR/R/xIz
+         y6pjcAsh9vvhPRRma4ObkA5ANV8a2Du/wiEFC97ViE0Xwtco+qwg9xnHSo3R/yStTDCY
+         LvpEdpHin/RU7d4o1ZEhrKoFlsKRfQ6iJPN8PdfbBChtz1hKAfOeqXAfHetBQB3nJ41M
+         CCH9a4EIkMKsEbOqRjQ0FSqW9Hpv0fLSh31VvFdEBWIvVNRjnTOvdROnTzAz2fgYDXf3
+         pfYqLzBahOfYEjtF5+c8vTF+rjlWfxILejZcSjyq1ykvyA3TPVM/fq8LhwXdEabTNFVf
+         Qm2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date;
-        bh=ORAgmiG57p/S9ocR1iRk76VvyBsd1+DxcS7O0rlHDs0=;
-        b=0xIZxJpfEFv3D5vUw2GgrCpfAVa4a4BlxHCd66oFpWqCoy/QYXxWPuDCZVt6PrISlh
-         XCzLw428LUWHweheFhUjq6jmDS01iCjQmmxgOkIT76OxfLGViwM7rFIANSZzXOql63A2
-         mLVGvdYwZobH95ZKUpNWT70Us1+WdpjXZSjszgcSwpqjvbTM2RWUVY0tymW2aAogAAeR
-         MZUn6Yx0rtb1WKejfbDXMVPbCQUPIppYm6PtKBhTFL5UP0ueN46ntgxft4bbBAKqBtyT
-         c2+7fUJrn5yu1t6QrGw53s4Neze2m0niJGgGwiexwihrTJDBeJftZQTXDQKM5W/mE31R
-         c7Ig==
-X-Gm-Message-State: ACgBeo3g0PzDcX1LY2syDYPEdCpGYvyGvvgjOd8cWNsPNwqFaxUP0151
-        cBHxCxWDR6pCggNaIuQnP2Y=
-X-Google-Smtp-Source: AA6agR4hbHRGQOp1BJL6pGJS5Rw997lx2vRqKeDCTqregl6X9KNodLb0ILtqgU8K5/N7p21z2icjwA==
-X-Received: by 2002:a05:6820:541:b0:44a:907d:c641 with SMTP id n1-20020a056820054100b0044a907dc641mr18987260ooj.65.1662486509383;
-        Tue, 06 Sep 2022 10:48:29 -0700 (PDT)
+        bh=qnSptJt7AFNWmzxMCkqf7MrpKQxtkc2Z0kVrcaCyyfQ=;
+        b=YapAYG4sBo6lR/dIn3DSy/FYxc0udaPiESkdZBgOJZfcNnTMeQHurv3m1MiQ8RIRk0
+         apfc1i9hTbwiU5r3XxjXaNzaiiNHfxNvqFGlkhCwjJl6HkYyffTaaS8+FQGZ1+uFjs5d
+         ykWLBybuzn2TBQOA4SRSnld9dV0tvqN6WlEx02Jq+EE8yeLFYaLYQb206GfCF/x34H4l
+         jFbkk3ftPt2OmCXoiunSMVHvJ9VNzNtm3rdK3xZ5LvDdj2p0C9xfLgza0lchvqBjN3dT
+         hvzRRnHbcD8w1RzDqIHGIVGRcUF6AG2KBsMM2EjxlRjL60e4XywtFnpcxPLv89gG10/+
+         hbNg==
+X-Gm-Message-State: ACgBeo24HQTk/M8uMRgIAxAak4tu0aM7nUYeycVEbEGD67eLXWu1YEjX
+        QMvEKojTo+wJKBdJRf02OTk=
+X-Google-Smtp-Source: AA6agR7QdeMD60yDHlEgNwk83J8km40Qr5XTioo9P1Fu6QVKPdibmHtPFNzCY/x6hkmeQ/qdtBZjug==
+X-Received: by 2002:a4a:bb19:0:b0:44a:9cda:56a1 with SMTP id f25-20020a4abb19000000b0044a9cda56a1mr18660613oop.14.1662486510547;
+        Tue, 06 Sep 2022 10:48:30 -0700 (PDT)
 Received: from wintermute.localdomain (cpe-76-183-134-35.tx.res.rr.com. [76.183.134.35])
-        by smtp.gmail.com with ESMTPSA id o186-20020aca41c3000000b00344afa2b08bsm5568065oia.26.2022.09.06.10.48.28
+        by smtp.gmail.com with ESMTPSA id o186-20020aca41c3000000b00344afa2b08bsm5568065oia.26.2022.09.06.10.48.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Sep 2022 10:48:28 -0700 (PDT)
+        Tue, 06 Sep 2022 10:48:30 -0700 (PDT)
 From:   Chris Morgan <macroalpha82@gmail.com>
 To:     linux-rockchip@lists.infradead.org
 Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
@@ -57,9 +57,9 @@ Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
         robh+dt@kernel.org, daniel@ffwll.ch, airlied@linux.ie,
         heiko@sntech.de, hjc@rock-chips.com,
         Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH v2 1/5] dt-bindings: display: rockchip-dsi: add rk3568 compatible
-Date:   Tue,  6 Sep 2022 12:48:19 -0500
-Message-Id: <20220906174823.28561-2-macroalpha82@gmail.com>
+Subject: [PATCH v2 2/5] dt-bindings: phy-rockchip-inno-dsidphy: add compatible for rk3568
+Date:   Tue,  6 Sep 2022 12:48:20 -0500
+Message-Id: <20220906174823.28561-3-macroalpha82@gmail.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220906174823.28561-1-macroalpha82@gmail.com>
 References: <20220906174823.28561-1-macroalpha82@gmail.com>
@@ -77,26 +77,25 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Chris Morgan <macromorgan@hotmail.com>
 
-The rk3568 uses the same dw-mipi-dsi controller as previous Rockchip
-SOCs, so add a compatible string for it.
+Add a compatible string for the rk3568 dsi-dphy.
 
 Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 ---
- .../bindings/display/rockchip/dw_mipi_dsi_rockchip.txt           | 1 +
+ .../devicetree/bindings/phy/rockchip,px30-dsi-dphy.yaml          | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/display/rockchip/dw_mipi_dsi_rockchip.txt b/Documentation/devicetree/bindings/display/rockchip/dw_mipi_dsi_rockchip.txt
-index 39792f051d2d..9a223df8530c 100644
---- a/Documentation/devicetree/bindings/display/rockchip/dw_mipi_dsi_rockchip.txt
-+++ b/Documentation/devicetree/bindings/display/rockchip/dw_mipi_dsi_rockchip.txt
-@@ -8,6 +8,7 @@ Required properties:
- 	"rockchip,px30-mipi-dsi", "snps,dw-mipi-dsi"
- 	"rockchip,rk3288-mipi-dsi", "snps,dw-mipi-dsi"
- 	"rockchip,rk3399-mipi-dsi", "snps,dw-mipi-dsi"
-+	"rockchip,rk3568-mipi-dsi", "snps,dw-mipi-dsi"
- - reg: Represent the physical address range of the controller.
- - interrupts: Represent the controller's interrupt to the CPU(s).
- - clocks, clock-names: Phandles to the controller's pll reference
+diff --git a/Documentation/devicetree/bindings/phy/rockchip,px30-dsi-dphy.yaml b/Documentation/devicetree/bindings/phy/rockchip,px30-dsi-dphy.yaml
+index 8a3032a3bd73..5c35e5ceec0b 100644
+--- a/Documentation/devicetree/bindings/phy/rockchip,px30-dsi-dphy.yaml
++++ b/Documentation/devicetree/bindings/phy/rockchip,px30-dsi-dphy.yaml
+@@ -18,6 +18,7 @@ properties:
+       - rockchip,px30-dsi-dphy
+       - rockchip,rk3128-dsi-dphy
+       - rockchip,rk3368-dsi-dphy
++      - rockchip,rk3568-dsi-dphy
+ 
+   reg:
+     maxItems: 1
 -- 
 2.25.1
 
