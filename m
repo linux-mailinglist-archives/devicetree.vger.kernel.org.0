@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BF735AEE4F
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 17:03:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23FAA5AEE6C
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 17:13:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230045AbiIFPDy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 11:03:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34716 "EHLO
+        id S234936AbiIFPN2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 11:13:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238706AbiIFPDC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 11:03:02 -0400
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DA5BACA28
-        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 07:17:43 -0700 (PDT)
-Received: by mail-wm1-f47.google.com with SMTP id n23-20020a7bc5d7000000b003a62f19b453so9688893wmk.3
-        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 07:17:43 -0700 (PDT)
+        with ESMTP id S233783AbiIFPNC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 11:13:02 -0400
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4473B8FD5D
+        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 07:26:16 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id ay39-20020a05600c1e2700b003a5503a80cfso7560337wmb.2
+        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 07:26:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=QFOWb4bNGHQvSTabTViDu0Cbcdb9l1RT04Dkmi7BSfQ=;
-        b=tdjsW+5hYm+Bhc2EXr/TxH7TGvkjf6NusRICVuJF7Nfq0A6GNkQXK1Pe527n7FHSQI
-         5lIFX5MokkNkujvJ+SdLooA1/QQHuA9lKHTmhbha9g0Wqh2woTOhxXwPaO8+p6Ycx1f7
-         X/qVw6hHno078CR0GKKEUIqb1DIIXV0iYlMIdXOiUqiGWHSy2mPneqGFhoEeD9k7Ynnc
-         cD3R3B/I/XV6/H7C0MpqncWGdiB6dF3B3H1qIVNTGAzJWnN7CJC7TuNpFoQmOiNbOuN4
-         BHAJNwxr9fBfkkAO4lIlyKwT+xPIOITYg3JkaBjeTXbtCpvtOacoX4UwEKAuBqXIplrt
-         zKhA==
+        bh=2tufqt6hRvw4ZCjcl0S8PqA9okU//2v9afvDFY8wrQU=;
+        b=cn351tdR+0cIDsmGptIae3AEmwZKqeJ7YSt0CUUmJooLYckje5U4WFDkn+WWqeETox
+         xfFT2An0ClBMR6gNQDrAY+ZPvtoZm+xDgJVcq44aowTW8JH6gf0rjng1fDpsLErOYb6y
+         36ILp1o7m10fF1++Nmzzbj1zex4h8xxFlVPNpBno9e6gcB1TEDLb0Vz84NNnP/UyQodQ
+         0UYtUdEbFn6aU4KoFAhrXv20sKIRK+xV2fSkSS9vbI31kQVRXkdAWJugcPaeagyNUkfG
+         0s1LQhQfQ0wITCIP1SWmODLR5sr8CdDLqxW3dXQeYcjZMC/wmiCb/5AN2JE8izu1Disz
+         8ijg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=QFOWb4bNGHQvSTabTViDu0Cbcdb9l1RT04Dkmi7BSfQ=;
-        b=QE7sIoZPXdzDm9vS77QK3On6Qni6sWxhz41z+GjMKL0puVy/3u1hEC3L2nJmmOQbI2
-         mEKvEx4zrt4LvLYqaCS/fxqPtISWtKPrm9+Jt7tsCBAHhe2g/vDNMlqzR1q7Nrb3AU0p
-         v8mEo/gprvwkVL5hwUVPQNQcD7o0MCCix2Ydx9B6sUOaybRv4rnYIGB24U00u+m+npQq
-         TrbM024JmG6F/dVLCQAxdN4gCZ1f4xZSFQQc0TjsmfIywu93odKXp1XjxmMgSb8GbDVL
-         +0H+8b+p4CFmhZEAtq5td2HZZtsMAq4hbn9JkxwQiMP3zi4QlHrvJ/etrOldMvS1/LwJ
-         bseg==
-X-Gm-Message-State: ACgBeo0NzPVC9ckzp91OTzhFAUlYBnOVdnpoyABl7uY/7iTKfcuMlVpt
-        rNWZ97ANt7i7Wv281pH9jZvKEA==
-X-Google-Smtp-Source: AA6agR50jeblKj4XYDfu/HSa2NwkPVXOo766FtBYHiW9bA059xq9qU6yuFzurjMmTE1vAJ6AgCVT+A==
-X-Received: by 2002:a1c:ed0b:0:b0:3a6:30c:12f with SMTP id l11-20020a1ced0b000000b003a6030c012fmr13853478wmh.133.1662473452609;
-        Tue, 06 Sep 2022 07:10:52 -0700 (PDT)
+        bh=2tufqt6hRvw4ZCjcl0S8PqA9okU//2v9afvDFY8wrQU=;
+        b=BtAPI0YuOsrF+Q8qwjGzueFBCl/ubV50ntDp+SJlxFtCvD5SY67+gx3I42F3wpMOvq
+         RZqY5iRVOxQw+RsLjuyFeW8XNJXmV4HF0GHzx0jDk+W05nvwzduLKfLJk05TeAfr4e1D
+         WICCSPKe+8MM5q+EPumbTArskUfVwvR080oZBtdcWoP/az9AgosCEKbf9+DGH+6ng7Hb
+         MGsR7Ymv3ggEU/VW/c3jfEaV5uifptxy5cYuvGSiMrpZh/Cqlw4ZGvKz3xxLP7zHqojL
+         VGaedXbz4PpXUg126YnbkTrIXV6lsfYQP2TwhV9Ap9k/KHY9wb8WAzifz+6aeH0MuLr4
+         K3ng==
+X-Gm-Message-State: ACgBeo1zo8aAlAwmJ3XO4JE6hiyvIL6LyRxHAqh+GZ+3/XW0UFMIFBzh
+        vbalvK3Ynm9PYcr16TEFKJdh9mGzV7EKlg==
+X-Google-Smtp-Source: AA6agR6TeaGO/qboYw8IAWcoqcnxH33Mp7H614yZrQqQra93kcfJS9HNV+9utEQlpuZ88K2l7pLwdQ==
+X-Received: by 2002:a05:600c:1c19:b0:3a5:51aa:d041 with SMTP id j25-20020a05600c1c1900b003a551aad041mr13889901wms.172.1662473561428;
+        Tue, 06 Sep 2022 07:12:41 -0700 (PDT)
 Received: from [192.168.86.238] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
-        by smtp.googlemail.com with ESMTPSA id l17-20020a5d6751000000b00228ccd00cedsm4439569wrw.107.2022.09.06.07.10.51
+        by smtp.googlemail.com with ESMTPSA id az19-20020a05600c601300b003a342933727sm22294206wmb.3.2022.09.06.07.12.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Sep 2022 07:10:52 -0700 (PDT)
-Message-ID: <a9fe2f55-a175-26b4-2542-53ac87f7ec58@linaro.org>
-Date:   Tue, 6 Sep 2022 15:10:51 +0100
+        Tue, 06 Sep 2022 07:12:40 -0700 (PDT)
+Message-ID: <87f59c6d-c2ad-25c2-a0cf-972b5df42bce@linaro.org>
+Date:   Tue, 6 Sep 2022 15:12:39 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v2 08/10] misc: fastrpc: Safekeep mmaps on interrupted
- invoke
+Subject: Re: [PATCH v2 00/10] misc: fastrpc: Add audiopd support
 Content-Language: en-US
 To:     Abel Vesa <abel.vesa@linaro.org>,
         Amol Maheshwari <amahesh@qti.qualcomm.com>,
@@ -71,136 +70,61 @@ Cc:     Rob Herring <robh@kernel.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         devicetree@vger.kernel.org
 References: <20220902154900.3404524-1-abel.vesa@linaro.org>
- <20220902154900.3404524-9-abel.vesa@linaro.org>
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20220902154900.3404524-9-abel.vesa@linaro.org>
+In-Reply-To: <20220902154900.3404524-1-abel.vesa@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
+Hi Abel,
+Thanks for picking up these patches and reworking.
 
 On 02/09/2022 16:48, Abel Vesa wrote:
-> If the userspace daemon is killed in the middle of an invoke (e.g.
-> audiopd listerner invoke), we need to skip the unmapping on device
-> release, otherwise the DSP will crash. So lets safekeep all the maps
-> only if there is in invoke interrupted, by attaching them to the channel
-> context (which is resident until RPMSG driver is removed), and restore
-> them back to the fastrpc user on the next device open call.
->
-
-Am bit confused with this patch.
-
-Intention is to support interrupted invoke calls, but resorting the maps 
-on next open is totally something different.
-
-if we move maps from interrupted list to compute context list on open 
-then these will be freed in the close.
-
-AFAIU, to support interrupted invoke we need to check the fd and sc and 
-restore.
-
-
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
-
-
->   drivers/misc/fastrpc.c | 31 +++++++++++++++++++++++++++++++
->   1 file changed, 31 insertions(+)
+> This patchset adds audiopd support to fastrpc.
 > 
-> diff --git a/drivers/misc/fastrpc.c b/drivers/misc/fastrpc.c
-> index 2c656da4ca5e..41eabdf0a256 100644
-> --- a/drivers/misc/fastrpc.c
-> +++ b/drivers/misc/fastrpc.c
-> @@ -275,6 +275,7 @@ struct fastrpc_channel_ctx {
->   	struct fastrpc_device *secure_fdevice;
->   	struct fastrpc_device *fdevice;
->   	struct fastrpc_buf *remote_heap;
-> +	struct list_head invoke_interrupted_mmaps;
->   	bool secure;
->   	bool unsigned_support;
->   };
-> @@ -1114,6 +1115,26 @@ static int fastrpc_invoke_send(struct fastrpc_session_ctx *sctx,
->   
->   }
->   
-> +static void fastrpc_invoke_interrupted_restore_mmaps(struct fastrpc_user *fl)
-> +{
-> +	struct fastrpc_buf *buf, *b;
-> +
-> +	list_for_each_entry_safe(buf, b, &fl->cctx->invoke_interrupted_mmaps, node) {
-> +		list_del(&buf->node);
-> +		list_add(&buf->node, &fl->mmaps);
-> +	}
-> +}
-> +
-> +static void fastrpc_invoke_interrupted_save_mmaps(struct fastrpc_user *fl)
-> +{
-> +	struct fastrpc_buf *buf, *b;
-> +
-> +	list_for_each_entry_safe(buf, b, &fl->mmaps, node) {
-> +		list_del(&buf->node);
-> +		list_add_tail(&buf->node, &fl->cctx->invoke_interrupted_mmaps);
-> +	}
-> +}
-> +
->   static int fastrpc_internal_invoke(struct fastrpc_user *fl,  u32 kernel,
->   				   u32 handle, u32 sc,
->   				   struct fastrpc_invoke_args *args)
-> @@ -1182,6 +1203,9 @@ static int fastrpc_internal_invoke(struct fastrpc_user *fl,  u32 kernel,
->   		fastrpc_context_put(ctx);
->   	}
->   
-> +	if (err == -ERESTARTSYS)
-> +		fastrpc_invoke_interrupted_save_mmaps(fl);
-> +
->   	if (err)
->   		dev_dbg(fl->sctx->dev, "Error: Invoke Failed %d\n", err);
->   
-> @@ -1551,6 +1575,8 @@ static int fastrpc_device_open(struct inode *inode, struct file *filp)
->   		return -EBUSY;
->   	}
->   
-> +	fastrpc_invoke_interrupted_restore_mmaps(fl);
-> +
->   	spin_lock_irqsave(&cctx->lock, flags);
->   	list_add_tail(&fl->user, &cctx->users);
->   	spin_unlock_irqrestore(&cctx->lock, flags);
-> @@ -2268,6 +2294,7 @@ static int fastrpc_rpmsg_probe(struct rpmsg_device *rpdev)
->   	dev_set_drvdata(&rpdev->dev, data);
->   	dma_set_mask_and_coherent(rdev, DMA_BIT_MASK(32));
->   	INIT_LIST_HEAD(&data->users);
-> +	INIT_LIST_HEAD(&data->invoke_interrupted_mmaps);
->   	spin_lock_init(&data->lock);
->   	idr_init(&data->ctx_idr);
->   	data->domain_id = domain_id;
-> @@ -2292,6 +2319,7 @@ static void fastrpc_notify_users(struct fastrpc_user *user)
->   static void fastrpc_rpmsg_remove(struct rpmsg_device *rpdev)
->   {
->   	struct fastrpc_channel_ctx *cctx = dev_get_drvdata(&rpdev->dev);
-> +	struct fastrpc_buf *buf, *b;
->   	struct fastrpc_user *user;
->   	unsigned long flags;
->   
-> @@ -2306,6 +2334,9 @@ static void fastrpc_rpmsg_remove(struct rpmsg_device *rpdev)
->   	if (cctx->secure_fdevice)
->   		misc_deregister(&cctx->secure_fdevice->miscdev);
->   
-> +	list_for_each_entry_safe(buf, b, &cctx->invoke_interrupted_mmaps, node)
-> +		list_del(&buf->node);
+> The first version is here:
+> https://lore.kernel.org/all/20220902131344.3029826-1-abel.vesa@linaro.org/
+> 
 
-AFAIU, This list will be empty all the time, as you are moving them to 
-compute context list on open.
+I have tested this on sm8450 with audiopd and loading Single MIC ECNS 
+module to adsp.
 
-> +
->   	if (cctx->remote_heap)
->   		fastrpc_buf_free(cctx->remote_heap);
->   
+Which platforms did you test these patches on?
+
+
+Tested-by: Srinivas Kandagatla  <srinivas.kandagatla@linaro.org>
+
+
+--srini
+
+
+> Changes since v1:
+>   * dropped the patch 13:
+>     "misc: fastrpc: Remove unnecessary if braces in fastrpc_internal_invoke"
+>   * sent patches 1, 2 and 3 as a separate patchset
+> 
+> Abel Vesa (10):
+>    misc: fastrpc: Rename audio protection domain to root
+>    misc: fastrpc: Add reserved mem support
+>    dt-bindings: misc: fastrpc: Document memory-region property
+>    misc: fastrpc: Add fastrpc_remote_heap_alloc
+>    misc: fastrpc: Use fastrpc_map_put in fastrpc_map_create on fail
+>    misc: fastrpc: Rework fastrpc_req_munmap
+>    misc: fastrpc: Add support for audiopd
+>    misc: fastrpc: Safekeep mmaps on interrupted invoke
+>    misc: fastrpc: Add mmap request assigning for static PD pool
+>    misc: fastrpc: Add dma_mask to fastrpc_channel_ctx
+> 
+>   .../devicetree/bindings/misc/qcom,fastrpc.txt |   5 +
+>   drivers/misc/fastrpc.c                        | 267 +++++++++++++++---
+>   include/uapi/misc/fastrpc.h                   |   7 +
+>   3 files changed, 247 insertions(+), 32 deletions(-)
+> 
