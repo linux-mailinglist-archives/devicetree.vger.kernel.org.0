@@ -2,145 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F37405AF459
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 21:23:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 394B95AF461
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 21:26:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229842AbiIFTXA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 15:23:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50460 "EHLO
+        id S229504AbiIFT0u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 15:26:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229833AbiIFTW5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 15:22:57 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E52B2A9269
-        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 12:22:55 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id u9so25545221ejy.5
-        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 12:22:55 -0700 (PDT)
+        with ESMTP id S229463AbiIFT0t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 15:26:49 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D5EC3C178;
+        Tue,  6 Sep 2022 12:26:48 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id lx1so25489600ejb.12;
+        Tue, 06 Sep 2022 12:26:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=5bwFM9UuatV/9s8ea3bTh+4VZX12Y9aX8P2/k8aLadI=;
-        b=hcEkiN0x5Rv0as/DYY7Tm7xnP5Xa+yJ7efy26/W2MLY3B+YYG5B48z5mwaEeXTqWr+
-         n/b1GDFCeQmeLKWox9YdDw6r1NGqEwx1cR1KJMNGYAbTfQwW8lS1lKeV1RcrD0ZkHqww
-         +2t/j2981gd/8Xo31O63L9z5KSUenBdc/b+6k=
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date;
+        bh=3oOVdi/bQtPCfcN+ik9XE1mlmO3wSv0j3YsV+Rxg9iA=;
+        b=oi+lsbgrsow9eDnffOWYdWZn4LHOIOGIOUe13rTHqTRCoiuHIMKfqZu2hMrnBmEDZf
+         sdpLszwKJF4wcItH10Gu5dYZH85MdPRVCwbugwAhEuAFcgxy6hkXnUaszaH8TcTxKbBT
+         dRfDl0qCbcEA/yByUASgFx/EuLvYr/BJYr27xx8NkZ4VRhKy4YkRwlDKzBJjFB8y9DO0
+         hwVyxz0Z6dgjavxRhDvcb3YBNnUROMbRikIG6tqHMf6AWhGvg0homiIxi7iyiu4FlMTY
+         bHfRzthhlW3dusDlm/x94JHGS5coTG5jDaStTJBO5aknisKj/UugmTQ/UcIi8Fa+gJMa
+         uUDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=5bwFM9UuatV/9s8ea3bTh+4VZX12Y9aX8P2/k8aLadI=;
-        b=xtVVuEf1vN2aRmCkcTPHskODBzARJZewTDI8MkP9VWcUexUNKNfMdAExsoQ6NFW2S6
-         rG9ClzImgjAH90UwISWjKNkczXdh+r6PwHZVkIDfyNAPyrDt5uVMmKK+wGEM/sI3Hlyi
-         kAdeiawJ6YCsoFszz3ptSPiu2hXXaPXSXQObL69nMQoTJZdCDu87EPxrIXQg7nTHK/87
-         2MAxfzehbc25jgZmwmfms9f1HFRXUZFgt8AtIhRlOhuNlTM1LW+7O0SBb81IG95FVRcH
-         FoFkVZClTGNzsEei7/oddR7NKXlc4E9PQ9bx0KYS6vH4RdZdNkeYXErk56PqqVzeWYFV
-         SPUg==
-X-Gm-Message-State: ACgBeo133kplFqttEt6QIxNwfoa31riSJ3C+pIXcLUabzxWvvemKPRDT
-        3MweMVLUiZCIZz9w8V53jMX/cJzdUy4Ed6N/
-X-Google-Smtp-Source: AA6agR4cO5WOCkPpd9iJuOLS+JF5C/t33j1HX8h8Aoolrn1VSAupgjxLPQp+6oH8AASBDjsJET3lxQ==
-X-Received: by 2002:a17:906:cc5a:b0:741:5240:d91a with SMTP id mm26-20020a170906cc5a00b007415240d91amr2279ejb.500.1662492174232;
-        Tue, 06 Sep 2022 12:22:54 -0700 (PDT)
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com. [209.85.128.42])
-        by smtp.gmail.com with ESMTPSA id b4-20020a1709062b4400b007317f017e64sm7064132ejg.134.2022.09.06.12.22.53
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Sep 2022 12:22:53 -0700 (PDT)
-Received: by mail-wm1-f42.google.com with SMTP id d12-20020a05600c34cc00b003a83d20812fso8044034wmq.1
-        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 12:22:53 -0700 (PDT)
-X-Received: by 2002:a05:600c:42c3:b0:3a6:431:91bf with SMTP id
- j3-20020a05600c42c300b003a6043191bfmr13994897wme.188.1662492173404; Tue, 06
- Sep 2022 12:22:53 -0700 (PDT)
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=3oOVdi/bQtPCfcN+ik9XE1mlmO3wSv0j3YsV+Rxg9iA=;
+        b=xiQ2ldu3aFg6+ZJMvwGzKn2rn+oHetW6ZvE7wAD3Z7KJw2uESxJ+HcPHa+Glbx93De
+         pKnmjQQKlrJxEtqsHFmmBooC925YxFM4zLzG7kEYw3AGP+9ub01yQzkvFuI4+3rVEd/L
+         T7wexssm59/v15yIQGBJRaSWNA+TNUeLY9GWrb+e83HENRJP2urSdf/VdgQG3VaQg9QZ
+         LE5+X0HrlnWVlZQQKonmq8uvxkayvOhxJGQ7UUM7ZejRqu2MiVD7ChcwFCuOyqN+HZSU
+         C+7zUEMZQrp84eff5orghnWXzmJI61MGK3Uuu0SwsZemgNMvzmXQ/DnelhlI0gcqx71E
+         IjdA==
+X-Gm-Message-State: ACgBeo3CkvfbhZ+MpN99RvByVX/jhPImknydv3I95bIclEyIgZCAHNsu
+        Arf7DanknnbigZq9tvPDBrvKXvjFmeVhcEE1vMQ=
+X-Google-Smtp-Source: AA6agR70GthhctG+XzaKnAyD3X1E8+YQzb/0n4Tcz5GSF++oD42tAArTNShHfOuNh/UxP2ah4WQAFSc4TdMmm+SuxC4=
+X-Received: by 2002:a17:906:9fc1:b0:761:9192:504f with SMTP id
+ hj1-20020a1709069fc100b007619192504fmr23306ejc.116.1662492406523; Tue, 06 Sep
+ 2022 12:26:46 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220901102946.v2.1.I347ea409ee3134bd32a29e33fecd1a6ef32085a0@changeid>
- <CAD=FV=WBzVTaz1dtMswNMWhBzBBUQZTxqXff_DgiuP6WJgG8Qg@mail.gmail.com> <YxeZrvKvRB/ct3Ss@google.com>
-In-Reply-To: <YxeZrvKvRB/ct3Ss@google.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 6 Sep 2022 12:22:42 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=VsRi2kt9K9E+VOEGqdJFT43-aj415Gk2Q=OP64L-JAUA@mail.gmail.com>
-Message-ID: <CAD=FV=VsRi2kt9K9E+VOEGqdJFT43-aj415Gk2Q=OP64L-JAUA@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: qcom: sc7180: Configure USB as wakeup source
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+References: <20220906153034.153321-1-peron.clem@gmail.com> <20220906153034.153321-4-peron.clem@gmail.com>
+ <12048299.O9o76ZdvQC@kista>
+In-Reply-To: <12048299.O9o76ZdvQC@kista>
+From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Date:   Tue, 6 Sep 2022 21:26:34 +0200
+Message-ID: <CAJiuCceZg_6p4yo89e0X3fD9aXFs9Xik8b8KUM+Psdy_4paKPw@mail.gmail.com>
+Subject: Re: [PATCH v4 3/5] arm64: dts: allwinner: h6: Add GPU OPP table
+To:     =?UTF-8?Q?Jernej_=C5=A0krabec?= <jernej.skrabec@gmail.com>
+Cc:     Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Krishna Kurapati <quic_kriskura@quicinc.com>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-sunxi@lists.linux.dev,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Jernej,
 
-On Tue, Sep 6, 2022 at 12:04 PM Matthias Kaehlcke <mka@chromium.org> wrote:
+On Tue, 6 Sept 2022 at 21:10, Jernej =C5=A0krabec <jernej.skrabec@gmail.com=
+> wrote:
 >
-> Hi Doug,
->
-> On Tue, Sep 06, 2022 at 11:33:56AM -0700, Doug Anderson wrote:
-> > Hi,
+> Dne torek, 06. september 2022 ob 17:30:32 CEST je Cl=C3=A9ment P=C3=A9ron=
+ napisal(a):
+> > Add an Operating Performance Points table for the GPU to
+> > enable Dynamic Voltage & Frequency Scaling on the H6.
 > >
-> > On Thu, Sep 1, 2022 at 10:29 AM Matthias Kaehlcke <mka@chromium.org> wrote:
-> > >
-> > > The dwc3 USB controller of the sc7180 supports USB remote
-> > > wakeup, configure it as a wakeup source.
-> > >
-> > > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> > > ---
-> > >
-> > > Changes in v2:
-> > > - use qcom/arm64-for-6.1 as base, v1 was unintendedly based on a
-> > >   downstream branch that was used for testing
-> > >
-> > >  arch/arm64/boot/dts/qcom/sc7180.dtsi | 2 ++
-> > >  1 file changed, 2 insertions(+)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> > > index e8debb0da411..af5bab27eaf3 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> > > @@ -2782,6 +2782,8 @@ usb_1: usb@a6f8800 {
-> > >                                         <&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_USB3 0>;
-> > >                         interconnect-names = "usb-ddr", "apps-usb";
-> > >
-> > > +                       wakeup-source;
-> > > +
+> > The voltage range is set with minimal voltage set to the target
+> > and the maximal voltage set to 1.2V. This allow DVFS framework to
+> > work properly on board with fixed regulator.
 > >
-> > The patch documenting this property has landed in commit 416b61893860
-> > ("dt-bindings: usb: qcom,dwc3: add wakeup-source property"). I guess
-> > the only question is whether this should be in the general sc7180
-> > device tree file or just for trogdor.
+> > Signed-off-by: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
+> > ---
+> >  .../boot/dts/allwinner/sun50i-h6-gpu-opp.dtsi | 87 +++++++++++++++++++
+> >  1 file changed, 87 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h6-gpu-opp.dts=
+i
+> >
+> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-gpu-opp.dtsi
+> > b/arch/arm64/boot/dts/allwinner/sun50i-h6-gpu-opp.dtsi new file mode 10=
+0644
+> > index 000000000000..b48049c4fc85
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-gpu-opp.dtsi
+> > @@ -0,0 +1,87 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +// Copyright (C) 2022 Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
+> > +
+> > +/ {
+> > +     gpu_opp_table: opp-table-gpu {
+> > +             compatible =3D "operating-points-v2";
+> > +
+> > +             opp-216000000 {
+> > +                     opp-hz =3D /bits/ 64 <216000000>;
+> > +                     opp-microvolt =3D <810000 810000 1200000>;
+> > +             };
+> > +
+> > +             opp-264000000 {
+> > +                     opp-hz =3D /bits/ 64 <264000000>;
+> > +                     opp-microvolt =3D <810000 810000 1200000>;
+> > +             };
 >
-> I had a similar comment on the patch for sc7280 [1], there the rationale
-> for putting the property into the .dtsi of the SoC was that the wakeup
-> capability is provided by the SoC.
->
-> For sc8280xp.dtsi the property is also in the .dtsi of the SoC:
->
-> https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git/tree/arch/arm64/boot/dts/qcom/sc8280xp.dtsi?h=arm64-for-6.1#n1315
->
-> > Any chance it could cause problems for devices that aren't designed like
-> > trogdor?
->
-> Probably not in a functional sense, however power consumption during system
-> suspend is slightly higher (2-3 mW) when USB wakeup is enabled. Boards can
-> disable wakeup by deleting the property in their .dtsi file, though it
-> is not necessarily evident that this is an option to reduce power
-> consumption.
->
-> [1] https://patchwork.kernel.org/project/linux-arm-msm/patch/1649321104-31322-7-git-send-email-quic_c_sanm@quicinc.com/
+> As mentioned in clock patch review, rates below 288 MHz are deemed unstab=
+le on
+> GPU PLL by vendor GPU kernel driver. At least in the BSP version that I h=
+ave.
+> Did you test these points? If not, better to drop them.
 
-OK then.
+I changed the governor to userspace and set the freq to 216MHz / 264MHz
+Run glmark2 and didn't observe any glitch nor issue.
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+I'm not sure if it's enough to say it's stable but I didn't observe
+any strange behavior.
+
+Regards,
+Clement
+
+>
+> Best regards,
+> Jernej
+>
+> > +
+> > +             opp-312000000 {
+> > +                     opp-hz =3D /bits/ 64 <312000000>;
+> > +                     opp-microvolt =3D <810000 810000 1200000>;
+> > +             };
+> > +
+> > +             opp-336000000 {
+> > +                     opp-hz =3D /bits/ 64 <336000000>;
+> > +                     opp-microvolt =3D <810000 810000 1200000>;
+> > +             };
+> > +
+> > +             opp-360000000 {
+> > +                     opp-hz =3D /bits/ 64 <360000000>;
+> > +                     opp-microvolt =3D <820000 820000 1200000>;
+> > +             };
+> > +
+> > +             opp-384000000 {
+> > +                     opp-hz =3D /bits/ 64 <384000000>;
+> > +                     opp-microvolt =3D <830000 830000 1200000>;
+> > +             };
+> > +
+> > +             opp-408000000 {
+> > +                     opp-hz =3D /bits/ 64 <408000000>;
+> > +                     opp-microvolt =3D <840000 840000 1200000>;
+> > +             };
+> > +
+> > +             opp-420000000 {
+> > +                     opp-hz =3D /bits/ 64 <420000000>;
+> > +                     opp-microvolt =3D <850000 850000 1200000>;
+> > +             };
+> > +
+> > +             opp-432000000 {
+> > +                     opp-hz =3D /bits/ 64 <432000000>;
+> > +                     opp-microvolt =3D <860000 860000 1200000>;
+> > +             };
+> > +
+> > +             opp-456000000 {
+> > +                     opp-hz =3D /bits/ 64 <456000000>;
+> > +                     opp-microvolt =3D <870000 870000 1200000>;
+> > +             };
+> > +
+> > +             opp-504000000 {
+> > +                     opp-hz =3D /bits/ 64 <504000000>;
+> > +                     opp-microvolt =3D <890000 890000 1200000>;
+> > +             };
+> > +
+> > +             opp-540000000 {
+> > +                     opp-hz =3D /bits/ 64 <540000000>;
+> > +                     opp-microvolt =3D <910000 910000 1200000>;
+> > +             };
+> > +
+> > +             opp-576000000 {
+> > +                     opp-hz =3D /bits/ 64 <576000000>;
+> > +                     opp-microvolt =3D <930000 930000 1200000>;
+> > +             };
+> > +
+> > +             opp-624000000 {
+> > +                     opp-hz =3D /bits/ 64 <624000000>;
+> > +                     opp-microvolt =3D <950000 950000 1200000>;
+> > +             };
+> > +
+> > +             opp-756000000 {
+> > +                     opp-hz =3D /bits/ 64 <756000000>;
+> > +                     opp-microvolt =3D <1040000 1040000 1200000>;
+> > +             };
+> > +     };
+> > +};
+> > +
+> > +&gpu {
+> > +     operating-points-v2 =3D <&gpu_opp_table>;
+> > +};
+> > --
+> > 2.34.1
+>
+>
