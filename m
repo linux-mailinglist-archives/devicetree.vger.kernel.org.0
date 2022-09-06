@@ -2,168 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59EC25ADDFB
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 05:27:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02BA25ADE3D
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 05:57:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238009AbiIFD1S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 23:27:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50488 "EHLO
+        id S238250AbiIFD5Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 23:57:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237686AbiIFD1K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 23:27:10 -0400
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-eopbgr80088.outbound.protection.outlook.com [40.107.8.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25C855F228;
-        Mon,  5 Sep 2022 20:27:09 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HhfLCYmi3hxf3rMA8ezk+ItgUNRH1UtUeF2GlH6O67S62SrrcA+lJV7NIul/dGyC26tpuS1iUBiqXGr+/kRunHcupGoyIJtc3YnaPr+4pPiSB/F5SgRMTrdmZLM0ZVGwHcCexofEWA+NAzfp7LRQAd9n6be5RvAYXXLAPY+kI69pYijeoDY925uaoYG8MwStHOZINLpW8DT4W61pXoRbuSnYTp6U/HEmlFpNBkFqfoLPbxj1V/o1Tp93fPtxwshZtWdtHpgVXFWBaqMYUkkQpEk9ip2NkBcbSntcDDNWHd+yNqSAtG28ogm0fxNdRIQMEmEvKL5wKKCT9cDDxeR+hw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wWOpr5UGSlGjP/pOzDat3oTNcGbm6xg8m4AIGGc6u7g=;
- b=Hs/sel7X8MF9o3e4X5L9G+vT+vLD8lu1IV+bc5IJlD6B2wKVVoEPVJfoFlvsE+IGPOx2oXjqqqJXl47KUogkcMs8REwl/4lfe8Go2sl7jE38sX3a5CIN6Dooi8LH2VXQ+P0xzBrQFLptwGiYvf4OC4NGgzGwt2gNTHGv0vN/sugzZMtw3lD45/kvRo0jKFW178WgYQF4G7yajRlElYmyPam6I5JXgxJfRgkNoTdSsuNdIPS3qhPDKUgfwh6a/dryqB5A7kmmsy/VcIPqZFMqjRvsJVrkJuYXsmn2nWzozoCyVRELAsNNAtsPrdS1fAD32onIWAwnDG7YYFhFJX+WXA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wWOpr5UGSlGjP/pOzDat3oTNcGbm6xg8m4AIGGc6u7g=;
- b=PfybNtgsD4d9VLIfned377Udg7HpBHV2kihf3KPsEh/2GR67y20I0DoMgUmRYHTwPvLLTpy2Fv44Iu87J2YDJ3yFCIes8SKE8emjh17BM8yPQ/qrkmF68MCWYKWxd2CI3zr2Iin9CDjNuF4kgXKUy95+4POikZjBnah+V0IIF/Q=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by AM0PR0402MB3714.eurprd04.prod.outlook.com (2603:10a6:208:f::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.18; Tue, 6 Sep
- 2022 03:27:06 +0000
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::2d22:3315:6f9b:82c7]) by DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::2d22:3315:6f9b:82c7%5]) with mapi id 15.20.5588.017; Tue, 6 Sep 2022
- 03:27:06 +0000
-From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de
-Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        aisheng.dong@nxp.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Peng Fan <peng.fan@nxp.com>
-Subject: [PATCH V9 6/6] arm64: dts: imx93: add mediamix blk ctrl node
-Date:   Tue,  6 Sep 2022 11:28:17 +0800
-Message-Id: <20220906032817.2090160-7-peng.fan@oss.nxp.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220906032817.2090160-1-peng.fan@oss.nxp.com>
-References: <20220906032817.2090160-1-peng.fan@oss.nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR02CA0115.apcprd02.prod.outlook.com
- (2603:1096:4:92::31) To DU0PR04MB9417.eurprd04.prod.outlook.com
- (2603:10a6:10:358::11)
+        with ESMTP id S237816AbiIFD4H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 23:56:07 -0400
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D1B03D583;
+        Mon,  5 Sep 2022 20:55:39 -0700 (PDT)
+Received: by mail-pj1-x102d.google.com with SMTP id a5-20020a17090aa50500b002008eeb040eso1372649pjq.1;
+        Mon, 05 Sep 2022 20:55:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=xjBsYojmgzjD37eDqYXmxvRKEdSztZBYdUrIaGIIl10=;
+        b=qksH03T7nCTUYXBzcBx0isjdScmAbtWT/mIv3l7Qonsi45G+SbkTJa/mBJz+SqF6XR
+         XSN17hEK7Z33up0g8jzBG4jdNfClrED1tTzPhAAruzXFTjOUv+wzCZlPyBI3F7aFbf3I
+         OH4zn+ktG4vbXq8lmjr5GCLrb2ocq0seKWLQEIg2WPkxa9sqAJxzNjyXRzqoohJaoerA
+         WuLBgckjDxCkqtC48wXTc1vK8yeX5uT/Izerc0movLufNrdDnKY4qQHoh/OpNM4o1zpr
+         4EsBu//D/7IJCIIrmzY/BcNPIoM2ra4bL+3zQAsGbEmbY61mJYfLt8oRxDYsBg+rHtTV
+         UvAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=xjBsYojmgzjD37eDqYXmxvRKEdSztZBYdUrIaGIIl10=;
+        b=yHJiPxbdguFnik34SQgANtCK98oe/7a7h8p68i0zJGLEVfWqYzO58+uCJNmtjrbT/I
+         pFUG4lZ6ZoAcbh5C/i+/cOOptw0Q8n/MyqH3z28e06f/tdwl9yj8chT5OXvT88jAXWi4
+         GxMPZj5OZCXXTrHlPj+a+DJMQKJljAAy79LHkQ8H+5v2emvLsf9XxUF1I1pStzMn2fCt
+         LQb5q+75LYe3zkuUciYH6rzBimsdy1vLNLm6kFKqaEiXZeKLJXg7c3uObN4B7TIv+K+l
+         l7bGTP27tMKto6PDAoU5OhBsWxutoVl8oE8ywwCsFWY8Jflwo485Z3ky60SsPFQjtlrS
+         mGpQ==
+X-Gm-Message-State: ACgBeo3j2c+A/Z2ux2hgE+VjV80Fv58VK6yI71elbTtSQqukSmCmYAcK
+        GkwpMx1CuZsa/p6jkDQKCOPm+Vw9Trn8tXEBzbvkSubU/JI=
+X-Google-Smtp-Source: AA6agR6H58hrOM2YTuRRZs4nXTxjZQ1XqTlHuSc0NMqGDQTIlURZrBfNQEnp4HdS16uVVzDTWphHj/1uVONismTwu/w=
+X-Received: by 2002:a17:902:cf0e:b0:172:60b7:777c with SMTP id
+ i14-20020a170902cf0e00b0017260b7777cmr52953406plg.132.1662436538233; Mon, 05
+ Sep 2022 20:55:38 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 7696f60f-ffe1-47b1-d7a2-08da8fb7ac57
-X-MS-TrafficTypeDiagnostic: AM0PR0402MB3714:EE_
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: eli9cERpeH6pGRuLqCjU1L438ZczylJ26SiHjCqkR8dQZdc9Sr0PrWkZbK2FdERK+0ERpoNjmg+oB3hRPfdKPej0d4jeARDv+xBsIFdHOaI9cDb7Js+D1kikalRhBbeL3CsV6gHm9cUpQfAlL9UfrJ678j5lJAvGlDKGHEd13pSE9jb6n6FiwYpxomjjyuNWHyTZH9Bc8bvqo3Z2b2N07i2Vsmoe3dRp6TXIOK8NqW8Iqtdaf3jehIx6F2DxWYBlSW9RoZy3ZeP6JBmKkl/A55aAiRkezaDkbvL//KNx211kpGJDoD07hBb82i4soDfFZZE5o5td2GRwqt9HMiZsIAZiT8L1v7n+bZ7/OTaYPyff6L3ZoyulVDUtMnD7z0+bqhwSPKAPMuRpYAoiaeTd95Mu5K9YRrhF01VFR9NmKqzWe5tkEBxnpwTNvPMBFm7RY9/BGg4MfnebA6suloUHFby8sgzi4HItM6Tr1k9g8Jvodp2WL3WXXRZkJl3TY8sg0yupqRMbVElQN5wTjWQrYAjd/rpXUoEoLkjJ1+8NpmU5K7s3i8ZUYWyDb7H9ai4tElhe+hUN0o86t6ubRbOml5NMp0tS08rJdM6//6Gc9aVi+Z+iQ/CdrgDDYj2raU5JPB/tP6y4oTcnajaZBTzvtw1iWqsTc7yfqKDFxqtU6okp+aVibn15Oe5uJV5U0+5CTe4wi9PBZAmHWeEkhpn9WkVCa6b5FSv9+4YjOgfaDnfnOEsCLpcrg+O228gMXJlVLSAfWlSpb4+bFPaUgXEmIQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(376002)(346002)(366004)(136003)(39860400002)(396003)(8676002)(4326008)(66476007)(66946007)(66556008)(2616005)(1076003)(38350700002)(38100700002)(6486002)(186003)(41300700001)(6512007)(6506007)(6666004)(52116002)(316002)(83380400001)(26005)(86362001)(8936002)(478600001)(5660300002)(2906002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?CUppxJzeCHHDSwuqN6wQ4/WlAuEdrXTTCrAZd4xxFtnA6GecKmYLzQ0b7kcU?=
- =?us-ascii?Q?anqv18LPNtEILiZgB4Ki+CbxRPdVyUnd0r5Ax+ixLUaoWrGFQxciObH6/QQ5?=
- =?us-ascii?Q?H1B8kFMsOOc99MvpVHAPsIhG6UftcbBBVVf7/mIk+zXJDheBfD4blClFgBAS?=
- =?us-ascii?Q?l0ANeB5TgN2mXOyaO/y3F3Yumn+8NsD1KWzv7GoqV4s7EzJHPY/um4i/cAhK?=
- =?us-ascii?Q?1JHo6J5OpQ/k9ZtGBG+2EIDrtIgOpv6bRXjKXOikGWKLJ/4Q2wtNhITbpwRv?=
- =?us-ascii?Q?QZwiExpKTciIr8l/N3PK7eUbWBSZEP+GmBiJgdywVQFZuBv+zwyZe0REN5uK?=
- =?us-ascii?Q?1ZTF6kMHOftHSg/YoGphnqEREfEVaMYV8K6fD90bLx8YT3rlb/NiwHzSdkkf?=
- =?us-ascii?Q?ay6kOyUlcTj2G0FzC0+l8tMwMe8gexj8Yi10Rtg3xR6hdrkEm7hKEqc/3eHF?=
- =?us-ascii?Q?y0MinPvRc8it9iklieTFKo6RODOs2yts023QeZK4F8sDxeK3asU/3yVimzRt?=
- =?us-ascii?Q?8iKlrJwu7Sptwf30XuzYuBbnaN2oAzsy+c+VF6Ya4cgHSlQkehnmJ8Or0d0m?=
- =?us-ascii?Q?Ab/x6BCueSG4vCUhLbdOqSFKUGLR+ih+qyHPxLeh88XlbwHgiALsNFH3lRUN?=
- =?us-ascii?Q?C1JTIZzkW+IS/1Ok54i9LcLPSBoqsOxkPQy3JQAumq30mLa/ZKP9PZ57fOaA?=
- =?us-ascii?Q?tQ2f3lTzF4dhXc+m81XeQxEole9geQixMv3/Lk6fHQS8sCwKRwt3OasLwLoi?=
- =?us-ascii?Q?G6tPL4taZwJlSp4F4u4SsxTIkqZbD8DgkDErs5Fb39pQ8vzjIsFnQhcSrY6v?=
- =?us-ascii?Q?GH6S5M/JsXmkGfBFCkMK3oF9382xCxt4FfSYrWgo9US4l8vDqrqUUoK0RjTP?=
- =?us-ascii?Q?zlxhYER86paNtyHJllx0a8s0ubSJt0Ntdi4PfVCc1XJng78HGFoI7FO2um8U?=
- =?us-ascii?Q?1dPYJlrEXATTPXUeewKHt62saWua/tw4owjW2AEPs5CMY47pWfbh7E6hK3dk?=
- =?us-ascii?Q?/FJCt39FyaKOjCKl5Q9QuBYiOJ4Cbs8BPoxXaQxQ7VPEdLPqMIyrFlJGxK8L?=
- =?us-ascii?Q?pTRlQh6I5Z6N0Ss+3Ycmcv0UmfOPw6eICVijXUQVxOwuLIF1nFWfkkl5FIKa?=
- =?us-ascii?Q?rC9OZfnrbzyZaeH0L8BxgtZlWsWbNQhaeyj4eQtYthkjouWn57LquoW1vKq6?=
- =?us-ascii?Q?m8Nmg0u/6eqkiz4RgSZ44BSHxosRlRbaQIOJJ9P5xWuymdQr1aA3QJIiK6wG?=
- =?us-ascii?Q?nPXrHcBKxZBgKkMU0sWHJ9sJVaLFvd6iieoMRebPsFaRnhXLDmVi5QTQUW4O?=
- =?us-ascii?Q?vwO1aok6Cm0ASJMZSO7id2rRbu9hwD6H/oUUQGKAiX2OrKLTsnwb1S4RhjbL?=
- =?us-ascii?Q?WBB055lQi7bNCvIqpYhXnkmQwnsgi2TKr8qwC1QvDC3AsrkGGMJRp4/JnW3L?=
- =?us-ascii?Q?YGpz/uP3vQttgXJW/gxmmRpF67Yj45w8BXAy9I8FN752OLo4DG25H9Lh62kD?=
- =?us-ascii?Q?b5Dd4rFoXRoT4e98runGMs5L5RlGn3JfzKSt4CCbBYNameHIdRg9w3q2re3r?=
- =?us-ascii?Q?s/PuN8x1C2uY8DNwrkqNWuE0CTIV+8vli4cQBvrO?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7696f60f-ffe1-47b1-d7a2-08da8fb7ac57
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Sep 2022 03:27:06.1290
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: YBsZp2YKTSd+Cbk9zVvsKByIkhRUKlW0OjRhRYH3xBHxJn671A/MiruDF76Cu6xgwvFBYfCAZEQG1QAe7xtt8Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR0402MB3714
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <20170613234513.7624-1-s-anna@ti.com> <20170613234513.7624-3-s-anna@ti.com>
+ <20170625201545.GA26155@builder> <1ccd9273-0fde-4241-6d99-1d03be2f5b57@ti.com>
+In-Reply-To: <1ccd9273-0fde-4241-6d99-1d03be2f5b57@ti.com>
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Date:   Mon, 5 Sep 2022 20:55:27 -0700
+Message-ID: <CAKdAkRTHCmyYFX1yy8M1mTtT9D_h66Yj=0UUdEEwjCq4ia4z4Q@mail.gmail.com>
+Subject: Re: [PATCH v3 2/3] remoteproc/keystone: Add a remoteproc driver for
+ Keystone 2 DSPs
+To:     Suman Anna <s-anna@ti.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Ohad Ben-Cohen <ohad@wizery.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-remoteproc@vger.kernel.org,
+        lkml <linux-kernel@vger.kernel.org>,
+        "Andrew F. Davis" <afd@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Sam Nelson <sam.nelson@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Peng Fan <peng.fan@nxp.com>
+Hi,
 
-Add i.MX93 mediamix blk ctrl node
+On Mon, Jun 26, 2017 at 8:55 AM Suman Anna <s-anna@ti.com> wrote:
+>
+> Hi Bjorn,
+>
+> On 06/25/2017 03:15 PM, Bjorn Andersson wrote:
+> > On Tue 13 Jun 16:45 PDT 2017, Suman Anna wrote:
+> >
+> >> +static int keystone_rproc_start(struct rproc *rproc)
+> >> +{
+> >> +    struct keystone_rproc *ksproc = rproc->priv;
+> >> +    int ret;
+> >> +
+> >> +    INIT_WORK(&ksproc->workqueue, handle_event);
+> >> +
+> >> +    ret = request_irq(ksproc->irq_ring, keystone_rproc_vring_interrupt, 0,
+> >> +                      dev_name(ksproc->dev), ksproc);
+> >> +    if (ret) {
+> >> +            dev_err(ksproc->dev, "failed to enable vring interrupt, ret = %d\n",
+> >> +                    ret);
+> >> +            goto out;
+> >> +    }
+> >> +
+> >> +    ret = request_irq(ksproc->irq_fault, keystone_rproc_exception_interrupt,
+> >> +                      0, dev_name(ksproc->dev), ksproc);
+> >> +    if (ret) {
+> >> +            dev_err(ksproc->dev, "failed to enable exception interrupt, ret = %d\n",
+> >> +                    ret);
+> >> +            goto free_vring_irq;
+> >> +    }
+> >
+> > I do prefer that your request any resources during probe() and
+> > potentially enable/disable them here. If below concern about using a
+> > GPIO driver is cleared already I'll take it as is though.
+> >
+> > [..]
+> >> +static void keystone_rproc_kick(struct rproc *rproc, int vqid)
+> >> +{
+> >> +    struct keystone_rproc *ksproc = rproc->priv;
+> >> +
+> >> +    if (WARN_ON(ksproc->kick_gpio < 0))
+> >> +            return;
+> >> +
+> >> +    gpio_set_value(ksproc->kick_gpio, 1);
+> >> +}
+> >> +
+> >
+> > This doesn't sound like a gpio-controller and the GPIO maintainer did
+> > reject an attempt by me to use the GPIO framework to abstract a similar
+> > thing. Do you already have this driver upstream or have you clarified
+> > with the maintainer that the GPIO framework is an acceptable abstraction
+> > for this?
+>
+> Yeah, this has been upstream since quite some time. See commit
+> 2134cb997f2f ("gpio: syscon: reuse for keystone 2 socs").
 
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx93.dtsi | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
+Sorry for the thread necromancy, but was it intentional that the
+driver only parses DT to find this "GPIO" but never requests/reserves
+it? I would like to drop of_get_named_gpio_flags() in favor of a more
+standard dev_get_gpiod().
 
-diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
-index 3281b554ed92..0a29b33be515 100644
---- a/arch/arm64/boot/dts/freescale/imx93.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
-@@ -7,6 +7,7 @@
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/input.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/power/fsl,imx93-power.h>
- 
- #include "imx93-pinfunc.h"
- 
-@@ -354,5 +355,25 @@ gpio1: gpio@47400080 {
- 			#interrupt-cells = <2>;
- 			gpio-ranges = <&iomuxc 0 0 32>;
- 		};
-+
-+		media_blk_ctrl: system-controller@4ac10000 {
-+			compatible = "fsl,imx93-media-blk-ctrl", "syscon";
-+			reg = <0x4ac10000 0x10000>;
-+			power-domains = <&mediamix>;
-+			clocks = <&clk IMX93_CLK_MEDIA_APB>,
-+				 <&clk IMX93_CLK_MEDIA_AXI>,
-+				 <&clk IMX93_CLK_NIC_MEDIA_GATE>,
-+				 <&clk IMX93_CLK_MEDIA_DISP_PIX>,
-+				 <&clk IMX93_CLK_CAM_PIX>,
-+				 <&clk IMX93_CLK_PXP_GATE>,
-+				 <&clk IMX93_CLK_LCDIF_GATE>,
-+				 <&clk IMX93_CLK_ISI_GATE>,
-+				 <&clk IMX93_CLK_MIPI_CSI_GATE>,
-+				 <&clk IMX93_CLK_MIPI_DSI_GATE>;
-+			clock-names = "apb", "axi", "nic", "disp", "cam",
-+				      "pxp", "lcdif", "isi", "csi", "dsi";
-+			#power-domain-cells = <1>;
-+			status = "disabled";
-+		};
- 	};
- };
+Thanks.
+
 -- 
-2.37.1
-
+Dmitry
