@@ -2,111 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9775A5AEADE
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 15:56:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 143755AEC94
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 16:28:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239287AbiIFNzT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 09:55:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45824 "EHLO
+        id S241355AbiIFOU0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 10:20:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240286AbiIFNyj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 09:54:39 -0400
-Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35F6E7D792;
-        Tue,  6 Sep 2022 06:41:28 -0700 (PDT)
-Received: by mail-ot1-f43.google.com with SMTP id z22-20020a056830129600b0063711f456ceso8068450otp.7;
-        Tue, 06 Sep 2022 06:41:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=message-id:date:subject:references:in-reply-to:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=9O7PzS9icEWvflax/sDIyoRvTTpAWAalNbCvjy/7uKY=;
-        b=Un0FqAHnDAuEn3eHAp8SnM1d1hoy9d/fCnxshOAEA0weUGtB2rZvpTPKLoV9R2OX79
-         RkixNO6FrYKPV7sQ51DZA91v+ZMiIuwiQr/P4nzfl5uaIcJM7Y0IsezAOFVBti1ylUiD
-         JUtC45vPEXPaA7SO0nvsEUtDFbo1ZE6YfehQHTjECpxlXsEsNBMx85xMImzAiC2VNDrE
-         sI1GAbc4z5NWEfLr4xFlTP6qtSD4Jno/09rQrYg1Z3ILm7mnQzYL+1ohps4DwhDJAEOk
-         1OLCF/ItcRTmkLWfi8LqpcD6W9RMHFAOnSPCDKb+te+FxQyLJPotTcE9USRHM7GjaJmJ
-         CyQA==
-X-Gm-Message-State: ACgBeo1Xs90dN1Sruwb147m2E+XTPu684NlfOC85dd5yN2pmwEk1okbo
-        0xTBcEDMCJxhUptfzDEeiA==
-X-Google-Smtp-Source: AA6agR7l+RC3By/UqrddRF5+IacRUXfeqCIuCYqKB3YKY7keBuvMZhDzLRaciOChnidIJTDSmhMq+w==
-X-Received: by 2002:a05:6830:2aa4:b0:637:1824:80f3 with SMTP id s36-20020a0568302aa400b00637182480f3mr22420142otu.330.1662471646640;
-        Tue, 06 Sep 2022 06:40:46 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id l21-20020a9d7a95000000b00616d25dc933sm5852439otn.69.2022.09.06.06.40.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Sep 2022 06:40:46 -0700 (PDT)
-Received: (nullmailer pid 360953 invoked by uid 1000);
-        Tue, 06 Sep 2022 13:40:45 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Liang Yang <liang.yang@amlogic.com>
-Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Kelvin Zhang <kelvin.zhang@amlogic.com>,
-        Richard Weinberger <richard@nod.at>,
-        XianWei Zhao <xianwei.zhao@amlogic.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        BiChao Zheng <bichao.zheng@amlogic.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
+        with ESMTP id S242070AbiIFOT3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 10:19:29 -0400
+Received: from mail.kapsi.fi (mail.kapsi.fi [IPv6:2001:67c:1be8::25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A87916584;
+        Tue,  6 Sep 2022 06:50:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
+        s=20161220; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+        Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=5TgEbxrWFzdNuddl7K++xYPc6ZS2zajem0/NCPpGOR0=; b=Fk+UIXUtqwMVPr3cAbQUbH/+UE
+        624lP4cLpXxsWP6tHJdmMNZRMNVgifpwf0rQfhzw2NBjyEvG1qNcQZZJq9Bv6Gr2Z8bsucnCEUn0L
+        cJDqnM6fPeBtTzVqjp6Ytr1TETGsNOk60AcYhXCqc7ypknvSR5t2e07xuFTEfhvkXgYc7ApJSrr2o
+        ihGEvkq+w7NJH97nN/LPrcij2EZJ6V4EPVX5TgzOZpPlKFemSQ6Ym8pfksyd5/T/+GiDBV0MWyVOf
+        RMQY4u0Z5f2BTvj8RIKqmDPcfk+FnwNpyarqW1Z2u9ONiQTPXmeV+uoshX8KfosBL3k7YQrTWSgRX
+        1rvMJxGA==;
+Received: from 91-158-25-70.elisa-laajakaista.fi ([91.158.25.70] helo=toshino.localdomain)
+        by mail.kapsi.fi with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <cyndis@kapsi.fi>)
+        id 1oVYdW-008sZV-NY; Tue, 06 Sep 2022 16:29:06 +0300
+From:   Mikko Perttunen <cyndis@kapsi.fi>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        linux-amlogic@lists.infradead.org,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        linux-kernel@vger.kernel.org, Victor Wan <victor.wan@amlogic.com>,
-        linux-mtd@lists.infradead.org,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        devicetree@vger.kernel.org, YongHui Yu <yonghui.yu@amlogic.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-In-Reply-To: <20220906060034.2528-5-liang.yang@amlogic.com>
-References: <20220906060034.2528-1-liang.yang@amlogic.com> <20220906060034.2528-5-liang.yang@amlogic.com>
-Subject: Re: [PATCH RESEND v8 4/5] dt-bindings: nand: meson: convert txt to yaml
-Date:   Tue, 06 Sep 2022 08:40:45 -0500
-Message-Id: <1662471645.297810.360952.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Hunter <jonathanh@nvidia.com>
+Cc:     Mikko Perttunen <mperttunen@nvidia.com>,
+        Ashish Mhetre <amhetre@nvidia.com>,
+        Sameer Pujar <spujar@nvidia.com>,
+        dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/8] memory: tegra: Add API for retrieving carveout bounds
+Date:   Tue,  6 Sep 2022 16:28:16 +0300
+Message-Id: <20220906132823.2390953-2-cyndis@kapsi.fi>
+X-Mailer: git-send-email 2.37.0
+In-Reply-To: <20220906132823.2390953-1-cyndis@kapsi.fi>
+References: <20220906132823.2390953-1-cyndis@kapsi.fi>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 91.158.25.70
+X-SA-Exim-Mail-From: cyndis@kapsi.fi
+X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 06 Sep 2022 14:00:32 +0800, Liang Yang wrote:
-> convert the amlogic,meson-name.txt to amlogic,meson-nand.yaml
-> 
-> Signed-off-by: Liang Yang <liang.yang@amlogic.com>
-> ---
->  .../bindings/mtd/amlogic,meson-nand.txt       | 55 ------------
->  .../bindings/mtd/amlogic,meson-nand.yaml      | 88 +++++++++++++++++++
->  2 files changed, 88 insertions(+), 55 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
->  create mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
-> 
+From: Mikko Perttunen <mperttunen@nvidia.com>
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+On Tegra234 NVDEC firmware is loaded from a secure carveout, where it
+has been loaded by a bootloader. When booting NVDEC, we need to tell it
+the address of this firmware, which we can determine by checking the
+starting address of the carveout. As such, add an MC API to query the
+bounds of carveouts, and add related information on Tegra234.
 
-yamllint warnings/errors:
+Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
+---
+ drivers/memory/tegra/mc.c       | 23 +++++++++++++++++++++++
+ drivers/memory/tegra/tegra234.c |  5 +++++
+ include/soc/tegra/mc.h          | 11 +++++++++++
+ 3 files changed, 39 insertions(+)
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.example.dtb: nand-controller@ffe07800: Unevaluated properties are not allowed ('reg-names' was unexpected)
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
-
-doc reference errors (make refcheckdocs):
-MAINTAINERS: Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+diff --git a/drivers/memory/tegra/mc.c b/drivers/memory/tegra/mc.c
+index 2f7a58a9df1a..4650300d3ec3 100644
+--- a/drivers/memory/tegra/mc.c
++++ b/drivers/memory/tegra/mc.c
+@@ -107,6 +107,29 @@ int tegra_mc_probe_device(struct tegra_mc *mc, struct device *dev)
+ }
+ EXPORT_SYMBOL_GPL(tegra_mc_probe_device);
+ 
++int tegra_mc_get_carveout_info(struct tegra_mc *mc, unsigned int id,
++                               phys_addr_t *base, u64 *size)
++{
++	u32 offset;
++
++	if (id < 1 || id >= mc->soc->num_carveouts)
++		return -EINVAL;
++
++	if (id < 6)
++		offset = 0xc0c + 0x50 * (id - 1);
++	else
++		offset = 0x2004 + 0x50 * (id - 6);
++
++	*base = mc_ch_readl(mc, MC_BROADCAST_CHANNEL, offset + 0x0);
++	*base |= (phys_addr_t)mc_ch_readl(mc, MC_BROADCAST_CHANNEL, offset + 0x4) << 32;
++
++	if (size)
++		*size = mc_ch_readl(mc, MC_BROADCAST_CHANNEL, offset + 0x8) << 17;
++
++	return 0;
++}
++EXPORT_SYMBOL_GPL(tegra_mc_get_carveout_info);
++
+ static int tegra_mc_block_dma_common(struct tegra_mc *mc,
+ 				     const struct tegra_mc_reset *rst)
+ {
+diff --git a/drivers/memory/tegra/tegra234.c b/drivers/memory/tegra/tegra234.c
+index a9e8fd99730f..74d291d66366 100644
+--- a/drivers/memory/tegra/tegra234.c
++++ b/drivers/memory/tegra/tegra234.c
+@@ -187,4 +187,9 @@ const struct tegra_mc_soc tegra234_mc_soc = {
+ 	.ops = &tegra186_mc_ops,
+ 	.ch_intmask = 0x0000ff00,
+ 	.global_intstatus_channel_shift = 8,
++	/*
++	 * Additionally, there are lite carveouts but those are not currently
++	 * supported.
++	 */
++	.num_carveouts = 32,
+ };
+diff --git a/include/soc/tegra/mc.h b/include/soc/tegra/mc.h
+index 47ce6d434427..51a2263e1bc5 100644
+--- a/include/soc/tegra/mc.h
++++ b/include/soc/tegra/mc.h
+@@ -193,6 +193,8 @@ struct tegra_mc_soc {
+ 	unsigned int num_address_bits;
+ 	unsigned int atom_size;
+ 
++	unsigned int num_carveouts;
++
+ 	u16 client_id_mask;
+ 	u8 num_channels;
+ 
+@@ -244,6 +246,8 @@ unsigned int tegra_mc_get_emem_device_count(struct tegra_mc *mc);
+ #ifdef CONFIG_TEGRA_MC
+ struct tegra_mc *devm_tegra_memory_controller_get(struct device *dev);
+ int tegra_mc_probe_device(struct tegra_mc *mc, struct device *dev);
++int tegra_mc_get_carveout_info(struct tegra_mc *mc, unsigned int id,
++                               phys_addr_t *base, u64 *size);
+ #else
+ static inline struct tegra_mc *
+ devm_tegra_memory_controller_get(struct device *dev)
+@@ -256,6 +260,13 @@ tegra_mc_probe_device(struct tegra_mc *mc, struct device *dev)
+ {
+ 	return -ENODEV;
+ }
++
++static inline int
++tegra_mc_get_carveout_info(struct tegra_mc *mc, unsigned int id,
++                           phys_addr_t *base, u64 *size)
++{
++	return -ENODEV;
++}
+ #endif
+ 
+ #endif /* __SOC_TEGRA_MC_H__ */
+-- 
+2.37.0
 
