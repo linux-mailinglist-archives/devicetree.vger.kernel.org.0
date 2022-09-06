@@ -2,51 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D384C5AF30B
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 19:48:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AAF615AF310
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 19:49:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229515AbiIFRsz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 13:48:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40436 "EHLO
+        id S229547AbiIFRs4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 13:48:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40484 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229580AbiIFRse (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 13:48:34 -0400
-Received: from mail-oa1-x2b.google.com (mail-oa1-x2b.google.com [IPv6:2001:4860:4864:20::2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E00F7844F2
-        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 10:48:29 -0700 (PDT)
-Received: by mail-oa1-x2b.google.com with SMTP id 586e51a60fabf-127a3a39131so9214825fac.13
-        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 10:48:29 -0700 (PDT)
+        with ESMTP id S229680AbiIFRsf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 13:48:35 -0400
+Received: from mail-oo1-xc2b.google.com (mail-oo1-xc2b.google.com [IPv6:2607:f8b0:4864:20::c2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DEF6832E6
+        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 10:48:30 -0700 (PDT)
+Received: by mail-oo1-xc2b.google.com with SMTP id u5-20020a4a5705000000b0044b34c2c89cso2045060ooa.9
+        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 10:48:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date;
-        bh=V+Mmbr5yPt+hzlxY76gjjX8n/7WZsL2sfwWOuEEeXvE=;
-        b=QqhEVMt8kblJwysbyUcRBMnek45NF0eS6ZcED+xizTm/mIQ4SMEdit2M7Wm9C6ek0q
-         LM1rMLUak2/pOfeVfHYsEGe68lV++x9DJL6IUQLKoVflrokh+91pnBXt5s1Gbi8sjdvJ
-         +NCwvh+mfWPIOiR4XlhhTRxduBER5LYDLsoYzqfj+FPTQt2T4o9M6DAqyDCKPOaZe8z3
-         E41w2F+iySUatH36XEBYA004nEmRUumvQqRvaMQyWdytpcO4iHxNeCqQohWZN8JT9YqR
-         qgo30y8D0nvNd0YkezKUmHLDjkD10TcMjNp1Rjw1IvZleYn7cShcN5dTOqL+jPi8kvOI
-         QGOg==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
+        bh=ORAgmiG57p/S9ocR1iRk76VvyBsd1+DxcS7O0rlHDs0=;
+        b=U5Y4i5jx+40Cx/xgDGq5I8pG9GGoT/wBANnOxRC1QYjQtco82MIEp0iLpmvWiEueFf
+         nPthrGMsA/B5nPavWnddRw33xlMDuUwM5QayNrilaND8+mDCU6gasVa0o7X4mAKo8ksy
+         rfDrZXD6+EnNdMyZWmv6OcIj5zu0ZKEhMBw/FPiLWw2G6ERAfZg33d+jNrr2nyi/Cajp
+         K+4tLN1xPP8VQEPv1yQKSPYWAODfml+LplHFIYMPEyGterhytbVd0p7OWvoGqhZtblzy
+         wQWRBVbLhLIejlcJVHgF+DeikMwWZN81V5RGuFJATEl1BmOpqX+EIV0qGoXCvS4pospT
+         u5yg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=V+Mmbr5yPt+hzlxY76gjjX8n/7WZsL2sfwWOuEEeXvE=;
-        b=YZYIhhRUZi/BRJaX8UyCzxv2BoR+45FqW504+31+uvltOWe1JrxFX8f0fVTTrssBbA
-         KhjhCP3NqEo1bg536P0A3eEXtTcpCUURrdmNVfvkd7GOEmbGpWd2U7zqTXZLzL9Yx6X9
-         p5uIujY3c4+y7qKTPfb3+zruLViake9wXX2ZxvMgNgc0TQoxiz8lD5k33D1YJMDgpAAW
-         26pdBgxTHd0kUu4lcAyfbBiJKhOaOZcz6aMbr3fulArHTLIEgsWA3dEyFJHapsEBnXQd
-         gNI4G3pLfjrTYkZJe5VeykUyNbdp0ur7Wv3kwRm34aezNus3D5MV30Ve4NddvWvCflvH
-         T9Dg==
-X-Gm-Message-State: ACgBeo103cKjyCjgxGTUXjBCPrfVqvYWOjSazu2tr62xc72dfgc7Jo9l
-        jGCa0HJSQlFNhcZP2KYEX3k=
-X-Google-Smtp-Source: AA6agR6HtjFhOOV4l9cuIu//XrbRVuTn//iCK4t2CYBvn25ACKq2aILTOYUKNNymd0pNMDltxtxwnw==
-X-Received: by 2002:a05:6870:89a1:b0:10e:4357:45b3 with SMTP id f33-20020a05687089a100b0010e435745b3mr12123039oaq.127.1662486508233;
-        Tue, 06 Sep 2022 10:48:28 -0700 (PDT)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=ORAgmiG57p/S9ocR1iRk76VvyBsd1+DxcS7O0rlHDs0=;
+        b=0xIZxJpfEFv3D5vUw2GgrCpfAVa4a4BlxHCd66oFpWqCoy/QYXxWPuDCZVt6PrISlh
+         XCzLw428LUWHweheFhUjq6jmDS01iCjQmmxgOkIT76OxfLGViwM7rFIANSZzXOql63A2
+         mLVGvdYwZobH95ZKUpNWT70Us1+WdpjXZSjszgcSwpqjvbTM2RWUVY0tymW2aAogAAeR
+         MZUn6Yx0rtb1WKejfbDXMVPbCQUPIppYm6PtKBhTFL5UP0ueN46ntgxft4bbBAKqBtyT
+         c2+7fUJrn5yu1t6QrGw53s4Neze2m0niJGgGwiexwihrTJDBeJftZQTXDQKM5W/mE31R
+         c7Ig==
+X-Gm-Message-State: ACgBeo3g0PzDcX1LY2syDYPEdCpGYvyGvvgjOd8cWNsPNwqFaxUP0151
+        cBHxCxWDR6pCggNaIuQnP2Y=
+X-Google-Smtp-Source: AA6agR4hbHRGQOp1BJL6pGJS5Rw997lx2vRqKeDCTqregl6X9KNodLb0ILtqgU8K5/N7p21z2icjwA==
+X-Received: by 2002:a05:6820:541:b0:44a:907d:c641 with SMTP id n1-20020a056820054100b0044a907dc641mr18987260ooj.65.1662486509383;
+        Tue, 06 Sep 2022 10:48:29 -0700 (PDT)
 Received: from wintermute.localdomain (cpe-76-183-134-35.tx.res.rr.com. [76.183.134.35])
-        by smtp.gmail.com with ESMTPSA id o186-20020aca41c3000000b00344afa2b08bsm5568065oia.26.2022.09.06.10.48.26
+        by smtp.gmail.com with ESMTPSA id o186-20020aca41c3000000b00344afa2b08bsm5568065oia.26.2022.09.06.10.48.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Sep 2022 10:48:27 -0700 (PDT)
+        Tue, 06 Sep 2022 10:48:28 -0700 (PDT)
 From:   Chris Morgan <macroalpha82@gmail.com>
 To:     linux-rockchip@lists.infradead.org
 Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
@@ -56,10 +57,12 @@ Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
         robh+dt@kernel.org, daniel@ffwll.ch, airlied@linux.ie,
         heiko@sntech.de, hjc@rock-chips.com,
         Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH v2 0/5] rockchip-dsi for rk3568
-Date:   Tue,  6 Sep 2022 12:48:18 -0500
-Message-Id: <20220906174823.28561-1-macroalpha82@gmail.com>
+Subject: [PATCH v2 1/5] dt-bindings: display: rockchip-dsi: add rk3568 compatible
+Date:   Tue,  6 Sep 2022 12:48:19 -0500
+Message-Id: <20220906174823.28561-2-macroalpha82@gmail.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220906174823.28561-1-macroalpha82@gmail.com>
+References: <20220906174823.28561-1-macroalpha82@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -74,38 +77,26 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Chris Morgan <macromorgan@hotmail.com>
 
-This series adds support for the dsi and dphy controllers on the
-Rockchip RK3568. I can confirm that for the Rockchip RK3568 this
-current series DOES WORK now, but it requires rolling back clk changes
-made for the HDMI driver. If the clock changes are not rolled back, the
-image on the screen is shifted about 100 pixels to the right.
+The rk3568 uses the same dw-mipi-dsi controller as previous Rockchip
+SOCs, so add a compatible string for it.
 
-Clk changes in question:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/drivers/clk/rockchip/clk-rk3568.c?id=ff3187eabb5ce478d15b6ed62eb286756adefac3
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/drivers/clk/rockchip/clk-rk3568.c?id=6e69052f01d9131388cfcfaee929120118a267f4
+Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+---
+ .../bindings/display/rockchip/dw_mipi_dsi_rockchip.txt           | 1 +
+ 1 file changed, 1 insertion(+)
 
-Tested on an Anbernic RG503 and RG353P with clock changes rolled back,
-the hardware works correctly on both devices.
-
-Changes since RFCv1:
- - Identified cause of image shift (clock changes).
- - Noted that driver works now.
- - Added devicetree nodes for rk356x.dtsi.
-
-Chris Morgan (5):
-  dt-bindings: display: rockchip-dsi: add rk3568 compatible
-  dt-bindings: phy-rockchip-inno-dsidphy: add compatible for rk3568
-  drm/rockchip: dsi: add rk3568 support
-  phy/rockchip: inno-dsidphy: Add support for rk3568
-  arm64: dts: rockchip: Add DSI and DSI-DPHY nodes to rk356x
-
- .../display/rockchip/dw_mipi_dsi_rockchip.txt |   1 +
- .../bindings/phy/rockchip,px30-dsi-dphy.yaml  |   1 +
- arch/arm64/boot/dts/rockchip/rk356x.dtsi      |  72 +++++++
- .../gpu/drm/rockchip/dw-mipi-dsi-rockchip.c   |  51 ++++-
- .../phy/rockchip/phy-rockchip-inno-dsidphy.c  | 204 ++++++++++++++----
- 5 files changed, 281 insertions(+), 48 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/display/rockchip/dw_mipi_dsi_rockchip.txt b/Documentation/devicetree/bindings/display/rockchip/dw_mipi_dsi_rockchip.txt
+index 39792f051d2d..9a223df8530c 100644
+--- a/Documentation/devicetree/bindings/display/rockchip/dw_mipi_dsi_rockchip.txt
++++ b/Documentation/devicetree/bindings/display/rockchip/dw_mipi_dsi_rockchip.txt
+@@ -8,6 +8,7 @@ Required properties:
+ 	"rockchip,px30-mipi-dsi", "snps,dw-mipi-dsi"
+ 	"rockchip,rk3288-mipi-dsi", "snps,dw-mipi-dsi"
+ 	"rockchip,rk3399-mipi-dsi", "snps,dw-mipi-dsi"
++	"rockchip,rk3568-mipi-dsi", "snps,dw-mipi-dsi"
+ - reg: Represent the physical address range of the controller.
+ - interrupts: Represent the controller's interrupt to the CPU(s).
+ - clocks, clock-names: Phandles to the controller's pll reference
 -- 
 2.25.1
 
