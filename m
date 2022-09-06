@@ -2,196 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D1E95AE0D5
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 09:20:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2A025AE0DA
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 09:20:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238886AbiIFHUL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 03:20:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37022 "EHLO
+        id S238858AbiIFHUx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 03:20:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238859AbiIFHUG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 03:20:06 -0400
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2069.outbound.protection.outlook.com [40.107.21.69])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF5621CB22
-        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 00:20:03 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ayav1KhuX8yL92idY4U+4xI0NNFnxsDeXE2qXHbNZ9C+yCABkh0KkUuBKD2MC25v+7D2p21n6IyHSxyuRZBjJ4rGHTsoehahfOP2Y2dW2ZUVvfH+3QIS+GBaP4MN5alKw7l8BljzQsYQ5CqlVbQW8G6klYiVYO7R5OG7ufkW3CR4rUVBzjgpIEyu/D2CM1JnYhgAfHwEOdxGNTqGgnvvTCD2IEsCVNWrAm9mTwK3rE8exvyRb2LdwVF0v2drp2t2qSu2jeykCJu/HsKBaBJGaWPQMfx6WG5S4d7HphqglbPc2lvBhxH+02eNodtt/GSvKKeQiZmgOn/9MPQQEJyChA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=x6B9BF1QlWWiRXgMtCJUYrbtL0ubJMOj0IANTjnMO3Q=;
- b=EGjz7prhsMBAgxheLse7JfXcY+YOUklbIyrYQhaOFhIHe+X9PZm7mo475zShCt381YJCwrrIsOSXhHCmaz4TNg9SoiI+ycnVqJqEO4jNroVd8lYBxaKVG8oRTCsRvBBynXu1agE7IL/xpNmSxFYIisPLwf45wCCT7zbBbCQnVUWljkfvvtALjA8KBwOGvGPVdCMc04uQD+yJHXs5UphF87UumqmvJWGCzKc9K+F7el+aNM0ioCGc9Ic2b8p7lX+d2Q8kYO8ma6NBO2tAkPBXFLy/W1ftICPicr6zTJPoguyJyRDUYm7IUsZr5faI7/3qlaBy/W/ah3JUmpxTAZdL2g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=x6B9BF1QlWWiRXgMtCJUYrbtL0ubJMOj0IANTjnMO3Q=;
- b=nyxnDHq1sqv1aJqjH4TYeB5gV12Az7MeCydwo+JiB4XkDWDLa6RO8wWpNkhEFYIc9HUKZerPe1xjdqsUPte7pfFcOJcSzMBfq0634X+hpo9wavckfUe6H1YIkgEsMffQteEscMLxDuiSQr9nlp1iRFRHFiCvTSuJvJPQdG2x7/A=
-Received: from PA4PR04MB9640.eurprd04.prod.outlook.com (2603:10a6:102:261::21)
- by DB7PR04MB6011.eurprd04.prod.outlook.com (2603:10a6:10:89::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.10; Tue, 6 Sep
- 2022 07:19:57 +0000
-Received: from PA4PR04MB9640.eurprd04.prod.outlook.com
- ([fe80::25b6:d7f1:c25e:24d2]) by PA4PR04MB9640.eurprd04.prod.outlook.com
- ([fe80::25b6:d7f1:c25e:24d2%9]) with mapi id 15.20.5588.012; Tue, 6 Sep 2022
- 07:19:57 +0000
-From:   Jun Li <jun.li@nxp.com>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-CC:     "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        with ESMTP id S238846AbiIFHUw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 03:20:52 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9B9E4F1B7
+        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 00:20:49 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id k10so1401433lfm.4
+        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 00:20:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=5SiZzQ3jsxp5inXo69JQyki2t9Pq/3JOTXDE+sx+9Mo=;
+        b=sPzvD7Hy6bAykcdTBo8dqmF2y4Dzh6E4HA5SmL+5yiUvW3yQzSnd/yPYaJPgMXLGpA
+         xQUw1HkSdbqLkoYlUQtEo3pEFFCP539FpvxP6NOVVS2E+o3W4p2ZQes/x4p8iXs6cM+h
+         CDUYJ0a1XXkNV0YMko/CYuB2sB5nL9bIABKfqvxM3MILYsPdTs0uLmULyFHeB1BKrc83
+         OtMaSfzLFiXJ0SsWRs54CtcUfe8d0URDskOVBIKxvIRvl9zN2rSmaSLiOirmCEWs5y4N
+         5tl++9bJf5M7xQ0/nvE2veVNUfUvNH3IS6e5FBW44EGo2gK/bzoBL6K37A2UyKL0L3uQ
+         cMTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=5SiZzQ3jsxp5inXo69JQyki2t9Pq/3JOTXDE+sx+9Mo=;
+        b=1QJb7nMu//oV9MeiKFFZN753zZIHnrblssAlxZpoOX8Ggh6EJ7JdEXsKJPYsQlodhV
+         550HWCuaaLK4MrS/29kY4XyDbdHk7blYI/Q/8xUzOhS23i/ybnQ/oNtPlkShhNAc1J7h
+         DcO6mmMYnCUqmmnTYmIopUj2UDDP8nbdAd97vm2+gV+0RKqYSKmHLmw7fiHZ0xXKUyz1
+         Wqic6vZtKbCFmTnHezwML84uw+vEJs+Fpgg/nnhfO2PRW/76OXzyItL5yxeMj7yD/P7J
+         rv02FrvH6AKJx8MopA9bgo9fA9sIFd2gvcmk7LH9P9EAquYxg5WgskP+IYj9ZRt1xdib
+         T9BA==
+X-Gm-Message-State: ACgBeo3u2pVD/R7/vceuu1tr842lDGxF0gY39odBZu+/cPN1HUTnm3gE
+        fzfJzzajpC2OeldfE1YMYCpKvA==
+X-Google-Smtp-Source: AA6agR6ii0gwUVUWsZmlqNu0o8/iYY3SOGZORmJ8unVFiOExBClnZ/qQSXqCJsY4kKGElWZLfuTPDw==
+X-Received: by 2002:a05:6512:ba2:b0:494:6d93:e9ee with SMTP id b34-20020a0565120ba200b004946d93e9eemr12674578lfv.378.1662448848104;
+        Tue, 06 Sep 2022 00:20:48 -0700 (PDT)
+Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id d14-20020a196b0e000000b0048d1101d0d6sm1550002lfa.121.2022.09.06.00.20.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 Sep 2022 00:20:47 -0700 (PDT)
+Message-ID: <5b0317d9-16d8-bf86-3f5a-602489c9831c@linaro.org>
+Date:   Tue, 6 Sep 2022 09:20:44 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [RFC PATCH v2 1/6] Documentation: DT: Add entry for CDX
+ controller
+Content-Language: en-US
+To:     "Gupta, Nipun" <Nipun.Gupta@amd.com>,
         "robh+dt@kernel.org" <robh+dt@kernel.org>,
         "krzysztof.kozlowski+dt@linaro.org" 
         <krzysztof.kozlowski+dt@linaro.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "marex@denx.de" <marex@denx.de>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "rafael@kernel.org" <rafael@kernel.org>,
+        "eric.auger@redhat.com" <eric.auger@redhat.com>,
+        "alex.williamson@redhat.com" <alex.williamson@redhat.com>,
+        "cohuck@redhat.com" <cohuck@redhat.com>,
+        "Gupta, Puneet (DCG-ENG)" <puneet.gupta@amd.com>,
+        "song.bao.hua@hisilicon.com" <song.bao.hua@hisilicon.com>,
+        "mchehab+huawei@kernel.org" <mchehab+huawei@kernel.org>,
+        "maz@kernel.org" <maz@kernel.org>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "jeffrey.l.hugo@gmail.com" <jeffrey.l.hugo@gmail.com>,
+        "saravanak@google.com" <saravanak@google.com>,
+        "Michael.Srba@seznam.cz" <Michael.Srba@seznam.cz>,
+        "mani@kernel.org" <mani@kernel.org>,
+        "yishaih@nvidia.com" <yishaih@nvidia.com>,
+        "jgg@ziepe.ca" <jgg@ziepe.ca>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Peng Fan <peng.fan@nxp.com>,
-        "Markus.Niebel@ew.tq-group.com" <Markus.Niebel@ew.tq-group.com>,
-        "laurent.pinchart@ideasonboard.com" 
-        <laurent.pinchart@ideasonboard.com>,
-        "paul.elder@ideasonboard.com" <paul.elder@ideasonboard.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "aford173@gmail.com" <aford173@gmail.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "l.stach@pengutronix.de" <l.stach@pengutronix.de>
-Subject: RE: [PATCH] arm64: dts: imx8mp: correct usb clocks
-Thread-Topic: [PATCH] arm64: dts: imx8mp: correct usb clocks
-Thread-Index: AQHYt5NgTN2Wv3g2Q0uWAIYIi/pTZK29w6AAgAAHn6CAFEVm4A==
-Date:   Tue, 6 Sep 2022 07:19:57 +0000
-Message-ID: <PA4PR04MB9640A5B008D6D97C5F5AB7F2897E9@PA4PR04MB9640.eurprd04.prod.outlook.com>
-References: <1661328612-3932-1-git-send-email-jun.li@nxp.com>
- <20220824091044.msaa4lymgyrmektl@pengutronix.de>
- <PA4PR04MB964059A132A12DE73801C86189739@PA4PR04MB9640.eurprd04.prod.outlook.com>
-In-Reply-To: <PA4PR04MB964059A132A12DE73801C86189739@PA4PR04MB9640.eurprd04.prod.outlook.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 5d1cb028-7e4e-467b-c556-08da8fd83410
-x-ms-traffictypediagnostic: DB7PR04MB6011:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: UfFc2F6zgGkJUMdOAbvBBy2H6HZ/ZIBK7c8CsOHP9eK1iCl6OzoMRG4xEID3iO05vzJ+hkHBJgEGhBYjUE6Lk4n2E23z6jxC6xZxE33gIPriXGlsB/KdDMtf6QNa6TVw0e0mSAY+CZsqJO7jnQNa+5q5jUFSXe5b50BnsNiOEgImBJvos6eIphOi5ocDnqjD9j3AhNVsQMsFqNWnPX2cmtBTv9UbeXPvNGurcvirFUeIJa+urI1ad7a7R8u4qOkyDQyN+1kqwYVB1yZFBfVD9yIj2mgOW3z3axfFsw/+YQNKBv6s+b9THSwNsuH8aT8UWleGlKF7QzEO+Si88VjwTl+p7urctDIoeifaBhbZYX2I8MtFfLjOJkXjHtqV0mayTXgBxmBjeKcStCdJ88KjeVIjePY5N/x1jjrH1X1Gf/dzgHyzccfx5Lsf7v9o82VXSFdz3w1DKb5yaNGswJ+uxSc2Mx8IJiNcHRk8pL1k6e76VwP/4iC/iImyqlyC+HtLsrpFzY0qk37WRf2SGKuZRODtAJs9GpQdGA24MFSRP85XevHCN8V60A6FDpxJ03P6Tn/rj8UMaU4/w0X3C7eOfVlFAmoz/6VhtYHlvAJaeZFTeHBJNNLOHInMtHzQmOpDVIIIHfz6YozD27iV9Ey5B8WNv+HDK6n3FjYBIVbOiSn7ujobZWjOzjwAyF5qTJ3csr+RRV+J3jfdtWUNuaNoZhrIskuNc6ufrOZtFh6qRzEDVvPrQ7byKaM+QKQfUVOQjN/NsljacxKm2cXcJLWiLDWorgh9MnELffjgfjv1H1ff9zn2MaRISta3puRoIF5U
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9640.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(366004)(396003)(346002)(39860400002)(376002)(136003)(5660300002)(33656002)(7416002)(38070700005)(9686003)(186003)(26005)(66446008)(2906002)(66946007)(64756008)(76116006)(66556008)(8676002)(66476007)(8936002)(44832011)(4326008)(52536014)(55016003)(316002)(6916009)(54906003)(41300700001)(966005)(71200400001)(478600001)(7696005)(6506007)(53546011)(38100700002)(122000001)(83380400001)(86362001)(32563001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?AjFvHocGrTZt2tXv3bSZat/h6ahn/jM+rRMBdh0jlMG3xkQ/425CrGI0GscB?=
- =?us-ascii?Q?dZ1DgpzoHe+xaA6M5kceGiebd98vcLHoSMC+FVyOzwqRvac/ifoHdpsPIvQV?=
- =?us-ascii?Q?kMs1bYFJX90oONhwWurirw2Vrl0YlEMP06vDK9/Rokz7zEG+X8bVV+YRnpCn?=
- =?us-ascii?Q?0oaqSxxYOk+m3g40ruhJhVE/6Rf8S9MX+C8nxIi2ZeRtU2vAzmzmMrCBM15R?=
- =?us-ascii?Q?CBd2gJhfY5LgLWaZ3Ougao4XP741Jj8ugk74rFGw+vi6jcekv+Lg8isWoC5+?=
- =?us-ascii?Q?wL028fW/0TmwPQv5xAOZi0qU+kVHe4brA1aCZ2GAFPc7kD+nCYFXEfUNJtRt?=
- =?us-ascii?Q?nKZnOwIOSZQLe2Eca+6gXs9JJLLXv7urbJ8I5OkmaHeFsDZPb2lhKl35rpeD?=
- =?us-ascii?Q?Uxq0Ti2NAigGiujHxoqcyPuZkabcWSJw0VUdFUe7ICbbfdYmJsqDPaA5n5Vq?=
- =?us-ascii?Q?Cld/DwNGrK/TKrvaQu2pCVDUj5B1lzk3j39/PS/EAd23Sa/yfCWKR5Yhpfe3?=
- =?us-ascii?Q?Lv+Cwtxy/jVeIdpDRrlaFB+EVdrCMDzA5mVkkqdjsb5mOeYaP35t/hwQe3az?=
- =?us-ascii?Q?TFSxC1nEeLSNC8JB7vmsyo5mxpejPQODs1daM78IVrZ/5QkT3kPvl8XU3lcK?=
- =?us-ascii?Q?95UZmGlvcSzRRM9d+BssnBl+VhQO+d8piajVsPFv83WLXarKeZ+3H0NbKQub?=
- =?us-ascii?Q?23V0ipIrNr7SmD2YNc1h0fraCy+IHnucWQSy2piGK0+8GhfJcFZGQDEip8OS?=
- =?us-ascii?Q?kJZU6Yj3lC5r2pKBG03CyfZxmAFiDfhooUtvYFrsjZ1KUeEr/DGJv9B5beRd?=
- =?us-ascii?Q?j0XlU/HLxQdtgnLDSiQwrz6jG/ghS6cJCR9HM/Fu4zvHHgYg0+HJ6RoNzOmw?=
- =?us-ascii?Q?FnHRCk36ZxvrFIRvNQR8PoK4S+OZgX/FCdvrkXx4Eu3ao9hinopq2JsPdMSq?=
- =?us-ascii?Q?C1INdJi5gU/P9ZtzFuOeeORIc54z674WIEkbV+QDDSy75BroyXrKUzzYLqEv?=
- =?us-ascii?Q?ZcGIDFqE20rVmECFwRiEFg1TPoD8N8SiI/QY+U3PyIzyaNm9W7mSLsxuiXzJ?=
- =?us-ascii?Q?VQLnePjJuhn3+p6Tohy81RRdpUQBaNWGOeIMv4dshwgdr8BD9zSDU5fruNhp?=
- =?us-ascii?Q?oRubjmNBYFHk8qI2hPoK8+P0oH7vWxzbbFRWgngXNVar9tp34V9eu7skBybv?=
- =?us-ascii?Q?FN+uaiK/bqv53K+3inGEMYEIrPPt4kMFTmhztHgeQN82AbNkqGpzS+uM0CK0?=
- =?us-ascii?Q?TCUD6cunBCcErubSLtt0IPFoZ8Y9SSjhgaPmFt2Fi4eFUjnYf0D9LyBKAWbX?=
- =?us-ascii?Q?zO25T9d/MlgRQKIANVACDYs32vj4YcZ9zGbnJ02x14925/Zzay3v90C+qZgI?=
- =?us-ascii?Q?0lCsrEACWwGGxpPA+TIR0AxVb5IbrtIlP5cw+pCIYFpiSx+nsAOKxAIFcOFJ?=
- =?us-ascii?Q?/zvqEeKChUsjczEAHOInmbYOEufShT0V+rKB8OKHFsJjFwzlpBvfHY/VYhAD?=
- =?us-ascii?Q?FOn6XM416uWh1M2tONjxL3KTkahtCrL3gg88ysdOfzPZsyFxmAAXXfcEiV3V?=
- =?us-ascii?Q?0QstqLS0HpceIZqLWKQ=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9640.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5d1cb028-7e4e-467b-c556-08da8fd83410
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Sep 2022 07:19:57.5256
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: BKqjQmY6mEs3PbSDHAAl2NwNKLxbRZGrlCQeeqq+BTSFwSKnlIy4W6ZHo0GMYh+V
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR04MB6011
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        "kvm@vger.kernel.org" <kvm@vger.kernel.org>
+Cc:     "okaya@kernel.org" <okaya@kernel.org>,
+        "Anand, Harpreet" <harpreet.anand@amd.com>,
+        "Agarwal, Nikhil" <nikhil.agarwal@amd.com>,
+        "Simek, Michal" <michal.simek@amd.com>,
+        "git (AMD-Xilinx)" <git@amd.com>
+References: <20220803122655.100254-1-nipun.gupta@amd.com>
+ <20220817150542.483291-1-nipun.gupta@amd.com>
+ <20220817150542.483291-2-nipun.gupta@amd.com>
+ <93f080cd-e586-112f-bac8-fa2a7f69efb3@linaro.org>
+ <DM6PR12MB308211F26296F3B816F3F005E87F9@DM6PR12MB3082.namprd12.prod.outlook.com>
+ <8712e2ff-80e1-02e9-974a-c9ffcf83ffab@linaro.org>
+ <DM6PR12MB3082867B1BDCBBC9C25F560EE87E9@DM6PR12MB3082.namprd12.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <DM6PR12MB3082867B1BDCBBC9C25F560EE87E9@DM6PR12MB3082.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shawn,
+On 06/09/2022 09:03, Gupta, Nipun wrote:
+>> On 05/09/2022 16:05, Gupta, Nipun wrote:
+>>>>> +
+>>>>> +    cdxbus: cdxbus@@4000000 {
+>>>>
+>>>> Node names should be generic, so "cdx"
+>>>
+>>> Would be using bus: cdxbus@4000000.
+>>> Kindly correct me if this does not seem to be correct.
+>>
+>> I don't understand it. I asked to change cdxbus to cdx, but you said you
+>> will be using "bus" and "cdxbus"? So what exactly are you going to use?
+>> And how does it match generic node name recommendation?
+> 
+> I was also confused with the name suggestion as in one of the mail you
+> sent out later, you mentioned:
+> " Eh, too fast typing, obviously the other part of the name... node names
+> should be generic, so just "bus"."
+> 
+> That is why needed to confirm. To me now "cdx: cdx@4000000" makes sense.
+> Hope this seems correct?
 
-> -----Original Message-----
-> From: Jun Li <jun.li@nxp.com>
-> Sent: Wednesday, August 24, 2022 6:24 PM
-> To: Marco Felsch <m.felsch@pengutronix.de>
-> Cc: shawnguo@kernel.org; robh+dt@kernel.org;
-> krzysztof.kozlowski+dt@linaro.org; s.hauer@pengutronix.de;
-> kernel@pengutronix.de; festevam@gmail.com; marex@denx.de;
-> devicetree@vger.kernel.org; Peng Fan <peng.fan@nxp.com>;
-> Markus.Niebel@ew.tq-group.com; laurent.pinchart@ideasonboard.com;
-> paul.elder@ideasonboard.com; dl-linux-imx <linux-imx@nxp.com>;
-> aford173@gmail.com; linux-arm-kernel@lists.infradead.org;
-> l.stach@pengutronix.de
-> Subject: RE: [PATCH] arm64: dts: imx8mp: correct usb clocks
->=20
->=20
->=20
-> > -----Original Message-----
-> > From: Marco Felsch <m.felsch@pengutronix.de>
-> > Sent: Wednesday, August 24, 2022 5:11 PM
-> > To: Jun Li <jun.li@nxp.com>
-> > Cc: shawnguo@kernel.org; robh+dt@kernel.org;
-> > krzysztof.kozlowski+dt@linaro.org; s.hauer@pengutronix.de;
-> > kernel@pengutronix.de; festevam@gmail.com; marex@denx.de;
-> > devicetree@vger.kernel.org; Peng Fan <peng.fan@nxp.com>;
-> > Markus.Niebel@ew.tq-group.com; laurent.pinchart@ideasonboard.com;
-> > paul.elder@ideasonboard.com; dl-linux-imx <linux-imx@nxp.com>;
-> > aford173@gmail.com; linux-arm-kernel@lists.infradead.org;
-> > l.stach@pengutronix.de
-> > Subject: Re: [PATCH] arm64: dts: imx8mp: correct usb clocks
-> >
-> > Hi Li,
-> >
-> > On 22-08-24, Li Jun wrote:
-> > > After commit cf7f3f4fa9e5 ("clk: imx8mp: fix usb_root_clk parent"),
-> > > usb_root_clk is no longer for suspend clock so update dts
-> > > accordingly to use right bus clock and suspend clock.
-> >
-> > Please don't send two seperate patchsets for this topic, since they
-> > can be applied delayed. So your v2 should contain the patches from [1]
-> as well.
->=20
-> Understood, I will put all in one patch set in v2.
+If cdx is a name of some standard bus or interface (just like i2c, pci,
+can), then feel free to use "cdx". If on the other hand it is just name
+of your devices (specific to Xilinx), then more appropriate feels "bus",
+because cdx would be specific. Anyway one of these two.
 
-Since the clock part patches[1] already were accepted, I think this
-corresponding dts fix patch should be okay as it is.
-
-[1] https://lore.kernel.org/linux-arm-kernel/1661328262-3867-2-git-send-ema=
-il-jun.li@nxp.com/
-
-Thanks
-Li Jun
-
->=20
-> Thanks
-> Li Jun
-> >
-> > [1] 1661328262-3867-1-git-send-email-jun.li@nxp.com
-> >
-> > Regards,
-> >   Marco
+Best regards,
+Krzysztof
