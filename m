@@ -2,125 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 373D85AE701
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 13:56:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CC375AE707
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 13:57:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230307AbiIFL4d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 07:56:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51582 "EHLO
+        id S232967AbiIFL5t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 07:57:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52094 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230215AbiIFL4c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 07:56:32 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED9CB6F260;
-        Tue,  6 Sep 2022 04:56:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=db2zFCi0TeQzDV6buhxTlSnCtcmC9EJ7noOsn8H2ACY=; b=Pzalvoe77Xa573KE1sFZdEuKcW
-        cYoiLm9pv0/XqCBC/fXytMwSwpy7NXE9BvmPZngQpgcc8ghxw255u+3CNV/oKey4ooOYx9f/RcrXM
-        myEdLioa3ZOfkE3voCytFRnVGUQLszycTluZY99FwSYoT+44TwTMURxHFo9Hmtz7PvCM=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1oVXB1-00FkGI-Vf; Tue, 06 Sep 2022 13:55:35 +0200
-Date:   Tue, 6 Sep 2022 13:55:35 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Tao Ren <rentao.bupt@gmail.com>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Heyi Guo <guoheyi@linux.alibaba.com>,
-        Dylan Hung <dylan_hung@aspeedtech.com>,
-        Guangbin Huang <huangguangbin2@huawei.com>,
-        Liang He <windhl@126.com>, Hao Chen <chenhao288@hisilicon.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>, Tao Ren <taoren@fb.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        Florian Fainelli <f.fainelli@gmail.com>
-Subject: Re: [PATCH net-next 2/2] ARM: dts: aspeed: elbert: Enable mac3
- controller
-Message-ID: <Yxc1N1auY5jk3yJI@lunn.ch>
-References: <20220905235634.20957-1-rentao.bupt@gmail.com>
- <20220905235634.20957-3-rentao.bupt@gmail.com>
- <YxaS2mS5vwW4HuqL@lunn.ch>
- <YxalTToannPyLQpI@taoren-fedora-PC23YAB4>
+        with ESMTP id S233149AbiIFL5p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 07:57:45 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 329C273905
+        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 04:57:44 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id cu2so22765603ejb.0
+        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 04:57:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=/+p0wzFj/upkv9e1wiwyvWP1+FT9YhrV1TfR4whLT7A=;
+        b=WPj6KNJpdx4ESLURazeomIr7jVFWSOZYDwnp3ZjB0SezHdvdUickHDnsxSGgA1VqWQ
+         8dPftpgpnFr0XB7Uj16cBasmDTHGwe90H2XfLCV+/YSo/dw2p/nor0fgixin+8kYnZXK
+         JT/Z7GeeUEQQ8NWrZwRggD8Z29+Vdgn/gLLRUymV5grVbEw6K28FPJvrK2m3H+1DUryi
+         Oyg7bID4CxSu9YFBMP1oY0EgjCATJNnD0t0NGgpxrM9Rh9ZUVnT50THlikeVppp+Z4td
+         V2Sjn7ZMjpFBkJE54SuXF3VauV8IUQCo70wMpvTtZKdKRcEKoyVa210h0zM8GDnCvJ19
+         L+qA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=/+p0wzFj/upkv9e1wiwyvWP1+FT9YhrV1TfR4whLT7A=;
+        b=v98YjDckARvP01LBqL+TPgdCSM1Lt5W4rLzHkjLjkKt764LW2x7RNgGtA1yLb7Es65
+         3RO4TpDXsf41wBeoIDlU6FESrZUynLtw5hMrSNLRQCzBYP36A/Ktb3jD99v7NwPrjlB+
+         aEBiBOvCWD1N+tF34HTTMvByYF7BAL5hJ5zdTyDyGsQJ8YKsC7ufIzBzPMWz9l/W5sm/
+         6HShWuGcDoZQcXHtzfhsQGy+pj68PotBnKt3KDCJWb2UvFcQueSWxewwEldzqpvoyh+n
+         NY5BRQDWYmu765R/JQZT0NM6sJ90MY/QtvI+HSGztW6HPxnr2JD2CZg3XGnjLgrDrqPi
+         xcYQ==
+X-Gm-Message-State: ACgBeo3Oz94RZjakd/lPVYXOSumXWqChOsvoXRDgEzxlUJkbwZMkxs3b
+        uHV1kYzXzuoCV1sWfeTYr7m0pBFEOaXMty112PMlGA==
+X-Google-Smtp-Source: AA6agR4l1xB762o3DaSOS5+KZCpE8WDptXDx0mKu9slBlWSXdcqJncsF4brvN7CKb06geMDtHrbRW0K/th1I6X+zY0I=
+X-Received: by 2002:a17:907:2707:b0:741:7c18:4e76 with SMTP id
+ w7-20020a170907270700b007417c184e76mr27550306ejk.690.1662465462649; Tue, 06
+ Sep 2022 04:57:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YxalTToannPyLQpI@taoren-fedora-PC23YAB4>
+References: <YxDL+cAx9kkZRL8K@shell.armlinux.org.uk> <928ddeff-efac-920c-7bbf-dda35a942b93@linaro.org>
+ <YxDOpCq0vIlt4VNa@shell.armlinux.org.uk> <2fedff34-6a20-f1ce-a756-2bd8671fcd52@linaro.org>
+ <YxDWG5dmzErhKIXw@shell.armlinux.org.uk> <ef6c7248-1efa-5366-6bcd-900c5f10ccb2@linaro.org>
+ <YxDiBFIn6artUOZm@shell.armlinux.org.uk> <CAL_Jsq+GCKisAVA0AfE=yWJYy18mAGQ7rY1sKGYraXv-berNSg@mail.gmail.com>
+ <d3cec3d22e464fa8@bloch.sibelius.xs4all.nl> <20220902172808.GB52527-robh@kernel.org>
+ <YxcNLU+KGEolrdfT@shell.armlinux.org.uk> <d3cecee5edd24f67@bloch.sibelius.xs4all.nl>
+ <CACRpkdaSRcczEF8QZ4aO+-HDVS+n-8MXvn6ysnjJfUEabwUJ=w@mail.gmail.com> <909bb4e7-5bd2-2903-5bba-87ae37f3448a@marcan.st>
+In-Reply-To: <909bb4e7-5bd2-2903-5bba-87ae37f3448a@marcan.st>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 6 Sep 2022 13:57:31 +0200
+Message-ID: <CACRpkdajhjpMzjMooDduu0jxrp0uDNJ90VfBPpHx+P14cFfskA@mail.gmail.com>
+Subject: Re: [PATCH 1/6] dt-bindings: mfd: add binding for Apple Mac System
+ Management Controller
+To:     Hector Martin <marcan@marcan.st>
+Cc:     Mark Kettenis <mark.kettenis@xs4all.nl>,
+        "Russell King (Oracle)" <linux@armlinux.org.uk>, robh@kernel.org,
+        krzysztof.kozlowski@linaro.org, arnd@arndb.de, lee@kernel.org,
+        alyssa@rosenzweig.io, asahi@lists.linux.dev, brgl@bgdev.pl,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+        sven@svenpeter.dev, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 05, 2022 at 06:41:33PM -0700, Tao Ren wrote:
-> Hi Andrew,
-> 
-> On Tue, Sep 06, 2022 at 02:22:50AM +0200, Andrew Lunn wrote:
-> > On Mon, Sep 05, 2022 at 04:56:34PM -0700, rentao.bupt@gmail.com wrote:
-> > > From: Tao Ren <rentao.bupt@gmail.com>
-> > > 
-> > > Enable mac3 controller in Elbert dts: Elbert MAC3 is connected to the
-> > > onboard switch directly (fixed link).
-> > 
-> > What is the switch? Could you also add a DT node for it?
-> > 
-> > > 
-> > > Signed-off-by: Tao Ren <rentao.bupt@gmail.com>
-> > > ---
-> > >  arch/arm/boot/dts/aspeed-bmc-facebook-elbert.dts | 11 +++++++++++
-> > >  1 file changed, 11 insertions(+)
-> > > 
-> > > diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-elbert.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-elbert.dts
-> > > index 27b43fe099f1..52cb617783ac 100644
-> > > --- a/arch/arm/boot/dts/aspeed-bmc-facebook-elbert.dts
-> > > +++ b/arch/arm/boot/dts/aspeed-bmc-facebook-elbert.dts
-> > > @@ -183,3 +183,14 @@ imux31: i2c@7 {
-> > >  &i2c11 {
-> > >  	status = "okay";
-> > >  };
-> > > +
-> > > +&mac3 {
-> > > +	status = "okay";
-> > > +	phy-mode = "rgmii";
-> > 
-> > 'rgmii' is suspicious, though not necessarily wrong. This value is
-> > normally passed to the PHY, so the PHY inserts the RGMII delay. You
-> > however don't have a PHY. So i assume the switch is inserting the
-> > delay? Again, being able to see the DT properties for the switch would
-> > be useful.
-> > 
-> >    Andrew
-> 
-> Thank you for the quick review!
-> 
-> The BMC mac3 is connected to BCM53134P's IMP_RGMII port, and there is no
-> PHY between BMC MAC and BCM53134P. BCM53134P loads configurations from
-> its EEPROM when the chip is powered.
+On Tue, Sep 6, 2022 at 1:36 PM Hector Martin <marcan@marcan.st> wrote:
+> On 06/09/2022 20.22, Linus Walleij wrote:
+> > On Tue, Sep 6, 2022 at 11:31 AM Mark Kettenis <mark.kettenis@xs4all.nl> wrote:
+> >
+> >> Another argument for having sub-nodes is that the firmware actually
+> >> exposes *two* GPIO controllers.  For now we only support the "master"
+> >> PMU GPIOs, but there also is a "slave" PMU GPIO controller that uses a
+> >> separate set of SMC "keys".  We currently don't need any of the pins
+> >> on the "slave", so we don't expose it in the DT yet.
+> >
+> > That sounds backward, like we don't expose device X as DT node
+> > because $OS doesn't use it yet. DT should just expose (by nodes or
+> > other ways) all hardware that exist or at least all hardware we know
+> > about no matter what $OS is using.
+>
+> How so? The are piles and piles of unused hardware not exposed in the
+> DT, and piles and piles of hardware that will be used but we haven't
+> figured out how to do it yet, so it's not exposed. For example, we know
+> there are like 8 or so UARTs, but we don't define them in the DT because
+> they are not connected to anything on any existing device and we don't
+> need them. Apple does the same thing in their DTs (only used hardware is
+> defined).
+>
+> I don't really see the point of exposing a GPIO controller when we don't
+> actually do anything with the pins yet, and might never do so. Having
+> drivers bind and stay unused just increases the amount of code running
+> without any ultimate purpose, so why do it? It's not like any other OS
+> would use the hardware either - GPIOs are only useful if they are
+> referenced in the DT for something, and we don't have anything that
+> would reference these.
 
-So i assume you have the switch RGMII port doing the delays. That is
-fine.
+This comes from the FDT background in OpenFirmware, and there is
+definitely a timeline perspective (also called "waterfall model") in that
+line of thinking: a DT is written that describes the hardware and flashed
+into the BIOS and never changed, then the operating system is
+implemented at a later point. This is how e.g. the PC ACPI BIOS tables
+are also thinking about themselves.
 
-> Could you please point me an example showing how to describe the switch in
-> dts? Anyhow I will need to improve the patch description and comments in
-> v2.
+Of course the world does not work like that, but as a standard process
+DT and ACPI works with the same ambition as any such process: slowly and
+impersonal, like the planets, or the plants.
 
-It looks like drivers/net/dsa/b53 does not support this particular
-switch. You could consider extending the driver. See
+The ambition that a DT should always remain backward compatible
+comes from the same historical root and reasoning.
 
-Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
+Any agile development or (heh) hardware discovers through reverse
+engineering will of course drive a truck through that line of thinking.
 
-for documentation of the binding.
+Realistically, use the same approach as with everything else, I like the
+IETF motto "rough consensus and running code", any ambition taken too
+far will just stifle development. So I'd say make an honest effort to
+resonably describe the nodes we see will be useful in the foreseeable
+future.
 
-    Andrew
+Yours,
+Linus Walleij
