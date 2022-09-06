@@ -2,126 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03F685AE36F
+	by mail.lfdr.de (Postfix) with ESMTP id BFE935AE371
 	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 10:50:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239373AbiIFIt0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 04:49:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39708 "EHLO
+        id S239260AbiIFItZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 04:49:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238783AbiIFIsI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 04:48:08 -0400
-Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B02179638;
-        Tue,  6 Sep 2022 01:45:34 -0700 (PDT)
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id 9A9F61C0001; Tue,  6 Sep 2022 10:45:31 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
-        t=1662453931;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=8SHIU3mW9MXIg4heWeGX4mWOogF29zRAR22i6C80XFw=;
-        b=ZYECbAe1b3KFoW1tl2/Ad23VJ0NnF/bvOG92+0pXf7r6u1ejIBgwWw0KFkmUlvQIucezWt
-        e4ogmA5P73EnQG4c5ywuDp1E6zq/kTJxgJ0uTD8QSUS217kB8sBJ/gJsRlhwtjyyBtGVID
-        EiD45S3UohMN5Yv3Ar3fqrCvxvRlwlo=
-Date:   Tue, 6 Sep 2022 10:45:31 +0200
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Martin Kepplinger <martin.kepplinger@puri.sm>
-Cc:     festevam@gmail.com, shawnguo@kernel.org,
-        devicetree@vger.kernel.org, kernel@pengutronix.de, kernel@puri.sm,
-        krzk@kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-imx@nxp.com, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org, robh@kernel.org,
-        Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
-Subject: Re: [PATCH v2 2/6] arm64: dts: imx8mq-librem5: add RGB pwm
- notification leds
-Message-ID: <20220906084531.GA29911@duo.ucw.cz>
-References: <20220902084216.1259202-1-martin.kepplinger@puri.sm>
- <20220902084216.1259202-3-martin.kepplinger@puri.sm>
+        with ESMTP id S239617AbiIFIsr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 04:48:47 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09FED7A52B
+        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 01:46:05 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id t7so9303465wrm.10
+        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 01:46:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=Odm1frpHPsrLRAe7/u7i98rAPlfDwtj9Yxie2DmtS4M=;
+        b=hVCnTlqjhczb0RvxNzP+8m1HDiYzK8xk6T/cjsluF6cy4nTb8pvNROcyah5EbsJ+R5
+         mkAI2kqII8zS+WLiyvoWGUR9sjjN8SR43IBIz3Fj2G0GXQOnFYFlsfyTxqQiyeRfMwqT
+         Ji1ubHz2AfaucLoqFnDGGw1BIXGvV9Cz+/PT1uw/zhhk1RSHN3y8MrLls4z0TC4ykBy5
+         kWvYnHpAANsNtok0k89zOlidk8rN3OEMKHtlMM35h9nbEmT6MWS1xKfplwnZy3NgEZMe
+         hmBPwVbGHuLU+VAu/UzBxtZbMF/r2sr9/bFCJ6up20jaHc4OoaUru0zSSkm3R5Ryz1fE
+         IR2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=Odm1frpHPsrLRAe7/u7i98rAPlfDwtj9Yxie2DmtS4M=;
+        b=mijdwyxWfc4hy+nZWQXqe2nhr78YBKWsmgvceyTSDXqCjcoE8bF6edZuF2p/WhQCOd
+         v627ey2oXcSzMcMOHtUz+hF5XRvTbA31HDImGcFUb60u6vfCMXjdK+AIo4vdLutpbr2W
+         wMc0CRYRBYSZqYWjboyvuAy02UAVImhnd4y6I206cQmrVKEIUwQtDysmT2CEVilNH99f
+         0auTtQHNgm480ucr61YnvjaKZOE9Sv4vOxehqRRTtmYdMjcwYdoWusfAPK0xixgtwCrQ
+         OXFZnw4Z1FhbuGCa+C+f5AwHLDklqRW3H6421sq0/7N3dFavLliIBIaI52O2PMMmRK9W
+         p+BQ==
+X-Gm-Message-State: ACgBeo2xTz6hd5tsQKsbeq3ylrTk07L/IYnyIBu5Lr4xwpihJlajQPsC
+        7/YHeSxrNTy25QDKoHsjwo/zNg==
+X-Google-Smtp-Source: AA6agR5gtPQIV/66kXeeuRBLEkMRihbEDAybdp29TUCUCXHlUiY9DPvVWlTWEI/FKuAAiZPH0IzfDw==
+X-Received: by 2002:adf:e4ca:0:b0:228:d8b7:48a7 with SMTP id v10-20020adfe4ca000000b00228d8b748a7mr1216182wrm.300.1662453963537;
+        Tue, 06 Sep 2022 01:46:03 -0700 (PDT)
+Received: from linaro.org ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id l20-20020a05600c089400b003a30fbde91dsm19226259wmp.20.2022.09.06.01.46.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Sep 2022 01:46:02 -0700 (PDT)
+Date:   Tue, 6 Sep 2022 11:46:01 +0300
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Amol Maheshwari <amahesh@qti.qualcomm.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        David Heidelberg <david@ixit.cz>
+Subject: Re: [PATCH v7 1/2] dt-bindings: misc: fastrpc convert bindings to
+ yaml
+Message-ID: <YxcIyRadKQN+BmRe@linaro.org>
+References: <20220905144554.1772073-1-abel.vesa@linaro.org>
+ <3649a134-0ea7-b67c-8b5a-2971f090446c@linaro.org>
+ <YxcFB4lEu16SXOyl@linaro.org>
+ <2ffe1ad9-bce9-ff4c-f6f2-6473f4939a52@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="tKW2IUtsqtDRztdT"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220902084216.1259202-3-martin.kepplinger@puri.sm>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <2ffe1ad9-bce9-ff4c-f6f2-6473f4939a52@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 22-09-06 10:36:14, Krzysztof Kozlowski wrote:
+> On 06/09/2022 10:29, Abel Vesa wrote:
+> > On 22-09-06 08:45:22, Krzysztof Kozlowski wrote:
+> >> On 05/09/2022 16:45, Abel Vesa wrote:
+> >>> Convert Qualcomm FastRPC bindings to yaml format, so that we could validate
+> >>> dt-entries correctly and any future additions can go into yaml format.
+> >>>
+> >>> Use compute-cb@ subnodes instead of just cb@.
+> >>>
+> >>> Also add qcom,non-secure-domain, qcom,glink-channels and
+> >>> qcom,smd-channels missing properties to make sure dtbs_check doesn't
+> >>> fail right off the bat.
+> >>
+> >> qcom,non-secure-domain is in original binding, so I don't understand why
+> >> it is being "added".
+> >>
+> > 
+> > Yeah, my bad, I should've added this line to the changes since v4.
+> > 
+> >>>
+> >>> Co-developed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> >>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> >>> Co-developed-by: David Heidelberg <david@ixit.cz>
+> >>> Signed-off-by: David Heidelberg <david@ixit.cz>
+> >>> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> >>> ---
+> >>>
+> >>> Changes since v6:
+> >>>  * renamed the parent node name in the example from smd-edge to glink-edge
+> >>>
+> >>>  .../devicetree/bindings/misc/qcom,fastrpc.txt |  88 -------------
+> >>>  .../bindings/misc/qcom,fastrpc.yaml           | 118 ++++++++++++++++++
+> >>
+> >> As you can see in Rob's bot report - the patchset introduces errors and
+> >> is not bisectable.
+> > 
+> > Please note that Rob's bot report is for v6.
+> 
+> I see report as a reply to this patch, so for v7. Why do you think it is v6?
 
---tKW2IUtsqtDRztdT
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Oh, didn't see Rob's bot reply to v7 before.
 
-Hi!
+> 
+> > 
+> > v7 fixes the errors reported, by using glink-edge instead of smd-edge.
+> > 
+> > Looking at all QCOM SoCs that have fastrpc node in devicetree, they all
+> > seem to be using glink-edge.
+> 
+> I was not talking about these errors (they were separate issue). I am
+> talking about wrong path error.
+> 
 
-> From: Guido G=FCnther <agx@sigxcpu.org>
->=20
-> Describe the RGB notification leds on the Librem 5 phone.
-> Use the common defines so we're sure to adhere to the common patterns,
-> use predefined led colors and functions so we're being warned in case
-> of deprecations.
+Yes, got it now. Will resend.
 
-I'd like LED lists to be cc-ed on patches like this, so that we can
-keep userland API consistent.
+> > 
+> >>
+> >> You also need to fix qcom,glink-edge.yaml
+> >>
+> > 
+> > I don't see why, with the changes I made in v7, there are no errors
+> > anymore.
+> 
+> There are, but not from tooling. The error is wrong path. It should be
+> converted to proper schema $ref.
 
-In particular, RGB LED is very common feature on the phones, and it
-would be good to have it consistent accross them. Can you take a look
-at Documentation/leds/well-known-leds.txt, decide if your current API
-is suitable, and update the file so that we get the consistency?
+Sure. Will do.
 
-Thanks,
-								Pavel
+Thanks!
 
-> +	led-controller {
-> +		compatible =3D "pwm-leds";
-> +
-> +		led-0 {
-> +			function =3D LED_FUNCTION_STATUS;
-> +			color =3D <LED_COLOR_ID_BLUE>;
-> +			max-brightness =3D <248>;
-> +			pwms =3D <&pwm2 0 50000 0>;
-> +		};
-> +
-> +		led-1 {
-> +			function =3D LED_FUNCTION_STATUS;
-> +			color =3D <LED_COLOR_ID_GREEN>;
-> +			max-brightness =3D <248>;
-> +			pwms =3D <&pwm4 0 50000 0>;
-> +		};
-> +
-> +		led-2 {
-> +			function =3D LED_FUNCTION_STATUS;
-> +			color =3D <LED_COLOR_ID_RED>;
-> +			max-brightness =3D <248>;
-> +			pwms =3D <&pwm3 0 50000 0>;
-> +		};
-> +	};
-> +
->  	reg_aud_1v8: regulator-audio-1v8 {
->  		compatible =3D "regulator-fixed";
->  		pinctrl-names =3D "default";
-> --=20
-> 2.30.2
-
---=20
-People of Russia, stop Putin before his war on Ukraine escalates.
-
---tKW2IUtsqtDRztdT
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCYxcIqwAKCRAw5/Bqldv6
-8lCXAJ4x2g8SJqp5mrj7kCc6IKN20hswnwCfUZFTxFlQgSz8OdLdLfwln3PRm70=
-=EuwN
------END PGP SIGNATURE-----
-
---tKW2IUtsqtDRztdT--
+> 
+> Best regards,
+> Krzysztof
