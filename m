@@ -2,181 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DA165AF5DF
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 22:29:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F7F85AF684
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 23:03:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230264AbiIFU3h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 16:29:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51730 "EHLO
+        id S229588AbiIFVDb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 17:03:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230474AbiIFU33 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 16:29:29 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AECBC6A;
-        Tue,  6 Sep 2022 13:29:24 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id fg1so3746707ejc.2;
-        Tue, 06 Sep 2022 13:29:23 -0700 (PDT)
+        with ESMTP id S229461AbiIFVD3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 17:03:29 -0400
+Received: from mail-oa1-x2f.google.com (mail-oa1-x2f.google.com [IPv6:2001:4860:4864:20::2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EF04A9252
+        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 14:03:29 -0700 (PDT)
+Received: by mail-oa1-x2f.google.com with SMTP id 586e51a60fabf-11ee4649dfcso31357546fac.1
+        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 14:03:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=XVGUqqzM3n2D/4jJV0ZKcJTbVHjL4eVdejQAA4KKYRk=;
-        b=H7ZInpF2UhWzzqrCBfmLLea7RMaRc0IsqTMdPjIoCV1dXteLuEZBPlQdCtrM6GRXoR
-         z5SBRgeL0CsNRhmwTOlQLCTOluaJwA9GbW9p+eMbx3M4UdIS2eNmqyA9acjEis1earyB
-         zdzagIbpXgK4GubL47JJjwenXNMMK2GmLT+RzZTqADNemTR9KVZQV0SnXZFH4uTeUSit
-         kF50jBT/hTurNyat3APUOfcRLe8s3tFloDtyzmMKuusTxds7H32K89qYfhzsLsth3+hT
-         T+umwiaem8KGg4A7Qgb3pFYsTU3xKRBPr+JyQnwVUCL/dECBqxqIHc07rFvExPTiHVBe
-         owxg==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=8OCqte8bw957ToiqfHE6kwSsjH6IEbLsFmDroA2WG2A=;
+        b=eSokP+nKzU/ij599hqlrzGIkFlJ4jKVnpx64U9jIUH1aGiGSpy70B/qDKyE71iOacZ
+         oXD/Q/UrIFciu1vKVUho3LHzveEsFOyuTE6BKJUKlRkRtH/HBlyyqVHgfy9uDgQqGi4m
+         SuK04hmtWV4PwOoJ224OkNOCKxQwo0mm3G7G+C45XLVinqrFNR4UoMILjt575Z+hr6WS
+         oRSqvHANufHC8kpPu0XKaocy5uKboeLf7FWOwfXsoGmRLmBWbrkxLELUn1VzWXpQy8Gs
+         Um4QH+0rVMRYc7jXpUCemtq/uJa1E5Wz1LIwptJ6gaXyKc721SasXqoGyzay1VLVSm6b
+         OcHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=XVGUqqzM3n2D/4jJV0ZKcJTbVHjL4eVdejQAA4KKYRk=;
-        b=xiOBqkm51MrH45GHRZZ4kkErrRuSeBSNgiZLK7iDyBF1fNNFrZ+n0S36WbLcZKT3wU
-         qGzRq258ccohVfXWoJZUKbM9Ig+kzETDy8mpefuzfpwp1MUCdlolg29qGH4sq63eLq+l
-         9pBIUcKgJO9rBVdm4TiZCrxHPquXXrYr5jm6SuODD6I94ej65tW1nPtBB1FxVfIBcM6h
-         vAM1NOPtfW/N2M/eFcNd1IidlHnNPvHl2NeD4VHlyTtxCiXSGB8nK0lT76Ey4Gmz9G85
-         6GOYUrfKKtgb5AS9bIy1kOsF8vte/vm+tLXTqKEwY4nU9i/oA0G0fHflCwuClDI3Wm87
-         ODRQ==
-X-Gm-Message-State: ACgBeo2kohxwCJa5tHJIXSdw1ZOfkjOgUtBaM/AFNse7XZSoLT4PG+yg
-        p8MJJ1E07ODYDOSACr59jpY=
-X-Google-Smtp-Source: AA6agR5FzHvOY7Bnao9g05Gz0yuvtXm27oREQpQ1b11WFGKhTmMQYjJTsyqae2G6XuQedGzvSAP07A==
-X-Received: by 2002:a17:906:ef8c:b0:73d:db10:8825 with SMTP id ze12-20020a170906ef8c00b0073ddb108825mr139433ejb.445.1662496162405;
-        Tue, 06 Sep 2022 13:29:22 -0700 (PDT)
-Received: from kista.localnet (82-149-1-172.dynamic.telemach.net. [82.149.1.172])
-        by smtp.gmail.com with ESMTPSA id da8-20020a056402176800b004477c582ffdsm5585194edb.80.2022.09.06.13.29.20
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=8OCqte8bw957ToiqfHE6kwSsjH6IEbLsFmDroA2WG2A=;
+        b=3P7+xVyvqCW66Mvscc7KN21wq5QIQXat2LryNOCkk2lMzbfpQCCkOucFGtc8K7n0zk
+         3YXTkCGfWeO2tsUC1BfoeXYc6Lr4jCXt3QA93SVpTJAqfkrLVIcaOg6+rK/v7MtIRJpG
+         u+zyZ6Rq81AV4J1v7JGYQfYDqvZ+PbvuVlBmkQ3y3D8LaFDk2KzPtyCtYJLSHobjH7rw
+         NCEo2PsGQsZ4Ho1y/Ix6v/E/n3dP6fXZPyruHfbmQIDwg0aDiy5wb1TJz7dCgaN443gW
+         9LFGf1og3nAwdmVJTrL3RHss6OT89jj7zLSkd0JbQg9i0Mi7z29afQIcdKpCexf2W6W7
+         s2zw==
+X-Gm-Message-State: ACgBeo1++iKPphzvkPLoJNZkJO2JepsdodMGaT/xx/hQ/s1QP4Iu98MN
+        BTnqhzDkjhK97I1LzC7o9gAAwdML8O8=
+X-Google-Smtp-Source: AA6agR5w8cGnkn6eCjVICzIQp4KTFqMB9m0pJn4kysQNnpJuNnnAtW8f49JGwBgZNaWv2kGFXKgrzQ==
+X-Received: by 2002:a54:4e8d:0:b0:32e:aa9e:6c50 with SMTP id c13-20020a544e8d000000b0032eaa9e6c50mr116111oiy.73.1662498208089;
+        Tue, 06 Sep 2022 14:03:28 -0700 (PDT)
+Received: from wintermute.localdomain (cpe-76-183-134-35.tx.res.rr.com. [76.183.134.35])
+        by smtp.gmail.com with ESMTPSA id t8-20020a4ad0a8000000b004357ccfc8bfsm4482846oor.7.2022.09.06.14.03.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Sep 2022 13:29:21 -0700 (PDT)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     samuel@sholland.org, Palmer Dabbelt <palmer@dabbelt.com>
-Cc:     wens@csie.org, linux-sunxi@lists.linux.dev,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        aou@eecs.berkeley.edu, linux-riscv@lists.infradead.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        samuel@sholland.org
-Subject: Re: Re: [PATCH 00/12] riscv: Allwinner D1 platform support
-Date:   Tue, 06 Sep 2022 22:29:20 +0200
-Message-ID: <7423117.EvYhyI6sBW@kista>
-In-Reply-To: <mhng-d98d3324-5f4b-4cb0-a116-522b124dcdea@palmer-ri-x1c9>
-References: <mhng-d98d3324-5f4b-4cb0-a116-522b124dcdea@palmer-ri-x1c9>
+        Tue, 06 Sep 2022 14:03:27 -0700 (PDT)
+From:   Chris Morgan <macroalpha82@gmail.com>
+To:     devicetree@vger.kernel.org
+Cc:     linux-rockchip@lists.infradead.org, heiko@sntech.de,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        pgwipeout@gmail.com, cphealy@gmail.com,
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH v3 0/3] Add Anbernic RG353P and RG503
+Date:   Tue,  6 Sep 2022 16:03:21 -0500
+Message-Id: <20220906210324.28986-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne =C4=8Detrtek, 01. september 2022 ob 20:10:13 CEST je Palmer Dabbelt nap=
-isal(a):
-> On Sun, 14 Aug 2022 22:08:03 PDT (-0700), samuel@sholland.org wrote:
-> > This series adds the Kconfig/defconfig plumbing and devicetrees for a
-> > range of Allwinner D1-based boards. Many features are already enabled,
-> > including USB, Ethernet, and WiFi.
-> >=20
-> > The SoC devicetree uses bindings from the following series which have
-> > not yet been merged:
-> >=20
-> > - SRAM controller:
-> >   https://lore.kernel.org/lkml/20220815041248.53268-1-samuel@sholland.o=
-rg/
-> >=20
-> > - NVMEM cell bits property change:
-> >   https://lore.kernel.org/lkml/20220814173656.11856-1-samuel@sholland.o=
-rg/
-> >=20
-> > - In-package LDO regulators:
-> >   https://lore.kernel.org/lkml/20220815043436.20170-1-samuel@sholland.o=
-rg/
-> >=20
-> > All three of these are required to set the correct I/O domain voltages
-> > in the pin controller, which I would consider important to have in the
-> > initial version of the devicetree.
-> >=20
-> > The SoC devicetree does contain one small hack to avoid a dependency on
-> > the audio codec binding, since that is not ready yet: the codec node
-> > uses a bare "simple-mfd", "syscon" compatible.
-> >=20
-> > Samuel Holland (12):
-> >   MAINTAINERS: Match the sun20i family of Allwinner SoCs
-> >   dt-bindings: riscv: Add T-HEAD C906 and C910 compatibles
-> >   dt-bindings: vendor-prefixes: Add Allwinner D1 board vendors
-> >   dt-bindings: riscv: Add Allwinner D1 board compatibles
-> >   riscv: Add the Allwinner SoC family Kconfig option
-> >   riscv: dts: allwinner: Add the D1 SoC base devicetree
-> >   riscv: dts: allwinner: Add Allwinner D1 Nezha devicetree
-> >   riscv: dts: allwinner: Add Sipeed Lichee RV devicetrees
-> >   riscv: dts: allwinner: Add MangoPi MQ Pro devicetree
-> >   riscv: dts: allwinner: Add Dongshan Nezha STU devicetree
-> >   riscv: dts: allwinner: Add ClockworkPi and DevTerm devicetrees
-> >   riscv: defconfig: Enable the Allwinner D1 platform and drivers
-> > =20
-> >  .../devicetree/bindings/riscv/cpus.yaml       |   2 +
-> >  .../devicetree/bindings/riscv/sunxi.yaml      |  64 ++
-> >  .../devicetree/bindings/vendor-prefixes.yaml  |   4 +
-> >  MAINTAINERS                                   |   2 +-
-> >  arch/riscv/Kconfig.socs                       |   9 +
-> >  arch/riscv/boot/dts/Makefile                  |   1 +
-> >  arch/riscv/boot/dts/allwinner/Makefile        |  10 +
-> >  .../allwinner/sun20i-d1-clockworkpi-v3.14.dts | 242 +++++
-> >  .../sun20i-d1-common-regulators.dtsi          |  51 +
-> >  .../dts/allwinner/sun20i-d1-devterm-v3.14.dts |  37 +
-> >  .../sun20i-d1-dongshan-nezha-stu.dts          | 114 +++
-> >  .../sun20i-d1-lichee-rv-86-panel-480p.dts     |  29 +
-> >  .../sun20i-d1-lichee-rv-86-panel-720p.dts     |  10 +
-> >  .../sun20i-d1-lichee-rv-86-panel.dtsi         |  92 ++
-> >  .../allwinner/sun20i-d1-lichee-rv-dock.dts    |  74 ++
-> >  .../dts/allwinner/sun20i-d1-lichee-rv.dts     |  84 ++
-> >  .../allwinner/sun20i-d1-mangopi-mq-pro.dts    | 128 +++
-> >  .../boot/dts/allwinner/sun20i-d1-nezha.dts    | 171 ++++
-> >  arch/riscv/boot/dts/allwinner/sun20i-d1.dtsi  | 900 ++++++++++++++++++
-> >  arch/riscv/configs/defconfig                  |  23 +-
-> >  20 files changed, 2045 insertions(+), 2 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/riscv/sunxi.yaml
-> >  create mode 100644 arch/riscv/boot/dts/allwinner/Makefile
-> >  create mode 100644
-> >  arch/riscv/boot/dts/allwinner/sun20i-d1-clockworkpi-v3.14.dts create
-> >  mode 100644
-> >  arch/riscv/boot/dts/allwinner/sun20i-d1-common-regulators.dtsi create
-> >  mode 100644 arch/riscv/boot/dts/allwinner/sun20i-d1-devterm-v3.14.dts
-> >  create mode 100644
-> >  arch/riscv/boot/dts/allwinner/sun20i-d1-dongshan-nezha-stu.dts create
-> >  mode 100644
-> >  arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-86-panel-480p.dts
-> >  create mode 100644
-> >  arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-86-panel-720p.dts
-> >  create mode 100644
-> >  arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-86-panel.dtsi create
-> >  mode 100644 arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-dock.dts
-> >  create mode 100644 arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv.d=
-ts
-> >  create mode 100644
-> >  arch/riscv/boot/dts/allwinner/sun20i-d1-mangopi-mq-pro.dts create mode
-> >  100644 arch/riscv/boot/dts/allwinner/sun20i-d1-nezha.dts create mode
-> >  100644 arch/riscv/boot/dts/allwinner/sun20i-d1.dtsi
->=20
-> I'm assuming these are aimed at the RISC-V tree?  I'm generally OK with
-> that, though the DT folks have pointed out a handful of issues that look
-> pretty reasonable to me.
+From: Chris Morgan <macromorgan@hotmail.com>
 
-DT changes for Allwinner ARM SoCs go trough sunxi tree. Should this be hand=
-led=20
-differently for RISC-V?
+Add the devicetrees for the Anbernic RG353P and RG503. This enables
+all the hardware that is currently supported via mainline Linux.
+The remaining hardware (for both devices) includes the display panel
+and the battery. The RG353P also requires drivers to be written and
+mainlined for the touchscreen.
 
-Best regards,
-Jernej
+Changes since V2:
+ - Renamed buttons to be consistent with their externally labelled
+   function. Internal labels (such as sw11) would not allow for reuse
+   of as many buttons in the rgxx3.dtsi tree.
+ - Removed pinctrl for LCD related functions. These will be re-added
+   when the panel drivers are ready.
+ - Changed name of cw2015@62 to power-monitor@62 to keep it generic.
 
->=20
-> I can't find a v2, not sure if I missed it.  No rush on my end, just
-> want to make sure I'm not dropping the ball on anything.
->=20
-> Thanks!
+Changes since V1:
+ - Corrected node names to always have only dashes (no underscores),
+   except for ones that require hard-coded names (the rk817 PMIC).
+ - Corrected all node aliases to always have only underscores (no
+   dashes).
+ - Appended "regulator" to all the regulator node names, except ones
+   that require hard-coded names (the rk817 PMIC).
+ - Corrected name of RG353P. Previously was called RG353.
+ - Changed name of sound node from rk817-sound to just sound.
+ - Changed name of gpio-keys to gpio-keys-control and removed volume
+   buttons.
+ - Added new node of gpio-keys-vol and added volume buttons. This
+   is so we can do autorepeat on these two buttons. Note that buttons
+   under gpio-keys-control remain labelled in ascending order for the
+   GPIO in use.
+ - Added note to adc-keys node that we deviate from the BSP kernel to
+   comply with Linux input guidelines regarding gamepad menu buttons.
+ - Added note to sound node that audio is reversed for both speakers
+   and headphones.
+ - Added additional hardware details to commit message for devicetrees.
 
+Chris Morgan (3):
+  dt-bindings: vendor-prefixes: add Anbernic
+  dt-bindings: arm: rockchip: Add Anbernic RG353P and RG503
+  arm64: dts: rockchip: add Anbernic RG353P and RG503
+
+ .../devicetree/bindings/arm/rockchip.yaml     |  10 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   2 +
+ .../dts/rockchip/rk3566-anbernic-rg353p.dts   |  94 ++
+ .../dts/rockchip/rk3566-anbernic-rg503.dts    |  87 ++
+ .../dts/rockchip/rk3566-anbernic-rgxx3.dtsi   | 831 ++++++++++++++++++
+ 6 files changed, 1026 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353p.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg503.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-anbernic-rgxx3.dtsi
+
+-- 
+2.25.1
 
