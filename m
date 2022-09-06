@@ -2,164 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 696455AF49D
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 21:42:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A0855AF571
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 22:07:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229965AbiIFTl0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 15:41:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51644 "EHLO
+        id S230333AbiIFUH4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 16:07:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57906 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229955AbiIFTlZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 15:41:25 -0400
-Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42A0780E88
-        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 12:41:23 -0700 (PDT)
-Received: by mail-yb1-xb33.google.com with SMTP id 130so12802176ybz.9
-        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 12:41:23 -0700 (PDT)
+        with ESMTP id S231247AbiIFUHP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 16:07:15 -0400
+Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 493FFBB699
+        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 13:02:55 -0700 (PDT)
+Received: by mail-ed1-x544.google.com with SMTP id r4so16581171edi.8
+        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 13:02:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:to:subject:message-id:date:from:reply-to
          :mime-version:from:to:cc:subject:date;
-        bh=snU6sHLVFuhFuegCz2LY5uuGVktWfNxhucOSPu7x3aQ=;
-        b=wHBp6mR5w+Xd1tEiqooTyS8Ep4Ay3sazBcUaioh7iqJpCe5zfFGywdqLdgknSZqsJK
-         4s75HteCxyyHfSMbOnQtS2qWDl6/VXfV9T+suuhOYo+rtZf5Wm3TdB68SYCL4vR09YYC
-         4P0Z7IF7/ix94DimDR/5HV3HdferHNb+UzA/Ck+GNktplONrOf8twaoDpN/bpetp+fLF
-         0vnJhLCUEgIV+0JeZMnAIKc1GORmmk41xHK76om87gsTep9prhSozgYbQSpe1/hPsW/4
-         Soav00fk8802IepJ1tQy7myIPs1YAkw+jbFzpT3HUbofcQHFaS/28N1kGKNLVfAkkkfo
-         5+mA==
+        bh=RyW+WPIhFmx3T6tAN5KCsOH5glFRCMpOjE8t1XqPYI4=;
+        b=ecAYYR6WPAKvKLrYV9FWiDMP7mDGff0RH2ntyxkMkHGky4WvW9RVMCzu77XbUdDixV
+         1ZbWoa/BBPKo0lCoUWdRPjB5h8JN9OQgKUEjo50TJITjM5pAcR5H5TnIZVb3iePox3mQ
+         eQykVF3k6yTZEIPeEcnME8IQcBiQu+hzp1Eg0w7FJ/6IW16LuciVdr6FRjKsbTw4O3xz
+         0SQ65faAHcl/vUpxnhoHRLjR5XfE6NVNm33Xnyhv9oQq9edeCRW+s0HVhQy3j79Hy9xA
+         VDFYKadauEGjkhnHX2nZkIDKswQyC2UqSLiSeUEe/zjcA5+aZ37X2iAULSG6E+56FbLb
+         lBmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
+        h=content-transfer-encoding:to:subject:message-id:date:from:reply-to
          :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=snU6sHLVFuhFuegCz2LY5uuGVktWfNxhucOSPu7x3aQ=;
-        b=4b0amfqHONTtXJKatsiakzf7sDdRBdsD95QKfakO/W3kOnetI2blGtuKxd+IumRQ9d
-         mm0gZTXwgLqUw3/AL1vKbgcJeu1CbUvYB5e24dnhNSJfRBrhs36DaeWjApLQeNd5Y4dJ
-         9NVFc13xGMr2ad1uv+PNyfx8fm+T6AMakt52/3fAOjW81zAvsq8Q28FWRDrgWAvRvamc
-         DktY76hh7B7rFK4gyTmbvdv2ODX/P757AcVmDIs2wuHVkNSy5W6urdh097phd1rU6QGc
-         9JfvOTvY0IkSt3wihJ1SfYlwtfuXXgP3ZhWoA70RTP1w3EYBYdr3PDnFnoVl6GztJtcP
-         by/g==
-X-Gm-Message-State: ACgBeo3O2zLPVpMbEyRdO2UdkclxNLt7v/gvVSOkMRoiksddUZKoO7Ri
-        5jzC5Mf9yob38FPmu/VetqI1vR9q26fKWiO1+AXauw==
-X-Google-Smtp-Source: AA6agR5G8yckKVkmwDJ1JIT5INXPH+zDHdVVnaWJpfc1vFTYPqRYDNyyh/s08b/ty20JzitIYp4q6FTMdHOZDoDl/vU=
-X-Received: by 2002:a25:5c3:0:b0:6a9:90fb:c9e6 with SMTP id
- 186-20020a2505c3000000b006a990fbc9e6mr203601ybf.152.1662493282333; Tue, 06
- Sep 2022 12:41:22 -0700 (PDT)
+        bh=RyW+WPIhFmx3T6tAN5KCsOH5glFRCMpOjE8t1XqPYI4=;
+        b=qZGW2ooYkL/73pahCvV6bEEauJhpkD98tgUcGqpOkZvM2Fe2EoHtuI4gu7RcwGYESv
+         QoftqdN8pmgCLo6VmOW5M9U3L+VM7Fb8H5MVxNjSR1S7KD1TzuYynpJ7GiBPE5jKZPPu
+         uA66Ne3RaLA0xR4h8qhazjO6rfaGzYZxSGAok2NWW1x+MW1zj8yx0LzjAy7TKGJLtHpR
+         NRW90vMkdGyExdZV4xZT+13NdmekUcqmanngi1i5VzaLnzMWITibBJIDfpb6PkdSAzX+
+         DfVJQN4pSEf+drVM9l5f8ACfB99lDjzFjls5J+s80/SrFvOhAdAFs3M2+hSbU/UPi3zl
+         wrag==
+X-Gm-Message-State: ACgBeo1hAli4a2hqnpCiC5HqkF5FjRuDobsT42yUpYp/AWfXyaBO4X6L
+        UQ1zBxm+WeDZ79WUDUJaljdX2WRJfJSqnM2jMF0=
+X-Google-Smtp-Source: AA6agR58LT7QHskr2zkNIMhmJKWP2nTTtHIqcAORNjdeKiJSodK65QNuqthmULoHf1ouQxnd0KTzn+yLd9uOnCtQUoE=
+X-Received: by 2002:a05:6402:538f:b0:444:c17b:1665 with SMTP id
+ ew15-20020a056402538f00b00444c17b1665mr241659edb.98.1662494557516; Tue, 06
+ Sep 2022 13:02:37 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220906183334.203787-1-luca@z3ntu.xyz> <20220906183334.203787-4-luca@z3ntu.xyz>
-In-Reply-To: <20220906183334.203787-4-luca@z3ntu.xyz>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Tue, 6 Sep 2022 22:41:11 +0300
-Message-ID: <CAA8EJpqjnafKyUrd1ntYFeGTDtRxgEUSu0Mg9wNGxObJ3wF0Kw@mail.gmail.com>
-Subject: Re: [PATCH v3 3/3] arm64: dts: qcom: msm8953: add MDSS
-To:     Luca Weiss <luca@z3ntu.xyz>
-Cc:     linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Vladimir Lypak <vladimir.lypak@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Received: by 2002:a17:906:2e90:b0:741:6491:b2d5 with HTTP; Tue, 6 Sep 2022
+ 13:02:36 -0700 (PDT)
+Reply-To: illuminatib523@gmail.com
+From:   gute Nachrichten <yabagiabdullahidokodza@gmail.com>
+Date:   Tue, 6 Sep 2022 13:02:36 -0700
+Message-ID: <CACPg=acytQHT3Fy+JJmoJzDR7oDXW+jN6DJdeyH2udL7crGcQA@mail.gmail.com>
+Subject: RE
+To:     undisclosed-recipients:;
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=4.9 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLYTO,
+        FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNDISC_FREEM autolearn=no autolearn_force=no
+        version=3.4.6
+X-Spam-Level: ****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 6 Sept 2022 at 21:36, Luca Weiss <luca@z3ntu.xyz> wrote:
->
-> From: Vladimir Lypak <vladimir.lypak@gmail.com>
->
-> Add the MDSS, MDP and DSI nodes that are found on msm8953 SoC.
->
-> Signed-off-by: Vladimir Lypak <vladimir.lypak@gmail.com>
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> ---
-> Changes since v2:
-> - add "core" clock for mdss as suggested by Dmitry Baryshkov
->
->  arch/arm64/boot/dts/qcom/msm8953.dtsi | 210 ++++++++++++++++++++++++++
->  1 file changed, 210 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/msm8953.dtsi b/arch/arm64/boot/dts/qcom/msm8953.dtsi
-> index 3d11331e78d2..580333141a66 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8953.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8953.dtsi
-> @@ -726,6 +726,216 @@ tcsr_phy_clk_scheme_sel: syscon@193f044 {
->                         reg = <0x193f044 0x4>;
->                 };
->
-> +               mdss: mdss@1a00000 {
-> +                       compatible = "qcom,mdss";
-> +
-> +                       reg = <0x1a00000 0x1000>,
-> +                             <0x1ab0000 0x1040>;
-> +                       reg-names = "mdss_phys",
-> +                                   "vbif_phys";
-> +
-> +                       power-domains = <&gcc MDSS_GDSC>;
-> +                       interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +                       interrupt-controller;
-> +                       #interrupt-cells = <1>;
-> +
-> +                       clocks = <&gcc GCC_MDSS_AHB_CLK>,
-> +                                <&gcc GCC_MDSS_AXI_CLK>,
-> +                                <&gcc GCC_MDSS_VSYNC_CLK>,
-> +                                <&gcc GCC_MDSS_MDP_CLK>;
-> +                       clock-names = "iface",
-> +                                     "bus",
-> +                                     "vsync",
-> +                                     "core";
-> +
-> +                       #address-cells = <1>;
-> +                       #size-cells = <1>;
-> +                       ranges;
-> +
-> +                       status = "disabled";
-> +
-> +                       mdp: mdp@1a01000 {
-> +                               compatible = "qcom,mdp5";
-
-Could you please change this to "qcom,msm8953-mdp5", "qcom,mdp5".
-
-> +                               reg = <0x1a01000 0x89000>;
-> +                               reg-names = "mdp_phys";
-> +
-
-[skipped]
-
-> +
-> +                       dsi0_phy: dsi-phy@1a94400 {
-
-Let's probably use a generic name 'phy' here and for dsi1_phy.
-
-The rest looks good to me.
-
-> +                               compatible = "qcom,dsi-phy-14nm-8953";
-> +                               reg = <0x1a94400 0x100>,
-> +                                     <0x1a94500 0x300>,
-> +                                     <0x1a94800 0x188>;
-> +                               reg-names = "dsi_phy",
-> +                                           "dsi_phy_lane",
-> +                                           "dsi_pll";
-> +
-> +                               #clock-cells = <1>;
-> +                               #phy-cells = <0>;
-> +
-> +                               clocks = <&gcc GCC_MDSS_AHB_CLK>, <&xo_board>;
-> +                               clock-names = "iface", "ref";
-> +
-> +                               status = "disabled";
-> +                       };
-
-
--- 
-With best wishes
-Dmitry
+--=20
+ILLUMINATI-MITGLIEDSCHAFTSANGEBOT Gr=C3=BC=C3=9Fe von der
+Illuminati-Eliteorganisation Sind Sie daran interessiert, Mitglied der
+gro=C3=9Fen Illuminati-Organisation zu werden und reich, ber=C3=BChmt, m=C3=
+=A4chtig
+zu werden und von der gro=C3=9Fen Illuminati-Organisation besch=C3=BCtzt zu
+werden? Und erhalten Sie Ihre ersten Vorteile von 5.000.000 =E2=82=AC als
+Willkommensbonus, wenn Sie ein neues Mitglied werden. Antworten Sie
+mit Ja, wenn Sie interessiert sind =F0=9F=94=BAWhatsApp uns unter +44 7719
+488102 Oder senden Sie uns eine E-Mail. illuminatib523@gmail.com
