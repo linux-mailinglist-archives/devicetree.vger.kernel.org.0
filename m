@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 199CD5AE921
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 15:10:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 297315AE929
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 15:12:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233984AbiIFNJ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 09:09:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43596 "EHLO
+        id S240361AbiIFNMD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 09:12:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233732AbiIFNJz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 09:09:55 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C39C729CAF
-        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 06:09:51 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id b26so12196020ljk.12
-        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 06:09:51 -0700 (PDT)
+        with ESMTP id S239841AbiIFNMC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 09:12:02 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E9745509F
+        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 06:12:00 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id c10so2765632ljj.2
+        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 06:12:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date;
-        bh=fvyT04/Nvz6zIBROEx0pz0Zydf7Sgv0iL5DNAFgL4FU=;
-        b=Eb8korZ58eeMIMkzxU6/1wJdDv22JYU4eF2jFdj31Lh/ZwoSw3bL1z3nrSmkpE3Qwi
-         DMv9xYjP38OZHvsfkcBUxHyIOnBKOWzO7Ji3g/lh9XT9jXbx6yrSUj+3fbbqgWswuYuF
-         V1MBR1RSIW6kYFt7kFRTukEkysOo4vbGLpxju4wBxPKwA6pTGqisuU+OoUcwh1g8sHnQ
-         rY1ZB+hJL3YCtDMMQXrkxYnU/ClJOkvmCqMHc/Qd0kwZ56YRcTkRArs+kDxYuY9Uz4xH
-         ov/gw5uou4V5nItHtiC8XBCyJkGJ89rl5uKvbQsW9Rz7CWMFO0go3HtxW/RWNI3Z3GHb
-         eyIg==
+        bh=yOWqU/noN30I+JdUCdYobc9an3E9kR1qqO/vRiBd6KA=;
+        b=SwNWX/omCq1NtZCynmzSPeNoENmgdnIUCCC67r37VRQDfChD4AVnn0JPWMJsF+GmEv
+         Fyn4e/WPu7WtRzpE1hiU7B27R98P1JvlR1MHN2MVSZY3+cDzTKgHiqpx2raCKm3Rl8g2
+         FBnn6C60IOuEnWIacb9lLLbLSTcea+vvJb5MaaJfvScu0NKRZtNNUeDSzhGu2tY/QmcR
+         pNlfjJsNz+MybwL1VLAnyWmBGV7JNquC+QdzaBkNnVKssnK+ATLSYzVFx8LhHwFohEOG
+         xWjCN/+d8Aw0uelzEJTAtvJiuHCn4zpd87LqelXGQX3hg+Qcpt+ovEXEPbPG6TtMGTDK
+         oBQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date;
-        bh=fvyT04/Nvz6zIBROEx0pz0Zydf7Sgv0iL5DNAFgL4FU=;
-        b=Xlo7fmiY9mzwW3JxB3Vn82xztYwkTJb1oFj5bysxQq0ylpNnJu1sTZ+FrKJF8VO9kv
-         hCVyUgsZmfRxvbOscFxakSa42Uj9+LbFjCYIA7SVjo1+0asHlzSxmDhvZ3/4uC03Y+TW
-         8CBN/ITBCn8dCp4uQnBgi0u7ZBs2ru6+Ny56epbiaec5dClfgfc/UJCnnnAzJwuE+uIb
-         re+qj/d8KYWfedQHfZkbKeg2jkPnj7ZlpH63UG/KPh7E+pzFRIiKpXfbNh3gAlm07H6P
-         4UaV9IUObHxKxydGY13QTW9eW9mOMVeiOxf3ISyXsFooBKX3iXHq2SCZHtybr2LZlqRO
-         U6lA==
-X-Gm-Message-State: ACgBeo0P6bUfvGG5VeLr4qxr4C47FJS7K2zoPyy/BGZ95br7fsQLLs8u
-        K3dJbhVGMhd00S/7W3nWplFlZQ==
-X-Google-Smtp-Source: AA6agR7TPR/1qR1gU1UY2pYSeskuowrn9cvcmJrC+PYB3PBzsn9GjzfaEpEe2lc+gpGAh82YoIE12Q==
-X-Received: by 2002:a2e:b819:0:b0:26a:a531:da36 with SMTP id u25-20020a2eb819000000b0026aa531da36mr950357ljo.141.1662469789411;
-        Tue, 06 Sep 2022 06:09:49 -0700 (PDT)
+        bh=yOWqU/noN30I+JdUCdYobc9an3E9kR1qqO/vRiBd6KA=;
+        b=6sfveK1JkHuZhuTwVd5quvOCmoxIZPVFEq9pBLysY2KP9BYIhiY1fVGQWFyHTmKye+
+         178kLpe2bpVU7UQC9eP9F07adVNQWazwMupog713Rg/XW6fp3+X0zlaZicy4U7rbh9ld
+         PRgF03V5h1zi3SccW1SeJN7LVrnJmfbAumTSjGIrN7yb76RUGkd1cORKBUerxnyA8VIE
+         VZYdmt77odZQ/ZOAw2GdM5Aw3yoa/LC/i144KcAC5P27RdBjVJEHPzqIv8lPgtB5ice0
+         1gNXaozFv6nmeFLdaGCWuqdP1VWWK/0OOTsy+TKge8UIdhnuIK/bV/XMpI1MWXI6do4d
+         Eu0g==
+X-Gm-Message-State: ACgBeo1ROlQmw4retFxKqc6/WCkpn8VGIhwFDVHjp/ZLp8caxQpJiQBc
+        KRWeZswCsf5gimyIMdL3Q+CG8A==
+X-Google-Smtp-Source: AA6agR4jzQemR2LrR1WAzy6iJ5n0+xbpOl8/JFVbFCBlif7gfwSIxEQ3iWY81gAdF3TctAFAz7VNYQ==
+X-Received: by 2002:a2e:80c8:0:b0:269:6aef:b94d with SMTP id r8-20020a2e80c8000000b002696aefb94dmr4352716ljg.57.1662469918707;
+        Tue, 06 Sep 2022 06:11:58 -0700 (PDT)
 Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id v27-20020ac258fb000000b0048b13d0b896sm1731567lfo.141.2022.09.06.06.09.47
+        by smtp.gmail.com with ESMTPSA id q27-20020a05651232bb00b0049110ba325asm1719363lfe.158.2022.09.06.06.11.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Sep 2022 06:09:48 -0700 (PDT)
-Message-ID: <45b6f444-b8d1-740a-81a2-b464f71f2a15@linaro.org>
-Date:   Tue, 6 Sep 2022 15:09:47 +0200
+        Tue, 06 Sep 2022 06:11:57 -0700 (PDT)
+Message-ID: <71dad0f0-db66-e79e-5e01-d5fc66b0cb3e@linaro.org>
+Date:   Tue, 6 Sep 2022 15:11:56 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.13.0
-Subject: Re: [PATCH v1 2/3] dt-bindings: riscv: microchip: document the Aldec
- TySoM
+Subject: Re: [PATCH v1 3/3] riscv: dts: microchip: add a devicetree for the
+ Aldec TySoM
 Content-Language: en-US
 To:     Conor Dooley <conor.dooley@microchip.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -67,14 +67,14 @@ To:     Conor Dooley <conor.dooley@microchip.com>,
 Cc:     devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
         linux-kernel@vger.kernel.org
 References: <20220906121525.3212705-1-conor.dooley@microchip.com>
- <20220906121525.3212705-3-conor.dooley@microchip.com>
+ <20220906121525.3212705-4-conor.dooley@microchip.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220906121525.3212705-3-conor.dooley@microchip.com>
+In-Reply-To: <20220906121525.3212705-4-conor.dooley@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,13 +84,265 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On 06/09/2022 14:15, Conor Dooley wrote:
 > The TySOM-M-MPFS250 is a compact SoC prototyping board featuring
-> a Microchip PolarFire SoC MPFS250T-FCG1152.
+> a Microchip PolarFire SoC MPFS250T-FCG1152. Features include:
+> - 16 GB FPGA DDR4
+> - 16 GB MSS DDR4 with ECC
+> - eMMC
+> - SPI flash memory
+> - 2x Ethernet 10/100/1000
+> - USB 2.0
+> - PCIe x4 Gen2
+> - HDMI OUT
+> - 2x FMC connector (HPC and LPC)
 > 
 > Link: https://www.aldec.com/en/products/emulation/tysom_boards/polarfire_microchip/tysom_m_mpfs250
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+>  arch/riscv/boot/dts/microchip/Makefile        |   1 +
+>  .../dts/microchip/mpfs-tysom-m-fabric.dtsi    |  47 +++++
+>  .../riscv/boot/dts/microchip/mpfs-tysom-m.dts | 168 ++++++++++++++++++
+>  3 files changed, 216 insertions(+)
+>  create mode 100644 arch/riscv/boot/dts/microchip/mpfs-tysom-m-fabric.dtsi
+>  create mode 100644 arch/riscv/boot/dts/microchip/mpfs-tysom-m.dts
+> 
+> diff --git a/arch/riscv/boot/dts/microchip/Makefile b/arch/riscv/boot/dts/microchip/Makefile
+> index 7427a20934f3..c54922a325fd 100644
+> --- a/arch/riscv/boot/dts/microchip/Makefile
+> +++ b/arch/riscv/boot/dts/microchip/Makefile
+> @@ -3,4 +3,5 @@ dtb-$(CONFIG_SOC_MICROCHIP_POLARFIRE) += mpfs-icicle-kit.dtb
+>  dtb-$(CONFIG_SOC_MICROCHIP_POLARFIRE) += mpfs-m100pfsevp.dtb
+>  dtb-$(CONFIG_SOC_MICROCHIP_POLARFIRE) += mpfs-polarberry.dtb
+>  dtb-$(CONFIG_SOC_MICROCHIP_POLARFIRE) += mpfs-sev-kit.dtb
+> +dtb-$(CONFIG_SOC_MICROCHIP_POLARFIRE) += mpfs-tysom-m.dtb
+>  obj-$(CONFIG_BUILTIN_DTB) += $(addsuffix .o, $(dtb-y))
+> diff --git a/arch/riscv/boot/dts/microchip/mpfs-tysom-m-fabric.dtsi b/arch/riscv/boot/dts/microchip/mpfs-tysom-m-fabric.dtsi
+> new file mode 100644
+> index 000000000000..51d0c5176b9e
+> --- /dev/null
+> +++ b/arch/riscv/boot/dts/microchip/mpfs-tysom-m-fabric.dtsi
+> @@ -0,0 +1,47 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/* Copyright (c) 2022 Microchip Technology Inc */
+> +
+> +// #include "dt-bindings/mailbox/miv-ihc.h"
+> +
+> +/ {
+> +	fabric_clk3: fabric-clk3 {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <62500000>;
+> +	};
+> +
+> +	fabric_clk1: fabric-clk1 {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <125000000>;
+> +	};
+> +
+> +	pcie: pcie@2000000000 {
+> +		compatible = "microchip,pcie-host-1.0";
+> +		#address-cells = <0x3>;
+> +		#interrupt-cells = <0x1>;
+> +		#size-cells = <0x2>;
+> +		device_type = "pci";
+> +		reg = <0x20 0x0 0x0 0x8000000>, <0x0 0x43000000 0x0 0x10000>;
+> +		reg-names = "cfg", "apb";
+> +		bus-range = <0x0 0x7f>;
+> +		interrupt-parent = <&plic>;
+> +		interrupts = <119>;
+> +		interrupt-map = <0 0 0 1 &pcie_intc 0>,
+> +				<0 0 0 2 &pcie_intc 1>,
+> +				<0 0 0 3 &pcie_intc 2>,
+> +				<0 0 0 4 &pcie_intc 3>;
+> +		interrupt-map-mask = <0 0 0 7>;
+> +		clocks = <&fabric_clk1>, <&fabric_clk1>, <&fabric_clk3>;
+> +		clock-names = "fic0", "fic1", "fic3";
+> +		ranges = <0x3000000 0x0 0x8000000 0x20 0x8000000 0x0 0x80000000>;
+> +		msi-parent = <&pcie>;
+> +		msi-controller;
+> +		status = "disabled";
+> +		pcie_intc: interrupt-controller {
+> +			#address-cells = <0>;
+> +			#interrupt-cells = <1>;
+> +			interrupt-controller;
+> +		};
+> +	};
+> +};
+> diff --git a/arch/riscv/boot/dts/microchip/mpfs-tysom-m.dts b/arch/riscv/boot/dts/microchip/mpfs-tysom-m.dts
+> new file mode 100644
+> index 000000000000..5ad2fbd1b7ae
+> --- /dev/null
+> +++ b/arch/riscv/boot/dts/microchip/mpfs-tysom-m.dts
+> @@ -0,0 +1,168 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Original all-in-one devicetree:
+> + * Copyright (C) 2020-2022 - Aldec
+> + * Rewritten to use includes:
+> + * Copyright (C) 2022 - Conor Dooley <conor.dooley@microchip.com>
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "mpfs.dtsi"
+> +#include "mpfs-tysom-m-fabric.dtsi"
+> +
+> +/* Clock frequency (in Hz) of the rtcclk */
+> +#define MTIMER_FREQ		1000000
+> +
+> +/ {
+> +	model = "Aldec TySOM-M-MPFS250T";
+> +	compatible = "aldec,tysom-m-mpfs250t", "microchip,mpfs";
+> +
+> +	aliases {
+> +		ethernet0 = &mac0;
+> +		ethernet1 = &mac1;
+> +		serial0 = &mmuart0;
+> +		serial1 = &mmuart1;
+> +		serial2 = &mmuart2;
+> +		serial3 = &mmuart3;
+> +		serial4 = &mmuart4;
+> +		gpio0 = &gpio0;
+> +		gpio1 = &gpio2;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial1:115200n8";
+> +	};
+> +
+> +	cpus {
+> +		timebase-frequency = <MTIMER_FREQ>;
+> +	};
+> +
+> +	ddrc_cache_lo: memory@80000000 {
+> +		device_type = "memory";
+> +		reg = <0x0 0x80000000 0x0 0x40000000>;
+> +		status = "okay";
+> +	};
+> +
+> +	ddrc_cache_hi: memory@1000000000 {
+> +		device_type = "memory";
+> +		reg = <0x10 0x00000000 0x0 0x40000000>;
+> +		status = "okay";
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +		status = "okay";
+> +
+> +		led0 {
 
+Typically this is led-0
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +			gpios = <&gpio1 23 1>;
 
+Does '1' stand for some GPIO flag?
+
+> +			default-state = "on";
+> +			linux,default-trigger = "heartbeat";
+> +		};
+> +	};
+> +};
+> +
+> +&i2c0 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c1 {
+> +	status = "okay";
+> +	hwmon: hwmon@45 {
+> +		status = "okay";
+
+No need for status.
+
+> +		compatible = "ti,ina219";
+> +		reg = <0x45>;
+> +		shunt-resistor = <2000>;
+> +	};
+> +};
+> +
+> +&gpio1 {
+> +	interrupts = <27>, <28>, <29>, <30>,
+> +		     <31>, <32>, <33>, <47>,
+> +		     <35>, <36>, <37>, <38>,
+> +		     <39>, <40>, <41>, <42>,
+> +		     <43>, <44>, <45>, <46>,
+> +		     <47>, <48>, <49>, <50>;
+> +	status = "okay";
+> +};
+> +
+> +&mac0 {
+> +	status = "okay";
+> +	phy-mode = "gmii";
+> +	phy-handle = <&phy0>;
+> +
+> +};
+> +
+> +&mac1 {
+> +	status = "okay";
+> +	phy-mode = "gmii";
+> +	phy-handle = <&phy1>;
+> +	phy1: ethernet-phy@1 {
+> +		reg = <1>;
+> +	};
+> +	phy0: ethernet-phy@0 {
+> +		reg = <0>;
+> +	};
+> +};
+> +
+> +&mbox {
+> +	status = "okay";
+> +};
+> +
+> +&mmc {
+> +	max-frequency = <200000000>;
+> +	cap-mmc-highspeed;
+> +	cap-sd-highspeed;
+> +	no-1-8-v;
+> +	disable-wp;
+> +	status = "okay";
+> +};
+> +
+> +&mmuart1 {
+> +	status = "okay";
+> +};
+> +
+> +&mmuart2 {
+> +	status = "okay";
+> +};
+> +
+> +&mmuart3 {
+> +	status = "okay";
+> +};
+> +
+> +&mmuart4 {
+> +	status = "okay";
+> +};
+> +
+> +&refclk {
+> +	clock-frequency = <125000000>;
+> +};
+> +
+> +&rtc {
+> +	status = "okay";
+> +};
+> +
+> +&spi0 {
+> +	status = "okay";
+> +};
+> +
+> +&spi1 {
+> +	status = "okay";
+> +	flash@0 {
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+
+Are these needed? Does it pass dtbs_check?
+
+> +		compatible = "micron,n25q128a11", "jedec,spi-nor";
+> +		status = "okay";
+
+No need for status.
 
 Best regards,
 Krzysztof
