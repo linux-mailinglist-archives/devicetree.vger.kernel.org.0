@@ -2,155 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 985665ADED5
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 07:19:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EAA785ADF45
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 08:00:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231863AbiIFFRo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 01:17:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47196 "EHLO
+        id S232536AbiIFGAl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 02:00:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231836AbiIFFRn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 01:17:43 -0400
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E38767CA5
-        for <devicetree@vger.kernel.org>; Mon,  5 Sep 2022 22:17:42 -0700 (PDT)
-Received: by mail-pj1-x102e.google.com with SMTP id s14-20020a17090a6e4e00b0020057c70943so4563652pjm.1
-        for <devicetree@vger.kernel.org>; Mon, 05 Sep 2022 22:17:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date;
-        bh=8BL6o4IX1wUUdMQMOvYouiU2H1/IxMVvREYC6zLqjSM=;
-        b=TWVCL/xy2HDW+mX4jbgIhLGwdV/WxyPA4RoAN/5cH9gLWKElDmudiSt+BLgWyygYUL
-         auKw1A2QkYSevImuO2n+o1XgSBLll2Nco8q4XhnA187HbOc+U5Cp2i67rR50rs/ELzDy
-         NOtzxC8RjpPfc87jCp8e46Po/HF2L2I6nSSJbvvD4JIfQX74pWpHmEYRtB4vJrLGTYca
-         4ujNx+OlzLtM/0sqxh9DgCzOQT2n5EXHKZTz1lQZ/Fd6ziMtNu6WBBgU06Oqa3MTPYnl
-         hX27qfDSveO7p6PQRACejLid/fnq8hfCpPvh9G5VqGJjnxXq7xfwCNID6B7qc2jqgHMK
-         vsAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=8BL6o4IX1wUUdMQMOvYouiU2H1/IxMVvREYC6zLqjSM=;
-        b=Pp8+KFRbD71X91QVSU95gV/vL4Nxh9mYDIAACx0nncVBKwUUJA5CDikZSxIPcj155H
-         qrk+E0697unW8VtwWMeEhdJ+ZUWZIFFhQBbhArP/xEUX+PZsWc4oMTbmIZEEwktsLAOy
-         SX7h6la//lG5mA9ZdhTwAwzrYCFePUkt6ONeIJ2Yjyvlgg0I5EXwXLa/8MHd2/r10kTr
-         XItuynpEWWGtGZr5JwStmb16bpYoeX3YOi8xxj2HvIjT8X8Ew8C6PJgOU5bMIMQtyWnf
-         7RLxzKo3SWoa5fcF+1viyJx9xcD4R9jA6sa1a/bIMbIutZiYekvV0o63RiUo10IfEgD7
-         zm3g==
-X-Gm-Message-State: ACgBeo12k5IVVLXjTJbtCLfZozJ69zabfONTY2qYwgQTb0ZpYin2xfiI
-        xq+xl7X23H0sLomm5tkjO2SKDgbB0SqOVA==
-X-Google-Smtp-Source: AA6agR4vigj/R654EMDF6SU1v26ypc66waj+AKqfllO/bMw5BRTXkx05tlGvD43pNns3B2wikjG6YA==
-X-Received: by 2002:a17:902:9007:b0:176:9f9d:463 with SMTP id a7-20020a170902900700b001769f9d0463mr10844798plp.32.1662441461799;
-        Mon, 05 Sep 2022 22:17:41 -0700 (PDT)
-Received: from localhost ([122.171.18.80])
-        by smtp.gmail.com with ESMTPSA id cp15-20020a170902e78f00b00176ae5c0f38sm3276959plb.178.2022.09.05.22.17.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Sep 2022 22:17:40 -0700 (PDT)
-Date:   Tue, 6 Sep 2022 10:47:38 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Tomeu Vizoso <tomeu.vizoso@collabora.com>,
-        Steven Price <steven.price@arm.com>,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v3 4/5] drm/panfrost: devfreq: set opp to the recommended
- one to configure and enable regulator
-Message-ID: <20220906051738.doyrdfcas7f5avkp@vireshk-i7>
-References: <20220905171601.79284-1-peron.clem@gmail.com>
- <20220905171601.79284-5-peron.clem@gmail.com>
+        with ESMTP id S232854AbiIFGAk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 02:00:40 -0400
+Received: from mail-sz.amlogic.com (mail-sz.amlogic.com [211.162.65.117])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3B1B5D0F4;
+        Mon,  5 Sep 2022 23:00:38 -0700 (PDT)
+Received: from droid11-sz.amlogic.com (10.28.8.21) by mail-sz.amlogic.com
+ (10.28.11.5) with Microsoft SMTP Server id 15.1.2507.6; Tue, 6 Sep 2022
+ 14:00:36 +0800
+From:   Liang Yang <liang.yang@amlogic.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        <linux-mtd@lists.infradead.org>
+CC:     Liang Yang <liang.yang@amlogic.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jianxin Pan <jianxin.pan@amlogic.com>,
+        Victor Wan <victor.wan@amlogic.com>,
+        XianWei Zhao <xianwei.zhao@amlogic.com>,
+        Kelvin Zhang <kelvin.zhang@amlogic.com>,
+        BiChao Zheng <bichao.zheng@amlogic.com>,
+        YongHui Yu <yonghui.yu@amlogic.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: [PATCH RESEND v8 0/5] fix the meson NFC clock
+Date:   Tue, 6 Sep 2022 14:00:28 +0800
+Message-ID: <20220906060034.2528-1-liang.yang@amlogic.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220905171601.79284-5-peron.clem@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.28.8.21]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Your subject is 87 columns long, better to squeeze it a bit.
+EMMC and NAND have the same clock control register named 'SD_EMMC_CLOCK'
+which is defined in EMMC port internally. bit0~5 of 'SD_EMMC_CLOCK' is
+the divider and bit6~7 is the mux for fix pll and xtal. At the beginning,
+a common MMC and NAND sub-clock was discussed and planed to be implemented
+as NFC clock provider, but now this series of patches of a common MMC and
+NAND sub-clock are never being accepted and the current binding was never
+valid. the reasons are:
+1. EMMC and NAND, which are mutually exclusive anyway
+2. coupling the EMMC and NAND.
+3. it seems that a common MMC and NAND sub-clock is over engineered.
+and let us see the link for more information:
+https://lore.kernel.org/all/20220121074508.42168-5-liang.yang@amlogic.com
+so The meson nfc can't work now, let us rework the clock.
 
-On 05-09-22, 19:16, Clément Péron wrote:
-> devm_pm_opp_set_regulators() doesn't enable regulator, which make
-> regulator framework switching it off during regulator_late_cleanup().
+Changes since v7 [8]
+ - use COMMON_CLK && (ARCH_MESON || COMPILE_TEST) instead of
+   ARCH_MESON || COMPILE_TEST || COMMON_CLK.
+ - collect the review and ack
 
-This isn't the normal behavior as it works for everyone at the moment.
-You need to explain what special you are doing here, because of which
-you are reaching such a situation.
+Changes since v6 [7]
+ - use COMMON_CLK instead of !HAVE_LEGACY_CLK
 
-i.e. you are disabling some code that uses GPU ? Please specify exact
-code so others can reproduce it as well.
+Changes since v5 [6]
+ - add change log for patch 3/5
+ - add patch 5/5 to fix the reporting error of test robot
 
-> Call dev_pm_opp_set_opp() with the recommend OPP in
-> panfrost_devfreq_init() to enable the regulator and avoid any switch off
-> by regulator_late_cleanup().
+Changes since v4 [5]
+ - split the dt binding patch into two patches, one for fixing, 
+   clock, the other for coverting to yaml
+ - split the nfc driver patch into two patches, one for fixing 
+   clock, the other for refining the get nfc resource.
 
-The regulator is already enabled I think at this point by the
-bootloader. What you are doing here is syncing the state of the
-hardware with the software, which would disallow disabling of the
-resource unnecessarily.
+Changes since v3 [4]
+ - use devm_platform_ioremap_resource_byname
+ - dt_binding_check for mtd/amlogic,meson-nand.yaml
 
-> Suggested-by: Viresh Kumar <viresh.kumar@linaro.org>
-> Signed-off-by: Clément Péron <peron.clem@gmail.com>
-> ---
->  drivers/gpu/drm/panfrost/panfrost_devfreq.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/panfrost/panfrost_devfreq.c b/drivers/gpu/drm/panfrost/panfrost_devfreq.c
-> index 5110cd9b2425..67b242407156 100644
-> --- a/drivers/gpu/drm/panfrost/panfrost_devfreq.c
-> +++ b/drivers/gpu/drm/panfrost/panfrost_devfreq.c
-> @@ -131,6 +131,14 @@ int panfrost_devfreq_init(struct panfrost_device *pfdev)
->  		return PTR_ERR(opp);
->  
->  	panfrost_devfreq_profile.initial_freq = cur_freq;
-> +
-> +	/* Setup and enable regulator */
+Changes since v2 [3]
+ - use fw_name from dts, instead the wrong way using __clk_get_name
+ - reg resource size change to 0x800
+ - use reg-names
 
-Similarly here, explain why this is required to be done.
+Changes since v1 [2]
+ - use clk_parent_data instead of parent_names
+ - define a reg resource instead of sd_emmc_c_clkc 
 
-> +	ret = dev_pm_opp_set_opp(dev, opp);
-> +	if (ret) {
-> +		DRM_DEV_ERROR(dev, "Couldn't set recommended OPP\n");
-> +		return ret;
-> +	}
-> +
->  	dev_pm_opp_put(opp);
+[1] https://lore.kernel.org/r/20220106033130.37623-1-liang.yang@amlogic.com
+    https://lore.kernel.org/r/20220106032504.23310-1-liang.yang@amlogic.com
+[2] https://lore.kernel.org/all/20220217063346.21691-1-liang.yang@amlogic.com
+[3] https://lore.kernel.org/all/20220318124121.26117-1-liang.yang@amlogic.com
+[4] https://lore.kernel.org/all/20220402074921.13316-1-liang.yang@amlogic.com/
+[5] https://lore.kernel.org/all/20220513123404.48513-1-liang.yang@amlogic.com/
+[6] https://lore.kernel.org/all/20220607064731.13367-1-liang.yang@amlogic.com/
+[7] https://lore.kernel.org/all/20220624131257.29906-1-liang.yang@amlogic.com/
 
-Do this before checking if (ret), so the resource can be freed all the
-time.
+Liang Yang (5):
+  dt-bindings: nand: meson: fix meson nfc clock
+  mtd: rawnand: meson: fix the clock
+  mtd: rawnand: meson: refine resource getting in probe
+  dt-bindings: nand: meson: convert txt to yaml
+  mtd: rawnand: meson: not support legacy clock
 
->  
->  	/*
-> -- 
-> 2.34.1
+ .../bindings/mtd/amlogic,meson-nand.txt       | 60 -------------
+ .../bindings/mtd/amlogic,meson-nand.yaml      | 88 +++++++++++++++++++
+ drivers/mtd/nand/raw/Kconfig                  |  2 +-
+ drivers/mtd/nand/raw/meson_nand.c             | 86 +++++++++---------
+ 4 files changed, 131 insertions(+), 105 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
+ create mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
 
 -- 
-viresh
+2.34.1
+
