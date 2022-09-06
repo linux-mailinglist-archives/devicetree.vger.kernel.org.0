@@ -2,146 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC8AC5AE448
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 11:31:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D8C85AE467
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 11:39:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233880AbiIFJbY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 05:31:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44896 "EHLO
+        id S229473AbiIFJjT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 05:39:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233100AbiIFJbY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 05:31:24 -0400
-Received: from sibelius.xs4all.nl (80-61-163-207.fixed.kpn.net [80.61.163.207])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5CDE2AE3A;
-        Tue,  6 Sep 2022 02:31:21 -0700 (PDT)
-Received: from localhost (bloch.sibelius.xs4all.nl [local])
-        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id f3fee70a;
-        Tue, 6 Sep 2022 11:31:17 +0200 (CEST)
-Date:   Tue, 6 Sep 2022 11:31:17 +0200 (CEST)
-From:   Mark Kettenis <mark.kettenis@xs4all.nl>
-To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc:     robh@kernel.org, krzysztof.kozlowski@linaro.org, arnd@arndb.de,
-        lee@kernel.org, linus.walleij@linaro.org, alyssa@rosenzweig.io,
-        asahi@lists.linux.dev, brgl@bgdev.pl, marcan@marcan.st,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        sven@svenpeter.dev, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org
-In-Reply-To: <YxcNLU+KGEolrdfT@shell.armlinux.org.uk>
-Subject: Re: [PATCH 1/6] dt-bindings: mfd: add binding for Apple Mac System
- Management Controller
-References: <YxDL+cAx9kkZRL8K@shell.armlinux.org.uk>
- <928ddeff-efac-920c-7bbf-dda35a942b93@linaro.org>
- <YxDOpCq0vIlt4VNa@shell.armlinux.org.uk>
- <2fedff34-6a20-f1ce-a756-2bd8671fcd52@linaro.org>
- <YxDWG5dmzErhKIXw@shell.armlinux.org.uk>
- <ef6c7248-1efa-5366-6bcd-900c5f10ccb2@linaro.org>
- <YxDiBFIn6artUOZm@shell.armlinux.org.uk>
- <CAL_Jsq+GCKisAVA0AfE=yWJYy18mAGQ7rY1sKGYraXv-berNSg@mail.gmail.com>
- <d3cec3d22e464fa8@bloch.sibelius.xs4all.nl>
- <20220902172808.GB52527-robh@kernel.org> <YxcNLU+KGEolrdfT@shell.armlinux.org.uk>
-Message-ID: <d3cecee5edd24f67@bloch.sibelius.xs4all.nl>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,KHOP_HELO_FCRDNS,
-        SPF_HELO_NONE,SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        with ESMTP id S234128AbiIFJjS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 05:39:18 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEEA86DADD;
+        Tue,  6 Sep 2022 02:39:16 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 1D6D46601E73;
+        Tue,  6 Sep 2022 10:39:14 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1662457155;
+        bh=ui8VF8R/cVhCiPreQKiPi3N7NXDpyZgztN0vQRp128g=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=XVreqPK/QS8zqvw/2JHogzhejNyfQZv7Tls1enApGHem93HeNMYG4fmqNGUwPWNto
+         /jBn90HGzyrVHnC/YeGTHpSCQxiO8K0NhD9Vvsh5UtBP/QcJpAwhMkyeJsCEXMbIer
+         RJnHP+S1AE3VBq7rPU5JU/ZYEa+GjGymbII7QuqPy/6EwvmfcIPih0zg5LweRu1Nj4
+         tQKj1JW8tMbqdmKDzWlLSm7etTLtLvzagjEoT+M5Rg/KZGUuCm5oSwZMK9p3iatGgz
+         oRialr1Ni7okRrbmKl+n4zrjxVUm72LsiEJn0znEXxctCrahodr/ivokaFEPfKqmzq
+         beeqIojVm/jwQ==
+Message-ID: <82bb73ac-9b7e-92c0-9630-2c62b069d298@collabora.com>
+Date:   Tue, 6 Sep 2022 11:39:11 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+Subject: Re: [PATCH v2 2/6] dt-bindings: mediatek: modify VDOSYS0 mmsys device
+ tree Documentations for MT8188
+Content-Language: en-US
+To:     "nathan.lu" <nathan.lu@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     "jason-jh . lin" <jason-jh.lin@mediatek.com>,
+        CK Hu <ck.hu@mediatek.com>,
+        Rex-BC Chen <rex-bc.chen@mediatek.com>,
+        Moudy Ho <moudy.ho@mediatek.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, wsd_upstream@mediatek.com,
+        lancelot.wu@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220906084449.20124-1-nathan.lu@mediatek.com>
+ <20220906084449.20124-3-nathan.lu@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220906084449.20124-3-nathan.lu@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Date: Tue, 6 Sep 2022 10:04:45 +0100
-> From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Il 06/09/22 10:44, nathan.lu ha scritto:
+> From: Nathan Lu <nathan.lu@mediatek.com>
 > 
-> On Fri, Sep 02, 2022 at 12:28:08PM -0500, Rob Herring wrote:
-> > This one is actually pretty odd in that the child nodes don't have a 
-> > compatible string which breaks the automagical probing.
+> modify VDOSYS0 mmsys device tree Documentations for MT8188.
 > 
-> I don't think that is necessarily true, and I don't think it's true in
-> this case.
-> 
-> The SMC core driver instructs the MFD core to create devices for the
-> individual functional items:
-> 
-> static const struct mfd_cell apple_smc_devs[] = {
->         {
->                 .name = "macsmc-gpio",
->         },
->         {
->                 .name = "macsmc-hid",
->         },
->         {
->                 .name = "macsmc-power",
->         },
->         {
->                 .name = "macsmc-reboot",
->         },
->         {
->                 .name = "macsmc-rtc",
->         },
-> };
-> 
-> Since MFD uses platform devices for these, they get all the normal
-> functionality that these devices have, which include matching by
-> device name ot the driver name, and udev events being appropriately
-> triggered. As long as the platform drivers for these devices have the
-> correct modalias lines, autoloading of the modules will work and the
-> drivers will be correctly matched and probed.
-> 
-> The Asahi kernel builds most of the platform support as modules,
-> including these, so we know it works (if it didn't, then lots of
-> module autoloading would be broken on non-DT platforms.)
-> 
-> > > Again the separate nodes are there because the RTC and the reboot
-> > > functionality are logically separate and handled by different MFD
-> > > sub-drivers in Linux.
-> > 
-> > It's really a question of whether the subset of functionality is going 
-> > to get reused on its own or has its own resources in DT. MFD bindings 
-> > are done both ways.
-> 
-> I think the current position on what to do about these is that everyone
-> is looking for someone else to make a decision, and no one wants to!
-> 
-> Firstly, I don't think that the number of properties in a node should
-> have a bearing on the design of the DT binding - what should have a
-> bearing is the logical partitioning of functionality.
-> 
-> Mark suggests that it would take six months for OpenBSD to transition to
-> some other description - for example, if we merged the nodes.
+> Signed-off-by: Nathan Lu <nathan.lu@mediatek.com>
 
-Note that we're totally willing to do that if there is a good
-technical reason for changes to the binding.  We just have to find a
-way to upgrade existing installations of OpenBSD 7.1 which is a bit of
-a challenge as the SMC GPIOs are essential for wifi which on the
-laptops is the only network connection available.
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-> Hector says that MacOS's firmware description has the nodes merged, but
-> their description is a mess.
-
-To elaborate on that a bit more, the use of sub-nodes provides a nice
-separation between the SMC hardware interface (the main node) and the
-functionality offered by the firmware running on the SMC (the sub-nodes).
-
-Another argument for having sub-nodes is that the firmware actually
-exposes *two* GPIO controllers.  For now we only support the "master"
-PMU GPIOs, but there also is a "slave" PMU GPIO controller that uses a
-separate set of SMC "keys".  We currently don't need any of the pins
-on the "slave", so we don't expose it in the DT yet.
-
-> The overall preference seems to be to keep the sub-nodes unless there
-> is a strong technical reason not to.
-> 
-> The feeling I am getting from the review is that there doesn't seem to
-> be a strong technical reason to merge the nodes - there are desires and
-> preferences, but nothing concrete.
-> 
-> So at this point, I think it would make sense if I post a v2 with all
-> the updates so far (sorry, given the long drawn out discussions on
-> this, I've lost track of what changes have been made to the code, so
-> I won't include a detailed change log.)
-> 
-> -- 
-> RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-> FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
-> 
-> 
