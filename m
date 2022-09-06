@@ -2,130 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8F985ADC70
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 02:36:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0C1B5ADCA5
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 02:46:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233039AbiIFAf6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 20:35:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39722 "EHLO
+        id S230315AbiIFAqK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 20:46:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232486AbiIFAf4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 20:35:56 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E40567C97;
-        Mon,  5 Sep 2022 17:35:54 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 93B0EB8159F;
-        Tue,  6 Sep 2022 00:35:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F28EC43145;
-        Tue,  6 Sep 2022 00:35:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1662424551;
-        bh=AFVELCe6kckm5eVg8tSkLGzu73jpu1k+AHFc6+CYBcw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=nI77n7PyLi5FxsG5xVGzM7IPkRddyT0b0CMVM4SXMhWb+vUNwAV0WGNt4PA9n8CqS
-         zxVkXOyN5M/JlTZh6GqixESF8eOED5NoosbhPX2Hsbo0g74HUvcD5IqIAIzpnj5CaD
-         d4ygcuWBgqOpLZM9kiHSPuHX97fV/gU10RfgBZV6i4M0nptUl44AJG2NDDPrJ3KyGn
-         1mg1nut4G2j0qOt/ZUizGE05HWc7HSg5muHqEVTDVysQf1oTx2lYiY2aW+xCf1axIQ
-         MnFiCmpbeoQzdH1L8YqUu19CRdilnf4OtxFGR0RF0l82/TvXGOFtk+ukltv8mWvtx4
-         CmdEvf4qo/wqw==
-Received: by mail-ot1-f49.google.com with SMTP id m21-20020a9d6ad5000000b00638df677850so7112274otq.5;
-        Mon, 05 Sep 2022 17:35:51 -0700 (PDT)
-X-Gm-Message-State: ACgBeo1irLWI9k40WIIAZUzn+PUxbCUun/ta0nMlF7gXXQveqVBkCJz6
-        /gv/1dF3FWqxO41xCbpdUKyXzy9lVYDMFwar1g==
-X-Google-Smtp-Source: AA6agR7JB46gDLcqHlczb2XMcJBrFON4MTYWbTLa6xhusijh7jtXlCYbGmC4KWVKQpa3XwKRkOEL4frns62DfuOfGIw=
-X-Received: by 2002:a05:6830:6999:b0:61d:26f8:94c1 with SMTP id
- cy25-20020a056830699900b0061d26f894c1mr20597426otb.278.1662424550394; Mon, 05
- Sep 2022 17:35:50 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220901044149.16782-1-rex-bc.chen@mediatek.com>
- <af23462c-2d3b-470a-7fd6-2bf09a3174cb@gmail.com> <80985882-c46f-cfb1-b077-a92866536678@collabora.com>
-In-Reply-To: <80985882-c46f-cfb1-b077-a92866536678@collabora.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Tue, 6 Sep 2022 08:35:31 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_-C8fmabcTrytpHowbHe8Y+tTmv=5SV+oKPjUNRLTaU9w@mail.gmail.com>
-Message-ID: <CAAOTY_-C8fmabcTrytpHowbHe8Y+tTmv=5SV+oKPjUNRLTaU9w@mail.gmail.com>
-Subject: Re: [PATCH v17 00/10] Add MT8195 DisplayPort driver
-To:     Dmitry Osipenko <dmitry.osipenko@collabora.com>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        DTML <devicetree@vger.kernel.org>, linux-fbdev@vger.kernel.org,
-        Guillaume Ranquet <granquet@baylibre.com>,
-        Jitao Shi <jitao.shi@mediatek.com>, liangxu.xu@mediatek.com,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        Markus Schneider-Pargmann <msp@baylibre.com>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Bo-Chen Chen <rex-bc.chen@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S229817AbiIFAqJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 20:46:09 -0400
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BD70696E5;
+        Mon,  5 Sep 2022 17:46:04 -0700 (PDT)
+Received: (Authenticated sender: n@nfraprado.net)
+        by mail.gandi.net (Postfix) with ESMTPSA id C8C4D60005;
+        Tue,  6 Sep 2022 00:45:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nfraprado.net;
+        s=gm1; t=1662425160;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=Qc6NYY5YexS1HOTxn9qDikjXhg24+BGxEee+8YgWJDE=;
+        b=B3cTm8GfX1EYIoLJc4q1Z3RO2PR3LQp/UZ9kTf3g3hvmUIAqtFl5XKHYnzCJCYMW23Z0ra
+        xQRSSSnkS4Co4YBkIvIy+L5sc9mMw85G/3qkS/RYUbeNE+0MMXCNIB4iHE3LE2erUszrCX
+        CLm73BkIp8Kz7UhULj5fKQ+yIabJIYZBuvh3OFm6/6uPsdhmkyC/2LxEpRKn/jpEf3iirD
+        w9MmR0CQGP1gSY6tsKpo7yzk1uvtxPsU9m4WLcHv/OhX2ttxtu4aYFUtEHtR3NmzfQyuWe
+        7Fm2jy9dat9B0JOvEVXkcjx5Jqq7Q8I12aS1kbX/muRY6VWx/ZQ9NPfttQ2bqQ==
+Date:   Mon, 5 Sep 2022 20:45:54 -0400
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <n@nfraprado.net>
+To:     Ondrej Jirman <megi@xff.cz>
+Cc:     linux-rockchip@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>, deller@gmx.de,
-        David Airlie <airlied@linux.ie>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Martijn Braam <martijn@brixit.nl>,
+        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
+        Caleb Connolly <kc@postmarketos.org>,
+        Arnaud Ferraris <arnaud.ferraris@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Rockchip SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: rockchip: Fix SD card controller probe on
+ Pinephone Pro
+Message-ID: <20220906004554.btzmcjqox4n3hdtf@notapiano>
+References: <20220904233652.3197885-1-megi@xff.cz>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220904233652.3197885-1-megi@xff.cz>
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Dmitry:
+On Mon, Sep 05, 2022 at 01:36:47AM +0200, Ondrej Jirman wrote:
+> Voltage constraints on vccio_sd are invalid. They don't match the voltages
+> that LDO9 can generate, and this causes rk808-regulator driver to fail
+> to probe with -EINVAL when it tries to apply the constraints during boot.
+> 
+> Fix the constraints to something that LDO9 can be actually configured for.
+> 
+> Fixes: 78a21c7d5952 ("arm64: dts: rockchip: Add initial support for Pine64 PinePhone Pro")
+> Signed-off-by: Ondrej Jirman <megi@xff.cz>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+> index f00c80361377a..2e058c3150256 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+> @@ -253,8 +253,8 @@ regulator-state-mem {
+>  
+>  			vccio_sd: LDO_REG9 {
+>  				regulator-name = "vccio_sd";
+> -				regulator-min-microvolt = <1710000>;
+> -				regulator-max-microvolt = <3150000>;
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <3300000>;
 
-Dmitry Osipenko <dmitry.osipenko@collabora.com> =E6=96=BC 2022=E5=B9=B49=E6=
-=9C=885=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=886:53=E5=AF=AB=E9=81=
-=93=EF=BC=9A
->
-> On 9/4/22 15:59, Dmitry Osipenko wrote:
-> > 01.09.2022 07:41, Bo-Chen Chen =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
-> >> This patch is separated from v10 which is including dp driver, phy dri=
-ver
-> >> and dpintf driver. This series is only contained the DisplayPort drive=
-r.
-> >>
-> >> This series can be tested using 5.19-rc2 kernel and I test it in MT819=
-5
-> >> Tomato Chromebook. Modetest these modes:
-> >
-> > Applied to drm-misc-next, thanks!
->
-> Hello Chun-Kuang Hu,
->
-> Angelo told me today that you wanted to pick up the MTK driver patches
-> and I applied them all to the drm-misc instead just of the "video/hdmi"
-> patch. The series was fully reviewed and tested, so I had no doubts when
-> applied all the patches.
->
-> The applied patches can't be reverted, so if you have more changes
-> prepared for the MTK driver, then please rebase them on top of the
-> latest drm-misc-next.
->
-> Apologizes for this confusion. Please let us know if we can help you.
+Shouldn't the maximum be 3.1V? The SDMMC0_VDD pin on RK3399 that this regulator
+is connected to expects a maximum voltage of 3.15V, so 3.3V would be too high.
+The output voltage for LDO9 is configured in 100mV steps, so I imagine that's
+why 3.15V fails, but 3.1V should work fine. I haven't tested yet though.
 
-OK, if this cannot be reverted, I could only accept this. Normally,
-drm/mediatek patches would go though medaitek-drm-* branch. To prevent
-any confusion, it's better to discuss before pick up.
-
-Regards,
-Chun-Kuang.
-
->
-> --
-> Best regards,
-> Dmitry
+Thanks,
+Nícolas
