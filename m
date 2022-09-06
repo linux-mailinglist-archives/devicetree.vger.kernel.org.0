@@ -2,340 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8E6A5AE2A7
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 10:31:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EDF05AE2C6
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 10:35:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239202AbiIFIbP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 04:31:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53422 "EHLO
+        id S238119AbiIFIex (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 04:34:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239199AbiIFIac (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 04:30:32 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3210C12D1E
-        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 01:30:02 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id b5so14277332wrr.5
-        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 01:30:02 -0700 (PDT)
+        with ESMTP id S238870AbiIFIer (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 04:34:47 -0400
+Received: from smtp-fw-6002.amazon.com (smtp-fw-6002.amazon.com [52.95.49.90])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6759E19C22;
+        Tue,  6 Sep 2022 01:34:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=v8ouXiM/D6PovqdDcjRRSqwSIhMxmugCgoNU0mgYx10=;
-        b=ojLY3eaYDCDRhPHbtp0/eACZnuFvgdyQqlXnABqm76NrtAo/PDeUE7QeApNhcfiAFH
-         t7iZBsasZsIdF+S9V+913pWzRr8yD9aZbhh9YqdBl12BDaM+FRdUQLLejcm0T9vdG8op
-         1Q7538AOZrZTGNB1ArpETrev3EYAedxupmthfTn5KHOux3s73zoh3bPbtB3vKaF920dB
-         5ZlSmX0NiW4rYFWxGOf6kN7a+58E8qB3/FxV8XoLvrhuWKo7NlhE63wIFC85+heMyF4M
-         Fg4b0gRs5PqjINLuDCBqq5c0JT328kBINEDAZO+OebMZh/vkPb+FtZxSmJ+Z5300HK/T
-         zyIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=v8ouXiM/D6PovqdDcjRRSqwSIhMxmugCgoNU0mgYx10=;
-        b=HKvqJDWF2MKlOwCjyi4jgopmKZO3KK7x7RbaMhuhQyqBe77jKYL5o55C/Rk3O18S1C
-         K+ZpUnXs3M2JOAumSQn9scb179Y524j5zza3wxnthnjKciG0/Xr+ItRRJdtUZNwib7+o
-         VFSzGyMxdT/3DONo9WEq+NjSajKk5RlXDArVSdEd0kXaz1PhztegTl+mJh1CFcjwUDOZ
-         csDYEo7pzybScT7k7TIwnmyaKmzp7wZRpP9oC9ze7f2KcA8EibojngXCgdK5eRX0lpN9
-         Ky/G/Ka8zee082OtgU/6rR/nh87IJGu8BaqXbmlP8asIaKb9W0CjfDLu/3jsKE0vlOeh
-         WLdg==
-X-Gm-Message-State: ACgBeo2LJxbVDeQS+ZfYACe9Z3ElutU9L2f5giMvN+fYDqykisgm00mJ
-        rYKikqsZ0arQ2VS3gz10Wjxr8ymLz/U94nF3
-X-Google-Smtp-Source: AA6agR6Ij/SlWC2xamBYW4wjAWzpKpcJCN4algrGYEx6qIU0+EskptbLBVBTgWpgZumhQp+ds5rt6g==
-X-Received: by 2002:a05:6000:1361:b0:228:dc47:8a49 with SMTP id q1-20020a056000136100b00228dc478a49mr91226wrz.50.1662453001723;
-        Tue, 06 Sep 2022 01:30:01 -0700 (PDT)
-Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id n30-20020a05600c501e00b003a61306d79dsm15963347wmr.41.2022.09.06.01.30.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Sep 2022 01:30:01 -0700 (PDT)
-Date:   Tue, 6 Sep 2022 11:29:59 +0300
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Amol Maheshwari <amahesh@qti.qualcomm.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        David Heidelberg <david@ixit.cz>
-Subject: Re: [PATCH v7 1/2] dt-bindings: misc: fastrpc convert bindings to
- yaml
-Message-ID: <YxcFB4lEu16SXOyl@linaro.org>
-References: <20220905144554.1772073-1-abel.vesa@linaro.org>
- <3649a134-0ea7-b67c-8b5a-2971f090446c@linaro.org>
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1662453286; x=1693989286;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=3//tdfVNFU6XbabXXpbZNLh74O6SviUmuZml9vQSrNo=;
+  b=hVGxshil0yXYUvP8dp5ZfmFn6eC6tRV1qWch9Ip37TsjdDEJV40L9lXB
+   UorPcpGE7CEYgG1iXHXBMBi5AKGdJ55AEA3pYIGI7UQTN8wOfsXYL/7QB
+   QzoZ2O+u9QDgzAHZOYQekCkLGYyq7oH0DRdH7O35rmkzy5qs2jUyquKkf
+   E=;
+X-IronPort-AV: E=Sophos;i="5.93,293,1654560000"; 
+   d="scan'208";a="241387496"
+Received: from iad12-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-iad-1a-4ba5c7da.us-east-1.amazon.com) ([10.43.8.6])
+  by smtp-border-fw-6002.iad6.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Sep 2022 08:34:37 +0000
+Received: from EX13MTAUWB001.ant.amazon.com (iad12-ws-svc-p26-lb9-vlan2.iad.amazon.com [10.40.163.34])
+        by email-inbound-relay-iad-1a-4ba5c7da.us-east-1.amazon.com (Postfix) with ESMTPS id 574D3E05AF;
+        Tue,  6 Sep 2022 08:34:35 +0000 (UTC)
+Received: from EX19D013UWA002.ant.amazon.com (10.13.138.210) by
+ EX13MTAUWB001.ant.amazon.com (10.43.161.249) with Microsoft SMTP Server (TLS)
+ id 15.0.1497.38; Tue, 6 Sep 2022 08:33:59 +0000
+Received: from EX13MTAUEA001.ant.amazon.com (10.43.61.82) by
+ EX19D013UWA002.ant.amazon.com (10.13.138.210) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1118.12;
+ Tue, 6 Sep 2022 08:33:58 +0000
+Received: from dev-dsk-farbere-1a-46ecabed.eu-west-1.amazon.com
+ (172.19.116.181) by mail-relay.amazon.com (10.43.61.243) with Microsoft SMTP
+ Server id 15.0.1497.38 via Frontend Transport; Tue, 6 Sep 2022 08:33:57 +0000
+Received: by dev-dsk-farbere-1a-46ecabed.eu-west-1.amazon.com (Postfix, from userid 14301484)
+        id C3F5D4D8E; Tue,  6 Sep 2022 08:33:56 +0000 (UTC)
+From:   Eliav Farber <farbere@amazon.com>
+To:     <jdelvare@suse.com>, <linux@roeck-us.net>, <robh+dt@kernel.org>,
+        <p.zabel@pengutronix.de>, <rtanwar@maxlinear.com>,
+        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     <farbere@amazon.com>, <hhhawa@amazon.com>, <jonnyc@amazon.com>,
+        <andriy.shevchenko@intel.com>
+Subject: [PATCH v4 00/21] Variety of fixes and new features for mr75203 driver
+Date:   Tue, 6 Sep 2022 08:33:35 +0000
+Message-ID: <20220906083356.21067-1-farbere@amazon.com>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <3649a134-0ea7-b67c-8b5a-2971f090446c@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-11.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        USER_IN_DEF_SPF_WL autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-09-06 08:45:22, Krzysztof Kozlowski wrote:
-> On 05/09/2022 16:45, Abel Vesa wrote:
-> > Convert Qualcomm FastRPC bindings to yaml format, so that we could validate
-> > dt-entries correctly and any future additions can go into yaml format.
-> > 
-> > Use compute-cb@ subnodes instead of just cb@.
-> > 
-> > Also add qcom,non-secure-domain, qcom,glink-channels and
-> > qcom,smd-channels missing properties to make sure dtbs_check doesn't
-> > fail right off the bat.
-> 
-> qcom,non-secure-domain is in original binding, so I don't understand why
-> it is being "added".
-> 
+List of fixes:
+ - Fix "intel,vm-map" property to be optional.
+ - Fix VM sensor allocation when "intel,vm-map" not defined.
+ - Fix multi-channel voltage reading.
+ - Fix voltage equation for negative source input.
+ - Modify the temperature equation according to series 5 datasheet.
+ - Fix coding style issue.
 
-Yeah, my bad, I should've added this line to the changes since v4.
+List of new features:
+ - Modify "reset" property to be optional.
+ - Add optional "moortec,vm-active-channels" property to define the number
+   of active channels per VM.
+ - Add support for mr76006 pre-scaler to multiply the voltage result by 2.
+ - Add support for series 6 temperature equation.
+ - Add coefficient properties to fine tune the temperature equation.
+ - Add debugfs to read and write temperature coefficients
 
-> > 
-> > Co-developed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> > Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> > Co-developed-by: David Heidelberg <david@ixit.cz>
-> > Signed-off-by: David Heidelberg <david@ixit.cz>
-> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > ---
-> > 
-> > Changes since v6:
-> >  * renamed the parent node name in the example from smd-edge to glink-edge
-> > 
-> >  .../devicetree/bindings/misc/qcom,fastrpc.txt |  88 -------------
-> >  .../bindings/misc/qcom,fastrpc.yaml           | 118 ++++++++++++++++++
-> 
-> As you can see in Rob's bot report - the patchset introduces errors and
-> is not bisectable.
+---------
 
-Please note that Rob's bot report is for v6.
+Changes between v3 and v4:
+*) Provide a Fixes tag for all fixes in the series.
+*) Start series with fixes.
+*) New patch to add description in moortec,mr75203.yaml.
+*) New patch to add moortec to vendor-prefixes.
+*) Fix moortec,mr75203.yaml checker errors.
+*) Remove validation of device-tree parameters.
+*) Fix per patch specific comments (detailed in each patch).
 
-v7 fixes the errors reported, by using glink-edge instead of smd-edge.
+Changes between v2 and v3:
+*) Add "moortec" prefix to all new device-tree properties.
+*) Change order of patches.
+*) Add explanations to better understand the changes.
+*) Change "reset" property to be optional and remove the
+  "reset-control-skip" property.
+*) Split the patch for "fix multi-channel voltage reading" to two
+   patches.
+*) Change pre-scaler property format and fix typo (scalar --> scaler).
+*) Fix voltage equation to support negative values instead of limiting
+   value to zero.
+*) Temperature equation - protect from overflow and add clamping.
+*) Add new "moortec,ts-series" property to select between temperature
+   equation of series 5 or series 6.
 
-Looking at all QCOM SoCs that have fastrpc node in devicetree, they all
-seem to be using glink-edge.
+Changes between v1 and v2:
+ *) Fix compilation error for patch 08/16:
+    "warning: ISO C90 forbids variable length array"
 
-> 
-> You also need to fix qcom,glink-edge.yaml
-> 
+---------
 
-I don't see why, with the changes I made in v7, there are no errors
-anymore.
+Eliav Farber (21):
+  hwmon: (mr75203) fix coding style space errors
+  dt-bindings: hwmon: (mr75203) fix "intel,vm-map" property to be
+    optional
+  hwmon: (mr75203) fix VM sensor allocation when "intel,vm-map" not
+    defined
+  hwmon: (mr75203) update pvt->v_num and vm_num to the actual number of
+    used sensors
+  hwmon: (mr75203) fix voltage equation for negative source input
+  hwmon: (mr75203) fix multi-channel voltage reading
+  hwmon: (mr75203) enable polling for all VM channels
+  dt-bindings: hwmon: (mr75203) add description for Moortec's PVT
+    controller
+  dt-bindings: hwmon: (mr75203) change "resets" property to be optional
+  hwmon: (mr75203) skip reset-control deassert for SOCs that don't
+    support it
+  dt-bindings: vendor-prefixes: add vendor prefix for Moortec
+  dt-bindings: hwmon: (mr75203) add "moortec,vm-active-channels"
+    property
+  hwmon: (mr75203) add VM active channel support
+  dt-bindings: hwmon: (mr75203) add "moortec,vm-pre-scaler-x2" property
+  hwmon: (mr75203) add VM pre-scaler x2 support
+  hwmon: (mr75203) modify the temperature equation according to series 5
+    datasheet
+  dt-bindings: hwmon: (mr75203) add "moortec,ts-series" property
+  hwmon: (mr75203) add support for series 6 temperature equation
+  dt-bindings: hwmon: (mr75203) add coefficient properties for the
+    thermal equation
+  hwmon: (mr75203) parse temperature coefficients from device-tree
+  hwmon: (mr75203) add debugfs to read and write temperature
+    coefficients
 
-> >  2 files changed, 118 insertions(+), 88 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/misc/qcom,fastrpc.txt
-> >  create mode 100644 Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/misc/qcom,fastrpc.txt b/Documentation/devicetree/bindings/misc/qcom,fastrpc.txt
-> > deleted file mode 100644
-> > index 5ec124b138a6..000000000000
-> > --- a/Documentation/devicetree/bindings/misc/qcom,fastrpc.txt
-> > +++ /dev/null
-> > @@ -1,88 +0,0 @@
-> > -Qualcomm Technologies, Inc. FastRPC Driver
-> > -
-> > -The FastRPC implements an IPC (Inter-Processor Communication)
-> > -mechanism that allows for clients to transparently make remote method
-> > -invocations across DSP and APPS boundaries. This enables developers
-> > -to offload tasks to the DSP and free up the application processor for
-> > -other tasks.
-> > -
-> > -- compatible:
-> > -	Usage: required
-> > -	Value type: <stringlist>
-> > -	Definition: must be "qcom,fastrpc"
-> > -
-> > -- label
-> > -	Usage: required
-> > -	Value type: <string>
-> > -	Definition: should specify the dsp domain name this fastrpc
-> > -	corresponds to. must be one of this: "adsp", "mdsp", "sdsp", "cdsp"
-> > -
-> > -- qcom,non-secure-domain:
-> > -	Usage: required
-> > -	Value type: <boolean>
-> > -	Definition: Property to specify that dsp domain is non-secure.
-> > -
-> > -- qcom,vmids:
-> > -	Usage: optional
-> > -	Value type: <u32 array>
-> > -	Definition: Virtual machine IDs for remote processor.
-> 
-> You miss qcom,vmids in the conversion.
-> 
-> > -
-> > -- #address-cells
-> > -	Usage: required
-> > -	Value type: <u32>
-> > -	Definition: Must be 1
-> > -
-> > -- #size-cells
-> > -	Usage: required
-> > -	Value type: <u32>
-> > -	Definition: Must be 0
-> > -
-> > -= COMPUTE BANKS
-> > -Each subnode of the Fastrpc represents compute context banks available
-> > -on the dsp.
-> > -- All Compute context banks MUST contain the following properties:
-> > -
-> > -- compatible:
-> > -	Usage: required
-> > -	Value type: <stringlist>
-> > -	Definition: must be "qcom,fastrpc-compute-cb"
-> > -
-> > -- reg
-> > -	Usage: required
-> > -	Value type: <u32>
-> > -	Definition: Context Bank ID.
-> > -
-> > -- qcom,nsessions:
-> > -	Usage: Optional
-> > -	Value type: <u32>
-> > -	Defination: A value indicating how many sessions can share this
-> > -		    context bank. Defaults to 1 when this property
-> > -		    is not specified.
-> > -
-> > -Example:
-> > -
-> > -adsp-pil {
-> > -	compatible = "qcom,msm8996-adsp-pil";
-> > -	...
-> > -	smd-edge {
-> > -		label = "lpass";
-> > -		fastrpc {
-> > -			compatible = "qcom,fastrpc";
-> > -			qcom,smd-channels = "fastrpcsmd-apps-dsp";
-> > -			label = "adsp";
-> > -			#address-cells = <1>;
-> > -			#size-cells = <0>;
-> > -
-> > -			cb@1 {
-> > -				compatible = "qcom,fastrpc-compute-cb";
-> > -				reg = <1>;
-> > -			};
-> > -
-> > -			cb@2 {
-> > -				compatible = "qcom,fastrpc-compute-cb";
-> > -				reg = <2>;
-> > -			};
-> > -			...
-> > -		};
-> > -	};
-> > -};
-> > diff --git a/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml b/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
-> > new file mode 100644
-> > index 000000000000..2b446272cc14
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
-> > @@ -0,0 +1,118 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: "http://devicetree.org/schemas/misc/qcom,fastrpc.yaml#"
-> > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> > +
-> > +title: Qualcomm FastRPC Driver
-> > +
-> > +maintainers:
-> > +  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> > +
-> > +description: |
-> > +  The FastRPC implements an IPC (Inter-Processor Communication)
-> > +  mechanism that allows for clients to transparently make remote method
-> > +  invocations across DSP and APPS boundaries. This enables developers
-> > +  to offload tasks to the DSP and free up the application processor for
-> > +  other tasks.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> 
-> no "items", as it is not a list.
-> 
-> > +      - const: qcom,fastrpc
-> > +
-> > +  label:
-> > +    items:
-> 
-> ditto (plus this actually does not define even how many items)
-> 
-> > +      enum:
-> > +        - adsp
-> > +        - mdsp
-> > +        - sdsp
-> > +        - cdsp
-> > +
-> > +  qcom,glink-channels:
-> > +    description:
-> > +      A list of channels tied to this function, used for matching
-> > +      the function to a set of virtual channels.
-> > +    $ref: "/schemas/types.yaml#/definitions/string-array"
-> 
-> maxItems: 1
-> 
-> > +
-> > +  qcom,non-secure-domain:
-> > +    description:
-> > +      Used to mark the current domain as non-secure.
-> > +    type: boolean
-> > +
-> > +  qcom,smd-channels:
-> > +    description:
-> > +      Channel name used for the RPM communication
-> > +    $ref: "/schemas/types.yaml#/definitions/string-array"
-> 
-> maxItems: 1
-> 
-> 
-> > +
-> > +  '#address-cells':
-> > +    const: 1
-> > +
-> > +  '#size-cells':
-> > +    const: 0
-> > +
-> > +patternProperties:
-> > +  "(compute-)?cb@[0-9]*$":
-> > +    type: object
-> > +
-> > +    description: >
-> > +      Each subnode of the Fastrpc represents compute context banks available on the dsp.
-> > +
-> > +    properties:
-> > +      compatible:
-> > +        items:
-> 
-> Drop items
-> 
-> > +          - const: qcom,fastrpc-compute-cb
-> > +
-> > +      reg:
-> > +        maxItems: 1
-> > +
-> > +      qcom,nsession:
-> > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > +        default: 1
-> > +        description: >
-> > +          A value indicating how many sessions can share this context bank.
-> > +
-> > +    required:
-> > +      - compatible
-> > +      - reg
-> > +
-> > +required:
-> > +  - compatible
-> > +  - label
-> > +  - '#address-cells'
-> > +  - '#size-cells'
-> 
-> Use consistent quotes, either ' or "
-> 
-> 
-> 
-> Best regards,
-> Krzysztof
+ .../bindings/hwmon/moortec,mr75203.yaml       |  97 ++++-
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ drivers/hwmon/mr75203.c                       | 387 +++++++++++++++---
+ 3 files changed, 421 insertions(+), 65 deletions(-)
+
+-- 
+2.37.1
+
