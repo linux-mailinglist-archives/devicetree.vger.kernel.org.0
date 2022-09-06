@@ -2,133 +2,262 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C4755AEB87
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 16:26:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F1C25AEBEE
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 16:27:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241187AbiIFOOc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 10:14:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50806 "EHLO
+        id S241649AbiIFOSD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 10:18:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241549AbiIFONh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 10:13:37 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C7E5895D5
-        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 06:48:08 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id dc5so3560001ejb.9
-        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 06:48:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=vES/lt0MXBWqXZjxjspNA4S3RuvGiNZSCJKY5IddJHM=;
-        b=C5pTfv6sM7dHl/ZnXWKdbzOFx9dYouAyAn964q9bxDazB+7rxfx//WubrSOaVpJmAn
-         I6a5/NcMdG4+i+MU/Eo05NNOSC4/+lF3v1MzdCyAYNfIrvGWqYiSozA+j2MWL5pK9bKX
-         vo9kCHdhqAdN8c7Fr3rJdBrJuV3IXT1CO/b/00U9Vc61zhMpZR8qqVlDqRn3/8moCJ+H
-         cFOiQ52fsA1q+Qn7QWNWBVPoj5xgnGtYKXxs4BmtX9t78iApa61XgsftkvnxpcKq22cQ
-         Cr+9GqHyfJ5Hgfw/OLBW+gKMJWnNsxLK0jLEvl/us2x/uvG/fzDv2S5lQUx3ZJMRH4ag
-         IhrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=vES/lt0MXBWqXZjxjspNA4S3RuvGiNZSCJKY5IddJHM=;
-        b=ZY9GqAx1ZZRq5xx4S5OSKqWEsXC4WQnKnsFkorkBDplO3mA4gQXC1Gu7x/8JmrkrCu
-         Yysgtcf4C+Nzgc+BIa21OFNPymVaLtNMNQd8hUxph9UReUU9kc45kXjhgnUn9n3dfVHQ
-         s2+wixY9wBX1UYWXr336ZFkyoJBQcOA7NWgwLn38U0Z1VJUwX17pq7EMFv/mRCf8UXfX
-         Cj2gc3QJ7QID9cv/1ADLUCx4qnKezA80hsZQfu7WsooHAV2aM05H+hsZaYlqVOIX8TTa
-         rn7mmLFLB21c+URjCEYiOqodz1AsRZQjbuTyHzqbMEVWV2ErkV9ZMPsI5OLyapiRXkod
-         mXHg==
-X-Gm-Message-State: ACgBeo3qnjg02/XgY4NAoshessbPUCOPJbN1pDgGX7s/4j6KdqUhK/U3
-        pozofAAFYqqcYpN1beH0foV3oIa6YyBkoQ3jQu8hmw==
-X-Google-Smtp-Source: AA6agR5PA0CgGPmgOwDTBTALSmyX+y6DwXy04Ax5g0iL8EPRemFjppQ8iC8xEmVJmovk2uEs5CvbEyl93SGawzLhgRs=
-X-Received: by 2002:a17:906:58c8:b0:6fe:91d5:18d2 with SMTP id
- e8-20020a17090658c800b006fe91d518d2mr40054447ejs.190.1662472017364; Tue, 06
- Sep 2022 06:46:57 -0700 (PDT)
+        with ESMTP id S241871AbiIFOQz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 10:16:55 -0400
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on20612.outbound.protection.outlook.com [IPv6:2a01:111:f400:fe59::612])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A523C63C2;
+        Tue,  6 Sep 2022 06:49:32 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZIVje1G+LpTgpnklShigHsfCfHZhZfB/4xgZTrrC2epcURHFU8WFRn9RXqtUHG6kQ4EtFNVh+mLWvdsS7SuLbOZN8E0xIwQ7uDLXfQO33H9/2HHrB7is+YkeQUrKcMgGXNkoU8W2PHXPisHIKLry9SAl9mReW6DQ2i/MGgvDSl7AMO4dJmx4vMiEmYn8UQgfErbDzcMJf5uVx7Wt+aUhXk4aVwYXPysJ4N2DIwa/iqxW3rXze00lI7fymSy5sKijfFmKpOg5VFWFebffqkOQJVU6bMRMBNYGXQpbl9d2+BIq53emKIBpm7N7mOM19SbVvP5Q/J+57B/2c83iThfEvA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8DeGwctyS44Ypj9NKd7qCQAwoVdWuOIpzaw5crT+OJA=;
+ b=niLfgFbIO276z6gRy6KAGKx9EqlryLS6QpNbRSXkFZNdr/7YOO5PJdo5orzWBaM5AUzCXvRKHezmomCjWwwUWTdwl0ffw+MOMxVufGgUyXX4bxZPGDu1KMaiSRWqrJnip8mvjk9ty8CfpCspTN5YueRT1Ep8QKgILaQrbG0O1CqiWo/q93DpOLJVzfuus8HlgD8q65GaotG0W38Dn8lOS25TLDiXSr+aPsd/3TnDNyGV0a2m9fRWw7I/VDtI4oweq4aYtD102mnhiKolD6Tl5Ss0nZFuURSky0iwxEhDML89Zh37YX8UWtSgPEfybeauakRT1pv5ajU/26O4i+YcwA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8DeGwctyS44Ypj9NKd7qCQAwoVdWuOIpzaw5crT+OJA=;
+ b=2AVCdQz687IF3AHh/bqjJ9eNl1iEdZ+Ui1tVTYvDToJX4JSyl6FyWwXo2NPLNSF25FzEgUkPx/5ZWEIDcnwp+5Tm/i9A8jX8VuJC8FrR6lyQPosBFCDeZzFzGN86SYSU9YLgLdCFF6JtwBxPv8E/ddGp0YvtSAhtnJnDteU5+qc=
+Received: from CY5PR14CA0013.namprd14.prod.outlook.com (2603:10b6:930:2::23)
+ by CH2PR12MB4939.namprd12.prod.outlook.com (2603:10b6:610:61::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.15; Tue, 6 Sep
+ 2022 13:48:14 +0000
+Received: from CY4PEPF0000B8EE.namprd05.prod.outlook.com
+ (2603:10b6:930:2:cafe::b2) by CY5PR14CA0013.outlook.office365.com
+ (2603:10b6:930:2::23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.13 via Frontend
+ Transport; Tue, 6 Sep 2022 13:48:13 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ CY4PEPF0000B8EE.mail.protection.outlook.com (10.167.241.10) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5612.9 via Frontend Transport; Tue, 6 Sep 2022 13:48:13 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Tue, 6 Sep
+ 2022 08:48:12 -0500
+Received: from xhdipdslab49.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
+ Transport; Tue, 6 Sep 2022 08:48:02 -0500
+From:   Nipun Gupta <nipun.gupta@amd.com>
+To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <gregkh@linuxfoundation.org>, <rafael@kernel.org>,
+        <eric.auger@redhat.com>, <alex.williamson@redhat.com>,
+        <cohuck@redhat.com>, <puneet.gupta@amd.com>,
+        <song.bao.hua@hisilicon.com>, <mchehab+huawei@kernel.org>,
+        <maz@kernel.org>, <f.fainelli@gmail.com>,
+        <jeffrey.l.hugo@gmail.com>, <saravanak@google.com>,
+        <Michael.Srba@seznam.cz>, <mani@kernel.org>, <yishaih@nvidia.com>,
+        <jgg@ziepe.ca>, <jgg@nvidia.com>, <robin.murphy@arm.com>,
+        <will@kernel.org>, <joro@8bytes.org>, <masahiroy@kernel.org>,
+        <ndesaulniers@google.com>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kbuild@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <kvm@vger.kernel.org>
+CC:     <okaya@kernel.org>, <harpreet.anand@amd.com>,
+        <nikhil.agarwal@amd.com>, <michal.simek@amd.com>,
+        <aleksandar.radovanovic@amd.com>, <git@amd.com>,
+        Nipun Gupta <nipun.gupta@amd.com>
+Subject: [RFC PATCH v3 0/7] add support for CDX bus
+Date:   Tue, 6 Sep 2022 19:17:54 +0530
+Message-ID: <20220906134801.4079497-1-nipun.gupta@amd.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220803122655.100254-1-nipun.gupta@amd.com>
+References: <20220803122655.100254-1-nipun.gupta@amd.com>
 MIME-Version: 1.0
-References: <YxDL+cAx9kkZRL8K@shell.armlinux.org.uk> <928ddeff-efac-920c-7bbf-dda35a942b93@linaro.org>
- <YxDOpCq0vIlt4VNa@shell.armlinux.org.uk> <2fedff34-6a20-f1ce-a756-2bd8671fcd52@linaro.org>
- <YxDWG5dmzErhKIXw@shell.armlinux.org.uk> <ef6c7248-1efa-5366-6bcd-900c5f10ccb2@linaro.org>
- <YxDiBFIn6artUOZm@shell.armlinux.org.uk> <CAL_Jsq+GCKisAVA0AfE=yWJYy18mAGQ7rY1sKGYraXv-berNSg@mail.gmail.com>
- <d3cec3d22e464fa8@bloch.sibelius.xs4all.nl> <20220902172808.GB52527-robh@kernel.org>
- <YxcNLU+KGEolrdfT@shell.armlinux.org.uk> <d3cecee5edd24f67@bloch.sibelius.xs4all.nl>
- <CACRpkdaSRcczEF8QZ4aO+-HDVS+n-8MXvn6ysnjJfUEabwUJ=w@mail.gmail.com>
- <909bb4e7-5bd2-2903-5bba-87ae37f3448a@marcan.st> <CACRpkdajhjpMzjMooDduu0jxrp0uDNJ90VfBPpHx+P14cFfskA@mail.gmail.com>
- <5b75dc7e-5337-73eb-450f-b72f479793c4@marcan.st>
-In-Reply-To: <5b75dc7e-5337-73eb-450f-b72f479793c4@marcan.st>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 6 Sep 2022 15:46:45 +0200
-Message-ID: <CACRpkdYkL36Zbm6BWM7N_y=xwgkWA54q7uiFn7ZOGrfM-4KY9w@mail.gmail.com>
-Subject: Re: [PATCH 1/6] dt-bindings: mfd: add binding for Apple Mac System
- Management Controller
-To:     Hector Martin <marcan@marcan.st>
-Cc:     Mark Kettenis <mark.kettenis@xs4all.nl>,
-        "Russell King (Oracle)" <linux@armlinux.org.uk>, robh@kernel.org,
-        krzysztof.kozlowski@linaro.org, arnd@arndb.de, lee@kernel.org,
-        alyssa@rosenzweig.io, asahi@lists.linux.dev, brgl@bgdev.pl,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        sven@svenpeter.dev, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000B8EE:EE_|CH2PR12MB4939:EE_
+X-MS-Office365-Filtering-Correlation-Id: a304928f-18c6-4a1e-7623-08da900e71a9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ZHDEDbSIYcgCf+jdepbH5AYoGGEate7tor1uc3Gmse7XFKGNV6KpDG7YI1ztg6e3ewJ8uLWyYD/Ko14dds/e5Uluq5wwSFaAcFa5s4EERSBl/oNroAaolHAna12gxPjcLxzCFWdXHRk7FoizeIKbqFaKjb3jBFD5CE1FDpm9+xvVIE8ximSBLUiv/1rFtio2GkdIftHpiX+9TPr5IeI+PZomvyTlWg5NbPGysqpopdXJrhHjHsJ61ZmOQ5ExN7HXoZNS4Z3NK0aI1qO6qh1XnTLnK/5cVb2/FZBm8wvZJJlXGqV7aPsOde4feEfKfYntMXFBgSJY7mKNVMgnS7q1JV00VLI9A9x7S89qC45iE1FWXrofQfQem8fHjcRwQDh5LLEzPalzGhzohfMTlDpCTfB0sWeSZrKncDI9GeIXAJ2jZ5imYor+IoVyddBSpxnxeCvA5p3MNHB9P0e2kDT0Mi+ybHcLim0FjnZTQSMMvS+2h9jjqMpHt0kBL5+2R8VroyKRbxwRQSFzg5JaksHDbsk/tHZcYhJRmJ6GikDq9DyoYu47m14HQX4W3NDD9biViq0Qljb8dX91T61+KyokQzqarAIVaY5RG/n9rY5LWDI2VJL7fSYt4eM0mGQF0hGkmjWbJciWsRwJq5InyvK7MeIv3swSMvFmhMoR/kBOSIOH88a6agblCaKmY1te31RoDlhrbcnXCU8CSuPNOOZDWTNSCdLbD02ZZ+UKV6LBnlCFdckdR2xkhObvWUZgPmV3F2TTblcD8Vy3L5duOVLm09Hrloiu4f8N6c5G3fPrM361GNeI/8P2NXizs0lk6FM9Bqu29dJ4OLiuyrApKQxLQyxUJvIyeP499cRSdNqbl+8=
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230016)(4636009)(136003)(396003)(376002)(346002)(39860400002)(46966006)(36840700001)(40470700004)(36860700001)(5660300002)(316002)(83380400001)(110136005)(4326008)(8676002)(7416002)(54906003)(36756003)(44832011)(70206006)(8936002)(70586007)(2906002)(40480700001)(26005)(41300700001)(478600001)(86362001)(426003)(2616005)(336012)(82310400005)(186003)(1076003)(6666004)(40460700003)(356005)(921005)(81166007)(82740400003)(47076005)(36900700001)(83996005)(2101003);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Sep 2022 13:48:13.5814
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a304928f-18c6-4a1e-7623-08da900e71a9
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000B8EE.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4939
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 6, 2022 at 3:28 PM Hector Martin <marcan@marcan.st> wrote:
-> On 06/09/2022 20.57, Linus Walleij wrote:
-> > On Tue, Sep 6, 2022 at 1:36 PM Hector Martin <marcan@marcan.st> wrote:
+Devices in FPGA can be added/modified dynamically on run-time.
+This patch series introduces AMD CDX bus, which provides a
+mechanism to discover/rescan FPGA devices on run-time. These
+devices are memory mapped on system bus for embedded CPUs, and
+added as CDX devices in Linux framework.
 
-> > This comes from the FDT background in OpenFirmware, and there is
-> > definitely a timeline perspective (also called "waterfall model") in that
-> > line of thinking: a DT is written that describes the hardware and flashed
-> > into the BIOS and never changed, then the operating system is
-> > implemented at a later point. This is how e.g. the PC ACPI BIOS tables
-> > are also thinking about themselves.
->
-> Yes, but again, that only makes sense from the point of view of
-> describing hardware that exists, is useful, and could be used by the OS.
->
-> For any given platform X, if platform X does not use the secondary GPIO
-> controller for any service describable in the DT, then there is no point
-> in describing that GPIO controller. Same way ACPI tables do not describe
-> every single physical GPIO available on a platform, just whatever is
-> used by the AML.
+This RFC:
+- Intrduces the CDX bus controller and CDX devices.
+- Adds rescan and reset support for the CDX bus.
+- Add support for reset for CDX devices.
+- Support for CDX bus in arm-smmu-v3 driver
+- Support for CDX-MSI domain.
+- Vfio-cdx driver support for CDX devices.
 
-Good point. I don't know what ambition DT should have here.
-If there is a discrete component on I2C for example, we tend to
-describe it fully, this kind of stuff with misc "dark silicon" didn't
-exist when DT was first conceived.
+Please NOTE: This RFC change does not support the CDX bus firmware
+interface as it is under development, and this series aims to get
+an early feedback from the community. Firmware interaction are
+stubbed as MCDI APIs which is a protocol used by AMD to interact
+with Firmware.
 
-> If some day we find a use for those GPIOs, that would require a DT
-> change *anyway*, to describe that usage, and the controller could be
-> described then (we did something like that, using a GPIO that Apple
-> doesn't, for the interim display-backlight power control support, though
-> that is a temporary hack that will go away). Heck, we don't even know
-> what these GPIOs are connected to right now!
->
-> Ultimately, we're working with a reverse engineered platform here, and
-> DTs will inevitaby be incremental.
-(...)
+Changes in v2:
+- introduce CDX bus infrastructure
+- fixed code for making compatible visible for devices
+  having the 'compatible' property only (Greg K-H)
+- moved CDX-MSI domain as part of CDX bus infrastructure.
+  previously it was part of irqchip (Marc Zynger).
+- fixed few prints (Greg K-H)
+- support rescan and reset of CDX bus
+- add VFIO reset module for CDX bus based devices
 
-That's OK, I think the patch series is good enough as it is and should
-be merged, so I have added my Reviewed-by. I think the world
-is a better place with support for Apple silicon being developed
-in-tree.
+Changes in v3:
+- Move CDX bus as a new bus type in kernel rather than
+  using the platform devices (Greg K-H, Marc Zynger)
+- Correspondingly update ARM SMMU v3
+- Add support for vfio-cdx driver
+- Updated device tree yaml with correct binding information
+  (Krzysztof Kozlowski)
+- remove 'compatible' sysfs platform patch which was requried
+  for CDX devices exposed as platform devices
 
-> I'm a lot more
-> interested in getting bindings upstreamed ASAP (so we can start
-> guaranteeing no backwards-compat breaks, which is important to avoid
-> outright breakage) than I am in trying to be exhaustive up front with
-> device instances. It's perfectly fine to say that users have to upgrade
-> both their DTs and kernels to get newer hardware support, on these
-> platforms.
 
-I agree.
+Following text provides a basic overview of CDX bus Architecture.
 
-Yours,
-Linus Walleij
+Contents summary
+   - CDX overview
+   - CDX Linux driver architecture overview
+        - Bus driver
+        - VFIO driver
+
+CDX Overview
+------------
+
+CDX is a Hardware Architecture designed for AMD FPGA devices. It
+consists of sophisticated mechanism for interaction between FPGA,
+Firmware and the APUs (Application CPUs).
+
+Firmware resides on RPU (Realtime CPUs) which interacts with
+the FPGA program manager and the APUs. The RPU provides memory-mapped
+interface (RPU if) which is used to communicate with APUs.
+
+The diagram below shows an overview of the CDX architecture:
+
+
+         +--------------------------------------+
+         |    Application CPUs (APU)            |
+         |                                      |
+         |                    CDX device drivers|
+         |     Linux OS                |        |
+         |                        CDX bus       |
+         |                             |        |
+         +-----------------------------|--------+
+                                       | (discover, config,
+                                       |  reset, rescan)
+                                       |
+         +------------------------| RPU if |----+
+         |                             |        |
+         |                             V        |
+         |          Realtime CPUs (RPU)         |
+         |                                      |
+         +--------------------------------------+
+                               |
+         +---------------------|----------------+
+         |  FPGA               |                |
+         |      +-----------------------+       |
+         |      |           |           |       |
+         | +-------+    +-------+   +-------+   |
+         | | dev 1 |    | dev 2 |   | dev 3 |   |
+         | +-------+    +-------+   +-------+   |
+         +--------------------------------------+
+
+
+The RPU firmware extracts the device information from the loaded FPGA
+image and implements a mechanism that allows the APU drivers to
+enumerate such devices (device personality and resource details) via
+a dedicated communication channel. RPU mediates operations such as
+discover, reset and rescan of the FPGA devices for the APU. This is
+done using memory mapped interface provided by the RPU to APU.
+
+Nipun Gupta (7):
+  dt-bindings: bus: add CDX bus device tree bindings
+  bus/cdx: add the cdx bus driver
+  iommu/arm-smmu-v3: support ops registration for CDX bus
+  bus/cdx: add cdx-MSI domain with gic-its domain as parent
+  bus/cdx: add bus and device attributes
+  vfio/cdx: add support for CDX bus
+  vfio/cdx: add interrupt support
+
+ Documentation/ABI/testing/sysfs-bus-cdx       |  54 ++
+ .../devicetree/bindings/bus/xlnx,cdx.yaml     |  75 +++
+ MAINTAINERS                                   |   9 +
+ drivers/bus/Kconfig                           |   1 +
+ drivers/bus/Makefile                          |   3 +
+ drivers/bus/cdx/Kconfig                       |   7 +
+ drivers/bus/cdx/Makefile                      |   3 +
+ drivers/bus/cdx/cdx.c                         | 603 ++++++++++++++++++
+ drivers/bus/cdx/cdx.h                         |  53 ++
+ drivers/bus/cdx/cdx_msi.c                     | 236 +++++++
+ drivers/bus/cdx/mcdi_stubs.c                  |  61 ++
+ drivers/bus/cdx/mcdi_stubs.h                  |  87 +++
+ drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c   |  16 +-
+ drivers/vfio/Makefile                         |   1 +
+ drivers/vfio/cdx/Kconfig                      |  10 +
+ drivers/vfio/cdx/Makefile                     |   4 +
+ drivers/vfio/cdx/vfio_cdx.c                   | 337 ++++++++++
+ drivers/vfio/cdx/vfio_cdx_intr.c              | 212 ++++++
+ drivers/vfio/cdx/vfio_cdx_private.h           |  50 ++
+ include/linux/cdx/cdx_bus.h                   | 120 ++++
+ include/linux/mod_devicetable.h               |  13 +
+ scripts/mod/devicetable-offsets.c             |   4 +
+ scripts/mod/file2alias.c                      |  12 +
+ 23 files changed, 1969 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-cdx
+ create mode 100644 Documentation/devicetree/bindings/bus/xlnx,cdx.yaml
+ create mode 100644 drivers/bus/cdx/Kconfig
+ create mode 100644 drivers/bus/cdx/Makefile
+ create mode 100644 drivers/bus/cdx/cdx.c
+ create mode 100644 drivers/bus/cdx/cdx.h
+ create mode 100644 drivers/bus/cdx/cdx_msi.c
+ create mode 100644 drivers/bus/cdx/mcdi_stubs.c
+ create mode 100644 drivers/bus/cdx/mcdi_stubs.h
+ create mode 100644 drivers/vfio/cdx/Kconfig
+ create mode 100644 drivers/vfio/cdx/Makefile
+ create mode 100644 drivers/vfio/cdx/vfio_cdx.c
+ create mode 100644 drivers/vfio/cdx/vfio_cdx_intr.c
+ create mode 100644 drivers/vfio/cdx/vfio_cdx_private.h
+ create mode 100644 include/linux/cdx/cdx_bus.h
+
+-- 
+2.25.1
+
