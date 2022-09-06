@@ -2,108 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97B495AEE93
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 17:22:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B29255AEE71
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 17:16:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239251AbiIFPWB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 11:22:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39106 "EHLO
+        id S233887AbiIFPQQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 11:16:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234950AbiIFPVh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 11:21:37 -0400
-Received: from sibelius.xs4all.nl (80-61-163-207.fixed.kpn.net [80.61.163.207])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3E4E98370;
-        Tue,  6 Sep 2022 07:33:36 -0700 (PDT)
-Received: from localhost (bloch.sibelius.xs4all.nl [local])
-        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id c29ccd8f;
-        Tue, 6 Sep 2022 16:25:49 +0200 (CEST)
-Date:   Tue, 6 Sep 2022 16:25:49 +0200 (CEST)
-From:   Mark Kettenis <mark.kettenis@xs4all.nl>
-To:     Hector Martin <marcan@marcan.st>
-Cc:     linux@armlinux.org.uk, linus.walleij@linaro.org, robh@kernel.org,
-        krzysztof.kozlowski@linaro.org, arnd@arndb.de, lee@kernel.org,
-        alyssa@rosenzweig.io, asahi@lists.linux.dev, brgl@bgdev.pl,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        sven@svenpeter.dev, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org
-In-Reply-To: <f5bef359-3abe-311c-3521-136eb5b54c4b@marcan.st> (message from
-        Hector Martin on Tue, 6 Sep 2022 22:53:47 +0900)
-Subject: Re: [PATCH 1/6] dt-bindings: mfd: add binding for Apple Mac System
- Management Controller
-References: <YxDiBFIn6artUOZm@shell.armlinux.org.uk>
- <CAL_Jsq+GCKisAVA0AfE=yWJYy18mAGQ7rY1sKGYraXv-berNSg@mail.gmail.com>
- <d3cec3d22e464fa8@bloch.sibelius.xs4all.nl>
- <20220902172808.GB52527-robh@kernel.org>
- <YxcNLU+KGEolrdfT@shell.armlinux.org.uk>
- <d3cecee5edd24f67@bloch.sibelius.xs4all.nl>
- <CACRpkdaSRcczEF8QZ4aO+-HDVS+n-8MXvn6ysnjJfUEabwUJ=w@mail.gmail.com>
- <909bb4e7-5bd2-2903-5bba-87ae37f3448a@marcan.st>
- <CACRpkdajhjpMzjMooDduu0jxrp0uDNJ90VfBPpHx+P14cFfskA@mail.gmail.com>
- <5b75dc7e-5337-73eb-450f-b72f479793c4@marcan.st>
- <YxdOafCWnDUNourH@shell.armlinux.org.uk> <f5bef359-3abe-311c-3521-136eb5b54c4b@marcan.st>
-Message-ID: <d3ced0ffaec45e3c@bloch.sibelius.xs4all.nl>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,KHOP_HELO_FCRDNS,
-        SPF_HELO_NONE,SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        with ESMTP id S233914AbiIFPPt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 11:15:49 -0400
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E71B74DB6C;
+        Tue,  6 Sep 2022 07:29:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1662474546; x=1694010546;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ybgSo2BkoIeNrG9pnEwHuQd0zdtCaKmVHLLWorPRU10=;
+  b=fWWJtozf+jgh+pAEhkuFZw0bj1pHoIa70kXfVAOpA4fstDTl+7TVGPXB
+   0jqRZrP91dwqaKikkAan1wDsoPZx2O9TFH7d5yHHd85PXc3d1Q7WL+KVc
+   ihKELM9zLhwjYVjrXS/R7hqvRPIp456ZzamocEm5M0kaB4yt4e6bE0jHN
+   pJAHfPEIxkCrZ3cLMHDbalwTu18EljJaLQNll1y+vzYhqp3GzceimE/P4
+   svSjhva5LsN59nN5fbcc6Ts13PHjoV/aJlYyjOXbls/IUmHik0VNf/fUV
+   x4b5uX8r1rFOqK7/QCDN5LBYRSPH2jgPzaSA/dCVHrfTunGxs+/G6aKpj
+   A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10462"; a="276344870"
+X-IronPort-AV: E=Sophos;i="5.93,294,1654585200"; 
+   d="scan'208";a="276344870"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Sep 2022 07:26:27 -0700
+X-IronPort-AV: E=Sophos;i="5.93,294,1654585200"; 
+   d="scan'208";a="756383261"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Sep 2022 07:26:24 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1oVZWv-0099cw-3D;
+        Tue, 06 Sep 2022 17:26:22 +0300
+Date:   Tue, 6 Sep 2022 17:26:21 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Eliav Farber <farbere@amazon.com>
+Cc:     jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org,
+        p.zabel@pengutronix.de, rtanwar@maxlinear.com,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, hhhawa@amazon.com, jonnyc@amazon.com
+Subject: Re: [PATCH v4 00/21] Variety of fixes and new features for mr75203
+ driver
+Message-ID: <YxdYjWYCR7YCodTX@smile.fi.intel.com>
+References: <20220906083356.21067-1-farbere@amazon.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220906083356.21067-1-farbere@amazon.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Date: Tue, 6 Sep 2022 22:53:47 +0900
-> From: Hector Martin <marcan@marcan.st>
+On Tue, Sep 06, 2022 at 08:33:35AM +0000, Eliav Farber wrote:
+> List of fixes:
+>  - Fix "intel,vm-map" property to be optional.
+>  - Fix VM sensor allocation when "intel,vm-map" not defined.
+>  - Fix multi-channel voltage reading.
+>  - Fix voltage equation for negative source input.
+>  - Modify the temperature equation according to series 5 datasheet.
+>  - Fix coding style issue.
 > 
-> On 06/09/2022 22.43, Russell King (Oracle) wrote:
-> > In the case of gpio-macsmc, how would we later add support for the
-> > slave PMU GPIOs, given that these use keys "gpXX" rather than "gPxx"?
-> > How do we tell the gpio-macsmc code to use a different set of keys?
-> > Should DT describe the key "prefix" (in other words "gp" vs "gP"),
-> > or should it describe it some other way. What if Apple decides to
-> > instantiate another GPIO controller in a later platform with a
-> > different prefix, could that be accomodated without breaking any
-> > solution we come up today?
-> > 
-> > Maybe the solution to this would be to describe the key prefix in DT
-> > as that's effectively its "reg". Or maybe we use "reg" to describe
-> > it somehow (which is value of the key, which seems to have an
-> > "address" like quality to it?)
-> > 
-> > We don't have to implement code for this now, we just need to get a
-> > reasonably correct DT binding for the gpio controller.
-> 
-> I agree that this is something to think about (I was about to reply on
-> the subject).
-> 
-> I can think of two ways: using `reg` for the key name, but that feels
-> icky since it's ASCII and not *really* a register number/address, or
-> something like this:
-> 
-> gpio@0 {
-> 	apple,smc-key-base = "gP00";
-> 	...
-> }
-> 
-> gpio@1 {
-> 	apple,smc-key-base = "gp00";
-> 	...
-> }
+> List of new features:
+>  - Modify "reset" property to be optional.
+>  - Add optional "moortec,vm-active-channels" property to define the number
+>    of active channels per VM.
+>  - Add support for mr76006 pre-scaler to multiply the voltage result by 2.
+>  - Add support for series 6 temperature equation.
+>  - Add coefficient properties to fine tune the temperature equation.
+>  - Add debugfs to read and write temperature coefficients
 
-This would still require us to add a (one-cell) "reg" property and
-would require adding the appropriate "#address-cells" and
-"#size-cells" properties to the SMC node.
+For all code patches (means no DT ones)
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
-> But this ties back to the device enumeration too, since right now the DT
-> does not drive that (we'd have to add the subdevice to the mfd subdevice
-> list somehow anyway, if we don't switch to compatibles).
+> ---------
 > 
-> I'd love to hear Rob's opinion on this one, and also whether the
-> existing Linux and OpenBSD code would currently find gpio@0 {} instead
-> of gpio {} for backwards compat.
+> Changes between v3 and v4:
+> *) Provide a Fixes tag for all fixes in the series.
+> *) Start series with fixes.
+> *) New patch to add description in moortec,mr75203.yaml.
+> *) New patch to add moortec to vendor-prefixes.
+> *) Fix moortec,mr75203.yaml checker errors.
+> *) Remove validation of device-tree parameters.
+> *) Fix per patch specific comments (detailed in each patch).
+> 
+> Changes between v2 and v3:
+> *) Add "moortec" prefix to all new device-tree properties.
+> *) Change order of patches.
+> *) Add explanations to better understand the changes.
+> *) Change "reset" property to be optional and remove the
+>   "reset-control-skip" property.
+> *) Split the patch for "fix multi-channel voltage reading" to two
+>    patches.
+> *) Change pre-scaler property format and fix typo (scalar --> scaler).
+> *) Fix voltage equation to support negative values instead of limiting
+>    value to zero.
+> *) Temperature equation - protect from overflow and add clamping.
+> *) Add new "moortec,ts-series" property to select between temperature
+>    equation of series 5 or series 6.
+> 
+> Changes between v1 and v2:
+>  *) Fix compilation error for patch 08/16:
+>     "warning: ISO C90 forbids variable length array"
+> 
+> ---------
+> 
+> Eliav Farber (21):
+>   hwmon: (mr75203) fix coding style space errors
+>   dt-bindings: hwmon: (mr75203) fix "intel,vm-map" property to be
+>     optional
+>   hwmon: (mr75203) fix VM sensor allocation when "intel,vm-map" not
+>     defined
+>   hwmon: (mr75203) update pvt->v_num and vm_num to the actual number of
+>     used sensors
+>   hwmon: (mr75203) fix voltage equation for negative source input
+>   hwmon: (mr75203) fix multi-channel voltage reading
+>   hwmon: (mr75203) enable polling for all VM channels
+>   dt-bindings: hwmon: (mr75203) add description for Moortec's PVT
+>     controller
+>   dt-bindings: hwmon: (mr75203) change "resets" property to be optional
+>   hwmon: (mr75203) skip reset-control deassert for SOCs that don't
+>     support it
+>   dt-bindings: vendor-prefixes: add vendor prefix for Moortec
+>   dt-bindings: hwmon: (mr75203) add "moortec,vm-active-channels"
+>     property
+>   hwmon: (mr75203) add VM active channel support
+>   dt-bindings: hwmon: (mr75203) add "moortec,vm-pre-scaler-x2" property
+>   hwmon: (mr75203) add VM pre-scaler x2 support
+>   hwmon: (mr75203) modify the temperature equation according to series 5
+>     datasheet
+>   dt-bindings: hwmon: (mr75203) add "moortec,ts-series" property
+>   hwmon: (mr75203) add support for series 6 temperature equation
+>   dt-bindings: hwmon: (mr75203) add coefficient properties for the
+>     thermal equation
+>   hwmon: (mr75203) parse temperature coefficients from device-tree
+>   hwmon: (mr75203) add debugfs to read and write temperature
+>     coefficients
+> 
+>  .../bindings/hwmon/moortec,mr75203.yaml       |  97 ++++-
+>  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+>  drivers/hwmon/mr75203.c                       | 387 +++++++++++++++---
+>  3 files changed, 421 insertions(+), 65 deletions(-)
+> 
+> -- 
+> 2.37.1
+> 
 
-The OpenBSD driver does a lookup by name and the "@0" is part of that
-name.  So that would break backwards compat.
+-- 
+With Best Regards,
+Andy Shevchenko
 
-Maybe just name the slave GPIO controller "gpio-slave"?  If we add
-compatibles, the compatibles for the nodes should propbably be
-different such that we can switch to do a lookup by compatible?
+
