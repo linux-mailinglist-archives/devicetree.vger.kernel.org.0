@@ -2,74 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CC375AE707
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 13:57:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53CC55AE729
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 14:03:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232967AbiIFL5t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 07:57:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52094 "EHLO
+        id S234364AbiIFMDq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 08:03:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233149AbiIFL5p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 07:57:45 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 329C273905
-        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 04:57:44 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id cu2so22765603ejb.0
-        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 04:57:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=/+p0wzFj/upkv9e1wiwyvWP1+FT9YhrV1TfR4whLT7A=;
-        b=WPj6KNJpdx4ESLURazeomIr7jVFWSOZYDwnp3ZjB0SezHdvdUickHDnsxSGgA1VqWQ
-         8dPftpgpnFr0XB7Uj16cBasmDTHGwe90H2XfLCV+/YSo/dw2p/nor0fgixin+8kYnZXK
-         JT/Z7GeeUEQQ8NWrZwRggD8Z29+Vdgn/gLLRUymV5grVbEw6K28FPJvrK2m3H+1DUryi
-         Oyg7bID4CxSu9YFBMP1oY0EgjCATJNnD0t0NGgpxrM9Rh9ZUVnT50THlikeVppp+Z4td
-         V2Sjn7ZMjpFBkJE54SuXF3VauV8IUQCo70wMpvTtZKdKRcEKoyVa210h0zM8GDnCvJ19
-         L+qA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=/+p0wzFj/upkv9e1wiwyvWP1+FT9YhrV1TfR4whLT7A=;
-        b=v98YjDckARvP01LBqL+TPgdCSM1Lt5W4rLzHkjLjkKt764LW2x7RNgGtA1yLb7Es65
-         3RO4TpDXsf41wBeoIDlU6FESrZUynLtw5hMrSNLRQCzBYP36A/Ktb3jD99v7NwPrjlB+
-         aEBiBOvCWD1N+tF34HTTMvByYF7BAL5hJ5zdTyDyGsQJ8YKsC7ufIzBzPMWz9l/W5sm/
-         6HShWuGcDoZQcXHtzfhsQGy+pj68PotBnKt3KDCJWb2UvFcQueSWxewwEldzqpvoyh+n
-         NY5BRQDWYmu765R/JQZT0NM6sJ90MY/QtvI+HSGztW6HPxnr2JD2CZg3XGnjLgrDrqPi
-         xcYQ==
-X-Gm-Message-State: ACgBeo3Oz94RZjakd/lPVYXOSumXWqChOsvoXRDgEzxlUJkbwZMkxs3b
-        uHV1kYzXzuoCV1sWfeTYr7m0pBFEOaXMty112PMlGA==
-X-Google-Smtp-Source: AA6agR4l1xB762o3DaSOS5+KZCpE8WDptXDx0mKu9slBlWSXdcqJncsF4brvN7CKb06geMDtHrbRW0K/th1I6X+zY0I=
-X-Received: by 2002:a17:907:2707:b0:741:7c18:4e76 with SMTP id
- w7-20020a170907270700b007417c184e76mr27550306ejk.690.1662465462649; Tue, 06
- Sep 2022 04:57:42 -0700 (PDT)
+        with ESMTP id S234504AbiIFMDo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 08:03:44 -0400
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0ADA78231;
+        Tue,  6 Sep 2022 05:03:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1662465823; x=1694001823;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=4+M54oJEAmpUgzwqHAgtKWrqpFIukcuuWaBTNO+cn0c=;
+  b=KbCteuXW16N9QSI15kJ6T9BieiuPN8zltuqJSlMGSZ0etEBb2ocDCtbO
+   OgwwQ6GxaTL2qxNaGByoqTIGaMO67arw6c/l8xkfsA2jlTiRhmQQGr0nr
+   qzSww8GDPkfisqMqgeh2rfzqYCz6SwLZ6QOY5r2h+0sL6AVSbsSPPprVL
+   FRuQR18uwl7XuFp8B2Z2apOBwevHAvyFJ21kkNlzFSogZZlpTbkwAVZYq
+   fjZXcrzVHKelImoXV/6gauzvhyb4wV567fMa1YTGiz8NdHVNssT5E9DwV
+   IrCOREe5L0UAIdGgQoC0tKQdL0/wPjY0b+LZhLB2Onj4Q6ALG9oNnRgzx
+   A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10461"; a="297887264"
+X-IronPort-AV: E=Sophos;i="5.93,294,1654585200"; 
+   d="scan'208";a="297887264"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Sep 2022 05:03:43 -0700
+X-IronPort-AV: E=Sophos;i="5.93,294,1654585200"; 
+   d="scan'208";a="614072065"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Sep 2022 05:03:40 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@intel.com>)
+        id 1oVXIn-0096P7-15;
+        Tue, 06 Sep 2022 15:03:37 +0300
+Date:   Tue, 6 Sep 2022 15:03:37 +0300
+From:   Andy Shevchenko <andriy.shevchenko@intel.com>
+To:     Eliav Farber <farbere@amazon.com>
+Cc:     jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org,
+        p.zabel@pengutronix.de, rtanwar@maxlinear.com,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, hhhawa@amazon.com, jonnyc@amazon.com
+Subject: Re: [PATCH v4 05/21] hwmon: (mr75203) fix voltage equation for
+ negative source input
+Message-ID: <Yxc3GeFc5gDKrYyP@smile.fi.intel.com>
+References: <20220906083356.21067-1-farbere@amazon.com>
+ <20220906083356.21067-6-farbere@amazon.com>
 MIME-Version: 1.0
-References: <YxDL+cAx9kkZRL8K@shell.armlinux.org.uk> <928ddeff-efac-920c-7bbf-dda35a942b93@linaro.org>
- <YxDOpCq0vIlt4VNa@shell.armlinux.org.uk> <2fedff34-6a20-f1ce-a756-2bd8671fcd52@linaro.org>
- <YxDWG5dmzErhKIXw@shell.armlinux.org.uk> <ef6c7248-1efa-5366-6bcd-900c5f10ccb2@linaro.org>
- <YxDiBFIn6artUOZm@shell.armlinux.org.uk> <CAL_Jsq+GCKisAVA0AfE=yWJYy18mAGQ7rY1sKGYraXv-berNSg@mail.gmail.com>
- <d3cec3d22e464fa8@bloch.sibelius.xs4all.nl> <20220902172808.GB52527-robh@kernel.org>
- <YxcNLU+KGEolrdfT@shell.armlinux.org.uk> <d3cecee5edd24f67@bloch.sibelius.xs4all.nl>
- <CACRpkdaSRcczEF8QZ4aO+-HDVS+n-8MXvn6ysnjJfUEabwUJ=w@mail.gmail.com> <909bb4e7-5bd2-2903-5bba-87ae37f3448a@marcan.st>
-In-Reply-To: <909bb4e7-5bd2-2903-5bba-87ae37f3448a@marcan.st>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 6 Sep 2022 13:57:31 +0200
-Message-ID: <CACRpkdajhjpMzjMooDduu0jxrp0uDNJ90VfBPpHx+P14cFfskA@mail.gmail.com>
-Subject: Re: [PATCH 1/6] dt-bindings: mfd: add binding for Apple Mac System
- Management Controller
-To:     Hector Martin <marcan@marcan.st>
-Cc:     Mark Kettenis <mark.kettenis@xs4all.nl>,
-        "Russell King (Oracle)" <linux@armlinux.org.uk>, robh@kernel.org,
-        krzysztof.kozlowski@linaro.org, arnd@arndb.de, lee@kernel.org,
-        alyssa@rosenzweig.io, asahi@lists.linux.dev, brgl@bgdev.pl,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        sven@svenpeter.dev, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220906083356.21067-6-farbere@amazon.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,59 +67,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 6, 2022 at 1:36 PM Hector Martin <marcan@marcan.st> wrote:
-> On 06/09/2022 20.22, Linus Walleij wrote:
-> > On Tue, Sep 6, 2022 at 11:31 AM Mark Kettenis <mark.kettenis@xs4all.nl> wrote:
-> >
-> >> Another argument for having sub-nodes is that the firmware actually
-> >> exposes *two* GPIO controllers.  For now we only support the "master"
-> >> PMU GPIOs, but there also is a "slave" PMU GPIO controller that uses a
-> >> separate set of SMC "keys".  We currently don't need any of the pins
-> >> on the "slave", so we don't expose it in the DT yet.
-> >
-> > That sounds backward, like we don't expose device X as DT node
-> > because $OS doesn't use it yet. DT should just expose (by nodes or
-> > other ways) all hardware that exist or at least all hardware we know
-> > about no matter what $OS is using.
->
-> How so? The are piles and piles of unused hardware not exposed in the
-> DT, and piles and piles of hardware that will be used but we haven't
-> figured out how to do it yet, so it's not exposed. For example, we know
-> there are like 8 or so UARTs, but we don't define them in the DT because
-> they are not connected to anything on any existing device and we don't
-> need them. Apple does the same thing in their DTs (only used hardware is
-> defined).
->
-> I don't really see the point of exposing a GPIO controller when we don't
-> actually do anything with the pins yet, and might never do so. Having
-> drivers bind and stay unused just increases the amount of code running
-> without any ultimate purpose, so why do it? It's not like any other OS
-> would use the hardware either - GPIOs are only useful if they are
-> referenced in the DT for something, and we don't have anything that
-> would reference these.
+On Tue, Sep 06, 2022 at 08:33:40AM +0000, Eliav Farber wrote:
+> According to Moortec Embedded Voltage Monitor (MEVM) series 3 data
+> sheet, the minimum input signal is -100mv and maximum input signal
+> is +1000mv.
+> 
+> The equation used to convert the digital word to voltage uses mixed
+> types (*val signed and n unsigned), and on 64 bit machines also has
+> different size, since sizeof(u32) = 4 and sizeof(long) = 8.
+> 
+> So when measuring a negative input, n will be small enough, such that
+> PVT_N_CONST * n < PVT_R_CONST, and the result of
+> (PVT_N_CONST * n - PVT_R_CONST) will overflow to a very big positive
+> 32 bit number. Then when storing the result in *val it will be the same
+> value just in 64 bit (instead of it representing a negative number which
+> will what happen when sizeof(long) = 4).
+> 
+> When -1023 <= (PVT_N_CONST * n - PVT_R_CONST) <= -1
+> dividing the number by 1024 should result of in 0, but because ">> 10"
+> is used it results in -1 (0xf...fffff).
+> 
+> This change fixes the sign problem and supports negative values by
+> casting n to long and replacing the shift right with div operation.
 
-This comes from the FDT background in OpenFirmware, and there is
-definitely a timeline perspective (also called "waterfall model") in that
-line of thinking: a DT is written that describes the hardware and flashed
-into the BIOS and never changed, then the operating system is
-implemented at a later point. This is how e.g. the PC ACPI BIOS tables
-are also thinking about themselves.
+This is really downside of C...
 
-Of course the world does not work like that, but as a standard process
-DT and ACPI works with the same ambition as any such process: slowly and
-impersonal, like the planets, or the plants.
+...
 
-The ambition that a DT should always remain backward compatible
-comes from the same historical root and reasoning.
+> -		*val = (PVT_N_CONST * n - PVT_R_CONST) >> PVT_CONV_BITS;
+> +		*val = (PVT_N_CONST * (long)n - PVT_R_CONST) / (1 << PVT_CONV_BITS);
 
-Any agile development or (heh) hardware discovers through reverse
-engineering will of course drive a truck through that line of thinking.
+Wondering if we can use BIT(PVT_CONV_BITS) for two (quite unlikely to happen,
+I hope) purposes:
 
-Realistically, use the same approach as with everything else, I like the
-IETF motto "rough consensus and running code", any ambition taken too
-far will just stifle development. So I'd say make an honest effort to
-resonably describe the nodes we see will be useful in the foreseeable
-future.
+1) Somebody copies such code where PVT_CONV_BITS analogue can be 31,
+   which is according to C standard is UB (undefined behaviour).
 
-Yours,
-Linus Walleij
+2) It makes shorter the line and also drops the pattern where some
+   dumb robot may propose a patch to basically revert the division
+   change.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
