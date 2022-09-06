@@ -2,187 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75A935ADD70
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 04:39:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C15885ADD85
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 04:46:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232003AbiIFCjP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 22:39:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49338 "EHLO
+        id S232498AbiIFCqD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 22:46:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229916AbiIFCjP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 22:39:15 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A544D642CB;
-        Mon,  5 Sep 2022 19:39:13 -0700 (PDT)
-X-UUID: 5ee4d9244ea4438e86c1181dfc0ed1b8-20220906
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=Dn9b59ppNNvHD6c39h1V+jJIS09fOkViOiiBcMeql2I=;
-        b=BLM7rAdiywad7MgsI7+N30y4AC0wDH3+sF2futYcmp3KzN+euTavAlPUfL3yVwhfFg0myFcZRx/Nat//nIdqKjxcUiXa++H9wJI+q74ou7dRbCNxHBdzG9M2i9pvuSdrJQ2NtljzwkEhNaVxJDxOvoBKw3el8pY//GzfS75mR0E=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.10,REQID:43115ed2-4c30-4fdc-afa7-430e5326ab35,OB:0,L
-        OB:0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release
-        _Ham,ACTION:release,TS:-5
-X-CID-META: VersionHash:84eae18,CLOUDID:430dcbd0-20bd-4e5e-ace8-00692b7ab380,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:11|1,File:
-        nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 5ee4d9244ea4438e86c1181dfc0ed1b8-20220906
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw02.mediatek.com
-        (envelope-from <nathan.lu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 806183322; Tue, 06 Sep 2022 10:39:07 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Tue, 6 Sep 2022 10:39:06 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Tue, 6 Sep 2022 10:39:06 +0800
-Message-ID: <d2f89e0b4929c6c37f5effe002cdc15b7475e500.camel@mediatek.com>
-Subject: Re: [PATCH v1 4/4] drm/mediatek: add mediatek-drm of vdosys0
- support for mt8188
-From:   Nathan Lu <nathan.lu@mediatek.com>
-To:     CK Hu <ck.hu@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        with ESMTP id S232432AbiIFCqC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 22:46:02 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99E21402D4;
+        Mon,  5 Sep 2022 19:45:58 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 53B1EB815CB;
+        Tue,  6 Sep 2022 02:45:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A38D1C433C1;
+        Tue,  6 Sep 2022 02:45:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1662432356;
+        bh=ghi35xw2bM6XkWJz3ZynG6KjYwLr/s0j/PUC4aSPkuk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=u0AldxqpC/s55xjzxvow+esfaO81KuYY/Pe/L2weWaNUAw60JFMc3Mm4lN089wi2q
+         GjUvnnrjep+H2LR45evWWPOHTQKYljaJeXO0cK5XYGyEdI1QBk3C0j285hgCevlZsw
+         5xHAyGem+wH5XVprGgxNF5zj48OsLf9jkgrKXwn0W4PUZdR9hoI69QtPwiS96oZY2x
+         K53eMd3sVAdxCfLDumAj3xBk96FLNHlejrs8TOCQ6mMKtKMyy4of2IykxZzlr0/n6x
+         wcmXyhoAeEyy8U5vhKjGGweU9sxccbuWk9R9doyWEbSQtIuL6XoKNQd+mOfFptNZco
+         DRBAvz4xHlvWw==
+Date:   Mon, 5 Sep 2022 21:45:52 -0500
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Krishna Kurapati <quic_kriskura@quicinc.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
         Philipp Zabel <p.zabel@pengutronix.de>,
-        "David Airlie" <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     "jason-jh . lin" <jason-jh.lin@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Rex-BC Chen <rex-bc.chen@mediatek.com>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Moudy Ho <moudy.ho@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <wsd_upstream@mediatek.com>,
-        <lancelot.wu@mediatek.com>, amy zhang <Amy.Zhang@mediatek.com>
-Date:   Tue, 6 Sep 2022 10:39:06 +0800
-In-Reply-To: <805b7dd82e86e6c2297a5ffbd23be2c568ca29b3.camel@mediatek.com>
-References: <20220822033213.15769-1-nathan.lu@mediatek.com>
-         <20220822033213.15769-5-nathan.lu@mediatek.com>
-         <805b7dd82e86e6c2297a5ffbd23be2c568ca29b3.camel@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, quic_pkondeti@quicinc.com,
+        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com
+Subject: Re: [PATCH v12 2/3] phy: qcom-snps: Add support for overriding phy
+ tuning parameters
+Message-ID: <20220906024552.lob5k4q3iyagyo5e@baldur>
+References: <1662201048-26049-1-git-send-email-quic_kriskura@quicinc.com>
+ <1662201048-26049-3-git-send-email-quic_kriskura@quicinc.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_CSS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1662201048-26049-3-git-send-email-quic_kriskura@quicinc.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi CK,
+On Sat, Sep 03, 2022 at 04:00:47PM +0530, Krishna Kurapati wrote:
+[..]
+> +static void qcom_snps_hsphy_read_override_param_seq(struct device *dev)
+> +{
+> +	struct device_node *node = dev->of_node;
+> +	s32 val;
+> +	int ret, i;
+> +	struct qcom_snps_hsphy *hsphy;
+> +	const struct override_param_map *cfg = of_device_get_match_data(dev);
 
-Thanks for your review, and appreciate for all comments and sugestions.
-I'll remove io_start variable at next version.
-It will be upstream with vdosys1 patch later.
+Given that you don't have any .data specified for the other compatibles
+(which is fine), cfg would be NULL here and below loop would attempt to
+access NULL[0].prop_name and crash.
 
-On Mon, 2022-08-22 at 13:50 +0800, CK Hu wrote:
-> Hi, Nathan:
-> 
-> On Mon, 2022-08-22 at 11:32 +0800, nathan.lu wrote:
-> > From: Nathan Lu <nathan.lu@mediatek.com>
-> > 
-> > add driver data of mt8188 vdosys0 to mediatek-drm and the sub
-> > driver.
-> > 
-> > Signed-off-by: amy zhang <Amy.Zhang@mediatek.com>
-> > Signed-off-by: Nathan Lu <nathan.lu@mediatek.com>
-> > ---
-> >  drivers/gpu/drm/mediatek/mtk_drm_drv.c | 30
-> > ++++++++++++++++++++++++++
-> >  1 file changed, 30 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> > b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> > index d72263c8a621..260514006093 100644
-> > --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> > +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> > @@ -178,6 +178,18 @@ static const unsigned int mt8186_mtk_ddp_ext[]
-> > =
-> > {
-> >  	DDP_COMPONENT_DPI0,
-> >  };
-> >  
-> > +static const unsigned int mt8188_mtk_ddp_main[] = {
-> > +	DDP_COMPONENT_OVL0,
-> > +	DDP_COMPONENT_RDMA0,
-> > +	DDP_COMPONENT_COLOR0,
-> > +	DDP_COMPONENT_CCORR,
-> > +	DDP_COMPONENT_AAL0,
-> > +	DDP_COMPONENT_GAMMA,
-> > +	DDP_COMPONENT_POSTMASK0,
-> > +	DDP_COMPONENT_DITHER0,
-> > +	DDP_COMPONENT_DP_INTF0,
-> > +};
-> > +
-> >  static const unsigned int mt8192_mtk_ddp_main[] = {
-> >  	DDP_COMPONENT_OVL0,
-> >  	DDP_COMPONENT_OVL_2L0,
-> > @@ -323,6 +335,20 @@ static const struct mtk_mmsys_match_data
-> > mt8186_mmsys_match_data = {
-> >  	},
-> >  };
-> >  
-> > +static const struct mtk_mmsys_driver_data
-> > mt8188_vdosys0_driver_data
-> > = {
-> > +	.io_start = 0x1c01d000,
-> 
-> For only one mmsys, it's not necessary to set io_start.
-> 
-> Regards,
-> CK
-> 
-> > +	.main_path = mt8188_mtk_ddp_main,
-> > +	.main_len = ARRAY_SIZE(mt8188_mtk_ddp_main),
-> > +	.mmsys_dev_num = 1,
-> > +};
-> > +
-> > +static const struct mtk_mmsys_match_data mt8188_mmsys_match_data =
-> > {
-> > +	.num_drv_data = 1,
-> > +	.drv_data = {
-> > +		&mt8188_vdosys0_driver_data,
-> > +	},
-> > +};
-> > +
-> >  static const struct mtk_mmsys_driver_data mt8192_mmsys_driver_data
-> > =
-> > {
-> >  	.main_path = mt8192_mtk_ddp_main,
-> >  	.main_len = ARRAY_SIZE(mt8192_mtk_ddp_main),
-> > @@ -376,6 +402,8 @@ static const struct of_device_id
-> > mtk_drm_of_ids[]
-> > = {
-> >  	  .data = &mt8183_mmsys_match_data},
-> >  	{ .compatible = "mediatek,mt8186-mmsys",
-> >  	  .data = &mt8186_mmsys_match_data},
-> > +	{ .compatible = "mediatek,mt8188-mmsys",
-> > +	  .data = &mt8188_mmsys_match_data},
-> >  	{ .compatible = "mediatek,mt8192-mmsys",
-> >  	  .data = &mt8192_mmsys_match_data},
-> >  	{ .compatible = "mediatek,mt8195-mmsys",
-> > @@ -734,6 +762,8 @@ static const struct of_device_id
-> > mtk_ddp_comp_dt_ids[] = {
-> >  	  .data = (void *)MTK_DISP_MUTEX },
-> >  	{ .compatible = "mediatek,mt8186-disp-mutex",
-> >  	  .data = (void *)MTK_DISP_MUTEX },
-> > +	{ .compatible = "mediatek,mt8188-disp-mutex",
-> > +	  .data = (void *)MTK_DISP_MUTEX },
-> >  	{ .compatible = "mediatek,mt8192-disp-mutex",
-> >  	  .data = (void *)MTK_DISP_MUTEX },
-> >  	{ .compatible = "mediatek,mt8195-disp-mutex",
-> 
-> 
+Please add a check for !cfg and just return here.
 
+With that I think the series looks good.
+
+Regards,
+Bjorn
