@@ -2,179 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DD875AE6B9
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 13:38:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 373D85AE701
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 13:56:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229706AbiIFLiq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 07:38:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56810 "EHLO
+        id S230307AbiIFL4d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 07:56:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229631AbiIFLip (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 07:38:45 -0400
-Received: from gandalf.ozlabs.org (mail.ozlabs.org [IPv6:2404:9400:2221:ea00::3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 376D676477
-        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 04:38:43 -0700 (PDT)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.ozlabs.org (Postfix) with ESMTPSA id 4MMNgj3Sfyz4xG5;
-        Tue,  6 Sep 2022 21:38:41 +1000 (AEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ellerman.id.au;
-        s=201909; t=1662464321;
-        bh=eGkReXR1a8BIHZblqxAKOKT9gBHOrYD8qqzo2aJ7vw8=;
-        h=From:To:Subject:In-Reply-To:References:Date:From;
-        b=A30jbMXxzlj2weVGE2xG0A01lZcyQmvvM/DZaCQiK6B3vZCyUbNOq+zvRRNVvwkjL
-         H/bsxhnr50h8cIOkeQTTAraWLOCNhkR8nczXGlZKf34yTEZdeVXWu1BkqkWO7zgp1G
-         h4DHtQEeG0Hj09hpz9kYAKI+7/homD4ij/NaBg86AkSjLNLPbY5cYdh/F5t/VresrY
-         bax2fwooxdwvhl5t2Fz8xO9Kk1D+pQIVIPqJ72GoutBzAMM53XoPQqTV/8e3X2gT/K
-         nTA3AxFsIyM601QJH9+5Pl/0snF0EG+JymEs0BYcaBb93Fh5Br3ugEj4KAlewdO5xY
-         ELAzdnbzJdPAQ==
-From:   Michael Ellerman <mpe@ellerman.id.au>
-To:     Christophe Leroy <christophe.leroy@csgroup.eu>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] powerpc/pasemi: Use of_root in pas_pci_init()
-In-Reply-To: <ebe8fdbb-c707-eb18-eef2-c37208642a77@csgroup.eu>
-References: <20220906010313.1296714-1-mpe@ellerman.id.au>
- <ebe8fdbb-c707-eb18-eef2-c37208642a77@csgroup.eu>
-Date:   Tue, 06 Sep 2022 21:38:34 +1000
-Message-ID: <878rmwu405.fsf@mpe.ellerman.id.au>
+        with ESMTP id S230215AbiIFL4c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 07:56:32 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED9CB6F260;
+        Tue,  6 Sep 2022 04:56:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=db2zFCi0TeQzDV6buhxTlSnCtcmC9EJ7noOsn8H2ACY=; b=Pzalvoe77Xa573KE1sFZdEuKcW
+        cYoiLm9pv0/XqCBC/fXytMwSwpy7NXE9BvmPZngQpgcc8ghxw255u+3CNV/oKey4ooOYx9f/RcrXM
+        myEdLioa3ZOfkE3voCytFRnVGUQLszycTluZY99FwSYoT+44TwTMURxHFo9Hmtz7PvCM=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1oVXB1-00FkGI-Vf; Tue, 06 Sep 2022 13:55:35 +0200
+Date:   Tue, 6 Sep 2022 13:55:35 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Tao Ren <rentao.bupt@gmail.com>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Heyi Guo <guoheyi@linux.alibaba.com>,
+        Dylan Hung <dylan_hung@aspeedtech.com>,
+        Guangbin Huang <huangguangbin2@huawei.com>,
+        Liang He <windhl@126.com>, Hao Chen <chenhao288@hisilicon.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>, Tao Ren <taoren@fb.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>
+Subject: Re: [PATCH net-next 2/2] ARM: dts: aspeed: elbert: Enable mac3
+ controller
+Message-ID: <Yxc1N1auY5jk3yJI@lunn.ch>
+References: <20220905235634.20957-1-rentao.bupt@gmail.com>
+ <20220905235634.20957-3-rentao.bupt@gmail.com>
+ <YxaS2mS5vwW4HuqL@lunn.ch>
+ <YxalTToannPyLQpI@taoren-fedora-PC23YAB4>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YxalTToannPyLQpI@taoren-fedora-PC23YAB4>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Christophe Leroy <christophe.leroy@csgroup.eu> writes:
-> Le 06/09/2022 =C3=A0 03:03, Michael Ellerman a =C3=A9crit=C2=A0:
->> Currently in pas_pci_init() a reference to the root node is leaked due
->> to a missing of_node_put(). Instead just use of_root directly.
->>=20
->> Note that converting to of_find_compatible_node(NULL, ...) would
->> not be entirely equivalent, because that would check the compatible
->> property of the root node, whereas using of_root skips checking the root
->> node and start the search at the first child of the root.
->>=20
->
-> That seems to simplify code. Should we do the same in all places below ?
+On Mon, Sep 05, 2022 at 06:41:33PM -0700, Tao Ren wrote:
+> Hi Andrew,
+> 
+> On Tue, Sep 06, 2022 at 02:22:50AM +0200, Andrew Lunn wrote:
+> > On Mon, Sep 05, 2022 at 04:56:34PM -0700, rentao.bupt@gmail.com wrote:
+> > > From: Tao Ren <rentao.bupt@gmail.com>
+> > > 
+> > > Enable mac3 controller in Elbert dts: Elbert MAC3 is connected to the
+> > > onboard switch directly (fixed link).
+> > 
+> > What is the switch? Could you also add a DT node for it?
+> > 
+> > > 
+> > > Signed-off-by: Tao Ren <rentao.bupt@gmail.com>
+> > > ---
+> > >  arch/arm/boot/dts/aspeed-bmc-facebook-elbert.dts | 11 +++++++++++
+> > >  1 file changed, 11 insertions(+)
+> > > 
+> > > diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-elbert.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-elbert.dts
+> > > index 27b43fe099f1..52cb617783ac 100644
+> > > --- a/arch/arm/boot/dts/aspeed-bmc-facebook-elbert.dts
+> > > +++ b/arch/arm/boot/dts/aspeed-bmc-facebook-elbert.dts
+> > > @@ -183,3 +183,14 @@ imux31: i2c@7 {
+> > >  &i2c11 {
+> > >  	status = "okay";
+> > >  };
+> > > +
+> > > +&mac3 {
+> > > +	status = "okay";
+> > > +	phy-mode = "rgmii";
+> > 
+> > 'rgmii' is suspicious, though not necessarily wrong. This value is
+> > normally passed to the PHY, so the PHY inserts the RGMII delay. You
+> > however don't have a PHY. So i assume the switch is inserting the
+> > delay? Again, being able to see the DT properties for the switch would
+> > be useful.
+> > 
+> >    Andrew
+> 
+> Thank you for the quick review!
+> 
+> The BMC mac3 is connected to BCM53134P's IMP_RGMII port, and there is no
+> PHY between BMC MAC and BCM53134P. BCM53134P loads configurations from
+> its EEPROM when the chip is powered.
 
-I guess so.
+So i assume you have the switch RGMII port doing the delays. That is
+fine.
 
-There are some places where using of_root complicates things, because it
-*doesn't* need refcount handling, eg. the cases in numa.c.
+> Could you please point me an example showing how to describe the switch in
+> dts? Anyhow I will need to improve the patch description and comments in
+> v2.
 
-But in most cases it is preferable to use of_root IMHO.
+It looks like drivers/net/dsa/b53 does not support this particular
+switch. You could consider extending the driver. See
 
-cheers
+Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
 
-> $ git grep -n "of_find_node_by_path(\"/\");" arch/powerpc/
-> arch/powerpc/kernel/pci_32.c:139:       dn =3D of_find_node_by_path("/");
-> arch/powerpc/kernel/pci_32.c:214:       dn =3D of_find_node_by_path("/");
-> arch/powerpc/kernel/setup-common.c:212: root =3D of_find_node_by_path("/"=
-);
-> arch/powerpc/kernel/setup-common.c:793: np =3D of_find_node_by_path("/");
-> arch/powerpc/mm/numa.c:388:             root =3D of_find_node_by_path("/"=
-);
-> arch/powerpc/mm/numa.c:456:             root =3D of_find_node_by_path("/"=
-);
-> arch/powerpc/platforms/52xx/efika.c:77: root =3D of_find_node_by_path("/"=
-);
-> arch/powerpc/platforms/52xx/efika.c:148:        root =3D of_find_node_by_=
-path("/");
-> arch/powerpc/platforms/85xx/xes_mpc85xx.c:119:  root =3D of_find_node_by_=
-path("/");
-> arch/powerpc/platforms/cell/setup.c:67: root =3D of_find_node_by_path("/"=
-);
-> arch/powerpc/platforms/cell/setup.c:154:        struct device_node *root =
-> =3D of_find_node_by_path("/");
-> arch/powerpc/platforms/chrp/pci.c:191:  struct device_node *root =3D of_f=
-ind_node_by_path("/");
-> arch/powerpc/platforms/chrp/pci.c:216:  struct device_node *root =3D of_f=
-ind_node_by_path("/");
-> arch/powerpc/platforms/chrp/setup.c:105:        root =3D of_find_node_by_=
-path("/");
-> arch/powerpc/platforms/chrp/setup.c:201:        root =3D of_find_node_by_=
-path("/");
-> arch/powerpc/platforms/chrp/setup.c:268:        node =3D of_find_node_by_=
-path("/");
-> arch/powerpc/platforms/chrp/setup.c:299:        struct device_node *root =
-> =3D of_find_node_by_path("/");
-> arch/powerpc/platforms/chrp/setup.c:378:        root =3D of_find_node_by_=
-path("/");
-> arch/powerpc/platforms/maple/pci.c:601: root =3D of_find_node_by_path("/"=
-);
-> arch/powerpc/platforms/maple/setup.c:225:       root =3D of_find_node_by_=
-path("/");
-> arch/powerpc/platforms/pasemi/pci.c:276:        root =3D of_find_node_by_=
-path("/");
-> arch/powerpc/platforms/pasemi/setup.c:268:      root =3D of_find_node_by_=
-path("/");
-> arch/powerpc/platforms/powermac/pci.c:910:      root =3D of_find_node_by_=
-path("/");
-> arch/powerpc/platforms/powermac/setup.c:105:    np =3D of_find_node_by_pa=
-th("/");
-> arch/powerpc/platforms/powernv/setup.c:255:     root =3D of_find_node_by_=
-path("/");
-> arch/powerpc/platforms/ps3/os-area.c:676:       node =3D of_find_node_by_=
-path("/");
-> arch/powerpc/platforms/ps3/os-area.c:774:       node =3D of_find_node_by_=
-path("/");
-> arch/powerpc/platforms/pseries/hotplug-memory.c:166:    parent =3D of_fin=
-d_node_by_path("/");
-> arch/powerpc/platforms/pseries/ibmebus.c:187:   root =3D of_find_node_by_=
-path("/");
-> arch/powerpc/platforms/pseries/lparcfg.c:232:   root =3D of_find_node_by_=
-path("/");
-> arch/powerpc/platforms/pseries/lparcfg.c:799:   rootdn =3D of_find_node_b=
-y_path("/");
-> arch/powerpc/platforms/pseries/setup.c:97:      root =3D of_find_node_by_=
-path("/");
-> arch/powerpc/platforms/pseries/setup.c:486:     struct device_node *root =
-> =3D of_find_node_by_path("/");
-> arch/powerpc/sysdev/xive/spapr.c:714:   rootdn =3D of_find_node_by_path("=
-/");
->
-> Christophe
->
->
->> Reported-by: Liang He <windhl@126.com>
->> Signed-off-by: Michael Ellerman <mpe@ellerman.id.au>
->> ---
->>   arch/powerpc/platforms/pasemi/pci.c | 10 ++--------
->>   1 file changed, 2 insertions(+), 8 deletions(-)
->>=20
->> diff --git a/arch/powerpc/platforms/pasemi/pci.c b/arch/powerpc/platform=
-s/pasemi/pci.c
->> index 55f0160910bf..f27d31414737 100644
->> --- a/arch/powerpc/platforms/pasemi/pci.c
->> +++ b/arch/powerpc/platforms/pasemi/pci.c
->> @@ -270,18 +270,12 @@ static int __init pas_add_bridge(struct device_nod=
-e *dev)
->>=20=20=20
->>   void __init pas_pci_init(void)
->>   {
->> -	struct device_node *np, *root;
->> +	struct device_node *np;
->>   	int res;
->>=20=20=20
->> -	root =3D of_find_node_by_path("/");
->> -	if (!root) {
->> -		pr_crit("pas_pci_init: can't find root of device tree\n");
->> -		return;
->> -	}
->> -
->>   	pci_set_flags(PCI_SCAN_ALL_PCIE_DEVS);
->>=20=20=20
->> -	np =3D of_find_compatible_node(root, NULL, "pasemi,rootbus");
->> +	np =3D of_find_compatible_node(of_root, NULL, "pasemi,rootbus");
->>   	if (np) {
->>   		res =3D pas_add_bridge(np);
->>   		of_node_put(np);
+for documentation of the binding.
+
+    Andrew
