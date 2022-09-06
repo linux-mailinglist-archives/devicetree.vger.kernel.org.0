@@ -2,58 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 40AB85AE90C
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 15:06:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F37E5AE915
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 15:08:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240191AbiIFNFb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 09:05:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36112 "EHLO
+        id S240332AbiIFNIQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 09:08:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240300AbiIFNFZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 09:05:25 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9C63564E2
-        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 06:05:23 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id w2so15136985edc.0
-        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 06:05:23 -0700 (PDT)
+        with ESMTP id S240035AbiIFNIO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 09:08:14 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5268758B44
+        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 06:08:13 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id m1so15064770edb.7
+        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 06:08:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date;
-        bh=ltZ8BwCHA90N0xCiPXsqAnq/msG5Ej+1muFCDaHgJe4=;
-        b=b9b7dMVsDGRCa+Dg2UBLc5bOvgetSb0j8960xT/NsMM40+4MfpDHoagn4aPCP3yI8C
-         kiUmp4b8bSzpIBX6SqCr0v3ybBepUFBpMVlhMe3RbFlEFdArF/k58Hb9eA8BvPkyrSQQ
-         nyBB0XwLtdPvKvlC1mv4WUW615OKPoDYEtYrWC1tT+U71Kla37e4FH5MbrCp9fGOHSnb
-         o3/LKqlVUCZdcB9sHkWkYL00CYu0puPQbneHkR8ZoPuzE0y/k5AXdjksB/jG25cosVPh
-         l4OexWY+mIOq4QRvjtEQYl+tOe1JLYbMCQuUX9hyenNsZg/mEfXc9cXY+6fuY9Fb+Gb8
-         R4Aw==
+        bh=pmIp3UU7gjm3NZJhc2Tia9NiJ9p2MvdeXl6JkzY1omI=;
+        b=cYalGkxwT9oVIPq949EPepQxvuKKZ4255Ukt4GTPcTVRMNtf81SXeSOV8lBdM9V5TZ
+         4kyqsu9OpGyoGFFjH6CoB5XJsVNMa72I09YAEg4vmHSccD66gFMa/EV2EhsL325AhxFO
+         MPxZgcwIs+5VTcmXZvNJMeBfiaxRJ99QvaRnpm75XFy5yx/ddSPuvhYgUlcan53fDeC7
+         NBFA/IqTWWSy+AjILXG4bL+3y4L0WeSznMqy2RnaHd0Gh9AMoNcje+SdLjONGB3ODcCs
+         t6ivHwiPWn3bJkob3F/72s4WYAnxtsM1XudLwcQRTtpx2O45W1CZ/zLXpGlxcmFIV2+5
+         go2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=ltZ8BwCHA90N0xCiPXsqAnq/msG5Ej+1muFCDaHgJe4=;
-        b=meznA7HYBoiYcVphnE4l72j3v5OY0e3XfmSnYM9q5kko2TEZdqU/jlhFB3RUsxo4wx
-         gjwPamzeJYw3o2qv68X1V+J/hpytlbl2XQsp8qeDUwiZWEbuyx6sXkS+1/9GKWxjJ4oY
-         /JAQRPpvVrgYBUIyBBhfK92UkmEGvasTsWgxoosRIKJ0ywI8DeEjkL4D7GjHloN1Ylzu
-         qIdaMeI+GO9jXqWm6YiLAIDvzXZ77BKtJ4VyWQ3tFzeQwKc7N/cNKprnh917jsgICyZ3
-         Kf61YyMZGKpETY+sSVp3KQlS/SqCl6tTw81GxEDSFboz+7R/quFPrhYo8bgA7RCLc8El
-         q3KQ==
-X-Gm-Message-State: ACgBeo0fRGT2Onv0vTOWHN0OXB/mQ5ngLuPY48TD+hPxXPh6I7QVah1H
-        NGeDO5qkO80+M+opcLUBdl/8rEHkuFH/OPEQq6lHvQ==
-X-Google-Smtp-Source: AA6agR5Y0OQbpE8LPvwngeTpVjo1MXu0GVzRm5PijsMKSHrtxR2t4yXmEa2b/2REUUx40TXBMu6O34BmLuOm2H17LGo=
-X-Received: by 2002:a05:6402:51d1:b0:448:bed1:269c with SMTP id
- r17-20020a05640251d100b00448bed1269cmr30094274edd.205.1662469522275; Tue, 06
- Sep 2022 06:05:22 -0700 (PDT)
+        bh=pmIp3UU7gjm3NZJhc2Tia9NiJ9p2MvdeXl6JkzY1omI=;
+        b=RoRg6roh4TwQrecnKW0iHI95Mpa7kCMNIpRkgunY7iOA0ip8IDEv0tPDgnWAn45LaY
+         MsnUmGq2yCH1PjHq3Wt3kO/HlfgT2QsEFrabSDoa1q3GHhcEcBU2uvf8uPpHmdp9u8jN
+         TQ2zUyt1IK7ivSe43K3tZJtYHU17KuyuExPY2BxZpjEafpsBD4/82SJeae6yWF3fRikK
+         AiiFEXh5BYxWzJiRnFK9LPj/MGcC25XQ34ZUpmP90LZcqEQ7g/wdTdUv4xXQqPrOygr/
+         NvSKXe4S67kt5gLdPfhRGjlbg98PLSw6Gr08XCDqOigBofGkZ8YLx9cKaphuhfQjnq4j
+         Lj3w==
+X-Gm-Message-State: ACgBeo0OsxXJFuxrd6Y97rIna5ypMZcjWLj7e0g8KZ6TC4mgVKlp0W8w
+        Bgc9k/Udppsuuy/KEbdWoflg3XnHwoP8+NQhW0EwKg==
+X-Google-Smtp-Source: AA6agR4W5ASdL40tjGKHYVNHqZ4SrzWB68wk56ZFao/XcWslDGqmL4caxI+vRCacz+8k50G5zb+kQJQWODULR428hEA=
+X-Received: by 2002:a05:6402:2691:b0:43d:ba10:854b with SMTP id
+ w17-20020a056402269100b0043dba10854bmr45661307edd.158.1662469691869; Tue, 06
+ Sep 2022 06:08:11 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220906082820.4030401-1-martyn.welch@collabora.co.uk> <20220906082820.4030401-2-martyn.welch@collabora.co.uk>
-In-Reply-To: <20220906082820.4030401-2-martyn.welch@collabora.co.uk>
+References: <20220906082820.4030401-1-martyn.welch@collabora.co.uk>
+ <20220906082820.4030401-2-martyn.welch@collabora.co.uk> <Yxc6zptiJEf2TzP5@smile.fi.intel.com>
+In-Reply-To: <Yxc6zptiJEf2TzP5@smile.fi.intel.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 6 Sep 2022 15:05:09 +0200
-Message-ID: <CACRpkdbw2vq0QHjihWeiFBpUXGKaL2nB9rD16gcmsgEw0nuSqg@mail.gmail.com>
+Date:   Tue, 6 Sep 2022 15:08:00 +0200
+Message-ID: <CACRpkdZHKEW+WJAdCCf2DN7gN+ZM7pFpeSXfccB508N4=-LkoQ@mail.gmail.com>
 Subject: Re: [PATCH v2 2/5] dt-bindings: gpio: pca95xx: add entry for pcal6534
  and PI4IOE5V6534Q
-To:     Martyn Welch <martyn.welch@collabora.co.uk>
-Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
+To:     Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc:     Martyn Welch <martyn.welch@collabora.co.uk>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Martyn Welch <martyn.welch@collabora.com>,
@@ -63,7 +65,7 @@ Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,22 +73,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 6, 2022 at 10:28 AM Martyn Welch
-<martyn.welch@collabora.co.uk> wrote:
+On Tue, Sep 6, 2022 at 2:19 PM Andy Shevchenko
+<andriy.shevchenko@intel.com> wrote:
+> On Tue, Sep 06, 2022 at 09:28:16AM +0100, Martyn Welch wrote:
+> > From: Martyn Welch <martyn.welch@collabora.com>
+> >
+> > The NXP PCAL6534 is a 34-bit I2C I/O expander similar to the PCAL6524. The
+> > Diodes PI4IOE5V6534Q is a functionally identical chip provided by Diodes
+> > Inc.
+>
+> ...
+>
+> > +    oneOf:
+> > +      - items:
+> > +        - const: diodes,pi4ioe5v6534q
+> > +        - const: nxp,pcal6534
+>
+> ^^^
+>
+> > +      - items:
+> > +        - enum:
+>
+> > +          - nxp,pcal6534
+>
+> ^^^
+>
+> Not sure why is this dup?
 
-> From: Martyn Welch <martyn.welch@collabora.com>
->
-> The NXP PCAL6534 is a 34-bit I2C I/O expander similar to the PCAL6524. The
-> Diodes PI4IOE5V6534Q is a functionally identical chip provided by Diodes
-> Inc.
->
-> Signed-off-by: Martyn Welch <martyn.welch@collabora.com>
-> ---
->
-> Changes in v2:
->  - Enumerate pi4ioe5v6534q as requiring pcal6534 fallback
+No that is how DT compatibles work. One version of the component,
+bought from NXP will look like this:
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+compatible = "nxp,pcal6534";
+
+Another version bought from diodes will look like this:
+
+compatible = "diodes,pi4ioe5v6534q", "nxp,pcal6534";
+
+Then the drivers are probed matching from left to right,
+with the "most compatible" matching first.
+
+This also answers your question on the implementation.
 
 Yours,
 Linus Walleij
