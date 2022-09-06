@@ -2,119 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 65B175ADD50
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 04:30:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A8195ADD5C
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 04:32:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231436AbiIFCaC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Sep 2022 22:30:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39572 "EHLO
+        id S229947AbiIFCc0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Sep 2022 22:32:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230377AbiIFCaA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 22:30:00 -0400
-Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A49F13D13;
-        Mon,  5 Sep 2022 19:30:00 -0700 (PDT)
-Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-11f34610d4aso25092334fac.9;
-        Mon, 05 Sep 2022 19:30:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=message-id:date:subject:references:in-reply-to:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=bgR9Dm7RR5gy3vWeeBp7FcKJWvBmN2YdFy8Dv8gJKQE=;
-        b=XRSD/tHu3mDbAYLrqQkykRrKB4dgcOx5QOHshQLu84iBVPsW1EIBHmd1ecMaJ0o8AE
-         6eeQJwS0VtM8YjtOAnYST5fdYc1MgHrZ7Ow/6KO71j/VzKXhxq1EaKVpK30781061LQ9
-         kc4KR/bNert1+OtLaNbl4Ht6XjApUJXIR5vtu0xAFigRCs1PmTgaRzp2AzhNSpIef+rO
-         ZhAltJY+vtitIfKhva/Q6QsyKz2ZDVLjP+LEtgIlX+SisOSL+TGw9USgUsWkvPAm+01Y
-         N0z2i/v2AcOfHOEUYTRwSzUaRPJ7e4xat+7VgNbTV26eemZvMPKIldSMYe4Wb5IXlbii
-         m5xA==
-X-Gm-Message-State: ACgBeo0FbgXWZHWSaKSOoyGcT/ko21X1qA3Fs0NCtr/95fmRUPnaQVGF
-        nNPG9/X6cKQW6el3/I61SxXtW8FQ6w==
-X-Google-Smtp-Source: AA6agR453kgOl7QJNbxXMSvEeEKK/ga5wy8mSasvv0WthRCBCxzzWFERYf/TOjtk9667ew6xSZLW4Q==
-X-Received: by 2002:a05:6870:4410:b0:122:520b:2159 with SMTP id u16-20020a056870441000b00122520b2159mr10794228oah.27.1662431399440;
-        Mon, 05 Sep 2022 19:29:59 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id k12-20020a056870818c00b00127a91041a9sm846270oae.38.2022.09.05.19.29.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Sep 2022 19:29:59 -0700 (PDT)
-Received: (nullmailer pid 3334458 invoked by uid 1000);
-        Tue, 06 Sep 2022 02:29:58 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Abel Vesa <abel.vesa@linaro.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-arm-msm@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        devicetree@vger.kernel.org,
-        Amol Maheshwari <amahesh@qti.qualcomm.com>,
-        David Heidelberg <david@ixit.cz>
-In-Reply-To: <20220905144554.1772073-1-abel.vesa@linaro.org>
-References: <20220905144554.1772073-1-abel.vesa@linaro.org>
-Subject: Re: [PATCH v7 1/2] dt-bindings: misc: fastrpc convert bindings to yaml
-Date:   Mon, 05 Sep 2022 21:29:58 -0500
-Message-Id: <1662431398.288835.3334457.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S229546AbiIFCcZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Sep 2022 22:32:25 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DA35326D7;
+        Mon,  5 Sep 2022 19:32:24 -0700 (PDT)
+X-UUID: 8e35192a87a243c2a988e77da9329084-20220906
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=lLZfor8VBXyAk27TpjkWmLUUJBncHtHiCzkOPODLj50=;
+        b=kzfporl388g0UA+79REkS7ycBXjJtxz71afRFgOx4spUcNqlqyv7c6QxyA4TK+1gIZSnnOL1j/wHQa9xxvpTUKHcpsHyUVQYVcyG3ySayozyJGysXkcOCIK8PN2IVJQvbxvFW3J3bLYl6Rk/vNguEwzLsyOnL9kEW+MQ5l41uiE=;
+X-CID-UNFAMILIAR: 1
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.10,REQID:0b54bcab-c882-4380-93c5-0f0add6bada9,OB:0,L
+        OB:0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:54,FILE:0,BULK:0,RULE:Releas
+        e_Ham,ACTION:release,TS:49
+X-CID-INFO: VERSION:1.1.10,REQID:0b54bcab-c882-4380-93c5-0f0add6bada9,OB:0,LOB
+        :0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:54,FILE:0,BULK:0,RULE:Release_
+        HamU,ACTION:release,TS:49
+X-CID-META: VersionHash:84eae18,CLOUDID:ede04921-1c20-48a5-82a0-25f9c331906d,C
+        OID:71996c057d7b,Recheck:0,SF:28|16|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:11|1,File:nil,Bulk:40,QS:nil,BEC:nil,COL:0
+X-UUID: 8e35192a87a243c2a988e77da9329084-20220906
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        (envelope-from <nathan.lu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1451122071; Tue, 06 Sep 2022 10:32:18 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Tue, 6 Sep 2022 10:32:17 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
+ Transport; Tue, 6 Sep 2022 10:32:16 +0800
+Message-ID: <e1b486ec70f7e58c8f204bb9b7377716c8acfcdd.camel@mediatek.com>
+Subject: Re: [PATCH v1 1/4] dt-bindings: mediatek: modify VDOSYS0 device
+ tree Documentations for MT8188
+From:   Nathan Lu <nathan.lu@mediatek.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     "jason-jh . lin" <jason-jh.lin@mediatek.com>,
+        CK Hu <ck.hu@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        "Rex-BC Chen" <rex-bc.chen@mediatek.com>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Moudy Ho <moudy.ho@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <wsd_upstream@mediatek.com>,
+        <lancelot.wu@mediatek.com>
+Date:   Tue, 6 Sep 2022 10:32:16 +0800
+In-Reply-To: <05f99396-f6e9-a315-7264-c659e3ec507c@linaro.org>
+References: <20220822033213.15769-1-nathan.lu@mediatek.com>
+         <20220822033213.15769-2-nathan.lu@mediatek.com>
+         <05f99396-f6e9-a315-7264-c659e3ec507c@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_CSS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 05 Sep 2022 17:45:53 +0300, Abel Vesa wrote:
-> Convert Qualcomm FastRPC bindings to yaml format, so that we could validate
-> dt-entries correctly and any future additions can go into yaml format.
+Hi Krzysztof,
+
+Thanks for your review, and appreciate for all comments and sugestions.
+I misunderstanding enum and const usage.
+I'll add another item for mt8188 at next version.
+
+On Tue, 2022-08-23 at 15:51 +0300, Krzysztof Kozlowski wrote:
+> On 22/08/2022 06:32, nathan.lu wrote:
+> > From: Nathan Lu <nathan.lu@mediatek.com>
+> > 
+> > modify VDOSYS0 device tree Documentations for MT8188.
 > 
-> Use compute-cb@ subnodes instead of just cb@.
+> (...)
 > 
-> Also add qcom,non-secure-domain, qcom,glink-channels and
-> qcom,smd-channels missing properties to make sure dtbs_check doesn't
-> fail right off the bat.
+> > diff --git
+> > a/Documentation/devicetree/bindings/display/mediatek/mediatek,rdma.
+> > yaml
+> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,rdma.
+> > yaml
+> > index 0882ae86e6c4..d0e6c0dd4dfb 100644
+> > ---
+> > a/Documentation/devicetree/bindings/display/mediatek/mediatek,rdma.
+> > yaml
+> > +++
+> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,rdma.
+> > yaml
+> > @@ -30,6 +30,8 @@ properties:
+> >        - items:
+> >            - const: mediatek,mt8183-disp-rdma
+> >        - items:
+> > +          - enum:
+> > +              - mediatek,mt8188-disp-rdma
+> >            - const: mediatek,mt8195-disp-rdma
 > 
-> Co-developed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> Co-developed-by: David Heidelberg <david@ixit.cz>
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
+> Why do you change existing bindings?
 > 
-> Changes since v6:
->  * renamed the parent node name in the example from smd-edge to glink-edge
-> 
->  .../devicetree/bindings/misc/qcom,fastrpc.txt |  88 -------------
->  .../bindings/misc/qcom,fastrpc.yaml           | 118 ++++++++++++++++++
->  2 files changed, 118 insertions(+), 88 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/misc/qcom,fastrpc.txt
->  create mode 100644 Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
-> 
-
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-
-
-doc reference errors (make refcheckdocs):
-Documentation/devicetree/bindings/remoteproc/qcom,glink-edge.yaml: Documentation/devicetree/bindings/misc/qcom,fastrpc.txt
-MAINTAINERS: Documentation/devicetree/bindings/misc/qcom,fastrpc.txt
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+> Best regards,
+> Krzysztof
 
