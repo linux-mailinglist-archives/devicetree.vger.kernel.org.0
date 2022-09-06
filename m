@@ -2,240 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB31D5AF10A
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 18:48:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 320195AF114
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 18:50:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238125AbiIFQqZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 12:46:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59670 "EHLO
+        id S233190AbiIFQtT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 12:49:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233902AbiIFQpr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 12:45:47 -0400
-Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A6D97B2BA;
-        Tue,  6 Sep 2022 09:25:53 -0700 (PDT)
-Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-127ba06d03fso5882376fac.3;
-        Tue, 06 Sep 2022 09:25:53 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=nLk2tHEZjw/WNoaVVDMOlbDOyUnW9vyfOpQM4cnClvI=;
-        b=jzZ5iv4l+cOmrtaWqz7uzHBmiuT2J94g+InUFkGt1a8JCNIO9Pf2h59FbMFb5sWfXu
-         OhgasUtlG1nSuu96wAE2befcKvgsOb68dvgUa4YbicPt0vZ2JzNDzmK38UQI6EFq+prz
-         Us60ck4UOXO6WsxY3pNjZ8SaUiNmxj8hoFbly7TiO5zX3LmyBmkJrwGDUAuUi7XGHZzZ
-         Vn724X7uikobFTvB0YBzaLxEfbDc9ro6SvtTK+jT/zidY8nq6AFM7kcRLJPzu1tilywx
-         Vk04HpCLadVjaFzQLM1Rj72aBGCraZDKAaWFg8ACuTSvDH72dvvVmfufV6JbfNRkcB6a
-         SS/w==
-X-Gm-Message-State: ACgBeo0039nCh9QcDH/ZgHQdpG6lUFwVdOgTgm56T6Toc16ELw7UEni+
-        FOK7EVKsGTVgxg/p93d4Xg==
-X-Google-Smtp-Source: AA6agR4XFWHpXeFahUwXObQOJFMisExAbB2J6LdFjzK50pm+TOKTLLEquq3PoJ+rh86WbLCLYUFG0Q==
-X-Received: by 2002:a05:6808:20a9:b0:343:c4e:24c8 with SMTP id s41-20020a05680820a900b003430c4e24c8mr10360338oiw.73.1662481552575;
-        Tue, 06 Sep 2022 09:25:52 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id w9-20020a056830280900b00638a1c49383sm5968530otu.78.2022.09.06.09.25.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Sep 2022 09:25:52 -0700 (PDT)
-Received: (nullmailer pid 644962 invoked by uid 1000);
-        Tue, 06 Sep 2022 16:25:51 -0000
-Date:   Tue, 6 Sep 2022 11:25:51 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Joy Zou <joy.zou@nxp.com>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "S.J. Wang" <shengjiu.wang@nxp.com>,
-        "martink@posteo.de" <martink@posteo.de>,
-        "dev@lynxeye.de" <dev@lynxeye.de>, Peng Fan <peng.fan@nxp.com>,
-        "david@ixit.cz" <david@ixit.cz>,
-        "aford173@gmail.com" <aford173@gmail.com>,
-        Hongxing Zhu <hongxing.zhu@nxp.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [EXT] Re: [PATCH v6 1/4] dt-bindings: fsl-imx-sdma: Convert imx
- sdma to DT schema
-Message-ID: <20220906162551.GA636621-robh@kernel.org>
-References: <20220906094256.3787384-1-joy.zou@nxp.com>
- <20220906094256.3787384-2-joy.zou@nxp.com>
- <4743969.GXAFRqVoOG@steina-w>
- <AM6PR04MB59257DD8A94B63D419737756E17E9@AM6PR04MB5925.eurprd04.prod.outlook.com>
-MIME-Version: 1.0
+        with ESMTP id S238729AbiIFQsh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 12:48:37 -0400
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-eopbgr60069.outbound.protection.outlook.com [40.107.6.69])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 299D81B786;
+        Tue,  6 Sep 2022 09:33:12 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=EUb8JmpiuxwWAVZGbfE/Mqc/xQuNCvxS3GO6WBzRGq27AS+FBhxVs+u6ge+JkEF11x7l68Z8KrOWiNAMeqVb8REZZ9FPWfN4xQFQR4D1aVgCDDZlyFqH7absrs0y6hg2Av4qVjjgD3wMuU/O1zLrzaE3j6R7Udnz3rs+38HjhomQpn6EaFSWDN86EW4BdXolqxnov+PsKT+0eFUi0UZaZcayVCnDBv9gZrjzfJ20+UrxGS2kUQmKM13IyVPM5ilMbpw3P0PKsHEzBpSadQ5bDJsW/9e1uM7iLU8zTANDE4fluLpTPmLKPLJu7Ym1e0ylpIPhG+QrsiiyaC6Aymey+A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=k+1LO3SsvLV3dl+8y0DscovSx1BrFvLkdH8sfZGVOhs=;
+ b=coPZ9iA/wIsxzR2JXbuBw1vew+KSu17CvHrZNMk5SFkxHEWp2JZHg1Ui7oeBZG4GV9Wg7he1nCOyvB25ESffuVn/C6efrpuDnrPA9eXxzkFO9n9qbrBYekLwTkPMukkElIQOfg+Onim/NdPghJ+HF938HxmAi+xFd1ktmXb/7AVEiEs9svMT350Vu9OM1EaRoLOJqHGGyFU+ZduMA/WRcQwAGCpSMInq9ZwNZPE20OSGkUKx32Rl84BUN2Pl0OJ5RzFDeWELm8j6Dlqk7E1e0AaBeU3YbxxoHek7He2I9pszpJ3/C/gRhB93dt0VFOWxv/Ne6tfpubQbIeNWTH8aiQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
+ dkim=pass header.d=seco.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=k+1LO3SsvLV3dl+8y0DscovSx1BrFvLkdH8sfZGVOhs=;
+ b=xh7furVwdMBcktP6Eih2gwPIO4h7wKfAqiM8J2DA6uO37PeW4B28gu0PI2Sgb0hYzTbe1rtcWmfMNM6xFdxO0EKcM7kRj0sG24u2KAMnpRBla1RKmOTqBsBFNi81oKhu298OLJUyYygJN7WDtGrYwX+loLuaWsfhkA2kDWNXrjnAI9DDResAbXWS7dGugsALvWLWazMjgE51klgJI/SwsSg99/ABIspi77/c0Ob4FdVIt4h8USzJyblP63YiXvaV9CcG3RH63bqF6mLqnUXqD4jwyQJX99moB0FuD/PxJQHtci5sgIvAQqSj6TkcovFcgvWe03xHcMdT12G6J4RANQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=seco.com;
+Received: from DB7PR03MB4972.eurprd03.prod.outlook.com (2603:10a6:10:7d::22)
+ by GV2PR03MB8560.eurprd03.prod.outlook.com (2603:10a6:150:7e::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.16; Tue, 6 Sep
+ 2022 16:33:08 +0000
+Received: from DB7PR03MB4972.eurprd03.prod.outlook.com
+ ([fe80::ecaa:a5a9:f0d5:27a2]) by DB7PR03MB4972.eurprd03.prod.outlook.com
+ ([fe80::ecaa:a5a9:f0d5:27a2%4]) with mapi id 15.20.5588.018; Tue, 6 Sep 2022
+ 16:33:07 +0000
+Subject: Re: [PATCH v5 4/8] phy: fsl: Add Lynx 10G SerDes driver
+To:     kernel test robot <lkp@intel.com>, Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        linux-phy@lists.infradead.org
+Cc:     kbuild-all@lists.01.org, devicetree@vger.kernel.org,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        Camelia Alexandra Groza <camelia.groza@nxp.com>,
+        linuxppc-dev@lists.ozlabs.org, Rob Herring <robh+dt@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
+        linux-doc@vger.kernel.org
+References: <20220902213721.946138-5-sean.anderson@seco.com>
+ <202209032301.fWPibuKq-lkp@intel.com>
+From:   Sean Anderson <sean.anderson@seco.com>
+Message-ID: <826afda9-9ad4-ccf1-1568-d3a43948a7be@seco.com>
+Date:   Tue, 6 Sep 2022 12:33:03 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+In-Reply-To: <202209032301.fWPibuKq-lkp@intel.com>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <AM6PR04MB59257DD8A94B63D419737756E17E9@AM6PR04MB5925.eurprd04.prod.outlook.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: BL0PR05CA0002.namprd05.prod.outlook.com
+ (2603:10b6:208:91::12) To DB7PR03MB4972.eurprd03.prod.outlook.com
+ (2603:10a6:10:7d::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: db802a2a-bd1b-4334-0955-08da90257adf
+X-MS-TrafficTypeDiagnostic: GV2PR03MB8560:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: uhvBvo7614Ckv0b3H0XxHVoRAZafnZ9CWVhOVr69xmD+S9y6WKGMKb9CfqbPLezWh8k956qQOPx5XhjAx6+Fn64IVjTMdGmGPQie0TCt3NHcMoK7VGgWKJfkxe8fK47BMc0yQsaC0+g3knHCNyaoK9I9djcBb+F//TPyfDTvVlJ8RqNAGN0A4wcIxaM1nxTCe6fHnUotYaK6Ch6ocjz6Tj0Nt4q6s2+aIvQj46vYZIgWcB14Hpb4ONGrRWIOzM5Dj53iMnMS4m9u5o94ZqeZpnf7bzabSWwWBI1ypBdKKTtgL+lTICsp+vfnPkS1Odqc4jhScvfh980110KgA4FZcX2JAW+jUrZiJ7cZlDHTERcDL8AHeqTcfm1wDKoaE8B/obC3hPDGX+7PSZVW1LkyPQuiSKjobgnr3PlmUa0zfpHkHKaRzObFO56cisu9ppYSh8omN+UPKyflj9v7T4kynzvcYfoIUkmEzR0BUb2Z7DLmd1bFP2dXEtokR082ZKqFPLaFNxycRSvnmBcHBBJQJcM7p2OPJmRCxHm1GjPnO4B5oCJvoXKM/TQgoTywAmjibYCozFoMVyWyVWhWTzuSoWP1SzkNfygEudb6nmimPQFTogL6BQSMgz8PjFPJQkJW3RhRMfierkUfYuNF48AlVnJvPusdvBUTEnSMo/yTU/6uDyi+yUJlVnVLEpMJ9XC2HKV4XNaMghSrrZAU62Ktveucf9p20D2dUhqWihr8VYDtoh8F1KQLqk/gHFj4D6xzEbCjlZeWkUZiH4i+uOngnb82iZtP5e7KZvvZquTulfZF5k0nOBWn2a2TXDdzXmcDb1qhi9PBa+fuSvgf8ANeIjTrraV1i6/iAmNlFYtvXdY1Pkgmm+FzUEWZyBvSfIbKnzaClyiZTUtAiaoXbzs8Mg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR03MB4972.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(366004)(396003)(39850400004)(376002)(136003)(346002)(83380400001)(36756003)(38100700002)(38350700002)(66476007)(8676002)(4326008)(66946007)(66556008)(110136005)(2906002)(86362001)(54906003)(8936002)(316002)(31696002)(7416002)(6666004)(5660300002)(52116002)(26005)(53546011)(6512007)(6506007)(186003)(478600001)(41300700001)(6486002)(966005)(44832011)(2616005)(31686004)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZitvMnJkeXkrK1hDeGpPYWE3ODhMOUJtZ3ZQN1lQT2hQaUgrY2R2dTNyemRu?=
+ =?utf-8?B?ZS9NcjNMcTNuMnh6b2RnZXl4TkFFcXR1Y2FNVU9OWjlwOEpSZ3dDcFpDcDJi?=
+ =?utf-8?B?L2JSN2I5cFFlNEhnUjZGaHpOU1lvQzBGbzhwY3A1bUVQU0xuQ3pVb2Zyd3pP?=
+ =?utf-8?B?UjE3RlczWjBkakJqL3oyb1VDakZrWnFtNHgwaGlVZFFrKzVDVThaeTgrV1VK?=
+ =?utf-8?B?eFZZc2pweThQZzkyV3J2emJXNUtLZVByamZIZHZoVGxwTTRtSFNDaTJSOEVS?=
+ =?utf-8?B?YWpORmFBalBoZk5TeDMrMDgvVDc2Z3VyQVZqanB0Ym9XaHgrV3RQNlFaWUpu?=
+ =?utf-8?B?WlNlemFLTFluc0x0YnhRWVFSWWlPaDlHUEwvZWN2cTNQSi9Ud0RXUkFsUmtj?=
+ =?utf-8?B?K0o4ZEN0V1F6a0xLYTBuVkp2ejUrK1dDbmZEbG9zN2FsdTc0ZlR1eVNLblNq?=
+ =?utf-8?B?ODl5YS9GTk01bFFackR2M0VZN0RLSFU5KzM1OENXS0ExVDl2Mytnc2lnNlVq?=
+ =?utf-8?B?TTVUc3l1TitOYkwwc1N6TStCak1zYkRnZGQvYzNmaTJUQkpQbmZTejltYk5Q?=
+ =?utf-8?B?d2c0ZDN0L2NGSlQyeTB4OFhGZUppRmJUeWRRK2ZJME5OVmJ0ZHR1VERhZVkz?=
+ =?utf-8?B?TGxPcE4xWURtMk9yb0NKejc5VjVqRjlpZHRPZzcyVnBWRllyMnRMSUpHVWp4?=
+ =?utf-8?B?UCswU0h5Z3lJUm5uUzIzZjNMdXFGbDZ1VTJZekJiVGNIUm05WG0wOWlCMllT?=
+ =?utf-8?B?ZUZ2V0VDTGtvZTZ3Q3hCSU9MNFRzRm96MmFFUTFuaW8vT2IwMHRLOVlaNGcy?=
+ =?utf-8?B?NmF5SnQ2WTZYdW90cGE1RmloMW82SlNzZEcyVSt6RVFQWmVyZFVyajdQUTNq?=
+ =?utf-8?B?TEgrdGZ0RjFtWllXMUFvY3RVRjN0VjFFcnA5S3pRcmMxZDdRV2VwYVpWM0pt?=
+ =?utf-8?B?UTdBZDNoZlh3TDk5VFBwYmhGdk1tQ21RMC9UaGJDOE9TZzJaNHdidlJFaGxP?=
+ =?utf-8?B?VUliT21pSzl5OXo1ekxjaHMyN2l6Z1BlZzF3eWw4dUIxbGRVWGpybUYrZlFW?=
+ =?utf-8?B?d0Y0YUNnLzh6aGg5akIyTC9xd0tBbmlNWGs2RjMwR0ltRUJKYzV2Z09LYWpD?=
+ =?utf-8?B?VkZ1VkVGVFZvQjNaSVNKcFA4QWhmYlFuMTNsK1BzQU8vZGVOaVI0a1htcmlU?=
+ =?utf-8?B?U2tEWUdzaXFpcVZHbDBwQU5VdVJMeXpEclhzSzQzUWhWNlhKNnRsUHFNZTl2?=
+ =?utf-8?B?cGJNb1FCUWwzdEZkWXBXdHFLTXVEdGgwb0RzTFpqbmNNTUdkQzhubDEvbzRL?=
+ =?utf-8?B?di9TWSs5eUpnalRtOVptWVZDMWZuS2VlZmFjUUZ1V1ZpUmJMbnhXYkozUkl4?=
+ =?utf-8?B?eVFkaDJrUFNzWlNoc0UzVTBYZHAxSnNHei9TVks5YktNY0Rsb3pFV3UwVGtP?=
+ =?utf-8?B?Ri9ERk4wVEZTckRvdnF0QlJQOXBoUXVjbGxFbTNsQy9oU09rVDBTZ3ZJWDBw?=
+ =?utf-8?B?YUVnbEYya2xwWmJwbnZyTTNNUlI2TUh6ZnE1emtqRm1pajNKMXdJeW5HMXky?=
+ =?utf-8?B?Z0gzSEMycHlQRTV1TDZIMGFQV1pvRTY1Y1o1RWl1SkQvblo3WGNVdFAxeGJy?=
+ =?utf-8?B?WlVqaFIvQTRiMTJ1THFQTTVCQjFVZzBFWFE5VC9GanZnZUJZWCtkV0FoRW1w?=
+ =?utf-8?B?YzRNVTBqcjFHZ0lCTFdHUkxDTlFWL3pVcDNqRkFlMkxUT25zK001UkZ6aUtK?=
+ =?utf-8?B?L0pQa3pZTUlHQmR0T2hjZHNmVjArN0JncmhRVUdxZW9aVTRxMlZUd3JYaUZQ?=
+ =?utf-8?B?Rnc1MnIvTHVSZzdUMkZFdWx1UmJ2MjA4QmpyYVhkUzRqTVNmZEsyTzdmRnlv?=
+ =?utf-8?B?ZHJNSE9KT2d1VDlVLzAvVkc1clZoMkk4alJ6NWpGSHA1L3NLQUc5Qm81enJm?=
+ =?utf-8?B?ak81ck1BMVRLNk9xRy85bGtvSkZsQWJHS2UveUYycm9lZUQzMWNJRGJVTHd1?=
+ =?utf-8?B?VDM4elV3Y3haUDRiWmovbHVWTm9LWkg0cHdJNzVpRzk5djRjZEd4QnZHc1JM?=
+ =?utf-8?B?U1RCSmZ0a1g1MTBkYUtRaHp4UGh1NVlGOXhGbGJJS2NEemRZMXdXa3dXMXFw?=
+ =?utf-8?B?RldVTkNmQ1dKeDBiRGFua1RpZU9qQ29uME5mVG15UU9abzVYR2V2VW5xcGdN?=
+ =?utf-8?B?b0E9PQ==?=
+X-OriginatorOrg: seco.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: db802a2a-bd1b-4334-0955-08da90257adf
+X-MS-Exchange-CrossTenant-AuthSource: DB7PR03MB4972.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Sep 2022 16:33:07.7535
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: xz3FG07/zRfnMpUVlW+Ib99WDzAhnwPy1oLeQiYfAfxou+mO7WsuC/3o7LifMi6bAIZPXSK6jDalPaPRxJ1Byw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR03MB8560
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 06, 2022 at 11:13:41AM +0000, Joy Zou wrote:
+
+
+On 9/3/22 11:23 AM, kernel test robot wrote:
+> Hi Sean,
 > 
-> > -----Original Message-----
-> > From: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > Sent: 2022年9月6日 18:55
-> > To: Joy Zou <joy.zou@nxp.com>
-> > Cc: vkoul@kernel.org; robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
-> > shawnguo@kernel.org; s.hauer@pengutronix.de; kernel@pengutronix.de;
-> > festevam@gmail.com; S.J. Wang <shengjiu.wang@nxp.com>;
-> > martink@posteo.de; dev@lynxeye.de; Peng Fan <peng.fan@nxp.com>;
-> > david@ixit.cz; aford173@gmail.com; Hongxing Zhu <hongxing.zhu@nxp.com>;
-> > dl-linux-imx <linux-imx@nxp.com>; dmaengine@vger.kernel.org;
-> > devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
-> > linux-kernel@vger.kernel.org
-> > Subject: [EXT] Re: [PATCH v6 1/4] dt-bindings: fsl-imx-sdma: Convert imx sdma
-> > to DT schema
-> > 
-> > Caution: EXT Email
-> > 
-> > Hi,
-> > 
-> > thanks for the YAML conversion patch.
-> > 
-> > Am Dienstag, 6. September 2022, 11:42:53 CEST schrieb Joy Zou:
-> > > Convert the i.MX SDMA binding to DT schema format using json-schema.
-> > >
-> > > The compatibles fsl,imx31-to1-sdma, fsl,imx31-to2-sdma,
-> > > fsl,imx35-to1-sdma and fsl,imx35-to2-sdma are not used. So need to
-> > > delete it. The compatibles fsl,imx50-sdma, fsl,imx6sll-sdma and
-> > > fsl,imx6sl-sdma are added. The original binding don't list all compatible used.
-> > >
-> > > In addition, add new peripheral types HDMI Audio.
-> > >
-> > > Signed-off-by: Joy Zou <joy.zou@nxp.com>
-> > > ---
-> > > Changes in v6:
-> > > delete tag Acked-by from commit message.
-> > >
-> > > Changes in v5:
-> > > modify the commit message fromat.
-> > > add additionalProperties, because delete the quotes in patch v4.
-> > > delete unevaluatedProperties due to similar to additionalProperties.
-> > > modification fsl,sdma-event-remap items and description.
-> > >
-> > > Changes in v4:
-> > > modify the commit message.
-> > > delete the quotes in patch.
-> > > modify the compatible in patch.
-> > > delete maxitems and add items for clock-names property.
-> > > add iram property.
-> > >
-> > > Changes in v3:
-> > > modify the commit message.
-> > > modify the filename.
-> > > modify the maintainer.
-> > > delete the unnecessary comment.
-> > > modify the compatible and run dt_binding_check and dtbs_check.
-> > > add clocks and clock-names property.
-> > > delete the reg description and add maxItems.
-> > > delete the interrupts description and add maxItems.
-> > > add ref for gpr property.
-> > > modify the fsl,sdma-event-remap ref type and add items.
-> > > delete consumer example.
-> > >
-> > > Changes in v2:
-> > > convert imx sdma bindings to DT schema.
-> > > ---
-> > >  .../devicetree/bindings/dma/fsl,imx-sdma.yaml | 147
-> > > ++++++++++++++++++  .../devicetree/bindings/dma/fsl-imx-sdma.txt  |
-> > > 118 --------------
-> > >  2 files changed, 147 insertions(+), 118 deletions(-)  create mode
-> > > 100644 Documentation/devicetree/bindings/dma/fsl,imx-sdma.yaml
-> > >  delete mode 100644
-> > > Documentation/devicetree/bindings/dma/fsl-imx-sdma.txt
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/dma/fsl,imx-sdma.yaml
-> > > b/Documentation/devicetree/bindings/dma/fsl,imx-sdma.yaml new file
-> > > mode
-> > > 100644
-> > > index 000000000000..3da65d3ea4af
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/dma/fsl,imx-sdma.yaml
-> > > @@ -0,0 +1,147 @@
-> > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause %YAML 1.2
-> > > +---
-> > > +$id:
-> > > +https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevi
-> > >
-> > +cetree.org%2Fschemas%2Fdma%2Ffsl%2Cimx-sdma.yaml%23&amp;data=05
-> > %7C01%
-> > >
-> > +7Cjoy.zou%40nxp.com%7Cc7a8409ee52447126b2908da8ff649db%7C686ea
-> > 1d3bc2b
-> > >
-> > +4c6fa92cd99c5c301635%7C0%7C0%7C637980585219845112%7CUnknown
-> > %7CTWFpbGZ
-> > >
-> > +sb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6M
-> > n0%
-> > >
-> > +3D%7C3000%7C%7C%7C&amp;sdata=XHRpq%2BiZpXdB7Yw4gZRONgWMn7
-> > KiSxM9yBES7R
-> > > +H0iNc%3D&amp;reserved=0
-> > > +$schema:
-> > > +https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevi
-> > >
-> > +cetree.org%2Fmeta-schemas%2Fcore.yaml%23&amp;data=05%7C01%7Cjoy.z
-> > ou%4
-> > >
-> > +0nxp.com%7Cc7a8409ee52447126b2908da8ff649db%7C686ea1d3bc2b4c6f
-> > a92cd99
-> > >
-> > +c5c301635%7C0%7C0%7C637980585220001350%7CUnknown%7CTWFpbG
-> > Zsb3d8eyJWIj
-> > >
-> > +oiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3
-> > 000%7
-> > >
-> > +C%7C%7C&amp;sdata=6albMSOV7dsgaHuDk05ZUtAiMTlwYX6QyHrfXWz7%2
-> > BmY%3D&am
-> > > +p;reserved=0
-> > > +
-> > > +title: Freescale Smart Direct Memory Access (SDMA) Controller for
-> > > +i.MX
-> > > +
-> > > +maintainers:
-> > > +  - Joy Zou <joy.zou@nxp.com>
-> > > +
-> > > +properties:
-> > 
-> > Is it sensible to add something like this?
-> > 
-> >   $nodename:
-> >     pattern: "^dma-controller(@.*)?$"
-> > 
-> > You are changing the node names in patch 3 anyway.
-> Yes, it is sensible to add $nodename. Because I have deleted the dma-controller quotes.
-> I follow the dma-controller $nodename. I think it is general. So changing the node name.
-> I will add it next version.
-> Thanks for your comments!
+> I love your patch! Yet something to improve:
+> 
+> [auto build test ERROR on shawnguo/for-next]
+> [also build test ERROR on robh/for-next clk/clk-next arm/for-next arm64/for-next/core rockchip/for-next soc/for-next linus/master v6.0-rc3]
+> [cannot apply to xilinx-xlnx/master next-20220901]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> 
+> url:    https://github.com/intel-lab-lkp/linux/commits/Sean-Anderson/phy-Add-support-for-Lynx-10G-SerDes/20220903-053840
+> base:   https://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux.git for-next
+> config: arc-allyesconfig (https://download.01.org/0day-ci/archive/20220903/202209032301.fWPibuKq-lkp@intel.com/config)
+> compiler: arceb-elf-gcc (GCC) 12.1.0
+> reproduce (this is a W=1 build):
+>         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+>         chmod +x ~/bin/make.cross
+>         # https://github.com/intel-lab-lkp/linux/commit/cbfe9294ef583cc8dffd9cebf9ff325bbcdb4cef
+>         git remote add linux-review https://github.com/intel-lab-lkp/linux
+>         git fetch --no-tags linux-review Sean-Anderson/phy-Add-support-for-Lynx-10G-SerDes/20220903-053840
+>         git checkout cbfe9294ef583cc8dffd9cebf9ff325bbcdb4cef
+>         # save the config file
+>         mkdir build_dir && cp config build_dir/.config
+>         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arc SHELL=/bin/bash
+> 
+> If you fix the issue, kindly add following tag where applicable
+> Reported-by: kernel test robot <lkp@intel.com>
+> 
+> All errors (new ones prefixed by >>):
+> 
+>    drivers/phy/freescale/phy-fsl-lynx-10g-clk.c: In function 'lynx_pll_recalc_rate':
+>>> drivers/phy/freescale/phy-fsl-lynx-10g-clk.c:255:25: error: implicit declaration of function 'FIELD_GET' [-Werror=implicit-function-declaration]
+>      255 |         u32 frate_sel = FIELD_GET(PLLaCR0_FRATE_SEL, cr0);
+>          |                         ^~~~~~~~~
+>    drivers/phy/freescale/phy-fsl-lynx-10g-clk.c: In function 'lynx_pll_set_rate':
+>>> drivers/phy/freescale/phy-fsl-lynx-10g-clk.c:340:16: error: implicit declaration of function 'FIELD_PREP' [-Werror=implicit-function-declaration]
+>      340 |         cr0 |= FIELD_PREP(PLLaCR0_RFCLK_SEL, rfclk_sel);
+>          |                ^~~~~~~~~~
+>    drivers/phy/freescale/phy-fsl-lynx-10g-clk.c: In function 'lynx_clk_init':
+>>> drivers/phy/freescale/phy-fsl-lynx-10g-clk.c:466:9: error: implicit declaration of function 'kfree'; did you mean 'vfree'? [-Werror=implicit-function-declaration]
+>      466 |         kfree(ref_name);
+>          |         ^~~~~
+>          |         vfree
+>    cc1: some warnings being treated as errors
 
-Instead, just add:
+It looks like bitfield.h and slab.h are included transitively on
+arm64 but not on other arches. I will update this file to include
+these headers.
 
-allOf:
-  - $ref: dma-controller.yaml#
-
-
-That will do the same thing.
-
-With that,
-
-Reviewed-by: Rob Herring <robh@kernel.org>
-
-Rob
+--Sean
