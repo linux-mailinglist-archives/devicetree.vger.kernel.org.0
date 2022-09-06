@@ -2,60 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30C515AF046
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 18:22:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B6B55AF053
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 18:24:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233776AbiIFQWY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 12:22:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49812 "EHLO
+        id S238930AbiIFQYn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 12:24:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234323AbiIFQV4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 12:21:56 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50EF4A5721
-        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 08:50:31 -0700 (PDT)
-Received: from mercury (dyndsl-037-138-186-136.ewe-ip-backbone.de [37.138.186.136])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 8B50066015E5;
-        Tue,  6 Sep 2022 16:50:29 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1662479429;
-        bh=XJoe4AUZezhgBToG5KJ5xVW9306by/UTlclyGM6j3oM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=BJLDLSg+vq2uh25XRtGtWBiTT+FYK7nw6i1lJc4HaToVzWdyzqw1R7Lzw1n4NBzvh
-         8JGo9CxachYA0WJ3OSqWhiiAXIabz8AL0vWDaEzlS8AC3ppLbqb7Pr83fm+BhZC98w
-         Grl7VJex9Fnk8O/oEL0Gd4oeLSbnxhd2q82ekGuseZV3BNY9ygP7eM4aQOTLjBMAdX
-         JpIKIOu11ofoOSn1NzjDDIjNcL3HpMwTsQqjEUqGNlk0lZ4VPie+r+I97ZDlKOZnqU
-         UVLwqkiIX57uEsPi204yucfDHa1sXGeJqcXZEOQBnv5JwgcnFvuw2aUoSl5XbvQEOx
-         ZeNYx9z+uRa3A==
-Received: by mercury (Postfix, from userid 1000)
-        id 0E3C3106090E; Tue,  6 Sep 2022 17:50:27 +0200 (CEST)
-Date:   Tue, 6 Sep 2022 17:50:27 +0200
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Lee Jones <lee@kernel.org>
-Cc:     Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
+        with ESMTP id S234872AbiIFQYN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 12:24:13 -0400
+Received: from mxout2.routing.net (mxout2.routing.net [IPv6:2a03:2900:1:a::b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2356A3AB20;
+        Tue,  6 Sep 2022 08:55:17 -0700 (PDT)
+Received: from mxbox1.masterlogin.de (unknown [192.168.10.88])
+        by mxout2.routing.net (Postfix) with ESMTP id 3ABDA60520;
+        Tue,  6 Sep 2022 15:55:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+        s=20200217; t=1662479715;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=05qAv3+kzwP+MA6jrSst4cVE8khLvvO8AtxdZyV1xHg=;
+        b=w1LUvgHIvuZqub5JMVyOhesBJ34do/8HPKYLMHc2WBEeSJcz2YlttSJYkRCoyJEmNusPyL
+        Ndi+NaaD8pptu3d7YQykdV15GcUhTN3d1xo5RjPOS6F0p7c2tgHlGE/5qsP1aNsLEUncHA
+        fTZstosgTK/2bGLomHFOZddDebyboAA=
+Received: from frank-G5.. (fttx-pool-80.245.76.100.bambit.de [80.245.76.100])
+        by mxbox1.masterlogin.de (Postfix) with ESMTPSA id 6B6C44062A;
+        Tue,  6 Sep 2022 15:55:14 +0000 (UTC)
+From:   Frank Wunderlich <linux@fw-web.de>
+To:     linux-rockchip@lists.infradead.org
+Cc:     Frank Wunderlich <frank-w@public-files.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@collabora.com
-Subject: Re: [PATCH 4/6] dt-bindings: mfd: syscon: Add rk3588 QoS register
- compatible
-Message-ID: <20220906155027.qomo6pt4xo45mli3@mercury.elektranox.org>
-References: <20220831182629.79255-1-sebastian.reichel@collabora.com>
- <20220831182629.79255-5-sebastian.reichel@collabora.com>
- <4707456.3daJWjYHZt@diego>
- <YxdqRpysLtPRh02s@google.com>
+        Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: rockchip: Add regulator suffix to BPI-R2-Pro
+Date:   Tue,  6 Sep 2022 17:55:03 +0200
+Message-Id: <20220906155503.10971-1-linux@fw-web.de>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="t77xhtng62acca4i"
-Content-Disposition: inline
-In-Reply-To: <YxdqRpysLtPRh02s@google.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+Content-Transfer-Encoding: 8bit
+X-Mail-ID: bb3abd82-9478-4ed1-9b0f-28cf6dd03c43
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,87 +52,76 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Frank Wunderlich <frank-w@public-files.de>
 
---t77xhtng62acca4i
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Add -regulator suffix to regulator names on Banana Pi R2 Pro board as
+discussed on Mailinglist
 
-Hi Lee,
+Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+---
+https://patchwork.kernel.org/project/linux-rockchip/patch/20220825193836.54262-6-linux@fw-web.de/
+---
+ arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-On Tue, Sep 06, 2022 at 04:41:58PM +0100, Lee Jones wrote:
-> On Mon, 05 Sep 2022, Heiko St=C3=BCbner wrote:
-> > Hi Sebastian,
-> >=20
-> > Am Mittwoch, 31. August 2022, 20:26:27 CEST schrieb Sebastian Reichel:
-> > > Document rk3588 compatible for QoS registers.
-> > >=20
-> > > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> >=20
-> > change looks good, but this is a mfd-binding. So while the rest is for =
-me
-> > to apply, for the mfd syscon we need either Lee to apply it, or an Ack
-> > from him for me to pick it up.
->=20
-> This patch is not in my inbox.
+diff --git a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts b/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
+index 7a8d55a898f5..432469697544 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
+@@ -46,7 +46,7 @@ green_led: led-1 {
+ 		};
+ 	};
+ 
+-	dc_12v: dc-12v {
++	dc_12v: dc-12v-regulator {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "dc_12v";
+ 		regulator-always-on;
+@@ -66,7 +66,7 @@ hdmi_con_in: endpoint {
+ 		};
+ 	};
+ 
+-	vcc3v3_sys: vcc3v3-sys {
++	vcc3v3_sys: vcc3v3-sys-regulator {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vcc3v3_sys";
+ 		regulator-always-on;
+@@ -76,7 +76,7 @@ vcc3v3_sys: vcc3v3-sys {
+ 		vin-supply = <&dc_12v>;
+ 	};
+ 
+-	vcc5v0_sys: vcc5v0-sys {
++	vcc5v0_sys: vcc5v0-sys-regulator {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vcc5v0_sys";
+ 		regulator-always-on;
+@@ -146,7 +146,7 @@ vcc3v3_ngff: vcc3v3-ngff-regulator {
+ 		vin-supply = <&vcc3v3_pi6c_05>;
+ 	};
+ 
+-	vcc5v0_usb: vcc5v0_usb {
++	vcc5v0_usb: vcc5v0_usb-regulator {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vcc5v0_usb";
+ 		regulator-always-on;
+@@ -156,7 +156,7 @@ vcc5v0_usb: vcc5v0_usb {
+ 		vin-supply = <&dc_12v>;
+ 	};
+ 
+-	vcc5v0_usb_host: vcc5v0-usb-host {
++	vcc5v0_usb_host: vcc5v0-usb-host-regulator {
+ 		compatible = "regulator-fixed";
+ 		enable-active-high;
+ 		gpio = <&gpio0 RK_PA6 GPIO_ACTIVE_HIGH>;
+@@ -168,7 +168,7 @@ vcc5v0_usb_host: vcc5v0-usb-host {
+ 		vin-supply = <&vcc5v0_usb>;
+ 	};
+ 
+-	vcc5v0_usb_otg: vcc5v0-usb-otg {
++	vcc5v0_usb_otg: vcc5v0-usb-otg-regulator {
+ 		compatible = "regulator-fixed";
+ 		enable-active-high;
+ 		gpio = <&gpio0 RK_PA5 GPIO_ACTIVE_HIGH>;
+-- 
+2.34.1
 
-Yes, I missed CC'ing you, sorry.
-
-> Would you mind resending it to this inbox please?
-
-I sent PATCHv3 for this series some minutes ago. You should have
-received the full series now:
-
-https://lore.kernel.org/all/20220906143825.199089-5-sebastian.reichel@colla=
-bora.com/
-
--- Sebastian
-
->=20
-> > > ---
-> > >  Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
-> > >  1 file changed, 1 insertion(+)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Docu=
-mentation/devicetree/bindings/mfd/syscon.yaml
-> > > index c10f0b577268..5369a56b8be1 100644
-> > > --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
-> > > +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
-> > > @@ -59,6 +59,7 @@ properties:
-> > >                - rockchip,rk3368-qos
-> > >                - rockchip,rk3399-qos
-> > >                - rockchip,rk3568-qos
-> > > +              - rockchip,rk3588-qos
-> > >                - samsung,exynos3-sysreg
-> > >                - samsung,exynos4-sysreg
-> > >                - samsung,exynos5-sysreg
-> > >=20
-> >=20
-> >=20
-> >=20
-> >=20
->=20
-> --=20
-> Lee Jones [=E6=9D=8E=E7=90=BC=E6=96=AF]
-
---t77xhtng62acca4i
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmMXbDoACgkQ2O7X88g7
-+pp6Gw/+IguQBxz5wpJ1j1+kfCjzaRei6KItlJqXWkJ1zOcO5rlnNcCKXcf1i1iV
-SVljAaf01sFZ40aVBg1vSgBoOVfLnDe5EBvLA72XJu8sBMGehIDD9UhFV5AU6riE
-2LH06CiD7PSf0R9UhdxDk3f+ado9kZp3YO6y/FXZPRsUV7mEZgaoHmSYsWX5rBTW
-npz4nZjXdm4aTaeiLoou7szFlwW07s7Yc2RH+wH71QLiytWXfWdhqQ+CHx21qESb
-CtoX7hZhNxRMf7J4S2RNhp9Hv2kWJx6lFTNsm9LomMvGmIMPtOVVZZWoWGdqzOvn
-T27inXWrSIXTIohyUPE+ro/3CSJg8qrQZOuH1lrdahQg2mdHP5uSvx5pEn9nCZX9
-AjlABlAo1f62Q5tW2oJhm71bdPrlJBltTY2RXWFRL3RS0m2jh2HvkRnZ1M4zQXiI
-yzELjI+qDHrb1TvjPfmqqzaMIWLKL0EHOQLEA2YRmVHrfAEaMZm3A3d7eACnS/2G
-GYDvsWHblAlF7jRu49+84u1FYBcs7oK1Q63JCICNyiPtIL0R4C9TCV1sGozFOCiS
-onRfeaWrjCdHK4MZmUe3DZlYPGZkkPqIzvwbmMMMTiw3qRsuJ92H7KWEP0vmtCZ5
-dZNGwIe9Nr/aE58atAhTHBv5/wRumxItifkDBMZC4R1tUjJ167Y=
-=v6po
------END PGP SIGNATURE-----
-
---t77xhtng62acca4i--
