@@ -2,42 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D4065AE469
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 11:39:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 061265AE48F
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 11:43:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238897AbiIFJjV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 05:39:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51342 "EHLO
+        id S239631AbiIFJmr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 05:42:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234501AbiIFJjS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 05:39:18 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A4F26E2EE;
-        Tue,  6 Sep 2022 02:39:17 -0700 (PDT)
+        with ESMTP id S239641AbiIFJma (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 05:42:30 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8CB47697E;
+        Tue,  6 Sep 2022 02:41:56 -0700 (PDT)
 Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
         (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
          key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
         (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 46ED96601EB2;
-        Tue,  6 Sep 2022 10:39:15 +0100 (BST)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 8B21D6601EF9;
+        Tue,  6 Sep 2022 10:41:52 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1662457156;
-        bh=S9zVPGO+B2P5HDoFKqQVh4quIEcBk1x+VeFb01D9GwE=;
+        s=mail; t=1662457313;
+        bh=7pEeYix4E4mRwD8IkrPe/sydx5F80OmM4j61hvpJHDo=;
         h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=NctolUDbfL8HS+K4j6hZr8lnJjl6lw3tr+ncFkx8zKLyMSKz/4IBMypmLls+aiRYr
-         0L+UhrmjywGs8JUVWZb4LqwplXKt4+zzauJr+7DCuzCB6H8pGz4sj4OGHtXYa1UetG
-         dSYAJ9XB8nqTLVPGTUTQeVMq9BASRFQ2PHhPLZ6Hxwylpl3eX58iD/SLFv5d8Z8WJE
-         E0NZJAd/kFQK3lw7YilqsGjHI1ETnvrhn7iXckFWzHz3qsifEWhoTxJCp2SryUn6UA
-         oXR0qviAwv58fu1e+Dm+hMHxKLaeEhlFjUp+uA8bWgU9XqKpgrj3kPRLvrqE25eaAZ
-         l7/b6nrep6YCg==
-Message-ID: <92aac44d-8a1a-de7a-5bdd-0d3257116c30@collabora.com>
-Date:   Tue, 6 Sep 2022 11:39:12 +0200
+        b=Atz850aqdqnVP4OlM865gUC2IfObKvqgM12LzdJyn/95T3UwH9DBsSurrIoOR8tQE
+         uOJUQtGcVE8ItupeK1l0jrqsabMEiRhUL0R+tni/mheB2wzL/47zfoKwAXdxEYrxtj
+         ifnWiXmptF0GpptgWiXu0QP1dVgBpF1OtCFdO42POyDbmGoOuXvFDaZh6LnR28arOL
+         usWYocvC/7yq5H1AmOFWmp6Mo7voZ9hy7pr41GeuG+K8jMPUhs89jqmKpztovPv1F+
+         1cBRzhhXzWyi3rZGvTPvbPJEwKvjh72xl7j46sKOCn/pggWzajazWhYMearHWw37ZG
+         J+zCjZ4PNDLyQ==
+Message-ID: <fa26f4f5-032e-f5cf-8e67-c4a34d963e70@collabora.com>
+Date:   Tue, 6 Sep 2022 11:41:49 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.2.0
-Subject: Re: [PATCH v2 3/6] dt-bindings: mediatek: modify VDOSYS0 mutex device
- tree Documentations for MT8188
+Subject: Re: [PATCH v2 5/6] soc: mediatek: add mtk-mutex support for mt8188
+ vdosys0
+Content-Language: en-US
 To:     "nathan.lu" <nathan.lu@mediatek.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -57,13 +58,13 @@ Cc:     "jason-jh . lin" <jason-jh.lin@mediatek.com>,
         linux-stm32@st-md-mailman.stormreply.com,
         linux-arm-kernel@lists.infradead.org, wsd_upstream@mediatek.com,
         lancelot.wu@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        amy zhang <Amy.Zhang@mediatek.com>
 References: <20220906084449.20124-1-nathan.lu@mediatek.com>
- <20220906084449.20124-4-nathan.lu@mediatek.com>
-Content-Language: en-US
+ <20220906084449.20124-6-nathan.lu@mediatek.com>
 From:   AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220906084449.20124-4-nathan.lu@mediatek.com>
+In-Reply-To: <20220906084449.20124-6-nathan.lu@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,8 +80,9 @@ X-Mailing-List: devicetree@vger.kernel.org
 Il 06/09/22 10:44, nathan.lu ha scritto:
 > From: Nathan Lu <nathan.lu@mediatek.com>
 > 
-> modify VDOSYS0 mutex device tree Documentations for MT8188.
+> add mtk-mutex support for mt8188 vdosys0.
 > 
+> Signed-off-by: amy zhang <Amy.Zhang@mediatek.com>
 > Signed-off-by: Nathan Lu <nathan.lu@mediatek.com>
 
 Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
