@@ -2,114 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 215465AF1F1
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 19:10:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DE3D5AF1D2
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 19:10:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232821AbiIFRHC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 13:07:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52454 "EHLO
+        id S238451AbiIFRHw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 13:07:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233681AbiIFRGr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 13:06:47 -0400
-Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A2E36398;
-        Tue,  6 Sep 2022 09:54:02 -0700 (PDT)
-Received: by mail-pg1-x536.google.com with SMTP id c24so11140990pgg.11;
-        Tue, 06 Sep 2022 09:54:02 -0700 (PDT)
+        with ESMTP id S232693AbiIFRHQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 13:07:16 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30AD37754F
+        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 09:55:16 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id c11so12158664wrp.11
+        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 09:55:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date;
-        bh=zQI+DdLFCUikiV3t8V8tFwBfwRVF+ZZxI2qA2tELRBo=;
-        b=eGQRctC9tfBhIZgDcOX7N5Qu5AXcjH955F6q8rujOsAHkxvCmrsrOue7d3Kh/PjRoo
-         fICVhL3TN6qp6HiRPs0WiwU8ibFFaKNuQX/qq+9XBjQODg8Apda7ytY4UH7iprmlfCCI
-         8fXnjwfghk92pZ4o/lZQW8sVapH+NdoLhMyAkhhd5nPI+vbIpq5FKi7RYIW5nxImmHSn
-         ad8wmJAPfLmsJJFlfilbXLYUJqdnORtv9tZw4UjrM0IE+QbUWbvOvwgXYcll0PL9OonI
-         8aYph2R0nAPla00jxGLwGIkRRCkZroB49/sO6/0asFPSWdH2v+57JtTMuAs+1pJdmTvF
-         myJw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=p6vQI2CwgE+q6ddXbTpyyYqLEbh2B3crUHEbmjFAgzQ=;
+        b=yG4ac7NdpzOkvdjn0uedl98YkeL+kblRoBov5U2pz9lKAau5dkhf76ou+R23zJMsW8
+         UsQA31U0Wm+cgwAASCEdxKxiKBh3CwxlUFMeioUUIrW/yuL1IniHDy8lnVEw2Q5uB4Au
+         Yah2UFo4zT+7qOYmqWrV3wlcLHNNiuxxaIiWStu1zjIF64lcr8eCY9Mlrm77no/u2act
+         GNeGiRPet7hR7egf/7IvAnYzjlzMXZEXV7rO4cb/D924vO4/Zqj7v77XvDP+83kVF+mI
+         mgXWDQ9JYm3UJxW4LfDCgOj/WeK+kqiGEqKcwEl+HlfZFcq/O6kNI3qInnTlPHNf6TC5
+         Jt+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=zQI+DdLFCUikiV3t8V8tFwBfwRVF+ZZxI2qA2tELRBo=;
-        b=Zeg71Fy5L1FGaN0A5CH3QoCW4rSa/ShxZbE8efPdoW+z+cguYVJbOcoiu++6G3icJR
-         tE6KBD34mhIfkf2SM7/iYnN9bWWrANmhZ2INVGmNmWt4a177qnS1g4AuV/MkoBQwuyXy
-         Xdjphmg+6FalCY2wOsT7qUdHnYf0CWZlGa6Xd5r1gbFxufrV9IRAhO6JHINYmjwlpUI4
-         N5GvWFkYZkktaeHIcNrQiOq+tE/YvJNY7z1uXY+/SZ5EDqdZtBQJNGkQYyrUuuLh6ojU
-         LB0yRE1W08Z9eTzsTRaZyQGKxdm7C7NsujPvuhUOvC8ycvYS/O2g2CHNY47ajVLSyvWk
-         9OxQ==
-X-Gm-Message-State: ACgBeo0JgK8aO2NdW4u8u8TnR2FukmdylLqnOXaeRkoV+2USFk1/fNIw
-        MNyOyuDF5l9BFsdYwZ7WKDE=
-X-Google-Smtp-Source: AA6agR40KVFSonXPgm7B1M39fQ5MInhXgP1GfPy9N18rTZ8vE5vC3bNIPirphDfpRKdk2qanPExaCg==
-X-Received: by 2002:a65:5b0d:0:b0:434:a7d2:9771 with SMTP id y13-20020a655b0d000000b00434a7d29771mr3705934pgq.356.1662483241177;
-        Tue, 06 Sep 2022 09:54:01 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id d16-20020a170902ced000b001753654d9c5sm10274183plg.95.2022.09.06.09.54.00
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=p6vQI2CwgE+q6ddXbTpyyYqLEbh2B3crUHEbmjFAgzQ=;
+        b=x5ggl9Ds4HKhj2v05QZqtRgQNPPcckvcjiU9qUoqBRImk3MuODeC4l549h70zJjJBb
+         2GrX7cmOHD365GDL/Copn1IHoILbSr3fM2w2rOdHLa7R8U2oY7fvMf9SSvKmaY90CXUs
+         z8ILSl2v20MlIyXbR5nYD7Q7hn1Jua5VpkLMQmD5QroHfhRcIOdWvwGyEoohE8iL7BT0
+         92D23gBqS+zuRHCorvxkLU5lRVAK1G2Kx+B6rqJ7th7f4aJXyAKOI1VaAbk/7lcGy8ZN
+         e4CPn9NGRumSjSdoKy4JzzpsxXltKwiQakj92hOUUwfi0migF1Vr4RliATBeK3JmWzXr
+         8lRA==
+X-Gm-Message-State: ACgBeo2SQ2ikdQbplAt1j287LM8ihpjYVqiLFYLCorCv1vKOFQXbtIHb
+        NNhU48fpgImfsr6jrCHfFI+sZA==
+X-Google-Smtp-Source: AA6agR7SSqNb1Einsp+U+Aa89KAMr9g5aD0bxAbu3IfTxJLaIRqidiBl5f7PYr1G726iQGq6SEmb7A==
+X-Received: by 2002:a05:6000:18ad:b0:226:f3b4:74f2 with SMTP id b13-20020a05600018ad00b00226f3b474f2mr16033776wri.537.1662483314772;
+        Tue, 06 Sep 2022 09:55:14 -0700 (PDT)
+Received: from srini-hackbox.lan (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
+        by smtp.gmail.com with ESMTPSA id co4-20020a0560000a0400b0021eed2414c9sm13775906wrb.40.2022.09.06.09.55.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Sep 2022 09:54:00 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Tue, 6 Sep 2022 09:53:59 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Eliav Farber <farbere@amazon.com>
-Cc:     jdelvare@suse.com, robh+dt@kernel.org, p.zabel@pengutronix.de,
-        rtanwar@maxlinear.com, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        hhhawa@amazon.com, jonnyc@amazon.com, andriy.shevchenko@intel.com
-Subject: Re: [PATCH v4 02/21] dt-bindings: hwmon: (mr75203) fix
- "intel,vm-map" property to be optional
-Message-ID: <20220906165359.GA817639@roeck-us.net>
-References: <20220906083356.21067-1-farbere@amazon.com>
- <20220906083356.21067-3-farbere@amazon.com>
+        Tue, 06 Sep 2022 09:55:14 -0700 (PDT)
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     broonie@kernel.org
+Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, bgoswami@quicinc.com,
+        perex@perex.cz, tiwai@suse.com, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [PATCH v2 0/4] ASoC: qcom: add support for sc8280xp machine
+Date:   Tue,  6 Sep 2022 17:55:04 +0100
+Message-Id: <20220906165508.30801-1-srinivas.kandagatla@linaro.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220906083356.21067-3-farbere@amazon.com>
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 06, 2022 at 08:33:37AM +0000, Eliav Farber wrote:
-> Change "intel,vm-map" property to be optional instead of required.
-> 
-> The driver implementation indicates it is not mandatory to have
-> "intel,vm-map" in the device tree:
->  - probe doesn't fail in case it is absent.
->  - explicit comment in code - "Incase intel,vm-map property is not
->    defined, we assume incremental channel numbers".
-> 
-> Fixes: 748022ef093f ("hwmon: Add DT bindings schema for PVT controller")
-> Signed-off-by: Eliav Farber <farbere@amazon.com>
-> ---
-> V3 -> V2:
-> - Change this patch to be first in the series.
-> - Add explanation why "intel,vm-map" is not required.
-> 
+This patchset adds support for SC8280XP SoC machine driver.
 
-I don't see how this change warrants dropping Rob's Acked-by tag.
-Am I missing something ?
+First patch moves some of the commonly used code to common from sm8250 machine driver
+and the follow on code adds minimal support for sc8280xp.
 
-Guenter
+Currently this driver is only tested with SmartSpeakers and Headset
+on Lenovo Thinkpad X13s.
 
->  Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml | 1 -
->  1 file changed, 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml b/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
-> index b79f069a04c2..8ea97e774364 100644
-> --- a/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
-> +++ b/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
-> @@ -48,7 +48,6 @@ required:
->    - compatible
->    - reg
->    - reg-names
-> -  - intel,vm-map
->    - clocks
->    - resets
->    - "#thermal-sensor-cells"
+Support for sm8450 is tested and I will post the patches soon.
+
+Thanks,
+Srini
+
+Changes since v1:
+- make all the exported symbol as EXPORT_SYMBOL_GPL
+
+
+Srinivas Kandagatla (4):
+  ASoC: qcom: common: use EXPORT_SYMBOL_GPL instead of EXPORT_SYMBOL
+  ASoC: dt-bindings: qcom,sm8250: add compatibles for sm8450 and sm8250
+  ASoC: qcom: sm8250: move some code to common
+  ASoC: qcom: add machine driver for sc8280xp
+
+ .../bindings/sound/qcom,sm8250.yaml           |   2 +
+ sound/soc/qcom/Kconfig                        |  11 ++
+ sound/soc/qcom/Makefile                       |   2 +
+ sound/soc/qcom/common.c                       | 171 +++++++++++++++++-
+ sound/soc/qcom/common.h                       |  12 ++
+ sound/soc/qcom/sc8280xp.c                     | 157 ++++++++++++++++
+ sound/soc/qcom/sm8250.c                       | 152 +---------------
+ 7 files changed, 361 insertions(+), 146 deletions(-)
+ create mode 100644 sound/soc/qcom/sc8280xp.c
+
+-- 
+2.21.0
+
