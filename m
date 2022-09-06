@@ -2,171 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EEA3C5AF080
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 18:35:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC0C75AF087
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 18:37:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238835AbiIFQf2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 12:35:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35126 "EHLO
+        id S238662AbiIFQhD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 12:37:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238824AbiIFQfC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 12:35:02 -0400
-Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09083DE4;
-        Tue,  6 Sep 2022 09:10:52 -0700 (PDT)
-Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-127d10b4f19so3571296fac.9;
-        Tue, 06 Sep 2022 09:10:52 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=0UoPNDaC8NCrfq0xjsW8qx2SIU/bt2Qiddj8DCUAP+M=;
-        b=W3n2LHsDE58CAohESlZpMYooRETwI6VQU//debaLyVg6Rglzjd/zT98NHclbTvwpEQ
-         7NasgJuaoWNsQAcKy8mzjC7M4AGPNzs31k7Dk5ZHf7J7lFAgnBXLVhcCaSdH+ZZddfE7
-         NF77tApbBVisw8bXTIcDmZuAy6vMNXcXaXj/OoBMMUlxHrPdVSwyBuq1hYBB9gKjdVE7
-         mdtwmsYjFLCuo1LvNbCQvQVCHZIIlGoHufroxdSZRyPd0osvHftYbsJHcjATrmyuc3cf
-         5F0MnLYeTw3ioY6OGOjkjBs4TSO5ZuIg7if7PH+ehhvmMGskSEqSfiNiw0NxsObE8WrW
-         BKxQ==
-X-Gm-Message-State: ACgBeo1r5vhrwcjqkdlr87QvO2t4rAqWwR5nJ3FkejxGTHHgj83yV0Jh
-        XzQ1xTsTsqKLDb+nR/CCXg==
-X-Google-Smtp-Source: AA6agR5Jt/pp6V/0cSJbLG/uZ3wRLl3rUFetLiWmtRsQju4iEwOlY/LWBZGhv3u72wd7Ebj6Z31rKA==
-X-Received: by 2002:a05:6870:d354:b0:126:6b86:449d with SMTP id h20-20020a056870d35400b001266b86449dmr8005579oag.107.1662480651214;
-        Tue, 06 Sep 2022 09:10:51 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id h6-20020a9d6406000000b00636f7059b27sm6062359otl.5.2022.09.06.09.10.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Sep 2022 09:10:50 -0700 (PDT)
-Received: (nullmailer pid 618747 invoked by uid 1000);
-        Tue, 06 Sep 2022 16:10:49 -0000
-Date:   Tue, 6 Sep 2022 11:10:49 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc:     Mark Kettenis <mark.kettenis@xs4all.nl>,
-        krzysztof.kozlowski@linaro.org, arnd@arndb.de, lee@kernel.org,
-        linus.walleij@linaro.org, alyssa@rosenzweig.io,
-        asahi@lists.linux.dev, brgl@bgdev.pl, marcan@marcan.st,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        sven@svenpeter.dev, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/6] dt-bindings: mfd: add binding for Apple Mac System
- Management Controller
-Message-ID: <20220906161049.GC534217-robh@kernel.org>
-References: <928ddeff-efac-920c-7bbf-dda35a942b93@linaro.org>
- <YxDOpCq0vIlt4VNa@shell.armlinux.org.uk>
- <2fedff34-6a20-f1ce-a756-2bd8671fcd52@linaro.org>
- <YxDWG5dmzErhKIXw@shell.armlinux.org.uk>
- <ef6c7248-1efa-5366-6bcd-900c5f10ccb2@linaro.org>
- <YxDiBFIn6artUOZm@shell.armlinux.org.uk>
- <CAL_Jsq+GCKisAVA0AfE=yWJYy18mAGQ7rY1sKGYraXv-berNSg@mail.gmail.com>
- <d3cec3d22e464fa8@bloch.sibelius.xs4all.nl>
- <20220902172808.GB52527-robh@kernel.org>
- <YxcNLU+KGEolrdfT@shell.armlinux.org.uk>
+        with ESMTP id S233093AbiIFQgl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 12:36:41 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0D565594;
+        Tue,  6 Sep 2022 09:12:45 -0700 (PDT)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 286FbSDU003370;
+        Tue, 6 Sep 2022 16:12:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=aEc794XOU78IjaB4Anobb658Fmb1e6ScIqNaoytW334=;
+ b=O6rmfyZuPIyzviR/7O1t5ieVSmry31DE7NeTcJQrc21iZRgJ3fOyqGtg3qyjSRTnQUBo
+ dORmWS/xxrkFT2RbJjqz+wLaSdGuQKnxqQnKm3/vO7a/TaRfW/fzLj5LD4VzrvGvqdMN
+ mQys8e8N5/PEBIccRkJO+whLR0ON/Py/nqdlUTThumzULWGtYTQ2YPDLjlfVeqcN7Vis
+ G2xdWypc8vLt9YX+oxNk5YxvWBfRRGCIjzMLurC4iQnY50wRcE+DC06OxE/g5YoZ7NdB
+ KDTK9HNJs6H7XyiMKhCFBJEGzu73G8UHlcObTjLzue3JlqI0e5Fw5xD1IK79TAKhCroc 9Q== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3jdusrjqwf-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 06 Sep 2022 16:12:19 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 286GCJKR002287
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 6 Sep 2022 16:12:19 GMT
+Received: from hu-kriskura-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.29; Tue, 6 Sep 2022 09:12:13 -0700
+From:   Krishna Kurapati <quic_kriskura@quicinc.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>
+CC:     <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <quic_pkondeti@quicinc.com>,
+        <quic_ppratap@quicinc.com>, <quic_vpulyala@quicinc.com>,
+        Krishna Kurapati <quic_kriskura@quicinc.com>
+Subject: [PATCH v12 0/3] Add QCOM SNPS PHY overriding params support
+Date:   Tue, 6 Sep 2022 21:42:06 +0530
+Message-ID: <1662480729-10187-1-git-send-email-quic_kriskura@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YxcNLU+KGEolrdfT@shell.armlinux.org.uk>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 1O36iFad_5QGW_pYz3NsIDYbgjU5rFOe
+X-Proofpoint-ORIG-GUID: 1O36iFad_5QGW_pYz3NsIDYbgjU5rFOe
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
+ definitions=2022-09-06_09,2022-09-06_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 spamscore=0
+ bulkscore=0 lowpriorityscore=0 phishscore=0 impostorscore=0
+ priorityscore=1501 mlxlogscore=673 malwarescore=0 suspectscore=0
+ clxscore=1015 adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2207270000 definitions=main-2209060075
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 06, 2022 at 10:04:45AM +0100, Russell King (Oracle) wrote:
-> On Fri, Sep 02, 2022 at 12:28:08PM -0500, Rob Herring wrote:
-> > This one is actually pretty odd in that the child nodes don't have a 
-> > compatible string which breaks the automagical probing.
-> 
-> I don't think that is necessarily true, and I don't think it's true in
-> this case.
+Added support for overriding tuning parameters in QCOM SNPS PHY
+from device tree. This parameter tuning is required to tune the
+hs signal on dp/dm lines for electrical compliance to be successful.
 
-It is, because you are creating the devices in the driver rather than 
-creating devices based on child nodes that exist.
+Changes in v12:
+Fixed nitpicks in driver code.
 
-> 
-> The SMC core driver instructs the MFD core to create devices for the
-> individual functional items:
-> 
-> static const struct mfd_cell apple_smc_devs[] = {
->         {
->                 .name = "macsmc-gpio",
->         },
->         {
->                 .name = "macsmc-hid",
->         },
->         {
->                 .name = "macsmc-power",
->         },
->         {
->                 .name = "macsmc-reboot",
->         },
->         {
->                 .name = "macsmc-rtc",
->         },
-> };
-> 
-> Since MFD uses platform devices for these, they get all the normal
-> functionality that these devices have, which include matching by
-> device name ot the driver name, and udev events being appropriately
-> triggered. As long as the platform drivers for these devices have the
-> correct modalias lines, autoloading of the modules will work and the
-> drivers will be correctly matched and probed.
+Changes in v11:
+Made changes to logs added in phy driver.
+Fixed nitpicks in code.
 
-Yes, and that's how MFD devices with no child nodes work. The difference 
-is those get any DT info out of the parent node. Here you are presumably 
-manually getting the child DT node you want for each driver.
+Changes in v10:
+Fixed patch headers.
 
+changes in v9:
+Fixed nitpick in driver code.
 
-> The Asahi kernel builds most of the platform support as modules,
-> including these, so we know it works (if it didn't, then lots of
-> module autoloading would be broken on non-DT platforms.)
-> 
-> > > Again the separate nodes are there because the RTC and the reboot
-> > > functionality are logically separate and handled by different MFD
-> > > sub-drivers in Linux.
-> > 
-> > It's really a question of whether the subset of functionality is going 
-> > to get reused on its own or has its own resources in DT. MFD bindings 
-> > are done both ways.
-> 
-> I think the current position on what to do about these is that everyone
-> is looking for someone else to make a decision, and no one wants to!
+changes in v8:
+Fixed nitpick in driver code.
 
-I'm just looking for more information first.
+changes in v7:
+Fixed nitpick in driver code and dtsi file.
 
-> Firstly, I don't think that the number of properties in a node should
-> have a bearing on the design of the DT binding - what should have a
-> bearing is the logical partitioning of functionality.
+changes in v6:
+Fixed errors in dt-bindings.
+Fixed nitpick in driver code.
 
-It's not strictly about number of properties. Though nodes with only a 
-compatible string is generally a red flag for me.
+changes in v5:
+Fixed nitpicks in code.
+Added minimum and maximum for each parameter added in dt-bindings.
+Added proper suffixes to each parameter as per dtschema.
 
-> Mark suggests that it would take six months for OpenBSD to transition to
-> some other description - for example, if we merged the nodes.
+changes in v4:
+Fixed nitpicks in code.
+Initial compliance test results showed overshoot in the middle of eye
+diagram. The current dt values were put in place to correct it and fix
+overshoot issue.
 
-The risk you take when using undocumented bindings...
+changes in v3:
+Added support for phy tuning parameters to be represented in bps and
+corresponding register values to be written are obtained by traversing
+through data map declared in the driver.
 
-> Hector says that MacOS's firmware description has the nodes merged, but
-> their description is a mess.
-> 
-> The overall preference seems to be to keep the sub-nodes unless there
-> is a strong technical reason not to.
-> 
-> The feeling I am getting from the review is that there doesn't seem to
-> be a strong technical reason to merge the nodes - there are desires and
-> preferences, but nothing concrete.
-> 
-> So at this point, I think it would make sense if I post a v2 with all
-> the updates so far (sorry, given the long drawn out discussions on
-> this, I've lost track of what changes have been made to the code, so
-> I won't include a detailed change log.)
+changes in v2:
+Reading the individual fields in each overriding register from
+device tree.
 
-As I said elsewhere, sub-nodes is probably the right choice here. I 
-think they need compatible strings in the child nodes, and addressing 
-has to be sorted out which it seems may also break OpenBSD.
+Krishna Kurapati (2):
+  phy: qcom-snps: Add support for overriding phy tuning parameters
+  arm64: dts: qcom: sc7280: Update SNPS Phy params for SC7280 IDP device
 
-Rob
+Sandeep Maheswaram (1):
+  dt-bindings: phy: qcom,usb-snps-femto-v2: Add phy override params
+    bindings
+
+ .../bindings/phy/qcom,usb-snps-femto-v2.yaml       |  88 +++++++
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi           |   6 +
+ drivers/phy/qualcomm/phy-qcom-snps-femto-v2.c      | 252 ++++++++++++++++++++-
+ 3 files changed, 344 insertions(+), 2 deletions(-)
+
+-- 
+2.7.4
+
