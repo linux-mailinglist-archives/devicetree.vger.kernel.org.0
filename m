@@ -2,106 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B2B95AF2FA
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 19:45:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D9D25AF300
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 19:46:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229498AbiIFRpe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 13:45:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60984 "EHLO
+        id S229436AbiIFRqw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 13:46:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229487AbiIFRpd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 13:45:33 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 871F94D4D2;
-        Tue,  6 Sep 2022 10:45:29 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 92FFDB819D2;
-        Tue,  6 Sep 2022 17:45:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 489F8C433C1;
-        Tue,  6 Sep 2022 17:45:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1662486327;
-        bh=9JOGS+DmMCZRcR+ue1CWAsQbzUKVC+BdBUjpVyMqD1E=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=cVagUGZ5rXx2aXKE0qH2oo2yEuZx+EjlKrBLx0BoQZ0GMmFtU/6bJFoBoocueQXxj
-         lnk4scbOL/b/lmlNZW0X4kKlQWrOwaV6UcIfbAvIYmy4h57CSKOSjTsttV7neyIVsf
-         T01B0T/rWr08KrUixfYnLcivKPya5o4ZGEkwAL7rid/39LBl9OXltN5b58a/2Ma4pf
-         t0PRSV4oDyMJPCmBGnt9OVMwygY87Sczc8PTKoaGe7ycl4VrgPyPq3opFznwlozCYa
-         +/zxXRN+j3pJXHSb5q/7uqlx7mVFeJP8wQAXMrBw4qbPBgUmD/5rxXj7eSAFrTGMSf
-         Oiv+BjVzsGwIQ==
-Received: by mail-vk1-f179.google.com with SMTP id i67so5887270vkb.2;
-        Tue, 06 Sep 2022 10:45:27 -0700 (PDT)
-X-Gm-Message-State: ACgBeo2ol0tGXTOGQuG4mbKtM+H+F8arc0Yr3gWCbxpWWFYHly5jszXy
-        twa95PpDgYZ9OS9KSSQvHVU0Abz9ciJmuFFHuw==
-X-Google-Smtp-Source: AA6agR4QgQXp/ntiocLHUxEHId1vX4FahEcMw4sf8AAlkUaloq3asnMm2cm0LQtbOZ7hWcgiplL7EnK9jP3qXbBmaK4=
-X-Received: by 2002:a1f:23c6:0:b0:38c:88f3:f55c with SMTP id
- j189-20020a1f23c6000000b0038c88f3f55cmr15615940vkj.19.1662486326264; Tue, 06
- Sep 2022 10:45:26 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220906095943.60296-1-alexander.sverdlin@nokia.com>
-In-Reply-To: <20220906095943.60296-1-alexander.sverdlin@nokia.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 6 Sep 2022 12:45:15 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLhXE9E5UkGy+=t5Eas1KfTxmjm=mQcVVQ0MdAs7eYAtw@mail.gmail.com>
-Message-ID: <CAL_JsqLhXE9E5UkGy+=t5Eas1KfTxmjm=mQcVVQ0MdAs7eYAtw@mail.gmail.com>
-Subject: Re: [PATCH] of: irq: Report individual failures in of_irq_init()
-To:     Alexander A Sverdlin <alexander.sverdlin@nokia.com>
-Cc:     devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S229437AbiIFRqv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 13:46:51 -0400
+Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72D176EF1C;
+        Tue,  6 Sep 2022 10:46:45 -0700 (PDT)
+Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-11ee4649dfcso30087966fac.1;
+        Tue, 06 Sep 2022 10:46:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=message-id:date:subject:references:in-reply-to:cc:to:from
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=HzG5COCo19lT3oBLgm1nvDwcIQQgyJlzuG7SNbHTaDU=;
+        b=EfqvCJv4EJGQHW2EngMd2R2Spen4DloQpQ/TVy3FXX+OcC4HEH/9A0TD01GIZVq9iE
+         FdA9FrMSRcdFJkTgMVTXbJLQheTBNdNTq0l5pPKyk/J06QcUHHBDrLLZoIsuScKx/KLZ
+         5qelH67uJdEjIBWm5Rtwgbw3SHA/SrIFf8x+Mo0AxcGLVcgsT0oytuOSRKMZcf4hZsKn
+         Rx9umggsKQyxNSBYLQUz2aqh7Osp+fNHzzpiuM931VIC9cs0P/+KTZjg9Cx4Ux773RSW
+         DP+4eBBmvl62FZ7B519rTgm1kTpNjrNLEcBlp0FAC9n7xXJ4ufFZLIK1xjOP/WQjj2gT
+         13XQ==
+X-Gm-Message-State: ACgBeo1GnHzqDaHPUzUiyIFH5P66Mg0/fyanwbiVfW50mBSncs2DznOy
+        4WJnM9KH+lZeG/hnCcLhx+oMuoLYWw==
+X-Google-Smtp-Source: AA6agR6RDLZuCPdeXtZwiyPUodQixHiTacheiSfTh+HaN2WJ01ett6hG3ahw/odd+L270KgcOrJkyA==
+X-Received: by 2002:a05:6870:430b:b0:101:3d98:ba41 with SMTP id w11-20020a056870430b00b001013d98ba41mr12501688oah.46.1662486404036;
+        Tue, 06 Sep 2022 10:46:44 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id 22-20020aca0916000000b00344adbc3492sm5583872oij.24.2022.09.06.10.46.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Sep 2022 10:46:43 -0700 (PDT)
+Received: (nullmailer pid 780017 invoked by uid 1000);
+        Tue, 06 Sep 2022 17:46:42 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Mark Brown <broonie@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Andy Gross <agross@kernel.org>, alsa-devel@alsa-project.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+In-Reply-To: <20220906121655.303693-10-krzysztof.kozlowski@linaro.org>
+References: <20220906121655.303693-1-krzysztof.kozlowski@linaro.org> <20220906121655.303693-10-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 09/12] dt-bindings: soc: qcom: apr: correct service children
+Date:   Tue, 06 Sep 2022 12:46:42 -0500
+Message-Id: <1662486402.667876.780014.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 6, 2022 at 4:59 AM Alexander A Sverdlin
-<alexander.sverdlin@nokia.com> wrote:
->
-> From: Alexander Sverdlin <alexander.sverdlin@nokia.com>
->
-> Rewrite pr_debug() as pr_err() to faciliate debugging.
->
-> This change was inspired by a long lasting debugging of the
-> octeon_irq_init_ciu() which fails completely silently and leaves the
-> interrupt controller half-way configured which in turn had very non-obvious
-> effects.
-
-With this, if a node skipped completely won't be obvious. Please keep
-the debug line and just add the error print.
-
->
-> Signed-off-by: Alexander Sverdlin <alexander.sverdlin@nokia.com>
+On Tue, 06 Sep 2022 14:16:52 +0200, Krzysztof Kozlowski wrote:
+> The APR bindings were not describing properly children nodes for DAIs.
+> None of the DTSes use unit addresses for the children, so correct the
+> nodes and reference their schema: clock-controller, dais and routing.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  drivers/of/irq.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/of/irq.c b/drivers/of/irq.c
-> index d22f605..45e4392 100644
-> --- a/drivers/of/irq.c
-> +++ b/drivers/of/irq.c
-> @@ -586,12 +586,12 @@ void __init of_irq_init(const struct of_device_id *matches)
->
->                         of_node_set_flag(desc->dev, OF_POPULATED);
->
-> -                       pr_debug("of_irq_init: init %pOF (%p), parent %p\n",
-> -                                desc->dev,
-> -                                desc->dev, desc->interrupt_parent);
->                         ret = desc->irq_init_cb(desc->dev,
->                                                 desc->interrupt_parent);
->                         if (ret) {
-> +                               pr_err("%s: Failed to init %pOF (%p), parent %p\n",
-> +                                      __func__, desc->dev, desc->dev,
-> +                                      desc->interrupt_parent);
->                                 of_node_clear_flag(desc->dev, OF_POPULATED);
->                                 kfree(desc);
->                                 continue;
-> --
-> 2.10.2
->
+>  .../bindings/soc/qcom/qcom,apr.yaml           | 38 +++++++++++++------
+>  .../sound/qcom,q6dsp-lpass-clocks.yaml        | 16 ++------
+>  .../sound/qcom,q6dsp-lpass-ports.yaml         | 16 ++------
+>  3 files changed, 35 insertions(+), 35 deletions(-)
+> 
+
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,q6apm-dai.example.dtb: gpr: service@1: '#address-cells', '#size-cells', 'apm-dai@1' do not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/qcom/qcom,apr.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
