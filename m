@@ -2,96 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 98C305AF5CC
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 22:25:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DA165AF5DF
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 22:29:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229958AbiIFUZe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 16:25:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47780 "EHLO
+        id S230264AbiIFU3h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 16:29:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229938AbiIFUZc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 16:25:32 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D91E81697
-        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 13:25:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1662495930;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=uWq0DQ3f4X7MTaLrpOjEjqg4Wu5PCHE713Z5NmM6sFY=;
-        b=OYKml+JIs4IDO0rhtUG/QMWzDYMD9Clsp54GEg/zOhkkcWhL9jj0VU0OZA5/X75vhzFGbC
-        2uQ5bEhwtwY0nxMmLqhUyJN34bAK0QEIBGBoUO3RJuXEsEapUiUpPcDiB4BSM2QWt3dY3s
-        FZE/eDZ4x6j1FEs8xiFKxgLZFxTx0Is=
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com
- [209.85.222.200]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-446-vIMSdsK6MU6HCUXNP5etnw-1; Tue, 06 Sep 2022 16:25:29 -0400
-X-MC-Unique: vIMSdsK6MU6HCUXNP5etnw-1
-Received: by mail-qk1-f200.google.com with SMTP id br15-20020a05620a460f00b006bc58c26501so10191375qkb.0
-        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 13:25:29 -0700 (PDT)
+        with ESMTP id S230474AbiIFU33 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 16:29:29 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AECBC6A;
+        Tue,  6 Sep 2022 13:29:24 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id fg1so3746707ejc.2;
+        Tue, 06 Sep 2022 13:29:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
+        bh=XVGUqqzM3n2D/4jJV0ZKcJTbVHjL4eVdejQAA4KKYRk=;
+        b=H7ZInpF2UhWzzqrCBfmLLea7RMaRc0IsqTMdPjIoCV1dXteLuEZBPlQdCtrM6GRXoR
+         z5SBRgeL0CsNRhmwTOlQLCTOluaJwA9GbW9p+eMbx3M4UdIS2eNmqyA9acjEis1earyB
+         zdzagIbpXgK4GubL47JJjwenXNMMK2GmLT+RzZTqADNemTR9KVZQV0SnXZFH4uTeUSit
+         kF50jBT/hTurNyat3APUOfcRLe8s3tFloDtyzmMKuusTxds7H32K89qYfhzsLsth3+hT
+         T+umwiaem8KGg4A7Qgb3pFYsTU3xKRBPr+JyQnwVUCL/dECBqxqIHc07rFvExPTiHVBe
+         owxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=uWq0DQ3f4X7MTaLrpOjEjqg4Wu5PCHE713Z5NmM6sFY=;
-        b=oUGSFSf8tVv5/khZV1pealrjxihJGFzwznDjANr/h0UZoZJ00sQUEXhTUt7wow7oIt
-         2LVubCbq85W5WtzlChq01nWi/UVYAP6Rm1QNW9uQjlkLVISBe3ZUpyvsmSzD817A/l23
-         NeQuECz1fI16CjQxCGRsw6805fyo0QHMUsGfvRMTON69AI0oALVptPMbrJ+ClorFB/n/
-         Z5qiLdZDUXCfRJai1g7cOuqYehl4TCCTP+5piKkq2PsEYAILrsE81bXOUaDnWBnjcYSt
-         VxAQU5fw7oPzbcIGsxlibI0kC7Qumr90CHeDlJtRISt1JUFIjbDYBpNwYLMAAgKHIyx6
-         8Tcw==
-X-Gm-Message-State: ACgBeo00R19ZmNjLmKsiZ7J0CIGrgwOHCW5qExo45uc0Ms1s172Va57+
-        kwSfno/ogQ+s/K2bWbnMmw8UpfEUH10ajEcJYwhEtMRvKLe6cGzjawMuHdoHZ50Y9VRuL20vKDj
-        kdHU7ZmgehhvRiDnfYeuNjA==
-X-Received: by 2002:ac8:5b03:0:b0:343:679b:64f2 with SMTP id m3-20020ac85b03000000b00343679b64f2mr357918qtw.260.1662495928600;
-        Tue, 06 Sep 2022 13:25:28 -0700 (PDT)
-X-Google-Smtp-Source: AA6agR4egzO6xt0SmhlP9DK65FMQdsts/oyfk4ZClfRpE6BDi9UEKa+ciSJbTyc7rql38ozwwMMnYQ==
-X-Received: by 2002:ac8:5b03:0:b0:343:679b:64f2 with SMTP id m3-20020ac85b03000000b00343679b64f2mr357901qtw.260.1662495928385;
-        Tue, 06 Sep 2022 13:25:28 -0700 (PDT)
-Received: from halaneylaptop ([2600:1700:1ff0:d0e0::a])
-        by smtp.gmail.com with ESMTPSA id x6-20020ac84a06000000b00342f8143599sm10471111qtq.13.2022.09.06.13.25.27
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=XVGUqqzM3n2D/4jJV0ZKcJTbVHjL4eVdejQAA4KKYRk=;
+        b=xiOBqkm51MrH45GHRZZ4kkErrRuSeBSNgiZLK7iDyBF1fNNFrZ+n0S36WbLcZKT3wU
+         qGzRq258ccohVfXWoJZUKbM9Ig+kzETDy8mpefuzfpwp1MUCdlolg29qGH4sq63eLq+l
+         9pBIUcKgJO9rBVdm4TiZCrxHPquXXrYr5jm6SuODD6I94ej65tW1nPtBB1FxVfIBcM6h
+         vAM1NOPtfW/N2M/eFcNd1IidlHnNPvHl2NeD4VHlyTtxCiXSGB8nK0lT76Ey4Gmz9G85
+         6GOYUrfKKtgb5AS9bIy1kOsF8vte/vm+tLXTqKEwY4nU9i/oA0G0fHflCwuClDI3Wm87
+         ODRQ==
+X-Gm-Message-State: ACgBeo2kohxwCJa5tHJIXSdw1ZOfkjOgUtBaM/AFNse7XZSoLT4PG+yg
+        p8MJJ1E07ODYDOSACr59jpY=
+X-Google-Smtp-Source: AA6agR5FzHvOY7Bnao9g05Gz0yuvtXm27oREQpQ1b11WFGKhTmMQYjJTsyqae2G6XuQedGzvSAP07A==
+X-Received: by 2002:a17:906:ef8c:b0:73d:db10:8825 with SMTP id ze12-20020a170906ef8c00b0073ddb108825mr139433ejb.445.1662496162405;
+        Tue, 06 Sep 2022 13:29:22 -0700 (PDT)
+Received: from kista.localnet (82-149-1-172.dynamic.telemach.net. [82.149.1.172])
+        by smtp.gmail.com with ESMTPSA id da8-20020a056402176800b004477c582ffdsm5585194edb.80.2022.09.06.13.29.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Sep 2022 13:25:28 -0700 (PDT)
-Date:   Tue, 6 Sep 2022 15:25:25 -0500
-From:   Andrew Halaney <ahalaney@redhat.com>
-To:     agross@kernel.org, andersson@kernel.org,
-        konrad.dybcio@somainline.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dianders@chromium.org, johan@kernel.org
-Subject: Re: [PATCH 0/3] regulator: dt-bindings: qcom,rpmh: dt-binding fixups
-Message-ID: <20220906202525.s77kgjmptdm7cjtw@halaneylaptop>
-References: <20220902185148.635292-1-ahalaney@redhat.com>
+        Tue, 06 Sep 2022 13:29:21 -0700 (PDT)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     samuel@sholland.org, Palmer Dabbelt <palmer@dabbelt.com>
+Cc:     wens@csie.org, linux-sunxi@lists.linux.dev,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        aou@eecs.berkeley.edu, linux-riscv@lists.infradead.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        samuel@sholland.org
+Subject: Re: Re: [PATCH 00/12] riscv: Allwinner D1 platform support
+Date:   Tue, 06 Sep 2022 22:29:20 +0200
+Message-ID: <7423117.EvYhyI6sBW@kista>
+In-Reply-To: <mhng-d98d3324-5f4b-4cb0-a116-522b124dcdea@palmer-ri-x1c9>
+References: <mhng-d98d3324-5f4b-4cb0-a116-522b124dcdea@palmer-ri-x1c9>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220902185148.635292-1-ahalaney@redhat.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 02, 2022 at 01:51:45PM -0500, Andrew Halaney wrote:
-> Hi,
-> 
-> This is my poor attempt at getting devicetree validation into a better
-> state for qcom,rpmh-regulator.yaml. This is a follow-up to Johan's
-> request for this over here:
-> 
->     https://lore.kernel.org/linux-arm-msm/Yw8EE%2FESDUnIRf8P@hovoldconsulting.com/
-> 
-> In particular, I'm not certain patch 1 is the correct way to handle
-> things, and patch 2 makes validation too wide for the *-supply nodes.
-> 
-> I'd love any feedback here as I'm really not experienced in any of the
-> spaces (regulator, rpmh, or dt schema) so nit picking is welcomed.
+Dne =C4=8Detrtek, 01. september 2022 ob 20:10:13 CEST je Palmer Dabbelt nap=
+isal(a):
+> On Sun, 14 Aug 2022 22:08:03 PDT (-0700), samuel@sholland.org wrote:
+> > This series adds the Kconfig/defconfig plumbing and devicetrees for a
+> > range of Allwinner D1-based boards. Many features are already enabled,
+> > including USB, Ethernet, and WiFi.
+> >=20
+> > The SoC devicetree uses bindings from the following series which have
+> > not yet been merged:
+> >=20
+> > - SRAM controller:
+> >   https://lore.kernel.org/lkml/20220815041248.53268-1-samuel@sholland.o=
+rg/
+> >=20
+> > - NVMEM cell bits property change:
+> >   https://lore.kernel.org/lkml/20220814173656.11856-1-samuel@sholland.o=
+rg/
+> >=20
+> > - In-package LDO regulators:
+> >   https://lore.kernel.org/lkml/20220815043436.20170-1-samuel@sholland.o=
+rg/
+> >=20
+> > All three of these are required to set the correct I/O domain voltages
+> > in the pin controller, which I would consider important to have in the
+> > initial version of the devicetree.
+> >=20
+> > The SoC devicetree does contain one small hack to avoid a dependency on
+> > the audio codec binding, since that is not ready yet: the codec node
+> > uses a bare "simple-mfd", "syscon" compatible.
+> >=20
+> > Samuel Holland (12):
+> >   MAINTAINERS: Match the sun20i family of Allwinner SoCs
+> >   dt-bindings: riscv: Add T-HEAD C906 and C910 compatibles
+> >   dt-bindings: vendor-prefixes: Add Allwinner D1 board vendors
+> >   dt-bindings: riscv: Add Allwinner D1 board compatibles
+> >   riscv: Add the Allwinner SoC family Kconfig option
+> >   riscv: dts: allwinner: Add the D1 SoC base devicetree
+> >   riscv: dts: allwinner: Add Allwinner D1 Nezha devicetree
+> >   riscv: dts: allwinner: Add Sipeed Lichee RV devicetrees
+> >   riscv: dts: allwinner: Add MangoPi MQ Pro devicetree
+> >   riscv: dts: allwinner: Add Dongshan Nezha STU devicetree
+> >   riscv: dts: allwinner: Add ClockworkPi and DevTerm devicetrees
+> >   riscv: defconfig: Enable the Allwinner D1 platform and drivers
+> > =20
+> >  .../devicetree/bindings/riscv/cpus.yaml       |   2 +
+> >  .../devicetree/bindings/riscv/sunxi.yaml      |  64 ++
+> >  .../devicetree/bindings/vendor-prefixes.yaml  |   4 +
+> >  MAINTAINERS                                   |   2 +-
+> >  arch/riscv/Kconfig.socs                       |   9 +
+> >  arch/riscv/boot/dts/Makefile                  |   1 +
+> >  arch/riscv/boot/dts/allwinner/Makefile        |  10 +
+> >  .../allwinner/sun20i-d1-clockworkpi-v3.14.dts | 242 +++++
+> >  .../sun20i-d1-common-regulators.dtsi          |  51 +
+> >  .../dts/allwinner/sun20i-d1-devterm-v3.14.dts |  37 +
+> >  .../sun20i-d1-dongshan-nezha-stu.dts          | 114 +++
+> >  .../sun20i-d1-lichee-rv-86-panel-480p.dts     |  29 +
+> >  .../sun20i-d1-lichee-rv-86-panel-720p.dts     |  10 +
+> >  .../sun20i-d1-lichee-rv-86-panel.dtsi         |  92 ++
+> >  .../allwinner/sun20i-d1-lichee-rv-dock.dts    |  74 ++
+> >  .../dts/allwinner/sun20i-d1-lichee-rv.dts     |  84 ++
+> >  .../allwinner/sun20i-d1-mangopi-mq-pro.dts    | 128 +++
+> >  .../boot/dts/allwinner/sun20i-d1-nezha.dts    | 171 ++++
+> >  arch/riscv/boot/dts/allwinner/sun20i-d1.dtsi  | 900 ++++++++++++++++++
+> >  arch/riscv/configs/defconfig                  |  23 +-
+> >  20 files changed, 2045 insertions(+), 2 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/riscv/sunxi.yaml
+> >  create mode 100644 arch/riscv/boot/dts/allwinner/Makefile
+> >  create mode 100644
+> >  arch/riscv/boot/dts/allwinner/sun20i-d1-clockworkpi-v3.14.dts create
+> >  mode 100644
+> >  arch/riscv/boot/dts/allwinner/sun20i-d1-common-regulators.dtsi create
+> >  mode 100644 arch/riscv/boot/dts/allwinner/sun20i-d1-devterm-v3.14.dts
+> >  create mode 100644
+> >  arch/riscv/boot/dts/allwinner/sun20i-d1-dongshan-nezha-stu.dts create
+> >  mode 100644
+> >  arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-86-panel-480p.dts
+> >  create mode 100644
+> >  arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-86-panel-720p.dts
+> >  create mode 100644
+> >  arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-86-panel.dtsi create
+> >  mode 100644 arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-dock.dts
+> >  create mode 100644 arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv.d=
+ts
+> >  create mode 100644
+> >  arch/riscv/boot/dts/allwinner/sun20i-d1-mangopi-mq-pro.dts create mode
+> >  100644 arch/riscv/boot/dts/allwinner/sun20i-d1-nezha.dts create mode
+> >  100644 arch/riscv/boot/dts/allwinner/sun20i-d1.dtsi
+>=20
+> I'm assuming these are aimed at the RISC-V tree?  I'm generally OK with
+> that, though the DT folks have pointed out a handful of issues that look
+> pretty reasonable to me.
 
-v2 posted over here: https://lore.kernel.org/linux-arm-msm/20220906201959.69920-1-ahalaney@redhat.com/
+DT changes for Allwinner ARM SoCs go trough sunxi tree. Should this be hand=
+led=20
+differently for RISC-V?
+
+Best regards,
+Jernej
+
+>=20
+> I can't find a v2, not sure if I missed it.  No rush on my end, just
+> want to make sure I'm not dropping the ball on anything.
+>=20
+> Thanks!
+
 
