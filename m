@@ -2,60 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F0C35AEED2
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 17:29:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C5C95AEEFF
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 17:38:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235876AbiIFP3u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 11:29:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58090 "EHLO
+        id S231688AbiIFPi2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 11:38:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42376 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239829AbiIFP3Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 11:29:24 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15DB76F266;
-        Tue,  6 Sep 2022 07:40:44 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E46756153A;
-        Tue,  6 Sep 2022 14:39:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 577F6C433D6;
-        Tue,  6 Sep 2022 14:39:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1662475183;
-        bh=UOsnnpLppYPpbsDkpHaDmc77HuAeAd3zvlBZGZ0INGU=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=P/n+Y8l+zc0C3UizitRrMLWs5qO23ptIUSUhV80HBrxAXj2g4QD6GiZmxOjCMvRpU
-         bSLm4F+zDJtr5FgUuRKyGqwME6vBTe2sAZvo6A9jirw1bFIy3HCyUMcnrQIrbAjAdP
-         QgZTftu2XalW60j4QlWFPq16UG1Oy3K8J1u7x/a12a044H8ftwoE2qYXCIkLyXSjOy
-         yX2TtsA/icfJJJHRvnrPR0PsM2RG+4Tul+Iv/uS3Z41R/VHcYsOfU2rTJ9oDTR9X7t
-         r1/lVmM8GXDu0xqy5nbSPJedHdL0Z1Pg5Il1KEhTA66++ImC519xFxyoh5whOR3oHx
-         N3YkwJaZCS6Vg==
-Received: by mail-vk1-f182.google.com with SMTP id 134so5604857vkz.11;
-        Tue, 06 Sep 2022 07:39:43 -0700 (PDT)
-X-Gm-Message-State: ACgBeo0kB83la8UPdudfQi5DMr4VBz586m7Y4T7Pbcm2vODocd/L5t4y
-        Nl7zg5C7hXX0kkbOjOnWeAhgJMvTZIcTZz2ifw==
-X-Google-Smtp-Source: AA6agR6b8hZYwJBLm7SLsCAO/aDS4ocsOKNPA6oXV5y0JmR0eVsUiPdTEKIihaSDtWt0cXx/BWWu6dkQqN3LRIxu+kc=
-X-Received: by 2002:ac5:cd54:0:b0:39e:937c:333d with SMTP id
- n20-20020ac5cd54000000b0039e937c333dmr1077487vkm.15.1662475182280; Tue, 06
- Sep 2022 07:39:42 -0700 (PDT)
+        with ESMTP id S231313AbiIFPiH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 11:38:07 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CB779E2E6
+        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 07:47:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1662475650;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=H7GYLFlANtPSZNiWZglHEjUXPEti/513uFdT3q/mqSQ=;
+        b=GOIcvoceo78P+Z89kURhntedcb3z20T9E4LcHvxdow/or1UiiILw0hjMNOWOQhBD/2NCvc
+        BFbW+wepjrwr0xTLcyDUUgqmc8ipzjbSO5RxUep+vzb9uEExdlGdikFdvMIm1nAdUyVTEJ
+        h8Uth4QxW3xwci+xCJAei//dSwJmvpA=
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com
+ [209.85.160.200]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-450-0xX8N2QhNDattuLZNmf8Sw-1; Tue, 06 Sep 2022 10:41:21 -0400
+X-MC-Unique: 0xX8N2QhNDattuLZNmf8Sw-1
+Received: by mail-qt1-f200.google.com with SMTP id h19-20020ac85493000000b00343408bd8e5so9192283qtq.4
+        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 07:41:21 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=H7GYLFlANtPSZNiWZglHEjUXPEti/513uFdT3q/mqSQ=;
+        b=jPLa8hIp486o2MlC+8zWo7BSensPJ0ZIVYhHYoCky6z4xZaSOtR2z6D+a+VOqic3px
+         XNgT46udIBgYfrBANGoG3lLGANY+DdZSHp89/kjmowC57crVFp22g2edSWf8cFslSL5a
+         HFRhoTJPihC6V0YYUEc5Qf38KL6pRkEqEkNkNXsjV8FNH9xqqkOvAljNxl+jSYgs9+S0
+         uWMNU7qGiTWoJcrGhXJTjzLMIt31Y8zUd57BF0N4spfZPsnKkWATHBG86vVPavJgZvtT
+         y3usy+1ChpeYtwiO2djWMGbu+EjyVxrm5rcUMr+xMzSm1VmWc5T1prgaZ1BP3EzcoIXn
+         UZHg==
+X-Gm-Message-State: ACgBeo2+2FtyG8acIVOol7uruClTdS8ooDASjj0jZcqZdL8ZyDD6n+tZ
+        xxlVbhnCLUs/Mf/x3/clzjwIbsrARtw0ZjxrQr0gE5wDvq4m9PVlldGw06WmwDvAPlSh7XlQ15d
+        D/ilVnUvEMRy/ovGBt7saVg==
+X-Received: by 2002:ac8:4e8b:0:b0:344:adaa:4fa8 with SMTP id 11-20020ac84e8b000000b00344adaa4fa8mr44520404qtp.559.1662475280663;
+        Tue, 06 Sep 2022 07:41:20 -0700 (PDT)
+X-Google-Smtp-Source: AA6agR4d8z/pjWmk/nqx7FCjeNeKKoqDyq2Y8dRLCC2VKcr8opzS5+wYVNrlqBnq7chKsJwIGT0PmA==
+X-Received: by 2002:ac8:4e8b:0:b0:344:adaa:4fa8 with SMTP id 11-20020ac84e8b000000b00344adaa4fa8mr44520372qtp.559.1662475280369;
+        Tue, 06 Sep 2022 07:41:20 -0700 (PDT)
+Received: from halaneylaptop ([2600:1700:1ff0:d0e0::a])
+        by smtp.gmail.com with ESMTPSA id k22-20020ac84756000000b0033fc75c3469sm9347419qtp.27.2022.09.06.07.41.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Sep 2022 07:41:19 -0700 (PDT)
+Date:   Tue, 6 Sep 2022 09:41:17 -0500
+From:   Andrew Halaney <ahalaney@redhat.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     agross@kernel.org, andersson@kernel.org,
+        konrad.dybcio@somainline.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        dianders@chromium.org, johan@kernel.org
+Subject: Re: [PATCH 3/3] regulator: dt-bindings: qcom,rpmh: Indicate
+ regulator-allow-set-load dependencies
+Message-ID: <20220906144117.wyqulotg52aqru7u@halaneylaptop>
+References: <20220902185148.635292-1-ahalaney@redhat.com>
+ <20220902185148.635292-4-ahalaney@redhat.com>
+ <de24bc67-f608-d9a0-31e7-ba291c469573@linaro.org>
 MIME-Version: 1.0
-References: <20220826220017.188066-1-marek.bykowski@gmail.com>
- <CAL_JsqKGgZOSdWQ2ithipvrRAYwt-vOL1z9-RM++-_h6pA=C_Q@mail.gmail.com> <20220830153500.49206b5a@ubuntu.armcompdev.pub.tds.tieto.com>
-In-Reply-To: <20220830153500.49206b5a@ubuntu.armcompdev.pub.tds.tieto.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 6 Sep 2022 09:39:31 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLbpbWavxs6ifO_RRSMreOjj1ToSSDS11P2wuVDeBj_7A@mail.gmail.com>
-Message-ID: <CAL_JsqLbpbWavxs6ifO_RRSMreOjj1ToSSDS11P2wuVDeBj_7A@mail.gmail.com>
-Subject: Re: [PATCH] of/fdt: Don't calculate initrd_start from the DT if
- 'linux,initrd-end' is 0
-To:     Marek Bykowski <marek.bykowski@gmail.com>
-Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <de24bc67-f608-d9a0-31e7-ba291c469573@linaro.org>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,41 +82,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 30, 2022 at 10:35 AM Marek Bykowski
-<marek.bykowski@gmail.com> wrote:
->
-> On Sun, 28 Aug 2022 20:12:41 -0500
-> Rob Herring <robh+dt@kernel.org> wrote:
->
-> >
-> > Shouldn't we just check that start < end?
-> >
-> > Can we check this somewhere not DT specific (and also not arch
-> > specific)? Then we don't have to worry if any other method of setting
-> > initrd could have the same error.
->
-> Yes, we can switch from checking on the end being 0 to that proposed:
-> - if (!end)
-> -     return;
-> + if (start >= end)
-> +     return;
->
-> Then the check would even go further as would also catch cases where
-> end < start.
->
-> My taking is early_init_dt_scan_chosen() that sets initrd size
-> incorrectly is DT specific but generic/arch agnostic. So that if
-> the error got introduced by a bootloader/U-Boot through the DT
-> chosen node, we should catch it in DT and react.
->
-> ARM64, for example, before going down for mapping for the incorrect
-> address (some extra large address resulting from the negative to
-> positive value conversion), has a check after DT parsing if
-> phys_initrd_size is other than 0 to proceed, and it is so that it
-> passes or in other words it doesn't catch the error.
+On Mon, Sep 05, 2022 at 06:50:02PM +0200, Krzysztof Kozlowski wrote:
+> On 02/09/2022 20:51, Andrew Halaney wrote:
+> > For RPMH regulators it doesn't make sense to indicate
+> > regulator-allow-set-load without saying what modes you can switch to,
+> > so be sure to indicate a dependency on regulator-allowed-modes.
+> 
+> Hmmmm.... What about other regulators?
+> 
 
-Okay.
+My understanding (which very well might be wrong) is that if your
+regulator is allowed to change modes, and sets regulator-allow-set-load,
+then you have to describe what modes you can switch to.
 
-Please send an updated patch.
+But if you don't allow setting modes (for example qcom_rpm-regulator.c)
+and just allow yourself to set_load() directly, then you don't need it.
 
-Rob
+So there is a more general requirement that applies regulator wide, but
+I'm not sure how you would apply that at a higher level. I don't see a
+good way to figure out in dt-binding land what regulator ops each
+binding supports.
+
+Hope that makes sense,
+Andrew
+
+> > 
+> > With this in place devicetree validation can catch issues like this:
+> > 
+> >     /mnt/extrassd/git/linux-next/arch/arm64/boot/dts/qcom/sm8350-hdk.dtb: pm8350-rpmh-regulators: ldo5: 'regulator-allowed-modes' is a dependency of 'regulator-allow-set-load'
+> >             From schema: /mnt/extrassd/git/linux-next/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
+> > 
+> > Suggested-by: Johan Hovold <johan@kernel.org>
+> > Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
+
