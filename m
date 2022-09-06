@@ -2,81 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23FAA5AEE6C
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 17:13:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 398485AEE56
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 17:07:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234936AbiIFPN2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 11:13:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58396 "EHLO
+        id S237574AbiIFPHH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 11:07:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233783AbiIFPNC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 11:13:02 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4473B8FD5D
-        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 07:26:16 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id ay39-20020a05600c1e2700b003a5503a80cfso7560337wmb.2
-        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 07:26:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=2tufqt6hRvw4ZCjcl0S8PqA9okU//2v9afvDFY8wrQU=;
-        b=cn351tdR+0cIDsmGptIae3AEmwZKqeJ7YSt0CUUmJooLYckje5U4WFDkn+WWqeETox
-         xfFT2An0ClBMR6gNQDrAY+ZPvtoZm+xDgJVcq44aowTW8JH6gf0rjng1fDpsLErOYb6y
-         36ILp1o7m10fF1++Nmzzbj1zex4h8xxFlVPNpBno9e6gcB1TEDLb0Vz84NNnP/UyQodQ
-         0UYtUdEbFn6aU4KoFAhrXv20sKIRK+xV2fSkSS9vbI31kQVRXkdAWJugcPaeagyNUkfG
-         0s1LQhQfQ0wITCIP1SWmODLR5sr8CdDLqxW3dXQeYcjZMC/wmiCb/5AN2JE8izu1Disz
-         8ijg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=2tufqt6hRvw4ZCjcl0S8PqA9okU//2v9afvDFY8wrQU=;
-        b=BtAPI0YuOsrF+Q8qwjGzueFBCl/ubV50ntDp+SJlxFtCvD5SY67+gx3I42F3wpMOvq
-         RZqY5iRVOxQw+RsLjuyFeW8XNJXmV4HF0GHzx0jDk+W05nvwzduLKfLJk05TeAfr4e1D
-         WICCSPKe+8MM5q+EPumbTArskUfVwvR080oZBtdcWoP/az9AgosCEKbf9+DGH+6ng7Hb
-         MGsR7Ymv3ggEU/VW/c3jfEaV5uifptxy5cYuvGSiMrpZh/Cqlw4ZGvKz3xxLP7zHqojL
-         VGaedXbz4PpXUg126YnbkTrIXV6lsfYQP2TwhV9Ap9k/KHY9wb8WAzifz+6aeH0MuLr4
-         K3ng==
-X-Gm-Message-State: ACgBeo1zo8aAlAwmJ3XO4JE6hiyvIL6LyRxHAqh+GZ+3/XW0UFMIFBzh
-        vbalvK3Ynm9PYcr16TEFKJdh9mGzV7EKlg==
-X-Google-Smtp-Source: AA6agR6TeaGO/qboYw8IAWcoqcnxH33Mp7H614yZrQqQra93kcfJS9HNV+9utEQlpuZ88K2l7pLwdQ==
-X-Received: by 2002:a05:600c:1c19:b0:3a5:51aa:d041 with SMTP id j25-20020a05600c1c1900b003a551aad041mr13889901wms.172.1662473561428;
-        Tue, 06 Sep 2022 07:12:41 -0700 (PDT)
-Received: from [192.168.86.238] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
-        by smtp.googlemail.com with ESMTPSA id az19-20020a05600c601300b003a342933727sm22294206wmb.3.2022.09.06.07.12.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Sep 2022 07:12:40 -0700 (PDT)
-Message-ID: <87f59c6d-c2ad-25c2-a0cf-972b5df42bce@linaro.org>
-Date:   Tue, 6 Sep 2022 15:12:39 +0100
+        with ESMTP id S233532AbiIFPGr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 11:06:47 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C936F31EC6;
+        Tue,  6 Sep 2022 07:21:03 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3FD3C6153A;
+        Tue,  6 Sep 2022 14:20:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A209C433B5;
+        Tue,  6 Sep 2022 14:20:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1662474005;
+        bh=j6JrfRaniZkG8XDwvLbMp+eQR1Ik9H5eUd1vOPVqvsQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=n62GbgH/vS+CBFhlOCS1m9FvfeO3rcbHG+xSZbe2i/ez3g7jnZx3gsAzFO+CT2DbX
+         OGML5PJckxnz526tRsZ8RNEjIW/+3wYN9AqkFFFPWXDytK9KtUGKQQxqR4O2ljp5K8
+         /pR7u0cU+QU+1TZumjEmNeUthOXC4rypl+NZgbVYHhjzYK2RKDnDG5GhgxJFgm6bEc
+         US0EK6k3Htlfywyu9jMiueyz4JZ9VUcpc4lVhuU1tHWVzKKERHPShey5mL76qhKHS2
+         g3+T862C0Oe/k0a1yrSPVfLYnLa4siAFy32Za6KDM/IDkjBQJcaNIOcQQXhA9vlxSW
+         Ay8Iu4Kw57+mw==
+Received: by mail-vs1-f43.google.com with SMTP id 67so11837625vsv.2;
+        Tue, 06 Sep 2022 07:20:05 -0700 (PDT)
+X-Gm-Message-State: ACgBeo0NEnNdQF2eey6xYwYCdzF/yJTp3zvX29BYM2/mUcmMoAidrM+e
+        YV3FmOb9Vd1B+bgbLD2PCRvGnsMrLR5U7uZ/7g==
+X-Google-Smtp-Source: AA6agR5m1ZEcDopFt39ntHgsvsjFoHVh5uUiID70c/HLxGHEvCBETjaPqeniS+moT1V69c8cUOhuGWhzf1sRJrxX2RA=
+X-Received: by 2002:a05:6102:3123:b0:390:d9f3:2a9f with SMTP id
+ f3-20020a056102312300b00390d9f32a9fmr13533513vsh.6.1662474004545; Tue, 06 Sep
+ 2022 07:20:04 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v2 00/10] misc: fastrpc: Add audiopd support
-Content-Language: en-US
-To:     Abel Vesa <abel.vesa@linaro.org>,
-        Amol Maheshwari <amahesh@qti.qualcomm.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Ekansh Gupta <quic_ekagupt@quicinc.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-arm-msm@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org
-References: <20220902154900.3404524-1-abel.vesa@linaro.org>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20220902154900.3404524-1-abel.vesa@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+References: <20220906082820.4030401-1-martyn.welch@collabora.co.uk>
+ <20220906082820.4030401-2-martyn.welch@collabora.co.uk> <Yxc6zptiJEf2TzP5@smile.fi.intel.com>
+ <CACRpkdZHKEW+WJAdCCf2DN7gN+ZM7pFpeSXfccB508N4=-LkoQ@mail.gmail.com>
+ <YxdI/TLBrzJP3RKi@smile.fi.intel.com> <CACRpkdaQ+0wbreyCEaoBnjKT0rtgPEnotZQw_Eh=y4xktwrwHQ@mail.gmail.com>
+In-Reply-To: <CACRpkdaQ+0wbreyCEaoBnjKT0rtgPEnotZQw_Eh=y4xktwrwHQ@mail.gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 6 Sep 2022 09:19:52 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJru+ajo4zqsAHeXUsvGDE_S0k3H7q4d3PvCYV4Qexa_w@mail.gmail.com>
+Message-ID: <CAL_JsqJru+ajo4zqsAHeXUsvGDE_S0k3H7q4d3PvCYV4Qexa_w@mail.gmail.com>
+Subject: Re: [PATCH v2 2/5] dt-bindings: gpio: pca95xx: add entry for pcal6534
+ and PI4IOE5V6534Q
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Andy Shevchenko <andriy.shevchenko@intel.com>,
+        Martyn Welch <martyn.welch@collabora.co.uk>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Martyn Welch <martyn.welch@collabora.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,47 +73,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Abel,
-Thanks for picking up these patches and reworking.
+On Tue, Sep 6, 2022 at 8:33 AM Linus Walleij <linus.walleij@linaro.org> wro=
+te:
+>
+> On Tue, Sep 6, 2022 at 3:20 PM Andy Shevchenko
+> <andriy.shevchenko@intel.com> wrote:
+> > On Tue, Sep 06, 2022 at 03:08:00PM +0200, Linus Walleij wrote:
+> > > On Tue, Sep 6, 2022 at 2:19 PM Andy Shevchenko
+> > > <andriy.shevchenko@intel.com> wrote:
+> > > > On Tue, Sep 06, 2022 at 09:28:16AM +0100, Martyn Welch wrote:
+> > > > > From: Martyn Welch <martyn.welch@collabora.com>
+> > > > >
+> > > > > The NXP PCAL6534 is a 34-bit I2C I/O expander similar to the PCAL=
+6524. The
+> > > > > Diodes PI4IOE5V6534Q is a functionally identical chip provided by=
+ Diodes
+> > > > > Inc.
+> > > >
+> > > > ...
+> > > >
+> > > > > +    oneOf:
+> > > > > +      - items:
+> > > > > +        - const: diodes,pi4ioe5v6534q
+> > > > > +        - const: nxp,pcal6534
+> > > >
+> > > > ^^^
+> > > >
+> > > > > +      - items:
+> > > > > +        - enum:
+> > > >
+> > > > > +          - nxp,pcal6534
+> > > >
+> > > > ^^^
+> > > >
+> > > > Not sure why is this dup?
+> > >
+> > > No that is how DT compatibles work. One version of the component,
+> > > bought from NXP will look like this:
+> > >
+> > > compatible =3D "nxp,pcal6534";
+> > >
+> > > Another version bought from diodes will look like this:
+> > >
+> > > compatible =3D "diodes,pi4ioe5v6534q", "nxp,pcal6534";
+> > >
+> > > Then the drivers are probed matching from left to right,
+> > > with the "most compatible" matching first.
+> > >
+> > > This also answers your question on the implementation.
+> >
+> > Then I don't understand why the const list above is only for new chips
+> > and not for the old one where the same can be applied.
+>
+> That's YAML. It's because the const list is the most compact way
+> to express two precise items following after each other, and the enum
+> list is an implicit list of single-item const:s, as you cannot enum
+> tuples.
+>
+> > Mysterious ways of DT...
+>
+> It's not DT, it's YAML that is mysterious. DT itself is a pretty
+> straight-forward
+> grammar, while YAML is a meta-grammar describing the DT grammar
 
-On 02/09/2022 16:48, Abel Vesa wrote:
-> This patchset adds audiopd support to fastrpc.
-> 
-> The first version is here:
-> https://lore.kernel.org/all/20220902131344.3029826-1-abel.vesa@linaro.org/
-> 
+Not YAML, but json-schema is the grammar. YAML is just the file format
+and it's a JSON compatible subset of YAML (no anchors, refs, tags).
 
-I have tested this on sm8450 with audiopd and loading Single MIC ECNS 
-module to adsp.
+> (ML stands for Meta Language).
 
-Which platforms did you test these patches on?
+Huh? yaml.org says: YAML Ain't Markup Language=E2=84=A2
 
-
-Tested-by: Srinivas Kandagatla  <srinivas.kandagatla@linaro.org>
-
-
---srini
-
-
-> Changes since v1:
->   * dropped the patch 13:
->     "misc: fastrpc: Remove unnecessary if braces in fastrpc_internal_invoke"
->   * sent patches 1, 2 and 3 as a separate patchset
-> 
-> Abel Vesa (10):
->    misc: fastrpc: Rename audio protection domain to root
->    misc: fastrpc: Add reserved mem support
->    dt-bindings: misc: fastrpc: Document memory-region property
->    misc: fastrpc: Add fastrpc_remote_heap_alloc
->    misc: fastrpc: Use fastrpc_map_put in fastrpc_map_create on fail
->    misc: fastrpc: Rework fastrpc_req_munmap
->    misc: fastrpc: Add support for audiopd
->    misc: fastrpc: Safekeep mmaps on interrupted invoke
->    misc: fastrpc: Add mmap request assigning for static PD pool
->    misc: fastrpc: Add dma_mask to fastrpc_channel_ctx
-> 
->   .../devicetree/bindings/misc/qcom,fastrpc.txt |   5 +
->   drivers/misc/fastrpc.c                        | 267 +++++++++++++++---
->   include/uapi/misc/fastrpc.h                   |   7 +
->   3 files changed, 247 insertions(+), 32 deletions(-)
-> 
+Rob
