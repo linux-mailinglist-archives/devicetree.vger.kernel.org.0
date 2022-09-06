@@ -2,215 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 20EE95AE1A4
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 09:55:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6FA95AE1B8
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 09:59:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231785AbiIFHzD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 03:55:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59666 "EHLO
+        id S233113AbiIFH7B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 03:59:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232562AbiIFHzC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 03:55:02 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EF1F1263B;
-        Tue,  6 Sep 2022 00:55:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1662450900; x=1693986900;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=2V0/TGR6qaCW0TW7ZaBP4I4tQ0y6uacyePPhtnBQNFo=;
-  b=Cdt9hsho+TTrYXdry5iDENzAPvw31FICbjXjy5QL/1banHQAK1oXk8+I
-   rRneAb/IREXrWnO6OBgF+EtoUq1qqAq9c98zkSeJMeE2/XXHtIBN8ZVHY
-   dLjYLC/UrWurV6vMWfTDRKxHwm1pJwYsOsjPjAPdStHUIv8S0LDIZmdFt
-   /cKuYLJuCunLF0ZhekmwldmlTvdU5WavL38dpwLTZA09GqkqOVNDDNWxy
-   gz5Acsh1hKPZGAkc26MDha0dJJkD0mlMtGrdusTUDta0VTL3DRyRXXAvZ
-   eiCSGnqlv4N/6YKYylvRn+KEXRdXrn2PeaYaRP+g3m49P/n9DvIvGMkHI
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.93,293,1654585200"; 
-   d="scan'208";a="112326414"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 06 Sep 2022 00:54:59 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Tue, 6 Sep 2022 00:54:59 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12 via Frontend Transport; Tue, 6 Sep 2022 00:54:58 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YBgASD1XhZM9IBchP1EHxigOF55qQtlY0IxihfzII5ylIiU9MQk2C/E1sl+qbN6HrnsZ5HOqwW9ge9ypZTevI2yOFmpELgFgWCxT8ANUIvvUqxQ+OHq/1+/3TY23LW2KHEnS8YxIp7ZkArv2woyRxpYkZpFzE1bORouM4CggGktr2EoJDwECw7iq9+X84YJi4QFp2+/TGa7qJByPSl6ppsBiYZYTQUN8Ufqn+bkC+NdcY7HJYeg6PmA+m6C/D4B84SGib6nSGRhNeZfsLONwasaQGflXh9os9DapwhTZl4ualciXMvkHjugbKZJ9eJ5Mtkv+bQl8wPs1A4h2u/h4Nw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2V0/TGR6qaCW0TW7ZaBP4I4tQ0y6uacyePPhtnBQNFo=;
- b=kqopTCDqcwOuH64RMjiIWIGKhUAm5Nyz4058OODctC54R5vNNvNKPDwBZJR/0md1tvCJNAFntZfhwKzqGqwHPRUbBAFCBP754D3YexB7Ui+zve7/LtF0VIY02wo2diuP1bL/zYklgI/NK/6ZB7QP8D6ceXGrIoh9E3aEKnLFaq1ys+vUzc/CZycrPUoDdB+yKxKxrnmqk9QJJsKkXd9Yth9DzaUtvsuILz087ZF8Iwi1Z/Y02Z0G+8bBlMPzmqoTkEDkvFP+DW6zUQrLj3v7IKmRE8GGTQD3PXLjqs28TstOLEKEpPc584Kwk8GZCjv/TD/SPmSs5f87CTiW8HqwcA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+        with ESMTP id S233110AbiIFH7A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 03:59:00 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E80FA7171C;
+        Tue,  6 Sep 2022 00:58:58 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id fy31so21312539ejc.6;
+        Tue, 06 Sep 2022 00:58:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2V0/TGR6qaCW0TW7ZaBP4I4tQ0y6uacyePPhtnBQNFo=;
- b=pyNGAucR9deIbmBJ8m2DFeEGJzpR6Pct60abaROMUYazpeku8LHYspT2XeLzyk2JDA4FFs/z7gnseLAYKN2dve2HkurjpDbw7gWhw9+XhFaI3RbkCZda/0yQS3spini3gp3BddLW57kzegEp+0ck1WTHTRID5ujUa7AnlHnrOBU=
-Received: from CO1PR11MB5154.namprd11.prod.outlook.com (2603:10b6:303:99::15)
- by BN9PR11MB5499.namprd11.prod.outlook.com (2603:10b6:408:104::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.12; Tue, 6 Sep
- 2022 07:54:54 +0000
-Received: from CO1PR11MB5154.namprd11.prod.outlook.com
- ([fe80::545a:72f5:1940:e009]) by CO1PR11MB5154.namprd11.prod.outlook.com
- ([fe80::545a:72f5:1940:e009%3]) with mapi id 15.20.5588.018; Tue, 6 Sep 2022
- 07:54:54 +0000
-From:   <Conor.Dooley@microchip.com>
-To:     <Claudiu.Beznea@microchip.com>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <palmer@dabbelt.com>,
-        <Daire.McNamara@microchip.com>, <Hugh.Breslin@microchip.com>
-CC:     <paul.walmsley@sifive.com>, <aou@eecs.berkeley.edu>,
-        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
-Subject: Re: [PATCH v4 4/5] clk: microchip: add PolarFire SoC fabric clock
- support
-Thread-Topic: [PATCH v4 4/5] clk: microchip: add PolarFire SoC fabric clock
- support
-Thread-Index: AQHYvGw2pGE3bq7Jh02DNE/vEJB+3a3SC6KAgAAHVgA=
-Date:   Tue, 6 Sep 2022 07:54:53 +0000
-Message-ID: <119689dc-f264-4a33-cef3-400e07fc7517@microchip.com>
-References: <20220830122855.2207752-1-conor.dooley@microchip.com>
- <20220830122855.2207752-5-conor.dooley@microchip.com>
- <e3477cef-dc8f-3c20-126b-cbd514233867@microchip.com>
-In-Reply-To: <e3477cef-dc8f-3c20-126b-cbd514233867@microchip.com>
-Accept-Language: en-IE, en-US
-Content-Language: en-IE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: ff0579c4-49ec-4238-6175-08da8fdd1596
-x-ms-traffictypediagnostic: BN9PR11MB5499:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: CBr4UY9DJJnrd6IRCS94wro5LJr385HYqhYkMiYgRlAAvS4hVafmclM1BL7Oqpq9lAHmmwlBDXT1OXVJj4f1fz63ajv9Jo7Yav/jPWW4ynrtbSo0zcJiEhKd0vcepIxgW2p7e5il4+kKvJBC0DX1emYDHWtnWBBM2VZ0n0MQI48GkrrkwC7CO2I7ca7gUD+sF7eRImiXX/5H9gyuhWxgQn+hsak/w/JQlR/scfetBtNd7gE/4eeppTz4Rcqlcy6xLnybxw0yT337VKh0hyHsOszmiJs1n3Pna9SwC55ZAwiyw8u2nIel1RLIWzEmAtmzKwgCbpIUStwOiPbmOyhrF3yW6jWi7tYL+EesOc73QrcOrBEu6YhL2p05zAruqmWVdabya9YTvRbIZCMVcF+bBHfFEdUXslG+9laRU9In/GWwUJ+ribxvGvhD1ytFcfgodeQuyDM6cpSVbhMSj7mPsgpMYtllCXCeqkOpG0bXgjhAdUd2p8ZKkQ7ur7hm9os7T/IGVurk7NE4xB0OMyQM9+3lL64ZJIldRq46yLG2N6QRILD3ano7uA1o4R52lEQaS+vFqeb0fkaK7FB84wtYOH/tfaYBYentGl+Y50tn3Vs98khNRwwh5NscFXE1aCUL6+lXUhq5NnoOVE4Wwgc6x3uNF5sImMaB3MWnyokad3+QojZUirhVsWyEPoqVVtN11/uNiamPN/2Jlc/72gOWNZ2txY2zmIwbkem9Spgj9Zl6cGMal1UoOPaYdqEltGyPTCs8YvhTI8BL5edFtjE/yvFJYeRb18LW4PI6tcrXnUoqMSXP4DwxFvIsNTPSKs99TAut0acUSW6UsMEgfwddbrN4uRGewOfFF3x74aOnWxA=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB5154.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(396003)(346002)(136003)(376002)(366004)(39860400002)(86362001)(2616005)(186003)(478600001)(71200400001)(6486002)(966005)(26005)(41300700001)(6512007)(31696002)(122000001)(53546011)(38100700002)(38070700005)(6506007)(83380400001)(5660300002)(316002)(54906003)(8676002)(2906002)(8936002)(4326008)(6636002)(36756003)(110136005)(91956017)(31686004)(66946007)(66446008)(7416002)(66476007)(66556008)(76116006)(64756008)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Sm91dUNsbndtWktFMGVZMlUrZWF4dnkyZGd3U21QczRjaUxheklmVWFvQlNv?=
- =?utf-8?B?MVhOaVV2MjZVeEtqTVlRdWxGbEJtK3ZXNmp3b2ZNUDVoeEh3TkM5ZjhVdnAy?=
- =?utf-8?B?V2tTNklBeHNmdjhub2ZGa29ENVM1SHJFTm11WDNCY1VPdlNuZUV1d1JFd204?=
- =?utf-8?B?VG95a1pPaVJzUUs0aGlYVzJ4OWtLUFcwRDNrckVtSEJpdXdmTEhCaDViREda?=
- =?utf-8?B?cFhZaGh5azVmUWhYQmYvODBIcktNaGlMclFNZ25tU1ZjOFNmb2swenpIYkN2?=
- =?utf-8?B?TnYveUM0TnFJcWZ2Y09vTUM1MllteTlsYUVpWmt1N2F3MVAvMDhXR3lDYnJs?=
- =?utf-8?B?eHJRQUtFcU9tc0FwYkUrS28yeVZDYWZQSnc2Sm5qMEhUUnRWNWZ3MVhKQWtF?=
- =?utf-8?B?eEtkaVJjQzJmT2Z4NzV2Zmx1dGZmUWpXd29qMVE5SHRUZFJrUXcwWjlpMkhi?=
- =?utf-8?B?TFNDaWNDOWR5ZUdmNEpqdm03RFUyZGxTMEU5TlV4bU54QTg2dnF5SjVDNUVD?=
- =?utf-8?B?cjZNNHhuM3dkZlNsMjB0OXdCUUdvM3RvRDd3RFhNOEJRV01aU083bkJWSVRR?=
- =?utf-8?B?OWtFd3RFVi9KaldqSENLS1RBelFmaFAxemVHWHJzZVlsdHJCVkQwaGQ0YXVS?=
- =?utf-8?B?S3k4dU5YdnBhaTcwanQrbFVxMHRINlJleXpDRFgyNm91VnB6ZnAybktQUTB6?=
- =?utf-8?B?WisxNFdxbjFtOFZTWmk4SDdGdmhkUTBFYWFOd1ovbGh6cDU2cWNaUFhDQzBv?=
- =?utf-8?B?YmtUejN4a1lZTmhPNzZ4MUt3cVQ4VHlYWWdFUjFnVVBWKzdrYzNRbjUzSXJY?=
- =?utf-8?B?Q2ZQajFNU21DaVpZL3RzV200UzYycGdZL1lEWVhFQ2wrc2RzNHo4WHNpT3Ux?=
- =?utf-8?B?d0Y0Z2lFZGxKSkdiZUh2dDEyWkdaZ3lsYjh5UUlpenUwcWdqSjVoNW9pSmsr?=
- =?utf-8?B?UC9lWWtwTVpTK0VWczFqdWxUSVAyeTVRN0UrRXBZQnl5MlNITHdkaE0vdFRp?=
- =?utf-8?B?aDFZVG1IZFdWZDhyUGlVUmtabkppQjRKOGp6WW0yREVYLzg1T0FvQmo2QUJ6?=
- =?utf-8?B?SkwzQUo0MTNEa3VudWhaVEw4dnlhQnhLSG5tMHl2NFo4bGEyajhySDRMRDRV?=
- =?utf-8?B?TUV4cU5kaFlUeTBkQTV5TG5lcHNucmV6SDVQSENRREhXNlJUOHkybDJpa3Z0?=
- =?utf-8?B?S25BTDJCUFV5dGY0UThCVEJHeENCYWV0ejJHRys5M2V2amo3MDIxUHI3c1VE?=
- =?utf-8?B?dGZhSlBXRlY2aENmRGFGNDdGN1BpN1BJcGFRYnNFN08vOW9CdkNvYlBqNy9N?=
- =?utf-8?B?ZTZza2dFcVBSckFBQ1NKejZpL0hKTHdZL2xpQjladDd3SHRRTU5TSi8xRzNl?=
- =?utf-8?B?VDhnZks3TjlSSGNOTEhxMkVoM1huTkIzbTJKejBqSGtFV2t2SzJRN3JjVkU3?=
- =?utf-8?B?S1N3NnNUclFQd1VwVm0zcTBMK2hTRktHd1BWNXhLNmdxUVl6MEZGTGIrNkpX?=
- =?utf-8?B?aUdTSk1KUnNnQ0J2cFRWQnZ4NnN0c1FsMndWcEVvZmhQWWpUdVZiNVRzN3Nr?=
- =?utf-8?B?SFhpMXNPTmR2d1d4ODBlRnI0MVc1Ly9qbDJQbTBJMnNmeFBoOTBoem1OUUFL?=
- =?utf-8?B?eDRMWkJyMHVDTDMzK1ZWQkNxRFNtOFNWYWhLb2lPS0tMQ3pJQWFUdm52dTNS?=
- =?utf-8?B?NEhHVmNvNUphTXZPRVVEbnIxelp0Y2p3Y1RiYXVVclJBNDNQQ0ZyZ1VlTm1a?=
- =?utf-8?B?VXZiUSt1U09EU1BxaTBta1N2WThFYWVkaEQ2YW9ubU1BNkRLaWNxVHBocElG?=
- =?utf-8?B?WTlBQ3VjRnJESFJ2b3E1Mk1iRUhxd1g5SjU0T2V2RFVVRnlzcGNOTVU4SUx2?=
- =?utf-8?B?QTBrUUJQQ3IxNXdVL0tETFVNMWhmcDYxTjB6RVh6VGhzR2FiRldrekhxaU5T?=
- =?utf-8?B?WkF2ZHA5TURtN3AzZEx1THdJNWU2RitiRTVOVlN2N2E3ZUwxaHByYm92RVNE?=
- =?utf-8?B?QU5uQXhtaitqcWFOSWFYWlRCYjRjT0NyVE9XZDBvZDNsbU9tTWxZdklRYXgr?=
- =?utf-8?B?bzBmcWVITzBOcUExYmhLZUpJOUwvalpRSm5lTjJiUlQ1SWVzQitxaFZJeitI?=
- =?utf-8?Q?5WYE9Hs/bxNPv/l1FflyeYTyk?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <669E4624F446D14E9651A17A0456435F@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date;
+        bh=G5xMT6aDNv4kW7DoRuL08vNOs1PAIlSGM76dCe+/XnA=;
+        b=IqR3y18Cx1qIwYw4UCiCTVh/G1F5irxJGmeXs1tScFvtbsL6xEpJxG2G/X6Gl4lhIj
+         +2KrmUt+oRnZv2in1enq/dW/oGz8TuVY6qP7kLHjRjLDgIUAJy0ndbbIiaJi6ZNadtxI
+         y5EvFZkZuwL0e0v6pQC5u87gcLh52hNoFtGTG4s+x9NTpfmdykE+j8OluBNOTg5w6EEb
+         CAj9vrObxn37Woc0hrBx34RCimwLSIK7kEqX+b1ptJmgvYmBXXMYLYD3rfzCmNogiGEn
+         rbepDzapjt3YfkGRcTXwVovnVtdeUw/Avi2dszJ13t45IfJeQ+Am19GtI6oJjAoPrywZ
+         o8dw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=G5xMT6aDNv4kW7DoRuL08vNOs1PAIlSGM76dCe+/XnA=;
+        b=wBlqIJb8sTI0FtfooGsBYWJ4GouVIqzzpLI5z6+0IkkBNhTbX+v3FrtJZPiUiqTrdy
+         PJCMVGDrzFtRei2bTiZei+gmtnzOoexqvL7RzEqqZalND0Pc0+pyfTR6X6ezlysbReFk
+         +cbJlX1/kifM4ELZ4IX11yfrVnIDu+VRUuYP7JYx506L/iduxbCoAjsvwYqYJPYTKbXa
+         59df0HW+jnUizayl7Y6xdACrLTG6ey9+o+PcTqPYaz+/bLK3v0Xb5MsBDJX/b3hJy26H
+         eDckBVWb0TUCJHY+mubGePFo9LFpna+O2YQrP9+xvuOG6ngKnB/N3tGfu5fgTRVV3NpZ
+         YeBw==
+X-Gm-Message-State: ACgBeo0UFUMpqVuesM6K7KO3adYracuJYmLmtec5lvEpBaL9v6D1QDK+
+        iPKbM0fc++CczWXo+6D27qquXTVlGDBDiYbN8MM=
+X-Google-Smtp-Source: AA6agR5YnY0EzdQxo8Pq6IyzStk5Of82NqC2kb+QzscEVqwyjmybojqR67VAd+bpi6dSl5otBltC+plapAULeuYVO+o=
+X-Received: by 2002:a17:907:7dac:b0:739:8df9:3c16 with SMTP id
+ oz44-20020a1709077dac00b007398df93c16mr37890355ejc.9.1662451137307; Tue, 06
+ Sep 2022 00:58:57 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5154.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ff0579c4-49ec-4238-6175-08da8fdd1596
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Sep 2022 07:54:53.8755
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: mbKxqR8yLNyyLmBJyMry0kwvdaVqK/VRcnxj3IQ7AXw93KRBN/BIJxCZ2tPBDd05A/1/+G/RrFHitAbpHRF1yEj+8OUIcus+Hw8J9XiuHDE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR11MB5499
-X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220905171601.79284-1-peron.clem@gmail.com> <20220905171601.79284-5-peron.clem@gmail.com>
+ <OS0PR01MB5922142861E78A1DD81AD1C9867F9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <CAJiuCceGZJr24hVjpP0ptOkG8bMFKr=QLj0LcyDX4fUy7Rr2xA@mail.gmail.com> <OS0PR01MB5922EE3F6CDD827919A7763E867E9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+In-Reply-To: <OS0PR01MB5922EE3F6CDD827919A7763E867E9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Date:   Tue, 6 Sep 2022 09:58:45 +0200
+Message-ID: <CAJiuCcd7upgT6vQWHos-X1-89+Z-5xxDe2SMCdC2=_LgZaVMiw@mail.gmail.com>
+Subject: Re: [PATCH v3 4/5] drm/panfrost: devfreq: set opp to the recommended
+ one to configure and enable regulator
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+        Steven Price <steven.price@arm.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-sunxi@lists.linux.dev" <linux-sunxi@lists.linux.dev>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gMDYvMDkvMjAyMiAwODoyOCwgQ2xhdWRpdSBCZXpuZWEgLSBNMTgwNjMgd3JvdGU6DQo+IE9u
-IDMwLjA4LjIwMjIgMTU6MjgsIENvbm9yIERvb2xleSB3cm90ZToNCj4+IEFkZCBhIGRyaXZlciB0
-byBzdXBwb3J0IHRoZSBQTExzIGluIFBvbGFyRmlyZSBTb0MncyBDbG9jayBDb25kaXRpb25pbmcN
-Cj4+IENpcmN1aXRyeSwgYW4gaW5zdGFuY2Ugb2Ygd2hpY2ggaXMgbG9jYXRlZCBpbiBlYWNoIG9y
-ZGluYWwgY29ybmVyIG9mDQo+PiB0aGUgRlBHQS4gT25seSBnZXRfcmF0ZSgpIGlzIHN1cHBvcnRl
-ZCBhcyB0aGVzZSBjbG9ja3MgYXJlIGludGVuZGVkIHRvDQo+PiBiZSBzdGF0aWNhbGx5IGNvbmZp
-Z3VyZWQgYnkgdGhlIEZQR0EgZGVzaWduLiBDdXJyZW50bHksIHRoZSBETExzIGFyZQ0KPj4gbm90
-IHN1cHBvcnRlZCBieSB0aGlzIGRyaXZlci4gRm9yIG1vcmUgaW5mb3JtYXRpb24gb24gdGhlIGhh
-cmR3YXJlLCBzZWUNCj4+ICJQb2xhckZpcmUgU29DIEZQR0EgQ2xvY2tpbmcgUmVzb3VyY2VzIiBp
-biB0aGUgbGluayBiZWxvdy4NCj4+DQo+PiBMaW5rOiBodHRwczovL29ubGluZWRvY3MubWljcm9j
-aGlwLmNvbS9wci9HVUlELThGMENDNEMwLTAzMTctNDI2Mi04OUNBLUNFNzc3M0VEMTkzMS1lbi1V
-Uy0xL2luZGV4Lmh0bWwNCj4+IFNpZ25lZC1vZmYtYnk6IENvbm9yIERvb2xleSA8Y29ub3IuZG9v
-bGV5QG1pY3JvY2hpcC5jb20+DQoNCj4+ICsNCj4+ICsjZGVmaW5lIENMS19DQ0NfUExMKF9pZCwg
-X3BhcmVudHMsIF9zaGlmdCwgX3dpZHRoLCBfZmxhZ3MsIF9vZmZzZXQpIHsJCVwNCj4+ICsJLmlk
-ID0gX2lkLAkJCQkJCQkJCVwNCj4+ICsJLnNoaWZ0ID0gX3NoaWZ0LAkJCQkJCQkJXA0KPj4gKwku
-d2lkdGggPSBfd2lkdGgsCQkJCQkJCQlcDQo+PiArCS5yZWdfb2Zmc2V0ID0gX29mZnNldCwJCQkJ
-CQkJCVwNCj4+ICsJLmZsYWdzID0gX2ZsYWdzLAkJCQkJCQkJXA0KPj4gKwkucGFyZW50cyA9IF9w
-YXJlbnRzLFwNCj4gDQo+IFRoZXJlIGlzIGEgYml0IG9mIG1pc3NhbGlnbm1lbnQgb2YgXCBpbiB0
-aGlzIG1hY3JvLg0KPiANCg0KRXd3LCB0aGVyZSBpcy4uLg0KDQo+PiArc3RhdGljIGludCBtcGZz
-X2NjY19yZWdpc3Rlcl9wbGxzKHN0cnVjdCBkZXZpY2UgKmRldiwgc3RydWN0IG1wZnNfY2NjX3Bs
-bF9od19jbG9jayAqcGxsX2h3cywNCj4+ICsJCQkJICB1bnNpZ25lZCBpbnQgbnVtX2Nsa3MsIHN0
-cnVjdCBtcGZzX2NjY19kYXRhICpkYXRhKQ0KPj4gK3sNCj4+ICsJaW50IHJldDsNCj4+ICsNCj4+
-ICsJZm9yICh1bnNpZ25lZCBpbnQgaSA9IDA7IGkgPCBudW1fY2xrczsgaSsrKSB7DQo+PiArCQlz
-dHJ1Y3QgbXBmc19jY2NfcGxsX2h3X2Nsb2NrICpwbGxfaHcgPSAmcGxsX2h3c1tpXTsNCj4+ICsJ
-CWNoYXIgKm5hbWUgPSBkZXZtX2t6YWxsb2MoZGV2LCAxOCwgR0ZQX0tFUk5FTCk7DQo+PiArDQo+
-PiArCQlwbGxfaHctPmJhc2UgPSBkYXRhLT5wbGxfYmFzZVtpXTsNCj4+ICsJCXNucHJpbnRmKG5h
-bWUsIDE4LCAiY2NjJXNfcGxsJXUiLCBzdHJjaHJudWwoZGV2LT5vZl9ub2RlLT5mdWxsX25hbWUs
-ICdAJyksIGkpOw0KPj4gKwkJcGxsX2h3LT5uYW1lID0gKGNvbnN0IGNoYXIgKiluYW1lOw0KPj4g
-KwkJcGxsX2h3LT5ody5pbml0ID0gQ0xLX0hXX0lOSVRfUEFSRU5UU19EQVRBX0ZJWEVEX1NJWkUo
-cGxsX2h3LT5uYW1lLA0KPj4gKwkJCQkJCQkJICAgICAgcGxsX2h3LT5wYXJlbnRzLA0KPj4gKwkJ
-CQkJCQkJICAgICAgJm1wZnNfY2NjX3BsbF9vcHMsIDApOw0KPj4gKw0KPj4gKwkJcmV0ID0gZGV2
-bV9jbGtfaHdfcmVnaXN0ZXIoZGV2LCAmcGxsX2h3LT5odyk7DQo+PiArCQlpZiAocmV0KQ0KPj4g
-KwkJCXJldHVybiBkZXZfZXJyX3Byb2JlKGRldiwgcmV0LCAiZmFpbGVkIHRvIHJlZ2lzdGVyIGNj
-YyBpZDogJWRcbiIsDQo+PiArCQkJCQkgICAgIHBsbF9ody0+aWQpOw0KPj4gKw0KPj4gKwkJZGF0
-YS0+aHdfZGF0YS5od3NbcGxsX2h3LT5pZF0gPSAmcGxsX2h3LT5odzsNCj4+ICsNCj4+ICsJCXJl
-dCA9IG1wZnNfY2NjX3JlZ2lzdGVyX291dHB1dHMoZGV2LCBtcGZzX2NjY19wbGxvdXRfY2xrc1tp
-XSwNCj4+ICsJCQkJCQlNUEZTX0NDQ19PVVRQVVRTX1BFUl9QTEwsIGRhdGEsIHBsbF9odyk7DQo+
-PiArCQlpZiAocmV0KQ0KPj4gKwkJCXJldHVybiByZXQ7DQo+PiArCX0NCj4+ICsNCj4+ICsJcmV0
-dXJuIDA7DQo+PiArfQ0KPj4gKw0KPj4gK3N0YXRpYyBpbnQgbXBmc19jY2NfcHJvYmUoc3RydWN0
-IHBsYXRmb3JtX2RldmljZSAqcGRldikNCj4+ICt7DQo+PiArCXN0cnVjdCBtcGZzX2NjY19kYXRh
-ICpjbGtfZGF0YTsNCj4+ICsJdm9pZCBfX2lvbWVtICpwbGxfYmFzZVtBUlJBWV9TSVpFKG1wZnNf
-Y2NjX3BsbF9jbGtzKV07DQo+PiArCXVuc2lnbmVkIGludCBudW1fY2xrczsNCj4+ICsJaW50IHJl
-dDsNCj4+ICsNCj4+ICsJbnVtX2Nsa3MgPSBBUlJBWV9TSVpFKG1wZnNfY2NjX3BsbF9jbGtzKSAr
-IEFSUkFZX1NJWkUobXBmc19jY2NfcGxsMG91dF9jbGtzKQ0KPj4gKwkJKyBBUlJBWV9TSVpFKG1w
-ZnNfY2NjX3BsbDFvdXRfY2xrcyk7DQo+IA0KPiBVc3VhbGx5LCBhcyBmYXIgYXMgSSBjYW4gdGVs
-bCwgdGhlcmUgYXJlIG5vIChvciBub3QgdG9vIG11Y2gpIGxpbmVzDQo+IHN0YXJ0aW5nIHdpdGgg
-YXJpdGhtZXRpYyBzaWducywgYnV0IHRoZXNlIGdvZXMgYXQgdGhlIGVuZCBvZiB0aGUgcHJldmlv
-dXMNCj4gbGluZXMuIFRoaXMgYWxsb3dzIHlvdSB0byBhbHNvIGFsaWduIHRoZSBBUlJBWV9TSVpF
-KCkgbWFjcm9zIHRvIGVhY2ggb3RoZXJzLg0KPiANCj4gT3RoZXIgdGhhbiB0aGF0Og0KPiANCj4g
-UmV2aWV3ZWQtYnk6IENsYXVkaXUgQmV6bmVhIDxjbGF1ZGl1LmJlem5lYUBtaWNyb2NoaXAuY29t
-Pg0KPiANCg0KSSB0aGluayBJIGp1c3Qgc3RhcnRlZCB0aGUgbGluZSB3aXRoIHRoZSBvcGVyYXRv
-ciBhcyBJIGZpbmQgaXQNCmVhc2llciB0byByZWFkIHRoYXQgd2F5IGFyb3VuZCwgYnV0IG5vdCBh
-IGJpZyBkZWFsLg0KDQpUaGFua3MsDQpDb25vci4NCg0KDQo=
+Hi Biju,
+
+On Tue, 6 Sept 2022 at 08:42, Biju Das <biju.das.jz@bp.renesas.com> wrote:
+>
+> Hi Clement,
+>
+> >
+> > Hi,
+> >
+> > On Mon, 5 Sept 2022 at 20:17, Biju Das <biju.das.jz@bp.renesas.com>
+> > wrote:
+> > >
+> > > Hi,
+> > >
+> > > Thanks for the patch.
+> > >
+> > > > Subject: [PATCH v3 4/5] drm/panfrost: devfreq: set opp to the
+> > > > recommended one to configure and enable regulator
+> > > >
+> > > > devm_pm_opp_set_regulators() doesn't enable regulator, which make
+> > > > regulator framework switching it off during regulator_late_cleanup(=
+).
+> > >
+> > > In that case, why not regulator_get()for Dynamic regulator(non fixed
+> > > regulator)??
+> >
+> > Sorry I don't understand, what do you mean?
+>
+> Normally we need to turn on regulator and clock only when needed.
+> I am not sure with your new code, will make it always on and
+> drains the power unnecessarily and does it set lower opp or higher
+> opp at the start??
+
+The code doesn't make it always on, it makes it how it should be at
+the recommended OPP which is the "start point".
+
+If the recommended OPP says to switch off the regulator then it will.
+
+>
+> Compared to the fixed regulator, you have voltage regulator to
+> control that is the difference between my environment and
+> Your environment.
+>
+> I am not sure any other SoC is using voltage regulator??
+> If yes, thenthere should be some bug or some difference in HW
+> which is giving different behaviour??
+>
+> If you are the first one using voltage regulator with mali gpu,
+> Then Your implementation may be correct, as you have proper
+> HW to check.
+
+The issue is that my regulator is not marked as "always-on", if no OPP
+is called before regulator_late_cleanup() then nobody sets the
+regulator_enable() and the regulator is switched off, which makes my
+board hang.
+
+Like Viresh recommends I will send an update with more details in the
+commit log.
+
+Regards,
+Clement
+
+
+>
+> >
+> > >
+> > > >
+> > > > Call dev_pm_opp_set_opp() with the recommend OPP in
+> > > > panfrost_devfreq_init() to enable the regulator and avoid any switc=
+h
+> > > > off by regulator_late_cleanup().
+> > > >
+> > > > Suggested-by: Viresh Kumar <viresh.kumar@linaro.org>
+> > > > Signed-off-by: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
+> > > > ---
+> > > >  drivers/gpu/drm/panfrost/panfrost_devfreq.c | 8 ++++++++
+> > > >  1 file changed, 8 insertions(+)
+> > > >
+> > > > diff --git a/drivers/gpu/drm/panfrost/panfrost_devfreq.c
+> > > > b/drivers/gpu/drm/panfrost/panfrost_devfreq.c
+> > > > index 5110cd9b2425..67b242407156 100644
+> > > > --- a/drivers/gpu/drm/panfrost/panfrost_devfreq.c
+> > > > +++ b/drivers/gpu/drm/panfrost/panfrost_devfreq.c
+> > > > @@ -131,6 +131,14 @@ int panfrost_devfreq_init(struct
+> > > > panfrost_device
+> > > > *pfdev)
+> > > >               return PTR_ERR(opp);
+> > > >
+> > > >       panfrost_devfreq_profile.initial_freq =3D cur_freq;
+> > > > +
+> > > > +     /* Setup and enable regulator */
+> > > > +     ret =3D dev_pm_opp_set_opp(dev, opp);
+> > > > +     if (ret) {
+> > > > +             DRM_DEV_ERROR(dev, "Couldn't set recommended OPP\n");
+> > > > +             return ret;
+> > > > +     }
+> > >
+> > >
+> > > FYI,
+> > > On RZ/G2L mali gpu, we have fixed regulator and I was able to do GPU
+> > > OPP transition without any issues previously.
+> >
+> > rzg2l-smarc-som.dtsi uses regulator reg_1p1v; which is marked as
+> > regulator-always-on; that's why
+> > regulator_late_cleanup() doesn't switch it off.
+>
+> Yes that is correct. It is fixed regulator and always on.
+> We control only frequency.
+>
+> Cheers,
+> Biju
+>
+> >
+> > >
+> > > root@smarc-rzg2l:~# cat /sys/class/devfreq/11840000.gpu/trans_stat
+> > >      From  :   To
+> > >            :  50000000  62500000 100000000 125000000 200000000
+> > 250000000 400000000 500000000   time(ms)
+> > > *  50000000:         0         0         0         0         0
+> > 0         0         1       144
+> > >    62500000:         0         0         0         0         0
+> > 0         0         0         0
+> > >   100000000:         0         0         0         0         0
+> > 0         0         9       524
+> > >   125000000:         0         0         9         0         0
+> > 0         0         3      2544
+> > >   200000000:         0         0         0        11         0
+> > 0         0        46      3304
+> > >   250000000:         1         0         0         0        33
+> > 0         0         0      7496
+> > >   400000000:         0         0         0         0        16
+> > 19         0         0      2024
+> > >   500000000:         1         0         0         1         8
+> > 15        35         0      4032
+> > > Total transition : 208
+> > >
+> > > Cheers,
+> > > Biju
+> > >
