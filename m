@@ -2,82 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 98A205AF7B5
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 00:11:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 918ED5AF7F7
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 00:27:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229526AbiIFWLc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 18:11:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33708 "EHLO
+        id S230057AbiIFW1M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 18:27:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229527AbiIFWLb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 18:11:31 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B1BAA1D2D
-        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 15:11:28 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id cu2so26473991ejb.0
-        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 15:11:28 -0700 (PDT)
+        with ESMTP id S230093AbiIFW06 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 18:26:58 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2B39DFE0
+        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 15:26:56 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id b16so17066489edd.4
+        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 15:26:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rasmusvillemoes.dk; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=KBxZTl3QLBPzQvK7Avwrhh94NGQfx9l6fJMpQ6cilkA=;
-        b=BkGdOuXQ1cLS+b0NYKo/64meSchT279vzK9adoSJ6jORvCkmT2tG50Zgpod7ru3pnz
-         BgZHQ1+ZQE1VagOuTagUckuZOlIeQv1bWly/8d/MBrPpFZB8OukOFS1ilcqVr13a6T3h
-         9RmWXfO5zfGDqT2ll9Z9chRz1o/hwNG8SPmbE=
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=a+Vs+P0ciT3P+roY2k8XBdIwCVWYhAwaTZ/i25+tK1Q=;
+        b=G38S/EqecQ8sQP0LzugoHuJ4vO5tGIs1Irzd5Df2yBAJ60O5P5fac0bguYHaOigTSZ
+         /8feiG7RBqs6a7WUgyG0z8RRq/IbpO2nf9njQRB0Vd5FXLenlPVPCSvkNxR3B5IQSHnP
+         fGvhZTNH64t4bL+IDvTHVbgt/2/KnS70+CCcA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=KBxZTl3QLBPzQvK7Avwrhh94NGQfx9l6fJMpQ6cilkA=;
-        b=ph2fEbXXLVxexANFO0X8vFfN2xDGyJjSxG+6rdhsIvgHpJFm9NRTa8iYwR2KCk4FJP
-         29tpItg2i5DpvhJMXyQlv3cWfbpENAwogOZ6NCWDBEo3HSD+7tcFkvjG50OvfHzuFqkg
-         4Z4w6QhzvhGJs3AKiIgIGhHKqo91Rws8txGQ1ZHktmM3JfFI8mhoGPWc/aOIs6NR115D
-         arVM5Lqsz0U6Bmgxu2yM350Qz6dZ3c5zUgCoIlWwc0K0mFA8ZCuFjY9z2RB4/NN8HuXu
-         xzKeRsLKPzS9sn3jH71ds3YaYRj+6CCftKTaZ4nFItpjYuXuvnqh8mghj5w8ZMgvRMxO
-         N06A==
-X-Gm-Message-State: ACgBeo1WwD9YXghsZClvVO3IQqSUzRM+QRqb3CYq5XLVB60d6L2puCvI
-        KnUX0FhsuRlpuEUwa656/kqI7w==
-X-Google-Smtp-Source: AA6agR4sr7CY6ohDCUgo1cuFeiMGJDrY8VIlBJdET91T+NWk5F0EUKnaU4lX2OEjAoB2NiRsPDczdg==
-X-Received: by 2002:a17:906:eec7:b0:733:189f:b07a with SMTP id wu7-20020a170906eec700b00733189fb07amr385666ejb.230.1662502287053;
-        Tue, 06 Sep 2022 15:11:27 -0700 (PDT)
-Received: from [192.168.1.149] ([80.208.71.65])
-        by smtp.gmail.com with ESMTPSA id 12-20020a170906318c00b0073923a68974sm7083488ejy.206.2022.09.06.15.11.25
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=a+Vs+P0ciT3P+roY2k8XBdIwCVWYhAwaTZ/i25+tK1Q=;
+        b=Xjj8tilR3QGdkqgmAj10KSo2jHTcSO5MVqMJ1ZY/vSepkk95aWW/RgaBn5zYd/UK1h
+         3T9mcWTHuQ40o9IS01KGbMuC6W6RwCqVqHOFxlbrDiRXALiuTIaXBFUr7wVrVGeqJqK4
+         jOp4IRRwyhx0q0O+TxdJA9/ozYpBsOKKNYxYEtkiHNPzPKm7UxjPLBPuu7vsSqXJEdO8
+         ROD+4Ep/I2/gfvf9JkydGipn4+GkxjbS8zUen0aDZA9rqJ+xca3FgDH1+TMA8aA4XMB0
+         yDGi/6k8uiSGJdvBrqE0Xzcp/vW9xRN7BYeOgotUPZwxEQH2Xhb6LVI4r2jrRKB33PlQ
+         oR3g==
+X-Gm-Message-State: ACgBeo3Puv4L1AOH5E4VK4w+LgwtNsjrpOz2oHFiLpGgvrtoo+XjVri+
+        4nmkQq5PsImKCzjMPOug5yw/rkQc/5fEzs+N
+X-Google-Smtp-Source: AA6agR6Tsn6H7dQvxuGKGvIsVwLHcv723hkBXXMsKjQ3SioNCND1U56nptJ9maxKQBuRKP4Zn5nXlA==
+X-Received: by 2002:aa7:de9a:0:b0:44d:8191:44c5 with SMTP id j26-20020aa7de9a000000b0044d819144c5mr612611edv.232.1662503215084;
+        Tue, 06 Sep 2022 15:26:55 -0700 (PDT)
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com. [209.85.128.48])
+        by smtp.gmail.com with ESMTPSA id fi5-20020a056402550500b0043bbb3535d6sm8944783edb.66.2022.09.06.15.26.53
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Sep 2022 15:11:26 -0700 (PDT)
-Message-ID: <db3b8d51-3350-7823-a462-6f81c4cdc5f1@rasmusvillemoes.dk>
-Date:   Wed, 7 Sep 2022 00:11:24 +0200
+        Tue, 06 Sep 2022 15:26:53 -0700 (PDT)
+Received: by mail-wm1-f48.google.com with SMTP id j26so7658636wms.0
+        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 15:26:53 -0700 (PDT)
+X-Received: by 2002:a05:600c:22d3:b0:3a8:424d:f386 with SMTP id
+ 19-20020a05600c22d300b003a8424df386mr280546wmg.57.1662503212860; Tue, 06 Sep
+ 2022 15:26:52 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 4/7] lib/vsprintf: Add support for generic FOURCCs by
- extending %p4cc
-Content-Language: en-US
-To:     "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-        Arnd Bergmann <arnd@arndb.de>, Lee Jones <lee@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        asahi@lists.linux.dev, Bartosz Golaszewski <brgl@bgdev.pl>,
-        devicetree@vger.kernel.org, Hector Martin <marcan@marcan.st>,
-        Jonathan Corbet <corbet@lwn.net>,
+References: <20220901024827.v3.1.I3aa360986c0e7377ea5e96c116f014ff1ab8c968@changeid>
+In-Reply-To: <20220901024827.v3.1.I3aa360986c0e7377ea5e96c116f014ff1ab8c968@changeid>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Tue, 6 Sep 2022 15:26:41 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=Wf2gPHzSXh_2bKe+KgYVhKDUgmEtx2nnBrQ9FawqxH9Q@mail.gmail.com>
+Message-ID: <CAD=FV=Wf2gPHzSXh_2bKe+KgYVhKDUgmEtx2nnBrQ9FawqxH9Q@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: arm: qcom: Document additional skus
+ for sc7180 pazquel360
+To:     Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Bob Moragues <moragues@chromium.org>,
+        Henry Sun <henrysun@google.com>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
-        linux-gpio@vger.kernel.org, Petr Mladek <pmladek@suse.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Sergey Senozhatsky <senozhatsky@chromium.org>,
-        Steven Rostedt <rostedt@goodmis.org>,
-        Sven Peter <sven@svenpeter.dev>
-References: <YxdInl2qzQWM+3bs@shell.armlinux.org.uk>
- <E1oVYUS-005CmS-IA@rmk-PC.armlinux.org.uk>
-From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
-In-Reply-To: <E1oVYUS-005CmS-IA@rmk-PC.armlinux.org.uk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,37 +82,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/09/2022 15.19, Russell King (Oracle) wrote:
-> From: Hector Martin <marcan@marcan.st>
-> 
-> %p4cc is designed for DRM/V4L2 FOURCCs with their specific quirks, but
-> it's useful to be able to print generic 4-character codes formatted as
-> an integer. Extend it to add format specifiers for printing generic
-> 32-bit FOURCCs with various endian semantics:
-> 
+Bjorn,
 
->  Documentation/core-api/printk-formats.rst | 32 +++++++++++++++++++++
->  lib/vsprintf.c                            | 35 +++++++++++++++++++----
->  2 files changed, 61 insertions(+), 6 deletions(-)
+On Wed, Aug 31, 2022 at 7:50 PM Yunlong Jia
+<yunlong.jia@ecs.corp-partner.google.com> wrote:
+>
+> pazquel360 is an extension project based on pazquel.
+> We create 3 sku on pazquel360:
+>    sku 20 for LTE with physical SIM _and_ eSIM and WiFi
+>    sku 21 for WiFi only
+>    sku 22 for LTE with only a physical SIM
+>  Both sku20 and sku22 are LTE SKUs.
+>  One has the eSIM stuffed and one doesn't.
+>  There is a single shared device tree for the two.
+>
+> Signed-off-by: Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+>
+> ---
+>
+> Changes in v3:
+>  1. Adjust the format of the changelog.
+>
+> ---
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
 
-Please also update lib/test_printf.c with a few test cases when
-modifying/extending vsnprintf().
+I think these two patches are ready to land if now is a good time. Thanks!
 
-> diff --git a/Documentation/core-api/printk-formats.rst b/Documentation/core-api/printk-formats.rst
-> index 5e89497ba314..22c33398ec02 100644
-> --- a/Documentation/core-api/printk-formats.rst
-> +++ b/Documentation/core-api/printk-formats.rst
-> @@ -625,6 +625,38 @@ Passed by reference.
->  	%p4cc	Y10  little-endian (0x20303159)
->  	%p4cc	NV12 big-endian (0xb231564e)
->  
-> +Generic FourCC code
-> +-------------------
-> +
-> +::
-> +	%p4c[hnbl]	gP00 (0x67503030)
-> +
-
-Typo, I think. hrbl ?
-
-Rasmus
+-Doug
