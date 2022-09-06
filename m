@@ -2,46 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 114F85AF006
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 18:12:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 384DB5AF015
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 18:16:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238706AbiIFQMr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 12:12:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54168 "EHLO
+        id S237606AbiIFQQH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 12:16:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232989AbiIFQMT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 12:12:19 -0400
-Received: from sibelius.xs4all.nl (80-61-163-207.fixed.kpn.net [80.61.163.207])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EA5B22B30;
-        Tue,  6 Sep 2022 08:38:15 -0700 (PDT)
-Received: from localhost (bloch.sibelius.xs4all.nl [local])
-        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id d845d1c6;
-        Tue, 6 Sep 2022 17:38:12 +0200 (CEST)
-Date:   Tue, 6 Sep 2022 17:38:12 +0200 (CEST)
-From:   Mark Kettenis <mark.kettenis@xs4all.nl>
-To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc:     marcan@marcan.st, linus.walleij@linaro.org, robh@kernel.org,
-        krzysztof.kozlowski@linaro.org, arnd@arndb.de, lee@kernel.org,
-        alyssa@rosenzweig.io, asahi@lists.linux.dev, brgl@bgdev.pl,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        sven@svenpeter.dev, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org
-In-Reply-To: <YxdfOr6WCZiR3W1c@shell.armlinux.org.uk>
-Subject: Re: [PATCH 1/6] dt-bindings: mfd: add binding for Apple Mac System
- Management Controller
-References: <20220902172808.GB52527-robh@kernel.org>
- <YxcNLU+KGEolrdfT@shell.armlinux.org.uk>
- <d3cecee5edd24f67@bloch.sibelius.xs4all.nl>
- <CACRpkdaSRcczEF8QZ4aO+-HDVS+n-8MXvn6ysnjJfUEabwUJ=w@mail.gmail.com>
- <909bb4e7-5bd2-2903-5bba-87ae37f3448a@marcan.st>
- <CACRpkdajhjpMzjMooDduu0jxrp0uDNJ90VfBPpHx+P14cFfskA@mail.gmail.com>
- <5b75dc7e-5337-73eb-450f-b72f479793c4@marcan.st>
- <YxdOafCWnDUNourH@shell.armlinux.org.uk>
- <f5bef359-3abe-311c-3521-136eb5b54c4b@marcan.st>
- <d3ced0ffaec45e3c@bloch.sibelius.xs4all.nl> <YxdfOr6WCZiR3W1c@shell.armlinux.org.uk>
-Message-ID: <d3ced1bb5f8fd2e7@bloch.sibelius.xs4all.nl>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,KHOP_HELO_FCRDNS,
-        SPF_HELO_NONE,SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE autolearn=no
+        with ESMTP id S231878AbiIFQPn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 12:15:43 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07DE3857E6
+        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 08:42:53 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3998F61561
+        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 15:42:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63A81C433C1;
+        Tue,  6 Sep 2022 15:42:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1662478972;
+        bh=rD3bGWpWe2C+uPP1gaI4H1iAovRfcZkH+eG2TOcoVYM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=D7GE1Snk7QwcCa6AhzSHUHOxM/+45E6oWG1ihXt7yDSZK+SrSe8zY90GEPCSbT3S8
+         P9rEdNnl94/n2nf2Gjk40IZFbm1GJyRW3oX/uAEYcNW+bIzoxZt27FrbEK7WIh+xJA
+         RXmR3WaG+5EhaEh1e2b+1pkQOlPFk1iyeHfviyHw5W5zEn9ETTV0zem0AxM87zh/bT
+         cs0YeJBVoaABqmURGJekCxdGctBE24/IN8IFrcpDuHN2bD4LD6vC3DSy+7pCv5sV6e
+         Pd1RK3W98kKkGfEPXKTtxvz2EjvBS+c7RmQ6kaZtQEEg/iFgD+pyzrrdtg+sPM9J6Y
+         PsJKjp0rU1poA==
+Date:   Tue, 6 Sep 2022 16:41:58 +0100
+From:   Lee Jones <lee@kernel.org>
+To:     Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+Cc:     Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@collabora.com
+Subject: Re: [PATCH 4/6] dt-bindings: mfd: syscon: Add rk3588 QoS register
+ compatible
+Message-ID: <YxdqRpysLtPRh02s@google.com>
+References: <20220831182629.79255-1-sebastian.reichel@collabora.com>
+ <20220831182629.79255-5-sebastian.reichel@collabora.com>
+ <4707456.3daJWjYHZt@diego>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <4707456.3daJWjYHZt@diego>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -49,97 +61,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Date: Tue, 6 Sep 2022 15:54:50 +0100
-> From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+On Mon, 05 Sep 2022, Heiko Stübner wrote:
+
+> Hi Sebastian,
 > 
-> On Tue, Sep 06, 2022 at 04:25:49PM +0200, Mark Kettenis wrote:
-> > > Date: Tue, 6 Sep 2022 22:53:47 +0900
-> > > From: Hector Martin <marcan@marcan.st>
-> > > 
-> > > I agree that this is something to think about (I was about to reply on
-> > > the subject).
-> > > 
-> > > I can think of two ways: using `reg` for the key name, but that feels
-> > > icky since it's ASCII and not *really* a register number/address, or
-> > > something like this:
-> > > 
-> > > gpio@0 {
-> > > 	apple,smc-key-base = "gP00";
-> > > 	...
-> > > }
-> > > 
-> > > gpio@1 {
-> > > 	apple,smc-key-base = "gp00";
-> > > 	...
-> > > }
+> Am Mittwoch, 31. August 2022, 20:26:27 CEST schrieb Sebastian Reichel:
+> > Document rk3588 compatible for QoS registers.
 > > 
-> > This would still require us to add a (one-cell) "reg" property and
-> > would require adding the appropriate "#address-cells" and
-> > "#size-cells" properties to the SMC node.
+> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 > 
-> Yes, and at that point, as I suggested, it probably would be better
-> to use:
-> 
-> 	#address-cells = <1>;
-> 	#size-cells = <0>;
-> 
-> 	gpio@67503030 {
-> 		reg = <0x67503030>;
-> 	};
-> 
-> 	gpio@67703030 {
-> 		reg = <0x67703030>;
-> 	};
-> 
-> Then the "reg" has a meaning that is directly related to the SMC.
-> 
-> > > But this ties back to the device enumeration too, since right now the DT
-> > > does not drive that (we'd have to add the subdevice to the mfd subdevice
-> > > list somehow anyway, if we don't switch to compatibles).
-> > > 
-> > > I'd love to hear Rob's opinion on this one, and also whether the
-> > > existing Linux and OpenBSD code would currently find gpio@0 {} instead
-> > > of gpio {} for backwards compat.
+> change looks good, but this is a mfd-binding. So while the rest is for me
+> to apply, for the mfd syscon we need either Lee to apply it, or an Ack
+> from him for me to pick it up.
+
+This patch is not in my inbox.
+
+Would you mind resending it to this inbox please?
+
+> > ---
+> >  Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
 > > 
-> > The OpenBSD driver does a lookup by name and the "@0" is part of that
-> > name.  So that would break backwards compat.
+> > diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
+> > index c10f0b577268..5369a56b8be1 100644
+> > --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
+> > +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
+> > @@ -59,6 +59,7 @@ properties:
+> >                - rockchip,rk3368-qos
+> >                - rockchip,rk3399-qos
+> >                - rockchip,rk3568-qos
+> > +              - rockchip,rk3588-qos
+> >                - samsung,exynos3-sysreg
+> >                - samsung,exynos4-sysreg
+> >                - samsung,exynos5-sysreg
+> > 
 > 
-> Oh, that's annoying - and is a different behaviour to Linux.
 > 
-> On Linux, we only look at the node name up to the @ when matching (see
-> of_node_name_eq() in drivers/of/base.c, so it doesn't matter to Linux
-> what follows the @ when you try to look up a node named "gpio" - you'll
-> find gpio@anythingyoulike.
-
-So maybe I should change our code to match what Linux does.  OpenBSD
-7.2 is scheduled for release on November 1st, and I can probably get
-that change in quickly.  If we can hold off updating the device trees
-in the Asahi installer until then the transition should be smooth
-enough.
-
-> > Maybe just name the slave GPIO controller "gpio-slave"?  If we add
-> > compatibles, the compatibles for the nodes should propbably be
-> > different such that we can switch to do a lookup by compatible?
 > 
-> I don't think the DT folk would be happy with "gpio-slave" because
-> node names are supposed to be generic.
-
-I don't think that rule applies to "named" sub-nodes like this where
-the name is actually significant.  
-
-> Also, "slave" probably isn't a good choice of name in this modern
-> era given past history.
-
-Yes, we don't have to follow Apple's terminology here.
-
-> Rather than the above, we could use "reg" to indicate which GPIO
-> controller we're talking about, and lookup the reg value in a table
-> to give the key. So gpio@0, reg=<0> => gP00, gpio@1, reg=<1> => gp00.
-> gpio@2, reg=<2> => whatever next.
 > 
-> That sounds like it won't break the existing OpenBSD.
-> 
-> -- 
-> RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-> FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
-> 
+
+-- 
+Lee Jones [李琼斯]
