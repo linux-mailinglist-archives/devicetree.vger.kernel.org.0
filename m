@@ -2,424 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D07D25AE4C1
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 11:51:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B1115AE4E5
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 11:59:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239409AbiIFJuf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 05:50:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41882 "EHLO
+        id S233437AbiIFJ75 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 05:59:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239318AbiIFJuK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 05:50:10 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 715E1786C0
-        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 02:49:51 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id bq9so1676169wrb.4
-        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 02:49:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=Q9bzmF3ZoiraH8bSCm3RFyfs5y83CCLS0cNFcKgRys4=;
-        b=KdK4qwT0irjOT2AQeXx/5UpyUeahzWzRRlGp1f3qAcdBjQ3PoHtX2lmiC8yJeFVeWl
-         l51ATIXK590R5ssFIRueUCRmSw6uRbub5TPnNIwjRFCKVb7B316cdKuCfGdieqB4Xt6m
-         3DxlUcYxxmFktBI1mXDxUFIe/tcZ5I3W+IWRSwmmtOsq1D6O+Nc3zUU7iFyKa/S0HxTt
-         M6lYX5jnvxtbFd4WRPIkFYElnbYwgKjtTdydPsoITThKUQGBWA6Wa5qOj5hTeiSsE77e
-         sz7rDf/sw8N6BvEqZzXOb70NsZFhGpae/kpBql8JRT5tM4BU/tInO3LzSIzlYW9ONROY
-         peqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=Q9bzmF3ZoiraH8bSCm3RFyfs5y83CCLS0cNFcKgRys4=;
-        b=t5Soq5g6UbX9OvEX/28kmm2CKx1mKKaaOS5dGtXq2yojJfOFi8epQKRp4HkrH/DZgW
-         +pRaPU0EM1kJi6ij5csNnwFELekIUKQvtxoq54hDnaF8+Z3C54mE3NV1xS7htxhg090R
-         U+k/15SbDQTm4YpvSy1j/s5ubKgvSSPxKQzZJd36WSElwi487lv1SBgpr8IHiLGkDj0y
-         shKmyPWDYg85VF/rDaATMT2DQQIsyIUbaCNrYv3rw+fRxzypdJU9G3BV2KX9913qDHDj
-         hUeRf6Miw7JP8cuFkJgZzRH7rHDZSwC5epkPpObEXYg0q67YvVvy9meaSdMyBL3ybZEh
-         azug==
-X-Gm-Message-State: ACgBeo0LpTP9rIt5OSq4ySuiai4EPloRD3E6HKHjR6l/noCHyQ5XXKuG
-        +GOOOOhYlqKRRGBCOFvkgH5Vig==
-X-Google-Smtp-Source: AA6agR4+Twzcd6vBm/mPzYR2jsCd4XsMTcWdwqeWbofop1Tcdw0vvcLYU8XtK5OByIufbNKXiaYoOg==
-X-Received: by 2002:adf:e19b:0:b0:225:448c:9ba8 with SMTP id az27-20020adfe19b000000b00225448c9ba8mr26945008wrb.532.1662457789169;
-        Tue, 06 Sep 2022 02:49:49 -0700 (PDT)
-Received: from blmsp (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id co18-20020a0560000a1200b0021f15514e7fsm14587231wrb.0.2022.09.06.02.49.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Sep 2022 02:49:48 -0700 (PDT)
-Date:   Tue, 6 Sep 2022 11:49:47 +0200
-From:   Markus Schneider-Pargmann <msp@baylibre.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Fabien Parent <parent.f@gmail.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Alexandre Bailon <abailon@baylibre.com>,
-        Fabien Parent <fparent@baylibre.com>
-Subject: Re: [PATCH v3 2/4] soc: mediatek: Add support of WAY_EN operations
-Message-ID: <20220906094947.ghfy2tj4bj4kaule@blmsp>
-References: <20220822144303.3438467-1-msp@baylibre.com>
- <20220822144303.3438467-3-msp@baylibre.com>
- <36dde9aa-b6ea-7194-c1bc-94d52c02649b@gmail.com>
+        with ESMTP id S233235AbiIFJ74 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 05:59:56 -0400
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2122.outbound.protection.outlook.com [40.107.21.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B67B220E6;
+        Tue,  6 Sep 2022 02:59:54 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=O5LUCA6ooCgmOj+vUUW6aQT1phebP8IR3yZoBNlXRHemYYJj5x3//PWfYWXAW8T+jl5aDxzoRq32yBUCoEirR0XdmapleshwjBXFAGmNhG3bod7iu8V0g0FvJTD8531mEmTzWlsP1lvInWoZn1bBUcvQyajl+r6VdKAtvg7VPeDiRc0W9CdoWls2jyalrkuL3/LzbYV386fnDtFH/+S7KlfFbueBmSy1WrJBEPVwQ+wPhHenXjKv8LrU6K/OTAZw+lEPst2zxH5pWzOHWsvCQdvFE4rb2q9YPqLokDFe9bwd0dS2nyiCvdCNpNi4+VZ6B3wNxgouxZXtiYHs7Y99CQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=1qTdsNBB3DA3YjLALevkD2oULKMZ1/Cl4cylXohiiLc=;
+ b=FqGLiyvNqPiVVZM6UbGs3JF/Wa9vl9BhN0KxXXyAng8FX1tjnqpPNP94htcU7vB/5wjRABbDJL7geWdzTYajGlLxFY9T0r5q8uMqgpxfGTXJ/9b5nHMgTyFk+9Q+BYD+KfxGuYeluE7rmor57yjFcqoCAzIigHzMRwdLeFGarxWTvBLpxR/Pgxfd7DBpiXyeORUEN9K3+GCqYRbR/D8DMDnDKzeGTbhp9O0wIf02J1OYbpY5KbNJL1/mWb3IMS1Nj4zZO95da+sRpljcGq6JieFc+Ed8QJtfjcYYeJRLmx+UNC2CkHTAhViJ2LRZiEpZv6CeL4HRLAexLNZhMrF+ww==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 131.228.2.8) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=nokia.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=nokia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nokia.onmicrosoft.com;
+ s=selector1-nokia-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1qTdsNBB3DA3YjLALevkD2oULKMZ1/Cl4cylXohiiLc=;
+ b=CcmQuQ72V8uRe38lRC2s9mdAdbsnPZVxEqLz7OT7XQ3t51W7pJQ5zCLYDRKpHjDAGCX1t/qOOJGcwTww8Lpzseoe59b5PkPDS363xQ/ABKa+U5c+l4n0tyEFtwp6N7b3OBa8lERw0rjOHHSkUTCy6aC1oNkH/Zz+IqQ4M9X8bJ0=
+Received: from AM5PR0701CA0017.eurprd07.prod.outlook.com
+ (2603:10a6:203:51::27) by VI1PR0701MB6893.eurprd07.prod.outlook.com
+ (2603:10a6:800:196::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.12; Tue, 6 Sep
+ 2022 09:59:52 +0000
+Received: from AM7EUR03FT033.eop-EUR03.prod.protection.outlook.com
+ (2603:10a6:203:51:cafe::cd) by AM5PR0701CA0017.outlook.office365.com
+ (2603:10a6:203:51::27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.12 via Frontend
+ Transport; Tue, 6 Sep 2022 09:59:52 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 131.228.2.8)
+ smtp.mailfrom=nokia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nokia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nokia.com designates
+ 131.228.2.8 as permitted sender) receiver=protection.outlook.com;
+ client-ip=131.228.2.8; helo=fihe3nok0734.emea.nsn-net.net; pr=C
+Received: from fihe3nok0734.emea.nsn-net.net (131.228.2.8) by
+ AM7EUR03FT033.mail.protection.outlook.com (100.127.140.129) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5588.10 via Frontend Transport; Tue, 6 Sep 2022 09:59:51 +0000
+Received: from ulegcparamis.emea.nsn-net.net (ulegcparamis.emea.nsn-net.net [10.151.74.146])
+        by fihe3nok0734.emea.nsn-net.net (GMO) with ESMTP id 2869xo1s000637;
+        Tue, 6 Sep 2022 09:59:50 GMT
+From:   Alexander A Sverdlin <alexander.sverdlin@nokia.com>
+To:     devicetree@vger.kernel.org
+Cc:     Alexander Sverdlin <alexander.sverdlin@nokia.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] of: irq: Report individual failures in of_irq_init()
+Date:   Tue,  6 Sep 2022 11:59:41 +0200
+Message-Id: <20220906095943.60296-1-alexander.sverdlin@nokia.com>
+X-Mailer: git-send-email 2.10.2
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <36dde9aa-b6ea-7194-c1bc-94d52c02649b@gmail.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: df793356-c050-43d9-59ae-08da8fee8acb
+X-MS-TrafficTypeDiagnostic: VI1PR0701MB6893:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 6ExtY5JXX9TjDS+V6HB6E7x41IOVzf6Ek05D9RG2bRs0E0dvoQgX4PD8gcXmlXAFBn8YgeytaLGwZ5VwGOtZt9lR3t//jG9uTVLuwSJ+OniBOrbXAldu55SdZwDZzC0sCypoX7oOHaj6mHNLlJlSyViQdEeIWexSIbYH0qcGnvPLes3bICJx8GWLfJkBVNjAgrk4LBuuykTg99/DDiD+PgP+OyVCkD1IeZbEg4sXK2UwfFiQueAHMn6gBMHjVGJHym4jGF+tK7Hy5OVG22PbBzdE1Z34nUW2qjBHWdosgoPy3kt3cyVCI9+Kp8FFoz8hNlEPlXSUPcpgJp6NJtD+Vwho1QIbbes55q5PfZKhfdYOdi6yv1b1z1OfmTTHy9ax5HUdsOycRcP3oamw3x4mlb3mbZmcZrlhGQPdgP8at0Pfi8D1GtaT6EB2RWu18TimKDLGoSoSxaksRFyA1zWGzvQ16CSrhCwzZf3v91xF3MGXOB4I4wEGUQHE09Y1hOIrPX4CELkII2nmK9bOqubErrzvnzAtU4AL/sX1vWzuSjdQlJfrGK3iwO+QdFWJJQan93p/9bVy1eeyxtJCDRf96ILnGsEZ4nKEIZzvIFJFiUgITljgZV/i1b7n4zhUrTbJFlLLuSyxKLlVYtsAkCS78SkMpcBk1I+Ozg9XUmCR1Y740x2c3/bIX4kwu5YZqKf7ZBEEoGQ3d7BKf891YixGa57eM71LtBBxKP1Pn1AD/9jln7/GA5QjBDVaSk5sB9Hlk0qGdvM1GRTero+aagdGz4lnh3eExrZSqKQfl6vS8WaqiU2lb6PtuDr2K2f1Sxk39yOA6v6eQfMRA9zU1DMpnw==
+X-Forefront-Antispam-Report: CIP:131.228.2.8;CTRY:FI;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:fihe3nok0734.emea.nsn-net.net;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230016)(4636009)(396003)(346002)(376002)(136003)(39860400002)(36840700001)(46966006)(40470700004)(81166007)(356005)(82960400001)(36860700001)(82740400003)(40460700003)(4326008)(8676002)(70206006)(70586007)(316002)(82310400005)(6916009)(54906003)(2906002)(40480700001)(5660300002)(8936002)(1076003)(2616005)(186003)(83380400001)(336012)(47076005)(41300700001)(478600001)(6666004)(26005)(36756003)(86362001)(557034005)(36900700001);DIR:OUT;SFP:1102;
+X-OriginatorOrg: nokia.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0701MB6893
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,FORGED_SPF_HELO,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Matthias,
+From: Alexander Sverdlin <alexander.sverdlin@nokia.com>
 
-On Mon, Aug 22, 2022 at 06:17:58PM +0200, Matthias Brugger wrote:
-> 
-> 
-> On 22/08/2022 16:43, Markus Schneider-Pargmann wrote:
-> > From: Alexandre Bailon <abailon@baylibre.com>
-> > 
-> > This updates the power domain to support WAY_EN operations. These
-> > operations enable a path between different units of the chip and are
-> > labeled as 'way_en' in the register descriptions.
-> > 
-> > This operation is required by the mt8365 for the MM power domain.
-> > 
-> > Signed-off-by: Alexandre Bailon <abailon@baylibre.com>
-> > Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> > ---
-> > 
-> > Notes:
-> >      Changes in v3:
-> >      - Separated the way_en functions for clarity
-> >      - Added some checks for infracfg_nao
-> >      Changes in v2:
-> >      - some minor style fixes.
-> >      - Renamed 'wayen' to 'way_en' to clarify the meaning
-> >      - Updated commit message
-> > 
-> >   drivers/soc/mediatek/mtk-pm-domains.c | 162 +++++++++++++++++++++-----
-> >   drivers/soc/mediatek/mtk-pm-domains.h |  28 +++--
-> >   2 files changed, 149 insertions(+), 41 deletions(-)
-> > 
-> > diff --git a/drivers/soc/mediatek/mtk-pm-domains.c b/drivers/soc/mediatek/mtk-pm-domains.c
-> > index 9734f1091c69..c2cbe0de6aa1 100644
-> > --- a/drivers/soc/mediatek/mtk-pm-domains.c
-> > +++ b/drivers/soc/mediatek/mtk-pm-domains.c
-> > @@ -43,6 +43,7 @@ struct scpsys_domain {
-> >   	struct clk_bulk_data *clks;
-> >   	int num_subsys_clks;
-> >   	struct clk_bulk_data *subsys_clks;
-> > +	struct regmap *infracfg_nao;
-> >   	struct regmap *infracfg;
-> >   	struct regmap *smi;
-> >   	struct regulator *supply;
-> > @@ -117,26 +118,61 @@ static int scpsys_sram_disable(struct scpsys_domain *pd)
-> >   					MTK_POLL_TIMEOUT);
-> >   }
-> > -static int _scpsys_bus_protect_enable(const struct scpsys_bus_prot_data *bpd, struct regmap *regmap)
-> > +static int __scpsys_bus_protect_enable(const struct scpsys_bus_prot_data *bpd,
-> > +				       struct regmap *regmap)
-> > +{
-> > +	u32 val;
-> > +	u32 mask = bpd->bus_prot_mask;
-> > +	u32 sta_mask = bpd->bus_prot_sta_mask;
-> > +
-> > +	if (bpd->bus_prot_reg_update)
-> > +		regmap_set_bits(regmap, bpd->bus_prot_set, mask);
-> > +	else
-> > +		regmap_write(regmap, bpd->bus_prot_set, mask);
-> > +
-> > +	return regmap_read_poll_timeout(regmap, bpd->bus_prot_sta, val,
-> > +					(val & sta_mask) == sta_mask,
-> > +					MTK_POLL_DELAY_US, MTK_POLL_TIMEOUT);
-> > +}
-> > +
-> > +static int scpsys_bus_way_disable(const struct scpsys_bus_prot_data *bpd,
-> > +				  struct regmap *regmap,
-> > +				  struct regmap *ack_regmap)
-> > +{
-> > +	u32 val;
-> > +	u32 mask = bpd->bus_prot_mask;
-> > +	u32 sta_mask = bpd->bus_prot_sta_mask;
-> > +
-> > +	if (bpd->bus_prot_reg_update)
-> > +		regmap_clear_bits(regmap, bpd->bus_prot_set, mask);
-> > +	else
-> > +		regmap_write(regmap, bpd->bus_prot_set, mask);
-> > +
-> > +	if (bpd->ignore_clr_ack)
-> > +		return 0;
-> > +
-> > +	return regmap_read_poll_timeout(ack_regmap, bpd->bus_prot_sta, val,
-> > +					(val & sta_mask) == sta_mask,
-> > +					MTK_POLL_DELAY_US, MTK_POLL_TIMEOUT);
-> > +}
-> > +
-> > +static int _scpsys_bus_protect_enable(const struct scpsys_bus_prot_data *bpd,
-> > +				      struct regmap *regmap, struct regmap *infracfg_nao)
-> >   {
-> >   	int i, ret;
-> >   	for (i = 0; i < SPM_MAX_BUS_PROT_DATA; i++) {
-> > -		u32 val, mask = bpd[i].bus_prot_mask;
-> > -
-> > -		if (!mask)
-> > +		if (!bpd[i].bus_prot_mask)
-> >   			break;
-> > -		if (bpd[i].bus_prot_reg_update)
-> > -			regmap_set_bits(regmap, bpd[i].bus_prot_set, mask);
-> > +		if (bpd[i].way_en)
-> > +			ret = scpsys_bus_way_disable(&bpd[i], regmap, infracfg_nao);
-> >   		else
-> > -			regmap_write(regmap, bpd[i].bus_prot_set, mask);
-> > -
-> > -		ret = regmap_read_poll_timeout(regmap, bpd[i].bus_prot_sta,
-> > -					       val, (val & mask) == mask,
-> > -					       MTK_POLL_DELAY_US, MTK_POLL_TIMEOUT);
-> > -		if (ret)
-> > +			ret = __scpsys_bus_protect_enable(&bpd[i], regmap);
-> > +		if (ret) {
-> > +			pr_err("%s %d %d\n", __PRETTY_FUNCTION__, __LINE__, ret);
-> >   			return ret;
-> > +		}
-> >   	}
-> >   	return 0;
-> > @@ -146,37 +182,71 @@ static int scpsys_bus_protect_enable(struct scpsys_domain *pd)
-> >   {
-> >   	int ret;
-> > -	ret = _scpsys_bus_protect_enable(pd->data->bp_infracfg, pd->infracfg);
-> > +	ret = _scpsys_bus_protect_enable(pd->data->bp_infracfg,
-> > +					 pd->infracfg, pd->infracfg_nao);
-> >   	if (ret)
-> >   		return ret;
-> > -	return _scpsys_bus_protect_enable(pd->data->bp_smi, pd->smi);
-> > +	return _scpsys_bus_protect_enable(pd->data->bp_smi, pd->smi, NULL);
-> > +}
-> > +
-> > +static int __scpsys_bus_protect_disable(const struct scpsys_bus_prot_data *bpd,
-> > +					struct regmap *regmap)
-> > +{
-> > +	u32 val;
-> > +	u32 mask = bpd->bus_prot_mask;
-> > +	u32 sta_mask = bpd->bus_prot_sta_mask;
-> > +
-> > +	if (bpd->bus_prot_reg_update)
-> > +		regmap_clear_bits(regmap, bpd->bus_prot_clr, mask);
-> > +	else
-> > +		regmap_write(regmap, bpd->bus_prot_clr, mask);
-> > +
-> > +	if (bpd->ignore_clr_ack)
-> > +		return 0;
-> > +
-> > +	return regmap_read_poll_timeout(regmap, bpd->bus_prot_sta, val,
-> > +					!(val & sta_mask), MTK_POLL_DELAY_US,
-> > +					MTK_POLL_TIMEOUT);
-> > +}
-> > +
-> > +static int scpsys_bus_way_enable(const struct scpsys_bus_prot_data *bpd,
-> > +				 struct regmap *regmap,
-> > +				 struct regmap *ack_regmap)
-> > +{
-> > +	u32 val;
-> > +	u32 mask = bpd->bus_prot_mask;
-> > +	u32 sta_mask = bpd->bus_prot_sta_mask;
-> > +
-> > +	if (bpd->bus_prot_reg_update)
-> > +		regmap_set_bits(regmap, bpd->bus_prot_clr, mask);
-> > +	else
-> > +		regmap_write(regmap, bpd->bus_prot_clr, mask);
-> > +
-> > +	return regmap_read_poll_timeout(ack_regmap, bpd->bus_prot_sta, val,
-> > +					(val & sta_mask) == sta_mask,
-> > +					MTK_POLL_DELAY_US, MTK_POLL_TIMEOUT);
-> >   }
-> >   static int _scpsys_bus_protect_disable(const struct scpsys_bus_prot_data *bpd,
-> > -				       struct regmap *regmap)
-> > +				       struct regmap *regmap,
-> > +				       struct regmap *infracfg_nao)
-> >   {
-> >   	int i, ret;
-> >   	for (i = SPM_MAX_BUS_PROT_DATA - 1; i >= 0; i--) {
-> > -		u32 val, mask = bpd[i].bus_prot_mask;
-> > -
-> > -		if (!mask)
-> > +		if (!bpd[i].bus_prot_mask)
-> >   			continue;
-> > -		if (bpd[i].bus_prot_reg_update)
-> > -			regmap_clear_bits(regmap, bpd[i].bus_prot_clr, mask);
-> > +		if (bpd[i].way_en)
-> > +			ret = scpsys_bus_way_enable(&bpd[i], regmap,
-> > +						    infracfg_nao);
-> >   		else
-> > -			regmap_write(regmap, bpd[i].bus_prot_clr, mask);
-> > -
-> > -		if (bpd[i].ignore_clr_ack)
-> > -			continue;
-> > -
-> > -		ret = regmap_read_poll_timeout(regmap, bpd[i].bus_prot_sta,
-> > -					       val, !(val & mask),
-> > -					       MTK_POLL_DELAY_US, MTK_POLL_TIMEOUT);
-> > -		if (ret)
-> > +			ret = __scpsys_bus_protect_disable(&bpd[i], regmap);
-> > +		if (ret) {
-> > +			pr_err("%s %d %d\n", __PRETTY_FUNCTION__, __LINE__, ret);
-> >   			return ret;
-> > +		}
-> >   	}
-> >   	return 0;
-> > @@ -186,11 +256,12 @@ static int scpsys_bus_protect_disable(struct scpsys_domain *pd)
-> >   {
-> >   	int ret;
-> > -	ret = _scpsys_bus_protect_disable(pd->data->bp_smi, pd->smi);
-> > +	ret = _scpsys_bus_protect_disable(pd->data->bp_smi, pd->smi, NULL);
-> >   	if (ret)
-> >   		return ret;
-> > -	return _scpsys_bus_protect_disable(pd->data->bp_infracfg, pd->infracfg);
-> > +	return _scpsys_bus_protect_disable(pd->data->bp_infracfg,
-> > +			pd->infracfg, pd->infracfg_nao);
-> >   }
-> >   static int scpsys_regulator_enable(struct regulator *supply)
-> > @@ -294,6 +365,21 @@ static int scpsys_power_off(struct generic_pm_domain *genpd)
-> >   	return 0;
-> >   }
-> > +static bool scpsys_bp_infracfg_has_way_en(const struct scpsys_bus_prot_data *bpd)
-> > +{
-> > +	int i;
-> > +
-> > +	for (i = 0; i < SPM_MAX_BUS_PROT_DATA; i++) {
-> > +		if (!bpd[i].bus_prot_mask)
-> > +			break;
-> 
-> So MT8365_POWER_DOMAIN_MM will return false as the first member of
-> bp_infracfg is BUS_PROT_WR(...)
+Rewrite pr_debug() as pr_err() to faciliate debugging.
 
-I am not sure I understand what you mean. Why should it break out of the
-loop if the first member is a BUS_PROT_WR()? BUS_PROT_WR() sets a mask
-as well which is checked here exactly the same way as is done in
-_scpsys_bus_protect_enable() even before this patch.
+This change was inspired by a long lasting debugging of the
+octeon_irq_init_ciu() which fails completely silently and leaves the
+interrupt controller half-way configured which in turn had very non-obvious
+effects.
 
-This is only a loop condition. Actually I can move it into the loop
-header as well. Either you define SPM_MAX_BUS_PROT_DATA fields or you
-have to exit if you find a field that is empty, basically the mask not
-being set.
+Signed-off-by: Alexander Sverdlin <alexander.sverdlin@nokia.com>
+---
+ drivers/of/irq.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-> 
-> Apart from that, why don't you use a CAPS to acheive the same?
-> 
-> > +
-> > +		if (bpd[i].way_en)
-> > +			return true;
-> > +	}
-> > +
-> > +	return false;
-> > +}
-> > +
-> >   static struct
-> >   generic_pm_domain *scpsys_add_one_domain(struct scpsys *scpsys, struct device_node *node)
-> >   {
-> > @@ -364,6 +450,20 @@ generic_pm_domain *scpsys_add_one_domain(struct scpsys *scpsys, struct device_no
-> >   			return ERR_CAST(pd->smi);
-> >   	}
-> > +	if (scpsys_bp_infracfg_has_way_en(pd->data->bp_smi)) {
-> > +		dev_err(scpsys->dev, "bp_smi does not support WAY_EN\n");
-> 
-> Do we really need to check the correctness of the driver data at runtime?
+diff --git a/drivers/of/irq.c b/drivers/of/irq.c
+index d22f605..45e4392 100644
+--- a/drivers/of/irq.c
++++ b/drivers/of/irq.c
+@@ -586,12 +586,12 @@ void __init of_irq_init(const struct of_device_id *matches)
+ 
+ 			of_node_set_flag(desc->dev, OF_POPULATED);
+ 
+-			pr_debug("of_irq_init: init %pOF (%p), parent %p\n",
+-				 desc->dev,
+-				 desc->dev, desc->interrupt_parent);
+ 			ret = desc->irq_init_cb(desc->dev,
+ 						desc->interrupt_parent);
+ 			if (ret) {
++				pr_err("%s: Failed to init %pOF (%p), parent %p\n",
++				       __func__, desc->dev, desc->dev,
++				       desc->interrupt_parent);
+ 				of_node_clear_flag(desc->dev, OF_POPULATED);
+ 				kfree(desc);
+ 				continue;
+-- 
+2.10.2
 
-bp_smi is called without a infracfg_nao regmap. If we don't check it
-here, we need to make a check during bus protection operations. Last
-time I got a review to not do it during in the bus protection path.
-
-> 
-> > +		return ERR_PTR(-EINVAL);
-> > +	}
-> > +
-> > +	pd->infracfg_nao = syscon_regmap_lookup_by_phandle_optional(
-> > +		node, "mediatek,infracfg_nao");
-> 
-> Not in the binding description.
-
-Thanks, I will fix that for the next version.
-
-> 
-> > +	if (IS_ERR(pd->infracfg_nao)) {
-> > +		if (scpsys_bp_infracfg_has_way_en(pd->data->bp_infracfg))
-> > +			return ERR_CAST(pd->infracfg_nao);
-> > +
-> > +		pd->infracfg_nao = NULL;
-> > +	}
-> > +
-> >   	num_clks = of_clk_get_parent_count(node);
-> >   	if (num_clks > 0) {
-> >   		/* Calculate number of subsys_clks */
-> > diff --git a/drivers/soc/mediatek/mtk-pm-domains.h b/drivers/soc/mediatek/mtk-pm-domains.h
-> > index 7d3c0c36316c..974c68a1d89c 100644
-> > --- a/drivers/soc/mediatek/mtk-pm-domains.h
-> > +++ b/drivers/soc/mediatek/mtk-pm-domains.h
-> > @@ -41,23 +41,29 @@
-> >   #define SPM_MAX_BUS_PROT_DATA		6
-> > -#define _BUS_PROT(_mask, _set, _clr, _sta, _update, _ignore) {	\
-> > -		.bus_prot_mask = (_mask),			\
-> > -		.bus_prot_set = _set,				\
-> > -		.bus_prot_clr = _clr,				\
-> > -		.bus_prot_sta = _sta,				\
-> > -		.bus_prot_reg_update = _update,			\
-> > -		.ignore_clr_ack = _ignore,			\
-> > +#define _BUS_PROT(_mask, _sta_mask, _set, _clr, _sta, _update, _ignore, _way_en) {	\
-> > +		.bus_prot_mask = (_mask),				\
-> > +		.bus_prot_set = _set,					\
-> > +		.bus_prot_clr = _clr,					\
-> > +		.bus_prot_sta = _sta,					\
-> > +		.bus_prot_sta_mask = _sta_mask,				\
-> > +		.bus_prot_reg_update = _update,				\
-> > +		.ignore_clr_ack = _ignore,				\
-> > +		.way_en = _way_en,					\
-> >   	}
-> >   #define BUS_PROT_WR(_mask, _set, _clr, _sta)			\
-> > -		_BUS_PROT(_mask, _set, _clr, _sta, false, false)
-> > +		_BUS_PROT(_mask, _mask, _set, _clr, _sta, false, false, false)
-> >   #define BUS_PROT_WR_IGN(_mask, _set, _clr, _sta)		\
-> > -		_BUS_PROT(_mask, _set, _clr, _sta, false, true)
-> > +		_BUS_PROT(_mask, _mask, _set, _clr, _sta, false, true, false)
-> >   #define BUS_PROT_UPDATE(_mask, _set, _clr, _sta)		\
-> > -		_BUS_PROT(_mask, _set, _clr, _sta, true, false)
-> > +		_BUS_PROT(_mask, _mask, _set, _clr, _sta, true, false, false)
-> > +
-> > +#define BUS_PROT_WAY_EN(_en_mask, _sta_mask, _set, _sta)	\
-> > +		_BUS_PROT(_en_mask, _sta_mask, _set, _set, _sta, true, false, \
-> > +			  true)
-> >   #define BUS_PROT_UPDATE_TOPAXI(_mask)				\
-> >   		BUS_PROT_UPDATE(_mask,				\
-> > @@ -70,8 +76,10 @@ struct scpsys_bus_prot_data {
-> >   	u32 bus_prot_set;
-> >   	u32 bus_prot_clr;
-> >   	u32 bus_prot_sta;
-> > +	u32 bus_prot_sta_mask;
-> 
-> I'm not very happy with the naming. In the end we need an extra mask for bus
-> protection using WAY_EN. But right now I can't come up with a good name.
-
-I think the naming is good as it is a specific mask for the status
-register. bus_prot_mask is now basically only responsible for set and
-clr. Maybe renaming bus_prot_mask to bus_prot_set_clr_mask is better?
-
-Thanks,
-Markus
-
-> 
-> Regards,
-> Matthias
-> 
-> >   	bool bus_prot_reg_update;
-> >   	bool ignore_clr_ack;
-> > +	bool way_en;
-> >   };
-> >   /**
