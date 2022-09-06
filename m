@@ -2,99 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E596C5AE60E
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 12:58:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC0295AE6FB
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 13:55:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229534AbiIFK6F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 06:58:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35034 "EHLO
+        id S234263AbiIFLzH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 07:55:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233571AbiIFK6D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 06:58:03 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15597719B3
-        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 03:58:02 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id c10so2367903ljj.2
-        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 03:58:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=ORguQGJ+jcnqw8eowE0KKiCcX55E0FSXFsOOApHEpOM=;
-        b=U68Zh9mQBLzfJSdNR58ymOgPj/T4+G/zPlnyNdI/nsm3+1yMhbcmP9xrqAP3k3Xc+t
-         4IV9tCu2U9nBjgB0WNJbhmSuUd2omplTLqSUH+FG7OUD2mcrt03QINczFmQvuSHdFgn5
-         ngnf1ke/CQYXyBPlN7VCr5YWXXiUFXAtjaLXGB5D5uawKSwDNnZeOXAAC+ET+t9dzKYU
-         Pgz5Raxph4iLk2qqrfXPPMEkCK1ZLTI1H5R4NjODKXkWuyKDhkZHQnGvuJjvlRtFFc7b
-         cPOi4rwoqmiTZRtTk20f/ryqQomOAMIv++52KXlKxVk5VZdWI2Uy1b9lBTIxXAQyvClU
-         7w9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=ORguQGJ+jcnqw8eowE0KKiCcX55E0FSXFsOOApHEpOM=;
-        b=YEr6Ut4B82ADws7YzM3X6GwwGWYXJ/ZmZCV5gc/lHLauV//XHsytSXIcaID8HcQOpl
-         XbZdLxWWCHL0nqKjZHnA4Bet3tVJ1T1Y7v6pe8oIQwHT3KhfwhfGpeQZ58dA8kdohjW6
-         ji3b1ZuueoDpBNGXlksDhehXx+uLkR0399a9Fp0Fow4xdjWNr3ktdvtuuU6fc33R30r5
-         I+XOPd7G+IaCBIHx20Ujjg/Eb7WMeTvJHPw+LrFz9oWFR5zjiwxiFpKrDGGfd5OlMhu6
-         oabS2+9nzqj66vuxYM+vJgv24EqrHJuatIzh29+gkKrTS/c1vgR6g3S68x7thBwLq4j3
-         xtEA==
-X-Gm-Message-State: ACgBeo1BuuDWMTFiNTl4taub9myyBo+cufvG55/yum34yejXbQDrehWW
-        R4nTSDh0cz3FrdgUbuz7wtLrUslAgQZxuQ==
-X-Google-Smtp-Source: AA6agR7syjIYMu2DxjRvWa53god5653pNfvbu/mnSo4Wf8ca0qOupBU8ACKnZieein6B5857rZXlbA==
-X-Received: by 2002:a2e:bc10:0:b0:267:b34a:52e6 with SMTP id b16-20020a2ebc10000000b00267b34a52e6mr10145748ljf.292.1662461880397;
-        Tue, 06 Sep 2022 03:58:00 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id a4-20020a056512200400b0048b193041easm1658504lfb.209.2022.09.06.03.57.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Sep 2022 03:57:59 -0700 (PDT)
-Message-ID: <872bffe6-416e-0d15-5994-0cf80c2063b4@linaro.org>
-Date:   Tue, 6 Sep 2022 12:57:58 +0200
+        with ESMTP id S234166AbiIFLzG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 07:55:06 -0400
+X-Greylist: delayed 1037 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 06 Sep 2022 04:55:03 PDT
+Received: from mail.kapsi.fi (mail.kapsi.fi [IPv6:2001:67c:1be8::25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E6255C375;
+        Tue,  6 Sep 2022 04:55:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
+        s=20161220; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:
+        Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+        Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+        In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=vxGf31ifyf//71TFFbElG9Jl/12kbtji9QBfXgEQi5A=; b=KqmoGrLYdnNXt4KMWljC0My8+t
+        0NpCW+QDnp7a5maSVpfFrsRqAoGCEvwwkghgZKozFUGBwLj5TwmzBrcwBBILW7oLxzHHkcDklpuCx
+        ymntnCx2R16DodGc4vW5cJ1QKomU5rmsGMFkyU9P4m4gD23sEcpWaLYCKSw+ioKQh2UaQOz5fgfFU
+        fYmyC8wmacYeefDGI0jLAAyEfqrew/XjTCraKPQtluzrt5gZV393Nu9TyHq8idH+gTgEk9B0CeGAG
+        Ol7RP1L8npeHUynL2KyWsBaiLg7Il3Fx+eCLJ1Yi1oGGMrHwKV3GRteO/tUmUhaWazL19tg/M1ym1
+        7h3OjogA==;
+Received: from 91-158-25-70.elisa-laajakaista.fi ([91.158.25.70] helo=toshino.localdomain)
+        by mail.kapsi.fi with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <cyndis@kapsi.fi>)
+        id 1oVWKw-008BVO-Lq; Tue, 06 Sep 2022 14:01:46 +0300
+From:   Mikko Perttunen <cyndis@kapsi.fi>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>
+Cc:     Mikko Perttunen <mperttunen@nvidia.com>,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: [PATCH] arm64: tegra: Fix ranges for host1x nodes
+Date:   Tue,  6 Sep 2022 14:01:34 +0300
+Message-Id: <20220906110134.2312707-1-cyndis@kapsi.fi>
+X-Mailer: git-send-email 2.37.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v9 2/2] MAINTAINERS: Update fastrpc documentation file
- from txt to yaml
-Content-Language: en-US
-To:     Abel Vesa <abel.vesa@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Amol Maheshwari <amahesh@qti.qualcomm.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-remoteproc@vger.kernel.org
-References: <20220906103055.2089519-1-abel.vesa@linaro.org>
- <20220906103055.2089519-2-abel.vesa@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220906103055.2089519-2-abel.vesa@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 91.158.25.70
+X-SA-Exim-Mail-From: cyndis@kapsi.fi
+X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/09/2022 12:30, Abel Vesa wrote:
-> The documentation for fastrpc bingings is now YAML. So update the
-> MAINTAINERS file.
-> 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+From: Mikko Perttunen <mperttunen@nvidia.com>
 
-Abel, I sent you two messages about this patch that it is not
-bisectable. You did not respond to them, regarding maintainers entry, so
-I don't know what to think.
+The currently specified 'ranges' properties don't actually include
+all devices under the host1x bus on Tegra194 and Tegra234. Expand
+them appropriately.
 
-This must be squashed.
+Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
+---
+ arch/arm64/boot/dts/nvidia/tegra194.dtsi | 2 +-
+ arch/arm64/boot/dts/nvidia/tegra234.dtsi | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/nvidia/tegra194.dtsi b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
+index d0ed55e5c860..812f0177912f 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra194.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
+@@ -1863,7 +1863,7 @@ host1x@13e00000 {
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 
+-			ranges = <0x15000000 0x15000000 0x01000000>;
++			ranges = <0x14800000 0x14800000 0x02800000>;
+ 			interconnects = <&mc TEGRA194_MEMORY_CLIENT_HOST1XDMAR &emc>;
+ 			interconnect-names = "dma-mem";
+ 			iommus = <&smmu TEGRA194_SID_HOST1X>;
+diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+index 81a0f599685f..b8f56e2e6c0a 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+@@ -565,7 +565,7 @@ host1x@13e00000 {
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 
+-			ranges = <0x15000000 0x15000000 0x01000000>;
++			ranges = <0x14800000 0x14800000 0x02000000>;
+ 			interconnects = <&mc TEGRA234_MEMORY_CLIENT_HOST1XDMAR &emc>;
+ 			interconnect-names = "dma-mem";
+ 			iommus = <&smmu_niso1 TEGRA234_SID_HOST1X>;
+-- 
+2.37.0
+
