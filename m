@@ -2,135 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04BD05AE3BF
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 11:03:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FA195AE3CE
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 11:05:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239399AbiIFJDZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 05:03:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34266 "EHLO
+        id S239591AbiIFJFG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 05:05:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233294AbiIFJDY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 05:03:24 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A1234A12C
-        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 02:03:23 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id k10so1738702lfm.4
-        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 02:03:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=qKAHS8QOJPr7gTNEKi97bZ2RBqwyh0sayFIzXNeO7N8=;
-        b=FGQxGcqFByjtxDxOIs5PvfbJTQ9eEq9GcmSCWha7C0lIb2q3lUGFl8ZVz9wIQMdSJa
-         lKLX3QwZxiNNoY4coo1hyXGBH59d74JVFqtvc9j1LwObBXdArMyIB8MLVvaFTzJednbY
-         M7keFOSDLziyCZhusXNGJbJGnW8kr1y7K1tn+YjidvDyCgbGKxlSYliAegoCMHbHjrus
-         V2MiGMd4mKUvx4lTsndwKPYiBHHrdioq9buZK5XfdhdFz/LJgH8oJBMc8gMXy1RsZNSc
-         BdzVKv4dxX599HnYsmMJSptltzoEZCc0tZY0rmkBNLmHNP+YRtMG0KpeJ0BoW9sHHKGd
-         gXHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=qKAHS8QOJPr7gTNEKi97bZ2RBqwyh0sayFIzXNeO7N8=;
-        b=1gJd7QoaVSc612HwJ6+A2lzxlY156fgjDiqV11Z/DVAq8k3r/WqiW3lIhJwAPfafON
-         gspmfdUlsCO/2BW+NlgwwQTx+7OpYncKONbsoZlOFvrM4JgtW1zN60eoR72DzqL6c4kz
-         JZItk4z/YnR8/NLZb/c2OE5RNmNgskA3FXiw/lLRLy8M5M/JHv3daMd23/mI3Og9hxHW
-         kkVEGnF9BQdLmmCdhsHKVJlCQVZVeAV+/9rNFyOdQ6vmlsRvbO1ys0S6l8lZJpwiBgpQ
-         Slb4dVzvW49zEtSZYgk3E3e29RldpWxsh/ZO35/qGV8UcTTprI6fY7yaxBYrQ8BWxVXM
-         +tvg==
-X-Gm-Message-State: ACgBeo1HGxj7HWMbTcwn4tfqeaR3tI/ih129W57kQo7RcYTVzScD1PDq
-        bx44OXmbBfceuDZOr8MPjlHhLg==
-X-Google-Smtp-Source: AA6agR71TapACZZa68tF3V1Bts7FpSvEvhdkK84e8jhYmvFXx2UsXQ/vF3J0/lgxyibBVYn21QZF6Q==
-X-Received: by 2002:a05:6512:2805:b0:48b:78:6e91 with SMTP id cf5-20020a056512280500b0048b00786e91mr16482906lfb.569.1662455001421;
-        Tue, 06 Sep 2022 02:03:21 -0700 (PDT)
-Received: from [192.168.0.21] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id f12-20020a056512360c00b0049482adb3basm1601042lfs.63.2022.09.06.02.03.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Sep 2022 02:03:20 -0700 (PDT)
-Message-ID: <5d4abf52-17d5-343b-b771-ac87bc2cff07@linaro.org>
-Date:   Tue, 6 Sep 2022 11:03:19 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [PATCH v3 2/7] dt-bindings: remoteproc: qcom,q6v5: Move MSM8916
- to schema
-Content-Language: en-US
-To:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sireesh Kodali <sireeshkodali1@gmail.com>,
-        Luca Weiss <luca@z3ntu.xyz>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        with ESMTP id S239321AbiIFJFD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 05:05:03 -0400
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C998B1928A;
+        Tue,  6 Sep 2022 02:05:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=zD51EHbUMEGF34YrRuNppOWB4NaAsrvsQWAlBIvtq70=; b=WKZULGD3yfXwyVmbbYgw+9fy1Y
+        YPu5oQIPHhCQyZBY5eJLPtRD5DE/4LTd4R3pHzvTp18gSj8Lnj0hrBT3u77EYgUAu/9VpPw2Vm+Hu
+        vXBllKnTTILtAfDOzApwbLIzHe+Qnhjae7h78U9OQVq8Li0QZ1XPzj9gW3t4qIsAsNTUTyWL+8ymq
+        A25EvLzvxMHuJGyX6hbfyuHJf5twn9+56foueY+7KMd37iXQ7WFKAJKGQfl7hVNAHgwMhRnRyLyGo
+        d9K+x36Ipek1NL/pGvkbuN0wRaO9p1elxpXtR10UEzxnNxrNARQQKwVtNeiN6WnLXDhB9hk68QXKo
+        8gC85/pQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:34142)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1oVUVl-0003eF-S3; Tue, 06 Sep 2022 10:04:49 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1oVUVh-00088w-Rq; Tue, 06 Sep 2022 10:04:45 +0100
+Date:   Tue, 6 Sep 2022 10:04:45 +0100
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Mark Kettenis <mark.kettenis@xs4all.nl>,
+        krzysztof.kozlowski@linaro.org, arnd@arndb.de, lee@kernel.org,
+        linus.walleij@linaro.org, alyssa@rosenzweig.io,
+        asahi@lists.linux.dev, brgl@bgdev.pl, marcan@marcan.st,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+        sven@svenpeter.dev, krzysztof.kozlowski+dt@linaro.org,
         devicetree@vger.kernel.org
-References: <20220831134626.2803117-1-stephan.gerhold@kernkonzept.com>
- <20220831134626.2803117-3-stephan.gerhold@kernkonzept.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220831134626.2803117-3-stephan.gerhold@kernkonzept.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Subject: Re: [PATCH 1/6] dt-bindings: mfd: add binding for Apple Mac System
+ Management Controller
+Message-ID: <YxcNLU+KGEolrdfT@shell.armlinux.org.uk>
+References: <YxDL+cAx9kkZRL8K@shell.armlinux.org.uk>
+ <928ddeff-efac-920c-7bbf-dda35a942b93@linaro.org>
+ <YxDOpCq0vIlt4VNa@shell.armlinux.org.uk>
+ <2fedff34-6a20-f1ce-a756-2bd8671fcd52@linaro.org>
+ <YxDWG5dmzErhKIXw@shell.armlinux.org.uk>
+ <ef6c7248-1efa-5366-6bcd-900c5f10ccb2@linaro.org>
+ <YxDiBFIn6artUOZm@shell.armlinux.org.uk>
+ <CAL_Jsq+GCKisAVA0AfE=yWJYy18mAGQ7rY1sKGYraXv-berNSg@mail.gmail.com>
+ <d3cec3d22e464fa8@bloch.sibelius.xs4all.nl>
+ <20220902172808.GB52527-robh@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220902172808.GB52527-robh@kernel.org>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/08/2022 15:46, Stephan Gerhold wrote:
+On Fri, Sep 02, 2022 at 12:28:08PM -0500, Rob Herring wrote:
+> This one is actually pretty odd in that the child nodes don't have a 
+> compatible string which breaks the automagical probing.
 
-Thank you for your patch. There is something to discuss/improve.
+I don't think that is necessarily true, and I don't think it's true in
+this case.
 
-> +  qcom,halt-regs:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description:
-> +      Halt registers are used to halt transactions of various sub-components
-> +      within MSS.
-> +    items:
-> +      - items:
-> +          - description: phandle to TCSR syscon region
-> +          - description: offset to the Q6 halt register
-> +          - description: offset to the modem halt register
-> +          - description: offset to the nc halt register
-> +
-> +  memory-region:
-> +    items:
-> +      - description: MBA reserved region
-> +      - description: MPSS reserved region
-> +
-> +  firmware-name:
-> +    $ref: /schemas/types.yaml#/definitions/string-array
-> +    items:
-> +      - description: Name of MBA firmware
-> +      - description: Name of modem firmware
-> +
-> +  bam-dmux:
-> +    $ref: /schemas/net/qcom,bam-dmux.yaml#
-> +    description:
-> +      Qualcomm BAM Data Multiplexer (provides network interface to the modem)
-> +
-> +  smd-edge:
-> +    $ref: qcom,smd-edge.yaml#
-> +    description:
-> +      Qualcomm SMD subnode which represents communication edge, channels
-> +      and devices related to the DSP.
-> +
-> +    properties:
-> +      label:
-> +        enum:
-> +          - modem
-> +          - hexagon
+The SMC core driver instructs the MFD core to create devices for the
+individual functional items:
 
-This needs unevaluatedProperties:false. I will fix qcom,adsp.yaml which
-has similar problem.
+static const struct mfd_cell apple_smc_devs[] = {
+        {
+                .name = "macsmc-gpio",
+        },
+        {
+                .name = "macsmc-hid",
+        },
+        {
+                .name = "macsmc-power",
+        },
+        {
+                .name = "macsmc-reboot",
+        },
+        {
+                .name = "macsmc-rtc",
+        },
+};
 
-Best regards,
-Krzysztof
+Since MFD uses platform devices for these, they get all the normal
+functionality that these devices have, which include matching by
+device name ot the driver name, and udev events being appropriately
+triggered. As long as the platform drivers for these devices have the
+correct modalias lines, autoloading of the modules will work and the
+drivers will be correctly matched and probed.
+
+The Asahi kernel builds most of the platform support as modules,
+including these, so we know it works (if it didn't, then lots of
+module autoloading would be broken on non-DT platforms.)
+
+> > Again the separate nodes are there because the RTC and the reboot
+> > functionality are logically separate and handled by different MFD
+> > sub-drivers in Linux.
+> 
+> It's really a question of whether the subset of functionality is going 
+> to get reused on its own or has its own resources in DT. MFD bindings 
+> are done both ways.
+
+I think the current position on what to do about these is that everyone
+is looking for someone else to make a decision, and no one wants to!
+
+Firstly, I don't think that the number of properties in a node should
+have a bearing on the design of the DT binding - what should have a
+bearing is the logical partitioning of functionality.
+
+Mark suggests that it would take six months for OpenBSD to transition to
+some other description - for example, if we merged the nodes.
+
+Hector says that MacOS's firmware description has the nodes merged, but
+their description is a mess.
+
+The overall preference seems to be to keep the sub-nodes unless there
+is a strong technical reason not to.
+
+The feeling I am getting from the review is that there doesn't seem to
+be a strong technical reason to merge the nodes - there are desires and
+preferences, but nothing concrete.
+
+So at this point, I think it would make sense if I post a v2 with all
+the updates so far (sorry, given the long drawn out discussions on
+this, I've lost track of what changes have been made to the code, so
+I won't include a detailed change log.)
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
