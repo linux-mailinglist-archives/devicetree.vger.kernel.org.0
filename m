@@ -2,124 +2,245 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B933F5AEEAB
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 17:26:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D9DC5AEEB8
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 17:28:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239328AbiIFPZs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 11:25:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46384 "EHLO
+        id S233941AbiIFP1p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 11:27:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239432AbiIFPZR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 11:25:17 -0400
-Received: from mail-oa1-x34.google.com (mail-oa1-x34.google.com [IPv6:2001:4860:4864:20::34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30BEBBE4CE;
-        Tue,  6 Sep 2022 07:36:47 -0700 (PDT)
-Received: by mail-oa1-x34.google.com with SMTP id 586e51a60fabf-11eab59db71so28535268fac.11;
-        Tue, 06 Sep 2022 07:36:47 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=/kxQ4Wf8GnR3MVwBOujAJ+Hv9NvGQDMILNpayVx9ZUo=;
-        b=2SANE9NwV3Yzqba0zwxkhnKlSQahkYqxEAgljBH/INGryEp6ZN/cnszPr1QN0+5qk6
-         tW0WO2+y1gipJMk2KuDDL2ShZeX5uVMKP2+UuFxhoMWGkVV+b5SI24SWet1RuF3xuedz
-         nDI6wa4iPUVM5jaYmDd3JhhzfDYzWpo9em6eaPYnf9IkIod4893OQTrxSb0GhUzHNgmy
-         f+iT3akMa+BTPWBxT/SUQohB9N+npFRmb/47r1ulItomFSChgkX6n1oEs1hT0/HfuB1E
-         MBImmrd4juGIjItQ0yuNcUki4GXQMojCsZNMIEPqFtLm8Z0ri2+R+d4ZEt9VquJhILy8
-         K4pg==
-X-Gm-Message-State: ACgBeo3YvHMWahyN8mwpeqFL2wSvqXn1hL0mY7TMI/7ufmFCjfaBTglf
-        jXMxDg/gzKHvvNSVoXcgdQ==
-X-Google-Smtp-Source: AA6agR6/8rkfV5hK1hzRmCIqS5PFSgyizUYdaaaJmNYKCFgBxD4OCF+1PwIGz3teG7GN32hHgOxiaw==
-X-Received: by 2002:a05:6870:6314:b0:10b:9595:62db with SMTP id s20-20020a056870631400b0010b959562dbmr11632116oao.128.1662474912399;
-        Tue, 06 Sep 2022 07:35:12 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id a3-20020a056870a18300b001278a63bfc9sm2169288oaf.1.2022.09.06.07.35.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Sep 2022 07:35:11 -0700 (PDT)
-Received: (nullmailer pid 456502 invoked by uid 1000);
-        Tue, 06 Sep 2022 14:35:10 -0000
-Date:   Tue, 6 Sep 2022 09:35:10 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Lee Jones <lee@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        Richard Fitzgerald <rf@opensource.cirrus.com>,
-        Tim Harvey <tharvey@gateworks.com>,
-        Robert Jones <rjones@gateworks.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        - <patches@opensource.cirrus.com>,
-        Steve Twiss <stwiss.opensource@diasemi.com>,
-        Chris Zhong <zyw@rock-chips.com>,
-        Zhang Qing <zhangqing@rock-chips.com>,
-        Alistair Francis <alistair@alistair23.me>,
-        Amelie Delaunay <amelie.delaunay@foss.st.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Renner Berthing <kernel@esmil.dk>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH] dt-bindings: mfd: Add missing
- (unevaluated|additional)Properties on child nodes
-Message-ID: <20220906143510.GA454672-robh@kernel.org>
-References: <20220823145649.3118479-4-robh@kernel.org>
- <YxYH+POIURB9RO7T@google.com>
+        with ESMTP id S238862AbiIFP11 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 11:27:27 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D12A205F9;
+        Tue,  6 Sep 2022 07:38:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1662475117; x=1694011117;
+  h=subject:from:to:cc:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=eGlwV1W60OyjywuT+JtyuC8RgGJf3Lk2jwy3im1Vvvw=;
+  b=mdTAgDnZpLbB0AlDu9FCas+DViUFFtOrHndgMU8hkZYPKTLpW2pgmZs3
+   11ERY8bJPSz/z5GttSqbr6iSY9aWpvgmaoXiMkefsLWl5tJgKqOAwPLDI
+   khAQyJsbqELPbTkPs+o720IvdXX6bG+tenxT/QGe0zGAHs1hjArzwjBAX
+   Ikg9MhzBOmfWWgKaN8ZqJaUIiAeKHp50LSg+twr4iijw6K/oRgoibHGEC
+   tyK4rszX6ZVIrU2GyAP+xZyL2F7JmwxXXDCdMvudagohjfD6uoRjrXahF
+   ObRWjURz2fpXnprBKPLSYeYzjtF0hgdlM7KKP+RKB5S23Ok3tIh3f0+n/
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.93,294,1654552800"; 
+   d="scan'208";a="26020282"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 06 Sep 2022 16:37:05 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Tue, 06 Sep 2022 16:37:05 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Tue, 06 Sep 2022 16:37:05 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1662475025; x=1694011025;
+  h=from:to:cc:date:message-id:in-reply-to:references:
+   mime-version:content-transfer-encoding:subject;
+  bh=eGlwV1W60OyjywuT+JtyuC8RgGJf3Lk2jwy3im1Vvvw=;
+  b=jDZE/UmLv7ybxoJl9RQd8fPP81ei63EbZ3rrzHjpBL51L3HyviVK1n5C
+   rkLYNsw8dt9b9hCVmbS2r0cWZiuWTncpKCIIyWjaQScdmE7gpS/TkQIpd
+   nPSIfH23LG15ZaBUkIUky9EKqkw5V87f8sIRmHOuPCRQ6LIyzjRFqPw5U
+   T0jv372bqZhENctFcsUSPimZVMtrt0kjLOCz03kAfqqBrL7LhwbUuCJMV
+   2N3m5IZ8iqiumMp9HspBnZxViK2TMc4Ow8G/RRDPNv6VcIKDc9VqZ5Lvd
+   gtipL6F+JsBllGZj/vRZ/N7VyuLQOHHcOm2emzWDcUUVtD+xJuq9TFbVw
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.93,294,1654552800"; 
+   d="scan'208";a="26020281"
+Subject: Re: [PATCH V5 5/8] soc: imx: add i.MX8MP HDMI blk ctrl HDCP/HRV_MWR
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 06 Sep 2022 16:37:05 +0200
+Received: from steina-w.localnet (unknown [10.123.49.11])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 27CDA280056;
+        Tue,  6 Sep 2022 16:37:04 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de,
+        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, l.stach@pengutronix.de,
+        laurent.pinchart@ideasonboard.com, marex@denx.de,
+        m.felsch@pengutronix.de, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Peng Fan <peng.fan@nxp.com>
+Date:   Tue, 06 Sep 2022 16:37:04 +0200
+Message-ID: <2849448.e9J7NaK4W3@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20220822064536.3947512-6-peng.fan@oss.nxp.com>
+References: <20220822064536.3947512-1-peng.fan@oss.nxp.com> <20220822064536.3947512-6-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YxYH+POIURB9RO7T@google.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 05, 2022 at 03:37:15PM +0100, Lee Jones wrote:
-> On Tue, 23 Aug 2022, Rob Herring wrote:
-> 
-> > In order to ensure only documented properties are present, node schemas
-> > must have unevaluatedProperties or additionalProperties set to false
-> > (typically).
-> > 
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---
-> >  .../mfd/allwinner,sun6i-a31-prcm.yaml         | 40 +++++++++++++++++++
-> >  .../mfd/allwinner,sun8i-a23-prcm.yaml         | 10 +++++
-> >  .../bindings/mfd/cirrus,lochnagar.yaml        |  5 +++
-> >  .../devicetree/bindings/mfd/dlg,da9063.yaml   |  7 ++--
-> >  .../bindings/mfd/gateworks-gsc.yaml           |  5 ++-
-> >  .../bindings/mfd/maxim,max14577.yaml          |  1 +
-> >  .../bindings/mfd/maxim,max77843.yaml          |  1 +
-> >  .../bindings/mfd/rockchip,rk817.yaml          |  2 +
-> >  .../bindings/mfd/silergy,sy7636a.yaml         |  1 +
-> >  .../bindings/mfd/st,stm32-lptimer.yaml        |  4 ++
-> >  .../bindings/mfd/st,stm32-timers.yaml         |  3 ++
-> >  .../devicetree/bindings/mfd/st,stmfx.yaml     |  1 +
-> >  .../bindings/mfd/stericsson,ab8500.yaml       | 22 ++++++++++
-> >  .../devicetree/bindings/mfd/ti,tps65086.yaml  |  1 +
-> >  .../bindings/mfd/x-powers,axp152.yaml         |  1 +
-> >  15 files changed, 100 insertions(+), 4 deletions(-)
-> 
-> What are your plans for this set?
-> 
-> Want me to merge it?
+Hello,
 
-Yes, please.
+Am Montag, 22. August 2022, 08:45:33 CEST schrieb Peng Fan (OSS):
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> i.MX8MP HDMI supports HDCP and HRV_MWR(HDMI RX Video Memory Write Master
+> for RXRX validation), so add them.
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  drivers/soc/imx/imx8mp-blk-ctrl.c | 30 ++++++++++++++++++++++++++++++
+>  1 file changed, 30 insertions(+)
+> 
+> diff --git a/drivers/soc/imx/imx8mp-blk-ctrl.c
+> b/drivers/soc/imx/imx8mp-blk-ctrl.c index 6f983adcb47c..527d45d12a54 100644
+> --- a/drivers/soc/imx/imx8mp-blk-ctrl.c
+> +++ b/drivers/soc/imx/imx8mp-blk-ctrl.c
+> @@ -235,6 +235,13 @@ static void imx8mp_hdmi_blk_ctrl_power_on(struct
+> imx8mp_blk_ctrl *bc, regmap_set_bits(bc->regmap, HDMI_RTX_RESET_CTL0,
+> BIT(12));
+>  		regmap_clear_bits(bc->regmap, HDMI_TX_CONTROL0, BIT(3));
+>  		break;
+> +	case IMX8MP_HDMIBLK_PD_HDCP:
+> +		regmap_set_bits(bc->regmap, HDMI_RTX_CLK_CTL0, BIT(11));
+> +		break;
+> +	case IMX8MP_HDMIBLK_PD_HRV:
+> +		regmap_set_bits(bc->regmap, HDMI_RTX_CLK_CTL1, BIT(3) | 
+BIT(4) | BIT(5));
+> +		regmap_set_bits(bc->regmap, HDMI_RTX_RESET_CTL0, 
+BIT(15));
+> +		break;
+>  	default:
+>  		break;
+>  	}
+> @@ -283,6 +290,13 @@ static void imx8mp_hdmi_blk_ctrl_power_off(struct
+> imx8mp_blk_ctrl *bc, regmap_clear_bits(bc->regmap, HDMI_RTX_RESET_CTL0,
+> BIT(12));
+>  		regmap_clear_bits(bc->regmap, HDMI_RTX_CLK_CTL1, BIT(22) 
+| BIT(24));
+>  		break;
+> +	case IMX8MP_HDMIBLK_PD_HDCP:
+> +		regmap_clear_bits(bc->regmap, HDMI_RTX_CLK_CTL0, 
+BIT(11));
+> +		break;
+> +	case IMX8MP_HDMIBLK_PD_HRV:
+> +		regmap_clear_bits(bc->regmap, HDMI_RTX_RESET_CTL0, 
+BIT(15));
+> +		regmap_clear_bits(bc->regmap, HDMI_RTX_CLK_CTL1, BIT(3) 
+| BIT(4) |
+> BIT(5)); +		break;
+>  	default:
+>  		break;
+>  	}
+> @@ -365,6 +379,22 @@ static const struct imx8mp_blk_ctrl_domain_data
+> imx8mp_hdmi_domain_data[] = { .num_clks = 2,
+>  		.gpc_name = "hdmi-tx-phy",
+>  	},
+> +	[IMX8MP_HDMIBLK_PD_HRV] = {
+> +		.name = "hdmiblk-hrv",
+> +		.clk_names = (const char *[]){ "axi", "apb" },
+> +		.num_clks = 2,
+> +		.gpc_name = "hrv",
+> +		.path_names = (const char *[]){"hrv"},
+> +		.num_paths = 1,
+> +	},
+> +	[IMX8MP_HDMIBLK_PD_HDCP] = {
+> +		.name = "hdmiblk-hdcp",
+> +		.clk_names = (const char *[]){ "axi", "apb" },
+> +		.num_clks = 2,
+> +		.gpc_name = "hdcp",
+> +		.path_names = (const char *[]){"hdcp"},
+> +		.num_paths = 1,
+> +	},
+>  };
+> 
+>  static const struct imx8mp_blk_ctrl_data imx8mp_hdmi_blk_ctl_dev_data = {
 
-Rob
+Something is missing here. Iget the following error during boot:
+[    0.886211] Unable to handle kernel NULL pointer dereference at virtual 
+address 0000000000000000
+[    0.895043] Mem abort info:
+[    0.897841]   ESR = 0x0000000096000004
+[    0.901606]   EC = 0x25: DABT (current EL), IL = 32 bits
+[    0.906942]   SET = 0, FnV = 0
+[    0.910003]   EA = 0, S1PTW = 0
+[    0.913159]   FSC = 0x04: level 0 translation fault
+[    0.918054] Data abort info:
+[    0.920943]   ISV = 0, ISS = 0x00000004
+[    0.924791]   CM = 0, WnR = 0
+[    0.927761] [0000000000000000] user address but active_mm is swapper
+[    0.934157] Internal error: Oops: 96000004 [#1] PREEMPT SMP
+[    0.939749] Modules linked in:
+[    0.942813] CPU: 1 PID: 1 Comm: swapper/0 Not tainted 6.0.0-rc4-
+next-20220906+ #674 2c55fa642ba20b0dbb66c0e78dacc9ca96d5e733
+[    0.954099] Hardware name: TQ-Systems i.MX8MPlus TQMa8MPxL on MBa8MPxL (DT)
+[    0.961100] pstate: 60000005 (nZCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+[    0.968099] pc : kobject_set_name_vargs+0x10/0xd0
+[    0.972823] lr : dev_set_name+0x58/0x80
+[    0.976674] sp : ffff800009c7b860
+[    0.979997] x29: ffff800009c7b860 x28: ffff000002d728f8 x27: 
+0000000000000150
+[    0.987172] x26: 0000000000000009 x25: 0000000000000007 x24: 
+ffff800009ab8958
+[    0.994347] x23: ffff0000000a0000 x22: ffff800008eb77d8 x21: 
+ffff000000225410
+[    1.001524] x20: ffff800008eb7808 x19: 0000000000000000 x18: 
+0000000000000000
+[    1.008697] x17: 702d78742d696d64 x16: 682d6b6c62696d64 x15: 
+68203a656d616e3e
+[    1.015872] x14: 0000000000000000 x13: 70636468203a656d x12: 
+616e5f6370673e2d
+[    1.023047] x11: 61746164203a6c72 x10: 74632d6b6c622e30 x9 : 
+7274632d6b6c622e
+[    1.030222] x8 : 3030303063663233 x7 : 205d353039393738 x6 : 
+ffff800009a240e0
+[    1.037397] x5 : 00000000ffffffd0 x4 : ffff800009c7b920 x3 : 
+00000000ffffffd0
+[    1.044572] x2 : ffff800009c7b8d0 x1 : ffff80000936ca78 x0 : 
+0000000000000000
+[    1.051749] Call trace:
+[    1.054199]  kobject_set_name_vargs+0x10/0xd0
+[    1.058574]  dev_set_name+0x58/0x80
+[    1.062072]  imx8mp_blk_ctrl_probe+0x5c0/0x660
+[    1.066534]  platform_probe+0x64/0x100
+[    1.070297]  call_driver_probe+0x28/0x140
+[    1.074322]  really_probe+0xc0/0x334
+[    1.077909]  __driver_probe_device+0x84/0x144
+[    1.082284]  driver_probe_device+0x38/0x130
+[    1.086486]  __driver_attach+0xac/0x244
+[    1.090334]  bus_for_each_dev+0x6c/0xc0
+[    1.094184]  driver_attach+0x20/0x30
+[    1.097772]  bus_add_driver+0x174/0x244
+[    1.101622]  driver_register+0x74/0x120
+[    1.105474]  __platform_driver_register+0x24/0x30
+[    1.110197]  imx8mp_blk_ctrl_driver_init+0x18/0x20
+[    1.115009]  do_one_initcall+0x58/0x200
+[    1.118861]  do_initcalls+0x164/0x19c
+[    1.122534]  kernel_init_freeable+0x134/0x17c
+[    1.126909]  kernel_init+0x2c/0x150
+[    1.130411]  ret_from_fork+0x10/0x20
+[    1.134003] Code: a9bb7bfd 910003fd a90153f3 aa0003f3 (f9400000) 
+[    1.140127] ---[ end trace 0000000000000000 ]---
+
+Adding some debug out shows:
+[    0.866795] imx8mp-blk-ctrl 32fc0000.blk-ctrl: domain->power_dev: 0x0
+[    0.873257] imx8mp-blk-ctrl 32fc0000.blk-ctrl: data->name: hdmiblk-hdcp
+[    0.879905] imx8mp-blk-ctrl 32fc0000.blk-ctrl: data->gpc_name: hdcp
+
+AFAICS the power domains 'hrv' and 'hdcp' are missing in the 'hdmi_blk_ctrl: 
+blk-ctrl@32fc0000' node thus resulting in a NULL pointer from calling 
+dev_pm_domain_attach_by_name().
+
+Is there a patch I am missing.
+
+Best regards,
+Alexander
+
 
