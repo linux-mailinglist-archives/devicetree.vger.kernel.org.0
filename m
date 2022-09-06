@@ -2,103 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04E8E5AF71E
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 23:41:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4B945AF74A
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 23:50:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229920AbiIFVlI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 17:41:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37484 "EHLO
+        id S229461AbiIFVu1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 17:50:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55994 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229546AbiIFVlH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 17:41:07 -0400
-Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7AFE85FD5;
-        Tue,  6 Sep 2022 14:41:04 -0700 (PDT)
-Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-1279948d93dso11677550fac.10;
-        Tue, 06 Sep 2022 14:41:04 -0700 (PDT)
+        with ESMTP id S229780AbiIFVu1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 17:50:27 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7D9274BB9
+        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 14:50:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1662501024;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=zwvFhPvKtvilznQKajYnoXzh1pGf+L3B/vF7sjwMGQA=;
+        b=ENSy8A2aHMU25YrQBXaahVPAJ5CENy6SEnNTvGoVx/fuIZDIDljMbTT+NGZ0S71nO3s9Be
+        t0qAwoHvjTYopGfoyjpK3gVlhtl5wVThkaYdF9kkNAiL8KhkmqKTp2OKTaC/KeYQvSTSh7
+        g3z8RT/DlW4kYtcK9MoZkDbFa9xoa6o=
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com
+ [209.85.219.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-410-0_iju1w7MuOgP69AWxwkmA-1; Tue, 06 Sep 2022 17:50:23 -0400
+X-MC-Unique: 0_iju1w7MuOgP69AWxwkmA-1
+Received: by mail-qv1-f69.google.com with SMTP id g4-20020ad45424000000b004a9bb302c85so3637434qvt.22
+        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 14:50:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=message-id:date:subject:references:in-reply-to:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=ilmIFpp02DJKfy4hWzLv/HAXaykhKwVnxsnGzhzWDPs=;
-        b=t89n0BoI8jHYYRDj4clcL4l3vIu2y0RD/v6tR54awi44jouFChCkTvPmqykArJ01fg
-         5whFdvdYo7t6MQxkb7H4hjnl6RJ7iqasDf9/+2T8WAq/qJVb+nsCLWjkBvOAVEC3xXsu
-         GRTBFXk3o+dqkbktXpwOBtcbXokGm7TTXFimeYJjfnwwFZthXEB7U3nKT80joU+b1TVF
-         OUM/+gwLvitkWSwbmARl6KAyivYjSXYGvG8hmbG+BL76MZ3F84bbfnS4PvfZVGS953yV
-         pP2k8PW+si1JWwiQloskMiaHSeR0MaN2bbKIE1Qd9YE422RoYpwGVGgyz47b55lNoAkn
-         HoNA==
-X-Gm-Message-State: ACgBeo0s9z31GubTv6jJzlrwfulmp1Exyy37cIYZeyKVG9sLPhfzS9mf
-        m+HeMARwKPlkAxMDcVrTXQ==
-X-Google-Smtp-Source: AA6agR4UWMyFrZbMkGxOO4Lkk8XCHTaOdRfOr3JUxL7bjDehDbVxUjjoDVSMOKm+4qcR7U3b0mAJtQ==
-X-Received: by 2002:a05:6870:461a:b0:127:8ca9:21a7 with SMTP id z26-20020a056870461a00b001278ca921a7mr5043248oao.87.1662500463765;
-        Tue, 06 Sep 2022 14:41:03 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id i81-20020acaea54000000b00344aa3f17d9sm5881136oih.10.2022.09.06.14.41.01
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=zwvFhPvKtvilznQKajYnoXzh1pGf+L3B/vF7sjwMGQA=;
+        b=78rg2uKSlEsfD9uG+BreI3lSqZhlam0vTEDujU+tcIgj7MKwekt86HaRu6W+1SrT1b
+         kMEC2BW0MrgNSJU82WEaV5ynPTfYpqy30V23fryTihmMSx37dpRBcfzv3YFeevw8iyzo
+         7yxNpnUNFVCooOARZf/dOHxohYnNRdcfkEuKSDRVqTmwzpqPD5ihHh9zMHNtU1+gp8VW
+         RO8lvsWgV7nCdrNGVxeaG3EqZw+uSKXiOTqtuSVydGhaueDsHLwP2rX8gbV1ugQF+6JP
+         Ala/QNlzBBqODbU6Mv+20WKNZzRx0QkhyGPsxbi7NHZYgP8Ix1bT4Mn8e1Y8RlLX7SVg
+         tLTQ==
+X-Gm-Message-State: ACgBeo2rSxyfMIdPc2RPZl53EDOZkjG+dPYZ0PoyHt88v99jmlE9B18A
+        MjF5NKjghvlt1VnBAov0nUVTtWFCpagQaJw8t5+1lgbzFiliWHJkTzQTJnYnfx5R5qovVxHaiL6
+        3O4sJKIlP0sgNQtd2nXtkeg==
+X-Received: by 2002:ac8:5786:0:b0:343:3051:170d with SMTP id v6-20020ac85786000000b003433051170dmr588597qta.429.1662501023162;
+        Tue, 06 Sep 2022 14:50:23 -0700 (PDT)
+X-Google-Smtp-Source: AA6agR79T3LmyqmdTcNPv4LymbPlxF6iExv08J532N/Q2bCHBhnmUIrEyOP/O8n8G9aGclC2TQxQTQ==
+X-Received: by 2002:ac8:5786:0:b0:343:3051:170d with SMTP id v6-20020ac85786000000b003433051170dmr588584qta.429.1662501022944;
+        Tue, 06 Sep 2022 14:50:22 -0700 (PDT)
+Received: from halaneylaptop ([2600:1700:1ff0:d0e0::a])
+        by smtp.gmail.com with ESMTPSA id l3-20020ac80783000000b00342fcdc2d46sm11175488qth.56.2022.09.06.14.50.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Sep 2022 14:41:02 -0700 (PDT)
-Received: (nullmailer pid 1224961 invoked by uid 1000);
-        Tue, 06 Sep 2022 21:41:00 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Sergiu Moga <sergiu.moga@microchip.com>
-Cc:     mturquette@baylibre.com, jirislaby@kernel.org,
-        richard.genoud@gmail.com, claudiu.beznea@microchip.com,
-        krzysztof.kozlowski+dt@linaro.org, radu_nicolae.pirea@upb.ro,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        broonie@kernel.org, kavyasree.kotagiri@microchip.com,
-        linux-kernel@vger.kernel.org, sboyd@kernel.org,
-        linux-spi@vger.kernel.org, alexandre.belloni@bootlin.com,
-        tudor.ambarus@microchip.com, gregkh@linuxfoundation.org,
-        admin@hifiphile.com, linux-serial@vger.kernel.org, lee@kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        nicolas.ferre@microchip.com
-In-Reply-To: <20220906135511.144725-2-sergiu.moga@microchip.com>
-References: <20220906135511.144725-1-sergiu.moga@microchip.com> <20220906135511.144725-2-sergiu.moga@microchip.com>
-Subject: Re: [PATCH v2 01/13] spi: dt-bindings: atmel,at91rm9200-spi: Add DMA related properties
-Date:   Tue, 06 Sep 2022 16:41:00 -0500
-Message-Id: <1662500460.128889.1224960.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        Tue, 06 Sep 2022 14:50:22 -0700 (PDT)
+Date:   Tue, 6 Sep 2022 16:50:20 -0500
+From:   Andrew Halaney <ahalaney@redhat.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     krzysztof.kozlowski+dt@linaro.org, andersson@kernel.org,
+        devicetree@vger.kernel.org, agross@kernel.org,
+        linux-kernel@vger.kernel.org, dianders@chromium.org,
+        linux-arm-msm@vger.kernel.org, johan@kernel.org,
+        lgirdwood@gmail.com, konrad.dybcio@somainline.org,
+        robh+dt@kernel.org, broonie@kernel.org
+Subject: Re: [PATCH v2] regulator: dt-bindings: qcom,rpmh: Indicate
+ regulator-allow-set-load dependencies
+Message-ID: <20220906215020.igxpywsdlmzpt7fp@halaneylaptop>
+References: <20220906201959.69920-1-ahalaney@redhat.com>
+ <1662500460.139898.1224962.nullmailer@robh.at.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1662500460.139898.1224962.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 06 Sep 2022 16:55:00 +0300, Sergiu Moga wrote:
-> The DT nodes of the SPI IP's may contain DMA related properties so
-> make sure that the binding is able to properly validate those as
-> well by making it aware of these optional properties.
+On Tue, Sep 06, 2022 at 04:41:00PM -0500, Rob Herring wrote:
+> On Tue, 06 Sep 2022 15:19:59 -0500, Andrew Halaney wrote:
+> > For RPMH regulators it doesn't make sense to indicate
+> > regulator-allow-set-load without saying what modes you can switch to,
+> > so be sure to indicate a dependency on regulator-allowed-modes.
+> > 
+> > With this in place devicetree validation can catch issues like this:
+> > 
+> >     /mnt/extrassd/git/linux-next/arch/arm64/boot/dts/qcom/sm8350-hdk.dtb: pm8350-rpmh-regulators: ldo5: 'regulator-allowed-modes' is a dependency of 'regulator-allow-set-load'
+> >             From schema: /mnt/extrassd/git/linux-next/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
+> > 
+> > Suggested-by: Johan Hovold <johan@kernel.org>
+> > Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
+> > ---
+> > 
+> > v1: https://lore.kernel.org/linux-arm-msm/20220902185148.635292-1-ahalaney@redhat.com/
+> > Changes since v1:
+> >   - Dropped first two patches in the series as they were user error
+> >     (thanks Krzysztof for highlighting this!)
+> >   - No change in the remaining patch
+> > 
+> > Krzysztof also asked if this patch in particular should apply to other
+> > regulators, which I think it should for those regulator's who implement
+> > set_mode(). Unfortunately I don't know of a good way to get that
+> > information in order to apply it at a broader scope for devicetree
+> > regulator validation. At least with this in place RPMH users can get
+> > better coverage... if someone has suggestions for how to broaden the
+> > scope I'm all ears!
+> > 
+> > Thanks,
+> > Andrew
+> > 
+> >  .../devicetree/bindings/regulator/qcom,rpmh-regulator.yaml    | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> > 
 > 
-> Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
-> ---
+> Running 'make dtbs_check' with the schema in this patch gives the
+> following warnings. Consider if they are expected or the schema is
+> incorrect. These may not be new warnings.
+> 
+> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+> This will change in the future.
+> 
+> Full log is available here: https://patchwork.ozlabs.org/patch/
 > 
 > 
-> v1 -> v2:
-> - Nothing, this patch was not here before
+
+<snip>
+
 > 
+> pmm8540-g-regulators: ldo8: 'regulator-allowed-modes' is a dependency of 'regulator-allow-set-load'
+> 	arch/arm64/boot/dts/qcom/sa8295p-adp.dtb
 > 
->  .../devicetree/bindings/spi/atmel,at91rm9200-spi.yaml  | 10 ++++++++++
->  1 file changed, 10 insertions(+)
+> pmm8540-g-regulators: qcom,pmic-id:0: 'g' is not one of ['a', 'b', 'c', 'd', 'e', 'f', 'h', 'k']
+> 	arch/arm64/boot/dts/qcom/sa8295p-adp.dtb
+> 
+> pmm8540-g-regulators: Unevaluated properties are not allowed ('qcom,pmic-id' was unexpected)
+> 	arch/arm64/boot/dts/qcom/sa8295p-adp.dtb
 > 
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+Please note in case I didn't make it obvious in the commit message, the
+regulator-allowed-modes dependency warning is the intent of this commit,
+and those warnings go away once this patch series is applied:
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
+    https://lore.kernel.org/all/20220829164952.2672848-1-dianders@chromium.org/
 
-Full log is available here: https://patchwork.ozlabs.org/patch/
+The last two are old warnings (that I have yet to look into).
 
-
-spi@400: dma-names:0: 'tx' was expected
-	arch/arm/boot/dts/at91-sama7g5ek.dtb
-
-spi@400: dma-names:1: 'rx' was expected
-	arch/arm/boot/dts/at91-sama7g5ek.dtb
-
-spi@400: Unevaluated properties are not allowed ('dma-names' was unexpected)
-	arch/arm/boot/dts/at91-sama7g5ek.dtb
+Thanks,
+Andrew
 
