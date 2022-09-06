@@ -2,63 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6478C5AF03D
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 18:20:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DEAA5AF048
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 18:22:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234307AbiIFQUf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 12:20:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39440 "EHLO
+        id S234679AbiIFQWa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 12:22:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232906AbiIFQT6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 12:19:58 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52F3D326DA;
-        Tue,  6 Sep 2022 08:49:17 -0700 (PDT)
+        with ESMTP id S234895AbiIFQWB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 12:22:01 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 484F57F272;
+        Tue,  6 Sep 2022 08:50:40 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id A1F49B818C2;
-        Tue,  6 Sep 2022 15:49:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 603B1C433D6;
-        Tue,  6 Sep 2022 15:49:07 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id CCD6AB818C2;
+        Tue,  6 Sep 2022 15:50:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9CF4C433D6;
+        Tue,  6 Sep 2022 15:50:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1662479354;
-        bh=HyOzm5VMGmYJGCUZJSGax0V3uAmkTmNzZyIR1FAA+RQ=;
+        s=k20201202; t=1662479437;
+        bh=BYEVXIhF2SWOS8eq8Dzey2X1NAl3O4eE3kJjbR8IIbo=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=OB6QEsUCynTHvPxAqfPNLKgNfjrOnGNuCsjcCMghiOVfEjqklmu+JjF1pE6s740tR
-         o73CbEg5qg4GocYd4ffIXKqn2Vn374C0VE8irVivL//j0IM8oXHcQzfyzS4ff7zLTn
-         0SF6aY/qx6kzV0f8dBPG8p9iYJiu272Hw8LCBiPwZWHLjQ4tFH2Ysv6JOROT/tfRi9
-         LsFO2D59VxPZo7JsdEkoJMXCQ82H2gPyFjaiTftXzSBGdw0oL1DIUoIfeoZq7lRk91
-         7Teieml4YBhcnYEPOdflYkLXh+krGUQfR9276k2zwRoLAzAVEYpig0v2XAA/PtLHWV
-         EpC+kNT2h9nNw==
-Date:   Tue, 6 Sep 2022 16:49:03 +0100
+        b=sljS2LC9tX5SLe3/9hcyN1L/KGbnbmGw7uj/ZY3JHLUjxVqoZNM5IB/TJ4KMTTnjL
+         M63pboBjMh7lmZO8pBIcRaTgbX0KFo3pnSHyUGNM0hGBhoz3QKnp/jBkhT+QSUHv9F
+         ef6TR1RSxzkAK8oMSpfCZmVgmlR4KuIQKjCBkzYDcBwXfpnWFG8qwiXiwsPl1P/Snp
+         1rrgxRnzhwUBpvz+0JJxKz7vdgKtk19zhMMcX2k9DlH6RRad+IszFqImnTsBlAF6b3
+         viR+PaeYnplzSFmzWz/C6bNNnXqszLXmGRY1H5dYjk7cSEnyZC7yrfBlUpBscaa80N
+         7WNsuLyPANpUQ==
+Date:   Tue, 6 Sep 2022 16:50:26 +0100
 From:   Lee Jones <lee@kernel.org>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Sergiu.Moga@microchip.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, Nicolas.Ferre@microchip.com,
-        alexandre.belloni@bootlin.com, Claudiu.Beznea@microchip.com,
-        radu_nicolae.pirea@upb.ro, richard.genoud@gmail.com,
-        mturquette@baylibre.com, sboyd@kernel.org,
-        gregkh@linuxfoundation.org, jirislaby@kernel.org,
-        admin@hifiphile.com, Kavyasree.Kotagiri@microchip.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-serial@vger.kernel.org
-Subject: Re: [PATCH 2/5] dt-bindings: mfd: atmel,at91-usart: convert to
- json-schema
-Message-ID: <Yxdr76d2KVdUDfpW@google.com>
-References: <20220817075517.49575-1-sergiu.moga@microchip.com>
- <20220817075517.49575-3-sergiu.moga@microchip.com>
- <942accc5-70aa-3bb2-63dd-306a39ee5ea4@linaro.org>
- <d1aad8ea-3852-f36b-366b-7aa67d2dd9d5@microchip.com>
- <YxYI8/bprIV2wd1c@google.com>
- <d6a498e7-838b-addf-bc7f-81e6805806d3@microchip.com>
- <80abf192-0313-aade-7780-604f4c9c6810@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [RFT PATCH v3 01/16] dt-bindings: mfd: qcom,tcsr: add several
+ devices
+Message-ID: <YxdsQs2fWyA/34wB@google.com>
+References: <20220819083209.50844-1-krzysztof.kozlowski@linaro.org>
+ <20220819083209.50844-2-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <80abf192-0313-aade-7780-604f4c9c6810@linaro.org>
+In-Reply-To: <20220819083209.50844-2-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -69,64 +61,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 05 Sep 2022, Krzysztof Kozlowski wrote:
+On Fri, 19 Aug 2022, Krzysztof Kozlowski wrote:
 
-> On 05/09/2022 17:22, Sergiu.Moga@microchip.com wrote:
-> > On 05.09.2022 17:37, Lee Jones wrote:
-> >>
-> >> On Fri, 19 Aug 2022, Sergiu.Moga@microchip.com wrote:
-> >>
-> >>> On 18.08.2022 11:39, Krzysztof Kozlowski wrote:
-> >>>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
-> >>>>
-> >>>> On 17/08/2022 10:55, Sergiu Moga wrote:
-> >>>>> Convert at91 USART DT Binding for Atmel/Microchip SoCs to
-> >>>>> json-schema format.
-> >>>>>
-> >>>>> Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
-> >>>>> ---
-> >>>>>    .../bindings/mfd/atmel,at91-usart.yaml        | 190 ++++++++++++++++++
-> >>>>>    .../devicetree/bindings/mfd/atmel-usart.txt   |  98 ---------
-> >>>>>    2 files changed, 190 insertions(+), 98 deletions(-)
-> >>>>>    create mode 100644 Documentation/devicetree/bindings/mfd/atmel,at91-usart.yaml
-> >>>>>    delete mode 100644 Documentation/devicetree/bindings/mfd/atmel-usart.txt
-> >>>>>
-> >>>>> diff --git a/Documentation/devicetree/bindings/mfd/atmel,at91-usart.yaml b/Documentation/devicetree/bindings/mfd/atmel,at91-usart.yaml
-> >>>>> new file mode 100644
-> >>>>> index 000000000000..cf15d73fa1e8
-> >>>>> --- /dev/null
-> >>>>> +++ b/Documentation/devicetree/bindings/mfd/atmel,at91-usart.yaml
-> >>>> One more thing - I think this should be in serial directory, not mfd,
-> >>>> even though it includes SPI. MFD is just a Linux naming/wrapper device.
-> >>>>
-> >>>> Best regards,
-> >>>> Krzysztof
-> >>>
-> >>> I would rather keep it in this directory, since its corresponding driver
-> >>> is also in the mfd directory.
-> >>
-> >> Looks like a UART driver to me.
-> >>
-> >> Which MFD driver does this pertain to?
-> >>
-> > 
-> > Hi,
-> > 
-> > It's this one: drivers/mfd/at91-usart.c[1]
-> > 
-> > 
-> > [1] 
-> > https://elixir.bootlin.com/linux/v6.0-rc4/source/drivers/mfd/at91-usart.c
+> Document existing (MSM8996, SC7280) and new compatibles for TCSR syscon
+> registers (QCS404, SC7180, SDM630, SDM845, SM8150, MSM8998).
 > 
-> Which is not a "real MFD driver" because it probes exactly one child
-> (depending on the chosen serial protocol). Aren't MFD supposed to have
-> more then one child?
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
+> 
+> Changes since v2:
+> 1. Add more compatibles.
+> 
+> Changes since v1:
+> 1. Correct order of compatibles.
+> ---
+>  Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 
-It's a single piece of silicon which supports multiple functions.
-
-There is no stipulation detailing simultaneous usage.
-
-Still, happy to receive suggestions on implementing this differently.
+Applied, thanks.
 
 -- 
 Lee Jones [李琼斯]
