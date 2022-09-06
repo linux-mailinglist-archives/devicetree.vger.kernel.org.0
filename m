@@ -2,75 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4ED495AF44A
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 21:15:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F37405AF459
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 21:23:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229803AbiIFTPA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 15:15:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40970 "EHLO
+        id S229842AbiIFTXA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 15:23:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229795AbiIFTO7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 15:14:59 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FCF9786FE
-        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 12:14:56 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id t7so11870374wrm.10
-        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 12:14:56 -0700 (PDT)
+        with ESMTP id S229833AbiIFTW5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 15:22:57 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E52B2A9269
+        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 12:22:55 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id u9so25545221ejy.5
+        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 12:22:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date;
-        bh=gvPESzLpY6u1LTvkQ/VxBL4ihvtg/iVVRexp1JQT68U=;
-        b=Sh4U0KNGDRZAxg+JbByc/lzJN+bGHvkdKKkJXcCga0+Bj12T2UqdTB621WApI7xgC+
-         WBUeQfUtfRFxSkGndQmM/gmJJDhBWgx3B7zJcd35kCxO0Y69kWfMEzLRz+HL3KsoRKbo
-         ugYXLb5xQAyTKNlq6TGbHjnNsCFtukxZnI8n61xNUCohMd7sCpiln7H/ZIsQd97XTAYM
-         GnJNRYGyQKm9Tmo8Bs1UNMbxpZcdWHMGxB/eGiutPhz06yFS0ML8lMvALRZYJd7q0L2b
-         dqNe3TDc5gR2jyYHcXsM1Fz1WqYln+TYsMS9d8woX2ta7NHqDH7yTpjccSP3EoGgug1g
-         RYaQ==
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=5bwFM9UuatV/9s8ea3bTh+4VZX12Y9aX8P2/k8aLadI=;
+        b=hcEkiN0x5Rv0as/DYY7Tm7xnP5Xa+yJ7efy26/W2MLY3B+YYG5B48z5mwaEeXTqWr+
+         n/b1GDFCeQmeLKWox9YdDw6r1NGqEwx1cR1KJMNGYAbTfQwW8lS1lKeV1RcrD0ZkHqww
+         +2t/j2981gd/8Xo31O63L9z5KSUenBdc/b+6k=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=gvPESzLpY6u1LTvkQ/VxBL4ihvtg/iVVRexp1JQT68U=;
-        b=lpaUOkdH0aO0GT1Hp2SR59lQJkSMzu+bgBS1XxjIW1gBRlKzw+GNhr6B8RE/YYkIu6
-         eGTCF/FbWFzl8EUGkhCiZsSOE0VCvvz2gwBIgsXls7G0MzCvsdsDf1iDDImMqwG1Wd9z
-         jHA3AXVj7szJ3MgnwxW8U1KhOmW6BIM5QOibO7woqCF7jC26zGkLRDpWG7SMVrPcF9Pl
-         rfnm1YXaPeV0fdoXw0D9V5bBhkaPbvM3o5V9BT7+5qN8T4QiZ3dYF6QhnxuP33fuJeow
-         lavXc4L8Ka/cm/SuYNjgtF3YRSRMGIQFI9P7KDRfB1B/F2Xz+yggh3kUE24QNbLuHPPW
-         iCvw==
-X-Gm-Message-State: ACgBeo1ZVBBdMDHU15/woxFt6vSHDmh3/BjZcTQzVvtgRTBkBrau4UvR
-        oN3BaOKa59S2qu1U+xSdQ8OLko2TncgQTaLw
-X-Google-Smtp-Source: AA6agR5tbpF5Im0z0sX3351+86BY/+/J5/WwQY/7WYGKoBmH8Zb4TyiSySEMo03H3BdwA9/7GZCTHg==
-X-Received: by 2002:adf:fa52:0:b0:228:9675:e6f3 with SMTP id y18-20020adffa52000000b002289675e6f3mr6015259wrr.151.1662491695375;
-        Tue, 06 Sep 2022 12:14:55 -0700 (PDT)
-Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id z11-20020a056000110b00b00228dcf471e8sm2341788wrw.56.2022.09.06.12.14.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Sep 2022 12:14:54 -0700 (PDT)
-Date:   Tue, 6 Sep 2022 22:14:52 +0300
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Amol Maheshwari <amahesh@qti.qualcomm.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-remoteproc@vger.kernel.org, David Heidelberg <david@ixit.cz>
-Subject: Re: [PATCH v11] dt-bindings: misc: fastrpc convert bindings to yaml
-Message-ID: <YxecLFC9HTye4FPP@linaro.org>
-References: <20220906150102.3399115-1-abel.vesa@linaro.org>
- <67657fa4-4b15-da4c-db3a-907b2a5b6d92@linaro.org>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=5bwFM9UuatV/9s8ea3bTh+4VZX12Y9aX8P2/k8aLadI=;
+        b=xtVVuEf1vN2aRmCkcTPHskODBzARJZewTDI8MkP9VWcUexUNKNfMdAExsoQ6NFW2S6
+         rG9ClzImgjAH90UwISWjKNkczXdh+r6PwHZVkIDfyNAPyrDt5uVMmKK+wGEM/sI3Hlyi
+         kAdeiawJ6YCsoFszz3ptSPiu2hXXaPXSXQObL69nMQoTJZdCDu87EPxrIXQg7nTHK/87
+         2MAxfzehbc25jgZmwmfms9f1HFRXUZFgt8AtIhRlOhuNlTM1LW+7O0SBb81IG95FVRcH
+         FoFkVZClTGNzsEei7/oddR7NKXlc4E9PQ9bx0KYS6vH4RdZdNkeYXErk56PqqVzeWYFV
+         SPUg==
+X-Gm-Message-State: ACgBeo133kplFqttEt6QIxNwfoa31riSJ3C+pIXcLUabzxWvvemKPRDT
+        3MweMVLUiZCIZz9w8V53jMX/cJzdUy4Ed6N/
+X-Google-Smtp-Source: AA6agR4cO5WOCkPpd9iJuOLS+JF5C/t33j1HX8h8Aoolrn1VSAupgjxLPQp+6oH8AASBDjsJET3lxQ==
+X-Received: by 2002:a17:906:cc5a:b0:741:5240:d91a with SMTP id mm26-20020a170906cc5a00b007415240d91amr2279ejb.500.1662492174232;
+        Tue, 06 Sep 2022 12:22:54 -0700 (PDT)
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com. [209.85.128.42])
+        by smtp.gmail.com with ESMTPSA id b4-20020a1709062b4400b007317f017e64sm7064132ejg.134.2022.09.06.12.22.53
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 Sep 2022 12:22:53 -0700 (PDT)
+Received: by mail-wm1-f42.google.com with SMTP id d12-20020a05600c34cc00b003a83d20812fso8044034wmq.1
+        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 12:22:53 -0700 (PDT)
+X-Received: by 2002:a05:600c:42c3:b0:3a6:431:91bf with SMTP id
+ j3-20020a05600c42c300b003a6043191bfmr13994897wme.188.1662492173404; Tue, 06
+ Sep 2022 12:22:53 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <67657fa4-4b15-da4c-db3a-907b2a5b6d92@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+References: <20220901102946.v2.1.I347ea409ee3134bd32a29e33fecd1a6ef32085a0@changeid>
+ <CAD=FV=WBzVTaz1dtMswNMWhBzBBUQZTxqXff_DgiuP6WJgG8Qg@mail.gmail.com> <YxeZrvKvRB/ct3Ss@google.com>
+In-Reply-To: <YxeZrvKvRB/ct3Ss@google.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Tue, 6 Sep 2022 12:22:42 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=VsRi2kt9K9E+VOEGqdJFT43-aj415Gk2Q=OP64L-JAUA@mail.gmail.com>
+Message-ID: <CAD=FV=VsRi2kt9K9E+VOEGqdJFT43-aj415Gk2Q=OP64L-JAUA@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: qcom: sc7180: Configure USB as wakeup source
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Krishna Kurapati <quic_kriskura@quicinc.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,56 +82,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-09-06 18:12:51, Krzysztof Kozlowski wrote:
-> On 06/09/2022 17:01, Abel Vesa wrote:
-> > Convert Qualcomm FastRPC bindings to yaml format, so that we could validate
-> > dt-entries correctly and any future additions can go into yaml format.
-> > 
-> 
-> Thank you for your patch. There is something to discuss/improve.
-> 
-> > +
-> > +patternProperties:
-> > +  "(compute-)?cb@[0-9]*$":
-> > +    type: object
-> > +
-> > +    description: >
-> > +      Each subnode of the Fastrpc represents compute context banks available on the dsp.
-> > +
-> > +    properties:
-> > +      compatible:
-> > +        const: qcom,fastrpc-compute-cb
-> > +
-> > +      reg:
-> > +        maxItems: 1
-> > +
-> > +      qcom,nsession:
-> > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > +        default: 1
-> > +        description: >
-> > +          A value indicating how many sessions can share this context bank.
-> > +
-> > +    required:
-> > +      - compatible
-> > +      - reg
-> 
-> I think this was pointed previously by Rob in v4 - you need here
-> additionalProperties: false (on that level of indentation).
+Hi,
 
-Ugh, I thought if the check doesn't complain, it is not necessary to add
-it as false.
+On Tue, Sep 6, 2022 at 12:04 PM Matthias Kaehlcke <mka@chromium.org> wrote:
+>
+> Hi Doug,
+>
+> On Tue, Sep 06, 2022 at 11:33:56AM -0700, Doug Anderson wrote:
+> > Hi,
+> >
+> > On Thu, Sep 1, 2022 at 10:29 AM Matthias Kaehlcke <mka@chromium.org> wrote:
+> > >
+> > > The dwc3 USB controller of the sc7180 supports USB remote
+> > > wakeup, configure it as a wakeup source.
+> > >
+> > > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> > > ---
+> > >
+> > > Changes in v2:
+> > > - use qcom/arm64-for-6.1 as base, v1 was unintendedly based on a
+> > >   downstream branch that was used for testing
+> > >
+> > >  arch/arm64/boot/dts/qcom/sc7180.dtsi | 2 ++
+> > >  1 file changed, 2 insertions(+)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> > > index e8debb0da411..af5bab27eaf3 100644
+> > > --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> > > +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> > > @@ -2782,6 +2782,8 @@ usb_1: usb@a6f8800 {
+> > >                                         <&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_USB3 0>;
+> > >                         interconnect-names = "usb-ddr", "apps-usb";
+> > >
+> > > +                       wakeup-source;
+> > > +
+> >
+> > The patch documenting this property has landed in commit 416b61893860
+> > ("dt-bindings: usb: qcom,dwc3: add wakeup-source property"). I guess
+> > the only question is whether this should be in the general sc7180
+> > device tree file or just for trogdor.
+>
+> I had a similar comment on the patch for sc7280 [1], there the rationale
+> for putting the property into the .dtsi of the SoC was that the wakeup
+> capability is provided by the SoC.
+>
+> For sc8280xp.dtsi the property is also in the .dtsi of the SoC:
+>
+> https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git/tree/arch/arm64/boot/dts/qcom/sc8280xp.dtsi?h=arm64-for-6.1#n1315
+>
+> > Any chance it could cause problems for devices that aren't designed like
+> > trogdor?
+>
+> Probably not in a functional sense, however power consumption during system
+> suspend is slightly higher (2-3 mW) when USB wakeup is enabled. Boards can
+> disable wakeup by deleting the property in their .dtsi file, though it
+> is not necessarily evident that this is an option to reduce power
+> consumption.
+>
+> [1] https://patchwork.kernel.org/project/linux-arm-msm/patch/1649321104-31322-7-git-send-email-quic_c_sanm@quicinc.com/
 
-Will resend.
+OK then.
 
-> 
-> > +
-> > +required:
-> > +  - compatible
-> > +  - label
-> > +  - "#address-cells"
-> > +  - "#size-cells"
-> > +
-> 
-> 
-> Best regards,
-> Krzysztof
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
