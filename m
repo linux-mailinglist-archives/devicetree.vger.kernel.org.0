@@ -2,71 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 477F05AE750
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 14:11:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE14B5AE7A0
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 14:17:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238317AbiIFMLZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 08:11:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46348 "EHLO
+        id S233171AbiIFMRo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 08:17:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238036AbiIFMLY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 08:11:24 -0400
+        with ESMTP id S233208AbiIFMRX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 08:17:23 -0400
 Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49A33786F6
-        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 05:11:18 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id x10so12068222ljq.4
-        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 05:11:18 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE3D87C192
+        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 05:15:11 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id x10so12076827ljq.4
+        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 05:15:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date;
-        bh=op1My7AD6wRZoajP6NjClBRCjufsM1FdrS7RvoXvXoM=;
-        b=xXp4wxSjqmLI9WZ78W8Hd+I5B6ZuBukGMDbQlcYHzUwBV4WZ76GLEA0ZauVLPli9Ia
-         JzOq1lrm56AojqHIIJrb7QDEedU4ei3JSR6105JOmjI9ayXH/hI9Hz0dr+PKOv1R6PyZ
-         PKk8tdFesOgdAVy5Vbjqe1h3SZ+MGLedDrFPcol/LpHxmqBQXqh1y4on4Io/r/MtOlsx
-         98mMKlO5TVDmH39X3lMn3E6BLuxaYqRUqfIEyDrQJnrlMHuPqBlbdb+aIZkUlLfCRjW1
-         H8BPllT58gv0NCzSfmCJiidNBzce/qLZ7PAUkuUw5l8hVpfIBgSPZPwrSo5GXMg9RySo
-         j1Kg==
+        bh=6UHmjFqZqnkfqTkZXpVtIF2gB+ePd2RxW9GhLYwJ20M=;
+        b=C22raz0IOJkbOdosFAVzFv4qOMwXY/MebmIjmU9VnZLg1c3DRqJPzf2ftKSu3iKlVq
+         /81y2AJJUxserzvRP3HY68hRFQw2nZZ5+MPZ3+HIpuXxh7AqVxtXv243JAyVIZg35HJK
+         1S/Q3h1zZAOMtPaq7I1awkBzGimPcl/u5sufjGO3gFVbSCchGOeC5Mt38JBUnYH15h4s
+         Evc3l2TPSdZrVCsbKQKoKPj9BJsGGBEz09PpJullsopORdEAB/0v2T+yWe0/MT0X1a11
+         sVpQ8z6DhX+RPbba+3n4ZD6pQqd/NnLeM+uUBrt6cuqMhJArEa78UrehaszjV3g+EoyK
+         qtNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date;
-        bh=op1My7AD6wRZoajP6NjClBRCjufsM1FdrS7RvoXvXoM=;
-        b=C+MByMeHXYwLTWE9aHxSSTmq675Jza+FLV9+DfatnphvmU3ExflWy9+66EuLYQZkBq
-         cGQK+qCbD2fdT3clUeMm1eZpsC9UmyICld/zAh53hVBivN34exmNrY+6Bzr7VHfyxjL4
-         bOBdHVGb78ug4VzNZY7r6/Y0Jjrc+3RCWjO/CGlL6hNtAtEe7yysZfQEdFu5PHbF8Qi1
-         GVMSz1RTD2NN/Q1Vl1LrkV8O110W9rkj3hv39GV6nNtyZZToFnUw4msE5/TikDaNx3Ab
-         8S1F/gQx3mmzpzjgFHHiuc5JfDjx1AfVq+t+EF+VhB/gszFSBQ8UpoDA46eYUl8/IzJ4
-         AttQ==
-X-Gm-Message-State: ACgBeo06dmTK8UNRw374jmVWc0uyepal6mmnXJ26ObXOe5cDn7Fk7vUY
-        2yLsbe7lbBSz3AGtKZ+R7BFtZA==
-X-Google-Smtp-Source: AA6agR7DVYxx5ldZwxSPHEQ+K6cIBOeh+9IU955p69IwfaOY+ubEBlSVsQXcCy60wL7W30N0ZZELXQ==
-X-Received: by 2002:a05:651c:245:b0:261:caa7:5be3 with SMTP id x5-20020a05651c024500b00261caa75be3mr14972270ljn.334.1662466276582;
-        Tue, 06 Sep 2022 05:11:16 -0700 (PDT)
+        bh=6UHmjFqZqnkfqTkZXpVtIF2gB+ePd2RxW9GhLYwJ20M=;
+        b=jp+yEZ+yGrNJ9Gw4Bu09VXYOt4bnA4B1heyb12cy+N5/+tCOQ7MSjk7s3BfcCP6ptq
+         W/5PiFn6lfHvPQPis/tDo6W73q8wucF9u4Qu7jdnmse3FO2XgCF1uOs24aLwd4BAj3wk
+         7iIZxqS/SxlHIBY0oLs2VMaDRKdYuyB03xbW/b43H9TIWmDNZbqtdM61SbonTpBJLVnR
+         jRUrVori7HWBjuxMuULtleQoVG9aIotlTeghzvGTvWTnG9zh3X6DDR7pd3eFWsgpVXCR
+         ipNOF/fQYPuLbCEuWjOLrspHw995ia2GxlXHF9co8irIsEyd40ukUFGC74ruHRl96JcZ
+         0eWw==
+X-Gm-Message-State: ACgBeo3MBylCT5IDUWdiAbJg8VKJ2z+McLhFEvD8Ry8CJWUdseJ5AzlF
+        dudFvl8qW6F33u4Hl/iZ+NUUHQ==
+X-Google-Smtp-Source: AA6agR73Uyz5drAuwDGsn4Pe1UQqm8/rEf1fJfgYCEv9dAukBNbatU8NvbsMMrl+ei2+SY/udulANA==
+X-Received: by 2002:a2e:92ce:0:b0:261:e39e:2c1d with SMTP id k14-20020a2e92ce000000b00261e39e2c1dmr15563243ljh.273.1662466440501;
+        Tue, 06 Sep 2022 05:14:00 -0700 (PDT)
 Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id c23-20020ac25f77000000b0049462af8614sm1699122lfc.145.2022.09.06.05.11.15
+        by smtp.gmail.com with ESMTPSA id m5-20020a056512114500b00494a0993698sm1708125lfg.11.2022.09.06.05.13.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Sep 2022 05:11:15 -0700 (PDT)
+        Tue, 06 Sep 2022 05:14:00 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] ASoC: dt-bindings: qcom,q6core: remove binding
-Date:   Tue,  6 Sep 2022 14:11:10 +0200
-Message-Id: <20220906121110.301900-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: remoteproc: qcom,adsp: enforce smd-edge schema
+Date:   Tue,  6 Sep 2022 14:13:58 +0200
+Message-Id: <20220906121358.302894-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,41 +74,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-qcom,q6core is already described in soc/qcom/qcom,apr.yaml.
+The smd-edge child node references respective schema which allows
+additional properties, so the ADSP needs to further restrict them.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../devicetree/bindings/sound/qcom,q6core.txt | 21 -------------------
- 1 file changed, 21 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/qcom,q6core.txt
+ Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/sound/qcom,q6core.txt b/Documentation/devicetree/bindings/sound/qcom,q6core.txt
-deleted file mode 100644
-index 5cd4cc9b1fde..000000000000
---- a/Documentation/devicetree/bindings/sound/qcom,q6core.txt
-+++ /dev/null
-@@ -1,21 +0,0 @@
--Qualcomm ADSP Core service binding
--
--Q6CORE is one of the APR audio service on Q6DSP.
--Please refer to qcom,apr.txt for details of the common apr service bindings
--used by the apr service device.
--
--- but must contain the following property:
--
--- compatible:
--	Usage: required
--	Value type: <stringlist>
--	Definition: must be "qcom,q6core-v<MAJOR-NUMBER>.<MINOR-NUMBER>".
--		   Or "qcom,q6core" where the version number can be queried
--		   from DSP.
--		   example "qcom,q6core-v2.0"
--
--= EXAMPLE
--apr-service@3 {
--	compatible = "qcom,q6core";
--	reg = <APR_SVC_ADSP_CORE>;
--};
+diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
+index 3072af5f9d79..db9e0f0c2bea 100644
+--- a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
++++ b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
+@@ -152,6 +152,7 @@ properties:
+     description:
+       Qualcomm Shared Memory subnode which represents communication edge,
+       channels and devices related to the ADSP.
++    unevaluatedProperties: false
+ 
+   glink-edge:
+     $ref: /schemas/remoteproc/qcom,glink-edge.yaml#
 -- 
 2.34.1
 
