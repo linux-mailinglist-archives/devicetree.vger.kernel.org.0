@@ -2,110 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BFE05AF436
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 21:09:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E4AF5AF438
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 21:10:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229512AbiIFTJL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 15:09:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60414 "EHLO
+        id S229594AbiIFTKq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 15:10:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229543AbiIFTJI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 15:09:08 -0400
-Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 978FE9A69C
-        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 12:09:07 -0700 (PDT)
-Received: by mail-pg1-x534.google.com with SMTP id h188so11435498pgc.12
-        for <devicetree@vger.kernel.org>; Tue, 06 Sep 2022 12:09:07 -0700 (PDT)
+        with ESMTP id S229459AbiIFTKp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 15:10:45 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 766F0A285D;
+        Tue,  6 Sep 2022 12:10:44 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id kk26so25434090ejc.11;
+        Tue, 06 Sep 2022 12:10:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=USGKt12KI6hqIl32nlA4hDouQZ/htGzTNTb50q1jr6M=;
-        b=eu0Nbwk3cgdedK/+pik19CrYVr6eMYXGo3vPoqCXA49aHcfIcgJhNowT7n3hwr/KJF
-         QGeCM/JeP3cIAg8s92XiDj/KFSDgqlmze5D6leEA0dRDFreh4MqjV+bxh0Oqkx8wzeFa
-         Ym0/NeVFiB/CXxdhyfFUxmywfOvBhuwlOqwypcKyhpPJ5u4Tm9yHPVxkVQl/s8pEFVz9
-         F3cI0bFnmIAl4oSbLlHIbw8P9l9RCYd2Jwmy27umsNcl2KajJxu0ne4T5e3FB6Z3ezRk
-         XEUbVr/zNAWu7Ar5HtylPc4uwow6OxZipf+XwO5g3hlRcKKi/h1M+P607Sn67jRyVviG
-         LDVQ==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
+        bh=w/ZOd8w9PpfH0PoP4VeEmJ6xZfMkRuDkUmQ7u7OOSbI=;
+        b=oYm3QwusiprapdZgx34JgD15YXVl+0e25+F+6mUrTli6IPDa+bMXDhGUoyw6Iwo/Kv
+         Vdlic0olw6Sky94t7Kx/GETDzah7M+tvgPlH6ZqJd1oL3TTOyNY/DXzfD5CErsy0tqLk
+         W592WP0k+fS6kPfYk3EoaE3EXMod5fA0VyJmmPvfcCr6OKTLYsPj7YmMfeuHxlNVYmo+
+         4Cy052KhsUtLHk3deXW+LKk2jyfERjdC4GUrNJXhu5jROJ1daMrdDubsIT2a8DGF6cFx
+         lPsftlm1GUt761wyza6CRZ2snjPgJvoRml2/X3HdQixGvWLqjK9HTRVzW6vDHoBD6H3E
+         i5/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=USGKt12KI6hqIl32nlA4hDouQZ/htGzTNTb50q1jr6M=;
-        b=aC1SPuH7w+J81NTVCYTRsG5+4XFzGRKPj7Ctp1I3ELsT5I+J9bKLjhLSWvYcWyKgcS
-         l/rBDGnY1mgom7h69qQZTjN5BHIAtYAjjk+LQEPdWz4uIuf69gkQa6TYxXJY2zOkNSHo
-         zwYC0HjjCG2HlVQyHJYREyChZkrI9pnlG7kjSNqmmqsKeiA45ESqSwFB4I3JR1kJKk+5
-         QurOigUcga9I1TwKt11wBDZqtXRWfo5ABIgcJkMdRM5mpm3aUgVA7y0SMd2HDbdhZYPl
-         sntRHPOJw37z+VzCj/r1Hfj1Fau73g65Xgui/mB2MkPYcBQ1vDVAZTS81r4bekv9ejmI
-         7OAg==
-X-Gm-Message-State: ACgBeo08vC+Q0DrkR05H6LAmwKLXbFp+iDGhxNQ7NMY42lhS6psasHs4
-        qtH3VEY6Ppq/wVVCCIUSoGrOXLfrWoTFWeik0xl6tQ==
-X-Google-Smtp-Source: AA6agR7RQfdgHlY4n4EkRR8HvndWT1gKDUsFCJrGt96RxjGT9OckJRtkjMg+3n7uk2ZMHpMO7kBgt2DeMpfxa9m5Txk=
-X-Received: by 2002:a05:6a00:e8f:b0:536:c98e:8307 with SMTP id
- bo15-20020a056a000e8f00b00536c98e8307mr56516788pfb.73.1662491347060; Tue, 06
- Sep 2022 12:09:07 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220902230500.2624739-1-tharvey@gateworks.com> <cbb82e89-7035-1c01-8f22-319c1752156f@linaro.org>
-In-Reply-To: <cbb82e89-7035-1c01-8f22-319c1752156f@linaro.org>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Tue, 6 Sep 2022 12:08:54 -0700
-Message-ID: <CAJ+vNU0gqqY0Z=aeVBsPa_j_-ONVtJypJUUe-WxEgNzncsT0qA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: arm: Add i.MX8M Mini Gateworks GW7904 board
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date;
+        bh=w/ZOd8w9PpfH0PoP4VeEmJ6xZfMkRuDkUmQ7u7OOSbI=;
+        b=kyYfb5dCqztSsc9SxItiRYetae5B9CVcu17e5Oy09mOd3Qqj+vekKzU+oBaXaGgsGE
+         pgUofn9r3dDLRCNiE71Kc6AuhWo3oMnKzpqR6s4RtK/egOzv9o3r0E9breaRyaytXKW8
+         wf9X2nKBzJKEOOTVIycdn5h6rLsFzqaLmdGJ18QAMvZJm0MGNVB1Hh+w9vSsc7R7jQeI
+         ETYYq4J19trbnMZi8BRjcn9ayrgujA4dchrar8em0Karh97+e9BLpGfAFA7vvbWVo0UB
+         UkY/YCa4OFYUUQKXYzeB9qN4krVLIi350kWSFxGedxSuLHZ/WaLTzPxS7bJuPJTs79QR
+         MHug==
+X-Gm-Message-State: ACgBeo1PlgsrWnXnidK4BHry5vc8f0Sdx3nWNaAQLMvnAxU9om7E0Ztz
+        VG6ZjJJu3k8tY6lb/Qt2QDY=
+X-Google-Smtp-Source: AA6agR5o/hB8ODtHH/gpw6zFvP+JmOgSI2ED73R2uoqAFYkPfIPG8L9e/o3qsvEJU6l4v+KqU6WtBg==
+X-Received: by 2002:a17:907:2c75:b0:741:5871:4318 with SMTP id ib21-20020a1709072c7500b0074158714318mr31694444ejc.532.1662491442690;
+        Tue, 06 Sep 2022 12:10:42 -0700 (PDT)
+Received: from kista.localnet (82-149-1-172.dynamic.telemach.net. [82.149.1.172])
+        by smtp.gmail.com with ESMTPSA id r16-20020a50c010000000b00447bd64d4f6sm9045994edb.73.2022.09.06.12.10.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Sep 2022 12:10:42 -0700 (PDT)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        =?ISO-8859-1?Q?Cl=E9ment_P=E9ron?= <peron.clem@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        =?ISO-8859-1?Q?Cl=E9ment_P=E9ron?= <peron.clem@gmail.com>
+Subject: Re: [PATCH v4 3/5] arm64: dts: allwinner: h6: Add GPU OPP table
+Date:   Tue, 06 Sep 2022 21:10:40 +0200
+Message-ID: <12048299.O9o76ZdvQC@kista>
+In-Reply-To: <20220906153034.153321-4-peron.clem@gmail.com>
+References: <20220906153034.153321-1-peron.clem@gmail.com> <20220906153034.153321-4-peron.clem@gmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Sep 4, 2022 at 11:41 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 03/09/2022 02:04, Tim Harvey wrote:
-> > Add DT compatible string for i.MX8M Mini based Gateworks GW7904 board.
-> >
-> > Signed-off-by: Tim Harvey <tharvey@gateworks.com>
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> > Cc: Shawn Guo <shawnguo@kernel.org>
-> > Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> > Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> > Cc: Fabio Estevam <festevam@gmail.com>
-> > Cc: NXP Linux Team <linux-imx@nxp.com>
-> > ---
-> >  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > index 7431579ab0e8..ce89fac1898e 100644
-> > --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > @@ -831,6 +831,7 @@ properties:
-> >                - gw,imx8mm-gw7901          # i.MX8MM Gateworks Board
-> >                - gw,imx8mm-gw7902          # i.MX8MM Gateworks Board
-> >                - gw,imx8mm-gw7903          # i.MX8MM Gateworks Board
-> > +              - gateworks,imx8mm-gw7904   # i.MX8MM Gateworks Board
->
-> Please put it ordered alphabetically, so before "gw".
->
+Dne torek, 06. september 2022 ob 17:30:32 CEST je Cl=E9ment P=E9ron napisal=
+(a):
+> Add an Operating Performance Points table for the GPU to
+> enable Dynamic Voltage & Frequency Scaling on the H6.
+>=20
+> The voltage range is set with minimal voltage set to the target
+> and the maximal voltage set to 1.2V. This allow DVFS framework to
+> work properly on board with fixed regulator.
+>=20
+> Signed-off-by: Cl=E9ment P=E9ron <peron.clem@gmail.com>
+> ---
+>  .../boot/dts/allwinner/sun50i-h6-gpu-opp.dtsi | 87 +++++++++++++++++++
+>  1 file changed, 87 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h6-gpu-opp.dtsi
+>=20
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-gpu-opp.dtsi
+> b/arch/arm64/boot/dts/allwinner/sun50i-h6-gpu-opp.dtsi new file mode 1006=
+44
+> index 000000000000..b48049c4fc85
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-gpu-opp.dtsi
+> @@ -0,0 +1,87 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +// Copyright (C) 2022 Cl=E9ment P=E9ron <peron.clem@gmail.com>
+> +
+> +/ {
+> +	gpu_opp_table: opp-table-gpu {
+> +		compatible =3D "operating-points-v2";
+> +
+> +		opp-216000000 {
+> +			opp-hz =3D /bits/ 64 <216000000>;
+> +			opp-microvolt =3D <810000 810000 1200000>;
+> +		};
+> +
+> +		opp-264000000 {
+> +			opp-hz =3D /bits/ 64 <264000000>;
+> +			opp-microvolt =3D <810000 810000 1200000>;
+> +		};
 
-Krzysztof,
+As mentioned in clock patch review, rates below 288 MHz are deemed unstable=
+ on=20
+GPU PLL by vendor GPU kernel driver. At least in the BSP version that I hav=
+e.=20
+Did you test these points? If not, better to drop them.
 
-Ok - will send a v2 after waiting for feedback on the dts patch.
+Best regards,
+Jernej
 
-Best Regards,
+> +
+> +		opp-312000000 {
+> +			opp-hz =3D /bits/ 64 <312000000>;
+> +			opp-microvolt =3D <810000 810000 1200000>;
+> +		};
+> +
+> +		opp-336000000 {
+> +			opp-hz =3D /bits/ 64 <336000000>;
+> +			opp-microvolt =3D <810000 810000 1200000>;
+> +		};
+> +
+> +		opp-360000000 {
+> +			opp-hz =3D /bits/ 64 <360000000>;
+> +			opp-microvolt =3D <820000 820000 1200000>;
+> +		};
+> +
+> +		opp-384000000 {
+> +			opp-hz =3D /bits/ 64 <384000000>;
+> +			opp-microvolt =3D <830000 830000 1200000>;
+> +		};
+> +
+> +		opp-408000000 {
+> +			opp-hz =3D /bits/ 64 <408000000>;
+> +			opp-microvolt =3D <840000 840000 1200000>;
+> +		};
+> +
+> +		opp-420000000 {
+> +			opp-hz =3D /bits/ 64 <420000000>;
+> +			opp-microvolt =3D <850000 850000 1200000>;
+> +		};
+> +
+> +		opp-432000000 {
+> +			opp-hz =3D /bits/ 64 <432000000>;
+> +			opp-microvolt =3D <860000 860000 1200000>;
+> +		};
+> +
+> +		opp-456000000 {
+> +			opp-hz =3D /bits/ 64 <456000000>;
+> +			opp-microvolt =3D <870000 870000 1200000>;
+> +		};
+> +
+> +		opp-504000000 {
+> +			opp-hz =3D /bits/ 64 <504000000>;
+> +			opp-microvolt =3D <890000 890000 1200000>;
+> +		};
+> +
+> +		opp-540000000 {
+> +			opp-hz =3D /bits/ 64 <540000000>;
+> +			opp-microvolt =3D <910000 910000 1200000>;
+> +		};
+> +
+> +		opp-576000000 {
+> +			opp-hz =3D /bits/ 64 <576000000>;
+> +			opp-microvolt =3D <930000 930000 1200000>;
+> +		};
+> +
+> +		opp-624000000 {
+> +			opp-hz =3D /bits/ 64 <624000000>;
+> +			opp-microvolt =3D <950000 950000 1200000>;
+> +		};
+> +
+> +		opp-756000000 {
+> +			opp-hz =3D /bits/ 64 <756000000>;
+> +			opp-microvolt =3D <1040000 1040000 1200000>;
+> +		};
+> +	};
+> +};
+> +
+> +&gpu {
+> +	operating-points-v2 =3D <&gpu_opp_table>;
+> +};
+> --
+> 2.34.1
 
-Tim
+
