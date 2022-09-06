@@ -2,49 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 596935AEEBF
-	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 17:29:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 709855AEEC5
+	for <lists+devicetree@lfdr.de>; Tue,  6 Sep 2022 17:29:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239612AbiIFP27 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Sep 2022 11:28:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48324 "EHLO
+        id S239771AbiIFP3X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Sep 2022 11:29:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48340 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240401AbiIFP2m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 11:28:42 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D5B36D9E9
-        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 07:39:52 -0700 (PDT)
+        with ESMTP id S239816AbiIFP3B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Sep 2022 11:29:01 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDAC819C21
+        for <devicetree@vger.kernel.org>; Tue,  6 Sep 2022 07:40:19 -0700 (PDT)
 Received: from jupiter.universe (dyndsl-037-138-186-136.ewe-ip-backbone.de [37.138.186.136])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
         (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 7B3526601F4E;
-        Tue,  6 Sep 2022 15:38:29 +0100 (BST)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id B9B1E6601F53;
+        Tue,  6 Sep 2022 15:38:31 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1662475109;
-        bh=daMVbHhJlfYnraGydjiMLwVLDPoX/A9fX4QnmXX8FIc=;
+        s=mail; t=1662475111;
+        bh=rEJ+pNRgdZef5+wO4r54ejoJ7KJfO0P7doJa8eL6Wuw=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=kPKg7OlumI98E1w2CGAoqiEg7NrnHFPXDytTJoVkxWzpc4V4uzvpxFBFpXR1bXYo9
-         uAiwbj9eeS0wZuGI115xXJa6a23zJQ+esPTjd7VVZjbjAXvODTYU7amNNqvq//Z/3j
-         kb0xqFJRlDQUtbVpzJH4T9nmWhIEU54+Tt/LKGAULvpTspD9Gn4E+tYbtRGXyIe1mP
-         Nb4cZxx9WZr3KHqG4NCQ0rTehmbotouIOOnNORp4TqkUc5xDY4gMc1qtNF4yNWAA83
-         T02IMHi7v3OON+Oa3qQ8v9qb5IPHIT0dmgJPpFpFZiwK8AMByAg7tedLatiJNk3t+4
-         RiBKcitiuRZ6g==
+        b=oG/1pdryq0W4USk2S0mao0jatNufCgOusiZAg6VoBMVR+ujICuGsiylHhqgMkz7Xe
+         /26yXVX9fcgqxDQsi79d/L75bGAM4AiM4KuS2x+1DM7w9/R2ZjuH0jGL24zBGHyEVZ
+         ZsSIKC5nFdXbfcGAZDV0897LiiGnKfpK5TU/I2Nhk/dme14i4qcHiARraVmStrS37x
+         uWg5huBmHbPQP5mv+JlntqGXq8LRMN3DMhAkAoMxZGA91GBJZM7RhRZF43d8Ud04sp
+         Hj3eREWKx0UVz50DLK3QNmOVneRUsMSZmmO3Qt/N//E+20bVEieJy0O2w1mNOfZYWz
+         kCUbMl9O3PRDw==
 Received: by jupiter.universe (Postfix, from userid 1000)
-        id 4252348016E; Tue,  6 Sep 2022 16:38:27 +0200 (CEST)
+        id 44902480170; Tue,  6 Sep 2022 16:38:27 +0200 (CEST)
 From:   Sebastian Reichel <sebastian.reichel@collabora.com>
 To:     Heiko Stuebner <heiko@sntech.de>, Lee Jones <lee@kernel.org>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-rockchip@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        kernel@collabora.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCHv3 4/6] dt-bindings: mfd: syscon: Add rk3588 QoS register compatible
-Date:   Tue,  6 Sep 2022 16:38:23 +0200
-Message-Id: <20220906143825.199089-5-sebastian.reichel@collabora.com>
+        Elaine Zhang <zhangqing@rock-chips.com>, kernel@collabora.com,
+        Sebastian Reichel <sebastian.reichel@collabora.com>
+Subject: [PATCHv3 5/6] soc: rockchip: power-domain: do not enable PD
+Date:   Tue,  6 Sep 2022 16:38:24 +0200
+Message-Id: <20220906143825.199089-6-sebastian.reichel@collabora.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220906143825.199089-1-sebastian.reichel@collabora.com>
 References: <20220906143825.199089-1-sebastian.reichel@collabora.com>
@@ -59,26 +58,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document rk3588 compatible for QoS registers.
+From: Elaine Zhang <zhangqing@rock-chips.com>
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+It's not need to power on all pd when add pm domain. Instead
+use PD's real status in pm_genpd_init().
+
+Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
 Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 ---
- Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/soc/rockchip/pm_domains.c | 10 +---------
+ 1 file changed, 1 insertion(+), 9 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
-index c10f0b577268..5369a56b8be1 100644
---- a/Documentation/devicetree/bindings/mfd/syscon.yaml
-+++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
-@@ -59,6 +59,7 @@ properties:
-               - rockchip,rk3368-qos
-               - rockchip,rk3399-qos
-               - rockchip,rk3568-qos
-+              - rockchip,rk3588-qos
-               - samsung,exynos3-sysreg
-               - samsung,exynos4-sysreg
-               - samsung,exynos5-sysreg
+diff --git a/drivers/soc/rockchip/pm_domains.c b/drivers/soc/rockchip/pm_domains.c
+index 89795abac951..a59aa3b89a72 100644
+--- a/drivers/soc/rockchip/pm_domains.c
++++ b/drivers/soc/rockchip/pm_domains.c
+@@ -595,14 +595,6 @@ static int rockchip_pm_add_one_domain(struct rockchip_pmu *pmu,
+ 		}
+ 	}
+ 
+-	error = rockchip_pd_power(pd, true);
+-	if (error) {
+-		dev_err(pmu->dev,
+-			"failed to power on domain '%pOFn': %d\n",
+-			node, error);
+-		goto err_unprepare_clocks;
+-	}
+-
+ 	if (pd->info->name)
+ 		pd->genpd.name = pd->info->name;
+ 	else
+@@ -614,7 +606,7 @@ static int rockchip_pm_add_one_domain(struct rockchip_pmu *pmu,
+ 	pd->genpd.flags = GENPD_FLAG_PM_CLK;
+ 	if (pd_info->active_wakeup)
+ 		pd->genpd.flags |= GENPD_FLAG_ACTIVE_WAKEUP;
+-	pm_genpd_init(&pd->genpd, NULL, false);
++	pm_genpd_init(&pd->genpd, NULL, !rockchip_pmu_domain_is_on(pd));
+ 
+ 	pmu->genpd_data.domains[id] = &pd->genpd;
+ 	return 0;
 -- 
 2.35.1
 
