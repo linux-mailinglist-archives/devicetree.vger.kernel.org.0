@@ -2,132 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5415E5B0EA4
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 22:54:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F9745B0EBF
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 23:00:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229485AbiIGUy1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 16:54:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37874 "EHLO
+        id S229638AbiIGVAV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 17:00:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229523AbiIGUyZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 16:54:25 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27D24E86
-        for <devicetree@vger.kernel.org>; Wed,  7 Sep 2022 13:54:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1662584062;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=lupOQBDl9M+eSrYMhhygPunyzKVvpUXpQehMzs92JzM=;
-        b=E/nw5opgR5c4+9Zsp0XxyLJQ4XSk+FG/wl3AirlHFXqpTLPMohGIjAseXDxtvX1wADAGSc
-        khrC3sDwlBrBu2/OR2R8AZoKl7ckHEyrDd2xKgPEeSOibFWi4+lY6qX+GKsYHfxBtFSJK8
-        6Se58iLvf8uxjo3gpIFhXSfVSo/I2Bc=
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com
- [209.85.222.198]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-546-5UWa9JyhNVenqZwiHr9gJg-1; Wed, 07 Sep 2022 16:54:21 -0400
-X-MC-Unique: 5UWa9JyhNVenqZwiHr9gJg-1
-Received: by mail-qk1-f198.google.com with SMTP id h20-20020a05620a245400b006bb0c6074baso12786274qkn.6
-        for <devicetree@vger.kernel.org>; Wed, 07 Sep 2022 13:54:21 -0700 (PDT)
+        with ESMTP id S229657AbiIGVAV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 17:00:21 -0400
+Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D9D57B7B9;
+        Wed,  7 Sep 2022 14:00:20 -0700 (PDT)
+Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-127ba06d03fso15537770fac.3;
+        Wed, 07 Sep 2022 14:00:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=lupOQBDl9M+eSrYMhhygPunyzKVvpUXpQehMzs92JzM=;
-        b=bn7pGtHbTt/gYwXdEH2glf+0IkBAC0dQG1Y0wE+jroxqJPW+VBKJNO7jqIIk6XNxQM
-         1J4lqRcIY48A/Lfny6u74QGYpJWdA3ZlsvcqlpADiN7V4FHFTuDUt7eq0KOZP3U8vTv9
-         8D54e/Rs1gYcqWdjfY6d7NxTLul57uURa48gVnMrCQE6zYODHkyPjx+ZanRKv6JZOQ7e
-         bwaf66ETgcqqd49/A1w9+fgXg+yhsB/AErj3FX1eh3N/LjJf60UIWu9lMzu2dQRZY3Lj
-         9b6dVb3Hq5emV+qjCCyD7FQdbnXWBwiEZXuAHjSqbLqO++rj0fOq8aqpgeSip3q+4zEv
-         d3jA==
-X-Gm-Message-State: ACgBeo2Mn0Lmn9aWS79mt0ar0aKvrEx16XU6qhcz8tLshIx7Ltjnf4Ew
-        CyRwhF2bPQIropI3UXzEGxglPZD0hpzP0mdy6ZOPgvsXesV5PG+vtWaQi9gvgdkVtHzE00Pwt4D
-        Us517KE6JJaWd0gR9Nhq/TQ==
-X-Received: by 2002:a05:620a:4409:b0:6bb:58d6:9d3e with SMTP id v9-20020a05620a440900b006bb58d69d3emr4182722qkp.472.1662584060832;
-        Wed, 07 Sep 2022 13:54:20 -0700 (PDT)
-X-Google-Smtp-Source: AA6agR7L4bEXDaQgMSdiQE5EAuc4myKBDtzzkSS9v/3Qub/TknkF3WOqYwNNW1Kuzl3D8ReYrShccg==
-X-Received: by 2002:a05:620a:4409:b0:6bb:58d6:9d3e with SMTP id v9-20020a05620a440900b006bb58d69d3emr4182709qkp.472.1662584060629;
-        Wed, 07 Sep 2022 13:54:20 -0700 (PDT)
-Received: from halaneylaptop ([2600:1700:1ff0:d0e0::a])
-        by smtp.gmail.com with ESMTPSA id q34-20020a05620a2a6200b006cbbc3daaacsm224671qkp.113.2022.09.07.13.54.19
+        bh=M8GODblblJ7lgQjEptGgaamLLNOUHZVWWN4JggoaBsc=;
+        b=vgflpSXdQ7ULcABk3+m+j3VDri5+itIEGQ1E0qXe/6RCKtMZtlRnjU5YtNu5oGtjET
+         4vj6GcoiybqqSOOEoSVfDT+m4JPAsr3V7733FXr60zVAFW2ydORtsmYViOBWEhyODmZ9
+         cYB3zw4fyWQKQvP9uXhIAaM5Sx/LxMvZa2b2QIk9/dicJbhLaK6BUOzcAk7pGMZtyhFR
+         DhyDGcfOPP+g/KUSgptmTOkxgVqrNoQj+/zDyKESEYUqG1Wb77ssf8KFV5slymAHfyd/
+         p1klmKLzgIqkhamxcI++3E0hCh+6YUwRlyi6dKArhyW8D7b70qZRGozMbH7QPslM54Nv
+         Xvvg==
+X-Gm-Message-State: ACgBeo3AA712qn+RgEMGbRmZ3arSTB0egieqjRIrYl9gCP6LQGPMLk6I
+        l7QKNu2UR5zoKsNupnJofQqp3yVxzg==
+X-Google-Smtp-Source: AA6agR5LcayUP4PBQusbKEeF/pnPOazQkEVeLrrb4JKL1wQbwL2sI1XBeIHi0Ur69fGhu53oWU7QPA==
+X-Received: by 2002:a05:6870:218e:b0:126:9dc3:9666 with SMTP id l14-20020a056870218e00b001269dc39666mr158267oae.73.1662584419332;
+        Wed, 07 Sep 2022 14:00:19 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id t8-20020a4ad0a8000000b004357ccfc8bfsm5408629oor.7.2022.09.07.14.00.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Sep 2022 13:54:20 -0700 (PDT)
-Date:   Wed, 7 Sep 2022 15:54:18 -0500
-From:   Andrew Halaney <ahalaney@redhat.com>
-To:     Johan Hovold <johan@kernel.org>
-Cc:     agross@kernel.org, andersson@kernel.org,
-        konrad.dybcio@somainline.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        dianders@chromium.org
-Subject: Re: [PATCH v2] regulator: dt-bindings: qcom,rpmh: Indicate
- regulator-allow-set-load dependencies
-Message-ID: <20220907205418.lqwxwyebqlt6lm7z@halaneylaptop>
-References: <20220906201959.69920-1-ahalaney@redhat.com>
- <Yxg5+9lkHnNsI30j@hovoldconsulting.com>
+        Wed, 07 Sep 2022 14:00:18 -0700 (PDT)
+Received: (nullmailer pid 336368 invoked by uid 1000);
+        Wed, 07 Sep 2022 21:00:18 -0000
+Date:   Wed, 7 Sep 2022 16:00:18 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-renesas-soc@vger.kernel.org,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-media@vger.kernel.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Biju Das <biju.das@bp.renesas.com>
+Subject: Re: [PATCH v3 1/3] media: dt-bindings: media: renesas,fcp: Document
+ RZ/{G2,V2}L FCPVD bindings
+Message-ID: <20220907210018.GA336305-robh@kernel.org>
+References: <20220902064628.59001-1-biju.das.jz@bp.renesas.com>
+ <20220902064628.59001-2-biju.das.jz@bp.renesas.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <Yxg5+9lkHnNsI30j@hovoldconsulting.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220902064628.59001-2-biju.das.jz@bp.renesas.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 07, 2022 at 08:28:11AM +0200, Johan Hovold wrote:
-> On Tue, Sep 06, 2022 at 03:19:59PM -0500, Andrew Halaney wrote:
-> > For RPMH regulators it doesn't make sense to indicate
-> > regulator-allow-set-load without saying what modes you can switch to,
-> > so be sure to indicate a dependency on regulator-allowed-modes.
-> > 
-> > With this in place devicetree validation can catch issues like this:
-> > 
-> >     /mnt/extrassd/git/linux-next/arch/arm64/boot/dts/qcom/sm8350-hdk.dtb: pm8350-rpmh-regulators: ldo5: 'regulator-allowed-modes' is a dependency of 'regulator-allow-set-load'
-> >             From schema: /mnt/extrassd/git/linux-next/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
-> > 
-> > Suggested-by: Johan Hovold <johan@kernel.org>
-> > Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
+On Fri, 02 Sep 2022 07:46:26 +0100, Biju Das wrote:
+> Document FCPVD found in RZ/G2L alike SoCs. FCPVD block is similar to
+> FCP for VSP found on R-Car SoC's . It has 3 clocks compared to 1
+> clock on fcpv. Introduce new compatibles renesas,r9a07g044-fcpvd
+> for RZ/G2{L,LC} and renesas,r9a07g054-fcpvd for RZ/V2L to handle this
+> difference.
 > 
-> Looks good to me.
+> The 3 clocks are shared between du, vspd and fcpvd. No driver changes
+> are required as generic compatible string "renesas,fcpv" will be used
+> as a fallback.
 > 
-> Reviewed-by: Johan Hovold <johan+kernel@kernel.org>
-> 
-> > ---
-> > 
-> > v1: https://lore.kernel.org/linux-arm-msm/20220902185148.635292-1-ahalaney@redhat.com/
-> > Changes since v1:
-> >   - Dropped first two patches in the series as they were user error
-> >     (thanks Krzysztof for highlighting this!)
-> >   - No change in the remaining patch
-> > 
-> > Krzysztof also asked if this patch in particular should apply to other
-> > regulators, which I think it should for those regulator's who implement
-> > set_mode(). Unfortunately I don't know of a good way to get that
-> > information in order to apply it at a broader scope for devicetree
-> > regulator validation. At least with this in place RPMH users can get
-> > better coverage... if someone has suggestions for how to broaden the
-> > scope I'm all ears!
-> 
-> I guess the commit message could have tried to capture that is feature
-> of the hardware (as Linux implementation details shouldn't impact the
-> binding). And apparently there are regulators that do not need this
-> (e.g. RPM).
-> 
-> Johan
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+> v2->v3:
+>  * Updated the compatibles by replacing items->enum as
+>    it is just one item.
+> v1->v2:
+>  * Documented RZ/{G2,V2}L FCPVD bindings
+>  * Introduces new compatibles renesas,r9a07g0{44,54}-fcpvd
+>  * Added clock-names property
+>  * described clocks.
+> ---
+>  .../bindings/media/renesas,fcp.yaml           | 45 ++++++++++++++++---
+>  1 file changed, 40 insertions(+), 5 deletions(-)
 > 
 
-Thanks for the suggestion Johan. I've posted another spin with that
-addition and your (and Douglas') R-B tags over here:
-
-    https://lore.kernel.org/linux-arm-msm/20220907204924.173030-1-ahalaney@redhat.com/T/#u
-
-Thanks,
-Andrew
-
+Reviewed-by: Rob Herring <robh@kernel.org>
