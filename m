@@ -2,138 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C5DA5B0E95
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 22:51:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5415E5B0EA4
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 22:54:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229638AbiIGUuz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 16:50:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59052 "EHLO
+        id S229485AbiIGUy1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 16:54:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230274AbiIGUuj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 16:50:39 -0400
-Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43E1D52DF0;
-        Wed,  7 Sep 2022 13:50:35 -0700 (PDT)
-Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-128121a9851so3693783fac.13;
-        Wed, 07 Sep 2022 13:50:35 -0700 (PDT)
+        with ESMTP id S229523AbiIGUyZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 16:54:25 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27D24E86
+        for <devicetree@vger.kernel.org>; Wed,  7 Sep 2022 13:54:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1662584062;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=lupOQBDl9M+eSrYMhhygPunyzKVvpUXpQehMzs92JzM=;
+        b=E/nw5opgR5c4+9Zsp0XxyLJQ4XSk+FG/wl3AirlHFXqpTLPMohGIjAseXDxtvX1wADAGSc
+        khrC3sDwlBrBu2/OR2R8AZoKl7ckHEyrDd2xKgPEeSOibFWi4+lY6qX+GKsYHfxBtFSJK8
+        6Se58iLvf8uxjo3gpIFhXSfVSo/I2Bc=
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com
+ [209.85.222.198]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-546-5UWa9JyhNVenqZwiHr9gJg-1; Wed, 07 Sep 2022 16:54:21 -0400
+X-MC-Unique: 5UWa9JyhNVenqZwiHr9gJg-1
+Received: by mail-qk1-f198.google.com with SMTP id h20-20020a05620a245400b006bb0c6074baso12786274qkn.6
+        for <devicetree@vger.kernel.org>; Wed, 07 Sep 2022 13:54:21 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
-        bh=XpaMqgzQduMkVaFdjS8sZuoWxamJB73mDfIYxsQEGzM=;
-        b=ZyClzmMkb0bG/2HGswZh6EglijHrXaZys50CRcQk4btN7fLAQQBqEkBeP6Wy2SSpZZ
-         12ba5PXzk+YzS2jT8aP5T56aAx1/0elPW4YKuF5Z54heKxQg0nx2qnUCBayXjScSWOjx
-         45W+c0j25Gk3GEpaWqBblPCpv7dl1L8+PPQcg6nQMSO8XULOg8eSaLafeVzC69tHRqnS
-         tsuRb5ZEenEnlU7BpCmVB/rK5a7mJkdQI1e7ay2+BdBRERqxdvZNT+NSseWfd9EyFQ1G
-         hkLk/xIpJjaLnA5KNS/ZDzhs2dTfml5+oLoC3plfEpKMw5s8Ue4a3p+U9/5nURDytZFE
-         J9BA==
-X-Gm-Message-State: ACgBeo3HRXrQhXFmTjL5p2sHUW9045UxAjbHaAnFyicbwitnhqEZqePV
-        jOhYfLY4osaOUNNpf4TFqw==
-X-Google-Smtp-Source: AA6agR4y0lnUCMGP5KqdujGB7vvUBgedIl3yykVGAFTXJQtN736AfICOgzZNv2SREifIEOY0hIcY6g==
-X-Received: by 2002:a05:6871:96:b0:11d:ca1b:db19 with SMTP id u22-20020a056871009600b0011dca1bdb19mr180703oaa.74.1662583834165;
-        Wed, 07 Sep 2022 13:50:34 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id g12-20020a056870c14c00b0012644cc4feasm6349515oad.55.2022.09.07.13.50.33
+        bh=lupOQBDl9M+eSrYMhhygPunyzKVvpUXpQehMzs92JzM=;
+        b=bn7pGtHbTt/gYwXdEH2glf+0IkBAC0dQG1Y0wE+jroxqJPW+VBKJNO7jqIIk6XNxQM
+         1J4lqRcIY48A/Lfny6u74QGYpJWdA3ZlsvcqlpADiN7V4FHFTuDUt7eq0KOZP3U8vTv9
+         8D54e/Rs1gYcqWdjfY6d7NxTLul57uURa48gVnMrCQE6zYODHkyPjx+ZanRKv6JZOQ7e
+         bwaf66ETgcqqd49/A1w9+fgXg+yhsB/AErj3FX1eh3N/LjJf60UIWu9lMzu2dQRZY3Lj
+         9b6dVb3Hq5emV+qjCCyD7FQdbnXWBwiEZXuAHjSqbLqO++rj0fOq8aqpgeSip3q+4zEv
+         d3jA==
+X-Gm-Message-State: ACgBeo2Mn0Lmn9aWS79mt0ar0aKvrEx16XU6qhcz8tLshIx7Ltjnf4Ew
+        CyRwhF2bPQIropI3UXzEGxglPZD0hpzP0mdy6ZOPgvsXesV5PG+vtWaQi9gvgdkVtHzE00Pwt4D
+        Us517KE6JJaWd0gR9Nhq/TQ==
+X-Received: by 2002:a05:620a:4409:b0:6bb:58d6:9d3e with SMTP id v9-20020a05620a440900b006bb58d69d3emr4182722qkp.472.1662584060832;
+        Wed, 07 Sep 2022 13:54:20 -0700 (PDT)
+X-Google-Smtp-Source: AA6agR7L4bEXDaQgMSdiQE5EAuc4myKBDtzzkSS9v/3Qub/TknkF3WOqYwNNW1Kuzl3D8ReYrShccg==
+X-Received: by 2002:a05:620a:4409:b0:6bb:58d6:9d3e with SMTP id v9-20020a05620a440900b006bb58d69d3emr4182709qkp.472.1662584060629;
+        Wed, 07 Sep 2022 13:54:20 -0700 (PDT)
+Received: from halaneylaptop ([2600:1700:1ff0:d0e0::a])
+        by smtp.gmail.com with ESMTPSA id q34-20020a05620a2a6200b006cbbc3daaacsm224671qkp.113.2022.09.07.13.54.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Sep 2022 13:50:33 -0700 (PDT)
-Received: (nullmailer pid 320445 invoked by uid 1000);
-        Wed, 07 Sep 2022 20:50:33 -0000
-Date:   Wed, 7 Sep 2022 15:50:33 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Neal Liu <neal_liu@aspeedtech.com>
-Cc:     Dhananjay Phadke <dphadke@linux.microsoft.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "Chia-Wei Wang --cc=linux-kernel @ vger . kernel . org" 
-        <chiawei_wang@aspeedtech.com>, linux-crypto@vger.kernel.org,
-        linux-aspeed@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, BMC-SW@aspeedtech.com
-Subject: Re: [PATCH v1 4/4] dt-bindings: bus: add documentation for Aspeed
- AHBC
-Message-ID: <20220907205033.GA317033-robh@kernel.org>
-References: <20220902060012.3758637-1-neal_liu@aspeedtech.com>
- <20220902060012.3758637-5-neal_liu@aspeedtech.com>
+        Wed, 07 Sep 2022 13:54:20 -0700 (PDT)
+Date:   Wed, 7 Sep 2022 15:54:18 -0500
+From:   Andrew Halaney <ahalaney@redhat.com>
+To:     Johan Hovold <johan@kernel.org>
+Cc:     agross@kernel.org, andersson@kernel.org,
+        konrad.dybcio@somainline.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        dianders@chromium.org
+Subject: Re: [PATCH v2] regulator: dt-bindings: qcom,rpmh: Indicate
+ regulator-allow-set-load dependencies
+Message-ID: <20220907205418.lqwxwyebqlt6lm7z@halaneylaptop>
+References: <20220906201959.69920-1-ahalaney@redhat.com>
+ <Yxg5+9lkHnNsI30j@hovoldconsulting.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220902060012.3758637-5-neal_liu@aspeedtech.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <Yxg5+9lkHnNsI30j@hovoldconsulting.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 02, 2022 at 02:00:12PM +0800, Neal Liu wrote:
-> Add device tree binding documentation for the Aspeed
-> Advanced High-Performance Bus (AHB) Controller.
+On Wed, Sep 07, 2022 at 08:28:11AM +0200, Johan Hovold wrote:
+> On Tue, Sep 06, 2022 at 03:19:59PM -0500, Andrew Halaney wrote:
+> > For RPMH regulators it doesn't make sense to indicate
+> > regulator-allow-set-load without saying what modes you can switch to,
+> > so be sure to indicate a dependency on regulator-allowed-modes.
+> > 
+> > With this in place devicetree validation can catch issues like this:
+> > 
+> >     /mnt/extrassd/git/linux-next/arch/arm64/boot/dts/qcom/sm8350-hdk.dtb: pm8350-rpmh-regulators: ldo5: 'regulator-allowed-modes' is a dependency of 'regulator-allow-set-load'
+> >             From schema: /mnt/extrassd/git/linux-next/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
+> > 
+> > Suggested-by: Johan Hovold <johan@kernel.org>
+> > Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
 > 
-> Signed-off-by: Neal Liu <neal_liu@aspeedtech.com>
-> ---
->  .../bindings/bus/aspeed,ast2600-ahbc.yaml     | 39 +++++++++++++++++++
->  1 file changed, 39 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/bus/aspeed,ast2600-ahbc.yaml
+> Looks good to me.
 > 
-> diff --git a/Documentation/devicetree/bindings/bus/aspeed,ast2600-ahbc.yaml b/Documentation/devicetree/bindings/bus/aspeed,ast2600-ahbc.yaml
-> new file mode 100644
-> index 000000000000..ca09eb531666
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/bus/aspeed,ast2600-ahbc.yaml
-> @@ -0,0 +1,39 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/bus/aspeed,ast2600-ahbc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ASPEED Advanced High-Performance Bus Controller (AHBC) Device Tree Bindings
-> +
-> +maintainers:
-> +  - Neal Liu <neal_liu@aspeedtech.com>
-> +  - Chia-Wei Wang <chiawei_wang@aspeedtech.com>
-> +
-> +description: |
-> +  Advanced High-performance Bus Controller (AHBC) supports plenty of mechanisms
-> +  including a priority arbiter, an address decoder and a data multiplexer
-> +  to control the overall operations of Advanced Highperformance
-
-High-performance
-
-> +  Bus (AHB). AHB is the main system bus for ARM CPU to communicate with the
-> +  related peripherals.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - aspeed,ast2600-ahbc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    ahbc: bus@1e600000 {
-> +        compatible = "aspeed,ast2600-ahbc";
-> +        reg = <0x1e600000 0x100>;
-
-Shouldn't devices on the bus be child nodes? 
-
-> +    };
-> -- 
-> 2.25.1
+> Reviewed-by: Johan Hovold <johan+kernel@kernel.org>
 > 
+> > ---
+> > 
+> > v1: https://lore.kernel.org/linux-arm-msm/20220902185148.635292-1-ahalaney@redhat.com/
+> > Changes since v1:
+> >   - Dropped first two patches in the series as they were user error
+> >     (thanks Krzysztof for highlighting this!)
+> >   - No change in the remaining patch
+> > 
+> > Krzysztof also asked if this patch in particular should apply to other
+> > regulators, which I think it should for those regulator's who implement
+> > set_mode(). Unfortunately I don't know of a good way to get that
+> > information in order to apply it at a broader scope for devicetree
+> > regulator validation. At least with this in place RPMH users can get
+> > better coverage... if someone has suggestions for how to broaden the
+> > scope I'm all ears!
 > 
+> I guess the commit message could have tried to capture that is feature
+> of the hardware (as Linux implementation details shouldn't impact the
+> binding). And apparently there are regulators that do not need this
+> (e.g. RPM).
+> 
+> Johan
+> 
+
+Thanks for the suggestion Johan. I've posted another spin with that
+addition and your (and Douglas') R-B tags over here:
+
+    https://lore.kernel.org/linux-arm-msm/20220907204924.173030-1-ahalaney@redhat.com/T/#u
+
+Thanks,
+Andrew
+
