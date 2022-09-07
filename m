@@ -2,241 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 664825B0C75
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 20:25:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD7DD5B0C7B
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 20:26:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230049AbiIGSZb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 14:25:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41342 "EHLO
+        id S230329AbiIGS0K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 14:26:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229696AbiIGSZ3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 14:25:29 -0400
-Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90D2EB276F
-        for <devicetree@vger.kernel.org>; Wed,  7 Sep 2022 11:25:27 -0700 (PDT)
-Received: by mail-yb1-xb36.google.com with SMTP id y82so14671504yby.6
-        for <devicetree@vger.kernel.org>; Wed, 07 Sep 2022 11:25:27 -0700 (PDT)
+        with ESMTP id S230305AbiIGS0H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 14:26:07 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E99DBCC1F;
+        Wed,  7 Sep 2022 11:26:02 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id z20so16986861ljq.3;
+        Wed, 07 Sep 2022 11:26:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=t1RT2GVL7So8FRxhttvNmfTvwaG7wye3XjohR9wIDto=;
-        b=d+pqtCM7emIqHqqcL0FHUBGevoq1D8aCT3LyylUG8lQcnvelI9T0US5vu7KwGPVIz5
-         mzmXu8yMHa9xjZQzxqTF0/OFT6/PbcNpNEbMVWHQnSUEWUa9uberuGAQO/UfPpx5mNoE
-         8IDPGgqmMCtXrV1CSCjdVYO83arausSfcFTWgtHvxSZSQ7yJF0wgjKzWER5gVVJH6zl1
-         v9bx+QXgNeTUfPfAxLV0r78mUzP8aWPtsX7iEPZCtL7BOr3YEcBUoMhKNX/kqUr7B+XQ
-         BOZgcuBdvMpanoRIG32KLgFjh9qtARUy+mu3yK6NIznET5lMXvuweEY0jSuS6p13b8bp
-         gk5w==
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date;
+        bh=Z9P17Yt0yBVUVeFH8T9sgH+GY3z+6mIu/hWAbTLi3gE=;
+        b=bSBq6TrQEMMHQceNOwc7Uc3PucEeV7/m1nPzeUW8yOGLZNY+O3AMad8w93hHNktZr+
+         7OFC0TAqOj3LanMxXMVzvbX9bca+jx8gsewboM9qLs8yLoty7khzGREqn6DR9vfyzNRQ
+         tCuKV3S4qTixrgPar/hItGWEYMu8o3U166vRTALg83Jwk8QXg5ZODmWjswhzwFmZGssN
+         Bi4Snob/0nesX+GoQA5PFNCvNia7V+v3Nmvw9BcdH6RDbhKBHxaCoILQLLHxbrp4kJN1
+         BSXtGZfjDz/Be5gefJwsFaXAHZwXuwRsA1AQ2rkLURe0lLUEKe22kYlrhrHz5jzrUdwG
+         +RDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=t1RT2GVL7So8FRxhttvNmfTvwaG7wye3XjohR9wIDto=;
-        b=1RDcNUlB8tuP6JrmmF+QDNwq1pXaiGuz2C1kOmzGZWECUjrTqB2zRAlQknttQJeDYX
-         Mh4lTAHewyUtahVyCzf71Svh2/lsMTd6PpvVj1e+msqgWoKBiYx0vpTUxPttJ3GZM4D7
-         gULchDE60E9gzfwhgx9BzK5tsiyCm+iQjOtqtE2Ve8CSKTAnAensQfnqi+EG6VPubIjZ
-         pLWC7lz/oxQXzi/uz+GONRFcYERcN2aw608HOumlAEuoVdG4s/syoZoHIOEM3PANlX1x
-         CQfLiaSl6cvEH4A6uVnakxG4Fw2NQ5CHvU5rSGozItcd87GDSHWXJke9hLVnCfZr+fae
-         N8iw==
-X-Gm-Message-State: ACgBeo0dswiN6wsn38723MauGjMIwwLKksXR1yIVvBnL2QNJ9+5M18rk
-        jJS0LCwQR0i1GscgXQEmrs7WSteB1nJ6lW66xA47BA==
-X-Google-Smtp-Source: AA6agR5g3t8dPU742opp3p0IGn/aiTc1yTYGIe5tHSK58+GIreEcSzS0Uo9FzFd2YosZaWBi6GX37ZkiUG1Bh97oglc=
-X-Received: by 2002:a25:3cc4:0:b0:696:5790:438d with SMTP id
- j187-20020a253cc4000000b006965790438dmr3664251yba.563.1662575126653; Wed, 07
- Sep 2022 11:25:26 -0700 (PDT)
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date;
+        bh=Z9P17Yt0yBVUVeFH8T9sgH+GY3z+6mIu/hWAbTLi3gE=;
+        b=yKoiG74mHUk26xCrXhH61e/yixEMPQ8sBpX/Ue7b5Yfsh2eLV03evOCZVvqN/a08ua
+         oIE+yVAtg5stYIs4sMbTFOH6e2DuOTn49DZpLnTInDoD46RYWUdWWR1GiLAEdwXm3GGD
+         UWFpa3Q2k9S054D/lDkzAo7IehVhqKxGjJKzZHJaCQAnZuDLkmDHgxJWbHJIhGY7UJFl
+         czIWer2aosyqZipkd+0nO3PT4M90d+W8OR0b9Mf+YLbIJCs0pmQEgRnm/7PPr27b2INo
+         1M4wuWmzqXWlf5Ns/yD3du81f8mqIlEtBOgmQvfmsPevvmGteECbK3c+nd/rhGttM2WA
+         TryQ==
+X-Gm-Message-State: ACgBeo0oai563s5JQbTKA6QSfA+chW+Xqw1TwSu3uUmLyLjpALJhN9zV
+        L7nPYk5/rxsQx5Zl/Fu0GFC0RCaHlYGU4A==
+X-Google-Smtp-Source: AA6agR7iwLntxAUMmySKwPm/4Mi+kVhw3ueG8RBFbNS7KyIQL4/zk+rTw2jYIU86FY1YZzQkN0C9Fg==
+X-Received: by 2002:a2e:940d:0:b0:261:c5c8:3403 with SMTP id i13-20020a2e940d000000b00261c5c83403mr1488589ljh.86.1662575160567;
+        Wed, 07 Sep 2022 11:26:00 -0700 (PDT)
+Received: from mobilestation (89-109-51-230.dynamic.mts-nn.ru. [89.109.51.230])
+        by smtp.gmail.com with ESMTPSA id 5-20020a2eb945000000b00267232d0652sm2817728ljs.46.2022.09.07.11.25.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Sep 2022 11:25:59 -0700 (PDT)
+Date:   Wed, 7 Sep 2022 21:25:56 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     kernel test robot <lkp@intel.com>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>, Hannes Reinecke <hare@suse.de>,
+        kbuild-all@lists.01.org,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-ide@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 19/23] ata: ahci: Add DWC AHCI SATA controller support
+Message-ID: <20220907182556.em57cl4g5nk2i4sc@mobilestation>
+References: <20220822183728.24434-20-Sergey.Semin@baikalelectronics.ru>
+ <202209040834.w5y0s1NR-lkp@intel.com>
 MIME-Version: 1.0
-References: <20220803122655.100254-1-nipun.gupta@amd.com> <20220906134801.4079497-1-nipun.gupta@amd.com>
- <20220906134801.4079497-4-nipun.gupta@amd.com> <CAGETcx_W8QVe+CdpocN2rHjp08TwsW22FaJgrYW=0JNge_N6KQ@mail.gmail.com>
- <DM6PR12MB30829DDDC62B36B17F87B204E8419@DM6PR12MB3082.namprd12.prod.outlook.com>
- <f5cf7bd7-4cd9-ef9c-7f25-f814b2f1e41f@arm.com>
-In-Reply-To: <f5cf7bd7-4cd9-ef9c-7f25-f814b2f1e41f@arm.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Wed, 7 Sep 2022 11:24:50 -0700
-Message-ID: <CAGETcx9LE=E2focmbEsdQV3s2NR4-9H35ODkgSxZY5_7SEJ1Qw@mail.gmail.com>
-Subject: Re: [RFC PATCH v3 3/7] iommu/arm-smmu-v3: support ops registration
- for CDX bus
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     "Gupta, Nipun" <Nipun.Gupta@amd.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "rafael@kernel.org" <rafael@kernel.org>,
-        "eric.auger@redhat.com" <eric.auger@redhat.com>,
-        "alex.williamson@redhat.com" <alex.williamson@redhat.com>,
-        "cohuck@redhat.com" <cohuck@redhat.com>,
-        "Gupta, Puneet (DCG-ENG)" <puneet.gupta@amd.com>,
-        "song.bao.hua@hisilicon.com" <song.bao.hua@hisilicon.com>,
-        "mchehab+huawei@kernel.org" <mchehab+huawei@kernel.org>,
-        "maz@kernel.org" <maz@kernel.org>,
-        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
-        "jeffrey.l.hugo@gmail.com" <jeffrey.l.hugo@gmail.com>,
-        "Michael.Srba@seznam.cz" <Michael.Srba@seznam.cz>,
-        "mani@kernel.org" <mani@kernel.org>,
-        "yishaih@nvidia.com" <yishaih@nvidia.com>,
-        "jgg@ziepe.ca" <jgg@ziepe.ca>, "jgg@nvidia.com" <jgg@nvidia.com>,
-        "will@kernel.org" <will@kernel.org>,
-        "joro@8bytes.org" <joro@8bytes.org>,
-        "masahiroy@kernel.org" <masahiroy@kernel.org>,
-        "ndesaulniers@google.com" <ndesaulniers@google.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kbuild@vger.kernel.org" <linux-kbuild@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
-        "okaya@kernel.org" <okaya@kernel.org>,
-        "Anand, Harpreet" <harpreet.anand@amd.com>,
-        "Agarwal, Nikhil" <nikhil.agarwal@amd.com>,
-        "Simek, Michal" <michal.simek@amd.com>,
-        "Radovanovic, Aleksandar" <aleksandar.radovanovic@amd.com>,
-        "git (AMD-Xilinx)" <git@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <202209040834.w5y0s1NR-lkp@intel.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 7, 2022 at 1:27 AM Robin Murphy <robin.murphy@arm.com> wrote:
->
-> On 2022-09-07 04:17, Gupta, Nipun wrote:
-> > [AMD Official Use Only - General]
-> >
-> >
-> >
-> >> -----Original Message-----
-> >> From: Saravana Kannan <saravanak@google.com>
-> >> Sent: Wednesday, September 7, 2022 5:41 AM
-> >> To: Gupta, Nipun <Nipun.Gupta@amd.com>
-> >> Cc: robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
-> >> gregkh@linuxfoundation.org; rafael@kernel.org; eric.auger@redhat.com;
-> >> alex.williamson@redhat.com; cohuck@redhat.com; Gupta, Puneet (DCG-ENG)
-> >> <puneet.gupta@amd.com>; song.bao.hua@hisilicon.com;
-> >> mchehab+huawei@kernel.org; maz@kernel.org; f.fainelli@gmail.com;
-> >> jeffrey.l.hugo@gmail.com; Michael.Srba@seznam.cz; mani@kernel.org;
-> >> yishaih@nvidia.com; jgg@ziepe.ca; jgg@nvidia.com; robin.murphy@arm.com;
-> >> will@kernel.org; joro@8bytes.org; masahiroy@kernel.org;
-> >> ndesaulniers@google.com; linux-arm-kernel@lists.infradead.org; linux-
-> >> kbuild@vger.kernel.org; linux-kernel@vger.kernel.org;
-> >> devicetree@vger.kernel.org; kvm@vger.kernel.org; okaya@kernel.org; Anand,
-> >> Harpreet <harpreet.anand@amd.com>; Agarwal, Nikhil
-> >> <nikhil.agarwal@amd.com>; Simek, Michal <michal.simek@amd.com>;
-> >> Radovanovic, Aleksandar <aleksandar.radovanovic@amd.com>; git (AMD-Xilinx)
-> >> <git@amd.com>
-> >> Subject: Re: [RFC PATCH v3 3/7] iommu/arm-smmu-v3: support ops registration
-> >> for CDX bus
-> >>
-> >> [CAUTION: External Email]
-> >>
-> >> On Tue, Sep 6, 2022 at 6:48 AM Nipun Gupta <nipun.gupta@amd.com> wrote:
-> >>>
-> >>> With new CDX bus supported for AMD FPGA devices on ARM
-> >>> platform, the bus requires registration for the SMMU v3
-> >>> driver.
-> >>>
-> >>> Signed-off-by: Nipun Gupta <nipun.gupta@amd.com>
-> >>> ---
-> >>>   drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c | 16 ++++++++++++++--
-> >>>   1 file changed, 14 insertions(+), 2 deletions(-)
-> >>>
-> >>> diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-> >> b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-> >>> index d32b02336411..8ec9f2baf12d 100644
-> >>> --- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-> >>> +++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-> >>> @@ -29,6 +29,7 @@
-> >>>   #include <linux/platform_device.h>
-> >>>
-> >>>   #include <linux/amba/bus.h>
-> >>> +#include <linux/cdx/cdx_bus.h>
-> >>>
-> >>>   #include "arm-smmu-v3.h"
-> >>>   #include "../../iommu-sva-lib.h"
-> >>> @@ -3690,16 +3691,27 @@ static int arm_smmu_set_bus_ops(struct
-> >> iommu_ops *ops)
-> >>>                  if (err)
-> >>>                          goto err_reset_pci_ops;
-> >>>          }
-> >>> +#endif
-> >>> +#ifdef CONFIG_CDX_BUS
-> >>> +       if (cdx_bus_type.iommu_ops != ops) {
-> >>> +               err = bus_set_iommu(&cdx_bus_type, ops);
-> >>> +               if (err)
-> >>> +                       goto err_reset_amba_ops;
-> >>> +       }
-> >>
-> >> I'm not an expert on IOMMUs, so apologies if the question is stupid.
-> >>
-> >> Why does the CDX bus need special treatment here (like PCI) when there
-> >> are so many other busses (eg: I2C, SPI, etc) that don't need any
-> >> changes here?
-> >
-> > AFAIU, the devices on I2C/SPI does not use SMMU. Apart from PCI/AMBA,
-> > FSL-MC is another similar bus (on SMMUv2) which uses SMMU ops.
-> >
-> > The devices here are behind SMMU. Robin can kindly correct or add
-> > more here from SMMU perspective.
->
-> Indeed, there is no need to describe and handle how DMA may or may not
-> be translated for I2C/SPI/USB/etc. because they are not DMA-capable
-> buses (in those cases the relevant bus *controller* often does DMA, but
-> it does that for itself as the platform/PCI/etc. device it is).
+On Sun, Sep 04, 2022 at 08:34:20AM +0800, kernel test robot wrote:
+> Hi Serge,
+> 
+> I love your patch! Yet something to improve:
+> 
+> [auto build test ERROR on robh/for-next]
+> [also build test ERROR on axboe-block/for-next linus/master v6.0-rc3 next-20220901]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> 
+> url:    https://github.com/intel-lab-lkp/linux/commits/Serge-Semin/ata-ahci-Add-DWC-Baikal-T1-AHCI-SATA-support/20220823-024133
+> base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+> config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20220904/202209040834.w5y0s1NR-lkp@intel.com/config)
+> compiler: m68k-linux-gcc (GCC) 12.1.0
+> reproduce (this is a W=1 build):
+>         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+>         chmod +x ~/bin/make.cross
+>         # https://github.com/intel-lab-lkp/linux/commit/e628913a210e29775bc995d1ed3ed58ab13416b8
+>         git remote add linux-review https://github.com/intel-lab-lkp/linux
+>         git fetch --no-tags linux-review Serge-Semin/ata-ahci-Add-DWC-Baikal-T1-AHCI-SATA-support/20220823-024133
+>         git checkout e628913a210e29775bc995d1ed3ed58ab13416b8
+>         # save the config file
+>         mkdir build_dir && cp config build_dir/.config
+>         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=m68k SHELL=/bin/bash drivers/ata/
+> 
+> If you fix the issue, kindly add following tag where applicable
+> Reported-by: kernel test robot <lkp@intel.com>
+> 
+> All errors (new ones prefixed by >>):
+> 
+>    In file included from include/linux/clk.h:13,
+>                     from drivers/ata/ahci_dwc.c:11:
+> >> drivers/ata/ahci_dwc.c:372:50: error: 'ahci_dwc_suspend' undeclared here (not in a function); did you mean 'ahci_dwc_probe'?
+>      372 | static DEFINE_SIMPLE_DEV_PM_OPS(ahci_dwc_pm_ops, ahci_dwc_suspend,
+>          |                                                  ^~~~~~~~~~~~~~~~
+>    include/linux/kernel.h:57:44: note: in definition of macro 'PTR_IF'
+>       57 | #define PTR_IF(cond, ptr)       ((cond) ? (ptr) : NULL)
+>          |                                            ^~~
+>    include/linux/pm.h:313:20: note: in expansion of macro 'pm_sleep_ptr'
+>      313 |         .suspend = pm_sleep_ptr(suspend_fn), \
+>          |                    ^~~~~~~~~~~~
+>    include/linux/pm.h:373:9: note: in expansion of macro 'SYSTEM_SLEEP_PM_OPS'
+>      373 |         SYSTEM_SLEEP_PM_OPS(suspend_fn, resume_fn) \
+>          |         ^~~~~~~~~~~~~~~~~~~
+>    include/linux/pm.h:399:9: note: in expansion of macro '_DEFINE_DEV_PM_OPS'
+>      399 |         _DEFINE_DEV_PM_OPS(name, suspend_fn, resume_fn, NULL, NULL, NULL)
+>          |         ^~~~~~~~~~~~~~~~~~
+>    drivers/ata/ahci_dwc.c:372:8: note: in expansion of macro 'DEFINE_SIMPLE_DEV_PM_OPS'
+>      372 | static DEFINE_SIMPLE_DEV_PM_OPS(ahci_dwc_pm_ops, ahci_dwc_suspend,
+>          |        ^~~~~~~~~~~~~~~~~~~~~~~~
+> >> drivers/ata/ahci_dwc.c:373:33: error: 'ahci_dwc_resume' undeclared here (not in a function); did you mean 'ahci_port_resume'?
+>      373 |                                 ahci_dwc_resume);
+>          |                                 ^~~~~~~~~~~~~~~
+>    include/linux/kernel.h:57:44: note: in definition of macro 'PTR_IF'
+>       57 | #define PTR_IF(cond, ptr)       ((cond) ? (ptr) : NULL)
+>          |                                            ^~~
+>    include/linux/pm.h:314:19: note: in expansion of macro 'pm_sleep_ptr'
+>      314 |         .resume = pm_sleep_ptr(resume_fn), \
+>          |                   ^~~~~~~~~~~~
+>    include/linux/pm.h:373:9: note: in expansion of macro 'SYSTEM_SLEEP_PM_OPS'
+>      373 |         SYSTEM_SLEEP_PM_OPS(suspend_fn, resume_fn) \
+>          |         ^~~~~~~~~~~~~~~~~~~
+>    include/linux/pm.h:399:9: note: in expansion of macro '_DEFINE_DEV_PM_OPS'
+>      399 |         _DEFINE_DEV_PM_OPS(name, suspend_fn, resume_fn, NULL, NULL, NULL)
+>          |         ^~~~~~~~~~~~~~~~~~
+>    drivers/ata/ahci_dwc.c:372:8: note: in expansion of macro 'DEFINE_SIMPLE_DEV_PM_OPS'
+>      372 | static DEFINE_SIMPLE_DEV_PM_OPS(ahci_dwc_pm_ops, ahci_dwc_suspend,
+>          |        ^~~~~~~~~~~~~~~~~~~~~~~~
+>    drivers/ata/ahci_dwc.c:267:12: warning: 'ahci_dwc_reinit_host' defined but not used [-Wunused-function]
+>      267 | static int ahci_dwc_reinit_host(struct ahci_host_priv *hpriv)
+>          |            ^~~~~~~~~~~~~~~~~~~~
 
-Ok this is what I was guessing was the reason, but didn't want to make
-that assumption.
+Right. The SYSTEM_SLEEP_PM_OPS macro doesn't imply ifdef'ing the sleep
+action-methods. I'll drop the conditional compilation then.
 
-So if there are other cases like AMBA, FSL-MC where the devices can do
-direct DMA, why do those buses not need a #ifdef section in this
-function like CDX? Or put another way, why does CDX need special treatment?
+-Sergey
 
-> Note that I have a series pending[1] that will make this patch a whole
-> lot simpler.
-
-Thanks for the pointer. I'll make some comments in that series about
-bus notifiers.
-
-
--Saravana
-
->
-> Thanks,
-> Robin.
->
-> [1]
-> https://lore.kernel.org/linux-iommu/cover.1660572783.git.robin.murphy@arm.com/T/#t
->
-> >
-> > Thanks,
-> > Nipun
-> >
-> >>
-> >> -Saravana
-> >>
-> >>>   #endif
-> >>>          if (platform_bus_type.iommu_ops != ops) {
-> >>>                  err = bus_set_iommu(&platform_bus_type, ops);
-> >>>                  if (err)
-> >>> -                       goto err_reset_amba_ops;
-> >>> +                       goto err_reset_cdx_ops;
-> >>>          }
-> >>>
-> >>>          return 0;
-> >>>
-> >>> -err_reset_amba_ops:
-> >>> +err_reset_cdx_ops:
-> >>> +#ifdef CONFIG_CDX_BUS
-> >>> +       bus_set_iommu(&cdx_bus_type, NULL);
-> >>> +#endif
-> >>> +err_reset_amba_ops: __maybe_unused;
-> >>>   #ifdef CONFIG_ARM_AMBA
-> >>>          bus_set_iommu(&amba_bustype, NULL);
-> >>>   #endif
-> >>> --
-> >>> 2.25.1
-> >>>
+> 
+> 
+> vim +372 drivers/ata/ahci_dwc.c
+> 
+>    371	
+>  > 372	static DEFINE_SIMPLE_DEV_PM_OPS(ahci_dwc_pm_ops, ahci_dwc_suspend,
+>  > 373					ahci_dwc_resume);
+>    374	
+> 
+> -- 
+> 0-DAY CI Kernel Test Service
+> https://01.org/lkp
