@@ -2,798 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A2445B049D
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 15:03:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 245515B04B8
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 15:07:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229963AbiIGNDq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 09:03:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50442 "EHLO
+        id S229563AbiIGNHi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 09:07:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230003AbiIGNDk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 09:03:40 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6845D73935
-        for <devicetree@vger.kernel.org>; Wed,  7 Sep 2022 06:03:37 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id r17so2814757ejy.9
-        for <devicetree@vger.kernel.org>; Wed, 07 Sep 2022 06:03:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date;
-        bh=SWSbJew+tfh1Mkl2iagKcBxNKxk0hEJSyNk10kqJeC8=;
-        b=MNidlAzykg722jnMojgE4H0JrepwJ+EcQXGa05t/9gTWm4oBV6Hg+svc4VXjUse/Hw
-         /sU3IG9lVRB5P22EseXO+jtbOikwswcOhjLn5v+EtgG0VJCrTwUCTCFALYPZVQqt+Cch
-         ErXNHKFdzXRBPySvGIm0738yIy3qcQZBnEG7UqyCxd4DdeXm7/WGwqV/yB+QVG1HSm4/
-         0db1+kA//aZRAK0KW4g9QxLS/Kv/xdQwFjcd/SrCoVe1RD03hVn4egRdzUN/IWD4aVDO
-         N24HjL2C6bXbSu1v1jYa8K5pV8IXBrnh6fQFjJxITokgr2UKJpfp3YNnYOTfakpSgHr4
-         UvQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date;
-        bh=SWSbJew+tfh1Mkl2iagKcBxNKxk0hEJSyNk10kqJeC8=;
-        b=sM+BCfIRZkDncAc/F/4g+DKdbHsl+IqDzE4pYiL2k//kqH/6kr+epuzBmxrahfyM0H
-         60DcXdKZNABH8v+8qiE90aIspaWODeRMzbnwcnUDvDRdP+Y+eCo73EGlCb/GoR6xxrph
-         7qNOG6Z1MtADxSxx+CyE5JGnDlo5CvEs8tAZ6mHgHqVV45W+2g15oT/2WP11c3+dKqSI
-         5cryyYZR0qiJdp532SDMnYwrPEzOe0e7rwX9uC1ebFMLjYE27zR27nCb1Q2kWIiGCzg5
-         WzgkWeDc6vIYDsohYmjO2kdsBnOFMgKOWWdUcvxMrHZEn7HVFLUsj44lXMdzNanG8Lpq
-         Mu1g==
-X-Gm-Message-State: ACgBeo3wEz6v1mcG0rdaNbhACpAIVckFgvX+mxl7x8XDeVEw9nEDrW0E
-        spaVXC8EUroRNUJxw0QbvZ007w==
-X-Google-Smtp-Source: AA6agR7iot39oNdt6B/ckp49xDzyUDnjaFqdfU/kT66X9TV52V6SZ9b4Q8ikFAvNg0QFbonSdeasYg==
-X-Received: by 2002:a17:907:a0c6:b0:73d:bb3c:328b with SMTP id hw6-20020a170907a0c600b0073dbb3c328bmr2200513ejc.354.1662555815787;
-        Wed, 07 Sep 2022 06:03:35 -0700 (PDT)
-Received: from localhost.localdomain (32.31.102.84.rev.sfr.net. [84.102.31.32])
-        by smtp.gmail.com with ESMTPSA id r16-20020a50c010000000b00447bd64d4f6sm10785000edb.73.2022.09.07.06.03.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Sep 2022 06:03:35 -0700 (PDT)
-From:   Julien Panis <jpanis@baylibre.com>
-To:     william.gray@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, mranostay@ti.com
-Subject: [PATCH v6 3/3] counter: ti-ecap-capture: capture driver support for ECAP
-Date:   Wed,  7 Sep 2022 15:03:27 +0200
-Message-Id: <20220907130327.139757-4-jpanis@baylibre.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20220907130327.139757-1-jpanis@baylibre.com>
-References: <20220907130327.139757-1-jpanis@baylibre.com>
+        with ESMTP id S229518AbiIGNHh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 09:07:37 -0400
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-eopbgr80052.outbound.protection.outlook.com [40.107.8.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46CD97A77F;
+        Wed,  7 Sep 2022 06:07:33 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=MH01MFBWvRSG4Cr62pZ3HtBgGBvHTg1KWj96Fth6IOjDIXSFx0+anT9YKXiik0oTJqFhKCCsChEzDWdaDOm4dn6Vq7uFETqR39G8VhQiLnuoPGOO7iURVn9pkDzTYq36pA9ejEbkR13ksx4MOQV2pzogRY/smDUE3/TXfoxR5QP55iX/c4pTrZ//tQLRPSmI+xFusyE8Lx2fICIGof+xqfLhxUwEPn7rz+W2F32D2xLnJcoVWMyiwJqapP+nR7lIc8jZDFEK6E1StkTUAK7AgRiQxkZaHJJrvfw9pRoNtzCmhiRsYzBRstain5g/oVcPbVxKBrGpz7eEoPSfOhPgHg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=s34KHKknZTa+rkIpTlVInSTNphNzELlWBVbzHrk/JQk=;
+ b=nFW91C//B2gDRJcFZ+qXsC0kFiPdDCPY/nR9Y1Wjal/he/NWlLKrWw2YDZTdeUmu+FbAYr3SI1ZHSLyDh5Vk5fSWrWmimvQ9t5dtLVfvcZfuQ33s+FwpMzZzSwtERV2CGBX8mJcJT7uj3AsgYXQtiDsL2sKtxC7MV7SZP2+SskprAOgpuPXSE+PC8q690Bc4fLAGRYO809/ReNQe2FhRCAHvYxtmmVvr4TF6g+/RfIN6Ep2jN09gbfEiLV0Hd+yENLfx/8N6WMRGqx+NEAGd4uK5luuuvBL1oiU7TO8NCjKbzsVRr0gbxHPPJBrxzKEaHQyETHNjjf2gGNYEVt9/Hg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=s34KHKknZTa+rkIpTlVInSTNphNzELlWBVbzHrk/JQk=;
+ b=blV95CgzL3G75lAceV7wH4nwBzw9ZD2DnWm1SbYCkwkJsMhtzXpG33PY0B4dnIIXMrazTU317yS4WDack2teiQ3P9u4rwrWWEfWM1hBO1AzpcBeJaqeSLVo6zobvWYuoprE54fRW7vo1nsMLnxcwSL3fZquVpCIWBRiIGNcJwaI=
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
+ by PAXPR04MB8591.eurprd04.prod.outlook.com (2603:10a6:102:21a::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.14; Wed, 7 Sep
+ 2022 13:07:30 +0000
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::3412:9d57:ec73:fef3]) by VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::3412:9d57:ec73:fef3%5]) with mapi id 15.20.5588.017; Wed, 7 Sep 2022
+ 13:07:30 +0000
+From:   Vladimir Oltean <vladimir.oltean@nxp.com>
+To:     Michael Walle <michael@walle.cc>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>, Leo Li <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH devicetree] arm64: dts: ls1028a-rdb: add more ethernet
+ aliases
+Thread-Topic: [PATCH devicetree] arm64: dts: ls1028a-rdb: add more ethernet
+ aliases
+Thread-Index: AQHYwW37dzULUFcX/0OQXQkpZmzQZq3RZ7aAgAAbB4CAAIrBAIAAIAOAgAF/HICAAEYXgA==
+Date:   Wed, 7 Sep 2022 13:07:30 +0000
+Message-ID: <20220907130729.whphxfmcp7odwkkf@skbuf>
+References: <20220905212458.1549179-1-vladimir.oltean@nxp.com>
+ <d00682d7e7aec2f979236338e7b3a688@walle.cc>
+ <20220905235413.6nfqi6vsp7iv32q3@skbuf>
+ <0c1b726c6791cc97f9ba15f923264630@walle.cc>
+ <20220906100525.mhjomm6f2y4lr3lw@skbuf>
+ <eaa92fcc134df14714f9d14635e551a1@walle.cc>
+In-Reply-To: <eaa92fcc134df14714f9d14635e551a1@walle.cc>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 72a976aa-e163-4770-e278-08da90d1ebc9
+x-ms-traffictypediagnostic: PAXPR04MB8591:EE_
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: naHCSRfzgGkG0sI1j+ME/OHRU72oWsh79lU46NDHvydYxGrupNWVCkdt1JBOIfofSF+RZDdPP5JijdbfcLLrNyJo/MEs6OWm44/WwOOIcXNdsx+afNgJr2tBrPZrmNQlPXWE326fmWBecnNBO3C9kGAosjPw2+bez8klZiPqxPZF4P4GgNYFOQnXbkxvzdf//kH+j9wb0Um1ffGtUKMRPRL4ZHpmy5MkVs52zwk6+YtGL1qFlnxlPWmQsZh/I4iIdnTCZ5qIk4b2ym/vaZu468zAZMPZRlrrhQcZVMLSsaBW5TUeA1fYVK8GvTpnuD387MdKIBioSKXbfgoMDplWwLKbNWV8RShQ/RlCzvhbVdWRnKzL9UEy6BZ67eNaZc84HB2Ac5MmUeZA50xKifQdmyZVgWqKc99bphXBSqfrmwayowHu4J0bVrFNr0EynJPSzXMyHhGRIyJHXEpmnZeF4ERdnttKSM5pOLMH+n+u7ymyO5+Y6QdUDZRKM3sl+F9VwoALQzpGRG3PEeO6aH2paWR6s5tNVndKZkkJjBj3AkuLexlyvSYK7nXyxe5Ndc6RDvsqmNqFKmM1vKtyqW74AqxnzFf77W0x0gB2yNhCHLVz2EwL3Zg/Xo+lzutDHMN1XxJ0Ry8L/Grr2oriYSzfk9cOPmcUW6A9PHVZfKPBLdtEM+4/R0SI4CFTHVSTbQ2Y7HykTikYSAO5B9QgI/NPVt1YxlyrBhT1vqYPkuccf0RQlbtAGbb0ve9+dBOO7/bCPSzo8yfmY+RbmLsG9uJ/Bw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5136.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(7916004)(39860400002)(376002)(396003)(366004)(346002)(136003)(5660300002)(41300700001)(8936002)(26005)(6512007)(9686003)(2906002)(86362001)(6506007)(38100700002)(44832011)(33716001)(122000001)(38070700005)(1076003)(66946007)(186003)(6916009)(66476007)(66556008)(54906003)(66446008)(478600001)(76116006)(64756008)(6486002)(8676002)(71200400001)(316002)(4326008);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?zbACn1u7tP2Zb4OLExanIm+JMPFjDftiDLlDgufSNJFrnrKiRBx3tEpKtmFK?=
+ =?us-ascii?Q?P8XR160Uvoy5E8a2NPGtJ3vB3vYzc4b00LdJEI9tyTVrLs+0AObcfJE4y4Pl?=
+ =?us-ascii?Q?3AQOOx5r/F1MeNdOG9sWQEltu2jtYdDvLAhS6SzzJFpDUzmRai0x9NQ4oMkm?=
+ =?us-ascii?Q?SuKdjtBYPQ0zyP8jI7rCzVJMnD924EfH0FVt5poCtrdnu4rR/fbNbIg/dHJe?=
+ =?us-ascii?Q?lzi7nlL+JqqjmjUurIem+VuqineENa++FAT34f2qHL18LLE7juyCUDIXSVXS?=
+ =?us-ascii?Q?QPrOUpeDaOYXaGNiq7KIPNAGOhNZGFjvTewQKwHb5OYpHhhA5cKnbNXvM4Vk?=
+ =?us-ascii?Q?2s1cm3pLIg4bAK7Pc0yXJHN6xLOIftEU3HK3R20+c05PbwR8x2H3e47FCBwz?=
+ =?us-ascii?Q?keo8h/bgFlJpdlrT8cKoJOyWBewNjlsLgmdlXOXz98mJ+gKVSolMtp3IZn6W?=
+ =?us-ascii?Q?v7D3n3Z3eJi+MQnVJWh4tC9qxNnv+qf92FuNJ/FuyPFGQ8rF0hmGLcb+azVJ?=
+ =?us-ascii?Q?+2B+Uj3kaWIMNr+PjHD+ZCOvDc8HHEz6uopORRHVfonQCNZMTz3chvwettF9?=
+ =?us-ascii?Q?mNx9DuPjO2IU+aitq2Uzw375cwdbKLiMKDRdkaiSNTyhF32SyA0DtA+f/vRC?=
+ =?us-ascii?Q?ZKy7WleTT/ycrylXlcxgF8JRRN/hmTyTUWGCFX6iD68E50ro/1y6Tdy9DpK1?=
+ =?us-ascii?Q?a49yovH5IUDP7sDYm4gnd2YxhAplGF/nbjURmsYa5ecnADXLhpNNHqZc719a?=
+ =?us-ascii?Q?7tyWpNrnqm59DoNlA/BA05Cp9bZVsbXDHLN2cnIijOnr2LkrEMvGQ++v7Bqx?=
+ =?us-ascii?Q?qm+LPYGAwZmmpD1IVRk0iTPBjn1thgy2tZFJG+aMR4KmIy0HkqGq7PH+OzSF?=
+ =?us-ascii?Q?4VvWWtI0+PYMjKH/JnRNMJ1kd8rPGvX2ZLqk4rf8/6vXPgg1bZ1XN2MrH+qf?=
+ =?us-ascii?Q?ewVpJyM6NnjU2wlcN1YBIPdyBKdAzfFQbbo2L6yjGMSXUtrpGYZ1s45idA8q?=
+ =?us-ascii?Q?XijeMEGnvTrG7+CHAzhhl1MsCur3mJ4mHcyG3qrbgYih1mhcHBxtpV8LcKIl?=
+ =?us-ascii?Q?/No+tggq0YRClo/7aCHTQfZRWzM67/pz3asaIfxnMVwY7ybsmAMNG3ylCT4q?=
+ =?us-ascii?Q?4qqUtvzAiAVa4J2U55cafLafBJ6SKpGnSNCjYThmDVXFDE9VykgUOwmmJTLN?=
+ =?us-ascii?Q?ZsF9MWdEc3C3gi43q542wDysJoHVr8+mzhpEYc82NOU4a680ueWpyxI+XHKQ?=
+ =?us-ascii?Q?8UeoCrHw/EZbAvj+V1mrMHmBg0hOgvoNnkaJfHc0XZgyhhnoQs+wQ6szSeKs?=
+ =?us-ascii?Q?RhoyqG+SIR6O5kVOvdhuo+k371At2D0RPWkpv3LzMlUA7nU+9wR34nJqyWm9?=
+ =?us-ascii?Q?HmldffrXFvz28//VVBrQGBUAChCliiKvzw4184b56oAReeul6262qAnsA6So?=
+ =?us-ascii?Q?joL3knxBQaL4rI4ggxFVgQ4RVzY6E5KVGDFTomg/tzwh87ydjhZ61X9SCPba?=
+ =?us-ascii?Q?sNdCKZ64hJbUY/vFl+AuLfpN4A/jIsbbmWuOSltcK7TdbjacTL7dZt7zbzgj?=
+ =?us-ascii?Q?zStb58C2gmzfRMwd23uPWTEnFtqyRJhkOb4iPZuBDBZaHPVk4OFIW3rr90f6?=
+ =?us-ascii?Q?mQ=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <7EEC1B2F9B173543B697EE41C70DE22C@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 72a976aa-e163-4770-e278-08da90d1ebc9
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Sep 2022 13:07:30.4631
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: LV/sABZvX0Rx2xGzF0NUcK8VYFSE25JEEV9pOl7LjZXe2k1UTMcdPqHQUTHn/fky25YKsdCX+2+FqXcz25jtRw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8591
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-ECAP hardware on TI AM62x SoC supports capture feature. It can be used
-to timestamp events (falling/rising edges) detected on input signal.
+On Wed, Sep 07, 2022 at 10:56:37AM +0200, Michael Walle wrote:
+> > > I think we are on the same track here. I was ignoring any VFs for now=
+.
+> > > So I guess, what I'm still missing here is why enet#2 and enet#3 (or
+> > > even swp4 and swp5) would need a non-random MAC address. Except from
+> > > your example above. Considering the usecase where swp0..3 is one brid=
+ge
+> > > with eno2 and eno3 being the CPU ports. Then I'd only need a unique
+> > > MAC address for eno0, eno1 and swp0, correct?
+> >=20
+> > Don't say "unique MAC address for swp0", since swp0's MAC address is no=
+t
+> > unique, you probably mean to say "a MAC address which will be shared by
+> > swp0-swp3".
+>=20
+> That I actually don't understand. I have the following addresses after
+> booting:
+>=20
+> # ip link
+> ..
+> 4: gbe0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP gro=
+up
+> default qlen 1000
+>     link/ether 00:a0:a5:5c:6b:62 brd ff:ff:ff:ff:ff:ff
+>     inet 172.16.1.2/24 scope global gbe0
+>        valid_lft forever preferred_lft forever
+>     inet6 fe80::2a0:a5ff:fe5c:6b62/64 scope link
+>        valid_lft forever preferred_lft forever
+> 5: gbe1: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN group defau=
+lt
+> qlen 1000
+>     link/ether 00:a0:a5:5c:6b:63 brd ff:ff:ff:ff:ff:ff
+> 6: eno2: <BROADCAST,MULTICAST> mtu 1504 qdisc noop state DOWN group defau=
+lt
+> qlen 1000
+>     link/ether 8e:6c:20:8a:ab:52 brd ff:ff:ff:ff:ff:ff
+> 7: eno3: <BROADCAST,MULTICAST> mtu 1504 qdisc noop state DOWN group defau=
+lt
+> qlen 1000
+>     link/ether c6:fd:b1:88:3c:36 brd ff:ff:ff:ff:ff:ff
+> 8: swp0@eno2: <BROADCAST,MULTICAST,M-DOWN> mtu 1500 qdisc noop state DOWN
+> group default qlen 1000
+>     link/ether 00:a0:a5:5c:6b:66 brd ff:ff:ff:ff:ff:ff
+> 9: swp1@eno2: <BROADCAST,MULTICAST,M-DOWN> mtu 1500 qdisc noop state DOWN
+> group default qlen 1000
+>     link/ether 00:a0:a5:5c:6b:67 brd ff:ff:ff:ff:ff:ff
+> 10: swp2@eno2: <BROADCAST,MULTICAST,M-DOWN> mtu 1500 qdisc noop state DOW=
+N
+> group default qlen 1000
+>     link/ether 00:a0:a5:5c:6b:68 brd ff:ff:ff:ff:ff:ff
+> 11: swp3@eno2: <BROADCAST,MULTICAST,M-DOWN> mtu 1500 qdisc noop state DOW=
+N
+> group default qlen 1000
+>     link/ether 00:a0:a5:5c:6b:69 brd ff:ff:ff:ff:ff:ff
+>=20
+> gbe0 is eno0 and gbe1 is eno1. So in my case they are unique.
+>=20
+> When adding all the ports to a bridge, the bridge gets the lowest MAC.
+>=20
+> # ip link add name br0 type bridge
+> # ip link set swp0 master br0
+> # ip link set swp1 master br0
+> # ip link set swp2 master br0
+> # ip link set swp3 master br0
+>=20
+> 12: br0: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN mode DEFAUL=
+T
+> group default qlen 1000
+>     link/ether 00:a0:a5:5c:6b:66 brd ff:ff:ff:ff:ff:ff
+>=20
+> Is that what you mean with "a MAC address which will be shared by
+> swp0-swp3"?
 
-This commit adds capture driver support for ECAP hardware on AM62x SoC.
-
-In the ECAP hardware, capture pin can also be configured to be in
-PWM mode. Current implementation only supports capture operating mode.
-Hardware also supports timebase sync between multiple instances, but
-this driver supports simple independent capture functionality.
-
-Signed-off-by: Julien Panis <jpanis@baylibre.com>
----
- drivers/counter/Kconfig           |  15 +
- drivers/counter/Makefile          |   1 +
- drivers/counter/ti-ecap-capture.c | 653 ++++++++++++++++++++++++++++++
- include/uapi/linux/counter.h      |   2 +
- 4 files changed, 671 insertions(+)
- create mode 100644 drivers/counter/ti-ecap-capture.c
-
-diff --git a/drivers/counter/Kconfig b/drivers/counter/Kconfig
-index 5edd155f1911..d388bf26f4dc 100644
---- a/drivers/counter/Kconfig
-+++ b/drivers/counter/Kconfig
-@@ -101,4 +101,19 @@ config INTEL_QEP
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called intel-qep.
- 
-+config TI_ECAP_CAPTURE
-+	tristate "TI eCAP capture driver"
-+	depends on ARCH_OMAP2PLUS || ARCH_DAVINCI_DA8XX || ARCH_KEYSTONE || ARCH_K3 || COMPILE_TEST
-+	depends on HAS_IOMEM
-+	select REGMAP_MMIO
-+	help
-+	  Select this option to enable the Texas Instruments Enhanced Capture
-+	  (eCAP) driver in input mode.
-+
-+	  It can be used to timestamp events (falling/rising edges) detected
-+	  on ECAP input signal.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called ti-ecap-capture.
-+
- endif # COUNTER
-diff --git a/drivers/counter/Makefile b/drivers/counter/Makefile
-index 8fde6c100ebc..b9a369e0d4fc 100644
---- a/drivers/counter/Makefile
-+++ b/drivers/counter/Makefile
-@@ -14,3 +14,4 @@ obj-$(CONFIG_TI_EQEP)		+= ti-eqep.o
- obj-$(CONFIG_FTM_QUADDEC)	+= ftm-quaddec.o
- obj-$(CONFIG_MICROCHIP_TCB_CAPTURE)	+= microchip-tcb-capture.o
- obj-$(CONFIG_INTEL_QEP)		+= intel-qep.o
-+obj-$(CONFIG_TI_ECAP_CAPTURE)	+= ti-ecap-capture.o
-diff --git a/drivers/counter/ti-ecap-capture.c b/drivers/counter/ti-ecap-capture.c
-new file mode 100644
-index 000000000000..d04bece77f18
---- /dev/null
-+++ b/drivers/counter/ti-ecap-capture.c
-@@ -0,0 +1,653 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * ECAP Capture driver
-+ *
-+ * Copyright (C) 2022 Julien Panis <jpanis@baylibre.com>
-+ */
-+
-+#include <linux/atomic.h>
-+#include <linux/clk.h>
-+#include <linux/counter.h>
-+#include <linux/err.h>
-+#include <linux/interrupt.h>
-+#include <linux/io.h>
-+#include <linux/module.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/platform_device.h>
-+#include <linux/pm_runtime.h>
-+#include <linux/regmap.h>
-+
-+#define ECAP_DRV_NAME "ecap"
-+
-+/* ECAP event IDs */
-+#define ECAP_CEVT1		0
-+#define ECAP_CEVT2		1
-+#define ECAP_CEVT3		2
-+#define ECAP_CEVT4		3
-+#define ECAP_CNTOVF		4
-+
-+#define ECAP_CEVT_LAST		ECAP_CEVT4
-+#define ECAP_NB_CEVT		(ECAP_CEVT_LAST + 1)
-+
-+#define ECAP_EVT_LAST		ECAP_CNTOVF
-+#define ECAP_NB_EVT		(ECAP_EVT_LAST + 1)
-+
-+/* Registers */
-+#define ECAP_TSCNT_REG			0x00
-+
-+#define ECAP_CAP_REG(i)		(((i) << 2) + 0x08)
-+
-+#define ECAP_ECCTL_REG			0x28
-+#define ECAP_CAPPOL_BIT(i)		BIT((i) << 1)
-+#define ECAP_EV_MODE_MASK		GENMASK(7, 0)
-+#define ECAP_CAPLDEN_BIT		BIT(8)
-+#define ECAP_CONT_ONESHT_BIT		BIT(16)
-+#define ECAP_STOPVALUE_MASK		GENMASK(18, 17)
-+#define ECAP_TSCNTSTP_BIT		BIT(20)
-+#define ECAP_SYNCO_DIS_MASK		GENMASK(23, 22)
-+#define ECAP_CAP_APWM_BIT		BIT(25)
-+#define ECAP_ECCTL_EN_MASK		(ECAP_CAPLDEN_BIT | ECAP_TSCNTSTP_BIT)
-+#define ECAP_ECCTL_CFG_MASK		(ECAP_SYNCO_DIS_MASK | ECAP_STOPVALUE_MASK	\
-+					| ECAP_ECCTL_EN_MASK | ECAP_CAP_APWM_BIT	\
-+					| ECAP_CONT_ONESHT_BIT)
-+
-+#define ECAP_ECINT_EN_FLG_REG		0x2c
-+#define ECAP_EVT_EN_MASK		GENMASK(ECAP_NB_EVT, ECAP_NB_CEVT)
-+#define ECAP_EVT_FLG_BIT(i)		BIT((i) + 17)
-+
-+#define ECAP_ECINT_CLR_FRC_REG	0x30
-+#define ECAP_INT_CLR_BIT		BIT(0)
-+#define ECAP_EVT_CLR_BIT(i)		BIT((i) + 1)
-+#define ECAP_EVT_CLR_MASK		GENMASK(ECAP_NB_EVT, 0)
-+
-+#define ECAP_PID_REG			0x5c
-+
-+/*
-+ * Event modes
-+ * One bit for each CAPx register : 1 = falling edge / 0 = rising edge
-+ * e.g. mode = 13 = 0xd = 0b1101
-+ * -> falling edge for CAP1-3-4 / rising edge for CAP2
-+ */
-+#define ECAP_EV_MODE_BIT(i)		BIT(i)
-+
-+/* ECAP signals */
-+#define ECAP_CLOCK_SIG 0
-+#define ECAP_INPUT_SIG 1
-+
-+static const struct regmap_config ecap_cnt_regmap_config = {
-+	.reg_bits = 32,
-+	.reg_stride = 4,
-+	.val_bits = 32,
-+	.max_register = ECAP_PID_REG,
-+};
-+
-+/**
-+ * struct ecap_cnt_dev - device private data structure
-+ * @enabled:  device state
-+ * @clk:      device clock
-+ * @regmap:   device register map
-+ * @nb_ovf:   number of overflows since capture start
-+ * @pm_ctx:   device context for PM operations
-+ */
-+struct ecap_cnt_dev {
-+	bool enabled;
-+	struct clk *clk;
-+	struct regmap *regmap;
-+	atomic_t nb_ovf;
-+	struct {
-+		u8 ev_mode;
-+		u64 time_cntr;
-+	} pm_ctx;
-+};
-+
-+static u8 ecap_cnt_capture_get_evmode(struct counter_device *counter)
-+{
-+	struct ecap_cnt_dev *ecap_dev = counter_priv(counter);
-+	u8 ev_mode = 0;
-+	unsigned int regval;
-+	int i;
-+
-+	pm_runtime_get_sync(counter->parent);
-+	regmap_read(ecap_dev->regmap, ECAP_ECCTL_REG, &regval);
-+	pm_runtime_put_sync(counter->parent);
-+
-+	for (i = 0 ; i < ECAP_NB_CEVT ; i++) {
-+		if (regval & ECAP_CAPPOL_BIT(i))
-+			ev_mode |= ECAP_EV_MODE_BIT(i);
-+	}
-+
-+	return ev_mode;
-+}
-+
-+static void ecap_cnt_capture_set_evmode(struct counter_device *counter, u8 ev_mode)
-+{
-+	struct ecap_cnt_dev *ecap_dev = counter_priv(counter);
-+	unsigned int regval = 0;
-+	int i;
-+
-+	for (i = 0 ; i < ECAP_NB_CEVT ; i++) {
-+		if (ev_mode & ECAP_EV_MODE_BIT(i))
-+			regval |= ECAP_CAPPOL_BIT(i);
-+	}
-+
-+	pm_runtime_get_sync(counter->parent);
-+	regmap_update_bits(ecap_dev->regmap, ECAP_ECCTL_REG, ECAP_EV_MODE_MASK, regval);
-+	pm_runtime_put_sync(counter->parent);
-+}
-+
-+static void ecap_cnt_capture_enable(struct counter_device *counter)
-+{
-+	struct ecap_cnt_dev *ecap_dev = counter_priv(counter);
-+
-+	pm_runtime_get_sync(counter->parent);
-+
-+	/* Enable interrupts on events */
-+	regmap_update_bits(ecap_dev->regmap, ECAP_ECINT_EN_FLG_REG,
-+			   ECAP_EVT_EN_MASK, ECAP_EVT_EN_MASK);
-+
-+	/* Run counter */
-+	regmap_update_bits(ecap_dev->regmap, ECAP_ECCTL_REG, ECAP_ECCTL_CFG_MASK,
-+			   ECAP_SYNCO_DIS_MASK | ECAP_STOPVALUE_MASK | ECAP_ECCTL_EN_MASK);
-+}
-+
-+static void ecap_cnt_capture_disable(struct counter_device *counter)
-+{
-+	struct ecap_cnt_dev *ecap_dev = counter_priv(counter);
-+
-+	/* Disable interrupts on events */
-+	regmap_update_bits(ecap_dev->regmap, ECAP_ECINT_EN_FLG_REG, ECAP_EVT_EN_MASK, 0);
-+
-+	/* Stop counter */
-+	regmap_update_bits(ecap_dev->regmap, ECAP_ECCTL_REG, ECAP_ECCTL_EN_MASK, 0);
-+
-+	pm_runtime_put_sync(counter->parent);
-+}
-+
-+static int ecap_cnt_count_get_val(struct counter_device *counter, unsigned int reg, u64 *val)
-+{
-+	struct ecap_cnt_dev *ecap_dev = counter_priv(counter);
-+	unsigned int regval;
-+
-+	pm_runtime_get_sync(counter->parent);
-+	regmap_read(ecap_dev->regmap, reg, &regval);
-+	pm_runtime_put_sync(counter->parent);
-+
-+	*val = regval;
-+
-+	return 0;
-+}
-+
-+static int ecap_cnt_count_set_val(struct counter_device *counter, unsigned int reg, u64 val)
-+{
-+	struct ecap_cnt_dev *ecap_dev = counter_priv(counter);
-+
-+	pm_runtime_get_sync(counter->parent);
-+	regmap_write(ecap_dev->regmap, reg, val);
-+	pm_runtime_put_sync(counter->parent);
-+
-+	return 0;
-+}
-+
-+static inline int ecap_cnt_count_read(struct counter_device *counter,
-+				      struct counter_count *count, u64 *val)
-+{
-+	return ecap_cnt_count_get_val(counter, ECAP_TSCNT_REG, val);
-+}
-+
-+static int ecap_cnt_count_write(struct counter_device *counter,
-+				struct counter_count *count, u64 val)
-+{
-+	struct ecap_cnt_dev *ecap_dev = counter_priv(counter);
-+
-+	if (ecap_dev->enabled)
-+		return -EBUSY;
-+	if (val > 0)
-+		return -EINVAL;
-+
-+	return ecap_cnt_count_set_val(counter, ECAP_TSCNT_REG, val);
-+}
-+
-+static int ecap_cnt_function_read(struct counter_device *counter,
-+				  struct counter_count *count,
-+				  enum counter_function *function)
-+{
-+	*function = COUNTER_FUNCTION_INCREASE;
-+
-+	return 0;
-+}
-+
-+static int ecap_cnt_action_read(struct counter_device *counter,
-+				struct counter_count *count,
-+				struct counter_synapse *synapse,
-+				enum counter_synapse_action *action)
-+{
-+	*action = (synapse->signal->id == ECAP_CLOCK_SIG) ?
-+		   COUNTER_SYNAPSE_ACTION_RISING_EDGE :
-+		   COUNTER_SYNAPSE_ACTION_NONE;
-+
-+	return 0;
-+}
-+
-+static int ecap_cnt_watch_validate(struct counter_device *counter,
-+				   const struct counter_watch *watch)
-+{
-+	if ((watch->channel <= ECAP_CEVT_LAST && watch->event == COUNTER_EVENT_CAPTURE) ||
-+	    (watch->channel == ECAP_CNTOVF && watch->event == COUNTER_EVENT_OVERFLOW))
-+		return 0;
-+
-+	return -EINVAL;
-+}
-+
-+static int ecap_cnt_clk_get_freq(struct counter_device *counter,
-+				 struct counter_signal *signal, u64 *freq)
-+{
-+	struct ecap_cnt_dev *ecap_dev = counter_priv(counter);
-+
-+	*freq = clk_get_rate(ecap_dev->clk);
-+
-+	return 0;
-+}
-+
-+static int ecap_cnt_cap_get_pol(struct counter_device *counter,
-+				struct counter_signal *signal,
-+				u8 inst, u32 *pol)
-+{
-+	struct ecap_cnt_dev *ecap_dev = counter_priv(counter);
-+
-+	pm_runtime_get_sync(counter->parent);
-+	*pol = regmap_test_bits(ecap_dev->regmap, ECAP_ECCTL_REG, ECAP_CAPPOL_BIT(inst));
-+	pm_runtime_put_sync(counter->parent);
-+
-+	return 0;
-+}
-+
-+static int ecap_cnt_cap_set_pol(struct counter_device *counter,
-+				struct counter_signal *signal,
-+				u8 inst, u32 pol)
-+{
-+	struct ecap_cnt_dev *ecap_dev = counter_priv(counter);
-+
-+	if (ecap_dev->enabled)
-+		return -EBUSY;
-+
-+	pm_runtime_get_sync(counter->parent);
-+	if (pol)
-+		regmap_set_bits(ecap_dev->regmap, ECAP_ECCTL_REG, ECAP_CAPPOL_BIT(inst));
-+	else
-+		regmap_clear_bits(ecap_dev->regmap, ECAP_ECCTL_REG, ECAP_CAPPOL_BIT(inst));
-+	pm_runtime_put_sync(counter->parent);
-+
-+	return 0;
-+}
-+
-+static inline int ecap_cnt_cap_read(struct counter_device *counter,
-+				    struct counter_count *count,
-+				    u8 inst, u64 *cap)
-+{
-+	return ecap_cnt_count_get_val(counter, ECAP_CAP_REG(inst), cap);
-+}
-+
-+#define ECAP_CAP_GET_POL(i) int ecap_cnt_cap##i##_get_pol(struct counter_device *counter,	\
-+							    struct counter_signal *signal,	\
-+							    u32 *pol)				\
-+{												\
-+	return ecap_cnt_cap_get_pol(counter, signal, i, pol);				\
-+}
-+
-+#define ECAP_CAP_SET_POL(i) int ecap_cnt_cap##i##_set_pol(struct counter_device *counter,	\
-+							    struct counter_signal *signal,	\
-+							    u32 pol)				\
-+{												\
-+	return ecap_cnt_cap_set_pol(counter, signal, i, pol);				\
-+}
-+
-+#define ECAP_CAP_READ(i) int ecap_cnt_cap##i##_read(struct counter_device *counter,		\
-+						     struct counter_count *count,		\
-+						     u64 *cap)					\
-+{												\
-+	return ecap_cnt_cap_read(counter, count, i, cap);					\
-+}
-+
-+static inline ECAP_CAP_GET_POL(0)
-+static inline ECAP_CAP_GET_POL(1)
-+static inline ECAP_CAP_GET_POL(2)
-+static inline ECAP_CAP_GET_POL(3)
-+static inline ECAP_CAP_SET_POL(0)
-+static inline ECAP_CAP_SET_POL(1)
-+static inline ECAP_CAP_SET_POL(2)
-+static inline ECAP_CAP_SET_POL(3)
-+static inline ECAP_CAP_READ(0)
-+static inline ECAP_CAP_READ(1)
-+static inline ECAP_CAP_READ(2)
-+static inline ECAP_CAP_READ(3)
-+
-+static int ecap_cnt_nb_ovf_read(struct counter_device *counter,
-+				struct counter_count *count, u64 *val)
-+{
-+	struct ecap_cnt_dev *ecap_dev = counter_priv(counter);
-+
-+	*val = atomic_read(&ecap_dev->nb_ovf);
-+
-+	return 0;
-+}
-+
-+static int ecap_cnt_nb_ovf_write(struct counter_device *counter,
-+				 struct counter_count *count, u64 val)
-+{
-+	struct ecap_cnt_dev *ecap_dev = counter_priv(counter);
-+
-+	if (ecap_dev->enabled)
-+		return -EBUSY;
-+	if (val > 0)
-+		return -EINVAL;
-+
-+	atomic_set(&ecap_dev->nb_ovf, val);
-+
-+	return 0;
-+}
-+
-+static int ecap_cnt_ceiling_read(struct counter_device *counter,
-+				 struct counter_count *count, u64 *val)
-+{
-+	*val = U32_MAX;
-+
-+	return 0;
-+}
-+
-+static int ecap_cnt_enable_read(struct counter_device *counter,
-+				struct counter_count *count, u8 *enable)
-+{
-+	struct ecap_cnt_dev *ecap_dev = counter_priv(counter);
-+
-+	*enable = ecap_dev->enabled;
-+
-+	return 0;
-+}
-+
-+static int ecap_cnt_enable_write(struct counter_device *counter,
-+				 struct counter_count *count, u8 enable)
-+{
-+	struct ecap_cnt_dev *ecap_dev = counter_priv(counter);
-+
-+	if (enable == ecap_dev->enabled)
-+		return 0;
-+	if (enable)
-+		ecap_cnt_capture_enable(counter);
-+	else
-+		ecap_cnt_capture_disable(counter);
-+	ecap_dev->enabled = enable;
-+
-+	return 0;
-+}
-+
-+static const struct counter_ops ecap_cnt_ops = {
-+	.count_read = ecap_cnt_count_read,
-+	.count_write = ecap_cnt_count_write,
-+	.function_read = ecap_cnt_function_read,
-+	.action_read = ecap_cnt_action_read,
-+	.watch_validate = ecap_cnt_watch_validate,
-+};
-+
-+static const enum counter_function ecap_cnt_functions[] = {
-+	COUNTER_FUNCTION_INCREASE,
-+};
-+
-+static const enum counter_synapse_action ecap_cnt_clock_actions[] = {
-+	COUNTER_SYNAPSE_ACTION_RISING_EDGE,
-+};
-+
-+static const enum counter_synapse_action ecap_cnt_input_actions[] = {
-+	COUNTER_SYNAPSE_ACTION_NONE,
-+};
-+
-+static const char *const ecap_cnt_cap_polarities[] = {
-+	"rising edge",
-+	"falling edge",
-+};
-+
-+static DEFINE_COUNTER_ENUM(ecap_cnt_cap_avail_pol, ecap_cnt_cap_polarities);
-+
-+static struct counter_comp ecap_cnt_clock_ext[] = {
-+	COUNTER_COMP_SIGNAL_U64("frequency", ecap_cnt_clk_get_freq, NULL),
-+};
-+
-+static struct counter_comp ecap_cnt_signal_ext[] = {
-+	COUNTER_COMP_SIGNAL_ENUM("polarity0", ecap_cnt_cap0_get_pol,
-+				 ecap_cnt_cap0_set_pol, ecap_cnt_cap_avail_pol),
-+	COUNTER_COMP_SIGNAL_ENUM("polarity1", ecap_cnt_cap1_get_pol,
-+				 ecap_cnt_cap1_set_pol, ecap_cnt_cap_avail_pol),
-+	COUNTER_COMP_SIGNAL_ENUM("polarity2", ecap_cnt_cap2_get_pol,
-+				 ecap_cnt_cap2_set_pol, ecap_cnt_cap_avail_pol),
-+	COUNTER_COMP_SIGNAL_ENUM("polarity3", ecap_cnt_cap3_get_pol,
-+				 ecap_cnt_cap3_set_pol, ecap_cnt_cap_avail_pol),
-+};
-+
-+static struct counter_signal ecap_cnt_signals[] = {
-+	{
-+		.id = ECAP_CLOCK_SIG,
-+		.name = "Clock Signal",
-+		.ext = ecap_cnt_clock_ext,
-+		.num_ext = ARRAY_SIZE(ecap_cnt_clock_ext),
-+	},
-+	{
-+		.id = ECAP_INPUT_SIG,
-+		.name = "Input Signal",
-+		.ext = ecap_cnt_signal_ext,
-+		.num_ext = ARRAY_SIZE(ecap_cnt_signal_ext),
-+	},
-+};
-+
-+static struct counter_synapse ecap_cnt_synapses[] = {
-+	{
-+		.actions_list = ecap_cnt_clock_actions,
-+		.num_actions = ARRAY_SIZE(ecap_cnt_clock_actions),
-+		.signal = &ecap_cnt_signals[ECAP_CLOCK_SIG],
-+	},
-+	{
-+		.actions_list = ecap_cnt_input_actions,
-+		.num_actions = ARRAY_SIZE(ecap_cnt_input_actions),
-+		.signal = &ecap_cnt_signals[ECAP_INPUT_SIG],
-+	},
-+};
-+
-+static struct counter_comp ecap_cnt_count_ext[] = {
-+	COUNTER_COMP_COUNT_U64("capture0", ecap_cnt_cap0_read, NULL),
-+	COUNTER_COMP_COUNT_U64("capture1", ecap_cnt_cap1_read, NULL),
-+	COUNTER_COMP_COUNT_U64("capture2", ecap_cnt_cap2_read, NULL),
-+	COUNTER_COMP_COUNT_U64("capture3", ecap_cnt_cap3_read, NULL),
-+	COUNTER_COMP_COUNT_U64("num_overflows", ecap_cnt_nb_ovf_read, ecap_cnt_nb_ovf_write),
-+	COUNTER_COMP_CEILING(ecap_cnt_ceiling_read, NULL),
-+	COUNTER_COMP_ENABLE(ecap_cnt_enable_read, ecap_cnt_enable_write),
-+};
-+
-+static struct counter_count ecap_cnt_counts[] = {
-+	{
-+		.id = 0,
-+		.name = "Timestamp Counter",
-+		.functions_list = ecap_cnt_functions,
-+		.num_functions = ARRAY_SIZE(ecap_cnt_functions),
-+		.synapses = ecap_cnt_synapses,
-+		.num_synapses = ARRAY_SIZE(ecap_cnt_synapses),
-+		.ext = ecap_cnt_count_ext,
-+		.num_ext = ARRAY_SIZE(ecap_cnt_count_ext),
-+	},
-+};
-+
-+static irqreturn_t ecap_cnt_isr(int irq, void *dev_id)
-+{
-+	struct counter_device *counter_dev = dev_id;
-+	struct ecap_cnt_dev *ecap_dev = counter_priv(counter_dev);
-+	unsigned int clr = 0;
-+	unsigned int flg;
-+	int i;
-+
-+	regmap_read(ecap_dev->regmap, ECAP_ECINT_EN_FLG_REG, &flg);
-+
-+	/* Check capture events */
-+	for (i = 0 ; i < ECAP_NB_CEVT ; i++) {
-+		if (flg & ECAP_EVT_FLG_BIT(i)) {
-+			counter_push_event(counter_dev, COUNTER_EVENT_CAPTURE, i);
-+			clr |= ECAP_EVT_CLR_BIT(i);
-+		}
-+	}
-+
-+	/* Check counter overflow */
-+	if (flg & ECAP_EVT_FLG_BIT(ECAP_CNTOVF)) {
-+		atomic_inc(&ecap_dev->nb_ovf);
-+		counter_push_event(counter_dev, COUNTER_EVENT_OVERFLOW, ECAP_CNTOVF);
-+		clr |= ECAP_EVT_CLR_BIT(ECAP_CNTOVF);
-+	}
-+
-+	clr |= ECAP_INT_CLR_BIT;
-+	regmap_update_bits(ecap_dev->regmap, ECAP_ECINT_CLR_FRC_REG, ECAP_EVT_CLR_MASK, clr);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static void ecap_cnt_pm_disable(void *dev)
-+{
-+	pm_runtime_disable(dev);
-+}
-+
-+static int ecap_cnt_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct ecap_cnt_dev *ecap_dev;
-+	struct counter_device *counter_dev;
-+	void __iomem *mmio_base;
-+	unsigned long clk_rate;
-+	int ret;
-+
-+	counter_dev = devm_counter_alloc(dev, sizeof(*ecap_dev));
-+	if (IS_ERR(counter_dev))
-+		return PTR_ERR(counter_dev);
-+
-+	counter_dev->name = ECAP_DRV_NAME;
-+	counter_dev->parent = dev;
-+	counter_dev->ops = &ecap_cnt_ops;
-+	counter_dev->signals = ecap_cnt_signals;
-+	counter_dev->num_signals = ARRAY_SIZE(ecap_cnt_signals);
-+	counter_dev->counts = ecap_cnt_counts;
-+	counter_dev->num_counts = ARRAY_SIZE(ecap_cnt_counts);
-+
-+	ecap_dev = counter_priv(counter_dev);
-+
-+	ecap_dev->clk = devm_clk_get_enabled(dev, "fck");
-+	if (IS_ERR(ecap_dev->clk))
-+		return dev_err_probe(dev, PTR_ERR(ecap_dev->clk), "failed to get clock\n");
-+
-+	clk_rate = clk_get_rate(ecap_dev->clk);
-+	if (!clk_rate) {
-+		dev_err(dev, "failed to get clock rate\n");
-+		return -EINVAL;
-+	}
-+
-+	mmio_base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(mmio_base))
-+		return PTR_ERR(mmio_base);
-+
-+	ecap_dev->regmap = devm_regmap_init_mmio(dev, mmio_base, &ecap_cnt_regmap_config);
-+	if (IS_ERR(ecap_dev->regmap))
-+		return dev_err_probe(dev, PTR_ERR(ecap_dev->regmap), "failed to init regmap\n");
-+
-+	ret = platform_get_irq(pdev, 0);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret, "failed to get irq\n");
-+
-+	ret = devm_request_irq(dev, ret, ecap_cnt_isr, 0, pdev->name, counter_dev);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to request irq\n");
-+
-+	platform_set_drvdata(pdev, counter_dev);
-+
-+	pm_runtime_enable(dev);
-+
-+	/* Register a cleanup callback to care for disabling PM */
-+	ret = devm_add_action_or_reset(dev, ecap_cnt_pm_disable, dev);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to add pm disable action\n");
-+
-+	ecap_cnt_capture_set_evmode(counter_dev, 0);
-+
-+	ret = devm_counter_add(dev, counter_dev);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to add counter\n");
-+
-+	return 0;
-+}
-+
-+static int ecap_cnt_remove(struct platform_device *pdev)
-+{
-+	struct counter_device *counter_dev = platform_get_drvdata(pdev);
-+	struct ecap_cnt_dev *ecap_dev = counter_priv(counter_dev);
-+
-+	if (ecap_dev->enabled)
-+		ecap_cnt_capture_disable(counter_dev);
-+
-+	return 0;
-+}
-+
-+static int ecap_cnt_suspend(struct device *dev)
-+{
-+	struct counter_device *counter_dev = dev_get_drvdata(dev);
-+	struct ecap_cnt_dev *ecap_dev = counter_priv(counter_dev);
-+
-+	/* If eCAP is running, stop capture then save timestamp counter */
-+	if (ecap_dev->enabled) {
-+		/*
-+		 * Disabling capture has the following effects:
-+		 * - interrupts are disabled
-+		 * - loading of capture registers is disabled
-+		 * - timebase counter is stopped
-+		 */
-+		ecap_cnt_capture_disable(counter_dev);
-+		ecap_cnt_count_get_val(counter_dev, ECAP_TSCNT_REG, &ecap_dev->pm_ctx.time_cntr);
-+	}
-+
-+	ecap_dev->pm_ctx.ev_mode = ecap_cnt_capture_get_evmode(counter_dev);
-+
-+	clk_disable(ecap_dev->clk);
-+
-+	return 0;
-+}
-+
-+static int ecap_cnt_resume(struct device *dev)
-+{
-+	struct counter_device *counter_dev = dev_get_drvdata(dev);
-+	struct ecap_cnt_dev *ecap_dev = counter_priv(counter_dev);
-+
-+	clk_enable(ecap_dev->clk);
-+
-+	ecap_cnt_capture_set_evmode(counter_dev, ecap_dev->pm_ctx.ev_mode);
-+
-+	/* If eCAP was running, restore timestamp counter then run capture */
-+	if (ecap_dev->enabled) {
-+		ecap_cnt_count_set_val(counter_dev, ECAP_TSCNT_REG, ecap_dev->pm_ctx.time_cntr);
-+		ecap_cnt_capture_enable(counter_dev);
-+	}
-+
-+	return 0;
-+}
-+
-+static DEFINE_SIMPLE_DEV_PM_OPS(ecap_cnt_pm_ops, ecap_cnt_suspend, ecap_cnt_resume);
-+
-+static const struct of_device_id ecap_cnt_of_match[] = {
-+	{ .compatible	= "ti,am62-ecap-capture" },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, ecap_cnt_of_match);
-+
-+static struct platform_driver ecap_cnt_driver = {
-+	.probe = ecap_cnt_probe,
-+	.remove = ecap_cnt_remove,
-+	.driver = {
-+		.name = "ecap-capture",
-+		.of_match_table = ecap_cnt_of_match,
-+		.pm = pm_sleep_ptr(&ecap_cnt_pm_ops),
-+	},
-+};
-+module_platform_driver(ecap_cnt_driver);
-+
-+MODULE_DESCRIPTION("ECAP Capture driver");
-+MODULE_AUTHOR("Julien Panis <jpanis@baylibre.com>");
-+MODULE_LICENSE("GPL");
-diff --git a/include/uapi/linux/counter.h b/include/uapi/linux/counter.h
-index 96c5ffd368ad..4c5372c6f2a3 100644
---- a/include/uapi/linux/counter.h
-+++ b/include/uapi/linux/counter.h
-@@ -63,6 +63,8 @@ enum counter_event_type {
- 	COUNTER_EVENT_INDEX,
- 	/* State of counter is changed */
- 	COUNTER_EVENT_CHANGE_OF_STATE,
-+	/* Count value is captured */
-+	COUNTER_EVENT_CAPTURE,
- };
- 
- /**
--- 
-2.37.3
-
+No, what I'm trying is only to reformulate what you've said, "Then I'd
+only need a unique MAC address for eno0, eno1 and swp0". My understanding
+of what you mean by "unique address for swp0" is that the addresses for
+swp1-swp3 don't matter (hence they can be set to the same address as swp0)
+since there will be a bridge that serves as the IP termination point,
+with its own MAC address, inherited from the first bridge port, swp0.
+But this makes it improper to call it a "unique address for swp0".=
