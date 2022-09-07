@@ -2,79 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E068E5B0986
-	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 18:01:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88C415B0999
+	for <lists+devicetree@lfdr.de>; Wed,  7 Sep 2022 18:05:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230332AbiIGQBo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Sep 2022 12:01:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52276 "EHLO
+        id S229561AbiIGQFD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Sep 2022 12:05:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230244AbiIGQAr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 12:00:47 -0400
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C591098A6D;
-        Wed,  7 Sep 2022 09:00:10 -0700 (PDT)
-Received: by mail-pj1-x1033.google.com with SMTP id m3so4398917pjo.1;
-        Wed, 07 Sep 2022 09:00:10 -0700 (PDT)
+        with ESMTP id S229604AbiIGQEd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Sep 2022 12:04:33 -0400
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EB28BB6A2
+        for <devicetree@vger.kernel.org>; Wed,  7 Sep 2022 09:02:41 -0700 (PDT)
+Received: by mail-pl1-x634.google.com with SMTP id f24so15066368plr.1
+        for <devicetree@vger.kernel.org>; Wed, 07 Sep 2022 09:02:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date;
-        bh=R2aYA3nGCz9EA7+1cg3dqptus0IcFIXTQNzZ+9Ertlw=;
-        b=A0Ph3CtK+AKbnVr46VJVTi+2MJE30nUI6K5sJZVD42j3lrmauNuYhZ58r30MMdkIzj
-         5LtpAN8dMsS/qwW2AWvLMW69TSojVVZWhrIr57Bglp/Ur+YFgGdXAa2b07KNle9G0iIv
-         pHAVgF41sAew3lU8t4YBiXGTJGZXW1+9yHsgkD6k/1LJ17WgrUMBcsz+MHQa4XiXsw7B
-         J/7xm0LQJci7zUGEOGku2eqGGQWLW0pDZdsMoefaoNG2fQGmQFvjwkTXY05Yu42iJguV
-         1QXKYI3m6dJ3Xhq/LK8jo5YBml1urHrCTIogf2TQUgOLj30PQKWGlycNScccIy/5hZxP
-         eKOA==
+        d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date;
+        bh=oHtmyp0MjeRW/7ev9U+nQsxJjSYwYzANM1nS1bhyYwo=;
+        b=7Fju9Xhz5InFFNpngSUAX9JEcnScxu7+CMDZMlSdfrqW61YAbx6lZxwIx3AlEsNeb4
+         Shs9pC57dF6RvlEm1FGNFYME5EiRcfcVL/P8tg2z0w8zsaSbSGK4xvVUUGThF5+nEftg
+         ROA6x6AWXCSsHF7leXMvxQPFMLhLvLO7ybf+oiPbnbEj0O7gEHoVcXv+i5megzDTOSZS
+         wy7C6cd2M2Tju4iBCXvwwDWWEnl7kjI/U/pdzYdCLxwmYSahn35LnDVwhAGI7GlIuZN3
+         O9xxXQrm9U8lCp44nExQMRN+FwyRFXbhGCLzlwtgw3eksjKTECLr44MN3BLVb9POg9mq
+         rhVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date;
-        bh=R2aYA3nGCz9EA7+1cg3dqptus0IcFIXTQNzZ+9Ertlw=;
-        b=cQH3RC5y9CGq1H+fRctCQn26AL8ddRWjJUtF6Nw83+5cvbaHU/peYOgVcnicaNgEXK
-         5qqPSaU+0mQVx3XPmR1D70cOHRVKU3aNIVyjKBB3+OT5qEPd/h+9wxW6ux5KudS1+XRB
-         Ja1e/NkyVCKcLW+6p/lUX7qdnu4Mzpw3odDrP1Ho0wQcOvWOqBqEgthNHs8i5jxXgD77
-         /iAMVwabQUooQ5ZoYMJZWdD2lcef+K/XAho+OAUH5Ja+cKFj323BY3l+6q9sAYdcsgZ4
-         lJv7HaL2aUA6sGp5WIIpv0DKJpzfpsAVpjd9jmlMLnnHRFw++ieugNOMVdM4lloRyWtE
-         A5IA==
-X-Gm-Message-State: ACgBeo2MWwhlqBGcV6wnp2uhL6PszCu7vONlWneayIDZTxuU746UmxJe
-        MoZT83Nmp46PZHNXrf/OGVY=
-X-Google-Smtp-Source: AA6agR4OBht6eg8IitoDsRgFpboXcA4R5BTYMEzgSwBQhYw4kaM/4fVldaLwu7Q/IbtVj47X3NvbUw==
-X-Received: by 2002:a17:903:40c9:b0:176:e58c:f082 with SMTP id t9-20020a17090340c900b00176e58cf082mr4567450pld.60.1662566409286;
-        Wed, 07 Sep 2022 09:00:09 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id q14-20020a17090311ce00b001743c51123esm12630838plh.72.2022.09.07.09.00.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Sep 2022 09:00:07 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <5b2f5918-b26b-f7d3-7764-7832be139a92@roeck-us.net>
-Date:   Wed, 7 Sep 2022 09:00:05 -0700
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date;
+        bh=oHtmyp0MjeRW/7ev9U+nQsxJjSYwYzANM1nS1bhyYwo=;
+        b=iH7CteKd9idIFi3/OBfiGIVlVilfDy+g8Ka4+5CsDJmkYPlnlHheGcZgv6BeKt6M/6
+         4QKsI0A+AAz6cEqFPBtHaeG/ysOnu0alZFs7pKvAmN4imF1sATKkMuLccDVnczhOjSYD
+         2UpcjBN9GFZryrV4QEK3/eKnH3HXkjOior0C82wlMlGKD43ckJzYJxyoDhN0NIqsL2e4
+         MXCcbPIMqsDESSo9nmQBTlDB0q0+iKvw/PjnsoT25rfbEheFWcxHk6+ahYShdF2RXQ53
+         GZNeNYchc0gnvn0HSJJXtmFzNH97PxanKmT3uzOg6MrQMLhMqWsMmwsHuiizKHIHJbB3
+         RB8w==
+X-Gm-Message-State: ACgBeo0vPonQMDDxuWz64jEKO+KY0/l+Uot6kpIzXw+o7kV4LLMaTWgi
+        Uyf5ntYo7AWz3dNc4OUXY/GALg==
+X-Google-Smtp-Source: AA6agR5zcPWheEOnJmCN12khZ9DjLxhGpGztu9YSzGjEeswzEFPbQWeYZ6QF968kkuhvrssLDh6xpA==
+X-Received: by 2002:a17:90a:4d8d:b0:1fa:9cc6:3408 with SMTP id m13-20020a17090a4d8d00b001fa9cc63408mr4552604pjh.245.1662566544122;
+        Wed, 07 Sep 2022 09:02:24 -0700 (PDT)
+Received: from localhost.localdomain ([23.27.44.184])
+        by smtp.gmail.com with ESMTPSA id x13-20020a17090a1f8d00b001f510175984sm14919719pja.41.2022.09.07.09.02.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Sep 2022 09:02:23 -0700 (PDT)
+From:   Jagan Teki <jagan@edgeble.ai>
+To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kever Yang <kever.yang@rock-chips.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        Jagan Teki <jagan@edgeble.ai>
+Subject: [PATCH v4 00/13] ARM: Add Rockchip RV1126 support
+Date:   Wed,  7 Sep 2022 21:31:54 +0530
+Message-Id: <20220907160207.3845791-1-jagan@edgeble.ai>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v4 02/21] dt-bindings: hwmon: (mr75203) fix "intel,
- vm-map" property to be optional
-Content-Language: en-US
-To:     "Farber, Eliav" <farbere@amazon.com>
-Cc:     jdelvare@suse.com, robh+dt@kernel.org, p.zabel@pengutronix.de,
-        rtanwar@maxlinear.com, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        hhhawa@amazon.com, jonnyc@amazon.com, andriy.shevchenko@intel.com
-References: <20220906083356.21067-1-farbere@amazon.com>
- <20220906083356.21067-3-farbere@amazon.com>
- <20220906165359.GA817639@roeck-us.net>
- <f638f9bc-b757-c352-7be0-4f9ab6607378@amazon.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-In-Reply-To: <f638f9bc-b757-c352-7be0-4f9ab6607378@amazon.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,34 +69,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/6/22 23:28, Farber, Eliav wrote:
-> On 9/6/2022 7:53 PM, Guenter Roeck wrote:
->> On Tue, Sep 06, 2022 at 08:33:37AM +0000, Eliav Farber wrote:
->>> Change "intel,vm-map" property to be optional instead of required.
->>>
->>> The driver implementation indicates it is not mandatory to have
->>> "intel,vm-map" in the device tree:
->>>  - probe doesn't fail in case it is absent.
->>>  - explicit comment in code - "Incase intel,vm-map property is not
->>>    defined, we assume incremental channel numbers".
->>>
->>> Fixes: 748022ef093f ("hwmon: Add DT bindings schema for PVT controller")
->>> Signed-off-by: Eliav Farber <farbere@amazon.com>
->>> ---
->>> V3 -> V2:
->>> - Change this patch to be first in the series.
->>> - Add explanation why "intel,vm-map" is not required.
->>>
->>
->> I don't see how this change warrants dropping Rob's Acked-by tag.
->> Am I missing something ? 
-> 
-> My apology. I wasn’t aware I had to keep the Acked-by tag.
-> I'll add it in v5.
-> 
+RV1126 is a high-performance vision processor SoC for IPC/CVR,
+especially for AI related application.
 
-"have" is such a strong word. Just keep in mind that unnecessarily
-dropping tags tends to result in irritated reviewers.
+It is based on quad-core ARM Cortex-A7 32-bit core which integrates
+NEON and FPU. There is a 32KB I-cache and 32KB D-cache for each core
+and 512KB unified L2 cache. It has build-in NPU supports INT8/INT16
+hybrid operation and computing power is up to 2.0TOPs.
 
-Thanks,
-Guenter
+This patch series add basic core support for Rockchip RV1126 and
+v3 for the series can be found at [1].
+
+Tested in Edgeble AI Edge Compute Module 0.
+
+[1] https://patchwork.kernel.org/project/linux-arm-kernel/cover/20220818124132.125304-1-jagan@edgeble.ai/
+
+Any inputs?
+Jagan.
+
+Elaine Zhang (1):
+  clk: rockchip: Add MUXTBL variant
+
+Jagan Teki (12):
+  i2c: rk3x: Add rv1126 support
+  clk: rockchip: Add dt-binding header for RV1126
+  dt-bindings: clock: rockchip: Document RV1126 CRU
+  clk: rockchip: Add clock controller support for RV1126 SoC.
+  dt-bindings: soc: rockchip: Document RV1126 grf
+  dt-bindings: soc: rockchip: Document RV1126 pmugrf
+  ARM: dts: rockchip: Add Rockchip RV1126 pinctrl
+  ARM: dts: rockchip: Add Rockchip RV1126 SoC
+  dt-bindings: vendor-prefixes: Add Edgeble AI Technologies Pvt. Ltd.
+  dt-bindings: arm: rockchip: Add Edgeble AI Edge Compute Module 0 Carrier
+  ARM: dts: rockchip: rv1126: Add Edgeble AI Edge Compute Module 0
+  ARM: dts: rockchip: rv1126: Add Edgeble AI Edge Compute Module 0 Carrier
+
+ .../devicetree/bindings/arm/rockchip.yaml     |    6 +
+ .../bindings/clock/rockchip,rv1126-cru.yaml   |   62 +
+ .../devicetree/bindings/soc/rockchip/grf.yaml |    2 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |    2 +
+ MAINTAINERS                                   |    2 +-
+ arch/arm/boot/dts/Makefile                    |    1 +
+ .../boot/dts/rv1126-edgeble-ecm0-carrier.dts  |   38 +
+ .../rv1126-edgeble-edge-compute-module-0.dtsi |  353 ++++++
+ arch/arm/boot/dts/rv1126-pinctrl.dtsi         |  212 ++++
+ arch/arm/boot/dts/rv1126.dtsi                 |  430 +++++++
+ drivers/clk/rockchip/Kconfig                  |    7 +
+ drivers/clk/rockchip/Makefile                 |    1 +
+ drivers/clk/rockchip/clk-rv1126.c             | 1107 +++++++++++++++++
+ drivers/clk/rockchip/clk.c                    |   27 +-
+ drivers/clk/rockchip/clk.h                    |   36 +
+ drivers/i2c/busses/i2c-rk3x.c                 |    9 +
+ .../dt-bindings/clock/rockchip,rv1126-cru.h   |  632 ++++++++++
+ 17 files changed, 2920 insertions(+), 7 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rv1126-cru.yaml
+ create mode 100644 arch/arm/boot/dts/rv1126-edgeble-ecm0-carrier.dts
+ create mode 100644 arch/arm/boot/dts/rv1126-edgeble-edge-compute-module-0.dtsi
+ create mode 100644 arch/arm/boot/dts/rv1126-pinctrl.dtsi
+ create mode 100644 arch/arm/boot/dts/rv1126.dtsi
+ create mode 100644 drivers/clk/rockchip/clk-rv1126.c
+ create mode 100644 include/dt-bindings/clock/rockchip,rv1126-cru.h
+
+-- 
+2.25.1
+
